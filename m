@@ -1,894 +1,266 @@
-Return-Path: <devicetree+bounces-220410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220400-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E0F9B95B8E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 13:44:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EA14B95AF5
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 13:40:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EE5B57A4CFD
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 11:42:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B91E82E2139
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 11:40:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8206322C6B;
-	Tue, 23 Sep 2025 11:44:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF0D8322524;
+	Tue, 23 Sep 2025 11:40:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="FZBMwzXH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1CB9322A27;
-	Tue, 23 Sep 2025 11:44:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758627859; cv=none; b=FnbJ1DBrLkM1M7NhQrYZBTtIZ9Ps2il3Un1wLVBeinVohRAXdJzgpyhsLJWDDJpPNdrvLc5aZOe3rFZBbeQQQQzQbFRe8J7kMxwhelRT3l9/BG+vnOvWvSX6iLUQj8WJ6pkQfoP6ZZzQ2mcu2xxqwe/5beziI8MTNNUoGq06BhQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758627859; c=relaxed/simple;
-	bh=X0GoBXQiamwTs49HHAfrgWy9yJSLkpz6UgBx5t1tntk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=PJe7ygBjH8q8eLfShuKNmlf77mpM91cDAHPfK4M6hWDB2i1Q2JX+Bw4wKsG1eIbYVquXTYWdIZ+JOnA75F6K/LHAyNe9tuW4SxnKmyS/0elCUUf5ZP9yW/E+hEtlmJYvTzuXFoZXdWbOjlK1MBJwkcBtgKbHYhNHBDRDt/+61iI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; arc=none smtp.client-ip=92.121.34.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id C96791A045F;
-	Tue, 23 Sep 2025 13:34:48 +0200 (CEST)
-Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
-	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 3CBE51A0458;
-	Tue, 23 Sep 2025 13:34:48 +0200 (CEST)
-Received: from lsv03900.swis.in-blr01.nxp.com (lsv03900.swis.in-blr01.nxp.com [10.12.177.15])
-	by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 52ADE1800086;
-	Tue, 23 Sep 2025 19:34:47 +0800 (+08)
-From: Lakshay Piplani <lakshay.piplani@nxp.com>
-To: alexandre.belloni@bootlin.com,
-	linux-rtc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org
-Cc: pankit.garg@nxp.com,
-	vikash.bansal@nxp.com,
-	priyanka.jain@nxp.com,
-	shashank.rebbapragada@nxp.com,
-	Lakshay Piplani <lakshay.piplani@nxp.com>,
-	Daniel Aguirre <daniel.aguirre@nxp.com>
-Subject: [PATCH v4 2/2] rtc: Add NXP PCF85053 driver support
-Date: Tue, 23 Sep 2025 17:04:41 +0530
-Message-Id: <20250923113441.555284-2-lakshay.piplani@nxp.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250923113441.555284-1-lakshay.piplani@nxp.com>
-References: <20250923113441.555284-1-lakshay.piplani@nxp.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66A7B246BB4;
+	Tue, 23 Sep 2025 11:40:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758627649; cv=pass; b=DcgUTUO/pvB9zUWOgWJ30Yitnmc91a5AZ8A2TByzquEyZbTDyjU/ajgmr4w3UMWyY5KQJQ2dg4WcRvoWneNTzpNp082+9KPBDvpysca/gWbkqRcYWsZLdacsymS0MLpcEh6z1cGcTkqX8k9qlrVpdRlmhmcp5foyzFvcrhIcaew=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758627649; c=relaxed/simple;
+	bh=1wD5/BCHvO4wZ+PVLlY/M6SrLKrpmZetWKKAXrG3aiQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=YeTr8xK1o+3xK+Aa9fCo9/rVt4BarpGiUVDgLqjLRSB9u1VXN+t1SFMAl0n/cszsAwknlBnB8Ni2s0IKoWoEonnBIJLqbQDHgI1tghapCoQqbjFFEfuCEqFZfq/AxQm4fNM1y8Zb7mwMkdF6stw2zrlI63nFaR9TcNG60tJc8a8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=FZBMwzXH; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1758627622; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=CB/BOl63LtOjxS1px3Mc/HrU9pSiCi+UwFt2d+Y9Z1JAib883QG8C7ThPFDZO+lJD+ndPNsLoC32EYsdY/+2oj+sOAuUdf/9nAwk3dYAvnbgoOOzGrATzTPmABqhN7QT+wn9lgSwBFPFxOJ0O2wsQwTk5XpGwmKn5FngcFFMK7c=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1758627622; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=IC4BpxAhpjyTzVyPoZ8WjogMLBdztYocFFfW14X07Ko=; 
+	b=WRgWdB18KmwKmgiUFefNsAuLJBxURShMZeDV4ZwzXeP/WNipFp6/I2NtAZYfynxa0ZlkAjflpg4vleg3FBwFhU2Gp0FsHkJqStN7iGs8sE3LTQw0emvS5NAekDuHAcSG7+YAV05ayL2wyWw43Hd7Dd8jXMzj23F2jY5ilVH4LVQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1758627622;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+	bh=IC4BpxAhpjyTzVyPoZ8WjogMLBdztYocFFfW14X07Ko=;
+	b=FZBMwzXHHPcA+L1vTr0XMACTbk8MBdkGWpc/x5VcxCMKowSy8UkW/a7LitaEdYKO
+	5USC/JpFWyl61umrUJFfvBdACzIVydrcDSQjM/Gb7e23F/aZTixL8QUJR5a7Rv0JVN0
+	z+pn8iozuNukx6DRFX39qshQMTHbeUxgPPhXi1CY=
+Received: by mx.zohomail.com with SMTPS id 1758627619531831.3019252145115;
+	Tue, 23 Sep 2025 04:40:19 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v4 0/8] MT8196 GPU Frequency/Power Control Support
+Date: Tue, 23 Sep 2025 13:39:53 +0200
+Message-Id: <20250923-mt8196-gpufreq-v4-0-6cd63ade73d6@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAqH0mgC/23PwY6DIBAG4FcxnJcGBgUxzabv0ewBdbQkKl2wp
+ k3juy/ipWn3+APz/cOTBPQWA6myJ/G42GDdFEP+lZHmYqYeqW1jJsCgYCVoOs4l15L211vn8Zc
+ aJfNCKtbyEkgcunrs7D2B5589x2e36M77IalNQNq4cbRzlU14n2myNaT5EUMwqbXKjvsFF4wBL
+ 4oD51JoVlJO3bCYrsNTPxo7HCL2Tbayiw2z84/0mYWntp1gxfveC6eMqlo20MoaAfipccNgauf
+ N5iVugReCwwcBG6G0KY1QoFv9HyFeCfVBiEg0ObaY17nQGt+JdV3/AMfIoFujAQAA
+X-Change-ID: 20250829-mt8196-gpufreq-a7645670d182
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Boris Brezillon <boris.brezillon@collabora.com>, 
+ Jassi Brar <jassisinghbrar@gmail.com>, Chia-I Wu <olvaffe@gmail.com>, 
+ Chen-Yu Tsai <wenst@chromium.org>, Steven Price <steven.price@arm.com>, 
+ Liviu Dudau <liviu.dudau@arm.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, Kees Cook <kees@kernel.org>, 
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>, 
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: kernel@collabora.com, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-hardening@vger.kernel.org, linux-pm@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+X-Mailer: b4 0.14.2
 
-PCF85053 is i2c based RTC which supports timer and calendar
-functionality.
+This series introduces two new drivers to accomplish controlling the
+frequency and power of the Mali GPU on MediaTek MT8196 SoCs.
 
-Features supported:
-1. Read/Write time
-2. Get/Set Alarm
-3. Wakeup Source
-4. Generate up to 32768Hz clock output
-5. Primary/Secondary i2c bus
+The reason why it's not as straightforward as with other SoCs is that
+the MT8196 has quite complex glue logic in order to squeeze the maximum
+amount of performance possible out of the silicon. There's an additional
+MCU running a specialised firmware, which communicates with the
+application processor through a mailbox and some SRAM, and is in charge
+of controlling the regulators, the PLL clocks, and the power gating of
+the GPU, all while also being in charge of any DVFS control.
 
-Signed-off-by: Daniel Aguirre <daniel.aguirre@nxp.com>
-Signed-off-by: Pankit Garg <pankit.garg@nxp.com>
-Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
+This set of drivers is enough to communicate desired OPP index limits to
+the aforementioned MCU, referred to as "GPUEB" from here on out. The
+GPUEB is still free to lower the effective frequency if the GPU has no
+jobs going on at all, even when a higher OPP is set.
+
+The power- and frequency control driver, mtk-mfg-pmdomain, is now
+implemented as a power domain driver, with a set_performance_state
+operation. It also exposes itself as a clock provider, so that panthor
+can read the actual achieved DVFS clock rate as per the GPUEB firmware.
+
+This power domain approach means that panthor does not need to know
+about how the frequency control works on this SoC, as the OPP core
+framework already takes care of it. The only exception is that panthor
+needs to not register OPPs from DT itself if there already is an OPP
+table present.
+
+The mailbox driver is a fairly bog-standard common mailbox framework
+driver, just specific to the firmware that runs on the GPUEB.
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 ---
-V3 -> V4: - Handle multi-host ownership explicitly using primary/secondary bus hadling.
-          - Probe no longer changes any CTRL bits unconditionally and do not clear ST/AF/OF
-            avoiding lost interrupts or silent mode changes.
-          - Read/Set time & alarm now respect HF(12/24h) and DM(BCD/BIN) converting
-            hour fields correctly for all combinations.
-          - Minor changes: drop noisy warnings, tidy error paths/comments.
-V2 -> V3: Add MAINTAINERS file changes to this patch
-V1 -> V2: no changes
+Changes in v4:
+- rebase onto next-20250922, which includes Laura Nao's clock patches
+- refactor mediatek_mfg into a pmdomain driver called "mtk-mfg-pmdomain"
+- move mt8196-gpufreq binding to the power subdirectory
+- mali-valhall-csf binding: adjust for power-domains usage
+- mali-valhall-csf binding: use clocks on mt8196
+- mailbox: prefix defines with "GPUEB_"
+- mailbox: get rid of custom of_xlate
+- mailbox: rename "CLOGGED" to "BLOCKED"
+- mailbox: adjust send_data comment to include more technical info
+- mailbox: misc style improvements
+- panthor: drop "drm/panthor: devfreq: make get_dev_status use
+  get_cur_freq", as it is now not necessary and makes the code worse
+- panthor: drop "drm/panthor: devfreq: add pluggable devfreq providers"
+- panthor: drop "drm/panthor: add no_clocks soc_data member for MT8196",
+  as we now have clocks courtesy of gpufreq
+- panthor: check for existing opp table before registering a new one
+- mtk-mfg-pmdomain: add turbo_below variant data, which marks OPPs below
+  a certain index as turbo for the OPP subsystem
+- mtk-mfg-pmdomain: no longer read stack OPPs, as they weren't used
+- mtk-mfg-pmdomain: get rid of num gpu opp != num stack opp check.
+  That's the firmware's problem should it ever happen, not ours
+- mtk-mfg-pmdomain: some small name and whitespace changes on the defines
+- Link to v3: https://lore.kernel.org/r/20250917-mt8196-gpufreq-v3-0-c4ede4b4399e@collabora.com
 
- MAINTAINERS                |   7 +
- drivers/rtc/Kconfig        |  10 +
- drivers/rtc/Makefile       |   1 +
- drivers/rtc/rtc-pcf85053.c | 734 +++++++++++++++++++++++++++++++++++++
- 4 files changed, 752 insertions(+)
- create mode 100644 drivers/rtc/rtc-pcf85053.c
+Changes in v3:
+- mali-valhall-csf binding: get rid of clocks for MT8196, rebase onto
+  Chia-I Wu's patch
+- mt8196-gpufreq binding: rename hw_revision to hw-revision
+- mt8196-gpufreq binding: rename clocks
+- mt8196-gpufreq binding: drop pointless label in example
+- mailbox binding: drop pointless label in example
+- mailbox: whitespace changes on defines
+- mailbox: remove rx_buf member from channel struct, use stack buffer
+- mailbox: check in probe that no rx_len exceeds MBOX_MAX_RX_SIZE
+- panthor: add no_clocks SoC data patch, also rebase onto Chia-I Wu's
+  series
+- panthor: refactor devfreq provider functionality to do allocation and
+  initialisation of panthor_devfreq struct in panthor in all cases
+- panthor: drop the patch that moves struct panthor_devfreq to a header
+  file, as it no longer needs to be exposed to devfreq providers
+- mediatek_mfg: refactor devfreq provider functionality to decouple it
+  more from panthor itself
+- mediatek_mfg: move SRAM magic to a #define
+- mediatek_mfg: begrudgingly rename member "padding_lol" to "reserved"
+- mediatek_mfg: use local struct device pointer var in more places
+- mediatek_mfg: change wording of sleep command failure error message,
+  but keep the format specifier because I don't want to throw bare
+  errnos at users
+- mediatek_mfg: remove unnecessary braces around dev_err EB power off
+  timeout message
+- mediatek_mfg: allocate rx_data for channels that expect a response
+- mediatek_mfg: memcpy the rx buffer from the common mailbox framework
+  in the rx callback to rx_data, as mssg now points to stack memory
+- mediatek_mfg: make SRAM clearing message dev_dbg
+- mediatek_mfg: no longer print physical address of SRAM
+- mediatek_mfg: expand on the GF_REG_OPP_TABLE_STK comment, toning down
+  its defeatist attitude in the process
+- mediatek_mfg: style fixes in mtk_mfg_get_closest_opp_idx
+- mediatek_mfg: rename clocks and hw-revision reg as per binding
+- Link to v2: https://lore.kernel.org/r/20250912-mt8196-gpufreq-v2-0-779a8a3729d9@collabora.com
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6bbe4b4f8ec0..b835c2787e63 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18352,6 +18352,13 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/sound/nxp,tfa989x.yaml
- F:	sound/soc/codecs/tfa989x.c
- 
-+NXP RTC PCF85053 DRIVER
-+M:	Pankit Gargi <pankit.garg@nxp.com>
-+M:	Lakshay Piplani <lakshay.piplani@nxp.com>
-+L:	linux-kernel@vger.kernel.org
-+S:	Maintained
-+F:	drivers/rtc/rtc-pcf85053.c
-+
- NZXT-KRAKEN2 HARDWARE MONITORING DRIVER
- M:	Jonas Malaco <jonas@protocubo.io>
- L:	linux-hwmon@vger.kernel.org
-diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index 64f6e9756aff..59ef0b6a53a7 100644
---- a/drivers/rtc/Kconfig
-+++ b/drivers/rtc/Kconfig
-@@ -974,6 +974,16 @@ config RTC_DRV_PCF85063
- 	  This driver can also be built as a module. If so, the module
- 	  will be called rtc-pcf85063.
- 
-+config RTC_DRV_PCF85053
-+        tristate "NXP PCF85053"
-+        depends on OF
-+        help
-+          If you say yes here you get support for the NXP PCF85053 I2C Bootable CPU RTC
-+          chip.
-+
-+          This driver can also be built as a module. If so, the module
-+          will be called rtc-pcf85053.
-+
- config RTC_DRV_RV3029C2
- 	tristate "Micro Crystal RV3029/3049"
- 	depends on RTC_I2C_AND_SPI
-diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index 789bddfea99d..7b2f379d10a9 100644
---- a/drivers/rtc/Makefile
-+++ b/drivers/rtc/Makefile
-@@ -128,6 +128,7 @@ obj-$(CONFIG_RTC_DRV_PCAP)	+= rtc-pcap.o
- obj-$(CONFIG_RTC_DRV_PCF2123)	+= rtc-pcf2123.o
- obj-$(CONFIG_RTC_DRV_PCF2127)	+= rtc-pcf2127.o
- obj-$(CONFIG_RTC_DRV_PCF85063)	+= rtc-pcf85063.o
-+obj-$(CONFIG_RTC_DRV_PCF85053)  += rtc-pcf85053.o
- obj-$(CONFIG_RTC_DRV_PCF8523)	+= rtc-pcf8523.o
- obj-$(CONFIG_RTC_DRV_PCF85363)	+= rtc-pcf85363.o
- obj-$(CONFIG_RTC_DRV_PCF8563)	+= rtc-pcf8563.o
-diff --git a/drivers/rtc/rtc-pcf85053.c b/drivers/rtc/rtc-pcf85053.c
-new file mode 100644
-index 000000000000..4eec1a661b6b
---- /dev/null
-+++ b/drivers/rtc/rtc-pcf85053.c
-@@ -0,0 +1,734 @@
-+// SPDX-License-Identifier: GPL-2.0
-+// Copyright 2025 NXP
-+
-+#include <linux/bcd.h>
-+#include <linux/clk-provider.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/rtc.h>
-+#include <linux/slab.h>
-+#include <linux/pm_wakeirq.h>
-+#include <linux/regmap.h>
-+
-+#define PCF85053_REG_SC		0x00 /* seconds */
-+#define PCF85053_REG_SCA	0x01 /* alarm */
-+#define PCF85053_REG_MN		0x02 /* minutes */
-+#define PCF85053_REG_MNA	0x03 /* alarm */
-+#define PCF85053_REG_HR		0x04 /* hour */
-+#define PCF85053_REG_HRA	0x05 /* alarm */
-+#define PCF85053_REG_DW		0x06 /* day of week */
-+#define PCF85053_REG_DM		0x07 /* day of month */
-+#define PCF85053_REG_MO		0x08 /* month */
-+#define PCF85053_REG_YR		0x09 /* year */
-+#define PCF85053_REG_CTRL	0x0A /* timer control */
-+#define PCF85053_REG_ST		0x0B /* status */
-+#define PCF85053_REG_CLKO	0x0C /* clock out */
-+#define PCF85053_REG_ACC	0x14 /* xclk access */
-+
-+#define PCF85053_BIT_AF		BIT(7)
-+#define PCF85053_BIT_ST		BIT(7)
-+#define PCF85053_BIT_DM		BIT(6)
-+#define PCF85053_BIT_HF		BIT(5)
-+#define PCF85053_BIT_DSM	BIT(4)
-+#define PCF85053_BIT_AIE	BIT(3)
-+#define PCF85053_BIT_OFIE	BIT(2)
-+#define PCF85053_BIT_CIE	BIT(1)
-+#define PCF85053_BIT_TWO	BIT(0)
-+#define PCF85053_BIT_XCLK	BIT(7)
-+
-+#define PCF85053_REG_BAT_MASK	0x07 /* Battery mask */
-+#define PCF85053A_BVL_MASK 0x07
-+#define PCF85053A_BVL_LOW_THRESHOLD 0x02
-+#define PCF85053_REG_CLKO_F_MASK	0x03 /* Frequenc mask */
-+#define PCF85053_REG_CLKO_CKE	0x80 /* clock out enabled */
-+#define PCF85053_BIT_OF	BIT(6)
-+
-+#define PCF85053_HR_PM	BIT(7)
-+#define PCF85053_HR_24H_MASK	GENMASK(5, 0)
-+
-+struct pcf85053_config {
-+	const struct regmap_config regmap;
-+	unsigned has_alarms:1;
-+};
-+
-+struct pcf85053 {
-+	struct rtc_device *rtc;
-+	struct i2c_client *client;
-+	struct regmap	*regmap;
-+#ifdef CONFIG_COMMON_CLK
-+	struct clk_hw clkout_hw;
-+#endif
-+	bool is_primary;
-+};
-+
-+static inline int pcf85053_read_two_bit(struct pcf85053 *pcf85053, bool *two)
-+{
-+	unsigned int ctrl;
-+	int err;
-+
-+	err = regmap_read(pcf85053->regmap, PCF85053_REG_CTRL, &ctrl);
-+	if (err)
-+		return err;
-+
-+	*two = !!(ctrl & PCF85053_BIT_TWO);
-+
-+	return 0;
-+}
-+
-+static inline bool pcf85053_time_write_access(struct pcf85053 *pcf85053)
-+{
-+	bool two;
-+
-+	if (pcf85053_read_two_bit(pcf85053, &two))
-+		return false;
-+
-+	/* Primary writes iff TWO=1; secondary writes iff TWO=0 */
-+	return pcf85053->is_primary ? two : !two;
-+}
-+
-+static int pcf85053_set_alarm_mode(struct device *dev, bool on)
-+{
-+	struct pcf85053 *pcf85053 = dev_get_drvdata(dev);
-+	unsigned int val;
-+	int err;
-+
-+	val = on ? PCF85053_BIT_AIE : 0;
-+	val &= ~(PCF85053_BIT_CIE | PCF85053_BIT_OFIE);
-+
-+	err = regmap_update_bits(pcf85053->regmap, PCF85053_REG_CTRL,
-+				 PCF85053_BIT_AIE | PCF85053_BIT_CIE | PCF85053_BIT_OFIE,
-+				 val);
-+	if (err)
-+		return err;
-+
-+	return regmap_update_bits(pcf85053->regmap, PCF85053_REG_ST,
-+				  PCF85053_BIT_AF, 0);
-+}
-+
-+static int pcf85053_get_alarm_mode(struct device *dev,
-+				   unsigned char *alarm_enable, unsigned char *alarm_flag)
-+{
-+	struct pcf85053 *pcf85053 = dev_get_drvdata(dev);
-+	unsigned int val;
-+	int err;
-+
-+	if (alarm_enable) {
-+		err = regmap_read(pcf85053->regmap, PCF85053_REG_CTRL, &val);
-+		if (err)
-+			return err;
-+
-+		*alarm_enable = val & PCF85053_BIT_AIE;
-+	}
-+
-+	if (alarm_flag) {
-+		err = regmap_read(pcf85053->regmap, PCF85053_REG_ST, &val);
-+		if (err)
-+			return err;
-+
-+		*alarm_flag = val & PCF85053_BIT_AF;
-+	}
-+
-+	return 0;
-+}
-+
-+static irqreturn_t pcf85053_irq(int irq, void *dev_id)
-+{
-+	struct pcf85053 *pcf85053 = i2c_get_clientdata(dev_id);
-+	unsigned char alarm_flag;
-+	unsigned char alarm_enable;
-+	int err;
-+
-+	err = pcf85053_get_alarm_mode(&pcf85053->client->dev, &alarm_enable, &alarm_flag);
-+	if (err)
-+		return IRQ_NONE;
-+
-+	if (!alarm_flag)
-+		return IRQ_NONE;
-+
-+	rtc_update_irq(pcf85053->rtc, 1, RTC_IRQF | RTC_AF);
-+	pcf85053_set_alarm_mode(&pcf85053->client->dev, false);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+/*
-+ * In the routines that deal directly with the PCF85053 hardware, we use
-+ * rtc_time -- month 0-11, hour 0-23, yr = calendar year-epoch.
-+ */
-+static int pcf85053_rtc_read_time(struct device *dev, struct rtc_time *tm)
-+{
-+	struct pcf85053 *pcf85053 = dev_get_drvdata(dev);
-+	unsigned int ctrl, st, h12;
-+	bool is_24h, is_bin;
-+	u8 regs[10], hr;
-+	int err;
-+
-+	err = regmap_read(pcf85053->regmap, PCF85053_REG_CTRL, &ctrl);
-+	if (err)
-+		return err;
-+
-+	err = regmap_read(pcf85053->regmap, PCF85053_REG_ST, &st);
-+	if (err)
-+		return err;
-+
-+	if (ctrl & PCF85053_BIT_ST)
-+		dev_warn(dev, "RTC is stopped; time may be invalid\n");
-+
-+	err = regmap_bulk_read(pcf85053->regmap, PCF85053_REG_SC, regs, sizeof(regs));
-+	if (err)
-+		return err;
-+
-+	if (ctrl & PCF85053_BIT_DM) {
-+		tm->tm_sec = regs[PCF85053_REG_SC] & 0x7F;
-+		tm->tm_min = regs[PCF85053_REG_MN] & 0x7F;
-+		tm->tm_mday = regs[PCF85053_REG_DM] & 0x3F;
-+		tm->tm_mon = (regs[PCF85053_REG_MO] & 0x1F) - 1;
-+		tm->tm_year = regs[PCF85053_REG_YR] + 100;
-+	} else {
-+		tm->tm_sec = bcd2bin(regs[PCF85053_REG_SC] & 0x7F);
-+		tm->tm_min = bcd2bin(regs[PCF85053_REG_MN] & 0x7F);
-+		tm->tm_mday = bcd2bin(regs[PCF85053_REG_DM] & 0x3F);
-+		tm->tm_mon = bcd2bin(regs[PCF85053_REG_MO] & 0x1F) - 1;
-+		tm->tm_year = bcd2bin(regs[PCF85053_REG_YR]) + 100;
-+	}
-+	tm->tm_wday = regs[PCF85053_REG_DW] & 0x07;
-+
-+	hr = regs[PCF85053_REG_HR];
-+	is_24h = ctrl & PCF85053_BIT_HF;
-+	is_bin = ctrl & PCF85053_BIT_DM;
-+
-+	if (is_24h) {
-+		tm->tm_hour = is_bin
-+		? (hr & PCF85053_HR_24H_MASK)
-+		: bcd2bin(hr & PCF85053_HR_24H_MASK);
-+	} else {
-+		if (is_bin) {
-+			h12 = hr & PCF85053_HR_24H_MASK;
-+		} else {
-+			h12 = is_bin ? (hr & PCF85053_HR_24H_MASK) :
-+					   bcd2bin(hr & PCF85053_HR_24H_MASK);
-+
-+			tm->tm_hour = (h12 == 12) ? ((hr & PCF85053_HR_PM) ? 12 : 0) :
-+				       ((hr & PCF85053_HR_PM) ? h12 + 12 : h12);
-+			}
-+		}
-+
-+	return 0;
-+}
-+
-+static int pcf85053_rtc_set_time(struct device *dev, struct rtc_time *tm)
-+
-+{
-+	struct pcf85053 *pcf85053 = dev_get_drvdata(dev);
-+	unsigned int ctrl, h12;
-+	int err, ret;
-+	u8 buf[10];
-+	bool pm;
-+
-+	/*
-+	 * By default, secondary have write access to time registers as TWO
-+	 * bit is 0 by default, if we set nxp,interface = "primary" and the
-+	 * nxp,write-access in device tree, then TWO bits gets set and primary
-+	 * gets write access to time registers.
-+	 */
-+	if (!pcf85053_time_write_access(pcf85053))
-+		return -EACCES;
-+
-+	err = regmap_read(pcf85053->regmap, PCF85053_REG_CTRL, &ctrl);
-+	if (err)
-+		return err;
-+
-+	buf[0] = tm->tm_sec & 0x7F;
-+	buf[1] = 0;
-+	buf[2] = tm->tm_min & 0x7F;
-+	buf[3] = 0;
-+	buf[5] = 0;
-+	buf[6] = tm->tm_wday & 0x07;
-+	buf[7] = tm->tm_mday & 0x3F;
-+	buf[8] = (tm->tm_mon + 1) & 0x1F;
-+	buf[9] = (tm->tm_year - 100) & 0xFF;
-+
-+	if (ctrl & PCF85053_BIT_HF) {
-+		buf[4] = tm->tm_hour & PCF85053_HR_24H_MASK;
-+	} else {
-+		pm = tm->tm_hour >= 12;
-+		h12 = (tm->tm_hour % 12) ? (tm->tm_hour % 12) : 12;
-+		buf[4] = (h12 & PCF85053_HR_24H_MASK) | (pm << 7);
-+	}
-+
-+	if (!(ctrl & PCF85053_BIT_DM)) {
-+		buf[0] = bin2bcd(buf[0]);
-+		buf[2] = bin2bcd(buf[2]);
-+		buf[4] = bin2bcd(buf[4] & PCF85053_HR_24H_MASK) | (buf[4] & PCF85053_HR_PM);
-+		buf[7] = bin2bcd(buf[7]);
-+		buf[8] = bin2bcd(buf[8]);
-+		buf[9] = bin2bcd(buf[9]);
-+	}
-+
-+	if (pcf85053->is_primary) {
-+		err = regmap_update_bits(pcf85053->regmap, PCF85053_REG_CTRL,
-+					 PCF85053_BIT_ST, PCF85053_BIT_ST);
-+		if (err)
-+			return err;
-+
-+		ret = regmap_bulk_write(pcf85053->regmap, PCF85053_REG_SC, buf, sizeof(buf));
-+		err = regmap_update_bits(pcf85053->regmap, PCF85053_REG_CTRL,
-+					 PCF85053_BIT_ST, 0);
-+		return ret ? ret : err;
-+	}
-+
-+	return regmap_bulk_write(pcf85053->regmap, PCF85053_REG_SC, buf, sizeof(buf));
-+}
-+
-+static int pcf85053_rtc_read_alarm(struct device *dev, struct rtc_wkalrm *tm)
-+{
-+	struct pcf85053 *pcf85053 = dev_get_drvdata(dev);
-+	unsigned int ctrl, h12;
-+	bool is_24h, is_bin, pm;
-+	u8 buf[5];
-+	u8 hr;
-+	int err;
-+
-+	err = regmap_read(pcf85053->regmap, PCF85053_REG_CTRL, &ctrl);
-+	if (err)
-+		return err;
-+
-+	err = regmap_bulk_read(pcf85053->regmap, PCF85053_REG_SCA, buf, sizeof(buf));
-+	if (err)
-+		return err;
-+
-+	if (ctrl & PCF85053_BIT_DM) {
-+		tm->time.tm_sec = buf[0] & 0x7F; /* SCA */
-+		tm->time.tm_min = buf[2] & 0x7F; /* MNA */
-+	} else {
-+		tm->time.tm_sec = bcd2bin(buf[0] & 0x7F);
-+		tm->time.tm_min = bcd2bin(buf[2] & 0x7F);
-+	}
-+
-+	hr = buf[4];
-+	is_24h = !!(ctrl & PCF85053_BIT_HF);
-+	is_bin = !!(ctrl & PCF85053_BIT_DM);
-+
-+	if (is_24h) {
-+		tm->time.tm_hour = is_bin
-+		? (hr & PCF85053_HR_24H_MASK)
-+		: bcd2bin(hr & PCF85053_HR_24H_MASK);
-+	} else {
-+		pm = !!(hr & PCF85053_HR_PM);
-+
-+		if (is_bin)
-+			h12 = (hr & PCF85053_HR_24H_MASK);
-+		else
-+			h12 = (bcd2bin(hr & PCF85053_HR_24H_MASK));
-+
-+		if (h12 == 12)
-+			h12 = 0;
-+		tm->time.tm_hour = pm ? (h12 + 12) : h12;
-+	}
-+
-+	return pcf85053_get_alarm_mode(dev, &tm->enabled, &tm->pending);
-+}
-+
-+static int pcf85053_rtc_set_alarm(struct device *dev, struct rtc_wkalrm *tm)
-+{
-+	struct pcf85053 *pcf85053 = dev_get_drvdata(dev);
-+	bool is_24h, is_bin, pm;
-+	unsigned int ctrl, h12;
-+	u8 sec, min, hra;
-+	int err;
-+
-+	/*
-+	 * Only primary can set alarm, as secondary have read only access
-+	 * to alarm, control and status registers
-+	 */
-+	if (!pcf85053->is_primary)
-+		return -EACCES;
-+
-+	err = regmap_read(pcf85053->regmap, PCF85053_REG_CTRL, &ctrl);
-+	if (err)
-+		return err;
-+
-+	err = regmap_update_bits(pcf85053->regmap, PCF85053_REG_ST,
-+				 PCF85053_BIT_AF, 0);
-+	if (err)
-+		return err;
-+
-+	is_24h = !!(ctrl & PCF85053_BIT_HF);
-+	is_bin = !!(ctrl & PCF85053_BIT_DM);
-+
-+	sec = tm->time.tm_sec & 0x7F;
-+	min = tm->time.tm_min & 0x7F;
-+
-+	if (is_24h) {
-+		hra = tm->time.tm_hour & PCF85053_HR_24H_MASK;
-+		if (!is_bin)
-+			hra = bin2bcd(hra) & PCF85053_HR_24H_MASK;
-+	} else {
-+		h12 = tm->time.tm_hour % 12;
-+		pm = tm->time.tm_hour >= 12;
-+		if (h12 == 0)
-+			h12 = 12;
-+
-+		if (is_bin)
-+			hra = (h12 & PCF85053_HR_24H_MASK) | (pm << 7);
-+		else
-+			hra = (bin2bcd(h12) & PCF85053_HR_24H_MASK) | (pm << 7);
-+	}
-+
-+	if (!is_bin) {
-+		sec = bin2bcd(sec);
-+		min = bin2bcd(min);
-+	}
-+
-+	err = regmap_write(pcf85053->regmap, PCF85053_REG_SCA, sec);
-+	if (err)
-+		return err;
-+
-+	err = regmap_write(pcf85053->regmap, PCF85053_REG_MNA, min);
-+	if (err)
-+		return err;
-+
-+	err = regmap_write(pcf85053->regmap, PCF85053_REG_HRA, hra);
-+	if (err)
-+		return err;
-+
-+	return pcf85053_set_alarm_mode(dev, tm->enabled);
-+}
-+
-+static int pcf85053_irq_enable(struct device *dev, unsigned int enabled)
-+{
-+	dev_dbg(dev, "%s: alarm enable=%d\n", __func__, enabled);
-+
-+	return pcf85053_set_alarm_mode(dev, enabled);
-+}
-+
-+static int pcf85053_ioctl(struct device *dev, unsigned int cmd, unsigned long arg)
-+{
-+	struct pcf85053 *pcf85053 = dev_get_drvdata(dev);
-+	unsigned int val = 0, vl_status = 0;
-+	unsigned int bvl;
-+	int status;
-+
-+	switch (cmd) {
-+	case RTC_VL_READ:
-+		status = regmap_read(pcf85053->regmap, PCF85053_REG_ST, &val);
-+		if (status)
-+			return status;
-+
-+		if (val & PCF85053_BIT_OF)
-+			vl_status |= RTC_VL_DATA_INVALID;
-+
-+		bvl = val & PCF85053A_BVL_MASK;
-+
-+		if (bvl == 0x00)
-+			vl_status |= RTC_VL_BACKUP_EMPTY;
-+		else if (bvl <= PCF85053A_BVL_LOW_THRESHOLD)
-+			vl_status |= RTC_VL_BACKUP_LOW;
-+
-+		return put_user(vl_status, (unsigned int __user *)arg);
-+
-+	default:
-+		return -ENOIOCTLCMD;
-+	}
-+}
-+
-+#ifdef CONFIG_COMMON_CLK
-+/*
-+ * Handling of the clkout
-+ */
-+
-+#define clkout_hw_to_pcf85053(_hw) container_of(_hw, struct pcf85053, clkout_hw)
-+
-+static const int clkout_rates[] = {
-+	32768,
-+	1024,
-+	32,
-+	1,
-+};
-+
-+static unsigned long pcf85053_clkout_recalc_rate(struct clk_hw *hw,
-+						 unsigned long parent_rate)
-+{
-+	struct pcf85053 *pcf85053 = clkout_hw_to_pcf85053(hw);
-+	unsigned int val = 0;
-+	int err;
-+
-+	err = regmap_read(pcf85053->regmap, PCF85053_REG_CLKO, &val);
-+	if (err)
-+		return 0;
-+
-+	val &= PCF85053_REG_CLKO_F_MASK;
-+	return clkout_rates[val];
-+}
-+
-+static int pcf85053_clkout_determine_rate(struct clk_hw *hw,
-+					  struct clk_rate_request *req)
-+{
-+	int i;
-+	unsigned long best = 0;
-+
-+	for (i = 0; i < ARRAY_SIZE(clkout_rates); i++) {
-+		if (clkout_rates[i] <= req->rate) {
-+			best = clkout_rates[i];
-+			break;
-+		}
-+	}
-+	if (!best)
-+		best = clkout_rates[ARRAY_SIZE(clkout_rates) - 1];
-+
-+	req->rate = best;
-+	return 0;
-+}
-+
-+static int pcf85053_clkout_set_rate(struct clk_hw *hw, unsigned long rate,
-+				    unsigned long parent_rate)
-+{
-+	struct pcf85053 *pcf85053 = clkout_hw_to_pcf85053(hw);
-+	unsigned int val = 0;
-+	int err, i;
-+
-+	err = regmap_read(pcf85053->regmap, PCF85053_REG_CLKO, &val);
-+	if (err)
-+		return err;
-+
-+	for (i = 0; i < ARRAY_SIZE(clkout_rates); i++)
-+		if (clkout_rates[i] == rate) {
-+			val &= ~PCF85053_REG_CLKO_F_MASK;
-+			val |= i;
-+			return regmap_write(pcf85053->regmap, PCF85053_REG_CLKO, val);
-+		}
-+
-+	return -EINVAL;
-+}
-+
-+static int pcf85053_clkout_control(struct clk_hw *hw, bool enable)
-+{
-+	struct pcf85053 *pcf85053 = clkout_hw_to_pcf85053(hw);
-+	unsigned int val = 0;
-+	int err;
-+
-+	if (!pcf85053->is_primary)
-+		return -EACCES;
-+
-+	val = PCF85053_BIT_XCLK;
-+	err = regmap_write(pcf85053->regmap, PCF85053_REG_ACC, val);
-+	if (err)
-+		return err;
-+
-+	err = regmap_read(pcf85053->regmap, PCF85053_REG_CLKO, &val);
-+	if (err)
-+		return err;
-+
-+	if (enable)
-+		val |= PCF85053_REG_CLKO_CKE;
-+	else
-+		val &= ~PCF85053_REG_CLKO_CKE;
-+
-+	return regmap_write(pcf85053->regmap, PCF85053_REG_CLKO, val);
-+}
-+
-+static int pcf85053_clkout_prepare(struct clk_hw *hw)
-+{
-+	return pcf85053_clkout_control(hw, 1);
-+}
-+
-+static void pcf85053_clkout_unprepare(struct clk_hw *hw)
-+{
-+	pcf85053_clkout_control(hw, 0);
-+}
-+
-+static int pcf85053_clkout_is_prepared(struct clk_hw *hw)
-+{
-+	struct pcf85053 *pcf85053 = clkout_hw_to_pcf85053(hw);
-+	unsigned int val = 0;
-+	int err;
-+
-+	err = regmap_read(pcf85053->regmap, PCF85053_REG_CLKO, &val);
-+	if (err)
-+		return err;
-+
-+	return val & PCF85053_REG_CLKO_CKE;
-+}
-+
-+static const struct clk_ops pcf85053_clkout_ops = {
-+	.prepare = pcf85053_clkout_prepare,
-+	.unprepare = pcf85053_clkout_unprepare,
-+	.is_prepared = pcf85053_clkout_is_prepared,
-+	.recalc_rate = pcf85053_clkout_recalc_rate,
-+	.determine_rate = pcf85053_clkout_determine_rate,
-+	.set_rate = pcf85053_clkout_set_rate,
-+};
-+
-+static struct clk *pcf85053_clkout_register_clk(struct pcf85053 *pcf85053)
-+{
-+	struct i2c_client *client = pcf85053->client;
-+	struct device_node *node = client->dev.of_node;
-+	struct clk *clk;
-+	struct clk_init_data init;
-+
-+	init.name = "pcf85053-clkout";
-+	init.ops = &pcf85053_clkout_ops;
-+	init.flags = 0;
-+	init.parent_names = NULL;
-+	init.num_parents = 0;
-+	pcf85053->clkout_hw.init = &init;
-+
-+	/* optional override of the clockname */
-+	of_property_read_string(node, "clock-output-names", &init.name);
-+
-+	/* register the clock */
-+	clk = devm_clk_register(&client->dev, &pcf85053->clkout_hw);
-+
-+	if (!IS_ERR(clk))
-+		of_clk_add_provider(node, of_clk_src_simple_get, clk);
-+
-+	return clk;
-+}
-+#endif
-+
-+static const struct rtc_class_ops pcf85053_rtc_ops = {
-+	.read_time	= pcf85053_rtc_read_time,
-+	.set_time	= pcf85053_rtc_set_time,
-+	.read_alarm	= pcf85053_rtc_read_alarm,
-+	.set_alarm	= pcf85053_rtc_set_alarm,
-+	.alarm_irq_enable = pcf85053_irq_enable,
-+	.ioctl		= pcf85053_ioctl,
-+};
-+
-+static const struct pcf85053_config config_pcf85053 = {
-+	.regmap = {
-+		.reg_bits = 8,
-+		.val_bits = 8,
-+		.max_register = 0x1D,
-+	},
-+	.has_alarms = 1,
-+};
-+
-+static int pcf85053_probe(struct i2c_client *client)
-+{
-+	struct pcf85053 *pcf85053;
-+	const struct pcf85053_config *config;
-+	const char *iface = NULL;
-+	int err;
-+
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C |
-+				     I2C_FUNC_SMBUS_BYTE |
-+				     I2C_FUNC_SMBUS_BLOCK_DATA))
-+		return -ENODEV;
-+
-+	pcf85053 = devm_kzalloc(&client->dev, sizeof(struct pcf85053),
-+				GFP_KERNEL);
-+	if (!pcf85053)
-+		return -ENOMEM;
-+
-+	config = i2c_get_match_data(client);
-+	if (!config)
-+		return -ENODEV;
-+
-+	pcf85053->regmap = devm_regmap_init_i2c(client, &config->regmap);
-+	if (IS_ERR(pcf85053->regmap))
-+		return PTR_ERR(pcf85053->regmap);
-+
-+	i2c_set_clientdata(client, pcf85053);
-+
-+	pcf85053->client = client;
-+	device_set_wakeup_capable(&client->dev, 1);
-+
-+	pcf85053->is_primary = true;
-+
-+	if (of_property_read_string(client->dev.of_node, "nxp,interface", &iface))
-+		return dev_err_probe(&client->dev, -EINVAL,
-+				     "Missing mandatory property: nxp,interface\n");
-+	if (!strcmp(iface, "primary"))
-+		pcf85053->is_primary = true;
-+	else if (!strcmp(iface, "secondary"))
-+		pcf85053->is_primary = false;
-+	else
-+		return dev_err_probe(&client->dev, -EINVAL,
-+				     "Invalid value for nxp,interface: %s\n", iface);
-+
-+	if (pcf85053->is_primary) {
-+		unsigned int ctrl;
-+		int err;
-+
-+		err = regmap_read(pcf85053->regmap, PCF85053_REG_CTRL, &ctrl);
-+		if (err)
-+			return err;
-+
-+		if (of_property_read_bool(client->dev.of_node, "nxp,write-access")) {
-+			if (!(ctrl & PCF85053_BIT_TWO)) {
-+				err = regmap_update_bits(pcf85053->regmap, PCF85053_REG_CTRL,
-+							 PCF85053_BIT_TWO, PCF85053_BIT_TWO);
-+				if (err)
-+					return err;
-+			}
-+			dev_dbg(&client->dev, "Ownership set: TWO=1 (primary writes)\n");
-+		} else {
-+			/* TWO (Time Write Ownership) bit defaults to 0 (Secondary) */
-+			dev_dbg(&client->dev, "Default ownership set: TWO=0 (secondary writes)\n");
-+		}
-+	}
-+
-+	pcf85053->rtc = devm_rtc_allocate_device(&client->dev);
-+	if (IS_ERR(pcf85053->rtc))
-+		return PTR_ERR(pcf85053->rtc);
-+
-+	pcf85053->rtc->ops = &pcf85053_rtc_ops;
-+	pcf85053->rtc->range_min = RTC_TIMESTAMP_BEGIN_2000;
-+	pcf85053->rtc->range_max = RTC_TIMESTAMP_END_2099;
-+	clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, pcf85053->rtc->features);
-+	clear_bit(RTC_FEATURE_ALARM, pcf85053->rtc->features);
-+
-+	if (config->has_alarms && client->irq > 0) {
-+		err = devm_request_threaded_irq(&client->dev, client->irq,
-+						NULL, pcf85053_irq,
-+						IRQF_ONESHOT | IRQF_TRIGGER_FALLING,
-+						"pcf85053", client);
-+		if (err) {
-+			dev_err(&client->dev, "unable to request IRQ %d\n", client->irq);
-+		} else {
-+			set_bit(RTC_FEATURE_ALARM, pcf85053->rtc->features);
-+			device_init_wakeup(&client->dev, true);
-+			err = dev_pm_set_wake_irq(&client->dev, client->irq);
-+			if (err)
-+				dev_err(&client->dev, "failed to enable irq wake\n");
-+		}
-+	}
-+
-+#ifdef CONFIG_COMMON_CLK
-+	/* register clk in common clk framework */
-+	pcf85053_clkout_register_clk(pcf85053);
-+#endif
-+
-+	return devm_rtc_register_device(pcf85053->rtc);
-+}
-+
-+static const struct i2c_device_id pcf85053_id[] = {
-+	{ "pcf85053", .driver_data = (kernel_ulong_t)&config_pcf85053 },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, pcf85053_id);
-+
-+static const struct of_device_id pcf85053_of_match[] = {
-+	{ .compatible = "nxp,pcf85053", .data = &config_pcf85053 },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, pcf85053_of_match);
-+
-+static struct i2c_driver pcf85053_driver = {
-+	.driver		= {
-+		.name	= "rtc-pcf85053",
-+		.of_match_table = of_match_ptr(pcf85053_of_match),
-+	},
-+	.probe		= pcf85053_probe,
-+	.id_table	= pcf85053_id,
-+};
-+
-+module_i2c_driver(pcf85053_driver);
-+
-+MODULE_AUTHOR("Pankit Garg <pankit.garg@nxp.com>");
-+MODULE_AUTHOR("Lakshay Piplani <lakshay.piplani@nxp.com>");
-+MODULE_DESCRIPTION("NXP pcf85053 RTC driver");
-+MODULE_LICENSE("GPL");
+Changes in v2:
+- mali-valhall-csf binding: move from performance-controller to
+  performance-domains property
+- mali-valhall-csf binding: fix vendor name oopsie in compatible of if
+  condition
+- mt8196-gpufreq binding: move from performance-controller to
+  performance-domains by adding the cells property
+- mt8196-gpufreq binding: rename e2_id to hw_revision
+- mt8196-gpufreq binding: add description that mentions "MediaTek
+  Flexible Graphics"
+- mt8196-gpufreq binding: get rid of mailbox channels we're unlikely to
+  use any time soon, if ever
+- mt8196-gpufreq binding: change name of mailbox channels to use -
+  instead of _
+- mailbox binding: change reg-names to "data" and "ctl"
+- drm/panthor: mediatek_mfg: rename e2_id to hw_revision
+- drm/panthor: devfreq: switch from performance-controller to
+  performance-domains
+- drm/panthor: devfreq: get rid of the accidental get_cur_freq function
+  move
+- mailbox: rename mtk_gpueb_mbox_ch to mtk_gpueb_mbox_chan_desc
+- mailbox: use smaller types in mtk_gpueb_mbox_chan_desc where possible
+- mailbox: add per-channel runtime data struct
+- mailbox: request one threaded IRQ per channel, pass channel struct as
+  data
+- mailbox: make num_channels in variant struct u8
+- mailbox: get rid of no_response, as it was redundant
+- mailbox: enable and disable clock in mailbox startup/shutdown
+- mailbox: point con_priv of mailbox framework channel struct to this
+  driver's channel struct
+- mailbox: request and free the threaded IRQ in startup/shutdown
+- mailbox: only clear IRQ bit flag once RX data has been read from MMIO
+- mailbox: reduce needlessly large receive buffer size
+- mailbox: handle allocation errors wherever they could pop up
+- mailbox: style cleanups in mtk_gpueb_mbox_read_rx
+- mailbox: call platform_get_irq earlier on in probe
+- mailbox: set drvdata later on in probe
+- mailbox: ioremap resources by index, not name
+- mailbox: handle devm_mbox_controller_register errors
+- mailbox: rename channels to correspond to bindings
+- mailbox: document a few of the private driver structs to be kind to
+  the next person who will look at this code
+- Link to v1: https://lore.kernel.org/r/20250905-mt8196-gpufreq-v1-0-7b6c2d6be221@collabora.com
+
+---
+Nicolas Frattaroli (8):
+      dt-bindings: gpu: mali-valhall-csf: add mediatek,mt8196-mali variant
+      dt-bindings: power: Add MT8196 GPU frequency control binding
+      dt-bindings: sram: Add compatible for mediatek,mt8196-gpufreq-sram
+      dt-bindings: mailbox: Add MT8196 GPUEB Mailbox
+      mailbox: add MediaTek GPUEB IPI mailbox
+      drm/panthor: call into devfreq for current frequency
+      drm/panthor: Use existing OPP table if present
+      pmdomain: mediatek: Add support for MFlexGraphics
+
+ .../bindings/gpu/arm,mali-valhall-csf.yaml         |  40 +-
+ .../mailbox/mediatek,mt8196-gpueb-mbox.yaml        |  64 ++
+ .../bindings/power/mediatek,mt8196-gpufreq.yaml    | 117 +++
+ Documentation/devicetree/bindings/sram/sram.yaml   |   1 +
+ drivers/gpu/drm/panthor/panthor_devfreq.c          |  59 +-
+ drivers/gpu/drm/panthor/panthor_devfreq.h          |   2 +
+ drivers/gpu/drm/panthor/panthor_device.h           |   3 -
+ drivers/gpu/drm/panthor/panthor_drv.c              |   4 +-
+ drivers/mailbox/Kconfig                            |  10 +
+ drivers/mailbox/Makefile                           |   2 +
+ drivers/mailbox/mtk-gpueb-mailbox.c                | 318 +++++++
+ drivers/pmdomain/mediatek/Kconfig                  |  16 +
+ drivers/pmdomain/mediatek/Makefile                 |   1 +
+ drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c       | 928 +++++++++++++++++++++
+ 14 files changed, 1545 insertions(+), 20 deletions(-)
+---
+base-commit: fba389ea7aa6401d3539456123cbadfa1a87231e
+change-id: 20250829-mt8196-gpufreq-a7645670d182
+prerequisite-message-id: <20250913002155.1163908-1-olvaffe@gmail.com>
+prerequisite-patch-id: a769ebe04bd74f45a3a5b9c1d1396f4b33b7783f
+prerequisite-patch-id: 9d71426f40b702e975f2a672509fcd20180ac36c
+
+Best regards,
 -- 
-2.25.1
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 
 
