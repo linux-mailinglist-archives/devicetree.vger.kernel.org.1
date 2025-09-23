@@ -1,258 +1,252 @@
-Return-Path: <devicetree+bounces-220321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A8BFB9440D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 06:52:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DAFEB94669
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 07:30:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 945AE189ABC2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 04:52:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30FBD2A2CCD
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 05:30:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6550730CB5A;
-	Tue, 23 Sep 2025 04:52:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11C5524679F;
+	Tue, 23 Sep 2025 05:30:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Bl+LV8UH"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="jQrx9rLd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013041.outbound.protection.outlook.com [40.107.162.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92637264602
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 04:52:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758603124; cv=none; b=jjViFv35N9C4NJkqDQiRsbANXmLJogTofSCb77OQMNm52dG5d0snHT56kKQ2bNr/1T7KW/L4Ivg4Lhg4eaJSsMGwu5iJXrz0YN9wXaMh+ovWj2O/7D7vVCTB4qo22wLFxlvfjxpTFLndIW+LMzvYcmlL7gaCzJ3S2XugkF0cp98=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758603124; c=relaxed/simple;
-	bh=JmRU2x/amfn1zRvRYJcYLMEDdZ4yl+KncZK9Oj8xJ5w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U1KBu8h3ku552AkqIU+ItGMdl62Hgub56KODJLPwAuZXgnBWO3MgPwK7Vmoqj5++uRo2w6Rxwg8ns8WX8QfKCjaBHs92+TQm0KhETSij9bWju6ZllPG9JpJp0l4KNstINs1w22/aJlEsSaaoeN3RxflUFjGl9Se9ceBIzJN6W+o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Bl+LV8UH; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58N4Vp4S001360
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 04:52:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1ysyyR+HSBxqCI8FuQWOZHxXbhAf2dscJgNWIhtU+ys=; b=Bl+LV8UHw8nBOeNg
-	NQIkWQ/9ghyTSiJpE5s3ltpVJJsx54k2D57hFQg0RSns3glajhRuY9DHDsdHNr7z
-	8/Iun4mHhE1YK7M8Y743Mh9rZilV7wAynsNrbt/ATzPy0BNYMzi0plv+VFySLZl0
-	YDo+hK6a/y7hmmRc+2AuKr8RmiPAME+hyuztfZbtK6us+/K4HW+XfwSqRqAS8F+h
-	+pqyfOw1pcveSMNnazD3JxfhKfPmeutiJFyK6UCOOa040okTLj6ULcvLTiuWqd69
-	41Iome+o+KiZfvuPyASZP5AkD/ztoycFxi+7hmuWQpFYAvFedC2EB9xxeFbVMbAH
-	8+zQLw==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499mn7f6xd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 04:52:01 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-84b9c23b8aeso343452685a.1
-        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 21:52:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758603120; x=1759207920;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1ysyyR+HSBxqCI8FuQWOZHxXbhAf2dscJgNWIhtU+ys=;
-        b=eNgl8A55BTylLPma5OYuKsRowpu78Ez2UepgmXeZprtkHydiwf8kOpBks0gcMhKcn2
-         4M9gP6iLkfAII8zPLQpka+5636ttokPsCuOKS3Tp/qZ2xTGwlm5kojYTIXEVfXDGb+sb
-         ZEyC+vcN51ir6Z7UgRYw8w8IlAZFdzfXCjkV3SuFaPzdlwQcYqxTGTcRNLArt9/ulj7e
-         mjl1OAMMg5w3QW2fw8XThRIf+dGEiEb5Meifrm/Zs5DFY6xy2+2xzxcQJwSdWsM029k8
-         T0H+jBHLLOQib/zNT9PHMmoT2R22x16mDNF97Km3Ig1g5jiSLSIDhFAGgwsXDXWC2Xj8
-         72dQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUf3e5IGKamyA0Q80tts88lZWEQ/IqiTAB2i2zktWDbNSLPLupAoezO0Sbj2/HTSBLhDPLE9zEzMqhN@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFAy362o2A3HTU0sgULxIdIHfvzbNpjPgOISlg/zqdhMKbDe8z
-	0RoyPE+CYxO3SKXGdTHiBsG57v8PhFsce0r9d5C3aBKix/Vc17H6bhGzQ0V1BX7Jrt0xXQcRAPg
-	/c+0uKsre46sz+NUZcYdJDN3x5Jn+5uiquYqukRBQFPijYGWu47QXWSKnH7JKW+Q4
-X-Gm-Gg: ASbGncvdkBm5XTLIRShCcknEyeTvZVWUOZtGbmMgHRmb6px9ufEN+EVaJRI9f44B4sQ
-	0KFix/kugjj6Nwo2htSt30ssaqoV5YLKG00Ni9YiM1z9ocXR5K9bG6NwKP3FAVcahnTLvztHZxt
-	jDigT/NtRbYi/F4tV70BSZF3H0AJuiW/WIO22m6n3vW78xS4NzZhn8YnMbfjFL9blp4JzXPA1r4
-	WNAE0x2RqBNVaEQzjFHKoYZOlYlX6Bhw48oVtXfXJsjVPpa8zRghpZYpwHo591O9ikxlA40BFwc
-	Bd+EkULCnCek+wJ1fLK//2FDEFsfdXaQDzqJL1unw/FNPLT+GUbvykbCKLKiyp2RQ7e3kpN4xqr
-	cBc/uxV6pgosjeA6R0b/q4yqAiFmjMyb98iNaqqmyxujaYjXDxvCA
-X-Received: by 2002:a05:620a:1923:b0:812:48b9:2eb0 with SMTP id af79cd13be357-8516a8202bamr136832185a.19.1758603120311;
-        Mon, 22 Sep 2025 21:52:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHKxvB+ebtnxiMgBizv494obsHW1ZlzjCI32T27z/Odi7Kl2wEkCUAGK1+a+EPj6Wq2e5gDkQ==
-X-Received: by 2002:a05:620a:1923:b0:812:48b9:2eb0 with SMTP id af79cd13be357-8516a8202bamr136828685a.19.1758603119745;
-        Mon, 22 Sep 2025 21:51:59 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-365694f1be4sm23536661fa.17.2025.09.22.21.51.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 22 Sep 2025 21:51:58 -0700 (PDT)
-Date: Tue, 23 Sep 2025 07:51:55 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-Cc: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Yubing Zhang <yubing.zhang@rock-chips.com>,
-        Frank Wang <frank.wang@rock-chips.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Amit Sunil Dhamne <amitsd@google.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
-        Diederik de Haas <didi.debian@cknow.org>,
-        Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v4 2/7] dt-bindings: phy: rockchip: rk3399-typec-phy:
- Support mode-switch
-Message-ID: <jm32ujhxslsx5snes4o66t2grb5uxhsaapjqahektfck66g6hb@fx6f53yojlcr>
-References: <20250922012039.323-1-kernel@airkyi.com>
- <20250922012039.323-3-kernel@airkyi.com>
- <eb6ogrepo5acwcj5gpdolxxyg3xrx7kz6zrbizzseqyavvitfd@cnzurelqeh4t>
- <533d41bd-9293-4808-85f3-8fb6dc8bcda7@rock-chips.com>
- <mpyfe63tzxzxyyqf4vxwmrewzeosnaftlkko7pq2ynld6u3lcz@wlpixckov4hg>
- <8396dd15-9111-4ceb-a561-6ed57727546f@rock-chips.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D72FBA34;
+	Tue, 23 Sep 2025 05:30:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.41
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758605437; cv=fail; b=tHFOssY2puwfsoruq55ayabc48kTh7KSn2xvrjG85suF/nL0xYPGu4Y3o3HJEQeGpx/VLZ4m6pm8Fmhypt9WsnlPhuNo8XIK3v2MZLeqwhJxJdYpZy2ast+/4wQTj40F47YWfBNcwL8bccOvc0yKqBJyz38dRIWwQ/FXEIE2XJs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758605437; c=relaxed/simple;
+	bh=JWWRtLX1txC2CaRytFseGBTHe3yIPdxNz1DU0FAH7pA=;
+	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=qYRJyeiRZsglVqzVJjllj3aTUNKHumoizfdIXSnlKOQXpUu1+DTVpw84m87lvlXOMh0WP/6UsxuNJFHKmsx8tb5H+CtUmBP7CiXbFrKReOpK6SiIGZv9ytqzjgcmLWSOBdmoDFGtXKstPI/fHF1IJ4EtIqHRfOCu0iNF2Yo6sno=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=jQrx9rLd; arc=fail smtp.client-ip=40.107.162.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Ye2dG++68/CggHb7/jM9aTkWkUimljz5hYo9RMvgiMeKHyY5BaGy7AoBMvF7mCqE49xWsR1DW0kYfaZlbpS9JCnSsjTNJ58/SyUS5qU/DzP61BTPn71D6dcfVFeHB9ND2X6JxM2kzW49BI0JNUU5x2tSKV1brC2QWErDdkaXOHauaryTMI05FNFmHDtm9uoUxuZq5jZ6RO7zqgicX5LlVk7ShLIZgLCDZ3y6xDvzodzcvPwrUJzwK32Hn6ZWPMokZuZsij26rPIIxkdT6KI0bHatC6yhGahmFBujPSaFajxj7ADa7dAhvWBajqHF7oovUuiB1r+OGGcRoLZ//M10Cg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zBGN5dLImOiCT6+4mHdC1DnIyujxrylEbe3QbW9x8To=;
+ b=YraEm3Jhy6jvEgPZPJVwBO/LgSy8EOo6IKHlY5x+IHsfCfheRAktIqocs6AndwXxyRq/IO1On4D6zjcritrO857HdWkwX+uJ0W7WGuZWaV+7jVvxEIglr3Q1cWxUoyEA9qq7uZeCEI9fRJPG5aPXhkC1+UQgj5U2YnfiplHR5Ihmhspac6Zw3/RiuVWOluivVg0O2qyPj8WpavYFdh7k5RJBL7cc3g4i8RNV3WbtsGg5vkqE7rxvTCGJvCz9T9TYA2vj9WFwZQ1HekiBOKpiVQbasA62qDEOAXEKocYqij0ZCXp5pkzIEcxUTIBOow/2F9CQZbyJ4MVwHfHFE1X/sg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zBGN5dLImOiCT6+4mHdC1DnIyujxrylEbe3QbW9x8To=;
+ b=jQrx9rLdqmMWZhu/waUgtN+WMQ+rDzok11LGJKFx6SzTsDvw5au+tBxUuRFIkJfJ2vPLRXt7gvIrgjaUrPmRmnBmawi+5xdKu9j4sk25q4GkTM+hw5zmMFdMSWoaa+J2Oln8i6fbXfgXgoYPklJxMYiz/KCo+sFFktQMUHHWx25HnhVrHYPm4lRRFvaHzQstKAnFWVKC4Zk95456A9cysVf9Qy6TPOrPme4nhMYMIZl/F+f4ya/my2T9pOPstnRpRzJMmrD/ZNkNhDbzj4uhpvpoCzsoTLf3QGpTZmvmz6PgzMEZlR9ITjvJLVXhuULZ7DtvMTgTIHVi0K7zY4UdqA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB7044.eurprd04.prod.outlook.com (2603:10a6:208:191::20)
+ by PA4PR04MB7920.eurprd04.prod.outlook.com (2603:10a6:102:c4::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.9; Tue, 23 Sep
+ 2025 05:30:31 +0000
+Received: from AM0PR04MB7044.eurprd04.prod.outlook.com
+ ([fe80::bab2:d15c:fcf8:ef2b]) by AM0PR04MB7044.eurprd04.prod.outlook.com
+ ([fe80::bab2:d15c:fcf8:ef2b%7]) with mapi id 15.20.9160.008; Tue, 23 Sep 2025
+ 05:30:31 +0000
+From: Shengjiu Wang <shengjiu.wang@nxp.com>
+To: andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	lumag@kernel.org,
+	dianders@chromium.org,
+	cristian.ciocaltea@collabora.com,
+	luca.ceresoli@bootlin.com,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	victor.liu@nxp.com,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	devicetree@vger.kernel.org,
+	l.stach@pengutronix.de,
+	shengjiu.wang@gmail.com,
+	perex@perex.cz,
+	tiwai@suse.com,
+	linux-sound@vger.kernel.org
+Subject: [PATCH v7 0/7] drm/bridge: imx: Add HDMI PAI driver on i.MX8MP
+Date: Tue, 23 Sep 2025 13:29:54 +0800
+Message-Id: <20250923053001.2678596-1-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR04CA0010.apcprd04.prod.outlook.com
+ (2603:1096:4:197::11) To AM0PR04MB7044.eurprd04.prod.outlook.com
+ (2603:10a6:208:191::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8396dd15-9111-4ceb-a561-6ed57727546f@rock-chips.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAzMyBTYWx0ZWRfX7cwvx3/vXuho
- qi7X2Rg09FGigfV9TZ7TssawEttazeM/EKHoLsCcaRPaOIH+GUg2HgO3T2R1CHo8D/Au7+wylz2
- veaWaXaJX1YqFMXUx91OwDFc+M6cBRC1xuQLGfB0NHPce/3Eei8TLs5IITt/i4P1vjWZ6QkjmWR
- J2tOIwdYcnUoC/BKFjfgDwzDMBuQvIWKd7eXJ7iii6IStKaFba9mLF5FxIzKjtswxUzvox+NY7S
- y9zBlEYe/FinIKE8nJe+F75Q7Rlxa1MESBE4jlylr4AvlLah7g/U6K/7N1m5WzqvXLMTgj9TYkx
- b4Qie0sYV2hWPlXOogo1tYkGAhn9WdnHpuIDyWGAVIzWLD65dNZeW6wpW9OZ4xu0GtLPi0Od6cX
- aOGVn/tT
-X-Proofpoint-GUID: Gz021uO6xx2oh0y5Kh--2avZ8g8bgdTJ
-X-Proofpoint-ORIG-GUID: Gz021uO6xx2oh0y5Kh--2avZ8g8bgdTJ
-X-Authority-Analysis: v=2.4 cv=EZrIQOmC c=1 sm=1 tr=0 ts=68d22771 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
- a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=ePr-TV-LAAAA:8 a=JfrnYn6hAAAA:8
- a=s8YR1HE3AAAA:8 a=KKAkSRfTAAAA:8 a=SBpjGD6abgB5dFENKZUA:9 a=3ZKOabzyN94A:10
- a=wPNLvfGTeEIA:10 a=PEH46H7Ffwr30OY-TuGO:22 a=uGDpjx9DKq9E8W49yboe:22
- a=1CNFftbPRP8L7MoqJWF3:22 a=jGH_LyMDp9YhSvY-UuyI:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-23_01,2025-09-22_05,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1015 phishscore=0 suspectscore=0 priorityscore=1501
- impostorscore=0 bulkscore=0 spamscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509200033
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB7044:EE_|PA4PR04MB7920:EE_
+X-MS-Office365-Filtering-Correlation-Id: 34de0a9d-8273-45dc-45ca-08ddfa624feb
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|1800799024|52116014|376014|7416014|366016|19092799006|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?YBXnhyBquJlthqW9RB9FYSOswahCCzWLUYwHjpGh4PwUWtgOa9XLA9uKj7Y9?=
+ =?us-ascii?Q?j2Fkz8pF0NAZ73J8jClV/vCBHcalkFZVW2NSB1+Ekx8IMC4Oxs+iN9eq3Z77?=
+ =?us-ascii?Q?9old26seflrjzHVHx82PNQ735Tlqn1mhJ1HZlwEieU3ABwI5UFvDzD3WRVDd?=
+ =?us-ascii?Q?ujqhFdMv9GCJcHS4x4AqYadB48SMiQkzdoutz4yeC+d7xZj+KkraPDmRQmwa?=
+ =?us-ascii?Q?B8UQh5BrHY5yongsqO44h9dHP2YCNeQXzHDwNCf3fh2BDwm5HyNdSiJZQWCu?=
+ =?us-ascii?Q?tr6l1CNTnfxlBHGz9kcG/CDATMkkkaFd5b9ksVguC4K6jfC+JusbnhYtdTG8?=
+ =?us-ascii?Q?Nzf6ywA0iO7mPfB4ExCC+NrulTNsjAc2EjOH+MNPTVPs6V2i1jxPAjvk/dbh?=
+ =?us-ascii?Q?6bJiHhQLGCs101FHjSb4Vt76Vkdyo0epoRS1+E/AwT6Hbbd2vpHkZFvvxVzY?=
+ =?us-ascii?Q?xIb2Pw8R2UINYAIuW4F4eHTg35+AQEAXXR41pMJ+Qny6JjetgrfRaMDole3W?=
+ =?us-ascii?Q?DP+1OW2UImiYuyfRjXD2BdTJelmxu0THanbfiJ3w9FC1ujt8dBG8DC6bnxsa?=
+ =?us-ascii?Q?j3uAPehRSiP6eiQljy61mnQfCYJ9xUZPVHwF5RC+vO3UBH4wHrsWwIBqD5Es?=
+ =?us-ascii?Q?lEIKrSTaMLSurhs9ub+EIfIjsf1Ffd/Nx/CHsNIQEL1b8yDZDHNT7cCdAOCo?=
+ =?us-ascii?Q?rlyLtox1r21tkaciaAl0V1+utmoiRsxweoR03+OcrfO2Es6sSiHlUvuQK+Hs?=
+ =?us-ascii?Q?Y86dFaYAU5LoPVZk1Zi6h/NuLMs3joeIT0f17XKTAb4N1eU+iLVwoXWOAY3w?=
+ =?us-ascii?Q?WAPEFQDeP3uU2Xv3t49HsuqVfZiZyU1tKGYeMM0kdZ7JQCMQruFQVBAI6Cmv?=
+ =?us-ascii?Q?RWYTNO2MBQ7TXlHCLHa1bdbpZ0jscWljr/Xj7Y6swOHA+W9R5iLeIL091lOT?=
+ =?us-ascii?Q?C484B0aRJrRTfzBrYBqG3vuTWMNOS3Zj9h2ZyBtCE7Pxfoa03enV8NYuMeLk?=
+ =?us-ascii?Q?Od2rI8MzkLRWuJaBzTwURhY3qmpw0RF3650pwx2jif9Q12RBHX2y65zfEodt?=
+ =?us-ascii?Q?x5zEsNvxnO3r8tbI6p4nrmIA5E4X4zUm7a4jF1jh3+iajFJ9pGQ4A0d6itYQ?=
+ =?us-ascii?Q?NpZ3NWxz0CTdScsTc3XwC+1h7ZzQKaE3b3WUiAiczJqr34e/AEI7eO1CApFG?=
+ =?us-ascii?Q?zOOSMFFxV92+Y9QcvsxtxEvP0RGMs30QZV8hcSVo26kCzl0e5sagsubimwVF?=
+ =?us-ascii?Q?ujVpYmZe0ydSW8LX2PVtOvkP+l1le5TGVJ+TWJ1f3NRD1dRvg6ozXocH1Ase?=
+ =?us-ascii?Q?BJ5JYmvFPjtGsqCfEISwp41GIPCTJghK55kv9JhdEe0FZghqSv29/nfS6YGL?=
+ =?us-ascii?Q?18eLYyjanNaQPpuRqtHgK7wkeyl+xzqtM3YjQAwWQDwVkHfwm6X83A2cfSf+?=
+ =?us-ascii?Q?SpYi8bVvf1FNqHOdTS3S2M+VdhfC+5DaQNPgviPfgf8BSdUts0OenWI8r4hX?=
+ =?us-ascii?Q?ZjQzlXBJMY2VlWo=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB7044.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(376014)(7416014)(366016)(19092799006)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?ulU9jbiIAvTh0o9Q+y/QEphMK7hczuZ++CVNyj8/Hs0rENm/NEPUZxqWYKAp?=
+ =?us-ascii?Q?B1c3/w/SLFvT6osOXSnG7c48JgX7cwI1aKHOsh9/ASTON5gSU7vepqw0DckK?=
+ =?us-ascii?Q?yuyAqnhCLkEiRT1sILPeduTEmfWvhURB3SHd6ZuZP54+KO6L7SaZhAkhEGj5?=
+ =?us-ascii?Q?0QU7N0c75Qcs63gDp6tPEdgva3L0VPPEIPpRe2528BB0UWjh1Csi8UfsHyTl?=
+ =?us-ascii?Q?PztmnxA5DKdT/t+VTSN2hR9DZRseIJip6wGi3m2wVrXwErL4XrPEuFC3AHtD?=
+ =?us-ascii?Q?kU05y9Ky4PrvaN5fsKqrJAiY6x5w8YVsrH8gSw6YuUTHrNUdXg4kw61mQNlH?=
+ =?us-ascii?Q?OM1y6QuVqJpcX7QPQL41voePPlP626D+nn/rwzdsIy8f2WOIGy61uYJpr8Mp?=
+ =?us-ascii?Q?2/j6M1SLSMBVowtOXus50MTihXdNE55C30KATcvu+erzSHg5WON65ngH+Wsm?=
+ =?us-ascii?Q?8Oj8YWrHunc6o3GrlrGha44Yj2D4zpIPrYgKZOcmQBTt3cMalx+8h3ELYtPd?=
+ =?us-ascii?Q?wCFc2TC+UbYbIwPoVPUJ2n3O19s1tbzqug+tv2Y9TTDrbds5hi51n3BssU5P?=
+ =?us-ascii?Q?1h7Q/VIAyXT2KJiEV1WsVidGWHVTKGAxsygPbWTFoN1lJf6exs4+Y7ah8RpL?=
+ =?us-ascii?Q?aRqoqQunG2dXc5zB/ycog3zAqJUbBi9sjS7yClGyE7OiE/TNNChuc00mxQzA?=
+ =?us-ascii?Q?OVQd65iYKoKMBvMIlthFCBuofDUcaaWcdBM8t+RgGHLUMa9zh3H4sDvnM0Gg?=
+ =?us-ascii?Q?VyIMh9KEAE6xyBaGGyr6UfwhNWQYtTqjRnIrl3GWfzWjowrhb+5HkUwMtbpK?=
+ =?us-ascii?Q?Qya1EbQDIQFBYaiNPCbumjQzDkFU+7kFZ446VkpJYrKtqEMYy2Pqi+d7O2FY?=
+ =?us-ascii?Q?QZ70d7MISNhLSxSQ4yKwvod7VuQvuAhUqDtNLHn034tPF1HNaRAmj3gQhy/K?=
+ =?us-ascii?Q?kWfkMGCkyVVcZAyiDMz79Czo7TsHssxVKpfRuTlMuUD2YHprg9FvMfTXdJIr?=
+ =?us-ascii?Q?N78eydrMnZFZStNaqQlWdBep8cgWEuuDadfj/4pzwK3VZ+Cow7Fy5RMsRqmy?=
+ =?us-ascii?Q?hA+b1iRQm3PrHgLIbSICIMGkpodRutyd6p/a33V/FSN47IEeMuQLcmco/Bn6?=
+ =?us-ascii?Q?19rDY5wOkC3KoNLzzo+o81BDd+4hgvi67Ib8LrAYRVFpMLJIaPDGBONEGti9?=
+ =?us-ascii?Q?y8kK+EAwGzBda8fUiiZBF1IsHdt00SpfrknFtmhFTdp1pFW+/47K13TCbE1p?=
+ =?us-ascii?Q?MLZ73G+7f3sWhVhLi+GOR//5Jsgb2PBljgL+fm3PgzeyKdOBk3wGilhrmJkv?=
+ =?us-ascii?Q?7/O4Z701vRWm9mdIZA/QL/rddPoCj6f8jyoRBEtXiFw6KSrRWlyUXdm7eIv7?=
+ =?us-ascii?Q?e9YvUQXBzDDqpCRccwg2E/M/EXOak2OLc/vSrBOZPanHsevkg+T0Xkv4KfZV?=
+ =?us-ascii?Q?SQyT5zihSx8MsTyOmHPFSeyJBM2c4ZE1GNTPOYpad+1HrLXjAl/dC/x8E8k8?=
+ =?us-ascii?Q?zp1sg5xhpy6X8Hb7EbVd9rMU/ucNZmLETz3IVR9ZnYfyNbpi8DJO/0AsKUGc?=
+ =?us-ascii?Q?3zYYC8ZdsJS9AqSev6k3YdKPjjJcf//5KlZf57bF?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 34de0a9d-8273-45dc-45ca-08ddfa624feb
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB7044.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2025 05:30:31.4373
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: TwXfhy58HA98SId4THQZwpW767NIVVcZJ0ujrRpBBxqeI/ZrSm/U3AiQDoOATICUFSy9dqJbqnaLhVncmfuuQg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7920
 
-On Tue, Sep 23, 2025 at 11:40:33AM +0800, Chaoyi Chen wrote:
-> On 9/23/2025 11:17 AM, Dmitry Baryshkov wrote:
-> 
-> > On Tue, Sep 23, 2025 at 09:53:06AM +0800, Chaoyi Chen wrote:
-> > > Hi Dmitry,
-> > > 
-> > > On 9/23/2025 9:12 AM, Dmitry Baryshkov wrote:
-> > > > On Mon, Sep 22, 2025 at 09:20:34AM +0800, Chaoyi Chen wrote:
-> > > > > From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> > > > > 
-> > > > > The RK3399 SoC integrates two USB/DP combo PHYs, each of which
-> > > > > supports software-configurable pin mapping and DisplayPort lane
-> > > > > assignment. These capabilities enable the PHY itself to handle both
-> > > > > mode switching and orientation switching, based on the Type-C plug
-> > > > > orientation and USB PD negotiation results.
-> > > > > 
-> > > > > While an external Type-C controller is still required to detect cable
-> > > > > attachment and report USB PD events, the actual mode and orientation
-> > > > > switching is performed internally by the PHY through software
-> > > > > configuration. This allows the PHY to act as a Type-C multiplexer for
-> > > > > both data role and DP altmode configuration.
-> > > > > 
-> > > > > To reflect this hardware design, this patch introduces a new
-> > > > > "mode-switch" property for the dp-port node in the device tree bindings.
-> > > > > This property indicates that the connected PHY is capable of handling
-> > > > > Type-C mode switching itself.
-> > > > > 
-> > > > > Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-> > > > > 
-> > > > > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > > > > ---
-> > > > > 
-> > > > > Changes in v4:
-> > > > > - Remove "|" in description.
-> > > > > 
-> > > > > Changes in v3:
-> > > > > - Add more descriptions to clarify the role of the PHY in switching.
-> > > > > 
-> > > > > Changes in v2:
-> > > > > - Reuse dp-port/usb3-port in rk3399-typec-phy binding.
-> > > > > 
-> > > > >    .../devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml  | 6 ++++++
-> > > > >    1 file changed, 6 insertions(+)
-> > > > > 
-> > > > > diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
-> > > > > index 91c011f68cd0..83ebcde096ea 100644
-> > > > > --- a/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
-> > > > > +++ b/Documentation/devicetree/bindings/phy/rockchip,rk3399-typec-phy.yaml
-> > > > > @@ -51,6 +51,12 @@ properties:
-> > > > >          '#phy-cells':
-> > > > >            const: 0
-> > > > > +      mode-switch:
-> > > > Having the mode-switch here is a bit strange. I think the whole PHY
-> > > > device should be an orientation-switch and mode-switch. Otherwise it
-> > > > feels weird to me.
-> > > I think this is a difference in practice. In the previous binding, there was already an orientation-switch under the usb-port. I trying to add both an orientation-switch and a mode-switch to the top-level device in v2. And Krzysztof reminded me that adding a mode-switch under the dp-port would be better, so I changed it to the current form :)
-> > I couldn't find the comment on lore. Could you please point it out?
-> 
-> Sorry, it is v1. I added an orientation-switch and a mode-switch in the top-level PHY [0]. Comment is here: [1]
+The HDMI TX Parallel Audio Interface (HTX_PAI) is a digital module that
+acts as the bridge between the Audio Subsystem to the HDMI TX Controller.
 
-My interpretation of [1] doesn't quite match yours. It doesn't say
-anything about moving mode-switch to dp-port. It basically pointed out
-that you already have two ports.
+Add HDMI PAI driver on i.MX8MP to make HDMI audio function fully work.
 
-Also, I'm not sure how the current construction works: you register
-switch and mux for the dev_fwnode(tcphy->dev), however the lookfup
-functions should be looking for a device corresponding to the port OF
-node (which doesn't exist).
+changes in v7:
+- add back the mutex which removed in v6
+- add Tested-by tag from Alexander.
 
-> 
-> 
-> [0] https://lore.kernel.org/all/20250715112456.101-4-kernel@airkyi.com/
-> 
-> [1] https://lore.kernel.org/all/4dfed94c-665d-4e04-b527-ddd34fd3db8f@kernel.org/
-> 
-> 
-> 
-> > > 
-> > > 
-> > > > > +        description:
-> > > > > +          Indicates the PHY can handle altmode switching. In this case,
-> > > > > +          requires an external USB Type-C controller to report USB PD message.
-> > > > > +        type: boolean
-> > > > > +
-> > > > >          port:
-> > > > >            $ref: /schemas/graph.yaml#/properties/port
-> > > > >            description: Connection to USB Type-C connector
-> > > > > -- 
-> > > > > 2.49.0
-> > > > > 
-> > > -- 
-> > > Best,
-> > > Chaoyi
-> > > 
-> -- 
-> Best,
-> Chaoyi
-> 
-> 
-> -- 
-> linux-phy mailing list
-> linux-phy@lists.infradead.org
-> https://lists.infradead.org/mailman/listinfo/linux-phy
+changes in v6:
+- remove mutex in dw_hdmi_set_sample_iec958()
+
+changes in v5:
+- add empty line commit message for patch 7
+- remove blank line in dts node
+- add component_unbind_all when dw_hdmi_probe return error
+
+changes in v4:
+- separate dts for soc and board
+- bind hdmi_pai with hdmi_tx by moving some code to .bind() and .unbind()
+- add "select DRM_DW_HDMI" to fix build error reported by test robot
+- remove unnecessary code/definition in pai driver
+
+changes in v3:
+- add space and 'U' in asoundef.h
+- add more commit message for binding doc commit
+- add bitfield.h header for fixing build error
+
+changes in v2:
+- address some comments on commit messages
+- add two more commits:
+  add definitions for the bits in IEC958 subframe
+  add API dw_hdmi_set_sample_iec958() for iec958 format
+- use component helper in hdmi_pai and hdmi_tx driver
+- use regmap in hdmi_pai driver.
+- add clocks in binding doc
+
+Shengjiu Wang (7):
+  dt-bindings: display: imx: add HDMI PAI for i.MX8MP
+  ALSA: Add definitions for the bits in IEC958 subframe
+  drm/bridge: dw-hdmi: Add API dw_hdmi_to_plat_data() to get plat_data
+  drm/bridge: dw-hdmi: Add API dw_hdmi_set_sample_iec958() for iec958
+    format
+  drm/bridge: imx: add driver for HDMI TX Parallel Audio Interface
+  arm64: dts: imx8mp: Add hdmi parallel audio interface node
+  arm64: dts: imx8mp-evk: enable hdmi_pai device
+
+ .../display/bridge/fsl,imx8mp-hdmi-tx.yaml    |  12 ++
+ .../display/imx/fsl,imx8mp-hdmi-pai.yaml      |  69 ++++++++
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts  |   4 +
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  27 ++-
+ drivers/gpu/drm/bridge/imx/Kconfig            |  11 ++
+ drivers/gpu/drm/bridge/imx/Makefile           |   1 +
+ drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c  | 158 ++++++++++++++++++
+ drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c   |  65 ++++++-
+ .../drm/bridge/synopsys/dw-hdmi-gp-audio.c    |   5 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     |  18 +-
+ include/drm/bridge/dw_hdmi.h                  |  11 +-
+ include/sound/asoundef.h                      |   9 +
+ 12 files changed, 382 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pai.yaml
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c
 
 -- 
-With best wishes
-Dmitry
+2.34.1
+
 
