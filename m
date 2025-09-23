@@ -1,94 +1,60 @@
-Return-Path: <devicetree+bounces-220493-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 604BDB96C46
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 18:11:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB131B96C95
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 18:17:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 933E119C5E80
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:11:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA9381731B4
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:17:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6763A265CDD;
-	Tue, 23 Sep 2025 16:11:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31F9B273D9A;
+	Tue, 23 Sep 2025 16:17:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ItMpgK5E"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="X2suY1Jx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BE522609DC
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 16:11:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9591131CA6A
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 16:17:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758643879; cv=none; b=ock+eStG0l7Awb1ynRucRTPDPdGDZSJNS59NHuAMXDySMv/R6UiOHCyHT3FWZYR9GnM1bPJFXNM1iMv1al1gxDEclyiKf/4fxrTlqKUyvMncEuoy+7rxo0bg3oDZh7eAsF+hqw2pWSl73Nlw2x15QaXp5amIIGi5VdxMxPEBogk=
+	t=1758644250; cv=none; b=GhC8lzv9HwmiHdulC2vHDnQmxxtxxtPOftM7kQJ7fyvbWp7Z037fMYZ7pRo1+mIxXcCxAqBNV0F94Autr1TfH2T4EsVs8Cjr0tgFT5DtqV1gdCAhRuAJ2hwyLbTYqqO2UUV4UD80dLJROBF0zOyxuwpJ2FWiE+VVa9QEwkiHu74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758643879; c=relaxed/simple;
-	bh=S4DCabmUgx7wjr90gBdV2xwMP4UhxJhIHvHJUN0oTwA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kA+NhFksalSD9FIuOPwiwRVTChft3H/2sDD2FOVp38E76q0qCu4XdRFFToelFuA1h6nrNe+CZk1xPxmETP3VJQ/Ud9pc4XtlxVfD3kwP2l2F2r7CXQm8moQ6J1YWtUywcV/gvT76DIBmW6cGuqj96Zr+Oi9OOsVZKgswknCZBow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ItMpgK5E; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58NFCJvb026283
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 16:11:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=gXXsKXWMrsrDa77n53dShpXPwdnJeODNX87
-	cwfB/X0E=; b=ItMpgK5ElJA1rzXHuvX92lzLJX1qYK58moE+OG+55xJtEIdNsXh
-	79TLrAVXpNC4aEsW0AudBc8nJ53ORbf5U6gOqKRLr0Xn7xSptnCx5dsOpsw+m+UX
-	SZ7coVyOHeo4yP3ku2TpwRX8zB6E3ABkLPNEi9thJ0gbEgT5+ttODNBRV/NV2E8l
-	BUoddyml667eDVr8cAC98GHSk3h/hJTCHwpjsp4sJKR5SzZXgC9j0jOAWbBDJK+c
-	q9BUjHR8KMNm0SgKJV9UBC0doC+5PH4u6dhidxKWCGXwhvxcYFL/6NFP1mwbjkmL
-	2OrrtmFbQmG+6W+efq4p46U7Tvd96ZnOr4A==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499hyeshsx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 16:11:16 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-2681623f927so55582925ad.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 09:11:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758643875; x=1759248675;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gXXsKXWMrsrDa77n53dShpXPwdnJeODNX87cwfB/X0E=;
-        b=I2P50/U6/vatPSGVC/67UVVkxKopbgtJKsiGde1rH5tzhzxFdeFkl1tqU8g86RlfsW
-         K7Z+uPszYSnRwt5xnUVjbJC5r5Gr0V0UKOKRmFNRSwi6U9GPS8dQ8fCuTnOCOpoklnhN
-         f1N/04WQTSomr3iM30SK2QB4+kxlxj3yRiJSl4zZR0fFo55uqB4LRVwDwUIdmeeehoCI
-         w+5oOFW2IZAX55Yd7QCsdQ8A+7O3PEyE1in2WguDrloC1uD3aDfwhevTujnPcfNuRe1H
-         zr0MTeHEQe8rc9kbA+uLJ5yDC4Gp6/huWugmQWEEahoOeTcMB/rcBXDhCfhayuP5TZ5U
-         3uDA==
-X-Forwarded-Encrypted: i=1; AJvYcCVNiA8aMq4SaqFax2WVqjMf4ndrKHsWfiqsjJY8qoe/V/ABbfjyXxnbGsHySTv92StGa88cevbJnR6c@vger.kernel.org
-X-Gm-Message-State: AOJu0YzWywYcKoD2wJEVhE7joz4lUnHx6yy1etr74i4MKvx33rYUyNyg
-	hYbp7bN3jjDrA+s+Vo5lnut0cLW1D80QMaagugmx8xd4MU+oZbBgaqart3d4v+UgwpmGbv4pAqZ
-	9yBsc7bB7ZFwIG5ECiP9CXfcPclpjh1MLHPofn7W25uZoR049kJln2aiiY5pL3Kb/vBUbG37v
-X-Gm-Gg: ASbGncu8I8Vzs/RGNfQH3lKzLkF+yRhlbONBTvogsRv5iSKYZgI1gjWJWAdti8pb8VZ
-	LBS/fRRq1dZJyJNolJ7BO5hP0S8EFyDbZgCu5IKwLJ1qY2vJKJ5fjPifPnpHj0EjS+Lzb1R4iU4
-	jAzrRiUGSYEI8BAdPS08MUYFa0Pg6OlJvpvfcFXPpu0hrBk1HOfRZQ4zVWzqPCj7/jy3KPlSKZE
-	8yKGMfr2CrS8X5MLoC04fe+lvEGCoMJaTY01FBVAMFfbX1QCUEI+rW+j78qOjT+ErF38jGWnMqF
-	mdJSUvgSqOZkFh+SBWQ9FoO63DV3yCktzmwd8+h8ATD59teVfrXXliHbcoo1ChmMd3DLohflULi
-	Y
-X-Received: by 2002:a17:902:ea05:b0:24c:cca1:7cfc with SMTP id d9443c01a7336-27ccaae76b4mr38001845ad.59.1758643874813;
-        Tue, 23 Sep 2025 09:11:14 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEcgDc1k1R7cpq+knm9wZ1c7VQL4r/SXF4203S/1vo1F+pemSrTnIlVN5YxWckIRKZQ3VmD4Q==
-X-Received: by 2002:a17:902:ea05:b0:24c:cca1:7cfc with SMTP id d9443c01a7336-27ccaae76b4mr38000965ad.59.1758643873541;
-        Tue, 23 Sep 2025 09:11:13 -0700 (PDT)
-Received: from hu-vdadhani-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2698033d2a7sm162680525ad.132.2025.09.23.09.11.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Sep 2025 09:11:13 -0700 (PDT)
-From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com,
-        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Subject: [PATCH v2] arm64: dts: qcom: qcs6490-rb3gen2: Add firmware-name to QUPv3 nodes
-Date: Tue, 23 Sep 2025 21:41:07 +0530
-Message-Id: <20250923161107.3541698-1-viken.dadhaniya@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1758644250; c=relaxed/simple;
+	bh=XwQ+h6lPdQol4hyOnn/M3Nv65wz2vrsimi5eh2vEZhg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VzRW72UFLmvovQP84cXF6fRnDnUPF00xs0XpaZeRlvs7dvyqMI7PJMGltQZoGEXuGRmCjqc01OSQG4PYd1/TkFWOGFBICgg5gahT50vy1Ygy1/ZKpHeWcnJEya1PEIFoF54V5WAww4D5+6SjaysOhZOeqxP1dj6cYu+5hgPEjVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=X2suY1Jx; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=00DEpQ6lKh9dKq
+	S+wpLlGUUmPhEnXN5+5Hj0jhWrBcQ=; b=X2suY1JxEwMxRSPORVT1O9joWoe9EB
+	yADW4KqvSmJ72XFEyx5T7g4WwQTW3TSc21dZS+U6aZ9/SJzpQjFy0cN9JGf0bTaD
+	B3lQaBkakcXFZ2OIVxv0HA9CyvhYVXK+5W7h7Bm325po7mvnx4TWGI59GynJWjhO
+	4EwMMhai6Ch8NBq2AGbtP86yYcrZii9DtlAq2+osDSw6aOlfvttRf66guhI09f9E
+	AvEbr1OUCNO9yyZVMTNVmSnokYR83xmlGHFbpbwv4cQU8XdiwSQPOje4l7p4uOEc
+	DFoLDuSZIt6BTLfMrfLk/dOTcDKJmFpbwNRiUIe1hLuYehYNaDhejY4A==
+Received: (qmail 1172729 invoked from network); 23 Sep 2025 18:17:13 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 23 Sep 2025 18:17:13 +0200
+X-UD-Smtp-Session: l3s3148p1@1N3ORHo/ttMujnsp
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: renesas: eagle-function-expansion: add eMMC support
+Date: Tue, 23 Sep 2025 18:15:49 +0200
+Message-ID: <20250923161709.3110-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,67 +62,45 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: hUJC3Oy26K4piKIx-wCXS2T7yxk6URi1
-X-Authority-Analysis: v=2.4 cv=YMOfyQGx c=1 sm=1 tr=0 ts=68d2c6a4 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=8rlZebuS5uYMG-XfLoEA:9
- a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAwNCBTYWx0ZWRfX9YMLlWexVIUw
- y3wd9zbeECog7h+D18698CRr0ZiY9H1jzx1SlHJAGusOOdZsBqnBtgJVlWfujMkQ05bT/YnsENr
- kFUddBAA/C04He09GTzz8FPv4Iavh5GoRRvVFH4zSE/ipOhjAlCPVHSKjwacM2griwGYVfTQviY
- RL9kqoAJVW8vzL6dtEiX58UR2URAMeK5ri5ga4x8vjzfXvU9OwS+mPidkrIHbqs/0KU3cbvo3mZ
- yZM9dN9wngPR4sYL1Y2UrgZvBuICEpPoSxCSXy7sIYngFgXXsyqFDLIfYtEt1lfpuivUN/2Kf4t
- 8CoJZZ9nNg4Se+lCqFQsnO/uy6OtZVT4SrJwbUgyWz/fT4E8T3G2HfwANHBjm08w362ML9fwwOX
- m2J4Cxzg
-X-Proofpoint-ORIG-GUID: hUJC3Oy26K4piKIx-wCXS2T7yxk6URi1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-23_04,2025-09-22_05,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 adultscore=0 priorityscore=1501 spamscore=0
- clxscore=1015 suspectscore=0 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200004
 
-Traditionally, firmware loading for Serial Engines (SE) in the QUP hardware
-of Qualcomm SoCs has been managed by TrustZone (TZ). While this approach
-ensures secure SE assignment and access control, it limits flexibility for
-developers who need to enable various protocols on different SEs.
+Add pinmuxing and configuration of the MMC-capable SDHI instance to make
+use of the eMMC.
 
-Add the firmware-name property to QUPv3 nodes in the device tree to enable
-firmware loading from the Linux environment. Handle SE assignments and
-access control permissions directly within Linux, removing the dependency
-on TrustZone.
-
-Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 ---
-v1 -> v2:
+ .../r8a77970-eagle-function-expansion.dtso      | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-- Updated the commit log.
-
-v1 Link: https://lore.kernel.org/all/20250923143431.3490452-1-viken.dadhaniya@oss.qualcomm.com/
----
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index 18cea8812001..4e361580ddf1 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -1009,10 +1009,12 @@ &qup_uart7_tx {
+diff --git a/arch/arm64/boot/dts/renesas/r8a77970-eagle-function-expansion.dtso b/arch/arm64/boot/dts/renesas/r8a77970-eagle-function-expansion.dtso
+index 0c005660d8dd..a552a923edea 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77970-eagle-function-expansion.dtso
++++ b/arch/arm64/boot/dts/renesas/r8a77970-eagle-function-expansion.dtso
+@@ -170,7 +170,24 @@ csi40_in: endpoint {
+ 	};
  };
  
- &qupv3_id_0 {
-+	firmware-name = "qcom/qcs6490/qupv3fw.elf";
- 	status = "okay";
- };
- 
- &qupv3_id_1 {
-+	firmware-name = "qcom/qcs6490/qupv3fw.elf";
- 	status = "okay";
- };
- 
++&mmc0 {
++	pinctrl-0 = <&mmc_pins>;
++	pinctrl-names = "default";
++
++	vmmc-supply = <&d3p3>;
++	vqmmc-supply = <&d1p8>;
++	bus-width = <8>;
++	non-removable;
++	status = "okay";
++};
++
+ &pfc {
++	mmc_pins: mmc_3_3v {
++		groups = "mmc_data8", "mmc_ctrl";
++		function = "mmc";
++		power-source = <1800>;
++	};
++
+ 	vin0_pins_parallel: vin0 {
+ 		groups = "vin0_data12", "vin0_sync", "vin0_clk", "vin0_clkenb";
+ 		function = "vin0";
 -- 
-2.34.1
+2.47.2
 
 
