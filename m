@@ -1,200 +1,128 @@
-Return-Path: <devicetree+bounces-220527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92687B973D8
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 20:51:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9349BB973F3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 20:53:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C2E81687DF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 18:51:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B46416D8C5
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 18:53:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07E262836BD;
-	Tue, 23 Sep 2025 18:51:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DF972BE644;
+	Tue, 23 Sep 2025 18:53:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="4iYvt3am";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Nfi1wlRm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eTAgFoc+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b8-smtp.messagingengine.com (fhigh-b8-smtp.messagingengine.com [202.12.124.159])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B93118027;
-	Tue, 23 Sep 2025 18:51:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.159
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED70D27CCE7
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 18:53:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758653501; cv=none; b=ivEUOCeAMyj8V3R4JUpAiFji1v4ZxVO2+Se9z5me6jHezYb9QjKXXDZu641iHuXYnWXFeVWR+YOESSgy0XcynZLWPBAgfA5wAxYyaELn6IKalquD5DXIbruF6EZ8zaRkl7Kah/Ud/o1x6qSlkgODXf2MNUiEdWUVr/p0PWE/ouM=
+	t=1758653632; cv=none; b=l2OciZK/dHTbjMI92efPENxAGusasbgozYLQy/dBRQQs+A0DTtO3Bn7XKpZgh5TWg/OZNL91nGAdUN8KsFb67ggIY+Vpt4bY9nC81bx8BCyWW2EAw9sjtoyanpEXSOs8iq2Q+BTraSMZ59QDo+QwX5FhI12UVLELYf1wmMpkzak=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758653501; c=relaxed/simple;
-	bh=m0dyoF3zbv516aK2r6Iw20+GBOGP3Nwqr5IcT5qfttc=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=P+t6jkjcljk6lr8fJ2GA+gMnRQOn38B119CWL9A5r2Mfn44RdXBwhAw8W/ZlZTEmWC447dYP8zxCNE1jF+ji8C3ig0rQ0MemallUorz8IBdgzwWlMADLtm62q3TEjPLV5wja8qTDefd4TRno7T7KPLe7yzVHz/8Ewy5sp0tkq0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=4iYvt3am; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Nfi1wlRm; arc=none smtp.client-ip=202.12.124.159
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id E19787A01E3;
-	Tue, 23 Sep 2025 14:51:38 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-05.internal (MEProxy); Tue, 23 Sep 2025 14:51:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1758653498;
-	 x=1758739898; bh=lmf2MPQeiwJsAwtLP2v5pSNutJHWBNm/aiiaZc+tP84=; b=
-	4iYvt3am4dDjecetJmpP7NM6jm2VaJZPHdE/6j5qNIaso/URWs4m++GO5uy31o2J
-	21wnqrnJ+7sFWH1nxLC8uOhVAvp9ry0HeEuBJo/+O+brl/naFv4PWNXHmntMYWlO
-	xGeEFs3y15Bz/W1GdB2cxMW0BtvJF+lzd+WuXL9536dtvDMaG2qYCIdx6HVfqfap
-	wUr+cU2t849eML9sA29VjJ2Rzm09VQHexK9fLgEu9IizJTAGbtxqZaZXbsWVtjC9
-	28aNTzDj4IKiofjP5ezxA637WWRu1xI/cbSOvN0LRau/X0BlKCnUDcNz6aPqjeX5
-	Maqds4OauF5iLsGeU7vY0A==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1758653498; x=
-	1758739898; bh=lmf2MPQeiwJsAwtLP2v5pSNutJHWBNm/aiiaZc+tP84=; b=N
-	fi1wlRmhRc1pKrk5aQTnBpJQ7uMjxXcikr0G1JpxQfnloNlTuIYq7tMPcd8L8cAK
-	LSzt0TgkyPJca7G9mft3+3ZgYNwSOpSxR+IAO+2fngXRAS2o/8TOV+sQsiySlsIQ
-	+DnbvXn9hZfk/HStct2K1ZaWnVFe81nXRhpweDX0paEIZ5GZCQPVklAerrIRTeyr
-	+hOMrrwPSwqckOqflloGOUGiLWZlwxwyzghf7HRnBQortOINYjxQHZ0lzPulZdO1
-	tpEcyZaLZyWfgm+Je9kPLX0WFnE3YftOTNlDoEg1Uc+/FE7JiqMFS66jOkfJVGhz
-	cKWztcMGS4X75PR/ChTVw==
-X-ME-Sender: <xms:OezSaLUDIbvpiCUzGA7ce962ySuhoSMt3VLSskyS8atjkW-ZmuAvOQ>
-    <xme:OezSaOYFzpIpEAVCIlnF6gB18r5CM6Sc1Q6IMY5tNatwoqahhk5iTREq6AiQ9mgb6
-    1CA76ctiQ6AIKcfG--HAZPNwHmypM-lTWz4OV4Mf5Fs5CKYWjtuqA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeiudeglecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
-    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
-    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
-    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopedvkedpmhhouggvpehsmhhtphhouhht
-    pdhrtghpthhtohepshhhhigrmhdqshhunhgurghrrdhsqdhksegrmhgurdgtohhmpdhrtg
-    hpthhtohepghhithesrghmugdrtghomhdprhgtphhtthhopehmrghnihhkrghnthgrrdhg
-    uhhnthhuphgrlhhlihesrghmugdrtghomhdprhgtphhtthhopehmihgthhgrlhdrshhimh
-    gvkhesrghmugdrtghomhdprhgtphhtthhopehrrgguhhgvhidrshhhhigrmhdrphgrnhgu
-    vgihsegrmhgurdgtohhmpdhrtghpthhtohepshhhuhgshhhrrghjhihothhirdgurghtth
-    grsegrmhgurdgtohhmpdhrtghpthhtohepshhrihhnihhvrghsrdhgohhuugesrghmugdr
-    tghomhdprhgtphhtthhopehjohhrghgvrdhmrghrqhhuvghssegrnhgrlhhoghdrtghomh
-    dprhgtphhtthhopegsihhllhihpghtshgrihesrghsphgvvgguthgvtghhrdgtohhm
-X-ME-Proxy: <xmx:OezSaK2PRjsvapyaVhaiJFjPFm0xxDyxNB8kLn988afpOOQE73pEwA>
-    <xmx:OezSaPvZka9D2kdZrWN4DtB_9aDLDiGI734audr5bPNa_V0qAvUGTA>
-    <xmx:OezSaCYAb8Ikf5A0WQpK_tI2mKOuXJlAZ2YeuHLgjtACQ-HU9_-FZg>
-    <xmx:OezSaNIn80nRVoEzDuc83gmGPbIw6d75Rh-Wj5EUEm4dJwl4ssbE7Q>
-    <xmx:OuzSaMzP4FJYnq2wSBvS22jGwixsuPQa5aRoWHk_BzAKbJcHG_kOzG68>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 2A93270006D; Tue, 23 Sep 2025 14:51:37 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1758653632; c=relaxed/simple;
+	bh=oRUBVfO2d3MoKM1jD4VAKRUkm+iozi0HUHHMy5T2wc0=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=GNkg4sbis11mf1v8VeT44HB9wX6vjWL0NnHN1t4E/4T8yWH4PzZCdbvhQXT2gjqXBwIaPoyblQ1YT6vJ/mulBJj6A6iejS1xWCvOlU85qk/ALtxw2ca0VL8mEwVvPU72Bgl3LEpjrMbTjRrAR6LLz4qET+6v8kDZYrMVhUQ2ing=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eTAgFoc+; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45ed646b656so52166145e9.3
+        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 11:53:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758653629; x=1759258429; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=nWcLtw2qXrDtFeNiHTtrGneV08EOKIFUjDj5SrfHC4s=;
+        b=eTAgFoc+IfauKpWV+Cy25xTn7xLFkB6jZ1zSdnt8H1bGXbwUxQYpsd4rUOhonayU9G
+         P4HH7KoVAvpmjqN1YcJca+Kue7ItUK2Qk4pTfnsMe8uqb2bx+Q2MrPeQSTmbLtrQtdfk
+         3Bd0HWvJNU97Ogj/NL7Fie7HQrjG6S75x9b0BY4SvXKJ0awSYHWdQ0WZfinnI/VcEWey
+         0vg7e/C5EqL70Mni5L7EmV0jAhA6ooCCT4GWTBkBdMnoHnekb3hHrrnrWQJZl3K9gdLM
+         QgblPjNUcfplQY+W+WvwnjAmDCExznuiGNxJI04GA7a2TH30PuNWCQ57LpJlYW4/Ss3k
+         kv4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758653629; x=1759258429;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nWcLtw2qXrDtFeNiHTtrGneV08EOKIFUjDj5SrfHC4s=;
+        b=iv/c4r4+O98dz8pStrVgogePcQxcQrKYgp1pXdHX1qE9pWUy3l8z/ZJp+c52dU0zbQ
+         kz9Np51Gl8hv5LoB0hu1uoWOsBIoNvQIfVnL+ZjunbSHIag8FzTf9IkjlofB4izCInPT
+         gKh3sKfmu2cg6WL1xK9RbXCoqBNkmqsmP+z0DEKltjqKjuDUmGlf67HBT1rAqec2lqAJ
+         89vImDR9vh0iDgpoPxGt6iT02o7YzDRlsaUkRHw42vgJ0P8rgldGc+pXG+uFBMylW1dF
+         gBr3P78UF7+tFYb/iB8DhuWYdfmbE/x5piTen6xL9BQJdnUD60hdp7fX/qDtrUGYHHoq
+         Jzag==
+X-Forwarded-Encrypted: i=1; AJvYcCXZQyFEykNJADhtev6IbgSRd1yOMWdzgRBOAxQqmbcjdjxMcWZ7gM/OoE3kqyq/RjO+5MsClN6ZUUm+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzO8mlBJR5VWzIy1Lg0rTNurrudEPQkrp45ilRzmSeG90/nFvMD
+	dfGabaCiBftxHriwJqmc71IXLZk6EgIKvrllrCRYB1nxqleUQv69Ef/V
+X-Gm-Gg: ASbGncvsdkqwx1QWnPxHai1YSJuGygXQfA3aRoPYwQ0zW5C+Xz3mAWJULJfxY+vTmKH
+	OFVZcmS5VslMhej8uBDRh4Nt6qrogPfVbgp6nifMsg6oBNBpFHdGnPyglq/sHuWP9XihgWqe7iT
+	wfPKUOYFff0zxYV7FGNDuPXXX4733ElzUwfFkuwsXY+Ad9QNn/zawJ4ust4yRgeLHLKhX8gq/GG
+	nLCQ+b7MnneTabfBhv9eIxpF5EPEKG5BDjwCSZPUkotcyZVBCqOxOXYSD+91WJn3VJ1xlISQSJs
+	kzI8MHw9mkH4l4pFV5Wd6ZvRWTzw1+P+YmvHO+2M7aqWNa4/KXwMFRg/GAUv0ARO4JlOFWqN9cz
+	UBg99mG0i4r7GSSmokJQFGbNVfrZmE5ntMNp2NQa/PKwV1YMVHTq/hRm+eL0u6tZQelOzT84j6c
+	+lNIkwxw==
+X-Google-Smtp-Source: AGHT+IGKjgQQvlEa+A94efi/b5b4nbfk7G0qwnMnOukLmIKhoBHDXNsNeAGIWOJr8BOP+8/JH7HY5A==
+X-Received: by 2002:a05:600c:4fcb:b0:458:bf0a:6061 with SMTP id 5b1f17b1804b1-46e1dab51fdmr45625665e9.24.1758653629107;
+        Tue, 23 Sep 2025 11:53:49 -0700 (PDT)
+Received: from Ansuel-XPS24 (host-95-249-236-54.retail.telecomitalia.it. [95.249.236.54])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-464f64ad30csm295014655e9.23.2025.09.23.11.53.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Sep 2025 11:53:48 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Felix Fietkau <nbd@nbd.name>,
+	John Crispin <john@phrozen.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 1/2] dt-bindings: arm64: dts: airoha: Add AN7583 compatible
+Date: Tue, 23 Sep 2025 20:53:34 +0200
+Message-ID: <20250923185340.21526-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: A0nVfrWCY5as
-Date: Tue, 23 Sep 2025 20:51:15 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Manikanta Guntupalli" <manikanta.guntupalli@amd.com>, git@amd.com,
- "Michal Simek" <michal.simek@amd.com>,
- "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
- "Frank Li" <Frank.Li@nxp.com>, "Rob Herring" <robh@kernel.org>,
- krzk+dt@kernel.org, "Conor Dooley" <conor+dt@kernel.org>,
- =?UTF-8?Q?Przemys=C5=82aw_Gaj?= <pgaj@cadence.com>,
- "Wolfram Sang" <wsa+renesas@sang-engineering.com>,
- tommaso.merciai.xr@bp.renesas.com, quic_msavaliy@quicinc.com,
- Shyam-sundar.S-k@amd.com, "Sakari Ailus" <sakari.ailus@linux.intel.com>,
- "'billy_tsai@aspeedtech.com'" <billy_tsai@aspeedtech.com>,
- "Kees Cook" <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- "Jarkko Nikula" <jarkko.nikula@linux.intel.com>,
- "Jorge Marques" <jorge.marques@analog.com>,
- "linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Linux-Arch <linux-arch@vger.kernel.org>, linux-hardening@vger.kernel.org
-Cc: radhey.shyam.pandey@amd.com, srinivas.goud@amd.com,
- shubhrajyoti.datta@amd.com, manion05gk@gmail.com
-Message-Id: <13bbd85e-48d2-4163-b9f1-2a2a870d4322@app.fastmail.com>
-In-Reply-To: <20250923154551.2112388-4-manikanta.guntupalli@amd.com>
-References: <20250923154551.2112388-1-manikanta.guntupalli@amd.com>
- <20250923154551.2112388-4-manikanta.guntupalli@amd.com>
-Subject: Re: [PATCH V7 3/4] i3c: master: Add endianness support for i3c_readl_fifo()
- and i3c_writel_fifo()
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Tue, Sep 23, 2025, at 17:45, Manikanta Guntupalli wrote:
->  /**
->   * i3c_writel_fifo - Write data buffer to 32bit FIFO
->   * @addr: FIFO Address to write to
->   * @buf: Pointer to the data bytes to write
->   * @nbytes: Number of bytes to write
-> + * @endian: Endianness of FIFO write
->   */
->  static inline void i3c_writel_fifo(void __iomem *addr, const void *buf,
-> -				   int nbytes)
-> +				   int nbytes, enum i3c_fifo_endian endian)
->  {
-> -	writesl(addr, buf, nbytes / 4);
-> +	if (endian)
-> +		writesl_be(addr, buf, nbytes / 4);
-> +	else
-> +		writesl(addr, buf, nbytes / 4);
-> +
+Add Airoha AN7583 compatible to the list of enum for Airoha Supported
+SoCs.
 
-This seems counter-intuitive: a FIFO doesn't really have
-an endianness, it is instead used to transfer a stream of
-bytes, so if the device has a fixed endianess, the
-FIFO still needs to be read using a plain writesl().
+Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+---
+Changes v2:
+- Follow alphabetical order
 
-I see that your writesl_be() has an incorrect definition, which
-would lead to the i3c_writel_fifo() function accidentally still
-working if both the device and CPU use big-endian registers:
+ Documentation/devicetree/bindings/arm/airoha.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-static inline void writesl_be(volatile void __iomem *addr,
-			      const void *buffer,
-			      unsigned int count)
-{
-	if (count) {
-		const u32 *buf = buffer;
-		do {
-			__raw_writel((u32 __force)__cpu_to_be32(*buf), addr);
-			buf++;
-		} while (--count);
-	}
-}
+diff --git a/Documentation/devicetree/bindings/arm/airoha.yaml b/Documentation/devicetree/bindings/arm/airoha.yaml
+index 7c38c08dbf3f..df897227b870 100644
+--- a/Documentation/devicetree/bindings/arm/airoha.yaml
++++ b/Documentation/devicetree/bindings/arm/airoha.yaml
+@@ -18,6 +18,10 @@ properties:
+     const: '/'
+   compatible:
+     oneOf:
++      - items:
++          - enum:
++              - airoha,an7583-evb
++          - const: airoha,an7583
+       - items:
+           - enum:
+               - airoha,en7523-evb
+-- 
+2.51.0
 
-The __cpu_to_be32() call that you add here means that the
-FIFO data is swapped on little-endian CPUs but not swapped
-on big-endian ones. Compare this to the normal writesl()
-function that never swaps because it writes a byte stream.
-
->  	if (nbytes & 3) {
->  		u32 tmp = 0;
-> 
->  		memcpy(&tmp, buf + (nbytes & ~3), nbytes & 3);
-> -		writel(tmp, addr);
-> +
-> +		if (endian)
-> +			writel_be(tmp, addr);
-> +		else
-> +			writel(tmp, addr);
-
-This bit however seems to fix a bug, but does so in a
-confusing way. The way the FIFO registers usually deal
-with excess bytes is to put them into the first bytes
-of the FIFO register, so this should just be a
-
-       writesl(addr, &tmp, 1);
-
-to write one set of four bytes into the FIFO without
-endian-swapping.
-
-Could it be that you are just trying to use a normal
-i3c adapter with little-endian registers on a normal
-big-endian machine but ran into this bug?
-
-     Arnd
 
