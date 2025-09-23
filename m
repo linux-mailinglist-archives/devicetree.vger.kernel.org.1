@@ -1,131 +1,202 @@
-Return-Path: <devicetree+bounces-220441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220442-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2FBE9B9645F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:33:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E07FBB964A7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:35:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4BC33ADABA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 14:29:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88FD11730EC
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 14:31:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF686257AC6;
-	Tue, 23 Sep 2025 14:22:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77FCD23DEB6;
+	Tue, 23 Sep 2025 14:24:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ieP1rUai"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pHxBtCsi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06B0B21FF46
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 14:22:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99B9F23C8D5
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 14:24:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758637352; cv=none; b=AnLx+mdQcCe8/Y32YoPgM7EbXMSIIysn0/FYS0Zy+l5I1hzSTXlbrPR1FW2L9xR/LNZCFkkE3qX9/g299iyp3Nt3D1JpX6tDxmn0mFUPm+G80lxdHZyfxRzyAqPd8+g9HFpR6ufduSeYjJXDViuMby9/4YTCsVRO2r5b8C6gTGc=
+	t=1758637492; cv=none; b=sv94SGIkIYikdr1jxGtaCuWB5KEEQp3GPzPmjUvHxSE+vpz71hfhk4uv9NixZmNv5jM2+wXgtjHC1c4VDMpTIaPI67Ko3MBtFvZAV6bp0MSmZYAW/Pg/nXk380FmzWgu+qe+GYXFJzjqyEf1uRhscWSkgi+GlciB5YUodEyZKOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758637352; c=relaxed/simple;
-	bh=jxex2Vy8xhpU4HlbEMJEgN+VUIJscyKji7VvhhBioyw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=T8qLrXoY4vrTZtRcuVMo9ZwaInRupx3q3YlYJcGNadUZZtXWbT9DfdjsjfRTNyUTN8X0HjXx7o85k7yn5+8Q50GqYhKe22YyRtjZORIe4xoZlwWPBn9gTGADzgyr2jmA1U32prg06MifZWOASqatXJ2BMJ3BxJrxK8p62k1fvA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ieP1rUai; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3ecde0be34eso3405238f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 07:22:30 -0700 (PDT)
+	s=arc-20240116; t=1758637492; c=relaxed/simple;
+	bh=eWihz0z0JIQWHYGwcOUGrAJbU4ImufZBgs86/4aLMoA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZHLARZTRNHQJNdJnToopt51rQVPnFw3SSA6OcSkz35CRxKIHrxrpYGsIWp5jDr0TJhbCq9rwtJAt8fbpmFxCymGO70Xq00uPwyQolm+5dDrmk6gUCU6WyCKaQYg6EaISVvkrvyT7UjqpJqvMUhr31cdrlC5GPmBI1GXcpaGvNw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pHxBtCsi; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-71d60528734so41694787b3.2
+        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 07:24:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758637349; x=1759242149; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jxex2Vy8xhpU4HlbEMJEgN+VUIJscyKji7VvhhBioyw=;
-        b=ieP1rUaiX7+hB5KNhsbem9pHhGx7kV0jCpeUea6d7aysjErYzPmoA0KMz8iM4SqFQx
-         qoMMsuboVl/G4DlBv1xWX5NWM6r++qAxJYao2xth8lfRmZby90vlHapCHC6XbmhNS2Ys
-         CbMldAsX/sRRXk/M7NXdm4oWbfKuOqbtwnmeWFklHPGZ7/DO5zXSMtjrD2vSNgMaasod
-         D2vAzwCBixULa5/yekSdpDoeiCYLqoRDb0Oi0pxQbGw/6TTYnd6gIVHWHnl2yeWjMHeO
-         s5SVzkoR1wgzv2NrTZe/K8bBAYTpqkPtIhsomv1R2HKSIOnji5qh1abGI2fYF/var9yT
-         OWPQ==
+        d=linaro.org; s=google; t=1758637489; x=1759242289; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1tUpBb6qulXCWAadHVOQRFgdDFu6TKGouRDpRCguBiA=;
+        b=pHxBtCsiBu6wl15vhgceu5NmjwRm+WSuT4nmlU5xbJbgXM1CC+V7h0looIg2TWOXi2
+         OWbJKH1lsLgMoGVbgtowHpn3x5VR9zXRAapC47D4/fspdZm2gIhOVgcI6ZKlS8M8k9X3
+         VB/82nY+g6zZu6cl7Th7tFTxCw5fq8fUZbrG9PdIl1xYFyWTVyijyjYlo0AMV4OQvmXM
+         a60l/I7BMwPBgKOdDQTAhP7YZi42jfEgLQ/xbu1cWGA5vEWDiwl3n+reIX5MbaB8Re/k
+         kzPhghDlKOruwJvtm0xM4q5U8imEjK+Mq7gpxqKfmnNG6ugZJrJ8zItWjQFI38DShext
+         h+Xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758637349; x=1759242149;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jxex2Vy8xhpU4HlbEMJEgN+VUIJscyKji7VvhhBioyw=;
-        b=L0NchVH8TUovHY1cssFDk8gJTokgAz6+rT8IcQ1SYR1POG7UTnviPqYeMuK0aqqXSA
-         qa8TfbuXXSqu92orkS9pmFSbENdjtGZm18+z8pxI49sGQcot/mNLFYScCUssnqLyhcdK
-         JN9rKBqVEMl7f/c8X4mGgUi1CbXkntzTUR+LFFBclRDpOjV5Tg5AYJ7+PxuTLnf2MthQ
-         AIfcu620um8OpTqCaqbSfJrugDteYjuCJ6m70hMmCPvUjinJy7+kWyFN2FVDiugVm82M
-         29el7b7PzpAEH1tOaoOtonEAtZRfXq9LkcD+Dt94/+c4NKYtJ3DnNes0KFSHquDKY58z
-         USnA==
-X-Forwarded-Encrypted: i=1; AJvYcCW9JHxuLPWELeTLTdm0GE48GqMS4Fv+rK5xCj2LhnuHyONrx6SGUUs/exKcVb5rYZd0w7MreYYxeEeX@vger.kernel.org
-X-Gm-Message-State: AOJu0YygF5ymy3/T5v97MWdzFRi9K3LZPT3iPdK3uljGsxqQzuUDjJqC
-	ISPIEvpPzB2gXsxGuK7gSRIokTAU8FVhg6UyaB/87CFI/a78YkFzr3je
-X-Gm-Gg: ASbGncsYq0e8RcmyD7WGEoo0w3/GYit2zS7bDpZ1Yl+l0Us4Dlt1uM5xC0BuziiLi9R
-	UWma2KUn0Y14l2XzjPgtHlOM9uZv9uoV1d54lTrem+SQ6f/rw3RxU/O/xAnMuvZL2U/cZMGciME
-	2XDYu+dtUQkQq3C0aauf0heX9+COofa3Q3ee/roUbJfAIIcchW0oC4qnbVgQ0zFGKQhRfsilTzF
-	4hg3LXWBUG+1jVbcet0SsPvcJ/99Rv6nxYgcn5SPRSyOgsM6BzvBXrekj/kbgaqBBmskMJ+v42t
-	oUrl11FwONLL7YT/Vqi9FAiywUROAw8D4P8r5MCkZo5wwTMYjkQwIXEwtlFuKhajeqsETFK/gHL
-	IxfGQLthf57BZ3aoPfUeauNIc1hfnF0kFPu1v74nAvP1Ud+mXn6KUc3kTTmhtqnTKP87JLoF4z8
-	Dor9J1
-X-Google-Smtp-Source: AGHT+IGjet5wQJA7x9sBQkHVST1A9uu//deoXDFw+WZ7o8/Afi/1TjeFJpy7+SiHbPkDBXjldSD9Ag==
-X-Received: by 2002:a05:6000:290a:b0:3e8:f67:894f with SMTP id ffacd0b85a97d-405d299fc65mr2558272f8f.26.1758637349101;
-        Tue, 23 Sep 2025 07:22:29 -0700 (PDT)
-Received: from jernej-laptop.localnet (178-79-73-218.dynamic.telemach.net. [178.79.73.218])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ee074121b2sm24139332f8f.27.2025.09.23.07.22.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Sep 2025 07:22:28 -0700 (PDT)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Chen-Yu Tsai <wens@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, Andre Przywara <andre.przywara@arm.com>
-Subject:
- Re: [PATCH net-next v7 2/6] net: stmmac: Add support for Allwinner A523
- GMAC200
-Date: Tue, 23 Sep 2025 16:22:26 +0200
-Message-ID: <2797545.mvXUDI8C0e@jernej-laptop>
-In-Reply-To: <20250923140247.2622602-3-wens@kernel.org>
-References:
- <20250923140247.2622602-1-wens@kernel.org>
- <20250923140247.2622602-3-wens@kernel.org>
+        d=1e100.net; s=20230601; t=1758637489; x=1759242289;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1tUpBb6qulXCWAadHVOQRFgdDFu6TKGouRDpRCguBiA=;
+        b=ejF8gnAZ46pAkjKriXUckcEXZixJUD1H9E/hKMbp3PS8IGkk8Sage8zpD8eJSdag/6
+         IhINB5Iv0YaXIMjVZ6wateuBa86q5kSk5zldD3/Fxyia1LZLhbwxi7BqCbkz8iUBFGNs
+         csiJ1AgHb9b8j8D1Bpo0ZgzRYxqH6RO7YP98Kw1sUbuNH6dk5lVMd+F6+qXikiIre2UQ
+         4cS3HJ472T/asFUtfPbrQIj2Be7f6xTG+uk6RRcUysKmwNYtLJXpKOGuSsn7U55AIMbf
+         AX7jfqqZO3fdZocOQWjIssvzjqdXjvrXJFQlgU7Hni9gxgjo29AOvMmpkg6SUK05I1yL
+         2TKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV9JbeFDG6byy3bc4m+Gq4v8rFQbE6/oOHQPb7AFet361WBPBHLvSML5SW6FllYmw/lmTgmrboBR+2O@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXqAc+vXoiOeA2u1+/4VgqeaSi3AJDnMIG8K8kkTujFZPwssj8
+	VGnMkksLpl0EKiGudm+aRXLbgtFY/mmH+SKoTHxDhpOyFTN2DvxywKBjcPSDFFi4fzit+xbb1mN
+	6HIyF1SpRf3GHl7xp0x3eTmvipGTlf1ybh4iO2wRoJw==
+X-Gm-Gg: ASbGncvdCBFL5rIC+xletpyja6FFMAQPOrxqC80L24wBzmMYB57C9kUefrEKOBXvtaC
+	Pa4t8YkDRKY/Vq8LnLDQ2qVSv4BOFpe0pEs/2BFmkqehOxRUOCfNK68L+06ioMw9edI4yNT5Ivo
+	W8oeiWBSDZfgIF0wx/HK5OoyTUz2X7W1xXTZsIO3Ngqir7jZsnmY/l3PBWnN7f+LYgjP0Acgouk
+	Vs1AXh4rXX44M5egKA=
+X-Google-Smtp-Source: AGHT+IF1FCtcjMSOAGh57xMvLkahzg1nEGPiVoAht6L/S8rmvuZxjp7LQD0zrTATTe5JO0aUrJTq9dOrEPI1k3shK8c=
+X-Received: by 2002:a05:690c:5511:20b0:720:5fbc:20c2 with SMTP id
+ 00721157ae682-758a5393f77mr18808297b3.36.1758637489554; Tue, 23 Sep 2025
+ 07:24:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+References: <20250923-mt8196-gpufreq-v4-0-6cd63ade73d6@collabora.com> <20250923-mt8196-gpufreq-v4-8-6cd63ade73d6@collabora.com>
+In-Reply-To: <20250923-mt8196-gpufreq-v4-8-6cd63ade73d6@collabora.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 23 Sep 2025 16:24:13 +0200
+X-Gm-Features: AS18NWC-sVzrTkGqH5gpcO5QSqPC0ul4k36msuT8kehXNT5ngXXnGDzn6xEf6ew
+Message-ID: <CAPDyKFpLNJRRxWPm2Eye+Fs8go-LNwWGzPUPPKmNVJkyK5N3Dw@mail.gmail.com>
+Subject: Re: [PATCH v4 8/8] pmdomain: mediatek: Add support for MFlexGraphics
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+	Boris Brezillon <boris.brezillon@collabora.com>, Jassi Brar <jassisinghbrar@gmail.com>, 
+	Chia-I Wu <olvaffe@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>, 
+	Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, Kees Cook <kees@kernel.org>, 
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>, kernel@collabora.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, linux-hardening@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Dne torek, 23. september 2025 ob 16:02:42 Srednjeevropski poletni =C4=8Das =
-je Chen-Yu Tsai napisal(a):
-> From: Chen-Yu Tsai <wens@csie.org>
->=20
-> The Allwinner A523 SoC family has a second Ethernet controller, called
-> the GMAC200 in the BSP and T527 datasheet, and referred to as GMAC1 for
-> numbering. This controller, according to BSP sources, is fully
-> compatible with a slightly newer version of the Synopsys DWMAC core.
-> The glue layer around the controller is the same as found around older
-> DWMAC cores on Allwinner SoCs. The only slight difference is that since
-> this is the second controller on the SoC, the register for the clock
-> delay controls is at a different offset. Last, the integration includes
-> a dedicated clock gate for the memory bus and the whole thing is put in
-> a separately controllable power domain.
->=20
-> Add a new driver for this hardware supporting the integration layer.
->=20
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+On Tue, 23 Sept 2025 at 13:41, Nicolas Frattaroli
+<nicolas.frattaroli@collabora.com> wrote:
+>
+> Various MediaTek SoCs use GPU integration silicon named "MFlexGraphics"
+> by MediaTek. On the MT8196 and MT6991 SoCs, interacting with this
+> integration silicon is required to power on the GPU.
+>
+> This glue silicon is in the form of an embedded microcontroller running
+> special-purpose firmware, which autonomously adjusts clocks and
+> regulators.
+>
+> Implement a driver, modelled as a pmdomain driver with a
+> set_performance_state operation, to support these SoCs.
+>
+> The driver also exposes the actual achieved clock rate, as read back
+> from the MCU, as common clock framework clocks, by acting as a clock
+> provider as well.
+>
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  drivers/pmdomain/mediatek/Kconfig            |  16 +
+>  drivers/pmdomain/mediatek/Makefile           |   1 +
+>  drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c | 928 +++++++++++++++++++++++++++
+>  3 files changed, 945 insertions(+)
 
-Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+[...]
 
-Best regards,
-Jernej
+> +
+> +static int mtk_mfg_set_performance(struct generic_pm_domain *pd,
+> +                                  unsigned int state)
+> +{
+> +       struct mtk_mfg *mfg = mtk_mfg_from_genpd(pd);
+> +
+> +       /*
+> +        * Occasionally, we're asked to set OPPs when we're off. This will fail,
+> +        * so don't do it at all. We do foo != GENPD_STATE_ON instead of !foo
+> +        * as to not depend on the actual value of the enum.
+> +        */
+> +       if (mfg->pd.status != GENPD_STATE_ON)
+> +               return 0;
 
+Returning 0 here, means that we may end up never restoring the
+performance state for a device and its genpd, when the device is
+getting runtime resumed. In genpd_runtime_resume() we are calling
+genpd_restore_performance_state() before calling genpd_power_on().
+This is deliberate, see commit ae8ac19655e0.
 
+That said, I think we need to manage the restore in the ->power_on()
+callback. In principle, it means we should call
+mtk_mfg_set_oppidx(mfg, genpd->performance_state) from there.
+
+> +
+> +       return mtk_mfg_set_oppidx(mfg, state);
+> +}
+> +
+> +static int mtk_mfg_power_on(struct generic_pm_domain *pd)
+> +{
+> +       struct mtk_mfg *mfg = mtk_mfg_from_genpd(pd);
+> +       int ret;
+> +
+> +       ret = regulator_bulk_enable(mfg->variant->num_regulators,
+> +                                   mfg->gpu_regs);
+> +       if (ret)
+> +               return ret;
+> +
+> +       ret = clk_prepare_enable(mfg->clk_eb);
+> +       if (ret)
+> +               goto err_disable_regulators;
+> +
+> +       ret = clk_bulk_prepare_enable(mfg->variant->num_clks, mfg->gpu_clks);
+> +       if (ret)
+> +               goto err_disable_eb_clk;
+> +
+> +       ret = mtk_mfg_eb_on(mfg);
+> +       if (ret)
+> +               goto err_disable_clks;
+> +
+> +       ret = mtk_mfg_power_control(mfg, true);
+> +       if (ret)
+> +               goto err_eb_off;
+> +
+> +       return 0;
+> +
+> +err_eb_off:
+> +       mtk_mfg_eb_off(mfg);
+> +err_disable_clks:
+> +       clk_bulk_disable_unprepare(mfg->variant->num_clks, mfg->gpu_clks);
+> +err_disable_eb_clk:
+> +       clk_disable_unprepare(mfg->clk_eb);
+> +err_disable_regulators:
+> +       regulator_bulk_disable(mfg->variant->num_regulators, mfg->gpu_regs);
+> +
+> +       return ret;
+> +}
+
+[...]
+
+Note, I intend to have a bit closer look at this soon, but I just
+observed the issue I pointed out above from my first quick look.
+
+Kind regards
+Uffe
 
