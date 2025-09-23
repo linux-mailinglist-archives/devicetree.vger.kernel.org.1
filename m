@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-220515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5330B972CC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 20:16:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BC8BB972EB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 20:23:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ABEFA19C58CA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 18:16:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 510FA4A6E4D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 18:23:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EF262FC877;
-	Tue, 23 Sep 2025 18:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEBAF2FE56B;
+	Tue, 23 Sep 2025 18:23:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tYBN+0ok"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="t7knbFC9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7757A2FB093;
-	Tue, 23 Sep 2025 18:16:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAE08235BE2;
+	Tue, 23 Sep 2025 18:23:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758651372; cv=none; b=GZnGqLWouqrJ7H1fEJ6d/4uMTCf/Ehm2BZvxVkl6Bq1GtbsxIoRNYSiHs7GoLQ3YETR8YzI1/mRAr4lDHro1m4wLoxWo2zCft75uNcoF49OsyWDc2RP8Mg5rosGY9m/p9KIW/bJ1ObCJDI/V7L+wMyfSHbSkkWBGU7dBfAFTcnc=
+	t=1758651784; cv=none; b=Ad9IBTnLghURh/gNJVtI1fsnC0SzGahpomAZ87gTBFm4QQJIhuhD/ps8tq6uvlsy6eii9klKOCrUwCMB/fzXFo5ZUyw05Vgury6EgqfMsQQrN9nn+DMPhcaFX0O9UOXDpskxKt/eT0QgoQF0yoKImd8o089zFk9m+9cktb+DVq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758651372; c=relaxed/simple;
-	bh=Pd/vr6gfJecTCg6idYwsj65Vxje1Ql8fzzq9QB1O7qI=;
+	s=arc-20240116; t=1758651784; c=relaxed/simple;
+	bh=nmtqA1RL2bAb+uWbVKJEzEh9e3eMyrPy5lzwaokaLJA=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c4ZvTLkNkOf4jxQMuvtB8rarSKPmLqpx12Fq/WUIY0W8rNy+Y6LBfr5L92spGkEFuyOCp3GF3Izn6pIk+D2j5Bi7Lbdjy4Wl5X89tx/68FZUiZxfaCyU3xuoYLJqymqjptd0kqWkOZdZXvzsokc7yc4ZfP2JFKGYayr2YPbXjt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tYBN+0ok; arc=none smtp.client-ip=198.47.19.245
+	 Content-Type:Content-Disposition:In-Reply-To; b=SGUq6cDOn1PXDMKVBnkaETkmxQ66TDVTcrvuh6BdBX/OVXhL5itazKnGuXMqSIaqihYG265r2r43pbUhgbQD2kYD6VXep7t8aTmngVrJgxM/O/jCz/jEZwCsxjawI4VgstR8sG7REbCRQ1biNYtHorAVZnNn4Xto53u7IVX733Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=t7knbFC9; arc=none smtp.client-ip=198.47.19.245
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58NIG2XL1044493;
-	Tue, 23 Sep 2025 13:16:02 -0500
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58NIMtMI1045497;
+	Tue, 23 Sep 2025 13:22:55 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758651362;
-	bh=J4ZBqPejUM9ozxyVcs4lYmfMpZfbwlqrhxv4JVL0Njk=;
+	s=ti-com-17Q1; t=1758651775;
+	bh=45alAGWFECgk+eyLLQhWHiqcsMq2tImsfkOwOKyhyvw=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=tYBN+0okJSmVpe5/9hx5R3aFFgRxDX0dMTEb81J/kcSxNHun5kYuDIQ5ywQpWqY5n
-	 1UOEdbmDUEP/biQRMN5aOpu3Z3SqNN/4bp8/wf+xas6qXaPPx2muXacWww80MHTuy8
-	 evHzHQRPHXC5A5u9SDvrZw9J8E0KFAyP2nFP3j4Q=
-Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58NIG2Uc1847586
+	b=t7knbFC9kz6j9jmkyslWtQivVOVkhFgYLCY10zxlaI+MEAa/y/aQS1Uj/5Ym2dbpz
+	 cf9LZyu27iQ914Cv25VArm6MP1f81+diCQcM4c08uTfQVeWyLFZtL41bV3XLGA8PK8
+	 e0zqBZEqURdKBfJavvo3TQInxeDVRg86yl22Qsf0=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58NIMtWU1270756
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 23 Sep 2025 13:16:02 -0500
-Received: from DLEE209.ent.ti.com (157.170.170.98) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+	Tue, 23 Sep 2025 13:22:55 -0500
+Received: from DLEE213.ent.ti.com (157.170.170.116) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 23
- Sep 2025 13:16:02 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE209.ent.ti.com
- (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2025 13:22:55 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE213.ent.ti.com
+ (157.170.170.116) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Tue, 23 Sep 2025 13:16:02 -0500
+ Transport; Tue, 23 Sep 2025 13:22:55 -0500
 Received: from localhost (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58NIG2Is455516;
-	Tue, 23 Sep 2025 13:16:02 -0500
-Date: Tue, 23 Sep 2025 13:16:02 -0500
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58NIMtBe462220;
+	Tue, 23 Sep 2025 13:22:55 -0500
+Date: Tue, 23 Sep 2025 13:22:55 -0500
 From: Kendall Willis <k-willis@ti.com>
 To: Markus Schneider-Pargmann <msp@baylibre.com>
 CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
@@ -71,11 +71,11 @@ CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
  Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>,
         Sebin Francis
 	<sebin.francis@ti.com>, Akashdeep Kaur <a-kaur@ti.com>
-Subject: Re: [PATCH v2 5/7] arm64: dts: ti: k3-am62-lp-sk: Set wakeup-source
+Subject: Re: [PATCH v2 6/7] arm64: dts: ti: k3-am62a7-sk: Set wakeup-source
  system-states
-Message-ID: <20250923181602.owmee6oisylw6svj@uda0506412>
+Message-ID: <20250923182255.y2uwamgk5qbzngaj@uda0506412>
 References: <20250812-topic-am62-dt-partialio-v6-15-v2-0-25352364a0ac@baylibre.com>
- <20250812-topic-am62-dt-partialio-v6-15-v2-5-25352364a0ac@baylibre.com>
+ <20250812-topic-am62-dt-partialio-v6-15-v2-6-25352364a0ac@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,71 +84,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250812-topic-am62-dt-partialio-v6-15-v2-5-25352364a0ac@baylibre.com>
+In-Reply-To: <20250812-topic-am62-dt-partialio-v6-15-v2-6-25352364a0ac@baylibre.com>
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
-
-Hi Markus,
 
 On 11:15-20250812, Markus Schneider-Pargmann wrote:
 > The CANUART pins of mcu_mcan0, mcu_mcan1, mcu_uart0 and wkup_uart0 are
 > powered during Partial-IO and IO+DDR and are capable of waking up the
 > system in these states. Specify the states in which these units can do a
 > wakeup on this board.
-> 
-> Note that the UARTs are not capable of wakeup in Partial-IO because of
-> of a UART mux on the board not being powered during Partial-IO. As
-> IO+DDR is not supported on am62, the UARTs are not added in this patch.
 
-nit: s/"am62"/"AM62x"
 nit: s/"IO+DDR"/"I/O Only + DDR"
 
-Logic looks good, but as said previously it needs to be rebased due to
-WKUP_EN macro.
-
-Best,
-Kendall Willis
-
+> 
+> Note that the UARTs are not capable of wakeup in Partial-IO because of
+> of a UART mux on the board not being powered during Partial-IO.
 > 
 > Add pincontrol definitions for mcu_mcan0 and mcu_mcan1 for wakeup from
 > Partial-IO. Add these as wakeup pinctrl entries for both devices.
 > 
 > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts | 60 ++++++++++++++++++++++++++++++++
->  1 file changed, 60 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
-> index 4609f366006e4cdf0c162f72634ce90623f60a90..0314f857ea05acc4ffc62bccb5184e58d19a6103 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts
-> @@ -268,3 +268,63 @@ &main_gpio1 {
->  &gpmc0 {
->  	ranges = <0 0 0x00 0x51000000 0x01000000>; /* CS0 space. Min partition = 16MB */
+> - Combine k3-am62a7-sk.dts devicetree nodes
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts | 71 +++++++++++++++++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> index bceead5e288e6d78c671baf0afabd1a9aa23fbee..55cab49f26382f08e2cc93d17afc424af8c59caa 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-sk.dts
+> @@ -257,6 +257,10 @@ AM62AX_MCU_IOPAD(0x0030, PIN_OUTPUT, 0) /* (C8) WKUP_UART0_RTSn */
+>  &wkup_uart0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&wkup_uart0_pins_default>;
+> +	wakeup-source = <&system_io_ddr>,
+> +			<&system_deep_sleep>,
+> +			<&system_mcu_only>,
+> +			<&system_standby>;
+>  	status = "reserved";
 >  };
+>  
+> @@ -450,6 +454,42 @@ pmic_irq_pins_default: pmic-irq-default-pins {
+>  			AM62AX_MCU_IOPAD(0x000, PIN_INPUT, 7) /* (E11) MCU_GPIO0_0 */
+>  		>;
+>  	};
 > +
-> +&mcu_mcan0 {
-> +	pinctrl-names = "default", "wakeup";
-> +	pinctrl-0 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_default>;
-> +	pinctrl-1 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_wakeup>;
-> +	wakeup-source = <&system_partial_io>,
-> +			<&system_deep_sleep>,
-> +			<&system_mcu_only>,
-> +			<&system_standby>;
-> +	status = "okay";
-> +};
-> +
-> +&mcu_mcan1 {
-> +	pinctrl-names = "default", "wakeup";
-> +	pinctrl-0 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_default>;
-> +	pinctrl-1 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_wakeup>;
-> +	wakeup-source = <&system_partial_io>,
-> +			<&system_deep_sleep>,
-> +			<&system_mcu_only>,
-> +			<&system_standby>;
-> +	status = "okay";
-> +};
-> +
-> +&mcu_pmx0 {
 > +	mcu_mcan0_tx_pins_default: mcu-mcan0-tx-default-pins {
 > +		pinctrl-single,pins = <
 > +			AM62X_IOPAD(0x034, PIN_OUTPUT, 0) /* (D6) MCU_MCAN0_TX */
@@ -184,6 +164,49 @@ Kendall Willis
 > +			AM62X_IOPAD(0x040, PIN_INPUT | WKUP_EN, 0) /* (D4) MCU_MCAN1_RX */
 > +		>;
 > +	};
+
+AM62AX_MCU_IOPAD should be used for consistency.
+
+Best,
+Kendall Willis
+
+>  };
+>  
+>  &mcu_gpio0 {
+> @@ -935,3 +975,34 @@ AM62AX_IOPAD(0x008, PIN_INPUT, 0) /* (J24) OSPI0_DQS */
+>  		>;
+>  	};
+>  };
+> +
+> +&mcu_mcan0 {
+> +	pinctrl-names = "default", "wakeup";
+> +	pinctrl-0 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_default>;
+> +	pinctrl-1 = <&mcu_mcan0_tx_pins_default>, <&mcu_mcan0_rx_pins_wakeup>;
+> +	wakeup-source = <&system_partial_io>,
+> +			<&system_io_ddr>,
+> +			<&system_deep_sleep>,
+> +			<&system_mcu_only>,
+> +			<&system_standby>;
+> +	status = "okay";
+> +};
+> +
+> +&mcu_mcan1 {
+> +	pinctrl-names = "default", "wakeup";
+> +	pinctrl-0 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_default>;
+> +	pinctrl-1 = <&mcu_mcan1_tx_pins_default>, <&mcu_mcan1_rx_pins_wakeup>;
+> +	wakeup-source = <&system_partial_io>,
+> +			<&system_io_ddr>,
+> +			<&system_deep_sleep>,
+> +			<&system_mcu_only>,
+> +			<&system_standby>;
+> +	status = "okay";
+> +};
+> +
+> +&mcu_uart0 {
+> +	wakeup-source = <&system_io_ddr>,
+> +			<&system_deep_sleep>,
+> +			<&system_mcu_only>,
+> +			<&system_standby>;
 > +};
 > 
 > -- 
