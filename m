@@ -1,603 +1,359 @@
-Return-Path: <devicetree+bounces-220302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 150FBB93F7B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 04:10:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E998B93FD3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 04:22:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA5F9188D129
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 02:10:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D1C9617CB69
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 02:22:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8EFE2DECB2;
-	Tue, 23 Sep 2025 02:08:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66B242701B1;
+	Tue, 23 Sep 2025 02:22:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="gTvvGc3d"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Dva4qX74"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010040.outbound.protection.outlook.com [52.101.84.40])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C1B62DEA96;
-	Tue, 23 Sep 2025 02:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758593292; cv=fail; b=Q5s8BZD1tSXIj5Thien6kQWl4UCzC9smyiOS2FfC1n8GXvWjBpsn6g0g909yjWFj5ul98Z4qDhx3bfjILRhm9B5oxj3cV0gWWd7zKUMY+TOb4/XvV3RqslK9urJeS1/Gg9fpHu8FgKTwGmPnWED2LKOIJ4VYLcJkzfD+DvXbZKg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758593292; c=relaxed/simple;
-	bh=pXKW2J0QT1UQ1E2sNhxt0vjEU25JYR9l0LNMuMm90dU=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=bSk8ZL3vcqFqhjYcLOE03lpSeB/fvgB1eUKx956U2e9g0lC3CFDIl1lSrNKEzgZQ51Cu7BpYnZOSzP/oFATbXOMxFPimnsYvNBaJntyYYxFYnPZl4o3d3LORNs68tyP1J5Z4HmsR3wJAFM7EikZAtifQdQOQSWOD+o8M3/f+/sA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=gTvvGc3d; arc=fail smtp.client-ip=52.101.84.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YPxdasKLe3hYUs+QLzufBprgRu4AdF/aedPwuHAMKVJlPMZNV7hppNlTBaLjUlUel4YmAt+3KOxm6s5lBUJ17mqH7BhMtXar/Qqd08dvsfq4HKWQJU7jcMjIjKbcVUUZsM9C5T0DKHIVN+En5CZJQlcowlxSUBasKTMXC1ABwKyqSL9m945WKR1HG5/yqvq5CQxjH5XI9IS6REUZB3qQPCjF/4eYZvFK8L9qzEdmunqI0o3MPIgBNDc9XAHAlE3Iyu+0C+PRdmKK3EtM5ueJKI/I2kW5RCrwSd4JnjU6HP4aXWgddj6WjM/w/HyBPyqdQxvHymdfZSS6L0k09zOfnw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=D+RAO++pnFqF/Fjxs4y8+OQKHVnRGNpW+H3u3eirot0=;
- b=l3zvgRPA1PjBi0Gt0HezY+yAjGKMdEKRoP8BfCtJBYdZzPUdGfTGqg4sOgyOOfFGZf2eR+FGHbnYubglthaj7u5NdQ9WfP++lG9GKKLnUilAOLEydN/aSrZuLwiVTUjEmVvb99vumaO4svdon9RB1hmcanf1BKlBXpbbEe4k0V1s8gEwzbB+f+RIDq8kho+YdNlAP4b1szsFUojoU8I5+ix1Heaj7mPUZ1K0Ta1p4szi0sIMvT4YHT1XjUBSPraoqGjgVPTkP1zSt58BqXTlESI7cv9mPUbH1KVBXQhjMcOC6jHyesnxT65ftSvGa22xgUf5u0taLk8EXWMNqd2GyQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=D+RAO++pnFqF/Fjxs4y8+OQKHVnRGNpW+H3u3eirot0=;
- b=gTvvGc3dSRmnat5rINO1WpDl2OPgaciG1wahRAT91m/LUpGzgc2kVDjHaUypp1WsGHU3+0XqhU6/6cX9rTZEyMUfE/9LRWJVGfEbIu65Hdh9Fsq+9iWjc9fOOZHPMnJobM/Pbod2jOtHK8gFGiE60s7immjZl69c6ntETXA/zJCiAAXccgEs0xcD0pSrfJbSLR7h6VkA4A1MMCzgCFFwt5wHpcOVhW3Yzn5+vhw7ff3f6rquGmeYXKwj5EDH74KTdwcyluEX6qpVxy+4L0hbORJTYLSW1iTLeQX0MlcjGxllompzuAnZqim8PmBbArwhpcPbx8Qyv1L/4Rrrh9k+Zw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by VI1PR04MB9786.eurprd04.prod.outlook.com (2603:10a6:800:1e1::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.9; Tue, 23 Sep
- 2025 02:08:07 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::4609:64af:8a4b:fd64%6]) with mapi id 15.20.9160.008; Tue, 23 Sep 2025
- 02:08:07 +0000
-From: Liu Ying <victor.liu@nxp.com>
-Date: Tue, 23 Sep 2025 10:08:04 +0800
-Subject: [PATCH v2 14/14] drm/imx: dc: Use prefetch engine
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250923-imx8-dc-prefetch-v2-14-5d69dc9ac8b5@nxp.com>
-References: <20250923-imx8-dc-prefetch-v2-0-5d69dc9ac8b5@nxp.com>
-In-Reply-To: <20250923-imx8-dc-prefetch-v2-0-5d69dc9ac8b5@nxp.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Liu Ying <victor.liu@nxp.com>
-X-Mailer: b4 0.14.2
-X-ClientProxiedBy: SGXP274CA0014.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b8::26)
- To AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B15D1448E0
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 02:22:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758594166; cv=none; b=gC5PA3QPvdqLdOE8UrTe7uhM0GkuSkUZtdpiFVk33vMkQNf8V27y1z6gCbgzAFG0izr2UiHj0Q1oUKbLfmLCOtr7DvhOFuHFk76Ak4a4OsiMYesdlT7fDXDF9IdFaMgEgvrCCC4DzPAapG/jA6SHReSZuo2tps6Tx48mS8RnAjc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758594166; c=relaxed/simple;
+	bh=rRw1CeUEIQ+3wWMDI/YPhWvCDlBOoAEbIZ8SDQGqJNo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fcgnzd1gRIOYpzS/JyCpgtBXND2ObAPHiRlWALzpl57oiYmDyLQgLYsbY6bfwDcCRjpWGa3RYYVvkomcQh2RWtW+1bXUwIJIRGlvYYJp9p/fJvkLVEdWtlA2GdiJ8jBGChomWxrXeRUxgmVMhSqaDGNIPmjqkwgTefvp9XWdJGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Dva4qX74; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58MH66d3027910
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 02:22:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KYZdiDOC5bv4MOoPW35JMcR2jYyqaiNntVfeN1yqhgg=; b=Dva4qX74c4VcO2Z1
+	MwUph+vRGW8LYXbbTJHY/ay2/UDlewSudstSxvlrbo2R0ODnnANAAR9krUH0LjMJ
+	qrRf7LxQFpOUGx4B5t7019JTOI2bNwrPL8V0RSH68W+2CZVcB1tPC2COxSybdhmy
+	LQzxHEHqE5/v9Tn8BvDH8o0ITdd7DEYc3FuNQjXT/gx4GzVpk0eJaIX9iVVMMmis
+	Z4jw7XdWU28r73v1eyrukNOJGhR3XXTXAWrIAkyN9bfU+CF8gLcwJ8VCgqIPn3Fc
+	EGPJWKXFmBEzXQr8Me7Hjb2dicbpjfy0yNEKWdMyu+sx1828FMnxYJ5QNsYiVppZ
+	zQ/b4Q==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bajes996-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 02:22:43 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-78e50889f83so127665436d6.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 19:22:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758594162; x=1759198962;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KYZdiDOC5bv4MOoPW35JMcR2jYyqaiNntVfeN1yqhgg=;
+        b=J6oP793ByiA0VqPRNyuf6EsFtVwcexCy/+OWnThdB7I3T4Ol8emtyHtv8mojKNLnTr
+         R9aYIkFrAdfTZp9yqjkmQlGukUSmUMKi42gpE8vlyAovqLcdgqaY1ch+bvxtkqlbefx4
+         SyjXyFM7ranYBDtV5e2DKmjoLtxh5ZvHcWe/xRikk+m1IBSMt74e9lDlAD+iKZfCY4iw
+         aOS5u+Y28lMm5bacyu8U2sU56bJMIea8waL0PtyioC3wvc2s5lXndAnkDKBX+HWM7tnx
+         EvJAyvqslHD+pt7ui+2cmLFXT1Vh/SbUS7OTx0lwYydMHHp+ZgFRRgafL6DcaG8K7RXc
+         24Gw==
+X-Forwarded-Encrypted: i=1; AJvYcCWVgyoHzt7L/so0cV7xCaxNSpxxI65OIAFAAc/rUue3G+efhcpFwGNrfDfLiZU7GP8bUvIwl6qpOlI5@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRd9s89iNASI+SxCFvD2ogKT1jT5my5GKDlPVBjv35odVGdjke
+	fSLPVmpvgElpJtZByrqeJo/Ehv2RaPMnBC1kVbsCta4MENqKtQlnA+h4BzNoP+thzFh62ROmK/9
+	l/DcavV/Ufk7LP1cL1sfvn7U8CRafv40uRYINbgbUFn8HQPO9yvateNcHYzUfhj0m
+X-Gm-Gg: ASbGncu3+uWvw8613H97jiLmMqSbZqNqtU9X0I0TQCNaE7XUfz5Hc5mFZM2IAr7OTSM
+	dm26Sri1aErblPSm/JVQwbil/nCjw289yp9YQbHVVztH1HLi59NdKXMdwhg/TpWYCZHNLHRNTGh
+	D4+f0GkliZLdPmQenbJkjl5Av5sbX2MVt76ho+mgA2tUXytnb7M3lHuxu1abLCuCzVQUh+y/2e4
+	WQGNRAFGrzyQeikTxfb9SsizrW/zBTHN5sYYL0YVDr8CnlfiSKPxbvo2imLnHyVxgIm0aYO5HNs
+	yd9i41aBuXrU01h9eiprVAhqXSfihuazFdUAzWzBqg0f1HNDAZ4mmO+T+nKWYSBaIoYsIXNHUtl
+	v2+16gIawax4B1OgQLkJKxQJTMDa0DrXdxivREutU+DNbt+0f2hxs
+X-Received: by 2002:a05:6214:b6e:b0:781:a369:ef8c with SMTP id 6a1803df08f44-7e7037282f6mr11557306d6.16.1758594162181;
+        Mon, 22 Sep 2025 19:22:42 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGGMFcPFMs9tf/BLVuoml4neszEVGYIRwTOalLcM6zhPAy5PO9HwGdTChfgqLduK9x1pWRJPw==
+X-Received: by 2002:a05:6214:b6e:b0:781:a369:ef8c with SMTP id 6a1803df08f44-7e7037282f6mr11557046d6.16.1758594161644;
+        Mon, 22 Sep 2025 19:22:41 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-578a957396esm3767822e87.107.2025.09.22.19.22.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 22 Sep 2025 19:22:40 -0700 (PDT)
+Date: Tue, 23 Sep 2025 05:22:37 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>,
+        Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Michal Wilczynski <m.wilczynski@samsung.com>,
+        Han Gao <rabenda.cn@gmail.com>, Yao Zi <ziyao@disroot.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 5/8] drm/bridge: add a driver for T-Head TH1520 HDMI
+ controller
+Message-ID: <gqsj4ikfwqpt26axmz2omvi36xavyxjvslhepsr2czvnjse7in@5yqzg6o7r3mh>
+References: <20250921083446.790374-1-uwu@icenowy.me>
+ <20250921083446.790374-6-uwu@icenowy.me>
+ <yy57lh5rmbubtqscpquoy3np65tm465cqbtmjw5pqiwxjnecsh@d4qbxe3d4sc5>
+ <d8240b212b9557878a12ee835a1c8b4840236580.camel@icenowy.me>
+ <201a9bb7732d51f4807b3b3644e91333f1b746d6.camel@icenowy.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|VI1PR04MB9786:EE_
-X-MS-Office365-Filtering-Correlation-Id: 34f05e3c-f2b4-465b-44f8-08ddfa460995
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|19092799006|7416014|52116014|376014|366016|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?akNjSXptZmF1RFZMQW9GamxYVmdpOWpIL0hoL3RDRk9CTDMvTlJseGlSczNt?=
- =?utf-8?B?WVY0VGFXTnVCZXN6akFuWWgwREVjdUhsV2E3RC9hWjcwdlFLOGNKVENKT01P?=
- =?utf-8?B?WkFZUGhOMHdzYnZpMC9JT3dScGNaSEs3VDFpRyt0TGFaMHVjU2xCVG1DZ3E1?=
- =?utf-8?B?Sit3a0JlWXdIT0VORFFJL2VjdTN6QkhxRGIvZUN2cTVPWmJXUVdMa3ByekxO?=
- =?utf-8?B?T2cvUzdvcHZPaGFmSytkNU9ZMUZsMm9rOGtRNFR4ekw0SkM2ZDFCZFBlTk4w?=
- =?utf-8?B?S2Vla09TdllmbWcxMDdZQ2F3cHh4ZEloemFSR0h1Wm5pQWF2Sm8rMktDZmNW?=
- =?utf-8?B?T3ZRWXNCNHNSK3BWcUJTbW9kVmZwNVoydE4vN3ZGTnJXV2lJSk9rKytGWm9j?=
- =?utf-8?B?WjNjRHJCS3QxZzIxRDkyWEVndEZEMGxPcG5hSTZsVkVqWTRwb2J3dWR4cUdO?=
- =?utf-8?B?UzY2UTNtT1VBaXZSOWNhS1lKcHF3NWRtRUNkSVd2SUxzTVBSNktWNmFwdk5p?=
- =?utf-8?B?ZDI3RnBVZW5IdHAwTmtuZ3pOU00zSEdKUTcwZklIQm4zckgva296cDJOOTFh?=
- =?utf-8?B?d3c4N3RmRmphQ2pNYUo3NFo4SnZtRTdLMmdWY2dYZlJMUWpRY01rWE5GZ0dD?=
- =?utf-8?B?V0VUK3Zna3k0blJHeUdwbVlrL1FNWnBSMUx6dlh1VGo2RkdNREFMS1BqbGV0?=
- =?utf-8?B?TWUzRlV3ZG5oNU5xd3NkZHdDbE54RU05dnNjdzVMalV3cTBmdllVZHhzOVMx?=
- =?utf-8?B?ZkVzZGlsRThMR3pVTndFMHlqajg3dEdlcFJSeHA2NWE1dWc4YTlLam5tcStK?=
- =?utf-8?B?RHg1WXNSb1Z0dXFsWVpITWlwUXI0R3lkZGVaZzNiZ0hwTUZpNkV6bERDdFhl?=
- =?utf-8?B?L3d5ZVRpVWViNENEOTVwdWFtNlo3UVR1V2RyY2tmQWlYM3pPL0N3MVlud3JB?=
- =?utf-8?B?NHpzZmVNdGhQS3RYMWZWdXo2QklYSzVnN3krWnJHNk1mdmpDZjhtNG5EdnVB?=
- =?utf-8?B?R285d0N6K1VxeHV1ZjI4citmMlpsNlM4NThITXMvdHBybWxlTUwyMEl4ejBM?=
- =?utf-8?B?c3lxdDNrNW9BbzBqWTRCTWVuR0ZJa00zREZCRnV1QkhEQkhKdldSbjdTeXIv?=
- =?utf-8?B?TW1CcG5WSWgvbHZzMXFQNUY2Z1cyWE5PWTl3WE01YU1udUFTcTZlM3BmVXRs?=
- =?utf-8?B?UnpuUzgzbUNOd3BHLzl2RXY5aWZJWnVsOUxOdG9jWlVMOVUwK1gwNldtaG05?=
- =?utf-8?B?QzlDQ2MyeTlIamRmT09JNTBodTY4M3RvNnI1QllkSHpTWkJTakhRakIwWXdz?=
- =?utf-8?B?N3grbkdOdm5qUDBOc1JlNktld1JrSjlZOG1GRTNNalNRSnhWSFFacjYwSkRv?=
- =?utf-8?B?clFNeDRlbUN2OS92NmErbjJuT1VmS2xzVkt6K2Y0SlF6RFlWbGtSaVNiZHlk?=
- =?utf-8?B?R3lNVGdZbmRlYk1ndytIR2trS3pmRDBNb1VJWDUwbnRQdmx4eVhFUWZSanJu?=
- =?utf-8?B?c01TdlBhbUZ2OWxpTlZJQ3p5cUJWdExYUjZ3RVNvcUxFRi9tdnN4aUxWVzJG?=
- =?utf-8?B?QjIrNUh1Y05NdVZRNHFOQzhzWmgxQk0zbWRuRkFSK3dEbTJCTG1HMzJpT2tx?=
- =?utf-8?B?QXczcTZKb1REYWliNnlCWHdHdHFmQTVZc3IwaUliTHdzZGd0MU9HYmJFeE9R?=
- =?utf-8?B?R2w5SnIrR0NxNk9Wa2lrUUpMeHhvZWFwckFLOHNwWmVjaUdtZkRGN2wwQjNI?=
- =?utf-8?B?aEZ1S1JQbCt0cC9ya1lhY3FMYXp1d1FHNDlMRGlNTlFRZ3h4NkQwTk1IS1V3?=
- =?utf-8?B?TjNOYnBFOWNUaHJVV2lKN3ZXT210RytGbm1USUVjZG1SREZWZnpyTDhwQ2xa?=
- =?utf-8?B?eTNxLzY4eUZIWmJZS0xWTHpUZUR0RnZZcUNKY2pPTUdOQUpxZHFwMEpOUWRN?=
- =?utf-8?B?dVVsdUJybnh5bEIwSjh1SnJSMTJMa3BFYTVqWDJxRmlpL1FkTTdSU2FGOWd3?=
- =?utf-8?B?SjZWMk1aQmpFcllmNTJwNkVnaitSMzhaWmhWcjJuOVpHaURvU21kSjNCOE9i?=
- =?utf-8?Q?n8qlCC?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(7416014)(52116014)(376014)(366016)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?cHhyT010RXE2eDBWeUFiZ3VpTVI3WERCZlNKcGZVZ1FrL2dKMThHR2dSOUMr?=
- =?utf-8?B?bmd4VzZwd2NlWUFkcmF1TitNdFlWZTBkZFlvTmllQTdvSVB6dDJzSHpCUTVp?=
- =?utf-8?B?dy9ibTdmTUNUaStkOHozTDhOM0JYdFJKQUlmc2JsOWFnKzRZeE10cG5CLyt1?=
- =?utf-8?B?MmJrKzB0Q1JzNVVjSGZRNjFzMWhBeWsrT1dOejl3elNmZWM0NFRqTHJ2V0Fu?=
- =?utf-8?B?ME9hMG54SWRHbzdwbGtQY0VDMW44bWVjamR0d0duRU16U1pjLzRhUHdDd2dY?=
- =?utf-8?B?R0RwYjIrMTlZNVZRd2pnTDJxSFo5ZXYrSzZoa014d0VTZW10TnFNbFhwNE1n?=
- =?utf-8?B?dHJlQUpXYnhoMTFqbXJmN0V2YVRWVEZpcFFGT2hJR1J2YjZ1a3pScStPV3J6?=
- =?utf-8?B?TXhBbXhYS2pWVng3V1RjMEZraE1tb3g4UUgwa0oybDFKYmRJM0wzcU1NWDRh?=
- =?utf-8?B?TVd4WWd3QWR2TFBmbXJrdWhQWWsyWVBBYVFpVEszLzNSYjNNekNRRDFEbjYy?=
- =?utf-8?B?SDZFS2gzSTBNRWpnUm90ekpBOUpoWEk1alZsVEFxdDEwLy9oTHpXdysvN2RK?=
- =?utf-8?B?elVoNWR6d1RJdzRJT0JoTU1TK0pGRDVjdjFQemI3NWhPNHZUNG9BbTl2Sm9y?=
- =?utf-8?B?VnFjRGJ4Q2Q2QVRoSzlVUEdXbzVBYXRZSXJmd1E0b1lYMkl1K3hqZ0ZnMDkr?=
- =?utf-8?B?WkszTVdYTUFPaVFEcHlzWktkYVl5dGNHdnlzR0l6ZGtzZWhVeTVRTGlSK3J1?=
- =?utf-8?B?NzFOOEx6am5HWjZ0S1NaTVRMUENMTUZ1ZW9mNWh4cGZPaDFmSUZlNGtNM05k?=
- =?utf-8?B?ZHlOQkZlTkR3UGFBWGNxOGRiNVZGTjMrVkMwY1U1cWIrMXo3d3RJOHZCQTV0?=
- =?utf-8?B?b01oTldhWkZUK3NncXJpeTNFRE1xZXJmYXAvVVlMdlhjdEtQNVRyRlkyeWxt?=
- =?utf-8?B?eXBpMkt6b2tjeitxTjRXenY4akFSQ0VLSGwyNFlZOVhaT2NUMGpOc3poaWVS?=
- =?utf-8?B?NzJzMlNENFJTYTdUdGNiYVVYNjVDbjY0a3VhVTN5WkhCck96QjlmeXorM1Fr?=
- =?utf-8?B?dm42OFFPK2poWFBOeHk2NnhEVW5KUHdFSklDVWtCdXNVRDlrUERHQ1htVWdu?=
- =?utf-8?B?cmpwK3paYnYxOU1qL3hIdTI1R1ZhbC8vbk9wRWJEdUdWcFMxcXJuTVpzZjhK?=
- =?utf-8?B?UEswR05PUVI4blliZUtBbllxOG5SdDEzNGRIUnFQd1RwMUdocTQ1ZXh1cThE?=
- =?utf-8?B?MEl6Z0lpYVNBZnNxeVJ0dDg1R2tHQ1F0cnprUFJRMDRLbUlqSnA4WHZjUFhz?=
- =?utf-8?B?VVZpSkJ0c3BienVELzFFMjgrSitTcFAzdFVMNW1KRmtUUzhzRW1WRm5MZHov?=
- =?utf-8?B?Tkx1K3F4UURWalViSGtITFBJcWdaalhBYVMrUmMzSWxQaXNIdytjd3pXVGV6?=
- =?utf-8?B?d093dHBQcHdETURkSC9OWkdNNEhlb0JsT2dzR2VTUG1jOElIR0JMcWtGOFdx?=
- =?utf-8?B?YXRLSVlhcjdyYUdWVUNmYzMyaUo2cXJJS0labVh2c1ZFbWZVa0RyU004T1Rn?=
- =?utf-8?B?alk5NmRqcVlUb3oybU55U3NSZStsMHpiRVNjQW1KWk1ndlVkcWd2M25wV2Ez?=
- =?utf-8?B?ZW4ySHp2Ri92NmR6aU5kMjRhRnZONHZGcXYwby9sZXJoWVMzRnFCN1RsQmJi?=
- =?utf-8?B?VXdVblFWdkZ3TTdiYjRpSlpBTUkrR0Z0MzNZbTB2a0VaaVc3L0ZvOUJxdmdJ?=
- =?utf-8?B?b0V2YjZDZ2U5UWQxNUVES2w4bVMwM3U4TFdwdEFiNW4vVE9JSHNIZ1ExLy9Z?=
- =?utf-8?B?T3ZlSk0zalZUZ0tzQmtOc1Fwem9keW5NZjRqSCs1UkRkeGtYSSsrU1hxSWlB?=
- =?utf-8?B?ZE5BdHV6elJxczlaekxXZnJXSlpYRXQ2UzZseHRZMEx4a2pDQ2t0QjBvR2lH?=
- =?utf-8?B?Mis2cmJxWVozalJ4TzVHSTgwMEZ3V2p3SVEvdnpWMzNvMDFlUVR0M0p2b2k0?=
- =?utf-8?B?dUM1c2xVZ0huWnVRMzNMRkhVQmtEaTQ5bmtTV0RISkFkc1RWRlBReU1uZURn?=
- =?utf-8?B?bEQwTmFFRktWK0xJeVZkd2RBWmFEdEpSdlhIRTR3SGZocUI3NXcrS05xMy9M?=
- =?utf-8?Q?0s6GgDjQqzcoaXYeocIpgE8HT?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 34f05e3c-f2b4-465b-44f8-08ddfa460995
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2025 02:08:07.4563
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yppuoOeOj4NEbOvL3uvvvl8UyZ7/eKzytdRY5gfP9eriGTugwduoKb/X7vf/kKXbfO3r29gEJxey2fPYaChA/A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB9786
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <201a9bb7732d51f4807b3b3644e91333f1b746d6.camel@icenowy.me>
+X-Proofpoint-GUID: x6woeIB6sztbKKJZzk2iIJbFwJBfOR_3
+X-Authority-Analysis: v=2.4 cv=fY2ty1QF c=1 sm=1 tr=0 ts=68d20473 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=yJojWOMRYYMA:10 a=YJUo16DlFZw7r3sCiXcA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIyMDE2OCBTYWx0ZWRfX3RgwHmPZ+xRz
+ 11z9v1FFDG31+UXSaGqEkH+Uu6dpmysO+WNqMEHKjX493OsIj0VJg/6vX1I3Agx4TlPCwaZDPmO
+ gb3wuBOOrMcM78a1tg9of89PgaP8pm4ph7txwzG7kHngM90T55D1G8j+xMeN2gcGKy2GYMEqNEE
+ yBAqxg9AIF0H3Tj3IhvAuHrMO3M3fqQUV8QG3TK67rBTSFDcFPP63nWcjJ5yL6Glo3lwstfgU6E
+ 7q4Vt6ZCr7V5ybma+k8IK/NPZKtTwHnUvL7NR5LFsj4AyE6En0Klr3EnYfR1Y0GqsHXOf71dNgo
+ wx1glWbqrpM/nxAnzD3XMjc6qznN5jM0KR9CZMJAf3PFgyo+TnNpZgVssKKn/LaD9cynG/3prYE
+ GfxT80Al
+X-Proofpoint-ORIG-GUID: x6woeIB6sztbKKJZzk2iIJbFwJBfOR_3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-23_01,2025-09-22_05,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 malwarescore=0 spamscore=0 adultscore=0 impostorscore=0
+ phishscore=0 bulkscore=0 priorityscore=1501 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509220168
 
-One prefetch engine consists of one DPR channel and one or two PRGs.
-Each PRG handles one planar in a pixel format.  Every FetchUnit used
-by KMS may attach to a PRG and hence use a prefetch engine.  So, to
-simplify driver code, always use prefetch engines for FetchUnits in
-KMS driver and avoid supporting bypassing them.  Aside from configuring
-and disabling a prefetch engine along with a FetchUnit for atomic
-commits, properly disable the prefetch engine at boot and adapt burst
-size/stride fixup requirements from PRG in FetchUnit driver.
+On Tue, Sep 23, 2025 at 09:30:05AM +0800, Icenowy Zheng wrote:
+> 在 2025-09-23星期二的 09:11 +0800，Icenowy Zheng写道：
+> > 在 2025-09-23星期二的 04:00 +0300，Dmitry Baryshkov写道：
+> > > On Sun, Sep 21, 2025 at 04:34:43PM +0800, Icenowy Zheng wrote:
+> > > > T-Head TH1520 SoC contains a Synopsys DesignWare HDMI controller
+> > > > (paired
+> > > > with DesignWare HDMI TX PHY Gen2) that takes the "DP" output from
+> > > > the
+> > > > display controller.
+> > > > 
+> > > > Add a driver for this controller utilizing the common DesignWare
+> > > > HDMI
+> > > > code in the kernel.
+> > > > 
+> > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > > ---
+> > > > Changes in v2:
+> > > > - Created a new function to set PHY parameters and refactored the
+> > > >   control flow of the configure_phy callback.
+> > > > 
+> > > >  MAINTAINERS                             |   1 +
+> > > >  drivers/gpu/drm/bridge/Kconfig          |  10 ++
+> > > >  drivers/gpu/drm/bridge/Makefile         |   1 +
+> > > >  drivers/gpu/drm/bridge/th1520-dw-hdmi.c | 173
+> > > > ++++++++++++++++++++++++
+> > > >  4 files changed, 185 insertions(+)
+> > > >  create mode 100644 drivers/gpu/drm/bridge/th1520-dw-hdmi.c
+> > > > 
+> > > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > > index f6206963efbf0..98af9dd3664f5 100644
+> > > > --- a/MAINTAINERS
+> > > > +++ b/MAINTAINERS
+> > > > @@ -21759,6 +21759,7 @@
+> > > > F:      Documentation/devicetree/bindings/reset/thead,th1520-
+> > > > reset.yaml
+> > > >  F:     arch/riscv/boot/dts/thead/
+> > > >  F:     drivers/clk/thead/clk-th1520-ap.c
+> > > >  F:     drivers/firmware/thead,th1520-aon.c
+> > > > +F:     drivers/gpu/drm/bridge/th1520-dw-hdmi.c
+> > > >  F:     drivers/mailbox/mailbox-th1520.c
+> > > >  F:     drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
+> > > >  F:     drivers/pinctrl/pinctrl-th1520.c
+> > > > diff --git a/drivers/gpu/drm/bridge/Kconfig
+> > > > b/drivers/gpu/drm/bridge/Kconfig
+> > > > index b9e0ca85226a6..f75e6ad04179f 100644
+> > > > --- a/drivers/gpu/drm/bridge/Kconfig
+> > > > +++ b/drivers/gpu/drm/bridge/Kconfig
+> > > > @@ -322,6 +322,16 @@ config DRM_THINE_THC63LVD1024
+> > > >         help
+> > > >           Thine THC63LVD1024 LVDS/parallel converter driver.
+> > > >  
+> > > > +config DRM_THEAD_TH1520_DW_HDMI
+> > > > +       tristate "T-Head TH1520 DesignWare HDMI bridge"
+> > > > +       depends on OF
+> > > > +       depends on COMMON_CLK
+> > > > +       depends on ARCH_THEAD || COMPILE_TEST
+> > > > +       select DRM_DW_HDMI
+> > > > +       help
+> > > > +         Choose this to enable support for the internal HDMI
+> > > > bridge found
+> > > > +         on the T-Head TH1520 SoC.
+> > > > +
+> > > >  config DRM_TOSHIBA_TC358762
+> > > >         tristate "TC358762 DSI/DPI bridge"
+> > > >         depends on OF
+> > > > diff --git a/drivers/gpu/drm/bridge/Makefile
+> > > > b/drivers/gpu/drm/bridge/Makefile
+> > > > index 245e8a27e3fc5..421e445ff1cd9 100644
+> > > > --- a/drivers/gpu/drm/bridge/Makefile
+> > > > +++ b/drivers/gpu/drm/bridge/Makefile
+> > > > @@ -27,6 +27,7 @@ obj-$(CONFIG_DRM_SIL_SII8620) += sil-sii8620.o
+> > > >  obj-$(CONFIG_DRM_SII902X) += sii902x.o
+> > > >  obj-$(CONFIG_DRM_SII9234) += sii9234.o
+> > > >  obj-$(CONFIG_DRM_SIMPLE_BRIDGE) += simple-bridge.o
+> > > > +obj-$(CONFIG_DRM_THEAD_TH1520_DW_HDMI) += th1520-dw-hdmi.o
+> > > >  obj-$(CONFIG_DRM_THINE_THC63LVD1024) += thc63lvd1024.o
+> > > >  obj-$(CONFIG_DRM_TOSHIBA_TC358762) += tc358762.o
+> > > >  obj-$(CONFIG_DRM_TOSHIBA_TC358764) += tc358764.o
+> > > > diff --git a/drivers/gpu/drm/bridge/th1520-dw-hdmi.c
+> > > > b/drivers/gpu/drm/bridge/th1520-dw-hdmi.c
+> > > > new file mode 100644
+> > > > index 0000000000000..efb27d37ff652
+> > > > --- /dev/null
+> > > > +++ b/drivers/gpu/drm/bridge/th1520-dw-hdmi.c
+> > > > @@ -0,0 +1,173 @@
+> > > > +// SPDX-License-Identifier: GPL-2.0+
+> > > > +/*
+> > > > + * Copyright (C) 2025 Icenowy Zheng <uwu@icenowy.me>
+> > > > + *
+> > > > + * Based on rcar_dw_hdmi.c, which is:
+> > > > + *   Copyright (C) 2016 Renesas Electronics Corporation
+> > > > + * Based on imx8mp-hdmi-tx.c, which is:
+> > > > + *   Copyright (C) 2022 Pengutronix, Lucas Stach
+> > > > <kernel@pengutronix.de>
+> > > > + */
+> > > > +
+> > > > +#include <linux/clk.h>
+> > > > +#include <linux/mod_devicetable.h>
+> > > > +#include <linux/module.h>
+> > > > +#include <linux/platform_device.h>
+> > > > +#include <linux/reset.h>
+> > > > +
+> > > > +#include <drm/bridge/dw_hdmi.h>
+> > > > +#include <drm/drm_modes.h>
+> > > > +
+> > > > +#define TH1520_HDMI_PHY_OPMODE_PLLCFG  0x06    /* Mode of
+> > > > operation and PLL dividers */
+> > > > +#define TH1520_HDMI_PHY_CKSYMTXCTRL    0x09    /* Clock Symbol
+> > > > and
+> > > > Transmitter Control Register */
+> > > > +#define TH1520_HDMI_PHY_VLEVCTRL       0x0e    /* Voltage Level
+> > > > Control Register */
+> > > > +#define TH1520_HDMI_PHY_PLLCURRGMPCTRL 0x10    /* PLL current
+> > > > and
+> > > > Gmp (conductance) */
+> > > > +#define TH1520_HDMI_PHY_PLLDIVCTRL     0x11    /* PLL dividers
+> > > > */
+> > > > +#define TH1520_HDMI_PHY_TXTERM         0x19    /* Transmission
+> > > > Termination Register */
+> > > > +
+> > > > +struct th1520_hdmi_phy_params {
+> > > > +       unsigned long mpixelclock;
+> > > > +       u16 opmode_pllcfg;
+> > > > +       u16 pllcurrgmpctrl;
+> > > > +       u16 plldivctrl;
+> > > > +       u16 cksymtxctrl;
+> > > > +       u16 vlevctrl;
+> > > > +       u16 txterm;
+> > > > +};
+> > > > +
+> > > > +static const struct th1520_hdmi_phy_params
+> > > > th1520_hdmi_phy_params[] = {
+> > > > +       { 35500000,  0x0003, 0x0283, 0x0628, 0x8088, 0x01a0,
+> > > > 0x0007
+> > > > },
+> > > > +       { 44900000,  0x0003, 0x0285, 0x0228, 0x8088, 0x01a0,
+> > > > 0x0007
+> > > > },
+> > > > +       { 71000000,  0x0002, 0x1183, 0x0614, 0x8088, 0x01a0,
+> > > > 0x0007
+> > > > },
+> > > > +       { 90000000,  0x0002, 0x1142, 0x0214, 0x8088, 0x01a0,
+> > > > 0x0007
+> > > > },
+> > > > +       { 121750000, 0x0001, 0x20c0, 0x060a, 0x8088, 0x01a0,
+> > > > 0x0007
+> > > > },
+> > > > +       { 165000000, 0x0001, 0x2080, 0x020a, 0x8088, 0x01a0,
+> > > > 0x0007
+> > > > },
+> > > > +       { 198000000, 0x0000, 0x3040, 0x0605, 0x83c8, 0x0120,
+> > > > 0x0004
+> > > > },
+> > > > +       { 297000000, 0x0000, 0x3041, 0x0205, 0x81dc, 0x0200,
+> > > > 0x0005
+> > > > },
+> > > > +       { 371250000, 0x0640, 0x3041, 0x0205, 0x80f6, 0x0140,
+> > > > 0x0000
+> > > > },
+> > > > +       { 495000000, 0x0640, 0x3080, 0x0005, 0x80f6, 0x0140,
+> > > > 0x0000
+> > > > },
+> > > > +       { 594000000, 0x0640, 0x3080, 0x0005, 0x80fa, 0x01e0,
+> > > > 0x0004
+> > > > },
+> > > > +};
+> > > > +
+> > > > +struct th1520_hdmi {
+> > > > +       struct dw_hdmi_plat_data plat_data;
+> > > > +       struct dw_hdmi *dw_hdmi;
+> > > > +       struct clk *pixclk;
+> > > > +       struct reset_control *mainrst, *prst;
+> > > > +};
+> > > > +
+> > > > +static enum drm_mode_status
+> > > > +th1520_hdmi_mode_valid(struct dw_hdmi *hdmi, void *data,
+> > > > +                      const struct drm_display_info *info,
+> > > > +                      const struct drm_display_mode *mode)
+> > > > +{
+> > > > +       /*
+> > > > +        * The maximum supported clock frequency is 594 MHz, as
+> > > > shown in the PHY
+> > > > +        * parameters table.
+> > > > +        */
+> > > > +       if (mode->clock > 594000)
+> > > > +               return MODE_CLOCK_HIGH;
+> > > 
+> > > Is it the limitation for the pixel clock or for the TMDS char clock
+> > > (the
+> > > difference makes sense for non-8-bpc modes.
+> > 
+> > I have no idea, the BSP driver didn't consider non-8bpc modes, and I
+> > have no non-8bpc devices to test.
+> 
+> Should I reject non-8bpc modes here because of lack of information?
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
- drivers/gpu/drm/imx/dc/dc-crtc.c  | 139 +++++++++++++++++++++++++++++++++++---
- drivers/gpu/drm/imx/dc/dc-fu.c    |  27 +++++++-
- drivers/gpu/drm/imx/dc/dc-fu.h    |   2 +-
- drivers/gpu/drm/imx/dc/dc-kms.h   |   5 ++
- drivers/gpu/drm/imx/dc/dc-plane.c |  46 +++++++++++--
- 5 files changed, 197 insertions(+), 22 deletions(-)
+No need to, they won't be used anyway.
 
-diff --git a/drivers/gpu/drm/imx/dc/dc-crtc.c b/drivers/gpu/drm/imx/dc/dc-crtc.c
-index 9e9e86cd5202bcb0bb4d5627dbcefcc3f4e2ead0..4c7aab360616cb1c84c31c83f16df703b1c2c6d7 100644
---- a/drivers/gpu/drm/imx/dc/dc-crtc.c
-+++ b/drivers/gpu/drm/imx/dc/dc-crtc.c
-@@ -25,6 +25,7 @@
- #include <drm/drm_vblank.h>
- 
- #include "dc-de.h"
-+#include "dc-dprc.h"
- #include "dc-drv.h"
- #include "dc-kms.h"
- #include "dc-pe.h"
-@@ -204,7 +205,13 @@ dc_crtc_atomic_flush(struct drm_crtc *crtc, struct drm_atomic_state *state)
- 				drm_atomic_get_old_crtc_state(state, crtc);
- 	struct drm_crtc_state *new_crtc_state =
- 				drm_atomic_get_new_crtc_state(state, crtc);
-+	struct drm_plane_state *old_plane_state =
-+			drm_atomic_get_old_plane_state(state, crtc->primary);
-+	struct drm_plane_state *new_plane_state =
-+			drm_atomic_get_new_plane_state(state, crtc->primary);
-+	struct dc_plane *dc_plane = to_dc_plane(crtc->primary);
- 	struct dc_crtc *dc_crtc = to_dc_crtc(crtc);
-+	bool disabling_plane;
- 	int idx;
- 
- 	if (drm_atomic_crtc_needs_modeset(new_crtc_state) ||
-@@ -216,13 +223,40 @@ dc_crtc_atomic_flush(struct drm_crtc *crtc, struct drm_atomic_state *state)
- 
- 	enable_irq(dc_crtc->irq_ed_cont_shdload);
- 
--	/* flush plane update out to display */
--	dc_ed_pec_sync_trigger(dc_crtc->ed_cont);
-+	disabling_plane = drm_atomic_plane_disabling(old_plane_state,
-+						     new_plane_state);
-+
-+	if (disabling_plane) {
-+		unsigned long flags;
-+
-+		dc_crtc_dbg(crtc, "disabling plane\n");
-+
-+		/*
-+		 * Don't relinquish CPU until DPRC REPEAT_EN is disabled and
-+		 * sync is triggered.
-+		 */
-+		local_irq_save(flags);
-+		preempt_disable();
-+
-+		DC_CRTC_WAIT_FOR_FRAMEGEN_FRAME_INDEX_MOVING(dc_crtc->fg);
-+		dc_dprc_disable_repeat_en(dc_plane->fu->dprc);
-+		/* flush plane update out to display */
-+		dc_ed_pec_sync_trigger(dc_crtc->ed_cont);
-+
-+		local_irq_restore(flags);
-+		preempt_enable();
-+	} else {
-+		/* flush plane update out to display */
-+		dc_ed_pec_sync_trigger(dc_crtc->ed_cont);
-+	}
- 
- 	DC_CRTC_WAIT_FOR_COMPLETION_TIMEOUT(ed_cont_shdload_done);
- 
- 	disable_irq(dc_crtc->irq_ed_cont_shdload);
- 
-+	if (disabling_plane)
-+		dc_dprc_disable(dc_plane->fu->dprc);
-+
- 	DC_CRTC_CHECK_FRAMEGEN_FIFO(dc_crtc->fg);
- 
- 	drm_dev_exit(idx);
-@@ -320,14 +354,33 @@ dc_crtc_atomic_enable(struct drm_crtc *crtc, struct drm_atomic_state *state)
- 	dc_crtc_queue_state_event(new_crtc_state);
- }
- 
--static inline void __dc_crtc_disable_fg(struct drm_crtc *crtc)
-+static inline void
-+__dc_crtc_disable_fg_along_with_dprc_repeat_en(struct drm_crtc *crtc)
- {
-+	struct dc_plane *dc_plane = to_dc_plane(crtc->primary);
- 	struct dc_crtc *dc_crtc = to_dc_crtc(crtc);
-+	unsigned long flags;
- 
--	enable_irq(dc_crtc->irq_dec_seqcomplete);
-+	/* Don't relinquish CPU until DPRC REPEAT_EN is disabled. */
-+	local_irq_save(flags);
-+	preempt_disable();
-+
-+	/*
-+	 * Sync to FrameGen frame index moving so that
-+	 * FrameGen can be disabled in the next frame.
-+	 */
-+	DC_CRTC_WAIT_FOR_FRAMEGEN_FRAME_INDEX_MOVING(dc_crtc->fg);
- 	dc_fg_disable(dc_crtc->fg);
--	DC_CRTC_WAIT_FOR_COMPLETION_TIMEOUT(dec_seqcomplete_done);
--	disable_irq(dc_crtc->irq_dec_seqcomplete);
-+	/*
-+	 * There is one frame leftover after FrameGen disablement.
-+	 * Sync to FrameGen frame index moving so that DPRC REPEAT_EN
-+	 * can be disabled in the next frame.
-+	 */
-+	DC_CRTC_WAIT_FOR_FRAMEGEN_FRAME_INDEX_MOVING(dc_crtc->fg);
-+	dc_dprc_disable_repeat_en(dc_plane->fu->dprc);
-+
-+	local_irq_restore(flags);
-+	preempt_enable();
- }
- 
- static void
-@@ -335,14 +388,29 @@ dc_crtc_atomic_disable(struct drm_crtc *crtc, struct drm_atomic_state *state)
- {
- 	struct drm_crtc_state *new_crtc_state =
- 				drm_atomic_get_new_crtc_state(state, crtc);
-+	struct drm_crtc_state *old_crtc_state =
-+				drm_atomic_get_old_crtc_state(state, crtc);
- 	struct dc_drm_device *dc_drm = to_dc_drm_device(crtc->dev);
-+	struct dc_plane *dc_plane = to_dc_plane(crtc->primary);
- 	struct dc_crtc *dc_crtc = to_dc_crtc(crtc);
- 	int idx, ret;
- 
- 	if (!drm_dev_enter(crtc->dev, &idx))
- 		goto out;
- 
--	__dc_crtc_disable_fg(crtc);
-+	enable_irq(dc_crtc->irq_dec_seqcomplete);
-+
-+	if (old_crtc_state->plane_mask)
-+		__dc_crtc_disable_fg_along_with_dprc_repeat_en(crtc);
-+	else
-+		dc_fg_disable(dc_crtc->fg);
-+
-+	DC_CRTC_WAIT_FOR_COMPLETION_TIMEOUT(dec_seqcomplete_done);
-+	disable_irq(dc_crtc->irq_dec_seqcomplete);
-+
-+	if (old_crtc_state->plane_mask)
-+		dc_dprc_disable(dc_plane->fu->dprc);
-+
- 	dc_fg_disable_clock(dc_crtc->fg);
- 
- 	/* request pixel engine power-off as plane is off too */
-@@ -373,7 +441,10 @@ dc_crtc_atomic_disable(struct drm_crtc *crtc, struct drm_atomic_state *state)
- void dc_crtc_disable_at_boot(struct drm_crtc *crtc)
- {
- 	struct dc_drm_device *dc_drm = to_dc_drm_device(crtc->dev);
-+	struct dc_plane *dc_plane = to_dc_plane(crtc->primary);
- 	struct dc_crtc *dc_crtc = to_dc_crtc(crtc);
-+	enum dc_link_id ed_src, lb_sec;
-+	bool disable_dprc = false;
- 	int ret;
- 
- 	ret = pm_runtime_resume_and_get(dc_crtc->de->dev);
-@@ -383,13 +454,53 @@ void dc_crtc_disable_at_boot(struct drm_crtc *crtc)
- 		return;
- 	}
- 
-+	ret = pm_runtime_resume_and_get(dc_drm->pe->dev);
-+	if (ret) {
-+		dc_crtc_err(crtc, "failed to get DC pixel engine RPM: %d\n",
-+			    ret);
-+		goto out1;
-+	}
-+
- 	if (!dc_fg_wait_for_frame_index_moving(dc_crtc->fg)) {
- 		dc_crtc_dbg(crtc, "FrameGen frame index isn't moving\n");
--		goto out;
-+		goto out2;
-+	}
-+
-+	ret = dc_ed_pec_src_sel_get(dc_crtc->ed_cont, &ed_src);
-+	if (ret) {
-+		dc_crtc_err(crtc, "failed to get content ExtDst's source\n");
-+		goto out2;
-+	}
-+
-+	if (ed_src == LINK_ID_CONSTFRAME0 || ed_src == LINK_ID_CONSTFRAME1)
-+		goto disable;
-+
-+	ret = dc_lb_pec_dynamic_sec_sel_get(dc_plane->lb, &lb_sec);
-+	if (ret) {
-+		dc_crtc_err(crtc,
-+			    "failed to get primary plane LayerBlend secondary source\n");
-+		goto out2;
- 	}
- 
--	dc_crtc_dbg(crtc, "disabling at boot\n");
--	__dc_crtc_disable_fg(crtc);
-+	disable_dprc = true;
-+
-+disable:
-+	enable_irq(dc_crtc->irq_dec_seqcomplete);
-+
-+	if (disable_dprc) {
-+		dc_crtc_dbg(crtc, "disabling along with DPRC REPEAT_EN at boot\n");
-+		__dc_crtc_disable_fg_along_with_dprc_repeat_en(crtc);
-+	} else {
-+		dc_crtc_dbg(crtc, "disabling at boot\n");
-+		dc_fg_disable(dc_crtc->fg);
-+	}
-+
-+	DC_CRTC_WAIT_FOR_COMPLETION_TIMEOUT(dec_seqcomplete_done);
-+	disable_irq(dc_crtc->irq_dec_seqcomplete);
-+
-+	if (disable_dprc)
-+		dc_dprc_disable_at_boot(dc_plane->fu->dprc);
-+
- 	dc_fg_disable_clock(dc_crtc->fg);
- 
- 	if (!dc_drm->pe_clk_axi_disabled) {
-@@ -397,7 +508,13 @@ void dc_crtc_disable_at_boot(struct drm_crtc *crtc)
- 		dc_drm->pe_clk_axi_disabled = true;
- 	}
- 
--out:
-+out2:
-+	ret = pm_runtime_put(dc_drm->pe->dev);
-+	if (ret)
-+		dc_crtc_err(crtc, "failed to put DC pixel engine RPM: %d\n",
-+			    ret);
-+
-+out1:
- 	ret = pm_runtime_put(dc_crtc->de->dev);
- 	if (ret < 0)
- 		dc_crtc_err(crtc, "failed to put DC display engine RPM: %d\n",
-diff --git a/drivers/gpu/drm/imx/dc/dc-fu.c b/drivers/gpu/drm/imx/dc/dc-fu.c
-index 47d436abb65157de7cab74565e44b199be76de52..bc439c3520d45f894c0afab5b3d52f2f3309c2e2 100644
---- a/drivers/gpu/drm/imx/dc/dc-fu.c
-+++ b/drivers/gpu/drm/imx/dc/dc-fu.c
-@@ -124,13 +124,28 @@ static inline void dc_fu_set_numbuffers(struct dc_fu *fu, unsigned int num)
- 			  SETNUMBUFFERS_MASK, SETNUMBUFFERS(num));
- }
- 
--static void dc_fu_set_burstlength(struct dc_fu *fu, dma_addr_t baddr)
-+static unsigned int dc_fu_burst_size_fixup(dma_addr_t baddr)
- {
--	unsigned int burst_size, burst_length;
-+	unsigned int burst_size;
- 
- 	burst_size = 1 << __ffs(baddr);
- 	burst_size = round_up(burst_size, 8);
- 	burst_size = min(burst_size, 128U);
-+
-+	return burst_size;
-+}
-+
-+static unsigned int
-+dc_fu_stride_fixup(unsigned int stride, unsigned int burst_size)
-+{
-+	return round_up(stride, burst_size);
-+}
-+
-+static void dc_fu_set_burstlength(struct dc_fu *fu, dma_addr_t baddr)
-+{
-+	unsigned int burst_size, burst_length;
-+
-+	burst_size = dc_fu_burst_size_fixup(baddr);
- 	burst_length = burst_size / 8;
- 
- 	regmap_write_bits(fu->reg_cfg, BURSTBUFFERMANAGEMENT,
-@@ -150,8 +165,14 @@ void dc_fu_set_src_bpp(struct dc_fu *fu, enum dc_fu_frac frac, unsigned int bpp)
- }
- 
- static void dc_fu_set_src_stride(struct dc_fu *fu, enum dc_fu_frac frac,
--				 unsigned int stride)
-+				 unsigned int width, int bpp, dma_addr_t baddr)
- {
-+	unsigned int burst_size = dc_fu_burst_size_fixup(baddr);
-+	unsigned int stride;
-+
-+	stride = width * (bpp / 8);
-+	stride = dc_fu_stride_fixup(stride, burst_size);
-+
- 	regmap_write_bits(fu->reg_cfg, fu->reg_sourcebufferattributes[frac],
- 			  STRIDE_MASK, STRIDE(stride));
- }
-diff --git a/drivers/gpu/drm/imx/dc/dc-fu.h b/drivers/gpu/drm/imx/dc/dc-fu.h
-index 44b9497e53580589a05bcb180eb2312ea4449da4..09570955a5b92105ef7010f71fa615a1cefc9b7e 100644
---- a/drivers/gpu/drm/imx/dc/dc-fu.h
-+++ b/drivers/gpu/drm/imx/dc/dc-fu.h
-@@ -87,7 +87,7 @@ struct dc_fu_ops {
- 	void (*set_baseaddress)(struct dc_fu *fu, enum dc_fu_frac frac,
- 				dma_addr_t baddr);
- 	void (*set_src_stride)(struct dc_fu *fu, enum dc_fu_frac frac,
--			       unsigned int stride);
-+			       unsigned int width, int bpp, dma_addr_t baddr);
- 	void (*set_src_buf_dimensions)(struct dc_fu *fu, enum dc_fu_frac frac,
- 				       int w, int h);
- 	void (*set_fmt)(struct dc_fu *fu, enum dc_fu_frac frac,
-diff --git a/drivers/gpu/drm/imx/dc/dc-kms.h b/drivers/gpu/drm/imx/dc/dc-kms.h
-index a25d47eebd28792e4b53b4ecc89907ce00430c2c..8b45b21a6f8a7e6e6ed2563499753200bdd42ebc 100644
---- a/drivers/gpu/drm/imx/dc/dc-kms.h
-+++ b/drivers/gpu/drm/imx/dc/dc-kms.h
-@@ -130,4 +130,9 @@ struct dc_plane {
- 	struct dc_ed *ed;
- };
- 
-+static inline struct dc_plane *to_dc_plane(struct drm_plane *plane)
-+{
-+	return container_of(plane, struct dc_plane, base);
-+}
-+
- #endif /* __DC_KMS_H__ */
-diff --git a/drivers/gpu/drm/imx/dc/dc-plane.c b/drivers/gpu/drm/imx/dc/dc-plane.c
-index d8b946fb90de638da2bf4667307f11b06f4e77f5..8ef754492b2dcb5d986a63f516328f8d2512c7b6 100644
---- a/drivers/gpu/drm/imx/dc/dc-plane.c
-+++ b/drivers/gpu/drm/imx/dc/dc-plane.c
-@@ -17,6 +17,7 @@
- #include <drm/drm_plane_helper.h>
- #include <drm/drm_print.h>
- 
-+#include "dc-dprc.h"
- #include "dc-drv.h"
- #include "dc-fu.h"
- #include "dc-kms.h"
-@@ -44,11 +45,6 @@ static const struct drm_plane_funcs dc_plane_funcs = {
- 	.atomic_destroy_state	= drm_atomic_helper_plane_destroy_state,
- };
- 
--static inline struct dc_plane *to_dc_plane(struct drm_plane *plane)
--{
--	return container_of(plane, struct dc_plane, base);
--}
--
- static int dc_plane_check_max_source_resolution(struct drm_plane_state *state)
- {
- 	int src_h = drm_rect_height(&state->src) >> 16;
-@@ -88,6 +84,28 @@ static int dc_plane_check_fb(struct drm_plane_state *state)
- 	return 0;
- }
- 
-+static int dc_plane_check_dprc(struct drm_plane_state *state)
-+{
-+	struct dc_plane *dplane = to_dc_plane(state->plane);
-+	struct drm_framebuffer *fb = state->fb;
-+	dma_addr_t baseaddr = drm_fb_dma_get_gem_addr(fb, state, 0);
-+	struct dc_dprc *dprc = dplane->fu->dprc;
-+	u32 src_w = drm_rect_width(&state->src) >> 16;
-+
-+	if (!dc_dprc_rtram_width_supported(dprc, src_w)) {
-+		dc_plane_dbg(state->plane, "bad RTRAM width for DPRC\n");
-+		return -EINVAL;
-+	}
-+
-+	if (!dc_dprc_stride_supported(dprc, fb->pitches[0], src_w, fb->format,
-+				      baseaddr)) {
-+		dc_plane_dbg(state->plane, "fb bad pitches[0] for DPRC\n");
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static int
- dc_plane_atomic_check(struct drm_plane *plane, struct drm_atomic_state *state)
- {
-@@ -123,7 +141,11 @@ dc_plane_atomic_check(struct drm_plane *plane, struct drm_atomic_state *state)
- 	if (ret)
- 		return ret;
- 
--	return dc_plane_check_fb(plane_state);
-+	ret = dc_plane_check_fb(plane_state);
-+	if (ret)
-+		return ret;
-+
-+	return dc_plane_check_dprc(plane_state);
- }
- 
- static void
-@@ -131,6 +153,12 @@ dc_plane_atomic_update(struct drm_plane *plane, struct drm_atomic_state *state)
- {
- 	struct drm_plane_state *new_state =
- 				drm_atomic_get_new_plane_state(state, plane);
-+	struct drm_plane_state *old_state =
-+				drm_atomic_get_old_plane_state(state, plane);
-+	struct drm_crtc_state *new_crtc_state =
-+				drm_atomic_get_new_crtc_state(state, new_state->crtc);
-+	bool needs_modeset = drm_atomic_crtc_needs_modeset(new_crtc_state);
-+	bool prefetch_start = needs_modeset || !old_state->fb;
- 	struct dc_plane *dplane = to_dc_plane(plane);
- 	struct drm_framebuffer *fb = new_state->fb;
- 	const struct dc_fu_ops *fu_ops;
-@@ -152,7 +180,8 @@ dc_plane_atomic_update(struct drm_plane *plane, struct drm_atomic_state *state)
- 
- 	fu_ops->set_layerblend(fu, lb);
- 	fu_ops->set_burstlength(fu, baseaddr);
--	fu_ops->set_src_stride(fu, DC_FETCHUNIT_FRAC0, fb->pitches[0]);
-+	fu_ops->set_src_stride(fu, DC_FETCHUNIT_FRAC0, src_w,
-+			       fb->format->cpp[0] * 8, baseaddr);
- 	fu_ops->set_src_buf_dimensions(fu, DC_FETCHUNIT_FRAC0, src_w, src_h);
- 	fu_ops->set_fmt(fu, DC_FETCHUNIT_FRAC0, fb->format);
- 	fu_ops->set_framedimensions(fu, src_w, src_h);
-@@ -161,6 +190,9 @@ dc_plane_atomic_update(struct drm_plane *plane, struct drm_atomic_state *state)
- 
- 	dc_plane_dbg(plane, "uses %s\n", fu_ops->get_name(fu));
- 
-+	dc_dprc_configure(fu->dprc, new_state->crtc->index, src_w, src_h,
-+			  fb->pitches[0], fb->format, baseaddr, prefetch_start);
-+
- 	dc_lb_pec_dynamic_prim_sel(lb, dc_cf_get_link_id(dplane->cf));
- 	dc_lb_pec_dynamic_sec_sel(lb, fu_ops->get_link_id(fu));
- 	dc_lb_mode(lb, LB_BLEND);
+> 
+> > 
+> > > 
+> > > > +
+> > > > +       return MODE_OK;
+> > > > +}
+> > > > +
+> > > 
+> > 
+> 
 
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
