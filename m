@@ -1,182 +1,218 @@
-Return-Path: <devicetree+bounces-220484-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 723DCB96B5F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 18:04:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1270BB96B6E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 18:05:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26E1F48826B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:04:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE7CE2E5E53
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9453D25CC4D;
-	Tue, 23 Sep 2025 16:03:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B85F9C1;
+	Tue, 23 Sep 2025 16:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="D32UbrOj"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WQzFa4pE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6181E2594B7
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 16:03:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F829257842
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 16:03:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758643439; cv=none; b=KKar6R/Lvn7nV1eiOxcqvc9gwJlCaBYcfrol1AiiJ3yYNMNB4xE4n3pf8gZslolYxofR2TSxQJs3XAVcv+2D2d8YPfyUCk0hLhxPD0b3k3/CFR0VyKMfGs5mSMWqDxJJjngXz3jcZtHU8DFbr2ywNeZ8rIiJwlDJrbihbXoirXI=
+	t=1758643426; cv=none; b=l9gT7ccDclRE7UmdUNxt4Xg4f8LCm1u/W/uCCsFt9diZZV1gC44Xalx4A3IRj90LH0IZ845/MT2ZsZNylO9mPsbNPk0RZkBXhhWsNvZi+2ii+S5CzC/YHJQJ+ChETqmApRAk30nA0JjRrVXDCGOV+UikM+UZ4gWnTU+qPiQBVbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758643439; c=relaxed/simple;
-	bh=VxXxBVnPT3bjBJlGNuKjLv1N/mqpt8+iHvovsX2ivRI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pI1nYXkzhnQ7ulG9RETdWEF3IYYAY2HtD5CUJIZFmnPVG6jO3Jw5L3x00BqoJVHCdwiiSnyfpyLAGkwR84JjiTU3TSFdsCiJV1CsiPP/A8jAAMG4tL6QUZ/CVaPXU4f0LoBJYtfaTVPtTnncpy8M7oUA7MBS6z6vJK9PViJpkqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=D32UbrOj; arc=none smtp.client-ip=209.85.161.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-6325115e3f4so650677eaf.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 09:03:57 -0700 (PDT)
+	s=arc-20240116; t=1758643426; c=relaxed/simple;
+	bh=acYIptEhY/FTS13q/p4Gqp2WqXvXWWwi73HB+X0La/c=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tN7Yy8LIxvCD+PLmfs7mPl10M6t9J+9s0JV7eCt3+q6m1RgLwxnubWfb8w5AO7J+DiE77Uc09nd5GMLs8p35Gyg9eFXwAbjo37e0zkwezjav1F/88h7i8KLzPncsii80sltTm4G7gm/yWDC/ZpheSVT363pOmgk4uf3ie50aUrE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WQzFa4pE; arc=none smtp.client-ip=209.85.216.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-33082c95fd0so5042131a91.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 09:03:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1758643436; x=1759248236; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=law/k3CtXNu6hM9p5KpraV1Cz+DWuIPBGWWxReZ36Yo=;
-        b=D32UbrOjk4gKhJX/uZLTgtT6sT1LMZp+IB5oht8sJ8bIizbvM0zgeC6N95iINwsPMk
-         E4yt738kYwmHVWl4yVQMi3pi8GdkoWQYs4xLf2+Xfb8keOFhZVI1l5IlX1vqe9Puqpvf
-         /69Le/ivN0oLIL2CRFyeB5yEAYfh9zrqU7UiUVA6FICnlGjuWwSc25So17GRe/PACDGT
-         SI8rFu7qKCm4Tmo3Qhtt5KVReD3Fm6MpaxW80B8P/5vwLpvXNqh5JjRnGUANxruyxJK1
-         S/5Q0AIf/5BvQ60+J1inv0NOReuHccF+ywiDc7rxQGAX++NBvzCALm+/uXDJeO8aoiAO
-         UHOA==
+        d=gmail.com; s=20230601; t=1758643424; x=1759248224; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TCjwXZdvlr5TGiQ9Gsc1mgLjFMZKnntp5GpNV0BrGWg=;
+        b=WQzFa4pEsPBbVBoCnvylGCDfbdc0npfEQNI6Em5pTR6TO/4ItA3Lz8Jc420/lKoEXT
+         jCF+aeypN52vGpGZwNj+aCpH5z8/lDSz/NmV280Kj2XZPS3sB9NFeBQix2y/dPW5RcDm
+         ZCz+Pd4CfrM8ma86lIcxFiChB8B2Kr1Y4U65WR9EYkXc42g/DxAqL5E4keEpvGPTi2bL
+         /nA4TgAu5dIjNGAQzNqL7EoWmMdh1s3B0HXh4PBcqaX6BOHvq25dBol8/yzGqNgIazyw
+         58mqhxLaMKaaQCY72w9WGL1ZhVkVQLCIOBmfP7eH0msaQAnjr9vWa8QLmCvMEstuRsEW
+         hKyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758643436; x=1759248236;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=law/k3CtXNu6hM9p5KpraV1Cz+DWuIPBGWWxReZ36Yo=;
-        b=NQpb5FjXlkkS0HbWUbTvb1IbtYRL/YLNL+xNYXPA+jQuYVNwmI1jmIzSqrEo2AhLkv
-         YMrPREWI6e96rHYOteok4k078cXpHmDMEcQd12WvNcA7qzGvsdKqQswXzVTf5VVxSMPw
-         tYFN9/4VnV28HOJuzqwlUtvOniZYmQSAlQ6/hjCR5U8BwYnbpDkGAMEOTeskvFSNz4BH
-         rnzospoxzLGgvqvveaKdRUNabo2q0OMpwy+qI4Qod1+ArbvpGz/FSVSGXdck4IMOn3E9
-         LuqprX55yScGW42JqXhuRBlBpBx9GXtU+Obi+r71lX/k29yQNbFX2gLl54oZfJ4SM01T
-         Oxig==
-X-Forwarded-Encrypted: i=1; AJvYcCVE/tw+S8GluGXBCTzP+SJIXgOBU/q1xIrrMSFAtdHxDn8chsl6NUBSFc7dvZJBELZsReHx6LJlYYZD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw496if+x9dU7tEbsq7MDxJuVxVoyI54tRJQMTlB0Ojtq+Uzs1T
-	9H3HD32OcPoO0bIEZvspzWg6WywTVbOPe4CcFgld64HIiGi5uVeqfzOhaFkrdY7fE3g=
-X-Gm-Gg: ASbGncvj4B2US6ge1k/1f+O/zhAOeDAK+Y6jSpzYzgiV8RbJrA2hlURWxcM+UiNBw69
-	Opn7hesxCju9AmH2YqOXm94ZNh0jkocKV95Jm1ZXpdbZHajxVCN+ZsxY5+ERo5T8vgVykOuvBX9
-	6yhGoGo269Dm6xU+4EB/sUh/DRckNM8aZ8R1RygdC9cgwJm1R+uULve1ewvvZMP6Ik4BHFzkuq/
-	ow38xDbiEiylckP+iaQLTpb9pnxiRhAa2F4GkGc+TwKk/UNROtD2WbWHhiQ2wFOzHLNVpvsrcqg
-	pERqkzWUfhBg53Dw/0f8USIEYj7FkliohtsegUlAzP1ikraZ+zRnphvd38deIyAMKK2BMN6Rk5C
-	BODjB3tocKq+nDdHvY7behGeJ+vMb2RL3NqtaPy7kNe21XqUFX9JvqsXGdIe8LcNi6AF/eVF70h
-	g=
-X-Google-Smtp-Source: AGHT+IGt+WO07cHyo0KGdsHsWGQNVNTID6bqFPImBKjJW+ieTZFVbQ/jTnDS2WSIykEd8QxgZNu6gQ==
-X-Received: by 2002:a05:6808:3319:b0:43f:18a2:97ae with SMTP id 5614622812f47-43f2d494e3emr1476355b6e.30.1758643436230;
-        Tue, 23 Sep 2025 09:03:56 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:505f:96cd:1359:fff4? ([2600:8803:e7e4:1d00:505f:96cd:1359:fff4])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-43d5c67bbdcsm5948711b6e.7.2025.09.23.09.03.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Sep 2025 09:03:55 -0700 (PDT)
-Message-ID: <21b52acb-9710-4363-803e-280773da0351@baylibre.com>
-Date: Tue, 23 Sep 2025 11:03:54 -0500
+        d=1e100.net; s=20230601; t=1758643424; x=1759248224;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TCjwXZdvlr5TGiQ9Gsc1mgLjFMZKnntp5GpNV0BrGWg=;
+        b=ezxGie7MMPUD75Ra6WqgDzLglXznEf4mX4JXU9HiXTULUpcGRmoNPHgppyaNX1rYRi
+         MFVZXIfKzsKbjrX0h0ndQ09lQ2/uDrd3ad5fAKdK9ZQXm9vj7cYBKFVAFyTir8jsz5XM
+         86dqD6+NGkkQL7UZCa4Iu4xE02AJENii7/oAf/bjq+ldycsePNPNAydQztCHXwW+O0X3
+         PnAsnwwtTFu89SjeE0F5Hcq2sLsjgEWdwOZcWZsml1K4igKTqmrt6RTmObB0ALWrlh62
+         kHzPZFfV2moi8/DiNGyHgWxkBGVX2Y0kR/qear6zjw3Yb9M9maBtmso3kGholrIx+V8j
+         t60w==
+X-Forwarded-Encrypted: i=1; AJvYcCWWooJu8THcP0lTCBX3fg4iJheF5OGS+mG7Wd7kzvfIwQYeoKCaqaFKhPMG5abibdOBUxobCw603Vwd@vger.kernel.org
+X-Gm-Message-State: AOJu0YxL1+7K7UfjQNlSIMNXbDWKSI8K61EAD6ogPENVDnFurQgidDVs
+	AXhC3vMwuUghrwVSrntCAwKBs+Tdqh4G8XbQdHfeCwrqbgMBIoO0EHbC
+X-Gm-Gg: ASbGnctzMGpnr6mLfYl+XKoGeyU/raxiROPy9S5murrkFCShurElpl/wt6j2HbU4aZd
+	W1j6GmaiRq722BygY8dLMURVb3MLo5E6Yyf3gu2jHvQDmvxLwdGwQabYvJElFcQ2Fgs1wZFupQd
+	ViyQR4WivN6IeKoW7GGo8MFtx/H7RI06tGSG0+DD/Lk6Pobtjlc76dqY+2VHW8FTrGxvR+6ddwX
+	6wm/1OO1a7gtxn/uzjlImuPk4wH6iy//2SkRjf0EwWNM3x5d9ummbKj7Xf1z9yQpHl9Ts8pupRK
+	usFo0S/mVxTcaFzG9tVY+4F1Uyv3io9dXEeqLaXPXqmq+NuxS7IFCu6CoinSe+97XSKpXhIO0Ip
+	NiX+tdj3decqQkx8XIgGK889FgLj5ORY=
+X-Google-Smtp-Source: AGHT+IHISW90NLk8XtYPSy5uwi6/z+EnNYEUhS0pqc4r9TqWhWKXchg9EW4j0OUL/iKfwlQcDt+IiQ==
+X-Received: by 2002:a17:90b:2787:b0:32e:9daa:7347 with SMTP id 98e67ed59e1d1-332a92c9d80mr3777330a91.7.1758643423923;
+        Tue, 23 Sep 2025 09:03:43 -0700 (PDT)
+Received: from DESKTOP-P76LG1N.lan ([58.187.66.24])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-32ed276d2f8sm19447325a91.24.2025.09.23.09.03.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 23 Sep 2025 09:03:43 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: gregkh@linuxfoundation.org
+Cc: lee@kernel.org,
+	pavel@kernel.org,
+	rdunlap@infradead.org,
+	christophe.jaillet@wanadoo.fr,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v14 0/4] leds: add new LED driver for TI LP5812
+Date: Tue, 23 Sep 2025 23:03:36 +0700
+Message-Id: <20250923160336.12464-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <2025092259-stranger-affecting-1c75@gregkh>
+References: <2025092259-stranger-affecting-1c75@gregkh>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 6/8] iio: adc: ad4030: Add SPI offload support
-To: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, jic23@kernel.org,
- michael.hennerich@analog.com, nuno.sa@analog.com, eblanc@baylibre.com,
- andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- corbet@lwn.net, Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
- Trevor Gamblin <tgamblin@baylibre.com>, Axel Haslam <ahaslam@baylibre.com>
-References: <cover.1758214628.git.marcelo.schmitt@analog.com>
- <da55c0ed6fe895dc84e79c8b64e5923a4851e58f.1758214628.git.marcelo.schmitt@analog.com>
- <30659b16-290d-4ae5-a644-214c106bbe87@baylibre.com>
- <aNK8ZZu74mK0_ygB@debian-BULLSEYE-live-builder-AMD64>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <aNK8ZZu74mK0_ygB@debian-BULLSEYE-live-builder-AMD64>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 9/23/25 10:27 AM, Marcelo Schmitt wrote:
-> Hi David, thanks for the insightful review.
+On Mon, 22 Sep 2025, Greg KH wrote:
+
+> On Tue, Sep 23, 2025 at 01:13:41AM +0700, Nam Tran wrote:
+> > On Thu, 11 Sep 2025, Greg KH wrote:
+> > 
+> > > On Sun, Sep 07, 2025 at 11:09:40PM +0700, Nam Tran wrote:
+> > > > This patch series adds initial support for the TI LP5812,
+> > > > a 4x3 matrix RGB LED driver with autonomous engine control.
+> > > > This version provides a minimal, clean implementation focused
+> > > > on core functionality only. The goal is to upstream a solid
+> > > > foundation, with the expectation that additional features can
+> > > > be added incrementally in future patches.
+> > > > 
+> > > > The driver integrates with the LED multicolor framework and
+> > > > supports a set of basic sysfs interfaces for LED control and
+> > > > chip management.
+> > > > 
+> > > > Signed-off-by: Nam Tran <trannamatk@gmail.com>
+> > > 
+> > > The sysfs api is really odd here.  WHy not do the same thing as this
+> > > other controller recently submitted does:
+> > > 	https://lore.kernel.org/r/20250911-v6-14-topic-ti-lp5860-v3-0-390738ef9d71@pengutronix.de
+> > 
+> > Thank you for the feedback!
+> > I agree that consistency is important, and I've reviewed the patch you referenced.
+> > 
+> > I also checked the LP5860 datasheet and noticed that its driver exposes sysfs entries
+> > for configuring registers like `R_current_set`, `G_current_set`, and `B_current_set`.
+> > Similarly, the LP5812 requires register-level configuration for operation.
+> > 
+> > In my driver, I've implemented the following sysfs attributes:
+> > - '/sys/bus/i2c/devices/.../lp5812_chip_setup/dev_config' - Configures drive mode and
+> > scan order (Dev_Config_1 and Dev_Config_2 registers).
+> > - '/sys/bus/i2c/devices/.../lp5812_chip_setup/sw_reset' - Triggers a software reset of
+> > the device (Reset register).
+> > - '/sys/bus/i2c/devices/.../lp5812_chip_setup/fault_clear' - Clears fault status
+> > (Fault_Clear register).
+> > - '/sys/class/leds/led_<id>/activate' - Activate or deactivate the specified LED channel
+> > in runtime (led_en_1, led_en_2 registers).
+> > - '/sys/class/leds/led_<id>/led_current' - To change DC/PWM current level of each led
+> > (Manual_DC_xx and Manual_PWM_xx registers).
+> > - '/sys/class/leds/led_<id>/max_current' - To show max current setting (Dev_Config_0 register).
+> > - '/sys/class/leds/led_<id>/lod_lsd' - To read lod, lsd status of each LED
+> > (LOD_Status_0, LOD_Status_1, LSD_Status_0, LSD_Status_1 registers).
+> > 
+> > These attributes map directly to LP5812 registers. I’ve kept the interface minimal and
+> > focused only on essential functionality needed to operate the device.
+> > 
+> > If any of these attributes seem unconventional or redundant, I’d appreciate clarification
+> > so I can revise accordingly.
+> > 
+> > > but better yet, why does this need to be a kernel driver at all?  Why
+> > > can't you just control this directly from userspace with a program
+> > > there?
+> > 
+> > LP5812 is controlled via I2C, and its register map is non-trivial. Moving control to userspace
+> > would require users to manually handle I2C transactions and understand the register layout,
+> > which is error-prone and not user-friendly.
 > 
-> On 09/22, David Lechner wrote:
->> On 9/18/25 12:39 PM, Marcelo Schmitt wrote:
-
-...
-
->>> +	cnv_wf.period_length_ns = DIV_ROUND_CLOSEST(NSEC_PER_SEC, freq);
->>> +	/*
->>> +	 * The datasheet lists a minimum time of 9.8 ns, but no maximum. If the
->>> +	 * rounded PWM's value is less than 10, increase the target value by 10
->>> +	 * and attempt to round the waveform again, until the value is at least
->>> +	 * 10 ns. Use a separate variable to represent the target in case the
->>> +	 * rounding is severe enough to keep putting the first few results under
->>> +	 * the minimum 10ns condition checked by the while loop.
->>> +	 */
->>> +	do {
->>> +		cnv_wf.duty_length_ns = target;
->>> +		ret = pwm_round_waveform_might_sleep(st->cnv_trigger, &cnv_wf);
->>> +		if (ret)
->>> +			return ret;
->>> +		target += AD4030_TCNVH_NS;
->>> +	} while (cnv_wf.duty_length_ns < AD4030_TCNVH_NS);
->>> +
->>> +	if (!in_range(cnv_wf.period_length_ns, AD4030_TCYC_NS, INT_MAX))
->>> +		return -EINVAL;
->>
->> I hit this error during testing with the default max_sample_rate_hz assigned
->> in probe. We could have a loop for this too to try to get the closest valid
->> period rather than erroring if the exact value isn't available.
->>
-> Yes, this makes sense. Though, looping to try to get a suitable period wouldn't
-> potentially also change the duty_length we settled above?
-
-I didn't think too hard about it or debug too deep. So it might be fine the
-way it is. We'll just want to make sure that when testing with a 2 MSPS part
-that we can get the max sample rate without error. The ZedBoard has some funny
-rounding due to clocks being divided by 3, so it could just be a case of
-having to to put in 1.998 MHz to actually get 2 MHz or something like
-that because of the lack of accuracy due to rounding.
-
+> So you write it once in a library, or in a userspace program, and it is
+> done.  Don't expose these low-level things in a custom api that could be
+> done in userspace instead.
 > 
->>> +
->>> +	offload_period_ns = cnv_wf.period_length_ns;
->>> +	if (st->mode == AD4030_OUT_DATA_MD_30_AVERAGED_DIFF)
->>
-> ...
->>> +static int ad4030_set_sampling_freq(struct iio_dev *indio_dev, int freq)
->>> +{
->>> +	struct ad4030_state *st = iio_priv(indio_dev);
->>> +
->>> +	/*
->>> +	 * We have no control over the sampling frequency without SPI offload
->>> +	 * triggering.
->>> +	 */
->>> +	if (!st->offload_trigger)
->>> +		return -ENODEV;
->>> +
->>> +	if (!in_range(freq, 1, st->chip->max_sample_rate_hz))
->>> +		return -EINVAL;
->>> +
->>> +	guard(mutex)(&st->lock);
->>
->> Why not iio_device_claim_direct() instead of a new lock? We wouldn't
->> want to change the sampling frequency during a buffered read anyway.
->> This driver already uses iio_device_claim_direct() to protect other
->> register access.
+> > Moreover, the driver integrates with the LED multicolor framework, allowing standardized control
+> > via existing userspace tools. This abstraction is difficult to achieve reliably from userspace alone.
 > 
-> The new lock is to protect concurrent updates of the oversampling and sampling
-> frequency. Since, oversampling and the sampling frequency properties are
-> mutually dependent one from another, a simultaneous write to those attributes
-> could lead to an invalid oversamp + samp freq configuration.
+> But this is a custom api for the leds, not like any other one out there.
+> So how would it integrate with anything else?
+> 
+> > > For USB, we generally do not allow these types of crazy apis to be added
+> > > to the kernel when controlling the device can be done from userspace.  I
+> > > think the same thing can happen here too, right?
+> > 
+> > USB devices benefit from standardized descriptors and interfaces, which reduce the need for custom
+> > sysfs APIs. In contrast, LP5812 has no such standard interface, and some customization is necessary.
+> 
+> Many USB devices do not benifit from that at all, you directly control
+> them from userspace using vendor-specific apis.  Just like this device,
+> nothing different just because it is an i2c device.
+> 
+> > I’m open to improving the sysfs interface or moving parts to another method if that’s more appropriate.
+> > Please let me know which specific changes you’d recommend.
+> 
+> sysfs really doesn't seem to be the correct api here, you are making a
+> custom one just for this one device that is not shared by any other one,
+> so userspace has to write custom code to control it.  So why not just
+> write one program, in userspace, to handle it all at once, instead of 2?
+> 
+> > For completeness, I considered these methods:
+> > - sysfs: Recommended and standard for LED drivers.
+> > - i2c-tools: Not recommended, intended for development/debug only.
+> > - ioctl: Not recommended for new LED drivers.
+> > - debugfs: For debugging only.
+> > - Direct I2C register access: Requires users to know the register map and protocol.
+> 
+> A library will handle the i2c direct register access.  Again, do not
+> make custom sysfs apis if at all possible.
 
-I understand the need for the protection. And using iio_device_claim_direct()
-seems like it could do the job without the need for an additional lock.
+Thank you very much for your valuable feedback.
 
+I understand your suggestions and the overall strategy. I'm currently considering moving
+some configurations to the device tree binding, allowing users to manage device settings
+more flexibly through it.
+
+For other interfaces, I plan to support them from userspace.
+ 
+If this approach sounds good to you, I'll proceed to update the source code and submit a
+new patch accordingly.
+
+Thanks again for your review and support!
+
+Best regards,
+Nam Tran
 
