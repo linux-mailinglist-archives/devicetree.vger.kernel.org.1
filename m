@@ -1,91 +1,82 @@
-Return-Path: <devicetree+bounces-220579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D701B9788C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 22:56:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B273B978A1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 22:57:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E24867B3753
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 20:54:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E49F81689A1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 20:57:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01695305068;
-	Tue, 23 Sep 2025 20:56:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15E9F27B35C;
+	Tue, 23 Sep 2025 20:57:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Xh98IO6G"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="KHXnoTl6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010015.outbound.protection.outlook.com [52.101.69.15])
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011051.outbound.protection.outlook.com [52.101.70.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D99426CE17;
-	Tue, 23 Sep 2025 20:56:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24A0A28134F;
+	Tue, 23 Sep 2025 20:57:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.51
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758660970; cv=fail; b=niJGZA2qFCw3/26UNhqMfS5rX7EpVWJj6ySMZpEN6Hf9SDXA6qjvKGEgcpYCvy1vyz5xApxt/74sKEsINz1GU+9EgPgqSb2P5v2aAjWXhtEil4SPT5JHs/kWphSQIKIv6wMcuvK1mInnvhtLweaBHqUXjGzI/YHoBrFyq4vEjQY=
+	t=1758661069; cv=fail; b=X87nKMTUkQO/Y2ei/af8ZK7FhYXKVLJ3rfGlwsv5aeB4kvuXboUQvbOF86EyAMjwV0sPY95tCkTyVcNpCO6HNUFeuDUksdkiKeNWxfA9L6+GBd+HbXosvXSKXzSDFf89pPu5cps71wMZ9qiPCUGu9Sg9mgwijuKLXtmPf5Rgo6c=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758660970; c=relaxed/simple;
-	bh=ONouIOGeBNvyg/5wthcNiXckii/erCM1hcY52vJNOs8=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=JMOEuq5IEzCTAm0s50NK3cSOaWOGphp3YZBF3DnPi8GOpFnp6y2Zi6rWrWW3wHwRa9Zjaff3I6bVsUrS+kJ2nWa0Wd/wlGsLMyKuG4pUfLV4Fs0Loz1xFOEFc98XMsZ6303dE3hxl98k5gZhQMes7pcWc1wYrnJNLscZY4o0BRU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Xh98IO6G; arc=fail smtp.client-ip=52.101.69.15
+	s=arc-20240116; t=1758661069; c=relaxed/simple;
+	bh=bZE5lQVIojsIoU+TgYwaYY9ieXguGxX9R1jODljm2F8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=OPkrii5mESnK99ECtHe2S2rfqDcFF56SVVk/0SD72Y5/728ukPPljBMyQf9hxY+puQxeBsjrOJae4bF7PIUy6/uCbVU3q1UN94Ej+YEJv0BzyUj+u/a2kbjWr4ZsWDa/9pmeLI+L0Whv1+SvbB9NgnSXLU4fVzI7FiKZcJtEv+c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=KHXnoTl6; arc=fail smtp.client-ip=52.101.70.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LYvlcgqMgEj4GuuNJZImHaPjJ4SbSVAQKA89d0CjaaHwPhqhRzP7YLnpCzaFTrjJuvkMNaXCS1huJu5daVtHNnAFvqLiWka3tWR1LCmMn4+JvYfjhYVr0Y+8Usz/MBOj5edb8JbF3RFOnPHNe1o66laMNEngt8A/XnxANSXF0xGF1fyJiu+4VBOvbi2wLJJkFGzx9oMvtbCKfBDfkN11hweAGAcd/pzuT5Is85rY8flxMZikh55lT3G3gB0BEdTAPVOCHPd3O/zNwC606h2y9XfHJXDd/VKcyVPzmrJWb2nb1l26j3kKVYngKEIjxjf6vIXSswQSf4ZGtqnsEXobow==
+ b=KIkzd8LDt4DSzB51eXOOJo8adn1hw2QhfdDy36Lkzp6hwPPfrJP5xcF4TslIml3BA6mfw1eGnU9h1JZmM06vxfqL+oGreDNFh8ai4rx8MnWazX+1o05ZpSk5PI1ebmVXCzTLycJB5ID1kNUlmlFkJPD5R48KQhOpndO8C8vCC8jcpdYyd/UyqPKZ2m9Ir27RxdkTeupSyzvv1bYsQfKq/73i6MHOMbVc/vckaJZ0eIxk4lBuHYa/aFVP8JG2uGUTx7uQQX2XzDJILkvrgJYDQITXCnfastKDnvyXIuwKnjkiUviovHkwYJ7WxtxVLRdjoIyNcxAlFEci/Ru6Iu2DFg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ymfGQpQJzkQ0wMe6hi2xKFeQEhyW9YtHndZe5tjn5D0=;
- b=b2qi4rjB//MFuXfQoaR+ZNq3Agm+aJqC4rvMiQCxRCs65b8t+Xj1KzU1XmhX5uMZiCuIEr+KLgx26Pth4ddbK5aDlZaLJ8GqylnLXM0wppL+WKUngvZ2m3IbXZKScIpcmt2tBaidiRYgqg38L6Fy+nmgDYfYW7BtI/j+DATeCVqhhpSvq6dTvohELSf+2zcMAsgLNBqhuOPa6tVowbpH1PtunBtY9ChJ54Wqu29s4g715d8lcfrEaAb3As4DCaSs2PxzvQmpcARZmj9uT0A6vyxAKlW1mxehPi7h6qbb3ub0+Lv/2COouO8YX2rEgH54tZWGtTHOozbyU/nCMymTIg==
+ bh=0QIeOIrvcqHerBIqfr+qWq0ZIGVPBXmJ4cGb5dn5sgo=;
+ b=GvejjfPMTzTFMalR8aYrg6roh3j3qQKMb615EaOyT1fSAm36VoVUJjGPhyZHS17fgsirp5uscz+I5IKLxYYfIwJcaMH3RJP9KBjxqeR7vA+4STvk1rtaRtXKGAz2reUdo+Dt2GySRzl2myFlYTnbIMYuONviPrlMCTFLm2hQ3YNYF4bcP2jpUgcEjeOUe+hijTJQTS3ZcjoIzXdkeQ8MPCFE5aY2PtwIU33n6hG3dYtdZ9uQBg1sp/EHPdwrxVnSE2X8cIbEnovLLpVsoCRbs585MZ/KDISADag7z+fMNpeVQfGN+o/gwLCJVDjU+lq+ltqpCVIG0FG3japg6rUF8A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ymfGQpQJzkQ0wMe6hi2xKFeQEhyW9YtHndZe5tjn5D0=;
- b=Xh98IO6GeBm3DN7DdcUbfK4aw7vCHsvFgqf13yTu7TEMdtH0PuxfUQqi5musOVW1VYxGt8V/pnuWb8c/ZJp4IldYya8mqDhOD0+MMOqcAAjmhWGxzwTxdpfcOsrWD1mxrD8OzWkp4oEnrv144NHYILsg5++A49u82k2cbCGN0sWJd8MpPER0oVHaV3ykATgiIs/cn9JxwjU5K0ka6cRUPapEsCqhBr5DNXngHaGmiNobtmdVTPSPdA70Q/Xag4VYYVCk3vCiOdrWfqduq+VDQfKToDMYVfLQaOJGFRNinU+HszWt37Cy/+609kNNTWDYP5Mu6BoNS7ThHZjGfw2Eog==
+ bh=0QIeOIrvcqHerBIqfr+qWq0ZIGVPBXmJ4cGb5dn5sgo=;
+ b=KHXnoTl6d1YMM8tRX/mNC7k0oIbg/4/6DFHh+fmkvMpXYET+kCKAATHCanGkr7RUU07rv05VwQxB7bu3Xhy9CQdwgndnELXqygvCxFM41EJ4wb3/XOwJfKSbTKOF3OAsL9ymr1sfRrqVT0em0SmvGvKwVr7wWZ9bAdpLCgbx8GSBxZRTp1oL1kewEV0tmbhEyjv1aMMlK6a+uo/hAGs4NT/K5RVJl3BAJv2N2/ol2dFC8mFG1ScjmR6SxmiNE5OQIDBNW8q+mCSjksQ/LtNgv6XkOHsqZh/o+feRjOkleX1JHwqmqYR2FWXNu857hd1XbOx0MJBzAkYBpypX789FXg==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com (2603:10a6:20b:4ff::22)
- by DB9PR04MB9428.eurprd04.prod.outlook.com (2603:10a6:10:368::8) with
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com (2603:10a6:20b:24b::14)
+ by VI1PR04MB6928.eurprd04.prod.outlook.com (2603:10a6:803:12e::9) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.9; Tue, 23 Sep
- 2025 20:56:05 +0000
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e]) by AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e%4]) with mapi id 15.20.9160.008; Tue, 23 Sep 2025
- 20:56:05 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Senna Tschudin <peter.senna@gmail.com>,
-	Ian Ray <ian.ray@ge.com>,
-	Martyn Welch <martyn.welch@collabora.co.uk>,
-	dri-devel@lists.freedesktop.org (open list:DRM DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v2 1/1] dt-bindings: display: bridge: convert megachips-stdpxxxx-ge-b850v3-fw.txt to yaml
-Date: Tue, 23 Sep 2025 16:55:48 -0400
-Message-Id: <20250923205549.200670-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: PH7P220CA0167.NAMP220.PROD.OUTLOOK.COM
- (2603:10b6:510:33b::9) To DB9PR04MB9626.eurprd04.prod.outlook.com
- (2603:10a6:10:309::18)
+ 2025 20:57:43 +0000
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::b067:7ceb:e3d7:6f93]) by AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::b067:7ceb:e3d7:6f93%5]) with mapi id 15.20.9160.008; Tue, 23 Sep 2025
+ 20:57:43 +0000
+Date: Tue, 23 Sep 2025 23:57:40 +0300
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Josua Mayer <josua@solid-run.com>, linux-kernel@vger.kernel.org,
+	Vinod Koul <vkoul@kernel.org>,
+	Ioana Ciornei <ioana.ciornei@nxp.com>, devicetree@vger.kernel.org,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-phy@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v2 phy 12/16] dt-bindings: phy: lynx-28g: add compatible
+ strings per SerDes and instantiation
+Message-ID: <20250923205740.qxtrpkbi6otowuin@skbuf>
+References: <20250923194445.454442-1-vladimir.oltean@nxp.com>
+ <20250923194445.454442-13-vladimir.oltean@nxp.com>
+ <175865985168.25580.11987486707034552652.robh@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <175865985168.25580.11987486707034552652.robh@kernel.org>
+X-ClientProxiedBy: VI1PR0102CA0067.eurprd01.prod.exchangelabs.com
+ (2603:10a6:803::44) To AM8PR04MB7779.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24b::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,314 +84,113 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9621:EE_|DB9PR04MB9428:EE_
-X-MS-Office365-Filtering-Correlation-Id: a1e665f4-ef51-4326-25ca-08ddfae39c81
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7779:EE_|VI1PR04MB6928:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7e871d34-db79-4b1e-ec45-08ddfae3d77b
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
- BCL:0;ARA:13230040|19092799006|376014|52116014|7416014|1800799024|366016|38350700014|921020;
+	BCL:0;ARA:13230040|1800799024|366016|376014|19092799006|10070799003;
 X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?OOX3pC9u/sXQc1gNEhHzaapQS8IRKpnCLRpwyyMrJ4RR5UVeqHC4eQfz+QWB?=
- =?us-ascii?Q?83OYZKiIzfmuxQ+IrVeNxdM92JdbiFisgofNCmpHfcY/zfLKZk6nPdLa1mln?=
- =?us-ascii?Q?ehKYMQheJcpp1Y4LLaDonmht3o0ZirA5itaexOAq/1XQrSWHfW99CDa3IDKR?=
- =?us-ascii?Q?wHZqqhMQ1AJBI1jE2F0eL1f3FzXySs1bSVLKGBsjIYrqnfEexd9o5AVANsgN?=
- =?us-ascii?Q?DTPxC4R8PpkhGDYKrrLZ3SqFDXtFDh3/8omfJ39jlM2ZthskZhzoUMETplz8?=
- =?us-ascii?Q?vAcDFlT9gl+aP7jk0EpSjKw7dtxyqmJi4g7rq4y/Zf5glE4hPkL7YSzX/VCd?=
- =?us-ascii?Q?fDxVKK5VfUqGfHcIAJ48ijuPKbO9W07Wm78LR8Ar1wXRLfvE0M+taiyJTFIk?=
- =?us-ascii?Q?l90o700LxlbmrtaQXcjIoJ64B3kqFxNLwMP7Lq/8H0veQPQr7yrTTTqbdjkc?=
- =?us-ascii?Q?zg79z2CWbOcV42wyNeyI+PnK73n/XLoBJOYczK5piUVktraLv7jOy1C1fCe4?=
- =?us-ascii?Q?ToIqKW0Z3+GShv02ZGyBUMisxLckEOMJe+8ebvnXqTyuvRQqPMYZuiUrM2NU?=
- =?us-ascii?Q?WOwkh+KeTelL3xNd3Ay1W+xI1ObtjGIE3VrtKDCgN4AC4JtEbH/GAT3vGgY+?=
- =?us-ascii?Q?PthDq1sttuM9beHtoqW3xUPgr+DJVSAP4VVaycRUQxL7emvdLhCnCPyAIzVe?=
- =?us-ascii?Q?vvpaZroCh2Vi9kYW6XnCh5y6hvDz9yBC/jvcVqWGe/Be8XZT3dxiqHBpjaEr?=
- =?us-ascii?Q?2iCZ/o2D8ODfYx5C/9SiNnBI0Aa4u2g0SO7WPvoekS/bZz9+dhH4txXL/TeO?=
- =?us-ascii?Q?9kFwsEYCzagPjubrTfOPjT+NJwaruGN8X3pmxuSExB2zjA0A2PFYCoMcjqnl?=
- =?us-ascii?Q?/rxLsst+hjkGl3dX60LEUG2kCvKJMC7jTM4bhKhzYAZU/eLgXMJt4U/QPwY7?=
- =?us-ascii?Q?gpQaFf3tewefC0yhKCURUGDNEpFrTYn1r/97KkU38IeKzc3ykPrvXdwcmZC5?=
- =?us-ascii?Q?6MvMo5XdRp1xdxUVDKfjzIbzwrTxSUnqM6LnNafoMNlBwK07M+rVj3yiwPl6?=
- =?us-ascii?Q?zHfmZeS6ars7kVeRbXy0O5ECwi1VdRTdOMTasu1kT/odN2KfK3jZMft28Du6?=
- =?us-ascii?Q?6njrRVAibAVOWakamWsyHooSOe/piM6X4/lz8h/TxDkrNBkY7nmnj5h7ZqVn?=
- =?us-ascii?Q?KdQGtVpXwUX9wSGdlIIgKMBhQhvkbhirrqQtsI2QL8w/vD5c8eq3Vhfly17i?=
- =?us-ascii?Q?lWpqC5ySbsx0mqzKn4HNCNA+vCH1c8VbNx6SDBpdth40hcUBkiN+Ob2hzkCM?=
- =?us-ascii?Q?6G2pJ/yPiK7J7rjW7z6IqmwOYCD2DGd5Efl2QDQa+7EhNCx1MD9xUsamUCdN?=
- =?us-ascii?Q?SzqLdFpaJVaU+MdIQPjcjFQAno/jEg61SfVu5DByVBjcs9P0w0bu9hBnXacu?=
- =?us-ascii?Q?+2rQZzbbvzMtGTM9xV2VDwVF5hRDOMbu?=
+	=?us-ascii?Q?s4MKOLZzch2J+b4RNDokKi0XuNe2stMyUPFPzZCW/UmypPaVz6lIocj7Edwl?=
+ =?us-ascii?Q?k/8SQJqqmf2VdMs+3xSuGaztcVFOW9YMijOvgCiKvPAoaUaCJcfQlma8klmI?=
+ =?us-ascii?Q?NcTTBQ5eT3PK9vvdvT9tRyD++sb8QlzZN6SGCz3rQJDsXOVYbrgdNvaCuiqk?=
+ =?us-ascii?Q?eH09WCbz/uHCZEYa1OFQPzL3b3/gB8zDU2I6k/CkYBkmgHkeowKfOXn5jLuW?=
+ =?us-ascii?Q?aZmrtYMQx4rMguiXY68SIXHW+r+j3RcD3dYEm8RllTOUGI+gQkqqlI18g6xd?=
+ =?us-ascii?Q?ZBrMGZMP8dSVGMBQv/B5exxswDK4m4L47/Dd9HdUsMYQKhGz0OoOowsul82Z?=
+ =?us-ascii?Q?fZDhfkIrILZzrJNCqJJ+GCuXCc6yaR5F51Lj2wWj5B9jEc/aRSzZ0KNy7IfB?=
+ =?us-ascii?Q?idsHvRTSQwPWEqPJeC8Wiqm6F4I7r24Z3m5eSosPtTkIA/48ZY7VyY4qIXqi?=
+ =?us-ascii?Q?R5k2PbsALGdv7NRCaz8NEd9yT2muXIgVOW3rjna5LxSbVeTlePSR+nzlIXbo?=
+ =?us-ascii?Q?gKclyxmx1Dbzpp05TMjdYuxyPcjrD7UrPdWCOi/x3qUeerwGsBhuK+qX9GXa?=
+ =?us-ascii?Q?PLOqp3hPtMhMrXe2KV9ecqbfwTyhKgMgGpGew3dOAnWiv4+dbw0BK5wGyIWI?=
+ =?us-ascii?Q?TiT1xEOP7BaER488oKUzRaxLIy6H/qSIUHx+51y/R4GiIomAZ4F1qeXFLiDg?=
+ =?us-ascii?Q?Oat7dKWMWlRDd+btS2emadGPB3048HmRaeB2L174aDe7Kdrootum6UIjOPnl?=
+ =?us-ascii?Q?gJPEmZaqVxidxn/VBlzuMUkUNw6yvv0bq33vG7SriTxM4leXHZOUbmIP9Xok?=
+ =?us-ascii?Q?vSRl44LGeczPTGBZ4mQirgVZovTwfDB9YVVwgupMBUQe4wNfd9JXNFZQbmll?=
+ =?us-ascii?Q?m15/8pozb3DrUrJvlopRVdUj9+enAOTZECK9SSU/W4uasZ8Dc4FrryoInpwp?=
+ =?us-ascii?Q?zzU1tnaE1kKFVye9AXe/7pPqBUHLzYC6uZ1++Cew8KbsCerRfDH8NgXLCXzQ?=
+ =?us-ascii?Q?/CdrISzr2Ny3Bb5ulC1IbH9U6KdqzHGqaRUvlnScBVfL9pSmWlMfkh6nERgQ?=
+ =?us-ascii?Q?mkhekgadDDsIyZzE6jbtBRYluh7tL4acsafA5i+yNUn96qWWTG83jVKwokz0?=
+ =?us-ascii?Q?6HCGYP3itm54X8RceNEpBBc7rv/a9lNGafzca07Td20DRYwaZqxyg4rkqWkY?=
+ =?us-ascii?Q?3AzOVEebHeVzL959me6d/qad32+xc0lnudmLyWQ4chSrUcja27eQVer0AXpa?=
+ =?us-ascii?Q?A8IHSdotL81xXbe+NXKqUd0aQyjZ/7j1nR8s1z+fP3cNTrEXnzyjXSm/xTWX?=
+ =?us-ascii?Q?EMB3hhTAZpFKMhgWOjQeMa/KPpO/tpzR1m46E6V5UocsCbW2JrYyGjqpO1Kj?=
+ =?us-ascii?Q?a15041zI9VAliXfyUSsnDtdwZASqPVsXQ9bMlzZnDWpJkreYy2rNSm8QIu7X?=
+ =?us-ascii?Q?b92NYhA2UZI=3D?=
 X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9621.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(376014)(52116014)(7416014)(1800799024)(366016)(38350700014)(921020);DIR:OUT;SFP:1101;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7779.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(19092799006)(10070799003);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?z7fYcCLwUSgUs0J2OllQNFTOBn9EvOak679hhEEYD/y3UrOeidRw8bqMopc/?=
- =?us-ascii?Q?xraw6KXDd82Uaq8AyFcbteepaKEuiWSBIGCXcaaRqDOidOuB8Q/QzdAoJZcC?=
- =?us-ascii?Q?SSk6wtohWhLi53TsqZ7wqgLdsUJoI77I0FgSJPKXK1MVMhqwUlVDxfu7x9WF?=
- =?us-ascii?Q?GRq53kvuqHwmPTnR6mC43qcVu2QwzJSEuqzlxwizHzLmC/cS6UbXxv3fkI4z?=
- =?us-ascii?Q?lQDvfB+cC5/R+LS6FzP7qQHbdcuBu4zfaQv/k9FkEDpq0bOGkK68N6spxm87?=
- =?us-ascii?Q?skayg3gq3QRd2w6MY+IbjW/cGM+OxUcyFMdu8xd0r49kDM9NPKLocOopOcW2?=
- =?us-ascii?Q?MrZyuH6awxKo01BLzbcV7vRbR9U383wFEBIKFYopGG5vOtT3qTXLJYZLgVvC?=
- =?us-ascii?Q?m/HJMdrdWqWzqgTXRGZX4P7WpohHV5F0mlImpgkaRKa0B0eEBHi/7wlpD1eD?=
- =?us-ascii?Q?UDgcIRvWGadmQolSDplQKmBZ+t752JGEYs14JuPOdYED/iZwy6cdz/QFStHN?=
- =?us-ascii?Q?5uj7RYSOLEZpcj+OXa/bE5+spc8LD/3zHsctlsVyGpPssaVXf4zrZ8MzmCdf?=
- =?us-ascii?Q?rRU/+fSWo/cIQapeb+36KDIXKXqulsgG6w5mBGkaXH5z4GPY6Gyq7gF0p07U?=
- =?us-ascii?Q?hsujw5Ly/38GJ43odKYdVLTOc7P4s2Bfv1MdjKZpcH+N5yF8DP6ejcU5EyUS?=
- =?us-ascii?Q?9lDLutJiTBmDLNuRlfZLmv6oTWTo82/tWIFPhR/K99kiJDZ5K5MKR96W/56f?=
- =?us-ascii?Q?zogkDIGOqprB09zaPTR3sqVDlryqb4EKGqoeHbM5WGDnjBiaAmdUih7lbA7O?=
- =?us-ascii?Q?5AnrM1uaos7EUh7lZrkDAwJmdRgfG64+R5I0aRcIaC28JE1pQpG2s3ahTJ/8?=
- =?us-ascii?Q?Vzs02Anx8vL5vfr73oivl4jJqhZfDOKjyoFlDanM18f5BgHyTQbdAzkWJrGd?=
- =?us-ascii?Q?JpTET3Iq4UTsQ7GUxCEddBEA7h6nDUJnKs2iQg8GslKnNxEBqPZhw6rFsSc3?=
- =?us-ascii?Q?4YDuY4k1F296g4DRie15uCT/BMf4ktt86dblwbWBCcAtwqeidZguqK2QK8+d?=
- =?us-ascii?Q?3dCkg87Spg/VtUbUy+7TLdSQ9IBoExoMA1Vn7vhpwVfchcLLwxdixe/3k/Wr?=
- =?us-ascii?Q?vtrgvNcwCyHc0Zul9/6M0skcjWaH5hSEfq0QbKTLSLtE0yiU1K0V2jINhFu/?=
- =?us-ascii?Q?GNeQQG9fwCeOFztW+I7lfyXSWUqyZynS7ESskv6DNIimfQ3Yhpe5t1LBVstv?=
- =?us-ascii?Q?y2FAaOjgC78OYjJkM+bc3tOep5aN0J2jG+SRXOhwMlQIZY4EGQb9WK2UNblX?=
- =?us-ascii?Q?8gT8+HqNQKmvKupWYzJOVKAdNlrgIWNcAr5bkbISVbaH7c6cdARsdPY8H8T6?=
- =?us-ascii?Q?kCyzxtyOs9i1qHd/pTLdlc1qz65TH3embK/2mcGBZVSTgyY7N7vBpHFyVkAZ?=
- =?us-ascii?Q?ah0tjUYwusEazoR7ieQKHOX8phQ49NL39IxFuPKTCl+wr7npufJlEpXh/cht?=
- =?us-ascii?Q?VC8ePa8v/l+X9eb+bRBkVZPcG7STDxGLV8fLR55OGEoW3JwdfezkCDVX+WiP?=
- =?us-ascii?Q?YykGoooQoav1AMtiXn2Hf/TVdow+5QXwzk2OlOVc?=
+	=?us-ascii?Q?d3IpDxmrm6IHmAH91I7006/egPOo4QJl7TElvUXMMey5HdA9BfqKIyzzRwaj?=
+ =?us-ascii?Q?Sj7zeLaTI6E7D8iCjA2zuftDZ3VLj42DStkhNQKJ1de5NB5vhqlf810yR4kF?=
+ =?us-ascii?Q?WBrdf/97/5reFQF5dvxVIUHPrnRHDsPBONVXBmJ7OB7GjseqxIPtItLnZCv2?=
+ =?us-ascii?Q?XggmhJFeKEkV6CXY1cKIUsP4BlX7TL/W19RkM8Uw185oiFb9BTpJaPiZ/AeT?=
+ =?us-ascii?Q?gEEqZdl6eqrZ/X9pgJb30DcMk+ImPKjVjpfw/OEwT9PtZU5bEPggP4R32/xb?=
+ =?us-ascii?Q?Auy8ytGpvqUI/z531GvDFc2NsQp513+unl8pgSbYHKpvFnEl7OfdZ0R0Gv3Z?=
+ =?us-ascii?Q?V0BNeHnxt1s/RARfR/iMEi25THmj5csmR+aryqfn1YvxUZKA7aGBv1fGCYls?=
+ =?us-ascii?Q?YPJDNOqTsIkxScxMLRaTZgyY+WxuQ0z2RhfYKv8gWnOTviRLecCvfV4efhud?=
+ =?us-ascii?Q?1Uv3BZ7X7IWgeTWIOjvPe977Tc8fJ3GW9tC35gheeh/ZVjxpO/E31gSiFRar?=
+ =?us-ascii?Q?RsS6qxV3IDnirm7RSknfgYmgiZjerJZ7eRB/E8d8BFp5NfaEs7XVInU4WJ3H?=
+ =?us-ascii?Q?uW4ko8P9nSCehu/qZ59UxCzKnFmbooI3/kJVdg541sXzieMtu683otvj0Lgy?=
+ =?us-ascii?Q?+u3ktbl14T+YBZSAApV92Rjxq/lIg0KGERq2WKCnjNENeo4CEuqe405LTBNr?=
+ =?us-ascii?Q?3ZsxERAWZkJD6UC1PZqhf0iljPA5cDLWgngA3fnXS2qK5BQGaEvbEG+k2EwY?=
+ =?us-ascii?Q?Vjzhv/wX9+fD2uhK8Jx4lpzQDj6c907mm1esSVrzqz/Hn7ua7zXJ8BFX2t+L?=
+ =?us-ascii?Q?Fn2t8U+Nu4X7lv05Gdm8zl43BCtKwHiXVT54Fd6fI8j5VOQ3yHHM8dpHtesg?=
+ =?us-ascii?Q?dW+mrv07gDcfBFM4Hg879zt3uCWJZy3sz2YqSxriH9M1wAmUrZoDRURLQZH3?=
+ =?us-ascii?Q?AnIcvBr8QmJ55rj1nqKX1jUfi5tV6vVYbMTX22mkl0COWciJzzSOOPR08oZi?=
+ =?us-ascii?Q?ULdAGo7C9ntDx5itHJiJncLyWUOTWpTXBYiuW9HEF0LQAdQqzy9anCvb0RlH?=
+ =?us-ascii?Q?ZQpyPtqaak5bJs+ziRoXiYTYNKyUgNkUR+8F6t4sVlg9hu3GNk1cOlJxIBhs?=
+ =?us-ascii?Q?cPjiWekw+fTgWjGDv1TRTcqcUDcTPcd2iYWyefu7WAMI1/akx8oPndmEWAFo?=
+ =?us-ascii?Q?HuZ8QREgzhTBZnY9jW2GRu599gjXx4T5TyA0Xh+5N8/UerkwX3CiH4rrkicF?=
+ =?us-ascii?Q?F/JPgcnDDK0CXIMNOEaaKy3KFqUYuCc+1dG9WwjBW979FoTQbyMGIsQQBTM7?=
+ =?us-ascii?Q?KMbbJ+PhV0g7kFc6YBaSRvhwdtelJ8PegSKvvNaoGk/oaNUnImtM3dYl6i70?=
+ =?us-ascii?Q?5Dz2IP9c6GNyvHezizrNFmta2D5u5ehGxOjnXQ5Q9psOKUrhPzIBFU7i3E5p?=
+ =?us-ascii?Q?JjIub+iJ+zPadRmE12HeJLet3wd9LpWJY9RUT5DwsUOKUel+vP6hOQyKzErx?=
+ =?us-ascii?Q?fVsOTaPA3Z1sYMmHZKrimkDObgwLK6/YxJrG6nNQGaPuGuJwI3Hx24yAg43U?=
+ =?us-ascii?Q?FJoYyCmIPl9slwRXHr5mdPFHTvbH+9IklpT0L2zqM1pSiSPS7puhVv0se99D?=
+ =?us-ascii?Q?YMZ29Zb/0wMWBLc1DrST948YVpI0U3jBllVVtqTWTlsuYxRxpByv4Mq1l7wa?=
+ =?us-ascii?Q?Ulcodw=3D=3D?=
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a1e665f4-ef51-4326-25ca-08ddfae39c81
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7e871d34-db79-4b1e-ec45-08ddfae3d77b
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7779.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2025 20:56:05.3057
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2025 20:57:43.8001
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: rxjAbuwMs1tHV1W2+eKJMh4qeZxGtGsaFCQ1nykwXchAYh+CjZzFtY1w17UZ4qpSuSZRGTmen4nqkTYwB5OdDg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9428
+X-MS-Exchange-CrossTenant-UserPrincipalName: chsiM5/NQqIAsfEeAu0Bbk0+sfwjse72bk4vAhSZCw2Oghdg0u7yq13QIS29toppK20VSSaxCUtZWc1pzL3/ww==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6928
 
-Convert megachips-stdpxxxx-ge-b850v3-fw.txt to yaml format.
+On Tue, Sep 23, 2025 at 03:37:31PM -0500, Rob Herring (Arm) wrote:
+> My bot found errors running 'make dt_binding_check' on your patch:
+> 
+> yamllint warnings/errors:
+> ./Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml:42:18: [error] string value is redundantly quoted with any quotes (quoted-strings)
+> ./Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml:46:18: [error] string value is redundantly quoted with any quotes (quoted-strings)
+> ./Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml:49:18: [error] string value is redundantly quoted with any quotes (quoted-strings)
+> 
+> dtschema/dtc warnings/errors:
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250923194445.454442-13-vladimir.oltean@nxp.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+>
 
-Additional changes:
-- Only keep one example.
+Sorry, I literally didn't notice this warning even though it seems I am
+also reproducing it locally.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-change in v2
-- add description for port@0 and port@1
-- add both ports to required list
----
- .../megachips,stdp2690-ge-b850v3-fw.yaml      | 111 ++++++++++++++++++
- .../megachips-stdpxxxx-ge-b850v3-fw.txt       |  91 --------------
- 2 files changed, 111 insertions(+), 91 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/megachips,stdp2690-ge-b850v3-fw.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/bridge/megachips-stdpxxxx-ge-b850v3-fw.txt
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/megachips,stdp2690-ge-b850v3-fw.yaml b/Documentation/devicetree/bindings/display/bridge/megachips,stdp2690-ge-b850v3-fw.yaml
-new file mode 100644
-index 0000000000000..dfa6ff6f115e5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/megachips,stdp2690-ge-b850v3-fw.yaml
-@@ -0,0 +1,111 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/megachips,stdp2690-ge-b850v3-fw.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: GE B850v3 video bridge
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+description: |
-+   STDP4028-ge-b850v3-fw bridges (LVDS-DP)
-+   STDP2690-ge-b850v3-fw bridges (DP-DP++)
-+
-+   The video processing pipeline on the second output on the GE B850v3:
-+
-+   Host -> LVDS|--(STDP4028)--|DP -> DP|--(STDP2690)--|DP++ -> Video output
-+
-+   Each bridge has a dedicated flash containing firmware for supporting the custom
-+   design. The result is that, in this design, neither the STDP4028 nor the
-+   STDP2690 behave as the stock bridges would. The compatible strings include the
-+   suffix "-ge-b850v3-fw" to make it clear that the driver is for the bridges with
-+   the firmware specific for the GE B850v3.
-+
-+   The hardware do not provide control over the video processing pipeline, as the
-+   two bridges behaves as a single one. The only interfaces exposed by the
-+   hardware are EDID, HPD, and interrupts.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - megachips,stdp4028-ge-b850v3-fw
-+      - megachips,stdp2690-ge-b850v3-fw
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    properties:
-+      port@0:
-+        description: sink port
-+        $ref: /schemas/graph.yaml#/properties/port
-+
-+      port@1:
-+        description: source port
-+        $ref: /schemas/graph.yaml#/properties/port
-+
-+    required:
-+      - port@0
-+      - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - ports
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: megachips,stdp4028-ge-b850v3-fw
-+    then:
-+      required:
-+        - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        bridge@73 {
-+            compatible = "megachips,stdp4028-ge-b850v3-fw";
-+            reg = <0x73>;
-+            interrupt-parent = <&gpio2>;
-+            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                port@0 {
-+                    reg = <0>;
-+
-+                    endpoint {
-+                        remote-endpoint = <&lvds0_out>;
-+                    };
-+
-+                };
-+
-+                port@1 {
-+                    reg = <1>;
-+
-+                    endpoint {
-+                        remote-endpoint = <&stdp2690_in>;
-+                    };
-+               };
-+            };
-+        };
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/display/bridge/megachips-stdpxxxx-ge-b850v3-fw.txt b/Documentation/devicetree/bindings/display/bridge/megachips-stdpxxxx-ge-b850v3-fw.txt
-deleted file mode 100644
-index 09e0a21f705ef..0000000000000
---- a/Documentation/devicetree/bindings/display/bridge/megachips-stdpxxxx-ge-b850v3-fw.txt
-+++ /dev/null
-@@ -1,91 +0,0 @@
--Drivers for the second video output of the GE B850v3:
--   STDP4028-ge-b850v3-fw bridges (LVDS-DP)
--   STDP2690-ge-b850v3-fw bridges (DP-DP++)
--
--The video processing pipeline on the second output on the GE B850v3:
--
--   Host -> LVDS|--(STDP4028)--|DP -> DP|--(STDP2690)--|DP++ -> Video output
--
--Each bridge has a dedicated flash containing firmware for supporting the custom
--design. The result is that, in this design, neither the STDP4028 nor the
--STDP2690 behave as the stock bridges would. The compatible strings include the
--suffix "-ge-b850v3-fw" to make it clear that the driver is for the bridges with
--the firmware specific for the GE B850v3.
--
--The hardware do not provide control over the video processing pipeline, as the
--two bridges behaves as a single one. The only interfaces exposed by the
--hardware are EDID, HPD, and interrupts.
--
--stdp4028-ge-b850v3-fw required properties:
--  - compatible : "megachips,stdp4028-ge-b850v3-fw"
--  - reg : I2C bus address
--  - interrupts : one interrupt should be described here, as in
--    <0 IRQ_TYPE_LEVEL_HIGH>
--  - ports : One input port(reg = <0>) and one output port(reg = <1>)
--
--stdp2690-ge-b850v3-fw required properties:
--    compatible : "megachips,stdp2690-ge-b850v3-fw"
--  - reg : I2C bus address
--  - ports : One input port(reg = <0>) and one output port(reg = <1>)
--
--Example:
--
--&mux2_i2c2 {
--	clock-frequency = <100000>;
--
--	stdp4028@73 {
--		compatible = "megachips,stdp4028-ge-b850v3-fw";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		reg = <0x73>;
--
--		interrupt-parent = <&gpio2>;
--		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
--
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			port@0 {
--				reg = <0>;
--				stdp4028_in: endpoint {
--					remote-endpoint = <&lvds0_out>;
--				};
--			};
--			port@1 {
--				reg = <1>;
--				stdp4028_out: endpoint {
--					remote-endpoint = <&stdp2690_in>;
--				};
--			};
--		};
--	};
--
--	stdp2690@72 {
--		compatible = "megachips,stdp2690-ge-b850v3-fw";
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		reg = <0x72>;
--
--		ports {
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			port@0 {
--				reg = <0>;
--				stdp2690_in: endpoint {
--					remote-endpoint = <&stdp4028_out>;
--				};
--			};
--
--			port@1 {
--				reg = <1>;
--				stdp2690_out: endpoint {
--					/* Connector for external display */
--				};
--			};
--		};
--	};
--};
--- 
-2.34.1
-
+I hope this doesn't mean the patch won't get reviewed.
 
