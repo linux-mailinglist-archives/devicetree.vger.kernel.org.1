@@ -1,146 +1,184 @@
-Return-Path: <devicetree+bounces-220276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B3CEB93D2D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 03:20:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15BFEB93E0E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 03:33:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B5CB1896543
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 01:21:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C057E482AE8
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 01:33:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEAB41EB9FA;
-	Tue, 23 Sep 2025 01:20:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED9A12DE1E5;
+	Tue, 23 Sep 2025 01:29:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="COY5I7jk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KD7BUALE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m15597.qiye.163.com (mail-m15597.qiye.163.com [101.71.155.97])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A63E71386B4;
-	Tue, 23 Sep 2025 01:20:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.97
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8ABE2797AC
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 01:29:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758590440; cv=none; b=sWxa+0p/GPfq5izNZPI4709NJAmpHE+H0moHqyHt5ASqsMer8SzpcuGo8ObBZ3veA3hrgcCaDoo3PwcVTr8hCzViIqTMk+bRowJqjtfpKnUylV+Jjj2QI1oXq0uepr+9nk22p/9Jaz+UzUScv7lKmmL6YboIxERZw1dQKZd6Sh4=
+	t=1758590979; cv=none; b=P9jNiD+Nams9QW0IWbyMXtqayw38/Ix+CjmuTJOzT1C8+0TG+T6wKXMxRtV5KuU2dMtfgc6ayKq23soqy3tQhAKgttqiGEZwhG+JNxtadjDep/aUoh4p7I6boV3810Y0VoqDF6hYq5VvA/4HXKSxhRRvy2k4boZxTX3o+GKs6Lc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758590440; c=relaxed/simple;
-	bh=EBLtSizlEaGrkSeBx2Zot7Oeyumos8fWX3DZsxqhFMU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UOd2xWO9aZL8BVCDbrEJ6hWZnlWn6xvytIcX225Rbzc717Ex+QdahhJW/THoVZHipiNIu5+jj3r+rjd1zBhbaxnkbKmILDUKZl1yNscH/H89Q9/wJCbKaNiaMvtVwSvaTqQ4KXj5Ugu9cyu8WQluZxW/ryXvZeDBK/nDsi57/IA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=COY5I7jk; arc=none smtp.client-ip=101.71.155.97
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.153] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 23b3334ac;
-	Tue, 23 Sep 2025 09:15:15 +0800 (GMT+08:00)
-Message-ID: <5d078df4-4e0b-464b-9c2f-28b9a2669c5c@rock-chips.com>
-Date: Tue, 23 Sep 2025 09:15:13 +0800
+	s=arc-20240116; t=1758590979; c=relaxed/simple;
+	bh=Keih4ozM2ClJ7bLKolp4rzu48rFOC9n6MVTSF0I4RXw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZH0LWkSVUgsuxclEO8RRTd25IpxnaW9wPh/vfb7jgQdCp+boynNIUNg1vIc85oT0rynyMrLCZr+njVf2jIu1JVtN8r8RXAOChBttmKKPqZnH+6mY3L4iS4u0YXDv+Sgek+yfcRTPX9ECcaH31v8wq3yWjetk3r17bCssE29X/g8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KD7BUALE; arc=none smtp.client-ip=209.85.216.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-3306d93e562so4370253a91.1
+        for <devicetree@vger.kernel.org>; Mon, 22 Sep 2025 18:29:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758590977; x=1759195777; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UGIEsRlxQ6SB/60aNk9YuezwzaWruzT6GSumf3z2VMQ=;
+        b=KD7BUALE4v6krkpM1w5HFveuUWLHuqKX0i8IedmTFjKuihlgcte6bH0rnx/uwFWa42
+         uNysOBNbybAjUJmWGpM9dGQsSyC7tipoEiQswPILeP09U4LIFBI/0RcQob9IS+OQFY+n
+         zXpS21Ub3LESB8d/W7bUjw8xJWUdqbRrEA02S8nvqWJmcBZiXo0lSNRZ58r+CUW8wCTP
+         cRBkl+V1XaFjTjdJjS5foK5pzi2WgJiASaC/RXiAXi9M0kwFFUntcVoczNfELNfGysN/
+         oYqcIiHpu8gw+0ihek1QJnMU8o7FkNCVulheGXq33Oj43smU3sUL79pFlM2j+zZy6Ck/
+         ZApw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758590977; x=1759195777;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UGIEsRlxQ6SB/60aNk9YuezwzaWruzT6GSumf3z2VMQ=;
+        b=TnuagU3fmekkdW1xFtIHGoIu9zfI6JXa2KiifS847yrFT59hLKrVO38sX2iRSmRjLW
+         /a/EU/jvraCWBhvw0yf30td69SzXBQy37ojWi2p5HhXwjEfgojxICwpj97ACUw1kq31x
+         6iD0LtrozToHExkJy7jTsELQ6Fk49D1qAKRvRARHEcfkcyL1KgfRSFjfeP9KpCAJSDcd
+         V9hWn0BOjk87PC879fB0pk+57BKBbXAUDWv1BbDBI303y5cAMqcl/2AibGjjUCtX0D2J
+         OIzQkQI0apMUgkGG2l/QJ7MqtLemcHxWSaCkjn5NkzaqgYKC28PXPrJ+oCP3PTP1K07U
+         tsYA==
+X-Forwarded-Encrypted: i=1; AJvYcCUJCSqFQd7KyjTzdPGaVc/5F1PKCz4q/zWM0eWgYvNcaP5Wvs+cbWmCd4ORDMmkh6R58b4ILYKHGoTZ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzn4HemyDxfKDDFn+V/Xzn8+F9hrZD5zKbyT+vIukz9oZsFVID2
+	qwGgAdyh4OhTFcDW5yPikMWADKYpSYORPpr7ZHRTAA8U+qMJw8RyHmI2Db/S8IiNWwdPp19nUSJ
+	vKgDI8UPk9osuMllE/1k9oul4sGIiXWs=
+X-Gm-Gg: ASbGnctvkerJ8RLsJ5JfjXIsOacydB9l8OTKZP/TT9EfymW+JwzoLJH45V/Nv0k6aQg
+	OYGg2AieCLGGpaBQMw/OVZULx97huCKOTXBsP6gqqU+0R1V+FI7EyMxsXXPo0IufrgL6ypQabwI
+	3q6t/i7IwcksrM32WvdQgCKinSQvvZDplntZ3jmLzch3yLi85EVonWnFZq2DjN6NlYc5UFm2vci
+	qfUMYU=
+X-Google-Smtp-Source: AGHT+IGBT9LTfm84q4DXIRoJSFR8hZ2WWRU49SsvtumqUnLfaKU5tnx1duKBXoUog0HE+Dc5+BSde4IFSplat+4nyaY=
+X-Received: by 2002:a17:90b:33c8:b0:32d:f4cb:7486 with SMTP id
+ 98e67ed59e1d1-332a95e8e19mr1041351a91.19.1758590976762; Mon, 22 Sep 2025
+ 18:29:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/7] drm/rockchip: cdn-dp: Support handle lane info
- without extcon
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Chaoyi Chen <kernel@airkyi.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
- Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-References: <20250922012039.323-1-kernel@airkyi.com>
- <20250922012039.323-5-kernel@airkyi.com>
- <gcgiszrrpqkoi3mhajn4i72awbffqv6mayahmnyswoitxxmrgd@nr2z4cpurbwq>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <gcgiszrrpqkoi3mhajn4i72awbffqv6mayahmnyswoitxxmrgd@nr2z4cpurbwq>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-HM-Tid: 0a9974239f4c03abkunmb38508cda8da5
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZQ0JDSlZDGBhCH0NKQ09DT0JWFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
-	xVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=COY5I7jkTU/zXnYTeQOMUc3ZPuGFmr7/r/7qdm6w5dIx4BIwgxKuHNnKEw48qSuL2b7I94/K+LtFixhilqgXOiMbji0L+k7o+/ueZ9uLqIghKjY/fF4rNBK3sPFb4H4n910b157/pQHZiPerd1v1I9xllp6XzfHxWzaziQqdB9A=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=TnzpHwo3q7997FFkEs8jwSh1z9SSMeRB7M3+4Ac9o8k=;
-	h=date:mime-version:subject:message-id:from;
+References: <20250821073131.2550798-1-shengjiu.wang@nxp.com>
+ <20250821073131.2550798-5-shengjiu.wang@nxp.com> <20250901185208.394cd162@booty>
+ <CAA+D8AOCTqb5jLeRapYk4wRGZrsrPiuAR=ow3OA1B0+M9X4k7w@mail.gmail.com>
+ <20250909-omniscient-honeybee-of-development-adca8a@houat>
+ <CAA+D8AM=aRU-0QcgtxZ+=YBZ2+kMrP2uzSE3e+NJs3Z3zkrSVg@mail.gmail.com> <97288c51-954a-48a9-92b9-e165ce480707@nxp.com>
+In-Reply-To: <97288c51-954a-48a9-92b9-e165ce480707@nxp.com>
+From: Shengjiu Wang <shengjiu.wang@gmail.com>
+Date: Tue, 23 Sep 2025 09:29:23 +0800
+X-Gm-Features: AS18NWBhgiBnQW_QrjL4oCw3YUyblBEb719xz-MBTlZAVwouH205ucQ6fmr_z54
+Message-ID: <CAA+D8APA85PhWVkW7c=d_qWF7L1ERxe7cS3Gg00SV-3TSyLwQw@mail.gmail.com>
+Subject: Re: [PATCH v5 4/7] drm/bridge: dw-hdmi: Add API dw_hdmi_set_sample_iec958()
+ for iec958 format
+To: Liu Ying <victor.liu@nxp.com>
+Cc: Maxime Ripard <mripard@kernel.org>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Shengjiu Wang <shengjiu.wang@nxp.com>, andrzej.hajda@intel.com, neil.armstrong@linaro.org, 
+	rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, 
+	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com, 
+	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, lumag@kernel.org, 
+	dianders@chromium.org, cristian.ciocaltea@collabora.com, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	p.zabel@pengutronix.de, devicetree@vger.kernel.org, l.stach@pengutronix.de, 
+	perex@perex.cz, tiwai@suse.com, linux-sound@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 9/22/2025 6:01 PM, Dmitry Baryshkov wrote:
+On Mon, Sep 22, 2025 at 11:01=E2=80=AFAM Liu Ying <victor.liu@nxp.com> wrot=
+e:
+>
+> On 09/10/2025, Shengjiu Wang wrote:
+> > Hi
+> >
+> > On Tue, Sep 9, 2025 at 2:39=E2=80=AFPM Maxime Ripard <mripard@kernel.or=
+g> wrote:
+> >>
+> >> Hi,
+> >>
+> >> On Wed, Sep 03, 2025 at 06:41:05PM +0800, Shengjiu Wang wrote:
+> >>> On Tue, Sep 2, 2025 at 12:52=E2=80=AFAM Luca Ceresoli <luca.ceresoli@=
+bootlin.com> wrote:
+> >>>>
+> >>>> Hello Shengjiu,
+> >>>>
+> >>>> On Thu, 21 Aug 2025 15:31:28 +0800
+> >>>> Shengjiu Wang <shengjiu.wang@nxp.com> wrote:
+> >>>>
+> >>>>> Add API dw_hdmi_set_sample_iec958() for IEC958 format because audio=
+ device
+> >>>>> driver needs IEC958 information to configure this specific setting.
+> >>>>>
+> >>>>> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> >>>>> Acked-by: Liu Ying <victor.liu@nxp.com>
+> >>>>
+> >>>> [...]
+> >>>>
+> >>>>> +void dw_hdmi_set_sample_iec958(struct dw_hdmi *hdmi, unsigned int =
+iec958)
+> >>>>> +{
+> >>>>> +     mutex_lock(&hdmi->audio_mutex);
+> >>>>> +     hdmi->sample_iec958 =3D iec958;
+> >>>>> +     mutex_unlock(&hdmi->audio_mutex);
+> >>>>> +}
+> >>>>
+> >>>> Apologies for jumping in the discussion as late as in v5, but I noti=
+ced
+> >>>> this patch and I was wondering whether this mutex_lock/unlock() is
+> >>>> really needed, as you're copying an int.
+> >>>
+> >>> Thanks for your comments.
+> >>>
+> >>> Seems it is not necessary to add mutex here. I just follow the code a=
+s
+> >>> other similar functions.  I will send a new version to update it.
+> >>
+> >> Let's not be smart about it. Next thing you know, someone will add
+> >> another field in there that would absolutely require a mutex and now
+> >> you're not race free anymore.
+> >>
+> >> Unless there's a real concern, the mutex must stay.
+> >>
+> >
+> > Ok, thanks for comments.  Then Patch v6 need to be dropped.
+>
+> To properly track the changelog with patchwork, can you send v7 to add
+> the mutex?
 
-> On Mon, Sep 22, 2025 at 09:20:36AM +0800, Chaoyi Chen wrote:
->> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>
->> This patch add support for get PHY lane info without help of extcon.
->>
->> There is no extcon needed if the Type-C controller is present. In this
->> case, the lane info can be get from PHY instead of extcon.
->>
->> The extcon device should still be supported if Type-C controller is
->> not present.
->>
->> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->> ---
->>
->> Changes in v4:
->> - Remove cdn_dp_hpd_notify().
->>
->> (no changes since v3)
->>
->> Changes in v2:
->> - Ignore duplicate HPD events.
->>
->>   drivers/gpu/drm/rockchip/cdn-dp-core.c | 25 +++++++++++++++++--------
->>   1 file changed, 17 insertions(+), 8 deletions(-)
->>
->> @@ -1120,14 +1129,14 @@ static int cdn_dp_probe(struct platform_device *pdev)
->>   		    PTR_ERR(phy) == -EPROBE_DEFER)
->>   			return -EPROBE_DEFER;
->>   
->> -		if (IS_ERR(extcon) || IS_ERR(phy))
->> +		if (IS_ERR(phy) || PTR_ERR(extcon) != -ENODEV)
->>   			continue;
-> This will break the case when the extcon is present. It should be
-> (IS_ERR(extcon) && PTR_ERR(extcon) != -ENODEV)
+Yes, will send it.
 
-Yes, will fix in v5
+Best regards
 
+Shengjiu wang
 
 >
->>   
->>   		port = devm_kzalloc(dev, sizeof(*port), GFP_KERNEL);
->>   		if (!port)
->>   			return -ENOMEM;
->>   
->> -		port->extcon = extcon;
->> +		port->extcon = IS_ERR(extcon) ? NULL : extcon;
->>   		port->phy = phy;
->>   		port->dp = dp;
->>   		port->id = i;
->> -- 
->> 2.49.0
->>
--- 
-Best,
-Chaoyi
-
+> >
+> > Is there any other comments for this Patch v5?
+> > If no, can this series be accepted?
+> >
+> > Best regards
+> > Shengjiu Wang
+>
+>
+> --
+> Regards,
+> Liu Ying
 
