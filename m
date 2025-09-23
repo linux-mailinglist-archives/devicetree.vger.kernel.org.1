@@ -1,108 +1,188 @@
-Return-Path: <devicetree+bounces-220476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E798B96AE0
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 17:57:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95A75B96B17
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 18:01:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19B557A5699
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 15:55:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 804082E383D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:01:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D90D7273D6C;
-	Tue, 23 Sep 2025 15:56:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3B8D266B6B;
+	Tue, 23 Sep 2025 16:00:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="d6d07kjy"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Urym+XVf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FBCC223DDA
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 15:56:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC784AD24;
+	Tue, 23 Sep 2025 16:00:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758643014; cv=none; b=PPWqr+bMF6mHND2pQdH6XFxAhWvY9N3hlT4vkLAUxqy8dttawnlYHkb+qzjI+vN0aCBgntMn1HRvy45zdtFaLTlF3CoHfn/iJqVIXYbw4E8GAkZce8QPT1TvBj50jK4VQf0sOteqoVW/fzQRWgsMhDP79QnKSwEbUXP1R5bs4EQ=
+	t=1758643257; cv=none; b=Z0cOuVT6SaGfIGpWV1+K+eY8C5e9THfE7eaaIR0nf1rrnOeVpDY4SNXsfzESL3X65TorBQpTnf2Fu+HiuNclN4MYF986VlcUHHJj+FkMSPGqX/Lz53W8sYznKFripE8XecbCSTy2NgJ9uV8y/wmnrCXbNAbU9OpK5FTujI72J1k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758643014; c=relaxed/simple;
-	bh=pdqBZomuWzF2E2Gt4ZnTRDvbQ1JFQQm8XXayTiLLzPU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IjvfEvviHSdaFLnO8cnDgu7WHmtyF+a7mSQT71F0aYnT1NqckhySBieEcl2W0q+gBbtaY7Tcf+K33fGmVLgIvD84BQQlcX0IbL4KBOkY+EohtrVl7eB4fscpGM3qSYEVNFSL87V+atMilXuHFPmFrQGfvFm/eAwhsN923Nhk8dI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=d6d07kjy; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: by linux.microsoft.com (Postfix, from userid 1152)
-	id 9BA8B2015510; Tue, 23 Sep 2025 08:56:47 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com 9BA8B2015510
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1758643007;
-	bh=JW6Pq0osddemYt/bdOCpAcfjllFX2GB9kYb3rxjKU1g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d6d07kjygCRywb698zp2lefj4VDV404AV36O9xh5AE+1GNG0a2jt/0hpzLu8QJQcL
-	 ECN8IvpEiBbc7+D9RGPJsYTiQoEkMb8od7hrQWMMJzQRvlsSxnai4rFnr+3usp0m4Y
-	 ZbxEKaGcTAem4frcTuE0FBtJbFhV335EYU3Zfcfk=
-Date: Tue, 23 Sep 2025 08:56:47 -0700
-From: Shyam Saini <shyamsaini@linux.microsoft.com>
-To: Jason Gunthorpe <jgg@ziepe.ca>, Will Deacon <will@kernel.org>
-Cc: thierry.reding@gmail.com, robin.murphy@arm.com, robh@kernel.org,
-	joro@8bytes.org, iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	virtualization@lists.linux.dev, jacob.pan@linux.microsoft.com,
-	eric.auger@redhat.com, code@tyhicks.com,
-	eahariha@linux.microsoft.com, vijayb@linux.microsoft.com,
-	bboscaccy@linux.microsoft.com, saravanak@google.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, lizhi.hou@amd.com,
-	clement.leger@bootlin.com
-Subject: Re: [PATCH v4 3/4] arm-smmu: select suitable MSI IOVA
-Message-ID: <20250923155647.GA22010@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
-References: <20250909154600.910110-1-shyamsaini@linux.microsoft.com>
- <20250909154600.910110-4-shyamsaini@linux.microsoft.com>
- <aMw4I0AjKNPY6SOw@willie-the-truck>
- <20250918224322.GR1326709@ziepe.ca>
- <aM0HQ51DelZW_Rt8@willie-the-truck>
- <20250919120839.GV1326709@ziepe.ca>
+	s=arc-20240116; t=1758643257; c=relaxed/simple;
+	bh=K7M/K8PJaKiTPwz6Eczu59Ns1Bon47X7ntTa0Mc316Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=dxbdKqP5vghmVOcag+rnG+XGnHc5gPaGM4opqsZlKwquaYQDsy4+qZHas5QugiBf2KPhvu6CrpvaRIoHxykuanyIlADWACFL871jvMqD/ZGidu+de9xvgMrR0f+WNtTZiJtmIfKHjGLzTIiiG4OI8Fl87BWlBFhaT/vNBrioljc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Urym+XVf; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id EC70A1A0E34;
+	Tue, 23 Sep 2025 16:00:50 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id B823260690;
+	Tue, 23 Sep 2025 16:00:50 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5B51A102F1970;
+	Tue, 23 Sep 2025 18:00:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1758643249; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=icwF1/4dEy4IPtNLQ9Fgq/jQqRBedbtujUnUyxMQyX4=;
+	b=Urym+XVf2RqOOxlrMBQbWD850F/+/94MWb+fzY88jJaMJzM4UtYab9j/uItH15hRP8tY4/
+	/L0xvol0ZFvzTZiIiEijE73gDzYlkfezWOtdZ5wQvCgSCw9NcrjhR7ZEqqrNaLfWbX5UNU
+	A3VIMLhYhe7oKGHPSp96ibe7w7Ow5NM0VJJBNLkDCwLoBr4twTSlLU47iAn4mkQvLh6ZTo
+	rLMVXBFwB/0W7ezxlMGs/0/mbIN/d/1VaK2tpHwCWbsbwaBZT/8bckSGRDyishTE99E36O
+	sEXLMQZgCXnPzNsumLQkQtZ/VdWiPPeKyS79KpNQBtAS2U/n1/ywBtbX9AY1EA==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH net v6 0/5] net: macb: various fixes
+Date: Tue, 23 Sep 2025 18:00:22 +0200
+Message-Id: <20250923-macb-fixes-v6-0-772d655cdeb6@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250919120839.GV1326709@ziepe.ca>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIABbE0mgC/23NTQ7CIBAF4Ks0rMUw/LTFlfcwLlocLIktBhqia
+ Xp3CRutunzz5ptZSMTgMJJDtZCAyUXnpxzqXUXM0E1XpO6SM+GMK9aylo6d6al1D4wUuVUNQwA
+ ugWRwD1iKvH8iE87knIeDi7MPz/IgiVL9u5UEZZS1FqzpFTTaHnvv55ub9saP5VCSH5izDZYZc
+ 2GE1pJrqOUvVm+sYYtVxlaC6ETNwOAXXtf1BTVkKX4lAQAA
+X-Change-ID: 20250808-macb-fixes-e2f570e11241
+To: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Nicolas Ferre <nicolas.ferre@microchip.com>, 
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, 
+ Geert Uytterhoeven <geert@linux-m68k.org>, 
+ Harini Katakam <harini.katakam@xilinx.com>, 
+ Richard Cochran <richardcochran@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Sean Anderson <sean.anderson@linux.dev>
+X-Mailer: b4 0.14.2
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Jason, Will,
+This would have been a RESEND if it wasn't for that oneline RCT fix.
+Rebased and tested on the latest net/main as well, still working fine
+on EyeQ5 hardware.
 
-On 19 Sep 2025 09:08, Jason Gunthorpe wrote:
-> On Fri, Sep 19, 2025 at 08:33:23AM +0100, Will Deacon wrote:
-> > pieces and will need to work on the userspace side. It's not like
-> > MSI_IOVA2 is magically going to work (and I bet it won't be tested).
-> 
-> It could, if someone checks the default memory map a second constant
-> could be selected that works.
-> 
-> > > Nicolin has some patches on the iommufd side to let userspace select
-> > > the MSI address instead, but they are not done yet.
-> > 
-> > Maybe we should just wait for that? Carrying a temporary hack with ABI
-> > implications to support broken hardware isn't particularly compelling
-> > to me.
-> 
-> This patch would still be needed for kernel users.
-> 
-> Arguably the kernel users should just be using the iova allocator from
-> dma-iommu.c. This whole hard coded constant/sneaky uapi is just a hack
-> to make vfio work..
-> 
-> So maybe if the single constant doesn't work we could set some
-> indication that the caller must allocate the MSI iova, the kernel can
-> use the dma-iommu allocator and VFIO can just refuse to use the device
-> for now.
+Fix a few disparate topics in MACB:
 
-So, are we settling on having two predefined MSI IOVA base constants,
-and if both of those conflict with reserved regions on a given platform,
-falling back to dynamic allocation via the IOVA allocator? Just checking
-if that's the consensus we're reaching.
+[PATCH net v6 1/5] dt-bindings: net: cdns,macb: allow tsu_clk without tx_clk
+[PATCH net v6 2/5] net: macb: remove illusion about TBQPH/RBQPH being per-queue
+[PATCH net v6 3/5] net: macb: move ring size computation to functions
+[PATCH net v6 4/5] net: macb: single dma_alloc_coherent() for DMA descriptors
+[PATCH net v6 5/5] net: macb: avoid dealing with endianness in macb_set_hwaddr()
+
+Patch 3/5 is a rework that simplifies patch 4/5. It is the only non-fix.
+
+Pending series on MACB are: (1) many cleanup patches, (2) patches for
+EyeQ5 support and (3) XDP work. Those will be sent targeting
+net-next/main once this series lands there, aiming to minimise merge
+conflicts. Old version of(1) and (2) are visible in the V2 revision [0].
 
 Thanks,
-Shyam
+Have a nice day,
+Théo
+
+[0]: https://lore.kernel.org/lkml/20250627-macb-v2-0-ff8207d0bb77@bootlin.com/
+
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+---
+Changes in v6:
+- RCT fix on top/bottom variables in macb_set_hwaddr().
+- Link to v5: https://lore.kernel.org/r/20250910-macb-fixes-v5-0-f413a3601ce4@bootlin.com
+
+Changes in v5:
+- Fix hwaddr endianness patch following comment by Russell [2].
+  [2]: https://lore.kernel.org/lkml/DCKQTNSCJD5Q.BKVVU59U0MU@bootlin.com/
+- Take 4 Acked-by: Nicolas Ferre.
+- Take Tested-by: Nicolas Ferre.
+- Link to v4: https://lore.kernel.org/r/20250820-macb-fixes-v4-0-23c399429164@bootlin.com
+
+Changes in v4:
+- Drop 11 patches that are only cleanups. That includes the
+  RBOF/skb_reserve() patch that, after discussion with Sean [1], has
+  had its Fixes trailer dropped. "move ring size computation to
+  functions" is the only non-fix patch that is kept, as it is depended
+  upon by further patches. Dropped patches:
+    dt-bindings: net: cdns,macb: sort compatibles
+    net: macb: match skb_reserve(skb, NET_IP_ALIGN) with HW alignment
+    net: macb: use BIT() macro for capability definitions
+    net: macb: remove gap in MACB_CAPS_* flags
+    net: macb: Remove local variables clk_init and init in macb_probe()
+    net: macb: drop macb_config NULL checking
+    net: macb: simplify macb_dma_desc_get_size()
+    net: macb: simplify macb_adj_dma_desc_idx()
+    net: macb: move bp->hw_dma_cap flags to bp->caps
+    net: macb: introduce DMA descriptor helpers (is 64bit? is PTP?)
+    net: macb: sort #includes
+  [1]: https://lore.kernel.org/lkml/d4bead1c-697a-46d8-ba9c-64292fccb19f@linux.dev/
+- Wrap code to 80 chars.
+- Link to v3: https://lore.kernel.org/r/20250808-macb-fixes-v3-0-08f1fcb5179f@bootlin.com
+
+Changes in v3:
+- Cover letter: drop addresses that reject emails:
+  cyrille.pitchen@atmel.com
+  hskinnemoen@atmel.com
+  jeff@garzik.org
+  rafalo@cadence.com
+- dt-bindings: Take 2x Reviewed-by Krzysztof.
+- dt-bindings: add Fixes trailer to "allow tsu_clk without tx_clk"
+  patch, to highlight we are not introducing new behavior.
+- Reorder commits; move fixes first followed by cleanup patches.
+- Drop all EyeQ5 related commits.
+- New commit: "remove gap in MACB_CAPS_* flags".
+- New commit: "move ring size computation to functions".
+- New commit: "move bp->hw_dma_cap flags to bp->caps".
+- Rename introduced helpers macb_dma_is_64b() to macb_dma64() and,
+  macb_dma_is_ptp() to macb_dma_ptp().
+- Rename MACB_CAPS_RSC_CAPABLE -> MACB_CAPS_RSC.
+- Fix commit message typos: "maxime" -> "maximise", etc.
+- Take 7x Reviewed-by: Sean Anderson.
+- Add details to some commit messages.
+- Link to v2: https://lore.kernel.org/r/20250627-macb-v2-0-ff8207d0bb77@bootlin.com
+
+---
+Théo Lebrun (5):
+      dt-bindings: net: cdns,macb: allow tsu_clk without tx_clk
+      net: macb: remove illusion about TBQPH/RBQPH being per-queue
+      net: macb: move ring size computation to functions
+      net: macb: single dma_alloc_coherent() for DMA descriptors
+      net: macb: avoid dealing with endianness in macb_set_hwaddr()
+
+ .../devicetree/bindings/net/cdns,macb.yaml         |   2 +-
+ drivers/net/ethernet/cadence/macb.h                |   4 -
+ drivers/net/ethernet/cadence/macb_main.c           | 138 ++++++++++-----------
+ 3 files changed, 69 insertions(+), 75 deletions(-)
+---
+base-commit: 3a5dc79698c028c922bdaa75274a967107e25f02
+change-id: 20250808-macb-fixes-e2f570e11241
+
+Best regards,
+-- 
+Théo Lebrun <theo.lebrun@bootlin.com>
+
 
