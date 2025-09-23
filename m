@@ -1,131 +1,108 @@
-Return-Path: <devicetree+bounces-220374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EE64B95239
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 11:08:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DD04B9526C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 11:09:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5107F4805B2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 09:08:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36F6F1904491
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 09:09:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7D70320A32;
-	Tue, 23 Sep 2025 09:07:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3769831A04F;
+	Tue, 23 Sep 2025 09:09:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q3m+U6KH"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="UXfEpc5V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98EDB320A1D;
-	Tue, 23 Sep 2025 09:07:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B54631E888;
+	Tue, 23 Sep 2025 09:09:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758618461; cv=none; b=XZo90WrFWXoE7LIIqXm8sXcaJCY5u6FGWIhmDxO6jrakA0Md0P7EjR0npGx/IvzubojBzYYNeMDyKP+Ik9aY1gStStPGZVR+zrerjdoMsPbd4xV0nzND2Il2GXUpHCrkBQh/QOQcqXROHMA0Sly3TRkRcpMMFgYkRcBAk17OkWU=
+	t=1758618568; cv=none; b=ENOgGYngPwM3IiK1p0x4I1oZlZpxPIhWU7Sx5UxiMKqzR1kXu7Yuz+Kw7mqX2K+astdChTlEE+zmuiWBACd6hx+zXSzoLs4XjRjV+ft0GDTd2OCkxN71thD7ubwBpSx+DRtr3qYasuZGadxGfJy2W/QdguS9i3wHSb9VHEDslhg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758618461; c=relaxed/simple;
-	bh=kkCA8SAuPlhfPf3erMCajqMN5ix6aRl7bFBdFcZEqRM=;
+	s=arc-20240116; t=1758618568; c=relaxed/simple;
+	bh=Bf18cj0HZKW8sv39LhYfAvcFyUTklun49FrjVhZCSkM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pl/dGBI37Kz5uVBBGdFu1XXsCfxhbeO1t4P0sIecvSuJCeSRDe3fjXmfEO+r89WEInruYDUpj+exM6Z4AVRHgx2oqhp+IbMz4n3g7DrVG2bpRgb2SxKO3d5Me9ilwhkmZiIukofAfq2tdElCRlGlr/qFMgNfD93Okq6wEwoFnOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q3m+U6KH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADF76C116B1;
-	Tue, 23 Sep 2025 09:07:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758618461;
-	bh=kkCA8SAuPlhfPf3erMCajqMN5ix6aRl7bFBdFcZEqRM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=q3m+U6KH9WiE7acahlltWpsy+84oMewDE/TQ5owV4ijWPp5icWn03RwVcgUjBc5gS
-	 zXTUDNGiHIbCrbV9C/iYOeNGz+M5m+BGWUKgHcgqvv+2CaTkbDZWIDq0WK2sLlOxCE
-	 04yk/Pq7o+L4cbjk8HtcVEYXpt+N5+caHnL1x8r5637Ith7QRC0JdwIcHlYLwobVwe
-	 IYN9qboRdoRAb5DO5lcPXnQF1CHt0GCSThptzuNU91oOFv6Q+R543hdrSjlgilb6kk
-	 Rw9QTdfe0ovaIqYnaLZWrp8YFhj3KlVeQtqH/vCyGPkiJ4b/auE+cDvm3tcNEhMsfJ
-	 muJVgYi9XANYQ==
-Date: Tue, 23 Sep 2025 11:07:38 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Kevin Hilman <khilman@kernel.org>
-Cc: Michael Walle <mwalle@kernel.org>, 
-	Frank Binns <frank.binns@imgtec.com>, Matt Coster <matt.coster@imgtec.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Santosh Shilimkar <ssantosh@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Andrew Davis <afd@ti.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 2/3] clk: keystone: don't cache clock rate
-Message-ID: <20250923-brave-zebu-of-growth-a6426b@penduick>
-References: <20250915143440.2362812-1-mwalle@kernel.org>
- <20250915143440.2362812-3-mwalle@kernel.org>
- <7hv7lhp0e8.fsf@baylibre.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AzX2M2Uu2Aql6Bllh2Yrvua/C3ioxLt89ONpGRSxaJP/cH94o8Aw8KlSSOu/MJ+hSoQukMZMn5ZIZXpJINMn01mrMcB1GgYhVYV8V339LEbanblL55X7SrZ0wgu8v4xx21KG/F7teMLBriH/0ll/4d7qGVNLnrP5NKfl/+KsNnY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=UXfEpc5V; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=LNfWHKHbRyM/GBX0pKVevF1bo7N98M4gqN+Cm7IF6fk=; b=UXfEpc5VubhTvRh2RDuRRIh8YM
+	wHrPPSm8C2tHgvqzoDIfqk5TMwb2k4m1mgnmfhb57jFA+ehquSFq7dsoduoRpaanDbZDZLrYuRqLI
+	+9U6n+BiDgOP1U3DoVWYzWXrAFhuu2uP/VZa9LaZ9rF73VrsQStK5HypqZGevNgJoY0zGqTKn9kH3
+	u3wB7yiR64cNSEjnmx+d++TN++QcI+NaYMZ2cIZdogktMk4wtW4rHUP9r2n6Sx+YlW30DufLLJZgi
+	hkOYu+egUknb6FZx53Z59xf8bRp3IQVV6jXtvVtZLivTnVsknAh2L8lahjY8QxwTG3SfaGNGPBgd2
+	rT6EeylA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:33712)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1v0z1P-000000006rv-3pdk;
+	Tue, 23 Sep 2025 10:09:16 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1v0z1G-0000000060w-2BgJ;
+	Tue, 23 Sep 2025 10:09:06 +0100
+Date: Tue, 23 Sep 2025 10:09:06 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: =?utf-8?B?6Z+m5bCa5aif?= <weishangjuan@eswincomputing.com>
+Cc: devicetree@vger.kernel.org, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, netdev@vger.kernel.org,
+	pabeni@redhat.com, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, vladimir.oltean@nxp.com,
+	yong.liang.choong@linux.intel.com, anthony.l.nguyen@intel.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com, jan.petrous@oss.nxp.com,
+	jszhang@kernel.org, inochiama@gmail.com, 0x1207@gmail.com,
+	boon.khai.ng@altera.com, linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, lizhi2@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com
+Subject: Re: Re: [PATCH v7 2/2] ethernet: eswin: Add eic7700 ethernet driver
+Message-ID: <aNJjshm4Z8H2Z8_V@shell.armlinux.org.uk>
+References: <20250918085612.3176-1-weishangjuan@eswincomputing.com>
+ <20250918090026.3280-1-weishangjuan@eswincomputing.com>
+ <aMw-dgNiXgPeqeSz@shell.armlinux.org.uk>
+ <30080c70.16e1.199748921d3.Coremail.weishangjuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="3iw34lfkiliihfo7"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <7hv7lhp0e8.fsf@baylibre.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <30080c70.16e1.199748921d3.Coremail.weishangjuan@eswincomputing.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
+On Tue, Sep 23, 2025 at 11:06:08AM +0800, 韦尚娟 wrote:
+> In the current eic7700_dwmac glue driver, the regmap_read()/write()
+> operations(for phy_ctrl1, axi_lp_ctrl1, and the RX/TX delay registers))are 
+> performed directly in the probe() function. Would it be cleaner to move these
+> register configurations into the init() callback instead, so that they are
+> also reapplied during resume()?
 
---3iw34lfkiliihfo7
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 2/3] clk: keystone: don't cache clock rate
-MIME-Version: 1.0
+This is a question I can't answer definitively as I don't know what
+happens during a suspend on your hardware, and thus which registers
+are lost / reset by the time the system resumes. So I can only give
+the obvious guidance.
 
-On Wed, Sep 17, 2025 at 08:24:47AM -0700, Kevin Hilman wrote:
-> Michael Walle <mwalle@kernel.org> writes:
->=20
-> > The TISCI firmware will return 0 if the clock or consumer is not
-> > enabled although there is a stored value in the firmware. IOW a call to
-> > set rate will work but at get rate will always return 0 if the clock is
-> > disabled.
-> > The clk framework will try to cache the clock rate when it's requested
-> > by a consumer. If the clock or consumer is not enabled at that point,
-> > the cached value is 0, which is wrong.
->=20
-> Hmm, it also seems wrong to me that the clock framework would cache a
-> clock rate when it's disabled.  On platforms with clocks that may have
-> shared management (eg. TISCI or other platforms using SCMI) it's
-> entirely possible that when Linux has disabled a clock, some other
-> entity may have changed it.
+If the settings in the delay registers are lost over a suspend/resume
+then they need to be re-initialised after resume.
 
-It doesn't really help that the CCF doesn't seem to agree on if it
-should do that in the first place :)
-
-In the original clk API definition, you're not supposed to call
-clk_get_rate() when the clock is disabled.
-
-https://elixir.bootlin.com/linux/v6.16.8/source/include/linux/clk.h#L746
-
-However, it's been allowed by the CCF since forever:
-
-https://elixir.bootlin.com/linux/v6.16.8/source/drivers/clk/clk.c#L1986
-
-But then, some drivers will return 0 as a valid value, and not an error
-code (whatever 0Hz for a clock means).
-
-It's kind of a mess, and very regression prone, so I don't really expect
-it to change anytime soon.
-
-Maxime
-
---3iw34lfkiliihfo7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaNJjVAAKCRAnX84Zoj2+
-ds0nAX9cnO1qMu1gRrt93wqZ3E7heejWdZkXiLTOlsXu2u9hW0VAjJeUYt9/k6vh
-40iU+joBf0oNZk2TNHK5NY8d4PR+uru6sGDJqMFK0BBGGGWdlzNH5mgiIfgwVMdV
-1rDRIy6m2g==
-=8+3Q
------END PGP SIGNATURE-----
-
---3iw34lfkiliihfo7--
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
