@@ -1,447 +1,209 @@
-Return-Path: <devicetree+bounces-220379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03184B95421
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 11:31:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD9ACB952F6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 11:13:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9D2E14E1B33
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 09:31:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71E4E16AD49
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 09:13:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44C763203B2;
-	Tue, 23 Sep 2025 09:31:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A69B3203A0;
+	Tue, 23 Sep 2025 09:13:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=monolithicpower.com header.i=@monolithicpower.com header.b="Fi39XWul"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="YnSpUMeU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-002bf204.pphosted.com (mx0a-002bf204.pphosted.com [205.220.160.90])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EB122DEA6F;
-	Tue, 23 Sep 2025 09:31:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.160.90
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758619898; cv=none; b=lkGDvPSaSoD8atov667a/olxVaFei0tIO1FaTKfLMunle4bbpqV8L91hpeFy94RTPzEMTND+tEmeSwG0CRFW5s78Xs3GZTZL3E6Tucrc8+nnJynS2gvP3vUBnZMSTpOWRLPT1h5GRksd3V1TK9MStbaqLhtibgUxB4m3WyeoUQ8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758619898; c=relaxed/simple;
-	bh=OVanE9fiAaU6eaojZh86x0XNDRwE5LbaLgVOlGiLnbw=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sB9TwlmTY6bGuv3wyqUzoQH3pAeIj/iLhQdK6pC4za16ADCOX9wGfbDOPcr/wrLL2utAFPzVcgvqxYR4inVjFSR1uNkmaVBi3PYiVgfpTX4S2xBbbiCMc1KOlkm0p/XfllcWR/7NSQXkR0QFYi/4XxXouNtvTcYQvBvIavyPGiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=monolithicpower.com; spf=pass smtp.mailfrom=monolithicpower.com; dkim=pass (2048-bit key) header.d=monolithicpower.com header.i=@monolithicpower.com header.b=Fi39XWul; arc=none smtp.client-ip=205.220.160.90
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=monolithicpower.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=monolithicpower.com
-Received: from pps.filterd (m0207524.ppops.net [127.0.0.1])
-	by mx0a-002bf204.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 58N58bji1331671;
-	Tue, 23 Sep 2025 02:09:53 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	monolithicpower.com; h=cc:content-transfer-encoding:content-type
-	:date:from:in-reply-to:message-id:mime-version:references
-	:subject:to; s=pps1; bh=1EgPaygCBoeItMM/IcftjVCi1S9wAIyXqckZqzK6
-	eHE=; b=Fi39XWulRH3adq07uBi/kzNv+jh5LGnHeDeBRrU0N1DxpqfUOBiNXTER
-	/u1Iv9BuXOHqIcMz1x3jnA8vTWXCitSS8xPi/NFC1wbo1mX8xXacG1tHjqTDN6aD
-	4Mmaj5BK2J/azaiYgkIb58mucMxGTDHcQd5SWsv5190tNMIhnHm7dvX3/Wi0mRXj
-	ErklZiSvyIkzqTMGbAlHXDdgfW8Z8YV2SdmhgHdi6Efh69BC7/6BOOdMHdibG5JQ
-	unNoSEoUcLFQpiryVIsOAujgMhJp1Vf7qQWzCpkCxecjZenGd+3akl1YStXXEsl9
-	QNwUvvEkdoqHUTbdhBCPxJ1wDoe5Og==
-Received: from webmail.monolithicpower.com (mps-vpn.monolithicpower.com [12.33.0.20] (may be forged))
-	by mx0a-002bf204.pphosted.com (PPS) with ESMTPS id 499qpnhh6q-3
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Tue, 23 Sep 2025 02:09:53 -0700 (PDT)
-Received: from CD-MSH04.monolithicpower.com (10.10.70.213) by
- mps-mslbn03.monolithicpower.com (10.10.10.245) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.6; Tue, 23 Sep 2025 02:09:45 -0700
-Received: from HZ-200L-YUWANG.monolithicpower.com (10.10.86.73) by
- CD-MSH04.monolithicpower.com (10.10.70.213) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.57; Tue, 23 Sep 2025 17:09:43 +0800
-From: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-To: <Yuxi.Wang@monolithicpower.com>, <corbet@lwn.net>, <linux@roeck-us.net>,
-        <jdelvare@suse.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>
-CC: <wyx137120466@gmail.com>, <linux-kernel@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-hwmon@vger.kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CDAB31FEC5;
+	Tue, 23 Sep 2025 09:13:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.182.106
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758618797; cv=fail; b=AwtwYOHjTIpuIdrZbKvog5E3Fw2Jty5vgLACXbPWjPeRsmUoGMLcT00gOzUb842hshYx1AWJaZpVEtOhvv5FjlHrWdRcboC813UXAooulNJBil0WnazVTGrEoSD8My/mwBQOrqN2OG2yxpGjvZz0ugr0cflcYRkyiAMTDm0zHnI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758618797; c=relaxed/simple;
+	bh=4EG2TeaYtXKsyYFMdjKAN5e34hLspFNTipTXBdbzrIw=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kzga4wMu2Gv2ko4C7fEIJo1JAKTj5oxlMGW70r5A7zKBywHAnS8n1ksuo89UKsPj3WinUnUHPGGAnPiqDjA7hwYX62oOHgYiK9to25JhYhJ/ujiDYLbdx7Obc22OaZzANyIAWcdSrTzG4Uqghggc5+WPDiLkI95vP/omaACnTmU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=fail (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=YnSpUMeU reason="signature verification failed"; arc=fail smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58N8lHGV003219;
+	Tue, 23 Sep 2025 11:12:49 +0200
+Received: from osppr02cu001.outbound.protection.outlook.com (mail-norwayeastazon11013046.outbound.protection.outlook.com [40.107.159.46])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 499kky4qmr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 23 Sep 2025 11:12:49 +0200 (MEST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jBqXtgbPCCbHC7qiTFHSQsU8PXXgsA9PG0NPH3T16+4CbchRNlhfdVRNRUdj4gKmcgi8gDoAX9oPvJgcyq/OriNkK8Zzz2DRsUo+M0dICmWgf1sBjJIn66rH9r5W1otcNg2OU6BlnLLgG9qc8nIhBwzRed/kSffF2hUcaOw0NIYAGrQlCqPABRXR8PkunESMNNcoERLl0BgTeHnEaaJPapWVIRb7mBq6HP98addZE7l41aDNGlw0LA3WhKdJrieGl++OR2MFg60QyCNE+Xwr5N4wTGQazhWc7sKNlU7tMpLggWhuu/v9zFaio+UZMSEHs62FHUyzyzW+lZMQ5Rv9GA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Go+eP5j17bqvT4IwnVfkP53dbe+lO/69Qj3Eaq9d1cI=;
+ b=b2kIKJBpsxGwU2P6Kd9g3m+GydqkifXJ+rFTfTFzmYYAWR10qUAkjdBy/5deGBzRdxJKkDZVS4ddqkfboEBDGAhgjJg4ZZyoZuQaLJMhXxrBW0/JXCyNC02fKwJbaAyYXVBEkPKkNNQtTsD4wip6BFUJ4MsA6ep9I4+bGS7fmqdTsaoQOopQKYB4CWEMxf3/U/wcxPvaYcgtFiIlUQSqGNKZXkjXNSDtyqN4C+/BwSMKSVWGtHCG/EfHBSQanVHfMTw9X2AD45+QBy3GqBU9l40+LisjwqNMRaXUB6mSgtA6Vndn6pJRrDkRmfDxWUEk8sjjuhZZJ+1PCFjhyIdzyg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.44) smtp.rcpttodomain=gmail.com smtp.mailfrom=foss.st.com;
+ dmarc=fail (p=none sp=none pct=100) action=none header.from=foss.st.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Go+eP5j17bqvT4IwnVfkP53dbe+lO/69Qj3Eaq9d1cI=;
+ b=YnSpUMeUM9O/NnCjQzCoWf36Y5+btHtmDi3pLrS+fSrEKxohKU/tMyN5Hk9Q7HZcmgDGir5OnBcMP+gzNfpcJ7W9vyXgUNl8+hHR5cCuZfuFE3LgkrQivrw/y0SkD4Do+MwCH52KHcVmyoybBTrftKYCJonKJVN0inJCAr1DHjYzsvpKerIgVQtoYFW5/woAZhPDJkx+Yli8us/AiEo40tL3M+0vDDpB6gPVl+mimzXYCE2vtAnMqkiJX2zOzxL0h+1FGmESY5rWAVGH3T9XqVc6eh+g9tKYIiOpudTb41vNhmrtIVpt8k0814zhqzHNte/c2fZw/dv7mIEWbHunow==
+Received: from AM6P194CA0080.EURP194.PROD.OUTLOOK.COM (2603:10a6:209:8f::21)
+ by DU4PR10MB8468.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:55b::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.19; Tue, 23 Sep
+ 2025 09:12:47 +0000
+Received: from AM1PEPF000252E0.eurprd07.prod.outlook.com
+ (2603:10a6:209:8f:cafe::70) by AM6P194CA0080.outlook.office365.com
+ (2603:10a6:209:8f::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.20 via Frontend Transport; Tue,
+ 23 Sep 2025 09:12:47 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.44)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.44 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.44; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.44) by
+ AM1PEPF000252E0.mail.protection.outlook.com (10.167.16.58) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9137.12 via Frontend Transport; Tue, 23 Sep 2025 09:12:47 +0000
+Received: from SHFDAG1NODE1.st.com (10.75.129.69) by smtpO365.st.com
+ (10.250.44.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Tue, 23 Sep
+ 2025 11:05:26 +0200
+Received: from gnbcxd0016.gnb.st.com (10.130.77.119) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Tue, 23 Sep
+ 2025 11:12:46 +0200
+Date: Tue, 23 Sep 2025 11:12:41 +0200
+From: Alain Volmat <alain.volmat@foss.st.com>
+To: =?iso-8859-1?Q?Rapha=EBl?= Gallais-Pou <rgallaispou@gmail.com>
+CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie
+	<airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Patrice Chotard
+	<patrice.chotard@foss.st.com>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>
-Subject: [PATCH 2/2] hwmon: add mp5998 driver
-Date: Tue, 23 Sep 2025 17:09:25 +0800
-Message-ID: <20250923090926.619-3-Yuxi.Wang@monolithicpower.com>
-X-Mailer: git-send-email 2.44.0.windows.1
-In-Reply-To: <20250923090926.619-1-Yuxi.Wang@monolithicpower.com>
-References: <20250923090926.619-1-Yuxi.Wang@monolithicpower.com>
+Subject: Re: [PATCH 0/4] STi device-tree display subsystem rework
+Message-ID: <20250923091241.GA109156@gnbcxd0016.gnb.st.com>
+References: <20250717-sti-rework-v1-0-46d516fb1ebb@gmail.com>
+ <235312e0-b912-4e10-874a-e6364131aaee@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: CD-MSLBN02.monolithicpower.com (192.168.86.32) To
- CD-MSH04.monolithicpower.com (10.10.70.213)
-X-Proofpoint-GUID: bVkm0xQZmIAOh0FN-6D3wCAm2Nc2g7Y2
-X-Authority-Analysis: v=2.4 cv=S8jZwJsP c=1 sm=1 tr=0 ts=68d263e1 cx=c_pps
- a=Zb4R73zfuCEKbQz3U9Wi8g==:117 a=Zb4R73zfuCEKbQz3U9Wi8g==:17
- a=Mn2HaNVs01YA:10 a=yJojWOMRYYMA:10 a=oOyOvuMWAAAA:8 a=VwQbUJbxAAAA:8
- a=UqCG9HQmAAAA:8 a=B7mzDJisyf8LYfc8S9UA:9 a=G8TaXjCCXnGpTNG3tzU6:22
-X-Proofpoint-ORIG-GUID: bVkm0xQZmIAOh0FN-6D3wCAm2Nc2g7Y2
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDA4NCBTYWx0ZWRfX8RikJh8V9FvF
- oVIES+WFG2TDNnJRpYEndfreDLeGMNS9Y57xuThXdvnk3QQChR9CZdjo4vkb1EUFiP9DqsSzMwN
- byK07kzpto+9Y0mMq7xsz5PWYGutHGzOSDoLlFZmO3hkgUmZ5SISIfS/LM3ik67F1CL2COlgR4B
- iiPlpgHEobSvNpysdTR6UlSNRfB8O25H/oXQWj55I6krHVJffwgAmj5NoS89Kj6SHkfH9Ei+RU9
- nNx4jg6aOCjmNEvlh6px/8VOwxebhRlV/EkCpIumGNb1cjg2hCV9m2vAQdEz/d/PFVDTezhh8b4
- j84lyedd7AYF0uGSuxRhFpPSJNL5ZoxDYOlVefqtLTb+TEUCcUmIgo9t2C8AIA=
+In-Reply-To: <235312e0-b912-4e10-874a-e6364131aaee@gmail.com>
+X-Disclaimer: ce message est personnel / this message is private
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM1PEPF000252E0:EE_|DU4PR10MB8468:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ecc3931-fbfa-4d2c-0200-08ddfa815ce1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|376014|7416014|82310400026|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?iso-8859-1?Q?FUfa1NijDuaCr0HZNVA9CuPJVtNbPJ1kK2im3wxlZw5MSbU2NRFv8kCdps?=
+ =?iso-8859-1?Q?955f8WMFK6slOHVS4o81oqMBAqr0EuPAP7WHVBwPi0vR00dY60THgJAVCm?=
+ =?iso-8859-1?Q?SAKROOYYvvU9JNZ9LQ3y3lG+x4FvULjZAnvAJsL56tpU5ZTba1k6vUOIVm?=
+ =?iso-8859-1?Q?YeWuYIFVJh039kg8S1SdAp5deDTbtq9tcPHwd6rn7mUFxt3zWHJh4t/2Ly?=
+ =?iso-8859-1?Q?pzdgKa5DrSinNEkM58uuAuhpAzmrzglv8FfPY7Ro4JAELzLws/xwcud1T4?=
+ =?iso-8859-1?Q?UbiWZoElQQQ4XGPLTOVPzoO5cXyDtD1CwcxaWtzTurFtUQANdXes1/ZiDp?=
+ =?iso-8859-1?Q?6SfdVGsA/4qmZuzD/apw7Zjpq+RtySqtEYz2XiBC6SL9sKhmT57Z3dCWiJ?=
+ =?iso-8859-1?Q?4Gb88u2DrOAzot3MGV+mnEcLLYz754tik3DI66T/dI5vqFonfqsW5p5XQ1?=
+ =?iso-8859-1?Q?MZCw4LMWyF8JwBaFOWD1NJagjEuYYMzwMnPphxL8OdAh575CAmDgntR5qe?=
+ =?iso-8859-1?Q?dy7DLytt/Yl6yOI1tB4Kz/vyXNQ8ko+4dz65inCPP+7NyfaBFLjeZkBYwg?=
+ =?iso-8859-1?Q?jIY/XeqVvtBCDq9P4R7dAZUhE5hTB4LID+BJ2Ck6FzdmEqso4EmHcWvbeT?=
+ =?iso-8859-1?Q?GLug7qfNCQVvm/ZBJGwwCmgfeQLuXHce8WX2ow7EiEh19B6ZyWVJIW/5M3?=
+ =?iso-8859-1?Q?8IT+Xfir3FvS6hwI9U9Ldt2utvXPBvQOexntMSStWpgJbEBffrIq28pWbn?=
+ =?iso-8859-1?Q?aAd3rlt1nITzonTk4dod/vLsxIl8zxuh6Y76nKTWoRbpPsjZfZgx9MFFIl?=
+ =?iso-8859-1?Q?3ypfeUvGf0YgZvTzth4IfVSbMpj0uuMzjirQTgkrMTm6oVhyvu3N6okoT/?=
+ =?iso-8859-1?Q?g+E2ljbVPXTnUK2rY49rXz0ViK8VYghyOTheTAzJ5APFd6t6N41D6+dXyP?=
+ =?iso-8859-1?Q?lzVdnVxcP7ZoPsudKuNAS24F/VYgdf/tAFmsZn3lWwyTiIJ+2gRJ5CxOji?=
+ =?iso-8859-1?Q?5nNqmkHRwzGOgGQOi5CrnnEd0JcuN72pOotQK/QH7dd5G0IeoSMbRX1Dah?=
+ =?iso-8859-1?Q?Fww4m0jKrFoPgE7v79IBN0mZpSyVD+9IGZpXz8W0XwxumQH542DASw97z+?=
+ =?iso-8859-1?Q?2hSFdwkaoRr4MjOgqYICpObUhEA1sWWWRW9RLPDjIy/20La3w+KP2d1Ctc?=
+ =?iso-8859-1?Q?faJ4zFuUsyk8ChgRP1tYcfDBHi3PgmUTrRKFnsryssiAMScE/Cuh3KO9sV?=
+ =?iso-8859-1?Q?44nOCIHX/h1iWgC1Fhc1xLcNF6AY9QIW73+4ml+MPnbwmxMXZx/nqQelHq?=
+ =?iso-8859-1?Q?tpktM2ZnEnOifjHStlERPcQ1qjyMPSwYWEy9JAiKo/jGcKGTPFSjJ6U/9J?=
+ =?iso-8859-1?Q?xbuiNgX8xYhbVGUiguAF7QohiUZrQX0fEIU2tmOCQ5bSi+rLVMO+eLmRdI?=
+ =?iso-8859-1?Q?wf5fNSBLDLACez+InkulkVLVh1pZvhxb+F8sYqFixU0hwM+BdXGH/A0G34?=
+ =?iso-8859-1?Q?2VeKDlLbiop9CuXeQKku/jw2fwh8LKj+cZ4RTty1p76ms1UyB+0bUmKwhg?=
+ =?iso-8859-1?Q?RGCm1U/lj/wG7g+R0GkyjmHG9Scd?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.44;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(82310400026)(36860700013);DIR:OUT;SFP:1101;
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2025 09:12:47.1352
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ecc3931-fbfa-4d2c-0200-08ddfa815ce1
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.44];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM1PEPF000252E0.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR10MB8468
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAyMiBTYWx0ZWRfX1OBEnfRTnI4t SvZ4yybTyWv4FYKp19cZABpf3gJgTYFLZdN6hO5Lc+KrFngEcDgmRdKL8Vd1wsQmmzxzpHstMsE I59fUYr/WEdap7rPCMJ1h38y5dFsPZJ7SSDIIdJlHAzUtcEoZhewXTVa+C0LLhyuSSkEzjRsqTh
+ L+Dz5l7zFj3nBDkmd9B+cKITGJcP1jlgsiqFFynfaI7OPntWcDMRtvcFWeDWNYV+aeCnGWdDKoe MvZ2B6TQNIluevYAr6SkM/otMMsBmGA40kD7sTtSbpGx5nxTzwJ9cOZe8cLD/BHeEy7HJLS0xqB s2yx16JBDsM1JI+cBHwAq6APxHAopXOxLXXUstH2iEXiqZ5WIQTt1n3kbZfy2mhFDZwyRTSM17y HjTIAfUE
+X-Proofpoint-GUID: VpBdeLWV3vZ8FMzNfH8n9WBXFKvAZNKw
+X-Proofpoint-ORIG-GUID: VpBdeLWV3vZ8FMzNfH8n9WBXFKvAZNKw
+X-Authority-Analysis: v=2.4 cv=dY2A3WXe c=1 sm=1 tr=0 ts=68d26491 cx=c_pps a=7E8kR0TPtiWwzUzoHzRCyA==:117 a=Tm9wYGWyy1fMlzdxM1lUeQ==:17 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=h8e1o3o8w34MuCiiGQrqVE4VwXA=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19
+ a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=n5dE7JB0mAkA:10 a=8nJEP1OIZ-IA:10 a=yJojWOMRYYMA:10 a=s63m1ICgrNkA:10 a=KrXZwBdWH7kA:10 a=P49eyZnlcTcxUSWYZM0A:9 a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-23_01,2025-09-22_05,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 clxscore=1011 priorityscore=1501 suspectscore=0 malwarescore=0
- phishscore=0 spamscore=0 impostorscore=0 adultscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.22.0-2507300000 definitions=firstrun
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 impostorscore=0
+ spamscore=0 clxscore=1015 malwarescore=0 adultscore=0 priorityscore=1501
+ phishscore=0 bulkscore=0 classifier=typeunknown authscore=0 authtc=
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509200022
 
-Add support for MPS mp5998.
-Signed-off-by: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
----
- Documentation/hwmon/index.rst  |   1 +
- Documentation/hwmon/mp5998.rst |  92 +++++++++++++++++++
- MAINTAINERS                    |   7 ++
- drivers/hwmon/pmbus/Kconfig    |   9 ++
- drivers/hwmon/pmbus/Makefile   |   1 +
- drivers/hwmon/pmbus/mp5998.c   | 162 +++++++++++++++++++++++++++++++++
- 6 files changed, 272 insertions(+)
- create mode 100644 Documentation/hwmon/mp5998.rst
- create mode 100644 drivers/hwmon/pmbus/mp5998.c
+Hi Raphaël,
 
-diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
-index d292a86ac5da..0b9ee6e8e922 100644
---- a/Documentation/hwmon/index.rst
-+++ b/Documentation/hwmon/index.rst
-@@ -180,6 +180,7 @@ Hardware Monitoring Kernel Drivers
-    mp5023
-    mp5920
-    mp5990
-+   mp5998
-    mp9941
-    mpq8785
-    nct6683
-diff --git a/Documentation/hwmon/mp5998.rst b/Documentation/hwmon/mp5998.rst
-new file mode 100644
-index 000000000000..b5609a5a5103
---- /dev/null
-+++ b/Documentation/hwmon/mp5998.rst
-@@ -0,0 +1,92 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+
-+Kernel driver mp5998
-+====================
-+
-+Supported chips:
-+
-+  * MPS mp5998
-+
-+    Prefix: 'mp5998'
-+
-+  * Datasheet
-+    https://www.monolithicpower.com/en/
-+
-+Author:
-+
-+	Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-+
-+Description
-+-----------
-+
-+This driver implements support for Monolithic Power Systems, Inc. (MPS)
-+MP5998 Hot-Swap Controller.
-+
-+Device compliant with:
-+
-+- PMBus rev 1.3 interface.
-+
-+The driver exports the following attributes via the 'sysfs' files
-+for input voltage:
-+
-+**in1_input**
-+
-+**in1_label**
-+
-+**in1_crit**
-+
-+**in1_crit_alarm**
-+
-+The driver provides the following attributes for output voltage:
-+
-+**in2_input**
-+
-+**in2_label**
-+
-+**in2_lcrit**
-+
-+**in2_lcrit_alarm**
-+
-+**in2_rated_max**
-+
-+**in2_rated_min**
-+
-+The driver provides the following attributes for input current:
-+
-+**curr1_input**
-+
-+**curr1_label**
-+
-+**curr1_max**
-+
-+**curr1_max_alarm**
-+
-+The driver provides the following attributes for output current:
-+
-+**curr2_input**
-+
-+**curr2_label**
-+
-+The driver provides the following attributes for input power:
-+
-+**power1_input**
-+
-+**power1_label**
-+
-+The driver provides the following attributes for output power:
-+
-+**power2_input**
-+
-+**power2_label**
-+
-+The driver provides the following attributes for temperature:
-+
-+**temp1_input**
-+
-+**temp1_crit**
-+
-+**temp1_crit_alarm**
-+
-+**temp1_max**
-+
-+**temp1_max_alarm**
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f6206963efbf..d6bc9c10d908 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -17192,6 +17192,13 @@ S:	Maintained
- F:	Documentation/hwmon/mp2993.rst
- F:	drivers/hwmon/pmbus/mp2993.c
- 
-+MPS MP5998 DRIVER
-+M:	Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-+L:	linux-hwmon@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/hwmon/mp5998.rst
-+F:	drivers/hwmon/pmbus/mp5998.c
-+
- MPS MP9941 DRIVER
- M:	Noah Wang <noahwang.wang@outlook.com>
- L:	linux-hwmon@vger.kernel.org
-diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-index 55e492452ce8..35862f011a5b 100644
---- a/drivers/hwmon/pmbus/Kconfig
-+++ b/drivers/hwmon/pmbus/Kconfig
-@@ -443,6 +443,15 @@ config SENSORS_MP5990
- 	  This driver can also be built as a module. If so, the module will
- 	  be called mp5990.
- 
-+config SENSORS_MP5998
-+	tristate "MPS MP5998"
-+	help
-+	  If you say yes here you get hardware monitoring support for MPS
-+	  MP5998.
-+
-+	  This driver can also be built as a module. If so, the module will
-+	  be called mp5998.
-+
- config SENSORS_MP9941
- 	tristate "MPS MP9941"
- 	help
-diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-index 29cd8a3317d2..4fb45a7e3ac4 100644
---- a/drivers/hwmon/pmbus/Makefile
-+++ b/drivers/hwmon/pmbus/Makefile
-@@ -44,6 +44,7 @@ obj-$(CONFIG_SENSORS_MP2993)	+= mp2993.o
- obj-$(CONFIG_SENSORS_MP5023)	+= mp5023.o
- obj-$(CONFIG_SENSORS_MP5920)	+= mp5920.o
- obj-$(CONFIG_SENSORS_MP5990)	+= mp5990.o
-+obj-$(CONFIG_SENSORS_MP5998)	+= mp5998.o
- obj-$(CONFIG_SENSORS_MP9941)	+= mp9941.o
- obj-$(CONFIG_SENSORS_MPQ7932)	+= mpq7932.o
- obj-$(CONFIG_SENSORS_MPQ8785)	+= mpq8785.o
-diff --git a/drivers/hwmon/pmbus/mp5998.c b/drivers/hwmon/pmbus/mp5998.c
-new file mode 100644
-index 000000000000..1f192d85c250
---- /dev/null
-+++ b/drivers/hwmon/pmbus/mp5998.c
-@@ -0,0 +1,162 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * mp5998.c  - pmbus driver for mps mp5998
-+ *
-+ * Copyright 2025 Monolithic Power Systems, Inc
-+ *
-+ * Author: Yuxi Wang <Yuxi.Wang@monolithicpower.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include "pmbus.h"
-+
-+/*Common Register*/
-+#define PAGE	0x01
-+#define EFUSE_CFG 0xC4
-+#define MP5998_FUNC	(PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | \
-+					PMBUS_HAVE_IOUT | PMBUS_HAVE_IIN | \
-+					PMBUS_HAVE_PIN | PMBUS_HAVE_POUT | \
-+					PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_IOUT | \
-+					PMBUS_HAVE_STATUS_INPUT | PMBUS_HAVE_STATUS_TEMP)
-+
-+static int mp5998_read_word_data(struct i2c_client *client, int page,
-+				 int phase, int reg)
-+{
-+	int ret;
-+
-+	switch (reg) {
-+	case PMBUS_READ_VIN...PMBUS_READ_TEMPERATURE_1:
-+	case PMBUS_READ_POUT...PMBUS_READ_PIN:
-+	case PMBUS_STATUS_WORD:
-+		ret = -ENODATA;
-+	break;
-+	default:
-+		ret = -EINVAL;
-+	break;
-+	}
-+
-+	return ret;
-+}
-+
-+static int mp5998_read_byte_data(struct i2c_client *client, int page,
-+				 int reg)
-+{
-+	int ret;
-+
-+	switch (reg) {
-+	case PMBUS_STATUS_BYTE:
-+	case PMBUS_STATUS_IOUT:
-+	case PMBUS_STATUS_INPUT:
-+	case PMBUS_STATUS_TEMPERATURE:
-+	case PMBUS_STATUS_CML:
-+	case PMBUS_STATUS_MFR_SPECIFIC:
-+	   ret = -ENODATA;
-+	break;
-+	default:
-+		ret = -EINVAL;
-+	break;
-+	}
-+	return ret;
-+}
-+
-+static struct pmbus_driver_info mp5998_info_linear = {
-+	.pages = PAGE,
-+	.format[PSC_VOLTAGE_IN] = linear,
-+	.format[PSC_CURRENT_IN] = linear,
-+	.format[PSC_VOLTAGE_OUT] = linear,
-+	.format[PSC_CURRENT_OUT] = linear,
-+	.format[PSC_TEMPERATURE] = linear,
-+	.format[PSC_POWER] = linear,
-+
-+	.read_word_data = mp5998_read_word_data,
-+	.read_byte_data = mp5998_read_byte_data,
-+	.func[0] = MP5998_FUNC,
-+};
-+
-+static struct pmbus_driver_info mp5998_info_direct = {
-+	.pages = PAGE,
-+	.format[PSC_VOLTAGE_IN] = direct,
-+	.format[PSC_CURRENT_IN] = direct,
-+	.format[PSC_VOLTAGE_OUT] = direct,
-+	.format[PSC_CURRENT_OUT] = direct,
-+	.format[PSC_TEMPERATURE] = direct,
-+	.format[PSC_POWER] = direct,
-+
-+	.m[PSC_VOLTAGE_IN] = 64,
-+	.b[PSC_VOLTAGE_IN] = 0,
-+	.R[PSC_VOLTAGE_IN] = 0,
-+
-+	.m[PSC_CURRENT_IN] = 16,
-+	.b[PSC_CURRENT_IN] = 0,
-+	.R[PSC_CURRENT_IN] = 0,
-+
-+	.m[PSC_VOLTAGE_OUT] = 64,
-+	.b[PSC_VOLTAGE_OUT] = 0,
-+	.R[PSC_VOLTAGE_OUT] = 0,
-+
-+	.m[PSC_CURRENT_OUT] = 16,
-+	.b[PSC_CURRENT_OUT] = 0,
-+	.R[PSC_CURRENT_OUT] = 0,
-+
-+	.m[PSC_TEMPERATURE] = 1,
-+	.b[PSC_TEMPERATURE] = 0,
-+	.R[PSC_TEMPERATURE] = 3,
-+
-+	.m[PSC_POWER] = 2,
-+	.b[PSC_POWER] = 0,
-+	.R[PSC_POWER] = 0,
-+
-+	.read_word_data = mp5998_read_word_data,
-+	.read_byte_data = mp5998_read_byte_data,
-+	.func[0] = MP5998_FUNC,
-+};
-+
-+static int mp5998_probe(struct i2c_client *client)
-+{
-+	int ret;
-+
-+	ret = i2c_smbus_read_word_data(client, EFUSE_CFG);
-+
-+	if (ret < 0)
-+		return ret;
-+
-+	if (ret & BIT(9))
-+		ret = pmbus_do_probe(client, &mp5998_info_linear);
-+	else
-+		ret = pmbus_do_probe(client, &mp5998_info_direct);
-+
-+	if (!ret)
-+		dev_info(&client->dev, "%s chip found\n", client->name);
-+	return ret;
-+}
-+
-+static const struct i2c_device_id mp5998_id[] = {
-+	{ "mp5998", 0 },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(i2c, mp5998_id);
-+
-+static const struct of_device_id mp5998_of_match[] = {
-+	{ .compatible = "mps,mp5998" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mp5998_of_match);
-+
-+static struct i2c_driver mp5998_driver = {
-+	.probe = mp5998_probe,
-+	.driver = {
-+			.name = "mp5998",
-+			.of_match_table = mp5998_of_match,
-+		   },
-+	.id_table = mp5998_id,
-+};
-+
-+module_i2c_driver(mp5998_driver);
-+MODULE_AUTHOR("Yuxi Wang <Yuxi.Wang@monolithicpower.com>");
-+MODULE_DESCRIPTION("MPS MP5998 HWMON driver");
-+MODULE_LICENSE("GPL");
-+MODULE_IMPORT_NS("PMBUS");
--- 
-2.39.2
+On Wed, Sep 17, 2025 at 12:03:43AM +0200, Raphaël Gallais-Pou wrote:
 
+(...)
+
+> @Alain
+> Do you prefer to merge it yourself or you rather let me do it ?
+
+Please go ahead, you can merge it.
+
+Thanks.
+Alain
+
+> 
+> Best regards,
+> Raphaël>   arch/arm/boot/dts/st/stih410.dtsi | 316
+> ++++++++++++++++++++++----------------
+> >   drivers/gpu/drm/sti/sti_drv.c     |  18 +--
+> >   2 files changed, 192 insertions(+), 142 deletions(-)
+> > ---
+> > base-commit: b9a572f471993d3e8bf874fcb57f331d66650440
+> > change-id: 20250401-sti-rework-b009551a362c
+> > 
+> > Best regards,
+> 
 
