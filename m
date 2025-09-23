@@ -1,226 +1,147 @@
-Return-Path: <devicetree+bounces-220444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 561E0B964BF
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:36:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62AF5B96504
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:38:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 539937B8516
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 14:31:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E4584A7456
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 14:34:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D9923A9AE;
-	Tue, 23 Sep 2025 14:29:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55D0D2459C6;
+	Tue, 23 Sep 2025 14:31:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N+XY4Lhc"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Ce2sOG2J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18E3E18E20;
-	Tue, 23 Sep 2025 14:29:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D5951F1302;
+	Tue, 23 Sep 2025 14:31:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758637785; cv=none; b=j2OP82Uebl1wHyZ8L6NIRHId6cUggPuY4+yzj8CHZVn74V9d7651pH7qJQ8GTNTTa2+l4wpiy5sL5puBQIKrgFprmq9LjtlupMZFPyVhZpz6yR9X7gSMyvcbokgQmcV93JvsgfHafPZw0kil3HHj6Ar5Dcqb1nBrlSFSCZlZ2sM=
+	t=1758637910; cv=none; b=r5WAsnLKsvWqYBnLMhTD8/BZSFr3aXriiKVc5GLYamBDYywhbjKrGSrNAqKxWLgm5jRBa6Ot8SFIVLzyxGsBF5Kd+s82MqQT7QHKsd8tSZfdrtXPS1g4ixZFbLrI9TBoDC44IvNK3W8I7h+5H2l3/b7hslF0G2PzKEH/AeAouBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758637785; c=relaxed/simple;
-	bh=8VR91M07ZYegzZ2sv14LTHAk0HCZvQIK1wKP89nGMd0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L5lbEeFOhKh+t9Qk8iGKiLsHoMAzomvkFDVsKni4JgwzlCJKDxINH0asOq6+lUJKSYYIyEYBPpnz1Up/Q8tef3IR/8v3kO1WEHmcfDi98nMU7WSYBR/rkRjiI0VG7LmqetDfmzczsge2xL7N1Et9t97rGfHS+5Rp7wJwNPqzyOU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N+XY4Lhc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B966C4CEF5;
-	Tue, 23 Sep 2025 14:29:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758637784;
-	bh=8VR91M07ZYegzZ2sv14LTHAk0HCZvQIK1wKP89nGMd0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N+XY4LhcSTqHUVZos/FJ4QYeoJ/SIoyuCWtGtfXJgStwns6Fm2QWs1iaYMDM3BRYU
-	 DgXVw6S3v7EfFMuf0PAWPz//RRhL8Nsk/8plcNiIIzxlFEhlEnLJMjLb/9xtzFP82A
-	 npEfAfuVboxqB+hX7wxqaFSpO4nZ76XM4yOADGR7pnNcjdcGPOh/AWTWlWz4TgD7uG
-	 5xVyKPUz2WZd647Cu6n81nATrPshBGOM1m4/amJFrAmboLpVLu+MkgRDh1DvB0d5tg
-	 CYjgql2nB+FxE8qjP+iBHnWKf41l6XvzrdaUIk6HoCRzczAShbGz9Ih46mIpY4+nOG
-	 Oab0QuMq5S8bw==
-Date: Tue, 23 Sep 2025 09:29:43 -0500
-From: Rob Herring <robh@kernel.org>
-To: Kael D'Alcamo <dev@kael-k.io>
-Cc: Olivia Mackall <olivia@selenic.com>,
-	Herbert Xu <herbert@gondor.apana.org.au>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rng: sparc_sun_oracle_rng: convert to DT
- schema
-Message-ID: <20250923142943.GA3134901-robh@kernel.org>
-References: <20250923103900.136621-1-dev@kael-k.io>
+	s=arc-20240116; t=1758637910; c=relaxed/simple;
+	bh=UIE9q5knFnkbWEcoDAhbnZcYbrZ6c1wOHFYsGRe+8KY=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=AF+dsz9vOKclTBme+9r/JvCcRuxFeUzOSQASdu5a32z7F6Xo1oaX2Zeo5YMjDKH25YMxxGGqvRtUSoO+CeBMReEgGsSQ1HKSOvnVrp3cghqmkANq2o4GL/+0TeOvJTQCBzWI8E7PMjRAbHNRsUI4QRNPq3islA726D1aWL8HPng=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Ce2sOG2J; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id EE06425DBC;
+	Tue, 23 Sep 2025 16:31:39 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id dCFc-A-Ltmn4; Tue, 23 Sep 2025 16:31:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1758637899; bh=UIE9q5knFnkbWEcoDAhbnZcYbrZ6c1wOHFYsGRe+8KY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=Ce2sOG2Jc2x6MDAuw/bJRIMXtvmfP23c1X+i+vjgjLEN/bNAgz2o7U4/z2Em5XHNB
+	 nDQOkVk2j8ey81idbXc+buqkLW9f3wI6jf2eKT6z8+wdt9LfMzLfdXCZlR0XPOai4c
+	 T2kp/AtwIaEjyUIbdXBQlWLm1d8j0LRQuCakS4eKfcZtbzzFmj8veg6YELLaq28MuW
+	 XgPAFVz3dQRm0o47IJ9VnT5056FAEuYVUulBRFeSTxipOftWblVAzBk7h+Qor6SGl2
+	 yHqoMO/GAsWHQu42uoWeK/1EJjaFFWVW87X3K53DhnmNYTzmYcmPhqtKry/7suRJo/
+	 N7LSX88stClLw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250923103900.136621-1-dev@kael-k.io>
+Date: Tue, 23 Sep 2025 14:31:38 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang
+ <quic_jesszhan@quicinc.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jessica Zhang
+ <jessica.zhang@oss.qualcomm.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski
+ <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v5 0/2] Support for Synaptics TDDI series panels
+In-Reply-To: <38e3a32db8402c1cbf3dc2fdf9f04ac3@disroot.org>
+References: <20250820-panel-synaptics-tddi-v5-0-d4e3fd4987c6@disroot.org>
+ <38e3a32db8402c1cbf3dc2fdf9f04ac3@disroot.org>
+Message-ID: <a75c7a7aaac1d851d8943c5c20ac31ee@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Sep 23, 2025 at 12:38:22PM +0200, Kael D'Alcamo wrote:
-> Convert the Devicetree binding documentation for:
-> * SUNW,n2-rng
-> * SUNW,vf-rng
-> * SUNW,kt-rng
-> * ORCL,m4-rng
-> * ORCL,m7-rng
-> from plain text to YAML.
+On 2025-09-10 16:25, Kaustabh Chakraborty wrote:
 
-While I welcome any conversions, I wouldn't put Sparc stuff high on 
-priority list as we're not going to run the validation tools on them 
-and we can't change anything in their DTs if we did. My priority is the 
-remaining warnings on arm64 and then active arm32 platforms (e.g. 
-aspeed). We're down to <700 unique warnings on arm64 (from ~10000). 
+It's been over a month without any movements, so another bump.
 
-There's builds with warnings of Linus' and next trees here:
-
-https://gitlab.com/robherring/linux-dt/-/jobs
-
-And some scripts to fetch the warnings here:
-
-https://gitlab.com/robherring/ci-jobs
-
+> Hi,
 > 
-> Signed-off-by: Kael D'Alcamo <dev@kael-k.io>
-> ---
->  .../bindings/rng/sparc_sun_oracle_rng.txt     | 30 ---------
->  .../bindings/rng/sparc_sun_oracle_rng.yaml    | 61 +++++++++++++++++++
-
-SUNW,n2-rng.yaml for the filename.
-
->  2 files changed, 61 insertions(+), 30 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.txt
->  create mode 100644 Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.yaml
+> Bumping to collect some reviews on this series. Thanks!
 > 
-> diff --git a/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.txt b/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.txt
-> deleted file mode 100644
-> index b0b211194c71..000000000000
-> --- a/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.txt
-> +++ /dev/null
-> @@ -1,30 +0,0 @@
-> -HWRNG support for the n2_rng driver
-> -
-> -Required properties:
-> -- reg		: base address to sample from
-> -- compatible	: should contain one of the following
-> -	RNG versions:
-> -	- 'SUNW,n2-rng' for Niagara 2 Platform (SUN UltraSPARC T2 CPU)
-> -	- 'SUNW,vf-rng' for Victoria Falls Platform (SUN UltraSPARC T2 Plus CPU)
-> -	- 'SUNW,kt-rng' for Rainbow/Yosemite Falls Platform (SUN SPARC T3/T4), (UltraSPARC KT/Niagara 3 - development names)
-> -	more recent systems (after Oracle acquisition of SUN)
-> -	- 'ORCL,m4-rng' for SPARC T5/M5
-> -	- 'ORCL,m7-rng' for SPARC T7/M7
-> -
-> -Examples:
-> -/* linux LDOM on SPARC T5-2 */
-> -Node 0xf029a4f4
-> -	.node:  f029a4f4
-> -	rng-#units:  00000002
-> -	compatible: 'ORCL,m4-rng'
-> -	reg:  0000000e
-> -	name: 'random-number-generator'
-> -
-> -/* solaris on SPARC M7-8 */
-> -Node 0xf028c08c
-> -	rng-#units:  00000003
-> -	compatible: 'ORCL,m7-rng'
-> -	reg:  0000000e
-> -	name:  'random-number-generator'
-> -
-> -PS: see as well prtconfs.git by DaveM
-> diff --git a/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.yaml b/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.yaml
-> new file mode 100644
-> index 000000000000..fea6be544784
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.yaml
-> @@ -0,0 +1,61 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rng/sparc_sun_oracle_rng.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: HWRNG support for the n2_rng driver
-
-SUN UltraSPARC HWRNG
-
-> +
-> +maintainers:
-> +  - David S. Miller <davem@davemloft.net>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - SUNW,n2-rng  # for Niagara 2 Platform (SUN UltraSPARC T2 CPU)
-> +      - SUNW,vf-rng  # for Victoria Falls Platform (SUN UltraSPARC T2 Plus CPU)
-> +      # for Rainbow/Yosemite Falls Platform (SUN SPARC T3/T4),
-> +      #  (UltraSPARC KT/Niagara 3 - development names)
-> +      #  more recent systems (after Oracle acquisition of SUN)
-> +      - SUNW,kt-rng
-> +      - ORCL,m4-rng  # for SPARC T5/M5
-> +      - ORCL,m7-rng  # for SPARC T7/M7
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "rng-#units":
-> +    description: Number of RNG units
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-
-This will need an exception in vendor-prefixes.yaml to fix the warning. 
-Looking at some of the Sparc DTs briefly, there's a few more ways '#' 
-shows up.
-
-I suppose this:
-
-"^[a-zA-Z0-9#_][a-zA-Z0-9+\\-._@]{0,63}$": true
-
-needs to be:
-
-"^[a-zA-Z0-9#_][a-zA-Z0-9#+\\-._@]{0,63}$": true 
-
-(I think the '@' should be dropped here.)
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +# PS: see as well prtconfs.git by DaveM
-> +examples:
-> +  - |
-> +    bus {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        rng@e {
-> +            compatible = "ORCL,m4-rng";
-> +            reg = <0xe>;
-> +            rng-#units = <2>;
-> +        };
-> +    };
-> +  - |
-> +    bus {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        rng@e {
-> +            compatible = "ORCL,m7-rng";
-> +            reg = <0xe>;
-> +            rng-#units = <3>;
-> +        };
-> +    };
-
-I think one example is enough.
-
-Rob
+> On 2025-08-20 14:24, Kaustabh Chakraborty wrote:
+>> Synaptics' Touch and Display Driver Integration (TDDI) technology [1]
+>> employs a single chip for both touchscreen and display capabilities.
+>> Such designs reportedly help reducing costs and power consumption.
+>> 
+>> Although the touchscreens, which are powered by Synaptics'
+>> Register-Mapped Interface 4 (RMI4) touch protocol via I2C or SPI have
+>> driver support in the kernel, the MIPI DSI display panels don't.
+>> 
+>> This series introduces a rudimentary driver for controlling said 
+>> display
+>> panels, which supports TD4101 and TD4300 panels.
+>> 
+>> [1] https://www.synaptics.com/technology/display-integration
+>> 
+>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+>> ---
+>> Changes in v5:
+>> - added missing Reviewed-by tag from Krzysztof in [v3 1/2]
+>> - Link to v4: 
+>> https://lore.kernel.org/r/20250819-panel-synaptics-tddi-v4-0-448f466d16a6@disroot.org
+>> 
+>> Changes in v4:
+>> - utilized drm_connector_helper_get_modes_fixed() (dmitry.baryshkov)
+>> - constified backlight properties (dmitry.baryshkov)
+>> - Link to v3: 
+>> https://lore.kernel.org/r/20250720-panel-synaptics-tddi-v3-0-43a5957f4b24@disroot.org
+>> 
+>> Changes in v3:
+>> - fixed various dt_binding_check errors (robh's bot)
+>> - adjusted commit description of [v2 1/2] (robh)
+>> - utilized devm_drm_panel_alloc() and devm_regulator_bulk_get_const()
+>> - Link to v2: 
+>> https://lore.kernel.org/r/20250625-panel-synaptics-tddi-v2-0-7a62ab1d13c7@disroot.org
+>> 
+>> Changes in v2:
+>> - fixed various dt_binding_check errors (conor)
+>> - did s/tddi_update_brightness/tddi_update_status
+>> - added check for panel enable in tddi_update_status()
+>> - used backlight_get_brightness() in appropriate places
+>> - Link to v1: 
+>> https://lore.kernel.org/r/20250612-panel-synaptics-tddi-v1-0-dfb8a425f76c@disroot.org
+>> 
+>> ---
+>> Kaustabh Chakraborty (2):
+>>       dt-bindings: display: panel: document Synaptics TDDI panel
+>>       drm: panel: add support for Synaptics TDDI series DSI panels
+>> 
+>>  .../display/panel/synaptics,td4300-panel.yaml      |  89 +++++++
+>>  drivers/gpu/drm/panel/Kconfig                      |  11 +
+>>  drivers/gpu/drm/panel/Makefile                     |   1 +
+>>  drivers/gpu/drm/panel/panel-synaptics-tddi.c       | 276 
+>> +++++++++++++++++++++
+>>  4 files changed, 377 insertions(+)
+>> ---
+>> base-commit: 5303936d609e09665deda94eaedf26a0e5c3a087
+>> change-id: 20250523-panel-synaptics-tddi-0b0b3f07f814
+>> 
+>> Best regards,
+>> --
+>> Kaustabh Chakraborty <kauschluss@disroot.org>
 
