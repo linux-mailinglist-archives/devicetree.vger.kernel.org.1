@@ -1,153 +1,309 @@
-Return-Path: <devicetree+bounces-220416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FB32B95CF2
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 14:18:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D1273B95DE7
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 14:49:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF2E33A5F9B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 12:18:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B7B1177998
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 12:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF22B320A26;
-	Tue, 23 Sep 2025 12:18:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AFC8322744;
+	Tue, 23 Sep 2025 12:49:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b="OLUTESS1"
+	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="dAjaEmgk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-06.mail-europe.com (mail-06.mail-europe.com [85.9.210.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81C5831076D
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 12:18:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.9.210.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EECB92DF132
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 12:49:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758629891; cv=none; b=MtRC9AnHCgPi/nB0JhunM3x5Pq7irlgzljJ7r/eFxbVHaYr72dSlARs1hcZClfoCN0uK0zuhpAXzpqbDkRVUeSS4WAaShkzT6ECxTH5wc2yaZyCcNpyHLL1qH0bST49J05q+ZcLhcfeZW9wgqyJugmqAj7sNEqbzHK3mz4UiB5A=
+	t=1758631768; cv=none; b=jGlqsvoEbsiyMzwPS7hEF5+6TeXH5NewBN19z4c2d45oL3grHcEpmTArwT0LUguoonETd+0QLOV8volegXHqEa9CzCWe6byJZw4YCllCrLKrIm6ZBDtO7rfZBx2uvPMaUcT0dgoKIA55cTM1TzqUwCT1tOO36bnibIWGZoeKh2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758629891; c=relaxed/simple;
-	bh=fgbwTeN4mBqznS0b5v+G7eAnKEwgbBFcZpWyDDDQBEA=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nQ7FfP7UeklQ52IRBHEhy2XfwtmCJvJUwyf5A58OgSA/gMyy5/yYJFc9xL3x9lAExiiirBlO8WmaiA/27TfC+MSXy4JbkPXuz+db0TgrjB3PS+KSQ+kNTsoqAuTXCIhZknYQ+071wPnEV8FOSofhZnUhrdHmz5XHmzbgArW2UFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=OLUTESS1; arc=none smtp.client-ip=85.9.210.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=protonmail; t=1758629879; x=1758889079;
-	bh=fgbwTeN4mBqznS0b5v+G7eAnKEwgbBFcZpWyDDDQBEA=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=OLUTESS1EIxO5wu69Pkg4FbXF0V50+VJj0phn3kui/Cp1rvKW3llyCRylXo3fQsuf
-	 zcYc+UTZovXCAxdJpPBfMYqjK6oRL/v8DVbbL03AfIBK7vjyytYzaF0MNyMEe9Ghp7
-	 MfjMIVJCsIH/SHVOFrttuZINLZ/GoJPzZfq2qAws+3zu4MVrhN+uWTV8gB0ELCMTTT
-	 V7kOD+bnYMP1nqb1xkgRtgWIWhAbT0OoY3JBZFps+1dv4vOhJcWi7/yVoDPJuZQijT
-	 hIE4grV89D6Wk7Vm/AY1E4hKhKD2bVS9muXjrdVq6k/AjLlMCgs7G9LieiJ0Fm27Z1
-	 27E6xIiNet1ug==
-Date: Tue, 23 Sep 2025 12:17:45 +0000
-To: Rob Herring <robh@kernel.org>
-From: Max Shevchenko <wctrl@proton.me>
-Cc: "sean.wang@mediatek.com" <sean.wang@mediatek.com>, "vkoul@kernel.org" <vkoul@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, "angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>, "long.cheng@mediatek.com" <long.cheng@mediatek.com>, "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: dma: mediatek,uart-dma: drop mediatek,dma-33bits property
-Message-ID: <OqrpnP1RyPRyuNfMPA0kXp64iZ1Q5a0ZDMKXz4xmzcg9U7s9SvEvuo1jmiNAwTCgCibt0r1EafrFMwj-ML0ByUC1nsh5ZVbsY1pfOF7pzq8=@proton.me>
-In-Reply-To: <20250922204756.GA1294776-robh@kernel.org>
-References: <20250921-uart-apdma-v1-0-107543c7102c@proton.me> <20250921-uart-apdma-v1-1-107543c7102c@proton.me> <20250922204756.GA1294776-robh@kernel.org>
-Feedback-ID: 131238559:user:proton
-X-Pm-Message-ID: ea64799d345eab79b1e8b6edd13a26df9a410340
+	s=arc-20240116; t=1758631768; c=relaxed/simple;
+	bh=viMHlMgc2DeVPr1JzbzU5Lkyrq+sYbfd7FhWBYhy4fY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CDl+SsbpkGBEUoJVr1DoLEJQdr5+cZ16dyQyKmeh1JUNCawZoiSmmJluFDPM+6RpE3ZfvNVccxb0hc6IBi1VuAspGWmw8plGK0N9enoe6rK5aFbmp3igKpPKNBdvU3H2jeELHfSazzMonzGjBPcLzg/d99sq67EM8EjIo97XtAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=dAjaEmgk; arc=none smtp.client-ip=209.85.166.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-424d3c1256fso20822525ab.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 05:49:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1758631765; x=1759236565; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9ZU9aQ8bM7T2Ftc+EDUk8mZlFRUJvemFzpUBxk0Wb8I=;
+        b=dAjaEmgk2y/UZ1dYIOFTm5C8p92Lk/An3f8xyNUz1ElBUboF4ZQ3WbirrpFT/PHKYG
+         J0w40nIjk1dhlYeUlDKnpVQMutNAY3NshcSKxroTQbjfsiUH9AcNj7VPfvB3zxlqHV5N
+         Kk7T4AWMzRkxZudAb9Id0E9tCVIY/sWehnpA2jXPUN3j+//FUTNjngibEfYZOlnQHqdF
+         SRFsY9Utl3ymLON3YwCwK4+ZX4Q4cEIevm4QUEz1fxhGW5P2f0NEKjgiCLhm0ksQBGH+
+         AFp6+68lQC5AZETSNd989ygpNJjNALRtXAnClUwJluJUQ2zXziz4VF23tuMR9s7PDCKO
+         iSMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758631765; x=1759236565;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9ZU9aQ8bM7T2Ftc+EDUk8mZlFRUJvemFzpUBxk0Wb8I=;
+        b=H9f8iP8Hfi1BYMTeZz72HlIacLG6T1SbNqprjp5G3FaLJornG8xlPbhtAakBA0NLp2
+         pYUffkOpcWhms62D8cGdOgLZ3YCBPfTI5TdxTCkmwxHKm7AQnlzp9EWrShz0ntc1s4Yn
+         pCuEMtVgqtICISEdQp8mUcuAUPEGIsSmvmmSzD4elFQQsklgPrlUFKxPG1nclYTzBzvS
+         PexYwF53F6Q7YWRxzrvDxuZuYTAs05LX4u60loEL2dSXklKHTP+4gbaijubS1MNjJG4K
+         7bgSXYE2PNgQwPqb5QbOxjVypRjQIkLPYKf7AxuWEnZ0vVNkiKT8pzQZZeDyWBkB3fiW
+         ayzA==
+X-Forwarded-Encrypted: i=1; AJvYcCUy2B1xJJfE34RJYrkWWiZk5BhmBvxKn9L+EmP8R4zTWWa/J9N31Ugxj5hHxVOMmNeqJl/7ulFxYia9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/uvignzTbWKE46oGqloCFQ/dAujDt5kS7GWMd2a2SviN1RtP3
+	jbFGSi6VJanj7eJzcUzsys3P29tbw3Eu3BkgVEyeZnRt8k+olBgYSCa8tsN+hGJPW+w=
+X-Gm-Gg: ASbGncvLj874Todsm7BHxKOgtNb0SNPHMDdGjc+FT37h91NbPkOIRjbzcGWlnoXQ6PJ
+	Jy5UFyrAmhModmMrF9O0M4ktBm+pM31QsbzQ4KHmAJ2wPGv1tc1NgRMxpuWDjziNcRsg8F5RHDF
+	m4AOl2y4Ce3m5pCAJsNM750exA/jLgL2VhidUuayW5ZhL/gpWR0rPP5BaGl2Oz9fJtgOHRjtvvc
+	sva4VHg2CkCT4dxXSlZ7CAn983C1+meMzGTONp3tBbm8Zr6ieanceyODIO/nM0zEf/XrIAR+O1R
+	SUobEUCndaQz9Mu4Go7HuzJDyMbphJqKY740LOiCFYKGLytls0vpvsbfwN6C8RMBLrimckFww3g
+	LfG8/fXvoUiauyOMNP4y6vwXojiG+ww0G5w/yWOcMT6Tdlm6TUDsL7BC1Tki20g==
+X-Google-Smtp-Source: AGHT+IFj1XQAMzFpu45XELaWdmBGc77d+Kzj8EzJZoLjGXq7RU8vmmffnX+IA/9d84nt85uqzgtH9A==
+X-Received: by 2002:a92:c24b:0:b0:424:2c9:26b5 with SMTP id e9e14a558f8ab-425823254efmr34685275ab.9.1758631764817;
+        Tue, 23 Sep 2025 05:49:24 -0700 (PDT)
+Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-556f74174cfsm3556602173.57.2025.09.23.05.49.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 23 Sep 2025 05:49:24 -0700 (PDT)
+Message-ID: <786f4a5e-f62e-4cd0-a017-7b61408f34aa@riscstar.com>
+Date: Tue, 23 Sep 2025 07:49:22 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] spi: spacemit: introduce SpacemiT K1 SPI
+ controller driver
+To: Yixun Lan <dlan@gentoo.org>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, ziyao@disroot.org, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
+ spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250922161717.1590690-1-elder@riscstar.com>
+ <20250922161717.1590690-3-elder@riscstar.com>
+ <20250922230639-GYA1303776@gentoo.org>
+Content-Language: en-US
+From: Alex Elder <elder@riscstar.com>
+In-Reply-To: <20250922230639-GYA1303776@gentoo.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Monday, September 22nd, 2025 at 11:47 PM, Rob Herring <robh@kernel.org> =
-wrote:
+On 9/22/25 6:06 PM, Yixun Lan wrote:
+> Hi Alex,
+> 
+> On 11:17 Mon 22 Sep     , Alex Elder wrote:
+>> This patch introduces the driver for the SPI controller found in the
+>> SpacemiT K1 SoC.  Currently the driver supports master mode only.
+>> The SPI hardware implements RX and TX FIFOs, 32 entries each, and
+>> supports both PIO and DMA mode transfers.
+>>
+>> Signed-off-by: Alex Elder <elder@riscstar.com>
+>> ---
+>> v3: - Added imply_PDMA to the SPI_SPACEMIT_K1 Kconfig option
+>>      - Fixed a bug pointed out by Vivian (and Troy) in word-sized reads
+>>      - Added a comment stating we use 1, 2, or 4 bytes per word
+>>      - Cleaned up DMA channels properly in case of failure setting up
+>>      - No longer use devm_*() for allocating DMA channels or buffer
+>>
+>>   drivers/spi/Kconfig           |   9 +
+>>   drivers/spi/Makefile          |   1 +
+>>   drivers/spi/spi-spacemit-k1.c | 965 ++++++++++++++++++++++++++++++++++
+>>   3 files changed, 975 insertions(+)
+>>   create mode 100644 drivers/spi/spi-spacemit-k1.c
 
-> On Sun, Sep 21, 2025 at 02:03:40PM +0300, Max Shevchenko wrote:
->=20
-> > Many newer SoCs support more than 33 bits for DMA.
-> > Drop the property in order to switch to the platform data.
-> >=20
-> > The reference SoCs were taken from the downstream kernel (6.6) for
-> > the MT6991 SoC.
-> >=20
-> > Signed-off-by: Max Shevchenko wctrl@proton.me
-> > ---
-> > Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml | 11 ++++-=
-------
-> > 1 file changed, 4 insertions(+), 7 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/dma/mediatek,uart-dma.ya=
-ml b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
-> > index dab468a88942d694525aa391f695c44d192f0c42..9dfdfe81af7edbe3540e4b7=
-57547a5d5e6ae810c 100644
-> > --- a/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
-> > +++ b/Documentation/devicetree/bindings/dma/mediatek,uart-dma.yaml
-> > @@ -22,12 +22,14 @@ properties:
-> > - items:
-> > - enum:
-> > - mediatek,mt2712-uart-dma
-> > - - mediatek,mt6795-uart-dma
-> > - mediatek,mt8365-uart-dma
-> > - mediatek,mt8516-uart-dma
-> > - const: mediatek,mt6577-uart-dma
-> > - enum:
-> > - - mediatek,mt6577-uart-dma
-> > + - mediatek,mt6577-uart-dma # 32 bits
-> > + - mediatek,mt6795-uart-dma # 33 bits
->=20
->=20
-> Unless all existing s/w supported mediatek,mt6795-uart-dma, you just
-> broke this platform which was relying on the fallback compatible.
->=20
+. . .
 
+>> diff --git a/drivers/spi/spi-spacemit-k1.c b/drivers/spi/spi-spacemit-k1.c
+>> new file mode 100644
+>> index 0000000000000..2b932d80cc510
+>> --- /dev/null
+>> +++ b/drivers/spi/spi-spacemit-k1.c
+>> @@ -0,0 +1,965 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Support for SpacemiT K1 SPI controller
+>> + *
+>> + * Copyright (C) 2025 by RISCstar Solutions Corporation.  All rights reserved.
+>> + * Copyright (c) 2023, spacemit Corporation.
+>> + */
 
-As of v6.17-rc6 and linux-next 20250922, the only user of the
-mediatek,mt6795-uart-dma compatible is the MT6795 itself, which also
-uses the mediatek,dma-33bits property. The second patch makes driver
-to set the DMA bitmask based on the compatible.
-Therefore I don't think it breaks the platform.
+. . .
 
-> > + - mediatek,mt6779-uart-dma # 34 bits
-> > + - mediatek,mt6985-uart-dma # 35 bits
-> >=20
-> > reg:
-> > minItems: 1
-> > @@ -56,10 +58,6 @@ properties:
-> > Number of virtual channels of the UART APDMA controller
-> > maximum: 16
-> >=20
-> > - mediatek,dma-33bits:
-> > - type: boolean
-> > - description: Enable 33-bits UART APDMA support
->=20
->=20
-> If this is in use, you need to mark it 'deprecated' instead.
->=20
+>> +static irqreturn_t k1_spi_ssp_isr(int irq, void *dev_id)
+>> +{
+>> +	struct k1_spi_driver_data *drv_data = dev_id;
+>> +	bool rx_done;
+>> +	bool tx_done;
+>> +	u32 val;
+>> +
+>> +	/* Get status and clear pending interrupts */
+>> +	val = readl(drv_data->base + SSP_STATUS);
+>> +	writel(val, drv_data->base + SSP_STATUS);
+>> +
+>> +	if (!drv_data->message)
+>> +		return IRQ_NONE;
+>> +
+>> +	/* Check for a TX underrun or RX underrun first */
+> s/RX underrun/RX overrun/
 
+OK.
 
-The same question here, third patch removes this property from its
-sole user. Does it actually need to be marked as deprecated and
-not deleted?
+>> +	if (val & (SSP_STATUS_TUR | SSP_STATUS_ROR)) {
+>> +		/* Disable all interrupts on error */
+>> +		writel(0, drv_data->base + SSP_INT_EN);
+> should clear status of SSP_STATUS instead of disabling ISR, see commet below
 
-> > -
-> > required:
-> > - compatible
-> > - reg
-> > @@ -116,7 +114,6 @@ examples:
-> > dma-requests =3D <12>;
-> > clocks =3D <&pericfg CLK_PERI_AP_DMA>;
-> > clock-names =3D "apdma";
-> > - mediatek,dma-33bits;
-> > #dma-cells =3D <1>;
-> > };
-> > };
-> >=20
-> > --
-> > 2.51.0
+The status is cleared immediately after reading, above.  We hold
+the status value so we can act on the current state of the FIFOs.
 
-Sincerely,
-Max
+>> +
+>> +		drv_data->message->status = -EIO;
+>> +		complete(&drv_data->completion);
+>> +
+>> +		return IRQ_HANDLED;
+>> +	}
+>> +
+>> +	/* Drain the RX FIFO first, then transmit what we can */
+>> +	rx_done = k1_spi_read(drv_data);
+>> +	tx_done = k1_spi_write(drv_data);
+>> +
+>> +	/* Disable interrupts if we're done transferring either direction */
+>> +	if (rx_done || tx_done) {
+>> +		/* If both are done, disable all interrupts */
+>> +		if (rx_done && tx_done) {
+>> +			val = 0;
+>> +		} else {
+>> +			val = readl(drv_data->base + SSP_INT_EN);
+>> +			if (rx_done)
+>> +				val &= ~(SSP_INT_EN_TINTE | SSP_INT_EN_RIE);
+>> +			if (tx_done)
+>> +				val &= ~SSP_INT_EN_TIE;
+>> +		}
+>> +		writel(val, drv_data->base + SSP_INT_EN);
+>> +	}
+> It occur to me, enabling/disabling interrupt in trasfer_start()/ISR is
+> unnecessary, which bring extra overhead, why not enable them once
+> and only handle status clear bit? I mean bits has "R/W1C" in SSP_STATUS
+
+Disabling the TX interrupt when we are done sending means we
+won't get a pointless "more room in the FIFO" interrupt.
+
+Disabling the RX interrupt when we have received what we want
+means we won't get interrupted again, even if (for some reason)
+there is more in the FIFO to consume.
+
+I think this is OK.
+
+					-Alex
+
+>> +
+>> +	if (rx_done && tx_done)
+>> +		complete(&drv_data->completion);
+>> +
+>> +	return IRQ_HANDLED;
+>> +}
+>> +
+>> +static int k1_spi_probe(struct platform_device *pdev)
+>> +{
+>> +	struct k1_spi_driver_data *drv_data;
+>> +	struct device *dev = &pdev->dev;
+>> +	struct reset_control *reset;
+>> +	struct spi_controller *host;
+>> +	struct resource *iores;
+>> +	struct clk *clk_bus;
+>> +	int ret;
+>> +
+>> +	host = devm_spi_alloc_host(dev, sizeof(*drv_data));
+>> +	if (!host)
+>> +		return -ENOMEM;
+>> +	drv_data = spi_controller_get_devdata(host);
+>> +	drv_data->controller = host;
+>> +	platform_set_drvdata(pdev, drv_data);
+>> +	drv_data->dev = dev;
+>> +	init_completion(&drv_data->completion);
+>> +
+>> +	drv_data->base = devm_platform_get_and_ioremap_resource(pdev, 0,
+>> +								&iores);
+>> +	if (IS_ERR(drv_data->base))
+>> +		return dev_err_probe(dev, PTR_ERR(drv_data->base),
+>> +				     "error mapping memory\n");
+>> +	drv_data->base_addr = iores->start;
+>> +
+>> +	ret = devm_k1_spi_dma_setup(drv_data);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "error setting up DMA\n");
+>> +
+>> +	k1_spi_host_init(drv_data);
+>> +
+>> +	clk_bus = devm_clk_get_enabled(dev, "bus");
+>> +	if (IS_ERR(clk_bus))
+>> +		return dev_err_probe(dev, PTR_ERR(clk_bus),
+>> +				     "error getting/enabling bus clock\n");
+>> +	drv_data->bus_rate = clk_get_rate(clk_bus);
+>> +
+>> +	drv_data->clk = devm_clk_get_enabled(dev, "core");
+>> +	if (IS_ERR(drv_data->clk))
+>> +		return dev_err_probe(dev, PTR_ERR(drv_data->clk),
+>> +				     "error getting/enabling core clock\n");
+>> +
+>> +	reset = devm_reset_control_get_exclusive_deasserted(dev, NULL);
+>> +	if (IS_ERR(reset))
+>> +		return dev_err_probe(dev, PTR_ERR(reset),
+>> +				     "error getting/deasserting reset\n");
+>> +
+>> +	k1_spi_register_reset(drv_data, true);
+>> +
+>> +	drv_data->irq = platform_get_irq(pdev, 0);
+>> +	if (drv_data->irq < 0)
+>> +		return dev_err_probe(dev, drv_data->irq, "error getting IRQ\n");
+>> +
+>> +	ret = devm_request_irq(dev, drv_data->irq, k1_spi_ssp_isr,
+>> +			       IRQF_SHARED, dev_name(dev), drv_data);
+>> +	if (ret < 0)
+>> +		return dev_err_probe(dev, ret, "error requesting IRQ\n");
+>> +
+>> +	ret = devm_spi_register_controller(dev, host);
+>> +	if (ret)
+>> +		dev_err(dev, "error registering controller\n");
+>> +
+>> +	return ret;
+>> +}
+>> +
+>> +static void k1_spi_remove(struct platform_device *pdev)
+>> +{
+>> +	struct k1_spi_driver_data *drv_data = platform_get_drvdata(pdev);
+>> +
+>> +	k1_spi_register_reset(drv_data, false);
+>> +}
+>> +
+>> +static struct platform_driver k1_spi_driver = {
+>> +	.driver = {
+>> +		.name		= "k1-spi",
+>> +		.of_match_table	= k1_spi_dt_ids,
+>> +	},
+>> +	.probe			= k1_spi_probe,
+>> +	.remove			= k1_spi_remove,
+>> +};
+>> +
+>> +module_platform_driver(k1_spi_driver);
+>> +
+>> +MODULE_DESCRIPTION("SpacemiT K1 SPI controller driver");
+>> +MODULE_LICENSE("GPL");
+>> -- 
+>> 2.48.1
+>>
+> 
+
 
