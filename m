@@ -1,204 +1,205 @@
-Return-Path: <devicetree+bounces-220584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CF3DB97A1C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 23:51:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36997B97C75
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 01:07:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E618C4C4626
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 21:51:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E3914175F2A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 23:07:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629C330E0E2;
-	Tue, 23 Sep 2025 21:51:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E41B23101D5;
+	Tue, 23 Sep 2025 23:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iBMX5KkT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hghqotyn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD10830C617
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 21:51:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD46730FF3A;
+	Tue, 23 Sep 2025 23:07:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758664283; cv=none; b=C4OL0ePfFcDB58kx8faQBMyU1KENQhAW46/VvlvAjoyS5snvARn2iaQwFtFzfF/luThfL6xsqVckA8eRu3nhX6KzGg+0jlenhoum3FTCXnziacwv+t26Ri5ZddlJ8nGmx4CbFUBDWLdNS+SGvoX/dn0qUljRlorw4f95hYTW85I=
+	t=1758668833; cv=none; b=cnXV+tCFbk1eVYrnlaXr6puiv6KtxJI7lVawE0WW2H4HmcJpAqaqnOze2fHqj6YIdtygLxOqZLJgXzSMZnJ7UCOsN5oaKqr3TOY78p4CL13e+dYSvlocR66Daza5I7EE0wE4DSSJTvhb3iV1d8vFOWr/jcxkcaT4CCYC/wZBfLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758664283; c=relaxed/simple;
-	bh=Phi3PYB3KOmm3zJUanSEv1JY6ERzYhkvkqz9KTEqZ1k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AYTe/BOgaBP4CvE3Qf2WUhhadelGGFyNk1wDsZiG8AWav1XPkPhJXrtPWTt4JTAE4JTvGml2mOfxt0ym8Xs43gszi8VSGbftZ8wQMIO/6NQTXA9WPxeMsWEWfn/vC7V31SJcHgcoqXo5F5mzSlfIQBmkMq0hqCfZbqoVdzwnHAE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iBMX5KkT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58NFVk5l007333
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 21:51:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	aiAQHIOrW59pXHLJaujV2OHhsUSTiYkKFOKLz/FR/mI=; b=iBMX5KkTaqhWAkUg
-	BRxtHF1eehWCLziLrqUynIjhqx6oYcX+abOt75b4L/d6rVjzpOHm9AeA5SvMKuyB
-	PYRbcQvR3Lxuy9O54ATDejhjK7CMOh4hv7/SnP6VU8RF5Tg+2OfHhoKGOqZyyYt+
-	yFackzvt5dgAIt2CB8tS6HrXmyNr/jyS+9fbXVl8CMQ+1PmtCcWmujNkibu6v+fH
-	/FIAc/2hxyu0r7EhpRirzxzUSLfjLTyCkLvyyOCCKDSFUTQOxSgWR1mXYjyR6SGe
-	wT5jMYkmxu01p91Cscci0WUT4hEBJHYnr8sa+vbBVyBIQyI+Z1WoxuFAdHhlAhQA
-	8+kl0Q==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499k98j5c1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 21:51:20 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b55436fff66so2332579a12.2
-        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 14:51:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758664279; x=1759269079;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aiAQHIOrW59pXHLJaujV2OHhsUSTiYkKFOKLz/FR/mI=;
-        b=vnF0z9Vge+pNWoVG9b9eKecVNhHpVQ9kmDUyl1EfhxjOzPyr77nPCcMqySxANtvZZq
-         eX9JKa3ODKHZbL1IcS4x3KnB6Ngflbq24l14ceA4UPJeqIFQag+9zwrWbknU02hi7wi5
-         QFQsahBPnwxC6P13CWhlA4sibkc71m4s4aEovK8avoQl0WGaVNsiLCcXJGB2e4V84Hd7
-         KZO5Dj5wZQm2EdrOFq5vHJ2L6nvtJOijjomDEBintY/QXOVckZ1bx1jr5hTbxoIASVz9
-         BTFVJ7D/sdPGv7wxhmQ9rTL6K8VlwkS+3f4e5XTEjMguOv348pRNGg4cHO4fl/Oq/i4A
-         9MVg==
-X-Forwarded-Encrypted: i=1; AJvYcCWNslojvfgPxs6NyvCLRg1zdVXKvrY4TmOtNlMu7qHXIzn64ltzYz4n/5AmPTbv3F7ap8tSumVDcfL/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwVYnhKd3fkeyNIZ9zYblM9bcGVzkxU6fMZhen+/LozdiLlWeYl
-	vIbEF2aZVNlguiTfE3hWKA/TXG150g8KmOecp4q1lDrU8+FaYAUvhkc6T8nry2ufNAqF71eAAc4
-	wqyqMQw1WbobzsNCG1jmf+s9MCaLaqTDyLpzRT95eR5AJTaLlobqUHZgbnVx3JwjR
-X-Gm-Gg: ASbGnctWKcub0VJTR0SD81drBW2G7iniHvXCtjZBFsX5PDM7zU8dr7Tm38oZ//x1F6r
-	u4N3VTlAacSQRlYKLNAhc8SbtiehtR+01x+bsnd1SvbI1kv5KAG6yFw25NQoQYdmM9diXe3JFfF
-	ZTSvEyXH1TrNmA/Dw5xRNCYxDDKUQuedJaHWQiNnfqa/PkUvV72ukBhOQ2jmNW8aHWGFRs2MYBC
-	kUUtSLQCG6F0uhx/xCXr0rC6wvw3wTPZ41wgUYWMr3SQDrtSs12ZtMMse+t9hzsKdY7eUC9ATky
-	J4ysvzIrUAi66uIL1ma2E3AuDj0hj07yda2j4Bhp8pYt3xZzeVn4jrkogm5Oj7MhUC44Vh1h8nN
-	/glWo7Q==
-X-Received: by 2002:a05:6a20:258b:b0:249:d3d:a50b with SMTP id adf61e73a8af0-2cff4209b23mr5529429637.59.1758664279134;
-        Tue, 23 Sep 2025 14:51:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEq5Th0MTaZw84UMrVLMwE0MdUEOMsSuPcioOUVzMEkQngd4fbtEd7mUZH6sG5VPITkCIAgJw==
-X-Received: by 2002:a05:6a20:258b:b0:249:d3d:a50b with SMTP id adf61e73a8af0-2cff4209b23mr5529405637.59.1758664278734;
-        Tue, 23 Sep 2025 14:51:18 -0700 (PDT)
-Received: from [10.73.52.96] (pat_11.qualcomm.com. [192.35.156.11])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b55396db81fsm9565146a12.19.2025.09.23.14.51.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Sep 2025 14:51:18 -0700 (PDT)
-Message-ID: <1b51550f-90db-2ead-0ec5-93ce786ffdff@oss.qualcomm.com>
-Date: Tue, 23 Sep 2025 14:51:16 -0700
+	s=arc-20240116; t=1758668833; c=relaxed/simple;
+	bh=myebbJEIelj6OaJbcBR6uxOg/2sE9Y7fBusonNz4fbU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mlaiyhNG0xMrZMtnr26qk5vGz9myy91JwLZH5aNFornpWtoXanMDPfNkxwTrm1pff0uxYnWVm/+1605RCrusyqfGeFeB6BbzC3j7XXjO1MFaW87+XG4JrRLIUbwLEHS4umY8iYwX9Qz/rATvDJJb39IzQ/ZzAxA6u6tv5KKg2IA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hghqotyn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBE36C113CF;
+	Tue, 23 Sep 2025 23:07:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758668833;
+	bh=myebbJEIelj6OaJbcBR6uxOg/2sE9Y7fBusonNz4fbU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HghqotynkHbRWS3JVhE5mbF5L7n8U8MzlD8w7dZ/rwbNd3mL/QE/hnHV9Eh8fhsbq
+	 5Me2eIVHvj3BTjyC1j/NEPlUVrl/rh5c7BDMcCXqOk3kkTKlIBshjZcoYjfohK3sDl
+	 ir+jDd+VSc7cXxaovhYy+haSO0h6lI9SBydPy4Zy+Qyl5Vf8OqpANSqn+jN9KGTIqV
+	 3yr92JwMt+hZcpI5G90qjHZ+DPEBnNyvkfSYTALVr1W4VdgXE8EbMfSSq17etDCsxn
+	 2HFKBNfPEfK5JBQTjBeVLD/veWVuiKPDdxaDIaMOM+gaOwzDmsPBTxvzoaAxB0XS54
+	 LMVGPceu04opg==
+Date: Wed, 24 Sep 2025 00:07:07 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Cosmin-Gabriel Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	"magnus.damm" <magnus.damm@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH 2/7] dt-bindings: iio: adc: document RZ/T2H and RZ/N2H ADC
+Message-ID: <20250924-playable-catfight-3757178ada02@spud>
+References: <20250923160524.1096720-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20250923160524.1096720-3-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20250923-walmart-shale-359fb66133f8@spud>
+ <TYWPR01MB88052B9ACC279F3C00AEAC21851DA@TYWPR01MB8805.jpnprd01.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH 2/9] dt-bindings: phy: qcom,qmp-usb: Add Glymur USB UNI
- PHY compatible
-Content-Language: en-US
-To: Johan Hovold <johan@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, krzk+dt@kernel.org,
-        conor+dt@kernel.org, kishon@kernel.org, vkoul@kernel.org,
-        gregkh@linuxfoundation.org, robh@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-phy@lists.infradead.org
-References: <20250920032108.242643-1-wesley.cheng@oss.qualcomm.com>
- <20250920032108.242643-3-wesley.cheng@oss.qualcomm.com>
- <7gvp6pshp4eiugk3qodg2ub3azu365loturidbkxqly6nhtgq7@bxnkxeqzarkv>
- <4116b593-d36d-df10-6101-4e3539b8b812@oss.qualcomm.com>
- <aNJL1YEXx6IabTos@hovoldconsulting.com>
-From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-In-Reply-To: <aNJL1YEXx6IabTos@hovoldconsulting.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: a0rT9JShmZz4UrCWHpFa-Yv5YlhAGztx
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAxOCBTYWx0ZWRfX08jTg4/0eZ5B
- CP8dSQbsa4CLCVJ0JosjgujX/JpSApdzCubOtX+XWN70K+66MMVzjVvS1U4fjLhF4lw2mIq9nxi
- WTf0UryJolvSfDoeD3Q8mvmCwn8rq/Z2iii6VV14FLUtuBkJwjIhOnC1+JS9aftiJzU5hooekKx
- 9oK5a7PCqaDPqQmnm8VCzuBr4tPaVOiX6LASrzMj5Obtpqr8MylpiegpY+ejIiU4nDVnkaALbWN
- JVmbLV4lHPqnWXqZH8Fa3eHx8BYyPUgnVSbFHttINl2zoF8uHj0RNjCJSCajLZubUJZviCARq3l
- Mg/TZ8pVxFYHYW2Mwx5xWwCV8emQlu5LsgABzCp1XUUL/qFOIeQGHLc/tStUuombL2JEeFxLaAt
- 4e23BHiN
-X-Proofpoint-ORIG-GUID: a0rT9JShmZz4UrCWHpFa-Yv5YlhAGztx
-X-Authority-Analysis: v=2.4 cv=Dp1W+H/+ c=1 sm=1 tr=0 ts=68d31658 cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=ZdW6uxA9NKXbfdqeeS2OGA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=zitRP-D0AAAA:8
- a=A-OFauQzm6gaq6ZTC9UA:9 a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
- a=xwnAI6pc5liRhupp6brZ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-23_06,2025-09-22_05,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 clxscore=1015 adultscore=0 bulkscore=0 impostorscore=0
- phishscore=0 spamscore=0 priorityscore=1501 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200018
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="OsOWBbkfV+LccHUK"
+Content-Disposition: inline
+In-Reply-To: <TYWPR01MB88052B9ACC279F3C00AEAC21851DA@TYWPR01MB8805.jpnprd01.prod.outlook.com>
 
 
+--OsOWBbkfV+LccHUK
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 9/23/2025 12:27 AM, Johan Hovold wrote:
-> On Mon, Sep 22, 2025 at 06:00:04PM -0700, Wesley Cheng wrote:
->>
->>
->> On 9/20/2025 8:22 AM, Dmitry Baryshkov wrote:
->>> On Fri, Sep 19, 2025 at 08:21:01PM -0700, Wesley Cheng wrote:
->>>> The Glymur USB subsystem contains a multiport controller, which utilizes
->>
->>> two QMP UNI PHYs.  Add the proper compatible string for the Glymur SoC.
->>>> @@ -16,6 +16,7 @@ description:
->>>>    properties:
->>>>      compatible:
->>>>        enum:
->>>> +      - qcom,glymur-qmp-usb3-uni-phy
-> 
-> Odd indentation?
-> 
->>>>          - qcom,ipq5424-qmp-usb3-phy
->>>>          - qcom,ipq6018-qmp-usb3-phy
->>>>          - qcom,ipq8074-qmp-usb3-phy
->>>> @@ -62,6 +63,8 @@ properties:
->>>>    
->>>>      vdda-pll-supply: true
->>>>    
->>>> +  refgen-supply: true
->>>
->>> You've added it, but it's not referenced as required. Why is it so?
-> 
->> The refgen clock isn't always required on each and every platform unlike
->> the .9v and 1.2v rail/supply, which directly power the QMP PHY.  It only
->> really depends on how the refclk/CXO network is built for that
->> particular chipset.  The refgen ensures that we're properly voting for
->> the supply that is powering our CXO buffer.
-> 
-> I thought we discussed this before and concluded that this is not an
-> accurate description of the hardware (even if you now call this supply
-> refgen instead of qref):
-Hi Johan,
+On Tue, Sep 23, 2025 at 08:14:09PM +0000, Cosmin-Gabriel Tanislav wrote:
+> > From: Conor Dooley <conor@kernel.org>
+> > On Tue, Sep 23, 2025 at 07:05:16PM +0300, Cosmin Tanislav wrote:
+> > > Document the A/D 12-Bit successive approximation converters found in =
+the
+> > > Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs.
+> > >
+> > > RZ/T2H has two ADCs with 4 channels and one with 6.
+> > > RZ/N2H has two ADCs with 4 channels and one with 15.
+> > >
+> > > Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.co=
+m>
+> > > ---
+> > >  .../iio/adc/renesas,r9a09g077-adc.yaml        | 170 ++++++++++++++++=
+++
+> > >  MAINTAINERS                                   |   7 +
+> > >  2 files changed, 177 insertions(+)
+> > >  create mode 100644
+> > Documentation/devicetree/bindings/iio/adc/renesas,r9a09g077-adc.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/renesas,r9a09g=
+077-
+> > adc.yaml b/Documentation/devicetree/bindings/iio/adc/renesas,r9a09g077-
+> > adc.yaml
+> > > new file mode 100644
+> > > index 000000000000..840108cd317e
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/renesas,r9a09g077-
+> > adc.yaml
+> > > @@ -0,0 +1,170 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/adc/renesas,r9a09g077-adc.yam=
+l#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Renesas RZ/T2H / RZ/N2H ADC12
+> > > +
+> > > +maintainers:
+> > > +  - Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+> > > +
+> > > +description: |
+> > > +  A/D Converter block is a successive approximation analog-to-digital
+> > converter
+> > > +  with a 12-bit accuracy. Up to 15 analog input channels can be
+> > selected.
+> > > +  Conversions can be performed in single or continuous mode. Result =
+of
+> > the ADC
 
-refgen and qrefs are different things.  I will try to clarify as much as 
-I can from the discussion you linked below.  (based on my understanding 
-of the reference clock network)  The refgen is the main supply that 
-controls the reference clock (CXO) into a specific branch.  Within each 
-of these branches there are clock repeaters that are supplied by QREFs, 
-and is basically the supply to the clkref switch controlled by the TCSR 
-registers.
+Your mail client is screwing up quoting somehow. Please fix it.
 
-The way some of the tech blocks are connected, the QREFs/refgen may 
-share the same regulator as some of the PHY's core supply.  Some may not 
-even have QREFs at all.  One example is the QMP PHY that is associated 
-to the primary controller on Glymur.  It has a refgen regulator, but no 
-QREFs, hence we only need to vote the refgen accordingly.
+> > > +  renesas,max-channels:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description: |
+> > > +      Maximum number of channels supported by the ADC.
+> > > +      RZ/T2H has two ADCs with 4 channels and one with 6 channels.
+> > > +      RZ/N2H has two ADCs with 4 channels and one with 15 channels.
+> >
+> > What is the point of this? Why do you need to know how many channels
+> > there can be in the driver, isn't it enough to just figure out how many
+> > child nodes you have?
+> >
+>=20
+> The idea here was that the SoC dtsi file would define the number of
+> channels supported by each instance of the ADC peripheral, while the
+> board dtsi (which includes the SoC dtsi) would define the number of
+> channels actually wired up on the.
+>=20
+> Alternatively, we could have multiple compatibles for each SoC, like
+> renesas,r9a09g077-adc-4, which would only have 4 channels, while
+> the main renesas,r9a09g077-adc compatible would be the one with the
+> most channels, 6.
+>=20
+> There might exist instances where knowing how many channels the chip
+> has might be useful inside the driver, but the bindings themselves
+> shouldn't really be addressing driver requirements, they should be
+> describing the hardware properties.
 
-I don't know if that helps you understand it a bit more to convince you 
-of the new regulator addition.  If anything we may need to add an 
-explicit QREF supply also :).
+"There might", so in other words: have written the driver and have not
+had any need for this information. ;)
 
-Thanks
-Wesley Cheng
-> 
-> 	https://lore.kernel.org/lkml/aEBfV2M-ZqDF7aRz@hovoldconsulting.com/
-> 
-> Given your description above this still looks wrong (at least after a
-> quick look).
-> 
-> Johan
+> The maximum number of supported channels of each ADC instance is a
+> property of the hardware, which is fine to have in the bindings.
+
+That is true, but also there's no interest in having properties that
+you can obtain by other means - or don't need at all.
+
+> Also, it is useful to know the maximum number of channels,
+> otherwise, we would have to iterate over the iio_chan_spec
+> populated by devm_iio_adc_device_alloc_chaninfo_se() to figure out
+> what is the maximum used channel. We will surely need this
+
+Right, you can get the information from another source. You only need to
+do that exactly once, during probe, so whatever overhead that produces
+isn't meaningful. I think this property should be removed.
+
+> information when implementing buffered mode, to know up to which
+> register to read data from, and we already need it when iterating
+> over the enabled channels for the same reason.
+>=20
+> All things considered, I think it is useful to have this property
+> here, considering the separation between SoC capabilities and board
+> implementation.
+>=20
+
+--OsOWBbkfV+LccHUK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNMoGwAKCRB4tDGHoIJi
+0h49AQDirzGaJuMpClcLnZM1qOqUHlpJ6LU+uguhyM7s+7diGQEAh+Jk/swRqsSC
+5K2R+SP2kftGX+lyjQVSixUCvRGiXAk=
+=riQv
+-----END PGP SIGNATURE-----
+
+--OsOWBbkfV+LccHUK--
 
