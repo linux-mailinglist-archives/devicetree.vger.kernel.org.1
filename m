@@ -1,435 +1,786 @@
-Return-Path: <devicetree+bounces-220335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9169CB947DB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 08:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDC8EB94986
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 08:45:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AA7E2A15BC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 06:04:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 91FB02E34E9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 06:45:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 571BB30DEDA;
-	Tue, 23 Sep 2025 06:04:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E86B5274B55;
+	Tue, 23 Sep 2025 06:45:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="eMbh2+Zs"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="OheCUJFh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH1PR05CU001.outbound.protection.outlook.com (mail-northcentralusazon11010003.outbound.protection.outlook.com [52.101.193.3])
+Received: from mail-m1973179.qiye.163.com (mail-m1973179.qiye.163.com [220.197.31.79])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5525430DECF;
-	Tue, 23 Sep 2025 06:04:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.193.3
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758607461; cv=fail; b=PPx2dqYuXzd2sKGQ3G0eYnE3T24Jz8RLE4NgWX9X7aeaMyXP5doTbm9uW9wl/DyJRYsBIudgJYTm5ulatNqgAkPSk/kyotnozkHeay6wrPtxOqds5UxL94zLjOAImqFmoJmg/c83gf3jDzb3ppxwLkKgvhorO9tM9wcikJ1qhl8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758607461; c=relaxed/simple;
-	bh=uIdKApU6mIvTlCJjYUt2er9qJ1lPORrts1rErF1iyDI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Mx6occmaz/s5AVvFIj8wXFNt2jVn8sZDQl1fGqiIQrqBkbwY1MEcX1vlLR8W3Ff3Ajut8idEfvtV+4H9ntPPwoyIGlc2uLpGv1Y/MS5/v4Ue29c13T+kzB/i1/I9PW9yUUmX2lSuoFzwIr6yKZs0Evko/rvt3JEUTJNXt6mQvCM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=eMbh2+Zs; arc=fail smtp.client-ip=52.101.193.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yW2zRgVJ27D+b2J3XXAegmLsE/2AAJabl5p2W8kMlKv5kAMdKff+rVy7j8VIrTprkJ9LQOTEggRBVIAXtVK7DVXdtpnIwgS2YUTW5rao3dByiu/rsPMcbeYhwpEZbg4NC4TVGbbpQvnLyQDsAXMEftNiTWABuEjB+h9UMczgEGqFF133TD38XjQcL9efw3HgYFHPi7gSkQduxxyT3zY60PU9wBU9lR1A39yv/TMFRgIwkrw/XhGBuQ6QQk3LFJiddxmvCE7hJWUNrz3p3SO/ltSxs+6q5ydNg2+mlXLzPWvtJWpCYBHJ1dNXQdwy84ziSGSiXkIGPXDzdoOLCgBRvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ge+vDOMbBlUkJXcGgzVWDnAOSBHpUu57ob+lgHfSWe4=;
- b=pYXakNMUmk64BZ/Lt4G8A3xQfhCa6vUiaXAl5ORVWuiRzqHM9GfqgpfM7XoLhJEc8E7WIMKQjedT2iNKQfC5LM42MnDKhkiuEYu3gBj0kY2e7+C1jqMp7MGJf7z04O3LGnHg5voEghagCXwXHyfg3Up5ZP+FrMYd2J8A4AKwmIoWhVTY9ocR1BrXW2O+yPow3XPgElZ8sWW0A36E6j3aMwhhEkAko2gKIACMGFxEc1IE3D01rFfSifjOS111a0h5f8xZD3PpSiKfnMcU+8SiiD7xwxBUFr4M4HnhfF0nlwU+db8dvwR92qeCbWM3yTos8HBvzNLBDyxXyTZlS8237g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ge+vDOMbBlUkJXcGgzVWDnAOSBHpUu57ob+lgHfSWe4=;
- b=eMbh2+ZsmkS1grpOyJBX+xcVAmfslzfr/YtV0eU2SD8Py/bAHJIrJf19rsdPk44sO7ZFB6rcHKDsI/CWewh/mmlJD7ml/ZUJuqB7WNLxcmUpGJK7yt6sIlHoKPz1rFWkNm4Cg2VamHG2NXPZAMvbKxfy83k6wzsHuEA7yqTBk+TjF/oPVG/c3r0c6yuLOHkwdriw3Ibq/GxFYPQ6StyMl7b3tz7hghS1WN9bSmSBRakppX7PCaaOtxQuS+VFryclWUjspeWtMzI8WYyo+ar4tAVnZRoGmwi/PGUgMrLZgHiADvWMWhVB16jiHLW/PSJS7cAvMiog9K3YlT3pXGQI4Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM4PR12MB6494.namprd12.prod.outlook.com (2603:10b6:8:ba::19) by
- DS5PPFDB3A23D1A.namprd12.prod.outlook.com (2603:10b6:f:fc00::663) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.13; Tue, 23 Sep
- 2025 06:04:15 +0000
-Received: from DM4PR12MB6494.namprd12.prod.outlook.com
- ([fe80::346b:2daf:d648:2e11]) by DM4PR12MB6494.namprd12.prod.outlook.com
- ([fe80::346b:2daf:d648:2e11%6]) with mapi id 15.20.9137.018; Tue, 23 Sep 2025
- 06:04:15 +0000
-From: Mikko Perttunen <mperttunen@nvidia.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
- Thierry Reding <treding@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>,
- Sowjanya Komatineni <skomatineni@nvidia.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Prashant Gaikwad <pgaikwad@nvidia.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Osipenko <digetx@gmail.com>,
- Jonas =?UTF-8?B?U2Nod8O2YmVs?= <jonasschwoebel@yahoo.de>,
- Charan Pedumuru <charan.pedumuru@gmail.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
-Subject:
- Re: [PATCH v2 16/23] staging: media: tegra-video: tegra20: simplify format
- align calculations
-Date: Tue, 23 Sep 2025 15:03:57 +0900
-Message-ID: <7680340.18pcnM708K@senjougahara>
-In-Reply-To:
- <CAPVz0n1ozJ13MB4eFMAJzESe8iQ7SKjMApZCLFAZ_eubCFs0tg@mail.gmail.com>
-References:
- <20250906135345.241229-1-clamor95@gmail.com>
- <3074302.Sgy9Pd6rRy@senjougahara>
- <CAPVz0n1ozJ13MB4eFMAJzESe8iQ7SKjMApZCLFAZ_eubCFs0tg@mail.gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
-X-ClientProxiedBy: TYCP286CA0037.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:29d::12) To DM4PR12MB6494.namprd12.prod.outlook.com
- (2603:10b6:8:ba::19)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1607B79CD;
+	Tue, 23 Sep 2025 06:45:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.79
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758609948; cv=none; b=Lkb8lcvEiFSfWpx1ZcZHNwzjCKSAjt8LPWUM/FK+D4hzVS9RHSpD+gODrFgYE+LIN3imrjyKUGHhY9dk6HEEexyFsyizXmX7ikvVAx8s8VbhrHN7kWbZ0gE2fRHtETENkiSP3GlSCZ95L6krMfFtp2lSxPP0XPkHqCZeNS8yyA4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758609948; c=relaxed/simple;
+	bh=MwdBCaZb0lNaZAiXAT4LHyYHumk0L/BkcIJaMlfL1cQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZmgJrwnADGdsPQY4zAWJAD1Rm1JU4k/TguSpAjcfbjvppmjM/G8K1nNiHvqHziHZ248Wuh5ImcMNz7w5YTNvknZ4ahLYDTjguikquNtc5xB8zoDWsFQDHVHVpB5yWFLFaG854QP2wTMNdKS7vlBAgFymU2ggPWyt2hahDoCPU3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=OheCUJFh; arc=none smtp.client-ip=220.197.31.79
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.153] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 23b543c37;
+	Tue, 23 Sep 2025 10:09:40 +0800 (GMT+08:00)
+Message-ID: <e10484e2-fafb-4e50-866f-f409c12259a5@rock-chips.com>
+Date: Tue, 23 Sep 2025 10:09:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB6494:EE_|DS5PPFDB3A23D1A:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d0f73a1-ac55-4d81-ba9a-08ddfa67066d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|10070799003|376014|7416014|1800799024|366016|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Z1ZNUTRsUjdlWFA2S2NQMmV2bnlNZG05MVR3MVJ6eVZjZDhkVjRRZElxWk1h?=
- =?utf-8?B?bVFsbmZiUlRaaFNpbE1zL2d5OEphc2drb2tPNTNreXZZWlpwZ2ozMk1vblkv?=
- =?utf-8?B?UWpHYVdjL2ErVzh0SnZiS1lSUU5MTjZJcFp0OXNFb1BhN2RwV1FnaVNHMC9x?=
- =?utf-8?B?SWVNWDhHQzJXRDlZeHJkRGNkcjV1c3UrbGh5S2JGd0thbVBRTjJqSFhvWHhN?=
- =?utf-8?B?bGN2Wk9OYVJCSW9QUlgrN0dicG9ja3phbFV5aEpIYnFhWVlBWlNCTjVtajFt?=
- =?utf-8?B?N2ZuL09NSGFNWG1QZjV5Y1FXc1ZBcXVENkovKzcxYy96ZVRSYm5aN3pvMHR1?=
- =?utf-8?B?dlpoQVFRUVo5cFZyMDJHVGJuK1gySkVueWNtT2ZlZzdjRVhGdnh6YXB5eStz?=
- =?utf-8?B?L3B2NW1xMjlPY0dNbEszemNDbFBCVzFnN2lSb3BSQ3JBYkhzSTNSd29NQk9F?=
- =?utf-8?B?QzhuMXIrVGgvTnpPU1Z1U2FlT3pLdVQ3NVYwSGJ3c0lnMTNjWTJMYnlYanF3?=
- =?utf-8?B?U2JqVXJNRnR1YUFwa2R2TDhJZDhqdE51eUNLdE5tRnVFSi9qNHFNeFVieUZZ?=
- =?utf-8?B?YjBwYVR3OHM1b1hLSUpHOW9Nb3lzS1BsSVUxUzZzdDE5RXdJOHRwMEhJKzYy?=
- =?utf-8?B?bm9QQ2IvMDJhVDNmdjVxQm5PYm0vVk9OVWVzOXdWUjBROUVaTnMyRUV3ZmJT?=
- =?utf-8?B?VHFIcWlkY1FmS0p2dUR0aXBZekxMazJIVndzRkxuY0VydUVBSlBZaG50QzhY?=
- =?utf-8?B?L29VVi9ra2pvMTkwMEJzZ1lrdEFIK0xlalBES2RvRldYOGVLTjNMQkw0TU1k?=
- =?utf-8?B?bmxHREIyaVAyUHZCcnBVcEFrd2swSWh1N1hJcm9rbEs3aGNlTWRpeGJmWWZU?=
- =?utf-8?B?N09CeXRPUVFDWGxyaExPSG9aUU5NbVEyWE5PRGUxVFpTWDdvUUJ4b1Y0NkQ5?=
- =?utf-8?B?VCttZmx4TXV4ZFpObFA3c0wrSzliYmltVENFMUZxOXFSOG1ZdlROaERIaVBR?=
- =?utf-8?B?TC9PQXZzU01wSkg0cEdOVXBrYllrWHRVbkdIcGlQSjhGYnMwUUFnVU1vSmtR?=
- =?utf-8?B?MHlSY28xempzbGYvekRub3dhQWp4ZzE0ODY2ZmJxRU95S1NhVXFCd0Y2a0Js?=
- =?utf-8?B?VllPd3J3OVJTYkwvdzA2bmlKSWJ0Yk53enZJb3YxNFFYTUdqZXhFVlNHMVNZ?=
- =?utf-8?B?ckw3RFhPKytBOGVDNmd3Z1FIUGVCM1VKRFpVeTU5VXR5b1Bqa21BTnJSTktD?=
- =?utf-8?B?cW9DNitoc1lXL0pmZVhCcGNSK1Bpd0ZEK05KVU5mbmVhYXNuN0dvdVlLcUtS?=
- =?utf-8?B?QnZ0anBPajBnMDdhaWFyYVVQM3luTTVLSTMzSFNOVmovYzNrUHVFa3IyVnVG?=
- =?utf-8?B?R3dQYjFLTGMzZGUxWEFNTWYweDQwMk1oNmZzTUFGaEVKQUxucytNRVRNalBq?=
- =?utf-8?B?WVBwV0hkTm1tMm1jemxTMitibzNIN2dhQU5SVmNRcmUraUpzVXg3UEdLOTQr?=
- =?utf-8?B?am5QRmlVaHBwWVVDSk1MOUk4YVdzZHZOdFJheTFMOEQ4eWNETG9GU2VZWnhz?=
- =?utf-8?B?QWxZSWlGYWVORGQrUlZnN2Znc0NXUmRpbWRLQVowOTFMYWp4V2p0WGxmZTZM?=
- =?utf-8?B?WTBqNmVLM280dTZVMGE2T1hCZkJtSVhDRWlmUlA5dmord2JwOE5DeS9yRSth?=
- =?utf-8?B?UEp1cUdiVFNlMTlDQUp5NGduTnU4QjNOc2Izbm1VaG55WVFuekJpUXRpamky?=
- =?utf-8?B?RGVHL2ZRMk0xSVN0WmFtSGRtem12NWRjd0tZNGprczlkb2pDUGhRS3psQlEz?=
- =?utf-8?B?VG1qaUtYaWZIV3hyQmdheFhHZTkrM1N0YWJ5Um10eEI3d01PTDdHVWVNcHFS?=
- =?utf-8?B?Q3VpRWd5eGpCU0JsQ05PaTUzcWRZRGVsU29aRGc4NTB2N1hyaXljWDJYK1ho?=
- =?utf-8?Q?Vrrk0/yCiU8=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB6494.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(376014)(7416014)(1800799024)(366016)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?QkZFaTFFY2lTVDlhUGwwd2VUcStMbGRwV2FpSUNUaGRjVklrQ1ZhNXY1WXht?=
- =?utf-8?B?U21WZGdFaElLMXFOVVA2bXl3K3k4dmFYQ1JFRzkvMWRCQWExVVRQVjA1N3Ji?=
- =?utf-8?B?Y3daeGIzcytUNWVjdzdvcEFZNitic09HcWpobk1MRHBtS3k0YnppYUtNY1JJ?=
- =?utf-8?B?c09uODM2VmVUYmtuWS9UNVNqZ2dZWTIrNitKTGVzZE01VllXYyswQmlZY0FG?=
- =?utf-8?B?WGw0Wkp5MkJIcE1kcERNVkJNc0wrREMvaHBuajNvY2tKRTc1ZkNlVVBhMVZ0?=
- =?utf-8?B?V0ltRXl3cy9sR3U2Y0swc2NES1lpcERCU3ppWTZyNDZoWEU5eWJpZUdaRm9u?=
- =?utf-8?B?MmZoV2dFMTB2bUh0bWZ1TXNIYnJWWDhWbXk0djJiK25OUnRRZkdvNnJtcXNI?=
- =?utf-8?B?dDQrSkVWbGFNRmZldWpIeTlRSDBraEJkWllOb01ucUpMQ204UUZpUjBuRlJl?=
- =?utf-8?B?bkJDcmJ0cURPc2pkSWpOeGsxb0F6cVhySXJMaXB0UGFLd0hvSm5TM3lhQUhm?=
- =?utf-8?B?Y05vTG5INDZmekprRHVrd29yc2Y1M01nMUpNMTRnQXY1RHB2OTNOcTJLaFVw?=
- =?utf-8?B?bzBWZCtLVUs3Vy9DZ1BvNlVXdWh0OE50UWVSdkNoejdWUW5FQmt3K0g3V1ZH?=
- =?utf-8?B?TjlkMmZvOTB4ZTlHTDNOVDNMakNZMmg4cFhmQVNDUXUvUGYyVzVEQkFJTVRK?=
- =?utf-8?B?TlNFSmhGVDhQS0hPWU1zOTl0VGhjMmhxbVlrS05HRmtYWDlYUHVYRjRKa3lo?=
- =?utf-8?B?Vi9rVmUrT2Q2TFA4WVZ2TXVjajVWSnFKWlpvMVQ2NnZQdnBjckVNVElxSmE1?=
- =?utf-8?B?RXBHMW12dldZVjRmVXNTYTRBVHJleTIydXd2SHF5cXdDU0JmSitMSzB5TEpw?=
- =?utf-8?B?V1MzRWRGV3pvejFSZDlMNG1JVXVLUlVtRUsvcTUwemd5Ly9OaG5YRjdKL0xJ?=
- =?utf-8?B?RlpHVFJpU0M2M2pjMXVCUWdVcmxBN2d3RldSNkhMSlIrQ25tQzFDMmY4QW9o?=
- =?utf-8?B?TlU4MCtNTFdFNHdEclJXWm4vcGhxNGZ4WGFvMnRhb0pBK0p1ZnltQ0ZKbWJ1?=
- =?utf-8?B?SzFtcjR1UHpUSFRoWnRMWnpVMUhMeHJxaXhKV0liWnR4Rko1RHZDY09xMDh3?=
- =?utf-8?B?OWk3dE90SU1VSWN2OVQzMzdEV0h6RXZiY2ZkUkNrSGpOcU9tVDRRd2ZTOHp4?=
- =?utf-8?B?TFBqU3dWMFh1NXBQTGI4WGdpdExzOCtwdWdJa21KVzN0THFhWWZSTkJRQ1hX?=
- =?utf-8?B?dlJpUURSUDBScjd4RXp1SjI1aHRadHVrZU1VV1VxVEgvUjBLcjBWeW8wQVNR?=
- =?utf-8?B?ejhBNjQ0YmNxZnhUNFQ4V0QyVzZNejdJcVlpZlJCTWhnVFdweGdMNE5rM0lm?=
- =?utf-8?B?NnpwdjFUVjdQTmZUTVF3ME5PS2NXV1psOGROT0lxN2pCZFR4K3BHTWZlNHo2?=
- =?utf-8?B?U3V5dmM5UEdhS3JaM3k0SHJ0VzRHUTNDT1Z1TWJQNCtaWHA5UVpmVUMwczZE?=
- =?utf-8?B?TEM0ek9MVlhMR3NDSlgwbU1HaXBubTZDK1lJd2lOc0xCS1NCZ0pOTms3VmNn?=
- =?utf-8?B?YUJXTEFjQ2dwOS9vVEtyK0xrZGk1MWdDS0lMb0lhcGVuK2dSSFJLcHd6TTFN?=
- =?utf-8?B?d0dJQTFGam91WmZGcmlOK0FhZUZoVXgybjZzS1JVa1l6bThoNmpWUE1lK2to?=
- =?utf-8?B?TEhDRzBsM3I0c3lzZnFmOE0xdHBVdGVmazFTN3htNFgrTytweEdpRjc5dytF?=
- =?utf-8?B?Q0xOZ040OEt1c04rREM1c0Y4UWZhb1BmaUFUZGJPN3pqMnFQVWxsRVN2eXp4?=
- =?utf-8?B?aXBCS0hUeW1ERU9YUm5tTGlWZ1dUNURFNHdMUTBuell6b3lrMkNkaTdtbEJm?=
- =?utf-8?B?UjgyaU9pSS9WL0llc3RoMGVjclZxMHR2ait6V3k0c3RQdzVwVmYvNk1YLzFr?=
- =?utf-8?B?bmp3OUtYaWNsakhlLzlZOXJDdDVaZjJuemZkZ3RIYmRGUG9hS0xpOXZsaFRY?=
- =?utf-8?B?b0VBeWw3L2ZIdnJPWlVienhEZjRqbHo1aWVySUhudWZ5cnRKTFArZEE4QW1J?=
- =?utf-8?B?UFVCdDg5ZVZ5UDRqRTIwY09CNUc2dnN0ZGh2WnFHd0hvTGNLQnhQWFByU0RR?=
- =?utf-8?B?SHQvMTVVNUxQNEhrOFc4U0ExUU1wdWhhUyswOWJNUWhDei9lQ014QTdMZWhV?=
- =?utf-8?B?Z1FZd0w1WUdvcHVkNGZKeHpIWks3ZFdJNC9YcVd3aUprSS9iVVBuQ0VIMjJn?=
- =?utf-8?B?dm9NRTl4UXhjcC9CclUvRE1ESUdBPT0=?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d0f73a1-ac55-4d81-ba9a-08ddfa67066d
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6494.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 23 Sep 2025 06:04:15.4982
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: u6Dx700leyO84wqE1Abt7OpaJUJu5kN1w/Ei+TW0cg3CmD0FXE6k8oXXHcshAM6R2kr2MZb7xv3HHCXGbcImFQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS5PPFDB3A23D1A
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/7] drm/rockchip: cdn-dp: Add multiple bridges to
+ support PHY port selection
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Chaoyi Chen <kernel@airkyi.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20250922012039.323-1-kernel@airkyi.com>
+ <20250922012039.323-6-kernel@airkyi.com>
+ <idyrlzhd5sotg3ylr7vbwmczimglffc75nafxbnhhm3ot2jn4w@ixerm6elfmre>
+Content-Language: en-US
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <idyrlzhd5sotg3ylr7vbwmczimglffc75nafxbnhhm3ot2jn4w@ixerm6elfmre>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a9974556ebe03abkunm4236affac03e6
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGR9KGlYdTUoZHh9JGBkYGR1WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
+	xVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=OheCUJFhu7qJ1Z7kMsU5evCFB/mgdf3sfoj1p4qVVVaybpi3vkSkCYSGZOAjUDgJaM6dec+9y/YAsN82db7VUgQaKh4YODOLAnnwpf0DxXS2G/40EtDoylwixWI9VNAxUvrhUubf29qVs4xvRUjXYBoQ47QCBpwCGEMwdh7bSnU=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=Ryi5x4/EBEFlZSkmg/pLRoE0Y+jFyTiV8QjgyEGzpLE=;
+	h=date:mime-version:subject:message-id:from;
 
-On Monday, September 22, 2025 4:36=E2=80=AFPM Svyatoslav Ryhel wrote:
-> =D0=BF=D0=BD, 22 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 10:27 Mi=
-kko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> >
-> > On Monday, September 22, 2025 3:30=E2=80=AFPM Svyatoslav Ryhel wrote:
-> > > =D0=BF=D0=BD, 22 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 09:2=
-3 Mikko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> > > >
-> > > > On Monday, September 22, 2025 2:13=E2=80=AFPM Svyatoslav Ryhel wrot=
-e:
-> > > > > =D0=BF=D0=BD, 22 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE =
-07:44 Mikko Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> > > > > >
-> > > > > > On Saturday, September 6, 2025 10:53=E2=80=AFPM Svyatoslav Ryhe=
-l wrote:
-> > > > > > > Simplify format align calculations by slightly modifying supp=
-orted formats
-> > > > > > > structure.
-> > > > > > >
-> > > > > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > > > > ---
-> > > > > > >  drivers/staging/media/tegra-video/tegra20.c | 41 ++++++++---=
-----------
-> > > > > > >  1 file changed, 16 insertions(+), 25 deletions(-)
-> > > > > > >
-> > > > > > > diff --git a/drivers/staging/media/tegra-video/tegra20.c b/dr=
-ivers/staging/media/tegra-video/tegra20.c
-> > > > > > > index 6e0b3b728623..781c4e8ec856 100644
-> > > > > > > --- a/drivers/staging/media/tegra-video/tegra20.c
-> > > > > > > +++ b/drivers/staging/media/tegra-video/tegra20.c
-> > > > > > > @@ -280,20 +280,8 @@ static void tegra20_fmt_align(struct v4l=
-2_pix_format *pix, unsigned int bpp)
-> > > > > > >       pix->width  =3D clamp(pix->width,  TEGRA20_MIN_WIDTH,  =
-TEGRA20_MAX_WIDTH);
-> > > > > > >       pix->height =3D clamp(pix->height, TEGRA20_MIN_HEIGHT, =
-TEGRA20_MAX_HEIGHT);
-> > > > > > >
-> > > > > > > -     switch (pix->pixelformat) {
-> > > > > > > -     case V4L2_PIX_FMT_UYVY:
-> > > > > > > -     case V4L2_PIX_FMT_VYUY:
-> > > > > > > -     case V4L2_PIX_FMT_YUYV:
-> > > > > > > -     case V4L2_PIX_FMT_YVYU:
-> > > > > > > -             pix->bytesperline =3D roundup(pix->width, 2) * =
-2;
-> > > > > > > -             pix->sizeimage =3D roundup(pix->width, 2) * 2 *=
- pix->height;
-> > > > > > > -             break;
-> > > > > > > -     case V4L2_PIX_FMT_YUV420:
-> > > > > > > -     case V4L2_PIX_FMT_YVU420:
-> > > > > > > -             pix->bytesperline =3D roundup(pix->width, 8);
-> > > > > > > -             pix->sizeimage =3D roundup(pix->width, 8) * pix=
-->height * 3 / 2;
-> > > > > > > -             break;
-> > > > > > > -     }
-> > > > > > > +     pix->bytesperline =3D DIV_ROUND_UP(pix->width * bpp, 8)=
-;
-> > > > > >
-> > > > > > Assuming the bpp is coming from the format table below, this ch=
-anges the value of bytesperline for planar formats. With this it'll be (wid=
-th * 12) / 8 i.e. width * 3/2, which doesn't sound right.
-> > > > > >
-> > > > >
-> > > > > Downstream uses soc_mbus_bytes_per_line for this calculation whic=
-h was
-> > > > > deprecated some time ago, here is a fragment
-> > > > >
-> > > > > s32 soc_mbus_bytes_per_line(u32 width, const struct soc_mbus_pixe=
-lfmt *mf)
-> > > > > {
-> > > > >  if (mf->fourcc =3D=3D V4L2_PIX_FMT_JPEG)
-> > > > >  return 0;
-> > > > >
-> > > > >  if (mf->layout !=3D SOC_MBUS_LAYOUT_PACKED)
-> > > > >  return width * mf->bits_per_sample / 8;
-> > > > >
-> > > > >  switch (mf->packing) {
-> > > > >  case SOC_MBUS_PACKING_NONE:
-> > > > >   return width * mf->bits_per_sample / 8;
-> > > > >  case SOC_MBUS_PACKING_2X8_PADHI:
-> > > > >  case SOC_MBUS_PACKING_2X8_PADLO:
-> > > > >  case SOC_MBUS_PACKING_EXTEND16:
-> > > > >   return width * 2;
-> > > > >  case SOC_MBUS_PACKING_1_5X8:
-> > > > >   return width * 3 / 2;
-> > > > >  case SOC_MBUS_PACKING_VARIABLE:
-> > > > >   return 0;
-> > > > >  }
-> > > > >    return -EINVAL;
-> > > > > }
-> > > > >
-> > > > > V4L2_PIX_FMT_YUV420 and V4L2_PIX_FMT_YVU420 are classified as
-> > > > > SOC_MBUS_PACKING_1_5X8 hence we get width * 3/2
-> > > >
-> > > > Googling this brings up the entry
-> > > >
-> > > > {
-> > > >         .code =3D V4L2_MBUS_FMT_YUYV8_1_5X8,
-> > > >         .fmt =3D {
-> > > >                 .fourcc                 =3D V4L2_PIX_FMT_YUV420,
-> > > >                 .name                   =3D "YUYV 4:2:0",
-> > > >                 .bits_per_sample                =3D 8,
-> > > >                 .packing                        =3D SOC_MBUS_PACKIN=
-G_1_5X8,
-> > > >                 .order                  =3D SOC_MBUS_ORDER_LE,
-> > > >                 .layout                 =3D SOC_MBUS_LAYOUT_PACKED,
-> > > >         },
-> > > > }
-> > > >
-> > > > which matches that you're describing. It doesn't make sense to me, =
-since it at the same time specifies PIX_FMT_YUV420 (which is planar with 3 =
-planes, as documented by include/uapi/linux/videodev2.h), and LAYOUT_PACKED
-> > > >
-> > > > /**
-> > > >  * enum soc_mbus_layout - planes layout in memory
-> > > >  * @SOC_MBUS_LAYOUT_PACKED:             color components packed
-> > > >  * @SOC_MBUS_LAYOUT_PLANAR_2Y_U_V:      YUV components stored in 3 =
-planes (4:2:2)
-> > > >  * @SOC_MBUS_LAYOUT_PLANAR_2Y_C:        YUV components stored in a =
-luma and a
-> > > >  *                                      chroma plane (C plane is ha=
-lf the size
-> > > >  *                                      of Y plane)
-> > > >  * @SOC_MBUS_LAYOUT_PLANAR_Y_C:         YUV components stored in a =
-luma and a
-> > > >  *                                      chroma plane (C plane is th=
-e same size
-> > > >  *                                      as Y plane)
-> > > >  */
-> > > > enum soc_mbus_layout {
-> > > >         SOC_MBUS_LAYOUT_PACKED =3D 0,
-> > > >         SOC_MBUS_LAYOUT_PLANAR_2Y_U_V,
-> > > >         SOC_MBUS_LAYOUT_PLANAR_2Y_C,
-> > > >         SOC_MBUS_LAYOUT_PLANAR_Y_C,
-> > > > };
-> > > >
-> > > > i.e. non-planar. The code in the driver is handling it as three pla=
-nes as well, with addresses VB0_BASE_ADDRESS/VB0_BASE_ADDRESS_U/VB0_BASE_AD=
-DRESS_V. Since the planes are separate, there should be no need to have mor=
-e than 'width' samples per line.
-> > > >
-> > >
-> > > I did not invent this, I have just simplified this calculation from
-> > > downstream, output values remain same. I have no cameras which can
-> > > output V4L2_PIX_FMT_YUV420 or V4L2_PIX_FMT_YVU420 so I cannot test if
-> > > this works either. Other YUV and RAW formats were tested on real HW
-> > > and work perfectly fine.
-> >
-> > My understanding from the code was, that the MEDIA_BUS_FMT_ formats lis=
-ted in the video format table refer to the input formats from the camera, a=
-nd the V4L2_PIX_FMT_ formats to output formats from VI. Hence VI could inpu=
-t UYVY8_2X8 and write to memory in YUV420. The code dealing with V4L2_PIX_F=
-MT_ values seems to be related to the output to memory. Is it possible to t=
-est this (your camera -> VI converts to YUV420) or am I mistaken?
-> >
->=20
-> Camera I am testing with has no YUV420 options available and from what
-> I can tell there is no way to force VI to output in YUV420 unless
-> camera supports it. Any format manipulations should requite hooking up
-> ISP, or am I missing smth?
+On 9/23/2025 9:50 AM, Dmitry Baryshkov wrote:
 
-From a quick look at the spec it looks to me like for YUV422 packed input f=
-ormats specifically, VI should be able to convert to YUV420. If that were n=
-ot the case, e.g. 'TEGRA20_VIDEO_FMT(YUV422_8, 16, UYVY8_2X8, 12, YUV420),'=
- would not make sense anyway as it's talking about both YUV422 packed input=
- data and then also YUV420.
+> On Mon, Sep 22, 2025 at 09:20:37AM +0800, Chaoyi Chen wrote:
+>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>
+>> The RK3399 has two USB/DP combo PHY and one CDN-DP controller. And
+>> the CDN-DP can be switched to output to one of the PHYs. If both ports
+>> are plugged into DP, DP will select the first port for output.
+>>
+>> This patch adds support for multiple bridges, enabling users to flexibly
+>> select the output port. For each PHY port, a separate encoder and bridge
+>> are registered.
+>>
+>> The change is based on the DRM AUX HPD bridge, rather than the
+>> extcon approach. This requires the DT to correctly describe the
+>> connections between the PHY, USB connector, and DP controller.
+>> And cdn_dp_parse_hpd_bridge_dt() will parses it and determines
+>> whether to register one or two bridges.
+>>
+>> Since there is only one DP controller, only one of the PHY ports can
+>> output at a time. The key is how to switch between different PHYs,
+>> which is handled by cdn_dp_switch_port() and cdn_dp_enable().
+>>
+>> There are two cases:
+>>
+>> 1. Neither bridge is enabled. In this case, both bridges can
+>> independently read the EDID, and the PHY port may switch before
+>> reading the EDID.
+>>
+>> 2. One bridge is already enabled. In this case, other bridges are not
+>> allowed to read the EDID.
+>>
+>> Since the scenario of two ports plug in at the same time is rare,
+>> I don't have a board which support two TypeC connector to test this.
+>> Therefore, I tested forced switching on a single PHY port, as well as
+>> output using a fake PHY port alongside a real PHY port.
+>>
+>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>> ---
+>>   drivers/gpu/drm/rockchip/Kconfig       |   1 +
+>>   drivers/gpu/drm/rockchip/cdn-dp-core.c | 398 +++++++++++++++++++++----
+>>   drivers/gpu/drm/rockchip/cdn-dp-core.h |  23 +-
+>>   3 files changed, 366 insertions(+), 56 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/rockchip/Kconfig b/drivers/gpu/drm/rockchip/Kconfig
+>> index faf50d872be3..3a6266279323 100644
+>> --- a/drivers/gpu/drm/rockchip/Kconfig
+>> +++ b/drivers/gpu/drm/rockchip/Kconfig
+>> @@ -55,6 +55,7 @@ config ROCKCHIP_CDN_DP
+>>   	select DRM_DISPLAY_HELPER
+>>   	select DRM_BRIDGE_CONNECTOR
+>>   	select DRM_DISPLAY_DP_HELPER
+>> +	select DRM_AUX_HPD_BRIDGE
+>>   	help
+>>   	  This selects support for Rockchip SoC specific extensions
+>>   	  for the cdn DP driver. If you want to enable Dp on
+>> diff --git a/drivers/gpu/drm/rockchip/cdn-dp-core.c b/drivers/gpu/drm/rockchip/cdn-dp-core.c
+>> index 1e27301584a4..784f5656fcc4 100644
+>> --- a/drivers/gpu/drm/rockchip/cdn-dp-core.c
+>> +++ b/drivers/gpu/drm/rockchip/cdn-dp-core.c
+>> @@ -27,16 +27,17 @@
+>>   #include "cdn-dp-core.h"
+>>   #include "cdn-dp-reg.h"
+>>   
+>> -static inline struct cdn_dp_device *bridge_to_dp(struct drm_bridge *bridge)
+>> +static int cdn_dp_switch_port(struct cdn_dp_device *dp, struct cdn_dp_port *prev_port,
+>> +			      struct cdn_dp_port *port);
+>> +
+>> +static inline struct cdn_dp_bridge *bridge_to_dp_bridge(struct drm_bridge *bridge)
+>>   {
+>> -	return container_of(bridge, struct cdn_dp_device, bridge);
+>> +	return container_of(bridge, struct cdn_dp_bridge, bridge);
+>>   }
+>>   
+>> -static inline struct cdn_dp_device *encoder_to_dp(struct drm_encoder *encoder)
+>> +static inline struct cdn_dp_device *bridge_to_dp(struct drm_bridge *bridge)
+>>   {
+>> -	struct rockchip_encoder *rkencoder = to_rockchip_encoder(encoder);
+>> -
+>> -	return container_of(rkencoder, struct cdn_dp_device, encoder);
+>> +	return bridge_to_dp_bridge(bridge)->parent;
+>>   }
+>>   
+>>   #define GRF_SOC_CON9		0x6224
+>> @@ -191,14 +192,27 @@ static int cdn_dp_get_sink_count(struct cdn_dp_device *dp, u8 *sink_count)
+>>   static struct cdn_dp_port *cdn_dp_connected_port(struct cdn_dp_device *dp)
+>>   {
+>>   	struct cdn_dp_port *port;
+>> -	int i, lanes;
+>> +	int i, lanes[MAX_PHY];
+>>   
+>>   	for (i = 0; i < dp->ports; i++) {
+>>   		port = dp->port[i];
+>> -		lanes = cdn_dp_get_port_lanes(port);
+>> -		if (lanes)
+>> +		lanes[i] = cdn_dp_get_port_lanes(port);
+>> +		if (!dp->hpd_bridge_valid)
+>>   			return port;
+>>   	}
+>> +
+>> +	if (dp->hpd_bridge_valid) {
+>> +		/* If more than one port is available, pick the last active port */
+>> +		if (dp->active_port > 0 && lanes[dp->active_port])
+>> +			return dp->port[dp->active_port];
+>> +
+>> +		/* If the last active port is not available, pick an available port in order */
+>> +		for (i = 0; i < dp->bridge_count; i++) {
+>> +			if (lanes[i])
+>> +				return dp->port[i];
+>> +		}
+>> +	}
+>> +
+>>   	return NULL;
+>>   }
+>>   
+>> @@ -239,10 +253,11 @@ static enum drm_connector_status
+>>   cdn_dp_bridge_detect(struct drm_bridge *bridge, struct drm_connector *connector)
+>>   {
+>>   	struct cdn_dp_device *dp = bridge_to_dp(bridge);
+>> +	struct cdn_dp_bridge *dp_bridge = bridge_to_dp_bridge(bridge);
+>>   	enum drm_connector_status status = connector_status_disconnected;
+>>   
+>>   	mutex_lock(&dp->lock);
+>> -	if (dp->connected)
+>> +	if (dp_bridge->connected && dp->connected)
+>>   		status = connector_status_connected;
+>>   	mutex_unlock(&dp->lock);
+>>   
+>> @@ -253,10 +268,36 @@ static const struct drm_edid *
+>>   cdn_dp_bridge_edid_read(struct drm_bridge *bridge, struct drm_connector *connector)
+>>   {
+>>   	struct cdn_dp_device *dp = bridge_to_dp(bridge);
+>> -	const struct drm_edid *drm_edid;
+>> +	struct cdn_dp_bridge *dp_bridge = bridge_to_dp_bridge(bridge);
+>> +	struct cdn_dp_port *port = dp->port[dp_bridge->id];
+>> +	struct cdn_dp_port *prev_port;
+>> +	const struct drm_edid *drm_edid = NULL;
+>> +	int i, ret;
+>>   
+>>   	mutex_lock(&dp->lock);
+>> +
+>> +	/* More than one port is available */
+>> +	if (dp->bridge_count > 1 && !port->phy_enabled) {
+>> +		for (i = 0; i < dp->bridge_count; i++) {
+>> +			/* Another port already enable */
+>> +			if (dp->bridge_list[i] != dp_bridge && dp->bridge_list[i]->enabled)
+>> +				goto unlock;
+>> +			/* Find already enabled port */
+>> +			if (dp->port[i]->phy_enabled)
+>> +				prev_port = dp->port[i];
+>> +		}
+>> +
+>> +		/* Switch to current port */
+>> +		if (prev_port) {
+>> +			ret = cdn_dp_switch_port(dp, prev_port, port);
+>> +			if (ret)
+>> +				goto unlock;
+>> +		}
+>> +	}
+>> +
+>>   	drm_edid = drm_edid_read_custom(connector, cdn_dp_get_edid_block, dp);
+> So... If I try reading EDID for the PHY 2 while PHY 1 is enabled, will
+> it return NULL, even if there is a monitor there? It totally feels like
+> this is one of the rare cases when caching EDIDs might make sense.
 
->=20
-> > It's certainly possible that the current code is functional -- if bytes=
-perline is set to a too large value and that information flows to userspace=
-, it could still read the buffer. It would just waste memory.
-> >
-> > >
-> > > > >
-> > > > > > > +     pix->sizeimage =3D pix->bytesperline * pix->height;
-> > > > > > >  }
-> > > > > > >
-> > > > > > >  /*
-> > > > > > > @@ -576,20 +564,23 @@ static const struct tegra_vi_ops tegra2=
-0_vi_ops =3D {
-> > > > > > >       .vi_stop_streaming =3D tegra20_vi_stop_streaming,
-> > > > > > >  };
-> > > > > > >
-> > > > > > > -#define TEGRA20_VIDEO_FMT(MBUS_CODE, BPP, FOURCC)    \
-> > > > > > > -{                                                    \
-> > > > > > > -     .code    =3D MEDIA_BUS_FMT_##MBUS_CODE,           \
-> > > > > > > -     .bpp     =3D BPP,                                 \
-> > > > > > > -     .fourcc  =3D V4L2_PIX_FMT_##FOURCC,               \
-> > > > > > > +#define TEGRA20_VIDEO_FMT(DATA_TYPE, BIT_WIDTH, MBUS_CODE, B=
-PP, FOURCC)      \
-> > > > > > > +{                                                           =
-         \
-> > > > > > > +     .img_dt         =3D TEGRA_IMAGE_DT_##DATA_TYPE,        =
-           \
-> > > > > > > +     .bit_width      =3D BIT_WIDTH,                         =
-           \
-> > > > > > > +     .code           =3D MEDIA_BUS_FMT_##MBUS_CODE,         =
-           \
-> > > > > > > +     .bpp            =3D BPP,                               =
-           \
-> > > > > > > +     .fourcc         =3D V4L2_PIX_FMT_##FOURCC,             =
-           \
-> > > > > > >  }
-> > > > > > >
-> > > > > > >  static const struct tegra_video_format tegra20_video_formats=
-[] =3D {
-> > > > > > > -     TEGRA20_VIDEO_FMT(UYVY8_2X8, 2, UYVY),
-> > > > > > > -     TEGRA20_VIDEO_FMT(VYUY8_2X8, 2, VYUY),
-> > > > > > > -     TEGRA20_VIDEO_FMT(YUYV8_2X8, 2, YUYV),
-> > > > > > > -     TEGRA20_VIDEO_FMT(YVYU8_2X8, 2, YVYU),
-> > > > > > > -     TEGRA20_VIDEO_FMT(UYVY8_2X8, 1, YUV420),
-> > > > > > > -     TEGRA20_VIDEO_FMT(UYVY8_2X8, 1, YVU420),
-> > > > > > > +     /* YUV422 */
-> > > > > > > +     TEGRA20_VIDEO_FMT(YUV422_8, 16, UYVY8_2X8, 16, UYVY),
-> > > > > > > +     TEGRA20_VIDEO_FMT(YUV422_8, 16, VYUY8_2X8, 16, VYUY),
-> > > > > > > +     TEGRA20_VIDEO_FMT(YUV422_8, 16, YUYV8_2X8, 16, YUYV),
-> > > > > > > +     TEGRA20_VIDEO_FMT(YUV422_8, 16, YVYU8_2X8, 16, YVYU),
-> > > > > > > +     TEGRA20_VIDEO_FMT(YUV422_8, 16, UYVY8_2X8, 12, YUV420),
-> > > > > > > +     TEGRA20_VIDEO_FMT(YUV422_8, 16, UYVY8_2X8, 12, YVU420),
-> > > > > > >  };
-> > > > > > >
-> > > > > > >  const struct tegra_vi_soc tegra20_vi_soc =3D {
-> > > > > > >
-> > > > > >
-> > > > > >
-> > > > > >
-> > > > > >
-> > > >
-> > > >
-> > > >
-> > > >
-> >
-> >
-> >
-> >
+Of course. I did consider using cache, but if the monitor changes, then caching the EDID doesn't seem to be of much use…
+
+
+>
+>> +
+>> +unlock:
+>>   	mutex_unlock(&dp->lock);
+>>   
+>>   	return drm_edid;
+>> @@ -267,12 +308,13 @@ cdn_dp_bridge_mode_valid(struct drm_bridge *bridge,
+>>   			 const struct drm_display_info *display_info,
+>>   			 const struct drm_display_mode *mode)
+>>   {
+>> +	struct cdn_dp_bridge *dp_bridge = bridge_to_dp_bridge(bridge);
+>>   	struct cdn_dp_device *dp = bridge_to_dp(bridge);
+>>   	u32 requested, actual, rate, sink_max, source_max = 0;
+>>   	u8 lanes, bpc;
+>>   
+>>   	/* If DP is disconnected, every mode is invalid */
+>> -	if (!dp->connected)
+>> +	if (!dp_bridge->connected || !dp->connected)
+>>   		return MODE_BAD;
+>>   
+>>   	switch (display_info->bpc) {
+>> @@ -571,6 +613,7 @@ static void cdn_dp_display_info_update(struct cdn_dp_device *dp,
+>>   static void cdn_dp_bridge_atomic_enable(struct drm_bridge *bridge, struct drm_atomic_state *state)
+>>   {
+>>   	struct cdn_dp_device *dp = bridge_to_dp(bridge);
+>> +	struct cdn_dp_bridge *dp_bridge = bridge_to_dp_bridge(bridge);
+>>   	struct drm_connector *connector;
+>>   	int ret, val;
+>>   
+>> @@ -580,7 +623,7 @@ static void cdn_dp_bridge_atomic_enable(struct drm_bridge *bridge, struct drm_at
+>>   
+>>   	cdn_dp_display_info_update(dp, &connector->display_info);
+>>   
+>> -	ret = drm_of_encoder_active_endpoint_id(dp->dev->of_node, &dp->encoder.encoder);
+>> +	ret = drm_of_encoder_active_endpoint_id(dp->dev->of_node, &dp_bridge->encoder.encoder);
+>>   	if (ret < 0) {
+>>   		DRM_DEV_ERROR(dp->dev, "Could not get vop id, %d", ret);
+>>   		return;
+>> @@ -599,6 +642,9 @@ static void cdn_dp_bridge_atomic_enable(struct drm_bridge *bridge, struct drm_at
+>>   
+>>   	mutex_lock(&dp->lock);
+>>   
+>> +	if (dp->hpd_bridge_valid)
+>> +		dp->active_port = dp_bridge->id;
+>> +
+> Don't you need to switch port here? Consider reading EDID from port 1,
+> port 2 then enabling output on port 1.
+
+Oh, I missed that. Thank you, I'll add it in v5.
 
 
 
+>
+>>   	ret = cdn_dp_enable(dp);
+>>   	if (ret) {
+>>   		DRM_DEV_ERROR(dp->dev, "Failed to enable bridge %d\n",
+>> @@ -631,6 +677,7 @@ static void cdn_dp_bridge_atomic_enable(struct drm_bridge *bridge, struct drm_at
+>>   		goto out;
+>>   	}
+>>   
+>> +	dp_bridge->enabled = true;
+>>   out:
+>>   	mutex_unlock(&dp->lock);
+>>   }
+>> @@ -638,9 +685,11 @@ static void cdn_dp_bridge_atomic_enable(struct drm_bridge *bridge, struct drm_at
+>>   static void cdn_dp_bridge_atomic_disable(struct drm_bridge *bridge, struct drm_atomic_state *state)
+>>   {
+>>   	struct cdn_dp_device *dp = bridge_to_dp(bridge);
+>> +	struct cdn_dp_bridge *dp_bridge = bridge_to_dp_bridge(bridge);
+>>   	int ret;
+>>   
+>>   	mutex_lock(&dp->lock);
+>> +	dp_bridge->enabled = false;
+>>   
+>>   	if (dp->active) {
+>>   		ret = cdn_dp_disable(dp);
+>> @@ -885,7 +934,8 @@ static void cdn_dp_pd_event_work(struct work_struct *work)
+>>   {
+>>   	struct cdn_dp_device *dp = container_of(work, struct cdn_dp_device,
+>>   						event_work);
+>> -	int ret;
+>> +	bool connected;
+>> +	int i, ret;
+>>   
+>>   	mutex_lock(&dp->lock);
+>>   
+>> @@ -944,9 +994,12 @@ static void cdn_dp_pd_event_work(struct work_struct *work)
+>>   
+>>   out:
+>>   	mutex_unlock(&dp->lock);
+>> -	drm_bridge_hpd_notify(&dp->bridge,
+>> -			      dp->connected ? connector_status_connected
+>> -					    : connector_status_disconnected);
+>> +	for (i = 0; i < dp->bridge_count; i++) {
+>> +		connected = dp->connected && dp->bridge_list[i]->connected;
+>> +		drm_bridge_hpd_notify(&dp->bridge_list[i]->bridge,
+>> +				      connected ? connector_status_connected
+>> +						: connector_status_disconnected);
+>> +	}
+>>   }
+>>   
+>>   static int cdn_dp_pd_event(struct notifier_block *nb,
+>> @@ -966,28 +1019,99 @@ static int cdn_dp_pd_event(struct notifier_block *nb,
+>>   	return NOTIFY_DONE;
+>>   }
+>>   
+>> -static int cdn_dp_bind(struct device *dev, struct device *master, void *data)
+>> +static void cdn_dp_typec_hpd_cb(void *data, enum drm_connector_status status)
+>>   {
+>> -	struct cdn_dp_device *dp = dev_get_drvdata(dev);
+>> -	struct drm_encoder *encoder;
+>> -	struct drm_connector *connector;
+>> -	struct cdn_dp_port *port;
+>> -	struct drm_device *drm_dev = data;
+>> -	int ret, i;
+>> +	struct cdn_dp_hpd_bridge *hpd_bridge = data;
+>> +	struct cdn_dp_device *dp = hpd_bridge->parent;
+>>   
+>> -	ret = cdn_dp_parse_dt(dp);
+>> -	if (ret < 0)
+>> -		return ret;
+>> +	dp->bridge_list[hpd_bridge->id]->connected = status == connector_status_connected;
+>> +	schedule_work(&dp->event_work);
+>> +}
+>>   
+>> -	dp->drm_dev = drm_dev;
+>> -	dp->connected = false;
+>> -	dp->active = false;
+>> -	dp->active_port = -1;
+>> -	dp->fw_loaded = false;
+>> +static void cdn_dp_bridge_hpd_enable(struct cdn_dp_device *dp)
+>> +{
+>> +	int i;
+>>   
+>> -	INIT_WORK(&dp->event_work, cdn_dp_pd_event_work);
+>> +	if (!dp->hpd_bridge_valid)
+>> +		return;
+>> +
+>> +	for (i = 0; i < dp->bridge_count; i++) {
+>> +		drm_bridge_hpd_enable(dp->hpd_bridge_list[i].bridge, cdn_dp_typec_hpd_cb,
+>> +				      &dp->hpd_bridge_list[i]);
+>> +	}
+>> +}
+>> +
+>> +static void cdn_dp_bridge_hpd_disable(struct cdn_dp_device *dp)
+>> +{
+>> +	int i;
+>> +
+>> +	if (!dp->hpd_bridge_valid)
+>> +		return;
+>> +
+>> +	for (i = 0; i < dp->bridge_count; i++) {
+>> +		drm_bridge_hpd_disable(dp->hpd_bridge_list[i].bridge);
+>> +	}
+>> +}
+>> +
+>> +static int cdn_dp_switch_port(struct cdn_dp_device *dp, struct cdn_dp_port *prev_port,
+>> +			      struct cdn_dp_port *port)
+>> +{
+>> +	int ret;
+>> +
+>> +	if (dp->active)
+>> +		return 0;
+>> +
+>> +	cdn_dp_bridge_hpd_disable(dp);
+>> +
+>> +	ret = cdn_dp_disable_phy(dp, prev_port);
+>> +	if (ret)
+>> +		goto out;
+>> +	ret = cdn_dp_enable_phy(dp, port);
+>> +	if (ret)
+>> +		goto out;
+>> +
+>> +	ret = cdn_dp_get_sink_capability(dp);
+>> +	if (ret) {
+>> +		cdn_dp_disable_phy(dp, port);
+>> +		goto out;
+>> +	}
+>> +
+>> +	dp->active = true;
+>> +	dp->lanes = port->lanes;
+>> +
+>> +	if (!cdn_dp_check_link_status(dp)) {
+>> +		dev_info(dp->dev, "Connected with sink; re-train link\n");
+>> +
+>> +		ret = cdn_dp_train_link(dp);
+>> +		if (ret) {
+>> +			dev_err(dp->dev, "Training link failed: %d\n", ret);
+>> +			goto out;
+>> +		}
+>> +
+>> +		ret = cdn_dp_set_video_status(dp, CONTROL_VIDEO_IDLE);
+>> +		if (ret) {
+>> +			dev_err(dp->dev, "Failed to idle video %d\n", ret);
+>> +			goto out;
+>> +		}
+>> +
+>> +		ret = cdn_dp_config_video(dp);
+>> +		if (ret)
+>> +			dev_err(dp->dev, "Failed to configure video: %d\n", ret);
+>> +	}
+>>   
+>> -	encoder = &dp->encoder.encoder;
+>> +out:
+>> +	cdn_dp_bridge_hpd_enable(dp);
+>> +	return ret;
+>> +}
+>> +
+>> +static int cdn_bridge_add(struct device *dev,
+>> +			  struct drm_bridge *bridge,
+>> +			  struct drm_encoder *encoder)
+>> +{
+>> +	struct cdn_dp_device *dp = dev_get_drvdata(dev);
+>> +	struct drm_device *drm_dev = dp->drm_dev;
+>> +	struct drm_connector *connector;
+>> +	int ret;
+>>   
+>>   	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm_dev,
+>>   							     dev->of_node);
+>> @@ -1002,23 +1126,23 @@ static int cdn_dp_bind(struct device *dev, struct device *master, void *data)
+>>   
+>>   	drm_encoder_helper_add(encoder, &cdn_dp_encoder_helper_funcs);
+>>   
+>> -	dp->bridge.ops =
+>> -			DRM_BRIDGE_OP_DETECT |
+>> -			DRM_BRIDGE_OP_EDID |
+>> -			DRM_BRIDGE_OP_HPD |
+>> -			DRM_BRIDGE_OP_DP_AUDIO;
+>> -	dp->bridge.of_node = dp->dev->of_node;
+>> -	dp->bridge.type = DRM_MODE_CONNECTOR_DisplayPort;
+>> -	dp->bridge.hdmi_audio_dev = dp->dev;
+>> -	dp->bridge.hdmi_audio_max_i2s_playback_channels = 8;
+>> -	dp->bridge.hdmi_audio_spdif_playback = 1;
+>> -	dp->bridge.hdmi_audio_dai_port = -1;
+>> -
+>> -	ret = devm_drm_bridge_add(dev, &dp->bridge);
+>> +	bridge->ops =
+>> +		DRM_BRIDGE_OP_DETECT |
+>> +		DRM_BRIDGE_OP_EDID |
+>> +		DRM_BRIDGE_OP_HPD |
+>> +		DRM_BRIDGE_OP_DP_AUDIO;
+>> +	bridge->of_node = dp->dev->of_node;
+>> +	bridge->type = DRM_MODE_CONNECTOR_DisplayPort;
+>> +	bridge->hdmi_audio_dev = dp->dev;
+>> +	bridge->hdmi_audio_max_i2s_playback_channels = 8;
+>> +	bridge->hdmi_audio_spdif_playback = 1;
+>> +	bridge->hdmi_audio_dai_port = -1;
+>> +
+>> +	ret = devm_drm_bridge_add(dev, bridge);
+>>   	if (ret)
+>>   		return ret;
+>>   
+>> -	ret = drm_bridge_attach(encoder, &dp->bridge, NULL, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+>> +	ret = drm_bridge_attach(encoder, bridge, NULL, DRM_BRIDGE_ATTACH_NO_CONNECTOR);
+>>   	if (ret)
+>>   		return ret;
+>>   
+>> @@ -1031,6 +1155,167 @@ static int cdn_dp_bind(struct device *dev, struct device *master, void *data)
+>>   
+>>   	drm_connector_attach_encoder(connector, encoder);
+>>   
+>> +	return 0;
+>> +}
+>> +
+>> +static int cdn_dp_parse_hpd_bridge_dt(struct cdn_dp_device *dp)
+>> +{
+>> +	struct device_node *np = dp->dev->of_node;
+>> +	struct device_node *port __free(device_node) = of_graph_get_port_by_id(np, 1);
+>> +	struct drm_bridge *bridge;
+>> +	int count = 0;
+>> +	int ret = 0;
+>> +	int i;
+>> +
+>> +	/* If device use extcon, do not use hpd bridge */
+>> +	for (i = 0; i < dp->ports; i++) {
+>> +		if (dp->port[i]->extcon) {
+>> +			dp->bridge_count = 1;
+>> +			return 0;
+>> +		}
+>> +	}
+>> +
+>> +	/*
+>> +	 *
+>> +	 * &dp_out {
+>> +	 *	dp_controller_output0: endpoint@0 {
+>> +	 * 		remote-endpoint = <&dp_phy0_in>
+>> +	 * 	};
+>> +	 *
+>> +	 * 	dp_controller_output1: endpoint@1 {
+>> +	 * 		remote-endpoint = <&dp_phy1_in>
+>> +	 * 	};
+>> +	 * };
+>> +	 *
+>> +	 * &tcphy0_dp {
+>> +	 * 	port {
+>> +	 * 		tcphy0_typec_dp: endpoint@0 {
+>> +	 * 			reg = <0>;
+>> +	 * 			remote-endpoint = <&usbc0_dp>;
+>> +	 * 		};
+>> +	 *
+>> +	 * 		dp_phy0_in: endpoint@1 {
+>> +	 * 			reg = <1>;
+>> +	 * 			remote-endpoint = <&dp_controller_output0>;
+>> +	 * 		};
+>> +	 * 	};
+>> +	 * };
+>> +	 *
+>> +	 * &tcphy1_dp {
+>> +	 * 	...
+>> +	 * };
+>> +	 *
+>> +	 * usbcon0: connector {
+>> +	 * 	...
+>> +	 * 	ports {
+>> +	 * 		...
+>> +	 * 		port@2 {
+>> +	 * 			reg = <2>;
+>> +	 *
+>> +	 * 			usbc0_dp: endpoint {
+>> +	 * 				remote-endpoint = <&tcphy0_typec_dp>;
+>> +	 * 			};
+>> +	 * 		};
+>> +	 * 	};
+>> +	 * };
+>> +	 *
+>> +	 * usbcon1: connector {
+>> +	 * 	...
+>> +	 * };
+>> +	 *
+>> +	 */
+>> +
+>> +	/* One endpoint may correspond to one HPD bridge. */
+>> +	for_each_of_graph_port_endpoint(port, dp_ep) {
+>> +		/* Try to get "port" node of correspond PHY device */
+>> +		struct device_node *phy_ep __free(device_node) =
+>> +			of_graph_get_remote_endpoint(dp_ep);
+>> +		struct device_node *phy_port __free(device_node) =
+>> +			of_get_parent(phy_ep);
+>> +
+>> +		if (!phy_port) {
+>> +			continue;
+>> +		}
+>> +
+>> +		/*
+>> +		 * A PHY port may contain two endpoints: USB connector port or CDN-DP port.
+>> +		 * Try to find the node of USB connector.
+> And then there can be a retimer between PHY and the USB-C connector. Or
+> some signal MUX. Or DP-to-HDMI bridge. Please, don't parse DT for other
+> devices. Instead you can add drm_aux_bridge to your PHY and let DRM core
+> build the bridge chain following OF graph.
+
+Okay, I will try to do it in v5.
+
+
+>
+>> +		 */
+>> +		for_each_of_graph_port_endpoint(phy_port, typec_ep) {
+>> +			struct device_node *connector_port __free(device_node) =
+>> +				of_graph_get_remote_port_parent(typec_ep);
+>> +			struct device_node *hpd_bridge_np __free(device_node) =
+>> +				of_get_parent(connector_port);
+>> +
+>> +			if (typec_ep == phy_ep)
+>> +				continue;
+>> +
+>> +			bridge = of_drm_find_bridge(hpd_bridge_np);
+>> +			if (!bridge) {
+>> +				ret = -EPROBE_DEFER;
+>> +				goto out;
+>> +			}
+>> +
+>> +			dp->hpd_bridge_valid = true;
+>> +			dp->hpd_bridge_list[count].bridge = bridge;
+>> +			dp->hpd_bridge_list[count].parent = dp;
+>> +			dp->hpd_bridge_list[count].id = count;
+>> +			count++;
+>> +			break;
+>> +		}
+>> +	}
+>> +
+>> +out:
+>> +	dp->bridge_count = count ? count : 1;
+>> +	return ret;
+>> +}
+>> +
+>> +static int cdn_dp_bind(struct device *dev, struct device *master, void *data)
+>> +{
+>> +	struct cdn_dp_device *dp = dev_get_drvdata(dev);
+>> +	struct drm_bridge *bridge;
+>> +	struct drm_encoder *encoder;
+>> +	struct cdn_dp_port *port;
+>> +	struct drm_device *drm_dev = data;
+>> +	struct cdn_dp_bridge *bridge_list;
+>> +	int ret, i;
+>> +
+>> +	ret = cdn_dp_parse_dt(dp);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	ret = cdn_dp_parse_hpd_bridge_dt(dp);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	dp->drm_dev = drm_dev;
+>> +	dp->connected = false;
+>> +	dp->active = false;
+>> +	dp->active_port = -1;
+>> +	dp->fw_loaded = false;
+>> +
+>> +	for (i = 0; i < dp->bridge_count; i++) {
+>> +		bridge_list = devm_drm_bridge_alloc(dev, struct cdn_dp_bridge, bridge,
+>> +						    &cdn_dp_bridge_funcs);
+>> +		if (IS_ERR(bridge_list))
+>> +			return PTR_ERR(bridge_list);
+>> +		bridge_list->id = i;
+>> +		bridge_list->parent = dp;
+>> +		if (!dp->hpd_bridge_valid)
+>> +			bridge_list->connected = true;
+>> +		dp->bridge_list[i] = bridge_list;
+>> +	}
+>> +
+>> +	for (i = 0; i < dp->bridge_count; i++) {
+>> +		encoder = &dp->bridge_list[i]->encoder.encoder;
+>> +		bridge = &dp->bridge_list[i]->bridge;
+>> +		ret = cdn_bridge_add(dev, bridge, encoder);
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +
+>> +	INIT_WORK(&dp->event_work, cdn_dp_pd_event_work);
+>> +
+>>   	for (i = 0; i < dp->ports; i++) {
+>>   		port = dp->port[i];
+>>   
+>> @@ -1050,6 +1335,7 @@ static int cdn_dp_bind(struct device *dev, struct device *master, void *data)
+>>   
+>>   	pm_runtime_enable(dev);
+>>   
+>> +	cdn_dp_bridge_hpd_enable(dp);
+>>   	schedule_work(&dp->event_work);
+>>   
+>>   	return 0;
+>> @@ -1058,10 +1344,14 @@ static int cdn_dp_bind(struct device *dev, struct device *master, void *data)
+>>   static void cdn_dp_unbind(struct device *dev, struct device *master, void *data)
+>>   {
+>>   	struct cdn_dp_device *dp = dev_get_drvdata(dev);
+>> -	struct drm_encoder *encoder = &dp->encoder.encoder;
+>> +	struct drm_encoder *encoder;
+>> +	int i;
+>>   
+>>   	cancel_work_sync(&dp->event_work);
+>> -	encoder->funcs->destroy(encoder);
+>> +	for (i = 0; i < dp->bridge_count; i++) {
+>> +		encoder = &dp->bridge_list[i]->encoder.encoder;
+>> +		encoder->funcs->destroy(encoder);
+>> +	}
+>>   
+>>   	pm_runtime_disable(dev);
+>>   	if (dp->fw_loaded)
+>> @@ -1112,10 +1402,10 @@ static int cdn_dp_probe(struct platform_device *pdev)
+>>   	int ret;
+>>   	int i;
+>>   
+>> -	dp = devm_drm_bridge_alloc(dev, struct cdn_dp_device, bridge,
+>> -				   &cdn_dp_bridge_funcs);
+>> -	if (IS_ERR(dp))
+>> -		return PTR_ERR(dp);
+>> +	dp = devm_kzalloc(dev, sizeof(*dp), GFP_KERNEL);
+>> +	if (!dp)
+>> +		return -ENOMEM;
+>> +
+>>   	dp->dev = dev;
+>>   
+>>   	match = of_match_node(cdn_dp_dt_ids, pdev->dev.of_node);
+>> diff --git a/drivers/gpu/drm/rockchip/cdn-dp-core.h b/drivers/gpu/drm/rockchip/cdn-dp-core.h
+>> index e9c30b9fd543..215f3da61af2 100644
+>> --- a/drivers/gpu/drm/rockchip/cdn-dp-core.h
+>> +++ b/drivers/gpu/drm/rockchip/cdn-dp-core.h
+>> @@ -38,6 +38,8 @@ enum vic_pxl_encoding_format {
+>>   	Y_ONLY = 0x10,
+>>   };
+>>   
+>> +struct cdn_dp_device;
+>> +
+>>   struct video_info {
+>>   	bool h_sync_polarity;
+>>   	bool v_sync_polarity;
+>> @@ -63,16 +65,33 @@ struct cdn_dp_port {
+>>   	u8 id;
+>>   };
+>>   
+>> +struct cdn_dp_bridge {
+>> +	struct cdn_dp_device *parent;
+>> +	struct drm_bridge bridge;
+>> +	struct rockchip_encoder encoder;
+>> +	bool connected;
+>> +	bool enabled;
+>> +	int id;
+>> +};
+>> +
+>> +struct cdn_dp_hpd_bridge {
+>> +	struct cdn_dp_device *parent;
+>> +	struct drm_bridge *bridge;
+>> +	int id;
+>> +};
+>> +
+>>   struct cdn_dp_device {
+>>   	struct device *dev;
+>>   	struct drm_device *drm_dev;
+>> -	struct drm_bridge bridge;
+>> -	struct rockchip_encoder encoder;
+>> +	int bridge_count;
+>> +	struct cdn_dp_bridge *bridge_list[MAX_PHY];
+>> +	struct cdn_dp_hpd_bridge hpd_bridge_list[MAX_PHY];
+>>   	struct drm_display_mode mode;
+>>   	struct platform_device *audio_pdev;
+>>   	struct work_struct event_work;
+>>   
+>>   	struct mutex lock;
+>> +	bool hpd_bridge_valid;
+>>   	bool connected;
+>>   	bool active;
+>>   	bool suspended;
+>> -- 
+>> 2.49.0
+>>
+-- 
+Best,
+Chaoyi
 
 
