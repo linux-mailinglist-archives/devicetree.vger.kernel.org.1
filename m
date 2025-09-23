@@ -1,170 +1,206 @@
-Return-Path: <devicetree+bounces-220474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C8DBB96A9B
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 17:52:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E1F2B96AB6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 17:54:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A61519C4DC6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 15:53:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5374719C50A5
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 15:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F14812641EE;
-	Tue, 23 Sep 2025 15:52:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B7C5264A7F;
+	Tue, 23 Sep 2025 15:54:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="pCinNdp0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HB0XYEnR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B622C8F0
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 15:52:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE7416DC28;
+	Tue, 23 Sep 2025 15:54:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758642753; cv=none; b=ulSUeHWCmK8jgafWdg+SvTdNfMyaLjt6U46KGPFDRpjpJb+LCDNujNlVctki35EDDIql/9QgxErqWfLBDxQPH6J3JKKgiqSJjmW+fISRrDR+1IDR0R6QxgfiTQvZB0s0rQITK2ocpdryKNLRpzwvB/lrmuq6X9qHEjfj8Jw1sdQ=
+	t=1758642886; cv=none; b=C+iY86QW4IqCp/OMmkKr2cuzVimiDemMrS9dWuInECierVRDl9uyPZGRuxQwcRBqEcXVvhO0IkExHI+zEqhIP9amZnr9849aaXdVIwMD/TCwsdgrcZslwXxcY8H922ku+aKYh3e2CBUBifh9faj5xQYvV6WulW/oK1fQY6YFaBk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758642753; c=relaxed/simple;
-	bh=CcpwlYGznwOeaJS/CyloewOqXqfoX9eS8cXkrWgOiE0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=P7x8BxNYU7eGdGOe+h7UdWMyFLOLMO/fhljL/3y22mHg0f0nsCubgXMJ+g6OcdFFB3cEtf49jUvrp/cyYl7KGjwYm2V+zWfdRwRpTxpeler0pkCVFc9AHwza6EM5bmhfc8ybPz7SDvkYTEvMB3tUtm7A2Ik80JmvYRXfnexzs88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=pCinNdp0; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58N8HFDI001998
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 15:52:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jnk1sjZqjciZj1NSs1no/CPobCh/tOcCuUO4swDNXRs=; b=pCinNdp0eSGl93PM
-	AOAFUXYkdAKh9WWDaXUeMLb4SMbdw713sW+aBMr09W4+PgEL5VP9SQVIieuIQNAz
-	EIZX2DkpEO6GRmBhFVS8bc15EpnfRIyztBybvPAjAIye/t7lfNdVRreNOEcXKnhX
-	dwvqkbd4Zw8WK8mvsF/33QRMsqnsjWqAf4aEDwF3AqnrF/TxmFzMaiLIFCx893z+
-	eNJTxTPRDqIb6iJsGnOJEc9oYihq7kNa92TEqqwJB/wgbcFoWzb5BE96VfGJ+NJl
-	4hHugFWbed7E70FYEFXDD8iCA+DEkWmkfchw3IOGD1OXCmnyC8cXhq+zmOmS6RUU
-	rYl1pA==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499n1fh30t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 15:52:30 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-24456ebed7bso251415ad.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 08:52:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758642749; x=1759247549;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jnk1sjZqjciZj1NSs1no/CPobCh/tOcCuUO4swDNXRs=;
-        b=EmhTumpl6bXKIxkI18NR/iMc9bj8LNrpRj3T2JK3M5vNVK8L3HG+SSSvYWSXSYcrO+
-         0cohPm8b6YFLi+97hFrLIidrFxemTyBjEv2EMFk7TeApXkF9PTdMCJkNSbtAJyyXgRIg
-         zraOqNbvy4CqORvwzypsG1Z2flZ0ETWtTtjY6T41dP9LR3LNj+JsrRDTVJuPllLe5v59
-         tClpRoxD9ZVEV3T5IIeDTie9hukqwLKqTynebspEqi/BnmpDL+aLHIYbs2UMbzxEyYJD
-         gl8UHBlqjjYmMRvnVdS+56JO+ObnutWX+kJIGF0lhUMN8m2Di7WJAOxptbPVTaQu06Iz
-         OL5g==
-X-Forwarded-Encrypted: i=1; AJvYcCUp9q4JkPltGCTUKV3YlbGoHXT76UogRTEOsOl0ze0B/MCmUH8KcgWllullQe5k5C8IvZZsN2z1qWHi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+BrTD7P9n63WYuRYsBCzPJSzhxkOtDr8wJum6Xi21rVv0+GlM
-	/4kiyedrAwxyNrw6uNzz61KZ/O1f/gzC6y9D+l5vwZw4FF4spdSAdKm+UPjcV3GXZGSjBmEf8DZ
-	WjEjLWZyuf8ZmSPFl7IY8vkwL3bOHShzlb4rRsKtgtj1BCXNOsIfBTYpn3OFLld1t
-X-Gm-Gg: ASbGncsx6LISrVQP1+j/SMZ79tuFbr/Uiec03AEj4JydyrUCR3Ore7EesVURAfFQmsr
-	fioAtTEu3+uEpHoGrzgwxmesnITxdbDed4GpLcEKzPN/skvxYcGb5UNF59JTynPPk3XS6rC46Tv
-	oGNyDT1r0sJdLkHHnIr3tQxJvV6F6PdPZOlTTycGw8FpUFyQvVX+n+jZa2EKdHlojROSk7osvNe
-	wc7T09GBW7x3IWgs+NJfVaRbZgcW7ZKsaivLkYSZqeI55u8iIIbRN2nk65zKAGvDr6DZz89m5C8
-	EPSoRbfo70quMfBvJ9UuTrNGw5IW4lT7qcBcTaTZmcnoXa0ijjLJVkMw0TQvMArom++aa4PQOUc
-	9
-X-Received: by 2002:a17:902:ec86:b0:264:8a8d:92e4 with SMTP id d9443c01a7336-27cd63d00cbmr36675905ad.2.1758642748609;
-        Tue, 23 Sep 2025 08:52:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFY0gUezkzMH9Q3U378qYMV2WlHC0rAlDu3HjPX3f+WdGE++O8MRSpNyCPTDPF0+I3PqGqDkA==
-X-Received: by 2002:a17:902:ec86:b0:264:8a8d:92e4 with SMTP id d9443c01a7336-27cd63d00cbmr36675235ad.2.1758642747958;
-        Tue, 23 Sep 2025 08:52:27 -0700 (PDT)
-Received: from [192.168.0.104] ([49.205.253.122])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-2698033c922sm161153415ad.131.2025.09.23.08.52.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 23 Sep 2025 08:52:27 -0700 (PDT)
-Message-ID: <23174908-5dc4-f4d2-3f3f-1225f999a227@oss.qualcomm.com>
-Date: Tue, 23 Sep 2025 21:22:22 +0530
+	s=arc-20240116; t=1758642886; c=relaxed/simple;
+	bh=9PAHk1M/py/wmr9FX/AJcB5+6ZJZbCQJMTHF0F98NFw=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=aJhAXGoz8E0BF8obKmfCE3BTf5J9Vlp7cahWXYRDanKMZtkQdKe80zBA6SKwmmPP3ACNGTVJIoevomp8KPvh08Sfzn4WdV2+u0gQvcN0btB0t+AIaFfOr4N5iDFsxkXekZJFlUHnRKhDqywpBzIDxPnZ6MeevLeLt8YAxOimQ28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HB0XYEnR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 552B6C113CF;
+	Tue, 23 Sep 2025 15:54:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758642885;
+	bh=9PAHk1M/py/wmr9FX/AJcB5+6ZJZbCQJMTHF0F98NFw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=HB0XYEnR4MNkE+vIXx7MKexzkD7sZteWlROImwjLYmOQTkC+TRO+FbdgUqwZjKTr0
+	 rdPY61ShmA5mZEfCZ+nh3Vk5sJbUDb6Am8Ar30yP+v4j3hLx66DUUqA3i33LD97yEM
+	 cOEP9MGIhgzOomPU26Q5Dvuyc80y9DnlBz+cyEBuJOJKnmJeAwcp9ZnA1qxBfUbwrV
+	 TR+TJnaVZYVGOjFhxqRu6xwY8iG4FPm433mVuJkL5aBQZ53fpkHzfGBPOCxe8/aG8I
+	 MjRySA+WP+fnJWjfcQ+ep6S00INskkZhdIZBsQeiWDVcH77tGiZSA8EbH+2zpELl7d
+	 oeT+tC+hUDsQg==
+Date: Tue, 23 Sep 2025 10:54:43 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Randolph Lin <randolph@andestech.com>
+Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	jingoohan1@gmail.com, mani@kernel.org, lpieralisi@kernel.org,
+	kwilczynski@kernel.org, robh@kernel.org, bhelgaas@google.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, alex@ghiti.fr,
+	aou@eecs.berkeley.edu, palmer@dabbelt.com, paul.walmsley@sifive.com,
+	ben717@andestech.com, inochiama@gmail.com,
+	thippeswamy.havalige@amd.com, namcao@linutronix.de,
+	shradha.t@samsung.com, randolph.sklin@gmail.com,
+	tim609@andestech.com
+Subject: Re: [PATCH v3 4/5] PCI: andes: Add Andes QiLai SoC PCIe host driver
+ support
+Message-ID: <20250923155443.GA2041202@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v1] arm64: dts: qcom: qcs6490-rb3gen2: Add firmware-name
- to QUPv3 nodes
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mka@chromium.org, luca.weiss@fairphone.com,
-        mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com
-References: <20250923143431.3490452-1-viken.dadhaniya@oss.qualcomm.com>
- <cr2ehxr4udit6ddzp3pspsdrhtf4rpl5fzo6jakw2uo3gm7r6a@v3hwvkya62hx>
-Content-Language: en-US
-From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-In-Reply-To: <cr2ehxr4udit6ddzp3pspsdrhtf4rpl5fzo6jakw2uo3gm7r6a@v3hwvkya62hx>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: xtwnNQemZBbetN0FXWjAJ0UzWKVZICYA
-X-Proofpoint-GUID: xtwnNQemZBbetN0FXWjAJ0UzWKVZICYA
-X-Authority-Analysis: v=2.4 cv=No/Rc9dJ c=1 sm=1 tr=0 ts=68d2c23e cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=RtG+38I8ePlRmB+m5sTI6w==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=DAzQPIN5ulxls2xLjgIA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAzNyBTYWx0ZWRfXy747M+sDremE
- JMgA3/+XhPB5XTLVLdBOck/YHbhbr72wZlz4m9+jbddjEcQX4WBQNx1rxA0mhLXE6y7W1b0A1qc
- fKlYzQq82BFBfHL5CZAuRlVWLu5SICn9tBijb3osaAurAV4g87j9ZUlhzHYIC0BD7tKo58p7LQD
- o+IrEF5XMkXa9cKiWay0ddxYqTYYF7vOaKnZTeSyIP1oBsQdpD4+S1WMh4z2/B2NOexU0BvJaxB
- IDVZgMANpnS7boNsR1SuOjux9gi/B+v9COLUYg37yfEbDYvnUuYR1t8YIV4a4oeLv1B/Nv1SJLV
- bZNOw3jfDBFoDQtHLSO0PZaPJ/bkim647W78wA+lWL0df7Yanvp7TrHWgHT9MYjkNYJxiy3VcOJ
- S5o2/eDy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-23_03,2025-09-22_05,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 spamscore=0 suspectscore=0 adultscore=0 malwarescore=0
- phishscore=0 bulkscore=0 priorityscore=1501 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200037
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250923113647.895686-5-randolph@andestech.com>
 
+On Tue, Sep 23, 2025 at 07:36:46PM +0800, Randolph Lin wrote:
+> Add driver support for DesignWare based PCIe controller in Andes
+> QiLai SoC. The driver only supports the Root Complex mode.
 
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -49,6 +49,19 @@ config PCIE_AMD_MDB
+>  	  DesignWare IP and therefore the driver re-uses the DesignWare
+>  	  core functions to implement the driver.
+>  
+> +config PCIE_ANDES_QILAI
+> +	bool "ANDES QiLai PCIe controller"
+> +	depends on ARCH_ANDES || COMPILE_TEST
+> +	depends on PCI_MSI
+> +	select PCIE_DW_HOST
+> +	help
+> +	  Say Y here to enable PCIe controller support on Andes QiLai SoCs,
+> +	  which operate in Root Complex mode. The Andes QiLai SoCs PCIe
+> +	  controller is based on DesignWare IP (5.97a version) and therefore
+> +	  the driver re-uses the DesignWare core functions to implement the
+> +	  driver. The Andes QiLai SoC features three Root Complexes, each
+> +	  operating on PCIe 4.0.
 
-On 9/23/2025 8:43 PM, Dmitry Baryshkov wrote:
-> On Tue, Sep 23, 2025 at 08:04:31PM +0530, Viken Dadhaniya wrote:
->> Add firmware-name property to qupv3_id_0 and qupv3_id_1 to specify the
->> QUPv3 firmware ELF (qupv3fw.elf).
-> 
-> Please start by describing the problem you are trying to solve.
+Sort these by vendor name:
 
-Sure, I’ll update it and send v2.
+  AMD MDB Versal2 PCIe controller
+  Amlogic Meson PCIe controller
+  ANDES QiLai PCIe controller
+  Axis ARTPEC-6 PCIe controller (host mode)
 
-> 
->>
->> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
->> ---
->>  arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 2 ++
->>  1 file changed, 2 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> index 18cea8812001..4e361580ddf1 100644
->> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->> @@ -1009,10 +1009,12 @@ &qup_uart7_tx {
->>  };
->>  
->>  &qupv3_id_0 {
->> +	firmware-name = "qcom/qcs6490/qupv3fw.elf";
->>  	status = "okay";
->>  };
->>  
->>  &qupv3_id_1 {
->> +	firmware-name = "qcom/qcs6490/qupv3fw.elf";
->>  	status = "okay";
->>  };
->>  
->> -- 
->> 2.34.1
->>
-> 
+>  config PCI_MESON
+>  	tristate "Amlogic Meson PCIe controller"
+
+> + * Refer to Table A4-5 (Memory type encoding) in the
+> + * AMBA AXI and ACE Protocol Specification.
+> + *
+> + * The selected value corresponds to the Memory type field:
+> + * "Write-back, Read and Write-allocate".
+> + */
+> +#define IOCP_ARCACHE				0b1111
+> +#define IOCP_AWCACHE				0b1111
+
+Deserves a note about why these values are identical.
+
+> +struct qilai_pcie {
+> +	struct dw_pcie pci;
+> +	struct platform_device *pdev;
+
+"pdev" appears to be set but never used; drop it if you don't need it.
+
+> +/*
+> + * Setup the Qilai PCIe IOCP (IO Coherence Port) Read/Write Behaviors to the
+> + * Write-Back, Read and Write Allocate mode.
+
+Add blank line or rewrap into single paragraph.
+
+> + * The IOCP HW target is SoC last-level cache (L2 Cache), which serves as the
+> + * system cache. The IOCP HW helps maintain cache monitoring, ensuring that
+> + * the device can snoop data from/to the cache.
+> + */
+> +static void qilai_pcie_iocp_cache_setup(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	u32 val;
+> +
+> +	dw_pcie_dbi_ro_wr_en(pci);
+> +
+> +	dw_pcie_read(pci->dbi_base + PCIE_LOGIC_COHERENCY_CONTROL3,
+> +		     sizeof(val), &val);
+> +	FIELD_MODIFY(PCIE_CFG_MSTR_ARCACHE_MODE, &val, IOCP_ARCACHE);
+> +	FIELD_MODIFY(PCIE_CFG_MSTR_AWCACHE_MODE, &val, IOCP_AWCACHE);
+> +	FIELD_MODIFY(PCIE_CFG_MSTR_ARCACHE_VALUE, &val, IOCP_ARCACHE);
+> +	FIELD_MODIFY(PCIE_CFG_MSTR_AWCACHE_VALUE, &val, IOCP_AWCACHE);
+> +	dw_pcie_write(pci->dbi_base + PCIE_LOGIC_COHERENCY_CONTROL3,
+> +		      sizeof(val), val);
+> +
+> +	dw_pcie_dbi_ro_wr_dis(pci);
+> +}
+
+> +static int qilai_pcie_host_init(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct qilai_pcie *pcie = to_qilai_pcie(pci);
+> +
+> +	qilai_pcie_enable_msi(pcie);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dw_pcie_host_ops qilai_pcie_host_ops = {
+> +	.init = qilai_pcie_host_init,
+> +};
+> +
+> +static int qilai_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct qilai_pcie *pcie;
+> +	struct dw_pcie *pci;
+> +	struct device *dev;
+> +	int ret;
+> +
+> +	pcie = devm_kzalloc(&pdev->dev, sizeof(*pcie), GFP_KERNEL);
+> +	if (!pcie)
+> +		return -ENOMEM;
+> +
+> +	pcie->pdev = pdev;
+> +	platform_set_drvdata(pdev, pcie);
+> +
+> +	pci = &pcie->pci;
+> +	dev = &pcie->pdev->dev;
+> +	pcie->pci.dev = dev;
+> +	pcie->pci.ops = &qilai_pcie_ops;
+> +	pcie->pci.pp.ops = &qilai_pcie_host_ops;
+> +	pci->use_parent_dt_ranges = true;
+> +
+> +	dw_pcie_cap_set(&pcie->pci, REQ_RES);
+> +
+> +	pcie->apb_base = devm_platform_ioremap_resource_byname(pdev, "apb");
+> +	if (IS_ERR(pcie->apb_base))
+> +		return PTR_ERR(pcie->apb_base);
+> +
+> +	ret = dw_pcie_host_init(&pcie->pci.pp);
+> +	if (ret) {
+> +		dev_err_probe(dev, ret, "Failed to initialize PCIe host\n");
+> +		return ret;
+> +	}
+> +
+> +	qilai_pcie_iocp_cache_setup(&pcie->pci.pp);
+
+I don't think we should be doing anything after dw_pcie_host_init()
+because by the time we get here, we've already enumerated downstream
+devices and potentially bound drivers to them.
+
+If you need things done in dw_pcie_host_init() before enumeration,
+qilai_pcie_host_init() and similar hooks are possibilities.
+
+> +	return 0;
+> +}
 
