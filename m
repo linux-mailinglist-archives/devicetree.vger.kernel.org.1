@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-220457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F8FEB966C9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:51:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F03AAB966A3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 16:51:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D84BA3B0E86
-	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 14:46:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F094C1661B6
+	for <lists+devicetree@lfdr.de>; Tue, 23 Sep 2025 14:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7FBC266580;
-	Tue, 23 Sep 2025 14:45:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2719226A087;
+	Tue, 23 Sep 2025 14:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W3oiPW/a"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BGCVa6X7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACE232586CE
-	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 14:45:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C639E25B31B
+	for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 14:45:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758638736; cv=none; b=pAudFQpZddO0sMcTA1HuxOdN2zThNUq95KLTeZpPH6aIMsAVVFIeaK5q8lkMWTjjaJKLGji+WDYrQxhWEX6179Ni3WNGd4RBZ3eGgzWSAe5fflYNckxtsNw66uSrfaI367to+kqGOWKT+NvdL7+d2/pXy07BuQ+xs+5YzMyZCz4=
+	t=1758638737; cv=none; b=WtOmKgInVCTpM5Zm7uvPmPO/HKGuQJyOTSd11iQakR0/3oSrKmYwCZ+J3CUGl/YpC0SfUIv5bGoqzsRktjDCPNhOpNN/tEVrbL7pL8YdhFQCCer8mEKzTh5Yxu4G9ud+34O802tXI7WM225MiVRvF+0vpVUkOP9IxP2FsqEIXpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758638736; c=relaxed/simple;
-	bh=PC08gB/w+egRp5QGS5q1tZdtfmPuAMJz7z2nsCmwUpE=;
+	s=arc-20240116; t=1758638737; c=relaxed/simple;
+	bh=FG2G0j9yMRpJsyLnTSTOBI0IBmgFvNkuE6tgk8O+uWE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=b6CuAgh+3qP7yvA87g3ucdY6brwd4g9DFh6jMTEV3n0IKnK3g4WrOAiYlKrzZ6Dns7EB6qFSsCsTI3ywxsO5CNDfzxSASXWipYNNCCqj0R5wqgGfLEcNpHkPia3Q57WAVcwNGS7x88dk6OxtEDeqTeUD1BpyIhpkIkA7y5pMBRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W3oiPW/a; arc=none smtp.client-ip=209.85.221.53
+	 MIME-Version; b=j7eJrUqVT1lR26X6xWHOCmRDnM+ynRgTl0DF6WVOqajCVkpCAqHS2UZjAaXYz+Wut3NDT/mnyLo0s7Xzjj/RJheWFlasIKhAHmE6xJG05YQFd0SJHsF8LdfKDVlvdGdhyfhRqnr35I/osXGaECZO+pq8edyiGWFsh26ZFsRJsuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BGCVa6X7; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3f0ae439bc3so2160906f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 07:45:33 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-45df7dc1b98so35110275e9.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 07:45:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758638732; x=1759243532; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1758638733; x=1759243533; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=G80ItpmxJpnUoRL/kfIZ5sW+AOj0ITPN400GcF79LCE=;
-        b=W3oiPW/aNZXRC58A1Awz7/eORgFUQuDw0pu0ykMOp6TK0ItOs0+bB3wBIFLbxw2kTv
-         YovNxUXvltX1ca7PEC7D2P+cYWrLv/QALAWbTCw4wL4av4yQdPnV6qSKf2X4CrzPNr9l
-         8Ez7kF3IYIneb3JL/hUiyITr5j7Q7oLxCplZVPVFtTIs6xiYJw79PJY4XvoVz0m6+iZp
-         cTwl6bjcNL4YIzxN5GJXcjqoVw/DY+R+fzAXblBb8eM1GZLS+i0ZNwyiDDo7yKJ0RVOX
-         suDDDcD2LDG/gyK73Fzg3K84a9CQV8x4HtYK/Aqz3pBzbHYCkqQk7uYMdKZJ9oVGXHK9
-         IVhw==
+        bh=0aOwKfNY2vdwS6wqcAavDYBOG0gp/iK+khNJ/Lz+BCQ=;
+        b=BGCVa6X7qYc5ZVPjdJ3B/ZlE+Y5CFL6hP4EGD26AO7z8Sjv+ag326z+/eSb15GjuxJ
+         T88/FVxlveVrpL/ZFzi08J6byiqFTLDOziaxX/9Bo095kHLTw9M9/WVtq4kNyseVHujh
+         e435GzOc9P7vGsVK3GPyycfnUBoBpkr/EwByuHgwuSCwvjC5iUmL1N0r3XK4y3EXIGcd
+         h76+pnM3nGpFv4t0izaKmIbg2OMTjJ3LPfafQJl9eID+AJzwQKVMQT2dyj4XE5xkU/Gi
+         n1y4LoZ4fQ1xsSKeWDbX+YmPAN7mUZ0MvgaoLepsfz0seXKdPvgQigDvgfAnyXcnUbzt
+         Snxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758638732; x=1759243532;
+        d=1e100.net; s=20230601; t=1758638733; x=1759243533;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=G80ItpmxJpnUoRL/kfIZ5sW+AOj0ITPN400GcF79LCE=;
-        b=VhcTK2x0xqV1z64dwhOnclShRftiLwm67AmgufBzQWYfUkuwocip233qiX2spgp/Rm
-         qC3CGtjxPqYCU8isPlX+8NTkV6KyuOiTkXSm41BLm5vvGsoa0x6o4ooA9zqowKPuU/h2
-         pLU3J0Xkbpb0I5HrgCSewUnqsbLRQoSsYb9Qx2P5h9Ux88qNjTD5Wwx2dqkDXKI/bdjq
-         WOKc5nSvPLL8Wz3IGQ+Mr6B+qG6zia+CIbP3VeqMECBjeUngNrqwf0wKiR8w51zdAzsZ
-         IldeRyX8UueTWd9cjnnhT6LjW6p9faw2CBJsmMyCWy5oH+jMUr57xNqX3JSo5TDfH/ga
-         Be0w==
-X-Forwarded-Encrypted: i=1; AJvYcCUfLWrzleGf8wy6v3O+TRWfmashF/VS5Ou2ar0Zz1mhAnolmQzBIa4lLI77c97DR6oh+niELpY6ySq7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfWcqgLxmJfrDVc1SINdf0p2S20tqiDjJvnV9mW21fFMDd3i6d
-	Ptuge7X+/UBaKfiQuCGJlty5IeDWdCsLyHPPcVBZ3CYe0or8ERa07dMX
-X-Gm-Gg: ASbGnctej3hRpr9ItmCvaHckwlnjhgUDZ/4X/RT6lgg2tW3KYcXjVXnj/w2icZtXdzx
-	puSkZDxkXSS3qZepwXVAP7KWz/WEoxDIRPJUE4QBXhO/KASIuo3so5ApsV5uxIAU7kb3n/oprDT
-	WR8tLeR4SByaVrvTMN06ZNf1VCo8dng+QfeFYuykTI+vM9GVLThi2UmmhONxw3B5JyCC+648B3X
-	EX/Yoll9t8jBsM7Fw5kEVaOfo+R4T+jaWKAOIUS/Ng9CvH9h/URXjS0J/nv7WAzlNn8DaJImUaG
-	R8bkYAsEkZ4o9VyEmnbGzulVHBorGdFFWm7qHeyrlpPfL+8ikfs7DxPq09vWZQ0CJAE3nykbLR2
-	BBLNNUFlgHQEFBF6qMM/qOWi4qrTHvfKK2IHFkIy3Nh1HJI8hSzK1aAvxx/AkGLsM9dTWiLAYbv
-	ApuA==
-X-Google-Smtp-Source: AGHT+IGYJqg3g59q+kGLJJp06XQ1vqNuniExnf+RSDw2EEI792G/PGnzGmPNDfsYQ83ycJ6V10rFpA==
-X-Received: by 2002:a05:6000:2907:b0:3f4:a9f5:c10e with SMTP id ffacd0b85a97d-405c9352242mr2984554f8f.36.1758638731818;
-        Tue, 23 Sep 2025 07:45:31 -0700 (PDT)
+        bh=0aOwKfNY2vdwS6wqcAavDYBOG0gp/iK+khNJ/Lz+BCQ=;
+        b=CxC/K+dwaeuym5/L6lrUHfqp8A3TeofJ9mg08vHA4IvW72JLZuQYYU8czvUSfqTxOT
+         ZsIS9q146eLjueDQj1tOQHZn+z1baGdogbC8MTU+3eyZbBrUQDQ/jui2AKmK+UBTKIuo
+         Hk68curvMyT2gOgED5tfR2Z97+0XXG+EWWAuscO6AwbFu2nOT4Fpr/IbiSHeOKv/QrdP
+         gOEcFIzY999DXitkWuZuYezawkucAhORhGl7C0BtuTWmQu/4h4Rflp9rZm6mKhqpZxNg
+         NMW7Ye7lmw0q5M1rNwmI8Za7m3vhGldKWTf1lTWsrMEDQZXEYlnyKyPzRtFXUko5tvs3
+         ceRA==
+X-Forwarded-Encrypted: i=1; AJvYcCVrL3SbqtK/TOGKKbRyjb0Ar3ZPgsJEzgtwUrfFxGa8jaZJv0yLTbS0iDzbfFz7I8TXPRXaOWG9Gw6N@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+Gpx3+uVSxajprFeydpkW3MhNGjDquD4DyK/vMU6OeQOOrn3H
+	u/NvvzPMzL3QEP4xSfJKzjQ+wMf3OZG+rWGip8Zkjxp7M8pdsubkJ66t
+X-Gm-Gg: ASbGnctm1akMftE8aLXjpevVeQwjeRiUqYjICo/ghe66XMrjZpKFpHPv7gyzIZQLIsV
+	XaBO5HYN66KnnEsHcE9pt/qu+3xBdVuXL+ks4D9hTy5v9rphiX5wXGRo6+yPMvDRP7GRmIehQMG
+	UYMSeP269neH0pmZJcBK9wVAMVf2MFhWyrDR+TBpeHh82tLbIrFdEdxTqT2ze0o+lEeLNZQ7reP
+	OZS0er0Suz0UwkDT5nMwYXwndHg2Qi8rCpikvAKi/M2m2HG2Tngz7TrKrzsNal8dKgI41NGGYbc
+	MwDrl7XOvIFbvTN31t80OqkJuf7FBn/ttt+lD35KL563Ix+++ta0bAP6999St4DfG7FrFaxoeOQ
+	2KVk3NjpsH94IkCTjoAXGF2wweiQ7fRL+g2E3MxlwCFkVn1AqjJBrtcGJv158qnXjT2OGRQ4Ayd
+	k6lg==
+X-Google-Smtp-Source: AGHT+IHY05P7YPOHKEC6gk74dg40jQ6ah53p1VKJbL2X1DkEDEeClFCRPiP0QIJXrv+8WCuJmAyFYQ==
+X-Received: by 2002:a05:6000:1ace:b0:3eb:f3de:1a87 with SMTP id ffacd0b85a97d-405cc70fa43mr3239608f8f.56.1758638732654;
+        Tue, 23 Sep 2025 07:45:32 -0700 (PDT)
 Received: from biju.lan (host86-139-30-37.range86-139.btcentralplus.com. [86.139.30.37])
         by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-464f0aac3fdsm238940435e9.1.2025.09.23.07.45.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 23 Sep 2025 07:45:31 -0700 (PDT)
+        Tue, 23 Sep 2025 07:45:32 -0700 (PDT)
 From: Biju <biju.das.au@gmail.com>
 X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
 To: Geert Uytterhoeven <geert+renesas@glider.be>,
@@ -86,10 +86,11 @@ Cc: Biju Das <biju.das.jz@bp.renesas.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v3 7/8] arm64: dts: renesas: r9a09g047: Add GPT nodes
-Date: Tue, 23 Sep 2025 15:45:11 +0100
-Message-ID: <20250923144524.191892-8-biju.das.jz@bp.renesas.com>
+	Biju Das <biju.das.au@gmail.com>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+Subject: [PATCH v3 8/8] arm64: dts: renesas: r9a09g047e57-smarc: Enable GPT on carrier board
+Date: Tue, 23 Sep 2025 15:45:12 +0100
+Message-ID: <20250923144524.191892-9-biju.das.jz@bp.renesas.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20250923144524.191892-1-biju.das.jz@bp.renesas.com>
 References: <20250923144524.191892-1-biju.das.jz@bp.renesas.com>
@@ -103,214 +104,52 @@ Content-Transfer-Encoding: 8bit
 
 From: Biju Das <biju.das.jz@bp.renesas.com>
 
-The RZ/G3E SoC has 2 GPT's.  Add GPT nodes to RZ/G3E ("R9A09G047") SoC
-DTSI.
+The GTIOC4{A,B} IOs are available on the carrier board's PMOD1_6A
+connector. Enable the GPT on the carrier board by adding the GPT pinmux
+and node on the carrier board dtsi file.
 
+Reviewed-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
 Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 ---
 v2->v3:
  * No change.
 v1->v2:
- * No change.
+ * Collected tags.
 ---
- arch/arm64/boot/dts/renesas/r9a09g047.dtsi | 184 +++++++++++++++++++++
- 1 file changed, 184 insertions(+)
+ arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-index 47d843c79021..73331874b57c 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047.dtsi
-@@ -587,6 +587,190 @@ channel5 {
- 			};
- 		};
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+index 08e814c03fa8..86df67e9230d 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
+@@ -84,6 +84,14 @@ &can_transceiver1 {
+ };
+ #endif
  
-+		gpt0: pwm@13010000 {
-+			compatible = "renesas,r9a09g047-gpt";
-+			reg = <0 0x13010000 0 0x10000>;
-+			#pwm-cells = <3>;
-+			interrupts = <GIC_SPI 538 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 546 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 554 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 562 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 570 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 578 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 586 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 594 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 539 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 547 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 555 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 563 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 571 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 579 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 587 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 595 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 540 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 548 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 556 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 564 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 572 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 580 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 588 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 596 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 541 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 549 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 557 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 565 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 573 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 581 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 589 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 597 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 542 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 550 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 558 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 566 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 574 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 582 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 590 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 598 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 543 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 551 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 559 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 567 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 575 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 583 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 591 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 599 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 544 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 552 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 560 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 568 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 576 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 584 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 592 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 600 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 545 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 553 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 561 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 569 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 577 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 585 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 593 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 601 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "gtcia0", "gtcib0", "gtcic0", "gtcid0",
-+					  "gtcie0", "gtcif0", "gtcih0", "gtcil0",
-+					  "gtcia1", "gtcib1", "gtcic1", "gtcid1",
-+					  "gtcie1", "gtcif1", "gtcih1", "gtcil1",
-+					  "gtcia2", "gtcib2", "gtcic2", "gtcid2",
-+					  "gtcie2", "gtcif2", "gtcih2", "gtcil2",
-+					  "gtcia3", "gtcib3", "gtcic3", "gtcid3",
-+					  "gtcie3", "gtcif3", "gtcih3", "gtcil3",
-+					  "gtcia4", "gtcib4", "gtcic4", "gtcid4",
-+					  "gtcie4", "gtcif4", "gtcih4", "gtcil4",
-+					  "gtcia5", "gtcib5", "gtcic5", "gtcid5",
-+					  "gtcie5", "gtcif5", "gtcih5", "gtcil5",
-+					  "gtcia6", "gtcib6", "gtcic6", "gtcid6",
-+					  "gtcie6", "gtcif6", "gtcih6", "gtcil6",
-+					  "gtcia7", "gtcib7", "gtcic7", "gtcid7",
-+					  "gtcie7", "gtcif7", "gtcih7", "gtcil7";
-+			clocks = <&cpg CPG_MOD 0x31>, <&cpg CPG_MOD 0x31>;
-+			clock-names = "core", "bus";
-+			resets = <&cpg 0x59>, <&cpg 0x5a>;
-+			reset-names = "rst_p", "rst_s";
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
++#if (!SW_LCD_EN) && (!SW_GPIO8_CAN0_STB)
++&gpt0 {
++	pinctrl-0 = <&gpt0_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++#endif
 +
-+		gpt1: pwm@13020000 {
-+			compatible = "renesas,r9a09g047-gpt";
-+			reg = <0 0x13020000 0 0x10000>;
-+			#pwm-cells = <3>;
-+			interrupts = <GIC_SPI 602 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 610 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 618 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 626 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 634 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 642 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 650 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 658 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 603 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 611 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 619 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 627 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 635 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 643 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 651 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 659 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 604 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 612 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 620 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 628 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 636 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 644 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 652 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 660 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 605 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 613 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 621 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 629 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 637 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 645 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 653 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 661 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 606 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 614 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 622 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 630 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 638 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 646 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 654 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 662 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 607 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 615 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 623 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 631 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 639 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 647 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 655 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 663 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 608 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 616 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 624 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 632 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 640 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 648 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 656 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 664 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 609 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 617 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 625 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 633 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 641 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 649 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 657 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 665 IRQ_TYPE_EDGE_RISING>;
-+			interrupt-names = "gtcia0", "gtcib0", "gtcic0", "gtcid0",
-+					  "gtcie0", "gtcif0", "gtcih0", "gtcil0",
-+					  "gtcia1", "gtcib1", "gtcic1", "gtcid1",
-+					  "gtcie1", "gtcif1", "gtcih1", "gtcil1",
-+					  "gtcia2", "gtcib2", "gtcic2", "gtcid2",
-+					  "gtcie2", "gtcif2", "gtcih2", "gtcil2",
-+					  "gtcia3", "gtcib3", "gtcic3", "gtcid3",
-+					  "gtcie3", "gtcif3", "gtcih3", "gtcil3",
-+					  "gtcia4", "gtcib4", "gtcic4", "gtcid4",
-+					  "gtcie4", "gtcif4", "gtcih4", "gtcil4",
-+					  "gtcia5", "gtcib5", "gtcic5", "gtcid5",
-+					  "gtcie5", "gtcif5", "gtcih5", "gtcil5",
-+					  "gtcia6", "gtcib6", "gtcic6", "gtcid6",
-+					  "gtcie6", "gtcif6", "gtcih6", "gtcil6",
-+					  "gtcia7", "gtcib7", "gtcic7", "gtcid7",
-+					  "gtcie7", "gtcif7", "gtcih7", "gtcil7";
-+			clocks = <&cpg CPG_MOD 0x32>, <&cpg CPG_MOD 0x32>;
-+			clock-names = "core", "bus";
-+			resets = <&cpg 0x5b>, <&cpg 0x5c>;
-+			reset-names = "rst_p", "rst_s";
-+			power-domains = <&cpg>;
-+			status = "disabled";
-+		};
+ &i2c0 {
+ 	pinctrl-0 = <&i2c0_pins>;
+ 	pinctrl-names = "default";
+@@ -125,6 +133,11 @@ can4_pins: can4 {
+ 		};
+ 	};
+ 
++	gpt0_pins: gpt0 {
++		pinmux = <RZG3E_PORT_PINMUX(5, 4, 10)>, /* GTIOC4A */
++			 <RZG3E_PORT_PINMUX(5, 5, 10)>; /* GTIOC4B */
++	};
 +
- 		wdt1: watchdog@14400000 {
- 			compatible = "renesas,r9a09g047-wdt", "renesas,r9a09g057-wdt";
- 			reg = <0 0x14400000 0 0x400>;
+ 	i2c0_pins: i2c0 {
+ 		pinmux = <RZG3E_PORT_PINMUX(D, 4, 4)>, /* SCL0 */
+ 			 <RZG3E_PORT_PINMUX(D, 5, 4)>; /* SDA0 */
 -- 
 2.43.0
 
