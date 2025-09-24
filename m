@@ -1,143 +1,135 @@
-Return-Path: <devicetree+bounces-220603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 115B2B981E5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 05:14:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5553B9828D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 05:55:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFB0F4C1C88
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 03:14:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 446512A4815
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 03:55:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03EAB21D3C9;
-	Wed, 24 Sep 2025 03:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B034227E95;
+	Wed, 24 Sep 2025 03:55:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="KeQxo4ia"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="GCN4JXvy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F224728F4;
-	Wed, 24 Sep 2025 03:14:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62A1F2AE77
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 03:55:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758683666; cv=none; b=NdExUFSxRQbzDrxwkarYrd8RQx18dpY+HPwwF4NPdYsC0FZYfKVd4tgqF1r8/HqEEI8HuVo1epTzU/EHTBvad/IfT2RQrKzfyO32hxGidwvVJYYxC6a3/8bj9V6Txf1P1AwF/3YpFtW+PKagu1hQ5WLYXlf2MqYuynfUv67Xffw=
+	t=1758686106; cv=none; b=NSqeMad4CA4dTLTVVhY4+1ATNYwnFmBmA+wQG3px7r4GfHVfR3Jz+JDD1jH1ak/J+KYbxGC2x+ueV0W3YFY9/JGwZlRnedqXS5zHSnqd4YloHK4rF+vLCthLJCgANXyccjER7Sgm2IUrl96Fwn4CllzN6KcCghs9VR2ZX2iCwzo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758683666; c=relaxed/simple;
-	bh=J7cjqqmGmaZOUF2MR4huwKNqe4ctVzq9atEsqXRsgSw=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L6iSbwqmwrgsksvjDzhWCYqR3QFTGyYTQsB6/iIR5RhmB9hm9enXbiLGggga4WgyF8zr6d0ievBOS72sA+KWHTxxvRUSmOV8/5Qth+Gus8bAeHwSaeOLQ+WXogDw3bx5IlJhMXrR6V+fwlqTBmYN6qFqZPT2wodSbjgS+tcG/Uw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=KeQxo4ia; arc=none smtp.client-ip=54.207.22.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1758683650;
-	bh=8plg955rJ+oOWjx5qksQHnCtK++GUsWnoWgH1rOaedc=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=KeQxo4iaNBSQFrXfM9Z1QYTFvV4NyCDo3LQPNRtrw7CPNfm1AeN08/v7Atx/vOzIq
-	 Bsui+psjkWs1xtPO/VcwbQaT24Cc7VO+8eeG+Jz+ADn/V3l0wLL9KGhJUJv0DD9cO8
-	 yyANutXko2uVRiQjazMO9JEVe09gNVq5DuADAhsQ=
-X-QQ-mid: zesmtpip3t1758683646tf49888df
-X-QQ-Originating-IP: 1MO73cqQ/QgVrFm41SIJypanScGWd08wL3EKzL6AuWc=
-Received: from = ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 24 Sep 2025 11:14:02 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 13436328211902165598
-EX-QQ-RecipientCnt: 13
-Date: Wed, 24 Sep 2025 11:13:58 +0800
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yixun Lan <dlan@gentoo.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
-	"open list:RISC-V SPACEMIT SoC Support" <spacemit@lists.linux.dev>
-Subject: Re: [PATCH 1/3] riscv: dts: spacemit: enable the i2c2 adapter on
- BPI-F3
-Message-ID: <B8749086963B3B54+aNNh9hw4TX6tVMdP@troy-wujie14pro-arch>
-References: <20250921210237.943370-1-aurelien@aurel32.net>
- <20250921210237.943370-2-aurelien@aurel32.net>
- <DC360EB139FD9DE5+aNH4l-7SP5KNu-Br@LT-Guozexi>
- <aNLyIvS-UFfplmpu@aurel32.net>
+	s=arc-20240116; t=1758686106; c=relaxed/simple;
+	bh=GLI4abl8FZ4HfkmnRdlogF0X6++XTS/tUyrTv2strik=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e7jg/n+NufNMx3/MNnaXg6HadiQr/1BBPuUINBjMSD3BDQmwMT0YChBg1ylQH2Bn+V10OZSbPLXudT+sZQ7NLLhQuoLdsVeJzqdxYqzi6T0Xh/I8OZSBGeks7NjID54bBc3K0HN0Sl0mO36eI5UTrASjkv3fIC2qnCdqe3hgLbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=GCN4JXvy; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id E38FFC007A9;
+	Wed, 24 Sep 2025 03:54:40 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D3384606B6;
+	Wed, 24 Sep 2025 03:54:57 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id EF2FD102F1886;
+	Wed, 24 Sep 2025 05:54:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1758686096; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=g+qDq5wTJI6x9EY39D0tJB9MH6r0WcMVdVhtkKarOt0=;
+	b=GCN4JXvy5Jr2Cc5svIW5gg1tIvUpzdNR4vXL3iilzXOvA0IDaSnXsAipk852bsHFxPGIar
+	8xzEeaC3wRS7xz17WwtS9be1O0lZdzovwkekvueR4jPF20QzmTvDy5Eq7nR2JGLrRuKNSg
+	Ku8B522sIzaksIy3APEcrUHJ7wxRltQdFreb3Em9UPhhxCvlEUtSvVjcr+qiOZXaP+j8Yl
+	IAewYMc7DqVeRLKEno1S6nCb+rdumy5n1bjCodVN71F+Mm5tjr8DpQQfvqkUvJdnPQmJIq
+	y4ltufGnQ4H3zsCCGOJOSY/k69w417eWj3go6jOn9ibxoz7FxppNR2aVFDu9SA==
+Message-ID: <ff7432c4-27ce-45a1-ac4d-c18d612ef04d@bootlin.com>
+Date: Wed, 24 Sep 2025 09:23:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aNLyIvS-UFfplmpu@aurel32.net>
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: NVjywrp/tdK0a7ZnYB++mZYqj9bmJBO1lVscCYOs0fpLBdbVGivrWHw0
-	UR6AA7vqzrCWZ0mY/MT3EDgEcZgCukkVZlNdfwtErdyIXSxRcJnW1BRFzEJRn+5Hb/CMx/b
-	z9Lb7ij52XS2gTCG9U0Icy5S5n2n2WJJGmTAUyfn5QFkDaUUXe3JioSNWVVz1Ne7ZB3n4Dd
-	pUDmpbq25XjTRwuNgUFCUtqj+39v1ygRIE1QAOghW9NQ9xHJfJ9xDdtJHIAm4l2RDAuoDkE
-	00g9LnGGe0S64aoehsIdXdfqf7Krd+z67bScXiAfzvcW0/ICZyWpEnjvt7H7Mfvyv7kUeG8
-	bVzWY3owyJYDflbwe92XZD9ptMO8KtIZJSITvjiTYHiZXcMwjrXtFgVmMLQ0Nu+61DopXrY
-	GJiLOMYXTovIAI3KrJ0HZFRQhtrYKuOx9Jsj3L3/1RQT7rAzefCpVDg7yfX8jmjiPE7z9vW
-	B4PEgF8WjjXp7U964ffLfrHlYvjaeiErq0RPjy2KDfqc4i6hbIdo2heiPnTeB/OYm8VKFhc
-	E7a6up3nB7kUtGzgR2Reiw6KVveC23/+yypEY2gcUMcIuYkxB/mEg9T2J4qMPr43zDw/F5A
-	H3dyzu8bK5U673McIAo+o8neauwHS2O4gt+s5Gn4cwsphPI+AZm2EXrwV8AcfSBAj1TfC2d
-	fdNDsMqrzBNxW+GBniEuhm1UPHN6OHVRdThlS0a/g+gcaGpi9BVIryxyZIWPENGkmPSN1mc
-	Ia7U5Md9DGOplAvc1aA4cWuOKM+w8eAA82yyDlyXwU5Ih4vDJwBN3O9DoylzkuQ8QCifUD1
-	+SMftzmMdP2pc271UCauvaKNgURnC2j41OIlDrMiVaA32+OdxUe5JiKDC0bgbRcxgvbXbgE
-	Pf0mpbe1nPxQ0ghq1gbPlkiO5/wQqf7XlJIGOUoQS7Ag4INap8Ou67jT7T/nh8K7ZxoII5u
-	r1JZsbls/MM8FBzHlAiwGbJaufdt1EQeFIFRgMFR5UrNGfXNupzuEy6hYFh3AjFmOMcdojD
-	S45yjKH1Sgg754tVnsvtOOcdQKrYA60thlr9hBm3YBcluaOdY93KDoxZ5+RBDZLxDW3cteK
-	fjNxgd2SMwdjA49tzUa7z9P704FmMx+ow==
-X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
-X-QQ-RECHKSPAM: 0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v13 13/18] net: phy: marvell10g: Support SFP
+ through phy_port
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: davem@davemloft.net, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ thomas.petazzoni@bootlin.com, Andrew Lunn <andrew@lunn.ch>,
+ Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+ Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Herve Codina <herve.codina@bootlin.com>,
+ Florian Fainelli <f.fainelli@gmail.com>,
+ Heiner Kallweit <hkallweit1@gmail.com>,
+ Vladimir Oltean <vladimir.oltean@nxp.com>,
+ =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
+ =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>,
+ =?UTF-8?Q?Nicol=C3=B2_Veronese?= <nicveronese@gmail.com>,
+ Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
+ Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Romain Gantois <romain.gantois@bootlin.com>,
+ Daniel Golle <daniel@makrotopia.org>,
+ Dimitri Fedrau <dimitri.fedrau@liebherr.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>
+References: <20250921160419.333427-1-maxime.chevallier@bootlin.com>
+ <20250921160419.333427-14-maxime.chevallier@bootlin.com>
+ <20250923182429.697b149b@kernel.org>
+From: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Content-Language: en-US
+In-Reply-To: <20250923182429.697b149b@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Tue, Sep 23, 2025 at 09:16:50PM +0200, Aurelien Jarno wrote:
-> Hi Troy,
-> 
-> Thanks for the review.
-> 
-> On 2025-09-23 09:32, Troy Mitchell wrote:
-> > On Sun, Sep 21, 2025 at 11:01:41PM +0200, Aurelien Jarno wrote:
-> > > Define properties for the I2C adapter, and enable it on the BPI-F3. It
-> > > will be used by the 24c02 eeprom.
-> > > 
-> > > Signed-off-by: Aurelien Jarno <aurelien@aurel32.net>
-> > > ---
-> > > --- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> > > +++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-> > > @@ -92,6 +92,13 @@ gmac1-pins {
-> > >  		};
-> > >  	};
-> > >  
-> > > +	i2c2_0_cfg: i2c2-0-cfg {
-> > Should this be i2c2_4_cfg here?
-> > From what I see, in the initial version the second cell was meant
-> > to be the function number rather than the serial index.
-> 
-> Ok, I wasn't aware of that convention, I just reused the same numbering 
-> of the downstream 6.6 kernel. I'll fix that and use i2c2_4_cfg.
-I'm wrong..
-The second number isn't function number.
-You can find a more detailed discussion here:
-(riscv: dts: spacemit: define a SPI controller node)
 
-                - Troy
+
+On 24/09/2025 06:54, Jakub Kicinski wrote:
+> On Sun, 21 Sep 2025 21:34:11 +0530 Maxime Chevallier wrote:
+>> +/**
+>> + * phy_port_restrict_mediums - Mask away some of the port's supported mediums
+>> + * @port: The port to act upon
+>> + * @mediums: A mask of mediums to support on the port
+>> + *
+>> + * This helper allows removing some mediums from a port's list of supported
+>> + * mediums, which occurs once we have enough information about the port to
+>> + * know its nature.
+>> + *
+>> + * Returns 0 if the change was donne correctly, a negative value otherwise.
 > 
-> > It looks like the pwm part is also incorrect.
+> kdoc likes colons after return so:
 > 
-> Yes, and also the submitted PCIE patches.
+>   Returns 0 -> Return: 0
 > 
-> Aurelien
+> sorry for only providing an automated nit pick..
+
+It's OK, the series no longer applies with Russell's sfp_module_caps 
+series being here, so a new version is due anyway.
+
+Russell, I missed this series of yours as I wasn't available at all at 
+that time, but as this phy_port series has been in the pipe for quite a 
+while, and you commented on the used of sfp_parse_support et.al. that 
+was being replaced, I'd have appreciated to be in CC :(
+
+Given my schedule, next iteration is probably going to be for the next 
+cycle anyway so no harm :)
+
+Thanks,
+
+Maxime
+
 > 
-> -- 
-> Aurelien Jarno                          GPG: 4096R/1DDD8C9B
-> aurelien@aurel32.net                     http://aurel32.net
-> 
+>> + */
+>> +int phy_port_restrict_mediums(struct phy_port *port, unsigned long mediums)
+
 
