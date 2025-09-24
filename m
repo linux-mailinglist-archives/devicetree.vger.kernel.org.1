@@ -1,219 +1,264 @@
-Return-Path: <devicetree+bounces-220884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 836F5B9C1F0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 22:38:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A1F0B9C2B3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 22:41:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA36D1897549
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 20:38:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E38A53AC335
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 20:39:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4135B32A809;
-	Wed, 24 Sep 2025 20:35:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32DDC328973;
+	Wed, 24 Sep 2025 20:38:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="cImYsZAx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N7hBuaEr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90AF732D5AF;
-	Wed, 24 Sep 2025 20:35:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422F2322DC0
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 20:38:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758746132; cv=none; b=bdqOVxhFiLFNlpNaJajXcjfHpaXZ5hXIpK6CgS4Xq1elA8RSe0HyyNN752NVtcKSSJcYKHhrZFJcHXTi6u0pU4IUjk3FrIaKY79UKHZzfAujrLCuhGXRsGpheOrQesnimph/VA8oWz3A25K0ZXDMy2tleogo29pIikiIlvBkxUE=
+	t=1758746312; cv=none; b=swlWzQUngBDXIRyQf+5fRUpcdlePBtAObyAkACWvWTEoJM9gLinI3btrJFFnowLD/0OYJOhWSxiOiOsWm3V8M+2/e05cVIl04D3nM9+eOGSRumdDl0+D/ICwCJ7NtQl/hNvGGmxVoSg+CcqyLj1q2QJVXfalIGC+g1Pw3VHH3qc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758746132; c=relaxed/simple;
-	bh=yIIG1XirvNHRjmi8n5doZRkSjBLwdxxinyVL08mmVww=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ey5eI7naemrEoKDZ4k4gXJmpZqVHGhhFqIjcr+oRIKkwc3z3tjTgEXjhaQ2x/QscBnrfCJaV7Q1TN2FQLe+gR4dzLwGemxwNf3TLYp9OfPiFfqhntnu5EM6tSPhP2c4WIJ0+HeTr0i6cLnHxxSM22IwLcvAXkiJOpxqKLh4SsyE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=cImYsZAx; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1758746130; x=1790282130;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=yIIG1XirvNHRjmi8n5doZRkSjBLwdxxinyVL08mmVww=;
-  b=cImYsZAxVyHhV/PeuE6AmvED8MkGu5EMy0N6jSJPah5jAwgSsbLfnUdO
-   ERkl5GdkZL7adenQAlozkjP+IHZUdG60MJpmL/0Oax4utRsaH9x12egNn
-   c0y5RwVjiewbxb5lw6agnABe4iqpoS0pl1zAzqhkEj7A8uE/Ht38kvibm
-   l2QqnmVXbPVaZg+7fS58rmoGW0aCWRWboJgOXWVz8l12e6/B0XzUo7VNJ
-   Krx2DRWGsYjTEAzAol84rqN1Aj73uwUYNw7/Mn9sgSq+e+WKKT2NXPQtv
-   T0GCaijmbgcVncTUbvGI4GLAuQEEJi5D71D7hnClXPtu8cre3810M/g4R
-   Q==;
-X-CSE-ConnectionGUID: FLB/VJYlS4K0lARshSDH3w==
-X-CSE-MsgGUID: 1DjhRa9dTSCd3Exu4e+mHg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="61107250"
-X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; 
-   d="scan'208";a="61107250"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2025 13:35:29 -0700
-X-CSE-ConnectionGUID: fGvhU9vnSUqnQqd/QW8Okg==
-X-CSE-MsgGUID: kGVSi16kQa6u+aYiLlNf8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; 
-   d="scan'208";a="181405897"
-Received: from lkp-server02.sh.intel.com (HELO 84c55410ccf6) ([10.239.97.151])
-  by orviesa004.jf.intel.com with ESMTP; 24 Sep 2025 13:35:22 -0700
-Received: from kbuild by 84c55410ccf6 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v1WCt-0004Xt-1P;
-	Wed, 24 Sep 2025 20:35:19 +0000
-Date: Thu, 25 Sep 2025 04:34:31 +0800
-From: kernel test robot <lkp@intel.com>
-To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>, git@amd.com,
-	michal.simek@amd.com, alexandre.belloni@bootlin.com,
-	Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, pgaj@cadence.com,
-	wsa+renesas@sang-engineering.com, tommaso.merciai.xr@bp.renesas.com,
-	arnd@arndb.de, quic_msavaliy@quicinc.com, Shyam-sundar.S-k@amd.com,
-	sakari.ailus@linux.intel.com, billy_tsai@aspeedtech.com,
-	kees@kernel.org, gustavoars@kernel.org,
-	jarkko.nikula@linux.intel.com, jorge.marques@analog.com,
-	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, radhey.shyam.pandey@amd.com,
-	srinivas.goud@amd.com, shubhrajyoti.datta@amd.com,
-	manion05gk@gmail.com,
-	Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-Subject: Re: [PATCH V7 2/4] asm-generic/io.h: Add big-endian MMIO accessors
-Message-ID: <202509250413.sOTeU37m-lkp@intel.com>
-References: <20250923154551.2112388-3-manikanta.guntupalli@amd.com>
+	s=arc-20240116; t=1758746312; c=relaxed/simple;
+	bh=/7E6ceDbDhZ4pxug1DrrfRHk0oYerFsLd6y+cKd/Fmc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=KOM8ASX4NIWWq7s2GdGrgRaEZ34njU+ZnZW+QAM/s1QMlKOExfq71PfaR4hc4U5DojbZHpy2kv7KxFtxvoOqBGh2IWlBReJ2dp3ogCvrr5FscAH+6EuhtWyZh/FT/GUs7fPL9NE7kdLGjBZiB7w8KWU8IZe+I8iF1jb28Q6g0Vo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N7hBuaEr; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-45dd513f4ecso1225185e9.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 13:38:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758746308; x=1759351108; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PgAWQCFoo98/Z9ljCaTiQGL2NXe+X8U3ZUEI4e+iLi4=;
+        b=N7hBuaEr8t+6xC4rLoQ+rFnTMSFIHuA7TOrBqdAbbuOHt9EuqGWjL8mUxPcLj2gk9v
+         z0mLvsP6MF6t8Hazcu9f4t0en5PSjTHxFWfNM59TEBU7K18lku72AOGaV3+XblMzmEBH
+         iI9VJAz/KLS5QhY7Y/FYcj+OT+AlXDH3xVF4BmFcdOwZby2GF+npYG8mADRbdWSI8STK
+         UqZwqmnY2iOME3tHpAdO2hFUbxj/ltMXU4mLCXJIt0c/NW3JXiBPC4wtP819cYP9UwZd
+         HPcQglKNfGGbH989waIkH2Iaj5w3t+F/E1u4DBL3O0zhjYH0CMRv9JFosCQcsryA66sz
+         qtaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758746308; x=1759351108;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PgAWQCFoo98/Z9ljCaTiQGL2NXe+X8U3ZUEI4e+iLi4=;
+        b=mC1VFzf/59CrQQXfUF5+5RpK+eD7XVtaVGQpaVaJK/IQqnQ5XvDv9Hvc49frgmIPAj
+         Tgi2rH1VJOJui8t5Er3rwfnGkNyHVy5LrJ3RqGhLUydVNPBpu1OWXXo+3nCw50d2vl/j
+         +UKlIDQt7sjBvaOdgMnICkEYdtIsucywBFydse+3eS+BX5yctY92BvguvzoGIDT6AjGL
+         04QPGt/tfzvT9G3Y7eAu9OEheH7Rx9KIeoI790/Ps9fEWafmfvxwC2CQMpOBwuxST3s9
+         fafBIg+sKkoCWFzpCcfOLhOZQtK05fUULUvX63qu7iGET5mNwSyJamcI4iAo/T0xzxC2
+         1Ajw==
+X-Gm-Message-State: AOJu0YwIHj2kWWbhZf/shEGa0kJMdMD8ki/2wvRykbT/jFIJepLoZUNg
+	BFJ1dJ048HPGYOiNCt4Um0YMtZ4gfzZehIMAahVG7HHgTvcRx4L/bpOj
+X-Gm-Gg: ASbGnctt9w/RTL9EWiMZHQ5WJ6Uq0dpcxDHNNEJ4s2eel7XCrjN+Fw0RiDnbL8lq5vH
+	1M/cKgXSqlAs4gXWNUAoVqmWfH3h/XCJJFwkZf/rDTkckOm7ZZzDxCvaiSkIQy9yE1eo6SJV3C4
+	qvpq6yU+67nzuhIz3zYQFrZ4jyHybKPFmBvJ5fVDgPPVBapm/b2FrUNIVp9igJu5T6xfDX9Oh0N
+	EYqD/2rAx40w8i75IpQeBaBFP9dZIVJUDUl+UrD0XaEv7qKshMdJnR1W30201rjUkaTyq7I8Nyy
+	JArtfd6vn1tWaH4t2RvO0AlOyH5479h90r+uj8cLJHZ7yrQRM8cgG3B/mC0wsV0+bWdp+xgUFzC
+	i3zTmELFh6ppNLW+2gkWhCa/cF/qvAoyPegcRWzbaOfZMhCwO
+X-Google-Smtp-Source: AGHT+IGDxHR9zD3T2Jojj5V63amKQHEZ4Y5ouX0SIG7pqFz8i6fnWZlg4urHE+jXQ/8JQVeDmH/9Kg==
+X-Received: by 2002:a05:600c:1695:b0:45b:7e86:7378 with SMTP id 5b1f17b1804b1-46e32a1987cmr6748555e9.34.1758746308296;
+        Wed, 24 Sep 2025 13:38:28 -0700 (PDT)
+Received: from alchark-surface.localdomain ([5.194.95.234])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e33b9e8aesm2663465e9.4.2025.09.24.13.38.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Sep 2025 13:38:27 -0700 (PDT)
+From: Alexey Charkov <alchark@gmail.com>
+Date: Thu, 25 Sep 2025 00:38:13 +0400
+Subject: [PATCH] arm64: dts: rockchip: Add DSI LCD display on rk3576-evb1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250923154551.2112388-3-manikanta.guntupalli@amd.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250925-rk3576-evb1-dsi-v1-1-c76fc3740abc@gmail.com>
+X-B4-Tracking: v=1; b=H4sIALRW1GgC/x3MSQqAMAxA0atI1gZsU8eriAuHVIOg0kIRSu9uc
+ fkW/0fw7IQ9DEUEx0G83FeGKgtYj/naGWXLBl3puuq1QXdS3TbIYVG4eUGm3pLpiBbbQK4ex1b
+ e/zhOKX3yEkZhYQAAAA==
+X-Change-ID: 20250924-rk3576-evb1-dsi-e39f34833bf6
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Alexey Charkov <alchark@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3993; i=alchark@gmail.com;
+ h=from:subject:message-id; bh=/7E6ceDbDhZ4pxug1DrrfRHk0oYerFsLd6y+cKd/Fmc=;
+ b=owGbwMvMwCW2adGNfoHIK0sZT6slMWRcCTss8+Uow9wVd7om3ggIPPxuqbaVReHufeeOKO8ui
+ DqxLvCgXUcpC4MYF4OsmCLL3G9LbKca8c3a5eHxFWYOKxPIEAYuTgGYiNxbRoafxwXXszilzNvD
+ v3ou95Mb/R6Ju83fpOisd/+6dteaZbd2MPwPfxPzSlRMSOXbG8XWJufMCcLu6zfOeeo/SUhQjlt
+ YYSsDAA==
+X-Developer-Key: i=alchark@gmail.com; a=openpgp;
+ fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
 
-Hi Manikanta,
+Add support for the Rockchip W552793DBA-V10 LCD+touchscreen assembly which
+comes physically attached to Rockchip RK3576 EVB1 boards.
 
-kernel test robot noticed the following build warnings:
+The display part is driven by the on-chip MIPI DSI controller, and the
+touchscreen is connected over I2C.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master arnd-asm-generic/master v6.17-rc7 next-20250924]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Alexey Charkov <alchark@gmail.com>
+---
+Note that backlight support is left out for now, as it depends on PWM
+support [0] which has not yet been merged.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Manikanta-Guntupalli/dt-bindings-i3c-Add-AMD-I3C-master-controller-support/20250923-234944
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250923154551.2112388-3-manikanta.guntupalli%40amd.com
-patch subject: [PATCH V7 2/4] asm-generic/io.h: Add big-endian MMIO accessors
-config: sparc-allnoconfig (https://download.01.org/0day-ci/archive/20250925/202509250413.sOTeU37m-lkp@intel.com/config)
-compiler: sparc-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250925/202509250413.sOTeU37m-lkp@intel.com/reproduce)
+A workaround is simply `gpioset -c 0 13=1` to set the respective GPIO
+pin high and thus to light up the display unconditionally.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509250413.sOTeU37m-lkp@intel.com/
+[0] https://lore.kernel.org/lkml/20250602-rk3576-pwm-v2-0-a6434b0ce60c@collabora.com/
+---
+ arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 89 ++++++++++++++++++++++++
+ 1 file changed, 89 insertions(+)
 
-All warnings (new ones prefixed by >>):
+diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
+index db8fef7a4f1b9570cb517ccc9a857d1c93c9d2db..f20cd6f2c079e0a5bd79acc9ebcd56b499e0f72f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
+@@ -125,6 +125,8 @@ vcc3v3_lcd_n: regulator-vcc3v3-lcd0-n {
+ 		regulator-boot-on;
+ 		enable-active-high;
+ 		gpio = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&vcc3v3_lcd_s0_en>;
+ 		vin-supply = <&vcc_3v3_s0>;
+ 	};
+ 
+@@ -264,6 +266,43 @@ &combphy1_psu {
+ 	status = "okay";
+ };
+ 
++&dsi {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	pinctrl-0 = <&mipim1_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++
++	panel@0 {
++		compatible = "wanchanglong,w552793baa", "raydium,rm67200";
++		reg = <0>;
++
++		iovcc-supply = <&vcc3v3_lcd_n>;
++		reset-gpios = <&gpio3 RK_PB5 GPIO_ACTIVE_LOW>;
++		vdd-supply = <&vcc3v3_lcd_n>;
++		vsn-supply = <&vcc5v0_device>;
++		vsp-supply = <&vcc5v0_device>;
++
++		port {
++			mipi_panel_in: endpoint {
++				remote-endpoint = <&dsi_out_panel>;
++			};
++		};
++	};
++};
++
++&dsi_in {
++	dsi_in_vp1: endpoint {
++		remote-endpoint = <&vp1_out_dsi>;
++	};
++};
++
++&dsi_out {
++	dsi_out_panel: endpoint {
++		remote-endpoint = <&mipi_panel_in>;
++	};
++};
++
+ &gmac0 {
+ 	clock_in_out = "output";
+ 	phy-mode = "rgmii-rxid";
+@@ -319,6 +358,28 @@ &hdptxphy {
+ 	status = "okay";
+ };
+ 
++&i2c0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c0m1_xfer>;
++	#address-cells = <1>;
++	#size-cells = <0>;
++	status = "okay";
++
++	touchscreen@14 {
++		compatible = "goodix,gt1158";
++		reg = <0x14>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_LOW>;
++		irq-gpios = <&gpio0 RK_PC5 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&tp_int>, <&tp_rst>;
++		reset-gpios = <&gpio0 RK_PD0 GPIO_ACTIVE_HIGH>;
++		touchscreen-size-x = <720>;
++		touchscreen-size-y = <1280>;
++		VDDIO-supply = <&vcc3v3_lcd_n>;
++	};
++};
++
+ &i2c1 {
+ 	status = "okay";
+ 
+@@ -738,6 +799,10 @@ rgmii_phy1: ethernet-phy@1 {
+ 	};
+ };
+ 
++&mipidcphy {
++	status = "okay";
++};
++
+ &pcie0 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pcie0_rst>;
+@@ -788,6 +853,20 @@ host_wake_bt: host-wake-bt {
+ 		};
+ 	};
+ 
++	display {
++		vcc3v3_lcd_s0_en: vcc3v3-lcd-s0-en {
++			rockchip,pins = <0 RK_PC6 0 &pcfg_pull_none>;
++		};
++
++		tp_int: tp-int {
++			rockchip,pins = <0 RK_PC5 0 &pcfg_pull_none>;
++		};
++
++		tp_rst: tp-rst {
++			rockchip,pins = <0 RK_PD0 0 &pcfg_pull_none>;
++		};
++	};
++
+ 	hym8563 {
+ 		rtc_int: rtc-int {
+ 			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
+@@ -941,3 +1020,13 @@ vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
+ 		remote-endpoint = <&hdmi_in_vp0>;
+ 	};
+ };
++
++&vp1 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	vp1_out_dsi: endpoint@ROCKCHIP_VOP2_EP_MIPI0 {
++		reg = <ROCKCHIP_VOP2_EP_MIPI0>;
++		remote-endpoint = <&dsi_in_vp1>;
++	};
++};
 
-   In file included from include/linux/io.h:12,
-                    from include/linux/irq.h:20,
-                    from include/asm-generic/hardirq.h:17,
-                    from arch/sparc/include/asm/hardirq_32.h:11,
-                    from arch/sparc/include/asm/hardirq.h:7,
-                    from include/linux/hardirq.h:11,
-                    from include/linux/interrupt.h:11,
-                    from include/linux/trace_recursion.h:5,
-                    from include/linux/ftrace.h:10,
-                    from include/linux/perf_event.h:43,
-                    from arch/sparc/mm/fault_32.c:22:
->> arch/sparc/include/asm/io.h:16:9: warning: 'readw_be' redefined
-      16 | #define readw_be(__addr)        __raw_readw(__addr)
-         |         ^~~~~~~~
-   In file included from arch/sparc/include/asm/io_32.h:21,
-                    from arch/sparc/include/asm/io.h:7:
-   include/asm-generic/io.h:304:9: note: this is the location of the previous definition
-     304 | #define readw_be readw_be
-         |         ^~~~~~~~
->> arch/sparc/include/asm/io.h:17:9: warning: 'readl_be' redefined
-      17 | #define readl_be(__addr)        __raw_readl(__addr)
-         |         ^~~~~~~~
-   include/asm-generic/io.h:319:9: note: this is the location of the previous definition
-     319 | #define readl_be readl_be
-         |         ^~~~~~~~
->> arch/sparc/include/asm/io.h:19:9: warning: 'writel_be' redefined
-      19 | #define writel_be(__w, __addr)  __raw_writel(__w, __addr)
-         |         ^~~~~~~~~
-   include/asm-generic/io.h:363:9: note: this is the location of the previous definition
-     363 | #define writel_be writel_be
-         |         ^~~~~~~~~
->> arch/sparc/include/asm/io.h:20:9: warning: 'writew_be' redefined
-      20 | #define writew_be(__l, __addr)  __raw_writew(__l, __addr)
-         |         ^~~~~~~~~
-   include/asm-generic/io.h:351:9: note: this is the location of the previous definition
-     351 | #define writew_be writew_be
-         |         ^~~~~~~~~
---
-   In file included from include/linux/io.h:12,
-                    from include/linux/irq.h:20,
-                    from include/asm-generic/hardirq.h:17,
-                    from arch/sparc/include/asm/hardirq_32.h:11,
-                    from arch/sparc/include/asm/hardirq.h:7,
-                    from include/linux/hardirq.h:11,
-                    from include/linux/highmem.h:12,
-                    from include/linux/pagemap.h:11,
-                    from arch/sparc/mm/srmmu.c:15:
->> arch/sparc/include/asm/io.h:16:9: warning: 'readw_be' redefined
-      16 | #define readw_be(__addr)        __raw_readw(__addr)
-         |         ^~~~~~~~
-   In file included from arch/sparc/include/asm/io_32.h:21,
-                    from arch/sparc/include/asm/io.h:7:
-   include/asm-generic/io.h:304:9: note: this is the location of the previous definition
-     304 | #define readw_be readw_be
-         |         ^~~~~~~~
->> arch/sparc/include/asm/io.h:17:9: warning: 'readl_be' redefined
-      17 | #define readl_be(__addr)        __raw_readl(__addr)
-         |         ^~~~~~~~
-   include/asm-generic/io.h:319:9: note: this is the location of the previous definition
-     319 | #define readl_be readl_be
-         |         ^~~~~~~~
->> arch/sparc/include/asm/io.h:19:9: warning: 'writel_be' redefined
-      19 | #define writel_be(__w, __addr)  __raw_writel(__w, __addr)
-         |         ^~~~~~~~~
-   include/asm-generic/io.h:363:9: note: this is the location of the previous definition
-     363 | #define writel_be writel_be
-         |         ^~~~~~~~~
->> arch/sparc/include/asm/io.h:20:9: warning: 'writew_be' redefined
-      20 | #define writew_be(__l, __addr)  __raw_writew(__l, __addr)
-         |         ^~~~~~~~~
-   include/asm-generic/io.h:351:9: note: this is the location of the previous definition
-     351 | #define writew_be writew_be
-         |         ^~~~~~~~~
-   arch/sparc/mm/srmmu.c: In function 'poke_hypersparc':
-   arch/sparc/mm/srmmu.c:1074:32: warning: variable 'clear' set but not used [-Wunused-but-set-variable]
-    1074 |         volatile unsigned long clear;
-         |                                ^~~~~
+---
+base-commit: ce7f1a983b074f6cf8609068088ca3182c569ee4
+change-id: 20250924-rk3576-evb1-dsi-e39f34833bf6
 
-
-vim +/readw_be +16 arch/sparc/include/asm/io.h
-
-21dccddf45aae2 Jan Andersson 2011-05-10   9  
-21dccddf45aae2 Jan Andersson 2011-05-10  10  /*
-21dccddf45aae2 Jan Andersson 2011-05-10  11   * Defines used for both SPARC32 and SPARC64
-21dccddf45aae2 Jan Andersson 2011-05-10  12   */
-21dccddf45aae2 Jan Andersson 2011-05-10  13  
-21dccddf45aae2 Jan Andersson 2011-05-10  14  /* Big endian versions of memory read/write routines */
-21dccddf45aae2 Jan Andersson 2011-05-10  15  #define readb_be(__addr)	__raw_readb(__addr)
-21dccddf45aae2 Jan Andersson 2011-05-10 @16  #define readw_be(__addr)	__raw_readw(__addr)
-21dccddf45aae2 Jan Andersson 2011-05-10 @17  #define readl_be(__addr)	__raw_readl(__addr)
-21dccddf45aae2 Jan Andersson 2011-05-10  18  #define writeb_be(__b, __addr)	__raw_writeb(__b, __addr)
-21dccddf45aae2 Jan Andersson 2011-05-10 @19  #define writel_be(__w, __addr)	__raw_writel(__w, __addr)
-21dccddf45aae2 Jan Andersson 2011-05-10 @20  #define writew_be(__l, __addr)	__raw_writew(__l, __addr)
-21dccddf45aae2 Jan Andersson 2011-05-10  21  
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Alexey Charkov <alchark@gmail.com>
+
 
