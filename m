@@ -1,164 +1,136 @@
-Return-Path: <devicetree+bounces-220841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15BA3B9AF80
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:04:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDFC2B9AFB3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:09:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFFEF3B1E45
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 17:04:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B59424C7935
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 17:09:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A41472D0C68;
-	Wed, 24 Sep 2025 17:03:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C1DD315D4C;
+	Wed, 24 Sep 2025 17:09:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="LpPZtKVn"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NW1mGYjc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECB55182B4
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 17:03:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 872B5314A90;
+	Wed, 24 Sep 2025 17:08:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758733438; cv=none; b=JYVLJzA0O1oOajhNYjyk5TBjBvhLzVyNpmSuLR+RIK0Li21DvhQR7dq38NGBOBRScHGPK2UnpUvQYkD9NPoABb+dE5tKRbFPg5qxTTLHWrWQIOxzOHpZ+Nu5qbxKG+Lhwtyish9wnnI8Opfg+dPPVUOySQzX+XiZd/2RnKZld60=
+	t=1758733740; cv=none; b=h2FJSynou3X65LhkxwFhWUT3W8bowCG3aeHVTDpwiuNr5MgkwA5IRgxNhyIcwg0wIdqqwcWt+4Ho7HtyD3clK/bHEqHyF9eAe9qRZxrgPTZ+GlZrKZWvsL3YZES633YVl/qPEQ3i7Typc5TdoSKojPd49hKU9wXgZVLrSeMcqPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758733438; c=relaxed/simple;
-	bh=CFe5INxZHk/zg4tBwFi2LAVVet3K2yzAoMppLFFFJ9g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e/7u8wunE3+LmUcYmKEOGO+OXVKgntkMyIQz2EAkwu7IP3TxbhvxoeqBd0VhySWjhJzs6J0/WotCwnitVs9QZBwklZlrKwQ/TbLo62hybfwoi6IWr6a7pHdGt83frdrX2LHdDPKR94uUF8Ykl98cRQQLGeKOyoZxeNpo0fIksG0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=LpPZtKVn; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-26e68904f0eso419905ad.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 10:03:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1758733436; x=1759338236; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YwBkd41sTD3rLHkZ2O0eRif7ESkJYPHv5ge7YMF2z9I=;
-        b=LpPZtKVnxkiI3Pi4upQDhJeBnycjbh2/Bhp0p8LvkFVsf+X7r7YS4/6hE1YiWU6Ogb
-         +llZw65I7Z+0lXEmJqZwMGZpBO9geYUwGJJkuWC9E8mDMzucwwMba6OuLq5XDn7xdlur
-         aypWxg9bbYeZu2vWW11FktjM/82hJLQkpFy3OP8i6f+2AYw9OK/RtMHxID4YA8UwkV8p
-         IOdXoPji8gFNjT2NrlALLyG/M2ZKiblsrIY81j2LnN9brMxP3yxiHJ0VrMspdC+0lkdU
-         ZgcEGS2yVo9F7KCUMhzDknrYNCGQusylLknlOWhRZleaXGlbK1yO+WMN/E5/pDLjkIGe
-         bhEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758733436; x=1759338236;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YwBkd41sTD3rLHkZ2O0eRif7ESkJYPHv5ge7YMF2z9I=;
-        b=slzQ/fYrBYat1leuL5Gyhg7PscS3AwsxRoEaYT77xEvgRFz3acw97Hx99ExkLZJRN6
-         YwYhRaxnQxGa3Rs2YLbrtieo7Qyf56aXBEgqzxkqqlM/HnzEuZfJ+7RmOgrrsB7D0IZF
-         y+JX0efjjXVD2eNOWymCUs3c8mjrufegjZlvBLMBT1stImX7y5mbOJS7L//aEA3RtQV/
-         +s1I1/Ujmqku49RjU0xInhqcfwfwXstpIvgigmrXZsODM9EZMUER235Bj++WOvhxE7eI
-         WSLJ5uTfcGWgVLcdVG53JhS0SAj5e76cx0JVjuqro3CcNIiiB5jlp39xVuU/r8ekrrKh
-         ZgwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWha+TGUAcnkSzaZthnRtwcO26R+qAP65xlh2+7qczGq08VpK+TGNWNr0ShO36fPRfuqVcIz50TrBmY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRUuBBBq6mlREnmuc40KockAZ2h/zGgg0RM6SfKsJBJcAQd2gZ
-	J5O+c0zxnl85rRZbHJK6AN/bmtWCOGVbPn2daBuIogtIBSkz4ZzD92/4CIUu9hN2og==
-X-Gm-Gg: ASbGnctr+Q/CV25/3F6gVc7IMWkEjmzRwQwHiBQHM8yL4m5dAOEfSB3X+/PmF4xlGKG
-	J8X3qnB1kSoEz9IZlwb8Xd/B9SnWFdbPm0Jf0dNtWa6kOmidkisM/g8ybMG1bd2Hs1lM+BQpXnT
-	BD9+Q9NyFJD8CP0bx5+IcgxQ1RN/DDyGjMslSuWU2ZBP+bt5750vlRdAHPmWZrgEMcijA6+e5lQ
-	HwHAav35k8CA9KY86J589zl6k4tTk04u0cPpaz2b+xfTpSHZtAQIl3rCBP622Ii+elvCK6XygNa
-	KVgpgfg6xZdUn8Jc3WWHlieChO9yGTr6T6pchVFh0BzkeyIr0G3aNfrZMMJzKJ+WaK4iR5KbVu0
-	XivYc7KJIBOEBfrTt99f42G/yZRqECrWS0vm7NdlCsZFBVc4tfgoV8w+tputdjarmIvhTqj9oGo
-	hc+Q==
-X-Google-Smtp-Source: AGHT+IGdK/VxJH0ABNF0LzHyK1MWFjyhIxZJguh+F83ogw+n58jt7qNfiroMvD45AwtG2kR/BIJCxw==
-X-Received: by 2002:a17:902:e84e:b0:269:aba0:f0a7 with SMTP id d9443c01a7336-27ed4a06c9amr5631235ad.2.1758733436143;
-        Wed, 24 Sep 2025 10:03:56 -0700 (PDT)
-Received: from ?IPV6:2401:4900:8899:6332:1261:ac31:d3c6:55a3? ([2401:4900:8899:6332:1261:ac31:d3c6:55a3])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-269803601e3sm197547965ad.144.2025.09.24.10.03.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Sep 2025 10:03:55 -0700 (PDT)
-Message-ID: <cd9763b7-919a-4b44-a347-f1491d9584b9@beagleboard.org>
-Date: Wed, 24 Sep 2025 22:33:50 +0530
+	s=arc-20240116; t=1758733740; c=relaxed/simple;
+	bh=aeWps3hGKLyWKjZOJweWrTxcCTaDaWqTIIpaS/fAWuQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hvg/gUztUarV82A0it36aPERvs9LD9/5iNRum7pVImWwhhBobkfYuMWPW8taJANBhuqX8dgD64GliiHJ4Ew3amcOMWvQ9YckA93tv6MSvrS8nwEMS1BJXhhnzNz4lvzNMsJA0wFOzclr+pmbOVIivQzkaLGkqkpMXZnAJorv6xw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NW1mGYjc; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1758733738; x=1790269738;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=aeWps3hGKLyWKjZOJweWrTxcCTaDaWqTIIpaS/fAWuQ=;
+  b=NW1mGYjct/rMSOawycROsnZ8i+KmZ8uiXZBMjCshYfywVnZj/ediIyOX
+   HMkS6s96sEE1Ss20SPtFfWBEvIMYWCewSgP/aayrER/kutUL7a690dARF
+   6Efom90LxgJRXPG0JzdUlrRejAbOPMJiJZQ3aDH7AQ9VPW6MLOVpm4wAo
+   6qX5j9EHN8liEkkCTmUruh4/Kmqd5txbbovnA1BQlXVYlk2BxdDW2t/Jo
+   t36eXHRAFiQ+7yqPL40WlutRWfABR9fbm1EZ6AeRyw7L1SS+UXwYqOyOt
+   FMImumLnZ1xwGIRehuGunLaR0fjPcchXTM5m1/OUXta1IhRij5qG7U1dp
+   g==;
+X-CSE-ConnectionGUID: fuhOFHaSRii8kGSaGwI+9A==
+X-CSE-MsgGUID: s7p4dvMrTcSm0gmBMt4uJA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="83643412"
+X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; 
+   d="scan'208";a="83643412"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2025 10:08:45 -0700
+X-CSE-ConnectionGUID: Yhq3NqxFTYOm0i0PtY1iGg==
+X-CSE-MsgGUID: dDWvxP7bSZ+FFgPaJk9r+Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; 
+   d="scan'208";a="181473381"
+Received: from lkp-server02.sh.intel.com (HELO 84c55410ccf6) ([10.239.97.151])
+  by fmviesa005.fm.intel.com with ESMTP; 24 Sep 2025 10:08:40 -0700
+Received: from kbuild by 84c55410ccf6 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1v1Sys-0004NB-0I;
+	Wed, 24 Sep 2025 17:08:38 +0000
+Date: Thu, 25 Sep 2025 01:07:45 +0800
+From: kernel test robot <lkp@intel.com>
+To: Shenwei Wang <shenwei.wang@nxp.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: oe-kbuild-all@lists.linux.dev,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+	Shenwei Wang <shenwei.wang@nxp.com>
+Subject: Re: [PATCH v2 3/4] gpio: imx-rpmsg: add imx-rpmsg GPIO driver
+Message-ID: <202509250023.gNpm32hs-lkp@intel.com>
+References: <20250922200413.309707-4-shenwei.wang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: Device tree representation of (hotplug) connectors: discussion at
- ELCE
-To: David Gibson <david@gibson.dropbear.id.au>,
- Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Herve Codina <herve.codina@bootlin.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Andrew Davis <afd@ti.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>, devicetree@vger.kernel.org,
- Jason Kridner <jkridner@gmail.com>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-References: <20250911104828.48ef2c0e@bootlin.com> <aMebXe-yJy34kST8@zatzit>
- <20250916084631.77127e29@bootlin.com> <aMt5kEI_WRDOf-Hw@zatzit>
- <20250918094409.0d5f92ec@bootlin.com> <aMzhgDYOuG4qNcc0@zatzit>
- <dcbeaff2-0147-4a27-bb46-e247e42810d7@beagleboard.org>
- <aNJVqSpdAJzGliNx@zatzit> <20250923114849.2385736d@bootlin.com>
- <CAMuHMdWmDwedyPnBERs-tSYEG15nMUuh9u1Q+W_FdquHpUC0-A@mail.gmail.com>
- <aNNvaN4xJtKBFmWT@zatzit>
-Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <aNNvaN4xJtKBFmWT@zatzit>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250922200413.309707-4-shenwei.wang@nxp.com>
 
+Hi Shenwei,
 
-On 9/24/25 09:41, David Gibson wrote:
-> On Tue, Sep 23, 2025 at 12:29:27PM +0200, Geert Uytterhoeven wrote:
->> Hi Hervé,
->>
->> On Tue, 23 Sept 2025 at 11:49, Herve Codina <herve.codina@bootlin.com> wrote:
->>> On Tue, 23 Sep 2025 18:09:13 +1000
->>> David Gibson <david@gibson.dropbear.id.au> wrote:
->>>> Ah, right.  To be clear: we absolutely don't want multiple addons
->>>> altering the same nodes.  But I think we could do that in ways other
->>>> than putting everything under a connector.  This is exactly why I
->>>> think we should think this through as an end-to-end problem, rather
->>>> trying to do it as a tweak to the existing (crap) overlay system.
->>>>
->>>> So, if we're thinking of this as an entirely new way of updating the
->>>> base dt - not "an overlay" - we can decide on the rules to ensure that
->>>> addition and removal is sane.  Two obvious ones I think we should
->>>> definitely have are:
->>>>
->>>> a) Addons can only add completely new nodes, never modify existing
->>>>     ones.  This means that whatever addons are present at runtime,
->>>>     every node has a single well defined owner (either base board or
->>>>     addon).
->>> In this rule I suppose that "never modify existing ones" should be understood
->>> as "never modify, add or remove properties in existing ones". Because, of course
->>> adding a full node in a existing one is allowed (rule b).
->> What if the add-on board contains a provider for the base board.
->> E.g. the connector has a clock input, fed by an optional clock generator
->> on the add-on board.  Hooking that into the system requires modifying
->> a clocks property in the base board, cfr. [1].
->> Or is there some other solution?
-> Hmm.  My first inclination would be that this case is not in scope for
-> the protocol we're trying to design now.  If the widget provides
-> things to the base board as well as the other way around, it's no
-> longer an "addon" for the purposes of this spec.
->
-> But it's possible I've underestimated how common / useful such a case
-> is.
->
-> Note that I'd expect the existing overlay mechanism to still be
-> around.  It may be ugly and not very well thought out, but its
-> drawbacks are much less severe if you're not dealing with hot unplug.
->
+kernel test robot noticed the following build warnings:
 
-Well, while that was not an initial use-case in my mind, external clock 
-inputs are a valid use-case when talking about connectors for board 
-headers specifically (e.g. pocketbeagle connector).
+[auto build test WARNING on remoteproc/rproc-next]
+[also build test WARNING on brgl/gpio/for-next shawnguo/for-next linus/master v6.17-rc7 next-20250923]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Shenwei-Wang/dt-bindings-remoteproc-imx_rproc-Add-rpmsg-subnode-support/20250923-040844
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/remoteproc/linux.git rproc-next
+patch link:    https://lore.kernel.org/r/20250922200413.309707-4-shenwei.wang%40nxp.com
+patch subject: [PATCH v2 3/4] gpio: imx-rpmsg: add imx-rpmsg GPIO driver
+config: arm64-randconfig-r121-20250924 (https://download.01.org/0day-ci/archive/20250925/202509250023.gNpm32hs-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250925/202509250023.gNpm32hs-lkp@intel.com/reproduce)
 
-Best Regards,
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509250023.gNpm32hs-lkp@intel.com/
 
-Ayush Singh
+sparse warnings: (new ones prefixed by >>)
+>> drivers/gpio/gpio-imx-rpmsg.c:410:44: sparse: sparse: Using plain integer as NULL pointer
 
+vim +410 drivers/gpio/gpio-imx-rpmsg.c
+
+   405	
+   406	static void imx_rpmsg_gpio_remove_action(void *data)
+   407	{
+   408		struct imx_rpmsg_gpio_port *port = data;
+   409	
+ > 410		port->info.port_store[port->idx] = 0;
+   411	}
+   412	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
