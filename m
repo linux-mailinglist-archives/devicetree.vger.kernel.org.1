@@ -1,153 +1,110 @@
-Return-Path: <devicetree+bounces-220887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E1DBB9C3C8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 23:07:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FF15B9C3E0
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 23:14:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3803817CA79
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:07:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 600AA19C75B6
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:14:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0800E286D73;
-	Wed, 24 Sep 2025 21:07:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BEE3285CBA;
+	Wed, 24 Sep 2025 21:14:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Dk0IiyPb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="csGWOB/H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com [209.85.215.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C921286883;
-	Wed, 24 Sep 2025 21:07:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ED3A2030A
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 21:14:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758748062; cv=none; b=PFUZrwYwlZZ4vMHlSCgs5DJNVZT3ayQSTbwR/eeTPA/MlNZUyw48trbtTzghR8UDnVDGL0PYzF2ZtXV392sDAEARpGYJUwI1bX68PF3Ti0SsmMpsornPLHgZJaFzwEngr75/RSC2JeNL3L9vkUN2jYpX2YRyslt8lGM5g5SpWUY=
+	t=1758748449; cv=none; b=dNBukV1ADcpc5IY1OmMZy9Q78hxQWocgheuT7Rha6YPQBLS3ufw9sS+PYw26oPG1wvliPpyqN1qj8COtywEqCLQFdmVLnAorJrDd0ud7HowYDeXZr++6rkVEJz5vG4M09NNzltU7NVxBvvT60cuZYlWM2GtK1SD4WVCK7W0EJIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758748062; c=relaxed/simple;
-	bh=RrqwfI+qSHG3pjgjY62xN6PUYZ9J0YNLv5urWcUhVo8=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uxrfo4lTnmCGm4og5OdOOA+0QG8wVv/CVowrvECXLeUVqH1NX7f1pn6JXmx+xZ5J3vXLq4Ju7SIPQ/fSVh29Jiexz3NPYLqdTj8+PUs5h506OE4zVVrAE5XhHNcBY998iLIdhS9lKFrGb5C0C9CCgj28jhRN60ImcJm23K5JUHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Dk0IiyPb; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58OL7a1P1312134;
-	Wed, 24 Sep 2025 16:07:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758748056;
-	bh=doH4KUIPza/iQ9G4dHJvoa5CwBU/j+Pj6k3xLIPVITo=;
-	h=From:To:CC:Subject:Date;
-	b=Dk0IiyPbC1Va6OrsH61QkFGGbV1VpB+0PkudKwPoomOn2TT3Y4HFGOib+j//OeOPy
-	 UZ1GoCk/Mk3D4DHNTZ6CDK/t2Gf61Q8UudnVrkCyvi3Awd4iXxBuSl8GigN/oju29k
-	 UMwa9It17J/RdeilpREBZWFcwzbQ1qnXzPQwyXb4=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58OL7acb2141896
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 24 Sep 2025 16:07:36 -0500
-Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 24
- Sep 2025 16:07:35 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE202.ent.ti.com
- (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 24 Sep 2025 16:07:35 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58OL7Z2t2631292;
-	Wed, 24 Sep 2025 16:07:35 -0500
-From: Judith Mendez <jm@ti.com>
-To: Judith Mendez <jm@ti.com>, Srinivas Kandagatla <srini@kernel.org>,
-        Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Bryan
- Brattlof <bb@ti.com>, Andrew Davis <afd@ti.com>
-Subject: [RFC PATCH v3] dt-bindings: nvmem: Introduce nvmem efuse binding for TI K3 SoCs
-Date: Wed, 24 Sep 2025 16:07:35 -0500
-Message-ID: <20250924210735.1732423-1-jm@ti.com>
-X-Mailer: git-send-email 2.51.0
+	s=arc-20240116; t=1758748449; c=relaxed/simple;
+	bh=tWPoT8hXA8bqdaHaLzPDAH+YrWSf3vmYsx1qgBZ34/o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tJEPCBIsPa5ofkDKRrMVaHsSdMJDn/zrTaPPhdUJ/0PPj3CfHcrEX0k8HEkhyrQIg9Td3n5pOoaodTF7tVaJoTTBPIictPlIXrLFisn9/ClZR2dhZ7aK2sVboctwgSQO+ZNor4FnZD9qlMkuUQMRYWGiALxDxhSN1jp+RslBNa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=csGWOB/H; arc=none smtp.client-ip=209.85.215.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-b550a522a49so248713a12.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 14:14:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758748447; x=1759353247; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qtI+Xxsd8rE3fuveLCvU/MdyjxsiyhC9uH9cXSeRvHU=;
+        b=csGWOB/HzJADn0swCXqj9R56mgoUOI0Pin4QmIaWC/74MHyRR3MQIBx1iQ9OgneAfd
+         WoEjdvhmSwIunGvKEPvLT1a44KqkX1448zPIKM8NuX+eosNyxTCUF+ZbtmHhMaCaYyed
+         RPWFHlkp3iZ6z7P3JjMI307Iki5nTpNOmlsob8rIM6a8e9DwvMTwUsQTT7pr3BONDUTj
+         kuGeMrLTh+q6GOq5R4tX3bvZCo8i+WJFDLDziTGpwAzjXYR7Rk9Sv0joOLGkAhs/DMLH
+         7MY600cPu1RcDC+Ez1J5Z3L8Bwxqcyhier7x5j26c04FUXkAZoRFolSscdyYHcgxrdnb
+         N0vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758748447; x=1759353247;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qtI+Xxsd8rE3fuveLCvU/MdyjxsiyhC9uH9cXSeRvHU=;
+        b=Sp1i1u2/AXSRhPBYu8mNMuq7f5LW8goi0Ee0f5EW3qUbcndp+TnOOqu59yAxrlne0G
+         uZKQsfXoe7WiYsfkrLvBHOoND5mK4IiLNbbMLfw7EB4AnZagPNbL6h7DVegRftN0X4/v
+         9oa2fClMXRwoxC3tku2VKBaW1yfJKkgiFOn89suK7QrmqqJhQLGIt3FUEyOpkbNxM8iX
+         WqdvljtxzKfUry2zFHhL8ABaxbuPn4gSK106Aj9aFM4BX440FVdt0hQc5BG1sMiIF7Rv
+         5zFXZYq9lHfDz07+o4ajhq0cphNg+Bv+vf5mcFdZVlfadnRVi0VPEMEHehgERSqry0Bq
+         IaGg==
+X-Forwarded-Encrypted: i=1; AJvYcCWKS5svsQQLLutQOkoLtmIdbf6IWFIGWKBf4Jt5shquDcLxUA1RM5VmO4kknmj9BSNFbAqMvg1BN6Ei@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVmu2OcZN0lNvT2E2uNkD0oTBwqFk518/F7PC3KGgXnxad1jS5
+	3WP8dj4IcA/H5H1Fx+Oht/V901NXoyN+KI4jLrRXdCbvJCs0qd0cQCZQ
+X-Gm-Gg: ASbGncvn/R+Q8qqPSiDopavN5HyYatru1/CtmESgXdjHHu2zYlbIoMxM9d3+lCO6uwB
+	nSbatWzEUQCHrkqoevrySAp+X6mjdW/4Z5VMHqTxe0ZVhS0gbJgPYDUZylLyj3VdSP76tEE8LOH
+	+3Z8BQZ1Nlb6mq9fmss+b0EozlAUGxqty002sMX4j7WpedqBGrMmm6fcuNzUUeNWUZQ7FBIkTRa
+	1ZaAMY2tsPXi9wTw4ynVh9IUXhaj1U0fzM+rU4WYK6Tfku08o8B3+MaDQMJlVUt2be9m452E4HD
+	PSMLfEj4HsBRuKUkqP/nNuAIM7g7BPDH1HUCNTR8a1JO56PzkFO19qHJ/zDs/w8YGVmW6ubqvhl
+	vxSicXwmL4ZduUVTsAZCKhw==
+X-Google-Smtp-Source: AGHT+IHchnbtWrdhaWeshGUQo0IHCW+W1jq7tB9DCwBzgUE/TOXYECiLeyb7fq0Zi9TPW9Z78gDzfw==
+X-Received: by 2002:a17:903:b8f:b0:271:7eba:a49 with SMTP id d9443c01a7336-27ed49dd8bcmr11592285ad.19.1758748446942;
+        Wed, 24 Sep 2025 14:14:06 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:5a97:14cb:a5e:6c78])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b57c53cbe6dsm206917a12.21.2025.09.24.14.14.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Sep 2025 14:14:06 -0700 (PDT)
+Date: Wed, 24 Sep 2025 14:14:03 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
+	sebastian.reichel@collabora.com, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-input@vger.kernel.org
+Subject: Re: [PATCH v6 1/3] dt-bindings: touchscreen: convert eeti bindings
+ to json schema
+Message-ID: <xugkxduy7thmh3x373rcsacfdslnvscdfii23acx3qq2jp73l6@ymxf7g5earka>
+References: <20250921173353.2641438-1-dario.binacchi@amarulasolutions.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250921173353.2641438-1-dario.binacchi@amarulasolutions.com>
 
-On K3 SoCs there are efuse registers scattered across the memory
-map. In order to reference these efuse registers like gp-sw which
-may store SW REV information or other general purpose information
-for drivers to consume, treat them appropriately as efuse devices
-with nvmem framework.
+Hi Dario,
 
-Signed-off-by: Judith Mendez <jm@ti.com>
----
-This patch is not complete and is sent as an RFC to get some initial
-thoughts on this implementation to solve [0].
+On Sun, Sep 21, 2025 at 07:33:42PM +0200, Dario Binacchi wrote:
+> Convert EETI touchscreen controller device tree binding to json-schema.
+> 
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
 
-[0] https://lore.kernel.org/linux-mmc/736f09e0-075a-48e0-9b32-6b8805a7ee2a@kernel.org
+This conflicts with my tree, could you please rebase against my
+"next"branch (or against linux-next)?
 
-Changes since v2 RFC:
-- Fix yamllint warnings/errors
-- Rebase against next/master
+Thanks.
 
-Link to RFC v2:
-https://lore.kernel.org/linux-devicetree/20250922160715.346137-1-jm@ti.com/
-Link to RFC v1:
-https://lore.kernel.org/linux-devicetree/20250916154809.545283-1-jm@ti.com/
----
- .../devicetree/bindings/nvmem/ti,efuses.yaml  | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
-
-diff --git a/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml b/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
-new file mode 100644
-index 0000000000000..c6c66016b9d44
---- /dev/null
-+++ b/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
-@@ -0,0 +1,36 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/nvmem/ti,efuses.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI SoC eFuse-based NVMEM
-+
-+maintainers:
-+  - Judith Mendez <jm@ti.com>
-+
-+allOf:
-+  - $ref: nvmem.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,am62p-efuse
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    efuse@43000230 {
-+        compatible = "ti,am62p-efuse";
-+        reg = <0x43000230 0x10>;
-+    };
-+
-+...
 -- 
-2.51.0
-
+Dmitry
 
