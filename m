@@ -1,108 +1,98 @@
-Return-Path: <devicetree+bounces-220873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27345B9BACC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:21:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4696B9BB4A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:30:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC3F017A406
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:21:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 857E91BC22C3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:30:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6A8B26A08C;
-	Wed, 24 Sep 2025 19:21:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E00CA26B2D2;
+	Wed, 24 Sep 2025 19:30:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OYt3irBd"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="prEOj23t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4961C263F3C
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:21:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4F5F2609DC
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:30:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758741713; cv=none; b=NHMmN+MQT8+yFQY5sPgOAbXW89xO+XdbzSHXuoAxlHtWw7c8FQ2AjJkNolMuyUBOk73+owduj2bUidXdHeljUguAqAG7IR81ci3tlP94IWlylQZXCc8ULyhjQGPUD+cZIZigNGvy60JTbClPak54wrJ8nSq1BYU5pUFX42spR3o=
+	t=1758742214; cv=none; b=APZEcTIq3IP2Z2HrHQQp26HjY17meop0eGOIDzp83t/X/tPskwDqIsz4iZDQsTGqvzEd1CM9me30cspEfXjMuD2eIrrCawXLHRfjaYq2t6Baj7jr44dugL6DOc1GawGlfq/a0qv1YzinqI+KwyyW1p3cqzvfWNzewpqbjW5TPso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758741713; c=relaxed/simple;
-	bh=fCDcNvXPeCb6M3hXJIxhsSMcNmiBoWRBaGg9SWvAhEI=;
+	s=arc-20240116; t=1758742214; c=relaxed/simple;
+	bh=Cq6LipIkUE9syfPqdg6mldI628jIm+60Pxd69wK/kDM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Vee0+QCQX1QGdPKSEkOat+qChNztK6XKSWqt3T+H3gaXFq921bymUsHvU26Y3NNsDEd0WelUmpuX3pKb82HnsDOwx/K5X6XfxfBNa9Gw4uf+8V3XZniwV8TKlsWgZ/ly3vQS9nzOQ1SUsMO+pI8YF050dxF7GqnDuEQqORTVY6w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OYt3irBd; arc=none smtp.client-ip=205.220.180.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ju3NJF/+q37IwelRYKIegClevxaOJOgmcejA/Yh2Sk7676uDD1h0fLBTWimdI/XogI1lLmM9p9NZUwJKfBRD5q1IZS7nhJLOEE8zpwACwy/leFSmXwodM1cCUoDajTKCmRt+Rj7EcitVkNaBoI0YhnVl5hkGmLN6+jOf2jtpfZk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=prEOj23t; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58OCohAX027782
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:21:51 GMT
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58OD0qEE003835
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:30:12 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=0iu1Wjnwv+f5AYYfHw58qhf/
-	bG3HYMyGpWsuOD72KVE=; b=OYt3irBdhpx9aAiIMdbkqDlTw+/XKF7xO+0lhAON
-	cEPYRnzCWanMF+8BQc0OnILdjgc9xSUkvQpbkXk+z8XSJ77l131fsYU6AaDvzqtd
-	K4XSBQX5yz3mnzO8w9FBT6U0j1end7RQjLG5622rl8qYnGY6qUlMXuYoOQ8sl981
-	yltphA8af1Bqh0PoOlEykCKHpJ+8v52Gjb859XYpOaAS0O67NWPIhBpvxDgGSGC3
-	ewau2muRbr95q2NycC1Bwu806tZaERN4Ic8ZraY/bGk0sGhzc4Sc5OvJZuEr/Xpa
-	P6kbDBGpUeoR+/x2jiBwU4o8BhxZAejcnzf+cy/IRrvW7g==
+	:references:subject:to; s=qcppdkim1; bh=rBfMnnfWt3L4feJTU+lsPLM+
+	2GHenz7Bt8xSF1WehQA=; b=prEOj23tKHDiF1migpbqeu6tOAWw54UOl4XdDMbY
+	5AlfEUkGmZXlfoofa4Bv9+zedcL1LMtnhmB4MXA5GgwWXiOvJnFBfWhwDYlQHwNH
+	aX/0ql+ebc5sjlUwUwvBpbfH+F+x4rM493SGyAVeCPV0PLQukxxi0lxPW7wxS6hN
+	QCyqQMjqFHC+t7aMnORh6Pi6Qaf7mbfRRTcYzTvU0cvdDcGReHkPytbtwJFdv9re
+	uyI+4BocQPYeoJVdtCt2tTHcPhBoAtb37WzoVme5yoPupDMvdauqtaaaWFFktFYK
+	2xyK9MVqmb9Gtfo9sJWlXeM1OTnlddhBXJLp9PiGZ6NLRw==
 Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499hmnwvf1-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bajf04am-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:21:51 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b5ecf597acso4223751cf.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 12:21:50 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:30:11 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4d6a41b5b66so4876171cf.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 12:30:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758741710; x=1759346510;
+        d=1e100.net; s=20230601; t=1758742210; x=1759347010;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=0iu1Wjnwv+f5AYYfHw58qhf/bG3HYMyGpWsuOD72KVE=;
-        b=ejX3rzNCpfOJHgmtI6cQ3EhSlE7QM9ysCBZlK//U5yUFvZ/7pgHOdZ/8nWfUQjJnA6
-         qc6LFUfcP0x/AAj1xeA0XJrtohAjYDmcu3/Bqr2O80fa2B9Mj6KlHzHicY88k0piw08k
-         Rq5zR1k8nN7jsri58xQ2YC4CoSWEKr30alwvfOytjzwqZmRCtYxatjNuRUZoO8RbzveK
-         CIoh4JK6TssDybWVgEZJK0sY+nOKVBHho5iSXc6OSkWhJQmlrmDUNod4EFA6068LYM/y
-         ePXI86N7h+cijx0ycO7+eQuZ/bGdZSdHPa/2b/FqCSmvPCgdTo4i7+8jWAVtmsCYwwBS
-         ngGw==
-X-Forwarded-Encrypted: i=1; AJvYcCXdABTXTUbkHBThFxoCPE8WbAT3nJMOZSGn6VDRykzku6ZQ4GiZfyymHGmcFtO6M8HoHX9Q83pNLr0h@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEIzw0ie3m5KSzAfuwZX4eDAljqMTDM8RpnEjofVkrKtRu+l9W
-	H0g9dPET9JwAPbvoetqS4tUeiekfyzvBEa1IHh7d06mv909Sn10IhVzXD/TjJ8ZDR9+qVvTwyjw
-	2dKiuHgRqaCntXUliqeYwylklht5X6dIkbcZGOUOXolTLmXIAdhF4XGInKNmKjwwb
-X-Gm-Gg: ASbGncs4N8dJgID03VZYczMGxO7QtTJ0Rv/7aQoJQaFF9eQl3+PejCn8Vy8YK/pNSza
-	w6HrGkh/EltVAzupn6J2NqJ3PbRxfzPumAw8uFjfp1Yw4fC/wPwaHZa2inkZqX6Tu3LCXCNsuBQ
-	fmJqGEgLJ86SL5Y5MPsvuhUfzGzI2/LUfZyeNwjKP3bGpBRx6ALERRiRbFr7ONlUoZbi88MEjNh
-	GhU3Z2H/QMBw5aEKl4D+dk1xEdMRGrpx84o/+xEEsFQehpBuSFuSCAUX8jyYybMW7SauIadKz9z
-	EeeYatnAm9JLMksfPIydUReSi45L23VlHqJKq6kCx47lrecXG/HzQh4/RVup8/ZmUtup1RgswaG
-	kuGkBPXrhmfK70GFPwlap/JobxjjvN5oulKuL5znkcZfzFFNc4V5y
-X-Received: by 2002:ac8:7c42:0:b0:4c7:e39a:388b with SMTP id d75a77b69052e-4da4b428df9mr11723521cf.47.1758741709916;
-        Wed, 24 Sep 2025 12:21:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFaFsspAyH/V3Y+WNKmm+luXg2sxoUJuUxgT3PD4jQ2JdvLW6f6tdlPbuRxY0RMCgn1FJCFVg==
-X-Received: by 2002:ac8:7c42:0:b0:4c7:e39a:388b with SMTP id d75a77b69052e-4da4b428df9mr11723151cf.47.1758741709377;
-        Wed, 24 Sep 2025 12:21:49 -0700 (PDT)
+        bh=rBfMnnfWt3L4feJTU+lsPLM+2GHenz7Bt8xSF1WehQA=;
+        b=HyMgEz/Mhtco1M00zWO06YiWzm9k9eeolD1dK2dcOnUkHKooHfnAj88F64C11ThsHy
+         iJjOSAiufYRSb2naoOW12n5mvlTDz+thz+khQmlwsYOk+toKrtmL8/rNh5TxY07Ahi0j
+         9TRXFoMrGB7UeNk9pq6+r22NqgFkCpbYVTZXxkoVChEgpQZQ+qZMoAqzyjS2tNK/BxqD
+         qYJcljsbQUjcvnlN++dlIi4CwqxaBpuTtHONWZkv5xNZYZuwOty9Q3wGWJOarGZKobDD
+         mPjXqe+9lqi8K3S14VEFbMxwErTFpqizxPv/mip0/AEs4M2jhJBTKy5N0ic9F8e3FzrA
+         jv6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVLJvetDSqY7b3zI/Q2Wb2PW6BSRKrAe6t5jaa9BpVlCa3Mg2fMq8HIxjLuGv7l2tYsGqZrZoT0mA1l@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5eL8B6zJcYNt9fLlkVA9ZirRkori3Rgl4NWW9VmTsBsa4kS41
+	Y77k73KYuvK+rZxqP3k1s0hf3G07FsVYXwgaZ14t0bBdp2i8JzLAFlA+rZuY1Xwu4Sshjk9Ohy3
+	Tgob+Sv2i3S9A/GuOqWKB5VM6dclvwtKmSdx9wx7s/s9wZHbhyIxqMJavv2KSUFYn
+X-Gm-Gg: ASbGncuo0z/+8HzYDVREwvtxnZVDqF4GVmrdefOfzjNn4vAH9LvnhczI00gurWyH24w
+	P0keIYd3EMEBIzSkYcxN++YmxO4IlXx+mWBg6CCKxtux5KwO94GsuSff7yhA0yS0DTscchBOnxB
+	1vJnd9PjIpzMcuivU2OYGpHvBcm8D2W2zFqkkBja8JeebN6w14vAo7+u6n8BW3PGWdbmaeAyToq
+	a0pzFZOJGa/sEeoX+kqYTrCsktvfKizB/cuAMFfFdOcVKxE6a4q8mQvCrrk6+kG23kd3Xj8BRAb
+	4LojD+ivJQD+y2j1OJAnU4zJziPutaeEOaqKz63e7ui1cf50W4Nfzovav3NPoqna1ELWGxPR9qG
+	xH9DPtHcVnYvPAJiN1Cwd+WAzOSNT26rfviiClV7s2VvM4e03h+yX
+X-Received: by 2002:a05:622a:84:b0:4d4:bb65:eda3 with SMTP id d75a77b69052e-4da47354dafmr14276051cf.5.1758742210397;
+        Wed, 24 Sep 2025 12:30:10 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEWcHMG4HOiwIAPrOL7ZzQISPy6nwaAhZ4vWAdXmd32A3hnTKJfG+uBNcsuFtkWL1uneRm3xQ==
+X-Received: by 2002:a05:622a:84:b0:4d4:bb65:eda3 with SMTP id d75a77b69052e-4da47354dafmr14275521cf.5.1758742209787;
+        Wed, 24 Sep 2025 12:30:09 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-57f477153bdsm2419549e87.29.2025.09.24.12.21.48
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-36815abf943sm30163341fa.61.2025.09.24.12.30.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Sep 2025 12:21:48 -0700 (PDT)
-Date: Wed, 24 Sep 2025 22:21:46 +0300
+        Wed, 24 Sep 2025 12:30:07 -0700 (PDT)
+Date: Wed, 24 Sep 2025 22:30:06 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Jun Nie <jun.nie@linaro.org>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+To: Xilin Wu <sophon@radxa.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] drm/msm/dsi: Support dual panel use case with
- single CRTC
-Message-ID: <v3tfzspjck2oqppelx7bmi5uflhs47ixw6tjmq2d7inauzfo7k@gxebj3buyuni>
-References: <20250924-dsi-dual-panel-upstream-v3-0-6927284f1098@linaro.org>
- <20250924-dsi-dual-panel-upstream-v3-3-6927284f1098@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: qcs6490: Introduce Radxa Dragon
+ Q6A
+Message-ID: <gtao4eak2hp2upsjpfudkkjlrcoeelddvh7x55y6nshiwla4of@wv5yu6a7g7cw>
+References: <20250924-radxa-dragon-q6a-v4-0-10d584f2c806@radxa.com>
+ <20250924-radxa-dragon-q6a-v4-2-10d584f2c806@radxa.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -111,125 +101,63 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250924-dsi-dual-panel-upstream-v3-3-6927284f1098@linaro.org>
-X-Authority-Analysis: v=2.4 cv=YPqfyQGx c=1 sm=1 tr=0 ts=68d444cf cx=c_pps
+In-Reply-To: <20250924-radxa-dragon-q6a-v4-2-10d584f2c806@radxa.com>
+X-Proofpoint-GUID: ny-0_3np1zUN6CUtNO94nbMJ2-tAYYWq
+X-Authority-Analysis: v=2.4 cv=fY2ty1QF c=1 sm=1 tr=0 ts=68d446c3 cx=c_pps
  a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=sWKEhP36mHoA:10 a=KKAkSRfTAAAA:8 a=BVByBJJp0cfCRiHu0pEA:9
- a=CjuIK1q_8ugA:10 a=dawVfQjAaf238kedN5IG:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: 00YWznVA5ss5kMP9Dhxi_Mb9EHcbwidg
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAwMCBTYWx0ZWRfX1tHOnHeS5Aqp
- JkPLaEpvE+8iEI+D4vtg3oMTTQ3ZGLjUdct7re7fGqpEPGaW9pjZ/8OxTcnykcfCfPMDAlqJ5DM
- yNeJ8oX4U6wBf4HNbI75kHLsAxmxfBHK8cds7YvVLYlcZu6SQr3I/xtJ5xHH8w/TMRRvBy3ogk5
- RezpqUSRkMxxS5s7ExLx2H1TCFQKY73nMkfJ+PKO96CiGA/0892EoR5lWGvR0v2zlERZ0A97bJg
- gcm88CtZaTdKpTRbmV2X6A9OvL92Xf1exq58oU6mNlytPtZu7652qD82hGZnhCLkeCJWlESBqrO
- HgIHQlqbuDvRrDdCb+af0FMG3MecavR4jr6whv0+LdYTujH3YaVVgJLYAzYIqHJwS+Ist7yVurW
- D93VboQg
-X-Proofpoint-GUID: 00YWznVA5ss5kMP9Dhxi_Mb9EHcbwidg
+ a=yJojWOMRYYMA:10 a=ksxQWNrZAAAA:8 a=EUspDBNiAAAA:8 a=JC7H1UVUsGpFjcbbhlEA:9
+ a=CjuIK1q_8ugA:10 a=dawVfQjAaf238kedN5IG:22 a=l7WU34MJF0Z5EO9KEJC3:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIyMDE2OCBTYWx0ZWRfXyfWUlCdRMcTn
+ WFbHxK225oY2jMLTxo1y4Zgh9BrP3BlCkmgQ8JHBP+MtnEFXeW0DfRGRiJdzjIx0eeOQpVMiEu4
+ l7qGUTsII8u60sWn57AiBkraheawd1vtMrQ2bZjNsUO0eOHzDf+z920DEl08ODfJC55K7vl7ajl
+ ehHzWJ3+Wy2JZ5Pndhc1puESGHY8hs3cON4CpMSM5UTbbD0sJtR8EaEW8POnJV8RnQLIXN18DAu
+ iPlwzlCJpI8AyP0QHtGo/auDodij7++HniJxAwR8o/5hU7SvlNrm+kpqAq/dnqNK9k+jyXSOeaX
+ sAZ4nmeCEMMxJWSJB0ThrVl8bbP5IXySHRBRrxZ169R85XKX81BwTozbbwmMdHqsY9fD0aSTD6r
+ CVEnNEsV
+X-Proofpoint-ORIG-GUID: ny-0_3np1zUN6CUtNO94nbMJ2-tAYYWq
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-24_06,2025-09-24_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 priorityscore=1501 phishscore=0 adultscore=0
- clxscore=1015 impostorscore=0 spamscore=0 malwarescore=0
+ suspectscore=0 malwarescore=0 spamscore=0 adultscore=0 impostorscore=0
+ phishscore=0 bulkscore=0 priorityscore=1501 clxscore=1015
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200000
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509220168
 
-On Wed, Sep 24, 2025 at 11:08:12PM +0800, Jun Nie wrote:
-> Support a hardware configuration where two independent DSI panels are
-> driven by a single, synchronous CRTC. This configuration uses a bonded
-> DSI link to provide a unified vblank for both displays.
+On Wed, Sep 24, 2025 at 11:07:10PM +0800, Xilin Wu wrote:
+> Radxa Dragon Q6A is a single board computer, based on the Qualcomm
+> QCS6490 platform.
 > 
-> This allows application software to treat the two displays as a single,
-> wide framebuffer with a synchronized refresh cycle, simplifying rendering
-> logic for side-by-side panel arrangements.
-
-I'd like to understand how is it framed on the overall system design
-level. If it's a panel controlled over the DSI interface, it's fine
-since we can broadcast commands over two DSI links. What if the panel
-(or bridge) is controlled via I2C / SPI?
-
+> Features enabled and working:
 > 
-> At the DSI host level, the frame width for each link must be that of an
-> individual panel. The driver therefore halves the CRTC's horizontal
-> resolution before configuring the DSI host and any DSC encoders, ensuring
-> each panel receives the correct half of the framebuffer.
-
+> - Configurable I2C/SPI/UART from 40-Pin GPIO
+> - Three USB-A 2.0 ports
+> - RTL8111K Ethernet connected to PCIe0
+> - eMMC module
+> - SD card
+> - M.2 M-Key 2230 PCIe 3.0 x2
+> - Headphone jack
+> - Onboard thermal sensors
+> - QSPI controller for updating boot firmware
+> - ADSP remoteproc (Type-C and charging features disabled in firmware)
+> - CDSP remoteproc (for AI applications using QNN)
+> - Venus video encode and decode accelerator
 > 
-> While the DSI panel driver should manage two panels togehter.
-> 1. During probe, the driver finds the sibling dsi host via device tree
-> phandle and register the 2nd panel to get another mipi_dsi_device.
-> 2. Set dual_panel flag on both mipi_dsi_device.
-> 3. Prepare DSC data per requirement from single panel.
-> 4. All DSI commands should be send on every DSI link.
-> 5. Handle power supply for 2 panels in one shot, the same is true to
->    brightness.
-> 6. From the CRTC's perspective, the two panels appear as one wide display.
->    The driver exposes a DRM mode where the horizontal timings (hdisplay,
->    hsync_start, etc.) are doubled, while the vertical timings remain those
->    of a single panel. Because 2 panels are expected to be mounted in
->    left/right position.
-> 
-> To maintain synchronization, both DSI links are configured to share a
-> single clock source, with the DSI1 controller using the clock provided
-> to DSI0 as below.
-> 
-> &mdss_dsi1 {
->    assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>,
-> 		     <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>;
->    assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
-> }
-> 
-> Signed-off-by: Jun Nie <jun.nie@linaro.org>
+> Signed-off-by: Xilin Wu <sophon@radxa.com>
 > ---
->  drivers/gpu/drm/msm/dsi/dsi_host.c | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
+>  arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+>  .../boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 1107 ++++++++++++++++++++
+>  2 files changed, 1108 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
-> index de51cb02f267205320c5a94fc4188413e05907e6..1fddcea7f86547258be18a51a0a3e3f96f6c3838 100644
-> --- a/drivers/gpu/drm/msm/dsi/dsi_host.c
-> +++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
-> @@ -177,6 +177,7 @@ struct msm_dsi_host {
->  	bool registered;
->  	bool power_on;
->  	bool enabled;
-> +	bool is_dual_panel;
->  	int irq;
->  };
->  
-> @@ -935,7 +936,10 @@ static void dsi_timing_setup(struct msm_dsi_host *msm_host, bool is_bonded_dsi)
->  			return;
->  		}
->  
-> -		dsc->pic_width = mode->hdisplay;
-> +		if (msm_host->is_dual_panel)
-> +			dsc->pic_width = hdisplay;
-> +		else
-> +			dsc->pic_width = mode->hdisplay;
->  		dsc->pic_height = mode->vdisplay;
->  		DBG("Mode %dx%d\n", dsc->pic_width, dsc->pic_height);
->  
-> @@ -1609,6 +1613,7 @@ static int dsi_host_attach(struct mipi_dsi_host *host,
->  	if (dsi->lanes > msm_host->num_data_lanes)
->  		return -EINVAL;
->  
-> +	msm_host->is_dual_panel = dsi->dual_panel;
->  	msm_host->channel = dsi->channel;
->  	msm_host->lanes = dsi->lanes;
->  	msm_host->format = dsi->format;
-> @@ -2492,6 +2497,9 @@ enum drm_mode_status msm_dsi_host_check_dsc(struct mipi_dsi_host *host,
->  	if (!msm_host->dsc)
->  		return MODE_OK;
->  
-> +	if (msm_host->is_dual_panel)
-> +		pic_width = mode->hdisplay / 2;
 > +
->  	if (pic_width % dsc->slice_width) {
->  		pr_err("DSI: pic_width %d has to be multiple of slice %d\n",
->  		       pic_width, dsc->slice_width);
-> 
-> -- 
-> 2.34.1
-> 
+> +&remoteproc_adsp {
+> +	firmware-name = "qcom/qcs6490/radxa/dragon-q6a/adsp.mbn";
+
+I really hope to see this firmware in linux-firmware (and DSP binaries
+in the hexagon-dsp-binaries repo).
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+
 
 -- 
 With best wishes
