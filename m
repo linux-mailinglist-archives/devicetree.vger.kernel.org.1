@@ -1,165 +1,143 @@
-Return-Path: <devicetree+bounces-220875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4696B9BB4A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:30:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15F58B9BB5F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:31:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 857E91BC22C3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:30:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F3491BC25BC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:31:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E00CA26B2D2;
-	Wed, 24 Sep 2025 19:30:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C269026B2D2;
+	Wed, 24 Sep 2025 19:30:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="prEOj23t"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="feWL4jvy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4F5F2609DC
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:30:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480F6267714
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:30:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758742214; cv=none; b=APZEcTIq3IP2Z2HrHQQp26HjY17meop0eGOIDzp83t/X/tPskwDqIsz4iZDQsTGqvzEd1CM9me30cspEfXjMuD2eIrrCawXLHRfjaYq2t6Baj7jr44dugL6DOc1GawGlfq/a0qv1YzinqI+KwyyW1p3cqzvfWNzewpqbjW5TPso=
+	t=1758742247; cv=none; b=czqeZ9wPZ8ikQp9c1IpExna9l76q45CsI3I5+znwmGH3/icGM2yFGb4W5uV2gYIrAh77ul0dxo+51TIRCQXHIhYSKG3uTnCwweWxhaGRN6+JvO/ts6tWK8gQAVLv63tsPCqKdedgLzJKlXPG6AVk9NHMkaO4jmQfRV3BCbghpfE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758742214; c=relaxed/simple;
-	bh=Cq6LipIkUE9syfPqdg6mldI628jIm+60Pxd69wK/kDM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ju3NJF/+q37IwelRYKIegClevxaOJOgmcejA/Yh2Sk7676uDD1h0fLBTWimdI/XogI1lLmM9p9NZUwJKfBRD5q1IZS7nhJLOEE8zpwACwy/leFSmXwodM1cCUoDajTKCmRt+Rj7EcitVkNaBoI0YhnVl5hkGmLN6+jOf2jtpfZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=prEOj23t; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58OD0qEE003835
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:30:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=rBfMnnfWt3L4feJTU+lsPLM+
-	2GHenz7Bt8xSF1WehQA=; b=prEOj23tKHDiF1migpbqeu6tOAWw54UOl4XdDMbY
-	5AlfEUkGmZXlfoofa4Bv9+zedcL1LMtnhmB4MXA5GgwWXiOvJnFBfWhwDYlQHwNH
-	aX/0ql+ebc5sjlUwUwvBpbfH+F+x4rM493SGyAVeCPV0PLQukxxi0lxPW7wxS6hN
-	QCyqQMjqFHC+t7aMnORh6Pi6Qaf7mbfRRTcYzTvU0cvdDcGReHkPytbtwJFdv9re
-	uyI+4BocQPYeoJVdtCt2tTHcPhBoAtb37WzoVme5yoPupDMvdauqtaaaWFFktFYK
-	2xyK9MVqmb9Gtfo9sJWlXeM1OTnlddhBXJLp9PiGZ6NLRw==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bajf04am-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:30:11 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4d6a41b5b66so4876171cf.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 12:30:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758742210; x=1759347010;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rBfMnnfWt3L4feJTU+lsPLM+2GHenz7Bt8xSF1WehQA=;
-        b=HyMgEz/Mhtco1M00zWO06YiWzm9k9eeolD1dK2dcOnUkHKooHfnAj88F64C11ThsHy
-         iJjOSAiufYRSb2naoOW12n5mvlTDz+thz+khQmlwsYOk+toKrtmL8/rNh5TxY07Ahi0j
-         9TRXFoMrGB7UeNk9pq6+r22NqgFkCpbYVTZXxkoVChEgpQZQ+qZMoAqzyjS2tNK/BxqD
-         qYJcljsbQUjcvnlN++dlIi4CwqxaBpuTtHONWZkv5xNZYZuwOty9Q3wGWJOarGZKobDD
-         mPjXqe+9lqi8K3S14VEFbMxwErTFpqizxPv/mip0/AEs4M2jhJBTKy5N0ic9F8e3FzrA
-         jv6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVLJvetDSqY7b3zI/Q2Wb2PW6BSRKrAe6t5jaa9BpVlCa3Mg2fMq8HIxjLuGv7l2tYsGqZrZoT0mA1l@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5eL8B6zJcYNt9fLlkVA9ZirRkori3Rgl4NWW9VmTsBsa4kS41
-	Y77k73KYuvK+rZxqP3k1s0hf3G07FsVYXwgaZ14t0bBdp2i8JzLAFlA+rZuY1Xwu4Sshjk9Ohy3
-	Tgob+Sv2i3S9A/GuOqWKB5VM6dclvwtKmSdx9wx7s/s9wZHbhyIxqMJavv2KSUFYn
-X-Gm-Gg: ASbGncuo0z/+8HzYDVREwvtxnZVDqF4GVmrdefOfzjNn4vAH9LvnhczI00gurWyH24w
-	P0keIYd3EMEBIzSkYcxN++YmxO4IlXx+mWBg6CCKxtux5KwO94GsuSff7yhA0yS0DTscchBOnxB
-	1vJnd9PjIpzMcuivU2OYGpHvBcm8D2W2zFqkkBja8JeebN6w14vAo7+u6n8BW3PGWdbmaeAyToq
-	a0pzFZOJGa/sEeoX+kqYTrCsktvfKizB/cuAMFfFdOcVKxE6a4q8mQvCrrk6+kG23kd3Xj8BRAb
-	4LojD+ivJQD+y2j1OJAnU4zJziPutaeEOaqKz63e7ui1cf50W4Nfzovav3NPoqna1ELWGxPR9qG
-	xH9DPtHcVnYvPAJiN1Cwd+WAzOSNT26rfviiClV7s2VvM4e03h+yX
-X-Received: by 2002:a05:622a:84:b0:4d4:bb65:eda3 with SMTP id d75a77b69052e-4da47354dafmr14276051cf.5.1758742210397;
-        Wed, 24 Sep 2025 12:30:10 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEWcHMG4HOiwIAPrOL7ZzQISPy6nwaAhZ4vWAdXmd32A3hnTKJfG+uBNcsuFtkWL1uneRm3xQ==
-X-Received: by 2002:a05:622a:84:b0:4d4:bb65:eda3 with SMTP id d75a77b69052e-4da47354dafmr14275521cf.5.1758742209787;
-        Wed, 24 Sep 2025 12:30:09 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-36815abf943sm30163341fa.61.2025.09.24.12.30.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Sep 2025 12:30:07 -0700 (PDT)
-Date: Wed, 24 Sep 2025 22:30:06 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Xilin Wu <sophon@radxa.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] arm64: dts: qcom: qcs6490: Introduce Radxa Dragon
- Q6A
-Message-ID: <gtao4eak2hp2upsjpfudkkjlrcoeelddvh7x55y6nshiwla4of@wv5yu6a7g7cw>
-References: <20250924-radxa-dragon-q6a-v4-0-10d584f2c806@radxa.com>
- <20250924-radxa-dragon-q6a-v4-2-10d584f2c806@radxa.com>
+	s=arc-20240116; t=1758742247; c=relaxed/simple;
+	bh=HBlBtjJuiSJREEKCRDFE2CMgGB0Q+lfxBms6vvoiQs8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=QOmGW6n5cvGcYXRjQ8Y+O98/VBKGP74YMainNRpA1T2WCML9xJUQhyURL36YvOwi+a2qoHrBbXUblsN6d3+Z1t1XdpgxsA3rA5j+yOw9aFfTNKp8o+mgCMVepDenBDo17ZnbFrV5whF+fLD44qgX7GfeL16Wd8SqfC+6T9DTiRk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=feWL4jvy; arc=none smtp.client-ip=210.118.77.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250924193036euoutp02e3ce237f3006aa0a45bcdee17695eeef~oTr79ebOv1957419574euoutp02U
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:30:36 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250924193036euoutp02e3ce237f3006aa0a45bcdee17695eeef~oTr79ebOv1957419574euoutp02U
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1758742236;
+	bh=/Gk+JQ7pocHBfcq36N6Notv0uvwakh9CVF4aSzWJ8hw=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=feWL4jvyddS/Rk6tUEFJ/d1jrrrJBbbtVkvIx0lREBNp6qbVJJBagYq/pHWTX/7dr
+	 Jy9Tqwk2nl7h4GTXgG+Z5lJ71I7YLU/Y/bXia+wqA6iDqDIw88WMHgAFG45hB+WETa
+	 Wk+fRSdNiGjlGnD1BkNB5oZ0FjK2jZZC5VzY2ZzI=
+Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
+	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250924193035eucas1p18bc9f48e524c3824662031da8261758e~oTr7TWTQq1522115221eucas1p1B;
+	Wed, 24 Sep 2025 19:30:35 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250924193034eusmtip2cbf8bf03a89dc1fb923f25bee047d0da~oTr6PXOuQ0163201632eusmtip2W;
+	Wed, 24 Sep 2025 19:30:34 +0000 (GMT)
+Message-ID: <67e3a691-0ba8-4c21-97e1-4471f2a1a87c@samsung.com>
+Date: Wed, 24 Sep 2025 21:30:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250924-radxa-dragon-q6a-v4-2-10d584f2c806@radxa.com>
-X-Proofpoint-GUID: ny-0_3np1zUN6CUtNO94nbMJ2-tAYYWq
-X-Authority-Analysis: v=2.4 cv=fY2ty1QF c=1 sm=1 tr=0 ts=68d446c3 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=ksxQWNrZAAAA:8 a=EUspDBNiAAAA:8 a=JC7H1UVUsGpFjcbbhlEA:9
- a=CjuIK1q_8ugA:10 a=dawVfQjAaf238kedN5IG:22 a=l7WU34MJF0Z5EO9KEJC3:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIyMDE2OCBTYWx0ZWRfXyfWUlCdRMcTn
- WFbHxK225oY2jMLTxo1y4Zgh9BrP3BlCkmgQ8JHBP+MtnEFXeW0DfRGRiJdzjIx0eeOQpVMiEu4
- l7qGUTsII8u60sWn57AiBkraheawd1vtMrQ2bZjNsUO0eOHzDf+z920DEl08ODfJC55K7vl7ajl
- ehHzWJ3+Wy2JZ5Pndhc1puESGHY8hs3cON4CpMSM5UTbbD0sJtR8EaEW8POnJV8RnQLIXN18DAu
- iPlwzlCJpI8AyP0QHtGo/auDodij7++HniJxAwR8o/5hU7SvlNrm+kpqAq/dnqNK9k+jyXSOeaX
- sAZ4nmeCEMMxJWSJB0ThrVl8bbP5IXySHRBRrxZ169R85XKX81BwTozbbwmMdHqsY9fD0aSTD6r
- CVEnNEsV
-X-Proofpoint-ORIG-GUID: ny-0_3np1zUN6CUtNO94nbMJ2-tAYYWq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-24_06,2025-09-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 malwarescore=0 spamscore=0 adultscore=0 impostorscore=0
- phishscore=0 bulkscore=0 priorityscore=1501 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509220168
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v14 1/7] pwm: Export `pwmchip_release` for external use
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
+	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
+	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Guo Ren
+	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
+	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, Benno
+	Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+	Drew Fustini <fustini@kernel.org>, Daniel Almeida
+	<daniel.almeida@collabora.com>, linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
+Content-Language: en-US
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <3jxl6gpxwv376ooyny7qkeokeh7nzafttbyoehmwqzrccn5oip@747v6zdnogso>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250924193035eucas1p18bc9f48e524c3824662031da8261758e
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250820083541eucas1p2ad7d78418576b8bc8cbddd8efe83bbe9
+X-EPHeader: CA
+X-CMS-RootMailID: 20250820083541eucas1p2ad7d78418576b8bc8cbddd8efe83bbe9
+References: <20250820-rust-next-pwm-working-fan-for-sending-v14-0-df2191621429@samsung.com>
+	<CGME20250820083541eucas1p2ad7d78418576b8bc8cbddd8efe83bbe9@eucas1p2.samsung.com>
+	<20250820-rust-next-pwm-working-fan-for-sending-v14-1-df2191621429@samsung.com>
+	<3jxl6gpxwv376ooyny7qkeokeh7nzafttbyoehmwqzrccn5oip@747v6zdnogso>
 
-On Wed, Sep 24, 2025 at 11:07:10PM +0800, Xilin Wu wrote:
-> Radxa Dragon Q6A is a single board computer, based on the Qualcomm
-> QCS6490 platform.
+
+
+On 9/15/25 12:00, Uwe Kleine-König wrote:
+> Hello,
 > 
-> Features enabled and working:
+> On Wed, Aug 20, 2025 at 10:35:36AM +0200, Michal Wilczynski wrote:
+>> The upcoming Rust abstraction layer for the PWM subsystem uses a custom
+>> `dev->release` handler to safely manage the lifetime of its driver
+>> data.
+>>
+>> To prevent leaking the memory of the `struct pwm_chip` (allocated by
+>> `pwmchip_alloc`), this custom handler must also call the original
+>> `pwmchip_release` function to complete the cleanup.
+>>
+>> Make `pwmchip_release` a global, exported function so that it can be
+>> called from the Rust FFI bridge. This involves removing the `static`
+>> keyword, adding a prototype to the public header, and exporting the
+>> symbol.
+>>
+>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
 > 
-> - Configurable I2C/SPI/UART from 40-Pin GPIO
-> - Three USB-A 2.0 ports
-> - RTL8111K Ethernet connected to PCIe0
-> - eMMC module
-> - SD card
-> - M.2 M-Key 2230 PCIe 3.0 x2
-> - Headphone jack
-> - Onboard thermal sensors
-> - QSPI controller for updating boot firmware
-> - ADSP remoteproc (Type-C and charging features disabled in firmware)
-> - CDSP remoteproc (for AI applications using QNN)
-> - Venus video encode and decode accelerator
+> I still somewhat dislike this patch. Isn't it possible to make the rust
+> abstraction use the pointer that .release is set to when it calls
+> pwmchip_alloc()?
+
+Hi Uwe,
+
+Sorry for the delay - I was on vacation and I hope you received my
+out of office message.
+
+I agree your suggestion is technically feasible. My concern was that it
+would make the abstraction less readable and more complex, as it would
+require the FFI wrapper to read the C function pointer and store it as
+state within the driver's private data.
+
+The current approach of calling a known, exported function felt more
+direct. However, I absolutely agree with your point on C API purity and,
+as you suggested, this can be revisited later if needed.
+
 > 
-> Signed-off-by: Xilin Wu <sophon@radxa.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile                  |    1 +
->  .../boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 1107 ++++++++++++++++++++
->  2 files changed, 1108 insertions(+)
+> (I wouldn't further delay this series for this discussion, this can be
+> handled just fine at a later point in time.)
 > 
-> +
-> +&remoteproc_adsp {
-> +	firmware-name = "qcom/qcs6490/radxa/dragon-q6a/adsp.mbn";
+> Best regards
+> Uwe
 
-I really hope to see this firmware in linux-firmware (and DSP binaries
-in the hexagon-dsp-binaries repo).
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-
-
+Best regards,
 -- 
-With best wishes
-Dmitry
+Michal Wilczynski <m.wilczynski@samsung.com>
 
