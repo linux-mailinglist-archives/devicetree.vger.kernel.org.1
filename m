@@ -1,141 +1,198 @@
-Return-Path: <devicetree+bounces-220882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53E9CB9BD12
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 22:11:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16C11B9BDD4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 22:25:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 176FD380961
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 20:11:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57F867A88EE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 20:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1015322DC0;
-	Wed, 24 Sep 2025 20:11:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 666CD329F06;
+	Wed, 24 Sep 2025 20:24:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="GZJFO8Cm"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="I1oZJzFa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AC4E322766
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 20:11:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3626A328576;
+	Wed, 24 Sep 2025 20:24:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758744663; cv=none; b=FWCDMBZ98DH/4DsfLWS1HVWV1mGw7nyAcsaJIsz+yCb5Dauzo+kL2b+W/8KGnBXYo4l1vEZxUSupYWg+19twLKQUt8MQu/BF16V33gQe86/+CVzqF2I54Sjw0/X8uUIzyQ6pc8LZqQy/6R3YtUiZDTsxyIAouyI0fciNj6S0R4M=
+	t=1758745470; cv=none; b=IDy25HeVt1YTW9/7xFz2n+jMLCw3wideMwHxk1NBTk6odjZlsJoTs+XMS0W80vHnpdFSuAcApxZz/hJJDY1r4VwdZmUZmIwd41CGTIZRMU4Dxb3thU/JSXokagJndqAwd+bm/5aPME4vEELfb35yh2CsRGcw8t5P9adnFx8dc7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758744663; c=relaxed/simple;
-	bh=qroifid5E0JwSNY9T4DkdPNSWtVvxDZkd0VXckpiAIU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=A6aFXT6jGOAjjqVOsNWoBl367tIXOuSjiNIROeoCCAOJJSUpVdclxPA6D5hLblMw2eKSQYR77+iygxkGfQaqmGM9tW8dGWyTV+kbeqiOUGdZHNUEas6b0TTpY6jJz0TQqJds+mwqsZy6QTy2dzdY9cOb9vl6pOI+Xb7HMaTSArA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=GZJFO8Cm; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250924201059euoutp01688c62020995f9ac96460c6b73e433c7~oUPMrx3o82619026190euoutp01w
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 20:10:59 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250924201059euoutp01688c62020995f9ac96460c6b73e433c7~oUPMrx3o82619026190euoutp01w
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1758744659;
-	bh=yBKtwjJbPQtED8z7fycvzGQLEUnEMfBKiPR2MumIREw=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=GZJFO8CmRhsefzb4ZNLdzaYTF6Q/ntMXChwbvLFW41SUpZKQrVaJ2QmhBsuDG4DhM
-	 RkZoK2LxmmmoyNNH4TqD8+luA4tXD1CqHfJDf3s0RNtj8s4o2otF4PnLYWOq8Kmz5B
-	 4Mg/IE/l5VtD4mMQNfJDT6kYj7gaqLqjOZoeVKvU=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250924201058eucas1p2d73ba09b4daf4e1779f658dfb3d99722~oUPLmwszc0365803658eucas1p2d;
-	Wed, 24 Sep 2025 20:10:58 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250924201057eusmtip1dcd4c37a079be0694d2881ebcaa5a599~oUPKi7Zsq1997819978eusmtip10;
-	Wed, 24 Sep 2025 20:10:57 +0000 (GMT)
-Message-ID: <0bbdb7d1-5d07-4997-955e-497134a4aa30@samsung.com>
-Date: Wed, 24 Sep 2025 22:10:57 +0200
+	s=arc-20240116; t=1758745470; c=relaxed/simple;
+	bh=flBUgqrKNOGEwefIdPvBIvMyWglR7WH2qJmCa8QRdw8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LT+KlAkPlnxa62Y9quiomK64C5Ztf8rjKQOGkseoZuIhd+QYuAaSTp2OKkxzbWdrPReZtZESXXBFnZLXOfoaAXPTUj+mJsl1PPkZPkJoeFGfBQvY3rEzqAfkhFeBEHosPWV4W36r/Mz68EcA/If/kbuis5fxl22Wg0QUm/S0k0E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=I1oZJzFa; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1758745468; x=1790281468;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=flBUgqrKNOGEwefIdPvBIvMyWglR7WH2qJmCa8QRdw8=;
+  b=I1oZJzFarQO7AZf5hOck+Z1mHC7p0q4eoZcRNQAhEBHwdXM1q4Wbpoc7
+   V75vGve/yCg3Emj7kf1A5KBAi23HebPewETyZbmLoyh77vbMpNRvY+mxD
+   i8rO8R4iYlT2xMv9bi+RlLt0EBR341hZN1rP+5JpdnfxGVDoE+7J+vlyp
+   oV4FOXV4ufz97+M25VBOqpHAyepfTSZgnBEHo6xOwGNf+d5/VP837VmeE
+   xdDu4uoLBENAxNTCAJa9Qk9u3cJ5kS8IOls9RvaDy9aGApiezJ022NDLS
+   U+e5mjltzTDsNo8vaDwvwa27vrlz03wMyNpzGXgNdEEo625oQ3GoLMOTu
+   A==;
+X-CSE-ConnectionGUID: FzTJahKxTB61JRfALCf01g==
+X-CSE-MsgGUID: 5mW4zQiqTGS7m901ZY6uBQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="61106240"
+X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; 
+   d="scan'208";a="61106240"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2025 13:24:27 -0700
+X-CSE-ConnectionGUID: DYPbMESTS2ykDgHn600lmg==
+X-CSE-MsgGUID: YWobIhYnSjGNsATY751hdw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,291,1751266800"; 
+   d="scan'208";a="181403805"
+Received: from lkp-server02.sh.intel.com (HELO 84c55410ccf6) ([10.239.97.151])
+  by orviesa004.jf.intel.com with ESMTP; 24 Sep 2025 13:24:21 -0700
+Received: from kbuild by 84c55410ccf6 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1v1W2E-0004Xd-2J;
+	Wed, 24 Sep 2025 20:24:18 +0000
+Date: Thu, 25 Sep 2025 04:23:31 +0800
+From: kernel test robot <lkp@intel.com>
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, jic23@kernel.org,
+	michael.hennerich@analog.com, nuno.sa@analog.com,
+	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	corbet@lwn.net, marcelo.schmitt1@gmail.com,
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
+	Trevor Gamblin <tgamblin@baylibre.com>,
+	Axel Haslam <ahaslam@baylibre.com>
+Subject: Re: [PATCH v2 6/8] iio: adc: ad4030: Add SPI offload support
+Message-ID: <202509250425.p1Sm9XA1-lkp@intel.com>
+References: <da55c0ed6fe895dc84e79c8b64e5923a4851e58f.1758214628.git.marcelo.schmitt@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 2/7] rust: pwm: Add Kconfig and basic data
- structures
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Guo Ren
-	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
-	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
-	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, Benno
-	Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
-	Drew Fustini <fustini@kernel.org>, Daniel Almeida
-	<daniel.almeida@collabora.com>, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <upgthwp3cyohhe2gkzsramzshmvz3icjbhro6hgk2drbbqczi4@ygaanetydgjv>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250924201058eucas1p2d73ba09b4daf4e1779f658dfb3d99722
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250820083542eucas1p221dacb3b69524b0dd6f7abf870adbe04
-X-EPHeader: CA
-X-CMS-RootMailID: 20250820083542eucas1p221dacb3b69524b0dd6f7abf870adbe04
-References: <20250820-rust-next-pwm-working-fan-for-sending-v14-0-df2191621429@samsung.com>
-	<CGME20250820083542eucas1p221dacb3b69524b0dd6f7abf870adbe04@eucas1p2.samsung.com>
-	<20250820-rust-next-pwm-working-fan-for-sending-v14-2-df2191621429@samsung.com>
-	<upgthwp3cyohhe2gkzsramzshmvz3icjbhro6hgk2drbbqczi4@ygaanetydgjv>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <da55c0ed6fe895dc84e79c8b64e5923a4851e58f.1758214628.git.marcelo.schmitt@analog.com>
+
+Hi Marcelo,
+
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on 561285d048053fec8a3d6d1e3ddc60df11c393a0]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Marcelo-Schmitt/iio-adc-ad4030-Fix-_scale-value-for-common-mode-channels/20250919-014323
+base:   561285d048053fec8a3d6d1e3ddc60df11c393a0
+patch link:    https://lore.kernel.org/r/da55c0ed6fe895dc84e79c8b64e5923a4851e58f.1758214628.git.marcelo.schmitt%40analog.com
+patch subject: [PATCH v2 6/8] iio: adc: ad4030: Add SPI offload support
+config: x86_64-randconfig-077-20250922 (https://download.01.org/0day-ci/archive/20250925/202509250425.p1Sm9XA1-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250925/202509250425.p1Sm9XA1-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509250425.p1Sm9XA1-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/iio/adc/ad4030.c:561:20: error: no member named 'offset_ns' in 'struct spi_offload_trigger_periodic'
+     561 |                 config->periodic.offset_ns = offload_offset_ns;
+         |                 ~~~~~~~~~~~~~~~~ ^
+   drivers/iio/adc/ad4030.c:566:28: error: no member named 'offset_ns' in 'struct spi_offload_trigger_periodic'
+     566 |         } while (config->periodic.offset_ns < AD4030_TQUIET_CNV_DELAY_NS);
+         |                  ~~~~~~~~~~~~~~~~ ^
+   2 errors generated.
 
 
+vim +561 drivers/iio/adc/ad4030.c
 
-On 9/15/25 12:13, Uwe Kleine-König wrote:
-> Hello Michal,
-> 
-> On Wed, Aug 20, 2025 at 10:35:37AM +0200, Michal Wilczynski wrote:
->> Introduce the foundational support for PWM abstractions in Rust.
->>
->> This commit adds the `RUST_PWM_ABSTRACTIONS` Kconfig option to enable
->> the feature, along with the necessary build-system support and C
->> helpers.
->>
->> It also introduces the first set of safe wrappers for the PWM
->> subsystem, covering the basic data carrying C structs and enums:
->> - `Polarity`: A safe wrapper for `enum pwm_polarity`.
->> - `Waveform`: A wrapper for `struct pwm_waveform`.
->> - `Args`: A wrapper for `struct pwm_args`.
->> - `State`: A wrapper for `struct pwm_state`.
-> 
-> Args, State and Polarity are only needed for the consumer side of the
-> PWM API in Rust, right?
-> 
-> I don't particularily like like pwm_args and wonder if this really has
-> to be exposed to Rust.
+   502	
+   503	static int __ad4030_set_sampling_freq(struct ad4030_state *st,
+   504					      unsigned int freq, unsigned int avg_log2)
+   505	{
+   506		struct spi_offload_trigger_config *config = &st->offload_trigger_config;
+   507		struct pwm_waveform cnv_wf = { };
+   508		u64 target = AD4030_TCNVH_NS;
+   509		u64 offload_period_ns;
+   510		u64 offload_offset_ns;
+   511		int ret;
+   512	
+   513		/*
+   514		 * When averaging/oversampling over N samples, we fire the offload
+   515		 * trigger once at every N pulses of the CNV signal. Conversely, the CNV
+   516		 * signal needs to be N times faster than the offload trigger. Take that
+   517		 * into account to correctly re-evaluate both the PWM waveform connected
+   518		 * to CNV and the SPI offload trigger.
+   519		 */
+   520		if (st->mode == AD4030_OUT_DATA_MD_30_AVERAGED_DIFF)
+   521			freq <<= avg_log2;
+   522	
+   523		cnv_wf.period_length_ns = DIV_ROUND_CLOSEST(NSEC_PER_SEC, freq);
+   524		/*
+   525		 * The datasheet lists a minimum time of 9.8 ns, but no maximum. If the
+   526		 * rounded PWM's value is less than 10, increase the target value by 10
+   527		 * and attempt to round the waveform again, until the value is at least
+   528		 * 10 ns. Use a separate variable to represent the target in case the
+   529		 * rounding is severe enough to keep putting the first few results under
+   530		 * the minimum 10ns condition checked by the while loop.
+   531		 */
+   532		do {
+   533			cnv_wf.duty_length_ns = target;
+   534			ret = pwm_round_waveform_might_sleep(st->cnv_trigger, &cnv_wf);
+   535			if (ret)
+   536				return ret;
+   537			target += AD4030_TCNVH_NS;
+   538		} while (cnv_wf.duty_length_ns < AD4030_TCNVH_NS);
+   539	
+   540		if (!in_range(cnv_wf.period_length_ns, AD4030_TCYC_NS, INT_MAX))
+   541			return -EINVAL;
+   542	
+   543		offload_period_ns = cnv_wf.period_length_ns;
+   544		if (st->mode == AD4030_OUT_DATA_MD_30_AVERAGED_DIFF)
+   545			offload_period_ns <<= avg_log2;
+   546	
+   547		config->periodic.frequency_hz =  DIV_ROUND_UP_ULL(NSEC_PER_SEC,
+   548								  offload_period_ns);
+   549	
+   550		/*
+   551		 * The hardware does the capture on zone 2 (when SPI trigger PWM
+   552		 * is used). This means that the SPI trigger signal should happen at
+   553		 * tsync + tquiet_con_delay being tsync the conversion signal period
+   554		 * and tquiet_con_delay 9.8ns. Hence set the PWM phase accordingly.
+   555		 *
+   556		 * The PWM waveform API only supports nanosecond resolution right now,
+   557		 * so round this setting to the closest available value.
+   558		 */
+   559		offload_offset_ns = AD4030_TQUIET_CNV_DELAY_NS;
+   560		do {
+ > 561			config->periodic.offset_ns = offload_offset_ns;
+   562			ret = spi_offload_trigger_validate(st->offload_trigger, config);
+   563			if (ret)
+   564				return ret;
+   565			offload_offset_ns += AD4030_TQUIET_CNV_DELAY_NS;
+   566		} while (config->periodic.offset_ns < AD4030_TQUIET_CNV_DELAY_NS);
+   567	
+   568		st->cnv_wf = cnv_wf;
+   569	
+   570		return 0;
+   571	}
+   572	
 
-You're right that Args is primarily for the consumer side, and our
-provider driver doesn't use it at all. I only included it for
-completeness, so I'm happy to remove it from the abstractions.
-
-I did use State on the provider side, however, to check if a channel is
-enabled before writing new hardware values - I've seen your comment
-about it that it's better to use the HW registers instead, I remember I
-tried doing something like this back in May when started working on
-this, but haven't succeeded - will refresh my memory and respond to the
-driver comments.
-
-> 
-> I think for State (and thus Polarity) we have to have it for the
-> forseeable future.
-> 
-> Best regards
-> Uwe
-
-Best regards,
 -- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
