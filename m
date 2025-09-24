@@ -1,130 +1,206 @@
-Return-Path: <devicetree+bounces-220705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9F74B9980F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 12:53:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8927B9983A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 12:58:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7AC6A3206D3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 10:53:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 552383AC371
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 10:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9146D2DF703;
-	Wed, 24 Sep 2025 10:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F37532E284B;
+	Wed, 24 Sep 2025 10:58:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ndVmxXrE"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="SiQaQDkO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C650A22541B
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 10:53:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746C73C01
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 10:58:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758711226; cv=none; b=Cs0a4kXNYZE7dE8rfj+VWsZIlylZxpORTXKUx8XqxJ8AtYSw0cdIX7BhMiTeIkBEPVdLiFnzOxgVnaob9vGu2tvW7KKeb70+ZyocHsjCmZ7dPEyRqi9qfHcqlf6KluBkoIIU/gexfoUwTWQN2yftNRVlCIhJ7EnqqxSzthVWsLQ=
+	t=1758711516; cv=none; b=nU2ZrKaKYS7mKxXUk+stT9eiuQwYbbW9GwCnqBiKeEoKTDmMe13HdkBuWYlCHhe7Mq9XOZXhuKz9hnpoxyD9rsjsR+5P3o/uT1tuNqw5qgyowyLltpA/L+pukFCEGPJrFb+9Vtww1cT2E26cDut7O2KNIZP9HzpmZW1/4AL2Ju4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758711226; c=relaxed/simple;
-	bh=HRWoi0QPhOyVK9HAAW0ry/e2vyNhrqXFfsSQ7wly9Nw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=d5BnrFj9l6Li+oFGnDn8+vyl0TMWWt5RBQR7h/uu3Gdk+4J2CVOUS6FcS4MpYvjr5aPTWLR7Sg81EfOZ8/gESRnWFWBQeLI+2I/V4sJ/YSOOXXCdJ1JpRXb4BpHQXc2SyEhMle5DXp8CWNqKGIKbcwuLvWMB3PcbBKVeKZfUuv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ndVmxXrE; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-62f0702ef0dso1559478a12.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 03:53:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758711223; x=1759316023; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=zrEv7zqsjwi3P+M+icSri3Qb2jo0e2SlJQEgIxrEQ0E=;
-        b=ndVmxXrECCOaiuk6x0SDedXu7pAE7jUk8FKrL4PBgMBPQGwmFMB0uGUpm7XLyKEnId
-         hgaIwx0LwQGCDoATXeCYvaYAmQN7EnTVxZVBqwoKTW+8euXV4+941k+kevlP3Wg6zWG7
-         vStCQRrrrgueUp+CEy44G7mPjkwHNGoLN0lAFgb5tNOqFRbzawGzgqCJtLGKNuY3t64b
-         5jdg8RZEdYYpWRj2BQbIKAQTaMcuKsXaU05lDs+5TO+bgvIE1uskTqFCuPZHO6smbVWp
-         Z57gzR1mOaJaPJyNgn82pFSdFO9bBlhB8J0Fzl0K5M1rpDCwP4wElPkiSgPyfp1K3dIt
-         cNRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758711223; x=1759316023;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zrEv7zqsjwi3P+M+icSri3Qb2jo0e2SlJQEgIxrEQ0E=;
-        b=ZGAsFqX189gnqk5tRxiAI8zPArHs5v/71TY3PKMMMwGxZl+AeaUCH+q3bq19WLXHpD
-         tMt2P0G3RUpTMuKVKCj2m+IPgJlMLs5jVQtr5m5RTWoqdutd+IAOHMX/FJFcGOuaP+tJ
-         aRpGL1cyB1Ur5NhT716nWLWdz6TilhaoSMybhM/Db579bt4bzX4a9erCjxnbtdqP/WOO
-         9VhAvxgtwieiXhqBeFSXx/r1/Hw9fi63EFuL7Fqece+zf6xcwBX1yKDMc4jJb6EHEDBg
-         stnIWEyXrT/9qn3h6jeHdHRY/2tsZxqYIqnZ6aPU3Tv8+cJGrXDC7vHoOZms2wDG/c0w
-         b9xA==
-X-Forwarded-Encrypted: i=1; AJvYcCXs/3iPvlocZF609/3n66tBQZ7t99nWRQWbea5JVAehjWNbuCIk0mSb8NFIeHxB3FFHgXDoof3rvqrn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxclub2Dd0uS9QoaEK2mCDW5OQHLt3i+rriL55BdbSIAviyQQ10
-	IRlrSUDqk/Fy8OvivkL+ExQOs0u6l189gITuUrh+cpidqD2UwJyTIjsIsUhO78fPwoLzE8lT+Js
-	3YgQMNhiDKPT/J5PiTN3h5VYhyfG8hno=
-X-Gm-Gg: ASbGncvt6AVYmqmryts8GfDrORtQ7wkxOowPVoNvR8dF6bXOmcZLLmOoUhPnzgO6gkb
-	y1zxoaIiKTY007EmghxCGpyzkfS1ty67WOHAgi8h+kw19LdstMf1pFwBRwZKwMq4m1oqukwfByd
-	VOqVVM96dNgP+cfEasf0/4rWGtLZpXEQfEnQ3SIR73IixdklokHFIv1ahEMRMX2q0JrsLmjmrBR
-	FhQrjugRkh61Y5Csqguo8dx095sv+lVY1HIwKnESmulsJsXYzIrFcEuHpx+WbCIFvGR8rc7bg4=
-X-Google-Smtp-Source: AGHT+IElwm2D6ahJvJYWjzllsUAXxuzHg7w0LYwr0Rx19Xx6M2bIwwWSbKEC/u5fSfyIkYIz5R6vZEOX8g3yjZ+xBeA=
-X-Received: by 2002:a05:6402:2b8e:b0:61a:7385:29e3 with SMTP id
- 4fb4d7f45d1cf-63483b2cd9dmr2323581a12.18.1758711222765; Wed, 24 Sep 2025
- 03:53:42 -0700 (PDT)
+	s=arc-20240116; t=1758711516; c=relaxed/simple;
+	bh=ogG9WC015jZe10wN+P7sL03Gdm4Uwxatq15inW75C8U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J3PYflYt4t0vrLrNCUjwsfONBWfmu++afd+3Twod4fUlg1ASdxmZ+S6esVuIoO8TsZBML4YZP4AVbMZ8EtzoSOgEl1b+Bt5QWdPT9A/cGhueCeN6bT5Z1uudbskoeBccrXNI4l+WcaFkEyOiH+xHbi37wbPggsMN1yH8blrJkeQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=SiQaQDkO; arc=none smtp.client-ip=212.227.15.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1758711510; x=1759316310; i=wahrenst@gmx.net;
+	bh=eZCn/N8gb13dMyE8VkaFH0j2WUDKpll8BmLZY4GIH5Y=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=SiQaQDkO6qXPx8QFeHaA768TZHSLavamR4aaf15T/2YamjIpXMVzMrJvZyocU41m
+	 Mk3ZSBZsGYGda9IYHpt7u7Dfnp+B5C7FCwLNnYcqQVocdyJDxPxIi45fCE0IPnTJ0
+	 xk5Rz9MYU7W6nzTcyJYSCEwgoeJ+sQkBHQxJJ3dDayYg4JCk2bE6W7G7bhWTsRmR2
+	 PpeQMOYJwqI78sXZ6zgQbsj1rNrQXYCGSQVpg4iFBG6CLQLyjJFduhoJUqgEnVUra
+	 P96jfDIKp5nIlPmccwmHFWNf10/vAmdeu6PtsOjc2pP2iDnSRZmsUQbEoge3RMaC4
+	 hxU95pX9G4Lb3AhIfQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.105] ([79.235.128.112]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MCsU6-1vACuM2sgi-00Di3w; Wed, 24
+ Sep 2025 12:58:30 +0200
+Message-ID: <62e92749-4373-4dfb-8570-7b41b4c131fb@gmx.net>
+Date: Wed, 24 Sep 2025 12:58:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250924090105.1061910-1-pbrobinson@gmail.com> <545e2819-9654-449e-aa57-636bee88c744@gmx.net>
-In-Reply-To: <545e2819-9654-449e-aa57-636bee88c744@gmx.net>
-From: Peter Robinson <pbrobinson@gmail.com>
-Date: Wed, 24 Sep 2025 11:53:30 +0100
-X-Gm-Features: AS18NWCImlKVFGeu4aCQ269cXhwCpD6ZojqmN7wwszPeWUPh5IQFoTjTTFyU98g
-Message-ID: <CALeDE9NjF2xnc3rLi_SK2FPMSf2codQxBwqF+Q4XEuGMd6i8Cg@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH] arm64: dts: broadcom: bcm2712: Enable RNG
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
-	Dave Stevenson <dave.stevenson@raspberrypi.com>, Phil Elwell <phil@raspberrypi.com>, 
-	Andrea della Porta <andrea.porta@suse.com>, devicetree@vger.kernel.org, 
-	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+To: Peter Robinson <pbrobinson@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Phil Elwell <phil@raspberrypi.com>,
+ Andrea della Porta <andrea.porta@suse.com>, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+References: <20250924090105.1061910-1-pbrobinson@gmail.com>
+ <545e2819-9654-449e-aa57-636bee88c744@gmx.net>
+ <CALeDE9NjF2xnc3rLi_SK2FPMSf2codQxBwqF+Q4XEuGMd6i8Cg@mail.gmail.com>
+Content-Language: en-US
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <CALeDE9NjF2xnc3rLi_SK2FPMSf2codQxBwqF+Q4XEuGMd6i8Cg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:FlBuXIfEhf1PedGVJBrJx9tbGpRoySpDnZRFnqLML0D7JncatU+
+ Y4k6G1KfXudzFDBcbLK+lEyg9EkGlJ0a//UYNFyM9ImcVC1MyAiZOp09lCoIf88ncnJcNW1
+ d00r8gvLtrkHcM+zshhosV2ofHXic/1kMVtNZbOFrQkrOAt/0BDcA2e0auZIDH0QkPBeSKW
+ xLhC98sUsxJp61s+HKZBQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:MyEpqRd9OE4=;yAFCwjO5TkzWhrZt3fZyQtvSz4j
+ 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
 
-On Wed, 24 Sept 2025 at 11:48, Stefan Wahren <wahrenst@gmx.net> wrote:
->
-> Hi Peter,
->
-> Am 24.09.25 um 11:01 schrieb Peter Robinson:
-> > The RNG is the same IP as in the bcm2711 so add the
-> > device tree block to enable the device.
-> >
-> > Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
-> > ---
-> >   arch/arm64/boot/dts/broadcom/bcm2712.dtsi | 6 ++++++
-> >   1 file changed, 6 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-> > index 4cd51d80d40d0..6976a88c262f4 100644
-> > --- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-> > +++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
-> > @@ -226,6 +226,12 @@ system_timer: timer@7c003000 {
-> >                       clock-frequency = <1000000>;
-> >               };
-> >
-> > +             random: rng@7d208000 {
-> > +                     compatible = "brcm,bcm2711-rng200";
-> > +                     reg = <0x7d208000 0x28>;
-> > +                     status = "okay";
-> > +             };
-> thank you for the patch. I know the order is already messed up, but
-> could you please try to add it after uart10?
+Hi Peter,
 
-Sure, can you let me know the preferred ordering so I can understand
-what we're aiming for overall?
+Am 24.09.25 um 12:53 schrieb Peter Robinson:
+> On Wed, 24 Sept 2025 at 11:48, Stefan Wahren <wahrenst@gmx.net> wrote:
+>> Hi Peter,
+>>
+>> Am 24.09.25 um 11:01 schrieb Peter Robinson:
+>>> The RNG is the same IP as in the bcm2711 so add the
+>>> device tree block to enable the device.
+>>>
+>>> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+>>> ---
+>>>    arch/arm64/boot/dts/broadcom/bcm2712.dtsi | 6 ++++++
+>>>    1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/bo=
+ot/dts/broadcom/bcm2712.dtsi
+>>> index 4cd51d80d40d0..6976a88c262f4 100644
+>>> --- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+>>> +++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
+>>> @@ -226,6 +226,12 @@ system_timer: timer@7c003000 {
+>>>                        clock-frequency =3D <1000000>;
+>>>                };
+>>>
+>>> +             random: rng@7d208000 {
+>>> +                     compatible =3D "brcm,bcm2711-rng200";
+>>> +                     reg =3D <0x7d208000 0x28>;
+>>> +                     status =3D "okay";
+>>> +             };
+>> thank you for the patch. I know the order is already messed up, but
+>> could you please try to add it after uart10?
+> Sure, can you let me know the preferred ordering so I can understand
+> what we're aiming for overall?
+Sure, all nodes with an unit address should be ordered ascending by unit=
+=20
+address.
 
-> > +
-> >               mailbox: mailbox@7c013880 {
-> >                       compatible = "brcm,bcm2835-mbox";
-> >                       reg = <0x7c013880 0x40>;
+https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
 >
+>>> +
+>>>                mailbox: mailbox@7c013880 {
+>>>                        compatible =3D "brcm,bcm2835-mbox";
+>>>                        reg =3D <0x7c013880 0x40>;
+
 
