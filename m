@@ -1,159 +1,195 @@
-Return-Path: <devicetree+bounces-220852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 461D7B9B6AC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 20:21:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4407FB9B6B8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 20:21:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18CFB16AFC5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 18:20:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA8DE7B32B7
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 18:19:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E55A731B122;
-	Wed, 24 Sep 2025 18:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3158F314A8F;
+	Wed, 24 Sep 2025 18:16:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DMHUu3Ff"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NQhFsz+z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 602EB313290
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 18:13:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AE57273FD
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 18:15:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758737596; cv=none; b=rcgf4Pbcl9Du2M3q4rRUnEtC7VoN3FMNFWdpOTwRkHtgybRP2ccpYZH0+wcHNEXgA2vzMWyGrYDVLwl3BDgRxltveYlqYRzcQwrUQljt4V9KJ5QdI2uCosS5ejhN0DttfO92Ljn8NPOWSCr8TnIjp9LpwjKvYYiQqmkzhk8RXmI=
+	t=1758737761; cv=none; b=METm+kq1ROr/PucASVmBa01DliXhelj75FAHQgUPHCEXC+7J3LmpbCCTr+/xcQ4bw7faG71+rsHyEIKCX6W1QbMQ/SxGraPxp5yZNlcNPt2L0bM9yQazoqYnnMxrV0teaNWdU+x6NZz7gpuHQYhLYimbJYFo2THYxuCH4Q1QAz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758737596; c=relaxed/simple;
-	bh=M7ZCsviA12Kq2BLXiMjEzbUy+IfNX0SZv2oZDsAaha0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gZbOzzDbQzb9qznfEd04LIQxhsrWIdiIrV3E2tTYGIL64elcoiUiFFt+WKNKywwQcKboXnzzweflScCJLtlR4sXT9EsFzl9/HVcNxDYdwGcWcpflTWl+Ck/vXRe4hp7zZhe5C4ir+KsjlVNkbPbdI/4gyyRkTDdfz7IIWneVCS8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DMHUu3Ff; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58ODGOfF017437
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 18:13:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	+d/bjG4IKs4GaMkXZIdc3sQ21R7u8h5UijejmydnXp8=; b=DMHUu3FfvOsgGLEk
-	uYyB9Q3MR/mNQPMthq90t+mnpZ/tu/itlCpgBR7Cw4sfC7GvrjxwkWWIuXh8WPtC
-	ltlWfa33T59Vsx0CourqHd2umhbhyrTOntbFbFqxWPr0Sky6lxpepIn0vhmzkUyj
-	8Ef/GBjH0l6PiWxF+zrV8eGN4iNI9bywXiYmr7FycjpqksxTO+8wEBOUE+qhlhae
-	hkgKKVYHEzZRGkfUskBzWXKqxoNr3s3NoVHJXbKcAP3R1YYXK3LlIXl7YCDLSRVE
-	x/H2lGPcexpV0oz/T6GRgcvzZ09U6R/NdgJOsEKVdjg/Zh9twmfLWNGuKM9QYn6w
-	m2c1NA==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bhvjxp22-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 18:13:14 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b3ca5e94d3so204411cf.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 11:13:14 -0700 (PDT)
+	s=arc-20240116; t=1758737761; c=relaxed/simple;
+	bh=dfwfuFTY9iyOuR1o5RQ+QUlCADXgYX5kBy4tZYH5TOE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=r4X0r1GmFp5sei5SYK0QVevto5Mf5i4SAdCXQYqIA30ieXu+q9p4hxxGc8SQSRlyTWKt0y9LLKIbGPSpl5reOBt6JX+fipCTd7CK2GyOc0H4XFxpjosNCxB3mroGxpzNLDdYVj6dZzm7ICusxm5lFABUcmG6EGNzY4N8jvXTB8c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NQhFsz+z; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-3324523dfb2so126174a91.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 11:15:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758737759; x=1759342559; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JcbuWi+Io8bnFro7IRwuS3doRGB03OgebBpyHP3b0As=;
+        b=NQhFsz+zmXONPoJkBuGzyr5fN02Y8+BPQwSl8AIc+YCRgg+Lb9Wq6YZawPEtfxEOHB
+         0esH6q4L7B5W33foqiIrw/DhE1hxs1piWDhqW7vH5FOUwLFaTIdZ60iQa7vHvThGIi0H
+         AcmG1YS8ZN6vqYlAgqG+r3/ejxVtmGGjssIOh+1F4qp1xiAV/3WsTsN8N6kCHY/1qV/i
+         DcnNlYt5EK5ljqsjtqFJ7n8JOsFZe5euDc+8lHa0PWdY6KAdtPdWpzx1/4lwMaTIRFLX
+         5wXr5tGoP/bHiM5OSlNvgz2jOuSDAKxqajCeNPeZNkFOJVfDbegAZ0PmpdfquW2oGmaA
+         fprA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758737593; x=1759342393;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+d/bjG4IKs4GaMkXZIdc3sQ21R7u8h5UijejmydnXp8=;
-        b=oEcPyGc5PIIXPwNPt5/jFeszU5y54seyiFuBxZ+No9Pvrakh9e2FvD8AUOchcMsrym
-         1v0LOy1hVWsbQoDZbVex9Gvzlg25Brx3YwPrzxDgNV0ECfjcvDSOUSIMMkVXt/zCYwc1
-         gjRJXORZu7C/KJV9Nth8BEAMPJTV7Rx7/Hh2Z1wFSwy7kwG55Xpj3g//fK+KNVco1xhX
-         LDNRdhGQQ/boJMoCnxo1Tn0PjgC99UijvgN0c49EILh60rOO5afFOwDAETPQH/dBVLbr
-         4NURh+oIgMrqY72AdlD+1jg3XFKrl0RcFllx4Ngewpxmu3MZGz2+j1bInES3oMjl1OY5
-         DQrw==
-X-Forwarded-Encrypted: i=1; AJvYcCXyXWy58dwMZPl54eNSiJvUr3eNrrX7wNfNNAy/6uSWgXfoGf5WZWuw7NMiHyPCmbxptKB6c5sjp+2f@vger.kernel.org
-X-Gm-Message-State: AOJu0YwZJBOxGSvpI9CjKxkffE83jRiiAclZHyrCC7HurvvA2+iBH0q9
-	RWWYCzCvRsAkejIaVh9reSh4V9ecmL9UygAnWTEnjctbqXfeSB24OLyIrVkqiacKgkyIASpc/3b
-	lUGxATv+tWM0gKC0YE9LneAx5qhUlZVZWS+g+Z9gFXVC3Uw38XCKNlDYPnhptWe8b
-X-Gm-Gg: ASbGnctAozbImFrDvGKvdy1nzgcqZgi0DWODQfDtfXlV6krhTbIog3pFkgZZ73WK3A6
-	3qp8bHDBibFk6aimlqDzwJ5xNZp41J7uhhjLz9ohTHbnQCXPk/Unb3xIAf9bq5qGZ7ZLLRaYRBp
-	8qiE4C9ftfz5ZuTslDjpVN38dlncLKVSdEX2zZGFIqoJEFMziDtCjRFtCCfHFHiy+Jybzm2tsv3
-	7rTuXxFNvNwO+UOrIG77+qioma7rCgeH+4ybLzJPLf5lzmISZP2JXWyP0LmaineU7tvvjCRLuOM
-	/IqdW/ZhLI0oAFeYBsnUacPs66RUtmevrJ2MFT3fqjF51MVDozTkOKOKuOTkwAjae2MfzVipSX3
-	061hOX8NGmC0cXtV38WQ7jg==
-X-Received: by 2002:ac8:5a16:0:b0:4d7:6c8a:4792 with SMTP id d75a77b69052e-4da41e11477mr7368411cf.0.1758737593163;
-        Wed, 24 Sep 2025 11:13:13 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEUrYdsVWHPkjY92Tsx8psvdidntggOzOo1g1ABjKRkZScDXnajq+uUIinLMN1uXr7EvDbwDw==
-X-Received: by 2002:ac8:5a16:0:b0:4d7:6c8a:4792 with SMTP id d75a77b69052e-4da41e11477mr7368081cf.0.1758737592593;
-        Wed, 24 Sep 2025 11:13:12 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b2a1773375esm916182166b.20.2025.09.24.11.13.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Sep 2025 11:13:11 -0700 (PDT)
-Message-ID: <a7a41d1f-372e-4e90-9785-fd63212752c2@oss.qualcomm.com>
-Date: Wed, 24 Sep 2025 20:13:09 +0200
+        d=1e100.net; s=20230601; t=1758737759; x=1759342559;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JcbuWi+Io8bnFro7IRwuS3doRGB03OgebBpyHP3b0As=;
+        b=MLoKF5B4HfA1KZmB8UzUMLgTBl+rGXGAL2o2bSTEQ1vW8EYfk4JogKMGBNMEeFt1d7
+         NRWcU8qiG/e5AZP+Oqu5lZLAYz1iB7w7wm64CGSOnmMGbbsv1JGti/r6q+YLdfvDp9Vr
+         TIGiM93jVsi0rw1evlNr4a0PSL8qCHfbaGbZpYeXPKMbk19yF6XsHIW7wrXhtPHPdRc8
+         RriKOElOCVftrqhweohg9hfcJ5ouPmcLWVQ2m2fWUVcmi/+N4YdPu8VNmD8jmN3/IcWP
+         31GTZ1Ktqn3jmpmEZuFvGHwR3pqzof3fyMJWWJMcQyGtRX81DELI367P58lAxOgKPg9W
+         G1zQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUX23PwRSo16hf6HHJxzeQ8MsvaaBN5d3sQMJ9jwRfahkmIcrgQ4NsPAIYnEkrJIQBkOH//Wb5nR2/x@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3zQ9B3cjvMtfCy/ewIgbZ5CdJkXaKgToqIIpVdUdmBRgeliur
+	MzRZgj+/Gy1yAifoF1qjB4j19YqlCuijpEx7vc9lO0h9bwnrDqLROePWHl/gaPcMf76tPiXFCRK
+	n7gQSfDVbSr+ivw0jWq377pzFUKUpPsI=
+X-Gm-Gg: ASbGncvApch4XrM/NcB7QpYXmyTFN2Fz3M2y/YyD0lCZMQODi5P3wzkgAh2tmbiWjtK
+	+S4alwDRpncQ6gmGSOacm9g3PAjxqksu+ArOE3daBNTCzNDih+x7Zmss5q8VnWZVsvDuR37QPct
+	heoxf1Y8aMSLgYYF+eq3H1nA/G+j5ogy4dRY6+X9vS0uoN5lry4f8tAxCJovD5aP+9yP+rEwGPW
+	xyYIw==
+X-Google-Smtp-Source: AGHT+IHrp5tqgdua1ITAPTFT5OarXplhOLiXY7sra+HIubTWu73xvhsas1hF0kW3xyrfI+mCZzmHvrcV1fNmRv3INHM=
+X-Received: by 2002:a17:90b:2786:b0:327:e59d:2cc2 with SMTP id
+ 98e67ed59e1d1-3342a24776cmr760319a91.10.1758737758707; Wed, 24 Sep 2025
+ 11:15:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/14] arm64: dts: qcom: add refgen regulators where
- applicable
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250921-refgen-v1-0-9d93e64133ea@oss.qualcomm.com>
- <eec9a046-2742-4b7f-86ac-ef11dae19aee@oss.qualcomm.com>
- <CAO9ioeWJh6fkDYT-Y6O4mJHN3CpVw-D0nygvA0TsgHGqXpLq-w@mail.gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <CAO9ioeWJh6fkDYT-Y6O4mJHN3CpVw-D0nygvA0TsgHGqXpLq-w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: O-g5W5nsC4Zs_IPKjskvYG7UcIBktcr4
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDAxMSBTYWx0ZWRfXyFb0/2/lpvzG
- Gz544jWC+kPRNSs8zsznxadYmXfhG3w/bqenDTVrTsxoA4wyWNZAWOhiQ30hNTdWqt03/uUa7CH
- jTeyqOGLmusUJrfcqb9vhmtwr3TTRMpj47UrsCt2y1XUGW2YE0bXq8Yvt+BNWW4kYkVXbJAOlh7
- lVk+IpgGfnr3hJiHqUClCGa4y3HwQN5mS866hvldB2Ht++nJaGxyPpcVjqJGdStlvLD4MBDqIWy
- 9WSQ1hUecLsq6A6SKEm9/i/oohGmHmRTiYbZBrt2ws83AubgHOIk8vVzKWJz2KS7PT8nvRooyB/
- jpYlYaWq1moP2pm1gVXFoMQWCUv3l57R/zFJ8typQYGAUOXvpJtbLF/UgOL0Sm1sEiURoRjlrNK
- GNgVwG2E
-X-Proofpoint-GUID: O-g5W5nsC4Zs_IPKjskvYG7UcIBktcr4
-X-Authority-Analysis: v=2.4 cv=Csq/cm4D c=1 sm=1 tr=0 ts=68d434ba cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=pnmvfhyxxA4803ucUmIA:9
- a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-24_04,2025-09-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 adultscore=0 impostorscore=0 phishscore=0
- clxscore=1015 spamscore=0 priorityscore=1501 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509230011
+References: <20250921083446.790374-1-uwu@icenowy.me> <20250921083446.790374-3-uwu@icenowy.me>
+ <20250922204349.GA1290045-robh@kernel.org> <1ac8c72206abf9f3e0a13e1fcf44be5c605f6372.camel@icenowy.me>
+ <36040a0a40311cb1e871075f0c5ad175342ed5db.camel@icenowy.me>
+In-Reply-To: <36040a0a40311cb1e871075f0c5ad175342ed5db.camel@icenowy.me>
+From: Christian Gmeiner <christian.gmeiner@gmail.com>
+Date: Wed, 24 Sep 2025 20:15:46 +0200
+X-Gm-Features: AS18NWCvbmWm8Uh8k0eTkgon1YhYqcVgJtn1frt8RyZne-mAquU2_sGmtRcjlzM
+Message-ID: <CAH9NwWdx-Ut35RvhmNsdQbC4vfm3rH1VPN7H2uDBRsmsFjZU_Q@mail.gmail.com>
+Subject: Re: [PATCH v2 2/8] dt-bindings: display: add verisilicon,dc
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: Rob Herring <robh@kernel.org>, Lucas Stach <l.stach@pengutronix.de>, 
+	Russell King <linux+etnaviv@armlinux.org.uk>, 
+	moderated for non-subscribers <etnaviv@lists.freedesktop.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Michal Wilczynski <m.wilczynski@samsung.com>, Han Gao <rabenda.cn@gmail.com>, 
+	Yao Zi <ziyao@disroot.org>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 9/24/25 7:32 PM, Dmitry Baryshkov wrote:
-> On Wed, 24 Sept 2025 at 13:13, Konrad Dybcio
-> <konrad.dybcio@oss.qualcomm.com> wrote:
->>
->> On 9/21/25 9:09 AM, Dmitry Baryshkov wrote:
->>> On several Qualcomm platforms the DSI internally is using the refgen
->>> regulator. Document the regulator for the SDM670, Lemans and QCS8300
->>> platforms. Add corresponding device nodes and link them as a supply to
->>> the DSI node.
->>
->> It's likely that all PHY-ish hardware uses REFGEN, so please make
->> extra sure your patches won't kill DP/USB/camera
-> 
-> As far as I understand, DP and USB cast their votes directly in HW.
-> For camera... I don't know. Do we need an extra vote?
+> > > > Verisilicon has a series of display controllers prefixed with DC
+> > > > and
+> > > > with self-identification facility like their GC series GPUs.
+> > > >
+> > > > Add a device tree binding for it.
+> > > >
+> > > > Depends on the specific DC model, it can have either one or two
+> > > > display
+> > > > outputs, and each display output could be set to DPI signal or
+> > > > "DP"
+> > > > signal (which seems to be some plain parallel bus to HDMI
+> > > > controllers).
+> > > >
+> > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > > ---
+> > > > Changes in v2:
+> > > > - Fixed misspelt "versilicon" in title.
+> > > > - Moved minItems in clock properties to be earlier than items.
+> > > > - Re-aligned multi-line clocks and resets in example.
+> > > >
+> > > >  .../bindings/display/verisilicon,dc.yaml      | 127
+> > > > ++++++++++++++++++
+> > > >  1 file changed, 127 insertions(+)
+> > > >  create mode 100644
+> > > > Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> > > >
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> > > > b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> > > > new file mode 100644
+> > > > index 0000000000000..07fedc4c7cc13
+> > > > --- /dev/null
+> > > > +++
+> > > > b/Documentation/devicetree/bindings/display/verisilicon,dc.yaml
+> > > > @@ -0,0 +1,127 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/display/verisilicon,dc.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Verisilicon DC-series display controllers
+> > > > +
+> > > > +maintainers:
+> > > > +  - Icenowy Zheng <uwu@icenowy.me>
+> > > > +
+> > > > +properties:
+> > > > +  $nodename:
+> > > > +    pattern: "^display@[0-9a-f]+$"
+> > > > +
+> > > > +  compatible:
+> > > > +    const: verisilicon,dc
+> > >
+> > > This needs an SoC specific compatible. Generally licensed IP
+> > > compatibles
+> > > are useless because the specs aren't public and there's always
+> > > integration quirks.
+> >
+> > This mimics the GPU IPs by the same vendor, see gpu/vivante,gc.yaml ,
+> > which contain the exact same set of identification registers
+> > (including
+> > a "customer id" one that can differienate the same configured IP on
+> > StarFive JH7110 and T-Head TH1520).
+> >
+> > If we can get vivante,gc to work w/o SoC specific compatible, then we
+> > should be able to get verisilicon,dc to work too.
+>
+> Well maybe I should add etnaviv people to the recipient list, to allow
+> them to tell us the magic behind vivante,gc .
+>
 
-$ rg refgen-supply arch -l
+Vivante GPUs are special because they contain registers that allow them to
+be fully identified - see etnaviv_hw_identify(..).
 
-arch/arm64/boot/dts/qcom/lito-camera.dtsi
-arch/arm64/boot/dts/qcom/kona-camera.dtsi
-arch/arm64/boot/dts/qcom/lagoon-camera.dtsi
-arch/arm64/boot/dts/qcom/lahaina-sde.dtsi
-arch/arm64/boot/dts/qcom/kona-sde.dtsi
+We can read out the following information:
+ - model
+ - revision
+ - product_id
+ - customer_id
+ - eco_id
 
-Konrad
+This information, in combination with a hardware database (hwdb) in
+kernel/userspace, is enough to support these GPUs/NPUs across
+different SoC vendors.
+
+-- 
+greets
+--
+Christian Gmeiner, MSc
+
+https://christian-gmeiner.info/privacypolicy
 
