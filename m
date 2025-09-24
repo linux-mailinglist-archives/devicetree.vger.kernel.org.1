@@ -1,114 +1,120 @@
-Return-Path: <devicetree+bounces-220758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF96FB9A229
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:59:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E65C9B9A248
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 16:04:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC99A19C7BCF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:59:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F18B1B25D57
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 14:04:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7971F3054E8;
-	Wed, 24 Sep 2025 13:58:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEDE9202961;
+	Wed, 24 Sep 2025 14:03:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sJllzpq4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E97982E2657
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 13:58:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF15CA6F;
+	Wed, 24 Sep 2025 14:03:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758722331; cv=none; b=YdqVBxm/5yrHzvTnC1nRMInex4Hka2VDJ2kybe3qdH8UY/WHqXiN8pmtotk667rZ9iqZ3P3/XsPNyvmTYvZblLSh57g/XaOVaDsAAvhIOZHQxWQe7WLcFK1m257BLxF3Db2qGb57n3/WD7f3s1nPqVjAj7PDZhjatgjlP/CbVow=
+	t=1758722638; cv=none; b=un/b1sqEu9MjAx9Wu/14LJZt/dgmyYiL3yluFbsMgW39ZYLajMQEn5s8MqMxWWRgxKHbNoKlepLbVxAqDVsFQo7QQ6ZodhiEX9+5Am4cM0Wyk0nSLaHhhUYhqDZjPIHRZpLA13O9SGkTpnZJreGqk1tPUZwmvnfULgbEFJzkklk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758722331; c=relaxed/simple;
-	bh=z9AOKPs04tBQ4HuQHD5qLwqf6qq8m12qH0VEjcOwE/M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ejI3OYiwcLzZOLfjcJ+fjZypQob7tNaWt5JFhkMSWpMZsCnKxfTQ1sS81/6/BWqx5h/y5LBnD3gsUtmtApyza5ppxcQZvU3q5JmmqKc+TKgX3t25x/Z2GkWWazPtfEO/7B7AriM4GDIqHLJlW2Vc7vC/NlfFE1BwjFjwrbb6Nzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-904d71faab6so2755427241.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 06:58:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758722327; x=1759327127;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JsHa4BTdlxzG8oL6cTUTw8znwap/WVMmft0DoAQSEiM=;
-        b=ZWuORYZDvJl35s7xOuaIoII+d+3lBg3Uzf7r2eJ1yUUbjFF9u1S8SUn9EoFIwjL5up
-         hVo7+SmSsS60V9Rhfm/3fW1p/km+HWNrzR9Ca6RFqa4j+OBrHwetJ+UFbPiemV1XoSd/
-         UV7MUr8DsNL52fztaPPdAp9W8sLWSK0vb9eLdtfD7dQ22gjhoQdI2NgkOylhksAYJPxZ
-         4+H9HXWQsu0V+0RZ8ZO/SGCIA1PIjSly1UElrqb82egQjDkIbjfrDv5AdYacLaL6ITkr
-         v0AETkn0Ci1g3PHFtnlecMRg3lgP0Zm77pzRNNEPyZbgiArFJV0G4llHoxhPisibIBB8
-         QCiA==
-X-Forwarded-Encrypted: i=1; AJvYcCUwj756mKa9nRCYrGwjqGe9+Dj9i0bYDmjPSu1MAxLOqIz2vzb5bJut4A285cdPjUG2j5hWOYEEbnd3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmQWwXDP3oMwyOEqx5C4lliDCK+Zh1qmHCvzxarzjEgpoyDKME
-	OSe/LM3inwSa2Jyel77e3qWdmB1ueNYblxCqxaTVQnywRQab45UJmlGfCD8rrW9O
-X-Gm-Gg: ASbGnctcTXMmahGraAjgfmEmxp/WArFnQZck8sh7gIjlvJpUYrqnWR3lAp80A11wR+V
-	dyh0AJwV4lGtKGLEcHl6r5KC1KHX8iTQTXlL407hlKdXWylmL3AEKL0R1GltkFWPWlyeWa/kQET
-	Swy7QNBcf/21uzmgou1doI0UqQziyCWaKEeqa8okSWoXubCS9I9LsoS12qHnI+WqTcesYMVTogU
-	YLXXHpAm9KHk3QTuyhW3Mwwxa6suLqVyPCFMVsUS5PcwAztGowJzbG1hPg3F9snMbwk7x7CK29u
-	OJkk1Hy0Td01C6w/Hr7FUFxtr+aw1r0O0sLR9xQNL2uzdqgW43luoriDPj4L1GABZ472Gyn3LSq
-	VtO1ORGZVlmGHe7hJYqlDu+iXkfdDGMDJFZWURMHjoEAi5TPlY/hitdDroUebCoT7A4ZuzPY=
-X-Google-Smtp-Source: AGHT+IElAxQwGzhkVX7ayD+wSamegjbGW1MlvNxmBCTF8fvMIVsfqyHYppSMjOY76hEf7Q72vzRGLQ==
-X-Received: by 2002:a05:6102:4426:b0:4fc:1987:fc84 with SMTP id ada2fe7eead31-5a5800d9397mr2358122137.21.1758722327386;
-        Wed, 24 Sep 2025 06:58:47 -0700 (PDT)
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com. [209.85.222.45])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-58de1185e4csm3635629137.2.2025.09.24.06.58.46
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Sep 2025 06:58:46 -0700 (PDT)
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-904d71faab6so2755398241.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 06:58:46 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV94K6UhZ4BwiXAyxsJEpWJv5Hva8Ele4Bxn+ml0o1jbuTtrHbSG8yMiQZTfyw1hQf+ALZ+n4Zqd0Eh@vger.kernel.org
-X-Received: by 2002:a05:6122:3115:b0:54a:96ce:786e with SMTP id
- 71dfb90a1353d-54bcb0b6125mr2198963e0c.8.1758722326099; Wed, 24 Sep 2025
- 06:58:46 -0700 (PDT)
+	s=arc-20240116; t=1758722638; c=relaxed/simple;
+	bh=uM6uSHTCjPtmI3Vzh1PPevWg0rMMV9zNEDAVmqFGGZw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DUMauiMPnJMB+hpVRM/jXBTVSSeozhMysG5ZQohx1VUfT5v3HK7koWBxrRGtZk0k3f0xNmqy8ga0cAR1Xi+XGzV6Iwv6TdFBDiuUWBMUlVPoZZCGj0AsQppVBl/wN8zPmNreV4NpBUbrhxWCjNc0nG4mq0RyT5lQ59wl+YhpOas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sJllzpq4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01256C4CEF0;
+	Wed, 24 Sep 2025 14:03:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758722638;
+	bh=uM6uSHTCjPtmI3Vzh1PPevWg0rMMV9zNEDAVmqFGGZw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sJllzpq4tR6nKD3tdPKsC7Asro+AUPMGKQItIJNnFv3n8cxUL9XcM+EFV2RrItwhY
+	 3nXj3OuDrF8+yWvyozb58DKmtJ47vJ4hqAUVcnIvZWfB35VE2WU4yEGXk/g9JPJHjv
+	 4Rq1uZKXZve+G4awVv9ynerQnOaynp6X7wB/BBKyFhqUgn8Mou+UkEFmrW1GKjUbC3
+	 vSgjyjb8V3QWi7hZ7LdxQbaL1BCRI41uZV/hMwBqR1sD/PpCUDs/0NCQ+zYAkynP9F
+	 anjcYsFg8AbwWAWHb37Vaa/hysBAeX+YhWgH7FZrpvpBKfo43hGbKv4Rc8cEoar9LP
+	 vo5h90Y2c7ADg==
+Date: Wed, 24 Sep 2025 09:03:47 -0500
+From: Rob Herring <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Jianjun Wang <jianjun.wang@mediatek.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-pci@vger.kernel.org,
+	upstream@airoha.com
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: mediatek: Fix wrong
+ compatible list for hifsys YAML
+Message-ID: <20250924140347.GA1556090-robh@kernel.org>
+References: <20250923201244.952-1-ansuelsmth@gmail.com>
+ <20250923201244.952-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250910140305.541961-1-claudiu.beznea.uj@bp.renesas.com> <20250910140305.541961-7-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20250910140305.541961-7-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 24 Sep 2025 15:58:34 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVrGbRHXa+13nGTf-S_cgHvDASvDTUSqhiC8updddJUFA@mail.gmail.com>
-X-Gm-Features: AS18NWAg1I_dL3GYezwY1MvHo4wl2EuUyKfvLAv7l_tUzF74SJUhWeo0uWlshA8
-Message-ID: <CAMuHMdVrGbRHXa+13nGTf-S_cgHvDASvDTUSqhiC8updddJUFA@mail.gmail.com>
-Subject: Re: [PATCH v6 6/7] arm64: dts: renesas: r9a08g045: Add USB support
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
-	yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com, 
-	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250923201244.952-2-ansuelsmth@gmail.com>
 
-On Wed, 10 Sept 2025 at 16:03, Claudiu <claudiu.beznea@tuxon.dev> wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Add USB nodes for the Renesas RZ/G3S SoC. This consists of PHY reset,
-> host and device support.
->
-> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Tue, Sep 23, 2025 at 10:12:29PM +0200, Christian Marangi wrote:
+> While converting the hifsys to YAML schema, the "syscon" compatible was
+> dropped for the mt7623 and the mt2701 compatible.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Is "syscon" really needed? AFAICT, the clock and reset drivers don't 
+need it.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> 
+> Add back the compatible to mute DTBs warning on "make dtbs_check" and
+> reflect real state of the .dtsi.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml
+> index 9e7c725093aa..aa3345ea8283 100644
+> --- a/Documentation/devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml
+> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt2701-hifsys.yaml
+> @@ -16,13 +16,15 @@ maintainers:
+>  properties:
+>    compatible:
+>      oneOf:
+> -      - enum:
+> -          - mediatek,mt2701-hifsys
+> -          - mediatek,mt7622-hifsys
+> +      - items:
+> +          - const: mediatek,mt2701-hifsys
+> +          - const: syscon
+> +      - const: mediatek,mt7622-hifsys
+>        - items:
+>            - enum:
+>                - mediatek,mt7623-hifsys
+>            - const: mediatek,mt2701-hifsys
+> +          - const: syscon
+>  
+>    reg:
+>      maxItems: 1
+> -- 
+> 2.51.0
+> 
 
