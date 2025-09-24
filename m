@@ -1,89 +1,90 @@
-Return-Path: <devicetree+bounces-220991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0246B9CBA3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 01:57:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B328FB9CBA9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 01:57:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0AB81B274CF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 23:57:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3280E2E0076
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 23:57:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CA329D289;
-	Wed, 24 Sep 2025 23:56:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 192A72BEFF3;
+	Wed, 24 Sep 2025 23:57:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VYGsU6/H"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ILvBvQzD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AA9C1D63F3
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 23:56:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A30B296BCB
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 23:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758758219; cv=none; b=TQTTZ0RYNjkZP+cFdFrAA0Mgbv0rcY6KZi+xqecUk0UVEjB3qPQ8J492t1gjc8loFUpv7QulynXq5sXEGIZO+ntusiZ51ibSJfcI/vzc5B1tkgTP/NLtz+hk/TuKaaq9e+WgRkzTWSNn/Sy6n1RPC/3lpBd6RbXVZhzz7+qEyX4=
+	t=1758758219; cv=none; b=Q0iVtrcQYHlnEi6X/ehFJU6jnpVbk2Pe+CFbo6si1Y0OMrjI/ISjGyp8yTjiJGS10n2iSC6scO04JP4md8CqRhaT+8UTf0i5dyvkw1KXErLOkQ11tryAhB47KK+uucrQVjACiuNLfvM/hAThmQjiq/HBzS4JD7CnV7gmgLqMFqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1758758219; c=relaxed/simple;
-	bh=zuun76wqTxfr0E9KMvOfXXE9WAPE5crgdVIf0Pmi2yA=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=DVRg9I55+0cBrvExFCK3SbVkWz4SKMD+23WitZuvU8L+r1uy8ooCp/BW51T24uBNiBJ6cChp1+XJeiXuR4+GPxzwFUngkHxzvg/EQQ5Tq74ikrngZm1CSXcri8aE7F1D5y4R/Hy2CXuHvRvjduqQiK35/ALnsZANAKsWJDm742k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VYGsU6/H; arc=none smtp.client-ip=205.220.180.131
+	bh=27EUuT1PJMJMY0HYUwj2rqelLFu5tY+Xg5dShO1aD4M=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=cfKYLBsNfC5jqWAZDUb5DgY14+c/KVz0BW/jx467thdU1Bo49kq3gEjNdjqPQYUv0B3bHEpnGwkFVXmK7IPQ6y1pdBGcjrYHy2l6VthmJ+ADEAXKwdmW9ojes3Xaam+ZWsGi09IVuacxVvfxVZ2mf1sPP0ngJWbCHp2im9JI2/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ILvBvQzD; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58ONaxE2018026
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 23:56:55 GMT
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58ODMWGu023756
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 23:56:57 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=0HNP1gFppPHSf0xqi+qP+S
-	k49znPKJdoy6R6/U+ZjdY=; b=VYGsU6/HFqzRsGWtkNv/AU8zPPvoBJdwgerQmD
-	k+6h/w6Dg5vjO0QocRdME6RB8oq7dt0nOu2jkihi5eKUExqdInu40wwqrOmnU/Hr
-	GcJpfRo4FNSOC2KH3L51FE+ObsWE0qK9qlefKWjr4VRQ3zmB+bO+rrBfqelJOZuC
-	VECkrAtMzT9cXrjSW/522DF8N4VV6G9fjC5pxwS2pI+JL8OyyscMmgwVKc4338Y3
-	OOHUt9Tm86wd7kY9zekn1NEICcG3fMdXk1MkbYb2hKxXQ/tynhnXIIw9xUDvtpPm
-	V2eKaQcQPaEMf9Hx9uvkhCCq+ATaPZG9f/CJ/lZYfcboQuww==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49b3kka295-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	sJEE5mkM8VRYrT5n8DkRmcckkaultqJjWLyD42H8UpY=; b=ILvBvQzDs7M8iopP
+	5CJpI/jAY3aajvg1U+5qwMuqTtitdZcyfOQl+Bf2sp9soIbL2Hq/hcUSyrr+ejcH
+	cYfWTigKbAxE17AwyuZr90KsoslinW0qU3GCoJ0rrwrPuOg6BtVdqd307TL19S3P
+	gFmRt2JPUBd4gHpXZI58eGoVQFflhsWS8fkTlGyvctLGTP1BayT2x+ZP93TXEzhO
+	mZIJAPEZm0NnQRfP+ZBLx7urKzC5iC06fkXRX+qKSZH9p4IxFKnwEwceolRnephb
+	1ZtV90XPq6qwLloA3ucXIIEmkJWDLsU7Lon/t/M/VpgOPrTyTklGWJGwvxuT70CY
+	LBoFKQ==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bwp0d4ej-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 23:56:55 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-2697410e7f9so7653205ad.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 16:56:55 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 23:56:57 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-272b7bdf41fso3759505ad.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 16:56:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758758214; x=1759363014;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0HNP1gFppPHSf0xqi+qP+Sk49znPKJdoy6R6/U+ZjdY=;
-        b=YQhoYmF4XRouqImtZnir79cj15xss8sSY0Ta8Da1292VEGTQXHnDBv5aWafAyK++FZ
-         H3T9Lu8xQLXo3ZegR4Xg0ki4oX0099OmsKjjX+atV1+P+V8P/TeWnBqs5gFQsmjaf+uT
-         z21PAwDu2816KXZgMK1CshL2UuBpNYzlLv1pMWEPE3E8rg+XcBiU8cJty/KG7559Nsew
-         UVEGNVHpTkF12/VchPzMqY2mATJduMWPOaA3sO9Cx5A5GltoLUWjEXOZCCq2xEgl9nV6
-         +KMcITZgH1af90bSrtGk3Zg1jQFtIkGXAJ6DintfPNTXXIZe2cxuat+bxw6J6kIklagA
-         5FcA==
-X-Forwarded-Encrypted: i=1; AJvYcCWiSmKAbjh4d+7TKXuKiucM8AovsyiJPP6nqteBuqWY+9oobmJmeL0hT7I/SF7vwmZGSPPhEPPyQJEI@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPTLbluj/ib6IZ5DVzfP62PYyIh7KAMM6R4xVllesz++2LLNRO
-	y0aqAchi/8GBm9GDR+RWC8XEyGMxGVDcprO27YYA5BH39BO3OEp4gLyz6686HF6HETqvgbGxmHD
-	7bcw/fEXtGmiuBMiTf8VUIJExuiiwwx/Ief3HayI8KYo5t/sYQX8JIylf/7tyt7V6
-X-Gm-Gg: ASbGncu1XhtAL3wpXwZ1VPhZQXtlan28S1n3UXRgLXJGi6R2MbbsFteboiusxREGM6f
-	BNbvppXHW6sqwR4sEFIu9cUHBgSHctAzMHOkerV/El6MKtVMo+Xe1RCqJ4xYUPdKHzB44hCEqpr
-	7eENt1v1c5P+U6RxCekYMch7hSXsg0ZFJrXndZXCYS5d0q6TsmKRyG2vH4j9HaEfJYgbTaFAi1u
-	ELHffiNkyxEjeM0WfM/al7TjoAEgq/rZCZSGqM8CUUYW8+F65OJPzpEpXtQ6bUcblR0Wo+Alk3M
-	W55H5uVcujhWJshCygLGYAwj8QIOYSw+d6OIi0eBJGU2IjTzEzHHtppl/HGSfSYL/0uI4VnFZNd
-	Lx113JmnFYTPPeYU=
-X-Received: by 2002:a17:902:db01:b0:264:8a8d:92dd with SMTP id d9443c01a7336-27ed49deb24mr18743465ad.20.1758758214132;
-        Wed, 24 Sep 2025 16:56:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGuXpQ87PpiUVqxhBpphiYJD8lJPb8xabQqGHfuiSSPYt/ISD0gfkaw01Z386R6Y3IXmgxA7Q==
-X-Received: by 2002:a17:902:db01:b0:264:8a8d:92dd with SMTP id d9443c01a7336-27ed49deb24mr18742945ad.20.1758758213684;
-        Wed, 24 Sep 2025 16:56:53 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758758216; x=1759363016;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=sJEE5mkM8VRYrT5n8DkRmcckkaultqJjWLyD42H8UpY=;
+        b=u7iuTfiQqWmNrxgiJ3OqAjxb/mXvbICeY3P1sITlniKsqw7SxaToxKx+2b1INdg6X4
+         3MbCuqSyf4PSmPUp6ubqX9RmxedVn86bSaAnHRa8Wn5dJVThrsk7AYgmkKFgNwZRrI45
+         EIGh+JkuLGwFng5kGzjxJHt52dJ992Ldk3BWztHyk78/J7BDCd6H6OFFy5zwRk2hXr+w
+         fYtGLsQ3N2yh8k/NWN050TYYZ8PuDDjT7FRP0d5ssLYmEK2MgSn5dkgn1wC+o8SMQijm
+         NTi1qybDKW7sbYurhT/WLXwPLiwlREvyjsYDtQ6Nd5h3/0Cq3z8Z6fhHB8/+UpyiDodK
+         C9kQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXxSnFceaLjeAFO1YXVKPJvdsBgi9nRTkEpM6I5SZ25AKvNnqAe9xTbp0N+RBvM2nE92AcAPs1rW4BI@vger.kernel.org
+X-Gm-Message-State: AOJu0YzI+Q91B9+huXzKrY3q6yeBs+AjIbPNzRiAeH+F4l4ieXi8+nV1
+	EiC/sO/btZcw0uPz6Sc3rCeJCE7S1WzEqqtUVS01Fj4tRTs2S1MOkwi6paj2ZUYjrArocGJho+7
+	/hDJcuiZQwXdHz7CxGsMz6j0Sip5c+jEGcsfUZ01PL8/YgyFLT0CDHKE3eZOnTYOS
+X-Gm-Gg: ASbGnct3ew/RgyOsSlNuC15YJL68WVPbfWzN6yFTdKXlPaiUPw36LijTHVjb5fRi3TT
+	UEi/KcRYjwzKevL58mUiVZL98UUu7CK7c5EHWbHhHHMq1Ik68InCU+BA3EdGsuQ2Yr/+MiOOrPi
+	JQOsEB2413ZE1MHezqaH6505V0ayuJmTeLdhx73c2urWc/QtUkzBcvyRG72U2Ji86X3OqRiJwHV
+	LWqIF9S0l0efomQNx6GbclRnT24PJsFePsxUlRKMKFcE8V1oKxOZ+r7/pXvtjmLjwBxGSR6OnGk
+	xOxTHchAQ9wGM0r0SrXG297lvH6nJha2XLMDXzZoZhL8sKHWAukQGFd5Bet5tH1WC9Fne+XnAXm
+	zBYE3y8mbXZN3NgQ=
+X-Received: by 2002:a17:902:f611:b0:271:fead:9930 with SMTP id d9443c01a7336-27ed4a78d72mr14184475ad.59.1758758215783;
+        Wed, 24 Sep 2025 16:56:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEJWQg6ccd13z7nuVk7VSbi1XJrSuF73yhddJx5KdOBXS/U2OU/vJpWRcXmqMM/HeYcdhJqBQ==
+X-Received: by 2002:a17:902:f611:b0:271:fead:9930 with SMTP id d9443c01a7336-27ed4a78d72mr14184115ad.59.1758758215234;
+        Wed, 24 Sep 2025 16:56:55 -0700 (PDT)
 Received: from hu-jingyw-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed6881fd6sm4557185ad.87.2025.09.24.16.56.52
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed6881fd6sm4557185ad.87.2025.09.24.16.56.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Sep 2025 16:56:53 -0700 (PDT)
+        Wed, 24 Sep 2025 16:56:54 -0700 (PDT)
 From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Subject: [PATCH 0/9] Add support for Multimedia Clock controllers for
- Kaanapali
-Date: Wed, 24 Sep 2025 16:56:41 -0700
-Message-Id: <20250924-knp-mmclk-v1-0-d7ea96b4784a@oss.qualcomm.com>
+Date: Wed, 24 Sep 2025 16:56:42 -0700
+Subject: [PATCH 1/9] dt-bindings: clock: qcom: document Kaanapali DISPCC
+ clock controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,10 +93,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIADqF1GgC/y2NQQ6DIBAAv2I4lwTXIOJXGg8LLJVY1IJtmhj/X
- lp7nGQys7NMKVBmfbWzRK+QwzIXqC8VsyPON+LBFWYgQApdd3yaVx6jvU9cewtKSQKPkhV/TeT
- D+9e6DoUNZuIm4WzHbyFi3ij9xUSPZ3ltp32qdokxbH2FBA6EKEPVOuh0Qxa9B+lM4xR5XWuBV
- piWDcfxAXEoDAzAAAAA
+Message-Id: <20250924-knp-mmclk-v1-1-d7ea96b4784a@oss.qualcomm.com>
+References: <20250924-knp-mmclk-v1-0-d7ea96b4784a@oss.qualcomm.com>
+In-Reply-To: <20250924-knp-mmclk-v1-0-d7ea96b4784a@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
         Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -119,80 +119,184 @@ Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
         tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
         yijie.yang@oss.qualcomm.com
 X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758758212; l=2526;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758758212; l=5962;
  i=jingyi.wang@oss.qualcomm.com; s=20250911; h=from:subject:message-id;
- bh=zuun76wqTxfr0E9KMvOfXXE9WAPE5crgdVIf0Pmi2yA=;
- b=htJ6K9g7jj5V9bOvCfCGRKnlr3PiOUcrSOdXlT5I0+7V9VD5wCueNm3RniYGdPvwohf1716Fo
- IAKl0lsQs40D9KXhUkLe7pO1vS81ndR/4Py/o8wjsJVE2UJqY/oWjA/
+ bh=MZ7pT/zHCTj4GLSlo+0Qr1VnVwjrOBMwlzKiEU+IMYY=;
+ b=0fP1HwPThy+lD1iokHsFgCTin7xsW2/8SVdo2n7kMIlxkRAKB5HbDnxgRGtPkEo+a8ep+dKGT
+ hZORM4ikJO8BOCyO+Piyq0EcbuNxH/HZNGBBMFeZ6nCDK0S4OhBRsnL
 X-Developer-Key: i=jingyi.wang@oss.qualcomm.com; a=ed25519;
  pk=PSoHZ6KbUss3IW8FPRVMHMK0Jkkr/jV347mBYJO3iLo=
-X-Proofpoint-GUID: 8STsxIWI4GRIktbSh0OH-VuyOeNqD91v
-X-Proofpoint-ORIG-GUID: 8STsxIWI4GRIktbSh0OH-VuyOeNqD91v
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIyMDA4OSBTYWx0ZWRfXy7X4qgCvmUWM
- 2x2H/J/Wd6Xrj+0ug+FvWOOo+s42dCrw6zyiIUELh5vvWGbLaNIcLuUjOPMfsFA7wIesaCZIWTf
- RDOmJd/QzaadB1XL5D5QNX/S9QbI+yOLKGLV1ckhSJvDpkHn4VGUiDitn1V+bfKKUDp1CckOYNt
- GvtXTnkRe3DNuPyuDO7EhCSEjJJAPXZqNkTXtn87Nf/N1HgJPV3amw6GTMCDDruDIVJfPajebrO
- nmuA1kp+j2tPUPv7Q+UiQYgofeR539FsuZYl4CW9/8ZoMOWXYGBBrh4XW3i1JlHrT+AmEbgfPLZ
- tevcsNd7P9o4kVUQpYp0iAM4I0m5Vg1Tey1J+wbpk8qkqmFD9UHe73+l8H7QJvaIC+m5gEozeqg
- 9XV8QCis
-X-Authority-Analysis: v=2.4 cv=BabY0qt2 c=1 sm=1 tr=0 ts=68d48547 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=0ZJa7YLzid_87pQeuMgA:9 a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
+X-Authority-Analysis: v=2.4 cv=KNxaDEFo c=1 sm=1 tr=0 ts=68d48549 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=1bJ6dZNBIeh337jv8YMA:9
+ a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-GUID: 2-aX9f1WZGaiGYtDFStVpk1zJcqRmkQf
+X-Proofpoint-ORIG-GUID: 2-aX9f1WZGaiGYtDFStVpk1zJcqRmkQf
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDEzOCBTYWx0ZWRfX4KKl6QXGfgX5
+ yPTDHkThZOg1si0BH3baOkmmTgnVDg4qjyuVd5X/c49OvETCXNW7CbfpmMRtJgGFvwOQfqmNBth
+ o0HY1crVditlqvXB3u0Gc5W4850yElln1n0zwdXGOlVmOGkE2BqtzcOZg6utPU2JSdCBxrbdRzO
+ SekAyyMnRhnYfy0UwS+5fpGMfLooNkBBghr28coBmh9xUXxI5mHcoMBJz7mVEAvhstBahPhEuka
+ 62PoIvXSodNmkpqBMgXvsK4WytdIfReFNNrJ/kttB0va/sznBaLNsxYKRYIKSlV49QQpEdjf97I
+ 6604VEVvvEU9QseGuZRNpHxHVBVoHqDGk7hC4Xe1/2PDXIy8Q34jZ6UomF9R8iEzahtjfMfXrej
+ fJJllu3I
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1015 phishscore=0 bulkscore=0 priorityscore=1501
- adultscore=0 malwarescore=0 spamscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509220089
+ impostorscore=0 priorityscore=1501 clxscore=1015 phishscore=0 suspectscore=0
+ adultscore=0 bulkscore=0 spamscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509230138
 
-Add support for Display clock controller, Video, Camera and GPU
-clock controller for the Qualcomm Kaanapali SoC.
+From: Taniya Das <taniya.das@oss.qualcomm.com>
 
-dependency: https://lore.kernel.org/lkml/20250829-sm8750-videocc-v2-v2-1-4517a5300e41@oss.qualcomm.com/
-context dependency: https://lore.kernel.org/all/20250924-knp-clk-v1-0-29b02b818782@oss.qualcomm.com/
+Document device tree bindings for display clock controller for
+Qualcomm Kaanapali SoC.
 
+Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
 Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 ---
-Taniya Das (9):
-      dt-bindings: clock: qcom: document Kaanapali DISPCC clock controller
-      dt-bindings: clock: sm8450-camcc: Remove sc8280xp camcc to from sm8450 camcc
-      dt-bindings: clock: qcom: Add support for CAMCC for Kaanapali
-      dt-bindings: clock: qcom: Add Kaanapali video clock controller
-      dt-bindings: clock: qcom: document the Kaanapali GPU Clock Controller
-      clk: qcom: dispcc: Add support for display clock controller Kaanapali
-      clk: qcom: camcc: Add support for camera clock controller for Kaanapali
-      clk: qcom: Add support for VideoCC driver for Kaanapali
-      drivers: clk: qcom: Add support for GPUCC and GFXCLK for Kaanapali
+ .../bindings/clock/qcom,sm8550-dispcc.yaml         |   2 +
+ include/dt-bindings/clock/qcom,kaanapali-dispcc.h  | 109 +++++++++++++++++++++
+ 2 files changed, 111 insertions(+)
 
- .../bindings/clock/qcom,kaanapali-gxclkctl.yaml    |   63 +
- .../bindings/clock/qcom,sm8450-camcc.yaml          |    9 +-
- .../bindings/clock/qcom,sm8450-gpucc.yaml          |    2 +
- .../bindings/clock/qcom,sm8450-videocc.yaml        |    3 +
- .../bindings/clock/qcom,sm8550-dispcc.yaml         |    2 +
- drivers/clk/qcom/Kconfig                           |   38 +
- drivers/clk/qcom/Makefile                          |    4 +
- drivers/clk/qcom/cambistmclkcc-kaanapali.c         |  437 ++++
- drivers/clk/qcom/camcc-kaanapali.c                 | 2661 ++++++++++++++++++++
- drivers/clk/qcom/dispcc-kaanapali.c                | 1956 ++++++++++++++
- drivers/clk/qcom/gpucc-kaanapali.c                 |  494 ++++
- drivers/clk/qcom/gxclkctl-kaanapali.c              |   86 +
- drivers/clk/qcom/videocc-kaanapali.c               |  824 ++++++
- .../clock/qcom,kaanapali-cambistmclkcc.h           |   33 +
- include/dt-bindings/clock/qcom,kaanapali-camcc.h   |  147 ++
- include/dt-bindings/clock/qcom,kaanapali-dispcc.h  |  109 +
- include/dt-bindings/clock/qcom,kaanapali-gpucc.h   |   47 +
- .../dt-bindings/clock/qcom,kaanapali-gxclkctl.h    |   12 +
- include/dt-bindings/clock/qcom,kaanapali-videocc.h |   58 +
- 19 files changed, 6983 insertions(+), 2 deletions(-)
----
-base-commit: ae2d20002576d2893ecaff25db3d7ef9190ac0b6
-change-id: 20250918-knp-mmclk-9fc2775e2fa5
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml
+index 30e4b4631575..591ce91b8d54 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,sm8550-dispcc.yaml
+@@ -15,6 +15,7 @@ description: |
+   domains on SM8550, SM8650, SM8750 and few other platforms.
+ 
+   See also:
++  - include/dt-bindings/clock/qcom,kaanapali-dispcc.h
+   - include/dt-bindings/clock/qcom,sm8550-dispcc.h
+   - include/dt-bindings/clock/qcom,sm8650-dispcc.h
+   - include/dt-bindings/clock/qcom,sm8750-dispcc.h
+@@ -23,6 +24,7 @@ description: |
+ properties:
+   compatible:
+     enum:
++      - qcom,kaanapali-dispcc
+       - qcom,sar2130p-dispcc
+       - qcom,sm8550-dispcc
+       - qcom,sm8650-dispcc
+diff --git a/include/dt-bindings/clock/qcom,kaanapali-dispcc.h b/include/dt-bindings/clock/qcom,kaanapali-dispcc.h
+new file mode 100644
+index 000000000000..05146f9dfe07
+--- /dev/null
++++ b/include/dt-bindings/clock/qcom,kaanapali-dispcc.h
+@@ -0,0 +1,109 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
++ */
++
++#ifndef _DT_BINDINGS_CLK_QCOM_DISP_CC_KAANAPALI_H
++#define _DT_BINDINGS_CLK_QCOM_DISP_CC_KAANAPALI_H
++
++/* DISP_CC clocks */
++#define DISP_CC_ESYNC0_CLK					0
++#define DISP_CC_ESYNC0_CLK_SRC					1
++#define DISP_CC_ESYNC1_CLK					2
++#define DISP_CC_ESYNC1_CLK_SRC					3
++#define DISP_CC_MDSS_ACCU_SHIFT_CLK				4
++#define DISP_CC_MDSS_AHB1_CLK					5
++#define DISP_CC_MDSS_AHB_CLK					6
++#define DISP_CC_MDSS_AHB_CLK_SRC				7
++#define DISP_CC_MDSS_AHB_SWI_CLK				8
++#define DISP_CC_MDSS_AHB_SWI_DIV_CLK_SRC			9
++#define DISP_CC_MDSS_BYTE0_CLK					10
++#define DISP_CC_MDSS_BYTE0_CLK_SRC				11
++#define DISP_CC_MDSS_BYTE0_DIV_CLK_SRC				12
++#define DISP_CC_MDSS_BYTE0_INTF_CLK				13
++#define DISP_CC_MDSS_BYTE1_CLK					14
++#define DISP_CC_MDSS_BYTE1_CLK_SRC				15
++#define DISP_CC_MDSS_BYTE1_DIV_CLK_SRC				16
++#define DISP_CC_MDSS_BYTE1_INTF_CLK				17
++#define DISP_CC_MDSS_DPTX0_AUX_CLK				18
++#define DISP_CC_MDSS_DPTX0_AUX_CLK_SRC				19
++#define DISP_CC_MDSS_DPTX0_CRYPTO_CLK				20
++#define DISP_CC_MDSS_DPTX0_LINK_CLK				21
++#define DISP_CC_MDSS_DPTX0_LINK_CLK_SRC				22
++#define DISP_CC_MDSS_DPTX0_LINK_DIV_CLK_SRC			23
++#define DISP_CC_MDSS_DPTX0_LINK_INTF_CLK			24
++#define DISP_CC_MDSS_DPTX0_PIXEL0_CLK				25
++#define DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC			26
++#define DISP_CC_MDSS_DPTX0_PIXEL1_CLK				27
++#define DISP_CC_MDSS_DPTX0_PIXEL1_CLK_SRC			28
++#define DISP_CC_MDSS_DPTX0_USB_ROUTER_LINK_INTF_CLK		29
++#define DISP_CC_MDSS_DPTX1_AUX_CLK				30
++#define DISP_CC_MDSS_DPTX1_AUX_CLK_SRC				31
++#define DISP_CC_MDSS_DPTX1_CRYPTO_CLK				32
++#define DISP_CC_MDSS_DPTX1_LINK_CLK				33
++#define DISP_CC_MDSS_DPTX1_LINK_CLK_SRC				34
++#define DISP_CC_MDSS_DPTX1_LINK_DIV_CLK_SRC			35
++#define DISP_CC_MDSS_DPTX1_LINK_INTF_CLK			36
++#define DISP_CC_MDSS_DPTX1_PIXEL0_CLK				37
++#define DISP_CC_MDSS_DPTX1_PIXEL0_CLK_SRC			38
++#define DISP_CC_MDSS_DPTX1_PIXEL1_CLK				39
++#define DISP_CC_MDSS_DPTX1_PIXEL1_CLK_SRC			40
++#define DISP_CC_MDSS_DPTX1_USB_ROUTER_LINK_INTF_CLK		41
++#define DISP_CC_MDSS_DPTX2_AUX_CLK				42
++#define DISP_CC_MDSS_DPTX2_AUX_CLK_SRC				43
++#define DISP_CC_MDSS_DPTX2_CRYPTO_CLK				44
++#define DISP_CC_MDSS_DPTX2_LINK_CLK				45
++#define DISP_CC_MDSS_DPTX2_LINK_CLK_SRC				46
++#define DISP_CC_MDSS_DPTX2_LINK_DIV_CLK_SRC			47
++#define DISP_CC_MDSS_DPTX2_LINK_INTF_CLK			48
++#define DISP_CC_MDSS_DPTX2_PIXEL0_CLK				49
++#define DISP_CC_MDSS_DPTX2_PIXEL0_CLK_SRC			50
++#define DISP_CC_MDSS_DPTX2_PIXEL1_CLK				51
++#define DISP_CC_MDSS_DPTX2_PIXEL1_CLK_SRC			52
++#define DISP_CC_MDSS_DPTX3_AUX_CLK				53
++#define DISP_CC_MDSS_DPTX3_AUX_CLK_SRC				54
++#define DISP_CC_MDSS_DPTX3_CRYPTO_CLK				55
++#define DISP_CC_MDSS_DPTX3_LINK_CLK				56
++#define DISP_CC_MDSS_DPTX3_LINK_CLK_SRC				57
++#define DISP_CC_MDSS_DPTX3_LINK_DIV_CLK_SRC			58
++#define DISP_CC_MDSS_DPTX3_LINK_INTF_CLK			59
++#define DISP_CC_MDSS_DPTX3_PIXEL0_CLK				60
++#define DISP_CC_MDSS_DPTX3_PIXEL0_CLK_SRC			61
++#define DISP_CC_MDSS_ESC0_CLK					62
++#define DISP_CC_MDSS_ESC0_CLK_SRC				63
++#define DISP_CC_MDSS_ESC1_CLK					64
++#define DISP_CC_MDSS_ESC1_CLK_SRC				65
++#define DISP_CC_MDSS_MDP1_CLK					66
++#define DISP_CC_MDSS_MDP_CLK					67
++#define DISP_CC_MDSS_MDP_CLK_SRC				68
++#define DISP_CC_MDSS_MDP_LUT1_CLK				69
++#define DISP_CC_MDSS_MDP_LUT_CLK				70
++#define DISP_CC_MDSS_MDP_SS_IP_CLK				71
++#define DISP_CC_MDSS_NON_GDSC_AHB_CLK				72
++#define DISP_CC_MDSS_PCLK0_CLK					73
++#define DISP_CC_MDSS_PCLK0_CLK_SRC				74
++#define DISP_CC_MDSS_PCLK1_CLK					75
++#define DISP_CC_MDSS_PCLK1_CLK_SRC				76
++#define DISP_CC_MDSS_PCLK2_CLK					77
++#define DISP_CC_MDSS_PCLK2_CLK_SRC				78
++#define DISP_CC_MDSS_VSYNC1_CLK					79
++#define DISP_CC_MDSS_VSYNC_CLK					80
++#define DISP_CC_MDSS_VSYNC_CLK_SRC				81
++#define DISP_CC_OSC_CLK						82
++#define DISP_CC_OSC_CLK_SRC					83
++#define DISP_CC_PLL0						84
++#define DISP_CC_PLL1						85
++#define DISP_CC_PLL2						86
++#define DISP_CC_SLEEP_CLK					87
++#define DISP_CC_XO_CLK						88
++
++/* DISP_CC power domains */
++#define DISP_CC_MDSS_CORE_GDSC					0
++#define DISP_CC_MDSS_CORE_INT2_GDSC				1
++
++/* DISP_CC resets */
++#define DISP_CC_MDSS_CORE_BCR					0
++#define DISP_CC_MDSS_CORE_INT2_BCR				1
++#define DISP_CC_MDSS_RSCC_BCR					2
++
++#endif
 
-Best regards,
 -- 
-Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+2.25.1
 
 
