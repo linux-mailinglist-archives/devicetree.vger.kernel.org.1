@@ -1,143 +1,171 @@
-Return-Path: <devicetree+bounces-220876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15F58B9BB5F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:31:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08142B9BB7D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:33:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F3491BC25BC
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:31:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E8641BC2394
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:33:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C269026B2D2;
-	Wed, 24 Sep 2025 19:30:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1B7426C3BC;
+	Wed, 24 Sep 2025 19:33:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="feWL4jvy"
+	dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b="ZEM96ehZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from out-183.mta0.migadu.com (out-183.mta0.migadu.com [91.218.175.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 480F6267714
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:30:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91DC926B2D2
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:32:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758742247; cv=none; b=czqeZ9wPZ8ikQp9c1IpExna9l76q45CsI3I5+znwmGH3/icGM2yFGb4W5uV2gYIrAh77ul0dxo+51TIRCQXHIhYSKG3uTnCwweWxhaGRN6+JvO/ts6tWK8gQAVLv63tsPCqKdedgLzJKlXPG6AVk9NHMkaO4jmQfRV3BCbghpfE=
+	t=1758742381; cv=none; b=PwfMJcQzsUBlEhSMwhXPW8/OTFG1Ml9jgUTC6k3wDNSTxmtMQ06eddvJ3mM2sIhkFNC/03YBPK6Kq9SIillIT0yBVABQj4j2Bwq315GgfnmvSfvDkWnXmLK65sQMCezXj5CCsGjRfMnP+aOgfr8Ez2Lm+fuVCazSnWwxPyJwF7g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758742247; c=relaxed/simple;
-	bh=HBlBtjJuiSJREEKCRDFE2CMgGB0Q+lfxBms6vvoiQs8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=QOmGW6n5cvGcYXRjQ8Y+O98/VBKGP74YMainNRpA1T2WCML9xJUQhyURL36YvOwi+a2qoHrBbXUblsN6d3+Z1t1XdpgxsA3rA5j+yOw9aFfTNKp8o+mgCMVepDenBDo17ZnbFrV5whF+fLD44qgX7GfeL16Wd8SqfC+6T9DTiRk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=feWL4jvy; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250924193036euoutp02e3ce237f3006aa0a45bcdee17695eeef~oTr79ebOv1957419574euoutp02U
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:30:36 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250924193036euoutp02e3ce237f3006aa0a45bcdee17695eeef~oTr79ebOv1957419574euoutp02U
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1758742236;
-	bh=/Gk+JQ7pocHBfcq36N6Notv0uvwakh9CVF4aSzWJ8hw=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=feWL4jvyddS/Rk6tUEFJ/d1jrrrJBbbtVkvIx0lREBNp6qbVJJBagYq/pHWTX/7dr
-	 Jy9Tqwk2nl7h4GTXgG+Z5lJ71I7YLU/Y/bXia+wqA6iDqDIw88WMHgAFG45hB+WETa
-	 Wk+fRSdNiGjlGnD1BkNB5oZ0FjK2jZZC5VzY2ZzI=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250924193035eucas1p18bc9f48e524c3824662031da8261758e~oTr7TWTQq1522115221eucas1p1B;
-	Wed, 24 Sep 2025 19:30:35 +0000 (GMT)
-Received: from [192.168.1.44] (unknown [106.210.136.40]) by
-	eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250924193034eusmtip2cbf8bf03a89dc1fb923f25bee047d0da~oTr6PXOuQ0163201632eusmtip2W;
-	Wed, 24 Sep 2025 19:30:34 +0000 (GMT)
-Message-ID: <67e3a691-0ba8-4c21-97e1-4471f2a1a87c@samsung.com>
-Date: Wed, 24 Sep 2025 21:30:34 +0200
+	s=arc-20240116; t=1758742381; c=relaxed/simple;
+	bh=kGyFyRGnTEIQDnRHQzBMUtjvoUiSsEKBITF948LfKig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=grQoGSO9w39CH64P2A0a5xIFyR7ecYP0GiQwTxShHj6iRsku4w/lIXncCvLCgeaPnp795i4NyiW/PQZnC6zvqdXpmdi5kMPgE6hRQfi7/PZR1EWQNXqtkVFGxuJBImEClxsoXBNL0/DX1///AKYi+/vctcVcVO/Ps+dlEaIwFqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se; spf=pass smtp.mailfrom=grimler.se; dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b=ZEM96ehZ; arc=none smtp.client-ip=91.218.175.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=grimler.se
+Date: Wed, 24 Sep 2025 21:32:48 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
+	t=1758742374;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5iHvWuqXMKqXY5xi5HWO4WJVMOf5QP5qFtqbNbimzII=;
+	b=ZEM96ehZfNKMQ9RPJZFXmoXJ8Fk/dL8ssD8yZTVwrJTEoInjNxItijIGl8OtrfbNlfEQyZ
+	jk1KKW07G6hBHf8X7G3kPRtnmUmIml0rWY7oeJPvxA6nOiDn0uifc48w56uARMZxnMOZd2
+	wKaMSGKfxG/hUk+DCJF1pHv7OGeu3Dw=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Henrik Grimler <henrik@grimler.se>
+To: =?utf-8?B?77+91b3vv70=?= <shin.son@samsung.com>
+Cc: 'Bartlomiej Zolnierkiewicz' <bzolnier@gmail.com>,
+	'Krzysztof Kozlowski' <krzk@kernel.org>,
+	"'Rafael J . Wysocki'" <rafael@kernel.org>,
+	'Daniel Lezcano' <daniel.lezcano@linaro.org>,
+	'Zhang Rui' <rui.zhang@intel.com>,
+	'Lukasz Luba' <lukasz.luba@arm.com>,
+	'Rob Herring' <robh@kernel.org>,
+	'Conor Dooley' <conor+dt@kernel.org>,
+	'Alim Akhtar' <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 2/3] thermal: exynos_tmu: Support new hardware and
+ update TMU interface
+Message-ID: <20250924193248.GA34040@l14.localdomain>
+References: <20250922041857.1107445-1-shin.son@samsung.com>
+ <CGME20250922041902epcas2p3e40ed58737b22b7af9d09f6ba362928d@epcas2p3.samsung.com>
+ <20250922041857.1107445-3-shin.son@samsung.com>
+ <20250922200430.GA4697@l14.localdomain>
+ <000001dc2c24$8be7a090$a3b6e1b0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v14 1/7] pwm: Export `pwmchip_release` for external use
-To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
-	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Guo Ren
-	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
-	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
-	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, Benno
-	Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
-	Drew Fustini <fustini@kernel.org>, Daniel Almeida
-	<daniel.almeida@collabora.com>, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Content-Language: en-US
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-In-Reply-To: <3jxl6gpxwv376ooyny7qkeokeh7nzafttbyoehmwqzrccn5oip@747v6zdnogso>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250924193035eucas1p18bc9f48e524c3824662031da8261758e
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250820083541eucas1p2ad7d78418576b8bc8cbddd8efe83bbe9
-X-EPHeader: CA
-X-CMS-RootMailID: 20250820083541eucas1p2ad7d78418576b8bc8cbddd8efe83bbe9
-References: <20250820-rust-next-pwm-working-fan-for-sending-v14-0-df2191621429@samsung.com>
-	<CGME20250820083541eucas1p2ad7d78418576b8bc8cbddd8efe83bbe9@eucas1p2.samsung.com>
-	<20250820-rust-next-pwm-working-fan-for-sending-v14-1-df2191621429@samsung.com>
-	<3jxl6gpxwv376ooyny7qkeokeh7nzafttbyoehmwqzrccn5oip@747v6zdnogso>
+In-Reply-To: <000001dc2c24$8be7a090$a3b6e1b0$@samsung.com>
+X-Migadu-Flow: FLOW_OUT
 
+Hi Shin,
 
-
-On 9/15/25 12:00, Uwe Kleine-König wrote:
-> Hello,
+On Tue, Sep 23, 2025 at 09:53:53AM +0900, �ս� wrote:
+> Hello Henrik Grimler
 > 
-> On Wed, Aug 20, 2025 at 10:35:36AM +0200, Michal Wilczynski wrote:
->> The upcoming Rust abstraction layer for the PWM subsystem uses a custom
->> `dev->release` handler to safely manage the lifetime of its driver
->> data.
->>
->> To prevent leaking the memory of the `struct pwm_chip` (allocated by
->> `pwmchip_alloc`), this custom handler must also call the original
->> `pwmchip_release` function to complete the cleanup.
->>
->> Make `pwmchip_release` a global, exported function so that it can be
->> called from the Rust FFI bridge. This involves removing the `static`
->> keyword, adding a prototype to the public header, and exporting the
->> symbol.
->>
->> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
+> > -----Original Message-----
+> > From: Henrik Grimler [mailto:henrik@grimler.se]
+> > Sent: Tuesday, September 23, 2025 5:05 AM
+> > To: Shin Son <shin.son@samsung.com>
+> > Cc: Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>; Krzysztof Kozlowski
+> > <krzk@kernel.org>; Rafael J . Wysocki <rafael@kernel.org>; Daniel Lezcano
+> > <daniel.lezcano@linaro.org>; Zhang Rui <rui.zhang@intel.com>; Lukasz Luba
+> > <lukasz.luba@arm.com>; Rob Herring <robh@kernel.org>; Conor Dooley
+> > <conor+dt@kernel.org>; Alim Akhtar <alim.akhtar@samsung.com>; linux-
+> > pm@vger.kernel.org; linux-samsung-soc@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> > kernel@vger.kernel.org
+> > Subject: Re: [PATCH v4 2/3] thermal: exynos_tmu: Support new hardware and
+> > update TMU interface
+> > 
+> > Hi Shin,
+> > 
+> > On Mon, Sep 22, 2025 at 01:18:56PM +0900, Shin Son wrote:
+> > > The Exynos tmu driver's private data structure has been extended to
+> > > support the exynosautov920 hardware, which requires per-sensor
+> > > interrupt enablement and multiple-zone handling:
+> > >
+> > > - Add 'slope_comp' : compensation parameter below 25 degrees.
+> > > - Add 'calib_temp' : stores the fused calibaration temperature.
+> > > - Add 'sensor_count' : reflects the maximum sensor numbers.
+> > > - Rename 'tzd' -> 'tzd_array' to register multiple thermal zones.
+> > >
+> > > Since splitting this patch causes runtime errors during temperature
+> > > emulation or problems where the read temperature feature fails to
+> > > retrieve values, I have submitted it as a single commit. To add
+> > > support for the exynosautov920 to the exisiting TMU interface, the
+> > > following changes are included:
+> > >
+> > > 1. Simplify "temp_to_code" and "code_to_temp" to one computation path
+> > >    by normalizing calib_temp.
+> > > 2. Loop over 'sensor_count' in critical-point setup.
+> > > 3. Introduce 'update_con_reg' for exynosautov920 control-register
+> > updates.
+> > > 4. Add exynosautov920-specific branch in 'exynos_tmu_update_temp'
+> > function.
+> > > 5. Skip high & low temperature threshold setup in exynosautov920.
+> > > 6. Enable interrupts via sensor_count in exynosautov920.
+> > > 7. Initialize all new members during 'exynosautov920_tmu_initialize'.
+> > > 8. Clear IRQs by iterating the sensor_count in exynosautov920.
+> > > 9. Register each zone with 'devm_thermal_of_zone_register()'
+> > >    based on 'sensor_count'.
+> > >
+> > > Signed-off-by: Shin Son <shin.son@samsung.com>
+
+[ ... ]
+
+> > > @@ -952,6 +1183,14 @@ static int exynos_map_dt_data(struct
+> > > platform_device *pdev)
+> > >
+> > >  	data->cal_type = TYPE_ONE_POINT_TRIMMING;
+> > >
+> > > +	if (data->soc == SOC_ARCH_EXYNOSAUTOV920) {
+> > > +		if (of_property_read_u32(pdev->dev.of_node,
+> > "samsung,sensors",
+> > > +					 &data->sensor_count)) {
+> > > +			dev_err(&pdev->dev, "failed to get sensor count\n");
+> > > +			return -ENODEV;
+> > > +		}
+> > > +	}
+> > 
+> > Do we really need the `if (data->soc == SOC_ARCH_EXYNOSAUTOV920)` here, I
+> > am sure there will be more socs that use samsung,sensors. Can't we simply
+> > read samsung,sensors for all socs and use EXYNOS_DEFAULT_SENSOR_COUNT if
+> > it fails, or would it be potentially dangerous if samsung,sensors is
+> > missing for autov920 dtb and default value of 1 is used?
+> > 
+> > Best regards,
+> > Henrik Grimler
+> > 
 > 
-> I still somewhat dislike this patch. Isn't it possible to make the rust
-> abstraction use the pointer that .release is set to when it calls
-> pwmchip_alloc()?
+> Yes. Incorrect remote-sensor settings can affect TMU operation. For
+> example, when the sensor count is set to 1,
+> The thermal zone doesn't function properly and the hardware trip doesn't
+> assert on the v920 variant.
+> I consider that configuration unsafe, so I added variant-specific handling
+> for that SoC.
+> Meanwhile, the other variant legitimately uses only a single sensor.
 
-Hi Uwe,
-
-Sorry for the delay - I was on vacation and I hope you received my
-out of office message.
-
-I agree your suggestion is technically feasible. My concern was that it
-would make the abstraction less readable and more complex, as it would
-require the FFI wrapper to read the C function pointer and store it as
-state within the driver's private data.
-
-The current approach of calling a known, exported function felt more
-direct. However, I absolutely agree with your point on C API purity and,
-as you suggested, this can be revisited later if needed.
-
-> 
-> (I wouldn't further delay this series for this discussion, this can be
-> handled just fine at a later point in time.)
-> 
-> Best regards
-> Uwe
+I see, thanks for the explanation!
 
 Best regards,
--- 
-Michal Wilczynski <m.wilczynski@samsung.com>
+Henrik Grimler
 
