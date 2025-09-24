@@ -1,81 +1,41 @@
-Return-Path: <devicetree+bounces-220679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0D4BB99499
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 12:00:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 699A6B998C3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:12:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E9EC7AF62F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 09:58:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A80A4C521B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 11:11:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E77280CFB;
-	Wed, 24 Sep 2025 10:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 860832E6CD5;
+	Wed, 24 Sep 2025 11:11:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kk8IW9uk"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Y1KCTSO4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail-m1973199.qiye.163.com (mail-m1973199.qiye.163.com [220.197.31.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D80402D1916
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 10:00:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20ED72E62DA;
+	Wed, 24 Sep 2025 11:11:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.99
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758708026; cv=none; b=sOv39CMpp2/uOx+TNZdmPoApUtOc+xwd4jggLwvgwlYmCMt684KbuPig2wjdFaO1Dv55mTtgDCvPnpO9bnOqqv8qPTiTLogIX41VGZpIkINb3cGca9jKKkoKBPqRxwwJ/bUkPXynz3e5jfCvxY74Z3kr75IFfk1mHNLuJO1PO3M=
+	t=1758712292; cv=none; b=ZckRI8p6LJFkdV8rYmu2zZvUREMl7lqbol4Q2Jx246fC1BMR/ETWCgMLMeWk0hg5BBq9xduz1bYdtMKCGZxdxOkgLNbjg/hh6xaGzEJtEcY3fvIcrX5rFDDTUX8FCwbv60zmAM7IBCfZPUuuIcZYgAjzrMzlB7mf+EUxgW2IbKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758708026; c=relaxed/simple;
-	bh=01UY+fAj4MuEVookmStzcuMwFNrHoAXlj80xcJfzQnQ=;
+	s=arc-20240116; t=1758712292; c=relaxed/simple;
+	bh=FFqCA/DgacmpT/aD9Fg5lKQhSph3nv3W23sHZZlJaOI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PZlcq3vMxUWeO6YmdHkpEmtywqgza7UGX2xalisxr0dqVtoZoD49HjOZeGsjhF+DR7RlBUk0CcixDqc6edUqmhHnQiCmvwnijx8FZSCYKGurpeuMo9SpUAnbatcCZ0s4VOr9Qe+YWAroxNGUHjy19G4KhWed0nHhxNXegcJOTCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Kk8IW9uk; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3f2ae6fae12so2662129f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 03:00:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758708019; x=1759312819; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qmVW+Z/mziG0ZeCkjmpV+S/k8DcMMNx/U++MptcSCGo=;
-        b=Kk8IW9uk4Nrvx9Wj088qh9T5tQpgrILEO17yl8H9SuP1284n2RboQXkuiDEYK4+7eW
-         Jp252enS4VYa+jQMWrYSJWdDPLWvEJHBKdBjAOov5rBbK1RmRHEwwGzFdovPf3SzLIWE
-         XwhCfDUmaLZlG1rS1xELtnWeuzBTUIdOivF1iGHOi/E+QzFvUlh0ifKh8AF4Vu8bJ2v0
-         O8+53u066rfeDem6yjc11bGR9xO2URP49S1CMvB4qrq9hnhGbKskRJ32DCdbsNpadTak
-         zlOcGeuWKat/LFQNI+BeymKGQ6AaGZ4hZldqPR0QDeUbvfI1tTnpXO+mc1Z9ACG2f3KE
-         RaQQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758708019; x=1759312819;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qmVW+Z/mziG0ZeCkjmpV+S/k8DcMMNx/U++MptcSCGo=;
-        b=eo8unvdxJGfWJnEyHbgGlCJFZ1ep28lJHoSInFhzHLY1k5yBnOWxdRXLTtQq/lNvB6
-         qi3aWhgZLkuQG8pmaGzv4oF54Mog3LhlDL+2dxv3k/MUNhtvMpvvsPvJY+41eZrtYw18
-         bqgdy0+tJ2URmWX4+zmzAqjux9szG51Ux/p61bnTBU/Sst2E1ADPGNWljaHJKiYK7UOs
-         xcr6/qzTVq0VEY9LcA3Ook/NafTsLJMME1PqAhoJNDbT0fJ2DvQX7u4SKA+mCi5ARxfO
-         Fj0Zyauax/3EOaV+CTPG8XMx49V2tFKlrrNtzusYo0Il0mzwhsuDIAWUAlPQQ46Z5XEN
-         BNHw==
-X-Forwarded-Encrypted: i=1; AJvYcCW0vSZA1QZ05rzmyFOy+DX1/BF+utg82PTpQWfcKCtXiNLXYGHshZ/NOu9YMqpG+j8U578sf0pWRgYs@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3tuZTO766kuewB1ZViHNJCpjrPvfTjM2/+kL2yFOVdpaEm0kQ
-	29xlHEsJThpKGOxE5dAySQLUZtvHthOwV9y83etz2XPeNisAw8f0Bom4
-X-Gm-Gg: ASbGncsr2uue+53/T3Lv4SnrUfDUaNy8nSryCXa5+Qawe7l8iiMa2SvIAD7Mh/aFtQJ
-	ryCzTwhu+0w+0sy3JrrPxtuCO6mijRMLu2Usk23Ig7AhdzqTBliFPYCqQaNoIRMU4GXp7h7hhBL
-	YB5lBxMqxI1CUTJPbguj6zRbdaKqqETl2dJzVi0+A7nJsvFkrbdtIdtE3uuvQ+a4P0XnT9VlPZu
-	v0Fd1Nfmx0XXahqqx9wwpcobqRjfZQZJZHbwm6vzaW+RQ7kyvrb7PYDYlrfQKRvDQJJR7TNQumT
-	5vndt5CA3zhN287YrQQtAu+uCn9xST6kMGPNRHRJrmwEdVogsj09Vb9kqMtSF5F0irwzovMQ3W2
-	7fIDPU6bjSj7jycZ6QT+yscbr1mln+dUM7OXXRJNJF7c7SM8O8O6CgUBcVAvxAZEQQTd1XgJY2j
-	I+DSaleovXyGQEUOY6xC49QucfsOwSHgZchaOa8RTm6O+uqkbsNja4D2iC/z4a
-X-Google-Smtp-Source: AGHT+IG42+8OH08VTgLUl9F1YLwdDI/MKRqmfZxK/ji2sSckzPzSa7uie7TpTd+qAIdz3qyFVuJLPw==
-X-Received: by 2002:a05:6000:2082:b0:401:5ad1:682 with SMTP id ffacd0b85a97d-405c46c242amr5543802f8f.14.1758708019030;
-        Wed, 24 Sep 2025 03:00:19 -0700 (PDT)
-Received: from ?IPV6:2a02:8440:7503:805b:76:f865:8f03:23d3? (2a02-8440-7503-805b-0076-f865-8f03-23d3.rev.sfr.net. [2a02:8440:7503:805b:76:f865:8f03:23d3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3ee073f4f3csm26375517f8f.2.2025.09.24.03.00.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 24 Sep 2025 03:00:18 -0700 (PDT)
-Message-ID: <430e9fad-a877-4328-848f-59b982a10706@gmail.com>
-Date: Wed, 24 Sep 2025 12:00:17 +0200
+	 In-Reply-To:Content-Type; b=knLem874eokN5OePUGXHiPhPzlbQS69+TpIIB8Rzx7ph3m3aGsJJpzMoWC7fKeLKbT1T9K2BqeE3tPgVZMvkH3Vqoo8AiVlx87GRXi17LUdyzMzVVQZ89kJJAfrmDJ94gA9FCHejN9KTcuiZBjRssm7eIBLQIgXuXnCtSGR/3HU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Y1KCTSO4; arc=none smtp.client-ip=220.197.31.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+Received: from [172.16.12.153] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 23e8469d7;
+	Wed, 24 Sep 2025 17:55:40 +0800 (GMT+08:00)
+Message-ID: <86753f21-1996-4b93-acca-575a193a5bb8@rock-chips.com>
+Date: Wed, 24 Sep 2025 17:55:39 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,41 +43,230 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/7] dt-bindings: memory: introduce DDR4
-To: Julius Werner <jwerner@chromium.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org,
- =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
-References: <20250922-b4-ddr-bindings-v7-0-b3dd20e54db6@gmail.com>
- <20250922-b4-ddr-bindings-v7-2-b3dd20e54db6@gmail.com>
- <CAODwPW9Js2AjSzQrvRFMK3xHXjbb6qV2bGEj3GhYWpDELniyCQ@mail.gmail.com>
+Subject: Re: [PATCH v4 1/7] usb: typec: Add default HPD device when register
+ DisplayPort altmode
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Yubing Zhang <yubing.zhang@rock-chips.com>,
+ Frank Wang <frank.wang@rock-chips.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Amit Sunil Dhamne <amitsd@google.com>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
+References: <20250922012039.323-1-kernel@airkyi.com>
+ <20250922012039.323-2-kernel@airkyi.com>
+ <mygbqhiom6pkwsadzz2bqf5bth3ogsbd6iku5a7r5swxrakein@fjhz7udnkcks>
+ <e9cf0aa8-ed32-4ffb-a755-150742455808@rock-chips.com>
+ <sgvrzhbhkzxbuybmws44kyenhfyppm3blijkarypcin4fiscvx@mnajrlmicyxi>
+ <18f55fe7-7c68-4982-916d-11752325c667@rock-chips.com>
+ <bh73nttewwhom2pqccfnapnfkrys3zljkykgqmh4hsdalqgyzi@gbl5oejxsp3z>
 Content-Language: en-US
-From: =?UTF-8?Q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>
-In-Reply-To: <CAODwPW9Js2AjSzQrvRFMK3xHXjbb6qV2bGEj3GhYWpDELniyCQ@mail.gmail.com>
+From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+In-Reply-To: <bh73nttewwhom2pqccfnapnfkrys3zljkykgqmh4hsdalqgyzi@gbl5oejxsp3z>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a997b266d6203abkunm01a8f59e308014
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGU0aQ1YeGB4eGh4eQ0xDSU1WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
+	xVSktLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=Y1KCTSO4JB2Doz2nmVMLfKoz+r0EQxAq+gYoHGZXqvPXCT0mGRZDywZEZRoz9311tm43dTuZoGPmpZjkh2jazaj46gvMoh7juipwzZ2A8MY5Xj1mu7G0oCk2vrCsLZaW5K1yYMFNQT3KLOdDEpcrpdoC/5TwZRDqAq6RE9DQtMQ=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=yJbQmL+TOmkpM0cLVkYWJb1/IVWYDpFb9n/hCp+37zE=;
+	h=date:mime-version:subject:message-id:from;
 
-On 23/09/2025 00:51, Julius Werner wrote:
->> +      - pattern: "^ddr4-[0-9a-f]{4},[a-z]{1,10},[0-9a-f]{2}$"
-> 
-> I don't really understand why there can only be up to 10 characters in
-> the module part number. I also don't understand why you wrote "20
-> bytes (10 chars)" for this in the previous patch. Are you assuming
-> that module part numbers are UTF16LE? According to my reading of the
-> spec, it sounds like they're supposed to be plain ASCII, i.e. 20 bytes
-> should be able to contain up to 20 chars.
+On 9/23/2025 6:40 PM, Dmitry Baryshkov wrote:
 
-Hi Julius,
+> On Tue, Sep 23, 2025 at 05:07:25PM +0800, Chaoyi Chen wrote:
+>> On 9/23/2025 11:11 AM, Dmitry Baryshkov wrote:
+>>
+>>> On Tue, Sep 23, 2025 at 09:34:39AM +0800, Chaoyi Chen wrote:
+>>>> On 9/23/2025 9:10 AM, Dmitry Baryshkov wrote:
+>>>>
+>>>>> On Mon, Sep 22, 2025 at 09:20:33AM +0800, Chaoyi Chen wrote:
+>>>>>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>>>>>
+>>>>>> Add default DRM AUX HPD bridge device when register DisplayPort
+>>>>>> altmode. That makes it redundant for each Type-C driver to implement
+>>>>>> a similar registration process in embedded scenarios.
+>>>>>>
+>>>>>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
+>>>>>> ---
+>>>>>>     drivers/usb/typec/altmodes/displayport.c | 27 ++++++++++++++++++++++++
+>>>>>>     drivers/usb/typec/altmodes/displayport.h |  2 ++
+>>>>>>     drivers/usb/typec/class.c                |  8 +++++++
+>>>>>>     include/linux/usb/typec_altmode.h        |  2 ++
+>>>>>>     4 files changed, 39 insertions(+)
+>>>>>>
+>>>>>> diff --git a/drivers/usb/typec/altmodes/displayport.c b/drivers/usb/typec/altmodes/displayport.c
+>>>>>> index 1dcb77faf85d..e026dc6e5430 100644
+>>>>>> --- a/drivers/usb/typec/altmodes/displayport.c
+>>>>>> +++ b/drivers/usb/typec/altmodes/displayport.c
+>>>>>> @@ -14,6 +14,7 @@
+>>>>>>     #include <linux/property.h>
+>>>>>>     #include <linux/usb/pd_vdo.h>
+>>>>>>     #include <linux/usb/typec_dp.h>
+>>>>>> +#include <drm/bridge/aux-bridge.h>
+>>>>>>     #include <drm/drm_connector.h>
+>>>>>>     #include "displayport.h"
+>>>>>> @@ -182,6 +183,10 @@ static int dp_altmode_status_update(struct dp_altmode *dp)
+>>>>>>     				dp->pending_irq_hpd = true;
+>>>>>>     		}
+>>>>>>     	} else {
+>>>>>> +		if (dp->port->hpd_dev)
+>>>>>> +			drm_aux_hpd_bridge_notify(dp->port->hpd_dev,
+>>>>>> +						  hpd ? connector_status_connected :
+>>>>>> +							connector_status_disconnected);
+>>>>> There should be no need for these calls. Once the HPD bridge is added to
+>>>>> a correct fwnode, the drm_connector_oob_hotplug_event() calls should
+>>>>> deliver the signal as expected.
+>>>> It seems that only drm_bridge_connector can do this. I'm not sure if I remember correctly. I'll give it a try.
+>>> Other connectors can implement the .oob_hotplug_event call. Calling
+>>> drm_bridge_hpd_notify() also depends on the connector setting the
+>>> callbacks via drm_bridge_hpd_enable(), a step which is done by only a
+>>> few drivers.
+>> Hmm, let's go over this again. First, drm_connector_oob_hotplug_event() requires a connector fwnode.
+>>
+>> On the Qualcomm platforms, the fwnode corresponds to the USB-C controller device node, so
+>>
+>> drm_connector_oob_hotplug_event(dp->connector_fwnode, ..) can handle them directly.
+>>
+>> But our platform doesn't use the USB-C controller device node as drm connector fwnode :(
+> This sounds like an issue to be fixed. Alternative option would be make
+> the AltMode code find your fwnode and report OOB events against it.
+> But... I reallly think that using connector's fwnode is the cleanest
+> solution. In the end, your final 'display' connector is the USB-C
+> connector present on the board. If your display has a USB-C connector,
+> that will be the socket that gets the cable from the display, etc.
+>
+>> So I use drm_dp_hpd_bridge_register() and drm_aux_hpd_bridge_notify() here, I think it just create a simple hpd bridge to bridge_list.
+>>
+>> But drm_connector_oob_hotplug_event() use connector_list instead of bridge_list.
+> The OOB interface was created by x86 people, but we successfully reused
+> it. I think that addign drm_bridge_hpd_notify() calls just duplicates
+> the effort unnecessarily.
 
-Yes plain ASCII needs 8 bits for each char as the value range is 0-127
-I was having hexadecimal in mind while writing this, I'm sorry.
-I'll fix it here and in the previous patch.
+Yes, that commit comment said,  "It was proposed to add the displayport OF property to the DT bindings, but it was rejected in favor of properly describing the electrical signal path using of_graph."
 
-Best regards,
-Clément
+But in the embedded case, we don't seem to have the opportunity to describe this kind of of_graph relationship between drm connector and usb connector in usb-connector.yaml. On the Qualcomm platform, the DRM connector fwnode to correspond to the USB-C controller, which is a clean solution.
+
+However, on our platform we are using external USB-C controllers. In v4 and the previous versions, I focused on directly linking the USB-C controller with the DP controller. Referring to your suggest in [0], I think maybe this can be achieved with the help of the drm bridge chain. Assuming the bridge chain is like this:
+
+
+Other birdges ... ->PHY drm aux hpd bridge -> CDN-DP bridge -> DP to HDMI bridge or other bridge or nothing...
+
+
+We can use drm_bridge_chain_get_first_bridge() to get first bridge. In this case, that is drm aux hpd bridge from USB-C controller device. Next, we can obtain the fwnode corresponding to this bridge, and once we have it, we can set the connector's fwnode to it. In this way, drm_connector_oob_hotplug_event() can take effect.
+
+
+Would this be a good idea? Thanks.
+
+
+[0] https://lore.kernel.org/all/p3kgqn3euumhysckh4yyqavqv5y6any5zcrgkrcg3j5a7z7cyw@lfpkla5p3put/
+
+
+>
+>>
+>>
+>>>>>>     		drm_connector_oob_hotplug_event(dp->connector_fwnode,
+>>>>>>     						hpd ? connector_status_connected :
+>>>>>>     						      connector_status_disconnected);
+>>>>>> @@ -206,6 +211,9 @@ static int dp_altmode_configured(struct dp_altmode *dp)
+>>>>>>     	 * configuration is complete to signal HPD.
+>>>>>>     	 */
+>>>>>>     	if (dp->pending_hpd) {
+>>>>>> +		if (dp->port->hpd_dev)
+>>>>>> +			drm_aux_hpd_bridge_notify(dp->port->hpd_dev,
+>>>>>> +						  connector_status_connected);
+>>>>>>     		drm_connector_oob_hotplug_event(dp->connector_fwnode,
+>>>>>>     						connector_status_connected);
+>>>>>>     		sysfs_notify(&dp->alt->dev.kobj, "displayport", "hpd");
+>>>>>> @@ -391,6 +399,9 @@ static int dp_altmode_vdm(struct typec_altmode *alt,
+>>>>>>     			dp->data.status = 0;
+>>>>>>     			dp->data.conf = 0;
+>>>>>>     			if (dp->hpd) {
+>>>>>> +				if (dp->port->hpd_dev)
+>>>>>> +					drm_aux_hpd_bridge_notify(dp->port->hpd_dev,
+>>>>>> +								  connector_status_disconnected);
+>>>>>>     				drm_connector_oob_hotplug_event(dp->connector_fwnode,
+>>>>>>     								connector_status_disconnected);
+>>>>>>     				dp->hpd = false;
+>>>>>> @@ -751,6 +762,18 @@ static const struct attribute_group *displayport_groups[] = {
+>>>>>>     	NULL,
+>>>>>>     };
+>>>>>> +void dp_altmode_hpd_device_register(struct typec_altmode *alt)
+>>>>>> +{
+>>>>>> +	if (alt->svid != USB_TYPEC_DP_SID)
+>>>>>> +		return;
+>>>>>> +
+>>>>>> +	alt->hpd_dev = drm_dp_hpd_bridge_register(alt->dev.parent->parent,
+>>>>>> +						  dev_of_node(alt->dev.parent->parent));
+>>>>> This needs at least a comment, what is dev.parent->parent. Also, the
+>>>>> of_node is not correct here. It should be a node of the connector,
+>>>>> rather than the device itself. Consider USB-C controllers which handle
+>>>>> several USB-C connectors (e.g. UCSI). The DRM core won't be able to
+>>>>> identify the correct bridge.
+>>>> I think  alt.dev->parent->parent is the connector device. Am I missing something?
+>>> As I wrote, it needs a comment (in the source file). No, it's not a
+>>> connector device, it's a USB-C controller device. There is no guarantee
+>>> that there is a separate struct device for the USB-C connector. On
+>>> Qualcomm platforms, the device will point to the USB-C controller (TCPM
+>>> or UCSI), which contain usb-c-connector(s) as child node(s) in DT.
+>> Thanks for the clarification.
+> I think it should be fine to pass the fwnode of the usb-c connector that
+> is outside of the USB-C controller device (if that's what your platform
+> uses). But I think this should be:
+> - the usb-c-connector node
+> - it should be coming from the Type-C controller driver, you can't guess
+>    it here.
+>
+>>
+>>
+>>>>
+>>>>>> +	if (IS_ERR(alt->hpd_dev))
+>>>>>> +		alt->hpd_dev = NULL;
+>>>>>> +}
+>>>>>> +EXPORT_SYMBOL_GPL(dp_altmode_hpd_device_register);
+>>>>> Having the function here will bring a typec -> displayport dependency
+>>>>> between drivers (which you didn't document). It means it won't be
+>>>>> possible to build typec core into the kernel, having the DP AltMode
+>>>>> driver in the module (which also doesn't sound like a good idea).
+>>>> It make sense. Perhaps moving it into class.c would be a good idea.
+>>>>
+>>>>
+>>>>>> +
+>>>>>>     int dp_altmode_probe(struct typec_altmode *alt)
+>>>>>>     {
+>>>>>>     	const struct typec_altmode *port = typec_altmode_get_partner(alt);
+>>>> -- 
+>>>> Best,
+>>>> Chaoyi
+>>>>
+>>>>
+>>>> -- 
+>>>> linux-phy mailing list
+>>>> linux-phy@lists.infradead.org
+>>>> https://lists.infradead.org/mailman/listinfo/linux-phy
+>> -- 
+>> Best,
+>> Chaoyi
+>>
+-- 
+Best,
+Chaoyi
+
 
