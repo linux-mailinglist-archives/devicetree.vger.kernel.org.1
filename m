@@ -1,264 +1,116 @@
-Return-Path: <devicetree+bounces-220885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A1F0B9C2B3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 22:41:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 732A9B9C35F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 22:56:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E38A53AC335
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 20:39:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34F6A169BA8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 20:56:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32DDC328973;
-	Wed, 24 Sep 2025 20:38:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E88A6274670;
+	Wed, 24 Sep 2025 20:56:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N7hBuaEr"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="b7D76bCp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 422F2322DC0
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 20:38:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C7E263899
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 20:56:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758746312; cv=none; b=swlWzQUngBDXIRyQf+5fRUpcdlePBtAObyAkACWvWTEoJM9gLinI3btrJFFnowLD/0OYJOhWSxiOiOsWm3V8M+2/e05cVIl04D3nM9+eOGSRumdDl0+D/ICwCJ7NtQl/hNvGGmxVoSg+CcqyLj1q2QJVXfalIGC+g1Pw3VHH3qc=
+	t=1758747399; cv=none; b=RChg+7fULk/99fNCWtpbfJ3FBUaxlt4FiF7pS9AJLcV9bPhkLbTrFxEq1/janejoXyJ/ZqqjUbtzpupBoRNhlI74eyt6rJm0EucwWO4GFjQnGgnoYT0NkkCKuvzfWDkbIZMox2E6zgN5qBoQQI2JzWKMrKdi66+uXZmTaojyHx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758746312; c=relaxed/simple;
-	bh=/7E6ceDbDhZ4pxug1DrrfRHk0oYerFsLd6y+cKd/Fmc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=KOM8ASX4NIWWq7s2GdGrgRaEZ34njU+ZnZW+QAM/s1QMlKOExfq71PfaR4hc4U5DojbZHpy2kv7KxFtxvoOqBGh2IWlBReJ2dp3ogCvrr5FscAH+6EuhtWyZh/FT/GUs7fPL9NE7kdLGjBZiB7w8KWU8IZe+I8iF1jb28Q6g0Vo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N7hBuaEr; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-45dd513f4ecso1225185e9.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 13:38:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758746308; x=1759351108; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=PgAWQCFoo98/Z9ljCaTiQGL2NXe+X8U3ZUEI4e+iLi4=;
-        b=N7hBuaEr8t+6xC4rLoQ+rFnTMSFIHuA7TOrBqdAbbuOHt9EuqGWjL8mUxPcLj2gk9v
-         z0mLvsP6MF6t8Hazcu9f4t0en5PSjTHxFWfNM59TEBU7K18lku72AOGaV3+XblMzmEBH
-         iI9VJAz/KLS5QhY7Y/FYcj+OT+AlXDH3xVF4BmFcdOwZby2GF+npYG8mADRbdWSI8STK
-         UqZwqmnY2iOME3tHpAdO2hFUbxj/ltMXU4mLCXJIt0c/NW3JXiBPC4wtP819cYP9UwZd
-         HPcQglKNfGGbH989waIkH2Iaj5w3t+F/E1u4DBL3O0zhjYH0CMRv9JFosCQcsryA66sz
-         qtaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758746308; x=1759351108;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PgAWQCFoo98/Z9ljCaTiQGL2NXe+X8U3ZUEI4e+iLi4=;
-        b=mC1VFzf/59CrQQXfUF5+5RpK+eD7XVtaVGQpaVaJK/IQqnQ5XvDv9Hvc49frgmIPAj
-         Tgi2rH1VJOJui8t5Er3rwfnGkNyHVy5LrJ3RqGhLUydVNPBpu1OWXXo+3nCw50d2vl/j
-         +UKlIDQt7sjBvaOdgMnICkEYdtIsucywBFydse+3eS+BX5yctY92BvguvzoGIDT6AjGL
-         04QPGt/tfzvT9G3Y7eAu9OEheH7Rx9KIeoI790/Ps9fEWafmfvxwC2CQMpOBwuxST3s9
-         fafBIg+sKkoCWFzpCcfOLhOZQtK05fUULUvX63qu7iGET5mNwSyJamcI4iAo/T0xzxC2
-         1Ajw==
-X-Gm-Message-State: AOJu0YwIHj2kWWbhZf/shEGa0kJMdMD8ki/2wvRykbT/jFIJepLoZUNg
-	BFJ1dJ048HPGYOiNCt4Um0YMtZ4gfzZehIMAahVG7HHgTvcRx4L/bpOj
-X-Gm-Gg: ASbGnctt9w/RTL9EWiMZHQ5WJ6Uq0dpcxDHNNEJ4s2eel7XCrjN+Fw0RiDnbL8lq5vH
-	1M/cKgXSqlAs4gXWNUAoVqmWfH3h/XCJJFwkZf/rDTkckOm7ZZzDxCvaiSkIQy9yE1eo6SJV3C4
-	qvpq6yU+67nzuhIz3zYQFrZ4jyHybKPFmBvJ5fVDgPPVBapm/b2FrUNIVp9igJu5T6xfDX9Oh0N
-	EYqD/2rAx40w8i75IpQeBaBFP9dZIVJUDUl+UrD0XaEv7qKshMdJnR1W30201rjUkaTyq7I8Nyy
-	JArtfd6vn1tWaH4t2RvO0AlOyH5479h90r+uj8cLJHZ7yrQRM8cgG3B/mC0wsV0+bWdp+xgUFzC
-	i3zTmELFh6ppNLW+2gkWhCa/cF/qvAoyPegcRWzbaOfZMhCwO
-X-Google-Smtp-Source: AGHT+IGDxHR9zD3T2Jojj5V63amKQHEZ4Y5ouX0SIG7pqFz8i6fnWZlg4urHE+jXQ/8JQVeDmH/9Kg==
-X-Received: by 2002:a05:600c:1695:b0:45b:7e86:7378 with SMTP id 5b1f17b1804b1-46e32a1987cmr6748555e9.34.1758746308296;
-        Wed, 24 Sep 2025 13:38:28 -0700 (PDT)
-Received: from alchark-surface.localdomain ([5.194.95.234])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e33b9e8aesm2663465e9.4.2025.09.24.13.38.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Sep 2025 13:38:27 -0700 (PDT)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 25 Sep 2025 00:38:13 +0400
-Subject: [PATCH] arm64: dts: rockchip: Add DSI LCD display on rk3576-evb1
+	s=arc-20240116; t=1758747399; c=relaxed/simple;
+	bh=AxeAYjgCnWF/4SRty7vYUnSNf3j+jR+tQguIy98L6gA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iKkFChpAPEQadMs/EJvDqPFbgJP7IS4ToRajhZ0Znc0ziqFD78yA8iqfQrsVSevUFKvJBzt7WT4dcu8RFo+Z+yufYE+iMdQfWKWuIeQ2Nqp9C6QU97UwUIEzNI9zK/wIISs+82zPe6lqh+KzNWkdEGrjdh6Pw/XLIMUxkoCrOB4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=b7D76bCp; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=AxeA
+	YjgCnWF/4SRty7vYUnSNf3j+jR+tQguIy98L6gA=; b=b7D76bCpAQf9OQsaHfu1
+	UMvWwb4bl+BN1YGMJ+NK/slKd9iE10cj0iq3iPvpncYHieRaAx+ysLvk34/ieZMe
+	3AHSb7g1ScRxfLyCJ5DI/UEcarQ73rJAXUHotGYlACGmuy4PMq3XPOknntr8EQPp
+	/+K93bfiWX2kmokJdQy2IGsTr9DNCcHcIlCKz8+GIfEqX/fEZYaKtagwTtE4RJNJ
+	XgoIy+m5VNStPGu/TRVZZR5BuVu2Dz2E7G4eM+diPqTCjnnqcU2u3hSahy7FJEGF
+	gvckqls/JAiRzoO+wsH+MBNbzSuqbQ230HZF02FgKJShvWFgl90ef2v1Tg8Q8sXK
+	/A==
+Received: (qmail 1618814 invoked from network); 24 Sep 2025 22:56:33 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 24 Sep 2025 22:56:33 +0200
+X-UD-Smtp-Session: l3s3148p1@B36cSZI/GIcujntL
+Date: Wed, 24 Sep 2025 22:56:32 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Hoan Tran <hoan@os.amperecomputing.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Serge Semin <fancer.lancer@gmail.com>,
+	Phil Edworthy <phil.edworthy@renesas.com>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Pascal Eberhard <pascal.eberhard@se.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 6/8] dt-bindings: soc: renesas: Add the Renesas RZ/N1
+ GPIO Interrupt Multiplexer
+Message-ID: <aNRbAHMnjgnoBJIH@ninjato>
+References: <20250922152640.154092-1-herve.codina@bootlin.com>
+ <20250922152640.154092-7-herve.codina@bootlin.com>
+ <aNOm3-NxKfjXLsSV@ninjato>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250925-rk3576-evb1-dsi-v1-1-c76fc3740abc@gmail.com>
-X-B4-Tracking: v=1; b=H4sIALRW1GgC/x3MSQqAMAxA0atI1gZsU8eriAuHVIOg0kIRSu9uc
- fkW/0fw7IQ9DEUEx0G83FeGKgtYj/naGWXLBl3puuq1QXdS3TbIYVG4eUGm3pLpiBbbQK4ex1b
- e/zhOKX3yEkZhYQAAAA==
-X-Change-ID: 20250924-rk3576-evb1-dsi-e39f34833bf6
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Alexey Charkov <alchark@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3993; i=alchark@gmail.com;
- h=from:subject:message-id; bh=/7E6ceDbDhZ4pxug1DrrfRHk0oYerFsLd6y+cKd/Fmc=;
- b=owGbwMvMwCW2adGNfoHIK0sZT6slMWRcCTss8+Uow9wVd7om3ggIPPxuqbaVReHufeeOKO8ui
- DqxLvCgXUcpC4MYF4OsmCLL3G9LbKca8c3a5eHxFWYOKxPIEAYuTgGYiNxbRoafxwXXszilzNvD
- v3ou95Mb/R6Ju83fpOisd/+6dteaZbd2MPwPfxPzSlRMSOXbG8XWJufMCcLu6zfOeeo/SUhQjlt
- YYSsDAA==
-X-Developer-Key: i=alchark@gmail.com; a=openpgp;
- fpr=9DF6A43D95320E9ABA4848F5B2A2D88F1059D4A5
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="etzmLkPvIboA1Stg"
+Content-Disposition: inline
+In-Reply-To: <aNOm3-NxKfjXLsSV@ninjato>
 
-Add support for the Rockchip W552793DBA-V10 LCD+touchscreen assembly which
-comes physically attached to Rockchip RK3576 EVB1 boards.
 
-The display part is driven by the on-chip MIPI DSI controller, and the
-touchscreen is connected over I2C.
+--etzmLkPvIboA1Stg
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
----
-Note that backlight support is left out for now, as it depends on PWM
-support [0] which has not yet been merged.
 
-A workaround is simply `gpioset -c 0 13=1` to set the respective GPIO
-pin high and thus to light up the display unconditionally.
+> Looks good from the technical side. No comment on the syntax because my
+> DT check invocation fails again after some update, sigh...
 
-[0] https://lore.kernel.org/lkml/20250602-rk3576-pwm-v2-0-a6434b0ce60c@collabora.com/
----
- arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts | 89 ++++++++++++++++++++++++
- 1 file changed, 89 insertions(+)
+Got it fixed, bindings-check passes here as well...
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-index db8fef7a4f1b9570cb517ccc9a857d1c93c9d2db..f20cd6f2c079e0a5bd79acc9ebcd56b499e0f72f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3576-evb1-v10.dts
-@@ -125,6 +125,8 @@ vcc3v3_lcd_n: regulator-vcc3v3-lcd0-n {
- 		regulator-boot-on;
- 		enable-active-high;
- 		gpio = <&gpio0 RK_PC6 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc3v3_lcd_s0_en>;
- 		vin-supply = <&vcc_3v3_s0>;
- 	};
- 
-@@ -264,6 +266,43 @@ &combphy1_psu {
- 	status = "okay";
- };
- 
-+&dsi {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	pinctrl-0 = <&mipim1_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+
-+	panel@0 {
-+		compatible = "wanchanglong,w552793baa", "raydium,rm67200";
-+		reg = <0>;
-+
-+		iovcc-supply = <&vcc3v3_lcd_n>;
-+		reset-gpios = <&gpio3 RK_PB5 GPIO_ACTIVE_LOW>;
-+		vdd-supply = <&vcc3v3_lcd_n>;
-+		vsn-supply = <&vcc5v0_device>;
-+		vsp-supply = <&vcc5v0_device>;
-+
-+		port {
-+			mipi_panel_in: endpoint {
-+				remote-endpoint = <&dsi_out_panel>;
-+			};
-+		};
-+	};
-+};
-+
-+&dsi_in {
-+	dsi_in_vp1: endpoint {
-+		remote-endpoint = <&vp1_out_dsi>;
-+	};
-+};
-+
-+&dsi_out {
-+	dsi_out_panel: endpoint {
-+		remote-endpoint = <&mipi_panel_in>;
-+	};
-+};
-+
- &gmac0 {
- 	clock_in_out = "output";
- 	phy-mode = "rgmii-rxid";
-@@ -319,6 +358,28 @@ &hdptxphy {
- 	status = "okay";
- };
- 
-+&i2c0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&i2c0m1_xfer>;
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	touchscreen@14 {
-+		compatible = "goodix,gt1158";
-+		reg = <0x14>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PC5 IRQ_TYPE_LEVEL_LOW>;
-+		irq-gpios = <&gpio0 RK_PC5 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&tp_int>, <&tp_rst>;
-+		reset-gpios = <&gpio0 RK_PD0 GPIO_ACTIVE_HIGH>;
-+		touchscreen-size-x = <720>;
-+		touchscreen-size-y = <1280>;
-+		VDDIO-supply = <&vcc3v3_lcd_n>;
-+	};
-+};
-+
- &i2c1 {
- 	status = "okay";
- 
-@@ -738,6 +799,10 @@ rgmii_phy1: ethernet-phy@1 {
- 	};
- };
- 
-+&mipidcphy {
-+	status = "okay";
-+};
-+
- &pcie0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie0_rst>;
-@@ -788,6 +853,20 @@ host_wake_bt: host-wake-bt {
- 		};
- 	};
- 
-+	display {
-+		vcc3v3_lcd_s0_en: vcc3v3-lcd-s0-en {
-+			rockchip,pins = <0 RK_PC6 0 &pcfg_pull_none>;
-+		};
-+
-+		tp_int: tp-int {
-+			rockchip,pins = <0 RK_PC5 0 &pcfg_pull_none>;
-+		};
-+
-+		tp_rst: tp-rst {
-+			rockchip,pins = <0 RK_PD0 0 &pcfg_pull_none>;
-+		};
-+	};
-+
- 	hym8563 {
- 		rtc_int: rtc-int {
- 			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_up>;
-@@ -941,3 +1020,13 @@ vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
- 		remote-endpoint = <&hdmi_in_vp0>;
- 	};
- };
-+
-+&vp1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	vp1_out_dsi: endpoint@ROCKCHIP_VOP2_EP_MIPI0 {
-+		reg = <ROCKCHIP_VOP2_EP_MIPI0>;
-+		remote-endpoint = <&dsi_in_vp1>;
-+	};
-+};
 
----
-base-commit: ce7f1a983b074f6cf8609068088ca3182c569ee4
-change-id: 20250924-rk3576-evb1-dsi-e39f34833bf6
+--etzmLkPvIboA1Stg
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Best regards,
--- 
-Alexey Charkov <alchark@gmail.com>
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjUWvwACgkQFA3kzBSg
+Kba/5xAAgdYCDDKk7PYCssHVg3nfJRGYhC4yi5S7dyByqI3BytZJROSx+9EZY2xi
+tlXTTpskF3OWv37kEH8ose08z8ajpPbCYc8OskQvJQMlI90gioL3X/8vHGJxAiq0
+Ych5CcizM1UYcM3QD65pN6DkDv//WCj7IH5oQ5BO4mPzJnvXt2FvXU2Fws4z1mWM
+yQVx1TweoGXdg7npDntrtC0+vJH2HB9XTonJnerC1SreZ1Sn83P7eRRmdNWQQsN4
+Td0sbPDf95XGXmAmoTItg4nukl1wqLtoq/BilMeTwEj/buej4bEBtOY54JpKoeVY
+ebGiqNdf4vuln8Q2+MDVsb4cpC9TsudV1AjZ/WC4FdWh7b0PNuVJas1ZizA1LcOy
+f4XBNO8ESGiBglTqJIGlue0E1GRoTEK89abrRIHugApR6M54w/cRUcqI0vW7fR08
+y//JSrBp3c03C9TwX/GLptWjL4On8/2aENODn6OGoE8rQPixI1ybAh9xTQXK/eI3
+HtImr9cyOQhkmrMYwL0qeEqaLxVln6Du9FBvtoJ3Ld5umvIujU0xF7eXbWzTxfvR
+mi11rJ+vxKfPJlj2tBqS+tmhyeF6WAjhOuCa44DMLdFHX2JPe7uU/Hpcsy4vxs3N
++RgJhujslz085Gbq/ECeKNUeJUx/AT3+Vp7P7pTLCoKzTLYb9Xs=
+=mpgf
+-----END PGP SIGNATURE-----
+
+--etzmLkPvIboA1Stg--
 
