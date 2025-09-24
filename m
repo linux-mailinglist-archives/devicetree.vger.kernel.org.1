@@ -1,125 +1,144 @@
-Return-Path: <devicetree+bounces-220751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47B41B99FC2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:13:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FC38B99FE3
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:15:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 729081B21ACE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:13:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBE282A3ED4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:15:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D7A52FF67C;
-	Wed, 24 Sep 2025 13:13:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4968B1D618E;
+	Wed, 24 Sep 2025 13:15:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aSdNBciZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A4C0502BE;
-	Wed, 24 Sep 2025 13:13:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B042B2D9EE7
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 13:15:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758719606; cv=none; b=NKjVOiJ10mQt+sXXu2S7qBQBEDS2ILiudbzafsId/04jYgMPvMeY8WkBstRpS3fGpNCxW88R+PpsGmqUQeD7gZybryOVAv8qXJnsZuHsf+soWftHNzVnBSLwj84S/5HRky51dlj5BgTOq1DOj5z1KV5LUClRkv0pcfZ47BI/KLM=
+	t=1758719722; cv=none; b=OaG6AwU1DBcA/iV1IDPni7BDrra4cknb2rcuCMXcUtXcdZqO+O7rrB7RRz7bfvapMmRUZnugptqRToP7tjl6lxU0HeYFBTs8i0BFfcJTM2myWWKpmTZ/33iO36I2gQam1x7z6olckVvZVhTxqs94GYTFqVY4X06b61oURPSna8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758719606; c=relaxed/simple;
-	bh=PaVdJZ/PeqgEBbm90xkNqO1qgjBPVF79+jKWROcFGY0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EP49ki1hjQXSEd5+/QSIa1t2Pq9EzH8TixU0VZpXhRl0rMXCPjJcyaxwhbP6A7OjPNIz+j3qrrbK7v1ZKQjpNDoQPXtIEPC0rSuGFOPYSTgGYY3Yt8+mJBNTHL6FGoOI9OozkPzfVhMYEcWlfSWkTX10jyFxdH+mFnUOkVKmANQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CD41C106F;
-	Wed, 24 Sep 2025 06:13:15 -0700 (PDT)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0C7953F5A1;
-	Wed, 24 Sep 2025 06:13:20 -0700 (PDT)
-Date: Wed, 24 Sep 2025 14:13:18 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Sebin Francis <sebin.francis@ti.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	"Marco Felsch" <m.felsch@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	"Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Brian Masney" <bmasney@redhat.com>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 5/5] clk: scmi: Support Spread Spectrum for NXP i.MX95
-Message-ID: <20250924-dark-super-gharial-246400@sudeepholla>
-References: <20250915-clk-ssc-version1-v4-0-5a2cee2f0351@nxp.com>
- <20250915-clk-ssc-version1-v4-5-5a2cee2f0351@nxp.com>
- <5f508f1d-2d08-4687-86cd-d1944caa0a49@ti.com>
- <PAXPR04MB8459CE9F22CD56A9BFDB5E78881DA@PAXPR04MB8459.eurprd04.prod.outlook.com>
- <082735e7-956b-4574-952e-06ba69db41f1@ti.com>
- <PAXPR04MB84590D5AAAB56ED7E1CBDE05881CA@PAXPR04MB8459.eurprd04.prod.outlook.com>
+	s=arc-20240116; t=1758719722; c=relaxed/simple;
+	bh=ZsZyQ7Ql3rqRY8h1WntWXGDU7/FgBAc7YAVNLpKKuuU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e2S7ipcbX4nYuteO9gU9Te0c5pY4Gm9awHFz4NQ7My/PKkTL7SktMoVy3wSwZ/o7ufQM/9PaPULmdhntAxXfeqM5Pwy/ywRSmqYbNEoao7OJrx5oiHwpnBo6WgUXZ1lXW9xKyG1o3He6FR6pMpdtWikwzE6BFM8nBylqUbLGb8s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aSdNBciZ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58OCCciu018220
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 13:15:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	TwFCyIUYndJk/I4av4mMJ5Ifu5vDiUCjBB5zV4J2loE=; b=aSdNBciZsLiwV62j
+	n9AkhY2P7L6z8u+JJaltqeJNw+GDWyfHn06OBDX8sbN25WG/WAfYWVB6NfZbNJ2v
+	LEpA6dOGgE5+gr3LuLXzYtqhFXYPvW3HdJ/YtIX1l2iMsEbikIShVciG95+yRQxF
+	38zFCVtIlI+AKE/GCCFQhYd0rhoSrUibHp3nTBvg1tI2jUr5+hVs/CJAuck96xO8
+	9W9JFaV1fGRN0ZWR19G3LI2L+BqP3XeBYr7nkuMUzoJ0sv3CKw+rxoAIxSslUcoK
+	uzRVl9QGWTZpejHi8WpowdT7tL9qo6nHZOqINzER54YaLmM4ORPjwwsXN0uKkPUX
+	B/hsOg==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49b3kk8bs5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 13:15:19 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4d8b1b7a2a4so1084541cf.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 06:15:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758719719; x=1759324519;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TwFCyIUYndJk/I4av4mMJ5Ifu5vDiUCjBB5zV4J2loE=;
+        b=e1i0NjGtFOXOi8UzLf13AEpoipiPGVKnqlMPNVD86zDRJ7ODSdEoyoastSovZJoEvR
+         VYFeMuslQZl4wiox9dg5ehgrzOzqt2tYVr/r6BKRq/x70jjgvD7Pk6E2yfHPT5ON/pI2
+         PY4CDFbs8kjvSeMzYuyIoYgJTbcfyPb+sGcw89rdvgqRp8CpC0dvDoM0Ov7m0NlKyI3s
+         JdVIVdH0meM6+qhdZp1c+rvtzOME6DmtOeDkowIE+Onn0KznBq/BOD5wIWVzDNmjF/Zf
+         eq+zhp7KqFL9xEnkwOaAYPR2pvwTlzKQNYR2isI5VyGdKbmeeAN8NnhY5ZLuev/IiD9l
+         DHkw==
+X-Forwarded-Encrypted: i=1; AJvYcCVSfCgpi310XbZNeRp+nivXoByELS2GV17mRWPemPTBt9TqrLGZTy9wA0vIVfpsyVIIOtNb0gi09lq7@vger.kernel.org
+X-Gm-Message-State: AOJu0YzV2azIhBHKcoBvSPQbE2WbmAX7oGXJVLN599rM289Ws3O9V4H6
+	9fPhd6Es8XF9fySs2nQkFWh0Zj/3DuvV97uiFN50kyOX9U45lgv+R+9LKkDBBX/NIrblyLweEN5
+	ju7pgy5CQ8Dbenp8Ty7pPkJbB/dxOHPNnBad6N8UO4ZPJUFA37E96TubIaLa9TV17
+X-Gm-Gg: ASbGncsCIfo3RFvWE5pufbIq7RHnGanfrTXerNI0v3BVAEjB4NVhxDRQTbmfyhYhpUx
+	kwzE/aEM092BaK68qSsf85FQG0H9gZgcDAnG0qPJ5Ahl7hxO62mc1ku8IJZxmsyhz96ORZXy6QV
+	Z+DYJQ4cjAhaIx81i2oAINKPXZfbUCmTcp+M7LaOB7SsNIHWR19WBgt4w93vngpxx+P9YQwOvm6
+	Tnz1Kw6S5g+P7KzKuRZ/d+Xps9TiivESGF1Mm2RvPFf+NX7UwbnEQbWxb9SFr6ZareG5YUhAyE+
+	4ngHl95LniWn9naBtLilQV0X7ww08GN9T9OgxlkyPx0LN3LxInw6m/cMjTFOwX3WLS3MHwZc7KX
+	yhLAA5RVlyLN8cvvuaI8tWQ==
+X-Received: by 2002:ac8:7e89:0:b0:4b7:94f1:7722 with SMTP id d75a77b69052e-4d35bdf0ab6mr48207461cf.0.1758719718531;
+        Wed, 24 Sep 2025 06:15:18 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IESZfa8efiSxEuXWBpFzEPdHkSAYRXc+abBpIikFgLyQyl0nwGOhQi4FND05AsXWtX0Zyh0sg==
+X-Received: by 2002:ac8:7e89:0:b0:4b7:94f1:7722 with SMTP id d75a77b69052e-4d35bdf0ab6mr48206741cf.0.1758719717686;
+        Wed, 24 Sep 2025 06:15:17 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b2d4309ab9asm632180266b.74.2025.09.24.06.15.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Sep 2025 06:15:17 -0700 (PDT)
+Message-ID: <d650fde0-7ad6-47bf-a8fd-86dadbce235c@oss.qualcomm.com>
+Date: Wed, 24 Sep 2025 15:15:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <PAXPR04MB84590D5AAAB56ED7E1CBDE05881CA@PAXPR04MB8459.eurprd04.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 02/14] arm64: dts: qcom: lemans: move USB PHYs to a proper
+ place
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20250921-refgen-v1-0-9d93e64133ea@oss.qualcomm.com>
+ <20250921-refgen-v1-2-9d93e64133ea@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250921-refgen-v1-2-9d93e64133ea@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: DY-Ae3BG0dJZlp5uoWdTWGBXarkWait2
+X-Proofpoint-ORIG-GUID: DY-Ae3BG0dJZlp5uoWdTWGBXarkWait2
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIyMDA4OSBTYWx0ZWRfX4cRPdCS5Rjus
+ ItXnPxq+Rn1PgK4cFq4NeAfnOX97AnpoRvh6hC4w4fYSgI8ZzaSBVikGGGACCB1N+G5Dl7lcyH+
+ wOg3uSejO8YlOvzh6kY+r8tVwxoEdoU/+FK05ost7ck0y5sD0Q2+hzLSGoeUgb9ILqO8sJK2Oqr
+ hLB4ZvAb8WqcOJk2YN4BNoxpclhl8r2zVS7huipLnVqQIU0k02AEK4zZ1wfZlbAZ7WZ5PsVK17U
+ O6RkAITIRP9UA0sX82GFPgDpm2ZEFRV0xlgGJa0corkMZoqn66hdi28zeu+hQU4zi3QGY5pahV1
+ sYIfO5bEl25C7N9QB2kL4eOz3fLenrFNTZW7B0hpDsLtXDsM8XmA+zyIg7Yi5mIbRGlbJp5dvcN
+ LiQWHlTv
+X-Authority-Analysis: v=2.4 cv=BabY0qt2 c=1 sm=1 tr=0 ts=68d3eee7 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=9b4w7uh9JfneBs45nCQA:9
+ a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-24_03,2025-09-22_05,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1015 phishscore=0 bulkscore=0 priorityscore=1501
+ adultscore=0 malwarescore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509220089
 
-On Wed, Sep 24, 2025 at 11:43:56AM +0000, Peng Fan wrote:
-> > Subject: Re: [PATCH v4 5/5] clk: scmi: Support Spread Spectrum for
-> > NXP i.MX95
-> ...
-> > >>>        SCMI_CLOCK_CFG_OEM_START = 0x80,
-> > >>> +     SCMI_CLOCK_CFG_IMX_SSC = 0x80,
-> > >>
-> > >> TI is also planning to implement the same in our upcoming platform.
-> > >> so can we use a generic ID instead of vender specfic message ID?
-> > >
-> > > I tried to push to new generic ID [1] in half a year ago, but in the
-> > > end ARM decided not to add generic ID for spread spectrum support.
-> > >
-> > > To i.MX, it is too late to use a generic ID and waiting spec, i.MX
-> > > firmware has been public for quite some time and passed several
-> > external releases.
-> > > So I need to use what our firmware adds and spec allows: vendor
-> > > extension.
-> > 
-> > Thanks for the quick response,
-> > Since this implementation is specific to i.MX, can you move this to a
-> > vendor specific file, so that it will not break i.MX's firmware and TI can
-> > implement SSC in TI specific file.
+On 9/21/25 9:09 AM, Dmitry Baryshkov wrote:
+> Sort the lemans.dtsi, moving USB1 and USB2 PHYs to a proper place,
+> making the DT file sorted by the address.
 > 
-> i.MX has encountered issue with pinctrl-scmi.c and pinctrl-imx-scmi.c
-> both supports SCMI PINCTRL. Current linux scmi does not support
-> both drivers built in kernel image, because scmi devlink issue.
-> 
-> Sudeep said he would address the devlink issue in 6.19 cycle.
->
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
 
-Yes it is a different issue IMO and nothing related to this.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-> Given the current situation, I'm hesitant to introduce a new driver
-> saying clk-imx-scmi.c.
->
-
-Yes please don't, and I don't see a strong reason for that(yet).
-
-Unlike vendor protocol, there is no way we can no upfront how the vendors
-can use this in their own colourful way. So I am not sure if we start
-building something generic from the start or refactor as more vendors start
-using it. Hard to decide 🙁. Lets see, need to think a bit.
-
-If Peng or Sebin or others have some idea, please propose or start the
-discussion so that we can evaluate the approach.
-
--- 
-Regards,
-Sudeep
+Konrad
 
