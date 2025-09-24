@@ -1,76 +1,58 @@
-Return-Path: <devicetree+bounces-220848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E81D3B9B1C9
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:50:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A1E3B9B25D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:58:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E6751B26507
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 17:50:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE0461B26E92
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 17:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D0283148C4;
-	Wed, 24 Sep 2025 17:50:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54C89314A9B;
+	Wed, 24 Sep 2025 17:58:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="HO3rF3uB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ixi601Ep"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 540B52FBE05;
-	Wed, 24 Sep 2025 17:50:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 208703115BE;
+	Wed, 24 Sep 2025 17:58:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758736230; cv=none; b=LD7v0v1ZlPSE1kzurYByicUMv0GIzZfnjBLVIs204fYvB3Z5sXDMVRCVB79i519w3mz3r1MsPkpWInNANxl3hXaR6Z7bgywWMEwCxTKMtzWzn42QhNzKNXoiPd0HNvqEe09E3wh8fPw4fMXAbgGfMTslTfLhw+xWMvgmdLbMwqU=
+	t=1758736703; cv=none; b=fW3F0srKC29Paf6X9B6f6JCYIaC2HdpbCt4+/5K/TvCWjEHFPbb90msUxlWGfIlft846gpt7L4kb08b8uH47KPDLt/7DTeJPMVuI7jR5h5gLMZn9cga5loUaTBmCfahRfhBQUp8I+2ZrTk26gba48Ien5ATUq8v47YH5iFvE6OU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758736230; c=relaxed/simple;
-	bh=xB7pPlWW0+eiQnT8mrW75khUnjKN0I9h+uNbHWk55Uk=;
+	s=arc-20240116; t=1758736703; c=relaxed/simple;
+	bh=ze5dp8F8Yg/MczIfVsfrnieGIk/e6W8KaJLnoFbhkU8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BkTKBmU9wb6Qmf4QqkkjH5ZLAnHJ1SYz3W779IYaMHhuKPEy9OnVDQsFbM2cMeLpr6x+ts1+w7jgxWRtqWpgI1FxBkiAZz40RDlM90bWAzKRXlrAv3M7TGs8IymV5zqRjh8OMvJPThzxk9QzG60lVdb2J8QipT9jgPYiT1CkkpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=HO3rF3uB; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=+vJ1dOlsQQaSGt9wLwAFi3DtF1NLVEuTTQ4UpKnYZ3M=; b=HO3rF3uBCQ2jcVMAxeZgSdPp+w
-	8JkNip2tIfNxVFlpWPPVkI3BxcxjT7OnUMTN+u9aYpdeRIv/Z9nfvGmfCqFFLocvpncoMTU5AwrkI
-	GV91ILjtr0b025Bd2tFtERmWPEgLfydMGRbR6Kkz9kOtIt8R+KhJO3N4o8dzZ/RcLDeIWSHByJTuh
-	I8aS1ggLI1BYgbwVQZNMs+x+aNZ0IqLloKs2pVEMtkg7neTQ9XzTSoonUdT7AOxQyVR7yg7kQVeaw
-	lZ7J5eK6Fi/eEXF2iAgmf8NpuEfoORJxZQZD/gDLQXImTU2ZIActbAJNmtXC3rWEy4r+Ijg2uaRNS
-	aCqWKUXQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55252)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1v1TdH-000000000z7-0TDa;
-	Wed, 24 Sep 2025 18:50:23 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1v1TdE-000000007L9-04ys;
-	Wed, 24 Sep 2025 18:50:20 +0100
-Date: Wed, 24 Sep 2025 18:50:19 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: David Yang <mmyangfl@gmail.com>, Andrew Lunn <andrew@lunn.ch>
-Cc: netdev@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=LGkFua6YFtxjwNK4ytXM7w1V+/FERr/YPhcgxXNz6URxEExPb67oBjU2WRI1XO78Xv2XSUJnPyznEkNI8bkyS28d5J9onaQfawQKYzozzPtXn5pMGjT+7Sku1D32HD+Ud5ArwH1aGlPyD+7rujPbhaGk3lATxMbJ5DGnmmSgJkM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ixi601Ep; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AE41C4CEE7;
+	Wed, 24 Sep 2025 17:58:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758736701;
+	bh=ze5dp8F8Yg/MczIfVsfrnieGIk/e6W8KaJLnoFbhkU8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ixi601EpbcZC2kA0AgRBOxgqkY+I3wYL6iFthigN9WWQet16kMLtti3VpmpvL9h0R
+	 f0y12Y4slOZRsu7CldGCWDZUIcO3UCjCV3ErJCwngVD1BfoVIlR8zA2uWw1g9V6eo6
+	 r1775D3EtF+D2kRja4tELWi1iZBWgagSqRqtV++JqeChnam9ZV/aXcvJAzHZ1GfkCy
+	 tx1vPsprJ/7YFShv/OdORCrQdJiIavEQ+QeMvVY8kAE3L0mLjsh5GHhVFvVpqFywZm
+	 luC7poaINIfRvmA3JmCVq6lI9dT2YK5UV2+NKiQQaDIHbCUhJdfLIZJtjdjGUTxZe/
+	 Fgv9SjN4HerdA==
+Date: Wed, 24 Sep 2025 12:58:15 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Kael D'Alcamo <dev@kael-k.io>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Simon Horman <horms@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v11 2/5] net: phy: introduce
- PHY_INTERFACE_MODE_REVSGMII
-Message-ID: <aNQvW54sk3EzmoJp@shell.armlinux.org.uk>
-References: <20250922131148.1917856-1-mmyangfl@gmail.com>
- <20250922131148.1917856-3-mmyangfl@gmail.com>
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	linux-crypto@vger.kernel.org, Olivia Mackall <olivia@selenic.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: rng: microchip,pic32-rng: convert to DT
+ schema
+Message-ID: <175873669193.2360811.8690503029973801383.robh@kernel.org>
+References: <20250923093330.31649-1-dev@kael-k.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,52 +61,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250922131148.1917856-3-mmyangfl@gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20250923093330.31649-1-dev@kael-k.io>
 
-On Mon, Sep 22, 2025 at 09:11:40PM +0800, David Yang wrote:
-> The "reverse SGMII" protocol name is a personal invention, derived from
-> "reverse MII" and "reverse RMII", this means: "behave like an SGMII
-> PHY".
 
-Sorry to mess you around, but... I've been getting further with stmmac's
-PCS stuff (I've started again with it) and I've come to realise that the
-stmmac driver is full of worms here.
+On Tue, 23 Sep 2025 11:32:34 +0200, Kael D'Alcamo wrote:
+> Convert the Devicetree binding documentation for microchip,pic32mzda-rng
+> from plain text to YAML.
+> 
+> Signed-off-by: Kael D'Alcamo <dev@kael-k.io>
+> ---
+>  .../bindings/rng/microchip,pic32-rng.txt      | 17 --------
+>  .../bindings/rng/microchip,pic32-rng.yaml     | 40 +++++++++++++++++++
+>  2 files changed, 40 insertions(+), 17 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rng/microchip,pic32-rng.txt
+>  create mode 100644 Documentation/devicetree/bindings/rng/microchip,pic32-rng.yaml
+> 
 
-I think we need to have a bigger discussion here.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Today, we have:
-
-- PHY_INTERFACE_MODE_REVMII
-- PHY_INTERFACE_MODE_REVRMII
-
-which both complement their _MII and _RMII definitions. So, it seems
-entirely sensible to also introduce REVSGMII to complement SGMII.
-
-However, stmmac hardware supports "reverse" mode for more than just
-SGMII, also RGMII and SMII. The driver doesn't support SMII, and is
-actually buggy - despite having the DT configuration knobs (which
-are used), the hardware is never actually configured to operate in
-"reverse" mode (it never has the GMAC_CONFIG_TC bit set to allow the
-core to, in effect, act as a PHY.) That said, the core does have
-it's SGMII rate adapter switched from using the incoming inband word
-to using the MAC configuration.
-
-So, while I thought this would be useful for stmmac, given that all
-the platforms we have today aren't actually using "reverse SGMII"
-mode, I don't think this will be useful there.
-
-If we go round the route of adding REVSGMII, we are also opening
-the path to also having REVSMII, and all four REVRGMII* as well.
-Is this a good idea?
-
-Would it be better to have phy_interface_t + reverse-mode flag
-and accept REVMII and REVRMII as a pecularity? That's probably
-going to be a very painful change.
-
-Andrew, any views?
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
