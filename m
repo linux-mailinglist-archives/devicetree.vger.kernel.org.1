@@ -1,272 +1,208 @@
-Return-Path: <devicetree+bounces-220712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 699A6B998C3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:12:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72670B995CB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 12:08:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5A80A4C521B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 11:11:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 531904C22BC
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 10:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 860832E6CD5;
-	Wed, 24 Sep 2025 11:11:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 228202DA775;
+	Wed, 24 Sep 2025 10:06:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="Y1KCTSO4"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="qBwQmw84"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m1973199.qiye.163.com (mail-m1973199.qiye.163.com [220.197.31.99])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010025.outbound.protection.outlook.com [52.101.84.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20ED72E62DA;
-	Wed, 24 Sep 2025 11:11:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.99
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758712292; cv=none; b=ZckRI8p6LJFkdV8rYmu2zZvUREMl7lqbol4Q2Jx246fC1BMR/ETWCgMLMeWk0hg5BBq9xduz1bYdtMKCGZxdxOkgLNbjg/hh6xaGzEJtEcY3fvIcrX5rFDDTUX8FCwbv60zmAM7IBCfZPUuuIcZYgAjzrMzlB7mf+EUxgW2IbKI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758712292; c=relaxed/simple;
-	bh=FFqCA/DgacmpT/aD9Fg5lKQhSph3nv3W23sHZZlJaOI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=knLem874eokN5OePUGXHiPhPzlbQS69+TpIIB8Rzx7ph3m3aGsJJpzMoWC7fKeLKbT1T9K2BqeE3tPgVZMvkH3Vqoo8AiVlx87GRXi17LUdyzMzVVQZ89kJJAfrmDJ94gA9FCHejN9KTcuiZBjRssm7eIBLQIgXuXnCtSGR/3HU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=Y1KCTSO4; arc=none smtp.client-ip=220.197.31.99
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-Received: from [172.16.12.153] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 23e8469d7;
-	Wed, 24 Sep 2025 17:55:40 +0800 (GMT+08:00)
-Message-ID: <86753f21-1996-4b93-acca-575a193a5bb8@rock-chips.com>
-Date: Wed, 24 Sep 2025 17:55:39 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3185323D7D7;
+	Wed, 24 Sep 2025 10:06:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.25
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758708419; cv=fail; b=ebU9IlYgTZQExgZBEgSOnEw5lM/3kKr6p2RtzeXlek+LZ8xLlAy7LsXxvnhylp3tM4OnnIjDymlK8i24Ci9ThPRPkLGN8+6f8cyuXDXZcNHuAEQtpV3HTumR36aIuO4O+sVUyxdj2dKz3slpEO9k+z5dOI4cbyvIuBWtyh1ckvs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758708419; c=relaxed/simple;
+	bh=1e7h4dESQgIpQ1h9gbnk5GirWgxb/vP34pvDRjFo9IE=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=EmMr3WAKpIFU2emozvQannHEnUaTvKbzP3fEJXe4zMGY+zgVVflI0NagJBC9sPjRisvyJAa/mtljyMfTteQ5cD8Gkpv+tSZlSwtmgsga1bRE0LGi3vcRCj6yut14My9fNado+2pRWzyx8bOeKjmG0UWXyTMP5Y/QiWC0cNjOBVE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=qBwQmw84; arc=fail smtp.client-ip=52.101.84.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IiOSXCQgm26NdlYv8zCBI+1XqqbdRjOnGkca5ln+KNpYgWtfGXkqr9xJ+uTogHH65Kh1syPT2jx1uH4WpM25Lpz63HBILaYjFaBju+qzAzf2NM8NA43JFtYBQ04NdprwPIaXWC77iB8BOZBzGieVqXRlejhDGpao9rK7bd2S0gEYYmZsHawlYZb6+1mK0DDc3i53R8NGVfGysc+pG/c5DJDWsPNQ8TS/4jiO8VBRQ6v+UcAhsc7GOpHKLBUlhDmbJweOu4xDs2lzx0i+sFpfjPL4zFy8Dy7dh8e26rcsRItCFXK0mvqPj4dKFh7/TtXCSNpR11vcI/96KL7dLH7DGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Ha5Pudu9zkXdDwzzFSI5KfIZJoavXnuq0rQWRmBgMLs=;
+ b=Eo+ifO+Mim79quTSIyfs8Wf6d3488muy0eX7ZaDaY/y4Mg2LLT8SfRSm1T7KkA4m/g/vZ8pXBznNN01Mb9gcB3aGfYGx1Kf7dn//iuO5DOQ6gos7UgSOxkjnGFLZ4toShO3XdaD9OtRnYpeVr/H2g78FgMZxci/rqBIIsjleREqVzdsUKM/lG755ktZUACAQ9fmnC0Mnt7Cz9TtEG3MSLhcb7qGUWCCbESTMBkOz1XxvAD8EXylmAe2ggCUjja9EhKPmnJTvYTYiMCm3+wRxFFP+DHz84Ueh9JFgC8okvxeLZvONjuIlIrcvXthW+ZOM+pv8AZUhY2+gylgVFeHyNg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Ha5Pudu9zkXdDwzzFSI5KfIZJoavXnuq0rQWRmBgMLs=;
+ b=qBwQmw84UlXiH6mA64gC2pgP34HXWqgoFy6BqZlBMYLBNK3n9mF+Cd3HvaHjaEdgFP9gvXrhXMG9c8aCU2EphMrfCVkEzEF+jgPGkJUpsLmh9g9a4ff16sLUYKspXH0nHZN1erybY9RHbrj1Bk+2H6Lrdwh2DNBerw53tmqFdPtn9Cc21F7L5eTPjE4VTbVkCPvcAW0GqGy6CHXpJPUrvhngyAMe/0ffFLaMUrmZ7XM+QdEfWfmoGOv1DmuiBb0dsJHC5wkZWg9TMa+ZQ8O8LKgon0eLwwKt1nOI8SSr7G0NfuMZpHJq4Zzy+dXWtKFyxS7if7r+d5DNDRXsTqzVnA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB9644.eurprd04.prod.outlook.com (2603:10a6:102:242::11)
+ by DUZPR04MB9745.eurprd04.prod.outlook.com (2603:10a6:10:4e1::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.8; Wed, 24 Sep
+ 2025 10:06:49 +0000
+Received: from PAXPR04MB9644.eurprd04.prod.outlook.com
+ ([fe80::6979:311a:bf0c:1a49]) by PAXPR04MB9644.eurprd04.prod.outlook.com
+ ([fe80::6979:311a:bf0c:1a49%7]) with mapi id 15.20.9160.008; Wed, 24 Sep 2025
+ 10:06:49 +0000
+From: "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
+Subject: [PATCH 0/3] Add i.MX94 OCOTP support
+Date: Wed, 24 Sep 2025 18:06:22 +0800
+Message-Id: <20250924-imx943-v1-0-0d32d7852ecb@oss.nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ7C02gC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDSyMT3czcCksTY90kI/PEFHPTFEOTtEQloOKCotS0zAqwQdFKZYZKsbW
+ 1AGHzmnVcAAAA
+To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>
+X-Mailer: b4 0.13.0
+X-ClientProxiedBy: SI2PR01CA0051.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:193::6) To PAXPR04MB9644.eurprd04.prod.outlook.com
+ (2603:10a6:102:242::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/7] usb: typec: Add default HPD device when register
- DisplayPort altmode
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Chaoyi Chen <kernel@airkyi.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Sandy Huang <hjc@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Yubing Zhang <yubing.zhang@rock-chips.com>,
- Frank Wang <frank.wang@rock-chips.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Amit Sunil Dhamne <amitsd@google.com>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dragan Simic <dsimic@manjaro.org>, Johan Jonker <jbx6244@gmail.com>,
- Diederik de Haas <didi.debian@cknow.org>,
- Peter Robinson <pbrobinson@gmail.com>, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, dri-devel@lists.freedesktop.org
-References: <20250922012039.323-1-kernel@airkyi.com>
- <20250922012039.323-2-kernel@airkyi.com>
- <mygbqhiom6pkwsadzz2bqf5bth3ogsbd6iku5a7r5swxrakein@fjhz7udnkcks>
- <e9cf0aa8-ed32-4ffb-a755-150742455808@rock-chips.com>
- <sgvrzhbhkzxbuybmws44kyenhfyppm3blijkarypcin4fiscvx@mnajrlmicyxi>
- <18f55fe7-7c68-4982-916d-11752325c667@rock-chips.com>
- <bh73nttewwhom2pqccfnapnfkrys3zljkykgqmh4hsdalqgyzi@gbl5oejxsp3z>
-Content-Language: en-US
-From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
-In-Reply-To: <bh73nttewwhom2pqccfnapnfkrys3zljkykgqmh4hsdalqgyzi@gbl5oejxsp3z>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a997b266d6203abkunm01a8f59e308014
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGU0aQ1YeGB4eGh4eQ0xDSU1WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSEpPSE
-	xVSktLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=Y1KCTSO4JB2Doz2nmVMLfKoz+r0EQxAq+gYoHGZXqvPXCT0mGRZDywZEZRoz9311tm43dTuZoGPmpZjkh2jazaj46gvMoh7juipwzZ2A8MY5Xj1mu7G0oCk2vrCsLZaW5K1yYMFNQT3KLOdDEpcrpdoC/5TwZRDqAq6RE9DQtMQ=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=yJbQmL+TOmkpM0cLVkYWJb1/IVWYDpFb9n/hCp+37zE=;
-	h=date:mime-version:subject:message-id:from;
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9644:EE_|DUZPR04MB9745:EE_
+X-MS-Office365-Filtering-Correlation-Id: ac213895-603d-478d-c4cb-08ddfb52138b
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|7416014|19092799006|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?ODhzaTVmTFduNkhDWmQzaWdwenI3b0VEc3FMQ0YyU3lPMUhmcnhjVDQxZFRZ?=
+ =?utf-8?B?R2xhYUNaeUZ2akNrUDFLNnZvck5RdjV3ZFQ4WlhpNHByZEFLUEVyenM1ZEhM?=
+ =?utf-8?B?ZmlPZGxZMk04UXNYeDNSTzhtdW9OSUJOTVV5Q0hoOWpJYzVLR1lkc3FEdjZG?=
+ =?utf-8?B?SUNpbjFxY3ZWNTFhQzhZeTF5QitTWThmdGNpbUNJVXY1VkNCUWQ4NGVGQ3Nm?=
+ =?utf-8?B?elNOaFJUL3BNc2Uwb3hKOW5LbDRWZUxSTzhJTjBibTNGbER6K2VzUkExMm5W?=
+ =?utf-8?B?QzIzYTlsNXJtQUtpM3FQcEZYRVlTZFI1QXNDcHF2ei83TW5iRVdnMlpyZkR5?=
+ =?utf-8?B?cm5UQ2ZMUDUwZEFVQjViN2YzVUZsaXB2Q1pWMFR3SVA1SjlSODNsTmVjRzN6?=
+ =?utf-8?B?OFNxb2Zzdk9QSmpIakhIR0dPTWw5dVB5MmlGOXg5VGZOc0oyRlFBM0YwVmxP?=
+ =?utf-8?B?VCszcnlrTkxSdE5kVjNadS9pSC9XSFEyR0V6VlJHbzkzcEtDVGptOHFOWnN2?=
+ =?utf-8?B?emN6SHNyRUVXMjhpMUp3M0FJUGN2cFZFWU96UFpITVBmVmRDSnl1SUp6LzE2?=
+ =?utf-8?B?VC94b1Y1R3lRT2FkeDhLZHM5Q1VtemZycS9ZM1loM1UvQUs1T3c1bjR2VWxy?=
+ =?utf-8?B?a09kNjgzZVJoREZEREhkOXFGZ1Bvb0h4bldsUHluWnQxbEtxaEV3RkZrV1FF?=
+ =?utf-8?B?aHBLd2dGT29NMWNDNEUySVk2VENpR3B1ZU04NlRHa00zZXNVYUF5d3YvRm55?=
+ =?utf-8?B?OVBSUFpDaDFjMzJ4dzh1dWVlWTZMbXJrSDRQcVdOMDBoSDI1UVlGcW5uRWov?=
+ =?utf-8?B?ejVYdUFSSjBxWGdtN2s1dnQ2Y25OVmhSUzYzd0xJNEh0ZVlyNDBoUjRyRVZw?=
+ =?utf-8?B?U2dGWG9tSzdOWVVjTXJ4ajJVblFoOEJPK1ZrTlkxQUorSHdnQTVHSmo1emhF?=
+ =?utf-8?B?eWtoRGJiN2ZTNXc5UVZSSDNjdDdJYkhSMmQyZDYzNDBLQmZtbUg0Z3duR2Rk?=
+ =?utf-8?B?VlFLR29Lb3pzVDhrRVNidE1XMzNkNURVZUhVRFNJalJPR0ltUEplMmVBK0Rs?=
+ =?utf-8?B?UFZjcTlsbzhlRjkybG51Qjk4aiszdVAwd1RCRnc5NFU5dXhvMWRPekU1NzU5?=
+ =?utf-8?B?ajJiSzBHM3AwU0JDTzZPa0c1R3gxRnNkTTV3YnQvYkxFNkFMa0FPOTdZOEFa?=
+ =?utf-8?B?YXRmbmpCVDNHNmg5ZDhtbXpQZ3BDWXBzeFF0L3R4d0Rkby9lN21tazZsc3NN?=
+ =?utf-8?B?UHAydE9SVTdtWENWeWVLQlJ5S3NDNVV0cVp5N1Zqd3RSV09HdGtKQ3V5K2hK?=
+ =?utf-8?B?Z0xGT1N3akM4dVI4d05sbGhwMW1qN1hrL1N6UGNVYzNtTEJZQjJDY1RRRFdw?=
+ =?utf-8?B?Zno2amlNZGp3VXZJVUNmektnVklwQzRPTlg5ektBTDYzQnY0RFQ3bVdyL1FQ?=
+ =?utf-8?B?UnF5b1R4MTJmSGluSTdCZkxIbElGUXdFNjMweEQxK3crZElPTFNTY1JQQWtH?=
+ =?utf-8?B?clhidHpjdGRkRjV6YkRuOGJuVUQzeWptZjVuSVpsc3BNdXlBemJCZWdYQzc3?=
+ =?utf-8?B?Qk92bFgraWZoWnQ3bTU2N0tyL3Rsd1pjb2kvNGFIMzE2NU80bG41MmJiVlla?=
+ =?utf-8?B?a1dHakM3dXE3TW1QVUhhZlZCenc4YXR2ZjVZRHgwWHdITUhPVWNCRzI5L1ZJ?=
+ =?utf-8?B?U25KbHhnM1NVQm9xb3k4dlpGYndVUlJ2N1hSYU9kTVJlNGlTY1d4VUpWL2xV?=
+ =?utf-8?B?VDU3bm1YYS9lQTBOMVlPL0c5aXVaWDUyYUJ4WHF5ejRDLzBoVzByVldURURn?=
+ =?utf-8?B?M09QR0lWaFFXNFFrL3BwTzZ4eHBXcFFkUDdXVTRYd2RtdklDL0s1OGM4Q1l4?=
+ =?utf-8?B?TGY0NWJpTENNMnBUdkxPbkpiU3huT3BJY21adWU5WXoxcnZIREJBeFJtWkwv?=
+ =?utf-8?B?Z3JqRUFvM3IraTk1ZWpCSkRzdVU5U2hJcHJwaUNGUXlMZ2tLZ0V3ZEdXcXRM?=
+ =?utf-8?B?V1J6WWU1aGhnPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9644.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(7416014)(19092799006)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?eWloQzYrMTZlamVmeHpqWDJMWmpkazBXdHozTG9WOFlTckpYWXBqdldMRWcw?=
+ =?utf-8?B?cFU4Ui9PMFIzV1QyYzUwVVhnaVgxUmRlaVdwWjFuQTdUbXFIRnBCMG5oUi9X?=
+ =?utf-8?B?N0RSN3MyY3RJbVI0YW83LytHTE1KSzZGUzVZQUlvWlFjejN3RFdEQThISzA1?=
+ =?utf-8?B?ZzlPdDZDMDlxdVZGQUw4QWJkUEdrZ3hpZUJGd2hOOHFIR2FYWENwM0FQVWx0?=
+ =?utf-8?B?bTR0ZU1LT2w3ZU9vOUJMMmJvNW5YQUlUT0lMYTIrWGNIeGdFR0d3aEgxNFFm?=
+ =?utf-8?B?M0draytuRm1iTUhYK0txL28xbjJmZmRkODRjSnM1SHQrVHVpeGIxbHZBcDJj?=
+ =?utf-8?B?Wlk0ZDNPcGd3dDJsNVg2UVk0eWFmRUdzVXBPRy9wU1R4YmVKSW5paGVMUG4x?=
+ =?utf-8?B?SmtWeGtqRG1wck9remNmc2toaHZiaFgwNDBTU1Iwd3FmS244QnBKQ2JPaTZi?=
+ =?utf-8?B?SC9lWFNCUSt3dGsxSFF3SHEvelhHUmkvNFJXc2dxK2IraUdLMHh0d1RUUnRW?=
+ =?utf-8?B?U3ZtUE9WeHRKUTdhZnRlSXBXckxqUFJKQlhjVmkvMUkydmg0T1p4bytraW10?=
+ =?utf-8?B?RWNMUzk2YlpmL09GUjArZ2NxRVZMWkZvS0lBS3ZrTm0yb2FoOVd5MC8veDBJ?=
+ =?utf-8?B?Sml0TmNZRVk4eWtiNU9pTUx0eHpqNWJoL1ZPUW5mVHlMQVo1NXZqcHljdlNQ?=
+ =?utf-8?B?TCtweVZCMWZ0dHVXNDVwYzNWRlBmSUdTNjNaeHkxRjNNY2ZlNjhqcXRlbGdz?=
+ =?utf-8?B?TnVyOW1LeVp1QVlCOVd0TVBpYllMK1NodkZqTXYwK3BDalYwRjdteWpJRDgw?=
+ =?utf-8?B?ZFMzbVZWeENrcGgvWDNuV1VFNmxVYXhkWkxTazJBNTdkWHJub0NQMWIramIv?=
+ =?utf-8?B?cFVCaEt3Y2w5TlhuUmFWR0tNMVk2U0NJd3ZPUFRGS0VCM2E5dGxsR1dyUGxQ?=
+ =?utf-8?B?dVJSWGpDM25ScWRGc3NySHdpbXpyby9SaXRydytaU0FIL1FIeFczbkFJcnVp?=
+ =?utf-8?B?QW1UNzVtT0RoVlE2dkFMcFpMTi9hQTZRYmUvMDJxTFdIVEhBOHV2L052cU9I?=
+ =?utf-8?B?cGxqa2ZTdkZvWUlxdWJ6VW43RkRLSE5oODBVYTlwd1hWbUh3SDhBK1F2NytU?=
+ =?utf-8?B?U2Vqd2FsNE0wSnRXa09KTHNyeC9LVXNKeFliNUJHR3gyc0grL0VIT0FydkJM?=
+ =?utf-8?B?UmNQbm1IVFpmNlNIdEcwZkVJM1V1Nis0emMyUE9GY2NoT1dxajBvNGs2Z2dl?=
+ =?utf-8?B?M1VOMlp0WGlhRWpKTFZrdTdxQkFERjZydFNGV0lyTXRvNno3WjBHQ01Xclds?=
+ =?utf-8?B?NGFSbitZMTcycEd0WVV3UWlNcEFUY3lzVDk4NDVWSCswWDBGNlFFVWd4cUNu?=
+ =?utf-8?B?RVRac0o4Z0MzVXpveE1LM3JwZHJ0S2dOL09rcjVCaUg3eVo0K2R2ZW9qZTNT?=
+ =?utf-8?B?dFdCYlRDUjJTaFhmeWdLVUJuTnZDUDh1M3JiVGM1bWxxUmlBZkhFRStjK0tY?=
+ =?utf-8?B?U1hYaWFlczM5SUZQS3Z2WnU1bVJmNGl6akQzTC9mSUVKSW1RTy9sWFFMV0wv?=
+ =?utf-8?B?MTc3ZS9tWWhmNTlIdVBrcVcrV3d2WTBSU2ZZM0NjaEtwUWFXQ0kwVUdUWjFT?=
+ =?utf-8?B?YWlFU3VHR0pjT2U2NkZ3UHk1NjhMSlJUWDZ0dFJ3MnJvWWYwMGNKeHJBdnJ1?=
+ =?utf-8?B?Y2RkbFdZM0pGZmQ5czB5a0tieEM2MzhUQVU5T2k5ZUcwWjdCeHU2T1ZqY3dI?=
+ =?utf-8?B?YzlQN0FFS2RWSWpoREVIMmpZSHJZVHg2dEd0THBJck54VUx1SU44TWJZSHNN?=
+ =?utf-8?B?WUxEK1N6RitJWHV3aUJlalpqeWZScmxPckFUWW94SWdQbVcvQjZPckhLSmF2?=
+ =?utf-8?B?ejZXN3NDYnhvZzFKVzBEVnJZc1dlOFljYlNHTnk2MDhzdVZJVlRhS1htbHpL?=
+ =?utf-8?B?OFFoNlB3RlBac3FKMEVORG5pbE8zYTZhcUNSNWd4T2YrMDJibm5pdVl2NUc5?=
+ =?utf-8?B?RXBtRFpoczcyakhsL1NQbkZodnNra0c5N0NhR1RjSTloRDlWWDBrTmxlWVdU?=
+ =?utf-8?B?RHBINHlGZnVBQW5DR2o0eXdiYytDS2hLTkxUVDdTNkNzNFdiMURjbmY0bVBv?=
+ =?utf-8?Q?/+16BwunMZdz1ZCPBzaSPU4le?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac213895-603d-478d-c4cb-08ddfb52138b
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9644.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Sep 2025 10:06:49.3247
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: G0nS5foLAtzS6/rLbGs3cPMvYXwHxXMrQ5ilsgLsX+BQ8YcPzyYw/mn9FK8V4vei9PL6ZtbgESQfiCNGVHgqjQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR04MB9745
 
-On 9/23/2025 6:40 PM, Dmitry Baryshkov wrote:
+This patch series adds support for the OCOTP controller on the i.MX94
+SoC. The OCOTP controller provides access to eFuse regions.
 
-> On Tue, Sep 23, 2025 at 05:07:25PM +0800, Chaoyi Chen wrote:
->> On 9/23/2025 11:11 AM, Dmitry Baryshkov wrote:
->>
->>> On Tue, Sep 23, 2025 at 09:34:39AM +0800, Chaoyi Chen wrote:
->>>> On 9/23/2025 9:10 AM, Dmitry Baryshkov wrote:
->>>>
->>>>> On Mon, Sep 22, 2025 at 09:20:33AM +0800, Chaoyi Chen wrote:
->>>>>> From: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>>>>>
->>>>>> Add default DRM AUX HPD bridge device when register DisplayPort
->>>>>> altmode. That makes it redundant for each Type-C driver to implement
->>>>>> a similar registration process in embedded scenarios.
->>>>>>
->>>>>> Signed-off-by: Chaoyi Chen <chaoyi.chen@rock-chips.com>
->>>>>> ---
->>>>>>     drivers/usb/typec/altmodes/displayport.c | 27 ++++++++++++++++++++++++
->>>>>>     drivers/usb/typec/altmodes/displayport.h |  2 ++
->>>>>>     drivers/usb/typec/class.c                |  8 +++++++
->>>>>>     include/linux/usb/typec_altmode.h        |  2 ++
->>>>>>     4 files changed, 39 insertions(+)
->>>>>>
->>>>>> diff --git a/drivers/usb/typec/altmodes/displayport.c b/drivers/usb/typec/altmodes/displayport.c
->>>>>> index 1dcb77faf85d..e026dc6e5430 100644
->>>>>> --- a/drivers/usb/typec/altmodes/displayport.c
->>>>>> +++ b/drivers/usb/typec/altmodes/displayport.c
->>>>>> @@ -14,6 +14,7 @@
->>>>>>     #include <linux/property.h>
->>>>>>     #include <linux/usb/pd_vdo.h>
->>>>>>     #include <linux/usb/typec_dp.h>
->>>>>> +#include <drm/bridge/aux-bridge.h>
->>>>>>     #include <drm/drm_connector.h>
->>>>>>     #include "displayport.h"
->>>>>> @@ -182,6 +183,10 @@ static int dp_altmode_status_update(struct dp_altmode *dp)
->>>>>>     				dp->pending_irq_hpd = true;
->>>>>>     		}
->>>>>>     	} else {
->>>>>> +		if (dp->port->hpd_dev)
->>>>>> +			drm_aux_hpd_bridge_notify(dp->port->hpd_dev,
->>>>>> +						  hpd ? connector_status_connected :
->>>>>> +							connector_status_disconnected);
->>>>> There should be no need for these calls. Once the HPD bridge is added to
->>>>> a correct fwnode, the drm_connector_oob_hotplug_event() calls should
->>>>> deliver the signal as expected.
->>>> It seems that only drm_bridge_connector can do this. I'm not sure if I remember correctly. I'll give it a try.
->>> Other connectors can implement the .oob_hotplug_event call. Calling
->>> drm_bridge_hpd_notify() also depends on the connector setting the
->>> callbacks via drm_bridge_hpd_enable(), a step which is done by only a
->>> few drivers.
->> Hmm, let's go over this again. First, drm_connector_oob_hotplug_event() requires a connector fwnode.
->>
->> On the Qualcomm platforms, the fwnode corresponds to the USB-C controller device node, so
->>
->> drm_connector_oob_hotplug_event(dp->connector_fwnode, ..) can handle them directly.
->>
->> But our platform doesn't use the USB-C controller device node as drm connector fwnode :(
-> This sounds like an issue to be fixed. Alternative option would be make
-> the AltMode code find your fwnode and report OOB events against it.
-> But... I reallly think that using connector's fwnode is the cleanest
-> solution. In the end, your final 'display' connector is the USB-C
-> connector present on the board. If your display has a USB-C connector,
-> that will be the socket that gets the cable from the display, etc.
->
->> So I use drm_dp_hpd_bridge_register() and drm_aux_hpd_bridge_notify() here, I think it just create a simple hpd bridge to bridge_list.
->>
->> But drm_connector_oob_hotplug_event() use connector_list instead of bridge_list.
-> The OOB interface was created by x86 people, but we successfully reused
-> it. I think that addign drm_bridge_hpd_notify() calls just duplicates
-> the effort unnecessarily.
+Tested on an i.MX943 EVK board with successful NVMEM read access via
+sysfs.
 
-Yes, that commit comment said,  "It was proposed to add the displayport OF property to the DT bindings, but it was rejected in favor of properly describing the electrical signal path using of_graph."
+Signed-off-by: Alice Guo <alice.guo@nxp.com>
+---
+Alice Guo (3):
+      dt-bindings: nvmem: imx-ocotp: Add binding for i.MX94
+      nvmem: imx-ocotp-ele: Add support for i.MX94 OCOTP
+      arm64: dts: imx94: Add OCOTP node
 
-But in the embedded case, we don't seem to have the opportunity to describe this kind of of_graph relationship between drm connector and usb connector in usb-connector.yaml. On the Qualcomm platform, the DRM connector fwnode to correspond to the USB-C controller, which is a clean solution.
+ .../devicetree/bindings/nvmem/imx-ocotp.yaml         |  4 +++-
+ arch/arm64/boot/dts/freescale/imx94.dtsi             |  7 +++++++
+ drivers/nvmem/imx-ocotp-ele.c                        | 20 ++++++++++++++++++++
+ 3 files changed, 30 insertions(+), 1 deletion(-)
+---
+base-commit: cec1e6e5d1ab33403b809f79cd20d6aff124ccfe
+change-id: 20250924-imx943-b27ad75d14fa
 
-However, on our platform we are using external USB-C controllers. In v4 and the previous versions, I focused on directly linking the USB-C controller with the DP controller. Referring to your suggest in [0], I think maybe this can be achieved with the help of the drm bridge chain. Assuming the bridge chain is like this:
-
-
-Other birdges ... ->PHY drm aux hpd bridge -> CDN-DP bridge -> DP to HDMI bridge or other bridge or nothing...
-
-
-We can use drm_bridge_chain_get_first_bridge() to get first bridge. In this case, that is drm aux hpd bridge from USB-C controller device. Next, we can obtain the fwnode corresponding to this bridge, and once we have it, we can set the connector's fwnode to it. In this way, drm_connector_oob_hotplug_event() can take effect.
-
-
-Would this be a good idea? Thanks.
-
-
-[0] https://lore.kernel.org/all/p3kgqn3euumhysckh4yyqavqv5y6any5zcrgkrcg3j5a7z7cyw@lfpkla5p3put/
-
-
->
->>
->>
->>>>>>     		drm_connector_oob_hotplug_event(dp->connector_fwnode,
->>>>>>     						hpd ? connector_status_connected :
->>>>>>     						      connector_status_disconnected);
->>>>>> @@ -206,6 +211,9 @@ static int dp_altmode_configured(struct dp_altmode *dp)
->>>>>>     	 * configuration is complete to signal HPD.
->>>>>>     	 */
->>>>>>     	if (dp->pending_hpd) {
->>>>>> +		if (dp->port->hpd_dev)
->>>>>> +			drm_aux_hpd_bridge_notify(dp->port->hpd_dev,
->>>>>> +						  connector_status_connected);
->>>>>>     		drm_connector_oob_hotplug_event(dp->connector_fwnode,
->>>>>>     						connector_status_connected);
->>>>>>     		sysfs_notify(&dp->alt->dev.kobj, "displayport", "hpd");
->>>>>> @@ -391,6 +399,9 @@ static int dp_altmode_vdm(struct typec_altmode *alt,
->>>>>>     			dp->data.status = 0;
->>>>>>     			dp->data.conf = 0;
->>>>>>     			if (dp->hpd) {
->>>>>> +				if (dp->port->hpd_dev)
->>>>>> +					drm_aux_hpd_bridge_notify(dp->port->hpd_dev,
->>>>>> +								  connector_status_disconnected);
->>>>>>     				drm_connector_oob_hotplug_event(dp->connector_fwnode,
->>>>>>     								connector_status_disconnected);
->>>>>>     				dp->hpd = false;
->>>>>> @@ -751,6 +762,18 @@ static const struct attribute_group *displayport_groups[] = {
->>>>>>     	NULL,
->>>>>>     };
->>>>>> +void dp_altmode_hpd_device_register(struct typec_altmode *alt)
->>>>>> +{
->>>>>> +	if (alt->svid != USB_TYPEC_DP_SID)
->>>>>> +		return;
->>>>>> +
->>>>>> +	alt->hpd_dev = drm_dp_hpd_bridge_register(alt->dev.parent->parent,
->>>>>> +						  dev_of_node(alt->dev.parent->parent));
->>>>> This needs at least a comment, what is dev.parent->parent. Also, the
->>>>> of_node is not correct here. It should be a node of the connector,
->>>>> rather than the device itself. Consider USB-C controllers which handle
->>>>> several USB-C connectors (e.g. UCSI). The DRM core won't be able to
->>>>> identify the correct bridge.
->>>> I think  alt.dev->parent->parent is the connector device. Am I missing something?
->>> As I wrote, it needs a comment (in the source file). No, it's not a
->>> connector device, it's a USB-C controller device. There is no guarantee
->>> that there is a separate struct device for the USB-C connector. On
->>> Qualcomm platforms, the device will point to the USB-C controller (TCPM
->>> or UCSI), which contain usb-c-connector(s) as child node(s) in DT.
->> Thanks for the clarification.
-> I think it should be fine to pass the fwnode of the usb-c connector that
-> is outside of the USB-C controller device (if that's what your platform
-> uses). But I think this should be:
-> - the usb-c-connector node
-> - it should be coming from the Type-C controller driver, you can't guess
->    it here.
->
->>
->>
->>>>
->>>>>> +	if (IS_ERR(alt->hpd_dev))
->>>>>> +		alt->hpd_dev = NULL;
->>>>>> +}
->>>>>> +EXPORT_SYMBOL_GPL(dp_altmode_hpd_device_register);
->>>>> Having the function here will bring a typec -> displayport dependency
->>>>> between drivers (which you didn't document). It means it won't be
->>>>> possible to build typec core into the kernel, having the DP AltMode
->>>>> driver in the module (which also doesn't sound like a good idea).
->>>> It make sense. Perhaps moving it into class.c would be a good idea.
->>>>
->>>>
->>>>>> +
->>>>>>     int dp_altmode_probe(struct typec_altmode *alt)
->>>>>>     {
->>>>>>     	const struct typec_altmode *port = typec_altmode_get_partner(alt);
->>>> -- 
->>>> Best,
->>>> Chaoyi
->>>>
->>>>
->>>> -- 
->>>> linux-phy mailing list
->>>> linux-phy@lists.infradead.org
->>>> https://lists.infradead.org/mailman/listinfo/linux-phy
->> -- 
->> Best,
->> Chaoyi
->>
+Best regards,
 -- 
-Best,
-Chaoyi
+Alice Guo <alice.guo@oss.nxp.com>
 
 
