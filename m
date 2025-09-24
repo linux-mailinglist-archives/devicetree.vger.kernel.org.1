@@ -1,183 +1,121 @@
-Return-Path: <devicetree+bounces-220729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220737-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE06EB99C98
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 14:16:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA3B5B99D6D
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 14:30:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 752E54A28D3
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 12:16:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8E6C327585
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 12:30:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C174D1922F6;
-	Wed, 24 Sep 2025 12:16:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BMQL5iYf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 339FF30214B;
+	Wed, 24 Sep 2025 12:30:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 592184C6C;
-	Wed, 24 Sep 2025 12:16:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97FC4302144
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 12:29:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758716179; cv=none; b=Z2E/kb4nK7smh/oCY2L3QBJ88EbnpBlirWsvS8tbNATOO+o52fdq9uLiEeCNVlGLbC6m1LEMZ5vvCzOmIZbZwimwkXBi6T1vzywH3ZJ07bag3GeHr9ELt4NPj0F2dbUpc7oo8K56nksiNyJlANZ0HSI7st3yrPdKjDLLfqBqZyI=
+	t=1758717000; cv=none; b=fh76Aiv73H7Nx1s3lsdTHDlbXuNBhV+lwD8ozZnORxfXCbLC1yLliyUR5pSSeWoR8kZWMcUDj7yoBPL9E45YbAdgN8e+qbVwhRq2SYbEl9q05Og5ZnW94rAbax5WKpD4WdRCuxPZiqM/G6DQPDxp7P3IkT4wAYnHnpYuXba3xjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758716179; c=relaxed/simple;
-	bh=kZUDdG9J8RBpVrjq4SwMxhV1iWoS9bku5Qbgg10KyWU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QFToFbQSXXxKSmSWeV1LbuQLtsr9sFDwq9+KVB5dTwasm9L8ThMOmRZPFmZiHSG3qQQEXOStye2xFlSeu4QR9ep0qfPp9gmnCIpZfy7JjQ9HOdBHZel1vmtfruIX8Fdo5quYtfewfnYvH3QFfjgRHpupF0SYqOnciKx2dpxwXD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BMQL5iYf; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58OCFd4B1694403;
-	Wed, 24 Sep 2025 07:15:39 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758716139;
-	bh=GAcYijQUw8JH6Gkhzh4E9b+3rGXrtBQWE/aPaFL/C5k=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=BMQL5iYff0pDWxgw/etrsl5Bm22SIRImKSxHGIc+UEoIAgYx58P0FgozpQveQJns+
-	 WZeRyMa2FFd+73mw2gV4/3nEo2NP9k4fCQaap7HIKD3U+0v95vEwXLXvfLepzfhwkK
-	 AtClVyqAfQdZStyEVVPNpL6dDlchvd0vBT4t/GPs=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58OCFc7H2420511
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 24 Sep 2025 07:15:38 -0500
-Received: from DFLE212.ent.ti.com (10.64.6.70) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 24
- Sep 2025 07:15:38 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE212.ent.ti.com
- (10.64.6.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Wed, 24 Sep 2025 07:15:38 -0500
-Received: from [172.24.233.14] (shark.dhcp.ti.com [172.24.233.14])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58OCFW1H1982020;
-	Wed, 24 Sep 2025 07:15:33 -0500
-Message-ID: <c34157c5-cd13-4e85-a9ee-22446111f633@ti.com>
-Date: Wed, 24 Sep 2025 17:45:32 +0530
+	s=arc-20240116; t=1758717000; c=relaxed/simple;
+	bh=DYWtNAd2ipu6vMvUNjTxOuC6nLmwhMubAsibachtn+4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=u4xsEUXtRgvps5wbbrrK8ySDQWXS+rsp+KfxVPwbE+BkMAGQRwtLPqKnC6zKarrpVWycLukzm6tjy04eh+C8E0a5h9jrJ0T+6Cos8AQNVlQjNTKY+3jZ0mid1rkRRJsC1kRuQcALz2MGU9o2AA80JFyR3naG4pgBs+DDjpZrg44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-89018e9f902so3586946241.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 05:29:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758716997; x=1759321797;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3tAtYXWN7ryUB5vWJvXtt7rrilhjlT2dOX7k08gBfcc=;
+        b=UhrqANOa2lEEKkn9cffTchGvJNUCTyU2UQU9HHKcFSNTdmlzF12QZ9pN0MejYbqsuJ
+         cmrmGxFTS3niAv+IN5gsJv949hOXAB8b6PvHmJ0314SwdPGt8dk8yMV5SxGxwI6uy5np
+         AypmTTvaZgokcvE3bDLF6xhlr2yPgpACmCzHXVBLl3KL+egKbXknxRvDFeJVrOUni1w2
+         EHwGBWv+HsB0y/o4i/Xw0McGpfQVVhpYymDIOLKZUfrtMzvpq0pGqiXChgCHCepXu9j7
+         PuoLtrhqPP13kEFd71mM3OcmZN29lRvPCpHlCNX70K+X/A3fOzAvhc5m2IvzJYo/KyLw
+         +i1A==
+X-Forwarded-Encrypted: i=1; AJvYcCVMxUWXELbef5uplhF7gjCKXm2pRV6We7ZGTwpnAdakFvex38quz6p43gBA9EFPz2aVeokagfu7YjH/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyME420mUJQy5vcq+T99dM5kuYA5RK7ChMeJasdvjAJCgNVrX92
+	WjFB0RRy+2xa07F8W8Lp0giZ7ttqjF5PtlSk8joLZJNAzd4dicrDwQZNHMmmTdP0
+X-Gm-Gg: ASbGncsqG8LtNRH3orx9Xk/3qbQqNePX3bue9GQdWHoNOkybvuDmGUYkcbgxt1QPD0e
+	t5+NV4ckUaF6rI6oVZ4hdqxBMuQgR4ToBNJdUUKp+bb1aeSZbTpgEEBj1b86lkBUefAjkSenYUf
+	lzIKVRjIiCeO/O8de051ONsHn8FvEun80twMK5nc0S7ynyWy0+D13I6xiisXtLNEPHZ458166BM
+	AIo14Tw8/LJBTsxkyqtBruq/zVvADR+Q2Wc/pUbIuRDhFBDJ8SjjCqa8YF4UXELHBBbys5BO5E7
+	xKSkvYGLudsJWPdhZcnjxf5yIKrlRJDuGg1MqhChfu7rO2OHB2p7Gzak5kX2jr/zg8xToOheCep
+	OvsxODsh+Zvr/liebZwaSkcg3ylsIkmsxzMV+I6LxF3QG4MOZzPW0medjoPJW
+X-Google-Smtp-Source: AGHT+IG+uc7pZJ+0v92CHydsb+Kw0wNLWbAYO0hj5b7CQOV8V0jBNmeq3ZvF9G23J588ywVnCtda6g==
+X-Received: by 2002:a05:6122:a24:b0:520:64ea:c479 with SMTP id 71dfb90a1353d-54bcaf7613dmr2235181e0c.10.1758716997211;
+        Wed, 24 Sep 2025 05:29:57 -0700 (PDT)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54b980c19aesm1834349e0c.1.2025.09.24.05.29.56
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Sep 2025 05:29:56 -0700 (PDT)
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-5a0d17db499so2557306137.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 05:29:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXCuB8uGPXBYA4sLy4S+uHNGjLXEaJWlvmBsPwB6uQgT5CRdNlJMkS1YDyzx73+0H7TabZtgmLoN9Z5@vger.kernel.org
+X-Received: by 2002:a05:6102:292a:b0:51f:66fc:53af with SMTP id
+ ada2fe7eead31-5a582ed6587mr2478165137.34.1758716535525; Wed, 24 Sep 2025
+ 05:22:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/5] clk: scmi: Support Spread Spectrum for NXP i.MX95
-To: Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
-        Cristian Marussi <cristian.marussi@arm.com>,
-        Marco Felsch
-	<m.felsch@pengutronix.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Brian Masney
-	<bmasney@redhat.com>,
-        Dhruva Gole <d-gole@ti.com>
-CC: Dan Carpenter <dan.carpenter@linaro.org>,
-        Geert Uytterhoeven
-	<geert@linux-m68k.org>,
-        "linux-clk@vger.kernel.org"
-	<linux-clk@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "arm-scmi@vger.kernel.org"
-	<arm-scmi@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>
-References: <20250915-clk-ssc-version1-v4-0-5a2cee2f0351@nxp.com>
- <20250915-clk-ssc-version1-v4-5-5a2cee2f0351@nxp.com>
- <5f508f1d-2d08-4687-86cd-d1944caa0a49@ti.com>
- <PAXPR04MB8459CE9F22CD56A9BFDB5E78881DA@PAXPR04MB8459.eurprd04.prod.outlook.com>
- <082735e7-956b-4574-952e-06ba69db41f1@ti.com>
- <PAXPR04MB84590D5AAAB56ED7E1CBDE05881CA@PAXPR04MB8459.eurprd04.prod.outlook.com>
-Content-Language: en-US
-From: Sebin Francis <sebin.francis@ti.com>
-In-Reply-To: <PAXPR04MB84590D5AAAB56ED7E1CBDE05881CA@PAXPR04MB8459.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+References: <20250916150255.4231-1-biju.das.jz@bp.renesas.com> <20250916150255.4231-2-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20250916150255.4231-2-biju.das.jz@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 24 Sep 2025 14:22:04 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWgjgsAG5my_vDYF+2692NyFOuDqMXH9F-1zE_KXVzigQ@mail.gmail.com>
+X-Gm-Features: AS18NWD96xgwB4aeZ6Vi7llmU6wbBVQwbgzGfR5YAigBPMea8x1UL6uuirF4Jr4
+Message-ID: <CAMuHMdWgjgsAG5my_vDYF+2692NyFOuDqMXH9F-1zE_KXVzigQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/9] dt-bindings: phy: renesas: Document Renesas RZ/G3E
+ USB3.0 PHY
+To: Biju <biju.das.au@gmail.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Peng,
+On Tue, 16 Sept 2025 at 17:03, Biju <biju.das.au@gmail.com> wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+>
+> Document Renesas RZ/G3E USB3.0 PHY. This IP is connected between
+> USB3HOST and PHY module. The main functions of the module are
+> as follows:
+>  - Reset control
+>  - Control of PHY input pins
+>  - Monitoring of PHY output pins
+>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
 
-On 24/09/25 17:13, Peng Fan wrote:
->> Subject: Re: [PATCH v4 5/5] clk: scmi: Support Spread Spectrum for
->> NXP i.MX95
-> ...
->>>>>         SCMI_CLOCK_CFG_OEM_START = 0x80,
->>>>> +     SCMI_CLOCK_CFG_IMX_SSC = 0x80,
->>>>
->>>> TI is also planning to implement the same in our upcoming platform.
->>>> so can we use a generic ID instead of vender specfic message ID?
->>>
->>> I tried to push to new generic ID [1] in half a year ago, but in the
->>> end ARM decided not to add generic ID for spread spectrum support.
->>>
->>> To i.MX, it is too late to use a generic ID and waiting spec, i.MX
->>> firmware has been public for quite some time and passed several
->> external releases.
->>> So I need to use what our firmware adds and spec allows: vendor
->>> extension.
->>
->> Thanks for the quick response,
->> Since this implementation is specific to i.MX, can you move this to a
->> vendor specific file, so that it will not break i.MX's firmware and TI can
->> implement SSC in TI specific file.
-> 
-> i.MX has encountered issue with pinctrl-scmi.c and pinctrl-imx-scmi.c
-> both supports SCMI PINCTRL. Current linux scmi does not support
-> both drivers built in kernel image, because scmi devlink issue.
-> 
-> Sudeep said he would address the devlink issue in 6.19 cycle.
-> 
-> Given the current situation, I'm hesitant to introduce a new driver
-> saying clk-imx-scmi.c.
-> 
-> What I'm unclear about is whether moving to a vendor-specific file
-> implies creating a new driver (i.e., clk-imx-scmi.c), or if it could be
-> handled via a callback or another mechanism. Could you help
-> clarify the intended direction?
+LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-My intended was to handle it via callback or something similar, so that 
-TI can its own callback for the TI's SSC implementation.
+Gr{oetje,eeting}s,
 
-> 
-> Sudeep, Cristian
-> 
-> Would you please jump in and say something?
-> 
-> Thanks,
-> Peng.
-> 
->>
->>>
->>> [1]
->>>
->> https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2F
->> lore
->>> .kernel.org%2Farm-
->> scmi%2FZ8iKErarE0lHWxEy%40pluto%2F&data=05%7C02%7Cpe
->>>
->> ng.fan%40nxp.com%7C4bd4c6b93ff146fbfc4c08ddfb4c5ab5%7C686ea
->> 1d3bc2b4c6f
->>>
->> a92cd99c5c301635%7C0%7C0%7C638943027585856649%7CUnknow
->> n%7CTWFpbGZsb3d8
->>>
->> eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiI
->> sIkFOIjoiTW
->>>
->> FpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=zEREeXuiaC5wWS
->> C%2FUAIe6wfiTf
->>> MG5AEY5vZ7D4OEIGI%3D&reserved=0
->>>
->>> Regards,
->>> Peng.
->>
->> Thanks
->> Sebin
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
