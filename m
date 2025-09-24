@@ -1,168 +1,145 @@
-Return-Path: <devicetree+bounces-220746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3A47B99F3B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:00:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF5ACB99F73
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:05:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C17E189A502
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:00:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 271657AC129
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:03:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 189421B6D06;
-	Wed, 24 Sep 2025 13:00:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 022692FDC3D;
+	Wed, 24 Sep 2025 13:05:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JCMTcW8/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C45951C8630;
-	Wed, 24 Sep 2025 13:00:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77DE728153D
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 13:05:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758718805; cv=none; b=u/Lzm7FqjJXvHkZmjKBoEa3KbsBynzSbzt7/+rfCV9uyeoPLSIWTm717NsukHim4gKEruR5UntCdDhkT2tIls9px5m1j5V8x2EMpsGpdNWdg1tV8vvgBH0U2YdJh84H4dPZhO1lQbuPiQASAnTF+nrps5B6nS9NOvZW4I4XDpvc=
+	t=1758719101; cv=none; b=u5eDEo6WmVoGdJkCflAIHsE7H5TigCXrIgZZFsIpQJDdji0fSU2kIhDTD9qFMx729gLym7jxa/2iMXZN5vrKjlLxqZD85s3VPgwNpHc6E1OWzF0kO5HCay4DZ6pR+PtYaxEV/Uub8JVM/usVYOR1nFDn4y/o/VPpsCxvyIG6ftw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758718805; c=relaxed/simple;
-	bh=rYcNuhNICQ9oVzckWeSQB/D9K9FZwfeY6TIwX2DR+po=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D4y5TgD75UDOmEj4hcgfqwx543fGCG3VOPIPepXazQi//0o71ZyDKSU5L3NI7OWnF6qzEV5PWIbUBQZPtp+a/HkTCoRPEwZBorS5FTnRoYrpshQufz44ZTlVu3u5KJ/e+LVzf6fQfOw8TwS4D9gtB4JC5inFNmaXUCtbyn+p9O0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 00617106F;
-	Wed, 24 Sep 2025 05:59:54 -0700 (PDT)
-Received: from bogus (e133711.arm.com [10.1.196.55])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0A9E93F5A1;
-	Wed, 24 Sep 2025 05:59:58 -0700 (PDT)
-Date: Wed, 24 Sep 2025 13:59:56 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: Sebin Francis <sebin.francis@ti.com>, Peng Fan <peng.fan@nxp.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Marco Felsch <m.felsch@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Brian Masney <bmasney@redhat.com>, Dhruva Gole <d-gole@ti.com>,
-	Dan Carpenter <dan.carpenter@linaro.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 5/5] clk: scmi: Support Spread Spectrum for NXP i.MX95
-Message-ID: <20250924-versed-auspicious-bullmastiff-19de2e@sudeepholla>
-References: <20250915-clk-ssc-version1-v4-0-5a2cee2f0351@nxp.com>
- <20250915-clk-ssc-version1-v4-5-5a2cee2f0351@nxp.com>
- <5f508f1d-2d08-4687-86cd-d1944caa0a49@ti.com>
- <PAXPR04MB8459CE9F22CD56A9BFDB5E78881DA@PAXPR04MB8459.eurprd04.prod.outlook.com>
- <082735e7-956b-4574-952e-06ba69db41f1@ti.com>
- <PAXPR04MB84590D5AAAB56ED7E1CBDE05881CA@PAXPR04MB8459.eurprd04.prod.outlook.com>
- <c34157c5-cd13-4e85-a9ee-22446111f633@ti.com>
- <aNPmydbv6Xm0Tj9B@pluto>
+	s=arc-20240116; t=1758719101; c=relaxed/simple;
+	bh=KMWRTBxhzUrCLpchCiypHr9RXPN/vVczjD1fykuzDjc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FuwUMd1Nl4aLaH3QkyL1NnNXvQK0vifciTDXmD3PaCbtYHirAmq1H7+kgxnKgA96g80Zxg5/B5GxFLqow+E/5Bzh7x+HhkUBshdUnHY7f9rMFX78nFN/37BgVB8i2H6kNoxuf/OPjk8gC+UO44cugRoyXg7CB2XYuq9C7bCviPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JCMTcW8/; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-77c1814ca1dso5226123b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 06:05:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758719100; x=1759323900; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ML8MT93NBaCozkqy3f5m8pHWK455oP1ORVjpuJLm5oc=;
+        b=JCMTcW8/ThqqXZ2v1sJ7Sv+jMJCFLhAKsRkpIKIeQIJXo8qGHTEJkWCLpwmwc5R0uY
+         GVtljqd3PmXKubL72WSIzqB35whCYQin+pDyaPoFn1BnVJKhUBiU6QBHi8CNpTH00n9W
+         IijKyO/MFWpwgp9vJKaEqPZ32c+mM4Cf+d1Vf3uNbNMJXjYsqc+lOyEoFVyK3D/SePFf
+         /MFGjQ9oKE/HmU4BzVJ7Ter8nolDFTqu++ZwA3Yr7aRrAvJyXBEHPWf1hVxmavcgfMac
+         bpaR9sib2RtwbhRir8RQf6XUv7utYEG75TQfYUXX5Uyfo2T2P6zykxw75XownAneuRoT
+         kl9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758719100; x=1759323900;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ML8MT93NBaCozkqy3f5m8pHWK455oP1ORVjpuJLm5oc=;
+        b=YKO8/4AfwFlUUJc0VJDvrE3E8m9M1seybwrQ+MYwtBTs76kCRZVUgPNlOvNITcXBXu
+         WV5d3S5Nwvsuy2fFmzbVr4LkMRIaMwR/qdz3LOBjaxqJ81NqI7RpNQ1pJeYns3drGzKv
+         S4xCzuI58rqF/GXgDjdPx846JIvz8X/Y/oybU3TYnyBxpt7/L9G88Ha6GBnPHpvXsh4U
+         Ut8N+fUy8VABoXRVkwCKdK/3PRtxIUUhZa6iXFrlSdoxyVKhDpZj+dkYbzy96XOUHcrN
+         aAsoS5yOa5AmQLERw5tP4y44TLBv7zXvgsInH/5LjskqOkofBqJcrRMHMhE3/lExjLUI
+         XOmg==
+X-Forwarded-Encrypted: i=1; AJvYcCV9kQl/HrRQe0trpmH48tb27mupARZaIhmlHK+vztddXn7o/PfKTOGC+Ksg9o6pufqIR0YE785YU9KF@vger.kernel.org
+X-Gm-Message-State: AOJu0YyR522YSMHhMkod8Ih9nnw7ogDAaF6jVKynGbnUzYDrosb09DcR
+	yub7ijFaoIekN/hZedoHayjaFipPNNWgg89NPJeAC71qp0jXDGC8rYU3/pbPjlmdpgmQu2o4FX4
+	gSjTFbR7I2lpZBqotTGL3MSoj/SqeRLs=
+X-Gm-Gg: ASbGncssn1k4Us0cNamoUKE3llqh5aL0w4QqCSV59pmJYmjRHZ39Md3thL3e3DQRv/a
+	KOUnKaTVBdCCJ0dYn0zv+ZiyJYcSfOiaDpjApEuc8Qzvrx8P9zQ6Ttw9mRQcJC4st2mVny4lBm/
+	QhyEGaIUq98+LKdvClTudNVuw8Nz1Wars22tibaJ69DRuNfn8/DkErlxihTKHF/djoAnYjuxfh/
+	LuZA605
+X-Google-Smtp-Source: AGHT+IGCUZlb7GHgT5j+JVNTpOON3z17rHhaJH8wYaV5Fzq+5A7QIaXDxQAJZsuGjTC053XYov/IrdtaNcnRVtX6QBE=
+X-Received: by 2002:a05:6a20:6723:b0:2d5:e559:d241 with SMTP id
+ adf61e73a8af0-2d5e559e089mr4875908637.7.1758719099609; Wed, 24 Sep 2025
+ 06:04:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aNPmydbv6Xm0Tj9B@pluto>
+References: <20250917074812.4042797-1-kevin.tung.openbmc@gmail.com>
+ <9bb9929a-8130-48da-983e-2901a7c3da36@lunn.ch> <CABh9gBew1=hbJvg1Mhg5dE7Lr_Z442_kbBX6zTs_6_C2NRyLbw@mail.gmail.com>
+ <7e6f568da28d7a63738b6ed22b33db3df4c478c9.camel@codeconstruct.com.au>
+In-Reply-To: <7e6f568da28d7a63738b6ed22b33db3df4c478c9.camel@codeconstruct.com.au>
+From: Kevin Tung <kevin.tung.openbmc@gmail.com>
+Date: Wed, 24 Sep 2025 21:04:48 +0800
+X-Gm-Features: AS18NWDPd9WPADUis1pKLRli7PBC0PtWHTmrvMja5YpnlZ2VdCkq5JfPN2APv_M
+Message-ID: <CABh9gBcoWbXurPo0f9U9+gz8k6gttUvj=NMMDVfgjo5dgaTLSA@mail.gmail.com>
+Subject: Re: [PATCH v1 0/2] Add Meta (Facebook) Yosemite5 BMC (AST2600)
+To: Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Cristian,
-
-On Wed, Sep 24, 2025 at 01:40:56PM +0100, Cristian Marussi wrote:
-> On Wed, Sep 24, 2025 at 05:45:32PM +0530, Sebin Francis wrote:
-> > Hi Peng,
-> 
-> Hi ,
-> 
-> > 
-> > On 24/09/25 17:13, Peng Fan wrote:
-> > > > Subject: Re: [PATCH v4 5/5] clk: scmi: Support Spread Spectrum for
-> > > > NXP i.MX95
-> > > ...
-> > > > > > >         SCMI_CLOCK_CFG_OEM_START = 0x80,
-> > > > > > > +     SCMI_CLOCK_CFG_IMX_SSC = 0x80,
-> > > > > > 
-> > > > > > TI is also planning to implement the same in our upcoming platform.
-> > > > > > so can we use a generic ID instead of vender specfic message ID?
-> > > > > 
-> > > > > I tried to push to new generic ID [1] in half a year ago, but in the
-> > > > > end ARM decided not to add generic ID for spread spectrum support.
-> > > > > 
-> > > > > To i.MX, it is too late to use a generic ID and waiting spec, i.MX
-> > > > > firmware has been public for quite some time and passed several
-> > > > external releases.
-> > > > > So I need to use what our firmware adds and spec allows: vendor
-> > > > > extension.
-> > > > 
-> > > > Thanks for the quick response,
-> > > > Since this implementation is specific to i.MX, can you move this to a
-> > > > vendor specific file, so that it will not break i.MX's firmware and TI can
-> > > > implement SSC in TI specific file.
-> > > 
-> > > i.MX has encountered issue with pinctrl-scmi.c and pinctrl-imx-scmi.c
-> > > both supports SCMI PINCTRL. Current linux scmi does not support
-> > > both drivers built in kernel image, because scmi devlink issue.
+On Mon, Sep 22, 2025 at 10:47=E2=80=AFAM Andrew Jeffery
+<andrew@codeconstruct.com.au> wrote:
+>
+> On Thu, 2025-09-18 at 10:21 +0800, Kevin Tung wrote:
+> > On Wed, Sep 17, 2025 at 11:12=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> w=
+rote:
 > > >
-> 
-> Yes indeed, BUT the vendor protocol extensions mechanism was meant to
-> serve the development of vendor custom protocols and drivers, it was
-> NEVER meant really to allow multiple alternative drivers implementation
-> on top of the same standard protocols like it happened with pinctrl-imx-scmi...
->  
-> > > Sudeep said he would address the devlink issue in 6.19 cycle.
-> > > 
-> > > Given the current situation, I'm hesitant to introduce a new driver
-> > > saying clk-imx-scmi.c.
+> > > On Wed, Sep 17, 2025 at 03:48:08PM +0800, Kevin Tung wrote:
+> > > > Summary:
+> > > > Add device tree for the Meta (Facebook) Yosemite5 compute node,
+> > > > based on the AST2600 BMC.
+> > > >
+> > > > The Yosemite5 platform provides monitoring of voltages, power,
+> > > > temperatures, and other critical parameters across the motherboard,
+> > > > CXL board, E1.S expansion board, and NIC components. The BMC also
+> > > > logs relevant events and performs appropriate system actions in
+> > > > response to abnormal conditions.
+> > > >
+> > > > Kevin Tung (2):
+> > > >   dt-bindings: arm: aspeed: add Meta Yosemite5 board
+> > > >   ARM: dts: aspeed: yosemite5: Add Meta Yosemite5 BMC
 > > >
-> 
-> Even if the devlink issues will be solved, in THIS case the problem is
-> handling custom vendor extensions inside a standard protocol, as it is
-> allowed in this case...
-> 
-> > > What I'm unclear about is whether moving to a vendor-specific file
-> > > implies creating a new driver (i.e., clk-imx-scmi.c), or if it could be
-> > > handled via a callback or another mechanism. Could you help
-> > > clarify the intended direction?
-> > 
-> > My intended was to handle it via callback or something similar, so that TI
-> > can its own callback for the TI's SSC implementation.
-> > 
-> 
-> This is exactly what is needed, the ability to extend with vendor
-> extensions callback the behavior of a standard protocol where
-> allowed....this is NOT currently supported and sincerely that was the
-> reason months ago I proposed initially that maybe we could have standardized
-> a new common clock extension SSC instead of using the OEM extensions since:
-> 
-> 1. it seemed a pretty generic operation
-> 2. any per-vendor extension callback of std protocol was NOT ready :P
-> 
-> ...then this proposal never went anywhere with ATG...AND now looking at
-> this thread I think that it is good at the end that we did NOT add a new
-> standard extended clock config instead of the IMX OEM, since now it
-> seems that TI wants its own non-compatible implementation...
-> 
-> So yes the ideal solutiomn would be to extend in a generic way the SCMI
-> framework so that you can add in these cases custom handling of vendor
-> extensions for standard protocols (and then generalize the current
-> clk-scmi IMX support and add the new TI one...)...but I have not thought
-> about this and I certainly dont have enough bandwidth now to work on
-> this...beside having already in the pipeline other stuff/fixes like
-> a proper fix for vendor drivers coex like Peng askes (rightly so a few
-> months ago)
-> 
+> > > The threading between your patches are broken? How did you send them?
+> > > git send-email? b4 send?
+> >
+> > Yes, the threading is broken. I initially used git send-email, but for
+> > some reason, only the cover letter was sent. I then sent the remaining
+> > dt-bindings and DTS patches separately as a follow-up.
+>
+> I recommend using b4, it helps blunt some of the sharp edges of git-
+> send-email.
+>
+> https://b4.docs.kernel.org/en/latest/
+>
+> Can you please send v2 of the series so that it's properly threaded,
+> after applying tags you've collected for the involved patches, and
+> checking your work with `make CHECK_DTBS=3Dy aspeed/aspeed-bmc-facebook-
+> yosemite5.dtb`?
+>
+> Andrew
 
-Thanks for the detailed response as usual 😄. I don't have much to add
-in case anyone is expecting different or more info from me.
+Sure! I have sent v2 of the series using b4, and the patches are now
+properly threaded.
+I also checked the work with `make CHECK_DTBS=3Dy
+aspeed/aspeed-bmc-facebook- yosemite5.dtb`,
+and the warnings that appear are not related to these patches.
 
--- 
-Regards,
-Sudeep
+Kevin
 
