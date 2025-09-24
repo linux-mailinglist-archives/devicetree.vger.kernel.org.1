@@ -1,139 +1,125 @@
-Return-Path: <devicetree+bounces-220755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 388C7B9A0AF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:34:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1CC7B9A1A0
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:46:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E54A44A280E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:34:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DE5F1B26392
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F543002A9;
-	Wed, 24 Sep 2025 13:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A943054C1;
+	Wed, 24 Sep 2025 13:45:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tK4g8xF3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xQmD9x2L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BEDE2D7DF1
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 13:34:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB6361DF755
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 13:45:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758720868; cv=none; b=D5CdIbD/tBEGXUeuovfs0b9oWwsyWJSjm9VGbgwR9gApH6fuvaZWyisIDWsVgLwk3JDNlx/2In87I7/jqZakmyzo8qHLcSSwAAHBtcspEBAFxKt2WhfvwTpFtblWoUryedIAkr/RDOIELk8wovWH+b1TkQeXVlYYLMyOBY5FKDo=
+	t=1758721549; cv=none; b=esFRKQ0kAlM9oUGN2AAxoH7byNogcI3RZDAd6OVk3tdVzeWHGKpbR9U6nGDy0zNwas7B3WqvqJ6XNdjbjDpWB2kPkYEK3IGwhhkKAG48AZWUh6N2FeknS00p0jvKR3a/gQtKxJaNHqRzvEhVAgw2yHTcE30lIc45LHWQ9e7eVd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758720868; c=relaxed/simple;
-	bh=3Z6XTJa/2I09pYSflW4MDbMqly8jjfPgHvxuTYEtOvk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=K35mp8SqtbtXxwwRhXeajwocRSWy62U1vRtublEpziw1zU3MSKB7BQ1jOkmmHhDm0F0CvdGzsgaoaGo4eZVKAr/9CJ3wiiCdQizpFlveKXDG++8JKnpCF8cmWAz5qukZwmdxKtTLEUpNw9qdvwpBOe3YnxroPlJV8GA9wNoV980=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tK4g8xF3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A90E9C4AF09
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 13:34:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758720867;
-	bh=3Z6XTJa/2I09pYSflW4MDbMqly8jjfPgHvxuTYEtOvk=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=tK4g8xF3KJeMYnB9VZ4gO8VRMtQvT117WCk3DHhVlEegaKquqejM1Ot5xjEhSSEOK
-	 43WmDcGlPeFBVd6oCpGsmL+8tu5/12oZs4cT3CBOvCTcpV/9ieFFCe0OnqgT5j3e+E
-	 kamp4muCI1+ku/3UZUUk43jADlPfZFB/OGQbWFEL1yIieBn5z+BjOVZvX1yaSW2VRG
-	 8hor0XFKZBCNhDYppKwVU3Vmmj4G7OBcqnycvEma7dxeTlVQ9NQ7zdf/KO//cZhphQ
-	 zs6/ZVsvHe5w9Ygt933ZX8EDJqUdOzRtNRnuAu0X9OGJH948CqCf7TfTwDLEtb4W2w
-	 atUla77I4Zl5A==
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-63163a6556bso10244072a12.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 06:34:27 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWUm5HNzfLLPdop4mmrrAJwq3Scv340bi0XGASjroybqQXS1T7INNu7lXIZBogI473p6xJ0fGkW6xJA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxyBrLw8o3WuEboxMdS+qmT6bw1upHk05gmPY5CciZGVe+Mr670
-	Sjic7TOT3kykB49vw3uNlVe53Sm403xheZ2a0gKjiW2JBAkzvhT4av3Ho7wkOPk4XxjzXyXYZ/B
-	kNVkw5VxPs4BQkq1xn8PQFyIhR3IMrw==
-X-Google-Smtp-Source: AGHT+IE6gNa61RcE9DKf2iXVRg4jwELeBK0rbWB2RUsPPFiJAgwlJN43oTxNrNqM4YRqC7tDc6X2gwE56i96k2A7jt0=
-X-Received: by 2002:a05:6402:a00e:b0:62f:b6bd:eff7 with SMTP id
- 4fb4d7f45d1cf-63467813addmr5004269a12.38.1758720866242; Wed, 24 Sep 2025
- 06:34:26 -0700 (PDT)
+	s=arc-20240116; t=1758721549; c=relaxed/simple;
+	bh=cEMmzRzXMTGSJDBCpuLpTyfKNk+jAauBaEAZNhHggag=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jf2IxLB0GqtPSx+abdGDQ9HtgVl0uxfBJqhta0iQEKw6qBm/t1gSc6O9w687XZylFhvM8ZJYQk6d4CaKaLdg9zwTTEYYznnsAeZ2hLrSX2joCLipoIExS5ms2+xYcckOgtLS7Lvle6AFGycN/8216XDjmt/Sv519PolHtNbp8uc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xQmD9x2L; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3f2ae6fae12so2812413f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 06:45:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758721544; x=1759326344; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Si08GYvs7O7On4M1lZPat5JwQiuJTzJsw49avbAJ8Uw=;
+        b=xQmD9x2LZEsVtPUWs5Yq320mJSpW1sJzES4OT4lbexyG66ku8TgD5qDoyqKgvg8pZP
+         nW3gk3pDp3mNpd4yKQ8/XbylSSvQRvTcGm5yj2w8GtXF002izmpjH9H40zo/mV64TkV8
+         +ue5zcm2s2a64Sp73cvZaZIbww/GllGn4TZGY3l+ePmHM4x7/8gAbaDqXxoE6P9EtStY
+         n5T7yWZVGBbeIq0hZQmXOdpohoLPt/09MqXvFLvkyzlhC9n9PVdG3biHh6UTW1TF9x4b
+         NCghEWPa46JPNotZUgCUVrHWoEzzR0t5nxPCWswAAylPpUVcaFMk4otsDTCEoOSFCh7y
+         hhGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758721544; x=1759326344;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Si08GYvs7O7On4M1lZPat5JwQiuJTzJsw49avbAJ8Uw=;
+        b=Ycr9c+Ee4AFWSxPvC4fMsyqMmXIZY7oIDR6nQhhvIas9edgA3bmoiyW1ZiuFMhq68p
+         3ofHjAm65T3/g3utIQiuRFIqWlAEQZdenK+VYEX1xlF5VhTA0z18y12Vqs5oihbW/PUm
+         NFPcatBn5bvlKfNyWvSGzrmnTY8AzGB177qrAFeL7nHX1m16hTRTZ+o4FZKN5BSBufqt
+         pWgzyscGaPNz5FOwyfcjvY1n5RZ8b1uTiWb3QfEEjZYM1tZvLPVbL3slrVlHyI7axlZv
+         KGNxGqytfnj2SNCFP4AxuIhooLeiPrZkpMBOp99C88MhvRHuOwF3IT9TcIryi/PW3DLp
+         gmCw==
+X-Forwarded-Encrypted: i=1; AJvYcCWxECwshTmTRnubxyFKZwkP52rrV5Cf0BPWN9mkVCzGEP8vgA5qIoOOqQ9f75M0BHD84iRZf0FT77Wn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxE0k5r/t9f/n0Vgvb1A/GfIvqVv5yomxXQSISpxpaJpeqtJn/u
+	XWI9HQ6VXe7vZs78GTAaDdeSIBcduJTvviD+Ks3YMKJDkhjXTRD0KGG9zJe8UdbEgo8=
+X-Gm-Gg: ASbGncuguYwSzEPy3Bg/AoWA/T/7IZq8ORiNhFiva9zlZLGRTxf2l1SXR1aWhFw5rv8
+	oTwxKkZnvnzD1rAzMUClTP+SVLQH/Z73u+xLX2JBHBFXI/jMPQy0f0ZBhF3IB8NPVBJEcuGudP8
+	/kaE0PVjrmcBxeChSiUKIaZXM3ICH1pAhUUMmFSakCklF9lvEMwBVPbdQnyHXh2pu4iLXcdOwu4
+	uLCcW1lVptOB7pfcTlWT5ZJSE7IMqaSC6l+orGITz34wJXV6YCExq76hkP6z/ujAMzxgewgmvtZ
+	LDUgsMQwRZI+U6WFMgIEBB0JCuFQv3bD/5BLSNtiNdE9SkFv73d1CGOPhRWC/mezyD1yaXAtKqW
+	/s2ylPaeF3ahBERNcvjTVmmXfyD+HxStfnjd+7z9QUyL2p4ue1Y/hBtOTIXNWrOREqWEyJRFCt9
+	nKlOQoE0occqZz
+X-Google-Smtp-Source: AGHT+IHMbJb58nATRmai0WS9gfnhVJul59uJVjNVhSmasVwwjHrrbyIG7ZESwXwPwm4dgPq89hsCDA==
+X-Received: by 2002:a05:6000:2204:b0:3ed:e1d8:bd68 with SMTP id ffacd0b85a97d-40e497c34admr16417f8f.7.1758721543997;
+        Wed, 24 Sep 2025 06:45:43 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:bc4b:2611:54b0:29a4? ([2a05:6e02:1041:c10:bc4b:2611:54b0:29a4])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-46e2aacd4dcsm35528145e9.15.2025.09.24.06.45.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Sep 2025 06:45:43 -0700 (PDT)
+Message-ID: <e6a7cfe5-5443-4e10-981f-ca3811dadef8@linaro.org>
+Date: Wed, 24 Sep 2025 15:45:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250917074812.4042797-1-kevin.tung.openbmc@gmail.com>
- <9bb9929a-8130-48da-983e-2901a7c3da36@lunn.ch> <CABh9gBew1=hbJvg1Mhg5dE7Lr_Z442_kbBX6zTs_6_C2NRyLbw@mail.gmail.com>
- <7e6f568da28d7a63738b6ed22b33db3df4c478c9.camel@codeconstruct.com.au> <CABh9gBcoWbXurPo0f9U9+gz8k6gttUvj=NMMDVfgjo5dgaTLSA@mail.gmail.com>
-In-Reply-To: <CABh9gBcoWbXurPo0f9U9+gz8k6gttUvj=NMMDVfgjo5dgaTLSA@mail.gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 24 Sep 2025 08:34:15 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+zBK1CBJX0XcaqaYeOPUhoRE-nMeYvkTNwQovJ+dakGg@mail.gmail.com>
-X-Gm-Features: AS18NWBRbwk465MJYJkBc3f6vXfBHLpagMAmj_NyZMMJpbB87hfWSByQAiUtoWU
-Message-ID: <CAL_Jsq+zBK1CBJX0XcaqaYeOPUhoRE-nMeYvkTNwQovJ+dakGg@mail.gmail.com>
-Subject: Re: [PATCH v1 0/2] Add Meta (Facebook) Yosemite5 BMC (AST2600)
-To: Kevin Tung <kevin.tung.openbmc@gmail.com>
-Cc: Andrew Jeffery <andrew@codeconstruct.com.au>, Andrew Lunn <andrew@lunn.ch>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v6 2/2] riscv: Allow for riscv-clock to pick up
+ mmio address.
+To: aleksa.paunovic@htecgroup.com, Thomas Gleixner <tglx@linutronix.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org,
+ Djordje Todorovic <djordje.todorovic@htecgroup.com>
+References: <20250924-riscv-time-mmio-v6-0-9c6158a14b37@htecgroup.com>
+ <20250924-riscv-time-mmio-v6-2-9c6158a14b37@htecgroup.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20250924-riscv-time-mmio-v6-2-9c6158a14b37@htecgroup.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Sep 24, 2025 at 8:05=E2=80=AFAM Kevin Tung <kevin.tung.openbmc@gmai=
-l.com> wrote:
->
-> On Mon, Sep 22, 2025 at 10:47=E2=80=AFAM Andrew Jeffery
-> <andrew@codeconstruct.com.au> wrote:
-> >
-> > On Thu, 2025-09-18 at 10:21 +0800, Kevin Tung wrote:
-> > > On Wed, Sep 17, 2025 at 11:12=E2=80=AFPM Andrew Lunn <andrew@lunn.ch>=
- wrote:
-> > > >
-> > > > On Wed, Sep 17, 2025 at 03:48:08PM +0800, Kevin Tung wrote:
-> > > > > Summary:
-> > > > > Add device tree for the Meta (Facebook) Yosemite5 compute node,
-> > > > > based on the AST2600 BMC.
-> > > > >
-> > > > > The Yosemite5 platform provides monitoring of voltages, power,
-> > > > > temperatures, and other critical parameters across the motherboar=
-d,
-> > > > > CXL board, E1.S expansion board, and NIC components. The BMC also
-> > > > > logs relevant events and performs appropriate system actions in
-> > > > > response to abnormal conditions.
-> > > > >
-> > > > > Kevin Tung (2):
-> > > > >   dt-bindings: arm: aspeed: add Meta Yosemite5 board
-> > > > >   ARM: dts: aspeed: yosemite5: Add Meta Yosemite5 BMC
-> > > >
-> > > > The threading between your patches are broken? How did you send the=
-m?
-> > > > git send-email? b4 send?
-> > >
-> > > Yes, the threading is broken. I initially used git send-email, but fo=
-r
-> > > some reason, only the cover letter was sent. I then sent the remainin=
-g
-> > > dt-bindings and DTS patches separately as a follow-up.
-> >
-> > I recommend using b4, it helps blunt some of the sharp edges of git-
-> > send-email.
-> >
-> > https://b4.docs.kernel.org/en/latest/
-> >
-> > Can you please send v2 of the series so that it's properly threaded,
-> > after applying tags you've collected for the involved patches, and
-> > checking your work with `make CHECK_DTBS=3Dy aspeed/aspeed-bmc-facebook=
--
-> > yosemite5.dtb`?
-> >
-> > Andrew
->
-> Sure! I have sent v2 of the series using b4, and the patches are now
-> properly threaded.
-> I also checked the work with `make CHECK_DTBS=3Dy
-> aspeed/aspeed-bmc-facebook- yosemite5.dtb`,
-> and the warnings that appear are not related to these patches.
+On 24/09/2025 13:10, Aleksa Paunovic via B4 Relay wrote:
+> From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+> 
+> Allow faster rdtime access via GCR.U mtime shadow register on RISC-V
+> devices. This feature can be enabled by setting GCRU_TIME_MMIO
+> during configuration.
+> Reformat the clint timer to use the same mechanism if RISCV_M_MODE is set.
+> 
+> Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
+> ---
 
-Um, they are related because they are warnings for *your* platform.
-You don't care that there are warnings for your platform?
+Thanks for resending but I was waiting for a tag from the maintainers.
 
-Rob
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
