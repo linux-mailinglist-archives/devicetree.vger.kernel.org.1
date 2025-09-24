@@ -1,56 +1,57 @@
-Return-Path: <devicetree+bounces-220892-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220893-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9523B9C5B5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 00:29:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 334B6B9C5CC
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 00:32:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7E281BC2DD0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 22:29:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31F0F1B25A5A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 22:32:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9BB8292B54;
-	Wed, 24 Sep 2025 22:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 140E228B7D7;
+	Wed, 24 Sep 2025 22:32:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gR1WleYa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KIWdwdJP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895C0288537;
-	Wed, 24 Sep 2025 22:29:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC09B27B4E8;
+	Wed, 24 Sep 2025 22:32:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758752944; cv=none; b=cTdOCnnG/2P2J5TxwVVCoPwYT9sYFdGz7OJgpF+R1r4TdgMDfH/OcQ4a/vpsqQNySs//yM1IDD/GwWTCfmxseb5PEY+5ddT+bhhTmiUQIsBAyFDLUfmLB6iLIIksykSxx6U9WwBpvoT1jDpy55HsocI2ggjttTlWkiXMy1nf4U8=
+	t=1758753132; cv=none; b=C4rjnSRRGZtqY28HWjgYnKL93HiiqKu9lGaJIoKcOGC12B2Pvnhk9Iolk6FmDsmiH90VVb23LeaitAGsyfVMWBgMfIhL8eGGfaOFMzWgwv1VznNLG16flm+XRsC7H8YO0CvFpgJ5Jrzx53++FOyJwNeoyfJXWqKSYEJce/f7I8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758752944; c=relaxed/simple;
-	bh=pOStskuDi/MjVer77gor4oUQ123eaaQS1w5P2rBDn64=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=AwitwOzS/rmygODcMpV9SwygybWDT3qNk+nklG8IvcK+pan802TZD+67rckW5Nj4Fvm9j7ZOSsx7t1QgqhAtiJnE9XVhGwYjIYyrDFI4T+Jss3YI0qOuQrA8fajwC5MvT3g2l+AefEC/14pEj58m8yOIYQDGKWRi7kneOHP4qGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gR1WleYa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 440A9C4CEE7;
-	Wed, 24 Sep 2025 22:28:57 +0000 (UTC)
+	s=arc-20240116; t=1758753132; c=relaxed/simple;
+	bh=vcpmBitnTv4R56a3+OiUjc9+LnarzpY2vQKN626n8Q4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=nwx8GoXHpmltnNhU9HxS0+Q8TpdcrhgPZAbY8WA7YKAoPdDH2iDFIh2ltaQ17YRM7a7mJXiucW7dDVv7rRKM2bg1h6MDENzrVw0cVv3Ad+3y/i5gZjeu3s/Wugckxao7kKr6piP4r7u+D3ZcUkPOZgdf6zYOaPN/ywXZ2hrHJaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KIWdwdJP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76F08C4CEE7;
+	Wed, 24 Sep 2025 22:32:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758752944;
-	bh=pOStskuDi/MjVer77gor4oUQ123eaaQS1w5P2rBDn64=;
+	s=k20201202; t=1758753131;
+	bh=vcpmBitnTv4R56a3+OiUjc9+LnarzpY2vQKN626n8Q4=;
 	h=From:To:Cc:Subject:Date:From;
-	b=gR1WleYaqEt7eT2uXL8ThM7U7drxkZ+Db7AmpBoihB+YBj+0Vf8X5T3mNFuV9RI77
-	 9CXfz6I4nXWYJbSg9L3svbglh3bx3bSSY0fskR4FJf5QDyD4Rk3Gtqrcr3U3V5scG7
-	 TUKBvc90PnAGSZBRTGcJdyRLtwpJXft+dht+CPZ+NMG0AJFvHIIMGtHXW/6/TdKGlI
-	 ZsgpE8VwvjveiwFGnRegAYg4F9OUCEhC7rJO4IX5PFi3/9+UjByCmV6i5nqgNfnjGX
-	 EStXjWvC72WoQrW2Hf8o5fp/B+YBhgodqN0TO+vXAu045EiUgJtWV7BDZJexxXcOiz
-	 A7zJXCL3TbJnA==
+	b=KIWdwdJPwVGAKFCfudJKON7MSkfhTu5Aiz7A/Qc0URzC6h09VTd/FujOGd7hIoF6A
+	 pOsbNhX50YBKh6K4p8jPx0veUPiTlFuDlZPA24IUMlsTEwQ+wjsCRDB8KE2atOhvwE
+	 jSAf6p8xV09QrNnYB21+lTHQZRMN7U+KJFkwmJrKHWniDRPTIyR0nU0xl4JEY+lf2U
+	 3pDR+BtohhltrXohDVaRluJkWjOVZkDb/BwYbk0mC1q5mzHw6SOJi+pp6gFEAkIVa6
+	 VflDDV8AUCuBLJDF928wkJNA6xkyNIy4hnNcK5id1dvm4ue4KXHkQD0TRvC7pZ+BzU
+	 GMZx9swc91hBw==
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+To: Linus Walleij <linus.walleij@linaro.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Khuong Dinh <khuong@os.amperecomputing.com>
-Cc: linux-rtc@vger.kernel.org,
+	Antoine Tenart <atenart@kernel.org>,
+	Jisheng Zhang <jszhang@kernel.org>
+Cc: linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: rtc: Convert apm,xgene-rtc to DT schema
-Date: Wed, 24 Sep 2025 17:28:46 -0500
-Message-ID: <20250924222848.2949235-1-robh@kernel.org>
+Subject: [PATCH] dt-bindings: pinctrl: Convert Marvell Berlin pinctrl to DT schema
+Date: Wed, 24 Sep 2025 17:31:59 -0500
+Message-ID: <20250924223201.2952988-1-robh@kernel.org>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -60,102 +61,165 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert the APM XGene RTC binding to DT schema format. It's a
-straight-forward conversion.
+Convert the Marvell/Synaptics Berlin pinctrl binding to DT schema
+format. The "reg" property was not documented for the newer SoCs.
+Otherwise, it's a straight-forward conversion.
 
 Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- .../bindings/rtc/apm,xgene-rtc.yaml           | 45 +++++++++++++++++++
- .../devicetree/bindings/rtc/xgene-rtc.txt     | 28 ------------
- 2 files changed, 45 insertions(+), 28 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/rtc/apm,xgene-rtc.yaml
- delete mode 100644 Documentation/devicetree/bindings/rtc/xgene-rtc.txt
+With this Berlin is warning free on arm64.
+---
+ .../bindings/pinctrl/berlin,pinctrl.txt       | 47 ----------
+ .../pinctrl/marvell,berlin2-soc-pinctrl.yaml  | 86 +++++++++++++++++++
+ 2 files changed, 86 insertions(+), 47 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/berlin,pinctrl.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,berlin2-soc-pinctrl.yaml
 
-diff --git a/Documentation/devicetree/bindings/rtc/apm,xgene-rtc.yaml b/Documentation/devicetree/bindings/rtc/apm,xgene-rtc.yaml
+diff --git a/Documentation/devicetree/bindings/pinctrl/berlin,pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/berlin,pinctrl.txt
+deleted file mode 100644
+index 0a2d5516e1f3..000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/berlin,pinctrl.txt
++++ /dev/null
+@@ -1,47 +0,0 @@
+-* Pin-controller driver for the Marvell Berlin SoCs
+-
+-Pin control registers are part of both chip controller and system
+-controller register sets. Pin controller nodes should be a sub-node of
+-either the chip controller or system controller node. The pins
+-controlled are organized in groups, so no actual pin information is
+-needed.
+-
+-A pin-controller node should contain subnodes representing the pin group
+-configurations, one per function. Each subnode has the group name and
+-the muxing function used.
+-
+-Be aware the Marvell Berlin datasheets use the keyword 'mode' for what
+-is called a 'function' in the pin-controller subsystem.
+-
+-Required properties:
+-- compatible: should be one of:
+-	"marvell,berlin2-soc-pinctrl",
+-	"marvell,berlin2-system-pinctrl",
+-	"marvell,berlin2cd-soc-pinctrl",
+-	"marvell,berlin2cd-system-pinctrl",
+-	"marvell,berlin2q-soc-pinctrl",
+-	"marvell,berlin2q-system-pinctrl",
+-	"marvell,berlin4ct-avio-pinctrl",
+-	"marvell,berlin4ct-soc-pinctrl",
+-	"marvell,berlin4ct-system-pinctrl",
+-	"syna,as370-soc-pinctrl"
+-
+-Required subnode-properties:
+-- groups: a list of strings describing the group names.
+-- function: a string describing the function used to mux the groups.
+-
+-Example:
+-
+-sys_pinctrl: pin-controller {
+-	compatible = "marvell,berlin2q-system-pinctrl";
+-
+-	uart0_pmux: uart0-pmux {
+-		groups = "GSM12";
+-		function = "uart0";
+-	};
+-};
+-
+-&uart0 {
+-	pinctrl-0 = <&uart0_pmux>;
+-	pinctrl-names = "default";
+-};
+diff --git a/Documentation/devicetree/bindings/pinctrl/marvell,berlin2-soc-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/marvell,berlin2-soc-pinctrl.yaml
 new file mode 100644
-index 000000000000..b8f46536fd5a
+index 000000000000..6ace3bf5433b
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/rtc/apm,xgene-rtc.yaml
-@@ -0,0 +1,45 @@
++++ b/Documentation/devicetree/bindings/pinctrl/marvell,berlin2-soc-pinctrl.yaml
+@@ -0,0 +1,86 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/rtc/apm,xgene-rtc.yaml#
++$id: http://devicetree.org/schemas/pinctrl/marvell,berlin2-soc-pinctrl.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: APM X-Gene Real Time Clock
++title: Marvell Berlin pin-controller driver
 +
 +maintainers:
-+  - Khuong Dinh <khuong@os.amperecomputing.com>
++  - Antoine Tenart <atenart@kernel.org>
++  - Jisheng Zhang <jszhang@kernel.org>
++
++description: >
++  Pin control registers are part of both chip controller and system controller
++  register sets. Pin controller nodes should be a sub-node of either the chip
++  controller or system controller node. The pins controlled are organized in
++  groups, so no actual pin information is needed.
++
++  A pin-controller node should contain subnodes representing the pin group
++  configurations, one per function. Each subnode has the group name and the
++  muxing function used.
++
++  Be aware the Marvell Berlin datasheets use the keyword 'mode' for what is
++  called a 'function' in the pin-controller subsystem.
 +
 +properties:
 +  compatible:
-+    const: apm,xgene-rtc
++    items:
++      - enum:
++          - marvell,berlin2-soc-pinctrl
++          - marvell,berlin2-system-pinctrl
++          - marvell,berlin2cd-soc-pinctrl
++          - marvell,berlin2cd-system-pinctrl
++          - marvell,berlin2q-soc-pinctrl
++          - marvell,berlin2q-system-pinctrl
++          - marvell,berlin4ct-avio-pinctrl
++          - marvell,berlin4ct-soc-pinctrl
++          - marvell,berlin4ct-system-pinctrl
++          - syna,as370-soc-pinctrl
 +
 +  reg:
 +    maxItems: 1
 +
-+  interrupts:
-+    maxItems: 1
++additionalProperties:
++  description: Pin group configuration subnodes.
++  type: object
++  $ref: /schemas/pinctrl/pinmux-node.yaml#
++  additionalProperties: false
 +
-+  '#clock-cells':
-+    const: 1
++  properties:
++    groups:
++      description: List of pin group names.
++      $ref: /schemas/types.yaml#/definitions/string-array
 +
-+  clocks:
-+    maxItems: 1
++    function:
++      description: Function used to mux the group.
++      $ref: /schemas/types.yaml#/definitions/string
 +
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - '#clock-cells'
-+  - clocks
++  required:
++    - groups
++    - function
 +
-+additionalProperties: false
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - marvell,berlin4ct-avio-pinctrl
++              - marvell,berlin4ct-soc-pinctrl
++              - marvell,berlin4ct-system-pinctrl
++              - syna,as370-soc-pinctrl
++    then:
++      required:
++        - reg
 +
 +examples:
 +  - |
-+    rtc@10510000 {
-+        compatible = "apm,xgene-rtc";
-+        reg = <0x10510000 0x400>;
-+        interrupts = <0x0 0x46 0x4>;
-+        #clock-cells = <1>;
-+        clocks = <&rtcclk 0>;
++    pinctrl {
++        compatible = "marvell,berlin2q-system-pinctrl";
++
++        uart0-pmux {
++            groups = "GSM12";
++            function = "uart0";
++        };
 +    };
-diff --git a/Documentation/devicetree/bindings/rtc/xgene-rtc.txt b/Documentation/devicetree/bindings/rtc/xgene-rtc.txt
-deleted file mode 100644
-index fd195c358446..000000000000
---- a/Documentation/devicetree/bindings/rtc/xgene-rtc.txt
-+++ /dev/null
-@@ -1,28 +0,0 @@
--* APM X-Gene Real Time Clock
--
--RTC controller for the APM X-Gene Real Time Clock
--
--Required properties:
--- compatible : Should be "apm,xgene-rtc"
--- reg: physical base address of the controller and length of memory mapped
--  region.
--- interrupts: IRQ line for the RTC.
--- #clock-cells: Should be 1.
--- clocks: Reference to the clock entry.
--
--Example:
--
--rtcclk: rtcclk {
--	compatible = "fixed-clock";
--	#clock-cells = <1>;
--	clock-frequency = <100000000>;
--	clock-output-names = "rtcclk";
--};
--
--rtc: rtc@10510000 {
--	compatible = "apm,xgene-rtc";
--	reg = <0x0 0x10510000 0x0 0x400>;
--	interrupts = <0x0 0x46 0x4>;
--	#clock-cells = <1>;
--	clocks = <&rtcclk 0>;
--};
 -- 
 2.51.0
 
