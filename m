@@ -1,118 +1,173 @@
-Return-Path: <devicetree+bounces-220818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D30EB9AB88
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 17:39:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC771B9ABFA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 17:43:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CFC1161EB8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:36:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAEAA1882A16
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3306F78F43;
-	Wed, 24 Sep 2025 15:36:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6C7A30F817;
+	Wed, 24 Sep 2025 15:43:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="v/3IuU5Q";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="SslvYwfN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74E6E27456;
-	Wed, 24 Sep 2025 15:35:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B6BC22127E;
+	Wed, 24 Sep 2025 15:43:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.147
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758728162; cv=none; b=JJ/ZIlOu3+ncykKetfTmk9lADUn0OzsXBJ2lWO43O/zSefmsJUAowugfNJKLgz9YRT6kSYhKTeDcItx9KS5ieExr5kHl6L8pvL5hjz2yOJ7F5SgXv30aHYudODFnULiowW4E0KRDGked4yOIZQz0v9eqj8ngLY862cBjFVCb/yM=
+	t=1758728596; cv=none; b=u6+cMkYilBLhbQPwdxGYgVTn2SS44ga6Oa0VAzQqCcQYTIRrcNbSX97zL09vc9oG4Y5uQMVqnYF8iXcgAyMXXa6/f08XlmuZxXicYeodb/vIJm9p8qsD1XRdOc3ap8YBKwoPCmIAJ70GYFMzj/qypnkyyr8ei9Iutg1nyKX3YWk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758728162; c=relaxed/simple;
-	bh=XnCafYimc1fKKbIvAwPuz4XSnz+AJ3b/OkFAhVB1Nyw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HB/rgjuOyfhPPW02XVOAbPcpbVBRdjQJtyDzerjdC5tG6EC+AIaY0u7UliKjx5v5xgvZVKuVsNMenIE89Kazc6rpSQqjX2mVe9z++BOdfL0OrC+vtRSqLo1zZ05vlXo7XfPsYewog4c54Tyk7FtfGElZoJjKqUheVST87f00Rhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.0.105] (unknown [114.241.87.235])
-	by APP-03 (Coremail) with SMTP id rQCowADH24XDD9RoAzdBBQ--.31926S2;
-	Wed, 24 Sep 2025 23:35:31 +0800 (CST)
-Message-ID: <27092a3a-cf9d-4481-99b3-4cc64a544b4f@iscas.ac.cn>
-Date: Wed, 24 Sep 2025 23:35:31 +0800
+	s=arc-20240116; t=1758728596; c=relaxed/simple;
+	bh=euNi1ADwwd+uFgMFLWxcxJHfK9fVB5B7PwkOfhR7C7M=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=N1e+eD5Lqogv0M1Xkc4kU6XNDomo9A47PSs3QcFr9enSmQKk4q0BlqsX6vCsuwr56P0aFM+Gknv36N24SvlzIz0ZcCCMffWZMC8/aS69bm97FcqxMV9YzazNbsmNqCGDs3YLa5Ve4J4DaTjrwYKiu0giLFVaWwhol0m8Nmxd8PM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=v/3IuU5Q; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=SslvYwfN; arc=none smtp.client-ip=202.12.124.147
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfout.stl.internal (Postfix) with ESMTP id D4E031D000E3;
+	Wed, 24 Sep 2025 11:43:12 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-05.internal (MEProxy); Wed, 24 Sep 2025 11:43:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1758728592;
+	 x=1758814992; bh=JsHZEsMXkjnsb1bbQltuF4dLLYqSINr5KSvPj/nUVX4=; b=
+	v/3IuU5QwCLyonLjAMbCC4QovxzEOPB/yLo4a504Cc7rZiVCmgnoLtMS/B7THN+q
+	nitzArqjm+TcSzeed63HFvN7mMe7bixA2uHam70OqXrSyyIxP/pnd6Hu0mIg8mNx
+	lOpo5urLE4FRGXCt7D9zXw2Ye8K1AmllhGAiz/IspucpmhiuZdjmsuRO5bKrTPnV
+	YFQx/g968eIxxXpuhT9NuYJPuFj/ndxMQSTWtGgTXUcIvOFcH6A0ehaeF27kxwPF
+	fiBSy33EFiH+G2iiMI9x3LoGN+4ny+Y+7OZ2+b0Xv17uP1NPUZzGfz112BO+hfuJ
+	sikWfF8nN54yK/myMjtSsQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1758728592; x=
+	1758814992; bh=JsHZEsMXkjnsb1bbQltuF4dLLYqSINr5KSvPj/nUVX4=; b=S
+	slvYwfN7eFNuRHK9fKToAv6lO9lk3lrrJ4XKvcXH6T5jhDpQ6vKAr5L2Tos7AUF3
+	xynuwCDbevy4BwGE4cfWTN23q9Zcm2Gz1Kl81Eryzv9IBK9kOn7fHyjfUHpiRMzG
+	ajGMk3Q63hCBfyq6hea+8HKx8J6ZfFtJEp3RNLYdUPNFXTMwlmTNO58k6EZ6mOQj
+	9tUjBLrbIAgGY/SRlmIl9N4JM6sGTU5F6DGQ+xtBeC4HUcdTeDEXuPcBl+zoz/VC
+	xrnl/xL9R9xou1xjtMmgyzZ/HTvZluXAlBBhDYVR8BEuR9Wn43uSDNttYLZIiqHz
+	PWa26Ze3uOOrUj+fG+1+Q==
+X-ME-Sender: <xms:jRHUaDSR82YrRNoH8mfw86ggowF7nOXpO68HWpplZMfVqV-rYdgDxg>
+    <xme:jRHUaPleqHlBzdk9Z42MTGWmCpW5V3fSItlFjsJG4xFA_636Pwku-2sul0mCNPrEq
+    vru_YRado0UbIPC3cnCeveNn1PqOgk4cLZSwiAhM0PuC6UGylq76j8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeigedttdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopedvkedpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtohepshhhhigrmhdqshhunhgurghrrdhsqdhksegrmhgurdgtohhmpdhrtg
+    hpthhtohepghhithesrghmugdrtghomhdprhgtphhtthhopehmrghnihhkrghnthgrrdhg
+    uhhnthhuphgrlhhlihesrghmugdrtghomhdprhgtphhtthhopehmihgthhgrlhdrshhimh
+    gvkhesrghmugdrtghomhdprhgtphhtthhopehrrgguhhgvhidrshhhhigrmhdrphgrnhgu
+    vgihsegrmhgurdgtohhmpdhrtghpthhtohepshhhuhgshhhrrghjhihothhirdgurghtth
+    grsegrmhgurdgtohhmpdhrtghpthhtohepshhrihhnihhvrghsrdhgohhuugesrghmugdr
+    tghomhdprhgtphhtthhopehjohhrghgvrdhmrghrqhhuvghssegrnhgrlhhoghdrtghomh
+    dprhgtphhtthhopegsihhllhihpghtshgrihesrghsphgvvgguthgvtghhrdgtohhm
+X-ME-Proxy: <xmx:jRHUaOQr6QBuxylQkv86LWgGP-Glrvkkc4vM61Y4l-jmA7kPhBDDpg>
+    <xmx:jRHUaGbH26Lp3ayWnxkqY8HNzXHSDxBd2bFDAwhL4S6uqeDFl87Clg>
+    <xmx:jRHUaLU422y6Fkoc8NbG_jP61ZQV0HQ_XfWsQ7jPrnAD035yHAz3AQ>
+    <xmx:jRHUaLW2qzpK7JHz1wP-AO59nsq_9Kojcf2J8r4CW0yYN08gryD_Og>
+    <xmx:kBHUaL9PeYq5hk3ah1w9Ob7tORZa9N-cmd9Tch5ZzJtGiYCqe3fGgZdi>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id B0DF2700069; Wed, 24 Sep 2025 11:43:09 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v6 2/2] riscv: Allow for riscv-clock to pick up
- mmio address.
-To: aleksa.paunovic@htecgroup.com, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Thomas Gleixner <tglx@linutronix.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org,
- Djordje Todorovic <djordje.todorovic@htecgroup.com>
-References: <20250924-riscv-time-mmio-v6-0-9c6158a14b37@htecgroup.com>
- <20250924-riscv-time-mmio-v6-2-9c6158a14b37@htecgroup.com>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <20250924-riscv-time-mmio-v6-2-9c6158a14b37@htecgroup.com>
-Content-Type: text/plain; charset=UTF-8
+X-ThreadId: A0nVfrWCY5as
+Date: Wed, 24 Sep 2025 17:42:36 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Manikanta Guntupalli" <manikanta.guntupalli@amd.com>,
+ "git (AMD-Xilinx)" <git@amd.com>, "Michal Simek" <michal.simek@amd.com>,
+ "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+ "Frank Li" <Frank.Li@nxp.com>, "Rob Herring" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ =?UTF-8?Q?Przemys=C5=82aw_Gaj?= <pgaj@cadence.com>,
+ "Wolfram Sang" <wsa+renesas@sang-engineering.com>,
+ "tommaso.merciai.xr@bp.renesas.com" <tommaso.merciai.xr@bp.renesas.com>,
+ "quic_msavaliy@quicinc.com" <quic_msavaliy@quicinc.com>, "S-k,
+ Shyam-sundar" <Shyam-sundar.S-k@amd.com>,
+ "Sakari Ailus" <sakari.ailus@linux.intel.com>,
+ "'billy_tsai@aspeedtech.com'" <billy_tsai@aspeedtech.com>,
+ "Kees Cook" <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ "Jarkko Nikula" <jarkko.nikula@linux.intel.com>,
+ "Jorge Marques" <jorge.marques@analog.com>,
+ "linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ Linux-Arch <linux-arch@vger.kernel.org>,
+ "linux-hardening@vger.kernel.org" <linux-hardening@vger.kernel.org>
+Cc: "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>,
+ "Goud, Srinivas" <srinivas.goud@amd.com>,
+ "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
+ "manion05gk@gmail.com" <manion05gk@gmail.com>
+Message-Id: <295ee05e-3366-4846-9c8b-85ac09d79d48@app.fastmail.com>
+In-Reply-To: 
+ <DM4PR12MB610989A03A7560F2A03792838C1CA@DM4PR12MB6109.namprd12.prod.outlook.com>
+References: <20250923154551.2112388-1-manikanta.guntupalli@amd.com>
+ <20250923154551.2112388-4-manikanta.guntupalli@amd.com>
+ <13bbd85e-48d2-4163-b9f1-2a2a870d4322@app.fastmail.com>
+ <DM4PR12MB61098EA538FCB7CED2E5C47B8C1CA@DM4PR12MB6109.namprd12.prod.outlook.com>
+ <4199b1ca-c1c7-41ef-b053-415f0cd80468@app.fastmail.com>
+ <DM4PR12MB6109E009DAC953525093FE808C1CA@DM4PR12MB6109.namprd12.prod.outlook.com>
+ <134c3a96-4023-47ab-8aa9-fd6ab75e5654@app.fastmail.com>
+ <DM4PR12MB610989A03A7560F2A03792838C1CA@DM4PR12MB6109.namprd12.prod.outlook.com>
+Subject: Re: [PATCH V7 3/4] i3c: master: Add endianness support for i3c_readl_fifo()
+ and i3c_writel_fifo()
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
-X-CM-TRANSID:rQCowADH24XDD9RoAzdBBQ--.31926S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7ZrW3ZF4kWw4xJr4UAFWDJwb_yoW8XryDpF
-	s3Cr13Ar15Xr4agwsIyF1DuryFqw4xGa43Kry2yw1Ivr45AFy8Kr4kt34vqFyDXF97Ar12
-	qF1Skr4Y9r1UCrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvqb7Iv0xC_tr1lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Jr0_JF4l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IE
-	w4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMc
-	vjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xKxwCY
-	1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8Jw
-	C20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAF
-	wI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjx
-	v20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2
-	jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0x
-	ZFpf9x07j8KsUUUUUU=
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-Hi Aleksa,
+On Wed, Sep 24, 2025, at 17:23, Guntupalli, Manikanta wrote:
+>> Subject: Re: [PATCH V7 3/4] i3c: master: Add endianness support for i3c_readl_fifo() and i3c_writel_fifo()
+>> > }
+>> >
+>> > With this approach, both little-endian and big-endian cases works as expected.
+>>
+>> This version should fix the cases where you have a big-endian kernel with either
+>> I3C_FIFO_BIG_ENDIAN or I3C_FIFO_LITTLE_ENDIAN, as neither combination
+>> does any byte swaps.
+>>
+>> However I'm fairly sure it's still broken for little-endian kernels when a driver asks for
+>> a I3C_FIFO_BIG_ENDIAN conversion, same as v7.
+> We tested using the I3C_FIFO_BIG_ENDIAN flag from the driver on 
+> little-endian kernels, and it works as expected.
 
-On 9/24/25 19:10, Aleksa Paunovic via B4 Relay wrote:
+Can you explain how that works? What I see is that your
+readsl_be()/writesl_be() functions do a byteswap on
+every four bytes, so the bytestream that gets copied
+to/from the FIFO gets garbled, in particular the
+final (unaligned) bytes of the kernel buffer end up
+in the higher bytes of the FIFO register rather than
+the first bytes as they do on a big-endian kernel.
 
-> From: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
->
-> Allow faster rdtime access via GCR.U mtime shadow register on RISC-V
-> devices. This feature can be enabled by setting GCRU_TIME_MMIO
-> during configuration.
-> Reformat the clint timer to use the same mechanism if RISCV_M_MODE is set.
->
-> Signed-off-by: Aleksa Paunovic <aleksa.paunovic@htecgroup.com>
-> ---
->  arch/riscv/include/asm/clint.h    | 26 ----------------
->  arch/riscv/include/asm/timex.h    | 63 ++++++++++++++++++++++-----------------
->  drivers/clocksource/Kconfig       | 12 ++++++++
->  drivers/clocksource/timer-clint.c | 20 ++++++-------
->  drivers/clocksource/timer-riscv.c | 34 +++++++++++++++++++++
->  5 files changed, 90 insertions(+), 65 deletions(-)
+Are both the big-endian and little-endian kernels in
+your tests on microblaze, using the upstream version
+of asm/io.h? Is there a hardware byteswap between the
+CPU local bus and the i3c controller? If there is
+one, is it set the same way for both kernels?
 
-I have a question about the design of this patch. Do we *really* have to
-combine the GCR.U timer driver into the existing riscv,timer driver?
-
-It seems at least to me that all we really need is a *new* clocksource
-driver with a higher "rating" than riscv_clocksource and
-clint_clocksource, and the kernel will prefer it anyway.
-
-In your patch, you're effectively making timer-riscv a driver for both
-riscv,timer and mips,p8700-gcru, while including a whole bunch of
-indirections and renamings. I think the structure of this patch would be
-much simpler if it was just adding a new clocksource driver.
-
-Please consider.
-
-Thanks,
-Vivian "dramforever" Wang
-
+    Arnd
 
