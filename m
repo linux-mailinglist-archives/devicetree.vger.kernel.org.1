@@ -1,143 +1,130 @@
-Return-Path: <devicetree+bounces-220847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 631B2B9B199
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:44:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E81D3B9B1C9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:50:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FC16164ED4
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 17:44:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E6751B26507
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 17:50:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED7B7313E12;
-	Wed, 24 Sep 2025 17:44:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D0283148C4;
+	Wed, 24 Sep 2025 17:50:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="HO3rF3uB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60BB627877B
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 17:44:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 540B52FBE05;
+	Wed, 24 Sep 2025 17:50:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758735888; cv=none; b=f+u1FUeo0mXAdLnVA2emqHQRl93GPdMy7jQPQYpTT08KdUbEms07SXTzKs6dZLPShOMbAtvUAjhKZxN/uiJFJqbmS+diXGPzMkWuhGeVS5uwFbKMlmLhZldAG41G8TnZrv1e6XxhuUUfaDkJ0O8j6EUPy5r+E33SzTlp7BveE4k=
+	t=1758736230; cv=none; b=LD7v0v1ZlPSE1kzurYByicUMv0GIzZfnjBLVIs204fYvB3Z5sXDMVRCVB79i519w3mz3r1MsPkpWInNANxl3hXaR6Z7bgywWMEwCxTKMtzWzn42QhNzKNXoiPd0HNvqEe09E3wh8fPw4fMXAbgGfMTslTfLhw+xWMvgmdLbMwqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758735888; c=relaxed/simple;
-	bh=atiga3Cl4KuVb0GshrSWxi1oAcJp0lpigTHD+s/jZK0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oOGC4Z5OPwIAwjUPjl/hxd6atXxtzNGScBNtS7KmZO4paeuMSrfpdCZDMISqLtZP0eLxBvKV7WmHTBwAWiVf98PFqcwOFEyRfhfmWCDwmdG4tllZr16OKDtqEfTqsAjafRyHgNPqNAkqadrUZq9L+X7y9HJ6VZTKDdAQlNHSwds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4EA67106F;
-	Wed, 24 Sep 2025 10:44:37 -0700 (PDT)
-Received: from [10.57.32.18] (unknown [10.57.32.18])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id F39EC3F694;
-	Wed, 24 Sep 2025 10:44:41 -0700 (PDT)
-Message-ID: <e105af78-3edb-448f-b3c2-ea28defade80@arm.com>
-Date: Wed, 24 Sep 2025 18:44:33 +0100
+	s=arc-20240116; t=1758736230; c=relaxed/simple;
+	bh=xB7pPlWW0+eiQnT8mrW75khUnjKN0I9h+uNbHWk55Uk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BkTKBmU9wb6Qmf4QqkkjH5ZLAnHJ1SYz3W779IYaMHhuKPEy9OnVDQsFbM2cMeLpr6x+ts1+w7jgxWRtqWpgI1FxBkiAZz40RDlM90bWAzKRXlrAv3M7TGs8IymV5zqRjh8OMvJPThzxk9QzG60lVdb2J8QipT9jgPYiT1CkkpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=HO3rF3uB; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=+vJ1dOlsQQaSGt9wLwAFi3DtF1NLVEuTTQ4UpKnYZ3M=; b=HO3rF3uBCQ2jcVMAxeZgSdPp+w
+	8JkNip2tIfNxVFlpWPPVkI3BxcxjT7OnUMTN+u9aYpdeRIv/Z9nfvGmfCqFFLocvpncoMTU5AwrkI
+	GV91ILjtr0b025Bd2tFtERmWPEgLfydMGRbR6Kkz9kOtIt8R+KhJO3N4o8dzZ/RcLDeIWSHByJTuh
+	I8aS1ggLI1BYgbwVQZNMs+x+aNZ0IqLloKs2pVEMtkg7neTQ9XzTSoonUdT7AOxQyVR7yg7kQVeaw
+	lZ7J5eK6Fi/eEXF2iAgmf8NpuEfoORJxZQZD/gDLQXImTU2ZIActbAJNmtXC3rWEy4r+Ijg2uaRNS
+	aCqWKUXQ==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:55252)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1v1TdH-000000000z7-0TDa;
+	Wed, 24 Sep 2025 18:50:23 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1v1TdE-000000007L9-04ys;
+	Wed, 24 Sep 2025 18:50:20 +0100
+Date: Wed, 24 Sep 2025 18:50:19 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: David Yang <mmyangfl@gmail.com>, Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v11 2/5] net: phy: introduce
+ PHY_INTERFACE_MODE_REVSGMII
+Message-ID: <aNQvW54sk3EzmoJp@shell.armlinux.org.uk>
+References: <20250922131148.1917856-1-mmyangfl@gmail.com>
+ <20250922131148.1917856-3-mmyangfl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] iommu/of: fix device tree configuration for PCI
- devices
-To: Shyam Saini <shyamsaini@linux.microsoft.com>, thierry.reding@gmail.com,
- robh@kernel.org, joro@8bytes.org, jgg@ziepe.ca
-Cc: iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, virtualization@lists.linux.dev, will@kernel.org,
- jacob.pan@linux.microsoft.com, eric.auger@redhat.com, code@tyhicks.com,
- eahariha@linux.microsoft.com, vijayb@linux.microsoft.com,
- bboscaccy@linux.microsoft.com, saravanak@google.com, krzk+dt@kernel.org,
- conor+dt@kernel.org, lizhi.hou@amd.com, clement.leger@bootlin.com
-References: <20250909154600.910110-1-shyamsaini@linux.microsoft.com>
- <20250909154600.910110-3-shyamsaini@linux.microsoft.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20250909154600.910110-3-shyamsaini@linux.microsoft.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250922131148.1917856-3-mmyangfl@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On 2025-09-09 4:45 pm, Shyam Saini wrote:
-> Individual PCI devices lack dedicated device tree nodes, but
-> their IOMMU configuration (including reserved IOVA regions) is often
-> defined at the PCI host controller level in the device tree. The
-> "iommu-addresses" property in reserved-memory nodes specifies IOVA
-> ranges that should be reserved for specific devices.
-> 
-> Currently, PCI devices cannot access these configurations because their
-> dev->of_node is NULL, preventing of_iommu_get_resv_regions() from
-> discovering reserved regions defined in the device tree.
-> 
-> There are at least 3 ways to reserve iommu-addresses for individual PCI
-> devices,
->   - 1) By dynamically adding DTS nodes for individual PCI devices using
->     [2] CONFIG_PCI_DYNAMIC_OF_NODES, this requires hardcoding PCI device
->     IDs in DECLARE_PCI_FIXUP_FINAL
-> 
->   - 2) By adding PCI devices nodes either in DTS or by modifying FDT at
->     boot time in the firmware, eg [3] However, of_iommu driver doesn't
->     seem to handle individual PCI devices, additionally this approach
->     doesn't seem to much scalable for the complex PCI hierarchy
-> 
->   - 3) By configuring PCI host controller DTS node for PCI device so
->     that it can inherit iommu-addresses defined in the parent node.
-> 
-> This commit addresses the problem using approach 3) by assigning the
-> PCI host controller's device tree node to PCI devices during IOMMU
-> configuration, enabling them to inherit the host controller's device
-> tree properties. This allows PCI devices to properly discover and
-> reserve IOVA regions specified in the device tree.
-> 
-> Signed-off-by: Shyam Saini <shyamsaini@linux.microsoft.com>
-> ---
->   drivers/iommu/of_iommu.c | 11 +++++++++++
->   1 file changed, 11 insertions(+)
-> 
-> diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
-> index 6b989a62def20..077482917e3e8 100644
-> --- a/drivers/iommu/of_iommu.c
-> +++ b/drivers/iommu/of_iommu.c
-> @@ -145,6 +145,17 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
->   		err = pci_for_each_dma_alias(to_pci_dev(dev),
->   					     of_pci_iommu_init, &info);
->   		of_pci_check_device_ats(dev, master_np);
-> +
-> +		/*
-> +		 * For PCI devices, ensure the device's of_node points to the
-> +		 * PCI host controller's device tree node so that reserved regions
-> +		 * and other DT-specific IOMMU configuration can be found.
-> +		 * PCI devices typically don't have individual DT nodes, but
-> +		 * their configuration (including reserved regions) is defined
-> +		 * at the PCI host controller level.
-> +		 */
-> +		if (!err && master_np && !dev->of_node)
-> +			dev->of_node = of_node_get(master_np);
+On Mon, Sep 22, 2025 at 09:11:40PM +0800, David Yang wrote:
+> The "reverse SGMII" protocol name is a personal invention, derived from
+> "reverse MII" and "reverse RMII", this means: "behave like an SGMII
+> PHY".
 
-This is just wrong. Disregarding the fiddly aspects of node reuse that 
-are completely ignored here, an endpoint device is not the host 
-bridge/root complex device, so it is wildly inappropriate to associate 
-one with the other's DT node and all its properties, resources, etc.
+Sorry to mess you around, but... I've been getting further with stmmac's
+PCS stuff (I've started again with it) and I've come to realise that the
+stmmac driver is full of worms here.
 
-If it truly is the case that boot firmware has somehow "reserved" some 
-small amount of *IOVA* address space for specific endpoints (but without 
-any endpoint or SMMU configuration, given that those both get reset by 
-VFIO?) then frankly it *should* populate the PCI hierarchy in DT so it 
-can accurately and truthfully describe what it has done.
+I think we need to have a bigger discussion here.
 
-On the other hand, if as I suspect it is simply the case that the host 
-bridge has limited windows into system *physical* address space, like 
-plenty of other systems do, then just like those other systems that 
-should be described as standard "dma-ranges" instead of trying to wave 
-silly hacks about.
+Today, we have:
 
-Thanks,
-Robin.
+- PHY_INTERFACE_MODE_REVMII
+- PHY_INTERFACE_MODE_REVRMII
 
->   	} else {
->   		err = of_iommu_configure_device(master_np, dev, id);
->   	}
+which both complement their _MII and _RMII definitions. So, it seems
+entirely sensible to also introduce REVSGMII to complement SGMII.
 
+However, stmmac hardware supports "reverse" mode for more than just
+SGMII, also RGMII and SMII. The driver doesn't support SMII, and is
+actually buggy - despite having the DT configuration knobs (which
+are used), the hardware is never actually configured to operate in
+"reverse" mode (it never has the GMAC_CONFIG_TC bit set to allow the
+core to, in effect, act as a PHY.) That said, the core does have
+it's SGMII rate adapter switched from using the incoming inband word
+to using the MAC configuration.
+
+So, while I thought this would be useful for stmmac, given that all
+the platforms we have today aren't actually using "reverse SGMII"
+mode, I don't think this will be useful there.
+
+If we go round the route of adding REVSGMII, we are also opening
+the path to also having REVSMII, and all four REVRGMII* as well.
+Is this a good idea?
+
+Would it be better to have phy_interface_t + reverse-mode flag
+and accept REVMII and REVRMII as a pecularity? That's probably
+going to be a very painful change.
+
+Andrew, any views?
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
