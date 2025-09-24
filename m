@@ -1,160 +1,114 @@
-Return-Path: <devicetree+bounces-220880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95092B9BC83
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:55:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CC69B9BCF4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 22:08:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F3FC7AFEFB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:53:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DE591B24813
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 20:09:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61A1C26D4F9;
-	Wed, 24 Sep 2025 19:55:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F16B8322C85;
+	Wed, 24 Sep 2025 20:08:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nFVc7KK7"
+	dkim=pass (4096-bit key) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b="q5A6u4ow"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bout4.ijzerbout.nl (bout4.ijzerbout.nl [91.99.166.32])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 333C019AD5C;
-	Wed, 24 Sep 2025 19:55:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FBCE322A2D;
+	Wed, 24 Sep 2025 20:08:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.99.166.32
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758743728; cv=none; b=RQFJt8C6eIIImKZzg9fAeJ9y8oN7seQ+n7eCAvtfs2m4VAl8B0PiSDR9m+nnyFNQZPpXqIbXCeaZsROUAHxqCSdPoygB+v3SrTYrg3g5PYiHGElPTQKn6AWxwRAJ4WLhaeMKca0Zdk4gW8ILs6OhiQAJlDMvz8A5L5l8wZtsT3c=
+	t=1758744515; cv=none; b=Eo2x/aqa27jaTZnuQDHTMnzf6op4GEuCMiW5EpOySLHTRQHtmklPDWg15z2WU6H9Ur5h7QsLVxbHief+RwV7xnNlwgVnHaykd70Qyfiqy36Z2NnBf/J/eMHQYVetyE+9o41XbMe1CLTrNUHyNxW573LQ1k1iwCVoJgc+nXdZqrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758743728; c=relaxed/simple;
-	bh=b7tMSRatNPiuUi1gczrNM41fbVsirIkhBCPf9ks04OQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LP9WLXBn6ULdE16mx3+NO0i2q6djjkd337yRne5tpJnheE8424CTF9gtgVRrrBzqp8JfaJA9kcQYzoOvE/pBa0n2pmkGYCmjX945psN/KmlYwTluGx/eTwysanYvkftZCPzsDKmSVeVSZToPXSlSlo18K5SnlL9Gl5bLUkfZbSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nFVc7KK7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21653C4CEE7;
-	Wed, 24 Sep 2025 19:55:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758743726;
-	bh=b7tMSRatNPiuUi1gczrNM41fbVsirIkhBCPf9ks04OQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nFVc7KK7Q1ZufpyE0VhGLu+kdBFhx6oSfNOFquaomDFqg5zUCjeUE66sKmpvo07lX
-	 b90Xhu9oppxERU0mViZrIUi+a+jsJhxylvEAuytriwCjqJRDWP2MJ5+pyF8x6LdIlC
-	 PWYTTnCQhJsp2Ic1HZdBosvXh/EPT0mmuzi8snzVZPVSjLrZbV+0jFq/1ddRQ+bau7
-	 2LBwoMz5Zt/lu+iDcn1HRIG9hzQ5MFVvB8cKtg5a/ug3I1KT7PSZBXiQIqOEmHW3fK
-	 DyrkEwPkLxKKky6zfb1iAY5m8BHbphvZDMPauE8rI/9k2lgCmArFl4tDOFZ3U0XAis
-	 ZOOJAxrNpRekw==
-Date: Wed, 24 Sep 2025 20:55:22 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Hang Cao <caohang@eswincomputing.com>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Thinh.Nguyen@synopsys.com,
-	p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-Subject: Re: Re: [PATCH v3 1/2] dt-bindings: usb: Add ESWIN EIC7700 USB
- controller
-Message-ID: <20250924-shimmer-sphinx-1a12caeab401@spud>
-References: <20250915085329.2058-1-caohang@eswincomputing.com>
- <20250915091024.2128-1-caohang@eswincomputing.com>
- <20250915-affair-halves-4f881f6c7cdb@spud>
- <17731a13.1cce.19974dfc64d.Coremail.caohang@eswincomputing.com>
+	s=arc-20240116; t=1758744515; c=relaxed/simple;
+	bh=iX18mreyCJfLY6jINmc0Ca4MoXPHhMk048rx6jyuZ7c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=a1kUf3Yu9S5BVgZU0brZsMlwx4+BpmlkTzUOe359fOpVp/aUbLHL2rNnNHu5IpC1fhxuSEnhu2aIyyRAamclPB3bMRV+aajue6tlHfkeCInsV8moqQ2yd8prrlecHSsnMaATJW7pCmkRFYFXihbzZsD6TE+d5eK5aU/Xo4KLBuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ijzerbout.nl; spf=fail smtp.mailfrom=ijzerbout.nl; dkim=pass (4096-bit key) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b=q5A6u4ow; arc=none smtp.client-ip=91.99.166.32
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ijzerbout.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=ijzerbout.nl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ijzerbout.nl; s=key;
+	t=1758743968; bh=iX18mreyCJfLY6jINmc0Ca4MoXPHhMk048rx6jyuZ7c=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=q5A6u4owfMHEo8OezoTfR6y0oUZe64PPyJItEUvN88tEHb9+v1aXY9QIgrd1XlaEf
+	 u1iFjcbqj/8Gnq/nlp2LzddWQD5wElSRWVwqjxx+a92hiS4xMyPyUkdTQjRJejaPxV
+	 KIFLxkAvVsj+vT+h0stcTudQ53fnVltmk67yoaSL6SebZjW456aSbj51Kb9lk0zSTF
+	 xnUou4eh5UXzJPcDkVSfWpXOeFeudzk8hakKfr00hpvLoHDB/Ne3EnmI/42NMjapu9
+	 npw29WWp0FTRlAinvdcl1/LlJRPUg1tj57+5B/rN4vw+SLgfZ9YhLfHE/ZdHs0YxaP
+	 5TIp0ZoAIaJXDQZht1di5uwICIJ4CgLhIsiC1j8TigkwJEcS+GGqqer+CKZLSfqUFg
+	 YDmePa3YywMh4S21mtosqGGQm6M2d3XgE0i0rBlH4xX9EAWC56c22x2Fy5kUieX2QT
+	 7rtZlOM14pF1TJjNx3GIQEdjHhD524WhMDMB67KJKmBypvFDPiV8PvHFgHYwLCYJXG
+	 yGxiuw3fNadXE+74SOy1V/5wcFPJnI9lU/vgPdso6XqSXW6B4q3D9ZE7eY2vxfiMVC
+	 IMtEWsVdIh3Stf0F+edjDNAq2qqXtA9CHxkjqU4rOfXUNCTvRDycFA0bpGx2JAqBgl
+	 qaoBrgg+Xl/hkwaet2GHiFbI=
+Received: from [192.168.178.251] (ijzerbout.connected.by.freedominter.net [185.238.128.139])
+	by bout4.ijzerbout.nl (Postfix) with ESMTPSA id 3973341332;
+	Wed, 24 Sep 2025 21:59:28 +0200 (CEST)
+Message-ID: <6f787bdf-9f9b-4d6e-b7c1-5b734ec0acf1@ijzerbout.nl>
+Date: Wed, 24 Sep 2025 21:59:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="NTUzUaWJZNr9XbDj"
-Content-Disposition: inline
-In-Reply-To: <17731a13.1cce.19974dfc64d.Coremail.caohang@eswincomputing.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 07/13] ASoC: codecs: wcd: add common helper for wcd
+ codecs
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+ broonie@kernel.org
+Cc: lgirdwood@gmail.com, tiwai@suse.com, vkoul@kernel.org, srini@kernel.org,
+ yung-chuan.liao@linux.intel.com, pierre-louis.bossart@linux.dev,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ dmitry.baryshkov@oss.qualcomm.com, linux-sound@vger.kernel.org
+References: <20250909121954.225833-1-srinivas.kandagatla@oss.qualcomm.com>
+ <20250909121954.225833-8-srinivas.kandagatla@oss.qualcomm.com>
+Content-Language: en-US
+From: Kees Bakker <kees@ijzerbout.nl>
+In-Reply-To: <20250909121954.225833-8-srinivas.kandagatla@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-
---NTUzUaWJZNr9XbDj
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Sep 23, 2025 at 12:40:46PM +0800, Hang Cao wrote:
-> > > From: Hang Cao <caohang@eswincomputing.com>
-> > > +  eswin,hsp-sp-csr:
-> > > +    description:
-> > > +      HSP CSR is to control and get status of different high-speed p=
-eripherals
-> > > +      (such as Ethernet, USB, SATA, etc.) via register, which can cl=
-ose
-> > > +      module's clock,reset module independently and tune board-level=
-'s
-> > > +      parameters of PHY, etc.
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> > > +    items:
-> > > +      - items:
-> > > +          - description: phandle to HSP Register Controller hsp_sp_c=
-sr node.
-> > > +          - description: usb bus register offset.
-> > > +          - description: axi low power register offset.
-> > > +          - description: vbus frequency register offset.
-> > > +          - description: mpll register offset.
-> >=20
-> > As I mentioned on the shdci binding patch, I'm not happy with the
-> > justification for this phandle. What exactly is the clock that this
-> > controls and why does it not have a dedicated clock-controller driver
-> > and reset-controller driver?
-> >=20
-> In the current design framework, the clock can be divided into two parts:=
-=A0
-> 1. The top-clock, which is used to manage and control the clocks of vario=
-us subsystems (such as HSP, GPU, NPU, etc.);=A0
-> 2. The subsystem clocks managed independently by each subsystem.
-> The top-clock is a standard clock design(featuring gate, divider, and mux=
- functions) that has been registered in the=A0
-> common clock framework,with a dedicated clock controller driver.
->=20
-> The subsystem clocks managed by subsystems are controlled and configured =
-through the CSR (Control and Status Register)=A0
-> of each respective subsystem. For example, the HSP subsystem uses the esw=
-in,hsp-sp-csr. Additionally, this CSR is
-> =A0responsible for managing startup functions, performing independent res=
-et of specific modules, and adjusting=A0
-> PHY parameters to achieve board-level tuning (for USB/SATA interfaces, et=
-c.).
-
-Unlike the use of the HSP in the sdhci driver, where it appears to be
-setting bits that indicate stability (according to your colleague) what
-you say here (and what is done in the driver on the reset side in
-particular) seems like something that should be handled by a dedicated
-driver. "independent reset of specific modules" is the domain of
-reset-controller drivers. What are the other modules for which the HSP
-has resets? Does it have clocks for other modules too?
-
-> The top-clock manages the global clocks of subsystems. Taking the HSP sub=
-system as an example, the top-clock
-> =A0configures the hsp_aclk_ctrl and hsp_cfg_ctrl of HSP subsystem only.
-
-> In contrast, the subsystem clocks are managed via their own CSRs. For ins=
-tance, the USB ref clock used in the USB module of=A0
-> the HSP subsystem can only be configured through the hsp-csr, and cannot =
-be set via the top-clock controller driver.
-> As for the reset function, it is not integrated into a dedicated controll=
-er driver either, for reasons similar to those of the=A0
-> clock management mentioned above.
-
-That just sounds to me like the hsp-csr needs to become both a
-reset-controller and a clock-controller! It's not unusual to have more
-than one clock-controller in an device, the top-clock being a
-clock-controller does not mean that the HSP also cannot be one.
-
-
---NTUzUaWJZNr9XbDj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNRMqQAKCRB4tDGHoIJi
-0tWjAP9rnj6LBBt2RvkZZpyWdjjtrL57PNlebKO2HzRQiCciMQEAobZWD6QhY9Us
-t+BXD1QAI79Mrf2XA3QZOFR2AjJ0Cgk=
-=cO52
------END PGP SIGNATURE-----
-
---NTUzUaWJZNr9XbDj--
+Op 09-09-2025 om 14:19 schreef Srinivas Kandagatla:
+> All the Qualcomm WCD codecs have most of its code duplicated across all
+> these 3/4 drivers. This is an attempt to remove those duplicate
+> parts by adding a common helper library for these codecs.
+>
+> To start with move all the micbias parsing and voltage settings these
+> are identical in WCD934x, WCD937x, WCD938x and WCD939x codec driver.
+>
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>   sound/soc/codecs/Kconfig      |  7 +++
+>   sound/soc/codecs/Makefile     |  2 +
+>   sound/soc/codecs/wcd-common.c | 70 +++++++++++++++++++++++++++
+>   sound/soc/codecs/wcd-common.h | 27 +++++++++++
+>   sound/soc/codecs/wcd934x.c    | 82 +++++++++----------------------
+>   sound/soc/codecs/wcd937x.c    | 81 ++++++++-----------------------
+>   sound/soc/codecs/wcd938x.c    | 88 +++++++---------------------------
+>   sound/soc/codecs/wcd939x.c    | 90 +++++++----------------------------
+>   8 files changed, 182 insertions(+), 265 deletions(-)
+>   create mode 100644 sound/soc/codecs/wcd-common.c
+>   create mode 100644 sound/soc/codecs/wcd-common.h
+>
+> ...
+> diff --git a/sound/soc/codecs/wcd-common.c b/sound/soc/codecs/wcd-common.c
+> ...
+> +int wcd_dt_parse_micbias_info(struct wcd_common *common)
+> +{
+> +	int i;
+> +
+> +	for (i = 0; i < common->max_bias; i++) {
+> +		common->micb_vout[i] = wcd_get_micbias_val(common->dev, i + 1, &common->micb_mv[i]);
+> +		if (common->micb_vout[i] < 0)
+> +			return -EINVAL;
+There is a mix of signed and unsigned types here.
+wcd_get_micbias_val returns a negative number in case of an error.
+That number is stored in a u32. After that you cannot check that
+value for negative value anymore.
 
