@@ -1,55 +1,57 @@
-Return-Path: <devicetree+bounces-220881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CC69B9BCF4
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 22:08:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53E9CB9BD12
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 22:11:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9DE591B24813
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 20:09:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 176FD380961
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 20:11:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F16B8322C85;
-	Wed, 24 Sep 2025 20:08:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1015322DC0;
+	Wed, 24 Sep 2025 20:11:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b="q5A6u4ow"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="GZJFO8Cm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bout4.ijzerbout.nl (bout4.ijzerbout.nl [91.99.166.32])
+Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FBCE322A2D;
-	Wed, 24 Sep 2025 20:08:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.99.166.32
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AC4E322766
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 20:11:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758744515; cv=none; b=Eo2x/aqa27jaTZnuQDHTMnzf6op4GEuCMiW5EpOySLHTRQHtmklPDWg15z2WU6H9Ur5h7QsLVxbHief+RwV7xnNlwgVnHaykd70Qyfiqy36Z2NnBf/J/eMHQYVetyE+9o41XbMe1CLTrNUHyNxW573LQ1k1iwCVoJgc+nXdZqrM=
+	t=1758744663; cv=none; b=FWCDMBZ98DH/4DsfLWS1HVWV1mGw7nyAcsaJIsz+yCb5Dauzo+kL2b+W/8KGnBXYo4l1vEZxUSupYWg+19twLKQUt8MQu/BF16V33gQe86/+CVzqF2I54Sjw0/X8uUIzyQ6pc8LZqQy/6R3YtUiZDTsxyIAouyI0fciNj6S0R4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758744515; c=relaxed/simple;
-	bh=iX18mreyCJfLY6jINmc0Ca4MoXPHhMk048rx6jyuZ7c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a1kUf3Yu9S5BVgZU0brZsMlwx4+BpmlkTzUOe359fOpVp/aUbLHL2rNnNHu5IpC1fhxuSEnhu2aIyyRAamclPB3bMRV+aajue6tlHfkeCInsV8moqQ2yd8prrlecHSsnMaATJW7pCmkRFYFXihbzZsD6TE+d5eK5aU/Xo4KLBuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ijzerbout.nl; spf=fail smtp.mailfrom=ijzerbout.nl; dkim=pass (4096-bit key) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b=q5A6u4ow; arc=none smtp.client-ip=91.99.166.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ijzerbout.nl
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=ijzerbout.nl
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ijzerbout.nl; s=key;
-	t=1758743968; bh=iX18mreyCJfLY6jINmc0Ca4MoXPHhMk048rx6jyuZ7c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=q5A6u4owfMHEo8OezoTfR6y0oUZe64PPyJItEUvN88tEHb9+v1aXY9QIgrd1XlaEf
-	 u1iFjcbqj/8Gnq/nlp2LzddWQD5wElSRWVwqjxx+a92hiS4xMyPyUkdTQjRJejaPxV
-	 KIFLxkAvVsj+vT+h0stcTudQ53fnVltmk67yoaSL6SebZjW456aSbj51Kb9lk0zSTF
-	 xnUou4eh5UXzJPcDkVSfWpXOeFeudzk8hakKfr00hpvLoHDB/Ne3EnmI/42NMjapu9
-	 npw29WWp0FTRlAinvdcl1/LlJRPUg1tj57+5B/rN4vw+SLgfZ9YhLfHE/ZdHs0YxaP
-	 5TIp0ZoAIaJXDQZht1di5uwICIJ4CgLhIsiC1j8TigkwJEcS+GGqqer+CKZLSfqUFg
-	 YDmePa3YywMh4S21mtosqGGQm6M2d3XgE0i0rBlH4xX9EAWC56c22x2Fy5kUieX2QT
-	 7rtZlOM14pF1TJjNx3GIQEdjHhD524WhMDMB67KJKmBypvFDPiV8PvHFgHYwLCYJXG
-	 yGxiuw3fNadXE+74SOy1V/5wcFPJnI9lU/vgPdso6XqSXW6B4q3D9ZE7eY2vxfiMVC
-	 IMtEWsVdIh3Stf0F+edjDNAq2qqXtA9CHxkjqU4rOfXUNCTvRDycFA0bpGx2JAqBgl
-	 qaoBrgg+Xl/hkwaet2GHiFbI=
-Received: from [192.168.178.251] (ijzerbout.connected.by.freedominter.net [185.238.128.139])
-	by bout4.ijzerbout.nl (Postfix) with ESMTPSA id 3973341332;
-	Wed, 24 Sep 2025 21:59:28 +0200 (CEST)
-Message-ID: <6f787bdf-9f9b-4d6e-b7c1-5b734ec0acf1@ijzerbout.nl>
-Date: Wed, 24 Sep 2025 21:59:26 +0200
+	s=arc-20240116; t=1758744663; c=relaxed/simple;
+	bh=qroifid5E0JwSNY9T4DkdPNSWtVvxDZkd0VXckpiAIU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=A6aFXT6jGOAjjqVOsNWoBl367tIXOuSjiNIROeoCCAOJJSUpVdclxPA6D5hLblMw2eKSQYR77+iygxkGfQaqmGM9tW8dGWyTV+kbeqiOUGdZHNUEas6b0TTpY6jJz0TQqJds+mwqsZy6QTy2dzdY9cOb9vl6pOI+Xb7HMaTSArA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=GZJFO8Cm; arc=none smtp.client-ip=210.118.77.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250924201059euoutp01688c62020995f9ac96460c6b73e433c7~oUPMrx3o82619026190euoutp01w
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 20:10:59 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250924201059euoutp01688c62020995f9ac96460c6b73e433c7~oUPMrx3o82619026190euoutp01w
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1758744659;
+	bh=yBKtwjJbPQtED8z7fycvzGQLEUnEMfBKiPR2MumIREw=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=GZJFO8CmRhsefzb4ZNLdzaYTF6Q/ntMXChwbvLFW41SUpZKQrVaJ2QmhBsuDG4DhM
+	 RkZoK2LxmmmoyNNH4TqD8+luA4tXD1CqHfJDf3s0RNtj8s4o2otF4PnLYWOq8Kmz5B
+	 4Mg/IE/l5VtD4mMQNfJDT6kYj7gaqLqjOZoeVKvU=
+Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
+	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250924201058eucas1p2d73ba09b4daf4e1779f658dfb3d99722~oUPLmwszc0365803658eucas1p2d;
+	Wed, 24 Sep 2025 20:10:58 +0000 (GMT)
+Received: from [192.168.1.44] (unknown [106.210.136.40]) by
+	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20250924201057eusmtip1dcd4c37a079be0694d2881ebcaa5a599~oUPKi7Zsq1997819978eusmtip10;
+	Wed, 24 Sep 2025 20:10:57 +0000 (GMT)
+Message-ID: <0bbdb7d1-5d07-4997-955e-497134a4aa30@samsung.com>
+Date: Wed, 24 Sep 2025 22:10:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,58 +59,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 07/13] ASoC: codecs: wcd: add common helper for wcd
- codecs
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
- broonie@kernel.org
-Cc: lgirdwood@gmail.com, tiwai@suse.com, vkoul@kernel.org, srini@kernel.org,
- yung-chuan.liao@linux.intel.com, pierre-louis.bossart@linux.dev,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- dmitry.baryshkov@oss.qualcomm.com, linux-sound@vger.kernel.org
-References: <20250909121954.225833-1-srinivas.kandagatla@oss.qualcomm.com>
- <20250909121954.225833-8-srinivas.kandagatla@oss.qualcomm.com>
+Subject: Re: [PATCH v14 2/7] rust: pwm: Add Kconfig and basic data
+ structures
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,
+	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>,
+	=?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, Andreas
+	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, Trevor
+	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Guo Ren
+	<guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+	Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Alexandre
+	Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, Benno
+	Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+	Drew Fustini <fustini@kernel.org>, Daniel Almeida
+	<daniel.almeida@collabora.com>, linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
 Content-Language: en-US
-From: Kees Bakker <kees@ijzerbout.nl>
-In-Reply-To: <20250909121954.225833-8-srinivas.kandagatla@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Michal Wilczynski <m.wilczynski@samsung.com>
+In-Reply-To: <upgthwp3cyohhe2gkzsramzshmvz3icjbhro6hgk2drbbqczi4@ygaanetydgjv>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250924201058eucas1p2d73ba09b4daf4e1779f658dfb3d99722
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20250820083542eucas1p221dacb3b69524b0dd6f7abf870adbe04
+X-EPHeader: CA
+X-CMS-RootMailID: 20250820083542eucas1p221dacb3b69524b0dd6f7abf870adbe04
+References: <20250820-rust-next-pwm-working-fan-for-sending-v14-0-df2191621429@samsung.com>
+	<CGME20250820083542eucas1p221dacb3b69524b0dd6f7abf870adbe04@eucas1p2.samsung.com>
+	<20250820-rust-next-pwm-working-fan-for-sending-v14-2-df2191621429@samsung.com>
+	<upgthwp3cyohhe2gkzsramzshmvz3icjbhro6hgk2drbbqczi4@ygaanetydgjv>
 
-Op 09-09-2025 om 14:19 schreef Srinivas Kandagatla:
-> All the Qualcomm WCD codecs have most of its code duplicated across all
-> these 3/4 drivers. This is an attempt to remove those duplicate
-> parts by adding a common helper library for these codecs.
->
-> To start with move all the micbias parsing and voltage settings these
-> are identical in WCD934x, WCD937x, WCD938x and WCD939x codec driver.
->
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->   sound/soc/codecs/Kconfig      |  7 +++
->   sound/soc/codecs/Makefile     |  2 +
->   sound/soc/codecs/wcd-common.c | 70 +++++++++++++++++++++++++++
->   sound/soc/codecs/wcd-common.h | 27 +++++++++++
->   sound/soc/codecs/wcd934x.c    | 82 +++++++++----------------------
->   sound/soc/codecs/wcd937x.c    | 81 ++++++++-----------------------
->   sound/soc/codecs/wcd938x.c    | 88 +++++++---------------------------
->   sound/soc/codecs/wcd939x.c    | 90 +++++++----------------------------
->   8 files changed, 182 insertions(+), 265 deletions(-)
->   create mode 100644 sound/soc/codecs/wcd-common.c
->   create mode 100644 sound/soc/codecs/wcd-common.h
->
-> ...
-> diff --git a/sound/soc/codecs/wcd-common.c b/sound/soc/codecs/wcd-common.c
-> ...
-> +int wcd_dt_parse_micbias_info(struct wcd_common *common)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < common->max_bias; i++) {
-> +		common->micb_vout[i] = wcd_get_micbias_val(common->dev, i + 1, &common->micb_mv[i]);
-> +		if (common->micb_vout[i] < 0)
-> +			return -EINVAL;
-There is a mix of signed and unsigned types here.
-wcd_get_micbias_val returns a negative number in case of an error.
-That number is stored in a u32. After that you cannot check that
-value for negative value anymore.
+
+
+On 9/15/25 12:13, Uwe Kleine-König wrote:
+> Hello Michal,
+> 
+> On Wed, Aug 20, 2025 at 10:35:37AM +0200, Michal Wilczynski wrote:
+>> Introduce the foundational support for PWM abstractions in Rust.
+>>
+>> This commit adds the `RUST_PWM_ABSTRACTIONS` Kconfig option to enable
+>> the feature, along with the necessary build-system support and C
+>> helpers.
+>>
+>> It also introduces the first set of safe wrappers for the PWM
+>> subsystem, covering the basic data carrying C structs and enums:
+>> - `Polarity`: A safe wrapper for `enum pwm_polarity`.
+>> - `Waveform`: A wrapper for `struct pwm_waveform`.
+>> - `Args`: A wrapper for `struct pwm_args`.
+>> - `State`: A wrapper for `struct pwm_state`.
+> 
+> Args, State and Polarity are only needed for the consumer side of the
+> PWM API in Rust, right?
+> 
+> I don't particularily like like pwm_args and wonder if this really has
+> to be exposed to Rust.
+
+You're right that Args is primarily for the consumer side, and our
+provider driver doesn't use it at all. I only included it for
+completeness, so I'm happy to remove it from the abstractions.
+
+I did use State on the provider side, however, to check if a channel is
+enabled before writing new hardware values - I've seen your comment
+about it that it's better to use the HW registers instead, I remember I
+tried doing something like this back in May when started working on
+this, but haven't succeeded - will refresh my memory and respond to the
+driver comments.
+
+> 
+> I think for State (and thus Polarity) we have to have it for the
+> forseeable future.
+> 
+> Best regards
+> Uwe
+
+Best regards,
+-- 
+Michal Wilczynski <m.wilczynski@samsung.com>
 
