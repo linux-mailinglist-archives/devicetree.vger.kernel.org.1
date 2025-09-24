@@ -1,148 +1,376 @@
-Return-Path: <devicetree+bounces-220878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E715DB9BBA2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:35:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2829B9BBE1
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:43:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 961EF1747EB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:35:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2D5219C4977
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1D4726D4F9;
-	Wed, 24 Sep 2025 19:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BF630BB94;
+	Wed, 24 Sep 2025 19:43:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IeD45TIx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eJvdvOeb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 358652550BA
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:35:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A82F130AAC2;
+	Wed, 24 Sep 2025 19:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758742510; cv=none; b=QGcx7BRPBlTF4iY+EIJ8EMjnozSkjLltnlgJiEQJqXDpAC1adhSUllfFL8fuoJHE1EBCiofc1/+Ung0l/k96lyqa9Icmbt/+uHbg9b3MZU7RkBGe255KD3aU7qp7qM1RkTfgepdwUgx5/qJ0fSty/ooCBrT4X8nwIT4H/ZJwbDo=
+	t=1758743001; cv=none; b=hF1VwH28TOYQZnfy73Vb1JYUJdjX5vjDJz2YZTyw4UjxXHqPZjJzii2WAmWMJbQSLzAcKFyVAUq7HnZ+9ahpCzJmRmTrfkWzBafn+zfZSqobgIUjssOaMaQ3Cuh3GnN885Ne6awDH1hyIaie/Sz3GvOGoOBwjQD3Ykq+LIBMEXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758742510; c=relaxed/simple;
-	bh=JVhXArOWemQPLrAxDExGAeOdw8F8ud5AdjfE9pP8bKo=;
+	s=arc-20240116; t=1758743001; c=relaxed/simple;
+	bh=eiRrQ8nJJ65azKvRRul53rh53CF5MIRAC7TRyWYYdE4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r2r/gAoYfsMILQ6jCfmkdasZuUArwVk4fh+s3wU4NQ4B2abWabis9PZ7Er0Fck+8G4YWVo2ehpJqVhZ5Ml3cr+0a0i+y0h518BLElXrAghTa/TxBID/6doxCJ6P6DyDmzcXLJRsQ6Y4RfSIm6JlViVOMW6Pq/hWjNgSdZQeXSWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IeD45TIx; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58OCq2R2021483
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:35:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=TNlc6/vrXO2HQmuvBAOIMDlW
-	uUXokEx/akryGttD9H0=; b=IeD45TIxGK67Oq3ViacGVuBJFVBuF42Wn0vhGcj4
-	aBCYkK2Fn4ukG2I6lUs7WQEhixz1/n4JRWc63TKbN40BQUbCOMGn2gHWnVCoNkoU
-	mvLKIag/mqWRpMS2LSj6n9ZKLJfdvPm6H9SZpi0fjsc9njzDa/06l3MlzDa8lKg4
-	FQauxHQCRCNdVtjbWG/h+G/czDv4mtKnVkgRHXq4gsPHoq0ChRwUawh5U+X+cooP
-	VyiBKijFkq0IFT0g6oIqehmZ/6fkmTGsV5Ub3mdJUA6IOiSmJbdbxDRYeBM2Q/kt
-	wIqYw+MO+smiNOgbgLhfqj42TquAbkPhlY7DSFAloL9xAw==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49budad46d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:35:08 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b47b4d296eso4787021cf.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 12:35:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758742507; x=1759347307;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TNlc6/vrXO2HQmuvBAOIMDlWuUXokEx/akryGttD9H0=;
-        b=wFW/O09l5l7LqIq8CFCy0CdUCTDVRdHKZfIJSFgbfjgV6rdgi61bO8/J2xE75nrXh7
-         ZqmwKzQHyG7f7xa0N4Ga9590igxTds+2iMAeh9vjqEeYpfbX7X/ORQgTXqgDttbsEFn/
-         c/DSiizmFTuPRkg/aUHNXqv4qLj8cjgwCHs15z0lq09x3R1GZJcD1HcQYKeqKjvOXYVZ
-         0+z4bfPEFt4qQXbKATA8uYMeNdSdAQti2f/LbCDKqXe1KPHeJRKhq+9tZe+gL8ehUOzC
-         AamYEIAo8+9BLw1uw4aDdqNqNSORR+1U94UVwYmneUG4AnGBMJblX14hds/7YHVqIhuL
-         dhFw==
-X-Forwarded-Encrypted: i=1; AJvYcCUF2kIyTaxoASO1j7MqTEwouidWmmEuMbsKs6Vs0Y4pnjJJweVXaQXlOEF44kCmU4ZEbZBYQ3O1BOUM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+9l0G9KGNoPN+jW670n06jgkCjhyQaFBrFFQ9YMKHXcJ4uJEo
-	iq3ksvIAjywfHk5jFTNnbyHuRr+Bqif5sG87u7pCps7ITL3XrUsiosjdHgWXsxlSpX1CsSJeML9
-	4qmYKoCMUv6cGY4nO0lWGOnkYmbyn+Q0d6Bpni5iLhxYBxN9rm01p6ut3vMpb56/R
-X-Gm-Gg: ASbGncvLCDG7cMklmS/gAHi6E5ldJ//EYxN6/pysyn9xoox6hP0hMSUTXAHteTRdbo3
-	4SCjMh2HfNO1AYmki8Mev7DfPJaDYUuiUOmF92A4WZRthOJu1v6h0EElQJHSOzERNdYy3709n7G
-	3ZaNGCVK7aUwSI1sQs4CBrSZD6AzxVQXI+rKYP39DzbI+ezXKy33/d9qseaHaSeT07PoFRw+PQP
-	Y9Ys9VR+8nWkCMDXqf/cCUGgcslpMJUk41NUNi6f5QC2On5h5JVAQc6pihVRjmeDRGJIYEV8aSY
-	AJt6mjOetzTP7+I8H0ig7yhx4/Ow0Xy4kUan9PeS4Yqrwq7I4m7swn8MJArnqYOzImazQskgLRR
-	LFIg88VTPNHL9sk4x1p08c6vNBw0rkKBHpr3ffYvldC2MXuolaY0Z
-X-Received: by 2002:a05:622a:5c85:b0:4b7:9abe:e1e4 with SMTP id d75a77b69052e-4da4e56e355mr14523471cf.82.1758742507195;
-        Wed, 24 Sep 2025 12:35:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHvunyYwlMrtpEhJRVotUbghi/QPDvwX9pX5ZtFUlvPG3ImxRAdBB7QbYV0goF20BESh/Jo/A==
-X-Received: by 2002:a05:622a:5c85:b0:4b7:9abe:e1e4 with SMTP id d75a77b69052e-4da4e56e355mr14522991cf.82.1758742506719;
-        Wed, 24 Sep 2025 12:35:06 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-361a8f57156sm45081381fa.37.2025.09.24.12.35.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Sep 2025 12:35:05 -0700 (PDT)
-Date: Wed, 24 Sep 2025 22:35:02 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com
-Subject: Re: [PATCH v1] arm64: dts: qcom: lemans-evk: Add firmware-name to
- QUPv3 nodes
-Message-ID: <uudcntpurhydj454jemum43a5wizrg3efbqb6h4co3cvyqvn4g@qighmntbkr5s>
-References: <20250924035409.3976652-1-viken.dadhaniya@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=h/be7dHvlhDmpJqBMXG1W9PvX77y4mQERtz6d1KO8jXX63QLNaPJYwFyGxHbeL0wPp3+/3p7idnC5OIAhJtcLzxX+Wze5d7IIJZDJb00rcnt7DIB+h8Iut8m7ycsWkbJ6obc/YMZe9UwcahiW16FUQxsGiQEwQ4v+QJ3UF9WwKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eJvdvOeb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55209C4CEE7;
+	Wed, 24 Sep 2025 19:43:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758743001;
+	bh=eiRrQ8nJJ65azKvRRul53rh53CF5MIRAC7TRyWYYdE4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eJvdvOebZJTBsgNeFehV1s1UWntKLNI7oNtE0dFZXMxaVXw43z3sXa6+keYbEa7kF
+	 S0ei9qrpPrYnsx8+6ggUbJdneSeCsEnBOLn9iyZZ4r3q5az7Uo9F1DN+bkfuJ2pHNY
+	 IEfOmHHn3zKBtuPuxGCthh0jkM1i3vfOC5+mUgJWa0XDmAg7A5biAGhQHygwTOCPrf
+	 ftQZXdASS99LqF5jyg1Fw3TkZWeqcy+lW6ALM9WHELEFJxIvTeQSRMfUiev/nwvYbk
+	 jiApDW0AmR7rPXRNn/CxEokZvWu26y1X1G5XLeT2linr4PC5Q+efritpYAyU5BmBf3
+	 L7DfpPaFliceA==
+Date: Wed, 24 Sep 2025 20:43:15 +0100
+From: Conor Dooley <conor@kernel.org>
+To: =?utf-8?B?5L2V5qyi?= <hehuan1@eswincomputing.com>
+Cc: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, jszhang@kernel.org, adrian.hunter@intel.com,
+	p.zabel@pengutronix.de, linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com, xuxiang@eswincomputing.com,
+	luyulin@eswincomputing.com, dongxuyang@eswincomputing.com,
+	zhangsenchuan@eswincomputing.com, weishangjuan@eswincomputing.com,
+	lizhi2@eswincomputing.com, caohang@eswincomputing.com
+Subject: Re: Re: [PATCH v2 1/2] dt-bindings: mmc: sdhci-of-dwcmshc: Add Eswin
+ EIC7700
+Message-ID: <20250924-visiting-sasquatch-c58f782ff686@spud>
+References: <20250912093451.125-1-hehuan1@eswincomputing.com>
+ <20250912093713.142-1-hehuan1@eswincomputing.com>
+ <20250912-pork-oaf-3480d3d0ef67@spud>
+ <674372d7.16fd.199751b489c.Coremail.hehuan1@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="V6cj8PXmL5zES4xt"
 Content-Disposition: inline
-In-Reply-To: <20250924035409.3976652-1-viken.dadhaniya@oss.qualcomm.com>
-X-Proofpoint-GUID: 4R4yKYKw1dYXDfc_eoOuK9CaSgOdPs2g
-X-Proofpoint-ORIG-GUID: 4R4yKYKw1dYXDfc_eoOuK9CaSgOdPs2g
-X-Authority-Analysis: v=2.4 cv=Yaq95xRf c=1 sm=1 tr=0 ts=68d447ec cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=B4HikTB3W-0rk1GVoTwA:9 a=CjuIK1q_8ugA:10
- a=zZCYzV9kfG8A:10 a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDExMyBTYWx0ZWRfXxoyItbC9St3v
- sResAMRuKnb2xQ7QuxUktqA9ljzbybXN5SAzsp+x/eyfZxZmnArnxuLPSD6bexk1ETgcrZUf3Wc
- UdUBK5OIDfDwwqaMSV9QRRX+QDhrhkDYllwPCMF8T8Qb4wpFAtJm3Ze/rdStShfBOwEmp/3DSFh
- McQQ2JkZErRPoVCbULP+G9VqLFeX98l9mcqPb6aH3R2wX26k/1a9+cQuJcIsyxfefTyaYLb7X5F
- olcmPtFeTXf/OIrmi9AqACCQQIkcTd9S5jubQNgPUmpbXCxeoaaa8IMSUvSnt5s20TnAR9uzT/w
- CHfiiTJ4RX4QWuov1bb4Hz81AAnuXPFI3E6aSBQKAjIicjGBzQpAwXOxAAe+vp6CXMEHw4CDEhe
- LHbfjyIO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-24_06,2025-09-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 clxscore=1015 suspectscore=0 priorityscore=1501 phishscore=0
- adultscore=0 malwarescore=0 impostorscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509230113
-
-On Wed, Sep 24, 2025 at 09:24:09AM +0530, Viken Dadhaniya wrote:
-> Traditionally, firmware loading for Serial Engines (SE) in the QUP hardware
-> of Qualcomm SoCs has been managed by TrustZone (TZ). While this approach
-> ensures secure SE assignment and access control, it limits flexibility for
-> developers who need to enable various protocols on different SEs.
-> 
-> Add the firmware-name property to QUPv3 nodes in the device tree to enable
-> firmware loading from the Linux environment. Handle SE assignments and
-> access control permissions directly within Linux, removing the dependency
-> on TrustZone.
-> 
-> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/lemans-evk.dts | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+In-Reply-To: <674372d7.16fd.199751b489c.Coremail.hehuan1@eswincomputing.com>
 
 
--- 
-With best wishes
-Dmitry
+--V6cj8PXmL5zES4xt
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Sep 23, 2025 at 01:45:46PM +0800, =E4=BD=95=E6=AC=A2 wrote:
+> Dear Conor,
+> Thank you for your valuable and professional suggestions.
+> Please find our explanations embedded below your comments in the
+> original email.
+>=20
+> Best regards,
+>=20
+> He Huan
+> Eswin Computing
+>=20
+> > -----=E5=8E=9F=E5=A7=8B=E9=82=AE=E4=BB=B6-----
+> > =E5=8F=91=E4=BB=B6=E4=BA=BA: "Conor Dooley" <conor@kernel.org>
+> > =E5=8F=91=E9=80=81=E6=97=B6=E9=97=B4:2025-09-13 03:10:04 (=E6=98=9F=E6=
+=9C=9F=E5=85=AD)
+> > =E6=94=B6=E4=BB=B6=E4=BA=BA: hehuan1@eswincomputing.com
+> > =E6=8A=84=E9=80=81: ulf.hansson@linaro.org, robh@kernel.org, krzk+dt@ke=
+rnel.org, conor+dt@kernel.org, jszhang@kernel.org, adrian.hunter@intel.com,=
+ p.zabel@pengutronix.de, linux-mmc@vger.kernel.org, devicetree@vger.kernel.=
+org, linux-kernel@vger.kernel.org, ningyu@eswincomputing.com, linmin@eswinc=
+omputing.com, pinkesh.vaghela@einfochips.com, xuxiang@eswincomputing.com, l=
+uyulin@eswincomputing.com, dongxuyang@eswincomputing.com, zhangsenchuan@esw=
+incomputing.com, weishangjuan@eswincomputing.com, lizhi2@eswincomputing.com=
+, caohang@eswincomputing.com
+> > =E4=B8=BB=E9=A2=98: Re: [PATCH v2 1/2] dt-bindings: mmc: sdhci-of-dwcms=
+hc: Add Eswin EIC7700
+> >=20
+> > On Fri, Sep 12, 2025 at 05:37:13PM +0800, hehuan1@eswincomputing.com wr=
+ote:
+> > > From: Huan He <hehuan1@eswincomputing.com>
+> > >=20
+> > > EIC7700 use Synopsys dwcmshc IP for SD/eMMC controllers.
+> > > Add Eswin EIC7700 support in sdhci-of-dwcmshc.yaml.
+> > >=20
+> > > Signed-off-by: Huan He <hehuan1@eswincomputing.com>
+> > > ---
+> > >  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 81 +++++++++++++++++=
+--
+> > >  1 file changed, 75 insertions(+), 6 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci=
+=2Eyaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> > > index f882219a0a26..e0f34bc28e0c 100644
+> > > --- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> > > +++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+> > > @@ -30,6 +30,7 @@ properties:
+> > >            - sophgo,sg2002-dwcmshc
+> > >            - sophgo,sg2042-dwcmshc
+> > >            - thead,th1520-dwcmshc
+> > > +          - eswin,eic7700-dwcmshc
+> > > =20
+> > >    reg:
+> > >      maxItems: 1
+> > > @@ -52,17 +53,51 @@ properties:
+> > >      maxItems: 5
+> > > =20
+> > >    reset-names:
+> > > -    items:
+> > > -      - const: core
+> > > -      - const: bus
+> > > -      - const: axi
+> > > -      - const: block
+> > > -      - const: timer
+> > > +    maxItems: 5
+> > > =20
+> > >    rockchip,txclk-tapnum:
+> > >      description: Specify the number of delay for tx sampling.
+> > >      $ref: /schemas/types.yaml#/definitions/uint8
+> > > =20
+> > > +  clock-output-names:
+> > > +    maxItems: 1
+> > > +    description:
+> > > +      The name of the clock output representing the card clock,
+> > > +      consumed by the PHY.
+> >=20
+> > You have one clock, why do you need this?
+>=20
+> Thank you for the feedback.=C2=A0I will remove it in the next version.
+>=20
+> >=20
+> > > +
+> > > +  '#clock-cells':
+> > > +    enum: [0]
+> >=20
+> > const: 0
+> >=20
+> > > +    description:
+> > > +      Specifies how many cells are used when referencing the
+> > > +      exported clock from another node. This property indicates
+> > > +      that the clock output has no extra parameters and represents
+> > > +      the card clock.
+> >=20
+> > This description is not needed.
+> >=20
+> > > +
+> > > +  eswin,hsp-sp-csr:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > +    items:
+> > > +      - description: Phandle to HSP(High-Speed Peripheral) device
+> > > +      - description: Offset of the stability status register for
+> > > +                     internal clock
+> > > +      - description: Offset of the stability register for host
+> > > +                     regulator voltage.
+> > > +    description: |
+> > > +      High-Speed Peripheral device needed to configure internal
+> > > +      clocks, and the power.
+> > > +
+> > > +  eswin,syscrg-csr:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > +    items:
+> > > +      - description: Phandle to system CRG(System Clock and Reset
+> > > +                     Generator) device
+> > > +      - description: Offset of core clock control register
+> > > +    description: |
+> > > +      System Clock and Reset Generator device needed to configure
+> > > +      core clock.
+> >=20
+> > This reeks of improper clock tree description. Why can you not just
+> > request the rate that you need via the common clk framework? Likewise
+> > for reset. You already have a clocks property that has to include the
+> > core clock, so I don't see why you need another property to get around
+> > it.
+>=20
+> Thank you for the feedback. You are absolutely right; We've taken your
+> advice. In v3 of the patchset, we have completely removed the=C2=A0
+> eswin,syscrg-csr=C2=A0property. The device tree binding now relies solely
+> on the standard=C2=A0clocks=C2=A0and clock-names=C2=A0properties to acqui=
+re the
+> necessary clock.
+
+Okay cool.
+
+> > As a result, I'm also suspicious of your hsp-sp-csr, but these at least
+> > appear to be internal clocks if your description is to be believed.
+> > I'd like you to explain exactly what those clocks do and what the "HSP"
+> > actually is. What other peripherals use it?
+>=20
+> Thank you for raising this. Your concerns regarding the hsp-sp-csr
+> clocks are valid.
+> The functionality and purpose of the HSP (hsp-sp-csr) were explained
+> in our previous patch series for the USB module. The relevant
+> discussion can be found here:
+> https://lore.kernel.org/linux-usb/17731a13.1cce.19974dfc64d.Coremail.caoh=
+ang@eswincomputing.com/
+> Please let us know this explanation has addressed your doubts. We're
+> happy to provide further details if needed.
+
+I'll address this on the usb thread, thanks for the explanation there.
+
+> > Also, your driver turns on this hsp clock but never turns it off. Same
+> > for the power.
+>=20
+> The writes to hsp_int_status and hsp_pwr_ctrl are not enabling clocks
+> or power rails.They are stability assertions.
+
+Do you still need to "remove" the assertions if the driver is removed,
+and the clocks get disabled? Or is that not a concern, because the
+hardware can't do anything relevant without the driver loaded? If it;s
+not a concern, then that seems okay to me.
+
+> Assert clock stability: Write a value to the hsp_int_status register.
+> This signals to the eMMC controller that platform clocks (axi master
+> bus clock, internal core base clock, timer clock) are enabled and
+> stable.
+> Assert voltage stability: Write a value to hsp_pwr_ctrl. This signals
+> that VDD is stable and permits transition to high-speed modes (e.g.,
+> UHS-I).
+>=20
+> >=20
+> > I want to see the full dts for what you're doing here before I approve
+> > this, there's too much here that looks wrong.
+
+Okay, that doesn't look too bad, with the updates you've made to remove
+the sysrg-csr property.
+
+>=20
+> The full dts is as follows:=C2=A0
+> sdhci_emmc: mmc@50450000 {
+> =C2=A0 =C2=A0 compatible =3D "eswin,eic7700-dwcmshc";
+> =C2=A0 =C2=A0 reg =3D <0x0 0x50450000 0x0 0x10000>;
+> =C2=A0 =C2=A0 clocks =3D <&clock 264>, <&clock 546>;
+> =C2=A0 =C2=A0 clock-names =3D "core", "bus";
+> =C2=A0 =C2=A0 assigned-clocks =3D <&clock 264>;
+> =C2=A0 =C2=A0 assigned-clock-rates =3D <200000000>;
+> =C2=A0 =C2=A0 resets =3D <&reset 75>, <&reset 72>, <&reset 88>, <&reset 9=
+2>;
+> =C2=A0 =C2=A0 reset-names =3D "txrx", "phy", "bus", "axi";
+> =C2=A0 =C2=A0 interrupt-parent =3D <&plic>;
+> =C2=A0 =C2=A0 interrupts =3D <79>;
+> =C2=A0 =C2=A0 bus-width =3D <8>;
+> =C2=A0 =C2=A0 non-removable;
+> =C2=A0 =C2=A0 mmc-hs400-1_8v;
+> =C2=A0 =C2=A0 max-frequency =3D <200000000>;
+> =C2=A0 =C2=A0 #size-cells =3D <2>;
+> =C2=A0 =C2=A0 no-sdio;
+> =C2=A0 =C2=A0 no-sd;
+> =C2=A0 =C2=A0 eswin,hsp-sp-csr =3D <&hsp_sp_csr 0x508 0x50c>;
+> =C2=A0 =C2=A0 eswin,drive-impedance-ohms =3D <50>;
+> };
+>=20
+> sdio: mmc@0x50460000{
+> =C2=A0 =C2=A0 compatible =3D "eswin,eic7700-dwcmshc";
+> =C2=A0 =C2=A0 reg =3D <0x0 0x50460000 0x0 0x10000>;
+> =C2=A0 =C2=A0 clocks =3D <&clock 265>, <&clock 546>;
+> =C2=A0 =C2=A0 clock-names =3D"core","bus";
+> =C2=A0 =C2=A0 resets =3D <&reset 76>, <&reset 73>, <&reset 87>, <&reset 9=
+1>;
+> =C2=A0 =C2=A0 reset-names =3D "txrx","phy", "bus", "axi";
+> =C2=A0 =C2=A0 interrupt-parent =3D <&plic>;
+> =C2=A0 =C2=A0 interrupts =3D <81>;
+> =C2=A0 =C2=A0 clock-frequency =3D <208000000>;
+> =C2=A0 =C2=A0 max-frequency =3D <208000000>;
+> =C2=A0 =C2=A0 #address-cells =3D <1>;
+> =C2=A0 =C2=A0 #size-cells =3D <0>;
+> =C2=A0 =C2=A0 bus-width =3D <4>;
+> =C2=A0 =C2=A0 no-sdio;
+> =C2=A0 =C2=A0 no-mmc;
+> =C2=A0 =C2=A0 eswin,hsp-sp-csr =3D <&hsp_sp_csr 0x608 0x60c>;
+> =C2=A0 =C2=A0 eswin,drive-impedance-ohms =3D <33>;
+> };
+>=20
+> >=20
+> > > +
+> > > +  drive-impedance-ohm:
+> >=20
+> > How come this one has no eswin prefix? Also, the unit is "Ohms", not
+> > "Ohm".
+>=20
+> In version 3, we renamed the property from drive-impedance-ohm to
+> eswin,drive-impedance-ohms.
+>=20
+> >=20
+> > Additionally, any eswin properties should be restricted to eswin devices
+> > only.
+> >=20
+> > > +    description: Specifies the drive impedance in Ohm.
+> > > +    enum: [33, 40, 50, 66, 100]
+> > > +
+> > >  required:
+> > >    - compatible
+> > >    - regsdhci_eic7700_dt_parse_clk_phases
+> > > @@ -110,6 +145,40 @@ allOf:
+> > >              - const: block
+> > >              - const: timer
+> > > =20
+> > > +  - if:
+> > > +      properties:
+> > > +        compatible:
+> > > +          contains:
+> > > +            const: eswin,eic7700-dwcmshc
+> > > +    then:
+> > > +      properties:
+> > > +        resets:
+> > > +          minItems: 4
+> > > +          maxItems: 4
+> > > +        reset-names:
+> > > +          items:
+> > > +            - const: arstn
+> > > +            - const: phy_rst
+> > > +            - const: prstn
+> > > +            - const: txrx_rst
+> >=20
+> > How come you're so drastically different to the other devices?
+> > Also, putting "_rst" in a reset name is pointless. These are all resets
+> > after all by nature.sdhci_eic7700_dt_parse_clk_phases
+>=20
+> We have simplified the names as follows:
+> reset-names:
+> =C2=A0 items:
+> =C2=A0 =C2=A0 - const: axi
+> =C2=A0 =C2=A0 - const: phy
+> =C2=A0 =C2=A0 - const: bus
+> =C2=A0 =C2=A0 - const: txrx
+> Regarding the functionality of these resets:
+> prst and arst: correspond to the resets for the bus and AXI domains.
+> txrx: is used for the reset of the internal transmit and receive clock
+> domains.
+> phy: is used for the reset of the internal PHY.
+> This will be corrected in the next patch. Is this correct?
+
+I don't know if it is correct or not, but it looks better than before.
+Can you explain why you aren't using the "normal" 5 resets that other
+devices do?
+
+--V6cj8PXmL5zES4xt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNRJ0gAKCRB4tDGHoIJi
+0k1UAP9e3TiD0Nl0I8BcmGnki3k7pltR5alB/B0PxAW5pp6o1QEAnr7muT+6843N
+c3oUTeRpcCgWHtJ+SI4nCGmuBbpG7gA=
+=FT3q
+-----END PGP SIGNATURE-----
+
+--V6cj8PXmL5zES4xt--
 
