@@ -1,116 +1,153 @@
-Return-Path: <devicetree+bounces-220886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 732A9B9C35F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 22:56:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E1DBB9C3C8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 23:07:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34F6A169BA8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 20:56:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3803817CA79
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:07:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E88A6274670;
-	Wed, 24 Sep 2025 20:56:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0800E286D73;
+	Wed, 24 Sep 2025 21:07:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="b7D76bCp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Dk0IiyPb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C7E263899
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 20:56:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C921286883;
+	Wed, 24 Sep 2025 21:07:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758747399; cv=none; b=RChg+7fULk/99fNCWtpbfJ3FBUaxlt4FiF7pS9AJLcV9bPhkLbTrFxEq1/janejoXyJ/ZqqjUbtzpupBoRNhlI74eyt6rJm0EucwWO4GFjQnGgnoYT0NkkCKuvzfWDkbIZMox2E6zgN5qBoQQI2JzWKMrKdi66+uXZmTaojyHx4=
+	t=1758748062; cv=none; b=PFUZrwYwlZZ4vMHlSCgs5DJNVZT3ayQSTbwR/eeTPA/MlNZUyw48trbtTzghR8UDnVDGL0PYzF2ZtXV392sDAEARpGYJUwI1bX68PF3Ti0SsmMpsornPLHgZJaFzwEngr75/RSC2JeNL3L9vkUN2jYpX2YRyslt8lGM5g5SpWUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758747399; c=relaxed/simple;
-	bh=AxeAYjgCnWF/4SRty7vYUnSNf3j+jR+tQguIy98L6gA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iKkFChpAPEQadMs/EJvDqPFbgJP7IS4ToRajhZ0Znc0ziqFD78yA8iqfQrsVSevUFKvJBzt7WT4dcu8RFo+Z+yufYE+iMdQfWKWuIeQ2Nqp9C6QU97UwUIEzNI9zK/wIISs+82zPe6lqh+KzNWkdEGrjdh6Pw/XLIMUxkoCrOB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=b7D76bCp; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=AxeA
-	YjgCnWF/4SRty7vYUnSNf3j+jR+tQguIy98L6gA=; b=b7D76bCpAQf9OQsaHfu1
-	UMvWwb4bl+BN1YGMJ+NK/slKd9iE10cj0iq3iPvpncYHieRaAx+ysLvk34/ieZMe
-	3AHSb7g1ScRxfLyCJ5DI/UEcarQ73rJAXUHotGYlACGmuy4PMq3XPOknntr8EQPp
-	/+K93bfiWX2kmokJdQy2IGsTr9DNCcHcIlCKz8+GIfEqX/fEZYaKtagwTtE4RJNJ
-	XgoIy+m5VNStPGu/TRVZZR5BuVu2Dz2E7G4eM+diPqTCjnnqcU2u3hSahy7FJEGF
-	gvckqls/JAiRzoO+wsH+MBNbzSuqbQ230HZF02FgKJShvWFgl90ef2v1Tg8Q8sXK
-	/A==
-Received: (qmail 1618814 invoked from network); 24 Sep 2025 22:56:33 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 24 Sep 2025 22:56:33 +0200
-X-UD-Smtp-Session: l3s3148p1@B36cSZI/GIcujntL
-Date: Wed, 24 Sep 2025 22:56:32 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Hoan Tran <hoan@os.amperecomputing.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Phil Edworthy <phil.edworthy@renesas.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 6/8] dt-bindings: soc: renesas: Add the Renesas RZ/N1
- GPIO Interrupt Multiplexer
-Message-ID: <aNRbAHMnjgnoBJIH@ninjato>
-References: <20250922152640.154092-1-herve.codina@bootlin.com>
- <20250922152640.154092-7-herve.codina@bootlin.com>
- <aNOm3-NxKfjXLsSV@ninjato>
+	s=arc-20240116; t=1758748062; c=relaxed/simple;
+	bh=RrqwfI+qSHG3pjgjY62xN6PUYZ9J0YNLv5urWcUhVo8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uxrfo4lTnmCGm4og5OdOOA+0QG8wVv/CVowrvECXLeUVqH1NX7f1pn6JXmx+xZ5J3vXLq4Ju7SIPQ/fSVh29Jiexz3NPYLqdTj8+PUs5h506OE4zVVrAE5XhHNcBY998iLIdhS9lKFrGb5C0C9CCgj28jhRN60ImcJm23K5JUHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Dk0IiyPb; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58OL7a1P1312134;
+	Wed, 24 Sep 2025 16:07:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1758748056;
+	bh=doH4KUIPza/iQ9G4dHJvoa5CwBU/j+Pj6k3xLIPVITo=;
+	h=From:To:CC:Subject:Date;
+	b=Dk0IiyPbC1Va6OrsH61QkFGGbV1VpB+0PkudKwPoomOn2TT3Y4HFGOib+j//OeOPy
+	 UZ1GoCk/Mk3D4DHNTZ6CDK/t2Gf61Q8UudnVrkCyvi3Awd4iXxBuSl8GigN/oju29k
+	 UMwa9It17J/RdeilpREBZWFcwzbQ1qnXzPQwyXb4=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58OL7acb2141896
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 24 Sep 2025 16:07:36 -0500
+Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 24
+ Sep 2025 16:07:35 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE202.ent.ti.com
+ (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 24 Sep 2025 16:07:35 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58OL7Z2t2631292;
+	Wed, 24 Sep 2025 16:07:35 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Srinivas Kandagatla <srini@kernel.org>,
+        Rob
+ Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor
+ Dooley <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Bryan
+ Brattlof <bb@ti.com>, Andrew Davis <afd@ti.com>
+Subject: [RFC PATCH v3] dt-bindings: nvmem: Introduce nvmem efuse binding for TI K3 SoCs
+Date: Wed, 24 Sep 2025 16:07:35 -0500
+Message-ID: <20250924210735.1732423-1-jm@ti.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="etzmLkPvIboA1Stg"
-Content-Disposition: inline
-In-Reply-To: <aNOm3-NxKfjXLsSV@ninjato>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+On K3 SoCs there are efuse registers scattered across the memory
+map. In order to reference these efuse registers like gp-sw which
+may store SW REV information or other general purpose information
+for drivers to consume, treat them appropriately as efuse devices
+with nvmem framework.
 
---etzmLkPvIboA1Stg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Judith Mendez <jm@ti.com>
+---
+This patch is not complete and is sent as an RFC to get some initial
+thoughts on this implementation to solve [0].
 
+[0] https://lore.kernel.org/linux-mmc/736f09e0-075a-48e0-9b32-6b8805a7ee2a@kernel.org
 
-> Looks good from the technical side. No comment on the syntax because my
-> DT check invocation fails again after some update, sigh...
+Changes since v2 RFC:
+- Fix yamllint warnings/errors
+- Rebase against next/master
 
-Got it fixed, bindings-check passes here as well...
+Link to RFC v2:
+https://lore.kernel.org/linux-devicetree/20250922160715.346137-1-jm@ti.com/
+Link to RFC v1:
+https://lore.kernel.org/linux-devicetree/20250916154809.545283-1-jm@ti.com/
+---
+ .../devicetree/bindings/nvmem/ti,efuses.yaml  | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
 
+diff --git a/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml b/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
+new file mode 100644
+index 0000000000000..c6c66016b9d44
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/ti,efuses.yaml
+@@ -0,0 +1,36 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/nvmem/ti,efuses.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: TI SoC eFuse-based NVMEM
++
++maintainers:
++  - Judith Mendez <jm@ti.com>
++
++allOf:
++  - $ref: nvmem.yaml#
++
++properties:
++  compatible:
++    enum:
++      - ti,am62p-efuse
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    efuse@43000230 {
++        compatible = "ti,am62p-efuse";
++        reg = <0x43000230 0x10>;
++    };
++
++...
+-- 
+2.51.0
 
---etzmLkPvIboA1Stg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjUWvwACgkQFA3kzBSg
-Kba/5xAAgdYCDDKk7PYCssHVg3nfJRGYhC4yi5S7dyByqI3BytZJROSx+9EZY2xi
-tlXTTpskF3OWv37kEH8ose08z8ajpPbCYc8OskQvJQMlI90gioL3X/8vHGJxAiq0
-Ych5CcizM1UYcM3QD65pN6DkDv//WCj7IH5oQ5BO4mPzJnvXt2FvXU2Fws4z1mWM
-yQVx1TweoGXdg7npDntrtC0+vJH2HB9XTonJnerC1SreZ1Sn83P7eRRmdNWQQsN4
-Td0sbPDf95XGXmAmoTItg4nukl1wqLtoq/BilMeTwEj/buej4bEBtOY54JpKoeVY
-ebGiqNdf4vuln8Q2+MDVsb4cpC9TsudV1AjZ/WC4FdWh7b0PNuVJas1ZizA1LcOy
-f4XBNO8ESGiBglTqJIGlue0E1GRoTEK89abrRIHugApR6M54w/cRUcqI0vW7fR08
-y//JSrBp3c03C9TwX/GLptWjL4On8/2aENODn6OGoE8rQPixI1ybAh9xTQXK/eI3
-HtImr9cyOQhkmrMYwL0qeEqaLxVln6Du9FBvtoJ3Ld5umvIujU0xF7eXbWzTxfvR
-mi11rJ+vxKfPJlj2tBqS+tmhyeF6WAjhOuCa44DMLdFHX2JPe7uU/Hpcsy4vxs3N
-+RgJhujslz085Gbq/ECeKNUeJUx/AT3+Vp7P7pTLCoKzTLYb9Xs=
-=mpgf
------END PGP SIGNATURE-----
-
---etzmLkPvIboA1Stg--
 
