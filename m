@@ -1,464 +1,299 @@
-Return-Path: <devicetree+bounces-220808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5270B9A8C7
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 17:15:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D3F3B9AA13
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 17:28:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A09621B25F81
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:16:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70ECE1668D7
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:27:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F04230FC3E;
-	Wed, 24 Sep 2025 15:15:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 140B030FC18;
+	Wed, 24 Sep 2025 15:23:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="v5f+a7Df"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="u4K+WgtM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from BN8PR05CU002.outbound.protection.outlook.com (mail-eastus2azon11011019.outbound.protection.outlook.com [52.101.57.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F2CD30CB41
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 15:15:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758726926; cv=none; b=TEMT7mk+cePAWtA/emUzdRbdY7ZI2xARLIBRSFdcBChL5oYp95O3K7zumRE3HFtyurmz6oqWxG2SnFZNCP3rS+wgOo3RIJQ8Pzmde0ucDGZ14EJNS8XImm8MtpXD1jCeGGPL2UpPbKdvUjgw5eGBzSb/7RauDoB9D1bjm2Y8Qu8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758726926; c=relaxed/simple;
-	bh=jAhvrkZLf2CPegU55/45LRXE53AONwSoY/Qaao8O1WI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qgFtgO/FMvGn2zzRwRuCKbggXY9++MDMwhVHQmKnRIzz38Iv4rFlUQawC2pMo4Ttc6ju/J0PPKrud/fg9ZIJmauk2fQtyl62ZKNRyN+Y+MnMBopWBg/w5RIJWUkWtCrSHKcFDyfFjQyc1R2KaFEUT7ooCwVI0ebs38TVB/zbPAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=v5f+a7Df; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3fc36b99e92so654690f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 08:15:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758726922; x=1759331722; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=R17pkrZpppT+PTLNe8IiH1GVP2d3cCm4JBkhteQik/I=;
-        b=v5f+a7Df1WYipTZxJOnRAo80AoVdqep07YHmAkLoHkOV8QJhMwxgiCJK18TeoOz019
-         ujmCZY9g8Gf48Ugp+XvgUHZQkbwYNU7VRLezrNnUDMhHeWvqm6k/RPz5HR3gFfmA21rN
-         jQUPFqtcQ3MurDCHwlYUVwWQth8OF82wlErKgNwYJdECicATLS89RKkfAMLaag+eK6J2
-         rL7wlte4HFXAPmQ4+1GDmzNkXcbgnEWl748Fbnb2fZISZkzSuWXykPqHpLB3CfvlHs+H
-         mPuooVl7hZ2LqTnYmqGOCiWhQZ8IQijLityxlbdRRg8umAqUYNCbVH2ojyxHPxgfr7PA
-         LYsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758726922; x=1759331722;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R17pkrZpppT+PTLNe8IiH1GVP2d3cCm4JBkhteQik/I=;
-        b=CQfp8oki6GUm+McaOIXr95p3upHUsSjcq68+v9Q594Sz6Utuv+ZK47Ctmlnr84gEgM
-         98pFFsEu+35CIQTGp5yd3f4leI0S1EH9WJ5i5q4GRBNTM5+lWHrWkn4Tmip6halXhvPN
-         i93gGrI31wcqTIuT0jkSrHw9u+ql4puO5tCKvKNE9qe9GuAx+Q7ooWnvzFXrwQTkqefL
-         2H/bhNo7zI/4EfsBy8G8kWnbeeYyVZ+xp/q4dy4LlIi4ohha+6gYKRi7gj6+In9wN/nE
-         hFhnmQEZc1e/h+nIH0O0zdWYr7/xjh0Naaf9Xc2sf26qn9QO/r5ABWLCs2/qlyGlpxv6
-         jDhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXCqw086tYuF/hCfbrE+jp6J2o+P07gNAa/9/Iqgj0oGFy7MQFbj6GvibmyHMdHJf5owG0ohptdy6fm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuwAam3n1T8BaXMIrIZo9cE9MKTY5oiquD7lGpUX5FWGDhmC1R
-	celk0l6YFQbLKXPnA54PohbrJn8Q3n3M1E7fovVmqcCqcjV3qJe7/5o7OK0c0Ijevn4=
-X-Gm-Gg: ASbGnctzUCGmgthoY/VafRGFAmlzn+iLKDIvfROVgHoUEPD3Oe2F3hd/+TYLRYEVoVm
-	DMH2L4ayBc8QLSQ0aNEDZJttNnPaK0+nEHG1OwTgYYHhj1mqt4yvM558Nysv87bEzpln2NADpV1
-	9R7oVOdABJVqkzGKF0GM5jbU1lKSP9ZXunc/vMb8mpkZn+gs9fQPMo4WgC3KUDrEz0WtFgF4zQ4
-	vzf3J5bQcdbbo9vdXfDOW5AyoscNDy+8MUsIIuhWEh73JjPW6PgVo7yHD9Bb917x6gmnme+a38j
-	Gxw/7YrOtfs3X5mgHWdpbfFa+jL7ReGTbWsfiskJ7d2tTV367dq0YmugJL6yvMU8UfvrIXpcD65
-	QUbeYcniUOTFP/LWcvcbsoZvVIX8NpX3hiV62/joJqyzHqcquWcMwNxqQ93sVZ8CP8x2uc2GkRO
-	0=
-X-Google-Smtp-Source: AGHT+IECEClQ4gcDZflNr8OF37/m2/sdokkO3kp5YYljSj0gbjKCJ2YdIo/WjYchNnOtACuNuzQEKA==
-X-Received: by 2002:a5d:5888:0:b0:3eb:ad27:9802 with SMTP id ffacd0b85a97d-40e7b9cd8c0mr80388f8f.2.1758726922445;
-        Wed, 24 Sep 2025 08:15:22 -0700 (PDT)
-Received: from ta2.c.googlers.com (213.53.77.34.bc.googleusercontent.com. [34.77.53.213])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e2a996bf1sm36541855e9.1.2025.09.24.08.15.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Sep 2025 08:15:21 -0700 (PDT)
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Date: Wed, 24 Sep 2025 15:14:43 +0000
-Subject: [PATCH v4 3/3] arm64: dts: exynos: gs101: add OPPs
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F062530F95E;
+	Wed, 24 Sep 2025 15:23:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.57.19
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758727410; cv=fail; b=OnRXCKgIUeGJ3/a0I0Bf5VxoxyFDUfVo3omS9Gy4adnBrmv9fHr9wMXajXk+l5KFsHagatInWpDyVEz4J5U0F//Q2WHJ6/EJFLtLdca87gZdqbxhGBZ1nl+ZTPyUKOz36ezAuaZyCmnuetK0TPGDrr4cv5oWDQzwS3an6sEGJzk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758727410; c=relaxed/simple;
+	bh=i8UlOOSB+uNEd12G0MoCdbPFaTiX2zg9C0BIFkE+XIA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=uxLpDyj9LzaJB8tfat8nCFPGjNsnKU8bpFxMvCg/Uybrw90Z1NWUGTzGD9rudMLLzYYsQChHsQQF7QpzuW/2gnWv8s6JTa5BvX+EkDDeafqX5By1gGbqkKgu9uFG9Uft6ZZ/NdpdLdi41DWtOJd/ZMOjYDvOfAmg12R0fUt2YmE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=u4K+WgtM; arc=fail smtp.client-ip=52.101.57.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CC5831PMz7bks8L6h2hXJwa9r/ANaoTVceNtUnooXGSbOVv0r7DKf5oNlqGMLmMiC6gmiF7y892ITvmiKbGwyiUFo24m7HYrF+9stWeyd39XoZxSLDEC+cvcI3gHExPWgd1kNtf8pTgSTXOxRmrXZdkqPvBMZMsy+wiMArASoio7NAwii0qglbvemAbZmj0tczYvjJRYvOoJ4nW1iFxosrKDyw3vpYlaVAiAIpni8DJtsJGInRxtETFZjYJYBrUq/kcJ7ARp1DIlC3698yL+Z6HkNS5bgt0tdg7KsAsBocP0nxKYdp0mlOb8nVwh3xZI09II+eJciczOMTDgA0MgwQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1nhljVTsBRNnKrKTPy3amfCmFGYNjpuqte/gM5vhNTk=;
+ b=dNNJj6E1jcGVur4sJ6aQPhGhHxYFYtEET0GXWWWIl0mhBYkwWcw42m/K/yl0dwpIb/SVn9HEClwz+2QGW8+9b2z9pAzezYCBTbXeOigi6BPrxtFD+s68D8W9Fpcd0czVINPTdVVm2kajL6mloMvbo88mU2DRDMxJu6NcSH/Rmc7+ZrzI5JqBkJiSNYpPvGa1yzNrVtamWmKvMlLrG+tIKKfOVkE4bn+xg5v23f2reQZgOqhXJo3rhcdXb4tMtvG5S2T4Rs9VOILK686zfAYIjDkJtoKzG8V06eBTbr6/966zBvL24JGAOjb7GXsmOBr5gz3TeD1wTFsW7xY9Ul1xZA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1nhljVTsBRNnKrKTPy3amfCmFGYNjpuqte/gM5vhNTk=;
+ b=u4K+WgtMKHb102ixKlZjgJOP4ZoTtPlZ0q/PCY4SctdapywBL7qXJWzj6sGFZj4Jx6Sra1j1puysqU59pCVjfo6aJkf4LfL1Gwjzwwy755zfoqH2pclg+UgYw0g7jgazzeJJV1PJ6MXuIILR1otVKqq0jSCegA7tD5y+5NX6yCw=
+Received: from DM4PR12MB6109.namprd12.prod.outlook.com (2603:10b6:8:ae::11) by
+ BL3PR12MB9051.namprd12.prod.outlook.com (2603:10b6:208:3ba::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9137.19; Wed, 24 Sep 2025 15:23:21 +0000
+Received: from DM4PR12MB6109.namprd12.prod.outlook.com
+ ([fe80::680c:3105:babe:b7e1]) by DM4PR12MB6109.namprd12.prod.outlook.com
+ ([fe80::680c:3105:babe:b7e1%4]) with mapi id 15.20.9160.008; Wed, 24 Sep 2025
+ 15:23:21 +0000
+From: "Guntupalli, Manikanta" <manikanta.guntupalli@amd.com>
+To: Arnd Bergmann <arnd@arndb.de>, "git (AMD-Xilinx)" <git@amd.com>, "Simek,
+ Michal" <michal.simek@amd.com>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, Frank Li <Frank.Li@nxp.com>, Rob Herring
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, =?iso-8859-2?Q?Przemys=B3aw_Gaj?= <pgaj@cadence.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	"tommaso.merciai.xr@bp.renesas.com" <tommaso.merciai.xr@bp.renesas.com>,
+	"quic_msavaliy@quicinc.com" <quic_msavaliy@quicinc.com>, "S-k, Shyam-sundar"
+	<Shyam-sundar.S-k@amd.com>, Sakari Ailus <sakari.ailus@linux.intel.com>,
+	"'billy_tsai@aspeedtech.com'" <billy_tsai@aspeedtech.com>, Kees Cook
+	<kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>, Jarkko
+ Nikula <jarkko.nikula@linux.intel.com>, Jorge Marques
+	<jorge.marques@analog.com>, "linux-i3c@lists.infradead.org"
+	<linux-i3c@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, Linux-Arch <linux-arch@vger.kernel.org>,
+	"linux-hardening@vger.kernel.org" <linux-hardening@vger.kernel.org>
+CC: "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>, "Goud, Srinivas"
+	<srinivas.goud@amd.com>, "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
+	"manion05gk@gmail.com" <manion05gk@gmail.com>
+Subject: RE: [PATCH V7 3/4] i3c: master: Add endianness support for
+ i3c_readl_fifo() and i3c_writel_fifo()
+Thread-Topic: [PATCH V7 3/4] i3c: master: Add endianness support for
+ i3c_readl_fifo() and i3c_writel_fifo()
+Thread-Index:
+ AQHcLKFhrxQvMAo9OkSHor4BRo6l1bShHNCAgADPJECAAC7KAIAAJThQgAAfVACAABEjwA==
+Date: Wed, 24 Sep 2025 15:23:20 +0000
+Message-ID:
+ <DM4PR12MB610989A03A7560F2A03792838C1CA@DM4PR12MB6109.namprd12.prod.outlook.com>
+References: <20250923154551.2112388-1-manikanta.guntupalli@amd.com>
+ <20250923154551.2112388-4-manikanta.guntupalli@amd.com>
+ <13bbd85e-48d2-4163-b9f1-2a2a870d4322@app.fastmail.com>
+ <DM4PR12MB61098EA538FCB7CED2E5C47B8C1CA@DM4PR12MB6109.namprd12.prod.outlook.com>
+ <4199b1ca-c1c7-41ef-b053-415f0cd80468@app.fastmail.com>
+ <DM4PR12MB6109E009DAC953525093FE808C1CA@DM4PR12MB6109.namprd12.prod.outlook.com>
+ <134c3a96-4023-47ab-8aa9-fd6ab75e5654@app.fastmail.com>
+In-Reply-To: <134c3a96-4023-47ab-8aa9-fd6ab75e5654@app.fastmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-09-24T15:12:43.0000000Z;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
+ Source;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR12MB6109:EE_|BL3PR12MB9051:EE_
+x-ms-office365-filtering-correlation-id: 6f0c10da-1a9c-4b21-18e7-08ddfb7e4ba1
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|376014|7416014|366016|38070700021|921020;
+x-microsoft-antispam-message-info:
+ =?iso-8859-2?Q?uBn/c34mYg1d8TFLTya2ExAauJT7BRL7QpVNahvKAFs+nCq6UQQNyd1dwQ?=
+ =?iso-8859-2?Q?Bri3k7Eifyd0YfHSUSQwcdD0VEO5byDQyPXruBBkHB7TR5KFtP2AHzhuQF?=
+ =?iso-8859-2?Q?W1mF6K6gSinKNeXiwKN7kFZYOcHCNWzWtPA+pWxo0oUWpTZtkBeB8w1DoC?=
+ =?iso-8859-2?Q?AOtjtDb44hbcsXRhemHrOtRBVq9XcKWBoofvP7IeZPiGSrzlt/W0J/8hMe?=
+ =?iso-8859-2?Q?6+hAR/x5Hlap/GP9ox70JtU5NIy1yovLviLQ0DlqihDmiuZ44H52xAll/i?=
+ =?iso-8859-2?Q?jlm7jCI62X3lV/8SX6Lq5f+vF/jbLVrLloxCEBiOeZuTvsj+wY7iwyTl6z?=
+ =?iso-8859-2?Q?f09kRzR5+y1yYMwy73TWiuzt6RWq5bDNGiG+nphk0Z7JB9daWHtPFdQ5hj?=
+ =?iso-8859-2?Q?RcgJ7ugB+baogHlrLvoeE1W2DQAb4hOF6bjrWlHNTqUb3lVLMyp6FI8oMW?=
+ =?iso-8859-2?Q?NnPLd0t4M2Jcv6ofHjSsiagRKUbtsWj94ypWDL+b+vidGOuTtpqmimQ0jl?=
+ =?iso-8859-2?Q?9ZmLGVPJUa88rfw0uVAR2MlPkl91ZLFDaPYOIGwQJ/BuIQZf209FX41BcJ?=
+ =?iso-8859-2?Q?c4PemOAxJYq3eucj4111VeReIZZyzImwwIFlYMdeNBK/Cop+y+z1rFs115?=
+ =?iso-8859-2?Q?p74kGKIU5utdoEuBy9Q8du4bB2lniiAiWQlobZG/FqqwXKfCk4+fifLvbk?=
+ =?iso-8859-2?Q?3TN0RRZOfeOBjZpJsvAA44wn5vpfo5Eg6mb0ZJY++s4yxetFB+yv0zb5Wo?=
+ =?iso-8859-2?Q?1dxmFm3EEeijoYk+ZTTPL9ymBIrG68PinYh4SG4d81nRdd4MRha20vLLTa?=
+ =?iso-8859-2?Q?21ng+d8gQw9HMxAaesNQ4a+3rp4Vm9+N/fJ8/kEiaCBFxOEK/wstvvdZFI?=
+ =?iso-8859-2?Q?W0YwryQskswPIpweUykx3fpf+F4nUrcMK5M+NgCpOEB1odVgHEcl5Qz6uD?=
+ =?iso-8859-2?Q?e8lseEulCWoqIZz3Vul56ACriPrEftInSQEDWUxOwED5v8I2gO3zAkL3kK?=
+ =?iso-8859-2?Q?UM2Ao/8XTW+T0c1/tomoIiAykggFGleoS204cyxaMxUSNvHdgLXbCqYvNL?=
+ =?iso-8859-2?Q?B0ceEkK9LSpMhQBWUf/zHC9btYxPEXPQqD44uDL9BKM6AVkrvS5HCoS8OI?=
+ =?iso-8859-2?Q?KmuQlgPiDz8+/lqGz6cNN/T8SWikw30OuxAzw9NYUgz1LM+aqHDlg9Oe5E?=
+ =?iso-8859-2?Q?RpIAwJVeeiZCKD/6kiLRTktSOgp5KdNy3HP0AZHR5deZgAmRQ6WQbTrYf7?=
+ =?iso-8859-2?Q?nD0r2EEBi2/bMnd7cLmnlhx0KI1Huz80H6+rMuy8IqBjceCimGHUyy273e?=
+ =?iso-8859-2?Q?bB5M8u0EPCq2TgqVmw43hGfA9S8BFMGsEyy1unLdVmEeUfe0M5DT7u/QFL?=
+ =?iso-8859-2?Q?9zsW6VQ6OCe9tCHyes6u9kePE2odB9GAhus5qLjV+L99psYys6nwdIOm44?=
+ =?iso-8859-2?Q?9n/eabGw4pCwsjq68cjLtsuejd4s++JcJ0VNlRo6lVzZi6F2YL/I95p0v/?=
+ =?iso-8859-2?Q?9ZZIQj/8fXpRl4Cg9OgXPxoq6+esTLuLnUnLDknMRcfZ+xECmjHhqr9xgG?=
+ =?iso-8859-2?Q?PDcwq2Q2BIPYrC05cvQXN2j2YFGb?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB6109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700021)(921020);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-2?Q?fcZaYhGbg1pYZ4J12ovWKaBMnDPf6COW9URhCKBZbwBEC6JZk5XY8xiJAY?=
+ =?iso-8859-2?Q?GFU33nVttw7zNCEL5A2W35PExbHQUlrgXCU0V6FsXuyo6HPZAmdgWRfqx4?=
+ =?iso-8859-2?Q?mqBGGn7KtxUxELxCeljVY1NIKP+Ih1dTWudxf11kzmxcLIgVzKM2nz/pWJ?=
+ =?iso-8859-2?Q?HQ1LPs10igw/WihM/RKK1adIzIfBTmXCUfq550dNk23RtaP4onkRWkpYRS?=
+ =?iso-8859-2?Q?vBTLdWDlozebb/msB61FFPuHxd68Ph0fK/x69Sk5qaDslCD9eY3jkwsgTf?=
+ =?iso-8859-2?Q?WGtKhR52obZ/09kMPpTBiDzPlorGVlkGrH9pHpnx2DBXqKZ0C2216WMXpV?=
+ =?iso-8859-2?Q?cjwte+30wNpUbqq/2NDRUek49MaLPnXUkBZq9d0juGW+dkQEH8RKI8kR0q?=
+ =?iso-8859-2?Q?jlc8WFMtdXCWWJA4uwJfVkN5p7BYuuGWoqC6audo8zNTtKe0bBhiThLXLo?=
+ =?iso-8859-2?Q?gIxe6BrtK7uqPeQ5jhSqHM3zPkoPSdM2pmXGupEkHJqk8dhqH3A6PdOHjp?=
+ =?iso-8859-2?Q?JwQNr4Btng9WDCtvSpmPPDZmDQFvffjOgu3Mk/RdXwA2wwETGAOnR9oV/c?=
+ =?iso-8859-2?Q?UMEMhodvyX9J5Qw2NzQt9N4HRd2iF5oQFpPf5Oq8CUYM/5L2RDDgm+2Ky9?=
+ =?iso-8859-2?Q?vCHPBixc81XlKJQIccBOgnCOEpLXi7lbEHAp5mVOINgndh7X4GE9wsJnIA?=
+ =?iso-8859-2?Q?lvurNqPTwbUySq1uBR4/7pUS/VfiX8KVtLWQr0vOWeZl1geCc/t6ZAY5Ki?=
+ =?iso-8859-2?Q?jgqltTPQoN9VBtmBqoPzF/4aIciUeFBgSK2lvUKDlOyiF+WAewVtsucgla?=
+ =?iso-8859-2?Q?KzKneLPDGknXdSh7aPAOdeUq++3l+bvfbqpcTsXjNRprWqfA0Nwxh1oIhs?=
+ =?iso-8859-2?Q?lJnIIQDVGF5bis4VhDQpZnXyak2+F3w7ib47linuzRDwoOJpJbOoMde5jh?=
+ =?iso-8859-2?Q?L9URnjsVawN0ECZBaYuXYdHBYwpGBUtw3xk/PyXbPWRgFBJUMg18P7mN8N?=
+ =?iso-8859-2?Q?zsbJitEy4KmEgwr9WwoWo70CsuRYD4xV4ebCZxOGUTitSCyE/0KW7CWb55?=
+ =?iso-8859-2?Q?8A8qnQx+ZyFJ7XMDUha9AaosRedcN2CQK8QYpB89U6/K0khAiJ2nf4W4gc?=
+ =?iso-8859-2?Q?1RsslqXloI+DGPRDnFM04fBYRE/m+OcP7Y7TBg45xkkFycpkH476b4GT6j?=
+ =?iso-8859-2?Q?j5rUvxwblI5MwUWHASkRNvb+3QmZExf8PkypP9A3rI40b5NmTLu5b6SJ3P?=
+ =?iso-8859-2?Q?QYFCRL8dRn8Hy62s0UOubORr8idfETRqFWOkhwHKcTLIkwZL3nZVh0F7nb?=
+ =?iso-8859-2?Q?oPjTylTeuKBwXUATUp9EBhT1OUg/NYzjFiI3gOHx7VXRe8fLelVzgYYHO0?=
+ =?iso-8859-2?Q?nBiEd1dN5vi1Cpo+mSfFEgMn+ckIIegZYI+C2EhskxHzpFwekSJreeC4Wk?=
+ =?iso-8859-2?Q?nJivDEFWzkhYa/f3wNNaN4wIcIxoEfYQX1790tkx1AvOhc+OyxUaR5TlZK?=
+ =?iso-8859-2?Q?Kyvdxmg5nkfKEN1b0eFp8B3K+EVPvlptMplOPAbDAMU0b9LFpyXNujSSxu?=
+ =?iso-8859-2?Q?79aTjLb9BvpiKTW/v1LWFf+BP/ytsNgPoyGwIB4xyrM3Z1E0rExhw9G0/R?=
+ =?iso-8859-2?Q?jhNpkpW1kBYv8=3D?=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250924-acpm-dvfs-dt-v4-3-3106d49e03f5@linaro.org>
-References: <20250924-acpm-dvfs-dt-v4-0-3106d49e03f5@linaro.org>
-In-Reply-To: <20250924-acpm-dvfs-dt-v4-0-3106d49e03f5@linaro.org>
-To: Peter Griffin <peter.griffin@linaro.org>, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- willmcvicker@google.com, kernel-team@android.com, 
- Tudor Ambarus <tudor.ambarus@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758726918; l=8583;
- i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=jAhvrkZLf2CPegU55/45LRXE53AONwSoY/Qaao8O1WI=;
- b=flkdtx3/cXrM2/ZNkt5KRthl5fEZMWNALCXLHO8aK4hPDkQ2+flX6YbpaTloDjdwikO8FMxGD
- 7vVqaXwRUPhBMu4sq6t/FdM0q7xG1+C5cfIf12vl+Pl5zBoNJdex6x4
-X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
- pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6109.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6f0c10da-1a9c-4b21-18e7-08ddfb7e4ba1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Sep 2025 15:23:20.9407
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: DNYSzBgylRnEFIik7d5fGJP1tUWAvqvLSekVixMz1cNsVksnwY1BAWxYaBTQspiytJ+chITqrD2HDiompwqxfg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB9051
 
-Add operating performance points (OPPs).
+[Public]
 
-Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
-Tested-by: Peter Griffin <peter.griffin@linaro.org> # on gs101-oriole
----
- arch/arm64/boot/dts/exynos/google/gs101.dtsi | 275 +++++++++++++++++++++++++++
- 1 file changed, 275 insertions(+)
+Hi,
 
-diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-index 7326801c9ebf270496997839185594c3c1776577..9d0d943fb08c9ff0fcc3c84459893a3ba92226fd 100644
---- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-+++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-@@ -78,6 +78,7 @@ cpu0: cpu@0 {
- 			cpu-idle-states = <&ananke_cpu_sleep>;
- 			capacity-dmips-mhz = <250>;
- 			dynamic-power-coefficient = <70>;
-+			operating-points-v2 = <&cpucl0_opp_table>;
- 		};
- 
- 		cpu1: cpu@100 {
-@@ -89,6 +90,7 @@ cpu1: cpu@100 {
- 			cpu-idle-states = <&ananke_cpu_sleep>;
- 			capacity-dmips-mhz = <250>;
- 			dynamic-power-coefficient = <70>;
-+			operating-points-v2 = <&cpucl0_opp_table>;
- 		};
- 
- 		cpu2: cpu@200 {
-@@ -100,6 +102,7 @@ cpu2: cpu@200 {
- 			cpu-idle-states = <&ananke_cpu_sleep>;
- 			capacity-dmips-mhz = <250>;
- 			dynamic-power-coefficient = <70>;
-+			operating-points-v2 = <&cpucl0_opp_table>;
- 		};
- 
- 		cpu3: cpu@300 {
-@@ -111,6 +114,7 @@ cpu3: cpu@300 {
- 			cpu-idle-states = <&ananke_cpu_sleep>;
- 			capacity-dmips-mhz = <250>;
- 			dynamic-power-coefficient = <70>;
-+			operating-points-v2 = <&cpucl0_opp_table>;
- 		};
- 
- 		cpu4: cpu@400 {
-@@ -122,6 +126,7 @@ cpu4: cpu@400 {
- 			cpu-idle-states = <&enyo_cpu_sleep>;
- 			capacity-dmips-mhz = <620>;
- 			dynamic-power-coefficient = <284>;
-+			operating-points-v2 = <&cpucl1_opp_table>;
- 		};
- 
- 		cpu5: cpu@500 {
-@@ -133,6 +138,7 @@ cpu5: cpu@500 {
- 			cpu-idle-states = <&enyo_cpu_sleep>;
- 			capacity-dmips-mhz = <620>;
- 			dynamic-power-coefficient = <284>;
-+			operating-points-v2 = <&cpucl1_opp_table>;
- 		};
- 
- 		cpu6: cpu@600 {
-@@ -144,6 +150,7 @@ cpu6: cpu@600 {
- 			cpu-idle-states = <&hera_cpu_sleep>;
- 			capacity-dmips-mhz = <1024>;
- 			dynamic-power-coefficient = <650>;
-+			operating-points-v2 = <&cpucl2_opp_table>;
- 		};
- 
- 		cpu7: cpu@700 {
-@@ -155,6 +162,7 @@ cpu7: cpu@700 {
- 			cpu-idle-states = <&hera_cpu_sleep>;
- 			capacity-dmips-mhz = <1024>;
- 			dynamic-power-coefficient = <650>;
-+			operating-points-v2 = <&cpucl2_opp_table>;
- 		};
- 
- 		idle-states {
-@@ -192,6 +200,273 @@ hera_cpu_sleep: cpu-hera-sleep {
- 		};
- 	};
- 
-+	cpucl0_opp_table: opp-table-0 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-300000000 {
-+			opp-hz = /bits/ 64 <300000000>;
-+			opp-microvolt = <537500>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-574000000 {
-+			opp-hz = /bits/ 64 <574000000>;
-+			opp-microvolt = <600000>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-738000000 {
-+			opp-hz = /bits/ 64 <738000000>;
-+			opp-microvolt = <618750>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-930000000 {
-+			opp-hz = /bits/ 64 <930000000>;
-+			opp-microvolt = <668750>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1098000000 {
-+			opp-hz = /bits/ 64 <1098000000>;
-+			opp-microvolt = <712500>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1197000000 {
-+			opp-hz = /bits/ 64 <1197000000>;
-+			opp-microvolt = <731250>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1328000000 {
-+			opp-hz = /bits/ 64 <1328000000>;
-+			opp-microvolt = <762500>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1401000000 {
-+			opp-hz = /bits/ 64 <1401000000>;
-+			opp-microvolt = <781250>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1598000000 {
-+			opp-hz = /bits/ 64 <1598000000>;
-+			opp-microvolt = <831250>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1704000000 {
-+			opp-hz = /bits/ 64 <1704000000>;
-+			opp-microvolt = <862500>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1803000000 {
-+			opp-hz = /bits/ 64 <1803000000>;
-+			opp-microvolt = <906250>;
-+			clock-latency-ns = <500000>;
-+		};
-+	};
-+
-+	cpucl1_opp_table: opp-table-1 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-400000000 {
-+			opp-hz = /bits/ 64 <400000000>;
-+			opp-microvolt = <506250>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-553000000 {
-+			opp-hz = /bits/ 64 <553000000>;
-+			opp-microvolt = <537500>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-696000000 {
-+			opp-hz = /bits/ 64 <696000000>;
-+			opp-microvolt = <562500>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-799000000 {
-+			opp-hz = /bits/ 64 <799000000>;
-+			opp-microvolt = <581250>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-910000000 {
-+			opp-hz = /bits/ 64 <910000000>;
-+			opp-microvolt = <606250>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1024000000 {
-+			opp-hz = /bits/ 64 <1024000000>;
-+			opp-microvolt = <625000>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1197000000 {
-+			opp-hz = /bits/ 64 <1197000000>;
-+			opp-microvolt = <662500>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1328000000 {
-+			opp-hz = /bits/ 64 <1328000000>;
-+			opp-microvolt = <687500>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1491000000 {
-+			opp-hz = /bits/ 64 <1491000000>;
-+			opp-microvolt = <731250>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1663000000 {
-+			opp-hz = /bits/ 64 <1663000000>;
-+			opp-microvolt = <775000>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1836000000 {
-+			opp-hz = /bits/ 64 <1836000000>;
-+			opp-microvolt = <818750>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1999000000 {
-+			opp-hz = /bits/ 64 <1999000000>;
-+			opp-microvolt = <868750>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-2130000000 {
-+			opp-hz = /bits/ 64 <2130000000>;
-+			opp-microvolt = <918750>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-2253000000 {
-+			opp-hz = /bits/ 64 <2253000000>;
-+			opp-microvolt = <968750>;
-+			clock-latency-ns = <500000>;
-+		};
-+	};
-+
-+	cpucl2_opp_table: opp-table-2 {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-500000000 {
-+			opp-hz = /bits/ 64 <500000000>;
-+			opp-microvolt = <500000>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-851000000 {
-+			opp-hz = /bits/ 64 <851000000>;
-+			opp-microvolt = <556250>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-984000000 {
-+			opp-hz = /bits/ 64 <984000000>;
-+			opp-microvolt = <575000>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1106000000 {
-+			opp-hz = /bits/ 64 <1106000000>;
-+			opp-microvolt = <606250>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1277000000 {
-+			opp-hz = /bits/ 64 <1277000000>;
-+			opp-microvolt = <631250>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1426000000 {
-+			opp-hz = /bits/ 64 <1426000000>;
-+			opp-microvolt = <662500>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1582000000 {
-+			opp-hz = /bits/ 64 <1582000000>;
-+			opp-microvolt = <693750>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1745000000 {
-+			opp-hz = /bits/ 64 <1745000000>;
-+			opp-microvolt = <731250>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-1826000000 {
-+			opp-hz = /bits/ 64 <1826000000>;
-+			opp-microvolt = <750000>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-2048000000 {
-+			opp-hz = /bits/ 64 <2048000000>;
-+			opp-microvolt = <793750>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-2188000000 {
-+			opp-hz = /bits/ 64 <2188000000>;
-+			opp-microvolt = <831250>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-2252000000 {
-+			opp-hz = /bits/ 64 <2252000000>;
-+			opp-microvolt = <850000>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-2401000000 {
-+			opp-hz = /bits/ 64 <2401000000>;
-+			opp-microvolt = <887500>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-2507000000 {
-+			opp-hz = /bits/ 64 <2507000000>;
-+			opp-microvolt = <925000>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-2630000000 {
-+			opp-hz = /bits/ 64 <2630000000>;
-+			opp-microvolt = <968750>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-2704000000 {
-+			opp-hz = /bits/ 64 <2704000000>;
-+			opp-microvolt = <1000000>;
-+			clock-latency-ns = <500000>;
-+		};
-+
-+		opp-2802000000 {
-+			opp-hz = /bits/ 64 <2802000000>;
-+			opp-microvolt = <1056250>;
-+			clock-latency-ns = <500000>;
-+		};
-+	};
-+
- 	/* ect node is required to be present by bootloader */
- 	ect {
- 	};
+> -----Original Message-----
+> From: Arnd Bergmann <arnd@arndb.de>
+> Sent: Wednesday, September 24, 2025 7:35 PM
+> To: Guntupalli, Manikanta <manikanta.guntupalli@amd.com>; git (AMD-Xilinx=
+)
+> <git@amd.com>; Simek, Michal <michal.simek@amd.com>; Alexandre Belloni
+> <alexandre.belloni@bootlin.com>; Frank Li <Frank.Li@nxp.com>; Rob Herring
+> <robh@kernel.org>; krzk+dt@kernel.org; Conor Dooley <conor+dt@kernel.org>=
+;
+> Przemys=B3aw Gaj <pgaj@cadence.com>; Wolfram Sang <wsa+renesas@sang-
+> engineering.com>; tommaso.merciai.xr@bp.renesas.com;
+> quic_msavaliy@quicinc.com; S-k, Shyam-sundar <Shyam-sundar.S-k@amd.com>;
+> Sakari Ailus <sakari.ailus@linux.intel.com>; 'billy_tsai@aspeedtech.com'
+> <billy_tsai@aspeedtech.com>; Kees Cook <kees@kernel.org>; Gustavo A. R. S=
+ilva
+> <gustavoars@kernel.org>; Jarkko Nikula <jarkko.nikula@linux.intel.com>; J=
+orge
+> Marques <jorge.marques@analog.com>; linux-i3c@lists.infradead.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Linux-Arch <lin=
+ux-
+> arch@vger.kernel.org>; linux-hardening@vger.kernel.org
+> Cc: Pandey, Radhey Shyam <radhey.shyam.pandey@amd.com>; Goud, Srinivas
+> <srinivas.goud@amd.com>; Datta, Shubhrajyoti <shubhrajyoti.datta@amd.com>=
+;
+> manion05gk@gmail.com
+> Subject: Re: [PATCH V7 3/4] i3c: master: Add endianness support for i3c_r=
+eadl_fifo()
+> and i3c_writel_fifo()
+>
+> On Wed, Sep 24, 2025, at 14:22, Guntupalli, Manikanta wrote:
+>
+> >> @@ -55,7 +55,7 @@ static inline void i3c_readl_fifo(const void
+> >> __iomem *addr, void *buf,
+> >>       if (nbytes & 3) {
+> >>               u32 tmp;
+> >>
+> >> -             tmp =3D readl(addr);
+> >> +             readsl(addr, &tmp, 1);
+> >>               memcpy(buf + (nbytes & ~3), &tmp, nbytes & 3);
+> >>       }
+> >>  }
+> >
+> > We have not observed any issue on little-endian systems in our testing
+> > so far (as I mentioned earlier in asm-generic/io.h: Add big-endian
+> > MMIO accessors).
+>
+> Did you test the little-endian system with the 'endian' flag set to
+> I3C_FIFO_BIG_ENDIAN though?
+Yes.
 
--- 
-2.51.0.536.g15c5d4f767-goog
+Your v7 code will still work on little-endian kernels
+> if that flag is set to I3C_FIFO_LITTLE_ENDIAN, and it will also work on b=
+ig-endian
+> kernels if the flag is set to I3C_FIFO_BIG_ENDIAN. But is broken for the =
+other two:
+>
+> - on little-endian kernels with I3C_FIFO_BIG_ENDIAN, the entire
+>   data buffer is byteswapped in 32-bit chunks
+>
+> - on big-endian kernels with I3C_FIFO_LITTLE_ENDIAN, you run into
+>   the existing bug of the swapped tail word.
+>
+> > That said, I understand your point about FIFO semantics being
+> > different from fixed-endian registers. To cover both cases, we
+> > considered using
+> > writesl() for little-endian and introducing a writesl_be() helper for
+> > big-endian, as shown below:
+> >
+> > static inline void i3c_writel_fifo(void __iomem *addr, const void *buf,
+> >                                    int nbytes, enum i3c_fifo_endian
+> > endian) {
+> >         if (endian)
+> >                 writesl_be(addr, buf, nbytes / 4);
+> >         else
+> >                 writesl(addr, buf, nbytes / 4);
+> >
+> >         if (nbytes & 3) {
+> >                 u32 tmp =3D 0;
+> >
+> >                 memcpy(&tmp, buf + (nbytes & ~3), nbytes & 3);
+> >
+> >                 if (endian)
+> >                         writesl_be(addr, &tmp, 1);
+> >                 else
+> >                         writesl(addr, &tmp, 1);
+> >         }
+> > }
+> >
+> > With this approach, both little-endian and big-endian cases works as ex=
+pected.
+>
+> This version should fix the cases where you have a big-endian kernel with=
+ either
+> I3C_FIFO_BIG_ENDIAN or I3C_FIFO_LITTLE_ENDIAN, as neither combination
+> does any byte swaps.
+>
+> However I'm fairly sure it's still broken for little-endian kernels when =
+a driver asks for
+> a I3C_FIFO_BIG_ENDIAN conversion, same as v7.
+We tested using the I3C_FIFO_BIG_ENDIAN flag from the driver on little-endi=
+an kernels, and it works as expected.
 
+Thanks,
+Manikanta.
 
