@@ -1,94 +1,102 @@
-Return-Path: <devicetree+bounces-220646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ADE2B98F13
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 10:41:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99E53B98F4C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 10:45:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27F087B4E11
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 08:39:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4C09188A5FB
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 08:45:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F897288C2B;
-	Wed, 24 Sep 2025 08:40:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C0DB28D850;
+	Wed, 24 Sep 2025 08:44:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BoycKNLx"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="AUeMTNuU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52AA6289E0B;
-	Wed, 24 Sep 2025 08:40:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C63A28B3E7;
+	Wed, 24 Sep 2025 08:44:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758703259; cv=none; b=PBA++Dgi5sZwPKkdvlKXJ+yx2a6goW14Ijgy2e/mXpcofLD+WnlgJufH2wpQV3tawiB7cammw65lE3Pkd6TxH3xm6SOetDYD5XcbCGzknr+srEGG/rBF+I9j/hXu8UwfJ5CsE4DAlVzMLzJdksUJUNFcElyXef1AgYgjImX54so=
+	t=1758703472; cv=none; b=PfaN6Tw7gbz1Z80mGeVvPXmEWj18dz75iRTVhnbENxwoJPSKzXHzFYwi6TCA+dhRw5A1ivEZJFsOV2DrLy7+r1R4XrXgqzMZupj1Hpfa7TP/IWz/53kyBuH2X/EJuBTWftAWHKyp0mNEHhwq7r0jghX5ZcgRRi0BwGXsznDEzZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758703259; c=relaxed/simple;
-	bh=gXC0TIrjtt2H2hnirLrmLxXWil8GQdYIzvmwDbexWv4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=U2Rv5ssqu+/wekkh0q0WNkoObJd4ZTz86bGoOJet8RZM2olGiY8yg9B9BHJP1lHDJidMSuf55Bz0/OmcZACSz0oKYUt9D0GbCAfnSAoObQK78sB21DMbJkLNQdYeXTfhbwUZuE1Zp0HVSJ8Op2qd8ZMIk3DuUBuq6ufx+IzmjEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BoycKNLx; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1758703255;
-	bh=gXC0TIrjtt2H2hnirLrmLxXWil8GQdYIzvmwDbexWv4=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=BoycKNLxBpKS7o7K2G6u08bk0AR1/6FDaoLq4ouUHT8QbBwgx4d26LmjoT/bO82g0
-	 1Rch6X9SMSIdwBFJKcI2pBeuWgqhXojAyS5e6e0Evon/rc4tB07sIfIxp8IAo1FXs6
-	 H2aQVi/TMEbFnx+Lkb9jsFKCngH4iEUNFV5Rr/DlJKGoRBGyYe45j6IjcX6ieC3W1M
-	 0kNgKzPTkqpuNiEIHERnXlPLBNI/0uczTtIxRM4iDytO0urEBQe71zqlUSBDCgIRdE
-	 pWpQtV46syHtpRg5o43gP2l37ISIhLYQOMeT/m/IKXuXefmJqYdQ1KfXY71hY+qlbN
-	 AQsLsPZAepXTg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 14BD517E0237;
-	Wed, 24 Sep 2025 10:40:55 +0200 (CEST)
-Message-ID: <d2b9fae6-eb73-4484-9048-67c0c8507171@collabora.com>
-Date: Wed, 24 Sep 2025 10:40:54 +0200
+	s=arc-20240116; t=1758703472; c=relaxed/simple;
+	bh=/FC2XFlapuWI95y2e7FrTZ+yg3mTJn8rYH76JlgtMSc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=mPLfe39BGUMBtwRbFneJGbgIMabXVjcAFay7/UIbuj3uH0KWlOnXHwkBnNy9Skf233pF3/qrYFnSynYt2uRxA7qgnaEuJMF8JQEu1OONiE9BgQpvRIMNGJiv/qVQERcKBFsVZVJd/DQUlmdF3Lzlx4ncPXM2Kx1J6C5XBFyomyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=AUeMTNuU; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: ad2a774e992211f08d9e1119e76e3a28-20250924
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=PFuPLTdWH67tX0oh7ejew8sf/DWLeKIxmgCUYj8rnI8=;
+	b=AUeMTNuU8mESewvD/6TspUB7ttXJd/6/FklSDo91dOizitck7Rg6g9ByCFpWi0gslQzc+fZXFeiwFbMZr/T+xn8jqx/e2YKPonTvHDliZ1vP2o2vL48ppA5GVHHk+DN4G/8aXMR+O/H0+xI+nOD642ZwKx2rTEQC8blygfuCHI8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.4,REQID:d0c0b270-7880-4498-8156-67ac9abbc5d9,IP:0,UR
+	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
+	elease,TS:0
+X-CID-META: VersionHash:1ca6b93,CLOUDID:cb99e46c-8443-424b-b119-dc42e68239b0,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:0|15|5
+	0,EDM:-3,IP:nil,URL:0,File:130,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,
+	OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: ad2a774e992211f08d9e1119e76e3a28-20250924
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw01.mediatek.com
+	(envelope-from <huayu.zong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1217855027; Wed, 24 Sep 2025 16:44:26 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Wed, 24 Sep 2025 16:44:24 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1748.10 via Frontend Transport; Wed, 24 Sep 2025 16:44:23 +0800
+From: Huayu Zong <huayu.zong@mediatek.com>
+To: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier
+	<mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"Matthias Brugger" <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Tinghan Shen
+	<tinghan.shen@mediatek.com>
+CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Huayu Zong
+	<huayu.zong@mediatek.com>
+Subject: [PATCH v2 0/2] Add support for MT8189 SCP and device tree bindings
+Date: Wed, 24 Sep 2025 16:44:16 +0800
+Message-ID: <20250924084422.4604-1-huayu.zong@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] PCI: mediatek-gen3: add support for Airoha AN7583
- SoC
-To: Christian Marangi <ansuelsmth@gmail.com>,
- Ryder Lee <ryder.lee@mediatek.com>, Jianjun Wang
- <jianjun.wang@mediatek.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, upstream@airoha.com
-References: <20250923190711.23304-1-ansuelsmth@gmail.com>
- <20250923190711.23304-2-ansuelsmth@gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250923190711.23304-2-ansuelsmth@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Il 23/09/25 21:07, Christian Marangi ha scritto:
-> Add support for Airoha AN7583 SoC that implement the same logic of
-> Airoha EN7581 with the only difference that only 1 PCIe line is
-> supported (for GEN3).
-> 
-> A dedicated compatible is defined with the pdata struct with the 1 reset
-> line.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+  This patch series adds support for the System Companion
+Processor (SCP) on MediaTek MT8189, including device tree
+bindings and driver support.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Huayu Zong (2):
+  dt-bindings: remoteproc: mediatek: Add binding for mt8189 scp
+  remoteproc: mediatek: Support MT8189 SCP
 
+ .../bindings/remoteproc/mtk,scp.yaml          |  2 ++
+ drivers/remoteproc/mtk_common.h               | 10 +++++++
+ drivers/remoteproc/mtk_scp.c                  | 29 +++++++++++++++++--
+ 3 files changed, 39 insertions(+), 2 deletions(-)
+
+-- 
+2.45.2
 
 
