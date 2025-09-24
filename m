@@ -1,165 +1,200 @@
-Return-Path: <devicetree+bounces-220594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2099DB98069
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 03:47:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 523E6B9809C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 03:59:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 276C62A5FD0
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 01:47:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0481217CE1F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 01:59:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 052B91E9B31;
-	Wed, 24 Sep 2025 01:47:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A7EE20DD51;
+	Wed, 24 Sep 2025 01:58:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EmbGXOHh"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="aup8ujOg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B3B519D065
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 01:47:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 156F81C54A9;
+	Wed, 24 Sep 2025 01:58:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758678464; cv=none; b=Oa3qTajeyFkyREGyA9StZWzAkLO74s0J6cA8Bw+xAdRhl+PmoC48gTSKFW0gWYtXn8CwNP3I8ReNMuossh9O2Jh0nRmR7c7rvzwPBiGp6rOm8tbRwxC5Hhtx1OpnyKxjarqdcIUtrKJEXGx5tKmVsDlVTEONsnxNnJ6MxKBtMBA=
+	t=1758679137; cv=none; b=AUCsgbleOYw619gtdAhG5FXadVQpnJn5xDh4ipmtZnna14RG3lgEPPlA31lkhuywRzZvKnM6zd78GrNOGRkoBLu49zyPhlfHG6uOuLorxCzRFhQAOGYM9jFyiHC76KeSQvtkkRLwoehN9vta0lXNGgTUEZ9gCFpOV+ibkaF7BTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758678464; c=relaxed/simple;
-	bh=y/x8B+ewK6v4dYgoVsbGDqM49RVsMdH/ggdy8onzgAA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hgwpL5m9dQxOMThtuKzqRApJjqOmaIpVgQ0HNnw3vJSKmttqfVXDFhJwmlAZQhziL+I8AmwzKzqILIg1FzwdBMQEcoUjBO9TCLVBvLsJJoE2ej6KrrylwEto4ccWDkcD8wt+6qz9AZoEFM7ISwoK3w770zaboSXCJUBKdWCKM1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EmbGXOHh; arc=none smtp.client-ip=209.85.160.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-4d142e9903fso22693771cf.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Sep 2025 18:47:43 -0700 (PDT)
+	s=arc-20240116; t=1758679137; c=relaxed/simple;
+	bh=EAOU0nvhlpQvkePix8Nj6BBWsShkFrJFZnPH0GSpMlc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=d6ZP0j5ZTESmjJPgcv5Gtz9kOv3sqVTQzS6k0h0UmtubtYbST6cxW7mDZSypOLE2WMkmP4EkqJYSWE55bMNEsyjuOaMdZXFVFvTdBzNBb1udiPX1SKNxEJs1xIU6V2gZqvc7EqjzikeKQq6mK2P0N0pNNzH9WKMwlitTSi5nIgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=aup8ujOg; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758678462; x=1759283262; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YLgOCUDCg3e15Xq9G1KQ1McYlea09igd4ZKI0Cxr/n0=;
-        b=EmbGXOHh2YUEnhWeJ8VWhYDh2o49snz7Y4nGo0G+UBlg4wJIJ30pO2kBhoDFPOfVFV
-         Mb67KsOAHLy0Q5ksUmqfUXhG7Cn+LkUZQZ9dg6zeTof/dakfwOpz1idVOozIC5L9f55Q
-         z8UVWRBbQDJVTSd2+rs6+b6Mp+qladQb6WfbX5PVDBny3er0f9umqEdUwuoU+t8GFxq/
-         Qp4L/Lcpic4uf70rcli34OddnMm1QwxHPCjGujVWz+bLX/64Frl1e5tjmDszmlvVFWZo
-         sq1bz7Zck1enGuBLom4mYI9sFWPKreE8tHq2Z8z+U3iEcMs3qQWvOJhDswfUBnyMrdnK
-         FMEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758678462; x=1759283262;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YLgOCUDCg3e15Xq9G1KQ1McYlea09igd4ZKI0Cxr/n0=;
-        b=Cp1//HpabkKbY1I5PhNpiS6c+8XC+q+5+z/K9oJzabjoTQmmr0bTBCBwpudC7ippZP
-         +uKxdaRx3UAchfosduY3s5CVBa3x8rgEIxhiBvk27INlqWacU+XZIc7DDlm2ggiazSqY
-         RqrrxBfEgv5bKWSq1+v+PkLEVKKDrhlcRCIC+jBI2Y0gVmdAQz7buabAa8sDKsUHgEWr
-         6oLo6GTRFdoUwAZxO9I/CzG7sXfq5ELpTV47eN4+P0Wu2fxh5q2jmKUd6p+kep/Y5LUc
-         tIac7zlIxH71FsxLZIo5fESwUliYZSrcs3NKSYkZ8zNzxva6eBftj/ZlxX1O1GX16LdF
-         mZGw==
-X-Forwarded-Encrypted: i=1; AJvYcCV+x6BKheUwbrI2I3/6iArx3JIctdiXVxBwo2nZWVsFEsd17NHZ8qrF7ouyqI4F1Lrv/KCSGhimmR89@vger.kernel.org
-X-Gm-Message-State: AOJu0YyF2SV19VV6lC/NRYLqhXMqn7sI31D60Np+2JRhqLPlY7JYoSa9
-	51XEk6hS15JjjelUmFqM6tXf2qAIDpUAC2gi/KqUm8wChN62y9fKRP00ir9e4mvIcdD6RyERmE+
-	Qk6fUApFZmXZZNiKc9U9v+54t+6Mauuk=
-X-Gm-Gg: ASbGncvbABXZxIVcfOkDH3zDCxyP9ZbSuYcoFEQdZ1BhIh7SHVZyu0q9Wih/qnwJSRU
-	P/ri1icqzUO/xPQc1HZM6dLiSzm2PRwrzH2xFJpjSRXBFj2nUf+ZAiysl3FWkufvffz5qxUdTvd
-	lLxe7tID89cleRz+7+y8Ep5XdtRPnAvOMgw8VY1Eex8gpoEkEgrfBecP0+1gjW8W4/zo8TCHn2d
-	DMvxVxKoFFOBbuBL8XA+o/dXLWTiXrVBznecj+kXw==
-X-Google-Smtp-Source: AGHT+IGIdRfHkiKs+mEVrqwOIqebc0C5zEl3UZbwuHFpU0JBMj41WZopp8n9Y9s727VjtGPa/Ul2Bjj4jr777iaGRvg=
-X-Received: by 2002:ac8:5ccc:0:b0:4b6:299d:dfe4 with SMTP id
- d75a77b69052e-4d36b0ee114mr51190071cf.32.1758678461949; Tue, 23 Sep 2025
- 18:47:41 -0700 (PDT)
+	d=codeconstruct.com.au; s=2022a; t=1758679127;
+	bh=6aTsBsG3b0stGVUU3MEZdAy7klaOCIs/53nUSWSvKzs=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=aup8ujOgSj/tebaHKpzgUVZXqYRu+3zaYauaxooNC9jEP6uu7nz8yhZdMa19xEJcJ
+	 98JW49+VdRenKr1ok13J+k/6gPdVHD7YEMPtOOmILnppIgnTJSCeV8GCb0jjE7T9CV
+	 IN0K/eGxkqsC3dFDYRJJTPC7zipVDXUEHsiyQUBp/p0d+k2fKPopKk5gDV6AjsWEuC
+	 2ORJdOpZr2PQajFzMwFKM+VKKmChXg+Ie7+GbzQVHgr0JDBQ87ldx1JevgxwkyQqzX
+	 Bm9KkmjEyLrQjjcm+r4wIzCKn8x/lz6317TR24RzgrHMLfGoG/U3kWeqmfDxIQ9HSo
+	 nvTqGTK6t0dxA==
+Received: from [IPv6:2405:6e00:243d:a853:dbe5:4849:b82e:5665] (unknown [120.20.205.123])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id EA720647A7;
+	Wed, 24 Sep 2025 09:58:44 +0800 (AWST)
+Message-ID: <3c310312cc401bbec13b0935e7b0a83284efdcc5.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 2/2] ARM: dts: aspeed: add asrock x470d4u bmc
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Tan Siewert <tan@siewert.io>, Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,  Joel Stanley <joel@jms.id.au>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Date: Wed, 24 Sep 2025 11:28:37 +0930
+In-Reply-To: <0c7a28b7-8d6d-4f91-ac6c-8cf37e128139@siewert.io>
+References: <20250919185621.6647-1-tan@siewert.io>
+	 <20250919185621.6647-3-tan@siewert.io>
+	 <20250922200738.GA1124791-robh@kernel.org>
+	 <0c7a28b7-8d6d-4f91-ac6c-8cf37e128139@siewert.io>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250917101828.2589069-1-peteryin.openbmc@gmail.com>
- <20250917101828.2589069-4-peteryin.openbmc@gmail.com> <f76e867ca4dff82744958a8b555cf226139bcd78.camel@codeconstruct.com.au>
-In-Reply-To: <f76e867ca4dff82744958a8b555cf226139bcd78.camel@codeconstruct.com.au>
-From: Peter Yin <peteryin.openbmc@gmail.com>
-Date: Wed, 24 Sep 2025 09:47:31 +0800
-X-Gm-Features: AS18NWC-njmIqq9F1PhVUvHcod54siZvcbKXObiObG8-iSHcZRG1G-1XqSgV-2s
-Message-ID: <CAPSyxFSOBRT8muKmFbqc+_OkKZvO9YR9_bGvHVGaC2XP4yi=cg@mail.gmail.com>
-Subject: Re: [PATCH v1 3/4] ARM: dts: aspeed: harma: add sq52206 power monitor device
-To: Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Andrew Jeffery <andrew@codeconstruct.com.au> =E6=96=BC 2025=E5=B9=B49=E6=9C=
-=8822=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8A=E5=8D=8811:36=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> On Wed, 2025-09-17 at 18:18 +0800, Peter Yin wrote:
-> > Add the SQ52206 power monitor device and reorder the sequence.
-> >
-> > Signed-off-by: Peter Yin <peteryin.openbmc@gmail.com>
-> > ---
-> >  .../dts/aspeed/aspeed-bmc-facebook-harma.dts  | 28 +++++++++++------
-> > --
-> >  1 file changed, 17 insertions(+), 11 deletions(-)
-> >
-> > diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-> > b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-> > index bcef91e6eb54..fe72d47a7632 100644
-> > --- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-> > +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-harma.dts
-> > @@ -353,14 +353,15 @@ eeprom@52 {
-> >               reg =3D <0x52>;
-> >       };
-> >
-> > -     power-monitor@69 {
-> > -             compatible =3D "pmbus";
-> > -             reg =3D <0x69>;
-> > +     power-monitor@40 {
-> > +             compatible =3D "infineon,xdp710";
-> > +             reg =3D <0x40>;
-> >       };
-> >
-> > -     temperature-sensor@49 {
-> > -             compatible =3D "ti,tmp75";
-> > -             reg =3D <0x49>;
-> > +     power-monitor@41 {
-> > +             compatible =3D "silergy,sq52206";
-> > +             reg =3D <0x41>;
-> > +             shunt-resistor =3D <500>;
-> >       };
-> >
-> >       power-monitor@44 {
-> > @@ -369,16 +370,21 @@ power-monitor@44 {
-> >               shunt-resistor-micro-ohms =3D <250>;
-> >       };
-> >
-> > -     power-monitor@40 {
-> > -             compatible =3D "infineon,xdp710";
-> > -             reg =3D <0x40>;
-> > -     };
-> > -
-> >       power-monitor@45 {
-> >               compatible =3D "ti,ina238";
-> >               reg =3D <0x45>;
-> >               shunt-resistor =3D <500>;
-> >       };
-> > +
-> > +     power-monitor@69 {
-> > +             compatible =3D "pmbus";
->
-> I realise you're just moving this node, but I'm surprised it hasn't
-> caused trouble otherwise. This happens to work due to a quirk of I2C
-> device IDs in the kernel but it's not a documented compatible.
->
-> Compatible strings need to represent the physical device. Can you
-> please split out a patch either dropping this node, or replacing the
-> compatible string with something appropriate?
->
-> Andrew
+On Tue, 2025-09-23 at 16:48 +0200, Tan Siewert wrote:
+> On 22.09.25 22:07, Rob Herring wrote:
+> > On Fri, Sep 19, 2025 at 08:56:18PM +0200, Tan Siewert wrote:
 
-Ok, but this device BMR350 is not in the pmbus_id[] list.
-I will add BMR350 to the pmbus_id[] list, and then fix the DTS
-compatible string.
+*snip*
+
+> > > +/ {
+> > > +	model =3D "Asrock Rack X470D4U-series BMC";
+> > > +	compatible =3D "asrock,x470d4u-bmc", "aspeed,ast2500";
+> > > +
+> > > +	aliases {
+> > > +		serial4 =3D &uart5;
+> > > +	};
+> > > +
+> > > +	chosen {
+> > > +		stdout-path =3D &uart5;
+> > > +	};
+> > > +
+> > > +	iio-hwmon {
+> > > +		compatible =3D "iio-hwmon";
+> > > +		io-channels =3D <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>, <&adc 4>,
+> > > +			<&adc 5>, <&adc 6>, <&adc 7>, <&adc 8>, <&adc 9>,
+> > > +			<&adc 10>, <&adc 11>, <&adc 12>;
+> > > +	};
+> > > +
+> > > +	leds {
+> > > +		compatible =3D "gpio-leds";
+> > > +
+> > > +		heartbeat {
+> >=20
+> > led-0
+>=20
+> I guess `led-heartbeat` would be fine too, right?
+>=20
+> >=20
+> > This should have given you a warning. You did run "make dtbs_check"
+> > check the warnings, right?
+>=20
+> I did and there were no warnings, even after a full clean. The full=20
+> command I ran before submitting was `make dtbs_check W=3D1=20
+> DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/arm/aspeed/aspeed.yam=
+l`
+
+Ah, so that's probably unhelpful, as you're excluding all the other
+schemas. Rather, try:
+
+   make -j$(nproc) CHECK_DTBS=3Dy aspeed/aspeed-bmc-asrock-x470d4u.dtb
+
+Running that on your series locally produces:
+
+     SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+     HOSTLD  scripts/dtc/dtc
+     DTC [C] arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb
+   arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: /ahb/apb/memory-=
+controller@1e6e0000: failed to match any schema with compatible: ['aspeed,a=
+st2500-sdram-edac']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: /ahb/apb/syscon@=
+1e6e2000/p2a-control@2c: failed to match any schema with compatible: ['aspe=
+ed,ast2500-p2a-ctrl']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: /ahb/apb/display=
+@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2500-gfx=
+', 'syscon']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: /ahb/apb/timer@1=
+e782000: failed to match any schema with compatible: ['aspeed,ast2400-timer=
+']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: /ahb/apb/pwm-tac=
+ho-controller@1e786000: failed to match any schema with compatible: ['aspee=
+d,ast2500-pwm-tacho']
+   /home/andrew/src/kernel.org/linux/origin/build.arm.aspeed_g5/arch/arm/bo=
+ot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: fan@1: aspeed,fan-tach-ch: b'\=
+x01' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+           from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+   /home/andrew/src/kernel.org/linux/origin/build.arm.aspeed_g5/arch/arm/bo=
+ot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: fan@2: aspeed,fan-tach-ch: b'\=
+x02' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+           from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+   /home/andrew/src/kernel.org/linux/origin/build.arm.aspeed_g5/arch/arm/bo=
+ot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: fan@3: aspeed,fan-tach-ch: b'\=
+x03\x0b' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+           from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+   /home/andrew/src/kernel.org/linux/origin/build.arm.aspeed_g5/arch/arm/bo=
+ot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: fan@4: aspeed,fan-tach-ch: b'\=
+x04\r' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+           from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+   /home/andrew/src/kernel.org/linux/origin/build.arm.aspeed_g5/arch/arm/bo=
+ot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: fan@5: aspeed,fan-tach-ch: b'\=
+x05\x0e' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+           from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+   /home/andrew/src/kernel.org/linux/origin/build.arm.aspeed_g5/arch/arm/bo=
+ot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: lpc@1e789000 (aspeed,ast2500-l=
+pc-v2): lpc-snoop@90: 'clocks' does not match any of the regexes: '^pinctrl=
+-[0-9]+$'
+           from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.ya=
+ml#
+   /home/andrew/src/kernel.org/linux/origin/build.arm.aspeed_g5/arch/arm/bo=
+ot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: kcs@24 (aspeed,ast2500-kcs-bmc=
+-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+           from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast24=
+00-kcs-bmc.yaml#
+   /home/andrew/src/kernel.org/linux/origin/build.arm.aspeed_g5/arch/arm/bo=
+ot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: kcs@28 (aspeed,ast2500-kcs-bmc=
+-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+           from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast24=
+00-kcs-bmc.yaml#
+   /home/andrew/src/kernel.org/linux/origin/build.arm.aspeed_g5/arch/arm/bo=
+ot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: kcs@2c (aspeed,ast2500-kcs-bmc=
+-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+           from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast24=
+00-kcs-bmc.yaml#
+   /home/andrew/src/kernel.org/linux/origin/build.arm.aspeed_g5/arch/arm/bo=
+ot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: kcs@114 (aspeed,ast2500-kcs-bm=
+c-v2): 'clocks' does not match any of the regexes: '^pinctrl-[0-9]+$'
+           from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast24=
+00-kcs-bmc.yaml#
+   arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: /ahb/apb/lpc@1e7=
+89000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2500-=
+lhc']
+   arch/arm/boot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: /ahb/apb/lpc@1e7=
+89000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2500=
+-ibt-bmc']
+   /home/andrew/src/kernel.org/linux/origin/build.arm.aspeed_g5/arch/arm/bo=
+ot/dts/aspeed/aspeed-bmc-asrock-x470d4u.dtb: leds (gpio-leds): 'heartbeat',=
+ 'identify', 'systemfault' do not match any of the regexes: '(^led-[0-9a-f]=
+$|led)', '^pinctrl-[0-9]+$'
+           from schema $id: http://devicetree.org/schemas/leds/leds-gpio.ya=
+ml#
+  =20
+
+Andrew
 
