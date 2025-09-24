@@ -1,116 +1,159 @@
-Return-Path: <devicetree+bounces-220743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFDBAB99DCB
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 14:34:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 586F4B99E92
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 14:44:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94BBB16F34D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 12:34:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4C2B188B186
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 12:43:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698F92FC038;
-	Wed, 24 Sep 2025 12:34:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nKFN8r8p"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4476F30595C;
+	Wed, 24 Sep 2025 12:41:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00B9B1F3BBB
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 12:34:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96195305079;
+	Wed, 24 Sep 2025 12:41:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758717275; cv=none; b=ZBEOUB8/x5nZ2QgLVWarxv758ON31eLf+n5M00LA2+mfECBa9RIj65SVgRY8pd8rSuEVsyPzn0ttTpOG0NFegMXTCrO35KlgeOMaUwR1vN7S612mc3qYH0Lja0RIjpIEPhE37koVmxHogTsCYAFch2nrWGrN5plJMVP4Mb/qpkQ=
+	t=1758717676; cv=none; b=uKPtxJxXIZqS6qn1Vl/76KiKLkpyjfTrOqj13sQFvsSnykEKaDyFsQ40nFhKhEUlYRDn6kWHqPWmRyeMQNA5lIrlmAaRetyZHBKlaxfyR7VfKr8Hg7xYv8DcfO4fJ7Csnde9ZVGtV5SimZx/ffSWlzrFTUutpwEtHn6iCgZnYf4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758717275; c=relaxed/simple;
-	bh=w/Y7hFj+095plLmyj6F//RB0JJaVllnXem2h/GAL5DM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fT31hWZqgmi+mw0XTyHpAImdPqTSAZebYLnCYAl35eQCyKmxUjVlKOLpKtZPcdQu3m2nT+bcXBOLGQ91wJQS4sb2YVrlroM3e12IWdoInn/VViK8n6evlrDrh9Z5eKOwM1A0bQAP45kK7VRBEn6GDkOsvav/nj7bSptHHbqEmBc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nKFN8r8p; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-3327f8ed081so3582268a91.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 05:34:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758717273; x=1759322073; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CTDFZgAdQghFMqYnaQQne0DSQg8eYDQbEUoZypuZEl0=;
-        b=nKFN8r8px+pzegy2l8GzbujA3yONawgNDtwnTyjN3MVG+becplTcAFlrefsHstjep3
-         Uub109iAJRU1KOEBZRFhm0MlO5B/XDZ5204pKV5O1S25FAmW1hjAuKLsZY5D9yBOgue1
-         wzQzZpyoAs3gMYfKOBD0twEMueSvXUHwcdvVcfy/Venut+jIUoEBvOw0k88ejbw3FyaL
-         OXjj5SaAg5Axb1gReX4SUBHgktHAlvjF6sQQatvc5qdtB7sraWLw5SR+ezqLf+E6B1oy
-         GPhrXvwiHxtcwplCpwNX4Nupiar2cWlj1pbTEcCXNi6Pe4jSUNFvZfNpRgbj680D9TDu
-         /CSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758717273; x=1759322073;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CTDFZgAdQghFMqYnaQQne0DSQg8eYDQbEUoZypuZEl0=;
-        b=D5XmeGn1M+NztP1T3Gy9/oZelvAmY9xMi/YMd0NvAaXmQC3fJm6GAWxGOg31unE7uP
-         nteucMwYlaoMD+DbDzAXmnJA8cRkUBJppwlxZN4N00etTSeDtCTGNSkK3ZtWCPeHFJn8
-         cnR++6vUJQic1sIoKOWfSF3teptL/Lu/c+YmZaIkeMMOUuNJ2MmiVq7rWrGG0TGStzvK
-         Qs1APQ8q5xLju38+3ZmmTbWoINvSt+Vfy19k06GFSFumXjBZ1Oo0JM+uNDJNf+S3M7B5
-         L2m622Ajg2okDSghHdhfUwSaI3MXnwSdoAsfgXvP8ep3YE/ADR2TV57MA5EQYO0pZRVq
-         fkig==
-X-Forwarded-Encrypted: i=1; AJvYcCUQBPfo34ptNunkdAshAnW+a6cdhXZd/gwclBneyZ92najxhUz7tIEBt2lZp0EYa4MHHy81Ni8FmBY/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwntOQzBM9lOksYdmAA87OHj216umIYxuaYSJ0x/loH/E8iuYo/
-	juBWRH31ZDu2Tx/2/d2zqP+GBAb49MB4DfEJptKUyaXSr2FvRoQCVpt7HwXNAyWTNznle5sSi1i
-	9SC0dV1jZs84YTy+lgjLACBnimmyg9Xs=
-X-Gm-Gg: ASbGncv6i6HPHtbqrC1bOUD4SdRkKTptDHlfDZyYzVHk2JqsQgLC+Ha87dBF7/8P9uh
-	PtTELRaMvv12rHoeDntyAphjhkLws+wNWc6j/evsDkQAA37k8/q5nG4n1qH5IJ7olXxPoompHP0
-	Y+WMf5oa6/GPM0Wg/+84pkr5MrO3LI3GuIykdEblKHu44/0Zqx7hEVN1u+r4y/tFyEE2MZZjGc2
-	NzWyYqpmfKQ3t6mFLFy3TtSzSwdGJTHF2uzChK+
-X-Google-Smtp-Source: AGHT+IHdx5C/tIG+bo3u5C0cXUba70Ijx6a94OsvdZgP19XusiUpG+AOBXv8usuNF4dJmHieFVzFc321rHyvoQrN75Y=
-X-Received: by 2002:a17:90b:58c5:b0:32b:dfdb:b276 with SMTP id
- 98e67ed59e1d1-332a98fc381mr6768390a91.34.1758717273147; Wed, 24 Sep 2025
- 05:34:33 -0700 (PDT)
+	s=arc-20240116; t=1758717676; c=relaxed/simple;
+	bh=ViXFwQPUdN7FsqaWnx8BHSUf0LsN6Dr4PJUVq2VjSWQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aTWMO30Q5z/hj+JkX2b7J5Ak5j9xvsIc3Fvdm2IU1kxzijNBlKI9+itnO00kkGcZ8M43M3Q0NpgWJNgdAFA/M9f+eTxkzMT/IBH7kb/syZfAhLeFin7tcK583Ze5ILRm+eSBeFGEMYS2JGK/BisSs4dvSRuYg51B/7AscSkYpMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D8029106F;
+	Wed, 24 Sep 2025 05:41:04 -0700 (PDT)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D75843F66E;
+	Wed, 24 Sep 2025 05:41:09 -0700 (PDT)
+Date: Wed, 24 Sep 2025 13:40:56 +0100
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Sebin Francis <sebin.francis@ti.com>
+Cc: Peng Fan <peng.fan@nxp.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Brian Masney <bmasney@redhat.com>, Dhruva Gole <d-gole@ti.com>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 5/5] clk: scmi: Support Spread Spectrum for NXP i.MX95
+Message-ID: <aNPmydbv6Xm0Tj9B@pluto>
+References: <20250915-clk-ssc-version1-v4-0-5a2cee2f0351@nxp.com>
+ <20250915-clk-ssc-version1-v4-5-5a2cee2f0351@nxp.com>
+ <5f508f1d-2d08-4687-86cd-d1944caa0a49@ti.com>
+ <PAXPR04MB8459CE9F22CD56A9BFDB5E78881DA@PAXPR04MB8459.eurprd04.prod.outlook.com>
+ <082735e7-956b-4574-952e-06ba69db41f1@ti.com>
+ <PAXPR04MB84590D5AAAB56ED7E1CBDE05881CA@PAXPR04MB8459.eurprd04.prod.outlook.com>
+ <c34157c5-cd13-4e85-a9ee-22446111f633@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250922131148.1917856-1-mmyangfl@gmail.com> <20250922131148.1917856-6-mmyangfl@gmail.com>
- <20250923174737.4759aaf4@kernel.org>
-In-Reply-To: <20250923174737.4759aaf4@kernel.org>
-From: Yangfl <mmyangfl@gmail.com>
-Date: Wed, 24 Sep 2025 20:33:57 +0800
-X-Gm-Features: AS18NWBjGVWilxW3m5lF33pWes0iHg7AU_L8xzuQ8IGPKI3mtuMEre2fBRoTZXw
-Message-ID: <CAAXyoMNBHgG-DFv16ua-T__iBXg=chFQ6TNoXdZvk4VP2aYESA@mail.gmail.com>
-Subject: Re: [PATCH net-next v11 5/5] net: dsa: yt921x: Add support for
- Motorcomm YT921x
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: netdev@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>, 
-	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
-	Simon Horman <horms@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c34157c5-cd13-4e85-a9ee-22446111f633@ti.com>
 
-On Wed, Sep 24, 2025 at 8:47=E2=80=AFAM Jakub Kicinski <kuba@kernel.org> wr=
-ote:
-...
->
-> > +static void yt921x_mdio_remove(struct mdio_device *mdiodev)
-> > +{
->
-> > +             cancel_delayed_work_sync(&pp->mib_read);
-> > +     }
-> > +
-> > +     dsa_unregister_switch(&priv->ds);
->
-> The work canceling looks racy, the port can come up in between
-> cancel_work and dsa_unregister ? disable_delayed_work.. will likely
-> do the job.
+On Wed, Sep 24, 2025 at 05:45:32PM +0530, Sebin Francis wrote:
+> Hi Peng,
 
-Are you sure about this? There are many others who use
-cancel_delayed_work_sync in their teardown methods (for example
-ar9331_sw_remove). If that is true, they should be fixed too.
+Hi ,
+
+> 
+> On 24/09/25 17:13, Peng Fan wrote:
+> > > Subject: Re: [PATCH v4 5/5] clk: scmi: Support Spread Spectrum for
+> > > NXP i.MX95
+> > ...
+> > > > > >         SCMI_CLOCK_CFG_OEM_START = 0x80,
+> > > > > > +     SCMI_CLOCK_CFG_IMX_SSC = 0x80,
+> > > > > 
+> > > > > TI is also planning to implement the same in our upcoming platform.
+> > > > > so can we use a generic ID instead of vender specfic message ID?
+> > > > 
+> > > > I tried to push to new generic ID [1] in half a year ago, but in the
+> > > > end ARM decided not to add generic ID for spread spectrum support.
+> > > > 
+> > > > To i.MX, it is too late to use a generic ID and waiting spec, i.MX
+> > > > firmware has been public for quite some time and passed several
+> > > external releases.
+> > > > So I need to use what our firmware adds and spec allows: vendor
+> > > > extension.
+> > > 
+> > > Thanks for the quick response,
+> > > Since this implementation is specific to i.MX, can you move this to a
+> > > vendor specific file, so that it will not break i.MX's firmware and TI can
+> > > implement SSC in TI specific file.
+> > 
+> > i.MX has encountered issue with pinctrl-scmi.c and pinctrl-imx-scmi.c
+> > both supports SCMI PINCTRL. Current linux scmi does not support
+> > both drivers built in kernel image, because scmi devlink issue.
+> >
+
+Yes indeed, BUT the vendor protocol extensions mechanism was meant to
+serve the development of vendor custom protocols and drivers, it was
+NEVER meant really to allow multiple alternative drivers implementation
+on top of the same standard protocols like it happened with pinctrl-imx-scmi...
+ 
+> > Sudeep said he would address the devlink issue in 6.19 cycle.
+> > 
+> > Given the current situation, I'm hesitant to introduce a new driver
+> > saying clk-imx-scmi.c.
+> >
+
+Even if the devlink issues will be solved, in THIS case the problem is
+handling custom vendor extensions inside a standard protocol, as it is
+allowed in this case...
+
+> > What I'm unclear about is whether moving to a vendor-specific file
+> > implies creating a new driver (i.e., clk-imx-scmi.c), or if it could be
+> > handled via a callback or another mechanism. Could you help
+> > clarify the intended direction?
+> 
+> My intended was to handle it via callback or something similar, so that TI
+> can its own callback for the TI's SSC implementation.
+> 
+
+This is exactly what is needed, the ability to extend with vendor
+extensions callback the behavior of a standard protocol where
+allowed....this is NOT currently supported and sincerely that was the
+reason months ago I proposed initially that maybe we could have standardized
+a new common clock extension SSC instead of using the OEM extensions since:
+
+1. it seemed a pretty generic operation
+2. any per-vendor extension callback of std protocol was NOT ready :P
+
+...then this proposal never went anywhere with ATG...AND now looking at
+this thread I think that it is good at the end that we did NOT add a new
+standard extended clock config instead of the IMX OEM, since now it
+seems that TI wants its own non-compatible implementation...
+
+So yes the ideal solutiomn would be to extend in a generic way the SCMI
+framework so that you can add in these cases custom handling of vendor
+extensions for standard protocols (and then generalize the current
+clk-scmi IMX support and add the new TI one...)...but I have not thought
+about this and I certainly dont have enough bandwidth now to work on
+this...beside having already in the pipeline other stuff/fixes like
+a proper fix for vendor drivers coex like Peng askes (rightly so a few
+months ago)
+
+Thanks,
+Cristian
 
