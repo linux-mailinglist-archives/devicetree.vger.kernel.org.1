@@ -1,185 +1,168 @@
-Return-Path: <devicetree+bounces-220747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220746-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 464C9B99F4F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:00:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3A47B99F3B
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:00:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B88B19C47D6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:00:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C17E189A502
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:00:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43B891C5496;
-	Wed, 24 Sep 2025 13:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 189421B6D06;
+	Wed, 24 Sep 2025 13:00:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6590301039;
-	Wed, 24 Sep 2025 12:59:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C45951C8630;
+	Wed, 24 Sep 2025 13:00:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758718826; cv=none; b=BxMbKTgUvES7m4wnmyICXPDXqK4EMLooEtlNjcSrVqFihU6Q9vPJvvLj4D5r46m2G/MJPRtxRr88IWE6E6Qb47+Mwpf+aNlOoJbRynhSy9qV3ERoaJdt1edslvbXb6PoYmoaNP9e4GiWZPDDNPw1SG2AnRw2gkwYanueh8CvBHI=
+	t=1758718805; cv=none; b=u/Lzm7FqjJXvHkZmjKBoEa3KbsBynzSbzt7/+rfCV9uyeoPLSIWTm717NsukHim4gKEruR5UntCdDhkT2tIls9px5m1j5V8x2EMpsGpdNWdg1tV8vvgBH0U2YdJh84H4dPZhO1lQbuPiQASAnTF+nrps5B6nS9NOvZW4I4XDpvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758718826; c=relaxed/simple;
-	bh=tcrGELuphN2j2IYPyqGBbzuDcws8nzHybciZp6hIHpI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=igIoimMbo/pTf9kUK8AnWOi6BJPPkL/a3sKpTBM3so5Ymjf4GsCdtyq2G8kw2x5SWLbYJjWEXGlRtW+MS0ukZ0OASvrWCIkupmfCOmD+XQ3aA9ChTwfQfR+6tNztrnxbGgW0YkYuYHAagpnBbxRHT8OpZSMdV4pkuRwqKBy4wig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
-Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
-	by Atcsqr.andestech.com with ESMTPS id 58OCwIeM007328
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Wed, 24 Sep 2025 20:58:18 +0800 (+08)
-	(envelope-from randolph@andestech.com)
-Received: from swlinux02 (10.0.15.183) by ATCPCS31.andestech.com (10.0.1.89)
- with Microsoft SMTP Server id 14.3.498.0; Wed, 24 Sep 2025 20:58:18 +0800
-Date: Wed, 24 Sep 2025 20:58:11 +0800
-From: Randolph Lin <randolph@andestech.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <jingoohan1@gmail.com>, <mani@kernel.org>, <lpieralisi@kernel.org>,
-        <kwilczynski@kernel.org>, <robh@kernel.org>, <bhelgaas@google.com>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alex@ghiti.fr>,
-        <aou@eecs.berkeley.edu>, <palmer@dabbelt.com>,
-        <paul.walmsley@sifive.com>, <ben717@andestech.com>,
-        <inochiama@gmail.com>, <thippeswamy.havalige@amd.com>,
-        <namcao@linutronix.de>, <shradha.t@samsung.com>,
-        <randolph.sklin@gmail.com>, <tim609@andestech.com>
-Subject: Re: [PATCH v3 1/5] PCI: dwc: Skip failed outbound iATU and continue
-Message-ID: <aNPq42O1Ml3ppF2M@swlinux02>
-References: <20250923113647.895686-2-randolph@andestech.com>
- <20250923144223.GA2032427@bhelgaas>
+	s=arc-20240116; t=1758718805; c=relaxed/simple;
+	bh=rYcNuhNICQ9oVzckWeSQB/D9K9FZwfeY6TIwX2DR+po=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D4y5TgD75UDOmEj4hcgfqwx543fGCG3VOPIPepXazQi//0o71ZyDKSU5L3NI7OWnF6qzEV5PWIbUBQZPtp+a/HkTCoRPEwZBorS5FTnRoYrpshQufz44ZTlVu3u5KJ/e+LVzf6fQfOw8TwS4D9gtB4JC5inFNmaXUCtbyn+p9O0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com; spf=none smtp.mailfrom=foss.arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=foss.arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 00617106F;
+	Wed, 24 Sep 2025 05:59:54 -0700 (PDT)
+Received: from bogus (e133711.arm.com [10.1.196.55])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0A9E93F5A1;
+	Wed, 24 Sep 2025 05:59:58 -0700 (PDT)
+Date: Wed, 24 Sep 2025 13:59:56 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Cristian Marussi <cristian.marussi@arm.com>
+Cc: Sebin Francis <sebin.francis@ti.com>, Peng Fan <peng.fan@nxp.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Brian Masney <bmasney@redhat.com>, Dhruva Gole <d-gole@ti.com>,
+	Dan Carpenter <dan.carpenter@linaro.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	"linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"arm-scmi@vger.kernel.org" <arm-scmi@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 5/5] clk: scmi: Support Spread Spectrum for NXP i.MX95
+Message-ID: <20250924-versed-auspicious-bullmastiff-19de2e@sudeepholla>
+References: <20250915-clk-ssc-version1-v4-0-5a2cee2f0351@nxp.com>
+ <20250915-clk-ssc-version1-v4-5-5a2cee2f0351@nxp.com>
+ <5f508f1d-2d08-4687-86cd-d1944caa0a49@ti.com>
+ <PAXPR04MB8459CE9F22CD56A9BFDB5E78881DA@PAXPR04MB8459.eurprd04.prod.outlook.com>
+ <082735e7-956b-4574-952e-06ba69db41f1@ti.com>
+ <PAXPR04MB84590D5AAAB56ED7E1CBDE05881CA@PAXPR04MB8459.eurprd04.prod.outlook.com>
+ <c34157c5-cd13-4e85-a9ee-22446111f633@ti.com>
+ <aNPmydbv6Xm0Tj9B@pluto>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250923144223.GA2032427@bhelgaas>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 58OCwIeM007328
+In-Reply-To: <aNPmydbv6Xm0Tj9B@pluto>
 
-Hi Bjorn,
+Hi Cristian,
 
-Sorry, I forgot to reply to the email before sending the patch.
-I missed the email.
-
-On Tue, Sep 23, 2025 at 09:42:23AM -0500, Bjorn Helgaas wrote:
-> [EXTERNAL MAIL]
+On Wed, Sep 24, 2025 at 01:40:56PM +0100, Cristian Marussi wrote:
+> On Wed, Sep 24, 2025 at 05:45:32PM +0530, Sebin Francis wrote:
+> > Hi Peng,
 > 
-> On Tue, Sep 23, 2025 at 07:36:43PM +0800, Randolph Lin wrote:
-> > Previously, outbound iATU programming included range checks based
-> > on hardware limitations. If a configuration did not meet these
-> > constraints, the loop would stop immediately.
-> >
-> > This patch updates the behavior to enhance flexibility. Instead of
-> > stopping at the first issue, it now logs a warning with details of
-> > the affected window and proceeds to program the remaining iATU
-> > entries.
-> >
-> > This enables partial configuration to complete in cases where some
-> > iATU windows may not meet requirements, improving overall
-> > compatibility.
+> Hi ,
 > 
-> It's not really clear why this is needed.  I assume it's related to
-> dropping qilai_pcie_outbound_atu_addr_valid().
+> > 
+> > On 24/09/25 17:13, Peng Fan wrote:
+> > > > Subject: Re: [PATCH v4 5/5] clk: scmi: Support Spread Spectrum for
+> > > > NXP i.MX95
+> > > ...
+> > > > > > >         SCMI_CLOCK_CFG_OEM_START = 0x80,
+> > > > > > > +     SCMI_CLOCK_CFG_IMX_SSC = 0x80,
+> > > > > > 
+> > > > > > TI is also planning to implement the same in our upcoming platform.
+> > > > > > so can we use a generic ID instead of vender specfic message ID?
+> > > > > 
+> > > > > I tried to push to new generic ID [1] in half a year ago, but in the
+> > > > > end ARM decided not to add generic ID for spread spectrum support.
+> > > > > 
+> > > > > To i.MX, it is too late to use a generic ID and waiting spec, i.MX
+> > > > > firmware has been public for quite some time and passed several
+> > > > external releases.
+> > > > > So I need to use what our firmware adds and spec allows: vendor
+> > > > > extension.
+> > > > 
+> > > > Thanks for the quick response,
+> > > > Since this implementation is specific to i.MX, can you move this to a
+> > > > vendor specific file, so that it will not break i.MX's firmware and TI can
+> > > > implement SSC in TI specific file.
+> > > 
+> > > i.MX has encountered issue with pinctrl-scmi.c and pinctrl-imx-scmi.c
+> > > both supports SCMI PINCTRL. Current linux scmi does not support
+> > > both drivers built in kernel image, because scmi devlink issue.
+> > >
+> 
+> Yes indeed, BUT the vendor protocol extensions mechanism was meant to
+> serve the development of vendor custom protocols and drivers, it was
+> NEVER meant really to allow multiple alternative drivers implementation
+> on top of the same standard protocols like it happened with pinctrl-imx-scmi...
+>  
+> > > Sudeep said he would address the devlink issue in 6.19 cycle.
+> > > 
+> > > Given the current situation, I'm hesitant to introduce a new driver
+> > > saying clk-imx-scmi.c.
+> > >
+> 
+> Even if the devlink issues will be solved, in THIS case the problem is
+> handling custom vendor extensions inside a standard protocol, as it is
+> allowed in this case...
+> 
+> > > What I'm unclear about is whether moving to a vendor-specific file
+> > > implies creating a new driver (i.e., clk-imx-scmi.c), or if it could be
+> > > handled via a callback or another mechanism. Could you help
+> > > clarify the intended direction?
+> > 
+> > My intended was to handle it via callback or something similar, so that TI
+> > can its own callback for the TI's SSC implementation.
+> > 
+> 
+> This is exactly what is needed, the ability to extend with vendor
+> extensions callback the behavior of a standard protocol where
+> allowed....this is NOT currently supported and sincerely that was the
+> reason months ago I proposed initially that maybe we could have standardized
+> a new common clock extension SSC instead of using the OEM extensions since:
+> 
+> 1. it seemed a pretty generic operation
+> 2. any per-vendor extension callback of std protocol was NOT ready :P
+> 
+> ...then this proposal never went anywhere with ATG...AND now looking at
+> this thread I think that it is good at the end that we did NOT add a new
+> standard extended clock config instead of the IMX OEM, since now it
+> seems that TI wants its own non-compatible implementation...
+> 
+> So yes the ideal solutiomn would be to extend in a generic way the SCMI
+> framework so that you can add in these cases custom handling of vendor
+> extensions for standard protocols (and then generalize the current
+> clk-scmi IMX support and add the new TI one...)...but I have not thought
+> about this and I certainly dont have enough bandwidth now to work on
+> this...beside having already in the pipeline other stuff/fixes like
+> a proper fix for vendor drivers coex like Peng askes (rightly so a few
+> months ago)
 > 
 
-Yes, I want to drop the previous atu_addr_valid function.
+Thanks for the detailed response as usual 😄. I don't have much to add
+in case anyone is expecting different or more info from me.
 
-> I guess dw_pcie_prog_outbound_atu() must return an error for one of
-> the QiLai ranges?  Which one, and what exactly is the problem?  I
-> still suspect something wrong in the devicetree description.
-> 
-
-The main issue is not the returned error; just need to avoid terminating
-the process when the configuration exceeds the hardware’s expected limits.
-
-There are two methods to fix the issue on the Qilai SoC:
-
-1. Simply skip the entries that do not match the designware hardware iATU limitations.
-An error will be returned, but it can be ignored. On the Qilai SoC, the iATU
-limitation is the 4GB boundary. Qilai SoC only need to configure iATU support
-to translate addresses below the "32-bits" address range. Although 64-bits
-addresses do not match the designware hardware iATU limitations, there is no
-need to configure 64-bits addresses, since the connection is hard-wired.
-
-2. Set the devicetree only 2 viewport for iATU and force using devicetree value.
-This is a workaround in the devicetree, but the fix logic is not easy to document.
-Instead, we should enforce the use of the viewport defined in the devicetree and
-modify the designware generic code accordingly — using the viewport values
-from the devicetree instead of reading them from the designware registers.
-Since only two viewports are available for iATU, we should reserve one for
-the configuration registers and the other for 32-bit address access.
-Therefore, reverse logic still needs to be added to the designware generic code.
-
-Method 2 adds excessive complexity to the designware generic code. Instead,
-directly configuring the iATU and reporting an error when the configuration
-exceeds the hardware iATU limitations is a simpler and more effective
-approach to applying the fix.
-
-Conclusion:
-1. The iATU needs to be configured for 32-bits address space.
-   In compliance with hardware limitations.
-2. The iATU needs to be configured for config space.
-   In compliance with hardware limitations.
-3. The iATU needs to be configured for 64-bit address space.
-   This does not comply with hardware limitations and will print an error.
-   As long as it does not return an error value that terminates subsequent
-   operations, it is acceptable.
-   Simply skipping this entry when configuring the iATU is acceptable.
-
-> > Signed-off-by: Randolph Lin <randolph@andestech.com>
-> > ---
-> >  drivers/pci/controller/dwc/pcie-designware-host.c | 9 +++++----
-> >  1 file changed, 5 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > index 952f8594b501..91ee6b903934 100644
-> > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > @@ -756,7 +756,7 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
-> >               if (resource_type(entry->res) != IORESOURCE_MEM)
-> >                       continue;
-> >
-> > -             if (pci->num_ob_windows <= ++i)
-> > +             if (pci->num_ob_windows <= i)
-> >                       break;
-> >
-> >               atu.index = i;
-> > @@ -773,9 +773,10 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
-> >
-> >               ret = dw_pcie_prog_outbound_atu(pci, &atu);
-> >               if (ret) {
-> > -                     dev_err(pci->dev, "Failed to set MEM range %pr\n",
-> > -                             entry->res);
-> > -                     return ret;
-> > +                     dev_warn(pci->dev, "Failed to set MEM range %pr\n",
-> > +                              entry->res);
-> > +             } else {
-> > +                     i++;
-> >               }
-> >       }
-> >
-> > --
-> > 2.34.1
-> >
-> >
-> > _______________________________________________
-> > linux-riscv mailing list
-> > linux-riscv@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-riscv
-
-Sincerely,
-Randolph
+-- 
+Regards,
+Sudeep
 
