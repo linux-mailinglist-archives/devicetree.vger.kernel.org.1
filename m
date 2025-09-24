@@ -1,116 +1,142 @@
-Return-Path: <devicetree+bounces-220663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DB83B9919D
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 11:24:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A804B991E5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 11:27:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C31162A4863
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 09:24:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69F7518948D7
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 09:27:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 886372D8DDD;
-	Wed, 24 Sep 2025 09:24:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E48F2D979C;
+	Wed, 24 Sep 2025 09:26:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ey0BczqL"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="BsH8sE9o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C6FF2D8363;
-	Wed, 24 Sep 2025 09:24:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FA982D77FA;
+	Wed, 24 Sep 2025 09:26:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758705848; cv=none; b=GPZ48GNHD9opPNteqH9vVKxbn49huLur9y2xUC5fwg+PxQc4OQCPfhzIp2iOe3rRSupT65/MC08s8m/ijYdSg9+ZHeudjzxPUvoeJTMHLbGI0ytqhQejSZcMqC1TFwbvKagn5a6Lc/7hlPEP2Gj8YjPYmvygcddTfO1uPnGXnpo=
+	t=1758705967; cv=none; b=F0kNJPdNeW6r6EZBOb2X+pRfqyNe6d1zrOzIhhAxpKI/zcMN6pJBAAs4r5g8rjngESjBAeEmBJWPBaXEo3JFU6n0Pa1FiHumwQoWjc7TPJbTKtxPu0tHS+u4rFdO/R20SSMN0ikruIbLFwrsijt5JugkVOsVbg6xvN9L8aaAQxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758705848; c=relaxed/simple;
-	bh=FbH2PxM9Sa714CpGO8aSH1L22ExqG/uqX8DLAEhiDTw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Wu+nMLEIo8SX43dlwEXz6lwFxP+4lm+9yamHVMSSIJNcgG2KNx/PruyZYFN5RzGId9pU1pPBmNILsK+B1UyLpAihDn9x54f0lK+YryzXkREjsJ0xwREx0B6oUPEUl7YBzC7D65AzEu9bf4psIEHCnLJgMkBqh/zjqPgXm8cIcjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ey0BczqL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DF0ACC2BCF5;
-	Wed, 24 Sep 2025 09:24:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758705847;
-	bh=FbH2PxM9Sa714CpGO8aSH1L22ExqG/uqX8DLAEhiDTw=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ey0BczqL6dYH/unFgLtYuNlx8y2o+WJ3+f9Bl6p7cP/NiewiJxQFyhyFCWdP0IFix
-	 V3OZJttFhXnN1JxrbueUP0ra2QAstZ7Kb1G59RyJLtDFKyvYcfJLbUQXkQvBidFfIt
-	 JDhFdqKMKHwccninPz+v6JdvQxChTnIfUwSDzyKRkeFSZ5q2vtIWdmhA6B1+i1S1nC
-	 mY4TVTmY92n6vWTsTcYFY1n37ARN5iXLY2E4aIzcmt/LxIRhNINk7epTXSgJ5XrTGt
-	 CN5vmnAcgCdUs+T1/YXFfjiVPj1ERenyKobYEoc8kkSyew13jWz47Tb2IgL52ivEnp
-	 i1q1SGnltRhBA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D6161CAC5B3;
-	Wed, 24 Sep 2025 09:24:07 +0000 (UTC)
-From: Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org>
-Date: Wed, 24 Sep 2025 09:24:02 +0000
-Subject: [PATCH v6 9/9] MAINTAINERS: add entry for inv_icm45600 6-axis imu
- sensor
+	s=arc-20240116; t=1758705967; c=relaxed/simple;
+	bh=O1420aHBknukQsKxuj5XgurLeBAQtflzePdc5jeCqUA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=r36YSVszm/wFzKzEgV9PMMFT4qnBTCoAdudPyRagxi+UNcyfW3pHIpbNyfbPTvHvxDXLTDAGzXMgN/WdfNESkXvXK6RTCDl10FtfJnL1FUxve8+Hnn0npaPPGSCH37mJISirdmHxG2ORvuFS0qGxRmLJPGpHAB8ZFu4v1uxDgCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=BsH8sE9o; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58O9PXRa1670036;
+	Wed, 24 Sep 2025 04:25:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1758705933;
+	bh=iSdDHuNTbBGSV0Dxkyi9JWjhRYgamGr39a/WPf5G4Ms=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=BsH8sE9oRTYt0VY8L6tl0yYe7pp3QSlwbFtl+TGPOcosWaqHsYbIJW3HCMYZHkHTu
+	 7lMqkGrN1g6k9BFbjZLj6NoJQlxUerf/deYgqAyEGswaptTc5UEjeyOV7wkRbyYMO0
+	 KplMgOrJ6oEGOUgyLGoTfYQ4kgRgwBLpxyLVGFyU=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58O9PWva2336456
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 24 Sep 2025 04:25:32 -0500
+Received: from DLEE202.ent.ti.com (157.170.170.77) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 24
+ Sep 2025 04:25:32 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE202.ent.ti.com
+ (157.170.170.77) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Wed, 24 Sep 2025 04:25:32 -0500
+Received: from [172.24.233.14] (shark.dhcp.ti.com [172.24.233.14])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58O9PRpR1784191;
+	Wed, 24 Sep 2025 04:25:28 -0500
+Message-ID: <082735e7-956b-4574-952e-06ba69db41f1@ti.com>
+Date: Wed, 24 Sep 2025 14:55:26 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/5] clk: scmi: Support Spread Spectrum for NXP i.MX95
+To: Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+        Cristian Marussi <cristian.marussi@arm.com>,
+        Marco Felsch
+	<m.felsch@pengutronix.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Brian Masney
+	<bmasney@redhat.com>
+CC: Dan Carpenter <dan.carpenter@linaro.org>,
+        Geert Uytterhoeven
+	<geert@linux-m68k.org>,
+        "linux-clk@vger.kernel.org"
+	<linux-clk@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>,
+        "arm-scmi@vger.kernel.org"
+	<arm-scmi@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+References: <20250915-clk-ssc-version1-v4-0-5a2cee2f0351@nxp.com>
+ <20250915-clk-ssc-version1-v4-5-5a2cee2f0351@nxp.com>
+ <5f508f1d-2d08-4687-86cd-d1944caa0a49@ti.com>
+ <PAXPR04MB8459CE9F22CD56A9BFDB5E78881DA@PAXPR04MB8459.eurprd04.prod.outlook.com>
+Content-Language: en-US
+From: Sebin Francis <sebin.francis@ti.com>
+In-Reply-To: <PAXPR04MB8459CE9F22CD56A9BFDB5E78881DA@PAXPR04MB8459.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250924-add_newport_driver-v6-9-76687b9d8a6e@tdk.com>
-References: <20250924-add_newport_driver-v6-0-76687b9d8a6e@tdk.com>
-In-Reply-To: <20250924-add_newport_driver-v6-0-76687b9d8a6e@tdk.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, Remi Buisson <remi.buisson@tdk.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758705845; l=945;
- i=remi.buisson@tdk.com; s=20250411; h=from:subject:message-id;
- bh=d1EOGq7hV4R8ODh9Pkno9yFBZYn1snN6feaEcuqfxYw=;
- b=jO9aEgfgV1aFZf5kL7w+Zecte86+IBTqd9F1PyaQRwrg4psXoUeaUonoxzdArkC74MOryQilu
- brdWSBp/WhEAS0rMaT+Z5YXomtBwSGsr/tkWjOEVxBvVxHw8olnrJzT
-X-Developer-Key: i=remi.buisson@tdk.com; a=ed25519;
- pk=yDVMi4C7RpXN4dififo42A7fDDt3THYzoZoNq9lUZuo=
-X-Endpoint-Received: by B4 Relay for remi.buisson@tdk.com/20250411 with
- auth_id=372
-X-Original-From: Remi Buisson <remi.buisson@tdk.com>
-Reply-To: remi.buisson@tdk.com
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Remi Buisson <remi.buisson@tdk.com>
+Hi Peng,
 
-Add MAINTAINERS entry for InvenSense ICM-45600 IMU device.
+On 23/09/25 17:27, Peng Fan wrote:
+> Hi Sebin,
+> 
+>> Subject: Re: [PATCH v4 5/5] clk: scmi: Support Spread Spectrum for
+>> NXP i.MX95
+>>
+>>> --- a/include/linux/scmi_protocol.h
+>>> +++ b/include/linux/scmi_protocol.h
+>>> @@ -80,9 +80,14 @@ enum scmi_clock_oem_config {
+>>>        SCMI_CLOCK_CFG_DUTY_CYCLE = 0x1,
+>>>        SCMI_CLOCK_CFG_PHASE,
+>>>        SCMI_CLOCK_CFG_OEM_START = 0x80,
+>>> +     SCMI_CLOCK_CFG_IMX_SSC = 0x80,
+>>
+>> TI is also planning to implement the same in our upcoming platform. so
+>> can we use a generic ID instead of vender specfic message ID?
+> 
+> I tried to push to new generic ID [1] in half a year ago, but in the end ARM
+> decided not to add generic ID for spread spectrum support.
+> 
+> To i.MX, it is too late to use a generic ID and waiting spec, i.MX firmware
+> has been public for quite some time and passed several external releases.
+> So I need to use what our firmware adds and spec allows: vendor
+> extension.
 
-Signed-off-by: Remi Buisson <remi.buisson@tdk.com>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Thanks for the quick response,
+Since this implementation is specific to i.MX, can you move this to a 
+vendor specific file, so that it will not break i.MX's firmware and TI 
+can implement SSC in TI specific file.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f090c2f6e63a0d255a025885cc4573f5802ef159..02d8787ab768a2d0b8b72a2c909e56a0f2010c04 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12815,6 +12815,14 @@ F:	Documentation/ABI/testing/sysfs-bus-iio-inv_icm42600
- F:	Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
- F:	drivers/iio/imu/inv_icm42600/
- 
-+INVENSENSE ICM-456xx IMU DRIVER
-+M:	Remi Buisson <remi.buisson@tdk.com>
-+L:	linux-iio@vger.kernel.org
-+S:	Maintained
-+W:	https://invensense.tdk.com/
-+F:	Documentation/devicetree/bindings/iio/imu/invensense,icm45600.yaml
-+F:	drivers/iio/imu/inv_icm45600/
-+
- INVENSENSE MPU-3050 GYROSCOPE DRIVER
- M:	Linus Walleij <linus.walleij@linaro.org>
- L:	linux-iio@vger.kernel.org
+> 
+> [1] https://lore.kernel.org/arm-scmi/Z8iKErarE0lHWxEy@pluto/
+> 
+> Regards,
+> Peng.
 
--- 
-2.34.1
-
-
+Thanks
+Sebin
 
