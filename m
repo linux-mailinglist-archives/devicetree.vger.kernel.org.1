@@ -1,82 +1,81 @@
-Return-Path: <devicetree+bounces-220794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D3D7B9A7C2
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 17:10:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4602B9A7D1
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 17:11:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3A8817ADC6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:09:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D3CF27B2B06
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:09:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C429F30BBBD;
-	Wed, 24 Sep 2025 15:08:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60D9930BBBF;
+	Wed, 24 Sep 2025 15:11:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GzbxCt3M"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o7Op/i5U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D4D930C113
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 15:08:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18E1E30BF76
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 15:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758726531; cv=none; b=utqQDM+bSPvDmCyB08OL06q8bB3eQ7OKNSuB9NCcxt7B8lVTG5XBMUPWVQsVA6ecASMzyx3NWSvAmMCXdLyJA/D8eLLGlOzjayGKfY1NdNeLhOfPZ2DrXtyhkzXpyXFVa8Jgy3ZOQEDLkr7IyKr2cf9HobST7jvx/s4C+o/qZUE=
+	t=1758726673; cv=none; b=cOILYhHW4Xqvz61qhkV2V5g9/qb1+7PCocyQcrwBSCgmaxF1Vxr4PQaOdWRAqVFiPZhusVLQbU8+IVL9Cn94xzvl/4v/MYq8FPkRSFg7M0f/UnofLqQAUjE8SK6j2pcBvzSA2lR7pp52QkCq/auby71JKSeefkGS6decCLL1DIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758726531; c=relaxed/simple;
-	bh=uv//tTQkdWUOMylUjOz31Zc7MGTY0kN4NR2rEqP2pKI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=twAx+9UylW2TwyUz77plV0YmxCbI+vTbmwfQSeEpCA/mVqbtAI5bPvzqCc3BYHIroS7EZRVCIkRXDQXZucDgcbGf1Zsex1Vhx1wz1Hpbm4EEiCMjgUXErY7L8/ufD/ZjwsNhR23k4gQaTZv07ffbPL6oertplK5hWY3flLC34PU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GzbxCt3M; arc=none smtp.client-ip=209.85.214.171
+	s=arc-20240116; t=1758726673; c=relaxed/simple;
+	bh=cwMIlE3GkPC64JAJSB4aokfZYWK2EOhyiJo/gkpirXM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Fmp4iKzEC8b2zMiieARaKMa65joZ38z5AA8GCfSnom+ob4KZ8jjcBmWoMD8PDBrkRZYk1SXMK3+QwtasisAIXrsLznKN7/vKLAhiruA/pJ6nKHRbrB7XrDFaPV+LkUSly0mw7pEzWZ0m+fuVCN9ltlbraqcy/tymwyNLy4Pa37Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o7Op/i5U; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-26c209802c0so53103265ad.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 08:08:49 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-46e317bc647so2915985e9.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 08:11:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758726529; x=1759331329; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Mtm7YfP7BSI3RTZ9+FG8XqmZhlh22m357qfVk/qkxE8=;
-        b=GzbxCt3MpAgMygR+L5VBtXpBYr1sfYesrkNK7CMT7+ATGm9uPpekoJRgI2bc2aXECK
-         iEF49JonXfM4Z6mp9bsR1uXg7hEZpq3Z6mwtzViuugoApm5IzK1qKoDup3ihfAlaUipV
-         Xazt44X0DzgCHG4YwRV7Fd7euOj4c+FFqArtw8DETvX0a+3d7VEOOFisNO4hNdO3lJKT
-         l3OwELr/ytLsP56IDuh7TvDfywg+F3WO3ex2Pbk17HtqHWRE9zAfUCMm0hPAojHIRAaU
-         NVSdw+KD67K2o5V1k1rBV+aXnNuhhHUkWK0N3QkAYQsI6ftsmLtSzVrs66IdQImkD0Pn
-         /vXA==
+        d=linaro.org; s=google; t=1758726669; x=1759331469; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KggF4AzFkPnQi9cWSb9T0cD1sb2eqqa5TYT3EEF8Bgw=;
+        b=o7Op/i5UbzGGizZHj8q/RMVmRMyjU2fetxesZzqY3+8HXnRvkw0fXBBEjqV1cr41F8
+         psILv+tGxK4/vSSvD8VT/MZZkL1CdZPIV49REPl58GrbjhQJsZZqrgCu5jfavbqefRmQ
+         /fHvmasfY1MaHhW6YkSu1cSiFX/tUnax202L/L+1sx24/tltKh8NEx81BCMUKAhiZRhW
+         rZjoH9JFg8pMMolgV8zqCJ8nyZLNqS0TT9uJweOVlTerqX1AfHHeJyVDimYjNdrAJWfq
+         JZE289GeDjMh5RcRnbzuOV+BQ0il+WO/OcQCoLiPuAJ2XIOuzfDpcI3ewmDZQo5vkrPL
+         eFtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758726529; x=1759331329;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Mtm7YfP7BSI3RTZ9+FG8XqmZhlh22m357qfVk/qkxE8=;
-        b=Ng2gq3qLYJNo5JkKroUu+XB3vbuwc5MT6rMFUh90y9IoeB6t4iWfyUlgkrLSqDIf8j
-         82bGYpXtrA6dR+BTaFQ36wgefp6dQJmUPQxs4jUSbPR7PIp+4JVmSzsWTKh+FL5s7id3
-         kmFVDapbLIuXXMeWtjgc6/dn0wmG9jKAC8dt6OJa2Gs8kVZMZ9jTCebrepgYot2mQHSr
-         O8AbngJcaWyDG9CNgnIoU2U/7wGHZyv2a9ZE7PLm6N0/LinnMUeUW4rGvMUDQsp5tWru
-         RevdfH3/AKgTiKhGcdLieGWQKP5fcoZFWJh9EUbT+vNPAvJ94+vNZVCthhQ51g9Vy0uL
-         LXgg==
-X-Forwarded-Encrypted: i=1; AJvYcCVXLjUU0722nYVmTRxGpss4MeVk9sETiLaXT88ppWM5lbjb3V+L2q6Vej4sK+RDvA4ToHFysByy/TGu@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywqj2F82xjlrlt61CIv23psPRwja4Uyvjb9SSQzARVKL6PsSoUv
-	DxvsKRpl/LdCE2srEK62GjLV1mea6BwH3hmiLEqMcmT8FLCbK9LbnwMvVXuGIzRujKI=
-X-Gm-Gg: ASbGncuMSnPrgzcmPF8BunSaNLJYj51EFRpWqxXgIKBQ8NjkeGy+XOx9Q2s4DGRKoPs
-	MMigXNnGRQOiP6KnYJgZS9g8YkwIL6nOQLzVAaHfRTlAnP/WQbRl8KOmnz9xFThEkud+uEsyh9N
-	0Mg4LURKau0CvWRPKl/mCEuL8RI5OCovjHJrcvZr/p6tRWn+NVxT0xnpNmA5x3HiUW/vqFba1fZ
-	ThSCtPhkQf342K5knlDLjJJayIpZz47oe/uYltGnUwR67JcXPYXLouvmnfAFK+4NLUFqKKWB3x0
-	KULcPpIUu/3bpzom0Q4hDXJU5PDI/xmFxPSHcYzTsx0Pb/KlZy6p2tpi5c2bC7bg+ruRupb4hzg
-	Sbs1OjQlgXRFHIxBF
-X-Google-Smtp-Source: AGHT+IEEfbkQbo6VyHZL6DNe6uKS5V8miS4VoGJIvm14SbYPZxktKLOnaj7fLoQ1xnJPrs48EB5euw==
-X-Received: by 2002:a17:902:c409:b0:269:96db:939 with SMTP id d9443c01a7336-27ed4af3882mr21675ad.58.1758726529408;
-        Wed, 24 Sep 2025 08:08:49 -0700 (PDT)
-Received: from [127.0.1.1] ([112.64.61.5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-26b59d6538bsm158717445ad.82.2025.09.24.08.08.42
+        d=1e100.net; s=20230601; t=1758726669; x=1759331469;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KggF4AzFkPnQi9cWSb9T0cD1sb2eqqa5TYT3EEF8Bgw=;
+        b=oeV5lTKa9b5jIxcPSoKe/+k+BZKrxTRntHvMUFhdPVi5nC+grzwCb8E/MDgs5BJuVS
+         Iv+k9OrShErsLYbg+YSNbI/BCG2Upo4WTKLZVw4k7k4ZD/K44QnXMtDlXeil8Ify6C/4
+         VO3ZGpgVk+jD9yppuDKe/vdlhzkDh3exdbioqSmTkGkVsmjegJ4GUvT05D/Jkof2AnI6
+         fndKKPF1+xwaaY9/mVJO/fGZVh7sewMoCNpLx+RcLkoJJh5G764NzHzbu+3GDs/Z3af2
+         Vue74KvGLV8CvzqLIMhkG9wrcEDGZHEOF1Cnxhy2WqXytjyaxDBygNgsPrkYQrz3iL6N
+         m8xA==
+X-Forwarded-Encrypted: i=1; AJvYcCUzHHRIMDD4cRfi8YdLKSgC48wIRRgW/ww4rhKGFn9IeZ2xw9QT/wzzHAZ7XE1NMVWNp04nOZudfGB5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxpc1VgDYR502Ts8KsRpRqWBQ9AZNYv8IkJimL7ZzmPHbP/Z2lC
+	mIWJCzKxecpYCvoqURXhylbLFxrSXs7r3xcmuf+0bJapgeW5s/n9T5WL6R014/Tz9VQ=
+X-Gm-Gg: ASbGncttjWrDDf/h05uxduWe0NMvdQyjvRqeFor52pOGZ+OXsuyKG2znMQrO6GLATOk
+	jGNrmPQm0NHZeTAV4JmcSgHecEFkE1LnrynaZMqtyKj5KIhGybaLeXfzb3zvHTwMB4iXaThw0i0
+	rapLY4GRgISpG+0u5Rt873q++8fPvGVOQc/PYjCr5SQGaDVokryvuTVxN8a1AUHs5tt3GxSYLsq
+	LumwsVQegn2YapGiUKDp7FFHg9TNb/+emUVBNECyg54xcdoQclUaZE3NRXEIO73J3/hdKwOYd/D
+	TfzqkbHckBY0TJN81SXbbzFK89Q6a5yEteqRS736S5MhNmEo9QaSJS50w0kle8NWXy5W5fqrVzU
+	63rSynkNZUku5/+ZbQMGTMtultra4+VX02WB4gOyUxgsqKiuOL7WVdwTsYaK6Om3rR3jrdwXdqT
+	Q=
+X-Google-Smtp-Source: AGHT+IHGeGSg7hWYaClMwyJxTZdmSKbwm2O/TRWj6tWRYvpwU8Qj5GI4vawvnTrp+TRppDIVHbfFJQ==
+X-Received: by 2002:a05:600c:3586:b0:46e:2079:f50 with SMTP id 5b1f17b1804b1-46e329f8180mr2184925e9.20.1758726669193;
+        Wed, 24 Sep 2025 08:11:09 -0700 (PDT)
+Received: from ta2.c.googlers.com (213.53.77.34.bc.googleusercontent.com. [34.77.53.213])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e2a7c8531sm36045145e9.0.2025.09.24.08.11.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Sep 2025 08:08:49 -0700 (PDT)
-From: Jun Nie <jun.nie@linaro.org>
-Date: Wed, 24 Sep 2025 23:08:12 +0800
-Subject: [PATCH v3 3/3] drm/msm/dsi: Support dual panel use case with
- single CRTC
+        Wed, 24 Sep 2025 08:11:08 -0700 (PDT)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH v5 0/5] exynos-acpm: add DVFS protocol and clock driver
+Date: Wed, 24 Sep 2025 15:10:59 +0000
+Message-Id: <20250924-acpm-clk-v5-0-4cca1fadd00d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,118 +84,145 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250924-dsi-dual-panel-upstream-v3-3-6927284f1098@linaro.org>
-References: <20250924-dsi-dual-panel-upstream-v3-0-6927284f1098@linaro.org>
-In-Reply-To: <20250924-dsi-dual-panel-upstream-v3-0-6927284f1098@linaro.org>
-To: Rob Clark <robin.clark@oss.qualcomm.com>, 
- Abhinav Kumar <abhinav.kumar@linux.dev>, 
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
- Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAAQK1GgC/23Oyw7CIBAF0F9pWIvhWagr/8O4KA9bYi0NmEbT9
+ N+FbsTUsLpkzp1ZQLTB2QhO1QKCnV10fkyBHyqg+3bsLHQmZUAQ4UjiBrZ6ekA93CGRhrRCWkS
+ RAGl8CvbmXlvV5Zpy7+LTh/fWPOP8+6dkxhDBWinTCCZYLfB5cGMb/NGHDuSWmRSSiEKSJI3lW
+ taKNapmO0m/skG0kDTv5FYbRoyUWuwkK6UsJMuSUsqRTk/9Xruu6wfOFp2ATwEAAA==
+X-Change-ID: 20250819-acpm-clk-28d2a78e0307
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
- Krishna Manikandan <quic_mkrishn@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Jun Nie <jun.nie@linaro.org>
+ Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758726499; l=3407;
- i=jun.nie@linaro.org; s=20240403; h=from:subject:message-id;
- bh=uv//tTQkdWUOMylUjOz31Zc7MGTY0kN4NR2rEqP2pKI=;
- b=cbwhi38kXfeCUrP4iZc3vGzSS+7SXsK87SMxbLuZ9SDfEikysPiAQH8mgdl2o1BXHWxilRTI6
- p1c+UJbkOexAxVBPSqmtKoMbjP0ZBRrXe9yAPnK5V74UKYdfcPyy0MI
-X-Developer-Key: i=jun.nie@linaro.org; a=ed25519;
- pk=MNiBt/faLPvo+iJoP1hodyY2x6ozVXL8QMptmsKg3cc=
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758726667; l=5145;
+ i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
+ bh=cwMIlE3GkPC64JAJSB4aokfZYWK2EOhyiJo/gkpirXM=;
+ b=JswpE2Fv9zQL+B0aWcWNPjlcR8GXvjFyMyJtyOMkhrL+FjesIZla+MV0mvbJLlPGWWLWAITHj
+ dKeYFRzgUIsA+PiGYjWz7mNesCsEIUXC9A6yUTQUjXDhfEuPl/UzWPN
+X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
+ pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-Support a hardware configuration where two independent DSI panels are
-driven by a single, synchronous CRTC. This configuration uses a bonded
-DSI link to provide a unified vblank for both displays.
+Dependencies description:
+All patches should go through the Samsung SoC tree.
+The acpm-clk driver (#4) depends on the ACPM DVFS ops (#2).
+If the clock subsystem needs to merge the new clock driver, it will
+need an immutable tag with the 2 patches.
+No dependecies for #1, #3, #5 here. The DT patches that will follow will
+depend on the bindings from #1.
 
-This allows application software to treat the two displays as a single,
-wide framebuffer with a synchronized refresh cycle, simplifying rendering
-logic for side-by-side panel arrangements.
+The Alive CLock and Power Manager (ACPM) firmware exposes clocks that
+are variable and index based. These clocks don't provide an entire range
+of values between the limits but only discrete points within the range.
+The firmware also manages the voltage scaling appropriately with the
+clock scaling. Make the ACPM node a clock provider.
 
-At the DSI host level, the frame width for each link must be that of an
-individual panel. The driver therefore halves the CRTC's horizontal
-resolution before configuring the DSI host and any DSC encoders, ensuring
-each panel receives the correct half of the framebuffer.
+Add support for the ACPM DVFS protocol. It translates clock frequency
+requests to messages that can be interpreted by the ACPM firmware.
+Add an ACPM clock driver to model the clocks exposed by the ACPM firmware.
 
-While the DSI panel driver should manage two panels togehter.
-1. During probe, the driver finds the sibling dsi host via device tree
-phandle and register the 2nd panel to get another mipi_dsi_device.
-2. Set dual_panel flag on both mipi_dsi_device.
-3. Prepare DSC data per requirement from single panel.
-4. All DSI commands should be send on every DSI link.
-5. Handle power supply for 2 panels in one shot, the same is true to
-   brightness.
-6. From the CRTC's perspective, the two panels appear as one wide display.
-   The driver exposes a DRM mode where the horizontal timings (hdisplay,
-   hsync_start, etc.) are doubled, while the vertical timings remain those
-   of a single panel. Because 2 panels are expected to be mounted in
-   left/right position.
+Thanks,
+ta
 
-To maintain synchronization, both DSI links are configured to share a
-single clock source, with the DSI1 controller using the clock provided
-to DSI0 as below.
-
-&mdss_dsi1 {
-   assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>,
-		     <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>;
-   assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
-}
-
-Signed-off-by: Jun Nie <jun.nie@linaro.org>
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 ---
- drivers/gpu/drm/msm/dsi/dsi_host.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
+Changes in v5:
+- acpm-clk: address Stephen's comments:
+  - drop of.h unused include, add devres/devres.h and container_of.h
+    to avoid implicit includes.
+  - r/acpm_clk_ops_init/acpm_clk_register.
+  - remove period from error messages, drop comma after sentinel in
+    platform_device_id.
+- collect Peter's R-b and T-b tags.
+- Link to v4: https://lore.kernel.org/r/20250908-acpm-clk-v4-0-633350c0c0b1@linaro.org
 
-diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
-index de51cb02f267205320c5a94fc4188413e05907e6..1fddcea7f86547258be18a51a0a3e3f96f6c3838 100644
---- a/drivers/gpu/drm/msm/dsi/dsi_host.c
-+++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
-@@ -177,6 +177,7 @@ struct msm_dsi_host {
- 	bool registered;
- 	bool power_on;
- 	bool enabled;
-+	bool is_dual_panel;
- 	int irq;
- };
- 
-@@ -935,7 +936,10 @@ static void dsi_timing_setup(struct msm_dsi_host *msm_host, bool is_bonded_dsi)
- 			return;
- 		}
- 
--		dsc->pic_width = mode->hdisplay;
-+		if (msm_host->is_dual_panel)
-+			dsc->pic_width = hdisplay;
-+		else
-+			dsc->pic_width = mode->hdisplay;
- 		dsc->pic_height = mode->vdisplay;
- 		DBG("Mode %dx%d\n", dsc->pic_width, dsc->pic_height);
- 
-@@ -1609,6 +1613,7 @@ static int dsi_host_attach(struct mipi_dsi_host *host,
- 	if (dsi->lanes > msm_host->num_data_lanes)
- 		return -EINVAL;
- 
-+	msm_host->is_dual_panel = dsi->dual_panel;
- 	msm_host->channel = dsi->channel;
- 	msm_host->lanes = dsi->lanes;
- 	msm_host->format = dsi->format;
-@@ -2492,6 +2497,9 @@ enum drm_mode_status msm_dsi_host_check_dsc(struct mipi_dsi_host *host,
- 	if (!msm_host->dsc)
- 		return MODE_OK;
- 
-+	if (msm_host->is_dual_panel)
-+		pic_width = mode->hdisplay / 2;
-+
- 	if (pic_width % dsc->slice_width) {
- 		pr_err("DSI: pic_width %d has to be multiple of slice %d\n",
- 		       pic_width, dsc->slice_width);
+Changes in v4:
+- clk-acpm:
+  - remove GS101_ACPM_CLK_ID type handling. Dead code, it should be
+    introduced with next devices.
+  - remove runtime check on clock IDs. Instead add a comment about the
+    assumptions the code is making: the clock IDs start from zero, are
+    sequential and do not have gaps. Slight changes based on this
+    assumption: s/hws[id]/hws[i], remove the inclusion of
+    dt-bindings/clock/google,gs101-acpm.h and the use of the clock IDs.
+    The clocks are defined solely by name in the driver.
+- move firmware patches close to each other, in between the bindings and
+  the clock driver
+- update the description of dependencies in the cover letter.
+- Link to v3: https://lore.kernel.org/r/20250903-acpm-clk-v3-0-65ecd42d88c7@linaro.org
 
+Changes in v3:
+- dt-bindings:
+  - move clock bindings to a new bindings header
+  - update commit's subject, s/add #clock-cells/add ACPM clocks.
+    It also suggests that the bindings are added.
+  - prepend "GS101_" on clocks binding name. The bindings name are the
+    same for GS201 and the acpm-clk driver will likely include both.
+  - collect Rob's R-b
+- clk-acpm:
+  - move clock definitions here instead of keeping them into the
+    ACPM protocol driver
+  - use platform_driver.id_table to differentiate device type
+  - fix Kconfig dependency, || (COMPILE_TEST && !EXYNOS_ACPM_PROTOCOL)
+  - update commit subject, s/dev/pdev
+- exynos-acpm:
+  - move clock definitions to clk-acpm
+  - use devm-action to unregister clk-acpm platform device
+- Link to v2: https://lore.kernel.org/r/20250827-acpm-clk-v2-0-de5c86b49b64@linaro.org
+
+Changes in v2:
+- dt-bindings: clocks are not longer a child of ACPM protocol. Instead
+  make Alive Clock and Power Manager (ACPM) node a clock provider.
+  Update commit message.
+- firmware: exynos-acpm: register by hand the ACPM clocks dev (new
+  patch)
+- firmware: exynos-acpm: use defines intead of enum
+- acpm-clk:
+  - switch to determine_rate
+  - drop __init, __refdata, __initconst, this is a module, we need those
+    methods and data, after boot as well.
+  - fix the assumption that the clocks are defined by ID in ascending order.
+    There's still an assumption that the clk_id < nr_clks, but this is
+    now covered by a sanity check in the clock driver.
+- arm64: defconfig: enable Exynos ACPM clocks (add patch together with
+  this patch set) 
+- Link to v1: https://lore.kernel.org/r/20250819-acpm-clk-v1-0-6bbd97474671@linaro.org
+
+---
+Tudor Ambarus (5):
+      dt-bindings: firmware: google,gs101-acpm-ipc: add ACPM clocks
+      firmware: exynos-acpm: add DVFS protocol
+      firmware: exynos-acpm: register ACPM clocks pdev
+      clk: samsung: add Exynos ACPM clock driver
+      arm64: defconfig: enable Exynos ACPM clocks
+
+ .../bindings/firmware/google,gs101-acpm-ipc.yaml   |  11 ++
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/clk/samsung/Kconfig                        |  10 ++
+ drivers/clk/samsung/Makefile                       |   1 +
+ drivers/clk/samsung/clk-acpm.c                     | 185 +++++++++++++++++++++
+ drivers/firmware/samsung/Makefile                  |   4 +-
+ drivers/firmware/samsung/exynos-acpm-dvfs.c        |  83 +++++++++
+ drivers/firmware/samsung/exynos-acpm-dvfs.h        |  21 +++
+ drivers/firmware/samsung/exynos-acpm.c             |  26 +++
+ include/dt-bindings/clock/google,gs101-acpm.h      |  26 +++
+ .../linux/firmware/samsung/exynos-acpm-protocol.h  |  10 ++
+ 11 files changed, 377 insertions(+), 1 deletion(-)
+---
+base-commit: bf2602a3cb2381fb1a04bf1c39a290518d2538d1
+change-id: 20250819-acpm-clk-28d2a78e0307
+
+Best regards,
 -- 
-2.34.1
+Tudor Ambarus <tudor.ambarus@linaro.org>
 
 
