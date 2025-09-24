@@ -1,206 +1,247 @@
-Return-Path: <devicetree+bounces-220706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8927B9983A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 12:58:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27D41B99843
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:00:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 552383AC371
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 10:58:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D607F2A02DA
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 11:00:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F37532E284B;
-	Wed, 24 Sep 2025 10:58:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AE9B2E3716;
+	Wed, 24 Sep 2025 11:00:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="SiQaQDkO"
+	dkim=pass (2048-bit key) header.d=kael-k.io header.i=@kael-k.io header.b="UoPz72OV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 746C73C01
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 10:58:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 178D538DEC;
+	Wed, 24 Sep 2025 11:00:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758711516; cv=none; b=nU2ZrKaKYS7mKxXUk+stT9eiuQwYbbW9GwCnqBiKeEoKTDmMe13HdkBuWYlCHhe7Mq9XOZXhuKz9hnpoxyD9rsjsR+5P3o/uT1tuNqw5qgyowyLltpA/L+pukFCEGPJrFb+9Vtww1cT2E26cDut7O2KNIZP9HzpmZW1/4AL2Ju4=
+	t=1758711628; cv=none; b=nqgxvyLnflfCuiMVTaMAa6XVdQvXzwvPf9924Hj+ENR122eZaFPY5rOlkiITxKvR5UzknaOF4PHas/dn8QgTpyid+1WxLgdwJ4bSP5rBa80uJL2GLvnChr9KpA/T0aK+mnV+OnWEM2ix0Rk+gSsTcs0hJrvFtWC3ml90E7TouBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758711516; c=relaxed/simple;
-	bh=ogG9WC015jZe10wN+P7sL03Gdm4Uwxatq15inW75C8U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J3PYflYt4t0vrLrNCUjwsfONBWfmu++afd+3Twod4fUlg1ASdxmZ+S6esVuIoO8TsZBML4YZP4AVbMZ8EtzoSOgEl1b+Bt5QWdPT9A/cGhueCeN6bT5Z1uudbskoeBccrXNI4l+WcaFkEyOiH+xHbi37wbPggsMN1yH8blrJkeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=SiQaQDkO; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1758711510; x=1759316310; i=wahrenst@gmx.net;
-	bh=eZCn/N8gb13dMyE8VkaFH0j2WUDKpll8BmLZY4GIH5Y=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=SiQaQDkO6qXPx8QFeHaA768TZHSLavamR4aaf15T/2YamjIpXMVzMrJvZyocU41m
-	 Mk3ZSBZsGYGda9IYHpt7u7Dfnp+B5C7FCwLNnYcqQVocdyJDxPxIi45fCE0IPnTJ0
-	 xk5Rz9MYU7W6nzTcyJYSCEwgoeJ+sQkBHQxJJ3dDayYg4JCk2bE6W7G7bhWTsRmR2
-	 PpeQMOYJwqI78sXZ6zgQbsj1rNrQXYCGSQVpg4iFBG6CLQLyjJFduhoJUqgEnVUra
-	 P96jfDIKp5nIlPmccwmHFWNf10/vAmdeu6PtsOjc2pP2iDnSRZmsUQbEoge3RMaC4
-	 hxU95pX9G4Lb3AhIfQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.105] ([79.235.128.112]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MCsU6-1vACuM2sgi-00Di3w; Wed, 24
- Sep 2025 12:58:30 +0200
-Message-ID: <62e92749-4373-4dfb-8570-7b41b4c131fb@gmx.net>
-Date: Wed, 24 Sep 2025 12:58:30 +0200
+	s=arc-20240116; t=1758711628; c=relaxed/simple;
+	bh=7KpDcW/oIVgg5lRaVdhpKQRu1/7ir1rselHbnNp1Mrk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PF/OdCTJ08T1bU8aVdp2jmWVB4MlW9n2EV+p5BOUBj2fZ9p0UqwlbvU2QCNLtrr3U+0MnIjBrzf3eVY6xYAsaCBh3ZqrbGamZQcuUyhyUcXNG2/pjWLgOHBj+DybvshbS4e1LHyAPFWDI6S0RLemPPcye2B0dKxhCkcSVths0VM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kael-k.io; spf=pass smtp.mailfrom=kael-k.io; dkim=pass (2048-bit key) header.d=kael-k.io header.i=@kael-k.io header.b=UoPz72OV; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kael-k.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kael-k.io
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cWv5J6QKYz9snt;
+	Wed, 24 Sep 2025 13:00:20 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kael-k.io; s=MBO0001;
+	t=1758711620;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=dAaz71v8UalAH+2YQiktqvi4SkWlPgPtsfTdejouApE=;
+	b=UoPz72OVzwXN9741E8vdeHe/Z4pz8IPwTTj+I919pbeW2xeWwfb1g1TDWKnrCnf+FDUZ0Q
+	0SqqbUaqlw0fEHjsi4kFsd6aMiFyPrKHo+REpAYH3Xn+SbfKjPNGcPvN9yzEfkXF3bIwN2
+	rtUV6sktnlVtLnZwmnXU/k74XDh6aEh4sIbZ9bo8QlEfWoZJZ5n+PLYZa6eEQet4+MSXGi
+	gyeqBc8KxWaCCQlxATdOGnV6zIzYxjef0Uoj74ZeEm57CSY8VbwubqeEbwZMcjgKbtp8kp
+	kRJif+30aiupPSQplk3CEunq0jU0nLgUR1DVoYNwyz0tWbgd4sA33Swg45IuUw==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=none;
+	spf=pass (outgoing_mbo_mout: domain of dev@kael-k.io designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=dev@kael-k.io
+Date: Wed, 24 Sep 2025 13:00:08 +0200
+From: Kael D'Alcamo <dev@kael-k.io>
+To: Rob Herring <robh@kernel.org>
+Cc: Olivia Mackall <olivia@selenic.com>, 
+	Herbert Xu <herbert@gondor.apana.org.au>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: rng: sparc_sun_oracle_rng: convert to DT
+ schema
+Message-ID: <uprke6fujhmckymlpy6oskecol4awhqyroqlg25tprmhnkeyy6@ztozdrlmeotp>
+References: <20250923103900.136621-1-dev@kael-k.io>
+ <20250923142943.GA3134901-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: broadcom: bcm2712: Enable RNG
-To: Peter Robinson <pbrobinson@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Florian Fainelli <florian.fainelli@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Phil Elwell <phil@raspberrypi.com>,
- Andrea della Porta <andrea.porta@suse.com>, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20250924090105.1061910-1-pbrobinson@gmail.com>
- <545e2819-9654-449e-aa57-636bee88c744@gmx.net>
- <CALeDE9NjF2xnc3rLi_SK2FPMSf2codQxBwqF+Q4XEuGMd6i8Cg@mail.gmail.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-Autocrypt: addr=wahrenst@gmx.net; keydata=
- xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
- IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
- NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
- JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
- TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
- f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
- V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
- aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
-In-Reply-To: <CALeDE9NjF2xnc3rLi_SK2FPMSf2codQxBwqF+Q4XEuGMd6i8Cg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:FlBuXIfEhf1PedGVJBrJx9tbGpRoySpDnZRFnqLML0D7JncatU+
- Y4k6G1KfXudzFDBcbLK+lEyg9EkGlJ0a//UYNFyM9ImcVC1MyAiZOp09lCoIf88ncnJcNW1
- d00r8gvLtrkHcM+zshhosV2ofHXic/1kMVtNZbOFrQkrOAt/0BDcA2e0auZIDH0QkPBeSKW
- xLhC98sUsxJp61s+HKZBQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:MyEpqRd9OE4=;yAFCwjO5TkzWhrZt3fZyQtvSz4j
- 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
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250923142943.GA3134901-robh@kernel.org>
+X-Rspamd-Queue-Id: 4cWv5J6QKYz9snt
 
-Hi Peter,
+On 2025-09-23 09:29:43, Rob Herring wrote:
+> On Tue, Sep 23, 2025 at 12:38:22PM +0200, Kael D'Alcamo wrote:
+> > Convert the Devicetree binding documentation for:
+> > * SUNW,n2-rng
+> > * SUNW,vf-rng
+> > * SUNW,kt-rng
+> > * ORCL,m4-rng
+> > * ORCL,m7-rng
+> > from plain text to YAML.
+> 
+> While I welcome any conversions, I wouldn't put Sparc stuff high on 
+> priority list as we're not going to run the validation tools on them 
+> and we can't change anything in their DTs if we did. My priority is the 
+> remaining warnings on arm64 and then active arm32 platforms (e.g. 
+> aspeed). We're down to <700 unique warnings on arm64 (from ~10000). 
+> 
+> There's builds with warnings of Linus' and next trees here:
+> 
+> https://gitlab.com/robherring/linux-dt/-/jobs
+> 
+> And some scripts to fetch the warnings here:
+> 
+> https://gitlab.com/robherring/ci-jobs
+> 
 
-Am 24.09.25 um 12:53 schrieb Peter Robinson:
-> On Wed, 24 Sept 2025 at 11:48, Stefan Wahren <wahrenst@gmx.net> wrote:
->> Hi Peter,
->>
->> Am 24.09.25 um 11:01 schrieb Peter Robinson:
->>> The RNG is the same IP as in the bcm2711 so add the
->>> device tree block to enable the device.
->>>
->>> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
->>> ---
->>>    arch/arm64/boot/dts/broadcom/bcm2712.dtsi | 6 ++++++
->>>    1 file changed, 6 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi b/arch/arm64/bo=
-ot/dts/broadcom/bcm2712.dtsi
->>> index 4cd51d80d40d0..6976a88c262f4 100644
->>> --- a/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
->>> +++ b/arch/arm64/boot/dts/broadcom/bcm2712.dtsi
->>> @@ -226,6 +226,12 @@ system_timer: timer@7c003000 {
->>>                        clock-frequency =3D <1000000>;
->>>                };
->>>
->>> +             random: rng@7d208000 {
->>> +                     compatible =3D "brcm,bcm2711-rng200";
->>> +                     reg =3D <0x7d208000 0x28>;
->>> +                     status =3D "okay";
->>> +             };
->> thank you for the patch. I know the order is already messed up, but
->> could you please try to add it after uart10?
-> Sure, can you let me know the preferred ordering so I can understand
-> what we're aiming for overall?
-Sure, all nodes with an unit address should be ordered ascending by unit=
-=20
-address.
+Thanks for the feedback, I'll definetly take a look to those warnings in 
+order to propose more useful contributions in the future.
 
-https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
+Meanwhile, given that I already wrote this DT binding schema, I think it would
+be a shame to discard the work already done, even if it's low priority.
+
+> > 
+> > Signed-off-by: Kael D'Alcamo <dev@kael-k.io>
+> > ---
+> >  .../bindings/rng/sparc_sun_oracle_rng.txt     | 30 ---------
+> >  .../bindings/rng/sparc_sun_oracle_rng.yaml    | 61 +++++++++++++++++++
+> 
+> SUNW,n2-rng.yaml for the filename.
 >
->>> +
->>>                mailbox: mailbox@7c013880 {
->>>                        compatible =3D "brcm,bcm2835-mbox";
->>>                        reg =3D <0x7c013880 0x40>;
+> >  2 files changed, 61 insertions(+), 30 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.txt
+> >  create mode 100644 Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.txt b/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.txt
+> > deleted file mode 100644
+> > index b0b211194c71..000000000000
+> > --- a/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.txt
+> > +++ /dev/null
+> > @@ -1,30 +0,0 @@
+> > -HWRNG support for the n2_rng driver
+> > -
+> > -Required properties:
+> > -- reg		: base address to sample from
+> > -- compatible	: should contain one of the following
+> > -	RNG versions:
+> > -	- 'SUNW,n2-rng' for Niagara 2 Platform (SUN UltraSPARC T2 CPU)
+> > -	- 'SUNW,vf-rng' for Victoria Falls Platform (SUN UltraSPARC T2 Plus CPU)
+> > -	- 'SUNW,kt-rng' for Rainbow/Yosemite Falls Platform (SUN SPARC T3/T4), (UltraSPARC KT/Niagara 3 - development names)
+> > -	more recent systems (after Oracle acquisition of SUN)
+> > -	- 'ORCL,m4-rng' for SPARC T5/M5
+> > -	- 'ORCL,m7-rng' for SPARC T7/M7
+> > -
+> > -Examples:
+> > -/* linux LDOM on SPARC T5-2 */
+> > -Node 0xf029a4f4
+> > -	.node:  f029a4f4
+> > -	rng-#units:  00000002
+> > -	compatible: 'ORCL,m4-rng'
+> > -	reg:  0000000e
+> > -	name: 'random-number-generator'
+> > -
+> > -/* solaris on SPARC M7-8 */
+> > -Node 0xf028c08c
+> > -	rng-#units:  00000003
+> > -	compatible: 'ORCL,m7-rng'
+> > -	reg:  0000000e
+> > -	name:  'random-number-generator'
+> > -
+> > -PS: see as well prtconfs.git by DaveM
+> > diff --git a/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.yaml b/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.yaml
+> > new file mode 100644
+> > index 000000000000..fea6be544784
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/rng/sparc_sun_oracle_rng.yaml
+> > @@ -0,0 +1,61 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/rng/sparc_sun_oracle_rng.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: HWRNG support for the n2_rng driver
+> 
+> SUN UltraSPARC HWRNG
+> 
+> > +
+> > +maintainers:
+> > +  - David S. Miller <davem@davemloft.net>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - SUNW,n2-rng  # for Niagara 2 Platform (SUN UltraSPARC T2 CPU)
+> > +      - SUNW,vf-rng  # for Victoria Falls Platform (SUN UltraSPARC T2 Plus CPU)
+> > +      # for Rainbow/Yosemite Falls Platform (SUN SPARC T3/T4),
+> > +      #  (UltraSPARC KT/Niagara 3 - development names)
+> > +      #  more recent systems (after Oracle acquisition of SUN)
+> > +      - SUNW,kt-rng
+> > +      - ORCL,m4-rng  # for SPARC T5/M5
+> > +      - ORCL,m7-rng  # for SPARC T7/M7
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  "rng-#units":
+> > +    description: Number of RNG units
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    minimum: 1
+> 
+> This will need an exception in vendor-prefixes.yaml to fix the warning. 
+> Looking at some of the Sparc DTs briefly, there's a few more ways '#' 
+> shows up.
+> 
+> I suppose this:
+> 
+> "^[a-zA-Z0-9#_][a-zA-Z0-9+\\-._@]{0,63}$": true
+> 
+> needs to be:
+> 
+> "^[a-zA-Z0-9#_][a-zA-Z0-9#+\\-._@]{0,63}$": true 
+> 
+> (I think the '@' should be dropped here.)
+> 
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +# PS: see as well prtconfs.git by DaveM
+> > +examples:
+> > +  - |
+> > +    bus {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        rng@e {
+> > +            compatible = "ORCL,m4-rng";
+> > +            reg = <0xe>;
+> > +            rng-#units = <2>;
+> > +        };
+> > +    };
+> > +  - |
+> > +    bus {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +        rng@e {
+> > +            compatible = "ORCL,m7-rng";
+> > +            reg = <0xe>;
+> > +            rng-#units = <3>;
+> > +        };
+> > +    };
+> 
+> I think one example is enough.
+> 
+> Rob
 
+Kael
 
