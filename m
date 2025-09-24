@@ -1,205 +1,192 @@
-Return-Path: <devicetree+bounces-220749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9947B99FA1
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:08:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AA7CB9A015
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 15:19:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F28A31B25AF5
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:08:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15B7B4A321E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 13:19:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C99D303A00;
-	Wed, 24 Sep 2025 13:07:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="k4jBBEwP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED6813009E8;
+	Wed, 24 Sep 2025 13:18:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E06E430275B
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 13:07:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A36F289376
+	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 13:18:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758719278; cv=none; b=a1QbwQRsC+a7L1z192kb/7vs8bQHWxyHVb2L78KzvkNDkoOtflBlXqRcUR1oTNVej3v+Sm/V8k249+Y7JsDEpoMj5e4GSXcg9LH4JF7gXYuiFIL6cXucYJeriFvpgDXUx/ectluy2Bn+UzCLjHUsPX+TAVhKibEKWJ8bTAhe0FI=
+	t=1758719929; cv=none; b=If7S8iQoTx5Kq8Lz3KYEOJYyVwSit1xYWDxZiiEKsQHpHkLiCwnlCmj4zCU+lU8347mIup8js9zYE9bx8/IHAQns68w6TT4ysl9ZrhknJpQeU56qV84fiK5rcMLDmw6YK2IaTtGqQtLNHJ66a2N/veE98KCoacVgMXYk/Cd8OZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758719278; c=relaxed/simple;
-	bh=QdVtGcIHzrV0fUtoLR0+CcnCf0mmDqhn9O0HeNGf39c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DV0kSQBXp9HvSv1j7yKc8LmE2L6y46QofsHVmyH66/xV8yZrSCtvPcNXDKgqfRZiexPtlNuXP6YdcqlxLgnDqC2Y1Mu0EnQKqrnty4D0o72a/jtRzX8ej6fRrpb9kMZKF+V8jwokPRhU/1wrESmiVx61PfgshzokGw/yhZFzlg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=k4jBBEwP; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b33d785db6fso78205966b.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 06:07:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1758719274; x=1759324074; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=APo2jYD1PxrHJsECEd/93gcKH2/sr0pgqf5id/Ryl2g=;
-        b=k4jBBEwPKBAGNkEj/4toGW5EWNlhweFXitN/V5E/hBZqPJ8JAACcom1AzUm9oBL57y
-         eNa1xy/5JpK2ZuQqyxO/LNE9AoA91yKzBuFeRkDoAuraA6ikXppClZC0tsHzCqesQF5s
-         ur1gEM7DzyjRXNVbuu46Wn3YG5zymnkiprx0g=
+	s=arc-20240116; t=1758719929; c=relaxed/simple;
+	bh=z/C4wkQC8gaVbvYtfUOzohgsubPk5RoreYsa0amGnQw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rQ47TjPknXWygLyt+cDO+2x/SYNmn7HQ9xJ/DYK+Cdc/xgQTxwIC5cjjN2x5Luku29oKQcmIYJNpqG0pDWrfKcEAhxOVPvIHQuxLHQgAe9Db9qhA7ulCTKDusxSdPF/H1rluz+cm1zxgNhKrM4CJwcwL/37y6G5wWDJFSJP18tM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-77d94c6562fso6817780b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 06:18:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758719274; x=1759324074;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=APo2jYD1PxrHJsECEd/93gcKH2/sr0pgqf5id/Ryl2g=;
-        b=jw+n1dMVptf8b1HlSzAEQdw/J71uQxEGCpiCU9t/3Zs0hZaxKNvHUA0ZH03DSaXxCq
-         NIm/+ou1/PKaYS0bF+yYJkGswFThB545j2yQ66JMRrohXph5sfP0vzcMo3NEK8IyilFR
-         vtGaDN1ODJxHqZX9AsnhsyWFyp4n8+TcrMB+5GGp/n5PZiy6DK0N447Rtv3tFvClzB5F
-         i/6Vq7AL3kOWvTUu7a5ghg5I7cM0XhbOxNS+1r2SGygSmLRJvvwhHfw2ANRf8XJIPq1j
-         rVDsMyyHVC6AG60o/T4QJfGobPcOQBKlIMiTNzClP72mSXBuYCRacy/X+XBGHZ9xTe6Z
-         LfLg==
-X-Forwarded-Encrypted: i=1; AJvYcCUTTR7V95UhOikCfYahQDI6wZZoNULEJyoRi3WbwFlsk4K5H7RErnH+YHN4g733s6Xrr773Cs8Sp9jH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxcxMvoBMmEQgRP7O/T1bcbLczyOHhAfOs6Um5fEciHI5Y4JEFh
-	Y41iOmJWc9TE1NvuoUfaY43KPukXxx1zbIjkH/lur0f7ou8DtCAwO1o7QV3jzEmhFF0=
-X-Gm-Gg: ASbGncsNdOZLZxE23JDaTMQwp7uGWWW+gUwEmM2bUzyWdBgPFQQ/BGYkDRboXdFVVEg
-	2V8A7Q2u2ObK2pmQXEfMaBJvo/6+P8CXPni4v2WA7WkKOFlV4Avx19UDfbqjT3FWPVUflQpZvZ1
-	Yr3wMAXMsQL1nHiynmyt3DCUNR6BQc2pms8oom2ah1MrElZwYnvEDfuGbqp4XKjman4+5ZVEDVD
-	vtKflbUWeqDLpLO0F4YGtQeHZsSS0KtXXp0+um5pjgu6DWyrRffOayD2gjAIiPP/NMDaVj4VFdZ
-	jhMAj/1JvGOGCvrHZp30C82Ftkvv93grmwfhtRww/7nJiC/1lqlCpa6Hmr0R0ycRVJuifDauT1P
-	+tcVTvb/+08Samyr2Q8wI/pCDAX8ECa1ocrOUoHNZYd3UfRsw1NwApu4+aAC1DoMbp7wkx+lyhA
-	Caz15PQGGc9dl0GuaEjpJz7qXwPxGL0uca/u3tSSqNixlYeSs+MtB5Aw95hhk=
-X-Google-Smtp-Source: AGHT+IF67mD/mI0gnp/TuaWCgcn+3WEoNIAZH9oCfonzva0RaGE9yWAfNCRhfJo9YzLJalRUTsq/KQ==
-X-Received: by 2002:a17:907:6e90:b0:b04:25e6:2dbe with SMTP id a640c23a62f3a-b302c1fff60mr622859266b.63.1758719273947;
-        Wed, 24 Sep 2025 06:07:53 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.amarulasolutions.com (host-82-56-38-125.retail.telecomitalia.it. [82.56.38.125])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b1fc5f382b0sm1574379866b.2.2025.09.24.06.07.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Sep 2025 06:07:53 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Frank Li <Frank.Li@nxp.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Mark Brown <broonie@kernel.org>,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Michael Trimarchi <michael@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: [RESEND PATCH 2/3] ARM: dts: imx28-amarula-rmm: add I2S audio
-Date: Wed, 24 Sep 2025 15:07:45 +0200
-Message-ID: <20250924130749.3012071-2-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250924130749.3012071-1-dario.binacchi@amarulasolutions.com>
-References: <20250924130749.3012071-1-dario.binacchi@amarulasolutions.com>
+        d=1e100.net; s=20230601; t=1758719927; x=1759324727;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tIlYzxGhD3l9eBjwM++AWTKEOipfMDPpBnbYVK8JQsQ=;
+        b=ZHQ4SREP4Pnv0jAtSB/8rPljM+S8b9H515Zwj6yJBkpeE/UcpMYI61NQq02LXwNKXz
+         LPeZzfdtSphtE1/9PT+NwFIR9CZQuMrolfkpd6yeRKZ1tf/oZmd75drlkbOu5eD5eRLp
+         F1QR3IlW5/mEGiPPPJg89PLG6cSoy3gHWa1zGb1zFRWEFJdhOKAy1aVDfLOTOIjTiOjS
+         lEQ33D5z28saUV0NPDhri+HUSXBHK3ELwdIzN57p0NN1+Hv0TnuXE8YlP3XklXwMTR/V
+         YG3jiFhF5wlkRKIDYSXDTpZo9DbLD8aMGPMFSua17sDYc+Y2goSvVXx1H/jSagV8PlDc
+         cClg==
+X-Forwarded-Encrypted: i=1; AJvYcCUAgKa2Y/hpfIOs5hNspgc35Dtap01/AvrZZKyG5npTc+Wuu+gmXo0SNqQV0M1Ni9MUS1yW98wwR4L8@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywh9rjnxHw2Oke1P2LOleUZEAEFKJNwz/ewrW+fRMUKWJ59u1uE
+	HPAIb/nIczYxHlUByZOK04Sj5rw2SPjivwGRx5T3fCvdIeNQfEm2hMpH1GdOteZW
+X-Gm-Gg: ASbGncviQ7nMFn91X9XtHUxr3QQYRRw5nHg2JNoguSRDHQQS3y5oie1CRs5msyY817n
+	XNgOs1ynX2Z9AaOcHmA19rlosxf6SEwrKiJZelNcA4SXJHHWdEyFsLnpY8iiGBZukrVnQwrc8nx
+	pFVHxYk2KpQxCYP5JtAhPHWY5gC3jaKWxouhzA9U304hMLCp+Pognx5n6iCT8Qmiq6oN7PZTBkW
+	9dMFj0jnPMB0ji9W7aed9LoDXrE4DEgUtwJADdYkozHDqE8jrnAQNV40C/9pZynRBIjRlswATSU
+	0JwRq2WN5ROKJAa5K4sFaGPs8ksb3dOPEbIo1TpjsPMh1KUTyZ7oed1J6xfg6r9aPw/CseHP1OL
+	BCG7DxA/Ao+UhcUoXBQULx4EPzzvmSjpMt4mJivFjEw7nA6huHAcUNSTIYnw2O5jq
+X-Google-Smtp-Source: AGHT+IGShkeAav/0ce6SAYPiqDK2zj0l4JtZeLurUUKSB8g78050XMtRw++R1+wBXt8e5soqM35snw==
+X-Received: by 2002:a05:6a00:c8e:b0:77f:47e3:310b with SMTP id d2e1a72fcca58-77f5384928emr7992779b3a.1.1758719927267;
+        Wed, 24 Sep 2025 06:18:47 -0700 (PDT)
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com. [209.85.215.182])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-780f75c1e21sm1006567b3a.21.2025.09.24.06.18.46
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 24 Sep 2025 06:18:46 -0700 (PDT)
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-b5241e51764so5316845a12.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 06:18:46 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXEesBzrFfB5pi991T4+57j00IEqbnGVGLjmvgjVc8kdzwjCftFO3SiRYyLtKN7drKHtqW2r0jWOecC@vger.kernel.org
+X-Received: by 2002:a05:6102:4426:b0:5a1:17e3:ea9d with SMTP id
+ ada2fe7eead31-5a578c96363mr2082608137.25.1758719489139; Wed, 24 Sep 2025
+ 06:11:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250903161718.180488-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250903161718.180488-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250903161718.180488-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 24 Sep 2025 15:11:18 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUT2Nv9cEw1VsSeRQfNsK7-CxWqDN+S=Txkv6DXMDdCOQ@mail.gmail.com>
+X-Gm-Features: AS18NWB3LiRE7h2GD3dAO4aR_IhRpZe13Ufoocoh6CaSUdYv9A8x5d9icvSRroc
+Message-ID: <CAMuHMdUT2Nv9cEw1VsSeRQfNsK7-CxWqDN+S=Txkv6DXMDdCOQ@mail.gmail.com>
+Subject: Re: [PATCH v8 6/6] drm: renesas: rz-du: mipi_dsi: Add support for
+ RZ/V2H(P) SoC
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Add support for I2S audio on Amarula rmm board. Audio codec
-TLV320AIC3X is connected as slave to SAIF0, which provides
-bitclock, frame and MCLK.
+Hi Prabhakar,
 
-Co-developed-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Michael Trimarchi <michael@amarulasolutions.com>
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
----
+On Wed, 3 Sept 2025 at 18:17, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add MIPI DSI support for the Renesas RZ/V2H(P) SoC. Compared to the
+> RZ/G2L family, the RZ/V2H(P) requires dedicated D-PHY PLL programming,
+> different clock configuration, and additional timing parameter handling.
+> The driver introduces lookup tables and helpers for D-PHY timings
+> (TCLK*, THS*, TLPX, and ULPS exit) as specified in the RZ/V2H(P) hardware
+> manual. ULPS exit timing depends on the LPCLK rate and is now handled
+> explicitly.
+>
+> The implementation also adds support for 16 bpp RGB format, updates the
+> clock setup path to use the RZ/V2H PLL divider limits, and provides new
+> .dphy_init, .dphy_conf_clks, and .dphy_startup_late_init callbacks to
+> match the RZ/V2H sequence.
+>
+> With these changes, the RZ/V2H(P) can operate the MIPI DSI interface in
+> compliance with its hardware specification while retaining support for
+> existing RZ/G2L platforms.
+>
+> Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
- .../boot/dts/nxp/mxs/imx28-amarula-rmm.dts    | 51 +++++++++++++++++++
- 1 file changed, 51 insertions(+)
+Thanks for your patch!
 
-diff --git a/arch/arm/boot/dts/nxp/mxs/imx28-amarula-rmm.dts b/arch/arm/boot/dts/nxp/mxs/imx28-amarula-rmm.dts
-index af59211842fb..0c5b52f67178 100644
---- a/arch/arm/boot/dts/nxp/mxs/imx28-amarula-rmm.dts
-+++ b/arch/arm/boot/dts/nxp/mxs/imx28-amarula-rmm.dts
-@@ -112,6 +112,29 @@ reg_usb1_vbus: regulator-usb1-vbus {
- 		enable-active-high;
- 		regulator-always-on;
- 	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "imx28-mrmmi-tlv320aic3x-audio";
-+		simple-audio-card,format = "i2s";
-+		simple-audio-card,bitclock-master = <&cpu_dai>;
-+		simple-audio-card,frame-master = <&cpu_dai>;
-+		simple-audio-card,widgets =
-+			"Headphone", "Headphone Jack";
-+		simple-audio-card,routing =
-+			"Headphone Jack", "HPROUT",
-+			"Headphone Jack", "HPRCOM";
-+		simple-audio-card,mclk-fs = <512>;
-+
-+		cpu_dai: simple-audio-card,cpu {
-+			sound-dai = <&saif0>;
-+			clocks = <&saif0>;
-+		};
-+
-+		codec_dai: simple-audio-card,codec {
-+			sound-dai = <&tlv320aic3x>;
-+		};
-+	};
- };
- 
- &auart0 {
-@@ -154,6 +177,20 @@ &i2c0 {
- 	pinctrl-0 = <&i2c0_pins_a>;
- 	status = "okay";
- 
-+	tlv320aic3x: tlv320aic3x@18 {
-+		compatible = "ti,tlv320aic3x";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&tlv320aic3x_pins>;
-+		reg = <0x18>;
-+		reset-gpios = <&gpio2 4 GPIO_ACTIVE_LOW>;
-+		#sound-dai-cells = <0>;
-+
-+		DVDD-supply = <&reg_1v8>;
-+		IOVDD-supply = <&reg_3v3>;
-+		AVDD-supply = <&reg_3v3>;
-+		DRVDD-supply = <&reg_3v3>;
-+	};
-+
- 	touchscreen: touchscreen@38 {
- 		compatible = "edt,edt-ft5306";
- 		reg = <0x38>;
-@@ -246,6 +283,14 @@ MX28_PAD_PWM1__GPIO_3_17
- 		fsl,voltage = <MXS_VOLTAGE_HIGH>;
- 	};
- 
-+	tlv320aic3x_pins: tlv320aic3x-pins@0 {
-+		reg = <0>;
-+		fsl,pinmux-ids = <MX28_PAD_SSP0_DATA4__GPIO_2_4>;
-+		fsl,drive-strength = <MXS_DRIVE_4mA>;
-+		fsl,pull-up = <MXS_PULL_ENABLE>;
-+		fsl,voltage = <MXS_VOLTAGE_HIGH>;
-+	};
-+
- 	usb0_vbus_enable_pin: usb0-vbus-enable@0 {
- 		reg = <0>;
- 		fsl,pinmux-ids = <MX28_PAD_SSP0_DATA5__GPIO_2_5>;
-@@ -269,6 +314,12 @@ &pwm {
- 	status = "okay";
- };
- 
-+&saif0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&saif0_pins_a>;
-+	status = "okay";
-+};
-+
- /* microSD */
- &ssp0 {
- 	compatible = "fsl,imx28-mmc";
+> --- a/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
+> +++ b/drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c
+
+> +/**
+> + * rzv2h_dphy_find_timings_val - Find timing parameter value from lookup tables
+> + * @freq: Input frequency in Hz
+> + * @index: Index to select timing parameter table (see enum rzv2h_dsi_timing_idx)
+> + *
+> + * Selects the timing table for the requested parameter, finds the
+> + * frequency range entry and returns the register value to program:
+> + *
+> + *   register_value = timings->base_value + table_index
+> + *
+> + * Note: frequency table entries are stored as small integers (units of 10):
+> + *       threshold_in_hz = (unsigned long)table_entry * 10 * MEGA
+> + *
+> + * Return: timing register value to be programmed into hardware
+> + */
+> +static u16 rzv2h_dphy_find_timings_val(unsigned long freq, u8 index)
+> +{
+> +       const struct rzv2h_mipi_dsi_timings *timings;
+> +       u16 i;
+> +
+> +       /* Get the timing table structure for the requested parameter */
+> +       timings = &rzv2h_dsi_timings_tables[index];
+> +
+> +       /*
+> +        * Search through frequency table to find appropriate range
+> +        * timings->hsfreq[i] contains frequency values from HW manual
+> +        * Convert to Hz by multiplying by 10 * MEGA.
+> +        */
+> +       for (i = 0; i < timings->len; i++) {
+> +               unsigned long hsfreq = timings->hsfreq[i] * 10 * MEGA;
+> +
+> +               if (freq <= hsfreq)
+> +                       break;
+> +       }
+> +
+> +       /* If frequency exceeds table range, use the last entry */
+> +       if (i == timings->len)
+> +               i--;
+> +
+> +       /*
+> +        * Calculate final register value:
+> +        * - timings->base_value: base value for this timing parameter
+> +        * - i: index into frequency table (0-based)
+> +        * Combined they give the exact register value to program
+> +        */
+> +       return timings->base_value + i;
+> +};
+
+Unneeded semicolon.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.43.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-base-commit: cec1e6e5d1ab33403b809f79cd20d6aff124ccfe
-branch: microgea-rmm-audio
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
