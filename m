@@ -1,63 +1,62 @@
-Return-Path: <devicetree+bounces-220868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 544E9B9BA2F
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:13:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FA32B9BA4A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 21:15:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A0281B2690A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:14:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 403EF1888076
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 19:15:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D8C22586CE;
-	Wed, 24 Sep 2025 19:13:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77A5225A35D;
+	Wed, 24 Sep 2025 19:14:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nMWvT3dn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="INQUvJ0O"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C6E418B0A;
-	Wed, 24 Sep 2025 19:13:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459E6258CE7;
+	Wed, 24 Sep 2025 19:14:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758741232; cv=none; b=GFyk7PR759QUJOhCVvNnlPe2S1oLRtfo/TzfwOYMZVPsKMSu667X0rSAIMAgR0wgPyp+++USD5ZxLJz2W6dw3JzBBGEDrGnvqtocRrS6IVoAIKMUNmPHi7ohkDsRpGqcDaDuETCruupG5DPhuHovBX6lUcvvEK/0u8S4dJA3WMM=
+	t=1758741296; cv=none; b=uu520QjXRnoelHs9GWFZoYaeA3XKt1GF1LXLvASGV2q0tDG1+GLSTfow6mKWpZkk1AL5a5l9GC70b4/LHnaHFYaqu4AwyaNTF5Ykh1W8HDX8hHMGycW8M5/YbDiFabVAuwiZEZmkT/H6CvSC62EHn4FkNdb0bP7VbJ+OAcqJlUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758741232; c=relaxed/simple;
-	bh=obJxnZekB4WIG8RL7kXppSHgA/amLMeM0pzMUd0i/CQ=;
+	s=arc-20240116; t=1758741296; c=relaxed/simple;
+	bh=T1TL9FcBEKBPktZuNee9w+LuTn6dwsMRfe/Fei5GdKk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CT1JrT5qYgW7WH+v5nvyo+HvSDAptgV4z1BbZrMW9clE7qv5BmOZEdEaR4njan1g151vu2/8cOKUL93EE3MDcFBUp++G2nWJo9Qp9cmxiajszZkrDn61GeCaZON/dnr6D9ipP9wWO0ia+W0CM7Qhlq/+DRwD+ExSkaxZacC77Dg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nMWvT3dn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A94B0C4CEE7;
-	Wed, 24 Sep 2025 19:13:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uQQkFCIOEy7asegalHaHXCVcu1pT1oApVlN9wlHyKXzj1kLjyyiH/sxbygtpcjldW75bjizaKszW0tRH/GeoEUhQQp6IHNmNtJedEW6BtaIstYeWuK61xkFTxS9uAysP2X0GUqsf+RpiTZPKTcZNjssy6G19k013eKPK2vSyxFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=INQUvJ0O; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DCF4C4CEE7;
+	Wed, 24 Sep 2025 19:14:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758741231;
-	bh=obJxnZekB4WIG8RL7kXppSHgA/amLMeM0pzMUd0i/CQ=;
+	s=k20201202; t=1758741295;
+	bh=T1TL9FcBEKBPktZuNee9w+LuTn6dwsMRfe/Fei5GdKk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nMWvT3dnPw4+xviu3m6H3ehDXSQusdziP04daUv+/Qsh3E4fEWSwp+zE8MT1rqiBP
-	 ifwatbwbth3QnrQpSSobAc/K3yFQs32TDc4KhD5+p65ZXpa/i5Gr0G7P2vmV7W1pGh
-	 YpTdMrsXrgpojrwJC0em4VViA9i5AyVyGJ90/3CzzOsDV0XWnq/GUHGLtD7/AxOdg7
-	 rUL9dAVIsZLKHVptXAHKiZe/xmqH+BNvKuhgKmHfEnsqi3Qr+jhBhECiGONdDJm7sm
-	 Eqag8hpae1WTMHOFO7oXdigp0TLGIOfYh8APsBWjFrz2+5nPOqGFyd53od+G4FGpUi
-	 Prkl+iAW2+BZw==
-Date: Wed, 24 Sep 2025 20:13:46 +0100
+	b=INQUvJ0OY0IOTHbUTZKHChE61SxueHG7+lMs0JuSjmuGlq4BYPz0ltJxR8CRUrD6D
+	 y5EKM7acqcikuGbOf7gjtZMjHttBwb2iz6jhVKtAFY1KInbmzYbXu+mQAoyoNQFQ4n
+	 Hj/JEUhZq18XXYDiJ5vfhnA61l7olASU7WiPfPkzCQ9FPDcrKPP2lKktBU22aZqI/A
+	 zlY91HSMQx4zd2vB1cOe69qurZzOl7crwf8g5B1/Qr1gUJ9bNYe+MW8/ZqM4HP6YLA
+	 w61zu1+fmOZDoRMD5Pa4ZxNx3bZLWi7PmjfIFZ74T1hxkWpgXFdYOkkqG6R+wYjVSQ
+	 yuZUc9pXAr1Aw==
+Date: Wed, 24 Sep 2025 20:14:50 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Kevin Tung <kevin.tung.openbmc@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Amithash Prasasd <amithash@meta.com>,
-	Kevin Tung <Kevin.Tung@quantatw.com>,
-	Ken Chen <Ken.Chen@quantatw.com>, Leo Yang <Leo-Yang@quantatw.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: arm: aspeed: add Meta Yosemite5 board
-Message-ID: <20250924-flagman-thus-08b0cb14946e@spud>
-References: <20250924-yv5_add_dts-v2-0-39a4a8e3c9e6@gmail.com>
- <20250924-yv5_add_dts-v2-1-39a4a8e3c9e6@gmail.com>
+To: "Alice Guo (OSS)" <alice.guo@oss.nxp.com>
+Cc: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Alice Guo <alice.guo@nxp.com>
+Subject: Re: [PATCH v1 1/3] dt-bindings: nvmem: imx-ocotp: Add binding for
+ i.MX94
+Message-ID: <20250924-chomp-shakiness-c1882c9ea038@spud>
+References: <20250924-imx943-v1-0-0d32d7852ecb@oss.nxp.com>
+ <20250924-imx943-v1-1-0d32d7852ecb@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,27 +64,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="98eyz47R0E2z5CLq"
+	protocol="application/pgp-signature"; boundary="+IiXT27lUb0BdT98"
 Content-Disposition: inline
-In-Reply-To: <20250924-yv5_add_dts-v2-1-39a4a8e3c9e6@gmail.com>
+In-Reply-To: <20250924-imx943-v1-1-0d32d7852ecb@oss.nxp.com>
 
 
---98eyz47R0E2z5CLq
+--+IiXT27lUb0BdT98
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
 Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---98eyz47R0E2z5CLq
+--+IiXT27lUb0BdT98
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNRC6gAKCRB4tDGHoIJi
-0qx2AP0cDNVhrKNfjJaL3YkhGqfWYI4zoBzMpZriprMQBVvMFwD/c/iVVQFN2NIl
-eI23SXm/4HvbUEm9VtZBvfSuqmBKEA0=
-=U+q/
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNRDKgAKCRB4tDGHoIJi
+0hTiAQCYzrrbAXZdYICVu4J1no5zRkudK4GVF6AHWu8BHe/eegD/cymuT+8GmqkU
+zWJ12fxOOaXL19LJlF/sxDbSY1sHago=
+=yioo
 -----END PGP SIGNATURE-----
 
---98eyz47R0E2z5CLq--
+--+IiXT27lUb0BdT98--
 
