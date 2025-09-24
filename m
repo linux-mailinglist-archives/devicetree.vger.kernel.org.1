@@ -1,127 +1,125 @@
-Return-Path: <devicetree+bounces-220634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-220635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB8ADB98C0A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 10:08:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46465B98C7F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 10:19:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DD19189C937
-	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 08:08:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F1F522E1090
+	for <lists+devicetree@lfdr.de>; Wed, 24 Sep 2025 08:19:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C181FDE01;
-	Wed, 24 Sep 2025 08:08:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="FnHE2anQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A0526D4E3;
+	Wed, 24 Sep 2025 08:19:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 775A028000A
-	for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 08:08:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+Received: from zg8tmty1ljiyny4xntuumtyw.icoremail.net (zg8tmty1ljiyny4xntuumtyw.icoremail.net [165.227.155.160])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA733D544;
+	Wed, 24 Sep 2025 08:19:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=165.227.155.160
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758701286; cv=none; b=pdVOLPqydPxkxrSxubBS4YCfAEm49cvN106kaNJBLZjFAhrk4Crti+56qbb9bqISHXqeE6/uIwgnyCPIn8JF7u2nuk67/M6ovb9eIf5+8+EwDjfGzmYQskoL6F8x19Rgdwo0an/9Eq3UuNQQUIHxDMWo2Uzy93NYzmZojRyHWUU=
+	t=1758701946; cv=none; b=adt1Z8E48lYqk7FynBr0eKYihE4xdVqs5KfO7ipbXNKonjky2T7p3/5Aa2K2iekkyI/o5V1m+AHazksI+OY8WNdNSbDTwz80sMcubaNorPmC2fPONnVEIrljLTXNnI7hKxtNeGVJIsw3KWODjszPq0YsnCJAZLQaFhONrWvfzps=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758701286; c=relaxed/simple;
-	bh=6HP7WS33RyuhHq10ONakzPJU/Wc265faZwnsYhZjIZU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rJ3LI+dVMdTE8ssG2oIH3Wx/AFHQT4IU5+HOSoU3vVlSS7UfBAwGg5SEAKfBl3sFidwIZJR7bqsMGF3saD1DrOyjMqZLHX66U97ueWv5rLHORGDBlXQuWfe9T5gpxhFH8i7o5VVu+UbiMcZo0bnC7vNY0W/uolWr9dD2SlBOwiw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=FnHE2anQ; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=6HP7
-	WS33RyuhHq10ONakzPJU/Wc265faZwnsYhZjIZU=; b=FnHE2anQqFYVXls/UmZy
-	YrQmBFJl8lz7rjfOaPHXiT4rOY7Q93aSFhaVKkjEBYfcGNp+/Sn564zOaxOeC37Z
-	y2Vu26IalgtVQds2tAzDx9sDkcjO6pFn8Op/U2IVNpvwL54DrbueHClA/HFPgJAh
-	kGXowapirRYNlYX1YxMwziZ3gQqz9rCLP+4D407eOJHb5lKjutnkTqhI+4pgk/BZ
-	XVzVldK7aC0clwQ0pfJINLHpLQlzM0ipB2ndhYqZq9xqhwGFnkl6rvebk3Msc7Q7
-	27XZONzLCTw7uUHhf2SNvTHWDBvtbfb4TPegUBK+BcnaSdsFmW9rIJ5mFMIMolwM
-	6A==
-Received: (qmail 1410440 invoked from network); 24 Sep 2025 10:07:59 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 24 Sep 2025 10:07:59 +0200
-X-UD-Smtp-Session: l3s3148p1@01sIjYc/0tsujntL
-Date: Wed, 24 Sep 2025 10:07:59 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>,
-	Hoan Tran <hoan@os.amperecomputing.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Phil Edworthy <phil.edworthy@renesas.com>,
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 6/8] dt-bindings: soc: renesas: Add the Renesas RZ/N1
- GPIO Interrupt Multiplexer
-Message-ID: <aNOm3-NxKfjXLsSV@ninjato>
-References: <20250922152640.154092-1-herve.codina@bootlin.com>
- <20250922152640.154092-7-herve.codina@bootlin.com>
+	s=arc-20240116; t=1758701946; c=relaxed/simple;
+	bh=lZUCWci03AbglxggQWQQ4x0B8Eeqd3JY0hT4rfpA0ho=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=SLpu6z/pepmCInAHKzGYyIenCV8pS96K8ORdz/3snhGLe6heH97HtMAzKeEM2ut2W2K5K5Zg6S1vEa7s5eYFgTljY9+nq0TX4pPMKAt5V1z01iSPAD3RGfV1YMl+/sSHzndyoy2O82b5LJboGVaDiCHm1VygbSxJAJMMP66mBjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=165.227.155.160
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
+ ajax-webmail-app2 (Coremail) ; Wed, 24 Sep 2025 16:18:49 +0800 (GMT+08:00)
+Date: Wed, 24 Sep 2025 16:18:49 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: "Xuyang Dong" <dongxuyang@eswincomputing.com>
+To: "Conor Dooley" <conor@kernel.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
+Subject: Re: Re: [PATCH v5 1/2] dt-bindings: clock: eswin: Documentation for
+ eic7700 SoC
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <20250923-popper-choice-397ce2df6966@spud>
+References: <20250923084637.1223-1-dongxuyang@eswincomputing.com>
+ <20250923084739.1281-1-dongxuyang@eswincomputing.com>
+ <20250923-popper-choice-397ce2df6966@spud>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="FOgGMUw30W40DZAr"
-Content-Disposition: inline
-In-Reply-To: <20250922152640.154092-7-herve.codina@bootlin.com>
+Message-ID: <78856df3.17ba.1997acdc444.Coremail.dongxuyang@eswincomputing.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:TQJkCgDHZpVpqdNoHNnaAA--.26233W
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAgEPAmjSy9QU+
+	QAAsG
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 
-
---FOgGMUw30W40DZAr
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Sep 22, 2025 at 05:26:37PM +0200, Herve Codina (Schneider Electric)=
- wrote:
-> On the Renesas RZ/N1 SoC, GPIOs can generate interruptions. Those
-> interruption lines are multiplexed by the GPIO Interrupt Multiplexer in
-> order to map 32 * 3 GPIO interrupt lines to 8 GIC interrupt lines.
->=20
-> The GPIO interrupt multiplexer IP does nothing but select 8 GPIO
-> IRQ lines out of the 96 available to wire them to the GIC input lines.
->=20
-> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
-m>
-
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-Looks good from the technical side. No comment on the syntax because my
-DT check invocation fails again after some update, sigh...
-
-
---FOgGMUw30W40DZAr
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjTptsACgkQFA3kzBSg
-KbbUMQ//R4uahw+mh6cHSRJmsbHQeEMbaHXdeiqM2Ezw/8GZn3xhRRz8qFR3AHH+
-5k3pZCffvHtYAxjVCe7gaTcRT3sDtKTiHrvPRtzEZzlOxVtFJqRJC4lueftWS0eW
-i8rLdwy4rf+fq7nczU/dXAcnw902tQp2zzom05wWaekOaTuGWYoBuE0FWtP7mJ9D
-B9rCJV9mfzh7dIxvTbaqKU3AwwlmGAlX7XuNk3GnRKsNEMzYgbSI8s4lbSYrqAmm
-K+zsTmsXlCxG8Eft3siYtSBz5hfnZ/jIEbHw1gXXOrute9ATqhD6MZzRbOFbyy+2
-UqYuOlLReS/fNcxGXpte3XMP059Ixk6LD9JhNTvSy7Z99XAloV79waxPo8kLp5ns
-vBISCYCr8d3eTGVcteoj//X0razRlzJ1Aacx7/UH1tKLqhy1iU2YtY7wJianxwhm
-YNGimNgsnFNMC48UHfzaeQJDFL69fikSluCH+V7gOtAp334mDjzn6cWT83xD8om4
-TXUunrt6VUg6o/csg1Kb50kNqwto34ida/HSUISwm3VnEijK+wJAy1zhxoDC1FWx
-1bsNhc2SpzhQ1n5LvXlqk0SyjtGMryCwf4916OonDLtcbR/5QC+/NEsLrhgW1YWa
-Rcgw09I9B11iqZaXdbdDLQjidkXCE7J7fj5MH96zKMvKwjuFW2E=
-=4j6V
------END PGP SIGNATURE-----
-
---FOgGMUw30W40DZAr--
+PiA+IAo+ID4gQWRkIGRldmljZSB0cmVlIGJpbmRpbmcgZG9jdW1lbnRhdGlvbiBmb3IgdGhlIEVT
+V0lOIGVpYzc3MDAKPiA+IGNsb2NrIGNvbnRyb2xsZXIgbW9kdWxlLgo+ID4gCj4gPiBTaWduZWQt
+b2ZmLWJ5OiBZaWZlbmcgSHVhbmcgPGh1YW5neWlmZW5nQGVzd2luY29tcHV0aW5nLmNvbT4KPiA+
+IFNpZ25lZC1vZmYtYnk6IFh1eWFuZyBEb25nIDxkb25neHV5YW5nQGVzd2luY29tcHV0aW5nLmNv
+bT4KPiA+IC0tLQo+ID4gIC4uLi9iaW5kaW5ncy9jbG9jay9lc3dpbixlaWM3NzAwLWNsb2NrLnlh
+bWwgICB8ICA0MCArKwo+ID4gIC4uLi9kdC1iaW5kaW5ncy9jbG9jay9lc3dpbixlaWM3NzAwLWNs
+b2NrLmggICB8IDM3OSArKysrKysrKysrKysrKysrKysKPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDQx
+OSBpbnNlcnRpb25zKCspCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2
+aWNldHJlZS9iaW5kaW5ncy9jbG9jay9lc3dpbixlaWM3NzAwLWNsb2NrLnlhbWwKPiA+ICBjcmVh
+dGUgbW9kZSAxMDA2NDQgaW5jbHVkZS9kdC1iaW5kaW5ncy9jbG9jay9lc3dpbixlaWM3NzAwLWNs
+b2NrLmgKPiA+IAo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
+aW5ncy9jbG9jay9lc3dpbixlaWM3NzAwLWNsb2NrLnlhbWwgYi9Eb2N1bWVudGF0aW9uL2Rldmlj
+ZXRyZWUvYmluZGluZ3MvY2xvY2svZXN3aW4sZWljNzcwMC1jbG9jay55YW1sCj4gPiBuZXcgZmls
+ZSBtb2RlIDEwMDY0NAo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi40OTA1MzU0M2VjZmUKPiA+IC0t
+LSAvZGV2L251bGwKPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9j
+bG9jay9lc3dpbixlaWM3NzAwLWNsb2NrLnlhbWwKPiA+IEBAIC0wLDAgKzEsNDAgQEAKPiA+ICsj
+IFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9SIEJTRC0yLUNsYXVzZSkK
+PiA+ICslWUFNTCAxLjIKPiA+ICstLS0KPiA+ICskaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9z
+Y2hlbWFzL2Nsb2NrL2Vzd2luLGVpYzc3MDAtY2xvY2sueWFtbCMKPiA+ICskc2NoZW1hOiBodHRw
+Oi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMKPiA+ICsKPiA+ICt0aXRs
+ZTogRXN3aW4gRUlDNzcwMCBTb0MgY2xvY2sgY29udHJvbGxlcgo+ID4gKwo+ID4gK21haW50YWlu
+ZXJzOgo+ID4gKyAgLSBZaWZlbmcgSHVhbmcgPGh1YW5neWlmZW5nQGVzd2luY29tcHV0aW5nLmNv
+bT4KPiA+ICsgIC0gWHV5YW5nIERvbmcgPGRvbmd4dXlhbmdAZXN3aW5jb21wdXRpbmcuY29tPgo+
+ID4gKwo+ID4gK2Rlc2NyaXB0aW9uOgo+ID4gKyAgVGhlIGNsb2NrIGNvbnRyb2xsZXIgZ2VuZXJh
+dGVzIGFuZCBzdXBwbGllcyBjbG9jayB0byBhbGwgdGhlIG1vZHVsZXMKPiA+ICsgIGZvciBlaWM3
+NzAwIFNvQy4KPiA+ICsKPiA+ICtwcm9wZXJ0aWVzOgo+ID4gKyAgY29tcGF0aWJsZToKPiA+ICsg
+ICAgY29uc3Q6IGVzd2luLGVpYzc3MDAtY2xvY2sKPiA+ICsKPiA+ICsgIHJlZzoKPiA+ICsgICAg
+bWF4SXRlbXM6IDEKPiA+ICsKPiA+ICsgICcjY2xvY2stY2VsbHMnOgo+ID4gKyAgICBjb25zdDog
+MQo+ID4gKwo+ID4gK3JlcXVpcmVkOgo+ID4gKyAgLSBjb21wYXRpYmxlCj4gPiArICAtIHJlZwo+
+ID4gKyAgLSAnI2Nsb2NrLWNlbGxzJwo+ID4gKwo+ID4gK2FkZGl0aW9uYWxQcm9wZXJ0aWVzOiBm
+YWxzZQo+ID4gKwo+ID4gK2V4YW1wbGVzOgo+ID4gKyAgLSB8Cj4gPiArICAgIGNsb2NrLWNvbnRy
+b2xsZXJANTE4MjgwMDAgewo+ID4gKyAgICAgICAgY29tcGF0aWJsZSA9ICJlc3dpbixlaWM3NzAw
+LWNsb2NrIjsKPiA+ICsgICAgICAgIHJlZyA9IDwweDUxODI4MDAwIDB4MjAwPjsKPiA+ICsgICAg
+ICAgICNjbG9jay1jZWxscyA9IDwxPjsKPiA+ICsgICAgfTsKPiAKPiBObyBjbG9jayBpbnB1dCB0
+byB0aGlzIGJsb2NrPyBTdXJwcmlzZWQgdGhlcmUncyBub3Qgc29tZSBvZmYtY2hpcAo+IG9zY2ls
+bGF0b3IgdGhhdCBwcm92aWRlcyBhIHF1YWxpdHkgcmVmZXJlbmNlIGZvciB0aGUgaW50ZXJuYWwg
+UExMcyBldGMuCgpUaGVyZSBpcyBhbiBvc2NpbGxhdG9yIGFzIHRoZSBjbG9jayBpbnB1dC4gVGhl
+IGZyZXF1ZW5jeSBpcyAyNDAwMDAwMCBIeiwgYW5kCnRoZSBjbG9jayBuYW1lIGlzICJ4dGFsIi4g
+CldlIHdpbGwgdXBkYXRlIHRoZSBmb2xsb3dpbmcgZGVzY3JpcHRpb24gaW4gdGhlIG5leHQgcGF0
+Y2guCgpwcm9wZXJ0aWVzOgrCoCBjb21wYXRpYmxlOgrCoCDCoCBjb25zdDogZXN3aW4sZWljNzcw
+MC1jbG9jawoKwqAgcmVnOgrCoCDCoCBtYXhJdGVtczogMQoJCsKgIGNsb2NrczoKwqAgwqAgaXRl
+bXM6CiAgICAgIC0gZGVzY3JpcHRpb246IEV4dGVybmFsIDI0TUh6IG9zY2lsbGF0b3IgY2xvY2sK
+CsKgIGNsb2NrLW5hbWVzOgrCoCDCoCBpdGVtczoKICAgICAgLSBjb25zdDogeHRhbAoJwqDCoArC
+oCAnI2Nsb2NrLWNlbGxzJzoKwqAgwqAgY29uc3Q6IDEKCnJlcXVpcmVkOgrCoCAtIGNvbXBhdGli
+bGUKwqAgLSByZWcKwqAgLSBjbG9ja3MKwqAgLSBjbG9jay1uYW1lcwrCoCAtICcjY2xvY2stY2Vs
+bHMnCgphZGRpdGlvbmFsUHJvcGVydGllczogZmFsc2UKCmV4YW1wbGVzOgrCoCAtIHwKwqAgwqAg
+Y2xvY2stY29udHJvbGxlckA1MTgyODAwMCB7CsKgIMKgIMKgIMKgIGNvbXBhdGlibGUgPSAiZXN3
+aW4sZWljNzcwMC1jbG9jayI7CsKgIMKgIMKgIMKgIHJlZyA9IDwweDUxODI4MDAwIDB4MjAwPjsK
+wqAgwqAgwqAgwqAgY2xvY2tzID0gPCZ4dGFsPjsKwqAgwqAgwqAgwqAgY2xvY2stbmFtZXMgPSAi
+eHRhbCI7CsKgIMKgIMKgIMKgICNjbG9jay1jZWxscyA9IDwxPjsKwqAgwqAgfTsKCgpwcm9wZXJ0
+aWVzOgrCoCBjb21wYXRpYmxlOgrCoCDCoCBjb25zdDogZXN3aW4sZWljNzcwMC1jbG9jawoKwqAg
+cmVnOgrCoCDCoCBtYXhJdGVtczogMQoJCsKgIGNsb2NrczoKwqAgwqAgaXRlbXM6CiAgICAgIC0g
+ZGVzY3JpcHRpb246IEV4dGVybmFsIDI0TUh6IG9zY2lsbGF0b3IgY2xvY2sKCsKgIGNsb2NrLW5h
+bWVzOgrCoCDCoCBpdGVtczoKICAgICAgLSBjb25zdDogeHRhbAoJwqDCoArCoCAnI2Nsb2NrLWNl
+bGxzJzoKwqAgwqAgY29uc3Q6IDEKCnJlcXVpcmVkOgrCoCAtIGNvbXBhdGlibGUKwqAgLSByZWcK
+wqAgLSBjbG9ja3MKwqAgLSBjbG9jay1uYW1lcwrCoCAtICcjY2xvY2stY2VsbHMnCgphZGRpdGlv
+bmFsUHJvcGVydGllczogZmFsc2U=
 
