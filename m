@@ -1,100 +1,107 @@
-Return-Path: <devicetree+bounces-221533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48B16BA0B0B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 18:47:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 05D00BA0B1A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 18:49:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5DD316CF66
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 16:46:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A970D16DDE0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 16:49:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FD9B2E7BA7;
-	Thu, 25 Sep 2025 16:46:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B5742EB850;
+	Thu, 25 Sep 2025 16:49:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Nla+uNZ0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EXkE2YJn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F14A41C8603
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 16:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62F7129B777
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 16:49:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758818812; cv=none; b=ngscTW8RhvamWh5W/zetHU+5JIG8L0W700NNUjnXQZv9zt1i12lGeHTw8mJEuNYmBgM4VUgNKNGqa4aDsCh6Ej9F5+Ya6z02FN6rqBNfALKBJVt6Hm7CkYsAbW99M46qyGuqiAdmHNe+IgbvJclJMQ4iCnwLdBcgCGrwXo55gtw=
+	t=1758818961; cv=none; b=eeHzKfaceHmLP5QFErjt3vBsX7s8gPxVFCdGiu4VPi8JGLf16tSXHpA4PLL8ejY+5/0dFS9DqgsaXqSu1pKqI82PG+SXhzkCQX/WTyXzf+GreaMPN7oahx0Xz8GC0BQ2VPuT4hNmdQloOGhEzXgmjCQR70q02xq+tI5rwWZVr0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758818812; c=relaxed/simple;
-	bh=Ut4RvekikEgx9yUNY/U/wvhXEdvVZ8Sh73ZinAayXyI=;
+	s=arc-20240116; t=1758818961; c=relaxed/simple;
+	bh=8FCH12DyEzMNnnk+0LH+hPIRigAxZoYH9xFK5aw71Pg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HRl4UyU/Fkr0Fp7MK6JsRSHMV8cFpP+4PuK/N5NUyBDljnJT8eB1rra9Y7ovqS1TK9vFXEKsinUM+03AfPFvqjj7YzJZxr5sUQYlKNUqbXjVce3R05zBx2vzLbTtiAPP8IGc3qBo868vMK/QOYWK+8+7zqAUCrs4O8R2q8RJvfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Nla+uNZ0; arc=none smtp.client-ip=205.220.168.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=IdisSA2NeXT3OzX4WGKsbDWl81kIg31kDqxZGby/yuysxyOhPD83Hs0r5uddE5RGjWvrpHl7ejPbMAcR5cwPt6/MKq4hjYrLY4EMguEEiIS+P0w9KF/dt4qOn/vHbjXmz5KQr3q1f7ejdMfo0IIBnHTcu+7wb2JzuZ6woXFnP9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EXkE2YJn; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P9q3TM025366
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 16:46:50 GMT
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58PAUhHM029619
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 16:49:17 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=2mr004wkrEndbnMlZ/UZb115
-	iZhGv6Os5vHVBivnlhQ=; b=Nla+uNZ0cAwtyLhYeCb524E9MHCXYM9e6vKSYssg
-	h00wh6hgVI8O5P5VA+Q6zpoOJoF2b2Pq4TKMTZdu3wj6UPdqsTGoAsFtyN1tUDIl
-	aFnvM12FVvwoMKDu7w9xfD6EZ/UIC/LzH1ODm4KrJkL1KUJUpFcTspPiy50zOjAf
-	ucNYzYB51HYTpjvJOHDwP7Igqq+F24cBeocmZpVxXkqWWK8Zqzhtni/e4weWXUQg
-	mgYQAkkcV/tf4QfPsP+ZgFGRv5tXhXhZ8tQK2utedbPtaWnucwNz4EJ1RItY4/0e
-	/5pi8t2Sy4Z5TcftGEMV0sT9HALwGoCRPu7XyME220GkFg==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499hyf17kd-1
+	:references:subject:to; s=qcppdkim1; bh=O8E/Q0Q2T0miV/vIY3HkyaSY
+	ay9pRIb7qiM4HhHNagM=; b=EXkE2YJnBmXZLqeSLfzc0Bplvze0C2nnFdgMn3Yb
+	ujSz5PlCpp6BC1b9jQ6D838Iotob/+it7FXcDh6+LVmmhlGpRZscqAhCLUr4DlIu
+	0pVOApH6o603MAePpATQydnNJp5wM10bDFlcGLmforaBmjTvy4ohrN9dUvnfGCR0
+	regPt1Gl337qSqoJydHx+1snwE/RDRb+hh4a3JZ6npMme9Zx2+Z+VL5zLOs+Pibs
+	dLqxNrQelOpS2vf1SeTBVQ812ORqz/xc+yGTWvm20vwzfLfj+ZjiKwrC/5rU5H0S
+	T+td0Tcs1HshuKbG7mhPhhF8sfqpXyRmc+XWwGbvOFzHbw==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499n1frsrv-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 16:46:50 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-78f2b1bacfcso19098756d6.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:46:50 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 16:49:17 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b5d58d226cso30168441cf.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:49:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758818809; x=1759423609;
+        d=1e100.net; s=20230601; t=1758818956; x=1759423756;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2mr004wkrEndbnMlZ/UZb115iZhGv6Os5vHVBivnlhQ=;
-        b=ZvgmTLOdTWxG9tD4yUkiOcZ9/5SUUUk/myahxRradzexr2ilJjNNlTXJu7R6Ojj4cX
-         LP3Cs1LmJEoR2i2lQZsE+OAeTk/n0wp7d5Bh81nsmCKOY1wSadbe9BfEwvlThNaz5Isi
-         9gyhTNbE6whCJFQGogcvuL1sgMN9w71qay/1qVBhwD9pqSgkxMYoVHN7iDHk9S9pHcCn
-         N4K4Cfz2PGdfASmdNcXMwQaFjUHI4tTsEgE0KmniusaOjUkkS9Mhq/nEPNCPW7cY+uB9
-         A6E47mSAqveiRwh4Jri/Y0F5ohyf1wc08AjzmnhhAB7oIgnBI8JraEq62CBJC1ySl+ae
-         5DFg==
-X-Forwarded-Encrypted: i=1; AJvYcCVmYgTZ2NDL9fHs3hZIv1zn+1cyaeITsOs4li07K0fwS60rl7LC4huFg/gw3sqqtOJtZFume4URAMGK@vger.kernel.org
-X-Gm-Message-State: AOJu0YznC7pFTnFn/hp/FgAi5nzht601OcX8r0/Pj/mHFTrJTcFYAAvo
-	xWeyjnjLkjpKAE3F8C54b5CeKCscUaA/A9m5swe/Y2CBFEoNxZvueskovOPN6VgT4OrPSvJMORw
-	1V6khcaEFwweGMBUYHG/PwUfvFHdeYNucm5CLpnieJ97d1JdnyP/q7dfRjQ4oOJa7
-X-Gm-Gg: ASbGncu1vWY386ChkhMKTQ/EexpbvG/wCfSR6LxqYyAGec7+mmz+V+MDGI1VHtI467z
-	5Gc8uMICiA94Y/w0k1VOiRP4lmepSgKC+LFAT5E4XJxl8vJRIT7PipTZdCCcbHh8Kg1nOPO9pV7
-	oOonp+FH/AUfYoZF8kJmvtcct7Vkrx3mSpfBmToWKxcWVBG8TuVSA7tF0JVK0T+dB7owLPXN2LQ
-	CMV5u7nBNzCxJIuLz8gJeXL3TdrY5gtgrOCYjNu/2HXZd5bLqqqdh9MguFpHecGps+GcU/xgU6S
-	8rn3mp++yA9M2yMCq/MdSmv632mHxkePHtr6eKzLF90GAJ97PfNHwzSJ1O0YlWQa0n4PtYKqKo5
-	+/jBrGeZBmsMvsMcLTGuZv+5T9EXlbDuHDraGRIgoWX5z8PWPIZUc
-X-Received: by 2002:a05:6214:f0b:b0:7f5:b2b6:2a2f with SMTP id 6a1803df08f44-7fc45172872mr57824686d6.67.1758818808588;
-        Thu, 25 Sep 2025 09:46:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFwnWdTJ1BPazbaxUFNG2IQvEM/rlZW2m4Nxzg29lTU9VFpjl04xTbrAF3WvRoPt9K+4sLpmQ==
-X-Received: by 2002:a05:6214:f0b:b0:7f5:b2b6:2a2f with SMTP id 6a1803df08f44-7fc45172872mr57824246d6.67.1758818808045;
-        Thu, 25 Sep 2025 09:46:48 -0700 (PDT)
+        bh=O8E/Q0Q2T0miV/vIY3HkyaSYay9pRIb7qiM4HhHNagM=;
+        b=EHWtN/ytBFNyLR24XVIsJjFC15wve10P3NgaudrrnRYukGk3rfoRcnizgR1jY/N+Hv
+         2civhdaLaPuTQEmllc269hayVA9rZCmjtaoeNwUh3GKlAaj0IulVyW96QR8axVXsIVmA
+         nK64mWL7Q2A8k6+hPKH7uyOFPb6Bq9ShikTrLBGprQl9Z+AKLp/f1S8wgJUB1U4QlYAf
+         B5hR2SecjzUNiHXCS2nNXZgEs2+/YPqzhBUC9cXEemlFFUOVYRp/P/FD4eDflwpnMx2A
+         wKm2DDgBlEdSoNWaJ8EXJH7NM9f3fvAGLBPcmoLzp38CdrY1K4T85T2ZYwXVH4mDO7ZY
+         IJDg==
+X-Forwarded-Encrypted: i=1; AJvYcCUrf+0wgX+Cg1oGrxHU2k39xJ1rn5VvmOhpu2RoSNfs6GN8FfFYOtEJd4ximRVZTeYzxIDI3poxnNSe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+6vdqwA+go1eMPLZYoSgnHdEHKNy+sx7oZ+idGRgviFXl4ifE
+	sPjjmepzCjir+KCEnNUcpg5wkzPboLl4y9TSyLdky6aRbHt9VGFJd4LKG6vZtkq+mIPTVhG8f96
+	3iql2MqCeKyMmyABTPUJdH2fWNg4leOnJpBhJcOXGmJhhdBP7maSImMjiJg0tD1Av
+X-Gm-Gg: ASbGncudL8Gy4t7mxZ4n0FT1Iz1iTp3DSim/jD7xvkd+U1dd3OyhqmlBZULoH7RL4oK
+	DnBH8UkJUxbKfabUIbNUyHmW8jXTOOYDnUJ8w+tTCwKbRZysPA92IrJ61nzmh68df2ImnWVq6kq
+	CK3ZwOwV/cQ5iUQ9O3TubdGjB4RWcK8dZ6vzsHKh7m3WY7kkCESQY1KzUE6Jh1AVJdFy7DUhySh
+	hzre86pEHTMc9hI5f1ZQqHOVI34No8b7xoA4SVVSQ2fvKfKXlCnBwfWK9TOPKzA4eJtb6QR2zgF
+	kNCZLpCQaRA6xZc2W0RcdK42e3KWxCY1T1gNTPi4OqpmY+X1jdygHhNTa727bLFYCDpACCbokkr
+	qfofl6JHtk+5uvN2PKStacWAnyk8uxYKOYD4Fhcp9Kj3G1GnYlZln
+X-Received: by 2002:a05:622a:2d10:b0:4db:7bc2:92b with SMTP id d75a77b69052e-4db7bc21423mr18058861cf.42.1758818955751;
+        Thu, 25 Sep 2025 09:49:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHl5VAez8V9byRkomAR6n8Uz+yVV5p6cTSYYseuZ2q/3tAbwHDTFxFiaDtB4a8EkykXmnhBWw==
+X-Received: by 2002:a05:622a:2d10:b0:4db:7bc2:92b with SMTP id d75a77b69052e-4db7bc21423mr18058561cf.42.1758818955211;
+        Thu, 25 Sep 2025 09:49:15 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58313430e1dsm933170e87.2.2025.09.25.09.46.46
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5831343158fsm924184e87.4.2025.09.25.09.49.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Sep 2025 09:46:47 -0700 (PDT)
-Date: Thu, 25 Sep 2025 19:46:45 +0300
+        Thu, 25 Sep 2025 09:49:14 -0700 (PDT)
+Date: Thu, 25 Sep 2025 19:49:12 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: glymur-crd: Enable eDP display
- support
-Message-ID: <p7btiavlbu3wqcq62j25vyv5reusdqenz7wtqr3zspywittdfl@iivegwoqfjk7>
-References: <20250925-dts-qcom-glymur-crd-add-edp-v1-0-20233de3c1e2@linaro.org>
- <20250925-dts-qcom-glymur-crd-add-edp-v1-2-20233de3c1e2@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com,
+        Ronak Raheja <ronak.raheja@oss.qualcomm.com>
+Subject: Re: [PATCH 06/20] arm64: dts: qcom: kaanapali: Add USB support for
+ Kaanapali SoC
+Message-ID: <bgzzkcf4d74rhdzr3vbjxs55gssojzrizinfvedt6zrz5zgs5f@phggrhdhz4el>
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <20250924-knp-dts-v1-6-3fdbc4b9e1b1@oss.qualcomm.com>
+ <CAJKOXPcbJY4JEjfZLvOAXEWCTYFpe7En+Riis2t3K5fWJgNU5A@mail.gmail.com>
+ <53d63dd6-a022-4e80-a317-3218976a7474@oss.qualcomm.com>
+ <CAJKOXPfGC=FK7AKOtmmSV7=3NNXAHe8A_PGjjhTKgRs4Jk25xA@mail.gmail.com>
+ <CAJKOXPe6Gdc8qb7fwwNsMLiv0SxXm=aOtrR0HsU0S9wiu6erKw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,86 +110,124 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250925-dts-qcom-glymur-crd-add-edp-v1-2-20233de3c1e2@linaro.org>
-X-Proofpoint-GUID: pu6EnqWsodH0xYD6RYC2UfmlYVXmc8Px
-X-Authority-Analysis: v=2.4 cv=YMOfyQGx c=1 sm=1 tr=0 ts=68d571fa cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=KKAkSRfTAAAA:8 a=3enfzX0syV1bCKBQ0NkA:9 a=CjuIK1q_8ugA:10
- a=1HOtulTD9v-eNWfpl4qZ:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAwNCBTYWx0ZWRfX8DKZ9ztxCJWV
- z8GiWLs/NI56OIaUg4ynJh5VkbuWvYVdg8E8AwpPcwkNhh7v98CU2MZLE30qKXMM1liPdgk1GCM
- 8rkJLtuFFC3CxkCgCvEBo/b8NV4XiHzhw28ooZuiLrKnQfSO9qPye9kUqtUVH+2VXYosqQr31eo
- 0+zeuJdtGGx5mvuRuCxCqg1WX3MFLHmn4i49WbBRiYyHp2N86v/PQ4KDlAkS0ONRfaIHax4eyeM
- wTfFBg4R/mwoi9cS+LMKOSdfjwxKOYxOS10VA03KGJVwlr2mvhLBoZsy8cnqsTUOWh1nqI7pexY
- 5rbJ16XsJLKq8DPMgcb50LEQk7hlOnIo2jCFb6d9tKNJyxhpDmnpH/qic2kKH8KcGiaX2Zsd/sd
- hlc0PjKl
-X-Proofpoint-ORIG-GUID: pu6EnqWsodH0xYD6RYC2UfmlYVXmc8Px
+In-Reply-To: <CAJKOXPe6Gdc8qb7fwwNsMLiv0SxXm=aOtrR0HsU0S9wiu6erKw@mail.gmail.com>
+X-Proofpoint-ORIG-GUID: WEnH5z7VbUwa9NmsAQDILTMYNtsaVMCt
+X-Proofpoint-GUID: WEnH5z7VbUwa9NmsAQDILTMYNtsaVMCt
+X-Authority-Analysis: v=2.4 cv=No/Rc9dJ c=1 sm=1 tr=0 ts=68d5728d cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=yAlcOy_z4u1BhRCK-xcA:9 a=CjuIK1q_8ugA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAzNyBTYWx0ZWRfXxuedo3KUqzwl
+ HdVGTVFVwGw4vNRWNDkpLW3J5KWNIjii6vAlhQwfDBXe1ImoakBvj8oq1bxAvqE2S+qVxKxTTeF
+ 63mlg81Q6mH8d0ucFSfabD6/l+vYWhV0tXSsPFO5qG6UMoawr3QYzCBOoh6wQuqWtJkU+BGeuZ7
+ c3Qc0TMupeb6fXrQod1gReZMoRMNBOLCzolzH9Hf0SlMNzFu4VXqFENNmJXRDXcbTEKWpl/HyC4
+ cA0lRlZM7pW9Db4U2N6d1UT4cWA2x0qmY7k6eAzdapy3bgISsbEy3CHzJXQfgILGuY17qqyFBBh
+ yD8kKj9xm4u9xQIAoBHQ+n2T7knw7lNF8e4dAL5Fsbu8l/WcrkexsfQsxVcALLoe++cGo/3S/CB
+ w3y3CX6A
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-25_01,2025-09-25_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 adultscore=0 priorityscore=1501 spamscore=0
- clxscore=1015 suspectscore=0 phishscore=0 malwarescore=0
+ clxscore=1015 spamscore=0 suspectscore=0 adultscore=0 malwarescore=0
+ phishscore=0 bulkscore=0 priorityscore=1501 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200004
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200037
 
-On Thu, Sep 25, 2025 at 06:02:49PM +0300, Abel Vesa wrote:
-> Enable the MDSS (Mobile Display SubSystem) along with the 3rd
-> DisplayPort controller and its PHY in order to bring support
-> for the panel on Glymur CRD platform. Also describe the voltage
-> regulator needed by the eDP panel.
+On Thu, Sep 25, 2025 at 06:01:15PM +0900, Krzysztof Kozlowski wrote:
+> > > >> From: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
+> > > >>
+> > > >> Add the base USB devicetree definitions for Kaanapali platform. The overall
+> > > >> chipset contains a single DWC3 USB3 controller (rev. 200a), SS QMP PHY
+> > > >> (rev. v8) and M31 eUSB2 PHY.
+> > > >>
+> > > >> Signed-off-by: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
+> > > >> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> > > >> ---
+> > > >>  arch/arm64/boot/dts/qcom/kaanapali.dtsi | 155 ++++++++++++++++++++++++++++++++
+> > > >>  1 file changed, 155 insertions(+)
+> > > >>
+> > > >
+> > > >
+> > > > Second try, without HTML:
+> > > >
+> > > > I really don't understand why you created such huge patchset. Year
+> > > > ago, two years ago, we were discussing it already and explained that's
+> > > > just inflating the patchset without reason.
+> > > >
+> > > > New Soc is one logical change. Maybe two. Not 18!
+> > >
+> > > It was previously squashed into the base soc dtsi patch and mark like:
+> > > Written with help from Jyothi Kumar Seerapu(added bus), Ronak Raheja
+> > > (added USB), Manish Pandey(added SDHCI), Gaurav Kashyap(added crypto),
+> > > Manaf Meethalavalappu Pallikunhi(added tsens), Qiang Yu(added PCIE) and
+> > > Jinlong Mao(added coresight).
+> > >
+> > > While it is over 4000+ lines when we squash it together.
+
+As a reviewer I'd totally prefer a single 4k line DT, because then I can
+navigate through it while reviewing.
+
+> >
+> > That's why you send one node per patch? Multiple huge patch bombs land
+> > the same time from Qualcomm, with patches adding one node. It's like
+> > the "no more patch bombs" discussion and rule never existed (yeah, I
+> > know it was removed but the spirit of keeping maintainers mailboxes
+> > sane remains).
+> >
+> >
+> > > Also as offline reviewed with Bjorn, he suggested us to split out the
+> > > USB and other parts.
+> > >
+> > > >
+> > > > Not one patch per node or feature.
+> > > >
+> > > > This hides big picture, makes difficult to review everything,
+> > > > difficult to test. Your patch count for LWN stats doesn't matter to
+> > > > us.
+> > >
+> > > With the current splitting, the different author as each co-developer
+> > > can get the meaningful LWN stats.>
+> >
+> > We don't care about your LWN stats.
+> >
+> > Sending stuff like this for your stats, means that community and
+> > reviewers pay with their time.
+> >
+> > This is really just selfish. No care how maintainers need to scroll
+> > through their mailboxes.
+> >
+> > > > NAK and I'm really disappointed I have to repeat the same review .
+> > > Currently, there are 10 SoC DTSI patches sent, structured as follows:
+> >
+> > Why did you ignore all the feedback from 2024 and 2023? Every year it
+> > has to be repeated?
+> >
+> > >
+> > > SoC initial
+> > > Base MTP board
+> > > SoC PCIe0
+> > > SoC SDC2
+> > > SoC USB
+> > > SoC remoteproc
+> > > SoC SPMI bus, TSENS, RNG, QCrypto, and Coresight
+> > > SoC additional features
+> > > SoC audio
+> > > SoC CAMSS
+> > > SoC video
+> > >
+> > > Which parts would you prefer to squash into pls?
+> >
+> > I made very clear statements year and two years ago. We also discussed
+> > it on IRC multiple times. Can you join discussions instead of ignoring
+> > them?
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/glymur-crd.dts | 76 +++++++++++++++++++++++++++++++++
->  1 file changed, 76 insertions(+)
+> (Apologies for lack of trimming, typos, HTML - using phone)
 > 
-> @@ -536,6 +552,52 @@ vreg_l4h_e0_1p2: ldo4 {
->  	};
->  };
->  
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dp3 {
-> +	/delete-property/ #sound-dai-cells;
-> +
-> +	status = "okay";
-> +
-> +	aux-bus {
-> +		panel {
-> +			compatible = "samsung,atna60cl01", "samsung,atna33xc20";
-> +			enable-gpios = <&tlmm 18 GPIO_ACTIVE_HIGH>;
-> +			power-supply = <&vreg_edp_3p3>;
-> +
-> +			pinctrl-0 = <&edp_bl_en>;
-> +			pinctrl-names = "default";
-> +
-> +			port {
-> +				edp_panel_in: endpoint {
-> +					remote-endpoint = <&mdss_dp3_out>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +
-> +	ports {
-> +		port@1 {
-> +			reg = <1>;
-> +			mdss_dp3_out: endpoint {
+> ...and you sent both inflated, LWN-stats-gaming huge patchbombs
+> (Kaanapali and Glymur) three days before the merge window starts.
+> Community works for free, doesn't it?
 
-Define the endpoint in the SoC DTSI and just reference it here.
-
-> +				data-lanes = <0 1 2 3>;
-> +				link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-> +
-> +				remote-endpoint = <&edp_panel_in>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
+Most of the maintainers have closed their trees, so it doesn't matter.
 
 -- 
 With best wishes
