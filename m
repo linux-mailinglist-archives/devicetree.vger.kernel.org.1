@@ -1,95 +1,103 @@
-Return-Path: <devicetree+bounces-221409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D51DBB9F55B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:47:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9356B9F5AF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:51:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 336341BC3A3B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:48:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67A2117D9A1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:51:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 603BD1DF248;
-	Thu, 25 Sep 2025 12:47:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B7751DDA14;
+	Thu, 25 Sep 2025 12:51:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uB2kh8Me"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="knufJr5W"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E3021DDA14;
-	Thu, 25 Sep 2025 12:47:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 206201C8611;
+	Thu, 25 Sep 2025 12:51:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758804442; cv=none; b=ZoEmQH2pNYVoB8xy218HdafvRLVuJo2qRDP4aX+sFD/uM6ktQ5PDv7dlic3ebKHgyVkJcPr+aQl7v2t7ND1VGcxYNmVyLWrMjddAc8gNZcPGHbXtUz6q2zTdpJc8c6pQvi+SEdF/FRw99Rj9nAuDr9PRWn72wPnTVHvgI/xxNO4=
+	t=1758804713; cv=none; b=Dp4mvkfbcDvCZHZrOBqcIpxdBJ3E18OZ/VpU9pTAjAqoJImypK4nKADnWeUb3zsOXDFP3C9D9SjJeBVI+LW+nBjEJmNjda15BJcQOJSbcgPnFPw3PUG/A4qKz74ExndQnymzEB4Wi9+FKxOeEHkzBcrbq/fc51L2uA0/2JBEf3I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758804442; c=relaxed/simple;
-	bh=0va9/EyMjKMurKnEoNlMlsGNtwpMnvTh5eZELuACqr4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mAhmBfyS9aLSIBc/Jmn8qvyF4on7Gd6b7EUis19/uVYOb3BX9ZUwgI7QRpHjsiwKczOx7Isv4aJlBpzDW8N47hn4bDCC513/wM2uit6ioFvFFL5qoh+Nft1ZA4oQT2TyRCHAVhS1JRCg/mc8lf+j83b8vRdZqx8BpRTv+hGNB3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uB2kh8Me; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26E82C4CEF0;
-	Thu, 25 Sep 2025 12:47:15 +0000 (UTC)
+	s=arc-20240116; t=1758804713; c=relaxed/simple;
+	bh=mO1eURmsQ/Q67GVCleK7Z0UQWNq3rMCZKy4D+DzPFzU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hGOn32gyasgm+gkMGXM4ScdjD0EeOe4e9H9ITHvF/FB8XY+0yenWYopWf28j00eHsGmJvgMcjOPJqhK7mv89u2kvK51vZBzKA/gDfoyXaGfdeJLLYlh36Lt74KegbxIvSohY5nEeMtPkZvqt7QOogCE5z6/my0MxrAyV1LqHU6s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=knufJr5W; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0117C4CEF0;
+	Thu, 25 Sep 2025 12:51:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758804441;
-	bh=0va9/EyMjKMurKnEoNlMlsGNtwpMnvTh5eZELuACqr4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uB2kh8MekoL4HrWbZoaCpxvMyS1CQqAccAKQLSC7vRrWXOMJHeDiNACXwxOwivuTW
-	 k3PdEOhRVEhcJddTgo0imo10Qrbgx92Ya+Qwv+W5FVLML7ADPkvFA02EylFVCuWB5n
-	 mTPYIbssgGiVYtsmdxhUXe7BjENkH+JfAh6lwk5hGAU0P7m3KPH7D5phcZ/WLfKVuw
-	 DwTQ8+Qrvnbt6p15pI3dJygeAvm8Ec8NqUrCIMyIVDS8umoAbGf33wrqBXZeLvYD2+
-	 auia77sI9GhXZzMfG9BA1xVLeyxjNLUKnpE8jFXFSXczpx5uMpOhtaRcOitj40Yu29
-	 64XJzoeE/aNWw==
-Message-ID: <9d1bc76e-9070-459b-bb83-92aed2fc8e0c@kernel.org>
-Date: Thu, 25 Sep 2025 13:47:13 +0100
+	s=k20201202; t=1758804712;
+	bh=mO1eURmsQ/Q67GVCleK7Z0UQWNq3rMCZKy4D+DzPFzU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=knufJr5WE1keDJ9mqbAtEZ1ArQdYVue5Q49Wtujs25pDpg1IU+gTJb5zb+GZN0Ztj
+	 32Yoh7w14n8CQ/Bz9XKhQuEqkgpnKz2u5iSM+K6oJ1fBf2nJ8v4a1aGpKg0ZfSxa5d
+	 /2/p2cuDjy4JaEMe7Owi7PSLPDKz0Y59fNJk2CPlQfP3v+I7RmFA0A7Hc5wiLGwUcS
+	 QNG0sxJfxYV3+MTC8/oCq82CIZHreuCcuaOZ0smQdvcMsCHrHiZNUiXNVmuaTuacJG
+	 mUk1mthDKUUfiwGJJtsNq+ORbti3iE0GmAW+DoNBAaMuhddeXWkL25yjUArWuyDbpN
+	 yrG4gxGudy2Ig==
+Date: Thu, 25 Sep 2025 13:51:47 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+	yijie.yang@oss.qualcomm.com,
+	Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Subject: Re: [PATCH 1/2] regulator: dt-bindings: qcom,rpmh: Add support for
+ PMR735D
+Message-ID: <584e307c-527b-4bf4-b9b8-13497021637f@sirena.org.uk>
+References: <20250924-knp-regulator-v1-0-d9cde9a98a44@oss.qualcomm.com>
+ <20250924-knp-regulator-v1-1-d9cde9a98a44@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/9] dt-bindings: clock: sm8450-camcc: Remove sc8280xp
- camcc to from sm8450 camcc
-To: Taniya Das <taniya.das@oss.qualcomm.com>,
- Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Jagadeesh Kona <quic_jkona@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, aiqun.yu@oss.qualcomm.com,
- tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
- yijie.yang@oss.qualcomm.com
-References: <20250924-knp-mmclk-v1-0-d7ea96b4784a@oss.qualcomm.com>
- <20250924-knp-mmclk-v1-2-d7ea96b4784a@oss.qualcomm.com>
- <a8ebec72-eee2-4a02-ac6b-57678aa7c50f@kernel.org>
- <P5tG63fZnyrHYqzybjhoOpgXBlJQHT92Z3VjYNKDSMpfjuZsHZ1_QlpibvJLNKH5mvMsoZeFGDqCKJJb6gpvcg==@protonmail.internalid>
- <1c90a127-4b39-4cad-9805-d4449990baa7@oss.qualcomm.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <1c90a127-4b39-4cad-9805-d4449990baa7@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="ldOXRTuo48jZKpOF"
+Content-Disposition: inline
+In-Reply-To: <20250924-knp-regulator-v1-1-d9cde9a98a44@oss.qualcomm.com>
+X-Cookie: The only perfect science is hind-sight.
 
-On 25/09/2025 09:44, Taniya Das wrote:
->> This is not a revert.
->>
->> Where does the compat string go ?
->>
-> The compat is now part of
-> Documentation/devicetree/bindings/clock/qcom,sa8775p-camcc.yaml as part
-> of this commit "842fa7482915".
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+
+--ldOXRTuo48jZKpOF
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Sep 24, 2025 at 04:30:47PM -0700, Jingyi Wang wrote:
+> From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+>=20
+> Add support for PMR735D PMIC used on Kaanapali boards.
+
+This doesn't apply against current code, please check and resend.
+
+--ldOXRTuo48jZKpOF
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjVOuIACgkQJNaLcl1U
+h9B1SggAhSi7EbAtG3IgIfC9DG7kpX8kB+GyDZ9GpmTAMIRLybUZmwjAqGe72hoM
+KJ1m8kUvxIzi3dNG1NovOzBE0Hr0MUrR78YFosMWC2U979/HjxIL6ZwMOnNTNsj8
+Kd4VEwwNm3i/FFwsf8yPa4Nwq9DX4jq2kj7fK9XZQDbKSWiCrDpndw49b9Bhebwd
+DA6ET8YrxqUREddRZp1hoMshYoaUjM485tz5Sdk1w8aD1m/8KpiMCi/svnlj+Qlk
+keszR+HB39shfC12lep3bgfIRDnKGBrf5ZpjwpggzlONbE9rtuUgPBAiUzRPosJK
+xIztDMVU7wPZv1N65P8m8IEG3OyzCg==
+=CgSr
+-----END PGP SIGNATURE-----
+
+--ldOXRTuo48jZKpOF--
 
