@@ -1,255 +1,167 @@
-Return-Path: <devicetree+bounces-221473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98A01BA00C6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 16:39:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA86BA014A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 16:53:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F1044E0FC4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:39:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE44D4E4DBB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2220F2DEA95;
-	Thu, 25 Sep 2025 14:39:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f0tBB6Ka"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 903052E1737;
+	Thu, 25 Sep 2025 14:53:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E36192DE719;
-	Thu, 25 Sep 2025 14:39:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BEF022E0B4B
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 14:53:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758811168; cv=none; b=h3brj/K1Ia1cBf4cEv2v7Vjp8Xd89iNrAlLDLD5Gh9G2+hEQT4x1szg/fN997JBiIE7VMxbCVgTikKS0cvnkHawmVsb1Ixq9kolC0+QmCZ0smZMki+0dgqX3tWgi1vr20SDZtaBvEgoeqy/BYgnnm3wJzd05rk/JhGmBxLCpSQo=
+	t=1758811987; cv=none; b=fePjrJ8lSFLUC/tXmfoOxO1E4oSax6SMjC7VbDKVUdfUDqVjYXPB1pGkwzI2hTQcT+RT3K8KboKJDKbTi1QHCuBthvqn7Z4lHlLmBwHdIU+LSKXTv1lp1alf0Z6HNTgIa3qGCHFProYIAcEiJeYC5vlF87z2unzglrnXkcC5g2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758811168; c=relaxed/simple;
-	bh=CV3LAda4lJ9p5VIyU9vPKz79eilp+9UWaYrjz1ywHC0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=qPu9RTgwFMKl9vE3ppy5Jn6lgvV3oIRPCgCJgaFAistN035qZP3xkzLZixWKqpw6g2qzLAcMY9WZHh1vE2s1glnWj4scsGm2eS6npNZT/gkgImbhcrdJnXyyzvhS64/pIU4Qp6aWO16lLGyPUNUjycrpSubG+ZmyOvx/0qQBsFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f0tBB6Ka; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 308C6C4CEF0;
-	Thu, 25 Sep 2025 14:39:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758811167;
-	bh=CV3LAda4lJ9p5VIyU9vPKz79eilp+9UWaYrjz1ywHC0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=f0tBB6KamJshauRbna5oXFUwvHN2nJGuYZSyduJVRViSZL8ji1kmdL8b7P7kzCmr0
-	 dR610MvQyBXiN/e6SuWwX/z5OsqHwDNjprLp+LROu4GsmxZPmUdxefcFCFpH8Y/ZvT
-	 aeaTAUBMdAIxSQNMf4NrZKRecbjzYo9kBxBl+CCKYoJgCu/1BNp+X1FS5zhuXtRGpG
-	 m30vVExt54y5i9l/LYG50/tRJ20bqyiVgaCP7LI/x7hfFok7mc7+8xIodIDtNA9H1o
-	 VhAcE/sjOzLUBp6fpyE5mfSnfNxKQXm/McQ+hl3E3c1isUZ3sooU0pgfSTFh8roLGw
-	 rSJnijx3MNyLw==
-Date: Thu, 25 Sep 2025 09:39:24 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	chaitanya chundru <quic_krichai@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, quic_vbadigan@quicnic.com,
-	amitk@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com,
-	linux-arm-kernel@lists.infradead.org,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v6 8/9] PCI: pwrctrl: Add power control driver for tc9563
-Message-ID: <20250925143924.GA2160097@bhelgaas>
+	s=arc-20240116; t=1758811987; c=relaxed/simple;
+	bh=ZXJMMFCZDGimdSoFUJxE3pUZd+JGKjmvs7+jQKpoKQE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TbvbPGft7IR3lCjC2x+VK0CEVPjsqGSS1v+vevlmHiF62y4j6HNTuhlEYUK+43HlJ1BWr+n0D8INLuTbFPLxMGBVrH6jLy7Wnkw6zHck4UdK3sETfUWT7/qU0SxmPhBkbnQq637z6D7SsVWN4aNXIu7CY8iA3EhbxmHSW1pXYQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-57ea78e0618so1002282e87.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:53:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758811980; x=1759416780;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DlO5HN86Kc6YrRTCW9kNidWKyaECOConDbUQtE/vSBs=;
+        b=USJy/GShZ+k5Lb5zlM1NTNFrHKtdkOz+sakJysKUZu5OwPynOaPCuUZORTwb8qsCEU
+         yB6TRwoPFxgAj7Idl79/FF4hHuMzWwmIgyddtA/on1acyZ49ekSmu3w17v2OVbA+CDni
+         KRZpzQqi9iSWM1OVD5k1c5xKo0QZNQuSXvVnIcRtUtHAxC8cdk/SSShZv4w2xbqD3bf0
+         52NxgMtcYrlLk8TgINZXXUu+wzcK3bTt1P2u7FU9AdKeUEr/sVMXtvUunU5kPbjrDSaZ
+         LF63MDPMlkgQ2tUIVrc8y7i/0oB2T16dcZMIoiKK9w5cNoZGDJH1ktP5PAWbLncDSun0
+         rekA==
+X-Forwarded-Encrypted: i=1; AJvYcCUUnoXDoL35mCqIw19/MQg4Yt525br9qbswiRe0zoxbkGLqKoY4kp1IiEf2v3gGzvLDimu4VHmb0CnR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmF+XbXQGNcRqtDIYUiFxybAGSq+kohPzIdAnF8DLwz8CYKPSl
+	8oB/VVq5dvaZdEo7GqQjd/k/YCAx3mVTvIzC/zqkI3l8fpwckLxVLvkvd1soMlDy
+X-Gm-Gg: ASbGncu/FE2mnGgLQKKrbumowpY4pwbZM02034kVrprGWXXoDDmyJGSKJGmPqXkP8hB
+	qRuatcKegA3DNeexxHBirwkLxspbHCbbN3qNykIm0pDpj/pKYweqoPOZHuIBMSgSK37ABliD5ow
+	QumUi/5Gq1TWwfxspuEyiuK1VuLGG8TjzH16XiKQ08JaENhbk9EQNHH1beuqiZ/4dMe1gOwQ5do
+	1R5qfhZW5ag9ijF7kVHoIWxKSD5SF2d6Q19pYVd1HHjtLyQhBc5zy65ckiWC13QzVRgxIgrofIC
+	lqCUuFrlyBhzrq/nO4LmKjXkd7i14srf+DFaKZGoWuHoJFRewzSiw446Xd6415PY94mIPMIVSyB
+	u2tOOSzhnJs2KIpb19QZXe1u8Tl2lqhAW1/LuASRcplmpbffm6tokIjY=
+X-Google-Smtp-Source: AGHT+IHwO0uD+yzk2F5Y4MhbUiBlWuPlNWwn/vqhyOPys/uNlhi4aoqL4X4FTl5e2S5M0w8r1asdDQ==
+X-Received: by 2002:a05:6512:3b9e:b0:55f:4ac2:a5a8 with SMTP id 2adb3069b0e04-582d0c2849bmr1129497e87.13.1758811979571;
+        Thu, 25 Sep 2025 07:52:59 -0700 (PDT)
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58313431055sm832438e87.30.2025.09.25.07.52.57
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Sep 2025 07:52:58 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-367444a3e2aso12077451fa.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:52:57 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVWSeB+QC+nVXboQDkBF4KDjISSrKqqavIF+iZsZ74B2mMlLRIqoPLsASgv6QeH4hS22+kr158pePbt@vger.kernel.org
+X-Received: by 2002:a05:651c:150b:b0:333:b6b1:a151 with SMTP id
+ 38308e7fff4ca-36f7cecce7emr13436431fa.7.1758811976957; Thu, 25 Sep 2025
+ 07:52:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250828-qps615_v4_1-v6-8-985f90a7dd03@oss.qualcomm.com>
+References: <20250919000020.16969-1-andre.przywara@arm.com>
+ <20250919000020.16969-2-andre.przywara@arm.com> <20250922181611.GA567602-robh@kernel.org>
+In-Reply-To: <20250922181611.GA567602-robh@kernel.org>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Thu, 25 Sep 2025 22:52:45 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64KvnvSy0-MYd7FBLVKeJQk=-=VWxRLsHXMP1+MFOPPfg@mail.gmail.com>
+X-Gm-Features: AS18NWC5SLylzS53NFTh78yeOtaf2DKHmvxRwMULDvXeTqI87y6sQlGtbhqXD2w
+Message-ID: <CAGb2v64KvnvSy0-MYd7FBLVKeJQk=-=VWxRLsHXMP1+MFOPPfg@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/5] dt-bindings: mfd: x-powers,axp152: Add polyphased property
+To: Rob Herring <robh@kernel.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, Lee Jones <lee@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Mikhail Kalashnikov <iuncuim@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 28, 2025 at 05:39:05PM +0530, Krishna Chaitanya Chundru wrote:
-> TC9563 is a PCIe switch which has one upstream and three downstream
-> ports. To one of the downstream ports integrated ethernet MAC is connected
-> as endpoint device. Other two downstream ports are supposed to connect to
-> external device. One Host can connect to TC9563 by upstream port. TC9563
-> switch needs to be configured after powering on and before the PCIe link
-> was up.
-> 
-> The PCIe controller driver already enables link training at the host side
-> even before this driver probe happens, due to this when driver enables
-> power to the switch it participates in the link training and PCIe link
-> may come up before configuring the switch through i2c. Once the link is
-> up the configuration done through i2c will not have any affect.To prevent
-> the host from participating in link training, disable link training on the
-> host side to ensure the link does not come up before the switch is
-> configured via I2C.
+On Tue, Sep 23, 2025 at 2:16=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Fri, Sep 19, 2025 at 01:00:16AM +0100, Andre Przywara wrote:
+> > Some X-Powers AXP PMICs can combine some of their DC/DC buck converter
+> > outputs in a multi-phase fashion, to achieve higher currents and
+> > decrease the output ripple. The datasheets call this poly-phase. This i=
+s
+> > programmable in the PMIC, although often set up as the PMIC's reset
+> > default.
+> >
+> > Add the "x-powers,polyphased" property to the binding, to describe thos=
+e
+> > pairs or tuples of regulators that should work together. In the lead
+> > regulator node, the property lists the phandles of the connected
+> > regulators. Just an empty property means no poly-phasing.
+>
+> Don't we have a coupled regulator binding already?
 
-s/any affect/any effect/
-s/.To prevent/. To prevent/
+That was my first thought as well.
 
-> Based up on dt property and type of the port, tc9563 is configured
-> through i2c.
+Though on the driver side, I guess we would need to add a coupler to the
+axp regulator driver to handle the polyphase case directly, or somehow
+tell the regulator core to ignore this property.
 
-s/up on/on/
+Unlike separate regulators that are ganged together, in the AXP PMICs it
+seems that when buck outputs are ganged, only the controls for the first
+output have any actual effect. In such cases I don't know if we should
+just ignore / leave out the secondary outputs from both the description
+and the runtime state.
 
-Pick "i2c" or "I2C" and use it consistently.
 
-> +config PCI_PWRCTRL_TC9563
-> +	tristate "PCI Power Control driver for TC9563 PCIe switch"
-> +	select PCI_PWRCTRL
-> +	help
-> +	  Say Y here to enable the PCI Power Control driver of TC9563 PCIe
-> +	  switch.
-> +
-> +	  This driver enables power and configures the TC9563 PCIe switch
-> +	  through i2c.TC9563 is a PCIe switch which has one upstream and three
-> +	  downstream ports. To one of the downstream ports integrated ethernet
-> +	  MAC is connected as endpoint device. Other two downstream ports are
-> +	  supposed to connect to external device.
+ChenYu
 
-s/i2c.TC9563/i2c. TC9563/
 
-> +static int tc9563_pwrctrl_bring_up(struct tc9563_pwrctrl_ctx *ctx)
-> +{
-> +	struct tc9563_pwrctrl_cfg *cfg;
-> +	int ret, i;
-> +
-> +	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
-> +	if (ret < 0)
-> +		return dev_err_probe(ctx->pwrctrl.dev, ret, "cannot enable regulators\n");
-> +
-> +	gpiod_set_value(ctx->reset_gpio, 0);
-> +
-> +	 /*
-> +	  * From TC9563 PORSYS rev 0.2, figure 1.1 POR boot sequence
-> +	  * wait for 10ms for the internal osc frequency to stabilize.
-> +	  */
-> +	usleep_range(10000, 10500);
-
-Possible place for fsleep() unless you have a specific reason for the
-+500us interval?
-
-> +static int tc9563_pwrctrl_probe(struct platform_device *pdev)
-> +{
-> +	struct pci_host_bridge *bridge = to_pci_host_bridge(pdev->dev.parent);
-> +	struct pci_dev *pci_dev = to_pci_dev(pdev->dev.parent);
-> +	struct pci_bus *bus = bridge->bus;
-> +	struct device *dev = &pdev->dev;
-> +	enum tc9563_pwrctrl_ports port;
-> +	struct tc9563_pwrctrl_ctx *ctx;
-> +	struct device_node *i2c_node;
-> +	int ret, addr;
-> +
-> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
-> +	if (!ctx)
-> +		return -ENOMEM;
-> +
-> +	ret = of_property_read_u32_index(pdev->dev.of_node, "i2c-parent", 1, &addr);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "Failed to read i2c-parent property\n");
-> +
-> +	i2c_node = of_parse_phandle(dev->of_node, "i2c-parent", 0);
-> +	ctx->adapter = of_find_i2c_adapter_by_node(i2c_node);
-> +	of_node_put(i2c_node);
-> +	if (!ctx->adapter)
-> +		return dev_err_probe(dev, -EPROBE_DEFER, "Failed to find I2C adapter\n");
-> +
-> +	ctx->client = i2c_new_dummy_device(ctx->adapter, addr);
-> +	if (IS_ERR(ctx->client)) {
-> +		dev_err(dev, "Failed to create I2C client\n");
-> +		i2c_put_adapter(ctx->adapter);
-> +		return PTR_ERR(ctx->client);
-> +	}
-> +
-> +	for (int i = 0; i < TC9563_PWRCTL_MAX_SUPPLY; i++)
-> +		ctx->supplies[i].supply = tc9563_supply_names[i];
-> +
-> +	ret = devm_regulator_bulk_get(dev, TC9563_PWRCTL_MAX_SUPPLY, ctx->supplies);
-> +	if (ret) {
-> +		dev_err_probe(dev, ret,
-> +			      "failed to get supply regulator\n");
-> +		goto remove_i2c;
-> +	}
-> +
-> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(ctx->reset_gpio)) {
-> +		ret = dev_err_probe(dev, PTR_ERR(ctx->reset_gpio), "failed to get reset GPIO\n");
-> +		goto remove_i2c;
-> +	}
-> +
-> +	pci_pwrctrl_init(&ctx->pwrctrl, dev);
-> +
-> +	port = TC9563_USP;
-> +	ret = tc9563_pwrctrl_parse_device_dt(ctx, pdev->dev.of_node, port);
-> +	if (ret) {
-> +		dev_err(dev, "failed to parse device tree properties: %d\n", ret);
-> +		goto remove_i2c;
-> +	}
-> +
-> +	/*
-> +	 * Downstream ports are always children of the upstream port.
-> +	 * The first node represents DSP1, the second node represents DSP2, and so on.
-> +	 */
-> +	for_each_child_of_node_scoped(pdev->dev.of_node, child) {
-> +		ret = tc9563_pwrctrl_parse_device_dt(ctx, child, port++);
-> +		if (ret)
-> +			break;
-> +		/* Embedded ethernet device are under DSP3 */
-> +		if (port == TC9563_DSP3)
-> +			for_each_child_of_node_scoped(child, child1) {
-> +				ret = tc9563_pwrctrl_parse_device_dt(ctx, child1, port++);
-> +				if (ret)
-> +					break;
-> +			}
-> +	}
-> +	if (ret) {
-> +		dev_err(dev, "failed to parse device tree properties: %d\n", ret);
-> +		goto remove_i2c;
-> +	}
-> +
-> +	if (!pcie_link_is_active(pci_dev) && bridge->ops->stop_link)
-> +		bridge->ops->stop_link(bus);
-
-Is this pcie_link_is_active() test backwards?  Seems like you would
-want to stop the link if it *is* active.
-
-pcie_link_is_active() is racy, and this looks like a situation where
-that could be an issue.  Would something break if you omitted the test
-and *always* stopped and started the link here?
-
-> +	ret = tc9563_pwrctrl_bring_up(ctx);
-> +	if (ret)
-> +		goto remove_i2c;
-> +
-> +	if (!pcie_link_is_active(pci_dev) && bridge->ops->start_link) {
-> +		ret = bridge->ops->start_link(bus);
-> +		if (ret)
-> +			goto power_off;
-> +	}
-> +
-> +	ret = devm_pci_pwrctrl_device_set_ready(dev, &ctx->pwrctrl);
-> +	if (ret)
-> +		goto power_off;
-> +
-> +	platform_set_drvdata(pdev, ctx);
-> +
-> +	return 0;
-> +
-> +power_off:
-> +	tc9563_pwrctrl_power_off(ctx);
-> +remove_i2c:
-> +	i2c_unregister_device(ctx->client);
-> +	i2c_put_adapter(ctx->adapter);
-> +	return ret;
-> +}
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  .../devicetree/bindings/mfd/x-powers,axp152.yaml   | 14 ++++++++++++++
+> >  1 file changed, 14 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml=
+ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> > index 45f015d63df16..260c4c0afc475 100644
+> > --- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> > @@ -304,6 +304,15 @@ properties:
+> >                noise. This probably makes sense for HiFi audio related
+> >                applications that aren't battery constrained.
+> >
+> > +          x-powers,polyphased:
+> > +            $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +            description:
+> > +              A list of phandles pointing to other regulators that sho=
+uld be
+> > +              polyphased with this regulator. The linked regulators wi=
+ll be
+> > +              synchronised with this regulator, within the PMIC, but o=
+nly if
+> > +              supported by the PMIC. An empty list means this regulato=
+r
+> > +              should be configured in a single-phase setup.
+>
+> phandle-array is poorly named and is really a matrix because you can
+> have arg cells. So you need:
+>
+> items:
+>   maxItems: 1
+>
+> And is there an outer max for linked regulators?
+>
+> Rob
+>
 
