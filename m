@@ -1,188 +1,198 @@
-Return-Path: <devicetree+bounces-221390-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221391-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86BE1B9F374
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:23:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33855B9F3A2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:26:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4DD931B2454F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:22:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EFDF3A869B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A49502FD1C1;
-	Thu, 25 Sep 2025 12:22:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC50A2FB972;
+	Thu, 25 Sep 2025 12:22:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ER/ymupR"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Kj3+QrXU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5AF2EBB87
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 12:22:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9BE686353;
+	Thu, 25 Sep 2025 12:22:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758802926; cv=none; b=FgGCC55sPBOmonVs6Gmo+35RtD6Vy3LuTz7FmbQQhHgTBetP9jor6kzQyjJ6/CrjmJMGpGdfeaqmVNxm9X9n+h7FvLRwgdM8a8KT8guDUl8iDN0mURCcVkN04C1WgwxdnLJdwa7H7hgiiIrGH4/QTQ9rKYnmoejutODWUNuF2wM=
+	t=1758802952; cv=none; b=hhUEW/4dZQqD6QF73fgZnGZO00cJH1Ap8vH+2uYjKa/Y1b/aOtoGKm1FPmANT4r6aDumc6+cq88mpg7++lLSJ7FRmAbFmAS/0PqzCRTndu7n0EgGEuUxizLh7XepxkWN0w+CVOFsgB4g+fb9GcQ8e8j6VIlHNEKER2v/3ivvV54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758802926; c=relaxed/simple;
-	bh=2XqVg0dmLhS4rgfpAaBmZZFswjnXfLDwZ3YAEXR7JI4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SVShcuMKW1xoE7t3XejcMGul6GbcfvtKYImsNxbdWLlysLm9Js1fiCsqSNFaJMxeW3FRbPx/nutL4xgfCZvl523kVrmjrzXajGjN7UOHFO4viNG9NKrqkAcD/jJezrGQag3aPC8EpvriW0efbIKzstG3kSlUjLLNXDTajznbNyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ER/ymupR; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58PA7Rv1001948
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 12:22:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9DR5cpyOH/BxeCbJMQgTb1MvE86nj0ENnimkpeYOk2w=; b=ER/ymupRzR6PbkCp
-	p96ZuAClQAY9Sy3sQFmb9t0KmyWZxY2iImSsxGawYB1++b4BCxS4kbYK8ZBPaanG
-	jlUt2hGPMr+UnXW/rZ4eZO8AeAyw3HlJhfxI5D7lzhPlu7vsZly3037N+AJNoglK
-	JjRgzWpceQkJtJ83/U/U6p1teC7i9isMbyBnTjFD9IVXNrpBC1h/qYq1a7SzqTxc
-	lQEJBVFNQlUdNG11FdYiITJyPvwzFHozLb8j26nplChPTW4hCDYKOVPp4uPhthuI
-	tjFV6SVnAwOdy6E5MqCBIqAzBPDlndTRnI8Q8ty4NFg92pbKKHbm3G7BeY3PHvhJ
-	JH0TnQ==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499k98r0u5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 12:22:03 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-853f011da26so32782885a.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 05:22:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758802922; x=1759407722;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9DR5cpyOH/BxeCbJMQgTb1MvE86nj0ENnimkpeYOk2w=;
-        b=lMBhBeKBnKa2kQoAoJ+yD4OxephkMFtQ/kBHZfO6N6IIo+2uRCy7f3K/5UHV1R7nq4
-         XlmcoHiKPx4YAiSkIUsnqonps4E9SSPaM8a2xtA7ZfmDmSblWVVrUaB9TjucxvLb3tkq
-         IOwFZahZoqhnB4rCYr0Lekv0YfRNe3jPG86qDppDq4AIJ9ggLFGFss3WLBEfDjrijNfG
-         bq2Xix3uyY6pCrJfcmuF4QAk3olurCBeynTj5K+/pOZpw9nDQoZ03tYcMPrXOJ4viOFP
-         DriEeZ34tFJUAmptuRmxiFMb24Fla/i2oUgtxE8CJIqvPrQK7P6SdIcpsI+VXcADYNQ/
-         pxnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXrfm73D7hazG0oN/gdhRfkK0pL5wJgKle4GAlA7DcJevcMXJZ5pvKvGGuWczmFQZVvKSrnOgABIyQj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHgdE7QRSRSPt3dbybBAyvC9ilYIvF2TrpkBfLszL1WmyGvMmc
-	5wKkYoy5V7nSOy8RiUoR6OL+eB9Z9G1VXHCYTUG3bSviWbgMJYog+M1DGYDMS2Hs0Bf4YjAJoA3
-	yE4teOhZb8WEzfb++fPMx47kwyEtL15EB1BKsmMH4jQxNFwapvXz9APFIr7ILYTKA
-X-Gm-Gg: ASbGncttvxxxfO/1X8lPznXv/BWm3F9WLpcFDZaK4hqX3usxKmsm4jMWlMbJrrWv8xr
-	KRT0LhOPxasPmYjvo5O9Ht3yYjrLSGdLGAdXWP21hDU/mcvRCdCqgnP3lbmou8UBHXaqWjkr8LA
-	CrhyjNG0LSkQpcwG0+eZl0n6TYvnpI/q/XO3D7DfQn9BwERnzx/VAaI4IXJ0dj9WdMxzosYhBx4
-	Bw+x9K50U0/1PFs1wBB/uas9/Kdb5ZAQZVFQRuivjuVBTuA8VfpBwzsPf/0tx1yFgF66dU/HPtZ
-	yzb/67ezZe5NOEG1PbdaWv00bGigJnau75aDeotntSR7P7mmG74dctQ65L7ncy+I9CzD8Tj4SNq
-	dpukhOY+2Qe+bcqbSA1SMbQ==
-X-Received: by 2002:a05:620a:40cb:b0:855:b82a:eba5 with SMTP id af79cd13be357-85adf5d276cmr260963185a.2.1758802922351;
-        Thu, 25 Sep 2025 05:22:02 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGkv+k6t8AORrT51fuAymrjcGmjeXtdiNAouIlWNN19Pm2PP8RbzkJ3wR5/uExqQ4VNoCqwfQ==
-X-Received: by 2002:a05:620a:40cb:b0:855:b82a:eba5 with SMTP id af79cd13be357-85adf5d276cmr260958885a.2.1758802921627;
-        Thu, 25 Sep 2025 05:22:01 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b3544fd0a7dsm156717766b.83.2025.09.25.05.21.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Sep 2025 05:22:01 -0700 (PDT)
-Message-ID: <7dfd14ed-18d2-423e-abbc-33ef8bdc0a75@oss.qualcomm.com>
-Date: Thu, 25 Sep 2025 14:21:58 +0200
+	s=arc-20240116; t=1758802952; c=relaxed/simple;
+	bh=Tm+4joIsAVhoOGpHV0IfGhWDLFgBiLx2fFOsiG1Cw1E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NTwrFXDNzHGb4BGasJ7H0zKCwGKx2SLQeA9p05Lo5AnahcN40iWZMsgvdE4LFlpW6ye7bMkHgrd9iLZI5m3D61P48FRgq2VxU5db2RsPfBNCx95rDconeAbeCQ2ROqqSbqASs8xtIQDAU8sRZbVoeCWDPSmbqeZDVmIGVg2h7CU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Kj3+QrXU; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1758802951; x=1790338951;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Tm+4joIsAVhoOGpHV0IfGhWDLFgBiLx2fFOsiG1Cw1E=;
+  b=Kj3+QrXUjm4bP89idtM3S5Q9Jiaud8MXl/L9FX35Z3lVcJFRpCfai0BN
+   fcxR7wMpnsivkgzhLvYik2Mp5F0tR7PNsGweZjcrbh6Chbum1gp9A6Fwz
+   FdgUmlS5u2iPa1ILn26QSUd1JVFCnT+/Wd3Ew1UiqgrXNVaR/xCobQeLg
+   HMcxgy48rksewicC05vnhgehk1v9aDRhYjC0hEcTj018e72oIffzkZgyb
+   FjPw5hk3bwrdwqs5b7SmV+m5wnN6MUgMRGVEta33PD3g35qroaGsV9Qs1
+   XuQJbAjSIJ8uQPXGbhzlapQAh8orlQx/n0RBgfwLIxKs176oj/fiSYhBK
+   w==;
+X-CSE-ConnectionGUID: pjVdzTQYRuCgcNKFDjLcEA==
+X-CSE-MsgGUID: BYfgH5AXQHKuetF3jjCNLQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="60330596"
+X-IronPort-AV: E=Sophos;i="6.18,292,1751266800"; 
+   d="scan'208";a="60330596"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Sep 2025 05:22:30 -0700
+X-CSE-ConnectionGUID: wREnvNLfTMWuWHu54WXTbw==
+X-CSE-MsgGUID: 2WHOhuASRYGVg79ikjlZhA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,292,1751266800"; 
+   d="scan'208";a="181711175"
+Received: from lkp-server02.sh.intel.com (HELO 84c55410ccf6) ([10.239.97.151])
+  by fmviesa005.fm.intel.com with ESMTP; 25 Sep 2025 05:22:24 -0700
+Received: from kbuild by 84c55410ccf6 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1v1kzN-0005DB-2S;
+	Thu, 25 Sep 2025 12:22:21 +0000
+Date: Thu, 25 Sep 2025 20:22:14 +0800
+From: kernel test robot <lkp@intel.com>
+To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>, git@amd.com,
+	michal.simek@amd.com, alexandre.belloni@bootlin.com,
+	Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, pgaj@cadence.com,
+	wsa+renesas@sang-engineering.com, tommaso.merciai.xr@bp.renesas.com,
+	arnd@arndb.de, quic_msavaliy@quicinc.com, Shyam-sundar.S-k@amd.com,
+	sakari.ailus@linux.intel.com, billy_tsai@aspeedtech.com,
+	kees@kernel.org, gustavoars@kernel.org,
+	jarkko.nikula@linux.intel.com, jorge.marques@analog.com,
+	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, radhey.shyam.pandey@amd.com,
+	srinivas.goud@amd.com, shubhrajyoti.datta@amd.com,
+	manion05gk@gmail.com,
+	Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+Subject: Re: [PATCH V7 3/4] i3c: master: Add endianness support for
+ i3c_readl_fifo() and i3c_writel_fifo()
+Message-ID: <202509252022.QvbNmJil-lkp@intel.com>
+References: <20250923154551.2112388-4-manikanta.guntupalli@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/20] arm64: dts: qcom: Add PMH0104 pmic dtsi
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
-        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
- <20250924-knp-dts-v1-10-3fdbc4b9e1b1@oss.qualcomm.com>
- <CAJKOXPetzYdOvYkzeWmm9pVM1MwJhng4JLn2jsoAuey4jtfrqQ@mail.gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <CAJKOXPetzYdOvYkzeWmm9pVM1MwJhng4JLn2jsoAuey4jtfrqQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: D61w71rBGH0v7NjP-Wo9psNUV5yvI4KG
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAxOCBTYWx0ZWRfX5qkp+tt0APIm
- 25guNfzR4TEjz43aqBuIY4SHFbmPLN4I5wIQhhWnTP1Twyh+4NJaXtSp6XK00N+eL/3rIytIWIg
- g7T7W/j506p+sI8xCwnIZL7AH4rNns07GyzMIW9VYY3od69spv/bjvwRw+UhTvC+sb4oPp/xayq
- 49GOKcGpx5dvw9Oz5aa8uc3LGtTGbl9SaShmy8jgfx9n8htWYq3/rZghSc4QL0JNJrv/v1PPi/4
- Gh+P+RZ+Qij3p4t7Spf4lkqGKPv0lVabYgVInSazysOoYi5gm2HGtA8jU4fJ67jXWWyGqXw7QTR
- nGCwWUPm33NeIOp+HjIkveprBNPh5sqOmfmHFjkrV4cftl1J3Ll0V+dinOBObeOIKPx98Pz+4X4
- 5Is6dll1
-X-Proofpoint-ORIG-GUID: D61w71rBGH0v7NjP-Wo9psNUV5yvI4KG
-X-Authority-Analysis: v=2.4 cv=Dp1W+H/+ c=1 sm=1 tr=0 ts=68d533eb cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=9Zr-VXZqQWZOgLseAA8A:9
- a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-25_01,2025-09-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 clxscore=1015 adultscore=0 bulkscore=0 impostorscore=0
- phishscore=0 spamscore=0 priorityscore=1501 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200018
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250923154551.2112388-4-manikanta.guntupalli@amd.com>
 
-On 9/25/25 9:59 AM, Krzysztof Kozlowski wrote:
-> On Thu, 25 Sept 2025 at 09:17, Jingyi Wang <jingyi.wang@oss.qualcomm.com> wrote:
->>
->> From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
->>
->> Add base DTS file for PMH0104 inclduing temp-alarm and GPIO nodes.
->>
->> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
->> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
->> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
->> ---
->>  arch/arm64/boot/dts/qcom/pmh0104.dtsi | 33 +++++++++++++++++++++++++++++++++
->>  1 file changed, 33 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/pmh0104.dtsi b/arch/arm64/boot/dts/qcom/pmh0104.dtsi
->> new file mode 100644
->> index 000000000000..f5393fdebe95
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/qcom/pmh0104.dtsi
->> @@ -0,0 +1,33 @@
->> +// SPDX-License-Identifier: BSD-3-Clause
->> +/*
->> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/irq.h>
->> +#include <dt-bindings/spmi/spmi.h>
->> +
->> +&spmi_bus1 {
->> +       pmh0104_j_e1: pmic@PMH0104_J_E1_SID {
-> 
-> 
-> This might be fine for Kaanapali, but it's wrong for Glymur.
-> 
-> We discussed it already and I'm surprised you come with completely
-> different solution, not talking with the community, not aligning to
-> solve it properly.
+Hi Manikanta,
 
-I think I omitted said discussion.. if it was in public, could you share
-a reference here, and if not, would you happen to have it saved somewhere
-that you could forward to me?
+kernel test robot noticed the following build warnings:
 
-Konrad
-> 
-> Judging by other patches sent now, I recommend to drop it.
-> 
-> And instead just join the talks... Otherwise how am I suppose to look
-> at this? Everything I said should be repeated?
-> 
-> Best regards,
-> Krzysztof
-> 
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master arnd-asm-generic/master v6.17-rc7 next-20250924]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Manikanta-Guntupalli/dt-bindings-i3c-Add-AMD-I3C-master-controller-support/20250923-234944
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250923154551.2112388-4-manikanta.guntupalli%40amd.com
+patch subject: [PATCH V7 3/4] i3c: master: Add endianness support for i3c_readl_fifo() and i3c_writel_fifo()
+config: mips-randconfig-r123-20250925 (https://download.01.org/0day-ci/archive/20250925/202509252022.QvbNmJil-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project cafc064fc7a96b3979a023ddae1da2b499d6c954)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250925/202509252022.QvbNmJil-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509252022.QvbNmJil-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+   drivers/i3c/master/i3c-master-cdns.c: note: in included file:
+>> drivers/i3c/master/../internals.h:53:25: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected unsigned int [usertype] val @@     got restricted __be32 [usertype] @@
+   drivers/i3c/master/../internals.h:53:25: sparse:     expected unsigned int [usertype] val
+   drivers/i3c/master/../internals.h:53:25: sparse:     got restricted __be32 [usertype]
+>> drivers/i3c/master/../internals.h:53:25: sparse: sparse: incorrect type in argument 2 (different address spaces) @@     expected void volatile [noderef] __iomem *mem @@     got unsigned int * @@
+   drivers/i3c/master/../internals.h:53:25: sparse:     expected void volatile [noderef] __iomem *mem
+   drivers/i3c/master/../internals.h:53:25: sparse:     got unsigned int *
+>> drivers/i3c/master/../internals.h:78:31: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *mem @@     got unsigned int * @@
+   drivers/i3c/master/../internals.h:78:31: sparse:     expected void const volatile [noderef] __iomem *mem
+   drivers/i3c/master/../internals.h:78:31: sparse:     got unsigned int *
+>> drivers/i3c/master/../internals.h:78:31: sparse: sparse: cast to restricted __be32
+>> drivers/i3c/master/../internals.h:78:31: sparse: sparse: incorrect type in argument 1 (different address spaces) @@     expected void const volatile [noderef] __iomem *mem @@     got unsigned int * @@
+   drivers/i3c/master/../internals.h:78:31: sparse:     expected void const volatile [noderef] __iomem *mem
+   drivers/i3c/master/../internals.h:78:31: sparse:     got unsigned int *
+>> drivers/i3c/master/../internals.h:78:31: sparse: sparse: cast to restricted __be32
+
+vim +53 drivers/i3c/master/../internals.h
+
+    31	
+    32	/**
+    33	 * i3c_writel_fifo - Write data buffer to 32bit FIFO
+    34	 * @addr: FIFO Address to write to
+    35	 * @buf: Pointer to the data bytes to write
+    36	 * @nbytes: Number of bytes to write
+    37	 * @endian: Endianness of FIFO write
+    38	 */
+    39	static inline void i3c_writel_fifo(void __iomem *addr, const void *buf,
+    40					   int nbytes, enum i3c_fifo_endian endian)
+    41	{
+    42		if (endian)
+    43			writesl_be(addr, buf, nbytes / 4);
+    44		else
+    45			writesl(addr, buf, nbytes / 4);
+    46	
+    47		if (nbytes & 3) {
+    48			u32 tmp = 0;
+    49	
+    50			memcpy(&tmp, buf + (nbytes & ~3), nbytes & 3);
+    51	
+    52			if (endian)
+  > 53				writel_be(tmp, addr);
+    54			else
+    55				writel(tmp, addr);
+    56		}
+    57	}
+    58	
+    59	/**
+    60	 * i3c_readl_fifo - Read data buffer from 32bit FIFO
+    61	 * @addr: FIFO Address to read from
+    62	 * @buf: Pointer to the buffer to store read bytes
+    63	 * @nbytes: Number of bytes to read
+    64	 * @endian: Endianness of FIFO read
+    65	 */
+    66	static inline void i3c_readl_fifo(const void __iomem *addr, void *buf,
+    67					  int nbytes, enum i3c_fifo_endian endian)
+    68	{
+    69		if (endian)
+    70			readsl_be(addr, buf, nbytes / 4);
+    71		else
+    72			readsl(addr, buf, nbytes / 4);
+    73	
+    74		if (nbytes & 3) {
+    75			u32 tmp;
+    76	
+    77			if (endian)
+  > 78				tmp = readl_be(addr);
+    79			else
+    80				tmp = readl(addr);
+    81	
+    82			memcpy(buf + (nbytes & ~3), &tmp, nbytes & 3);
+    83		}
+    84	}
+    85	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
