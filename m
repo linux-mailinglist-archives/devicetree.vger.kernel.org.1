@@ -1,155 +1,150 @@
-Return-Path: <devicetree+bounces-221225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 578E2B9DD1A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:11:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6587CB9DD49
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:17:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93A687A39BF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 07:09:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2152A424796
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 07:17:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 125312E92D1;
-	Thu, 25 Sep 2025 07:10:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B4D2DE6FF;
+	Thu, 25 Sep 2025 07:17:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bcQvpOqV"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lB0Jjmgo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f53.google.com (mail-yx1-f53.google.com [74.125.224.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FE0219A7D
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:10:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94ABC49659
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:17:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758784250; cv=none; b=qCO/MdQukBghGbyCMuvUO+fvVB/usEeeU+5/xS8ZYG/QbqkVwshehChC1dCRbCQ1A+tQW7gFg8Rut9jtVlY28PgjU2v9Sjkhe4/eQr604j0NU+wDNMvuwY4ZiGQGwmb7SfQZbxU27orlWX6iS5plE5urpRmDOme6BzCwNtnidlo=
+	t=1758784662; cv=none; b=SHezuI1FfvEdTf3KktbpUlHjpYbmKlCetboWshaPzTMikVSrAQils4kVMAI60d6XSbhyKjSsm/PVlR4/XJgx6JcGaJ4snfJA3X8u3z0qqKZI4A1DgE9f0cZZZyksbQQVBUGOe9TswBEM+6Xlxd8UU0RW5EbXLhGjzFvSc1wJ+wA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758784250; c=relaxed/simple;
-	bh=nt9UhBR6lM/h1AHxl80XKGo62OCVljiHOeH468JvYF0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=l15sGMwSN75BkYYC9NTKv19n/j4oOuf2FKY30TZFtYlw+4c4LgLyIhZ4qjvkJ9FHrWYWYF/W92lLpW6awRa+ohMh5y+RMMqNUXxXHUV48jq2w/sAbd+aKlTVaXisax8itvA0izV8v47+9og6jfbPV3DL7P2A50TuyNF2E2fcYpU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bcQvpOqV; arc=none smtp.client-ip=74.125.224.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yx1-f53.google.com with SMTP id 956f58d0204a3-6352c8b683eso407574d50.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 00:10:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758784246; x=1759389046; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iQb6C3ttjciQrH1J6+L7MgPLJCUOx0fYYmrUWrGIRb8=;
-        b=bcQvpOqV2pWuyzULZJjJlYuq5M7Ll2TbVa8zpoAvfXNr83hFR5ealC9c8sju/2GnPM
-         cSi3VNq8lhX/xcR8WvxxHtgtgoQbX6AVq2gjB+3ru4Mmu5PPw5sU5NM6WlybocXhY8cw
-         lA8JqnouwqIzRcVaAHkm4C2aFMO2sssJJzilyqT44yPhHQ60u+N0dj6kdGaPmxVQAqMx
-         K8LeQtf+cp7fn9QeTgfu3XgmJ9lfy0pCPtcWDQRCaIYtMPhelSVLFLiYuAFNyKZupYgV
-         43PYAhxTG0Utq9quLqE+hlvomHjwedGAqG5KbPIdEVIjLs0+ANTjzABzuQkiviG/0T6F
-         1drw==
+	s=arc-20240116; t=1758784662; c=relaxed/simple;
+	bh=CXRyNKP6B9Hs0iPs4O+nq6faZS2xwrDVFGArkTY3S/M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gr9FttGgOfdwKPPfzvoQVgCOang45nZP9QkHOYOXmtLip4sAXEDOD2fWlTkh8fsMLHEemnF4BcK9f+91JNwMvOTkRsoM1EawiQfkUlDx/iETxZHKlsGHSin1/86vIQtWFYK7H3ut8Efu8PL3eKugHwcBQuIeTOOkevGMdOg2sa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lB0Jjmgo; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P11NU1024516
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:17:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	MeIvpduIcfu5QlApNMAKw88URFM90jVyb69D62V3Fyk=; b=lB0JjmgoFkYHt+lZ
+	LPHFrZkQABPjhqIEOEXCxHX8prP4S9x9P4jGrjscSFB7XgMraRQL3QHE8NxIEX/1
+	NxwwrOLP+IVkwmnxOGRpkJJ9IZ2z1Db+FfTv0/4UaL+SRlE4artP9jgJMxH0sBen
+	o5UaM/U0WPUh1gtycmSP3ccmxoneOeP10XI2qHJYhIhLYUnYwT5sUUIfSzVXwCgT
+	Lqdgu3bNCuos+VjcTGZeDmNcTphlVFstrLErtKtfT4n5w35o1e62QN+Emc2MfBqB
+	Hl0DJWN4b4e//ORWt99gNvXX/KmZV2JS3qmU+6EwZM1IscyyAf5PCrNLm/5Uu3i9
+	B24n5Q==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bwp0e6mv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:17:39 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-26b7fc4b7e3so1889515ad.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 00:17:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758784246; x=1759389046;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iQb6C3ttjciQrH1J6+L7MgPLJCUOx0fYYmrUWrGIRb8=;
-        b=tOeAtXG7CH852Hyh/KPINg//PmWp6ozgyC8GS2d0KfYqdHeBjjHuuDQvTIJvLtoUDj
-         nhiC+ELmc6oHs89uFgIR2+RuKcZSuOollQVqAA7ZnnFxYuxXDr1topn3vWM4UFVtT2s6
-         3YQO/q4ykTJUvQzMl6NfgT9sXacMaY59yN9BvHuuWq2r6vjXUH5s4JxBL4nwv1s86gHu
-         GonBWq28XLriqtymw5UB5PevQws9Bn4NbdKZ6U+/afQaErAR9/D7v2KMD34R07WUROzl
-         7ODjUMYhO5PEChbhw8GUi/nTBoIbFy/Skk8aKK998QaKkDpwVGybmXPRMhtdCoyHpnEL
-         5/aQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXzikz8QuLFuDvnJDDkkU4Xa8+SUv0FiQARuLELRpY1Xvm5dy8fm7RMG54RuTYtpFhgGl0gQPXarls2@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJJJ69ElSke1qWlnPNrIKoF/Z+i9GoGdbDd1WGBAz1V2p4UPm6
-	+xf7fGX/32lptNvAsdqNZ4BXBeTJj9YQRDK2IZipQdj+0nSZ+/BWyQdkq3Cfmw5vxjTOBsvRh3W
-	xSY9W2CImS+S3l2XUF8fNNepp/H21A6Exuntt/mqWJQ==
-X-Gm-Gg: ASbGncssNQYHkWE6yj55TKjwM7dw9zcJdCl9jPY087fnzx5Sf1KEYx/yeBrV6ASgXKQ
-	J4LNF3wZnnW64L1b3uclFg8sEYF/fBDDpLWT6xI61lRaxKDw6WmLXssYXyuX4JsPQTNupP2tajo
-	0WHa2f4rQNO+ewA0Wl0rdELyjxfFRcXYRgTCIrgkVSU0xdxPdhyj5Reudb+IFZ2HHlCPUJ2DJw5
-	4yAAKgvYKElmU+X8nA=
-X-Google-Smtp-Source: AGHT+IH2nB64sZM1uazTNjqpZvzrzocGQiVD/Q+ub5hgCK4Vy30NwPZyFUTfLzh70x15UYl3iWsRdzrjakrOb8ae4F8=
-X-Received: by 2002:a05:690e:2508:b0:635:4ecd:75a4 with SMTP id
- 956f58d0204a3-6361a8ad38amr1112652d50.50.1758784246352; Thu, 25 Sep 2025
- 00:10:46 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758784658; x=1759389458;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MeIvpduIcfu5QlApNMAKw88URFM90jVyb69D62V3Fyk=;
+        b=hykyuKAX+ovRy61QqSjQ1qFcjauU1yRgxHFaxb48Sxo3M7mEqs3l01DqFpnPEOoo2X
+         5flPd9cwbgtXtIv4G4ukkUi9UQbo0MI3pERRTCPMmuektpZEt4KmP3sumyXZU7Yc2s0s
+         4VIr6DZUT6hA3e7itJo2YLqCG2aCaWGPUaoxxwGinKrp7uYMkG9MKb+emEj2eWtQqlbi
+         8xuxSxoI47aKstw82cG9OjVHubXL5UW0CG4FFyC1yhrOchHFV9GzoQYZ8qMzbPU6jB0n
+         /lyETK/NjuxYZTMq62t8clYkGh901epw4U0LuyWEQ/zwTexfdpcaRO6QmFzpXRE9FJ/S
+         4zGw==
+X-Forwarded-Encrypted: i=1; AJvYcCVsgfuVGKS73+aOOx2TyBEOd2UvMcdtMQEoehEccj1JT6UHPtRak2lPFmmAQuAgDpiNdWAj6eV4gapx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyemHasXMDQVLi6pn1USs022EJCxvt2RiuJtq5Feji1rLuU4PSR
+	p/yr8kmf4X3wVrUk2+BSSmgjgVSMt3+a3rfuDTsrOh9BH0Q1hQqV4V32AFVlTeGPvMgvAUkP5lL
+	FaJbDNXOa/ZwEkfqa69APf4bS31T9+K1tkFsdSdxWufQTwppSj9uiTJZtQZbWyzIV
+X-Gm-Gg: ASbGncsu7DXktzuFJBy7ubRf25Zn4joF+6lYOE/f04988qIhzrb3Nlz9AnGZGPpuKSc
+	xDonwHiIcxWSha/gSOl7lIx6CNf1OUN3/yw83Tjqb5RlyeXdT/NBXxUmGbT82v1Frd4poDnJvNg
+	nWBYg56xIRdOTI+mcqRkEZemJNFLpxWD0N6prFYA5gWblB0/7cVSW/5at0wwoCgQ4fucRr1Etwj
+	5nqEPyk1B5borodwa6gMJJIdRzl5oZX1G9CbW1ZZkWN/tRl5JW6K87blXXdV1iwpARWMsAiyCO+
+	XHkmKz3gaQYOF92IKINq9i7n44WKONIsGJXAZuvtLCQHnLzmZNMAyIUmvuAHNazNvKmNyYzMSyP
+	+rFf7il8XluCkAHWZYjMFJtJ01B8pau0=
+X-Received: by 2002:a17:902:db11:b0:26b:1871:1f70 with SMTP id d9443c01a7336-27ed49df69fmr17433645ad.5.1758784657939;
+        Thu, 25 Sep 2025 00:17:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEHUr4mt9IG3Sd+jOvGuI5XW5KsNRIWQZv0nF/6TvnWeA5GnWV8PrZpn5dWXV+d7VRH4k52EQ==
+X-Received: by 2002:a17:902:db11:b0:26b:1871:1f70 with SMTP id d9443c01a7336-27ed49df69fmr17433475ad.5.1758784657410;
+        Thu, 25 Sep 2025 00:17:37 -0700 (PDT)
+Received: from [10.133.33.140] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed6ab6547sm14838015ad.129.2025.09.25.00.17.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Sep 2025 00:17:36 -0700 (PDT)
+Message-ID: <66f85b3a-7aee-4a61-a817-3715ca23cdcc@oss.qualcomm.com>
+Date: Thu, 25 Sep 2025 15:17:32 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250924-dsi-dual-panel-upstream-v3-0-6927284f1098@linaro.org>
- <20250924-dsi-dual-panel-upstream-v3-2-6927284f1098@linaro.org> <CAO9ioeW2AHDM3KSRu-WOvy+1De9tqfhrCNozw5Wkh=CJDHxFYg@mail.gmail.com>
-In-Reply-To: <CAO9ioeW2AHDM3KSRu-WOvy+1De9tqfhrCNozw5Wkh=CJDHxFYg@mail.gmail.com>
-From: Jun Nie <jun.nie@linaro.org>
-Date: Thu, 25 Sep 2025 15:10:35 +0800
-X-Gm-Features: AS18NWAPf9tdpp_gChgD_gM1WzlnnA0bBkACDBIPWpyv07LUDbDFj0oLZcuPUcU
-Message-ID: <CABymUCP2m-Z1spkAydryNWfysXTVma_H=7w=0GYL6+aH5KW9QA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] drm/mipi-dsi: Add flag to support dual-panel configurations
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>, Abhinav Kumar <abhinav.kumar@linux.dev>, 
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krishna Manikandan <quic_mkrishn@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/20] arm64: dts: qcom: kaanapali: Add base MTP board
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <20250924-knp-dts-v1-3-3fdbc4b9e1b1@oss.qualcomm.com>
+ <cifdab3i36xlb3xspyoqbq6o2nz2fvmuo4p6pz57bff3hakz3m@lylbyqavrcvh>
+From: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <cifdab3i36xlb3xspyoqbq6o2nz2fvmuo4p6pz57bff3hakz3m@lylbyqavrcvh>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=KNxaDEFo c=1 sm=1 tr=0 ts=68d4ec93 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=hhnAJiO_VNtvmY0_vagA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-GUID: 4OKGk01aTtMUM5cGyNlfOvXsIXKoyVt5
+X-Proofpoint-ORIG-GUID: 4OKGk01aTtMUM5cGyNlfOvXsIXKoyVt5
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDEzOCBTYWx0ZWRfX0uOcPmVgGBEl
+ b/OAownbi80e3WQ0dF2f9FmNson3dRm2HF74JV4g+7+xmwA8b1pl081cWzj8l6QDEAaC4CufwfW
+ vDsPYnIwi/1j5nji39seVcX6HptQra97ssPjGf/nUX5I7+HEG6v7iAnh2WGu5v4oCk7ZlN81NyQ
+ M3PYHZey8//KoQERcPlU85jP5dpEiQyHAfli4MNJhE06QBGLRo7Ecx48TGzBiWmMkItsdtngP77
+ 8CxTieb8zt1FWtArIPEpwMVseom+0PzB0AiZFHtyxTZOc0+AUYVcDeaZljnxe06/BTP4yY+k6eA
+ lFc75saMiaDw1/IdI4n99Qwv91ydfG2vFoIXbNSwhOMVwNzHOo27aKGe96Ir98fZPD70Fl9+4uo
+ wWUR0cEi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 priorityscore=1501 clxscore=1011 phishscore=0 suspectscore=0
+ adultscore=0 bulkscore=0 spamscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509230138
 
-Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> =E4=BA=8E2025=E5=B9=B4=
-9=E6=9C=8825=E6=97=A5=E5=91=A8=E5=9B=9B 02:02=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Wed, 24 Sept 2025 at 18:08, Jun Nie <jun.nie@linaro.org> wrote:
-> >
-> > Some devices treat two independent physical DSI panels as a single
-> > logical panel from the CRTC's perspective. However, two separate DSI
-> > hosts are still required to drive the panels individually.
-> >
-> > Introduce a `dual_panel` flag to the `mipi_dsi_device` struct. This
-> > allows a panel driver to inform the DSI host that it is part of a
-> > dual-panel setup, enabling the host to coordinate both physical
-> > displays as one.
->
-> How is it being set?
+On 9/25/2025 11:18 AM, Dmitry Baryshkov wrote:
+> On Wed, Sep 24, 2025 at 05:17:20PM -0700, Jingyi Wang wrote:
+>> Add initial support for Qualcomm Kaanapali MTP board which enables DSPs,
+> 
+> It doesn't
 
-This is set by panel driver in probe(). You mean this should be documented
-here, right?
+Thanks for pointing that out.
+We had originally squashed a more complete set of features into the base
+SoC patch. However, after an offline review with Bjorn, we decided to
+split it into smaller patches to make the review process easier from
+Bjorn’s perspective. Unfortunately, we missed addressing this part of
+the comments during that split.
 
-> >
-> > Signed-off-by: Jun Nie <jun.nie@linaro.org>
-> > ---
-> >  include/drm/drm_mipi_dsi.h | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/include/drm/drm_mipi_dsi.h b/include/drm/drm_mipi_dsi.h
-> > index 5a85ba01f402a3866b70828391bb417bb8dd5956..0faff285d9ffeb19e4523cd=
-c7bf21c1ec20e6eff 100644
-> > --- a/include/drm/drm_mipi_dsi.h
-> > +++ b/include/drm/drm_mipi_dsi.h
-> > @@ -170,6 +170,7 @@ struct mipi_dsi_device_info {
-> >   * @host: DSI host for this peripheral
-> >   * @dev: driver model device node for this peripheral
-> >   * @attached: the DSI device has been successfully attached
-> > + * @dual_panel: the DSI device is one instance of dual panel
-> >   * @name: DSI peripheral chip type
-> >   * @channel: virtual channel assigned to the peripheral
-> >   * @format: pixel format for video mode
-> > @@ -188,6 +189,7 @@ struct mipi_dsi_device {
-> >         struct mipi_dsi_host *host;
-> >         struct device dev;
-> >         bool attached;
-> > +       bool dual_panel;
-> >
-> >         char name[DSI_DEV_NAME_SIZE];
-> >         unsigned int channel;
-> >
-> > --
-> > 2.34.1
-> >
->
->
-> --
-> With best wishes
-> Dmitry
+-- 
+Thx and BRs,
+Aiqun(Maria) Yu
 
