@@ -1,239 +1,158 @@
-Return-Path: <devicetree+bounces-221303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F7D8B9E627
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 11:34:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D14EB9E5E2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 11:32:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B855171350
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:34:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 182D34C6797
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:32:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82C0C2EFDA8;
-	Thu, 25 Sep 2025 09:30:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C18F2EC094;
+	Thu, 25 Sep 2025 09:30:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="nPvMcsWY"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JbgDKJX0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 676C12ECD20;
-	Thu, 25 Sep 2025 09:30:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CA78283FEF
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:30:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758792650; cv=none; b=L2bp95uq6YcUGtdvr5xnZRCbY1DJX6Tiu80P6v3oBhO6MafYCG+dJQExLCKEY3RiD6G0UnVvfs7ar8XmZDJO1ulq4p43exumMCjw9V/V3VlC519coAwpjrIVV+lbzqBEjcZMSCdWorrzYURPMwrsXE3Ks3G+OAsa0vDcTCeuwzw=
+	t=1758792631; cv=none; b=X+yOVZMcbcit+bGCyQb6qDEr0beF/TfJXAXUzvL8KRp5dq4p9kJhILrnC+/40LUwvAk5Lu39Po87u2MN3eqbEntxcW9jBu7UtwJWaKEhZshZ+v4CE8nMesXFSJb8lgBqF6PVjC6pXX/AzOl4S+D2PFpCOJVdFW7G9PEVPeMPJ5c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758792650; c=relaxed/simple;
-	bh=ZUnSoFvkD7jeSi0Clyvp1ZQehZbK4M/+E+0Ag46T6eo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eSxHGfevaHjleWusgZX4dVxNWgtq2viTU56X50e88VCZexgkmjZ4FjBigYg6WsjdTq9ZjjjuPe8b0E46Lr1aj+2fibxzid07F+InZxP9YrkAkwoBwCgdwEqKwsGPoozd42FYQ/qMfz+ACWBF+NYN7XbJdzNhHaLcdfnFLRpVi0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=nPvMcsWY; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:References:
-	In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-Type;
-	bh=pJh0xYZn4Fs8ezjT/CyryQ1lBic3vITlPb+szGNSqx0=; b=nPvMcsWYWsJUGpkTQscv/3+uyS
-	KufzznPaeuEo7X4b5pigg9fUYnHFUSpbhUDscCGngqEgHjaM+RMaCOjgnMKtLOqfifl8aVnSh901T
-	+Y41MD/qnZI8r+SiWn2MRCJbNrfgpJ0bwVDQrq18fzkkIvyvynNpYwTgk0cwMZ4uNv3KazUBs3Gb/
-	KQykKEN+7wxZit2z0LIGSH50JVE7IIlqHQGPQR2iq+c7eCJY4Tpgmat/L9HMmEUHGZlK5b70Wqx7T
-	LqjQnWuNVWDlC5eAwYgzSDtX/1eevs0uIWn/XW4b6hvDYadUclwRFxg/dLknFUGve2JUFm006f0kF
-	VgfYMGkg==;
-Received: from i53875a54.versanet.de ([83.135.90.84] helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1v1iJH-0001Nz-Ok; Thu, 25 Sep 2025 11:30:43 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: heiko@sntech.de
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	ukleinek@debian.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: [PATCH 6/6] arm64: dts: rockchip: add QNAP TS233 devicetree
-Date: Thu, 25 Sep 2025 11:29:23 +0200
-Message-ID: <20250925092923.2184187-7-heiko@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250925092923.2184187-1-heiko@sntech.de>
-References: <20250925092923.2184187-1-heiko@sntech.de>
+	s=arc-20240116; t=1758792631; c=relaxed/simple;
+	bh=8N6KmcZ3o0RKZfH/SDgkpHo3kvKOR9AZGJho3gtBrkE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Tel5komREkrlEDUrDDD64iIwndpTABLsIsVA54MeqcEwCmPFdaQS/x5op5jKXU46sCegoNCGwL2w+LxNLgNj9RBWiRASElupiM2ZHV8VFAZBLgLli0DgxfxP2dy75ExVZvd6Q8L7dCWX7ZlMaoaXjlH7jyqtfMnp2MGfiZBUozs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JbgDKJX0; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P4bJKF029400
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:30:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Iv8LC4BuQ4SAYhRCgkZysNJWxVrScti2b4sGHDBPz6U=; b=JbgDKJX0icycF9G5
+	MdA83dtx0SE75ma8JY1SQ4hqHwzXjIS9ub6BM9mpP16w98poJhKFiz44Txh5YwFe
+	dq18c8I9NZalxoDFiZ2Mpw5e5YdsK4sqrE6bx/h/UTskQ3vINlOwGgl+EUSjDQv/
+	3TU+OKt2nYqhnGFzi5Y+EZjNaG/pp4CCp3obyjHf2KQpDsKNEWTlvPuFren4b9GW
+	lCxpl2FX4iT3A8q9zLfS1QIjxcbMt9/Yn7IjncuI78ZyWKlelag0dhzpyd8MOn0u
+	+ODT4VSpNfp/LfOtlzTIEPheAUK4pYH+lRItGI6CITlQSgI4DtFLwzZ9mS+Td5za
+	B8Vssg==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49cxup0srx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:30:28 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-78f40a59135so1964896d6.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 02:30:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758792627; x=1759397427;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Iv8LC4BuQ4SAYhRCgkZysNJWxVrScti2b4sGHDBPz6U=;
+        b=VqiK0JCdgCjJH0CrKhAle6WZG6TQ43V5TpWCvx8hfuOnHTxqnBzLFHshePlMj6/A69
+         4p20mE+MxPMl7R3n9LMnM/NZDy1jkraD0VTZdI3NAoFAvvt+Z/GphlWbP+7t3S2bTLMv
+         mfmji8Aq8FjB78k71fk+XgQiUovDtmPvOvaIGqj7pB4oW2GQBosqZUz4MD5l0FMpP8i/
+         bYi3WNE6gE5ZBulD7onYyLXZpIcMy8ZaC89sJfyFm1SnFDUl2+yzZAhC0oBLUwkWAJy1
+         zMMfGXfjmE5MN+c+80ya8pEWlrHmQs6tODii2R5anKrpmBPXyhSLI10ZDpjMzrEbLukj
+         3viQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVTikMaHQXfUvyWb//wWKx6aU9xnmrywbLpDQnu6aYQf4u2ZKPXhgeDHEROmXkzXZjLLJwE2jue7iuo@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywv7Ihz5kFHI2N1hhoxiGV4KRWhUBGuJVfc4itc+qqNQNznzgF5
+	JYSE4Dq8oJwus9E/ObyagDj2TMq75VwioCeX6Iym7YEQxcEpu9CNJHCmCe/U0zHpY6a9lM6sjqG
+	wgWaDCb9eHyJhcCqElWo6YS9ycwSH+4cl+gsSxzDyMTVNTtlV09togNF3M+jKpADC
+X-Gm-Gg: ASbGnctOE/Qz50MJgywTFLG/3WCFclMTLzYFq9Vztww66naG3riYQq2Umzwb1NGmees
+	0YVNp0o6KLrhqUJpE3boYsJV61ByFRqalAYJB+m2zuDwkcW+4OCeCTxpApi7EyFHLu3q5/YZB+u
+	roNwcWc5+7khwlSjgvzhwMXb7fjjddKru1sZbzaUk5v4FIO89vOTGrRWS+03Si78MOOImf2a2Ph
+	VMHJbKaJ78hRveSO+x4anypG6tpWXw4XGSVchZ+PR7Za6mK+S9sIdmye+H1s/SjuhSSdlF0BSNF
+	gPbe8lPGvYygBE7tNwguhiqFPULn6cowrsMw5HfZDaoHOIMrd1ydjuqy6TKyLRHnc8BPrsxOnWd
+	ciBgLqXE8O9a7aup6ZBxbzA==
+X-Received: by 2002:a05:622a:1905:b0:4d9:5ce:3744 with SMTP id d75a77b69052e-4da4b048343mr25294191cf.9.1758792627024;
+        Thu, 25 Sep 2025 02:30:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF84Vn/lXM+1k1uOOSGaZwHXSDbKHURPqKNM2+JUtWDEXTRhKuuefGRswtdVWYy9+dsAxkAmQ==
+X-Received: by 2002:a05:622a:1905:b0:4d9:5ce:3744 with SMTP id d75a77b69052e-4da4b048343mr25293891cf.9.1758792626509;
+        Thu, 25 Sep 2025 02:30:26 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-634a3ae3080sm934726a12.34.2025.09.25.02.30.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Sep 2025 02:30:26 -0700 (PDT)
+Message-ID: <239bc397-c746-4ec8-969a-9e3f3c3dee3b@oss.qualcomm.com>
+Date: Thu, 25 Sep 2025 11:30:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 7/9] clk: qcom: clk-alpha-pll: Update the PLL support for
+ cal_l
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Taniya Das <taniya.das@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
+References: <20250924-knp-clk-v1-0-29b02b818782@oss.qualcomm.com>
+ <20250924-knp-clk-v1-7-29b02b818782@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250924-knp-clk-v1-7-29b02b818782@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=B4a50PtM c=1 sm=1 tr=0 ts=68d50bb4 cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=QDpnt0wtCZc4EWvjjt8A:9
+ a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI1MDA0MiBTYWx0ZWRfX1jWb5BgNhXPL
+ aOppZG2KGCC7sWfLbkijtGpK2Fury81RxMEmSTLoN+8QQVCaqI/ae6t+0hjvlc5mdbY/OLZn5MU
+ vZAGnxadzXC+pbWd83FgqbFR8vuByb6TN+ngOnKiJaf+huNkoj6YmCZtCeK6A2uNDnOZ/Zz26A1
+ Gqrf8fcAavA62vMcL9ibN5iBi+tF5EUA852xyJxT1FIo4w9OCgEHsnuxRnN5dFn5kKFy9Hae5d5
+ IhQe9NQMMOwQiLgQXwW+ctUDJZh+9owuuoiHricKzUbLNuqlwlJxIQxRze+1HlEfZZzp5cNawZh
+ vcFv53nlNYxfX/HhDjoE8Y2ue2mIwOFBByj62GDYdt6HSh3RqtIXw5LsoQ2kn8R/FJIURTYTlA8
+ xlPJN9gU
+X-Proofpoint-GUID: yUi0u7COBhn8wjTMHqhPHEEnSLGXU04w
+X-Proofpoint-ORIG-GUID: yUi0u7COBhn8wjTMHqhPHEEnSLGXU04w
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 suspectscore=0 priorityscore=1501 adultscore=0
+ phishscore=0 clxscore=1015 spamscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509250042
 
-The TS233 is a 2 bay NAS similar to the TS433. Architecture-wise it really
-seems to be the same minus the additional PCIe connected components the
-TS433 has.
+On 9/25/25 12:58 AM, Jingyi Wang wrote:
+> From: Taniya Das <taniya.das@oss.qualcomm.com>
+> 
+> Recent QCOM PLLs require the CAL_L field to be programmed according to
+> specific hardware recommendations, rather than using the legacy default
+> value of 0x44. Hardcoding this value can lead to suboptimal or incorrect
+> behavior on newer platforms.
+> 
+> To address this, introduce a `cal_l` field in the PLL configuration
+> structure, allowing CAL_L to be set explicitly based on platform
+> requirements. This improves flexibility and ensures correct PLL
+> initialization across different hardware variants.
+> 
+> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> ---
 
-So it just uses two of the SoCs SATA ports and the SoC's gigabit ethernet.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3568-qnap-ts233.dts   | 133 ++++++++++++++++++
- 2 files changed, 134 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-qnap-ts233.dts
-
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 099520962ffb..f1b7917ae22b 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -136,6 +136,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-nanopi-r5c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-nanopi-r5s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-odroid-m1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-photonicat.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-qnap-ts233.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-qnap-ts433.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-radxa-e25.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-roc-pc.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts233.dts b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts233.dts
-new file mode 100644
-index 000000000000..29181de1bd26
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts233.dts
-@@ -0,0 +1,133 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
-+ * Copyright (c) 2024 Heiko Stuebner <heiko@sntech.de>
-+ */
-+
-+/dts-v1/;
-+
-+#include "rk3568-qnap-tsx33.dtsi"
-+
-+/ {
-+	model = "Qnap TS-233-2G NAS System 2-Bay";
-+	compatible = "qnap,ts233", "rockchip,rk3568";
-+
-+	aliases {
-+		ethernet0 = &gmac0;
-+	};
-+};
-+
-+/* connected to sata2 */
-+&combphy2 {
-+	status = "okay";
-+};
-+
-+&gmac0 {
-+	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
-+	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>, <&cru CLK_MAC0_2TOP>;
-+	assigned-clock-rates = <0>, <125000000>;
-+	clock_in_out = "output";
-+	phy-handle = <&rgmii_phy0>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac0_miim
-+		     &gmac0_tx_bus2
-+		     &gmac0_rx_bus2
-+		     &gmac0_rgmii_clk
-+		     &gmac0_rgmii_bus>;
-+	rx_delay = <0x15>;
-+	tx_delay = <0x21>;
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	/* eeprom for vital-product-data on the backplane */
-+	eeprom@56 {
-+		compatible = "giantec,gt24c04a", "atmel,24c04";
-+		reg = <0x56>;
-+		label = "VPD_BP";
-+		num-addresses = <2>;
-+		pagesize = <16>;
-+		read-only;
-+	};
-+};
-+
-+&leds {
-+	led-1 {
-+		color = <LED_COLOR_ID_GREEN>;
-+		function = LED_FUNCTION_DISK;
-+		gpios = <&gpio1 RK_PD6 GPIO_ACTIVE_LOW>;
-+		label = "hdd2:green:disk";
-+		linux,default-trigger = "disk-activity";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&hdd2_led_pin>;
-+	};
-+};
-+
-+&mcu {
-+	compatible = "qnap,ts233-mcu";
-+};
-+
-+&mdio0 {
-+	rgmii_phy0: ethernet-phy@3 {
-+		/* Motorcomm YT8521 phy */
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x3>;
-+		pinctrl-0 = <&eth_phy0_reset_pin>;
-+		pinctrl-names = "default";
-+		reset-assert-us = <10000>;
-+		reset-gpios = <&gpio0 RK_PC6 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&pinctrl {
-+	gmac0 {
-+		eth_phy0_reset_pin: eth-phy0-reset-pin {
-+			rockchip,pins = <0 RK_PC6 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	leds {
-+		hdd2_led_pin: hdd2-led-pin {
-+			rockchip,pins = <1 RK_PD6 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+};
-+
-+&sata2 {
-+	status = "okay";
-+};
-+
-+&usb2phy1 {
-+	status = "okay";
-+};
-+
-+/* connected to usb_host1_ehci/ohci */
-+&usb2phy1_host {
-+	phy-supply = <&vcc5v0_host>;
-+	status = "okay";
-+};
-+
-+/* connected to usb_host0_ehci/ohci */
-+&usb2phy1_otg {
-+	phy-supply = <&vcc5v0_host>;
-+	status = "okay";
-+};
-+
-+/* right port backside */
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host0_ohci {
-+	status = "okay";
-+};
-+
-+/* left port backside */
-+&usb_host1_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host1_ohci {
-+	status = "okay";
-+};
--- 
-2.47.2
-
+Konrad
 
