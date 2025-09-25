@@ -1,151 +1,162 @@
-Return-Path: <devicetree+bounces-221435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0560EB9F9B9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:39:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AC2DB9FA88
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:49:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD8CB3A8047
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:39:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 424637A2B03
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:48:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58F93271469;
-	Thu, 25 Sep 2025 13:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F167A283FC9;
+	Thu, 25 Sep 2025 13:49:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="Yga0bisA";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="SLCZyK/W"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="mqR4TSd7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a6-smtp.messagingengine.com (fout-a6-smtp.messagingengine.com [103.168.172.149])
+Received: from ixit.cz (ip-94-112-25-9.bb.vodafone.cz [94.112.25.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F250026CE0F;
-	Thu, 25 Sep 2025 13:39:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46DBF1D6DDD;
+	Thu, 25 Sep 2025 13:49:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=94.112.25.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758807549; cv=none; b=FSAdajRn6I+agPDufYjJcGReinwzlBY2Mg27gvoWmU4lQZQGhistB2uhvObRY3IPbZeR4iR36o8eLxX/V0p9Q8SQVSG9Zts0tO/My44006chcLnfSzMIFKEtOIuiFcKUDtQZ1SoFI8fH+dl7+6gjMOAoh5rSoD/LaNiIaxsF/qc=
+	t=1758808190; cv=none; b=kIPOffvGQzn96HgzizjhxWuC06BMktIdIQ2Xe9dcCnXfYiJ5MKeApP78WPVz/iamFnxpRhs/2w+p3T0zpm7/vPF20b6a3uKBEbj7ir9uHI1MbwDCwmLwe0BoEKeQ8qRXY7+6Gg57pevuOqx1v0kPubDX0WHeuGgqmL3cEe1Gu/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758807549; c=relaxed/simple;
-	bh=l9noDZmS+h5Akb+RjBpEJrg20lrX30Rh2R6I7mjXR/8=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=rPwDDMTTMaiyFy404gj70m6RHvEUuuFqnA3mTo4ZBQ+6wQ6MW/oELZK9zakUnX9XNFsN8j/UtmjP6W01AZ3mFxie8+Lsv0mFz6FXJeylqiRuA3er/NmcmT3c91B5FeqyeQZMLvePMU/0yTYV2T9Sf66ujycjQZNIpKSicOXL6XQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=Yga0bisA; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=SLCZyK/W; arc=none smtp.client-ip=103.168.172.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
-	by mailfout.phl.internal (Postfix) with ESMTP id F1365EC01C9;
-	Thu, 25 Sep 2025 09:39:05 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-05.internal (MEProxy); Thu, 25 Sep 2025 09:39:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1758807545;
-	 x=1758893945; bh=ZP6i8t6VjyohhnaOw+R5p+q7sTs7Hkp2pGWlk4LB/z0=; b=
-	Yga0bisAcqKTV0DnIf+ALNVaHGED9hccLWEpVcu1AS2ugQrXux+JA34d+GEbwyXx
-	e1FF0+O80vgwnO1ne8rdph8It6i84gUkARzZip9XgVMLc71RtQMA4wXJtW7w4JSu
-	xfQfTt7AmtsdAOVuYNusA/41h2FeDK2+dOSS0qUiliUaAJUOB13CWyvxCH/wWWMQ
-	iAuYirlk7aD3gyuTEJeKhbPXgaSS08grLJPvb94j9DcstOCoRVhWSAXJl9VGVuP5
-	C0z8eTH5I4m6zXWUkNFI9lMlVUVIMkuV2nktR269Zk3NtdV6VQ+c7F7E3C0SKXKg
-	TuNZ6PgokfHTn3+f1bTJQA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1758807545; x=
-	1758893945; bh=ZP6i8t6VjyohhnaOw+R5p+q7sTs7Hkp2pGWlk4LB/z0=; b=S
-	LCZyK/WT4E/AJqkEn4I4YpM3gmtkrGKSMOjemO5DGw0dS4DogzqSSjqto2aMHMpR
-	wxUYOoTA8WID/3kdzBpXjaQnfpnyY7XgqLMM0saOJUcdjGCQE3807d7McA9iLy9Z
-	okhcLBhPp7+ibK8m6kYp3xbfXzN9EGSc5MFyM43ORS+YUaSaJpVdV0Oq9TFNTKcP
-	cWwUTPMgxTMKp2GOJ+Xj71wxH4ud2RC1KPocZwQJogiZcAVPUmT7J+wO5wO3cYmn
-	d7WBwyG9R74WaI80m86f1ZYTfllRUQ7iu7kkfzcs1L9zzRlvxIA173SmD3dGOdjC
-	bEMa2uPMgyMDuPlgWi5ZQ==
-X-ME-Sender: <xms:-EXVaFl1peFBt9BoXygc2Q9r-wWTKxr5LzzwlJgArNIGdcACKp-2mQ>
-    <xme:-EXVaLrAe_LPjNZ12OohpAcXUeOrXAnHR-81spEbJf5SpKs011LLasvgsMa8VUxFx
-    j2lnOBq0do6AlL5CL7iJp380yyg7zO99ls4xSuWLkWl2Oc9LYdKS24>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeiieeifecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
-    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
-    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
-    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeduhedpmhhouggvpehsmhhtphhouhht
-    pdhrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtghomhdprhgtph
-    htthhopehgohhrughonhdrghgvsegsshhtrdgrihdprhgtphhtthhopegsshhtqdhuphhs
-    thhrvggrmhessghsthgrihdrthhophdprhgtphhtthhopegrughrihgrnhdrhhhunhhtvg
-    hrsehinhhtvghlrdgtohhmpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdr
-    ohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtth
-    hopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepfihilhhlsehkvghrnhgv
-    lhdrohhrghdprhgtphhtthhopehkrhiihihsiihtohhfrdhkohiilhhofihskhhisehlih
-    hnrghrohdrohhrgh
-X-ME-Proxy: <xmx:-EXVaKcqt-fv8lOleOx8L8kijJDVWj7-P23o48SsNRvckojD-eQdzw>
-    <xmx:-EXVaLwC1bOigfMDX-tFoRmlBM74SFARXzeAqG86RqlIDGh71P_hHA>
-    <xmx:-EXVaLIcIpoRWcV4NKcNP5fBP6qfFJmG9of8HUkN1I7UU9i2YVjKww>
-    <xmx:-EXVaEuDGcpXdm5BN4EAXo4c4CRynPUdv6uXY39MKc2saKqSfkRcNg>
-    <xmx:-UXVaJ-JhawVLmBEvgcMBDrywJHyP5BoJ5x4etVHw-smF0Ja35YcNudd>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 8EB47700069; Thu, 25 Sep 2025 09:39:04 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1758808190; c=relaxed/simple;
+	bh=fQlu4S1Xpfp+OjsU8aoZiqJX/wsJnC+sYNgxE5Ve1Z0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rroMfLSuOUYdF4/hUZmYPJawH8YWyLl4ISxfNqfpPySpET90M3gzCw+D1zOBuPx2ymmKZ0fWGyWPFVenCyT/lMRe8wtCo89kEhMyAQo9yiSIACYkEOjeNj2HUQL/s3MujfjAKk+Ox313YxCa9js4HYjk1AB5F24v4l+0HnB5Mjw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=mqR4TSd7; arc=none smtp.client-ip=94.112.25.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange x25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 6A2D2534011B;
+	Thu, 25 Sep 2025 15:41:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1758807694;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=uy252oP/86BgCE/4KMshl0UWHD/Fva5QoCb2a0Z/n04=;
+	b=mqR4TSd7t1ah2KuuyTGFMvdZc0EWgCvD1q4g7xBMnRwMCtK/jyQtPkVwwOJlJLzZKmimBF
+	2C6IHvJtbOTagHghIy3LanewyZBuT+qUpjLmdFPaYWcnrz9APaPjHpB9XA5YCPJ1gKCACE
+	pCXBMGMubJ9NZUCnT1vJ5ibYqd0yYZo=
+Message-ID: <7282a888-e550-4d75-838c-0fb242fefdf6@ixit.cz>
+Date: Thu, 25 Sep 2025 15:41:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: AYQZGcjF-1nJ
-Date: Thu, 25 Sep 2025 15:38:44 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Ulf Hansson" <ulf.hansson@linaro.org>,
- "yangzh0906@thundersoft.com" <yangzh0906@thundersoft.com>
-Cc: "Adrian Hunter" <adrian.hunter@intel.com>,
- bst-upstream <bst-upstream@bstai.top>,
- "Catalin Marinas" <catalin.marinas@arm.com>,
- "Conor Dooley" <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- "gordon.ge" <gordon.ge@bst.ai>, krzk+dt@kernel.org,
- "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- "linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>,
- "Rob Herring" <robh@kernel.org>, "Will Deacon" <will@kernel.org>
-Message-Id: <f64b0e00-1c30-47a1-b6b0-1bc28cc7f8ac@app.fastmail.com>
-In-Reply-To: 
- <CAPDyKFp3onTDGgygvOrK-G40w4mSx4S5=PbdZ+26hsQ+nPVRSA@mail.gmail.com>
-References: <20250925090412.2068216-1-yangzh0906@thundersoft.com>
- <20250925121155.2401934-1-yangzh0906@thundersoft.com>
- <CAPDyKFp3onTDGgygvOrK-G40w4mSx4S5=PbdZ+26hsQ+nPVRSA@mail.gmail.com>
-Subject: Re: [PATCH 0/9] arm64: introduce Black Sesame Technologies C1200 SoC and
- CDCU1.0 board
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/8] Add OnePlus 6T display (Samsung S6E3FC2X01 DDIC with
+ AMS641RW panel)
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Casey Connolly <casey.connolly@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ phone-devel@vger.kernel.org
+References: <20250925-s6e3fc2x01-v1-0-9293016768f7@ixit.cz>
+ <a078c6a0-5a54-4ad5-8e3a-c676783e68a3@oss.qualcomm.com>
+Content-Language: en-US
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <a078c6a0-5a54-4ad5-8e3a-c676783e68a3@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On Thu, Sep 25, 2025, at 15:34, Ulf Hansson wrote:
-> On Thu, 25 Sept 2025 at 14:12, Albert Yang <yangzh0906@thundersoft.com> wrote:
->> On Thu, Sep 25, 2025 at 05:03:57PM +0800, Albert Yang wrote:
->> Subject: Re: [PATCH] splitting SoC and MMC parts
+On 25/09/2025 11:37, Konrad Dybcio wrote:
+> On 9/25/25 11:12 AM, David Heidelberg via B4 Relay wrote:
+>> This patchset enables display on the OnePlus 6T smartphone.
 >>
->> Hi Arnd,
+>> Minor adjust to the device-tree of OnePlus 6 had to be done
+>> to properly document reset GPIO used. Also same adjustments
+>> had been done to the sofef00 panel driver (used by OnePlus 6).
 >>
->> I may have missed an important detail in my previous note. If I split
->> out the MMC-related patches and submit only the SoC parts first, I
->> cannot validate the SoC on real hardware: both the kernel and the root
->> filesystem live on the MMC device. Without the MMC stack (DT bindings
->> and the controller driver), the board does not boot to userspace, so I
->> cannot properly verify the SoC/DT changes in isolation.
->
-> At least to me, I would not consider that a problem. As long as you
-> can test the pieces together "manually" that's fine, I think.
->
-> I mean, the platform was not supported in the first place, so it's not
-> like we would be introducing a regression - or break something, right?
+>> In the last step new DDIC driver is introduced together with AMS641RW
+>> panel sequences.
+> 
+> I think you skipped the elephant in the room - some of these patches
+> break panel for the phone intermittently..
 
-Agreed, it's rare for newly added platforms to immediately have
-everything working, and we can still fix things if they don't.
+Thank you for the review Konrad. I plan to incorporate all your 
+suggested changes in the next revision.
 
-It's also possible to test userspace by using a standalone
-initramfs with a login shell or an automated test suite, but
-I don't require that.
+To clarify, while sofef00 has been introduced as supporting OnePlus 6T 
+too, but it never did (and the compatible was removed later).
 
-     Arnd
+All the changes CAN'T BREAK anything for OnePlus 6T display as it's not 
+supported yet by mainline.
+
+All the changes SHOULDN'T CHANGE anything for the OnePlus 6, as both 
+sides (device-tree and the driver) is changed at once to correct reset 
+polarity.
+
+David
+
+> 
+> Konrad
+
+-- 
+David Heidelberg
+
 
