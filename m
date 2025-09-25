@@ -1,107 +1,102 @@
-Return-Path: <devicetree+bounces-221610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02E30BA15CD
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 22:33:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E46E6BA1606
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 22:39:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D21D67A070C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 20:32:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 96D4B560B63
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 20:39:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB7A72F5306;
-	Thu, 25 Sep 2025 20:33:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E096E31E896;
+	Thu, 25 Sep 2025 20:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="N6OkcMTs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l0AP5ItH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03A5A24EF8C
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 20:33:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B6E01D5151
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 20:37:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758832411; cv=none; b=VCNTVW4gQX0cRC7s34XoOzxw7h1Vhg3tepftsMBzsDg1EfF1xXFC9oXZ+N/4Qi5JAbEruZGhCNnspGH4qZgoAO4YIEGUqm+HosL2MMy7bLYQxOknymVQbdWU/yo0zhyygl0AwYhYEkzLE9ZD02naYb8MNCs4TuE/4iJSy2ysYqQ=
+	t=1758832659; cv=none; b=UVig7rGcuHja5zPJbPhFmbngS83FJxK78UBu28tWL/Kl4TbRIVhxRfiZ7UKeN79SsZp2+v7FtWW1M8uWK2FPnK9ROS8qLCEMIvgTYw/1GvAhSaffqLzHCKc75qTPGzF+MppDI3Ld6xuQ9xFs1XFzSNVJ7aYc7C45ad9F1aYRxH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758832411; c=relaxed/simple;
-	bh=P7qsP8loln8qJMKauzhZHNTaq5rBg6KgAlGOHlFpmFU=;
+	s=arc-20240116; t=1758832659; c=relaxed/simple;
+	bh=CXaPqJgmPfMMppa1RfUc94L4Ntew1IQa6R3v7sr+oVw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EC+BMSDYnwHN2MqWwhE2gUgYHYj76ooOIbUy54qy2s0fuhpM86SgH+74PmSsJ1Nf9FcAoEmvTw0XpKBTdbStXiZcRnMv+cJJD5WyPj5OOaEAZfTCe6Ri6j1veBUY7Wb1rIU0KawD/CU0Tw+QFVgpz3qyHyIZzaS/o5y9fLhxDIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=N6OkcMTs; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58PIUdTB005125
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 20:33:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=LPf7nEUMaiJcR9LEdY1KxASE
-	IWgzMO7x5c68UwxFZjQ=; b=N6OkcMTsvKHif7LmU+reXU+a8reSNhVcIbWqYABh
-	7ZApoulk/9wiCnqeUmqwjQBPk6JNm+xdWoTus2w2fjQKJhdPAKqM8ZkHbwHCY/AV
-	t45a5sFsOBC1pf8x39oyCSojiva6nTvCgch2so8pcDxX5ppwgxu8yoHKiIsVU5U+
-	G3BRMg1QH53a5dH1yZh8mBwsvCHXG80VL7FSjqPxxV0wyAE9VPxR+0wMLsD79MTv
-	JPwrNyTOuy8Hn10LBccZUMEc1o9yitDq94KHdP+3OABlaGDvkfhvSHsajmSf2JuT
-	EG/B3uzkDrjPKiDg4kqtRiASrl0FkqXmwJ2XFlketmY8CA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49db320990-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 20:33:28 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4d6a82099cfso35236371cf.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:33:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758832407; x=1759437207;
+	 Content-Type:Content-Disposition:In-Reply-To; b=L4x95dLBMTMulSq9mjLTe9Lx15VdMwONoY9kOiK1yzErX8xxKwK/oRk8OTzP0dt+qVxDTGpc/7ruzuLcRHTvS5ozEJsQmXQcJNG7NOd7/2TNFJoWbGr6j4bicI64nz6BPFfGP6kd7szsQh5JQ5OilkbNS7otjJquudk7vHKJxDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l0AP5ItH; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b57bffc0248so1120875a12.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:37:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758832656; x=1759437456; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LPf7nEUMaiJcR9LEdY1KxASEIWgzMO7x5c68UwxFZjQ=;
-        b=L4gKXaU4+4GHlhuN8X8fH5RW7dAz1GP7O3J37fKqwY9IyQdCVs6VXzU2LO2hhsgosS
-         cEUHr62PN+nyGAdHUEdd6i16+Rpeta1KALqd26fyGuQvWyK7P45jCxSoeSngIiN4xa26
-         iL4/rxL/U+owX02wA8YMMhdHO66WHv8VcE/fevKMm3/xw74IMdv1C/9/sDiiXq7eZRCM
-         Br36ZzqseEEQJMgx2jjjns7ITlQX+e6ibKwG8uMcYKm1XDyp8S8wOwtLFkWStJMG9EBb
-         ikZNYao0Gdz8ZydSfngzolNtOqjA2OtFoBJVLjolYD3y2OM6MfW+tUfReXaVkkCB04ba
-         Jl8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVQ8GAgco39jbe7lOLvRcIR8gL2tFd14P9Ps3byGtEi+SKwxdopH+FqGAqJtuHDJ5Te6oajeKqEMLsn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwI3LVeWJPCISIO58F/Xfop+r98z8+soHd4fGyF4BkdwFffm+AL
-	JE76SQ9+bk9T5QH6Nj+jKKBk1jS4C5ZtapURFWxSeqXUwE+dtIbV1lbGaPA0k3NiwX8c/EAIX2H
-	KdXWxDPQFQJ549ezONjSXdySFRCnpWoIWzbTWCNRMEMLvwKUqGV9EaKOmAGJkl2kI
-X-Gm-Gg: ASbGnctojmX7dwWQIkV5STDQDxCDV5IAOKOL+ysp3EU0v9m/kfMYBqht404zopXb8Fq
-	hTZRzKz1Y++sBIBzRSS0WiUFrYXejlsFYYsZDzhQUuOtE6ecuVEDOyGLHYdnD0l06QQuJCCYac9
-	AyD4KPak91Ga/+ozwv6rXIFmuIhsIm6mDdSP05wN32RNoNdfmOkL1kqSS7PG3XGT/siQyo1d2FY
-	yAqnw0hEcVNFIiUNrWsjw4Mg9G5VrgvwZblRWI4vSZbd6lZDuz0RcHa5oa51vwIVsXy/OEm9Thk
-	P+pjcA3pF2Kd5ZeFoC1uKwz8+5KQptzhT9S3X/CdQ+Tcy4apvGfHdR8JnA/ERtwg+2wc9DwcHEC
-	Xmzn4qMJhRCxMZ52DEVDwG++JHewk/k/sgFE8ox1cW7Zf/GuxDml8
-X-Received: by 2002:a05:622a:5c85:b0:4b7:9abe:e1e4 with SMTP id d75a77b69052e-4da4e56e355mr68594871cf.82.1758832406742;
-        Thu, 25 Sep 2025 13:33:26 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFTeVcYqwp20QhZ38nNSfsgwuGNMn6xonp3gorjVIZcc+CKmvrdXfDh6RJvsUaFMzQxM86eGw==
-X-Received: by 2002:a05:622a:5c85:b0:4b7:9abe:e1e4 with SMTP id d75a77b69052e-4da4e56e355mr68594331cf.82.1758832406067;
-        Thu, 25 Sep 2025 13:33:26 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58316a31be1sm1062049e87.112.2025.09.25.13.33.22
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eNKk1kU6SOtjUkITv/KCJkuTdw/0nVnpYUbhmN061yY=;
+        b=l0AP5ItH2dspA9W0OZZe7i11ks3E+c3kPfL+K1o11XjW5Aa5YKLS+FcMLI+Tvbbe2x
+         SgmNWwVQuSjuEhpra7FwVrOn+sXYe6HQxJYwchUokwTgGgsPwZBYTjCcXA9MzESQdGVO
+         Ff6ZLfhQyCV93nqdUO2vLZAc+jIrQ/Tb7kFhwYlfgkozkQFpQT0/cq5Uvk4Bu0kon0f+
+         FscoY3eT7vqB6zSzSvorgdbGu7AlP9kBpBczmTzT3zQztUNNP4721p2uTNm5IRVfDJxl
+         pksOwMh1cCRdUi70Q/xE6ZRbA54xN7po0TddZ/mzuf5vf+GiOOWB4cuHWNai/Rn1zh3L
+         dBkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758832656; x=1759437456;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eNKk1kU6SOtjUkITv/KCJkuTdw/0nVnpYUbhmN061yY=;
+        b=HdJqtdwKhPpOiFz7JF+GpL0kFUwVwRJCZfzBloPW7feWgNEuhxOy/CD0sUeJFgaSz1
+         XrN3mPhDfRPSXy/Aq7FBIdPn02jV2FVI1D+8qH3E4s49pERIY6FvzXbgxhcJtNG00oZP
+         WDuSWvUe+ZRgF77Wk00imnNqMyNbHZJiuA4+kAi0jomkNjoz5KraC9Vi/WIBQFM0CnEh
+         lrl60pEOKyufy2RW1xWfYE4FuMDml342JMyufRUJCAoJbHbMTV8LaBU9/CxiV/jg7no0
+         xMEP9Hwdh6wIkyrYPPb+lms230GyysCs4yIL59Q5FQQVJ5BFsUZtTKRliM4dkLxS5LGe
+         HRnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXG8KlSR3oG39+3lCvAXfCYTdC3w6B9BrN0VAluVhSV7r02whwLkGqX2IVs4unCTsY88IAxI5zlpgXW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3h93cUMon+QJDyLCe9PY4gkTnL+wf4SOoS4PHfsTI0Inq1KMB
+	ud3BzNU9wLs7HRIu0nkH7JH9mhBPAC3cBwuCvg2Q3ywtjNyKs6TZvQxv
+X-Gm-Gg: ASbGncvc9083+mFOSJ2cAXJXK9msvvMt17vx8Gu8nPO7Y5oeK9iq/TXFGrDOs2t/5CU
+	zQuySp8geTRTQA+otSimRZY8bfSWsNbvYAqbFE91IZS6u8Sv3clxERTB7Coxwd2QsPYlT+/7+qc
+	Q/ZUDnVWKX4S2IwO1uj3dh/WbtyuBn5zCPktVut8Bx6LvoOq8b+B1Xtmt/IoAMcUZ8K0NFUrlHu
+	CXVhtgcoI3c+xsyUATKWAp801wGpePlCLDSHtN4/HniD8VgPAcKm2F/dKbpB/s3clzd53HJqGSE
+	2ljEG3x/uhnD+CRNkLbTZ6tkcbE193T4D4HeHhxRkPFDVVMUr2TKsC7FmZD3Dmd+4263sNh92FZ
+	yImxvRAGYZ2h01ZH27jFVyAuX6nSh6a+ZWVeXcHQBPHT0fA==
+X-Google-Smtp-Source: AGHT+IGdaPC8LUhy5y9eJbG77kWOllABnqIUJud8kZmzafxvaX4bFrJ9tXNvo9qzIrnH2+Si1arwcw==
+X-Received: by 2002:a17:903:1b6e:b0:267:99be:628e with SMTP id d9443c01a7336-27ed6abad48mr50663105ad.2.1758832656340;
+        Thu, 25 Sep 2025 13:37:36 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed66cda43sm34135455ad.25.2025.09.25.13.37.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Sep 2025 13:33:23 -0700 (PDT)
-Date: Thu, 25 Sep 2025 23:33:20 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-Cc: Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, linux-arm-msm@vger.kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Vishnu Reddy <quic_bvisredd@quicinc.com>
-Subject: Re: [PATCH 1/8] media: dt-bindings: qcom-kaanapali-iris: Add
- kaanapali video codec binding
-Message-ID: <sf2ujxfthvpwfp5ksqfww6qh5zfygf5lubylfrvtc5lwxakkz3@7gqxhbdafwvi>
-References: <20250925-knp_video-v1-0-e323c0b3c0cd@oss.qualcomm.com>
- <20250925-knp_video-v1-1-e323c0b3c0cd@oss.qualcomm.com>
- <nuunkv3xwfes6wed5xf4re2efakndvvrfl4lhmenilkic4sjiy@5cb2f5ygegvm>
- <522d7244-0003-a42e-9be0-1d353df8d5bd@oss.qualcomm.com>
- <oimuo26ohcye74j6rl5hfbmd4ip5wzudhyiaibf74b5zmjb4vl@xh3dnp7gmvq7>
- <6198a56a-dbca-5cce-fcd2-43978e87236d@oss.qualcomm.com>
+        Thu, 25 Sep 2025 13:37:35 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Thu, 25 Sep 2025 13:37:35 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Conor Dooley <conor@kernel.org>
+Cc: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Stefan Wahren <wahrenst@gmx.net>,
+	Saenz Julienne <nsaenz@kernel.org>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH 1/4] dt-bindings: Add Raspberry Pi's RP1 ADC
+Message-ID: <89dd04b9-e261-4bdd-83ab-499e46fc9c01@roeck-us.net>
+References: <20250925000416.2408457-1-svarbanov@suse.de>
+ <20250925000416.2408457-2-svarbanov@suse.de>
+ <20250925-outlying-causal-015d8ba33c53@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -110,128 +105,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6198a56a-dbca-5cce-fcd2-43978e87236d@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=ao6/yCZV c=1 sm=1 tr=0 ts=68d5a718 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=gEfo2CItAAAA:8
- a=QVIiKdR3HoERtcWfPvAA:9 a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22
- a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-ORIG-GUID: clOLJKLBCNZsvRqCAY9A_nTA54MY_bWM
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI1MDE3MiBTYWx0ZWRfXzchoiJBVC7xB
- M1mbUXQ2vYLw/1Oi4P4GwVSb6vVIg0XU4LSkz9SgvPz/PNIS26Pyji2Hkvxm68qgkuEOHDvzhvB
- D5R+zEzChlommVXCzk0qEdqh+AAlKozqphYLyF19JSIN8EzbATVxiCN8QoArCMo/m3Mwcl+Ms3P
- FpOTEj625KW1iKPFiz9q65RCvs4Ek0j5E7+WQPMi3TLUZ6uZ24SENkHWrZRwvg7nI9xFQRqXQm4
- OsUKAr94HS+IazEZs/jcSR93TnGGwAJDAxSAxbE4sEGoW8eXCcn+DSAqgB9Pk2pqueKPF/YfVyc
- wk56Xb39ALLppFlI2OOZ+XLt8JbIFuFGrN9QM1UhVi1h3UFEE/IlmEqWrNf+qa7rYoMe5J/+Oew
- DF5vKqd5xkDWEn5lcnPBYz35fYpWPw==
-X-Proofpoint-GUID: clOLJKLBCNZsvRqCAY9A_nTA54MY_bWM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-25_01,2025-09-25_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 impostorscore=0 priorityscore=1501 suspectscore=0 phishscore=0
- adultscore=0 spamscore=0 clxscore=1015 lowpriorityscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509250172
+In-Reply-To: <20250925-outlying-causal-015d8ba33c53@spud>
 
-On Fri, Sep 26, 2025 at 01:15:15AM +0530, Vikash Garodia wrote:
-> 
-> On 9/26/2025 1:08 AM, Dmitry Baryshkov wrote:
-> > On Fri, Sep 26, 2025 at 01:01:29AM +0530, Vikash Garodia wrote:
-> >>
-> >> On 9/26/2025 12:55 AM, Dmitry Baryshkov wrote:
-> >>> On Thu, Sep 25, 2025 at 04:44:39AM +0530, Vikash Garodia wrote:
-> >>>> Kaanapali SOC brings in the new generation of video IP i.e iris4. When
-> >>>> compared to previous generation, iris3x, it has,
-> >>>> - separate power domains for stream and pixel processing hardware blocks
-> >>>>   (bse and vpp).
-> >>>> - additional power domain for apv codec.
-> >>>> - power domains for individual pipes (VPPx).
-> >>>> - different clocks and reset lines.
-> >>>>
-> >>>> There are variants of this hardware, where only a single VPP pipe would
-> >>>> be functional (VPP0), and APV may not be present. In such case, the
-> >>>> hardware can be enabled without those 2 related power doamins, and
-> >>>> corresponding clocks. This explains the min entries for power domains
-> >>>> and clocks.
-> >>>> Iommus include all the different stream-ids which can be possibly
-> >>>> generated by vpu4 video hardware in both secure and non secure
-> >>>> execution mode.
-> >>>>
-> >>>> This patch depends on following patches
-> >>>> https://lore.kernel.org/all/20250924-knp-interconnect-v1-1-4c822a72141c@oss.qualcomm.com/
-> >>>> https://lore.kernel.org/all/20250924-knp-clk-v1-3-29b02b818782@oss.qualcomm.com/
-> >>>>
-> >>>> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-> >>>> ---
-> >>>>  .../bindings/media/qcom,kaanapali-iris.yaml        | 236 +++++++++++++++++++++
-> >>>>  1 file changed, 236 insertions(+)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/media/qcom,kaanapali-iris.yaml b/Documentation/devicetree/bindings/media/qcom,kaanapali-iris.yaml
-> >>>> new file mode 100644
-> >>>> index 0000000000000000000000000000000000000000..f3528d514fe29771227bee5f156962fedb1ea9cd
-> >>>> --- /dev/null
-> >>>> +++ b/Documentation/devicetree/bindings/media/qcom,kaanapali-iris.yaml
-> >>>> @@ -0,0 +1,236 @@
-> >>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>>> +%YAML 1.2
-> >>>> +---
-> >>>> +$id: http://devicetree.org/schemas/media/qcom,kaanapali-iris.yaml#
-> >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>> +
-> >>>> +title: Qualcomm kaanapali iris video encode and decode accelerators
-> >>>> +
-> >>>> +maintainers:
-> >>>> +  - Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-> >>>> +  - Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>
-> >>>> +
-> >>>> +description:
-> >>>> +  The iris video processing unit is a video encode and decode accelerator
-> >>>> +  present on Qualcomm platforms.
-> >>>> +
-> >>>> +properties:
-> >>>> +  compatible:
-> >>>> +    const: qcom,kaanapali-iris
-> >>>> +
-> >>>> +  reg:
-> >>>> +    maxItems: 1
-> >>>> +
-> >>>> +  interrupts:
-> >>>> +    maxItems: 1
-> >>>> +
-> >>>> +  power-domains:
-> >>>> +    minItems: 5
-> >>>> +    maxItems: 7
-> >>>
-> >>> You are sending bindings for a single device on a single platform. How
-> >>> comes that it has min != max?
-> >>
-> >> I was planning to reuse this binding for the variant SOCs of kaanapali/vpu4. If
-> >> we do not have min interface, then for those variants, we have to either have
-> >> separate bindings or add if/else conditions(?). Introducing min now can make it
-> >> easily usable for upcoming vpu4 variants.
+On Thu, Sep 25, 2025 at 08:40:54PM +0100, Conor Dooley wrote:
+> On Thu, Sep 25, 2025 at 03:04:13AM +0300, Stanimir Varbanov wrote:
+> > Document dt-bindings for Raspberry Pi's RP1 ADC.
 > > 
-> > No, it makes it harder to follow the changes. This platform has
-> > this-and-that requirements. Then you add another platform and it's clear
-> > that the changes are for that platform. Now you have mixed two different
-> > patches into a single one.
+> > Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+> > ---
+> >  .../bindings/hwmon/raspberrypi,rp1-adc.yaml   | 46 +++++++++++++++++++
+> >  1 file changed, 46 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/hwmon/raspberrypi,rp1-adc.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/hwmon/raspberrypi,rp1-adc.yaml b/Documentation/devicetree/bindings/hwmon/raspberrypi,rp1-adc.yaml
+> > new file mode 100644
+> > index 000000000000..5266b253fd2b
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/hwmon/raspberrypi,rp1-adc.yaml
+> > @@ -0,0 +1,46 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/hwmon/raspberrypi,rp1-adc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Rasberry Pi RP1 ADC device
+> > +
+> > +maintainers:
+> > +  - Stanimir Varbanov <svarbanov@suse.de>
+> > +
+> > +description: |
+> > +  The RP1 ADC is a five input successive-approximation ADC with 12-bit
+> > +  resolution (ENOB 9.5-bit) at 500kSPS. It has four external inputs
+> > +  and one internal temperature sensor.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: raspberrypi,rp1-adc
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  vref-supply:
+> > +    description:
+> > +      Reference voltage regulator 3.3V.
 > 
-> you are suggesting to add new schema when the new variant comes in ?
+> Looks like you're missing the io-channels-cells property that allows
+> this device to be a provider of adc channels to other devices.
+> 
+Only makes sense if the driver is implemented as iio driver.
+Which would be fine with me, assuming this is a generic ADC.
+The iio -> hwmon bridge can then be used to instantiate a
+hwmon device if needed.
 
-No, I'm suggesting extending the schema when the new variant comes in
-instead.
-
-> there is
-> also a possibility that this hardware(kaanapali) can be used without those
-> optional power domains as well. Let say, someone does not want apv codec, in
-> such case, that pd becomes optional.
-
-That's totally a software construct - not enabling unused domains. Here
-you are describing, you know, the hardware. And in the hardware the IP
-core has a fixed number of connected clocks and power domains.
-
-
--- 
-With best wishes
-Dmitry
+Guenter
 
