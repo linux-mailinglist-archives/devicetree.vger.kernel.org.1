@@ -1,119 +1,228 @@
-Return-Path: <devicetree+bounces-221483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221484-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 935C6BA03EA
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 17:22:18 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48F4BBA02F3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 17:17:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC0042A08FB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:16:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 388194E39F4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:17:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 670EF2E1EF4;
-	Thu, 25 Sep 2025 15:16:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A8462E36F6;
+	Thu, 25 Sep 2025 15:17:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nhVbf6sv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D066F2C21E7
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 15:16:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B7AC2C21E7
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 15:17:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758813405; cv=none; b=bp7Z2Jb1/y7HyLE4e0SBSh8rC5RjMuAG8rk91Wq2FiUsa6E7ps7YYrsnESKr2fF27EqWsoFC638YshYjFRXarJxBxCb+2IXxxm/5HWQRvangdn8rlqo2/A0riGUtC3Gi7newmf2a8nTXiGfvS2C0+7zcTaCVVGJS993vxbHwdMc=
+	t=1758813435; cv=none; b=AKpPDn/veKZdN8Q6KFKHCVdBZ+RHtDhuz6r2V/pYNbEXXoCbz2gsHHIqnqrQnzMefpHP3ELTtJwGQ+0Iqul5QVjjCDI4xgIV6IpP3dy99PvsPhX1/0SyvHp+1WEqRiQncsOufNxEmDR8nSMkfrfEEDXbOHaY3YI41EZuW+bFYjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758813405; c=relaxed/simple;
-	bh=m4v2PJnZTWFcPM4vwV03B+DdPrjczoMLEbCJNH11ExA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=L+f38YLkUmyvKclBJjnlwmXeU5uhXdQer7pz2+YwGYM/MW473takByiiZkxRdnrFbSsIbv/fab8+WWgpG6nU41bQD5Ht7p/CnIO/mKmXNciELImubIFQBeFGTmY4fJ2kXp8puKJVS6RbNly5pzycGd7qw0cuf7u7fC0K5cwRheY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1758813435; c=relaxed/simple;
+	bh=EPmeZ+AxYQt1ZQC0Ek7FvFMD0viWXbKOiFp56gi1mFQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uvDiZZ/vS1VAbI22fKbq4I4ktTYJaRwETTAuGvVOvxHFXkBgNrCFoitT6y2JnE495x78NDbWUd2T1qBpyHNPKtb5LsDWJzHgn0FhcEwl9kgLFeDtNPBNwxTOI6YaNklny70tPfhwj3ier8L1gQIDrHJY58v1X+DskSE0eahvcXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nhVbf6sv; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-59d576379b9so579674137.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 08:16:43 -0700 (PDT)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-57e8e67aa3eso3061085e87.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 08:17:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758813432; x=1759418232; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7v32IEPJq83+rFpTKepQApZcwbjn1LGuorJ9QJ5gMjI=;
+        b=nhVbf6svSPK93SBpCUsW1QtYeCNo/XMUyoqZONzdN3kn2s2P1SghA8S/UtxjXYZ1gJ
+         sJ3+XPEBIXTVpGXF+sPe3SJPKUBJ4h7z2QVFf6NeH6oibE+XDdJBQUFuEpgGDX16L3+G
+         KwJFF2FRLqn/zo6VcUsgP9oO47C0JqBp55BndpGYDc0ccXsfx6PhKBOTyKuIWJbwjzvf
+         8ifunal0v8LMcUMupXrAvCBQtzw2Y3fktWbydKmj25hj9ijx3PtrVhDPwVZp0COAeLx4
+         txp6cfAnxs+J4ePWSUlr4JyBdC4z7CLBuMG/qnhoux+XjX6cXdYOywSMOn2DlABpS+eq
+         JZHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758813402; x=1759418202;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1758813432; x=1759418232;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=95UeH5Wrdj2nWFDACiTCmJA7K9iWHeQl32Wj8GxRyR4=;
-        b=sSQBvhM74WMgRNgvhZpBQLn1oGLt2rSCMexlQ1NDJH1dBnIq4gepx3wKxJxsY2RL6M
-         aBcmYqp6YKLymKMcZu2zAPP/h4215IGD2jB7+9uw+weka2qPalrnHuEBo3WDwVPLK3yK
-         hloXTrJho0Q/rEW+uF8jl5GRght9TxgQjiu47zd2MNjlMhs2gaTqjrV13xgd+os5syvi
-         QXX+w496EBaBk4sEfwIQtz2lSguyCNqhTjSnLgWkAJZHIatw5diipJ9flZ8NxB+o6Mwz
-         1mShATRe5ch701GOvmbAYZ1vE2iR/BriQjdWFikRgzWVlXCLPbDGPgAd8nBcfZwTFzDW
-         FzYg==
-X-Forwarded-Encrypted: i=1; AJvYcCXtfUCOfJPYbtJvU/cTIIZLE4e6rwR8+GEVZjM0c4J1PcItlxebjeFFoUF7BvIDm4uwQbpQJZ16HWIm@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuyLYL5/KpKD2duVV2jHq2M20JSgElbr5cVD9x5NjyBbS47/dc
-	CrYdk2+EZ4zJ9dFmXox3a2bNIDuLGFRKbuyl1lAg12y85qFzWaiadIHYBZ17l9jQ
-X-Gm-Gg: ASbGncsGxsMIGZiap9f8Gjpu2Q3vmwmORlFlUbFMjsc1u+voRGWwWZjWqQdszID5Ktf
-	uQViBsRV3tdsTWfrQ9RbbeSGLGE3M3Ys4fLbrIxtcLFpCz9IwWaxg/OuAozSGelScdYAS4CzMu9
-	0Yo1CYJrUfVSiT7zEZcl0GjnnFkUSlZ9JDknw1HuZECjy2lpFZU4AglWRX4j5sh9NCxoonvi4UU
-	YDRgvKZtsiwDs9FUOifIaoWUGBUs/eQxwnmDlQId7w2bzR4O0oHGuMvhZ2Cj3KIxYt15g2RLpES
-	Vw10ayQ9SeyJgLWE2fEsusSVbA4EmYeDTRuHhk8UTJnPCLqOMwRQ0SUAB6mdyVtjCj5EufkzqWt
-	ltvBCDbjkwjovq2fJqZmf90STK85WLlCC9VCgr8d9/ncJ1V36SeIufIuLtm5O
-X-Google-Smtp-Source: AGHT+IESBOSf55tftO5L9ymMME09EHRCW7IRXifH5Fh9AgksMhWbQNxtydW+f0qVMBJBzh9HfVS3zw==
-X-Received: by 2002:a05:6102:161e:b0:4dd:b037:d239 with SMTP id ada2fe7eead31-5acc6fc48admr1519177137.14.1758813402332;
-        Thu, 25 Sep 2025 08:16:42 -0700 (PDT)
-Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-916d17f8d25sm442241241.8.2025.09.25.08.16.41
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Sep 2025 08:16:41 -0700 (PDT)
-Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-52e6037a484so324259137.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 08:16:41 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV41Kh6N0al8RYtt/1yFHk3g+cdFa4GJW15VCFgz20utabuh32ayik5vcw5yN3tGExzpCJbNXF1XcLx@vger.kernel.org
-X-Received: by 2002:a05:6102:d90:b0:59c:5e29:dd8f with SMTP id
- ada2fe7eead31-5acce75ae4fmr1755148137.26.1758813393977; Thu, 25 Sep 2025
- 08:16:33 -0700 (PDT)
+        bh=7v32IEPJq83+rFpTKepQApZcwbjn1LGuorJ9QJ5gMjI=;
+        b=ljx85NtIo3vj/LO67KThKbMjRjfAIysz5YMSfUIS5edA8zkoNDDy68WBQdneO/T3n+
+         vpQS42UoWY0uXpq6py2MCGCs3QVmfhieUCYkVP40kq3BusW/lC0B1MsVnx5aGgOh8Ey5
+         bQLHi2wV5HCyH2cxx+tH1evdR+S7risT7yIFG+g7L3Y2wOy6FvBSUxiYHdp4tusbyF84
+         CBt+EQgYjJz4Xm2hgpJ+FJ0p+glZogE7z54x56rpia3jMV4dWcYa3NWeUci0/+Q5ZC/1
+         a29/VAme2vkMV6oAV6wztAALjcIHr4B+CcRWkgYLX1Ea9cEGz5nIniuIk7VOx4B8AKiV
+         +tCw==
+X-Forwarded-Encrypted: i=1; AJvYcCVE4evrYFhy94X1zEY6sMxgC72bKpIs8ZNRA0r8NdHNMHNOodtWJYW9/EWpX1wh1njq+Y8TgpgRnw/9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJ4dj69oFlQx1y4RNik9IijMdMSBC65kdXtgMLMBdW402n1gfR
+	vcwdD/bAQQNUpP7RJTGWE2fX15tdnLaVqmtlQOtI06SkHOfbPNHjLgx7
+X-Gm-Gg: ASbGncv63ETEfoZxLgXxlI+cK/jxdib/sqQUCE5tAWuOiDxoiv1SxWj5wUggd/GpmWf
+	R/ckPQhA16FF8YMj0SR/DHa/x7nr2ZbMlflY6nBa8w3D0cy6OOniaxLA5Kk0dEyRf+hWyha52Up
+	bhBnUO9obVULyZzRxn7XUPSkPj9rD83m9FMDXGlnzqU5mWs6uWsocFIp4aVnm+k7kWTEY+54CxB
+	xtb6S98QKWRfT4IBqRbzocTTncEwYrQwJHOvX2cIlPlcL+2JbmMSwAnIy9AdJ97BXr5Lhn6kK54
+	m7wvXWr9XlqpfcTFvMhDwli0K+tHFTG9QkhoxVJDVf9fihOJp8ndixH36+HTuixoSMqE6zzydto
+	brIiM9QJrB+v5rg==
+X-Google-Smtp-Source: AGHT+IE3EnxRGgkHHyis8Weimvr/QO/NiYq/0dZgZmiN2yuGCI3D2oO1tpnAY+bLbNeA0ytCv5wrfw==
+X-Received: by 2002:a05:6512:3a93:b0:55f:3ae4:fe57 with SMTP id 2adb3069b0e04-58306abf6a1mr938344e87.20.1758813431368;
+        Thu, 25 Sep 2025 08:17:11 -0700 (PDT)
+Received: from xeon.. ([188.163.112.70])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58313430496sm870084e87.27.2025.09.25.08.17.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Sep 2025 08:17:10 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Sowjanya Komatineni <skomatineni@nvidia.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Prashant Gaikwad <pgaikwad@nvidia.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	=?UTF-8?q?Jonas=20Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>,
+	Dmitry Osipenko <digetx@gmail.com>,
+	Charan Pedumuru <charan.pedumuru@gmail.com>,
+	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>,
+	Aaron Kling <webgeek1234@gmail.com>,
+	Arnd Bergmann <arnd@arndb.de>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-staging@lists.linux.dev
+Subject: [PATCH v3 00/22] tegra-video: add CSI support for Tegra20 and Tegra30
+Date: Thu, 25 Sep 2025 18:16:26 +0300
+Message-ID: <20250925151648.79510-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250907161130.218470-1-marek.vasut+renesas@mailbox.org> <aNVbEvSRCpQSXT4W@shikoro>
-In-Reply-To: <aNVbEvSRCpQSXT4W@shikoro>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 25 Sep 2025 17:16:22 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV9N-Q4uJXMKg095LD-mFvZv_yU_5jppZM6TZ3xh08zpw@mail.gmail.com>
-X-Gm-Features: AS18NWDEqoQdloQzIjh0wjgWDVcokcQ2jeIfuog0D3JY4DANF_f6TtXyGtHRpVI
-Message-ID: <CAMuHMdV9N-Q4uJXMKg095LD-mFvZv_yU_5jppZM6TZ3xh08zpw@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: renesas: r8a779g3: Add Argon40 fan HAT DTO
- to Retronix R-Car V4H Sparrow Hawk
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>, linux-arm-kernel@lists.infradead.org, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Wolfram,
+Add support for MIPI CSI device found in Tegra20 and Tegra30 SoC along
+with a set of changes required for that.
 
-On Thu, 25 Sept 2025 at 17:09, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> On Sun, Sep 07, 2025 at 06:10:53PM +0200, Marek Vasut wrote:
-> > Add DT overlay to bind Argon40 fan HAT, on Retronix R-Car V4H
-> > Sparrow Hawk board. Fan RPM control and full RPM on reboot has
-> > been tested.
-> >
-> > Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> > Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
->
-> As the dependencies are in, can we have this patch in -next now, pretty
-> please? :)
+---
+Changes in v2:
+- vi_sensor gated through csus
+- TEGRA30_CLK_CLK_MAX moved to clk-tegra30
+- adjusted commit titles and messages
+- clk_register_clkdev dropped from pad clock registration
+- removed tegra30-vi/vip and used tegra20 fallback
+- added separate csi schema for tegra20-csi and tegra30-csi
+- fixet number of VI channels
+- adjusted tegra_vi_out naming
+- fixed yuv_input_format to main_input_format
+- MIPI calibration refsctored for Tegra114+ and added support for
+  pre-Tegra114 to use CSI as a MIPI calibration device
+- switched ENOMEM to EBUSY
+- added check into tegra_channel_get_remote_csi_subdev
+- moved avdd-dsi-csi-supply into CSI
+- next_fs_sp_idx > next_fs_sp_value
+- removed host1x_syncpt_incr from framecounted syncpoint
+- csi subdev request moved before frame cycle
 
-Only after v6.18-rc1...
+Changes in v3:
+- tegra20 and tegra30 csi schema merged
+- removed unneeded properties and requirements from schema
+- improved vendor specific properties description
+- added tegra20 csus parent mux
+- improved commit descriptions
+- redesigned MIPI-calibration to expose less SoC related data into header
+- commit "staging: media: tegra-video: csi: add support for SoCs with integrated
+  MIPI calibration" dropped as unneeded
+- improved tegra_channel_get_remote_device_subdev logic
+- avdd-dsi-csi-supply moved from vi to csi for p2597 and p3450-0000
+- software syncpoint counters switched to direct reading
+- adjusted planar formats offset calculation
+---
 
-Gr{oetje,eeting}s,
+Svyatoslav Ryhel (22):
+  clk: tegra: set CSUS as vi_sensor's gate for Tegra20, Tegra30 and
+    Tegra114
+  dt-bindings: clock: tegra30: Add IDs for CSI pad clocks
+  clk: tegra30: add CSI pad clock gates
+  dt-bindings: display: tegra: document Tegra30 VI and VIP
+  staging: media: tegra-video: expand VI and VIP support to Tegra30
+  staging: media: tegra-video: vi: adjust get_selection op check
+  staging: media: tegra-video: vi: add flip controls only if no source
+    controls are provided
+  staging: media: tegra-video: csi: move CSI helpers to header
+  gpu: host1x: convert MIPI to use operation function pointers
+  staging: media: tegra-video: vi: improve logic of source requesting
+  staging: media: tegra-video: csi: move avdd-dsi-csi-supply from VI to
+    CSI
+  arm64: tegra: move avdd-dsi-csi-supply into CSI node
+  staging: media: tegra-video: tegra20: set correct maximum width and
+    height
+  staging: media: tegra-video: tegra20: add support for second output of
+    VI
+  staging: media: tegra-video: tegra20: simplify format align
+    calculations
+  staging: media: tegra-video: tegra20: set VI HW revision
+  staging: media: tegra-video: tegra20: increase maximum VI clock
+    frequency
+  staging: media: tegra-video: tegra20: expand format support with
+    RAW8/10 and YUV422 1X16
+  staging: media: tegra-video: tegra20: adjust luma buffer stride
+  dt-bindings: display: tegra: document Tegra20 and Tegra30 CSI
+  ARM: tegra: add CSI nodes for Tegra20 and Tegra30
+  staging: media: tegra-video: add CSI support for Tegra20 and Tegra30
 
-                        Geert
+ .../display/tegra/nvidia,tegra20-csi.yaml     | 135 +++
+ .../display/tegra/nvidia,tegra20-vi.yaml      |  19 +-
+ .../display/tegra/nvidia,tegra20-vip.yaml     |   9 +-
+ arch/arm/boot/dts/nvidia/tegra20.dtsi         |  19 +-
+ arch/arm/boot/dts/nvidia/tegra30.dtsi         |  24 +-
+ .../arm64/boot/dts/nvidia/tegra210-p2597.dtsi |   4 +-
+ .../boot/dts/nvidia/tegra210-p3450-0000.dts   |   4 +-
+ drivers/clk/tegra/clk-tegra114.c              |   7 +-
+ drivers/clk/tegra/clk-tegra20.c               |  20 +-
+ drivers/clk/tegra/clk-tegra30.c               |  21 +-
+ drivers/gpu/drm/tegra/dsi.c                   |   1 +
+ drivers/gpu/host1x/Makefile                   |   1 +
+ drivers/gpu/host1x/dev.c                      |   2 +
+ drivers/gpu/host1x/dev.h                      |   2 +
+ drivers/gpu/host1x/mipi.c                     | 501 +----------
+ drivers/gpu/host1x/tegra114-mipi.c            | 483 ++++++++++
+ drivers/pinctrl/tegra/pinctrl-tegra20.c       |   7 +
+ drivers/staging/media/tegra-video/Makefile    |   1 +
+ drivers/staging/media/tegra-video/csi.c       |  66 +-
+ drivers/staging/media/tegra-video/csi.h       |  16 +
+ drivers/staging/media/tegra-video/tegra20.c   | 828 +++++++++++++++---
+ drivers/staging/media/tegra-video/vi.c        |  56 +-
+ drivers/staging/media/tegra-video/vi.h        |   9 +-
+ drivers/staging/media/tegra-video/video.c     |   8 +-
+ drivers/staging/media/tegra-video/vip.c       |   4 +-
+ include/dt-bindings/clock/tegra30-car.h       |   3 +-
+ include/linux/host1x.h                        |  10 -
+ include/linux/tegra-mipi-cal.h                |  56 ++
+ 28 files changed, 1648 insertions(+), 668 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-csi.yaml
+ create mode 100644 drivers/gpu/host1x/tegra114-mipi.c
+ create mode 100644 include/linux/tegra-mipi-cal.h
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.48.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
