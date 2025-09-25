@@ -1,379 +1,261 @@
-Return-Path: <devicetree+bounces-221324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 336B6B9E86C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:01:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E06AB9E899
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:04:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D3A031669EB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 10:01:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 008324A3BF4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 10:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EFB52E9ECD;
-	Thu, 25 Sep 2025 10:00:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57DC82E974D;
+	Thu, 25 Sep 2025 10:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="OXxAlb89"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="DXAWDq2k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11021118.outbound.protection.outlook.com [52.101.70.118])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C16D02550AD;
-	Thu, 25 Sep 2025 10:00:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.118
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758794454; cv=fail; b=J4lxnJEpXTZe0sKpSb5Ent9OgQVf9FQt496xM1AoZDKyjtUlByjGTbqf5XErJOnKDqtEBV7RJ4Q67/6tEP/NGlW2DU0/cPMyhqacUqd7jWrvpUqMCjKSfqbX4hE42b6bZuRMUeMy5BvRf17FskAQ9jsCpO1tXlyDWOFTBOeR7sU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758794454; c=relaxed/simple;
-	bh=a0VWFHYHHd8VzQUEVQNCB+zbIK1bKRgAD+9UKfeRO/4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=oe8UaFPZfLWGqci9sKVnGy8AeJjZADQ8ADH+HOkxETXV7ey6zprmH+a3El9dqf7QJ3txV2KD9QJOnT62/B+qSkdh6uR1oUFM+L4R8VvJB8jKag10Q4bsbhKkUOZdjqd++18yKD+uH3AIZc/Jb6z5ybc+eIYMIXrY8PwBraa5IqM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=OXxAlb89; arc=fail smtp.client-ip=52.101.70.118
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lbMQqTk2Kf+rlPHpMXuUzqiEEXZ/9at25JZDNouI6+U+As44cU/CcYNkg32ztQXWbaTrfsCJjaOkGLdyNNK7XAFlGsnH4ZuBbKjpC/Kbs2CB9f8WoBkxlqBoLnttiZ+gEunapMFOpyfx5rVC/0yMVHyb74DhC1tZllnKYezX1gP2nmPNSrJu9/sPMRVOcOXNP6bIK9ilMDY+vaI09lYdPGUaMghX97H2tokzhuCQPiNwhoI3MOfee7OmMI2s7QBJZI/FfBElvBuNgWKQNr/gOS+zCPG2xFsmtTJaPZoG8O5bt4jFzSbAJn0C81Zl6kcSz5dptYZbb9d0QUgBh14j5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=DjfLd1KwWR3eJHSXHXjdsR07lo1IOFz8xElOeao3qbY=;
- b=AIbgWHy3IAB0XEr08b0giBRj0cjUE63ULoiJBNEOkbEtWxdjeQa+lLULpgIuVHkGYIRZFiFIiM0s2e/FbAcjFE5CWoz27zHestwuB7Sxs0R1nYtpavwu1uQTbeGs8rOVqsdMyCwFDFFzAeGGnb9g5yz/pT1N47GIvtcg8AITF5Fb1U71+HtU0ssssVN8pJPMVtzRSrMekpYYldOeg+xswTXmShy8kIPlDzf4KorJY6xXMQ9B0hQcto8C9YfEAMlnSJshcMUH4KHACjQXg8GaKxC+6B4gzwq6x68RLIxiB6SC2EbTL3KAcaBsafuYYu3VNwL4xppzyB24Kqt18l/arg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 91.26.50.189) smtp.rcpttodomain=ti.com smtp.mailfrom=phytec.de; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine header.from=phytec.de;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=DjfLd1KwWR3eJHSXHXjdsR07lo1IOFz8xElOeao3qbY=;
- b=OXxAlb89AqIhtw5SUjF7+tl56JQbZEtk1sSUUG2Z36DpszniXUUsTiOkUxA16bT0U4MquK5C7SfacMCwq3+Js1lhL5ckMks276G7ol6sz0WVhOE+/v8hASRGd1TU5L5Kiy1GhwAxgp+fiS4ErzadhtcFsrvPvuENmSiy5L8iLP87bqNR/bQFejrBFlhQkOJnaNPWTRZV8v9N7rZqPbGuL0FCa8mfWEtTxqaTTZYYL4iagiI0pNjbN66+xYa8WeU3jgCfdihu3XNmXdvpBcb6aSJcWiRSHvQX4Qw1dXJuKM1/TKDgASPKZeZ5ac/1kEg0fGyzS6RKOqSRHC1idC401A==
-Received: from AM0PR01CA0145.eurprd01.prod.exchangelabs.com
- (2603:10a6:208:aa::14) by DU7PPF2CD800A78.EURP195.PROD.OUTLOOK.COM
- (2603:10a6:18:3::bcd) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.19; Thu, 25 Sep
- 2025 10:00:47 +0000
-Received: from AMS0EPF000001B3.eurprd05.prod.outlook.com
- (2603:10a6:208:aa:cafe::8a) by AM0PR01CA0145.outlook.office365.com
- (2603:10a6:208:aa::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.22 via Frontend Transport; Thu,
- 25 Sep 2025 10:00:45 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
- smtp.mailfrom=phytec.de; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- phytec.de discourages use of 91.26.50.189 as permitted sender)
-Received: from Postix.phytec.de (91.26.50.189) by
- AMS0EPF000001B3.mail.protection.outlook.com (10.167.16.167) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9160.9 via Frontend Transport; Thu, 25 Sep 2025 10:00:47 +0000
-Received: from phytec.de (172.25.0.51) by Postix.phytec.de (172.25.0.11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 25 Sep
- 2025 12:00:45 +0200
-From: Wadim Egorov <w.egorov@phytec.de>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <aradhya.bhatia@linux.dev>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
-Subject: [PATCH v2 3/3] arm64: dts: ti: am625-phyboard-lyra: Add Lincoln LCD185-101CT panel overlay
-Date: Thu, 25 Sep 2025 12:00:38 +0200
-Message-ID: <20250925100038.3008298-3-w.egorov@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250925100038.3008298-1-w.egorov@phytec.de>
-References: <20250925100038.3008298-1-w.egorov@phytec.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 156E028134F
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 10:04:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758794643; cv=none; b=YVskicNsPvhHosCaf7zUmJm3POW2/EDa4W+4unxCqrsgZPJJCt3UX3kUYvpBQiVvnuGb75mN7G+/UsWTUMTppEWNjzoC+XzEAkTY2YliCkUG113990Y3YqI6xFV+7hu0mWfT3O5/BbGY4Mh60607ChZDHFgtMPRCtPuezvKzvdg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758794643; c=relaxed/simple;
+	bh=Jq21aUyDB1KeUOWA4nv5EaL/9wMTiP1FaOFnrfBbp6Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=XQyx539c/3C0Ihc/1Tj+Em81Ds1pmoQdxYRvy4n8vvndPPekaKx0Tsi3dNpDmF+7tbrC4ntI88LbHaWKHpXwYHiMNfXatatPjJF1qSViHFzdip1nzWlBwcGgWClnzCPIRfdrvCEk0tB5Go6/hBxG5PN5kCvMdyIyoEWgzQk5i5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=DXAWDq2k; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3ee1221ceaaso496296f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 03:04:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1758794639; x=1759399439; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=aeSijnMYMJyQmtrAgN0xRaDVnA5uArueH+8Nv8ZC19Y=;
+        b=DXAWDq2kPlWLh8th57yDVyiayGTJz6d7ZH1suiN5gNNJU6datZg5PFkj2Ngn86higl
+         +ySAB4LbJ/bTaj+GTHw+91MckUXzCuGnnZj8keTNm+csamnpMZOlrZr9Gtc619kaEsdf
+         LO4trQuE5g/vnNj/KLmWj4Q+imBXvBmZhPgk/nvx5hb7OKgwAAkrlgOG5A9HYW3amIwW
+         eboIVKnx6+JpCZb5rAHKa3ozZ0c8qts3gaPh5tJxM96Tlz/fbzQdHem+HJWIn8YwxYje
+         JVkt8KCGRGQN00TWlUBfen5CZkIH7HIudOVRE0GGCSLkZvxtMz4x44dRC+X/oCiC2PhQ
+         AYmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758794639; x=1759399439;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=aeSijnMYMJyQmtrAgN0xRaDVnA5uArueH+8Nv8ZC19Y=;
+        b=kuclCKfVtv0obea3qoC4q2WzAFLQopZvxXMS2mvYs1g9iKYNNrCyPS4w0IL93rpuDj
+         HRBXsvos/Wq7qXOK5FSQzyb7NIA2pmvTc8lpVk6gj4NNK5gYw9cnCVNaQKVNpnd6NQtb
+         tA/bK788h1Q2CfmuNKOs4m8ccitkuWFETB/i8Ywt3crGvBu1NKvCvK04/LVB3QBAhPJh
+         NhSIkhBnf48lVuhHJEYaPnuczA2bNJUB9O175V3eizuFXA4DrXHwepUqOu8y+4dyx3ej
+         KSxnnSbJMlIg5JCnDqaFV8W3GoyB+vb2AQGEPcgYdHXib0pBUxFc5zxw4CpO3l04GErJ
+         UOjg==
+X-Forwarded-Encrypted: i=1; AJvYcCVLNK4CJEuMeFdiAtchW59JxCZp3Dq01XMjzNWFfjrBcFPzT5J3z90LyOxYIfirtpC7ph6gpa79Vmvn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwexPhsLQ+FB9p0PToy/Vh1225SABBTkOxRzUGgIbT8GaCLcf+L
+	46XWCsYEYDMW3gvRryRlQOu7ltknAQW+f47G0Xbd1IdYJahK+jxKqr+yiSwMAfByxWo=
+X-Gm-Gg: ASbGncvt2sQFetcLjcXEywnZz/P0rv+tg8tUABUHypDDi8sGHw5Gdy+l/Wvo6V7L7/G
+	sFfo6ZZfWwJ1LhXrV4nh4qRLwOLH2MGkMRW+QkrX2w4r/tIt5SXSVpnTH8hzpreyPVe8jri3W0i
+	bRD1nDOUGs5bwueDBq5CzUGgnCp08OgNxwpvatGnrVwQ5FCkj6poy9BPtX5j0D4aLfNRYgg+XGJ
+	EVMM8QBvT8k8JuBRh6tQt+ojwoVDlXzCSvKX260/9jgFauCs9sdgKXDWpRoS/iln3ECrizrfgvh
+	i1ZFH854Jn3gJzm+PTlrMzjl+rrGbi6lshivAZ0itboTAjSPuNvrQoCbqx9zzcQ/FMIqn7hOD94
+	PLFKuI57S1dm/Y4VT0O7UQB6qfIoPOBsz6e9byCjnC6Kn6Orb+i//
+X-Google-Smtp-Source: AGHT+IEQ22AsatcCHQ0rPjRAYNnebXQt7WfgjAQzQKbDC2xmnEmcRCJ+zS4tItiuIIh2CyfyLHNHVA==
+X-Received: by 2002:a05:6000:230b:b0:3d1:6d7a:ab24 with SMTP id ffacd0b85a97d-40e4745e84fmr2580039f8f.17.1758794639180;
+        Thu, 25 Sep 2025 03:03:59 -0700 (PDT)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.153])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-40fb72fb6b7sm2501122f8f.2.2025.09.25.03.03.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Sep 2025 03:03:58 -0700 (PDT)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: vkoul@kernel.org,
+	kishon@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	geert+renesas@glider.be,
+	magnus.damm@gmail.com,
+	yoshihiro.shimoda.uh@renesas.com,
+	biju.das.jz@bp.renesas.com
+Cc: claudiu.beznea@tuxon.dev,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v7 0/7] Add initial USB support for the Renesas RZ/G3S SoC
+Date: Thu, 25 Sep 2025 13:02:55 +0300
+Message-ID: <20250925100302.3508038-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
- (172.25.0.11)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AMS0EPF000001B3:EE_|DU7PPF2CD800A78:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2f57bd38-7300-48d2-00f8-08ddfc1a66a0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|7416014|376014|36860700013|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?1woEwnL+Sw4D6jMEOqphiIX8AxwK2RkdoFWgYq2K06HrNInVFSJnjNXj9/z3?=
- =?us-ascii?Q?hE1ced+U8z+m6CxJ4s8GBGlUlbsoSBQNNvxoHs2qaGFXoLyYJuiGXF6fs3v8?=
- =?us-ascii?Q?VWvuaCpjtHVmwK+XdLx8FfZe/qGjErEbVlxaDztU9BCu6i7VMlMRs++e7WAb?=
- =?us-ascii?Q?jrtHCzNaRQIKkNFkt6fh0rkPUOHDkOmKUDQlp7N5ruBEKeE0xze7Jo/IFvR+?=
- =?us-ascii?Q?ZbAS8Ts3qDVpx7xem66JoMYmGUrK+2mU8Kr2YHSC6M6ks7UUdN2kE7F/8bG/?=
- =?us-ascii?Q?3UIJxehN7yyMzTm52z1uVMd2xwv2/97x/ZyQTLkJIrzfDtKos757ZlISyu7G?=
- =?us-ascii?Q?jWKkkstaBYAncEQdWek4jynvU/0neSziesYhecmqvYfAbPtgmCtC807e7P82?=
- =?us-ascii?Q?TbDGA7Iald2WOttqOg2HcY1RwZM+dr6laUJoO/2hVr9VopfpUkPyc9VUi2DK?=
- =?us-ascii?Q?6VIuDIFg4zYbsrhZY1Gl6SLRD173pXCa/b+gOIjbBmX8N1IOnVit0y5J8xym?=
- =?us-ascii?Q?mMih5m+ArIVovniRMelSzaLUmaH5aU1OyxAsqWzuxExK+PGmlLM/8gOCwF06?=
- =?us-ascii?Q?9WKeLQbNf+X1FD3VgSU7DkWVhqP9ZEv1rUqWKsUQfotbHoAVvOu0WVYg4MRk?=
- =?us-ascii?Q?jSWSYud//ksl7xMOQqN5ZlqET1IEInaI50ER/mVR60FbbhZTL89bZLeBZOZ3?=
- =?us-ascii?Q?dvjgXa2C2ATEg6DAOTSqHEJKkgWfS3oi/eaHOWF2ZdYrFWgpMQ7fsxKKhvP2?=
- =?us-ascii?Q?BjoV8j8YQoVWCJVh1yGUaPOhf40aag48viznBXLYwfDBuFUAacVViRRJIfZi?=
- =?us-ascii?Q?D9yJqHVUan2gKARaukaBd7DxF2Lg1Vc8g8HBT/0D54W7WCVF/uJ78ny89Zfd?=
- =?us-ascii?Q?YAWB2bb01O3odk9+NUL4x1XwaBr9KkLB60Ct49RcUPG/tQM82Gv1zOQnO0hC?=
- =?us-ascii?Q?YbMeg8beNPxJZBJjgZ/G6MCqFuWNmfn3yfWgpKMa4gFuoj1nd1DdO1MSTEyn?=
- =?us-ascii?Q?ziwef+Ooc5ph/Qw39W0sqQDmbUWqklFDtlnLkoIk4DzmkLUngQ2ARD1V0nEd?=
- =?us-ascii?Q?8B2XqEOfEvnYMc7tUyCXdzRYl3w2OVIUD2/eucmcCA6kTV7htHL8fXLctmuf?=
- =?us-ascii?Q?69LLd3IwbcSeBV3omt2RSZagXaMY7Q4+e+lFVK3K0tiIyHged2Wj9l3VXKTx?=
- =?us-ascii?Q?TkRLRj/M/OWFZl1sjaPDLfJtlHhKiIl8KUzbfgzhd2AhbdogfgntSvI4SNpa?=
- =?us-ascii?Q?iIV2zuiOOvImw57yLC/YNvinUsCMwvinbGj1H2e9nj+RcLxwVLd7gFZQssN4?=
- =?us-ascii?Q?bvY19ELQyjVCaKhT4M8AAYcYjqIdNEiK0kWtptnYruNambz0Mx2BJobtQDft?=
- =?us-ascii?Q?uhT5cI0B+1nlhG7zhqRJyfol+HOrI+n82DFLC2n69BvZZUl4pvRdZP4QkAOw?=
- =?us-ascii?Q?i685EDa0qvU6uQyzhGTVA9X0PS7ZXLY5/njeBNFnQN5F5bkaPIm/ng=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(7416014)(376014)(36860700013)(1800799024);DIR:OUT;SFP:1102;
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2025 10:00:47.7153
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2f57bd38-7300-48d2-00f8-08ddfc1a66a0
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AMS0EPF000001B3.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU7PPF2CD800A78
 
-The panel is a Lincoln Technology Solutions LCD185-101CT [0]. It is
-a dual-link LVDS panel and supports WUXGA resolution (1920x1200).
-Furthermore, it has an I2C based touch controller: Goodix-GT928.
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Add an device tree overlay to support the Lincoln LCD185-101CT panel
-in combination with the phyBOARD-Lyra-AM62x.
+Hi,
 
-[0] https://lincolntechsolutions.com/wp-content/uploads/2024/09/LCD185-101CTL1ARNTT_DS_R1.3.pdf
+Series adds initial USB support for the Renesas RZ/G3S SoC.
 
-Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
----
-v1: https://lists.infradead.org/pipermail/linux-arm-kernel/2025-September/1065767.html
-v2: Use port dummies defined in previous patch
----
- arch/arm64/boot/dts/ti/Makefile               |   3 +
- .../k3-am625-phyboard-lyra-oldi-lcd185.dtso   | 188 ++++++++++++++++++
- 2 files changed, 191 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-oldi-lcd185.dtso
+Series is split as follows:
+- patches 1-2/7		- fixes on bindings and driver for USB PHY
+- patches 3-5/7		- updates the rzg2l-usbphy-ctrl driver and documentation
+			  with support for setting PWRRDY though SYSC
+- patches 6-7/7		- add device tree support
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index aad9177930e6..aa34a0d77615 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-ov5640.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-tevi-ov5640.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am625-phyboard-lyra-rdk.dtb
-+dtb-$(CONFIG_ARCH_K3) += k3-am652-phyboard-lyra-oldi-lcd185.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dahlia.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dev.dtb
-@@ -165,6 +166,8 @@ k3-am625-phyboard-lyra-gpio-fan-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
- 	k3-am62x-phyboard-lyra-gpio-fan.dtbo
- k3-am625-phyboard-lyra-qspi-nor-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
- 	k3-am6xx-phycore-qspi-nor.dtbo
-+k3-am625-phyboard-lyra-oldi-lcd185-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
-+	k3-am625-phyboard-lyra-oldi-lcd185.dtbo
- k3-am625-sk-csi2-imx219-dtbs := k3-am625-sk.dtb \
- 	k3-am62x-sk-csi2-imx219.dtbo
- k3-am625-sk-csi2-ov5640-dtbs := k3-am625-sk.dtb \
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-oldi-lcd185.dtso b/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-oldi-lcd185.dtso
-new file mode 100644
-index 000000000000..b1feb665248b
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-oldi-lcd185.dtso
-@@ -0,0 +1,188 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2025 PHYTEC Messtechnik GmbH
-+ * Author: Wadim Egorov <w.egorov@phytec.de>
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/pwm/pwm.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include "k3-pinctrl.h"
-+
-+&{/} {
-+	display {
-+		compatible = "lincolntech,lcd185-101ct";
-+		backlight = <&backlight>;
-+		power-supply = <&vdd_usb_5v0>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				dual-lvds-odd-pixels;
-+				lcd_in0: endpoint {
-+					remote-endpoint = <&oldi_0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				dual-lvds-even-pixels;
-+				lcd_in1: endpoint {
-+					remote-endpoint = <&oldi_1_out>;
-+				};
-+			};
-+		};
-+	};
-+
-+	backlight: backlight {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bl_pwm_pins_default>;
-+
-+		compatible = "pwm-backlight";
-+
-+		brightness-levels = <0 4 8 16 32 64 128 255>;
-+		default-brightness-level = <6>;
-+
-+		enable-gpios = <&gpio_exp 5 GPIO_ACTIVE_HIGH>;
-+		pwms = <&epwm0 1 50000 0>;
-+	};
-+
-+        vdd_usb_5v0: regulator-vdd-usb5v0 {
-+                compatible = "regulator-fixed";
-+                regulator-name = "vdd-usb5v0";
-+                regulator-min-microvolt = <5000000>;
-+                regulator-max-microvolt = <5000000>;
-+                regulator-always-on;
-+                regulator-boot-on;
-+        };
-+};
-+
-+&dss {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_oldi0_pins_default &main_dss0_pins_default>;
-+};
-+
-+&dss_ports {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* VP1: Output to OLDI */
-+	port@0 {
-+		reg = <0>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		dpi0_out0: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&oldi_0_in>;
-+		};
-+
-+		dpi0_out1: endpoint@1 {
-+			reg = <1>;
-+			remote-endpoint = <&oldi_1_in>;
-+		};
-+	};
-+};
-+
-+&epwm0 {
-+	status = "okay";
-+};
-+
-+&main_i2c1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	touchscreen@5d {
-+		compatible = "goodix,gt928";
-+		reg = <0x5d>;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&touch_screen_pins_default>;
-+
-+		interrupt-parent = <&main_gpio0>;
-+		interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
-+
-+		reset-gpios = <&main_gpio0 18 GPIO_ACTIVE_HIGH>;
-+		irq-gpios = <&main_gpio0 19 GPIO_ACTIVE_HIGH>;
-+	};
-+};
-+
-+&main_pmx0 {
-+	bl_pwm_pins_default: bl-pwm-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x01b8, PIN_INPUT, 2) /* (C13) SPI0_CS1.EHRPWM0_B */
-+		>;
-+	};
-+
-+	touch_screen_pins_default: touch-screen-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x048, PIN_OUTPUT, 7) /* (N25) GPMC0_AD3.GPIO0_18 - RST */
-+			AM62X_IOPAD(0x04c, PIN_INPUT, 7) /* (P24) GPMC0_AD4.GPIO0_19 - INT */
-+		>;
-+	};
-+
-+	main_oldi0_pins_default: main-oldi0-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x0260, PIN_OUTPUT, 0) /* (AA5) OLDI0_A0N */
-+			AM62X_IOPAD(0x025c, PIN_OUTPUT, 0) /* (Y6) OLDI0_A0P */
-+			AM62X_IOPAD(0x0268, PIN_OUTPUT, 0) /* (AD3) OLDI0_A1N */
-+			AM62X_IOPAD(0x0264, PIN_OUTPUT, 0) /* (AB4) OLDI0_A1P */
-+			AM62X_IOPAD(0x0270, PIN_OUTPUT, 0) /* (Y8) OLDI0_A2N */
-+			AM62X_IOPAD(0x026c, PIN_OUTPUT, 0) /* (AA8) OLDI0_A2P */
-+			AM62X_IOPAD(0x0278, PIN_OUTPUT, 0) /* (AB6) OLDI0_A3N */
-+			AM62X_IOPAD(0x0274, PIN_OUTPUT, 0) /* (AA7) OLDI0_A3P */
-+			AM62X_IOPAD(0x0280, PIN_OUTPUT, 0) /* (AC6) OLDI0_A4N */
-+			AM62X_IOPAD(0x027c, PIN_OUTPUT, 0) /* (AC5) OLDI0_A4P */
-+			AM62X_IOPAD(0x0288, PIN_OUTPUT, 0) /* (AE5) OLDI0_A5N */
-+			AM62X_IOPAD(0x0284, PIN_OUTPUT, 0) /* (AD6) OLDI0_A5P */
-+			AM62X_IOPAD(0x0290, PIN_OUTPUT, 0) /* (AE6) OLDI0_A6N */
-+			AM62X_IOPAD(0x028c, PIN_OUTPUT, 0) /* (AD7) OLDI0_A6P */
-+			AM62X_IOPAD(0x0298, PIN_OUTPUT, 0) /* (AD8) OLDI0_A7N */
-+			AM62X_IOPAD(0x0294, PIN_OUTPUT, 0) /* (AE7) OLDI0_A7P */
-+			AM62X_IOPAD(0x02a0, PIN_OUTPUT, 0) /* (AD4) OLDI0_CLK0N */
-+			AM62X_IOPAD(0x029c, PIN_OUTPUT, 0) /* (AE3) OLDI0_CLK0P */
-+			AM62X_IOPAD(0x02a8, PIN_OUTPUT, 0) /* (AE4) OLDI0_CLK1N */
-+			AM62X_IOPAD(0x02a4, PIN_OUTPUT, 0) /* (AD5) OLDI0_CLK1P */
-+		>;
-+	};
-+};
-+
-+&oldi0 {
-+	ti,companion-oldi = <&oldi1>;
-+	status = "okay";
-+};
-+
-+&oldi0_port0 {
-+	oldi_0_in: endpoint {
-+		remote-endpoint = <&dpi0_out0>;
-+	};
-+};
-+
-+&oldi0_port1 {
-+	oldi_0_out: endpoint {
-+		remote-endpoint = <&lcd_in0>;
-+	};
-+};
-+
-+&oldi1 {
-+	ti,secondary-oldi;
-+	status = "okay";
-+};
-+
-+&oldi1_port0 {
-+	oldi_1_in: endpoint {
-+		remote-endpoint = <&dpi0_out1>;
-+	};
-+};
-+
-+&oldi1_port1 {
-+	oldi_1_out: endpoint {
-+		remote-endpoint = <&lcd_in1>;
-+	};
-+};
+Merge strategy, if any:
+- patches 1-2/7 can go through the PHY tree
+- patches 3-5/7 can go through the reset tree
+- patches 6-7/7 can go through Renesas tree
+
+Thank you,
+Claudiu Beznea
+
+Changes in v7:
+- used proper regmap update value for PWRRDY
+- collected tags
+- dropped Tb tags from dt-bindings
+
+Changes in v6:
+- in patch 2/7 dropped the struct rcar_gen3_chan::rstc as it is not
+  used anymore
+- in patch 4/7 used syscon_regmap_lookup_by_phandle_args()
+- collected tags
+
+Changes in v5:
+- dropped patch "soc: renesas: rz-sysc: Add syscon/regmap support" as it
+  already modified and pubished also at [2] with the latest review comments
+  addressed
+- fixed the documentation
+
+Changes in v4:
+- replaced "renesas,sysc-signals" DT property with "renesas,sysc-pwrrdy"
+- dropped the "renesas,sysc-signals" property from USB PHY (as proposed
+  in v3) and let only the USB PHY CTRL driver to handle it as on RZ/G3S
+  the USB PHY CTRL driver needs to be probed before any other USB driver
+- dropped the signal abstraction from SYSC driver as there is no need
+  for reference counting it now
+- adjusted the "soc: renesas: rz-sysc: Add syscon/regmap support" to
+  comply with the latest review comments
+
+Changes in v3:
+- as the basics of the SYSC driver was integrated, only the signal support
+  was preserved in this series, in a separate patch; patch 01/12 was
+  adjusted (by addressing the review comments received at [1]) as it is
+  necessary to build the signal support on top of it
+- after long discussions with the internal HW team it has been confirmed
+  that the relation b/w individual USB specific HW blocks and signals
+  is like:
+
+                                   ┌──────────────────────────────┐
+                                   │                              │◄── CPG_CLKON_USB.CLK0_ON
+                                   │     USB CH0                  │
+    ┌──────────────────────────┐   │┌───────────────────────────┐ │◄── CPG_CLKON_USB.CLK2_ON
+    │                 ┌────────┐   ││host controller registers  │ │
+    │                 │        │   ││function controller registers│
+    │                 │ PHY0   │◄──┤└───────────────────────────┘ │
+    │     USB PHY     │        │   └────────────▲─────────────────┘
+    │                 └────────┘                │
+    │                          │    CPG_BUS_PERI_COM_MSTOP.MSTOP{6, 5}_ON
+    │┌──────────────┐ ┌────────┐
+    ││USBPHY control│ │        │
+    ││  registers   │ │ PHY1   │   ┌──────────────────────────────┐
+    │└──────────────┘ │        │◄──┤     USB CH1                  │
+    │                 └────────┘   │┌───────────────────────────┐ │◄── CPG_CLKON_USB.CLK1_ON
+    └─▲───────▲─────────▲──────┘   ││ host controller registers │ │
+      │       │         │          │└───────────────────────────┘ │
+      │       │         │          └────────────▲─────────────────┘
+      │       │         │                       │
+      │       │         │           CPG_BUS_PERI_COM_MSTOP.MSTOP7_ON
+      │PWRRDY │         │
+      │       │   CPG_CLK_ON_USB.CLK3_ON
+      │       │
+      │  CPG_BUS_PERI_COM_MSTOP.MSTOP4_ON
+      │
+    ┌────┐
+    │SYSC│
+    └────┘
+
+  where:
+  - CPG_CLKON_USB.CLK.CLKX_ON is the register bit controlling the clock X
+      of different USB blocks, X in {0, 1, 2, 3}
+  - CPG_BUS_PERI_COM_MSTOP.MSTOPX_ON is the register bit controlling the
+    MSTOP of different USB blocks, X in {4, 5, 6, 7}
+  - USB PHY is the USB PHY block exposing 2 ports, port0 and port1, used
+    by the USB CH0, USB CH1
+  - SYSC is the system controller block controlling the PWRRDY signal
+  - USB CHx are individual USB block with host and function capabilities
+    (USB CH0 have both host and function capabilities, USB CH1 has only
+    host capabilities)
+
+  Due to this, the PWRRDY signal was also passed to the reset-rzg2l-usbphy-ctrl
+  reset driver (as it controls the USBPHY control registers) and these
+  are in the USB PHY block controlled by PWRRDY signal.
+
+  The PWRRDY signal need to be de-asserted on probe before enabling the module
+  clocks and the module MSTOP. To avoid any violation of this configuration
+  sequence, the PWRRDY signal is now controlled by USB PHY driver and the
+  reset-rzg2l-usbphy-ctrl driver.
+
+  As the PHYs gets reset signals from the USB reset controller driver, the
+  reset-rzg2l-usbphy-ctrl is probed before the USB PHY driver and thus,
+  in theory, we can drop the signal support (reference counting of the
+  USB PWRRDY) and configure the USB PWRRDY just in the reset-rzg2l-usbphy-ctrl.
+
+  However, to have a proper description of the diagram described above in 
+  device tree and ensure the configuration sequence b/w PRWRDY, CLK and MSTOP
+  is preserved, the PWRRDY signal is controlled in this series in all the
+  drivers that work with registers from the USB PHY block.
+
+  Please provide your feedback on this solution.
+
+Thank you,
+Claudiu
+
+[1] https://lore.kernel.org/all/20250330214945.185725-2-john.madieu.xa@bp.renesas.com/
+[2] https://lore.kernel.org/all/20250818162859.9661-2-john.madieu.xa@bp.renesas.com/
+
+Changes in v2:
+- dropped v1 patches already applied
+- added fixes patches (07/14 and 09/14)
+- dropped the approach of handling the USB PWRRDY though a reset controller
+  driver and introduced the signal concept for the SYSC driver; because
+  of this, most of the work done in v1 was dropped
+- per patch changes are listed in individual patches, if any
+
+Christophe JAILLET (1):
+  phy: renesas: rcar-gen3-usb2: Fix an error handling path in
+    rcar_gen3_phy_usb2_probe()
+
+Claudiu Beznea (6):
+  dt-bindings: phy: renesas,usb2-phy: Mark resets as required for RZ/G3S
+  dt-bindings: reset: renesas,rzg2l-usbphy-ctrl: Document RZ/G3S support
+  reset: rzg2l-usbphy-ctrl: Add support for USB PWRRDY
+  reset: rzg2l-usbphy-ctrl: Add support for RZ/G3S SoC
+  arm64: dts: renesas: r9a08g045: Add USB support
+  arm64: dts: renesas: rzg3s-smarc: Enable USB support
+
+ .../bindings/phy/renesas,usb2-phy.yaml        |   1 +
+ .../reset/renesas,rzg2l-usbphy-ctrl.yaml      |  41 +++++-
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    | 118 ++++++++++++++++++
+ arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi  |  57 +++++++++
+ drivers/phy/renesas/phy-rcar-gen3-usb2.c      |  20 ++-
+ drivers/reset/Kconfig                         |   1 +
+ drivers/reset/reset-rzg2l-usbphy-ctrl.c       |  66 ++++++++++
+ 7 files changed, 292 insertions(+), 12 deletions(-)
+
 -- 
-2.48.1
+2.43.0
 
 
