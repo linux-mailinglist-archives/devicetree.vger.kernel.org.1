@@ -1,119 +1,150 @@
-Return-Path: <devicetree+bounces-221427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9C7BB9F7B7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:17:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 211E1B9F8BC
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:23:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 240A61BC6B24
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:17:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 342BF1C21A1E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:24:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DBB22264B0;
-	Thu, 25 Sep 2025 13:17:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9D6B233145;
+	Thu, 25 Sep 2025 13:19:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QopSPyqr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sk+X7fpI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E35A1D5CDE;
-	Thu, 25 Sep 2025 13:17:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C44CC23027C
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:19:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758806235; cv=none; b=QhRi3Qsx9fP1tGNHF3YaOWbKd1KpviKbqGkI1GJtIMWoMJ4TId6pkiVNcOgAAQl7SaRQJv08A1Nc4mljLTkgSrv+BPwBKDyUHOwO2MsBnqkcg8gLHWHVc6CRyl+n42PpJkOW7fGhD3vdkPgrct+keFVW7RsbL/5Kx72dK4KsdRc=
+	t=1758806396; cv=none; b=O0PbnGjWB9aq/X1ZwN/mqcUVzzDnmjmAH2Zs7SD38x3qnVlMb+c9lRC4CPn3uhSXr2TVkLq1ag5kMjltNjT51dhy6wQLkCBnrSryPWDfECmpEN8UL6SkeIWX1cO9GthCVRIEiE1IYOZ0wGfaBdLGb+4douitwB2OIZhng2gT4c0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758806235; c=relaxed/simple;
-	bh=MNwrSXcKXVb9lJE4Au9UpLgsiO9I5p4DtiVl03+qqxc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aqrMGp6DWBloJr14sAw1FrSW8YBsm+gnNzoA8WnUfS1cJp9TGtLL7KuekaG/YVwXF8T7EoMJAojI7WwZt3UvclJNiOVxOE9tm8uvU9m8l3smifWmb6cYgkBz/xSJSgm2NpGhw33kgpy7tG65TikWOf1Ene7xg/KDNWYj2PT3R3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QopSPyqr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38B39C4CEF0;
-	Thu, 25 Sep 2025 13:17:13 +0000 (UTC)
+	s=arc-20240116; t=1758806396; c=relaxed/simple;
+	bh=LsVI8ehH/npCq5kVzjZEjj4UwNd8svrLYYvGBARdX4A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=AsACccDpFMy3WzSRkylO2AfCTFeLYBgSWcEDmeEpylcPOnwHihzAXhVZiShdntLEPkkqjNTdN0EYSYpXAEaVDSHRyyJYbuoEzz+ekK/4hl+BILkB35HJV1xLYxfsrCl+qWMQnnnuYqCraRJi+zE4N31dQ6TwEiRb8DO0xGn8JBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sk+X7fpI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3A5AC4CEF0
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:19:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758806234;
-	bh=MNwrSXcKXVb9lJE4Au9UpLgsiO9I5p4DtiVl03+qqxc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QopSPyqrmZNIGVMaIf/FZsoqAWBgXD6Cg6leY8pGjgq4zEF+kymOxOHHIlmn53E5r
-	 9Qml9Hy2DWQviqaFM+h/w2O40bTxtq+9KjK/Sysr3QOLUNCnt2Uv60rjpJUfcKaP9V
-	 in6Cveusjb5LGl6xZPerUheh39bHNo7I6oLxClbCFfd+2rbsvu+fQ+Vvy0wEmvJtlA
-	 1DQi3sfOnOodMpLgpinOE4BOZX0A8tYUrNJBgrS1CbyTyMFc5dAZlW6ugKm9Vs4LJP
-	 b2yzb8DLpbuWw5fqjRLE/nRTPhdrhJvf2IM3VTFoAb/2U0MnOJ+kf0u9vyH1DKSE57
-	 GR8y0ef+3tkUg==
-Date: Thu, 25 Sep 2025 08:17:11 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
-	Alexandre Torgue <alexandre.torgue@foss.st.com>, Taniya Das <taniya.das@oss.qualcomm.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
-	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
-Subject: Re: [PATCH 9/9] drivers: clk: qcom: Add support for GPUCC and GFXCLK
- for Kaanapali
-Message-ID: <ba4vkdcbudvyoj3i7eufd27luhmn6ai4mgkefza6sfbjzfwgp7@rvnpins2bruh>
-References: <20250924-knp-mmclk-v1-0-d7ea96b4784a@oss.qualcomm.com>
- <20250924-knp-mmclk-v1-9-d7ea96b4784a@oss.qualcomm.com>
+	s=k20201202; t=1758806396;
+	bh=LsVI8ehH/npCq5kVzjZEjj4UwNd8svrLYYvGBARdX4A=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=sk+X7fpIAHEy5aPtHwjDjhFIKZDN4Tw8vGC34+pqpkEmrTZsulhoKzRdz+vuwmWOF
+	 yjLVLwzQKsfKAwXjExvwqorLPu+h1lNcfF1hCnnxn498rscM0gO3/YxMFYVewXV1Hw
+	 H7+akEmncqNt81AHY59hXZ/jqID821BXXuaqstuj4mal313lxwjXrZZPZ8f5/VYipi
+	 X4DRH2JKXlKsjL/i74iWCBo1zlAFAESEAyftvsQRAkZi4nZ13dNj2O2I61wEbkzHNH
+	 74yBjl+Gz7rhUA2dxquBwhuelV4vpWuV6fJeck92BIloRbvlmL6qeVIsMkMKPycfRz
+	 /mn6nY9XRkA8w==
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b54a74f9150so868381a12.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:19:56 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVK/ax2IFkFCj+oYayEtpVMW6XEmDB+/Th2wjHrVzFxaUMgOBl7Y51PK+Xx7I80d1wAeQqZND75QyvX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxoaQZsVYnH/6/4ByPB51vLtYipTeFZgXIcJoZ1AAdwnLRTLfHw
+	v4ZAhddT1O5Nl0kw2O7FErV7qOO09ERveRxjGn+o/8E1XhVk10QjEjr4HtnKJs5f+9kNcGIFQcP
+	/bt6i1zXQX9TGQcUfphuVpyK+bqaTogo=
+X-Google-Smtp-Source: AGHT+IEkZ/qcM3gWgvoH5Z23lxlGdztAh8GifS0XlFA7H2Bv0O2IQ1fOXZC+rp/hKwkBHo+Sei5HaXsHbiwpkYcWLeE=
+X-Received: by 2002:a17:902:c409:b0:275:f156:965c with SMTP id
+ d9443c01a7336-27ed4ade26bmr41285845ad.52.1758806396248; Thu, 25 Sep 2025
+ 06:19:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250924-knp-mmclk-v1-9-d7ea96b4784a@oss.qualcomm.com>
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <20250924-knp-dts-v1-13-3fdbc4b9e1b1@oss.qualcomm.com> <9685e29d-bff3-4188-b878-230d0f161ce3@oss.qualcomm.com>
+In-Reply-To: <9685e29d-bff3-4188-b878-230d0f161ce3@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Date: Thu, 25 Sep 2025 22:19:42 +0900
+X-Gmail-Original-Message-ID: <CAJKOXPeFKN+yV4eitGgHPUYibE1h8RH274b6N6ovz_PR5BYw4A@mail.gmail.com>
+X-Gm-Features: AS18NWBEzYXM9j8AHrwCm_hkcD1rrIPELcnRoRKDYiPoFbPa_pQtmGl_AKB5sX8
+Message-ID: <CAJKOXPeFKN+yV4eitGgHPUYibE1h8RH274b6N6ovz_PR5BYw4A@mail.gmail.com>
+Subject: Re: [PATCH 13/20] arm64: dts: qcom: kaanapali: Add QUPv3
+ configuration for serial engines
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
+	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, 
+	Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Sep 24, 2025 at 04:56:50PM -0700, Jingyi Wang wrote:
-> From: Taniya Das <taniya.das@oss.qualcomm.com>
-> 
-> Support the graphics clock controller for Kaanapali for Graphics SW
-> driver to use the clocks.
+On Thu, 25 Sept 2025 at 21:28, Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
+>
+> On 9/25/25 2:17 AM, Jingyi Wang wrote:
+> > From: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+> >
+> > Add device tree support for QUPv3 serial engine protocols on Kaanapali.
+> > Kaanapali has 24 QUP serial engines across 4 QUP wrappers, each with
+> > support of GPI DMA engines, and it also includes 5 I2C hubs.
+> >
+> > Signed-off-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+> > Co-developed-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> > Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> > ---
+>
+> [...]
+>
+> > +             gpi_dma2: dma-controller@800000 {
+> > +                     compatible = "qcom,kaanapali-gpi-dma", "qcom,sm6350-gpi-dma";
+> > +                     reg = <0x0 0x00800000 0x0 0x60000>;
+> > +
+> > +                     interrupts = <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                     <GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                     <GIC_SPI 281 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                     <GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                     <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                     <GIC_SPI 848 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                     <GIC_SPI 849 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                     <GIC_SPI 850 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                     <GIC_SPI 851 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                     <GIC_SPI 852 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                     <GIC_SPI 853 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                     <GIC_SPI 854 IRQ_TYPE_LEVEL_HIGH>;
+>
+> odd indentation (on almost all gpi_dma instances)
+>
+> [...]
+>
+> > -             remoteproc_soccp: remoteproc-soccp@d00000 {
+> > -                     compatible = "qcom,kaanapali-soccp-pas";
+> > -                     reg = <0x0 0x00d00000 0x0 0x200000>;
+> > +                     i2c22: i2c@1a8c000 {
+> > +                             compatible = "qcom,geni-i2c";
+> > +                             reg = <0x0 0x01a8c000 0x0 0x4000>;
+> >
+> > -                     interrupts-extended = <&intc GIC_SPI 167 IRQ_TYPE_EDGE_RISING>,
+> > -                                           <&soccp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+> > -                                           <&soccp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+> > -                                           <&soccp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+> > -                                           <&soccp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
+> > -                                           <&soccp_smp2p_in 9 IRQ_TYPE_EDGE_RISING>,
+> > -                                           <&soccp_smp2p_in 10 IRQ_TYPE_EDGE_RISING>;
+> > -                     interrupt-names = "wdog",
+> > -                                       "fatal",
+> > -                                       "ready",
+> > -                                       "handover",
+> > -                                       "stop-ack",
+> > -                                       "pong",
+> > -                                       "wake-ack";
+>
+> Please try to use git format-patch --patience
 
-GFXCLKCTL is a new thing, please describe what it is.
 
-> 
-[..]
-> diff --git a/drivers/clk/qcom/gxclkctl-kaanapali.c b/drivers/clk/qcom/gxclkctl-kaanapali.c
-[..]
-> +static struct platform_driver gx_clkctl_kaanapali_driver = {
-> +	.probe = gx_clkctl_kaanapali_probe,
-> +	.driver = {
-> +		.name = "gxclkctl-kaanapali",
-> +		.of_match_table = gx_clkctl_kaanapali_match_table,
-> +	},
-> +};
-> +
-> +static int __init gx_clkctl_kaanapali_init(void)
-> +{
-> +	return platform_driver_register(&gx_clkctl_kaanapali_driver);
-> +}
-> +subsys_initcall(gx_clkctl_kaanapali_init);
+Well, maybe it worked help, but I claim the author did not review
+their work before sending. If you remove lines you added, you clearly
+wrote buggy patches without any sense of proper logical split. It's
+not gits fault. It's author's fault.
 
-We're not starting up the GPU at subsys initlevel. Can't this just be
-module_platform_driver()? If not please document why.
-
-Regards,
-Bjorn
-
-> +
-> +static void __exit gx_clkctl_kaanapali_exit(void)
-> +{
-> +	platform_driver_unregister(&gx_clkctl_kaanapali_driver);
-> +}
-> +module_exit(gx_clkctl_kaanapali_exit);
-> +
-> +MODULE_DESCRIPTION("QTI GFXCLKCTL KAANAPALI Driver");
-> +MODULE_LICENSE("GPL");
-> 
-> -- 
-> 2.25.1
-> 
+Best regards,
+Krzysztof
 
