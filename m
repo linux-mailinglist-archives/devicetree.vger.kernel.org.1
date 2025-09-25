@@ -1,78 +1,96 @@
-Return-Path: <devicetree+bounces-221084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A30BEB9D268
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 04:29:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4558EB9D27F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 04:29:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54BD42E7E03
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 02:29:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDB792E7EEA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 02:29:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4803E2DD608;
-	Thu, 25 Sep 2025 02:28:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C5592E7179;
+	Thu, 25 Sep 2025 02:28:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="N3uBzPxz"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gHaJ1xfV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E91B2E172E
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 02:28:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 924A72E6CBB
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 02:28:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758767334; cv=none; b=qnsJ5ak2eEH+rP7mUnaIzA9U8dOEPGhxOVnkAf6MpA0EeGK2y2qn/eaMeQRZn35UKacJW+amrGtnw7CUjRVAXl4mBFPUHolZycs3rlnjiVvbRxhoresmTtZbk8L8yMlpXbuvpwNbIgooaSxEecK22x4zce4eCbr8rHhpNpLE+6E=
+	t=1758767338; cv=none; b=qljG4dOHNx/rY9f8QANSEFUH3q51mLPDtYImgLPoIhIx8q6PN/+tZggZ/Iu8EClei4NPRFj0K8MiJt2AYPbEzyqpcTdyRiUg9/Fx7lwD7xjJ5t+41Jk5QjHFKJweFXckJVei//Ok3qFC19FT6GkYGfXjSBDz8SnhMcKbdO7jihg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758767334; c=relaxed/simple;
-	bh=e33w/E9zbPzQsvT4gOoP9d+IG6hY8epgo+VjiF6BHlA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=i9W1kGC0fdj66jwl0qxg2GUtHl1u43ozrv1gD0MIfA+UZ2dL0HWmX6KjgRClAV5M2PGlN+/XwhPhOBnPwJIanML6shdZ6qPckstfwjdDEr04x8BFvrV6ov5uGizqeT/yrY3d/F0FITFvs2Y2ydEy6BKoXzX8OS098EgKyneow6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=N3uBzPxz; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250925022848epoutp01f9fd4f479edabddea3c2a134881fecca~oZZEYNFCm1646716467epoutp01i
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 02:28:48 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250925022848epoutp01f9fd4f479edabddea3c2a134881fecca~oZZEYNFCm1646716467epoutp01i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1758767328;
-	bh=Dq+HoXeaMNgD7GNbSCU9Skj64cx3JmO0hnYMWJxo6Ug=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=N3uBzPxzOCHUezA/GOtbAF/kq5cz1ClsN0+f3NyF1HpTvatbKYrN3hG5hemopKQCx
-	 WR2Y1xbEilxusrm/nWivsRq8hNWpgAOOzlUXFLiCIQ+Q91tjtcyWq7srENe5RKJno9
-	 oqkFvgUbZjC5WE3/M5FVvxJM06fpe8FAbUybKy9g=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250925022847epcas2p2ac815bbe8731ac45f66004b1362e9fcc~oZZDorYQW2876028760epcas2p22;
-	Thu, 25 Sep 2025 02:28:47 +0000 (GMT)
-Received: from epcas2p2.samsung.com (unknown [182.195.36.100]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4cXHhZ4RWKz2SSKh; Thu, 25 Sep
-	2025 02:28:46 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250925022845epcas2p222efe02101d2f5a306ca9b7302e2c408~oZZCHW_OU3094630946epcas2p2Z;
-	Thu, 25 Sep 2025 02:28:45 +0000 (GMT)
-Received: from asswp60 (unknown [10.229.9.60]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250925022845epsmtip17ee88b6dbcdde1b4952b3f7645ac4076~oZZCBBxou2002320023epsmtip1F;
-	Thu, 25 Sep 2025 02:28:45 +0000 (GMT)
-From: Shin Son <shin.son@samsung.com>
-To: Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski
-	<krzk@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>, Daniel Lezcano
-	<daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
-	<lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Henrik Grimler
-	<henrik@grimler.se>
-Cc: Shin Son <shin.son@samsung.com>, linux-pm@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v5 2/3] thermal: exynos_tmu: Support new hardware and update
- TMU interface
-Date: Thu, 25 Sep 2025 11:28:39 +0900
-Message-ID: <20250925022841.2813150-3-shin.son@samsung.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250925022841.2813150-1-shin.son@samsung.com>
+	s=arc-20240116; t=1758767338; c=relaxed/simple;
+	bh=D3B612wqHIZ8dAE7hwWXIKwnog8Oa7HQK/30EwYk1kA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kg5hwjUjyMIsVcCiOmqk+TgWoPxtMYT1kViGNPwL+mdhD0ZfaTPABytEXIfQhKHJ+QSzBDixz4LGXWdssp85fGEQsU+hAEhF6XCMFbHS7a01cbmo7L8RvDW7fUZFwIF0iPdgceJL5xUgwhw/e/shYtFHvP4NECFd/FY9mQM1Bzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gHaJ1xfV; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P0dRWZ002118
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 02:28:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=pozgUr4Pa5MFZ7maN78woqc3uxqicgDaK8J
+	oc7Ogf0c=; b=gHaJ1xfV/vBnMerYgWszNYnjEUvMrv/BiGaG1j5cTGI1MBlAwx3
+	koXSLXrNN1aFea4RcFLQX9cmVxlRqZ9KMZwjGDB9D/l1KYiM95b4PAFGobSLMNK7
+	7FYgQL769AMGAoufbWYe8Wbg9gFLvYIwwlpxo/dKSNBcQ36i2++UlzTxq/XmOoOU
+	G0gOyx/jJZx+xZfE91mk+ydSFissDmr2kgax/Kw9L70hvNqjblZHZNTPJnx24hZX
+	zBGpuzNSc3M9CNyS+q4d9cZPGAQFsCavPkBqPf4pM6xHZoqIrEvJzvAmvIUvmOwK
+	KNB+YLwl50pV60Ydq/J9zJ9wVwcvL/74zvA==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499k98peny-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 02:28:55 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b54a30515cfso1189350a12.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:28:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758767334; x=1759372134;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pozgUr4Pa5MFZ7maN78woqc3uxqicgDaK8Joc7Ogf0c=;
+        b=ugDAh7ABh5G7tLyhGwu5rfDdyik0qyeiR7VyXa2p/GIqMnKEg1Nkom0SS8i9bUP1sX
+         3zi5sUNZxnhoRa0yfRkm7J4qN8EUapMHnr4m2FDOUgdozIed6z840onSgJzZeKsNoaod
+         rQHHFVlDRho0ndwYo7cHRP3tSE4u3gV0cfnDtDrjghnmNKA5HYF6h6krUvRTLYUKcT6B
+         m0TcFTFdfwOPpA8RzJ5K281cN4fEoZrUxU2zmcn8ryxCMNfiyMTZGj5/irDmoxcBmlrZ
+         yX//sNiJJjmmPsFKBBR01+WCNEJcQK6n7X55ybSWL7By6Y53Mki56hNHN2ptiGLxa4aO
+         7SGg==
+X-Forwarded-Encrypted: i=1; AJvYcCUdslV+wPrAgdndYZrJs8h6GNiMTkOBHn6rEoCOZXv+gUdbHZuLpgcEm4sve2BUjMMVREKrfsCOCSd9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlKq15hfIVtzslgOmFrkas9YkRs0IWvfrpFHg/DKEev61pYCCz
+	hKZPN/ZfN4jxsotwgPBkIW0rHPXBXFgI/IgFGQt1T9qNr7NC5Q3Lbvxz5+x2/eB+7+e7XiFqTQ8
+	RwyX3ofOOjfzQ7fn1AGdECCqlZDkucC0AkbVaeZLiMaHfOCveoI+JVNUjrdJSIDlv
+X-Gm-Gg: ASbGncuJ2izzmAMwC3uzqLtNdfVY+LH6A3ok3UC3WkLzk6233Cp89VekYcpfpTlH8hJ
+	7CPIGCZDvmWUsb9wa5neZi2k90P34oebwi6djDET7T9AJa0gWZPpX5XGz6SZKxgwUIJkBO16csU
+	VnONGviX7sys/aeaqPgVdWFTZRj+/6Mxoxpi6+HYJ+Yw+KVn+5jbDG9rqWYBrkiYdez9IydbDES
+	UgEWgId65mXCjKcdX2FLnLqeHMNhmVOgVP2f+mUp4H3na30aukI+H0m9Sa8H0yCVhzWb9DQnbgk
+	apF940qEG9Ps6HRsvkppJL6sdpxfof5vDux4X7HJL0t86Et9M23ByS6lQ7YvUj0vKhAyIOg2pVG
+	MaSsTF/JIIIqOGHRw
+X-Received: by 2002:a17:903:2403:b0:271:6af4:17c with SMTP id d9443c01a7336-27ed6abbab3mr7476135ad.1.1758767334030;
+        Wed, 24 Sep 2025 19:28:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHpDQAb9zhwAQk2cn3fm3Sj/BbBznzSAqjeAN+5V7NHD0Qqpd9x8hSwTL4ww8Ou3qnnfWG26Q==
+X-Received: by 2002:a17:903:2403:b0:271:6af4:17c with SMTP id d9443c01a7336-27ed6abbab3mr7476005ad.1.1758767333526;
+        Wed, 24 Sep 2025 19:28:53 -0700 (PDT)
+Received: from hu-wcheng-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33471d711ecsm499881a91.4.2025.09.24.19.28.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Sep 2025 19:28:52 -0700 (PDT)
+From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+To: krzk+dt@kernel.org, conor+dt@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
+        kishon@kernel.org, vkoul@kernel.org, gregkh@linuxfoundation.org,
+        robh@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+Subject: [PATCH v3 00/10] Introduce Glymur USB support
+Date: Wed, 24 Sep 2025 19:28:40 -0700
+Message-Id: <20250925022850.4133013-1-wesley.cheng@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,564 +98,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250925022845epcas2p222efe02101d2f5a306ca9b7302e2c408
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250925022845epcas2p222efe02101d2f5a306ca9b7302e2c408
-References: <20250925022841.2813150-1-shin.son@samsung.com>
-	<CGME20250925022845epcas2p222efe02101d2f5a306ca9b7302e2c408@epcas2p2.samsung.com>
+X-Proofpoint-GUID: II8vcNTU8vEK6c9rjFc48kjqgnI0Rg3i
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAxOCBTYWx0ZWRfXws2SePNOsKEu
+ Q95OnPzDKcBtDaAbmJSs68hHYFpbtEjnl0DAOUSQyUw55W4oX8FZff4o3PYVj71eOZkjTPVsXZV
+ USexg3wJaRMEDinLc4l4YeRq3XG4eslrXXFRBkB+nR2tQk24Bvts449MuL1i69bJja/wDhat7k5
+ wUL5FkWmaF0ZejKeXtj5OFzwCokkiTzo/PKF/pHgWk3ktAk7j0QQdKG4EKJwTU2kcEE5vzf3Bof
+ n3UpV7ObrM7P+r0B+5Z/KJd5O4b9BNCqqyFKivQM3wWhpDL8OfOz1vh4YsdSFWhCkvby+A5bmtK
+ MoWmbg7meITfXXhAKJhYLQQICY8ruoVWz6QHbaCKISpk9+B2wnSiNKh0Zkb/YQyAuRPVHggkn+H
+ fHJhcEzy
+X-Proofpoint-ORIG-GUID: II8vcNTU8vEK6c9rjFc48kjqgnI0Rg3i
+X-Authority-Analysis: v=2.4 cv=Dp1W+H/+ c=1 sm=1 tr=0 ts=68d4a8e7 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=yJojWOMRYYMA:10 a=uF0vjx2ZuONpqyvErPEA:9 a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 clxscore=1015 adultscore=0 bulkscore=0 impostorscore=0
+ phishscore=0 spamscore=0 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200018
 
-The Exynos tmu driver's private data structure has been extended
-to support the exynosautov920 hardware, which requires per-sensor interrupt
-enablement and multiple-zone handling:
+This series enables the PHY level changes that are required to support
+the type C based controllers and the multiport controller.  The typeC
+ports utilize a usb43dp based QMP PHY for the SSUSB path, while using
+the M31 eUSB2 PHY for the HSUSB path.  For the multiport controller,
+it will utilize two QMP UNI PHYs for the SSUSB path, and two M31 eUSB2
+PHYs for the HSUSB path.
 
-- Add 'slope_comp' : compensation parameter below 25 degrees.
-- Add 'calib_temp' : stores the fused calibaration temperature.
-- Add 'sensor_count' : reflects the maximum sensor numbers.
-- Rename 'tzd' -> 'tzd_array' to register multiple thermal zones.
+-----
+Changes in v3:
+- Fixed some incorrect patch ordering.
+- Alphabetized Glymur QMP settings for combo and UNI setting arrays
 
-Since splitting this patch causes runtime errors during temperature
-emulation or problems where the read temperature feature fails to
-retrieve values, I have submitted it as a single commit. To add support
-for the exynosautov920 to the exisiting TMU interface, the following
-changes are included:
+Changes in v2:
+- Updated QMP combo PHY to properly handle the refgen-supply and to
+remove the primary core reference/tag
+- Updated QMP UNI PHY to properly handle the refgen-supply and added
+a separate IF/THEN block to handle the new clkref
+- Updated M31 eUSB2 to make clocks and clocks-name required for sm8750
+and optional for Glymur
+- Fixed missing PCS MISC table
+- Added SMB2370 repeater changes
 
-1. Simplify "temp_to_code" and "code_to_temp" to one computation path
-   by normalizing calib_temp.
-2. Loop over 'sensor_count' in critical-point setup.
-3. Introduce 'update_con_reg' for exynosautov920 control-register updates.
-4. Add exynosautov920-specific branch in 'exynos_tmu_update_temp' function.
-5. Skip high & low temperature threshold setup in exynosautov920.
-6. Enable interrupts via sensor_count in exynosautov920.
-7. Initialize all new members during 'exynosautov920_tmu_initialize'.
-8. Clear IRQs by iterating the sensor_count in exynosautov920.
-9. Register each zone with 'devm_thermal_of_zone_register()'
-   based on 'sensor_count'.
+Wesley Cheng (10):
+  dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy: Add Glymur compatible
+  dt-bindings: phy: qcom,qmp-usb: Add Glymur USB UNI PHY compatible
+  dt-bindings: phy: qcom-m31-eusb2: Add Glymur compatible
+  dt-bindings: usb: qcom,snps-dwc3: Add Glymur compatible
+  dt-bindings: phy: qcom,snps-eusb2-repeater: Add SMB2370 compatible
+  phy: qualcomm: Update the QMP clamp register for V6
+  phy: qualcomm: qmp-combo: Update QMP PHY with Glymur settings
+  phy: qualcomm: qmp-usb: Add support for Glymur USB UNI PHY
+  phy: qualcomm: m31-eusb2: Make clkref an optional resource
+  phy: qualcomm: eusb2-repeater: Add SMB2370 eUSB2 repeater support
 
-Signed-off-by: Shin Son <shin.son@samsung.com>
----
- drivers/thermal/samsung/exynos_tmu.c | 322 ++++++++++++++++++++++++---
- 1 file changed, 285 insertions(+), 37 deletions(-)
-
-diff --git a/drivers/thermal/samsung/exynos_tmu.c b/drivers/thermal/samsung/exynos_tmu.c
-index 47a99b3c5395..8fa188928b79 100644
---- a/drivers/thermal/samsung/exynos_tmu.c
-+++ b/drivers/thermal/samsung/exynos_tmu.c
-@@ -121,8 +121,51 @@
- 
- #define EXYNOS_NOISE_CANCEL_MODE		4
- 
-+/* ExynosAutov920 specific registers */
-+#define EXYNOSAUTOV920_SLOPE_COMP		25
-+#define EXYNOSAUTOV920_SLOPE_COMP_MASK		0xf
-+#define EXYNOSAUTOV920_CALIB_SEL_TEMP		30
-+#define EXYNOSAUTOV920_CALIB_SEL_TEMP_MASK	0x2
-+
-+#define EXYNOSAUTOV920_SENSOR0_TRIM_INFO	0x10
-+#define EXYNOSAUTOV920_TRIM_MASK		0x1ff
-+#define EXYNOSAUTOV920_TRIMINFO_25_SHIFT	0
-+#define EXYNOSAUTOV920_TRIMINFO_85_SHIFT	9
-+
-+#define EXYNOSAUTOV920_TMU_REG_TRIMINFO2	0x04
-+
-+#define EXYNOSAUTOV920_TMU_REG_THRESHOLD(p)	(((p)) * 0x50 + 0x00d0)
-+#define EXYNOSAUTOV920_TMU_REG_INTEN(p)		(((p)) * 0x50 + 0x00f0)
-+#define EXYNOSAUTOV920_TMU_REG_INT_PEND(p)	(((p)) * 0x50 + 0x00f8)
-+
-+#define EXYNOSAUTOV920_CURRENT_TEMP_P1_P0	0x084
-+#define EXYNOSAUTOV920_TMU_REG_EMUL_CON		0x0b0
-+
-+#define EXYNOSAUTOV920_TMU_REG_CONTROL		0x50
-+#define EXYNOSAUTOV920_TMU_REG_CONTROL1		0x54
-+#define EXYNOSAUTOV920_TMU_REG_AVG_CONTROL	0x58
-+#define EXYNOSAUTOV920_TMU_SAMPLING_INTERVAL	0x70
-+#define EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE0	0x74
-+#define EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE1	0x78
-+
-+#define EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_SHIFT		8
-+#define EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_MASK		0x1f
-+#define EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_SHIFT	3
-+#define EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_MASK		0xf
-+#define EXYNOSAUTOV920_TMU_NUM_PROBE_MASK		0xf
-+#define EXYNOSAUTOV920_TMU_NUM_PROBE_SHIFT		16
-+#define EXYNOSAUTOV920_TMU_LPI_MODE_MASK		1
-+#define EXYNOSAUTOV920_TMU_LPI_MODE_SHIFT		10
-+
-+#define EXYNOSAUTOV920_TMU_AVG_CON_UPDATE		0x0008011a
-+#define EXYNOSAUTOV920_TMU_COUNTER_VALUE0_UPDATE	0x030003c0
-+#define EXYNOSAUTOV920_TMU_COUNTER_VALUE1_UPDATE	0x03c0004d
-+
- #define MCELSIUS	1000
- 
-+#define EXYNOS_DEFAULT_SENSOR_COUNT			1
-+#define EXYNOS_MAX_SENSOR_COUNT				15
-+
- enum soc_type {
- 	SOC_ARCH_EXYNOS3250 = 1,
- 	SOC_ARCH_EXYNOS4210,
-@@ -133,6 +176,7 @@ enum soc_type {
- 	SOC_ARCH_EXYNOS5420_TRIMINFO,
- 	SOC_ARCH_EXYNOS5433,
- 	SOC_ARCH_EXYNOS7,
-+	SOC_ARCH_EXYNOSAUTOV920,
- };
- 
- /**
-@@ -150,6 +194,8 @@ enum soc_type {
-  * @efuse_value: SoC defined fuse value
-  * @min_efuse_value: minimum valid trimming data
-  * @max_efuse_value: maximum valid trimming data
-+ * @slope_comp: allocated value of the slope compensation.
-+ * @calib_temp: calibration temperature of the TMU.
-  * @temp_error1: fused value of the first point trim.
-  * @temp_error2: fused value of the second point trim.
-  * @gain: gain of amplifier in the positive-TC generator block
-@@ -157,7 +203,8 @@ enum soc_type {
-  * @reference_voltage: reference voltage of amplifier
-  *	in the positive-TC generator block
-  *	0 < reference_voltage <= 31
-- * @tzd: pointer to thermal_zone_device structure
-+ * @sensor_count: The maximum number of the sensors
-+ * @tzd_array: pointer array of thermal_zone_device structure
-  * @enabled: current status of TMU device
-  * @tmu_set_low_temp: SoC specific method to set trip (falling threshold)
-  * @tmu_set_high_temp: SoC specific method to set trip (rising threshold)
-@@ -174,6 +221,7 @@ struct exynos_tmu_data {
- 	void __iomem *base;
- 	void __iomem *base_second;
- 	int irq;
-+	int sensor_count;
- 	enum soc_type soc;
- 	struct mutex lock;
- 	struct clk *clk, *clk_sec, *sclk;
-@@ -181,10 +229,12 @@ struct exynos_tmu_data {
- 	u32 efuse_value;
- 	u32 min_efuse_value;
- 	u32 max_efuse_value;
-+	u16 slope_comp;
-+	u16 calib_temp;
- 	u16 temp_error1, temp_error2;
- 	u8 gain;
- 	u8 reference_voltage;
--	struct thermal_zone_device *tzd;
-+	struct thermal_zone_device *tzd_array[EXYNOS_MAX_SENSOR_COUNT];
- 	bool enabled;
- 
- 	void (*tmu_set_low_temp)(struct exynos_tmu_data *data, u8 temp);
-@@ -205,13 +255,20 @@ struct exynos_tmu_data {
-  */
- static int temp_to_code(struct exynos_tmu_data *data, u8 temp)
- {
-+	s32 temp_diff, code;
-+
- 	if (data->cal_type == TYPE_ONE_POINT_TRIMMING)
- 		return temp + data->temp_error1 - EXYNOS_FIRST_POINT_TRIM;
- 
--	return (temp - EXYNOS_FIRST_POINT_TRIM) *
--		(data->temp_error2 - data->temp_error1) /
--		(EXYNOS_SECOND_POINT_TRIM - EXYNOS_FIRST_POINT_TRIM) +
--		data->temp_error1;
-+	temp_diff = temp - EXYNOS_FIRST_POINT_TRIM;
-+
-+	code = temp_diff * (data->temp_error2 - data->temp_error1) * MCELSIUS /
-+	       (data->calib_temp - EXYNOS_FIRST_POINT_TRIM);
-+
-+	if (data->soc == SOC_ARCH_EXYNOSAUTOV920 && temp_diff < 0)
-+		code = code * (57 + data->slope_comp) / 65;
-+
-+	return code / MCELSIUS + data->temp_error1;
- }
- 
- /*
-@@ -220,13 +277,20 @@ static int temp_to_code(struct exynos_tmu_data *data, u8 temp)
-  */
- static int code_to_temp(struct exynos_tmu_data *data, u16 temp_code)
- {
-+	s32 code_diff, temp;
-+
- 	if (data->cal_type == TYPE_ONE_POINT_TRIMMING)
- 		return temp_code - data->temp_error1 + EXYNOS_FIRST_POINT_TRIM;
- 
--	return (temp_code - data->temp_error1) *
--		(EXYNOS_SECOND_POINT_TRIM - EXYNOS_FIRST_POINT_TRIM) /
--		(data->temp_error2 - data->temp_error1) +
--		EXYNOS_FIRST_POINT_TRIM;
-+	code_diff = temp_code - data->temp_error1;
-+
-+	temp = code_diff * (data->calib_temp - EXYNOS_FIRST_POINT_TRIM) * MCELSIUS /
-+	       (data->temp_error2 - data->temp_error1);
-+
-+	if (data->soc == SOC_ARCH_EXYNOSAUTOV920 && code_diff < 0)
-+		temp = temp * 65 / (57 + data->slope_comp);
-+
-+	return temp / MCELSIUS + EXYNOS_FIRST_POINT_TRIM;
- }
- 
- static void sanitize_temp_error(struct exynos_tmu_data *data, u32 trim_info)
-@@ -262,6 +326,9 @@ static int exynos_tmu_initialize(struct platform_device *pdev)
- 		clk_enable(data->clk_sec);
- 
- 	status = readb(data->base + EXYNOS_TMU_REG_STATUS);
-+	if (data->soc == SOC_ARCH_EXYNOSAUTOV920)
-+		status = readl(data->base + EXYNOS_TMU_REG_TRIMINFO);
-+
- 	if (!status) {
- 		ret = -EBUSY;
- 	} else {
-@@ -280,27 +347,34 @@ static int exynos_tmu_initialize(struct platform_device *pdev)
- static int exynos_thermal_zone_configure(struct platform_device *pdev)
- {
- 	struct exynos_tmu_data *data = platform_get_drvdata(pdev);
--	struct thermal_zone_device *tzd = data->tzd;
--	int ret, temp;
-+	struct thermal_zone_device *tzd;
-+	int ret, temp, idx;
- 
--	ret = thermal_zone_get_crit_temp(tzd, &temp);
--	if (ret) {
--		/* FIXME: Remove this special case */
--		if (data->soc == SOC_ARCH_EXYNOS5433)
--			return 0;
-+	for (idx = 0; idx < data->sensor_count; idx++) {
-+		tzd = data->tzd_array[idx];
- 
--		dev_err(&pdev->dev,
--			"No CRITICAL trip point defined in device tree!\n");
--		return ret;
--	}
-+		if (!tzd)
-+			continue;
- 
--	mutex_lock(&data->lock);
--	clk_enable(data->clk);
-+		ret = thermal_zone_get_crit_temp(tzd, &temp);
-+		if (ret) {
-+			/* FIXME: Remove this special case */
-+			if (data->soc == SOC_ARCH_EXYNOS5433)
-+				return 0;
- 
--	data->tmu_set_crit_temp(data, temp / MCELSIUS);
-+			dev_err(&pdev->dev,
-+				"No CRITICAL trip point defined in device tree!\n");
-+			return ret;
-+		}
- 
--	clk_disable(data->clk);
--	mutex_unlock(&data->lock);
-+		mutex_lock(&data->lock);
-+		clk_enable(data->clk);
-+
-+		data->tmu_set_crit_temp(data, temp / MCELSIUS);
-+
-+		clk_disable(data->clk);
-+		mutex_unlock(&data->lock);
-+	}
- 
- 	return 0;
- }
-@@ -323,6 +397,37 @@ static u32 get_con_reg(struct exynos_tmu_data *data, u32 con)
- 	return con;
- }
- 
-+static void update_con_reg(struct exynos_tmu_data *data)
-+{
-+	u32 val, t_buf_vref_sel, t_buf_slope_sel;
-+
-+	val = readl(data->base + EXYNOS_TMU_REG_TRIMINFO);
-+	t_buf_vref_sel = (val >> EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_SHIFT)
-+				& EXYNOSAUTOV920_TMU_T_BUF_VREF_SEL_MASK;
-+	t_buf_slope_sel = (val >> EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_SHIFT)
-+				& EXYNOSAUTOV920_TMU_T_BUF_SLOPE_SEL_MASK;
-+
-+	val = readl(data->base +  EXYNOSAUTOV920_TMU_REG_CONTROL);
-+	val &= ~(EXYNOS_TMU_REF_VOLTAGE_MASK << EXYNOS_TMU_REF_VOLTAGE_SHIFT);
-+	val |= (t_buf_vref_sel << EXYNOS_TMU_REF_VOLTAGE_SHIFT);
-+	val &= ~(EXYNOS_TMU_BUF_SLOPE_SEL_MASK << EXYNOS_TMU_BUF_SLOPE_SEL_SHIFT);
-+	val |= (t_buf_slope_sel << EXYNOS_TMU_BUF_SLOPE_SEL_SHIFT);
-+	writel(val, data->base + EXYNOSAUTOV920_TMU_REG_CONTROL);
-+
-+	val = readl(data->base + EXYNOSAUTOV920_TMU_REG_CONTROL1);
-+	val &= ~(EXYNOSAUTOV920_TMU_NUM_PROBE_MASK << EXYNOSAUTOV920_TMU_NUM_PROBE_SHIFT);
-+	val &= ~(EXYNOSAUTOV920_TMU_LPI_MODE_MASK << EXYNOSAUTOV920_TMU_LPI_MODE_SHIFT);
-+	val |= (data->sensor_count << EXYNOSAUTOV920_TMU_NUM_PROBE_SHIFT);
-+	writel(val, data->base + EXYNOSAUTOV920_TMU_REG_CONTROL1);
-+
-+	writel(1, data->base + EXYNOSAUTOV920_TMU_SAMPLING_INTERVAL);
-+	writel(EXYNOSAUTOV920_TMU_AVG_CON_UPDATE, data->base + EXYNOSAUTOV920_TMU_REG_AVG_CONTROL);
-+	writel(EXYNOSAUTOV920_TMU_COUNTER_VALUE0_UPDATE,
-+	       data->base + EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE0);
-+	writel(EXYNOSAUTOV920_TMU_COUNTER_VALUE1_UPDATE,
-+	       data->base + EXYNOSAUTOV920_TMU_REG_COUNTER_VALUE1);
-+}
-+
- static void exynos_tmu_control(struct platform_device *pdev, bool on)
- {
- 	struct exynos_tmu_data *data = platform_get_drvdata(pdev);
-@@ -354,9 +459,8 @@ static void exynos_tmu_update_temp(struct exynos_tmu_data *data, int reg_off,
- 	u16 tmu_temp_mask;
- 	u32 th;
- 
--	tmu_temp_mask =
--		(data->soc == SOC_ARCH_EXYNOS7) ? EXYNOS7_TMU_TEMP_MASK
--						: EXYNOS_TMU_TEMP_MASK;
-+	tmu_temp_mask = (data->soc == SOC_ARCH_EXYNOS7 || data->soc == SOC_ARCH_EXYNOSAUTOV920)
-+		? EXYNOS7_TMU_TEMP_MASK	: EXYNOS_TMU_TEMP_MASK;
- 
- 	th = readl(data->base + reg_off);
- 	th &= ~(tmu_temp_mask << bit_off);
-@@ -582,6 +686,68 @@ static void exynos7_tmu_initialize(struct platform_device *pdev)
- 	sanitize_temp_error(data, trim_info);
- }
- 
-+static void exynosautov920_tmu_set_low_temp(struct exynos_tmu_data *data, u8 temp)
-+{
-+	/*
-+	 * Failing thresholds are not supported on Exynosautov920.
-+	 * We use polling instead.
-+	 */
-+}
-+
-+static void exynosautov920_tmu_set_high_temp(struct exynos_tmu_data *data, u8 temp)
-+{
-+	/*
-+	 * Rising thresholds are not supported on Exynosautov920.
-+	 * We use polling instead.
-+	 */
-+}
-+
-+static void exynosautov920_tmu_disable_low(struct exynos_tmu_data *data)
-+{
-+	/* Again, this is handled by polling. */
-+}
-+
-+static void exynosautov920_tmu_disable_high(struct exynos_tmu_data *data)
-+{
-+	/* Again, this is handled by polling. */
-+}
-+
-+static void exynosautov920_tmu_set_crit_temp(struct exynos_tmu_data *data, u8 temp)
-+{
-+	unsigned int idx;
-+
-+	for (idx = 0; idx < data->sensor_count; idx++) {
-+		if (!data->tzd_array[idx])
-+			continue;
-+
-+		exynos_tmu_update_temp(data, EXYNOSAUTOV920_TMU_REG_THRESHOLD(idx), 16, temp);
-+		exynos_tmu_update_bit(data, EXYNOSAUTOV920_TMU_REG_INTEN(idx), 7, true);
-+	}
-+}
-+
-+static void exynosautov920_tmu_initialize(struct platform_device *pdev)
-+{
-+	struct exynos_tmu_data *data = platform_get_drvdata(pdev);
-+	unsigned int val;
-+
-+	data->tmu_control(pdev, false);
-+
-+	update_con_reg(data);
-+
-+	val = readl(data->base + EXYNOS_TMU_REG_TRIMINFO);
-+	data->cal_type = TYPE_TWO_POINT_TRIMMING;
-+	data->slope_comp = (val >> EXYNOSAUTOV920_SLOPE_COMP) & EXYNOSAUTOV920_SLOPE_COMP_MASK;
-+
-+	val = readl(data->base + EXYNOSAUTOV920_SENSOR0_TRIM_INFO);
-+	data->temp_error1 = (val >> EXYNOSAUTOV920_TRIMINFO_25_SHIFT) & EXYNOSAUTOV920_TRIM_MASK;
-+	data->temp_error2 = (val >> EXYNOSAUTOV920_TRIMINFO_85_SHIFT) & EXYNOSAUTOV920_TRIM_MASK;
-+
-+	val = readl(data->base + EXYNOSAUTOV920_TMU_REG_TRIMINFO2);
-+	val = (val >> EXYNOSAUTOV920_CALIB_SEL_TEMP) & EXYNOSAUTOV920_CALIB_SEL_TEMP_MASK;
-+
-+	data->calib_temp = (EXYNOS_SECOND_POINT_TRIM + (20 * val));
-+}
-+
- static void exynos4210_tmu_control(struct platform_device *pdev, bool on)
- {
- 	struct exynos_tmu_data *data = platform_get_drvdata(pdev);
-@@ -633,6 +799,24 @@ static void exynos7_tmu_control(struct platform_device *pdev, bool on)
- 	writel(con, data->base + EXYNOS_TMU_REG_CONTROL);
- }
- 
-+static void exynosautov920_tmu_control(struct platform_device *pdev, bool on)
-+{
-+	struct exynos_tmu_data *data = platform_get_drvdata(pdev);
-+	unsigned int con;
-+
-+	con = readl(data->base + EXYNOSAUTOV920_TMU_REG_CONTROL);
-+
-+	if (on) {
-+		con |= BIT(EXYNOS_TMU_THERM_TRIP_EN_SHIFT);
-+		con |= BIT(EXYNOS_TMU_CORE_EN_SHIFT);
-+	} else {
-+		con &= ~BIT(EXYNOS_TMU_THERM_TRIP_EN_SHIFT);
-+		con &= ~BIT(EXYNOS_TMU_CORE_EN_SHIFT);
-+	}
-+
-+	writel(con, data->base + EXYNOSAUTOV920_TMU_REG_CONTROL);
-+}
-+
- static int exynos_get_temp(struct thermal_zone_device *tz, int *temp)
- {
- 	struct exynos_tmu_data *data = thermal_zone_device_priv(tz);
-@@ -671,7 +855,7 @@ static u32 get_emul_con_reg(struct exynos_tmu_data *data, unsigned int val,
- 
- 		val &= ~(EXYNOS_EMUL_TIME_MASK << EXYNOS_EMUL_TIME_SHIFT);
- 		val |= (EXYNOS_EMUL_TIME << EXYNOS_EMUL_TIME_SHIFT);
--		if (data->soc == SOC_ARCH_EXYNOS7) {
-+		if (data->soc == SOC_ARCH_EXYNOS7 || data->soc == SOC_ARCH_EXYNOSAUTOV920) {
- 			val &= ~(EXYNOS7_EMUL_DATA_MASK <<
- 				EXYNOS7_EMUL_DATA_SHIFT);
- 			val |= (temp_to_code(data, temp) <<
-@@ -703,6 +887,8 @@ static void exynos4412_tmu_set_emulation(struct exynos_tmu_data *data,
- 		emul_con = EXYNOS5433_TMU_EMUL_CON;
- 	else if (data->soc == SOC_ARCH_EXYNOS7)
- 		emul_con = EXYNOS7_TMU_REG_EMUL_CON;
-+	else if (data->soc == SOC_ARCH_EXYNOSAUTOV920)
-+		emul_con = EXYNOSAUTOV920_TMU_REG_EMUL_CON;
- 	else
- 		emul_con = EXYNOS_EMUL_CON;
- 
-@@ -756,11 +942,23 @@ static int exynos7_tmu_read(struct exynos_tmu_data *data)
- 		EXYNOS7_TMU_TEMP_MASK;
- }
- 
-+static int exynosautov920_tmu_read(struct exynos_tmu_data *data)
-+{
-+	return readw(data->base + EXYNOSAUTOV920_CURRENT_TEMP_P1_P0) &
-+		EXYNOS7_TMU_TEMP_MASK;
-+}
-+
- static irqreturn_t exynos_tmu_threaded_irq(int irq, void *id)
- {
- 	struct exynos_tmu_data *data = id;
-+	int idx;
- 
--	thermal_zone_device_update(data->tzd, THERMAL_EVENT_UNSPECIFIED);
-+	for (idx = 0; idx < data->sensor_count; idx++) {
-+		if (!data->tzd_array[idx])
-+			continue;
-+
-+		thermal_zone_device_update(data->tzd_array[idx], THERMAL_EVENT_UNSPECIFIED);
-+	}
- 
- 	mutex_lock(&data->lock);
- 	clk_enable(data->clk);
-@@ -805,6 +1003,19 @@ static void exynos4210_tmu_clear_irqs(struct exynos_tmu_data *data)
- 	writel(val_irq, data->base + tmu_intclear);
- }
- 
-+static void exynosautov920_tmu_clear_irqs(struct exynos_tmu_data *data)
-+{
-+	unsigned int idx, val_irq;
-+
-+	for (idx = 0; idx < data->sensor_count; idx++) {
-+		if (!data->tzd_array[idx])
-+			continue;
-+
-+		val_irq = readl(data->base + EXYNOSAUTOV920_TMU_REG_INT_PEND(idx));
-+		writel(val_irq, data->base + EXYNOSAUTOV920_TMU_REG_INT_PEND(idx));
-+	}
-+}
-+
- static const struct of_device_id exynos_tmu_match[] = {
- 	{
- 		.compatible = "samsung,exynos3250-tmu",
-@@ -833,6 +1044,9 @@ static const struct of_device_id exynos_tmu_match[] = {
- 	}, {
- 		.compatible = "samsung,exynos7-tmu",
- 		.data = (const void *)SOC_ARCH_EXYNOS7,
-+	}, {
-+		.compatible = "samsung,exynosautov920-tmu",
-+		.data = (const void *)SOC_ARCH_EXYNOSAUTOV920,
- 	},
- 	{ },
- };
-@@ -865,6 +1079,10 @@ static int exynos_map_dt_data(struct platform_device *pdev)
- 
- 	data->soc = (uintptr_t)of_device_get_match_data(&pdev->dev);
- 
-+	data->sensor_count = EXYNOS_DEFAULT_SENSOR_COUNT;
-+
-+	data->calib_temp = EXYNOS_SECOND_POINT_TRIM;
-+
- 	switch (data->soc) {
- 	case SOC_ARCH_EXYNOS4210:
- 		data->tmu_set_low_temp = exynos4210_tmu_set_low_temp;
-@@ -945,6 +1163,19 @@ static int exynos_map_dt_data(struct platform_device *pdev)
- 		data->min_efuse_value = 15;
- 		data->max_efuse_value = 100;
- 		break;
-+	case SOC_ARCH_EXYNOSAUTOV920:
-+		data->tmu_set_low_temp = exynosautov920_tmu_set_low_temp;
-+		data->tmu_set_high_temp = exynosautov920_tmu_set_high_temp;
-+		data->tmu_disable_low = exynosautov920_tmu_disable_low;
-+		data->tmu_disable_high = exynosautov920_tmu_disable_high;
-+		data->tmu_set_crit_temp = exynosautov920_tmu_set_crit_temp;
-+		data->tmu_initialize = exynosautov920_tmu_initialize;
-+		data->tmu_control = exynosautov920_tmu_control;
-+		data->tmu_read = exynosautov920_tmu_read;
-+		data->tmu_set_emulation = exynos4412_tmu_set_emulation;
-+		data->tmu_clear_irqs = exynosautov920_tmu_clear_irqs;
-+		data->sensor_count = EXYNOS_MAX_SENSOR_COUNT;
-+		break;
- 	default:
- 		dev_err(&pdev->dev, "Platform not supported\n");
- 		return -EINVAL;
-@@ -952,6 +1183,14 @@ static int exynos_map_dt_data(struct platform_device *pdev)
- 
- 	data->cal_type = TYPE_ONE_POINT_TRIMMING;
- 
-+	if (data->soc == SOC_ARCH_EXYNOSAUTOV920) {
-+		if (of_property_read_u32(pdev->dev.of_node, "samsung,sensors",
-+					 &data->sensor_count)) {
-+			dev_err(&pdev->dev, "failed to get sensor count\n");
-+			return -ENODEV;
-+		}
-+	}
-+
- 	/*
- 	 * Check if the TMU shares some registers and then try to map the
- 	 * memory of common registers.
-@@ -1006,7 +1245,8 @@ static int exynos_tmu_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
- 	struct exynos_tmu_data *data;
--	int ret;
-+	struct thermal_zone_device *tzd;
-+	int ret, idx;
- 
- 	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
- 	if (!data)
-@@ -1084,11 +1324,19 @@ static int exynos_tmu_probe(struct platform_device *pdev)
- 		goto err_sclk;
- 	}
- 
--	data->tzd = devm_thermal_of_zone_register(dev, 0, data,
--						  &exynos_sensor_ops);
--	if (IS_ERR(data->tzd)) {
--		ret = dev_err_probe(dev, PTR_ERR(data->tzd), "Failed to register sensor\n");
--		goto err_sclk;
-+	for (idx = 0; idx < data->sensor_count; idx++) {
-+		tzd = devm_thermal_of_zone_register(dev, idx, data, &exynos_sensor_ops);
-+
-+		if (IS_ERR(tzd)) {
-+			if (PTR_ERR(tzd) == -ENODEV)
-+				continue;
-+
-+			ret = dev_err_probe(dev, PTR_ERR(data->tzd_array[idx]),
-+					    "Failed to register sensor\n");
-+			goto err_sclk;
-+		}
-+
-+		data->tzd_array[idx] = tzd;
- 	}
- 
- 	ret = exynos_thermal_zone_configure(pdev);
--- 
-2.50.1
+ .../bindings/phy/qcom,m31-eusb2-phy.yaml      |  21 +-
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |  35 ++
+ .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml    |  19 +-
+ .../phy/qcom,snps-eusb2-repeater.yaml         |   1 +
+ .../bindings/usb/qcom,snps-dwc3.yaml          |  26 ++
+ .../phy/qualcomm/phy-qcom-eusb2-repeater.c    |  18 +
+ drivers/phy/qualcomm/phy-qcom-m31-eusb2.c     |   2 +-
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c     | 349 +++++++++++++++++-
+ .../phy/qualcomm/phy-qcom-qmp-pcs-aon-v6.h    |  12 +
+ .../phy/qualcomm/phy-qcom-qmp-pcs-misc-v5.h   |  12 +
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 163 ++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp.h           |   4 +
+ 12 files changed, 649 insertions(+), 13 deletions(-)
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-aon-v6.h
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-misc-v5.h
 
 
