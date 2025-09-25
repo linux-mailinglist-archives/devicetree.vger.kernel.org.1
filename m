@@ -1,127 +1,151 @@
-Return-Path: <devicetree+bounces-221434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDD4AB9F995
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:35:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0560EB9F9B9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:39:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C7DC3A56A2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:35:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD8CB3A8047
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:39:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67CB326D4E5;
-	Thu, 25 Sep 2025 13:35:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58F93271469;
+	Thu, 25 Sep 2025 13:39:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JslnrxGq"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="Yga0bisA";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="SLCZyK/W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-a6-smtp.messagingengine.com (fout-a6-smtp.messagingengine.com [103.168.172.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43E62265CBB
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:35:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F250026CE0F;
+	Thu, 25 Sep 2025 13:39:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758807305; cv=none; b=hISbFCcG3Kd06b1mCzD9/ABHFzUqoWfXBl7+wbu+yTSAl7wH315tfma0SEx6Ek9etFthJ8CT0uG3C+HnB7BGPyMXXvIXZyZntO/zIaYXWMPFeVL+kBn2gmi7/127q5ozlqpFC1tE5VqNvnmeF5JbG6dp2L9+VyyBLRK9A/ai9sU=
+	t=1758807549; cv=none; b=FSAdajRn6I+agPDufYjJcGReinwzlBY2Mg27gvoWmU4lQZQGhistB2uhvObRY3IPbZeR4iR36o8eLxX/V0p9Q8SQVSG9Zts0tO/My44006chcLnfSzMIFKEtOIuiFcKUDtQZ1SoFI8fH+dl7+6gjMOAoh5rSoD/LaNiIaxsF/qc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758807305; c=relaxed/simple;
-	bh=U0zBqrOVz2aVyIkOdhN/c5ZsuFUDGjUs9oZhG9G8cd8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=eFd+umhzM655nv+vsyxDdIEf8rg1aaS7FuzuHbuFQAUF4Mp/5n8iCm9EGlrlqwYSioB/rIavXhLUt0w160m0Yke1sBLauYY1eAXPde7dx/RVb3xSXrkrmL/xe5PtPFf8uRm35knykAPNZOia+CanDEM+C3H7oqxPUfG8Ma6zvwA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JslnrxGq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7ED6C113D0
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:35:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758807304;
-	bh=U0zBqrOVz2aVyIkOdhN/c5ZsuFUDGjUs9oZhG9G8cd8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=JslnrxGqC5YDchzPfgAZdyZrZgtviyOLpf4A8RzMq84c78iYViknuF2beVq+xKQcl
-	 pt1l/eLOt6ThyA4pwBQXoVYEzzbibKihOg2E7wWv5bYvNICV0+RrwIipzKfDN4nYYB
-	 sK3FQISCI+IXTgXSSRkCLj2kdel+ayYwsSTu9XWndFYynTAPselJj4+eyObo6cy/SH
-	 ic+uKvU0LfEYoHyZsVSoqnqdzowbL5rW8eyv2iu3Wf6b9CuWtNMYqxiixyhz8SYR+K
-	 z0bX/YKVN11y5visySyyoc4v0VAeuqh5ASxbLlFgpBTt+KEpWWahNB5J5z7MBkf9oR
-	 VlIaw18Bas/9g==
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-24457f581aeso10536305ad.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:35:04 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXs0m9nIjt0t/LeA/kxcDv8jFNJGZwoX22wn6RMWg9sKsFnWdWjxewI/9TK+6HO6TOzICfjk9s79U1s@vger.kernel.org
-X-Gm-Message-State: AOJu0YylVeK4qUpxNvN0RMtJZiZ5uCcCyVp5ngk8wQsnxmuWvYxPeOy4
-	BcD9N9PkZdl3Z2BEaiGpI+9v+u8fDcHY63Hz7MpfKw1NGcn9bNAr8zaeBcmcl8hoX4ksRl5/XSu
-	CYgHiC6GWic3SEy/CzAAqTaVzsrKLFiQ=
-X-Google-Smtp-Source: AGHT+IF2gfRSMbhEJa8nvrh+JpQ+A2ctdyaVqt5YxJDoqNHuurr02R6K0ugrO5eiCQDnx8VVAz7RofYZkW98Xl+uAW4=
-X-Received: by 2002:a17:903:2c9:b0:259:5fdf:d79c with SMTP id
- d9443c01a7336-27ed4ad65e1mr32294745ad.51.1758807304473; Thu, 25 Sep 2025
- 06:35:04 -0700 (PDT)
+	s=arc-20240116; t=1758807549; c=relaxed/simple;
+	bh=l9noDZmS+h5Akb+RjBpEJrg20lrX30Rh2R6I7mjXR/8=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=rPwDDMTTMaiyFy404gj70m6RHvEUuuFqnA3mTo4ZBQ+6wQ6MW/oELZK9zakUnX9XNFsN8j/UtmjP6W01AZ3mFxie8+Lsv0mFz6FXJeylqiRuA3er/NmcmT3c91B5FeqyeQZMLvePMU/0yTYV2T9Sf66ujycjQZNIpKSicOXL6XQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=Yga0bisA; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=SLCZyK/W; arc=none smtp.client-ip=103.168.172.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfout.phl.internal (Postfix) with ESMTP id F1365EC01C9;
+	Thu, 25 Sep 2025 09:39:05 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-05.internal (MEProxy); Thu, 25 Sep 2025 09:39:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1758807545;
+	 x=1758893945; bh=ZP6i8t6VjyohhnaOw+R5p+q7sTs7Hkp2pGWlk4LB/z0=; b=
+	Yga0bisAcqKTV0DnIf+ALNVaHGED9hccLWEpVcu1AS2ugQrXux+JA34d+GEbwyXx
+	e1FF0+O80vgwnO1ne8rdph8It6i84gUkARzZip9XgVMLc71RtQMA4wXJtW7w4JSu
+	xfQfTt7AmtsdAOVuYNusA/41h2FeDK2+dOSS0qUiliUaAJUOB13CWyvxCH/wWWMQ
+	iAuYirlk7aD3gyuTEJeKhbPXgaSS08grLJPvb94j9DcstOCoRVhWSAXJl9VGVuP5
+	C0z8eTH5I4m6zXWUkNFI9lMlVUVIMkuV2nktR269Zk3NtdV6VQ+c7F7E3C0SKXKg
+	TuNZ6PgokfHTn3+f1bTJQA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1758807545; x=
+	1758893945; bh=ZP6i8t6VjyohhnaOw+R5p+q7sTs7Hkp2pGWlk4LB/z0=; b=S
+	LCZyK/WT4E/AJqkEn4I4YpM3gmtkrGKSMOjemO5DGw0dS4DogzqSSjqto2aMHMpR
+	wxUYOoTA8WID/3kdzBpXjaQnfpnyY7XgqLMM0saOJUcdjGCQE3807d7McA9iLy9Z
+	okhcLBhPp7+ibK8m6kYp3xbfXzN9EGSc5MFyM43ORS+YUaSaJpVdV0Oq9TFNTKcP
+	cWwUTPMgxTMKp2GOJ+Xj71wxH4ud2RC1KPocZwQJogiZcAVPUmT7J+wO5wO3cYmn
+	d7WBwyG9R74WaI80m86f1ZYTfllRUQ7iu7kkfzcs1L9zzRlvxIA173SmD3dGOdjC
+	bEMa2uPMgyMDuPlgWi5ZQ==
+X-ME-Sender: <xms:-EXVaFl1peFBt9BoXygc2Q9r-wWTKxr5LzzwlJgArNIGdcACKp-2mQ>
+    <xme:-EXVaLrAe_LPjNZ12OohpAcXUeOrXAnHR-81spEbJf5SpKs011LLasvgsMa8VUxFx
+    j2lnOBq0do6AlL5CL7iJp380yyg7zO99ls4xSuWLkWl2Oc9LYdKS24>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeiieeifecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpefhtdfhvddtfeehudekteeggffghfejgeegteefgffgvedugeduveelvdekhfdvieen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggvpdhnsggprhgtphhtthhopeduhedpmhhouggvpehsmhhtphhouhht
+    pdhrtghpthhtoheptggrthgrlhhinhdrmhgrrhhinhgrshesrghrmhdrtghomhdprhgtph
+    htthhopehgohhrughonhdrghgvsegsshhtrdgrihdprhgtphhtthhopegsshhtqdhuphhs
+    thhrvggrmhessghsthgrihdrthhophdprhgtphhtthhopegrughrihgrnhdrhhhunhhtvg
+    hrsehinhhtvghlrdgtohhmpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdr
+    ohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtth
+    hopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepfihilhhlsehkvghrnhgv
+    lhdrohhrghdprhgtphhtthhopehkrhiihihsiihtohhfrdhkohiilhhofihskhhisehlih
+    hnrghrohdrohhrgh
+X-ME-Proxy: <xmx:-EXVaKcqt-fv8lOleOx8L8kijJDVWj7-P23o48SsNRvckojD-eQdzw>
+    <xmx:-EXVaLwC1bOigfMDX-tFoRmlBM74SFARXzeAqG86RqlIDGh71P_hHA>
+    <xmx:-EXVaLIcIpoRWcV4NKcNP5fBP6qfFJmG9of8HUkN1I7UU9i2YVjKww>
+    <xmx:-EXVaEuDGcpXdm5BN4EAXo4c4CRynPUdv6uXY39MKc2saKqSfkRcNg>
+    <xmx:-UXVaJ-JhawVLmBEvgcMBDrywJHyP5BoJ5x4etVHw-smF0Ja35YcNudd>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 8EB47700069; Thu, 25 Sep 2025 09:39:04 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-14-24b601bbecc0@oss.qualcomm.com>
- <CAJKOXPdQH2jXcEY6ZpkmixvUt26SqdzYgDAiJ3RHMG7xkPyi_A@mail.gmail.com> <lcbcjpoazpwbltedkiqlw4l3aomwvi3qsfwvmwghb6uf5wvnme@kh7qdpunfuwr>
-In-Reply-To: <lcbcjpoazpwbltedkiqlw4l3aomwvi3qsfwvmwghb6uf5wvnme@kh7qdpunfuwr>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Date: Thu, 25 Sep 2025 22:34:52 +0900
-X-Gmail-Original-Message-ID: <CAJKOXPcyhDdFW_u4YQLiHYj8gM7wYB-LOmB_PJs+5OOgn8WZFw@mail.gmail.com>
-X-Gm-Features: AS18NWC4qEyHuPYqOFoEoG1CnyL6J8LaE_ysvRuMlpyTnvkn7ftx1v5-lrNiYqU
-Message-ID: <CAJKOXPcyhDdFW_u4YQLiHYj8gM7wYB-LOmB_PJs+5OOgn8WZFw@mail.gmail.com>
-Subject: Re: [PATCH 14/24] arm64: dts: qcom: Update the pmh0110.dtsi for Glymur
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+X-ThreadId: AYQZGcjF-1nJ
+Date: Thu, 25 Sep 2025 15:38:44 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Ulf Hansson" <ulf.hansson@linaro.org>,
+ "yangzh0906@thundersoft.com" <yangzh0906@thundersoft.com>
+Cc: "Adrian Hunter" <adrian.hunter@intel.com>,
+ bst-upstream <bst-upstream@bstai.top>,
+ "Catalin Marinas" <catalin.marinas@arm.com>,
+ "Conor Dooley" <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ "gordon.ge" <gordon.ge@bst.ai>, krzk+dt@kernel.org,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ "linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>,
+ "Rob Herring" <robh@kernel.org>, "Will Deacon" <will@kernel.org>
+Message-Id: <f64b0e00-1c30-47a1-b6b0-1bc28cc7f8ac@app.fastmail.com>
+In-Reply-To: 
+ <CAPDyKFp3onTDGgygvOrK-G40w4mSx4S5=PbdZ+26hsQ+nPVRSA@mail.gmail.com>
+References: <20250925090412.2068216-1-yangzh0906@thundersoft.com>
+ <20250925121155.2401934-1-yangzh0906@thundersoft.com>
+ <CAPDyKFp3onTDGgygvOrK-G40w4mSx4S5=PbdZ+26hsQ+nPVRSA@mail.gmail.com>
+Subject: Re: [PATCH 0/9] arm64: introduce Black Sesame Technologies C1200 SoC and
+ CDCU1.0 board
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-On Thu, 25 Sept 2025 at 22:14, Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
+On Thu, Sep 25, 2025, at 15:34, Ulf Hansson wrote:
+> On Thu, 25 Sept 2025 at 14:12, Albert Yang <yangzh0906@thundersoft.com> wrote:
+>> On Thu, Sep 25, 2025 at 05:03:57PM +0800, Albert Yang wrote:
+>> Subject: Re: [PATCH] splitting SoC and MMC parts
+>>
+>> Hi Arnd,
+>>
+>> I may have missed an important detail in my previous note. If I split
+>> out the MMC-related patches and submit only the SoC parts first, I
+>> cannot validate the SoC on real hardware: both the kernel and the root
+>> filesystem live on the MMC device. Without the MMC stack (DT bindings
+>> and the controller driver), the board does not boot to userspace, so I
+>> cannot properly verify the SoC/DT changes in isolation.
 >
-> On Thu, Sep 25, 2025 at 05:08:54PM +0900, Krzysztof Kozlowski wrote:
-> > On Thu, 25 Sept 2025 at 15:34, Pankaj Patil
-> > <pankaj.patil@oss.qualcomm.com> wrote:
-> > >
-> > > From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> > >
-> > > Add multiple instance of PMH0110 DT node, one for each assigned
-> > > SID for this PMIC on the spmi_bus0 and spmi_bus1 on the Glymur
-> > > CRD.
-> > >
-> > > Take care to avoid compilation issue with the existing nodes by
-> > > gaurding each PMH0110 nodes with `#ifdef` for its corresponding
-> > > SID macro. So that only the nodes which have the their SID macro
-> > > defined are the only ones picked for compilation.
-> > >
-> > > Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> > > Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/pmh0110.dtsi | 66 ++++++++++++++++++++++++++++++++++-
-> > >  1 file changed, 65 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/pmh0110.dtsi b/arch/arm64/boot/dts/qcom/pmh0110.dtsi
-> > > index b99c33cba8860f1852231db33a127646c08c1e23..4a5c66e5c9fbc35cedb67601f4568844dc41fbea 100644
-> > > --- a/arch/arm64/boot/dts/qcom/pmh0110.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/pmh0110.dtsi
-> > > @@ -7,6 +7,8 @@
-> > >  #include <dt-bindings/spmi/spmi.h>
-> > >
-> > >  &spmi_bus0 {
-> > > +
-> > > +#ifdef PMH0110_D_E0_SID
-> >
-> > NAK
-> >
-> > I already explained on IRC in great details why.
+> At least to me, I would not consider that a problem. As long as you
+> can test the pieces together "manually" that's fine, I think.
 >
-> A short summary or a link to a channel / date would be nice in order to
-> include other people into the discussion.
->
+> I mean, the platform was not supported in the first place, so it's not
+> like we would be introducing a regression - or break something, right?
 
-Of course but:
-1. You were there so maybe you remember the arguments, and:
-2. I'm offline, using phone, not having laptop, replying during my
-personal time off just before merge window so any emergency time
-should be spent on important matters instead these two huge patch
-bombs adding such usage I already said: NO, don't do this.
+Agreed, it's rare for newly added platforms to immediately have
+everything working, and we can still fix things if they don't.
+
+It's also possible to test userspace by using a standalone
+initramfs with a login shell or an automated test suite, but
+I don't require that.
+
+     Arnd
 
