@@ -1,88 +1,81 @@
-Return-Path: <devicetree+bounces-221275-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221276-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46980B9E363
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 11:10:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 151ACB9E36C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 11:10:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56E501BC302C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:11:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 108187B45C0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B88C27FB03;
-	Thu, 25 Sep 2025 09:10:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 232392E62B7;
+	Thu, 25 Sep 2025 09:10:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Pcpo4Dcm"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZNEVQhCi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B773627AC59
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31DDF2DEA61
 	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:10:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758791423; cv=none; b=dmbG320X1tzBmZxcAyV1npFEL36qgajqEbi6PYIY0i7xur23lyNy++b8+zMWncrwh9n8tNDxbFp+Pf2BzHQTPTid7mzxRCyifWT10JMklhZMrmaVHf1OudzPL0PqXm85m5G7GLmmhUIts+/KeMfdnGZiTN0ZeottGw7vt2ioucE=
+	t=1758791424; cv=none; b=SnGb1cJU2Y5dPNrUfwrjn1IyKg25EgWs52dwUC8U/sZXXa1I+fFiWEWSSosPPOpiB4MGjn4UFD6qMsyvPn3Oesnhpa9pZQC9eE3CrdYdiIppLjOdXEO5fY/XTe2AJWf0fu4PuMo3Z8rYWsfwb6PTCcBZaSCVPsqX/Ky8w7Og9Js=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758791423; c=relaxed/simple;
-	bh=VaO3i7T1b7yOwRkFlMNKwsdMGDTOTdR9OM8uKc1xL/Q=;
+	s=arc-20240116; t=1758791424; c=relaxed/simple;
+	bh=L5XR6t5ZxwfG3rtP2YnGXIBz4GtqNch7l7akgqfMJNs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cnmipIWBpaH//SYlrXoTiiLPxEtY9kYkFyoQfCDcOpt7sXRRKhjsbv8bDB5niBFMi97jjEOCz/IxN9rAv4JvPewfXJ16HIBt90Onx/798x1KzDJQ/url0rtxtQuKiYvJoLYjDMHRXmU4ov0Q5jJUkyrVg8mu/j1ktzcr4KJ5fbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Pcpo4Dcm; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P0KfHc025136
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:10:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	eYZzVW9nVW8KA6tqECyGN+RNlHNLZrOF+4bwFfwCiLE=; b=Pcpo4DcmW+oDY+r+
-	rZDyKMfWtqOYmhDD+enL9K3uf+OTqlFyAXN/08CmPZ3ClsBOpmOvqZYc2iq9jzh+
-	ZNZfVXyO3GFnzRhVce+wuD/Vi7/nu1KcCHDXjAU4+T+Mp2XXuEpf/CV+ajux7p3D
-	/nQW/mMp7q7mXkLksJUAlDZncJak4r6Vf/neAeWxxctL6Jx6VRqBRgMGxgWTd4V7
-	r8P2lldig94Y5NjiLSbYD6CxB49v2JzmeKngy8C9KKJD11te01a4oMGirqXLoir7
-	8sWfk/7Zs8ZAcisVSWptv7S0ItJSbiOGBVD7kesJwCflFdYvGBABAZ0s3aKQHwzb
-	D0F46w==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499kv17gxh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:10:20 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-85e95d986e2so580485a.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 02:10:20 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=dGnTSjLxrhJqRNCNDt1Jmm09yWoPhrdv+oE33Brok7zoGBLBI8CWS0wKHLxw7YIZ8+b3KahMOkKVHGdaTIoOV/t/dt9aZvxuFL1w+KMtxDPxVpRZtf/RyxWuzFXUfGEZq6sgIhwPubWepeoE3SrQeu8c9zQ1t7RJyFtzNhZKyHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZNEVQhCi; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3f2ae6fae12so389161f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 02:10:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758791420; x=1759396220; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nMuA4DWC6qNeuux3AJTay/iyO89ifrzsRhDuGmNfotc=;
+        b=ZNEVQhCiUaS4rNzMkUfSwGh75tyS/xDug9nFLpBRlRh600+XKL5d4QkFikSRs6y0fU
+         nsd1nKRh1f+SBofkmrSphSxpGnVwOMti8pinY0Ahkk/nM4JyJYrb0FqUHZdBe26np63z
+         TaLFo/XsNaCjyL8hl9dnsE+/BRYHO4jPvPifKWcwbqk7yHG27TkkwAhUjrRzImj94t/j
+         g9izz81008mC0rtN6Ip7xjNgSN3RvxxCzwA0FhZSx2BISl3R/eO8BVbxytjl8vHLVlPY
+         Fi+UB9mLUQlUugtLCa268g9hEC35EdWyuBYRDckiZPOmyu7gMYYNjwzZvRNvtcc0lSL6
+         3WLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758791412; x=1759396212;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=1e100.net; s=20230601; t=1758791420; x=1759396220;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eYZzVW9nVW8KA6tqECyGN+RNlHNLZrOF+4bwFfwCiLE=;
-        b=mGCM0H2tEqTJ1kGlIpNqikgf85JeseKYMZWc3WHUwQfNh+TW8V04USVW//hkbpGCUR
-         MB7kKl1Tkf1OtmDPxoHlOGzJlqKwhWcW948V9tTVVC/76tyZFghGvRzM1X0JWXCH5KvI
-         yg1UlWsDujUIvyvpkGl0qAAUuT0rz/B6AaZ8XpkOrypK0oi9JWqivewNt+Uv7a9HlzuU
-         TdOtGGp7paXqHOwmaWPA9PQmjQKwgAk3c01+jEazak3X6hqyun7/3OlWt7eDopdt7kIQ
-         ABAmPxryevvcoZdmFKlg9wYkNm5quFQVCcupkLbcDKXTaZvuR9ujdWVeWyYoI30V+sV1
-         QoQw==
-X-Forwarded-Encrypted: i=1; AJvYcCVL322m1YD4FCSvUKdmXG6BL3Urrc2wKUDvh4W4uRrQ6hXzB3CNwP8EyeYri/0ccAHbRf9tI6jQxKzO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx319BwlLnSu1kWSN2WVkdUS9EnnTBMhYuUlEkZEPID/+BIuKMS
-	n2L28Hrj1AUx9omJf0D7B1fG0sUIr6GtT1n0y2yuVDINB0lXKGWh2YhOiZw6kF8qZAWDdVTRDYY
-	brjQukmV7qXUxHycH6HpQTVSWvXLSWSV2kpGbEhkilHGmY+qJpxUOshQPco36Ur6t
-X-Gm-Gg: ASbGnctj1XGqfopD3MeUyWyzeifX0fIxS38NaklNucmfkKf+hqPUXrGt1DowtW3U6i0
-	5pDNOOcbAIT6C3Tq0KZ72I40LP3gqJvD4wgfoEHWmpm0JgowfmGVGzllatGNJ1uiy8vYTo7W/Li
-	zFFwBJa1bGT9w11me6he6Vm9kifR7ovZFbtUVBXWxUuLF9a0fyhLSvySVy9v1E+lw2Cj/J/B2oP
-	UpJ68JmlCVkI66TJFiYeZaAOMQLBlanCqvc4ZtrNryOs435oXaB5iERNJ8DUr8SknuNBHv0v4Kc
-	zvgrM1G2WcK3JK+jpQym+gZp9RfjXfNjwJhnJNX8U8RL/fuePBI190qAiVSecPzt+IaIJebQVDF
-	Zb5Cg6tTLVIOD3RinDrlF1g==
-X-Received: by 2002:a05:620a:1a0f:b0:827:52b2:42be with SMTP id af79cd13be357-85adf5d2741mr246323785a.1.1758791412056;
-        Thu, 25 Sep 2025 02:10:12 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGADNWi8FxPoW2rbFkEpU+q5ie6LXLacUuiyEXFSNUKEa5yYt7K4AF5EOvbsvCoObZuswbrig==
-X-Received: by 2002:a05:620a:1a0f:b0:827:52b2:42be with SMTP id af79cd13be357-85adf5d2741mr246319685a.1.1758791411237;
-        Thu, 25 Sep 2025 02:10:11 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b353fa65a62sm126307366b.47.2025.09.25.02.10.09
+        bh=nMuA4DWC6qNeuux3AJTay/iyO89ifrzsRhDuGmNfotc=;
+        b=ijf8VPMQr6XZh0WsQkqN4lUoJLTO1ESFXI2GriCB0vRG6FM+432YUGi1b/nF+BG1Ht
+         WuomyYJuoYz0Xc5gJ2urCscoyK8NR7EKgNVxT+AqcUHYPG+D5cFd8yiVrlOX+cnaf60B
+         w98JphogqCHjSgIOSicTQneeo7QmqrCI79TjA4Ygi4iKSrhR+Xfc0XhgVQH2fTuiFXdl
+         FdthufBlBJKwgz5ePpAQ1xCsoacWK0PJZkaCRqVWL80JlFOQ/qj/+4mfWLivmAX9xpcy
+         PFqZUm0F+miWeQttVTkWmqyF2ye8Knuf3/UkCmHpMNHk5hB46ldDJX06GuDlqbHR0Nj2
+         AZ5A==
+X-Forwarded-Encrypted: i=1; AJvYcCXn92PAoKhMonITuHi0LvX7Nn2DL1ixVSiQC8jcoWa4xc/EZ4PkPmtY0R++d3lHzp2k/5NwsuEFgPmH@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXxR5z1DXXnPUsdz9wbAqjCGkd93MqnLXTpssTvtj8Ih5e155e
+	fL3XdKamdkLkPkX9rEDq53r55XKHHCjdQwnaFaAVg+C9LvHyQq0qcMC7LspEb9ZhriA=
+X-Gm-Gg: ASbGncsRqjY3bhJ0rBAwAmx7r/GYQ3IZURzhncnOTRy7rH+PHzPphs7v43dzwNh4cbK
+	s6RFj8QuxxAx55yvP9gyXkVumiDNSVXs+qoRBM/OcEpbVRNf7Ol3E/OhmIXrPc8uFoT2PiFTSwa
+	Ih/tY8VBxq7SG5sA4eRbFaIuhtYFtYILFgFCCJl2XnzZPHBMUQlsUYrp56fstjmBl+zVFPPph1t
+	jZ7vjEBg5Mp9PwZthVSHqxRhoNcOTgt/7/DFBsFWmsysPVVhqDAFlFMxprjIyD4p6/7+Opp8q1D
+	HKF+KBhy/m4ZJkpQUvH5/eWuGK9QUSAY51XVngqba3CkZt1iAqZqB0Ukym4nnx9iVpvc7t5+hOF
+	YRs81iNRJC22LEWJ7Dndn/EmozOjJQH0q/rBwN3NMlCCf1wKHDnOcv//arGDc8/EVOqbNh/YhoS
+	LCg4TtfU7aJtiaY2/1Kde1
+X-Google-Smtp-Source: AGHT+IFDpMpHsFRgd6YSWfaUgP4h+TK2gackvhjt2ED62B1HXzzX5IdszOWCjQD2qcaPDSO7lAZ6/Q==
+X-Received: by 2002:a05:6000:2484:b0:3f1:2671:6d9e with SMTP id ffacd0b85a97d-40e497c346fmr2389638f8f.1.1758791420460;
+        Thu, 25 Sep 2025 02:10:20 -0700 (PDT)
+Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e33b9e3bdsm27566255e9.2.2025.09.25.02.10.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Sep 2025 02:10:10 -0700 (PDT)
-Message-ID: <ab28a715-6b5e-4adc-8889-f47ee2e18d5c@oss.qualcomm.com>
-Date: Thu, 25 Sep 2025 11:10:08 +0200
+        Thu, 25 Sep 2025 02:10:19 -0700 (PDT)
+Message-ID: <d18c5196-dd8e-47d6-87bd-de0ac94fbf3b@linaro.org>
+Date: Thu, 25 Sep 2025 10:10:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,75 +83,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/8] media: iris: Move vpu register defines to common
- header file
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
-        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Bryan O'Donoghue <bod@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Vishnu Reddy <quic_bvisredd@quicinc.com>
-References: <20250925-knp_video-v1-0-e323c0b3c0cd@oss.qualcomm.com>
- <20250925-knp_video-v1-5-e323c0b3c0cd@oss.qualcomm.com>
+Subject: Re: [PATCH 7/9] clk: qcom: camcc: Add support for camera clock
+ controller for Kaanapali
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Taniya Das <taniya.das@oss.qualcomm.com>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, aiqun.yu@oss.qualcomm.com,
+ tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+ yijie.yang@oss.qualcomm.com
+References: <20250924-knp-mmclk-v1-0-d7ea96b4784a@oss.qualcomm.com>
+ <20250924-knp-mmclk-v1-7-d7ea96b4784a@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250925-knp_video-v1-5-e323c0b3c0cd@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <20250924-knp-mmclk-v1-7-d7ea96b4784a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: nlzUoH0wsqF83JYDDPbQ0UnrjtOO7Eb3
-X-Authority-Analysis: v=2.4 cv=RO2zH5i+ c=1 sm=1 tr=0 ts=68d506fc cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=-FEiAWMsPlssRVfEe-4A:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAyNSBTYWx0ZWRfXwItYITn3qL/2
- ye0tXzN3FOSoFQG5Dn2/25TruxYC4HTMGN/IoYZJ8cwnjuE/dBlrM63AkK1PtSjPZQTdUROsi3Y
- v0b1PWRUMqTdlUR+Bcl3BuFiTT97U7E2xXBeQyUKS3G2Xvh5l4CH+kFi1CD/LpDdTB0pbmzB001
- t6kZX8gRALchAFrkZcushyFtRA91g297nMevbCXodqJyYZNahJdVQIym6feUMde00F/1ibum/WP
- NZxk74denE0UxfTWGhtJ1tBoxY3DIe1YGxm7Q/Boa/7vk5X0ARPMmWvKlVZaT8OsVncE83HuPhK
- rjjY1IRX7cqJ35GDW+khTNvjF4hPfWDsXq72OVgiSxIMxNY3AJmE5SS+Qmx6IR9s/0Op5YKcTC4
- ML5AlyoI
-X-Proofpoint-ORIG-GUID: nlzUoH0wsqF83JYDDPbQ0UnrjtOO7Eb3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 clxscore=1015 suspectscore=0 priorityscore=1501
- impostorscore=0 spamscore=0 adultscore=0 bulkscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200025
 
-On 9/25/25 1:14 AM, Vikash Garodia wrote:
-> Some of vpu4 register defines are common with vpu3x. Move those into the
-> common register defines header. This is done to reuse the defines for
-> vpu4 in subsequent patch which enables the power sequence for vpu4.
-> 
-> Co-developed-by: Vishnu Reddy <quic_bvisredd@quicinc.com>
-> Signed-off-by: Vishnu Reddy <quic_bvisredd@quicinc.com>
-> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-> ---
->  drivers/media/platform/qcom/iris/iris_vpu3x.c      | 36 ----------------------
->  drivers/media/platform/qcom/iris/iris_vpu_common.c | 23 --------------
->  .../platform/qcom/iris/iris_vpu_register_defines.h | 29 +++++++++++++++++
+On 25/09/2025 00:56, Jingyi Wang wrote:
+> +static u32 cam_cc_kaanapali_critical_cbcrs[] = {
+> +	0x21398, /* CAM_CC_DRV_AHB_CLK */
+> +	0x21390, /* CAM_CC_DRV_XO_CLK */
+> +	0x21364, /* CAM_CC_GDSC_CLK */
+> +	0x21368, /* CAM_CC_SLEEP_CLK */
+> +};
 
-This is a slippery slope. I think it's better if you explicitly say
-the header file contains the register map of VPU3 instead, as let's say
-VPU5 may add a random register in the middle (pushing some existing ones
-+0x4 down). Such changes are annoying to debug, and we've unfortunately
-been there on Adreno..
+How is this critical list decided ?
 
-Because you're using this for a single common function that is both acting
-upon the same registers and performing the same operations on them across
-VPU35 and VPU4, it's okay to de-static-ize the function from iris_vpu3.c and
-refer to it from vpu4 ops, keeping the register map private to the former
-file which I think will end up less error-prone for the future.
+For example why is the AHB clock critical but the CAMNOC and AXI clocks 
+not critical ?
 
-Konrad
+---
+bod
 
