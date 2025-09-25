@@ -1,183 +1,137 @@
-Return-Path: <devicetree+bounces-221471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D92B3BA0075
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 16:33:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C197BA00B4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 16:36:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C8471BC2417
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:33:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7E25916F282
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:34:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A0BB2DCBFA;
-	Thu, 25 Sep 2025 14:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB5232DCF46;
+	Thu, 25 Sep 2025 14:34:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IdT56ePb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lSPse5+T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B32CB2DC79C
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 14:32:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 136C42DCBF1
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 14:34:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758810747; cv=none; b=siPwk5UsPRJKf59hEe06w6zG3INsYodIsDCLDIVKPXygVnHKPEY8cx6S/0WapcQCzjAj92GEujJu1SBR1CMsflsSl6DkdDTc0IzHURpS79zqDT7SX08v08o6JAopAhe6DIUjVOTLH/aH4avVG7a3mhUZlWC1tsKxzrtxHNvi984=
+	t=1758810860; cv=none; b=ozzNXW6v3ePP/jUHmLFPsHN1CorBlRaISoVnCdYZIhoJJiQdQzvqcANhgTSRGNi70hXiW/oAb6TubS8Ac1XVtDttwwLICXi6mPITQqmB5PUX3QiY/ZfiYFnXgpkz3OKu6Ovuj2vAob0hXlmWndR3V55hmuJbY7qR2R/qtHgSsUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758810747; c=relaxed/simple;
-	bh=a3eHXMsuFNWlqugS1mVxJZ5TpyBqt+o2aBCaTiA/Ha0=;
+	s=arc-20240116; t=1758810860; c=relaxed/simple;
+	bh=Bafperz37KGVRRgmYq3qAN2sQBrGyfvc4L8Phv7qEY4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SBWD2JMkO9eX5QI0iC8vflnLI1mgP8ayZzgA2mQO37d2m7coQZTlnqhJ2C+Twy3iDwxQ1yEE+v9IDdXvCQdIK9jdPnhEch0BU23tP8Clt4SwFtt/9eboegAoOsbXZc0V+o6+cbzVSlWkJNYaXK7MFInp7HWXr/nWPvTmKPaUOJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IdT56ePb; arc=none smtp.client-ip=209.85.214.173
+	 Content-Type:Content-Disposition:In-Reply-To; b=GP3uBoo0RCKJuasRNvS+6kN5JRE89En5Rot8xJiF2yB+NIG6G+owKVennRAttF6kB2plQz191O32SNBWFXq6/m6Ri5IuFbBWQB+mJj3Zy6R5KcaIb59TUEJoqxsj64/75f2RQodWCNxQyog/eSGOr3uu/hMh30Q+VF0qiXeB8QY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lSPse5+T; arc=none smtp.client-ip=209.85.210.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-27c369f8986so10602755ad.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:32:25 -0700 (PDT)
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-77db1bcf4d3so810616b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:34:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758810745; x=1759415545; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uNu4f91vx1JyBhQ6SCI1W3iAa/Ld0gsHPQbTIviSg64=;
-        b=IdT56ePbNj2qhvnyd9ruau3B8XuTK2Xi/DR5PRwPbRL0c/8tt9c2gK2MFjep7VAAD3
-         yn3TS4+CYUS3DCQktRAsV0vOm/Bthn8D2Cl61jmWtnVH7WSK2GfECxy0zyDD33MtEq79
-         jYAtQ/Ivt9qtfcV1BPqSNcXeVoh5nL+dtE5uhabKSucjMPQSaacNn3mwwc4iMJ4HoPdE
-         oFFTaANp/J7IuVvLy8v6X/y73VgxUFRCXPydlNBcnaRym3AvttqYFHoEw59s5NyHBFus
-         BA5mNE01RwP29uLoORIya1JJaZETdwNEu9G37aYO/V5TtOUb9rc3lDoQ2bAKrlu5ldGo
-         G/wQ==
+        d=gmail.com; s=20230601; t=1758810858; x=1759415658; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QQHQjEm6KdWL1vc6/aoJqmYvJIjnRA6W3fpAuarwDrE=;
+        b=lSPse5+Tdllu8IB6RKd8mwCho7Jzr2BNMiQtn3ePa2U4wNaexa6er1AmeAek5g939W
+         gyvB7vgWFzf7ZkHBT3x2DX9tveHGALynhCnRPPbi+xUh1kWySYwcbeeYhr5aEUNliHXq
+         NAWc56rFraP/a6aV8yK2igbBU+ZI6q1fQPPyKg3iMdSxRpL0eRmq2Iu/xiERaSRmvDK+
+         UBrvWpOWrUpYAIuCLjRIEfYDq/XQIFKwvUx5tugZqwvnvQdSG+ZM8ayCtIpkmD501oWZ
+         rA+zUD7zyp/BKdxR0JsY+SJkYC3emI5S2BqeuXSDMAxLA2UM2MPHbU6A8nkQZjpzbxIC
+         TMPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758810745; x=1759415545;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:sender
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uNu4f91vx1JyBhQ6SCI1W3iAa/Ld0gsHPQbTIviSg64=;
-        b=QrtkDzqZTYFlnUDkxO6EPMVm5D7RuC16DqUclvXoQtPI6KsNcBXEc0EgQeVlTLJz53
-         /ZYmMELTQx1wc+uRXu+8b4biYuSHHYy7aglz9lEz16iFJxlOcZaFcz1Y9FDFal9QLAC9
-         XtCkCTghvFIUCifRbwJ1a8dwOp3+sf98jYHlcYBk9G1Vzepf46WcPK/RFpmrC3Ol2vzZ
-         Rdk6+xGdZ3Df4pvi9XPK8ml1tuixQySA2FhrZfwYXyCT0zRj0riunVDPGng+/fMAneX2
-         XxU8vZZjDg+rsXS5R4Fzvg3dfpwXirQ1hXVY5U3pnD+Ag3ZKouVL4BRAPWVk7NAV9Gdr
-         +8zQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV0aLN8gw1QPE4Ncra64REwGbpfbF8aUGGpNPZewEmGhfUMh2ZVj25h1r2OpdhE1PAqVrLe3+jeHDIl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyqv6wpmwijuatNi93VDIbpCh2Ph99Mr0U0jFUogr5PCDh7SxEp
-	sXFM2uKLrncIj+nP5iGao6lqG5VKSnVM4voEMedHVh3tjNzWyhK7R7Ba
-X-Gm-Gg: ASbGncu0vnMy5ic3vNQ7m2WZ0mi2mLGUK6+IiIM52qFUE7VEftKCqmtCzQeT0r0eeq/
-	+Gg+I7d/EFP29URdEfrIECE0f7sGMXCdhLrnN1BYjnmbAWEkIp27+fH/d0zXmPHTDMdbCE/HWVg
-	syQZrRswoC/PkrdWZ6CAbj0a3FUz6oVb/yHknjUeKwvdzd1npSgCFwK+wZIqFuG5saNEuW2udtK
-	iNuTpre6HmFzkJjS31Ero7GFmm1B9QkqDsfO8eM1AJvWy7feTGMVq5HOW2Ov5NPkpIN9SNQCqA4
-	GB+GljuXUdGMc01GeFdf7L2P59jKra+7VziXCd5QkIiJbQX9obEfUHESOVaQ8fr6w7jFvW9YIiS
-	FrCTME8fXJtKXYzM5R73+Ok4vhvtM47y+p4WkQW8IfFFTbQ==
-X-Google-Smtp-Source: AGHT+IEouWS18u5hzid+/58eqeK/Wz5H9vCOiw+suHDHfXTmYMG9kSe9BGY1UoAcE/k6e5ccR+b07w==
-X-Received: by 2002:a17:902:e806:b0:267:e097:7a9c with SMTP id d9443c01a7336-27ed4a5ec6dmr34833405ad.53.1758810744759;
-        Thu, 25 Sep 2025 07:32:24 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758810858; x=1759415658;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QQHQjEm6KdWL1vc6/aoJqmYvJIjnRA6W3fpAuarwDrE=;
+        b=oEPSWqpvZ1aoRhx5wnMPhkGQFVjzTK1WppAVK5JGmS9v+FyiMuS8H6wAGJH2MqL8qA
+         EvO3+F75+oEiH0H3jbIpUUC04d0TdvZziDfbN1e7NHnJlz0y0iMo7wJrCWxLKk6Xvg7P
+         MTozu447H42Wi2+UZWD14bsjssPSMxEEWcTbb2RB2j0Kbj7OQkq+ybQmteZVeymoNMA/
+         0F8ztN3Ky3ccYpp5O5k6h56723v3kar8vJnqveQ6ucJBt2Q6CODDHuu1uU8113sVCLpK
+         xDGYsYKq2RpH6BHBZp5sKtOOi+aPVpFaKi2jgWrcoRINt2RN3z8a6JK5BprPEDMEVmaS
+         kpqg==
+X-Forwarded-Encrypted: i=1; AJvYcCWh7gBkuPf9JEqTND7k7uI5eSntCQj5vLme1wEy1JrFUU6zUcvvVwcvs/UMo5xrPGHK8yr1ysp+zXfs@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9yjBtxIez5exwR9AzrDJgLyXUer3LSENJmM9dmCwYdp04AYAJ
+	Y3QgSb5F7OIeXmU1OnBLPWtJJEz1T7Z71ZAbXF8MA5Kg+BsNRIYFZw0l
+X-Gm-Gg: ASbGncvoLJ5E9OxVd8HLxBueKMMIZdZT/n+e3NbK0XJOxGWUKu0WATlGp9cWS9oULfZ
+	g9vXLVjWUhZEOHMKBwPjP8ISvkj2Qwc4aVphc4oObg3sWjBfIV4J22QjZs1FCVCjrj3jTfMv/Fj
+	KJI1msMpA2QUlNvF/BxwOdnyrFGUGZJgIUwsf2TSQhPbFcYJMMIvWcD/TW12FuTv5lhVgWgCwb1
+	Wlom44twUx0Aiq7v9PBeyea3eAv4LIES7nc608JMzhKcI7Td+Wk/e+re5FsL/yb5v5aWoIWuIYU
+	XdOA/ds7+uqZypaVJAe9gAGWlR5NzlqegTJaxOBVjV1cYL/zm+R/mqSg+oX/vhX23CcrCA7UWHD
+	apZwnQH5VDv6gxC6wBxg6TBZwfqYyQQwLtsQ=
+X-Google-Smtp-Source: AGHT+IHtHAEv8pJFUOuDFi9x9lY6fvRX5HRt2NaxDvCZUSfir5HznJYK8VHavo8T5HJ5S5KcaigutQ==
+X-Received: by 2002:a05:6a00:14ce:b0:776:14f1:493d with SMTP id d2e1a72fcca58-780fcdf4cd9mr4319096b3a.2.1758810858249;
+        Thu, 25 Sep 2025 07:34:18 -0700 (PDT)
 Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed68a0203sm26846475ad.100.2025.09.25.07.32.23
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7810238e9a9sm2193140b3a.15.2025.09.25.07.34.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Sep 2025 07:32:24 -0700 (PDT)
+        Thu, 25 Sep 2025 07:34:17 -0700 (PDT)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Thu, 25 Sep 2025 07:32:22 -0700
+Date: Thu, 25 Sep 2025 07:34:16 -0700
 From: Guenter Roeck <linux@roeck-us.net>
-To: Marius.Cristea@microchip.com
-Cc: jic23@kernel.org, dlechner@baylibre.com, linux-hwmon@vger.kernel.org,
-	jdelvare@suse.com, nuno.sa@analog.com, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, robh@kernel.org,
-	linux-kernel@vger.kernel.org, andy@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Subject: Re: [PATCH 0/2] Add support for Microchip EMC1812
-Message-ID: <36c4794d-2116-4d3e-8ad5-ac3ec764a7a1@roeck-us.net>
-References: <20250917-iio-emc1812-v1-0-0b1f74cea7ab@microchip.com>
- <20250920123340.1b1d03be@jic23-huawei>
- <a97486df-9f15-4280-8cb3-d77f4cf223df@roeck-us.net>
- <e6ab5becf5908d83857fcfd57823ffd259e6db90.camel@microchip.com>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Saenz Julienne <nsaenz@kernel.org>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>
+Subject: Re: [PATCH 2/4] hwmon: adc: rp1: Add Raspberry Pi's RP1 ADC driver
+Message-ID: <3f1295b0-b637-4fe0-b141-67f086960072@roeck-us.net>
+References: <20250925000416.2408457-1-svarbanov@suse.de>
+ <20250925000416.2408457-3-svarbanov@suse.de>
+ <d07158fc-678e-4ae4-8943-168146a58fe0@roeck-us.net>
+ <e53865df-7566-4790-9214-0af875950742@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e6ab5becf5908d83857fcfd57823ffd259e6db90.camel@microchip.com>
+In-Reply-To: <e53865df-7566-4790-9214-0af875950742@gmx.net>
 
-On Thu, Sep 25, 2025 at 09:09:04AM +0000, Marius.Cristea@microchip.com wrote:
+On Thu, Sep 25, 2025 at 07:26:10AM +0200, Stefan Wahren wrote:
 > Hi Guenter,
 > 
-> Thank you for the feedback.
-> 
-> On Tue, 2025-09-23 at 19:11 -0700, Guenter Roeck wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you
-> > know the content is safe
+> Am 25.09.25 um 04:42 schrieb Guenter Roeck:
+> > On Thu, Sep 25, 2025 at 03:04:14AM +0300, Stanimir Varbanov wrote:
+> > > A five-input successive-approximation analogue-to-digital converter
+> > > with 12-bit (effective number of 9.5 bits) resolution at 500kSPS.
+> > > The ADC has four external inputs and one internal temperature sensor.
+> > > 
+> > > Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+> > > Signed-off-by: Jonathan Bell <jonathan@raspberrypi.com>
+> > > Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+> > I just realized that there is already a hwmon driver for
+> > Rasperri Pi - drivers/hwmon/raspberrypi-hwmon.c.
 > > 
-> > On 9/20/25 04:33, Jonathan Cameron wrote:
-> > > On Wed, 17 Sep 2025 15:21:56 +0300
-> > > Marius Cristea <marius.cristea@microchip.com> wrote:
-> > > 
-> > > > This is the iio driver for EMC1812/13/14/15/33 multichannel Low-
-> > > > Voltage
-> > > > Remote Diode Sensor Family. The chips in the family have one
-> > > > internal
-> > > > and different numbers of external channels, ranging from 1
-> > > > (EMC1812) to
-> > > > 4 channels (EMC1815).
-> > > > Reading diodes in anti-parallel connection is supported by
-> > > > EMC1814, EMC1815
-> > > > and EMC1833.
-> > > > 
-> > > > Current version of driver does not support interrupts, events and
-> > > > data
-> > > > buffering.
-> > > Hi Marius,
-> > > 
-> > > For a temperature monitoring device like this, the opening question
-> > > is
-> > > always why not HWMON?
-> > > 
-> > > There are various reasons we have temp sensors in IIO but mostly
-> > > they are not
-> > > described as being monitors and this one is.
-> > > 
-> > > IIO may well be the right choice for this part, but good to lay out
-> > > your
-> > > reasoning and +CC the hwmon list and maintainers.  There is an
-> > > emc1403
-> > > driver already in hwmon, so perhaps compare and contrast with that.
-> > > 
-> > > I've +CC Jean, Guenter and list to save sending a v2 just to do
-> > > that.
-> > > 
-> > 
-> > At first glance it looks like the series is (mostly ?) register
-> > compatible
-> > to the chips supported by the emc1403 driver, so it should be
-> > straightforward
-> > to add support for the emc180x series to that driver.
-> > 
-> > Guenter
+> > Please add this code to that driver.
+> could you please explain the reason for this?
 > 
-> Most of the register address are compatible. The EMC181X is an update 
-> (a newer generation) then the EMC1403.
+> Yes, both drivers are for Raspberry Pi boards, but they don't share any code
+> base. The raspberrypi-hwmon uses a mailbox interfaces to get the sensor data
+> and works for the board generation 1 - 4. This driver works completely
+> differently ( MMIO ), doesn't depend on the mailbox interface and applies
+> only for board generation 5. Actually I don't see a benefit of merging them.
 > 
-> The biggest improvement is that the EMC18XX has a continuous block of
-> registers in order to improve the temperature reading (that means some
-> addresses are overlapping with the older register maps) and a new set
-> of registers to  handle the "Rate Of Change" functionality.
-> Also the older EMC14XX has some hardcoded configuration/features based
-> on the part number.
-> 
-> Considering all of the above I consider that the complexity of the
-> EMC1403 will increase quite a lot without any real benefit and it will
-> be harder to be maintained.
-> 
-Ok.
-
-> I have submitted this as the fist iteration from a longer list of
-> feature that I want to add to the driver, including events and maybe
-> interrupts.
-> 
-> If nobody has anything against, I would like to add a separate driver
-> for EMC18XX into the IIO.
-
-IMO this should be a hwmon driver.
+Ok. Please make sure to add this explanation to the patch description.
 
 Guenter
 
