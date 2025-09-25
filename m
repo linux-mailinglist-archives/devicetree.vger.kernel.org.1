@@ -1,90 +1,90 @@
-Return-Path: <devicetree+bounces-221161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECAEAB9D9A2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 08:30:52 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D933B9D9A5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 08:30:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0142189B325
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 06:31:01 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C8DD24E1AE9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 06:30:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 794CC2EAB84;
-	Thu, 25 Sep 2025 06:29:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B082E974C;
+	Thu, 25 Sep 2025 06:29:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fVsECrKJ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Hr/zeZSq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC6842EA723
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:29:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E763A2EACEF
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:29:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758781765; cv=none; b=I83rsPe08Jk3aDCoTTjv6xDl2WATfIEzcY1gcV6oIO+JDZa/1WJQHZgf3fX7t5NDdeVWc6TgjSXYgQr91rTtHI6XNM/kAou+zrZh0U2PkzwoT8eFxkmNOpASxolZAyB7M7297RnKpWwOuGnqkewB0XZ/kMIJlAUOmRtzVmpddYI=
+	t=1758781768; cv=none; b=OdCOtOY52MMkFFP+OoXrmHQNEfLWo1iVJ2o12u3Ak5UWkDXxvzVT3hSBeR6rzn7EP7G5IRHTW2RzkkvXqxnnDnHMVf2lVXoS8h2OcDWAupX0IOl25Jw6PEGN3iTMPSYidk18K+f9ukDm8Yn2Tbz1VmVtu0ioFz1FAT/KCjkRBHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758781765; c=relaxed/simple;
-	bh=fElO3EF9R19NDeX+BG2YF39Vf8D4oJXDjBMGCwiMl4k=;
+	s=arc-20240116; t=1758781768; c=relaxed/simple;
+	bh=gQJ2ZTluSPl0btbHY5JBZLmKAc79qMYc1ayPNK0oRzo=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kGHU8Oeig6vLuOuhlPEQCVbjFlfCwapjKto18v6OkM05m4+dwv3M4Vs657iC7G29Tlqt9ZPd3azT3N3+zAJyb6LAhxTXie4nMJomZe94EPgyHUN/sx7E64zfWJHVlZv8iPlqHJsvEiiFjjH/Fe4AVAcO7JvCluTccYQrBYYfXLA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fVsECrKJ; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=JKYfkeqjMfI26l8M0T4EpErlFGeejbviE7gwe+YVyaveCs741dGmoJjCQ1LDpB9THVkWuxBI3qY7DBsjzP37Tr8XUPInHZGdKe6dZ1EuETBEHjjbAXzJj5gPCtDs0l7NyAVRRLG8pEo3287yZ0NXG4OKaJRP1Uvbi+qm4xxpul8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Hr/zeZSq; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58ONvtcl018678
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:29:22 GMT
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P0XAES027477
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:29:25 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3WpjX+QZdNG8Jvf4TjOewFLRT3V458PXcjB0O7zeIxY=; b=fVsECrKJeUwDnTsA
-	57yLADlO2NmTEj0smvoh9Kz1K1sQFYknZ6kuajqNINEpYyCTNp0/EUbg/wFZB/5j
-	hK4C5xqQAXcGcyUfl9icU/UgNAPvbvQXUVwTcb3K0Frj86H87Dbqpg3/v3kvcplG
-	EIc/E7lCkcbWh0WxQps1XG59vkd6EJD9O7ihuzUwuL4o6XHpqAiMHTWjne2dn8AI
-	4iEAQpCew0yXmMzVqxD3GoyqFPHfirHxzr8z7wf6QduDyMPgW9ZGVlng9YG6CiEQ
-	BqmYxN6bx3+olPRrqUm+Tc/XlYhhWQgKOVG1pQ6oK7R3FIIbgbIO27/RpFTWL2El
-	VMgogw==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49b3kkayyn-1
+	yYpcbaYMx/nDHjUz0/6uYp++ThN6Ho8R/IOjzK2L/PI=; b=Hr/zeZSqSDgxV8AF
+	TeO4UHX28Wz9bGgU2fajNjP1rjMphkYgPzay7OvlYgrBgqaQm3RNRC1TNuPIcxji
+	K5ti4X1u39wG00TRmGNn+Ptnk2dwiEHMRIKDSuT6g79Fgw/qPwVjPIGdfcyCoems
+	52P6RlQE72GmPmuFAq0lHtOX16D0CLgP5CvyJVxQ6QkVbM+5UDqwlKSQUjRv+M5T
+	EKbWc1NEPGwwmG5pmbNSCGuZXhZal8QaASa0N/QS8OWqYZOZyHiUuG4THEQTR6PI
+	NTMKh8q8Tj5+y5IwCl+yH+Q5C7r6JC3DVegYJgLEW4W1Swo6l+OSke+hJkLC+Jj9
+	UZgzSw==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499kv171m9-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:29:21 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-76e2e60221fso989312b3a.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 23:29:21 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:29:24 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-76e2ea9366aso590741b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 23:29:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758781761; x=1759386561;
+        d=1e100.net; s=20230601; t=1758781763; x=1759386563;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3WpjX+QZdNG8Jvf4TjOewFLRT3V458PXcjB0O7zeIxY=;
-        b=hVlQ16FcrprlYLGEkJARgL1gPVW0grG5A1agpeKdeREK7eNIr3DTQb4kYq7q8eyCMN
-         htBMpZqqBI1mVDRzMj6vxbD/NHzonynMeqfVPU9ChIue16c/Rqpn6tvhQ3w5dbddsPjn
-         v9GByWBJfijMds5+HGK3RoA2NxLu0be+IVXxspRp4Ntsj97nwK6XgpYx2sxElgmNVx8T
-         W4hmRTDK9FIe2Uy7xZwftP6yTXjO4rHsZWHOnxu8bWP8GCA7zUxLb9nDMdJ4CB3/5B02
-         r++oZxs8eym94urxA0KjbjKjuoXyu9E+nKbMUK3bdItWw50q9jCb05XnF4L6fX2DtWZJ
-         VqNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX34b805HlJ7Rj+hELSbmDgOAcoGMCNIJ30I1Z7b2sT6eiHbL6WOxLLJSU6UD8qs1uPoR9Tw5/vmqk1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwBD+wpB3EaYC82VxVFR4TdphJU2akZtP6Eu86N5HOqrAbLsVlH
-	1tl+ZNYw1fB5wl/P+uhUCJRI0xnsC+pyq7S17Gq/T9JtbbaBMeqqdSBGXurcbLilakaj7OxwinA
-	yFkMgt5kNL4jnQLOxLOIEz6i4qA7z0v8c1vBUYRJ/QtVFSJw+stUnJX9CJxGaXH8+
-X-Gm-Gg: ASbGncvmaPXQuAeSf8gfypJSc/ApGnhWEWOX19CF8N1oWoHL5gG0eYSo4gZTunsLOnP
-	bRYbOCd7GEGamjPEWMNkOU6JwVSKxozi/OpUfRmHzs8663ou6HSOK+9EyU0I5BhR8e31hr1GtWq
-	hCHBC2qN8pMY/lJc1qKC93k1MK8oRtKUrxos5iKPMmppd9367bctAo49/UwYSKF1f6JMo3+xfA8
-	riuV1RsI+bCSPe+oaaLFc9HDqEnKhWPTPoPhGLiEEsdJZq7+W0FcdZ0IDjf9p0U40XDqfvbcDHs
-	crrTg7tJWR9sHwBLuZvcQv/MlX/utxwgoLnXHftptcVBJEgqeEh+QTb1GaoLfPeoUuM/sZg6+Lt
-	76mIvpesc11Yj1UouSNCdVkwTqCEkTqHRVHvnH4OtaR5TkjEGFLZMF8JE5X/2
-X-Received: by 2002:a05:6a00:2e25:b0:77f:198b:d75c with SMTP id d2e1a72fcca58-780fcf07764mr3061985b3a.32.1758781760490;
-        Wed, 24 Sep 2025 23:29:20 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHyElfdfkAf7s+ncJO8otX6yCn48jW9yWrHe+rR9dTDTpi2t2TPrSzoZ52Ve3iSpSj6MEIg9g==
-X-Received: by 2002:a05:6a00:2e25:b0:77f:198b:d75c with SMTP id d2e1a72fcca58-780fcf07764mr3061942b3a.32.1758781759988;
-        Wed, 24 Sep 2025 23:29:19 -0700 (PDT)
+        bh=yYpcbaYMx/nDHjUz0/6uYp++ThN6Ho8R/IOjzK2L/PI=;
+        b=lVqg7aN9xDlvEx6DKUtYlA8VxcpP3kH7GbEt1wawPK3ofUauDazY6bN+7Ej1ocBUP6
+         dzOEzrUoBPZTJyuYx5iOHAUPbd+z1Zyw/4LBkpNoa8gBuoheX8Hp+tKrdxvkp+Lmfd88
+         GoUeguEeYL91Q2YE85Qml55FDbx53Ic+o1d5gIpnjkOMcybrZbEMEvs82Kj0G5zJCzRq
+         03OdbIV0pZDXm1INekyWSTG0bwUttz6vvL1cFMdMTbb425w6RqO02MqkvJ0263HCIC6u
+         q5v1m524srNu3n77j+R00AbhcI5NnMZOOjBAAqPVYRvwFHosS5bDfDhfe49rg8Ltu/Lw
+         cSsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXLZSMy88vkkNGNCkDQNp/gMlybgGBRO+DWDnoEKBNH21uot5TR8c4Z9PL/1KquPVYR1UT3VtDMMrWO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSE9VtbS360VU0eVlXQXQQZlqZI/DgrrUh6+P1mJD4ZuFNDNDP
+	KKFuvJ2jlkZAM7+3wCIaggNusN8Mi855YikHfQ39lIywUB9iWt52vmpv6PlOfXcFV95ZuyT0yrk
+	1Jm20TisqR+2P7fCF8pZrKhSYRS8BVj15pdR7TV+nr0MAXHotXvRUnHx36Gd5PAiF
+X-Gm-Gg: ASbGncuc0vL1sgsCTuyic/tUsmwYhAoLyiYDvKqSjHQbR5Y2y7edjW6DpvuEW97ZXbj
+	dXMN8umL4ZHVS8c9YBNM8Xd9l5qoZl4xsyHu8GSHGayIR7wtKSMsW/7r4Fj3ux2rX4hNHiQbR/t
+	JR8g9G+F7Csengp8xFTGaW0gAsV/mQTQpIFkyr9B06Oti7Xh2krXBYbyjO9kgKOCVLFvjHhib6V
+	epX1K1ZK4lPh5Q55ETPHwna+NTN5UFl7lpIK5qfHH7rCURPfHiOw3x3+F5HYK20ScPee4Fudktb
+	SnNoSg3JEb+SUfeWYLylrEA4tM8OLesJa6csWODvkw6JWsuLcL35Cy+BUv5VWJsFIaZsAhzvnmX
+	CoPEcg/lAtUnODEaGRP53UCMQyNfmpViyIJGLuSC+BITt144loyc2egv2ZSiy
+X-Received: by 2002:a05:6a20:3d19:b0:262:22ff:f018 with SMTP id adf61e73a8af0-2e7c593529cmr2766515637.26.1758781763473;
+        Wed, 24 Sep 2025 23:29:23 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFxo5LeMeioyJuwiummPZdVoPbqv4zt6qWSmdXrcD9wR88cYa2xcnvU+gin0rC3c2sEIb+1Og==
+X-Received: by 2002:a05:6a20:3d19:b0:262:22ff:f018 with SMTP id adf61e73a8af0-2e7c593529cmr2766480637.26.1758781763073;
+        Wed, 24 Sep 2025 23:29:23 -0700 (PDT)
 Received: from hu-pankpati-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7810239136dsm952962b3a.5.2025.09.24.23.29.16
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7810239136dsm952962b3a.5.2025.09.24.23.29.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Sep 2025 23:29:19 -0700 (PDT)
+        Wed, 24 Sep 2025 23:29:22 -0700 (PDT)
 From: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Date: Thu, 25 Sep 2025 11:58:13 +0530
-Subject: [PATCH v2 07/24] arm64: dts: qcom: glymur: Enable cpu dvfs for CPU
- scaling
+Date: Thu, 25 Sep 2025 11:58:14 +0530
+Subject: [PATCH v2 08/24] arm64: dts: qcom: glymur: Enable ipcc and aoss
+ nodes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,7 +93,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250925-v3_glymur_introduction-v2-7-8e1533a58d2d@oss.qualcomm.com>
+Message-Id: <20250925-v3_glymur_introduction-v2-8-8e1533a58d2d@oss.qualcomm.com>
 References: <20250925-v3_glymur_introduction-v2-0-8e1533a58d2d@oss.qualcomm.com>
 In-Reply-To: <20250925-v3_glymur_introduction-v2-0-8e1533a58d2d@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
@@ -103,268 +103,88 @@ To: Bjorn Andersson <andersson@kernel.org>,
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Taniya Das <taniya.das@oss.qualcomm.com>,
-        Sibi Sankar <sibi.sankar@oss.qualcomm.com>,
-        Taniya Das <taniya.das@qualcomm.com>
+        Sibi Sankar <sibi.sankar@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Proofpoint-GUID: jctKVBC4s6UGlyo6ul6zJY1oq7oQS3Qu
-X-Proofpoint-ORIG-GUID: jctKVBC4s6UGlyo6ul6zJY1oq7oQS3Qu
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIyMDA4OSBTYWx0ZWRfX972UM7RTZhP5
- BA0bkDxIQVdtB2Z8yQV+9NYWtXZV0faGhEgfQkbH5oKIJfxH3dfspiJg9f6dMQ7JlcW+MhfyUn7
- pMnSLbYDbXjRkV9udn+FjamfVagRsqVh/1DDfqq0DKpqbKZDV1osjHAz2Kji2idqWu0nWmsI6Ro
- 30gX+w0pG3QweUC66HWUKby62/nyzRyG7VHd1Q6qVuUW0DYVDkeR/2a1yFvBeU6cShsRjwQw3Dg
- kz4ztIb4h7q4mHfVwPBtkCl6nCFJbbhKWxZZvbBSu4KXb8V9Jpx+LCFW+53awoDm16WU1G/bDQB
- bURcC+omOvfoZ/obiUPTHtjuiDYUSGmf5fZhdbJ5J0VvOKscbgji78Z7sJBBPwHsQmELSPv/OJm
- eURy1pS1
-X-Authority-Analysis: v=2.4 cv=BabY0qt2 c=1 sm=1 tr=0 ts=68d4e141 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=gdhpWjMKO13w-baniFsA:9
- a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-GUID: CE4pdvHP65EVxO6SfXaBqkthJrU-3cz1
+X-Authority-Analysis: v=2.4 cv=RO2zH5i+ c=1 sm=1 tr=0 ts=68d4e144 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=f5wZDNqicMbGYsbpI58A:9
+ a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAyNSBTYWx0ZWRfX309PvAGQI+Ki
+ XleEDaHR4NtUexdedMZqYd6o6RVos0eaaSwYMvOgXXsUeNSfQMDFr/9MbQK29r0oup/DUd94toy
+ hUKzDR89+Wq7XcI8FTTJPxFP0U8tMgAiaMMPwuh1ql3fwIT863I4xsYT09GR6S80yEfk6kHwlyC
+ S+x2fPks/ClwRN7OCycDYhwLG42dIbvnnIkvNL/uwp2YfN9E2X/NCVTo4GSAcd1Bzg8RDOyi167
+ rC39/3usApHmZ+vnkL3+9G9OCjQqc43RqeDwmxbNTeC0ghrhq44mGaJxVKXtD1S3ren5mB9zy9m
+ /AdwDa6Cf44wprNu5DN2ijii59tYzNDvRpJtzEvM1jujbv9Yqof3QyDRyoxO/uNLIZsk4/ONG6l
+ w+wZwRSS
+X-Proofpoint-ORIG-GUID: CE4pdvHP65EVxO6SfXaBqkthJrU-3cz1
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1015 phishscore=0 bulkscore=0 priorityscore=1501
- adultscore=0 malwarescore=0 spamscore=0 impostorscore=0
+ malwarescore=0 clxscore=1015 suspectscore=0 priorityscore=1501
+ impostorscore=0 spamscore=0 adultscore=0 bulkscore=0 phishscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509220089
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200025
 
-From: Taniya Das <taniya.das@oss.qualcomm.com>
+From: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
 
-Add sram and scmi nodes required to have a functional cpu dvfs
-on Glymur SoCs.
+Enable ipcc and aoss nodes on Glmyur SoCs.
 
 Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
-Signed-off-by: Taniya Das <taniya.das@qualcomm.com>
 Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/qcom/glymur.dtsi | 87 +++++++++++++++++++++---------------
- 1 file changed, 51 insertions(+), 36 deletions(-)
+ arch/arm64/boot/dts/qcom/glymur.dtsi | 23 +++++++++++++++++++++++
+ 1 file changed, 23 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
-index ae013c64e096b7c90c0aa4cfc50f078a85518acb..d924b4778fd37af8fe7b0bceca466dee73269481 100644
+index d924b4778fd37af8fe7b0bceca466dee73269481..2632ef381687c2392f8fad0294901e33887ac4d3 100644
 --- a/arch/arm64/boot/dts/qcom/glymur.dtsi
 +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
-@@ -46,8 +46,8 @@ cpu0: cpu0@0 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD0>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD0>, <&scmi_perf 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER0_C4>;
- 			next-level-cache = <&l2_0>;
+@@ -11,6 +11,7 @@
+ #include <dt-bindings/interconnect/qcom,icc.h>
+ #include <dt-bindings/interconnect/qcom,glymur-rpmh.h>
+ #include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/mailbox/qcom-ipcc.h>
+ #include <dt-bindings/phy/phy-qcom-qmp.h>
+ #include <dt-bindings/power/qcom-rpmpd.h>
+ #include <dt-bindings/soc/qcom,rpmh-rsc.h>
+@@ -2536,6 +2537,17 @@ hsc_noc: interconnect@2000000 {
+ 			#interconnect-cells = <2>;
+ 		};
  
-@@ -63,8 +63,8 @@ cpu1: cpu1@100 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x100>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD1>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD1>, <&scmi_perf 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER0_C4>;
- 			next-level-cache = <&l2_0>;
- 		};
-@@ -74,8 +74,8 @@ cpu2: cpu2@200 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x200>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD2>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD2>, <&scmi_perf 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER0_C4>;
- 			next-level-cache = <&l2_0>;
- 		};
-@@ -85,8 +85,8 @@ cpu3: cpu3@300 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x300>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD3>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD3>, <&scmi_perf 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER0_C4>;
- 			next-level-cache = <&l2_0>;
- 		};
-@@ -96,8 +96,8 @@ cpu4: cpu4@400 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x400>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD4>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD4>, <&scmi_perf 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER0_C4>;
- 			next-level-cache = <&l2_0>;
- 		};
-@@ -107,8 +107,8 @@ cpu5: cpu5@500 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x500>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD5>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD5>, <&scmi_perf 0>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER0_C4>;
- 			next-level-cache = <&l2_0>;
- 		};
-@@ -118,8 +118,8 @@ cpu6: cpu6@10000 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x10000>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD6>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD6>, <&scmi_perf 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER1_C4>;
- 			next-level-cache = <&l2_1>;
- 
-@@ -135,8 +135,8 @@ cpu7: cpu7@10100 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x10100>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD7>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD7>, <&scmi_perf 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER1_C4>;
- 			next-level-cache = <&l2_1>;
- 		};
-@@ -146,8 +146,8 @@ cpu8: cpu8@10200 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x10200>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD8>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD8>, <&scmi_perf 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER1_C4>;
- 			next-level-cache = <&l2_1>;
- 		};
-@@ -157,8 +157,8 @@ cpu9: cpu9@10300 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x10300>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD9>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD9>, <&scmi_perf 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER1_C4>;
- 			next-level-cache = <&l2_1>;
- 		};
-@@ -168,8 +168,8 @@ cpu10: cpu10@10400 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x10400>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD10>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD10>, <&scmi_perf 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER1_C4>;
- 			next-level-cache = <&l2_1>;
- 		};
-@@ -179,8 +179,8 @@ cpu11: cpu11@10500 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x10500>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD11>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD11>, <&scmi_perf 1>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER1_C4>;
- 			next-level-cache = <&l2_1>;
- 		};
-@@ -190,8 +190,8 @@ cpu12: cpu12@20000 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x20000>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD12>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD12>, <&scmi_perf 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER2_C4>;
- 			next-level-cache = <&l2_2>;
- 
-@@ -207,8 +207,8 @@ cpu13: cpu13@20100 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x20100>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD13>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD13>, <&scmi_perf 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER2_C4>;
- 			next-level-cache = <&l2_2>;
- 		};
-@@ -218,8 +218,8 @@ cpu14: cpu14@20200 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x20200>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD14>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD14>, <&scmi_perf 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER2_C4>;
- 			next-level-cache = <&l2_2>;
- 		};
-@@ -229,8 +229,8 @@ cpu15: cpu15@20300 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x20300>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD15>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD15>, <&scmi_perf 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER2_C4>;
- 			next-level-cache = <&l2_2>;
- 		};
-@@ -240,8 +240,8 @@ cpu16: cpu16@20400 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x20400>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD16>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD16>, <&scmi_perf 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER2_C4>;
- 			next-level-cache = <&l2_2>;
- 		};
-@@ -251,8 +251,8 @@ cpu17: cpu17@20500 {
- 			compatible = "qcom,oryon";
- 			reg = <0x0 0x20500>;
- 			enable-method = "psci";
--			power-domains = <&CPU_PD17>;
--			power-domain-names = "psci";
-+			power-domains = <&CPU_PD17>, <&scmi_perf 2>;
-+			power-domain-names = "psci", "perf";
- 			cpu-idle-states = <&CLUSTER2_C4>;
- 			next-level-cache = <&l2_2>;
- 		};
-@@ -397,6 +397,21 @@ scm: scm {
- 			interconnects = <&aggre2_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
- 		};
++		ipcc: mailbox@3e04000{
++			compatible = "qcom,glymur-ipcc", "qcom,ipcc";
++			reg = <0 0x03e04000 0 0x1000>;
 +
-+		scmi {
-+			compatible = "arm,scmi";
-+			mboxes = <&pdp0_mbox 0>, <&pdp0_mbox 1>;
-+			mbox-names = "tx", "rx";
-+			shmem = <&cpu_scp_lpri1>, <&cpu_scp_lpri0>;
++			interrupts = <GIC_SPI 229 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-controller;
++			#interrupt-cells = <3>;
 +
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			scmi_perf: protocol@13 {
-+				reg = <0x13>;
-+				#power-domain-cells = <1>;
-+			};
++			#mbox-cells = <2>;
 +		};
- 	};
++
+ 		lpass_lpiaon_noc: interconnect@7400000 {
+ 			compatible = "qcom,glymur-lpass-lpiaon-noc";
+ 			reg = <0x0 0x07400000 0x0 0x19080>;
+@@ -2572,6 +2584,17 @@ pdc: interrupt-controller@b220000 {
+ 			interrupt-controller;
+ 		};
  
- 	reserved-memory {
++		aoss_qmp: power-management@c300000 {
++			compatible = "qcom,glymur-aoss-qmp", "qcom,aoss-qmp";
++			reg = <0 0x0c300000 0 0x400>;
++			interrupt-parent = <&ipcc>;
++			interrupts-extended = <&ipcc GLYMUR_MPROC_AOP IPCC_MPROC_SIGNAL_GLINK_QMP
++						     IRQ_TYPE_EDGE_RISING>;
++			mboxes = <&ipcc GLYMUR_MPROC_AOP IPCC_MPROC_SIGNAL_GLINK_QMP>;
++
++			#clock-cells = <0>;
++		};
++
+ 		sram@c30f000 {
+ 			compatible = "qcom,rpmh-stats";
+ 			reg = <0x0 0x0c30f000 0x0 0x400>;
 
 -- 
 2.34.1
