@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-221556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 345B6BA0FBB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 20:17:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BEA93BA0FC4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 20:17:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF62462421B
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 18:17:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CD1E62513D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 18:17:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 926CC2F3C00;
-	Thu, 25 Sep 2025 18:17:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DFF1311589;
+	Thu, 25 Sep 2025 18:17:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="LXgGIbr/"
+	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="jZGGYTzo"
 X-Original-To: devicetree@vger.kernel.org
 Received: from raptorengineering.com (mail.raptorengineering.com [23.155.224.40])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 471371DBB13;
-	Thu, 25 Sep 2025 18:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 743081DBB13;
+	Thu, 25 Sep 2025 18:17:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.155.224.40
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758824242; cv=none; b=W3a58pbuX3q64sh7Lz3NBhXvC3t2WcyeJcb1nEoXJ0RaRjFQajzezQ8pSPLjV1NqgNoeg4ZRPhoa1GawwrFiojC83GI67RR3D+IEtEC4SIuQuMFTlSlkZlEGQP3zf+P9o9WOWPc4DI81DvWwvyd+qXfys1Z28q064qF9kpInsxA=
+	t=1758824259; cv=none; b=gMGBC7CUK5lam4iq2DaYk696ek+Oow1ZbmWr50F2flIVHu9rJJ1BeZ9Q1LR3ooQlxEufneqlHS5u8BfD5qbJGlTyWVdkXPumEWMqN+MWfWuUsvuGT+P1+h985QbyONhcFFfl1s2eVQdrFRIQC1EX9WBErNeOruA2GIwmLtY/p1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758824242; c=relaxed/simple;
-	bh=KJlAdLSMv/O1fTBRiZESYf40wSdiRm8AARZFujKMh/Y=;
-	h=Date:From:To:Cc:Message-ID:Subject:MIME-Version:Content-Type; b=VLvYpjbro4QGqUy3kKBJReynYgHExGCg1Xbt1KG+L2LAuJX61LedIoO4p7atj2fdfe9GEiI8tKlVv3DFNKDPEiJgBYRdfF9XkXviID9SAZIcxRz2IB5YKJX7za781FSAJgt4JxfJQpSDJtPJ86lVyQSx1M34LbQEfGX7yi7y0Pc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com; spf=pass smtp.mailfrom=raptorengineering.com; dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b=LXgGIbr/; arc=none smtp.client-ip=23.155.224.40
+	s=arc-20240116; t=1758824259; c=relaxed/simple;
+	bh=PDvaNdqJ1+mA9hszjKY6qIq0/hAsF7yl1BQbUjuhLgc=;
+	h=Date:From:To:Cc:Message-ID:Subject:MIME-Version:Content-Type; b=C3rSKzs0pAPstuea6PUTl0jZSB/Ja/brrpuvPOIOktHgL0TNYE7TqYuNYbeD3fJDiN7SSD/99PvB7xfsd/lqSWWcdVpxic3aLOJQSrAN6vg46y2fKAivK+E06ZUIzR1T4owWjejHUMo/CJluoVTxymYh6/laDhR1aXMbrFoC7UM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com; spf=pass smtp.mailfrom=raptorengineering.com; dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b=jZGGYTzo; arc=none smtp.client-ip=23.155.224.40
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raptorengineering.com
 Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 47653828840F;
-	Thu, 25 Sep 2025 13:17:12 -0500 (CDT)
+	by mail.rptsys.com (Postfix) with ESMTP id 5B754828840F;
+	Thu, 25 Sep 2025 13:17:35 -0500 (CDT)
 Received: from mail.rptsys.com ([127.0.0.1])
 	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id ZN60ecC7vRAx; Thu, 25 Sep 2025 13:17:10 -0500 (CDT)
+	with ESMTP id SSnFhtyKuS1e; Thu, 25 Sep 2025 13:17:34 -0500 (CDT)
 Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id BA4858288415;
-	Thu, 25 Sep 2025 13:17:10 -0500 (CDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com BA4858288415
+	by mail.rptsys.com (Postfix) with ESMTP id 034808288415;
+	Thu, 25 Sep 2025 13:17:34 -0500 (CDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 034808288415
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
 	d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
-	t=1758824230; bh=v9sDnheTOre9eFbnepovDVQnFuMaiwclq+difl4qEO8=;
+	t=1758824254; bh=uS8vwIfaxybAC/RZGZPBPkj9ZjZVx37fF4a+ywmY54w=;
 	h=Date:From:To:Message-ID:MIME-Version;
-	b=LXgGIbr/mGnA0E8h+n2ziHCO9yTruGQ9+oRXrytL8VF4xODuqQLyad4bh7cd/5tEW
-	 BqzDwMX0YnmaMaNabbGZJm+4NcgRY5oE3KcHQHKb8Rux/Hb+Xqn7VWHSTFqJtbHRJl
-	 ie5+YOlirkWaEKJ0XAER+1j7HtrGPs1Tyc4nM1Ec=
+	b=jZGGYTzoF+pxsjeTZgMw6HZiGSYfMhheNjhrRJsVUorxg6A9/SfvBFzL+zq1q2X5i
+	 Jfrfy6s2BshnRFPYGjvvhLn/44WytKrQL23N1H9VmzusCsM3Lwc8GsHZUSfb4PHQbI
+	 UVcZut0sLmEoxgR6xYV4gTbA2MzsXNkE+WE0Qi/A=
 X-Virus-Scanned: amavisd-new at rptsys.com
 Received: from mail.rptsys.com ([127.0.0.1])
 	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id KirvynyNggoS; Thu, 25 Sep 2025 13:17:10 -0500 (CDT)
+	with ESMTP id x46fPWwsA3vv; Thu, 25 Sep 2025 13:17:33 -0500 (CDT)
 Received: from vali.starlink.edu (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 8AC9A828840F;
-	Thu, 25 Sep 2025 13:17:10 -0500 (CDT)
-Date: Thu, 25 Sep 2025 13:17:10 -0500 (CDT)
+	by mail.rptsys.com (Postfix) with ESMTP id C0623828840F;
+	Thu, 25 Sep 2025 13:17:33 -0500 (CDT)
+Date: Thu, 25 Sep 2025 13:17:33 -0500 (CDT)
 From: Timothy Pearson <tpearson@raptorengineering.com>
 To: devicetree <devicetree@vger.kernel.org>, 
 	linux-kernel <linux-kernel@vger.kernel.org>, 
@@ -63,8 +63,8 @@ To: devicetree <devicetree@vger.kernel.org>,
 	Lee Jones <lee@kernel.org>, 
 	Georgy Yakovlev <Georgy.Yakovlev@sony.com>
 Cc: Shawn Anastasio <sanastasio@raptorengineering.com>
-Message-ID: <956178193.1748561.1758824230379.JavaMail.zimbra@raptorengineeringinc.com>
-Subject: [PATCH v3 0/4] Add drivers for Sony Cronos control CPLD
+Message-ID: <948400747.1748562.1758824253627.JavaMail.zimbra@raptorengineeringinc.com>
+Subject: [PATCH 1/4] dt-bindings: mfd: Add sony,cronos-cpld
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,42 +74,151 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
 X-Mailer: Zimbra 8.5.0_GA_3042 (ZimbraWebClient - GC139 (Linux)/8.5.0_GA_3042)
-Thread-Index: uDrGoQaoV9tsMxvmUg8S0vfyMMdpaw==
-Thread-Topic: Add drivers for Sony Cronos control CPLD
+Thread-Index: Rh6UGNLUPF1qxdGMOKrvj7kxexnpWw==
+Thread-Topic: dt-bindings: mfd: Add sony,cronos-cpld
 
-Hello all,
+The Sony Cronos Platform Controller CPLD is a multi-purpose platform
+controller that provides both a watchdog timer and an LED controller for
+the Sony Interactive Entertainment Cronos x86 server platform. As both
+functions are provided by the same CPLD, a multi-function device is
+exposed as the parent of both functions.
 
-This series adds a driver for the multi-function CPLD found on the Sony
-Interactive Entertainment Cronos x86 server platform. It provides a
-watchdog timer and an LED controller, both of which will depend on the
-MFD parent driver implemented in this series. Device tree bindings are
-also included.
+Add a DT binding for this device.
 
-Thanks,
-
-Changes in v3:
-  - Address reviewer concerns
-  - Add LED and watchdog drivers to series
-
-Shawn Anastasio (1):
-  dt-bindings: mfd: Add sony,cronos-cpld
-
-Timothy Pearson (1):
-  mfd: sie-cronos-cpld: Add driver for Sony Cronos CPLD
-
- .../bindings/mfd/sony,cronos-cpld.yaml        |  92 +++
- MAINTAINERS                                   |   7 +
- drivers/mfd/Kconfig                           |  11 +
- drivers/mfd/Makefile                          |   1 +
- drivers/mfd/sony-cronos-cpld.c                | 591 ++++++++++++++++++
- include/linux/mfd/sony/cronos/core.h          |  17 +
- include/linux/mfd/sony/cronos/registers.h     |  59 ++
- 7 files changed, 778 insertions(+)
+Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
+Signed-off-by: Timothy Pearson <tpearson@raptorengineering.com>
+---
+ .../bindings/mfd/sony,cronos-cpld.yaml        | 121 ++++++++++++++++++
+ 1 file changed, 121 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
- create mode 100644 drivers/mfd/sony-cronos-cpld.c
- create mode 100644 include/linux/mfd/sony/cronos/core.h
- create mode 100644 include/linux/mfd/sony/cronos/registers.h
 
---
-2.30.2
+diff --git a/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml b/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
+new file mode 100644
+index 000000000000..3cebf6c0153d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
+@@ -0,0 +1,121 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2025 Raptor Engineering, LLC
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mfd/sony,cronos-cpld.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sony Cronos Platform Controller CPLD multi-function device
++
++maintainers:
++  - Georgy Yakovlev <Georgy.Yakovlev@sony.com>
++
++description: |
++  The Sony Cronos Platform Controller CPLD is a multi-purpose platform
++  controller that provides both a watchdog timer and an LED controller for the
++  Sony Interactive Entertainment Cronos x86 server platform. As both functions
++  are provided by the same CPLD, a multi-function device is exposed as the
++  parent of both functions.
++
++properties:
++  compatible:
++    const: sony,cronos-cpld
++
++  reg:
++    maxItems: 1
++
++  leds:
++    type: object
++    additionalProperties: false
++    description: |
++      The Cronos LED controller is a subfunction of the Cronos platform
++      controller, which is a multi-function device.
++
++      Each led is represented as a child node of sony,cronos-led. Fifteen RGB
++      LEDs are supported by the platform.
++
++    properties:
++      compatible:
++        const: sony,cronos-led
++
++      reg:
++        maxItems: 1
++
++      "#address-cells":
++        const: 1
++
++      "#size-cells":
++        const: 0
++
++    patternProperties:
++      "^multi-led@[0-15]$":
++        type: object
++        $ref: leds-class-multicolor.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          reg:
++            description:
++              LED channel number (0..15)
++            minimum: 0
++            maximum: 15
++
++        required:
++          - reg
++
++    required:
++      - compatible
++      - "#address-cells"
++      - "#size-cells"
++
++  watchdog:
++    type: object
++    description: Cronos Platform Watchdog Timer
++
++    allOf:
++      - $ref: watchdog.yaml#
++
++    properties:
++      compatible:
++        const: sony,cronos-watchdog
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      cpld@3f {
++        compatible = "sony,cronos-cpld";
++        reg = <0x3f>;
++
++        watchdog {
++          compatible = "sony,cronos-watchdog";
++          timeout-sec = <20>;
++        };
++
++        leds {
++            compatible = "sony,cronos-led";
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            multi-led@0 {
++                /*
++                 * No subnodes are needed, this controller only supports RGB
++                 * LEDs.
++                 */
++                reg = <0>;
++                color = <LED_COLOR_ID_MULTI>;
++                function = LED_FUNCTION_STATUS;
++            };
++        };
++      };
++    };
+-- 
+2.39.5
 
