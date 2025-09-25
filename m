@@ -1,103 +1,89 @@
-Return-Path: <devicetree+bounces-221392-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E7D6B9F3B0
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:27:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37635B9F198
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:13:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A78A37A7BED
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:25:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69466189549B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 642462FDC44;
-	Thu, 25 Sep 2025 12:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E1512FB975;
+	Thu, 25 Sep 2025 12:13:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="lMq0Zdbl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SSHIvLNU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m19731118.qiye.163.com (mail-m19731118.qiye.163.com [220.197.31.118])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A8012FC897;
-	Thu, 25 Sep 2025 12:27:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.118
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E21927FB3C;
+	Thu, 25 Sep 2025 12:13:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758803247; cv=none; b=rS693tfqH464JJIKgRWVFDjPsoeyVok/rcR/QkItWLOGE6lXrFZHPkAMpvtH+X9cb5U/Rq8SufHAUjqtYCNB7+FVtLtctKlH4JI5ZaYl/jTNFYUEEVMni9MtyM6llK6hlpkU+ihgRwYgnnLXCMB1vRhWL0Sfl7s5bxUYyBZrsGY=
+	t=1758802422; cv=none; b=eI71X7j5jzfjFJ9SdhVWkY6zVQkW2e/7Ps5+xjMAfOU9X7xBB479EPQuwFvCcvTZdENM3KdZSDim8E8KU85Wgm3FE+0/ikupPbmKqfoksKzPb+E8DcPYSH3rXqIMujj68noW+LXYQ5p5k17I2ayXriwb3qIkqyaPZBotqdkGuFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758803247; c=relaxed/simple;
-	bh=gYBSjV3A3ooxiOPwbQrY6yaQ+S7lDvaqMNSGiSIoVDU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=f9wxnkDodKESzMMcS8Iq9oMHbyyJ5cxh0Y/DMzMm2mz2Ty2oUtmCZeIdONH0DhdJr9Ky9OSQZ63leIy1mD+BZU2OOTDa8ycjpQv2W1QPXU5WbvicGBRe0yPX2/6kCG6jVwCV35h065jdMFwVy2L2p4hDJ4xqouSFfLGzSs78kxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=lMq0Zdbl; arc=none smtp.client-ip=220.197.31.118
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
-Received: from albert-OptiPlex-7080.. (unknown [117.184.129.134])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 240dfac53;
-	Thu, 25 Sep 2025 20:11:56 +0800 (GMT+08:00)
-From: Albert Yang <yangzh0906@thundersoft.com>
-To: arnd@arndb.de
-Cc: adrian.hunter@intel.com,
-	bst-upstream@bstai.top,
-	catalin.marinas@arm.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	gordon.ge@bst.ai,
-	krzk+dt@kernel.org,
-	krzysztof.kozlowski@linaro.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org,
-	robh@kernel.org,
-	ulf.hansson@linaro.org,
-	will@kernel.org,
-	yangzh0906@thundersoft.com
-Subject: Re: [PATCH 0/9] arm64: introduce Black Sesame Technologies C1200 SoC and CDCU1.0 board
-Date: Thu, 25 Sep 2025 20:11:54 +0800
-Message-ID: <20250925121155.2401934-1-yangzh0906@thundersoft.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250925090412.2068216-1-yangzh0906@thundersoft.com>
-References: <20250925090412.2068216-1-yangzh0906@thundersoft.com>
+	s=arc-20240116; t=1758802422; c=relaxed/simple;
+	bh=x4hykr+7b0LZx0aQ1vPKkYsF+/Q7Wa44o4IqH+7AIko=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E05goKz4wg6w5Oyq4lBKbsKojBQJfDga3iKblnSY13jSz038nnqH3DNPod7lku4C1hhisfJohB+sEqi8jUXrqenPIdoZ42I+l7iTEr4pVsDDgNpVYQWhLR+doYNhViyWjrUPjRwW2VWyH9alB8YgdEJRu+/IK/8vV1YVQP2JNOY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SSHIvLNU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 537CBC4CEF0;
+	Thu, 25 Sep 2025 12:13:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758802421;
+	bh=x4hykr+7b0LZx0aQ1vPKkYsF+/Q7Wa44o4IqH+7AIko=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SSHIvLNU5BEbi1YK63MIvdthg17Lv1lCQgB1HpkcYToLCA3dUiU8JY91WaMIFFWJ4
+	 Sw+G3rC2vY7CZrGhIyYq/Jle0/fnMJEArEXCOEmL13TBACLrzDB7Zr/RThhn569/OS
+	 ewn7Gp88FFs1+NMdnErz7XapfoAnZt4I+shu2LFm0NVgkDIklrm+s82iKyFRBXYyGW
+	 gqazHPGNUSO2vI8GNtQqRcqUHIRQhTtVIByNrn4SCARgwNJ8x87TbRaLM9Q3b5K60O
+	 JGt9y/CZZFDhix0Zc+OLnHKIdK/Ta5PwoGSyd7wQfG0ttZAiI5KcUPe37+2ziIlD+g
+	 a0eXuIzybUIBQ==
+Date: Thu, 25 Sep 2025 13:13:36 +0100
+From: Lee Jones <lee@kernel.org>
+To: Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Shawn Guo <shawnguo@kernel.org>, Michael Walle <mwalle@kernel.org>,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH v5 04/12] mfd: simple-mfd-i2c: keep compatible strings in
+ alphabetical order
+Message-ID: <20250925121336.GK8757@google.com>
+References: <20250922142427.3310221-1-ioana.ciornei@nxp.com>
+ <20250922142427.3310221-5-ioana.ciornei@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9980c98bf209cckunm0dbea3318270a9
-X-HM-MType: 1
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaT04ZVkNOS0NKSh0ZT0pCT1YVFAkWGhdVEwETFh
-	oSFyQUDg9ZV1kYEgtZQVlKSkxVSkNPVUpJQlVKSE9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0hVSk
-	tLVUpCS0tZBg++
-DKIM-Signature: a=rsa-sha256;
-	b=lMq0ZdblTM4Zv2oMG3N+IorP8ydfWF/POg1If0IxGoUdZpVXrgamH/KY+J5nm03NYw1du4yJQMv12lrKqKLjh5RdA40kpajnglkSyGdO8hNpW9vHCtTkuls4L3JFqxzTZqPUg1DjwcWPvdkKPPFQsrwAwYGCOtKsvuT5kiIIRuI=; c=relaxed/relaxed; s=default; d=thundersoft.com; v=1;
-	bh=eo5MQOkGyElXlEHPuquWDvolz5tCt5MH2A2PG0iQrcA=;
-	h=date:mime-version:subject:message-id:from;
+In-Reply-To: <20250922142427.3310221-5-ioana.ciornei@nxp.com>
 
-On Thu, Sep 25, 2025 at 05:03:57PM +0800, Albert Yang wrote:Subject: Re: [PATCH] splitting SoC and MMC parts
+On Mon, 22 Sep 2025, Ioana Ciornei wrote:
 
-Hi Arnd,
+> Reorder the of_device_id structures so that they are in alphabetical
+> order.
+> 
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> ---
+> Changes in v4:
+> - new patch
+> Changes in v5:
+> - none
+> 
+>  drivers/mfd/simple-mfd-i2c.c | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 
-I may have missed an important detail in my previous note. If I split
-out the MMC-related patches and submit only the SoC parts first, I
-cannot validate the SoC on real hardware: both the kernel and the root
-filesystem live on the MMC device. Without the MMC stack (DT bindings
-and the controller driver), the board does not boot to userspace, so I
-cannot properly verify the SoC/DT changes in isolation.
+Applied, thanks
 
-Would you prefer that I:
-- keep the MMC pieces in the same series for initial bring-up; or
-- validate everything locally, then send only the SoC/DT parts first and
-  follow up with the MMC binding/driver as a separate series?
-
-I’m not entirely sure which approach best matches the normal workflow,
-so your guidance would be appreciated. I can proceed whichever way you
-think is most appropriate.
-
-Thanks for the review and suggestions.
-
-Best regards,
-Albert 
+-- 
+Lee Jones [李琼斯]
 
