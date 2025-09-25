@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-221616-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221617-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 518B5BA1687
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 22:46:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD200BA168D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 22:46:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 999571C028A5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 20:46:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7003C3BCC93
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 20:46:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EBAA320CD8;
-	Thu, 25 Sep 2025 20:45:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65441320CAB;
+	Thu, 25 Sep 2025 20:46:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jDot24T6"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HLgDqBIv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D96B271A9A
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 20:45:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90A6E320382
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 20:46:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758833156; cv=none; b=FP5ObscQDejpRTp+8+RpynsDU/ZhvlikpyIanYNjuYrmuGE5cgYriR1WWEjIjDkc3GFmGGIOEwPZvU5zTmPrSjaXXsgfY0qE3IDOTykLHWJardUdEaK6yQXbY3i5BUzsb0z6QS45Sl/ZDBP6op3ft+0eQBvKAtQaOOc2IkzYmaY=
+	t=1758833162; cv=none; b=hXOpQ8P84LhkGs0+ouYefbi7MpmI6EN+6nBV0zjVuTkV4vlWUXNKlGf4RT1Srmovpxm1ev8WaHsA9pdfO9rvhwgTTO59k7lNwGmqzeHkCFA7nlUaKkFkhkOpkreApXz6khOYiP2XoPtJq3PIxyomwSMkNJN5JTR/n7Ia9iAi0EU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758833156; c=relaxed/simple;
-	bh=6/fVemqx0boFHVf8BglV+KY7l1wA+KVgHJ6A3PVERVE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=mFboZlpQZqWNTYkcHmXztGELIPOAESo5gWTdvKR/uiBbIZ77pcJb810fYGs9F1Glk74Pn4XB9oslYERHvpD8qrGaeAFWokE812LNKvwldgHvUuddYqHgX9w6RkMd8k4RsqQphCkxuveHHLg/o8JTIymAAxQpiG3YHkbmJdU2D2I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jDot24T6; arc=none smtp.client-ip=209.85.128.53
+	s=arc-20240116; t=1758833162; c=relaxed/simple;
+	bh=RWsMT7+A3hOigM/6lKe9y0xp7C7c2WQ715Dnkvpx1sA=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=ppXir0aiZBgP29JBLQdRkBcmxvbodH960VmKJLy+E9hr8L5uJNQ80pbse15+bzGp0HejptDRxFtIY+EbPKPG5OuG3gK8GUkZTUnXG5091Ix58GnhfxxVZcqv7zGO2SM9wxcCuFf0g+JcreLaK7LywG6vZodx2jYrhKth0hZvAjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HLgDqBIv; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-46e37d10f3eso7169615e9.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:45:53 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-46e34052bb7so12062335e9.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:46:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758833152; x=1759437952; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FawQ9LId3cga0DodGg9MhmIp2lk7tl7dCQ1MCM1JQxI=;
-        b=jDot24T6cXDlqEuqT9WlAfFM8crSHKQQqdowlonaStGaiWGulPDsnostmO5y1ZaB6O
-         WcO8uaF6hoCSj6PCSwrBGANE16c2wcePGspSZCFfQjiW39pVwpJ01kj61vs6mSfIvSRa
-         5J35tFQQiROItEFLHPooSEiOswI7FyO2JypbXRLYU7StnMBOdrwjZXgYg6RqW8kyoxO/
-         e0TEtcQfAbI1WqWXzDUePM8QiCwOsWCAoATJIQQbLY5ELbM/zumIHKI9VI9M4J9kgROY
-         EbYpr8B63mbfy0dVTrWIfmUxjGLJkaQucI1m2H/Lqcuf81dBZUGWSXFtePDWk8cip3H9
-         9+sw==
+        d=gmail.com; s=20230601; t=1758833159; x=1759437959; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8EXqlzb/n7e+U7sXee7rlDRiXcbYy1hChaEgy4phOls=;
+        b=HLgDqBIvrYXMXP04jn9b4Uhuo9rCVRop2vIs2SX9xljt38rQU/YpL0Fx8+W46oBQZR
+         r6Q0vYb+8Y/QyCJonJJl5EvTbu5zWqgZTkBqWsLHnDjdTxuHqD4Igx0CGRazIHrk1+p5
+         gh6gvTeLsn5xTuxqkbptwMAeSnp2RPZ/scnpeKeTwIQZQNmXmMLLxRrerwamSR7rL0vf
+         qQVpWHs9EUfBxERM2Iw8NScgX5IMdLAPRy3wZfpdj+nN4bvmqTSoaf3ELI7Xqa+JDU6f
+         3pzsrpV+B/Uf4cGapwMcJv3RHc+DiiGOFm86eqyaaTTaH2BImbb3Mc0Yk2Kjxiddgd3O
+         RLoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758833152; x=1759437952;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FawQ9LId3cga0DodGg9MhmIp2lk7tl7dCQ1MCM1JQxI=;
-        b=dPdPdZEHmg3BAVzPFoMkvmK1dgYmPB63iZMygkJZLVxK6cyS76pszv3U7RU1XdmQFQ
-         WvsflJDZAm6THvzPDTJXKUKzAlwg0Y2r3FaeFuU5Eu1oNsBlwCptGleFHmCCdffOHmbX
-         F8E/Ko17joB0g1POdfy6H1nVQtWsilpnNN7bIS8twtSj6PdYj4g+PB9VWJFibghgCGgO
-         Q43p0+KTEKrrcxPfZqcWPnNqS3l70Ts95tmkOf80viarLG3a+hLFQfEdbbvoVkQnh1NP
-         pwwEvozkvcZrG8WeMKXJZtUAWMELvteRmIZTdV55Dch8cTfguNABEEU0j9A7GfCmNh+T
-         OMgw==
-X-Forwarded-Encrypted: i=1; AJvYcCVaFWrWML3+83oUsFx5oiK5geDHkplcxACX00kRdH08KOgX1UdTz8/6+hPjS4qSROFvYsBIWdq5F2L1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzwb8AOoQvU3IZAMskqAeeGFK8RhQK/dRgA4sBwz19Cpilb+i0K
-	oM0FuKBhmjAgNHVL8oxgz0VOSFDjD9KBTzUApFvXPDfJo0sbSpDCmtt7
-X-Gm-Gg: ASbGnculwJA5UN4oK29oS6R5SlutweFSTtSAJV4UkzTwZm2CMPBaSEHGm2h9tKIpCPQ
-	KcgXNryHmGIaTskf9UfePdZm5ftgsf6Z5hvhjndVdw9xtUQvNvHPBM+x1d5qOx6o+5ayg0eeaZY
-	4JuyfJ0102iyXtuNojRt6u1owCKNF7MbD1OQ0E50M+SQA56yxqtRp+ZBP3uvl1izIv15/oZuhwG
-	TQPg0hqP0ttd+n6H1xEkqgVh2LLn1gyniFIb4Onu5h5FVD2o9yrVpK/o5OGauk+zbt32NXrsRXY
-	X8LQBm+7/BPY3gvqH81gwirPmTxNZCDNOflqFZSJtRHk62YOwFKuT7kyX6jy59Re+G6sWmBumTO
-	23Zq5J/7fh8zzraLnfvmLdc8yQ2axrOUJN0WGJO0=
-X-Google-Smtp-Source: AGHT+IEHiCxXo80MoGqRQ4HgceWd3FnDtzRwnXBD2L0CdoGsZPj/nAU+IAdeObX5HfW52mzD3aiY1g==
-X-Received: by 2002:a05:600c:c83:b0:46e:1c2d:bc84 with SMTP id 5b1f17b1804b1-46e329eb10emr51861395e9.17.1758833151386;
-        Thu, 25 Sep 2025 13:45:51 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758833159; x=1759437959;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8EXqlzb/n7e+U7sXee7rlDRiXcbYy1hChaEgy4phOls=;
+        b=TxJQxvk/hQ8k2pAxICFnQx0LPV4rvwklJAY8tLB3FvXPkiDj8exjYhB/LBAzOwouG5
+         bTg1LDwm7a+/CfyHcNGZctIVWKzytrbOctWj8hkueHjpHvdW1D9eCbvRjivLpiVGDhu5
+         9YuJLDctgpfO1bLXE4iMVHi7aAyKHQeEknZAFFtwj4cU9Ax1GEJiaZy1VvrCxwGG5q+L
+         xVQ3QX+tQMw9fzusxUePydIa64O6prY/Au+L0jjj4iQIrYAdCfjSJ1+FO1XyqtKk08kL
+         oWxqecHCiz42q6G1AA0Cth8OZ6W6JGxDlWLLMTU7IOlqjtGySlWjRhCFbSZanhv0DFZ6
+         /heA==
+X-Forwarded-Encrypted: i=1; AJvYcCV1pXy53JQtqrcSPnow4G6AHYPB7tKKgrtiLWGPD0NrZdTrnH1AQkOLdWfqAoH9b5i2f+SxafJ4R4Is@vger.kernel.org
+X-Gm-Message-State: AOJu0YzU6qJ/Esine5UK1Jzs0N6yukPsWxzAq5zLlEiB8F+/xH0SWkho
+	k0OoeOuQNw43pkv/sXHditdP89VWJ1x+yE64cuUZSW7H5zh7Fny99Fdd
+X-Gm-Gg: ASbGncuDHz00qd9M6D0c9qi3V60JObMpmKa3V3xzfof1//gIRyVzSPF3tKbVwXtioa8
+	jMhJKL7uJ/2nd/3b3F91TGXyD+OS0Xh+1AlUDCRZI+MHWOOBhjC7m2+LW/mMuOxcgSkNtolnskx
+	N66d8EGzSxiab+5+wHXpy1qNYZHLMtVQH9W1WXY6upHsf+/IFpVqI78I0lJFrmRRB1xZJaappdY
+	P3PUDpcE7KMlBEvp952ak+GS2y90IVZOgvyDXcY1TQD8FpDrJYZHaS0fAAgSYS8nTNf53ERyjDi
+	sJ1mScofF4SugYofDw9V5m3vTu0AisKa648TNxrXLv11q5EDAgG8W4RE1/Y+64OzNHdbfaX+uMZ
+	DkH1u8jZOtJnWGnBRG1WEWc83T3PbQg/d8uiVQWc=
+X-Google-Smtp-Source: AGHT+IGQ00c8yLhRFsKEKF8310MPtSUTnfr1KkARNOF+iixnrySN5lLqz/3E1NySce4/V/DN+APhFg==
+X-Received: by 2002:a05:600c:6306:b0:46e:1d01:11dd with SMTP id 5b1f17b1804b1-46e329a8503mr40457695e9.2.1758833158549;
+        Thu, 25 Sep 2025 13:45:58 -0700 (PDT)
 Received: from localhost.localdomain ([78.209.201.53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e2a996bf1sm91201395e9.1.2025.09.25.13.45.48
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e2a996bf1sm91201395e9.1.2025.09.25.13.45.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Sep 2025 13:45:50 -0700 (PDT)
+        Thu, 25 Sep 2025 13:45:58 -0700 (PDT)
 From: Antoni Pokusinski <apokusinski01@gmail.com>
 To: jic23@kernel.org,
 	dlechner@baylibre.com,
@@ -90,10 +92,12 @@ Cc: linux-kernel@vger.kernel.org,
 	farouk.bouabid@cherry.de,
 	marcelo.schmitt1@gmail.com,
 	Antoni Pokusinski <apokusinski01@gmail.com>
-Subject: [PATCH v2 0/4] iio: mpl3115: add support for DRDY interrupt
-Date: Thu, 25 Sep 2025 22:45:34 +0200
-Message-Id: <20250925204538.63723-1-apokusinski01@gmail.com>
+Subject: [PATCH v2 1/4] dt-bindings: iio: pressure: add binding for mpl3115
+Date: Thu, 25 Sep 2025 22:45:35 +0200
+Message-Id: <20250925204538.63723-2-apokusinski01@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20250925204538.63723-1-apokusinski01@gmail.com>
+References: <20250925204538.63723-1-apokusinski01@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,48 +106,108 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Hello,
-This set of patches adds support for the DRDY interrupt in the MPL3115
-pressure sensor. The device has 2 interrupt lines, hence the new
-binding. I also added support for the sampling frequency which
-determines the time interval between subsequent measurements (in the
-continuous measurements mode) so it's obiously tied to the DRDY
-interrupt feature.
+MPL3115 is an I2C pressure and temperature sensor. It features 2
+interrupt lines which can be configured to indicate events such as data
+ready or pressure/temperature threshold reached.
 
-Kind regards,
-Antoni Pokusinski
-
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
 ---
-Changes since v1:
-* P1: add `vdd-supply` and `vddio-supply`
-
-* P2: new patch: use guards from cleanup.h   
-
-* P3: change macros of control register bits to convention
-      MPL3115_CTRLX_NAME
-* P3: MPL3115_PT_DATA_EVENT_ALL: use GENMASK
-* P3: trigger_probe: do not fail if dev_fwnode() returns NULL
-* P3: trigger_probe: use devm_iio_trigger_register()
-* P3: trigger_probe: introduced enum mpl3115_irq_type and 
-      changed IRQ setup logic accordingly
-
-* P4: MPL3115_CTRL2_ST: use GENMASK
-* P4: read_raw: samp_freq: use FIELD_GET
-* P4: write_raw: samp_freq: use FIELD_PREP
----
-
-Antoni Pokusinski (4):
-  dt-bindings: iio: pressure: add binding for mpl3115
-  iio: mpl3115: use guards from cleanup.h
-  iio: mpl3115: add support for DRDY interrupt
-  iio: mpl3115: add support for sampling frequency
-
- .../bindings/iio/pressure/fsl,mpl3115.yaml    |  71 ++++
- .../devicetree/bindings/trivial-devices.yaml  |   2 -
- drivers/iio/pressure/mpl3115.c                | 314 ++++++++++++++++--
- 3 files changed, 352 insertions(+), 35 deletions(-)
+ .../bindings/iio/pressure/fsl,mpl3115.yaml    | 71 +++++++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |  2 -
+ 2 files changed, 71 insertions(+), 2 deletions(-)
  create mode 100644 Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml
 
+diff --git a/Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml b/Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml
+new file mode 100644
+index 000000000000..2933c2e10695
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/pressure/fsl,mpl3115.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/pressure/fsl,mpl3115.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: MPL3115 precision pressure sensor with altimetry
++
++maintainers:
++  - Antoni Pokusinski <apokusinski01@gmail.com>
++
++description: |
++  MPL3115 is a pressure/altitude and temperature sensor with I2C interface.
++  It features two programmable interrupt lines which indicate events such as
++  data ready or pressure/temperature threshold reached.
++  https://www.nxp.com/docs/en/data-sheet/MPL3115A2.pdf
++
++properties:
++  compatible:
++    const: fsl,mpl3115
++
++  reg:
++    maxItems: 1
++
++  vdd-supply: true
++
++  vddio-supply: true
++
++  interrupts:
++    minItems: 1
++    maxItems: 2
++
++  interrupt-names:
++    minItems: 1
++    maxItems: 2
++    items:
++      enum:
++        - INT1
++        - INT2
++
++  drive-open-drain:
++    type: boolean
++    description:
++      set if the specified interrupt pins should be configured as
++      open drain. If not set, defaults to push-pull.
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++  - vddio-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pressure@60 {
++            compatible = "fsl,mpl3115";
++            reg = <0x60>;
++            vdd-supply = <&vdd>;
++            vddio-supply = <&vddio>;
++            interrupt-parent = <&gpio1>;
++            interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
++            interrupt-names = "INT2";
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index f3dd18681aa6..918d4a12d61c 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -113,8 +113,6 @@ properties:
+           - fsl,mma7660
+             # MMA8450Q: Xtrinsic Low-power, 3-axis Xtrinsic Accelerometer
+           - fsl,mma8450
+-            # MPL3115: Absolute Digital Pressure Sensor
+-          - fsl,mpl3115
+             # MPR121: Proximity Capacitive Touch Sensor Controller
+           - fsl,mpr121
+             # Honeywell Humidicon HIH-6130 humidity/temperature sensor
 -- 
 2.25.1
 
