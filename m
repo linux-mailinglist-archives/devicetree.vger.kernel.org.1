@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-221655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBAB9BA1A47
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 23:45:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB7A8BA1A53
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 23:45:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2158A4C5E1A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 21:44:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 743DB7430DB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 21:44:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46428322A27;
-	Thu, 25 Sep 2025 21:37:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C77AE32779B;
+	Thu, 25 Sep 2025 21:37:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="loJ9p18a"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j68Vua4S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6969322A21
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 21:37:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB5AF322A29
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 21:37:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758836236; cv=none; b=l0TWNH9rQLEXRTAiaTAJOvv7Zav7fTR6uc/szVYvUyFmhDH5SShpyZn1TCSeNINpqIim+kuS5M17bw2xFrlmvG/WrmVmf3ztTGq5bsvin7iyOFccseXzHWOOGxq5hQdR2xr4vjhJpxu+feZJJiPE6cjw3gT+AgSput3CuMxGw0o=
+	t=1758836249; cv=none; b=hkki8nazA/TMAKciDxxJQFI1xoVY3osVg8aOPtzUFaIqPWOIVA/6YfE4Khyz++4Cd+tadEPCS8h612PT2AlC90/lgG7nknPb7lIUXiZOTHH543CobXQG7FCaNi6AQ3U2CN6MSHm76dwYintfwFko3s9ybFqw8ad4gsAm5BBX1xI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758836236; c=relaxed/simple;
-	bh=oiFqoqHk6oiK3EhR2RmhmHaGHl8SHAITHe5ML5JyiAA=;
+	s=arc-20240116; t=1758836249; c=relaxed/simple;
+	bh=KWj5SMGs9GL6SGPtfMBXs29Ozf1AF6eboLKHNyGz8DA=;
 	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=oWnE/yIlKjBDi2pQDOnzu5wydAkEjQq0V1eqiyGeN6/kBpVifw7vH72rINlg6xnDBIzdqOh4L4Fa/Nq+rBY2n+5gYYxRs/iTxZgxKqDU9unO8gtRfmkpOkWZxjyvET6DKF8b8uMWyedcwsTJYQFMmlaq/YTvJ/ULf0myQu/cM84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=loJ9p18a; arc=none smtp.client-ip=209.85.210.182
+	 MIME-Version:Content-Type; b=OznK4mBf3yeShpzWzofzlNAjDL2a23ljH73F1lKqfy5rJCG4ay1MDDJP0HAYWu6ZtcPXP2MF46AYn3QH7OIQNhVaoLYGELYkUN5E+Xo/QRjcTTRk4sb+GCjJmxsYYjCzwKtaNV1spwyA0N85nmdGY111dnjY3UsYK+/j2NeA4Y0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j68Vua4S; arc=none smtp.client-ip=209.85.214.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-77f358c7b8fso2110413b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 14:37:14 -0700 (PDT)
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-279e2554c8fso14835745ad.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 14:37:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758836234; x=1759441034; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1758836247; x=1759441047; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:references
          :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=Ghwquq+RvN0qSXM9rO+Y15QmP2spebCjgQIKEAaSbhI=;
-        b=loJ9p18aPpQXfKanpNI7u6+oOGgsUgKEyQcqHv6QKuTullPzLjuu5Dyz6X0NWzuLPk
-         u3LrtvXbTGiIuDvhcH4lbdl93lU2kNZPVxezaDZ+CyshOd424da5iTMVDwz8Wwwn53ht
-         YsFOigpC8II2YW0F+bI1P55bmiqyAMJIpRQd+47j2HuuQLarnmyLbVfTGDe6V4AE7+Nm
-         mjFOLynBn0zXmrAiEvsm7GbHtY9kDJ+gn/YqPLUcVU6nxb7A2ho6r0kN4aHVWF4Vya4J
-         GywDrXduYdcdoy0tKyiHKp3P2YUUaSJf1kHf7zXisXNGuuLSRYRm67FuYasNSquCmq8b
-         /tVA==
+        bh=ZYcUucsu2Uq27Rmf/o+v2BRybHVFSFbw/IMvqqBLJ38=;
+        b=j68Vua4S6pwna6zSAjkq38J6bJvaWkPrC+dqRLmlW1aTi8XQ3zW/v3KLtKrUYbYYhN
+         VAlThZJ0Lyu93dgvGX3M8bKgujNl06GqirjstC2MRo3YBFiq7dWGzlNFmqPvahpJHm0R
+         HMiLST4P+B6nJARQ4iGvAb0eZa6SM9oPPVu9PqttYX7vyFkYSRb01caCp4f2A6R1vkTs
+         yAHSYe6hqjgNMmcS+e73XiyCyYGJisTRlp7y6bqCXFFNmhk805Imd7V5vBFm1yjV0V6s
+         b5RwAjXoFS3RU+uDQo939HBuz4IeDLJMmSQxrwrJlaW0cjUAQt+jrwNwkgkmZFmqSV9l
+         qXCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758836234; x=1759441034;
+        d=1e100.net; s=20230601; t=1758836247; x=1759441047;
         h=content-transfer-encoding:mime-version:message-id:references
          :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ghwquq+RvN0qSXM9rO+Y15QmP2spebCjgQIKEAaSbhI=;
-        b=YXbYt87kgesH2sjBtnSadPocrWL0jaGSPpn759sueINTsCZk7JO3IRq6/N2IBsE2YP
-         T5FljzXOOph+Cmvox6bvBPyTrtxRJY5gNUkeXC68I6JTcUepqTrGapgGu8R3rkqF2Ct8
-         UcHNMoGhwoWI9isCQA1qjum+SK3/nlLQA9lvm3R/uUdrtfWHMMAL0+7KWFsVYcgqnCoG
-         MiLLnlx2j9AbsD+Ic4TblNoA5gD2DuPth5tU87IQl41SrwuLxNuWgNklpDhLWN5WQ8ts
-         z5eY85q/zZQlJz2cq5pyI9DiJ4J+fWTmO800RexP/Zvsz2TIQJYZCXi0AuzBOkGIBo5f
-         wG7w==
-X-Gm-Message-State: AOJu0YyQ5jq9Fr79LbL6D1bjtuM0C2f0dLLZW1qLqSJALx5l1bCPuK5k
-	oGHspft6lisQ3nScb0j1FX0oX32/S0YIyPnr+rqZLHrf9HW+GwcvLAHD
-X-Gm-Gg: ASbGncsDm4OJGn9go4AsqpEDp4rvtdLROC2oTiFBXv0CDK2nQOGsoGNMEH6Z/WrMy2m
-	u2of5Gq1akzC8WwI4xxawy/ROGrrTzBVEq4mUceBBkOSxNHz9BzlnDp9/Cww+iRsPH9VKWxKxNB
-	X/GuxVrk/YTBhZ6GfPQ3NEuTTCEEaTN6IQ5CJ4/wIE/xnAyxOIxlJU3L5AKDHTl/HkyC+SCFLOn
-	/z5LGtmbxoKCKRWr/hXYnCGAQ12EYKPLllCJkZ53PgZgWLUgjL6gEW0hS7gynDz8GMRt7jqdLbU
-	CnFo2RFnc/w5LEca200ouKldhJaj9G4r7GpdZdKnGIznY/g/Y2H05OdViKqhTQsYgniifihXgH/
-	e4PCWQu4NAolzMB+t01PPxDDYt8EObvFgiw==
-X-Google-Smtp-Source: AGHT+IHWJRfO65D5XCpuQu5uFHWGJnnxtMXtMT8/HViTSHd6Ji5LIiXfV6FiFgWG2oxdyDX9OV0lCw==
-X-Received: by 2002:a05:6a20:9150:b0:263:616e:b61d with SMTP id adf61e73a8af0-2e9b39b0828mr5442778637.23.1758836233810;
-        Thu, 25 Sep 2025 14:37:13 -0700 (PDT)
+        bh=ZYcUucsu2Uq27Rmf/o+v2BRybHVFSFbw/IMvqqBLJ38=;
+        b=JoxOsYFWu+5JhgSyoZOPFTGpKkATBNd/SZ0pY3dM2xt3g9j7w6O6jdU0aXyAnrcWLC
+         k5L0vEKsgWz3yKl1zgjbI9gbhUUtIVHvym0V24Vz545zlNLLTPMi6s2+8Kv4QxgMh0hS
+         aoOoC9/5ixVhOTs1Gu+/QSW61xpk+zXjbR4qvFg4uZTM2UO1LChD5F72qVsD7bEP+8hc
+         Nj5/sMZ6TPxH9qb/bjVH6WdzAblbis9rbc2YIc/p1Dm0vuRAIIa+mJzBYCLStkmzKd8q
+         i/M8a6kxv8CLGTQWasTirhzVbmPlyup8lem5Cqr21ihfDe+AHJpBarzAo4+p1Oz28wr2
+         ke0w==
+X-Gm-Message-State: AOJu0Yyw0GpnpguO1/mcZNv28iT9O5bUWlfb2AfZnvlWKs391IZPfWix
+	Y6tS6YhTUXoxfCJnAkk74Yqe6uEUCY9leD3Wbv1LIVElQ1uyQdnm0cy/
+X-Gm-Gg: ASbGncv/Ps8oQotEfB+NRdqNG+dy7lnDEH6yggTMCJzKA5aCC62SAnwRbMkNZ2ZUjvE
+	XWZL1mDE49y6qKTXJEyZzD/o8wyealDeMQg6mVgdLDchFxmi9xvjvIYO1fL5hQ6yGcqV1sd1Kxd
+	xViApaxVM+os0howkoOd/yeTNMNh3kZBwgbK1M3xqa2gqDH3KfURCK8rjUP8Rwl4UO51mjTuZ0G
+	j7a0iOqJWg/0bpCm2TCWky1k94HciZWQWXnHTSX7w6I5VKw21kutDOtu05w9ZUU6wWBmLjtI+FK
+	SFXwwzK1HlsiuA+ewvnCGzO1MoRWKdjt4mqgNVdQM/T4xT8eDGdkNmxJNvu6e1N0LhAzx8zdT8L
+	rTQr8X1McgutqRv7Ro0bov8fLMb2zGNyhhw==
+X-Google-Smtp-Source: AGHT+IG+2KEihIk2iYcF1rjTLu4O96y/VVkFEcf/JLe3idjXIjtbiAgmixKfzknuBISuyb0xDfvIpA==
+X-Received: by 2002:a17:903:1a2d:b0:25a:24f2:af00 with SMTP id d9443c01a7336-27ed4a06c8fmr52614235ad.12.1758836247107;
+        Thu, 25 Sep 2025 14:37:27 -0700 (PDT)
 Received: from ehlo.thunderbird.net ([2804:18:161:d250:a5b8:b662:f3c3:afe5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b57c55bd160sm2978100a12.47.2025.09.25.14.37.12
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed6725bbesm35180615ad.60.2025.09.25.14.37.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Sep 2025 14:37:13 -0700 (PDT)
-Date: Thu, 25 Sep 2025 18:37:09 -0300
+        Thu, 25 Sep 2025 14:37:26 -0700 (PDT)
+Date: Thu, 25 Sep 2025 18:37:23 -0300
 From: =?ISO-8859-1?Q?Eric_Gon=E7alves?= <ghatto404@gmail.com>
 To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
  Bjorn Andersson <andersson@kernel.org>,
@@ -80,11 +80,11 @@ To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
 CC: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: r0q: enable ufs storage
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: r0q: add touchscreen support
 User-Agent: Thunderbird for Android
-In-Reply-To: <f032db60-d625-4814-a5c9-0610618b7351@oss.qualcomm.com>
-References: <20250920014637.38175-1-ghatto404@gmail.com> <20250920014637.38175-6-ghatto404@gmail.com> <f032db60-d625-4814-a5c9-0610618b7351@oss.qualcomm.com>
-Message-ID: <97CA26D8-2CB5-4F90-A4C8-BCD81C688F35@gmail.com>
+In-Reply-To: <b3151086-206e-4520-9a52-04591478de0a@oss.qualcomm.com>
+References: <20250920014637.38175-1-ghatto404@gmail.com> <20250920014637.38175-3-ghatto404@gmail.com> <b3151086-206e-4520-9a52-04591478de0a@oss.qualcomm.com>
+Message-ID: <FFAB92D3-5808-4683-A095-00D1EEFEE962@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,60 +97,43 @@ Content-Transfer-Encoding: quoted-printable
 
 
 
-On September 25, 2025 10:07:31 AM GMT-03:00, Konrad Dybcio <konrad=2Edybci=
+On September 25, 2025 10:08:37 AM GMT-03:00, Konrad Dybcio <konrad=2Edybci=
 o@oss=2Equalcomm=2Ecom> wrote:
 >On 9/20/25 3:46 AM, Eric Gon=C3=A7alves wrote:
->> Enable UFS internal storage of the Samsung Galaxy S22=2E
+>> Enable the ST-Microelectronics FTS2BA61Y touchscreen=2E This patch
+>> depends on "Input: add support for the STM FTS2BA61Y touchscreen"=2E
+>>=20
+>> The device has an issue where SPI 8 (the bus which the touchscreen is
+>> connected to) is not working properly right now, so
+>> spi-gpio is used instead=2E
 >>=20
 >> Signed-off-by: Eric Gon=C3=A7alves <ghatto404@gmail=2Ecom>
 >> ---
->>  =2E=2E=2E/boot/dts/qcom/sm8450-samsung-r0q=2Edts      | 39 +++++++++++=
-++++++++
->>  1 file changed, 39 insertions(+)
->>=20
->> diff --git a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts b/arch/a=
-rm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
->> index c088f1acf6ea=2E=2E0a55ce952f93 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
->> +++ b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
->> @@ -146,6 +146,24 @@ vreg_l5b_0p88: ldo5 {
->>  			regulator-max-microvolt =3D <888000>;
->>  			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
->>  		};
->> +
->> +		vreg_l6b_1p2: ldo6 {
->> +			regulator-min-microvolt =3D <1200000>;
->> +			regulator-max-microvolt =3D <1200000>;
->> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l7b_2p5: ldo7 {
->> +			regulator-min-microvolt =3D <2504000>;
->> +			regulator-max-microvolt =3D <2504000>;
->> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->> +
->> +		vreg_l9b_1p2: ldo9 {
->> +			regulator-min-microvolt =3D <1200000>;
->> +			regulator-max-microvolt =3D <1200000>;
->> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
->> +		};
->>  	};
->> =20
->>  	regulators-1 {
->> @@ -370,6 +388,27 @@ tsp_int_sleep: tsp_int_sleep_state {
->>  	};
->>  };
->> =20
->> +&ufs_mem_hc {
->> +	reset-gpios =3D <&tlmm 210 GPIO_ACTIVE_LOW>;
->> +
->> +	vcc-supply =3D <&vreg_l7b_2p5>;
->> +	vcc-max-microamp =3D <1100000>;
 >
->because you set this, you should also set regulator-allow-set-mode and
->regulator-allowed-modes
+>[=2E=2E=2E]
+>
+>>  &tlmm {
+>>  	gpio-reserved-ranges =3D <36 4>; /* SPI (Unused) */
+>> +
+>> +	spi_clk_tsp_active: spi_clk_tsp_active {
+>> +		mux {
+>> +			pins =3D "gpio30";
+>> +			function =3D "gpio";
+>> +		};
+>> +		config {
+>> +			pins =3D "gpio30";
+>> +			drive-strength =3D <6>;
+>> +			bias-disable;
+>> +		};
+>> +	};
+>
+>Drop mux/config, put all the properties right under the pin definition
+>
+>> +
+>> +	spi_clk_tsp_sleep: spi_clk_tsp_sleep {
+>
+>Underscores are forbidden in node names, use dashes instead
 >
 >Konrad
-Why is that necessary?
+Will do, thanks
 
