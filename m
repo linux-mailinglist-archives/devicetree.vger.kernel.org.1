@@ -1,150 +1,122 @@
-Return-Path: <devicetree+bounces-221416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57334B9F663
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:03:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CF4AB9F5DF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:56:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D3CCF4E301F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:02:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 730624E22D3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:56:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B226217722;
-	Thu, 25 Sep 2025 13:02:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B91F1E22E9;
+	Thu, 25 Sep 2025 12:56:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p3jedWCv"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="O8rYNWpM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A771212574;
-	Thu, 25 Sep 2025 13:02:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3B13154423
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 12:56:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758805360; cv=none; b=eypYditTe4qWxlJtu3jmzx9axkZmGd025Jh2PLFtDZQAMbWmHRI/5Tg1Gf8MLVw94oT/jyx0b9CjIsECOYvy+FlXehH6XCGT50WBrYbS+Udc4ruBz81tDCMSrSTg7nsHc2mKx77Ds0rET2RBbaZXYgtrW9spKW36u3Au6jukZhk=
+	t=1758804985; cv=none; b=pgyM9btaWShAw9WaknO4m6e35K5v0a1h8YM3kRGM1m1wXSclVwOjXPJy/xP0mJk7UHKSqWTL/STKydWB+IFkRxPKd/wiWtN7CoPnRQpv1PBfWGPoCxn803aOI2jLIaleunZk9Tx97hCzWLY/rXlZyqCdP+dYBCOJsLVx1rojhuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758805360; c=relaxed/simple;
-	bh=AfsLdojQ8QPIxkk+3F9A1jxrBChJ42VMetvVNH9c3ik=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=aPNVoqFTjzTGr8BahMcBUfN8fPoWfrT6n2ALFwogjxEwXV1+HecYYU5DwtaLLvGAK7tOBG6l5gFyVn3r5/UOKRhQIuJtlcl+SxQIRUdVWjMZJnEe0rJWdrf8GlINAMm9Gsx2e82qeiegdGLuIgtqkIVCs2yBNjoG3s773Z3kLN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p3jedWCv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 928E6C4CEF0;
-	Thu, 25 Sep 2025 13:02:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758805359;
-	bh=AfsLdojQ8QPIxkk+3F9A1jxrBChJ42VMetvVNH9c3ik=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=p3jedWCvT2s2T09odYijh9bcA9Md64UeMkYKOBHBiKJeSOJJGHdyILIeYXqDU32Sm
-	 EScE8ruuAuyPFrIbrQyYWyON3RSkCvn7ICDWNilOzchTFaKR5VYKAejBOskPSocCDI
-	 MeFGgCe61Ltm6fXOrXiqSeIu1zBs7QSkW9xYO+sC/x2mP9suyUuXzantX4ekWg/4UH
-	 eWQsEURzUjkVQ+dG1ltI4auEGz4ls1lNMxyk88CjeeiBxDCOr3ODJ/VElF8HgODxJm
-	 zIJ4jI6TCeLaWFoDKKfRj10nf13CnN1FzOb7HcnUbS2zXDjW96EaZfS5KfS24gz+Dn
-	 Zkuk5MLx3pW6A==
-Received: from sofa.misterjones.org ([185.219.108.64] helo=goblin-girl.misterjones.org)
-	by disco-boy.misterjones.org with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <maz@kernel.org>)
-	id 1v1lcL-00000009MWY-1N7B;
-	Thu, 25 Sep 2025 13:02:37 +0000
-Date: Thu, 25 Sep 2025 14:02:36 +0100
-Message-ID: <867bxm1y8j.wl-maz@kernel.org>
-From: Marc Zyngier <maz@kernel.org>
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 03/24] arm64: dts: qcom: Introduce Glymur base dtsi and CRD dts
-In-Reply-To: <20250925-v3_glymur_introduction-v1-3-24b601bbecc0@oss.qualcomm.com>
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
-	<20250925-v3_glymur_introduction-v1-3-24b601bbecc0@oss.qualcomm.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
- FLIM-LB/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL-LB/10.8 EasyPG/1.0.0 Emacs/30.1
- (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+	s=arc-20240116; t=1758804985; c=relaxed/simple;
+	bh=98TN0eqspZg8HhsJxI5gHPKb1b3bqkPo2NSXdPxHu1A=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=IO8F2jufwdafddKoEbU+7sMKevgHrGOcZf23YBFmNytOIIBETyliAr9rY9zfyoHgH62haR+RAE9Q/SNGxnwHRIB9bd202o3UhqddzoLBrzzdtIyLReVcfSl/b9MOfeqiJ5UYcdu2mqQOg62W8LS4i4If64A4nDJExyqzqZ2fwIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=O8rYNWpM; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250925125615epoutp024adf3dacc8fe5a695d501d6a170f54bf~oh85n-i5y2175421754epoutp026
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 12:56:15 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250925125615epoutp024adf3dacc8fe5a695d501d6a170f54bf~oh85n-i5y2175421754epoutp026
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1758804975;
+	bh=v5cH9LES7CXkOL+qaPhX/B3bxNvyiZkJjrfEZit5rpI=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=O8rYNWpMxFP/cm/PjjKgktqBRxE/aLnp4vP9DJPBLC/5+oQ7JOo3OmCGnenx8GB8L
+	 APWa+fUC4Vlc5K0/SD2OBkpmHBmLXllA74wKiWDe6MswGUltlrelgDSlkP8DveRW4i
+	 Oalp5TRpiZrCbkaswT/scaplIvouBcICXvyxWnAo=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250925125613epcas5p254231a146bfd35bc25fe4b5a9d068153~oh84jUPFq1889718897epcas5p23;
+	Thu, 25 Sep 2025 12:56:13 +0000 (GMT)
+Received: from epcas5p2.samsung.com (unknown [182.195.38.91]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4cXYcY1cm3z6B9m9; Thu, 25 Sep
+	2025 12:56:13 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250925125612epcas5p3c8ae07ba60294f861aaaa79b1a1d7613~oh83T6-vM0858208582epcas5p3k;
+	Thu, 25 Sep 2025 12:56:12 +0000 (GMT)
+Received: from bose.samsungds.net (unknown [107.108.83.9]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250925125606epsmtip247b2865e7da971a49bf7e81841bbf39d~oh8x4J7r41150411504epsmtip2A;
+	Thu, 25 Sep 2025 12:56:06 +0000 (GMT)
+From: Raghav Sharma <raghav.s@samsung.com>
+To: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com,
+	alim.akhtar@samsung.com, mturquette@baylibre.com, sboyd@kernel.org,
+	robh@kernel.org, conor+dt@kernel.org, sunyeal.hong@samsung.com,
+	shin.son@samsung.com
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, chandan.vn@samsung.com,
+	dev.tailor@samsung.com, karthik.sun@samsung.com, Raghav Sharma
+	<raghav.s@samsung.com>
+Subject: [PATCH 0/3] Add clock support for CMU_MFC
+Date: Thu, 25 Sep 2025 18:34:54 +0530
+Message-Id: <20250925130457.3476803-1-raghav.s@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-SA-Exim-Connect-IP: 185.219.108.64
-X-SA-Exim-Rcpt-To: pankaj.patil@oss.qualcomm.com, andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250925125612epcas5p3c8ae07ba60294f861aaaa79b1a1d7613
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-543,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250925125612epcas5p3c8ae07ba60294f861aaaa79b1a1d7613
+References: <CGME20250925125612epcas5p3c8ae07ba60294f861aaaa79b1a1d7613@epcas5p3.samsung.com>
 
-On Thu, 25 Sep 2025 07:32:11 +0100,
-Pankaj Patil <pankaj.patil@oss.qualcomm.com> wrote:
-> 
-> Introduce initial device tree support for Glymur - Qualcomm's
-> next-generation compute SoC and it's associated Compute Reference
-> Device (CRD) platform.
-> 
-> The dt describes CPUs, CPU map, GCC and RPMHCC clock controllers,
-> geni UART, interrupt controller, TLMM, reserved memory,
-> interconnects, SMMU, firmware scm, watchdog, apps rsc, RPMHPD,
-> SRAM, PSCI and pmu nodes.
-> 
-> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile       |    1 +
->  arch/arm64/boot/dts/qcom/glymur-crd.dts |   25 +
->  arch/arm64/boot/dts/qcom/glymur.dtsi    | 1320 +++++++++++++++++++++++++++++++
->  3 files changed, 1346 insertions(+)
->
+This series adds clock support for the CMU_MFC block.
 
-[...]
+Patch[1/3]: dt-bindings: clock: exynosautov920: add mfc clock definitions
+        - Adds DT binding for CMU_MFC and clock definitions
 
-> +		intc: interrupt-controller@17000000 {
-> +			compatible = "arm,gic-v3";
-> +			reg = <0x0 0x17000000 0x0 0x10000>,
-> +			      <0x0 0x17080000 0x0 0x480000>;
-> +
-> +			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			#interrupt-cells = <3>;
-> +			interrupt-controller;
-> +
-> +			#redistributor-regions = <1>;
-> +			redistributor-stride = <0x0 0x40000>;
+Patch[2/3]: clk: samsung: exynosautov920: add block mfc clock support
+        - Adds CMU_MFC clock driver support
 
-Drop these two properties. I assume that your GIC implementation is
-compliant with the architecture, and doesn't need hand-holding.
+Patch[3/3]: arm64: dts: exynosautov920: add CMU_MFC clock DT nodes
+        - Adds dt node for CMU_MFC
 
-> +
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +
-> +			gic_its: gic-its@17040000 {
-> +				compatible = "arm,gic-v3-its";
-> +				reg = <0x0 0x17040000 0x0 0x40000>;
-> +
-> +				msi-controller;
-> +				#msi-cells = <1>;
-> +			};
-> +		};
+Signed-off-by: Raghav Sharma <raghav.s@samsung.com>
+---
+This patchlist is dependent on patches to add clock support for CMU_M2M
+Link to M2M patches: https://lore.kernel.org/all/20250915095401.3699849-1-raghav.s@samsung.com/
 
-[...]
+Raghav Sharma (3):
+  dt-bindings: clock: exynosautov920: add mfc clock definitions
+  clk: samsung: exynosautov920: add block mfc clock support
+  arm64: dts: exynosautov920: add cmu_mfc clock DT nodes
 
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW>,
-> +			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW>;
+ .../clock/samsung,exynosautov920-clock.yaml   | 21 +++++++++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi | 13 ++++++
+ drivers/clk/samsung/clk-exynosautov920.c      | 45 +++++++++++++++++++
+ .../clock/samsung,exynosautov920.h            |  5 +++
+ 4 files changed, 84 insertions(+)
 
-You are missing at one interrupt here, as the CPUs have both secure
-security state and FEAT_VHE (hint: the EL2 virtual timer also has an
-interrupt, usually on PPI 12).
 
-	M.
-
+base-commit: b5a4da2c459f79a2c87c867398f1c0c315779781 
 -- 
-Without deviation from the norm, progress is not possible.
+2.34.1
+
 
