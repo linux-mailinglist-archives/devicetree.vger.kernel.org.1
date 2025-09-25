@@ -1,165 +1,160 @@
-Return-Path: <devicetree+bounces-221135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5803B9D6E1
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 07:12:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9326B9D6F0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 07:14:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E9764A4FA1
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 05:12:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6165E16C9CF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 05:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D85A22E7BDF;
-	Thu, 25 Sep 2025 05:12:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57AE22E764B;
+	Thu, 25 Sep 2025 05:14:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="nU28CeLp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="y6+lRP1t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5EDB2E7621
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 05:12:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27E02BB13;
+	Thu, 25 Sep 2025 05:14:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758777133; cv=none; b=jnfSEiIDRBlNTauN0DxRf+Aj67pd15rIn1ui6Q3PX+GHOcprPq7Hzyhzfj/tznQ96kFGIsZzH3CFyWfDhkQ3GEHQqeSvnmdIjSxTkDvCIeeX3wgHQ87HhFQz34l350O/C2BaXlSlplSull7ze2iabUr6HiM4UiyQ7qGSfTpSfC4=
+	t=1758777251; cv=none; b=aVmSSpjoCwAVQ+e2VXcIa0ej/hEyMzidQ6A/pNqoP3M9E9yzQYWpRhZvzuSfOSFNpLNYcDPcArSgRuCqjrftvfa8ajx9WvwoYmPkaRAI/uo2FPZpq1O1ZZZ4U5bbMQZHkPXVIDaX+Gd3+qek9+JpdjmGYAo4balDj/Yphi2JPMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758777133; c=relaxed/simple;
-	bh=Avqr8HnGdjNpI0VeVV6+KaR/c1MaFhWxGMGichT1BEM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Xp2bI2LdZ2IstCeHcxcdQZA8kxB/n8e/g3J3cQ9W5UTApD/jacaowSkEUuNTfmfiwQQQ6l7hgjwOqB1DxhD3foDU+HGlv7FMct/L8JmiuSKxNO2BgUoUfae1S/lNi/epu81wnwdUH051eQgorc01bl0JA3JM5Z5VFT/bvkyuHOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=nU28CeLp; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-57a960fe78fso523419e87.2
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 22:12:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1758777130; x=1759381930; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PI+7onH5XvxEzfPDOfe7phWFijmEPWLyir8RpU4z3xc=;
-        b=nU28CeLpV3eJrARL1sawqaEIluYSWQ0NXR0cCY7/n8a+90o5RN82iRg7A1MJv3RKiu
-         G8bpugV25Q83uZrBHPWxe2q3Ew2vznwKOcozMTBXm5I+YbmmVvFQVPxmv6jVwsimMyfT
-         gTtZpgKKL4aYGEyNYAeKcMhddawCYR0mVtj1JJ4AZ3vuB5VdM6HCODnHLN3mG27ws5u8
-         1qPLR6fDl8EEruiKZF8SGdJChraqOrYt2smQnUMAImM1CjJaknrrt9Gv+2MSt0li4WBk
-         3iR7N6jdyeoJO9gSudiPUAFgiCW8O22c9BwlROZtCdiDQeNef8WgZczd34ciNPfDp0/H
-         G0mg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758777130; x=1759381930;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PI+7onH5XvxEzfPDOfe7phWFijmEPWLyir8RpU4z3xc=;
-        b=c/v9pDIdJwdXdgqhr+d9CemLZnMMqDl6EI4WIPd2I7zDIaAFL4Mtm1N1ku2h0PNcO4
-         8vVtidvMgpH0YWBdkPzFlY67eNVdqRXJnDzXmOhfBMOqo2IGBqx8ti+FRwWPOxzz9Lku
-         kqwzshuoV1LJwmq0rGRsBBK5/Kn9RFeVA2IVmPWNZG0maK10QHoPU+nSfsvvIN5t3cxA
-         QrD/LhQ9ZSIccL3teZcyrWieVYK1jKnoEle7NqmvLKjuWYJDPzGumAdeHh6h/KteCFxl
-         RdhonDL8LLhxQE5OtnzBDBcm6ZPMWrIDxxJ5u3fCQim0z3gXHMkqFp0wmwm/HxXUW1Dw
-         i3ew==
-X-Forwarded-Encrypted: i=1; AJvYcCWA58vB7vo1DNNKqPguWSJyxMVCZqSL+J02dgJvCOQQbJVA2GdIAOti6UG3unsm8GsaO/cnXd6AN8am@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxa+LDOc45p2ingDCeTOP76DAZrZD7jvUUTOyU8Lk7CDEIIIWeS
-	xrW7/jZFOWeHvhsIxyF3JiZNV0pHl8GYm0rVuNJsEoM0W72UQtCQrQH292cV+4aJ/UxjRPokTOK
-	LJludIMHFEtEKcN7UDs9Dr0KCI55N1GGsFTMT5HQqbA==
-X-Gm-Gg: ASbGncvNimvVRDGMfm1W2fn3FfbyfpdMlbBaHYYfTo5Z/CmWdFvLNQFgrlJbzFHL26V
-	QnSiWzJd2z8Svcj/oHfjUUBKYbOOniOwjvZQXU1U3XrC7Z4BrmB0HXixjlcdQ6vXjgxKS+1zbDL
-	lO7MtfKwq1O0iPsT6l0/gGrGI4QQzusCwSysXq1mrq2LWz9nlNNMXEwVQvUpenbrYvTTPjlp90w
-	JK3n78P
-X-Google-Smtp-Source: AGHT+IEktZxYjboDWNx3pIVxQ7MOelyp8TNGnFov7A2S6wtkwb7jZL+tldrXK8Tjm4TA2xHmbLoncH4PXr9GUwjTepk=
-X-Received: by 2002:a05:6512:2c08:b0:579:f4b3:bd2d with SMTP id
- 2adb3069b0e04-582d406c4f6mr540270e87.57.1758777129874; Wed, 24 Sep 2025
- 22:12:09 -0700 (PDT)
+	s=arc-20240116; t=1758777251; c=relaxed/simple;
+	bh=MI1wPF47cj51v5gvx1moxrS8OunCrtPVd0XamHKKp6g=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=pq4FJf12fk8tH5W/DwrtN1W5S8amwZ+FEuRQNrv1rNLZcsDqZoy2Q30ysfkUlDKi5gxuPWX+YgubR/D4MSHGoRT0IAdIH1rWDZ3F31zNYR2Y2WpcS9ftxSt8t76vQD9GL+Vxy4oscNzYqeR7X0HwQS8TLjwzPl2mK7l4dho3mMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=y6+lRP1t; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58P5DiCX1383667;
+	Thu, 25 Sep 2025 00:13:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1758777224;
+	bh=EluPOJeo58opOTN0eM8mPRt7xvguHqP3916XoJ6Zljw=;
+	h=From:To:CC:Subject:Date;
+	b=y6+lRP1tCNmDgymVYyJyyPg1W1iO0sv0nSKAMNGn6K/MTXJ/JP6puDrx0LR0L6mDt
+	 5vn2GTHIGkTaTtJJJ5Zqytgn9+ROiR98jIaUapjPn8a/55B+C3ggvLM5Ei8zVveBs2
+	 WhwxMYuTZiVtQsE1+ufm5rGEhQ4yfdcJddR8h5QY=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58P5DiVb3304012
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 25 Sep 2025 00:13:44 -0500
+Received: from DLEE205.ent.ti.com (157.170.170.85) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 25
+ Sep 2025 00:13:43 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE205.ent.ti.com
+ (157.170.170.85) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 25 Sep 2025 00:13:43 -0500
+Received: from lelvem-mr06.itg.ti.com ([10.250.165.138])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58P5DVio2924111;
+	Thu, 25 Sep 2025 00:13:33 -0500
+From: Baojun Xu <baojun.xu@ti.com>
+To: <broonie@kernel.org>
+CC: <tiwai@suse.de>, <andriy.shevchenko@linux.intel.com>,
+        <13916275206@139.com>, <alsa-devel@alsa-project.org>,
+        <shenghao-ding@ti.com>, <baojun.xu@ti.com>,
+        <linux-sound@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <lgirdwood@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>, <k-yi@ti.com>,
+        <henry.lo@ti.com>, <robinchen@ti.com>, <jesse-ji@ti.com>,
+        <will-wang@ti.com>, <jim.shil@goertek.com>, <toastcheng@google.com>,
+        <chinkaiting@google.com>
+Subject: [PATCH v1 1/2] ASoC: tas2781: Add tas5828 support
+Date: Thu, 25 Sep 2025 13:13:01 +0800
+Message-ID: <20250925051302.6805-1-baojun.xu@ti.com>
+X-Mailer: git-send-email 2.43.0.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250818040920.272664-1-apatel@ventanamicro.com>
- <20250818040920.272664-8-apatel@ventanamicro.com> <405a78ce-de03-382b-cab9-bb086e28505b@kernel.org>
-In-Reply-To: <405a78ce-de03-382b-cab9-bb086e28505b@kernel.org>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Thu, 25 Sep 2025 10:41:58 +0530
-X-Gm-Features: AS18NWCrNThCby3qXMZJBv9AykyLw-ADGqc2ECmLSjZN6XRRbEa6InFMj8l_zYI
-Message-ID: <CAK9=C2Vr4rgj8wfT+Ogow1H-7Lu=6XdWA2Qe++6523P76pMZzQ@mail.gmail.com>
-Subject: Re: [PATCH v10 07/24] mailbox: Add RISC-V SBI message proxy (MPXY)
- based mailbox driver
-To: Paul Walmsley <pjw@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jassi Brar <jassisinghbrar@gmail.com>, Thomas Gleixner <tglx@linutronix.de>, 
-	"Rafael J . Wysocki" <rafael@kernel.org>, Mika Westerberg <mika.westerberg@linux.intel.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	devicetree@vger.kernel.org, Andrew Jones <ajones@ventanamicro.com>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Atish Patra <atish.patra@linux.dev>, 
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>, Anup Patel <anup@brainfault.org>, 
-	linux-kernel@vger.kernel.org, Samuel Holland <samuel.holland@sifive.com>, 
-	linux-acpi@vger.kernel.org, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, linux-riscv@lists.infradead.org, 
-	Len Brown <lenb@kernel.org>, linux-clk@vger.kernel.org, 
-	Rahul Pathak <rpathak@ventanamicro.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Paul,
+TAS5828 have on-chip DSP but have no calibration required stereo
+smart amplifier.
 
-On Thu, Sep 25, 2025 at 5:57=E2=80=AFAM Paul Walmsley <pjw@kernel.org> wrot=
-e:
->
-> On Mon, 18 Aug 2025, Anup Patel wrote:
->
-> > Add a mailbox controller driver for the new SBI message proxy extension
-> > which is part of the SBI v3.0 specification.
-> > ---
-> >  drivers/mailbox/Kconfig               |  11 +
-> >  drivers/mailbox/Makefile              |   2 +
-> >  drivers/mailbox/riscv-sbi-mpxy-mbox.c | 994 ++++++++++++++++++++++++++
-> >  3 files changed, 1007 insertions(+)
-> >  create mode 100644 drivers/mailbox/riscv-sbi-mpxy-mbox.c
-> >
-> > diff --git a/drivers/mailbox/riscv-sbi-mpxy-mbox.c b/drivers/mailbox/ri=
-scv-sbi-mpxy-mbox.c
-> > new file mode 100644
-> > index 000000000000..21404baa6df0
-> > --- /dev/null
-> > +++ b/drivers/mailbox/riscv-sbi-mpxy-mbox.c
->
-> [ ... ]
->
-> > +
-> > +static int mpxy_mbox_populate_channels(struct mpxy_mbox *mbox)
-> > +{
-> > +     u32 i, *channel_ids __free(kfree) =3D NULL;
-> > +     struct mpxy_mbox_channel *mchan;
-> > +     int rc;
-> > +
-> > +     /* Find-out of number of channels */
-> > +     rc =3D mpxy_get_channel_count(&mbox->channel_count);
-> > +     if (rc)
-> > +             return dev_err_probe(mbox->dev, rc, "failed to get number=
- of MPXY channels\n");
-> > +     if (!mbox->channel_count)
-> > +             return dev_err_probe(mbox->dev, -ENODEV, "no MPXY channel=
-s available\n");
-> > +
-> > +     /* Allocate and fetch all channel IDs */
-> > +     channel_ids =3D kcalloc(mbox->channel_count, sizeof(*channel_ids)=
-, GFP_KERNEL);
->
-> Should this be devm_kcalloc() ?
->
+Signed-off-by: Baojun Xu <baojun.xu@ti.com>
+---
+ include/sound/tas2781.h        | 1 +
+ sound/soc/codecs/tas2781-i2c.c | 7 ++++++-
+ 2 files changed, 7 insertions(+), 1 deletion(-)
 
-The usage of channel_ids array is limited only to this function
-(mpxy_mbox_populate_channels()) hence we are using scoped
-kcalloc() so that channel_ids will be automatically freed when
-mpxy_mbox_populate_channels() returns.
-(Refer, "__free(kfree)" attribute in the channel_ids declaration)
+diff --git a/include/sound/tas2781.h b/include/sound/tas2781.h
+index ddd997ac3216..a37b4d67c137 100644
+--- a/include/sound/tas2781.h
++++ b/include/sound/tas2781.h
+@@ -122,6 +122,7 @@ enum audio_device {
+ 	TAS2781,
+ 	TAS5825,
+ 	TAS5827,
++	TAS5828,
+ 	TAS_OTHERS,
+ };
+ 
+diff --git a/sound/soc/codecs/tas2781-i2c.c b/sound/soc/codecs/tas2781-i2c.c
+index 1539b70881d1..f62a71dca36c 100644
+--- a/sound/soc/codecs/tas2781-i2c.c
++++ b/sound/soc/codecs/tas2781-i2c.c
+@@ -110,6 +110,7 @@ static const struct i2c_device_id tasdevice_id[] = {
+ 	{ "tas2781", TAS2781 },
+ 	{ "tas5825", TAS5825 },
+ 	{ "tas5827", TAS5827 },
++	{ "tas5828", TAS5828 },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(i2c, tasdevice_id);
+@@ -126,6 +127,7 @@ static const struct of_device_id tasdevice_of_match[] = {
+ 	{ .compatible = "ti,tas2781" },
+ 	{ .compatible = "ti,tas5825" },
+ 	{ .compatible = "ti,tas5827" },
++	{ .compatible = "ti,tas5828" },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, tasdevice_of_match);
+@@ -1665,7 +1667,7 @@ static void tasdevice_fw_ready(const struct firmware *fmw,
+ 	}
+ 	tas_priv->fw_state = TASDEVICE_DSP_FW_ALL_OK;
+ 
+-	/* There is no calibration required for TAS5825/TAS5827. */
++	/* There is no calibration required for TAS5825/TAS5827/TAS5828. */
+ 	if (tas_priv->chip_id < TAS5825) {
+ 		ret = tasdevice_create_cali_ctrls(tas_priv);
+ 		if (ret) {
+@@ -1722,6 +1724,7 @@ static void tasdevice_fw_ready(const struct firmware *fmw,
+ 		case TAS2781:
+ 		case TAS5825:
+ 		case TAS5827:
++		case TAS5828:
+ 			/* If DSP FW fail, DSP kcontrol won't be created. */
+ 			tasdevice_dsp_remove(tas_priv);
+ 		}
+@@ -1884,6 +1887,7 @@ static int tasdevice_codec_probe(struct snd_soc_component *codec)
+ 		break;
+ 	case TAS5825:
+ 	case TAS5827:
++	case TAS5828:
+ 		p = (struct snd_kcontrol_new *)tas5825_snd_controls;
+ 		size = ARRAY_SIZE(tas5825_snd_controls);
+ 		break;
+@@ -2056,6 +2060,7 @@ static const struct acpi_device_id tasdevice_acpi_match[] = {
+ 	{ "TXNW2781", TAS2781 },
+ 	{ "TXNW5825", TAS5825 },
+ 	{ "TXNW5827", TAS5827 },
++	{ "TXNW5828", TAS5828 },
+ 	{},
+ };
+ 
+-- 
+2.43.0
 
-The scope of memory allocated using devm_kcalloc() is the entire
-lifespan of the device which is not needed for channel_ids.
-
-Regards,
-Anup
 
