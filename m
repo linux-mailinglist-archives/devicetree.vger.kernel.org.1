@@ -1,670 +1,164 @@
-Return-Path: <devicetree+bounces-221271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 306B8B9E315
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 11:08:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46980B9E363
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 11:10:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDD7C382A6E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:08:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56E501BC302C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:11:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5D5B277CB8;
-	Thu, 25 Sep 2025 09:08:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B88C27FB03;
+	Thu, 25 Sep 2025 09:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="eSZv2LKS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Pcpo4Dcm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011032.outbound.protection.outlook.com [40.107.130.32])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDDF62747B;
-	Thu, 25 Sep 2025 09:07:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.32
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758791282; cv=fail; b=tVUa3Ai7+ZymvZwxOgejv/yMxqm49Gcg8ENxk+46z1sl9p77tt8vv5gxAa84PozPD+1zMUd012+0NW0niwZorOZ4WzEMqS/jJ3FluGm2fP23HHXPwlqNJmO6IfcIRpGxW2NAthce3wS7qAaxZhcmYzfs6WYuMrwBHBBCRbkP904=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758791282; c=relaxed/simple;
-	bh=5w8SvnaSDkAX3NBar3kecd4m/TVRxMpjqWcUa0oRDVY=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=itxuAT111oojbvnZXqSWnkmbUQPMd5WvsrpeaEQP63Mve6FPhCh1pX5vcOlBwYEjY1Ak9c3nw7oLGynDp1PaNfTytIljrETp0mPEtoZr8n7xj07TTPSvLbbBFKMiu3CZ/0G3+8zysUhoE7Sjbp8cMLzFtETvue1/2ScJNGhGYns=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=eSZv2LKS; arc=fail smtp.client-ip=40.107.130.32
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=r/a0VFQhOhhjhI1bUTmmjg5SOtFMQOFUPqmv6zdwxEvttnTSjEcWeymJ7kSy60jkbrL8gghap4wLCUH+n28xLsNyTaYghRyRlGwfjjla/zF8FF0HVt52lfsGq0UWqmi0qvE8uMc98WAM5h13r6L77NiebyACttEn/nx2MbN98FPiSvFYM3tnci9DOP8D/YLNmuznGazykwwdOr4JioWUXUDeVfHiMuC/eGRfDWxNPn09RzSu+Hw2UPhTlcxvwrN3IZGGso7hEOPT0+gFsgdpcninoPGiG6cXLtOtvFdCg01GDwRlmLBDArkx8K4eJmDW6o//zqwobdYJRxGP9pv2kg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jHU4gCKkC4O+Z/ZaCOyboEUVp0UumcIatQLYfwXWAIg=;
- b=IPuw7M0TZIXuzXIqA9KNtItoex5YjRPApxQ87DeiztFqRHxE+hazlA9F3Kq2/fZ5BWtxEEuFOBAlkMK1e5zPetFEl4xQpXewd7co2vOfcz9pDl2wSG22jFe2n0XO52Gf/TprVKWti6KsYZ+RZjMBDZ+g8aWxz5BuNhlgnRCdxXMG/7HI2gcSj1mcFI1uM3ycRickVB2lplV/3yxaQp3QyMTuDRBol1mglAgFc1lEp75U4dxiv5DYF+myyDqn/7vq1Mh/EX3zUd1S5CQw4mBgdPQI6odaqalfYapd3jJhY7SWHWyolz/xgf71RUrl5JDh2e028Lx3stX4Bj2dp+ESjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jHU4gCKkC4O+Z/ZaCOyboEUVp0UumcIatQLYfwXWAIg=;
- b=eSZv2LKS/DoeWRcwbT3BrYuhG3dHmBU1MAqO3zRWo6ijMVt6YoBFqImZunLnM92H85b6WOyPjr04yEvI5hDHaSSfKgruObuAS4M9XgF60TpeOXrGcsopofWHoFrQQxsiTUwk9YF1J56kiAe4JtfvFJxGwP4vKg3H3IJtA2mOBzkU4bBn2bQG+kJFvjJqh+IwasTbT0h1bY2u/RHlZhQgF0RcIMvMewFOgedznD3x/xNnM6Jx0GK4Q4ZeZcXXldfVpgYVaMBDspj8hZuS7lOaa3rxvNEzEOapbZpCZpWVLj+U+LK4pco5f6qJvENNe0+SMHwcN0eoW+Rxj/3L2J/JUg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB8PR04MB7051.eurprd04.prod.outlook.com (2603:10a6:10:fd::20)
- by DBBPR04MB7834.eurprd04.prod.outlook.com (2603:10a6:10:1ee::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.10; Thu, 25 Sep
- 2025 09:07:56 +0000
-Received: from DB8PR04MB7051.eurprd04.prod.outlook.com
- ([fe80::8f9d:4273:ea83:167a]) by DB8PR04MB7051.eurprd04.prod.outlook.com
- ([fe80::8f9d:4273:ea83:167a%6]) with mapi id 15.20.9160.008; Thu, 25 Sep 2025
- 09:07:55 +0000
-Message-ID: <3051b1a2-a6da-4b1a-88ac-f27da47a82e9@nxp.com>
-Date: Thu, 25 Sep 2025 17:09:24 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 07/14] drm/imx: dc: Add DPR channel support
-To: Frank Li <Frank.li@nxp.com>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Dmitry Baryshkov <lumag@kernel.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250923-imx8-dc-prefetch-v2-0-5d69dc9ac8b5@nxp.com>
- <20250923-imx8-dc-prefetch-v2-7-5d69dc9ac8b5@nxp.com>
- <aNLnBbSr5BGDvmsG@lizhi-Precision-Tower-5810>
- <eb070dbc-1e8e-437a-b519-69709b3feae4@nxp.com>
- <aNQNn9EwZzCjapB6@lizhi-Precision-Tower-5810>
- <215aff22-7923-4925-afa9-7663cd524b42@nxp.com>
- <aNS9KwQpH1z+TC1s@lizhi-Precision-Tower-5810>
-From: Liu Ying <victor.liu@nxp.com>
-Content-Language: en-US
-In-Reply-To: <aNS9KwQpH1z+TC1s@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SG2P153CA0038.APCP153.PROD.OUTLOOK.COM (2603:1096:4:c6::7)
- To DB8PR04MB7051.eurprd04.prod.outlook.com (2603:10a6:10:fd::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B773627AC59
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:10:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758791423; cv=none; b=dmbG320X1tzBmZxcAyV1npFEL36qgajqEbi6PYIY0i7xur23lyNy++b8+zMWncrwh9n8tNDxbFp+Pf2BzHQTPTid7mzxRCyifWT10JMklhZMrmaVHf1OudzPL0PqXm85m5G7GLmmhUIts+/KeMfdnGZiTN0ZeottGw7vt2ioucE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758791423; c=relaxed/simple;
+	bh=VaO3i7T1b7yOwRkFlMNKwsdMGDTOTdR9OM8uKc1xL/Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cnmipIWBpaH//SYlrXoTiiLPxEtY9kYkFyoQfCDcOpt7sXRRKhjsbv8bDB5niBFMi97jjEOCz/IxN9rAv4JvPewfXJ16HIBt90Onx/798x1KzDJQ/url0rtxtQuKiYvJoLYjDMHRXmU4ov0Q5jJUkyrVg8mu/j1ktzcr4KJ5fbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Pcpo4Dcm; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P0KfHc025136
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:10:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	eYZzVW9nVW8KA6tqECyGN+RNlHNLZrOF+4bwFfwCiLE=; b=Pcpo4DcmW+oDY+r+
+	rZDyKMfWtqOYmhDD+enL9K3uf+OTqlFyAXN/08CmPZ3ClsBOpmOvqZYc2iq9jzh+
+	ZNZfVXyO3GFnzRhVce+wuD/Vi7/nu1KcCHDXjAU4+T+Mp2XXuEpf/CV+ajux7p3D
+	/nQW/mMp7q7mXkLksJUAlDZncJak4r6Vf/neAeWxxctL6Jx6VRqBRgMGxgWTd4V7
+	r8P2lldig94Y5NjiLSbYD6CxB49v2JzmeKngy8C9KKJD11te01a4oMGirqXLoir7
+	8sWfk/7Zs8ZAcisVSWptv7S0ItJSbiOGBVD7kesJwCflFdYvGBABAZ0s3aKQHwzb
+	D0F46w==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499kv17gxh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:10:20 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-85e95d986e2so580485a.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 02:10:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758791412; x=1759396212;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eYZzVW9nVW8KA6tqECyGN+RNlHNLZrOF+4bwFfwCiLE=;
+        b=mGCM0H2tEqTJ1kGlIpNqikgf85JeseKYMZWc3WHUwQfNh+TW8V04USVW//hkbpGCUR
+         MB7kKl1Tkf1OtmDPxoHlOGzJlqKwhWcW948V9tTVVC/76tyZFghGvRzM1X0JWXCH5KvI
+         yg1UlWsDujUIvyvpkGl0qAAUuT0rz/B6AaZ8XpkOrypK0oi9JWqivewNt+Uv7a9HlzuU
+         TdOtGGp7paXqHOwmaWPA9PQmjQKwgAk3c01+jEazak3X6hqyun7/3OlWt7eDopdt7kIQ
+         ABAmPxryevvcoZdmFKlg9wYkNm5quFQVCcupkLbcDKXTaZvuR9ujdWVeWyYoI30V+sV1
+         QoQw==
+X-Forwarded-Encrypted: i=1; AJvYcCVL322m1YD4FCSvUKdmXG6BL3Urrc2wKUDvh4W4uRrQ6hXzB3CNwP8EyeYri/0ccAHbRf9tI6jQxKzO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx319BwlLnSu1kWSN2WVkdUS9EnnTBMhYuUlEkZEPID/+BIuKMS
+	n2L28Hrj1AUx9omJf0D7B1fG0sUIr6GtT1n0y2yuVDINB0lXKGWh2YhOiZw6kF8qZAWDdVTRDYY
+	brjQukmV7qXUxHycH6HpQTVSWvXLSWSV2kpGbEhkilHGmY+qJpxUOshQPco36Ur6t
+X-Gm-Gg: ASbGnctj1XGqfopD3MeUyWyzeifX0fIxS38NaklNucmfkKf+hqPUXrGt1DowtW3U6i0
+	5pDNOOcbAIT6C3Tq0KZ72I40LP3gqJvD4wgfoEHWmpm0JgowfmGVGzllatGNJ1uiy8vYTo7W/Li
+	zFFwBJa1bGT9w11me6he6Vm9kifR7ovZFbtUVBXWxUuLF9a0fyhLSvySVy9v1E+lw2Cj/J/B2oP
+	UpJ68JmlCVkI66TJFiYeZaAOMQLBlanCqvc4ZtrNryOs435oXaB5iERNJ8DUr8SknuNBHv0v4Kc
+	zvgrM1G2WcK3JK+jpQym+gZp9RfjXfNjwJhnJNX8U8RL/fuePBI190qAiVSecPzt+IaIJebQVDF
+	Zb5Cg6tTLVIOD3RinDrlF1g==
+X-Received: by 2002:a05:620a:1a0f:b0:827:52b2:42be with SMTP id af79cd13be357-85adf5d2741mr246323785a.1.1758791412056;
+        Thu, 25 Sep 2025 02:10:12 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGADNWi8FxPoW2rbFkEpU+q5ie6LXLacUuiyEXFSNUKEa5yYt7K4AF5EOvbsvCoObZuswbrig==
+X-Received: by 2002:a05:620a:1a0f:b0:827:52b2:42be with SMTP id af79cd13be357-85adf5d2741mr246319685a.1.1758791411237;
+        Thu, 25 Sep 2025 02:10:11 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b353fa65a62sm126307366b.47.2025.09.25.02.10.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Sep 2025 02:10:10 -0700 (PDT)
+Message-ID: <ab28a715-6b5e-4adc-8889-f47ee2e18d5c@oss.qualcomm.com>
+Date: Thu, 25 Sep 2025 11:10:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB8PR04MB7051:EE_|DBBPR04MB7834:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6cc93be0-24a0-4489-d3a8-08ddfc1303ca
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|19092799006|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?b3hieTNmaUdxNnNnbm82UzM4V1lkL2lab0NXKy95aDBuYlFRUjd1RU1hRW9T?=
- =?utf-8?B?ODAyVE12K0cvaTRmVjRnb3FobVhLQzZTZVJYWlhRWkwyeTc5T3k4bTd6cU15?=
- =?utf-8?B?Y3dLZmFKbU5RVFg1YURwQ1dwS3p1a3JXdVlFQktMbmFIcEdCeGVHZzdENHJ2?=
- =?utf-8?B?SW0xWERIbzFLdjQ4UmRBMnR1eGpuSzBERG5lTnhQbHIxOU9HdmY2WnNwUVFU?=
- =?utf-8?B?SmdVUWZLK1pTeU5QUmRRMTBnZERWR0M3OHlIaDZ6VmhaV1g5TXU1Zmo0NTBz?=
- =?utf-8?B?KzV5aGl6RlNtQkoyUTJ4RWduM3V4YjJERmhyblVkNUZid25La3VDdXpiNzM1?=
- =?utf-8?B?QXlzNWZaTGZpZ0xZWHpoaHE3VWtCOGtjZ2JjZ0RwVmJlSEhiTXhvbFBZVFJP?=
- =?utf-8?B?Vzdiellld3hsb3ZxMzdiNmNBenVXRE5VWUpPN2VPZ0xnL1NHYm5sUWtTNGZw?=
- =?utf-8?B?Q2RyM0RiZlVUK1JDWmU2ZFg1OEh4TXVwb0VaYUQzSG94TkxkSDRQazBXNndv?=
- =?utf-8?B?aDYxKzhxeDhWVlB5TGRNS1A3bHN4cnBzOGhGblFhNFBPQTFGWTVVOXpOQmFY?=
- =?utf-8?B?ZGFXSWhzaUJERzc0NnRib0NFN25iUzZUVFkrWmpOYmxDQXhCeWNZZnVUOEZx?=
- =?utf-8?B?RDA0SE5YWFp4Y3gxNGNRS0xXRTRIZytEKytaZzFLL2ZSc3k5cmV1SUlCKzZj?=
- =?utf-8?B?Smo1ZkdjQnFQcDFpSTU5OGd3WDdQc3pnUGt3YnhLZVdBNVRJcklPcTlCM0lP?=
- =?utf-8?B?RnQyRWhyOHk4eTBiVTNVS0RVRC94VW5BdERRUGRTbk5oWHNnd1FXaUREZzdH?=
- =?utf-8?B?eWV5RUQyL3E4QVh0THZKMVQrcW43d25pTjVMa0UvR3ZIVVVUV3l6REhyT004?=
- =?utf-8?B?VXFRdUpPYVU5VmlKWWFuU0xySHVxSkYvQlp4NncvNDkyc00xWEZLa3FHcHFK?=
- =?utf-8?B?bWcvbGlqeTFvNHhoMHRIdXFXMFBPTXkxRHNTQVBOYXNnRHpQTzRjQi82ZUFK?=
- =?utf-8?B?VXFwWmpaSS8valQ1MjVBMGtKY0xKcEVycHQrR2luc0g0NjB5dlVRMnNIOE05?=
- =?utf-8?B?NVg2MitlTTg1UjloN3NHaUo5VDVtekZjZHVjOXExRjFaUVVaRUROOE52b0hE?=
- =?utf-8?B?MmJyNi9uRzFSTFVPVEh0aWpFSk5xT2t2RUtVWVhucHQzWUhLd1M4RXhWOUQw?=
- =?utf-8?B?Vjc1V2JUSGRmZFY1ZHZYNFpQODAvaE1sOGVUejJVQWVvbzFGNjFRenBQS2pB?=
- =?utf-8?B?RGJ2ZEIrU1hxVXRxd3l2NmszVzd1akZsV2VDY1VBVzFFUnBUTE52dnRlWG1s?=
- =?utf-8?B?RzFoMHNKUC9vUkpmWjhoRDlXaWUyUisvVVYrcCtON2pCSHZQRFg0bE5GM3BP?=
- =?utf-8?B?QUdHb3NiYTRQdjE5YWM2cE01dHdzSkRHT3pnVnNYcDdGZFhMdEVDRUJXV0lh?=
- =?utf-8?B?N3NFVVlIN0xGOGxYd3NaTng1KzVVSHllcnNlM3YyM0ZvbDBMUm9ZOWJScFRQ?=
- =?utf-8?B?T2p2Y2dkWVhlTkkrK1pkUVlhbTd0aWUxeGYrVjZxUGRZNUQ2N21ZdnJ5NUNK?=
- =?utf-8?B?cTZSZmRhaUd2MTJDR1BYT2Fzdm9HaW9DUVBJcWFaQ05BQSsvaWxDWGdsZDJN?=
- =?utf-8?B?WnZ5UFJSWUpJUjY5UWNtbFloTzVQczZNbWhqQzlUcFdTWVVSQmhUeDdpYno5?=
- =?utf-8?B?aUprYUoxQk5IQ2t1ZHY0QzQwMTNnRE43MlVLY0c0YnlRRm1nbU1zclF4STAx?=
- =?utf-8?B?bEdLRndnQmJUOG9IZ3BneEpWOHp6ckhmZmVQeHl5elRnMGFmVHNKMzRtK3BI?=
- =?utf-8?B?MjdQS25yWFJuTmZ6Rm1wRkJ2dmpYbDNSU3pyNE5GT1ZNKzFxbUZZOGZ1NHhv?=
- =?utf-8?B?M1ArNlEyc3oyV3k5Z1F3SmFlSkpHbGdWblA4N053RXZNenkzTzdhOWlSaGdO?=
- =?utf-8?B?V05wK2tCOXp6KzdEQktSVHptL0dDaTRRSUkvemJqWWU0eStVR0dUS3BGUlNz?=
- =?utf-8?B?UTJQeDMzN1JRPT0=?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB7051.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(19092799006)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ZlF5VGJZSUpDRktTejVLZDM2VDdEem1IUHFGYmJqM2crM000RWlSL1pzL3pp?=
- =?utf-8?B?WkdweXJqLzVlOWVKd0VjdW1aZlNRMmRPL2Jad2NsTnFOM1BLY0d3WmhOSXVK?=
- =?utf-8?B?ei8wU0l3eFNIUnhKQ2pGYVFscWdyQTdIR2c0ckhPUGVDdUMzbVlxZFRLbWw0?=
- =?utf-8?B?T2JSbkNSVy9OeVBlZnFmNUNEYmpuU1VielRsQndSTTI3Y2NEUi96ZHpyQU9D?=
- =?utf-8?B?enRIMUhNTkxqeDBEOHZxUFlNY1d0TlBvMHJXS1d4ajJPWE9DTFlaNTdYT2Rk?=
- =?utf-8?B?ZzllS01aSFc5TmdZbU9iMTNDTTBvcms2QWxYTG1wNWZPWlBhN3YxRlc2Y2RD?=
- =?utf-8?B?VEdoMHRPM3RRbDc3TlZBNDQxOFlsVjNEOERXbm5KRWZsditxbUV6VDRKQXFY?=
- =?utf-8?B?S1RESlQycFgyL3ZYb21DbndTTnVsT0VUSFB6RjF0anB3Zlc4RFZOaDBDRzJt?=
- =?utf-8?B?OFoxbEtzMitHVGMxZTNSQUlYVWRFNTYvU0s2dTQzdko1MDR0NEVncWtZV1BS?=
- =?utf-8?B?cUI4bHh2bkJraC9sNmIxUDdZOTNlVFV0NllUVTJxc3dtWmFONHhxNkdmeVd3?=
- =?utf-8?B?VEZPaE55UjArS0Q1M01EN0hCL1B1YW9adUJhNjkzQ1Q4TGJrMDBkQnhtUE5x?=
- =?utf-8?B?V25leGJsVkp4dlI2MnZQR1BIcG1XNWthdHh4WE43ZzNDeXg3OTRpNU8xeW9P?=
- =?utf-8?B?ODhFekRTaHJmWG9IZkI1UVpvZ0NGbisrN3ArbUpmQTVqRkUrb2FaK0FFNVg5?=
- =?utf-8?B?QzFKa2RXdStCT3RuVDFBS05LT0RFMzJrS1IrQTd2cTBkbzVFS0NRWUp6TXFl?=
- =?utf-8?B?ZWVXNjhHUk5wM0p0N0xCZzNsMjNmeEZDSm0vWDRtT056dGRJdi9uTytoR0k5?=
- =?utf-8?B?SjhXRWp4VFBGS3hxb0lHOUlpMkdBSlNJTmY2YUJwMkZsU0xmbzVpalB1Qjc0?=
- =?utf-8?B?NFdNUGo5SzRyVkdtclo4WnpPZU5LYTA5RExBMTFQaFVqQ3NlQ2ExYXdkUEor?=
- =?utf-8?B?VXd2SU1wSFlXK1F0bWxOSFVab0VnbUhnTzVySnByUkRWUnRVM0FVM0dGMWxE?=
- =?utf-8?B?WjVraEM2Sk9LN253d3NFaTZHcXdxRFBYOW4wbURmVElXd3RXMGM1QUM5cFgr?=
- =?utf-8?B?Y3NtbFA4R0tEcnlkd3pGNUZRY2xwaEZwa0FZUHR2cFRrYmhNWTVKMXBUV3Vv?=
- =?utf-8?B?UE5WUDVZRXllQmd5emF0QWNab1RmWU45OVZIc1dNbW8rcGRITTkrTXkxRWZQ?=
- =?utf-8?B?UE41QWd0YkR3MkNkQU9zWHdYN1ZBSWZlSktuUnk4UVRReFZhNDJNNTlrRGR4?=
- =?utf-8?B?QWt4UTdUbGtyUTcvZlZxdUpDTGVnRzlIbDQwMXF1bmZSZmw5cjBQKzJuaVBn?=
- =?utf-8?B?eFBnNjFkVkhOeFd6NVYwN3BXKy9NKy9nRDkvdUpFWHQvMjNUNDFEMkl2T0g0?=
- =?utf-8?B?QXNEeGxvWU5QbGlsVktJUlBZTXFTNU9SZFZuTFhiaUNJNWlaekZZb0JLZDNF?=
- =?utf-8?B?aXNadWpxU2ZOQXljNmsxclM3M29qUlV6eW9NRk4rdDg0ejJFc1htQXhhRm5O?=
- =?utf-8?B?MUtCUkpUWE0veEVYVndMVzBhWTJ0aCthaVl5VVVYbnNJZStibUZscmdwZ1U2?=
- =?utf-8?B?SGVUMVJTUEpFUlpmdWg3RkE5VU9zVndmT0loUEl0S3RCTFFiZCtSckY4UHM4?=
- =?utf-8?B?RlkvRXBaVTZmOFBxY3NXaHYvRTBiT1NJT3hCemk5ZkFWK3Z4UDNDaWtDRFR3?=
- =?utf-8?B?RVRhbFh6Q2JkVnZCTWpWNE12N09oQXhzNGNJNFp4am1vVFFCQ01hVHRVdkNX?=
- =?utf-8?B?TWFhb1FGN3ZBVDJRY2dDU0IxYlhRUWE3Z2xaU3lMUjBwMnVxMjRTcWNRenhI?=
- =?utf-8?B?NS85M2U4WlR3SXpWei8rTnZRTFI3MktqQUZYdmVPei9Vcmw1YzNhRUxOMG55?=
- =?utf-8?B?UFpYdGFKbzN6VTAyUlhhRUE5M0FlbG5SOGVScEU1UFRTbHlWTThIalU4Um5K?=
- =?utf-8?B?Ulh2WkhDanN2UXVPT0ZxQVMyRlgxZTBQL2phS3lZWWFueE11SjYvQ0ZacTBi?=
- =?utf-8?B?VHJUazEvYXBJM1Z4OFM4TlYvSEdxRFo2Syt5VDY0ZDZFeEwwNVVJYnBadXNp?=
- =?utf-8?Q?jSGbrzeCrDOjeK+JBsiaUooT/?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6cc93be0-24a0-4489-d3a8-08ddfc1303ca
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB7051.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2025 09:07:55.8339
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 7TK8O1TadWbXaHpAM2CT9wiZW3MPql9Hl3NcMVNwThgJEe6+iZahZTtlPL/FG5++yyLUUady2raYc4wCvxE2cQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBBPR04MB7834
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 5/8] media: iris: Move vpu register defines to common
+ header file
+To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+        Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Bryan O'Donoghue <bod@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Vishnu Reddy <quic_bvisredd@quicinc.com>
+References: <20250925-knp_video-v1-0-e323c0b3c0cd@oss.qualcomm.com>
+ <20250925-knp_video-v1-5-e323c0b3c0cd@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250925-knp_video-v1-5-e323c0b3c0cd@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: nlzUoH0wsqF83JYDDPbQ0UnrjtOO7Eb3
+X-Authority-Analysis: v=2.4 cv=RO2zH5i+ c=1 sm=1 tr=0 ts=68d506fc cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=-FEiAWMsPlssRVfEe-4A:9 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAyNSBTYWx0ZWRfXwItYITn3qL/2
+ ye0tXzN3FOSoFQG5Dn2/25TruxYC4HTMGN/IoYZJ8cwnjuE/dBlrM63AkK1PtSjPZQTdUROsi3Y
+ v0b1PWRUMqTdlUR+Bcl3BuFiTT97U7E2xXBeQyUKS3G2Xvh5l4CH+kFi1CD/LpDdTB0pbmzB001
+ t6kZX8gRALchAFrkZcushyFtRA91g297nMevbCXodqJyYZNahJdVQIym6feUMde00F/1ibum/WP
+ NZxk74denE0UxfTWGhtJ1tBoxY3DIe1YGxm7Q/Boa/7vk5X0ARPMmWvKlVZaT8OsVncE83HuPhK
+ rjjY1IRX7cqJ35GDW+khTNvjF4hPfWDsXq72OVgiSxIMxNY3AJmE5SS+Qmx6IR9s/0Op5YKcTC4
+ ML5AlyoI
+X-Proofpoint-ORIG-GUID: nlzUoH0wsqF83JYDDPbQ0UnrjtOO7Eb3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 clxscore=1015 suspectscore=0 priorityscore=1501
+ impostorscore=0 spamscore=0 adultscore=0 bulkscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200025
 
-On 09/24/2025, Frank Li wrote:
-> On Thu, Sep 25, 2025 at 10:58:27AM +0800, Liu Ying wrote:
->> On 09/24/2025, Frank Li wrote:
->>> On Wed, Sep 24, 2025 at 02:41:50PM +0800, Liu Ying wrote:
->>>> On 09/23/2025, Frank Li wrote:
->>>>> On Tue, Sep 23, 2025 at 10:07:57AM +0800, Liu Ying wrote:
->>>>>> Display Prefetch Resolve Channel(DPRC) is a part of a prefetch engine.
->>>>>> It fetches display data, transforms it to linear format and stores it
->>>>>> to DPRC's RTRAM.  PRG, as the other part of a prefetch engine, acts as
->>>>>> a gasket between the RTRAM controller and a FetchUnit.  Add a platform
->>>>>> driver to support the DPRC.
->>>>>>
->>>>>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
->>>>>> ---
->>>>>> v2:
->>>>>> - Manage clocks with bulk interfaces.  (Frank)
->>>>>> - Sort variables in probe function in reverse Christmas tree fashion.  (Frank)
->>>>>> ---
->>>>>>  drivers/gpu/drm/imx/dc/Kconfig   |   1 +
->>>>>>  drivers/gpu/drm/imx/dc/Makefile  |   6 +-
->>>>>>  drivers/gpu/drm/imx/dc/dc-dprc.c | 465 +++++++++++++++++++++++++++++++++++++++
->>>>>>  drivers/gpu/drm/imx/dc/dc-dprc.h |  35 +++
->>>>>>  drivers/gpu/drm/imx/dc/dc-drv.c  |   1 +
->>>>>>  drivers/gpu/drm/imx/dc/dc-drv.h  |   1 +
->>>>>>  drivers/gpu/drm/imx/dc/dc-prg.c  |  12 +
->>>>>>  drivers/gpu/drm/imx/dc/dc-prg.h  |   4 +
->>>>>>  8 files changed, 522 insertions(+), 3 deletions(-)
->>>>>>
->>>>> ...
->>>>>> +
->>>>>> +static void dc_dprc_reset(struct dc_dprc *dprc)
->>>>>> +{
->>>>>> +	regmap_write(dprc->reg, SYSTEM_CTRL0 + SET, SOFT_RESET);
->>>>>> +	fsleep(20);
->>>>>> +	regmap_write(dprc->reg, SYSTEM_CTRL0 + CLR, SOFT_RESET);
->>>>>> +	fsleep(20);
->>>>>> +}
->>>>>> +
->>>>>> +static void dc_dprc_enable(struct dc_dprc *dprc)
->>>>>> +{
->>>>>> +	dc_prg_enable(dprc->prg);
->>>>>> +}
->>>>>> +
->>>>>> +static void dc_dprc_reg_update(struct dc_dprc *dprc)
->>>>>> +{
->>>>>> +	dc_prg_reg_update(dprc->prg);
->>>>>> +}
->>>>>> +
->>>>>> +static void dc_dprc_enable_ctrl_done_irq(struct dc_dprc *dprc)
->>>>>> +{
->>>>>> +	guard(spinlock_irqsave)(&dprc->lock);
->>>>>> +	regmap_write(dprc->reg, IRQ_MASK + CLR, IRQ_DPR_CRTL_DONE);
->>>>>> +}
->>>>>> +
->>>>>> +void dc_dprc_configure(struct dc_dprc *dprc, unsigned int stream_id,
->>>>>> +		       unsigned int width, unsigned int height,
->>>>>> +		       unsigned int stride,
->>>>>> +		       const struct drm_format_info *format,
->>>>>> +		       dma_addr_t baddr, bool start)
->>>>>> +{
->>>>>> +	unsigned int prg_stride = width * format->cpp[0];
->>>>>> +	unsigned int bpp = format->cpp[0] * 8;
->>>>>> +	struct device *dev = dprc->dev;
->>>>>> +	unsigned int p1_w, p1_h;
->>>>>> +	u32 val;
->>>>>> +	int ret;
->>>>>> +
->>>>>> +	if (start) {
->>>>>> +		ret = pm_runtime_resume_and_get(dev);
->>>>>> +		if (ret < 0) {
->>>>>> +			dev_err(dev, "failed to get RPM: %d\n", ret);
->>>>>> +			return;
->>>>>> +		}
->>>>>> +
->>>>>> +		dc_dprc_set_stream_id(dprc, stream_id);
->>>>>> +	}
->>>>>> +
->>>>>> +	p1_w = round_up(width, format->cpp[0] == 2 ? 32 : 16);
->>>>>> +	p1_h = round_up(height, 4);
->>>>>> +
->>>>>> +	regmap_write(dprc->reg, FRAME_CTRL0, PITCH(stride));
->>>>>> +	regmap_write(dprc->reg, FRAME_1P_CTRL0, BYTE_1K);
->>>>>> +	regmap_write(dprc->reg, FRAME_1P_PIX_X_CTRL, NUM_X_PIX_WIDE(p1_w));
->>>>>> +	regmap_write(dprc->reg, FRAME_1P_PIX_Y_CTRL, NUM_Y_PIX_HIGH(p1_h));
->>>>>> +	regmap_write(dprc->reg, FRAME_1P_BASE_ADDR_CTRL0, baddr);
->>>>>> +	regmap_write(dprc->reg, FRAME_PIX_X_ULC_CTRL, CROP_ULC_X(0));
->>>>>> +	regmap_write(dprc->reg, FRAME_PIX_Y_ULC_CTRL, CROP_ULC_Y(0));
->>>>>> +
->>>>>> +	regmap_write(dprc->reg, RTRAM_CTRL0, THRES_LOW(3) | THRES_HIGH(7));
->>>>>
->>>>> Is it okay to access register if start is false since
->>>>> pm_runtime_resume_and_get() have not called.
->>>>
->>>> Yes, it is okay, because dc_dprc_configure() is supposed to be called
->>>> continously for multiple times(OFC, fine for only once as well).  For
->>>> the first time, start is true in order to enable the DPRC.  After the
->>>> first time(DPRC is running), it is called with start == false to do
->>>> things like page-flip(update frame buffer address).
->>>>
->>>>>
->>>>>> +
->>>>>> +	val = LINE4 | BUF2;
->>>>>> +	switch (format->format) {
->>>>>> +	case DRM_FORMAT_XRGB8888:
->>>>>> +		/*
->>>>>> +		 * It turns out pixel components are mapped directly
->>>>>> +		 * without position change via DPR processing with
->>>>>> +		 * the following color component configurations.
->>>>>> +		 * Leave the pixel format to be handled by the
->>>>>> +		 * display controllers.
->>>>>> +		 */
->>>>>> +		val |= A_COMP_SEL(3) | R_COMP_SEL(2) |
->>>>>> +		       G_COMP_SEL(1) | B_COMP_SEL(0);
->>>>>> +		val |= PIX_SIZE_32BIT;
->>>>>> +		break;
->>>>>> +	default:
->>>>>> +		dev_err(dev, "unsupported format 0x%08x\n", format->format);
->>>>>> +		return;
->>>>>> +	}
->>>>>> +	regmap_write(dprc->reg, MODE_CTRL0, val);
->>>>>> +
->>>>>> +	if (start) {
->>>>>> +		/* software shadow load for the first frame */
->>>>>> +		val = SW_SHADOW_LOAD_SEL | SHADOW_LOAD_EN;
->>>>>> +		regmap_write(dprc->reg, SYSTEM_CTRL0, val);
->>>>>> +
->>>>>> +		/* and then, run... */
->>>>>> +		val |= RUN_EN | REPEAT_EN;
->>>>>> +		regmap_write(dprc->reg, SYSTEM_CTRL0, val);
->>>>>> +	}
->>>>>> +
->>>>>> +	dc_prg_configure(dprc->prg, width, height, prg_stride, bpp, baddr, start);
->>>>>> +
->>>>>> +	dc_dprc_enable(dprc);
->>>>>> +
->>>>>> +	dc_dprc_reg_update(dprc);
->>>>>> +
->>>>>> +	if (start)
->>>>>> +		dc_dprc_enable_ctrl_done_irq(dprc);
->>>>>> +
->>>>>> +	dev_dbg(dev, "w: %u, h: %u, s: %u, fmt: 0x%08x\n",
->>>>>> +		width, height, stride, format->format);
->>>>>> +}
->>>>>> +
->>>>>> +void dc_dprc_disable_repeat_en(struct dc_dprc *dprc)
->>>>>> +{
->>>>>> +	regmap_write(dprc->reg, SYSTEM_CTRL0 + CLR, REPEAT_EN);
->>>>>> +	dev_dbg(dprc->dev, "disable REPEAT_EN\n");
->>>>>> +}
->>>>>> +
->>>>>> +void dc_dprc_disable(struct dc_dprc *dprc)
->>>>>> +{
->>>>>> +	dc_prg_disable(dprc->prg);
->>>>>> +
->>>>>> +	pm_runtime_put(dprc->dev);
->>>>>
->>>>> You call pm_runtime_put() in dc_dprc_disable(), but not call
->>>>> pm_runtime_resume_and_get() at dc_dprc_enable().
->>>>
->>>> Yes, dc_dprc_configure()(start == true) is designed to get RPM and
->>>> dc_dprc_disable() to put RPM.
->>>>
->>>> dc_dprc_enable() just sets PRG to non-bypass mode.
->>>>
->>>>>
->>>>> Is it more reasonable to call pm_runtime_resume_and_get() in dc_dprc_enable()
->>>>>
->>>>> dc_dprc_enable()
->>>>> {
->>>>> 	...
->>>>> 	pm_runtime_resume_and_get();
->>>>> }
->>>>>
->>>>> dc_dprc_configure()
->>>>> {
->>>>> 	unconditional call
->>>>> 	pm_runtime_resume_and_get()
->>>>> 	...
->>>>> 	pm_runtime_put()
->>>>
->>>> Here, as RPM is put, it's possible to actually disable the power domain,
->>>> hence possibly lose all the DPRC configuration done between RPM get and
->>>> RPM put.  So, this doesn't make sense.
->>>>
->>>
->>> Okay,
->>>
->>> dc_dprc_enable()
->>> {
->>> 	...
->>> 	pm_runtime_resume_and_get();
->>> }
->>>
->>> dc_dpdr_disable()
->>> {
->>> 	pm_runtime_put();
->>> }
->>>
->>> dc_dprc_configure()
->>> {
->>> 	pm_runtime_resume_and_get();
->>>
->>> 	if (start)
->>> 		dc_dprc_enable(dprc);
->>>
->>> 	pm_runtime_put();
->>> }
->>>
->>> Look more reasonable for pair get()/put().  after first start, ref count
->>> will not reduce 0 by pm_runtime_put();.
->>
->> Then, as dc_dprc_disable_repeat_en() also accesses DPRC register, it needs
->> the RPM get/put too?  Same for PRG driver APIs, dc_prg_{enable,disable,
->> configure,reg_update,shadow_enable} access PRG registers.  Though adding
->> RPM get/put to all of them should work, I don't see much point in having
->> the get/put dance.
+On 9/25/25 1:14 AM, Vikash Garodia wrote:
+> Some of vpu4 register defines are common with vpu3x. Move those into the
+> common register defines header. This is done to reuse the defines for
+> vpu4 in subsequent patch which enables the power sequence for vpu4.
 > 
-> I don't think need change all.
-> 
-> you call dc_dprc_configure(start = true) to get pm_runtime_resume_and_get()
-> 
-> call dc_dpdr_disable() to put run time pm.
-> 
-> Just change to
-> 1. call pm_runtime_resume_and_get() in dc_dprc_enable(), which call only when
->  (start == true)
-> 2. call pm_runtime_put() in dc_dpdr_disable() /* you already did it */
-> 
-> get()/put() pair in dc_dprc_configure() to make sure access register
-> before call dc_dprc_enable().
-> 
-> The whole logic should be the same as what your current code.
+> Co-developed-by: Vishnu Reddy <quic_bvisredd@quicinc.com>
+> Signed-off-by: Vishnu Reddy <quic_bvisredd@quicinc.com>
+> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
+> ---
+>  drivers/media/platform/qcom/iris/iris_vpu3x.c      | 36 ----------------------
+>  drivers/media/platform/qcom/iris/iris_vpu_common.c | 23 --------------
+>  .../platform/qcom/iris/iris_vpu_register_defines.h | 29 +++++++++++++++++
 
-I got your whole idea and thought it should work, but my point was that
-aside from dc_dprc_configure(), dc_dprc_disable_repeat_en() and those
-PRG driver APIs access registers too, so if dc_dprc_configure() needs the
-RPM get/put, then all of them need too, i.e. dc_dprc_configure() is not
-special.  To make the RPM simpler, I think it makes sense to have
-dc_{dprc,prg}_configure() get RPM when start == true and have
-dc_{dprc,prg}_disable() put RPM, just like patch 6&7 do.
+This is a slippery slope. I think it's better if you explicitly say
+the header file contains the register map of VPU3 instead, as let's say
+VPU5 may add a random register in the middle (pushing some existing ones
++0x4 down). Such changes are annoying to debug, and we've unfortunately
+been there on Adreno..
 
-> 
->>
->>>
->>>>>
->>>>> 	if (start) //look like only need enable when start is true
->>>>
->>>> I may add this check in next version.
->>>>
->>>>> 		dc_dprc_enable(dprc);
->>>>> }
->>>>>
->>>>>> +
->>>>>> +	dev_dbg(dprc->dev, "disable\n");
->>>>>> +}
->>>>>> +
->>>>>> +void dc_dprc_disable_at_boot(struct dc_dprc *dprc)
->>>>>> +{
->>>>>> +	dc_prg_disable_at_boot(dprc->prg);
->>>>>> +
->>>>>> +	clk_bulk_disable_unprepare(dprc->num_clks, dprc->clks);
->>>>>> +
->>>>>
->>>>> you have runtime functions dc_dprc_runtime_suspend()
->>>>>
->>>>> If runtime pm status is correct, needn't call clk_bulk_disable_unprepare().
->>>>>
->>>>> Look like call pm_runtime_put() here to let runtime pm management clks.
->>>>>
->>>>> otherwise, runtime pm state will not match clock enable/disable state.
->>>>>
->>>>>> +	dev_dbg(dprc->dev, "disable at boot\n");
->>>>>> +}
->>>>>> +
->>>>>> +static void dc_dprc_ctrl_done_handle(struct dc_dprc *dprc)
->>>>>> +{
->>>>>> +	regmap_write(dprc->reg, SYSTEM_CTRL0, REPEAT_EN);
->>>>>> +
->>>>>> +	dc_prg_shadow_enable(dprc->prg);
->>>>>> +
->>>>>> +	dev_dbg(dprc->dev, "CTRL done handle\n");
->>>>>> +}
->>>>>> +
->>>>> ...
->>>>>> +
->>>>>> +static int dc_dprc_probe(struct platform_device *pdev)
->>>>>> +{
->>>>>> +	struct device *dev = &pdev->dev;
->>>>>> +	struct device_node *np = dev->of_node;
->>>>>> +	struct resource *res;
->>>>>> +	struct dc_dprc *dprc;
->>>>>> +	void __iomem *base;
->>>>>> +	int ret, wrap_irq;
->>>>>> +
->>>>>> +	dprc = devm_kzalloc(dev, sizeof(*dprc), GFP_KERNEL);
->>>>>> +	if (!dprc)
->>>>>> +		return -ENOMEM;
->>>>>> +
->>>>>> +	ret = imx_scu_get_handle(&dprc->ipc_handle);
->>>>>> +	if (ret)
->>>>>> +		return dev_err_probe(dev, ret, "failed to get SCU ipc handle\n");
->>>>>> +
->>>>>> +	base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
->>>>>> +	if (IS_ERR(base))
->>>>>> +		return PTR_ERR(base);
->>>>>> +
->>>>>> +	dprc->reg = devm_regmap_init_mmio(dev, base, &dc_dprc_regmap_config);
->>>>>> +	if (IS_ERR(dprc->reg))
->>>>>> +		return PTR_ERR(dprc->reg);
->>>>>> +
->>>>>> +	wrap_irq = platform_get_irq_byname(pdev, "dpr_wrap");
->>>>>> +	if (wrap_irq < 0)
->>>>>> +		return -ENODEV;
->>>>>> +
->>>>>> +	dprc->num_clks = devm_clk_bulk_get_all(dev, &dprc->clks);
->>>>>> +	if (dprc->num_clks < 0)
->>>>>> +		return dev_err_probe(dev, dprc->num_clks, "failed to get clocks\n");
->>>>>> +
->>>>>> +	ret = of_property_read_u32(np, "fsl,sc-resource", &dprc->sc_resource);
->>>>>> +	if (ret) {
->>>>>> +		dev_err(dev, "failed to get SC resource %d\n", ret);
->>>>>> +		return ret;
->>>>>> +	}
->>>>>> +
->>>>>> +	dprc->prg = dc_prg_lookup_by_phandle(dev, "fsl,prgs", 0);
->>>>>> +	if (!dprc->prg)
->>>>>> +		return dev_err_probe(dev, -EPROBE_DEFER,
->>>>>> +				     "failed to lookup PRG\n");
->>>>>> +
->>>>>> +	dc_prg_set_dprc(dprc->prg, dprc);
->>>>>> +
->>>>>> +	dprc->dev = dev;
->>>>>> +	spin_lock_init(&dprc->lock);
->>>>>> +
->>>>>> +	ret = devm_request_irq(dev, wrap_irq, dc_dprc_wrap_irq_handler,
->>>>>> +			       IRQF_SHARED, dev_name(dev), dprc);
->>>>>> +	if (ret < 0) {
->>>>>> +		dev_err(dev, "failed to request dpr_wrap IRQ(%d): %d\n",
->>>>>> +			wrap_irq, ret);
->>>>>> +		return ret;
->>>>>> +	}
->>>>>> +
->>>>>> +	dev_set_drvdata(dev, dprc);
->>>>>> +
->>>>>> +	ret = devm_pm_runtime_enable(dev);
->>>>>> +	if (ret)
->>>>>> +		return dev_err_probe(dev, ret, "failed to enable PM runtime\n");
->>>>>> +
->>>>>> +	return 0;
->>>>>> +}
->>>>>> +
->>>>>> +static int dc_dprc_runtime_suspend(struct device *dev)
->>>>>> +{
->>>>>> +	struct dc_dprc *dprc = dev_get_drvdata(dev);
->>>>>> +
->>>>>> +	clk_bulk_disable_unprepare(dprc->num_clks, dprc->clks);
->>>>>> +
->>>>>> +	return 0;
->>>>>> +}
->>>>>> +
->>>>>> +static int dc_dprc_runtime_resume(struct device *dev)
->>>>>> +{
->>>>>> +	struct dc_dprc *dprc = dev_get_drvdata(dev);
->>>>>> +	int ret;
->>>>>> +
->>>>>> +	ret = clk_bulk_prepare_enable(dprc->num_clks, dprc->clks);
->>>>>> +	if (ret) {
->>>>>> +		dev_err(dev, "failed to enable clocks: %d\n", ret);
->>>>>> +		return ret;
->>>>>> +	}
->>>>>> +
->>>>>> +	dc_dprc_reset(dprc);
->>>>>> +
->>>>>> +	/* disable all control IRQs and enable all error IRQs */
->>>>>> +	guard(spinlock_irqsave)(&dprc->lock);
->>>>>> +	regmap_write(dprc->reg, IRQ_MASK, IRQ_CTRL_MASK);
->>>>>
->>>>> write one 32bit register is atomic, look like needn't spinlock.
->>>>>
->>>>> Only other place use dprc->lock is in dc_dprc_enable_ctrl_done_irq(), which
->>>>> write 32bit clr register.
->>>>
->>>> No, dc_dprc_wrap_irq_handler() uses the lock to protect register access too,
->>>> so it's needed.
->>>
->>> guard only protect after it.
->>
->> scoped_guard() called by dc_dprc_wrap_irq_handler() protects register access
->> too.
-> 
-> Sorry, I missed this part. I found at original patch.
-> 
-> Frank Li
-> 
->>
->>>
->>> in dc_dprc_runtime_resume()
->>>
->>> +	/* disable all control IRQs and enable all error IRQs */
->>> +	guard(spinlock_irqsave)(&dprc->lock);
->>> +	regmap_write(dprc->reg, IRQ_MASK, IRQ_CTRL_MASK);
->>> +
->>> +	return 0;
->>>
->>> +static void dc_dprc_enable_ctrl_done_irq(struct dc_dprc *dprc)
->>> +{
->>> +	guard(spinlock_irqsave)(&dprc->lock);
->>> +	regmap_write(dprc->reg, IRQ_MASK + CLR, IRQ_DPR_CRTL_DONE);
->>> +}
->>>
->>> How spin lock protect register access?
->>
->> With the error and control IRQs, dc_dprc_wrap_irq_handler() and
->> dc_dprc_enable_ctrl_done_irq() could have concurrent access to IRQ_MASK
->> registers(though there is SET/CLR/TOG register variants, they have a
->> shared read-out value).
->>
->>>
->>> 1: IRQ_MASK <= IRQ_CTRL_MASK;
->>> 2: IRQ_MASK + CLR <= IRQ_DPR_CRTL_DONE;
->>>
->>> 2 possilbe result:
->>> 	1 happen after 2
->>> 	2 happen after 1
->>>
->>> Frank
->>>
->>>>
->>>>>
->>>>> Frank
->>>>>> +
->>>>>> +	return 0;
->>>>>> +}
->>>>>> +
->>>>> ...
->>>>>> +void dc_prg_set_dprc(struct dc_prg *prg, struct dc_dprc *dprc)
->>>>>> +{
->>>>>> +	prg->dprc = dprc;
->>>>>> +}
->>>>>> +
->>>>>> +struct dc_dprc *dc_prg_get_dprc(struct dc_prg *prg)
->>>>>> +{
->>>>>> +	return prg->dprc;
->>>>>> +}
->>>>>> +
->>>>>>  static int dc_prg_probe(struct platform_device *pdev)
->>>>>>  {
->>>>>>  	struct device *dev = &pdev->dev;
->>>>>> diff --git a/drivers/gpu/drm/imx/dc/dc-prg.h b/drivers/gpu/drm/imx/dc/dc-prg.h
->>>>>> index 6fd9b050bfa12334720f83ff9ceaf337e3048a54..f29d154f7de597b9d20d5e71303049f6f8b022d6 100644
->>>>>> --- a/drivers/gpu/drm/imx/dc/dc-prg.h
->>>>>> +++ b/drivers/gpu/drm/imx/dc/dc-prg.h
->>>>>> @@ -32,4 +32,8 @@ bool dc_prg_stride_supported(struct dc_prg *prg,
->>>>>>  struct dc_prg *
->>>>>>  dc_prg_lookup_by_phandle(struct device *dev, const char *name, int index);
->>>>>>
->>>>>> +void dc_prg_set_dprc(struct dc_prg *prg, struct dc_dprc *dprc);
->>>>>> +
->>>>>> +struct dc_dprc *dc_prg_get_dprc(struct dc_prg *prg);
->>>>>> +
->>>>>>  #endif
->>>>>>
->>>>>> --
->>>>>> 2.34.1
->>>>>>
->>>>
->>>>
->>>> --
->>>> Regards,
->>>> Liu Ying
->>
->>
->> --
->> Regards,
->> Liu Ying
+Because you're using this for a single common function that is both acting
+upon the same registers and performing the same operations on them across
+VPU35 and VPU4, it's okay to de-static-ize the function from iris_vpu3.c and
+refer to it from vpu4 ops, keeping the register map private to the former
+file which I think will end up less error-prone for the future.
 
-
--- 
-Regards,
-Liu Ying
+Konrad
 
