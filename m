@@ -1,132 +1,474 @@
-Return-Path: <devicetree+bounces-221674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C287BA1C28
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 00:13:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1515BA1C4E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 00:19:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B897A626C41
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 22:13:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C286620955
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 22:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D582321287;
-	Thu, 25 Sep 2025 22:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3769A262FE9;
+	Thu, 25 Sep 2025 22:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="hPknQP7I";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="lA61YFTe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ncMQ1buN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from flow-b2-smtp.messagingengine.com (flow-b2-smtp.messagingengine.com [202.12.124.137])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE72746B5;
-	Thu, 25 Sep 2025 22:13:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.137
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0612F2B9BA;
+	Thu, 25 Sep 2025 22:19:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758838396; cv=none; b=H2PJY02fDt/G1xgGCvlB4V8UpIu3UgTyjvXD5J/XublISAXcXujIZIGhXwXVSM6mVCYxUOOtSJHMbT5rUyYe2K434kDWEeDKY0CMIaBjq7MVnr5wDGX3edYKpwfA+b0qMIejErYOuHVQqvJrZhpXKKfbf+sIh+C7pY5z0hqo/C4=
+	t=1758838785; cv=none; b=lBVcNAmpW50u762fu60Uzc8+P8SAXihn8nmPmZQtQrZNPZ+vPftgQ8Bu0ilPpVjj4TUBcHUQQWHs/K7v2ZLLqDnNUl2INkuoBC6P01FgAErgItePLhpjtbcbaz8dtApYtp182LbsetdFynUhvUcKrTfr3EuW7ZM9t2DXCx5B+tA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758838396; c=relaxed/simple;
-	bh=RLVEm8TKjKjyOUDosja7lY9N2225leIPPpRAHlP9i7Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IBZOlH/TwiX1lUg2nfZC3C2APSk2HgQwEJcageWcZLpwT3cnZAPzLYxRJ2zacPsg2bSuDNC2PKAY3l/6ITL/YSE/fIz0UvnYd04wCmQpMpqvGDEQnKoZTqPl0MkKLyuk3uhZutY/VC6Ew+1fU9KbLmAXP3xOD+XpN4fzZ0TJr8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=hPknQP7I; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=lA61YFTe; arc=none smtp.client-ip=202.12.124.137
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-03.internal (phl-compute-03.internal [10.202.2.43])
-	by mailflow.stl.internal (Postfix) with ESMTP id 8C3A213000D4;
-	Thu, 25 Sep 2025 18:13:13 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-03.internal (MEProxy); Thu, 25 Sep 2025 18:13:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm3; t=1758838393; x=1758845593; bh=NPqIzxxCqz
-	501l2T2BaB2Nu2Wi0UoMZvzBbrRhIgFq0=; b=hPknQP7Ib8/dPKgJghAIwp4B+e
-	GO7CW9zWOtcNILi4be6e55oGgFUTpWvR91f8FYrGYH6D0AaJI5X1DT3+vHeq/bTN
-	k+xqthJl8cN9iKWAyZI2BDaO4dGv9fmxmrq7b/ELLHhbAqihZmWbeMKScqkMDct9
-	Z///nzLybxNkdsvCPd7ukjb27YKSKejLBL+82e+XpodPuy43xS+RVJNroSfSWeqT
-	GYvfWJb/blVYudeDWF9qDNFTHYSO2lSFGfJM+nIdEVBglverRidfMtUqUsFqJL+n
-	N0VUG9G/Bozo25Ppm1pjKkG/b4UF/s9UPW4wjkpr9XXPLxOGd97gAt0ONVMw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-	1758838393; x=1758845593; bh=NPqIzxxCqz501l2T2BaB2Nu2Wi0UoMZvzBb
-	rRhIgFq0=; b=lA61YFTeMGQD7SdfAE6TX9ix5Dogy+/Vzn22MXRJ+1iTL7+V86V
-	yAvixanKoJ9B+n+tDTiGYgvWeZBFKZ2H8luAfHvoOsuiTNXQl2tU04Ca//ulvUUw
-	p3cYfT7B+Dq6uw5b+M97eFiPGDQEjU5CAKrQqEp5EB8fxEc6QO5dkIOE8xJNGtpr
-	/jPFrZ7Dow9XjPTj/SNko15jtEdvktp52T1dIbaOWy4KJHXz0S5iWiLLdxrUNZpZ
-	FWnfAvmzRt4vWoOYfMHZVp75E6+18Rm0eUcgncaF8NHcZpHCjLO0N8c8XJvSfYBg
-	u4TtP8YnD3L3D8DzfK1b6C/BPko9T5gjBfA==
-X-ME-Sender: <xms:eb7VaB0ijrXjuFef8Vf9O1Dsq4ghbiCEWJMFi4xPA4d57S3hE80EHQ>
-    <xme:eb7VaObXpG2WMgVZ4kSTlMnM4VCYnQQWcWojc3N8LPy_kaW8hICzBF65zMdsFmpeM
-    iVjDuZZgmSdh1pbgr14_abVU17A0D13NVuAxXwNFyVqCq44GGYw4vs>
-X-ME-Received: <xmr:eb7VaOnnaFtJv44_4RBhYi4JllU-xDK2C56vB_wjQ8hxKq1UH2yMvlAptAourvs-0GutvDcHCEVsw_vMED23BnEAvARAoLgqbx4>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeijeeiiecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpeffhffvvefukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpeflrghnnhgvucfi
-    rhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepgfdvff
-    evleegudejfeefheehkeehleehfefgjefffeetudegtefhuedufeehfeetnecuvehluhhs
-    thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrghurd
-    hnvghtpdhnsggprhgtphhtthhopedvuddpmhhouggvpehsmhhtphhouhhtpdhrtghpthht
-    ohepjhgtrghllhhighgvrhhoshelleesghhmrghilhdrtghomhdprhgtphhtthhopehsvh
-    gvnheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlhihsshgrsehrohhsvghniiif
-    vghighdrihhopdhrtghpthhtohepnhgvrghlsehgohhmphgrrdguvghvpdhrtghpthhtoh
-    eplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdr
-    ohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtth
-    hopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlvgigrghn
-    ughrvgdrsggvlhhlohhnihessghoohhtlhhinhdrtghomh
-X-ME-Proxy: <xmx:eb7VaNeMifx9zoubpJ2MYKko2bR9KdfdCrVsJJ9xpTEXQ0RlB3w8JA>
-    <xmx:eb7VaM0oF3mL2R-0udCW5d6joZNd2Ai7eo3lODJTJ_9lW93NXM4EGw>
-    <xmx:eb7VaKlyQic6Ai44_2MWDWfS52YpDq74sZ1QYqwmrRzKcQqNCYJgnQ>
-    <xmx:eb7VaNZOLHJGXlyMaMMyqnEul-lrsNw-iNVnF_bPmBWQ4jTPlqWWLg>
-    <xmx:eb7VaCBOG2XJmnt2zIs-X1lUBxCkSQJMieXer_VDjdSwiLq7ArbSxPPx>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 25 Sep 2025 18:13:12 -0400 (EDT)
-Date: Fri, 26 Sep 2025 00:13:11 +0200
-From: Janne Grunau <j@jannau.net>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1758838785; c=relaxed/simple;
+	bh=KrN/Ds6ZRfYcZkC2lZJ1BbBIHdOPg/S1pElf4TvWoN0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WkUIp1ipRq2QL5m9mQ5U5JGodg0XgvUIDFUaZbdNp5TK6xIBfdAhuycQKMs6KhkUfTlWj+4tCTzWUSsv4xAJIv+w+1aWabDkO8Yj9taEXp4bNUerV6hJvq+NfHAIBK9ObAmNf753TFH78D/UbRBVFIj3t/Ea93xPoZ8Vyt/O5u0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ncMQ1buN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE20DC4CEF0;
+	Thu, 25 Sep 2025 22:19:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758838784;
+	bh=KrN/Ds6ZRfYcZkC2lZJ1BbBIHdOPg/S1pElf4TvWoN0=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ncMQ1buNE6EhgRLzk730zz3kuy6scX46blqf7+NwojdSeGzPOiBWu2sy0oGbWTluG
+	 CYSlSOL38L5Tren8JWhEBSzuGZ+KuU28zRrHXKkln6zZMUt3YZ03k2Cf4NdipPNTl7
+	 pFVBp+cq+GUx77EW8m+W7ewjyuqdVJAF8gyUFk7PLibH7p8TeIaAutPaR7YYIwcCTD
+	 v1+0aQbGXqu3MrTSUaqK8o6jzy64FdskvPYcsFkN8uDtM8hTyD/TQOKSNn4HB980DU
+	 5o7kRy4+UvbQnh++qep6mmweDqgoWZMegECLN0T7bFR8WWRa6ZovUdyNjrqIkBzrXr
+	 YYobDbXX1c30Q==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
-	Mark Kettenis <kettenis@openbsd.org>,
-	Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v2 00/11] mfd: macsmc: add rtc, hwmon and hid subdevices
-Message-ID: <20250925221311.GF637503@robin.jannau.net>
-References: <20250827-macsmc-subdevs-v2-0-ce5e99d54c28@gmail.com>
+	Lee Jones <lee@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: pinctrl: Convert marvell,armada-3710-(sb|nb)-pinctrl to DT schema
+Date: Thu, 25 Sep 2025 17:18:50 -0500
+Message-ID: <20250925221927.2610760-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250827-macsmc-subdevs-v2-0-ce5e99d54c28@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Aug 27, 2025 at 09:22:34PM +1000, James Calligeros wrote:
-> Hi all,
-> 
-> This series adds support for the remaining SMC subdevices. These are the
-> RTC, hwmon, and HID devices. They are being submitted together as the RTC
-> and hwmon drivers both require changes to the SMC DT schema.
+Convert the marvell,armada3710-(sb|nb)-pinctrl binding to DT schema
+format. The binding includes the "marvell,armada-3700-xtal-clock"
+subnode which is simple enough to include here.
 
-I we would instantiate all sub devices via MFD_CELL_OF macsmc-hid (or
--input) and the omitted macsmc-power would require SMC dt-binding
-changes as well. I'm conflicted on that since both use SMC to determine
-if they are present.
+Mark interrupt-controller/#interrupt-cells as required as the users have
+them and the h/w is either capable of interrupts or not.
 
-Janne
+As this syscon has 2 register ranges, syscon-common.yaml needs to be
+updated to drop the restriction of 1 register entry.
+
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/clock/armada3700-xtal-clock.txt  |  29 ---
+ .../bindings/mfd/syscon-common.yaml           |   3 -
+ .../pinctrl/marvell,armada-37xx-pinctrl.txt   | 195 ------------------
+ .../marvell,armada3710-xb-pinctrl.yaml        | 124 +++++++++++
+ 4 files changed, 124 insertions(+), 227 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/armada3700-xtal-clock.txt
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,armada-37xx-pinctrl.txt
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,armada3710-xb-pinctrl.yaml
+
+diff --git a/Documentation/devicetree/bindings/clock/armada3700-xtal-clock.txt b/Documentation/devicetree/bindings/clock/armada3700-xtal-clock.txt
+deleted file mode 100644
+index 4c0807f28cfa..000000000000
+--- a/Documentation/devicetree/bindings/clock/armada3700-xtal-clock.txt
++++ /dev/null
+@@ -1,29 +0,0 @@
+-* Xtal Clock bindings for Marvell Armada 37xx SoCs
+-
+-Marvell Armada 37xx SoCs allow to determine the xtal clock frequencies by
+-reading the gpio latch register.
+-
+-This node must be a subnode of the node exposing the register address
+-of the GPIO block where the gpio latch is located.
+-See Documentation/devicetree/bindings/pinctrl/marvell,armada-37xx-pinctrl.txt
+-
+-Required properties:
+-- compatible : shall be one of the following:
+-	"marvell,armada-3700-xtal-clock"
+-- #clock-cells : from common clock binding; shall be set to 0
+-
+-Optional properties:
+-- clock-output-names : from common clock binding; allows overwrite default clock
+-	output names ("xtal")
+-
+-Example:
+-pinctrl_nb: pinctrl-nb@13800 {
+-	compatible = "armada3710-nb-pinctrl", "syscon", "simple-mfd";
+-	reg = <0x13800 0x100>, <0x13C00 0x20>;
+-
+-	xtalclk: xtal-clk {
+-		compatible = "marvell,armada-3700-xtal-clock";
+-		clock-output-names = "xtal";
+-		#clock-cells = <0>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/mfd/syscon-common.yaml b/Documentation/devicetree/bindings/mfd/syscon-common.yaml
+index 451cbad467a3..14a08e7bc8bd 100644
+--- a/Documentation/devicetree/bindings/mfd/syscon-common.yaml
++++ b/Documentation/devicetree/bindings/mfd/syscon-common.yaml
+@@ -35,9 +35,6 @@ properties:
+     minItems: 2
+     maxItems: 5  # Should be enough
+ 
+-  reg:
+-    maxItems: 1
+-
+   reg-io-width:
+     description:
+       The size (in bytes) of the IO accesses that should be performed
+diff --git a/Documentation/devicetree/bindings/pinctrl/marvell,armada-37xx-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/marvell,armada-37xx-pinctrl.txt
+deleted file mode 100644
+index ecec514b3155..000000000000
+--- a/Documentation/devicetree/bindings/pinctrl/marvell,armada-37xx-pinctrl.txt
++++ /dev/null
+@@ -1,195 +0,0 @@
+-* Marvell Armada 37xx SoC pin and gpio controller
+-
+-Each Armada 37xx SoC come with two pin and gpio controller one for the
+-south bridge and the other for the north bridge.
+-
+-Inside this set of register the gpio latch allows exposing some
+-configuration of the SoC and especially the clock frequency of the
+-xtal. Hence, this node is a represent as syscon allowing sharing the
+-register between multiple hardware block.
+-
+-GPIO and pin controller:
+-------------------------
+-
+-Main node:
+-
+-Refer to pinctrl-bindings.txt in this directory for details of the
+-common pinctrl bindings used by client devices, including the meaning
+-of the phrase "pin configuration node".
+-
+-Required properties for pinctrl driver:
+-
+-- compatible:	"marvell,armada3710-sb-pinctrl", "syscon, "simple-mfd"
+-		for the south bridge
+-		"marvell,armada3710-nb-pinctrl", "syscon, "simple-mfd"
+-		for the north bridge
+-- reg: The first set of register are for pinctrl/gpio and the second
+-  set for the interrupt controller
+-- interrupts: list of the interrupt use by the gpio
+-
+-Available groups and functions for the North bridge:
+-
+-group: jtag
+- - pins 20-24
+- - functions jtag, gpio
+-
+-group sdio0
+- - pins 8-10
+- - functions sdio, gpio
+-
+-group emmc_nb
+- - pins 27-35
+- - functions emmc, gpio
+-
+-group pwm0
+- - pin 11 (GPIO1-11)
+- - functions pwm, led, gpio
+-
+-group pwm1
+- - pin 12
+- - functions pwm, led, gpio
+-
+-group pwm2
+- - pin 13
+- - functions pwm, led, gpio
+-
+-group pwm3
+- - pin 14
+- - functions pwm, led, gpio
+-
+-group pmic1
+- - pin 7
+- - functions pmic, gpio
+-
+-group pmic0
+- - pin 6
+- - functions pmic, gpio
+-
+-group i2c2
+- - pins 2-3
+- - functions i2c, gpio
+-
+-group i2c1
+- - pins 0-1
+- - functions i2c, gpio
+-
+-group spi_cs1
+- - pin 17
+- - functions spi, gpio
+-
+-group spi_cs2
+- - pin 18
+- - functions spi, gpio
+-
+-group spi_cs3
+- - pin 19
+- - functions spi, gpio
+-
+-group onewire
+- - pin 4
+- - functions onewire, gpio
+-
+-group uart1
+- - pins 25-26
+- - functions uart, gpio
+-
+-group spi_quad
+- - pins 15-16
+- - functions spi, gpio
+-
+-group uart2
+- - pins 9-10 and 18-19
+- - functions uart, gpio
+-
+-Available groups and functions for the South bridge:
+-
+-group usb32_drvvbus0
+- - pin 36
+- - functions drvbus, gpio
+-
+-group usb2_drvvbus1
+- - pin 37
+- - functions drvbus, gpio
+-
+-group sdio_sb
+- - pins 60-65
+- - functions sdio, gpio
+-
+-group rgmii
+- - pins 42-53
+- - functions mii, gpio
+-
+-group pcie1
+- - pins 39
+- - functions pcie, gpio
+-
+-group pcie1_clkreq
+- - pins 40
+- - functions pcie, gpio
+-
+-group pcie1_wakeup
+- - pins 41
+- - functions pcie, gpio
+-
+-group smi
+- - pins 54-55
+- - functions smi, gpio
+-
+-group ptp
+- - pins 56
+- - functions ptp, gpio
+-
+-group ptp_clk
+- - pin 57
+- - functions ptp, mii
+-
+-group ptp_trig
+- - pin 58
+- - functions ptp, mii
+-
+-group mii_col
+- - pin 59
+- - functions mii, mii_err
+-
+-GPIO subnode:
+-
+-Please refer to gpio.txt in this directory for details of gpio-ranges property
+-and the common GPIO bindings used by client devices.
+-
+-Required properties for gpio driver under the gpio subnode:
+-- interrupts: List of interrupt specifier for the controllers interrupt.
+-- gpio-controller: Marks the device node as a gpio controller.
+-- #gpio-cells: Should be 2. The first cell is the GPIO number and the
+-   second cell specifies GPIO flags, as defined in
+-   <dt-bindings/gpio/gpio.h>. Only the GPIO_ACTIVE_HIGH and
+-   GPIO_ACTIVE_LOW flags are supported.
+-- gpio-ranges: Range of pins managed by the GPIO controller.
+-
+-Xtal Clock bindings for Marvell Armada 37xx SoCs
+-------------------------------------------------
+-
+-see Documentation/devicetree/bindings/clock/armada3700-xtal-clock.txt
+-
+-
+-Example:
+-pinctrl_sb: pinctrl-sb@18800 {
+-	compatible = "marvell,armada3710-sb-pinctrl", "syscon", "simple-mfd";
+-	reg = <0x18800 0x100>, <0x18C00 0x20>;
+-	gpio {
+-		#gpio-cells = <2>;
+-		gpio-ranges = <&pinctrl_sb 0 0 29>;
+-		gpio-controller;
+-		interrupts =
+-		<GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
+-		<GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>,
+-		<GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
+-		<GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
+-		<GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
+-	};
+-
+-	rgmii_pins: mii-pins {
+-		groups = "rgmii";
+-		function = "mii";
+-	};
+-
+-};
+diff --git a/Documentation/devicetree/bindings/pinctrl/marvell,armada3710-xb-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/marvell,armada3710-xb-pinctrl.yaml
+new file mode 100644
+index 000000000000..51bad2e8d6f1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/marvell,armada3710-xb-pinctrl.yaml
+@@ -0,0 +1,124 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/marvell,armada3710-xb-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Marvell Armada 37xx SoC pin and gpio controller
++
++maintainers:
++  - Gregory CLEMENT <gregory.clement@bootlin.com>
++  - Marek Behún <kabel@kernel.org>
++  - Miquel Raynal <miquel.raynal@bootlin.com>
++
++description: >
++  Each Armada 37xx SoC come with two pin and gpio controller one for the south
++  bridge and the other for the north bridge.
++
++  Inside this set of register the gpio latch allows exposing some configuration
++  of the SoC and especially the clock frequency of the xtal. Hence, this node is
++  a represent as syscon allowing sharing the register between multiple hardware
++  block.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - marvell,armada3710-sb-pinctrl
++          - marvell,armada3710-nb-pinctrl
++      - const: syscon
++      - const: simple-mfd
++
++  reg:
++    items:
++      - description: pinctrl and GPIO controller registers
++      - description: interrupt controller registers
++
++  gpio:
++    description: GPIO controller subnode
++    type: object
++    additionalProperties: false
++
++    properties:
++      '#gpio-cells':
++        const: 2
++
++      gpio-controller: true
++
++      gpio-ranges:
++        description: Range of pins managed by the GPIO controller
++
++      '#interrupt-cells':
++        const: 2
++
++      interrupt-controller: true
++
++      interrupts:
++        description: List of interrupt specifiers for the GPIO controller
++
++    required:
++      - '#gpio-cells'
++      - gpio-ranges
++      - gpio-controller
++      - '#interrupt-cells'
++      - interrupt-controller
++      - interrupts
++
++  xtal-clk:
++    type: object
++    additionalProperties: false
++
++    properties:
++      compatible:
++        const: marvell,armada-3700-xtal-clock
++
++      '#clock-cells':
++        const: 0
++
++      clock-output-names: true
++
++patternProperties:
++  '-pins$':
++    $ref: pinmux-node.yaml#
++    additionalProperties: false
++
++    properties:
++      groups:
++        enum: [ emmc_nb, i2c1, i2c2, jtag, mii_col, onewire, pcie1,
++                pcie1_clkreq, pcie1_wakeup, pmic0, pmic1, ptp, ptp_clk,
++                ptp_trig, pwm0, pwm1, pwm2, pwm3, rgmii, sdio0, sdio_sb, smi,
++                spi_cs1, spi_cs2, spi_cs3, spi_quad, uart1, uart2,
++                usb2_drvvbus1, usb32_drvvbus ]
++
++      function:
++        enum: [ drvbus, emmc, gpio, i2c, jtag, led, mii, mii_err, onewire,
++                pcie, pmic, ptp, pwm, sdio, smi, spi, uart ]
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    pinctrl_sb: pinctrl@18800 {
++        compatible = "marvell,armada3710-sb-pinctrl", "syscon", "simple-mfd";
++        reg = <0x18800 0x100>, <0x18C00 0x20>;
++
++        gpio {
++            #gpio-cells = <2>;
++            gpio-ranges = <&pinctrl_sb 0 0 29>;
++            gpio-controller;
++            #interrupt-cells = <2>;
++            interrupt-controller;
++            interrupts =
++                <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
++                <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>,
++                <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
++                <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
++                <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
++        };
++    };
+-- 
+2.51.0
+
 
