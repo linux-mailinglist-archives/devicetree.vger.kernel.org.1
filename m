@@ -1,164 +1,185 @@
-Return-Path: <devicetree+bounces-221060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FFE6B9CFBF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 03:12:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 802C9B9CFDB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 03:18:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7EA6F7A4F66
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 01:10:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BDCB3830E5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 01:18:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14B272DE6F1;
-	Thu, 25 Sep 2025 01:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3A502DE719;
+	Thu, 25 Sep 2025 01:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GW2SESp0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P5e0RFMB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8FE3C01
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 01:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87DA92DE702;
+	Thu, 25 Sep 2025 01:18:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758762731; cv=none; b=m6mQ/i4DUizG/RbB3RWSq5lHtTcJ8D5N0D3rwDxx/ntLaKlzOWlOP+AxpMrJC+AnqzSZTszLHqwMPOu7OwzjLKxAR3mkXKk30GkuvyYSSMSHw2Qri2/gnagGatEsyBE1TVtbyjO1ye5rDxIVJ8gLwIGUqKDwBO5yqR8fWUtz77g=
+	t=1758763095; cv=none; b=qBF3jc1eBPM+DLFWKRW/KjarEDO+eJ6rF/iKrL1io9qcWrl1bUUKT6oaVgNNcKfsamJJspWN3nCg6V/cP3LRD0PIE4IQUSeeqH1EMTRCj0juowHDGLaxgX/X2Apkk0RCOcW3dDic96wGBAOaGQ9ZvhzHvg77GeGuxPVxX+AHm+k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758762731; c=relaxed/simple;
-	bh=DrXL8HLxC9CP4klpaZkd6+ccqYpqaBZIzbay4Qvc77o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AKJktqFRuBCFBCnnNhQCH6RUzwUluo3U0Clyi89c5dfQtMsWqp6fIw0JJiY6eIcsJ3ClghXZSiFqRK6YfoHVk6zCJsKEcpvNY66nGHw/X8KzRtKE4xL8jNiisn/dDNrcwK1SsqNRrkid0N/03O8e/w9UMEoX0uToF6J4Xt9SQPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GW2SESp0; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P0JSVA017434
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 01:12:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=MQ6UCFt1uTELNNSw3dM2CC6N
-	2IBuWYa+2G5IROr44dA=; b=GW2SESp0Y2UoreJfxhsyh1KpoIzdgPedByV7K8GT
-	xnezcHj08w11Pvw++EUhS2lAkKRNHvhBaXOyNh0gtSPHpmFXdUbiNdE58fX1mb47
-	Yh/PyOSpG/GIE5e+R5cl6NMbrVb4uLE+HudYfzVl7yr5JMYizzXoBQNv/3aYWEZO
-	gA9kQ7N4WwNqWWv+3Gg22pXP3riAaHFFRn8bPM5YgNwgZj9sLcx1JIR5vli8E96l
-	Mk74PeRqjlNX6uselFBQYO8Yl34rz6ToNda7kBT+1eSDSi6xWCaUwo/HnPRu0fSy
-	5oT/n1jS5xxxPGJ7pQjK4LSwql4D8IylfOy6lleO0KGVRA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bhvjykfa-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 01:12:08 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b7ad72bc9fso9368711cf.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 18:12:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758762726; x=1759367526;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MQ6UCFt1uTELNNSw3dM2CC6N2IBuWYa+2G5IROr44dA=;
-        b=gzSwEOpzccPVjQggEuwK46HrDBY4zSnLk/CoPfj6u5ppv3ab6TJa1Ed1rtF2sSNPdZ
-         F9GiLkxe5d/c1AjzdrJfsdTi8oETCllpt97XpJOSOAuRtKMArOMjPSv+OumzHOe4JT1J
-         NKJWzYPn0sUqGSa9Xh0MgH7wRYUt1xJPUtXvnzV+ksxPV6wrr+/SxPimlIv7ZaaLLfdy
-         f/it80sX4FI3ddT0fQoUTFH48U2XP72UqBagAKg3Oi/4jB8ptfHexzEhIW2+lPqddoBd
-         4U+MRz8WkllOi3/RQyzYT3M1dEzvHfM9Wi5ADSDFGqRyZeLL6QvTBT64GmaVOrPL1y/v
-         M+Bw==
-X-Forwarded-Encrypted: i=1; AJvYcCU0qjjpFeu99M1Sa7OsOcyxfnztRwumcjPE7XRSfKMV99X1KhKvo8zDdt1+NpnkM31jBHfFtPLpCYKg@vger.kernel.org
-X-Gm-Message-State: AOJu0YyL4WECYeaxrxe1slNWSCA2/z0eUilNVbRGPs3e839DvKwgScyp
-	q65tpITCGSNjKgwXt/6xKVNWDIVaejNza6m3hQ2+t04D4vdZqnW2a7vqjQZguemvBxva4WKMzA8
-	BYiC5jfQsgQSYJYdZ+sjzJd9INeFqr9IIyomdi0rhBPUWwNgiwQrp15LIMDaQ/XMu
-X-Gm-Gg: ASbGnctKhTDxpCi+lrQUkUfpxqK385TUvUX/8MNMbbfkRz0ndstxoend0HNrmOnUWPP
-	S9WGIWIvM2KIXhww/9rP7eUaox4etj3ew+MR7wpKUHsxTIluvV71Zs+vvZD3uI4+VYiyaMvMySS
-	eGwiaM+e6ZFiSXg3r64aEd+I9/TDdlzSY94OFZ7MJPS3r+q1GgTXqPOtr9V6lWKgnX5ccDz0RdG
-	rsTkcZWwg7P86AybuxqiiMiHP2RQ96fw2c8QRpGHiyPWaSvL0ldvkXrH+YiD3ZxsEuCUV8X/Lbt
-	ooY+hmo8irup6yikXRtVVdER5Rda1u4tIsmloP4b4d89o3bPvzcst2sLjPyPiocwLgOVcjhvzPp
-	ITc5R9yB6VPZyt/AhtDnnG+Ud8qVrl8HnZy/+ta7iIPoML4dZIlte
-X-Received: by 2002:ac8:5f53:0:b0:4b7:7d98:d3d8 with SMTP id d75a77b69052e-4da4dcc6b08mr24709331cf.75.1758762726597;
-        Wed, 24 Sep 2025 18:12:06 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEW8TqfUiIdyjOYKHmfe38ArP3DQyQEl0zmpp3cjDaI2nOnb8fwmpNUD155WV/L9oKMabVPXQ==
-X-Received: by 2002:ac8:5f53:0:b0:4b7:7d98:d3d8 with SMTP id d75a77b69052e-4da4dcc6b08mr24709041cf.75.1758762726137;
-        Wed, 24 Sep 2025 18:12:06 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58313fc02c1sm198591e87.60.2025.09.24.18.12.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Sep 2025 18:12:05 -0700 (PDT)
-Date: Thu, 25 Sep 2025 04:12:03 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org, kishon@kernel.org,
-        vkoul@kernel.org, gregkh@linuxfoundation.org, robh@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 02/10] dt-bindings: phy: qcom,qmp-usb: Add Glymur USB
- UNI PHY compatible
-Message-ID: <5mwqf4djs2jee4x6edplwmd5ugucoi4wazrzjoiw2p5ndiv6h2@6xqnnavp2a4i>
-References: <20250925005228.4035927-1-wesley.cheng@oss.qualcomm.com>
- <20250925005228.4035927-3-wesley.cheng@oss.qualcomm.com>
+	s=arc-20240116; t=1758763095; c=relaxed/simple;
+	bh=+Rq7hiUDbbMid1ZpoqEKumtl/xgLrffLe02IvsOC8CM=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=q4u1Jz73oicR3aq1UpbTS8bYg1GVXgxcwRWqi3tPFZHgs7+OtWxXOmiOqsJDlWHyVjMHOrpdgzPjxMQiuDiHmrI2AeB9Mc/OVBYVS3NgXbrsswgcSsDbr8AUpek8JOEOLvd3GxYhRZj1+TRg29A+pUPZVrW/hMO/VKSgJFF5oTQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P5e0RFMB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DC3DC4CEE7;
+	Thu, 25 Sep 2025 01:18:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758763095;
+	bh=+Rq7hiUDbbMid1ZpoqEKumtl/xgLrffLe02IvsOC8CM=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=P5e0RFMBUDkFAF0bn9qLxqA8XVllUHPlgPJYT5cWvu/lTZEmC/wwC+3kWbFSDFO4l
+	 vjMsUV0DylmtvJiM+uPTpLKGsF7my1iaI+o43VXf1tQYHyy1Y2HfOddcR2bLKRCfVL
+	 ZiFPG51reUSpv9a561Rpx2MXnOVhAn6K8VW/HCBnAVtULdBqctRWSPhCH5hIGtoYgY
+	 sDHgnyKr5MM1opo6E1zBeXMgLbtOIGPso0TQlWgh/ghOElLxSTpONWrK2dmFjprF+y
+	 J1joLBxJ8OG1SE83hJMoAqsXQKxKskcnnQZFjiXgDMWW/nKIA8IYjeetF/m4LDCRlv
+	 ISmSkDAQdi37Q==
+Date: Wed, 24 Sep 2025 20:18:14 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250925005228.4035927-3-wesley.cheng@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: RrhqTHOdmj72hYvw0SAaiJjpxwi3mubP
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDAxMSBTYWx0ZWRfX6o7xX/erNMyd
- ga/aR+kJKJxC3E1T66GGnUpxNTa5VWKRHExhrXXdUvrvOveFlVAXcdrcpirxoHwPiLl9FWWfEsF
- uDxgs0uUR98OUf7smujirT9FCUkW6ybopNz4lUznB+cJN4rCe9xoV4gSv08ebO1cQu1rSHnHt2T
- T8MS6U9k3xdWDecdUlNOTbSf+O2pMvkWZ70k8ZOHrUxLyf2xYagF5ZKcTZeG+DP0ajBMbeSKBUM
- /kVqGGjwtXtgnrWD/yk1PCdoflrRgbVHMSHChKrIRptBQjF5MJ9vRP76g7q74WYLgVRRgTSPLGz
- 2cy+zPYDMsBa1dxeZ82feCcVEdufF0wwq2vwKco+hTxLKKSQLuEcU3gzwPDbssJa4Vla1lHbY4S
- RGTJPJDs
-X-Proofpoint-GUID: RrhqTHOdmj72hYvw0SAaiJjpxwi3mubP
-X-Authority-Analysis: v=2.4 cv=Csq/cm4D c=1 sm=1 tr=0 ts=68d496e8 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=95jUwCB-LgHD7RhpIBUA:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 adultscore=0 impostorscore=0 phishscore=0
- clxscore=1015 spamscore=0 priorityscore=1501 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509230011
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: linux-kernel@vger.kernel.org, kristo@kernel.org, krzk+dt@kernel.org, 
+ devicetree@vger.kernel.org, upstream@lists.phytec.de, conor+dt@kernel.org, 
+ aradhya.bhatia@linux.dev, vigneshr@ti.com, nm@ti.com, 
+ linux-arm-kernel@lists.infradead.org
+To: Wadim Egorov <w.egorov@phytec.de>
+In-Reply-To: <20250924143916.2023919-1-w.egorov@phytec.de>
+References: <20250924143916.2023919-1-w.egorov@phytec.de>
+Message-Id: <175876282860.3268733.8113461594217309147.robh@kernel.org>
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am62: Add support for AM625
+ OLDI IO Control
 
-On Wed, Sep 24, 2025 at 05:52:20PM -0700, Wesley Cheng wrote:
-> The Glymur USB subsystem contains a multiport controller, which utilizes
-> two QMP UNI PHYs.  Add the proper compatible string for the Glymur SoC.
+
+On Wed, 24 Sep 2025 16:39:14 +0200, Wadim Egorov wrote:
+> From: Aradhya Bhatia <a-bhatia1@ti.com>
 > 
-> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+> Add TI DSS OLDI-IO control registers for AM625 DSS. This is a region of
+> 12 32bit registers found in the TI AM625 CTRL_MMR0 register space[0].
+> They are used to control the characteristics of the OLDI DATA/CLK IO as
+> needed by the DSS display controller node.
+> 
+> [0]: https://www.ti.com/lit/pdf/spruiv7
+> 
+> Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+> Signed-off-by: Swamil Jain <s-jain1@ti.com>
+> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
 > ---
->  .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   | 35 +++++++++++++++++++
->  1 file changed, 35 insertions(+)
+>  arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> index a1b55168e050..b0ce803d2b49 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> @@ -16,6 +16,7 @@ description:
->  properties:
->    compatible:
->      enum:
-> +      - qcom,glymur-qmp-usb3-uni-phy
->        - qcom,ipq5424-qmp-usb3-phy
->        - qcom,ipq6018-qmp-usb3-phy
->        - qcom,ipq8074-qmp-usb3-phy
-> @@ -62,6 +63,8 @@ properties:
->  
->    vdda-pll-supply: true
->  
-> +  refgen-supply: true
 
-Which device is going to provide this supply?
 
-> +
->    "#clock-cells":
->      const: 0
->  
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
--- 
-With best wishes
-Dmitry
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/v6.17-rc1-58-g7c1d13a14e61 (best guess, 1/2 blobs matched)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/ti/' for 20250924143916.2023919-1-w.egorov@phytec.de:
+
+arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@0:ports: 'oneOf' conditional failed, one must be fixed:
+	'port' is a required property
+	'#address-cells' is a required property
+	'#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@0:ports: 'port@0' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@0:ports: 'port@1' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@1:ports: 'oneOf' conditional failed, one must be fixed:
+	'port' is a required property
+	'#address-cells' is a required property
+	'#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@1:ports: 'port@0' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-beagleplay.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@1:ports: 'port@1' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am62-lp-sk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@0:ports: 'oneOf' conditional failed, one must be fixed:
+	'port' is a required property
+	'#address-cells' is a required property
+	'#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am62-lp-sk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@0:ports: 'port@0' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am62-lp-sk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@0:ports: 'port@1' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am62-lp-sk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@1:ports: 'oneOf' conditional failed, one must be fixed:
+	'port' is a required property
+	'#address-cells' is a required property
+	'#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am62-lp-sk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@1:ports: 'port@0' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am62-lp-sk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@1:ports: 'port@1' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-sk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@0:ports: 'oneOf' conditional failed, one must be fixed:
+	'port' is a required property
+	'#address-cells' is a required property
+	'#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-sk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@0:ports: 'port@0' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-sk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@0:ports: 'port@1' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-sk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@1:ports: 'oneOf' conditional failed, one must be fixed:
+	'port' is a required property
+	'#address-cells' is a required property
+	'#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-sk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@1:ports: 'port@0' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-sk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@1:ports: 'port@1' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@0:ports: 'oneOf' conditional failed, one must be fixed:
+	'port' is a required property
+	'#address-cells' is a required property
+	'#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@0:ports: 'port@0' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@0:ports: 'port@1' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@1:ports: 'oneOf' conditional failed, one must be fixed:
+	'port' is a required property
+	'#address-cells' is a required property
+	'#size-cells' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@1:ports: 'port@0' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-rdk.dtb: dss@30200000 (ti,am625-dss): oldi-transmitters:oldi@1:ports: 'port@1' is a required property
+	from schema $id: http://devicetree.org/schemas/display/ti/ti,am65x-dss.yaml#
+
+
+
+
+
 
