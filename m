@@ -1,146 +1,80 @@
-Return-Path: <devicetree+bounces-221018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32503B9CCF5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 02:06:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 893D4B9CD16
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 02:07:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA923381806
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 00:06:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB9901BC5003
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 00:08:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394CE156236;
-	Thu, 25 Sep 2025 00:05:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A3592566;
+	Thu, 25 Sep 2025 00:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GgltNu3V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99FCE72639
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 00:05:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DCF515A8;
+	Thu, 25 Sep 2025 00:07:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758758733; cv=none; b=P4NvEc5UNU//27nifxBR9tpF0eUSKz87CwtKDa/zMO6VkM8sWC2jZM4BEIdiIgNPxSDLiagTm1ercONjjKKecHKEpRCp6wRDXN1MC10ikIzivxnsEXW7cu+zlrnhqHkepxjIwNvLcqGZRqxCs3JWmo9296u3hxBRRu+smoxzMrM=
+	t=1758758874; cv=none; b=MkVzUTWzde2iYKt1e84YVqqcccLUI+9i/zUCU8oEHLxfocZ2Y1lbqk8m0RLCL8eOQ+HYVdIjbZ+8yqovH/YIcYsSotCdloc42dh3Ysqm329P/WRvqSO13wdgJ7YcMhMcQfLj3q95QJDzt108cAEtTaZZJ8gs+qZ18ozG4PPBNtE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758758733; c=relaxed/simple;
-	bh=RH0QEu2d9NccLKNcuR4FBneyMos5qOb+41JpotHZc3c=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Hfiz6xb6Xley4M9AV+nuiV/6H68JbfBWyQF3Ih27hg8oZ+vXH5oQNkT5I57BsOPnfGUvrbQb5AtM7tPWIN4TuLcDxw9o1u7A6cZThUsL7FBi2Fv4Japm4vH0tPTLHjdiV7Rn+KqKnoXeaqBPXnDflhjaslW8t+/Klr5mV/6BF+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id A8ADB3F534;
-	Thu, 25 Sep 2025 00:05:21 +0000 (UTC)
-Authentication-Results: smtp-out1.suse.de;
-	none
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id BE82C1386E;
-	Thu, 25 Sep 2025 00:05:20 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id IIA9LECH1GgdNQAAD6G6ig
-	(envelope-from <svarbanov@suse.de>); Thu, 25 Sep 2025 00:05:20 +0000
-From: Stanimir Varbanov <svarbanov@suse.de>
-To: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	linux-hwmon@vger.kernel.org
-Cc: Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Saenz Julienne <nsaenz@kernel.org>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Stanimir Varbanov <svarbanov@suse.de>
-Subject: [PATCH 4/4] arm64: dts: broadcom: Enable RP1 ADC for RPi5
-Date: Thu, 25 Sep 2025 03:04:16 +0300
-Message-ID: <20250925000416.2408457-5-svarbanov@suse.de>
-X-Mailer: git-send-email 2.47.0
-In-Reply-To: <20250925000416.2408457-1-svarbanov@suse.de>
-References: <20250925000416.2408457-1-svarbanov@suse.de>
+	s=arc-20240116; t=1758758874; c=relaxed/simple;
+	bh=m6ioeAahwYn62n7FAjt3QVV1qWaVhFS/3tj0n6LSVy0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ap2lTvj8iMQXe1Q0NPwFrQ+jnjg9ENiz3WDVRnptlNAK/cym6J/GfjHnKJEWf3aew2r/cll0GhM4+kWsgs7N2kfD2CidjN7YT7frLogVafyZWfT1vhXcpoOUt5DWE9nAvBPGQJnYcGxy9oNjWOER2WD6vZ2OOM0joiA0WjO8Q20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GgltNu3V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD0AEC4CEE7;
+	Thu, 25 Sep 2025 00:07:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758758873;
+	bh=m6ioeAahwYn62n7FAjt3QVV1qWaVhFS/3tj0n6LSVy0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GgltNu3VeW9hAzcEQsPyG8v6HItnlzF7d7HiS3FHq2+DBakU2vk520GbnYKCo3xpK
+	 5CDA/pwMb8K/pevecaT4kP1i89Ok/gWBDUWwknX8OZ6jf7yol+43UakIyHOPOP9SFx
+	 wWpDtql4UgcYxVquM3yPKcPrnIxiR2q/lA8xi8+Rfwbk2JpduI28lno00FFQYWknyn
+	 BU0aVdM/c21imPEVGqjHXKlK9k0s12HjeGbG7FwQ60PP1Hq7U0RefFy/xxpTce67k1
+	 g56Xgo7eNhTZzkFCaUYQdK5MacZ/x/hGCK7qFoOtkRrX4lo1ABSzYeNLx5ztw1xnCZ
+	 OJJwMNDUWO8YA==
+Date: Thu, 25 Sep 2025 02:07:49 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Cc: Qii Wang <qii.wang@mediatek.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, ~postmarketos/upstreaming@lists.sr.ht, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2] dt-bindings: i2c: i2c-mt65xx: Document MediaTek
+ MT6878 I2C
+Message-ID: <4izbn5l6v3qiddvflzckw4xac2ckaymiun57dqbzcp7etz4v6o@icgh7egzdgqi>
+References: <20250920-mt6878-i2c-bringup-v2-1-70a951f10be9@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Pre-Result: action=no action;
-	module=replies;
-	Message is reply to one we originated
-X-Rspamd-Action: no action
-X-Spam-Flag: NO
-X-Spam-Level: 
-X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
-X-Spamd-Result: default: False [-4.00 / 50.00];
-	REPLY(-4.00)[];
-	TAGGED_RCPT(0.00)[dt]
-X-Rspamd-Queue-Id: A8ADB3F534
-X-Rspamd-Pre-Result: action=no action;
-	module=replies;
-	Message is reply to one we originated
-X-Spam-Score: -4.00
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250920-mt6878-i2c-bringup-v2-1-70a951f10be9@mentallysanemainliners.org>
 
-Enable RP1 ADC for Raspberry Pi 5.
+Hi Igor,
 
-Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
----
- arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts | 8 ++++++++
- arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts         | 5 +++++
- 2 files changed, 13 insertions(+)
+On Sat, Sep 20, 2025 at 07:22:52PM +0200, Igor Belwon wrote:
+> Document the I2C controllers found in the MediaTek MT6878 SoC, by adding
+> a new compatible string for the controllers. Their design is compatible
+> with the design from the MediaTek MT8188 SoC.
+> 
+> Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-index 6ea3c102e0d6..7943ec3fd6ea 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b-ovl-rp1.dts
-@@ -51,6 +51,14 @@ sd_vcc_reg: sd-vcc-reg {
- 		enable-active-high;
- 		gpios = <&gio_aon 4 GPIO_ACTIVE_HIGH>;
- 	};
-+
-+	rp1_vdd_3v3: rp1_vdd_3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd-3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-always-on;
-+	};
- };
- 
- /* The Debug UART, on Rpi5 it's on JST-SH 1.0mm 3-pin connector
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-index c70d1cb7f3b6..cb75792b659a 100644
---- a/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-+++ b/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dts
-@@ -24,6 +24,11 @@ &pcie2 {
- 	status = "okay";
- };
- 
-+&rp1_adc {
-+	vref-supply = <&rp1_vdd_3v3>;
-+	status = "okay";
-+};
-+
- &rp1_eth {
- 	status = "okay";
- 	phy-mode = "rgmii-id";
--- 
-2.47.0
+merged to i2c/i2c-host.
 
+Thanks,
+Andi
 
