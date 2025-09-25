@@ -1,166 +1,111 @@
-Return-Path: <devicetree+bounces-221539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89D53BA0B71
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 18:58:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5DC5BA0BDD
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 19:06:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D31A27A8527
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 16:56:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7BBA1893F9D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 17:07:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F82F30648B;
-	Thu, 25 Sep 2025 16:58:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C93FE3081A9;
+	Thu, 25 Sep 2025 17:06:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="U7aAdhsn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rLEgG49U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542314C81
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 16:58:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99F7519F40B;
+	Thu, 25 Sep 2025 17:06:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758819507; cv=none; b=Ive+L83m7GcvDhDpuzV8Gs3T9nNCWs4YF5oW9uT/1ojlPEnvG8H2p1q4cV3Ed0wp1JmiPY1O9QLzj7idRRMRIP38DY2H+VGXrbamNWG/h0CJ8XZJT5sKE3lpVQMO52ukK7RQgUtrou7AKc2xEeJA7ttaYagGdfRrpBL4aE/zZik=
+	t=1758820003; cv=none; b=M2ITgFB5guHEFX9WoAV560Lf7LU8eUXBYhDd6AobbQ+UigWbtK73OwCTr960kJuDGVrjnbf4q1+WlmlIjG4HycAxRfWfvV0iMl5LPlqfOKjHb+kZiEL1oKUadqazoJJdvpaT6kzJsJNPedXn3vd52v5vAGgXuvNUUqnOJWR5w+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758819507; c=relaxed/simple;
-	bh=+yHaFHvXClIDnXnv3QL0b/flkdlelcna8Kjpvqu6Iwg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LUd5Ag+SGo0ABNQ9DmYa3YZfYrYY9XpCIB9hWfnhEZi6ckLTA04hdO+WaeWLh9Tenaij7gNdO6/pS3Vep5+8ZxtuAQWMT36r/Oq7x06k+L0imOO7kcDxCStvN21dzSj9EQczbk1d2Axk0cMmp9XXF+k8CyRMmTH/nB+r+23i6fI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=U7aAdhsn; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1758819500;
- bh=dO7rc3cmOaRYh8vW051GrFKq6chUM5fRR/SwUUFClf4=;
- b=U7aAdhsn/xeYG8Yk5Lj3BYUgR7p1Sx/688hAhRU6WXr9GzbW4vzYZIxM9GWQAbhGwSq4gaw/d
- ChNfJrQ2F8wmXovqY+9zYcdWpEzdKWsPqEPsOSWDXiuexIZyK6xiKPv9Yg52P3YStLZ6o+WGYSH
- 9c5LocqPfPaZ830Ah6QlawpQFFLVnGshsrm5gZ+XKPoxylHDtH6dwh5z3u174cPwbAyUJUa/xAw
- CG/xCAvAZlsFeVUltoxAd30t+YupF0Hl1ces8VKbnAxASywUWtMr2Sxyn94LX1bgE28sbFZ1sPB
- Mjk6HjkQANSfqk3jUwmwbRF/dO2fRZIW60YFWAfAQA/w==
-X-Forward-Email-ID: 68d574a2af9b5343f17d00e7
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.2.14
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <da752790-da17-4d26-b9b2-8240b38b3276@kwiboo.se>
-Date: Thu, 25 Sep 2025 18:58:06 +0200
+	s=arc-20240116; t=1758820003; c=relaxed/simple;
+	bh=FQnMJ4nzbSCJNz2iuEs2EI/NSyonioY+gldaU1Xzzho=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K5DjoDqxGuAFFSUNjWb+8Jv/F4rpj/GMPJx1lRqpiHvQZqQM3+F2j+mdU+YyI/HAc85Tnnc4Bvl2FlCyg7tieEdEfduJQGy/99/KCSMQUy4MTOncSefef2SpUAK7dbCpPFLv1W2uqT7EJobLFfQHf/bPbBWE/7p0y2Pxxz7lvms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rLEgG49U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73A18C4CEF5;
+	Thu, 25 Sep 2025 17:06:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758820003;
+	bh=FQnMJ4nzbSCJNz2iuEs2EI/NSyonioY+gldaU1Xzzho=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rLEgG49UFRdBGutH8VK+dJVxK/A35OeQF1z2hCe64FKkzzkGXMphnQDehqXCOz+Cz
+	 BhIFmYQnoNh27AdNzF8epRVr3UO0NwfSF1RDfck9PeJGgulI5sEX6K+veyf03lbql8
+	 GQpAW5LhukYoHB0rp/Frog5hZ+6WXNVzI7tC8HG7se2BoHdOHnfV8Ap8cYLauhGL2q
+	 6qrJRRUP1y30e3EqiKmgdcnn9pGGxLWbDJgOLQgOS4LSCyxEtbmMaV5cpD1WuEwHQg
+	 PHD8Sn+3flmlttsZb1Dq8EcliQ0KC1ABTm6H3HfCPqrz/rjRsknmeQx4nNaM2KtpRh
+	 sTMvyKXQ/+RNA==
+Date: Thu, 25 Sep 2025 12:06:40 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+Subject: Re: [PATCH 06/24] arm64: dts: qcom: glymur: Enable pdp0 mailbox
+Message-ID: <bugtpjwk77lcpa4jjox62ulmy56nf6yykzpr2ryifqqpeig6gp@45lzpngcpo2z>
+References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
+ <20250925-v3_glymur_introduction-v1-6-24b601bbecc0@oss.qualcomm.com>
+ <CAJKOXPc8NYrwSLbaFZ_tRVpgkYPUYhaMde77p1VBhqm9PLsGjA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] arm64: dts: rockchip: Fix the 1Ghz ethernet on Qnap
- TS433
-To: Heiko Stuebner <heiko@sntech.de>, Andrew Lunn <andrew@lunn.ch>
-Cc: "robh@kernel.org" <robh@kernel.org>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "ukleinek@debian.org" <ukleinek@debian.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-rockchip@lists.infradead.org" <linux-rockchip@lists.infradead.org>
-References: <20250925092923.2184187-1-heiko@sntech.de>
- <20250925092923.2184187-3-heiko@sntech.de>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250925092923.2184187-3-heiko@sntech.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAJKOXPc8NYrwSLbaFZ_tRVpgkYPUYhaMde77p1VBhqm9PLsGjA@mail.gmail.com>
 
-Hi Heiko,
-
-On 9/25/2025 11:29 AM, Heiko Stuebner wrote:
-> While I want to remember that the dwmac on the TS433 was working at some
-> point, it seems I had my network always connected to the 2.5G nic after
-> that "point". And testing now revealed that the gmac does not actually
-> manages to transfer data.
+On Thu, Sep 25, 2025 at 05:23:07PM +0900, Krzysztof Kozlowski wrote:
+> On Thu, 25 Sept 2025 at 15:33, Pankaj Patil
+> <pankaj.patil@oss.qualcomm.com> wrote:
+> >
+> > From: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> >
+> > Enable pdp0 mailbox node on Glymur SoCs.
+> >
+> > Signed-off-by: Sibi Sankar <sibi.sankar@oss.qualcomm.com>
+> > Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/glymur.dtsi | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
+> > index 66a548400c720474cde8a8b82ee686be507a795f..ae013c64e096b7c90c0aa4cfc50f078a85518acb 100644
+> > --- a/arch/arm64/boot/dts/qcom/glymur.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
+> > @@ -4065,6 +4065,14 @@ watchdog@17600000 {
+> >                         interrupts = <GIC_SPI 0 IRQ_TYPE_EDGE_RISING>;
+> >                 };
+> >
+> > +               pdp0_mbox: mailbox@17610000 {
+> > +                       compatible = "qcom,glymur-cpucp-mbox", "qcom,x1e80100-cpucp-mbox";
+> > +                       reg = <0 0x17610000 0 0x8000>, <0 0x19980000 0 0x8000>;
+> > +                       interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> > +                       #mbox-cells = <1>;
+> > +                       qcom,rx-chans = <0x7>;
+> > +               };
 > 
-> Currently the gmac is set to rgmii-id with no rx-/tx-delay values set
-> which makes the driver use default values. Setting the delays to 0
-> also does not provide a working interface.
+> Again one node per patch. this is really pointless, please read
+> submitting patches before posting.
 > 
-> The vendor kernel is running with phy-mode set to rgmii and delays of
->     tx_delay = 0x3c, rx_delay = 0x2f
-> 
-> As Andrew points out often, those delay values "are magic" and rgmii-id
-> should definitly be used "with small values" for delays, if really needed.
-> 
-> The Rockchip vendor-kernel actually contains additional code in the dwmac
-> driver to use the loopback function of a phy to find a window of usable
-> delay values. Code can be found for example on [0] and the process is
-> described in a document called "Rockchip GMAC RGMII Delayline Guide"
-> which has made its way onto the internet in a lot of places [1].
-> 
-> So I used this process, with the interface set to rgmii-id to get values
-> for this mode, which are in face lower than the ones for rgmii with
->     tx_delay = 0x21, rx_delay = 0x15
-> and results in a working interface on the dwmac.
-> 
-> [0] https://github.com/armbian/linux-rockchip/blob/rk-6.1-rkr6.1/drivers/net/ethernet/stmicro/stmmac/dwmac-rk-tool.c
-> [1] https://gitlab.com/firefly-linux/docs/-/blob/rk356x/firefly/Common/GMAC/Rockchip_Developer_Guide_Linux_GMAC_RGMII_Delayline_EN.pdf
-> 
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-> index 5656554ca284..e8af92a011d6 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-> @@ -257,6 +257,8 @@ &gmac0_tx_bus2
->  		     &gmac0_rx_bus2
->  		     &gmac0_rgmii_clk
->  		     &gmac0_rgmii_bus>;
-> +	rx_delay = <0x15>;
-> +	tx_delay = <0x21>;
 
-I do not understand why defining rx/tx_delay would change anything.
+In this series I certainly agree with you.
 
-Setting these should currently not have any effect on the driver code
-when phy-mode=rgmii-id is used, see below (next-20250924, dwmac-rk.c):
-
-
-	switch (bsp_priv->phy_iface) {
-	case PHY_INTERFACE_MODE_RGMII:
-		dev_info(dev, "init for RGMII\n");
-		bsp_priv->ops->set_to_rgmii(bsp_priv, bsp_priv->tx_delay,
-					    bsp_priv->rx_delay);
-		break;
-	case PHY_INTERFACE_MODE_RGMII_ID:
-		dev_info(dev, "init for RGMII_ID\n");
-		bsp_priv->ops->set_to_rgmii(bsp_priv, 0, 0);
-		break;
-
-
-I have played around with a few patches that changes this and apply the
-rx/tx_delay for rgmii-id modes (both Linux and U-Boot), see top of [2]
-for Linux patches. Will try to get them on ML in a few days.
-
-Currently, rk3588-firefly-itx-3588j.dts is the only RK board that define
-rx/tx_delay and use rgmii-id mode, would be good to not define any more
-rgmii-id + rx/tx_delay combo to reduce impact of a possible future
-driver change.
-
-[2] https://github.com/Kwiboo/linux-rockchip/commits/next-20250924-rk3528/
+This is most definitely part of the next patch, which is core support
+that should have been part of the introduction of the CPU nodes in the
+initial patch.
 
 Regards,
-Jonas
+Bjorn
 
->  	status = "okay";
->  };
->  
-
+> New Soc is one logical change. One.
 
