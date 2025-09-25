@@ -1,169 +1,178 @@
-Return-Path: <devicetree+bounces-221322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D3FB9E7D6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 11:48:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8C72B9E875
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:01:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A12583A5ABB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:48:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A4B31BC158C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 10:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6139259C92;
-	Thu, 25 Sep 2025 09:48:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86AAF2EA49D;
+	Thu, 25 Sep 2025 10:00:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="m7eaxLLd"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="gcovHR58"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11023087.outbound.protection.outlook.com [52.101.72.87])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48BFB21A92F
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:48:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758793722; cv=none; b=a+OBF5MhlHPN1tR2eVLnPVCKDae05HAXIEUVzYH8Rfkx+yIxOhoOQB3h6izQL+Ak4LadwMTLLzHSJsFdmAktGLJZNmrJW82hV3Mb3ikDm3U7zY08XcqlLu5rEbCYv9HmfbpqejqtoM2WI3/h3QySCBJlDA+yNSOgDGT2vWaT50c=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758793722; c=relaxed/simple;
-	bh=fwqz9ukGkSB7nQ6RVe6CRYI/1cDROkzR8BkzCK6xgws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tfEYBBxmXsEyQoE5D33ux70ZL1ZSuHLyAYsaMXhOFniVGG7JrVnIsPKfxjd6MC+j9tIyipTwLJpQ5DcRiA8xhmtsm+pvhsJhl+GXAy3/xNDH2nw7W8ejHq55c516+H9mM6kPD8Cj6UWbMB4bUrYwKtsekKTmbvT99PZme6+DA6M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=m7eaxLLd; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P0lAsX020897
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:48:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	GR4aDHZmhZBwmaG12GtJDL8oCuro3wUhp6sGrSaguaI=; b=m7eaxLLdH1g46xFg
-	urwnknI2nzrjPOU3i6E8gVZkG0nasuC09LhubfNqUUJ+mHaEkX//gcFJyHIbI1Mk
-	mZy80NDu/Z8HDb38x9bmmdZKjtna8AzNFr/ZYb/pz5YwwcpPKmZzqIPlxU+LjOM2
-	HLb5Jragn4FDyQ9FloYcEDFG8UZAwVmc1RWn+vHKG00aALvpIC78bifXOtJIc4TV
-	K87KAtgPp3x2pB//y++UN2XJ6N3gjc/jmU/QiU/rqoUbdSlu3OVOddTuFWY7klgl
-	fjArjnHzq70UCbqqtnJquEE2+VZUPiSsBg0q/QVMCDASLH5YTAyM/7v/8s97EqGH
-	uSqxMw==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bjpe0v16-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 09:48:40 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-80de0415155so535826d6.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 02:48:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758793719; x=1759398519;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GR4aDHZmhZBwmaG12GtJDL8oCuro3wUhp6sGrSaguaI=;
-        b=ppywDRYkeTN/eJeo7BXwe1IH8BNCt9lX47z7pAseFW1YhjZHN6eX4CndDQIm1W5AyU
-         Yx2ujewunXzxGbnpne8UfLbmzRuoKIns6kmWDLf+Ckvp1HLHG9xcsT5qPzN/94cneFgE
-         BO5MgO3VrEZT/La1AR7ohQ+HN053dFNKT/n00lscprr5Cn0nLF/80YeBC3Ky/n/xl7uK
-         YSXs1jvDD6jitMjK5bkttxElj3WxAsz0J/bqz8hDXbwxspwCzSxBWcCAQ0Ktm0RZ4WYs
-         mL50lkAacqBESJvRcedcxVXe9z5KDRF6S04cLPBS95yWaItFSrBPfvolxC3HQjUBRP7r
-         Z1NQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXCli1cB6Gvka5yyaWaL0v7NjsQ9R2CRG0jsWppBVVxvyyXfkcqxExE/0S846+0jHvroTPFIKFlIJpJ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyrlyfow+qr9rxGATOrC0ClZD5glWygLNS4UrRTBqwgTj9+hFSh
-	mEnOCwfGblQjPOhAwr5aUILkzYb3yOrlb8rHLbCB31nm8hOk0FczQg3cx6zU6jGlHblIXklnw+X
-	Dd+U9fc9KNWY9uiUDFPITp3Eo1j8UxCPSbX97BJlNUOwmZL+K1lvw343JI62aM/Ph
-X-Gm-Gg: ASbGncsRcyCECxCy0nZ2wYPeQZpznT0O/PN9Urqey2HI29DzXM7SWLcJljOo3iBJFNg
-	Nggwalmv1t9MrvOE4+L14offLWRPPvSVShYzxf6+ZIu2UNoMCP7AnQq6YIQJ6eyqWqd0Haf60/G
-	kFlnoAbgUP9tE1ytgkPF208GfVwaUhAh6p3iWBTI+7JOtvhypEny+9ehnb41El3P4Ch3aWGYcT8
-	PTZBy59AOkY5Xcz2gqHxNAbSesEaptuW4B8666dycXX4p1S8uo2mylBkrVXy8pQA1n6HsiQ06fE
-	Jaxr3UHdOCaKy3GSv67OEMFn0HNgDTKbEsOBolssoNV1vX5zzzr1I4Sj2biRqLBKqTzbaBSy7By
-	Z1XeEsSlADZVP+d5vXpyI/Q==
-X-Received: by 2002:a05:6214:f2a:b0:70d:e7e1:840f with SMTP id 6a1803df08f44-7fc39460be1mr21832746d6.3.1758793719119;
-        Thu, 25 Sep 2025 02:48:39 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IENwkiAkwLrvqAp2PIFN0hMMx4wQy6rf7aMEP/NqMglaCPy/Vd/ggqXiqJ+HQHH8XZj9B8+Yg==
-X-Received: by 2002:a05:6214:f2a:b0:70d:e7e1:840f with SMTP id 6a1803df08f44-7fc39460be1mr21832636d6.3.1758793718628;
-        Thu, 25 Sep 2025 02:48:38 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-634a3af5483sm910511a12.42.2025.09.25.02.48.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Sep 2025 02:48:38 -0700 (PDT)
-Message-ID: <26467336-3322-40fc-8dcb-efc06934162e@oss.qualcomm.com>
-Date: Thu, 25 Sep 2025 11:48:36 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61F8E2E974D;
+	Thu, 25 Sep 2025 10:00:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.87
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758794456; cv=fail; b=k0a39ZZTaElUUhL01agI4nAYlk5sZF+HUwLjUo8QaLsyY0UuTRoVPDAdXb7/hc4rDWafT2s95YnlOKy+UFKNXK+M38OG5pT74TWf3KJOjebqRtQ0wmHQ+bleiwsfyMmsqDS9Y4CDD+v2uAKOlwVM26lYllVCgZzHAnlFVLx0Zrk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758794456; c=relaxed/simple;
+	bh=WIAMvQJ8oqDm3rnZSDC2rC0gJU1lUokwi3XTav1oqPc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=puPVVu73YvACHyem3iMZmAVzOFmwugZk+bhcfiO0Sls3yMN8SJckm+JWiZAZKxJ3aMulHj+R/RZDL8Ao/3IlLb8973j/azp/qRQKJwhIsNXAEFPN92NHLLNterbF3z9pNSzCPEhHzZJsSs2OeIPu2HnqX39O2L6eOxMEY//QnPg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=gcovHR58; arc=fail smtp.client-ip=52.101.72.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=uTf5q+Ej8kwkXXg9W/SiOIRSStuHtvuhjrpoEoIW/GVl2uOW8irIXWKkPjkgynmWOvUe8X1zWU4zA5RCl7ov3RdP0ilAKmzjooKSvUKMsbthpOgQk7qVQ/Zq2OtWF2fNlONuzST/UNMeEXPjAKOoCbU1mSb7VxWxk0TE/WGqSNrDl76UgzLL4MSDgHyVV15l2EbEHeXkpe/R0tgOtKabP6znaInfblqLicyJHcPNNPqybcI7YE0BCoODa0FqVtDZNZn8KRFnFVf0STwP4U2s3B4Q/WzzcamRVOwqvE6UtONSoABjrhp95Lyj74kdGUha4Xl+hBvCsxgHWYlUC17K0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=o9+5bOwh2yKW9DEC6vO21D4JgyN05uIUR4AeRU+G0wI=;
+ b=Q+4rGETclD/WV8kh8oLUZDe8MWEDTxzIgjDs2qFD1+kp/we8vkkUrGKxzZNhSy1fP0BQlq0SSiIrWcGJmpOZ3P8AQFU+gxHYOutNoq2IRddK4jXKK13dXiD7KnL1dcrlOuooY/aWGjpHWTZ51ULL2xZvesBV8ljr/Df7ownxB5R8mKQaRqhsOIIr0kNJU1llo69RJV+5KUWK3Tt1YGbAmI6yiKdKVgpQw4IOMJuWLGu6+c5/yvNvE93oIo46d+Pw//rmNRkiVhUE1FI1qluMN1iEMJ0P4+5++cX5VQ0duc6HSdZcC+NqvpiWILfPkK7VOEPgo3LkfxY8xCCBOIFazg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 91.26.50.189) smtp.rcpttodomain=ti.com smtp.mailfrom=phytec.de; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine header.from=phytec.de;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o9+5bOwh2yKW9DEC6vO21D4JgyN05uIUR4AeRU+G0wI=;
+ b=gcovHR58f1x3AGs37uW0sdxJmNWWX/xXmGMMwkCWSDSZFaqTdnWm5jUKOHPSagsfMKhaied1tAVk/bY1J6Jq2lZzLWgTx9ttzSU7Xa2pbu5fItSmOVGxkDxbrDSgykwbXhS6oHeQ4oWD90oIAYjSo7je6ZliMPtsckpoqj4RXBWmgRqiopHmZRo6iBtsUUZ2o91xtGGI3c4M54znkKAF8s6TkZU3ZitScW2/kwEH6f544pYbxeYHGEdxT4cLTlC/2CLDN5PA+IWNj/WK6IZjtFWtI845n+5xneM5avURiKv6/XYGSqxzjE792o1qrxH2noh1xlWXfdSxP+wVzCVAJw==
+Received: from AM0PR01CA0155.eurprd01.prod.exchangelabs.com
+ (2603:10a6:208:aa::24) by VI0P195MB2739.EURP195.PROD.OUTLOOK.COM
+ (2603:10a6:800:2c4::5) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9137.19; Thu, 25 Sep
+ 2025 10:00:46 +0000
+Received: from AMS0EPF000001B3.eurprd05.prod.outlook.com
+ (2603:10a6:208:aa:cafe::4b) by AM0PR01CA0155.outlook.office365.com
+ (2603:10a6:208:aa::24) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9137.22 via Frontend Transport; Thu,
+ 25 Sep 2025 10:00:49 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
+ smtp.mailfrom=phytec.de; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ phytec.de discourages use of 91.26.50.189 as permitted sender)
+Received: from Postix.phytec.de (91.26.50.189) by
+ AMS0EPF000001B3.mail.protection.outlook.com (10.167.16.167) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9160.9 via Frontend Transport; Thu, 25 Sep 2025 10:00:45 +0000
+Received: from phytec.de (172.25.0.51) by Postix.phytec.de (172.25.0.11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Thu, 25 Sep
+ 2025 12:00:45 +0200
+From: Wadim Egorov <w.egorov@phytec.de>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <aradhya.bhatia@linux.dev>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
+Subject: [PATCH v2 1/3] arm64: dts: ti: k3-am62: Add support for AM625 OLDI IO Control
+Date: Thu, 25 Sep 2025 12:00:36 +0200
+Message-ID: <20250925100038.3008298-1-w.egorov@phytec.de>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 14/20] arm64: dts: qcom: kaanapali-mtp: Enable more
- features
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
- <20250924-knp-dts-v1-14-3fdbc4b9e1b1@oss.qualcomm.com>
- <ejcchgc3isc5f6tmiqbxqihmk5efmbcyhv3ehuoerb5ulkd5an@g7a2wc422l6n>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <ejcchgc3isc5f6tmiqbxqihmk5efmbcyhv3ehuoerb5ulkd5an@g7a2wc422l6n>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: COC8ENDSIPME4i8HgHn03YSNdMUatxaO
-X-Authority-Analysis: v=2.4 cv=Pc//hjhd c=1 sm=1 tr=0 ts=68d50ff8 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=8xtE-M9Tj1n2mnedfNEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=5XHQ0vS7sDUA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-GUID: COC8ENDSIPME4i8HgHn03YSNdMUatxaO
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDAyMCBTYWx0ZWRfX7jsFOfxs5KVD
- lgu+HUaOpzbK417CdrmX+JsFToAiTLD3ZMs9kk62pHmNkKnf4bLoxqs42u1HHgJzkySd8BIZ0Jh
- IMqgw0HjqRF5jd5C9vRODwQN8kJ42kGukkjUL5czJfmJHM3ohQZIqsVAdm0Mf8fqSkjNPFeTV5l
- 2hj4pLeI0VzKV5xOvP3NRT90CKUYPH3US5BeQng/HKTi0WSAvM4rutxF16NbbNYXVOaVifiIZ5x
- ABiXIHDEJtknOUQ5BIffRbASoWw2k7ati+ZQaG8Gl7tkWLOM6Mr4Dflq4lBACYRtA9oWPZAR2nV
- Ua8JfadDpdCLTzh+LDE3YCQ+I/hGTHkFpACrykLbwvC4Bhyf9EWvrhV3kkqV7e26KcMJWdzoFRX
- M/lsFjwd
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 bulkscore=0 malwarescore=0 impostorscore=0
- spamscore=0 suspectscore=0 clxscore=1015 adultscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509230020
+Content-Type: text/plain
+X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
+ (172.25.0.11)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS0EPF000001B3:EE_|VI0P195MB2739:EE_
+X-MS-Office365-Filtering-Correlation-Id: 1cce071b-0fc8-405e-60f1-08ddfc1a655a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|1800799024|82310400026|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?9DTwhTDD6LuM+9ZG2YwwBMDtuPx/mcEhij/XgZp6+7JzKY2cue78a7ERxU9a?=
+ =?us-ascii?Q?wmlbDgTD7ngRGg2D3d93YZMaq6cuJVkGF5D7GGc1Hc8jG52mRNUXvlkGnU15?=
+ =?us-ascii?Q?BZrUcvIaCIrk4WpmekIChH+Frc9cyEIblmPnFzsH4o+G/UWxBEXF/NSD3zjk?=
+ =?us-ascii?Q?RMce1NIZoRBofPUG+cL/maQXPXGpHTUpkEusR4a5Ir3j3ppZubXffBfa/iof?=
+ =?us-ascii?Q?KRknhsemN+j+U2J3icknApUu2zoL7ExWQoZ3gE5xi9NwSUbz3+jVYblv67KX?=
+ =?us-ascii?Q?9b9f1USI2flr3z+OX56yiHE9Usqk0KeWgpWRo9SDNlHMZnRhHJlNFHefPFCK?=
+ =?us-ascii?Q?JkkXZakinrhCvu1F9yPnwme3vD3dtNYZOB+du4mXZYifD0fnBoErOLnd/Xq+?=
+ =?us-ascii?Q?3A+U0djZM8LR4MTNR2VQyn54K284VIj0yv6Bl9SpSS0X/ExnffJ/kbLhfimC?=
+ =?us-ascii?Q?jbAs4Y1P7SunDaRtPCtEaXJ2rBXT7+dE3cEOr/Qhq6ecVq+vUtUtSBjqaI1H?=
+ =?us-ascii?Q?D8JJFzhcTZrdt6vGYwbo6mJcGFcnm08rpJDXeaQFCwjKOrHdKlClo/Y0mfHp?=
+ =?us-ascii?Q?A/dBSWhR5tqHUXBsn9OVF2E0yQbMUhGR7X1hP5cmMIaFbXgxATw/U470gLKy?=
+ =?us-ascii?Q?nS1NEtiOUB1Z+jkQqYirijiXkHQ7msZva2XyypDCxun17XYsZWv9B5W3LeJx?=
+ =?us-ascii?Q?aVa2cpFYJeTKSswrQJcdgUAjCZ7jaN1aN1JfCbvUFSZLw8KCMuFGy5TATNDs?=
+ =?us-ascii?Q?nTT0KBz5XT/AdiG0h/SUGG6uWAuOGZVBRo4gBg7oqp4J1T3KeVUmsLJBuq/Z?=
+ =?us-ascii?Q?ql3hWtjrqlP+dms/tuiOo+M1An3Jetdb3UhwRmhVJ8tl5odO3/sIGT+S54pU?=
+ =?us-ascii?Q?u3Tbqibkn07Y7F8YPe7hYZ93eWAO9j9BJiEC0lVBerHg3N6kyEmOJ3K8wJSy?=
+ =?us-ascii?Q?yqVtJn6gSQieZsw1CF31ZWAmluMQP/2PtaHWifDTQbTpNS/jGYekzaSGZ+ip?=
+ =?us-ascii?Q?akyLZczYDj9N3TICrlKXUQESydbLkoipf7DE9qZNqPI2GD/RMhRjmf4mc4OS?=
+ =?us-ascii?Q?LcpG1mvBZA+WMNjtFnML+jH6DMGGL2bCBKeAT6uZ/s9iqu9g9lPDhCD/Tjoy?=
+ =?us-ascii?Q?nnFIpC2ON/QxQXbqdA7lid4UJbx0hQ3Jfng00CD5HVJDEb08VRBtUKgAdDj1?=
+ =?us-ascii?Q?8BP+w+FQLyGAikVGla+dBkxyw7zlaZ5Z46uUwSkdhnvqR53cs+sGweC9s2nq?=
+ =?us-ascii?Q?dPOkYJJ1IB5DmAqKXdL7lymrF2mBKr4a+YVkUXmv7EkFh1gQPLoxzkN5j4ef?=
+ =?us-ascii?Q?Y40HAJv3gHywfWF2X71aLRShroshmGEubq4MKQLJ5jfZKCl2JmMFXWdQtP2N?=
+ =?us-ascii?Q?azQAF4sLge83EyV8okZz9d6NmuFKxe9ZG872RDcx0U1YPqAMIvSAhh/bJOrB?=
+ =?us-ascii?Q?rAJd+zTnC2vXhqGgltVSdEA3KfL53HkBM8jwp/YN3EyFE/gxrX10/lKgOBxo?=
+ =?us-ascii?Q?AiNb94LlsHN3Q2YXimpBW7xZ8GmXPYz4nUbRxorFb2lXMfZQoL0m228xIo6y?=
+ =?us-ascii?Q?wGJW7Zgv+fChR31gCe0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(82310400026)(36860700013);DIR:OUT;SFP:1102;
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Sep 2025 10:00:45.5819
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1cce071b-0fc8-405e-60f1-08ddfc1a655a
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF000001B3.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0P195MB2739
 
-On 9/25/25 4:09 AM, Dmitry Baryshkov wrote:
-> On Wed, Sep 24, 2025 at 05:17:31PM -0700, Jingyi Wang wrote:
->> Enable more features on Kaanapali MTP boards including PMIC peripherals,
->> bus, SDHCI, remoteprocs, USB, PCIE, WLAN and Bluetooth.
->>
->> Written with help from Jyothi Kumar Seerapu(added bus), Ronak Raheja
->> (added USB), Manish Pandey(added SDHCI), Jishnu Prakash(added PMIC),
->> Qiang Yu(added PCIE), Yijie Yang(Added WLAN) and Zijun Hu(Added Bluetooth).
->>
->> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
->> ---
+From: Aradhya Bhatia <a-bhatia1@ti.com>
 
-[...]
+Add TI DSS OLDI-IO control registers for AM625 DSS. This is a region of
+12 32bit registers found in the TI AM625 CTRL_MMR0 register space[0].
+They are used to control the characteristics of the OLDI DATA/CLK IO as
+needed by the DSS display controller node.
 
+[0]: https://www.ti.com/lit/pdf/spruiv7
 
->> +&tlmm {
->> +	wlan_en: wlan-en-state {
->> +		pins = "gpio16";
->> +		function = "gpio";
->> +		drive-strength = <8>;
->> +		bias-pull-down;
->> +	};
-> 
-> Why are the TLMM pin entries sorted?
+Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
+Signed-off-by: Swamil Jain <s-jain1@ti.com>
+Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+---
+v2: No changes
+---
+ arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-nodes
+diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+index 120ba8f9dd0e..ffa485545a5f 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+@@ -76,6 +76,11 @@ audio_refclk1: clock-controller@82e4 {
+ 			assigned-clock-parents = <&k3_clks 157 18>;
+ 			#clock-cells = <0>;
+ 		};
++
++		dss_oldi_io_ctrl: oldi-io-controller@8600 {
++			compatible = "ti,am625-dss-oldi-io-ctrl", "syscon";
++			reg = <0x8600 0x200>;
++		};
+ 	};
+ 
+ 	dmss: bus@48000000 {
+-- 
+2.48.1
 
-"""
-For a few node types, they can be ordered by the main property, e.g.
-pin configuration states ordered by value of “pins” property.
-"""
-
-Konrad
 
