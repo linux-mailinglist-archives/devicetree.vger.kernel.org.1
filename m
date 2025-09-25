@@ -1,89 +1,89 @@
-Return-Path: <devicetree+bounces-221032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0101B9CDB7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 02:20:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0878B9CDC2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 02:20:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B825189FB88
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 00:20:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F4B33BE3B1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 00:20:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CE2521C179;
-	Thu, 25 Sep 2025 00:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFBEC221FD0;
+	Thu, 25 Sep 2025 00:17:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WVSj2J6L"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AA/bNMbV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5592C1FCFEF
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 00:17:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27E74189902
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 00:17:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758759469; cv=none; b=jFpwDeiC3uDsS8Mhsy3vlynRVy1xbCexm8goZNlP2hnSf4ZrHQVGE9S3F0vOYnta8BimI6CuEDtri9Mso4jPHm9K+iYFtTPwAuVgMERypid9sYK8AIxUA7PVleQAmXk54DNZO7prl6fl3vkU8NHb5+thzfOxCNea2wtxmhSKc20=
+	t=1758759471; cv=none; b=IIPqxZCrUOaJG6YKYc2NYKVUmOq+yL2L6h6ii6GB6ghO6jyKFhTE0IBzVnFP5p/GCoaiR+ShKyFyGJmMZVAQxNv+7VOVx4ksInatT5DtWyhNLjqdYZSkm4K0/z/c7rYyqaGzGrul4lhiUQigC/vy47UmKfstq8jCYt7ChFu36Lo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758759469; c=relaxed/simple;
-	bh=RD4L+S1NMvsr2LfxdUqTQYG0kxas+l7a1F4onzI6p3g=;
+	s=arc-20240116; t=1758759471; c=relaxed/simple;
+	bh=YU5yDw+JIALsjjwdu3kC1wrFvlw2yRuXzlWjlAyD7og=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=L2dv3Nxx0pBqZ8tDkIGFTajeULoyAtxOfm/3at4AtTa/1WZCls9vx/uLnwHVyquyLNk5PbIIid+9d9OshcUOVvh8pke16/A7Z2+8JMiNsVgzW2Fm0cl4zK0/PZKHPyQPq1kdaYW8b2Z+ZLOp8t9F1wQSndElqu+xFhbzs5Cl45Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WVSj2J6L; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=igqvRHKgvI2/tnW9hL5QIVX+mrIu5NeyhbYLSqJTXwKnbqpz4aYukXHmsDzaGtAMzFbugNwXYINB9A9gbxoIkCaman0NxPaXejkOpbcDtivUqxLq4C2rBHoKD3vIlUu3UrBsLPNZmgP5yXnOxEdMXpgz115lGRNOKQ4pWXj6jGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AA/bNMbV; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58ONwfM3018449
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 00:17:46 GMT
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58ODfFre024045
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 00:17:48 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YJqY/YOSHWryJJD2gbToR7Hr7pe3t+h/VgArJwBLTWc=; b=WVSj2J6Lw/P9DrdD
-	gITlxZq59GspSpnDm3DJ6lP0O4rbcrWcr2HqCXgm096+pgON9llB2x7edSXcIfl1
-	BM78TRfkELkpm2i9KPM/ni37S5EeforLD+SUlT7JnDZSRrpK2aOky3j/cbjdp3J+
-	6gQqo+HzIgcfWd8hRrRhTa/eM2GfWEWPZQp1bIwV3/qw96zZIU/g4LNjpSU3eFX0
-	zcB7uNFOY92NysL1kS3vCWB7kKCRMN9PwGbAZUBnjS8/WQck1gUI7GsxxCK2IdSW
-	koyHlcIAnwwVUMOLa2VyEOPHp78fnziTYPQoc+s/S62yBu6cv61jtU6FIS1pL3Ed
-	Oqmjrg==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49b3kka405-1
+	7ubImhH4Z8P/xV98/oIjWAr00ij7D5lKKfoqsSpjWog=; b=AA/bNMbVECnvRw+O
+	mTBJcesbf1oa4Mmmm4D3LFdsYraf9eNANxweTdd0OCT6d1W1vpig/DpHTDVhHtNp
+	LphNgb6qbSuMKTofyfza8FwX0Pi+qSMiKqBN90fJWywvdA8v3vsHQk9tvpEEM8g/
+	1GlMx4gxhB3QnOQElA7GrlpFm34j/wbQum0MIohDB4kt8EytjtRYqz+Rcd741LKg
+	RYvg+3KiMS6rGTf1PaakhTz/TFrLRZjuS96LH74IFRgGTVGRdhwxhUL1LMGnAgC8
+	DfF9Wz03oDWGXXHpGAumsT7RZs4wxnoiQsHTDkEI2JwR98fp62GTAur4+DnCvjjJ
+	qvMliA==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bwp0d5wq-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 00:17:46 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-77f18d99ebaso290692b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 17:17:46 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 00:17:47 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-780f82484faso305787b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 17:17:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758759465; x=1759364265;
+        d=1e100.net; s=20230601; t=1758759467; x=1759364267;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YJqY/YOSHWryJJD2gbToR7Hr7pe3t+h/VgArJwBLTWc=;
-        b=FQ2eDCQyk7QhzSX/+ZQe04lucZnOd5u+JBFDnUtgWsutZH0Q/Nv2PFgEpLwiV7B1kd
-         PIBcuY64v6wBtpzdjK0sP8fWqTOXTArpiG1QZQVCrj+Ymj9CWn1JHJTn4L/Bmsb0qBpq
-         89tmpICYHihqv7uWylyCXmuD/y2YACpbmLffCbogBugxUKtTlKWMx2TBVC+79jPOOEHe
-         9iVGeT4Y2lZIhInWgqgyh6V1m75s9LL0paEQJC5IKpBKP0SGqulKiE9ntpD5562srOIp
-         tuD5ZWq2wBf8E17hIAP0xw1z13uQ33kcBs3cAVeSb48tk6jG0SCyNTbFh6Ap2DZ0+ARR
-         +VCA==
-X-Forwarded-Encrypted: i=1; AJvYcCUx2Ke7lx8c1uCBFb5pjhmrVd0QaC6XVCjOprdOO0dwY88a3RIY1X/m/UkwISWidNmGW+FDy5qDIWeg@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6YuF0olE9R9jIeWJ4Vn+LCTQUwiaYxukW5yYZrTyTTveB0G5m
-	6bGr+t5iGUFN7Cxk7030aogJoFCMNy6fKnfrOioRHokUYXDo9m9M89a41uLXczg82os52sEr0en
-	+RJ75vjfmeNyYMmtAF7OaMijVjIfEFnWbcxufVKjYClQ0xij45Ljx6OTmGQ3SAYxq
-X-Gm-Gg: ASbGnctaUIaIKRGt2QdlSE9/2yXurpcqFOhmPU9mZWz/+kJ/4ABwTjs4LrEDc1KaHZx
-	7GT9cBiQHxOzOa0QL5+9GC4UZgMN4ype4l4TCidHLD51a2AOnqYYwhgyi5WpTXoaezDWX0jC0/B
-	XQSXsJMEjqwz1QscFE7ctV57U9JyM3bolY+oqwy1HN0tZq3295UlL+FIl2UViEBrFyxK+ee8pMT
-	WGzKSi43j21RrWj7ckP4TiyOcOeARY/0Qz1Q/UkW/LoYcJF1ZFC//y2niI2HnqgVVucwobKsmUe
-	sSMMVwo4GwXcu1TyiO1dKyah1DLztV3FPI2EAdFukoB5OzNCQZQkjQzy8Aj2n4vbJt2qXHl9WBX
-	djxbotWco1nXsigA=
-X-Received: by 2002:aa7:8894:0:b0:77f:2f8b:7667 with SMTP id d2e1a72fcca58-780fcc89c45mr1802887b3a.0.1758759464900;
-        Wed, 24 Sep 2025 17:17:44 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEI3PF6T/qNq84bR1+KT7qTVMeyZ1J2YnrN2+HR/zdjK4JgcTpfa4wdjxgdq+nyFUxBS2phhg==
-X-Received: by 2002:aa7:8894:0:b0:77f:2f8b:7667 with SMTP id d2e1a72fcca58-780fcc89c45mr1802860b3a.0.1758759464458;
-        Wed, 24 Sep 2025 17:17:44 -0700 (PDT)
+        bh=7ubImhH4Z8P/xV98/oIjWAr00ij7D5lKKfoqsSpjWog=;
+        b=WwEA2zrp7pIzuYphf9KQMtplTEHBbM2jbb5JqVFuawcfrrgdLJfSMZeJrxBdWsRy/U
+         e1n/geujWWHIsIrtizkpqGwAtZeH0QG/j8XjKI4fxmCcWJkT+6r01rDvV4o1K1Bsrty5
+         QZCb4aufmL9dHAMRKW1zczE35xDBEODx9iwuHNjtGS070NqmWX7eKhBa9V/ej+9Mqm9M
+         p3tpidSgD58lPEMdxsG1mrQJFYvtFiG9TBUkNKoc0/ZlDlKB0lPUqFNSvYEEMTx/j2no
+         kmdv2+5IdmvNQqeLVkx63SeLYYJD/qQNCiLswfl9vduFLvnj1BBlqZAygfjtaNYXNA0g
+         gymw==
+X-Forwarded-Encrypted: i=1; AJvYcCX7qMR8jIhvHEgB6FdkYhH0Rx+wzWldc9561G8qK6fEu6j2IvBuoT6EyNx8Of3oC0LkguvkLd80l4sZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIT4sTtvdHAidPD/kQj56/t5TwS7rs+Vvl9KV0F8g8jzBX4iao
+	0djJ2fAiPVwrAHusIuimElyzclNcYZuEd138Ssh/YUsTRK82jv6TyCrQ5p/O/ScBFko7AyOEseJ
+	rS+s773rbFTNo6GT0rwuNQiS4IJs0lr8fA0ChjYRn75+lQZOFmNuwHbwPQ1seqc3t
+X-Gm-Gg: ASbGncswjtnvWdGnexT+gFQFj+hFGFsgKQIrUTyUu24sjFKIG79tOU+bBr/DCCX3H2L
+	iWM7Uymwaor2w6YT4TJ6s1Z5uvlmln1aixnpx16uAJIENts04uuiC8oi334zm4UzHjK1zov5eWs
+	KQfRREWDLCrY0S6XoNg+PjqGHlTWcyGOTHCSuaeHJtoE6MHKHZV2IAAU2BI1glSBG1C9nna5tnL
+	6ASz2u/NcNVFbcZ7ku7zgnTfxwZzW+eeYybZ3lYsd1c+pT2/udl0/xxogI38laPLXVnNRznlCES
+	b2XvOq8e1S+x9FQb7Uyis2f0TzZUITtKkUuNie/iFj5OgceYL3qAKT7p5ufUGIDFs+ojP9+veTg
+	vdkVwUzgj8cNkuCg=
+X-Received: by 2002:a05:6a00:4b0c:b0:77e:74d8:c6e5 with SMTP id d2e1a72fcca58-780fcea3bf7mr1924240b3a.15.1758759466217;
+        Wed, 24 Sep 2025 17:17:46 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGTU0C4z8ncXkM7TngzWax4RNkHP+qOuSBGE9a7Ii6hvIMnLAxjLlLZJJsfizi23TOvMkmpZg==
+X-Received: by 2002:a05:6a00:4b0c:b0:77e:74d8:c6e5 with SMTP id d2e1a72fcca58-780fcea3bf7mr1924219b3a.15.1758759465668;
+        Wed, 24 Sep 2025 17:17:45 -0700 (PDT)
 Received: from hu-jingyw-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7810238e6fasm262748b3a.1.2025.09.24.17.17.43
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7810238e6fasm262748b3a.1.2025.09.24.17.17.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Sep 2025 17:17:44 -0700 (PDT)
+        Wed, 24 Sep 2025 17:17:45 -0700 (PDT)
 From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Date: Wed, 24 Sep 2025 17:17:28 -0700
-Subject: [PATCH 11/20] arm64: dts: qcom: Add PMH0110 pmic dtsi
+Date: Wed, 24 Sep 2025 17:17:29 -0700
+Subject: [PATCH 12/20] arm64: dts: qcom: kaanapali: Add misc features
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,7 +92,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250924-knp-dts-v1-11-3fdbc4b9e1b1@oss.qualcomm.com>
+Message-Id: <20250924-knp-dts-v1-12-3fdbc4b9e1b1@oss.qualcomm.com>
 References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
 In-Reply-To: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
@@ -103,165 +103,1022 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
         tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
         yijie.yang@oss.qualcomm.com,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 X-Mailer: b4 0.15-dev-99b12
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758759448; l=3693;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758759448; l=20561;
  i=jingyi.wang@oss.qualcomm.com; s=20250911; h=from:subject:message-id;
- bh=uGWrfrbW9Ltax/z9kxUgKt2wfGnwFiMi5enZLEbDphg=;
- b=LlDlOyQkaI+mAZoKdtEKS2e2+qylqopKLfM0yo/+QffhD0gRYwRLlr7elLktQfBWH4rMix+a7
- ABr66Rr6vaoBh2SB45rirHoJEexmFAZJUpOpmO5ds/ro7PkAKGmpBhc
+ bh=YU5yDw+JIALsjjwdu3kC1wrFvlw2yRuXzlWjlAyD7og=;
+ b=1i4afd7CIwVpKBBAm1K7iZZ/uJTow4yVGjgsMfV9dZt5EJF3ZA7H2EBUr5JM5ok1fYGFRY5Kt
+ 9qaQsdpuDw2Bxx7tkmVIuRK/zSFrOSaa3uEMWz4LaKlp/J5X3Fr3F39
 X-Developer-Key: i=jingyi.wang@oss.qualcomm.com; a=ed25519;
  pk=PSoHZ6KbUss3IW8FPRVMHMK0Jkkr/jV347mBYJO3iLo=
-X-Proofpoint-GUID: LVuG8pDlI4NuMbY52UBKcpmn39fAWZp5
-X-Proofpoint-ORIG-GUID: LVuG8pDlI4NuMbY52UBKcpmn39fAWZp5
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIyMDA4OSBTYWx0ZWRfX9QDvVy/BJezx
- /pXM9GrxCosOEjIQ6WgyMxI38WbfaVPKgeTQjAi56cjqfBGobITPhjpT2NBMXaQerZqMrHIZjY7
- Iw7D4IGjU7dwANg/Mz5QdjkFc8E12DkNHHkrVdS/qyBcbXrksXhiBIVb2dWmKtKAJ6lDWmconv0
- q0LuCPL/Igd8ddN2E3lj5LFvMW5dEGYB3FunkmokyHnn+DA3QxdzVLS4Ax0FrnjYUvj4E16CVUG
- /nY8U0ARuWotyF4QcJX16eX/e4eSGPy2tiqQQtsyn0qZhBUCPPJ3K+UYDu8Yf0wbcxKSoRSL2Oc
- MKI2Nnvzfc3fhYCcScI/9sARkiMUJUk+ScGi62TNrxK212NRqBBmTmwdnZIf4eCaLNaQT5v7TG5
- 6VF3zJ13
-X-Authority-Analysis: v=2.4 cv=BabY0qt2 c=1 sm=1 tr=0 ts=68d48a2a cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=4ECTE-F74UkuUx1KzIYA:9
- a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Authority-Analysis: v=2.4 cv=KNxaDEFo c=1 sm=1 tr=0 ts=68d48a2c cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=zucrGeh0T9CR7J8VWNwA:9
+ a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
+X-Proofpoint-GUID: xCCLB8drkk_5lYkt50m_1R3tuAaUALgq
+X-Proofpoint-ORIG-GUID: xCCLB8drkk_5lYkt50m_1R3tuAaUALgq
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDEzOCBTYWx0ZWRfX9F3J+8IFAEkv
+ TbRCKSRK+il3HGJkPjxnzp3zsR/i55qNi/NfKGZ3utmcDoFO3fPl1n8FM22FtDwdCqcuSjzHHE+
+ BPYeg2DRcOjPyV4ZDlNkXAw+IQyHPdSlT2c4TUB69Syx1udYjXMmCRoEBWeITGmptlO4Tchzs5q
+ /M28v2/X3ZnzOQRlT58wQI4lZHfg7jOVCTsKoGeUN4GHc7lmXwOZUyM/BSyrn5+d8lZK/0GwZzf
+ hAVdUTpyfli2IvqyfVCGYvoz4sZ828HqKndY1opZL3xShDW7ncAZclLt0BIeKDLmBXUTybFkMrS
+ KpNDSg+yZo6cGsZlJlt+kMPSPgidk/oYiZM67W1KCzBcDBbdNcWjFA6zueHre6N/POw+2pvun+R
+ G3GVDYiF
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 clxscore=1015 phishscore=0 bulkscore=0 priorityscore=1501
- adultscore=0 malwarescore=0 spamscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509220089
+ impostorscore=0 priorityscore=1501 clxscore=1015 phishscore=0 suspectscore=0
+ adultscore=0 bulkscore=0 spamscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509230138
 
-From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Add more features for Kaanapali SoC including spmi-bus, tsens,
+random number generator (RNG), Qcrypto and coresight.
 
-Add base DTS file for PMH0110 including temp-alarm and GPIO nodes.
+Written with help from Jishnu Prakash(added spmi-bus), Gaurav Kashyap
+(added crypto), Manaf Meethalavalappu Pallikunhi(added tsens) and
+Jinlong Mao(added coresight).
 
-Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
 Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/qcom/pmh0110.dtsi | 109 ++++++++++++++++++++++++++++++++++
- 1 file changed, 109 insertions(+)
+ arch/arm64/boot/dts/qcom/kaanapali.dtsi | 927 ++++++++++++++++++++++++++++++++
+ 1 file changed, 927 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/pmh0110.dtsi b/arch/arm64/boot/dts/qcom/pmh0110.dtsi
-new file mode 100644
-index 000000000000..b99c33cba886
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/pmh0110.dtsi
-@@ -0,0 +1,109 @@
-+// SPDX-License-Identifier: BSD-3-Clause-Clear
-+/*
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/spmi/spmi.h>
-+
-+&spmi_bus0 {
-+	pmh0110_d_e0: pmic@PMH0110_D_E0_SID {
-+		compatible = "qcom,pmh0110", "qcom,spmi-pmic";
-+		reg = <PMH0110_D_E0_SID SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+
-+		pmh0110_d_e0_temp_alarm: temp-alarm@a00 {
-+			compatible = "qcom,spmi-temp-alarm";
-+			reg = <0xa00>;
-+			interrupts = <PMH0110_D_E0_SID 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-+			#thermal-sensor-cells = <0>;
+diff --git a/arch/arm64/boot/dts/qcom/kaanapali.dtsi b/arch/arm64/boot/dts/qcom/kaanapali.dtsi
+index c3b38fd851c5..6ed7acdb871e 100644
+--- a/arch/arm64/boot/dts/qcom/kaanapali.dtsi
++++ b/arch/arm64/boot/dts/qcom/kaanapali.dtsi
+@@ -671,6 +671,11 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+ 			};
+ 		};
+ 
++		rng: rng@10c3000 {
++			compatible = "qcom,kaanapali-trng", "qcom,trng";
++			reg = <0x0 0x010c3000 0x0 0x1000>;
 +		};
 +
-+		pmh0110_d_e0_gpios: gpio@8800 {
-+			compatible = "qcom,pmh0110-gpio", "qcom,spmi-gpio";
-+			reg = <0x8800>;
-+			gpio-controller;
-+			gpio-ranges = <&pmh0110_d_e0_gpios 0 0 14>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
+ 		ipcc: mailbox@1106000 {
+ 			compatible = "qcom,kaanapali-ipcc", "qcom,ipcc";
+ 			reg = <0x0 0x01106000 0x0 0x1000>;
+@@ -1034,6 +1039,39 @@ ice: crypto@1d88000 {
+ 			clocks = <&gcc GCC_UFS_PHY_ICE_CORE_CLK>;
+ 		};
+ 
++		cryptobam: dma-controller@1dc4000 {
++			compatible = "qcom,bam-crypto-v6";
++			reg = <0x0 0x01dc4000 0x0 0x22000>;
++
++			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
++
++			#dma-cells = <1>;
++
++			iommus = <&apps_smmu 0xc0 0x0>,
++				 <&apps_smmu 0xc1 0x0>;
++
++			qcom,ee = <0>;
++			qcom,num-ees = <4>;
++			num-channels = <16>;
++			qcom,controlled-remotely;
++		};
++
++		crypto: crypto@1dfa000 {
++			compatible = "qcom,kaanapali-qce", "qcom,sm8150-qce", "qcom,qce";
++			reg = <0x0 0x01dfa000 0x0 0x6000>;
++
++			interconnects = <&aggre_noc MASTER_CRYPTO QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
++			interconnect-names = "memory";
++
++			dmas = <&cryptobam 4>, <&cryptobam 5>;
++			dma-names = "rx", "tx";
++
++			iommus = <&apps_smmu 0xc0 0x0>,
++				 <&apps_smmu 0xc1 0x0>;
++
++		};
++
+ 		tcsr_mutex: hwlock@1f40000 {
+ 			compatible = "qcom,tcsr-mutex";
+ 			reg = <0x0 0x01f40000 0x0 0x20000>;
+@@ -1472,6 +1510,90 @@ pdc: interrupt-controller@b220000 {
+ 			interrupt-controller;
+ 		};
+ 
++		tsens0: thermal-sensor@c229000 {
++			compatible = "qcom,kaanapali-tsens", "qcom,tsens-v2";
++			reg = <0x0 0x0c229000 0x0 0x1000>,
++			      <0x0 0x0c222000 0x0 0x1000>;
++			interrupts = <GIC_SPI 771 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 484 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "uplow",
++					  "critical";
++			#qcom,sensors = <5>;
++			#thermal-sensor-cells = <1>;
++		};
++
++		tsens1: thermal-sensor@c22a000 {
++			compatible = "qcom,kaanapali-tsens", "qcom,tsens-v2";
++			reg = <0x0 0x0c22a000 0x0 0x1000>,
++			      <0x0 0x0c223000 0x0 0x1000>;
++			interrupts = <GIC_SPI 772 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 485 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "uplow",
++					  "critical";
++			#qcom,sensors = <12>;
++			#thermal-sensor-cells = <1>;
++		};
++
++		tsens2: thermal-sensor@c22b000 {
++			compatible = "qcom,kaanapali-tsens", "qcom,tsens-v2";
++			reg = <0x0 0x0c22b000 0x0 0x1000>,
++			      <0x0 0x0c224000 0x0 0x1000>;
++			interrupts = <GIC_SPI 773 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 486 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "uplow",
++					  "critical";
++			#qcom,sensors = <7>;
++			#thermal-sensor-cells = <1>;
++		};
++
++		tsens3: thermal-sensor@c22c000 {
++			compatible = "qcom,kaanapali-tsens", "qcom,tsens-v2";
++			reg = <0x0 0x0c22c000 0x0 0x1000>,
++			      <0x0 0x0c225000 0x0 0x1000>;
++			interrupts = <GIC_SPI 774 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 487 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "uplow",
++					  "critical";
++			#qcom,sensors = <4>;
++			#thermal-sensor-cells = <1>;
++		};
++
++		tsens4: thermal-sensor@c22d000 {
++			compatible = "qcom,kaanapali-tsens", "qcom,tsens-v2";
++			reg = <0x0 0x0c22d000 0x0 0x1000>,
++			      <0x0 0x0c226000 0x0 0x1000>;
++			interrupts = <GIC_SPI 543 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 461 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "uplow",
++					  "critical";
++			#qcom,sensors = <8>;
++			#thermal-sensor-cells = <1>;
++		};
++
++		tsens5: thermal-sensor@c22e000 {
++			compatible = "qcom,kaanapali-tsens", "qcom,tsens-v2";
++			reg = <0x0 0x0c22e000 0x0 0x1000>,
++			      <0x0 0x0c227000 0x0 0x1000>;
++			interrupts = <GIC_SPI 544 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "uplow",
++					  "critical";
++			#qcom,sensors = <12>;
++			#thermal-sensor-cells = <1>;
++		};
++
++		tsens6: thermal-sensor@c22f000 {
++			compatible = "qcom,kaanapali-tsens", "qcom,tsens-v2";
++			reg = <0x0 0x0c22f000 0x0 0x1000>,
++			      <0x0 0x0c228000 0x0 0x1000>;
++			interrupts = <GIC_SPI 545 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 474 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "uplow",
++					  "critical";
++			#qcom,sensors = <7>;
++			#thermal-sensor-cells = <1>;
++		};
++
+ 		aoss_qmp: power-management@c300000 {
+ 			compatible = "qcom,kaanapali-aoss-qmp", "qcom,aoss-qmp";
+ 			reg = <0x0 0x0c300000 0x0 0x400>;
+@@ -1486,6 +1608,53 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
+ 			#clock-cells = <0>;
+ 		};
+ 
++		pmic_arbiter: arbiter@c400000 {
++			compatible = "qcom,kaanapali-spmi-pmic-arb", "qcom,glymur-spmi-pmic-arb";
++			reg = <0x0 0x0c400000 0x0 0x3000>,
++			      <0x0 0x0c900000 0x0 0x400000>,
++			      <0x0 0x0c4c0000 0x0 0x400000>,
++			      <0x0 0x0c403000 0x0 0x8000>;
++			reg-names = "core",
++				    "chnls",
++				    "obsrvr",
++				    "chnl_map";
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++			qcom,channel = <0>;
++			qcom,ee = <0>;
++
++			spmi_bus0: spmi@c426000 {
++				reg = <0x0 0x0c426000 0x0 0x4000>,
++				      <0x0 0x0c8c0000 0x0 0x10000>,
++				      <0x0 0x0c42a000 0x0 0x8000>;
++				reg-names = "cnfg",
++					    "intr",
++					    "chnl_owner";
++				interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
++				interrupt-names = "periph_irq";
++				interrupt-controller;
++				#interrupt-cells = <4>;
++				#address-cells = <2>;
++				#size-cells = <0>;
++			};
++
++			spmi_bus1: spmi@c437000 {
++				reg = <0x0 0x0c437000 0x0 0x4000>,
++				      <0x0 0x0c8d0000 0x0 0x10000>,
++				      <0x0 0x0c43b000 0x0 0x8000>;
++				reg-names = "cnfg",
++					    "intr",
++					    "chnl_owner";
++				interrupts-extended = <&pdc 3 IRQ_TYPE_LEVEL_HIGH>;
++				interrupt-names = "periph_irq";
++				interrupt-controller;
++				#interrupt-cells = <4>;
++				#address-cells = <2>;
++				#size-cells = <0>;
++			};
++		};
++
+ 		tlmm: pinctrl@f100000 {
+ 			compatible = "qcom,kaanapali-tlmm";
+ 			reg = <0x0 0x0f100000 0x0 0x300000>;
+@@ -1560,6 +1729,103 @@ card-detect-pins {
+ 			};
+ 		};
+ 
++		stm@10002000 {
++			compatible = "arm,coresight-stm", "arm,primecell";
++			reg = <0x0 0x10002000 0x0 0x1000>,
++			      <0x0 0x16280000 0x0 0x180000>;
++			reg-names = "stm-base", "stm-stimulus-base";
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			out-ports {
++				port {
++					stm_out_funnel_in0: endpoint {
++						remote-endpoint =
++							<&funnel_in0_in_stm>;
++					};
++				};
++			};
++		};
++
++		funnel@10041000 {
++			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++			reg = <0x0 0x10041000 0x0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			in-ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@7 {
++					reg = <7>;
++					funnel_in0_in_stm: endpoint {
++						remote-endpoint =
++							<&stm_out_funnel_in0>;
++					};
++				};
++			};
++
++			out-ports {
++				port {
++					funnel_in0_out_funnel_aoss: endpoint {
++						remote-endpoint =
++							<&funnel_aoss_in_funnel_in0>;
++					};
++				};
++			};
++		};
++
++		funnel@11304000 {
++			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
++
++			reg = <0x0 0x11304000 0x0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			in-ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@6 {
++					reg = <6>;
++					funnel_aoss_in_funnel_in0: endpoint {
++						remote-endpoint =
++							<&funnel_in0_out_funnel_aoss>;
++					};
++				};
++			};
++
++			out-ports {
++				port {
++					funnel_aoss_out_tmc_etf: endpoint {
++						remote-endpoint =
++							<&tmc_etf_in_funnel_aoss>;
++					};
++				};
++			};
++		};
++
++		tmc@11305000 {
++			compatible = "arm,coresight-tmc", "arm,primecell";
++			reg = <0x0 0x11305000 0x0 0x1000>;
++
++			clocks = <&aoss_qmp>;
++			clock-names = "apb_pclk";
++
++			in-ports {
++				port {
++					tmc_etf_in_funnel_aoss: endpoint {
++						remote-endpoint =
++							<&funnel_aoss_out_tmc_etf>;
++					};
++				};
++			};
++		};
++
+ 		sram@14680000 {
+ 			compatible = "qcom,kaanapali-imem", "syscon", "simple-mfd";
+ 			reg = <0x0 0x14680000 0x0 0x1000>;
+@@ -2232,6 +2498,667 @@ pdp_tx: scp-sram-section@100 {
+ 		};
+ 	};
+ 
++	thermal-zones {
++		cpullc-0-0-thermal {
++			thermal-sensors = <&tsens0 0>;
++
++			trips {
++				cpullc-0-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpullc-0-1-thermal {
++			thermal-sensors = <&tsens0 1>;
++
++			trips {
++				cpullc-0-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		qmx-0-0-thermal {
++			thermal-sensors = <&tsens0 2>;
++
++			trips {
++				qmx-0-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		qmx-0-1-thermal {
++			thermal-sensors = <&tsens0 3>;
++
++			trips {
++				qmx-0-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		qmx-0-2-thermal {
++			thermal-sensors = <&tsens0 4>;
++
++			trips {
++				qmx-0-2-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-0-0-0-thermal {
++			thermal-sensors = <&tsens1 0>;
++
++			trips {
++				cpu-0-0-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-0-0-1-thermal {
++			thermal-sensors = <&tsens1 1>;
++
++			trips {
++				cpu-0-0-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-0-1-0-thermal {
++			thermal-sensors = <&tsens1 2>;
++
++			trips {
++				cpu-0-1-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-0-1-1-thermal {
++			thermal-sensors = <&tsens1 3>;
++
++			trips {
++				cpu-0-1-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-0-2-0-thermal {
++			thermal-sensors = <&tsens1 4>;
++
++			trips {
++				cpu-0-2-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-0-2-1-thermal {
++			thermal-sensors = <&tsens1 5>;
++
++			trips {
++				cpu-0-2-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-0-3-0-thermal {
++			thermal-sensors = <&tsens1 6>;
++
++			trips {
++				cpu-0-3-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-0-3-1-thermal {
++			thermal-sensors = <&tsens1 7>;
++
++			trips {
++				cpu-0-3-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-0-4-0-thermal {
++			thermal-sensors = <&tsens1 8>;
++
++			trips {
++				cpu-0-4-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-0-4-1-thermal {
++			thermal-sensors = <&tsens1 9>;
++
++			trips {
++				cpu-0-4-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-0-5-0-thermal {
++			thermal-sensors = <&tsens1 10>;
++
++			trips {
++				cpu-0-5-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-0-5-1-thermal {
++			thermal-sensors = <&tsens1 11>;
++
++			trips {
++				cpu-0-5-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpullc-1-0-thermal {
++			thermal-sensors = <&tsens2 0>;
++
++			trips {
++				cpullc-1-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpullc-1-1-thermal {
++			thermal-sensors = <&tsens2 1>;
++
++			trips {
++				cpullc-1-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		qmx-1-0-thermal {
++			thermal-sensors = <&tsens2 2>;
++
++			trips {
++				qmx-1-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		qmx-1-1-thermal {
++			thermal-sensors = <&tsens2 3>;
++
++			trips {
++				qmx-1-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		qmx-1-2-thermal {
++			thermal-sensors = <&tsens2 4>;
++
++			trips {
++				qmx-1-2-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		qmx-1-3-thermal {
++			thermal-sensors = <&tsens2 5>;
++
++			trips {
++				qmx-1-3-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		qmx-1-4-thermal {
++			thermal-sensors = <&tsens2 6>;
++
++			trips {
++				qmx-1-4-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-1-0-0-thermal {
++			thermal-sensors = <&tsens3 0>;
++
++			trips {
++				cpu-1-0-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-1-0-1-thermal {
++			thermal-sensors = <&tsens3 1>;
++
++			trips {
++				cpu-1-0-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-1-1-0-thermal {
++			thermal-sensors = <&tsens3 2>;
++
++			trips {
++				cpu-1-1-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		cpu-1-1-1-thermal {
++			thermal-sensors = <&tsens3 3>;
++
++			trips {
++				cpu-1-1-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		nsphvx-0-thermal {
++			thermal-sensors = <&tsens4 0>;
++
++			trips {
++				nsphvx-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		nsphvx-1-thermal {
++			thermal-sensors = <&tsens4 1>;
++
++			trips {
++				nsphvx-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		nsphvx-2-thermal {
++			thermal-sensors = <&tsens4 2>;
++
++			trips {
++				nsphvx-2-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		nsphvx-3-thermal {
++			thermal-sensors = <&tsens4 3>;
++
++			trips {
++				nsphvx-3-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		nsphmx-0-thermal {
++			thermal-sensors = <&tsens4 4>;
++
++			trips {
++				nsphmx-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		nsphmx-1-thermal {
++			thermal-sensors = <&tsens4 5>;
++
++			trips {
++				nsphmx-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		nsphmx-2-thermal {
++			thermal-sensors = <&tsens4 6>;
++
++			trips {
++				nsphmx-2-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		nsphmx-3-thermal {
++			thermal-sensors = <&tsens4 7>;
++
++			trips {
++				nsphmx-3-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		gpuss-0-thermal {
++			thermal-sensors = <&tsens5 0>;
++
++			trips {
++				gpuss-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		gpuss-1-thermal {
++			thermal-sensors = <&tsens5 1>;
++
++			trips {
++				gpuss-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		gpuss-2-thermal {
++			thermal-sensors = <&tsens5 2>;
++
++			trips {
++				gpuss-2-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		gpuss-3-thermal {
++			thermal-sensors = <&tsens5 3>;
++
++			trips {
++				gpuss-3-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		gpuss-4-thermal {
++			thermal-sensors = <&tsens5 4>;
++
++			trips {
++				gpuss-4-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		gpuss-5-thermal {
++			thermal-sensors = <&tsens5 5>;
++
++			trips {
++				gpuss-5-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		gpuss-6-thermal {
++			thermal-sensors = <&tsens5 6>;
++
++			trips {
++				gpuss-6-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		gpuss-7-thermal {
++			thermal-sensors = <&tsens5 7>;
++
++			trips {
++				gpuss-7-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		gpuss-8-thermal {
++			thermal-sensors = <&tsens5 8>;
++
++			trips {
++				gpuss-8-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		gpuss-9-thermal {
++			thermal-sensors = <&tsens5 9>;
++
++			trips {
++				gpuss-9-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		gpuss-10-thermal {
++			thermal-sensors = <&tsens5 10>;
++
++			trips {
++				gpuss-10-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		ddr-thermal {
++			thermal-sensors = <&tsens5 11>;
++
++			trips {
++				ddr-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		mdmss-0-thermal {
++			thermal-sensors = <&tsens6 0>;
++
++			trips {
++				mdmss-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		mdmss-1-thermal {
++			thermal-sensors = <&tsens6 1>;
++			trips {
++				mdmss-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		mdmss-2-thermal {
++			thermal-sensors = <&tsens6 2>;
++
++			trips {
++				mdmss-2-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		mdmss-3-thermal {
++			thermal-sensors = <&tsens6 3>;
++
++			trips {
++				mdmss-3-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		camera-0-thermal {
++			thermal-sensors = <&tsens6 4>;
++
++			trips {
++				camera-0-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		camera-1-thermal {
++			thermal-sensors = <&tsens6 5>;
++
++			trips {
++				camera-1-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
++		};
++
++		video-thermal {
++			thermal-sensors = <&tsens6 6>;
++
++			trips {
++				video-critical {
++					temperature = <125000>;
++					hysteresis = <0>;
++					type = "critical";
++				};
++			};
 +		};
 +	};
 +
-+	pmh0110_f_e0: pmic@PMH0110_F_E0_SID {
-+		compatible = "qcom,pmh0110", "qcom,spmi-pmic";
-+		reg = <PMH0110_F_E0_SID SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+
-+		pmh0110_f_e0_temp_alarm: temp-alarm@a00 {
-+			compatible = "qcom,spmi-temp-alarm";
-+			reg = <0xa00>;
-+			interrupts = <PMH0110_F_E0_SID 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-+			#thermal-sensor-cells = <0>;
-+		};
-+
-+		pmh0110_f_e0_gpios: gpio@8800 {
-+			compatible = "qcom,pmh0110-gpio", "qcom,spmi-gpio";
-+			reg = <0x8800>;
-+			gpio-controller;
-+			gpio-ranges = <&pmh0110_f_e0_gpios 0 0 14>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	pmh0110_g_e0: pmic@PMH0110_G_E0_SID {
-+		compatible = "qcom,pmh0110", "qcom,spmi-pmic";
-+		reg = <PMH0110_G_E0_SID SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+
-+		pmh0110_g_e0_temp_alarm: temp-alarm@a00 {
-+			compatible = "qcom,spmi-temp-alarm";
-+			reg = <0xa00>;
-+			interrupts = <PMH0110_G_E0_SID 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-+			#thermal-sensor-cells = <0>;
-+		};
-+
-+		pmh0110_g_e0_gpios: gpio@8800 {
-+			compatible = "qcom,pmh0110-gpio", "qcom,spmi-gpio";
-+			reg = <0x8800>;
-+			gpio-controller;
-+			gpio-ranges = <&pmh0110_g_e0_gpios 0 0 14>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+
-+	pmh0110_i_e0: pmic@PMH0110_I_E0_SID {
-+		compatible = "qcom,pmh0110", "qcom,spmi-pmic";
-+		reg = <PMH0110_I_E0_SID SPMI_USID>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		status = "disabled";
-+
-+		pmh0110_i_e0_temp_alarm: temp-alarm@a00 {
-+			compatible = "qcom,spmi-temp-alarm";
-+			reg = <0xa00>;
-+			interrupts = <PMH0110_I_E0_SID 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-+			#thermal-sensor-cells = <0>;
-+		};
-+
-+		pmh0110_i_e0_gpios: gpio@8800 {
-+			compatible = "qcom,pmh0110-gpio", "qcom,spmi-gpio";
-+			reg = <0x8800>;
-+			gpio-controller;
-+			gpio-ranges = <&pmh0110_i_e0_gpios 0 0 14>;
-+			#gpio-cells = <2>;
-+			interrupt-controller;
-+			#interrupt-cells = <2>;
-+		};
-+	};
-+};
+ 	timer {
+ 		compatible = "arm,armv8-timer";
+ 
 
 -- 
 2.25.1
