@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-221256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A20DEB9E1E3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 10:49:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4939DB9E1FE
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 10:51:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5F201B276E6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 08:49:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0915A381AB3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 08:51:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C17D2777FD;
-	Thu, 25 Sep 2025 08:49:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C362F277CB2;
+	Thu, 25 Sep 2025 08:51:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fGca+M+z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="asUGWyxO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3285D27602F;
-	Thu, 25 Sep 2025 08:49:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 854E9277CA4;
+	Thu, 25 Sep 2025 08:51:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758790149; cv=none; b=cvNyKBddncg6EulcN5BLcukHKxBPZQGqlHSIovFYatZ6g4MUT+EReRnGqFY70zCTFnBre3NH46vo5U7qPC9A27FwVka8CK/sgs+lZ+BENc6aw3fIoVhSb94aRKGwIkcDpKsVRAa87NmtCReSw8vuiQjpDmPAnW3KO8EOtIyPHLQ=
+	t=1758790280; cv=none; b=ICsFGpeSyT/5oNZUw97Dv7Frw12O5KiGaTdiJIEnYcbLf8quOSlXSZM3O9cKcbNUzlkYVgGaXMkX2BjxSjkXAWuF1C1EvSCs1nQNtfa/ujoRBGaS5RlfRnHaC5Lav9cVXYiUcQgfSZn/4a2FALnDmMySmJKrohycpWdYGpirJnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758790149; c=relaxed/simple;
-	bh=0XH/pbAoB1UZ8lXsLizsKNsDE/zUUc1t111qHGiFtEI=;
+	s=arc-20240116; t=1758790280; c=relaxed/simple;
+	bh=SLMBihPQk3ZvzgAs17Tcc+eFnMcP7YcSUZ9pmHMXyms=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c/Qxhhl4ui5LC6Y2D6vtbwXoiiiD2+IY38oKauWTCVxuZw27U13dX3BIGaxfpR67MUv37sLR2y1a0HFhi/QxR5HBOaaw2UOsHNSPF5i5Ozdxr3ln76h+8lmEN1draNaAN61+tGPqx962X3iRbvvH34s97pndbIIvqZnTepsVcjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fGca+M+z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAB52C4CEF7;
-	Thu, 25 Sep 2025 08:49:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Trnmxk3ReaG01+03pZ70H2KIR/dGRgYmDWAGYyqmUHtfAdpEdSPGrAjBPpbtkAjhqmsnzmdk2fRnBQmYf2ka8XTw+qZ21oelbHrCGNufYz5KhRi27DxO55zQIzNFbAE4Pi+IoaMWMmerCD8XC0LDnU2muY+20rkFHwZdpk79sp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=asUGWyxO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B5C8C4CEF0;
+	Thu, 25 Sep 2025 08:51:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758790148;
-	bh=0XH/pbAoB1UZ8lXsLizsKNsDE/zUUc1t111qHGiFtEI=;
+	s=k20201202; t=1758790279;
+	bh=SLMBihPQk3ZvzgAs17Tcc+eFnMcP7YcSUZ9pmHMXyms=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fGca+M+zLI3Rj1FCEQEf9+xig+b9wSiYTb9kblIFviEQsbu9PacUl/lRtI+BFugfx
-	 HRralzrel7s7hT0vUbGe+0+bjCi25oI3PPD5246xGevCG80urf74T093GP+FcZ4xTQ
-	 LwOmS7GqqTEYkL67hK+v6p3a0COt6GJU7IsKglZGCq+s4dF+wB9FpsWQ3wnmexjU7K
-	 Rlse/A/ZBkzJCxk/XWRhvKzQQ/Ot416iSir41NKR/e9M5AfU25JcSC9YgdmPAQrLGh
-	 fwpDUukHPDM3dxuHDn+q2Jr9dfZf1iL9vmihHvCYZ0tpGRifwQfU06ofnqx2yGeQUA
-	 j0DEPmTprmJmA==
-Date: Thu, 25 Sep 2025 09:49:02 +0100
+	b=asUGWyxO+/1aAHdoSZw9225n5yaUp6+dO8Ws0+7LpqxdAWYR41jOXculN1Q48QXwd
+	 LBLA/jYYFe1cSrLjKP3RrxE6qQQWKKTE610xgCqWXMLLhSJVU5ZxtRE5MdjYj/d/4D
+	 2yY32Mu11YNl0GmmZfTED85mZb+vsORxjWDhh/DxQ1hRdKj3pvwQhVd2puFINr8WEF
+	 L7FCbhojEGnEXbQarGwA/A9hnrUzWMPRNhJPqzta1Ayo2bvclKmuE0koxjRE0eoDD2
+	 CBcMVAMOTT+sYEF/E3KGQ8GA2JWhwvfclV3qWVG2sX3Nz0WipjyDp+E0cggUcqSfDm
+	 DG9HSf6SkI6lA==
+Date: Thu, 25 Sep 2025 09:51:13 +0100
 From: Simon Horman <horms@kernel.org>
 To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
 Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
@@ -59,13 +59,12 @@ Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
 	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Sean Anderson <sean.anderson@linux.dev>
-Subject: Re: [PATCH net v6 2/5] net: macb: remove illusion about TBQPH/RBQPH
- being per-queue
-Message-ID: <20250925084902.GU836419@horms.kernel.org>
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Subject: Re: [PATCH net v6 3/5] net: macb: move ring size computation to
+ functions
+Message-ID: <20250925085113.GV836419@horms.kernel.org>
 References: <20250923-macb-fixes-v6-0-772d655cdeb6@bootlin.com>
- <20250923-macb-fixes-v6-2-772d655cdeb6@bootlin.com>
+ <20250923-macb-fixes-v6-3-772d655cdeb6@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,39 +74,24 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250923-macb-fixes-v6-2-772d655cdeb6@bootlin.com>
+In-Reply-To: <20250923-macb-fixes-v6-3-772d655cdeb6@bootlin.com>
 
-On Tue, Sep 23, 2025 at 06:00:24PM +0200, Théo Lebrun wrote:
-> The MACB driver acts as if TBQPH/RBQPH are configurable on a per queue
-> basis; this is a lie. A single register configures the upper 32 bits of
-> each DMA descriptor buffers for all queues.
+On Tue, Sep 23, 2025 at 06:00:25PM +0200, Théo Lebrun wrote:
+> The tx/rx ring size calculation is somewhat complex and partially hidden
+> behind a macro. Move that out of the {RX,TX}_RING_BYTES() macros and
+> macb_{alloc,free}_consistent() functions into neat separate functions.
 > 
-> Concrete actions:
+> In macb_free_consistent(), we drop the size variable and directly call
+> the size helpers in the arguments list. In macb_alloc_consistent(), we
+> keep the size variable that is used by netdev_dbg() calls.
 > 
->  - Drop GEM_TBQPH/GEM_RBQPH macros which have a queue index argument.
->    Only use MACB_TBQPH/MACB_RBQPH constants.
-> 
->  - Drop struct macb_queue->TBQPH/RBQPH fields.
-> 
->  - In macb_init_buffers(): do a single write to TBQPH and RBQPH for all
->    queues instead of a write per queue.
-> 
->  - In macb_tx_error_task(): drop the write to TBQPH.
-> 
->  - In macb_alloc_consistent(): if allocations give different upper
->    32-bits, fail. Previously, it would have lead to silent memory
->    corruption as queues would have used the upper 32 bits of the alloc
->    from queue 0 and their own low 32 bits.
-> 
->  - In macb_suspend(): if we use the tie off descriptor for suspend, do
->    the write once for all queues instead of once per queue.
-> 
-> Fixes: fff8019a08b6 ("net: macb: Add 64 bit addressing support for GEM")
-> Fixes: ae1f2a56d273 ("net: macb: Added support for many RX queues")
-> Reviewed-by: Sean Anderson <sean.anderson@linux.dev>
 > Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 > Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 
 Reviewed-by: Simon Horman <horms@kernel.org>
 
+If you need to re-spin for some reason, please consider looking
+at checkpatch warnings regarding lines greater than 80 columns wide
+(checkpatch --max-line-length=80). Likewise for the next patch in the
+series.
 
