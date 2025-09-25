@@ -1,198 +1,178 @@
-Return-Path: <devicetree+bounces-221461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB2B9B9FF27
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 16:21:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AC05BA0009
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 16:29:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 758DC1C80890
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:16:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BA031BC612D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:27:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4211D2D191C;
-	Thu, 25 Sep 2025 14:13:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3FFA2D0C68;
+	Thu, 25 Sep 2025 14:27:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fqbGpmIa"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="f0JAZQvG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A377287269
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 14:13:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D7162D0610
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 14:27:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758809583; cv=none; b=W5UUF6Yd5wXuBfJ/gALsbENHcVsr/Uk6JHax8OvGAmbQuE+AUvqVyK6V4wh2pipO8DrB651LFAMto/qibTGTaoYq0hkPvUviylOLQh9MwPa5xHhHVKI4F3Wj54hqTFQQ8NJDJSzo7Rg5SNC3xwTugt4z4pFZwn19poxpF4aVlQE=
+	t=1758810438; cv=none; b=SxsST+o9INgKshTtcsffIKHCEEjInQvrfZKuBEa1ER092xe4AYIaIxQQQQk1yMc0RF2YKeJ5pGrRd8HXiouOyGE1OKfpn3Wx1RE5IxafLKnO3BRFBW6hjCC1nUqF0y3XZAqhLNRZSBFc2WpNgrrSVKi28cd5MHI6kL8h7F6Nqb0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758809583; c=relaxed/simple;
-	bh=SbXoEDQ7WLR3dmdmv7fgmJJsFDthJfzEwnz1VFkMwCg=;
+	s=arc-20240116; t=1758810438; c=relaxed/simple;
+	bh=h2URbpxQUZ+BCi1wrx/nx2i8C5bokSELKCNO/XvU/mI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rizHd3d+T8R0WUg+FgRjkz8SrXcnHC8jeEdFTNZ0FXwWMZY49rZeSVmdEIQNANkkFo/48xyOUy4bizg7u5GrCbIR1HVdAQXNqwHCAlpVsWb4HMmRY75ls+g4TavjOWPesm2msDWjkngt4I2yDiWEhciv6ZXM5wMBrvmQYmDvEBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fqbGpmIa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C13E6C16AAE
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 14:13:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758809582;
-	bh=SbXoEDQ7WLR3dmdmv7fgmJJsFDthJfzEwnz1VFkMwCg=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=fqbGpmIaiygu1Jh7D94/ZLiLppHo15nCdQCAzbMoT9HMXFPOTlwmTHCkX57O30Kxe
-	 0jEu1RulZpEtPjW+8+hSPnirTmNu+w9Lvq+lhzB/YZoXk9b/XqrvBwJ9HkR0GQTbbh
-	 plD3WtyZUGdPMRDZZp8NyA1yUDKQonR4dX3LJL4/wcQWhq2sSlBIhFKVgEk03fos8K
-	 rc2G0EqOhe7aPMNMNNbhQmImLT4mKHAEXjGjcCLLk/hgPrUcBcvPbSEBhpPnTRrfb6
-	 7Ye5WFb3QSMukYl2XCtuYveVqBubaQFsm37U50zz1z5k69akX3pFuKo7S8AJeztmUo
-	 UGNJMgz9oFJUA==
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-271d1305ad7so14883385ad.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:13:02 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUglV+Eo0kWEyN/H5I8atV58WcUIKLD+sm9L25y0TCN/Pt61fQZWUuiNgx2+M5iz6whJjgiU5rmGeYA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOdIw+HRJM132vfp0C1U3faeFIur87Ipm6TDOBroplwfJOEdGI
-	gy+nK+GigcZ3JVb1GVtDeUG7Y7z+JWIba+ulF8bLw5SjFMMImMpr/u752VcGiri1owrSaw5qvlp
-	ZMS989+2m0f76U8IPh98C4NwPvrTLiWQ=
-X-Google-Smtp-Source: AGHT+IGcMOQgtwcOqFCwjqZh00GTdD82XtGmDHMOs4TXAHw1QObB4CgtHu/ewEzkYQ3M77/ioIJDxofMCIBmnaviPtQ=
-X-Received: by 2002:a17:902:d4c5:b0:261:1abb:e302 with SMTP id
- d9443c01a7336-27ed49d2955mr45354495ad.14.1758809582159; Thu, 25 Sep 2025
- 07:13:02 -0700 (PDT)
+	 To:Cc:Content-Type; b=llgeClXdrhxrweRYhg0eHk97NVJcSbZ2+YaOXBdtqK6WKiHpm0Lk//1YUpvOma4U2/OyYjFnhJ4NlAqSU17jZcTvrLzn0lrNN5UXtz3/tG6DYcvRjeC6YB9vzRXQqT24+FIKzDyJhSN0d2BjIs52NBhNcxtnmbb3L3c4lv6vOCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=f0JAZQvG; arc=none smtp.client-ip=209.85.219.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-79390b83c7dso7055196d6.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:27:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758810436; x=1759415236; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Glm9P9HTH7GF2LUGNVtDEQmwup7tzZ0lSiiqddi2yqw=;
+        b=f0JAZQvGEFI4nUcNqbcS+wS5E1Qb+9XaFcPGu0bYIqrA9NKp7gxPWecTOlpSfncud+
+         aASrCM7cDQfopSXJDMqV72DvRSiN+3SKmwZbLZA49wrYCFCuJ7Uv8VRbaDXd5uNVXWRG
+         /HdGCnFm4RNhMBE0FAcqftuVyOwAeObojPU15VqAWfG/pV+9UDCwCbW5fiSm+zh1U3JS
+         tleQZANzLdunzZyTpw+P8Du7tZeluZUosxzG/RB7fVJgakDM/CCTVN7jfjAza8KXm1/O
+         9yBXPRNwOS05apHKBgkMAW7hnAIwd5PDRmXtcZpPzqNx3Wq4/HjtCNCMmgnhA57TPHWL
+         unog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758810436; x=1759415236;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Glm9P9HTH7GF2LUGNVtDEQmwup7tzZ0lSiiqddi2yqw=;
+        b=Blp0emdOMTjN1pNiwqBY0xkZ462jtJ3HJYHbWDZR/+9ogCRJAXWiefwrhWa1uNHp36
+         aS46LCwKEfA4yVsdUFTpps2W5TKRD9fhoJHQW9dbpIfzkzItv8+d1M0lEvZZX5gd0s+P
+         wFCjBbOwhsh+JmxiV2PbEM9IVZNHUpy/h9Yh3VeO8AVJdxZl8qUHQnee6aDapTMfTaPH
+         KDVtvFLeioT9m5sF79h4VcZ1YmsUHVQ1g18rgQOZgN4IUcUP91I6sASl95onYT916mUk
+         Cotd5k55HiIAiKbeOthrfhC5a5pLGkuT63Uf3eOhs93c43iN90OnEen67qFCvOrda7ZF
+         QSuw==
+X-Forwarded-Encrypted: i=1; AJvYcCUj6Kiw0njHih7sKLqt/2n2LdcQM/i+8wd4PxlLpnCNWiu+FglK53tqsWB1DdLk687YVKXxX14VuOIK@vger.kernel.org
+X-Gm-Message-State: AOJu0YwI+v6h/uv2jGfnLgRUqVdq5raA1IgfHXU9nsbRNZZ+fU0lFfS+
+	jpUrsLv2HoO+V4I1jB64jq4LKXu+oT9FYhSwgJ+qKZFoZrCNMk+ZZ3nUudnFvxzKKj61saws/1u
+	dPLLeUzbOLnt2rsNhBvk8RL6GE4z/8Tk=
+X-Gm-Gg: ASbGncvq0AmpLUVvdYa+s+7yzJt2sE53bZBAF8x5BREAFtIuiaSBUZK7yXcWzUE4zt4
+	K5OCJTESFghvIMw0M/Cul4yqdxSYcGku967vROws790RHRGjKKNTU0d+k+DBez3Bz+25GEYbSu1
+	/r6CVjdfBEPKnpYZUV7FKWSNCtEGK8geZnhbTX3ffSVc0VtlwAytYr17ZwaKGEgUkafntVUJeFz
+	y8cp0vDQjniiH1GPhQ=
+X-Google-Smtp-Source: AGHT+IH9fq+ZHarv12E5Wiwa5ANc8v0SLu1OdwXvzSahIaMx6BArGuHvon1RcjpXEhOi/ie1rgfJtvwPRNtpXcis6uE=
+X-Received: by 2002:a05:6214:5095:b0:7f1:3094:306d with SMTP id
+ 6a1803df08f44-7fc400b2c46mr54245696d6.47.1758810435646; Thu, 25 Sep 2025
+ 07:27:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
- <20250924-knp-dts-v1-6-3fdbc4b9e1b1@oss.qualcomm.com> <CAJKOXPcbJY4JEjfZLvOAXEWCTYFpe7En+Riis2t3K5fWJgNU5A@mail.gmail.com>
- <3up4xqgd2ay3tex4ckzgews3ukyrdikcmgk7tbddggj3s5gt4d@foqcpnfptjk7>
-In-Reply-To: <3up4xqgd2ay3tex4ckzgews3ukyrdikcmgk7tbddggj3s5gt4d@foqcpnfptjk7>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Date: Thu, 25 Sep 2025 23:12:50 +0900
-X-Gmail-Original-Message-ID: <CAJKOXPdB+MS964FViEjh1xQL2kGkBgddfkq7zULiYK5GG2scwQ@mail.gmail.com>
-X-Gm-Features: AS18NWB_acSGELeDRDxwgDFftNK0X5mLSzjOk3Qx77tKu5x0o9zGrSDmMDj9UGA
-Message-ID: <CAJKOXPdB+MS964FViEjh1xQL2kGkBgddfkq7zULiYK5GG2scwQ@mail.gmail.com>
-Subject: Re: [PATCH 06/20] arm64: dts: qcom: kaanapali: Add USB support for
- Kaanapali SoC
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com, 
-	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
-	yijie.yang@oss.qualcomm.com, Ronak Raheja <ronak.raheja@oss.qualcomm.com>
+References: <20250925092037.13582-1-jjm2473@gmail.com> <175880949051.820269.9096832740960574577.robh@kernel.org>
+In-Reply-To: <175880949051.820269.9096832740960574577.robh@kernel.org>
+From: jjm2473 <jjm2473@gmail.com>
+Date: Thu, 25 Sep 2025 22:27:04 +0800
+X-Gm-Features: AS18NWD4junFDrz8pZg4TpLnxjmQYCHszyF4BKlv4AvixoXW2PGMp3AIFbDTSgU
+Message-ID: <CAP_9mL7RBoy_jhEp4CU7FXtc19UtzP0GKuE15y0isF=bF7XGGg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] arm64: dts: rockchip: introduce LinkEase EasePi R1
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: kever.yang@rock-chips.com, krzk+dt@kernel.org, heiko@sntech.de, 
+	alchark@gmail.com, linux-rockchip@lists.infradead.org, didi.debian@cknow.org, 
+	pbrobinson@gmail.com, honyuenkwun@gmail.com, naoki@radxa.com, mani@kernel.org, 
+	neil.armstrong@linaro.org, linux-arm-kernel@lists.infradead.org, 
+	quentin.schulz@cherry.de, jbx6244@gmail.com, conor+dt@kernel.org, 
+	dsimic@manjaro.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	inindev@gmail.com, ivan8215145640@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, 25 Sept 2025 at 22:57, Bjorn Andersson <andersson@kernel.org> wrote=
-:
+Rob Herring (Arm) <robh@kernel.org> =E4=BA=8E2025=E5=B9=B49=E6=9C=8825=E6=
+=97=A5=E5=91=A8=E5=9B=9B 22:12=E5=86=99=E9=81=93=EF=BC=9A
 >
-> On Thu, Sep 25, 2025 at 10:50:10AM +0900, Krzysztof Koz=C5=82owski wrote:
-> > On Thu, 25 Sept 2025 at 09:17, Jingyi Wang <jingyi.wang@oss.qualcomm.co=
-m> wrote:
-> > >
-> > > From: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
-> > >
-> > > Add the base USB devicetree definitions for Kaanapali platform. The o=
-verall
-> > > chipset contains a single DWC3 USB3 controller (rev. 200a), SS QMP PH=
-Y
-> > > (rev. v8) and M31 eUSB2 PHY.
-> > >
-> > > Signed-off-by: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
-> > > Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/kaanapali.dtsi | 155 ++++++++++++++++++++++=
-++++++++++
-> > >  1 file changed, 155 insertions(+)
-> > >
+>
+> On Thu, 25 Sep 2025 17:20:34 +0800, Liangbin Lian wrote:
+> > LinkEase EasePi R1 [1] is a high-performance mini router.
+> >
+> > Specification:
+> > - Rockchip RK3568
+> > - 2GB/4GB LPDDR4 RAM
+> > - 16GB on-board eMMC
+> > - 1x M.2 key for 2280 NVMe (PCIe 3.0)
+> > - 1x USB 3.0 Type-A
+> > - 1x USB 2.0 Type-C (for USB flashing)
+> > - 2x 1000 Base-T (native, RTL8211F)
+> > - 2x 2500 Base-T (PCIe, RTL8125B)
+> > - 1x HDMI 2.0 Output
+> > - 12v DC Jack
+> > - 1x Power key connected to PMIC
+> > - 2x LEDs (one static power supplied, one GPIO controlled)
+> >
+> > [1] https://doc.linkease.com/zh/guide/easepi-r1/hardware.html
+> >
+> > Signed-off-by: Liangbin Lian <jjm2473@gmail.com>
+> > ---
+> > Changes in v2:
+> > - Change deprecated "rockchip,system-power-controller" to "system-power=
+-controller"
+> > - Link to v1: https://lore.kernel.org/r/20250925055906.83375-1-jjm2473@=
+gmail.com/
+> >
+> > ---
 > >
 > >
-> > Second try, without HTML:
-> >
-> > I really don't understand why you created such huge patchset.
 >
-> Because I looked at the logical changes that went into the big squash
-> that was initially planned, and requested that some of those was kept
-> intact - because they where independent logical changes.
-
-Ack
-
 >
-> > Year
-> > ago, two years ago, we were discussing it already and explained that's
-> > just inflating the patchset without reason.
-> >
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
 >
-> We used to add things node by node and that was indeed not
-> comprehensible. Overall this adds features in large logical chunks, but
-> there are a few of the patches that could have been squashed.
-
-This patch adds three device nodes.
-
-Other patches add one node. Some other remove the lines which were
-added before!
-
-The last argument is the most important. I don't say anything new...
-If you add code, which you immediately remove, you do it wrong.
-
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
 >
-> > New Soc is one logical change. Maybe two. Not 18!
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
 >
-> I can see your argument for one patch to introduce the soc. But two
-> doesn't make sense, because that incremental patch is going to be the
-> kitchen sink.
+>   pip3 install dtschema --upgrade
+>
+>
+> This patch series was applied (using b4) to base:
+>  Base: attempting to guess base-commit...
+>  Base: failed to guess base
+>
+> If this is not the correct base, please add 'base-commit' tag
+> (or use b4 which does this automatically)
+>
+> New warnings running 'make CHECK_DTBS=3Dy for arch/arm64/boot/dts/rockchi=
+p/' for 20250925092037.13582-1-jjm2473@gmail.com:
+>
+> arch/arm64/boot/dts/rockchip/rk3568-easepi-r1.dtb: mmc@fe000000 (rockchip=
+,rk3568-dw-mshc): status: 'oneOf' conditional failed, one must be fixed:
+>         ['disable'] is not of type 'object'
+>         'disable' is not one of ['okay', 'disabled', 'reserved', 'fail', =
+'fail-needs-probe']
+>         from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+> arch/arm64/boot/dts/rockchip/rk3568-easepi-r1.dtb: mmc@fe2b0000 (rockchip=
+,rk3568-dw-mshc): status: 'oneOf' conditional failed, one must be fixed:
+>         ['disable'] is not of type 'object'
+>         'disable' is not one of ['okay', 'disabled', 'reserved', 'fail', =
+'fail-needs-probe']
+>         from schema $id: http://devicetree.org/schemas/dt-core.yaml#
+>
+>
+>
+>
+>
 
-Ack. Plus argument of actual patch line count
-So maybe two SoC patches? Maybe three?
-
->
-> >
-> > Not one patch per node or feature.
-> >
->
-> Definitely agree that we don't want one patch for every tiny block!
->
-> > This hides big picture, makes difficult to review everything,
-> > difficult to test.
->
-> The big picture is already obscured due to the size of the content
-> added.
-
-Not happy about this either, but understand the principle and business
-choices, thus I don't comment on that.
-
->
-> Comparing to previous targets, I see the baseline content in 2-3
-> patches, and the remainder of the series being things that usually has
-> been scattered in many more small changes in the following weeks or
-> months.
->
-> There's plenty of features in this series that are yet to be concluded
-> for SM8750.
->
-> > Your patch count for LWN stats doesn't matter to
-> > us.
->
-> I agree with this. That's why the QRD is 1 patch, and MTP is 4 (this I
-> think should be squashed to 2) - compared to 13 patches for across the
-> pair for SM8750 with less scope.
-
-Ack, plus reorganize patches which are removing code added in previous patc=
-h.
-
->
-> >
-> > NAK and I'm really disappointed I have to repeat the same review .
->
-> I'm not sure what you're disappointed in, this initial series is larger
-> than any we've seen before. I really like the work Jingyi has done here,
-> aggregating the otherwise scattered patches into one series.
-
-Disappointing is only that I had this exactly talk with Qualcomm two
-years ago and year ago and 2 months ago (QCS), and maybe more...
-
-I'm sure that we had a internal meeting about Glymur and I said the
-same. I emphasized this issue. Look at Glymur DTS - did my internal
-emphasizing succeed?
-
-No. I can speak on mailing lists every year, I can have internal
-meeting(s) and it doesn't work.
-
-Plus the timing of merge window with these two huge patch bombs is
-just cherry on top.
+Thank you!
+"disable" is a typo, should be 'disabled', `./scripts/checkpatch.pl`
+doesn't mention this.
+I'll fix it after review if there are no other issues.
 
