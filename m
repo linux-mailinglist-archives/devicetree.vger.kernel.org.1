@@ -1,88 +1,80 @@
-Return-Path: <devicetree+bounces-221345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FAACB9EB39
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:36:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F2BBB9EB99
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:39:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D596421899
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 10:36:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA20E2A5F71
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 10:38:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 686C82FB609;
-	Thu, 25 Sep 2025 10:33:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2607C2F3C30;
+	Thu, 25 Sep 2025 10:34:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oX9j66kR"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="CLQeG1uM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1BA52FABFD
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 10:33:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 147D12EB5C1
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 10:34:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758796423; cv=none; b=l2zBaDZXTGVWPQkSUx7OefEBvBDTwNBUk5xrH4oB4/NYNJptmsIp+yAa2Sr4TGqwMl0r1VqpEVUCkoKORBSi4NVqQUTlvNcrbdl1rM1BtywKvIHbkPRaO60w/EJEYXwlhjkYLSv+J7Y3mQ5zSeIuH4gUpfUxf9l6a6uiS8ihyhI=
+	t=1758796468; cv=none; b=VFIbGLoNdq49xBwPIKaJ4uulxfdVhDbXNQXtNpwu1UXTykr4V1oQ7CsIBJ3Ic/Y0OJHraX4hjWAkpaHtIFeKYIFTaoZJZt1jM0bBM6Q05sx3HlUUWmypO6IKG40Rvk0zcx/csfGu9mwmRbGM5cPHyV2usWvwlsenRhLoNcmPnQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758796423; c=relaxed/simple;
-	bh=zej+0XcA4O/KYcb+DxmZqeXEO1sCOIfJbhlYjGA0ZhM=;
+	s=arc-20240116; t=1758796468; c=relaxed/simple;
+	bh=Mbnu80dfRVpMKfvh5p/F+tEjYaZ2s4cTxrkqTl/tyzo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n7YV4/SpMmp5AH54K9lwLZJz5BLkPjWbdszz42KAf23badGZZOM1Z5fsZO4+5jljswFQQqMj5PKMi1TiWcMsPgI3ANAV6icn+gVVhBjGFEjwU0ZIiNaK8WWCdCE5t6yWBH2VDa4QYJGf1OP5+JoeNelwBCgzUUdu+TI7CTpoUqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oX9j66kR; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58PAC9VF017430
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 10:33:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UFRsyLmJIufwOkTJA/XGc096S5ZP7JZFqnfjB1m0eAQ=; b=oX9j66kR0DA/C7uL
-	WK94bNc7c3fmG5aGmUyB37OJkNWcMTJA9sDRcFMuoGcYYBLk0GZGb3d+np9si8RB
-	05eIQhISocD1HBqn4685OBFFQ7Xo1NLPqa9SJgrqUb7G9HbGq0azdBq190HCyv9q
-	JrQQ61iQsJDeqBTK2StKjNYDQBqQHBeXpu/aF/gK4qH85bXM/MxaDenO3uh5Ngld
-	WyZGyzrxE/YkuXAGSGqP+CqgPE0fh0Y1fqVCtJXDxNUNxSwIDtg/Lk5UchEz/gWI
-	sjo908l3SLgTjM+E/EKDghyCryQiB/hvEmPvXTZOwIWLK+Cntzqr5TF9fTnTWpgA
-	ZKuuBw==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bhvk1368-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 10:33:40 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-85696c12803so34762285a.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 03:33:40 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=XUTBrCSImAtM6XS/gOV6gi8nsv9XfCWJ4jC9v6GHNQPnusnnXyFDzKjGK+Ob+PTGrV3P5i/CCodfwHTVaSmxoCkni3rfc4NZ9Xgk2TCunO97akUkTExdYhc9fu9ZBI/3pBp+K39Dyk7bln+X+ppANs+5yHLYJCO3cyxOCT+/RwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=CLQeG1uM; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-46e23a6617dso7873275e9.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 03:34:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1758796464; x=1759401264; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w6O7qVDtzfZYudiZbhlwQy20O4vsTVxUZu4CV773opw=;
+        b=CLQeG1uMVkTSM2gDWODtjnNrO+FaYvrhjG89nv1l+8Kzq7fBglu3QABVQTpjKRCzst
+         9e8b6Z6PaZnt1kVpuDQE2SOtuNd8F5hFg9QogpgCYyy5y1K6mefmCySxuZqKHojSzGWe
+         jopOB7z4MuFi+zBIz+lw/aaWasJVFD1rUs8UHu3GMd38REJPfN4UPtc6PQZ8M+ME/bUn
+         FDZ+QVVQuKNJH52V5x1ei0VVtLcwvgSUXPtKPkEj2tbGjrrIaLVuQPTx/Wffgql5FdF0
+         vZWYh0o2wWC/8VVRuFOB8Db1BPaew0Wb43vuUQ0JaJQAj03EaGzUuMenNYQK4IVvDAhP
+         P7xA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758796419; x=1759401219;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=1e100.net; s=20230601; t=1758796464; x=1759401264;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UFRsyLmJIufwOkTJA/XGc096S5ZP7JZFqnfjB1m0eAQ=;
-        b=ZsyOhDn9DxDj9SU81K82F2MQmX6bmN0lEnIS1WYyxwG8dQU4HgQagP7ai/A531zAE5
-         Ha6tG+I/ri8rcQJiHARL50vxKFxILcFbp9+SpA2/4vqSMn4uGS5OzD5DXGvAtLVxj196
-         E43n7ZWFTjAhkd5TeAoH6/emuoyOXVPc95xd/Brm/YPlqpIpxoOmUfsCqQjw7b+WmTSY
-         5ijuv6XZmgoSBWfBrBBiDajNzFGXjjW6Wv3yIJo6ss0aDguuLlVBAUrjf5PQC9EECM1x
-         PUeFO+Kd6nWWBWBcjJmKWF7mrVtQJkCJkxOLWIRn5wosUcy6Ge95tZfWJp+09VGo2DQn
-         deTA==
-X-Forwarded-Encrypted: i=1; AJvYcCWabnV/jPTOKW7N677CYvashvIc+fI7N4neZcj/FIvrHzO1dfkswjhp/XNC7Vod64JDT6oGTTORBrWb@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqYeHOFS6I0Ao0SYngIj3EE4a96UgtDQDPekIonoGlpGEuBO+/
-	9zyzFBjfyFtinVnklOI1TGqBG3JXFc6gsJpIOm09WK32FlbLYIPF8xdiaYZymHAHmCgAMEn7VFQ
-	UVTFplQr0YMosXHQXj04FpYAu5dzqAX1+XyUPUP6yqjlA6M7tB1lrti5/62HnHBS2
-X-Gm-Gg: ASbGnctRPXphtInV7DR7itR2qQCpezWX05dGCn37LCBhqhBIQ2Utgx1n7iBIi4i/t5W
-	VW1Qo3FVhfuGGYxFXB8KAGrfpAO2umQaCXzfxjG5i0qhCZOg/0D23wluz3ftTJrodqmwNDfm0zq
-	Si9uWAvDZ9e8tMEKmQAnWYKsYo3hOHi9yOCH0UuYnkK2uaKq/FX+tEp2MmNABN3IFhQcXG+20A7
-	j1bC+U9DysJxFzyKlL77AdtZxR41cWJm+bvRs7PtrxZfpQPr5SQgJYXSqwYFAJAwnyuIdBwqkFY
-	yD9jyPS8IawiRy6Nar/fMEQatbYjA+b/dqFR5TcEAZlonsHNSrPP0jJqcmG1WkNVqMHl3x2oU1J
-	4sfbr6XIlmsK26LndsKf+jQ==
-X-Received: by 2002:a05:620a:7002:b0:84e:90fc:9bcf with SMTP id af79cd13be357-85adeb4c7d6mr258397985a.1.1758796419308;
-        Thu, 25 Sep 2025 03:33:39 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHua7CpFGuTkLb23y689m09dwFCWAXFmDLjmnYAHIVDng1NKtA47v+/EAkxhQQoBdLLeIRjjg==
-X-Received: by 2002:a05:620a:7002:b0:84e:90fc:9bcf with SMTP id af79cd13be357-85adeb4c7d6mr258396385a.1.1758796418723;
-        Thu, 25 Sep 2025 03:33:38 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b353e5d11ecsm137737366b.21.2025.09.25.03.33.37
+        bh=w6O7qVDtzfZYudiZbhlwQy20O4vsTVxUZu4CV773opw=;
+        b=tyrHBaCRGuE2Mb+6tNW/dUYnxSuQSgGr2HR0Dv2FvzPFC+kSRNfPlBqmnhR+rqU3Fe
+         D7MHofS2gZv3MUbsBpKGkPQDW9AiCjtITduc6dXHDMJ5/VCWMhLJFmEERs7JpsSE0i4M
+         aSGLHWGkvcU5pqCdxcWGnQafG1lCiAhYpyYsC8iMbACZubQ4W9WYt7OdtRhXW8cQtywU
+         yNTAAKrRuKNcoKFbE3guVihpvxw6DLbiO5l7PKEYS9laBJwy4iEkhP3ZS2zJachWBJNd
+         acv8Lv5jlHYls5MXIVmiH3JwAAci6DdcvSvO2XTGbfjAungqwrSyomRa215wtAxwdlAq
+         Ksjw==
+X-Forwarded-Encrypted: i=1; AJvYcCUWcH34zijCBuobXnRwQRp8mrgr5ONOPOwjdo5d3jMtRF+i7YvB0sg9+/fqgMwRlFxXmQr3rRH12Ea1@vger.kernel.org
+X-Gm-Message-State: AOJu0YxDS5SmyYYkWGQNNl5r0Rwqr9Cbl8KVsWNW48bXE9XbsTmV1L90
+	mu5jMO5NGje7wy7NH91V7XY8wJNQvwUjLlhg9SMH8XdeK4f6Qqf6HgDmkiD5Rz7seLc=
+X-Gm-Gg: ASbGncuQbfSRYVY7I4ZpvSJIHou5WfrpmGtHcckhtopwA8zs3cU1uW2MSfKKdpFirGk
+	N46r3g+6eAUqIfLCPy47zbPAPnb97SB3EUsItRgwwEZbR3A4+ghw+bv87zRKQ99VHq2Lv1ojUaj
+	71HRxs5UA+u4eohxq7Y0ePkM4DHw0r/1xtxEZmqBsNIhJu+U/9hyXRJxQR3JCi4BW7MUBVS2pEb
+	wIollOlo0Vat9k2eGr6Uqo/kIH3OEDEMZG0WVKZzxoK+DPDORQe8ad25mTdzEGK2ERxpixzV7cX
+	akKQXs+E0Noz+89v4EZsIOTfNtmX+0rkSkN03qSdaGnFfYHnt1FgDtUQk00cT5pQyQngKSgGpNX
+	vM4pOo4Oh+CJhi5HdOq7Px7Rh5peMWfA=
+X-Google-Smtp-Source: AGHT+IHau4F6UO3kNe9td6PkKcUo9vv5NbrrryC/ZcyZh3kAbvyhB2r315j1KCNpYtCjGa/wqGEyxg==
+X-Received: by 2002:a05:600c:35ce:b0:46e:1ae7:dc11 with SMTP id 5b1f17b1804b1-46e32a2f926mr32643705e9.20.1758796464415;
+        Thu, 25 Sep 2025 03:34:24 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.153])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e33bede39sm29988955e9.18.2025.09.25.03.34.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Sep 2025 03:33:38 -0700 (PDT)
-Message-ID: <3c886104-937f-4d2e-ade0-fd525d56dabc@oss.qualcomm.com>
-Date: Thu, 25 Sep 2025 12:33:36 +0200
+        Thu, 25 Sep 2025 03:34:23 -0700 (PDT)
+Message-ID: <accea131-8735-4b67-ac21-06b7950a0417@tuxon.dev>
+Date: Thu, 25 Sep 2025 13:34:22 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,80 +82,153 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 22/24] arm64: dts: qcom: glymur: Add display clock
- controller device
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Taniya Das <taniya.das@oss.qualcomm.com>
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-22-24b601bbecc0@oss.qualcomm.com>
+Subject: Re: [PATCH v7 4/7] reset: rzg2l-usbphy-ctrl: Add support for USB
+ PWRRDY
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com,
+ yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+References: <20250925100302.3508038-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250925100302.3508038-5-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdXWMwkEbfjHvuijWzh6CTdHKbceMmE8Y7LPdAMey9gavQ@mail.gmail.com>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250925-v3_glymur_introduction-v1-22-24b601bbecc0@oss.qualcomm.com>
+In-Reply-To: <CAMuHMdXWMwkEbfjHvuijWzh6CTdHKbceMmE8Y7LPdAMey9gavQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: uGqe8JsN6VnlKLaCyeXxoraWSFEhg-6p
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDAxMSBTYWx0ZWRfX5nw57ncPVIss
- IdVnW9nQzDyBWuR+ZJJh957YBPbm6DzuE21wIcb6EcwBFMI/d5Xkz7HbLO2kpZGnKbVR9NYgYJw
- d0nVODsVaPgGZ1avkss7ArbVYtThJwDvI7K5OiEGcebpq2Cw2PEEmGaNaTko/VVTvCjfxNvniUA
- azKQz9vWiQ/9Bibx6AO/F6F8prwc9Twq5ESanfaKaeZPbqwEKUjLO+B9gB59jjeA27qcs1CJoUT
- zzbmQ3m1nGgLUzUETfCm15u86I2T0Hgeha5Nn0xI4V+0YOco7wQtfuQwXlbmim9Y0g6bpXyGnow
- n1D+1JNng29arR1x81qZ9a7qZBLjCZqQ9qsCOOpg4JbVj3XujgLk6iHTaOteVAixyR0WbX4fUs+
- g3bkMOgH
-X-Proofpoint-GUID: uGqe8JsN6VnlKLaCyeXxoraWSFEhg-6p
-X-Authority-Analysis: v=2.4 cv=Csq/cm4D c=1 sm=1 tr=0 ts=68d51a84 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=KtVf0pUd8HSTWu7jDnYA:9
- a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 bulkscore=0 adultscore=0 impostorscore=0 phishscore=0
- clxscore=1015 spamscore=0 priorityscore=1501 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509230011
+Content-Transfer-Encoding: 8bit
 
-On 9/25/25 8:32 AM, Pankaj Patil wrote:
-> From: Taniya Das <taniya.das@oss.qualcomm.com>
+Hi, Geert,
+
+On 9/25/25 13:15, Geert Uytterhoeven wrote:
+> Hi Claudiu,
 > 
-> Support the display clock controller for GLYMUR SoC.
+> On Thu, 25 Sept 2025 at 12:04, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>
+>> On the Renesas RZ/G3S SoC, the USB PHY block has an input signal called
+>> PWRRDY. This signal is managed by the system controller and must be
+>> de-asserted after powering on the area where USB PHY resides and asserted
+>> before powering it off.
+>>
+>> On power-on the USB PWRRDY signal need to be de-asserted before enabling
+>> clock and switching the module to normal state (through MSTOP support). The
+>> power-on configuration sequence must be:
+>>
+>> 1/ PWRRDY=0
+>> 2/ CLK_ON=1
+>> 3/ MSTOP=0
+>>
+>> On power-off the configuration sequence should be:
+>>
+>> 1/ MSTOP=1
+>> 2/ CLK_ON=0
+>> 3/ PWRRDY=1
+>>
+>> The CLK_ON and MSTOP functionalities are controlled by clock drivers.
+>>
+>> After long discussions with the internal HW team, it has been confirmed
+>> that the HW connection b/w USB PHY block, the USB channels, the system
+>> controller, clock, MSTOP, PWRRDY signal is as follows:
+>>
+>>                                ┌──────────────────────────────┐
+>>                                │                              │◄── CPG_CLKON_USB.CLK0_ON
+>>                                │     USB CH0                  │
+>> ┌──────────────────────────┐   │┌───────────────────────────┐ │◄── CPG_CLKON_USB.CLK2_ON
+>> │                 ┌────────┐   ││host controller registers  │ │
+>> │                 │        │   ││function controller registers│
+>> │                 │ PHY0   │◄──┤└───────────────────────────┘ │
+>> │     USB PHY     │        │   └────────────▲─────────────────┘
+>> │                 └────────┘                │
+>> │                          │    CPG_BUS_PERI_COM_MSTOP.MSTOP{6, 5}_ON
+>> │┌──────────────┐ ┌────────┐
+>> ││USHPHY control│ │        │
+>> ││  registers   │ │ PHY1   │   ┌──────────────────────────────┐
+>> │└──────────────┘ │        │◄──┤     USB CH1                  │
+>> │                 └────────┘   │┌───────────────────────────┐ │◄── CPG_CLKON_USB.CLK1_ON
+>> └─▲───────▲─────────▲──────┘   ││ host controller registers │ │
+>>   │       │         │          │└───────────────────────────┘ │
+>>   │       │         │          └────────────▲─────────────────┘
+>>   │       │         │                       │
+>>   │       │         │           CPG_BUS_PERI_COM_MSTOP.MSTOP7_ON
+>>   │PWRRDY │         │
+>>   │       │   CPG_CLK_ON_USB.CLK3_ON
+>>   │       │
+>>   │  CPG_BUS_PERI_COM_MSTOP.MSTOP4_ON
+>>   │
+>> ┌────┐
+>> │SYSC│
+>> └────┘
+>>
+>> where:
+>> - CPG_CLKON_USB.CLK.CLKX_ON is the register bit controlling the clock X
+>>   of different USB blocks, X in {0, 1, 2, 3}
+>> - CPG_BUS_PERI_COM_MSTOP.MSTOPX_ON is the register bit controlling the
+>>   MSTOP of different USB blocks, X in {4, 5, 6, 7}
+>> - USB PHY is the USB PHY block exposing 2 ports, port0 and port1, used
+>>   by the USB CH0, USB CH1
+>> - SYSC is the system controller block controlling the PWRRDY signal
+>> - USB CHx are individual USB block with host and function capabilities
+>>   (USB CH0 have both host and function capabilities, USB CH1 has only
+>>   host capabilities)
+>>
+>> The USBPHY control registers are controlled though the
+>> reset-rzg2l-usbphy-ctrl driver. The USB PHY ports are controlled by
+>> phy_rcar_gen3_usb2 (drivers/phy/renesas/phy-rcar-gen3-usb2.c file). The
+>> USB PHY ports request resets from the reset-rzg2l-usbphy-ctrl driver.
+>>
+>> The connection b/w the system controller and the USB PHY CTRL driver is
+>> implemented through the renesas,sysc-pwrrdy device tree property
+>> proposed in this patch. This property specifies the register offset and the
+>> bitmask required to control the PWRRDY signal.
+>>
+>> Since the USB PHY CTRL driver needs to be probed before any other
+>> USB-specific driver on RZ/G3S, control of PWRRDY is passed exclusively
+>> to it. This guarantees the correct configuration sequence between clocks,
+>> MSTOP bits, and the PWRRDY bit. At the same time, changes are kept minimal
+>> by avoiding modifications to the USB PHY driver to also handle the PWRRDY
+>> itself.
+>>
+>> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>> ---
+>>
+>> Changes in v7:
+>> - used proper regmap update value on rzg2l_usbphy_ctrl_set_pwrrdy()
 > 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> ---
+> Thanks for the update!
+> 
+>> --- a/drivers/reset/reset-rzg2l-usbphy-ctrl.c
+>> +++ b/drivers/reset/reset-rzg2l-usbphy-ctrl.c
+> 
+>> @@ -110,6 +125,49 @@ static const struct regmap_config rzg2l_usb_regconf = {
+>>         .max_register = 1,
+>>  };
+>>
+>> +static void rzg2l_usbphy_ctrl_set_pwrrdy(struct rzg2l_usbphy_ctrl_pwrrdy *pwrrdy,
+>> +                                        bool power_on)
+>> +{
+>> +       u32 val = (!power_on << (ffs(pwrrdy->mask) - 1)) & pwrrdy->mask;
+> 
+> ffs(x) - 1 == __ffs(x)
 
-[...]
+OK, thank you! I'm going to wait for more feedback before updating it in a
+new version.
 
-> +		dispcc: clock-controller@af00000 {
-> +			compatible = "qcom,glymur-dispcc";
-> +			reg = <0 0x0af00000 0 0x20000>;
-> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
-> +				 <&sleep_clk>,
-> +				 <0>, /* dp0 */
-> +				 <0>,
-> +				 <0>, /* dp1 */
-> +				 <0>,
-> +				 <0>, /* dp2 */
-> +				 <0>,
-> +				 <0>, /* dp3 */
-> +				 <0>,
-> +				 <0>, /* dsi0 */
-> +				 <0>,
-> +				 <0>, /* dsi1 */
-> +				 <0>,
-> +				 <0>,
-> +				 <0>,
-> +				 <0>,
-> +				 <0>;
-> +			power-domains = <&rpmhpd RPMHPD_MMCX>;
-> +			required-opps = <&rpmhpd_opp_turbo>;
+Thank you for your review,
+Claudiu
 
-Really odd!
+> 
+>> +
+>> +       regmap_update_bits(pwrrdy->regmap, pwrrdy->offset, pwrrdy->mask, val);
+>> +}
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
 
-Konrad
 
