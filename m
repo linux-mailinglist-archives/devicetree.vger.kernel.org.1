@@ -1,58 +1,94 @@
-Return-Path: <devicetree+bounces-221602-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7980BBA1469
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 21:57:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34A88BA150F
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 22:10:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F0751BC7DCD
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 19:57:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E28F44A41C7
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 20:10:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E772C31D742;
-	Thu, 25 Sep 2025 19:57:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 252C9320397;
+	Thu, 25 Sep 2025 20:06:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VvyEsx2d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="REiD9H2t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD9B31B829;
-	Thu, 25 Sep 2025 19:57:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4900B32038D
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 20:06:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758830244; cv=none; b=rxrYFWfsRbnB/FeqgYEHFF8LGB50bRhdC+rjeosMoDjGng97XPJpXxBdhqfbNc5/BuALcnmZMJPCeSHMmuo1lAJkOaEwufNIG/zTfnxGa2oHh7rhDjYZBK1cXEaYLkPeNXFmh70PvZWqOzfU+cyzhX1Den3EC/nFc8hLb5MSqr4=
+	t=1758830793; cv=none; b=PYud3SefM9hoGQFQSPP/BNAuE+Cg5fEc7A9+7WIgwQrtslmjPymH5f1Sn92NaeR5ip1CpmwYrrFzJt/P4zCRAIgOtuiDD68Z+XGw7ppekbFnilh1CnC2DzBLfMku/LdMcOhElyegcqeRi5N9noD2bs7vQKtF8qqTH0btyT9Oo7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758830244; c=relaxed/simple;
-	bh=HxWRAsbo9T/qCfDhR7VtdRIj4AuqN+7L7CRZOBD92ms=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=V5TpwhFNW4hFNa4k6U+2zSNtLZePeQm0atsM4W0c3O05EPQkkGiMPsNgS6ejw2U+gUSW7f4ZiLBN6ESViZWhMsiyfqTKGD46oEo+RIDjMRVMoFORnKCGabmz0eBj78TUSsMXCx+KsyumgCDnV3Dqk2vVOa7w1+Y+hbbVObLGQX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VvyEsx2d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59DB5C16AAE;
-	Thu, 25 Sep 2025 19:57:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758830243;
-	bh=HxWRAsbo9T/qCfDhR7VtdRIj4AuqN+7L7CRZOBD92ms=;
-	h=From:To:Cc:Subject:Date:From;
-	b=VvyEsx2dQ1jpOaDSp0GTfKEgCmIjh66R084CC6ee0tgmP9ZA1hIdEV3fM14TWZmoi
-	 LN2+Qk05/5Rx0iSyoypCOAq6m77H3vTt/mp4aEA4QUrnTSfmoDGylqn7xC7ZWissGx
-	 OECNLKD2pv+8JVRNpEk+FiGeVnjsjbOyMLso8yRpSIZhfzyWv3u60pI5FcqTAZgg+W
-	 fRGyaFFWFmlsPaoiDj7DJbGlCQnL3y1olgZ2W6mq4qE3VnPigOwkGfWqhlc2O+tVDf
-	 OSP7VeNJofiGLdwx3+7sp/fWd/lZ7YhuDfoRS8UNJcvs2QTpz09SZArAyjROrFMfgR
-	 ZotOVwrO0r8mg==
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	s=arc-20240116; t=1758830793; c=relaxed/simple;
+	bh=A6nkXF/nFFhaNGj7X4Fs3clVICJVm9N4Oe56KlyFY/g=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=WsCME41IVqbGzhoLX15i+ohca1pwft2oSY9lLVilhnOYvHQxG60QfbjhEyKrNwy6tld/H8xsRdBxrF05icONHpuOUvzy2Vriw/iETZ1Fty9nfNT9ylxIH8nAu9zBKfUsLJelklb+8rsLql3rS+fkmMPjeZFXbIAyBc7/0iZolsA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=REiD9H2t; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3ece0e4c5faso1369776f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:06:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758830789; x=1759435589; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0bkqtjlf9n6TLED2N6uTdBB8WnIl90DnUC/z2JWcNCs=;
+        b=REiD9H2tuTZTp3X5HJp/7ye3GrZ6ufjVYWeiz1AYVt4K2Nb1Wo2R81w1HlRi3I3tj7
+         WLSg3wdD9+xru+TRkGYSEUHEOZT6ynTkovb8vTFTCIqTk1kdWBuB4vHXaThq7QsE3FSK
+         UcZo+W/5KrjqCwZUO+E8nk5LfGOMFPXEKBGmEZDBk+ANpDyGJAF0hsqeQkPA1MnOfSD/
+         7GohfGZY0KbZOLorfzGKYv7DzK/UjykzOmJVSaUSIs93HuNhFmz7ghg9OZeW2UaniGGQ
+         ODHW/0cBjl2IxMTFJ9y2zeehFbjASQg6+H3H4ZjiDL5aLJvMUQ3uu6qud+tKRBG/tlI4
+         Ypzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758830789; x=1759435589;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0bkqtjlf9n6TLED2N6uTdBB8WnIl90DnUC/z2JWcNCs=;
+        b=H3YquawdHJx/YtvUJl0zhdbOwbiE4utNbNDR3IpOGMYg7Bkc/vHSuKtEpGkCnLDDoJ
+         QV2gDQoY7sjNh+tPs+4IjGVAW0a+O0lhyxjI6cL2OVhoErAt4wpNe6dioukH/qt8EQDV
+         ciUULq6Zmi5f/pzGacNohbH27YqHq7ydX0AlsnrrPlJxNDN1KosNHybm8Y7K6Ns9K5CN
+         Wt7BX0JTtnpoHDrFlCXgvxTdi+XpZZn1z368j79c79/wp/9dZnp3k0/aGbgfepJnBOGS
+         sU3keSNONjrS+Tmt3cnOvpcJyev9+R8adV4vxAg+CtPGSqKzBHatxcQtutmb1Ai2u7X9
+         vR6A==
+X-Forwarded-Encrypted: i=1; AJvYcCUx4eUjkIqmYnO9nJIxmTsFzqo++lU1/RHpkKjZh9n/TgVniyFA6ZMnaPwKlJGS9XTPeboe9065UYAl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfOII6qAOLDLKLae1CXANpkxMZ5deIfh5we5GbUtoc9F70iyW3
+	mCPhk6SBHsEuhgZcSMSaXC0LRLgfbrXhC1Nh//a7in5aGw+BI+f31KBV
+X-Gm-Gg: ASbGncvJrRbScHZ/rAUETnVOvZ3TzMw/EeUhxA6on2LLCPKuozBmS7OPEoXx0unk1Jn
+	jGwQHNWl6Ue8k39IPmjsKMRGaPzfzNcm6m8sfgwpK0M5l5zxGRj5Q+OR5kk0+FHeLfgcRbrZhw4
+	hBcZA/C8wHprpZNyXcHtP+hOpUeQHAMsko4csAZ3NW2rwRSwkAgONVVhARltqjR12oy9QdPUWnM
+	CNge7EhfOv/ELsi6QA8qfzW4t3a68wYBHfQaoyjSPQYHkEN6qSWa9JWQrRZDer6DvxZehzWAn6U
+	871eNpQ9s4Lrpm+yUf0lxVSNBpIh/+yJinwKYtP2XZBfKMIns3dVcKCkHnbW+MmGS1jc5HbLuqT
+	N8iR1Uqobnzvd3EeivQWBJqpz9T93YOr02g==
+X-Google-Smtp-Source: AGHT+IGm5p2OFZYRHMpG1LWIjpAJsc2Ei0YFDZH7Y5FaApdjCSa5UwduVKsthgoMsYChaswBxq5scA==
+X-Received: by 2002:a05:6000:24c4:b0:3e7:45c7:828e with SMTP id ffacd0b85a97d-40e481be755mr5162838f8f.33.1758830789339;
+        Thu, 25 Sep 2025 13:06:29 -0700 (PDT)
+Received: from taln60.nuvoton.co.il ([212.199.177.18])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e34074983sm43901835e9.10.2025.09.25.13.06.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Sep 2025 13:06:28 -0700 (PDT)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	avifishman70@gmail.com,
+	tali.perry1@gmail.com,
+	joel@jms.id.au,
+	venture@google.com,
+	yuenn@google.com,
+	benjaminfair@google.com
+Cc: openbmc@lists.ozlabs.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Bjorn Helgaas <bhelgaas@google.com>
-Subject: [PATCH] of: base: Add of_get_next_child_with_prefix() stub
-Date: Thu, 25 Sep 2025 14:56:30 -0500
-Message-ID: <20250925195720.2200088-1-helgaas@kernel.org>
-X-Mailer: git-send-email 2.43.0
+	Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v3 0/3] arm64: dts: nuvoton: add NPCM845 SoC and EVB support
+Date: Thu, 25 Sep 2025 23:06:22 +0300
+Message-Id: <20250925200625.573902-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,41 +97,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Bjorn Helgaas <bhelgaas@google.com>
+This series fix warnings and adds device tree support for peripherals on 
+the Nuvoton NPCM845 SoC and its Evaluation Board (EVB).
+The first patch fix warning and arrange node order.
+The second patch introduces peripheral nodes for Ethernet, MMC, SPI, USB,
+RNG, ADC, PWM-FAN, I2C, and OP-TEE firmware in the NPCM845 SoC device tree.
+The third patch enables these peripherals for the NPCM845-EVB, adding
+MDIO nodes, reserved memory, aliases, and board-specific configurations
+like PHY modes and SPI flash partitions.
 
-1fcc67e3a354 ("of: base: Add for_each_child_of_node_with_prefix()") added
-of_get_next_child_with_prefix() but did not add a stub for the !CONFIG_OF
-case.
+The NPCM8XX device tree tested on NPCM845 evaluation board.
 
-Add a of_get_next_child_with_prefix() stub so users of
-for_each_child_of_node_with_prefix() can be built for compile testing even
-when !CONFIG_OF.
+Addressed comments from:
+	- Andrew Jeffery: https://patchwork.ozlabs.org/project/openbmc/patch/20250908125938.3584927-2-tmaimon77@gmail.com/
+					  https://patchwork.ozlabs.org/project/openbmc/patch/20250908125938.3584927-3-tmaimon77@gmail.com/
 
-Fixes: 1fcc67e3a354 ("of: base: Add for_each_child_of_node_with_prefix()")
-Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
----
- include/linux/of.h | 7 +++++++
- 1 file changed, 7 insertions(+)
+Changes since version 2:
+	- Fix dts warning
+	- Arrange node order by ascending unit address.
 
-diff --git a/include/linux/of.h b/include/linux/of.h
-index a62154aeda1b..5e2c6ed9370a 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -550,6 +550,13 @@ static inline struct device_node *of_get_next_child(
- 	return NULL;
- }
- 
-+static inline struct device_node *of_get_next_child_with_prefix(
-+	const struct device_node *node, struct device_node *prev,
-+	const char *prefix)
-+{
-+	return NULL;
-+}
-+
- static inline struct device_node *of_get_next_available_child(
- 	const struct device_node *node, struct device_node *prev)
- {
+Changes since version 1:
+	- Fix commit message
+	- Fix dtbs_check warnings.
+
+Tomer Maimon (3):
+  arm64: dts: nuvoton: fix warning and nodes order
+  arm64: dts: nuvoton: npcm845: Add peripheral nodes
+  arm64: dts: nuvoton: npcm845-evb: Add peripheral nodes
+
+ .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 732 +++++++++++++++++-
+ .../boot/dts/nuvoton/nuvoton-npcm845-evb.dts  | 440 +++++++++++
+ .../boot/dts/nuvoton/nuvoton-npcm845.dtsi     |   7 +
+ 3 files changed, 1160 insertions(+), 19 deletions(-)
+
 -- 
-2.43.0
+2.34.1
 
 
