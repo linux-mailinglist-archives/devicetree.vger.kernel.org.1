@@ -1,111 +1,101 @@
-Return-Path: <devicetree+bounces-221601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB242BA142D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 21:46:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7980BBA1469
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 21:57:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 108977ACF99
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 19:45:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7F0751BC7DCD
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 19:57:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 024A331BCAA;
-	Thu, 25 Sep 2025 19:46:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E772C31D742;
+	Thu, 25 Sep 2025 19:57:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HHJPWf6N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VvyEsx2d"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2EA552F88;
-	Thu, 25 Sep 2025 19:46:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD9B31B829;
+	Thu, 25 Sep 2025 19:57:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758829602; cv=none; b=oOhPWxqtxdF8CdzEZ096LMQYjUvz//GBPoTJYCmIJxZ8JUr23UFOrPXs43YdYj1zCnPwtBvTG4H9QVh8ARRXCBBnP2kwaPaPZWC1lD15NGa2Skqz1Ck1r+F7GFAAKhbfppj01C6ej1I+ZBxKh1qR47lnT3pfBLeOkJXKXBEIJ0U=
+	t=1758830244; cv=none; b=rxrYFWfsRbnB/FeqgYEHFF8LGB50bRhdC+rjeosMoDjGng97XPJpXxBdhqfbNc5/BuALcnmZMJPCeSHMmuo1lAJkOaEwufNIG/zTfnxGa2oHh7rhDjYZBK1cXEaYLkPeNXFmh70PvZWqOzfU+cyzhX1Den3EC/nFc8hLb5MSqr4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758829602; c=relaxed/simple;
-	bh=1CMpelpJPOQG59n98d4hwrAEWkj5zityT4djB5jxbMU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cRniG9Uv5jVM77GUbopC+GXGZtlIO2uNsu0W6Dve2maBs+McUH+AlsmnX+RAcfQZSaEZvgiSpmiVa4xPwkhF6o1w4tHprJ1PSf9DdSsMU8yQktHsv0ctyy49YUkopNbbwHgRrFfJuHQNBDYh8ULhWwSx1HOkVELqWNMbWcye2eM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HHJPWf6N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83338C4CEF0;
-	Thu, 25 Sep 2025 19:46:40 +0000 (UTC)
+	s=arc-20240116; t=1758830244; c=relaxed/simple;
+	bh=HxWRAsbo9T/qCfDhR7VtdRIj4AuqN+7L7CRZOBD92ms=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=V5TpwhFNW4hFNa4k6U+2zSNtLZePeQm0atsM4W0c3O05EPQkkGiMPsNgS6ejw2U+gUSW7f4ZiLBN6ESViZWhMsiyfqTKGD46oEo+RIDjMRVMoFORnKCGabmz0eBj78TUSsMXCx+KsyumgCDnV3Dqk2vVOa7w1+Y+hbbVObLGQX8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VvyEsx2d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59DB5C16AAE;
+	Thu, 25 Sep 2025 19:57:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758829602;
-	bh=1CMpelpJPOQG59n98d4hwrAEWkj5zityT4djB5jxbMU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HHJPWf6NyAQeEXhR0uY501tp12VdDzgSTEKCAEpQzkrnrOM/os2TYggiPWPyejJNt
-	 AC2wCCv3piz/Qf/cxnb3SbiAxcg0Jhy3q1+EeO7aT+xLmjwpafIQqv7dsia0/QE1IY
-	 bzdpCd+LStyXKHxBJcAaOkNk6BZcaE2GT/RvhuNQ+wTj0p8DhxxH6XikN9SIQe7nZt
-	 1YfrO9n3zOx2Z9VzNyVNpSIU+Fnc+B4FR8mhcQKnT6iUX4yPnnapqKbZDYfHz9rGSn
-	 eypAyvSS5xdPUsAPGrHGaEtDqYxELibaxRRxTPKQuUqlL7J8kxrNi6mN3lhyPh5p9p
-	 xz6ec1mBUpaZg==
-Date: Thu, 25 Sep 2025 20:46:38 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH 1/1] dt-bindings: touchscreen: move ar1021.txt to
- maxim,max11801.yaml
-Message-ID: <20250925-swimming-overspend-ddf7ab4a252c@spud>
-References: <20250925185653.298246-1-Frank.Li@nxp.com>
- <20250925-boundless-announcer-007f08404112@spud>
- <aNWX+DxUOXlOvsmo@lizhi-Precision-Tower-5810>
+	s=k20201202; t=1758830243;
+	bh=HxWRAsbo9T/qCfDhR7VtdRIj4AuqN+7L7CRZOBD92ms=;
+	h=From:To:Cc:Subject:Date:From;
+	b=VvyEsx2dQ1jpOaDSp0GTfKEgCmIjh66R084CC6ee0tgmP9ZA1hIdEV3fM14TWZmoi
+	 LN2+Qk05/5Rx0iSyoypCOAq6m77H3vTt/mp4aEA4QUrnTSfmoDGylqn7xC7ZWissGx
+	 OECNLKD2pv+8JVRNpEk+FiGeVnjsjbOyMLso8yRpSIZhfzyWv3u60pI5FcqTAZgg+W
+	 fRGyaFFWFmlsPaoiDj7DJbGlCQnL3y1olgZ2W6mq4qE3VnPigOwkGfWqhlc2O+tVDf
+	 OSP7VeNJofiGLdwx3+7sp/fWd/lZ7YhuDfoRS8UNJcvs2QTpz09SZArAyjROrFMfgR
+	 ZotOVwrO0r8mg==
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Rob Herring <robh@kernel.org>,
+	Saravana Kannan <saravanak@google.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Bjorn Helgaas <bhelgaas@google.com>
+Subject: [PATCH] of: base: Add of_get_next_child_with_prefix() stub
+Date: Thu, 25 Sep 2025 14:56:30 -0500
+Message-ID: <20250925195720.2200088-1-helgaas@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="WV+/qNvvVSDWWLA1"
-Content-Disposition: inline
-In-Reply-To: <aNWX+DxUOXlOvsmo@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
 
+From: Bjorn Helgaas <bhelgaas@google.com>
 
---WV+/qNvvVSDWWLA1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+1fcc67e3a354 ("of: base: Add for_each_child_of_node_with_prefix()") added
+of_get_next_child_with_prefix() but did not add a stub for the !CONFIG_OF
+case.
 
-On Thu, Sep 25, 2025 at 03:28:56PM -0400, Frank Li wrote:
-> On Thu, Sep 25, 2025 at 08:20:02PM +0100, Conor Dooley wrote:
-> > On Thu, Sep 25, 2025 at 02:56:47PM -0400, Frank Li wrote:
-> > > ar1021 have only reg and interrupts property beside touch common
-> > > properties. So move context of ar1021.txt into maxim,max11801.yaml.
-> >
-> > Are these devices even remotely related, other than both being touch
-> > devices?
->=20
-> No, just properties is the same. There are many binding files, which bund=
-le
-> similar properties's yaml to one file.
->=20
-> we may create trivial-touch.yaml, which similar with trivial-rtc.yaml.
+Add a of_get_next_child_with_prefix() stub so users of
+for_each_child_of_node_with_prefix() can be built for compile testing even
+when !CONFIG_OF.
 
-I think putting trivial devices that are completely unrelated into one
-file is confusing. It makes it seem like these devices are similar in
-programming model etc.
-Merging them into a explicitly designated trivial-touch binding would be
-an improvement, if there are lots of very similar devices that could
-also be merged in together.
+Fixes: 1fcc67e3a354 ("of: base: Add for_each_child_of_node_with_prefix()")
+Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
+---
+ include/linux/of.h | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
---WV+/qNvvVSDWWLA1
-Content-Type: application/pgp-signature; name="signature.asc"
+diff --git a/include/linux/of.h b/include/linux/of.h
+index a62154aeda1b..5e2c6ed9370a 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -550,6 +550,13 @@ static inline struct device_node *of_get_next_child(
+ 	return NULL;
+ }
+ 
++static inline struct device_node *of_get_next_child_with_prefix(
++	const struct device_node *node, struct device_node *prev,
++	const char *prefix)
++{
++	return NULL;
++}
++
+ static inline struct device_node *of_get_next_available_child(
+ 	const struct device_node *node, struct device_node *prev)
+ {
+-- 
+2.43.0
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNWcHgAKCRB4tDGHoIJi
-0kjRAP9QfSjE6qkn0yqyazy04cUhyWgyeJm0x1LmKrRPXJALdwD/f/7AkBsO1Odt
-i8cZvFn404CDFdbXMPMJ/dLkfhTWFAg=
-=FRwh
------END PGP SIGNATURE-----
-
---WV+/qNvvVSDWWLA1--
 
