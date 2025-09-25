@@ -1,140 +1,120 @@
-Return-Path: <devicetree+bounces-221233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 239ECB9DED3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:54:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60AB9B9DEE5
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:56:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D3E81BC3068
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 07:55:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A17B3839A7
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 07:56:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31A7D261B91;
-	Thu, 25 Sep 2025 07:54:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76C5C26E704;
+	Thu, 25 Sep 2025 07:56:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dAMtEwG+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TuwG7TZt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E2F710A1E;
-	Thu, 25 Sep 2025 07:54:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 521B1246766
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:56:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758786872; cv=none; b=VVBYnsepXn0hXhC1f2+M/td1I/B8cnSUFypDu6Vym5GYLwRAXeLifJZyIqTomiL8KS3QPNBNRWo5GMF2dTITXzBI91Thi1qBhd4eXr4lnIZf3QN3nzmJG+bTeQT2yKMItFlUdYUHaQcEPi4MvFXeV366pd1uac4KMrb+0+2BNRc=
+	t=1758786966; cv=none; b=lpCFtQRd3XoxJOXvwWCHonSzzXN2EcIqnd4cwfpA1BT4G/GHcFVMJWRuc4hT2amDPkrRW/iLX4EOi7C1Rztp4obv/ODFJYBqBqG30xH9lsCxFClWmV+T/v6vQGXhyY1D/4VJVS1tYPNMSncfqFsMqjDFx7FAFJ8o9M13SyhVGPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758786872; c=relaxed/simple;
-	bh=wNrIs/KMRNT0S70Q52NO7ztxcCDaM4WDIdSvpz8vEAY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VaqM4IinbUiL5Uvxnt6kUEevOeY/qVpLEhAOnR5txfOVjHcE9e/3vSszXRGF0SJq5tFDFHjkE5rE+61ZC1/MsAg0OUEd8s7iuiAlrFV41JacM/+v7redBWZRiZ7apvakqvT5Jm0gRe2ldlVHQGqzDf53DchnVIB5pW87hHTEjy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dAMtEwG+; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D4AE81FD45;
-	Thu, 25 Sep 2025 07:54:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1758786860;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=F0yQO/AB1frPLT9/UjMZgXQd7K0oFinoOZukSkiIkvU=;
-	b=dAMtEwG+F2+E9ANALyZUDw8Yv1pyBMIrps8I1f5UxSgSGoRXv4FjKfIuLD8+6tGz0cKv+g
-	cywSsi91XdS5qFAJ97pZFRv7PD48EHm6+EbN2IFcvkx1V0JV1xn8ug1GgNVUTnP+Y7ZO8N
-	eDP5t9ZVuA/2zlCjtAs3RLT7kQ7UlPj4EoqzlB3oWfCd84AmePLJNmcGMfT4P7fhhPf7lE
-	nxY9IZjgRHbLvWBGUuBIldIN2az5SN2DQeeJCPwfvewX/6U4I47jUnAX4Pw6yyAFFXe863
-	4jTXNZmmBHdp78CFPdCNsP2s+CiYO2Y08rxmMrjPspyRyI9LiFnEA+TwFpB6SA==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- David Lechner <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org
-Subject:
- Re: [PATCH 4/4] regulator: ltm8054: Support output current limit control
-Date: Thu, 25 Sep 2025 09:54:19 +0200
-Message-ID: <2800270.mvXUDI8C0e@fw-rgant>
-In-Reply-To: <8772650.T7Z3S40VBb@fw-rgant>
-References:
- <20250916-ltm8054-driver-v1-0-fd4e781d33b9@bootlin.com>
- <aMlj1OcfH8r9Zz6x@smile.fi.intel.com> <8772650.T7Z3S40VBb@fw-rgant>
+	s=arc-20240116; t=1758786966; c=relaxed/simple;
+	bh=iNOrlSv+UnH9YXYGgLh4d5QBAGujb/M/E8kWZNFFdKw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cZ1bBrp88Oxvq3tVTa/OSmdw6bcwWOJ8XbUG+gbOSmmSv+atIRxd9hUeGM0l4fUxXftI/0IIcxVPV4hOaSQVdEIp33OmQC4H35eWRpblhiYGnIDUR8eQqfeIEdUIlfZq0nEgHU/cIYxEB6mGMfrd8Scq4nA5ltqG0HKwCyN8G+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TuwG7TZt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF78DC113CF
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:56:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758786966;
+	bh=iNOrlSv+UnH9YXYGgLh4d5QBAGujb/M/E8kWZNFFdKw=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=TuwG7TZtZyhUdJWz7gyJ+1ze0T9iGppwI7ERgAxVpl6yLlnuQ7tiMNfXQLiOXdTq8
+	 e+RTNIgyC5wC7xnhIIGbZcFFyHDT1qEOFtnFNVXV9OBimONwiRJfVUYxr0mfS+0egS
+	 qPr/LwJw1ykVN0Lq8Tasr2rg30jxbjgQnE9+aRud7C2VZFxeBsOlBuW2PrnDFecm3J
+	 mHd+3vcG3qtKHqSFs6N7efrBWKp6htN4nD8kVp7GUCj5g6WwFFYA+moa/3KfI1tmyV
+	 TjoCNDLmFHyIX4wM9N7d4Y2fXC9jpaz/OPCsfq+vOJ6hcOXmqF9QJP2XuniChXRbEb
+	 Mkvtqh5TzBjiA==
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-2681660d604so6814655ad.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 00:56:05 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXIciIggiUiOjStb4u7A5rVcBYOzKiFd0wfO86Fi54E1lD/oZ+Vir4HYdqDNz4M7IB4ZVjKqbwxGU+d@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmLv3sr2IAOtERj7zjD2WKmoWiT8iV05cKUDKc2Ha02J5NJ96K
+	aJFkhS0NgG8fOt3DmpF5ouXjqjDPMFs43z/YxiqVOJ1U7AjEUSsN8uRvygxg6VXlnvqZL6+uoVo
+	dlVHdJAtRM2qFA9JoYajsKgbA5o1WJTo=
+X-Google-Smtp-Source: AGHT+IGwiFpqHmhXAhBBFAso/lUytZrxuoUy4+24dMkBcof4Rt456e4kjJjM/KaUSq35uvSNF6sG9ZpMzxNTEoW2FNA=
+X-Received: by 2002:a17:903:32c3:b0:267:e3af:ae67 with SMTP id
+ d9443c01a7336-27ed49d2f64mr28324145ad.14.1758786965578; Thu, 25 Sep 2025
+ 00:56:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart12748939.O9o76ZdvQC";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeiheelgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkjghfgggtsehgtderredttdejnecuhfhrohhmpeftohhmrghinhcuifgrnhhtohhishcuoehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfdvleekvefgieejtdduieehfeffjefhleegudeuhfelteduiedukedtieehlefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehffidqrhhgrghnthdrlhhotggrlhhnvghtpdhmrghilhhfrhhomheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhhgihhrugifohhougesghhmrghilhdrtghomhdprhgtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhri
- ihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehjihgtvdefsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegulhgvtghhnhgvrhessggrhihlihgsrhgvrdgtohhm
-X-GND-Sasl: romain.gantois@bootlin.com
+References: <20250925-v3_glymur_introduction-v2-0-8e1533a58d2d@oss.qualcomm.com>
+ <20250925-v3_glymur_introduction-v2-13-8e1533a58d2d@oss.qualcomm.com>
+In-Reply-To: <20250925-v3_glymur_introduction-v2-13-8e1533a58d2d@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Date: Thu, 25 Sep 2025 16:55:53 +0900
+X-Gmail-Original-Message-ID: <CAJKOXPfCFS4UDbN_SejG=zJt1Dt_mtz_p_+MGAaEr5SpK3ydRw@mail.gmail.com>
+X-Gm-Features: AS18NWDm7SJn3zsL3AKVzt-6BJJFQvrAi-FrGgXNCkiSPvbpCGZr-N3-JKzjofA
+Message-ID: <CAJKOXPfCFS4UDbN_SejG=zJt1Dt_mtz_p_+MGAaEr5SpK3ydRw@mail.gmail.com>
+Subject: Re: [PATCH v2 13/24] arm64: dts: qcom: Update pmh0104 dtsi for Glymur CRD
+To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 
---nextPart12748939.O9o76ZdvQC
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Date: Thu, 25 Sep 2025 09:54:19 +0200
-Message-ID: <2800270.mvXUDI8C0e@fw-rgant>
-In-Reply-To: <8772650.T7Z3S40VBb@fw-rgant>
-MIME-Version: 1.0
-
-On Tuesday, 16 September 2025 16:27:25 CEST Romain Gantois wrote:
-> On Tuesday, 16 September 2025 15:19:16 CEST Andy Shevchenko wrote:
-> > On Tue, Sep 16, 2025 at 12:24:09PM +0200, Romain Gantois wrote:
-...
-> > > CTL pin voltage */ +	vdac_uV = (u64)min_uA * LTM8054_MAX_CTL_V;
-> > > +	do_div(vdac_uV, priv->max_uA);
-> > > +
-> > > +	dev_dbg(&rdev->dev,
-> > > +		"Setting current limit to %duA, CTL pin to %duV\n", min_uA,
-> > > (int)vdac_uV);
-> > 
-> > Why casting?
-> 
-> This one is indeed unnecessary.
-
-My mistake, this cast is required to avoid a compiler warning;
-
-Thanks,
-
--- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---nextPart12748939.O9o76ZdvQC
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmjU9SsACgkQKCYAIARz
-eA45Pg//e+RNIVNH123KKvWSDgP/4K9vIfxKQHteDzWnbdc/DAJYmcztCg0sSO2h
-KGsZZ71OoXBoGhArjD8Fo34eIXXAjz2jfstWmo1LdkggibiPFzphGUl8yFz00dVc
-Bxq432+1pyWZQf7ebJYthZItWYASHncO2hObvCXaQH+eATZaaXpBaYs12GeVO+Pc
-Uhy5as0lV4y2V0Zx6VXrER/N76f6TPkZieFoy8w0izbRLb1ECDgkK+mPK1B0heq6
-esjvYWVk97HKedVOSCq/ZHMGCaoNHFumLCjGuLH897hClVRBfvjNjxg+XkXr8QAo
-SuQmYmGZofuEeVAV5ORIaoXB72cPbxiMvgoKjEYqzT4NgNhFep1bHYRYbVLwTEjT
-/Mhl8ulFstcdLX9l/G2uoATXT+GLjlkxMS0AKL7GQ7hFLNDxTpOSc/LBQYQEHbVa
-az5Z+5DIM4PZs2O3RRun7WAyEBEpTGAVJ3a4JjvqjYXDAoI4CneXueamV8zyU4v5
-QPEPgAvST6JUv/mj8IKRfyFgW/gNNemg0krG/INhDBYZYhO+x00wbxUnSLsawxcR
-XIIVFj0APWQrXUzVrmiB2ceo7TsHzGaSIaV3pVt2pJUFglzTNBr1T7wWMk1JyKC5
-qecn9T8O+qBIm9LWvUNpe7WEk8pHxbq+4JSGnTh2Eg7fKL9MyI4=
-=ltTp
------END PGP SIGNATURE-----
-
---nextPart12748939.O9o76ZdvQC--
+On Thu, 25 Sept 2025 at 15:29, Pankaj Patil
+<pankaj.patil@oss.qualcomm.com> wrote:
+>
+> From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+>
+> Update the pmh0104.dtsi to include multiple instances of PMH0104
+> DT nodes, one for each SID assigned to this PMIC on the spmi_bus0
+> and spmi_bus1 in Glymur CRD board.
+>
+> Take care to avoid compilation issue with the existing nodes by
+> gaurding each PMH0104 nodes with `#ifdef` for its corresponding
+> SID macro. So that only the nodes which have the their SID macro
+> defined are the only ones picked for compilation.
+>
+> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/pmh0104.dtsi | 84 +++++++++++++++++++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/pmh0104.dtsi b/arch/arm64/boot/dts/qcom/pmh0104.dtsi
+> index f5393fdebe957ea0caf4bbc16117374b4759bda3..d3ea7486d842ec813a79268fc1466e1513426d78 100644
+> --- a/arch/arm64/boot/dts/qcom/pmh0104.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pmh0104.dtsi
+> @@ -6,7 +6,63 @@
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/spmi/spmi.h>
+>
+> +&spmi_bus0 {
+> +#ifdef PMH0104_I_E0_SID
 
 
+NAK
 
+I'm surprised you decided to ignore all existing discussions and my
+clear point in this.
+
+This is neither readable, nor maintainable.
+
+Please join community in discussing this, instead of coming with
+another invention which I already said is poor.
+
+Best regards,
+Krzysztof
 
