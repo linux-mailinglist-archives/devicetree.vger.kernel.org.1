@@ -1,157 +1,108 @@
-Return-Path: <devicetree+bounces-221431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38004B9F8EF
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:26:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF0BEB9F8FD
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:27:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D7F64E6C06
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:26:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0EFD01C226C0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:27:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77274280325;
-	Thu, 25 Sep 2025 13:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38B6E23C51D;
+	Thu, 25 Sep 2025 13:26:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hoAelVsh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bdHcgEAk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7681D27FB2B;
-	Thu, 25 Sep 2025 13:23:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1490A1DED52
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:26:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758806597; cv=none; b=WGBN6EU7+r8NmooKyMcWrZ0YSbrQ5GDk3qnC3xBoNyjzv57SXQUIlJ1NhPKNIdzyw3QkZYAt8dRtqmuuPBq+2D3oVtkVh7n58i6wy8tx7ZgREdgB88tj4+ccgtxR612Ji+oAIb7izQd38Wd9mwUP2ZLaQuNSEN9LGMbAh0ZUPyI=
+	t=1758806787; cv=none; b=Cvh1HKNoWNsASEuHXjU7Btpmna0JHclBXxv4sGj83zr54z5H4rN110FL5tg5mGY8RRKk9LevxtTN9i5DeJTqxKEzMMEfdAeGQUFZuOYxWCyi7mAMJKxjYyzelLGMvQicpaPq2+AKpfrLNHWFCGLhPkZjYYNRL6CydO3UPFLSvLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758806597; c=relaxed/simple;
-	bh=4iWz/voiEz7siZfjIqLm43TubG/Oii1lMo/evkOfHWI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=umi+JaCnXpFaWcllHH4KYvj+Agn4Z8oY2vFUhM5PEiEFHAb9kGaCv3utnPfZGg1wj4DEIMt632nA6koTCix6kESjRjGk3oVWBQMRFTWIZETfZdyUicSnkBjJJwS8j49ryZ9RyrrahN5NvuzkOZQo3Bu5WocoKAlKoGWvVQukYis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hoAelVsh; arc=none smtp.client-ip=198.175.65.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1758806596; x=1790342596;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=4iWz/voiEz7siZfjIqLm43TubG/Oii1lMo/evkOfHWI=;
-  b=hoAelVshcs6bND/KzxNRL0X7/iwOVtC4eE9R7rUpAzGrJ4R+CBwIG3h/
-   oMBgNGrkSfFf+0TFNzoQ9hUMq/VF36shrPGXwa3GN3FVnkBWX8cgHmRC0
-   30kGLc2O5AcXeLFpboP4V55ClLHZa7D50DPkp2qUTPDWKOv6V/qjb1Ka4
-   8i/9NHBb7ka8r3mdI6+lml0LhVIcmaCNCROUoOVwxNKYLgYyOthzPPIL9
-   vuUo/17X/2I+Je5/a42CtOekVOS82Jsyi4N4dHD6CpfMzeP5FldAbWG/Y
-   ICBrPQK3DIckHD4sSgHwyWjdLWSvPAKlJxah2J3Lyn4JVVWWLXbVcjXF2
-   w==;
-X-CSE-ConnectionGUID: x1TfWolVSAawgUdZFDMxog==
-X-CSE-MsgGUID: tcZFM1eVQeaex68+sPwvGQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="60822892"
-X-IronPort-AV: E=Sophos;i="6.18,292,1751266800"; 
-   d="scan'208";a="60822892"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
-  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Sep 2025 06:23:15 -0700
-X-CSE-ConnectionGUID: 61lDqMiaSL6gENqN3DozbA==
-X-CSE-MsgGUID: k8SaqhLvQp6Ar1H+hx1rFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,292,1751266800"; 
-   d="scan'208";a="177169144"
-Received: from mylly.fi.intel.com (HELO [10.237.72.50]) ([10.237.72.50])
-  by orviesa007.jf.intel.com with ESMTP; 25 Sep 2025 06:23:12 -0700
-Message-ID: <9708c09f-5cd7-4197-b245-04d92f6b1400@linux.intel.com>
-Date: Thu, 25 Sep 2025 16:23:10 +0300
+	s=arc-20240116; t=1758806787; c=relaxed/simple;
+	bh=88NOcHfKKYsahqEmL02itR928NeSctZtHmwIpVJ3FDk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DRFPblQWZrJlhmji1gyUspt1zLOdnU0mIOrzMKb2dLJof0g4cekoCWPEVyRqEuQ1vhN5zyy/yJW3C1NSgk9JJxXkOHP9i3SkMInNb32cF+HJw04yi5AZv5HmBnYpLTJblkCidubXgzUrtyEojNSbtQJ0GumZpONf3SjKlCoGdiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bdHcgEAk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACE80C19423
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:26:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758806786;
+	bh=88NOcHfKKYsahqEmL02itR928NeSctZtHmwIpVJ3FDk=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=bdHcgEAkEJmAs8eXzAlIYBsUMYr2nTi2cPGvx5tGG+kuNQDcVuc5Vz9PDvGKcqTgl
+	 Gqm7iVCTjUuBN/66+fdLoCOmTNW7EFIF8HGcmLB4qm+Lk2sh7r9kHbNz7I0aQ+ZFTd
+	 TeMOzsLF70DJvYhEHUl04xwt9l1sGuBxIJQp/toiCF4i9C3oTceUWyjRL9NbNZiGR7
+	 9m7SbxoKAYBBfpsVvNBBXr7TSHDImrT2gYZo1S6DOPvVFoTKBsQMVDpI1FTx+IYFHC
+	 U7TwW51+R2iJ0n0xCSxrx+Lh06whkrcL/EZOF5OpHPn2+4CmXGz1sjhEEHq2A3litn
+	 +mFVYG69AYuXQ==
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-b4fb8d3a2dbso823090a12.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:26:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUnXW6/q3UAZduUju2e2fuDV+IyRultrHF4BGr01SepjD2NVXRHWHScSt/eBLyRx3VtxjT9F6Fp3GnN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJN1wzkNReH3+dhlPB8EQI8N9TOu9btdOJxK49r09R+akz1Zwq
+	gvTnEIFOTDXTZaZZwzK95s3LoU1rACcGTHXXzrqlBi++sAGrr08i0xJIUjCvxNJsExKqFjLeqDT
+	rByHReCchPmGfdRqYmgwiw9a9o4GmcFg=
+X-Google-Smtp-Source: AGHT+IGsOMxlyxZ7mhUSjQt6C0Lc1FSkqDaXyZq/j5oElV/4P1h/YQwBHEjH7ZyXECfZVJr/eB5uTZx0o877OHXZ14o=
+X-Received: by 2002:a17:902:e890:b0:24c:a269:b6d5 with SMTP id
+ d9443c01a7336-27ed493e891mr36124545ad.0.1758806786057; Thu, 25 Sep 2025
+ 06:26:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] i3c: mipi-i3c-hci: add microchip sama7d65 SoC
-To: Frank Li <Frank.li@nxp.com>,
- Durai Manickam KR <durai.manickamkr@microchip.com>
-Cc: linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, alexandre.belloni@bootlin.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- balamanikandan.gunasundar@microchip.com, nicolas.ferre@microchip.com
-References: <20250918095429.232710-1-durai.manickamkr@microchip.com>
- <20250918095429.232710-3-durai.manickamkr@microchip.com>
- <aMwy9MQOf3pG4Fvw@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Jarkko Nikula <jarkko.nikula@linux.intel.com>
-In-Reply-To: <aMwy9MQOf3pG4Fvw@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com> <20250924-knp-dts-v1-18-3fdbc4b9e1b1@oss.qualcomm.com>
+In-Reply-To: <20250924-knp-dts-v1-18-3fdbc4b9e1b1@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Date: Thu, 25 Sep 2025 22:26:13 +0900
+X-Gmail-Original-Message-ID: <CAJKOXPfY-CpE_aKd910PQ2+u9ux2EvuVEt9ArzhdVCJcTQJUQQ@mail.gmail.com>
+X-Gm-Features: AS18NWDBrwXfUaWFEPV9rWtwVaLLmke2vezdq5SVvr5UMJmIr9OvdeTS1SZ8EMc
+Message-ID: <CAJKOXPfY-CpE_aKd910PQ2+u9ux2EvuVEt9ArzhdVCJcTQJUQQ@mail.gmail.com>
+Subject: Re: [PATCH 18/20] arm64: dts: qcom: kaanapali-mtp: Add audio support
+ (WSA8845, WCD9395, DMIC)
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com, 
+	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
+	yijie.yang@oss.qualcomm.com, 
+	Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi
+On Thu, 25 Sept 2025 at 09:18, Jingyi Wang <jingyi.wang@oss.qualcomm.com> wrote:
+>
+> From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+>
+> Add support for audio on the Kaanapali MTP platform by introducing device
+> tree nodes for WSA8845 smart speaker amplifier for playback, DMIC
+> microphone for capture, and sound card routing. The WCD9395 codec is add
+> to supply MIC-BIAS, for enabling onboard microphone capture.
+>
+> Signed-off-by: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/kaanapali-mtp.dts | 226 +++++++++++++++++++++++++++++
+>  1 file changed, 226 insertions(+)
+>
 
-On 9/18/25 7:27 PM, Frank Li wrote:
-> On Thu, Sep 18, 2025 at 03:24:27PM +0530, Durai Manickam KR wrote:
->> Add support for microchip sama7d65 SoC I3C HCI master only IP.
->> Features tested and supported :
->>             Standard CCC commands.
->>             I3C SDR mode private transfers in PIO mode.
->>             I2C transfers in PIO mode.
->>             Pure bus mode and mixed bus mode.
->>
->> Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
->> ---
->>   drivers/i3c/master/mipi-i3c-hci/Makefile      |  3 +-
->>   drivers/i3c/master/mipi-i3c-hci/core.c        | 28 ++++++++++++
->>   drivers/i3c/master/mipi-i3c-hci/hci.h         | 12 ++++++
->>   .../i3c/master/mipi-i3c-hci/hci_quirks_mchp.c | 43 +++++++++++++++++++
->>   4 files changed, 85 insertions(+), 1 deletion(-)
->>   create mode 100644 drivers/i3c/master/mipi-i3c-hci/hci_quirks_mchp.c
->>
->> diff --git a/drivers/i3c/master/mipi-i3c-hci/Makefile b/drivers/i3c/master/mipi-i3c-hci/Makefile
->> index e3d3ef757035..f463afc4566a 100644
->> --- a/drivers/i3c/master/mipi-i3c-hci/Makefile
->> +++ b/drivers/i3c/master/mipi-i3c-hci/Makefile
->> @@ -4,5 +4,6 @@ obj-$(CONFIG_MIPI_I3C_HCI)		+= mipi-i3c-hci.o
->>   mipi-i3c-hci-y				:= core.o ext_caps.o pio.o dma.o \
->>   					   cmd_v1.o cmd_v2.o \
->>   					   dat_v1.o dct_v1.o \
->> -					   hci_quirks.o
->> +					   hci_quirks.o \
->> +					   hci_quirks_mchp.o
->>   obj-$(CONFIG_MIPI_I3C_HCI_PCI)		+= mipi-i3c-hci-pci.o
->> diff --git a/drivers/i3c/master/mipi-i3c-hci/core.c b/drivers/i3c/master/mipi-i3c-hci/core.c
->> index 60f1175f1f37..cb0673d62c03 100644
->> --- a/drivers/i3c/master/mipi-i3c-hci/core.c
->> +++ b/drivers/i3c/master/mipi-i3c-hci/core.c
->> @@ -8,6 +8,7 @@
->>    */
->>
->>   #include <linux/bitfield.h>
->> +#include <linux/clk.h>
->>   #include <linux/device.h>
->>   #include <linux/errno.h>
->>   #include <linux/i3c/master.h>
->> @@ -651,6 +652,9 @@ static int i3c_hci_init(struct i3c_hci *hci)
->>   	hci->DAT_regs = offset ? hci->base_regs + offset : NULL;
->>   	hci->DAT_entries = FIELD_GET(DAT_TABLE_SIZE, regval);
->>   	hci->DAT_entry_size = FIELD_GET(DAT_ENTRY_SIZE, regval) ? 0 : 8;
->> +	/* Microchip SAMA7D65 SoC doesnot support DAT entry size bits in the DAT section offset register */
->> +	if (hci->quirks & MCHP_HCI_QUIRK_SAMA7D65)
->> +		hci->DAT_entry_size = 8;
-> 
-> #define MCHP_HCI_QUIRK_FIX_DATA_ENTRY_SIZE_8
-> 
-> 	if (hci->quirks & MCHP_HCI_QUIRK_FIX_DATA_ENTRY_SIZE_8)
-> 		hci->DAT_entry_size = 8;
-> 	else
-> 		hci->DAT_entry_size = FIELD_GET(DAT_ENTRY_SIZE, regval) ? 0 : 8;
-> 
-> in case other vendor have similar problem.
-> 
-Are DAT_entry_size and DCT_entry_size quirks even needed? Does your HW 
-read nonzero values and you need the quirk?
+Audio is not a separate feature from USB. It's simply incomplete
+picture which is wrong for case of submitting everything at once.
+Either you release early, release often (which I asked you many
+times), or you submit complete work.
 
->> +	/* Microchip SAMA7d65 SoC supports only PIO mode */
->> +	if (hci->quirks & MCHP_HCI_QUIRK_PIO_MODE)
->> +		hci->RHS_regs = NULL;
->> +
+You don't understand how your own SoC is organized and create fake
+split and inflated patch count just, as someone admitted, to have LWN
+stats.
 
-Please use existing HCI_QUIRK_PIO_MODE quirk and then you don't need 
-this added code.
+This work is incomplete, so please start organizing patches per
+logical features, not per your patch count and company KPI
+.
+NAK, incomplete patch and previously communicated as non working
 
