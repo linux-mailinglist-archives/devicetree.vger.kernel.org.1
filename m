@@ -1,284 +1,156 @@
-Return-Path: <devicetree+bounces-221221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EA99B9DCED
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:09:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E6F2B9DCF3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:09:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05ADE1BC31D1
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 07:09:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0F09179C4A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 07:09:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69B102EC080;
-	Thu, 25 Sep 2025 07:07:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B89F2EAB76;
+	Thu, 25 Sep 2025 07:07:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mMGpCaAJ"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="w3Ex7jnU";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="lrcUrojy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fout-b6-smtp.messagingengine.com (fout-b6-smtp.messagingengine.com [202.12.124.149])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB9E32EBDE5
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:06:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560C32EA159;
+	Thu, 25 Sep 2025 07:07:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758784021; cv=none; b=rnUyd6tavwCt1B/ZA0qpv6CkRBz3CYUuT/FwJu8SBANwoh0I+0aM7NeFGxYvKMiICY78BG0T05sAuDhp61PrYAdHqeoAZvcsXkfCfoBtvMow/9lguwiwPa7A/5N/m9gzM5Jch0Qh8ohFleDMOh/uopD2RK9bQ4raxXNwzfb18Ww=
+	t=1758784039; cv=none; b=DzxB2v7JjXl7JOB9dsiKNtT/r/bDrF18dZzRmwMXx8PmLOM6p/bd49MUmj+vg7Rwg+ckMRBtpFdeJ0sn+vzijWMtYPldHqeFzExcnlNRcnehGk6FLiwskCzBgI7q6genk1GFTc0OrEguPH05yY6Kk9CvAhpd3Y3kOGm9A3TYunY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758784021; c=relaxed/simple;
-	bh=MBFao/DJ+AvQFYkIXOckenkzKbeQrB9uXWrKsMRXuzM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FFwIjZGAMtSISfj4T4R7T9Nufxnnb4ZO0fKsV8jjeP266tLllNoIEazkDgj/rdHbvwyjDb5ohgNFSy6lJ1l0Y2MgsmZ+rweazSIFThvQQ668lOsfBlghCNhjfr3GW1+wmDnjO3PWnvd5LaWQKogN3V4MHiM669X+7uilfdo+KYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mMGpCaAJ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P03Gvo024230
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:06:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	U/ewAsdzTC0PEPN+SodRZso/2oAjrX6us73TZlYVliA=; b=mMGpCaAJo7kAEKW3
-	4Rz1d3MIekz/Se5y7db3XavqVR6R8YnFUxdyAFBqP9qIkb6cREra3l6beejY9VRR
-	O2lbD6Uf3ybNancu3Bh4hgnhI8zX5X8P/0Lw6HxObKEzn8fVEZCdAJGn6o3D8uCv
-	ejUolD7VKIFOd45nHqqRYl2hfIMVoOHjJCfsWY30uU+3022qTY3ehFa8GU6LIvy/
-	ebZSIvA0JjW3FimFhZ9JXCComSx1wFvW7dLRCeQkyh2jzQjaP1WRezUpMQPtBYJf
-	tZ8CfWI757gNu9hP9qcXRbBH/h658H4CbLMIv1IyCWmRLfoSAHkY9ZWmv9Nw5L7J
-	BoZwOw==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bwp0e5q6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 07:06:58 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3306bae2119so300149a91.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 00:06:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758784017; x=1759388817;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U/ewAsdzTC0PEPN+SodRZso/2oAjrX6us73TZlYVliA=;
-        b=RT8VP15BuexgQxCIYyHTv9CsT8Fl9qkpRfe3NY92KjKWgZzrgxValPFefumBfgGoqO
-         j9YCFL1/OH3umGbMbeb69QzUqkMAx2c/wpoo9YyHyPudsJm9rqrsIMdKtdUasdnrVxD6
-         ZtBGc0PgNuI+cKMOw0H3lolGxEJKrR2J7u2pFTBZZyJFHTERuWuJrB+2JqirKRvbXVvB
-         31t+kCCtKAszJAJpoF3lHCqh98j0XZhjo8J69mCgbs1/eWWYIEQZscmaD8HAbJTQBO5f
-         E89CKe+YqCMChQIDa4svYLv2/2NIq8zlzn2Mzju7MZbGy/4gfgULk6xztgyWN2vbUhP4
-         3Oaw==
-X-Forwarded-Encrypted: i=1; AJvYcCXZg6D+nB8+IFGqkxgHHtDHN0V1kZc7chvEG1wmytsAMe3XHWpT8w6To1pfwkvwe1Qf63lpiETs3PCE@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzC2XiaYDsAGNc2LWN/foY47irnOFLOUT8qpDDQWI2Bat54MJx
-	JpomKpISdN67wHR5K8hZREw5Tde7OKFFV8y1Od1GlV9SxauiNPvLZRI39C1XO/mLUZOXTfxdjbt
-	2Kp88NplzBxOol9JmI/H2sFkwIlB4WtwfATDAlrlQoUAAGX41DscJ5W2mSaCOXnrz
-X-Gm-Gg: ASbGnctRMl+uOfY29UvF7ZUIWWqsT0GOj35pmObJCwaS59SAYAHLu8WvKPJZc/RSo6u
-	dLwSGVDHollMRNwCiLtxjbtVcp4VS6r05slGqScwTunfwdzNf4O5kcqDVpADh75OxAKGd0LUVcO
-	k+3M0AunW0o2tkSyAnToas1R+lNBa3I8KCg9+/qSJEEzWXG5f0Zb2drkcWprRgw9QmbpTY/K8XM
-	XldtdLI0UIhYCROVRf7ZpK6q2JyFhrJNDXfctHEu4rlE55qg4Ii8wYeHNOAIn3SIvn32oefOIYC
-	4/6ynlaYQvnjVdCrgCv4JgwDVdSd+47kVbqzX5vNLBGJiSIzHfazoSvzpWGCLUW8X99yOu6hjow
-	hepDl9uk1dzDvzABuCoFXuaKTXYi3iTLjzrrTOa69xcUMm1jTQ4PR/TqE
-X-Received: by 2002:a17:90b:1d0d:b0:330:68e3:ce7e with SMTP id 98e67ed59e1d1-3342a230ddcmr1393212a91.2.1758784017015;
-        Thu, 25 Sep 2025 00:06:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEydyBxQvXFLvLbGCWUVusQvnXuEZsG7rVXNdU7irf5Kov39+iOrak8phy/uzwVcIMlnzogKQ==
-X-Received: by 2002:a17:90b:1d0d:b0:330:68e3:ce7e with SMTP id 98e67ed59e1d1-3342a230ddcmr1393166a91.2.1758784016593;
-        Thu, 25 Sep 2025 00:06:56 -0700 (PDT)
-Received: from sziotdisp01-gv.qualcomm.com.ap.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3342a2bd584sm914253a91.0.2025.09.25.00.06.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Sep 2025 00:06:56 -0700 (PDT)
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-Date: Thu, 25 Sep 2025 15:05:00 +0800
-Subject: [PATCH v6 14/14] drm/msm/dp: Add support for lane mapping
- configuration
+	s=arc-20240116; t=1758784039; c=relaxed/simple;
+	bh=g+r5Q5E94/jojgji+RWseyLVvvGLzc3G6w5H7nl4WJQ=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=itWzzVNglZLN8NASfSUlI3Jp9SUNmqBZBDRGl4pxikpNsQPk/glbWhehiKWlbjMTCOUK+e+X7wFIQv7xapLzCatk3cxExzQq4Byw7OHL8yuTAofEvRydvAByzLWyqeyQ8mEYlgjuWxKd3MMaX6YNXBHFREXjfqIZddYCnaOit9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=w3Ex7jnU; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=lrcUrojy; arc=none smtp.client-ip=202.12.124.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfout.stl.internal (Postfix) with ESMTP id 4EEC61D00153;
+	Thu, 25 Sep 2025 03:07:16 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-05.internal (MEProxy); Thu, 25 Sep 2025 03:07:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1758784036;
+	 x=1758870436; bh=TeIrumQy28sPmYSnm7vU8gqJZj2W4K8gO38cU/gKK3Y=; b=
+	w3Ex7jnUBXWkmKCwAFWnH32PbPYgT6hQ9+nm0NwA26DiUhtQiYT5Lc+PyKOR6tLw
+	Qsv2g6CV8PhnEf+oJJHuJQ+IxmqwVISpjGxBas9FD+lGnU1TByxjLqmOXWK6fSBm
+	TS7sZCk/3H6eltuYwQadCCY4yjZhLdZzbj+Cdg0qzvaMLrl7iM06kvBraAWaxfsS
+	67TBf/MejRUkeRvxz54/aMSvDDQbiRkTUxSvyOIAcbksthMw8FKlpXDvXNoNPJcU
+	tN43Pb0hEAV+nH2k5VlD4/pFBNiYCZ5KL30lAshIlmTf+nBA1vpZMpUqogo6Rc/g
+	Sn7Iq+JX3Z14K2JJycmbng==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1758784036; x=
+	1758870436; bh=TeIrumQy28sPmYSnm7vU8gqJZj2W4K8gO38cU/gKK3Y=; b=l
+	rcUrojyuUb71wHD2vPR4b/F6wEcxPZlHmWD5RRVHKgLTePmmQnMqMHYR4nimbIf5
+	XC9jb5uX9x210q18nT3jtZf/YOoo4PocqOUP/Ali9IFvjNlfLdZCaoGqUZw6O0Jq
+	AhzgFiUby+d6qNXL+3gM3eAzkXxZl13rUz9R3jfXkqSJW181z4wIMXxGpBTknZRS
+	xkhrVDXwqxefrRgtoBZ3bF1XnaTAEG8S6O2gnxx2PBQRNBIpJI4OjlJAnViHy+eP
+	5Gcl6QSSq5oj4lDKCXeCgdrJdhWDBouOSOdxSx4CxNRuY4LVAlYcbZ+8ugkhu9fo
+	QOYYvsv4ZHsbR14A+Y5uA==
+X-ME-Sender: <xms:IurUaJcOrUmrm2kwDrRAaTlGz4eVGDJMM7R61_2i1b4o7-HUNFkAjw>
+    <xme:IurUaCC0jRrsWJ-UUdNT-WWbC93ST5nAB2Ttx9rWv9e26_uKhCmWP2QQjKTyDiqh0
+    DKYHxJGo5-AZboasELTiyLbO8-n0sk7u-fFRMIx33LL9kt8KWQO-Jg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeiheekhecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpeekleejudehvdehueegheehvdfggfefhfefueevieeigeduueevjeehgfevudffheen
+    ucffohhmrghinhepsghsthdrrghinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrg
+    hmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohep
+    udeipdhmohguvgepshhmthhpohhuthdprhgtphhtthhopegtrghtrghlihhnrdhmrghrih
+    hnrghssegrrhhmrdgtohhmpdhrtghpthhtohepghhorhguohhnrdhgvgessghsthdrrghi
+    pdhrtghpthhtohepsghsthdquhhpshhtrhgvrghmsegsshhtrghirdhtohhppdhrtghpth
+    htoheprggurhhirghnrdhhuhhnthgvrhesihhnthgvlhdrtghomhdprhgtphhtthhopegt
+    ohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskh
+    gvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgt
+    phhtthhopeifihhllheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriiihshiith
+    hofhdrkhhoiihlohifshhkiheslhhinhgrrhhordhorhhg
+X-ME-Proxy: <xmx:IurUaMkt3FNzrr5HiolNmk8y7IHLKox9NIhqNC07gffGXE_2Vg0GKw>
+    <xmx:IurUaMySZkUXc-wcDplhthTrFFPDP2QMcJB7fLHzHKmQNIGMw9njLA>
+    <xmx:IurUaK_OTM_tPVPPHdOcM0rozgw6yfGUDbpTIyf61urUNuRffoeyKQ>
+    <xmx:IurUaHAEOz6W5dfpOnvX12hYr6DZ4TB2D2UlvO9Dj_3fSKqcxd3nyQ>
+    <xmx:JOrUaF3bnAJYdSobaar05uW3kQz6dJ9tv-aka8j6dxOv_nzEky7767xX>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 792C2700069; Thu, 25 Sep 2025 03:07:14 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+X-ThreadId: AYQZGcjF-1nJ
+Date: Thu, 25 Sep 2025 09:06:54 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "yangzh0906@thundersoft.com" <yangzh0906@thundersoft.com>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "gordon.ge" <gordon.ge@bst.ai>,
+ bst-upstream <bst-upstream@bstai.top>,
+ "Catalin Marinas" <catalin.marinas@arm.com>, "Will Deacon" <will@kernel.org>,
+ "Ulf Hansson" <ulf.hansson@linaro.org>,
+ "Adrian Hunter" <adrian.hunter@intel.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ "linux-mmc @ vger . kernel . org" <linux-mmc@vger.kernel.org>,
+ soc@lists.linux.dev, "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+Message-Id: <09b1318e-21dc-4354-8733-866b70696295@app.fastmail.com>
+In-Reply-To: <20250923-v4-patch-final-v1-0-2283ad7cbf88@thundersoft.com>
+References: <20250923-v4-patch-final-v1-0-2283ad7cbf88@thundersoft.com>
+Subject: Re: [PATCH 0/9] arm64: introduce Black Sesame Technologies C1200 SoC and
+ CDCU1.0 board
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250925-add-displayport-support-for-qcs615-platform-v6-14-419fe5963819@oss.qualcomm.com>
-References: <20250925-add-displayport-support-for-qcs615-platform-v6-0-419fe5963819@oss.qualcomm.com>
-In-Reply-To: <20250925-add-displayport-support-for-qcs615-platform-v6-0-419fe5963819@oss.qualcomm.com>
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        fange.zhang@oss.qualcomm.com, yongxing.mou@oss.qualcomm.com,
-        li.liu@oss.qualcomm.com,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758783911; l=5055;
- i=xiangxu.yin@oss.qualcomm.com; s=20241125; h=from:subject:message-id;
- bh=MBFao/DJ+AvQFYkIXOckenkzKbeQrB9uXWrKsMRXuzM=;
- b=YZKXR2CUgP470JDI7PJrgUO29J0aV1Yic0DGd9ehh5weifTEt5JJWmf+3GOoo3E2tGiGMEgMj
- 6544KOTHvvyBOCE2TTE4IquwBx+8p6+dceUEZ6AHk2AYuDxi5cPfytC
-X-Developer-Key: i=xiangxu.yin@oss.qualcomm.com; a=ed25519;
- pk=F1TwipJzpywfbt3n/RPi4l/A4AVF+QC89XzCHgZYaOc=
-X-Authority-Analysis: v=2.4 cv=KNxaDEFo c=1 sm=1 tr=0 ts=68d4ea12 cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=TnvzUFuqcobRuy42eWwA:9
- a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-GUID: b4a0v9-mRc7lPpSr_sHlVp-lk1O19_bc
-X-Proofpoint-ORIG-GUID: b4a0v9-mRc7lPpSr_sHlVp-lk1O19_bc
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDEzOCBTYWx0ZWRfX8wXylRDlH2me
- s4V7YzruI31veTnEUH8gP4IPFEHqb/3uA+eesDwX/1tAqf/kPhefd65qjxn2JZrwfrpi/AWhq+u
- K0/wfMd8B5Qj8HkM3T+o4va5yZNgrZ9nXn5PirC+x2b/BMouE0VWx6KKgRt8UgxI7O35FaMszkU
- mHVQpeQkT/rTitxw2lYUNwLfmNUt3w086of7vEGPCRwm3yau5/N3FUGvbmHtozETSk2Wz1DikQb
- UmdOkG0L3YuuyYgOImDMc4P7V4fCL4XMcOpB4qocqLJ8LtS7TE/Ko9KYgpOprEhRIrBb3vMuvOk
- P4CnabmpN0RD9gCf7RGcjbC3AEpnqqLF+Khl38tEwwRqimLzjczcTF6gg3A2yta5ORED6wnNoKk
- nJFNFd2U
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 clxscore=1015 phishscore=0 suspectscore=0
- adultscore=0 bulkscore=0 spamscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509230138
 
-QCS615 platform requires non-default logical-to-physical lane mapping due
-to its unique hardware routing. Unlike the standard mapping sequence
-<0 1 2 3>, QCS615 uses <3 2 0 1>, which necessitates explicit
-configuration via the data-lanes property in the device tree. This ensures
-correct signal routing between the DP controller and PHY.
+On Tue, Sep 23, 2025, at 08:10, Albert Yang wrote:
+> This patch series introduces comprehensive support for Black Sesame 
+> Technologies
+> (BST) C1200 SoC and CDCU1.0 ADAS 4C2G board. BST is a leading 
+> automotive-grade
+> computing SoC provider focusing on intelligent driving, computer 
+> vision, and AI
+> capabilities for ADAS and autonomous driving applications. You can find 
+> more information
+> about the SoC and related boards at: https://bst.ai
 
-For partial definitions, fill remaining lanes with unused physical lanes
-in ascending order.
+Hi Albert,
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
----
- drivers/gpu/drm/msm/dp/dp_ctrl.c | 10 +++----
- drivers/gpu/drm/msm/dp/dp_link.c | 61 ++++++++++++++++++++++++++++++++++++++++
- drivers/gpu/drm/msm/dp/dp_link.h |  1 +
- 3 files changed, 67 insertions(+), 5 deletions(-)
+I see you submitted the series to soc@lists.linux.dev, which would
+normally indicate that it has been fully reviewed and is ready
+to be merged.
 
-diff --git a/drivers/gpu/drm/msm/dp/dp_ctrl.c b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-index c42fd2c17a328f6deae211c9cd57cc7416a9365a..cbcc7c2f0ffc4696749b6c43818d20853ddec069 100644
---- a/drivers/gpu/drm/msm/dp/dp_ctrl.c
-+++ b/drivers/gpu/drm/msm/dp/dp_ctrl.c
-@@ -423,13 +423,13 @@ static void msm_dp_ctrl_config_ctrl(struct msm_dp_ctrl_private *ctrl)
- 
- static void msm_dp_ctrl_lane_mapping(struct msm_dp_ctrl_private *ctrl)
- {
--	u32 ln_0 = 0, ln_1 = 1, ln_2 = 2, ln_3 = 3; /* One-to-One mapping */
-+	u32 *lane_map = ctrl->link->lane_map;
- 	u32 ln_mapping;
- 
--	ln_mapping = ln_0 << LANE0_MAPPING_SHIFT;
--	ln_mapping |= ln_1 << LANE1_MAPPING_SHIFT;
--	ln_mapping |= ln_2 << LANE2_MAPPING_SHIFT;
--	ln_mapping |= ln_3 << LANE3_MAPPING_SHIFT;
-+	ln_mapping = lane_map[0] << LANE0_MAPPING_SHIFT;
-+	ln_mapping |= lane_map[1] << LANE1_MAPPING_SHIFT;
-+	ln_mapping |= lane_map[2] << LANE2_MAPPING_SHIFT;
-+	ln_mapping |= lane_map[3] << LANE3_MAPPING_SHIFT;
- 
- 	msm_dp_write_link(ctrl, REG_DP_LOGICAL2PHYSICAL_LANE_MAPPING,
- 			ln_mapping);
-diff --git a/drivers/gpu/drm/msm/dp/dp_link.c b/drivers/gpu/drm/msm/dp/dp_link.c
-index 2aeb3ecf76fab2ee6a9512b785ca5dceebfc3964..2ae78d33fffd7c49190983952ee8f5a249f2b69d 100644
---- a/drivers/gpu/drm/msm/dp/dp_link.c
-+++ b/drivers/gpu/drm/msm/dp/dp_link.c
-@@ -1236,6 +1236,62 @@ static u32 msm_dp_link_link_frequencies(struct device_node *of_node)
- 	return frequency;
- }
- 
-+/*
-+ * Always populate msm_dp_link->lane_map with 4 lanes.
-+ * - Use DTS "data-lanes" if present; otherwise fall back to default mapping.
-+ * - For partial definitions, fill remaining entries with unused lanes in
-+ *   ascending order.
-+ */
-+static int msm_dp_link_lane_map(struct device *dev, struct msm_dp_link *msm_dp_link)
-+{
-+	struct device_node *of_node = dev->of_node;
-+	struct device_node *endpoint;
-+	int cnt = msm_dp_link->max_dp_lanes;
-+	u32 tmp[DP_MAX_NUM_DP_LANES];
-+	u32 map[DP_MAX_NUM_DP_LANES] = {0, 1, 2, 3}; /* default 1:1 mapping */
-+	bool used[DP_MAX_NUM_DP_LANES] = {false};
-+	int i, ret = -EINVAL;
-+
-+	endpoint = of_graph_get_endpoint_by_regs(of_node, 1, -1);
-+	if (endpoint) {
-+		ret = of_property_read_u32_array(endpoint, "data-lanes", tmp, cnt);
-+		if (ret)
-+			dev_dbg(dev, "endpoint data-lanes read failed (ret=%d)\n", ret);
-+	}
-+
-+	if (ret) {
-+		ret = of_property_read_u32_array(of_node, "data-lanes", tmp, cnt);
-+		if (ret) {
-+			dev_info(dev, "data-lanes not defined, set to default\n");
-+			goto out;
-+		}
-+	}
-+
-+	for (i = 0; i < cnt; i++) {
-+		if (tmp[i] >= DP_MAX_NUM_DP_LANES) {
-+			dev_err(dev, "data-lanes[%d]=%u out of range\n", i, tmp[i]);
-+			return -EINVAL;
-+		}
-+		used[tmp[i]] = true;
-+		map[i] = tmp[i];
-+	}
-+
-+	/* Fill the remaining entries with unused physical lanes (ascending) */
-+	i = cnt;
-+	for (int j = 0; i < DP_MAX_NUM_DP_LANES && j < DP_MAX_NUM_DP_LANES; j++) {
-+		if (!used[j])
-+			map[i++] = j;
-+	}
-+
-+out:
-+	if (endpoint)
-+		of_node_put(endpoint);
-+
-+	dev_dbg(dev, "data-lanes count %d <%d %d %d %d>\n", cnt, map[0], map[1], map[2], map[3]);
-+	memcpy(msm_dp_link->lane_map, map, sizeof(map));
-+	return 0;
-+}
-+
- static int msm_dp_link_parse_dt(struct device *dev, struct msm_dp_link *msm_dp_link)
- {
- 	struct device_node *of_node = dev->of_node;
-@@ -1255,6 +1311,11 @@ static int msm_dp_link_parse_dt(struct device *dev, struct msm_dp_link *msm_dp_l
- 	else
- 		msm_dp_link->max_dp_lanes = DP_MAX_NUM_DP_LANES; /* 4 lanes */
- 
-+	if (msm_dp_link_lane_map(dev, msm_dp_link)) {
-+		dev_err(dev, "failed to parse data-lanes\n");
-+		return -EINVAL;
-+	}
-+
- 	msm_dp_link->max_dp_link_rate = msm_dp_link_link_frequencies(of_node);
- 	if (!msm_dp_link->max_dp_link_rate)
- 		msm_dp_link->max_dp_link_rate = DP_LINK_RATE_HBR2;
-diff --git a/drivers/gpu/drm/msm/dp/dp_link.h b/drivers/gpu/drm/msm/dp/dp_link.h
-index 0684a962d4ec93f7da764c4af2e2154c7050329c..b1eb2de6d2a7693f17aa2f256657110af839533d 100644
---- a/drivers/gpu/drm/msm/dp/dp_link.h
-+++ b/drivers/gpu/drm/msm/dp/dp_link.h
-@@ -74,6 +74,7 @@ struct msm_dp_link {
- 	struct msm_dp_link_phy_params phy_params;
- 	struct msm_dp_link_info link_params;
- 
-+	u32 lane_map[DP_MAX_NUM_DP_LANES];
- 	u32 max_dp_lanes;
- 	u32 max_dp_link_rate;
- };
+I'd be happy to merge the actual SoC portions in arch/arm64 as they
+do seem to be ready, and for a new SoC support I sometimes merge
+in required driver changes with a subsystem (uart, irqchip, clk, ...)
+maintainer's Ack as well. However the MMC driver portions in patches
+4-6 don't really fall into that category, as there has not been
+any Ack for this version yet, and MMC is not one of the subsystems
+we normally make this exception for.
 
--- 
-2.34.1
+Given the current timing, I would suggest that you respin the
+series for 6.19 once 6.18-rc1 is out and leave out those three
+patches in the submission to soc@lists.linux.dev.
 
+If the MMC driver gets merged for 6.19, it's ok to keep the
+sdhci device nodes in the dtsi file here, but to make things
+easier, you can also leave out those nodes in the initial
+submission and send this as a follow-up patch to
+soc@lists.linux.dev once the driver is actually merged.
+
+     Arnd
 
