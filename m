@@ -1,125 +1,769 @@
-Return-Path: <devicetree+bounces-221072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AE12B9D0F7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 03:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B77A8B9D191
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 04:09:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 18DBE1720AA
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 01:50:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 691DB17317C
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 02:09:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9CB2DE71D;
-	Thu, 25 Sep 2025 01:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABBB02E1C57;
+	Thu, 25 Sep 2025 02:09:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PF1vzTsX"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oAqpE0WX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52CE22DEA73
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 01:50:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 611A025487A
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 02:09:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758765024; cv=none; b=J5nKzPnib2pZoqzDyfJYC4mDx8GB3L7DGSUH5doMgH6I+MlCIZIb34HNhDl+S8/LkD63gZYOnEXOL65KMcvgQTa2L/16TAF2YVsUo0uBo/7msotuIWhub/RFKCUN4lEuvyjy2ypqoJJ5I9dk17vFfUXpAxHJEWxvOZ5EBQirQoQ=
+	t=1758766186; cv=none; b=a5JxgUOwaDICNFRBCTmu5Jj8QK9Zxo+uzv5XAo838XujVlX4MJWOqZ8uFDjgYzS3ZLrcw359J938LgA8HfQmsYXl+357Qc2d90SARDJWsxGABshK6BViMK/1c96MxH48yomAXPOSd7Kg3RL5y5btOqXNA4FVolaNpINBlnbKjxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758765024; c=relaxed/simple;
-	bh=owaS0D9XXND9vT6YXj68RtHr8CmLFuARl6LEZicjSX0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Kg8NLFJ60FMENCjaRWrTYTJ22JZ31pNfCCWgoZ017kJSh/4KDrbiqmbXORXptXG14E1EZ5xQ7PLvVs3QpdQjqxZakyz2SrH6uusmQ+G5e5gCLKD+/3XT5sxHbH9iZOUDP5LY92pdKtQMkv9+EXbqYD7ZnQ5iCm0F7AyQqgAna8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PF1vzTsX; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b555b0fb839so355813a12.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 18:50:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758765022; x=1759369822; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=hEJQvsmE/hbyjQkBzjPY8kB2xy+I438NQVnzcmtq/VU=;
-        b=PF1vzTsX8updoHYLQrXbk5Ft6ipQyWyO/FIzAqDmLxcsMgKSFQhZ/XeEeHa6ljh4D/
-         WJy42vSJq43fdBkXmU9sY76G/cLJ/rLU7RzO2Ju3JRhE/R0EvDyIB49b7ijLq2X+xQfL
-         yGvWPfNdzQh0EtFc2dzDfzVNuM8CLq2bIBVO/HgnTxjQDNgUOdjF8x5gFjPsDmNAuWcE
-         GSQNb61tNviARIUktUkbnvzQOifAkXGHbpzjuO9j5B/sMYB1ADnAtOdt1qwJLDUqVwZi
-         IFdLEHTtCftN0xt4G/OyqsyhmdxiORCr2nSRINt9C3LFV5sGab4XfFgYrhoOAaUuU7Ur
-         oMpQ==
+	s=arc-20240116; t=1758766186; c=relaxed/simple;
+	bh=KQZBkgd8PEhZC+eeB3pNQ0rqG3M5g2M7/5Gk3+tFhnM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d0CwY6jwuKEFJ02v2ESAbGN4OyVVxPgVQHEMj7iZ23osB/93UlT0boLGBShINlN1e2jUWkYqNFeQDRo0ezdijH6v334+gkK+HvohQxmwO00JXQWvBGkITDCxN6JpSvQMWbR9vZ5G0+o+aGRIkL+ecFnUCPD2HyppIhNnWywlb+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oAqpE0WX; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58ONeUEZ027304
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 02:09:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=ijMwnq00KQMGyCqWB/+pBjCR
+	blHDrvMixPuC+nbcymw=; b=oAqpE0WXS95C59So9jPVbVJF7381f7fO5PgtoryK
+	qrtr4WxE7kTcShC9ixdk0p7FYKPAPWpH72+uSF3KdeL/STQIye59GD/U60VKO+ME
+	PEJXbj8oPDJ41VNMbSBXDAnz7h8XdkHd71K7moGhq83DuYVsqb16UcDSl8wRRO0A
+	clvp0bIKvDTb4UOInQGrjqt3r3/waWvLdKzQVt0AwIPMy1LxLZ5IEVda341Eywhh
+	E5984oHnGpAqR8Xgm1NXdhxg3/8xT2sCvX1/D2IfCA4Y55y1l1Mu7rQLpsrJKQwm
+	I8T+4/jBD9Shy6sxGvNqx0vYEhpLHey55L7T5pHGALmd7A==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499kv16dyj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 02:09:42 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4bf85835856so14460091cf.1
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 19:09:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758765022; x=1759369822;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hEJQvsmE/hbyjQkBzjPY8kB2xy+I438NQVnzcmtq/VU=;
-        b=DGICl5tXNdet/mRe47thAyL4dg51WrTg4kNR5bnvVlIb+PRr04X+FnrHA5mVcy2fxa
-         jIWSwUqUHYBX59kYBNWhBXUIoHPdREu+MD67K1+F5nfI29f0JJLFjCZvhfNnDZEDiVJD
-         Rarnv/IRwtFh7/30Rjqv7SYDmFnZQsOQrrhQ0g8GuHpfeOBJxwv69NAs71F75ZflDe/f
-         DTrEJ4eD/z0urh+4zoNFMdpNgc6Nvrv58VXP8R69OJLGsHMSGUvg/xbI1RKpMQn2sjTn
-         gkSKQ7d92VM57XwtYJdz65nPqcArC4wujr0CRGzXnAK6O6ArUKLfONTNAOFkcAuXfAX+
-         Jwbw==
-X-Forwarded-Encrypted: i=1; AJvYcCX8v0HVCqP4ZryDPLStEam3b8VFhVpi+wjstQylmGaSNKMPjAS/i2/OnHZ+fOqC9I5wyWjfTOX9Eo2F@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7xuYfV1hLaCqER050ZsXZLrKzv2Uzp4IkkmJRf7PlyX19aQm/
-	SQ3QkPWbRRZ7z3mPIMjAnhqsuLtOZMJH+VqbeSH7OkzmAJVwcy2de7nr7mJBylVHsjBTcE284pY
-	16ZalxH3sVi9WSEn1cI+STPGOf+uMITk=
-X-Gm-Gg: ASbGnct25DVXCQWlnJzUQHMne0VVtun/ixbLN8cOm9ai0o0TibA2Zu43AIVnEtnhcEW
-	UeK9zKYXRX46zTPNM4/88aI4RfUdQZc9bi9EHTDf/xKZiUd7w/rRGsTZYWbcI7btw/OWzQLBE9h
-	afSPng5T3yFAONABq0JApAVKaZhRswQVaxa2oXdNb1g1EmNfFmuf9KApieOV232bRYugHc/cUDI
-	O76KaGPt1lmEWMie8p5U85nvMlj99vpKJVu
-X-Google-Smtp-Source: AGHT+IEl7et+7OeLoEdoDmvJumc2FzyDuQRGyuOq4dHhRQ/gB+e14fRVVIkDC+7iwxulpgcerYiG0oyjO04opcvWDZU=
-X-Received: by 2002:a17:902:ef0b:b0:248:7018:c739 with SMTP id
- d9443c01a7336-27ed4aab56fmr16467205ad.28.1758765022657; Wed, 24 Sep 2025
- 18:50:22 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758766181; x=1759370981;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ijMwnq00KQMGyCqWB/+pBjCRblHDrvMixPuC+nbcymw=;
+        b=JINmr6w+81SIPQen2gGuNwGN3kHZ/iX1jN2mt7KK2FzuDwUeAmCVtKScHPnRNX6nrb
+         j2X6O9C9xtgK9foTtjjSi/tlFf7jVVvX4UvJPLwP615ULHtYozTTNPDxCYx5uXv7wqD1
+         tYuXCNblst69pN3mQ982BLzOFu+xj5s3cYioqd5eHVDPQXNaQjnMIwIezT7c6Vb1Xl3f
+         sq+IIIF2AbpKhsdMaDa1D8ZONoVupB2J76SeD7iKnql/Gs6f6NnUq/QHF6SeZ34vx4Wr
+         MYzA6i1kRqhrL13zYnmMvu94huwDmXRbAn4GDAC5zDjZkwjwj3s1Nf8jXqwsLLJqPQZs
+         jXOA==
+X-Forwarded-Encrypted: i=1; AJvYcCUCLSnqq2nM4lEK7mL/0P3gm4SFfbMFs4L0gN8clnzT+nWd0MmMAQ8Zg8+1NtqG96LcEyZEARUrNU00@vger.kernel.org
+X-Gm-Message-State: AOJu0YweJYQ4UEa1X+YfqaiIwjjhjpAGdLk57M/4A+n3gQGxjKTvCf79
+	pQ+WQCv1jUGnJJmcxCGWA6yVpevmbt2GuF6Eeqcg0P2G5G8o3KcZa7Ur8s0sGlvhvexTzdR/Cg0
+	uvL2/nOiZDuOMfQDE5G5mpXkJfqcz3tYN//WCLz42Ta8EA20s8ha0eONjuRtg8T3B
+X-Gm-Gg: ASbGncsjCXUy3etEF1mvMZ2r2renUPfKckgQCYeDK7gDVjDCFYD8+pMw04r/+lKVse8
+	pArE0xrlea9sNes5erzOzO0EqeWDawUG2AVlR6qECxFGaq17FFxtqYSyD2SBYTx3lAbsOywpR1J
+	lafTzMA+qSO8KZjPxAUaRriWmo4gBIAAZwzHXfMfQrQmctFFLb0Fr6ijV8ks2LTtuw1JqRGjKN0
+	4H4h3bPHEbTT//5GzOPjQjztdrfB4jfUltmWL8/YWiZIvforRoEjwaZTcYTLTMTNOlFZMpWAyK6
+	0fqpeE3yLsc+1aoS+nivhIL8ZKd3A/AYHIzudFlSk/uGBbjiPIpUnmtiqKWwsQYIe+7661KrXcD
+	ZnUaJml2lZ/uARukHMybOCYbIUOPI4ZutSgjZBireKrosR1jNBrSZ
+X-Received: by 2002:ac8:7f13:0:b0:4b7:7e3b:26d2 with SMTP id d75a77b69052e-4dacd244d39mr12284471cf.25.1758766181165;
+        Wed, 24 Sep 2025 19:09:41 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEe0/BulJdAP14m2xhtPKN6khhD7s3V3RWEkz5ZDS21UR80IvlVPTk21e9TgoLukdvzzDr05Q==
+X-Received: by 2002:ac8:7f13:0:b0:4b7:7e3b:26d2 with SMTP id d75a77b69052e-4dacd244d39mr12284151cf.25.1758766180620;
+        Wed, 24 Sep 2025 19:09:40 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-583134308b9sm233112e87.31.2025.09.24.19.09.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 24 Sep 2025 19:09:39 -0700 (PDT)
+Date: Thu, 25 Sep 2025 05:09:36 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
+Subject: Re: [PATCH 14/20] arm64: dts: qcom: kaanapali-mtp: Enable more
+ features
+Message-ID: <ejcchgc3isc5f6tmiqbxqihmk5efmbcyhv3ehuoerb5ulkd5an@g7a2wc422l6n>
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <20250924-knp-dts-v1-14-3fdbc4b9e1b1@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com> <20250924-knp-dts-v1-6-3fdbc4b9e1b1@oss.qualcomm.com>
-In-Reply-To: <20250924-knp-dts-v1-6-3fdbc4b9e1b1@oss.qualcomm.com>
-From: =?UTF-8?Q?Krzysztof_Koz=C5=82owski?= <k.kozlowski.k@gmail.com>
-Date: Thu, 25 Sep 2025 10:50:10 +0900
-X-Gm-Features: AS18NWDVnkrvIrL2FuXY2FROte4PMl-E9EOOPzKJH_8e7zTtzCUsO-xFczLqIAs
-Message-ID: <CAJKOXPcbJY4JEjfZLvOAXEWCTYFpe7En+Riis2t3K5fWJgNU5A@mail.gmail.com>
-Subject: Re: [PATCH 06/20] arm64: dts: qcom: kaanapali: Add USB support for
- Kaanapali SoC
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com, 
-	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, 
-	yijie.yang@oss.qualcomm.com, Ronak Raheja <ronak.raheja@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250924-knp-dts-v1-14-3fdbc4b9e1b1@oss.qualcomm.com>
+X-Proofpoint-GUID: uz7bGFSpDxSmXG80gkkh2KV8chLw__bs
+X-Authority-Analysis: v=2.4 cv=RO2zH5i+ c=1 sm=1 tr=0 ts=68d4a466 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=bzJb5gqkE5SIJMwU7FwA:9 a=CjuIK1q_8ugA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAyNSBTYWx0ZWRfXz71Jyru5fAtW
+ kOf3i3QmcCv+XGtY4XlO/YxuTOBv1Gm08dr9Ox9sGp/NekKrDkRWLzgjM/rCIQ+RV3Z0oiYEjXp
+ cfa53W/6WW0uT01Qeefn/5Dknz12G/03TYaFT2dZE3nFCZ0WCNOMOwdfTQDCcVq+6m5AYhFBCu0
+ UwztqIiiRxvMZFDNnFx4Kd51FOM8vKQ2is3slymgFvHdk5ZtFSqfQBAF6veNulACnzr2K/8ccr4
+ IzcSzJbieVN+VKM1kngPhxGyvm5p8QDagmPLNuIwvt+6YLGsNYSQQre4AtqsPStrEKPwtuhwwbr
+ TiepfapN7JeMB7FfDQ+tHzbSpIdChxQseVsMKZIw+zM90Nr/KXjFWpmbziL7Lp0SN1tEeKxBXW/
+ AkS7+BgV
+X-Proofpoint-ORIG-GUID: uz7bGFSpDxSmXG80gkkh2KV8chLw__bs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 clxscore=1015 suspectscore=0 priorityscore=1501
+ impostorscore=0 spamscore=0 adultscore=0 bulkscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200025
 
-On Thu, 25 Sept 2025 at 09:17, Jingyi Wang <jingyi.wang@oss.qualcomm.com> wrote:
->
-> From: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
->
-> Add the base USB devicetree definitions for Kaanapali platform. The overall
-> chipset contains a single DWC3 USB3 controller (rev. 200a), SS QMP PHY
-> (rev. v8) and M31 eUSB2 PHY.
->
-> Signed-off-by: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
+On Wed, Sep 24, 2025 at 05:17:31PM -0700, Jingyi Wang wrote:
+> Enable more features on Kaanapali MTP boards including PMIC peripherals,
+> bus, SDHCI, remoteprocs, USB, PCIE, WLAN and Bluetooth.
+> 
+> Written with help from Jyothi Kumar Seerapu(added bus), Ronak Raheja
+> (added USB), Manish Pandey(added SDHCI), Jishnu Prakash(added PMIC),
+> Qiang Yu(added PCIE), Yijie Yang(Added WLAN) and Zijun Hu(Added Bluetooth).
+> 
 > Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 > ---
->  arch/arm64/boot/dts/qcom/kaanapali.dtsi | 155 ++++++++++++++++++++++++++++++++
->  1 file changed, 155 insertions(+)
->
+>  arch/arm64/boot/dts/qcom/kaanapali-mtp.dts | 663 +++++++++++++++++++++++++++++
+>  1 file changed, 663 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts b/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+> index 9cf3158e2712..2949579481a9 100644
+> --- a/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+> +++ b/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+> @@ -5,9 +5,23 @@
+>  
+>  /dts-v1/;
+>  
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/input/linux-event-codes.h>
+> +#include <dt-bindings/leds/common.h>
+>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>  #include "kaanapali.dtsi"
+>  
+> +#define PMH0110_D_E0_SID 3
+> +#define PMH0110_F_E0_SID 5
+> +#define PMH0110_G_E0_SID 6
+> +#define PMH0110_I_E0_SID 8
+> +#define PMH0104_J_E1_SID 9
+> +
+> +#include "pmk8850.dtsi"
+> +#include "pmh0101.dtsi"
+> +#include "pmh0110.dtsi"
+> +#include "pmh0104.dtsi"
+> +
+>  / {
+>  	model = "Qualcomm Technologies, Inc. Kaanapali MTP";
+>  	compatible = "qcom,kaanapali-mtp", "qcom,kaanapali";
+> @@ -15,6 +29,7 @@ / {
+>  
+>  	aliases {
+>  		serial0 = &uart7;
+> +		serial1 = &uart18;
+>  	};
+>  
+>  	chosen {
+> @@ -52,6 +67,304 @@ bi_tcxo_ao_div2: bi-tcxo-ao-div2-clk {
+>  			clock-div = <2>;
+>  		};
+>  	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +
+> +		pinctrl-0 = <&key_vol_up_default>;
+> +		pinctrl-names = "default";
+> +
+> +		key-volume-up {
+> +			label = "Volume Up";
+> +			linux,code = <KEY_VOLUMEUP>;
+> +			gpios = <&tlmm 101 GPIO_ACTIVE_LOW>;
+> +			debounce-interval = <15>;
+> +			linux,can-disable;
+> +			wakeup-source;
+> +		};
+> +	};
+> +
+> +	thermal-zones {
+> +		pmh0101-thermal {
+> +			polling-delay-passive = <100>;
+> +
+> +			thermal-sensors = <&pmh0101_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmh0104-thermal {
+> +			polling-delay-passive = <100>;
+> +
+> +			thermal-sensors = <&pmh0104_j_e1_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmh0110-d-thermal {
+> +			polling-delay-passive = <100>;
+> +
+> +			thermal-sensors = <&pmh0110_d_e0_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmh0110-f-thermal {
+> +			polling-delay-passive = <100>;
+> +
+> +			thermal-sensors = <&pmh0110_f_e0_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmh0110-g-thermal {
+> +			polling-delay-passive = <100>;
+> +
+> +			thermal-sensors = <&pmh0110_g_e0_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmh0110-i-thermal {
+> +			polling-delay-passive = <100>;
+> +
+> +			thermal-sensors = <&pmh0110_i_e0_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmd8028-thermal {
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&pmd8028_temp_alarm>;
+> +
+> +			trips {
+> +				pmd8028_trip0: trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				pmd8028_trip1: trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmih0108-thermal {
+> +			polling-delay-passive = <100>;
+> +			thermal-sensors = <&pmih0108_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +
+> +		pmr735d-thermal {
+> +			polling-delay-passive = <100>;
+> +
+> +			thermal-sensors = <&pmr735d_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +
+> +		pm8010-m-thermal {
+> +			polling-delay-passive = <100>;
+> +
+> +			thermal-sensors = <&pm8010_m_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +
+> +		pm8010-n-thermal {
+> +			polling-delay-passive = <100>;
+> +
+> +			thermal-sensors = <&pm8010_n_temp_alarm>;
+> +
+> +			trips {
+> +				trip0 {
+> +					temperature = <95000>;
+> +					hysteresis = <0>;
+> +					type = "passive";
+> +				};
+> +
+> +				trip1 {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "hot";
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	wcn7850-pmu {
+> +		compatible = "qcom,wcn7850-pmu";
+> +
+> +		pinctrl-0 = <&bt_default>, <&sw_ctrl_default>, <&wlan_en>;
+> +		pinctrl-names = "default";
+> +
+> +		bt-enable-gpios = <&pmh0104_j_e1_gpios 5 GPIO_ACTIVE_HIGH>;
+> +		wlan-enable-gpios = <&tlmm 16 GPIO_ACTIVE_HIGH>;
+> +
+> +		vdd-supply = <&vreg_s2j_0p8>;
+> +		vddio-supply = <&vreg_l2g_1p8>;
+> +		vddio1p2-supply = <&vreg_l3g_1p2>;
+> +		vddaon-supply = <&vreg_s7g_0p9>;
+> +		vdddig-supply = <&vreg_s1j_0p8>;
+> +		vddrfa1p2-supply = <&vreg_s7f_1p2>;
+> +		vddrfa1p8-supply = <&vreg_s8f_1p8>;
+> +
+> +		clocks = <&rpmhcc RPMH_RF_CLK1>;
+> +
+> +		regulators {
+> +			vreg_pmu_rfa_cmn: ldo0 {
+> +				regulator-name = "vreg_pmu_rfa_cmn";
+> +			};
+> +
+> +			vreg_pmu_aon_0p59: ldo1 {
+> +				regulator-name = "vreg_pmu_aon_0p59";
+> +			};
+> +
+> +			vreg_pmu_wlcx_0p8: ldo2 {
+> +				regulator-name = "vreg_pmu_wlcx_0p8";
+> +			};
+> +
+> +			vreg_pmu_wlmx_0p85: ldo3 {
+> +				regulator-name = "vreg_pmu_wlmx_0p85";
+> +			};
+> +
+> +			vreg_pmu_btcmx_0p85: ldo4 {
+> +				regulator-name = "vreg_pmu_btcmx_0p85";
+> +			};
+> +
+> +			vreg_pmu_rfa_0p8: ldo5 {
+> +				regulator-name = "vreg_pmu_rfa_0p8";
+> +			};
+> +
+> +			vreg_pmu_rfa_1p2: ldo6 {
+> +				regulator-name = "vreg_pmu_rfa_1p2";
+> +			};
+> +
+> +			vreg_pmu_rfa_1p8: ldo7 {
+> +				regulator-name = "vreg_pmu_rfa_1p8";
+> +			};
+> +
+> +			vreg_pmu_pcie_0p9: ldo8 {
+> +				regulator-name = "vreg_pmu_pcie_0p9";
+> +			};
+> +
+> +			vreg_pmu_pcie_1p8: ldo9 {
+> +				regulator-name = "vreg_pmu_pcie_1p8";
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &apps_rsc {
+> @@ -674,6 +987,304 @@ vreg_l7n_3p3: ldo7 {
+>  	};
+>  };
+>  
+> +&pmh0110_d_e0 {
+> +	status = "okay";
+> +};
+> +
+> +&pmh0110_f_e0 {
+> +	status = "okay";
+> +};
+> +
+> +&pmh0110_g_e0 {
+> +	status = "okay";
+> +};
+> +
+> +&pmh0110_i_e0 {
+> +	status = "okay";
+> +};
+> +
+> +&spmi_bus1 {
+> +	pmd8028: pmic@4 {
+> +		compatible = "qcom,pmd8028", "qcom,spmi-pmic";
+> +		reg = <0x4 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pmd8028_temp_alarm: temp-alarm@a00 {
+> +			compatible = "qcom,spmi-temp-alarm";
+> +			reg = <0xa00>;
+> +			interrupts = <0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +			#thermal-sensor-cells = <0>;
+> +		};
+> +
+> +		pmd8028_gpios: gpio@8800 {
+> +			compatible = "qcom,pmd8028-gpio", "qcom,spmi-gpio";
+> +			reg = <0x8800>;
+> +			gpio-controller;
+> +			gpio-ranges = <&pmd8028_gpios 0 0 4>;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +
+> +	pmih0108: pmic@7 {
+> +		compatible = "qcom,pmih0108", "qcom,spmi-pmic";
+> +		reg = <0x7 SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pmih0108_temp_alarm: temp-alarm@a00 {
+> +			compatible = "qcom,spmi-temp-alarm";
+> +			reg = <0xa00>;
+> +			interrupts = <0x7 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +			#thermal-sensor-cells = <0>;
+> +		};
+> +
+> +		pmih0108_gpios: gpio@8800 {
+> +			compatible = "qcom,pmih0108-gpio", "qcom,spmi-gpio";
+> +			reg = <0x8800>;
+> +			gpio-controller;
+> +			gpio-ranges = <&pmih0108_gpios 0 0 18>;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +
+> +		pmih0108_eusb2_repeater: phy@fd00 {
+> +			compatible = "qcom,pm8550b-eusb2-repeater";
+> +			reg = <0xfd00>;
+> +			#phy-cells = <0>;
+> +			vdd18-supply = <&vreg_l15b_1p8>;
+> +			vdd3-supply = <&vreg_l5b_3p1>;
+> +		};
+> +	};
+> +
+> +	pmr735d: pmic@a {
+> +		compatible = "qcom,pmr735d", "qcom,spmi-pmic";
+> +		reg = <0xa SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pmr735d_temp_alarm: temp-alarm@a00 {
+> +			compatible = "qcom,spmi-temp-alarm";
+> +			reg = <0xa00>;
+> +			interrupts = <0xa 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +			#thermal-sensor-cells = <0>;
+> +		};
+> +
+> +		pmr735d_gpios: gpio@8800 {
+> +			compatible = "qcom,pmr735d-gpio", "qcom,spmi-gpio";
+> +			reg = <0x8800>;
+> +			gpio-controller;
+> +			gpio-ranges = <&pmr735d_gpios 0 0 2>;
+> +			#gpio-cells = <2>;
+> +			interrupt-controller;
+> +			#interrupt-cells = <2>;
+> +		};
+> +	};
+> +
+> +	pm8010_m: pmic@c {
+> +		compatible = "qcom,pm8010", "qcom,spmi-pmic";
+> +		reg = <0xc SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pm8010_m_temp_alarm: temp-alarm@2400 {
+> +			compatible = "qcom,spmi-temp-alarm";
+> +			reg = <0x2400>;
+> +			interrupts = <0xc 0x24 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +			#thermal-sensor-cells = <0>;
+> +		};
+> +	};
+> +
+> +	pm8010_n: pmic@d {
+> +		compatible = "qcom,pm8010", "qcom,spmi-pmic";
+> +		reg = <0xd SPMI_USID>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		pm8010_n_temp_alarm: temp-alarm@2400 {
+> +			compatible = "qcom,spmi-temp-alarm";
+> +			reg = <0x2400>;
+> +			interrupts = <0xd 0x24 0x0 IRQ_TYPE_EDGE_BOTH>;
+> +			#thermal-sensor-cells = <0>;
+> +		};
+> +	};
+> +};
+> +
+> +&pmh0101_flash {
 
+spmi > pmh0101_flash
 
-Second try, without HTML:
+> +	status = "okay";
+> +
+> +	led-0 {
+> +		function = LED_FUNCTION_FLASH;
+> +		function-enumerator = <0>;
+> +		color = <LED_COLOR_ID_YELLOW>;
+> +		led-sources = <1>, <4>;
+> +		led-max-microamp = <500000>;
+> +		flash-max-microamp = <2000000>;
+> +		flash-max-timeout-us = <1280000>;
+> +	};
+> +
+> +	led-1 {
+> +		function = LED_FUNCTION_FLASH;
+> +		function-enumerator = <1>;
+> +		color = <LED_COLOR_ID_WHITE>;
+> +		led-sources = <2>, <3>;
+> +		led-max-microamp = <500000>;
+> +		flash-max-microamp = <2000000>;
+> +		flash-max-timeout-us = <1280000>;
+> +	};
+> +};
+> +
+> +&pmh0101_pwm {
+> +	status = "okay";
+> +
+> +	multi-led {
+> +		color = <LED_COLOR_ID_RGB>;
+> +		function = LED_FUNCTION_STATUS;
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		led@1 {
+> +			reg = <1>;
+> +			color = <LED_COLOR_ID_RED>;
+> +		};
+> +
+> +		led@2 {
+> +			reg = <2>;
+> +			color = <LED_COLOR_ID_GREEN>;
+> +		};
+> +
+> +		led@3 {
+> +			reg = <3>;
+> +			color = <LED_COLOR_ID_BLUE>;
+> +		};
+> +	};
+> +};
+> +
+> +&tlmm {
+> +	wlan_en: wlan-en-state {
+> +		pins = "gpio16";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+> +		bias-pull-down;
+> +	};
 
-I really don't understand why you created such huge patchset. Year
-ago, two years ago, we were discussing it already and explained that's
-just inflating the patchset without reason.
+Why are the TLMM pin entries sorted?
 
-New Soc is one logical change. Maybe two. Not 18!
+> +
+> +	sw_ctrl_default: sw-ctrl-default-state {
+> +		pins = "gpio18";
+> +		function = "gpio";
+> +		bias-pull-down;
+> +	};
+> +
+> +	key_vol_up_default: key-vol-up-default-state {
+> +		pins = "gpio101";
+> +		function = "gpio";
+> +		output-disable;
+> +		bias-pull-up;
+> +	};
+> +
+> +	pcie0_default_state: pcie0-default-state {
+> +		clkreq-n-pins {
+> +			pins = "gpio103";
+> +			function = "pcie0_clk_req_n";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		perst-n-pins {
+> +			pins = "gpio102";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-disable;
+> +		};
+> +
+> +		wake-n-pins {
+> +			pins = "gpio104";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +};
+> +
+> +&pcie0 {
 
-Not one patch per node or feature.
+This is also in the wrong place. Please keep the nodes sorted.
 
-This hides big picture, makes difficult to review everything,
-difficult to test. Your patch count for LWN stats doesn't matter to
-us.
+> +	pinctrl-0 = <&pcie0_default_state>;
+> +	pinctrl-names = "default";
+> +
+> +	status = "okay";
+> +};
+> +
+> +&pcie0_phy {
+> +	vdda-phy-supply = <&vreg_l3i_0p8>;
+> +	vdda-pll-supply = <&vreg_l1d_1p2>;
+> +
+> +	status = "okay";
+> +};
+> +
+> @@ -702,3 +1343,25 @@ &ufs_mem_phy {
+>  
+>  	status = "okay";
+>  };
+> +
+> +&usb_1 {
+> +	dr_mode = "peripheral";
 
-NAK and I'm really disappointed I have to repeat the same review .
+Is it really peripheral-only?
+
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_hsphy {
+> +	vdd-supply = <&vreg_l4f_0p8>;
+> +	vdda12-supply = <&vreg_l1d_1p2>;
+> +
+> +	phys = <&pmih0108_eusb2_repeater>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_dp_qmpphy {
+> +	vdda-phy-supply = <&vreg_l1d_1p2>;
+> +	vdda-pll-supply = <&vreg_l4f_0p8>;
+> +
+> +	status = "okay";
+> +};
+> 
+> -- 
+> 2.25.1
+> 
+
+-- 
+With best wishes
+Dmitry
 
