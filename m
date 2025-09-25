@@ -1,850 +1,262 @@
-Return-Path: <devicetree+bounces-221151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C4B4B9D81A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 07:59:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD4CCB9D8FD
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 08:18:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32C1E324614
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 05:59:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 599397B7E16
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 06:16:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AC0C2E8B8F;
-	Thu, 25 Sep 2025 05:59:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70CF12E8B67;
+	Thu, 25 Sep 2025 06:17:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NIac4CXf"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YOnxnDTU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83777757EA
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 05:59:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78998219E8;
+	Thu, 25 Sep 2025 06:17:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758779970; cv=none; b=SeRj7UDs2ORLzJENCCI3W/qgZCCeZa6RDo4aM4mIDWglHGMwfLsiicDAI2i+EikoileeAFD+45K4KsmXmvrTLlROCOk6pOpTRksZb50me9omwwmuUF8hAywU0m3LzOLpFcQYY8RV4pgNj/f6sDnMCjTatxuqS01l6JmQP6RKi28=
+	t=1758781034; cv=none; b=P9bYcUUkpvDaFri1I7IQ+9AvYYDwjbx9ZbataewHDrAWlLbqq43hkWQcbnvHkq0fvVL8U6z/aOZHcIkM2slb2FhZEaM448hCZ9OrAmIo6cD4BLGLOoRrlfwICeM4NMRsP9WIEPFqRCGp3YE3WsKf/b0qg8huNVDj8fBxtZIEymc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758779970; c=relaxed/simple;
-	bh=flSXnaCsY4GuI2Xi7jjPPjECKv2vhHOiQuDklXGu7ik=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eJ4mbWf/G8qPx0RsfhIYi2VuuUuRdQtHrXbyyX7EyRCFrFaj01q8nZYlCOR+dUWcVNr6nCtDJMYqZCp94oscBlZ0vFSngbTJcLA31/WwjH8VS13u85z4hut+SvuTnv5UrHQ3j+HzmCwmRb4FDQOiPcqy+XwKKslrQAusTYbIPqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NIac4CXf; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b5516ee0b0bso456033a12.1
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 22:59:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758779968; x=1759384768; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XtavhOsQwF08dyhxTuSlB3SJ6xxUQQjoptkIUo1P2H0=;
-        b=NIac4CXf9s7YiRnvUOJnkGU+3hj9bOIB/ZCBd/SnkLFinzsqppo+Sx2yLID50QhtN9
-         ociAYHAQQ3KlRRCf6hDVG1xeVcJ1OvvTKu1O5gHU/OiZVc4cN62Rg5sNYDtAgwS8z38o
-         /ewrJcd971KCqKTlI38ttXsBM9CCcj6Bz6lYQYngo/h//Mavza+CMGpi6YGxQdUKDqk2
-         c5Ctbc7dPb7EXDJ/Q08SrhJnZVF2shjqxTc89cVw1HSePqdY/9JkJY02rU0hm8YzCFY8
-         WnklJNIFUJ2KwRA0lXlBds5BKzcENzmBH376Tn5DzT+cn+wZ9jH0DW+ilwWpVBbZYzkX
-         XfGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758779968; x=1759384768;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XtavhOsQwF08dyhxTuSlB3SJ6xxUQQjoptkIUo1P2H0=;
-        b=e0rRRAUQVOfCpwyWLLocmhC6E83ZxE1vV9zg4UYM3q64A16jTS4lYretSSKKkvnINs
-         hOUc7NkEe5hzox6QfSB7MHB/kB5mORGXs2u3aUpLrTROVxRClayG3f6y7dTXccDVZDnE
-         QVchCi/vlR8ljtQedmvS9BLyY+bhmX0XkS4dPmozvfjJPp+2EtwF+2/q8x/eCiJ+niqS
-         LE0sFuG6izyY94i4KOkmB2IoQSaCUs+Pvfx3OXZQbm+rABmPNR5gTJPFRwaIW/GGmlZy
-         XtMrE5DVgJF39Bok4LvL7gBO0/UvHDLiP3BlglmWsYEbv+T9cyC2bk8R71vRPzIWLp6P
-         ym+Q==
-X-Gm-Message-State: AOJu0YyRD2Gt2wNDsWoMAcbeUrwR2kcndbbL/FoSfPDXQJNwG4wQcn8D
-	NxiVyfvQ3klEAz+s15alcImFsmnEOV00tgdqq7/4VSJ4grZCt/N1kyJH
-X-Gm-Gg: ASbGncsTzB0MWAWQMf8Y5Crmx7kBuFEqYiurVXgA4DbOvIZ1ESY43sG9ftMf3602jrY
-	2TaH5v609yb7lPzofTkCPu2f/9u9v+ZScv7pvexM/0v3hf2/VbLw+kcFmNjuJ4svuyjkB5u8hNO
-	3aEkbwXi2CQe2hexfi/PDXf2daAaNgh00m1bRJTtNJgdupcAj03SI/wl1IECBAAOiIvaEbk46EP
-	ek/xS123+IJ56UWO2Ps+oQ3bPoZJsQfcEkAoLQAJpZS+xbpBL3C/KYgsb8y+wGo9WSpeu1Am8oH
-	OBKqqKKxmh0nwCvArOUxmVR+OPwlffT8aaIKYPBomwME0W5tojBbrop43V3TC4Ks1TLr1GdPNse
-	G66uBPJsFnOiq3FzF0Pti
-X-Google-Smtp-Source: AGHT+IH0KeuvbDEDawkIcCaPX2Sayqc/yRlC7UDQx0lpMFNkquEwx4BK9EJRbPVaFFYWxRUjrCyRtw==
-X-Received: by 2002:a05:6a20:9192:b0:277:f962:3163 with SMTP id adf61e73a8af0-2e7c29376b1mr2916281637.19.1758779967608;
-        Wed, 24 Sep 2025 22:59:27 -0700 (PDT)
-Received: from localhost.localdomain ([2a09:bac5:3981:16dc::247:77])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78102b231ebsm866478b3a.52.2025.09.24.22.59.22
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Wed, 24 Sep 2025 22:59:27 -0700 (PDT)
-From: Liangbin Lian <jjm2473@gmail.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de,
-	quentin.schulz@cherry.de,
-	kever.yang@rock-chips.com,
-	naoki@radxa.com,
-	honyuenkwun@gmail.com,
-	inindev@gmail.com,
-	ivan8215145640@gmail.com,
-	neil.armstrong@linaro.org,
-	mani@kernel.org,
-	dsimic@manjaro.org,
-	pbrobinson@gmail.com,
-	alchark@gmail.com,
-	didi.debian@cknow.org,
-	jjm2473@gmail.com,
-	jbx6244@gmail.com
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: rockchip: add LinkEase EasePi R1
-Date: Thu, 25 Sep 2025 13:59:06 +0800
-Message-ID: <20250925055906.83375-3-jjm2473@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250925055906.83375-1-jjm2473@gmail.com>
-References: <20250925055906.83375-1-jjm2473@gmail.com>
+	s=arc-20240116; t=1758781034; c=relaxed/simple;
+	bh=no9McvNQ9dwrmydNxDE878rNinVgQfTkTR2eEwoS+Cg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yda4t+19NrpOQGHTwAKiRqYrdpyeDD0b4Tr/7VmrOCjg5Duy3K3/6vZ3BX7jkvEvxbsp2KIdbWsqA0MoVdTRGnZPBjmVamKiKdgFO53rkoCRyj+EVCy3llm/C4y4eAiYrgMQFPhgNWT/yG0PEWpB+MiDj7q/aZQ8sHTra6LukmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YOnxnDTU; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1758781032; x=1790317032;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=no9McvNQ9dwrmydNxDE878rNinVgQfTkTR2eEwoS+Cg=;
+  b=YOnxnDTUdqhJ+4MA6Yv1ixar9bjvLrG+z5qPLWYBBAOVmFM+yVM2kk8c
+   Onxe/HyKkYLDmK4q2Bie6oieoTxFPU/jdp9wkZ8SV76ugpFZfkfG00U9k
+   clC0MiwjNv0i3zwfqqNtHrTfjAiuXacp2DBs/RXBeSFAWsdNSPgDZes48
+   FIYwGyYLgHF8OaBbkozdDEVixw3/VbuqcrrcDiL6mxtRy8P8/h4zmLQha
+   3d/WcZS3iu2Y6dDNSnHL2xbk7Vcp9+oakfczHCZ3ADbYA+raUZFZBJJOA
+   H11vW/4BH6cgC93Bc4YQle/ZDeRby+T/WRnkX0XUiYiRDgO9eBTSYb/Yz
+   Q==;
+X-CSE-ConnectionGUID: VOrRnZ4xTl6BQESLbByYBA==
+X-CSE-MsgGUID: 8FpVRObNTCKgTC/jvJ5nqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="63716830"
+X-IronPort-AV: E=Sophos;i="6.18,292,1751266800"; 
+   d="scan'208";a="63716830"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2025 23:17:11 -0700
+X-CSE-ConnectionGUID: CKdBgEU7Tl2c1kZ2BI7ZZw==
+X-CSE-MsgGUID: QIB0xzXNSEabIqFmc+88Dg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,292,1751266800"; 
+   d="scan'208";a="177083021"
+Received: from lkp-server02.sh.intel.com (HELO 84c55410ccf6) ([10.239.97.151])
+  by orviesa007.jf.intel.com with ESMTP; 24 Sep 2025 23:17:04 -0700
+Received: from kbuild by 84c55410ccf6 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1v1fHk-0004yD-0p;
+	Thu, 25 Sep 2025 06:16:57 +0000
+Date: Thu, 25 Sep 2025 14:15:57 +0800
+From: kernel test robot <lkp@intel.com>
+To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>, git@amd.com,
+	michal.simek@amd.com, alexandre.belloni@bootlin.com,
+	Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, pgaj@cadence.com,
+	wsa+renesas@sang-engineering.com, tommaso.merciai.xr@bp.renesas.com,
+	arnd@arndb.de, quic_msavaliy@quicinc.com, Shyam-sundar.S-k@amd.com,
+	sakari.ailus@linux.intel.com, billy_tsai@aspeedtech.com,
+	kees@kernel.org, gustavoars@kernel.org,
+	jarkko.nikula@linux.intel.com, jorge.marques@analog.com,
+	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, radhey.shyam.pandey@amd.com,
+	srinivas.goud@amd.com, shubhrajyoti.datta@amd.com,
+	manion05gk@gmail.com,
+	Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+Subject: Re: [PATCH V7 2/4] asm-generic/io.h: Add big-endian MMIO accessors
+Message-ID: <202509251347.sb9SGhab-lkp@intel.com>
+References: <20250923154551.2112388-3-manikanta.guntupalli@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250923154551.2112388-3-manikanta.guntupalli@amd.com>
 
-LinkEase EasePi R1 [1] is a high-performance mini router.
+Hi Manikanta,
 
-Specification:
-- Rockchip RK3568
-- 2GB/4GB LPDDR4 RAM
-- 16GB on-board eMMC
-- 1x M.2 key for 2280 NVMe (PCIe 3.0)
-- 1x USB 3.0 Type-A
-- 1x USB 2.0 Type-C (for USB flashing)
-- 2x 1000 Base-T (native, RTL8211F)
-- 2x 2500 Base-T (PCIe, RTL8125B)
-- 1x HDMI 2.0 Output
-- 12v DC Jack
-- 1x Power key connected to PMIC
-- 2x LEDs (one static power supplied, one GPIO controlled)
+kernel test robot noticed the following build errors:
 
-[1] https://doc.linkease.com/zh/guide/easepi-r1/hardware.html
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master arnd-asm-generic/master v6.17-rc7 next-20250924]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Signed-off-by: Liangbin Lian <jjm2473@gmail.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3568-easepi-r1.dts    | 692 ++++++++++++++++++
- 2 files changed, 693 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-easepi-r1.dts
+url:    https://github.com/intel-lab-lkp/linux/commits/Manikanta-Guntupalli/dt-bindings-i3c-Add-AMD-I3C-master-controller-support/20250923-234944
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250923154551.2112388-3-manikanta.guntupalli%40amd.com
+patch subject: [PATCH V7 2/4] asm-generic/io.h: Add big-endian MMIO accessors
+config: powerpc-allnoconfig (https://download.01.org/0day-ci/archive/20250925/202509251347.sb9SGhab-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250925/202509251347.sb9SGhab-lkp@intel.com/reproduce)
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 099520962ffb..7646ffd7f309 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -127,6 +127,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-nanopi-r3s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-bigtreetech-cb2-manta.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3566-bigtreetech-pi2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-bpi-r2-pro.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-easepi-r1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-evb1-v10.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-fastrhino-r66s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3568-fastrhino-r68s.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-easepi-r1.dts b/arch/arm64/boot/dts/rockchip/rk3568-easepi-r1.dts
-new file mode 100644
-index 000000000000..09e0dc4af794
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-easepi-r1.dts
-@@ -0,0 +1,692 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/rockchip.h>
-+#include <dt-bindings/soc/rockchip,vop2.h>
-+#include "rk3568.dtsi"
-+
-+/ {
-+	model = "LinkEase EasePi R1";
-+	compatible = "linkease,easepi-r1", "rockchip,rk3568";
-+
-+	aliases {
-+		mmc0 = &sdmmc0;
-+		mmc1 = &sdhci;
-+		mmc2 = &sdmmc2;
-+
-+		ethernet0 = &gmac0;
-+		ethernet1 = &gmac1;
-+	};
-+
-+	chosen: chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	adc-keys {
-+		compatible = "adc-keys";
-+		io-channels = <&saradc 0>;
-+		io-channel-names = "buttons";
-+		keyup-threshold-microvolt = <1800000>;
-+
-+		button-recovery {
-+			label = "Recovery";
-+			linux,code = <KEY_VENDOR>;
-+			press-threshold-microvolt = <1750>;
-+		};
-+	};
-+
-+	dc_12v: regulator-dc-12v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "dc_12v";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+
-+	vcc5v0_sys: regulator-vcc5v0-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc5v0_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		vin-supply = <&dc_12v>;
-+	};
-+
-+	vcc3v3_sys: regulator-vcc3v3-sys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_sys";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&dc_12v>;
-+	};
-+
-+	pcie30_avdd0v9: regulator-pcie30-avdd0v9 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pcie30_avdd0v9";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <900000>;
-+		regulator-max-microvolt = <900000>;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+
-+	pcie30_avdd1v8: regulator-pcie30-avdd1v8 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "pcie30_avdd1v8";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+
-+	regulator-vdd0v95-25glan {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pwr_25g_pin>;
-+		enable-active-high;
-+		gpio = <&gpio3 RK_PB1 GPIO_ACTIVE_HIGH>;
-+		regulator-name = "vdd0v95_25glan";
-+		regulator-min-microvolt = <950000>;
-+		regulator-max-microvolt = <950000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+		vin-supply = <&vcc3v3_sys>;
-+	};
-+
-+	vcc3v3_nvme: regulator-vcc3v3-nvme {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vcc3v3_nvme";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		enable-active-high;
-+		gpio = <&gpio0 RK_PA5 GPIO_ACTIVE_HIGH>;
-+		vin-supply = <&dc_12v>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&vcc3v3_nvme_en>;
-+	};
-+
-+	sdio_pwrseq: sdio-pwrseq {
-+		compatible = "mmc-pwrseq-simple";
-+		clocks = <&rk809 1>;
-+		clock-names = "ext_clock";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_enable_h>;
-+		post-power-on-delay-ms = <200>;
-+		reset-gpios = <&gpio3 RK_PD5 GPIO_ACTIVE_LOW>;
-+	};
-+
-+	hdmi-con {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&status_led_pin>;
-+
-+		status_led: led-status {
-+			gpios = <&gpio2 RK_PD7 GPIO_ACTIVE_HIGH>;
-+			color = <LED_COLOR_ID_GREEN>;
-+			function = LED_FUNCTION_STATUS;
-+			label = "green:status";
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+};
-+
-+&gmac0 {
-+	phy-mode = "rgmii";
-+	clock_in_out = "input";
-+
-+	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
-+	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>;
-+	assigned-clock-rates = <0>, <125000000>;
-+	phy-handle = <&rgmii_phy0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac0_miim
-+		     &gmac0_tx_bus2
-+		     &gmac0_rx_bus2
-+		     &gmac0_rgmii_clk
-+		     &gmac0_rgmii_bus>;
-+
-+	tx_delay = <0x3c>;
-+	rx_delay = <0x2f>;
-+
-+	status = "okay";
-+};
-+
-+&gmac1 {
-+	phy-mode = "rgmii";
-+	clock_in_out = "input";
-+
-+	assigned-clocks = <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1>;
-+	assigned-clock-parents = <&cru SCLK_GMAC1_RGMII_SPEED>;
-+	assigned-clock-rates = <0>, <125000000>;
-+	phy-handle = <&rgmii_phy1>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1m1_miim
-+		     &gmac1m1_tx_bus2
-+		     &gmac1m1_rx_bus2
-+		     &gmac1m1_rgmii_clk
-+		     &gmac1m1_rgmii_bus>;
-+
-+	tx_delay = <0x4f>;
-+	rx_delay = <0x26>;
-+
-+	status = "okay";
-+};
-+
-+&mdio0 {
-+	rgmii_phy0: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x1>;
-+		pinctrl-0 = <&eth_phy0_reset_pin>;
-+		pinctrl-names = "default";
-+		reset-assert-us = <20000>;
-+		reset-deassert-us = <100000>;
-+		reset-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&mdio1 {
-+	rgmii_phy1: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0x1>;
-+		pinctrl-0 = <&eth_phy1_reset_pin>;
-+		pinctrl-names = "default";
-+		reset-assert-us = <20000>;
-+		reset-deassert-us = <100000>;
-+		reset-gpios = <&gpio2 RK_PD1 GPIO_ACTIVE_LOW>;
-+	};
-+};
-+
-+&combphy0 {
-+	status = "okay";
-+};
-+
-+&combphy1 {
-+	status = "okay";
-+};
-+
-+&combphy2 {
-+	status = "okay";
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&vdd_cpu>;
-+};
-+
-+&gpu {
-+	mali-supply = <&vdd_gpu>;
-+	status = "okay";
-+};
-+
-+&hdmi {
-+	avdd-0v9-supply = <&vdda0v9_image>;
-+	avdd-1v8-supply = <&vcca1v8_image>;
-+	status = "okay";
-+};
-+
-+&hdmi_in {
-+	hdmi_in_vp0: endpoint {
-+		remote-endpoint = <&vp0_out_hdmi>;
-+	};
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
-+&hdmi_sound {
-+	status = "okay";
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	vdd_cpu: regulator@1c {
-+		compatible = "tcs,tcs4525";
-+		reg = <0x1c>;
-+		fcs,suspend-voltage-selector = <1>;
-+		regulator-name = "vdd_cpu";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <800000>;
-+		regulator-max-microvolt = <1150000>;
-+		regulator-ramp-delay = <2300>;
-+		vin-supply = <&vcc5v0_sys>;
-+
-+		regulator-state-mem {
-+			regulator-off-in-suspend;
-+		};
-+	};
-+
-+	rk809: pmic@20 {
-+		compatible = "rockchip,rk809";
-+		reg = <0x20>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_LOW>;
-+		#clock-cells = <1>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pmic_int>;
-+		rockchip,system-power-controller;
-+		vcc1-supply = <&vcc3v3_sys>;
-+		vcc2-supply = <&vcc3v3_sys>;
-+		vcc3-supply = <&vcc3v3_sys>;
-+		vcc4-supply = <&vcc3v3_sys>;
-+		vcc5-supply = <&vcc3v3_sys>;
-+		vcc6-supply = <&vcc3v3_sys>;
-+		vcc7-supply = <&vcc3v3_sys>;
-+		vcc8-supply = <&vcc3v3_sys>;
-+		vcc9-supply = <&vcc3v3_sys>;
-+		wakeup-source;
-+
-+		regulators {
-+			vdd_logic: DCDC_REG1 {
-+				regulator-name = "vdd_logic";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-initial-mode = <0x2>;
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-ramp-delay = <6001>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdd_gpu: DCDC_REG2 {
-+				regulator-name = "vdd_gpu";
-+				regulator-always-on;
-+				regulator-initial-mode = <0x2>;
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-ramp-delay = <6001>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_ddr: DCDC_REG3 {
-+				regulator-name = "vcc_ddr";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-initial-mode = <0x2>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vdd_npu: DCDC_REG4 {
-+				regulator-name = "vdd_npu";
-+				regulator-initial-mode = <0x2>;
-+				regulator-min-microvolt = <500000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-ramp-delay = <6001>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_1v8: DCDC_REG5 {
-+				regulator-name = "vcc_1v8";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdda0v9_image: LDO_REG1 {
-+				regulator-name = "vdda0v9_image";
-+				regulator-min-microvolt = <950000>;
-+				regulator-max-microvolt = <950000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdda_0v9: LDO_REG2 {
-+				regulator-name = "vdda_0v9";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <900000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vdda0v9_pmu: LDO_REG3 {
-+				regulator-name = "vdda0v9_pmu";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <900000>;
-+				regulator-max-microvolt = <900000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <900000>;
-+				};
-+			};
-+
-+			vccio_acodec: LDO_REG4 {
-+				regulator-name = "vccio_acodec";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vccio_sd: LDO_REG5 {
-+				regulator-name = "vccio_sd";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc3v3_pmu: LDO_REG6 {
-+				regulator-name = "vcc3v3_pmu";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vcca_1v8: LDO_REG7 {
-+				regulator-name = "vcca_1v8";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcca1v8_pmu: LDO_REG8 {
-+				regulator-name = "vcca1v8_pmu";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vcca1v8_image: LDO_REG9 {
-+				regulator-name = "vcca1v8_image";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc_3v3: SWITCH_REG1 {
-+				regulator-name = "vcc_3v3";
-+				regulator-always-on;
-+				regulator-boot-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+
-+			vcc3v3_sd: SWITCH_REG2 {
-+				regulator-name = "vcc3v3_sd";
-+				regulator-always-on;
-+				regulator-boot-on;
-+
-+				regulator-state-mem {
-+					regulator-off-in-suspend;
-+				};
-+			};
-+		};
-+
-+	};
-+};
-+
-+&i2s0_8ch {
-+	status = "okay";
-+};
-+
-+/* ETH3 */
-+&pcie2x1 {
-+	reset-gpios = <&gpio3 RK_PA4 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+};
-+
-+&pcie30phy {
-+	data-lanes = <1 2>;
-+	status = "okay";
-+};
-+
-+/* ETH2 */
-+&pcie3x1 {
-+	num-lanes = <1>;
-+	reset-gpios = <&gpio3 RK_PA3 GPIO_ACTIVE_HIGH>;
-+	status = "okay";
-+};
-+
-+/* M.2 Key for 2280 NVMe */
-+&pcie3x2 {
-+	num-lanes = <1>;
-+	reset-gpios = <&gpio2 RK_PD6 GPIO_ACTIVE_HIGH>;
-+	vpcie3v3-supply = <&vcc3v3_nvme>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	gmac0 {
-+		eth_phy0_reset_pin: eth-phy0-reset-pin {
-+			rockchip,pins = <2 RK_PD3 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+	gmac1 {
-+		eth_phy1_reset_pin: eth-phy1-reset-pin {
-+			rockchip,pins = <2 RK_PD1 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	gpio-leds {
-+		status_led_pin: status-led-pin {
-+			rockchip,pins =
-+				<2 RK_PD7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	pmic {
-+		pmic_int: pmic-int {
-+			rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	pcie-nic {
-+		pwr_25g_pin: pwr-25g-pin {
-+			rockchip,pins = <3 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	nvme {
-+		vcc3v3_nvme_en: vcc3v3-nvme-en {
-+			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	sdio-pwrseq {
-+		wifi_enable_h: wifi-enable-h {
-+			rockchip,pins = <3 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+};
-+
-+&pmu_io_domains {
-+	pmuio1-supply = <&vcc3v3_pmu>;
-+	pmuio2-supply = <&vcc3v3_pmu>;
-+	vccio1-supply = <&vccio_acodec>;
-+	vccio3-supply = <&vccio_sd>;
-+	vccio4-supply = <&vcc_1v8>;
-+	vccio5-supply = <&vcc_3v3>;
-+	vccio6-supply = <&vcc_1v8>;
-+	vccio7-supply = <&vcc_3v3>;
-+	status = "okay";
-+};
-+
-+&saradc {
-+	vref-supply = <&vcca_1v8>;
-+	status = "okay";
-+};
-+
-+&sdhci {
-+	bus-width = <8>;
-+	max-frequency = <200000000>;
-+	non-removable;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&emmc_bus8 &emmc_clk &emmc_cmd &emmc_datastrobe>;
-+	status = "okay";
-+};
-+
-+/* Micro SD card slot is not mounted */
-+&sdmmc0 {
-+	max-frequency = <150000000>;
-+	no-sdio;
-+	no-mmc;
-+	bus-width = <4>;
-+	cap-mmc-highspeed;
-+	cap-sd-highspeed;
-+	disable-wp;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
-+	vmmc-supply = <&vcc3v3_sd>;
-+	vqmmc-supply = <&vccio_sd>;
-+	status = "disable";
-+};
-+
-+/* Wifi module is not mounted */
-+&sdmmc2 {
-+	max-frequency = <150000000>;
-+	bus-width = <4>;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	cap-sdio-irq;
-+	keep-power-in-suspend;
-+	mmc-pwrseq = <&sdio_pwrseq>;
-+	non-removable;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&sdmmc2m0_bus4 &sdmmc2m0_cmd &sdmmc2m0_clk>;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc3v3_sys>;
-+	vqmmc-supply = <&vcc_1v8>;
-+	status = "disable";
-+};
-+
-+&tsadc {
-+	rockchip,hw-tshut-mode = <1>;
-+	rockchip,hw-tshut-polarity = <0>;
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+/* OTG Only USB2.0, Only device mode */
-+&usb_host0_xhci {
-+	phys = <&usb2phy0_otg>;
-+	phy-names = "usb2-phy";
-+	extcon = <&usb2phy0>;
-+	maximum-speed = "high-speed";
-+	dr_mode = "peripheral";
-+	status = "okay";
-+};
-+
-+&usb_host1_xhci {
-+	status = "okay";
-+};
-+
-+&usb2phy0 {
-+	status = "okay";
-+};
-+
-+&usb2phy0_host {
-+	phy-supply = <&vcc5v0_sys>;
-+	status = "okay";
-+};
-+
-+&usb2phy0_otg {
-+	status = "okay";
-+};
-+
-+&vop {
-+	assigned-clocks = <&cru DCLK_VOP0>, <&cru DCLK_VOP1>;
-+	assigned-clock-parents = <&pmucru PLL_HPLL>, <&cru PLL_VPLL>;
-+	status = "okay";
-+};
-+
-+&vop_mmu {
-+	status = "okay";
-+};
-+
-+&vp0 {
-+	vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
-+		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
-+		remote-endpoint = <&hdmi_in_vp0>;
-+	};
-+};
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509251347.sb9SGhab-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from arch/powerpc/include/asm/io.h:962,
+                    from include/linux/io.h:12,
+                    from include/linux/irq.h:20,
+                    from arch/powerpc/include/asm/hardirq.h:6,
+                    from include/linux/hardirq.h:11,
+                    from include/linux/interrupt.h:11,
+                    from include/linux/kernel_stat.h:8,
+                    from include/linux/cgroup.h:27,
+                    from include/linux/memcontrol.h:13,
+                    from include/linux/swap.h:9,
+                    from include/linux/suspend.h:5,
+                    from arch/powerpc/kernel/asm-offsets.c:21:
+>> include/asm-generic/io.h:304:18: error: redefinition of 'readw_be'
+     304 | #define readw_be readw_be
+         |                  ^~~~~~~~
+   include/asm-generic/io.h:305:19: note: in expansion of macro 'readw_be'
+     305 | static inline u16 readw_be(const volatile void __iomem *addr)
+         |                   ^~~~~~~~
+   arch/powerpc/include/asm/io.h:517:19: note: previous definition of 'readw_be' with type 'u16(const volatile void *)' {aka 'short unsigned int(const volatile void *)'}
+     517 | static inline u16 readw_be(const volatile void __iomem *addr)
+         |                   ^~~~~~~~
+>> include/asm-generic/io.h:319:18: error: redefinition of 'readl_be'
+     319 | #define readl_be readl_be
+         |                  ^~~~~~~~
+   include/asm-generic/io.h:320:19: note: in expansion of macro 'readl_be'
+     320 | static inline u32 readl_be(const volatile void __iomem *addr)
+         |                   ^~~~~~~~
+   arch/powerpc/include/asm/io.h:522:19: note: previous definition of 'readl_be' with type 'u32(const volatile void *)' {aka 'unsigned int(const volatile void *)'}
+     522 | static inline u32 readl_be(const volatile void __iomem *addr)
+         |                   ^~~~~~~~
+>> include/asm-generic/io.h:351:19: error: redefinition of 'writew_be'
+     351 | #define writew_be writew_be
+         |                   ^~~~~~~~~
+   include/asm-generic/io.h:352:20: note: in expansion of macro 'writew_be'
+     352 | static inline void writew_be(u16 value, volatile void __iomem *addr)
+         |                    ^~~~~~~~~
+   arch/powerpc/include/asm/io.h:545:20: note: previous definition of 'writew_be' with type 'void(u16,  volatile void *)' {aka 'void(short unsigned int,  volatile void *)'}
+     545 | static inline void writew_be(u16 val, volatile void __iomem *addr)
+         |                    ^~~~~~~~~
+>> include/asm-generic/io.h:363:19: error: redefinition of 'writel_be'
+     363 | #define writel_be writel_be
+         |                   ^~~~~~~~~
+   include/asm-generic/io.h:364:20: note: in expansion of macro 'writel_be'
+     364 | static inline void writel_be(u32 value, volatile void __iomem *addr)
+         |                    ^~~~~~~~~
+   arch/powerpc/include/asm/io.h:550:20: note: previous definition of 'writel_be' with type 'void(u32,  volatile void *)' {aka 'void(unsigned int,  volatile void *)'}
+     550 | static inline void writel_be(u32 val, volatile void __iomem *addr)
+         |                    ^~~~~~~~~
+   make[3]: *** [scripts/Makefile.build:182: arch/powerpc/kernel/asm-offsets.s] Error 1
+   make[3]: Target 'prepare' not remade because of errors.
+   make[2]: *** [Makefile:1282: prepare0] Error 2
+   make[2]: Target 'prepare' not remade because of errors.
+   make[1]: *** [Makefile:248: __sub-make] Error 2
+   make[1]: Target 'prepare' not remade because of errors.
+   make: *** [Makefile:248: __sub-make] Error 2
+   make: Target 'prepare' not remade because of errors.
+
+
+vim +/readw_be +304 include/asm-generic/io.h
+
+   297	
+   298	/*
+   299	 * {read,write}{w,l,q}_be() access big endian memory and return result
+   300	 * in native endianness.
+   301	 */
+   302	
+   303	#ifndef readw_be
+ > 304	#define readw_be readw_be
+   305	static inline u16 readw_be(const volatile void __iomem *addr)
+   306	{
+   307		u16 val;
+   308	
+   309		log_read_mmio(16, addr, _THIS_IP_, _RET_IP_);
+   310		__io_br();
+   311		val = __be16_to_cpu((__be16 __force)__raw_readw(addr));
+   312		__io_ar(val);
+   313		log_post_read_mmio(val, 16, addr, _THIS_IP_, _RET_IP_);
+   314		return val;
+   315	}
+   316	#endif
+   317	
+   318	#ifndef readl_be
+ > 319	#define readl_be readl_be
+   320	static inline u32 readl_be(const volatile void __iomem *addr)
+   321	{
+   322		u32 val;
+   323	
+   324		log_read_mmio(32, addr, _THIS_IP_, _RET_IP_);
+   325		__io_br();
+   326		val = __be32_to_cpu((__be32 __force)__raw_readl(addr));
+   327		__io_ar(val);
+   328		log_post_read_mmio(val, 32, addr, _THIS_IP_, _RET_IP_);
+   329		return val;
+   330	}
+   331	#endif
+   332	
+   333	#ifdef CONFIG_64BIT
+   334	#ifndef readq_be
+   335	#define readq_be readq_be
+   336	static inline u64 readq_be(const volatile void __iomem *addr)
+   337	{
+   338		u64 val;
+   339	
+   340		log_read_mmio(64, addr, _THIS_IP_, _RET_IP_);
+   341		__io_br();
+   342		val = __be64_to_cpu((__be64 __force)__raw_readq(addr));
+   343		__io_ar(val);
+   344		log_post_read_mmio(val, 64, addr, _THIS_IP_, _RET_IP_);
+   345		return val;
+   346	}
+   347	#endif
+   348	#endif /* CONFIG_64BIT */
+   349	
+   350	#ifndef writew_be
+ > 351	#define writew_be writew_be
+   352	static inline void writew_be(u16 value, volatile void __iomem *addr)
+   353	{
+   354		log_write_mmio(value, 16, addr, _THIS_IP_, _RET_IP_);
+   355		__io_bw();
+   356		__raw_writew((u16 __force)__cpu_to_be16(value), addr);
+   357		__io_aw();
+   358		log_post_write_mmio(value, 16, addr, _THIS_IP_, _RET_IP_);
+   359	}
+   360	#endif
+   361	
+   362	#ifndef writel_be
+ > 363	#define writel_be writel_be
+   364	static inline void writel_be(u32 value, volatile void __iomem *addr)
+   365	{
+   366		log_write_mmio(value, 32, addr, _THIS_IP_, _RET_IP_);
+   367		__io_bw();
+   368		__raw_writel((u32 __force)__cpu_to_be32(value), addr);
+   369		__io_aw();
+   370		log_post_write_mmio(value, 32, addr, _THIS_IP_, _RET_IP_);
+   371	}
+   372	#endif
+   373	
+
 -- 
-2.51.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
