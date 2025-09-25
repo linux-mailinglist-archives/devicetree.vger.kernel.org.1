@@ -1,439 +1,204 @@
-Return-Path: <devicetree+bounces-221560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19575BA0FE8
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 20:18:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D830BA101A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 20:27:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A367118926FB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 18:19:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6EDC7B2989
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 18:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35A45314A7B;
-	Thu, 25 Sep 2025 18:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51322314A7B;
+	Thu, 25 Sep 2025 18:27:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b="qMRr8yXp"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZIZuhyS1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from raptorengineering.com (mail.raptorengineering.com [23.155.224.40])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50AD02F49FC;
-	Thu, 25 Sep 2025 18:18:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.155.224.40
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BC5A315D4B
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 18:26:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758824327; cv=none; b=HGai11AjiFek6C9de3NJgvDyZIX4njtI2vUcJLnrLbFVgweG8RghaEBnHPfj/ogNeUVk3di2LMp3NGGaNXzil1MqA4H2UcmgjzpQE5irWW6spQ1gAhkWa713/cO1QL6X/blADoDti7CqoRYBlDIeSIl9Hy0Lo6bunzi/ZXL/6AE=
+	t=1758824821; cv=none; b=dE9DjPzaHfgSCutq42PY9R27bzd1Vx79MVVBaWr8Qih/+7sOShQg3+Gw6fTrv94ZqQPB4I+am7v1phg5igxE/peBjYdljLteK+2U4N1G7qUhihTRkQC0fcHQUuARMU7PCriBrihSFKBkRlewH8ghKdMoJNUP8g9yQ1JQUfoig28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758824327; c=relaxed/simple;
-	bh=WevgtDJgtMzgcrgeNiCS8QLEzaH+Y4Ioo455c9FKI1c=;
-	h=Date:From:To:Cc:Message-ID:Subject:MIME-Version:Content-Type; b=LwqbWi3MkTx5G552FjiIiO5E82SiVYAt5veeZ/kHFECHb63HgsahTj0+IAgk6pCd54uVXZu8IpshBXbofga9uaxnuJOmvWNbOEcLYGUUbC16RiKTpbU1OtDkVRx6ahL/iDQU6mOZrBd9qhSLxg0LhyxKThELdaW8BYb7DyFyHiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com; spf=pass smtp.mailfrom=raptorengineering.com; dkim=pass (1024-bit key) header.d=raptorengineering.com header.i=@raptorengineering.com header.b=qMRr8yXp; arc=none smtp.client-ip=23.155.224.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raptorengineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raptorengineering.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 8276D828840F;
-	Thu, 25 Sep 2025 13:18:44 -0500 (CDT)
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id H3tFfhsicpXZ; Thu, 25 Sep 2025 13:18:43 -0500 (CDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 30AED8288E19;
-	Thu, 25 Sep 2025 13:18:43 -0500 (CDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.rptsys.com 30AED8288E19
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=raptorengineering.com; s=B8E824E6-0BE2-11E6-931D-288C65937AAD;
-	t=1758824323; bh=zVt8L3kgRRJxb6e/3yTsWsGqVzziUOtwwqn6WwVU5+Y=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=qMRr8yXpEvk56PXpGTML6XJbDTe8F5QSkjg6eUIJjWzJAJrmewfqxH4BhajTLxZ+I
-	 sZ5Wq3CCsZb+z7AU5IKl9Kpaj7wNuWjmivhRXgIvIzMO5nW0HLkdQToPs8K+/mkZrz
-	 8Zm8w9oueYr6S320sMV9xTXKnMZDsTZZNIXCYPks=
-X-Virus-Scanned: amavisd-new at rptsys.com
-Received: from mail.rptsys.com ([127.0.0.1])
-	by localhost (vali.starlink.edu [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id TgSxuj44XYEq; Thu, 25 Sep 2025 13:18:43 -0500 (CDT)
-Received: from vali.starlink.edu (localhost [127.0.0.1])
-	by mail.rptsys.com (Postfix) with ESMTP id 019C3828840F;
-	Thu, 25 Sep 2025 13:18:43 -0500 (CDT)
-Date: Thu, 25 Sep 2025 13:18:42 -0500 (CDT)
-From: Timothy Pearson <tpearson@raptorengineering.com>
-To: devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Lee Jones <lee@kernel.org>, 
-	Georgy Yakovlev <Georgy.Yakovlev@sony.com>
-Cc: Shawn Anastasio <sanastasio@raptorengineering.com>
-Message-ID: <140206774.1748567.1758824322906.JavaMail.zimbra@raptorengineeringinc.com>
-Subject: [PATCH v3 4/4] watchdog: sony-cronos-cpld: Add watchdog driver for
- Sony  Cronos CPLD
+	s=arc-20240116; t=1758824821; c=relaxed/simple;
+	bh=NMbylAYq7CYv0fkWtWUtjNn7VgoOmJ+cVhEKuBkCKu0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=noNmoX+TIHTautUx+C62j9owRdtGJGd2A3i/XM5IsUPkG884aTMhCqhd8l4/sv7aubST2r2Ahg6OkWQO/NauT5vDEZA/HksJuTQKTi1g01qdJfH7Q6ud6yFMqLhWIF2namg+JRgSqKb+bDr8+0bBosBgM8NeFijFTFktdYZGPbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZIZuhyS1; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58PIQQ2S026539
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 18:26:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	PqPeS5NEfA2UAdvDycz41izyD8C9Eo6POeSmVFtB8KQ=; b=ZIZuhyS15etcwleU
+	PGcLB87EG1ZJydefJk/eNnc18pUtxkC3uGPQjqhQrrQfa0AH9aPC/yAkRp+1BNCS
+	A+k6ueej0xFtzjOldX5E7KNwo5l+OhINoci5awS/iFm2BeMFz83m85PV2UQm5yXM
+	KE2doRndk00DnfkJAe5GNWf904f56B10p8svxl8ZSpgNbe8I9m537bD5M6p04JoP
+	q5KjvB/udC1fGqd/mK0uxbPHCm/592WK24GZiaGvMo8bugLgKX+VsMmzraD3gPwA
+	lL3BNUY59qpi+yBBR1iB8KYTSxBuWNj8iVRynSM92fkI4qCSlvZUjHhVILqVuOe1
+	QuxYsg==
+Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49db0u002t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 18:26:58 +0000 (GMT)
+Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-33428befc3aso1425727a91.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 11:26:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758824817; x=1759429617;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PqPeS5NEfA2UAdvDycz41izyD8C9Eo6POeSmVFtB8KQ=;
+        b=nANgmET9tH8s+PwBXr9A+04+4lxrkUC3sNJQ8I2/d15wzKUE0mXt58nRLPg9lrPIju
+         6xsFmftxYqWtWpN+Cz/GbeZPxdWJpHt0TXxX5gkvk1a2rEecWj7xTpkZ2KvZ1RW6FYK7
+         dUMMOPuaoSsyloVFWxlUz4WfktVxjEUzJwzTnNiv+0wmv1qj15n1edsYzywohfDc7kWU
+         wZKR+PrpNZHfi8DnAFzcSb+SIWscHkq2cswdjArC/sn1F6Y0VkOh6y/A6Qki+UC61mY3
+         Mhk8c6g9eTFQ61CHd5RXxVuNk3IJaAvG8O1DiV2C7CH0KzVA0TNT0NZnQjYnkIfl8O0Z
+         kh8w==
+X-Forwarded-Encrypted: i=1; AJvYcCXS6az9J9cpfY0Ezp0aI18tzDFH7W+Q+xIY4M1Ta6TtN9NEb24j3TjqMli/sZUKzUdjZR3FE1QkA+5+@vger.kernel.org
+X-Gm-Message-State: AOJu0YypfhDCmt11BL20tDzs4MvuRTQLAURcAR9R1vWBdVSZWMdg3rN9
+	TKAw0r/vaFn2Az0rREHVeTn9uj7YbTGeuBYRMzYR8EQoB0y2ttYpU6sjSB7DvwLXStB+EeJd/G0
+	nDvSEtftPb5JF6nI5+Ax3h/mQCJ9b35z5gFi01rcjFxu8QZinyLTt8RG00qHjB9Cq
+X-Gm-Gg: ASbGncvpz3vx/YVeg5yvZx9V4fNfVe1Mq6qGNo+fpL4azW//QByHSn7ambVcYmU/Gqn
+	Lky5nOnfH8uGuu50rzVYXCEnhjTJDbl5nTBlikqDz/0J7MPnKXjKUl5klZGkXZqRGYxT8I3Dg/z
+	eYz8IC6ggHMt/9RWprPLSW/rJezoNDGlmLH6Rg3KPUNuzn8tJjXOWRDiWjWB6RU+Uy1NA4gRXFy
+	1alIZKhPS/W7BDw92USAbNWn0g1O6iEKuTnbe45ga50trtCH1FtRCZSCAwM5c9k00eV3TGV++sO
+	q8wYCRMJn5ZNzlLPUhueaJHHBVXQwhXRnxR5zNQ7kU0rulSm1FNGLTdRYafzeiqySmba2J0rG/6
+	sChfL5Z3RQR5ikI0MAHfL5va39LVd+Fg=
+X-Received: by 2002:a17:90b:3d4b:b0:32d:d4fa:4c3 with SMTP id 98e67ed59e1d1-3342a2ef04fmr3451100a91.31.1758824816745;
+        Thu, 25 Sep 2025 11:26:56 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF8VfXlVS+KwPpyYFd34T8pPu8mdtcmA2+TC/qpR/h7izvQa1fT2HATDC6sqAu3sewVGidgrA==
+X-Received: by 2002:a17:90b:3d4b:b0:32d:d4fa:4c3 with SMTP id 98e67ed59e1d1-3342a2ef04fmr3451074a91.31.1758824816203;
+        Thu, 25 Sep 2025 11:26:56 -0700 (PDT)
+Received: from [192.168.86.246] (syn-076-176-048-107.res.spectrum.com. [76.176.48.107])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3342a3cab8fsm1456102a91.1.2025.09.25.11.26.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Sep 2025 11:26:55 -0700 (PDT)
+Message-ID: <cf043ce8-0e83-41cc-b294-93dc1c27fd91@oss.qualcomm.com>
+Date: Thu, 25 Sep 2025 11:26:42 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.5.0_GA_3042 (ZimbraWebClient - GC139 (Linux)/8.5.0_GA_3042)
-Thread-Index: 9j7x+jis1C/M5wOe4CKoSjZllblSrA==
-Thread-Topic: watchdog: sony-cronos-cpld: Add watchdog driver for Sony Cronos CPLD
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 06/20] arm64: dts: qcom: kaanapali: Add USB support for
+ Kaanapali SoC
+To: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>,
+        =?UTF-8?Q?Krzysztof_Koz=C5=82owski?= <k.kozlowski.k@gmail.com>,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        tingwei.zhang@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+        Ronak Raheja <ronak.raheja@oss.qualcomm.com>
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <20250924-knp-dts-v1-6-3fdbc4b9e1b1@oss.qualcomm.com>
+ <CAJKOXPcbJY4JEjfZLvOAXEWCTYFpe7En+Riis2t3K5fWJgNU5A@mail.gmail.com>
+ <53d63dd6-a022-4e80-a317-3218976a7474@oss.qualcomm.com>
+Content-Language: en-US
+From: Trilok Soni <trilok.soni@oss.qualcomm.com>
+In-Reply-To: <53d63dd6-a022-4e80-a317-3218976a7474@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: 7uM4g0ZFJG5jkjkWq5LMLCNUAq0Xf4bY
+X-Proofpoint-GUID: 7uM4g0ZFJG5jkjkWq5LMLCNUAq0Xf4bY
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI1MDE3MSBTYWx0ZWRfX77uWU3fiobOu
+ HPSLFUKyaSG7oDosV9V37WHak83rVjJsREXydX9RFhBPf7frC5E+pkE3DcUJ4BKF4j5J96VJXlN
+ LIFKPZG6GXnixQkzUv925wCyQj3wZTbBPdc/SVuDM5xezcYwy3WLHIIfmHeZj7ySbpB0CQ9XqMd
+ jMlEd0hK7DYqMEJKSNI702WVrgp/GP5JKHKyfaF+vgt3ibS0k9SM9o4lZbAGTM9e2r256GnxfKW
+ I/MUoLxmgR5ZnKnkzLcjyJLgqDJ3+Opy3WtFkDPPqx3nl/elUEiCi62oC7sBE2TcPYWDNQdAUOl
+ fum1fgzHfVnj+dBGkqNoQJaXGsanIMrXsdVw3dZrm0BpYTOPJ4Kol84xQBPDOhzUhvzEHcvmG0i
+ i21y2w3PYHrMuTv19RLrH4q9oMTKgA==
+X-Authority-Analysis: v=2.4 cv=ZsHg6t7G c=1 sm=1 tr=0 ts=68d58972 cx=c_pps
+ a=0uOsjrqzRL749jD1oC5vDA==:117 a=lsoD3MMNObdLvy1227ExmA==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=_4E2EnyzloM2vKAfYDwA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-25_01,2025-09-25_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0
+ priorityscore=1501 impostorscore=0 bulkscore=0 suspectscore=0 clxscore=1011
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509250171
 
-The Sony Cronos Platform Controller CPLD is a multi-purpose platform controller
-with an integrated watchdog.  Add the watchdog driver for the Cronos CPLD.
+On 9/25/2025 12:39 AM, Aiqun(Maria) Yu wrote:
+> On 9/25/2025 9:50 AM, Krzysztof Kozłowski wrote:
+>> On Thu, 25 Sept 2025 at 09:17, Jingyi Wang <jingyi.wang@oss.qualcomm.com> wrote:
+>>>
+>>> From: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
+>>>
+>>> Add the base USB devicetree definitions for Kaanapali platform. The overall
+>>> chipset contains a single DWC3 USB3 controller (rev. 200a), SS QMP PHY
+>>> (rev. v8) and M31 eUSB2 PHY.
+>>>
+>>> Signed-off-by: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
+>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/kaanapali.dtsi | 155 ++++++++++++++++++++++++++++++++
+>>>  1 file changed, 155 insertions(+)
+>>>
+>>
+>>
+>> Second try, without HTML:
+>>
+>> I really don't understand why you created such huge patchset. Year
+>> ago, two years ago, we were discussing it already and explained that's
+>> just inflating the patchset without reason.
+>>
+>> New Soc is one logical change. Maybe two. Not 18!
+> 
+> It was previously squashed into the base soc dtsi patch and mark like:
+> Written with help from Jyothi Kumar Seerapu(added bus), Ronak Raheja
+> (added USB), Manish Pandey(added SDHCI), Gaurav Kashyap(added crypto),
+> Manaf Meethalavalappu Pallikunhi(added tsens), Qiang Yu(added PCIE) and
+> Jinlong Mao(added coresight).
+> 
+> While it is over 4000+ lines when we squash it together.
+> Also as offline reviewed with Bjorn, he suggested us to split out the
+> USB and other parts.
+> 
+>>
+>> Not one patch per node or feature.
+>>
+>> This hides big picture, makes difficult to review everything,
+>> difficult to test. Your patch count for LWN stats doesn't matter to
+>> us.
 
-Signed-off-by: Timothy Pearson <tpearson@raptorengineering.com>
----
- drivers/watchdog/Kconfig           |  17 ++
- drivers/watchdog/Makefile          |   1 +
- drivers/watchdog/sony-cronos-wdt.c | 302 +++++++++++++++++++++++++++++
- 3 files changed, 320 insertions(+)
- create mode 100644 drivers/watchdog/sony-cronos-wdt.c
+Maria - the point here is to not design the series / code for stats, but
+per maintainer expectations. Though it is difficult to know one preferred guideline.
 
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index 0c25b2ed44eb..3acabcafcaae 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -416,6 +416,23 @@ config SL28CPLD_WATCHDOG
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called sl28cpld_wdt.
- 
-+config SONY_CRONOS_WATCHDOG
-+	tristate "Sony Cronos CPLD Watchdog"
-+	depends on ARCH_ASPEED || COMPILE_TEST
-+	depends on I2C
-+	select WATCHDOG_CORE
-+	help
-+	  Say Y here to include support for the watchdog timer
-+	  for the Sony Cronos control CPLD.
-+
-+	  All known Cronos systems use the ASpeed AST2600 SoC,
-+	  therefore the configuration option is gated on
-+	  ARCH_ASPEED selection.  If this changes, add the new
-+	  SoCs to the selection list.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called sony-cronos-wdt.
-+
- # ALPHA Architecture
- 
- # ARM Architecture
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index bbd4d62d2cc3..f29f20a52229 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -242,3 +242,4 @@ obj-$(CONFIG_MENZ069_WATCHDOG) += menz69_wdt.o
- obj-$(CONFIG_RAVE_SP_WATCHDOG) += rave-sp-wdt.o
- obj-$(CONFIG_STPMIC1_WATCHDOG) += stpmic1_wdt.o
- obj-$(CONFIG_SL28CPLD_WATCHDOG) += sl28cpld_wdt.o
-+obj-$(CONFIG_SONY_CRONOS_WATCHDOG) += sony-cronos-wdt.o
-diff --git a/drivers/watchdog/sony-cronos-wdt.c b/drivers/watchdog/sony-cronos-wdt.c
-new file mode 100644
-index 000000000000..6c9c4a7fdf29
---- /dev/null
-+++ b/drivers/watchdog/sony-cronos-wdt.c
-@@ -0,0 +1,302 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Watchdog device driver for Sony Cronos CPLDs
-+ * Copyright (C) 2015 Dialog Semiconductor Ltd.
-+ * Copyright (C) 2022-2025 Raptor Engineering, LLC
-+ *
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/jiffies.h>
-+#include <linux/kernel.h>
-+#include <linux/mfd/sony/cronos/registers.h>
-+#include <linux/mfd/sony/cronos/core.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
-+#include <linux/uaccess.h>
-+#include <linux/watchdog.h>
-+
-+static const unsigned int wdt_timeout[] = { 10, 80 };
-+static const unsigned int wdt_timeout_ctl_bits[] = { 0x1, 0x0 };
-+#define CRONOS_TWDSCALE_DISABLE 0
-+#define CRONOS_TWDSCALE_MIN 1
-+#define CRONOS_TWDSCALE_MAX (ARRAY_SIZE(wdt_timeout) - 1)
-+#define CRONOS_WDT_MIN_TIMEOUT wdt_timeout[CRONOS_TWDSCALE_MIN]
-+#define CRONOS_WDT_MAX_TIMEOUT wdt_timeout[CRONOS_TWDSCALE_MAX]
-+#define CRONOS_WDG_DEFAULT_TIMEOUT wdt_timeout[CRONOS_TWDSCALE_MAX]
-+
-+struct sony_cronos_watchdog {
-+	struct sony_cronos_cpld *hw;
-+	struct watchdog_device wdtdev;
-+};
-+
-+static unsigned int
-+sony_cronos_wdt_read_timeout(struct sony_cronos_watchdog *wdt)
-+{
-+	unsigned int i;
-+	unsigned int val;
-+
-+	regmap_read(wdt->hw->regmap, CRONOS_WDT_CTL_REG, &val);
-+
-+	for (i = CRONOS_TWDSCALE_MIN; i <= CRONOS_TWDSCALE_MAX; i++) {
-+		if (wdt_timeout_ctl_bits[i] == (val & CRONOS_WDT_TIMEOUT_MASK))
-+			return wdt_timeout[i];
-+	}
-+
-+	dev_err(wdt->hw->dev,
-+		"Invalid configuration data present in watchdog control register!\n");
-+	return wdt_timeout[CRONOS_WDT_MIN_TIMEOUT];
-+}
-+
-+static unsigned int sony_cronos_wdt_timeout_to_sel(unsigned int secs)
-+{
-+	unsigned int i;
-+
-+	for (i = CRONOS_TWDSCALE_MIN; i <= CRONOS_TWDSCALE_MAX; i++) {
-+		if (wdt_timeout[i] >= secs)
-+			return wdt_timeout_ctl_bits[i];
-+	}
-+
-+	return wdt_timeout_ctl_bits[CRONOS_TWDSCALE_MAX];
-+}
-+
-+static int sony_cronos_reset_watchdog_timer(struct sony_cronos_watchdog *wdt)
-+{
-+	return regmap_write(wdt->hw->regmap, CRONOS_WDT_CLR_REG,
-+			    CRONOS_WDT_CLR_VAL);
-+}
-+
-+static int
-+sony_cronos_wdt_update_timeout_register(struct sony_cronos_watchdog *wdt,
-+					unsigned int regval)
-+{
-+	int ret;
-+
-+	struct sony_cronos_cpld *chip = wdt->hw;
-+
-+	ret = sony_cronos_reset_watchdog_timer(wdt);
-+	if (ret) {
-+		dev_err(wdt->hw->dev, "Watchdog failed to reset (err = %d)\n",
-+			ret);
-+		goto done;
-+	}
-+
-+	return regmap_update_bits(chip->regmap, CRONOS_WDT_CTL_REG,
-+				  CRONOS_WDT_TIMEOUT_MASK, regval);
-+
-+done:
-+	return ret;
-+}
-+
-+static int sony_cronos_wdt_start(struct watchdog_device *wdd)
-+{
-+	struct sony_cronos_watchdog *wdt = watchdog_get_drvdata(wdd);
-+	struct sony_cronos_cpld *chip = wdt->hw;
-+	unsigned int selector;
-+	int ret;
-+
-+	selector = sony_cronos_wdt_timeout_to_sel(wdt->wdtdev.timeout);
-+	ret = sony_cronos_wdt_update_timeout_register(wdt, selector);
-+	if (ret) {
-+		dev_err(wdt->hw->dev,
-+			"Watchdog prestart configuration failed (err = %d)\n",
-+			ret);
-+		goto done;
-+	}
-+
-+	ret = regmap_update_bits(chip->regmap, CRONOS_WDT_CTL_REG,
-+				 CRONOS_WDT_ENABLE_MASK, 1);
-+
-+	if (ret)
-+		dev_err(wdt->hw->dev, "Watchdog failed to start (err = %d)\n",
-+			ret);
-+
-+done:
-+	return ret;
-+}
-+
-+static int sony_cronos_wdt_stop(struct watchdog_device *wdd)
-+{
-+	struct sony_cronos_watchdog *wdt = watchdog_get_drvdata(wdd);
-+	struct sony_cronos_cpld *chip = wdt->hw;
-+	int ret;
-+
-+	ret = regmap_update_bits(chip->regmap, CRONOS_WDT_CTL_REG,
-+				 CRONOS_WDT_ENABLE_MASK, 1);
-+	if (ret)
-+		dev_err(wdt->hw->dev, "Watchdog failed to stop (err = %d)\n",
-+			ret);
-+
-+	return ret;
-+}
-+
-+static int sony_cronos_wdt_ping(struct watchdog_device *wdd)
-+{
-+	struct sony_cronos_watchdog *wdt = watchdog_get_drvdata(wdd);
-+	int ret;
-+
-+	/*
-+	 * Prevent pings from occurring late in system poweroff/reboot sequence
-+	 * and possibly locking out restart handler from accessing i2c bus.
-+	 */
-+	if (system_state > SYSTEM_RUNNING)
-+		return 0;
-+
-+	ret = sony_cronos_reset_watchdog_timer(wdt);
-+	if (ret)
-+		dev_err(wdt->hw->dev,
-+			"Failed to ping the watchdog (err = %d)\n", ret);
-+
-+	return ret;
-+}
-+
-+static int sony_cronos_wdt_set_timeout(struct watchdog_device *wdd,
-+				       unsigned int timeout)
-+{
-+	struct sony_cronos_watchdog *wdt = watchdog_get_drvdata(wdd);
-+	unsigned int selector;
-+	int ret;
-+
-+	selector = sony_cronos_wdt_timeout_to_sel(timeout);
-+	ret = sony_cronos_wdt_update_timeout_register(wdt, selector);
-+	if (ret)
-+		dev_err(wdt->hw->dev,
-+			"Failed to set watchdog timeout (err = %d)\n", ret);
-+	else
-+		wdd->timeout = wdt_timeout[selector];
-+
-+	return ret;
-+}
-+
-+static int sony_cronos_wdt_restart(struct watchdog_device *wdd,
-+				   unsigned long action, void *data)
-+{
-+	struct sony_cronos_watchdog *wdt = watchdog_get_drvdata(wdd);
-+	struct i2c_client *client = to_i2c_client(wdt->hw->dev);
-+	int ret;
-+
-+	/* Don't use regmap because it is not atomic safe */
-+	ret = i2c_smbus_write_byte_data(client, CRONOS_WDT_CTL_REG,
-+					CRONOS_WDT_CTL_RESET_VAL);
-+	ret = i2c_smbus_write_byte_data(client, CRONOS_BMC_RESET_REG,
-+					CRONOS_BMC_RESET_VAL);
-+	if (ret < 0)
-+		dev_alert(wdt->hw->dev, "Failed to shutdown (err = %d)\n", ret);
-+
-+	/* wait for reset to assert... */
-+	mdelay(500);
-+
-+	return ret;
-+}
-+
-+static const struct watchdog_info sony_cronos_watchdog_info = {
-+	.options = WDIOF_SETTIMEOUT | WDIOF_KEEPALIVEPING,
-+	.identity = "Sony Cronos WDT",
-+};
-+
-+static const struct watchdog_ops sony_cronos_watchdog_ops = {
-+	.owner = THIS_MODULE,
-+	.start = sony_cronos_wdt_start,
-+	.stop = sony_cronos_wdt_stop,
-+	.ping = sony_cronos_wdt_ping,
-+	.set_timeout = sony_cronos_wdt_set_timeout,
-+	.restart = sony_cronos_wdt_restart,
-+};
-+
-+static const struct of_device_id sony_cronos_compatible_id_table[] = {
-+	{
-+		.compatible = "sony,cronos-watchdog",
-+	},
-+	{},
-+};
-+
-+MODULE_DEVICE_TABLE(of, sony_cronos_compatible_id_table);
-+
-+static int sony_cronos_wdt_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	unsigned int timeout;
-+	struct sony_cronos_cpld *chip;
-+	struct sony_cronos_watchdog *wdt;
-+
-+	chip = dev_get_drvdata(dev->parent);
-+	if (!chip)
-+		return -EINVAL;
-+
-+	wdt = devm_kzalloc(dev, sizeof(*wdt), GFP_KERNEL);
-+	if (!wdt)
-+		return -ENOMEM;
-+
-+	wdt->hw = chip;
-+
-+	wdt->wdtdev.info = &sony_cronos_watchdog_info;
-+	wdt->wdtdev.ops = &sony_cronos_watchdog_ops;
-+	wdt->wdtdev.min_timeout = CRONOS_WDT_MIN_TIMEOUT;
-+	wdt->wdtdev.max_timeout = CRONOS_WDT_MAX_TIMEOUT;
-+	wdt->wdtdev.min_hw_heartbeat_ms = 0;
-+	wdt->wdtdev.timeout = CRONOS_WDG_DEFAULT_TIMEOUT;
-+	wdt->wdtdev.status = WATCHDOG_NOWAYOUT_INIT_STATUS;
-+	wdt->wdtdev.parent = dev;
-+
-+	watchdog_set_restart_priority(&wdt->wdtdev, 128);
-+
-+	watchdog_set_drvdata(&wdt->wdtdev, wdt);
-+	dev_set_drvdata(dev, &wdt->wdtdev);
-+
-+	timeout = sony_cronos_wdt_read_timeout(wdt);
-+	if (timeout)
-+		wdt->wdtdev.timeout = timeout;
-+
-+	/* Set timeout from DT value if available */
-+	watchdog_init_timeout(&wdt->wdtdev, 0, dev);
-+
-+	if (timeout) {
-+		sony_cronos_wdt_set_timeout(&wdt->wdtdev, wdt->wdtdev.timeout);
-+		set_bit(WDOG_HW_RUNNING, &wdt->wdtdev.status);
-+	}
-+
-+	return devm_watchdog_register_device(dev, &wdt->wdtdev);
-+}
-+
-+static int __maybe_unused sony_cronos_wdt_suspend(struct device *dev)
-+{
-+	struct watchdog_device *wdd = dev_get_drvdata(dev);
-+
-+	if (watchdog_active(wdd))
-+		return sony_cronos_wdt_stop(wdd);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused sony_cronos_wdt_resume(struct device *dev)
-+{
-+	struct watchdog_device *wdd = dev_get_drvdata(dev);
-+
-+	if (watchdog_active(wdd))
-+		return sony_cronos_wdt_start(wdd);
-+
-+	return 0;
-+}
-+
-+static SIMPLE_DEV_PM_OPS(sony_cronos_wdt_pm_ops, sony_cronos_wdt_suspend,
-+			 sony_cronos_wdt_resume);
-+
-+static struct platform_driver sony_cronos_wdt_driver = {
-+	.probe = sony_cronos_wdt_probe,
-+	.driver = {
-+		.name = "sony-cronos-watchdog",
-+		.pm = &sony_cronos_wdt_pm_ops,
-+		.of_match_table = sony_cronos_compatible_id_table,
-+	},
-+};
-+module_platform_driver(sony_cronos_wdt_driver);
-+
-+MODULE_AUTHOR("Raptor Engineering, LLC <tpearson@raptorengineering.com>");
-+MODULE_DESCRIPTION("WDT device driver for Sony Cronos CPLDs");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:sony-cronos-watchdog");
--- 
-2.39.5
+> 
+> With the current splitting, the different author as each co-developer
+> can get the meaningful LWN stats.>
+>> NAK and I'm really disappointed I have to repeat the same review .
+> Currently, there are 10 SoC DTSI patches sent, structured as follows:
+> 
+> SoC initial
+> Base MTP board
+> SoC PCIe0
+> SoC SDC2
+> SoC USB
+> SoC remoteproc
+> SoC SPMI bus, TSENS, RNG, QCrypto, and Coresight
+> SoC additional features
+> SoC audio
+> SoC CAMSS
+> SoC video
+> 
+> Which parts would you prefer to squash into pls?
+> 
+
 
