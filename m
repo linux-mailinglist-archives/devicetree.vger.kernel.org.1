@@ -1,179 +1,122 @@
-Return-Path: <devicetree+bounces-221120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C89F6B9D525
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 05:39:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8381B9D546
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 05:49:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F39191BC0A3A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 03:39:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EA26425FF4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 03:49:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C68AC2DCF61;
-	Thu, 25 Sep 2025 03:39:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E5411BC9E2;
+	Thu, 25 Sep 2025 03:49:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="avZiLHJm"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="YI2vyybW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-187.mta1.migadu.com (out-187.mta1.migadu.com [95.215.58.187])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F9C8275B01
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 03:39:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AB31DF49
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 03:49:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758771559; cv=none; b=q8TjDbr+VfpPwhcBM+zFvgMfR1aThkleUGFHSrFv4Vya/UbJnWKvRgHGTogn6UcCsodaD/zvj9F1WlnNP5oT7i44bvbjoSyWjXU7Sg1QLkqHLp8lddQVGe4+nYp6l7MHykNyjb6gsWblrA22IvS4O2lByU/nz5ooxnUEzwk49DQ=
+	t=1758772167; cv=none; b=anZdfVf2wG/4l3g7ehjp9TcNtpoeGUE12q9zo80ct5uETdfrMrSNdmvxrHVVQ8FvDVWSmrxRyrTO08a60ki8mqeCd1+lEif0G19Yg9sp/nFuX/xbMDEZrOA8gHKiZZ16MDnA/KKsTge0eAZzaSzRFdNjKKh6xQv6BZdHKWSxhDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758771559; c=relaxed/simple;
-	bh=gBPWkNFjdMQE8rx2St2Cxhve3tgGKE50NAP2JhU7zkQ=;
+	s=arc-20240116; t=1758772167; c=relaxed/simple;
+	bh=ImaeZUMm41NDC9fTay6TMD1ZpgawaZnuHyS80Apz+vE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kc/kLPvgIEt+p3jo8x+I4z4vSsBWCyDNx6BPpXIYAXIi9eKT4Un2LNC3Dhowjk4X9tHhMx+jO8pIN38fHPQd9JlVv7ubwjI2Ie7MQd4ruRIKNVgL4ifJDoI4znAYoepc0Q6rUlRC/f/6gI9OrHDfjvQVfVIUrN2YX4oKz8EZOU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=avZiLHJm; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-77f169d8153so599995b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 20:39:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758771557; x=1759376357; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=kQlHV/LeA8zP8BB0iU6hiP/ahF2MMcZ9HvPXMFvYOqo=;
-        b=avZiLHJm79MbudNol9kHinWx3c+L/msP1MrGBZGtf2WjWwvrXgUEuvabYFAbZjPSj4
-         MVlAIMzYdPJH3om999VmM74brZy7LTmDmx/Ma5J6dclCs11ByNmxqGvxRTSyzdeFqfek
-         ejk8oJHbyJkWCWmEKHqEVK7k/qnOC4gy8f2Scct3PkRuBcmOrC9ZPoa5ygEs6VeeQpfs
-         JF2NiK7sLzhRk6KR25JruGgOfDQtAVYGerjO9+de7KD4plfL7dfTvPNaftzPMv5+hRVH
-         91HgxBBMEnw/mU0L3v/G3pt7nDlAjz2bUu449UJ5Bk1jKdY4hiKDDdMwzcq5XJPZR5Ad
-         5Tqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758771557; x=1759376357;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kQlHV/LeA8zP8BB0iU6hiP/ahF2MMcZ9HvPXMFvYOqo=;
-        b=lrSxbeF3tGBIxiNxa7e4iLVk37MROxVib1HreQukJ71O0sO0W9UDXYbQjc/3K60aj+
-         Wds6FDuzWaffdWOSNH4+6dk0L+cdyRbgRwTBIegFrBGbQUOXPNVRIDYrGMOiOZ/24Q1V
-         cdONt9CdEsDIHviJpTlIOsOP/l2vkXmuKuwEDFUFufC/0R7tcZ+6sTBfshcvQ56UTItS
-         KK1rzyh2wlqX1D79wRSGfopDWI2YWuzwe3clvpHtnAOZyTSllMHbNrizAtEAPNtzDxJI
-         lV7YSCC9TVtZPVWXD36+8CxWzfLX/kbyrhFczpSRR70JxRZWqvE7w+e7MMDIGdgowo7o
-         No7w==
-X-Forwarded-Encrypted: i=1; AJvYcCV72PrKNYrXxqI2j4A024mKuJAoSPbx0axWtA7aRAT8ShcSn+kLVQNuKsDb0Gq7eWdnoS4aLNM++86H@vger.kernel.org
-X-Gm-Message-State: AOJu0YyBaMCN83a5e3FoQFIbkpIk9wGgvNUH4emQGiADREIUDLF3fmTe
-	Urw9jbTfc5BV76fgVvEy53rcHKIXSHO5+F8OBqjZeSxEjvXDJpr9lL4v
-X-Gm-Gg: ASbGncujFSlPmVMCxC/iRdgUpeTSo2qPZ9fa+0c5Ijo6MJHsO/o9yTpRl4k7kS/Xo4P
-	tla/kf7aFJu6VMFlSnFzXNcgmNK317zsoAxTFuVVuBH72Xwt+Wr8arj+rB3Vx3mrY2RWV2Az9lz
-	1EirEzqNl61UtAuT1kbOeR9ZiJ5EdG2NQJ1MKuCvvhfrdBP1/RuOhzF6chH2wQqib4Xk+gtnEVA
-	DXl0KZp1yzh0LrOpRsekkTDT8j7T0gVHaj6IDTohZg4vN+BEpCNd+nj4rDdc+W6N+AFvoSrCeVx
-	zh3dFhJx8lfBbId4if0WMubtCAOvTuBchh6FF+yMlH3Xj6FdlT0w73Y1NTSTJitQZY2dqn6XSxl
-	nz2B4h+vfKmg4bWsvOnRGW6Y5YtTBqgSKODyHBJyStg==
-X-Google-Smtp-Source: AGHT+IEdkFvVbxoA7GFliYOsJ4pCAsy6bdrcfcexouLuoLDLtxCPYRQvWRRpt1KbJ7IscFaYe+dvwg==
-X-Received: by 2002:a05:6a21:99aa:b0:2b7:949d:63e9 with SMTP id adf61e73a8af0-2e7be809954mr2350343637.7.1758771557487;
-        Wed, 24 Sep 2025 20:39:17 -0700 (PDT)
-Received: from localhost ([2804:30c:b65:6a00:ceaa:2ed0:e81e:8f51])
-        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-3341bda12eesm3952578a91.7.2025.09.24.20.39.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Sep 2025 20:39:16 -0700 (PDT)
-Date: Thu, 25 Sep 2025 00:40:04 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Antoni Pokusinski <apokusinski01@gmail.com>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-	linux@roeck-us.net, rodrigo.gobbi.7@gmail.com,
-	naresh.solanki@9elements.com, michal.simek@amd.com,
-	grantpeltier93@gmail.com, farouk.bouabid@cherry.de
-Subject: Re: [PATCH 1/3] dt-bindings: iio: pressure: add binding for mpl3115
-Message-ID: <aNS5lGpv6ezZ8HpZ@debian-BULLSEYE-live-builder-AMD64>
-References: <20250921133327.123726-1-apokusinski01@gmail.com>
- <20250921133327.123726-2-apokusinski01@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y06rVN2tHy9/RW5S++K+RXxr8pRTwNPF2Oq2N2FgRhOj2Dh7UTw1+LUwHCpcyQ6ccg/J1X5IwDfnCCVda/lRSAznP6FjHWUyHHli6bxk5+SWqSwfcceomhXUrzW87SR86EcDeaFkiXG6goRMRMYdzxhEjvZhYs5RD1BbvUHAA0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=YI2vyybW; arc=none smtp.client-ip=95.215.58.187
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Thu, 25 Sep 2025 11:49:12 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1758772161;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=jBiu5fon2usO9/brRov2NJKkMhUctrYhM9cA/eD6UYU=;
+	b=YI2vyybWXXnWShRtOGUMhbQc06uRwjbaXBGYbocLvsJKOUc+Tx/kTr8lF92hISbAzAnNlW
+	JbJ16hU/82Rs8z396bh8Q1AZHlBgbrmKO/D9Npbg87ISGN6ttp/0zIzIUjGL4EIA87IDsq
+	BOHWHDhOwHwr1J1CcUyLVr1+b4Tn8UI=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Troy Mitchell <troy.mitchell@linux.dev>
+To: "fushan.zeng" <fushan.zeng@anlogic.com>, junhui.liu@pigmoral.tech
+Cc: alex@ghiti.fr, anup@brainfault.org, aou@eecs.berkeley.edu,
+	conor+dt@kernel.org, conor@kernel.org, daniel.lezcano@linaro.org,
+	devicetree@vger.kernel.org, gregkh@linuxfoundation.org,
+	jirislaby@kernel.org, krzk+dt@kernel.org,
+	krzysztof.kozlowski@linaro.org, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, linux-serial@vger.kernel.org,
+	palmer@dabbelt.com, palmer@sifive.com, paul.walmsley@sifive.com,
+	robh@kernel.org, samuel.holland@sifive.com, tglx@linutronix.de,
+	Troy Mitchell <troy.mitchell@linux.dev>
+Subject: Re: [PATCH v2 00/11] riscv: Add initial support for Anlogic DR1V90
+Message-ID: <aNS7uMHC4iTDHel4@LT-Guozexi>
+References: <20250922-dr1v90-basic-dt-v2-0-64d28500cb37@pigmoral.tech>
+ <20250925030650.35694-1-fushan.zeng@anlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250921133327.123726-2-apokusinski01@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250925030650.35694-1-fushan.zeng@anlogic.com>
+X-Migadu-Flow: FLOW_OUT
 
-Hi Antoni,
-
-Some inline suggestions for making this binding better comply with the
-'attempt to make bindings complete' guideline.
-
-On 09/21, Antoni Pokusinski wrote:
-> MPL3115 is an I2C pressure and temperature sensor. It features 2
-> interrupt lines which can be configured to indicate events such as data
-> ready or pressure/temperature threshold reached.
+On Thu, Sep 25, 2025 at 11:06:50AM +0800, fushan.zeng wrote:
+> On Mon, 22 Sep 2025 20:46:30 +0800, Junhui Liu wrote:
+> > This patch series introduces initial support for the Anlogic DR1V90 SoC
+> > [1] and the Milianke MLKPAI-FS01 [2] board.
+> > 
+> > The DR1V90 is a RISC-V based FPSoC from Anlogic, featuring a Nuclei
+> > UX900 [3] core as its processing system (PS) and 94,464 LUTs in the
+> > programmable logic (PL) part. The Milianke MLKPAI-FS01 board is one of
+> > the first platforms based on this SoC, with UART1 routed to a Type-C
+> > interface for console access.
+> > 
+> > Tested on the Milianke MLKPAI-FS01 board with both the vendor's OpenSBI
+> > and the not-yet-upstreamed mainline OpenSBI [4], as well as the vendor’s
+> > U-Boot. Because the vendor’s OpenSBI is loaded at 0x1f300000, we have
+> > to additionally reserve the DRAM region 0x1fe00000–0x1fffffff to prevent
+> > overlap if using vendor's OpenSBI.
+> > 
+> > Notice: A "no4lvl" bootarg or dependency patch [5] is currently required
+> > for successful boot on the DR1V90 platform, since the SoC hangs if the
+> > kernel attempts to use unsupported 4-level or 5-level paging modes.
 > 
-> Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
-> ---
-...
-> +description: |
-> +  MPL3115 is a pressure/altitude and temperature sensor with I2C interface.
-> +  It features two programmable interrupt lines which indicate events such as
-> +  data ready or pressure/temperature threshold reached.
-> +  https://www.nxp.com/docs/en/data-sheet/MPL3115A2.pdf
-> +
-> +properties:
-> +  compatible:
-> +    const: fsl,mpl3115
-> +
-> +  reg:
-> +    maxItems: 1
+> Thanks first.
+> Anloigc already has the open source SDK at https://gitee.com/anlogic/sdk,
+I think very few people actually use Gitee around here.
 
-For completeness, could also add the power supplies.
+> and will submit it to mainline at suitable time.
+> It is better that anlogic SOCs are long term maintained and supported
+> by Anlogic officially in mainline and for customers.
+> The code should be a full feature version after lots of tests, not the
+> modified and simplified version from Anlogic open source.
+I understand how you feel:
+You want to be responsible for both the code and the customers.
 
-  vdd-supply: true
+> And we hope that there won't be two different versions code of anlogic SOCs,
+> it may confuse customers.
+This is almost impossible.
+Mainline means simple, clear, compliant, fully open source.
+Some features, like GPU, are nearly impossible to fully upstream.
+Vendor versions are complex and implement full hardware features.
+It also seems you expect only official folks to handle this,
+which would take significant effort to maintain,
+perhaps even requiring dedicated personnel.
 
-  vddio-supply: true
-
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interrupt-names:
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      enum:
-> +        - INT1
-> +        - INT2
-> +
-> +  drive-open-drain:
-> +    type: boolean
-> +    description:
-> +      set if the specified interrupt pins should be configured as
-> +      open drain. If not set, defaults to push-pull.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-  - vdd-supply
-  - vddio-supply
-
-and also add the supplies to the example below.
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pressure@60 {
-> +            compatible = "fsl,mpl3115";
-> +            reg = <0x60>;
-> +            interrupt-parent = <&gpio1>;
-> +            interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
-> +            interrupt-names = "INT2";
-> +        };
-> +    };
-
-Best regards,
-Marcelo
+                - Troy
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
