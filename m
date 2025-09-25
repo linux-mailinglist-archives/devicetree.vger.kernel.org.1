@@ -1,150 +1,164 @@
-Return-Path: <devicetree+bounces-221428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 211E1B9F8BC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:23:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 036EBB9F8DD
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:25:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 342BF1C21A1E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:24:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A0FF1887BB9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:26:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9D6B233145;
-	Thu, 25 Sep 2025 13:19:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3744327A47F;
+	Thu, 25 Sep 2025 13:21:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sk+X7fpI"
+	dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b="JIf2cors"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C44CC23027C
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:19:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8382D23A995
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:21:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758806396; cv=none; b=O0PbnGjWB9aq/X1ZwN/mqcUVzzDnmjmAH2Zs7SD38x3qnVlMb+c9lRC4CPn3uhSXr2TVkLq1ag5kMjltNjT51dhy6wQLkCBnrSryPWDfECmpEN8UL6SkeIWX1cO9GthCVRIEiE1IYOZ0wGfaBdLGb+4douitwB2OIZhng2gT4c0=
+	t=1758806484; cv=none; b=CHCV9mY64naF+6l2LnHh94jIVLAr/Fi/n4S0WEA+jVowGYeBfoyOFSikmYU9CCgWQpFjgS02tXHVtec1rBBG18EUR8oSneJnkqpZ6WJ1MNNQx6bYQtOWarz1m8T3W3zuMW0ABT3/MocnLh91mcOeJCvAxuRbd6lxdPpLn0SPA2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758806396; c=relaxed/simple;
-	bh=LsVI8ehH/npCq5kVzjZEjj4UwNd8svrLYYvGBARdX4A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AsACccDpFMy3WzSRkylO2AfCTFeLYBgSWcEDmeEpylcPOnwHihzAXhVZiShdntLEPkkqjNTdN0EYSYpXAEaVDSHRyyJYbuoEzz+ekK/4hl+BILkB35HJV1xLYxfsrCl+qWMQnnnuYqCraRJi+zE4N31dQ6TwEiRb8DO0xGn8JBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sk+X7fpI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3A5AC4CEF0
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:19:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758806396;
-	bh=LsVI8ehH/npCq5kVzjZEjj4UwNd8svrLYYvGBARdX4A=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=sk+X7fpIAHEy5aPtHwjDjhFIKZDN4Tw8vGC34+pqpkEmrTZsulhoKzRdz+vuwmWOF
-	 yjLVLwzQKsfKAwXjExvwqorLPu+h1lNcfF1hCnnxn498rscM0gO3/YxMFYVewXV1Hw
-	 H7+akEmncqNt81AHY59hXZ/jqID821BXXuaqstuj4mal313lxwjXrZZPZ8f5/VYipi
-	 X4DRH2JKXlKsjL/i74iWCBo1zlAFAESEAyftvsQRAkZi4nZ13dNj2O2I61wEbkzHNH
-	 74yBjl+Gz7rhUA2dxquBwhuelV4vpWuV6fJeck92BIloRbvlmL6qeVIsMkMKPycfRz
-	 /mn6nY9XRkA8w==
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b54a74f9150so868381a12.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:19:56 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVK/ax2IFkFCj+oYayEtpVMW6XEmDB+/Th2wjHrVzFxaUMgOBl7Y51PK+Xx7I80d1wAeQqZND75QyvX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoaQZsVYnH/6/4ByPB51vLtYipTeFZgXIcJoZ1AAdwnLRTLfHw
-	v4ZAhddT1O5Nl0kw2O7FErV7qOO09ERveRxjGn+o/8E1XhVk10QjEjr4HtnKJs5f+9kNcGIFQcP
-	/bt6i1zXQX9TGQcUfphuVpyK+bqaTogo=
-X-Google-Smtp-Source: AGHT+IEkZ/qcM3gWgvoH5Z23lxlGdztAh8GifS0XlFA7H2Bv0O2IQ1fOXZC+rp/hKwkBHo+Sei5HaXsHbiwpkYcWLeE=
-X-Received: by 2002:a17:902:c409:b0:275:f156:965c with SMTP id
- d9443c01a7336-27ed4ade26bmr41285845ad.52.1758806396248; Thu, 25 Sep 2025
- 06:19:56 -0700 (PDT)
+	s=arc-20240116; t=1758806484; c=relaxed/simple;
+	bh=6DkEKz0Sd3dC4Jk9T0dI0jxA9uPtNze3gqNwzDK472U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=F229P+kPCCDWvr2VZjOx1Hh5cvPFTgtfNsiC0qLEuLhXyjCKFGASEIuEDl693T6xS8zFAmoRng/3latJddc71k4TT74PGPfm4d3n9QRJbtf+31gicub2vU4aE0pZ7kywcUybS25ZSsLMMmu+q6IO7u4y8TRXa2dFnsSFlDY78ps=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr; spf=pass smtp.mailfrom=sartura.hr; dkim=pass (2048-bit key) header.d=sartura.hr header.i=@sartura.hr header.b=JIf2cors; arc=none smtp.client-ip=209.85.219.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sartura.hr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sartura.hr
+Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-7a97ed209cfso7154566d6.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:21:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura.hr; s=sartura; t=1758806480; x=1759411280; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ikj1YYbJyMMY0I/qjjfkDNziE+dHmdeEHUJPM2fNZ0w=;
+        b=JIf2corsoOsyql/FH2Ec2/kvrjna3ECx4pG7e787xzTh93tpFyk5oos5oNEi/ng4vh
+         huUjSSdSGxML/f+PbbyAZpC79/o7Y2ke0kdJgd9LzPOuAKUhLD+/qechTJZpnvq9u8mg
+         5RT0Zz3J6zF4ywUBdFVAoaN1iV8TYEtilAGkIFNUMIFRybgKu17qNiTnf6XwZNTvu6BH
+         LP6jf/vQXUp1UPUH/iAUUu9C6O8Rid75gjGQKcFwqXn5os4UcQhA1STH2lTT5M9o5QzK
+         T013pnimKPBdEDQU2HBZzyFOSksQDgODDWf16hT88qlP2KA1Q5ehO7KPj2F7XhymMGlm
+         r1rA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758806480; x=1759411280;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ikj1YYbJyMMY0I/qjjfkDNziE+dHmdeEHUJPM2fNZ0w=;
+        b=SljSRhnHpZSNqbaZ/0VYxSi6Qab8sEeXKI92VM/JoYLsYzadsSp4vOsEq3yWkmgE0D
+         kQA0p6wgvqkpX3FE+e7P6PzGbxBeMFDROyf0yojgIQl9HZ7FzmKEx/gy4ISON1YgrzFJ
+         FLllcKVnJi6Qo6I3Qrgq082sj/8wb7oM4cnoUoMjvoQAKnUs8P0+g265Q78nR82KaUv3
+         f4r9Fa2wknY1AwzmzW57uRbh+Q1SdBF12awmERI8mwbOzYpPqMvQVCA5p8fmOXVlWJ/0
+         Jp41KdVq18CyPLUAH4HEcyin4z8TtMwuo88u/ly9qXbJDunAE2FTjB/46DbxH/I30qpG
+         pe8w==
+X-Forwarded-Encrypted: i=1; AJvYcCVlC+9RLET+0HEYMIByeSrx3whtdcj7GF5RisX0UD31lphO/xqFtnAnrdU+OitXcSyMYBiUzi5losL0@vger.kernel.org
+X-Gm-Message-State: AOJu0YyebdLrAtw9ig23Wjxd8CC8XJOFDjlUdaxKJu2b+rdxNB6F/96c
+	XVks3Y3QYxelNvrhFNtcsipkEjK0zp2/ZTNaUfxm2opvi0g+5E5Y4VaAaSPOBgBYfJI=
+X-Gm-Gg: ASbGncuNvdMm0zyGgUaRNzFMqIlCI2cj5gcq+7Txdw4DRGCJwcUcZYnN2lZTIHQDQh2
+	E+S1LGgDHM64vRYZ0+JdjoFVraLtb5WH8/IcrEvN8lzP67eOAnAGtanHE4NmxHkM3GJqlVFFyCw
+	a78GABuq0qIp70DM8eBppgPHEqfCXCnGiCk17xeOcOKJITuzGxedPA7nnTBfjMK7Wcnev2vdtsD
+	i9BwkI2BlbAbdzIMO6y2RvG2/5VoSOFEEkOG5R5zABX4k1IaHzESvs8X5l+zAHWyHW4NIoT1IE9
+	R6zI2vFwxXY/c1sHit/49hNz5Y8OSiNOBGKN2HGAympUFaZrjgA23HJFOPhtkUw7SwQNss7XYai
+	ZAZepWhKHfMfknlqR47IkrdwQKp2jkcahC7izjYY2ilo=
+X-Google-Smtp-Source: AGHT+IH8XUinRdR3zGGiBp2m82mpBfD/3zmwNXqhrKUwUBHni0a1zJyvS8LqAu4izyJ4awYO1sa/1g==
+X-Received: by 2002:ad4:5e89:0:b0:773:292c:4f69 with SMTP id 6a1803df08f44-800e5116d46mr30765656d6.10.1758806480193;
+        Thu, 25 Sep 2025 06:21:20 -0700 (PDT)
+Received: from fedora (d-zg1-232.globalnet.hr. [213.149.36.246])
+        by smtp.googlemail.com with ESMTPSA id d75a77b69052e-4db10872737sm9887351cf.30.2025.09.25.06.21.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Sep 2025 06:21:19 -0700 (PDT)
+From: Robert Marko <robert.marko@sartura.hr>
+To: andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Steen.Hegelund@microchip.com,
+	daniel.machon@microchip.com,
+	UNGLinuxDriver@microchip.com,
+	lars.povlsen@microchip.com,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Cc: luka.perkov@sartura.hr,
+	benjamin.ryzman@canonical.com,
+	Robert Marko <robert.marko@sartura.hr>
+Subject: [PATCH net] dt-bindings: net: sparx5: correct LAN969x register space windows
+Date: Thu, 25 Sep 2025 15:19:49 +0200
+Message-ID: <20250925132109.583984-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
- <20250924-knp-dts-v1-13-3fdbc4b9e1b1@oss.qualcomm.com> <9685e29d-bff3-4188-b878-230d0f161ce3@oss.qualcomm.com>
-In-Reply-To: <9685e29d-bff3-4188-b878-230d0f161ce3@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Date: Thu, 25 Sep 2025 22:19:42 +0900
-X-Gmail-Original-Message-ID: <CAJKOXPeFKN+yV4eitGgHPUYibE1h8RH274b6N6ovz_PR5BYw4A@mail.gmail.com>
-X-Gm-Features: AS18NWBEzYXM9j8AHrwCm_hkcD1rrIPELcnRoRKDYiPoFbPa_pQtmGl_AKB5sX8
-Message-ID: <CAJKOXPeFKN+yV4eitGgHPUYibE1h8RH274b6N6ovz_PR5BYw4A@mail.gmail.com>
-Subject: Re: [PATCH 13/20] arm64: dts: qcom: kaanapali: Add QUPv3
- configuration for serial engines
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
-	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, 
-	Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, 25 Sept 2025 at 21:28, Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 9/25/25 2:17 AM, Jingyi Wang wrote:
-> > From: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
-> >
-> > Add device tree support for QUPv3 serial engine protocols on Kaanapali.
-> > Kaanapali has 24 QUP serial engines across 4 QUP wrappers, each with
-> > support of GPI DMA engines, and it also includes 5 I2C hubs.
-> >
-> > Signed-off-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
-> > Co-developed-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> > Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> > ---
->
-> [...]
->
-> > +             gpi_dma2: dma-controller@800000 {
-> > +                     compatible = "qcom,kaanapali-gpi-dma", "qcom,sm6350-gpi-dma";
-> > +                     reg = <0x0 0x00800000 0x0 0x60000>;
-> > +
-> > +                     interrupts = <GIC_SPI 279 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                     <GIC_SPI 280 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                     <GIC_SPI 281 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                     <GIC_SPI 282 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                     <GIC_SPI 283 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                     <GIC_SPI 848 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                     <GIC_SPI 849 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                     <GIC_SPI 850 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                     <GIC_SPI 851 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                     <GIC_SPI 852 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                     <GIC_SPI 853 IRQ_TYPE_LEVEL_HIGH>,
-> > +                                     <GIC_SPI 854 IRQ_TYPE_LEVEL_HIGH>;
->
-> odd indentation (on almost all gpi_dma instances)
->
-> [...]
->
-> > -             remoteproc_soccp: remoteproc-soccp@d00000 {
-> > -                     compatible = "qcom,kaanapali-soccp-pas";
-> > -                     reg = <0x0 0x00d00000 0x0 0x200000>;
-> > +                     i2c22: i2c@1a8c000 {
-> > +                             compatible = "qcom,geni-i2c";
-> > +                             reg = <0x0 0x01a8c000 0x0 0x4000>;
-> >
-> > -                     interrupts-extended = <&intc GIC_SPI 167 IRQ_TYPE_EDGE_RISING>,
-> > -                                           <&soccp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
-> > -                                           <&soccp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
-> > -                                           <&soccp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
-> > -                                           <&soccp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
-> > -                                           <&soccp_smp2p_in 9 IRQ_TYPE_EDGE_RISING>,
-> > -                                           <&soccp_smp2p_in 10 IRQ_TYPE_EDGE_RISING>;
-> > -                     interrupt-names = "wdog",
-> > -                                       "fatal",
-> > -                                       "ready",
-> > -                                       "handover",
-> > -                                       "stop-ack",
-> > -                                       "pong",
-> > -                                       "wake-ack";
->
-> Please try to use git format-patch --patience
+LAN969x needs only 2 register space windows as GCB is already covered by
+the "devices" register space window, so expect only 2 "reg" and "reg-names"
+properties.
 
+Fixes: 41c6439fdc2b ("dt-bindings: net: add compatible strings for lan969x targets")
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+---
+ .../bindings/net/microchip,sparx5-switch.yaml | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-Well, maybe it worked help, but I claim the author did not review
-their work before sending. If you remove lines you added, you clearly
-wrote buggy patches without any sense of proper logical split. It's
-not gits fault. It's author's fault.
+diff --git a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
+index 082982c59a55..5caa3779660d 100644
+--- a/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
++++ b/Documentation/devicetree/bindings/net/microchip,sparx5-switch.yaml
+@@ -55,12 +55,14 @@ properties:
+           - const: microchip,lan9691-switch
+ 
+   reg:
++    minItems: 2
+     items:
+       - description: cpu target
+       - description: devices target
+       - description: general control block target
+ 
+   reg-names:
++    minItems: 2
+     items:
+       - const: cpu
+       - const: devices
+@@ -168,6 +170,26 @@ required:
+   - interrupt-names
+   - ethernet-ports
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - microchip,lan9691-switch
++    then:
++      properties:
++        reg:
++          minItems: 2
++        reg-names:
++          minItems: 2
++    else:
++      properties:
++        reg:
++          minItems: 3
++        reg-names:
++          minItems: 3
++
+ additionalProperties: false
+ 
+ examples:
+-- 
+2.51.0
 
-Best regards,
-Krzysztof
 
