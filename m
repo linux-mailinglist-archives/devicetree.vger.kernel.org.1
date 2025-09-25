@@ -1,128 +1,157 @@
-Return-Path: <devicetree+bounces-221429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13C69B9F8C5
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:24:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38004B9F8EF
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:26:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0B003B0127
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:24:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2D7F64E6C06
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:26:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CF1E25A63D;
-	Thu, 25 Sep 2025 13:20:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77274280325;
+	Thu, 25 Sep 2025 13:23:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vPnSa8j3"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hoAelVsh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F5CC255240
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:19:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7681D27FB2B;
+	Thu, 25 Sep 2025 13:23:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758806402; cv=none; b=DQWmgdkpro6OsULiyUD9XyomKoZqYf9idvKCIh9s/th8r2OeEmXMvi/zqkHGePuEHatvOwOc83LlyueVCcX77raPosxRaSXfGRe+ZOtrd9gmxhP4rj0Gk2yJxliAARgu+0pynuo1z2k23gsv/Clcf1OvAK7pa1ADHZoEPWUgb0s=
+	t=1758806597; cv=none; b=WGBN6EU7+r8NmooKyMcWrZ0YSbrQ5GDk3qnC3xBoNyjzv57SXQUIlJ1NhPKNIdzyw3QkZYAt8dRtqmuuPBq+2D3oVtkVh7n58i6wy8tx7ZgREdgB88tj4+ccgtxR612Ji+oAIb7izQd38Wd9mwUP2ZLaQuNSEN9LGMbAh0ZUPyI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758806402; c=relaxed/simple;
-	bh=YyK2lvbOXbBGryOpMQux96Q1vt+QrwWAbOiyxK6RAs4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DrrxsNW0zIyqzdZasEaNkgRwLvvnKMh/IbxF+c9xEq1LLkbjZLDP3Y4XvTlGYhXu6XTEonV8V+5jlYKpg7wbWmG7qnmYntOA/fFCWFkTbxMQPlkYEtpbmzn7oZzgdmnC37v3NtuxCnHA4qJ+/yi0B9Q1Pw77NpNuJXFwgk8PnO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vPnSa8j3; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b0787fa12e2so133246366b.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:19:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758806398; x=1759411198; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=EYsaOKNHwZcLmxeqQOplLWeI/iDmclk0EIqTKGLRVqU=;
-        b=vPnSa8j3DmSaHYV50awVO1R/1Yo/oMdeY4VrK2XwhOp8vOgeL9P4jqjOlcKIjD8jfo
-         WgiyMuthdBSgXDYbwbjZts39Bx4VVf5j84z/TBXSNLjlx2y7guzc1qCebppuyy17B+ih
-         tjwycIuEhz08O47/Pgor2dxEMwr8C72Kx8YYsi1ALBGL1oo9sEm5Ri7YQeJRZtoNEc0A
-         Jzqp1iR4gWZ+MQQ0I6WgfVh5J42Ip80iWOsjG44HaIhQddxUnmOqcGi1ZCieMYBBRRd6
-         OR5DPyEmp5HozgTclZcSjQCfXuCB+IyYpOEpP2PRRY6PIToLg37/K6EZ5XhqSj7+Hq/l
-         KC6Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758806398; x=1759411198;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EYsaOKNHwZcLmxeqQOplLWeI/iDmclk0EIqTKGLRVqU=;
-        b=tasbQw226wtZ+vJJhImFlB59iIl7TebdNIEZaswV03k1vomSkvFu977RzdopaVMAMt
-         +qQ6fRXR49/qJx3m6lxxVxBQhy+9NSR8qzVyQjBtuV9Ln4acxGG/Hw6Z1sTd0w/LtToZ
-         0uuyEiGL7xGKIBRFcsEpOrx6tBrr0ALLlWhSXjL4qobDnU2SI0fKzWbX5J0xhuQfUgTc
-         kvYohJRnjLaxfLM60/TAw9D0V8YV/fbuG2gpmSp05p5eC7slDoo93L7pY+qPjZ015hFk
-         5ygpgZOG5p07XIX643LVAv0QT/rznDF/lVlxImGmJ7GH4cdX4x674fTOk29YptUjXjIK
-         Sy5A==
-X-Forwarded-Encrypted: i=1; AJvYcCUXKMMEt9ovb0uUr5L6z/CYN6Yhlh1g4M8CV4ZbDB+jFu6EZhSsHHHpaHtTPUIatAIPfUs/M+HjMpz9@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlTalklHZOddsOUn7qfTVJtRMj/xm5TATEB8/d86Bv1Xsyq4jk
-	AE+D9G8N1WE1BnjBjsU8Ry/6qORQvBG0W/Nvm5NGrOl4zFPwJfLXmIKAtf7qv4b0D3k3p4zrism
-	bRud5
-X-Gm-Gg: ASbGncuGZPPmL6r0oCfK+9J1oWBuMER+iMdJwn3U6mC1B4QsZRzNZi3/EWd4niePcnk
-	ObptLEun2AUjITfwNXpqq5dBwXnpUokuR4X5b57BfmodrhTElONqRwilMCZn2rLJlZh1oDgYRMr
-	zSXDUmqBK/quKrSAp4dHVBevWHu+nQ2Wq91AYP/zHV+KFihj1gYcMvABIrLrvZsS/opiTxGYODE
-	/rtL/YWB2/oBifYrnQdTwO1k9PXDi6sB+a7OZ5TYc6eXzn2sWCcK5bDpN4cPzOmSAhqvirrk9/r
-	w2FufabEFuVCrujYCsdoPRUQ865qzJbcynxEtg4B+zmsLlnfJL5LASEq4wti9OPgaeEW32ZsOKI
-	nL/QqQFRrw5KZT5BWrWtpbA==
-X-Google-Smtp-Source: AGHT+IFGtxnVGv2ecu+++ctEtD2PwGh7olmiTWEA5Nd06S1qPZFvTUSBjy6wSrM3gBYU98dPW2fqdg==
-X-Received: by 2002:a17:907:7211:b0:af1:f259:254d with SMTP id a640c23a62f3a-b34b79c7aa0mr338206166b.8.1758806397729;
-        Thu, 25 Sep 2025 06:19:57 -0700 (PDT)
-Received: from linaro.org ([86.121.170.238])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b353efa4c35sm165745666b.26.2025.09.25.06.19.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Sep 2025 06:19:56 -0700 (PDT)
-Date: Thu, 25 Sep 2025 16:19:55 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-Subject: Re: [PATCH 23/24] arm64: dts: qcom: glymur: Add USB support
-Message-ID: <wabocts3sscn2bvpgxamzpjmw3ivkbw2bo33aapospkmj7xtna@ynf2cwpw3fbw>
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-23-24b601bbecc0@oss.qualcomm.com>
+	s=arc-20240116; t=1758806597; c=relaxed/simple;
+	bh=4iWz/voiEz7siZfjIqLm43TubG/Oii1lMo/evkOfHWI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=umi+JaCnXpFaWcllHH4KYvj+Agn4Z8oY2vFUhM5PEiEFHAb9kGaCv3utnPfZGg1wj4DEIMt632nA6koTCix6kESjRjGk3oVWBQMRFTWIZETfZdyUicSnkBjJJwS8j49ryZ9RyrrahN5NvuzkOZQo3Bu5WocoKAlKoGWvVQukYis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hoAelVsh; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1758806596; x=1790342596;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=4iWz/voiEz7siZfjIqLm43TubG/Oii1lMo/evkOfHWI=;
+  b=hoAelVshcs6bND/KzxNRL0X7/iwOVtC4eE9R7rUpAzGrJ4R+CBwIG3h/
+   oMBgNGrkSfFf+0TFNzoQ9hUMq/VF36shrPGXwa3GN3FVnkBWX8cgHmRC0
+   30kGLc2O5AcXeLFpboP4V55ClLHZa7D50DPkp2qUTPDWKOv6V/qjb1Ka4
+   8i/9NHBb7ka8r3mdI6+lml0LhVIcmaCNCROUoOVwxNKYLgYyOthzPPIL9
+   vuUo/17X/2I+Je5/a42CtOekVOS82Jsyi4N4dHD6CpfMzeP5FldAbWG/Y
+   ICBrPQK3DIckHD4sSgHwyWjdLWSvPAKlJxah2J3Lyn4JVVWWLXbVcjXF2
+   w==;
+X-CSE-ConnectionGUID: x1TfWolVSAawgUdZFDMxog==
+X-CSE-MsgGUID: tcZFM1eVQeaex68+sPwvGQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11563"; a="60822892"
+X-IronPort-AV: E=Sophos;i="6.18,292,1751266800"; 
+   d="scan'208";a="60822892"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Sep 2025 06:23:15 -0700
+X-CSE-ConnectionGUID: 61lDqMiaSL6gENqN3DozbA==
+X-CSE-MsgGUID: k8SaqhLvQp6Ar1H+hx1rFA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,292,1751266800"; 
+   d="scan'208";a="177169144"
+Received: from mylly.fi.intel.com (HELO [10.237.72.50]) ([10.237.72.50])
+  by orviesa007.jf.intel.com with ESMTP; 25 Sep 2025 06:23:12 -0700
+Message-ID: <9708c09f-5cd7-4197-b245-04d92f6b1400@linux.intel.com>
+Date: Thu, 25 Sep 2025 16:23:10 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250925-v3_glymur_introduction-v1-23-24b601bbecc0@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] i3c: mipi-i3c-hci: add microchip sama7d65 SoC
+To: Frank Li <Frank.li@nxp.com>,
+ Durai Manickam KR <durai.manickamkr@microchip.com>
+Cc: linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, alexandre.belloni@bootlin.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ balamanikandan.gunasundar@microchip.com, nicolas.ferre@microchip.com
+References: <20250918095429.232710-1-durai.manickamkr@microchip.com>
+ <20250918095429.232710-3-durai.manickamkr@microchip.com>
+ <aMwy9MQOf3pG4Fvw@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Jarkko Nikula <jarkko.nikula@linux.intel.com>
+In-Reply-To: <aMwy9MQOf3pG4Fvw@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 25-09-25 12:02:31, Pankaj Patil wrote:
-> From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+Hi
+
+On 9/18/25 7:27 PM, Frank Li wrote:
+> On Thu, Sep 18, 2025 at 03:24:27PM +0530, Durai Manickam KR wrote:
+>> Add support for microchip sama7d65 SoC I3C HCI master only IP.
+>> Features tested and supported :
+>>             Standard CCC commands.
+>>             I3C SDR mode private transfers in PIO mode.
+>>             I2C transfers in PIO mode.
+>>             Pure bus mode and mixed bus mode.
+>>
+>> Signed-off-by: Durai Manickam KR <durai.manickamkr@microchip.com>
+>> ---
+>>   drivers/i3c/master/mipi-i3c-hci/Makefile      |  3 +-
+>>   drivers/i3c/master/mipi-i3c-hci/core.c        | 28 ++++++++++++
+>>   drivers/i3c/master/mipi-i3c-hci/hci.h         | 12 ++++++
+>>   .../i3c/master/mipi-i3c-hci/hci_quirks_mchp.c | 43 +++++++++++++++++++
+>>   4 files changed, 85 insertions(+), 1 deletion(-)
+>>   create mode 100644 drivers/i3c/master/mipi-i3c-hci/hci_quirks_mchp.c
+>>
+>> diff --git a/drivers/i3c/master/mipi-i3c-hci/Makefile b/drivers/i3c/master/mipi-i3c-hci/Makefile
+>> index e3d3ef757035..f463afc4566a 100644
+>> --- a/drivers/i3c/master/mipi-i3c-hci/Makefile
+>> +++ b/drivers/i3c/master/mipi-i3c-hci/Makefile
+>> @@ -4,5 +4,6 @@ obj-$(CONFIG_MIPI_I3C_HCI)		+= mipi-i3c-hci.o
+>>   mipi-i3c-hci-y				:= core.o ext_caps.o pio.o dma.o \
+>>   					   cmd_v1.o cmd_v2.o \
+>>   					   dat_v1.o dct_v1.o \
+>> -					   hci_quirks.o
+>> +					   hci_quirks.o \
+>> +					   hci_quirks_mchp.o
+>>   obj-$(CONFIG_MIPI_I3C_HCI_PCI)		+= mipi-i3c-hci-pci.o
+>> diff --git a/drivers/i3c/master/mipi-i3c-hci/core.c b/drivers/i3c/master/mipi-i3c-hci/core.c
+>> index 60f1175f1f37..cb0673d62c03 100644
+>> --- a/drivers/i3c/master/mipi-i3c-hci/core.c
+>> +++ b/drivers/i3c/master/mipi-i3c-hci/core.c
+>> @@ -8,6 +8,7 @@
+>>    */
+>>
+>>   #include <linux/bitfield.h>
+>> +#include <linux/clk.h>
+>>   #include <linux/device.h>
+>>   #include <linux/errno.h>
+>>   #include <linux/i3c/master.h>
+>> @@ -651,6 +652,9 @@ static int i3c_hci_init(struct i3c_hci *hci)
+>>   	hci->DAT_regs = offset ? hci->base_regs + offset : NULL;
+>>   	hci->DAT_entries = FIELD_GET(DAT_TABLE_SIZE, regval);
+>>   	hci->DAT_entry_size = FIELD_GET(DAT_ENTRY_SIZE, regval) ? 0 : 8;
+>> +	/* Microchip SAMA7D65 SoC doesnot support DAT entry size bits in the DAT section offset register */
+>> +	if (hci->quirks & MCHP_HCI_QUIRK_SAMA7D65)
+>> +		hci->DAT_entry_size = 8;
 > 
-> The Glymur USB system contains 3 USB type C ports, and 1 USB multiport
-> controller.  This encompasses 5 SS USB QMP PHYs (3 combo and 2 uni) and 5
-> M31 eUSB2 PHYs.  The controllers are SNPS DWC3 based, and will use the
-> flattened DWC3 QCOM design.
+> #define MCHP_HCI_QUIRK_FIX_DATA_ENTRY_SIZE_8
 > 
-> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/glymur-crd.dts | 243 ++++++++++++++
->  arch/arm64/boot/dts/qcom/glymur.dtsi    | 569 ++++++++++++++++++++++++++++++++
->  2 files changed, 812 insertions(+)
+> 	if (hci->quirks & MCHP_HCI_QUIRK_FIX_DATA_ENTRY_SIZE_8)
+> 		hci->DAT_entry_size = 8;
+> 	else
+> 		hci->DAT_entry_size = FIELD_GET(DAT_ENTRY_SIZE, regval) ? 0 : 8;
 > 
+> in case other vendor have similar problem.
+> 
+Are DAT_entry_size and DCT_entry_size quirks even needed? Does your HW 
+read nonzero values and you need the quirk?
 
-[...]
+>> +	/* Microchip SAMA7d65 SoC supports only PIO mode */
+>> +	if (hci->quirks & MCHP_HCI_QUIRK_PIO_MODE)
+>> +		hci->RHS_regs = NULL;
+>> +
 
-> diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
-> index 8a563d55bdd4902222039946dd75eaf4d3a4895b..c48d3a70820e551822c5322761528159da127ca6 100644
-> --- a/arch/arm64/boot/dts/qcom/glymur.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
-> @@ -2417,6 +2417,231 @@ &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>,
->  			};
->  		};
->  
-
-Also, as part of this patch, you need to attach the pipe clocks of the
-PHY to the GCC.
-
+Please use existing HCI_QUIRK_PIO_MODE quirk and then you don't need 
+this added code.
 
