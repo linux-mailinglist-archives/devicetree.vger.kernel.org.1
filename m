@@ -1,125 +1,151 @@
-Return-Path: <devicetree+bounces-221258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28B0EB9E20D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 10:52:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DABBB9E213
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 10:52:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 858377B12A2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 08:50:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A41B71BC31A8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 08:52:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DF02278143;
-	Thu, 25 Sep 2025 08:52:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3D9B278761;
+	Thu, 25 Sep 2025 08:52:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QGCoOhvk"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cIVJqFuO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 426E1277C87;
-	Thu, 25 Sep 2025 08:52:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37891277CB8
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 08:52:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758790320; cv=none; b=s8yL9yo2qjOKc3dn79y0QRchK/7hHY7HicOoVJLN8ci7l0KtJDrcWNz/yTb0vioDD5WddtsuA/oeHfB/Be9kV98YQ3uoTOjeG0vvcBsvuq5K/V2FROiap9kLQM3L23jeD4XGKfiK8WHvEqasAzBMQ3rDDsVIjkcIhTXFwiZz6hc=
+	t=1758790328; cv=none; b=gXsAKISO9RAEIzDjF8/od8wQOHy2sbcd3xzQ/MK2bH6UJqGCcOL62i3qF+IsY9ry7JVfT5t4oGmaBKszG1btuzLBPQ2iasqcIQ3z9+nnprY0rEci7FXLXullfgodZ7wASKCDp6vUh5pxKt7OGiYMEs3WoXVCDaD3YmyQZlHCNGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758790320; c=relaxed/simple;
-	bh=Sb5siXZd0m8a+/pNxjL8FYTcq7B3D3mf79OVk2WrpZM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TWv289H0TzgEaMaWUWHKYDm22f2JrqoAZ0bB0xM2DlogjFJoaZtImkIGllq63URepxNOHst8QMlYYsfGpy+rjBwO66SKLw3JqkZ1jbgoEuaWyyS0xO0iqXwntqXRErY85ZN0wzR8d/8YCowWCMgpN7HV5i5PL0obv7sg5vCW4YQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QGCoOhvk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50E17C4CEF0;
-	Thu, 25 Sep 2025 08:51:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758790320;
-	bh=Sb5siXZd0m8a+/pNxjL8FYTcq7B3D3mf79OVk2WrpZM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QGCoOhvk3BACTzTCGGAAJtA1D4V8CWrC0ApGPr8Cckj33xWPRR213Wh/j0z0sG/z9
-	 AVafh+Wy2B+MO8t5UUcDd5aoAVoIC5/7nd9dehqkG6x8wvibixzbFw9FFHLEMwrWAj
-	 hkOtBBk/K4mrbbuWGwtB6kVY/XvWU8p16GyhuhqT6hkHb8Tadgal0HPr9VZwpZ/05P
-	 BUVgvsZCiyu79fKdmfNuZx6jp703121SnBSmbIKjSyA3Cu5boPdTEDN33ZVumyvQ3h
-	 vmLbY8Uztb5/RDemzuYYFPsguqENuQg9chX2/UFBTbJ3WX+hWwC2GFiCE+M+3IHrND
-	 pFzWvwFSk+1gQ==
-Date: Thu, 25 Sep 2025 09:51:54 +0100
-From: Simon Horman <horms@kernel.org>
-To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Harini Katakam <harini.katakam@xilinx.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Sean Anderson <sean.anderson@linux.dev>
-Subject: Re: [PATCH net v6 4/5] net: macb: single dma_alloc_coherent() for
- DMA descriptors
-Message-ID: <20250925085154.GW836419@horms.kernel.org>
-References: <20250923-macb-fixes-v6-0-772d655cdeb6@bootlin.com>
- <20250923-macb-fixes-v6-4-772d655cdeb6@bootlin.com>
+	s=arc-20240116; t=1758790328; c=relaxed/simple;
+	bh=5CdlDKUVB9QrsAnAjhap+yjft9sOIESYZShJnxZLofw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lvgvHPIofuXFY4gz9ox/vgMaKAD2RyyvyW0DI0vkG3WveZVNS1ZTNdoFua+nu04INWkDqtnuMg+32H7MMBWNaelGAmtxq7wB3plnRF78woz1S/jtCpmMr7AIc3LWyTrlFy1D2FqZQBWkwWb5fNLlpHEPguc/WT/B51meVNTfwgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cIVJqFuO; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P0A3im018025
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 08:52:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6q9KyeGlZiO6mOJ2YIcgCuXOHQCn7ZmtQY52fCnxgn8=; b=cIVJqFuOnXUcLd6l
+	n86bvykbaZgQPMr6vlv5CEeqeGmR16EFmbuo5Ewo7P6AzVVOYiWTDEarsgT6EAm3
+	ECJGUnoO5MQOhz14j0pee5KyhzxGEnZphUCfluVrTyVBKFoZUA0wFUA+ehLSsbKl
+	NmWgLlbiRi2OvfTd32w55QjXVQNBgINCp6ERWc2o0P8GkhAzCVCo/HOWERoBWeOE
+	ozGmZ2/rJEp4dH2geNFsuXaV0GtpXSoT5OwfXR0051YcZrIAVC6kBO05aIRL5lPh
+	v2pa4men/Zh/rChylItKVu/DeTlVtpCUPzDiFfPo4YQE0meVsvUW6f5kyLWPdPzV
+	5SafRg==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49b3kkbdc1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 08:52:06 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-85696c12803so32004585a.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 01:52:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758790325; x=1759395125;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6q9KyeGlZiO6mOJ2YIcgCuXOHQCn7ZmtQY52fCnxgn8=;
+        b=iWXAYR0f/X5UDKq5VWynVSlo9GeVFHBeZ+9dgbDHIkQNZoUnDGo1oiMIXRL7nWtsHX
+         nXoWq13f/dYEvxyUqOqFBmCltg8dVPz1zcWDqEIY5EH5WH1gT0CUEsMlbkZapDE31VKw
+         jh5YwNDLm6AMwXrN0uxSbsxMRro2DAeVv9B8sMyucyHEIaLOb2pudf389iIwFWIHA35X
+         EhZ6MqC2rpn3iroozOxrIm7yDvdRcfNMmMpXJiXggS28loDdoxMLCr7xtIuYqMLiq9YD
+         BRm2pjqexmPryDnhnUQ0OwwmpV/IzvwpdDPEGnw3RFuSJvlYjTKc2rVV8U4/kcEAkSKW
+         z4KA==
+X-Forwarded-Encrypted: i=1; AJvYcCUja5xmYIrlokGAjF3GKwpIfiQ58j1PXrugopvj5DJ90YlNToeerIm7mxx0s7CuMHrHESfLxl/v3/3o@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDxxpJTQKPjscaWT9yoRD8Sy3X2m33GQxEC9bke5SxrwYBR0rY
+	MiTnNEFxpDgve/hyif3rZbwuJ+eMYi3WTEgkCI3NtZePkwF3imSHp296hf5LDwjNukzsjYqw04z
+	W+GFWZRBfJ0anR0OzRz2nbBd1Eajl1rmY7o8tuGdO5cNBphFSPW/vTfueqoRNQ2gE
+X-Gm-Gg: ASbGnctm6yh+d/ZVf0nIqIDzAKIs7f0nJy3Hlh5lo0ABnRVh037RahDPdPkRfqtyr+w
+	DnpsACeV7lDHAz9b1m1qIy1yRksMOvFYBtxTCmilMusS7STMQe5K/YycjHQiMZSQ+ZKouHD3Izr
+	tvzu4KbIKlV2zIT0AtRn1jX8AqFlYHZZmGo1CGoz39VlgW5vkLFi5cgpEOtQAH5jdbB9JA0ubtV
+	/2Gron8jIW8gpo8dedGJBUzrU5/tP/nDQFLa73kzBTmHYuT838iFEZjvKEelnPkNsJBdTEuLS86
+	b+BQSbQuXQjS2lYx/MscIB9Hb7p4qs8zrxPszjkVAZc5LI0r98rvFLHc0dTw69fA07mU4pe+vsI
+	jPuR2ZmnmorDizK1fDk8qaw==
+X-Received: by 2002:a05:620a:19a5:b0:834:bb79:1d71 with SMTP id af79cd13be357-85adeb4da12mr213158985a.2.1758790324965;
+        Thu, 25 Sep 2025 01:52:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHNp/joGufj4XiUUg2TcpZE2WBMvPXFR7485Ym+rBlkUiNYfsas6rWCqt0HnxYFW+HuQ8foyQ==
+X-Received: by 2002:a05:620a:19a5:b0:834:bb79:1d71 with SMTP id af79cd13be357-85adeb4da12mr213157085a.2.1758790324466;
+        Thu, 25 Sep 2025 01:52:04 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b353f586161sm123061566b.36.2025.09.25.01.52.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Sep 2025 01:52:03 -0700 (PDT)
+Message-ID: <9b887bc5-eaa4-4271-8770-3458efb528bf@oss.qualcomm.com>
+Date: Thu, 25 Sep 2025 10:52:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250923-macb-fixes-v6-4-772d655cdeb6@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1] arm64: dts: qcom: monaco-evk: Add firmware-name to
+ QUPv3 nodes
+To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com
+References: <20250925042605.1388951-1-viken.dadhaniya@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250925042605.1388951-1-viken.dadhaniya@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: Wjz86OfwZEOUKRka7V1yemyJbUhobSc2
+X-Proofpoint-ORIG-GUID: Wjz86OfwZEOUKRka7V1yemyJbUhobSc2
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIyMDA4OSBTYWx0ZWRfX+OgZD75KDBgu
+ 9ArtjZZdvRyr5nUQIko1ZGQF9wR9Zqr1sGdT4bGjfbZDcRlBTlBXCmniGYh+5d6o6ntSy/hJQMR
+ kmnO/D6ADD492n+pmyTRZb0uxM23kA4OdLbK0yzL+NR9ZSO5CiLVf4+OcHiaB9gkJwdibc5o3FI
+ KRtwJL1xg1gzLzpLHElKsxeh6e/FFQzTa114ydJrBXr1X/6H4UPgkVV1L8O9/OH6BgNJ2QCGyF+
+ BVuLK7UmDMYapI/a1BARwXu1ZkRdo4mdndxIRotksD9A79NL0ry8T1Qjq3PhEyYcooIhsAwkaB+
+ 1fb2dzF1ZzzP1/GNr9ak/VihYYGX7x2t6t45daOK2TVcW0wu55V8X5kNXowiH0MUG2V9GdwcTIu
+ Nn4rz/x0
+X-Authority-Analysis: v=2.4 cv=BabY0qt2 c=1 sm=1 tr=0 ts=68d502b6 cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=B4HikTB3W-0rk1GVoTwA:9
+ a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10 a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1015 phishscore=0 bulkscore=0 priorityscore=1501
+ adultscore=0 malwarescore=0 spamscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509220089
 
-On Tue, Sep 23, 2025 at 06:00:26PM +0200, Théo Lebrun wrote:
-> Move from 2*NUM_QUEUES dma_alloc_coherent() for DMA descriptor rings to
-> 2 calls overall.
+On 9/25/25 6:26 AM, Viken Dadhaniya wrote:
+> Traditionally, firmware loading for Serial Engines (SE) in the QUP hardware
+> of Qualcomm SoCs has been managed by TrustZone (TZ). While this approach
+> ensures secure SE assignment and access control, it limits flexibility for
+> developers who need to enable various protocols on different SEs.
 > 
-> Issue is with how all queues share the same register for configuring the
-> upper 32-bits of Tx/Rx descriptor rings. Taking Tx, notice how TBQPH
-> does *not* depend on the queue index:
+> Add the firmware-name property to QUPv3 nodes in the device tree to enable
+> firmware loading from the Linux environment. Handle SE assignments and
+> access control permissions directly within Linux, removing the dependency
+> on TrustZone.
 > 
-> 	#define GEM_TBQP(hw_q)		(0x0440 + ((hw_q) << 2))
-> 	#define GEM_TBQPH(hw_q)		(0x04C8)
-> 
-> 	queue_writel(queue, TBQP, lower_32_bits(queue->tx_ring_dma));
-> 	#ifdef CONFIG_ARCH_DMA_ADDR_T_64BIT
-> 	if (bp->hw_dma_cap & HW_DMA_CAP_64B)
-> 		queue_writel(queue, TBQPH, upper_32_bits(queue->tx_ring_dma));
-> 	#endif
-> 
-> To maximise our chances of getting valid DMA addresses, we do a single
-> dma_alloc_coherent() across queues. This improves the odds because
-> alloc_pages() guarantees natural alignment. Other codepaths (IOMMU or
-> dev/arch dma_map_ops) don't give high enough guarantees
-> (even page-aligned isn't enough).
-> 
-> Two consideration:
-> 
->  - dma_alloc_coherent() gives us page alignment. Here we remove this
->    constraint meaning each queue's ring won't be page-aligned anymore.
-> 
->  - This can save some tiny amounts of memory. Fewer allocations means
->    (1) less overhead (constant cost per alloc) and (2) less wasted bytes
->    due to alignment constraints.
-> 
->    Example for (2): 4 queues, default ring size (512), 64-bit DMA
->    descriptors, 16K pages:
->     - Before: 8 allocs of 8K, each rounded to 16K => 64K wasted.
->     - After:  2 allocs of 32K => 0K wasted.
-> 
-> Fixes: 02c958dd3446 ("net/macb: add TX multiqueue support for gem")
-> Reviewed-by: Sean Anderson <sean.anderson@linux.dev>
-> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-> Tested-by: Nicolas Ferre <nicolas.ferre@microchip.com> # on sam9x75
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+> ---
 
-Reviewed-by: Simon Horman <horms@kernel.org>
+Viken, you've posted a lot of patches like these lately for
+specific boards.
 
+Should we instead push this to the SoC DTSI, to limit the boilerplate?
+
+If I recall correctly, you said these ELFs are not vendor-signed, so
+it should be OK to have them be assigned globally
+
+Konrad
 
