@@ -1,88 +1,80 @@
-Return-Path: <devicetree+bounces-221608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0049BA153C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 22:12:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B103BA1597
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 22:26:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A089D4A4178
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 20:12:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5968219C3CC2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 20:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1207B31C591;
-	Thu, 25 Sep 2025 20:12:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EFC02F83A0;
+	Thu, 25 Sep 2025 20:26:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="A9aFDeTF"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="wj5nX/GA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B0F91EBA1E
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 20:11:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEBDC5695
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 20:26:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758831120; cv=none; b=rrj0YEkU9d1jgNiF+DXEnHqA4Aqu1dX2YLRyvf4OJi9S5q3U+Y0OenbqfmAhahURlRjbcK11z+WiPdIVYMVDAltK58GxNbcxM2wj0ktiOuaGBFhHkocM8m2fbA7lHr5g3dpVT1y25NmANfX9wkBylW9eslE8FYSuL01KcAXhqp8=
+	t=1758832003; cv=none; b=MN8rldDvgdqRhuZ9BVTh53QItwJd5HI581VU7ySXbukCy7G8jVBn8HMv6Fn8af1Bblaw3tevWOLfsoYIgPIgKEcL8buLGcTJq6bAdZPQORaHpvCY67nnYmkYGuqj9FOCu5yvh0eFqnRDh71pkE0g0H9XfCbTsXK4KUpJcppEGUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758831120; c=relaxed/simple;
-	bh=h3RwPtc4sBXiMR1giqI+uaroN4r1V3AkFS5O//etA6o=;
+	s=arc-20240116; t=1758832003; c=relaxed/simple;
+	bh=NIugp2fbJWeDznKGvAEJerKZJQxZbeRNgyq7Txs6LEY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oCxUaGmB6YiYT4I/jbZiIaLw+BZXHDmzpmjsXoQHe4ryNeLLVLwvfWkEd4DLbkx9XhdVM8JFzvntWtWrizxhUafRxNaIL5uGSLY7GGroWiuER266gGX6FVxwJ6p7gkiPpCItC05JEy1GCxmmG8t+/6qk7Wo0pQ3ADfXEwGv3abk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=A9aFDeTF; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1758831117;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=BbdNHkZwL7Xvs1kb7Vz3lIvaavTg0vqw+U34Fq/laSM=;
-	b=A9aFDeTF4npcu3ZRqZTy+613499S5WTNvy4nASQbRz+C515ohjB3lRK4JD9k3sQsW5cOIU
-	bptpvS272pJMryW0WAasO91XCw1hdQEhxwEkN9zednC3ahmFBFi8ykBDccaOdssqdg12wi
-	cNapLtxhMEjxwgl7dLd1GSHAGFyHi+I=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-73---jhkf4nM1WHi5l6A3B9Fw-1; Thu, 25 Sep 2025 16:11:55 -0400
-X-MC-Unique: --jhkf4nM1WHi5l6A3B9Fw-1
-X-Mimecast-MFC-AGG-ID: --jhkf4nM1WHi5l6A3B9Fw_1758831115
-Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-45b990eb77cso8698915e9.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:11:55 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=bQYwszcZrprDGDQmMgDCzh9aO9cD8UMVwXumWJ4ahyzr1cc6zZR+UrkpAngiOn4ALknFfoehHCbsp3xMHYE/tAzPV16SZsIxHeOe8gXMg5IiBojCGfFZaDNGFgqTOL8QDteXFHY9dw8TV01NDi0CKvuTmnHuJX+FfNJ39M4piNc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=wj5nX/GA; arc=none smtp.client-ip=209.85.210.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7939ac99c29so1321696a34.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:26:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1758832000; x=1759436800; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mxfegnmNEJxxDs3mqI/l4EZdUjsV9AajOSMpQHLr4h4=;
+        b=wj5nX/GAe1db5/2yCHZHlQtS98ijNq+MXB8sdoth43a1XzgVzKLCtiw+NvmlqgJJYc
+         qqyj0ofiV6nxUFOHVvWbMAr4rtKTvOHhouHaJwJ5RreeCZEX4a5d3SmANjBUBKkDTfzk
+         JTvLLSu/4IPP4cGO8MI9CT9ct4BK1SknMPYOXCXiUEyof8hWEjesyn3hH1TloCtLeO78
+         LQ1PgptMhv4UjtCe/VUSJUvTQoa81RGcAGg5DKRQpJet8ZD3XZLyQ9w+DGy5NMokWO2e
+         GTzkC0F4PbPiS4LKaX/6V6PgMKuylj1oWfl7Pk0Y1Bvx+XI6X004FHpeQLj0bkbT4+9e
+         CzQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758831115; x=1759435915;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BbdNHkZwL7Xvs1kb7Vz3lIvaavTg0vqw+U34Fq/laSM=;
-        b=iuoxpq79Y6CqcJs3CsIt2M/ALIiILqS3yk+E8pMzN/pJsUucz+qf5QigywWiYKx3LQ
-         PWzOIE5rkV8wqAGd2KRAx5dmVe+bxxX+oW+KgDNRLzmleD72T0hkDTlIEi3U1EzqEPlF
-         WnmM16ykz9CIsaKL0UIYJkvkxpcyAl/TNIvloasBfSFJzlT8PkSdM9UoPQs+6bMoKP0z
-         09PU3NpbCqVR+vU3H7O86K03Of9jDY3OLoSP4XaohdJaZK7m8Z0f/s7YGyqjAhhvYAoW
-         A++zCE0tREcYfixT8SGZgFbsoUcE1srDMpwU5pvARWKRmXV2/w9kcHsyv4m49RkAOewm
-         hDCg==
-X-Forwarded-Encrypted: i=1; AJvYcCW4tv28sirDjNouwRuiGz/m+sKRhtnVK1jZlKI1RmqKsXMDe4XVNIyEz+2Gvt5+BJ9WY+Km2PdBsH1g@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy04Y5wvXq2UiosfMQzu9SRMz0mYDWzXBYhAJk6G+Z7eWIVg3ik
-	bgchPU+T1W0hCk4hUuR3RETiSeC4XWMYIVffgPS0sfBhKkvQKDbLa7ojRzXO0tNOEhpd5lXXwZW
-	uVUWTR4pZK9k2ickFDwR3ql0q2hQslkHb5Br2ccBgoKIYMqnqji4sgHCXrSGjgio=
-X-Gm-Gg: ASbGncuWCwbdzVHKroQy8jbh97Gv3DnGMUWw5tEM0dwDvsjoK38SxFIkKUALOsaPSoZ
-	eWAFtvMpIj/PXQ8iRL56poMF6YP6ZVLQQjRJjM4yY7FsFXJGI7mGPgmCxI6p4IXYRcSdwdjjJcE
-	RF2OWo5mQ7A5+HmdzYOeg2T8+hj4KTuFIxlMHar7m2Wh5spykmiY5NtkGXSAyLVLO/EvzdP/0eQ
-	Ci3uCyM+xQ+isf9PIRliBs9uyLEs+CTzWjQzBt2qCi9ftrflqSnN8OAghZxw30BNNlnMepvARLR
-	/qoMzDwbgS1uiexpYBwksddBrIdjCpv1zDIt8ltJzg5gmTRjPiX9PfHVYOtQUgqiLyi+tZCAuik
-	X/O0TgaxRQE2Yvjk0rSNShxmIu/llDuL0Z9pG05OkSxwc9p2hVLS2y7Iglfsq33axNYTy
-X-Received: by 2002:a05:600c:4ecc:b0:46e:33ed:bca4 with SMTP id 5b1f17b1804b1-46e33edbe6fmr36930205e9.15.1758831114662;
-        Thu, 25 Sep 2025 13:11:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGEhVhCGcgmO1k+G3XLxgUOwBHZ0rAO9DXf37klvFdy0hgaj1Ui37fjLWrqz9lgbSvmF4VzUg==
-X-Received: by 2002:a05:600c:4ecc:b0:46e:33ed:bca4 with SMTP id 5b1f17b1804b1-46e33edbe6fmr36929885e9.15.1758831114203;
-        Thu, 25 Sep 2025 13:11:54 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f3f:f800:c101:5c9f:3bc9:3d08? (p200300d82f3ff800c1015c9f3bc93d08.dip0.t-ipconnect.de. [2003:d8:2f3f:f800:c101:5c9f:3bc9:3d08])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e2a996bf1sm90335925e9.1.2025.09.25.13.11.52
+        d=1e100.net; s=20230601; t=1758832000; x=1759436800;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mxfegnmNEJxxDs3mqI/l4EZdUjsV9AajOSMpQHLr4h4=;
+        b=gQwaNoZPEvhPO0HNK0IQnsFmJ66UxWlim6n9Kf5s4f+iAeHMzcBuETK8OOf37QzZ1y
+         5UqvftrYLYbgSS05FnAiLeODFd0hMngkFtJsVWQQQS12pWU2Znq3kU4ME5Ts3wya2Tkh
+         a6AqGy4BtZDdMjNzdHl1Gmw9unDLSf/nmC9FTB+nzjb/Qu6ntw2QVlOWPYfyK533RB40
+         a54xUNn3xf8wlPrljBaY5zK7ETTULgDDnmjbGmlmS7e43L80l3P+tGOonBbEeCkei/e/
+         V0EJGFYRwi9AMN2pDrxhtMhy1e8ohLj5WUWeYo8HUvvtXP6XMcm8XsXwH599JH8rE0Wj
+         dNug==
+X-Forwarded-Encrypted: i=1; AJvYcCXNMSNyi57pJEWAxJ+EADdKUzJadsHT1cfuuHzlnTo9YZYpJv8A+NmZFIMt3Vy8/lJt67Qs2igD+Zy3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAbj+m6oLcvJ5WslcB8OGO5ZrehL8ZDtuOJfnwS2YSaK4r3r2j
+	B1fdu9rboYQcRl7+7airEozdZWSW+5bbpRqVhcnbbFE5bmNiWuy4xMuFi+WVqUdaM88=
+X-Gm-Gg: ASbGncszOv9WTLbaFvi5VeLqtkDolCzts4TtyhGaZJXJARjHdP6RRK3AKp1dUMvb0Bb
+	Pf+Sfxrh/C7D2yMqbLGDL1OQkQN6yguT0kPqSVo35IvXo8yxUQ4d1nX57Qd8niMCh6Jl2+U9Ms4
+	ztO1YmpprtSViOjrNJi1O3fRMszUJaz651cJux57nkJpnvQTLr36Z5SiX7P7WuKFW/PQ6Q7OcJk
+	DDMSMsquHsgHWtXTQ2DASH2dNOU54F5YIfJVQYb5YTLDH0jCZSiqhX6vYzvm5b6Lg7FuDw7wjJw
+	9F9rpb+OGvTj5NLUgn7RaMozYyz10sS7uFGYYq440NwW0nWXBftXe17BITFTrntUt7hGZzu5/MT
+	/iX8AY6FHZLgq6CtwPAlxW1JsA8fwCu1BXfOTYUc7cWxk1cygLabbdhyNSNe2T3kRbN1AbOol
+X-Google-Smtp-Source: AGHT+IGR2wlvFPurlbBB+p/mOH+8U3zcrAxgD5zjtS2zL1ZgQH1ws/3KfE6l31vd4RAjlNXmRm6aWQ==
+X-Received: by 2002:a05:6830:2b0b:b0:758:6251:2e5c with SMTP id 46e09a7af769-7a04ee87769mr253143a34.31.1758831999994;
+        Thu, 25 Sep 2025 13:26:39 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:68ee:c62f:fd8:aec9? ([2600:8803:e7e4:1d00:68ee:c62f:fd8:aec9])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7a6dc805845sm230444a34.6.2025.09.25.13.26.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Sep 2025 13:11:53 -0700 (PDT)
-Message-ID: <1497a41d-3e43-4654-a28a-2049ab4c4c0b@redhat.com>
-Date: Thu, 25 Sep 2025 22:11:51 +0200
+        Thu, 25 Sep 2025 13:26:39 -0700 (PDT)
+Message-ID: <49b24a0d-a2ac-4620-9a1e-a94e5a2db075@baylibre.com>
+Date: Thu, 25 Sep 2025 15:26:38 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,196 +82,141 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC][PATCH v3 09/16] genirq/irqdesc: Have nr_irqs as non-static
-To: Eugen Hristev <eugen.hristev@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mm@kvack.org, andersson@kernel.org,
- pmladek@suse.com, rdunlap@infradead.org, corbet@lwn.net, mhocko@suse.com
-Cc: tudor.ambarus@linaro.org, mukesh.ojha@oss.qualcomm.com,
- linux-arm-kernel@lists.infradead.org, linux-hardening@vger.kernel.org,
- jonechou@google.com, rostedt@goodmis.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250912150855.2901211-1-eugen.hristev@linaro.org>
- <20250912150855.2901211-10-eugen.hristev@linaro.org> <87cy7q9k8y.ffs@tglx>
- <87a52u9jyl.ffs@tglx> <8df2cf28-c15e-4692-a127-6a5c966a965e@linaro.org>
- <2bd45749-e483-45ea-9c55-74c5ba15b012@redhat.com> <87v7lh891c.ffs@tglx>
- <95ff36c2-284a-46ba-984b-a3286402ebf8@redhat.com>
- <24d6a51d-f5f8-44d7-94cb-58b71ebf473a@linaro.org>
- <7f4aa4c6-7b77-422b-9f7a-d01530c54bff@redhat.com> <87segk9az5.ffs@tglx>
- <f8d3c2d4-8399-4169-8527-3c87922f2ef1@redhat.com> <87jz1w88zq.ffs@tglx>
- <c3ab4a21-183f-495a-b3b5-cc74b392eebc@linaro.org>
-From: David Hildenbrand <david@redhat.com>
+Subject: Re: [PATCH v2 3/5] Add kunit tests for iio_divide_by_value()
+To: Romain Gantois <romain.gantois@bootlin.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>
+Cc: Hans de Goede <hansg@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org
+References: <20250925-ltm8054-driver-v2-0-bb61a401a0dc@bootlin.com>
+ <20250925-ltm8054-driver-v2-3-bb61a401a0dc@bootlin.com>
 Content-Language: en-US
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <c3ab4a21-183f-495a-b3b5-cc74b392eebc@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <20250925-ltm8054-driver-v2-3-bb61a401a0dc@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 18.09.25 15:53, Eugen Hristev wrote:
-> 
-> 
-> On 9/18/25 11:23, Thomas Gleixner wrote:
->> On Wed, Sep 17 2025 at 21:03, David Hildenbrand wrote:
->>>> As this is specific for the compiled kernel version you can define an
->>>> extensible struct format for the table.
->>>>
->>>> struct inspect_entry {
->>>> 	unsigned long	properties;
->>>>           unsigned int	type;
->>>>           unsigned int	id;
->>>>           const char	name[$MAX_NAME_LEN];
->>>> 	unsigned long	address;
->>>>           unsigned long	length;
->>>>           ....
->>>> };
->>>>
->>>> @type
->>>>          refers either to a table with type information, which describes
->>>>          the struct in some way or just generate a detached compile time
->>>>          description.
->>>>
->>>> @id
->>>>          a unique id created at compile time or via registration at
->>>>          runtime. Might not be required
->>>
->>> We discussed that maybe one would want some kind of a "class"
->>> description. For example we might have to register one pgdat area per
->>> node. Giving each one a unique name might be impractical / unreasonable.
->>>
->>> Still, someone would want to select / filter out all entries of the same
->>> "class".
->>>
->>> Just a thought.
->>
->> Right. As I said this was mostly a insta brain dump to start a
->> discussion. Seems it worked :)
->>
->>>> @properties:
->>>>
->>>>           A "bitfield", which allows to mark this entry as (in)valid for a
->>>>           particular consumer.
->>>>
->>>>           That obviously requires to modify these properties when the
->>>>           requirements of a consumer change, new consumers arrive or new
->>>>           producers are added, but I think it's easier to do that at the
->>>>           producer side than maintaining filters on all consumer ends
->>>>           forever.
->>>
->>> Question would be if that is not up to a consumer to decide ("allowlist"
->>> / filter) by class or id, stored elsewhere.
->>
->> Yes, I looked at it the wrong way round. We should leave the filtering
->> to the consumers. If you use allow lists, then a newly introduced class
->> won't be automatically exposed everywhere.
->>
->> Thanks,
->>
->>          tglx
-> 
-> 
-> So, one direction to follow from this discussion is to have the
-> inspection entry and inspection table for all these entries.
-> Now, one burning question open for debate, is, should this reside into mm ?
-> mm/inspect.h would have to define the inspection entry struct, and some
-> macros to help everyone add an inspection entry.
-> E.g. INSPECTION_ENTRY(my ptr, my size);
-> and this would be used all over the kernel wherever folks want to
-> register something.
+On 9/25/25 7:37 AM, Romain Gantois wrote:
 
-If we're moving this to kernel/ or similar I'd suggest to not call this 
-only "inspect" but something that somehow contains the term "mem".
+...
 
-"mem-inspect.h" ?
+> +static void __iio_test_iio_divide_by_integer(struct kunit *test, s64 numerator)
+> +{
+> +	int ret, result, val;
+> +
+> +	val = 42;
+> +	ret = iio_divide_by_value(&result, numerator, IIO_VAL_INT, val, 0);
+> +	KUNIT_EXPECT_EQ(test, ret, IIO_VAL_INT);
+> +	KUNIT_EXPECT_EQ(test, result, div_s64(numerator, val));
+> +
+> +	val = -23;
+> +	ret = iio_divide_by_value(&result, numerator, IIO_VAL_INT, val, 0);
+> +	KUNIT_EXPECT_EQ(test, ret, IIO_VAL_INT);
+> +	KUNIT_EXPECT_EQ(test, result, div_s64(numerator, val));
+> +
+> +	val = 0;
+> +	ret = iio_divide_by_value(&result, numerator, IIO_VAL_INT, val, 0);
+> +	KUNIT_EXPECT_EQ(test, ret, -ERANGE);
 
+I would expect EDOM for divide by 0 rather than ERANGE. The function is
+undefined at that point.
 
-> Now the second part is, where to keep all the inspection drivers ?
-> Would it make sense to have mm/inspection/inspection_helpers.h which
-> would keep the table start/end, some macros to traverse the tables, and
-> this would be included by the inspection drivers.
-> inspection drivers would then probe via any mechanism, and tap into the
-> inspection table.
+> +}
+> +
+> +static void iio_test_iio_divide_by_integer(struct kunit *test)
+> +{
+> +	__iio_test_iio_divide_by_integer(test, 2000);
+> +	__iio_test_iio_divide_by_integer(test, -2000);
+> +}
+> +
+> +static void __iio_test_iio_divide_by_fixedpoint(struct kunit *test, s64 numerator)
+> +{
+> +	int ret, result, val, val2;
+> +
+> +	/* positive >= 1 (1.5) */
+> +	val = 1;
+> +	val2 = 500000;
+> +	ret = iio_divide_by_value(&result, numerator, IIO_VAL_INT_PLUS_MICRO, val, val2);
+> +	KUNIT_EXPECT_EQ(test, ret, IIO_VAL_INT);
+> +	KUNIT_EXPECT_EQ(test, result, div_s64(numerator * 10, 15));
+> +
+> +	val = 1;
+> +	val2 = 500000000;
+> +	ret = iio_divide_by_value(&result, numerator, IIO_VAL_INT_PLUS_NANO, val, val2);
+> +	KUNIT_EXPECT_EQ(test, ret, IIO_VAL_INT);
+> +	KUNIT_EXPECT_EQ(test, result, div_s64(numerator * 10, 15));
+> +
+> +	/* positive < 1 (0.5) */
+> +	val = 0;
+> +	val2 = 500000;
+> +	ret = iio_divide_by_value(&result, numerator, IIO_VAL_INT_PLUS_MICRO, val, val2);
+> +	KUNIT_EXPECT_EQ(test, ret, IIO_VAL_INT);
+> +	KUNIT_EXPECT_EQ(test, result, div_s64(numerator * 10, 5));
+> +
+> +	val = 0;
+> +	val2 = 500000000;
+> +	ret = iio_divide_by_value(&result, numerator, IIO_VAL_INT_PLUS_NANO, val, val2);
+> +	KUNIT_EXPECT_EQ(test, ret, IIO_VAL_INT);
+> +	KUNIT_EXPECT_EQ(test, result, div_s64(numerator * 10, 5));
+> +
+> +	/* negative <= -1 (-1.5) */
+> +	val = -1;
+> +	val2 = 500000;
+> +	ret = iio_divide_by_value(&result, numerator, IIO_VAL_INT_PLUS_MICRO, val, val2);
+> +	KUNIT_EXPECT_EQ(test, ret, IIO_VAL_INT);
+> +	KUNIT_EXPECT_EQ(test, result, div_s64(numerator * -10, 15));
+> +
+> +	val = -1;
+> +	val2 = 500000000;
+> +	ret = iio_divide_by_value(&result, numerator, IIO_VAL_INT_PLUS_NANO, val, val2);
+> +	KUNIT_EXPECT_EQ(test, ret, IIO_VAL_INT);
+> +	KUNIT_EXPECT_EQ(test, result, div_s64(numerator * -10, 15));
+> +
+> +	/* negative > -1 (-0.5) */
+> +	val = 0;
+> +	val2 = -500000;
+> +	ret = iio_divide_by_value(&result, numerator, IIO_VAL_INT_PLUS_MICRO, val, val2);
+> +	KUNIT_EXPECT_EQ(test, ret, IIO_VAL_INT);
+> +	KUNIT_EXPECT_EQ(test, result, div_s64(numerator * -10, 5));
+> +
+> +	val = 0;
+> +	val2 = -500000000;
+> +	ret = iio_divide_by_value(&result, numerator, IIO_VAL_INT_PLUS_NANO, val, val2);
+> +	KUNIT_EXPECT_EQ(test, ret, IIO_VAL_INT);
+> +	KUNIT_EXPECT_EQ(test, result, div_s64(numerator * -10, 5));
+> +
+> +	/* Zero */
+> +	val = 0;
 
-Good question. I think some examples of alternatives might help to 
-driver that discussion.
+Odd to break the pattern an not have `val2 = 0;` here.
 
-> I am thinking that my model with a single backend can be enhanced by
-> allowing any inspection driver to access it. And further on, each
-> inspection driver would register a notifier to be called when an entry
-> is being created or not. This would mean N possible drivers connected to
-> the table at the same time. ( if that would make sense...)
+> +	ret = iio_divide_by_value(&result, numerator, IIO_VAL_FRACTIONAL_LOG2, val, 0);
+> +	KUNIT_EXPECT_EQ(test, ret, -ERANGE);
+> +}
 
-Yeah, I think some notifier mechanism is what we want.
+...
 
-> Would it make sense for pstore to have an inspection driver that would
-> be connected here to get different kinds of stuff ?
+> +static void __iio_test_iio_divide_by_fractional_log2(struct kunit *test, s64 numerator)
+> +{
+> +	int ret, result, val, val2;
+> +
+> +	/* positive < 1 (123/1024) */
+> +	val = 123;
+> +	val2 = 10;
+> +	ret = iio_divide_by_value(&result, numerator, IIO_VAL_FRACTIONAL_LOG2, val, val2);
+> +	KUNIT_EXPECT_EQ(test, ret, IIO_VAL_INT);
+> +	KUNIT_EXPECT_EQ(test, result, div_s64((numerator << val2), val));
 
-Something for the pstore folks to answer :)
+My instinct would be to write it like this:
 
-> Would it make sense to have some debugfs driver that would just expose
-> to user space different regions ? Perhaps something similar with
-> /proc/kcore but not the whole kernel memory rather only the exposed
-> inspection entries.
+	div_s64((numerator * 1024), 123)
 
-Definetly, this is what I previously mentioned. Maybe we would only 
-indicate region metadata and actual access to regions would simply 
-happen through /proc/kcore if someone wants to dump data from user space.
-
-> Now, for the dynamic memory, e.g. memblock_alloc and friends ,
-> would it be interesting to have a flag e.g. MEMBLOCK_INSPECT, that would
-> be used when calling it, and in the background, this would request an
-> inspection_entry being created ? Or it makes more sense to call some
-> function like inspect_register as a different call directly at the
-> allocation point ?
-
-We'd probably want some interface to define the metadata 
-(name/class/whatever), a simple flag likely will not do, right?
-
--- 
-Cheers
-
-David / dhildenb
+This follows how it was done in __iio_test_iio_divide_by_fixedpoint() and
+makes it easier to see that it matchs exactly the value in the comment.
 
 
