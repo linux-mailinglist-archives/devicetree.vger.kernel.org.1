@@ -1,141 +1,141 @@
-Return-Path: <devicetree+bounces-221360-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19FC0B9EE28
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:17:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B999B9EE76
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:29:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA7667A9B1E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 11:15:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06C463A8B23
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 11:29:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BB462F6570;
-	Thu, 25 Sep 2025 11:16:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E807D2F7ADA;
+	Thu, 25 Sep 2025 11:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gw+mVJCJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r15s5vts"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F8A2EC560
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 11:16:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 350082F7AA5
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 11:29:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758799014; cv=none; b=bc91qy8MpmAsS8hSZYTvwycf1QwUAMy0P/1nXWlSOdhISAAvgKtElA7SV67BSbnP5Pqov9MPwJuVNSTY+if3LtVrpZZ5CshfR2tknRqmi+WSnyD4leHtaYk/gtYe2uO+9o+CG60UvfGJJMO3wmy52X8AtkkGgdlgBdslt4ScX14=
+	t=1758799762; cv=none; b=O8B1FzsOFw3qr6hNXODs2+yBX9laQrZdNXUad4VpI3/aZQCo9eM51nLlCqN9ht6h51ogZ6vbdGLE77/L8uBJF13rA8jxl4JlEltAGbA6eA9/r3kNVTzj9qCDd5F00eny3URXNjU2H5U0uxXlQoxXRxPzt7qRUUy3q17zHirHFPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758799014; c=relaxed/simple;
-	bh=T2VcPwThL9SXdk4Qmg713JMUFXXSm3tP92DSAIb3VCI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LhYcC3yl9/pdFuKAGSrDdY4WSTGm9NSOuW3zmapM8WctDexRLsQrJanht6gv79iC/6xBE3YVXqatMSnxA+e6ZSg30RM2lx2vYA3Mtm4GtTozm6DLfB/RkG+Z3/AvazH2qKzxQT0edIeFNOUWqYSmStSzQcR0HB44BcZZzyl5Em8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gw+mVJCJ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P9lwQG025099
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 11:16:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3p1317b/OjiVJS2/YXmaa/8z5cpoRP1b2R07MF/E7aM=; b=gw+mVJCJfSpN45JY
-	49ZsclwOPUART968XiXdrP0Y07w/LNlP3ipp517ItnAUM/mwjMnWgtHux6+rdNO/
-	vyG1UUfIQbQZT1sajUF95ivCN1UlAeykPFD7TjULiYKEQDjfmnRHfkM93m3QUUjn
-	wHTjtBb994uxY3PVdie+Tdei8tjDTaLq/kWMPTLeJSeG5V+Cr+SRY2mG+7DI9VFq
-	lbx+0Xo36N40Ua3i+gdJSz6OSV9PTY3+jHlPzmZLrcAQnWNq3cfHgtujk1zox9RJ
-	ZCrvQSvUNJLTpYUVljnS7gMTdyqec18Ld1IT19P/59UIXt8IHvDsXgWnPBJazLdp
-	L1hDwg==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499hyf06tw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 11:16:52 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7e8707701f2so28939785a.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 04:16:51 -0700 (PDT)
+	s=arc-20240116; t=1758799762; c=relaxed/simple;
+	bh=spYHYnkrSSHwtTKTP6qwxijxAXFvaPMhOoJbbi3y1G4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kMMOI7c1j/+VQXLDKBfzfIEZnH2IPMdf8wcyIdEXUree9Ham2cbXqVahunto/G1HF0UnS0SjKD8bHcc3XFf4MusCdodLwaEpcrTw0OFq4hnYhagIAlDAAitXV0Ak6VyCq+PlF0M9fgiNako7axXvthArIIwcTeRBIgRXpcMFzsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r15s5vts; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b2b4096539fso155954966b.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 04:29:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758799759; x=1759404559; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=y6tx3wGYofCquH8IJZF9cxaNXEG6TMvxnaVWQMdTML0=;
+        b=r15s5vtscaa03tiCNBbv4gRWbMb66XAVJ+ZiMrTqPDeBwkmn4L576yLh/tFosJLJL4
+         8civHZtp5Q5gmeQKDTeJuS58mVFae8bhR5EsrHQYtewoej1lGm2HB/m6Z10HW6DMzWCS
+         TJyBU5V9o4L7uV4/tWcUzxLjZi06H0JwswHHCu8OdGGB08CR44AUqi8sLje5D8KuqcZt
+         /LemIprCECiVzF0cLsHbD1KH6UhablHdjNYK/FeVeKxfd/CWJthx0qxJ9rksrqd+0CAO
+         GCpMASmZZE2SMKaC8RuYPb5AZcp6ssFepOOVnNkVkdMavKVzkZBo/1SYaDQVx77iSrad
+         7o/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758799011; x=1759403811;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3p1317b/OjiVJS2/YXmaa/8z5cpoRP1b2R07MF/E7aM=;
-        b=OJgG6v/kMfmWSkhRz0Q8jA3Aiu3bttlh2L8vY0Vm7NjZ2gjKHHSX1zRXeZFsOs/4xs
-         gzjav3XCLrXHPVLmknWDkTJZOmP1Bq9QBjG2Pa3ApTENzkiycN6bfW8M1NKchmfgm7w1
-         w3t+bxPHqqc7QQspyZqesaR2ZH0Wjbbmt5CLceJ2ZZcFVBi3li7jANIkBUYKP2fFqV+1
-         A9GcuHBywQHNH/OZgMR250u1OGJyKEwSYiarzrrBGJfHjmtTBo4i/Tpe7RxPdYb3B/it
-         WfDj3wLqbcqoNQO3sXjstd0WqOgVBFacDlw6r9G9v7xIRuhsVYMKUSiyY5veUuttbAf1
-         ORUw==
-X-Forwarded-Encrypted: i=1; AJvYcCWg5B3CE9s2PdRg9d1P/681AT6WkHibXu17Dxwy9Y8GCDyNBEwAuErUTYGaQAQqOGQ7cSDqrqKGU8Tr@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSiTwEZbfzNXjwUFHA0X1V4aYDpVNp27rMLS3ttcIGsurIu1by
-	WEgcnQ4oF08G7bZr4Cw26xxlFqv7+9C8MyvLlmiUzl5bWT3nYfATkYrQ18k3uROFrtKAjUt6Zl4
-	DnkfWVHwKFOsi+htNTR11i5v4Z5hKJaGHEsNV4e4pnhcixd37LpebOtCFsyGJrOrF
-X-Gm-Gg: ASbGncu6P4EpamDWK+mRP6GQ/KngVriFWHciW2oL+PoYbL/C6jAoHw2VyVTj4Lf/35A
-	PlbMLVCIx9nHCJSTDxY/bHZBZYcyGhfpW2FIhiPQRahclH0DRDXnn/Vr1pEAJrTK1d8TmHz1C87
-	BTyfgp1up+sTdvNKh/Sk8JFkPt8xmiH3guFpsVBw6dzoyg3U+WfPMc/dFOSYj725g6KiZI0ugcS
-	/ksNhhbE/qTzOzqHGapAQcvhXxX+IKiJ1pAE12OkUkAXs0HQGyR1JH4jRv5gLoB84MLLNKRe3e4
-	BqcoLPBVkLr5FrvzfTvEBQrEFPGm/jGQZVPlq8F4r3r0oUk8GEAjqIMW0kT/HBAU6KAWqm1oRKr
-	MDaKdvJr0KjNif0QosFDaKw==
-X-Received: by 2002:ac8:7e91:0:b0:4b5:f1e0:29f with SMTP id d75a77b69052e-4da4c1adf7dmr24224731cf.11.1758799010521;
-        Thu, 25 Sep 2025 04:16:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFNkcG9kfuA/k1nAetJ65GvIW+MEfbUrJraHtBF3h49xihmeaOKctfs4Ii0CuHlq4orjUfMdQ==
-X-Received: by 2002:ac8:7e91:0:b0:4b5:f1e0:29f with SMTP id d75a77b69052e-4da4c1adf7dmr24224491cf.11.1758799010035;
-        Thu, 25 Sep 2025 04:16:50 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b353fa65a62sm147858566b.47.2025.09.25.04.16.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Sep 2025 04:16:49 -0700 (PDT)
-Message-ID: <cd91e7f2-72bf-48f2-891e-4e6cd36b1e24@oss.qualcomm.com>
-Date: Thu, 25 Sep 2025 13:16:47 +0200
+        d=1e100.net; s=20230601; t=1758799759; x=1759404559;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y6tx3wGYofCquH8IJZF9cxaNXEG6TMvxnaVWQMdTML0=;
+        b=pdiEvZlhdaxk2em2RRRG+fEJIRQC8SF9s73t80hK/L/mcZERveBADeijMFvjCrhD43
+         B6J89dyXpKjVuTcJ7OaedxrEn72lyr30KfrZ9wd+m86OLqYOla5BqtkvBNC2zuoHlMrC
+         DRPCyuveIwTBpum3zUZpJk5XPFp1yniUuI4P7xy99x9O7PXtCDrZOJ0JUsV9Y8l9MWk+
+         V5UJlQNMwkMcb64/367Gtepb9C2sogBU0qnNwmK3k/XSU0NuK1M+BTRmd0G8TU6rIQ18
+         onJz3dXKn8lSaT9wZoMD4EMKmk5C7ax7e6NzHi8M0nWJO2DjfmHnvrUT/sIQQPu0eBgS
+         F9Pw==
+X-Forwarded-Encrypted: i=1; AJvYcCUx/jw646+fGVEkC47lBoPA/RBK/0QB/ZiTFUH+nCKM90NRfqXbYZmsD+SFmRtXkLFTXWMpMr07x2X2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw99ktG082Slg+nNdCrjqYd37GNmp4FYnXm0cqbpvLPS7u8LZCp
+	FZuAOeZH/FM3XDfOr75Kd3njPWDhpKikcL7nMa79dB9Zf7h52/YqJJLQvr+FhGiqqb0=
+X-Gm-Gg: ASbGncu3uPz3I2t7LBjQbZDdLRowfuQMmYGdZMtJfY4uZEVEAtDULpG4SUKkZYIh+MD
+	60SQdPjV3V35Nm7+edCDCi8T0sBFDyIm67me9OUBhdaJd5ge5mP2pAWcuy3f4loJ4pOD/5l6YAQ
+	TZAdvLiUAVcNQVuifkNOz+Yl41HIZXkghKpxUQgDQyDDhg8JtWmdfVwmj1MCB/uswazR2OPjF2N
+	OU3OErc/sgUf2SrQ7jq9phItIgbQXhwbEvop3aXuQ5tgpUD81UuIlVJSXxcmtuk5c6WGOKcxIGv
+	Gf/22otjzpytjFUT0qI02vaqxMqmFbiBkTN/JvlYywgDOblQ8kL/EVKMpgjTgNpXaZyMfRhqKLI
+	3F3VdLUyFwxqc55ygSIx2dQ==
+X-Google-Smtp-Source: AGHT+IECd6eD0NG/1EjdBoivaaCFD3fdU9kTeEF04JLjXlrzueCjrWn5Mmy5qgRiQjAwXUsp8liKjA==
+X-Received: by 2002:a17:907:f1ea:b0:b04:6f77:9cff with SMTP id a640c23a62f3a-b354c83d684mr239529766b.27.1758799759330;
+        Thu, 25 Sep 2025 04:29:19 -0700 (PDT)
+Received: from linaro.org ([86.121.170.238])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b353e5d1643sm147578866b.22.2025.09.25.04.29.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Sep 2025 04:29:18 -0700 (PDT)
+Date: Thu, 25 Sep 2025 14:29:17 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+Subject: Re: [PATCH v2 23/24] arm64: dts: qcom: glymur: Add USB support
+Message-ID: <keashhd5gvckff75a4ot2km3saivdetaaxmag5fnp7dnoiisxl@u7tmkokpfdmu>
+References: <20250925-v3_glymur_introduction-v2-0-8e1533a58d2d@oss.qualcomm.com>
+ <20250925-v3_glymur_introduction-v2-23-8e1533a58d2d@oss.qualcomm.com>
+ <dzjj344c6zlkg4rvi455xoedhd4d2kjvodi6yftv7svhvvmxbz@kwq7rkq45tms>
+ <66a5084e-3f7a-452d-ad5b-5867528f57a5@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 16/24] arm64: boot: dts: glymur-crd: Add Volume down/up
- keys support
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-16-24b601bbecc0@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250925-v3_glymur_introduction-v1-16-24b601bbecc0@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: alJ3IUx7m04qX84up3D3Fbd1cBUoH7zC
-X-Authority-Analysis: v=2.4 cv=YMOfyQGx c=1 sm=1 tr=0 ts=68d524a4 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=cz-Gyc_q8kcpoI4PfSoA:9
- a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAwNCBTYWx0ZWRfX01YWcZKYr4Vh
- KbQ5jkgDRf4MSLFR/LRah4xMrMEItmRvThds5u3DUSlJaf6XLpRvR9A74ViIRk5/8FURg8jcu39
- V97XLsHN0A1dnP507hVUw2DXZGc8OBn+HMRMbzUllJURfMd2XpcVc9/wniySDAfMmCbC/96pjfQ
- SUXCZoFoNdJMxLCb12ua1NnvP0mrraSRoUHUijB6xlGhsdcKpDAs1VjV8vRzEe8h/4s/zcr6bqS
- O5bpTSJcJ/bMFfnI/kTiJ1ldPZwSwfO99Z+1vREDeGvzgw7z9hPlbfHDWdQUdNEFSlIg+rn6swM
- UBTG6rPDjUbfYUNkYvKxc8wYBcbr1XfX3JFtB3r77kajVyGImiFJ7UbDjs77DpoaftbxXvbJ4lT
- PGEgBIpj
-X-Proofpoint-ORIG-GUID: alJ3IUx7m04qX84up3D3Fbd1cBUoH7zC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 adultscore=0 priorityscore=1501 spamscore=0
- clxscore=1015 suspectscore=0 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200004
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <66a5084e-3f7a-452d-ad5b-5867528f57a5@oss.qualcomm.com>
 
-On 9/25/25 8:32 AM, Pankaj Patil wrote:
-> From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+On 25-09-25 12:59:20, Konrad Dybcio wrote:
+> On 9/25/25 12:54 PM, Abel Vesa wrote:
+> > On 25-09-25 11:58:29, Pankaj Patil wrote:
+> >> From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+> >>
+> >> The Glymur USB system contains 3 USB type C ports, and 1 USB multiport
+> >> controller.  This encompasses 5 SS USB QMP PHYs (3 combo and 2 uni) and 5
+> >> M31 eUSB2 PHYs.  The controllers are SNPS DWC3 based, and will use the
+> >> flattened DWC3 QCOM design.
+> >>
+> >> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+> >> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> >> ---
 > 
-> Add Volume Down/Up keys for Glymur CRD.
+> [...]
+> 
+> >> +
+> >> +		usb_1_ss0: usb@a600000 {
+> > 
+> > This is usb_1_ss0, but then you have usb1_ss1 ? 
+> 
+> I'm in favor of just calling it USB0/1/2/MP/HS because that's what it is..
+> 
+> [...]
+> 
+> >> +			dr_mode = "peripheral";
+> >> +
+> >> +			status = "disabled";
+> > 
+> > So you have the glue defined above, but not the actual controller (compatible snps,dwc3) ?
+> > 
+> > I don't see how this would work.
+> > 
+> > Same for all other controllers.
+> 
+> good morning!
+> 
+> 6e762f7b8edc ("dt-bindings: usb: Introduce qcom,snps-dwc3")
 
-Does the CRD have these physical keys, or are they routed to the
-debug board?
+Hmm, missed that one.
 
-Konrad
+Fair enough. Scratch that last comment then.
 
