@@ -1,165 +1,140 @@
-Return-Path: <devicetree+bounces-221232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9137B9DEB2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:50:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 239ECB9DED3
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 09:54:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 85AF7382C78
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 07:50:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D3E81BC3068
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 07:55:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F4226E704;
-	Thu, 25 Sep 2025 07:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31A7D261B91;
+	Thu, 25 Sep 2025 07:54:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="pItA3ruZ";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="F8gtftuP"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dAMtEwG+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b7-smtp.messagingengine.com (fhigh-b7-smtp.messagingengine.com [202.12.124.158])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8E9B265620;
-	Thu, 25 Sep 2025 07:50:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E2F710A1E;
+	Thu, 25 Sep 2025 07:54:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758786636; cv=none; b=pSBtkpZ6TogscOcx8u87Nd+77paUDHXyP2UK2X4xIsN9ibyfft36ylk8pzQZPpqJSPgAfreLre6eZpxgVkb3cY2rb8lIlMfwlOEuaJTgVkSjfETs8qim+NpeewhuWXa/e69590n9Hj42jL0WAjaU/a444q2E2JsoGMHD/+/j7Ek=
+	t=1758786872; cv=none; b=VVBYnsepXn0hXhC1f2+M/td1I/B8cnSUFypDu6Vym5GYLwRAXeLifJZyIqTomiL8KS3QPNBNRWo5GMF2dTITXzBI91Thi1qBhd4eXr4lnIZf3QN3nzmJG+bTeQT2yKMItFlUdYUHaQcEPi4MvFXeV366pd1uac4KMrb+0+2BNRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758786636; c=relaxed/simple;
-	bh=dvpW+SV86ILwcenupEPH+XphYWSpYuS+phA6XOqPzy4=;
-	h=MIME-Version:Date:From:To:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=mbhwTlz5gOlwfzsSIgUg8EroCWGQbr83WwKLRrNlrSntlICs9eW909awzN8RNfgyEgdQjrC791eXNXaC+EzkcdtzZAgPIphm9K8v4BaPUPDXFb/SaDu67thJqNLxPCazuvBLhMl6iyB5vcRA1a95oYTjOw0bt+8M+caGipTy3lo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=pItA3ruZ; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=F8gtftuP; arc=none smtp.client-ip=202.12.124.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 501437A0179;
-	Thu, 25 Sep 2025 03:50:33 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-05.internal (MEProxy); Thu, 25 Sep 2025 03:50:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:content-transfer-encoding:content-type:content-type:date:date
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1758786633;
-	 x=1758873033; bh=83Nn5b4JSEuoWgZrR/ay70JX8WRfWcMJ9A+FdwfFYxo=; b=
-	pItA3ruZW5T9+PNMdSyjosQHJWW2SIzFRB1T+1RzR7XetYb5u8pq+kAbshCqp/hb
-	CFNDPCk/hLBLyz+H2ZWs8UcaNdg2+zOCRg4++29TjH3JlmivlncDIp3x2zeX+vBG
-	D7QG5D+gm9SgVgUgjgBJ+FMTmm+DsPGr9bUhzqdyqqoNL8fi52jH8/JaQRCTGDw6
-	FHaKU+6MtiCOQ9tjMdscENdigKG4iD1fTydgYzyoz42edBo442pHGC79hqjyPTeM
-	KLrbZIPCADoFDoWyI3qavcmg70ybpiHfptnQAZhImMoeIsR9wzwiEjJn+rQ3CVuD
-	s19XNKOjyD2KuoK1LpTONw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:content-transfer-encoding:content-type
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-sender
-	:x-me-sender:x-sasl-enc; s=fm1; t=1758786633; x=1758873033; bh=8
-	3Nn5b4JSEuoWgZrR/ay70JX8WRfWcMJ9A+FdwfFYxo=; b=F8gtftuPlBTRVn1pa
-	p6m3cdU9OIig8dVcgg67TXV+KxF/F5/oqQuQtWoojwNQFfeWb9lh60R1TFw5At2k
-	ucwafUPANpmkWItrpNtP6w/ecFxZY6orzb8rLkFMPHCaxGenNmbGRjn8cw47yjC3
-	CEM8OQgKbtdagWJTFDLLyttBR68IenIRaa/R5DjkQ4+jtNlvJbpX4YQiVGF9w03f
-	gFhednbXnVH92My128e7yjsMVQWIHnXvGi9sOe62bgP2AXIe49x1Vpxtb1PmgupE
-	G4Qf8kwq1rkfBS7XpfjGFyttT9FbzheIlA1iIJhMEG8AUoi8h7OoslJwdsuXo5Ep
-	4k7iA==
-X-ME-Sender: <xms:R_TUaHKqyXCy2u6drtgXYPqbK830VmCmZRElz_DxuwtMju8m69zJgA>
-    <xme:R_TUaF_Spg3m16H2kIU2QNq19M-W6m_bYrAS-PE379QzEhamyqoaJemZmQQCgCESV
-    qQxXHQ6hkXbx7M93XBEbT1Ud93NJp7l_uBkLfCJI1hbt5dyFRJTNRY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeiheelfecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefoggffhffvkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedftehrnhguuceu
-    vghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvghrnh
-    epfeeilefguedtueetjeekkeegkedtudfhvdetuddtleeihffhuddvhfeufeevlefhnecu
-    ffhomhgrihhnpegrshhpvggvughtvggthhdrtghomhdpkhgvrhhnvghlrdhorhhgnecuve
-    hluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegr
-    rhhnuggsrdguvgdpnhgspghrtghpthhtohepvdelpdhmohguvgepshhmthhpohhuthdprh
-    gtphhtthhopegtrghtrghlihhnrdhmrghrihhnrghssegrrhhmrdgtohhmpdhrtghpthht
-    oheprhihrghnpggthhgvnhesrghsphgvvgguthgvtghhrdgtohhmpdhrtghpthhtohepph
-    hrrggshhgrkhgrrhdrmhgrhhgruggvvhdqlhgrugdrrhhjsegsphdrrhgvnhgvshgrshdr
-    tghomhdprhgtphhtthhopegrnhgurhgvfiestghouggvtghonhhsthhruhgtthdrtghomh
-    drrghupdhrtghpthhtohepnhhfrhgrphhrrgguohestgholhhlrggsohhrrgdrtghomhdp
-    rhgtphhtthhopegvsghighhgvghrshesghhoohhglhgvrdgtohhmpdhrtghpthhtohepvg
-    hlsggrughrhihmsehgohhoghhlvgdrtghomhdprhgtphhtthhopehrohhmlhgvmhesghho
-    ohhglhgvrdgtohhmpdhrtghpthhtohepfigrkhesghhoohhglhgvrdgtohhm
-X-ME-Proxy: <xmx:R_TUaCQNWYf7xcnmutE64H55YDv-wG_GnNWltdQu47-XLEWqRqLfSg>
-    <xmx:R_TUaIOGhz3Vc68QV44f-9EIYj5iy7WDrZlaTmUb0lEw2sqnov865w>
-    <xmx:R_TUaGs6JGuiXFJq0DvGWqw7-yzX8QP7i5v3zM4zrDjbepspj5BVdg>
-    <xmx:R_TUaERxoCYP_AJ0GAgc8B-gPD7Mo9NYBnBevlzOuDiBbh8IvNkT2w>
-    <xmx:SfTUaArooyr620KNVFTum50IpoHqBjBTm12tNgGDbf1of-N0qVf46SKF>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 508FA700069; Thu, 25 Sep 2025 03:50:31 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1758786872; c=relaxed/simple;
+	bh=wNrIs/KMRNT0S70Q52NO7ztxcCDaM4WDIdSvpz8vEAY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=VaqM4IinbUiL5Uvxnt6kUEevOeY/qVpLEhAOnR5txfOVjHcE9e/3vSszXRGF0SJq5tFDFHjkE5rE+61ZC1/MsAg0OUEd8s7iuiAlrFV41JacM/+v7redBWZRiZ7apvakqvT5Jm0gRe2ldlVHQGqzDf53DchnVIB5pW87hHTEjy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dAMtEwG+; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D4AE81FD45;
+	Thu, 25 Sep 2025 07:54:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1758786860;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=F0yQO/AB1frPLT9/UjMZgXQd7K0oFinoOZukSkiIkvU=;
+	b=dAMtEwG+F2+E9ANALyZUDw8Yv1pyBMIrps8I1f5UxSgSGoRXv4FjKfIuLD8+6tGz0cKv+g
+	cywSsi91XdS5qFAJ97pZFRv7PD48EHm6+EbN2IFcvkx1V0JV1xn8ug1GgNVUTnP+Y7ZO8N
+	eDP5t9ZVuA/2zlCjtAs3RLT7kQ7UlPj4EoqzlB3oWfCd84AmePLJNmcGMfT4P7fhhPf7lE
+	nxY9IZjgRHbLvWBGUuBIldIN2az5SN2DQeeJCPwfvewX/6U4I47jUnAX4Pw6yyAFFXe863
+	4jTXNZmmBHdp78CFPdCNsP2s+CiYO2Y08rxmMrjPspyRyI9LiFnEA+TwFpB6SA==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ David Lechner <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Subject:
+ Re: [PATCH 4/4] regulator: ltm8054: Support output current limit control
+Date: Thu, 25 Sep 2025 09:54:19 +0200
+Message-ID: <2800270.mvXUDI8C0e@fw-rgant>
+In-Reply-To: <8772650.T7Z3S40VBb@fw-rgant>
+References:
+ <20250916-ltm8054-driver-v1-0-fd4e781d33b9@bootlin.com>
+ <aMlj1OcfH8r9Zz6x@smile.fi.intel.com> <8772650.T7Z3S40VBb@fw-rgant>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: ApQpqsW9_EUk
-Date: Thu, 25 Sep 2025 09:50:10 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Ryan Chen" <ryan_chen@aspeedtech.com>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Joel Stanley" <joel@jms.id.au>,
- "Andrew Jeffery" <andrew@codeconstruct.com.au>,
- "Catalin Marinas" <catalin.marinas@arm.com>,
- "Will Deacon" <will@kernel.org>,
- "Bjorn Andersson" <bjorn.andersson@oss.qualcomm.com>,
- "Geert Uytterhoeven" <geert@linux-m68k.org>,
- "Nishanth Menon" <nm@ti.com>,
- =?UTF-8?Q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>,
- "Taniya Das" <quic_tdas@quicinc.com>, "Lad,
- Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- "Kuninori Morimoto" <kuninori.morimoto.gx@renesas.com>,
- "Eric Biggers" <ebiggers@google.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, soc@lists.linux.dev,
- "Mo Elbadry" <elbadrym@google.com>, "Rom Lemarchand" <romlem@google.com>,
- "William Kennington" <wak@google.com>,
- "Yuxiao Zhang" <yuxiaozhang@google.com>, wthai@nvidia.com,
- leohu@nvidia.com, dkodihalli@nvidia.com, spuranik@nvidia.com
-Message-Id: <41705e13-c61d-4249-9492-b83f1371d3f9@app.fastmail.com>
-In-Reply-To: <20250901031311.1247805-1-ryan_chen@aspeedtech.com>
-References: <20250901031311.1247805-1-ryan_chen@aspeedtech.com>
-Subject: Re: [PATCH v5 0/5] Introduce ASPEED AST2700 BMC SoC
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; boundary="nextPart12748939.O9o76ZdvQC";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeiheelgecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfitefpfffkpdcuggftfghnshhusghstghrihgsvgenuceurghilhhouhhtmecufedtudenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurhephffvvefufffkjghfgggtsehgtderredttdejnecuhfhrohhmpeftohhmrghinhcuifgrnhhtohhishcuoehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhephfdvleekvefgieejtdduieehfeffjefhleegudeuhfelteduiedukedtieehlefgnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppeeltddrkeelrdduieefrdduvdejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepledtrdekledrudeifedruddvjedphhgvlhhopehffidqrhhgrghnthdrlhhotggrlhhnvghtpdhmrghilhhfrhhomheprhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmpdhnsggprhgtphhtthhopedugedprhgtphhtthhopegrnhgurhhihidrshhhvghvtghhvghnkhhosehinhhtvghlrdgtohhmpdhrtghpthhtoheplhhgihhrugifohhougesghhmrghilhdrtghomhdprhgtphhtthhopegsrhhoohhnihgvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhri
+ ihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehjihgtvdefsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegulhgvtghhnhgvrhessggrhihlihgsrhgvrdgtohhm
+X-GND-Sasl: romain.gantois@bootlin.com
 
-On Mon, Sep 1, 2025, at 05:13, Ryan Chen wrote:
-> This introduces initial support for the Aspeed AST2700 SoC and the AST2700
-> Evaluation Board (EVB) to the Linux kernel. The AST27XX is the 8th
-> generation Baseboard Management Controller (BMC) SoC from Aspeed,
-> featuring improved performance, enhanced security, and expanded I/O
-> capabilities compared to previous generations.
->
-> AST27XX SOC Family
->  - https://www.aspeedtech.com/server_ast2700/
->  - https://www.aspeedtech.com/server_ast2720/
->  - https://www.aspeedtech.com/server_ast2750/
+--nextPart12748939.O9o76ZdvQC
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Date: Thu, 25 Sep 2025 09:54:19 +0200
+Message-ID: <2800270.mvXUDI8C0e@fw-rgant>
+In-Reply-To: <8772650.T7Z3S40VBb@fw-rgant>
+MIME-Version: 1.0
 
-Hi Ryan,
+On Tuesday, 16 September 2025 16:27:25 CEST Romain Gantois wrote:
+> On Tuesday, 16 September 2025 15:19:16 CEST Andy Shevchenko wrote:
+> > On Tue, Sep 16, 2025 at 12:24:09PM +0200, Romain Gantois wrote:
+...
+> > > CTL pin voltage */ +	vdac_uV = (u64)min_uA * LTM8054_MAX_CTL_V;
+> > > +	do_div(vdac_uV, priv->max_uA);
+> > > +
+> > > +	dev_dbg(&rdev->dev,
+> > > +		"Setting current limit to %duA, CTL pin to %duV\n", min_uA,
+> > > (int)vdac_uV);
+> > 
+> > Why casting?
+> 
+> This one is indeed unnecessary.
 
-Thanks for you submission earlier. I see that you had sent the
-series to several lists including soc@lists.linux.dev, which is
-what I use to keep track of patches that have been successfully
-reviewed and that are ready to be merged through the soc tree.
+My mistake, this cast is required to avoid a compiler warning;
 
-Unless you have been told to send it here by Joel and Andrew,
-I assume that they will pick up the series through the "bmc"
-tree once they are happy with it like they do with the 32-bit
-Aspeed SoC (ast24xx/25xx/26xx) patches, and I have dropped
-the series from https://patchwork.kernel.org/project/linux-soc
-now.
+Thanks,
 
-For future submission, please send the patches only "to"
-them, with the other people in the "cc" field to avoid this
-confusion, and leave out the "soc@lists.linux.dev"
-recipient. You can add me as arnd@arndb.de to the Cc list
-for reviews though.
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-Please also add a patch that changes the MAINTAINERS entry
-to reflect the added arch/arm64 contents.
+--nextPart12748939.O9o76ZdvQC
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
 
-     Arnd
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmjU9SsACgkQKCYAIARz
+eA45Pg//e+RNIVNH123KKvWSDgP/4K9vIfxKQHteDzWnbdc/DAJYmcztCg0sSO2h
+KGsZZ71OoXBoGhArjD8Fo34eIXXAjz2jfstWmo1LdkggibiPFzphGUl8yFz00dVc
+Bxq432+1pyWZQf7ebJYthZItWYASHncO2hObvCXaQH+eATZaaXpBaYs12GeVO+Pc
+Uhy5as0lV4y2V0Zx6VXrER/N76f6TPkZieFoy8w0izbRLb1ECDgkK+mPK1B0heq6
+esjvYWVk97HKedVOSCq/ZHMGCaoNHFumLCjGuLH897hClVRBfvjNjxg+XkXr8QAo
+SuQmYmGZofuEeVAV5ORIaoXB72cPbxiMvgoKjEYqzT4NgNhFep1bHYRYbVLwTEjT
+/Mhl8ulFstcdLX9l/G2uoATXT+GLjlkxMS0AKL7GQ7hFLNDxTpOSc/LBQYQEHbVa
+az5Z+5DIM4PZs2O3RRun7WAyEBEpTGAVJ3a4JjvqjYXDAoI4CneXueamV8zyU4v5
+QPEPgAvST6JUv/mj8IKRfyFgW/gNNemg0krG/INhDBYZYhO+x00wbxUnSLsawxcR
+XIIVFj0APWQrXUzVrmiB2ceo7TsHzGaSIaV3pVt2pJUFglzTNBr1T7wWMk1JyKC5
+qecn9T8O+qBIm9LWvUNpe7WEk8pHxbq+4JSGnTh2Eg7fKL9MyI4=
+=ltTp
+-----END PGP SIGNATURE-----
+
+--nextPart12748939.O9o76ZdvQC--
+
+
+
 
