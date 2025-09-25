@@ -1,112 +1,111 @@
-Return-Path: <devicetree+bounces-221662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DAF0BA1AF8
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 23:52:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60F17BA1AFB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 23:52:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 201717BE989
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 21:48:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3CF757BEBB4
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 21:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BA9A28312B;
-	Thu, 25 Sep 2025 21:49:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 044D624A049;
+	Thu, 25 Sep 2025 21:50:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="k1J2+JDg";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="ac+d0AcW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AJN3rzCS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-b7-smtp.messagingengine.com (fhigh-b7-smtp.messagingengine.com [202.12.124.158])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC88DDAB;
-	Thu, 25 Sep 2025 21:49:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A2F1271459
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 21:50:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758836985; cv=none; b=jIXJO0txkwlix10qXUf1eY/ShmqDDR+W0K9vgV8FxhqqIpgAUJKEY11SJg77bBlRMZEIDQCaziQDhX1dg3uu7CMWC05cyCA2LaSs0Duz1HjnZlUEj0usWqz5MW79PivPyqeoYXhYcmiuBqFPxunsoRBgJbDUEcgEwUOiInfQzTM=
+	t=1758837001; cv=none; b=qNA6j2UMQGWALZpV/eCzLA82f8cEqO34Q8etkLSmg5eJPsmtV86NpkX6JI3paeFL64uHYFZWtZLngiM5c/Fu39bYeIRCqB4kMFOPvzFHr8m0Lor5PDnlGxRLjQSPeUAIvVBkCnpVTdcSHTMIFBnai9DNPVmsjeqraha05EB2LS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758836985; c=relaxed/simple;
-	bh=m4lGjOOroPNUp0gx85pv1Wi9t3KZeYNzJobctwBTKE0=;
+	s=arc-20240116; t=1758837001; c=relaxed/simple;
+	bh=JvB1YVXUJ/sRS9akglH2Uf9pFr6m6kOFJ7nwp5S1qzs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WP81MF9fcq/Tv2eCjmcX++wHQS7jj0XaqXAoU5/zExhf2JvRJXV6nJhTXx5K8gH6V6Tnvi/HoZKO5RL2GqYIqGr6YqZ34BlHggEcXyqQjX6hpcbVK4BfG06Kx44nkHBLtA8Bv8sVXzsroYIZKmtKT8IXeyM+QL2/romvCGBNeBg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=k1J2+JDg; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=ac+d0AcW; arc=none smtp.client-ip=202.12.124.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-01.internal (phl-compute-01.internal [10.202.2.41])
-	by mailfhigh.stl.internal (Postfix) with ESMTP id 0BEB07A0020;
-	Thu, 25 Sep 2025 17:49:42 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-01.internal (MEProxy); Thu, 25 Sep 2025 17:49:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm3; t=1758836981; x=1758923381; bh=6nk2oVhcXQ
-	aCHBv7NWVPxtdUgNyCssU/J2K3ZQPZuM4=; b=k1J2+JDgtUdQpUcWjjN9sPb0dE
-	+xhkUc39QjNdjbYCe5luLzLMnvGu8MZ0gTFrlpCzTx5lhdkOO8Nkh4QE1XkLLblA
-	cwcuUwzOVyxKz3Jb83Bo+LRNwEw4KA23/Q1/WPSe4YATSQptgtDGMmZJpyW7Zd/K
-	Uwxi+054G3jAxLCPEmHM/3aJY6QK6kuaN1YB98TYw5zJkyqcaSpoiWvRWe16G/yr
-	kLeyd39CJ2nvEVjYUn1SG9uMms8gFAh6eec+bMcmuakawLUMylH6bCKospWXkbmZ
-	m4tpEOrLYkMwpdXlw3LkBqQtzHpWWqa8tJzposlOV4oUWhZ7Hk5Z4hWhzLGg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-	1758836981; x=1758923381; bh=6nk2oVhcXQaCHBv7NWVPxtdUgNyCssU/J2K
-	3ZQPZuM4=; b=ac+d0AcW3q4fTpnABSE+ezWR46BHIdHIxSdu11hmNuJ6cwYeXO5
-	H5vF6sZQHtLsAiE3IWiIeuvqfK+YXquPn7QPaTQS0Ab5khguJ8hxh2baOCPvBz43
-	OCO34N3Q0ijX/6vBvV+ztQFv+4SODvRQtTjYAdJXi4xgH3sK1qO8A07KvtiASl6e
-	JKy2GK4epVg3edwuD03VZC84+J+5WtpN+dB34Kly9vJf3h6M1E5YuAOCqmsgNyRs
-	6YWXPZI/FJSdxXYfM1izbnVcrhdn7F2awVHJ71+iBD7faMmKX4S8pmnp05xX9QZD
-	PlZ0diMlsxRQI1VOzEuJTY7Kc9UlyoZkxqw==
-X-ME-Sender: <xms:9LjVaJqsltGvRdGJWHrK8GvbFwr4J8t9uCq69k4Y4iQtjQoSwDH2Zw>
-    <xme:9LjVaMCNQBA0k9adYVb7n8t9895aP9AYtcLS-rfmCAybYnMNnnk4OeM8oErm-ZWZV
-    F07CVoQtVRnMwIMCJo4k-8v4pR3-nEzMt4PhSWlUKoZsiDIAtRzpRk>
-X-ME-Received: <xmr:9LjVaHXokJaForMUNiI1QW0HAUkjLBEktkPFfTP9KIZFg_auVIZR1odWxZCDPLPCmYFOG9CBfL9UQoO17H7Mebudk0LiCq9CIfM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeijeeiudcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpeffhffvvefukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpeflrghnnhgvucfi
-    rhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepgfdvff
-    evleegudejfeefheehkeehleehfefgjefffeetudegtefhuedufeehfeetnecuvehluhhs
-    thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrghurd
-    hnvghtpdhnsggprhgtphhtthhopedvtddpmhhouggvpehsmhhtphhouhhtpdhrtghpthht
-    ohepjhgtrghllhhighgvrhhoshelleesghhmrghilhdrtghomhdprhgtphhtthhopehsvh
-    gvnheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlhihsshgrsehrohhsvghniiif
-    vghighdrihhopdhrtghpthhtohepnhgvrghlsehgohhmphgrrdguvghvpdhrtghpthhtoh
-    eplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdr
-    ohhrghdprhgtphhtthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtth
-    hopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprghlvgigrghn
-    ughrvgdrsggvlhhlohhnihessghoohhtlhhinhdrtghomh
-X-ME-Proxy: <xmx:9LjVaA7JOazVjAEetUEy1oLyfcETjRdAfx6jYiGNScg6deBp38pgLA>
-    <xmx:9LjVaIAzVFcrvRACDU2oxKdNoCG5kpeyWnXqsfi0R71wcfvPHhccAg>
-    <xmx:9LjVaFCV2vnqGRVaxF42HPQYZQvMTh3mPfb1TPci07I-f7ED1hqJgg>
-    <xmx:9LjVaIgQHRD5ZeFQXQM_kxCkvLm7pcy4yz1KVOsPaD1cMn02yEBOVw>
-    <xmx:9bjVaH8oetlWdplwWAndq8oXDSdmROS2hxyIz7Op-ORoZpNh3XOhxPoP>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
- 25 Sep 2025 17:49:40 -0400 (EDT)
-Date: Thu, 25 Sep 2025 23:49:38 +0200
-From: Janne Grunau <j@jannau.net>
-To: James Calligeros <jcalligeros99@gmail.com>
-Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
-	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
-	Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v2 07/11] input: macsmc-hid: New driver to handle the
- Apple Mac SMC buttons/lid
-Message-ID: <20250925214938.GC637503@robin.jannau.net>
-References: <20250827-macsmc-subdevs-v2-0-ce5e99d54c28@gmail.com>
- <20250827-macsmc-subdevs-v2-7-ce5e99d54c28@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=IIIyjaTFp+yspG4igJichXq4fuYDPmYkDil3B43tFzGnqGIXl4iOfbJJ6hvT6j5PqHo4EjM4zNDALNZonmtK7OWtY7GbV6tHppwmUXubgjSZtsfdzuTPPT6JcBtqnl3z/voYoHPse8rf13DigbbseDXEI/c86ePz98Mo/6UmUFs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AJN3rzCS; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58PIPkcJ014389
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 21:49:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	EsE8hUNPrzXdS3krzD+9JlR/Fl7R5Lniz8rFMY5V+pU=; b=AJN3rzCS3cwFnGSP
+	nML/5pd++eAelWEQEPJIKHdHdwPsI+g58MPBYbHggsVcdb/MO9sPwWYDNmmW2EIa
+	X+fmI+N1/gDPCCal3HZjc5LRJJmhupfLL/bbtSWtkWck8JUpibn0Ugftwk9xsDti
+	vmihmNbNaidxcxU28ZGW9O9O3fytzq/jbuNlfrCfp8F3p9I+63XdHGJGijU6MuZy
+	r6oFvpw7RiPn334EFQtIEv7TDdb9V97aFJ7BI8ilolbsDXpWMXEP3DEWNqJNeSPk
+	07ISru1IvH3lpsn+O9gAvFpkU6xNT/1pN65B8lRwpd/fOovaK9Bu6XwCcSu8Zz9m
+	jvb8aA==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49db0rggdx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 21:49:59 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4d8b8c3591fso41180321cf.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 14:49:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758836998; x=1759441798;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EsE8hUNPrzXdS3krzD+9JlR/Fl7R5Lniz8rFMY5V+pU=;
+        b=UFh8dkErycR9A8k6mdCZP4zOa4tCIhzUU4htD/stMdoPQ1pGmjsGIBYtuOEiCbCz/U
+         aAzSeYFDU/ilzaLjaKRqIW23oxJph/7hqJXRA8NP6vbHKlXemsGH83V78p895W1CBFdK
+         e6MF9bK5cYbJLhhxSWJNBsaKPGDov2bKUoOSBgn/jSpJ6u2DE5d7S7qOh2KR5AmBsgxD
+         fmWZQ3eHKIGW0mvRIHhzEwLalgZ4INR3iGuh5R/bamRxXDzonemwWDjAxmeMwYNWX1U1
+         bHwfwgFH4les/O8CwBB77ub5SI74IspM9Ar4djcc8hNgUUDobV9OK5nbiXpvb2XyISwF
+         bdbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWla3y5qARnmGAfq2ibO7OIV0XmI/0nZayypd9m1gPRa7UWwB8sJ6w48lfa1BtNyS27dw0It03mfrl6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJa6q+jsVo0Hnky1q7SHOaF5D+qvjV6C1PnCTHxaOaNXqkt46B
+	q95sQRH9jPPkhs25iuLDVR/nhoeh7LFqnDWO+P+MxMbOmQ4pfrigbz7lR3hU5vjrAqtP4k6Dtp5
+	hCdXV4ktwbuYkUXO0rx06TFCYIi2tTTmW31ccUQPIY0SF0sIaDAFXZUJ99fMJhdMP
+X-Gm-Gg: ASbGncsIXc7OO9pKpFKbnIrrszBDdQh2v8pYiHnbftuTkQUuxb/of7wAkPiyyS0Vm6t
+	GY6JZwkdLxtEH7mG+6ELPmX0rHXWJqdyB39fLsgpnmZfOw/TJwIImvaUlrOY5n99kda0UMNSP5V
+	5K+Z4EnKn853AVxKNXlxS53q/fEJMlKE/fPl92IN8AZTZPpNJI829ESyM8bG6Z3ro9b0wNPO4tH
+	YlsYGi1IuMad79HaS6UvmZkkVVAOYGrmBZqGR3Zde7WoHObQus4/OxsnUDjXNY4tHCt6GEZIr0T
+	Yx2dPGig+HpXTV01LbcOMrvoWG9JPdKaT4EdbwavL6nXTZt/MwtyzGBkEXbLa2RvrYaaRl+t3xw
+	856Dtl3k4aKYSCWieu/dTfEOwvQ/1ySOQ+dLpaVDlB81p9QQ/HhPY
+X-Received: by 2002:ac8:570b:0:b0:4d1:f8e7:e468 with SMTP id d75a77b69052e-4da4d3161e4mr68602731cf.69.1758836997964;
+        Thu, 25 Sep 2025 14:49:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFV0QG5LOeu0iFHR+g6EDyvJ7468+R0ZRvi5JA5JE2Ojk3+XlsYVWWCMEwvumnpcEUb/6SRhQ==
+X-Received: by 2002:ac8:570b:0:b0:4d1:f8e7:e468 with SMTP id d75a77b69052e-4da4d3161e4mr68602381cf.69.1758836997348;
+        Thu, 25 Sep 2025 14:49:57 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5831665782csm1153941e87.86.2025.09.25.14.49.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Sep 2025 14:49:56 -0700 (PDT)
+Date: Fri, 26 Sep 2025 00:49:54 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Jun Nie <jun.nie@linaro.org>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] drm/msm/dsi: Support dual panel use case with
+ single CRTC
+Message-ID: <gmtcfmanngfrap5fl5622a46nstx662e7kfgvcf3jx7eqrm6qs@tpxarssvehkd>
+References: <20250924-dsi-dual-panel-upstream-v3-0-6927284f1098@linaro.org>
+ <20250924-dsi-dual-panel-upstream-v3-3-6927284f1098@linaro.org>
+ <v3tfzspjck2oqppelx7bmi5uflhs47ixw6tjmq2d7inauzfo7k@gxebj3buyuni>
+ <CABymUCMvczXHM-cOXNko77xDVxX8Q6MA2AEZcGx_Yg6TWosMAg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -115,295 +114,147 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250827-macsmc-subdevs-v2-7-ce5e99d54c28@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CABymUCMvczXHM-cOXNko77xDVxX8Q6MA2AEZcGx_Yg6TWosMAg@mail.gmail.com>
+X-Authority-Analysis: v=2.4 cv=dP+rWeZb c=1 sm=1 tr=0 ts=68d5b907 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=yJojWOMRYYMA:10 a=sWKEhP36mHoA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
+ a=qXU7j4J-Xa07SXBApZgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: IrRu47XYlJZW7WnHbXJA5sdIrnrL-TYR
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI1MDE3MSBTYWx0ZWRfX9ix1Ejj0CvnF
+ pSz8dq3lxsu5LY213Fs8P147pbwSsqUxsNtGI42UkaTvC0AUVA766nQM/j5pDPbWN83xrhf92Et
+ JUjoHWkX1MNNbYLGaqa8m0TJTyZCW5SKj1P9ybHkkcNok7Zodw/mmQBF8cfqqAgOJUBfErjIg7o
+ /dXE8+NDGPu/GShjqZIygEXZCAiKA84+ZJroefSD1YSvY3SW5Pui+B9n04HqTVhxIew5hgaFmi1
+ zrqng+Fg0AZ+kuw2aEoHQ9dvRX93jkHiQ1e/sr0cuNZ8odvd9CjF6aDUybosZoFUsSkz5XB/P3i
+ 2DGngODOa8/EbHZcI3ePatTmXCqIX+TdGNouhQLO4d48iE4u9OoPRS7xn7JrZ6BObkjxdcgHyYP
+ H2zmySuU4xk+WR5WBtn+y6eBrGmE5g==
+X-Proofpoint-GUID: IrRu47XYlJZW7WnHbXJA5sdIrnrL-TYR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-25_02,2025-09-25_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 spamscore=0 phishscore=0 clxscore=1015 priorityscore=1501
+ impostorscore=0 suspectscore=0 adultscore=0 bulkscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509250171
 
-On Wed, Aug 27, 2025 at 09:22:41PM +1000, James Calligeros wrote:
-> From: Hector Martin <marcan@marcan.st>
+On Thu, Sep 25, 2025 at 12:43:43PM +0800, Jun Nie wrote:
+> Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> 于2025年9月25日周四 03:21写道：
+> >
+> > On Wed, Sep 24, 2025 at 11:08:12PM +0800, Jun Nie wrote:
+> > > Support a hardware configuration where two independent DSI panels are
+> > > driven by a single, synchronous CRTC. This configuration uses a bonded
+> > > DSI link to provide a unified vblank for both displays.
+> > >
+> > > This allows application software to treat the two displays as a single,
+> > > wide framebuffer with a synchronized refresh cycle, simplifying rendering
+> > > logic for side-by-side panel arrangements.
+> >
+> > I'd like to understand how is it framed on the overall system design
+> > level. If it's a panel controlled over the DSI interface, it's fine
+> > since we can broadcast commands over two DSI links. What if the panel
+> > (or bridge) is controlled via I2C / SPI?
 > 
-> This driver implements power button and lid switch support for Apple Mac
-> devices using SMC controllers driven by the macsmc driver.
+> You mean there is only DSI data and all configuration is done via I2C/SPI,
+> right? I do not have a real use case so far, but it can be supported in the
+> same way. Panel driver finds the sibling panel via device tree to get the
+> peer I2C/SPI first. All commands are send to every bus in panel driver.
+
+Not quite, because why and how should a normal DSI bridge driver know
+and care about the 'peer' device? How would you describe that in DT and
+in the DRM bridge chains framework?
+
 > 
-> In addition to basic input support, this also responds to the final
-> shutdown warning (when the power button is held down long enough) by
-> doing an emergency kernel poweroff. This allows the NVMe controller to
-> be cleanly shut down, which prevents data loss for in-cache data.
-> 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> Co-developed-by: Sven Peter <sven@kernel.org>
-> Signed-off-by: Sven Peter <sven@kernel.org>
-> Signed-off-by: James Calligeros <jcalligeros99@gmail.com>
-> ---
->  MAINTAINERS                     |   1 +
->  drivers/input/misc/Kconfig      |  11 ++
->  drivers/input/misc/Makefile     |   1 +
->  drivers/input/misc/macsmc-hid.c | 209 +++++++++++++++++++++++++
+> >
+> > >
+> > > At the DSI host level, the frame width for each link must be that of an
+> > > individual panel. The driver therefore halves the CRTC's horizontal
+> > > resolution before configuring the DSI host and any DSC encoders, ensuring
+> > > each panel receives the correct half of the framebuffer.
+> >
+> > >
+> > > While the DSI panel driver should manage two panels togehter.
+> > > 1. During probe, the driver finds the sibling dsi host via device tree
+> > > phandle and register the 2nd panel to get another mipi_dsi_device.
+> > > 2. Set dual_panel flag on both mipi_dsi_device.
+> > > 3. Prepare DSC data per requirement from single panel.
+> > > 4. All DSI commands should be send on every DSI link.
+> > > 5. Handle power supply for 2 panels in one shot, the same is true to
+> > >    brightness.
+> > > 6. From the CRTC's perspective, the two panels appear as one wide display.
+> > >    The driver exposes a DRM mode where the horizontal timings (hdisplay,
+> > >    hsync_start, etc.) are doubled, while the vertical timings remain those
+> > >    of a single panel. Because 2 panels are expected to be mounted in
+> > >    left/right position.
+> > >
+> > > To maintain synchronization, both DSI links are configured to share a
+> > > single clock source, with the DSI1 controller using the clock provided
+> > > to DSI0 as below.
+> > >
+> > > &mdss_dsi1 {
+> > >    assigned-clocks = <&dispcc DISP_CC_MDSS_BYTE1_CLK_SRC>,
+> > >                    <&dispcc DISP_CC_MDSS_PCLK1_CLK_SRC>;
+> > >    assigned-clock-parents = <&mdss_dsi0_phy 0>, <&mdss_dsi0_phy 1>;
+> > > }
+> > >
+> > > Signed-off-by: Jun Nie <jun.nie@linaro.org>
+> > > ---
+> > >  drivers/gpu/drm/msm/dsi/dsi_host.c | 10 +++++++++-
+> > >  1 file changed, 9 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/msm/dsi/dsi_host.c b/drivers/gpu/drm/msm/dsi/dsi_host.c
+> > > index de51cb02f267205320c5a94fc4188413e05907e6..1fddcea7f86547258be18a51a0a3e3f96f6c3838 100644
+> > > --- a/drivers/gpu/drm/msm/dsi/dsi_host.c
+> > > +++ b/drivers/gpu/drm/msm/dsi/dsi_host.c
+> > > @@ -177,6 +177,7 @@ struct msm_dsi_host {
+> > >       bool registered;
+> > >       bool power_on;
+> > >       bool enabled;
+> > > +     bool is_dual_panel;
+> > >       int irq;
+> > >  };
+> > >
+> > > @@ -935,7 +936,10 @@ static void dsi_timing_setup(struct msm_dsi_host *msm_host, bool is_bonded_dsi)
+> > >                       return;
+> > >               }
+> > >
+> > > -             dsc->pic_width = mode->hdisplay;
+> > > +             if (msm_host->is_dual_panel)
+> > > +                     dsc->pic_width = hdisplay;
+> > > +             else
+> > > +                     dsc->pic_width = mode->hdisplay;
+> > >               dsc->pic_height = mode->vdisplay;
+> > >               DBG("Mode %dx%d\n", dsc->pic_width, dsc->pic_height);
+> > >
+> > > @@ -1609,6 +1613,7 @@ static int dsi_host_attach(struct mipi_dsi_host *host,
+> > >       if (dsi->lanes > msm_host->num_data_lanes)
+> > >               return -EINVAL;
+> > >
+> > > +     msm_host->is_dual_panel = dsi->dual_panel;
+> > >       msm_host->channel = dsi->channel;
+> > >       msm_host->lanes = dsi->lanes;
+> > >       msm_host->format = dsi->format;
+> > > @@ -2492,6 +2497,9 @@ enum drm_mode_status msm_dsi_host_check_dsc(struct mipi_dsi_host *host,
+> > >       if (!msm_host->dsc)
+> > >               return MODE_OK;
+> > >
+> > > +     if (msm_host->is_dual_panel)
+> > > +             pic_width = mode->hdisplay / 2;
+> > > +
+> > >       if (pic_width % dsc->slice_width) {
+> > >               pr_err("DSI: pic_width %d has to be multiple of slice %d\n",
+> > >                      pic_width, dsc->slice_width);
+> > >
+> > > --
+> > > 2.34.1
+> > >
+> >
+> > --
+> > With best wishes
+> > Dmitry
 
-I would rename this driver to macsmc-input. I would expect hid driver to
-live in drivers/hid/ and use HID report descriptors
-
->  4 files changed, 222 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2eb23522654dd050262eb06e077587030cc335aa..b3b5220fcd0d4bbef67613c8ee9afa880c0aa45d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2412,6 +2412,7 @@ F:	drivers/hwmon/macsmc_hwmon.c
->  F:	drivers/pmdomain/apple/
->  F:	drivers/i2c/busses/i2c-pasemi-core.c
->  F:	drivers/i2c/busses/i2c-pasemi-platform.c
-> +F:	drivers/input/misc/macsmc-hid.c
->  F:	drivers/input/touchscreen/apple_z2.c
->  F:	drivers/iommu/apple-dart.c
->  F:	drivers/iommu/io-pgtable-dart.c
-> diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-> index 0fb21c99a5e3d1230d7f40f99e0c2d360bbe80e8..a430c50e7f63f245bba56bd526026ec7901cf821 100644
-> --- a/drivers/input/misc/Kconfig
-> +++ b/drivers/input/misc/Kconfig
-> @@ -961,4 +961,15 @@ config INPUT_STPMIC1_ONKEY
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called stpmic1_onkey.
->  
-> +config INPUT_MACSMC_HID
-> +	tristate "Apple Mac SMC lid/buttons"
-> +	depends on MFD_MACSMC
-> +	help
-> +	  Say Y here if you want to use the input events delivered via the
-> +	  SMC controller on Apple Mac machines using the macsmc driver.
-> +	  This includes lid open/close and the power button.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called macsmc-hid.
-> +
->  endif
-> diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
-> index d468c8140b93da5bb537e8a3baea2b90e7bb4229..95b8ebbb9ebbe6f3afc9db724d2ebeba1d75d1a6 100644
-> --- a/drivers/input/misc/Makefile
-> +++ b/drivers/input/misc/Makefile
-> @@ -51,6 +51,7 @@ obj-$(CONFIG_INPUT_IQS7222)		+= iqs7222.o
->  obj-$(CONFIG_INPUT_KEYSPAN_REMOTE)	+= keyspan_remote.o
->  obj-$(CONFIG_INPUT_KXTJ9)		+= kxtj9.o
->  obj-$(CONFIG_INPUT_M68K_BEEP)		+= m68kspkr.o
-> +obj-$(CONFIG_INPUT_MACSMC_HID)		+= macsmc-hid.o
->  obj-$(CONFIG_INPUT_MAX77650_ONKEY)	+= max77650-onkey.o
->  obj-$(CONFIG_INPUT_MAX77693_HAPTIC)	+= max77693-haptic.o
->  obj-$(CONFIG_INPUT_MAX8925_ONKEY)	+= max8925_onkey.o
-> diff --git a/drivers/input/misc/macsmc-hid.c b/drivers/input/misc/macsmc-hid.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..c7cd56e5c17f08936cc623f7d3690f27e05012a5
-> --- /dev/null
-> +++ b/drivers/input/misc/macsmc-hid.c
-> @@ -0,0 +1,209 @@
-> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
-> +/*
-> + * Apple SMC input event driver
-> + * Copyright The Asahi Linux Contributors
-> + *
-> + * This driver exposes HID events from the SMC as an input device.
-> + * This includes the lid open/close and power button notifications.
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/input.h>
-> +#include <linux/mfd/core.h>
-> +#include <linux/mfd/macsmc.h>
-> +#include <linux/module.h>
-> +#include <linux/reboot.h>
-> +
-> +/**
-> + * struct macsmc_hid
-> + * @dev: Underlying struct device for the HID sub-device
-> + * @smc: Pointer to apple_smc struct of the mfd parent
-> + * @input: Allocated input_dev; devres managed
-> + * @nb: Notifier block used for incoming events from SMC (e.g. button pressed down)
-> + * @wakeup_mode: Set to true when system is suspended and power button events should wake it
-> + */
-> +struct macsmc_hid {
-> +	struct device *dev;
-> +	struct apple_smc *smc;
-> +	struct input_dev *input;
-> +	struct notifier_block nb;
-> +	bool wakeup_mode;
-> +};
-> +
-> +#define SMC_EV_BTN 0x7201
-> +#define SMC_EV_LID 0x7203
-> +
-> +#define BTN_POWER		0x01 /* power button on e.g. Mac Mini chasis pressed */
-> +#define BTN_TOUCHID		0x06 /* combined TouchID / power button on MacBooks pressed */
-> +#define BTN_POWER_HELD_SHORT	0xfe /* power button briefly held down */
-> +#define BTN_POWER_HELD_LONG	0x00 /* power button held down; sent just before forced poweroff */
-> +
-> +static void macsmc_hid_event_button(struct macsmc_hid *smchid, unsigned long event)
-> +{
-> +	u8 button = (event >> 8) & 0xff;
-> +	u8 state = !!(event & 0xff);
-> +
-> +	switch (button) {
-> +	case BTN_POWER:
-> +	case BTN_TOUCHID:
-> +		if (smchid->wakeup_mode) {
-> +			if (state)
-> +				pm_wakeup_hard_event(smchid->dev);
-> +		} else {
-> +			input_report_key(smchid->input, KEY_POWER, state);
-> +			input_sync(smchid->input);
-> +		}
-> +		break;
-> +	case BTN_POWER_HELD_SHORT: /* power button held down; ignore */
-> +		break;
-> +	case BTN_POWER_HELD_LONG:
-> +		/*
-> +		 * If we get here the power button has been held down for a while and
-> +		 * we have about 4 seconds before forced power-off is triggered by SMC.
-> +		 * Try to do an emergency shutdown to make sure the NVMe cache is
-> +		 * flushed. macOS actually does this by panicing (!)...
-> +		 */
-> +		if (state) {
-> +			dev_crit(smchid->dev, "Triggering forced shutdown!\n");
-> +			if (kernel_can_power_off())
-> +				kernel_power_off();
-> +			else /* Missing macsmc-reboot driver? */
-> +				kernel_restart("SMC power button triggered restart");
-> +		}
-> +		break;
-> +	default:
-> +		dev_warn(smchid->dev, "Unknown SMC button event: %04lx\n", event & 0xffff);
-> +	}
-> +}
-> +
-> +static void macsmc_hid_event_lid(struct macsmc_hid *smchid, unsigned long event)
-> +{
-> +	u8 lid_state = !!((event >> 8) & 0xff);
-> +
-> +	if (smchid->wakeup_mode && !lid_state)
-> +		pm_wakeup_hard_event(smchid->dev);
-> +
-> +	input_report_switch(smchid->input, SW_LID, lid_state);
-> +	input_sync(smchid->input);
-> +}
-> +
-> +static int macsmc_hid_event(struct notifier_block *nb, unsigned long event, void *data)
-> +{
-> +	struct macsmc_hid *smchid = container_of(nb, struct macsmc_hid, nb);
-> +	u16 type = event >> 16;
-> +
-> +	switch (type) {
-> +	case SMC_EV_BTN:
-> +		macsmc_hid_event_button(smchid, event);
-> +		return NOTIFY_OK;
-> +	case SMC_EV_LID:
-> +		macsmc_hid_event_lid(smchid, event);
-> +		return NOTIFY_OK;
-> +	default:
-> +		/* SMC event meant for another driver */
-> +		return NOTIFY_DONE;
-> +	}
-> +}
-> +
-> +static int macsmc_hid_probe(struct platform_device *pdev)
-> +{
-> +	struct apple_smc *smc = dev_get_drvdata(pdev->dev.parent);
-> +	struct macsmc_hid *smchid;
-> +	bool have_lid, have_power;
-> +	int ret;
-> +
-> +	/* Bail early if this SMC neither supports power button nor lid events */
-> +	have_lid = apple_smc_key_exists(smc, SMC_KEY(MSLD));
-> +	have_power = apple_smc_key_exists(smc, SMC_KEY(bHLD));
-> +	if (!have_lid && !have_power)
-> +		return -ENODEV;
-> +
-> +	smchid = devm_kzalloc(&pdev->dev, sizeof(*smchid), GFP_KERNEL);
-> +	if (!smchid)
-> +		return -ENOMEM;
-> +
-> +	smchid->dev = &pdev->dev;
-> +	smchid->smc = smc;
-> +	platform_set_drvdata(pdev, smchid);
-> +
-> +	smchid->input = devm_input_allocate_device(&pdev->dev);
-> +	if (!smchid->input)
-> +		return -ENOMEM;
-> +
-> +	smchid->input->phys = "macsmc-hid (0)";
-> +	smchid->input->name = "Apple SMC power/lid events";
-> +
-> +	if (have_lid)
-> +		input_set_capability(smchid->input, EV_SW, SW_LID);
-> +	if (have_power)
-> +		input_set_capability(smchid->input, EV_KEY, KEY_POWER);
-> +
-> +	ret = input_register_device(smchid->input);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Failed to register input device: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	if (have_lid) {
-> +		u8 val;
-> +
-> +		ret = apple_smc_read_u8(smc, SMC_KEY(MSLD), &val);
-> +		if (ret < 0)
-> +			dev_warn(&pdev->dev, "Failed to read initial lid state\n");
-> +		else
-> +			input_report_switch(smchid->input, SW_LID, val);
-> +	}
-> +
-> +	if (have_power) {
-> +		u32 val;
-> +
-> +		ret = apple_smc_read_u32(smc, SMC_KEY(bHLD), &val);
-> +		if (ret < 0)
-> +			dev_warn(&pdev->dev, "Failed to read initial power button state\n");
-> +		else
-> +			input_report_key(smchid->input, KEY_POWER, val & 1);
-> +	}
-> +
-> +	input_sync(smchid->input);
-> +
-> +	smchid->nb.notifier_call = macsmc_hid_event;
-> +	blocking_notifier_chain_register(&smc->event_handlers, &smchid->nb);
-> +
-> +	device_init_wakeup(&pdev->dev, 1);
-> +
-> +	return 0;
-> +}
-> +
-> +static int macsmc_hid_pm_prepare(struct device *dev)
-> +{
-> +	struct macsmc_hid *smchid = dev_get_drvdata(dev);
-> +
-> +	smchid->wakeup_mode = true;
-> +	return 0;
-> +}
-> +
-> +static void macsmc_hid_pm_complete(struct device *dev)
-> +{
-> +	struct macsmc_hid *smchid = dev_get_drvdata(dev);
-> +
-> +	smchid->wakeup_mode = false;
-> +}
-> +
-> +static const struct dev_pm_ops macsmc_hid_pm_ops = {
-> +	.prepare = macsmc_hid_pm_prepare,
-> +	.complete = macsmc_hid_pm_complete,
-> +};
-> +
-> +static struct platform_driver macsmc_hid_driver = {
-> +	.driver = {
-> +		.name = "macsmc-hid",
-> +		.pm = &macsmc_hid_pm_ops,
-> +	},
-> +	.probe = macsmc_hid_probe,
-> +};
-> +module_platform_driver(macsmc_hid_driver);
-> +
-> +MODULE_AUTHOR("Hector Martin <marcan@marcan.st>");
-> +MODULE_LICENSE("Dual MIT/GPL");
-> +MODULE_DESCRIPTION("Apple SMC HID driver");
-> +MODULE_ALIAS("platform:macsmc-hid");
-
-The module alias should be removed.
-
-Janne 
+-- 
+With best wishes
+Dmitry
 
