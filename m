@@ -1,99 +1,119 @@
-Return-Path: <devicetree+bounces-221482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AFB6BA03B3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 17:21:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 935C6BA03EA
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 17:22:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4793562C94
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:16:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC0042A08FB
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:16:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBA383043C8;
-	Thu, 25 Sep 2025 15:11:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 670EF2E1EF4;
+	Thu, 25 Sep 2025 15:16:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC9D630C36A
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 15:11:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D066F2C21E7
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 15:16:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758813073; cv=none; b=aZkdUuHp/bX7FhuWACE4S7mVa2AUW19UHVkD4xKSLC2Jo5ujPSnXOaQRVB4VdFDficlr//Qe4a9flJRo4SqgAJlyibs/+V1DDAcFhuJKxjKl6pJuz9X084JB7+793n9mFk5Swe+cw4bCJ98vhpBpQkR6J5DoICoW8CWwWc9Rq6o=
+	t=1758813405; cv=none; b=bp7Z2Jb1/y7HyLE4e0SBSh8rC5RjMuAG8rk91Wq2FiUsa6E7ps7YYrsnESKr2fF27EqWsoFC638YshYjFRXarJxBxCb+2IXxxm/5HWQRvangdn8rlqo2/A0riGUtC3Gi7newmf2a8nTXiGfvS2C0+7zcTaCVVGJS993vxbHwdMc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758813073; c=relaxed/simple;
-	bh=OL7jojLeKQE6iSoWJ81v+KSjAjTKYwtKJwHgcWiKL+Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fwt6KDFDCXRKkqvONRn9YmreXLl3rPskxcft6gqxfxIfM0Hc6krK/syPG56qrb+oDY0RPiMRWPSD1UwpoktyUJPvDSXmWh7eh96T9b1hRtRgvozTRV8wxiIUPZIrzP1IHJd0/RwJ5hSIEH/Ub2hNmR/haTGIx05oupWY92sKH4o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <jre@pengutronix.de>)
-	id 1v1ncM-0003PJ-O1; Thu, 25 Sep 2025 17:10:46 +0200
-Message-ID: <3a0ba202-23e5-41d1-8b0c-5501a6d73bb4@pengutronix.de>
-Date: Thu, 25 Sep 2025 17:10:43 +0200
+	s=arc-20240116; t=1758813405; c=relaxed/simple;
+	bh=m4v2PJnZTWFcPM4vwV03B+DdPrjczoMLEbCJNH11ExA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=L+f38YLkUmyvKclBJjnlwmXeU5uhXdQer7pz2+YwGYM/MW473takByiiZkxRdnrFbSsIbv/fab8+WWgpG6nU41bQD5Ht7p/CnIO/mKmXNciELImubIFQBeFGTmY4fJ2kXp8puKJVS6RbNly5pzycGd7qw0cuf7u7fC0K5cwRheY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-59d576379b9so579674137.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 08:16:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758813402; x=1759418202;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=95UeH5Wrdj2nWFDACiTCmJA7K9iWHeQl32Wj8GxRyR4=;
+        b=sSQBvhM74WMgRNgvhZpBQLn1oGLt2rSCMexlQ1NDJH1dBnIq4gepx3wKxJxsY2RL6M
+         aBcmYqp6YKLymKMcZu2zAPP/h4215IGD2jB7+9uw+weka2qPalrnHuEBo3WDwVPLK3yK
+         hloXTrJho0Q/rEW+uF8jl5GRght9TxgQjiu47zd2MNjlMhs2gaTqjrV13xgd+os5syvi
+         QXX+w496EBaBk4sEfwIQtz2lSguyCNqhTjSnLgWkAJZHIatw5diipJ9flZ8NxB+o6Mwz
+         1mShATRe5ch701GOvmbAYZ1vE2iR/BriQjdWFikRgzWVlXCLPbDGPgAd8nBcfZwTFzDW
+         FzYg==
+X-Forwarded-Encrypted: i=1; AJvYcCXtfUCOfJPYbtJvU/cTIIZLE4e6rwR8+GEVZjM0c4J1PcItlxebjeFFoUF7BvIDm4uwQbpQJZ16HWIm@vger.kernel.org
+X-Gm-Message-State: AOJu0YwuyLYL5/KpKD2duVV2jHq2M20JSgElbr5cVD9x5NjyBbS47/dc
+	CrYdk2+EZ4zJ9dFmXox3a2bNIDuLGFRKbuyl1lAg12y85qFzWaiadIHYBZ17l9jQ
+X-Gm-Gg: ASbGncsGxsMIGZiap9f8Gjpu2Q3vmwmORlFlUbFMjsc1u+voRGWwWZjWqQdszID5Ktf
+	uQViBsRV3tdsTWfrQ9RbbeSGLGE3M3Ys4fLbrIxtcLFpCz9IwWaxg/OuAozSGelScdYAS4CzMu9
+	0Yo1CYJrUfVSiT7zEZcl0GjnnFkUSlZ9JDknw1HuZECjy2lpFZU4AglWRX4j5sh9NCxoonvi4UU
+	YDRgvKZtsiwDs9FUOifIaoWUGBUs/eQxwnmDlQId7w2bzR4O0oHGuMvhZ2Cj3KIxYt15g2RLpES
+	Vw10ayQ9SeyJgLWE2fEsusSVbA4EmYeDTRuHhk8UTJnPCLqOMwRQ0SUAB6mdyVtjCj5EufkzqWt
+	ltvBCDbjkwjovq2fJqZmf90STK85WLlCC9VCgr8d9/ncJ1V36SeIufIuLtm5O
+X-Google-Smtp-Source: AGHT+IESBOSf55tftO5L9ymMME09EHRCW7IRXifH5Fh9AgksMhWbQNxtydW+f0qVMBJBzh9HfVS3zw==
+X-Received: by 2002:a05:6102:161e:b0:4dd:b037:d239 with SMTP id ada2fe7eead31-5acc6fc48admr1519177137.14.1758813402332;
+        Thu, 25 Sep 2025 08:16:42 -0700 (PDT)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-916d17f8d25sm442241241.8.2025.09.25.08.16.41
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Sep 2025 08:16:41 -0700 (PDT)
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-52e6037a484so324259137.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 08:16:41 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV41Kh6N0al8RYtt/1yFHk3g+cdFa4GJW15VCFgz20utabuh32ayik5vcw5yN3tGExzpCJbNXF1XcLx@vger.kernel.org
+X-Received: by 2002:a05:6102:d90:b0:59c:5e29:dd8f with SMTP id
+ ada2fe7eead31-5acce75ae4fmr1755148137.26.1758813393977; Thu, 25 Sep 2025
+ 08:16:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] Mainline Protonic PRT8ML board
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- linux-sound@vger.kernel.org, Oleksij Rempel <o.rempel@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, Frank Li <Frank.Li@nxp.com>,
- imx@lists.linux.dev, Vladimir Oltean <olteanv@gmail.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>, Conor Dooley
- <conor+dt@kernel.org>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
- David Jander <david@protonic.nl>, Lucas Stach <l.stach@pengutronix.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Fabio Estevam <festevam@gmail.com>, Sascha Hauer <s.hauer@pengutronix.de>,
- Shengjiu Wang <shengjiu.wang@nxp.com>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Mark Brown <broonie@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20250924-imx8mp-prt8ml-v3-0-f498d7f71a94@pengutronix.de>
- <175876283065.3268812.10851892974485151512.robh@kernel.org>
-Content-Language: en-US
-From: Jonas Rebmann <jre@pengutronix.de>
-In-Reply-To: <175876283065.3268812.10851892974485151512.robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: jre@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20250907161130.218470-1-marek.vasut+renesas@mailbox.org> <aNVbEvSRCpQSXT4W@shikoro>
+In-Reply-To: <aNVbEvSRCpQSXT4W@shikoro>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 25 Sep 2025 17:16:22 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV9N-Q4uJXMKg095LD-mFvZv_yU_5jppZM6TZ3xh08zpw@mail.gmail.com>
+X-Gm-Features: AS18NWDEqoQdloQzIjh0wjgWDVcokcQ2jeIfuog0D3JY4DANF_f6TtXyGtHRpVI
+Message-ID: <CAMuHMdV9N-Q4uJXMKg095LD-mFvZv_yU_5jppZM6TZ3xh08zpw@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: renesas: r8a779g3: Add Argon40 fan HAT DTO
+ to Retronix R-Car V4H Sparrow Hawk
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>, linux-arm-kernel@lists.infradead.org, 
+	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+Hi Wolfram,
 
-Regarding the warnings:
+On Thu, 25 Sept 2025 at 17:09, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> On Sun, Sep 07, 2025 at 06:10:53PM +0200, Marek Vasut wrote:
+> > Add DT overlay to bind Argon40 fan HAT, on Retronix R-Car V4H
+> > Sparrow Hawk board. Fan RPM control and full RPM on reboot has
+> > been tested.
+> >
+> > Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> > Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+>
+> As the dependencies are in, can we have this patch in -next now, pretty
+> please? :)
 
-On 2025-09-25 03:18, Rob Herring (Arm) wrote:
-> arch/arm64/boot/dts/freescale/imx8mp-prt8ml.dtb: codec@11 (asahi-kasei,ak4458): '#sound-dai-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> 	from schema $id: http://devicetree.org/schemas/sound/asahi-kasei,ak4458.yaml#
+Only after v6.18-rc1...
 
-Updated bindings have already been applied to broonie/sound for-next.
+Gr{oetje,eeting}s,
 
-> arch/arm64/boot/dts/freescale/imx8mp-prt8ml.dtb: isp@32e10000 (fsl,imx8mp-isp): 'power-domain-names' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> 	from schema $id: http://devicetree.org/schemas/media/rockchip-isp1.yaml#
-> arch/arm64/boot/dts/freescale/imx8mp-prt8ml.dtb: isp@32e10000 (fsl,imx8mp-isp): power-domains: [[77, 6], [77, 1]] is too long
-> 	from schema $id: http://devicetree.org/schemas/media/rockchip-isp1.yaml#
-> arch/arm64/boot/dts/freescale/imx8mp-prt8ml.dtb: isp@32e20000 (fsl,imx8mp-isp): 'power-domain-names' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> 	from schema $id: http://devicetree.org/schemas/media/rockchip-isp1.yaml#
-> arch/arm64/boot/dts/freescale/imx8mp-prt8ml.dtb: isp@32e20000 (fsl,imx8mp-isp): power-domains: [[77, 6], [77, 4]] is too long
-> 	from schema $id: http://devicetree.org/schemas/media/rockchip-isp1.yaml#
+                        Geert
 
-This is an issue in imx8mp.dtsi, introduced in commit 9c60bc7f10d0
-("arm64: dts: imx8mp: Add pclk clock and second power domain for the
-ISP").
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Regards,
-Jonas
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
