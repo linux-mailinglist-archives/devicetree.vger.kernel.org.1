@@ -1,149 +1,142 @@
-Return-Path: <devicetree+bounces-221396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED0E8B9F447
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:34:06 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B036B9F483
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 14:38:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 126707A47F6
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:32:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B2C8171615
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:38:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51926261573;
-	Thu, 25 Sep 2025 12:30:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB87B19EEC2;
+	Thu, 25 Sep 2025 12:37:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VmGVRa9Z"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gwbPt65L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A859325FA05
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 12:30:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51C20282F1;
+	Thu, 25 Sep 2025 12:37:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758803456; cv=none; b=XmTz89n10RDtoq0z/0Rm4JQN7ba7QQJ+K7pCKLghmXglh0NC6D8PRCYkbOPnVtSZZhenhYNDbYvL7VdrL9fFbwUcGH8ngGIqoqXVWhTzjGsxNBEMM21vNABSgvXEr7WuQQHU0LdLZYnBfyieOnTh0Wv/xoe39+zwGD/fmXfH4mU=
+	t=1758803877; cv=none; b=Iyz4CXqu91rwNrtucNuAbFjuhdDcXESV/alv2sW6qqQDsc0ymbu+77LHZjuYJIKJkczlcRemIKqa8zVkGNqqcgZnlLAgLZTiax73asIHA24zmvNeEtPMErRKeaRmLxAIhaLjM2Wjh35WupU4W55k+WhhFYLYVCr7A4N1OAw4Gjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758803456; c=relaxed/simple;
-	bh=7ew/W+Ffe0KBAYyes2vO95JQpX9yAe8JQiojzZrabPg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TZlSyWI2kQsa+19oFnU36KdwIGXJFaI4oIxfMZUWy2OREiAO9tm6Zs7U98k0qO1e46XaFMIOaKDE3Y1/Vz2kLbQB3WUxlrslKV0VK28FNmSLKt/jEU4m/iRMWgL6dKJ18m8JuRr05aFD9wl+dUxdQNCuZin3wH3I+ig6O8GxdLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VmGVRa9Z; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P9q3vx025366
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 12:30:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	a2+3a6uGlyRN5xorj47QcSLNbjRjLn7ScwNgiGItbrU=; b=VmGVRa9ZMQGHh/qi
-	OPIKsOoEpllEfHV0ggtrq/e5HN2FVto6jE+R3L0OnzVIq7u3WK+s/sJq7VDoaN8+
-	TCW0BlzWoJFWpoTksr7OsDq6iOzbBsEY4Oa4JRSHn0O6LcYql58XrTYfVKPjEdOz
-	5ZSzyXrlw7FQsBRTCPs0muhFo49uyhMQt4QPcdm0BjPR98nNPJMEDHhndOuHrSJc
-	MgFjMhNsxfATVvGK+nKFjCK51g3HoBFvGNOX7c53Tq+pq7XINE7CYUFOLzM3dhtu
-	YJWi3aq52Vre4vuTCVnG5qh4rJw55YIXr37+EcFYNaoa2wNiYMqkiRljbM2aVFfu
-	JjEndQ==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 499hyf0cv4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 12:30:54 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8572f379832so29766485a.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 05:30:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758803453; x=1759408253;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=a2+3a6uGlyRN5xorj47QcSLNbjRjLn7ScwNgiGItbrU=;
-        b=tOgQnAftsUbhnlIg0RoA9mc47vxdQUTS2BotH5Qg4DIN+zcu6h3JvAY6eqnnBktw+Q
-         IfTcMe04OWFQY73oa84CF3lAAHpZE8qfKevvCtEg+SCMIGkS5xpX9ltSglUHla5BPRLo
-         rpI2SYTpyQSOIO8q1AkH16tNrsx/wx7L4M5h1pOvdDJ2wmpd/gZIBFJOEyXu9cY5WbbH
-         Sv1XktHODB0EhGG5v/pr/3zyBFhpkCE1imRijmMzwLBsk+ktyI7V67tPpJY32kiHtDkl
-         vGp5ZlwTwauW49s/iR73EBZOFuUsUdFmCJBGeXS1RQHm6NT1+TY+YypB/OnvFt6QLn0N
-         wwtA==
-X-Forwarded-Encrypted: i=1; AJvYcCWhcEWwRBoSOPnDRfCM8ycmR/fSOJVmCWvRygl5xeXSfEmcAsyqg1TOg+vlPnt+0C+FE3ljV/Rfr6Ha@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzrgx/k506Wc46cnAqilyba/n+kbD001uHt6uOxZsBs5lwHgqt8
-	MGl49QxzX/DtA64yVa7ICAtcgWb1t9XjTjEQzTougaQGY+XECNzom+79l7kMUHRDtHWiIiGlfAy
-	RQD872d6g9F0w1gtBx5btV9qmKYNA9mITexxQnoN81KKvu323EQLLhnHLW+APxO4P
-X-Gm-Gg: ASbGncuRQN3bSiQcJFX+Tsc834j+v+ird6juP7t7Xx5kId0WdjtPmpqDhxs43stXktv
-	cBo+P63QIBlAmD6UyvmrYE1wWvZLQkRE+84yhnxvKBmxPKKITlB6A2Di/Hp1w6y149uVh5ljGdN
-	Aknm2uzROSiNj76UL4XltZKAB99lhBvUfkzlhnc/v1LNoO7XeyHrj5Sj+/HFW+mqGqX6PVx7fJG
-	la3ZGASnD5dykX9uK/HPZkGfxdzwm9MXV9j/Phhacl3OcV64YPBOL5Fl9BXLTBiHG4W8JfX5aIU
-	QrwJ/pBgNzAvBIMNtRD+z+lNbsuzk696LfUPegLvRVkDgo0RnTSsMc0Y5eopDtt41lZedIOHATt
-	dGihmp1409fRMREMvLYtahA==
-X-Received: by 2002:ac8:5d08:0:b0:4d7:9039:2e87 with SMTP id d75a77b69052e-4da47c063ffmr29352301cf.1.1758803452587;
-        Thu, 25 Sep 2025 05:30:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG6EOmvQw8+zyiD5JPVWFExQhq7VAwgLKd4zuEmNy7aNwJAHke/OZ1IRA4eTgQWRp3Z0UmA9w==
-X-Received: by 2002:ac8:5d08:0:b0:4d7:9039:2e87 with SMTP id d75a77b69052e-4da47c063ffmr29351821cf.1.1758803451871;
-        Thu, 25 Sep 2025 05:30:51 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-634a3af5721sm1121368a12.43.2025.09.25.05.30.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Sep 2025 05:30:51 -0700 (PDT)
-Message-ID: <b25e5df1-8481-41fd-851c-5463389c0689@oss.qualcomm.com>
-Date: Thu, 25 Sep 2025 14:30:48 +0200
+	s=arc-20240116; t=1758803877; c=relaxed/simple;
+	bh=uJpTwfQeoXhfqX5HGJ5UH/C36Ak30a35D0FJrYV9/VQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pRowJJiTF2W0PiubN2SGCU8CcOd9m498ER7CRilgyleMhu0uq5Gg43xI89GMTRb37I0FlcSuDievBPHf//lveyKdMWeaWcuJ7LmEF0YZLw/wcRW/7M3Oj+xPravaeZM9kPS0/+7JE+GzXBb5MpMimoH8/jAbIu+ckk7X5zCL1Ak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gwbPt65L; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 9C9231A0FCF;
+	Thu, 25 Sep 2025 12:37:52 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 70D366062C;
+	Thu, 25 Sep 2025 12:37:52 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 74EED102F17E6;
+	Thu, 25 Sep 2025 14:37:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1758803871; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=sOL16npzmbnhBXpX6q4u5OmdL1g7hGCfAy2JMJ9t0DA=;
+	b=gwbPt65LpuytZkyBCZRGXliUd8I37qWjorY264kpH4VcowgPHXxJBIPeqFgJeZhCj929Of
+	MMe0Gw3Wzb7tbyZVek/S145hBq3fp6Pw1pP36PfZzNqOTgdweTPb12h2EoeYlrBoOVN5F1
+	NHLGbwCnUQPZPYmjE2jryswFpSVNmTd8L+/eoI3ObPrlSMtApk35wq+VUY75CSrMsxf2Es
+	g1lna+XmwVglBDUELbfgBPEapRw0pFoh/lVgQYrQDrtaYdY7pMWPd7mfWH6hfG71JDJD0k
+	7EqXUzg05OcyS6WMtvJ851xZTX6QQOmRL0cu7C5eLNpzaDon4uV2i6Xj+1Y2JA==
+From: Romain Gantois <romain.gantois@bootlin.com>
+Subject: [PATCH v2 0/5] Add support for the LTM8054 voltage regulator
+Date: Thu, 25 Sep 2025 14:37:32 +0200
+Message-Id: <20250925-ltm8054-driver-v2-0-bb61a401a0dc@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 18/20] arm64: dts: qcom: kaanapali-mtp: Add audio support
- (WSA8845, WCD9395, DMIC)
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
-        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
-        yijie.yang@oss.qualcomm.com,
-        Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
- <20250924-knp-dts-v1-18-3fdbc4b9e1b1@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250924-knp-dts-v1-18-3fdbc4b9e1b1@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: _1dcKdSFPEveiovqFm-miUiu4NV59R2R
-X-Authority-Analysis: v=2.4 cv=YMOfyQGx c=1 sm=1 tr=0 ts=68d535fe cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=3dHrxlFa4xLiy63zdp0A:9
- a=QEXdDO2ut3YA:10 a=zgiPjhLxNE0A:10 a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIwMDAwNCBTYWx0ZWRfXym3uT91YAHpM
- myeQ/9uTnIm2T6O/z5YJo8UtWHsYgUBM8FGUjwVoVvhyUQHFqygFW+cdMVr6x50hJtnSkMCrVHE
- aPvbjdizuyAyN9O/NFdNNQkXmXejFYApBAAsdwAnBSNYCFlIKPqTGWBmlRiaXHZmbrJiermnf9G
- Fu4/+AoYtUloLfwtaXshwUlrkOmlEVJQ46ltPnmTJzEtfBOeEy1Zl7PnkxU0FsEoNyKyMFTqvdp
- HToxZ3HiXgky2dWh9Z9VE5uRqRvCOmchXzSF4c9CsM8fyJwr/5z2utd5884wWaaFY+w7K0vrSWy
- 6u/yknGGzya27k5+w/AEXCTRb+exFPgQV/9C2E8ip0TjE6T+vUaDPfKegA/ZjskfNUHa+xSUW9H
- woDE7PsW
-X-Proofpoint-ORIG-GUID: _1dcKdSFPEveiovqFm-miUiu4NV59R2R
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-25_01,2025-09-24_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 bulkscore=0 adultscore=0 priorityscore=1501 spamscore=0
- clxscore=1015 suspectscore=0 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509200004
+X-B4-Tracking: v=1; b=H4sIAI031WgC/13MywqDMBCF4VeRWTclE+Otq75HcaFmrANqJAmhR
+ Xz3pnbX5X/gfDt4ckwebtkOjiJ7tmsKdclgmLr1SYJNalBSFbJStZjDUstCC+M4khOIw9jpSqM
+ sC0inzdHIrxN8tKkn9sG69+lH/K4/qsHyn4oopBiNpqpGk+d9c++tDTOv18Eu0B7H8QHrAdjyr
+ gAAAA==
+X-Change-ID: 20250728-ltm8054-driver-11cfa4741065
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>
+Cc: Hans de Goede <hansg@kernel.org>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-iio@vger.kernel.org, Romain Gantois <romain.gantois@bootlin.com>
+X-Mailer: b4 0.14.2
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 9/25/25 2:17 AM, Jingyi Wang wrote:
-> From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
-> 
-> Add support for audio on the Kaanapali MTP platform by introducing device
-> tree nodes for WSA8845 smart speaker amplifier for playback, DMIC
-> microphone for capture, and sound card routing. The WCD9395 codec is add
-> to supply MIC-BIAS, for enabling onboard microphone capture.
-> 
-> Signed-off-by: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> ---
+Hello everyone,
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+These patches depend on the following series from Hans de Goede:
 
-Konrad
+iio: processed channel handling fixes + Intel Dollar Cove TI PMIC ADC driver
+(v4) https://lore.kernel.org/all/20250811155453.31525-1-hansg@kernel.org/
+
+This is version two of my series which adds initial support of the Linear
+Technology LTM8054 voltage regulator. The driver supports a fixed voltage and a
+tunable output current limit using a DAC-controlled pin.
+
+I'd say that the only unusual part of this series is the usage of the IIO
+consumer API in a regulator driver. I think this makes sense here, since
+the regulator driver has to access a DAC to read/set the output current
+limit.
+
+Since the regulator driver writes microvolts and the IIO consumer API takes
+millivolts, the reads and writes to the CTL DAC have to be scaled by a
+factor of 1000. Scaled reads are already supported in IIO, but scaled
+writes are not, which is why I've implemented them in patch 2/4.
+
+Please let me know what you think.
+
+Thanks,
+
+Romain
+
+Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
+---
+Changes in v2:
+- Refactored iio_convert_processed_to_raw() to match what was done in Hans'
+  series.
+- Added unit tests for IIO division.
+- Fixed coding style issues and removed unnecessary casts.
+- Link to v1: https://lore.kernel.org/r/20250916-ltm8054-driver-v1-0-fd4e781d33b9@bootlin.com
+
+---
+Romain Gantois (5):
+      regulator: dt-bindings: Add Linear Technology LTM8054 regulator
+      iio: add processed write API
+      Add kunit tests for iio_divide_by_value()
+      regulator: Support the LTM8054 voltage regulator
+      regulator: ltm8054: Support output current limit control
+
+ .../devicetree/bindings/regulator/adi,ltm8054.yaml |  73 +++++++
+ MAINTAINERS                                        |   6 +
+ drivers/iio/inkern.c                               | 120 +++++++++++
+ drivers/iio/test/Kconfig                           |  12 ++
+ drivers/iio/test/Makefile                          |   1 +
+ drivers/iio/test/iio-test-divide.c                 | 212 +++++++++++++++++++
+ drivers/regulator/Kconfig                          |   9 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/ltm8054-regulator.c              | 235 +++++++++++++++++++++
+ include/linux/iio/consumer.h                       |  36 ++++
+ 10 files changed, 705 insertions(+)
+---
+base-commit: bd89f4b281945a63659687ef5c70c4442d7e4940
+change-id: 20250728-ltm8054-driver-11cfa4741065
+
+Best regards,
+-- 
+Romain Gantois <romain.gantois@bootlin.com>
+
 
