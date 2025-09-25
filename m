@@ -1,139 +1,127 @@
-Return-Path: <devicetree+bounces-221433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFB01B9F986
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:35:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDD4AB9F995
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 15:35:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A1673878EB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:35:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C7DC3A56A2
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 13:35:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A70542620F5;
-	Thu, 25 Sep 2025 13:35:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67CB326D4E5;
+	Thu, 25 Sep 2025 13:35:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="E+owLuDL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JslnrxGq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com [74.125.224.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05F8C261596
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:34:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43E62265CBB
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758807301; cv=none; b=EBvEhWpffJfzTi9SYmmDXyE4GDYnEQmoPio3ubOEm/EwkY9HT641Nwc5GDAYueXSruq218TvcRKz7f9xzVnR+LgjYmbocyy/Xoe6+kff0vWhhlI+ePK/ybZi16LFBymvKMndL0nPIBDgSHwApMahxaMmZScIlgvC4IDdhsp8JIQ=
+	t=1758807305; cv=none; b=hISbFCcG3Kd06b1mCzD9/ABHFzUqoWfXBl7+wbu+yTSAl7wH315tfma0SEx6Ek9etFthJ8CT0uG3C+HnB7BGPyMXXvIXZyZntO/zIaYXWMPFeVL+kBn2gmi7/127q5ozlqpFC1tE5VqNvnmeF5JbG6dp2L9+VyyBLRK9A/ai9sU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758807301; c=relaxed/simple;
-	bh=YDVkNcZQalJ2j010y9V0+C5w7+uerTdqWyV+aIv2oSE=;
+	s=arc-20240116; t=1758807305; c=relaxed/simple;
+	bh=U0zBqrOVz2aVyIkOdhN/c5ZsuFUDGjUs9oZhG9G8cd8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pQ5Oum/gDzazzaPQOfP2Q/6WdGW2vTNDRlXBvrJQnk2R1ISxo715IQAeoNu57tQDpb7EQaVvLsdaMnDpewmPRdXQG2WWxdKMFi/+RUp/vvP3dvIQaG0Ey2n5hILvMmqTiaeRXsCrRZzbDXR/kWh3Qfx59KCUYrRQMnq30YuDIdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=E+owLuDL; arc=none smtp.client-ip=74.125.224.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-6352ba3c35cso375004d50.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:34:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758807299; x=1759412099; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BtNjzQKudYD0ky97v1743lPf/WrnfS9KJCemG7a+/I0=;
-        b=E+owLuDLYt4n1hzwq57nBBJ8yA0AlfUKkNZEFQHc09LedRYkZtyTwMec/67yXstYf1
-         3Me1GFSvw7XqEf1n/I0rwC39f/TmdwoTaGy/Q9ANGAyknZLL+LzBvCvipuIeUUdZsoTA
-         v3KqJx4O9P+004pW9tK4QuB4Ze6DF0lVi4a/ZAJi/1cXio62UYexRjOgihOLL47GfiUY
-         A1QShO/ImHlRxq9eAYbYqLxe2pcOusl9i9qK5IM2Ix7Y8sT7d1MtN3kdUarMNDw2oNiF
-         a3VxvfhMgkS4D0GTS4JjV5RpnnebLHkbmAig7F1PPCqyhdOax2Jj3CpI8IRUugX75Bgq
-         o9MA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758807299; x=1759412099;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BtNjzQKudYD0ky97v1743lPf/WrnfS9KJCemG7a+/I0=;
-        b=do7OkbGtGD+VIziLD+uO/LYqKWEIvpXrjoV7gF3HYlodwDwzyk1uunkvfd/Xw4ntDw
-         u60st48yl3JmaWYH+RK/ui4bGOmzD7n031hStY5uBOkhR1vNPjewN4fYOfWNoiuHMzgM
-         g7a5Xc/WER/52vbtgLhxmYDtjRwD8LD0VePiKz5HgTyIZ8iSItbkS7k6vdJd5vtc0MuP
-         lEka0m3HXNHnT4ljLrzHuuBgNBY8CzQe9e8OC2VQm2br1aNBL20ZFxBHMfLPyT1uMeY+
-         EdKbiDU7lstPEf2phSqgHLB1yys12NUKQniNNgjxiFpqGwQ1GEttwsp8nco+MsvT9rTw
-         Dv9w==
-X-Forwarded-Encrypted: i=1; AJvYcCWHLLjhapwnPcfzCpS/205t/RBChB0YeQFmn+0XbLCLsxQIhkxT9nPD3zwZNgRSIh71XikR/vDa+BVN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyj2dFJgdJcXKxi/mwwYVGMdNcMEhu4nzPTOb1LbBpv5+J2dshc
-	usWML6ziCjjew76aOdoKkkhzl/fBh22UuDC8kkHaMrQZdaV/kHsikQCdDiUkn587TGk3Np3rMms
-	xJk8bBAhvesF6GrDtE0i8mh0sSvyfLYXjU/UbSYRIDQ==
-X-Gm-Gg: ASbGnctgneNDP5KnK69ifHQlHAMP1p0HlQqNLeSzyWLawpfejKsyOum7Bx1+j2gtv8V
-	UOTs1ttw4EfWlQCzvFskAR6nz/x+W8tHvsqzQBZZFJg1/+y8mghNcxd+SKZ8X4BYTaf6g6W0fGP
-	1bnjMCdJvEssEyxH0nkS3wOtjlzKfy6K+c3J3yVHT0sfR9toH37gcHqAh5t7hiCt2pkduB0PMCS
-	71d+NJY
-X-Google-Smtp-Source: AGHT+IGimO2Q23ZQRuh/31hfKH0M0gM5VQ+Kb4vJFyOlHv/p/Vvr462F0FI6JqMOIO0OkAJ4FQSVqaMbzzoyb5VvJmI=
-X-Received: by 2002:a05:690e:240d:b0:636:d335:2515 with SMTP id
- 956f58d0204a3-636d335263emr142033d50.3.1758807298695; Thu, 25 Sep 2025
- 06:34:58 -0700 (PDT)
+	 To:Cc:Content-Type; b=eFd+umhzM655nv+vsyxDdIEf8rg1aaS7FuzuHbuFQAUF4Mp/5n8iCm9EGlrlqwYSioB/rIavXhLUt0w160m0Yke1sBLauYY1eAXPde7dx/RVb3xSXrkrmL/xe5PtPFf8uRm35knykAPNZOia+CanDEM+C3H7oqxPUfG8Ma6zvwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JslnrxGq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7ED6C113D0
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 13:35:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758807304;
+	bh=U0zBqrOVz2aVyIkOdhN/c5ZsuFUDGjUs9oZhG9G8cd8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=JslnrxGqC5YDchzPfgAZdyZrZgtviyOLpf4A8RzMq84c78iYViknuF2beVq+xKQcl
+	 pt1l/eLOt6ThyA4pwBQXoVYEzzbibKihOg2E7wWv5bYvNICV0+RrwIipzKfDN4nYYB
+	 sK3FQISCI+IXTgXSSRkCLj2kdel+ayYwsSTu9XWndFYynTAPselJj4+eyObo6cy/SH
+	 ic+uKvU0LfEYoHyZsVSoqnqdzowbL5rW8eyv2iu3Wf6b9CuWtNMYqxiixyhz8SYR+K
+	 z0bX/YKVN11y5visySyyoc4v0VAeuqh5ASxbLlFgpBTt+KEpWWahNB5J5z7MBkf9oR
+	 VlIaw18Bas/9g==
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-24457f581aeso10536305ad.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:35:04 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXs0m9nIjt0t/LeA/kxcDv8jFNJGZwoX22wn6RMWg9sKsFnWdWjxewI/9TK+6HO6TOzICfjk9s79U1s@vger.kernel.org
+X-Gm-Message-State: AOJu0YylVeK4qUpxNvN0RMtJZiZ5uCcCyVp5ngk8wQsnxmuWvYxPeOy4
+	BcD9N9PkZdl3Z2BEaiGpI+9v+u8fDcHY63Hz7MpfKw1NGcn9bNAr8zaeBcmcl8hoX4ksRl5/XSu
+	CYgHiC6GWic3SEy/CzAAqTaVzsrKLFiQ=
+X-Google-Smtp-Source: AGHT+IF2gfRSMbhEJa8nvrh+JpQ+A2ctdyaVqt5YxJDoqNHuurr02R6K0ugrO5eiCQDnx8VVAz7RofYZkW98Xl+uAW4=
+X-Received: by 2002:a17:903:2c9:b0:259:5fdf:d79c with SMTP id
+ d9443c01a7336-27ed4ad65e1mr32294745ad.51.1758807304473; Thu, 25 Sep 2025
+ 06:35:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250925090412.2068216-1-yangzh0906@thundersoft.com> <20250925121155.2401934-1-yangzh0906@thundersoft.com>
-In-Reply-To: <20250925121155.2401934-1-yangzh0906@thundersoft.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 25 Sep 2025 15:34:22 +0200
-X-Gm-Features: AS18NWBTeJE3De2V6Q2_nyOlyupwgaA4ybsnxBjHtD7xymMmZJcjw6ksT3sbAGs
-Message-ID: <CAPDyKFp3onTDGgygvOrK-G40w4mSx4S5=PbdZ+26hsQ+nPVRSA@mail.gmail.com>
-Subject: Re: [PATCH 0/9] arm64: introduce Black Sesame Technologies C1200 SoC
- and CDCU1.0 board
-To: Albert Yang <yangzh0906@thundersoft.com>
-Cc: arnd@arndb.de, adrian.hunter@intel.com, bst-upstream@bstai.top, 
-	catalin.marinas@arm.com, conor+dt@kernel.org, devicetree@vger.kernel.org, 
-	gordon.ge@bst.ai, krzk+dt@kernel.org, krzysztof.kozlowski@linaro.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-mmc@vger.kernel.org, robh@kernel.org, will@kernel.org
+References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
+ <20250925-v3_glymur_introduction-v1-14-24b601bbecc0@oss.qualcomm.com>
+ <CAJKOXPdQH2jXcEY6ZpkmixvUt26SqdzYgDAiJ3RHMG7xkPyi_A@mail.gmail.com> <lcbcjpoazpwbltedkiqlw4l3aomwvi3qsfwvmwghb6uf5wvnme@kh7qdpunfuwr>
+In-Reply-To: <lcbcjpoazpwbltedkiqlw4l3aomwvi3qsfwvmwghb6uf5wvnme@kh7qdpunfuwr>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Date: Thu, 25 Sep 2025 22:34:52 +0900
+X-Gmail-Original-Message-ID: <CAJKOXPcyhDdFW_u4YQLiHYj8gM7wYB-LOmB_PJs+5OOgn8WZFw@mail.gmail.com>
+X-Gm-Features: AS18NWC4qEyHuPYqOFoEoG1CnyL6J8LaE_ysvRuMlpyTnvkn7ftx1v5-lrNiYqU
+Message-ID: <CAJKOXPcyhDdFW_u4YQLiHYj8gM7wYB-LOmB_PJs+5OOgn8WZFw@mail.gmail.com>
+Subject: Re: [PATCH 14/24] arm64: dts: qcom: Update the pmh0110.dtsi for Glymur
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-On Thu, 25 Sept 2025 at 14:12, Albert Yang <yangzh0906@thundersoft.com> wro=
-te:
+On Thu, 25 Sept 2025 at 22:14, Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote:
 >
-> On Thu, Sep 25, 2025 at 05:03:57PM +0800, Albert Yang wrote:Subject: Re: =
-[PATCH] splitting SoC and MMC parts
+> On Thu, Sep 25, 2025 at 05:08:54PM +0900, Krzysztof Kozlowski wrote:
+> > On Thu, 25 Sept 2025 at 15:34, Pankaj Patil
+> > <pankaj.patil@oss.qualcomm.com> wrote:
+> > >
+> > > From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> > >
+> > > Add multiple instance of PMH0110 DT node, one for each assigned
+> > > SID for this PMIC on the spmi_bus0 and spmi_bus1 on the Glymur
+> > > CRD.
+> > >
+> > > Take care to avoid compilation issue with the existing nodes by
+> > > gaurding each PMH0110 nodes with `#ifdef` for its corresponding
+> > > SID macro. So that only the nodes which have the their SID macro
+> > > defined are the only ones picked for compilation.
+> > >
+> > > Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> > > Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/pmh0110.dtsi | 66 ++++++++++++++++++++++++++++++++++-
+> > >  1 file changed, 65 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/pmh0110.dtsi b/arch/arm64/boot/dts/qcom/pmh0110.dtsi
+> > > index b99c33cba8860f1852231db33a127646c08c1e23..4a5c66e5c9fbc35cedb67601f4568844dc41fbea 100644
+> > > --- a/arch/arm64/boot/dts/qcom/pmh0110.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/pmh0110.dtsi
+> > > @@ -7,6 +7,8 @@
+> > >  #include <dt-bindings/spmi/spmi.h>
+> > >
+> > >  &spmi_bus0 {
+> > > +
+> > > +#ifdef PMH0110_D_E0_SID
+> >
+> > NAK
+> >
+> > I already explained on IRC in great details why.
 >
-> Hi Arnd,
+> A short summary or a link to a channel / date would be nice in order to
+> include other people into the discussion.
 >
-> I may have missed an important detail in my previous note. If I split
-> out the MMC-related patches and submit only the SoC parts first, I
-> cannot validate the SoC on real hardware: both the kernel and the root
-> filesystem live on the MMC device. Without the MMC stack (DT bindings
-> and the controller driver), the board does not boot to userspace, so I
-> cannot properly verify the SoC/DT changes in isolation.
 
-At least to me, I would not consider that a problem. As long as you
-can test the pieces together "manually" that's fine, I think.
-
-I mean, the platform was not supported in the first place, so it's not
-like we would be introducing a regression - or break something, right?
-
->
-> Would you prefer that I:
-> - keep the MMC pieces in the same series for initial bring-up; or
-> - validate everything locally, then send only the SoC/DT parts first and
->   follow up with the MMC binding/driver as a separate series?
->
-> I=E2=80=99m not entirely sure which approach best matches the normal work=
-flow,
-> so your guidance would be appreciated. I can proceed whichever way you
-> think is most appropriate.
-
-I think doing things in parallel would be the best/fastest way
-forward. Validating locally and sending the pieces upstream to
-different subsystems.
-
->
-> Thanks for the review and suggestions.
->
-> Best regards,
-> Albert
-
-Kind regards
-Uffe
+Of course but:
+1. You were there so maybe you remember the arguments, and:
+2. I'm offline, using phone, not having laptop, replying during my
+personal time off just before merge window so any emergency time
+should be spent on important matters instead these two huge patch
+bombs adding such usage I already said: NO, don't do this.
 
