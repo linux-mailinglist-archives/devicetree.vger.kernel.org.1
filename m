@@ -1,417 +1,252 @@
-Return-Path: <devicetree+bounces-221262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3B2FB9E279
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 10:58:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB9C6B9E282
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 10:59:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 657DD38281F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 08:58:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 760434A6866
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 08:59:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A3ED2797B2;
-	Thu, 25 Sep 2025 08:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FEA427815E;
+	Thu, 25 Sep 2025 08:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VtgeGXkH"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IKktIhKo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F27BD27FB26
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 08:57:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79BE02727F0
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 08:59:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758790668; cv=none; b=jPNIawIxa/Vrfxl3ObvA7rb3sSaY+DP0Myq2eaigI37pJZfLE2MnqrA215iO71SAVgGSWQUoKphQykqJuKGYLl57HKd34xN23SQJkB8+imweykTLyk1iFUgnvFNm20/p7caOo4HKTZ8QzbNNzVtCX4x2rrxjtbyJq2ie+da3gnE=
+	t=1758790759; cv=none; b=iUWKiTKqb4t2cdg5e94St15yTg6XM0RNW61mz2xhdQlu4tPDerl0VUzow2X0f3vj41VXg88lHxulBxVegy7rRMRtgGpGhgd9sVHolYoV2FnQCpI9UeB4lhZ6uGPzz7Cs6vYXd4Ovsj3gLfnDlTJgVTcM49WMv0bUxc50Y2lxOrg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758790668; c=relaxed/simple;
-	bh=s1IvWBoDghRdTxNI9ntahbtNb3ceyjypNF92BFpPstg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RnJaUufPqYTwBSgiz82Lhn9RoiIt1F/6yYOrKQWmIab2qh4xBO4s1MnVti7opw/sHQlbwwbooJml1hAnTV4f6u0rveZfpdmuGW/Z33X3TWvA82reW2GdtyGK/TL19w/hnzAUDX5RYCdIHEdwnAyooeaPlJZDHPNfGn+LIenQn1c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VtgeGXkH; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-61a8c134533so1209461a12.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 01:57:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1758790663; x=1759395463; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0gyeemM5bv0/cwHb/gRYJJo/u8gfbvqaOjqlOCWg4JE=;
-        b=VtgeGXkHItiSlP0KD3DKgSpuIYMSMcbjRUlyNQ/C8xStSBJF/HLkmsdAoMYdZhEb6q
-         hn6UJH9x76C3uGBGbGEVCDVD9FkhdAW95q5eF1PJE7Wtfx0n3gNCVRc/+11Mr4Wxtu/d
-         gaDUQ30i6e8bqHiuVgKR3jzpR4T5qf897jNk6Zjt4qjguB/NZk5fVNbZGrxaU6PQd7v8
-         vjOrK3WUW81wmJVAPnqRE/qWDGvxGAhxMywHRkQ+6H/pqtGNAKoOMuAoRXMwOpa5+mfz
-         ygcwQk7mT6yg1yPUXHlCpb6DqIk7m8Ftsen16eew6E1N+Lt7/9jnfZhL+XJ61fgpcL7p
-         vY4g==
+	s=arc-20240116; t=1758790759; c=relaxed/simple;
+	bh=JOrSz1HXlLFxPLLjWD6d1WYeOcWMe6xb1W47kc5uGIg=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=U7aUyT72A//zXOm0GnZS/3/THbPwd/zTVJZbVfNpUrMPgewBgnWNyQzBRnrOor0T6DObJfO2tyZkykHXrSoIz1+a4GFoh/I8EfqZDGGBkR9aY1KHD6yjwg8qRpZNzDZXpfDjBbPZNRjreA5JfvTbRZ6d7uhJAxi7sgM697e7knM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IKktIhKo; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P4aJPs027521
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 08:59:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=qxnTysuC/hW7nodKqTqYaF
+	znb9Od7XFr//MNjinRq9Q=; b=IKktIhKoKRWbGt1MLqt15J6mEXIqj1NMcW8OXA
+	H8RHZD655ZRSNJ28nud2tdEeTyj0sly416amZxpMJH3IoBl2Q79WykvjB/jLTYDX
+	QiNaH+7wmn3eNfVcW0hdEoRDzposfa7W5UJDbi9pQB085c9sN98vzqJKs+kkPbPp
+	/Sn6fOJQ1P6cB23UJ78vsHOgWZ4nUaTqJR8yco4QxFTJdm0infqnlWcEDf7SxG30
+	p3eW2ReZTuUlol27FZhDrMnXWE+sLnxWaHUKRAcv7T5PW2aFJG1f8K86j0qWZGkL
+	KGOdl6Ljk0qiLXrjWS5SgFLd7lUoFNofM7f3EJfzIJW+wiTw==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49cxup0p79-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 08:59:16 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-77f3aa0f770so1265438b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 01:59:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758790663; x=1759395463;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0gyeemM5bv0/cwHb/gRYJJo/u8gfbvqaOjqlOCWg4JE=;
-        b=dEEP8zIt3Q4d/g5OLU5yXqIU9hoK9Im097TgkdY1XqSWB104zvIp31RqTPrqwlOFS6
-         tV3uzub6xfiXVj9izAHBeaJUmytTSh59UWi6XRwTGMorhaqE+bRdGZ/RqLpPXhJGmVJA
-         BAoVrk7DHqS/ltoXS4Khjl4yCFSqw1PLbeJdXO1p2JcJCY3OhatAEb+tG85AruJLBsBU
-         DW7VsnKUUVK3I1zayGwLc9dtrAHk2PhutANSVDSkwFrHeqkBU5y1S6h/ekTyGrp4a511
-         fCf1sGselWRxU2azTrOox2MTEdGMHfjNVLqVXwiPid5ctYQ4amJD8/eYdcFyPHroxzo9
-         NYCg==
-X-Forwarded-Encrypted: i=1; AJvYcCXkerBn4hAIAu9x0+AtzD71jGaUR8xxM65yT+25JfMo/rhUkSi9NbijX1N0m6xy1fms3rX9B0IobeS3@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyxrv1yBpsL4EZA8ukn2ddeDA79paUAdJrZhzR5XnymXf5KNJNs
-	NwBzdt2Fu06m43TM5EmMi1FG8iaH5E5abQ8e8qlfFQhLtxIx77i1aXrl5xI4qQDvtew=
-X-Gm-Gg: ASbGnct/WEyClMh5Alq3xr/p/kV+ZMvEE95gBtJcsp+xKGlGMAfYKDXTVFtQJqjtqLV
-	PBGKVw5xKQxmT6KzV4pQVausvBCmuq25sMbUFhcxucyDgvcp7Qe1BxCQ1UgRUFsfcG5uDheGDz1
-	SjHeGwftnPRviXq2oO8rrDVnae+gyVKGezeyOjhzgspLIpdJYSrN/WRvrlm6CVVDCAmrl4vteWs
-	T4yhCCwgoxmfB36Ghk6F6c82Enk0xtj5BeSEC6ohJGff/7S8DVeKOs/5Gw72yVbx/SMgQ5qUCJg
-	0ontjkXabxo/YWEcg5Kbc0f6s6tyXE4m2MVO4gVzqfgiFKX02T0bt78zBtGtCaBnm4P4RW7HCsk
-	8uyyxaqU63GWmyXf+g9PwgLrfKGTTDA==
-X-Google-Smtp-Source: AGHT+IHAqvFuArcYlmLsH6QWv4YuNWEk6UM56Ovz265N4A8KauZbqfvtw43LomwCRUeB+PPlGp6V8w==
-X-Received: by 2002:a17:907:7e84:b0:b29:e717:f0af with SMTP id a640c23a62f3a-b34b9f4fc52mr328324766b.18.1758790663253;
-        Thu, 25 Sep 2025 01:57:43 -0700 (PDT)
-Received: from [192.168.0.24] ([82.76.24.202])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b35446f7472sm122712666b.57.2025.09.25.01.57.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Sep 2025 01:57:42 -0700 (PDT)
-Message-ID: <ea291acc-bfdc-4a04-ba60-fc59a55ada28@linaro.org>
-Date: Thu, 25 Sep 2025 11:57:41 +0300
+        d=1e100.net; s=20230601; t=1758790756; x=1759395556;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qxnTysuC/hW7nodKqTqYaFznb9Od7XFr//MNjinRq9Q=;
+        b=FxWogbb+MeqL9e/57Gpmw+cR1K7Fv8eNzPUTbxWECDVIbakmnZRzx68Y2AmxQl++AW
+         JYJ8fIOjOKwfEKi7L+FsDHWvU/Eo12i7Qb+DwAf70GnvYKTLm0w6c/K4/mM/Qnp0VzX0
+         7qsyFGRHsev9iuU/NOcjNy3yL/xEuVMO7JmGVOaSf1UWUFifw/t+6QmbXu0B26KwzRok
+         RrXZNuXvfWb6qvMKD3u33dtuBa865sDr9HQQYWJm3EiEAp6JjD9CgkKlXqEdiVhcBSjB
+         QKQbAp8uAopmMuSd5o1OAdNDGkRUNI+dTFezycfmGw/F1bv6v9KLelx4T8gH5OJXBbpa
+         vOhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW+EDel1ezskrLVyiq5r00AqqP8ylm9uEx8bI6dyMMEc2Xe0uq1JJ77k2wHZ0wY5Qb0Jtct3+YCXsFt@vger.kernel.org
+X-Gm-Message-State: AOJu0YzzhqR0b6jGKku6Apdei21yWiRYovWLPCaAtZn8RngKu1XZVYLO
+	aWSmZaD2wuCMbq8HRrTiRqH84GqRMqiRve7Jr2hafZw5OdoHbFd0w8OYiVmcvC9qkrDJ+EQ6eFl
+	S/+SCdyj8YxdCAVSGK8Y2YD6O4Qw6oNKzqPTqrKG5Z/zZfRbDnTBl349Zzn58Tkpz
+X-Gm-Gg: ASbGnctzz+/DwNjeFIPcNiJq7Sd9w/VK9JM0567RLlT4GFsdUJMdYGBwZpimEQVE0C7
+	bryu+CcLWKIcvVZ23ep7c7BaBuoQWT+LU+/8v1OZWHhTdicOrKlxWmlOEzMce5lrtHCdvd8+J2q
+	Jy0+B1SAokZ2dz93i+XpcGVzWmv/KgRGglYmfeFBME5RASuw4TnfByHvllMAhDFcktD5Pr3jxrq
+	edhorhEO/ZPM8QrnhxW1uHBDB/cPYJLx8PVYWHoNvac7Aa1ZyZXQj/Jwng90k8Q/D4ADS/zcEKy
+	nJoxd9yVWakZlVRiSXxIIDOK1m03oNL0nrjM71BczxBO8wuk7HLCIQW8nMWfDK/Qoqg=
+X-Received: by 2002:a05:6a21:33aa:b0:2bf:67b3:800 with SMTP id adf61e73a8af0-2e7d53bc59amr3396173637.31.1758790755867;
+        Thu, 25 Sep 2025 01:59:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH0eJpD3qKeqYsWPXAHQB1UW+NDDK3QrRB3k0/4VNWzqwbZS0V3YIAgTG/cxv3dJIGeHCv/XQ==
+X-Received: by 2002:a05:6a21:33aa:b0:2bf:67b3:800 with SMTP id adf61e73a8af0-2e7d53bc59amr3396146637.31.1758790755416;
+        Thu, 25 Sep 2025 01:59:15 -0700 (PDT)
+Received: from hu-mahap-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7810238f3c9sm1322921b3a.20.2025.09.25.01.59.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Sep 2025 01:59:15 -0700 (PDT)
+From: Mahadevan <mahadevan.p@oss.qualcomm.com>
+Date: Thu, 25 Sep 2025 14:28:07 +0530
+Subject: [PATCH] arm64: dts: qcom: lemans: add DT changes to enable MDSS1
+ and DPU
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: interconnect: document the RPMh
- Network-On-Chip interconnect in Kaanapali SoC
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Georgi Djakov <djakov@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
- trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
-References: <20250924-knp-interconnect-v1-0-4c822a72141c@oss.qualcomm.com>
- <20250924-knp-interconnect-v1-1-4c822a72141c@oss.qualcomm.com>
-From: Eugen Hristev <eugen.hristev@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20250924-knp-interconnect-v1-1-4c822a72141c@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+Message-Id: <20250925-lemans_dual-v1-1-9c371803198d@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAB4E1WgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDSyNj3ZzU3MS84viU0sQc3WQD48QU02QLk0QLEyWgjoKi1LTMCrBp0bG
+ 1tQApZpnMXQAAAA==
+X-Change-ID: 20250923-lemans_dual-c03ad5c84a84
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Mahadevan <mahadevan.p@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758790752; l=3504;
+ i=mahadevan.p@oss.qualcomm.com; s=20250923; h=from:subject:message-id;
+ bh=JOrSz1HXlLFxPLLjWD6d1WYeOcWMe6xb1W47kc5uGIg=;
+ b=ymlU+PIWyqgK6BPCqwMHjRqN2GYLxfrxICND61XV5t33J7keND4J1z4zHP7TKHzLiLGjcIR+z
+ mwvphlPzY1oBbAqjUzwLxGbUNG93mv26VpT4SxQ+NOYfwZ6SdJaqghr
+X-Developer-Key: i=mahadevan.p@oss.qualcomm.com; a=ed25519;
+ pk=wed9wuAek0VbCYfkANx7ujIG4VY0XfCYrffFKPN2p0Y=
+X-Authority-Analysis: v=2.4 cv=B4a50PtM c=1 sm=1 tr=0 ts=68d50464 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=6WOxDTRmUopsFHP9N0oA:9
+ a=YUZtwmTVGX311DRz:21 a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI1MDA0MiBTYWx0ZWRfX+0vxIlUBx2Zl
+ uMcqqhWql3zuydgZZ9uJlz9XudFyfmFl9Nf+ehq3BJ+X48Xz/x0VkgqvDhpByl4GZjOO684MxYl
+ 10PKEZnsK8TOv+g0aMErFtucWzjZQfwqJ5vF1pC5C5SRAfpp+MMMn9OarWwU/Q604sIEbVOQ59z
+ xIQZvSbYDCln59Kc44lBvpsxWmU4Hfh+6I0e0hRONFjhChAVSDsgI+MFJ4+ZvcBp0mZukWKwSBF
+ Vy235FanxtYIN756FJaytEUg6wf5I+x/ZceaqS5dVvNGoJP0+EwN3dCMNfZ8rBhX2XDMhbhI2pm
+ MCeyUNRZsi2+r8smvLk7tFv5kt4OiToVufgt/R2rcwuQDJ2GGL5KDI2VLhodaQrS99k2euZjjr6
+ /ACU2nLj
+X-Proofpoint-GUID: LXZIZkG-Yi-VE_yNydCH35OaP9OMmxEq
+X-Proofpoint-ORIG-GUID: LXZIZkG-Yi-VE_yNydCH35OaP9OMmxEq
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 impostorscore=0 suspectscore=0 priorityscore=1501 adultscore=0
+ phishscore=0 clxscore=1011 spamscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509250042
 
+Add devicetree changes to enable second Mobile Display
+Subsystem (MDSS1) and its Display Processing Unit(DPU) for
+Qualcomm LEMANS platform.
 
+Signed-off-by: Mahadevan <mahadevan.p@oss.qualcomm.com>
+---
+ arch/arm64/boot/dts/qcom/lemans.dtsi | 88 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 88 insertions(+)
 
-On 9/25/25 02:02, Jingyi Wang wrote:
-> From: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
-> 
-> Document the RPMh Network-On-Chip Interconnect of the Kaanapali platform.
-> 
-> Signed-off-by: Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> ---
->  .../bindings/interconnect/qcom,kaanapali-rpmh.yaml | 126 +++++++++++++++++
->  .../dt-bindings/interconnect/qcom,kaanapali-rpmh.h | 149 +++++++++++++++++++++
->  2 files changed, 275 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,kaanapali-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,kaanapali-rpmh.yaml
-> new file mode 100644
-> index 000000000000..574150cc4930
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,kaanapali-rpmh.yaml
-> @@ -0,0 +1,126 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interconnect/qcom,kaanapali-rpmh.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm RPMh Network-On-Chip Interconnect on KAANAPALI
-> +
-> +maintainers:
-> +  - Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
-> +
-> +description: |
-> +  RPMh interconnect providers support system bandwidth requirements through
-> +  RPMh hardware accelerators known as Bus Clock Manager (BCM). The provider is
-> +  able to communicate with the BCM through the Resource State Coordinator (RSC)
-> +  associated with each execution environment. Provider nodes must point to at
-> +  least one RPMh device child node pertaining to their RSC and each provider
-> +  can map to multiple RPMh resources.
-> +
-> +  See also: include/dt-bindings/interconnect/qcom,kaanapali-rpmh.h
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,kaanapali-aggre-noc
+diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
+index 48f753002fc459a3e9fac0c0e98cbec6013fea0f..45c11c050d3f8853701fd20cf647aef5c6a9a8c9 100644
+--- a/arch/arm64/boot/dts/qcom/lemans.dtsi
++++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+@@ -6751,6 +6751,94 @@ compute-cb@3 {
+ 			};
+ 		};
+ 
++		mdss1: display-subsystem@22000000 {
++			compatible = "qcom,sa8775p-mdss";
++			reg = <0x0 0x22000000 0x0 0x1000>;
++			reg-names = "mdss";
++
++			/* same path used twice */
++			interconnects = <&mmss_noc MASTER_MDP_CORE1_0 QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
++					<&mmss_noc MASTER_MDP_CORE1_1 QCOM_ICC_TAG_ALWAYS
++					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
++					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
++					 &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
++			interconnect-names = "mdp0-mem",
++					     "mdp1-mem",
++					     "cpu-cfg";
++
++			resets = <&dispcc1 MDSS_DISP_CC_MDSS_CORE_BCR>;
++
++			power-domains = <&dispcc1 MDSS_DISP_CC_MDSS_CORE_GDSC>;
++
++			clocks = <&dispcc1 MDSS_DISP_CC_MDSS_AHB_CLK>,
++				 <&gcc GCC_DISP1_HF_AXI_CLK>,
++				 <&dispcc1 MDSS_DISP_CC_MDSS_MDP_CLK>;
++
++			interrupts = <GIC_SPI 865 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-controller;
++			#interrupt-cells = <1>;
++
++			iommus = <&apps_smmu 0x1800 0x402>;
++
++			#address-cells = <2>;
++			#size-cells = <2>;
++			ranges;
++
++			status = "disabled";
++
++			mdss1_mdp: display-controller@22001000 {
++				compatible = "qcom,sa8775p-dpu";
++				reg = <0x0 0x22001000 0x0 0x8f000>,
++				      <0x0 0x220b0000 0x0 0x3000>;
++				reg-names = "mdp", "vbif";
++
++				clocks = <&gcc GCC_DISP1_HF_AXI_CLK>,
++					 <&dispcc1 MDSS_DISP_CC_MDSS_AHB_CLK>,
++					 <&dispcc1 MDSS_DISP_CC_MDSS_MDP_LUT_CLK>,
++					 <&dispcc1 MDSS_DISP_CC_MDSS_MDP_CLK>,
++					 <&dispcc1 MDSS_DISP_CC_MDSS_VSYNC_CLK>;
++				clock-names = "nrt_bus",
++					      "iface",
++					      "lut",
++					      "core",
++					      "vsync";
++
++				assigned-clocks = <&dispcc1 MDSS_DISP_CC_MDSS_VSYNC_CLK>;
++				assigned-clock-rates = <19200000>;
++
++				operating-points-v2 = <&mdss1_mdp_opp_table>;
++				power-domains = <&rpmhpd SA8775P_MMCX>;
++
++				interrupt-parent = <&mdss1>;
++				interrupts = <0>;
++
++				mdss1_mdp_opp_table: opp-table {
++					compatible = "operating-points-v2";
++
++					opp-375000000 {
++						opp-hz = /bits/ 64 <375000000>;
++						required-opps = <&rpmhpd_opp_svs_l1>;
++					};
++
++					opp-500000000 {
++						opp-hz = /bits/ 64 <500000000>;
++						required-opps = <&rpmhpd_opp_nom>;
++					};
++
++					opp-575000000 {
++						opp-hz = /bits/ 64 <575000000>;
++						required-opps = <&rpmhpd_opp_turbo>;
++					};
++
++					opp-650000000 {
++						opp-hz = /bits/ 64 <650000000>;
++						required-opps = <&rpmhpd_opp_turbo_l1>;
++					};
++				};
++			};
++		};
++
+ 		dispcc1: clock-controller@22100000 {
+ 			compatible = "qcom,sa8775p-dispcc1";
+ 			reg = <0x0 0x22100000 0x0 0x20000>;
 
-Hi,
+---
+base-commit: 846bd2225ec3cfa8be046655e02b9457ed41973e
+change-id: 20250923-lemans_dual-c03ad5c84a84
 
-Does Kaanapali have a single aggre node, or there are several ?
-On previous SoC, I see there are two (aggre1 and aggre2).
-Also in your driver (second patch), I notice aggre1_noc and aggre2_noc .
-It would make sense to accurately describe here the hardware.
-
-Eugen
-
-> +      - qcom,kaanapali-clk-virt
-> +      - qcom,kaanapali-cnoc-main
-> +      - qcom,kaanapali-cnoc-cfg
-> +      - qcom,kaanapali-gem-noc
-> +      - qcom,kaanapali-lpass-ag-noc
-> +      - qcom,kaanapali-lpass-lpiaon-noc
-> +      - qcom,kaanapali-lpass-lpicx-noc
-> +      - qcom,kaanapali-mc-virt
-> +      - qcom,kaanapali-mmss-noc
-> +      - qcom,kaanapali-nsp-noc
-> +      - qcom,kaanapali-pcie-anoc
-> +      - qcom,kaanapali-system-noc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 2
-> +    maxItems: 3
-> +
-> +required:
-> +  - compatible
-> +
-> +allOf:
-> +  - $ref: qcom,rpmh-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,kaanapali-clk-virt
-> +              - qcom,kaanapali-mc-virt
-> +    then:
-> +      properties:
-> +        reg: false
-> +    else:
-> +      required:
-> +        - reg
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,kaanapali-pcie-anoc
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: aggre-NOC PCIe AXI clock
-> +            - description: cfg-NOC PCIe a-NOC AHB clock
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,kaanapali-aggre-noc
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: aggre UFS PHY AXI clock
-> +            - description: aggre USB3 PRIM AXI clock
-> +            - description: RPMH CC IPA clock
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,kaanapali-aggre-noc
-> +              - qcom,kaanapali-pcie-anoc
-> +    then:
-> +      required:
-> +        - clocks
-> +    else:
-> +      properties:
-> +        clocks: false
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,kaanapali-gcc.h>
-> +    #include <dt-bindings/clock/qcom,rpmh.h>
-> +    clk_virt: interconnect-0 {
-> +      compatible = "qcom,kaanapali-clk-virt";
-> +      #interconnect-cells = <2>;
-> +      qcom,bcm-voters = <&apps_bcm_voter>;
-> +    };
-> +
-> +    aggre_noc: interconnect@16e0000 {
-> +      compatible = "qcom,kaanapali-aggre-noc";
-> +      reg = <0x016e0000 0x42400>;
-> +      #interconnect-cells = <2>;
-> +      clocks = <&gcc GCC_AGGRE_UFS_PHY_AXI_CLK>,
-> +               <&gcc GCC_AGGRE_USB3_PRIM_AXI_CLK>,
-> +               <&rpmhcc RPMH_IPA_CLK>;
-> +      qcom,bcm-voters = <&apps_bcm_voter>;
-> +    };
-> diff --git a/include/dt-bindings/interconnect/qcom,kaanapali-rpmh.h b/include/dt-bindings/interconnect/qcom,kaanapali-rpmh.h
-> new file mode 100644
-> index 000000000000..dde3f9abd677
-> --- /dev/null
-> +++ b/include/dt-bindings/interconnect/qcom,kaanapali-rpmh.h
-> @@ -0,0 +1,149 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-> +
-> +#ifndef __DT_BINDINGS_INTERCONNECT_QCOM_KAANAPALI_H
-> +#define __DT_BINDINGS_INTERCONNECT_QCOM_KAANAPALI_H
-> +
-> +#define MASTER_QSPI_0				0
-> +#define MASTER_CRYPTO				1
-> +#define MASTER_QUP_1				2
-> +#define MASTER_SDCC_4				3
-> +#define MASTER_UFS_MEM				4
-> +#define MASTER_USB3				5
-> +#define MASTER_QUP_2				6
-> +#define MASTER_QUP_3				7
-> +#define MASTER_QUP_4				8
-> +#define MASTER_IPA				9
-> +#define MASTER_SOCCP_PROC			10
-> +#define MASTER_SP				11
-> +#define MASTER_QDSS_ETR				12
-> +#define MASTER_QDSS_ETR_1			13
-> +#define MASTER_SDCC_2				14
-> +#define SLAVE_A1NOC_SNOC			15
-> +#define SLAVE_A2NOC_SNOC			16
-> +
-> +#define MASTER_QUP_CORE_0			0
-> +#define MASTER_QUP_CORE_1			1
-> +#define MASTER_QUP_CORE_2			2
-> +#define MASTER_QUP_CORE_3			3
-> +#define MASTER_QUP_CORE_4			4
-> +#define SLAVE_QUP_CORE_0			5
-> +#define SLAVE_QUP_CORE_1			6
-> +#define SLAVE_QUP_CORE_2			7
-> +#define SLAVE_QUP_CORE_3			8
-> +#define SLAVE_QUP_CORE_4			9
-> +
-> +#define MASTER_CNOC_CFG				0
-> +#define SLAVE_AHB2PHY_SOUTH			1
-> +#define SLAVE_AHB2PHY_NORTH			2
-> +#define SLAVE_CAMERA_CFG			3
-> +#define SLAVE_CLK_CTL				4
-> +#define SLAVE_CRYPTO_0_CFG			5
-> +#define SLAVE_DISPLAY_CFG			6
-> +#define SLAVE_EVA_CFG				7
-> +#define SLAVE_GFX3D_CFG				8
-> +#define SLAVE_I2C				9
-> +#define SLAVE_I3C_IBI0_CFG			10
-> +#define SLAVE_I3C_IBI1_CFG			11
-> +#define SLAVE_IMEM_CFG				12
-> +#define SLAVE_IPC_ROUTER_CFG			13
-> +#define SLAVE_CNOC_MSS				14
-> +#define SLAVE_PCIE_CFG				15
-> +#define SLAVE_PRNG				16
-> +#define SLAVE_QDSS_CFG				17
-> +#define SLAVE_QSPI_0				18
-> +#define SLAVE_QUP_1				19
-> +#define SLAVE_QUP_2				20
-> +#define SLAVE_QUP_3				21
-> +#define SLAVE_QUP_4				22
-> +#define SLAVE_SDCC_2				23
-> +#define SLAVE_SDCC_4				24
-> +#define SLAVE_SPSS_CFG				25
-> +#define SLAVE_TCSR				26
-> +#define SLAVE_TLMM				27
-> +#define SLAVE_UFS_MEM_CFG			28
-> +#define SLAVE_USB3				29
-> +#define SLAVE_VENUS_CFG				30
-> +#define SLAVE_VSENSE_CTRL_CFG			31
-> +#define SLAVE_CNOC_MNOC_CFG			32
-> +#define SLAVE_PCIE_ANOC_CFG			33
-> +#define SLAVE_QDSS_STM				34
-> +#define SLAVE_TCU				35
-> +
-> +#define MASTER_GEM_NOC_CNOC			0
-> +#define MASTER_GEM_NOC_PCIE_SNOC		1
-> +#define SLAVE_AOSS				2
-> +#define SLAVE_IPA_CFG				3
-> +#define SLAVE_IPC_ROUTER_FENCE			4
-> +#define SLAVE_SOCCP				5
-> +#define SLAVE_TME_CFG				6
-> +#define SLAVE_APPSS				7
-> +#define SLAVE_CNOC_CFG				8
-> +#define SLAVE_DDRSS_CFG				9
-> +#define SLAVE_BOOT_IMEM				10
-> +#define SLAVE_IMEM				11
-> +#define SLAVE_PCIE_0				12
-> +
-> +#define MASTER_GPU_TCU				0
-> +#define MASTER_SYS_TCU				1
-> +#define MASTER_APPSS_PROC			2
-> +#define MASTER_GFX3D				3
-> +#define MASTER_LPASS_GEM_NOC			4
-> +#define MASTER_MSS_PROC				5
-> +#define MASTER_MNOC_HF_MEM_NOC			6
-> +#define MASTER_MNOC_SF_MEM_NOC			7
-> +#define MASTER_COMPUTE_NOC			8
-> +#define MASTER_ANOC_PCIE_GEM_NOC		9
-> +#define MASTER_QPACE				10
-> +#define MASTER_SNOC_SF_MEM_NOC			11
-> +#define MASTER_WLAN_Q6				12
-> +#define MASTER_GIC				13
-> +#define SLAVE_GEM_NOC_CNOC			14
-> +#define SLAVE_LLCC				15
-> +#define SLAVE_MEM_NOC_PCIE_SNOC			16
-> +
-> +#define MASTER_LPIAON_NOC			0
-> +#define SLAVE_LPASS_GEM_NOC			1
-> +
-> +#define MASTER_LPASS_LPINOC			0
-> +#define SLAVE_LPIAON_NOC_LPASS_AG_NOC		1
-> +
-> +#define MASTER_LPASS_PROC			0
-> +#define SLAVE_LPICX_NOC_LPIAON_NOC		1
-> +
-> +#define MASTER_LLCC				0
-> +#define SLAVE_EBI1				1
-> +
-> +#define MASTER_CAMNOC_HF			0
-> +#define MASTER_CAMNOC_NRT_ICP_SF		1
-> +#define MASTER_CAMNOC_RT_CDM_SF			2
-> +#define MASTER_CAMNOC_SF			3
-> +#define MASTER_MDP				4
-> +#define MASTER_MDSS_DCP				5
-> +#define MASTER_CDSP_HCP				6
-> +#define MASTER_VIDEO_CV_PROC			7
-> +#define MASTER_VIDEO_EVA			8
-> +#define MASTER_VIDEO_MVP			9
-> +#define MASTER_VIDEO_V_PROC			10
-> +#define MASTER_CNOC_MNOC_CFG			11
-> +#define SLAVE_MNOC_HF_MEM_NOC			12
-> +#define SLAVE_MNOC_SF_MEM_NOC			13
-> +#define SLAVE_SERVICE_MNOC			14
-> +
-> +#define MASTER_CDSP_PROC			0
-> +#define SLAVE_CDSP_MEM_NOC			1
-> +
-> +#define MASTER_PCIE_ANOC_CFG			0
-> +#define MASTER_PCIE_0				1
-> +#define SLAVE_ANOC_PCIE_GEM_NOC			2
-> +#define SLAVE_SERVICE_PCIE_ANOC			3
-> +
-> +#define MASTER_A1NOC_SNOC			0
-> +#define MASTER_A2NOC_SNOC			1
-> +#define MASTER_APSS_NOC				2
-> +#define MASTER_CNOC_SNOC			3
-> +#define SLAVE_SNOC_GEM_NOC_SF			4
-> +
-> +#endif
-> 
+Best regards,
+-- 
+Mahadevan <mahadevan.p@oss.qualcomm.com>
 
 
