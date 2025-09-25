@@ -1,90 +1,89 @@
-Return-Path: <devicetree+bounces-221189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DE36B9DAE1
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E290B9DAE0
 	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 08:39:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A13997A6F8A
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 06:37:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84FBF3BA20A
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 06:39:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E2B2EFDAA;
-	Thu, 25 Sep 2025 06:33:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26E392F0C55;
+	Thu, 25 Sep 2025 06:33:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Od/8hjz1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="OjjOL4I1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 118012EF66E
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:33:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EE592F067C
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758782035; cv=none; b=C6cf1ZlJiLj/xDRDLAbjDTgavcBq/4q3kfLnl3gdrNyq2r6Mj9vQ0rZclTIhwqtouf7R94yJ0LLNkJZ1cDjRLquS21/k0wgr1EYbP/fn1dp2/PngYg0XckxLiDKy3hMezVJJt0di435FgKPqcYitB1Tz94bAScMRUl3GBYrwVVg=
+	t=1758782039; cv=none; b=d3la3DcYFUVdAAay068KGdbB8lxLMqA5IWSWd7ZRpNSKGXSehIIBf+Q69DlmZI4IC/xB1hiFCBP2yg4cV563Wi/WNp+AomFwH0Jymego+dmuhVuRkZc/SpHcAAtRjQxiRmXQ4FJZ5CbqXvJmTAiqT7aYoJyRSQgumiSPI4mgURQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758782035; c=relaxed/simple;
-	bh=sKIpQJiz5n+iJRMJnnf9m2DoIPG33elp5oBZ4OmiH7c=;
+	s=arc-20240116; t=1758782039; c=relaxed/simple;
+	bh=yDgdM8Of2hyqaQlw4iDJh/MVPzu7jFD1m4YshkXg0a4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=arw/vwL6eZwnxlqbH12QHRlZOUn+fy7bD+FG2iBniaD8wVyr8/y6lGrKALLZitpJH772tYetMd+Dkgyuret6CZPgSInrrtxIlgzyAQ3EZqkMwcCs7BcTmvZnF52HJtU24ZxbXsGL4Nfyfk+FNoMY+i6NYdxELappeT8GGB7TRnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Od/8hjz1; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:To:Cc; b=j3XJIRv2nnMcHkL1rnDN+pJJW3XT/Ox5zHdRAPPmbhR1JoIxfAHiLrMFFTtYzD8IIry/NWy3PGS5Twk2lXOhch5M9MDJSi2Hg+hjtR8FnGeyalFvmuFZUhVYGCjAYEmSCRullFKjXw24Tm9snEzsEIsIgTljzIXO+4ItuWEekQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=OjjOL4I1; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P12k7I002657
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:33:53 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P0oppl002792
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:33:56 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LwMildERMeP5s/2LAPgO3c6kJVjWS2uLmJeeFeaZY8A=; b=Od/8hjz1gNy5qM5s
-	fVdjsJFiDN3PPHSyTxFxolsoMNlcKxn8e5QJWDlMuZjJzsRulsRLFRDVS04cSvE3
-	GrUdIRfwGAYktS1pAQ44/vzH1sCqCynKnrpXn+QZZCtAGHLXifEppCYl95mQiBlC
-	p62Z6fV9U3GW4WNuVHPIw1YTY/bme4xnt19qxYQrbHr6NWaNfhidflIHN7bpbqtf
-	Oxduj1GDvoJ1rlsGfv6u1VrV3vxE5QS3lvKtgyQ1ieRHMsNBuVAtramnsIYZqhvD
-	p3symyND3YQQDkqv0qpCVg+1TzfJGXBfBKnLVrujIjGvxWPPy+45OPAgZxxpPuCT
-	1O2Y4w==
+	pRUMfA49GMLn5RJ9Yoh5tMe7BcGYfvc9dHpNmBw4CMI=; b=OjjOL4I1y41jrzd5
+	N+zp3P1gu3UMov8jjHxHqT9pGcWLlskQvbkUNdVMJzOvSDtwwilmS00SRyBjakeB
+	OajgcwqpLKKN7Rxghdq12srKCkpMdjX8o5g7kFf8EMzBwbQ9Z3APsiX49djRE0Yp
+	0p3t69RFxpxdFuOkPH212dctkG2XomimVAW6aiFyda0HBZovEBHvcVixbcRGF79u
+	kubqXo0vyQ65601COQ8f5IZS754Gn1omU4zELhZvvEjlxwofXmh9VJT2btKAT6ZC
+	e+RVnejL/iH++5r8o2tkyyJI7yw8XaBI8zgMjZMKMNh+Ec86XpPF6CIUT7eOTVHK
+	XikcIQ==
 Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bajf1js1-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bajf1jsa-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:33:53 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-27eca7298d9so13445535ad.0
-        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 23:33:53 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 06:33:56 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-277f0ea6ee6so7266195ad.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Sep 2025 23:33:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758782032; x=1759386832;
+        d=1e100.net; s=20230601; t=1758782036; x=1759386836;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=LwMildERMeP5s/2LAPgO3c6kJVjWS2uLmJeeFeaZY8A=;
-        b=B6fQbX6uVkMk2VMES/IOeYLhuSDKtGdVu/lIfHxrC2/eu0bAuxHwsM5Qax5OcmJoJS
-         rni9Jvk8ZeYveKVnDWDCqcs8LzpLakgVfFl+4G5Ja7/ucZlwWIu9ouBV571L1bshH9ws
-         U+BMakuYwHXcxlOH8bHFHSWGKpYn3ZvmVDZ+XzAlmMjQLdI4ksq5GGD/976uVH06hOwa
-         ToMIuKO9PncNPmvyLxlbvdpXGUL6KNj/GQnVevc/J0KbGdkHDIo6ibVMFGoR1xJNsgrX
-         /NFU2CjV45wg8jWTGNBQdLG7FbtHGfkHK4OhVf4YW6OtQVz/Nuw+gtQjjvrUDIbugb+0
-         q9OQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVL3vcZv/PNsHSlUv/We4U+U0ZTxfgJgWold2FFZZtmmni82Rjf+EWZmb/MyTDWCf0DPwrFNsfpy6Do@vger.kernel.org
-X-Gm-Message-State: AOJu0YzK7nsKJMssGDvpLYcdOA+AEiKpSzinzCVUSI8hC/IysoUSKVT3
-	lvtQgm43Q264sawVfygUv9TIZm1vMonPyYBRRzIP36VoCv4dn5w/RCV9Wu3e0pQ1ulM8C3ryr7V
-	fsIEWEz1Epq8w2mYvCe1l9mvBJ7QePkSVgGhObiyOzfol1Zd9h2ePyMAsDs5kTaUv
-X-Gm-Gg: ASbGncs8GSsUOqpIyN1BGQCWcsEvfyOVKQ/o5b4xt/+pWO7huthw6kir2lC+18Pamsk
-	KLmo7FVqIayAaqevJAtb2NQQxe+mm++G8HfZKLGk565Nmjn02YvEaCsI7lw1yy67rr5FoizBbeS
-	mjsaR+5TOc3hm2yL6OU1zRHmL0ZJm0Fyc3S6kTOYcU/fpr6i7//iOAFJtg+micJI2FfzaZquoJD
-	BnLwuvKCfThXJbE5/R7Mtl5QhWQlDM5vhMrjfkb0oAjz6UPkhnCKbUhrRrQepa3FT6mYAZKKY+J
-	erELZAmkr7t3ZTPm0y722qYA9o7sZ0gmTQhEWWo/rKBfex3+BLhTjKEJ/buU5RuDMvXIRHdHt8M
-	M0W6MLQXVPIrnJ0E7fAoy0jvD2yxhA6OajADmKaJqe2nd7yPe/op+kjOs4c9o
-X-Received: by 2002:a17:902:e88d:b0:272:f9c3:31f7 with SMTP id d9443c01a7336-27ed4a5e907mr21537975ad.50.1758782032514;
-        Wed, 24 Sep 2025 23:33:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGy9xf+4ZfODJwxxZSZfr51YdmBTrmJhyNT7pD8G9hsp0frJmhp6gtCuPlJmDRkAV6whVx4pw==
-X-Received: by 2002:a17:902:e88d:b0:272:f9c3:31f7 with SMTP id d9443c01a7336-27ed4a5e907mr21537815ad.50.1758782032097;
-        Wed, 24 Sep 2025 23:33:52 -0700 (PDT)
+        bh=pRUMfA49GMLn5RJ9Yoh5tMe7BcGYfvc9dHpNmBw4CMI=;
+        b=jLW3CkZwt3YRJbWcHoJPxgMQrBIKNX72LiFpMlh6iKcmBGQ7hpYjaol2OaXRagCxml
+         2RkqoxUx12DQpRnQezt0SxVOxPR/y+O0fE/ZBVQM8Ox/1dAgl6rihALBXhZZEBwTaONe
+         8iAQmlJde3QSTepufJFq+JyUv51FDjTG0rkse9b8+wSV3P5p+7VvDJhC2Fia0yLn4qeS
+         DVWHSDYSmlkY+fMnnpHXQv0sBeJ+YgknZVSMCHpicuszwJmfXnSBQ0xbE5v3pFmuui93
+         HGF5LAfc8bkiI/umioAnALci1Xej05eNjiUCMidiMdpu5i3sHi49Ode+JqpkVEtMkA+m
+         Au7g==
+X-Forwarded-Encrypted: i=1; AJvYcCVMLuubpvAL3HmXolqqZrKnFAP9MQxpTAJMRiHoBhjLEYWG+jOfbFqm27P6LAmaiKTCivpk8Z/wJAVY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yymcu60sxciP+u40RGySCOiTMDwN838wG5dp/W42OlX3uMsXQwx
+	q8+VMm6+n2FxUfWjY6jfuWi/XmHWn6KhWAPwEhGG/5NtvZ4RWfdtlyti2cWMsmOxXnXVya9IzGs
+	G9ndIS+Vh3ZtQsKNC1r6kDuMkAMxrIMjtp+/LDBZcM013alYqkD89WJ9e8OQQ/1vt
+X-Gm-Gg: ASbGncvqo8wqCTAK2UGSF2kDmg9MmF0ALD+kuBRMP9hf+rjWV3yR2y+W+u29LQGVeRj
+	GG6TVO0CX9VbFgPgpBH1dbV7HwpJAwpzEi2LHKe7z6ggMokcAUTRpEK08kNdgJRux+RX4asQOWN
+	HUsVwt6YuPxornVM3ym/jSd8o9bRDzrqTv+OzZWB3atAEJAeawzWFrhIs+gCGBmJp15mb5c+e3V
+	d1gL5YNqEm6LYQySPswS2SSiiLEHcAvOE1RDqbRqNkqvikwUV9HwltBwUyq46LoxXYmfX9L7oP1
+	hrtHvsqC9U+x3XPDXtbxL6rREwwAmYgqSzaMKw+72Z8550VGOCVZ6j+BF64YbeGJrWZscY0kbbZ
+	sDAZWH1+kALKzSZJ+wPapJCDDnAuDA3kyQNc2xZtPfzST7k1w0L5irEuv3W1O
+X-Received: by 2002:a17:903:ac4:b0:25c:76f1:b024 with SMTP id d9443c01a7336-27ed4a0e498mr28589605ad.25.1758782035680;
+        Wed, 24 Sep 2025 23:33:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE2LvbtRU1TM+vT096Iuf+SpAzs8/uamGMv8ofQmta/LcDScBT6DUZzfTUwhbJe4wRHBkRkSw==
+X-Received: by 2002:a17:903:ac4:b0:25c:76f1:b024 with SMTP id d9443c01a7336-27ed4a0e498mr28589325ad.25.1758782035198;
+        Wed, 24 Sep 2025 23:33:55 -0700 (PDT)
 Received: from hu-pankpati-blr.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed671732asm13793515ad.49.2025.09.24.23.33.49
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed671732asm13793515ad.49.2025.09.24.23.33.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 24 Sep 2025 23:33:51 -0700 (PDT)
+        Wed, 24 Sep 2025 23:33:54 -0700 (PDT)
 From: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Date: Thu, 25 Sep 2025 12:02:18 +0530
-Subject: [PATCH 10/24] arm64: dts: qcom: glymur: Add SPMI PMIC arbiter
- device
+Date: Thu, 25 Sep 2025 12:02:19 +0530
+Subject: [PATCH 11/24] arm64: dts: qcom: Add PMCX0102 pmic dtsi
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,7 +92,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250925-v3_glymur_introduction-v1-10-24b601bbecc0@oss.qualcomm.com>
+Message-Id: <20250925-v3_glymur_introduction-v1-11-24b601bbecc0@oss.qualcomm.com>
 References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
 In-Reply-To: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
@@ -105,19 +104,19 @@ Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
         Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Proofpoint-GUID: vJcSdd2RCmpSkuZRE5N7JVufSl-2npuL
-X-Authority-Analysis: v=2.4 cv=fY2ty1QF c=1 sm=1 tr=0 ts=68d4e251 cx=c_pps
+X-Proofpoint-GUID: vdxyyLOk0-AljLdGrcMxPiAAnTbm45qj
+X-Authority-Analysis: v=2.4 cv=fY2ty1QF c=1 sm=1 tr=0 ts=68d4e254 cx=c_pps
  a=IZJwPbhc+fLeJZngyXXI0A==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=fj32sBe4WaP-u41FRDUA:9
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=u-g3E67TlB3pepnp-YkA:9
  a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIyMDE2OCBTYWx0ZWRfX55SdQjSttgG9
- tZmwCLbH7AGh0XhSuvZvP+y6/eiuk2TP7pDXIv08Sui5a+ngjkODqCSWWBnAgduiYO58ZoswJwG
- xOyooEyclYTEQFkXoWZZUjDiul5p1XJLUXOqe0lngJUCE5FpWM+hgRea7bXRMhs9Bm059KQ9yWw
- 5tCwN1JxCr7PxUfZzemCoRFQGdZGxVYNSTT7n0hETPqRYXeOWC+3aYi3jrrTc6Y1vsvcLIXrL02
- 4MG7D270EJO+xbYMuHxB6smdfYl4On23WkB4Iruc2l3TSj720N4Ipu4s87H5/HJf/B+TT8w96Br
- /pEhPgQf4XRYBMFULWSCrfvKhp5WfkFPA2ZBDyn9TWH555JcORFFTJbGrfoiZnHLAoPC7l+4zyY
- a1YCenh2
-X-Proofpoint-ORIG-GUID: vJcSdd2RCmpSkuZRE5N7JVufSl-2npuL
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIyMDE2OCBTYWx0ZWRfX4JTB2yZfUksw
+ GnEXVpJZU977ITEPxWcYJ24+5LVeI/hwAkExNaj1OW+32qmz3+50QVdPNK84QkTnLxQuANNFHuM
+ xyahWUX62G2EvCu7V7+DOdWXdqfjCJ1YY6FcEtqmoefg/Vbpji4J5pwDh0ZLnGFbEM1p6lzxBTE
+ 3ysUuNyB+kyALIMvDpVb90WduzxdY320z+TtpH7vr0SxQYgXV5otaF8IY8EW4DPc9ooDd8LQqOd
+ bU71HMHAR4nO3LIRGqZCR3mVp50k5C1BP15hnm96AkpXRBz6f+3cA3/MuTAEfSApAiWuMtGyv8p
+ ATawpBPtwcB2eSaFM7Q+Zrl9jx4tbesEsVxYuVGZk0N/ptCxmEAmH70HSsmH/zn9xhbha1yUHGa
+ /D/r2xKS
+X-Proofpoint-ORIG-GUID: vdxyyLOk0-AljLdGrcMxPiAAnTbm45qj
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
@@ -129,89 +128,200 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
 
 From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
 
-Add spmi-pmic-arb device for the SPMI PMIC arbiter found on
-Glymur. It has three subnodes corresponding to the SPMI0,
-SPMI1 & SPMI2 bus controllers.
+Add base DTS file for PMCX0102 along with temp-alarm and GPIO
+nodes.
 
 Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
 Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
 ---
- arch/arm64/boot/dts/qcom/glymur.dtsi | 62 ++++++++++++++++++++++++++++++++++++
- 1 file changed, 62 insertions(+)
+ arch/arm64/boot/dts/qcom/pmcx0102.dtsi | 179 +++++++++++++++++++++++++++++++++
+ 1 file changed, 179 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
-index 2632ef381687c2392f8fad0294901e33887ac4d3..e6e001485747785fd29c606773cba7793bbd2a5c 100644
---- a/arch/arm64/boot/dts/qcom/glymur.dtsi
-+++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
-@@ -2600,6 +2600,68 @@ sram@c30f000 {
- 			reg = <0x0 0x0c30f000 0x0 0x400>;
- 		};
- 
-+		pmic_arbiter: arbiter@c400000 {
-+			compatible = "qcom,glymur-spmi-pmic-arb";
-+			reg = <0x0 0x0c400000 0x0 0x00003000>,
-+			      <0x0 0x0c900000 0x0 0x00400000>,
-+			      <0x0 0x0c4c0000 0x0 0x00400000>,
-+			      <0x0 0x0c403000 0x0 0x00008000>;
-+			reg-names = "core",
-+				    "chnls",
-+				    "obsrvr",
-+				    "chnl_map";
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+			qcom,channel = <0>;
-+			qcom,ee = <0>;
+diff --git a/arch/arm64/boot/dts/qcom/pmcx0102.dtsi b/arch/arm64/boot/dts/qcom/pmcx0102.dtsi
+new file mode 100644
+index 0000000000000000000000000000000000000000..839738dda6cd5016df134a2fddd92d3ae7c56133
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/pmcx0102.dtsi
+@@ -0,0 +1,179 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
++ */
 +
-+			spmi_bus0: spmi@c426000 {
-+				reg = <0x0 0x0c426000 0x0 0x00004000>,
-+				      <0x0 0x0c8c0000 0x0 0x00010000>,
-+				      <0x0 0x0c42a000 0x0 0x00008000>;
-+				reg-names = "cnfg",
-+					    "intr",
-+					    "chnl_owner";
-+				interrupts-extended = <&pdc 1 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-names = "periph_irq";
-+				interrupt-controller;
-+				#interrupt-cells = <4>;
-+				#address-cells = <2>;
-+				#size-cells = <0>;
-+			};
++#include <dt-bindings/interrupt-controller/irq.h>
++#include <dt-bindings/spmi/spmi.h>
 +
-+			spmi_bus1: spmi@c437000 {
-+				reg = <0x0 0x0c437000 0x0 0x00004000>,
-+				      <0x0 0x0c8d0000 0x0 0x00010000>,
-+				      <0x0 0x0c43b000 0x0 0x00008000>;
-+				reg-names = "cnfg",
-+					    "intr",
-+					    "chnl_owner";
-+				interrupts-extended = <&pdc 3 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-names = "periph_irq";
-+				interrupt-controller;
-+				#interrupt-cells = <4>;
-+				#address-cells = <2>;
-+				#size-cells = <0>;
-+			};
++&spmi_bus0 {
++	pmcx0102_c_e0: pmic@2 {
++		compatible = "qcom,pmcx0102", "qcom,spmi-pmic";
++		reg = <0x2 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
 +
-+			spmi_bus2: spmi@c48000 {
-+				reg = <0x0 0x0c448000 0x0 0x00004000>,
-+				      <0x0 0x0c8e0000 0x0 0x00010000>,
-+				      <0x0 0x0c44c000 0x0 0x00008000>;
-+				reg-names = "cnfg",
-+					    "intr",
-+					    "chnl_owner";
-+				interrupts-extended = <&pdc 72 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupt-names = "periph_irq";
-+				interrupt-controller;
-+				#interrupt-cells = <4>;
-+				#address-cells = <2>;
-+				#size-cells = <0>;
-+			};
++		pmcx0102_c_e0_temp_alarm: temp-alarm@a00 {
++			compatible = "qcom,spmi-temp-alarm";
++			reg = <0xa00>;
++			interrupts = <0x2 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
++			#thermal-sensor-cells = <0>;
 +		};
 +
- 		tlmm: pinctrl@f100000 {
- 			compatible = "qcom,glymur-tlmm";
- 			reg = <0x0 0x0f100000 0x0 0xf00000>;
++		pmcx0102_c_e0_gpios: gpio@8800 {
++			compatible = "qcom,pmcx0102-gpio", "qcom,spmi-gpio";
++			reg = <0x8800>;
++			gpio-controller;
++			gpio-ranges = <&pmcx0102_c_e0_gpios 0 0 14>;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++	};
++
++	pmcx0102_d_e0: pmic@3 {
++		compatible = "qcom,pmcx0102", "qcom,spmi-pmic";
++		reg = <0x3 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		pmcx0102_d_e0_temp_alarm: temp-alarm@a00 {
++			compatible = "qcom,spmi-temp-alarm";
++			reg = <0xa00>;
++			interrupts = <0x3 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
++			#thermal-sensor-cells = <0>;
++		};
++
++		pmcx0102_d_e0_gpios: gpio@8800 {
++			compatible = "qcom,pmcx0102-gpio", "qcom,spmi-gpio";
++			reg = <0x8800>;
++			gpio-controller;
++			gpio-ranges = <&pmcx0102_d_e0_gpios 0 0 14>;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++	};
++
++	pmcx0102_e_e0: pmic@4 {
++		compatible = "qcom,pmcx0102", "qcom,spmi-pmic";
++		reg = <0x4 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		pmcx0102_e_e0_temp_alarm: temp-alarm@a00 {
++			compatible = "qcom,spmi-temp-alarm";
++			reg = <0xa00>;
++			interrupts = <0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
++			#thermal-sensor-cells = <0>;
++		};
++
++		pmcx0102_e_e0_gpios: gpio@8800 {
++			compatible = "qcom,pmcx0102-gpio", "qcom,spmi-gpio";
++			reg = <0x8800>;
++			gpio-controller;
++			gpio-ranges = <&pmcx0102_e_e0_gpios 0 0 14>;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++	};
++
++	pmcx0102_g_e0: pmic@5 {
++		compatible = "qcom,pmcx0102", "qcom,spmi-pmic";
++		reg = <0x6 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		pmcx0102_g_e0_temp_alarm: temp-alarm@a00 {
++			compatible = "qcom,spmi-temp-alarm";
++			reg = <0xa00>;
++			interrupts = <0x6 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
++			#thermal-sensor-cells = <0>;
++		};
++
++		pmcx0102_g_e0_gpios: gpio@8800 {
++			compatible = "qcom,pmcx0102-gpio", "qcom,spmi-gpio";
++			reg = <0x8800>;
++			gpio-controller;
++			gpio-ranges = <&pmcx0102_g_e0_gpios 0 0 14>;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++	};
++};
++
++&spmi_bus1 {
++	pmcx0102_c_e1: pmic@2 {
++		compatible = "qcom,pmcx0102", "qcom,spmi-pmic";
++		reg = <0x2 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		pmcx0102_c_e1_temp_alarm: temp-alarm@a00 {
++			compatible = "qcom,spmi-temp-alarm";
++			reg = <0xa00>;
++			interrupts = <0x2 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
++			#thermal-sensor-cells = <0>;
++		};
++
++		pmcx0102_c_e1_gpios: gpio@8800 {
++			compatible = "qcom,pmcx0102-gpio", "qcom,spmi-gpio";
++			reg = <0x8800>;
++			gpio-controller;
++			gpio-ranges = <&pmcx0102_c_e1_gpios 0 0 14>;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++	};
++
++	pmcx0102_d_e1: pmic@3 {
++		compatible = "qcom,pmcx0102", "qcom,spmi-pmic";
++		reg = <0x3 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		pmcx0102_d_e1_temp_alarm: temp-alarm@a00 {
++			compatible = "qcom,spmi-temp-alarm";
++			reg = <0xa00>;
++			interrupts = <0x3 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
++			#thermal-sensor-cells = <0>;
++		};
++
++		pmcx0102_d_e1_gpios: gpio@8800 {
++			compatible = "qcom,pmcx0102-gpio", "qcom,spmi-gpio";
++			reg = <0x8800>;
++			gpio-controller;
++			gpio-ranges = <&pmcx0102_d_e1_gpios 0 0 14>;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++	};
++
++	pmcx0102_e_e1: pmic@4 {
++		compatible = "qcom,pmcx0102", "qcom,spmi-pmic";
++		reg = <0x4 SPMI_USID>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		pmcx0102_e_e1_temp_alarm: temp-alarm@a00 {
++			compatible = "qcom,spmi-temp-alarm";
++			reg = <0xa00>;
++			interrupts = <0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
++			#thermal-sensor-cells = <0>;
++		};
++
++		pmcx0102_e_e1_gpios: gpio@8800 {
++			compatible = "qcom,pmcx0102-gpio", "qcom,spmi-gpio";
++			reg = <0x8800>;
++			gpio-controller;
++			gpio-ranges = <&pmcx0102_e_e0_gpios 0 0 14>;
++			#gpio-cells = <2>;
++			interrupt-controller;
++			#interrupt-cells = <2>;
++		};
++	};
++};
 
 -- 
 2.34.1
