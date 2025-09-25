@@ -1,88 +1,88 @@
-Return-Path: <devicetree+bounces-221340-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 104E4B9E998
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:18:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCABDB9E9D7
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 12:25:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB3D5167CBB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 10:18:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 753E02E80C8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Sep 2025 10:25:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECFDA2E9ED2;
-	Thu, 25 Sep 2025 10:18:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1313A2EA177;
+	Thu, 25 Sep 2025 10:25:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SBZpuvDI"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="I3sqOFnX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD3323C516
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 10:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9034D2EA159
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 10:25:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758795516; cv=none; b=AbM/oFLNDTVS0uCUBnwxMGe/XV36M6t5J5n9HllcymAU5fwXNOH0KqNJMMJy6p0WKJQKOmpORNn0IwU7h2lH7w9FFjTi4vqHP2WN6IbUEHvaY/IAUF4SetouZwrnQ68wNzNyqcaIlPMD/AHKRNlShuiR2rl5iPYQqRj0rt6myXc=
+	t=1758795921; cv=none; b=DOwXeTCd5MSS41q8F814gPrR2Ru2gmiNLRRY/3DWIE0584G3r8vSRBYoZ2eDEFk5lwsBNm2ElkZcmp5Q4UutyLs45vbwAho7OCDO2Unyi3qiWLUqtONm86DcOZlR46hwwGuB1oVVOfKqxqWfYaC3HvkqpruwLZsxZMAGioStQ3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758795516; c=relaxed/simple;
-	bh=IZgNx1W1QZTrD1Ehfq9YiwjcIhPzLhkZmIWo+Abt0ck=;
+	s=arc-20240116; t=1758795921; c=relaxed/simple;
+	bh=jJH46p3z2LOWDtL4CTl89NqL9Jpzrq56C/RNQoMYBPE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WQ3EphKthn2R9jf5GTZjmWHrtGCo61BNKHxp8HOo+heUZpH8ZFFq7RxYXAgaQOW90AaC0A4xC+rOPjhZY3bPiX9t3aqwopCUnBK/9JbtBJYoMPJKM23SS+tXgT81JyRLz8Ekhg5PgMp7IsmXeLyKAa3resJFR6rM7vGetJS/5X0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SBZpuvDI; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=Gw5yqiPfG0efTlaEVMUgiZUV/XT5doC0n+bIwqfzZ9Ep+KnM0n4BdXnod4lR7aWOYJO66gSCoat84eDze2yd3u2tTANN3WKMz84dCslK8/aYjRWo81O2citJW7EP2IEhrAVOgG1xC5zpfNijWYAhfgvgcZo7+ZfRnRPgTluO+3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=I3sqOFnX; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58PA4NZw003945
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 10:18:34 GMT
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58P9KD0p017438
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 10:25:19 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	IWYVZENZspv4P6/8uM0cY4lKTEnxMEa9Cl47tXv/oVM=; b=SBZpuvDIQjx/DYIO
-	+aZAzpqamVnTWwTz0XfPbjx9Aqq2JMIKcCCh825o/FaOPFbVirg9ZpNqLbSSEXoa
-	VrYDT9Z3SJYypBndqdsJzAJdCYswDrnVsrkp/ptSXaShDLKQzaD0ADbcmtGULcNp
-	uKKpHHje2Bpd+rEIojAWfjlfwfwOb9gedz4BKXq6SBm8jtAqma0ZWFNJaKKtwq+3
-	cCW1ye66rIvAXA6okzdkbFH//5LW19o2iTz2cD1MuTteanXofmlQUpS0zXl+ij7h
-	qmuT+Xjn8DuxzT8qLaObzmJ5rQcUsegDqd/b+qc48QZ5nqrwNd3+nRa5afFh821h
-	5HA++g==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bajf28p0-1
+	qJ4HNspy8ugKaxak0rI5XESfap+Y3CVU5ROm4M6HYI8=; b=I3sqOFnXsA3IAxUg
+	cPGCPtxVZBJD0lE30y6n6ix3nZgsnRIo4ofm96e/GfsylnPcZEhWeaGIkEFQDHs/
+	Axi7VYqUcTNVEwmdAiUEtw6hEoZyEIt4Pn9snrJbUxLjWZCLuv9qVwR56o4tVTb0
+	oPv78nf3ThCMLqhXzRQf5JAN7Qyy3d/u0GzKW+yd5cblGsOIHQ7OTjbklXsemFKC
+	SVlo8LapVEKWP28zAk3EMYBby0QHMctJM8Nmh+xY8teoZN/g8uvXckrgjosQQkzL
+	X0LA4n03acbTJjJeY5kUuNLFx7+8TX5ThKbNzUgLqNAQTZK677y0FsTLg8m4TQbm
+	a0ApaQ==
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49bhvk12bv-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 10:18:34 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-7f4bca2f925so1929926d6.3
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 03:18:34 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 10:25:18 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-85d43cd080eso11075785a.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 03:25:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758795513; x=1759400313;
+        d=1e100.net; s=20230601; t=1758795917; x=1759400717;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IWYVZENZspv4P6/8uM0cY4lKTEnxMEa9Cl47tXv/oVM=;
-        b=nIjKc5HTezPF0xD4XcnPMRgeowbqQy5szjzFe8HSh/YPVuaFsuVoHjPaCD3vXSWaLg
-         Yz6O7OXVfrQn48IkWbCih2lNBAw5NsoytFEt5BsxCjFGsmR9jlczpCMOa9r9y+TJhxjc
-         9jm4GHjC3oe+FnM+XIHqjjCrGFIMlnQ2lVCJWzzwqJrg8g79kcp7SL5+pf8SmtBe4GCB
-         22GIph/yZRU8PFNYcF7bdc9Ux9QXM2YyCtuENOg9QP4jwhbdEviqiCJod3dvi9KsGc0W
-         Hpz6A8GYccxZk6s0D5XSz7BGk0PpBVYn71GJNLXTPaFnqypPqb8KHSluvZ3mNeM2gALQ
-         e1Zg==
-X-Forwarded-Encrypted: i=1; AJvYcCXD8BfQovqPo6AXxvamzz9xGly6UyFYMr3Bp5hdTok1xIEwiQ16czWcw5O+oNFjafW0MK7vhCnzV6dW@vger.kernel.org
-X-Gm-Message-State: AOJu0YzufpK0FL1yURBGYpKDbIiU215yhfp/18xPFb0Y8QFVSgtlpBMs
-	ZQF0UEi0OFW6PVH0xnF5z+x0XKFRVJCTk7CBqecU0tJdL2kbMwFPhK3ca+lUiiaCT2od29Nt9EY
-	wwabeqRjI9yHgEzIsyufpMo8a3p8HWu4rREbrke+cnJgzPcXtWSgjcqDB5uKsjchh
-X-Gm-Gg: ASbGnct8gJstfeg/5LwXXFsVafUr5gDuSUJEM3kQf8FUvzOIgQOr7zum5jJwjks0iZL
-	y5xzZUuJ2A786G7TRWpZRMWtv+YTt5HaiUFXuUZu5YixiBxc5cFgaeV/7pKsGlIYFSxmC710udg
-	EjEuSNoUCMoIpWwVTibfIbTBwS768RQbbNIFUk30cBiv40Q8/0zpqJG1q2m3rTOlPKr97HGdOfY
-	HDng/61fk+x5eQZLYHIaFdl0qqwfROzYjPOK8uyDDg6je4CxOxHCR3l2OG6INABKEL2TFslSe3f
-	tKi2aYDpD0lD5DrwUBgt2MRj/Zn/VsNVxAA7dInlIe4rawSxs69FUsWp2eq4MEzs6pbsulrNirg
-	58Joo7z1n6dIQkuTIXitbPQ==
-X-Received: by 2002:a05:622a:14f:b0:4b5:e76b:d621 with SMTP id d75a77b69052e-4da4bfba467mr20495761cf.11.1758795513098;
-        Thu, 25 Sep 2025 03:18:33 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFeYn583fkq20lV7VuagbZHBYgru0v4T7NMmM2UU22IGNtqwrtQzNW3vAC1VInKdbhbl5CJdQ==
-X-Received: by 2002:a05:622a:14f:b0:4b5:e76b:d621 with SMTP id d75a77b69052e-4da4bfba467mr20495641cf.11.1758795512683;
-        Thu, 25 Sep 2025 03:18:32 -0700 (PDT)
+        bh=qJ4HNspy8ugKaxak0rI5XESfap+Y3CVU5ROm4M6HYI8=;
+        b=rWU/Z+tgXF5WzE14LxJiJL31apK3/ihq47QmjYWqJxG/5oJPL2TzTcTDr1YkB420zW
+         0doiZPSPGb9n46zfZIxgmorY3gv/bi3PUYv89nI3QpmBBalRmTQEHHycwd/4O3/669A6
+         DfptRWyhHdwh449nD5HJY1nAGaUb5+RftewxDIvxmNH2hjqHF16NqEwgkGw9eyNXuJdv
+         aVQ1nvFP/GBubn/VPKY27HQkYNekhH1ztOH/j5XpTCxu6yRVEJQQDQ0SktSho6q007G5
+         j/Vc387xGeAs1No6wNKVdr1gL+4SR1xoX1vpRxPvpeDyVof2pBU250iJvPNKpUkds6La
+         hY8A==
+X-Forwarded-Encrypted: i=1; AJvYcCWF0xV0uuFldKSRCouN+ghmVlddZEIBiWOq6Qduw231S4PY8/lBg5JgYV+Q2N5BjnEdx0+vCXTD5j7N@vger.kernel.org
+X-Gm-Message-State: AOJu0YzpkxvPtStW7bYSdGAYcTeF2j4Sj0dVcELMHi5nqDLqplPUemn2
+	xE1BSxgGiyR6b29x61UhHv0lZAhnNJ9flFUBd4h8AW32pwidzDJTpFWYs87TykgJv45MhuwIOKs
+	XRZRhNoBA8quB5l8ctaDzPgt30+K8pIJDtWZ5fw1sgG6De0D1y1u1q8X5hSlluoGb
+X-Gm-Gg: ASbGnct972Bp9nTiyBLeN7ibFgc31fsXGbGIsxeg7PnQcboWnHxx06E/E+b9Pi2+Xq3
+	vlYpeG6TaAWwYLAUJAaHU6OUt5WaORZe/5UxWh4KDYHucGJpM7hgPo8ZOeLIkojy9r2O4SWeke2
+	RLVfMmURqkdN0Rz5gbV3teDCr9hFGi/nUzeliHAmsPEF+vY+mEhHCv0WHewKNtLnfPaolmNbW0G
+	owgfU+34yc8IKAIuo9ohuIySd8oVbsvY7zzcpvzvpl1mKxsgnbPsGNpwhw+Obzra6P6EZwRNXNh
+	OtPybfjPV+I9rHjDjuNjjwI0d8VBaSFFiUWy06NVyk2s+ENjxOIuJJ0pLWocvHaCaf4snsw9Pi8
+	U+36g6BUFxtuID41FBCqfhA==
+X-Received: by 2002:a05:620a:40cb:b0:855:b82a:eba5 with SMTP id af79cd13be357-85adf5d276cmr231390585a.2.1758795917368;
+        Thu, 25 Sep 2025 03:25:17 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH2Zz6UrEL9X1kyHtq0w9S+d/UM+2pLk4ePCwwUt6YIR1xjOW2GmKX818dowCttFUH2RlgjbQ==
+X-Received: by 2002:a05:620a:40cb:b0:855:b82a:eba5 with SMTP id af79cd13be357-85adf5d276cmr231389085a.2.1758795916935;
+        Thu, 25 Sep 2025 03:25:16 -0700 (PDT)
 Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b35446f753csm134383366b.55.2025.09.25.03.18.30
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b353f772528sm139148366b.37.2025.09.25.03.25.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 25 Sep 2025 03:18:32 -0700 (PDT)
-Message-ID: <8828946b-3979-4e7b-a11c-740d8a6253ce@oss.qualcomm.com>
-Date: Thu, 25 Sep 2025 12:18:29 +0200
+        Thu, 25 Sep 2025 03:25:16 -0700 (PDT)
+Message-ID: <2055e6a8-dace-4ee9-a74b-0e3bf2d58fb7@oss.qualcomm.com>
+Date: Thu, 25 Sep 2025 12:25:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,8 +90,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/24] arm64: dts: qcom: glymur: Add QUPv3 configuration
- for serial engines
+Subject: Re: [PATCH 05/24] arm64: dts: qcom: glymur: Add cpu idle states
 To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
@@ -99,116 +98,136 @@ To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
         Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
-        Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+        Maulik Shah <maulik.shah@oss.qualcomm.com>
 References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-4-24b601bbecc0@oss.qualcomm.com>
+ <20250925-v3_glymur_introduction-v1-5-24b601bbecc0@oss.qualcomm.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250925-v3_glymur_introduction-v1-4-24b601bbecc0@oss.qualcomm.com>
+In-Reply-To: <20250925-v3_glymur_introduction-v1-5-24b601bbecc0@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: lMRC6xkoHlqiFYwcxqboHPOYSWMzqGEI
-X-Authority-Analysis: v=2.4 cv=fY2ty1QF c=1 sm=1 tr=0 ts=68d516fa cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=PXVopu1NAIokzL3Bk5wA:9
- a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIyMDE2OCBTYWx0ZWRfX5IlZizrpTQKj
- wMytTXeyTGRZABojmCytq1I07bEkDFtYHKom0m7KvjxEn1Ud7Fs9HtxXb8xroK1hdjw20uxu4Dz
- fHasvXSJZWZRW31M1M6fdrWljq0L3U/K2jx9bpKFCjEJARcDwkfJhZ8uUJvU5j185cJpqKOc5EK
- 6nvlGfixzQB736Ez4VtHptIYWtmw62kPOry3cnM4csz3Au25quVXVoDL1xEXElyTBibWOzYjbZg
- H6EzX/PeUIYbv/hBlDJ3I5h2eeWvSmXe20W/a5BMyseH3jx/ElSUde0jQYtdeiQiYB01SwTrju8
- +7fhCliKrQfTf+Cm0pYqvfmO6zlqmoa43UUvkjkWuUbuv01TeHWL2bajXry2yCTEZxHNnuPVlcv
- 7Dee5ulF
-X-Proofpoint-ORIG-GUID: lMRC6xkoHlqiFYwcxqboHPOYSWMzqGEI
+X-Proofpoint-ORIG-GUID: yZWeKNAXjbZMt6AYHNT_w-tdPCOs7W8G
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTIzMDAxMSBTYWx0ZWRfXzJTiBFojK0Jv
+ 7l1hK2wVRtWMNBHzSAbdviPz6meoe1MfOhCi/wZrw8tqbLwW6xjRfQ+9KLqaV0zZHz5hpCH333g
+ bcUZAHTPfDP/yuAD/0Q0rzFxtlINbZv7ig5Hm7OFmDzTAQ0cIreGwQQL3hUJ8Uq7zEYVeW0DanC
+ Nh/995v48XVPdqxo7Q3yHtRrNgeLkIenPZ/W33xcAcnpSZZ5KOlH9vc3iY5MlPb4T6+nQcCNUeh
+ nQiqKYr3Exspo9oS1ziqM4hd7KauAmGTt1mRrziKhhZiaAGb/es30Go+vAJxg2XgzSFjzRPyVBf
+ uMKu0eEgw3fhekejUa+GKA1RImpB3+9u67hU7JNJdSKg4oVLgMqSlVvSN8p00lchWVKFyFN4cR7
+ V9HAdwXe
+X-Proofpoint-GUID: yZWeKNAXjbZMt6AYHNT_w-tdPCOs7W8G
+X-Authority-Analysis: v=2.4 cv=Csq/cm4D c=1 sm=1 tr=0 ts=68d5188e cx=c_pps
+ a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=IJKnKGbGdoixpOcUAUoA:9
+ a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-24_07,2025-09-24_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 malwarescore=0 spamscore=0 adultscore=0 impostorscore=0
- phishscore=0 bulkscore=0 priorityscore=1501 clxscore=1015
+ suspectscore=0 bulkscore=0 adultscore=0 impostorscore=0 phishscore=0
+ clxscore=1015 spamscore=0 priorityscore=1501 malwarescore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509220168
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509230011
 
 On 9/25/25 8:32 AM, Pankaj Patil wrote:
-> From: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+> From: Maulik Shah <maulik.shah@oss.qualcomm.com>
 > 
-> Add device tree support for QUPv3 serial engine protocols on Glymur.
-> Glymur has 24 QUP serial engines across 3 QUP wrappers, each with
-> support of GPI DMA engines.
-> 
-> Signed-off-by: Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
-> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> ---
+> Add CPU power domains
+
+The commit message could say something about what kind of states
+are being added, what their impact on the running system is, etc..
 
 [...]
 
-> +		gpi_dma2: dma-controller@800000 {
-> +			compatible = "qcom,glymur-gpi-dma", "qcom,sm6350-gpi-dma";
-> +			reg = <0 0x00800000 0 0x60000>;
-> +			interrupts = <GIC_SPI 588 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 589 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 590 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 591 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 592 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 593 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 594 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 595 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 596 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 597 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 598 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 599 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_ESPI 129 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_ESPI 130 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_ESPI 131 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_ESPI 132 IRQ_TYPE_LEVEL_HIGH>;
-> +			dma-channels = <16>;
-> +			dma-channel-mask = <0x3f>;
-> +			#dma-cells = <3>;
-> +			iommus = <&apps_smmu 0xd76 0x0>;
-> +			status = "ok";
-
-this is implied by default, drop
-
-> +		};
+> +		idle-states {
+> +			entry-method = "psci";
 > +
->  		qupv3_2: geniqup@8c0000 {
->  			compatible = "qcom,geni-se-qup";
->  			reg = <0x0 0x008c0000 0x0 0x3000>;
-> @@ -718,6 +744,339 @@ qupv3_2: geniqup@8c0000 {
->  			#address-cells = <2>;
->  			#size-cells = <2>;
->  			ranges;
-> +			status = "ok";
+> +			CLUSTER0_C4: cpu-sleep-0 {
+> +				compatible = "arm,idle-state";
+> +				idle-state-name = "ret";
+> +				arm,psci-suspend-param = <0x00000004>;
+> +				entry-latency-us = <180>;
+> +				exit-latency-us = <320>;
+> +				min-residency-us = <1000>;
+> +			};
+> +
+> +			CLUSTER1_C4: cpu-sleep-1 {
+> +				compatible = "arm,idle-state";
+> +				idle-state-name = "ret";
+> +				arm,psci-suspend-param = <0x00000004>;
+> +				entry-latency-us = <180>;
+> +				exit-latency-us = <320>;
+> +				min-residency-us = <1000>;
+> +			};
+> +
+> +			CLUSTER2_C4: cpu-sleep-2 {
+> +				compatible = "arm,idle-state";
+> +				idle-state-name = "ret";
+> +				arm,psci-suspend-param = <0x00000004>;
+> +				entry-latency-us = <180>;
+> +				exit-latency-us = <320>;
+> +				min-residency-us = <1000>;
+> +			};
+
+All three are identical (should they be?), just call it CPU_C4 and de-
+duplicate it (unless the framework would read that as "all CPUs in the
+system must sleep at the same time" which I don't know if it would)
+
+> +
+> +			cluster0_cl5: cluster-sleep-0 {
+> +				compatible = "domain-idle-state";
+> +				idle-state-name = "ret";
+> +				arm,psci-suspend-param = <0x01000054>;
+> +				entry-latency-us = <2000>;
+> +				exit-latency-us = <2000>;
+> +				min-residency-us = <9000>;
+> +			};
+> +
+> +			cluster1_cl5: cluster-sleep-1 {
+> +				compatible = "domain-idle-state";
+> +				idle-state-name = "ret";
+> +				arm,psci-suspend-param = <0x01000054>;
+> +				entry-latency-us = <2000>;
+> +				exit-latency-us = <2000>;
+> +				min-residency-us = <9000>;
+> +			};
+> +
+> +			cluster2_cl5: cluster-sleep-2 {
+> +				compatible = "domain-idle-state";
+> +				idle-state-name = "ret";
+> +				arm,psci-suspend-param = <0x01000054>;
+> +				entry-latency-us = <2000>;
+> +				exit-latency-us = <2000>;
+> +				min-residency-us = <9000>;
+> +			};
 
 ditto
 
-(please resolve all occurences)
+> +
+> +			APSS_OFF: cluster-ss3 {
+
+labels must be lowercase
+
+> +				compatible = "domain-idle-state";
+> +				idle-state-name = "apps-pc";
+> +				entry-latency-us = <2800>;
+> +				exit-latency-us = <4400>;
+> +				min-residency-us = <10150>;
+> +				arm,psci-suspend-param = <0x0200C354>;
+
+lowercase hex, please
+
+also, this node oddly puts arm,psci-suspend-param at a different place,
+please align it with the prvious ones
 
 [...]
 
-> +		cnoc_main: interconnect@1500000 {
-> +			compatible = "qcom,glymur-cnoc-main";
-> +			reg = <0x0 0x01500000 0x0 0x17080>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +			#interconnect-cells = <2>;
-> +		};
-> +
-> +		config_noc: interconnect@1600000 {
-> +			compatible = "qcom,glymur-cnoc-cfg";
-> +			reg = <0x0 0x01600000 0x0 0x6600>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +			#interconnect-cells = <2>;
-> +		};
-> +
-> +		system_noc: interconnect@1680000 {
-> +			compatible = "qcom,glymur-system-noc";
-> +			reg = <0x0 0x01680000 0x0 0x1c080>;
-> +			qcom,bcm-voters = <&apps_bcm_voter>;
-> +			#interconnect-cells = <2>;
-> +		};
+> +		CLUSTER3_PD: power-domain-cpu-cluster3 {
 
-This diff becomes unreadable really fast.. please play with git
-format-patch's --patience option
+"SYSTEM_PD"?
+> +			#power-domain-cells = <0>;
+> +			domain-idle-states = <&APSS_OFF>;
+
+Does it make sense to include some shallower idle states?
 
 Konrad
 
