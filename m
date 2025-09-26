@@ -1,118 +1,205 @@
-Return-Path: <devicetree+bounces-221896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60197BA3E93
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:33:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90CF1BA3E96
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:33:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3F581C023FB
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:33:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45E5D620DFE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:33:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83F351891AB;
-	Fri, 26 Sep 2025 13:32:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF153283FC2;
+	Fri, 26 Sep 2025 13:33:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="wUyAiw6M"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jsc19axR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2F302AD3E
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:32:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09AD42AD2C
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:33:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758893578; cv=none; b=NwaSQ7Z2HPHj1/Vm9Gfcq2vAl+BVnZkM+70gw/fcFCph8hX5TA4PvFUdkfiMC+dr9XS7QAmvy8hiIVpH6lnVyhABDWazp3EgsbkM91CPl35Sle3ESST5Zd//MxlJJn62DHw6JkQcSpS6EMdVgRzCwQl8Kd7dKwq/CCx5P4YKHpw=
+	t=1758893630; cv=none; b=fxVUNepbacyp2VKyOTom5qhxpc+VYcDN9DyXLHtWXSAJK7dB7hj4mBlLbhQfS1ezbz6uKFiFoyKXS7WYr/weQz+U7HIU7SleXE9Gjp7iRCVIlHpJU6cQtzI0aExUaFi2kHcszZMWw86iFiLPmS6Y2IkXCxMIMEiXpBdZIWxZlEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758893578; c=relaxed/simple;
-	bh=bCg5ZCDZlbBoeYRSDTBdcsJZdFVKVBO2mwH3cdLPz74=;
+	s=arc-20240116; t=1758893630; c=relaxed/simple;
+	bh=Pt7z3mijaZRcTi2kiJmB2nrbDqeFwtsQxHgY8d/m5jA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qC3E3sqnaZ9Dl5vkzTpEQdq5Od8Bi6/bemRNLac5UPXR8ca6yk12fg/GtshPz6DdrKKPmn2L0vOx1cUGCw97+gqb4rW2uyajd3LlIiO1vvo+EODKgczX3/+j7734HHYA7yC+hAweYCqDhA4Z4wjuGmOrz8+wihWb5jSJCws9qXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=wUyAiw6M; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cYBNP0pt7z9tNq;
-	Fri, 26 Sep 2025 15:32:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1758893573;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Yd4Mx+jNOSdf6VCUIn0E+aIjOManxtZgx8FZ6L3wTIs=;
-	b=wUyAiw6MOzMV6zf7lkEjnsjt+tRDVO6Ao57dGOEZTYgFMcEL65ECbBvEI/2WXzr8uXZO/W
-	v1BEdJa66C9cq0i+QiS09TuaR84YYZxSmSI1HtIB8vuGqw44LAPcDzA2JmqeWZgYi7zuWl
-	2PQUufCxWo1oDAu+Tauj9BxOqDiz1NehzBWN6FfwIUcPP6nXLE9FPI432+sKnK2vXSc+Lh
-	JThwcs9VHk+BV24T7GI9J6u3hNVRYSFxLE3dwCJqdFHoGs20mIxI5u6lj1ppRuodwF0Rgw
-	FSwRL4iQ3sdvK7EJAPupK1+g28EiZJfgoJeAYplUjKj4fxnq/UQcF4SmTbxLeQ==
-Message-ID: <32fffaad-7738-4fa6-80cc-2f8eba7ca099@mailbox.org>
-Date: Fri, 26 Sep 2025 15:32:46 +0200
+	 In-Reply-To:Content-Type; b=qIch5ffPeWCZ3nJmwM87RiJYwGNdAMKXGYLE/LVmNbCMbF2kTt7fyQv4OEYOCbAfALKMQ/aif21APdRLu9p9N2rN5IJByyMtAZnaC9mk6dwdDnhJb2boxsbPoJcLWRnK6oDyWbKcVadfJDiZnUVZDLdxf/dwuMyVNZ+2zhXigGU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jsc19axR; arc=none smtp.client-ip=209.85.215.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-b553412a19bso1674065a12.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:33:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758893628; x=1759498428; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=tcqokYsWpz8RiIxAM57uVjrW1cPk6YvKlwakPUCpCAg=;
+        b=Jsc19axReYE6jvPAb24yJO2pfdsHPG6FkICIE3KrB5Eyek+NT9ASc0G4sqgLWPYWRG
+         hkP9BcDcYJsmCK31MqifXVPzysNDgoCeb1rRyXHnIXVvpkLfo+JR5XjEK4XboWhMpGMG
+         eF3iyDvf0ldA1YgLaUVBBLDHuY2SL4WxC7XQiOkoWJolzjAmvgoxTm+L16D1+8EVmZoG
+         O8JRe7URqOMrPyGBpZmd2yZd5Yeq9abkRax66ifrHEH69zMZ7O4cKAMeslbC17PRaxWC
+         Kgm3eo5DWMchUNXAhD3Fh+7UeGQfE31d1Efk3eFbXptI/iHv36ZMnlnWrVp4AglLjX6i
+         zHrQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758893628; x=1759498428;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tcqokYsWpz8RiIxAM57uVjrW1cPk6YvKlwakPUCpCAg=;
+        b=AXd6wLzo9B2x4WhW7bxshGhS/cchUDaHsVsmLeNXRCHCn4Z3UkDvs1fgt9OKC+dWd5
+         ENt2k8MBtxO3ROIWUjxFkQkanj3iAhOxoAYfSBDTpLVhmfz/DKEOIhSfjlj2iAQpe06F
+         Ih8TCY+xNUvMP8o9JP1eUHvpf81acW5xQVakKchmCayN4fBdOmEOHjMEqObyLdYD+jhJ
+         +bk/oh96FXthQmaBa6OkQZM38+lS9dDP4Ylk5PtecqZtN69X9H3QiEG7wZD9VRUAWTXo
+         K0Tk7UFM6UfzS+8qWH7kzbq+h5XE5ABage8dBrKe49tn2iVsoib8NpwfF4bNQ84dYcJk
+         bBNg==
+X-Forwarded-Encrypted: i=1; AJvYcCVR8jIskj5fif86OIkLlIadyvyRTr7I/vuQ7+pk2DBhorEB2jW3UEMsM0mAr02osXJij3Ch+Ykb+bMB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxq8ry9TRJuOD/SjangP/ihLwyBq6+2lABGfiF6/AX2UTOjzlbl
+	Q/gKJ1xLAuHmSSenzwYeJ5I+Yh/Uglcoeoe6B30XXRUHkQKLeSySO1ul
+X-Gm-Gg: ASbGncvMz33QsUoUaERp1QuKu4MljA85oznNT0zy0IdE0TxBOKjB28RcXOzjIUTFB9c
+	b4dYlnS1FLCD1hVY514qJlowoAqwP8GeXTu8CVf3YQp3Md0E1+p6lBjP3kmb5vI6gZLZb0VKHnT
+	WIXebssTJmxDqnOT2w66eCmqqm2Uq+KVU+Gn2v26u9j+fwJjH8odpRMDhPIxu+ZArMwg4mK7Qaa
+	tthXYqDJcD1ftK0xR0DFbZ80nT/NtytKw+xYycfT4yoVUDqeg3GcTuk6RU4RbUXPHozqXvr+0Bx
+	YZ19C6+Ga2jSshnG5/PnKMrBGjKS+qEQgE+uS8MZ3ia8UwVIhaWdplDICAEK1s3tx20LdAVKtG3
+	JY4o0sGbEZ4AeL7SAru2maJ3QU2xguRdSjbWyAjPb0dhsG2sqSpl0sefS+wQF+nCqnijxHyU=
+X-Google-Smtp-Source: AGHT+IExeqPZAv+oAD3U8/+k8mWznyTMcn8PDjKYGA65NFD29WAscSHSXpn/4Z+X87GhMFIClktq3g==
+X-Received: by 2002:a17:903:acf:b0:274:5030:2906 with SMTP id d9443c01a7336-27ed4ab8df8mr81830515ad.46.1758893628254;
+        Fri, 26 Sep 2025 06:33:48 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b57c55a339dsm4724097a12.40.2025.09.26.06.33.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Sep 2025 06:33:47 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <3bf744e2-aced-482d-9690-1bb3354aafad@roeck-us.net>
+Date: Fri, 26 Sep 2025 06:33:46 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-To: Rain Yang <jiyu.yang@oss.nxp.com>
-Cc: airlied@gmail.com, boris.brezillon@collabora.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- p.zabel@pengutronix.de, peng.fan@nxp.com, robh@kernel.org,
- s.hauer@pengutronix.de, shawnguo@kernel.org, simona@ffwll.ch,
- sre@kernel.org, steven.price@arm.com, tzimmermann@suse.de
-References: <20250904160445.1671f140@fedora>
- <36298ed9-05e4-4871-8e99-dfe814342c29@mailbox.org>
- <20250904172019.58e5f589@fedora>
- <4147d10f-fb54-4f1b-ac1b-58cf657a3aeb@mailbox.org>
- <aMk1CISrn2_p0qzJ@oss.nxp.com>
- <c34dc4bc-de12-42fc-aaf5-50474dc53042@mailbox.org>
- <aMoTtr9KmdrgDUiE@oss.nxp.com>
- <c1a45cfa-a249-4782-b5c8-0ee2d173fc97@mailbox.org>
- <aMrDKkIoZvAlBD8d@oss.nxp.com>
- <609113fa-6af3-4e7e-b47a-45b3152d8581@mailbox.org>
- <aNZaatnVRRkaPrnD@oss.nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] hwmon: (ctf2301) Add support for CTF2301
+To: Troy Mitchell <troy.mitchell@linux.dev>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hwmon@vger.kernel.org
+References: <20250916-ctl2301-v1-0-97e7c84f2c47@linux.dev>
+ <20250916-ctl2301-v1-3-97e7c84f2c47@linux.dev>
+ <53f1d5d2-c871-4823-ab13-8c3dfd86dbfe@roeck-us.net>
+ <aNXtJ0S5SAMsUwnD@kernel.org>
+ <8c6f609e-c086-4b6c-abb5-8d33ec85df47@roeck-us.net>
+ <aNaTPE494MMExSBz@troy-wujie14pro-arch>
 Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aNZaatnVRRkaPrnD@oss.nxp.com>
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <aNaTPE494MMExSBz@troy-wujie14pro-arch>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 39f223dbff010fb2613
-X-MBO-RS-META: 7t9f5dx43crya5tca76ssnuhq4bazs8u
 
-On 9/26/25 11:18 AM, Rain Yang wrote:
-
-Hello Jiyu,
-
->>> as the 0x4d810008 is a write-once register and whose operation has been moved into the SM side,
->>> so please drop the reset change.
->>> can you also change the label of the gpu node from gpu to mali like "mali: gpu@4d900000",
->>> as the internal driver use mali label to control the thermal up/low limitation.
+On 9/26/25 06:21, Troy Mitchell wrote:
+> On Thu, Sep 25, 2025 at 08:57:13PM -0700, Guenter Roeck wrote:
+>> On 9/25/25 18:32, Troy Mitchell wrote:
+>>> Hi Guenter, Thanks for your review.
+>>> There are many things to improve in this driver.
+>>>
+>>> On Wed, Sep 24, 2025 at 08:43:35AM -0700, Guenter Roeck wrote:
+>>>> On Tue, Sep 16, 2025 at 12:46:46PM +0800, Troy Mitchell wrote:
+>>> [...]
+>>>>> diff --git a/drivers/hwmon/ctf2301.c b/drivers/hwmon/ctf2301.c
+>>> [...]
+>>>>> +
+>>>>> +#define CTF2301_LOCAL_TEMP_MSB			0x00
+>>>> 	LM90_REG_LOCAL_TEMP
+>>>>> +#define CTF2301_RMT_TEMP_MSB			0x01
+>>>> 	LM90_REG_REMOTE_TEMPH
+>>>>> +#define CTF2301_ALERT_STATUS			0x02
+>>>> 	LM90_REG_STATUS
+>>>>> +#define CTF2301_GLOBAL_CFG			0x03
+>>>> 	LM90_REG_CONFIG1
+>>>>> +#define CTF2301_RMT_TEMP_LSB			0x10
+>>>> 	LM90_REG_REMOTE_TEMPL
+>>>>> +#define CTF2301_LOCAL_TEMP_LSB			0x15
+>>>> 	TMP451_REG_LOCAL_TEMPL
+>>>>> +#define CTF2301_ALERT_MASK			0x16
+>>>> 	TMP461_REG_CHEN
+>>>>
+>>>> So far this looks like a chip based on LM90 or TMP451/TMP461
+>>>> with an added fan controller. I can not immediatey determine
+>>>> if it would be better to add the pwm/tach support to the lm90
+>>>> driver. Given that the chip (based on registers) does support
+>>>> limits, which is not implemented here but essential for a chip
+>>>> like this, I would very much prefer adding support for it to the
+>>>> lm90 driver if possible.
+>>>>
+>>>> The public datasheet does not provide register details, making it
+>>>> all but impossible to do a real evaluation. Any idea how to get
+>>>> a complete datasheet ?
+>>> Yeah, more register info at [1].
+>>> I've checked the detailed review below,
+>>> but I'll hold off on sending v2 until you decide if we really need a new driver.
+>>>
+>>> Is this chip more like the LM63, by the way?
+>>>
 >>
->> I updated all of the AHAB container, imx-oei and imx-sm components, and the
->> reset controller is no longer needed indeed.
+>> Good catch. Yes, looks like you are correct. LM63 is an almost perfect match.
+>> CTF2301 has a couple of extra registers, mostly local setpoint and temp LSB
+>> plus the registers in the 0x3x range. Actually, those registers _are_ defined
+>> for LM96163, so that chip is an even closer match.
+> Yes, so just to confirm,
+> you agree that the development should be done on top of the lm63 driver, right?
 > 
-> thanks, please update the gpu node label if possibly.
+Yes.
 
-Which label do you refer to, and which one would you prefer to have there ?
+Thanks,
+Guenter
 
->>> BTW, does the dynamic frequency work well on your side so far with perf domain?
->>
->> How do I test that ?
-> 
-> cat /sys/kernel/debug/clk/gpu/clk_rate, although its name in dts is core.
-> it is an read-only scmi-clk.
-> the clk rate should be fixed, as it can be changed only via scmi_perf in i.MX95.
-
-Right now, it is indeed fixed at 1 GHz .
-
--- 
-Best regards,
-Marek Vasut
 
