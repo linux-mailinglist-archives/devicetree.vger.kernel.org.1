@@ -1,237 +1,227 @@
-Return-Path: <devicetree+bounces-221940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AC23BA446E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:47:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F3A6BA44B9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:52:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B6544A3F5A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 14:47:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A88B3AC491
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 14:51:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A40AF74040;
-	Fri, 26 Sep 2025 14:47:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD06C1E7C2E;
+	Fri, 26 Sep 2025 14:51:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="moIfQDSQ"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="XPnJY8b2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011023.outbound.protection.outlook.com [52.101.65.23])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC9D38DE1
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 14:47:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758898043; cv=none; b=dfleCP+DR/Sa8CwMenz9pXgvzmVsStA9xo2/gQbb8HRG3wPlxFdA3Yc4XOGF7O3urea33E05Kgs/CkjsP5pkypY/tGI0TPbsEx+/PkXbmwIG0joKMBMdC4O82EWBztka3mUXRjUtV5FkkQY9BE5os3f/T+P1cS7QD4OB2PwtL2M=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758898043; c=relaxed/simple;
-	bh=PxLJxKxKxHHAU6FGVEjqIZb4eS8mFOjMm0lu6rHkXFs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CfgbBO+Y5kQy0YjAEt4g90I+ic9WfYYLdqoi3W6FJgkHZHZwaCmRLdhsfJXP8Dcd0U9R/RgrX4O9mxViK80Bs7c4WmNGG8k7gtwkHy6ecnFzIBqK8cHESz14qJ8+iLhcvQjIsgFkukgQEZYvDFxsx/WmMlXClNfWJiVgiWPNEfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=moIfQDSQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49C56C4AF0D
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 14:47:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758898043;
-	bh=PxLJxKxKxHHAU6FGVEjqIZb4eS8mFOjMm0lu6rHkXFs=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=moIfQDSQC/I8oMohSKkuwl/IppgEcDKIezdjh7KfKl7Nn/2Z15OAtbZBq02WlXvHs
-	 zYYRcpFlZv4tP8PukMEf/ZRKs5PMskLG0i47dI7aF8MUHM50akaoSAUHuxfdQFk4zj
-	 fzuM/gw7ylJVMc7aVquDxSnGGGLUJHhjf9eK8HCSiUY0CPax65b8Jbiz6s3wDTmXRc
-	 2UhNkeaBxCIiwhXAXcp/PHHa4EIuV5DYVF2rgqcYmH0x/sc6YeqTs8385P8JV7dA/l
-	 0vHkYVJUvzPwQWq+hF9OWvFvZjcWzt4U9EyNoHdXVVdW+qNw0GWhF+9qojEYoizcyD
-	 lrBYkc/JQvctw==
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-afcb7a16441so370561666b.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 07:47:23 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW0rlCWRuSsZKTs8w8i4qZYXaph23MWoFu/7xwg25D82CUiPHmHfUXab+qreiRO4aHh41QaLij8LgPv@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywq+vurIkYTeoRWzR3UgcWHDOxqi+ptj/ubFUAlRb+EvqnsJP55
-	04VH/x6aR8ATgN+TIpzw1tKYvjlJC55sjQWpihErfZGPegKUxbH4e5ReT1KRsJtS1Xl8s7vYy9j
-	hFZ6lm4AHIQRLuYbvd+zWUqWrIz+E+g==
-X-Google-Smtp-Source: AGHT+IFYlhh1P/VEFhBfLmLyN0WsblCYhmdb8/TU2n2m3mQ/geQQ+5CPtM0v6/lEal0Fl9k9sVhPFz3LsvIfu6OQy8E=
-X-Received: by 2002:a17:907:86ab:b0:b04:6cf7:75d4 with SMTP id
- a640c23a62f3a-b34bcd5959amr809600766b.49.1758898041746; Fri, 26 Sep 2025
- 07:47:21 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 983751DE3DC;
+	Fri, 26 Sep 2025 14:51:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.23
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758898314; cv=fail; b=pRYefdWTB6mpJxPQaQkMY6VOaLCemGDjwL9rAoGo+/8zOP0iCaqbmeDearN/9iCA+RbJkhlESBTqingdX7xnGzL4DLqnT6d4huOkafVL5oOcH224lz0CXVjOEDFHbE9a6cw1AiMuXQgpSiauAzBRXfWXzartHfVlRqRl07MbYUU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758898314; c=relaxed/simple;
+	bh=XGVXxGONp+RZ4LQ4j9fp9Oh0g76ZbVPY0pW3b51Gmlo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=ln57D/IiBSd56A3YzRZuy7qac0tcluyv6U/UIMTO/MnEf8u1uXcvbVej5RZSRcmcgZbHQTDb6x1IZoaJ7ytz94qdgNq5I5/fkr1oeLfGnWL7gf3XNtLbhtXKuv0CGXfgTF3OqSVdtu7mmWG+GYSOVFlPRKzWayn/swaI+QO+dl4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=XPnJY8b2; arc=fail smtp.client-ip=52.101.65.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IKtL9ilg8qsEDgzcs99bIz2jxCPhFrgq9JXoFbSrDYG9fb/f1ybyrWIQFbS3xW9HnIhZsG/XPtHU615sEe7qRLcPqTuESLRSywzAod0cNEYL9Vxd5C3RFX988oK2qmbpMeuqVCA0W3hwpMp0t6TMEn0ujTS9xvbIJjvaiqVEHcOgo7BbOkeH98AXgJhYB1q+hr6+ZYjJw/jyFwfxRD15N15RxuwjEDkCNqwv46wWfa4KewZSiUGdUMxJYUlimzCIy019U+JO2oYgE8Ct3m06pBChVePjS6jYOkg3TzH6Twr+UtOZPSrGA1G1NgLmJWfm3LFZpZ0BcoNZssK3tDhMnw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pU9+q0Z/rbVBh0lqIw8R1PORXHoiRaC7lN3xsa8XYqM=;
+ b=H/SrUeEuZn/hIFgEU9oOULfrkFEM9PPc1hOEcUBMrZOizu9Ow+gAzui9rtt81k0/2VTXX6FXle6eNxMbpTkCVN9PWuRZHW2VFi4JOrkvxlqMpkazkdMjK7un4R81efACdljq0MiSNXUfcsq9dFuskdX8YfIxYeRD1SazMuRPAa3zD+ssGymWvpE9ZhfR1m9wZKKzLQKZu8u2hJ3UwLPPruyX5s7mq8dxU1rAO1vUB7Vzzdc3/M/M3gh1Qn0xjHZigb0PT5CoyH9jUTHqvojL4s/yX+c7xdvQbVSyjJnBxLdVwz6ZRUMacmZhjLBwNmod8pS2bPVf6ShTdOsxLteiaw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pU9+q0Z/rbVBh0lqIw8R1PORXHoiRaC7lN3xsa8XYqM=;
+ b=XPnJY8b2UOKUKg5ZJrGkznTXWZrf6kH7+jBWLxNWmr3K9/09L1p7HqImQ89kSEKgV5OuYsIfgsjOkkkw5n9n46t6ARzHa43YmAf3watFMaM89/pj4UseJZbYD1kOi+cRkTK2deC4vjQK+vth9uN3QJhJ3Ybsk+VVHFKhJ1URzEkLMNIL6WUcwd2glqHIBDiRcvkQoQHiWsS5NmSDidQvz7A+v9w0tB8/qjDwQis6CcHbZEN5FO3wRfLwR1STmch/N5gLKprWKjxZ6+nwnK2sVzOn24d64EIKsrz5xsWlcH/xnCEtrWFjOuUvpJXEw5v7LYT2yq9rl0AkpJ8jfrp6sA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
+ by PA1PR04MB10675.eurprd04.prod.outlook.com (2603:10a6:102:48f::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.10; Fri, 26 Sep
+ 2025 14:51:48 +0000
+Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
+ ([fe80::504f:2a06:4579:5f15%6]) with mapi id 15.20.9160.008; Fri, 26 Sep 2025
+ 14:51:48 +0000
+Date: Fri, 26 Sep 2025 10:51:35 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Manikanta Guntupalli <manikanta.guntupalli@amd.com>, git@amd.com,
+	Michal Simek <michal.simek@amd.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>, krzk+dt@kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?utf-8?Q?Przemys=C5=82aw?= Gaj <pgaj@cadence.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	tommaso.merciai.xr@bp.renesas.com, quic_msavaliy@quicinc.com,
+	Shyam-sundar.S-k@amd.com,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	"'billy_tsai@aspeedtech.com'" <billy_tsai@aspeedtech.com>,
+	Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	Jorge Marques <jorge.marques@analog.com>,
+	"linux-i3c@lists.infradead.org" <linux-i3c@lists.infradead.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Linux-Arch <linux-arch@vger.kernel.org>,
+	linux-hardening@vger.kernel.org, radhey.shyam.pandey@amd.com,
+	srinivas.goud@amd.com, shubhrajyoti.datta@amd.com,
+	manion05gk@gmail.com
+Subject: Re: [PATCH V8 4/5] i3c: master: Add endianness support for
+ i3c_readl_fifo() and i3c_writel_fifo()
+Message-ID: <aNaod76qkM4Srqyl@lizhi-Precision-Tower-5810>
+References: <20250926105349.2932952-1-manikanta.guntupalli@amd.com>
+ <20250926105349.2932952-5-manikanta.guntupalli@amd.com>
+ <93704e82-ea7d-45ea-8527-8ce92108eccc@app.fastmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <93704e82-ea7d-45ea-8527-8ce92108eccc@app.fastmail.com>
+X-ClientProxiedBy: BYAPR08CA0041.namprd08.prod.outlook.com
+ (2603:10b6:a03:117::18) To PAXSPRMB0053.eurprd04.prod.outlook.com
+ (2603:10a6:102:23f::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
- <20250924-knp-dts-v1-6-3fdbc4b9e1b1@oss.qualcomm.com> <CAJKOXPcbJY4JEjfZLvOAXEWCTYFpe7En+Riis2t3K5fWJgNU5A@mail.gmail.com>
- <3up4xqgd2ay3tex4ckzgews3ukyrdikcmgk7tbddggj3s5gt4d@foqcpnfptjk7>
- <20250925213151.GA2455023-robh@kernel.org> <c13b94ed-a240-4a32-9f11-f0e323197500@oss.qualcomm.com>
-In-Reply-To: <c13b94ed-a240-4a32-9f11-f0e323197500@oss.qualcomm.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 26 Sep 2025 09:47:09 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLCLy0JxPtbg5sbXux-o8aQi3a8EOs0c=VEJCePew72nw@mail.gmail.com>
-X-Gm-Features: AS18NWC5C7HnLX7fNJNeb1WDQk7YmZFfyTQG79-Q0QGWW0BmFcacKZTlJXUOwQI
-Message-ID: <CAL_JsqLCLy0JxPtbg5sbXux-o8aQi3a8EOs0c=VEJCePew72nw@mail.gmail.com>
-Subject: Re: [PATCH 06/20] arm64: dts: qcom: kaanapali: Add USB support for
- Kaanapali SoC
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, =?UTF-8?Q?Krzysztof_Koz=C5=82owski?= <k.kozlowski.k@gmail.com>, 
-	Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
-	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, 
-	Ronak Raheja <ronak.raheja@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|PA1PR04MB10675:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ec54f8b-9784-4c0e-fd90-08ddfd0c37e4
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|19092799006|7416014|52116014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?jWa6aK+dMrxBtQWkzbyaN04KvnLoESMicfb0BFyFpnmQf5fB1maWVGsm5Em3?=
+ =?us-ascii?Q?OZKJnScDKEEv+UliUZBTLV9G5XzowDXQu7StN/DdLfDaieXFbT4MyADnpDna?=
+ =?us-ascii?Q?WI+GkCd/8HRTxFaAbn+NPuGWpwb31kgeH/Vs/oz+lSHc5cSlt4MR8SHsJtpc?=
+ =?us-ascii?Q?k1EvYT1sOhmCv6oZoIyf71REN6eomX72uPdKwiiLfP2r13hsfjeVDpaKSYUA?=
+ =?us-ascii?Q?m++Bu+J2gJfc4uD+Dz/cR/dQDQ5G+k/Yna3WtEuBmD8kZhYmx4QynGtuAWfb?=
+ =?us-ascii?Q?Kx0MZfIQfGu1uxCQGtroV8Tpof7+zB+xQZB1boJTv2lLAR3w7Yo6DExsZA2L?=
+ =?us-ascii?Q?8P/VAHxavSVO/evEG5Dw1iEFHlw/eW5BIjUxtSJydOroJQt+1bZSv9DtnE3t?=
+ =?us-ascii?Q?dYd2lJsmh5LDr0tDBLM/DrrbJ8KWP7lLrIe/Z9LZUCaaVYmwMMd7Rdiwk4Jo?=
+ =?us-ascii?Q?1rRPgbdnb8LQJY/QWcVSm5rYoHMzQMVWyfNBTGzz5xHI8fzeJiVkBPdLR3Lw?=
+ =?us-ascii?Q?3jFQc65qNjmnsE7zkwjbZBoTrHeVk0ugIm6v0ksVgSwIwjjov5ZBk4rtKZDq?=
+ =?us-ascii?Q?6/6FzCYw1vd8PZ3Fl2YqFYOoXdrsmE7M9QYI+EzD8gGbNxVchXysfF3pDtT5?=
+ =?us-ascii?Q?pisS9x1hgtC81LRUvtnFDepbzc8AVQpjkInYUJONetnButYQIRipPb6eSeWr?=
+ =?us-ascii?Q?6A31U67A+QxcNdg7TEk2XtaXPaeqqlmwxb3DIDg4SS5TlzHI2HCuVFCwVh4w?=
+ =?us-ascii?Q?x015gdrsCfu8kzwzjKj7nIz9RCitcQQWPiAGwFm1EjN81ggiyHACJ7Pj59jk?=
+ =?us-ascii?Q?qtVb9dwVoW+REvRREkshNI2iOrD2tTITjoMF3m9WzKjVopuGuSQggT8yDRwx?=
+ =?us-ascii?Q?cbDECNqdP4gJmXXGGUstQwqBg22vmV4Pl1kUwwPtw3jnSqxThmm+crTIAWO7?=
+ =?us-ascii?Q?l7i6cXpE+srLbci6BIkrGakIABTsxCpmvAwphrJcd8pVu/OjGp/VJBpy5CCC?=
+ =?us-ascii?Q?9usa1kvKfxOQn4IZKEunWb/Och8+BHtRjXTlpPbazGpKwzIR8t4X7GUatAqX?=
+ =?us-ascii?Q?xOmM9v9SKYA4Tb26iHK7tncegEyQOZqmcoP7LouJf4Cl3Qo1vIYn8EaV3ibM?=
+ =?us-ascii?Q?HjNEWr8cYKqiwrF20H9NsVKt3uv67RLZbSFzio5dam0xv6EPnxIExgd2BbNl?=
+ =?us-ascii?Q?YT93eWdUv1liMAmX0uHj8M/M30rqEvWmUGEh26n9etuoRkydo6a0ZNWGL3Yg?=
+ =?us-ascii?Q?roFf9clvL5z9arvEtjIryYc9dZCkQA2/hHIblizojtJAzU0ymm9vfSVUAw2W?=
+ =?us-ascii?Q?1J79wxr3hGfZbS5qwPCl2ZQbC78P5Cb9rwCNXPJ+yv4H7MAu58/h78zZGYwH?=
+ =?us-ascii?Q?SYaqWs6WqztOrYeF8zy60/kLgtd235qKf9Pqv9R9G8xNyvycZlxgFU/XmLOW?=
+ =?us-ascii?Q?YXLzp1EIme10HMZaTPz2IhNdg1q3uHtSilSnYx9cEbE5GLxtqsMWuA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(19092799006)(7416014)(52116014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?yNyQBBfhLh1CkkctBLtsJ4pFqaoeSObfTDmAt53anKcFz74yGXWXt73zqpYs?=
+ =?us-ascii?Q?pF9kHS4LZeMmxkTtxQ31EimIUoyFNemEirKS9xR6y4efBVLEml26xxQAVSTl?=
+ =?us-ascii?Q?nKmE2AXE7ZJA0jZOd9ObvQEUtygPtvgAsaoZA1OGs6qqd5bO5XSdeqZJVnf1?=
+ =?us-ascii?Q?gLenNNr+yhpmZv/kMh75E+k8sOUIqOej5Wic2LClmcFenIAkMo+igXCCxr51?=
+ =?us-ascii?Q?ITR0i6/ukaliUmA9liwcMh3H2ET5cRlteqGKqpVAMAD/Y4NIjqLDQTogPRDx?=
+ =?us-ascii?Q?UV90HcqAl2XWZtuWgZveWVe7bqzDmkY9vSnOSSITh5l9JoKnUg5ZoJj4dMAM?=
+ =?us-ascii?Q?WvAECI48E4bOkKxTfWny2sVUfEAswskVAFMpDxfaEbzQknUxwvUWqc3AC+tg?=
+ =?us-ascii?Q?LcO1C5nXvC41M+bIKO4gSrmu8vV2B0FDJmFMY/SG3QzumMD1FCe7i7eWm1Oh?=
+ =?us-ascii?Q?fVGiiDUI4p+1juL7D99LoLXezaNofJtY55XzaWJHpHnUFzaogQS+R+gmCEn+?=
+ =?us-ascii?Q?MSQljFb1rcL1Ms2Q/aAFAV4cPaoi2HDMO6v4g3Yb32HQEpE1bj8vP1yZ0Uwm?=
+ =?us-ascii?Q?UZSepoKWeG6G6RexP+XOBkAw7zkCSn+bj3adv6p56g8qrWzHfawkHc7ZdG1b?=
+ =?us-ascii?Q?YTTPgyG8AJHulBfetGiVWqTp5xC+ftqExoq+ceMKFazcZCEWvyWg8KlQlY6w?=
+ =?us-ascii?Q?75AUmjgXNA6c+j8H8RnlUpTQORDbXId0BbB8mK8bjPx/1uk/vx0xEBw8jt8S?=
+ =?us-ascii?Q?klk+SCV43ix0wSfVk3mK9aQ+MZ57C4/IvpZs2rghtXzTgGyWHIjENXyXr2IH?=
+ =?us-ascii?Q?2Q0WxJFlloVo0cV/Gu2Luptp54y9EnzJKmhM1tyYyP0loQh3pPjgEmPJcbz7?=
+ =?us-ascii?Q?XNwP8GZZ58nrctDlvhxJTXwWe3h9ChpcYv0h7LWXYOmHocTCVbOLP5X4IiFJ?=
+ =?us-ascii?Q?MsAmgEtXFc8lyXYrDqolu1LN86Nk8vEI7fuxNxhhsHHAp+KdEjeZeqKMWH5V?=
+ =?us-ascii?Q?TsxsSKA6vZf95UOe7igzB23R7jD9aIOL7K4MFeRbpsLKKzyn3WxX1zF5qUuw?=
+ =?us-ascii?Q?RUZTV0Kfd6x4t1GTIcCU6mX5ftmpCyxLgu2su1GuQfkQSWnEtaQeHKZGT3Dp?=
+ =?us-ascii?Q?npcrx2Xv/XMqvGMtKmr1MV9+GDaBH8dM8NaRFVJcfUUwtKoy6xPnMq7vt3Ex?=
+ =?us-ascii?Q?e26c07fyEIUJ92T9Ytz/Vr4d1HfixZCeE/kBob7ctsxB0E0mOwLQDk/AjW4A?=
+ =?us-ascii?Q?Q0ZE+BHhCbhCBxZ4sfLDBubCg3g4NiEqU98qT1BjeKuvqk2Hhk37c7iC43lS?=
+ =?us-ascii?Q?7W10ep1Z0d/CqTYPPwIKL27tXdKxftRuxmNwIScx3mljtXnFnZKAqmDgQteN?=
+ =?us-ascii?Q?N9512SVN2AXhDah4YR4+BqQKXXMyB+xVdl63RZ753wRWUNX3JOc8BOxjAW9r?=
+ =?us-ascii?Q?d3EL+GncfyD8a7/nw0Q0bYxPAVLlerXtE6napnFeLobnpS7J6KIF1GY+f9H0?=
+ =?us-ascii?Q?+1oNmED6WYGaaw/H8kg9aBTL5AtEKk6Bl5rT8gKu2oocSdQnVfeSnYyCSkWc?=
+ =?us-ascii?Q?VT18KymEUWyHvSqs8JMMwKJ88PZp+ZzJf43zSpGL?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ec54f8b-9784-4c0e-fd90-08ddfd0c37e4
+X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2025 14:51:47.8808
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jAQ3v8CWyEadSqaxiyn55A0JBR/SxQ9HEGJzTgw7yYDaS60mg+fLnfQqxjQI25Y/jyahw7ElsBHd1fMUz6R0AA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB10675
 
-On Fri, Sep 26, 2025 at 8:21=E2=80=AFAM Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 9/25/25 11:31 PM, Rob Herring wrote:
-> > On Thu, Sep 25, 2025 at 08:57:56AM -0500, Bjorn Andersson wrote:
-> >> On Thu, Sep 25, 2025 at 10:50:10AM +0900, Krzysztof Koz=C5=82owski wro=
-te:
-> >>> On Thu, 25 Sept 2025 at 09:17, Jingyi Wang <jingyi.wang@oss.qualcomm.=
-com> wrote:
-> >>>>
-> >>>> From: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
-> >>>>
-> >>>> Add the base USB devicetree definitions for Kaanapali platform. The =
-overall
-> >>>> chipset contains a single DWC3 USB3 controller (rev. 200a), SS QMP P=
-HY
-> >>>> (rev. v8) and M31 eUSB2 PHY.
-> >>>>
-> >>>> Signed-off-by: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
-> >>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> >>>> ---
-> >>>>  arch/arm64/boot/dts/qcom/kaanapali.dtsi | 155 +++++++++++++++++++++=
-+++++++++++
-> >>>>  1 file changed, 155 insertions(+)
-> >>>>
-> >>>
-> >>>
-> >>> Second try, without HTML:
-> >>>
-> >>> I really don't understand why you created such huge patchset.
-> >>
-> >> Because I looked at the logical changes that went into the big squash
-> >> that was initially planned, and requested that some of those was kept
-> >> intact - because they where independent logical changes.
-> >>
-> >>> Year
-> >>> ago, two years ago, we were discussing it already and explained that'=
-s
-> >>> just inflating the patchset without reason.
-> >>>
-> >>
-> >> We used to add things node by node and that was indeed not
-> >> comprehensible. Overall this adds features in large logical chunks, bu=
-t
-> >> there are a few of the patches that could have been squashed.
-> >>
-> >>> New Soc is one logical change. Maybe two. Not 18!
-> >>
-> >> I can see your argument for one patch to introduce the soc. But two
-> >> doesn't make sense, because that incremental patch is going to be the
-> >> kitchen sink.
-> >>
-> >>>
-> >>> Not one patch per node or feature.
-> >>>
-> >>
-> >> Definitely agree that we don't want one patch for every tiny block!
-> >>
-> >>> This hides big picture, makes difficult to review everything,
-> >>> difficult to test.
-> >>
-> >> The big picture is already obscured due to the size of the content
-> >> added.
-> >>
-> >> Comparing to previous targets, I see the baseline content in 2-3
-> >> patches, and the remainder of the series being things that usually has
-> >> been scattered in many more small changes in the following weeks or
-> >> months.
-> >>
-> >> There's plenty of features in this series that are yet to be concluded
-> >> for SM8750.
-> >>
-> >>> Your patch count for LWN stats doesn't matter to
-> >>> us.
-> >>
-> >> I agree with this. That's why the QRD is 1 patch, and MTP is 4 (this I
-> >> think should be squashed to 2) - compared to 13 patches for across the
-> >> pair for SM8750 with less scope.
-> >>
-> >>>
-> >>> NAK and I'm really disappointed I have to repeat the same review .
-> >>
-> >> I'm not sure what you're disappointed in, this initial series is large=
-r
-> >> than any we've seen before. I really like the work Jingyi has done her=
-e,
-> >> aggregating the otherwise scattered patches into one series.
+On Fri, Sep 26, 2025 at 01:09:37PM +0200, Arnd Bergmann wrote:
+> On Fri, Sep 26, 2025, at 12:53, Manikanta Guntupalli wrote:
+> > Add endianness handling to the FIFO access helpers i3c_readl_fifo() and
+> > i3c_writel_fifo(). This ensures correct data transfers on platforms where
+> > the FIFO registers are expected to be accessed in either big-endian or
+> > little-endian format.
 > >
-> > The QCom folks can review all this first because I don't care to review
-> > the 50+ binding (just bindings!) patches sent all at once right before
-> > the merge window.
+> > Update the Synopsys, Cadence, and Renesas I3C master controller drivers to
+> > pass the appropriate endianness argument to these helpers.
+> >
+> > Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+> > Reviewed-by: Frank Li <Frank.Li@nxp.com>
 >
-> Unfortunately this is sort of beyond our control. We don't expect you to
-> review or apply these patches immediately.
-
-It is *only* in your (QCom) control. I would love to have control over
-receiving patches to review, but sadly I do not.
-
-Then you should mark them RFC at least if you know they are going into 6.18=
-.
-
-> The platform announcement just happened to occur at this and not any othe=
-r
-> time, and we can't just ask the entire company to shift it to better
-> accommodate the kernel release cycle..
-
-That's exactly what we expect. Companies following the rules or
-preferences of the kernel community is exactly what is expected and
-required. Companies that continuously fail to do that result in
-requirements that all patches be first signed off by trusted kernel
-developers in those companies.
-
-What would you have done if the timing hit in the merge window where
-you have trees which have policies of don't send new content during
-merge windows? Just going to ignore that?
-
-
-> We do have an interest in sharing the work at the earliest time possible,
-> and with all the legal knots included, this is what it came down to.
+> I don't think this is a good interface, based on our discussion
+> so far, and I had hoped you'd change it the way I had suggested
+> with a separate function for the xi3c driver, so normal drivers
+> don't have to worry about the AMD specific quirk.
 >
-> I (and many others) made an internal push to upstream any pre-requisite
-> patches that we didn't need to disclose any platform details for in
-> advance, so this patchbomb is actually somewhat reduced.. but of course
-> DT and bindings are the main course size-wise and we simply couldn't do
-> it earlier.
+> I think this should also avoid mentioning "endianess" in the
+> changelog and in the code itself, since that would likely
+> confuse readers into thinking (as I did in my earlier replies)
+> that this is related to using big-endian kernels.
 >
-> Give or take 80% of the bindings will be "boring", i.e. "add compatbile"
-> or "add compatible and adjust clocks" because our hw is rather
-> standardized and the interesting changes often happen at a level beyond
-> bindings
+> i3c_readl_fifo()/i3c_writel_fifo() are already portable and
+> handle endianess correctly by using the readsl()/writesl()
+> functions.
+
+I agree. I think previous your suggested API is good.
+
+/*
+ * BIT: 31..24   23..16  15..8   7..0
+ *       B0       B1       B2    B3
+ *
+ * Memory:
+ *  0x0:  B0
+ *  0x1:  B1
+ *  0x2:  B2
+ *  0x3:  B3
+ */
+i3c_writel_fifo_bytereversed()
+
+
+Frank
 >
-> > One comment on commit messages though. Please explain how the h/w block
-> > is or isn't compatible with some existing platforms. Many just state th=
-e
-> > obvious "add a compatible" or such. I've yet to find what kaanapali is
-> > in relation to any other QCom chip. It may be the next SoC for the smar=
-t
-> > toaster market for all I know.
+>     Arnd
 >
-> Perhaps this would be useful to have in bindings commit messages, but
-> the cover letter of >this< series states that Kaanapali is the newly
-> announced Snapdragon 8 Elite Gen 5.
-
-Patches should stand on their own. I'm talking about patches in other serie=
-s.
-
-> The product page states at the very bottom of the spec sheet that
-> SM8850 is another name for it (although the shift to codenames
-> happened precisely to disconnect from specific SKU numbers,
-> because e.g. both SA8775P and QCS9100 are 'lemans' silicon)
-
-Sorry, I'm not going to go read your product pages...
-
-Rob
+> --
+> linux-i3c mailing list
+> linux-i3c@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-i3c
 
