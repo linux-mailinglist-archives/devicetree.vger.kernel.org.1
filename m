@@ -1,80 +1,80 @@
-Return-Path: <devicetree+bounces-221872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1849FBA3C66
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:11:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16905BA3C72
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:11:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E7E833B2F39
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:11:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B65003B4E79
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BB792F7AD8;
-	Fri, 26 Sep 2025 13:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50A562F90C4;
+	Fri, 26 Sep 2025 13:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="W3fnMtY7"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Ek5B5R6n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E2BB2F60DA
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:11:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08A182F617E
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:11:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758892295; cv=none; b=ohw0GNmgpAch3y/vxapO+5NfIzV2zN9grGL5nbLyxq0PBHANebmcmMniffLFUg8++Cp9zlxTV8zWf1KzJ9idXOzDhtrCjlfLGH9KfxkzHnWdz96jAK9ribasjWbkXc+GhxN8TOdu/ZKIdsiuMya3LcN67w1i6AoRq6nRjiDrsaY=
+	t=1758892296; cv=none; b=WOFuOx/UyuE0uqAbVvec5SqbJtUbaSm7/h1k7EKI3Hw7thpdv7dcS4PAuX7gE3BOGI//DFNMhXL8MA+PWZa32MCafcbdb/GOLdTaIK2ZJPoxu/fOumAxOn/OoEXFnmhVo471eYE3LFDGRjnfgbGzoKcZnSGoAE8qcYdOrozm+zA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758892295; c=relaxed/simple;
-	bh=HOaXKeMMBeof7Hx+tzoNDTO3vGlaHvg7CjV+p573b/E=;
+	s=arc-20240116; t=1758892296; c=relaxed/simple;
+	bh=80G8sSF8+f0UAG0XdkLdvNrCi6HOOZflBRDxb6bYpC4=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ERBXdVt9175gyY+rZpilLlBKXdNXz0Srab6nh0YR19jvAbABq39pFvM7bEsRBkI3ry5q+F/KpHi3LOZykMwTzUDkYUWQm1FxqXd2ScGPrsUbPgaQRhHdrIFFrjxjZhp9vQg6NbE9gXpc0piinDa+FNpeiUg1jEHd5EM1inX2Zck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=W3fnMtY7; arc=none smtp.client-ip=209.85.167.51
+	 In-Reply-To:To:Cc; b=CqHMMWJItG20isBgBIR4NGcT/ACaWGplBpbtaub2DPGc6RNUHWyyiuXiYoZkjlQLRVU9A5rmZeqwBhcqO0M8bZLfXg5+8FphFbEoogTo7Tpc0Y0lke7G6yirCAopKUf44qLCYu85ENQAPq4m35env1CALW9tsTk8bNgPpGBvBYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Ek5B5R6n; arc=none smtp.client-ip=209.85.167.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5688ac2f39dso2509488e87.3
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:11:32 -0700 (PDT)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5797c8612b4so2957172e87.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:11:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1758892291; x=1759497091; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1758892292; x=1759497092; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zavqbvAJpl+vVyZ8ZvtBFYz19hBaBOc/P6wczkVBqDY=;
-        b=W3fnMtY7RjqTLLDo7fzH9PJwwFjlLgWOiWVpSz3GM1AcM9VAqRpDxKfOEdmKVo4S2I
-         XBdaLHBPk4EAGufl1mBMbGd292pNFTULimhrWJkJMQQgXTCgMozzhgjL+Qz66suCxhmd
-         lahvQdfpNYueP2CVJHkP2abV3KmqPkBb2i+VY=
+        bh=LO+ZRHeTAK51LRbge1abR5CWq6P2opiI+XHVYGi/IpE=;
+        b=Ek5B5R6n55TSnFKW0GuBypFweQw8X4sOVkixEjA4uyqhsvIn6ccW6DzZmT/t1ZxIpq
+         KV4V0Le5Yd95VxYU1TIFCUhpW5v7iogHPO1YvW182Iee7j/QfExD7vmseSG/CWTsRX+7
+         g6EV2uP4aswmFDEfn316QTgEvYGOIMVCsu7bg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758892291; x=1759497091;
+        d=1e100.net; s=20230601; t=1758892292; x=1759497092;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=zavqbvAJpl+vVyZ8ZvtBFYz19hBaBOc/P6wczkVBqDY=;
-        b=XbRQEPu1ZdhFDqJkwUao41ryJhagthHZVRoB0Sa6ZZCrRvNcRar266AT6YRv2b+bwe
-         +BtcegxrzSaGGQMVEy3CPe9cUHUuOzfz/xZtTOGAMsM7VYbq23P/CnK2uyljFbzQ6SVi
-         EBRso6kcmpADcluBi++7E2q02ndr1QFqRHu79upN965fVx5wvxOVCJC5Ah7RtHqefkjo
-         XT6yJAz9hUzhmWd2HMVEzSRCXkEPUeRVMW7vi1Ow1MzeQ+ae7jf/LQMk/2/nsROupSe1
-         inPpGUVAyKj/L5RtNq88Xdhtfl66stIGlj8Q87hXacPBVDzwyLCjBwaRxSpmUNv9yk6O
-         efaw==
-X-Forwarded-Encrypted: i=1; AJvYcCX7yk3iQCBeepEsrOLTJBIm0LYjSob9PbSIm6oLIjOZqoWrj+XoCITszBvWjaV0O5qmFy9wg29nBOom@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXJJVrAXkFvJzxlXAuKfRZkfoALR9feqyp2yQ/5+pVDogt6qgN
-	knZdVXVbhpZNez5fr8aS7aU6UEtKmFA0xu0f2lku7TjvwCTzbORjpcGLoOj89mI+ng==
-X-Gm-Gg: ASbGncumUVVMMiyQ3KVf284PTry5fmnrWIa+wcFFBzLwmdhB0I9f3yJv/9NgfcyA1un
-	n1C/+HZG0Nx6+Mj6A0EhIBw7vm9ctvmHYcVHxzxLYPHs3KsVqRjAl/iX+mJETC2R+XJwkL9SJ5t
-	MjW6jBhbb87IBBAd+uH8TRwZK1ixtqtJTT4opsqsEUOprvkIU4I8oHX6FvzKOTFCCncCRkO+4aQ
-	qWIjWa/IVsBuqi3OvAmbRZnkmqZgK+1JlnweCf8RWXLgNf18u1RK4FyzU7xuw7UF/JezhVIF4fH
-	DrVw6bw1FH8J39irOQqh/22zdKZgIG8sSbn0Gpd2NDTLe5DpgDxQ1yJ+tmUYJLJ36hYWNWbypUI
-	C1zwA8yLdGlG7v0qCT434M3tQh16dPWDl4YcfwOX3kQ9yTPgy3aVw+4ZguUh9I3WiYbrx4mrzkC
-	PD0lz/ZRba+0cG
-X-Google-Smtp-Source: AGHT+IGYNymib7YkYpDINQtE5FTKayVP9W8HaNUBBncx14Dot8LXrbwZoz7D11yG6qpiPKpfo0xmbQ==
-X-Received: by 2002:a05:6512:b27:b0:55f:435e:36bd with SMTP id 2adb3069b0e04-582cd97cc3dmr2187251e87.0.1758892290687;
-        Fri, 26 Sep 2025 06:11:30 -0700 (PDT)
+        bh=LO+ZRHeTAK51LRbge1abR5CWq6P2opiI+XHVYGi/IpE=;
+        b=Pge8YZzmExyemrGID29iMk2A/qSgzanS8xJdMoxXT8PCNdsgNAIdIv2yqnTfAq3nRa
+         YlqS5SRyigd7mmXMu6Mqv6nI+VYHklebrlMAzcpUMdEGjJB73y3I77+Jr99iP/moBxO3
+         EqiGMXbphPlE/vggVvfN7Z8/jpG2aBn5Ac4kqBD2mYqkHLnISb7F1SY8aNOznYwQEGlV
+         kTFie8gKN3fi/zZYOcprNFgYOS3yQD2gYTyy//Uaa/Drn2UeGKsL6Io1FgJewouVrT+c
+         CYztKBPHJIfSTbDemrg8MspAqpEFU+033Km0w6Zpc8apaAWSKxCWi31mpWCLcuDHrpFp
+         qB2g==
+X-Forwarded-Encrypted: i=1; AJvYcCVngxpegmJ46ynZRoc7bwNCbT7+lD+6LRBtNSe130w0cduFgGFEwpyetzms9S8Gxq5ojE/RbdSBPbtk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw25mCF8bCZXt8h5kLZ4MnWFzgKmgWniuNQcWNb3rtrmVVPg4/e
+	8ZwAu+B9T7lKVe73Ia580DvZp+hvxlbbvPKTAamc6pt7JEHS0W5H4uDOgXGCdyDHxQ==
+X-Gm-Gg: ASbGncvU8g/sz3uV0uqmaV/EB1fV755Xayrc5KQGCexwanamTh4WXKtOPL+VBGiBJQD
+	JXg2JNF6biKa3kNUw1439C4hYy/WCXxv+KqtZDRACfwFI1R6+7+jnmPIAKCNvSuz6beRgixRfH3
+	M1aU44I2OFhiEnKeZZwDwC9WPW0rdYz2oE/sERfx9965wEiphKyEPUaamDwVXVKrmhPWiA1lNkT
+	s8Lf8Khz+CPdnrr/ZOVD6CCakROf4U53KjrZUePKHlC8t9s3Zr331SdwNrwbuphLu4J0iBG3bY9
+	tYKEksV4jjEnipN1RpYIYM9bwG0FZBWPLbJt/u13a9OJJg6yLlunyvqTcqgJ1X7AEk5AljLWrN2
+	abUq7YorIWleK0I8a0GX9X0NxLo0UGjWGe86YwSaU9dXnsF2NgOrbp2wSYszOzA/bvdwnrphbzH
+	Rq1g==
+X-Google-Smtp-Source: AGHT+IEKOz9hLF8FHkWrsyP0/Z6mTRW5uekYu6y0CaJ96qJRiudQJlAsNVVlhQMiizZElwgvlCzXEQ==
+X-Received: by 2002:a05:6512:b12:b0:57a:310:66a8 with SMTP id 2adb3069b0e04-582d35df2d7mr2404401e87.55.1758892291516;
+        Fri, 26 Sep 2025 06:11:31 -0700 (PDT)
 Received: from ribalda.c.googlers.com (64.153.228.35.bc.googleusercontent.com. [35.228.153.64])
         by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58527c6b014sm123872e87.43.2025.09.26.06.11.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Fri, 26 Sep 2025 06:11:30 -0700 (PDT)
 From: Ricardo Ribalda <ribalda@chromium.org>
-Date: Fri, 26 Sep 2025 13:11:26 +0000
-Subject: [PATCH v3 02/12] media: uvcvideo: Set a function for
- UVC_EXT_GPIO_UNIT
+Date: Fri, 26 Sep 2025 13:11:27 +0000
+Subject: [PATCH v3 03/12] media: v4l: fwnode: Support ACPI's _PLD for
+ v4l2_fwnode_device_parse
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +83,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250926-uvc-orientation-v3-2-6dc2fa5b4220@chromium.org>
+Message-Id: <20250926-uvc-orientation-v3-3-6dc2fa5b4220@chromium.org>
 References: <20250926-uvc-orientation-v3-0-6dc2fa5b4220@chromium.org>
 In-Reply-To: <20250926-uvc-orientation-v3-0-6dc2fa5b4220@chromium.org>
 To: Hans de Goede <hansg@kernel.org>, 
@@ -100,44 +100,144 @@ To: Hans de Goede <hansg@kernel.org>,
 Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
  linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-gpio@vger.kernel.org, linux-acpi@vger.kernel.org, 
- acpica-devel@lists.linux.dev, Ricardo Ribalda <ribalda@chromium.org>, 
- stable@vger.kernel.org
+ acpica-devel@lists.linux.dev, Ricardo Ribalda <ribalda@chromium.org>
 X-Mailer: b4 0.14.2
 
-All media entities need a proper function. Otherwise a warning is shown
-in dmesg:
-uvcvideo 1-1:1.0: Entity type for entity GPIO was not initialized!
+Currently v4l2_fwnode_device_parse() obtains the orientation and
+rotation via fwnode properties.
 
-Please note that changes in virtual entities will not be considered a
-uAPI change.
+Extend the function to support as well ACPI devices with _PLD info.
 
-Cc: stable@vger.kernel.org
-Fixes: 2886477ff987 ("media: uvcvideo: Implement UVC_EXT_GPIO_UNIT")
+We give a higher priority to fwnode, because it might contain quirks
+injected via swnodes.
+
+Reviewed-by: Hans de Goede <hansg@kernel.org>
 Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
 ---
- drivers/media/usb/uvc/uvc_entity.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/media/v4l2-core/v4l2-fwnode.c | 84 ++++++++++++++++++++++++++++++++---
+ 1 file changed, 78 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/media/usb/uvc/uvc_entity.c b/drivers/media/usb/uvc/uvc_entity.c
-index 3823ac9c8045b3ad8530372fd38983aaafbd775d..ee1007add243036f68b7014ca621813e461fa73d 100644
---- a/drivers/media/usb/uvc/uvc_entity.c
-+++ b/drivers/media/usb/uvc/uvc_entity.c
-@@ -85,6 +85,7 @@ static int uvc_mc_init_entity(struct uvc_video_chain *chain,
- 			break;
- 		case UVC_VC_PROCESSING_UNIT:
- 		case UVC_VC_EXTENSION_UNIT:
-+		case UVC_EXT_GPIO_UNIT:
- 			/* For lack of a better option. */
- 			function = MEDIA_ENT_F_PROC_VIDEO_PIXEL_FORMATTER;
- 			break;
-@@ -105,7 +106,6 @@ static int uvc_mc_init_entity(struct uvc_video_chain *chain,
- 		case UVC_OTT_DISPLAY:
- 		case UVC_OTT_MEDIA_TRANSPORT_OUTPUT:
- 		case UVC_EXTERNAL_VENDOR_SPECIFIC:
--		case UVC_EXT_GPIO_UNIT:
- 		default:
- 			function = MEDIA_ENT_F_V4L2_SUBDEV_UNKNOWN;
- 			break;
+diff --git a/drivers/media/v4l2-core/v4l2-fwnode.c b/drivers/media/v4l2-core/v4l2-fwnode.c
+index cb153ce42c45d69600a3ec4e59a5584d7e791a2a..4110f64d3277e652473f991fb58d191862f98eb0 100644
+--- a/drivers/media/v4l2-core/v4l2-fwnode.c
++++ b/drivers/media/v4l2-core/v4l2-fwnode.c
+@@ -15,6 +15,7 @@
+  * Author: Guennadi Liakhovetski <g.liakhovetski@gmx.de>
+  */
+ #include <linux/acpi.h>
++#include <acpi/acpi_bus.h>
+ #include <linux/kernel.h>
+ #include <linux/mm.h>
+ #include <linux/module.h>
+@@ -807,16 +808,69 @@ int v4l2_fwnode_connector_add_link(struct fwnode_handle *fwnode,
+ }
+ EXPORT_SYMBOL_GPL(v4l2_fwnode_connector_add_link);
+ 
+-int v4l2_fwnode_device_parse(struct device *dev,
+-			     struct v4l2_fwnode_device_properties *props)
++static int v4l2_fwnode_device_parse_acpi(struct device *dev,
++					 struct v4l2_fwnode_device_properties *props)
++{
++	struct acpi_pld_info *pld;
++	int ret = 0;
++
++	if (!is_acpi_device_node(dev_fwnode(dev)))
++		return 0;
++
++	if (!acpi_get_physical_device_location(ACPI_HANDLE(dev), &pld)) {
++		acpi_handle_debug(ACPI_HANDLE(dev), "cannot obtain _PLD\n");
++		return 0;
++	}
++
++	if (props->orientation == V4L2_FWNODE_PROPERTY_UNSET) {
++		switch (pld->panel) {
++		case ACPI_PLD_PANEL_FRONT:
++			props->orientation = V4L2_FWNODE_ORIENTATION_FRONT;
++			break;
++		case ACPI_PLD_PANEL_BACK:
++			props->orientation = V4L2_FWNODE_ORIENTATION_BACK;
++			break;
++		case ACPI_PLD_PANEL_TOP:
++		case ACPI_PLD_PANEL_LEFT:
++		case ACPI_PLD_PANEL_RIGHT:
++		case ACPI_PLD_PANEL_UNKNOWN:
++			props->orientation = V4L2_FWNODE_ORIENTATION_EXTERNAL;
++			break;
++		default:
++			acpi_handle_warn(ACPI_HANDLE(dev),
++					 "invalid panel %u in _PLD\n",
++					 pld->panel);
++			ret = -EINVAL;
++			goto done;
++		}
++	}
++
++	if (props->rotation == V4L2_FWNODE_PROPERTY_UNSET) {
++		switch (pld->rotation) {
++		case 0 ... 7:
++			props->rotation = pld->rotation * 45;
++			break;
++		default:
++			acpi_handle_warn(ACPI_HANDLE(dev),
++					 "invalid rotation %u in _PLD\n",
++					 pld->rotation);
++			ret = -EINVAL;
++			goto done;
++		}
++	}
++
++done:
++	ACPI_FREE(pld);
++	return ret;
++}
++
++static int v4l2_fwnode_device_parse_of(struct device *dev,
++				       struct v4l2_fwnode_device_properties *props)
+ {
+ 	struct fwnode_handle *fwnode = dev_fwnode(dev);
+ 	u32 val;
+ 	int ret;
+ 
+-	memset(props, 0, sizeof(*props));
+-
+-	props->orientation = V4L2_FWNODE_PROPERTY_UNSET;
+ 	ret = fwnode_property_read_u32(fwnode, "orientation", &val);
+ 	if (!ret) {
+ 		switch (val) {
+@@ -833,7 +887,6 @@ int v4l2_fwnode_device_parse(struct device *dev,
+ 		dev_dbg(dev, "device orientation: %u\n", val);
+ 	}
+ 
+-	props->rotation = V4L2_FWNODE_PROPERTY_UNSET;
+ 	ret = fwnode_property_read_u32(fwnode, "rotation", &val);
+ 	if (!ret) {
+ 		if (val >= 360) {
+@@ -847,6 +900,25 @@ int v4l2_fwnode_device_parse(struct device *dev,
+ 
+ 	return 0;
+ }
++
++int v4l2_fwnode_device_parse(struct device *dev,
++			     struct v4l2_fwnode_device_properties *props)
++{
++	int ret;
++
++	memset(props, 0, sizeof(*props));
++
++	props->orientation = V4L2_FWNODE_PROPERTY_UNSET;
++	props->rotation = V4L2_FWNODE_PROPERTY_UNSET;
++
++	/* Start by looking into swnodes and DT. */
++	ret = v4l2_fwnode_device_parse_of(dev, props);
++	if (ret)
++		return ret;
++
++	/* Let's check the ACPI table. */
++	return v4l2_fwnode_device_parse_acpi(dev, props);
++}
+ EXPORT_SYMBOL_GPL(v4l2_fwnode_device_parse);
+ 
+ /*
 
 -- 
 2.51.0.536.g15c5d4f767-goog
