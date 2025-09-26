@@ -1,329 +1,237 @@
-Return-Path: <devicetree+bounces-221939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E426BA4443
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:40:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AC23BA446E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:47:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EDEA189F326
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 14:41:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B6544A3F5A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 14:47:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D9ED189B84;
-	Fri, 26 Sep 2025 14:40:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A40AF74040;
+	Fri, 26 Sep 2025 14:47:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QB2g4DE6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="moIfQDSQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14C0281ACA
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 14:40:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FC9D38DE1
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 14:47:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758897652; cv=none; b=MbsUJPF8rm62I1N7ZfsWaaXtocL7ohIB98zJRcwe8CNHosrMmGHPMz8SyKF3j7f0WnTvIv0S2rth//WgbgJamD+54YBdJlBau5YhAFdiT/5+yt1dsb3fBgFeaz0m8HWD1dbl0GAdl7WDTHeq1y7vBT91xydbaJjmOc2vXD1yDe0=
+	t=1758898043; cv=none; b=dfleCP+DR/Sa8CwMenz9pXgvzmVsStA9xo2/gQbb8HRG3wPlxFdA3Yc4XOGF7O3urea33E05Kgs/CkjsP5pkypY/tGI0TPbsEx+/PkXbmwIG0joKMBMdC4O82EWBztka3mUXRjUtV5FkkQY9BE5os3f/T+P1cS7QD4OB2PwtL2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758897652; c=relaxed/simple;
-	bh=90tchflxcF4gE+p6ymbvvXCUFZ3J0tFjBD1ra+hcs/Q=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=sv3sPTGE2VgZHWICsTHn5ZLM0BVwJYMtRNaTelpvoLUDS1UIc9/AT2xAfLuGpag/WGnt5g+LolMj44O2XmHiJw8tcq8WTqzdgh1Esr6xY4WFbWDfz/tvmAkQD53B0njxCgwcn73wwe6v/VNfwhXjVuqThFaC++IjpM2DqyWDdxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QB2g4DE6; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3f0308469a4so1457742f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 07:40:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758897648; x=1759502448; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=90tchflxcF4gE+p6ymbvvXCUFZ3J0tFjBD1ra+hcs/Q=;
-        b=QB2g4DE6gY0BvVOrMTkdZ8ajAMb+ZtxwQi9HUQjnsouSPM94tn8zi9mudMH5POeN0g
-         EZFu3Ajgaz7jspiMUCKIVQ+u/Jdw2oLves8iZeZrK8j3PrdVCU9TVi6zeUPzF5VktsZE
-         h0x04M97oQkXa874xdVkYwqAV/cRlRzOx5fvohiR9VImkcCuShXAOwAnIUqZZ5x8mdbF
-         TOR1Gwmhua8hH9OeEE2NJHmyYF6Km0UKKuVfL5sajLIVyJjjRlODG9Lf0LeAZuQFJbvk
-         pW4/X0en16a2jXxHcH9KtIPgr5AvM4l/+TL0EdV4sj/W5KHQNk034re0hBepSlDZKoDg
-         C5wA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758897648; x=1759502448;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=90tchflxcF4gE+p6ymbvvXCUFZ3J0tFjBD1ra+hcs/Q=;
-        b=KDLf4JgIB2QnAXizr99Py23V+gcMel1v5NKRU9arRs15HQPHm9DHwryCwA9L5OLMEO
-         GRvykvMVvgzJuNoJo2tG1E8YcLYZ68yiw9WRbjJ1rKe+G7CrhpV51CbNFgHilb6GHJBB
-         Jnf7UBPYCktdOH7HBuCaYzXartI4d5tf50HiHT/VdfIURCmmxWjkpY+bWJwfCOhP5hlx
-         HbhxGwdz0euCKv+axgLGJhEH1enrA9IWB4mY89sOd7mVcLRCzNwrAbT/74nwT5lsecIn
-         rXu8rkO4JSnok3ntwgsIUhd4YTvT9UKcTHl3JvqmQiwnAzxDhi+Fyk6OQuUt9x11lLcu
-         /Eog==
-X-Forwarded-Encrypted: i=1; AJvYcCUxcNtiU3qOH7QQ8gjUuJjH2pvkBYf6zaN53VauH7i/y1anoFDHGaOga3KvpS8Vz9350Naa/BSZkV0o@vger.kernel.org
-X-Gm-Message-State: AOJu0YxM1Fu7OFH8UXyLA9j0Hgo562KNP6hWgADXFiR93qUe2YJp+5JN
-	rqxKxgVaY+cHVd1DC0nduaAJSijcd6NVJX6gWQ3IZpCSaL8s7Jt5VBP2
-X-Gm-Gg: ASbGnct1EqP07HHp5yIfC0yPit8MiyNjBddVlFxSF6vIoggQh3Lsakh6WKSKc99jUxP
-	q3Bb9EB7YyJgJRvQoJW4XEPuybtOKihbsMBYzND+lxKT+ofxHav4RapJn4O3vFtccTt+DCwgkra
-	H/jfmvWyu0a3/zVF2WN2gKjDqiIbnuQBdu2nGaWHCK/nkfZp640ODwmB2/Am0qMQGCLrcTzPZOB
-	Y/+cMDtRGvpxlK04F0PLy6wLvNrpFDnc0o8xy16izpbcgMWa7NjIc9CoQciVTW5KTHJfev0SyN0
-	ov2gLugnUhUMyn9pWFTPhlwKKXopGjOo+4zvL2U9BxxtSu7fAntCgzaJ+d2KqO6iPUOdYr+z7HY
-	kXYFxkV+p1sGVhxDljmxJLJSYQ6Xd4yA=
-X-Google-Smtp-Source: AGHT+IF+GdI92TLRs9rHsVNgrebtIVMQHD15AS5sbB5Iv4MThr0TRQnHyapfTIMvahMIkANVWZB75Q==
-X-Received: by 2002:a05:6000:2dc8:b0:3ec:42ad:591 with SMTP id ffacd0b85a97d-40e4a05c535mr7276947f8f.36.1758897648024;
-        Fri, 26 Sep 2025 07:40:48 -0700 (PDT)
-Received: from [192.168.1.187] ([161.230.67.253])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-40fb9e1b665sm7247453f8f.27.2025.09.26.07.40.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Sep 2025 07:40:47 -0700 (PDT)
-Message-ID: <3f93a0dad6ba5dea8db84973ae1518bbb98d3aed.camel@gmail.com>
-Subject: Re: [PATCH v2 3/7] iio: adc: add RZ/T2H / RZ/N2H ADC driver
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Cosmin-Gabriel Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner
- <dlechner@baylibre.com>,  Nuno =?ISO-8859-1?Q?S=E1?=	 <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring	 <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
- "magnus.damm" <magnus.damm@gmail.com>, "linux-iio@vger.kernel.org"
- <linux-iio@vger.kernel.org>,  "linux-renesas-soc@vger.kernel.org"	
- <linux-renesas-soc@vger.kernel.org>, "devicetree@vger.kernel.org"	
- <devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"	
- <linux-kernel@vger.kernel.org>
-Date: Fri, 26 Sep 2025 15:41:14 +0100
-In-Reply-To: <OSZPR01MB87987A7D3F418A6E7A24FC41851EA@OSZPR01MB8798.jpnprd01.prod.outlook.com>
-References: 
-	<20250925224013.2146983-1-cosmin-gabriel.tanislav.xa@renesas.com>
-		 <20250925224013.2146983-4-cosmin-gabriel.tanislav.xa@renesas.com>
-	 <3550caed57f460a3d28ed585eda2d955bd846930.camel@gmail.com>
-	 <OSZPR01MB87987A7D3F418A6E7A24FC41851EA@OSZPR01MB8798.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.0 
+	s=arc-20240116; t=1758898043; c=relaxed/simple;
+	bh=PxLJxKxKxHHAU6FGVEjqIZb4eS8mFOjMm0lu6rHkXFs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CfgbBO+Y5kQy0YjAEt4g90I+ic9WfYYLdqoi3W6FJgkHZHZwaCmRLdhsfJXP8Dcd0U9R/RgrX4O9mxViK80Bs7c4WmNGG8k7gtwkHy6ecnFzIBqK8cHESz14qJ8+iLhcvQjIsgFkukgQEZYvDFxsx/WmMlXClNfWJiVgiWPNEfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=moIfQDSQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49C56C4AF0D
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 14:47:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758898043;
+	bh=PxLJxKxKxHHAU6FGVEjqIZb4eS8mFOjMm0lu6rHkXFs=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=moIfQDSQC/I8oMohSKkuwl/IppgEcDKIezdjh7KfKl7Nn/2Z15OAtbZBq02WlXvHs
+	 zYYRcpFlZv4tP8PukMEf/ZRKs5PMskLG0i47dI7aF8MUHM50akaoSAUHuxfdQFk4zj
+	 fzuM/gw7ylJVMc7aVquDxSnGGGLUJHhjf9eK8HCSiUY0CPax65b8Jbiz6s3wDTmXRc
+	 2UhNkeaBxCIiwhXAXcp/PHHa4EIuV5DYVF2rgqcYmH0x/sc6YeqTs8385P8JV7dA/l
+	 0vHkYVJUvzPwQWq+hF9OWvFvZjcWzt4U9EyNoHdXVVdW+qNw0GWhF+9qojEYoizcyD
+	 lrBYkc/JQvctw==
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-afcb7a16441so370561666b.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 07:47:23 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW0rlCWRuSsZKTs8w8i4qZYXaph23MWoFu/7xwg25D82CUiPHmHfUXab+qreiRO4aHh41QaLij8LgPv@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywq+vurIkYTeoRWzR3UgcWHDOxqi+ptj/ubFUAlRb+EvqnsJP55
+	04VH/x6aR8ATgN+TIpzw1tKYvjlJC55sjQWpihErfZGPegKUxbH4e5ReT1KRsJtS1Xl8s7vYy9j
+	hFZ6lm4AHIQRLuYbvd+zWUqWrIz+E+g==
+X-Google-Smtp-Source: AGHT+IFYlhh1P/VEFhBfLmLyN0WsblCYhmdb8/TU2n2m3mQ/geQQ+5CPtM0v6/lEal0Fl9k9sVhPFz3LsvIfu6OQy8E=
+X-Received: by 2002:a17:907:86ab:b0:b04:6cf7:75d4 with SMTP id
+ a640c23a62f3a-b34bcd5959amr809600766b.49.1758898041746; Fri, 26 Sep 2025
+ 07:47:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <20250924-knp-dts-v1-6-3fdbc4b9e1b1@oss.qualcomm.com> <CAJKOXPcbJY4JEjfZLvOAXEWCTYFpe7En+Riis2t3K5fWJgNU5A@mail.gmail.com>
+ <3up4xqgd2ay3tex4ckzgews3ukyrdikcmgk7tbddggj3s5gt4d@foqcpnfptjk7>
+ <20250925213151.GA2455023-robh@kernel.org> <c13b94ed-a240-4a32-9f11-f0e323197500@oss.qualcomm.com>
+In-Reply-To: <c13b94ed-a240-4a32-9f11-f0e323197500@oss.qualcomm.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 26 Sep 2025 09:47:09 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLCLy0JxPtbg5sbXux-o8aQi3a8EOs0c=VEJCePew72nw@mail.gmail.com>
+X-Gm-Features: AS18NWC5C7HnLX7fNJNeb1WDQk7YmZFfyTQG79-Q0QGWW0BmFcacKZTlJXUOwQI
+Message-ID: <CAL_JsqLCLy0JxPtbg5sbXux-o8aQi3a8EOs0c=VEJCePew72nw@mail.gmail.com>
+Subject: Re: [PATCH 06/20] arm64: dts: qcom: kaanapali: Add USB support for
+ Kaanapali SoC
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, =?UTF-8?Q?Krzysztof_Koz=C5=82owski?= <k.kozlowski.k@gmail.com>, 
+	Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com, 
+	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, 
+	Ronak Raheja <ronak.raheja@oss.qualcomm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 2025-09-26 at 12:41 +0000, Cosmin-Gabriel Tanislav wrote:
->=20
->=20
-> > -----Original Message-----
-> > From: Nuno S=C3=A1 <noname.nuno@gmail.com>
-> > Sent: Friday, September 26, 2025 3:11 PM
-> > To: Cosmin-Gabriel Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-> > Cc: Jonathan Cameron <jic23@kernel.org>; David Lechner
-> > <dlechner@baylibre.com>; Nuno S=C3=A1
-> > <nuno.sa@analog.com>; Andy Shevchenko <andy@kernel.org>; Rob Herring
-> > <robh@kernel.org>; Krzysztof
-> > Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Gee=
-rt
-> > Uytterhoeven
-> > <geert+renesas@glider.be>; magnus.damm <magnus.damm@gmail.com>;
-> > linux-iio@vger.kernel.org; linux-
-> > renesas-soc@vger.kernel.org; devicetree@vger.kernel.org;
-> > linux-kernel@vger.kernel.org
-> > Subject: Re: [PATCH v2 3/7] iio: adc: add RZ/T2H / RZ/N2H ADC driver
-> >=20
-> > On Fri, 2025-09-26 at 01:40 +0300, Cosmin Tanislav wrote:
-> > > Add support for the A/D 12-Bit successive approximation converters fo=
-und
-> > > in the Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs.
-> > >=20
-> > > RZ/T2H has two ADCs with 4 channels and one with 6.
-> > > RZ/N2H has two ADCs with 4 channels and one with 15.
-> > >=20
-> > > Conversions can be performed in single or continuous mode. Result of =
-the
-> > > conversion is stored in a 16-bit data register corresponding to each
-> > > channel.
-> > >=20
-> > > The conversions can be started by a software trigger, a synchronous
-> > > trigger (from MTU or from ELC) or an asynchronous external trigger (f=
-rom
-> > > ADTRGn# pin).
-> > >=20
-> > > Only single mode with software trigger is supported for now.
-> > >=20
-> > > Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.co=
-m>
-> > > ---
-> >=20
-> > Just one small nit from me. With it:
-> >=20
-> > Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> >=20
-> > > =C2=A0MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > > =C2=A0drivers/iio/adc/Kconfig=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 10 ++
-> > > =C2=A0drivers/iio/adc/Makefile=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > > =C2=A0drivers/iio/adc/rzt2h_adc.c | 306 +++++++++++++++++++++++++++++=
-+++++++
-> > > =C2=A04 files changed, 318 insertions(+)
-> > > =C2=A0create mode 100644 drivers/iio/adc/rzt2h_adc.c
-> > >=20
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index eed08d25cb7a..220d17039084 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -21837,6 +21837,7 @@ L:=C2=A0 linux-iio@vger.kernel.org
-> > > =C2=A0L: linux-renesas-soc@vger.kernel.org
-> > > =C2=A0S: Supported
-> > > =C2=A0F: Documentation/devicetree/bindings/iio/adc/renesas,r9a09g077-=
-adc.yaml
-> > > +F: drivers/iio/adc/rzt2h_adc.c
-> > >=20
-> > > =C2=A0RENESAS RTCA-3 RTC DRIVER
-> > > =C2=A0M: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> > > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> > > index 58a14e6833f6..cab5eeba48fe 100644
-> > > --- a/drivers/iio/adc/Kconfig
-> > > +++ b/drivers/iio/adc/Kconfig
-> > > @@ -1403,6 +1403,16 @@ config RZG2L_ADC
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 To compile this driver as a module, ch=
-oose M here: the
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 module will be called rzg2l_adc.
-> > >=20
-> > > +config RZT2H_ADC
-> > > +=C2=A0=C2=A0 tristate "Renesas RZ/T2H / RZ/N2H ADC driver"
-> > > +=C2=A0=C2=A0 select IIO_ADC_HELPER
-> > > +=C2=A0=C2=A0 help
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0 Say yes here to build support for the ADC f=
-ound in Renesas
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0 RZ/T2H / RZ/N2H SoCs.
-> > > +
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0 To compile this driver as a module, choose =
-M here: the
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0 module will be called rzt2h_adc.
-> > > +
-> > > =C2=A0config SC27XX_ADC
-> > > =C2=A0=C2=A0=C2=A0 tristate "Spreadtrum SC27xx series PMICs ADC"
-> > > =C2=A0=C2=A0=C2=A0 depends on MFD_SC27XX_PMIC || COMPILE_TEST
-> > > diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-> > > index d008f78dc010..ed647a734c51 100644
-> > > --- a/drivers/iio/adc/Makefile
-> > > +++ b/drivers/iio/adc/Makefile
-> > > @@ -123,6 +123,7 @@ obj-$(CONFIG_ROHM_BD79112) +=3D rohm-bd79112.o
-> > > =C2=A0obj-$(CONFIG_ROHM_BD79124) +=3D rohm-bd79124.o
-> > > =C2=A0obj-$(CONFIG_ROCKCHIP_SARADC) +=3D rockchip_saradc.o
-> > > =C2=A0obj-$(CONFIG_RZG2L_ADC) +=3D rzg2l_adc.o
-> > > +obj-$(CONFIG_RZT2H_ADC) +=3D rzt2h_adc.o
-> > > =C2=A0obj-$(CONFIG_SC27XX_ADC) +=3D sc27xx_adc.o
-> > > =C2=A0obj-$(CONFIG_SD_ADC_MODULATOR) +=3D sd_adc_modulator.o
-> > > =C2=A0obj-$(CONFIG_SOPHGO_CV1800B_ADC) +=3D sophgo-cv1800b-adc.o
-> > > diff --git a/drivers/iio/adc/rzt2h_adc.c b/drivers/iio/adc/rzt2h_adc.=
-c
-> > > new file mode 100644
-> > > index 000000000000..6a49788a5c67
-> > > --- /dev/null
-> > > +++ b/drivers/iio/adc/rzt2h_adc.c
-> > > @@ -0,0 +1,306 @@
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +
-> > > +#include <linux/bitfield.h>
-> > > +#include <linux/cleanup.h>
-> > > +#include <linux/completion.h>
-> > > +#include <linux/delay.h>
-> > > +#include <linux/iio/adc-helpers.h>
-> > > +#include <linux/iio/iio.h>
-> > > +#include <linux/interrupt.h>
-> > > +#include <linux/io.h>
-> > > +#include <linux/iopoll.h>
-> > > +#include <linux/mod_devicetable.h>
-> > > +#include <linux/module.h>
-> > > +#include <linux/platform_device.h>
-> > > +#include <linux/pm_runtime.h>
-> > > +#include <linux/property.h>
-> > > +
-> >=20
-> > ...
-> >=20
-> > >=20
-> > > +
-> > > +static int rzt2h_adc_pm_runtime_resume(struct device *dev)
-> > > +{
-> > > +=C2=A0=C2=A0 struct iio_dev *indio_dev =3D dev_get_drvdata(dev);
-> > > +=C2=A0=C2=A0 struct rzt2h_adc *adc =3D iio_priv(indio_dev);
-> >=20
-> > Not seeing the point of the pointer arithmetic. You can pass your devic=
-e
-> > pointer
-> > (adc) directly in platform_set_drvdata()
-> >=20
->=20
-> Thanks Nuno, I'll do that. I also have another change to make to the driv=
-er so
-> I will have to send a new version and you'll have to give your Reviewed-b=
-y
-> again.
->=20
-> Here's the change I'm planning to make, maybe I could keep the Reviewed-b=
-y
-> if you agree.
->=20
-> Without this change, pm_runtime_resume_and_get() is inside the mutex,
-> while pm_runtime_put_autosuspend() is outside of it. This is mostly for
-
-I guess you meant the other way around.
-
-> symmetry, although it's not excluded for some subtle bugs to be able to
-> occur without it.
->=20
-
-Fell free to keep my tag.
-
-- Nuno S=C3=A1
-
-> diff --git a/drivers/iio/adc/rzt2h_adc.c b/drivers/iio/adc/rzt2h_adc.c
-> index 708029dc8949..79053bbc71c9 100644
-> --- a/drivers/iio/adc/rzt2h_adc.c
-> +++ b/drivers/iio/adc/rzt2h_adc.c
-> @@ -81,9 +81,9 @@ static int rzt2h_adc_read_single(struct rzt2h_adc *adc,
-> unsigned int ch, int *va
-> =C2=A0=C2=A0=C2=A0=C2=A0 ret =3D pm_runtime_resume_and_get(adc->dev);
-> =C2=A0=C2=A0=C2=A0=C2=A0 if (ret)
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return ret;
->=20
-> -=C2=A0=C2=A0=C2=A0 guard(mutex)(&adc->lock);
-> +=C2=A0=C2=A0=C2=A0 mutex_lock(&adc->lock);
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0 reinit_completion(&adc->completion);
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0 /* Enable a single channel */
-> @@ -106,8 +106,10 @@ static int rzt2h_adc_read_single(struct rzt2h_adc *a=
-dc,
-> unsigned int ch, int *va
->=20
-> =C2=A0disable:
-> =C2=A0=C2=A0=C2=A0=C2=A0 rzt2h_adc_start_stop(adc, false, 0);
->=20
-> +=C2=A0=C2=A0=C2=A0 mutex_unlock(&adc->lock);
-> +
-> =C2=A0=C2=A0=C2=A0=C2=A0 pm_runtime_put_autosuspend(adc->dev);
->=20
-> =C2=A0=C2=A0=C2=A0=C2=A0 return ret;
-> =C2=A0}
->=20
-> > - Nuno S=C3=A1
->=20
-> ________________________________
->=20
-> Renesas Electronics Europe GmbH
-> Registered Office: Arcadiastrasse 10
-> DE-40472 Duesseldorf
-> Commercial Registry: Duesseldorf, HRB 3708
-> Managing Director: Carsten Jauch
-> VAT-No.: DE 14978647
-> Tax-ID-No: 105/5839/1793
->=20
-> Legal Disclaimer: This e-mail communication (and any attachment/s) is
-> confidential and contains proprietary information, some or all of which m=
-ay be
-> legally privileged. It is intended solely for the use of the individual o=
+On Fri, Sep 26, 2025 at 8:21=E2=80=AFAM Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
+>
+> On 9/25/25 11:31 PM, Rob Herring wrote:
+> > On Thu, Sep 25, 2025 at 08:57:56AM -0500, Bjorn Andersson wrote:
+> >> On Thu, Sep 25, 2025 at 10:50:10AM +0900, Krzysztof Koz=C5=82owski wro=
+te:
+> >>> On Thu, 25 Sept 2025 at 09:17, Jingyi Wang <jingyi.wang@oss.qualcomm.=
+com> wrote:
+> >>>>
+> >>>> From: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
+> >>>>
+> >>>> Add the base USB devicetree definitions for Kaanapali platform. The =
+overall
+> >>>> chipset contains a single DWC3 USB3 controller (rev. 200a), SS QMP P=
+HY
+> >>>> (rev. v8) and M31 eUSB2 PHY.
+> >>>>
+> >>>> Signed-off-by: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
+> >>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> >>>> ---
+> >>>>  arch/arm64/boot/dts/qcom/kaanapali.dtsi | 155 +++++++++++++++++++++=
++++++++++++
+> >>>>  1 file changed, 155 insertions(+)
+> >>>>
+> >>>
+> >>>
+> >>> Second try, without HTML:
+> >>>
+> >>> I really don't understand why you created such huge patchset.
+> >>
+> >> Because I looked at the logical changes that went into the big squash
+> >> that was initially planned, and requested that some of those was kept
+> >> intact - because they where independent logical changes.
+> >>
+> >>> Year
+> >>> ago, two years ago, we were discussing it already and explained that'=
+s
+> >>> just inflating the patchset without reason.
+> >>>
+> >>
+> >> We used to add things node by node and that was indeed not
+> >> comprehensible. Overall this adds features in large logical chunks, bu=
+t
+> >> there are a few of the patches that could have been squashed.
+> >>
+> >>> New Soc is one logical change. Maybe two. Not 18!
+> >>
+> >> I can see your argument for one patch to introduce the soc. But two
+> >> doesn't make sense, because that incremental patch is going to be the
+> >> kitchen sink.
+> >>
+> >>>
+> >>> Not one patch per node or feature.
+> >>>
+> >>
+> >> Definitely agree that we don't want one patch for every tiny block!
+> >>
+> >>> This hides big picture, makes difficult to review everything,
+> >>> difficult to test.
+> >>
+> >> The big picture is already obscured due to the size of the content
+> >> added.
+> >>
+> >> Comparing to previous targets, I see the baseline content in 2-3
+> >> patches, and the remainder of the series being things that usually has
+> >> been scattered in many more small changes in the following weeks or
+> >> months.
+> >>
+> >> There's plenty of features in this series that are yet to be concluded
+> >> for SM8750.
+> >>
+> >>> Your patch count for LWN stats doesn't matter to
+> >>> us.
+> >>
+> >> I agree with this. That's why the QRD is 1 patch, and MTP is 4 (this I
+> >> think should be squashed to 2) - compared to 13 patches for across the
+> >> pair for SM8750 with less scope.
+> >>
+> >>>
+> >>> NAK and I'm really disappointed I have to repeat the same review .
+> >>
+> >> I'm not sure what you're disappointed in, this initial series is large=
 r
-> entity to which it is addressed. Access to this email by anyone else is
-> unauthorized. If you are not the intended recipient, any disclosure, copy=
-ing,
-> distribution or any action taken or omitted to be taken in reliance on it=
-, is
-> prohibited and may be unlawful.
+> >> than any we've seen before. I really like the work Jingyi has done her=
+e,
+> >> aggregating the otherwise scattered patches into one series.
+> >
+> > The QCom folks can review all this first because I don't care to review
+> > the 50+ binding (just bindings!) patches sent all at once right before
+> > the merge window.
+>
+> Unfortunately this is sort of beyond our control. We don't expect you to
+> review or apply these patches immediately.
+
+It is *only* in your (QCom) control. I would love to have control over
+receiving patches to review, but sadly I do not.
+
+Then you should mark them RFC at least if you know they are going into 6.18=
+.
+
+> The platform announcement just happened to occur at this and not any othe=
+r
+> time, and we can't just ask the entire company to shift it to better
+> accommodate the kernel release cycle..
+
+That's exactly what we expect. Companies following the rules or
+preferences of the kernel community is exactly what is expected and
+required. Companies that continuously fail to do that result in
+requirements that all patches be first signed off by trusted kernel
+developers in those companies.
+
+What would you have done if the timing hit in the merge window where
+you have trees which have policies of don't send new content during
+merge windows? Just going to ignore that?
+
+
+> We do have an interest in sharing the work at the earliest time possible,
+> and with all the legal knots included, this is what it came down to.
+>
+> I (and many others) made an internal push to upstream any pre-requisite
+> patches that we didn't need to disclose any platform details for in
+> advance, so this patchbomb is actually somewhat reduced.. but of course
+> DT and bindings are the main course size-wise and we simply couldn't do
+> it earlier.
+>
+> Give or take 80% of the bindings will be "boring", i.e. "add compatbile"
+> or "add compatible and adjust clocks" because our hw is rather
+> standardized and the interesting changes often happen at a level beyond
+> bindings
+>
+> > One comment on commit messages though. Please explain how the h/w block
+> > is or isn't compatible with some existing platforms. Many just state th=
+e
+> > obvious "add a compatible" or such. I've yet to find what kaanapali is
+> > in relation to any other QCom chip. It may be the next SoC for the smar=
+t
+> > toaster market for all I know.
+>
+> Perhaps this would be useful to have in bindings commit messages, but
+> the cover letter of >this< series states that Kaanapali is the newly
+> announced Snapdragon 8 Elite Gen 5.
+
+Patches should stand on their own. I'm talking about patches in other serie=
+s.
+
+> The product page states at the very bottom of the spec sheet that
+> SM8850 is another name for it (although the shift to codenames
+> happened precisely to disconnect from specific SKU numbers,
+> because e.g. both SA8775P and QCS9100 are 'lemans' silicon)
+
+Sorry, I'm not going to go read your product pages...
+
+Rob
 
