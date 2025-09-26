@@ -1,50 +1,49 @@
-Return-Path: <devicetree+bounces-221963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9F02BA4831
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 17:55:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DB93BA489B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:03:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 374E91C063B2
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:55:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFD8F16F2B6
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3023C230270;
-	Fri, 26 Sep 2025 15:55:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CCA223BCFD;
+	Fri, 26 Sep 2025 16:01:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Yt/mIccI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QPjBmudZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A51A223DF6;
-	Fri, 26 Sep 2025 15:55:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3467D233149;
+	Fri, 26 Sep 2025 16:01:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758902108; cv=none; b=nN6jgL9ycHuoUtm18Gwnwh/y8cYF+L5+PRKosLXx+9zEy3j9a6i1ji6XXihbsxpjAs0jBC3hwkQasMAuwsUZ97NaV8FLpEKhXKueQcDSICXt8yKXsE5SMIK+ZFZsUPX/hKZug16stj0JWdTpz/UoztxmRGDrLSq348t7g2ZJgQw=
+	t=1758902510; cv=none; b=MJGLYIw6K6/s5SyyDc4r7PjnMLhyuTDwlPT1weY+cmiWA0mp3El9UM0i6pu7mjZZODGrUDAQyR/CX6Wr8Ef4J3JMdhNaSVGklSAj1gESQO8BUWgEtGlkJYdWJTExW0jrQI1/fMc1ejBKh1s5qMY85OhwURXVd7gO392vh/U8ZRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758902108; c=relaxed/simple;
-	bh=kvGHudag2hQMvaCMbZ6u9R41aw6YO+LBGx/OObLVKuY=;
+	s=arc-20240116; t=1758902510; c=relaxed/simple;
+	bh=YM8IV0+v374wnHxVVm/Vnnd8QnjR389XXK1l3TAj00o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BP/l1kPQhKCxP4kBhps/jla1cxkb3c1Zu6G1f47aLngC+cbnoTTok/dFww6taGz0DYmDDO4Y6d6KXInZ1e607mB8BoSZKxNx/fEwScwXu9R84BicVbwXByV/v/lp1KvhoRuw0HvtCoVAb1nyvMiB/EGWK3X9oQvyRkeUgENlbtA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Yt/mIccI; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=LDqdoJk9lubv55rDAuOytv8/K4Mn4cbUmQU9E/sNBGg=; b=Yt/mIccIH8D+vqtslbMH4u7aif
-	Lh9lE2zaAFQ4JJvskOU91hQF3wzOQsRIZ5xafcxXCaUlKqUvTBuqg/aEfiEP5bBykK3Ytnq2ETOH7
-	26tZlKzlxGkY96gLhDoQQ0AeNakHSegmpTVeOFmtTV3jXOYLiUgudWdAyib1ZH+icivk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1v2Amf-009a1U-Q7; Fri, 26 Sep 2025 17:54:57 +0200
-Date: Fri, 26 Sep 2025 17:54:57 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=E143tnOsc/OQCSfyvyuDWAvyl7tajolhD7OToHbHzWfxMiJfNacCVkv0KkVXmDGa5PzrEORwV7HIi+yB8QeriragdWZ1LhhzQZsqbqkFc7S8g/kXE52YkFNzRfzsnxsrX8pV2m0yyNb1/vqUJVm2K8d5SUtDdzZwF7lTJIAOJhQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QPjBmudZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 718ACC4CEF7;
+	Fri, 26 Sep 2025 16:01:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758902509;
+	bh=YM8IV0+v374wnHxVVm/Vnnd8QnjR389XXK1l3TAj00o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QPjBmudZnf09hWZOTPBa90uUNc78OHxilarHsju0QpVLdXDTZf5eMwPs+QusAhLFa
+	 ZH7B9f4yMUW9krRsFQ0nxlxRbBsRghqnvFXL3RYoSvlnPLwAR4TrFUTRli3MrPiCAW
+	 KUDMgFp4AIs6K6V85SmYlShCmOajgcwWEQF/5z0DjBQ4M52DPlKNwJZS5gTi5J1CFV
+	 +8RGq3rsSNFROXlne4G2uxcWwdQ4AgrrD5T+77XaENVQ7LCJ5nCu3B48CNX/+NhX68
+	 BBLcMdcMtCTo1hyITS9Ahzlk1pUefKnb8VGOcLzvJtDkTFBTD5kOKG+rt4ZKUipMNN
+	 O6BqmVtYm1puQ==
+Date: Fri, 26 Sep 2025 18:01:47 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>
 Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
 	"David S. Miller" <davem@davemloft.net>,
 	Eric Dumazet <edumazet@google.com>,
@@ -55,36 +54,64 @@ Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
 Subject: Re: [PATCH net-next 2/2] net: airoha: npu: Add 7583 SoC support
-Message-ID: <82a08bb5-cbc3-4bba-abad-393092d66557@lunn.ch>
+Message-ID: <aNa464zcFCvNhL33@lore-desk>
 References: <20250926-airoha-npu-7583-v1-0-447e5e2df08d@kernel.org>
  <20250926-airoha-npu-7583-v1-2-447e5e2df08d@kernel.org>
+ <82a08bb5-cbc3-4bba-abad-393092d66557@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hB/pAcwWM8gt6iYi"
+Content-Disposition: inline
+In-Reply-To: <82a08bb5-cbc3-4bba-abad-393092d66557@lunn.ch>
+
+
+--hB/pAcwWM8gt6iYi
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250926-airoha-npu-7583-v1-2-447e5e2df08d@kernel.org>
+Content-Transfer-Encoding: quoted-printable
 
-> -	ret = request_firmware(&fw, NPU_EN7581_FIRMWARE_DATA, dev);
-> +	if (of_device_is_compatible(dev->of_node, "airoha,an7583-npu"))
-> +		fw_name = NPU_AN7583_FIRMWARE_DATA;
-> +	else
-> +		fw_name = NPU_EN7581_FIRMWARE_DATA;
-> +	ret = request_firmware(&fw, fw_name, dev);
->  	if (ret)
->  		return ret == -ENOENT ? -EPROBE_DEFER : ret;
->  
-> @@ -612,6 +623,7 @@ EXPORT_SYMBOL_GPL(airoha_npu_put);
->  
->  static const struct of_device_id of_airoha_npu_match[] = {
->  	{ .compatible = "airoha,en7581-npu" },
-> +	{ .compatible = "airoha,an7583-npu" },
+> > -	ret =3D request_firmware(&fw, NPU_EN7581_FIRMWARE_DATA, dev);
+> > +	if (of_device_is_compatible(dev->of_node, "airoha,an7583-npu"))
+> > +		fw_name =3D NPU_AN7583_FIRMWARE_DATA;
+> > +	else
+> > +		fw_name =3D NPU_EN7581_FIRMWARE_DATA;
+> > +	ret =3D request_firmware(&fw, fw_name, dev);
+> >  	if (ret)
+> >  		return ret =3D=3D -ENOENT ? -EPROBE_DEFER : ret;
+> > =20
+> > @@ -612,6 +623,7 @@ EXPORT_SYMBOL_GPL(airoha_npu_put);
+> > =20
+> >  static const struct of_device_id of_airoha_npu_match[] =3D {
+> >  	{ .compatible =3D "airoha,en7581-npu" },
+> > +	{ .compatible =3D "airoha,an7583-npu" },
+>=20
+> It would be more normal to make use of the void * in of_device_id to
+> have per compatible data, such are firmware name.
+>=20
+> 	Andrew
 
-It would be more normal to make use of the void * in of_device_id to
-have per compatible data, such are firmware name.
+ack, I implemted this way since we have 2 fw names but we can have a struct
+pointed by of_device_id driver_data pointer to contains both of them.
+What do you think?
 
-	Andrew
+Regards,
+Lorenzo
+
+--hB/pAcwWM8gt6iYi
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaNa46wAKCRA6cBh0uS2t
+rPX0AP4jYjmSFYol3JmGbMp9YCs2mGaQp8A9OZ1MuJvwphnyXgEAyEhcgj/ytZnA
+tBXvUeNCKzmn5hurXo642VMuHkx7dAg=
+=aHsk
+-----END PGP SIGNATURE-----
+
+--hB/pAcwWM8gt6iYi--
 
