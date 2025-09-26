@@ -1,138 +1,144 @@
-Return-Path: <devicetree+bounces-221823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB023BA3467
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 12:04:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D712BA3488
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 12:06:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B1133A7791
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 10:04:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5607656119F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 10:06:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0688279DC3;
-	Fri, 26 Sep 2025 10:04:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="APhIChd9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C72712BE02A;
+	Fri, 26 Sep 2025 10:05:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from mail.simonwunderlich.de (mail.simonwunderlich.de [23.88.38.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E84B4433AD;
-	Fri, 26 Sep 2025 10:04:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C101F2BDC3E;
+	Fri, 26 Sep 2025 10:05:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=23.88.38.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758881045; cv=none; b=FkKeT06gaPc9m+0HGNjmjklSSNroP4DghIiOWPYJBcB2NUKe1+SHTOpjDr1GcO4INAEMe736Gp2py1biWgPShU2CgXfT3rG9iTiwIb+oVJRes0CCLftgt1yrWvtnudbjqOWWwLNCkzpFW7AXrf/DIOxSsiG7hMYlFZjx0DdTsPw=
+	t=1758881153; cv=none; b=S3gN1WrvCOyKoLirAOTb8k2TsOUYEAPBkyIH/6fSXPDrERVLEi7v6zIQW/GjIX0iQLY0iawG65v1C1c7FHjs8EykZgWcIfPIWTTgHeaX31fRR2MLu3uNGPRkkuP7qOTgaac/uHw8HRpnB65o4yO+p9PHYAwuPT38wwFsDyQ/h00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758881045; c=relaxed/simple;
-	bh=Fa5X8ypRIB0wKIk1gLTyYc5yK49dLyfzlhOeK6Kv40c=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=NRagk/EXOFrWSnSPS4EuhxpVmuVd9NDHXhsmtJ9Cche2u2Qd87tOrgJbo+iel4uIMLQrEqHUl2My6SZmgNACxTj6Kk3xJkHbGEuvsN2b+C2mgjkxR9PeMBZQGjIkQtjmYH23GvMe7718SM4PWZZNyw6EL+I+tOMlOScCwojeNTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=APhIChd9; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58QA3uac2127473;
-	Fri, 26 Sep 2025 05:03:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758881036;
-	bh=PCNWgN7+R9x4RA0msvoyt/YSQxIRBw+hjf5jLQlB9MI=;
-	h=From:To:CC:Subject:Date;
-	b=APhIChd9b3/pKwFI8jYbZSL4pwVmNEtPIVFapmpERNPQgTqwkrjF7texxhm7hBfIA
-	 +5NPqGPhJEPIJ1OungLydXElHvA5ZxM/SclfkXwZ1x6qrl7CYosAbqFjSaQOyPeVuA
-	 CIpJW2yz5PVEM4dqqo/ey7q+fqbAaZte49gnGxYM=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58QA3uLK3346862
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 26 Sep 2025 05:03:56 -0500
-Received: from DLEE200.ent.ti.com (157.170.170.75) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 26
- Sep 2025 05:03:55 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE200.ent.ti.com
- (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 26 Sep 2025 05:03:55 -0500
-Received: from HP-Z2-Tower-G9.dhcp.ti.com (hp-z2-tower-g9.dhcp.ti.com [10.24.68.200])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58QA3oPj852736;
-	Fri, 26 Sep 2025 05:03:51 -0500
-From: Shiva Tripathi <s-tripathi1@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kamlesh@ti.com>, <t-pratham@ti.com>, <vishalm@ti.com>,
-        <k-malarvizhi@ti.com>, Shiva Tripathi <s-tripathi1@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am62: Add RNG node
-Date: Fri, 26 Sep 2025 15:32:29 +0530
-Message-ID: <20250926100229.923547-1-s-tripathi1@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1758881153; c=relaxed/simple;
+	bh=b3/ybPY9EaJmt4SNpWg+0Y0d2UPRyNHmWizTO630UoI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ojbfgT4qMGmYTksfB1sdYwVurNEWMZ9LLHykJkuiILLRWPWijt65FlnEmzn5Bjaw7pBuxJz3GLPDj21ywvynTaqEgsfk9bliMbqTk7/E1VvvxX0+FobWTPq+bvp+PY9xm3/9E15s+3OxVpZW4G+UfZhxRkYEkN/ZUvhtToDq1O4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=simonwunderlich.de; spf=pass smtp.mailfrom=simonwunderlich.de; arc=none smtp.client-ip=23.88.38.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=simonwunderlich.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=simonwunderlich.de
+Received: from sven-desktop.home.narfation.org (p200300c597166be00000000000000c00.dip0.t-ipconnect.de [IPv6:2003:c5:9716:6be0::c00])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mail.simonwunderlich.de (Postfix) with ESMTPSA id 5AB0AFA12C;
+	Fri, 26 Sep 2025 12:05:49 +0200 (CEST)
+From: "Sven Eckelmann (Plasma Cloud)" <se@simonwunderlich.de>
+Subject: [PATCH mt76 v2 0/3] wifi: mt76: mt7915: Beamforming backoff limit
+ table
+Date: Fri, 26 Sep 2025 12:04:51 +0200
+Message-Id: <20250926-backoff-table-support-v2-0-16d3726646c4@simonwunderlich.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAENl1mgC/3WPwXKEIBBEf8XiHFKAAo6n/EdqDwJjpKJiAN2kt
+ vz3sG6SW449Xd2v50YSRo+JdNWNRNx98mEpQjxVxI798obUu6KJYEIy4Jqa3r6HYaC5NxPStK1
+ riJkCCN62opZaOVKya8TBf569r2TOWpHL4xrxYyuQ/GP9MQryl1CCdA1XjHTys8+JSotMG4Bat
+ bzb+b3f9AmpDXPxu8rUykmpOBNc9qCVUJqDds4Cb4AJ20CjmXT63DD6lEP8Oh8uXfcRD7Jo/vl
+ t55RRwVCywVgJDl+Sn8Ny3RaHcfJ2fHZILsdxfAP7OpHHTQEAAA==
+X-Change-ID: 20250917-backoff-table-support-99218823576d
+To: Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo@kernel.org>, 
+ Ryder Lee <ryder.lee@mediatek.com>, Shayne Chen <shayne.chen@mediatek.com>, 
+ Sean Wang <sean.wang@mediatek.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Johannes Berg <johannes@sipsolutions.net>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ linux-stm32@st-md-mailman.stormreply.com, devicetree@vger.kernel.org, 
+ "Sven Eckelmann (Plasma Cloud)" <se@simonwunderlich.de>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3232; i=se@simonwunderlich.de;
+ h=from:subject:message-id; bh=b3/ybPY9EaJmt4SNpWg+0Y0d2UPRyNHmWizTO630UoI=;
+ b=owGbwMvMwCXmy1+ufVnk62nG02pJDBnXUss9ct29d7r4R67WnH+CVbb8VDvbsvZPJebO5xdFn
+ m1l2ZPWUcrCIMbFICumyLLnSv75zexv5T9P+3gUZg4rE8gQBi5OAZhI7S6G/5GaPVoMHNeX8fGc
+ eKQlskXcetLiy0Wuqpvl2CfZce/fws/wPyAwytbUWUZ9Uv+mm1M3u7/hPKfr0xUr+jj9elm48Yd
+ MXgA=
+X-Developer-Key: i=se@simonwunderlich.de; a=openpgp;
+ fpr=522D7163831C73A635D12FE5EC371482956781AF
 
-Add EIP76 Random Number Generator (RNG) node within crypto engine for
-AM62 and AM62A SoCs. The RNG hardware is integrated in crypto
-subsystem at address 0x40910000.
+It was noticed that Mediatek's MT7915 does not only require calibration of
+the normal rates (configured via DT) but also some backoff values for
+beamforming. The proprietary driver loads this from some file in the
+firmware folder. But for the the upstream driver, it is necessary to get
+them from the same place as the normal limits - in this case from the
+devicetree.
 
-Mark the RNG node with status "reserved" as it is intended for use by
-OP-TEE for secure random number generation. If required, this hardware
-can also be used through Linux kernel by enabling this node.
+They released the support for this [1,2] in their own SDK but
+without any kind of documentation. And it was (to my knowledge) never
+forwarded to upstream. But since also (in my case) OpenWrt needs correct
+calibration for this WiFi chip, we should get this upstreamed.
 
-Signed-off-by: Shiva Tripathi <s-tripathi1@ti.com>
+I try to my best to provide some sensible information about the patch and
+the DT entries. If anyone else has more information about it (to improve
+the descriptions), please feel free to comment and provide some
+enhanced/corrected version.
+
+The patch from Shayne Chen was only rebased and modified to perform byte
+reads from the DT [3]. Besides this, only a commit message was added,
+MTK_DEBUG parts were dropped and some checkpatch problems were fixed.
+
+Regards,
+	Sven
+
+[1] https://git01.mediatek.com/plugins/gitiles/openwrt/feeds/mtk-openwrt-feeds/+/f0d2527deb4f91592b6486a5c98ea3f584f76a61
+[2] https://git01.mediatek.com/plugins/gitiles/openwrt/feeds/mtk-openwrt-feeds/+/737340322ab22b138fd200e020d61ffdbe3e36a9/autobuild/autobuild_5.4_mac80211_release/package/kernel/mt76/patches/1022-wifi-mt76-mt7915-add-bf-backoff-limit-table-support.patch
+[3] https://lore.kernel.org/r/20250917-fix-power-limits-v1-1-616e859a9881@simonwunderlich.de
+
+Signed-off-by: Sven Eckelmann (Plasma Cloud) <se@simonwunderlich.de>
 ---
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi  | 10 ++++++++++
- arch/arm64/boot/dts/ti/k3-am62a-main.dtsi | 10 ++++++++++
- 2 files changed, 20 insertions(+)
+Changes in v2:
+- add [PATCH mt76] as requested by Zhi-Jun You
+- Link to v1: https://lore.kernel.org/r/20250924-backoff-table-support-v1-0-20e50fbc59de@simonwunderlich.de
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index 40fb3c9e674c..00148a5ebaa6 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -209,6 +209,16 @@ crypto: crypto@40900000 {
- 		dmas = <&main_pktdma 0xf501 0>, <&main_pktdma 0x7506 0>,
- 		       <&main_pktdma 0x7507 0>;
- 		dma-names = "tx", "rx1", "rx2";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
-+
-+		rng: rng@40910000 {
-+			compatible = "inside-secure,safexcel-eip76";
-+			reg = <0x00 0x40910000 0x00 0x7d>;
-+			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "reserved"; /* Reserved for OP-TEE */
-+		};
- 	};
- 
- 	secure_proxy_sa3: mailbox@43600000 {
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-index 829f00adea6e..9e5b75a4e88e 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62a-main.dtsi
-@@ -247,6 +247,16 @@ crypto: crypto@40900000 {
- 		dmas = <&main_pktdma 0xf501 0>, <&main_pktdma 0x7506 0>,
- 		       <&main_pktdma 0x7507 0>;
- 		dma-names = "tx", "rx1", "rx2";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
-+
-+		rng: rng@40910000 {
-+			compatible = "inside-secure,safexcel-eip76";
-+			reg = <0x00 0x40910000 0x00 0x7d>;
-+			interrupts = <GIC_SPI 129 IRQ_TYPE_LEVEL_HIGH>;
-+			status = "reserved"; /* Reserved for OP-TEE */
-+		};
- 	};
- 
- 	secure_proxy_sa3: mailbox@43600000 {
+---
+Shayne Chen (1):
+      wifi: mt76: mt7915: add bf backoff limit table support
+
+Sven Eckelmann (Plasma Cloud) (2):
+      dt-bindings: net: wireless: mt76: Document power-limits country property
+      dt-bindings: net: wireless: mt76: introduce backoff limit properties
+
+ .../bindings/net/wireless/mediatek,mt76.yaml       |  65 ++++++++
+ drivers/net/wireless/mediatek/mt76/debugfs.c       |   4 +-
+ drivers/net/wireless/mediatek/mt76/eeprom.c        |  38 ++++-
+ drivers/net/wireless/mediatek/mt76/mt76.h          |   8 +
+ .../net/wireless/mediatek/mt76/mt7915/debugfs.c    |  74 ++++++++-
+ drivers/net/wireless/mediatek/mt76/mt7915/init.c   |   7 +
+ drivers/net/wireless/mediatek/mt76/mt7915/main.c   |   2 +-
+ drivers/net/wireless/mediatek/mt76/mt7915/mcu.c    | 182 ++++++++++++++++-----
+ drivers/net/wireless/mediatek/mt76/mt7915/mcu.h    |   6 +
+ drivers/net/wireless/mediatek/mt76/mt7915/mt7915.h |   9 +-
+ .../net/wireless/mediatek/mt76/mt7915/testmode.c   |   2 +-
+ 11 files changed, 342 insertions(+), 55 deletions(-)
+---
+base-commit: b36d55610215a976267197ddc914902c494705d7
+change-id: 20250917-backoff-table-support-99218823576d
+prerequisite-change-id: 20250917-fix-power-limits-5ce07b993681:v1
+prerequisite-patch-id: 964626eea847052cefc907ef0f01286a080fdc3c
+
+Best regards,
 -- 
-2.34.1
+Sven Eckelmann (Plasma Cloud) <se@simonwunderlich.de>
 
 
