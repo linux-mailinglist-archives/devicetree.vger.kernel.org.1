@@ -1,105 +1,101 @@
-Return-Path: <devicetree+bounces-221867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDC42BA3ADF
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 14:50:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E73BCBA3BCC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:00:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7980A384D16
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 12:50:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C6883A57B7
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:00:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 882B4273800;
-	Fri, 26 Sep 2025 12:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6A002F5A21;
+	Fri, 26 Sep 2025 13:00:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I9Ivljue"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="quBLb5EK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D11A1397;
-	Fri, 26 Sep 2025 12:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5E0B2F5A0F;
+	Fri, 26 Sep 2025 13:00:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758890998; cv=none; b=p44R1xiEi4Uw5hBalPisDDuDeq+ig/w8emV9xi1LwivHFxmJk6CoHBM9CJ5Vh99b41hVDSursQk6kKcBf6rlXhjk+/SnogLzrQxTBmQh8cF/GWjG7AQMMq7+LvVLfhg++rJy8aNsbScMHaSYKWM1Qbi3Obg13p/6dAa+pjeXAUE=
+	t=1758891613; cv=none; b=kCKww+GU5GwUxzORZOR6gmz5hfs84kX64bZF8grK/StHevgmODjgX3H9aZGnKy73iys30mlnFdEPvpqXZ3H4IMBg/LAtO1X+dRaj1DqHLDWDyxUXLrbKHk13KRk3lNCathV10Ioi2DC5Di6Ix9ZfSxyTVBYJPeCOmtrc14eI2FU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758890998; c=relaxed/simple;
-	bh=LRp+NHgfq1T5GTdEXyErwid4rR/OhAtZmsWAHaC92ls=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=YhNhBI2uLomuJv+GBQFWcfm76PPZaF3AaMK2AvjmC1KolwiiFxw9fKM/Wqvyaq2JTLL51ea2dqAEPSPTMK1nQ/ASRjO6qn5gBui2ofQyJuxIqDLWuG9PcZLESkWy3XUBllh7DOUVALdTm2hHgnwY2mXh95MGKG25dKYWIXR/0MQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I9Ivljue; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A88DC4CEF4;
-	Fri, 26 Sep 2025 12:49:56 +0000 (UTC)
+	s=arc-20240116; t=1758891613; c=relaxed/simple;
+	bh=Seffs2fDaZeiosxkytaTQWPfDVplzS5YGTCllHoiPwc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SQT6VI1WTwCpJmFn4n888n/bT7E6AVpaxOkDK/RIiBNPhbia8GvH2kl7eF8YqNUtIgxvH5VLzH6wQaZ35W7LisCLWRomnEWczWJYVRhjYfk0PT86UD/ksFN/JF0RxPBRE1H/KJF0rLpVxCOMJd0EpqDhVhGCxOYgYmEJ51tkTrc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=quBLb5EK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1619C4CEF4;
+	Fri, 26 Sep 2025 13:00:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758890997;
-	bh=LRp+NHgfq1T5GTdEXyErwid4rR/OhAtZmsWAHaC92ls=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=I9IvljueSF/vf5zELujgtFSQUjJksSRzP404oHQNvM2A9ySUb+BsVABPzjPsitQFR
-	 X+Jv1Bz5XAh2lVd3QpSJjlKW7Bq4FljUttnE++JPwgUsVJ/Fmly1RNqT+CeflbfynU
-	 YgLY8+2FrUWitKnaBcxxb8b6Z17P3an8frq+eJfBZVITco/r6e1z7lzT4zlZDHFuzL
-	 kyKFPViVB89ILuPTcW4tX7Au0LIf9s0oad5t59tEPcgmRTzD5DbPPNPNgJWWsSWJrC
-	 +1uUSPw5wRIVp6xqmYUByajUxufLXBoYzUQv7/gZje8RuPpVtjbEoPrNYUCbazpsrh
-	 YhQ76qG/xuTZQ==
-From: Mark Brown <broonie@kernel.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Stefan Binding <sbinding@opensource.cirrus.com>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, patches@opensource.cirrus.com
-In-Reply-To: <20250912104612.361125-1-sbinding@opensource.cirrus.com>
-References: <20250912104612.361125-1-sbinding@opensource.cirrus.com>
-Subject: Re: [PATCH v1 0/2] Support reading Subsystem ID from Device Tree
-Message-Id: <175889099612.84679.9251858819850677029.b4-ty@kernel.org>
-Date: Fri, 26 Sep 2025 13:49:56 +0100
+	s=k20201202; t=1758891612;
+	bh=Seffs2fDaZeiosxkytaTQWPfDVplzS5YGTCllHoiPwc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=quBLb5EKc3qijWVvbQW6C0IkcaW+7g8ctwyogr5OCK40IHZAmhqNNVFwqc/iH9Ts8
+	 wnM8BNECBHD+d04PIgeFj2IpF3rTg8FJqZnsJBnRjFbBJPSKndXC2OqUAPH4+UXCq4
+	 eDGE46OdNkTL5XQhM+Fymjdlb6TMXKhp/jWzb1ZHnAdp1+KnPlAydXRfPxokg9lCcu
+	 FoNTLu+ASXM2YJTEWT2/nM/am5Qa5Pn4J1Q+0YKtdqqqp8KMtppCc6BOoAWnws2s0G
+	 nKkUM6FWgSSsBpI0uiQhRiC7S2lJOgNlRp+6F6Kzpp4Kc0zXoMe4h5gVKusEoKziHi
+	 r8NNgHL2+RiSw==
+Message-ID: <bee1da42-1108-4d71-a854-e3f76c5a6e96@kernel.org>
+Date: Fri, 26 Sep 2025 14:00:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/8] media: iris: Introduce buffer size calculations for
+ vpu4
+To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
+ Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Vishnu Reddy <quic_bvisredd@quicinc.com>
+References: <20250925-knp_video-v1-0-e323c0b3c0cd@oss.qualcomm.com>
+ <NFzYqaeq5sb1dHtVN0YuNSMRZSaP8tEluFULzxY35Ir2qNpfsn1yP5Ptd9zxuuLzyD7oMcyeZR_NK1DgsO0sKQ==@protonmail.internalid>
+ <20250925-knp_video-v1-4-e323c0b3c0cd@oss.qualcomm.com>
+From: Bryan O'Donoghue <bod@kernel.org>
+Content-Language: en-US
+In-Reply-To: <20250925-knp_video-v1-4-e323c0b3c0cd@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-56183
 
-On Fri, 12 Sep 2025 11:45:36 +0100, Stefan Binding wrote:
-> In PC systems using ACPI, the driver is able to read back an SSID from
-> the _SUB property. This SSID uniquely identifies the system, which
-> enables the driver to read the correct firmware and tuning for that
-> system from linux-firmware. Currently there is no way of reading this
-> property from device tree. Add an equivalent property in device tree
-> to perform the same role.
-> 
-> [...]
+On 25/09/2025 00:14, Vikash Garodia wrote:
+> +{
+> +	u32 dma_opb_wr_tlb_y_size = ((frame_width_coded + 15) >> 4) << 7;
+> +	u32 dma_opb_wr_tlb_uv_size = ((frame_width_coded + 15) >> 4) << 7;
+> +	u32 dma_opb_wr2_tlb_y_size = ALIGN((2 * 6 * 64 * frame_height_coded / 8), DMA_ALIGNMENT) *
+> +					   num_vpp_pipes_enc;
+> +	u32 dma_opb_wr2_tlb_uv_size = ALIGN((2 * 6 * 64 * frame_height_coded / 8), DMA_ALIGNMENT) *
+> +					    num_vpp_pipes_enc;
 
-Applied to
+I find these calculations pretty nebulous and not very obvious to look at.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+A define of some sort with a comment would definitely help other 
+programmers reviewing and supporting this code in the future.
 
-Thanks!
+(+ 15 >> 4) << 7 - I'm sure it makes sense when you are looking at a 
+register spec in front of your eyes but if you don't have that detail 
+its pretty hard to say the values are correct.
 
-[1/2] ASoC: dt-bindings: cirrus,cs35l41: Document the cirrus,subsystem-id property
-      commit: f8673e4069b2032bf9f854bae818a7bdbdca7520
-[2/2] ASoC: cs35l41: Fallback to reading Subsystem ID property if not ACPI
-      commit: 46c8b4d2a693eca69a2191436cffa44f489e98c7
+/*
+  * SET_Y_SIZE(x)
+  *     - Add 15 because
+  *     - Shift 4 to lower nibble because
+  *     - Shift the result up 7 because
+  */
+#define SET_Y_SIZE(x)
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+---
+bod
 
