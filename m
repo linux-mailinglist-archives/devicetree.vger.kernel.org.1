@@ -1,122 +1,158 @@
-Return-Path: <devicetree+bounces-221741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B107BA290B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 08:47:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87BCABA2920
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 08:50:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 536531C25B91
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 06:48:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B0AA3B436C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 06:50:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A74E27B327;
-	Fri, 26 Sep 2025 06:47:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B95F27D77D;
+	Fri, 26 Sep 2025 06:50:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="FnIwbFiB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rW+ruKNK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 140848F6F
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:47:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 932B88F6F
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:50:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758869257; cv=none; b=n3VKajP7/k0lefPuHTyMvBgmFHz+3cfZ5TrTspvscol1P5s1Rnr5rXuyUWGapuqjnCLffSY7Rzdm7t9T9G+oCqybWGlFcaK2eVmTP/1OUOEweGCjzhMVkEI3yY+/y7CzUzEIb9U0NtVb1wGs2pWkic6ppS27810sbuu/A16A/5Q=
+	t=1758869428; cv=none; b=pGLSqUzUh7Vj+YP6WQ1Eg23RFXbpTL2bSssxt7ILf4pUJdJC6uBsl2E3uUgfchsfsVyg3Lp+ArvNVtQuWX3+LgPBeamSEcJwT09ifsZe1ZBAurr5pVIuLx0U8ZINZx5X/MBYHJkZuQ9em8spnLmJ4eJQFY7qPiXYsHKvSll+0+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758869257; c=relaxed/simple;
-	bh=COunz1JLa1fpmV1AAJupyIS7fAiGMYlnjvCJNA2KWK8=;
+	s=arc-20240116; t=1758869428; c=relaxed/simple;
+	bh=JeiZMAdBfoDaJdELXLbBBT1DLTAze95bhqjWibF8b5c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=deLU5RHRnfISpbOGWQlgR11BuEUOzj6hRTOj08C4gN14w3ZM3drhwNndxf2iaHfK1L7+FCwHkNpQqrtYvNJ5Z65gvlnmGRl/Fc7KDMwvW2V2mZE14eqIE1BHr5C8hQk4wQ23OpRgvO1/hA1rN36NdQUk+S7emPoKWC/EiCkj17w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=FnIwbFiB; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=Zg5B
-	R8TR0pwXhS1HMnn+PMtDRUEhr+0FbUE0xjhN2ok=; b=FnIwbFiBtLNXA4GM3Xad
-	/H/dtDIRdZ4Itp/C6UXVxubIduzYAwiR5lmtuy6oZ9KHV78q6c8RG9tmbPfE6ozV
-	LF/FgZfyaggUZ5wW2k0VpvH+M16zCuIYNm7VpIPLbcAfrNXG/0RiHbs0ySJrc9NJ
-	SEhoW8LymZ6tz2eascEXDe5AkLf2+qFYCUmsxXu2sy5/k51pDFOjG5AG/prsd9gB
-	NxFIVdZV8fLev9AN2FWjBd9sI/XwcKoy0XunztJg/nrKKFQ7tGySZhNcPB3HuzDp
-	mqZMVY8VtUSKDbQRBiEiDw0Wd6ozEyjHNK76d637RDORBsgmChaARi9RmmaDV4pZ
-	tA==
-Received: (qmail 2152516 invoked from network); 26 Sep 2025 08:47:31 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Sep 2025 08:47:31 +0200
-X-UD-Smtp-Session: l3s3148p1@+BPqqK4/0IUgAwDPXwQHAL/S9V79e5yL
-Date: Fri, 26 Sep 2025 08:47:30 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Jonas Jelonek <jelonek.jonas@gmail.com>
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-i2c@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Markus Stockhausen <markus.stockhausen@gmx.de>,
-	Sven Eckelmann <sven@narfation.org>,
-	Harshal Gohel <hg@simonwunderlich.de>
-Subject: Re: [PATCH v7 04/12] i2c: rtl9300: use regmap fields and API for
- registers
-Message-ID: <aNY3Ar8bernz4kCI@shikoro>
-References: <20250831100457.3114-1-jelonek.jonas@gmail.com>
- <20250831100457.3114-5-jelonek.jonas@gmail.com>
- <aNW0jiJQHcS-FKwr@shikoro>
- <476cd546-1bde-4ff0-a785-2e6fa21b79d4@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=kna+hWS0QrnkSCcIg157IH586iuEoGBa4SW3znyGd+pmu5Y4csmg4wDb1lKVnBgs1ZB7QZg5KNCYzNxupGViVveLGDqmcW1aH1l15TzZDJQUUBdCJUE7EddiAaG0zxu3QLVr/rFwZvhk5q+YxrnCccx9NWdIEfyo135T+sitY9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rW+ruKNK; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-46e1cc6299cso17032615e9.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 23:50:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758869425; x=1759474225; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=NFTsrA5/XpN/aDPrsWUi64EUIAXE1gernUECI4xL01o=;
+        b=rW+ruKNKll5EhnG2oOhKIvMEad+3krImExig4LkwcQG7DBj0kcn2NryFioX3fSmJH7
+         HklP74ToNbfZITW6vXgRm1RjZwHVfvJkh3EJHE9ci2GDxTi9Z/DzvF74cw0n234YhrPI
+         RhpMH2SkrY6ls6ZvbfBzGbbOU0I43O1vWXC7pFV358LP+O6T3mLHCnxeMjYhZ4PaWFBv
+         /CPPYIlByCPyXJ3hhK4yJL4tOvNkuBl1JI2fJbl6li7FfnUNZp+7IM3zje/wxKrewIxA
+         agwutEIni/EBxf4BZZW4Xtrkpjy1YT+61bjSSxSm54ECR2IbpyhyflEHX0rrcyis8fNh
+         doRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758869425; x=1759474225;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NFTsrA5/XpN/aDPrsWUi64EUIAXE1gernUECI4xL01o=;
+        b=JUd35Gi+bfzMIfImp5dCwXl+rpPWUQMJIyva4AaH967lx/xOAZTKV1SovQU6hHK6S8
+         peskpaomQxJvApdcR1PpxQFdGE4O7r2nTa5Eo9hDjlCLIe6WAG3KF2SZ4GB8p/dH+3rZ
+         VwfWV4e9pMYrGj6NMc96Q+gQ2oWZbJKUygus3I17MLY83efccxJ/b+POK+pq8oL/ZeZr
+         JsaJE4gB9ohw6CjuLv+Zy0qZJ7WFzwmv2QmQZTPbiZvQDqNqFjeO3VCCVw6UaQ8wfnzk
+         LaeicW7pDCnNne7XFyF11KLxctU4cOD/2CpfriK+eEy6k8kuT5ArwwQF52409b0Mm/NU
+         G+Hg==
+X-Forwarded-Encrypted: i=1; AJvYcCXAVB4trdRoQerlG10kZQrGXLkHdiilIwkf52ZORRl0krcbiG0glbcDYcGCY+WaSfDUmM9lhzhfCOnQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPn2FCaLDskLrQ9qUDpJiXK0lMtlaHmZ5skcqyNW2y190IEgdk
+	cii075eVfUhtmP16tJl3sjbIGsRD0ZjVaLMl3jVjwILfUql1cdWJyCfba8wONNXx7Wg=
+X-Gm-Gg: ASbGncvnVIPfTOs0SPAruj3vaVKURX2CTfl612KdTR/Vo7TV1e5VknxbJO4jGAuThZj
+	UUTPBfXZzUO2hPlIvIuTPwNKlI7mRAr2z/q0xh0Sj2wtHZm32kug9UN068R8TSzZNkK25A9bHi3
+	xHMqUz1r1vJo4Zg8BsrIyIfrYhTSQUDy2p5dws8776P2mZ3cNWkwQgyCSl/57SI/R9eGRW//AAS
+	X0HJexdfySuQcTaMldvIb1D4rbm4dARt3TNJyJi1CAr+sInzv5ToDAi9sSm/BmP6SgzpH6OPl+6
+	Uf8IOmxehxg88qiG/wwT2RH96O2rbVxXHjOy8MrA6Tpf5h59fNTJr7xdIXa+sLUL1k1azhkX75U
+	7y5qeEJFotRVO0D8Rk0+HSA==
+X-Google-Smtp-Source: AGHT+IFyx6DPnlr6W6V0+TXiAp7mU5XDK4wWvIBL9OAv7zYNMXQhdyyL5XhqSCjFW7RXKqfYCBtV6w==
+X-Received: by 2002:a05:600c:8484:b0:46e:1abc:1811 with SMTP id 5b1f17b1804b1-46e329f653emr46236185e9.27.1758869424835;
+        Thu, 25 Sep 2025 23:50:24 -0700 (PDT)
+Received: from linaro.org ([86.121.170.238])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e2ab31ea3sm103257195e9.12.2025.09.25.23.50.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Sep 2025 23:50:24 -0700 (PDT)
+Date: Fri, 26 Sep 2025 09:50:22 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Pankaj Patil <pankaj.patil@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: glymur: Describe display related
+ nodes
+Message-ID: <r7f4zzugs3io4ho7qdjudh2ebyphtsjdnchnj7hnt7msoiylfz@dhfgzjg3sh46>
+References: <20250925-dts-qcom-glymur-crd-add-edp-v1-0-20233de3c1e2@linaro.org>
+ <20250925-dts-qcom-glymur-crd-add-edp-v1-1-20233de3c1e2@linaro.org>
+ <43jgqfcw2nnasdnskfdri5swddr6kunvvp6oxzqibnlvyc4jd2@4y6x7fy5shq2>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="htY2TmuyroWQDCdS"
-Content-Disposition: inline
-In-Reply-To: <476cd546-1bde-4ff0-a785-2e6fa21b79d4@gmail.com>
-
-
---htY2TmuyroWQDCdS
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <43jgqfcw2nnasdnskfdri5swddr6kunvvp6oxzqibnlvyc4jd2@4y6x7fy5shq2>
 
-Hi Jonas,
+On 25-09-25 20:11:11, Dmitry Baryshkov wrote:
+> On Thu, Sep 25, 2025 at 06:02:48PM +0300, Abel Vesa wrote:
+> > The MDSS (Mobile Display SubSystem) on Glymur comes with 4 DisplayPort
+> > controllers. Describe them along with display controller and the eDP
+> > PHY. Then, attach the combo PHYs link and vco_div clocks to the Display
+> > clock controller and link up the PHYs and DP endpoints in the graph.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/glymur.dtsi | 492 ++++++++++++++++++++++++++++++++++-
+> >  1 file changed, 484 insertions(+), 8 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/glymur.dtsi b/arch/arm64/boot/dts/qcom/glymur.dtsi
+> > index a131cd6c3d9e7f14ed1c4aef4b68e1860cc3bca5..41d89998b1fe14a24cd528e73afc37cf2a840bab 100644
+> > --- a/arch/arm64/boot/dts/qcom/glymur.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/glymur.dtsi
 
-> I just noticed that it seems like an already applied patch got lost [1].
-> This was supposed to be merged to Andi's i2c/i2c-host [2] and actually was
-> there until the first three patches of this series got merged.
->=20
-> Since I had already issue a few days ago trying to rebase the remaining
-> patches, this might be the cause it also fails for you?
+[...]
 
-True. This patch somehow got lost and doesn't apply cleanly anymore
-because of patch 3 of this series.
+> > +			mdss_dp0: displayport-controller@af54000 {
+> > +				compatible = "qcom,glymur-dp";
+> > +				reg = <0x0 0xaf54000 0x0 0x104>,
+> > +				      <0x0 0xaf54200 0x0 0xc0>,
+> > +				      <0x0 0xaf55000 0x0 0x770>,
+> > +				      <0x0 0xaf56000 0x0 0x9c>,
+> > +				      <0x0 0xaf57000 0x0 0x9c>;
+> > +
+> > +				interrupts-extended = <&mdss 12>;
+> > +
+> > +				clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> > +					 <&dispcc DISP_CC_MDSS_DPTX0_AUX_CLK>,
+> > +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_CLK>,
+> > +					 <&dispcc DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
+> > +					 <&dispcc DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
+> 
+> No pixel1 clock?
 
-Are open to resend this series, rebased and with the lost patch added?
+Will add it in next version. Everywhere.
 
-Thanks for the pointer,
+> > +
+> > +			mdss_dp1: displayport-controller@af5c000 {
+> > +				compatible = "qcom,glymur-dp", "qcom,sm8650-dp";
+> 
+> This doesn't match your own bindings. WT?
 
-   Wolfram
+Urgh. Yep, this is wrong. sm8650 compatible needs to be dropped. Will do
+in the next version.
 
+> > +
+> > +				mdss_dp1_opp_table: opp-table {
+> > +					compatible = "operating-points-v2";
+> 
+> Is it differnt from dp0 table?
 
---htY2TmuyroWQDCdS
-Content-Type: application/pgp-signature; name="signature.asc"
+Nope, they are the same. Will use the dp0 table for all controllers.
 
------BEGIN PGP SIGNATURE-----
+Thanks for reviewing.
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjWNwIACgkQFA3kzBSg
-KbalGA/5AZzQHP/5+gcHsGeveIpB6If9w0fi5dYGUCglTAVLQpRx2xnBp4dOrnbZ
-ZF8OeEPy0VkhY0c0vuMtyEvkLAPt7xT6h4Ed9yZGcNn32axeJQ8Q5m2LAyA8meyl
-rV0NZeGGQ4r3/iRmdsE69Iab4iprmS3gZRDPyv6PkIDsTQK0X+RlCs7wwk6CWXxN
-12wLxEE0VROVXkAj9rQMAdwJFDlo9wnz9Wi20FwrXaSnxhua5dHWIgKXoW8Kj3Mo
-KL0JAn6QE3cNAN2u9Y7bBpH2z2kfaJNgmWz0zYsCnA5sItmven9OiBVfKdgRCGXv
-zTKSQyMQmlI5cMU72uYGRwCVKsMH4IETKyZWZBBn4+we8a+kHGB6SLicCmE8vhlW
-+XGt/oSE6TCLZ52IUwAcshWgF3EqepLcVvypjm3/eGycRM7+Lb3NKJQheJIBXJrB
-2VstLTcEl1r3/PQnBM6P4iJ0Gdit92L1PhQ8HNoYR4zBjQA+U1HQfO94r+Cri+ZQ
-ahh8fB+mNM+00PIBCNIxs0tD66STvQBXM09tpJUv9BJv3R9YYnvb4SQjb4Q0QU3A
-/ux0kn5vopQdxlvN6gTGovlE5Is/e7d2/y1yxdPZntk3qBc8UGfym4CheeWgJh/6
-dgSWs/wlnFyrktdUOwvcwDXh6wTC6YZScRLtRCGD5H+OiIWfWhs=
-=c2bU
------END PGP SIGNATURE-----
-
---htY2TmuyroWQDCdS--
+Abel
 
