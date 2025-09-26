@@ -1,499 +1,166 @@
-Return-Path: <devicetree+bounces-221914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECC8BBA4002
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:57:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4519ABA4083
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:06:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A030166624
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:57:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 610121C009C0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 14:06:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACD172F747F;
-	Fri, 26 Sep 2025 13:56:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55D412F83A1;
+	Fri, 26 Sep 2025 14:05:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V/ZRqGar"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LT6uGOFX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87B241632DD
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:56:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 017232882B6
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 14:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758894992; cv=none; b=UKyG3//J3hEKwYKZZhuyj208W0lWQani1UyiIjX7JfCaIVO/KdfBdjkabsSDlkZePmWxhvuLdN8jBdS/UVKTCt2lfm4qyjbeFWFSwnXu2CfBWCcltKCu6PARjq08wFR9ty8uzddup1YFS8VHV1ee27e00dIX78cL0l4wWHnHsTk=
+	t=1758895555; cv=none; b=tgTtbbCaD3eRLnh8fYkojUXb0/RfK8KqDSER8sqG++5PXGnG1YQvQ5QQtJZaLu5tJ3P3JCc+RiE5mWFnRw9SFz5vus4JXmSRejWyBjbGX8HmIvF1EhPqLEpadjdQx6++btC6WqT/zRJtz6cXrsydi/kFK0jPvifg0VAB2Yr4Yf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758894992; c=relaxed/simple;
-	bh=fnFmx+ig5lobTpxBXaOHgpPg+wwrwW4hzaO99H2eNFo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IoQkuOWL3VBnFeTonYJmw1cJIoGjsp/0LrvgTI7l4z6tVESafcCwUhqJLwu+FPJlw0Og34tInkALlbFnQM6Y1AYeDEPhDoVmC1L9BRLzaGfYdyj098nzjyMZvelX7o6PuguzRleLav0ZOwbgecunc9YPufiiJS8AzzbJnKY1A8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V/ZRqGar; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A17CC113D0
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:56:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758894992;
-	bh=fnFmx+ig5lobTpxBXaOHgpPg+wwrwW4hzaO99H2eNFo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=V/ZRqGarw7YlMYZaOILSSYixS6lH7p6NqDxnDQZotvoVyy/ELD5W9YMuvbShpW8pM
-	 KdxExuhqSeesx2jnA7l9fAK5hXaL0IXK+14HuRMt/M33zHIDSBtHt9lMOiyg4FJbSS
-	 H/5MW64fH3EwgA0IMh23N2pwOyzUijVNWkj4XWbyxETVpnSWEOBINRyGTYFEJlT2VT
-	 fhkqctelyj/hYFWdL59SmlC844kX3WQZnioFTuNInmCEtyqPi45sSdTUzy1ttmmjB6
-	 pnY9w7VZVDuMVGP9+fF39i1dXVsI1O084LtFsW84Qp/eCLZbHouhmUl9XQtwf3VjlI
-	 8V2497nVgbbAA==
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-62fa99bcfcdso4250128a12.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:56:32 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW1mhOUJWYW1joSntzslWL2zhGx3WUy3JHR1VZoB5pjIglwfRBphIoNZRCwgnk7vBmQaf+0KRcmlGPj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLQC8edUOxDbWjPjAC+KGzJIePBAOYKRCjhqqQQ+4PIFdMIQHH
-	Ef/Vs0KVz8xEswiSKK8LMk4cOLouwJFDTzaP9hUeVBHKjUR/8UHd+cVmRFkbnbj5D51YWZnJc0f
-	62Vdxc0/sI+CVZDNIvV1QYD8HFBrl1g==
-X-Google-Smtp-Source: AGHT+IHeVbmYJ3bMf1bJ3+dbRsHIZF/JSZNoyLliQsfKzibMDRH0Ilnls2P5gXXXNssyIIkoxWg+iETkLY8H1f6OIgk=
-X-Received: by 2002:a17:906:dc89:b0:b0d:ff2c:3cd2 with SMTP id
- a640c23a62f3a-b34b74ee790mr936499466b.12.1758894990940; Fri, 26 Sep 2025
- 06:56:30 -0700 (PDT)
+	s=arc-20240116; t=1758895555; c=relaxed/simple;
+	bh=h8O3JMj2Nf43sk9ATCze+ZZOkp/rooCR8t3VS+9ryNg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WFRrNc+kOg27Et+PCAf8wfQwvBfujCpPD4wQv0NW3hldZ8zEKGH2DbU6l+yyvzDlBDOBEJ61OIBH0Oue4v+QT55aJjiNgfAtd0BxjxItsyJBKKn8oqJB5vi6E262jgV3K6vD83F/WM2JNK7//fEIQmQzTn9wTIRcEwzbCQ8ZfRY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LT6uGOFX; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58Q8vdXq018195
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 14:05:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=584nrbDAdLBURaO0cgXzCKXy
+	eOmRtZu/VSbhHT0wC+M=; b=LT6uGOFX0SR1QZQJx9bkXdGg/dXzjHdSfKJWmOwi
+	ljGQn5xCogB1rQaZbF7TQjvv7rqySxM4f8vz4W6EG0xvvsZZrHZ9+SGW+CAxZouq
+	jbIx+2yFc+TajvJYxuLkLkwq2r4AlML6lXHXq58vVNXIwulwRXy8K3dcrc5kAXs+
+	bOSMYW4IoVT3BYgfwM5/aIuqPlfz5yfZrMNrlcqI/0JNMYRVd5jjoTX9FyXjEvgw
+	+Ffqrkn8clA6GSCPx8HXzIAiH3F9NFhxq/nq6j4rNwCSs7yAO6X9WiITkQYpY45h
+	lu4DSs0+DyP9uSx+QdYxo91+dHCp/jQYgSKX+pR25euFjA==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49db0tb37u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 14:05:45 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4dd932741cfso17633791cf.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 07:05:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758895545; x=1759500345;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=584nrbDAdLBURaO0cgXzCKXyeOmRtZu/VSbhHT0wC+M=;
+        b=PUCvQA5nj0ETfEap3zvRGfus3Y/nWdEAo9cjqJmmbQPPpCcucD36XQNYw6hQLnp1aD
+         uF2f8UDpREzuPrMmgg2HKGnj4Z6jtEQk5bCt8Kqbea7kj9ykfD4K6BUuFMqvw8Xm/hwX
+         xVsjScDR3Ahx6fOeuZn0DP3DrJvuP8PqcB7PumlQIVEtkP8YYFljwDN2sCrA1HQbVLbU
+         d/8p6MvB8+uhkw4NRxSFksfkzY4t2S2XwzzEU7479WGmgAH6XQ8JcTSo9IQD1llX/1mY
+         2My7urerlmmG/oUbIH2jCi4qcXF8XMBYZ6efmKIUnE0ysJQNY0tbCcTD2Frmet5QD6cf
+         yF9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCX4Y5xDmF63AA1Dg9rXiDo3T5lxGbmPjIPFDrU63JQE1b/XPGGSNORiFO8+MUhS7OQvdVmZJ0J6KRQy@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPXQOFKXfBrpiPR38dLhmSvH8y51/c5RLvm2pN0J6QL3FfS0iX
+	IaMAIQJSgp39HXsYGNBQKBRAQLDB1Q24mnqC5N8CIkCmgFtrxWLLdFWiNLBZ3aDQZg2p0/p/cRo
+	D9OxFj2It1dDTKsCYxSNoDzTUkpjKPjlpEFUrlwzRTOYfPBlHzrFULMjKM4CSGrLb
+X-Gm-Gg: ASbGncu1OqU5jlvgnwwTmg+baIXygwnnYnT3Hq5+EpA4VVMMmd3pop+eZEfVMO02DdL
+	QfEK9aji+o2Pe+FAASQInlZuS6rU/NHIn3aSDOc7IE0FCTvs/9ypOWWN792D6Lo+QvlFKaNKLm3
+	SI8tcPgqu9BCokcqVuMVVrteIKWGnJrqsl/VhQv+3yki9c5B2CYBHcGS9sHdMMjnUQsn9AHxe1V
+	QkCcP7i6Xg+PXTmN+elfdixiWcsYC8Xzz6nvi1GCIXdfzpXz7sJyVHzyD8wAFOnPsWXAA78gbZq
+	ZM3ohK5cg2RPw1ezuQ3q029iHtnd2MtaG3pV9cEhhOp4+eTU8aTVA2mAzoHnTHcvYcNrRPUgzEL
+	B1HZJGwKxI4p6dr1C6stAyZA7oIeI1pzN72zY3b5VoJCRENPFoXHF
+X-Received: by 2002:a05:622a:768f:b0:4db:dd57:e093 with SMTP id d75a77b69052e-4dbdd57fb69mr58371561cf.51.1758895544717;
+        Fri, 26 Sep 2025 07:05:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHltJA6GbWIV/+igvGWnl22Iv/P1bx9gnuRDpBgQL59uVz2fnVyjK+CDBIlVIjHHYtcOin3WA==
+X-Received: by 2002:a05:622a:768f:b0:4db:dd57:e093 with SMTP id d75a77b69052e-4dbdd57fb69mr58370611cf.51.1758895543827;
+        Fri, 26 Sep 2025 07:05:43 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-36fb7710256sm12274671fa.45.2025.09.26.07.05.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Sep 2025 07:05:42 -0700 (PDT)
+Date: Fri, 26 Sep 2025 17:05:41 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Ayushi Makhija <quic_amakhija@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com, sean@poorly.run,
+        marijn.suijten@somainline.org, andersson@kernel.org, robh@kernel.org,
+        robh+dt@kernel.org, krzk+dt@kernel.org, konradybcio@kernel.org,
+        conor+dt@kernel.org, andrzej.hajda@intel.com,
+        neil.armstrong@linaro.org, rfoss@kernel.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, quic_rajeevny@quicinc.com,
+        quic_vproddut@quicinc.com, quic_jesszhan@quicinc.com
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: qcs8300: add Display Serial
+ Interface device nodes
+Message-ID: <5irzdmwxs2j4ppti35hc5235yxqq576doerrrk6fhcpj7f726a@eh5rl2jwb5kg>
+References: <20250925053602.4105329-1-quic_amakhija@quicinc.com>
+ <20250925053602.4105329-3-quic_amakhija@quicinc.com>
+ <vsty7sy7gi2eeyifokwcqpoycmarxietkijmlkymwrmzmdsfws@x64f4ulbc6ja>
+ <8c248bf8-2f25-443d-a08f-6504c349b72b@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250926072905.126737-1-linux.amoon@gmail.com> <20250926072905.126737-2-linux.amoon@gmail.com>
-In-Reply-To: <20250926072905.126737-2-linux.amoon@gmail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Fri, 26 Sep 2025 08:56:18 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJr+h7pTvbRR=7eB4ognK70D1pgNXEORGXo=ndND=pMjw@mail.gmail.com>
-X-Gm-Features: AS18NWA0TW7TCBuwoHZZyIjBUxLHoOtqfKbpxOYzyWFBbc_WiOpyrZrNwOSeYlE
-Message-ID: <CAL_JsqJr+h7pTvbRR=7eB4ognK70D1pgNXEORGXo=ndND=pMjw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/5] dt-bindings: PCI: Convert the existing
- nvidia,tegra-pcie.txt bindings documentation into a YAML schema
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8c248bf8-2f25-443d-a08f-6504c349b72b@quicinc.com>
+X-Proofpoint-ORIG-GUID: UnTSH5xV6_P7yqYScUpFjM0kvloh5S2V
+X-Proofpoint-GUID: UnTSH5xV6_P7yqYScUpFjM0kvloh5S2V
+X-Authority-Analysis: v=2.4 cv=Jvz8bc4C c=1 sm=1 tr=0 ts=68d69db9 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=fWuQbBWbtaeYDtlrs1EA:9 a=CjuIK1q_8ugA:10
+ a=uxP6HrT_eTzRwkO_Te1X:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI1MDE3MSBTYWx0ZWRfX5AGwmemL1PIA
+ EmPQVxU3ouBZH8K/fajddXaBc8N93l9fcuUf5+dQZBKvmPZAu5J5s1FFR2eLNM9bBoZooNEVWK9
+ I5TA7K6Up9yqe+vVXL8tR6RDvfcgeMmb8VBwHX0hFimhHLkLRFCN+z+U2Rl4m/bLI+6mLPusKSF
+ JqM+7iFqBpP3v9+c6/mrrE4bQ78dfsCNF2JqufT6Ynil6MVfZKn3rXkEWD341emEKwItzggKAgx
+ GnV/M6ZaAdpoRNhnyeN0wJmJbWrK6+oC0BcDn96dRhHAMluZWDqjD0WY2DvpSqQnBK4rClaSeQF
+ c6FvVIwvVIj4DJa8LekfHE4Iq9m6+w8ivq1Osxx7WGI+3NIyVVZHN8nrUQMQIO/5hwy91MKoAd0
+ 3hhaKCqjuTASTxfsGfIbgQLLNwNpyA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-26_04,2025-09-26_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 malwarescore=0 bulkscore=0 impostorscore=0 lowpriorityscore=0
+ suspectscore=0 spamscore=0 priorityscore=1501 adultscore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509250171
 
-On Fri, Sep 26, 2025 at 2:29=E2=80=AFAM Anand Moon <linux.amoon@gmail.com> =
-wrote:
->
-> Convert the legacy text-based binding documentation for
-> nvidia,tegra-pcie into a nvidia,tegra-pcie.yaml YAML schema, following
+On Fri, Sep 26, 2025 at 02:55:19PM +0530, Ayushi Makhija wrote:
+> On 9/26/2025 3:32 AM, Dmitry Baryshkov wrote:
+> > On Thu, Sep 25, 2025 at 11:06:01AM +0530, Ayushi Makhija wrote:
+> >> Add device tree nodes for the DSI0 controller with their corresponding
+> >> PHY found on Qualcomm QCS8300 SoC.
+> >>
+> >> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+> >> ---
+> >>  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 95 ++++++++++++++++++++++++++-
+> >>  1 file changed, 94 insertions(+), 1 deletion(-)
+> >>
+> >> +
+> >> +			mdss_dsi0_phy: phy@ae94400 {
+> >> +				compatible = "qcom,sa8775p-dsi-phy-5nm";
+> > 
+> > Add qcs8300-specific compatible and use sa8775p as a fallback
+> > 
+> 
+> Hi Dmitry,
+> 
+> I have one doubt, even though the ctrl and phy versions for sa8775p(LeMans) and qcs8300(Monaco) are same.
+> Why can't we use the same compatible string that we have used for LeMans ctrl and phy ? what is the need to define a separate
+> compatible string for monaco ctrl and phy ?
 
-s/YAML/DT/
+Konrad responded with the reason. But also, this question should have
+been asked when you took a first look at the qcom,qcs8300-mdss.yaml.
+It has two compats for DPU, DP and eDP PHY blocks (for exactly the same
+reason).
 
-> the Devicetree Schema format. This improves validation coverage and enabl=
-es
-> dtbs_check compliance for Tegra PCIe nodes.
-
-Your subject needs some work too. 'existing' and 'bindings
-documentation' are redundant.
-
->
-> Cc: Jon Hunter <jonathanh@nvidia.com>
-> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> ---
-> v1: new patch in this series.
-> ---
->  .../bindings/pci/nvidia,tegra-pcie.yaml       | 651 +++++++++++++++++
->  .../bindings/pci/nvidia,tegra20-pcie.txt      | 670 ------------------
->  2 files changed, 651 insertions(+), 670 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra-pc=
-ie.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra20-=
-pcie.txt
->
-> diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml=
- b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
-> new file mode 100644
-> index 000000000000..dd8cba125b53
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
-> @@ -0,0 +1,651 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/nvidia,tegra-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra PCIe Controller
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +
-> +description: |
-
-Don't need '|'.
-
-> +  PCIe controller found on NVIDIA Tegra SoCs including Tgra20, Tegra30,
-> +  Tegra124, Tegra210, and Tegra186. Supports multiple root ports and
-> +  platform-specific clock, reset, and power supply configurations.
-
-I would suggest not listing every SoC here unless the list is not going to =
-grow.
-
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-
-Only 1 entry here, don't need 'oneOf'.
-
-> +      - items:
-> +          - enum:
-> +              - nvidia,tegra20-pcie
-> +              - nvidia,tegra30-pcie
-> +              - nvidia,tegra124-pcie
-> +              - nvidia,tegra210-pcie
-> +              - nvidia,tegra186-pcie
-> +
-> +  reg:
-> +    items:
-> +      - description: PADS registers
-> +      - description: AFI registers
-> +      - description: Configuration space region
-> +
-> +  reg-names:
-> +    items:
-> +      - const: pads
-> +      - const: afi
-> +      - const: cs
-> +
-> +  device_type:
-> +    const: pci
-
-Drop. This is covered by pci-host-bridge.yaml.
-
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Controller interrupt
-> +      - description: MSI interrupt
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: intr
-> +      - const: msi
-> +
-> +  clocks:
-> +    oneOf:
-> +      - items:
-> +          - description: PCIe clock
-> +          - description: AFI clock
-> +          - description: PLL_E clock
-
-Drop this list and add 'minItems: 3'
-
-> +      - items:
-> +          - description: PCIe clock
-> +          - description: AFI clock
-> +          - description: PLL_E clock
-> +          - description: CML clock
-> +
-> +  clock-names:
-> +    oneOf:
-> +      - items:
-> +          - const: pex
-> +          - const: afi
-> +          - const: pll_e
-
-Same here.
-
-> +      - items:
-> +          - const: pex
-> +          - const: afi
-> +          - const: pll_e
-> +          - const: cml
-> +
-> +  resets:
-> +    items:
-> +      - description: PCIe reset
-> +      - description: AFI reset
-> +      - description: PCIe X reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: pex
-> +      - const: afi
-> +      - const: pcie_x
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +    description: |
-> +      A phandle to the node that controls power to the respective PCIe
-> +      controller and a specifier name for the PCIe controller.
-
-Don't need generic descriptions of common properties. Drop.
-
-> +
-> +  interconnects:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interconnect-names:
-> +    minItems: 1
-> +    maxItems: 2
-> +    description:
-> +      Should include name of the interconnect path for each interconnect
-> +      entry. Consult TRM documentation for information about available
-> +      memory clients, see DMA CONTROLLER and MEMORY WRITE sections.
-
-You have to document what the names are.
-
-> +
-> +  pinctrl-names:
-> +    items:
-> +      - const: default
-> +      - const: idle
-> +
-> +  pinctrl-0:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-
-This already has a type. Just 'pinctrl-0: true' is enough.
-
-> +
-> +  pinctrl-1:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
-> +  nvidia,num-lanes:
-> +    description: Number of PCIe lanes used
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-
-The examples show this in child nodes.
-
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra20-pcie
-> +              - nvidia,tegra186-pcie
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 3
-
-3 is already the min, so drop.
-
-> +          maxItems: 3
-> +        clock-names:
-> +          items:
-> +            - const: pex
-> +            - const: afi
-> +            - const: pll_e
-
-Names are already defined, so just 'maxItems: 3'
-
-Same comments apply to the rest...
-
-> +        resets:
-> +          minItems: 3
-> +          maxItems: 3
-> +        reset-names:
-> +          items:
-> +            - const: pex
-> +            - const: afi
-> +            - const: pcie_x
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra30-pcie
-> +              - nvidia,tegra124-pcie
-> +              - nvidia,tegra210-pcie
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 4
-> +          maxItems: 4
-
-Just 'minItems' here.
-
-> +        clock-names:
-> +          items:
-> +            - const: pex
-> +            - const: afi
-> +            - const: pll_e
-> +            - const: cml
-
-And here...
-
-> +        resets:
-> +          minItems: 3
-> +          maxItems: 3
-> +        reset-names:
-> +          items:
-> +            - const: pex
-> +            - const: afi
-> +            - const: pcie_x
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra20-pcie
-> +              - nvidia,tegra30-pcie
-> +              - nvidia,tegra186-pcie
-> +    then:
-> +      required:
-> +        - power-domains
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra186-pcie
-> +    then:
-> +      required:
-> +        - interconnects
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - nvidia,tegra210-pcie
-> +    then:
-> +      required:
-> +        - pinctrl-names
-> +        - pinctrl-0
-> +        - pinctrl-1
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - reg-names
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +  - interrupts
-> +  - interrupt-map
-> +  - interrupt-map-mask
-> +  - ranges
-
-Already required by pci-host-bridge.yaml.
-
-> +  - bus-range
-
-Generally, bus-range is only required when there's some h/w issue.
-
-> +  - device_type
-
-Already required by pci-host-bridge.yaml.
-
-> +  - interconnects
-> +  - pinctrl-names
-
-Above you said this was conditional.
-
-> +  - nvidia,num-lanes
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    bus {
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <1>;
-> +
-> +        pcie@80003000 {
-> +            compatible =3D "nvidia,tegra20-pcie";
-> +            device_type =3D "pci";
-> +            reg =3D <0x80003000 0x00000800>,
-> +                  <0x80003800 0x00000200>,
-> +                  <0x90000000 0x10000000>;
-> +            reg-names =3D "pads", "afi", "cs";
-> +            interrupts =3D <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 99 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names =3D "intr", "msi";
-> +            interrupt-parent =3D <&intc>;
-> +
-> +            #interrupt-cells =3D <1>;
-> +            interrupt-map-mask =3D <0 0 0 0>;
-> +            interrupt-map =3D <0 0 0 0 &intc GIC_SPI 98 IRQ_TYPE_LEVEL_H=
-IGH>;
-> +
-> +            bus-range =3D <0x00 0xff>;
-> +            #address-cells =3D <3>;
-> +            #size-cells =3D <2>;
-> +
-> +            ranges =3D <0x02000000 0 0x80000000 0x80000000 0 0x00001000>=
-,
-> +                     <0x02000000 0 0x80001000 0x80001000 0 0x00001000>,
-> +                     <0x01000000 0 0          0x82000000 0 0x00010000>,
-> +                     <0x02000000 0 0xa0000000 0xa0000000 0 0x08000000>,
-> +                     <0x42000000 0 0xa8000000 0xa8000000 0 0x18000000>;
-> +
-> +            clocks =3D <&tegra_car 70>,
-> +                     <&tegra_car 72>,
-> +                     <&tegra_car 118>;
-> +            clock-names =3D "pex", "afi", "pll_e";
-> +            resets =3D <&tegra_car 70>,
-> +                     <&tegra_car 72>,
-> +                     <&tegra_car 74>;
-> +            reset-names =3D "pex", "afi", "pcie_x";
-> +            power-domains =3D <&pd_core>;
-> +            operating-points-v2 =3D <&pcie_dvfs_opp_table>;
-> +
-> +            status =3D "disabled";
-
-Examples must be enabled.
-
-> +
-> +            pci@1,0 {
-> +                device_type =3D "pci";
-> +                assigned-addresses =3D <0x82000800 0 0x80000000 0 0x1000=
->;
-> +                reg =3D <0x000800 0 0 0 0>;
-> +                bus-range =3D <0x00 0xff>;
-> +                status =3D "disabled";
-> +
-> +                #address-cells =3D <3>;
-> +                #size-cells =3D <2>;
-> +                ranges;
-> +
-> +                nvidia,num-lanes =3D <2>;
-
-This doesn't match the schema.
-
-> +            };
-> +
-> +            pci@2,0 {
-> +                device_type =3D "pci";
-> +                assigned-addresses =3D <0x82001000 0 0x80001000 0 0x1000=
->;
-> +                reg =3D <0x001000 0 0 0 0>;
-> +                bus-range =3D <0x00 0xff>;
-> +                status =3D "disabled";
-> +
-> +                #address-cells =3D <3>;
-> +                #size-cells =3D <2>;
-> +                ranges;
-> +
-> +                nvidia,num-lanes =3D <2>;
-> +            };
-> +        };
-> +    };
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    bus {
-
-I don't think we need 4 examples.
-
-Rob
+-- 
+With best wishes
+Dmitry
 
