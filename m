@@ -1,334 +1,200 @@
-Return-Path: <devicetree+bounces-221977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD8B1BA4B28
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:43:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C3F9BA4B7D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:55:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F7524A552B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:43:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA4C27A2AFC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:54:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EDBC2FF15E;
-	Fri, 26 Sep 2025 16:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08B7F307AEA;
+	Fri, 26 Sep 2025 16:55:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="h+iVNCIt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CNv6s0I1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A63C2FE59F
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 16:43:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B917C1D86DC;
+	Fri, 26 Sep 2025 16:55:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758905017; cv=none; b=f9GPHVtWZI9MhoRrtmt+EUX+phEUN+rcV37M88HWxbmyacwIfhXa8ZdPzQ+NwyIYoUS9HqwqjYKgOobIvUIH4orJ8Xj8wlulMz0xqCrmQFhTrbF5J1yQOC1g59/gzDbsBbDhmVKkXf0Cd6WEPft0sIl6xn/NVvJ5AGFyTzRlLk0=
+	t=1758905739; cv=none; b=hu2SRGCwICcxu7lk9j1P2J8/lx5m2b8koqF/kt8W2NTxkm3pkRJhaLoulxegUtuiy+yCNCeb63pmUhj+iTGxfHFqA1vrKDHT4HddZnArR6i63gj9Vvu0UkxnlMCJ6j4nmjPWX94VVzFGcgqwoIoSXjUKHalDq5uEfLTJn7vCAEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758905017; c=relaxed/simple;
-	bh=rIG4cWp43cAsNeKr1YLyi9hOy3sx5IQvvF4wOGxpB34=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qYEJgtZ+dov6edYJFpeOjF77r8S+46gAqmeBym0u9O5XozMCDQW6QoQIbaIqI0KB0ub79uIzbWyt1leAx6LBPc1Hn57ZdOj7kQCMHnHPyIppULDY5+zsLh4HKExe+gr3ZALQg8g2qa9n/PNZ792ajLgnIOwgNAn2qLovP5wajgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=h+iVNCIt; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58QEWuXm010158
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 16:43:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	OOAJKtszuFOluuG6qYkOjreur/Dr9vuVBO3HUnQ0sBI=; b=h+iVNCItG8IaNeo1
-	5WKet2QPTfpcZVIJTNHUnA1IGc0tJXiF0e4OMG0eP89dQxPTjv3yUpM8TBpP7DAQ
-	IhgMxGGm26m+RUmIboNHJp9FYOTEs0zvE1UKja8TxVWN01jYtZGZ2b4L7OByN55k
-	nvAF8UZh13tjgob9ioN1jL40C5FnHTr/OhnbunN9yvOMYo7nCmUH9ESTkm7Vm/Cd
-	Y4w6DOwI+N7tepyxyoudTuzUxhkDo5oieO0MmxITVHu+OEfXeGxu5D2ea3vWkkm4
-	34Ju6XGEucVq4FkxEIvY496FdY7jXIIEjEgXTT6jFF3R9nSrsLRIh0JvYbaBfdI4
-	3X+eZQ==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49drfwh592-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 16:43:34 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-780f914b5a4so2492572b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:43:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758905014; x=1759509814;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OOAJKtszuFOluuG6qYkOjreur/Dr9vuVBO3HUnQ0sBI=;
-        b=RWglSBPGRwn4s4cYeDsVca3f28QoL5lOtrZG5Pc2isU8uEoy+XhwETnAjrRlmncj9e
-         /l+gFJoc4lh209ynf+Hi6uJjBq5zJsJ+xhDkLHrPnNMaHsoGIVOsT3szKiWRSxRpg8kG
-         tnKdjaDy6ZR/J3iDMYgZTJqXzvHAv+G9rV1jX+LWrmnA7zd/mtFR5FeG+bIbhXGX3Tqu
-         W1K/H5Ogdozq7yXWqM0R3DRfvnwHQf02IXvgItFrNX6pB8nW/0Gao/LlFHsrMystDqIC
-         GNduIN9eIujbLqJ3HblZU7lY2phK95IK/01T4rYJuJg+12K27Rj2YOg+0yBpYtXwraBR
-         4XzA==
-X-Forwarded-Encrypted: i=1; AJvYcCXoiEPTdI2nbMtVnyQlrykI57yhSzubsh7AcE5qGUrOKzC647qhpU7V+OM7gTJ7l4ZSu/cJRcXolh38@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw951gtqZKOFXZuEddXaE7DmXSoQl9XB3/USITfVnQJLkIxhMsG
-	xKqkOjmFNYEVHYKZZ1hv3jHq7tg1uWhH+RsVLo6JwpDiuYYNFZNV7+Sjesf8Y1luEcdQFcxZRlc
-	frVI8G28VRcRva5ebc2fwD6XO92cwx2+SF/hVYoL+AHGfAOIPwtSmbhVawERsgeNR
-X-Gm-Gg: ASbGnct5euy9n9R1fIKqavWzVoMj6ey6Fw5Er3b+vydwseRuHCoPSS6qahDOKpEPJIK
-	hKugXO0aU7moaFXr0Zd20BAq1Z48f8tACdogHpPStyf9iuJDyL3gkbxexwzQxhCu1tUnam1hy6y
-	C01W9mX1llCwMHVN3k1apuEwgEnW5TqJmZQ6v4jXZAysdS5atnxcrpNBvUxvDnENE3OPOAPq5sE
-	/5QqohLL4fLOv+5c7kt48+4oLLVQD+1Mda03P8SfHFrzNqKX/s/CaIBDdd4j3HHUSCvLaUXvJK2
-	mOsyUSwOgvjK1DomMlKYSWkkEI/yTzwwqgVQj48NPpCwbaCO/B+2NLcfGoWWn9hWR1VDjSo7a8A
-	=
-X-Received: by 2002:a05:6a00:2186:b0:77f:2899:d443 with SMTP id d2e1a72fcca58-780fce1d14fmr7444709b3a.10.1758905013429;
-        Fri, 26 Sep 2025 09:43:33 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH5vWBMgBvL7brIlV8nI5zcGRZcgZLch/n6zvZd8dJYGcdbkBvuKaAP5Kh0UT+1HHmZItjGyg==
-X-Received: by 2002:a05:6a00:2186:b0:77f:2899:d443 with SMTP id d2e1a72fcca58-780fce1d14fmr7444655b3a.10.1758905012812;
-        Fri, 26 Sep 2025 09:43:32 -0700 (PDT)
-Received: from [192.168.29.113] ([49.43.224.88])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-781023c8aebsm4809340b3a.28.2025.09.26.09.43.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Sep 2025 09:43:32 -0700 (PDT)
-Message-ID: <7cd09815-a657-47cc-9cc2-3751996c3592@oss.qualcomm.com>
-Date: Fri, 26 Sep 2025 22:13:22 +0530
+	s=arc-20240116; t=1758905739; c=relaxed/simple;
+	bh=pI9degLf/+q59D0fv8fpQNooxIH3uWVgpJc8N6uXbW8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Po7lprEah+KxXlbgw9nM1mXcz8PMPfo+4us3M7B2cY9YKS/asZsZBkZa1qz/RbMJ3nemydxOLLmhTlIlh8qfNS9g+KFUlgdaMzn8/mPd2V4nmjMrO3vrTYSb7jAC9rhisO6O1kxa/gMulD5CkglEZvUsT2G25dChWxYGztrWbnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CNv6s0I1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FC4FC4CEF4;
+	Fri, 26 Sep 2025 16:55:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758905739;
+	bh=pI9degLf/+q59D0fv8fpQNooxIH3uWVgpJc8N6uXbW8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CNv6s0I15gC3nUFJYvTIXlSI1AxJD9q0u/28WFjydG4s3aEbNDQM3K3dEAdRr8Qla
+	 PGTHbo6NItVKL1HdEqHUpcH0AX5RTvpjlQupbL2ZqDH1NiMdE+fh2d+9FSmAl0ZZmb
+	 AHX7OKP3LK0R3zxOZBgNVoeso3oOI93r0/q/4mjd+wZK/74VLJHj4oYA/VOhmzqrqC
+	 cDUbjat38PeRVT0f5K/x+DemPmO3DWfckHjIFMoZvG9LsOYPlXb8pb2ez9so2nc+B0
+	 PYoPqFpKOQddrXrRA8wlElbjRTHoCZ4MS/Pzh7EfSjgZQyG4VkyQTHRp+RRLhdg45t
+	 iB4QM4Gva7RMQ==
+Date: Fri, 26 Sep 2025 17:55:32 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Ricardo Ribalda <ribalda@chromium.org>
+Cc: Hans de Goede <hansg@kernel.org>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Len Brown <lenb@kernel.org>, Robert Moore <robert.moore@intel.com>,
+	Hans Verkuil <hverkuil@kernel.org>, linux-media@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev
+Subject: Re: [PATCH v3 07/12] dt-bindings: media: Add usb-camera-module
+Message-ID: <20250926-mute-boil-e75839753526@spud>
+References: <20250926-uvc-orientation-v3-0-6dc2fa5b4220@chromium.org>
+ <20250926-uvc-orientation-v3-7-6dc2fa5b4220@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 8/9] PCI: pwrctrl: Add power control driver for tc9563
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        chaitanya chundru <quic_krichai@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, quic_vbadigan@quicnic.com,
-        amitk@kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com,
-        linux-arm-kernel@lists.infradead.org,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-References: <20250925143924.GA2160097@bhelgaas>
-Content-Language: en-US
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <20250925143924.GA2160097@bhelgaas>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: MfjS27GP5g5al0B-zU695N8eaRXwYzJw
-X-Authority-Analysis: v=2.4 cv=JKA2csKb c=1 sm=1 tr=0 ts=68d6c2b6 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=w+9hNF1SH6wH5mqaHp+xkw==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=qleSEWVE8P8leAEWZfgA:9
- a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-GUID: MfjS27GP5g5al0B-zU695N8eaRXwYzJw
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI2MDA4OSBTYWx0ZWRfX5F5oppGONKYa
- z8Pz/gWu/WA1msYh7Av3YpoxO3Jd9zdgRbulJfpTjimWPsg2bpswW5oVGyimBQk1wn/UV2RwLWH
- bj5TZ99tyXrT/+KSaAvvLolz7eWBYh7QjGipaxj1vGspLJ39nc1gLRykX7KbjW+Uo1e9vTmrl1V
- GKioF0jtlAdmJaOJaxterOacs23RiXA3sOQjb+E4ztnYw8BF2CydkKx2vPR2RrxQ0GSkwwbyX4a
- r+qG1zfoKOjO8HSrboGKNK5ntgSFTNjmftt/9xACqEWIFw/5upxQYfLBPkku3oQVQQXH42i7FSd
- xtLiSIls8pdXm12w01fiaj2pdeCf6jXE2X/gJ8SL6pY8Khkgzr4xExq09dGqaI2DDWpPURHULpj
- auDnSdkwl4otSsP9+DUyUpJ5dWgkyg==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-26_06,2025-09-26_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 clxscore=1015 lowpriorityscore=0
- phishscore=0 suspectscore=0 bulkscore=0 spamscore=0 malwarescore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2509260089
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="dvlxf+F9Nk0RUTPP"
+Content-Disposition: inline
+In-Reply-To: <20250926-uvc-orientation-v3-7-6dc2fa5b4220@chromium.org>
 
 
+--dvlxf+F9Nk0RUTPP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 9/25/2025 8:09 PM, Bjorn Helgaas wrote:
-> On Thu, Aug 28, 2025 at 05:39:05PM +0530, Krishna Chaitanya Chundru wrote:
->> TC9563 is a PCIe switch which has one upstream and three downstream
->> ports. To one of the downstream ports integrated ethernet MAC is connected
->> as endpoint device. Other two downstream ports are supposed to connect to
->> external device. One Host can connect to TC9563 by upstream port. TC9563
->> switch needs to be configured after powering on and before the PCIe link
->> was up.
->>
->> The PCIe controller driver already enables link training at the host side
->> even before this driver probe happens, due to this when driver enables
->> power to the switch it participates in the link training and PCIe link
->> may come up before configuring the switch through i2c. Once the link is
->> up the configuration done through i2c will not have any affect.To prevent
->> the host from participating in link training, disable link training on the
->> host side to ensure the link does not come up before the switch is
->> configured via I2C.
-> 
-> s/any affect/any effect/
-> s/.To prevent/. To prevent/
-> 
->> Based up on dt property and type of the port, tc9563 is configured
->> through i2c.
-> 
-> s/up on/on/
-> 
-> Pick "i2c" or "I2C" and use it consistently.
-> 
->> +config PCI_PWRCTRL_TC9563
->> +	tristate "PCI Power Control driver for TC9563 PCIe switch"
->> +	select PCI_PWRCTRL
->> +	help
->> +	  Say Y here to enable the PCI Power Control driver of TC9563 PCIe
->> +	  switch.
->> +
->> +	  This driver enables power and configures the TC9563 PCIe switch
->> +	  through i2c.TC9563 is a PCIe switch which has one upstream and three
->> +	  downstream ports. To one of the downstream ports integrated ethernet
->> +	  MAC is connected as endpoint device. Other two downstream ports are
->> +	  supposed to connect to external device.
-> 
-> s/i2c.TC9563/i2c. TC9563/
-> 
->> +static int tc9563_pwrctrl_bring_up(struct tc9563_pwrctrl_ctx *ctx)
->> +{
->> +	struct tc9563_pwrctrl_cfg *cfg;
->> +	int ret, i;
->> +
->> +	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
->> +	if (ret < 0)
->> +		return dev_err_probe(ctx->pwrctrl.dev, ret, "cannot enable regulators\n");
->> +
->> +	gpiod_set_value(ctx->reset_gpio, 0);
->> +
->> +	 /*
->> +	  * From TC9563 PORSYS rev 0.2, figure 1.1 POR boot sequence
->> +	  * wait for 10ms for the internal osc frequency to stabilize.
->> +	  */
->> +	usleep_range(10000, 10500);
-> 
-> Possible place for fsleep() unless you have a specific reason for the
-> +500us interval?
-> 
->> +static int tc9563_pwrctrl_probe(struct platform_device *pdev)
->> +{
->> +	struct pci_host_bridge *bridge = to_pci_host_bridge(pdev->dev.parent);
->> +	struct pci_dev *pci_dev = to_pci_dev(pdev->dev.parent);
->> +	struct pci_bus *bus = bridge->bus;
->> +	struct device *dev = &pdev->dev;
->> +	enum tc9563_pwrctrl_ports port;
->> +	struct tc9563_pwrctrl_ctx *ctx;
->> +	struct device_node *i2c_node;
->> +	int ret, addr;
->> +
->> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
->> +	if (!ctx)
->> +		return -ENOMEM;
->> +
->> +	ret = of_property_read_u32_index(pdev->dev.of_node, "i2c-parent", 1, &addr);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "Failed to read i2c-parent property\n");
->> +
->> +	i2c_node = of_parse_phandle(dev->of_node, "i2c-parent", 0);
->> +	ctx->adapter = of_find_i2c_adapter_by_node(i2c_node);
->> +	of_node_put(i2c_node);
->> +	if (!ctx->adapter)
->> +		return dev_err_probe(dev, -EPROBE_DEFER, "Failed to find I2C adapter\n");
->> +
->> +	ctx->client = i2c_new_dummy_device(ctx->adapter, addr);
->> +	if (IS_ERR(ctx->client)) {
->> +		dev_err(dev, "Failed to create I2C client\n");
->> +		i2c_put_adapter(ctx->adapter);
->> +		return PTR_ERR(ctx->client);
->> +	}
->> +
->> +	for (int i = 0; i < TC9563_PWRCTL_MAX_SUPPLY; i++)
->> +		ctx->supplies[i].supply = tc9563_supply_names[i];
->> +
->> +	ret = devm_regulator_bulk_get(dev, TC9563_PWRCTL_MAX_SUPPLY, ctx->supplies);
->> +	if (ret) {
->> +		dev_err_probe(dev, ret,
->> +			      "failed to get supply regulator\n");
->> +		goto remove_i2c;
->> +	}
->> +
->> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
->> +	if (IS_ERR(ctx->reset_gpio)) {
->> +		ret = dev_err_probe(dev, PTR_ERR(ctx->reset_gpio), "failed to get reset GPIO\n");
->> +		goto remove_i2c;
->> +	}
->> +
->> +	pci_pwrctrl_init(&ctx->pwrctrl, dev);
->> +
->> +	port = TC9563_USP;
->> +	ret = tc9563_pwrctrl_parse_device_dt(ctx, pdev->dev.of_node, port);
->> +	if (ret) {
->> +		dev_err(dev, "failed to parse device tree properties: %d\n", ret);
->> +		goto remove_i2c;
->> +	}
->> +
->> +	/*
->> +	 * Downstream ports are always children of the upstream port.
->> +	 * The first node represents DSP1, the second node represents DSP2, and so on.
->> +	 */
->> +	for_each_child_of_node_scoped(pdev->dev.of_node, child) {
->> +		ret = tc9563_pwrctrl_parse_device_dt(ctx, child, port++);
->> +		if (ret)
->> +			break;
->> +		/* Embedded ethernet device are under DSP3 */
->> +		if (port == TC9563_DSP3)
->> +			for_each_child_of_node_scoped(child, child1) {
->> +				ret = tc9563_pwrctrl_parse_device_dt(ctx, child1, port++);
->> +				if (ret)
->> +					break;
->> +			}
->> +	}
->> +	if (ret) {
->> +		dev_err(dev, "failed to parse device tree properties: %d\n", ret);
->> +		goto remove_i2c;
->> +	}
->> +
->> +	if (!pcie_link_is_active(pci_dev) && bridge->ops->stop_link)
->> +		bridge->ops->stop_link(bus);
-> 
-> Is this pcie_link_is_active() test backwards?  Seems like you would
-> want to stop the link if it *is* active.
-> 
-you are right pci_dev extracted seems wrong and not pointing to root
-port dev, and  returning always zero. It is pointing to pci_dev in host
-bridge which doesn't point root port.
+On Fri, Sep 26, 2025 at 01:11:31PM +0000, Ricardo Ribalda wrote:
+> For fixed cameras modules the OS needs to know where they are mounted.
+> This information is used to determine if images need to be rotated or
+> not.
+>=20
+> ACPI has a property for this purpose, which is parsed by
+> acpi_get_physical_device_location():
+> https://uefi.org/htmlspecs/ACPI_Spec_6_4_html/06_Device_Configuration/Dev=
+ice_Configuration.html#pld-physical-location-of-device
+>=20
+> In DT we have similar properties for video-interface-devices called
+> orientation and rotation:
+> Documentation/devicetree/bindings/media/video-interface-devices.yaml
+>=20
+> Add a new schema that combines usb/usb-device.yaml and
+> media/video-interface-devices.yaml
+>=20
+> Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
+> ---
+>  .../bindings/media/usb-camera-module.yaml          | 46 ++++++++++++++++=
+++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 47 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/media/usb-camera-module.ya=
+ml b/Documentation/devicetree/bindings/media/usb-camera-module.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..e4ad6f557b9151751522e49b7=
+2ae6584deb0c7ba
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/usb-camera-module.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/usb-camera-module.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: USB Camera Module
+> +
+> +maintainers:
+> +  - Ricardo Ribalda <ribalda@chromium.org>
+> +
+> +description: |
+> +  This schema allows for annotating auxiliary information for fixed came=
+ra
+> +  modules. This information enables the system to determine if incoming =
+frames
+> +  require rotation, mirroring, or other transformations. It also describ=
+es the
+> +  module's relationship with other hardware elements, such as flash LEDs=
+ or
+> +  Voice Coil Motors (VCMs).
+> +
+> +allOf:
+> +  - $ref: /schemas/usb/usb-device.yaml#
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +
+> +properties:
+> +  reg:
+> +    maxItems: 1
+> +
 
-Thanks for pointing this.
+What actually causes this schema to be applied? Did I miss it getting
+included somewhere?
 
-I will fix it in next version.
-> pcie_link_is_active() is racy, and this looks like a situation where
-> that could be an issue.  Would something break if you omitted the test
-> and *always* stopped and started the link here?
-if we stop the link if the pcie link is active then we might see AER's &
-linkdown.
+> +required:
+> +  - reg
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    usb@11270000 {
+> +        reg =3D <0x11270000 0x1000>;
+> +        interrupts =3D <0x0 0x4e 0x0>;
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        device@1 {
+> +            compatible =3D "usb123,4567";
+> +            reg =3D <2>;
+> +            orientation =3D <0>;
+> +            rotation =3D <90>;
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ee8cb2db483f6a5e96b62b6f2edd05b1427b69f5..1503502a3aed2625e8ff48845=
+6ccd7305cc74ba7 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -26258,6 +26258,7 @@ L:	linux-media@vger.kernel.org
+>  S:	Maintained
+>  W:	http://www.ideasonboard.org/uvc/
+>  T:	git git://linuxtv.org/media.git
+> +F:	Documentation/devicetree/bindings/media/usb-camera-module.yaml
+>  F:	Documentation/userspace-api/media/drivers/uvcvideo.rst
+>  F:	Documentation/userspace-api/media/v4l/metafmt-uvc-msxu-1-5.rst
+>  F:	Documentation/userspace-api/media/v4l/metafmt-uvc.rst
+>=20
+> --=20
+> 2.51.0.536.g15c5d4f767-goog
+>=20
 
-- Krishna Chaitanya.
-> 
->> +	ret = tc9563_pwrctrl_bring_up(ctx);
->> +	if (ret)
->> +		goto remove_i2c;
->> +
->> +	if (!pcie_link_is_active(pci_dev) && bridge->ops->start_link) {
->> +		ret = bridge->ops->start_link(bus);
->> +		if (ret)
->> +			goto power_off;
->> +	}
->> +
->> +	ret = devm_pci_pwrctrl_device_set_ready(dev, &ctx->pwrctrl);
->> +	if (ret)
->> +		goto power_off;
->> +
->> +	platform_set_drvdata(pdev, ctx);
->> +
->> +	return 0;
->> +
->> +power_off:
->> +	tc9563_pwrctrl_power_off(ctx);
->> +remove_i2c:
->> +	i2c_unregister_device(ctx->client);
->> +	i2c_put_adapter(ctx->adapter);
->> +	return ret;
->> +}
+--dvlxf+F9Nk0RUTPP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNbFhAAKCRB4tDGHoIJi
+0qhdAP49nO2mKsosLHwnekS7EGEufeFAyOly/K0/a5m74rcMVwEAvbMFbwdFzaSM
+DgN8a+gmLLJ+4P89rQ8cIJR4oV+IpwI=
+=/Hob
+-----END PGP SIGNATURE-----
+
+--dvlxf+F9Nk0RUTPP--
 
