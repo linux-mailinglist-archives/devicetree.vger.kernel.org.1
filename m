@@ -1,134 +1,163 @@
-Return-Path: <devicetree+bounces-221807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE6C0BA315A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:13:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48BD9BA314C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:11:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40C861BC1189
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:14:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E009D4C6D5D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:11:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1A22848A0;
-	Fri, 26 Sep 2025 09:13:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03CE0283CB8;
+	Fri, 26 Sep 2025 09:11:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b="Dn2pQUM3"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="F9oB+WLx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpcmd02101.aruba.it (smtpcmd02101.aruba.it [62.149.158.101])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A19E21D3D2
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:13:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.158.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68F8B27AC3A
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:11:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758878030; cv=none; b=sLH6YCLVQgMEt0hd8ONVzx+uaWhP7Gp7AubTkZi5TxAOgarL4++YnPjtSAGEKrxqOW9Cl6BeNgcxrOkAouV8imWxjqXopzBjc4z84qBe0kr+QL5pnrckadkgJAjn3McEybpYVKyO3cAOEEZHwoqeOcbEcbzGkoX+DQyGtO2w4Lc=
+	t=1758877890; cv=none; b=CC4jNk8bFNi97FulyfWxXdNGk7Atmyll8WaL2S3E8EHcdo027QD5VICKt0jB/WdOx0PP/l6u/hekzlthMeiVKOyM3i1hORWoqX/4gna7ckz19GTtb3i3ALvy9qiQs3ESRz4dxYVBS6AUUr2JPeWSIl7vJ10CQm82ILnHcHc60ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758878030; c=relaxed/simple;
-	bh=S7JgcSwdHpRzzvI7aKcqbxp1YD07m/GRY6L4F5gZFok=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JIrFLL/HFI0vwV2NMjV0EnY8uPE7VSI+13phm4S5UfjWL9sdujcvL8dQXj3lXjTQfz19uJG/7Z7cBEiny4AUPO6Hy1HbJ7yi6XpvZP1F0b2QSIz2np2uv8ypC0obFNpUU7aLgVDwJM7514Wo8o/xHosP+6rEh2JsaQEaSxd9cFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=enneenne.com; spf=pass smtp.mailfrom=enneenne.com; dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b=Dn2pQUM3; arc=none smtp.client-ip=62.149.158.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=enneenne.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=enneenne.com
-Received: from polimar.homenet.telecomitalia.it ([79.0.204.227])
-	by Aruba SMTP with ESMTPSA
-	id 24TPvsM0ploie24TPvAPUK; Fri, 26 Sep 2025 11:10:39 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
-	t=1758877839; bh=S7JgcSwdHpRzzvI7aKcqbxp1YD07m/GRY6L4F5gZFok=;
-	h=From:To:Subject:Date:MIME-Version;
-	b=Dn2pQUM3QpWmPZGRjcnsVG6ZBg0lpKuJDajF6FY96VMai8O1xbKPA4mx0HYyQtoON
-	 L/wapqYGT746eURROdEUmtQAG2+pGeFNWtKZABm4RAm3sX6E0XZNxoAWzjGl8ILxoX
-	 gQZjpxTB3rYTRE2lR56BYYGXT7d5Q+baNoJ6+H0s//u7x4JxmSuTR1V0gU14zHptcV
-	 jiIskj3dhCPBwWg0WhhpD+0iAYbSNp9Muih9UFgAnoJowyPFUaERrltSHICGc0pzWl
-	 H0agEb4YV47mS2OpXTsVQjXO72/ABw641MJVVuNWlPD8Y7R9O3Q+pByfpGlQQBQoHF
-	 v5Z2zFt+PyzMg==
-From: Rodolfo Giometti <giometti@enneenne.com>
-To: linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Rodolfo Giometti <giometti@enneenne.com>
-Subject: [PATCH] drivers rtc-pcf8523.c: add "clockout-disable" property
-Date: Fri, 26 Sep 2025 11:10:38 +0200
-Message-Id: <20250926091038.2262571-1-giometti@enneenne.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1758877890; c=relaxed/simple;
+	bh=Q9cVFgVDTi0yD7DcpxpXPEPBn9ZNBsja6Uc9akvcPeY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ISYQ4oBihKZyM+B04DEgbYh1FFTT1ZCP/5etlscug0bUBhO6wZdf4xhkiqdPDvIw4aKqmKnH4b5QH+98z220gaSsgQ2ihI0wLxxd0Q+9XI7ca7iLb+v6FNJ8ks7JB6kMHJEi7dZZp4S4RdQjbQ1dr0zIo4kTKJAhQp5vZG19aAg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=F9oB+WLx; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58Q8vgER027611
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:11:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	gwMS6RiPyG3muvL8gIEP/IdyDMuWnY9zWPsqgfT3jmo=; b=F9oB+WLxy1WCJolY
+	iB/ozRPi7vxUVIRFRX3X/ivZ4qQXI6SmV1PMp/HN5MO/laRuVL0oe3s+eSEdwyZx
+	/HWxVHMJ4qdHVTnNZqYRKFXaB+WXSfslX8zPnWIm+mb+0DoETeAsXohp837HzIBb
+	cQLRno6uFVWLieYc2fTgJ/mILdVqW5Erw7ieelW/RmgqG1CKvtrc8e5mtxMCFU0O
+	TqpV54PPNaniH4yGkrbhXWeigTuWf1VEQOK5900tHbkxH8aEoN/C6noGQaKaGXgK
+	Vly7x9/wXGZGoHwvQrX57iSsYuy97Vw9OpBeJ6Yr47XYHbpvbKDfXK1jL9Ww3t1A
+	jyY/yA==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49db0qt7ee-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:11:28 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-32edda89a37so1817102a91.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 02:11:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758877887; x=1759482687;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gwMS6RiPyG3muvL8gIEP/IdyDMuWnY9zWPsqgfT3jmo=;
+        b=wskIbfdylVHYZvMLdtUZzCXxxjJ1Lw/ijpQgnR5dQ49jYSndKi7SZSVeOENVfcDkzz
+         dlg4nt9Q5JB0A24eJ4A5ayrBZ+kCyHhl6aEC1qGh8cYmxheWeSv7UiRmSG2upO7Z1wFa
+         F36AUPDc5qXMHUbycE3TnETlCdBmfLKihJ1KYPu7XXuCf1BXQ+4xmAiqsdF/McZ8fAg9
+         3XiHPsGMlUB27W1SvKZMw3ab0xe6tTe9nEITcWMXOQ6Ot54oOMlNEaWUZ+HsGBqCgSEl
+         5UVp0s1lX2fxyLLSCWLdx1hGOPgZszucBDdAqt+xNTxFx3X4hU/4hbHxu02LvW+JyrQf
+         34dg==
+X-Forwarded-Encrypted: i=1; AJvYcCXoii0RuJULskiqJjc9JC6j5UghjGvqM0WYk6YaYlyiijXk0/U27cJ2DxtnP7vW+Z0gHJN5QUStIsQS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUhhhjHBatMfEb9f7lbTOkHvjNLYP+Q1/D9kQx+E8UZbUQGE+X
+	/D/O0sgdzas9Bwf8hykAuPMk9YGjmI1tNC1BrHhawB95h/SFvQ2js1vpDIxXvSq1GGQhuSFUXKU
+	XukP7nfZZOA2qWV8KC7ey5oNDUhIw21qhYTHIph7OAXSsOnhf+/6FI79Skwt6PnpH
+X-Gm-Gg: ASbGncsdD0v29t+rOuE9/+IX3cTW1f8f1xugJwaHNpZKdvoPF+tf21CZZ2s70+bKAfP
+	9o/+Pv3zgv5azDSWzXrWeu8YdVaaBgolHKXPNON86YpExXCWob+XsoG7HnkILVx/ZNhP9LnIOv1
+	AuLdXlaC6F9GzvvfIpfjPaTLaEpOy8NQHapWYAxsIk4n6G+ugCx/QwqINMPFsfxAaZms9VdR63b
+	+brrIhLdydQuEyagY60rtwDWSGf7YfHuXpd9Womq4kzqQW7fYk57zbaJqsqNPbtUvLb7jGIkgwA
+	whtmNNFGZFiDWJ5mvnIRh8H/bPTW7HVA32rxORnW9v4o871s+uXZiYGm7leoUHHtGW/uJkxuxDN
+	CkhLzhQny/3RTtKqx+asVfn41QG3gn+hctVSG
+X-Received: by 2002:a17:903:948:b0:24b:1625:5fa5 with SMTP id d9443c01a7336-27ed4a093cdmr79278975ad.11.1758877887583;
+        Fri, 26 Sep 2025 02:11:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGqnSucq9QwwfydAdBOvQY2cA+Yy4I6IVDVeZYCo0AArAOV4CXOKIvi2P5d2LMNwXIVWHyGeg==
+X-Received: by 2002:a17:903:948:b0:24b:1625:5fa5 with SMTP id d9443c01a7336-27ed4a093cdmr79278595ad.11.1758877887091;
+        Fri, 26 Sep 2025 02:11:27 -0700 (PDT)
+Received: from [192.168.1.10] (syn-076-033-021-145.res.spectrum.com. [76.33.21.145])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed69b0685sm47455865ad.116.2025.09.26.02.11.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Sep 2025 02:11:26 -0700 (PDT)
+Message-ID: <60c65d7c-1564-40a1-830b-1c9931776fb7@oss.qualcomm.com>
+Date: Fri, 26 Sep 2025 02:11:16 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CMAE-Envelope: MS4xfIEuJ+x7ZsYVtxm0wuNxSzQDfKMg5N5a7LqML/OksRUIgI5z9lW5W0N5/9txtlTXl2+dRI/opvJaezlPW+AHYxHffjxVQe58zZLrzbP5jysg9p5SR6S2
- JGgKSzZyQyc0bUJ7h+t+IEn4xE/m5ekamm6P+suGGtxF9xtesXrIgSYA1QmFA9aBeqqUZ3caBQqLMhQoLfMscnhdwf41j5GOVULwUT1meHklNCDcyurRWEbx
- 5biKEKgg1r+qgQYVaH1Z20WoWSWnM6cNSVxtgCMkbceDuz7ffjQV7Uv2RpPzraJ5dqD6ZMIK1Yt3jFnG3fxikmAwePuww4OTgAM0Oi0cTNyOf9CuoiWIw06A
- En9lWYDHrcADWctkWN3AxRpzISbsFs1XfKDz1MGf61YMrZKBYsuZVQvnsSg4eW0V5xM5aBpR
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 14/20] arm64: dts: qcom: kaanapali-mtp: Enable more
+ features
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <20250924-knp-dts-v1-14-3fdbc4b9e1b1@oss.qualcomm.com>
+ <ejcchgc3isc5f6tmiqbxqihmk5efmbcyhv3ehuoerb5ulkd5an@g7a2wc422l6n>
+Content-Language: en-US
+From: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
+In-Reply-To: <ejcchgc3isc5f6tmiqbxqihmk5efmbcyhv3ehuoerb5ulkd5an@g7a2wc422l6n>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: VOLTC-f8s0hPoNf2b6v4rtcOuFe5rFD_
+X-Authority-Analysis: v=2.4 cv=bJ0b4f+Z c=1 sm=1 tr=0 ts=68d658c0 cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=jL+KNGaHzx0ZtsbCBWd7sw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=8xtE-M9Tj1n2mnedfNEA:9
+ a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI1MDE3MSBTYWx0ZWRfXxZdhZoZiU19j
+ ism/XBKszYM6S+pc2KO2lJ71x8FX2wFVLBBhT6sJRsMU7YVVACWBMTxE3fd/BcnwOY3u0p7aRj7
+ F7Ia7qLFGDzts5LZMYQ1KsHFhjPUFgIFcaP/ab1HF1YGNH+V2rGWKtfmEkyH3IY2km1J1neEre2
+ C9guw/U5A1HijWA56b4RU882gUqlitgHUEP4UAfAPKpxiY++R8WIm66EkNsaUEAiGF8A+kqC5vS
+ FTpaUxVr5vrACgCYNqRYkJTgDQFRKKnxTKiAT8OVGW7LoTJCyulE5vJOrOcfvxxidolLJjbKwGV
+ /4l6gYx2g3f8ef4ES3PCXtIRTRRhU5LEZGFG2S47OS6MU9LsoSied7X4F9vTmaqqC7d7E7zrWX8
+ jU/ThTzJhkmIdHNee43e8uw0bewyfw==
+X-Proofpoint-GUID: VOLTC-f8s0hPoNf2b6v4rtcOuFe5rFD_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-26_02,2025-09-26_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 adultscore=0 impostorscore=0 suspectscore=0 clxscore=1011
+ priorityscore=1501 malwarescore=0 bulkscore=0 phishscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509250171
 
-Some systems may require disabling clock generation on the CLKOUT pin
-even if there is no IRQ management.
 
-Signed-off-by: Rodolfo Giometti <giometti@enneenne.com>
----
- .../devicetree/bindings/rtc/nxp,pcf8523.yaml        |  5 +++++
- drivers/rtc/rtc-pcf8523.c                           | 13 +++++++++----
- 2 files changed, 14 insertions(+), 4 deletions(-)
+On 9/24/2025 7:09 PM, Dmitry Baryshkov wrote:
+> On Wed, Sep 24, 2025 at 05:17:31PM -0700, Jingyi Wang wrote:
+>> Enable more features on Kaanapali MTP boards including PMIC peripherals,
+>> bus, SDHCI, remoteprocs, USB, PCIE, WLAN and Bluetooth.
+>>
+>> Written with help from Jyothi Kumar Seerapu(added bus), Ronak Raheja
+>> (added USB), Manish Pandey(added SDHCI), Jishnu Prakash(added PMIC),
+>> Qiang Yu(added PCIE), Yijie Yang(Added WLAN) and Zijun Hu(Added Bluetooth).
+>>
+>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>> ---
 
-diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
-index d11c8bc16bc0..d18c396c06cd 100644
---- a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
-+++ b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
-@@ -25,6 +25,11 @@ properties:
-     enum: [ 7000, 12500 ]
-     default: 12500
- 
-+  clockout-disable:
-+    type: boolean
-+    description:
-+      Disable the clock generation on CLKOUT pin.
-+
- required:
-   - compatible
-   - reg
-diff --git a/drivers/rtc/rtc-pcf8523.c b/drivers/rtc/rtc-pcf8523.c
-index 2c63c0ffd05a..7ecbee4f9c6b 100644
---- a/drivers/rtc/rtc-pcf8523.c
-+++ b/drivers/rtc/rtc-pcf8523.c
-@@ -418,6 +418,7 @@ static int pcf8523_probe(struct i2c_client *client)
- 	struct pcf8523 *pcf8523;
- 	struct rtc_device *rtc;
- 	bool wakeup_source = false;
-+	bool clockout_disable;
- 	u32 value;
- 	int err;
- 
-@@ -467,16 +468,20 @@ static int pcf8523_probe(struct i2c_client *client)
- 	set_bit(RTC_FEATURE_ALARM_RES_MINUTE, rtc->features);
- 	clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, rtc->features);
- 
-+	clockout_disable = of_property_read_bool(client->dev.of_node,
-+							"clockout-disable");
-+	if (client->irq > 0 || clockout_disable) {
-+		err = regmap_write(pcf8523->regmap,
-+						PCF8523_TMR_CLKOUT_CTRL, 0x38);
-+		if (err < 0)
-+			return err;
-+	}
- 	if (client->irq > 0) {
- 		unsigned long irqflags = IRQF_TRIGGER_LOW;
- 
- 		if (dev_fwnode(&client->dev))
- 			irqflags = 0;
- 
--		err = regmap_write(pcf8523->regmap, PCF8523_TMR_CLKOUT_CTRL, 0x38);
--		if (err < 0)
--			return err;
--
- 		err = devm_request_threaded_irq(&client->dev, client->irq,
- 						NULL, pcf8523_irq,
- 						IRQF_SHARED | IRQF_ONESHOT | irqflags,
--- 
-2.34.1
+[...]
 
+>> +&usb_1 {
+>> +	dr_mode = "peripheral";
+> 
+> Is it really peripheral-only?
+> 
+
+For this initial submission, we haven't yet defined the USB role detection
+infrastructure, so it didn't make sense to include dual-role now. The
+controller supports it, but without the connector bindings and role switch
+implementation, it would be non-functional.
+
+Thanks,
+Ronak
 
