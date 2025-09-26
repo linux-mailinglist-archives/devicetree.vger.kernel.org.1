@@ -1,191 +1,134 @@
-Return-Path: <devicetree+bounces-221805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09E85BA3123
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:06:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE6C0BA315A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:13:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB9BB175A03
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:06:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40C861BC1189
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:14:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C712580F2;
-	Fri, 26 Sep 2025 09:06:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1A22848A0;
+	Fri, 26 Sep 2025 09:13:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mMqryNHm"
+	dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b="Dn2pQUM3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from smtpcmd02101.aruba.it (smtpcmd02101.aruba.it [62.149.158.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B06C13FEE;
-	Fri, 26 Sep 2025 09:06:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A19E21D3D2
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:13:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=62.149.158.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758877613; cv=none; b=Gb0k7CpkeQZGkNuSqf6kmxute0ksA2EsX07j7M61ydNLCNlbKNfyx1Kq5NrXRNLz+g/D/jFfEiVv91DjeDoIeZyLmQa6orXFI0o8k3ZiuFRtYJkRBGkpecKfIxZrpRtmbhbqTnu3QiSW6tE3bMldDK58tj9ck3PWUI4o00UISg4=
+	t=1758878030; cv=none; b=sLH6YCLVQgMEt0hd8ONVzx+uaWhP7Gp7AubTkZi5TxAOgarL4++YnPjtSAGEKrxqOW9Cl6BeNgcxrOkAouV8imWxjqXopzBjc4z84qBe0kr+QL5pnrckadkgJAjn3McEybpYVKyO3cAOEEZHwoqeOcbEcbzGkoX+DQyGtO2w4Lc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758877613; c=relaxed/simple;
-	bh=vb9/KMQMK9vPRNYSOUWnAzv5NYl3+m6W/pwDMMnurDk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=QxkA9uGiH5nNEfhCmPGaXDFt8rIePDChq6+OYmgL926f1eQj8dxFHuUs4vppdN/D0MXwBM5PpzUaI84Qqdu8mhEJnLskeaZnRZYo4Gc2r1TzDxRcYAsek59fWDvC3kU6SoPah/nuUHyD/lQ8IekW4oFIpr7R/kXhl6a6h18PW3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mMqryNHm; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58Q96fuv2084388;
-	Fri, 26 Sep 2025 04:06:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1758877601;
-	bh=6cxJXuy5YAwCi5okbverUIXNVXJCYm87JyZOCueDzZ8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=mMqryNHmKZSJR0q8EZjoCzMfc5R8znB83BnE7XY0CiRn++N8yErNPcISeQrQu4EII
-	 nT7AiyoDB1WS0mVrl3aO1DOfrH1RANJ3NOS7yQaasPOs1zAviEea9OZOuvb9XHivSu
-	 2YaVLDq9FHl940g7ylIP7GSsWbUzlHekp7SLFkDs=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58Q96fAq3873698
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 26 Sep 2025 04:06:41 -0500
-Received: from DLEE214.ent.ti.com (157.170.170.117) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 26
- Sep 2025 04:06:41 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE214.ent.ti.com
- (157.170.170.117) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 26 Sep 2025 04:06:41 -0500
-Received: from [172.24.233.150] (a0507176-hp-z2-tower-g9-workstation-desktop-pc.dhcp.ti.com [172.24.233.150])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58Q96bOT777945;
-	Fri, 26 Sep 2025 04:06:38 -0500
-Message-ID: <9653740a-44fe-46bb-92c8-f7fc26cbe5ee@ti.com>
-Date: Fri, 26 Sep 2025 14:36:36 +0530
+	s=arc-20240116; t=1758878030; c=relaxed/simple;
+	bh=S7JgcSwdHpRzzvI7aKcqbxp1YD07m/GRY6L4F5gZFok=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=JIrFLL/HFI0vwV2NMjV0EnY8uPE7VSI+13phm4S5UfjWL9sdujcvL8dQXj3lXjTQfz19uJG/7Z7cBEiny4AUPO6Hy1HbJ7yi6XpvZP1F0b2QSIz2np2uv8ypC0obFNpUU7aLgVDwJM7514Wo8o/xHosP+6rEh2JsaQEaSxd9cFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=enneenne.com; spf=pass smtp.mailfrom=enneenne.com; dkim=pass (2048-bit key) header.d=aruba.it header.i=@aruba.it header.b=Dn2pQUM3; arc=none smtp.client-ip=62.149.158.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=enneenne.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=enneenne.com
+Received: from polimar.homenet.telecomitalia.it ([79.0.204.227])
+	by Aruba SMTP with ESMTPSA
+	id 24TPvsM0ploie24TPvAPUK; Fri, 26 Sep 2025 11:10:39 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=aruba.it; s=a1;
+	t=1758877839; bh=S7JgcSwdHpRzzvI7aKcqbxp1YD07m/GRY6L4F5gZFok=;
+	h=From:To:Subject:Date:MIME-Version;
+	b=Dn2pQUM3QpWmPZGRjcnsVG6ZBg0lpKuJDajF6FY96VMai8O1xbKPA4mx0HYyQtoON
+	 L/wapqYGT746eURROdEUmtQAG2+pGeFNWtKZABm4RAm3sX6E0XZNxoAWzjGl8ILxoX
+	 gQZjpxTB3rYTRE2lR56BYYGXT7d5Q+baNoJ6+H0s//u7x4JxmSuTR1V0gU14zHptcV
+	 jiIskj3dhCPBwWg0WhhpD+0iAYbSNp9Muih9UFgAnoJowyPFUaERrltSHICGc0pzWl
+	 H0agEb4YV47mS2OpXTsVQjXO72/ABw641MJVVuNWlPD8Y7R9O3Q+pByfpGlQQBQoHF
+	 v5Z2zFt+PyzMg==
+From: Rodolfo Giometti <giometti@enneenne.com>
+To: linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Rodolfo Giometti <giometti@enneenne.com>
+Subject: [PATCH] drivers rtc-pcf8523.c: add "clockout-disable" property
+Date: Fri, 26 Sep 2025 11:10:38 +0200
+Message-Id: <20250926091038.2262571-1-giometti@enneenne.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: counter: Add new ti,omap-dmtimer-cap
- compatible
-To: Krzysztof Kozlowski <krzk@kernel.org>, <j-keerthy@ti.com>,
-        <vigneshr@ti.com>, <wbg@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: <u-kumar1@ti.com>, <n-francis@ti.com>, Gokul Praveen <g-praveen@ti.com>
-References: <20250909080042.36127-1-g-praveen@ti.com>
- <20250909080042.36127-2-g-praveen@ti.com>
- <6faff5b1-65b1-41ee-aba8-8c06a2bc6f58@kernel.org>
-Content-Language: en-US
-From: Gokul Praveen <g-praveen@ti.com>
-In-Reply-To: <6faff5b1-65b1-41ee-aba8-8c06a2bc6f58@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4xfIEuJ+x7ZsYVtxm0wuNxSzQDfKMg5N5a7LqML/OksRUIgI5z9lW5W0N5/9txtlTXl2+dRI/opvJaezlPW+AHYxHffjxVQe58zZLrzbP5jysg9p5SR6S2
+ JGgKSzZyQyc0bUJ7h+t+IEn4xE/m5ekamm6P+suGGtxF9xtesXrIgSYA1QmFA9aBeqqUZ3caBQqLMhQoLfMscnhdwf41j5GOVULwUT1meHklNCDcyurRWEbx
+ 5biKEKgg1r+qgQYVaH1Z20WoWSWnM6cNSVxtgCMkbceDuz7ffjQV7Uv2RpPzraJ5dqD6ZMIK1Yt3jFnG3fxikmAwePuww4OTgAM0Oi0cTNyOf9CuoiWIw06A
+ En9lWYDHrcADWctkWN3AxRpzISbsFs1XfKDz1MGf61YMrZKBYsuZVQvnsSg4eW0V5xM5aBpR
 
-Hi Krzysztof,
+Some systems may require disabling clock generation on the CLKOUT pin
+even if there is no IRQ management.
 
-Really sorry and apologies for the delay.
+Signed-off-by: Rodolfo Giometti <giometti@enneenne.com>
+---
+ .../devicetree/bindings/rtc/nxp,pcf8523.yaml        |  5 +++++
+ drivers/rtc/rtc-pcf8523.c                           | 13 +++++++++----
+ 2 files changed, 14 insertions(+), 4 deletions(-)
 
-On 10/09/25 12:38, Krzysztof Kozlowski wrote:
-> On 09/09/2025 10:00, Gokul Praveen wrote:
->> This commit adds a YAML binding for OMAP DM timer used in
-> 
-> Please do not use "This commit/patch/change", but imperative mood. See
-> longer explanation here:
-> https://elixir.bootlin.com/linux/v6.16/source/Documentation/process/submitting-patches.rst#L94
-> 
-> Don't use "YAML binding" - there is no such thing.
-> 
-> Instead just describe the hardware.
-> 
-
-Sure Krzysztof.
-
->> capture operating mode.
->>
->> Signed-off-by: Gokul Praveen <g-praveen@ti.com>
->> ---
->>   .../bindings/counter/ti,omap-dmtimer-cap.yaml | 34 +++++++++++++++++++
->>   1 file changed, 34 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/counter/ti,omap-dmtimer-cap.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/counter/ti,omap-dmtimer-cap.yaml b/Documentation/devicetree/bindings/counter/ti,omap-dmtimer-cap.yaml
->> new file mode 100644
->> index 000000000000..8de9cf58aee5
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/counter/ti,omap-dmtimer-cap.yaml
->> @@ -0,0 +1,34 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/counter/ti,omap-dmtimer-cap.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: TI dual mode timer Capture Module
->> +
->> +maintainers:
->> +  - Gokul Praveen <g-praveen@ti.com>
->> +
->> +description:
->> +  TI dual mode timer instances have an IO pin for Capture capability.
->> +
->> +properties:
->> +  compatible:
->> +    const: ti,omap-dmtimer-cap
-> 
-> Missing SoC specific part. OMAP is family, no?
-> 
->> +
->> +  ti,timers:
->> +    description: Timer instance phandle for the Capture
-> 
-> So the only resource is phandle? That's completely fake device then. NAK.
-> 
-
-
-The OMAP Timer IP can operate in 3 modes: Timer, PWM mode or capture
-(mutually exclusive).
-The timer/ti,timer-dm.yaml file describes the timer mode of operation.
-It encapsulates base IP block and reg property is also part the same
-binding.
-
-This node represents the capture mode with phandle reference to the
-timer DT node. This is modeled all the same lines as how PWM
-functionality is implemented in pwm/ti,omap-dmtimer-pwm.yaml
-
-Now, if this needs to change, please suggest alternate.
-
-One solution is perhaps to add a new property to ti,timer-dm.yaml itself
-to indicate the mode of IP?
-
-
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +
->> +required:
->> +  - compatible
->> +  - ti,timers
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    main_cap10: dmtimer-main-cap-10 {
-> 
-> Node names should be generic. See also an explanation and list of
-> examples (not exhaustive) in DT specification:
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> If you cannot find a name matching your device, please check in kernel
-> sources for similar cases or you can grow the spec (via pull request to
-> DT spec repo).
-> 
-> 
-
-Sure, I will update that Krzysztof.
-
-Regards
-Gokul
-
-> Best regards,
-> Krzysztof
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
+index d11c8bc16bc0..d18c396c06cd 100644
+--- a/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf8523.yaml
+@@ -25,6 +25,11 @@ properties:
+     enum: [ 7000, 12500 ]
+     default: 12500
+ 
++  clockout-disable:
++    type: boolean
++    description:
++      Disable the clock generation on CLKOUT pin.
++
+ required:
+   - compatible
+   - reg
+diff --git a/drivers/rtc/rtc-pcf8523.c b/drivers/rtc/rtc-pcf8523.c
+index 2c63c0ffd05a..7ecbee4f9c6b 100644
+--- a/drivers/rtc/rtc-pcf8523.c
++++ b/drivers/rtc/rtc-pcf8523.c
+@@ -418,6 +418,7 @@ static int pcf8523_probe(struct i2c_client *client)
+ 	struct pcf8523 *pcf8523;
+ 	struct rtc_device *rtc;
+ 	bool wakeup_source = false;
++	bool clockout_disable;
+ 	u32 value;
+ 	int err;
+ 
+@@ -467,16 +468,20 @@ static int pcf8523_probe(struct i2c_client *client)
+ 	set_bit(RTC_FEATURE_ALARM_RES_MINUTE, rtc->features);
+ 	clear_bit(RTC_FEATURE_UPDATE_INTERRUPT, rtc->features);
+ 
++	clockout_disable = of_property_read_bool(client->dev.of_node,
++							"clockout-disable");
++	if (client->irq > 0 || clockout_disable) {
++		err = regmap_write(pcf8523->regmap,
++						PCF8523_TMR_CLKOUT_CTRL, 0x38);
++		if (err < 0)
++			return err;
++	}
+ 	if (client->irq > 0) {
+ 		unsigned long irqflags = IRQF_TRIGGER_LOW;
+ 
+ 		if (dev_fwnode(&client->dev))
+ 			irqflags = 0;
+ 
+-		err = regmap_write(pcf8523->regmap, PCF8523_TMR_CLKOUT_CTRL, 0x38);
+-		if (err < 0)
+-			return err;
+-
+ 		err = devm_request_threaded_irq(&client->dev, client->irq,
+ 						NULL, pcf8523_irq,
+ 						IRQF_SHARED | IRQF_ONESHOT | irqflags,
+-- 
+2.34.1
 
 
