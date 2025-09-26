@@ -1,266 +1,131 @@
-Return-Path: <devicetree+bounces-221882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D1BEBA3D1D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:13:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A16EBA3DC9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:21:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A8E57626B95
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:13:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CF02A1681A2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:21:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C28592FFF92;
-	Fri, 26 Sep 2025 13:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90C0D2EC0AD;
+	Fri, 26 Sep 2025 13:21:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ND6vetiw"
+	dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b="YkUKYeux"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com [91.218.175.185])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 341C32FB0AE
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:11:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 753BD22128D
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:21:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.185
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758892306; cv=none; b=nhN3Rr1NofD1JUH+a+9l0GAKNLLDx2DEKT101UBaBpRiuiXtLR07ZajtLgL2eoRVESKZhV8lVgzvQXOSYFMnx4SDqQZImrksvccDf4CSWQgnh4GE2SLcM5Q3cYGq2FD3u7Xzk2TbkORr2IJ7ILz+N6X4lIiwB+3xJ5XsL/3qSvw=
+	t=1758892885; cv=none; b=BcdKhP3K7InkG56OoqVrms3j2IngpzMe+aCsC6K2SjcKY22bswWoo7khHwQcntD2gbkhc4urpc1ZSVj6r9w/aPRHeIL0f8y3z+llroyTfVpU9BTjDd/f+oauK2/b/GrpDPXL+e7VC+Qb5UVaKdl+QuusR36VULLv33arbyMbuCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758892306; c=relaxed/simple;
-	bh=U08jW+ROLINfuVWgmwe8cpKgwKy+8J4DAE40SSartDs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mVMPNxLz1/QDU815hz4nuKe/EmSoNcS3uPDINBFwZyIwE7/n7RAE2T/nZc3PUMnfCALbxSLG+Vs8WG/gKFPoLgBJKZ963S4bfebdmLNINns5dKaOsCtqbfjdbXrOS7FAsf9N2Dr5hGUe/+unttbsnLAfdso7VtLUhqaSyB6ZscQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ND6vetiw; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-57edfeaa05aso2333877e87.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:11:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1758892297; x=1759497097; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=APb3UWCYeewnPsuy/XgWoHvego/0/pU0ggvZnaK9xZ8=;
-        b=ND6vetiwvc8HvV+F8PpwSZeponpTkVOf5zU0YmtnnUUCP8C66nPIBYxDAYak2CQeVm
-         cl48LslOyRdc1AONC6xSc3VxuztWKnr8TSXJ+sjOj02XNsqa9dgtaQ26E3xdR79Sx5Vt
-         VpGuRohS9CbTcMn6aNlChnvA4ez7OdXXhTo4Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758892297; x=1759497097;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=APb3UWCYeewnPsuy/XgWoHvego/0/pU0ggvZnaK9xZ8=;
-        b=hWOjbkaFJAd5vZBJPy7K/lgjd3x+84cMu5goA3cgx4BNhmvzATEulQ/P647tJTqVuU
-         wdfNgeBjBWMDaXqulwwzEteIH19vIFP/3Iqc3EGsAebvBhXViovAOaiSFQVZ1GWI59vH
-         2g94VvP48+fH8A7fW1aYZC0uOF6VgQjlY7mFdCP6UMHPuHeBupD8NPatkELsa5/3xDnm
-         b0a7C8ikdjPPmGIok2aeXY/7DChQ1281Jw5x3T0azaDi0lNKkc0UblrkfneLtMgsMzza
-         KhyFRhhF4XnY5zVyCKHT08pC2agb+Ngztsh9NDw4c3ABd9gmdV3mfli5U+RZ2IEePTnq
-         MDkw==
-X-Forwarded-Encrypted: i=1; AJvYcCU6xqODdghTTgjx5aZ8oXeYnmThE2xzTjk4r5v4qkCvesTpML/nSQ7MufMnVunfUrTAFRH5iNbpbVhV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwssLFAQcDfXMajdhYhJ+HUJNcv/I/m6hzpgKHSj1dJM/K1YSIM
-	PysgHj9enNzqTkilyuc3waAZstrDKPwkh2YnzdUKCPpWfGlDGHJyc5xyz+euThWtwA==
-X-Gm-Gg: ASbGncuGwvn6wKm1GQOxNb9lDuWWTPbYNjVJ4n+3jJmyPMO+JpieleUePOzpGbiQEN+
-	Pm0Yl/qkdhnOCsF/Y8CfYhhWLgjec7eY2TcYih+sPIZjA7nkrX/zguEkDqgQ7A5BFiTB2AOIKr+
-	k0o0c0nOMl/ixroWHK3ZiQ+1eYqpXDquQ0jpudqkQWJhXbCQDcsVptQekNFHwqE6vbrj8uwl5sR
-	X1jePjNYZJ2sdf158e6RjUJb+wPQPe+xZWB4MjjsaewO7qr/7/bObRHMrwo34av0+eqV52xaBZY
-	8fAqMK57+p0/OHc+HWmgfU0OH2N48xlTlkC1HUE5shBvkkxePXAXBO/N8x5MmfjID5anTfrCD6w
-	O4Sk6ZhYVvPhG0eZWYRjjfojH+4AlawbSGFerRCzFLKEGGvirZLRF2my+pDiEksje3llVWaaNsY
-	/TvQ==
-X-Google-Smtp-Source: AGHT+IG13LZH3qyc8t2QDs0MQunt54awluMMidrJtB7qriVpX4diWPLucIbGRhyJDMPwZ0BJ1XUdKg==
-X-Received: by 2002:a05:6512:3b20:b0:57a:8738:4d80 with SMTP id 2adb3069b0e04-582d0c2a62fmr2064511e87.21.1758892296980;
-        Fri, 26 Sep 2025 06:11:36 -0700 (PDT)
-Received: from ribalda.c.googlers.com (64.153.228.35.bc.googleusercontent.com. [35.228.153.64])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58527c6b014sm123872e87.43.2025.09.26.06.11.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Sep 2025 06:11:36 -0700 (PDT)
-From: Ricardo Ribalda <ribalda@chromium.org>
-Date: Fri, 26 Sep 2025 13:11:36 +0000
-Subject: [PATCH v3 12/12] media: uvcvideo: Add support for
- V4L2_CID_CAMERA_ROTATION
+	s=arc-20240116; t=1758892885; c=relaxed/simple;
+	bh=wgA/KHhjj9nh98Q2K+I0SfkA1dG5Qo6UsV0GJJR0K78=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NhBILTnTJ7ctUgMejJA8b8/jblEEBY9YjINiR4AmoSCbiqlaFCG3g7PuhNBuY1vyBeg1qNlcEAHmLQ6Fu/ndylpYU7jtIouZv+sceUkgry60w6tfIiRspTHpu+SEKgm9Bm9flX8S7UyQbBB9lNDMkDwBV2lW1agbjBRoylXBQfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev; spf=pass smtp.mailfrom=linux.dev; dkim=pass (1024-bit key) header.d=linux.dev header.i=@linux.dev header.b=YkUKYeux; arc=none smtp.client-ip=91.218.175.185
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+Date: Fri, 26 Sep 2025 21:21:00 +0800
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+	t=1758892871;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=kS/CoKpI2O26sCXSiv4EiupTsdzTbhruWHTFDNF/B6E=;
+	b=YkUKYeuxwSed5mqZY3/3VbIDplrQbnU0BQyGpRaweeUYdJumLK8deef1Tp0r7wqplNKpwg
+	Cutjz+xCr/eeEfqtYnAVU6OygFzMkgLSw2KkURh6IgxBFQzc8QxwDYo14K4Ee1jQuCWLnX
+	cPzJoWrUjQ7hovBJ/T49ILEI3dGg4nE=
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Troy Mitchell <troy.mitchell@linux.dev>
+To: Guenter Roeck <linux@roeck-us.net>,
+	Troy Mitchell <troy.mitchell@linux.dev>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH 3/3] hwmon: (ctf2301) Add support for CTF2301
+Message-ID: <aNaTPE494MMExSBz@troy-wujie14pro-arch>
+References: <20250916-ctl2301-v1-0-97e7c84f2c47@linux.dev>
+ <20250916-ctl2301-v1-3-97e7c84f2c47@linux.dev>
+ <53f1d5d2-c871-4823-ab13-8c3dfd86dbfe@roeck-us.net>
+ <aNXtJ0S5SAMsUwnD@kernel.org>
+ <8c6f609e-c086-4b6c-abb5-8d33ec85df47@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250926-uvc-orientation-v3-12-6dc2fa5b4220@chromium.org>
-References: <20250926-uvc-orientation-v3-0-6dc2fa5b4220@chromium.org>
-In-Reply-To: <20250926-uvc-orientation-v3-0-6dc2fa5b4220@chromium.org>
-To: Hans de Goede <hansg@kernel.org>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>, 
- Robert Moore <robert.moore@intel.com>, Hans Verkuil <hverkuil@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-acpi@vger.kernel.org, 
- acpica-devel@lists.linux.dev, Ricardo Ribalda <ribalda@chromium.org>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8c6f609e-c086-4b6c-abb5-8d33ec85df47@roeck-us.net>
+X-Migadu-Flow: FLOW_OUT
 
-Fetch the rotation from the fwnode and map it into a control.
+On Thu, Sep 25, 2025 at 08:57:13PM -0700, Guenter Roeck wrote:
+> On 9/25/25 18:32, Troy Mitchell wrote:
+> > Hi Guenter, Thanks for your review.
+> > There are many things to improve in this driver.
+> > 
+> > On Wed, Sep 24, 2025 at 08:43:35AM -0700, Guenter Roeck wrote:
+> > > On Tue, Sep 16, 2025 at 12:46:46PM +0800, Troy Mitchell wrote:
+> > [...]
+> > > > diff --git a/drivers/hwmon/ctf2301.c b/drivers/hwmon/ctf2301.c
+> > [...]
+> > > > +
+> > > > +#define CTF2301_LOCAL_TEMP_MSB			0x00
+> > > 	LM90_REG_LOCAL_TEMP
+> > > > +#define CTF2301_RMT_TEMP_MSB			0x01
+> > > 	LM90_REG_REMOTE_TEMPH
+> > > > +#define CTF2301_ALERT_STATUS			0x02
+> > > 	LM90_REG_STATUS
+> > > > +#define CTF2301_GLOBAL_CFG			0x03
+> > > 	LM90_REG_CONFIG1
+> > > > +#define CTF2301_RMT_TEMP_LSB			0x10
+> > > 	LM90_REG_REMOTE_TEMPL
+> > > > +#define CTF2301_LOCAL_TEMP_LSB			0x15
+> > > 	TMP451_REG_LOCAL_TEMPL
+> > > > +#define CTF2301_ALERT_MASK			0x16
+> > > 	TMP461_REG_CHEN
+> > > 
+> > > So far this looks like a chip based on LM90 or TMP451/TMP461
+> > > with an added fan controller. I can not immediatey determine
+> > > if it would be better to add the pwm/tach support to the lm90
+> > > driver. Given that the chip (based on registers) does support
+> > > limits, which is not implemented here but essential for a chip
+> > > like this, I would very much prefer adding support for it to the
+> > > lm90 driver if possible.
+> > > 
+> > > The public datasheet does not provide register details, making it
+> > > all but impossible to do a real evaluation. Any idea how to get
+> > > a complete datasheet ?
+> > Yeah, more register info at [1].
+> > I've checked the detailed review below,
+> > but I'll hold off on sending v2 until you decide if we really need a new driver.
+> > 
+> > Is this chip more like the LM63, by the way?
+> > 
+> 
+> Good catch. Yes, looks like you are correct. LM63 is an almost perfect match.
+> CTF2301 has a couple of extra registers, mostly local setpoint and temp LSB
+> plus the registers in the 0x3x range. Actually, those registers _are_ defined
+> for LM96163, so that chip is an even closer match.
+Yes, so just to confirm,
+you agree that the development should be done on top of the lm63 driver, right?
 
-Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
----
- drivers/media/usb/uvc/uvc_ctrl.c     | 22 ++++++++++++++++---
- drivers/media/usb/uvc/uvc_swentity.c | 41 +++++++++++++++++++++++++++++++-----
- drivers/media/usb/uvc/uvcvideo.h     |  5 +++++
- 3 files changed, 60 insertions(+), 8 deletions(-)
+> 
+> What happens if you just instantiate the lm63 driver, possibly after updating
+> the detect function ?
+I will run the tests the day after tomorrow and provide a log.
 
-diff --git a/drivers/media/usb/uvc/uvc_ctrl.c b/drivers/media/usb/uvc/uvc_ctrl.c
-index e99fdf4bafbea662556798fe345a48b9ffd8467b..99bae519ded8910a37ad2f2112fbcbfdcac671af 100644
---- a/drivers/media/usb/uvc/uvc_ctrl.c
-+++ b/drivers/media/usb/uvc/uvc_ctrl.c
-@@ -387,11 +387,18 @@ static const struct uvc_control_info uvc_ctrls[] = {
- 	},
- 	{
- 		.entity		= UVC_GUID_SWENTITY,
--		.selector	= 0,
--		.index		= 0,
-+		.selector	= UVC_SWENTITY_ORIENTATION,
-+		.index		= UVC_SWENTITY_ORIENTATION,
- 		.size		= 1,
- 		.flags		= UVC_CTRL_FLAG_GET_CUR,
- 	},
-+	{
-+		.entity		= UVC_GUID_SWENTITY,
-+		.selector	= UVC_SWENTITY_ROTATION,
-+		.index		= UVC_SWENTITY_ROTATION,
-+		.size		= 2,
-+		.flags		= UVC_CTRL_FLAG_GET_CUR,
-+	},
- };
- 
- static const u32 uvc_control_classes[] = {
-@@ -1049,7 +1056,7 @@ static const struct uvc_control_mapping uvc_ctrl_mappings[] = {
- 	{
- 		.id		= V4L2_CID_CAMERA_ORIENTATION,
- 		.entity		= UVC_GUID_SWENTITY,
--		.selector	= 0,
-+		.selector	= UVC_SWENTITY_ORIENTATION,
- 		.size		= 8,
- 		.offset		= 0,
- 		.v4l2_type	= V4L2_CTRL_TYPE_MENU,
-@@ -1057,6 +1064,15 @@ static const struct uvc_control_mapping uvc_ctrl_mappings[] = {
- 		.menu_mask	= GENMASK(V4L2_CAMERA_ORIENTATION_EXTERNAL,
- 					  V4L2_CAMERA_ORIENTATION_FRONT),
- 	},
-+	{
-+		.id		= V4L2_CID_CAMERA_SENSOR_ROTATION,
-+		.entity		= UVC_GUID_SWENTITY,
-+		.selector	= UVC_SWENTITY_ROTATION,
-+		.size		= 16,
-+		.offset		= 0,
-+		.v4l2_type	= V4L2_CTRL_TYPE_INTEGER,
-+		.data_type	= UVC_CTRL_DATA_TYPE_UNSIGNED,
-+	},
- };
- 
- /* ------------------------------------------------------------------------
-diff --git a/drivers/media/usb/uvc/uvc_swentity.c b/drivers/media/usb/uvc/uvc_swentity.c
-index eefc5d08e370515181f74590f2f38189770b01b2..e180568efa802fb348dbf165da62417631ff16fd 100644
---- a/drivers/media/usb/uvc/uvc_swentity.c
-+++ b/drivers/media/usb/uvc/uvc_swentity.c
-@@ -12,10 +12,11 @@
- 
- #include "uvcvideo.h"
- 
--static int uvc_swentity_get_cur(struct uvc_device *dev, struct uvc_entity *entity,
--				u8 cs, void *data, u16 size)
-+static int uvc_swentity_get_orientation(struct uvc_device *dev,
-+					struct uvc_entity *entity, u8 cs,
-+					void *data, u16 size)
- {
--	if (size < 1)
-+	if (cs != UVC_SWENTITY_ORIENTATION || size != 1)
- 		return -EINVAL;
- 
- 	switch (entity->swentity.props.orientation) {
-@@ -32,6 +33,31 @@ static int uvc_swentity_get_cur(struct uvc_device *dev, struct uvc_entity *entit
- 	return 0;
- }
- 
-+static int uvc_swentity_get_rotation(struct uvc_device *dev,
-+				     struct uvc_entity *entity, u8 cs, void *data,
-+				     u16 size)
-+{
-+	if (cs != UVC_SWENTITY_ROTATION || size != 2)
-+		return -EINVAL;
-+
-+	((u8 *)data)[0] = entity->swentity.props.rotation;
-+	((u8 *)data)[1] = entity->swentity.props.rotation >> 8;
-+
-+	return 0;
-+}
-+
-+static int uvc_swentity_get_cur(struct uvc_device *dev, struct uvc_entity *entity,
-+				u8 cs, void *data, u16 size)
-+{
-+	switch (cs) {
-+	case UVC_SWENTITY_ORIENTATION:
-+		return uvc_swentity_get_orientation(dev, entity, cs, data, size);
-+	case UVC_SWENTITY_ROTATION:
-+		return uvc_swentity_get_rotation(dev, entity, cs, data, size);
-+	}
-+	return -EINVAL;
-+}
-+
- static int uvc_swentity_get_info(struct uvc_device *dev,
- 				 struct uvc_entity *entity, u8 cs, u8 *caps)
- {
-@@ -44,6 +70,7 @@ int uvc_swentity_init(struct uvc_device *dev)
- 	static const u8 uvc_swentity_guid[] = UVC_GUID_SWENTITY;
- 	struct v4l2_fwnode_device_properties props;
- 	struct uvc_entity *unit;
-+	u8 controls = 0;
- 	int ret;
- 
- 	ret = v4l2_fwnode_device_parse(&dev->udev->dev, &props);
-@@ -51,7 +78,11 @@ int uvc_swentity_init(struct uvc_device *dev)
- 		return dev_err_probe(&dev->intf->dev, ret,
- 				     "Can't parse fwnode\n");
- 
--	if (props.orientation == V4L2_FWNODE_PROPERTY_UNSET)
-+	if (props.orientation != V4L2_FWNODE_PROPERTY_UNSET)
-+		controls |= BIT(UVC_SWENTITY_ORIENTATION);
-+	if (props.rotation != V4L2_FWNODE_PROPERTY_UNSET)
-+		controls |= BIT(UVC_SWENTITY_ROTATION);
-+	if (!controls)
- 		return 0;
- 
- 	unit = uvc_alloc_new_entity(dev, UVC_SWENTITY_UNIT,
-@@ -63,7 +94,7 @@ int uvc_swentity_init(struct uvc_device *dev)
- 	unit->swentity.props = props;
- 	unit->swentity.bControlSize = 1;
- 	unit->swentity.bmControls = (u8 *)unit + sizeof(*unit);
--	unit->swentity.bmControls[0] = 1;
-+	unit->swentity.bmControls[0] = controls;
- 	unit->get_cur = uvc_swentity_get_cur;
- 	unit->get_info = uvc_swentity_get_info;
- 	strscpy(unit->name, "SWENTITY", sizeof(unit->name));
-diff --git a/drivers/media/usb/uvc/uvcvideo.h b/drivers/media/usb/uvc/uvcvideo.h
-index 04ca5dcce11d902dbfdf32f2a962159ba7940a39..64c9a597cc533ebf3a305060294c7045e32f72b0 100644
---- a/drivers/media/usb/uvc/uvcvideo.h
-+++ b/drivers/media/usb/uvc/uvcvideo.h
-@@ -47,6 +47,11 @@
- 
- #define UVC_INVALID_ENTITY_ID          0xffff
- 
-+enum {
-+	UVC_SWENTITY_ORIENTATION,
-+	UVC_SWENTITY_ROTATION
-+};
-+
- /* ------------------------------------------------------------------------
-  * Driver specific constants.
-  */
+                - Troy
 
--- 
-2.51.0.536.g15c5d4f767-goog
-
+> 
+> Guenter
+> 
 
