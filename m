@@ -1,189 +1,120 @@
-Return-Path: <devicetree+bounces-221729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0165CBA2741
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 07:37:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85EE2BA274E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 07:39:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 122D61C046F1
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 05:37:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5D277A4241
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 05:37:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD87277CBD;
-	Fri, 26 Sep 2025 05:37:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2BB27877B;
+	Fri, 26 Sep 2025 05:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jchZUabM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AJ0Ccq6C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 190602773E6;
-	Fri, 26 Sep 2025 05:37:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51BDD2773E6
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 05:38:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758865038; cv=none; b=Nf6jg1lrGTuWThIzxhYxKqfS3D2mrPcM6PlUGsWV0V3sXMYu9/mdp1PEniqnLKTF6AXEdm3Jw6xUvAP/V1UBKSkzNlZDr8Ou63mNTsbCwmqoMfP/bFDT9P4kF3Fhh/B7Mmkm10jALTEk5qQjbflNGlWOoZe22MGQz8qAg0xPDvA=
+	t=1758865128; cv=none; b=tNbic50jhaWNBh0rJph/c8RHISEKj3ifYGb/ePZeZRJy4PcUK31tXNDE2lketh6ejHUPeWJmf8fiVH4pstOSaar6xgP2tanxQbyciUhZfn23p4lCDLqYVuvHltFvCADuiJPw9xW5gDSYJyWDkbnnLvSASVGDmFOMms6xYI97Gmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758865038; c=relaxed/simple;
-	bh=XBtpFSVJKzXQ0qNjtHFKFElOPIss1lIui+FxMIA0hqQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DBy9zoHc2zBzl3PjI9+GFJ4Hk7ITb66oT7k+dAbf6oOso0LSJFYDK9Yt44MaMwfSB6o32XcP6/9Du9cf2sErQG58QoupNSAlLVp0BMwJssPXvFfDZyP1S/dDr4IDHPNy4M0CGck3IXnv8NLhGNzsD5kmwkePAXxCvYMfNwuJ6gc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jchZUabM; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1758865035; x=1790401035;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=XBtpFSVJKzXQ0qNjtHFKFElOPIss1lIui+FxMIA0hqQ=;
-  b=jchZUabMWD8x5Fd2kt3W7agxUT93nVXGBVVyZmtYRSc2CH5p32IDItFn
-   odoNUNQ1raSG03BgENdPK2k8WSwOkDEGydNY8OIOXnB5RCROj+q31azuv
-   rIFVji25SVntFHUYvtMEmxWejm2piRwMKgXlk1Fhevm3fBXjSi3oLNSce
-   wCpdG1VCwY4vunIin1OPDraP67i7Am8eEwLxextZLHnnLcxmTqExeZrpj
-   MzsTJUSeLGzyLcqnM4BDYfFNH/BzWHG3+gSJp35TFtIwlqSLEGTv4iizp
-   TnnrclQSDVZPo4JTGZ5T4tOdxtIUa5z7ckpNMhVAHtYDFZcILKv4dMnlS
-   Q==;
-X-CSE-ConnectionGUID: PA5PP5CYQzm3UiU0sDq2zQ==
-X-CSE-MsgGUID: EIWf0zSuQbe3WF99cpQxHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="60403409"
-X-IronPort-AV: E=Sophos;i="6.18,294,1751266800"; 
-   d="scan'208";a="60403409"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Sep 2025 22:37:14 -0700
-X-CSE-ConnectionGUID: Imc5zKtpRRirvIUv7DWMbQ==
-X-CSE-MsgGUID: 7PrIWsRhSZuKlBo2LpuEIA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,294,1751266800"; 
-   d="scan'208";a="176795862"
-Received: from lkp-server02.sh.intel.com (HELO 84c55410ccf6) ([10.239.97.151])
-  by orviesa010.jf.intel.com with ESMTP; 25 Sep 2025 22:37:10 -0700
-Received: from kbuild by 84c55410ccf6 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v218l-0005w5-0v;
-	Fri, 26 Sep 2025 05:37:07 +0000
-Date: Fri, 26 Sep 2025 13:36:24 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
+	s=arc-20240116; t=1758865128; c=relaxed/simple;
+	bh=YbrHKCMbCiBU5zkG2mMwLrOZrArn3NNUOSo5527fkgE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=D0bDNNKgBZ6qVIjERo0bXQuwUc8oZiPFJ90J/Y/k4H/16LpMPiX/ZXbomM3ilIRekSe8wB+GNO/R22keLiVx26cR1FMls/57rihQGV/5zQ8vEtXcCsKZ8XVw4IT3EGMpawd3VMvdD20v4Cp/Ve+uBMBjWNjXmr0h9Tzq9ciibzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AJ0Ccq6C; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-271d1305ad7so25664245ad.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 22:38:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758865124; x=1759469924; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7qcTncsLJv6moujHTG6Gv5g4cydsLFc1bTxR1LD+rBM=;
+        b=AJ0Ccq6Cj/oO3daC3kZOIZKM8oF9nKl0gSbphDjI7VAPL8jiYtEwdviJ/UNchfQjdi
+         DdKmx1eXS2r6bSYXwM1KhaGDDLuu2A0EDjqP3WjNupzdSoiyJbO1yTC/71TpcaH9ZghV
+         7r6AGjzYeBaSNYLQ4MVlsf/r+YSUlrQpVQCN1vRdzwZkNMeGYY8bhH9GkJq6M39SMHWT
+         P8mk+6Ppush3pXb+ZwLNWCWBBgX+Sd3e1k8ryRk3xnxbgXrmhIdrzlGgixdvUtHJSX/i
+         T1JLdoHdNxHOxwmXuKBdQlrSVEsffq1BIPgEj4aH4U4dP5o3/af37EGn4dCR1q8Eo9y0
+         l8Kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758865124; x=1759469924;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7qcTncsLJv6moujHTG6Gv5g4cydsLFc1bTxR1LD+rBM=;
+        b=B6EZ3m0dAtsH24M5ZoYeu0/qBw8mwx2aurMcwJ/yoL5Q8CDCXs50R0el9Qx8CaTZed
+         /thy8Btv6hw5Cv8XYufcQzRgvHXqjeBg9MLWVHl2h0zmtlFKlbPHssSJ7XWiNmwWjm7w
+         ZzDdpGp9H2pPzj1TuqMHGildAjNdKD2k+BnJSBEvqzgp4yZQ3TyGvQJQ8ca+codx0jRk
+         aUC6aRc6yIquUJBydx8SNsVO7gCVhajKz6zg9JxVo7xpgBhyHDdPLySfBzyIaKR2dlr5
+         w4NDxVhUyO0emgNuORsfJHN7HWq8VSDOdnS+eUmFX1914sVxhGLfuLrRi3rVyN0OEs9S
+         sIOg==
+X-Forwarded-Encrypted: i=1; AJvYcCXsnbmlDRyJNSQDbEJi/3YW7bvUng36U5fRTwCFukarudhSaMUYEzSU0pzHtb255j0EiO2Bw5dreR04@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSWQGn5m0q0rgg7wb7RqBK26LZQXFQfNMlMdWSzhfj8Gnc/O66
+	pAerE6a9qYM2leIDXqx/HQ38/L8JdsuWJ5UYq9wCiykWw5T//w0LJnSS
+X-Gm-Gg: ASbGncvzFCJM7JVEzbYmB2npRSe47Tzvkg/o6DBfYKT1OayDLAiE84YOOOgRHJ+eYS2
+	vAX81sfK8JU0IPhX0DLd34/qypNVwYEAMcy8JZ/Tn9uypRzAyG2+fO6lLkcz5Flh+y3e1EXYKkN
+	FeSR3/zrVcWgcQaAU2vqKYgcw7jIYccNk9jnDkTwDl2otho2rWt2VxjqAiCMOkZeQAYrYyrWlQq
+	fi6sMAuUvwidIENHSgXpwOLta3RDy5oaHPlALVjs1ZZE8K7K3GlF94JMczCm4nM2ihH84QyN06O
+	gQIO9Uc9D8pOFhLHttqfYxirvK/he5pOjWIUCS6JIdH0CQi1Y19nolOU2+K7F7RnKAtiP5UhbXq
+	Ua3PCD8NPqmVBzcwLE5vPswWP7W4874JKYxhcsw==
+X-Google-Smtp-Source: AGHT+IGCzgHZjN3LJlOsoXHyNz0FIxfti8aiB7qnhHMcVfvyqe879onGPV3fh7v7SrTOjr2Vucwgcg==
+X-Received: by 2002:a17:902:e84e:b0:269:9719:fffd with SMTP id d9443c01a7336-27ed49b8623mr81081225ad.1.1758865124592;
+        Thu, 25 Sep 2025 22:38:44 -0700 (PDT)
+Received: from HYB-iPCgmhaB8Cy.ad.analog.com ([59.9.235.253])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed66fb07dsm41925025ad.36.2025.09.25.22.38.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Sep 2025 22:38:44 -0700 (PDT)
+From: Joan-Na-adi <joan.na.devcode@gmail.com>
+X-Google-Original-From: Joan-Na-adi <joan.na@analog.com>
+To: Liam Girdwood <lgirdwood@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-	trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
-	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
-Subject: Re: [PATCH 1/5] ASoC: codecs: va-macro: Rework version checking
-Message-ID: <202509261315.O9CiiXjb-lkp@intel.com>
-References: <20250924-knp-audio-v1-1-5afa926b567c@oss.qualcomm.com>
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Joan Na <joan.na@analog.com>
+Subject: [PATCH 0/3] MAX77675 regulator driver: Add support for MAX77675 device
+Date: Fri, 26 Sep 2025 14:37:54 +0900
+Message-Id: <20250926053757.480086-1-joan.na@analog.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250924-knp-audio-v1-1-5afa926b567c@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Jingyi,
+From: Joan Na <joan.na@analog.com>
 
-kernel test robot noticed the following build errors:
+BLURB: MAX77675 regulator driver and device tree bindings
 
-[auto build test ERROR on ae2d20002576d2893ecaff25db3d7ef9190ac0b6]
+Joan Na (3):
+  dt-bindings: regulator: Add MAX77675 binding header
+  regulator: max77675: Add MAX77675 regulator driver
+  dt-bindings: regulator: Add MAX77675 regulator binding
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Jingyi-Wang/ASoC-codecs-va-macro-Rework-version-checking/20250925-080338
-base:   ae2d20002576d2893ecaff25db3d7ef9190ac0b6
-patch link:    https://lore.kernel.org/r/20250924-knp-audio-v1-1-5afa926b567c%40oss.qualcomm.com
-patch subject: [PATCH 1/5] ASoC: codecs: va-macro: Rework version checking
-config: i386-buildonly-randconfig-001-20250926 (https://download.01.org/0day-ci/archive/20250926/202509261315.O9CiiXjb-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250926/202509261315.O9CiiXjb-lkp@intel.com/reproduce)
+ .../bindings/regulator/maxim,max77675.yaml    | 202 +++++
+ drivers/regulator/Kconfig                     |   9 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/max77675-regulator.c        | 794 ++++++++++++++++++
+ drivers/regulator/max77675-regulator.h        | 252 ++++++
+ .../regulator/maxim,max77675-regulator.h      |  78 ++
+ 6 files changed, 1336 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77675.yaml
+ create mode 100644 drivers/regulator/max77675-regulator.c
+ create mode 100644 drivers/regulator/max77675-regulator.h
+ create mode 100644 include/dt-bindings/regulator/maxim,max77675-regulator.h
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509261315.O9CiiXjb-lkp@intel.com/
+--
+2.34.1
 
-All errors (new ones prefixed by >>):
-
->> sound/soc/codecs/lpass-va-macro.c:1479:8: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-    1479 |         maj = FIELD_GET(CORE_ID_0_REV_MAJ, val);
-         |               ^
-   1 error generated.
-
-
-vim +/FIELD_GET +1479 sound/soc/codecs/lpass-va-macro.c
-
-  1471	
-  1472	static int va_macro_set_lpass_codec_version(struct va_macro *va)
-  1473	{
-  1474		int version = LPASS_CODEC_VERSION_UNKNOWN;
-  1475		u32 maj, min, step;
-  1476		u32 val;
-  1477	
-  1478		regmap_read(va->regmap, CDC_VA_TOP_CSR_CORE_ID_0, &val);
-> 1479		maj = FIELD_GET(CORE_ID_0_REV_MAJ, val);
-  1480	
-  1481		regmap_read(va->regmap, CDC_VA_TOP_CSR_CORE_ID_1, &val);
-  1482		if (!FIELD_GET(CORE_ID_1_HAS_VAMACRO, val)) {
-  1483			dev_err(va->dev, "This is not a VA macro instance\n");
-  1484			return -ENODEV;
-  1485		}
-  1486	
-  1487		regmap_read(va->regmap, CDC_VA_TOP_CSR_CORE_ID_2, &val);
-  1488		min = FIELD_GET(CORE_ID_2_REV_MIN, val);
-  1489		step = FIELD_GET(CORE_ID_2_REV_STEP, val);
-  1490	
-  1491		if (maj == 1) {
-  1492			version = LPASS_CODEC_VERSION_2_0;
-  1493		} else if (maj == 2) {
-  1494			switch (min) {
-  1495			case 0:
-  1496				version = LPASS_CODEC_VERSION_2_0;
-  1497				break;
-  1498			case 5:
-  1499				version = LPASS_CODEC_VERSION_2_5;
-  1500				break;
-  1501			case 6:
-  1502				version = LPASS_CODEC_VERSION_2_6;
-  1503				break;
-  1504			case 7:
-  1505				version = LPASS_CODEC_VERSION_2_7;
-  1506				break;
-  1507			case 8:
-  1508				version = LPASS_CODEC_VERSION_2_8;
-  1509				break;
-  1510			case 9:
-  1511				version = LPASS_CODEC_VERSION_2_9;
-  1512				break;
-  1513			default:
-  1514				break;
-  1515			}
-  1516		}
-  1517	
-  1518		if (version == LPASS_CODEC_VERSION_UNKNOWN) {
-  1519			dev_err(va->dev, "VA Macro v%u.%u.%u is not supported\n",
-  1520				maj, min, step);
-  1521			return -EOPNOTSUPP;
-  1522		}
-  1523	
-  1524		lpass_macro_set_codec_version(version);
-  1525	
-  1526		dev_dbg(va->dev, "LPASS Codec Version %s\n", lpass_macro_get_codec_version_string(version));
-  1527	
-  1528		return 0;
-  1529	}
-  1530	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
