@@ -1,168 +1,270 @@
-Return-Path: <devicetree+bounces-221816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F61ABA31FA
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:24:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10E69BA31F1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:24:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9932B7A5FAB
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:23:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF0D1386C00
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51903299957;
-	Fri, 26 Sep 2025 09:24:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ECE5271475;
+	Fri, 26 Sep 2025 09:24:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ECljYK5n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6844B2797BD
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:24:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D44EE265623
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:24:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758878670; cv=none; b=eTB7gOjmqfu9zcd0HGgneI+WTWOk+Nz93rR9iGa/bd0NQFWjcQ7YTr/Ztv7pkCVNGAeAwYcfk4Vu3uzlmd+pmTbg1KPuGPcbM/TbCKcGYTmgte+YKqoRL9q3tSgHUA4HrFsWeO0xQo1EqLBJ0palciloZxsE0SPuhDpNw6tMrrI=
+	t=1758878665; cv=none; b=E+dDCBMoDshOOubPatm9EE/aO/0PMftCsLDHeRMQfb+CFB/aldD9C8uaiTPaLNr1FleMZM+/vizCq+wnKpB8daBZX9pkBhN2lY7Ye6EltEc2QrGR0Yx/BRTfKqtxjQFjef0Ma1A0s80yd9FvUIzTDwF+iVKjrivEfp38R5NF1Fw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758878670; c=relaxed/simple;
-	bh=wUbRJMho5V5NS/aRRFUvPe88ctT0n1w78dZf3S8MekM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=B14zqg1yMbjMf0lEWUvzquZE5s0PNprIW6O2WgXwbq3rwvdKw6qhdM0Nzt/rLaxN2D7aDzDE8boceRhdRqA9Euu7tDgrwgoR5SiMDKauCsdR/ArAuQhS3o4kNmRulhwv9FOjW4caOG7GfhHaGPjPMCnSwpfXplHrXNsCWKiSy9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-54bc04b9d07so821063e0c.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 02:24:28 -0700 (PDT)
+	s=arc-20240116; t=1758878665; c=relaxed/simple;
+	bh=KAd1J0S9oQCh720nBw3CT2g5k54ln9BvTNOHBbN5Ziw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PQrGn8RREeb2+F7yHIgtRvEwPlRMVVS8zG5LYc8740jTfA5P2/JBHcFi+pBSF5P4Mvpsr8lMWxjzKi54ryeEcCUl/cmGMKyKHt9BUB5dtqL2eayJUFiFNowG7JrVrAVRLxdHMXG1aCkc+K+KSrb5uC9Z6IbT494MfLcfib8seEM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ECljYK5n; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58Q8vZ1r015998
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:24:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	qVnOy2qXL2j3wLZjEIZJ3GwgAoKs3KAugAQxc5Zdx1c=; b=ECljYK5nnkoeqbzs
+	ww7nSkWQp68jqCnSeeKOhoVrPuzC+Id/nBkl1jMVAAvI9swPb9sU6QdX9mRynXkJ
+	6OE0azoNGuvlQ+C/lyEZnfRwH201keXcXNaqtlSovVwACNtFNlaroBiOm6p7KDb9
+	8Q/acLR//OmzwSz/27pLH84DWdIyvHRkjFB09CDevB8JU/TbVocperUCIM7yQHHM
+	ltBQbs7CBrKMqNeIuEyugTZ9FeNAeP3RJ3pGnn3CLDmXvkSr9foXU1avpwxzpJHS
+	3lEQFmtNOQHxYApHIj1lU/08CFncRvJC3vW9Q1BiwGMdiMkVus48rrAbbYCOyNP9
+	pRDE5A==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49db0rj9ad-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:24:22 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b471737e673so2479868a12.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 02:24:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758878667; x=1759483467;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=V8vXN/4Yr3tP+tgTiuwjLQtfBNx9PrZcekFNLffDoHo=;
-        b=uWrO9szO3FHhfbICeeHfffESVdu2PH2J7j7VPMg2MykViH+FZr1yZFVKt7m/u7lshn
-         ugAYuxIhaQvlt3G10TCViowRRjVkWApaItqQ8le1H53qZ/XXB2Hdl0z9+DiHpPlkxYqq
-         ybhadQQOnVZFcorJhVxrKuF5fKof7ITa/1Q3F3Hoi4EujxuU57c8OOIS8NlHxOHKU8NI
-         T82Lon0lZz/fDI+MkoXOOHZVqfR6eaF+3Aj+kSDVQNLrJLiyTucCXcTgG8YjyjHCVWJ5
-         /n/V+/d69RAgYktrGj356P7AybG38FsLsBEtV3p0zjuNyXuGIohOrTae1Ai3+dgdFvvY
-         SXIg==
-X-Forwarded-Encrypted: i=1; AJvYcCU6GzrpWrp8vJBvfSc6pw6E412cwv3s/SEbhRb8cmi5muDxPd1tbvGOOtnq/2m28eykRzlYovqgCPaK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5eNEgvbNcgJt3xepEvlGkFBh9yl70tIL1S4ifG8p4r5y7Qtl0
-	xNr/LaY+fFqDCbO1xyaId9xhE0lbEpv+zI5qtludCjyy+KRlsfnH5bryql68SmR5
-X-Gm-Gg: ASbGncviWH2kcMTe1fIXyBKCR3UrwOeai0LdwUCSXXu8lI8ikIKAd+J6Pcj0czgj/Xe
-	omrZBjYcSOe+Wd47N2qXw5uKorab7/ixWtwW8ExTQ9HXLfea2PS6vmibLXBYLB0qkKWm1dcyO5Y
-	94Xdjf5KuVMwY5kk9X7dOTGz4XR670MOcUHGc8h312Aji9dWT3OHzSR/PDyt9YdXpE/xt4IEXBV
-	1y2vHrXsfnW2/HRJahIiSKR4jyBBZ440oJFExHwSnx9JIbZ8ugn2rlPi92QYtkSn0ADVITseqKl
-	mgrjl0sK7De83hTHRPLEvI91Rd6G/iIe1UIfIEf58162f0Jkmea22LlVSrDXrhpNfIS8fQKHaLq
-	wh5jvHigbY/qKV8+CwSTyC8/h9k6wmV/y/rgKn/pVc6VSKkwo0YlvfVvTHTqX
-X-Google-Smtp-Source: AGHT+IELNcyYlQr+2Ql+8ZO+Ro5ywmmNH7DSaG29eKMqnpDCN+/H9KKapgoWiG+byjAjaxLa0QMOSQ==
-X-Received: by 2002:a05:6122:8c15:b0:54b:d89d:6971 with SMTP id 71dfb90a1353d-54bea1e1d62mr2891662e0c.13.1758878666877;
-        Fri, 26 Sep 2025 02:24:26 -0700 (PDT)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54bede0587asm803794e0c.30.2025.09.26.02.24.26
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1758878662; x=1759483462;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qVnOy2qXL2j3wLZjEIZJ3GwgAoKs3KAugAQxc5Zdx1c=;
+        b=r1IiFF7z64uDTi8KnAp5+hNFwctJtJ1FStGSOFuckWHfl7GNVRfjVsj03D1HTh/IHT
+         V8W4ieRYedUjuUjUWGRaW41Vi43gzxMB4UGjI1keYPsWlM4KwOGg+lRTg8vzGiOk7Ztu
+         LTR67xYo3O7iG4XYbDMX1J8WMf0oZQsdsTc3pGv+oM63bel1BAVttkzhXPp4htcO0XZx
+         mYuFzy5N2gQSx7ynZqvXb5C4EbVF5xIVeYY39CWvZeJ60ksT34+JzpijSTMjvb95KDMO
+         yNK5Deann7a+LjtuE2nigifDuvauVbqdVOiF2xddWLjrzars77u6rDe8oSqT+NBxeCR9
+         lCCw==
+X-Forwarded-Encrypted: i=1; AJvYcCVsQrYZOnYJRdVEc3t+3wq1fZUUcFSpoiR+Rmepo7hVePObIDxt9yeSvc4FBw4ZpkdIQqDiNQysS9f6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwuKZ4EWaHuwxRoUzoS0H9OdFIRHvlFR1CkRQk9hMMvPOT24Nb8
+	plQpFDrdPqpQybgJkaH6dL1Z5saqfGPyOmOBZeeARJ9EWJYrzVkNIf45D7HAGPuDIH1oP0cG45q
+	/H3BTa/vLLrVTtlCQeBLVK02d61uH0cBRkQbmKLoZXX/IeCuQuQ99Ty/9K0WBOwbX
+X-Gm-Gg: ASbGnctQ3he4QGUl6ECSlLlFCdX5vH3jHP/tnz0yrvdUlvjPocYkXKrCpjZHC+hSemN
+	D0HbJiDSkQVkKAgoCujt/RiNtdvUJqkwTQJi2El7bqXUYIHffA3LQWveUlOz++WcLEOPWtovxdu
+	4bK+2yRfLUBI048Ns/iGx6BjmJTDeOensDBZMjEo9BZ+kgeJvG944dkkccEDRw9MPpEL9vV9fRG
+	ZQi5679vON310qMFBR1+JyOe/gYr8aruSnrlHdOf2dCbkBqKv2gG0BmmkuaW9FwBtt3JZjq0XF9
+	fmYIfBMgRVTS5ZmCj4oEIJzkUHIsMdCpcyLU+uZ1JYqIvJhJWVrNgASVa4dmwniVBPOn
+X-Received: by 2002:a05:6a20:7f9d:b0:2c8:416:6470 with SMTP id adf61e73a8af0-2e7ca214561mr8039388637.24.1758878661935;
+        Fri, 26 Sep 2025 02:24:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEf3xeG/lORUyevxAy1/n4CTalckBAz9JKsfJobNuVQZ9c5XJom6g/A9a5nv12tT/rxgxXhxw==
+X-Received: by 2002:a05:6a20:7f9d:b0:2c8:416:6470 with SMTP id adf61e73a8af0-2e7ca214561mr8039357637.24.1758878661419;
+        Fri, 26 Sep 2025 02:24:21 -0700 (PDT)
+Received: from [10.204.79.108] ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78102b27ae1sm4081410b3a.65.2025.09.26.02.24.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Sep 2025 02:24:26 -0700 (PDT)
-Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-59eb88955d8so736533137.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 02:24:26 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVqqcv7uo74HiSSprGXsJXwARZqq6x55hXPKdrLqk02AbJ7WKFN2AKweo51B7c71RfTXTF2/7mvSzJd@vger.kernel.org
-X-Received: by 2002:a05:6102:621c:20b0:5b1:15:1986 with SMTP id
- ada2fe7eead31-5b100151fe9mr1352205137.15.1758878666185; Fri, 26 Sep 2025
- 02:24:26 -0700 (PDT)
+        Fri, 26 Sep 2025 02:24:21 -0700 (PDT)
+Message-ID: <d451f8f0-d2ab-44eb-bfcc-ec1e9dbba060@oss.qualcomm.com>
+Date: Fri, 26 Sep 2025 14:54:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250919100740.28429-1-wsa+renesas@sang-engineering.com> <20250922192640.GA841738-robh@kernel.org>
-In-Reply-To: <20250922192640.GA841738-robh@kernel.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 26 Sep 2025 11:24:15 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVdMCm2eYmkzo9tOXn5MHyqmvKN-Cu=2RO7q7n3EZF3=A@mail.gmail.com>
-X-Gm-Features: AS18NWA7DJU_DehkMVc8u2tM81YJnXpnMbPvztHNUybS4R8bb44hSxW0C3oaO7U
-Message-ID: <CAMuHMdVdMCm2eYmkzo9tOXn5MHyqmvKN-Cu=2RO7q7n3EZF3=A@mail.gmail.com>
-Subject: Re: [RFC PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-eb: describe LEDs
-To: Rob Herring <robh@kernel.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-renesas-soc@vger.kernel.org, 
-	Magnus Damm <magnus.damm@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: lemans: add DT changes to enable MDSS1
+ and DPU
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250925-lemans_dual-v1-1-9c371803198d@oss.qualcomm.com>
+ <nnvjazbxpywrmjnt67isba6m3ld6rqdaiid4qeczunmuablntz@vlbrjnxj5r2k>
+Content-Language: en-US
+From: Mahadevan P <mahadevan.p@oss.qualcomm.com>
+In-Reply-To: <nnvjazbxpywrmjnt67isba6m3ld6rqdaiid4qeczunmuablntz@vlbrjnxj5r2k>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Authority-Analysis: v=2.4 cv=dP+rWeZb c=1 sm=1 tr=0 ts=68d65bc7 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=EUspDBNiAAAA:8 a=qwUjrA7DuB2iKsSbT94A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=x9snwWr2DeNwDh03kgHS:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: XjUY2TXVVu_c0x6qjhCbPcSQBUay1vhT
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI1MDE3MSBTYWx0ZWRfX4CxOVRSTOBL1
+ nabQwyacxwN2a75Las7S0qIiCr7MTmPII7GL7unt15PXW8ZLjawTh+OjVrSTThwZjPCVKB5Z4EE
+ 6V8Fugudci92PCaYHrCYyzppuSMfV+SFIvkcoiT2MdLiiCtknzynqIOdFR9XfYby7Z2kbedboYi
+ stKFDXQNflUf3oDgX9zyXqLGLsb4CoZSnW5nYpYWa7yCeJFPqrx/7NhZb3kDTN1XO8HwfdFOZCa
+ cqPMlbqiObLHteGsJq81pxtKD5KO29Faor27E2SzZHIyWGy1P0fmcFYvkrutUAysVLBYDd2Mobo
+ /Go+GIwzzx3FPwLrvMcultdc00cjwo6UUM4WlrzC+ZqP+QAibPfXwHfW/KcKDRXTPVQre/gCo3h
+ Md4S+r5pzALwRh4dC2INodtxLZXlpw==
+X-Proofpoint-GUID: XjUY2TXVVu_c0x6qjhCbPcSQBUay1vhT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-26_02,2025-09-26_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 spamscore=0 phishscore=0 clxscore=1015 priorityscore=1501
+ impostorscore=0 suspectscore=0 adultscore=0 bulkscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509250171
 
-Hi Rob,
 
-On Mon, 22 Sept 2025 at 21:26, Rob Herring <robh@kernel.org> wrote:
-> On Fri, Sep 19, 2025 at 12:07:20PM +0200, Wolfram Sang wrote:
-> > To be able to use the LEDs, a configuration switch has to be set to a
-> > non-default value. So, infrastructure to support these switches (which
-> > modify signal routing via the CPLD on the demo board (DB)) is added as
-> > well.
-> >
-> > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+On 9/26/2025 3:11 AM, Dmitry Baryshkov wrote:
+> On Thu, Sep 25, 2025 at 02:28:07PM +0530, Mahadevan wrote:
+>> Add devicetree changes to enable second Mobile Display
+>> Subsystem (MDSS1) and its Display Processing Unit(DPU) for
+>> Qualcomm LEMANS platform.
+> No outputs? Should it be enabled on any of the devices?
 
-> > This patch depends on "[PATCH v3 5/8] ARM: dts: r9a06g032: Add GPIO
-> > controllers" which is still in-flight. I send this out as RFC already,
-> > so we can discuss the introduction of the switch dependant settings. I
-> > copied this approach form RZ/G3S.
+Outputs  and enablement are include as part of this series:
+https://lore.kernel.org/all/20250926085956.2346179-1-quic_mkuntuma@quicinc.com/
+I will update the commit message to use the phrase "to support" for 
+better clarity.
 
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h
-> > @@ -0,0 +1,22 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> > +/*
-> > + * On-board switches for the Renesas RZ/N1D demo board (DB) and extension
-> > + * board (EB)
-> > + *
-> > + * Copyright (C) 2025 Renesas Electronics Corp.
-> > + */
-> > +
-> > +#ifndef __N1D_DB_EB_SWITCHES_H__
-> > +#define __N1D_DB_EB_SWITCHES_H__
-> > +
-> > +#define SW_OFF         0
-> > +#define SW_ON          1
-> > +
-> > +/*
-> > + * SW_2-2:
-> > + *     SW_OFF - enable PMOD1-3+LEDs on the extension board
-> > + *     SW_ON  - enable CAT/S3 (default)
-> > + */
-> > +#define SW_2_2 SW_ON
-> > +
-> > +#endif
-> > diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> > index 3258b2e27434..849b5ad9c79d 100644
-> > --- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> > +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
-> > @@ -15,6 +15,7 @@
-> >  #include <dt-bindings/pinctrl/rzn1-pinctrl.h>
-> >
-> >  #include "r9a06g032.dtsi"
-> > +#include "r9a06g032-rzn1d400-db-switches.h"
-> >
-> >  / {
-> >       model = "RZN1D-DB Board";
-> > @@ -185,6 +186,14 @@ fixed-link {
-> >       };
-> >  };
-> >
-> > +#if SW2_2 == SW_OFF
 >
-> The "rule" for DT headers is #defines for numbers only.
+>> Signed-off-by: Mahadevan <mahadevan.p@oss.qualcomm.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/lemans.dtsi | 88 ++++++++++++++++++++++++++++++++++++
+>>   1 file changed, 88 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
+>> index 48f753002fc459a3e9fac0c0e98cbec6013fea0f..45c11c050d3f8853701fd20cf647aef5c6a9a8c9 100644
+>> --- a/arch/arm64/boot/dts/qcom/lemans.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+>> @@ -6751,6 +6751,94 @@ compute-cb@3 {
+>>   			};
+>>   		};
+>>   
+>> +		mdss1: display-subsystem@22000000 {
+> Why do you need this label?
+
+display-controller@22001000 is using mdss1 as interrupt parent.
+
 >
-> If the switches are s/w readable, then I'd say firmware should read them
-> and enable/disable the LEDs as appropriate. If not, then maybe the DT
-> should have a property reflecting the switch state and firmware uses
-> that to enable/disable.
+>> +			compatible = "qcom,sa8775p-mdss";
+>> +			reg = <0x0 0x22000000 0x0 0x1000>;
+>> +			reg-names = "mdss";
+>> +
+>> +			/* same path used twice */
+>> +			interconnects = <&mmss_noc MASTER_MDP_CORE1_0 QCOM_ICC_TAG_ALWAYS
+>> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>> +					<&mmss_noc MASTER_MDP_CORE1_1 QCOM_ICC_TAG_ALWAYS
+>> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+>> +					 &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
+>> +			interconnect-names = "mdp0-mem",
+>> +					     "mdp1-mem",
+>> +					     "cpu-cfg";
+>> +
+>> +			resets = <&dispcc1 MDSS_DISP_CC_MDSS_CORE_BCR>;
+>> +
+>> +			power-domains = <&dispcc1 MDSS_DISP_CC_MDSS_CORE_GDSC>;
+>> +
+>> +			clocks = <&dispcc1 MDSS_DISP_CC_MDSS_AHB_CLK>,
+>> +				 <&gcc GCC_DISP1_HF_AXI_CLK>,
+>> +				 <&dispcc1 MDSS_DISP_CC_MDSS_MDP_CLK>;
+>> +
+>> +			interrupts = <GIC_SPI 865 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <1>;
+>> +
+>> +			iommus = <&apps_smmu 0x1800 0x402>;
+>> +
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges;
+>> +
+>> +			status = "disabled";
+>> +
+>> +			mdss1_mdp: display-controller@22001000 {
+> Why do you need this label?
 
-Both options require updating the (10y-old?) firmware, which is unlikely
-to happen.
+will remove.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>
+>> +				compatible = "qcom,sa8775p-dpu";
+>> +				reg = <0x0 0x22001000 0x0 0x8f000>,
+>> +				      <0x0 0x220b0000 0x0 0x3000>;
+>> +				reg-names = "mdp", "vbif";
+>> +
+>> +				clocks = <&gcc GCC_DISP1_HF_AXI_CLK>,
+>> +					 <&dispcc1 MDSS_DISP_CC_MDSS_AHB_CLK>,
+>> +					 <&dispcc1 MDSS_DISP_CC_MDSS_MDP_LUT_CLK>,
+>> +					 <&dispcc1 MDSS_DISP_CC_MDSS_MDP_CLK>,
+>> +					 <&dispcc1 MDSS_DISP_CC_MDSS_VSYNC_CLK>;
+>> +				clock-names = "nrt_bus",
+>> +					      "iface",
+>> +					      "lut",
+>> +					      "core",
+>> +					      "vsync";
+>> +
+>> +				assigned-clocks = <&dispcc1 MDSS_DISP_CC_MDSS_VSYNC_CLK>;
+>> +				assigned-clock-rates = <19200000>;
+>> +
+>> +				operating-points-v2 = <&mdss1_mdp_opp_table>;
+>> +				power-domains = <&rpmhpd SA8775P_MMCX>;
+>> +
+>> +				interrupt-parent = <&mdss1>;
+>> +				interrupts = <0>;
+>> +
+>> +				mdss1_mdp_opp_table: opp-table {
+>> +					compatible = "operating-points-v2";
+>> +
+>> +					opp-375000000 {
+>> +						opp-hz = /bits/ 64 <375000000>;
+>> +						required-opps = <&rpmhpd_opp_svs_l1>;
+>> +					};
+>> +
+>> +					opp-500000000 {
+>> +						opp-hz = /bits/ 64 <500000000>;
+>> +						required-opps = <&rpmhpd_opp_nom>;
+>> +					};
+>> +
+>> +					opp-575000000 {
+>> +						opp-hz = /bits/ 64 <575000000>;
+>> +						required-opps = <&rpmhpd_opp_turbo>;
+>> +					};
+>> +
+>> +					opp-650000000 {
+>> +						opp-hz = /bits/ 64 <650000000>;
+>> +						required-opps = <&rpmhpd_opp_turbo_l1>;
+>> +					};
+>> +				};
+>> +			};
+>> +		};
+>> +
+>>   		dispcc1: clock-controller@22100000 {
+>>   			compatible = "qcom,sa8775p-dispcc1";
+>>   			reg = <0x0 0x22100000 0x0 0x20000>;
+>>
+>> ---
+>> base-commit: 846bd2225ec3cfa8be046655e02b9457ed41973e
+>> change-id: 20250923-lemans_dual-c03ad5c84a84
+>>
+>> Best regards,
+>> -- 
+>> Mahadevan <mahadevan.p@oss.qualcomm.com>
+>>
+Thanks,
+Mahadevan
 
