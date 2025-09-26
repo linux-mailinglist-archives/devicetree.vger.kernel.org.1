@@ -1,209 +1,155 @@
-Return-Path: <devicetree+bounces-221974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E937EBA4A92
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:35:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18B9DBA4A14
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:29:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A37F17BE646
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:33:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C156562099
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:29:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41B7C2F067C;
-	Fri, 26 Sep 2025 16:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC62261573;
+	Fri, 26 Sep 2025 16:28:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aJkel49m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from srv01.abscue.de (abscue.de [89.58.28.240])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C69626CE0C;
-	Fri, 26 Sep 2025 16:34:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.28.240
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C69F25A2C9
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 16:28:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758904475; cv=none; b=AxnjINWSzOjMs2uozQI4jbm6moWspPsPs2q4G6GwcHY4z7UEtBa2GTjN44eNnLYbIQMrbGHwrLKzcxofrY3arJRBoX9xQa0tciVLBrNgSe7cxea6eoaxwPJgJ8r1/xuEL8e5amKwG9js9AylTSwoQBeT7gkNmPj/gircnP7mpng=
+	t=1758904124; cv=none; b=ThOsSqmFAMgefeRDhkWhuNi6+etdgw8MUoImQgzEqSjiyZO73wKHI9kMEsH7y2qv6ZrAlU1S5ZmPlZ6fFB7TBHO3OK1dGbA7p7bPS+H0ieNLZOEdkZiCPjLzZT609t39I+ZVQaW0gPlzO4jW2RJqpDvuqArgXR9ytiNBCwpetgg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758904475; c=relaxed/simple;
-	bh=O5aJKIVrAbTQR2ETxQmeGB5vf+e0C6aBqzUs+KBSS5M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Sq4JwTPtnhIjPPnieI4IcT6rXfBgf1FAaK1GvqTdr8nScNUbReXGmCsyj6hndtX7lAoKJyMJYXB/5i+4TgVx/svHdhdovG3r4V2Ij3MApTZ7IX/BnIJbQZhocNYof2hg1rcleMnQIOjg2VA36ASmFfLrSvATpGqoIBgBCohMK0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; arc=none smtp.client-ip=89.58.28.240
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=abscue.de
-Received: from srv01.abscue.de (localhost [127.0.0.1])
-	by spamfilter.srv.local (Postfix) with ESMTP id 1D4761C2505;
-	Fri, 26 Sep 2025 18:27:09 +0200 (CEST)
-X-Spam-Level: 
-Received: from fluffy-mammal.metal.fwg-cag.de (unknown [IPv6:2001:9e8:cdf8:0:ec51:b786:a581:3dd1])
-	by srv01.abscue.de (Postfix) with ESMTPSA id 4AB671C250A;
-	Fri, 26 Sep 2025 18:27:08 +0200 (CEST)
-From: =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-Date: Fri, 26 Sep 2025 18:23:27 +0200
-Subject: [PATCH 5/5] power: reset: sc27xx: Add reboot support for SC2730
+	s=arc-20240116; t=1758904124; c=relaxed/simple;
+	bh=advGB0s4cY+Eij/iD8U4Na+qAHs8pdRd6nx34nKFrFA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M2XnSomYmXtat68a7VYRmOVnOVL2wtDlCP4zxiqg+JiSuWL7xlYEXek7DPKIAS0V0YMie9uhXjqaUqKTIgvnHCKUyrgqPOcJA5EE0uC6bmlucD2Xsufpl7jkl19DxWN9pYkqJqLyInpU47ZtkkLAyeqynrPahqeEGZQ7e1KcviU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aJkel49m; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-330631e534eso2408305a91.0
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:28:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758904122; x=1759508922; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=17SdlbsrW/H1oAGhyPo1vRPjIhKSOB2gzK7KjETew8g=;
+        b=aJkel49m22/7RXgjQEiTwgVHHdEqo3rlyx0C0kk9t74ov7a+RFJoDRRrKG75NswkZs
+         /llklE2NCccXLqnG3WZAqgoxVPoZ/w5FqM1Tik6EOIsbhBCAXLXm12ewCag2fbBn6pB4
+         mbdZNpPAcGYQ/rkAg1TRbWZavykJB/ZxaEy7iefU4YxCZBLOXTiExMGkdBFl+HmdSZ7P
+         HX++vjTw/PLTShLl/bx1KJNetNyZjYspQusDSZEiaJDJc3/1ajd2xhi5jNhOfcHBMgJi
+         VPHi8YrmKsySExBGfPPGG7FUAdhQdUHcXXFljZPsKr1qvbPrdNPsBfNe3g+pNlEdkm/n
+         AuoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758904122; x=1759508922;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=17SdlbsrW/H1oAGhyPo1vRPjIhKSOB2gzK7KjETew8g=;
+        b=fVBi7IQZG4Mw7F6c1e33dLs7f1o+DeDVkUsmhMMHUceTQ3NUUe9lZLUUZFR/Mjx7oM
+         Vci7X+Eb6bXo/YHENnrl5nmqY1Qv4fZFaiejdBMrWj97YDYAk9b4QMbgajIKvikgA+h7
+         Q/4YezyyE64ddDUtlzkA5thPx9qdaI0pQFAd7FaHf2oti6JYzpTOhw5VzURdg3giyKYW
+         IWu+2jnDPXPu/wSd+C1VZ0+LOVyc78Pt5569Gxi8bwh9mg3SX26yKxidc+xFXDjGl98G
+         DPUP1n18cKW/lhktwx1zyBfdtLrs5LUaO4y5PshQVy+msFjKa8JdMpmorUGUs2m7oe3D
+         g4Ig==
+X-Forwarded-Encrypted: i=1; AJvYcCWu9g4u1uZxiFPnvrGm6jk4TgHVWDLsZh3CyI+zd1Rko+CIiZg+Qs6HDVFklcOlLnLG2EfZtzbH4LIH@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLDz9lJ8Mm0ON62JtscrKpdeqJveQrrCjxHVa2HpYbdXzWASVF
+	wclK9VBvHMuabEor14JU2q5ydKcw/b5jC89APBGEjbZtXQoKrNvnCyd4ItsL2O1640W/VpUN780
+	aeRM6czmvrQ38fQsTiSlAYr4R6hNhBHBNeU4cBWTO9dmy
+X-Gm-Gg: ASbGncsYZ1kVKygAL1IWDdYyB4jJ776Y6Xye9OY0yhtVr9ZFrR5CO8MuVfacEVHF3yA
+	vJnax9XbHH0PjMOrwdSseucMABOnQHY+1URe+7MoKmsGw/3pKeEn6JqpbcTLWKYVP28Fsiy7MQD
+	owVGe8ct0xT8FA79Px2LVFivn14QRd2rQHIuW1qaYrFgEk8Q0zv35gbdZEykt+TWVM/COcXo1AU
+	FdWaM1SUb30bS1yyzC0GQNSETvjPBSgwP8/C3loXj5uOq5M8Us=
+X-Google-Smtp-Source: AGHT+IFP1pZQQc/fe1s5lC9WTMOccd345qaOrvak7xLKmHiYtcellclXpMJlF7A8FJF338xuOE/Uc1mneQkNtUiDrKk=
+X-Received: by 2002:a17:90b:4a01:b0:32b:6eed:d203 with SMTP id
+ 98e67ed59e1d1-3342a2b126emr9404474a91.24.1758904122505; Fri, 26 Sep 2025
+ 09:28:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250926-sc2730-reboot-v1-5-62ebfd3d31bb@abscue.de>
-References: <20250926-sc2730-reboot-v1-0-62ebfd3d31bb@abscue.de>
-In-Reply-To: <20250926-sc2730-reboot-v1-0-62ebfd3d31bb@abscue.de>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
- Baolin Wang <baolin.wang@linux.alibaba.com>, 
- Chunyan Zhang <zhang.lyra@gmail.com>, Lee Jones <lee@kernel.org>
-Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
-X-Mailer: b4 0.14.2
+References: <20250922131148.1917856-1-mmyangfl@gmail.com> <20250922131148.1917856-3-mmyangfl@gmail.com>
+ <aNQvW54sk3EzmoJp@shell.armlinux.org.uk> <fe6a4073-eed0-499d-89ee-04559967b420@lunn.ch>
+ <aNREByX9-8VtbH0n@shell.armlinux.org.uk> <CAAXyoMPmwvxsk0vMD5aUvx9ajbeAENtengzUgBteV_CFJoqXWg@mail.gmail.com>
+ <f7d78131-7425-487f-a8bb-ed747dd9a194@lunn.ch>
+In-Reply-To: <f7d78131-7425-487f-a8bb-ed747dd9a194@lunn.ch>
+From: Yangfl <mmyangfl@gmail.com>
+Date: Sat, 27 Sep 2025 00:28:05 +0800
+X-Gm-Features: AS18NWC4VpC0VraXX2b7ElF7Q9xckDyqxA2rIp_ujgdQGGcV--mnzBcfmdWMe7A
+Message-ID: <CAAXyoMM3QG+zWJQ8tAgZfb4R62APgBaqaKDR=151R7+rzzakCw@mail.gmail.com>
+Subject: Re: [PATCH net-next v11 2/5] net: phy: introduce PHY_INTERFACE_MODE_REVSGMII
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>, netdev@vger.kernel.org, 
+	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Simon Horman <horms@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Unlike SC2731, the SC2730 PMIC also provides dedicated registers for
-resetting the hardware. Use them to implement reboot support.
+On Sat, Sep 27, 2025 at 12:09=E2=80=AFAM Andrew Lunn <andrew@lunn.ch> wrote=
+:
+>
+> > > > How does the databook describe reverse SGMII? How does it differ fr=
+om
+> > > > SGMII?
+> > >
+> > > It doesn't describe "reverse SGMII". Instead, it describes:
+> > >
+> > > 1. The TC bit in the MAC configuration register, which makes the bloc=
+k
+> > >    transmit the speed and duplex from the MAC configuration register
+> > >    over RGMII, SGMII or SMII links (only, not 1000base-X.)
+> > >
+> > > 2. The SGMIIRAL bit in the PCS control register, which switches where
+> > >    the SGMII rate adapter layer takes its speed configuration from -
+> > >    either the incoming in-band tx_config_reg[15:0] word, or from the
+> > >    MAC configuration register. It is explicitly stated for this bit
+> > >    that it is for back-to-back MAC links, and as it's specific to
+> > >    SGMII, that means a back-to-back SGMII MAC link.
+> > >
+> > > Set both these bits while the MAC is configured for SGMII mode, and
+> > > you have a stmmac MAC which immitates a SGMII PHY as far as the
+> > > in-band tx_config_reg[15:0] word is concerned.
+> >
+> > So any conclusion? Should I go on with REV*MII, or wait for (or write
+> > it myself) reverse-mode flag?
+>
+> Sorry, i'm missing some context here.
+>
+> Why do you actually need REVSGMII, or at least the concept?
+>
+> REVMII is used when you connect one MAC to another. You need to
+> indicate one ends needs to play the PHY role. This is generally when
+> you connect a host MAC to an Ethernet switch, and you want the switch
+> to play the PHY role.
+>
+> Now consider SGMII, when connecting a host MAC to a switch. Why would
+> you even use SGMII, 1000BaseX is the more logical choice. You don't
+> want the link to run at 100Mbps, or 10Mbps. The link between the host
+> and the switch should run as fast as possible. And 1000BaseX is
+> symmetrical, you don't need a REV concept.
+>
+> Also, in these cases, stmmmac is on the host, not the switch, so it
+> will have the host role, leaving the switch to play 'PHY'. I'm not
+> sure you could even embedded stmmac in a switch, where it might want
+> to play 'PHY', because stmmac is software driven, where as a switch is
+> all hardware.
+>
+> So the hardware supports reverse SGMII, but it is not clear to me why
+> you would want to use it.
+>
+>         Andrew
+>
 
-Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
----
- drivers/power/reset/sc27xx-poweroff.c | 89 +++++++++++++++++++++++++++++++++++
- 1 file changed, 89 insertions(+)
-
-diff --git a/drivers/power/reset/sc27xx-poweroff.c b/drivers/power/reset/sc27xx-poweroff.c
-index 5937f40021817ea38453705fcef6485ce79ac14c..1dfa54675b3e7b8b79212dc9950d97b726dd5acc 100644
---- a/drivers/power/reset/sc27xx-poweroff.c
-+++ b/drivers/power/reset/sc27xx-poweroff.c
-@@ -18,16 +18,42 @@
- #define SC2730_SLP_CTRL		0x1a48
- #define SC2730_LDO_XTL_EN	BIT(2)
- 
-+#define SC2730_SOFT_RST_HW	0x1824
-+#define SC2730_RST_STATUS	0x1bac
-+#define SC2730_SWRST_CTRL0	0x1bf8
-+
- #define SC2731_PWR_PD_HW	0xc2c
- #define SC2731_SLP_CTRL		0xdf0
- #define SC2731_LDO_XTL_EN	BIT(3)
- 
- #define SC27XX_PWR_OFF_EN	BIT(0)
-+#define SC27XX_SOFT_RST_EN	BIT(4)
-+#define SC27XX_RESET		BIT(0)
-+
-+#define HWRST_STATUS_SECURITY		0x02
-+#define HWRST_STATUS_RECOVERY		0x20
-+#define HWRST_STATUS_NORMAL		0x40
-+#define HWRST_STATUS_ALARM		0x50
-+#define HWRST_STATUS_SLEEP		0x60
-+#define HWRST_STATUS_FASTBOOT		0x30
-+#define HWRST_STATUS_SPECIAL		0x70
-+#define HWRST_STATUS_PANIC		0x80
-+#define HWRST_STATUS_CFTREBOOT		0x90
-+#define HWRST_STATUS_AUTODLOADER	0xa0
-+#define HWRST_STATUS_IQMODE		0xb0
-+#define HWRST_STATUS_SPRDISK		0xc0
-+#define HWRST_STATUS_FACTORYTEST	0xe0
-+#define HWRST_STATUS_WATCHDOG		0xf0
-+#define HWRST_STATUS_MASK		0xf0
- 
- struct sc27xx_poweroff_reg_info {
- 	u32 poweroff_reg;
- 	u32 slp_ctrl_reg;
- 	u32 ldo_xtl_en;
-+
-+	u32 reset_reg;
-+	u32 rst_sts_reg;
-+	u32 swrst_ctrl_reg;
- };
- 
- struct sc27xx_poweroff_data {
-@@ -78,9 +104,59 @@ static int sc27xx_poweroff_do_poweroff(struct sys_off_data *off_data)
- 	return NOTIFY_DONE;
- }
- 
-+static int sc27xx_restart(struct sys_off_data *off_data)
-+{
-+	struct sc27xx_poweroff_data *data = off_data->cb_data;
-+	u32 reboot_mode = 0;
-+
-+	if (!off_data->cmd)
-+		reboot_mode = HWRST_STATUS_NORMAL;
-+	else if (!strcmp(off_data->cmd, "recovery"))
-+		reboot_mode = HWRST_STATUS_RECOVERY;
-+	else if (!strcmp(off_data->cmd, "alarm"))
-+		reboot_mode = HWRST_STATUS_ALARM;
-+	else if (!strcmp(off_data->cmd, "fastsleep"))
-+		reboot_mode = HWRST_STATUS_SLEEP;
-+	else if (!strcmp(off_data->cmd, "bootloader"))
-+		reboot_mode = HWRST_STATUS_FASTBOOT;
-+	else if (!strcmp(off_data->cmd, "panic"))
-+		reboot_mode = HWRST_STATUS_PANIC;
-+	else if (!strcmp(off_data->cmd, "special"))
-+		reboot_mode = HWRST_STATUS_SPECIAL;
-+	else if (!strcmp(off_data->cmd, "cftreboot"))
-+		reboot_mode = HWRST_STATUS_CFTREBOOT;
-+	else if (!strcmp(off_data->cmd, "autodloader"))
-+		reboot_mode = HWRST_STATUS_AUTODLOADER;
-+	else if (!strcmp(off_data->cmd, "iqmode"))
-+		reboot_mode = HWRST_STATUS_IQMODE;
-+	else if (!strcmp(off_data->cmd, "sprdisk"))
-+		reboot_mode = HWRST_STATUS_SPRDISK;
-+	else if (!strcmp(off_data->cmd, "tospanic"))
-+		reboot_mode = HWRST_STATUS_SECURITY;
-+	else if (!strcmp(off_data->cmd, "factorytest"))
-+		reboot_mode = HWRST_STATUS_FACTORYTEST;
-+	else
-+		reboot_mode = HWRST_STATUS_NORMAL;
-+
-+	regmap_update_bits(data->regmap, data->regs->rst_sts_reg,
-+			   HWRST_STATUS_MASK, reboot_mode);
-+
-+	regmap_set_bits(data->regmap, data->regs->swrst_ctrl_reg,
-+			SC27XX_SOFT_RST_EN);
-+
-+	regmap_write(data->regmap, data->regs->reset_reg, SC27XX_RESET);
-+
-+	mdelay(1000);
-+
-+	pr_emerg("Unable to restart system\n");
-+
-+	return NOTIFY_DONE;
-+}
-+
- static int sc27xx_poweroff_probe(struct platform_device *pdev)
- {
- 	struct sc27xx_poweroff_data *data;
-+	int ret;
- 
- 	data = devm_kzalloc(&pdev->dev, sizeof(*data), GFP_KERNEL);
- 	if (!data)
-@@ -96,6 +172,15 @@ static int sc27xx_poweroff_probe(struct platform_device *pdev)
- 
- 	register_syscore_ops(&poweroff_syscore_ops);
- 
-+	if (data->regs->reset_reg) {
-+		ret = devm_register_sys_off_handler(&pdev->dev,
-+						    SYS_OFF_MODE_RESTART,
-+						    192, sc27xx_restart,
-+						    data);
-+		if (ret)
-+			return ret;
-+	}
-+
- 	return devm_register_sys_off_handler(&pdev->dev,
- 					     SYS_OFF_MODE_POWER_OFF,
- 					     SYS_OFF_PRIO_DEFAULT,
-@@ -107,6 +192,10 @@ static const struct sc27xx_poweroff_reg_info sc2730_pwr_regs = {
- 	.poweroff_reg = SC2730_PWR_PD_HW,
- 	.slp_ctrl_reg = SC2730_SLP_CTRL,
- 	.ldo_xtl_en = SC2730_LDO_XTL_EN,
-+
-+	.reset_reg = SC2730_SOFT_RST_HW,
-+	.rst_sts_reg = SC2730_RST_STATUS,
-+	.swrst_ctrl_reg = SC2730_SWRST_CTRL0,
- };
- 
- static const struct sc27xx_poweroff_reg_info sc2731_pwr_regs = {
-
--- 
-2.50.0
-
+Cause I couldn't make 1000BaseX work with qca-ssdk, so I can only
+confirm and test REVSGMII mode on my device.
 
