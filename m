@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-221906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DD23BA3F56
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:52:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31E02BA3F68
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:53:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 29DBB2A1C7F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:52:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9157167673
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 768CD2F8BF6;
-	Fri, 26 Sep 2025 13:52:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F83F2FAC16;
+	Fri, 26 Sep 2025 13:52:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m/QYugo7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="luOtdh2U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9B902F7449
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:52:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 994512F7ABA
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:52:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758894745; cv=none; b=UHMx7n7F5wX6f9ZjHoAIlboWJUbK8tNNfjeJaoDRiJbzT86HDB8FPCwAE0NQ37eLZ7ioR1vzLtKziG4sJJQs2+vzbIwRayLAgxZO+0yfNmxX9+om52yCPJmvxzBb6VyaK25hSg58QaiAEqY8cJr4JUurlk1ekQaw2IKdiVjvaAk=
+	t=1758894750; cv=none; b=lXbz/Bs6gshRSU5I6sAvdcUDi6R3O1jqjgiwgCLr7SCC5fNTeWnVS3WewMgq0MVR5t2WRmWGJbqZ4OpucC8YRSfy8AwUlW7XxcIzigk1+IRkI6BKWChkZRQSj+mmaaRxlP7/yJIX8XwWnsuc1uKgs923HOBV/hws7jQwLs1+5pM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758894745; c=relaxed/simple;
-	bh=29QXbFbslPmiTPuGlQ9L8/1DrSw32wFB7vLBuZhcYNg=;
+	s=arc-20240116; t=1758894750; c=relaxed/simple;
+	bh=pYZQpUJPMGf8MVnNwvrUQMZ2K9Ux1Wp8HvLTstdvSho=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cyNdNR3L7E4crsaXoXbjCi0ok4MPHbcVjokQRvTXUXOCPz4eWfyZp/TOdeUoOSnf8XLXVCuJL/hgQ0181gqRmXqj4YQOqI0o6YAXR4qIRxFQ3GCggNs4tXxh2Bj4CGhh+Qx8937ZOpYKquyuwRYeGp1ov1QKYxyqoy91V2mMRPU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m/QYugo7; arc=none smtp.client-ip=209.85.216.49
+	 MIME-Version; b=a0GpxyjZnED/0lD4ckL+iubz1tUMqOXYQOStplxWBd6h99iCMyJG1lVg29al6805yvdVskQH1yhsLaWBBQ0KbhMcUxQYymd8u2axRelqGi31Q+H9e0xrRMyDpOu16MWtnZs0fU6r4EpGBEJcY7uFckB8Cko/fl91u+CI8+vP2OE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=luOtdh2U; arc=none smtp.client-ip=209.85.216.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-3306eb96da1so1793221a91.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:52:23 -0700 (PDT)
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-330a4d4359bso2190146a91.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:52:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758894743; x=1759499543; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1758894748; x=1759499548; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=SLKZ1PGtShbPQ7Db1+LnIKpZ5s1PqjR2pTFgHGOqcOI=;
-        b=m/QYugo7vy7Ia7uJRasbz+ftf6NmLuBxc2IsBX+4NVJOk1+eUm1JYnHSo7yNwo++7K
-         o17YKYN5MIF7weD4z8XxVDkXqm9EbVt2ONQtNDliZVfi9wRF/xpblUyX6VWbgVBZYSW7
-         tCx8naFlv+ceJ/3bo96LhhPaFTQgfTHFvu2eX5Qxt46qJn4/kvySyVCQpXPAg5m3HGcc
-         x2L+lThXR3Qv/DPG7Uu0iSBXq75r0dsdLuz7QltAE97m3BIrrnVoEOLkWp/SyOjXYfVD
-         FQgewdOdHfEMcwbiTYKyf0Ti95P5VXEEmgxoeBVEvB96kydVXCFg99gD6+PE815vdYVR
-         vCww==
+        bh=SEKSAxHIaZ2dAPPdObIjDi5Y1C1RNP0QTmbclRtQCys=;
+        b=luOtdh2U03kK44bkrpGc3rBlO/s7ncM26Hq1iSPB4rNxJfL4KZLE/8Q61P6AtE/Twe
+         dOA6MwQpOgEmBGoRvv3a2PjneowegY+K1hYNMUUZNl30fqNjTZ5yibIePWOtnYF1iW/l
+         /Z7Qrs3E5XfBoI/HTLkir4du6giz3frKx8Rfew3/CCp1e7mOrMg8m0bxFWcbv9Eif/iR
+         yUj67KYwKEGyPpyLhHlt/RP4KuFcDqHr2B7sqU4LocpUpoPUtUk5HIM9zZTnYOhv/m5/
+         0DNDFB9nXdKHL+ZaYUw+vvL3e4vHSLLmXECUYKlvXSO8ObLM3NhuD6tdE7HzOtH2TEAr
+         ABuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758894743; x=1759499543;
+        d=1e100.net; s=20230601; t=1758894748; x=1759499548;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=SLKZ1PGtShbPQ7Db1+LnIKpZ5s1PqjR2pTFgHGOqcOI=;
-        b=LcH3enMaXmarnjSWSOyGiip2CSagchiY1SODgbM1O2zFqyhsC86quQpieAzkGRPv7w
-         itCKrL49b/gOtV/p6q9fzVc/bk/xze1EnNKzCej17YBjI1BJ8Kc4xjVrto0Yri/HDIVx
-         C2ioAONIl02OkzRFECZzIUnQpDSmfgwyOtO2RPR5MuBXStc8HRv+uW74UWOhPCSZron1
-         Kt3rdBzbfeGz1Jp8bDV6Esq2eTC65PHw3SEvtIHLU1bHn79yu9SlVZ7c/y0NqEXqrzvU
-         lCrGOvwUYSe4o2nASrdsaitcmVWOeLFcqkso0RipW220vQ3445INxd+ODpHHqRBEru6c
-         4KxA==
-X-Forwarded-Encrypted: i=1; AJvYcCXsDCUrMs5JwzPUcNsLFY/hF/Kabv3pelHYkju8PLvKZLuClYtsjOnrDJS+0Ga/AIcOivs+eoAaXBwO@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+Usli+QGm73yKxKhRogKesN4vhEg8+hLqV8KUOzZP6K80Lk8M
-	HYTRZk+nwI3vRPwqPWNsWi5jrC88/7nYPh8fnn3Lzfe4Sx3llbixY61r
-X-Gm-Gg: ASbGncuqVpY3HVasCLjoTvlqkrJcL7uwyaHawlW6i3AjySDaz0fXcbX2qdJ/Jwa1eDO
-	ToXCIUib1P8XIYFhNksCwTORE0rtIBGheOuDu69Vbc+KxABNlZ5MyOXJ++SEXPqdLzc1/PsllBl
-	/wHmWGVjRa/2tJEMTN4Q+QYGsVWjw22lYIAm20spMVa9PlkxL0z+cw35saSRkd0u7VKW1yqhkZ5
-	+J82QO+gT0J/3y2/L2ADEHSOKQ6V/dYtJStNa6fOK2p3W1eWW6oRsJuxDsztfo+mdEW3xKKb/P6
-	Z/bcSaWDIaiC5Xkggg1lZdX+VFE62UyRj/Mz7XdJiRKlV05iW8KpTnzUjn++2/ptZ/b5mHqtghT
-	ZCoxHSI7jRtTVu+3P85uZYUjBwO8K5D3O8PlIXiH1BILbHnlLjuaG24jRqzM=
-X-Google-Smtp-Source: AGHT+IESJmB1vCWK3wxFxNmHyAQofqcQGSOzEcCcasafXC4dETuw1ch/4qn4KS4mLk0uMo3QlKYA7A==
-X-Received: by 2002:a17:90b:1c8f:b0:335:2b15:7f46 with SMTP id 98e67ed59e1d1-3352b15b573mr3443116a91.21.1758894743274;
-        Fri, 26 Sep 2025 06:52:23 -0700 (PDT)
+        bh=SEKSAxHIaZ2dAPPdObIjDi5Y1C1RNP0QTmbclRtQCys=;
+        b=A4UXssTkyDuBpOJYlIzbDC6yyzSTeW7FdRocK5dW8iAeGa4Ec6N+ir81+y7LsH6E4t
+         PJA+kC+rYdRqJeEAPb+Ssn263ZkQ82x2eTJDNWtxCbogZ4cgGvDZSFJiZT0YBcdcYr1x
+         vNN5PBD7Cgdru9GH4f64dlS7wSCyni+Be16lyz7rl9CXRR48gkIhFJwgDVUUXznjm+Co
+         xh8dRJ8lxlZ6eDJuWaIGWr2QvBaDQ6z0WMqoMMa6vCYCOB8M4jEXjQbYQ+QieXIQbmcD
+         Vz6GOXn/ELABrRXstZdsxNJcrb40XscJEs7A78vm5SstxTwkZ7ZmamcxTs/ICWNfPUYg
+         4x9g==
+X-Forwarded-Encrypted: i=1; AJvYcCUSca4/SNGWZZ35/3gXt8PgcEmdCjt0hbkirOqsWP6Kz3ksScI+l52G17MNwH4WCz9B32d/kLgQ9mb5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxugrnmt6hGiTFxaX43S/JrehU0/7u5JFO3ydBZHlS2PiW9CMcT
+	SRDWj2yxssuY7X2QtrSV68Lso2GrVPyk420MKtwuw8BLYWjBWEkrVXbG
+X-Gm-Gg: ASbGncuy6H7M2EKdCxAnu6hYNeYU5JSDPNEdebpYqnFEYP6hPNP5+65HbNg385CevbU
+	be/HJPReWq+yCx1W5OB0aa5DDc0oFex/H06h5HccYaLZWTHpNYNVnlZpXT3MplI/5MuCg4OiIf5
+	ViCAuLXGAZ6f6dEOLAzHqquzSwoEPqqYDklDG4ZIPBfEsI1qWD2gEKPUc9q+iTVU5xgKAfNHVTb
+	BJkjR3YtCOkkWOZtCYdPG3FcRYgndHw+p5fdz49aBORpNT8mEqvx3VdZZGtOBzj5wwEzW0s0lfZ
+	sVvRcrfIev+uSS2U/TkYu0Y0RpAMqhlgt1G3L4ojv2e15+ARspaz4+VNTftzTlWXYT/YbFGFSbP
+	0rF6hyVdmoYHlTPOT+a+tB3ox+HgB9vmupMuC+j98
+X-Google-Smtp-Source: AGHT+IFZMIg/Ar1Z0pV1M1I58ur02r7foZdrErtZ79axk8ozapAxAqe6voMH8FRHNzkb6K/iiIMLuw==
+X-Received: by 2002:a17:90b:4b10:b0:32b:ab04:291e with SMTP id 98e67ed59e1d1-3342a2af4b5mr7555021a91.25.1758894747749;
+        Fri, 26 Sep 2025 06:52:27 -0700 (PDT)
 Received: from d.home.yangfl.dn42 ([45.32.227.231])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3341be2338csm8997217a91.22.2025.09.26.06.52.19
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3341be2338csm8997217a91.22.2025.09.26.06.52.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Sep 2025 06:52:23 -0700 (PDT)
+        Fri, 26 Sep 2025 06:52:27 -0700 (PDT)
 From: David Yang <mmyangfl@gmail.com>
 To: netdev@vger.kernel.org
 Cc: David Yang <mmyangfl@gmail.com>,
@@ -89,10 +89,11 @@ Cc: David Yang <mmyangfl@gmail.com>,
 	Russell King <linux@armlinux.org.uk>,
 	Simon Horman <horms@kernel.org>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH net-next v12 1/5] dt-bindings: ethernet-phy: add reverse SGMII phy interface type
-Date: Fri, 26 Sep 2025 21:50:48 +0800
-Message-ID: <20250926135057.2323738-2-mmyangfl@gmail.com>
+	linux-kernel@vger.kernel.org,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>
+Subject: [PATCH net-next v12 2/5] net: phy: introduce PHY_INTERFACE_MODE_REVSGMII
+Date: Fri, 26 Sep 2025 21:50:49 +0800
+Message-ID: <20250926135057.2323738-3-mmyangfl@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250926135057.2323738-1-mmyangfl@gmail.com>
 References: <20250926135057.2323738-1-mmyangfl@gmail.com>
@@ -109,23 +110,79 @@ The "reverse SGMII" protocol name is an invention derived from
 PHY".
 
 Signed-off-by: David Yang <mmyangfl@gmail.com>
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 ---
- Documentation/devicetree/bindings/net/ethernet-controller.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/net/phy/phy-core.c | 1 +
+ drivers/net/phy/phy_caps.c | 1 +
+ drivers/net/phy/phylink.c  | 1 +
+ include/linux/phy.h        | 4 ++++
+ 4 files changed, 7 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-index 2c924d296a8f..8f190fe2208a 100644
---- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-@@ -42,6 +42,7 @@ properties:
-       - mii-lite
-       - gmii
-       - sgmii
-+      - rev-sgmii
-       - psgmii
-       - qsgmii
-       - qusgmii
+diff --git a/drivers/net/phy/phy-core.c b/drivers/net/phy/phy-core.c
+index 605ca20ae192..074645840cd5 100644
+--- a/drivers/net/phy/phy-core.c
++++ b/drivers/net/phy/phy-core.c
+@@ -132,6 +132,7 @@ int phy_interface_num_ports(phy_interface_t interface)
+ 	case PHY_INTERFACE_MODE_TRGMII:
+ 	case PHY_INTERFACE_MODE_USXGMII:
+ 	case PHY_INTERFACE_MODE_SGMII:
++	case PHY_INTERFACE_MODE_REVSGMII:
+ 	case PHY_INTERFACE_MODE_SMII:
+ 	case PHY_INTERFACE_MODE_1000BASEX:
+ 	case PHY_INTERFACE_MODE_2500BASEX:
+diff --git a/drivers/net/phy/phy_caps.c b/drivers/net/phy/phy_caps.c
+index 2cc9ee97e867..9a9a8afc056f 100644
+--- a/drivers/net/phy/phy_caps.c
++++ b/drivers/net/phy/phy_caps.c
+@@ -299,6 +299,7 @@ unsigned long phy_caps_from_interface(phy_interface_t interface)
+ 	case PHY_INTERFACE_MODE_PSGMII:
+ 	case PHY_INTERFACE_MODE_QSGMII:
+ 	case PHY_INTERFACE_MODE_QUSGMII:
++	case PHY_INTERFACE_MODE_REVSGMII:
+ 	case PHY_INTERFACE_MODE_SGMII:
+ 	case PHY_INTERFACE_MODE_GMII:
+ 		link_caps |= BIT(LINK_CAPA_1000HD) | BIT(LINK_CAPA_1000FD);
+diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
+index 9d7799ea1c17..910e93d2a324 100644
+--- a/drivers/net/phy/phylink.c
++++ b/drivers/net/phy/phylink.c
+@@ -255,6 +255,7 @@ static int phylink_interface_max_speed(phy_interface_t interface)
+ 	case PHY_INTERFACE_MODE_PSGMII:
+ 	case PHY_INTERFACE_MODE_QSGMII:
+ 	case PHY_INTERFACE_MODE_QUSGMII:
++	case PHY_INTERFACE_MODE_REVSGMII:
+ 	case PHY_INTERFACE_MODE_SGMII:
+ 	case PHY_INTERFACE_MODE_GMII:
+ 		return SPEED_1000;
+diff --git a/include/linux/phy.h b/include/linux/phy.h
+index d09fc42e61f3..7390014fccb5 100644
+--- a/include/linux/phy.h
++++ b/include/linux/phy.h
+@@ -107,6 +107,7 @@ extern const int phy_basic_ports_array[3];
+  * @PHY_INTERFACE_MODE_LAUI: 50 Gigabit Attachment Unit Interface
+  * @PHY_INTERFACE_MODE_100GBASEP: 100GBase-P - with Clause 134 FEC
+  * @PHY_INTERFACE_MODE_MIILITE: MII-Lite - MII without RXER TXER CRS COL
++ * @PHY_INTERFACE_MODE_REVSGMII: Serial gigabit media-independent interface in PHY role
+  * @PHY_INTERFACE_MODE_MAX: Book keeping
+  *
+  * Describes the interface between the MAC and PHY.
+@@ -152,6 +153,7 @@ typedef enum {
+ 	PHY_INTERFACE_MODE_LAUI,
+ 	PHY_INTERFACE_MODE_100GBASEP,
+ 	PHY_INTERFACE_MODE_MIILITE,
++	PHY_INTERFACE_MODE_REVSGMII,
+ 	PHY_INTERFACE_MODE_MAX,
+ } phy_interface_t;
+ 
+@@ -286,6 +288,8 @@ static inline const char *phy_modes(phy_interface_t interface)
+ 		return "100gbase-p";
+ 	case PHY_INTERFACE_MODE_MIILITE:
+ 		return "mii-lite";
++	case PHY_INTERFACE_MODE_REVSGMII:
++		return "rev-sgmii";
+ 	default:
+ 		return "unknown";
+ 	}
 -- 
 2.51.0
 
