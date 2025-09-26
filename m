@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-221730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85EE2BA274E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 07:39:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7ABBBA275C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 07:39:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5D277A4241
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 05:37:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D8B097A6911
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 05:37:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E2BB27877B;
-	Fri, 26 Sep 2025 05:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B38A4277C81;
+	Fri, 26 Sep 2025 05:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AJ0Ccq6C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cyh8n6x/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51BDD2773E6
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 05:38:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C4A1FCFEF
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 05:39:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758865128; cv=none; b=tNbic50jhaWNBh0rJph/c8RHISEKj3ifYGb/ePZeZRJy4PcUK31tXNDE2lketh6ejHUPeWJmf8fiVH4pstOSaar6xgP2tanxQbyciUhZfn23p4lCDLqYVuvHltFvCADuiJPw9xW5gDSYJyWDkbnnLvSASVGDmFOMms6xYI97Gmo=
+	t=1758865165; cv=none; b=J8b+g8zl9bY29plNTsl7H9AwIDAS1X0IY2mrDmMbwm9eWv9ZzhEOKeapcFCclWN0tcT2vy6UiHUWfTksSOWPeLCoJbJ3E0756rAZBBQBLpFd30PzsdgaKOObebRahirsKJe0pdAtoSlmxFd5w4Pd4t5rA2Kv8L2WAmoE05IVXeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758865128; c=relaxed/simple;
-	bh=YbrHKCMbCiBU5zkG2mMwLrOZrArn3NNUOSo5527fkgE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=D0bDNNKgBZ6qVIjERo0bXQuwUc8oZiPFJ90J/Y/k4H/16LpMPiX/ZXbomM3ilIRekSe8wB+GNO/R22keLiVx26cR1FMls/57rihQGV/5zQ8vEtXcCsKZ8XVw4IT3EGMpawd3VMvdD20v4Cp/Ve+uBMBjWNjXmr0h9Tzq9ciibzE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AJ0Ccq6C; arc=none smtp.client-ip=209.85.214.178
+	s=arc-20240116; t=1758865165; c=relaxed/simple;
+	bh=Beq3zJ9Yir84ESXbuDFoAJxQDiqZxmnkRmEwjSUBkHg=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=kWOOFh5S3Z4qlA8WLmR6n1eX+YPWsl60jBXqTNKJmJHwzcoft4y9o9yZHoKnnDLHC2WiSgBxJB+1XdojwuzAsMBCCWWRsQ/GYsAdavYgdktgFmR/AIuPBtg+ac6TmaGV6SsC4hOEvPb1Y/+XIoj8E2Tc50Cu0f7SEam+0X8+vfo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cyh8n6x/; arc=none smtp.client-ip=209.85.215.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-271d1305ad7so25664245ad.2
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 22:38:45 -0700 (PDT)
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-b57f08e88bcso334096a12.0
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 22:39:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758865124; x=1759469924; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7qcTncsLJv6moujHTG6Gv5g4cydsLFc1bTxR1LD+rBM=;
-        b=AJ0Ccq6Cj/oO3daC3kZOIZKM8oF9nKl0gSbphDjI7VAPL8jiYtEwdviJ/UNchfQjdi
-         DdKmx1eXS2r6bSYXwM1KhaGDDLuu2A0EDjqP3WjNupzdSoiyJbO1yTC/71TpcaH9ZghV
-         7r6AGjzYeBaSNYLQ4MVlsf/r+YSUlrQpVQCN1vRdzwZkNMeGYY8bhH9GkJq6M39SMHWT
-         P8mk+6Ppush3pXb+ZwLNWCWBBgX+Sd3e1k8ryRk3xnxbgXrmhIdrzlGgixdvUtHJSX/i
-         T1JLdoHdNxHOxwmXuKBdQlrSVEsffq1BIPgEj4aH4U4dP5o3/af37EGn4dCR1q8Eo9y0
-         l8Kg==
+        d=gmail.com; s=20230601; t=1758865163; x=1759469963; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5pe1j9chdIMcilasNbgcFZSIoZX4HxLtPrmn8vQTZBk=;
+        b=cyh8n6x/xiQqoJZ1DU5M+LcnGz7n7fWcs9anzCnhSL0jAO1MaBTHSz2kuwqZdLdZnU
+         30d1LDvDiaJ1B4XtGGxlF8McgEdcoMkgPVHn4/lUFSlvh78d5ZUVVMxck5UAqSWA/v0S
+         E33S9MYg2gu1fpsVld1TUJznh5WaYVI2EpSGW6EqvNerPbLineyAxG7wVrlUg20MM5+6
+         wWVmPLLdMncaKT3UZP/tuFprzS1+lz5Wi6dGdPlHbq1CJOJNX2yPNkqHPPTlwv1PQtOa
+         scUZoxDulLwmwhMtrEW06vCO06Qpiq8qG+GmagJs0EbcC69+msUwWEbyDxs0H2/j/ay/
+         Pnkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758865124; x=1759469924;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7qcTncsLJv6moujHTG6Gv5g4cydsLFc1bTxR1LD+rBM=;
-        b=B6EZ3m0dAtsH24M5ZoYeu0/qBw8mwx2aurMcwJ/yoL5Q8CDCXs50R0el9Qx8CaTZed
-         /thy8Btv6hw5Cv8XYufcQzRgvHXqjeBg9MLWVHl2h0zmtlFKlbPHssSJ7XWiNmwWjm7w
-         ZzDdpGp9H2pPzj1TuqMHGildAjNdKD2k+BnJSBEvqzgp4yZQ3TyGvQJQ8ca+codx0jRk
-         aUC6aRc6yIquUJBydx8SNsVO7gCVhajKz6zg9JxVo7xpgBhyHDdPLySfBzyIaKR2dlr5
-         w4NDxVhUyO0emgNuORsfJHN7HWq8VSDOdnS+eUmFX1914sVxhGLfuLrRi3rVyN0OEs9S
-         sIOg==
-X-Forwarded-Encrypted: i=1; AJvYcCXsnbmlDRyJNSQDbEJi/3YW7bvUng36U5fRTwCFukarudhSaMUYEzSU0pzHtb255j0EiO2Bw5dreR04@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSWQGn5m0q0rgg7wb7RqBK26LZQXFQfNMlMdWSzhfj8Gnc/O66
-	pAerE6a9qYM2leIDXqx/HQ38/L8JdsuWJ5UYq9wCiykWw5T//w0LJnSS
-X-Gm-Gg: ASbGncvzFCJM7JVEzbYmB2npRSe47Tzvkg/o6DBfYKT1OayDLAiE84YOOOgRHJ+eYS2
-	vAX81sfK8JU0IPhX0DLd34/qypNVwYEAMcy8JZ/Tn9uypRzAyG2+fO6lLkcz5Flh+y3e1EXYKkN
-	FeSR3/zrVcWgcQaAU2vqKYgcw7jIYccNk9jnDkTwDl2otho2rWt2VxjqAiCMOkZeQAYrYyrWlQq
-	fi6sMAuUvwidIENHSgXpwOLta3RDy5oaHPlALVjs1ZZE8K7K3GlF94JMczCm4nM2ihH84QyN06O
-	gQIO9Uc9D8pOFhLHttqfYxirvK/he5pOjWIUCS6JIdH0CQi1Y19nolOU2+K7F7RnKAtiP5UhbXq
-	Ua3PCD8NPqmVBzcwLE5vPswWP7W4874JKYxhcsw==
-X-Google-Smtp-Source: AGHT+IGCzgHZjN3LJlOsoXHyNz0FIxfti8aiB7qnhHMcVfvyqe879onGPV3fh7v7SrTOjr2Vucwgcg==
-X-Received: by 2002:a17:902:e84e:b0:269:9719:fffd with SMTP id d9443c01a7336-27ed49b8623mr81081225ad.1.1758865124592;
-        Thu, 25 Sep 2025 22:38:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758865163; x=1759469963;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5pe1j9chdIMcilasNbgcFZSIoZX4HxLtPrmn8vQTZBk=;
+        b=mTATULvsEdNyaAW9FnnLQb8Ket56N2mNJOawIHxV5WGHKzuJCkJLwzlSjM3V81k1uj
+         2EqT/D2ORVO+3PL65FGzKIES0es6lDlC4GwexatFFTYECc8WfiaRePEWDUsJAFARMjnQ
+         QzXekl7MJeKG6gAuWE/lU0Q2bfqizo+2Vds9UakNOEsbGrgvkOfxiRTXdP2RRThs+8YK
+         jV+2z4MZ+JeKjY5TdRxuhdUFQgDSuadW7clAjDEuC2ft/k7u/EthtZ/v5jeMpmbTO9Y/
+         3ntiNfl6st5lGs7ETGvBKt9crOhN/1Wn3maFAlnxAZjeILGcJjIGt51P/Hu7/cEuZyu8
+         YuzA==
+X-Forwarded-Encrypted: i=1; AJvYcCUoFt6MIpgBx+OjhxXKU+UctIpl/HrrVP7qxyv6SxTSTnF2WgGN90z301Izb32afy6pfQPu99AspBEW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzR5VRMCZ7w6L3uZFMM2UrvoC6nXoxvbhVSickSeXQjyhdU8XIJ
+	RAS8TQxSqEDznS0vqcsSh8dBDzkmd62EbVWwB6T5H49n+6l/71ACyFi6
+X-Gm-Gg: ASbGnctmNkv+zbpkU1OD1TL6IzkN2FyRYXmEIHVtguu/cWwtjko35sv2fpwF7o8mMLY
+	1h8czewdUqVTXhvCd8Y3qFiBmUZ5ku0g5hclH3rWYOhuMAlFyMXyMUecAPu+IdnszoKJjcH9mpR
+	A3PSgvvQ1O0qgBGBJDyjbjTgy30mgRgSl3g78oudsOQjUM414IcpkXOGprkrYFj/IqZ1M99jkTo
+	R+xqh/v5vL2GhrsKZ73F6pBK09x+TwkMEWfLDX3r3/XAP+ewmO1ALppTck+f786KNuGfWGiudFW
+	FGhLOzeCyala88OfVhyRAC/cDIMATZCos5mnF/M44zpznwYHbI/z2G4reSUOq+NWUMO3hTEfE73
+	bbLAhGFD9j9jl6/Q+jegwDoM5ROBQmkzyRNTKIw==
+X-Google-Smtp-Source: AGHT+IF24GY09FqC/mRcjEGwNAmt8xciN/1UqlJHXn7H6rCSb/JbypwirnWt+vUczaGlevlr9OSdRA==
+X-Received: by 2002:a17:902:c102:b0:269:b65a:cbb2 with SMTP id d9443c01a7336-27ed4a46418mr42444775ad.47.1758865163454;
+        Thu, 25 Sep 2025 22:39:23 -0700 (PDT)
 Received: from HYB-iPCgmhaB8Cy.ad.analog.com ([59.9.235.253])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed66fb07dsm41925025ad.36.2025.09.25.22.38.41
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed66fb07dsm41925025ad.36.2025.09.25.22.39.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 25 Sep 2025 22:38:44 -0700 (PDT)
+        Thu, 25 Sep 2025 22:39:23 -0700 (PDT)
 From: Joan-Na-adi <joan.na.devcode@gmail.com>
 X-Google-Original-From: Joan-Na-adi <joan.na@analog.com>
 To: Liam Girdwood <lgirdwood@gmail.com>
@@ -81,10 +83,12 @@ Cc: Mark Brown <broonie@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	Joan Na <joan.na@analog.com>
-Subject: [PATCH 0/3] MAX77675 regulator driver: Add support for MAX77675 device
-Date: Fri, 26 Sep 2025 14:37:54 +0900
-Message-Id: <20250926053757.480086-1-joan.na@analog.com>
+Subject: [PATCH 1/3] dt-bindings: regulator: Add MAX77675 binding header
+Date: Fri, 26 Sep 2025 14:37:55 +0900
+Message-Id: <20250926053757.480086-2-joan.na@analog.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250926053757.480086-1-joan.na@analog.com>
+References: <20250926053757.480086-1-joan.na@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,25 +99,100 @@ Content-Transfer-Encoding: 8bit
 
 From: Joan Na <joan.na@analog.com>
 
-BLURB: MAX77675 regulator driver and device tree bindings
+Add binding header for the MAX77675 PMIC regulator. This header defines
+voltage ID and regulator index macros used both in device tree sources
+and in the driver implementation.
 
-Joan Na (3):
-  dt-bindings: regulator: Add MAX77675 binding header
-  regulator: max77675: Add MAX77675 regulator driver
-  dt-bindings: regulator: Add MAX77675 regulator binding
-
- .../bindings/regulator/maxim,max77675.yaml    | 202 +++++
- drivers/regulator/Kconfig                     |   9 +
- drivers/regulator/Makefile                    |   1 +
- drivers/regulator/max77675-regulator.c        | 794 ++++++++++++++++++
- drivers/regulator/max77675-regulator.h        | 252 ++++++
- .../regulator/maxim,max77675-regulator.h      |  78 ++
- 6 files changed, 1336 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77675.yaml
- create mode 100644 drivers/regulator/max77675-regulator.c
- create mode 100644 drivers/regulator/max77675-regulator.h
+Signed-off-by: Joan Na <joan.na@analog.com>
+---
+ .../regulator/maxim,max77675-regulator.h      | 78 +++++++++++++++++++
+ 1 file changed, 78 insertions(+)
  create mode 100644 include/dt-bindings/regulator/maxim,max77675-regulator.h
 
+diff --git a/include/dt-bindings/regulator/maxim,max77675-regulator.h b/include/dt-bindings/regulator/maxim,max77675-regulator.h
+new file mode 100644
+index 000000000000..df12cae5e250
+--- /dev/null
++++ b/include/dt-bindings/regulator/maxim,max77675-regulator.h
+@@ -0,0 +1,78 @@
++/* SPDX-License-Identifier: GPL-2.0-only OR BSD 2-Clause */
++/*
++ * This header provides macros for MAXIM MAX77675 device bindings.
++ *
++ * Copyright (c) 2025, Analog Device inc.
++ * Author: Joan Na <joan.na@analog.com>
++ */
++
++#ifndef _DT_BINDINGS_REGULATOR_MAX77675_
++#define _DT_BINDINGS_REGULATOR_MAX77675_
++
++// Define the voltage limits for 12.5mV and 25mV steps
++#define MAX77675_MIN_UV            500000    // 500 mV
++
++#define MAX77675_MAX_UV_25MV       5500000   // 5.5V in microvolts for 25mV step
++#define MAX77675_MAX_UV_12_5MV     3687500   // 3.6875V in microvolts for 12.5mV step
++
++#define MAX77675_STEP_25MV         25000     // 25 mV
++#define MAX77675_STEP_12_5MV       12500     // 12.5 mV
++
++#define MAX77675_NUM_LEVELS_25MV   201
++#define MAX77675_NUM_LEVELS_12_5MV 255
++
++/* FPS source */
++#define MAX77675_FPS_SLOT_0       0
++#define MAX77675_FPS_SLOT_1       1
++#define MAX77675_FPS_SLOT_2       2
++#define MAX77675_FPS_SLOT_3       3
++#define MAX77675_FPS_NONE         4
++#define MAX77675_FPS_DEF          5
++
++/* nEN Manual Reset Time Configuration (MRT) */
++#define MAX77675_MRT_4S           0x0
++#define MAX77675_MRT_8S           0x1
++#define MAX77675_MRT_12S          0x2
++#define MAX77675_MRT_16S          0x3
++
++/* Internal Pull-Up Disable (PU_DIS) */
++#define MAX77675_PU_EN            0x0
++#define MAX77675_PU_DIS           0x1
++
++/* Bias Low-Power Mode (BIAS_LPM) */
++#define MAX77675_BIAS_NORMAL      0x0
++#define MAX77675_BIAS_LPM_REQ     0x1
++
++/* SIMO Internal Channel Disable (SIMO_INT_CH_DIS) */
++#define MAX77675_SIMO_INT_NORMAL  0x0
++#define MAX77675_SIMO_INT_LDO     0x1
++
++/* nEN Mode Configuration */
++#define MAX77675_EN_PUSH_BUTTON   0x0
++#define MAX77675_EN_SLIDE_SWITCH  0x1
++#define MAX77675_EN_LOGIC         0x2
++#define MAX77675_EN_RESERVED      0x3
++
++/* Debounce Timer Enable (DBEN_nEN) */
++#define MAX77675_DBEN_100US       0x0
++#define MAX77675_DBEN_30MS        0x1
++
++/* Rising slew rate control for SBB0 when ramping up */
++#define MAX77675_SR_2MV_PER_US    0x0  // 2 mV/us
++#define MAX77675_SR_USE_DVS       0x1  // Use DVS slew rate setting (maxim,dvs-slew-rate)
++
++/* Dynamic Voltage Scaling (DVS) Slew Rate */
++#define MAX77675_DVS_SLEW_5MV     0x0  // 5 mV/us
++#define MAX77675_DVS_SLEW_10MV    0x1  // 10 mV/us
++
++/* Latency Mode */
++#define MAX77675_LAT_MODE_HIGH_LATENCY    0  // Low quiescent current, high latency (~100us)
++#define MAX77675_LAT_MODE_LOW_LATENCY     1   // High quiescent current, low latency (~10us)
++
++/* SIMO Buck-Boost Drive Strength (All Channels) */
++#define MAX77675_DRV_SBB_FASTEST      0  // Fastest transition (~0.6 ns)
++#define MAX77675_DRV_SBB_FAST         1  // Faster transition (~1.2 ns)
++#define MAX77675_DRV_SBB_MEDIUM       2  // Moderate transition (~1.8 ns)
++#define MAX77675_DRV_SBB_SLOWEST      3  // Slowest transition (~8 ns)
++
++#endif
 --
 2.34.1
 
