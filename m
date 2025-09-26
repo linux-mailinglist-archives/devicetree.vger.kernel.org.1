@@ -1,173 +1,122 @@
-Return-Path: <devicetree+bounces-222039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16EEBBA53A3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 23:32:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 430E7BA53BE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 23:39:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCD8E383930
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 21:32:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84CB81B271D9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 21:40:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79FB429D26C;
-	Fri, 26 Sep 2025 21:32:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675CF272803;
+	Fri, 26 Sep 2025 21:39:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KpYdeDfn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ewQbXV9B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A5A12A1CA;
-	Fri, 26 Sep 2025 21:32:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AFC123D7CE;
+	Fri, 26 Sep 2025 21:39:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758922327; cv=none; b=bGYhdPqCTAanRhY7h1MsJLA4Qr3JM6NZjRwXQyTBUKM5Vgduz2Qjli4oPHhkT41a0V95vj6vHTL5cERiLI1EfqTP1rGO0cTxeTzcH8QHsvrvvTD9/nWpDMFsnzFZB1Qgw54PQvRFef99qfwfve93NJehjbXrIGGMGohjL9aOfYQ=
+	t=1758922789; cv=none; b=DOuPdt8LZskhT+pPmO6O/FG0olbmkzDNMm2s5gVGNtbXd/Kp6u59OQEuqjKYiaPU9hQwX9BY5fN1lEys6sx0kI1mc+1onK3lnwxzWdH2k1XK9JijFgdbpPbWoMPBNm4RIXCPvvrEqv5PtEIrx3jMBV84dOZ62vSweHiRM2K/5D8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758922327; c=relaxed/simple;
-	bh=s11rU3UFLaS0Sp8EzrbQgKe7uppn0ywvUykAZ5Jlu+o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WpEK/9fsMlehM3U/QUfRpWbtdDTlysYSw2ql1v5HmOVDo5Sl8rSBbrfnG7LDNph6WqoF24Wo0CityyIL8NdHBBNFb8mqk/Y57QvwB6AtjFFuWIDXnukbjNs+7PH2p8nnlreKxmfI39w+ghGCOktYRM8iZBo/qE/foWe5kkeKEJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KpYdeDfn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FA28C4CEF7;
-	Fri, 26 Sep 2025 21:32:05 +0000 (UTC)
+	s=arc-20240116; t=1758922789; c=relaxed/simple;
+	bh=d1AZ/+AAfFPaPOFnur+pV8mdqf1t1UoRekQUo75AdSQ=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=W/5FkneUWa2d4jKty7Yv5d3H0d9ltjfOz1S39USRBdbkET1ZZPZS//9+s1qTjNUM647b32wuIdF5cemprhoHRacENbTd9JVq7mG73TfYp9N/kGwDYMZuRJlrtoWFHYWYMEDaA0ewU8NZJmDQLztoF6tzkc9tlP0DLX1jmzPVeXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ewQbXV9B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2721C4CEF4;
+	Fri, 26 Sep 2025 21:39:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758922326;
-	bh=s11rU3UFLaS0Sp8EzrbQgKe7uppn0ywvUykAZ5Jlu+o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KpYdeDfnhMqz1YxGrCTA0V5KRELoLAUV9N8OpcWmOafoCcc2MoUgARxKF4e+LgwYB
-	 bwf8l5nL/62riCbPcp1/3Jg2qR0xVozoaBP7lgUPISAvfDR2qplS0Bsyzth/Rg+sU1
-	 cXfZM3eBYe6rJ5kKYSc7APTXRU+Dnhyj1WAoTvgvEjoG7nKRs4bhVExMyhO0J1s7VB
-	 K6PXj5BZJoLWsY3r/pNNkYyxMUy/javEKi1h0IA/Q6qjYI9OZhzHgefObwy0TB/yyc
-	 h7p+VMuNQgR3oxqKeQ3/Bwc6kgGa2+QxjRmcLxShiJxxmrZaC0A5dpNVc/usPR++dB
-	 5Bvo4nOiPS6yw==
-Date: Fri, 26 Sep 2025 16:32:02 -0500
-From: Rob Herring <robh@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Ryder Lee <ryder.lee@mediatek.com>,
-	Jianjun Wang <jianjun.wang@mediatek.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, upstream@airoha.com
-Subject: Re: [PATCH v3 4/4] PCI: mediatek: add support for Airoha AN7583 SoC
-Message-ID: <20250926213202.GB1573360-robh@kernel.org>
-References: <20250925162332.9794-1-ansuelsmth@gmail.com>
- <20250925162332.9794-5-ansuelsmth@gmail.com>
+	s=k20201202; t=1758922788;
+	bh=d1AZ/+AAfFPaPOFnur+pV8mdqf1t1UoRekQUo75AdSQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=ewQbXV9Bn49vaZ9y0XanGKzEcoXauPdYCmWpxL7p9Y8/kkOTx4Je3ft10zoqxb9ND
+	 67bRs57XREasACO1XVtARN+fvRg3SIb+UM1hzKlyZozMBRBDaRSNQd7NN8u0pAXUpN
+	 c6c/4ElUcSvu7O+pYP+pBaudWfQKAkVw9wZbilmO0oxOK2u7GGQcrSe4rUAde3p9Cj
+	 fe+Ehygcm47ts33kBnLKr8kwxcjrux5jTQvQURXbxiAhf7HWDbkWrgIRF0ZlqlMWbi
+	 f/ZDYH1j9zNcBXxy/Y5iP/F39lHoga5QljdQKIlpvWpiNvgtyweQyqGswp5ZiqufeD
+	 5kDLM1UAU2mhg==
+Date: Fri, 26 Sep 2025 16:39:47 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250925162332.9794-5-ansuelsmth@gmail.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ linux-kernel <linux-kernel@vger.kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Shawn Anastasio <sanastasio@raptorengineering.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Georgy Yakovlev <Georgy.Yakovlev@sony.com>, 
+ devicetree <devicetree@vger.kernel.org>
+To: Timothy Pearson <tpearson@raptorengineering.com>
+In-Reply-To: <948400747.1748562.1758824253627.JavaMail.zimbra@raptorengineeringinc.com>
+References: <948400747.1748562.1758824253627.JavaMail.zimbra@raptorengineeringinc.com>
+Message-Id: <175892278740.1727949.11517757635835328406.robh@kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: Add sony,cronos-cpld
 
-On Thu, Sep 25, 2025 at 06:23:18PM +0200, Christian Marangi wrote:
-> Add support for the second PCIe line present on Airoha AN7583 SoC.
+
+On Thu, 25 Sep 2025 13:17:33 -0500, Timothy Pearson wrote:
+> The Sony Cronos Platform Controller CPLD is a multi-purpose platform
+> controller that provides both a watchdog timer and an LED controller for
+> the Sony Interactive Entertainment Cronos x86 server platform. As both
+> functions are provided by the same CPLD, a multi-function device is
+> exposed as the parent of both functions.
 > 
-> This is based on the Mediatek Gen1/2 PCIe driver and similar to Gen3
-> also require workaround for the reset signals.
+> Add a DT binding for this device.
 > 
-> Introduce a new bool to skip having to reset signals and also introduce
-> some additional logic to configure the PBUS registers required for
-> Airoha SoC.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
+> Signed-off-by: Timothy Pearson <tpearson@raptorengineering.com>
 > ---
->  drivers/pci/controller/pcie-mediatek.c | 85 +++++++++++++++++++-------
->  1 file changed, 63 insertions(+), 22 deletions(-)
+>  .../bindings/mfd/sony,cronos-cpld.yaml        | 121 ++++++++++++++++++
+>  1 file changed, 121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
 > 
-> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
-> index 24cc30a2ab6c..640d1f1a6478 100644
-> --- a/drivers/pci/controller/pcie-mediatek.c
-> +++ b/drivers/pci/controller/pcie-mediatek.c
-> @@ -147,6 +147,7 @@ struct mtk_pcie_port;
->   * @need_fix_class_id: whether this host's class ID needed to be fixed or not
->   * @need_fix_device_id: whether this host's device ID needed to be fixed or not
->   * @no_msi: Bridge has no MSI support, and relies on an external block
-> + * @skip_pcie_rstb: Skip calling RSTB bits on PCIe probe
->   * @device_id: device ID which this host need to be fixed
->   * @ops: pointer to configuration access functions
->   * @startup: pointer to controller setting functions
-> @@ -156,6 +157,7 @@ struct mtk_pcie_soc {
->  	bool need_fix_class_id;
->  	bool need_fix_device_id;
->  	bool no_msi;
-> +	bool skip_pcie_rstb;
->  	unsigned int device_id;
->  	struct pci_ops *ops;
->  	int (*startup)(struct mtk_pcie_port *port);
-> @@ -679,28 +681,30 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
->  		regmap_update_bits(pcie->cfg, PCIE_SYS_CFG_V2, val, val);
->  	}
->  
-> -	/* Assert all reset signals */
-> -	writel(0, port->base + PCIE_RST_CTRL);
-> -
-> -	/*
-> -	 * Enable PCIe link down reset, if link status changed from link up to
-> -	 * link down, this will reset MAC control registers and configuration
-> -	 * space.
-> -	 */
-> -	writel(PCIE_LINKDOWN_RST_EN, port->base + PCIE_RST_CTRL);
-> -
-> -	/*
-> -	 * Described in PCIe CEM specification sections 2.2 (PERST# Signal) and
-> -	 * 2.2.1 (Initial Power-Up (G3 to S0)). The deassertion of PERST# should
-> -	 * be delayed 100ms (TPVPERL) for the power and clock to become stable.
-> -	 */
-> -	msleep(100);
-> -
-> -	/* De-assert PHY, PE, PIPE, MAC and configuration reset	*/
-> -	val = readl(port->base + PCIE_RST_CTRL);
-> -	val |= PCIE_PHY_RSTB | PCIE_PERSTB | PCIE_PIPE_SRSTB |
-> -	       PCIE_MAC_SRSTB | PCIE_CRSTB;
-> -	writel(val, port->base + PCIE_RST_CTRL);
-> +	if (!soc->skip_pcie_rstb) {
-> +		/* Assert all reset signals */
-> +		writel(0, port->base + PCIE_RST_CTRL);
-> +
-> +		/*
-> +		 * Enable PCIe link down reset, if link status changed from link up to
-> +		 * link down, this will reset MAC control registers and configuration
-> +		 * space.
-> +		 */
-> +		writel(PCIE_LINKDOWN_RST_EN, port->base + PCIE_RST_CTRL);
-> +
-> +		/*
-> +		 * Described in PCIe CEM specification sections 2.2 (PERST# Signal) and
-> +		 * 2.2.1 (Initial Power-Up (G3 to S0)). The deassertion of PERST# should
-> +		 * be delayed 100ms (TPVPERL) for the power and clock to become stable.
-> +		 */
-> +		msleep(100);
-> +
-> +		/* De-assert PHY, PE, PIPE, MAC and configuration reset	*/
-> +		val = readl(port->base + PCIE_RST_CTRL);
-> +		val |= PCIE_PHY_RSTB | PCIE_PERSTB | PCIE_PIPE_SRSTB |
-> +		       PCIE_MAC_SRSTB | PCIE_CRSTB;
-> +		writel(val, port->base + PCIE_RST_CTRL);
-> +	}
->  
->  	/* Set up vendor ID and class code */
->  	if (soc->need_fix_class_id) {
-> @@ -1105,6 +1109,33 @@ static int mtk_pcie_probe(struct platform_device *pdev)
->  	if (err)
->  		goto put_resources;
->  
-> +	if (device_is_compatible(dev, "airoha,an7583-pcie")) {
 
-This should check some match data flag rather than checking compatible 
-again. Otherwise this becomes device_is_compatible() || 
-device_is_compatible() || device_is_compatible()...
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Rob
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml:
+	Error in referenced schema matching $id: http://devicetree.org/schemas/mfd/leds-class-multicolor.yaml
+	Tried these paths (check schema $id if path is wrong):
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/leds-class-multicolor.yaml
+	/usr/local/lib/python3.13/dist-packages/dtschema/schemas/mfd/leds-class-multicolor.yaml
+
+Lexical error: Documentation/devicetree/bindings/mfd/sony,cronos-cpld.example.dts:42.30-48 Unexpected 'LED_COLOR_ID_MULTI'
+Lexical error: Documentation/devicetree/bindings/mfd/sony,cronos-cpld.example.dts:43.32-51 Unexpected 'LED_FUNCTION_STATUS'
+Error: Documentation/devicetree/bindings/mfd/sony,cronos-cpld.example.dts:43.32-51 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:132: Documentation/devicetree/bindings/mfd/sony,cronos-cpld.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1525: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/948400747.1748562.1758824253627.JavaMail.zimbra@raptorengineeringinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
