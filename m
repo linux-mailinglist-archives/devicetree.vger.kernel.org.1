@@ -1,154 +1,116 @@
-Return-Path: <devicetree+bounces-221788-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91674BA2E51
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 10:15:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED323BA2E9A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 10:18:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BC723A84C5
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 08:15:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE49F3801A6
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 08:18:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE60A2882B6;
-	Fri, 26 Sep 2025 08:15:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04248295516;
+	Fri, 26 Sep 2025 08:18:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="iChBGkJG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [4.193.249.245])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51DA91E503D;
-	Fri, 26 Sep 2025 08:15:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=4.193.249.245
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1227F28CF66
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 08:18:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758874526; cv=none; b=OU+W4fhDAAYrw6M0Juifh2HBp2OReuli1TEvlaw/r2LkoD/wUOBhWnn5LLy6onEkZvkdBuBS0uY18smdSogm0S/c7FKbjns/QHvpPFdQTfJl2N1rRv/KdlZ5zkjJwQ01xK+3p8n5070GsbKejTOidr2gASGX8Uu5Qz957yVRnyA=
+	t=1758874704; cv=none; b=c25O+J/V+EPci/Z8SpwjrYU/oZgJNh19snoJwKKDgrykiHKRVuyZ0yfzUR3XnOJlWvOaiaVm8KGvzeZiuHP5R+YhwCsScEJcN8WCpgwjAcyGPYO8x7LaBNfe68vPhOhuRXYREmrZGUN+vVvihpF/yFKvdXNVcGVgTrbNxm34pS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758874526; c=relaxed/simple;
-	bh=01qg0zQGxHg/uzySYOyUQDpGHKB8R+Urato8yjG+11A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=aj2IuKrstLxG+qRNRbnChf9+qcfpvlm78+LODeVi0ZOTTgPzDO76ROwzxZMrrYnw46BKs4IEsY0fBYyDtC7CMVe6DqBe2O6J6yZV+NVUSsWOoQb0jsI/nlnor/OdBvuRE4B9dkWmVCN+dSKfnDVEhgqCxKD2X1UBTO57hv1MC0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=4.193.249.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from caohang$eswincomputing.com ( [10.127.112.153] ) by
- ajax-webmail-app1 (Coremail) ; Fri, 26 Sep 2025 16:15:03 +0800 (GMT+08:00)
-Date: Fri, 26 Sep 2025 16:15:03 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: "Hang Cao" <caohang@eswincomputing.com>
-To: "Conor Dooley" <conor@kernel.org>
-Cc: gregkh@linuxfoundation.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Thinh.Nguyen@synopsys.com,
-	p.zabel@pengutronix.de, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	"Senchuan Zhang" <zhangsenchuan@eswincomputing.com>
-Subject: Re: Re: Re: [PATCH v3 1/2] dt-bindings: usb: Add ESWIN EIC7700 USB
- controller
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <20250924-shimmer-sphinx-1a12caeab401@spud>
-References: <20250915085329.2058-1-caohang@eswincomputing.com>
- <20250915091024.2128-1-caohang@eswincomputing.com>
- <20250915-affair-halves-4f881f6c7cdb@spud>
- <17731a13.1cce.19974dfc64d.Coremail.caohang@eswincomputing.com>
- <20250924-shimmer-sphinx-1a12caeab401@spud>
-Content-Type: multipart/mixed; 
-	boundary="----=_Part_28961_865295059.1758874503643"
+	s=arc-20240116; t=1758874704; c=relaxed/simple;
+	bh=YaZchDCRgfylKud3pEbWtzlpdTQgWlvYrjoHVIScY60=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NAx3yyEXMF3sCNeD3P9D12nB2DtpKTW/8fquHWbWH9k5TsobiNU30/ISBqq3U+X9JCT5pTesCRdufkz23R5otIpz0YpyJKqu0xSUNBovn31j+jpIiYnK0HZZ5IPXIpI0+56gHzxNXYR26ZAiII7CoEeACqhGLhDYbSdX2AGHXgk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=iChBGkJG; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=YaZc
+	hDCRgfylKud3pEbWtzlpdTQgWlvYrjoHVIScY60=; b=iChBGkJGY5qDLuXXp2On
+	xeNmjPEIV34ZO+dTRwCkyRF8IZfMbPBdEC2C/qt84CMIQUg1sNwKwFf52P92cMsW
+	DkIXSXOZ5MJPlma2U/R4uW3AxzXCiPmo0x1LLpGot9WGP1JVPgbZzZKD+MJZIQga
+	QcZKNgRXHZZAvoX6jseSUngUL/TXbwvm61a/zyLuAmhUqdsoJrjPjtGKs+C5yXXj
+	OaTV/7iawz8HnRetWWkZWkQayLijlLUJPTNaTjCC2Y8urjEMTrHiyVyP0LqEEXx7
+	lAxylYMK4PTQWhJ0hgFM6/Ix9szF0ttLw3HkaoiaHooppVLLqVDTHzKvpuun4D+x
+	Rg==
+Received: (qmail 2179589 invoked from network); 26 Sep 2025 10:18:18 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Sep 2025 10:18:18 +0200
+X-UD-Smtp-Session: l3s3148p1@ZCme7a8/yMIgAwDPXwQHAL/S9V79e5yL
+Date: Fri, 26 Sep 2025 10:18:18 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Jonas Jelonek <jelonek.jonas@gmail.com>
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-i2c@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Markus Stockhausen <markus.stockhausen@gmx.de>,
+	Sven Eckelmann <sven@narfation.org>,
+	Harshal Gohel <hg@simonwunderlich.de>
+Subject: Re: [PATCH v7 04/12] i2c: rtl9300: use regmap fields and API for
+ registers
+Message-ID: <aNZMSsNL6M2GDM5U@shikoro>
+References: <20250831100457.3114-1-jelonek.jonas@gmail.com>
+ <20250831100457.3114-5-jelonek.jonas@gmail.com>
+ <aNW0jiJQHcS-FKwr@shikoro>
+ <476cd546-1bde-4ff0-a785-2e6fa21b79d4@gmail.com>
+ <aNY3Ar8bernz4kCI@shikoro>
+ <29683d52-8e5a-4217-a32b-c2248319f69a@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <5d546ce3.1ff1.199851709e0.Coremail.caohang@eswincomputing.com>
-X-Coremail-Locale: en_US
-X-CM-TRANSID:TAJkCgCXuxGHS9ZoPSDhAA--.18376W
-X-CM-SenderInfo: xfdrxt1qj6v25zlqu0xpsx3x1qjou0bp/1tbiAQEREGjVbnoYWAAA
-	so
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWDJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="RgFxCkAl9l3kDwPU"
+Content-Disposition: inline
+In-Reply-To: <29683d52-8e5a-4217-a32b-c2248319f69a@gmail.com>
 
-------=_Part_28961_865295059.1758874503643
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: base64
 
-SGksIENvbm9yIERvb2xleQogICAgV2UgZ290IHlvdXIgcG9pbnQsIGFuZCB5b3VyIHN1Z2dlc3Rp
-b25zIHNvdW5kIHZlcnkgcmVhc29uYWJsZS4gSSdsbCBjb29yZGluYXRlIHdpdGggY29sbGVhZ3Vl
-cyAKcmVzcG9uc2libGUgZm9yIGNsb2NrIGFuZCByZXNldCBmdW5jdGlvbnMgdG8gdHJ5IGFuZCBp
-bXBsZW1lbnQgZGVkaWNhdGVkIGRyaXZlcnMgYXMgc29vbiBhcyBwb3NzaWJsZSwgCnNlcGFyYXRp
-bmcgdGhpcyBwYXJ0IGZyb20gaHNwLWNzci4KCkJlc3QgcmVnYXJkcywKSGFuZyBDYW8KCj4gT24g
-VHVlLCBTZXAgMjMsIDIwMjUgYXQgMTI6NDA6NDZQTSArMDgwMCwgSGFuZyBDYW8gd3JvdGU6Cj4g
-PiA+ID4gRnJvbTogSGFuZyBDYW8gPGNhb2hhbmdAZXN3aW5jb21wdXRpbmcuY29tPgo+ID4gPiA+
-ICsgIGVzd2luLGhzcC1zcC1jc3I6Cj4gPiA+ID4gKyAgICBkZXNjcmlwdGlvbjoKPiA+ID4gPiAr
-ICAgICAgSFNQIENTUiBpcyB0byBjb250cm9sIGFuZCBnZXQgc3RhdHVzIG9mIGRpZmZlcmVudCBo
-aWdoLXNwZWVkIHBlcmlwaGVyYWxzCj4gPiA+ID4gKyAgICAgIChzdWNoIGFzIEV0aGVybmV0LCBV
-U0IsIFNBVEEsIGV0Yy4pIHZpYSByZWdpc3Rlciwgd2hpY2ggY2FuIGNsb3NlCj4gPiA+ID4gKyAg
-ICAgIG1vZHVsZSdzIGNsb2NrLHJlc2V0IG1vZHVsZSBpbmRlcGVuZGVudGx5IGFuZCB0dW5lIGJv
-YXJkLWxldmVsJ3MKPiA+ID4gPiArICAgICAgcGFyYW1ldGVycyBvZiBQSFksIGV0Yy4KPiA+ID4g
-PiArICAgICRyZWY6IC9zY2hlbWFzL3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3BoYW5kbGUtYXJy
-YXkKPiA+ID4gPiArICAgIGl0ZW1zOgo+ID4gPiA+ICsgICAgICAtIGl0ZW1zOgo+ID4gPiA+ICsg
-ICAgICAgICAgLSBkZXNjcmlwdGlvbjogcGhhbmRsZSB0byBIU1AgUmVnaXN0ZXIgQ29udHJvbGxl
-ciBoc3Bfc3BfY3NyIG5vZGUuCj4gPiA+ID4gKyAgICAgICAgICAtIGRlc2NyaXB0aW9uOiB1c2Ig
-YnVzIHJlZ2lzdGVyIG9mZnNldC4KPiA+ID4gPiArICAgICAgICAgIC0gZGVzY3JpcHRpb246IGF4
-aSBsb3cgcG93ZXIgcmVnaXN0ZXIgb2Zmc2V0Lgo+ID4gPiA+ICsgICAgICAgICAgLSBkZXNjcmlw
-dGlvbjogdmJ1cyBmcmVxdWVuY3kgcmVnaXN0ZXIgb2Zmc2V0Lgo+ID4gPiA+ICsgICAgICAgICAg
-LSBkZXNjcmlwdGlvbjogbXBsbCByZWdpc3RlciBvZmZzZXQuCj4gPiA+IAo+ID4gPiBBcyBJIG1l
-bnRpb25lZCBvbiB0aGUgc2hkY2kgYmluZGluZyBwYXRjaCwgSSdtIG5vdCBoYXBweSB3aXRoIHRo
-ZQo+ID4gPiBqdXN0aWZpY2F0aW9uIGZvciB0aGlzIHBoYW5kbGUuIFdoYXQgZXhhY3RseSBpcyB0
-aGUgY2xvY2sgdGhhdCB0aGlzCj4gPiA+IGNvbnRyb2xzIGFuZCB3aHkgZG9lcyBpdCBub3QgaGF2
-ZSBhIGRlZGljYXRlZCBjbG9jay1jb250cm9sbGVyIGRyaXZlcgo+ID4gPiBhbmQgcmVzZXQtY29u
-dHJvbGxlciBkcml2ZXI/Cj4gPiA+IAo+ID4gSW4gdGhlIGN1cnJlbnQgZGVzaWduIGZyYW1ld29y
-aywgdGhlIGNsb2NrIGNhbiBiZSBkaXZpZGVkIGludG8gdHdvIHBhcnRzOsKgCj4gPiAxLiBUaGUg
-dG9wLWNsb2NrLCB3aGljaCBpcyB1c2VkIHRvIG1hbmFnZSBhbmQgY29udHJvbCB0aGUgY2xvY2tz
-IG9mIHZhcmlvdXMgc3Vic3lzdGVtcyAoc3VjaCBhcyBIU1AsIEdQVSwgTlBVLCBldGMuKTvCoAo+
-ID4gMi4gVGhlIHN1YnN5c3RlbSBjbG9ja3MgbWFuYWdlZCBpbmRlcGVuZGVudGx5IGJ5IGVhY2gg
-c3Vic3lzdGVtLgo+ID4gVGhlIHRvcC1jbG9jayBpcyBhIHN0YW5kYXJkIGNsb2NrIGRlc2lnbihm
-ZWF0dXJpbmcgZ2F0ZSwgZGl2aWRlciwgYW5kIG11eCBmdW5jdGlvbnMpIHRoYXQgaGFzIGJlZW4g
-cmVnaXN0ZXJlZCBpbiB0aGXCoAo+ID4gY29tbW9uIGNsb2NrIGZyYW1ld29yayx3aXRoIGEgZGVk
-aWNhdGVkIGNsb2NrIGNvbnRyb2xsZXIgZHJpdmVyLgo+ID4gCj4gPiBUaGUgc3Vic3lzdGVtIGNs
-b2NrcyBtYW5hZ2VkIGJ5IHN1YnN5c3RlbXMgYXJlIGNvbnRyb2xsZWQgYW5kIGNvbmZpZ3VyZWQg
-dGhyb3VnaCB0aGUgQ1NSIChDb250cm9sIGFuZCBTdGF0dXMgUmVnaXN0ZXIpwqAKPiA+IG9mIGVh
-Y2ggcmVzcGVjdGl2ZSBzdWJzeXN0ZW0uIEZvciBleGFtcGxlLCB0aGUgSFNQIHN1YnN5c3RlbSB1
-c2VzIHRoZSBlc3dpbixoc3Atc3AtY3NyLiBBZGRpdGlvbmFsbHksIHRoaXMgQ1NSIGlzCj4gPiDC
-oHJlc3BvbnNpYmxlIGZvciBtYW5hZ2luZyBzdGFydHVwIGZ1bmN0aW9ucywgcGVyZm9ybWluZyBp
-bmRlcGVuZGVudCByZXNldCBvZiBzcGVjaWZpYyBtb2R1bGVzLCBhbmQgYWRqdXN0aW5nwqAKPiA+
-IFBIWSBwYXJhbWV0ZXJzIHRvIGFjaGlldmUgYm9hcmQtbGV2ZWwgdHVuaW5nIChmb3IgVVNCL1NB
-VEEgaW50ZXJmYWNlcywgZXRjLikuCj4gCj4gVW5saWtlIHRoZSB1c2Ugb2YgdGhlIEhTUCBpbiB0
-aGUgc2RoY2kgZHJpdmVyLCB3aGVyZSBpdCBhcHBlYXJzIHRvIGJlCj4gc2V0dGluZyBiaXRzIHRo
-YXQgaW5kaWNhdGUgc3RhYmlsaXR5IChhY2NvcmRpbmcgdG8geW91ciBjb2xsZWFndWUpIHdoYXQK
-PiB5b3Ugc2F5IGhlcmUgKGFuZCB3aGF0IGlzIGRvbmUgaW4gdGhlIGRyaXZlciBvbiB0aGUgcmVz
-ZXQgc2lkZSBpbgo+IHBhcnRpY3VsYXIpIHNlZW1zIGxpa2Ugc29tZXRoaW5nIHRoYXQgc2hvdWxk
-IGJlIGhhbmRsZWQgYnkgYSBkZWRpY2F0ZWQKPiBkcml2ZXIuICJpbmRlcGVuZGVudCByZXNldCBv
-ZiBzcGVjaWZpYyBtb2R1bGVzIiBpcyB0aGUgZG9tYWluIG9mCj4gcmVzZXQtY29udHJvbGxlciBk
-cml2ZXJzLiBXaGF0IGFyZSB0aGUgb3RoZXIgbW9kdWxlcyBmb3Igd2hpY2ggdGhlIEhTUAo+IGhh
-cyByZXNldHM/IERvZXMgaXQgaGF2ZSBjbG9ja3MgZm9yIG90aGVyIG1vZHVsZXMgdG9vPwo+IAo+
-ID4gVGhlIHRvcC1jbG9jayBtYW5hZ2VzIHRoZSBnbG9iYWwgY2xvY2tzIG9mIHN1YnN5c3RlbXMu
-IFRha2luZyB0aGUgSFNQIHN1YnN5c3RlbSBhcyBhbiBleGFtcGxlLCB0aGUgdG9wLWNsb2NrCj4g
-PiDCoGNvbmZpZ3VyZXMgdGhlIGhzcF9hY2xrX2N0cmwgYW5kIGhzcF9jZmdfY3RybCBvZiBIU1Ag
-c3Vic3lzdGVtIG9ubHkuCj4gCj4gPiBJbiBjb250cmFzdCwgdGhlIHN1YnN5c3RlbSBjbG9ja3Mg
-YXJlIG1hbmFnZWQgdmlhIHRoZWlyIG93biBDU1JzLiBGb3IgaW5zdGFuY2UsIHRoZSBVU0IgcmVm
-IGNsb2NrIHVzZWQgaW4gdGhlIFVTQiBtb2R1bGUgb2bCoAo+ID4gdGhlIEhTUCBzdWJzeXN0ZW0g
-Y2FuIG9ubHkgYmUgY29uZmlndXJlZCB0aHJvdWdoIHRoZSBoc3AtY3NyLCBhbmQgY2Fubm90IGJl
-IHNldCB2aWEgdGhlIHRvcC1jbG9jayBjb250cm9sbGVyIGRyaXZlci4KPiA+IEFzIGZvciB0aGUg
-cmVzZXQgZnVuY3Rpb24sIGl0IGlzIG5vdCBpbnRlZ3JhdGVkIGludG8gYSBkZWRpY2F0ZWQgY29u
-dHJvbGxlciBkcml2ZXIgZWl0aGVyLCBmb3IgcmVhc29ucyBzaW1pbGFyIHRvIHRob3NlIG9mIHRo
-ZcKgCj4gPiBjbG9jayBtYW5hZ2VtZW50IG1lbnRpb25lZCBhYm92ZS4KPiAKPiBUaGF0IGp1c3Qg
-c291bmRzIHRvIG1lIGxpa2UgdGhlIGhzcC1jc3IgbmVlZHMgdG8gYmVjb21lIGJvdGggYQo+IHJl
-c2V0LWNvbnRyb2xsZXIgYW5kIGEgY2xvY2stY29udHJvbGxlciEgSXQncyBub3QgdW51c3VhbCB0
-byBoYXZlIG1vcmUKPiB0aGFuIG9uZSBjbG9jay1jb250cm9sbGVyIGluIGFuIGRldmljZSwgdGhl
-IHRvcC1jbG9jayBiZWluZyBhCj4gY2xvY2stY29udHJvbGxlciBkb2VzIG5vdCBtZWFuIHRoYXQg
-dGhlIEhTUCBhbHNvIGNhbm5vdCBiZSBvbmUuCj4gCg==
-------=_Part_28961_865295059.1758874503643
-Content-Type: application/pgp-signature; name=signature.asc
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="signature.asc"
+--RgFxCkAl9l3kDwPU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-LS0tLS1CRUdJTiBQR1AgU0lHTkFUVVJFLS0tLS0NCg0KaUhVRUFCWUtBQjBXSVFSaDI0NkVHcS84
-UkxoRGpPMTR0REdIb0lKaTBnVUNhTlJNcVFBS0NSQjR0REdIb0lKaQ0KMHRXakFQOXJuajZMQkJ0
-MlJ2a1pacHlXZGpqdHJMNTdQTmxlYktPMkh6UlFpQ2NpTVFFQW9iWldENlFoWTlVcw0KdCtCWEQx
-UUFJNzlNcmYyWEEzUVpPRlIyQWpKMENnaz0NCj1jTzUyDQotLS0tLUVORCBQR1AgU0lHTkFUVVJF
-LS0tLS0NCg==
-------=_Part_28961_865295059.1758874503643--
 
+> The lost patch doesn't apply cleanly anymore because my patch 3 was altered
+> in a wrong way while Andi resolved a conflict, which occured because the
+> now-lost patch wasn't in the fixes path. To be accurate, this probably needs
+> another patch also for the stable path.
+
+I see. Thank you for doing the work. I wanted to do a pull request
+for-current this week anyhow, so that aligns.
+
+Happy hacking!
+
+
+--RgFxCkAl9l3kDwPU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjWTEYACgkQFA3kzBSg
+KbbcNBAAtACTl+VSEg49vFEPuKXEB30k3Rg9XvyXpQy7ufW3NfVWi0tYsaBiBHdb
+1alEfYkXgoR9cZ/ECBftF0n5o79ifSxuE/G31781IjTMa9GiwTmQfMFctV+BZlz7
+k0wSNIKjLzIfL4AuwzAfg5eMAlhbGwWv/fOpTbuboFH6x3kYG9RI0GfVWzeSP1DP
+KMlsz3LfgyOuRB4aZfVlYFxXy4cD2M0kWVpJ5Qq9ya4B9QFIaKo3JLlUKMnj3W4J
+1SpQQsqX4NpBM2RO0iKtL7gCV8x2Ig2h+xM4P7uJO0dxmnde5Y2vOXFsKHXUZGGQ
+D/P5JdJ49jwMLzOSNIkUDJe73/wnn484pTKodoVgypZ2IC3DnF3zWfMoXPSFqBAs
+yxGUxCstgEC1wFy3mWw7vYkhvDeYDCYvNlnbeQcXjDRTRcHDIudWRHiJUrcsU7QX
+hRGg6A+BPqnIZMlf4gP3olTcJiyMNGukwdga6lUxZ479iZJogVxJzhw59lloP2Xh
+wZcB/RVFgDAgRBll/fF3hFlrj4nB7foXJNUSSvA9yuuybetueg9rhgspWm5c6fe8
+kF2wStR2rGsg1HbygmD0Frt1ClUcpZi/ji/7FS44WEfH29E486pBZ0A6VpbyDjTJ
+heuhAyUHUKhoX2U+WIUwoh52SLeicw4JROmtlQgh+0s3eS7+Z30=
+=ajo9
+-----END PGP SIGNATURE-----
+
+--RgFxCkAl9l3kDwPU--
 
