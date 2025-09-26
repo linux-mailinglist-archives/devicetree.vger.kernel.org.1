@@ -1,122 +1,108 @@
-Return-Path: <devicetree+bounces-222040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222041-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 430E7BA53BE
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 23:39:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E589BA53DF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 23:47:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84CB81B271D9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 21:40:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E78E621477
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 21:47:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 675CF272803;
-	Fri, 26 Sep 2025 21:39:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E54DC2848A2;
+	Fri, 26 Sep 2025 21:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ewQbXV9B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="biekYPST"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AFC123D7CE;
-	Fri, 26 Sep 2025 21:39:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD091A2C11;
+	Fri, 26 Sep 2025 21:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758922789; cv=none; b=DOuPdt8LZskhT+pPmO6O/FG0olbmkzDNMm2s5gVGNtbXd/Kp6u59OQEuqjKYiaPU9hQwX9BY5fN1lEys6sx0kI1mc+1onK3lnwxzWdH2k1XK9JijFgdbpPbWoMPBNm4RIXCPvvrEqv5PtEIrx3jMBV84dOZ62vSweHiRM2K/5D8=
+	t=1758923264; cv=none; b=aVAEgcJSTIcdVDAo5ehWHnzOovJkCizkgg4JMwWZmJ45UR5yzZZIwJOM4NM8Or0j6bnt/SN0tONBz9i7uiAXfTCbBdyTsf+Q/+BZCAGDAYgS5Tdu3rfN5e2oqZqefCxffMZw25HIEqdxcg542J7gZlrem0mRNdqQzX1meqxvjpc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758922789; c=relaxed/simple;
-	bh=d1AZ/+AAfFPaPOFnur+pV8mdqf1t1UoRekQUo75AdSQ=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=W/5FkneUWa2d4jKty7Yv5d3H0d9ltjfOz1S39USRBdbkET1ZZPZS//9+s1qTjNUM647b32wuIdF5cemprhoHRacENbTd9JVq7mG73TfYp9N/kGwDYMZuRJlrtoWFHYWYMEDaA0ewU8NZJmDQLztoF6tzkc9tlP0DLX1jmzPVeXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ewQbXV9B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2721C4CEF4;
-	Fri, 26 Sep 2025 21:39:48 +0000 (UTC)
+	s=arc-20240116; t=1758923264; c=relaxed/simple;
+	bh=HxA4FWs1OVb9xwYCnwSfOJqJ121/RwPpT+3Ri5D0jU8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=C6WT3z6q2nAPm2Te3UbCajDmSsSAPn+DILQld3g45nu69csAWgo4gYzArYNRIFhlsUpPUESTB2XiZghYe8ORcDqTAcMT1HKW5NswI6Lsg2kYLu1vmWRajOAyf3NHfkUc7vFEN+Yf8syLzGoXONmkF8NRjHNCye23ow+bNyJatOE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=biekYPST; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 26EB2C4CEF4;
+	Fri, 26 Sep 2025 21:47:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758922788;
-	bh=d1AZ/+AAfFPaPOFnur+pV8mdqf1t1UoRekQUo75AdSQ=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=ewQbXV9Bn49vaZ9y0XanGKzEcoXauPdYCmWpxL7p9Y8/kkOTx4Je3ft10zoqxb9ND
-	 67bRs57XREasACO1XVtARN+fvRg3SIb+UM1hzKlyZozMBRBDaRSNQd7NN8u0pAXUpN
-	 c6c/4ElUcSvu7O+pYP+pBaudWfQKAkVw9wZbilmO0oxOK2u7GGQcrSe4rUAde3p9Cj
-	 fe+Ehygcm47ts33kBnLKr8kwxcjrux5jTQvQURXbxiAhf7HWDbkWrgIRF0ZlqlMWbi
-	 f/ZDYH1j9zNcBXxy/Y5iP/F39lHoga5QljdQKIlpvWpiNvgtyweQyqGswp5ZiqufeD
-	 5kDLM1UAU2mhg==
-Date: Fri, 26 Sep 2025 16:39:47 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1758923264;
+	bh=HxA4FWs1OVb9xwYCnwSfOJqJ121/RwPpT+3Ri5D0jU8=;
+	h=From:To:Cc:Subject:Date:From;
+	b=biekYPSTQA/QwRF8LwegMBnFtdAvJ4AOLx21C5we6QfW77y5R8SO0VMSlqnfWnj76
+	 JHnus3EZDzUfSTs6iVkgUKz2Ey/eF0V+Nz5lcvJ32r097m/H7E+EWz/31WEdae4gN8
+	 pHze25lRxGNsh8TcOhS+htFc+3zgSG1yef5neG0Wqg0TYJYf7zhrBTo2yrrGDOtoGg
+	 mWsKYcMmfKWraFiHL5CXqeIZEa6eZ8n7YNezbMtJiFZlTIjO3E1Bj0bRTNKMneAIRT
+	 NeYmqYEZ695eGn8Bc7ckkZ8M+/s+u4njI5kZHWY4Y8AoBrR4b/qSRx6Uzq4GtX2uzd
+	 SF3NkZ039JZgw==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthew Gerlach <matthew.gerlach@altera.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: arm: altera: Drop socfpga-sdram-edac.txt
+Date: Fri, 26 Sep 2025 16:47:37 -0500
+Message-ID: <20250926214738.1791368-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Lee Jones <lee@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- linux-kernel <linux-kernel@vger.kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Shawn Anastasio <sanastasio@raptorengineering.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Georgy Yakovlev <Georgy.Yakovlev@sony.com>, 
- devicetree <devicetree@vger.kernel.org>
-To: Timothy Pearson <tpearson@raptorengineering.com>
-In-Reply-To: <948400747.1748562.1758824253627.JavaMail.zimbra@raptorengineeringinc.com>
-References: <948400747.1748562.1758824253627.JavaMail.zimbra@raptorengineeringinc.com>
-Message-Id: <175892278740.1727949.11517757635835328406.robh@kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: Add sony,cronos-cpld
+Content-Transfer-Encoding: 8bit
 
+The contents of arm/altera/socfpga-sdram-edac.txt are already covered by
+edac/altr,socfpga-ecc-manager.yaml except for the "altr,sdram-edac"
+compatible string. Add the compatible and drop the old .txt binding doc.
 
-On Thu, 25 Sep 2025 13:17:33 -0500, Timothy Pearson wrote:
-> The Sony Cronos Platform Controller CPLD is a multi-purpose platform
-> controller that provides both a watchdog timer and an LED controller for
-> the Sony Interactive Entertainment Cronos x86 server platform. As both
-> functions are provided by the same CPLD, a multi-function device is
-> exposed as the parent of both functions.
-> 
-> Add a DT binding for this device.
-> 
-> Signed-off-by: Shawn Anastasio <sanastasio@raptorengineering.com>
-> Signed-off-by: Timothy Pearson <tpearson@raptorengineering.com>
-> ---
->  .../bindings/mfd/sony,cronos-cpld.yaml        | 121 ++++++++++++++++++
->  1 file changed, 121 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml
-> 
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/arm/altera/socfpga-sdram-edac.txt    | 15 ---------------
+ .../bindings/edac/altr,socfpga-ecc-manager.yaml   |  1 +
+ 2 files changed, 1 insertion(+), 15 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
 
-My bot found errors running 'make dt_binding_check' on your patch:
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/sony,cronos-cpld.yaml:
-	Error in referenced schema matching $id: http://devicetree.org/schemas/mfd/leds-class-multicolor.yaml
-	Tried these paths (check schema $id if path is wrong):
-	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/leds-class-multicolor.yaml
-	/usr/local/lib/python3.13/dist-packages/dtschema/schemas/mfd/leds-class-multicolor.yaml
-
-Lexical error: Documentation/devicetree/bindings/mfd/sony,cronos-cpld.example.dts:42.30-48 Unexpected 'LED_COLOR_ID_MULTI'
-Lexical error: Documentation/devicetree/bindings/mfd/sony,cronos-cpld.example.dts:43.32-51 Unexpected 'LED_FUNCTION_STATUS'
-Error: Documentation/devicetree/bindings/mfd/sony,cronos-cpld.example.dts:43.32-51 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:132: Documentation/devicetree/bindings/mfd/sony,cronos-cpld.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1525: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/948400747.1748562.1758824253627.JavaMail.zimbra@raptorengineeringinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+diff --git a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt b/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
+deleted file mode 100644
+index f5ad0ff69fae..000000000000
+--- a/Documentation/devicetree/bindings/arm/altera/socfpga-sdram-edac.txt
++++ /dev/null
+@@ -1,15 +0,0 @@
+-Altera SOCFPGA SDRAM Error Detection & Correction [EDAC]
+-The EDAC accesses a range of registers in the SDRAM controller.
+-
+-Required properties:
+-- compatible : should contain "altr,sdram-edac" or "altr,sdram-edac-a10"
+-- altr,sdr-syscon : phandle of the sdr module
+-- interrupts : Should contain the SDRAM ECC IRQ in the
+-	appropriate format for the IRQ controller.
+-
+-Example:
+-	sdramedac {
+-		compatible = "altr,sdram-edac";
+-		altr,sdr-syscon = <&sdr>;
+-		interrupts = <0 39 4>;
+-	};
+diff --git a/Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml b/Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml
+index ec4634c5fa89..3d787dea0f14 100644
+--- a/Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml
++++ b/Documentation/devicetree/bindings/edac/altr,socfpga-ecc-manager.yaml
+@@ -53,6 +53,7 @@ properties:
+     properties:
+       compatible:
+         enum:
++          - altr,sdram-edac
+           - altr,sdram-edac-a10
+           - altr,sdram-edac-s10
+ 
+-- 
+2.51.0
 
 
