@@ -1,258 +1,244 @@
-Return-Path: <devicetree+bounces-221885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EE92BA3DD8
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:21:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB217BA3E2A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:26:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD1EC7AF9C9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:20:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 763F23AF10E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:26:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E6C613D539;
-	Fri, 26 Sep 2025 13:21:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87D462EDD44;
+	Fri, 26 Sep 2025 13:26:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HZpmijKy"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="mlqz/49X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58CC18C02E
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:21:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC8A82DC346;
+	Fri, 26 Sep 2025 13:26:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758892893; cv=none; b=DDnPUXaoyoYT6iBzUoafEKDc7Ll3YVKrgyd4UPUcwaoqVYrdihYzg37iHmpozfvERUBnkvh7H7EcdGz9BNmGrqshG9fVLu6cJ80XXyf2OHYMapZvY3T5NpQzS+YVuXpvJ+lptenJ/4qJ8jwq5i+lLQBngGL150RgM83lWg9t/lg=
+	t=1758893208; cv=none; b=D6U4bMKOF59K11f+PyJxLnzjWHVERn2VXWMsNVEZizxA5rrREQ1RjTP2QKTgKcFyc/1yH/WFHy6eo3BES+s1HeKlkhYnfaIHsB2QtQ+1R7y5xtUIuqdklCd8SwH3m+qn/95L3a3M6Tm5TLI7IJIib5psxcbKSI0QRYZtIUk/4JQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758892893; c=relaxed/simple;
-	bh=6UK7sC7g60oZo3v+HjqWDlFdtqGJFknhMavuRW6Em4s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u0Xbw9cwbRpW+KZPuoA6VYm/QeYfwONCPcKMc8hWGFNJut5xnfM1/TMT44o4ckffKsGgQmtSb0CgM94ObKwltsGHxBjzcwkNHqeHccBbHopS7g61oqoCZk/RI6rrYQ7+hQHXui+UQ9PEwLkvgBvumOymNYAW+yq05IKgJBKWVkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HZpmijKy; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58Q9jjDT024045
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:21:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cZn3+ViDkvz98DvcqF6j3iIY1pg2ROgrLSmJOsp8TOs=; b=HZpmijKyleTwpdqd
-	2NGZSaVx6TBwzMbZ38Uh+v4xLGZnuDl6pbEJXHe9vbjm7j0pCy2o83+AqfhBBw4k
-	JEnY4gNNo9jwmFNQp5qYUsoDvCdWQMtFfQ0Wx+wJEH9+U8CaU7G18Wk5njxKVHhW
-	Dcr2A4cSbqU4aG4khVNsnYG5z+RWtlqj1RlxgyploIPrbjxNzPkPyWxly+xp0aJZ
-	o/YdNzyAgh92tAQ5hX82OAbpfe/EztFrRpQvS1drK8AW/qnLQ7yhXbbmQFf5eLKU
-	QnUlslEm5xHvogGMHl3tzM0J/teUc6PJRoqsn17kTrN58gYD0UptzTFFWVYZ40aR
-	d4wU2g==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49drfwgk0h-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:21:30 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4dc37a99897so3819601cf.3
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:21:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758892889; x=1759497689;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cZn3+ViDkvz98DvcqF6j3iIY1pg2ROgrLSmJOsp8TOs=;
-        b=oC7OxTH8jp1iidyA1HIo2Wu3ZcMEDX2RaFFKq1uzgC7Bpmp4Y79IIAs+JF4+04dZ5P
-         KzzUntR8rx8N0m4uOxY6lt1t9TKMK+xIJLTYzv8BlERTt1onIL7ac8KB4IUTOJrXlLKi
-         50CduKSlxwU6oK+H447boO7h9XvTLnPRa0cVbfaRZHP6J6wn9AQT57P9Il5Y4L4RZR5R
-         g62zUsvusvGgbUhMTNq/B9nqyStAB1Sx+ZeZAjGTHwNB6Cp0pmxmpi1vpuPiuLB1u+ww
-         CpbYwpfxpMcjohZYbgIFmOrrjWmr603qaEbkovO3BFJ5lZFIrRs6l7fg+XVAjlqxHmVT
-         E2SQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV87icNNOB8g+21Sy5QVi9X8S6EH47u/SMJCYh9tuRfUE+cI5y1qoDhdyRxGJDuSszY8RH4+hb6Aoil@vger.kernel.org
-X-Gm-Message-State: AOJu0YwcpIvFvej/6KE+C93oDnidJdFtiSWOIerph65+FIq3v+2Es6Jm
-	rJJiujqyklsnvV5CJhjEjL0mam+frhbPWKdFvbvFabV3PbWoTNeovlwL4McROD4Xfe6f4zGWX9l
-	XKmWIIe49Pvg5D3J6mh9JFXt4WksC2Q96osVy3122efYWzsS8nwAC0uYKeMCv39hr
-X-Gm-Gg: ASbGncvltPXwPrW6FK0XIuVdp7Y5RTurJ0iZTLtX9J/V4nyr34Qg5IKEn03bNYQEjCh
-	oUTs7Y3vhSV2rSveY6gMg/Rt6x+mZSSukWFTF9795FLUPocJG9AF2FohwEMD8KDSSkKzYjnj2GO
-	vll0qM7cb5ChtmSaabCJ2OGmt7UXoMx9MhEJto12LEmbTeB/dZTmDVNY3lvQT3Fan9x79kYvaBF
-	6XE2E9tHMI71Q0jD8c2jQn1/ZcmgLbZrKNDx4V/g7wVSJC1UszmPONVhWXoyAJv2SZxfMduoYWb
-	JyMhUzt3CnLKdO9VgwCGAcHgowgbrR4Gah3cJ58Ui1QFPU7V90/H4E8iJPxF7sRanjy3kgfOLst
-	rig/9WnmpBfBm08PksVvolw==
-X-Received: by 2002:a05:622a:24a:b0:4d8:7b08:64b1 with SMTP id d75a77b69052e-4da488a2d68mr68988311cf.5.1758892889177;
-        Fri, 26 Sep 2025 06:21:29 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGOs5AkFGBtCeVybInal7Dj0JBGaxf5TiuRZY/p4RsOAuSofCh3ljWxN4/nJ+1DTFBl2D9FzA==
-X-Received: by 2002:a05:622a:24a:b0:4d8:7b08:64b1 with SMTP id d75a77b69052e-4da488a2d68mr68987781cf.5.1758892888545;
-        Fri, 26 Sep 2025 06:21:28 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-634a3af4fe7sm2958276a12.39.2025.09.26.06.21.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Sep 2025 06:21:27 -0700 (PDT)
-Message-ID: <c13b94ed-a240-4a32-9f11-f0e323197500@oss.qualcomm.com>
-Date: Fri, 26 Sep 2025 15:21:25 +0200
+	s=arc-20240116; t=1758893208; c=relaxed/simple;
+	bh=tt8j4f67Myq2x91/cEcHImKhtQzK3hMmMD/sIcbXrSI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e5PHxKg9z+9ZFc6Iq3jFRArqJz1O+iztB8/KXyETukLIWoWhTGoRxRNxeKYbVuyFNgs9uODCS+/vIaZBz2hWn0VHE+O8r/iviyi0oOJ40oyeRnPj4ls5xPd35MMdCESnWg1GikpHUE2ihdvQOrQwW8K3mw2Rp6fB6Iq7XDXc21g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=mlqz/49X; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1758893207; x=1790429207;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=tt8j4f67Myq2x91/cEcHImKhtQzK3hMmMD/sIcbXrSI=;
+  b=mlqz/49Xws/kSlVR6mmKcYj2FWjmAPxW/HiK8HeaFYVmSXtqGUmN2h0C
+   KHywxcQ4+Lp04jWA/eeW06Ve9lCKT54V0T9O0sIPaxAP6fljfJUuZbO6A
+   PD54ksCVx48yOb5f+cUtjtCR9NnLaW8LbIYjxUmj3YJALJecCxjzSbXgZ
+   FLfxrtPnJyMPLxhrg0RzYk+kWE9So9d9HI627hPcyrLUfigV0IKLQyxp+
+   zlC5QRSXC2v3SH/KNKRNdf3JKkW5bkuUZuK3D8wDXUHcoQQabcDWn3zCJ
+   odQRocxBFVvyiFhLetXuPBdpO01b67B9LLH699WEVR9bRwjz5q8h35efG
+   w==;
+X-CSE-ConnectionGUID: QEDmuES2Qa6xKrYL2STbYw==
+X-CSE-MsgGUID: atCguUkdQ/Snd0P9w5W39g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11564"; a="72324276"
+X-IronPort-AV: E=Sophos;i="6.18,295,1751266800"; 
+   d="scan'208";a="72324276"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 Sep 2025 06:26:46 -0700
+X-CSE-ConnectionGUID: KyBoOnMDT3WLFyHiLckXHQ==
+X-CSE-MsgGUID: gaUzxMHbRR2LRreEpd9+TQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,295,1751266800"; 
+   d="scan'208";a="181619627"
+Received: from lkp-server02.sh.intel.com (HELO 84c55410ccf6) ([10.239.97.151])
+  by orviesa003.jf.intel.com with ESMTP; 26 Sep 2025 06:26:41 -0700
+Received: from kbuild by 84c55410ccf6 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1v28T9-0006GP-0Q;
+	Fri, 26 Sep 2025 13:26:39 +0000
+Date: Fri, 26 Sep 2025 21:26:01 +0800
+From: kernel test robot <lkp@intel.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	ulf.hansson@linaro.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com, nfraprado@collabora.com,
+	fshao@chromium.org, y.oudjana@protonmail.com, wenst@chromium.org,
+	mandyjh.liu@mediatek.com, mbrugger@suse.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, kernel@collabora.com
+Subject: Re: [PATCH v2 3/5] pmdomain: mediatek: Add support for secure HWCCF
+ infra power on
+Message-ID: <202509262155.Ux4J6K4D-lkp@intel.com>
+References: <20250925143122.39796-4-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/20] arm64: dts: qcom: kaanapali: Add USB support for
- Kaanapali SoC
-To: Rob Herring <robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>
-Cc: =?UTF-8?Q?Krzysztof_Koz=C5=82owski?= <k.kozlowski.k@gmail.com>,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
-        Ronak Raheja <ronak.raheja@oss.qualcomm.com>
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
- <20250924-knp-dts-v1-6-3fdbc4b9e1b1@oss.qualcomm.com>
- <CAJKOXPcbJY4JEjfZLvOAXEWCTYFpe7En+Riis2t3K5fWJgNU5A@mail.gmail.com>
- <3up4xqgd2ay3tex4ckzgews3ukyrdikcmgk7tbddggj3s5gt4d@foqcpnfptjk7>
- <20250925213151.GA2455023-robh@kernel.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250925213151.GA2455023-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: BKDbv0G8gNYXtO0PoO3eIeXGXlPRoRk6
-X-Authority-Analysis: v=2.4 cv=JKA2csKb c=1 sm=1 tr=0 ts=68d6935a cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=UeAO8m2xiAsHg9Yy08IA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-GUID: BKDbv0G8gNYXtO0PoO3eIeXGXlPRoRk6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI2MDA4OSBTYWx0ZWRfX8hFJ1DCrBRUF
- AQYB6J5hSPbVzGyBAGq9vwaFrg5cNuHumsrm2fgVe3BfIipjNLnXtkZqbwD485i3TyinWWAyXIT
- 7eM3XlfIucyXIpdq5wTfc8yo4BTt6+TakJen4B2Zv9Mxih79LqtMOY+/RaN5Wul08wdhaRCW6uQ
- fs4haYsYjkN9cEZ0u8RDrzg5dYxU8tyFYiBGoq/CqM3yE+60zg7piB/ST4vQbHEEV1MtcX27JzA
- yUAVYLCCMsbdFYG8+5cV8ilQsnRJrhhGBhOUnaThFa/NCkmhQCMK3o+Uvmq2TbXoimhGlPJN6ix
- v/nz6UMDjNFFJ+xoQ0qqtMSLnz126TS94wjFZmvoNLo3D7UN41JYX8loIjt3yrkwYeflScySiME
- 2QQMMMsXeOhy3ztB1Ud74NdwmmlBhA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-26_04,2025-09-26_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 clxscore=1015 lowpriorityscore=0
- phishscore=0 suspectscore=0 bulkscore=0 spamscore=0 malwarescore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2509260089
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250925143122.39796-4-angelogioacchino.delregno@collabora.com>
 
-On 9/25/25 11:31 PM, Rob Herring wrote:
-> On Thu, Sep 25, 2025 at 08:57:56AM -0500, Bjorn Andersson wrote:
->> On Thu, Sep 25, 2025 at 10:50:10AM +0900, Krzysztof Kozłowski wrote:
->>> On Thu, 25 Sept 2025 at 09:17, Jingyi Wang <jingyi.wang@oss.qualcomm.com> wrote:
->>>>
->>>> From: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
->>>>
->>>> Add the base USB devicetree definitions for Kaanapali platform. The overall
->>>> chipset contains a single DWC3 USB3 controller (rev. 200a), SS QMP PHY
->>>> (rev. v8) and M31 eUSB2 PHY.
->>>>
->>>> Signed-off-by: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
->>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/kaanapali.dtsi | 155 ++++++++++++++++++++++++++++++++
->>>>  1 file changed, 155 insertions(+)
->>>>
->>>
->>>
->>> Second try, without HTML:
->>>
->>> I really don't understand why you created such huge patchset.
->>
->> Because I looked at the logical changes that went into the big squash
->> that was initially planned, and requested that some of those was kept
->> intact - because they where independent logical changes.
->>
->>> Year
->>> ago, two years ago, we were discussing it already and explained that's
->>> just inflating the patchset without reason.
->>>
->>
->> We used to add things node by node and that was indeed not
->> comprehensible. Overall this adds features in large logical chunks, but
->> there are a few of the patches that could have been squashed.
->>
->>> New Soc is one logical change. Maybe two. Not 18!
->>
->> I can see your argument for one patch to introduce the soc. But two
->> doesn't make sense, because that incremental patch is going to be the
->> kitchen sink.
->>
->>>
->>> Not one patch per node or feature.
->>>
->>
->> Definitely agree that we don't want one patch for every tiny block!
->>
->>> This hides big picture, makes difficult to review everything,
->>> difficult to test.
->>
->> The big picture is already obscured due to the size of the content
->> added.
->>
->> Comparing to previous targets, I see the baseline content in 2-3
->> patches, and the remainder of the series being things that usually has
->> been scattered in many more small changes in the following weeks or
->> months.
->>
->> There's plenty of features in this series that are yet to be concluded
->> for SM8750.
->>
->>> Your patch count for LWN stats doesn't matter to
->>> us.
->>
->> I agree with this. That's why the QRD is 1 patch, and MTP is 4 (this I
->> think should be squashed to 2) - compared to 13 patches for across the
->> pair for SM8750 with less scope.
->>
->>>
->>> NAK and I'm really disappointed I have to repeat the same review .
->>
->> I'm not sure what you're disappointed in, this initial series is larger
->> than any we've seen before. I really like the work Jingyi has done here,
->> aggregating the otherwise scattered patches into one series.
-> 
-> The QCom folks can review all this first because I don't care to review 
-> the 50+ binding (just bindings!) patches sent all at once right before 
-> the merge window.
+Hi AngeloGioacchino,
 
-Unfortunately this is sort of beyond our control. We don't expect you to
-review or apply these patches immediately.
+kernel test robot noticed the following build errors:
 
-The platform announcement just happened to occur at this and not any other
-time, and we can't just ask the entire company to shift it to better
-accommodate the kernel release cycle..
+[auto build test ERROR on next-20250924]
+[cannot apply to robh/for-next linus/master v6.17-rc7 v6.17-rc6 v6.17-rc5 v6.17-rc7]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-We do have an interest in sharing the work at the earliest time possible,
-and with all the legal knots included, this is what it came down to.
+url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-power-Add-support-for-MT8196-power-controllers/20250925-223530
+base:   next-20250924
+patch link:    https://lore.kernel.org/r/20250925143122.39796-4-angelogioacchino.delregno%40collabora.com
+patch subject: [PATCH v2 3/5] pmdomain: mediatek: Add support for secure HWCCF infra power on
+config: i386-buildonly-randconfig-001-20250926 (https://download.01.org/0day-ci/archive/20250926/202509262155.Ux4J6K4D-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250926/202509262155.Ux4J6K4D-lkp@intel.com/reproduce)
 
-I (and many others) made an internal push to upstream any pre-requisite
-patches that we didn't need to disclose any platform details for in
-advance, so this patchbomb is actually somewhat reduced.. but of course
-DT and bindings are the main course size-wise and we simply couldn't do
-it earlier.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509262155.Ux4J6K4D-lkp@intel.com/
 
-Give or take 80% of the bindings will be "boring", i.e. "add compatbile"
-or "add compatible and adjust clocks" because our hw is rather
-standardized and the interesting changes often happen at a level beyond
-bindings
+All errors (new ones prefixed by >>):
 
-> One comment on commit messages though. Please explain how the h/w block 
-> is or isn't compatible with some existing platforms. Many just state the 
-> obvious "add a compatible" or such. I've yet to find what kaanapali is 
-> in relation to any other QCom chip. It may be the next SoC for the smart 
-> toaster market for all I know.
+>> drivers/pmdomain/mediatek/mtk-pm-domains.c:124:23: error: variable has incomplete type 'struct arm_smccc_res'
+     124 |         struct arm_smccc_res res;
+         |                              ^
+   drivers/pmdomain/mediatek/mtk-pm-domains.c:124:9: note: forward declaration of 'struct arm_smccc_res'
+     124 |         struct arm_smccc_res res;
+         |                ^
+>> drivers/pmdomain/mediatek/mtk-pm-domains.c:127:2: error: call to undeclared function 'arm_smccc_smc'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     127 |         arm_smccc_smc(MTK_SIP_KERNEL_HWCCF_CONTROL, cmd, 0, 0, 0, 0, 0, 0, &res);
+         |         ^
+>> drivers/pmdomain/mediatek/mtk-pm-domains.c:127:16: error: call to undeclared function 'ARM_SMCCC_CALL_VAL'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+     127 |         arm_smccc_smc(MTK_SIP_KERNEL_HWCCF_CONTROL, cmd, 0, 0, 0, 0, 0, 0, &res);
+         |                       ^
+   drivers/pmdomain/mediatek/mtk-pm-domains.c:55:38: note: expanded from macro 'MTK_SIP_KERNEL_HWCCF_CONTROL'
+      55 | #define MTK_SIP_KERNEL_HWCCF_CONTROL    MTK_SIP_SMC_CMD(0x540)
+         |                                         ^
+   include/linux/soc/mediatek/mtk_sip_svc.h:22:2: note: expanded from macro 'MTK_SIP_SMC_CMD'
+      22 |         ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, MTK_SIP_SMC_CONVENTION, \
+         |         ^
+>> drivers/pmdomain/mediatek/mtk-pm-domains.c:127:16: error: use of undeclared identifier 'ARM_SMCCC_FAST_CALL'
+   drivers/pmdomain/mediatek/mtk-pm-domains.c:55:38: note: expanded from macro 'MTK_SIP_KERNEL_HWCCF_CONTROL'
+      55 | #define MTK_SIP_KERNEL_HWCCF_CONTROL    MTK_SIP_SMC_CMD(0x540)
+         |                                         ^
+   include/linux/soc/mediatek/mtk_sip_svc.h:22:21: note: expanded from macro 'MTK_SIP_SMC_CMD'
+      22 |         ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, MTK_SIP_SMC_CONVENTION, \
+         |                            ^
+>> drivers/pmdomain/mediatek/mtk-pm-domains.c:127:16: error: use of undeclared identifier 'ARM_SMCCC_SMC_32'
+   drivers/pmdomain/mediatek/mtk-pm-domains.c:55:38: note: expanded from macro 'MTK_SIP_KERNEL_HWCCF_CONTROL'
+      55 | #define MTK_SIP_KERNEL_HWCCF_CONTROL    MTK_SIP_SMC_CMD(0x540)
+         |                                         ^
+   include/linux/soc/mediatek/mtk_sip_svc.h:22:42: note: expanded from macro 'MTK_SIP_SMC_CMD'
+      22 |         ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, MTK_SIP_SMC_CONVENTION, \
+         |                                                 ^
+   include/linux/soc/mediatek/mtk_sip_svc.h:18:41: note: expanded from macro 'MTK_SIP_SMC_CONVENTION'
+      18 | #define MTK_SIP_SMC_CONVENTION          ARM_SMCCC_SMC_32
+         |                                         ^
+>> drivers/pmdomain/mediatek/mtk-pm-domains.c:127:16: error: use of undeclared identifier 'ARM_SMCCC_OWNER_SIP'
+   drivers/pmdomain/mediatek/mtk-pm-domains.c:55:38: note: expanded from macro 'MTK_SIP_KERNEL_HWCCF_CONTROL'
+      55 | #define MTK_SIP_KERNEL_HWCCF_CONTROL    MTK_SIP_SMC_CMD(0x540)
+         |                                         ^
+   include/linux/soc/mediatek/mtk_sip_svc.h:23:7: note: expanded from macro 'MTK_SIP_SMC_CMD'
+      23 |                            ARM_SMCCC_OWNER_SIP, fn_id)
+         |                            ^
+   6 errors generated.
 
-Perhaps this would be useful to have in bindings commit messages, but
-the cover letter of >this< series states that Kaanapali is the newly
-announced Snapdragon 8 Elite Gen 5.
 
-The product page states at the very bottom of the spec sheet that
-SM8850 is another name for it (although the shift to codenames
-happened precisely to disconnect from specific SKU numbers,
-because e.g. both SA8775P and QCS9100 are 'lemans' silicon)
+vim +124 drivers/pmdomain/mediatek/mtk-pm-domains.c
 
-https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-8-elite-gen-5
+    54	
+  > 55	#define MTK_SIP_KERNEL_HWCCF_CONTROL	MTK_SIP_SMC_CMD(0x540)
+    56	
+    57	struct scpsys_domain {
+    58		struct generic_pm_domain genpd;
+    59		const struct scpsys_domain_data *data;
+    60		const struct scpsys_hwv_domain_data *hwv_data;
+    61		struct scpsys *scpsys;
+    62		int num_clks;
+    63		struct clk_bulk_data *clks;
+    64		int num_subsys_clks;
+    65		struct clk_bulk_data *subsys_clks;
+    66		struct regulator *supply;
+    67	};
+    68	
+    69	struct scpsys {
+    70		struct device *dev;
+    71		struct regmap *base;
+    72		const struct scpsys_soc_data *soc_data;
+    73		u8 bus_prot_index[BUS_PROT_BLOCK_COUNT];
+    74		struct regmap **bus_prot;
+    75		struct genpd_onecell_data pd_data;
+    76		struct generic_pm_domain *domains[];
+    77	};
+    78	
+    79	#define to_scpsys_domain(gpd) container_of(gpd, struct scpsys_domain, genpd)
+    80	
+    81	static bool scpsys_domain_is_on(struct scpsys_domain *pd)
+    82	{
+    83		struct scpsys *scpsys = pd->scpsys;
+    84		u32 status, status2;
+    85	
+    86		regmap_read(scpsys->base, pd->data->pwr_sta_offs, &status);
+    87		status &= pd->data->sta_mask;
+    88	
+    89		regmap_read(scpsys->base, pd->data->pwr_sta2nd_offs, &status2);
+    90		status2 &= pd->data->sta_mask;
+    91	
+    92		/* A domain is on when both status bits are set. */
+    93		return status && status2;
+    94	}
+    95	
+    96	static bool scpsys_hwv_domain_is_disable_done(struct scpsys_domain *pd)
+    97	{
+    98		const struct scpsys_hwv_domain_data *hwv = pd->hwv_data;
+    99		u32 regs[2] = { hwv->done, hwv->clr_sta };
+   100		u32 val[2];
+   101		u32 mask = BIT(hwv->setclr_bit);
+   102	
+   103		regmap_multi_reg_read(pd->scpsys->base, regs, val, 2);
+   104	
+   105		/* Disable is done when the bit is set in DONE, cleared in CLR_STA */
+   106		return (val[0] & mask) && !(val[1] & mask);
+   107	}
+   108	
+   109	static bool scpsys_hwv_domain_is_enable_done(struct scpsys_domain *pd)
+   110	{
+   111		const struct scpsys_hwv_domain_data *hwv = pd->hwv_data;
+   112		u32 regs[3] = { hwv->done, hwv->en, hwv->set_sta };
+   113		u32 val[3];
+   114		u32 mask = BIT(hwv->setclr_bit);
+   115	
+   116		regmap_multi_reg_read(pd->scpsys->base, regs, val, 3);
+   117	
+   118		/* Enable is done when the bit is set in DONE and EN, cleared in SET_STA */
+   119		return (val[0] & mask) && (val[1] & mask) && !(val[2] & mask);
+   120	}
+   121	
+   122	static int scpsys_sec_infra_power_on(bool on)
+   123	{
+ > 124		struct arm_smccc_res res;
+   125		unsigned long cmd = on ? 1 : 0;
+   126	
+ > 127		arm_smccc_smc(MTK_SIP_KERNEL_HWCCF_CONTROL, cmd, 0, 0, 0, 0, 0, 0, &res);
+   128		return res.a0;
+   129	}
+   130	
 
-Konrad
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
