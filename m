@@ -1,279 +1,152 @@
-Return-Path: <devicetree+bounces-221818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 259B0BA326C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:31:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 303C0BA3305
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:38:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A37441C0245B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:31:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF9D7166360
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:38:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1161291C1E;
-	Fri, 26 Sep 2025 09:31:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C4429D294;
+	Fri, 26 Sep 2025 09:37:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=prevas.dk header.i=@prevas.dk header.b="HkwksE4d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ck3dFJNk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011031.outbound.protection.outlook.com [52.101.70.31])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60B844207A;
-	Fri, 26 Sep 2025 09:31:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.31
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758879076; cv=fail; b=qSVBIBjD34BtAGDQFXYa26oxJDdMbE41rpGMw+uPT86FNlzd7ZYc+s6FQSa/vy0DCH16WgQaEkO2QJZOoqLUIQKrHP9GBdDkxWjKDKBFt7YrLA3dAarrT2z2rUyNZHHdalS4EcvSqjDEnthhzhdrmqCgCr9y0xAHFqop7DzytHE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758879076; c=relaxed/simple;
-	bh=FtGLhQhJYMpA9MY8juXz3GYHqPVTG4a3jWpKZgLqH3w=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=QKapXg7pwzYFoURRrz5ev17BO+dFldPrb4jfzPeJ5Aq7HD/xGIYw7nMJT7PTVEZp2a4Rp0+kb9X+f/dpN+cdUECZGKmbZ36fny7gkbhbhIIst9X0HAUB0HaQ7OK9vawnFVvPJA2W82GI0wu9dmNMbihsjmsBL39UeUu6Rhl4ZWg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prevas.dk; spf=pass smtp.mailfrom=prevas.dk; dkim=pass (1024-bit key) header.d=prevas.dk header.i=@prevas.dk header.b=HkwksE4d; arc=fail smtp.client-ip=52.101.70.31
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=prevas.dk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prevas.dk
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vsBD6eyoZWKUxsjGwzREgYSSwVWY+XgGe5DRLMMyUYhphvwqZla9XwW4mxSKohI9eBT9oCqphuj9ojQnzN7pUAEmyYD0qk2ZMvTgewD77Eu0tK24tkcKMh7mqiMjvSoOU/LnLCp1jo4L0hGI01OkdIIm8YVsSeH/EL3Ax1GPg71F5dk4ld2iXFILX4KlXYZaZ4aETOLAL4jscSd5HKv/TMGeCoFO6URlG5DkKfF55ejJUVR3WOpavIItYv+hZzQc97pEqRq3H9mAe/C+i+3LEzVPNS1QdFxOegBESvTU471BMQRjsniLO6FSpBC0Zpf0l/39GYYEbFqfpgmrqDAjNg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Yri90RlP39Bp+d0/wXGLp+l3FpKKx1aegV6kXSLzCQs=;
- b=vdgtH0uWxyP3AfdOTgVMSbJXnVBfZVzResezhNpGaKfejijJpSLl4JWP5j32MLG6qrjFBjuwlIFP6idPJE1JArZeSeHpdou8Ir/+4XkUfcCjMUHRW/wqsbk7YsQkNG7Ee3QnG6l9VsqQOtvF9XmqYO6XWABMU8bv34A4BoiVYJYEztdFmrP+vjq+eo8cLrgv6xF8Uke9AOW/d8OO86ZevW6tgj5C61g10G2+Y382L1dZD60s5fuDolTVncuV18dzQ7G4XTNK+YIyfsIBc3r+l04dvtEUVDzwFXvx76VMshzgtA5dXv0yQFTDan3iX61NtDTWirhblY9aDYAJFRHJTA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=prevas.dk; dmarc=pass action=none header.from=prevas.dk;
- dkim=pass header.d=prevas.dk; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prevas.dk;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Yri90RlP39Bp+d0/wXGLp+l3FpKKx1aegV6kXSLzCQs=;
- b=HkwksE4dt1zAoiqlxQFj8gp/gENzu69oqFmwTmmo5a/6UWsYx+TuSOtFLEsctegxkS422Zrb22sqvPIumRcQ8lWKMUxZU7IKSNQPSUY0vutlOUsJ0W+4t3DzJRL+gYnTLS7R2Rnhp5pwHtISrw/iEOpIaSZRN/i+5qHaXm0X2cM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=prevas.dk;
-Received: from DB9PR10MB4747.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:254::16)
- by AS1PR10MB5746.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:47d::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.13; Fri, 26 Sep
- 2025 09:31:06 +0000
-Received: from DB9PR10MB4747.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::7956:ad04:35d8:6f0b]) by DB9PR10MB4747.EURPRD10.PROD.OUTLOOK.COM
- ([fe80::7956:ad04:35d8:6f0b%5]) with mapi id 15.20.9137.018; Fri, 26 Sep 2025
- 09:31:06 +0000
-Message-ID: <4a97f86d-a466-41bb-860c-ed64715d1bd0@prevas.dk>
-Date: Fri, 26 Sep 2025 11:31:05 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: imx6qdl: make VAR-SOM SoM SoC-agnostic
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250925104942.4148376-1-stefan.prisacariu@prevas.dk>
- <aNXAaewv/MpqL78M@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Stefan Prisacariu <stefan.prisacariu@prevas.dk>
-In-Reply-To: <aNXAaewv/MpqL78M@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MM0P280CA0017.SWEP280.PROD.OUTLOOK.COM (2603:10a6:190:a::6)
- To DB9PR10MB4747.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:254::16)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4377829BD95
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:37:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758879465; cv=none; b=n54la4p5BRU9EbeJpm1khK69CFV7s1Woz3icWapZRBUl3XjlgZQ6Wt53UO2c6WRYTZ+kmQrklfLUF5/Q/usojrGTVPZCSGq2OGgObDxXJtliZmMku36h5nwF6Sx2u6yeLFblkvF+S1K+uSljX531dfEZx/nWVkUgHmDmiYeZ/9k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758879465; c=relaxed/simple;
+	bh=thNDQviaGyibFyGAqfP3goBA/6Fj0do4LHltc3WJriE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=FW+qm90cNK9m73dEBneg1HDRptltmbSWtZqAQLjexl5FGzdZGeTMj7ZA7WkdIrJ5bQWNdeCDgeH51PePFY1AuXGMx4vVaQT7zdqi0dCpVVOrjg3NWLU3OIQ0/IdAO9TDpKQb5d7BYsHo6oXswgUBDAwudNjDLbYIO0vd5DmcAnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ck3dFJNk; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-33082c95fd0so1996766a91.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 02:37:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758879463; x=1759484263; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UoStl/6O0pPwy/s/NQABzja2ZbIsUSjfUYP6v+Jyo+o=;
+        b=ck3dFJNky7QlQciS4HTNzG1DlsB5tGbjBlMHPASTFEHLWDwB60qI53Ciqdex2xK8/t
+         GxJ9Ak3rRgjn/cdsFpDQnKjUADg8OqjtwTdsd+j0vx/5WO5CZ/VwpGdUnTvzvq16jsEZ
+         FTbSwMUaz01lZgzxW2agXsNEJRh2+fkP/ImQAl47h9F8q2sGDrtNpHzs4pLF8ZhsHc5Y
+         Py15NnJY7Go/85d4kmNwKLFHelCOroIkkD9tgGBB0brgCEbyUIhE+iwDddnGWXSYS5Fh
+         o+2dabBLXVMdGMDHuTeLHgjf6jHSoAxJ8/xFYzVI3nG8yTtjU3fVPYmoBjjfDzWcTyg3
+         1Ydg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758879463; x=1759484263;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UoStl/6O0pPwy/s/NQABzja2ZbIsUSjfUYP6v+Jyo+o=;
+        b=j9Rpkd1dyKmIItj5idAjRy9yDWyJy0ZYfBfDEd1Vdtl04vuxTNSn87Q8/5M7Dw5PmJ
+         qwRcXQhxPhtwXXS15T9aYGvghK+7I6x6MyiYWQtHrj1M9RfoxDwT8+zG6HWaF8WiimuY
+         nIwFWrq6FyNpek+IYOgWYZ4zkA1Qxr1AU8a5K4pS4K/WGI9G58fYJup3HmrK31ciR0yk
+         w7Nc8I5Qh8TuJWnbXbMSl1S1unF43LTkBKTumkD45Ut9HatEFrx+QNl2mEYvHOyqNafb
+         QoKmH6qdOqVUkHlz+TvY2dDfci4dkE6jCa8zcdyO6m0Khh0VQWhnMt6UZYYnFyMiA+iL
+         djmA==
+X-Gm-Message-State: AOJu0YzVNt4TrCA9fZrhcthCxz1CAXljabpYAg9ADd8czVkS0ghZGPdH
+	KUDNxtorFdzdjhspplVOX6vP03fT+p0GAL3f0xaOJ4BaaXEaNlnT8b7++mJZ9w==
+X-Gm-Gg: ASbGncvR9WigXlzwaCmpUKqbF7jH2aZQcqCPyvByWDRLCgik50qC1Z6z1mhRVkr0q0v
+	NmrhRlLm7rcVq0TcgN7gFyF3D9iQQo5xHI59/U1E2aUXkHcpVRhWAdvVhx/zlEe9grBvPLm+tyn
+	KL37w7HtFkRaDerpPI5WfSroOyzvk4b9xx5i1K8Z9J6FBe3xvDMTztOOIM6MKzLSZbTvJroQUbY
+	MpZhLjibjWWT8JCAMQQdDeNpvSvsQ3Zy71bklI6DkI/ILN6cRrnEwQZ95e/jcAxsA26bVuXMFXx
+	tdpQ1c16/v2tozBcQprnw0gyVgBS1oLtxVT0WNOmuY2V0rrC87DTQaIZJ6CfNsl+38lBwYviYxN
+	LBf8cD9MpoA8fkL7d8oFkqyJkh3lzBHhEqoteovh0h4D/jbi5Ny2h4i+nea8=
+X-Google-Smtp-Source: AGHT+IH2wN/vTNpoB41B7wJ4UIGDQlG1DOtuFCeTQt8xZvPtyijptE31fGlsQRHND0LCJie+ahas4g==
+X-Received: by 2002:a17:90b:33c4:b0:330:8c87:8668 with SMTP id 98e67ed59e1d1-3342a259df0mr7079061a91.14.1758879463298;
+        Fri, 26 Sep 2025 02:37:43 -0700 (PDT)
+Received: from [172.17.0.3] (125-227-29-20.hinet-ip.hinet.net. [125.227.29.20])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b57c55bd160sm4211056a12.47.2025.09.26.02.37.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 26 Sep 2025 02:37:42 -0700 (PDT)
+From: Leo Wang <leo.jt.wang@gmail.com>
+Date: Fri, 26 Sep 2025 17:37:29 +0800
+Subject: [PATCH] ARM: dts: aspeed: clemente: Add HDD LED GPIO
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR10MB4747:EE_|AS1PR10MB5746:EE_
-X-MS-Office365-Filtering-Correlation-Id: b5338154-4a5b-4c0a-898a-08ddfcdf6b69
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|7416014|376014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?dS92ZlFSN2tBUUp3bGlRNkpSZGhUUWgyQVJscGVUU1lPQTR4M1YxcllyYnYz?=
- =?utf-8?B?dVdGcWcxaTlyN3RHM2ljbmt4dzVRdEZ2emR3a0kvSTZnZGt1Y2l4ZTZRWXVC?=
- =?utf-8?B?Z3AzQ3NlMUE2TnVueWIrOHQ1YjlNdnQvQ1hZOWllVEpjVzI2ektKdFBrOFNh?=
- =?utf-8?B?WTNYSDIzYy9qclBGWGo3M2RYenVSUzIxaVZSc0k1cFVqMURFQmpHSXdRRjNT?=
- =?utf-8?B?ZVI0ZFIvM2ExODBFRWlseCtZR1luRFdIOFBCVGtXZ3JCNjZHNktlOFNieG1T?=
- =?utf-8?B?RVRYRHFqTllmdmxSNko4TUNENkRBQXpWZnZGclQ0Y0VxSWdJTXFmVG9rS3Fq?=
- =?utf-8?B?VGVPbnZBUWE0cDBVZDVreThiNGpSNTZ0clBIczlRanJOZ2p3SG1rU1RjQklz?=
- =?utf-8?B?cUVidC9WNjZaWHh2am10NTBsTDg1RkF3Z3VZSkNYVmVoVzVGclpESFNYTVg4?=
- =?utf-8?B?cGxENWdmNGQxUktQd3V1V09Way9rWllCWEd3Q004N2R4dmhMdzVwVE1xZyt0?=
- =?utf-8?B?VmN1NlZCR01GVExFREZhVnY0OERTdFRtK0hsdVpOd0o4Tzd2Ujl1NU9NT2Fp?=
- =?utf-8?B?cDZvM2FSOVNGbmdPaC9QN3U5RVVGQktzbE1ncGY3WmQ0Z25CTzg3R2hJTndO?=
- =?utf-8?B?R1grOHI2T3oxcXFCdzVBUExLNnhSa1dJek9vMWdWblpsNEtIcm1ndUE4SEpw?=
- =?utf-8?B?SGhoOFE5TnR3Q2ZSbnlkdGRadVA3dTE2MXowaURERzZ6UzdIRUpHUDQvRG03?=
- =?utf-8?B?bklHdWNuTFVVTWVNTFNYWmtPSXVqUnBvSTd5ZUVnNTZ6b3NwbHJydlNuSnJj?=
- =?utf-8?B?RmVXQTEvc3JBUTUvbEZxUDE5MncrU2xXQ3ZjNldlT0xVNDBuV0xEempOYVlS?=
- =?utf-8?B?bVVFV0tMVU5MRkVtbjZBY2xYd1RNbWhLb25kMXVqSXdXZTBUT3JCLy81QWZZ?=
- =?utf-8?B?QWVEUmUvdGJSdDRBblI1K3BOeURmUDlwdENSbWpiTXovMTRJTSthSGE0cDNS?=
- =?utf-8?B?dXNIYnZadkxWU1BrdmdqanRjc2MrbEk1OGlkbzRiUkNXaHhVNEdWZnBRbWx3?=
- =?utf-8?B?eGJ0SmpUZ29ObDdrd2J3QS9kM3NWTzNqWEFKMk5OdHBDWFNpcHpCM0JEUGIx?=
- =?utf-8?B?SVAyd3JUL0FEc2JqMERzT1VWekE4RmgwU2EwdXVUenFYSUNtUzQ2MkMraTND?=
- =?utf-8?B?NmM1cE5hTFlWSnErenIxYWxkcGlGMDBFL3BTTVFHV2w1YlUxRUVRQ0RVaVJV?=
- =?utf-8?B?bFp5cERId0JKMXZjdFArTXhyaGR4WE0yQjB0UFIwUGcrTWJpRGxtR1BrZ1Fx?=
- =?utf-8?B?Qk5CRmNSbnYyQVBYQmxMVmphMXNGOVhOdG92U2pvQlhncEtLNzBiNGRyY1Vz?=
- =?utf-8?B?QXFkVUhDcWs3QUMvYk9KTUhIUDhybGNVLzZpMlZoS2xTaUNaQURoQTVaUGc3?=
- =?utf-8?B?ZlExdDVaSEFVaWhDT20rUjBOODlvSWZGRGg5bjd6NVpXUnJ3clBnajNhRUFw?=
- =?utf-8?B?emxmV1l3QzdlYlQzbVV5cDVtLzQrc0NCdHNNTGZ1YWUzU0J6STVsNEc2dk1O?=
- =?utf-8?B?TlVBNTVuNjUrbTV3cGpzY0VUVGxrVVVDTWFiUFVCWWZRUmFPUE84bXI5WlVW?=
- =?utf-8?B?dmxNNk1ibUt2RUFUOWtDdFJiS0x6dVpOWHpidmlSYTdaUnkya1grMDJCQ1JX?=
- =?utf-8?B?MVVXbkdsbmo4R1hTTlZEMWlzM01zTEcyOE50OEJkd0lWeHZIUWpuZ2NlZUpB?=
- =?utf-8?B?S3JocnlVVkQwbTNXYk1zcGtVSHROa2pJWjlkbFRjS2NuencxOS9tRDREdzl0?=
- =?utf-8?B?c2RNN0F0OWV6ZVQrRVd6VktVNng3Ly8rYk5pZDJwcUVNRVczT2hKZlQvSXpt?=
- =?utf-8?B?VC9aSktTYXQ0ZGpLa0hvOWVWVXVnSlNaYS9Vd3ZwUTNCQS9GWkJnSE9sWDlr?=
- =?utf-8?Q?O4S3uUJ1cCIu7kc/y4ugSBFUuokD2RHZ?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR10MB4747.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?eTFpbUIyZGFKZERWdHRnRTFJMWlnL1dKeXVQUW9qS3l1WmhWQVUwOVkxRnF4?=
- =?utf-8?B?NHR3dUNUTytnb1V1WGFSaEYyWDVjb0FFWUc2NFpZR2w2OVEzS2FNUXNjRkZa?=
- =?utf-8?B?TGdNaCtmWDB2cUF4elVvcWJKUUlIbnBObm1TYjZzRUhTK2NwN0FaK1d4dmZ2?=
- =?utf-8?B?L3dFb0Erc3BTY2l5eXNJY1JkTFRSdUthM2VnZGhyaE5TSkllaU1SVk9UQ2xr?=
- =?utf-8?B?U1NiWXRnajJUL2lRcmYvdGxTM0REeWhvSW5GNFYwSHBmWkJUamxOay9oNGlU?=
- =?utf-8?B?MmVsOXZXNGNjMFB5aGg2SFN3TUZ4KzZOSGtRMVBSTm43SWFaVURERmV4c1Z0?=
- =?utf-8?B?YlJrVXVPL1BOWkVOQkFjWDlSVFVqM0lpM0orYmE3elo2N2xZQ1ZsamREanpa?=
- =?utf-8?B?U3NxV09adHhUb1RlQUhPZGhnWHVGKzZJWmN1VXVEL0xGSUNZWm1NV25lT21p?=
- =?utf-8?B?NXJUZjdyM2p4OWlQN0YyVnRuV2xSOEZ4MHdqQldEYTBOZm96MXB1d1hkSkJt?=
- =?utf-8?B?U0MvVmU2TEtETGRNK1djTUFMTVBMLzZYemtrdlF2SW0xaWs3c1NTdlBZV1JV?=
- =?utf-8?B?NCsrWVJ4dDB4bkcxRm5OVUE0c0o3Und1ZmFibVlxYXk5VXQ3Q2pJNExjK2lr?=
- =?utf-8?B?dks5NllFSVFxSjZvODRUMW5EZTJ2bGxSV3VRUGtvNEliRVJoQlVITUJVODN5?=
- =?utf-8?B?VHBaUFhVOS9CZDlBa1dSRVhjeHNWL0JwTTZ0QzIyUFZJb2tCM2tjS0ZsQnF5?=
- =?utf-8?B?cDArN0ZVVHFHd1lSVVVlUks5VUl0aEVHVEhsV25DS1pPQVU4cXo4SGtYZ1Ry?=
- =?utf-8?B?eDd5eTNoZ0RBSXZMTXlNdXFzbUdaMzdZTUVkR0ZnLzBWQ0cvZlhURGplZU1t?=
- =?utf-8?B?a25la3NQbC84SDFZanRHL2paUEJMMGIwV0hwcVRnUnczc1JzZmN6T05zWERh?=
- =?utf-8?B?Ti9qdENzL2xUVmhmWkh0bllkVGdQaGdwMExsYmJuQlFlbUE3dWk1SEtwRXhH?=
- =?utf-8?B?azFYVlZ4WEMzY2Y1Y1JwSkVmeG5wc3VkT1hDclRFY243K05zZTVjSVl5UnNk?=
- =?utf-8?B?YlppTXo5WTB6RXFqd1labFdwdnN2dkVGb2d2eWdqdld4Skw2Q1hzclJTWWxM?=
- =?utf-8?B?KzZUUnpHbEY3cjhDdS9WK0FyaUhtUVVMdFNtWTE5TFVEQXBUNmdOZWJJekNV?=
- =?utf-8?B?VTVDdit2dXg5NGpYSVZWWENsMmxBWmtxNGhobUZYWVhrT2VsZnF1SitXcEto?=
- =?utf-8?B?OXBoVmd1OVIvdkNBUTZxSU5zMm93Q0p1anJmb2ZTVEJYeUFRVS9vcklTbk9R?=
- =?utf-8?B?cjJMSktFYmVucVM2NTRNczVFYVRiK3ZhSys3WTl0cUNleGhLeXZGUVBFR2hk?=
- =?utf-8?B?SHN1bDlXWFBtSUZvZ1lUVW14TmloUEs3QTJEL2VacnU1RitFaU5hbUM3dncw?=
- =?utf-8?B?NTlkNVQzL1BDOTJGQkZaRGFvUHZaM2w3Yk5oMVMrQmxUZW5yMmRLYjUvVm5u?=
- =?utf-8?B?TWY5ck01bFNqTjVmNWlQUXpZeHlqc3FsdmxJamlkWVV6Mkp0N2xTK0VtVXd0?=
- =?utf-8?B?TGlGY1ZMNkk1YlVkTURYRUIzcW40WXhSWGpDUzR4ZEFQNVdpbnp1akRWYjFq?=
- =?utf-8?B?M1JyaXJ1QU51NlBwNkhNMzZOZ3hWeTNRVjFOR2xuV2JPNEtMYTJ2R0ZIekNM?=
- =?utf-8?B?a2NJY2xmWjg4U3ZRalJtSkNmakNUaGx0TzR4UWl5NjFnQjlpVy9uRXJPTS9H?=
- =?utf-8?B?eG1nMzc5dkVmUE90TExFM1M0ZGJxaGU3cGxuQ2QwaGY0a3BXeGMrVWZKRDFO?=
- =?utf-8?B?NW85TERUU3BQdmhxSS9paUsxVVVybFpIVUtUS3FVdFZJV2hQSEhVLzNTMTdp?=
- =?utf-8?B?UFF6YWlBVTkvQ3RmNFljVnJyQ1ZjOUwySlh6dFJyQTNkdmM0ZS9kcFVVYkVS?=
- =?utf-8?B?QnFvaGRmQ0RIV1lLOEI0VmxHMkVxcC82TENhaEdpL3Y0cnFlUGVPYW9FeTJr?=
- =?utf-8?B?MzdSQW9CcHlIL2FGZ2dONDhUQmFkREpLWDUvQXJ0UTBRSTBSZldQS21uZzNU?=
- =?utf-8?B?bktSRUtNWjZYYmNLSW5TY1AwOWhmODFEZU15enFQNk1HSENDWE43d01IUDY4?=
- =?utf-8?B?ZHRIZHo2QjdHajQxSEZlRHY2U1NSM3B1NDhybC9rNm4vNGtjT0JVaTdwZEI5?=
- =?utf-8?B?SWc9PQ==?=
-X-OriginatorOrg: prevas.dk
-X-MS-Exchange-CrossTenant-Network-Message-Id: b5338154-4a5b-4c0a-898a-08ddfcdf6b69
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR10MB4747.EURPRD10.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2025 09:31:06.7670
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: d350cf71-778d-4780-88f5-071a4cb1ed61
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: A5CBV84AweOwPX7YqwyIirflQzKhr6S6MXNumnZ8unOvtG0S0L3+xscVIhTWERUpDhwTd6O7dYnhhWoTDN6VjhDFmzt9QYMVTMol9NvdW+s=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR10MB5746
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250926-leo-dts-add-shunt-resistor-v1-1-c871a68792f0@gmail.com>
+X-B4-Tracking: v=1; b=H4sIANhe1mgC/x3MSwqDMBAA0KvIrDsQ06rYqxQX+Yw6IEmZiSKId
+ 2/o8m3eBUrCpPBuLhA6WDmnivbRQFhdWgg5VoM1tjOj7XGjjLEouhhR1z0VFFLWkgVN8O71nIf
+ OB4IafIVmPv/5Z7rvHwEMnJFsAAAA
+X-Change-ID: 20250926-leo-dts-add-shunt-resistor-0cba43f75bce
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+ george.kw.lee@fii-foxconn.com, bruce.jy.hung@fii-foxconn.com, 
+ leo.jt.wang@fii-foxconn.com, Leo Wang <leo.jt.wang@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758879460; l=1436;
+ i=leo.jt.wang@gmail.com; s=20250618; h=from:subject:message-id;
+ bh=thNDQviaGyibFyGAqfP3goBA/6Fj0do4LHltc3WJriE=;
+ b=T71P6S/+uzqAe2pm19qHzYoz2nhygnZpGVvbKLhyWQcQWVsDSelLeccTY+VnuA6uzE1BPL8L4
+ Lvp20VxcTRFDYgHucePFNrm13q3hBU7efTHRYQ5iBAKOa87ktB1nm+E
+X-Developer-Key: i=leo.jt.wang@gmail.com; a=ed25519;
+ pk=x+DKjAtU/ZbbMkkAVdwfZzKpvNUVgiV1sLJbidVIwSQ=
 
+Define a GPIO expander pin for the HDD LED and expose it via the
+LED subsystem. This allows the BMC to control the front panel
+HDD activity LED.
 
-On 26/09/2025 00.21, Frank Li wrote:
-> On Thu, Sep 25, 2025 at 12:49:40PM +0200, stefan.prisacariu@prevas.dk wrote:
->> From: Stefan Prisacariu <stefan.prisacariu@prevas.dk>
->>
->> Make SoM .dtsi SoC-agnostic by moving SoC include to board level
->>
->> imx6qdl-var-som.dtsi currently includes imx6q.dtsi, which makes this SoM
->> description Quad/Dual specific and prevents reuse from i.MX6DL boards.
->>
->> Move the SoC selection to the board level:
->>   - Drop the imx6q.dtsi include from the SoM .dtsi.
->>   - Add imx6q.dtsi include to imx6q-var-mx6customboard.dts.
-> move imx6q.dtsi from imx6qdl-var-som.dtsi to imx6q-var-mx6customboard.dts.
->
->> This keeps the SoM .dtsi SoC-agnostic (it already relies on imx6qdl.dtsi
->> for family-common parts) and allows boards using the DualLite or Solo to
->> include imx6dl.dtsi instead.
->>
->> Why this is needed:
->> I need to reuse imx6qdl-var-som.dtsi for a board based on i.MX6DL
->> (VAR-SOM SoM + custom carrier). Without this change, the SoM .dtsi
->> forces imx6q.dtsi, which is incorrect for DL and breaks the layering
->> model used upstream.
-> Can use simple words
->
-> To reuse imx6qdl-var-som.dtsi on i.MX6DL board.
->
->> Verification:
->> The DTB for imx6q-var-mx6customboard was rebuilt before and after this
->> change. Both the binary DTB and the decompiled DTS
->> (via dtc -I dtb -O dts -s) are identical, confirming no functional change
->> for the existing board.
-> Needn't this section (good place for these informaiton is cover letter).
->
->> Alignment:
->> This also aligns the layering with how it is already done for
->> imx6q-var-dt6customboard.dts, where the SoC include is handled at the
->> board level.
-> Needn't this section
->
->> No functional changes for imx6q-var-mx6customboard are intended.
-> good
->
->> Files were introduced in:
->> commit e5c810848d2a ("ARM: dts: imx6qdl: Add Variscite VAR-SOM-MX6
->> SoM support")
->> commit a5b59a3f41bd ("ARM: dts: imx6q: Add Variscite MX6 Custom board
->> support")
-> Needn't this section.
->
->> Signed-off-by: Stefan Prisacariu <stefan.prisacariu@prevas.dk>
->> ---
->>   arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts | 1 +
->>   arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi         | 3 ---
->>   2 files changed, 1 insertion(+), 3 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts b/arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts
->> index 18a620832a2a..a55644529c67 100644
->> --- a/arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts
->> +++ b/arch/arm/boot/dts/nxp/imx/imx6q-var-mx6customboard.dts
->> @@ -8,6 +8,7 @@
->>
->>   /dts-v1/;
->>
->> +#include "imx6q.dtsi"
->>   #include "imx6qdl-var-som.dtsi"
->>   #include <dt-bindings/pwm/pwm.h>
->>
->> diff --git a/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
->> index 59833e8d11d8..51bcaf04546b 100644
->> --- a/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
->> +++ b/arch/arm/boot/dts/nxp/imx/imx6qdl-var-som.dtsi
->> @@ -9,9 +9,6 @@
->>    * Copyright 2022 Bootlin
->>    */
->>
->> -/dts-v1/;
-> why drop this line.
+Changes include:
+ - Add `led-hdd` node under the LED definitions
+ - Name the expander pin "HDD_LED_N" in io_expander13
 
-As far as I know this line should be present in the dts not dtsi files,
-also this will remove the requirement to have this dtsi file first 
-included in
-the dts files
+Signed-off-by: Leo Wang <leo.jt.wang@gmail.com>
+---
+ arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-Stefan
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
+index a614f947dafc9a6628c3f3d45b62ff3ca9d2b618..450446913e36b1418fab901cde44280468990c7a 100644
+--- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
+@@ -95,6 +95,11 @@ led-3 {
+ 			label = "bmc_ready_cpld_noled";
+ 			gpios = <&gpio0 ASPEED_GPIO(P, 5) (GPIO_ACTIVE_HIGH|GPIO_TRANSITORY)>;
+ 		};
++
++		led-hdd {
++			label = "hdd_led";
++			gpios = <&io_expander13 1 GPIO_ACTIVE_LOW>;
++		};
+ 	};
+ 
+ 	memory@80000000 {
+@@ -1199,7 +1204,7 @@ io_expander13: gpio@14 {
+ 		#gpio-cells = <2>;
+ 		gpio-line-names =
+ 			"rmc_en_dc_pwr_on",
+-			"",
++			"HDD_LED_N",
+ 			"",
+ 			"",
+ 			"",
 
->
-> Frank
->> -
->> -#include "imx6q.dtsi"
->>   #include <dt-bindings/clock/imx6qdl-clock.h>
->>   #include <dt-bindings/gpio/gpio.h>
->>   #include <dt-bindings/sound/fsl-imx-audmux.h>
->>
->> base-commit: 8f5ff9784f3262e6e85c68d86f8b7931827f2983
->> --
->> 2.49.1
->>
+---
+base-commit: c65261717599d419e9c683d85f515d3ca2261549
+change-id: 20250926-leo-dts-add-shunt-resistor-0cba43f75bce
+
+Best regards,
+-- 
+Leo Wang <leo.jt.wang@gmail.com>
+
 
