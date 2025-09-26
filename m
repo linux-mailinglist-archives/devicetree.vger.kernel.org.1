@@ -1,69 +1,59 @@
-Return-Path: <devicetree+bounces-221978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221979-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C3F9BA4B7D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:55:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A9D3BA4BC1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 19:08:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA4C27A2AFC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:54:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D45338478C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 17:08:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08B7F307AEA;
-	Fri, 26 Sep 2025 16:55:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB1D6309F10;
+	Fri, 26 Sep 2025 17:08:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CNv6s0I1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KcAC5Ct/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B917C1D86DC;
-	Fri, 26 Sep 2025 16:55:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFB0226D4EF;
+	Fri, 26 Sep 2025 17:08:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758905739; cv=none; b=hu2SRGCwICcxu7lk9j1P2J8/lx5m2b8koqF/kt8W2NTxkm3pkRJhaLoulxegUtuiy+yCNCeb63pmUhj+iTGxfHFqA1vrKDHT4HddZnArR6i63gj9Vvu0UkxnlMCJ6j4nmjPWX94VVzFGcgqwoIoSXjUKHalDq5uEfLTJn7vCAEo=
+	t=1758906504; cv=none; b=LO5tZ3OA3TaWCqnHx67gF7STq0RRRHKeLqnA63yG44YR5njMzcTq9DZPhGedWj5wCdQ1ReTq6476/wyxMKhZ+MzxKjTTGr5w/m7/YRkesX1ON9W+rCkEjcueC92DIlI1xk/TiOy5ALELj3MWPFIGJxVKxGMertwI7B22PdVTcxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758905739; c=relaxed/simple;
-	bh=pI9degLf/+q59D0fv8fpQNooxIH3uWVgpJc8N6uXbW8=;
+	s=arc-20240116; t=1758906504; c=relaxed/simple;
+	bh=DdOHPKjFapoKiubB7w8+kTw2/pHKVJAEF8mpMrWc1Ms=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Po7lprEah+KxXlbgw9nM1mXcz8PMPfo+4us3M7B2cY9YKS/asZsZBkZa1qz/RbMJ3nemydxOLLmhTlIlh8qfNS9g+KFUlgdaMzn8/mPd2V4nmjMrO3vrTYSb7jAC9rhisO6O1kxa/gMulD5CkglEZvUsT2G25dChWxYGztrWbnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CNv6s0I1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FC4FC4CEF4;
-	Fri, 26 Sep 2025 16:55:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=X3N03utz2xEhImxrPhAu4E9yG/fM5xX335N4OGnBJ3UVFUFfLTqjHgSZBr+xl9F9vhrrkCL1x9UQvkjYqnuULUR1bNS5xyHPkJqZ5FFKMxPPKZ8UI2yy2udFizDL6axrfFbPFU5NjmIM4qpcc66DyzyCpdm9GbDNidW/TrDqdkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KcAC5Ct/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5CD0BC4CEF4;
+	Fri, 26 Sep 2025 17:08:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758905739;
-	bh=pI9degLf/+q59D0fv8fpQNooxIH3uWVgpJc8N6uXbW8=;
+	s=k20201202; t=1758906501;
+	bh=DdOHPKjFapoKiubB7w8+kTw2/pHKVJAEF8mpMrWc1Ms=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CNv6s0I15gC3nUFJYvTIXlSI1AxJD9q0u/28WFjydG4s3aEbNDQM3K3dEAdRr8Qla
-	 PGTHbo6NItVKL1HdEqHUpcH0AX5RTvpjlQupbL2ZqDH1NiMdE+fh2d+9FSmAl0ZZmb
-	 AHX7OKP3LK0R3zxOZBgNVoeso3oOI93r0/q/4mjd+wZK/74VLJHj4oYA/VOhmzqrqC
-	 cDUbjat38PeRVT0f5K/x+DemPmO3DWfckHjIFMoZvG9LsOYPlXb8pb2ez9so2nc+B0
-	 PYoPqFpKOQddrXrRA8wlElbjRTHoCZ4MS/Pzh7EfSjgZQyG4VkyQTHRp+RRLhdg45t
-	 iB4QM4Gva7RMQ==
-Date: Fri, 26 Sep 2025 17:55:32 +0100
+	b=KcAC5Ct/ns6qbixNqYichIq4QktRG/haIAN7jWinp6mJvW8V7DCyw4lSU5vcsTMQf
+	 CjaSxK+byI+jd2gdMqtcX9u+PFOwAsEhcw7W6+FAy2xuVUEncesPrf7T9uk+vz8zoy
+	 Oo1iBQb/MAH+UuBmPJyDlu8kvqggrBMT2pV1HQPyaw/+ZUCYmmDHXxrZy8P8Unbmfk
+	 0w3q2rr6VbSDgQ4USCRThYu7ba+DwvHeOuKXWvIQsz1jYakRqC+Aty/WbGA4eOseOV
+	 mXaXHycevxBaUo9O293nR9fpbrFiyJ4/z2ORtjLaDW7M9JY5A9mltWIW+LBM9XmPWQ
+	 tFu8+W5vz1CTQ==
+Date: Fri, 26 Sep 2025 18:08:16 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Ricardo Ribalda <ribalda@chromium.org>
-Cc: Hans de Goede <hansg@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To: Joan-Na-adi <joan.na.devcode@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Robert Moore <robert.moore@intel.com>,
-	Hans Verkuil <hverkuil@kernel.org>, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev
-Subject: Re: [PATCH v3 07/12] dt-bindings: media: Add usb-camera-module
-Message-ID: <20250926-mute-boil-e75839753526@spud>
-References: <20250926-uvc-orientation-v3-0-6dc2fa5b4220@chromium.org>
- <20250926-uvc-orientation-v3-7-6dc2fa5b4220@chromium.org>
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Joan Na <joan.na@analog.com>
+Subject: Re: [PATCH 3/3] dt-bindings: regulator: Add MAX77675 regulator
+ binding
+Message-ID: <20250926-silliness-unopposed-d48b3dea455e@spud>
+References: <20250926053757.480086-1-joan.na@analog.com>
+ <20250926053757.480086-4-joan.na@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,130 +61,301 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dvlxf+F9Nk0RUTPP"
+	protocol="application/pgp-signature"; boundary="YasFFFzUT3OF5nyw"
 Content-Disposition: inline
-In-Reply-To: <20250926-uvc-orientation-v3-7-6dc2fa5b4220@chromium.org>
+In-Reply-To: <20250926053757.480086-4-joan.na@analog.com>
 
 
---dvlxf+F9Nk0RUTPP
-Content-Type: text/plain; charset=us-ascii
+--YasFFFzUT3OF5nyw
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 26, 2025 at 01:11:31PM +0000, Ricardo Ribalda wrote:
-> For fixed cameras modules the OS needs to know where they are mounted.
-> This information is used to determine if images need to be rotated or
-> not.
+On Fri, Sep 26, 2025 at 02:37:57PM +0900, Joan-Na-adi wrote:
+> From: Joan Na <joan.na@analog.com>
 >=20
-> ACPI has a property for this purpose, which is parsed by
-> acpi_get_physical_device_location():
-> https://uefi.org/htmlspecs/ACPI_Spec_6_4_html/06_Device_Configuration/Dev=
-ice_Configuration.html#pld-physical-location-of-device
+> Add device tree binding YAML schema for the Maxim MAX77675 PMIC regulator.
+> This defines the node properties and supported regulator names for use
+> in device tree sources.
 >=20
-> In DT we have similar properties for video-interface-devices called
-> orientation and rotation:
-> Documentation/devicetree/bindings/media/video-interface-devices.yaml
->=20
-> Add a new schema that combines usb/usb-device.yaml and
-> media/video-interface-devices.yaml
->=20
-> Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
+> Signed-off-by: Joan Na <joan.na@analog.com>
 > ---
->  .../bindings/media/usb-camera-module.yaml          | 46 ++++++++++++++++=
-++++++
->  MAINTAINERS                                        |  1 +
->  2 files changed, 47 insertions(+)
+>  .../bindings/regulator/maxim,max77675.yaml    | 202 ++++++++++++++++++
+>  1 file changed, 202 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max=
+77675.yaml
 >=20
-> diff --git a/Documentation/devicetree/bindings/media/usb-camera-module.ya=
-ml b/Documentation/devicetree/bindings/media/usb-camera-module.yaml
+> diff --git a/Documentation/devicetree/bindings/regulator/maxim,max77675.y=
+aml b/Documentation/devicetree/bindings/regulator/maxim,max77675.yaml
 > new file mode 100644
-> index 0000000000000000000000000000000000000000..e4ad6f557b9151751522e49b7=
-2ae6584deb0c7ba
+> index 000000000000..f93dfdc499bc
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/usb-camera-module.yaml
-> @@ -0,0 +1,46 @@
+> +++ b/Documentation/devicetree/bindings/regulator/maxim,max77675.yaml
+> @@ -0,0 +1,202 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/media/usb-camera-module.yaml#
+> +$id: http://devicetree.org/schemas/regulator/maxim,max77675.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: USB Camera Module
+> +title: Maxim MAX77675 PMIC Regulator
 > +
 > +maintainers:
-> +  - Ricardo Ribalda <ribalda@chromium.org>
+> +  - Joan Na <joan.na@analog.com>
 > +
 > +description: |
-> +  This schema allows for annotating auxiliary information for fixed came=
-ra
-> +  modules. This information enables the system to determine if incoming =
-frames
-> +  require rotation, mirroring, or other transformations. It also describ=
-es the
-> +  module's relationship with other hardware elements, such as flash LEDs=
- or
-> +  Voice Coil Motors (VCMs).
+> +  The MAX77675 is a PMIC providing multiple switching buck regulators
+> +  (SBB0=E2=80=93SBB3), accessible via I2C. Each SBB can be configured in=
+dividually
+> +  in the Device Tree. Additional PMIC settings can be configured through
+> +  device-specific properties.
+> +  Users should use the macros from dt-bindings/regulator/maxim,max77675-=
+regulator.h
 > +
 > +allOf:
-> +  - $ref: /schemas/usb/usb-device.yaml#
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
+> +  - $ref: regulator.yaml#
 > +
 > +properties:
+> +  compatible:
+> +    const: maxim,max77675
+> +
 > +  reg:
 > +    maxItems: 1
 > +
+> +  maxim,dvs-slew-rate:
+> +    description: |
+> +      DVS slew rate setting.
+> +      0 (MAX77675_DVS_SLEW_5MV) - 5 mV/=CE=BCs
+> +      1 (MAX77675_DVS_SLEW_10MV) - 10 mV/=CE=BCs
 
-What actually causes this schema to be applied? Did I miss it getting
-included somewhere?
+Please use proper units for this property.
 
-> +required:
-> +  - reg
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
 > +
-> +additionalProperties: true
+> +  maxim,latency-mode:
+> +    description: |
+> +      Latency mode for voltage transition:
+> +      0 (MAX77675_LAT_MODE_HIGH_LATENCY) - Low quiescent current, high l=
+atency (~100=CE=BCs)
+> +      1 (MAX77675_LAT_MODE_LOW_LATENCY) - High quiescent current, low la=
+tency (~10=CE=BCs)
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
+
+Seems like this should be a string enum, of "low" and "high".
+
+> +  maxim,drv-sbb-strength:
+
+Drive strengths usually in amps, how come this is not? If amps is not
+meaningful here, please use strings not register values.
+
+> +    description: |
+> +      SIMO Buck-Boost Drive Strength Trim.
+> +      0 (MAX77675_DRV_SBB_FASTEST) - Fastest transition (~0.6 ns)
+> +      1 (MAX77675_DRV_SBB_FAST) - Faster transition (~1.2 ns)
+> +      2 (MAX77675_DRV_SBB_MEDIUM) - Moderate transition (~1.8 ns)
+> +      3 (MAX77675_DRV_SBB_SLOWEST) - Slowest transition (~8 ns)
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3]
+> +
+> +  maxim,manual-reset-time:
+> +    description: |
+> +      Manual reset time in seconds:
+> +      0 (MAX77675_MRT_4S): 4 seconds
+> +      1 (MAX77675_MRT_8S): 8 seconds
+> +      2 (MAX77675_MRT_12S): 12 seconds
+> +      3 (MAX77675_MRT_16S): 16 seconds
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3]
+
+For time measured in seconds, the standard unit suffix is "-sec". Please
+use that rather than register values.
+
+> +
+> +  maxim,en-pullup-disable:
+> +    description: |
+> +      Disable internal pull-up for EN pin.
+> +      0 (MAX77675_PU_EN): Internal pull-up enabled (default).
+> +      1 (MAX77675_PU_DIS): Internal pull-up disabled.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
+
+binary properties like this should be booleans. You decide based on the
+property being present rather than the value.
+
+> +
+> +  maxim,bias-low-power-request:
+> +    description: |
+> +      Controls the bias low-power mode setting.
+> +      0 (MAX77675_BIAS_NORMAL): Normal bias operation
+> +      1 (MAX77675_BIAS_LPM_REQ): Request low-power bias mode
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
+> +
+> +  maxim,simo-int-ldo-always-on:
+> +    description: |
+> +      SIMO internal channel disable configuration.
+> +      0 (MAX77675_SIMO_INT_NORMAL): SIMO channel enabled
+> +      1 (MAX77675_SIMO_INT_LDO): SIMO channel disabled
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
+
+Same for these two.
+
+> +  maxim,en-mode:
+> +    description: |
+> +      Enable mode configuration.
+> +      0 (MAX77675_EN_PUSH_BUTTON): Push button
+> +      1 (MAX77675_EN_SLIDE_SWITCH): Slide switch
+> +      2 (MAX77675_EN_LOGIC): Logic mode
+> +      3 (MAX77675_EN_RESERVED): Reserved
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2, 3]
+
+This should probably be a string. Not sure what the point of allowing
+the reserved value is though.
+
+> +
+> +  maxim,en-debounce-time:
+> +    description: |
+> +      Debounce timer enable.
+> +      0 (MAX77675_DBEN_100US): 100us
+> +      1 (MAX77675_DBEN_30MS): 30ms
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1]
+
+Please put this property into a unit of time. "-us" is probably the
+correct suffix to go for.
+
+> +
+> +  regulators:
+> +    type: object
+> +    description: Regulator child nodes
+> +    patternProperties:
+> +      "^sbb[0-3]$":
+> +        type: object
+> +        $ref: regulator.yaml#
+> +    properties:
+> +      maxim,fps-slot:
+> +        description: |
+> +          FPS slot selection.
+> +          0 (MAX77675_FPS_SLOT_0): FPS Slot 0
+> +          1 (MAX77675_FPS_SLOT_1): FPS Slot 1
+> +          2 (MAX77675_FPS_SLOT_2): FPS Slot 2
+> +          3 (MAX77675_FPS_SLOT_3): FPS Slot 3
+> +          4 (MAX77675_FPS_NONE): No FPS Slot (disabled)
+
+> +          5 (MAX77675_FPS_DEF): Use the defaul
+
+What does this even mean? Where does the default come from?
+
+Also, is this property basically just a reinvention of reg?
+There's no explanation so it is hard to tell.
+
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum: [0, 1, 2, 3, 4, 5]
+> +
+> +      maxim,slew-rate-use-dvs:
+> +        description: |
+> +          0 (MAX77675_SR_2MV_PER_US): Fixed slew rate of 2mV/=CE=BCs.
+> +          1 (MAX77675_SR_USE_DVS): Uses maxim,dvs-slew-rate for dynamic =
+voltage scaling.
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        enum: [0, 1]
+
+Seems like this should be a boolean property, "maxim,fixed-slew-rate"
+where being present sets it to 2mV/us and absent uses the inherited
+dynamic rate.
+
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - regulators
+
+Most of your properties are missing default values since they're not
+required.
+
+> +
+> +additionalProperties: false
 > +
 > +examples:
 > +  - |
-> +    usb@11270000 {
-> +        reg =3D <0x11270000 0x1000>;
-> +        interrupts =3D <0x0 0x4e 0x0>;
-> +        #address-cells =3D <1>;
-> +        #size-cells =3D <0>;
+> +    #include <dt-bindings/regulator/maxim,max77675-regulator.h>
 > +
-> +        device@1 {
-> +            compatible =3D "usb123,4567";
-> +            reg =3D <2>;
-> +            orientation =3D <0>;
-> +            rotation =3D <90>;
+> +    i2c {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      max77675: pmic@44 {
+> +        compatible =3D "maxim,max77675";
+> +        reg =3D <0x44>;
+> +
+> +        maxim,dvs-slew-rate =3D <MAX77675_DVS_SLEW_5MV>;
+> +        maxim,latency-mode =3D <MAX77675_LAT_MODE_HIGH_LATENCY>;
+> +        maxim,drv-sbb-strength =3D <MAX77675_DRV_SBB_FASTEST>;
+> +        maxim,manual-reset-time =3D <MAX77675_MRT_4S>;
+> +        maxim,en-pullup-disable =3D <MAX77675_PU_EN>;
+> +        maxim,bias-low-power-request =3D <MAX77675_BIAS_NORMAL>;
+> +        maxim,simo-int-ldo-always-on =3D <MAX77675_SIMO_INT_NORMAL>;
+> +        maxim,en-mode =3D <MAX77675_EN_PUSH_BUTTON>;
+> +        maxim,en-debounce-time =3D <MAX77675_DBEN_100US>;
+> +
+> +        regulators {
+> +          sbb0: sbb0 {
+> +            regulator-name =3D "sbb0";
+> +            regulator-min-microvolt =3D <500000>;
+> +            regulator-max-microvolt =3D <5500000>;
+> +            maxim,fps-slot =3D <MAX77675_FPS_DEF>;
+> +            maxim,slew-rate-use-dvs =3D <MAX77675_SR_2MV_PER_US>;
+> +          };
+> +
+> +          sbb1: sbb1 {
+> +            regulator-name =3D "sbb1";
+> +            regulator-min-microvolt =3D <500000>;
+> +            regulator-max-microvolt =3D <5500000>;
+> +            regulator-allow-set-voltage;
+> +            maxim,fps-slot =3D <MAX77675_FPS_DEF>;
+> +            maxim,slew-rate-use-dvs =3D <MAX77675_SR_2MV_PER_US>;
+> +          };
+> +
+> +          sbb2: sbb2 {
+> +            regulator-name =3D "sbb2";
+> +            regulator-min-microvolt =3D <500000>;
+> +            regulator-max-microvolt =3D <5500000>;
+> +            regulator-allow-set-voltage;
+> +            maxim,fps-slot =3D <MAX77675_FPS_DEF>;
+> +            maxim,slew-rate-use-dvs =3D <MAX77675_SR_2MV_PER_US>;
+> +          };
+> +
+> +          sbb3: sbb3 {
+> +            regulator-name =3D "sbb3";
+> +            regulator-min-microvolt =3D <500000>;
+> +            regulator-max-microvolt =3D <5500000>;
+> +            regulator-allow-set-voltage;
+> +            maxim,fps-slot =3D <MAX77675_FPS_DEF>;
+> +            maxim,slew-rate-use-dvs =3D <MAX77675_SR_2MV_PER_US>;
+> +          };
 > +        };
+> +      };
 > +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index ee8cb2db483f6a5e96b62b6f2edd05b1427b69f5..1503502a3aed2625e8ff48845=
-6ccd7305cc74ba7 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -26258,6 +26258,7 @@ L:	linux-media@vger.kernel.org
->  S:	Maintained
->  W:	http://www.ideasonboard.org/uvc/
->  T:	git git://linuxtv.org/media.git
-> +F:	Documentation/devicetree/bindings/media/usb-camera-module.yaml
->  F:	Documentation/userspace-api/media/drivers/uvcvideo.rst
->  F:	Documentation/userspace-api/media/v4l/metafmt-uvc-msxu-1-5.rst
->  F:	Documentation/userspace-api/media/v4l/metafmt-uvc.rst
->=20
-> --=20
-> 2.51.0.536.g15c5d4f767-goog
+> +
+> --
+> 2.34.1
 >=20
 
---dvlxf+F9Nk0RUTPP
+--YasFFFzUT3OF5nyw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNbFhAAKCRB4tDGHoIJi
-0qhdAP49nO2mKsosLHwnekS7EGEufeFAyOly/K0/a5m74rcMVwEAvbMFbwdFzaSM
-DgN8a+gmLLJ+4P89rQ8cIJR4oV+IpwI=
-=/Hob
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNbIgAAKCRB4tDGHoIJi
+0qwsAQCbPzlzcW425PzA/L/YhpUqNpuViPzM92Z80WXFxFd2mwD/fbVqA1FvNL+B
+aa7MthvYE77wJezeQQ99B5sX64AINQs=
+=KJNx
 -----END PGP SIGNATURE-----
 
---dvlxf+F9Nk0RUTPP--
+--YasFFFzUT3OF5nyw--
 
