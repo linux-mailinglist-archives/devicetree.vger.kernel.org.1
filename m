@@ -1,126 +1,164 @@
-Return-Path: <devicetree+bounces-221808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6023CBA316A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:15:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB13DBA316B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:15:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 18E4B4E04CF
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:15:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADD1A3A04A5
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:15:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF78029C323;
-	Fri, 26 Sep 2025 09:15:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33DA2270EDE;
+	Fri, 26 Sep 2025 09:15:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="DbfUQMZD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="odRhdtWc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCB2029B216
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:15:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DAA92236E8
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:15:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758878108; cv=none; b=jN9JsQOit4E5JHvC6bfLCEMWiH3djo1+eK21UJBGBlwa67g1hilNyIfQr4rvZdIuP1ikHJ2/isa6YHhM/h9xGsCDBwbg4ylnynFkh30u9zb6EYO35eI4WO3wGWXVSr6tu5g5H6GrbGHC2IvCUZdceQNqeSGm33wgOcRF5ExOGns=
+	t=1758878112; cv=none; b=jgnazzLHIScV/8XwwUrlugyGnHe1AZXTrIelF9rwFYUAzeut43LIdJSa0LhlISvwb7mdfhc5NEQQlBzFSAZJDlh0KXJzr8uNqEGUK1uEHhET3gmbzrUSy0SXGHnhC6wCSsH8BHT9i4IJ/qOrvAOysenQ15ag5wOujswQG3ISEVc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758878108; c=relaxed/simple;
-	bh=kONY/WgDIpRHcTB+eEvoT0XM7fNHfY7Naq/HZbdUMRc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z5zGF5JqpduBX26O71TXbTK7RaFmW8S49ORoo8+qWtpKzpPP9vI75DdJtz4VUgvaIr1axS14TD1kTAfN7nmVbt4RVnCEgEbuOfsyBTzDK0S+72zVVI1LIDf19Ylh3G/2t3527MpuHBYYdVdIeQjtBlbeqzrkGEbAVAZk7jSZiJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=DbfUQMZD; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=QKtp
-	8zfrVj6u9HY8qxhEQCKZKJ2UZhB0qJu9a4h5+s4=; b=DbfUQMZD8RuWwnbKGwWz
-	DrVnhP6i/k4ksyxKTaVxWUwkGP+5s8sZlO67KqPn71a2D8glHOWqogZXyUNKnl3B
-	pPl5CtC0t2XcChnBp+RP2LKXp94ADLF/cNBr9YRxJR00/YtrtbI7gcdj3pEL6hF4
-	Xhz7DENZTeB9C3JJGQce60A3+2OLxbUahRhHNkqWuX2NNV/trnVeZFnpLBjBC3Ay
-	LhrwOb18//7iE4u8dWvCyAQH0wk7Kagvi+OIPNbcomYsbCKDAmFzE2v3OVO37HcN
-	z8f9tEwW+uCrNuRvosX0ilwW8V/ruby1xkj0UIXUcgcCvTdl/P2dfy+twaARLhRi
-	fA==
-Received: (qmail 2198339 invoked from network); 26 Sep 2025 11:15:04 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Sep 2025 11:15:04 +0200
-X-UD-Smtp-Session: l3s3148p1@bHOguLA/dN8gAwDPXwQHAL/S9V79e5yL
-Date: Fri, 26 Sep 2025 11:15:04 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-eb: describe
- LEDs
-Message-ID: <aNZZmDAAdLkISA9F@shikoro>
-References: <20250919100740.28429-1-wsa+renesas@sang-engineering.com>
- <CAMuHMdVGthcw94vXDErZTissJ1wVPvJKaLb+j7D8Y77-E226PA@mail.gmail.com>
+	s=arc-20240116; t=1758878112; c=relaxed/simple;
+	bh=TUFDRPK9OZWQmZ4Io6Lu4cMxFKXBj/5zzJ9fa5uYkLQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=TXXINir5x5jgnueS+c9THKeUKbvk+lISt2UHCoIsCRsVqTLH7+GseN/f8TeBBdbB9T14XBdwaP6mrogqFDTIaa5F9lA6YlzOXkdoEguEXEnM6Myq6mLU8sjNYD3odkRA8fBj7EvhkBFlU2SqMjtv4TSf477WPUh29u7TIIDbM5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=odRhdtWc; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3ece0e4c5faso1826165f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 02:15:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758878108; x=1759482908; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KFTjY5/OntfnPss18xMJfKbpZ6ztPp46Q2iJkWHJLes=;
+        b=odRhdtWcmyjJzDq+4robwRjA7HdxMSBLQGQNJhWqgJ4cKlZos6MhVBpsSni9P4Rk0O
+         1oejhDZZAJBy1Ca8fVUthLGzuFh/BYnzYNyNLnBb1bCvJj9IXUd72mGSD0CCaLN42nI4
+         oHsze61RC+7DHvBN3lMWmtIJv3jGxcNEP6GEWxcOTNZAL9ynjSZl6JZo0cKHg81paI1k
+         ygusMKdV9fB/4LCJU4E0cDou9fE9gvldJUyqLET11EIEyDBOIdD2I+cGIczrRxJ0CTJ0
+         TFGKHNqT0ZjBjMTvT2xddrvfzp6Tje4v20Je6lQWWrWOPMf+uUDs3bDpj5ROu4N8d8jo
+         mSmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758878108; x=1759482908;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KFTjY5/OntfnPss18xMJfKbpZ6ztPp46Q2iJkWHJLes=;
+        b=wi2Y3FMyp4i299RFPsF+27tDNybx77MIJE/zn+0irfr11OS7QH6FVQ2FOfTUdriK8A
+         NEkLKPrgC0Ch/x3+emd+oRp/fB0cQe75yeE12NfglrZevGzTzG7Mxv24JGcRE+Vnb6Xf
+         UOiX4Dy7V6C6sAKB+aNANEeop0ny5hEX/Ucxaxx0J5ro6p+czfbewfgwZxXoaPiOdysH
+         MRkmmpvnMo6IbnOYcRk50JfwSNDKw8rNt6MSadwJVgDtggtnkS8TSmzS2QRa9W8V3ILo
+         EA9K2lFf3Y+RUWH8+tntU7oZ7WpQERnY2pWMlxdKevonAP4kvCRpRc9zxFp/GJum2nL1
+         G4qQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUan61HYLqvQrkQYDSSREobKaSsm/oNZ4j47vpPUQYky6QQn/TRtWrkzYm+6N/EhP0qAtgies/7jbum@vger.kernel.org
+X-Gm-Message-State: AOJu0YzUwP0AGa/z8myxZpZtBDWp8efy1fPmEJO3UuaIcUo8laFxLUmx
+	3hd8cgamTb8eBsePra4UqDmqzm7fOC7XJahrTww1+hJ95AQeST0/GJjCiCF/j28qZ1o=
+X-Gm-Gg: ASbGnctELig6E6K8es+r7gQS2VSGb1sKCVZsxhX3WU3ZmCbxg6fM4cx+UupLePu5KVV
+	u9gf6DCckJ5gqvA6Pgm1PCGmuzsdIayEchoKvXJzkMPPUFx1VNTzuatwj4bb3TW2Gj/+JHUP4/r
+	vEfHxejp0tnrxn1oEc4P5EYATe1Ck/aAHnpvnQnozB1ws6Fnl105Xh4klK9Q64gfTzQrmKqQKVy
+	FLNoc9GjUgmnQL0nJf9YuCfyHwKczJcWHH8gw7uP73M/X9LFGGwCT4RiX1P0YKodPKhseCi80MR
+	4FFjfHjhRVQwAAAuQZrhAUp0fzBvwW1Q5KZoh5D2kfbgRm+jCrFo8Vt0N9mz6nhwtau1kdQEYJa
+	aldiLINgzK4U0vY/1kRP4PPda7o5XhMnYWIJftC1Ts+k=
+X-Google-Smtp-Source: AGHT+IEVX7V7+nffT3CJ9dpetDYPOn1G7WuDY6pTt+HXts5dckr78/uI1tL88mQFYL4fesUlu07JBw==
+X-Received: by 2002:a05:6000:2585:b0:404:ac77:6598 with SMTP id ffacd0b85a97d-40e429c9c4dmr6196945f8f.11.1758878108352;
+        Fri, 26 Sep 2025 02:15:08 -0700 (PDT)
+Received: from [10.11.12.107] ([79.118.185.144])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-40fe4237f32sm6185169f8f.63.2025.09.26.02.15.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Sep 2025 02:15:07 -0700 (PDT)
+Message-ID: <586c85d8-7638-4e52-8f96-1aa4640afe64@linaro.org>
+Date: Fri, 26 Sep 2025 10:15:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="L18wlUVkSYcJ/5Jb"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdVGthcw94vXDErZTissJ1wVPvJKaLb+j7D8Y77-E226PA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/5] firmware: exynos-acpm: add DVFS protocol
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Peter Griffin
+ <peter.griffin@linaro.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
+References: <20250924-acpm-clk-v5-0-4cca1fadd00d@linaro.org>
+ <20250924-acpm-clk-v5-2-4cca1fadd00d@linaro.org>
+ <03cbad1f4f311727b4dce9c969404e2bc138c556.camel@linaro.org>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <03cbad1f4f311727b4dce9c969404e2bc138c556.camel@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Hi, André!
 
---L18wlUVkSYcJ/5Jb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 9/24/25 4:24 PM, André Draszik wrote:
+>> +	unsigned long (*get_rate)(const struct acpm_handle *handle,
+>> +				  unsigned int acpm_chan_id,
+>> +				  unsigned int clk_id, u32 dbg_val);
+> Everything seems self-explanatory except this dbg_val. What are API users meant
+> to put there? Maybe some kerneldoc could explain it?
 
+I don't really know, there's no documentation. I can guess by reading the
+downstream code.
 
-> > This patch depends on "[PATCH v3 5/8] ARM: dts: r9a06g032: Add GPIO
-> > controllers" which is still in-flight. I send this out as RFC already,
-> > so we can discuss the introduction of the switch dependant settings. I
-> > copied this approach form RZ/G3S.
->=20
-> I am not opposed to that.
-> The switches are needed in both the DB and EB DTS, and in future
-> DT overlays (if any).
+Grepping the downstream sources reveals that this field has a value
+other than zero just for the edgetpu driver.
 
-Thanks, however, Rob didn't like the idea. I have to add we actually can
-read out the switch states via I2C. Dunno if that's different to G3S
-etc...
+Looking there I see:
+#define TPU_DEBUG_REQ (1 << 31)
+#define TPU_VDD_TPU_DEBUG (0 << 27)
+#define TPU_VDD_TPU_M_DEBUG (1 << 27)
+#define TPU_VDD_INT_M_DEBUG (2 << 27)
+#define TPU_CLK_CORE_DEBUG (3 << 27)
+#define TPU_CLK_CTL_DEBUG (4 << 27)
+#define TPU_CLK_AXI_DEBUG (5 << 27)
+#define TPU_CLK_APB_DEBUG (6 << 27)
+#define TPU_CLK_UART_DEBUG (7 << 27)
+#define TPU_CORE_PWR_DEBUG (8 << 27)
+#define TPU_DEBUG_VALUE_MASK ((1 << 27) - 1)
 
-> > --- /dev/null
-> > +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h
->=20
-> "...-db-eb-...", as this header file applies to both?
+And then I see methods like:
+static int edgetpu_ctl_rate_get(void *data, u64 *val)
+{
+        *val = exynos_acpm_get_rate(TPU_ACPM_DOMAIN,
+                                    TPU_DEBUG_REQ | TPU_CLK_CTL_DEBUG);
+        return 0;
+}
 
-Ah, I forgot to rename it.
+or:
+static int edgetpu_vdd_tpu_m_get(void *data, u64 *val)
+{                                                                                                                                                                                              
+        *val = exynos_acpm_get_rate(TPU_ACPM_DOMAIN,
+                                    TPU_DEBUG_REQ | TPU_VDD_TPU_M_DEBUG);
+        return 0;   
+}
 
-I agree to all your other comments but we need to decide on the
-principal approach first.
+These methods are used only to be exposed for debugfs.
 
-Thanks for your help,
+So it seems it's used to __get__ clock rates or voltages, and that the dbg_val
+acts as a debug command that also specifies a secondary ID, TPU_ACPM_DOMAIN
+being the first.
 
-   Wolfram
+I find this a little ambiguous, so I refrained myself from adding a description.
+Since I can't tell what it is, and whether TPU is really the only user or not,
+I propose drop the argument or not describe it, as I already did. What's your
+preference?
 
-
---L18wlUVkSYcJ/5Jb
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjWWZgACgkQFA3kzBSg
-Kbb4ZBAAqTBN45BjJuLRM6hzBQEUr3kQ7n0BOoW/YP2CNbXNfTEiXkvDppT2aiDg
-NvNExSZOoPCVk+pgTNSj6Jcm/1nWiwSpg+f7QEI6WzKT89phhGbZzDRneoE8+Yo+
-n+VbN5HpfQLE8OQPlimxBAoPNKPiVn+Jwbzl/D3uQBsU4Zzff3L4fJusFnlKUwnK
-I23hOeUjuC4IwdH9Pg9BVFgxgXBAo4Zm/uvjHqX+mQFhXAXedoUv9xZi4bIYkk3u
-IVgj3Rc7KcWqUAxV0wNfnEIOy4a9WBG5IToS3XnYy25xJGJvZlhzZcjJAKEowcny
-Ug0ngnq/YI3ZySFt6g1kTpYVdK7MLVj2avZXh7y0Ij9LQN+Rwth0EGVDRoMBq679
-3K7LJCsxRii8L4tNM+bav+wGhih2MEWvPfglOyK1dLNmsZh+40cAJpTUtY/3YYPs
-Zu1B+cwz4syP1iBdB0IqKESx95AoJNq3MfFKLqtTNinhfdRX5B8ceWjoWUZvrqKq
-vvYjEz0DY13A2JsHAEDJu83WaFSv5zo+lYN7gbyrwnSaAjU6ksYSl9oVQ0HFzRX0
-9XFf9u5EptfDfCTEjr/lx30iPUF82peJZIdGa/BS6F6vwQb2O+uITzueVwd6Ndxm
-Z4vD+aY29v3KgbuZpR9Ihpsxi5YPKWHzYgzvAlTgdWMAipHb4nA=
-=f6pg
------END PGP SIGNATURE-----
-
---L18wlUVkSYcJ/5Jb--
+Thanks!
+ta
 
