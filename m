@@ -1,163 +1,126 @@
-Return-Path: <devicetree+bounces-221806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48BD9BA314C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:11:36 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6023CBA316A
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:15:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E009D4C6D5D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:11:34 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 18E4B4E04CF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:15:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03CE0283CB8;
-	Fri, 26 Sep 2025 09:11:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF78029C323;
+	Fri, 26 Sep 2025 09:15:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="F9oB+WLx"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="DbfUQMZD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68F8B27AC3A
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:11:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCB2029B216
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:15:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758877890; cv=none; b=CC4jNk8bFNi97FulyfWxXdNGk7Atmyll8WaL2S3E8EHcdo027QD5VICKt0jB/WdOx0PP/l6u/hekzlthMeiVKOyM3i1hORWoqX/4gna7ckz19GTtb3i3ALvy9qiQs3ESRz4dxYVBS6AUUr2JPeWSIl7vJ10CQm82ILnHcHc60ec=
+	t=1758878108; cv=none; b=jN9JsQOit4E5JHvC6bfLCEMWiH3djo1+eK21UJBGBlwa67g1hilNyIfQr4rvZdIuP1ikHJ2/isa6YHhM/h9xGsCDBwbg4ylnynFkh30u9zb6EYO35eI4WO3wGWXVSr6tu5g5H6GrbGHC2IvCUZdceQNqeSGm33wgOcRF5ExOGns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758877890; c=relaxed/simple;
-	bh=Q9cVFgVDTi0yD7DcpxpXPEPBn9ZNBsja6Uc9akvcPeY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ISYQ4oBihKZyM+B04DEgbYh1FFTT1ZCP/5etlscug0bUBhO6wZdf4xhkiqdPDvIw4aKqmKnH4b5QH+98z220gaSsgQ2ihI0wLxxd0Q+9XI7ca7iLb+v6FNJ8ks7JB6kMHJEi7dZZp4S4RdQjbQ1dr0zIo4kTKJAhQp5vZG19aAg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=F9oB+WLx; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58Q8vgER027611
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:11:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gwMS6RiPyG3muvL8gIEP/IdyDMuWnY9zWPsqgfT3jmo=; b=F9oB+WLxy1WCJolY
-	iB/ozRPi7vxUVIRFRX3X/ivZ4qQXI6SmV1PMp/HN5MO/laRuVL0oe3s+eSEdwyZx
-	/HWxVHMJ4qdHVTnNZqYRKFXaB+WXSfslX8zPnWIm+mb+0DoETeAsXohp837HzIBb
-	cQLRno6uFVWLieYc2fTgJ/mILdVqW5Erw7ieelW/RmgqG1CKvtrc8e5mtxMCFU0O
-	TqpV54PPNaniH4yGkrbhXWeigTuWf1VEQOK5900tHbkxH8aEoN/C6noGQaKaGXgK
-	Vly7x9/wXGZGoHwvQrX57iSsYuy97Vw9OpBeJ6Yr47XYHbpvbKDfXK1jL9Ww3t1A
-	jyY/yA==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49db0qt7ee-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:11:28 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-32edda89a37so1817102a91.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 02:11:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758877887; x=1759482687;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gwMS6RiPyG3muvL8gIEP/IdyDMuWnY9zWPsqgfT3jmo=;
-        b=wskIbfdylVHYZvMLdtUZzCXxxjJ1Lw/ijpQgnR5dQ49jYSndKi7SZSVeOENVfcDkzz
-         dlg4nt9Q5JB0A24eJ4A5ayrBZ+kCyHhl6aEC1qGh8cYmxheWeSv7UiRmSG2upO7Z1wFa
-         F36AUPDc5qXMHUbycE3TnETlCdBmfLKihJ1KYPu7XXuCf1BXQ+4xmAiqsdF/McZ8fAg9
-         3XiHPsGMlUB27W1SvKZMw3ab0xe6tTe9nEITcWMXOQ6Ot54oOMlNEaWUZ+HsGBqCgSEl
-         5UVp0s1lX2fxyLLSCWLdx1hGOPgZszucBDdAqt+xNTxFx3X4hU/4hbHxu02LvW+JyrQf
-         34dg==
-X-Forwarded-Encrypted: i=1; AJvYcCXoii0RuJULskiqJjc9JC6j5UghjGvqM0WYk6YaYlyiijXk0/U27cJ2DxtnP7vW+Z0gHJN5QUStIsQS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUhhhjHBatMfEb9f7lbTOkHvjNLYP+Q1/D9kQx+E8UZbUQGE+X
-	/D/O0sgdzas9Bwf8hykAuPMk9YGjmI1tNC1BrHhawB95h/SFvQ2js1vpDIxXvSq1GGQhuSFUXKU
-	XukP7nfZZOA2qWV8KC7ey5oNDUhIw21qhYTHIph7OAXSsOnhf+/6FI79Skwt6PnpH
-X-Gm-Gg: ASbGncsdD0v29t+rOuE9/+IX3cTW1f8f1xugJwaHNpZKdvoPF+tf21CZZ2s70+bKAfP
-	9o/+Pv3zgv5azDSWzXrWeu8YdVaaBgolHKXPNON86YpExXCWob+XsoG7HnkILVx/ZNhP9LnIOv1
-	AuLdXlaC6F9GzvvfIpfjPaTLaEpOy8NQHapWYAxsIk4n6G+ugCx/QwqINMPFsfxAaZms9VdR63b
-	+brrIhLdydQuEyagY60rtwDWSGf7YfHuXpd9Womq4kzqQW7fYk57zbaJqsqNPbtUvLb7jGIkgwA
-	whtmNNFGZFiDWJ5mvnIRh8H/bPTW7HVA32rxORnW9v4o871s+uXZiYGm7leoUHHtGW/uJkxuxDN
-	CkhLzhQny/3RTtKqx+asVfn41QG3gn+hctVSG
-X-Received: by 2002:a17:903:948:b0:24b:1625:5fa5 with SMTP id d9443c01a7336-27ed4a093cdmr79278975ad.11.1758877887583;
-        Fri, 26 Sep 2025 02:11:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGqnSucq9QwwfydAdBOvQY2cA+Yy4I6IVDVeZYCo0AArAOV4CXOKIvi2P5d2LMNwXIVWHyGeg==
-X-Received: by 2002:a17:903:948:b0:24b:1625:5fa5 with SMTP id d9443c01a7336-27ed4a093cdmr79278595ad.11.1758877887091;
-        Fri, 26 Sep 2025 02:11:27 -0700 (PDT)
-Received: from [192.168.1.10] (syn-076-033-021-145.res.spectrum.com. [76.33.21.145])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed69b0685sm47455865ad.116.2025.09.26.02.11.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Sep 2025 02:11:26 -0700 (PDT)
-Message-ID: <60c65d7c-1564-40a1-830b-1c9931776fb7@oss.qualcomm.com>
-Date: Fri, 26 Sep 2025 02:11:16 -0700
+	s=arc-20240116; t=1758878108; c=relaxed/simple;
+	bh=kONY/WgDIpRHcTB+eEvoT0XM7fNHfY7Naq/HZbdUMRc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z5zGF5JqpduBX26O71TXbTK7RaFmW8S49ORoo8+qWtpKzpPP9vI75DdJtz4VUgvaIr1axS14TD1kTAfN7nmVbt4RVnCEgEbuOfsyBTzDK0S+72zVVI1LIDf19Ylh3G/2t3527MpuHBYYdVdIeQjtBlbeqzrkGEbAVAZk7jSZiJs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=DbfUQMZD; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=QKtp
+	8zfrVj6u9HY8qxhEQCKZKJ2UZhB0qJu9a4h5+s4=; b=DbfUQMZD8RuWwnbKGwWz
+	DrVnhP6i/k4ksyxKTaVxWUwkGP+5s8sZlO67KqPn71a2D8glHOWqogZXyUNKnl3B
+	pPl5CtC0t2XcChnBp+RP2LKXp94ADLF/cNBr9YRxJR00/YtrtbI7gcdj3pEL6hF4
+	Xhz7DENZTeB9C3JJGQce60A3+2OLxbUahRhHNkqWuX2NNV/trnVeZFnpLBjBC3Ay
+	LhrwOb18//7iE4u8dWvCyAQH0wk7Kagvi+OIPNbcomYsbCKDAmFzE2v3OVO37HcN
+	z8f9tEwW+uCrNuRvosX0ilwW8V/ruby1xkj0UIXUcgcCvTdl/P2dfy+twaARLhRi
+	fA==
+Received: (qmail 2198339 invoked from network); 26 Sep 2025 11:15:04 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 26 Sep 2025 11:15:04 +0200
+X-UD-Smtp-Session: l3s3148p1@bHOguLA/dN8gAwDPXwQHAL/S9V79e5yL
+Date: Fri, 26 Sep 2025 11:15:04 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-eb: describe
+ LEDs
+Message-ID: <aNZZmDAAdLkISA9F@shikoro>
+References: <20250919100740.28429-1-wsa+renesas@sang-engineering.com>
+ <CAMuHMdVGthcw94vXDErZTissJ1wVPvJKaLb+j7D8Y77-E226PA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 14/20] arm64: dts: qcom: kaanapali-mtp: Enable more
- features
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
- <20250924-knp-dts-v1-14-3fdbc4b9e1b1@oss.qualcomm.com>
- <ejcchgc3isc5f6tmiqbxqihmk5efmbcyhv3ehuoerb5ulkd5an@g7a2wc422l6n>
-Content-Language: en-US
-From: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
-In-Reply-To: <ejcchgc3isc5f6tmiqbxqihmk5efmbcyhv3ehuoerb5ulkd5an@g7a2wc422l6n>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: VOLTC-f8s0hPoNf2b6v4rtcOuFe5rFD_
-X-Authority-Analysis: v=2.4 cv=bJ0b4f+Z c=1 sm=1 tr=0 ts=68d658c0 cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=jL+KNGaHzx0ZtsbCBWd7sw==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=8xtE-M9Tj1n2mnedfNEA:9
- a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI1MDE3MSBTYWx0ZWRfXxZdhZoZiU19j
- ism/XBKszYM6S+pc2KO2lJ71x8FX2wFVLBBhT6sJRsMU7YVVACWBMTxE3fd/BcnwOY3u0p7aRj7
- F7Ia7qLFGDzts5LZMYQ1KsHFhjPUFgIFcaP/ab1HF1YGNH+V2rGWKtfmEkyH3IY2km1J1neEre2
- C9guw/U5A1HijWA56b4RU882gUqlitgHUEP4UAfAPKpxiY++R8WIm66EkNsaUEAiGF8A+kqC5vS
- FTpaUxVr5vrACgCYNqRYkJTgDQFRKKnxTKiAT8OVGW7LoTJCyulE5vJOrOcfvxxidolLJjbKwGV
- /4l6gYx2g3f8ef4ES3PCXtIRTRRhU5LEZGFG2S47OS6MU9LsoSied7X4F9vTmaqqC7d7E7zrWX8
- jU/ThTzJhkmIdHNee43e8uw0bewyfw==
-X-Proofpoint-GUID: VOLTC-f8s0hPoNf2b6v4rtcOuFe5rFD_
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-26_02,2025-09-26_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 adultscore=0 impostorscore=0 suspectscore=0 clxscore=1011
- priorityscore=1501 malwarescore=0 bulkscore=0 phishscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509250171
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="L18wlUVkSYcJ/5Jb"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdVGthcw94vXDErZTissJ1wVPvJKaLb+j7D8Y77-E226PA@mail.gmail.com>
 
 
-On 9/24/2025 7:09 PM, Dmitry Baryshkov wrote:
-> On Wed, Sep 24, 2025 at 05:17:31PM -0700, Jingyi Wang wrote:
->> Enable more features on Kaanapali MTP boards including PMIC peripherals,
->> bus, SDHCI, remoteprocs, USB, PCIE, WLAN and Bluetooth.
->>
->> Written with help from Jyothi Kumar Seerapu(added bus), Ronak Raheja
->> (added USB), Manish Pandey(added SDHCI), Jishnu Prakash(added PMIC),
->> Qiang Yu(added PCIE), Yijie Yang(Added WLAN) and Zijun Hu(Added Bluetooth).
->>
->> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
->> ---
+--L18wlUVkSYcJ/5Jb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[...]
 
->> +&usb_1 {
->> +	dr_mode = "peripheral";
-> 
-> Is it really peripheral-only?
-> 
+> > This patch depends on "[PATCH v3 5/8] ARM: dts: r9a06g032: Add GPIO
+> > controllers" which is still in-flight. I send this out as RFC already,
+> > so we can discuss the introduction of the switch dependant settings. I
+> > copied this approach form RZ/G3S.
+>=20
+> I am not opposed to that.
+> The switches are needed in both the DB and EB DTS, and in future
+> DT overlays (if any).
 
-For this initial submission, we haven't yet defined the USB role detection
-infrastructure, so it didn't make sense to include dual-role now. The
-controller supports it, but without the connector bindings and role switch
-implementation, it would be non-functional.
+Thanks, however, Rob didn't like the idea. I have to add we actually can
+read out the switch states via I2C. Dunno if that's different to G3S
+etc...
 
-Thanks,
-Ronak
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h
+>=20
+> "...-db-eb-...", as this header file applies to both?
+
+Ah, I forgot to rename it.
+
+I agree to all your other comments but we need to decide on the
+principal approach first.
+
+Thanks for your help,
+
+   Wolfram
+
+
+--L18wlUVkSYcJ/5Jb
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjWWZgACgkQFA3kzBSg
+Kbb4ZBAAqTBN45BjJuLRM6hzBQEUr3kQ7n0BOoW/YP2CNbXNfTEiXkvDppT2aiDg
+NvNExSZOoPCVk+pgTNSj6Jcm/1nWiwSpg+f7QEI6WzKT89phhGbZzDRneoE8+Yo+
+n+VbN5HpfQLE8OQPlimxBAoPNKPiVn+Jwbzl/D3uQBsU4Zzff3L4fJusFnlKUwnK
+I23hOeUjuC4IwdH9Pg9BVFgxgXBAo4Zm/uvjHqX+mQFhXAXedoUv9xZi4bIYkk3u
+IVgj3Rc7KcWqUAxV0wNfnEIOy4a9WBG5IToS3XnYy25xJGJvZlhzZcjJAKEowcny
+Ug0ngnq/YI3ZySFt6g1kTpYVdK7MLVj2avZXh7y0Ij9LQN+Rwth0EGVDRoMBq679
+3K7LJCsxRii8L4tNM+bav+wGhih2MEWvPfglOyK1dLNmsZh+40cAJpTUtY/3YYPs
+Zu1B+cwz4syP1iBdB0IqKESx95AoJNq3MfFKLqtTNinhfdRX5B8ceWjoWUZvrqKq
+vvYjEz0DY13A2JsHAEDJu83WaFSv5zo+lYN7gbyrwnSaAjU6ksYSl9oVQ0HFzRX0
+9XFf9u5EptfDfCTEjr/lx30iPUF82peJZIdGa/BS6F6vwQb2O+uITzueVwd6Ndxm
+Z4vD+aY29v3KgbuZpR9Ihpsxi5YPKWHzYgzvAlTgdWMAipHb4nA=
+=f6pg
+-----END PGP SIGNATURE-----
+
+--L18wlUVkSYcJ/5Jb--
 
