@@ -1,101 +1,142 @@
-Return-Path: <devicetree+bounces-221967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B11AABA48F5
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:10:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3052BA490D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:11:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6CD8B385DEB
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:10:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21D22189045C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:12:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F12B62367CC;
-	Fri, 26 Sep 2025 16:10:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43BC4239E9B;
+	Fri, 26 Sep 2025 16:11:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="cg9+AN10"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EdUSHO3h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 664E7823DD;
-	Fri, 26 Sep 2025 16:10:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F353623A99E;
+	Fri, 26 Sep 2025 16:11:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758903036; cv=none; b=l/F/OTlvmH2WHKVD1WslfMiU1AA7JAlmRikuR+7nFoV7n2WrbruAIC8x8ozZxddLgr6yqOp3/o4JK9bJCnBGc+XhATFWBptXQAWQLRSk3KiZREYv3yOb1vPVFRFp7KXlR13odH30plMagpHu9jpfSZ+3xI9fNbU2GWR68TaozW0=
+	t=1758903107; cv=none; b=ovdqTBn/XIH+sO3jNfML2SJUZlx/+DJa0yk/hY25Setro6M7kHkNMw9j5hLxV+dq9RcENz/mbz7f6ds7t53FSUgEubNnPFFXbRBXgVnuZ6pQ38oZpZwDst/7AZx7KFqGX1lDaMQEvr5w1LL9mPN2DJDap+bkK1zC2IxkrL3Potg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758903036; c=relaxed/simple;
-	bh=pJH5Hrwro75kzGiHFMA0wqzpgMM0shT+yN0jZxl8B4U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KTscQoG/rslR8YtK49qF8E64aS2qXqQtVZStKHZCX2n9hLZvSXyHLrs9z9oJETuGHV85iuuQex8uf+09FkgWr1++Hm0G7TBd+1RGWNb1Li0LSAJ2ljMElPj5W4OFv9J9RH8YmonSlGrl8gukCRyP9wNGEKm+5VE+JtW7wJqMXvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=cg9+AN10; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=a8ppqvzfJbHLORVI4FUGxAEtvpysmOlFWvNRW2iwm/E=; b=cg9+AN104PlZDbjadHhLemQ6P3
-	2SECT9YE20k1+7x95YYYNw64/FuHB2bAG83MSCcNdmOFxUVGUxbju3lD93C6rwX26VOe8M9IEDEtz
-	nZZJn3lRXRQC8dkazzykeIzR/huKAQJlAUgvHcvi+NpFW+Wj0XaBPBwZxqytRph6F2js=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1v2B1g-009a97-KM; Fri, 26 Sep 2025 18:10:28 +0200
-Date: Fri, 26 Sep 2025 18:10:28 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH net-next 2/2] net: airoha: npu: Add 7583 SoC support
-Message-ID: <b5ff2e06-df4f-423a-86ac-fb025b243844@lunn.ch>
-References: <20250926-airoha-npu-7583-v1-0-447e5e2df08d@kernel.org>
- <20250926-airoha-npu-7583-v1-2-447e5e2df08d@kernel.org>
- <82a08bb5-cbc3-4bba-abad-393092d66557@lunn.ch>
- <aNa464zcFCvNhL33@lore-desk>
+	s=arc-20240116; t=1758903107; c=relaxed/simple;
+	bh=yRHrfjskk6KyPsMbNFVbtbGAg1RRUPZQnBS9srhXpvg=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=og89bX2kUIdsd+DFPdFEN5zrBOr3fKnxcrYUNpLDhvCnGTCzeBZE5g3yfNJE+71Z/jAjrXQVFbGiWPmW+0G7ajWG9kGAqZPB550lvJN7TUJ3KfrTatU6MKriJyBTU/dpWQtmOMxI8MNU945ioA0b03zy6woA//DBXCBWlRr/zYc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EdUSHO3h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E2F4C4CEF4;
+	Fri, 26 Sep 2025 16:11:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758903106;
+	bh=yRHrfjskk6KyPsMbNFVbtbGAg1RRUPZQnBS9srhXpvg=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=EdUSHO3h2a1RJKHf8MMj7mPZcuufCtSoAaLqH8n0krh49mmpFo4x3CqD8QcbzYVj5
+	 ZR+73ePW3C31DpO4Lu/xArmPcf2KRsXmsEQnZqzyEiSTpjWv4hUwdvN/AdSHdYSLF1
+	 2S3xaQI6oRCF9x1Ul9O4qDwctXnVHjKowqnCBd1MO1PLF90gzXKNlhfRON8ZrQG6OU
+	 yRHXisWEHUaZuxDi7xR+pnwqK4OsJHu892QvmsbmRrGOyLtasAqSDK04u/imiOeqai
+	 yFgB8FafVjCxfc4X11D26y6/4YYCj+P8guoTtHlvKkgwkVnVGZctb34mQhxreiLhqM
+	 kilQd5CrClt8g==
+Date: Fri, 26 Sep 2025 11:11:39 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aNa464zcFCvNhL33@lore-desk>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ venture@google.com, yuenn@google.com, openbmc@lists.ozlabs.org, 
+ benjaminfair@google.com, joel@jms.id.au, krzk+dt@kernel.org, 
+ tali.perry1@gmail.com, conor+dt@kernel.org, avifishman70@gmail.com
+To: Tomer Maimon <tmaimon77@gmail.com>
+In-Reply-To: <20250925200625.573902-1-tmaimon77@gmail.com>
+References: <20250925200625.573902-1-tmaimon77@gmail.com>
+Message-Id: <175890301752.880349.2331946518360447485.robh@kernel.org>
+Subject: Re: [PATCH v3 0/3] arm64: dts: nuvoton: add NPCM845 SoC and EVB
+ support
 
-On Fri, Sep 26, 2025 at 06:01:47PM +0200, Lorenzo Bianconi wrote:
-> > > -	ret = request_firmware(&fw, NPU_EN7581_FIRMWARE_DATA, dev);
-> > > +	if (of_device_is_compatible(dev->of_node, "airoha,an7583-npu"))
-> > > +		fw_name = NPU_AN7583_FIRMWARE_DATA;
-> > > +	else
-> > > +		fw_name = NPU_EN7581_FIRMWARE_DATA;
-> > > +	ret = request_firmware(&fw, fw_name, dev);
-> > >  	if (ret)
-> > >  		return ret == -ENOENT ? -EPROBE_DEFER : ret;
-> > >  
-> > > @@ -612,6 +623,7 @@ EXPORT_SYMBOL_GPL(airoha_npu_put);
-> > >  
-> > >  static const struct of_device_id of_airoha_npu_match[] = {
-> > >  	{ .compatible = "airoha,en7581-npu" },
-> > > +	{ .compatible = "airoha,an7583-npu" },
-> > 
-> > It would be more normal to make use of the void * in of_device_id to
-> > have per compatible data, such are firmware name.
-> > 
-> > 	Andrew
+
+On Thu, 25 Sep 2025 23:06:22 +0300, Tomer Maimon wrote:
+> This series fix warnings and adds device tree support for peripherals on
+> the Nuvoton NPCM845 SoC and its Evaluation Board (EVB).
+> The first patch fix warning and arrange node order.
+> The second patch introduces peripheral nodes for Ethernet, MMC, SPI, USB,
+> RNG, ADC, PWM-FAN, I2C, and OP-TEE firmware in the NPCM845 SoC device tree.
+> The third patch enables these peripherals for the NPCM845-EVB, adding
+> MDIO nodes, reserved memory, aliases, and board-specific configurations
+> like PHY modes and SPI flash partitions.
 > 
-> ack, I implemted this way since we have 2 fw names but we can have a struct
-> pointed by of_device_id driver_data pointer to contains both of them.
-> What do you think?
+> The NPCM8XX device tree tested on NPCM845 evaluation board.
+> 
+> Addressed comments from:
+> 	- Andrew Jeffery: https://patchwork.ozlabs.org/project/openbmc/patch/20250908125938.3584927-2-tmaimon77@gmail.com/
+> 					  https://patchwork.ozlabs.org/project/openbmc/patch/20250908125938.3584927-3-tmaimon77@gmail.com/
+> 
+> Changes since version 2:
+> 	- Fix dts warning
+> 	- Arrange node order by ascending unit address.
+> 
+> Changes since version 1:
+> 	- Fix commit message
+> 	- Fix dtbs_check warnings.
+> 
+> Tomer Maimon (3):
+>   arm64: dts: nuvoton: fix warning and nodes order
+>   arm64: dts: nuvoton: npcm845: Add peripheral nodes
+>   arm64: dts: nuvoton: npcm845-evb: Add peripheral nodes
+> 
+>  .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 732 +++++++++++++++++-
+>  .../boot/dts/nuvoton/nuvoton-npcm845-evb.dts  | 440 +++++++++++
+>  .../boot/dts/nuvoton/nuvoton-npcm845.dtsi     |   7 +
+>  3 files changed, 1160 insertions(+), 19 deletions(-)
+> 
+> --
+> 2.34.1
+> 
+> 
+> 
 
-That would work.
 
-	Andrew
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: remotes/arm-soc/for-next-12027-gf60eaa447dab (exact match)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/nuvoton/' for 20250925200625.573902-1-tmaimon77@gmail.com:
+
+arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/spi@fb000000: failed to match any schema with compatible: ['nuvoton,npcm845-fiu']
+arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/spi@fb002000: failed to match any schema with compatible: ['nuvoton,npcm845-fiu']
+arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/spi@c0000000: failed to match any schema with compatible: ['nuvoton,npcm845-fiu']
+arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/spi@fb001000: failed to match any schema with compatible: ['nuvoton,npcm845-fiu']
+arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/bus@f0000000/i2c@86000/tmp100@48: failed to match any schema with compatible: ['tmp100']
+arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/bus@f0000000/pwm-fan-controller@103000: failed to match any schema with compatible: ['nuvoton,npcm845-pwm-fan']
+arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/bus@f0000000/spi@201000: failed to match any schema with compatible: ['nuvoton,npcm845-pspi']
+
+
+
+
+
 
