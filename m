@@ -1,82 +1,88 @@
-Return-Path: <devicetree+bounces-221897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221898-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90CF1BA3E96
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:33:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03C7DBA3EB4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:39:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45E5D620DFE
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:33:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A46E38603E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:39:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF153283FC2;
-	Fri, 26 Sep 2025 13:33:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 754862F83AC;
+	Fri, 26 Sep 2025 13:39:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jsc19axR"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="izncMGYN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09AD42AD2C
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:33:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C290B2F7471
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:39:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758893630; cv=none; b=fxVUNepbacyp2VKyOTom5qhxpc+VYcDN9DyXLHtWXSAJK7dB7hj4mBlLbhQfS1ezbz6uKFiFoyKXS7WYr/weQz+U7HIU7SleXE9Gjp7iRCVIlHpJU6cQtzI0aExUaFi2kHcszZMWw86iFiLPmS6Y2IkXCxMIMEiXpBdZIWxZlEg=
+	t=1758893971; cv=none; b=jWM/km15jj/urxOU0LkkGlRyes8HPvDH0kDNvMvqQ7D/LQBboBv1yJ9u5OhYtA100pYiwOnLc0bOWZlavBGmMwzv5AgFl3PAJnrDJHAvlNRFFbqiYnsInuN+4z0aky0fBLTzrsB2zko1dX2GOAjRitnf9Dh/YRCwq6XHYRjAbOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758893630; c=relaxed/simple;
-	bh=Pt7z3mijaZRcTi2kiJmB2nrbDqeFwtsQxHgY8d/m5jA=;
+	s=arc-20240116; t=1758893971; c=relaxed/simple;
+	bh=j48e7ePqhHhvcJSE6F/tY3Q0p1ZzRgdOesq05a6n2Q0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qIch5ffPeWCZ3nJmwM87RiJYwGNdAMKXGYLE/LVmNbCMbF2kTt7fyQv4OEYOCbAfALKMQ/aif21APdRLu9p9N2rN5IJByyMtAZnaC9mk6dwdDnhJb2boxsbPoJcLWRnK6oDyWbKcVadfJDiZnUVZDLdxf/dwuMyVNZ+2zhXigGU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jsc19axR; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-b553412a19bso1674065a12.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:33:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758893628; x=1759498428; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=tcqokYsWpz8RiIxAM57uVjrW1cPk6YvKlwakPUCpCAg=;
-        b=Jsc19axReYE6jvPAb24yJO2pfdsHPG6FkICIE3KrB5Eyek+NT9ASc0G4sqgLWPYWRG
-         hkP9BcDcYJsmCK31MqifXVPzysNDgoCeb1rRyXHnIXVvpkLfo+JR5XjEK4XboWhMpGMG
-         eF3iyDvf0ldA1YgLaUVBBLDHuY2SL4WxC7XQiOkoWJolzjAmvgoxTm+L16D1+8EVmZoG
-         O8JRe7URqOMrPyGBpZmd2yZd5Yeq9abkRax66ifrHEH69zMZ7O4cKAMeslbC17PRaxWC
-         Kgm3eo5DWMchUNXAhD3Fh+7UeGQfE31d1Efk3eFbXptI/iHv36ZMnlnWrVp4AglLjX6i
-         zHrQ==
+	 In-Reply-To:Content-Type; b=hVke5oM2alYEeBdjQgQGqkvMNGdrC+Sw1PmN7OBnzub6Lj2PxSbvmMeCEPfpLRgU6HnxeZkwxgctrzS7bj/sYYCaxjtGWxNZcEwJILBkkj2LJce+zDDoutlmPkSgpucVb71QM2ZgPIjvkCfDU6sN8SEnTOHDZm6ktrjQaeN3tNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=izncMGYN; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58Q9jqAh024186
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:39:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	E63HIm6hfUIUCF/NebOyqvn6g+tEqkfrm8u2QMJ5tw8=; b=izncMGYNdUqo8E3w
+	gQZxTs52PektAYwyZSafWsuPESdlDkPK79sbajX8hDHMXorHmH8P9o2HR/1JLQdt
+	OpZW+6yye80afqDWs3iqyNoIkqtWPXvbBVX9S/gz6TOPExAM26rAnehCi8+ij/6a
+	sueHn0d6nN9i76ndyP9gxQ5IuZbpjfjStLS5a4SAtgzA6G85JfQGvC340XrkHuZN
+	EoPyY3RHd44NdBFvJTyblFemUHcRVwdGyCIvhgp2o1W/p0uM55anRT95fpOlt7/Q
+	qxZMGKiAyDNoXBfglP4uWeELZgzvUQsTcvKWbVn3cTo6GyMFTnAuLtMonQp5M3Ai
+	xsnmDw==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49drfwgmtp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:39:28 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-77f3aa0f770so3877283b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:39:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758893628; x=1759498428;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tcqokYsWpz8RiIxAM57uVjrW1cPk6YvKlwakPUCpCAg=;
-        b=AXd6wLzo9B2x4WhW7bxshGhS/cchUDaHsVsmLeNXRCHCn4Z3UkDvs1fgt9OKC+dWd5
-         ENt2k8MBtxO3ROIWUjxFkQkanj3iAhOxoAYfSBDTpLVhmfz/DKEOIhSfjlj2iAQpe06F
-         Ih8TCY+xNUvMP8o9JP1eUHvpf81acW5xQVakKchmCayN4fBdOmEOHjMEqObyLdYD+jhJ
-         +bk/oh96FXthQmaBa6OkQZM38+lS9dDP4Ylk5PtecqZtN69X9H3QiEG7wZD9VRUAWTXo
-         K0Tk7UFM6UfzS+8qWH7kzbq+h5XE5ABage8dBrKe49tn2iVsoib8NpwfF4bNQ84dYcJk
-         bBNg==
-X-Forwarded-Encrypted: i=1; AJvYcCVR8jIskj5fif86OIkLlIadyvyRTr7I/vuQ7+pk2DBhorEB2jW3UEMsM0mAr02osXJij3Ch+Ykb+bMB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxq8ry9TRJuOD/SjangP/ihLwyBq6+2lABGfiF6/AX2UTOjzlbl
-	Q/gKJ1xLAuHmSSenzwYeJ5I+Yh/Uglcoeoe6B30XXRUHkQKLeSySO1ul
-X-Gm-Gg: ASbGncvMz33QsUoUaERp1QuKu4MljA85oznNT0zy0IdE0TxBOKjB28RcXOzjIUTFB9c
-	b4dYlnS1FLCD1hVY514qJlowoAqwP8GeXTu8CVf3YQp3Md0E1+p6lBjP3kmb5vI6gZLZb0VKHnT
-	WIXebssTJmxDqnOT2w66eCmqqm2Uq+KVU+Gn2v26u9j+fwJjH8odpRMDhPIxu+ZArMwg4mK7Qaa
-	tthXYqDJcD1ftK0xR0DFbZ80nT/NtytKw+xYycfT4yoVUDqeg3GcTuk6RU4RbUXPHozqXvr+0Bx
-	YZ19C6+Ga2jSshnG5/PnKMrBGjKS+qEQgE+uS8MZ3ia8UwVIhaWdplDICAEK1s3tx20LdAVKtG3
-	JY4o0sGbEZ4AeL7SAru2maJ3QU2xguRdSjbWyAjPb0dhsG2sqSpl0sefS+wQF+nCqnijxHyU=
-X-Google-Smtp-Source: AGHT+IExeqPZAv+oAD3U8/+k8mWznyTMcn8PDjKYGA65NFD29WAscSHSXpn/4Z+X87GhMFIClktq3g==
-X-Received: by 2002:a17:903:acf:b0:274:5030:2906 with SMTP id d9443c01a7336-27ed4ab8df8mr81830515ad.46.1758893628254;
-        Fri, 26 Sep 2025 06:33:48 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b57c55a339dsm4724097a12.40.2025.09.26.06.33.46
+        d=1e100.net; s=20230601; t=1758893968; x=1759498768;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E63HIm6hfUIUCF/NebOyqvn6g+tEqkfrm8u2QMJ5tw8=;
+        b=GJ11zDAa872dH4sA0CoGwt5KxjUEKvfGDNH/LV7GCQ15ou1GvDBMLQPEUgq1DURpzP
+         VHgwVKeZNv6Ev/Hxzw5c1Ugy5NLoC3Hn69wd6+0uU7WAhT3BKvCxElJM0iAry+iX4LLw
+         MyChvLGoTv1+IaMvnqhaxtxrK6NUI9JPSajhADntEtx5vmDvW24B8IULAhuxUR8VMiOl
+         ltCMXDASzCkXCDyWiGpygqGB58IjA3wYNH3EnZ9+Ya9/SNVEvUeEj6AqbPUSBumtxkVV
+         7FYWf0rYEwk+XmmhQkUfR6mO56F4nHbir6DXjGD0rrvAs/rXQ/DVtZh0zBv1n3S9iwla
+         XqMA==
+X-Forwarded-Encrypted: i=1; AJvYcCXojpw1FX+GINhRtAz4H6DpNQ2fViecWW6yDQ9zkefXxnZWqiU473zQKbAnhgc7YSOgQGRD3SPZI1tU@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsbqinAsRNrJx+16Ab12azTBKfv+0u9xZELaT5NLMgQUfcg1kY
+	pXleqlYPstH52Go5BQ5uagr3Y5G3KQRummf+dgZgCELjCVyFgWmd93zJDA5ogsiyKGRAZDGGjmN
+	GfhSlbpoBKgy+dczTjj7WGHxb2Cj47SBmXsPwLkh/BGTvRcsqVxj8eIcP+CzywkbW
+X-Gm-Gg: ASbGncuepq3iqDM8hgR7D013BQ8ziOw6sAuQqOYktZxrbhWwaSk7em3UbHdCuFCNqBt
+	zOKl5MZgjXB9ppD1aYjviBYcQy1eMzdDWdBRGB3eP2qlRiBCpFVj3Uxxj7bSALYsA3Y7bArKQCG
+	Wj2bp5osdhmvxYwkTzYyUq/LTayRL3oYB0rf9EbjJLCIfETbYFFFFeOhFwUAHdvTa0uNHgnRR6a
+	wWdTW3vKljNRp6ljAOtFlu5kwJMksAg4gAjL5bd8m30g2DKq7t/cJtO7BmcedZQQpxE2BAhU+FV
+	ldqiXGeV4RieBfkVxP6gxJgKGRnGB8tpK5JjWdkIsMwjUB0Pf59tuAZknpAWOMI3QETHc2Ml8eo
+	=
+X-Received: by 2002:a05:6a00:23cc:b0:780:f6db:b1bd with SMTP id d2e1a72fcca58-780fcdd28d1mr8678987b3a.4.1758893967945;
+        Fri, 26 Sep 2025 06:39:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGiaP1HxRLVUpY8VZEiq5l3q06EZMQQVXQhWmy8UEaYDj2MmG+Nz3UAs4qURBGWNpupm3mF0Q==
+X-Received: by 2002:a05:6a00:23cc:b0:780:f6db:b1bd with SMTP id d2e1a72fcca58-780fcdd28d1mr8678917b3a.4.1758893967264;
+        Fri, 26 Sep 2025 06:39:27 -0700 (PDT)
+Received: from [192.168.29.113] ([49.43.224.88])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78102c048fasm4502469b3a.75.2025.09.26.06.39.19
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Sep 2025 06:33:47 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <3bf744e2-aced-482d-9690-1bb3354aafad@roeck-us.net>
-Date: Fri, 26 Sep 2025 06:33:46 -0700
+        Fri, 26 Sep 2025 06:39:26 -0700 (PDT)
+Message-ID: <4a3f9494-27a2-47d6-bdef-0b1bcbd99903@oss.qualcomm.com>
+Date: Fri, 26 Sep 2025 19:09:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,122 +90,129 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] hwmon: (ctf2301) Add support for CTF2301
-To: Troy Mitchell <troy.mitchell@linux.dev>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hwmon@vger.kernel.org
-References: <20250916-ctl2301-v1-0-97e7c84f2c47@linux.dev>
- <20250916-ctl2301-v1-3-97e7c84f2c47@linux.dev>
- <53f1d5d2-c871-4823-ab13-8c3dfd86dbfe@roeck-us.net>
- <aNXtJ0S5SAMsUwnD@kernel.org>
- <8c6f609e-c086-4b6c-abb5-8d33ec85df47@roeck-us.net>
- <aNaTPE494MMExSBz@troy-wujie14pro-arch>
+Subject: Re: [PATCH v6 5/9] PCI: dwc: Implement .start_link(), .stop_link()
+ hooks
+To: Bjorn Helgaas <helgaas@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        chaitanya chundru <quic_krichai@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, quic_vbadigan@quicnic.com,
+        amitk@kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com,
+        linux-arm-kernel@lists.infradead.org,
+        Dmitry Baryshkov <lumag@kernel.org>
+References: <20250925172517.GA2169496@bhelgaas>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <aNaTPE494MMExSBz@troy-wujie14pro-arch>
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <20250925172517.GA2169496@bhelgaas>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: CB2lkLPSipnu4No5r5_LuJmQtfzK1RmZ
+X-Authority-Analysis: v=2.4 cv=JKA2csKb c=1 sm=1 tr=0 ts=68d69790 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=w+9hNF1SH6wH5mqaHp+xkw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=AYVm423qkfQxZcs1cpAA:9
+ a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-GUID: CB2lkLPSipnu4No5r5_LuJmQtfzK1RmZ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI2MDA4OSBTYWx0ZWRfX+9UtVklELc9b
+ V7NzVr4RqRt5KtdwRg5i4JwiecwXAC/hsZhVFX2yhJPMaDfYnne4Bwh6TNVw+wZtUE8eiWkOupB
+ D/SUjqgvexbEU81YiPq1gJDifBWuape2zquyOzPltn9gU5eJsThzvFbYzzssH1zqgNA78h8/ZSF
+ cdl3JXlX7TmG5rjTuvqNAuW1UjRNXjcFTPLsbN7cwTyDBsOWMv+bzuduFG8UW+ab+0PClWKCXZc
+ yfZVnU1IEep8StyZDRpo9d6kSu7/D/RM8BYofTLY24VLLP2y+8i0m8UHk39AFv2jFvOp8Llmihv
+ bK/ifwe2AZwQc9Nby9K90AXeKIqz8pFtS4yOlWC/rub9lj1eH2PgM3kV+oBlJaM1AbCDvuSuf7W
+ BdmrkM5d7FsBwmvVM23HOg/I21Lqjg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-26_04,2025-09-26_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 suspectscore=0 bulkscore=0 spamscore=0 malwarescore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
+ definitions=main-2509260089
 
-On 9/26/25 06:21, Troy Mitchell wrote:
-> On Thu, Sep 25, 2025 at 08:57:13PM -0700, Guenter Roeck wrote:
->> On 9/25/25 18:32, Troy Mitchell wrote:
->>> Hi Guenter, Thanks for your review.
->>> There are many things to improve in this driver.
->>>
->>> On Wed, Sep 24, 2025 at 08:43:35AM -0700, Guenter Roeck wrote:
->>>> On Tue, Sep 16, 2025 at 12:46:46PM +0800, Troy Mitchell wrote:
->>> [...]
->>>>> diff --git a/drivers/hwmon/ctf2301.c b/drivers/hwmon/ctf2301.c
->>> [...]
->>>>> +
->>>>> +#define CTF2301_LOCAL_TEMP_MSB			0x00
->>>> 	LM90_REG_LOCAL_TEMP
->>>>> +#define CTF2301_RMT_TEMP_MSB			0x01
->>>> 	LM90_REG_REMOTE_TEMPH
->>>>> +#define CTF2301_ALERT_STATUS			0x02
->>>> 	LM90_REG_STATUS
->>>>> +#define CTF2301_GLOBAL_CFG			0x03
->>>> 	LM90_REG_CONFIG1
->>>>> +#define CTF2301_RMT_TEMP_LSB			0x10
->>>> 	LM90_REG_REMOTE_TEMPL
->>>>> +#define CTF2301_LOCAL_TEMP_LSB			0x15
->>>> 	TMP451_REG_LOCAL_TEMPL
->>>>> +#define CTF2301_ALERT_MASK			0x16
->>>> 	TMP461_REG_CHEN
+
+
+On 9/25/2025 10:55 PM, Bjorn Helgaas wrote:
+> On Thu, Sep 25, 2025 at 09:49:16PM +0530, Manivannan Sadhasivam wrote:
+>> On Thu, Sep 25, 2025 at 09:54:16AM -0500, Bjorn Helgaas wrote:
+>>> On Thu, Aug 28, 2025 at 05:39:02PM +0530, Krishna Chaitanya Chundru wrote:
+>>>> Implement stop_link() and  start_link() function op for dwc drivers.
 >>>>
->>>> So far this looks like a chip based on LM90 or TMP451/TMP461
->>>> with an added fan controller. I can not immediatey determine
->>>> if it would be better to add the pwm/tach support to the lm90
->>>> driver. Given that the chip (based on registers) does support
->>>> limits, which is not implemented here but essential for a chip
->>>> like this, I would very much prefer adding support for it to the
->>>> lm90 driver if possible.
+>>>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>>>> ---
+>>>>   drivers/pci/controller/dwc/pcie-designware-host.c | 18 ++++++++++++++++++
+>>>>   1 file changed, 18 insertions(+)
 >>>>
->>>> The public datasheet does not provide register details, making it
->>>> all but impossible to do a real evaluation. Any idea how to get
->>>> a complete datasheet ?
->>> Yeah, more register info at [1].
->>> I've checked the detailed review below,
->>> but I'll hold off on sending v2 until you decide if we really need a new driver.
+>>>> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+>>>> index 952f8594b501254d2b2de5d5e056e16d2aa8d4b7..bcdc4a0e4b4747f2d62e1b67bc1aeda16e35acdd 100644
+>>>> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+>>>> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+>>>> @@ -722,10 +722,28 @@ void __iomem *dw_pcie_own_conf_map_bus(struct pci_bus *bus, unsigned int devfn,
+>>>>   }
+>>>>   EXPORT_SYMBOL_GPL(dw_pcie_own_conf_map_bus);
+>>>>   
+>>>> +static int dw_pcie_op_start_link(struct pci_bus *bus)
+>>>> +{
+>>>> +	struct dw_pcie_rp *pp = bus->sysdata;
+>>>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>>>> +
+>>>> +	return dw_pcie_host_start_link(pci);
 >>>
->>> Is this chip more like the LM63, by the way?
+>>> This takes a pci_bus *, which could be any PCI bus, but this only
+>>> works for root buses because it affects the link from a Root Port.
 >>>
+>>> I know the TC9563 is directly below the Root Port in the current
+>>> topology, but it seems like the ability to configure a Switch with
+>>> I2C or similar is potentially of general interest, even if the
+>>> switch is deeper in the hierarchy.
+>>>
+>>> Is there a generic way to inhibit link training, e.g., with the
+>>> Link Disable bit in the Link Control register?  If so, this could
+>>> potentially be done in a way that would work for any vendor and
+>>> for any Downstream Port, including Root Ports and Switch
+>>> Downstream Ports.
 >>
->> Good catch. Yes, looks like you are correct. LM63 is an almost perfect match.
->> CTF2301 has a couple of extra registers, mostly local setpoint and temp LSB
->> plus the registers in the 0x3x range. Actually, those registers _are_ defined
->> for LM96163, so that chip is an even closer match.
-> Yes, so just to confirm,
-> you agree that the development should be done on top of the lm63 driver, right?
+>> FWIW, the link should not be stopped for a single device, since it
+>> could affect other devices in the bus. Imagine if this switch is
+>> connected to one of the downstream port of another switch. Then
+>> stopping and starting the link will affect other devices connected
+>> to the upstream switch as well.
 > 
-Yes.
+> Link Disable would affect all devices downstream of the bridge where
+> it is set, same as dw_pcie_op_stop_link().
+> 
+>> This driver is doing it right now just because, there is no other
+>> way to control the switch state machine. Ideally, we would want the
+>> PERST# to be in asserted stage to keep the device from starting the
+>> state machine, then program the registers over I2C and deassert
+>> PERST#. This will work across all of the host controller drivers (if
+>> they support pwrctrl framework).
+> 
+> I don't think there's a way to implement .start_link() and
+> .stop_link() for ACPI unless it's by using Link Disable, which is why
+> I asked about this.  If Link Disable *does* work, it would be a very
+> generic way to do this because it's part of the PCIe base spec.
+>
+Hi Bjorn,
 
-Thanks,
-Guenter
+We did test as you suggested but unfortunately the setting are not
+getting reflected we need to explicitly assert perst to make sure
+pcie is in reset state while applying these settings.
 
+- Krishna Chaitanya.
+
+> Bjorn
+> 
 
