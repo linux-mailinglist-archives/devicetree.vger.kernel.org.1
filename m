@@ -1,133 +1,113 @@
-Return-Path: <devicetree+bounces-221785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 719D3BA2D72
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:41:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06FFEBA2DC9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:56:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7D1047ADABC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 07:39:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0992174D93
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 07:56:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB458289E16;
-	Fri, 26 Sep 2025 07:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB2BB28852E;
+	Fri, 26 Sep 2025 07:56:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="ooBcemBw"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AVvbJnjS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02FE8288513
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 07:40:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B9508F6F
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 07:56:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758872438; cv=none; b=e6QiR/OAOImxuLgWADDZSBKkLribz8pl8/a6WXC+JfdKAe76WerCnIe67qreiCU1CVnjAYog27D4R7usE2ZJ7Ur8CCdiIdgN8hRWAcZ8kANgqTaqElFRc4LxwjMnUTKzRMuIClYukRO8C0RxtqH98B/S/H5iRIO9U6HUPobWk/c=
+	t=1758873414; cv=none; b=LvkEB7FK0da+uA5hHhnEtPyDBiazZrA0gUxHNbFkO+GTSsd1mb7ffxCsgSvW524yTDG8U1q0f9IKib7xk2BwVtU0g9A9D3rgPHy8rS1wl582uH4jgpbgZC4uz2DPnOFKRHV7TVtxpuJIbB5mO83gHoU/1B0zmwTtJHqy96GfwH0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758872438; c=relaxed/simple;
-	bh=RMTdSl1EReIsDbu7gTRVqEIhBEgJjesg9JQOWQIRlcs=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=X5Aj/tVgDvfe3eSZH0Zx9Tej/yzzZMSmjhieBScmXDg3NU9mOri1beGKVYZTkaYHqewrzI33058gKik4NXrkSslOPVRi1AoL71LKVrnrfcgPY2f3E1vXI94xGBCXJpmk83HQCJNBHffYId+9GsKPIU4KTiLKq4Tx1/MO/2Bvdko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=ooBcemBw; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250926074035epoutp03c36015c46ab5e970146d49755a5e77fb~oxSkzJVAI1379713797epoutp039
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 07:40:35 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250926074035epoutp03c36015c46ab5e970146d49755a5e77fb~oxSkzJVAI1379713797epoutp039
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1758872435;
-	bh=Ed+5kxoNWx3Jwxxg6b5MJ/fr9ca6CEUeMaFTMyUKs7E=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ooBcemBwJFZTI1CGR//6gGzFHvHxARnloqJ618aRTs036fyD+m3cJDd/qUy3pU8f8
-	 4sUDV8YHBp7HiHXl8HkOYlKMF/G19QNMALGyOWh9pEQf6NDbXmGHgaDoMXgSXgSUqI
-	 0aVhLKBHX84JL5wDVY7HLgogx1It5osgyVHQicKw=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPS id
-	20250926074034epcas2p43be6732f342e5bec135b40966271129b~oxSkPl-K33226632266epcas2p4e;
-	Fri, 26 Sep 2025 07:40:34 +0000 (GMT)
-Received: from epcas2p3.samsung.com (unknown [182.195.36.68]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4cY2Yt0VLsz6B9mF; Fri, 26 Sep
-	2025 07:40:34 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250926074033epcas2p371d57850f46c9ecb307f3ea8c6d4a57f~oxSi8tEpt1589115891epcas2p3A;
-	Fri, 26 Sep 2025 07:40:33 +0000 (GMT)
-Received: from asswp146.dsn.sec.samsung.com (unknown [10.229.19.146]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250926074033epsmtip29387fe8aacfb676855f5efede978805c~oxSi3pQiI1189511895epsmtip22;
-	Fri, 26 Sep 2025 07:40:33 +0000 (GMT)
-From: Sanghoon Bae <sh86.bae@samsung.com>
-To: robh@kernel.org, krzk@kernel.org, conor+dt@kernel.org, vkoul@kernel.org,
-	alim.akhtar@samsung.com, kishon@kernel.org, m.szyprowski@samsung.com,
-	jh80.chung@samsung.com, shradha.t@samsung.com
-Cc: krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	sh86.bae@samsung.com
-Subject: [PATCH 0/4] Add support for ExynosAutov920 PCIe PHY
-Date: Fri, 26 Sep 2025 16:39:20 +0900
-Message-ID: <20250926073921.1000866-6-sh86.bae@samsung.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250926073921.1000866-1-sh86.bae@samsung.com>
+	s=arc-20240116; t=1758873414; c=relaxed/simple;
+	bh=njBp7zsXtJxtFTAt2902aTyJccp8rh6tUb6f+2R9iao=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=V7hAdzliZlv0xQQDOYFwJtcI3uehe2AuSOPf1/1DOBJC1uoaas8AxzQiCJKKb5EmwQNTdx3Vvs0vZRalclH+/k0RWagj0YqMQPQ5hqxNQ2crdGOVaB0m/L6Ov60+GFsqiU4/QBWJJ05bfQISuvTy505wp0D3wpC4Oh/nlQLwoAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AVvbJnjS; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 5AB9BC003F5;
+	Fri, 26 Sep 2025 07:56:33 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 99F39606B5;
+	Fri, 26 Sep 2025 07:56:50 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6C928102F186D;
+	Fri, 26 Sep 2025 09:56:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1758873409; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=njBp7zsXtJxtFTAt2902aTyJccp8rh6tUb6f+2R9iao=;
+	b=AVvbJnjSU/S/d96UQfJ7Ydp85ytdEbkM4DXBAUy2j0S3uCBRL4BYqFpdTZNKZmsKXEGT+T
+	AoSZRVWcCkveYSQHUM0gra/bTjR8kKZhLIXt/A8NAYCWFRW7cv05mcE5Pl9L0Bz/ZnH0Xp
+	ZVLmpJLJqW7CQZk4Ki+YeqAURfOpOf7UuNanfB79/TPJm9EruPKjfhmwQI0bqGHxnXH0yr
+	j9BEiUcA7tBm5QUU/EowudkPgtgFLHSE8EOfxVD23NROzeMHCmKmwiaeKBLm4dydYavrTk
+	zoB8HMdudFePGtLrR7AH7cqHQI9Oivb6/ppAUN4YjDhb6LAiC7etZKlPi6AJRg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250926074033epcas2p371d57850f46c9ecb307f3ea8c6d4a57f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250926074033epcas2p371d57850f46c9ecb307f3ea8c6d4a57f
-References: <20250926073921.1000866-1-sh86.bae@samsung.com>
-	<CGME20250926074033epcas2p371d57850f46c9ecb307f3ea8c6d4a57f@epcas2p3.samsung.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 26 Sep 2025 09:56:25 +0200
+Message-Id: <DD2KKUEVR7P1.TFVYX7PES9FS@bootlin.com>
+Subject: Re: [PATCH net v6 0/5] net: macb: various fixes
+Cc: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski@linaro.org>, "Sean Anderson" <sean.anderson@linux.dev>
+To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, "Andrew Lunn"
+ <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, "Eric
+ Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo
+ Abeni" <pabeni@redhat.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Nicolas Ferre" <nicolas.ferre@microchip.com>, "Claudiu Beznea"
+ <claudiu.beznea@tuxon.dev>, "Geert Uytterhoeven" <geert@linux-m68k.org>,
+ "Harini Katakam" <harini.katakam@xilinx.com>, "Richard Cochran"
+ <richardcochran@gmail.com>, "Russell King" <linux@armlinux.org.uk>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20250923-macb-fixes-v6-0-772d655cdeb6@bootlin.com>
+In-Reply-To: <20250923-macb-fixes-v6-0-772d655cdeb6@bootlin.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
-The ExynosAutov920 SoC has two instances of DesignWare-based PCIe PHY IP.
-Each PHY has a different lane specification: one is a 4-lane PHY and
-the other is a 2-lane PHY.
+On Tue Sep 23, 2025 at 6:00 PM CEST, Th=C3=A9o Lebrun wrote:
+> This would have been a RESEND if it wasn't for that oneline RCT fix.
+> Rebased and tested on the latest net/main as well, still working fine
+> on EyeQ5 hardware.
+>
+> Fix a few disparate topics in MACB:
+>
+> [PATCH net v6 1/5] dt-bindings: net: cdns,macb: allow tsu_clk without tx_=
+clk
+> [PATCH net v6 2/5] net: macb: remove illusion about TBQPH/RBQPH being per=
+-queue
+> [PATCH net v6 3/5] net: macb: move ring size computation to functions
+> [PATCH net v6 4/5] net: macb: single dma_alloc_coherent() for DMA descrip=
+tors
+> [PATCH net v6 5/5] net: macb: avoid dealing with endianness in macb_set_h=
+waddr()
 
-Each PHY can be used by separate controllers through the bifurcation
-option. Therefore, from 2 up to 4 PCIe controllers can be supported
-and connected with this PHY driver.
+What's the state of maintainers minds for this series? It has been
+stable for some time, tested on sam9x75 (by Nicolas Ferre) & EyeQ5
+and Simon Horman has added his reviewed-by this morning (thanks!).
+But of course I am biased.
 
-Most of the PHY structure and registers are identical, but some aspects
-need to be distinguished. For this, PCIe lane number added for each PHY
-properties only in ExynosAutov920.
+I am asking because merging would benefit my pending series.
 
-This patchset includes:
-- DT bindings for ExynosAutov920 FSYS0 sysreg
-- DT bindings for ExynosAutov920 PCIe PHY
-- PCIe PHY properties for ExynosAutov920 in the device tree
-- PHY driver for ExynosAutov920 PCIe
+Thanks,
 
-Note that this patchset does not enable PCIe0 and PCIe2.
-Enabling them requires additional patches for the ExynosAutov920 PCIe
-RC driver, which will be applied later.
-
-Please note that these patch set depends on the Shradha Todi's patchset
-https://lore.kernel.org/lkml/20250811154638.95732-1-shradha.t@samsung.com/
-so need to apply on top of that series, because that adds
-the patches to make Exynos PHY common for all.
-
-Sanghoon Bae (4):
-  dt-bindings: soc: samsung: exynos-sysreg: add hsi0 for ExynosAutov920
-  dt-bindings: phy: Add PCIe PHY support for ExynosAutov920 SoC
-  arm64: dts: ExynosAutov920: add PCIe PHY DT nodes
-  phy: exynos: Add PCIe PHY support for ExynosAutov920 SoC
-
- .../bindings/phy/samsung,exynos-pcie-phy.yaml |  14 ++
- .../soc/samsung/samsung,exynos-sysreg.yaml    |   1 +
- .../arm64/boot/dts/exynos/exynosautov920.dtsi |  28 +++
- drivers/phy/samsung/phy-exynos-pcie.c         | 231 ++++++++++++++++++
- 4 files changed, 274 insertions(+)
-
--- 
-2.45.2
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
