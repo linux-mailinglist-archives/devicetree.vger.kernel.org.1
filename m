@@ -1,183 +1,116 @@
-Return-Path: <devicetree+bounces-221735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80CD8BA2872
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 08:31:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 996B9BA28AE
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 08:41:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBB5D625F0B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 06:31:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D22E818958C5
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 06:41:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21224274FC2;
-	Fri, 26 Sep 2025 06:31:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A51B027B4FB;
+	Fri, 26 Sep 2025 06:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XhDlaekI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YPuJnlhX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83FA618C02E
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:31:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40EAC27AC45
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:41:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758868264; cv=none; b=MqTuUfJTzkYOBfc+Jt/tsNJG6hh3uBRLyoIwdqWz3O9X7TBjbyysfSktMkafmHVXpFl6QMRILuNmYuse3l4SCFafj9e8lwRJ7ChhrBkv11enzmmcv0SYvmw5dzPmUOD/HUpbqmZGsqYRijGCHRXr12risqNS7GJUclHwuw3QJa0=
+	t=1758868885; cv=none; b=MOZtNrv/gSj3OF7Crwe99Db6KdwGy14SAhApyKwRgek/FTQ5DNZRd7wDpqejtCeMQxGjjiUh/2ceiBnT4f+y6MF33J5lkKqirW2Xj3+omVFtCyqWjazLaZmScii76QEsUafP2lpES8O/ggk8uvwmZl/ucdg4r7sr8BD0f1f+I8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758868264; c=relaxed/simple;
-	bh=pT4D4Sn35YNV1NvLk0Gg5WRv2gza4yQM0mzRPkxHlLU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rc+ifuWjj4KlhTEKEkrXCrz8ZmAVCE3oUgFi8JgAILrxEeM5DltT+3kED9exPyY/rXSRmjcSNCiNerSnxjWWPSHryqd44jyjz6Jk95iJWyH4rdGMifYw1i0dFU2DloGXkRvvs9QUI05AgDzh+crxNVFki7WVpedYlxnPPUFUscQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XhDlaekI; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-2698d47e776so15557715ad.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 23:31:02 -0700 (PDT)
+	s=arc-20240116; t=1758868885; c=relaxed/simple;
+	bh=uUAMECIXNIvOv86QPecXlecTiTn1dP75K3fLk2BLhWc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sDy7hiU0YMLWlikksY62mD0Bs/SXk8I+qFY3ksZDAMFBHPtthUq3fZr5WnMVl/EShj8YYv4F6uUY9fqwv4NyaF/jfycFdWKWCqx2lByApOZ9j5sO4FHVPMLgNEb6nXfoW61B9aERRN5mOpHGHYyTskBAEnVCTr06vnIgxjoRY2k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YPuJnlhX; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45df7dc1b98so12001175e9.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 23:41:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758868262; x=1759473062; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EC3AeUD+OlSR85O126Z8E0KX/IkQ5ae4Bq/IbfDT0B0=;
-        b=XhDlaekIeF1dGVe8P3FQwV61t1LUrlhY5RWSnLxiNgWf2nfdQpbgPc4hgoRzWV3K1k
-         SYWF5IWgrveXaWzsL/DeB9PQudjpFJ+kKYlUiplyU8Cg0mE/oBblP74Z4UCp0Qnf18SG
-         nPkA5gw0wVzS368sH6uXpGVLvxprEsTL+2aCLcBhr3oYaXZmuQzx0WzY0ocOsON13KhW
-         xiF496hodoN6y0UGOPoMPPOGNHykiytQ2S8xuJ4RQDEy43ptWKRDXoCsbKaLXuu7PZgS
-         nNdquWcLBK9HT4z/im3r8eqNro0CYaif5O235ZM/56L1MAJFZBTl/ZCEXvfw/FeQiE7j
-         c/Ug==
+        d=linaro.org; s=google; t=1758868881; x=1759473681; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=eAXEhH9mCSkyuGynwGFcg/vSjwNz5p5yU5r7l9pKHs0=;
+        b=YPuJnlhX7yIjxgjiogwF+jukcbvUHirAZzvNF6i6AHLGNu1+H2M/fFq8U54W1CQyKO
+         77wFmffT1/brnGjxDbI+IpQgErvQ5X1m0a3z5Kb+5iSqKcl4NU0Dly4njLvyQ/GdITF/
+         56iipAyNa3Z5Sowlbcv3M20ybusGGqzmnvfd165H43OIVjbN2KUuWfrCkvuhO+BnnsDm
+         iFXmRFyfD6n59sEd8HpRJGCw/fzvlgW5G9qDVSWscyJ8PwjXXpwAK6IkI8xHanLcNtGr
+         v0YhXL6pUJi9+Wa2ukgEX7kxLJ1Bu54p6AEPu3PXbrYntMlTJpjO9Xy2WKNSoWb83dFX
+         rvGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758868262; x=1759473062;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EC3AeUD+OlSR85O126Z8E0KX/IkQ5ae4Bq/IbfDT0B0=;
-        b=c26B02ffzSrnYpXGXVARs6DJqE/4kHAnplVvZln/LciIK1C1ZF+HrbMDtXqQ3+qRS+
-         IeXqKqRtCEHbWPtJ5bRzlKc5srcL0ARUVKkS/Q6xAaTf0mT6F0kxTizCj7dsD3YFamwx
-         /V1KTE4tPW+Lxgy6SZLNcVWA7bcJ7z6fTtuj55VgkBL26ox3cWvBmpk+FNcfULwMYkEA
-         qpA25U0Cj34qEhpPKRZpgqD2sMs7fKsYV9YHmN0b/nmuVxEVL+fK2LqiZqLaXhDblAyC
-         MNiBR5snGZeWAQBTnIfNpRGuN/GSphdqG3hginWNmA28lO7zlFu/BvGvRirgNBkCid4E
-         Ww/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXDvdKQuODaoLV7RaZD5JMZQLdg131/LQWVWWF4j4AUtY8DEsRAuhNiBt2NO0KofYYjRChX8P4kzeJa@vger.kernel.org
-X-Gm-Message-State: AOJu0YzO7EPUZ3vF4SE5I0ttoIqxH3Qo60MAQfoLdATMWGrxOT+i/+Jn
-	aPr3XDzinWuoz3HCRwMv+rlAd4BN6JH2kBcGCDCqMzEPwPhx3ysROQubYjMfO0CsXydfhZc82H2
-	tVj1dpkB2PHaGDo8Qf7KqdXUlZS9qGlM=
-X-Gm-Gg: ASbGncs7QIJ3sAfsZhhytOak7K+5d8CJz6Pto9O0+DgaGpeWhxuBMz8Cwm9eNnk4qxI
-	Oh1FmTBTbaYCgx5hERYN3SkiSm7B7BiV1UzMgorHDyIP+/E982u+6XHmcqIYOTiAfKWoqzY1fQ+
-	TrcuIsL8R2T9VobV4CAEyxMtAUZUA8ZY8tL/AjMqcEaXrVqoXWybeLiTlBQD2cf6gSx1Qopa8Ge
-	RbABYh3hZxiT7SESIZF
-X-Google-Smtp-Source: AGHT+IHOQqsbHKaoRWWyK8jo8RXNW/NKUILVQhNWFEFGhfVRUvbzyWKNu5nCPhJOFCZcotGOXjHOERG0NyOWk5Wwvpk=
-X-Received: by 2002:a17:902:e5cf:b0:24b:164d:4e61 with SMTP id
- d9443c01a7336-27ed49d0775mr63385725ad.13.1758868261660; Thu, 25 Sep 2025
- 23:31:01 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758868881; x=1759473681;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eAXEhH9mCSkyuGynwGFcg/vSjwNz5p5yU5r7l9pKHs0=;
+        b=N5Eb3Q02CjwwjWvcuq2S1hZnIGlbNkbapP1ZBeiSMiCP2nuFjACBL3y6RkrhnZIj7Z
+         LkDC1mNaqd/IRXv6Zh9hWAv8qj5QpbD25lcglg2J4AmPCaZvSNOzcq/9PVDcwXWX7dUH
+         vu1BSh3T9Hw50S2FhyXA6e8nPmlTImxEo3m5jPMC2haEfWYm+t4OQ88RGMQs8EwqWQUj
+         HyPdajmFYKv2Jj+1COf+kNRx95EZ9qP37vHTvuw9jiBwBzh/ZZXz1q44yuK/bJlk3tja
+         hOcEloaZGR+sMFJR3mCwxZ9/pqEKilo9BwWParfEIqPQqkLla0gWo5BPqmtZ8bMCY2lI
+         tD/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUZ2cOG4FyO5bUusSnWg0S2cjT8KfgIttKOnm6ABd4HCHJ2sA7mCCwBltwej2/H9DpBUfiuIA8CV8Xr@vger.kernel.org
+X-Gm-Message-State: AOJu0YyEqKk+HQdqDMnKE9myKTvyHqF27jclEQ1SK09xLQwiLprKGu0b
+	A7W91e3iUDJFbq6Ol8w6N7G01zyPRXhpqoWWOU/4B6grlp5KZn2Ef7OeEoTDCGuzwuA=
+X-Gm-Gg: ASbGncsSzF+SDX3flAznKaGdHY9P+XfFnaqOVnC2IeiIlxHVu8NdglfAxMNKdEfzid9
+	aDg/JhnxVe7Z+R0iul+js6mtsrhPfLH7QdpuIcnlfjAJj1iSTpFOxN+sbaaiO7fSYFVbmc24syh
+	ZQMI/gRiSPb+QO6tELJ6uRyTYY2FdWIgS6xBpxpaB7ou29z0slcKYOsXeeTKu1/OHoQ0JPAGyxD
+	QzWwXrxZ8K/3uaT88tQzV5Lu1aLpoiUW4K/Ufr++60hgqjYVstYKxGFvrvvgP+FkMFM8flhLa1I
+	ro5ZwS3v5iXXia3jA4/LTEhhxk6XyM/56feO0k+aSPJbXZaEzFK9g/1pXamJIqhgWqnP3y0CSkh
+	8y4xrfwVbD7STmKn9rS5pjlXjzpHqe/31
+X-Google-Smtp-Source: AGHT+IEC51Z3oUc6PBQE26U0pANRwet5KzFeYNOAHSrBB1u4TiB+919unwkMAvmSkArm1PJoNLlhdA==
+X-Received: by 2002:a05:600c:8418:b0:46e:39e1:fc27 with SMTP id 5b1f17b1804b1-46e39e1fd05mr21856915e9.5.1758868881334;
+        Thu, 25 Sep 2025 23:41:21 -0700 (PDT)
+Received: from linaro.org ([86.121.170.238])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e33be359dsm59755235e9.13.2025.09.25.23.41.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 25 Sep 2025 23:41:20 -0700 (PDT)
+Date: Fri, 26 Sep 2025 09:41:19 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, 
+	dmitry.baryshkov@oss.qualcomm.com, kishon@kernel.org, vkoul@kernel.org, gregkh@linuxfoundation.org, 
+	robh@kernel.org, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 07/10] phy: qualcomm: qmp-combo: Update QMP PHY with
+ Glymur settings
+Message-ID: <27lkxf65evdhfdqzs3w6sfura6r3sewqsm6dr6qapvsjuwrirk@lwqs46vppei3>
+References: <20250925022850.4133013-1-wesley.cheng@oss.qualcomm.com>
+ <20250925022850.4133013-8-wesley.cheng@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250922131148.1917856-1-mmyangfl@gmail.com> <20250922131148.1917856-3-mmyangfl@gmail.com>
- <aNQvW54sk3EzmoJp@shell.armlinux.org.uk> <fe6a4073-eed0-499d-89ee-04559967b420@lunn.ch>
- <aNREByX9-8VtbH0n@shell.armlinux.org.uk>
-In-Reply-To: <aNREByX9-8VtbH0n@shell.armlinux.org.uk>
-From: Yangfl <mmyangfl@gmail.com>
-Date: Fri, 26 Sep 2025 14:30:25 +0800
-X-Gm-Features: AS18NWB6pDKhReLM4IsYwOxVnFFQ1lMaREgEQ7ywwv9WWvhB3USv5GmmOErCI0I
-Message-ID: <CAAXyoMPmwvxsk0vMD5aUvx9ajbeAENtengzUgBteV_CFJoqXWg@mail.gmail.com>
-Subject: Re: [PATCH net-next v11 2/5] net: phy: introduce PHY_INTERFACE_MODE_REVSGMII
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-Cc: Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org, 
-	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Simon Horman <horms@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250925022850.4133013-8-wesley.cheng@oss.qualcomm.com>
 
-On Thu, Sep 25, 2025 at 3:18=E2=80=AFAM Russell King (Oracle)
-<linux@armlinux.org.uk> wrote:
->
-> On Wed, Sep 24, 2025 at 08:41:06PM +0200, Andrew Lunn wrote:
-> > In theory, {R}GMII does have inband signalling, but it is pretty much
-> > never used. REV for GMII could thus indicate what role the device is
-> > playing in this in-band signalling?
->
-> For RGMII, as you say, the in-band signalling is pretty much never used.
-> The stmmac code as it stands today does have support for using it, but
-> the code has been broken for longer than six years:
->
-> 1. the longest historical breakage, it's conditional on the hardware
->    reporting that it has a PCS integrated into the design, but a PCS
->    won't be integrated into the design for RGMII-only cases.
->
-> 2. even if (1) was fixed, that would result in the driver manipulating
->    the netif carrier state from interrupt context, always beating
->    phylink's resolve worker, meaning that mac_link_(down|up) never get
->    called. This results in no traffic flow and a non-functional
->    interface.
->
-> So, maybe we should just ignore the RGMII in-band signalling until
-> someone pops up with a hard and fast requirement for it.
->
-> > For any SERDES based links likes like SGMII, 1000Base-X and above,
-> > clocking is part of the SERDES, so symmetrical. There clearly is
-> > inband signalling, mostly, when it is not broken because of
-> > overclocked SGMII. But we have never needed to specify what role each
-> > end needs to play.
->
-> 100base-X is intentionally symmetric, and designed for:
->
->         MAC----PCS---- some kind of link ----PCS----MAC
->
-> where "some kind of link" is fibre or copper. There is no reverse mode
-> possible there, because "reverse" is just the same as "normal".
->
-> For SGMII though, it's a different matter. The PHY-like end transmits
-> the link configuration. The MAC-like end receives the link
-> configuration and configures itself to it - and never sends a link
-> configuration back.
->
-> So, the formats of the in-band tx_config_reg[15:0] are different
-> depending on the role each end is in.
->
-> In order for a SGMII link with in-band signalling to work, one end
-> has to assume the MAC-like role and the other a PHY-like role.
->
-> PHY_INTERFACE_MODE_SGMII generally means that the MAC is acting in a
-> MAC-like role. However, stmmac had the intention (but broken) idea
-> that setting the DT snps,ps-speed property would configure it into a
-> PHY-like role. It almost does... but instead of setting the "transmit
-> configuration" (TC) bit, someone typo'd and instead set the "transmit
-> enable" (TE) bit. So no one has actually had their stmmac-based
-> device operating in a PHY-like role, even if they _thought_ it was!
->
-> > > However, stmmac hardware supports "reverse" mode for more than just
-> > > SGMII, also RGMII and SMII.
-> >
-> > How does the databook describe reverse SGMII? How does it differ from
-> > SGMII?
->
-> It doesn't describe "reverse SGMII". Instead, it describes:
->
-> 1. The TC bit in the MAC configuration register, which makes the block
->    transmit the speed and duplex from the MAC configuration register
->    over RGMII, SGMII or SMII links (only, not 1000base-X.)
->
-> 2. The SGMIIRAL bit in the PCS control register, which switches where
->    the SGMII rate adapter layer takes its speed configuration from -
->    either the incoming in-band tx_config_reg[15:0] word, or from the
->    MAC configuration register. It is explicitly stated for this bit
->    that it is for back-to-back MAC links, and as it's specific to
->    SGMII, that means a back-to-back SGMII MAC link.
->
-> Set both these bits while the MAC is configured for SGMII mode, and
-> you have a stmmac MAC which immitates a SGMII PHY as far as the
-> in-band tx_config_reg[15:0] word is concerned.
->
-> --
-> RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-> FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+On 25-09-24 19:28:47, Wesley Cheng wrote:
+> For SuperSpeed USB to work properly, there is a set of HW settings that
+> need to be programmed into the USB blocks within the QMP PHY.  Ensure that
+> these settings follow the latest settings mentioned in the HW programming
+> guide.  The QMP USB PHY on Glymur is a USB43 based PHY that will have some
+> new ways to define certain registers, such as the replacement of TXA/RXA
+> and TXB/RXB register sets.  This was replaced with the LALB register set.
+> 
+> There are also some PHY init updates to modify the PCS MISC register space.
+> Without these, the QMP PHY PLL locking fails.
+> 
+> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 311 +++++++++++++++++++++-
+>  drivers/phy/qualcomm/phy-qcom-qmp.h       |   4 +
 
-So any conclusion? Should I go on with REV*MII, or wait for (or write
-it myself) reverse-mode flag?
+I think you dropped the v8 headers since v2.
+
+Please make sure you add them back (maybe separate patches) in v4.
 
