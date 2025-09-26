@@ -1,73 +1,294 @@
-Return-Path: <devicetree+bounces-222013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89568BA50D6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 22:20:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D82BA50FA
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 22:29:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8B25189DC86
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 20:20:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E5123AE52C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 20:29:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086A62848AE;
-	Fri, 26 Sep 2025 20:20:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D0D9285C95;
+	Fri, 26 Sep 2025 20:29:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J/WnWIdF"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="UAqwO0/h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D36971F5433;
-	Fri, 26 Sep 2025 20:20:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 310FA28504C
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 20:29:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758918000; cv=none; b=RU7Oc5PxEd0AY/yeRepT3WDK0qbCWh5lDVmQg7dz8SiRcMPhFZffWlvXHEmvi1Baxe7zUAz9o52s63aKl5f1m7v2qMIpoI8tPKuf26vOVZl+sVBuQHNfFqukig4HUPW3cbxZ7InhJ9thqH5eY25YXojBcpUDlTR9IWDWwsJAiNA=
+	t=1758918555; cv=none; b=hq1k0wtKKdnGWv0thuugA/cH0dgtPyKzuR/nKM51NzhqKaD3x/aUjA4KatEQUg+gnOReELKSUSYWyIuR74XXgYZYJmVm2ga83TtxQeZRn3GK0lfabNxgRXMAqQFbA9aCsJSVW6D7MwF8JwGTm9sHOxbdSwSzWB2pnUt+JYJ7EZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758918000; c=relaxed/simple;
-	bh=OgHQpnso+b9N7DZ57inny7a13zia9q3Gs6Rqhh9Tz+4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y3zOwhWGVYYOV3NFHoLYqlg7i5T8dsAs2xq2xBwAy0Jg3GKTQ9+EIQB4c4Rt1ABWUELyM/aQ9nw84RmT6ST6tHPpOwIoRoy5369iuZIn69xgTzIB3k5WM4H/JhL52jalNtL4WuqIuXIQmhsOFpDW032JWPhheR2EpTJ1NDD5HFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J/WnWIdF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66E9EC4CEF4;
-	Fri, 26 Sep 2025 20:19:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758918000;
-	bh=OgHQpnso+b9N7DZ57inny7a13zia9q3Gs6Rqhh9Tz+4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J/WnWIdFTtD8iGjz6FIeLdR58df23/QtVuSHlupYKKeyiPXkB7ubQPau+PeuCJsV2
-	 jd8W0fZa9J6UPMfEV6BxhS72z5ZjKaO6VkOxOee/02zXawuBI9JxJrvVumtnCK5gH7
-	 aO1jvVizBwtjTfD4zZSFzmwKNoVs26jyiKQDe09eSMW9937KwAQULf6UJ2VbuerFyi
-	 JA/LRFp7HFzZ7yfcB2sgb9dGc1pfw/vCrrmNNcdIfFpUz+Np469yoacNw/gqu1TNI/
-	 dPcyZmGr7UdBYVZfWPs53yFkMVSq7Gyek3912/wHWeqCKzeYnbgwUNIU2rtNECzG6J
-	 lgwrBSdrP1K+w==
-Date: Fri, 26 Sep 2025 15:19:57 -0500
-From: Rob Herring <robh@kernel.org>
-To: Markus Heidelberg <m.heidelberg@cab.de>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/3] Spelling and typo fixes in devicetree documentation
-Message-ID: <20250926201957.GA1425792-robh@kernel.org>
-References: <20250926105749.209674-1-m.heidelberg@cab.de>
+	s=arc-20240116; t=1758918555; c=relaxed/simple;
+	bh=bRGyg/YupvYwH5/eSncCy/iOLbX94aLX9RWO5iOHIDs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HALExuw8dfJbF6Htyp6t5YIVg3/tGilb59jx17s8PP3sJLwljh0HLpQRJRjid+aVj5q4JiSdpYoHlqjv0b+P5y+amBV/vb1XuoP9IGaYer8sQMObdB1TpEGVLtWmlDKaJ6kKiBfWjj1IbaPmCQl4TO97yFQNwm3zio1VnPPKnsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=UAqwO0/h; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1758918552;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nQdtd6aty7MhbXUeyU1S7f0YHdth4v9lOBvY3WPAYoQ=;
+	b=UAqwO0/haYgLqv70vKhvH2fGzZ34TFf2QqN46SRJGuCv/J1zcL//8dA9cVCFCnCjnyYo0+
+	mxYS9yUmVdFv9St0DXheRk+7KO8e+fXIVOb0d15DPbVDwZsJRHwCFYmSqQd4dk0VqzSCYl
+	xKNztcBBPLXUrQN+M+gk1VdxVTHNAnY=
+Received: from mail-vk1-f198.google.com (mail-vk1-f198.google.com
+ [209.85.221.198]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-537-WgS5gBR7P3arw6dAQXpkog-1; Fri, 26 Sep 2025 16:29:11 -0400
+X-MC-Unique: WgS5gBR7P3arw6dAQXpkog-1
+X-Mimecast-MFC-AGG-ID: WgS5gBR7P3arw6dAQXpkog_1758918550
+Received: by mail-vk1-f198.google.com with SMTP id 71dfb90a1353d-54aa46b501dso1531067e0c.3
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:29:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758918550; x=1759523350;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nQdtd6aty7MhbXUeyU1S7f0YHdth4v9lOBvY3WPAYoQ=;
+        b=QWDi4UM0kbjy1En5zLW4u5wWEYgcWSNEAfSrq1/NIdK6rhImtoaM1kwm+mw1YxGuoG
+         e+BG7Udn7MyAdnnBUsyaIsxVFor0U0vrhxNwGuD3XQM2o0puLl+HbOFE4X11M7rjh9qX
+         3jWKn7Rmg67Qup+eYBBw0YgfHLnjap61+SNmbIyN+zceXnwxvtKVR+5l+ipoV35EtY90
+         pAbCmlwWj8Huv564v6Rd7gAY77eVePI6PyHbPIIeq91rv+gAgszr+mdJ7zryeMHSMJaw
+         2nvZYVBDOsXO7MsczbmnsWaimTweQorX3AMM/6FvfPk0JKeAuNDAqVZGQYlYZ2RW6pWR
+         gr9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU/L15PIndY6KKH11nf6xzVetTf105WMoFrHX+2dGZb11iyBa7WK/50rM0HFVe94epEe8zd5IV8zo+1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyps++AjvBRJizDK1Xsw5E3pIOvHarpOrG633qMuS/uCZtXBFM6
+	sHLdFjUEgMVrwU6HOHrYN1SE8uFlEA5s2MqCX1HRqfI9fXhTTcqM0fKpvcMlvwrxUsK5rwbWnWf
+	VjHYtl+rCtEcxneWXPfR5LNGjRs2Rk7mvlgs3akOqlyI5weUCL+DhlpbSVhsVXEWaSqAoRHUNOn
+	pvgMy335CGJlzZ5hwHTHMwGkPzPgEdwsD+XLoGVA==
+X-Gm-Gg: ASbGncuiN33lmL7roFuFPI5Iwqpqa9cfvS9aBLa8HtNdA1Wr5xC0LRjp1bQr9bS/qn4
+	dRR8ybI1uvsSrakM3V4BA6KkQ4hXiEC4tspgx+gFhhYHi9kCNfT2EsoAmBrJtM3Q35qSAZcR8lf
+	yazSDMj3TBoH3uxYaXPcgRPYA9jdCk4A==
+X-Received: by 2002:a05:6122:7cf:b0:54a:a1f1:ef42 with SMTP id 71dfb90a1353d-54bea1c094amr3516278e0c.5.1758918550401;
+        Fri, 26 Sep 2025 13:29:10 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF7vlUmlGwUwL1AFRKnR2zoH9F3EoJncOgSNp7RigeP+sdlLnxuFXDBvEmapswDg4BXwIBnMV2DKbzUxG+jaYQ=
+X-Received: by 2002:a05:6122:7cf:b0:54a:a1f1:ef42 with SMTP id
+ 71dfb90a1353d-54bea1c094amr3516251e0c.5.1758918549953; Fri, 26 Sep 2025
+ 13:29:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250926105749.209674-1-m.heidelberg@cab.de>
+References: <f953ee7b-91b3-f6f5-6955-b4a138f16dbc@kernel.org>
+ <20250926192919.349578-1-cmirabil@redhat.com> <aNbwNN_st4bxwdwx@debug.ba.rivosinc.com>
+In-Reply-To: <aNbwNN_st4bxwdwx@debug.ba.rivosinc.com>
+From: Charles Mirabile <cmirabil@redhat.com>
+Date: Fri, 26 Sep 2025 16:28:58 -0400
+X-Gm-Features: AS18NWAFmNYbXfsrHSUccPVQ7i16EPHPLja0OCz6y6mucuuIuUMLPbxAtsOG_bI
+Message-ID: <CABe3_aE4+06Um2x3e1D=M6Z1uX4wX8OjdcT48FueXRp+=KD=-w@mail.gmail.com>
+Subject: Re: [PATCH v19 00/27] riscv control-flow integrity for usermode
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: pjw@kernel.org, Liam.Howlett@oracle.com, a.hindborg@kernel.org, 
+	akpm@linux-foundation.org, alex.gaynor@gmail.com, alexghiti@rivosinc.com, 
+	aliceryhl@google.com, alistair.francis@wdc.com, andybnac@gmail.com, 
+	aou@eecs.berkeley.edu, arnd@arndb.de, atishp@rivosinc.com, 
+	bjorn3_gh@protonmail.com, boqun.feng@gmail.com, bp@alien8.de, 
+	brauner@kernel.org, broonie@kernel.org, charlie@rivosinc.com, 
+	cleger@rivosinc.com, conor+dt@kernel.org, conor@kernel.org, corbet@lwn.net, 
+	dave.hansen@linux.intel.com, david@redhat.com, devicetree@vger.kernel.org, 
+	ebiederm@xmission.com, evan@rivosinc.com, gary@garyguo.net, hpa@zytor.com, 
+	jannh@google.com, jim.shu@sifive.com, kees@kernel.org, kito.cheng@sifive.com, 
+	krzk+dt@kernel.org, linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, linux-mm@kvack.org, 
+	linux-riscv@lists.infradead.org, lorenzo.stoakes@oracle.com, 
+	lossin@kernel.org, mingo@redhat.com, ojeda@kernel.org, oleg@redhat.com, 
+	palmer@dabbelt.com, paul.walmsley@sifive.com, peterz@infradead.org, 
+	richard.henderson@linaro.org, rick.p.edgecombe@intel.com, robh@kernel.org, 
+	rust-for-linux@vger.kernel.org, samitolvanen@google.com, shuah@kernel.org, 
+	tglx@linutronix.de, tmgross@umich.edu, vbabka@suse.cz, x86@kernel.org, 
+	zong.li@sifive.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 26, 2025 at 12:57:46PM +0200, Markus Heidelberg wrote:
-> Markus Heidelberg (3):
->   docs: dt: fix grammar and spelling
->   dt-bindings: fix spelling, typos, grammar, duplicated words
->   scripts: dt_to_config: fix grammar and a typo in --help text
+Hi Deepak -
 
-Applied, thanks.
+On Fri, Sep 26, 2025 at 3:57=E2=80=AFPM Deepak Gupta <debug@rivosinc.com> w=
+rote:
+>
+> Hi Charles,
+>
+> Thanks for response. Rest inline
+>
+> On Fri, Sep 26, 2025 at 03:29:19PM -0400, Charles Mirabile wrote:
+> >Hi -
+> >
+> >Hoping that I got everything right with git-send-email so that this is
+> >delivered alright...
+> >
+> >Wanted to jump in to head off a potential talking past one another /
+> >miscommunication situation I see here.
+> >
+> >On Wed, Sep 24, 2025 at 08:36:11AM -0600, Paul Walmsley wrote:
+> >> Hi,
+> >>
+> >> On Thu, 31 Jul 2025, Deepak Gupta wrote:
+> >>
+> >> [ ... ]
+> >>
+> >> > vDSO related Opens (in the flux)
+> >> > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >> >
+> >> > I am listing these opens for laying out plan and what to expect in f=
+uture
+> >> > patch sets. And of course for the sake of discussion.
+> >> >
+> >>
+> >> [ ... ]
+> >>
+> >> > How many vDSOs
+> >> > ---------------
+> >> > Shadow stack instructions are carved out of zimop (may be operations=
+) and if CPU
+> >> > doesn't implement zimop, they're illegal instructions. Kernel could =
+be running on
+> >> > a CPU which may or may not implement zimop. And thus kernel will hav=
+e to carry 2
+> >> > different vDSOs and expose the appropriate one depending on whether =
+CPU implements
+> >> > zimop or not.
+> >>
+> >> If we merge this series without this, then when CFI is enabled in the
+> >> Kconfig, we'll wind up with a non-portable kernel that won't run on ol=
+der
+> >> hardware.  We go to great lengths to enable kernel binary portability
+> >> across the presence or absence of other RISC-V extensions, and I think
+> >> these CFI extensions should be no different.
+> >
+> >That is not true, this series does not contain the VDSO changes so it ca=
+n
+> >be merged as is.
+>
+> Look at patch 23/27. It does have vDSO change. Although shadow stack
+> instruction are inserted as compiled flag for vDSO only when cfi config i=
+s
+> selected by user. Right now default is "No". So it won't impact anyone un=
+les
+> user explicitly says "Yes".
 
-Rob
+Yes sorry I caught that after hitting send and replied to my own email
+(but then I said 19/27 instead of 23/27 *facepalm*)
+
+>
+> >
+> >>
+> >> So before considering this for merging, I'd like to see at least an
+> >> attempt to implement the dual-vDSO approach (or something equivalent)
+> >> where the same kernel binary with CFI enabled can run on both pre-Zimo=
+p
+> >> and post-Zimop hardware, with the existing userspaces that are common
+> >> today.
+> >
+> >I agree that when the VDSO patches are submitted for inclusion they shou=
+ld
+> >be written in a way that avoids limiting the entire kernel to either
+> >pre-Zimop or post-Zimop hardware based on the config, but I think it
+> >should be quite possible to perform e.g. runtime patching of the VDSO
+> >to replace the Zimop instructions with nops if the config is enabled but
+> >the hardware does not support Zimop.
+>
+> Why kernel need to do this extra work of carry two binaries and patching =
+it
+> runtime?
+>
+> If for instance we do this, and then this allow this kernel to be taken t=
+o
+> pre-Zimop hardware, it is assumed that entire userspace for such hardware
+> was compiled without shadow stack (thus no zimop). In that case, kernel
+> should have been compiled without CFI option.
+
+You raise a good point, it just breaks the tradition of runtime
+detection and backwards compat that has been the standard for riscv
+extensions in the kernel so far.
+
+It would be nice if a kernel could be built that would run on both
+pre-Zimop and post-Zimop hardware and be able to offer CFI to
+userspace when running on hardware with Zimop (and Zicfiss / Zicfilp)
+but agree that it is a burden.
+
+>
+> Just for sake of thought exercise, let's say Fedora 43 is first release w=
+ith
+> RVA23 compatiblity (zimop and shadow stack), there is no way this and fut=
+ure
+> release will be able to run on pre-zimop hardware. Unless redhat is going=
+ to
+> start two different binary distribution. One for pre-zimop and one for
+> post-zimop. If that would be the case, then compiling two different kerne=
+l for
+> such two different hardware would be least of the worry.
+
+It would be one thing if there were hardware supporting
+Zimop/Zicfiss/Zicfilp readily available, but I am not aware of any
+platform other than qemu to test this code. Since it breaks
+compatibility with hardware I am not sure anyone will be able to do
+anything with this config option and it moves the burden on to each
+distro to go in and specifically enabling it vs just making things
+work to get important security improvements if the hardware has
+support and not if it doesn't in a backwards compatible way.
+
+>
+> Only other usecase is of a seasoned kernel developer or build your own st=
+uff
+> in embedded environment, those users can anyways are advanced users. But =
+it
+> forces complexity on rest of kernel. There will be more extensions taking=
+ zimop
+> encodings in future, we will end up patching vDSO and keep this complexit=
+y
+> while rest of the userspace will not be patched and will be separate bina=
+ry
+> distribution (if OS distros endup distributing multiple binaries per rele=
+ase)
+>
+> >
+> >However, that concern should not hold up this patch series. Raise it aga=
+in
+> >when the VDSO patches are posted.
+>
+> As I said earlier, these changes default cfi config to No. So whenever th=
+is
+> is selected "Yes" by a distro, they can drive such patches (if there is a=
+ real
+> need)
+
+If we did the patching we could make this config default to yes to
+that you are building a kernel that is set up to be able to offer CFI
+when running on hardware which supports it as long as you have a
+toolchain that recognizes the extensions which I think would be good
+for moving this important security feature forward.
+
+>
+> >
+> >>
+> >> thanks Deepak,
+> >>
+> >> - Paul
+> >
+> >Best - Charlie
+> >
+>
+
+Sorry for stirring the pot on this. I really appreciate your work on
+this patch series.
+
+I agree that this is a difficult call, and I could see it going either
+way but I lean towards trying to maintain the backwards compatibility
+because the hardware doesn't exist yet.
+
+Best - Charlie
+
 
