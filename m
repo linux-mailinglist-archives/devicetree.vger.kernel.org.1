@@ -1,152 +1,142 @@
-Return-Path: <devicetree+bounces-221819-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 303C0BA3305
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:38:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75456BA3359
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:45:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DF9D7166360
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:38:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2ED3E1683C6
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:45:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C4429D294;
-	Fri, 26 Sep 2025 09:37:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ck3dFJNk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD20B299957;
+	Fri, 26 Sep 2025 09:45:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+Received: from mail-ua1-f41.google.com (mail-ua1-f41.google.com [209.85.222.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4377829BD95
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:37:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4147F26C3AE
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:45:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758879465; cv=none; b=n54la4p5BRU9EbeJpm1khK69CFV7s1Woz3icWapZRBUl3XjlgZQ6Wt53UO2c6WRYTZ+kmQrklfLUF5/Q/usojrGTVPZCSGq2OGgObDxXJtliZmMku36h5nwF6Sx2u6yeLFblkvF+S1K+uSljX531dfEZx/nWVkUgHmDmiYeZ/9k=
+	t=1758879941; cv=none; b=Wt0OwSHqN0ND8TdLX/KY1s2/cciDsPXVi76Fka8Hn9jlS8jbHjDzgieemW0om5tEru0DYYjOr5MoIt216efXIn4qm2YyT6nGwaFNyhA/bcMcdaEExL9qWZCHofOHGzDDtJU/vmnAmkl60zP7WGN8No0AAuVeDJxImVKjyTEt7Hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758879465; c=relaxed/simple;
-	bh=thNDQviaGyibFyGAqfP3goBA/6Fj0do4LHltc3WJriE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=FW+qm90cNK9m73dEBneg1HDRptltmbSWtZqAQLjexl5FGzdZGeTMj7ZA7WkdIrJ5bQWNdeCDgeH51PePFY1AuXGMx4vVaQT7zdqi0dCpVVOrjg3NWLU3OIQ0/IdAO9TDpKQb5d7BYsHo6oXswgUBDAwudNjDLbYIO0vd5DmcAnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ck3dFJNk; arc=none smtp.client-ip=209.85.216.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1758879941; c=relaxed/simple;
+	bh=yNpF3gakBewbf4gWfzySUblL/HPEFTHdWDap5s8c2rw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=G/epJtwTq0VhvBtENmzCEwjVWRG0SVO48rosMLmnWMfqDDyt3yrDJX5xQZQaZcmB90o2d97IfM1hwipDUdmxfCfSaIqwyVIT4tn6QQ6sXsI2sGZs8jzB/ByYHeQjC3D+al6N5oyg+9SRKTJ5ZvdQaMjS3QBeC2KMLnrb+8cpytE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-33082c95fd0so1996766a91.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 02:37:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758879463; x=1759484263; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UoStl/6O0pPwy/s/NQABzja2ZbIsUSjfUYP6v+Jyo+o=;
-        b=ck3dFJNky7QlQciS4HTNzG1DlsB5tGbjBlMHPASTFEHLWDwB60qI53Ciqdex2xK8/t
-         GxJ9Ak3rRgjn/cdsFpDQnKjUADg8OqjtwTdsd+j0vx/5WO5CZ/VwpGdUnTvzvq16jsEZ
-         FTbSwMUaz01lZgzxW2agXsNEJRh2+fkP/ImQAl47h9F8q2sGDrtNpHzs4pLF8ZhsHc5Y
-         Py15NnJY7Go/85d4kmNwKLFHelCOroIkkD9tgGBB0brgCEbyUIhE+iwDddnGWXSYS5Fh
-         o+2dabBLXVMdGMDHuTeLHgjf6jHSoAxJ8/xFYzVI3nG8yTtjU3fVPYmoBjjfDzWcTyg3
-         1Ydg==
+Received: by mail-ua1-f41.google.com with SMTP id a1e0cc1a2514c-8e286a1afc6so1140583241.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 02:45:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758879463; x=1759484263;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1758879939; x=1759484739;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UoStl/6O0pPwy/s/NQABzja2ZbIsUSjfUYP6v+Jyo+o=;
-        b=j9Rpkd1dyKmIItj5idAjRy9yDWyJy0ZYfBfDEd1Vdtl04vuxTNSn87Q8/5M7Dw5PmJ
-         qwRcXQhxPhtwXXS15T9aYGvghK+7I6x6MyiYWQtHrj1M9RfoxDwT8+zG6HWaF8WiimuY
-         nIwFWrq6FyNpek+IYOgWYZ4zkA1Qxr1AU8a5K4pS4K/WGI9G58fYJup3HmrK31ciR0yk
-         w7Nc8I5Qh8TuJWnbXbMSl1S1unF43LTkBKTumkD45Ut9HatEFrx+QNl2mEYvHOyqNafb
-         QoKmH6qdOqVUkHlz+TvY2dDfci4dkE6jCa8zcdyO6m0Khh0VQWhnMt6UZYYnFyMiA+iL
-         djmA==
-X-Gm-Message-State: AOJu0YzVNt4TrCA9fZrhcthCxz1CAXljabpYAg9ADd8czVkS0ghZGPdH
-	KUDNxtorFdzdjhspplVOX6vP03fT+p0GAL3f0xaOJ4BaaXEaNlnT8b7++mJZ9w==
-X-Gm-Gg: ASbGncvR9WigXlzwaCmpUKqbF7jH2aZQcqCPyvByWDRLCgik50qC1Z6z1mhRVkr0q0v
-	NmrhRlLm7rcVq0TcgN7gFyF3D9iQQo5xHI59/U1E2aUXkHcpVRhWAdvVhx/zlEe9grBvPLm+tyn
-	KL37w7HtFkRaDerpPI5WfSroOyzvk4b9xx5i1K8Z9J6FBe3xvDMTztOOIM6MKzLSZbTvJroQUbY
-	MpZhLjibjWWT8JCAMQQdDeNpvSvsQ3Zy71bklI6DkI/ILN6cRrnEwQZ95e/jcAxsA26bVuXMFXx
-	tdpQ1c16/v2tozBcQprnw0gyVgBS1oLtxVT0WNOmuY2V0rrC87DTQaIZJ6CfNsl+38lBwYviYxN
-	LBf8cD9MpoA8fkL7d8oFkqyJkh3lzBHhEqoteovh0h4D/jbi5Ny2h4i+nea8=
-X-Google-Smtp-Source: AGHT+IH2wN/vTNpoB41B7wJ4UIGDQlG1DOtuFCeTQt8xZvPtyijptE31fGlsQRHND0LCJie+ahas4g==
-X-Received: by 2002:a17:90b:33c4:b0:330:8c87:8668 with SMTP id 98e67ed59e1d1-3342a259df0mr7079061a91.14.1758879463298;
-        Fri, 26 Sep 2025 02:37:43 -0700 (PDT)
-Received: from [172.17.0.3] (125-227-29-20.hinet-ip.hinet.net. [125.227.29.20])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b57c55bd160sm4211056a12.47.2025.09.26.02.37.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Sep 2025 02:37:42 -0700 (PDT)
-From: Leo Wang <leo.jt.wang@gmail.com>
-Date: Fri, 26 Sep 2025 17:37:29 +0800
-Subject: [PATCH] ARM: dts: aspeed: clemente: Add HDD LED GPIO
+        bh=Wz1Y2OO7aX1FKDkec9bCJzTd14gDBikA8iaq+l9tIyk=;
+        b=FS2D/0TfQwb4FtbgzoNTug8BLWmuFlVTRT/BlxI1P5byMm7FLPdBclWjrcLda3qlCE
+         4usKkFDi+bdK+gch0rr4bnu46QQlSE6E53ifYB725slzh3eDEXBenQzOHJYLS2iy8TX3
+         hYrTaIXjskyKZmQWFXibdOJe7A4K4fqskbL1nfqCeOLO9dUsFTE+APKD1YaGeTbAf/Jj
+         fq9G8UPoliN3QDRcg8gGzHFTLs3nIgZPQxL+UcKzOKhCGh0N64u1dLj9nbNLvhhINFKv
+         ZCvxYEsyhWFsv5FyfnfanrK1XqPzHAkxCO5WxD/6HPW5xmAbNiFH6IRS7O8mkeLIKFxM
+         uwCQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXKxZZ1dxxt35VqmZiQMNdUybnTfLdQgol8nr8IzMzkVvnsZIJae2IJoW3sYFu9+MmSrpj1XlXYQhLv@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOrOP8DebdxGheb+Il/Vi5GdOpcYjXITa4PRIwmf6ckar4/5cP
+	3WlP6GxRZdbYF131DoMnnco39b+rkIpaalIMFWcdVol4ARrxquXmPPn3Zrz0SIh/
+X-Gm-Gg: ASbGncs5Y57dDYYeDtrNPbmpayI+ntgl1Lmkri9rjWQZF0f7E8Nu9HeC5b2M3mXWvT8
+	akyX+73AEfC/t2ME1siSDnU7Y1kcwYkOr8c4wEisdloUlaCwyVj/KsJxcMqgCBt67FDaO9b4Voz
+	kG1u7zsthtuzh7CEparcyEgu7vJBAKkMGnevy5j6eFmlGGxEbl8EnxSVFffNyB+PXUT/rtQ6tGT
+	wIxhZaVoo+J3TIPOL9NPOtrAGf9tXB9gjJ9t+sKcRYPCdfzI07wYnqBNkLqtSTWct68m4oMzVxS
+	EcykxWdRwO9n+E1NGVFYjQcsPVx3HrozS6zYA3a6r/SZJ49x00X/9FcyN8kOAYV3tTlvSvR80zC
+	sdrY/ZqnboG9gx8X5OWu9fTRVHkUswX57RrQvUn97QYZWLSbsIQ4db5QDB2v8OK3UW5QV6Z0=
+X-Google-Smtp-Source: AGHT+IGp67LMu3Ekv20QEJdEQ79QDrNhpdPhHKXg3E20HSA82fzJnGjntJ1HCbVMGN1CI88LEUid9w==
+X-Received: by 2002:a05:6102:3a08:b0:52a:1104:3029 with SMTP id ada2fe7eead31-5ae1e69598fmr2748113137.17.1758879938847;
+        Fri, 26 Sep 2025 02:45:38 -0700 (PDT)
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com. [209.85.217.42])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5ae305d0c44sm1153125137.1.2025.09.26.02.45.37
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Sep 2025 02:45:37 -0700 (PDT)
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-528a601a3cbso1692910137.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 02:45:37 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXUBO0z7Dc+cOMYct/esbMQBG8JAAfSuR2MOOMLjirKM2XxOmmquh6gN2jycluDbrOlLs4lTuntiLTY@vger.kernel.org
+X-Received: by 2002:a05:6102:1452:20b0:58f:1e8b:a1c1 with SMTP id
+ ada2fe7eead31-5ae14991836mr1929645137.2.1758879937242; Fri, 26 Sep 2025
+ 02:45:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250926-leo-dts-add-shunt-resistor-v1-1-c871a68792f0@gmail.com>
-X-B4-Tracking: v=1; b=H4sIANhe1mgC/x3MSwqDMBAA0KvIrDsQ06rYqxQX+Yw6IEmZiSKId
- 2/o8m3eBUrCpPBuLhA6WDmnivbRQFhdWgg5VoM1tjOj7XGjjLEouhhR1z0VFFLWkgVN8O71nIf
- OB4IafIVmPv/5Z7rvHwEMnJFsAAAA
-X-Change-ID: 20250926-leo-dts-add-shunt-resistor-0cba43f75bce
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
- george.kw.lee@fii-foxconn.com, bruce.jy.hung@fii-foxconn.com, 
- leo.jt.wang@fii-foxconn.com, Leo Wang <leo.jt.wang@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1758879460; l=1436;
- i=leo.jt.wang@gmail.com; s=20250618; h=from:subject:message-id;
- bh=thNDQviaGyibFyGAqfP3goBA/6Fj0do4LHltc3WJriE=;
- b=T71P6S/+uzqAe2pm19qHzYoz2nhygnZpGVvbKLhyWQcQWVsDSelLeccTY+VnuA6uzE1BPL8L4
- Lvp20VxcTRFDYgHucePFNrm13q3hBU7efTHRYQ5iBAKOa87ktB1nm+E
-X-Developer-Key: i=leo.jt.wang@gmail.com; a=ed25519;
- pk=x+DKjAtU/ZbbMkkAVdwfZzKpvNUVgiV1sLJbidVIwSQ=
+References: <20250912122444.3870284-1-claudiu.beznea.uj@bp.renesas.com> <20250912122444.3870284-4-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20250912122444.3870284-4-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 26 Sep 2025 11:45:25 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWmjj_bKhGqhWcRvWap1U5izT347Ffo5wqs6OP9BvO8PA@mail.gmail.com>
+X-Gm-Features: AS18NWDiRHr7QXCMqaoImEEYFri-rFsQBU5GFbqAD2ZmUrWNkjrXvGfEFMFxCMM
+Message-ID: <CAMuHMdWmjj_bKhGqhWcRvWap1U5izT347Ffo5wqs6OP9BvO8PA@mail.gmail.com>
+Subject: Re: [PATCH v4 3/6] arm64: dts: renesas: r9a08g045: Add PCIe node
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	magnus.damm@gmail.com, p.zabel@pengutronix.de, linux-pci@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Define a GPIO expander pin for the HDD LED and expose it via the
-LED subsystem. This allows the BMC to control the front panel
-HDD activity LED.
+Hi Clausiu,
 
-Changes include:
- - Add `led-hdd` node under the LED definitions
- - Name the expander pin "HDD_LED_N" in io_expander13
+On Fri, 12 Sept 2025 at 14:24, Claudiu <claudiu.beznea@tuxon.dev> wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The RZ/G3S SoC has a variant (R9A08G045S33) which supports PCIe. Add the
+> PCIe node.
+>
+> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v4:
+> - moved the node to r9a08g045.dtsi
+> - dropped the "s33" from the compatible string
+> - added port node
+> - re-ordered properties to have them grouped together
 
-Signed-off-by: Leo Wang <leo.jt.wang@gmail.com>
----
- arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Thanks for the update!
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-index a614f947dafc9a6628c3f3d45b62ff3ca9d2b618..450446913e36b1418fab901cde44280468990c7a 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-clemente.dts
-@@ -95,6 +95,11 @@ led-3 {
- 			label = "bmc_ready_cpld_noled";
- 			gpios = <&gpio0 ASPEED_GPIO(P, 5) (GPIO_ACTIVE_HIGH|GPIO_TRANSITORY)>;
- 		};
-+
-+		led-hdd {
-+			label = "hdd_led";
-+			gpios = <&io_expander13 1 GPIO_ACTIVE_LOW>;
-+		};
- 	};
- 
- 	memory@80000000 {
-@@ -1199,7 +1204,7 @@ io_expander13: gpio@14 {
- 		#gpio-cells = <2>;
- 		gpio-line-names =
- 			"rmc_en_dc_pwr_on",
--			"",
-+			"HDD_LED_N",
- 			"",
- 			"",
- 			"",
+> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
+> @@ -717,6 +717,72 @@ eth1: ethernet@11c40000 {
+>                         status = "disabled";
+>                 };
+>
+> +               pcie: pcie@11e40000 {
+> +                       compatible = "renesas,r9a08g045-pcie";
+> +                       reg = <0 0x11e40000 0 0x10000>;
+> +                       ranges = <0x02000000 0 0x30000000 0 0x30000000 0 0x8000000>;
+> +                       /* Map all possible DRAM ranges (4 GB). */
+> +                       dma-ranges = <0x42000000 0 0x40000000 0 0x40000000 0x1 0x0>;
 
----
-base-commit: c65261717599d419e9c683d85f515d3ca2261549
-change-id: 20250926-leo-dts-add-shunt-resistor-0cba43f75bce
+I would write the last part as "1 0x00000000", for consistency with
+other 36-bit addresses and lengths.
 
-Best regards,
+The rest LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-Leo Wang <leo.jt.wang@gmail.com>
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
