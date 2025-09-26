@@ -1,210 +1,168 @@
-Return-Path: <devicetree+bounces-221814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A0ADBA31D0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:20:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F61ABA31FA
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 11:24:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E8403B898C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:20:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9932B7A5FAB
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 09:23:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78A19271475;
-	Fri, 26 Sep 2025 09:20:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YszUB8Ko"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51903299957;
+	Fri, 26 Sep 2025 09:24:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 144B0248F48
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:20:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6844B2797BD
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:24:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758878442; cv=none; b=r/IJl1Bq9LHdYxjZaHA5kK16SMAHBr0FBCg3I5Mxv0euqP9ufo0nPWqPCe0VZ9ivB/0paLevo7FxMzifFz93Nki5Y9SUu0xg1j/BqcM8PZAiOLk0Ver9NBB6bKIbMcDPJp+8R5CYtkr/L1ujRJ7nxgSmV01lbp0BC4NFmzsTBUk=
+	t=1758878670; cv=none; b=eTB7gOjmqfu9zcd0HGgneI+WTWOk+Nz93rR9iGa/bd0NQFWjcQ7YTr/Ztv7pkCVNGAeAwYcfk4Vu3uzlmd+pmTbg1KPuGPcbM/TbCKcGYTmgte+YKqoRL9q3tSgHUA4HrFsWeO0xQo1EqLBJ0palciloZxsE0SPuhDpNw6tMrrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758878442; c=relaxed/simple;
-	bh=FFLhJlGbweJau3CWZze0Dpw9OjhVRBCsdhDY0ijmLSQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FbG/PAT1dzk2BcaT+hV/ksI3rYYMhCkudMkZlGglCRQoLvtg2LufbdKoLLAOpn6uvhFKbUVFZTi5HNr7QTFYF7evo1kd9glRMonrCxFZQWbYqlEzhc+b4jjzO6ogZG/GXWu64Tq8lXSL+Ck6uFGDBIlRd+84EisWjDNunSUvanM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YszUB8Ko; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58Q8w4EA012993
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:20:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lFu/WjwzIa456FPHcfJQDUYZ+72FnaVpv0Jr0vDGqFA=; b=YszUB8KoVynIXOrV
-	KQtjRSDsqYGCYWYsCLIP1VTCczDIVIjLmuGO0A+Uud/X/3BHAvMg5mOtUFhod7fa
-	BygBv7bFIp/xwgfZyhmr9PWTf/yMTx06rbUYQYkRlw73f2/BdPLRXg+H4x3Xscuj
-	psax0GLS+N1ejvavBRDqeL5YcVC15bT1y6mDhxuUbS8vLlOPdRF2YbyZo39PzL9/
-	hhZO+DnnQSfF46R+bsrN7/NLWCEgVsDagR+aVTFaXLq7VnZSRfAEAchEUw+YgcU8
-	+rB5ZWj2MBvdOK+nwx7PCIaVZ204lLWaXEWKmkFs0rgcsgNJMYAVLp1x3GGuY6CS
-	9jokiw==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49db0q297a-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:20:40 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-25d21fddb85so33303825ad.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 02:20:40 -0700 (PDT)
+	s=arc-20240116; t=1758878670; c=relaxed/simple;
+	bh=wUbRJMho5V5NS/aRRFUvPe88ctT0n1w78dZf3S8MekM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=B14zqg1yMbjMf0lEWUvzquZE5s0PNprIW6O2WgXwbq3rwvdKw6qhdM0Nzt/rLaxN2D7aDzDE8boceRhdRqA9Euu7tDgrwgoR5SiMDKauCsdR/ArAuQhS3o4kNmRulhwv9FOjW4caOG7GfhHaGPjPMCnSwpfXplHrXNsCWKiSy9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-54bc04b9d07so821063e0c.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 02:24:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758878439; x=1759483239;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lFu/WjwzIa456FPHcfJQDUYZ+72FnaVpv0Jr0vDGqFA=;
-        b=g0dCyw6oDBcaxdXCWjh8aSrgdDxLc7Z17kk7WYyDz6I9Yk8OBvGCB1LVNntnoymDOa
-         VFqV+RxYGB9KYcaL27GmiMIT1BqHszWJPOtJu+INRu3YJzIbnebOwjyxy1l0UFS4Lpxf
-         8bEBO4eUo2hUDV5zj+U4AtFBOlygrZmajQ2Geh0lCdL1tWqKVTSiK0PSBbvAS7U5dcV5
-         IwTFmWI3QjBjKNsdcu/yYl/1f/OmaEE7ESG9/bQJXDDbqxBUQk2lH+EaH4turI9YLlqJ
-         7eeK3tKTjDdAyj2irDFXjnT90FqjSQfvtLRV0ET0ct0HpKqqpM9oPGgSgQkKM2W0QHlD
-         qhvg==
-X-Forwarded-Encrypted: i=1; AJvYcCWLBa6SP0H2pC+/LnJkKrIdP82jDNGdvRdPJgt8cB/EGTPZh3Ikz1JDalg81ZHsC2kAsEmwIq9BqmQC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRL79XfdJvETSnvl2x4UjfvshO3NWYH/7/B1wx45lJcEJiMTTY
-	pjfn4JKVBNpx4QTSS2iTDc86IxwFs4lAWQJkvVBcMNJteZuOGYkngKgiLOwg7dgtUqPoo0KfD4c
-	tc8Yip4ToWly1GNvqsO9Ue3tzCAYyrHf+D6qSyD7WrNKhZbX70Eh/nD3WVhQjLdXy
-X-Gm-Gg: ASbGncuwhNjHeDYZ7341PjQi4CkBZ4qd68NPqylbgQ4uUGyQTqL0iATodAF8wWXPh3f
-	rEKv8DH2i3Wkd5zifQitW3uWwNerDtFtcdWrSyb/b+4tl6prShMfE0d0BYQrgYb8DDykowtqYcY
-	ttEY1rNorZpxFqVK6gMcW22F+agDDeV51s13kRW/X4LqwNeVtc1V9o/PT3IU7Cm6qBgPNdLI3eN
-	gK2YCSyNcVKIM3zY2ly1MH+JmbNj6bRqku1SGX08okCCJigq5QSZjwg1nqYM137b4FFpP2qxtIn
-	junePi+FTtRKR0wMbwewguwVwrFFWvSAzKJEC22xAZancvlb+CXZVNZBxHB960gFN710
-X-Received: by 2002:a17:903:986:b0:26c:9b12:2b6f with SMTP id d9443c01a7336-27ed49b85camr71575735ad.3.1758878439224;
-        Fri, 26 Sep 2025 02:20:39 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF7rrW7nDK+DSsZ1+iAO+YYBObXr6q47Vhq5ZpJ+PYNdGMhbv2C4q/3UQ6WknVUYLqfgBU/xA==
-X-Received: by 2002:a17:903:986:b0:26c:9b12:2b6f with SMTP id d9443c01a7336-27ed49b85camr71575355ad.3.1758878438738;
-        Fri, 26 Sep 2025 02:20:38 -0700 (PDT)
-Received: from [10.217.216.188] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed672aa0asm49116955ad.62.2025.09.26.02.20.33
+        d=1e100.net; s=20230601; t=1758878667; x=1759483467;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=V8vXN/4Yr3tP+tgTiuwjLQtfBNx9PrZcekFNLffDoHo=;
+        b=uWrO9szO3FHhfbICeeHfffESVdu2PH2J7j7VPMg2MykViH+FZr1yZFVKt7m/u7lshn
+         ugAYuxIhaQvlt3G10TCViowRRjVkWApaItqQ8le1H53qZ/XXB2Hdl0z9+DiHpPlkxYqq
+         ybhadQQOnVZFcorJhVxrKuF5fKof7ITa/1Q3F3Hoi4EujxuU57c8OOIS8NlHxOHKU8NI
+         T82Lon0lZz/fDI+MkoXOOHZVqfR6eaF+3Aj+kSDVQNLrJLiyTucCXcTgG8YjyjHCVWJ5
+         /n/V+/d69RAgYktrGj356P7AybG38FsLsBEtV3p0zjuNyXuGIohOrTae1Ai3+dgdFvvY
+         SXIg==
+X-Forwarded-Encrypted: i=1; AJvYcCU6GzrpWrp8vJBvfSc6pw6E412cwv3s/SEbhRb8cmi5muDxPd1tbvGOOtnq/2m28eykRzlYovqgCPaK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx5eNEgvbNcgJt3xepEvlGkFBh9yl70tIL1S4ifG8p4r5y7Qtl0
+	xNr/LaY+fFqDCbO1xyaId9xhE0lbEpv+zI5qtludCjyy+KRlsfnH5bryql68SmR5
+X-Gm-Gg: ASbGncviWH2kcMTe1fIXyBKCR3UrwOeai0LdwUCSXXu8lI8ikIKAd+J6Pcj0czgj/Xe
+	omrZBjYcSOe+Wd47N2qXw5uKorab7/ixWtwW8ExTQ9HXLfea2PS6vmibLXBYLB0qkKWm1dcyO5Y
+	94Xdjf5KuVMwY5kk9X7dOTGz4XR670MOcUHGc8h312Aji9dWT3OHzSR/PDyt9YdXpE/xt4IEXBV
+	1y2vHrXsfnW2/HRJahIiSKR4jyBBZ440oJFExHwSnx9JIbZ8ugn2rlPi92QYtkSn0ADVITseqKl
+	mgrjl0sK7De83hTHRPLEvI91Rd6G/iIe1UIfIEf58162f0Jkmea22LlVSrDXrhpNfIS8fQKHaLq
+	wh5jvHigbY/qKV8+CwSTyC8/h9k6wmV/y/rgKn/pVc6VSKkwo0YlvfVvTHTqX
+X-Google-Smtp-Source: AGHT+IELNcyYlQr+2Ql+8ZO+Ro5ywmmNH7DSaG29eKMqnpDCN+/H9KKapgoWiG+byjAjaxLa0QMOSQ==
+X-Received: by 2002:a05:6122:8c15:b0:54b:d89d:6971 with SMTP id 71dfb90a1353d-54bea1e1d62mr2891662e0c.13.1758878666877;
+        Fri, 26 Sep 2025 02:24:26 -0700 (PDT)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54bede0587asm803794e0c.30.2025.09.26.02.24.26
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Sep 2025 02:20:38 -0700 (PDT)
-Message-ID: <2e862560-c422-427e-bace-4199b86d3e6d@oss.qualcomm.com>
-Date: Fri, 26 Sep 2025 14:50:32 +0530
+        Fri, 26 Sep 2025 02:24:26 -0700 (PDT)
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-59eb88955d8so736533137.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 02:24:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVqqcv7uo74HiSSprGXsJXwARZqq6x55hXPKdrLqk02AbJ7WKFN2AKweo51B7c71RfTXTF2/7mvSzJd@vger.kernel.org
+X-Received: by 2002:a05:6102:621c:20b0:5b1:15:1986 with SMTP id
+ ada2fe7eead31-5b100151fe9mr1352205137.15.1758878666185; Fri, 26 Sep 2025
+ 02:24:26 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] clk: qcom: videocc-sm8750: Add video clock
- controller driver for SM8750
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20250829-sm8750-videocc-v2-v2-0-4517a5300e41@oss.qualcomm.com>
- <20250829-sm8750-videocc-v2-v2-3-4517a5300e41@oss.qualcomm.com>
- <503e1fde-39ea-4107-947b-18b705f2bc51@oss.qualcomm.com>
-Content-Language: en-US
-From: Taniya Das <taniya.das@oss.qualcomm.com>
-In-Reply-To: <503e1fde-39ea-4107-947b-18b705f2bc51@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: n7JcM8eRSLD3DqxXEcYo6LlSneJOiiAU
-X-Proofpoint-GUID: n7JcM8eRSLD3DqxXEcYo6LlSneJOiiAU
-X-Authority-Analysis: v=2.4 cv=aZhsXBot c=1 sm=1 tr=0 ts=68d65ae8 cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=TyDm9B-wxu7uxzFpS6AA:9
- a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI1MDE3MSBTYWx0ZWRfX6E3PQ1YFBQIF
- ZZkZRIlXwujgZlvYwV1APc/P7eSv+D8E/m9kK3Xcdy0k/4zWmdjX/jx0beT/EXSa/Ohr5Z8RyxS
- EW1WyTVbvrdk5hVuoSHm7A1YgN2HQcuNMl/MkbV39YHcbnfvlIVPUHIsHBGSnC682UHLy033lX1
- JxsluKmbn26CMYDqcXskHoZTcXrEQP4ymwSbRIqUjy6vGfRLd6kBqG/07EJRmNqH5B/o7Dux6BK
- LYEr1ZPw96vxdio5lxBOPgUQMna2VCkGcILECrG1hVXoFOr+S8fn2ps3dzaERvnrcoXVEIKCRrp
- uYmo9kNWZLlVCNFCA1Qx/QdQtWB7UA3izkpB0/GJIu8ZGfomYNFgOZIxUrX3rggoGJmyjAWdBE/
- /SDQr+zdDO0wgzJoJQjr6ekJhhhlfw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-26_02,2025-09-26_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 suspectscore=0 malwarescore=0 adultscore=0
- clxscore=1015 impostorscore=0 bulkscore=0 lowpriorityscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509250171
+References: <20250919100740.28429-1-wsa+renesas@sang-engineering.com> <20250922192640.GA841738-robh@kernel.org>
+In-Reply-To: <20250922192640.GA841738-robh@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 26 Sep 2025 11:24:15 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVdMCm2eYmkzo9tOXn5MHyqmvKN-Cu=2RO7q7n3EZF3=A@mail.gmail.com>
+X-Gm-Features: AS18NWA7DJU_DehkMVc8u2tM81YJnXpnMbPvztHNUybS4R8bb44hSxW0C3oaO7U
+Message-ID: <CAMuHMdVdMCm2eYmkzo9tOXn5MHyqmvKN-Cu=2RO7q7n3EZF3=A@mail.gmail.com>
+Subject: Re: [RFC PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-eb: describe LEDs
+To: Rob Herring <robh@kernel.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-renesas-soc@vger.kernel.org, 
+	Magnus Damm <magnus.damm@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Rob,
 
+On Mon, 22 Sept 2025 at 21:26, Rob Herring <robh@kernel.org> wrote:
+> On Fri, Sep 19, 2025 at 12:07:20PM +0200, Wolfram Sang wrote:
+> > To be able to use the LEDs, a configuration switch has to be set to a
+> > non-default value. So, infrastructure to support these switches (which
+> > modify signal routing via the CPLD on the demo board (DB)) is added as
+> > well.
+> >
+> > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-On 9/12/2025 4:38 PM, Konrad Dybcio wrote:
-> On 8/29/25 12:15 PM, Taniya Das wrote:
->> Add support for the video clock controller for video clients to be able
->> to request for videocc clocks on SM8750 platform.
->>
->> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
->> ---
-> 
-> [...]
-> 
->> +static int video_cc_sm8750_probe(struct platform_device *pdev)
->> +{
->> +	struct regmap *regmap;
->> +	int ret;
->> +
->> +	ret = devm_pm_runtime_enable(&pdev->dev);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = pm_runtime_resume_and_get(&pdev->dev);
->> +	if (ret)
->> +		return ret;
->> +
->> +	regmap = qcom_cc_map(pdev, &video_cc_sm8750_desc);
->> +	if (IS_ERR(regmap)) {
->> +		pm_runtime_put(&pdev->dev);
->> +		return PTR_ERR(regmap);
->> +	}
->> +
->> +	clk_taycan_elu_pll_configure(&video_cc_pll0, regmap, &video_cc_pll0_config);
->> +
->> +	/* Update DLY_ACCU_RED_SHIFTER_DONE to 0xF for mvs0, mvs0c */
->> +	regmap_update_bits(regmap, 0x8074, 0x1e00000, 0x1e00000);
-> 
-> regmap_update_bits(..., GENMASK(x, y) /* full field width */, 0xf)
+> > This patch depends on "[PATCH v3 5/8] ARM: dts: r9a06g032: Add GPIO
+> > controllers" which is still in-flight. I send this out as RFC already,
+> > so we can discuss the introduction of the switch dependant settings. I
+> > copied this approach form RZ/G3S.
 
-Sure, Konrad, will update the change.
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h
+> > @@ -0,0 +1,22 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
+> > +/*
+> > + * On-board switches for the Renesas RZ/N1D demo board (DB) and extension
+> > + * board (EB)
+> > + *
+> > + * Copyright (C) 2025 Renesas Electronics Corp.
+> > + */
+> > +
+> > +#ifndef __N1D_DB_EB_SWITCHES_H__
+> > +#define __N1D_DB_EB_SWITCHES_H__
+> > +
+> > +#define SW_OFF         0
+> > +#define SW_ON          1
+> > +
+> > +/*
+> > + * SW_2-2:
+> > + *     SW_OFF - enable PMOD1-3+LEDs on the extension board
+> > + *     SW_ON  - enable CAT/S3 (default)
+> > + */
+> > +#define SW_2_2 SW_ON
+> > +
+> > +#endif
+> > diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+> > index 3258b2e27434..849b5ad9c79d 100644
+> > --- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+> > +++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+> > @@ -15,6 +15,7 @@
+> >  #include <dt-bindings/pinctrl/rzn1-pinctrl.h>
+> >
+> >  #include "r9a06g032.dtsi"
+> > +#include "r9a06g032-rzn1d400-db-switches.h"
+> >
+> >  / {
+> >       model = "RZN1D-DB Board";
+> > @@ -185,6 +186,14 @@ fixed-link {
+> >       };
+> >  };
+> >
+> > +#if SW2_2 == SW_OFF
+>
+> The "rule" for DT headers is #defines for numbers only.
+>
+> If the switches are s/w readable, then I'd say firmware should read them
+> and enable/disable the LEDs as appropriate. If not, then maybe the DT
+> should have a property reflecting the switch state and firmware uses
+> that to enable/disable.
 
-> 
-> would be easier for the next person to check against docs in case this
-> needs to ever change or be validated
->> +	regmap_update_bits(regmap, 0x8040, 0x1e00000, 0x1e00000);
->> +
->> +	regmap_update_bits(regmap, 0x9f24, BIT(0), BIT(0));
-> 
-> The register description mentions a ticket which I believe says this
-> is not necessary in production hardware
-> 
+Both options require updating the (10y-old?) firmware, which is unlikely
+to happen.
 
-It is required on production hardware as well.
+Gr{oetje,eeting}s,
 
->> +
->> +	/*
->> +	 * Keep clocks always enabled:
->> +	 *	video_cc_ahb_clk
->> +	 *	video_cc_sleep_clk
->> +	 *	video_cc_xo_clk
->> +	 */
->> +	regmap_update_bits(regmap, 0x80a4, BIT(0), BIT(0));
->> +	regmap_update_bits(regmap, 0x80f8, BIT(0), BIT(0));
->> +	regmap_update_bits(regmap, 0x80d4, BIT(0), BIT(0));
-> 
-> Please use the new _desc infra
-> 
-> Konrad
-
-Yes, will migrate to use the _desc infra.
+                        Geert
 
 -- 
-Thanks,
-Taniya Das
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
