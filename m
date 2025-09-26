@@ -1,161 +1,99 @@
-Return-Path: <devicetree+bounces-221969-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221970-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D01E6BA4920
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BAA61BA49E4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:28:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EBE37B67C3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:10:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB70B7B32B0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:26:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CEA0242910;
-	Fri, 26 Sep 2025 16:11:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OSeGqp+6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EDA025FA13;
+	Fri, 26 Sep 2025 16:27:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from srv01.abscue.de (abscue.de [89.58.28.240])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DC6C23E229;
-	Fri, 26 Sep 2025 16:11:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F34125A2CF;
+	Fri, 26 Sep 2025 16:27:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.58.28.240
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758903109; cv=none; b=sgZpVO13v0k1TYMy4twwklXsKfBbXw7jDfT+/nCnE20GFGphCwZa2UhYBLLvdBfsFd7NF9bgvp6K0OPhO+LLhIUvHVgO7QSnAc76ABAI3gS+cFo3pinm1s63f0VnOKvgtOOWbQ8N/7tI+/dml+ZJhhRswxb9tAT2PAKtaY02QxE=
+	t=1758904043; cv=none; b=QVdAZlKWD7BY70GCDAK2IOxnoytmg/8IV5DrWYAQVTVRfl54OI8ONK/DcR7bUcSpoH3qUQ0Oofq2Ppwa2w9sXgr7+gLVoPQru0Ld/AGMBJrI9WyUl/1KleJSutyme3qeLnZZ9A/q+miqIxEJWEeiVPwULyI1omQeiq1zG3pg1D4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758903109; c=relaxed/simple;
-	bh=1KDgmYma2MnC8zChopyw3az3a1NpfHFpCuPoWCHv96Q=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=oi2XJcVk4LycKHXSY/j509n+ScQv3cD3vCs08LTVTaNNrZFOxaFdVAMixs+REzxeNvugEjhkj5OZwVGFL2N/RBvvxE5JxiuoHIpGK6uounXq/WYi1w8XOGXsv11QiiOLLQqZ9Dy3NOK7YB+JnOwgUhl+ZtGo9874vLVLXGZCo0A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OSeGqp+6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A586C4CEF4;
-	Fri, 26 Sep 2025 16:11:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758903107;
-	bh=1KDgmYma2MnC8zChopyw3az3a1NpfHFpCuPoWCHv96Q=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=OSeGqp+6hiXXNiT7HIdZdAa9zHJ84BrXo50dVLoOZF7t2lzFo1tgeOKsl1Ga25Zot
-	 4+XlN6qIpsJ2/T1JU9zWqYZ92OJYa2gzwjdUruoIIf7WxYYu3kyc9fdEpkjJap2o7D
-	 kT5+/5Lerqgd8Ht/51vvc5evgHvQBlF9vrKeOlMJpzU1Zol7dNEBO6HjbG8idzl9T2
-	 fW93itZzkyKFyYLlYKqvGJFPgu0l5592VLpm2x1+6/3yTKP7Kzvrb7fFrNV1+iftLG
-	 od1W5uM8Yf+2UbCMOn3bcBAClsuaaPIPefWzyGt904Y5y1tpeS5cmKmBRbMg/J5A5A
-	 I1YcgIUqILcAg==
-Date: Fri, 26 Sep 2025 11:11:46 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1758904043; c=relaxed/simple;
+	bh=try/PAT9gj7u33ZxmLD+vfMHhDbHVLWks0cuFzMy8Es=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LDOzr6x8nFdElpX9ZLqonLghQ4p/+a2/FDuS85EA6gyc7INQ8fV97MkOTzsQNgmUDPWh9OO3h4iVVu5C7iR/kJXyw3khMycfznY+UFqbJeXLI5FZ06YqwFibizpT7u2gsMN00Z4tmA/z3aFaSYOsXcOkGuvf9zSjt8Q57uIbiaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de; spf=pass smtp.mailfrom=abscue.de; arc=none smtp.client-ip=89.58.28.240
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=abscue.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=abscue.de
+Received: from srv01.abscue.de (localhost [127.0.0.1])
+	by spamfilter.srv.local (Postfix) with ESMTP id 693F61C24F8;
+	Fri, 26 Sep 2025 18:27:06 +0200 (CEST)
+X-Spam-Level: 
+Received: from fluffy-mammal.metal.fwg-cag.de (unknown [IPv6:2001:9e8:cdf8:0:ec51:b786:a581:3dd1])
+	by srv01.abscue.de (Postfix) with ESMTPSA id B7FE51C24F1;
+	Fri, 26 Sep 2025 18:27:05 +0200 (CEST)
+From: =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
+Subject: [PATCH 0/5] power: reset: sc27xx: Add SC2730 and reboot support
+Date: Fri, 26 Sep 2025 18:23:22 +0200
+Message-Id: <20250926-sc2730-reboot-v1-0-62ebfd3d31bb@abscue.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Andy Shevchenko <andy@kernel.org>, linux-iio@vger.kernel.org, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Magnus Damm <magnus.damm@gmail.com>, David Lechner <dlechner@baylibre.com>, 
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- Jonathan Cameron <jic23@kernel.org>, 
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAPq91mgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDSyMz3eJkI3NjA92i1KT8/BJd8zRjy0SglKmJeYoSUE9BUWpaZgXYvOj
+ Y2loAcVAmmV8AAAA=
+X-Change-ID: 20250926-sc2730-reboot-7f39a025547d
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Geert Uytterhoeven <geert+renesas@glider.be>
-To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-In-Reply-To: <20250925224013.2146983-1-cosmin-gabriel.tanislav.xa@renesas.com>
-References: <20250925224013.2146983-1-cosmin-gabriel.tanislav.xa@renesas.com>
-Message-Id: <175890301803.880384.843495445196930858.robh@kernel.org>
-Subject: Re: [PATCH v2 0/7] Add ADCs support for RZ/T2H and RZ/N2H
+ Conor Dooley <conor+dt@kernel.org>, Orson Zhai <orsonzhai@gmail.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>, 
+ Chunyan Zhang <zhang.lyra@gmail.com>, Lee Jones <lee@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>
+X-Mailer: b4 0.14.2
 
+Implement poweroff and reboot support for the SC2730 PMIC in the
+existing driver for the SC27xx series. Add missing device tree bindings
+and compatibles.
 
-On Fri, 26 Sep 2025 01:40:02 +0300, Cosmin Tanislav wrote:
-> Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs include three
-> 12-Bit successive approximation A/D converters.
-> 
-> RZ/T2H has two ADCs with 4 channels and one with 6.
-> RZ/N2H has two ADCs with 4 channels and one with 15.
-> 
-> Add support for them.
-> 
-> V2:
->  * pick up Reviewed-by from Geert
->  * dt-bindings: move required after patternProperties
->  * dt-bindings: describe 16 channels, but limit per-SoC to 6 / 15
->  * dt-bindings: use uppercase for clock descriptions
->  * remove max-channels property and find it from parsed channel subnodes
->  * remove start/stop wrappers
->  * stop calibration even on failure
->  * move data reading to rzt2h_adc_read_single() instead of interrupt
->  * handler
-> 
-> Cosmin Tanislav (7):
->   clk: renesas: r9a09g077: Add ADC modules clock
->   dt-bindings: iio: adc: document RZ/T2H and RZ/N2H ADC
->   iio: adc: add RZ/T2H / RZ/N2H ADC driver
->   arm64: dts: renesas: r9a09g077: Add ADCs support
->   arm64: dts: renesas: r9a09g087: Add ADCs support
->   arm64: dts: renesas: rzt2h/rzn2h-evk: enable ADCs
->   arm64: defconfig: enable RZ/T2H / RZ/N2H ADC driver
-> 
->  .../iio/adc/renesas,r9a09g077-adc.yaml        | 160 +++++++++
->  MAINTAINERS                                   |   8 +
->  arch/arm64/boot/dts/renesas/r9a09g077.dtsi    |  69 ++++
->  .../dts/renesas/r9a09g077m44-rzt2h-evk.dts    |  28 ++
->  arch/arm64/boot/dts/renesas/r9a09g087.dtsi    |  69 ++++
->  .../dts/renesas/r9a09g087m44-rzn2h-evk.dts    |  64 ++++
->  .../dts/renesas/rzt2h-n2h-evk-common.dtsi     |  79 +++++
->  arch/arm64/configs/defconfig                  |   1 +
->  drivers/clk/renesas/r9a09g077-cpg.c           |   3 +
->  drivers/iio/adc/Kconfig                       |  10 +
->  drivers/iio/adc/Makefile                      |   1 +
->  drivers/iio/adc/rzt2h_adc.c                   | 306 ++++++++++++++++++
->  12 files changed, 798 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/renesas,r9a09g077-adc.yaml
->  create mode 100644 drivers/iio/adc/rzt2h_adc.c
-> 
-> --
-> 2.51.0
-> 
-> 
-> 
+For some reason, a reboot implementation for SC2731 already exists in
+the SPI driver used for communicating with the PMIC
+(drivers/spi/spi-sprd-adi.c). This obviously does not belong there, but
+it appears that SC2731 has no dedicated reboot registers and requires
+triggering the PMIC watchdog for a reboot. Since there is no driver for
+the PMIC watchdog yet, keep that code unmodified and only implement
+reboot for SC2730 here. Once a watchdog driver is implemented, the
+duplicate code for setting the reboot mode can be removed from the SPI
+driver.
 
+Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
+---
+Otto Pflüger (5):
+      dt-bindings: power: reset: Add SC27xx series PMIC poweroff
+      dt-bindings: mfd: sc2731: Reference sprd,sc2731-poweroff
+      power: reset: sc27xx: Use devm_register_sys_off_handler
+      power: reset: sc27xx: Add support for SC2730 and OF match table
+      power: reset: sc27xx: Add reboot support for SC2730
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+ .../devicetree/bindings/mfd/sprd,sc2731.yaml       |   8 +
+ .../bindings/power/reset/sprd,sc2731-poweroff.yaml |  22 +++
+ drivers/power/reset/sc27xx-poweroff.c              | 170 +++++++++++++++++++--
+ 3 files changed, 188 insertions(+), 12 deletions(-)
+---
+base-commit: 8e2755d7779a95dd61d8997ebce33ff8b1efd3fb
+change-id: 20250926-sc2730-reboot-7f39a025547d
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: attempting to guess base-commit...
- Base: tags/next-20250925 (best guess, 2/10 blobs matched)
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/renesas/' for 20250925224013.2146983-1-cosmin-gabriel.tanislav.xa@renesas.com:
-
-arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dtb: adc@90014000 (renesas,r9a09g077-adc): 'renesas,max-channels' does not match any of the regexes: '^channel@[0-9a-f]$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/renesas,r9a09g077-adc.yaml#
-arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dtb: adc@90014400 (renesas,r9a09g077-adc): 'renesas,max-channels' does not match any of the regexes: '^channel@[0-9a-f]$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/renesas,r9a09g077-adc.yaml#
-arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dtb: adc@80008000 (renesas,r9a09g077-adc): 'renesas,max-channels' does not match any of the regexes: '^channel@[0-9a-f]$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/renesas,r9a09g077-adc.yaml#
-arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dtb: adc@90014000 (renesas,r9a09g087-adc): 'renesas,max-channels' does not match any of the regexes: '^channel@[0-9a-f]$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/renesas,r9a09g077-adc.yaml#
-arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dtb: adc@90014400 (renesas,r9a09g087-adc): 'renesas,max-channels' does not match any of the regexes: '^channel@[0-9a-f]$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/renesas,r9a09g077-adc.yaml#
-arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dtb: adc@80008000 (renesas,r9a09g087-adc): 'renesas,max-channels' does not match any of the regexes: '^channel@[0-9a-f]$', '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/iio/adc/renesas,r9a09g077-adc.yaml#
-
-
-
-
+Best regards,
+-- 
+Otto Pflüger <otto.pflueger@abscue.de>
 
 
