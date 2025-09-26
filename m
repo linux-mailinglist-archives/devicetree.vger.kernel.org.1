@@ -1,158 +1,192 @@
-Return-Path: <devicetree+bounces-221903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D543BA3F0E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:49:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA6F1BA3F50
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:52:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 588F37AA4CD
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:48:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F7AA625A94
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 13:52:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9802D13D539;
-	Fri, 26 Sep 2025 13:49:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6052019C553;
+	Fri, 26 Sep 2025 13:52:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aHy0mU3H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T3GnZmG3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CC422AE78
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:49:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFCB819CC0C
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:52:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758894575; cv=none; b=quQq+1w6tyny+46jUoFkg/f2RCYehNAayLyL09rWc4CcvkjWC6c/RmDVyden6honJO47cYOlCwGQUlVqx4/7b30YHAVSTPichmvNO6pwAvARR6YRDa6su6clJhgHuVszqX857Td7AN/S5UiaaFAJz3+l9PUwOR/4oaNIEloWdm8=
+	t=1758894741; cv=none; b=b0R2jMnlCaccewUzaM9o4jMgJu7qRqHl9Iu0lUOlaqKyA2R1YG4dWtRX78LpoYy9bK0OsnkPj7qFS45SOoHcqvRmbWRrwV4jWRgUXv965+as6Aavf5y8ZBDWaoS4UNxtq6jMPqsYpY5AN3QCRIilxll8YIdjRwcUzNoqyodJyV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758894575; c=relaxed/simple;
-	bh=Db08r4WBepijoO3oZHfH0NhL640ck+ontuJnpli7CSU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Dgv+kyaRsIE+BzZjSMuryUYcIEpJEXFzjkDhZLVDGfPELkH4DExLtYX1MOWESDCEZQgLEdFNh/SD3Um0rtswVQZJ+ZOLgyblxAzqzJwTH0EHuiZJKl/n4T7kHceJr2/naOZCtu46+fY1i2FPTOAu12qxKhfuAY/wGsCOFQh79AY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aHy0mU3H; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58Q8w5JT016544
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:49:33 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=WAJX3xDEN4jUGy3bs9jmN30/
-	NVEDxtaS7JRNwdjwUEY=; b=aHy0mU3HhuVKURn/uHzG/RePuy4w7/c1pN1+AzyD
-	gUGPrtncdpAOn58KAqdTQdH1XLvdAFF6mGtCPW4ntq0q7vvB+ZyK4xVlKzSV8FvO
-	3W5WtOees+o8lFEtHIKnDWiX4INq3GzfTzbLdSKtvmqjjSvQ1JqaChDErbwrlIve
-	JtcSXvb2A/BRy8z7lAjQXX3/rq1mjHjucouqrPey5bGcublmXP12aYA1fHE1EBxg
-	pECSC0Wl0K4tq04CP6HotXt6pDjU/wCdY06erPyelS4HU0f6eYGMZVv2u9bhE8p0
-	C702F6qKhNkDmi1BMHIvFphBfqQZH/NCoTJLM3FMzRgQLg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49db0rk1yj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 13:49:33 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4d602229d20so38757771cf.3
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:49:33 -0700 (PDT)
+	s=arc-20240116; t=1758894741; c=relaxed/simple;
+	bh=xPOX6L/+pSAWN33QTJDTg3gzanYHvWiL/z2hHMb2mtg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UAiWt3uFY6lfaBWHJz2Ska+5SPVmz7xjnG4+Uz+spyXlrkBWiQg7X5OGsUYLKydCcn2yTZtBcjrgLELy0PkTemk1F37WbNhfgn/vRFoMs+s6GM25XtKDoKWyj8wiCHwiSWM1I3AIhEGgDyWSvz3elskIIxYIo45fANdacwRxqLs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T3GnZmG3; arc=none smtp.client-ip=209.85.216.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-3352018e050so1581664a91.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 06:52:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758894739; x=1759499539; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZLClIUHJNuBTYJNGItlbVB0Qy3UFalu2N1I5Ts4kgqA=;
+        b=T3GnZmG300xirrS7oH8sp5Zu0N/pPkg3J8l1rIbcVv1hHNz3dwh7oEbY09TisK4YuA
+         wds7jQZCN0jTDGIZFe9SwoNs3tDJlb6/S8afCdqV25XHis6CzrI5UxoRf/z5sXewQl2k
+         lESbSuUDdJHouxzU20R0dD73HVbScHbs9USUILc+9IOCXzAgqo3GOqoQ15VdcoHJth7/
+         w0LPS5ieqI5icxomFaKJnb4fowYcTPKIprj9QWYTBpDO9ZbZC7F248CgvMc9jSOKaAz0
+         ejLkBmmSTN1YdGvx0SF6ht3QQezjY4nCG5fdihNC0jhufKz97LZ5anFDAfOV0jvtsHlj
+         Dwtg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758894572; x=1759499372;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WAJX3xDEN4jUGy3bs9jmN30/NVEDxtaS7JRNwdjwUEY=;
-        b=jUHO1tSE0n5hMhJLkT1pJFweOB4tqI1IDRWrBHIHgphDdA4gtY3qRqN7EMz9uW9pL+
-         JbJ/5v4YeDnCZMi8lesU3wJ9SzenLqkb9f5f4rO6oznXTMPaj7+8fAhIwsdrv3Wj8q0v
-         OnzYehGVjM3ok1y+dT1Elp/lu2P85Bg9l6Og2ie4oSgY7LZEH7uY3/sO9M7VOq+qbd1a
-         0gKCP99A6CtvWEJA9tN8ykn6e3tUKmgU2CTwJcmgrSrlyrX9Z74DrMSqBMdfIc5s90IS
-         bpf58H7tzKh0Jlc2uHwpuhueh3at6e5AXmaWaBAQG7X+fYDmzeE4YbEJXjmXIS7PfN7V
-         RBhg==
-X-Forwarded-Encrypted: i=1; AJvYcCW5G0wz3CmcfrrnoXLd3kUssqwdjjCQvBji7GtdiQsR0Vi2T6ocwx+WGj1tbEPhQGYHNtE5ktVZVXH0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0yCbY6Z9qThsrkUddeFMGd3KCh+H3C3ugpcDuxMebPvX9NLWd
-	0oU3UBku09UPOkFPaKLL+y10dtaZRM7IiSVwtN7Pu3q3evrxvLIg82ncYXuBa1rBwFHlc3X52eX
-	AnQzEAZwioU+wPnZAgVmfU166P0mG0DOUwKIZH1XcpKxTCzQwAwvqy+SvRF5wfI/V
-X-Gm-Gg: ASbGncsoDYuRubNqxyT+Old7BjOIXPTcFonhA0IWvwu1CFKg4bMABw9StuotNN6JPf/
-	B3svjQ/Atwi93ha4/N1s4QAXbnEThCpoQVW0HWyWCYyQyJ4go8ARz2XNj08ZpNrdzSvw/xFdpgn
-	ylFIeZuHmhnkLhGCdUEd/HXAocO0Xt4o2ZEtmYiK5eC6jWPhVmshe+BZA2RJoqSzNUJEdwCwWyI
-	XNNzLCfcfFbQEecWA9MMherto6nWSERyBJ760Qr8NOYJPum71YwO4u+ZDKJQRelIyeDXzL8QqXV
-	rUEO+3KRHhFAt+DvmZTYVlNxWoaNDOZWaqzLJVuPtW2YDhsNufRPBZHbIIji75vniZ+C83U1LJ/
-	/BeXaz86TS5Um2sQVtsSl18oIKnPtPl3uRUs6D+kRyF/KoKvoeOA1
-X-Received: by 2002:a05:622a:507:b0:4d7:bf73:7644 with SMTP id d75a77b69052e-4da481d8f9amr91206651cf.12.1758894571966;
-        Fri, 26 Sep 2025 06:49:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGUzL2zGBtiAYNc8MFpZoNaV0hhqhzKYnr3u+gtoMqLy4vqtTE8NEKQG2bMZ9W/WISGzo3mgg==
-X-Received: by 2002:a05:622a:507:b0:4d7:bf73:7644 with SMTP id d75a77b69052e-4da481d8f9amr91206161cf.12.1758894571300;
-        Fri, 26 Sep 2025 06:49:31 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-583166561c0sm1817869e87.81.2025.09.26.06.49.30
+        d=1e100.net; s=20230601; t=1758894739; x=1759499539;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZLClIUHJNuBTYJNGItlbVB0Qy3UFalu2N1I5Ts4kgqA=;
+        b=Rds66adBqFu2BNdNcc1sUhj9uOXpdIG+sCIkhTzrYctA7GK1AR3e3DZRQLaI3A2K6f
+         dTDe4XE2adrHfjJXXx/PqFC8kzV254+1xmuPBGxD9N/5Us238peFqixu9AD++4tqlpG6
+         F0wg5vWUl0KFHE2+QVou7Vad8FQeIWnecTyMhVWi0MFOvpayKOUug8VgoazwtoxpCYZl
+         UvB+l0xQCACfYsN2L2gVgLwFtKbg+voPG6YMD/hVksh7BAmIK/vvxnAoSU3IIxpm3GdM
+         ZsxPv0sKJLsYzPKpnu8OwuOABF4Er+EZMvofwxF1D7HmM0WolF4TXeAAlhZlkR95vWne
+         iUQA==
+X-Forwarded-Encrypted: i=1; AJvYcCWKyV/MSfDm9lQ5/vDnXnKY2XQ2/adl6/SCSWTWvICNe2Qo+MLqgz9nlwZq/LMstLVq3z2I7zrb6E/K@vger.kernel.org
+X-Gm-Message-State: AOJu0YxaFSRwVZyJR9zpO6gV4vA3IQhEHwEYWuUu21DptdEF+vIl+0pb
+	zjx+cjT8j0+T9Qk9qUh3VSL+pt3ywgmMCOWDRjwqclbvbKO2haGySNKP
+X-Gm-Gg: ASbGncsq+KcFOtbkZUiCxEGD3Sb+BGa9VUbfjAaIc/NzqQQTpl3hfDUqUY4eMQfF4El
+	JG8p1zhkzbG9jv+Tyn9OX6UoI6QxSIVrnUjXP9P99Wu6V+BsG4Agva6SMZ04Sb5F6mqYM5cJK18
+	xIIjisHFT4Bd1krpKUptH2M9idTjCCNIYy6+MBTnT7oUEUtkC76wJnJR00SGkIvJza8JYK/TbZw
+	wMbG2tp/lJ3/yIzzLKeKUVICPBhtwgfby3SWtdplzI0alDbThJpkMBXdSfnRPTTnoZw+TvyVYLM
+	NnUjY3zz19HyD61ubSStBJcyQgqgafvxLsX413Kh9XvIJsFVwkmGaGTh+qegvdTrsBnHjkTkqoe
+	JFF/nQKRE/pTU6qj8lMp91QsBQngInA==
+X-Google-Smtp-Source: AGHT+IEOdGn4jDmCSm9I76qI0kkhs7fo2KYsVDL5HVwDIM5aizoho4MUqbd6MzUPnrdnETKcldCOPw==
+X-Received: by 2002:a17:90b:38cb:b0:32b:ca6f:1245 with SMTP id 98e67ed59e1d1-3342a2437ffmr7784377a91.5.1758894738994;
+        Fri, 26 Sep 2025 06:52:18 -0700 (PDT)
+Received: from d.home.yangfl.dn42 ([45.32.227.231])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3341be2338csm8997217a91.22.2025.09.26.06.52.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Sep 2025 06:49:30 -0700 (PDT)
-Date: Fri, 26 Sep 2025 16:49:28 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, kernel@oss.qualcomm.com,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
-        Rakesh Kota <rakesh.kota@oss.qualcomm.com>,
-        Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-Subject: Re: [PATCH] arm64: dts: qcom: qcs8300: pmic: Remove 'allow-set-time'
- property
-Message-ID: <s6dqap37vs6ihtsdttvcx6p4sbkbzi5rd4kpa36fwfleei3fss@wdizdscqxfah>
-References: <20250926-remove-rtc-allow-set-time-v1-1-76895a666939@oss.qualcomm.com>
+        Fri, 26 Sep 2025 06:52:18 -0700 (PDT)
+From: David Yang <mmyangfl@gmail.com>
+To: netdev@vger.kernel.org
+Cc: David Yang <mmyangfl@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Simon Horman <horms@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH net-next v12 0/5] net: dsa: yt921x: Add support for Motorcomm YT921x
+Date: Fri, 26 Sep 2025 21:50:47 +0800
+Message-ID: <20250926135057.2323738-1-mmyangfl@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250926-remove-rtc-allow-set-time-v1-1-76895a666939@oss.qualcomm.com>
-X-Authority-Analysis: v=2.4 cv=dP+rWeZb c=1 sm=1 tr=0 ts=68d699ed cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=RuSpVAPlDewHRWl8VpoA:9 a=CjuIK1q_8ugA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-ORIG-GUID: nFRUjephHmlKE0n7qiY5kbDf8toNf8qB
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI1MDE3MSBTYWx0ZWRfXyBWmv7Jg4PQD
- McMnGxhVxJsfwYCsiwB9qLcuHxzdnc08ZJR9BluAoNYfxWAwgB95hKFBdw4hY12S4Ao48csPh+X
- +FBnBNrNNoWGky/L6GV1TQBqV8pZsyXqkz3hlad5Mecu2zmrYSvjs6H+t9Vb9Nmc9FFQkqHnjgB
- VM2G8f7nnoB/KJi1/Blon6Aqm3+ESW284a8fASmhRiONEgIST31AiU/PaE/JYlxMFQ/uG7OkVK0
- T7w2BgvPYKI9t0n33YufkpqZTsUr+i3Yq2ENNH8pkP/ANxkRLVFdjjuNYbj9f1Dc6e/d2y54F1P
- ytkzquhDSx8mhfb/PWvftQ33b8i6ROOAK3LtyJaEvkCRYafVaadmbo7Qgm7/tif6xWOW6aBHNQS
- 0x7/daXkjySA3VXVRADWrVNTgDKpjg==
-X-Proofpoint-GUID: nFRUjephHmlKE0n7qiY5kbDf8toNf8qB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-26_04,2025-09-26_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 spamscore=0 phishscore=0 clxscore=1015 priorityscore=1501
- impostorscore=0 suspectscore=0 adultscore=0 bulkscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509250171
+Content-Transfer-Encoding: 8bit
 
-On Fri, Sep 26, 2025 at 12:09:27PM +0800, Tingguo Cheng wrote:
-> Remove the 'allow-set-time' property from the rtc node because APPS
-> is prohibited from setting the hardware RTC time.
-> 
-> Signed-off-by: Tingguo Cheng <tingguo.cheng@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs8300-pmics.dtsi | 1 -
->  1 file changed, 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs8300-pmics.dtsi b/arch/arm64/boot/dts/qcom/qcs8300-pmics.dtsi
-> index a94b0bfa98dc39e41d1a0de3373753953609b95c..e990d7367719beaa9e0cea87d9c183ae18c3ebc8 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs8300-pmics.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs8300-pmics.dtsi
-> @@ -18,7 +18,6 @@ pmm8620au_0_rtc: rtc@6100 {
->  			reg = <0x6100>, <0x6200>;
->  			reg-names = "rtc", "alarm";
->  			interrupts = <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
-> -			allow-set-time;
->  		};
->  
->  		pmm8620au_0_gpios: gpio@8800 {
+Motorcomm YT921x is a series of ethernet switches developed by Shanghai
+Motorcomm Electronic Technology, including:
 
-Do we have a UEFI variable or SDAM offset to keep the offset between the
-RTC and HLOS then?
+  - YT9215S / YT9215RB / YT9215SC: 5 GbE phys
+  - YT9213NB / YT9214NB: 2 GbE phys
+  - YT9218N / YT9218MB: 8 GbE phys
+
+and up to 2 serdes interfaces.
+
+This patch adds basic support for a working DSA switch.
+
+v11: https://lore.kernel.org/r/20250922131148.1917856-1-mmyangfl@gmail.com
+  - make MIB_DESC cleaner
+  - use disable_delayed_work at teardown
+v10: https://lore.kernel.org/r/20250919094234.1491638-1-mmyangfl@gmail.com
+  - fix warnings related to PHY_INTERFACE_MODE_REVSGMII
+v9: https://lore.kernel.org/r/20250913044404.63641-1-mmyangfl@gmail.com
+  - add PHY_INTERFACE_MODE_REVSGMII
+  - remove mdio_verify()
+  - remove uncessary fdb flush opeartions
+  - rework mib reading
+  - set port pvid by port_set_pvid()
+v8: https://lore.kernel.org/r/20250912024620.4032846-1-mmyangfl@gmail.com
+  - rework register polling
+  - rework mib reading
+  - other suggested code style changes
+v7: https://lore.kernel.org/r/20250905181728.3169479-1-mmyangfl@gmail.com
+  - simplify locking scheme
+v6: https://lore.kernel.org/r/20250824005116.2434998-1-mmyangfl@gmail.com
+  - handle unforwarded packets in tag driver
+  - move register and struct definitions to header file
+  - rework register abstraction and implement a driver lock
+  - implement *_stats and use a periodic work to fetch MIB
+  - remove EEPROM dump
+  - remove sysfs attr and other debug leftovers
+  - remove ds->user_mii_bus assignment
+  - run selftests and fix any errors found
+v5: https://lore.kernel.org/r/20250820075420.1601068-1-mmyangfl@gmail.com
+  - use enum for reg in dt binding
+  - fix phylink_mac_ops in the driver
+  - fix coding style
+v4: https://lore.kernel.org/r/20250818162445.1317670-1-mmyangfl@gmail.com
+  - remove switchid from dt binding
+  - remove hsr from tag driver
+  - use ratelimited log in tag driver
+v3: https://lore.kernel.org/r/20250816052323.360788-1-mmyangfl@gmail.com
+  - fix words and warnings in dt binding
+  - remove unnecessary dev_warn_ratelimited and u64_from_u32
+  - remove lag and mst
+  - check for mdio results and fix a unlocked write in conduit_state_change
+v2: https://lore.kernel.org/r/20250814065032.3766988-1-mmyangfl@gmail.com
+  - fix words in dt binding
+  - add support for lag and mst
+v1: https://lore.kernel.org/r/20250808173808.273774-1-mmyangfl@gmail.com
+  - fix coding style
+  - add dt binding
+  - add support for fdb, vlan and bridge
+
+David Yang (5):
+  dt-bindings: ethernet-phy: add reverse SGMII phy interface type
+  net: phy: introduce PHY_INTERFACE_MODE_REVSGMII
+  dt-bindings: net: dsa: yt921x: Add Motorcomm YT921x switch support
+  net: dsa: tag_yt921x: add support for Motorcomm YT921x tags
+  net: dsa: yt921x: Add support for Motorcomm YT921x
+
+ .../bindings/net/dsa/motorcomm,yt921x.yaml    |  169 +
+ .../bindings/net/ethernet-controller.yaml     |    1 +
+ drivers/net/dsa/Kconfig                       |    7 +
+ drivers/net/dsa/Makefile                      |    1 +
+ drivers/net/dsa/yt921x.c                      | 2901 +++++++++++++++++
+ drivers/net/dsa/yt921x.h                      |  505 +++
+ drivers/net/phy/phy-core.c                    |    1 +
+ drivers/net/phy/phy_caps.c                    |    1 +
+ drivers/net/phy/phylink.c                     |    1 +
+ include/linux/phy.h                           |    4 +
+ include/net/dsa.h                             |    2 +
+ include/uapi/linux/if_ether.h                 |    1 +
+ net/dsa/Kconfig                               |    6 +
+ net/dsa/Makefile                              |    1 +
+ net/dsa/tag_yt921x.c                          |  141 +
+ 15 files changed, 3742 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/dsa/motorcomm,yt921x.yaml
+ create mode 100644 drivers/net/dsa/yt921x.c
+ create mode 100644 drivers/net/dsa/yt921x.h
+ create mode 100644 net/dsa/tag_yt921x.c
 
 -- 
-With best wishes
-Dmitry
+2.51.0
+
 
