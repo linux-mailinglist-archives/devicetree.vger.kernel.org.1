@@ -1,48 +1,81 @@
-Return-Path: <devicetree+bounces-221696-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BE73BA2192
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 02:31:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B200BBA21D4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 02:56:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7D9FF4E11EC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 00:31:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C10F5636B4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 00:56:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C632841AAC;
-	Fri, 26 Sep 2025 00:30:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADA7F1514F7;
+	Fri, 26 Sep 2025 00:55:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gfzTqU9N"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i4fet/v3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 962CBCA4B;
-	Fri, 26 Sep 2025 00:30:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAF7E26ACB
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 00:55:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758846623; cv=none; b=lnHQxm7QuHnx2TIpkhE3CpRmqtofDhkXx2GhfW1WTCLUiN6Sn6PORd9moaE+Pzs1OvLINkZ2q6woMjzbRLfh/95JqcJlNeVlZ8PU/0f8mDCubVV15OVjpw4AJwaeYeTGPEJy4N3HQPxxZfFIJeXQi1SQVjIdlz5vIGDaS+ygEUA=
+	t=1758848157; cv=none; b=NSgGFKKv/iXBrg5q620llc9o+4KGemZ5Jq8fLir+J4cTd7WCcoD/WEWuIahfjdz6DK+mcwWBTIW1cyryXr8zewx9aArTDbvcHZXRUWPN/8QR/8BWZvvEzjRHf+v1cWp468x7xgRFK7bu8XbMoLwIuGz3eICfHa2JTaLpKR79SPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758846623; c=relaxed/simple;
-	bh=QiT9ld4eRxquNPyLrOBHfKjUMXb/3yIz58xan193aJE=;
+	s=arc-20240116; t=1758848157; c=relaxed/simple;
+	bh=Zz+6gqobKOIfFclgInpsZ9r34darF71LJ0ImvMuUGBU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AYvF5WScu7HiP/uI+4ZdmBOnh/Gs0b42IuVrXLCX9FnYSSNzHUcwqZqQkIKltjFblUG8l5RmNDHz1AkM2xY+EO3lZYrgzPQJ9syPVmgEhcRudhd5rzxexSN26NES7jpqSxRxpoh0/kCFU1y05zaPm7YeQzZxItWoYxXhHmF18Po=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gfzTqU9N; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40DB6C4CEF5;
-	Fri, 26 Sep 2025 00:30:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758846623;
-	bh=QiT9ld4eRxquNPyLrOBHfKjUMXb/3yIz58xan193aJE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gfzTqU9N4lZfc7IT1AdVvj6ZAz1dWsfrFXAKfEabRjcSddUlgEQNZPpamSXqRhh7v
-	 4Xdzr4LfJGKmo3eaYV6IunHQnb0irE6iocZvXSWBD4DOdEgVlwUByn5zPCxN/Tk4SY
-	 DoTaknHQJ2yESK11w8si1mm08J0y9nRJubdMrOIk2Ne92hJwbo8BdA4nAW8mnTArVj
-	 ekF3jyO8+hJKXlgYLXvwnqk68x8l8lRkhCyZow8l9I42Jwx+TVoW4aAV3KgfN6Ey0G
-	 dLiA3i6CQ3tmdWnlGohG4/1fGYnSzr+LnI7ReeY6zL79oUY0NL/TllPjOvsz5jXEzV
-	 OG3RGKu9l24BA==
-Message-ID: <e30e9106-b566-4405-aa92-fcdf6c6bcfad@kernel.org>
-Date: Fri, 26 Sep 2025 01:30:18 +0100
+	 In-Reply-To:Content-Type; b=CkCyyKgJFKCqNXE26JZJuu3QhBKQjU0DAWFaC4GNqY7Czs6ut8P7gQEHNGaUVMKnRcH04SfQ0qMS/U8tw1RgO2ft2upFs4z2g6wfXQCeqI+OLZorRmmT+0thRl/jb04nYzRaI2SixkwUV9ICyn6F642iIHkBAaSvZlxqZWh/JZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i4fet/v3; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-46b303f7469so10799275e9.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Sep 2025 17:55:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1758848154; x=1759452954; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9e9NdOcaym+Fuz3o7AoDLOamjILGzKfxxMvCkH865N8=;
+        b=i4fet/v3QYRRu+09AQnMSyRmE4cW+3ubMZqH2NXirzR5H8XxpSR78mutGfosjqrEF+
+         oayskS+nHISj28uFMCooQR9FVr8affXte1Fn1hpwn5DkWHFxiJE22GA84zqzS4/obGGG
+         JdIzSB6jtPq2rufEUumwlKwrlehs2uwxCCq6SJXu7lebNzNiD4X1jRRTCi4uMI14D8Qz
+         unxehQ4Rb9V7wuAVbn3ZMPXjxgHejbf2Ts1LCsVF9xeNT3EX8hS81QVi5SZM+JijZWV4
+         6gMHCXifnfrVYaDNxhsGTDuAQ3TTzAPiTAgxD052P3T416mpv8tshjDww4K/+LHotbr3
+         AcAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758848154; x=1759452954;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9e9NdOcaym+Fuz3o7AoDLOamjILGzKfxxMvCkH865N8=;
+        b=rSVtWc6AlUaRsyPMHzzdDYs8P66KoyhgZxTw7rzOjVdOZfVxnGshMZla6uDHAFDmBS
+         jrOShJbI0kHl6hz4m8tzqmqZmVwITxWesBbDWc+ebac2BVguYgLUQYlb3ztB4kpoCPEH
+         l/T6eLdYQwW6WtA6Pj4MoQYchsjpYXElBK7hYgafv1c285PTt2ymYBQDzOSjqjjzJFac
+         RMwaMEnStbRT+/u3ozJQXFloz7tjSAFN/AujZbFsK1T85E+SQL6Ah/ebMwyx+XuKEk97
+         MAjL4zS8Fh/9Ymh1YdFZO3ksFA9XGJholL4Dd3H9SkkQHJBTt7i+0uos+3031VEldwAq
+         UCKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW5n+PSxDAVpoqiDBKQ6qdJjHyD8Jz3cQwRnRNOvU12T0LUWg/5MxmyjI+wvahJDKjvjZw2NHfJ3eG3@vger.kernel.org
+X-Gm-Message-State: AOJu0YxzqADmaIKC2XPdJcAXfrsAzkqVkWgUg9e3dt86GxfGKbw9R+d2
+	DumlUuHEcE1a7jIzGDqBuqr4QFazzJ7Bw/GLT/NRG6OAjkr4tlL62pFdkz+d2ZLvQHA=
+X-Gm-Gg: ASbGncsVAVerGMxXklz6EaD1b3jV1J+oAjtOX56MAf7p6RU8fjNnK4RKzuLuHAFHMuf
+	vMeH/XENvMfb0ykJf1mV3FAT5g39uty7qkL8NyGi697S8yyHbD5Z9aWN0xYZXDUhUX1Ah9dGnL9
+	c/7htlR2nEt1HkQBPzZBijObbeZQVEmuGrGDmbYEGH2fm7m0U6e9RfEHLwLnkUDFzl3US248v06
+	uI0A2l5hNTo9pGAykRiNbzz64i9AzbNqm9VL/qSTUyxp81hLdMbDFHUEVYqPzoaPrJnqixDA6aC
+	HVoq57eRbfMbNOwno9GqK/V7KxLmdayv6iKj9Tjb4T+bjZmo6dF9Jq3v7IjUJxcDr4ORo7lCA1O
+	Jr0/bpnAaWRxJV9G9Qa7M1xM1/5FOaSJ2sygTEMMEDtx2YothN9TG8pZn2NSAYEQ6yOftolF/s1
+	y1Zp6AWp4kA8RRmx5XtoiF
+X-Google-Smtp-Source: AGHT+IEi7fDGWCixHLoidioieRVuXJUMu0nnRncjPtslMOdDH/jitf97iTqziYXoLsGnOKsP4maIXg==
+X-Received: by 2002:a05:600c:3551:b0:46d:a04:50c6 with SMTP id 5b1f17b1804b1-46e32a10ef4mr59198215e9.30.1758848154080;
+        Thu, 25 Sep 2025 17:55:54 -0700 (PDT)
+Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e2ab62233sm97057095e9.21.2025.09.25.17.55.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 25 Sep 2025 17:55:53 -0700 (PDT)
+Message-ID: <f705e9b3-864d-46bf-a6b3-f3be4756293b@linaro.org>
+Date: Fri, 26 Sep 2025 01:55:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,208 +83,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/8] media: iris: Add support for multiple TZ CP configs
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
- Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 8/9] clk: qcom: Add support for VideoCC driver for
+ Kaanapali
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Taniya Das <taniya.das@oss.qualcomm.com>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Vishnu Reddy <quic_bvisredd@quicinc.com>
-References: <20250925-knp_video-v1-0-e323c0b3c0cd@oss.qualcomm.com>
- <jOycHYu8RfViyDZ9QdoBZIXrVPRt3LaNZ6_PpUCRVJuili4LnunkJDQOHNYRkyfxk-ke96ex7GDxgOlue4hPUA==@protonmail.internalid>
- <20250925-knp_video-v1-3-e323c0b3c0cd@oss.qualcomm.com>
-From: Bryan O'Donoghue <bod@kernel.org>
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, aiqun.yu@oss.qualcomm.com,
+ tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+ yijie.yang@oss.qualcomm.com
+References: <20250924-knp-mmclk-v1-0-d7ea96b4784a@oss.qualcomm.com>
+ <20250924-knp-mmclk-v1-8-d7ea96b4784a@oss.qualcomm.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-In-Reply-To: <20250925-knp_video-v1-3-e323c0b3c0cd@oss.qualcomm.com>
+In-Reply-To: <20250924-knp-mmclk-v1-8-d7ea96b4784a@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 25/09/2025 00:14, Vikash Garodia wrote:
-> vpu4 needs an additional configuration w.r.t CP regions. Make the CP
+On 25/09/2025 00:56, Jingyi Wang wrote:
+> +	/*
+> +	 *	Maximize ctl data download delay and enable memory redundancy:
+> +	 *	MVS0A CFG3
+> +	 *	MVS0 CFG3
+> +	 *	MVS0 VPP1 CFG3
+> +	 *	MVS0 VPP0 CFG3
+> +	 *	MVS0C CFG3
+> +	 */
+> +	regmap_set_bits(regmap, 0x8088, ACCU_CFG_MASK);
+> +	regmap_set_bits(regmap, 0x80b4, ACCU_CFG_MASK);
+> +	regmap_set_bits(regmap, 0x8100, ACCU_CFG_MASK);
+> +	regmap_set_bits(regmap, 0x812c, ACCU_CFG_MASK);
+> +	regmap_set_bits(regmap, 0x8158, ACCU_CFG_MASK);
+> +}
 
-"with-respect-to" and please define CP once and then use the 
-abbreviation liberally.
-> configuration as array such that the multiple configuration can be
-> managed per platform.
-> 
-> Co-developed-by: Vishnu Reddy <quic_bvisredd@quicinc.com>
-> Signed-off-by: Vishnu Reddy <quic_bvisredd@quicinc.com>
-> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-> ---
->   drivers/media/platform/qcom/iris/iris_firmware.c   | 23 ++++++++++++---------
->   .../platform/qcom/iris/iris_platform_common.h      |  3 ++-
->   .../media/platform/qcom/iris/iris_platform_gen2.c  | 24 ++++++++++++++--------
->   .../platform/qcom/iris/iris_platform_sm8250.c      | 15 ++++++++------
->   4 files changed, 39 insertions(+), 26 deletions(-)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_firmware.c b/drivers/media/platform/qcom/iris/iris_firmware.c
-> index 9ab499fad946446a87036720f49c9c8d311f3060..ad65c419e4416d0531d4c3deb04c22d44b29e500 100644
-> --- a/drivers/media/platform/qcom/iris/iris_firmware.c
-> +++ b/drivers/media/platform/qcom/iris/iris_firmware.c
-> @@ -70,9 +70,9 @@ static int iris_load_fw_to_memory(struct iris_core *core, const char *fw_name)
-> 
->   int iris_fw_load(struct iris_core *core)
->   {
-> -	struct tz_cp_config *cp_config = core->iris_platform_data->tz_cp_config_data;
-> +	const struct tz_cp_config *cp_config;
->   	const char *fwpath = NULL;
-> -	int ret;
-> +	int i, ret;
-> 
->   	ret = of_property_read_string_index(core->dev->of_node, "firmware-name", 0,
->   					    &fwpath);
-> @@ -91,14 +91,17 @@ int iris_fw_load(struct iris_core *core)
->   		return ret;
->   	}
-> 
-> -	ret = qcom_scm_mem_protect_video_var(cp_config->cp_start,
-> -					     cp_config->cp_size,
-> -					     cp_config->cp_nonpixel_start,
-> -					     cp_config->cp_nonpixel_size);
-> -	if (ret) {
-> -		dev_err(core->dev, "protect memory failed\n");
-> -		qcom_scm_pas_shutdown(core->iris_platform_data->pas_id);
-> -		return ret;
-> +	for (i = 0; i < core->iris_platform_data->tz_cp_config_data_size; i++) {
-> +		cp_config = &core->iris_platform_data->tz_cp_config_data[i];
-> +		ret = qcom_scm_mem_protect_video_var(cp_config->cp_start,
-> +						     cp_config->cp_size,
-> +						     cp_config->cp_nonpixel_start,
-> +						     cp_config->cp_nonpixel_size);
-> +		if (ret) {
-> +			dev_err(core->dev, "protect memory failed\n");
+How ?
 
-I think this error message could be better -> 
-"qcom_scm_mem_protect_video_var()=%d" or err string.
+You're doing the right thing commenting on what is being done but, 
+you're not providing any context on what that thing is done.
 
-Its not super-important just an observation.
+Write a set of unnamed bits ?
 
-> +			qcom_scm_pas_shutdown(core->iris_platform_data->pas_id);
-> +			return ret;
-> +		}
->   	}
-> 
->   	return ret;
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> index df03de08c44839c1b6c137874eb7273c638d5f2c..ae49e95ba2252fc1442f7c81d8010dbfd86da0da 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> @@ -220,7 +220,8 @@ struct iris_platform_data {
->   	u32 inst_fw_caps_dec_size;
->   	struct platform_inst_fw_cap *inst_fw_caps_enc;
->   	u32 inst_fw_caps_enc_size;
-> -	struct tz_cp_config *tz_cp_config_data;
-> +	const struct tz_cp_config *tz_cp_config_data;
-> +	u32 tz_cp_config_data_size;
->   	u32 core_arch;
->   	u32 hw_response_timeout;
->   	struct ubwc_config_data *ubwc_config;
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_gen2.c b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> index fea800811a389a58388175c733ad31c4d9c636b0..00c6b9021b98aac80612b1bb9734c8dac8146bd9 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> @@ -648,11 +648,13 @@ static struct ubwc_config_data ubwc_config_sm8550 = {
->   	.bank_spreading = 1,
->   };
-> 
-> -static struct tz_cp_config tz_cp_config_sm8550 = {
-> -	.cp_start = 0,
-> -	.cp_size = 0x25800000,
-> -	.cp_nonpixel_start = 0x01000000,
-> -	.cp_nonpixel_size = 0x24800000,
-> +static const struct tz_cp_config tz_cp_config_sm8550[] = {
-> +	{
-> +		.cp_start = 0,
-> +		.cp_size = 0x25800000,
-> +		.cp_nonpixel_start = 0x01000000,
-> +		.cp_nonpixel_size = 0x24800000,
-> +	},
->   };
-> 
->   static const u32 sm8550_vdec_input_config_params_default[] = {
-> @@ -771,7 +773,8 @@ struct iris_platform_data sm8550_data = {
->   	.inst_fw_caps_dec_size = ARRAY_SIZE(inst_fw_cap_sm8550_dec),
->   	.inst_fw_caps_enc = inst_fw_cap_sm8550_enc,
->   	.inst_fw_caps_enc_size = ARRAY_SIZE(inst_fw_cap_sm8550_enc),
-> -	.tz_cp_config_data = &tz_cp_config_sm8550,
-> +	.tz_cp_config_data = tz_cp_config_sm8550,
-> +	.tz_cp_config_data_size = ARRAY_SIZE(tz_cp_config_sm8550),
->   	.core_arch = VIDEO_ARCH_LX,
->   	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
->   	.ubwc_config = &ubwc_config_sm8550,
-> @@ -864,7 +867,8 @@ struct iris_platform_data sm8650_data = {
->   	.inst_fw_caps_dec_size = ARRAY_SIZE(inst_fw_cap_sm8550_dec),
->   	.inst_fw_caps_enc = inst_fw_cap_sm8550_enc,
->   	.inst_fw_caps_enc_size = ARRAY_SIZE(inst_fw_cap_sm8550_enc),
-> -	.tz_cp_config_data = &tz_cp_config_sm8550,
-> +	.tz_cp_config_data = tz_cp_config_sm8550,
-> +	.tz_cp_config_data_size = ARRAY_SIZE(tz_cp_config_sm8550),
->   	.core_arch = VIDEO_ARCH_LX,
->   	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
->   	.ubwc_config = &ubwc_config_sm8550,
-> @@ -947,7 +951,8 @@ struct iris_platform_data sm8750_data = {
->   	.inst_fw_caps_dec_size = ARRAY_SIZE(inst_fw_cap_sm8550_dec),
->   	.inst_fw_caps_enc = inst_fw_cap_sm8550_enc,
->   	.inst_fw_caps_enc_size = ARRAY_SIZE(inst_fw_cap_sm8550_enc),
-> -	.tz_cp_config_data = &tz_cp_config_sm8550,
-> +	.tz_cp_config_data = tz_cp_config_sm8550,
-> +	.tz_cp_config_data_size = ARRAY_SIZE(tz_cp_config_sm8550),
->   	.core_arch = VIDEO_ARCH_LX,
->   	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
->   	.ubwc_config = &ubwc_config_sm8550,
-> @@ -1035,7 +1040,8 @@ struct iris_platform_data qcs8300_data = {
->   	.inst_fw_caps_dec_size = ARRAY_SIZE(inst_fw_cap_qcs8300_dec),
->   	.inst_fw_caps_enc = inst_fw_cap_qcs8300_enc,
->   	.inst_fw_caps_enc_size = ARRAY_SIZE(inst_fw_cap_qcs8300_enc),
-> -	.tz_cp_config_data = &tz_cp_config_sm8550,
-> +	.tz_cp_config_data = tz_cp_config_sm8550,
-> +	.tz_cp_config_data_size = ARRAY_SIZE(tz_cp_config_sm8550),
->   	.core_arch = VIDEO_ARCH_LX,
->   	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
->   	.ubwc_config = &ubwc_config_sm8550,
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_sm8250.c b/drivers/media/platform/qcom/iris/iris_platform_sm8250.c
-> index 1b1b6aa751106ee0b0bc71bb0df2e78340190e66..8927c3ff59dab59c7d2cbcd92550f9ee3a2b5c1e 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_sm8250.c
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_sm8250.c
-> @@ -278,11 +278,13 @@ static const char * const sm8250_opp_clk_table[] = {
->   	NULL,
->   };
-> 
-> -static struct tz_cp_config tz_cp_config_sm8250 = {
-> -	.cp_start = 0,
-> -	.cp_size = 0x25800000,
-> -	.cp_nonpixel_start = 0x01000000,
-> -	.cp_nonpixel_size = 0x24800000,
-> +static const struct tz_cp_config tz_cp_config_sm8250[] = {
-> +	{
-> +		.cp_start = 0,
-> +		.cp_size = 0x25800000,
-> +		.cp_nonpixel_start = 0x01000000,
-> +		.cp_nonpixel_size = 0x24800000,
-> +	},
->   };
-> 
->   static const u32 sm8250_vdec_input_config_param_default[] = {
-> @@ -348,7 +350,8 @@ struct iris_platform_data sm8250_data = {
->   	.inst_fw_caps_dec_size = ARRAY_SIZE(inst_fw_cap_sm8250_dec),
->   	.inst_fw_caps_enc = inst_fw_cap_sm8250_enc,
->   	.inst_fw_caps_enc_size = ARRAY_SIZE(inst_fw_cap_sm8250_enc),
-> -	.tz_cp_config_data = &tz_cp_config_sm8250,
-> +	.tz_cp_config_data = tz_cp_config_sm8250,
-> +	.tz_cp_config_data_size = ARRAY_SIZE(tz_cp_config_sm8250),
->   	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
->   	.num_vpp_pipe = 4,
->   	.max_session_count = 16,
-> 
-> --
-> 2.34.1
-> 
-> 
++#define ACCU_CFG_MASK GENMASK(25, 21)
 
-Please tidy up the commit log.
+It's only five of them, please name in your comment at least a give a 
+clue as to what they do.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+---
+bod
 
