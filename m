@@ -1,133 +1,104 @@
-Return-Path: <devicetree+bounces-222047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33FB1BA54CF
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 00:10:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C29FBA5500
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 00:20:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A2381C02FF6
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 22:10:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B1014326A67
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 22:20:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F44299924;
-	Fri, 26 Sep 2025 22:10:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D44B730C606;
+	Fri, 26 Sep 2025 22:20:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="a3WbqDKP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BKRrWxnV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C283D1D6187;
-	Fri, 26 Sep 2025 22:10:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A45F629D26C;
+	Fri, 26 Sep 2025 22:20:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758924622; cv=none; b=qpxzLyShQiL+rOMu0g9VXKkTG5xgESDh6moPGCZImcWc5jJwzdMu5T7o28X7dWV0fRVw9UtnnWLOR2bzF0HL/s1JucAKcehLlan5RpReR8ZM8a/ONH9xKbmVAFvYnZj/UHTgKj7DhyMGCv7Fi9IWkNaSRep8XamDhksKPqM1EcU=
+	t=1758925229; cv=none; b=kIDUxgHUr912Vw7RdmYHKQOWbbUKnPtUuvwnRO+hnTCmzTmIUxvjIBIfYEHOBsro2m95A11k5QgPtRoU3KvwqyZhsDDoVoq2rrNn/f/g+lRFQ560eSbgeW7VBryej6KiEc9ZbXhtma8GB+dkPpQaw0gaMLHgIQ1WS1z/FYKmo/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758924622; c=relaxed/simple;
-	bh=5k5GZfdKV636YzsUk/ZKQso2EF0o1VhSCWjjXGLdNd8=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=om6K9Iil56EbMU13q5pOl55b05syf5UtpnFZO64fDSy+w7bq7tlKBJrqERmb+p6jlhPOD9C+veHgosaUHIFch8dlA4T/qulQhjJ1bXeQMAkFUO/SvI/a3/lVfIogM5+ZmBencVIx5GXlIcwajTX+uwsO3k/GEg+Zvfmb+kUVzek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=a3WbqDKP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BA93C4CEF4;
-	Fri, 26 Sep 2025 22:10:22 +0000 (UTC)
+	s=arc-20240116; t=1758925229; c=relaxed/simple;
+	bh=Mn3UMaJfnruXtRtYCrhAg9D+oTiCU8m67M2/1hao6II=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=HTzmriUPsEz+7T5+cnvDnyw4yfiP9oP3g3r5lXk6Sezx9vFYMEjS2WQYd5z1i/+MqeEnh7jP41KJ8YSeOpWe+Q5jRS64demQDGeavNSs8A+e6aSTJaSvL/8+CO6bLlCcmcR8ff+KYnrAI27QonuOukA0OiUq/O2AgA5/h4h6Jrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BKRrWxnV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CCF1C4CEF7;
+	Fri, 26 Sep 2025 22:20:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758924622;
-	bh=5k5GZfdKV636YzsUk/ZKQso2EF0o1VhSCWjjXGLdNd8=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=a3WbqDKPdhJf1QoUkTz+56eW3S1Bba9SDnT7JxlSE+Gn6GaaB/T/BubJbSug+kCc9
-	 IZow7S6JkAguxSSxdO6qjwFTKzPcYZ/JzVw09iGGMYpAKriDuTHwT+RW772vbZKUp5
-	 J6ab+VpkbXKFj2+6qffQEq0Cg1i/L/D3Rvq5ap8+rwkHNSZqc5hmcavk6qGhuQ6kUB
-	 uDBj5h1wUG0aCEYi0qMV8sGATFDA/yhs0EhIE+nAAj8hWOSHExprMuMGt9F6XLuey5
-	 ZjlObPt13DDN3hPVT4IGJlQuhQ4TKjOONyK27mhbZIvwfnI456H09vWZP1ik/9w4eP
-	 66AgRriMNkNvw==
-Date: Fri, 26 Sep 2025 17:10:21 -0500
+	s=k20201202; t=1758925229;
+	bh=Mn3UMaJfnruXtRtYCrhAg9D+oTiCU8m67M2/1hao6II=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=BKRrWxnVjbC9fVex2Q0QqOjaUUpQQZvcOO3sm32kWHQWuUS35HPoCEX/eNSRBoDaP
+	 2PqDTLb3ZPVD/5ulHwbPb2ELHUPoF4YGigYibE+tTVWBXjvHTNz5aRkFbCbyRTBmvM
+	 IhsXIQr0iEj6E5nCEM7uL9uRJ2L9u32HDgr4xz7gLBJVyuvpuxfOnXw+uaQ797Ef/m
+	 ogWWIfVzbDMzUmuY8PVllaGFgt1VBWJlPR9RqYeT3t411LpXUmydMmQ4DuHk7vcL+m
+	 bppaMUvfPn2CArUCuGjaMZTzXC73NG6s46oJ3U0pdpD+gYgGGexg5lmMA+RWpHPUWV
+	 vhfQvpvRDFcKw==
+Received: from [10.30.226.235] (localhost [IPv6:::1])
+	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id ADDFE39D0C3F;
+	Fri, 26 Sep 2025 22:20:25 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: krzk+dt@kernel.org, jic23@kernel.org, conor+dt@kernel.org, 
- corbet@lwn.net, eblanc@baylibre.com, devicetree@vger.kernel.org, 
- nuno.sa@analog.com, andy@kernel.org, linux-kernel@vger.kernel.org, 
- michael.hennerich@analog.com, linux-iio@vger.kernel.org, 
- marcelo.schmitt1@gmail.com, linux-doc@vger.kernel.org, 
- linux-spi@vger.kernel.org, dlechner@baylibre.com
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-In-Reply-To: <5dc08b622dac1db561f26034c93910ccff75e965.1758916484.git.marcelo.schmitt@analog.com>
-References: <cover.1758916484.git.marcelo.schmitt@analog.com>
- <5dc08b622dac1db561f26034c93910ccff75e965.1758916484.git.marcelo.schmitt@analog.com>
-Message-Id: <175892462162.1836299.14644550889187111452.robh@kernel.org>
-Subject: Re: [PATCH v3 7/8] dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216
- and ADAQ4224
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 0/3] Mainline Protonic PRT8ML board
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <175892522449.77570.18183487624787267544.git-patchwork-notify@kernel.org>
+Date: Fri, 26 Sep 2025 22:20:24 +0000
+References: <20250924-imx8mp-prt8ml-v3-0-f498d7f71a94@pengutronix.de>
+In-Reply-To: <20250924-imx8mp-prt8ml-v3-0-f498d7f71a94@pengutronix.de>
+To: Jonas Rebmann <jre@pengutronix.de>
+Cc: andrew@lunn.ch, olteanv@gmail.com, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, lgirdwood@gmail.com,
+ broonie@kernel.org, shengjiu.wang@nxp.com, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, festevam@gmail.com, kernel@pengutronix.de,
+ vladimir.oltean@nxp.com, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-sound@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Frank.Li@nxp.com,
+ david@protonic.nl, l.stach@pengutronix.de, o.rempel@pengutronix.de
 
+Hello:
 
-On Fri, 26 Sep 2025 17:40:47 -0300, Marcelo Schmitt wrote:
-> ADAQ4216 and ADAQ4224 are similar to AD4030 except that ADAQ devices have a
-> PGA (programmable gain amplifier) that scales the input signal prior to it
-> reaching the ADC inputs. The PGA is controlled through a couple of pins (A0
-> and A1) that set one of four possible signal gain configurations.
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Wed, 24 Sep 2025 10:34:11 +0200 you wrote:
+> This series adds the Protonic PRT8ML device tree as well as some minor
+> corrections to the devicetree bindings used.
 > 
-> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> Signed-off-by: Jonas Rebmann <jre@pengutronix.de>
 > ---
-> Change log v2 -> v3
-> - PGA gain now described in decibels.
+> Changes in v3:
+> - Add comment on the intentional limitation to 100Mbps RGMII
+> - Link to v2: https://lore.kernel.org/r/20250918-imx8mp-prt8ml-v2-0-3d84b4fe53de@pengutronix.de
 > 
-> The PGA gain is not going to fit well as a channel property because it may
-> affect more than one channel as in AD7191.
-> https://www.analog.com/media/en/technical-documentation/data-sheets/AD7191.pdf
-> 
-> I consulted a very trustworthy source [1, 2] and learned that describing signal
-> gains in decibels is a common practice. I now think it would be ideal to describe
-> these PGA and PGA-like gains with properties in decibel units and this patch
-> is an attempt of doing so. The only problem with this approach is that we end up
-> with negative values when the gain is lower than 1 (the signal is attenuated)
-> and device tree specification doesn't support signed integer types. As the
-> docs being proposed fail dt_binding_check, I guess I have to nack the patch myself.
-> Any chance of dt specification eventually support signed integers?
-> Any suggestions appreciated.
-> 
-> [1] https://en.wikipedia.org/wiki/Decibel
-> [2] https://en.wikipedia.org/wiki/Gain_(electronics)
-> 
-> Thanks,
-> Marcelo
-> 
->  .../bindings/iio/adc/adi,ad4030.yaml          | 84 +++++++++++++++++--
->  1 file changed, 79 insertions(+), 5 deletions(-)
-> 
+> [...]
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Here is the summary with links:
+  - [v3,1/3] dt-bindings: net: dsa: nxp,sja1105: Add reset-gpios property
+    https://git.kernel.org/netdev/net-next/c/8d5868f8c1b2
+  - [v3,2/3] dt-bindings: arm: fsl: Add Protonic PRT8ML
+    (no matching commit)
+  - [v3,3/3] arm64: dts: add Protonic PRT8ML board
+    (no matching commit)
 
-yamllint warnings/errors:
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/iio/adc/adi,ad4030.example.dts:68.36-37 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/iio/adc/adi,ad4030.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1527: dt_binding_check] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/5dc08b622dac1db561f26034c93910ccff75e965.1758916484.git.marcelo.schmitt@analog.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
 
 
