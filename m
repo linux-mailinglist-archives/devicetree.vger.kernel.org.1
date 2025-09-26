@@ -1,130 +1,162 @@
-Return-Path: <devicetree+bounces-221943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1786CBA450B
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:58:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC132BA4538
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 17:02:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA4FE626AC0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 14:58:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 873B617112C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 15:02:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F31581E7C23;
-	Fri, 26 Sep 2025 14:58:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 906061C860C;
+	Fri, 26 Sep 2025 15:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bQtGLSdw"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="GgnjqYvx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54E431581EE
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 14:58:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B091A13957E
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 15:02:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758898701; cv=none; b=HWu22nOnbrzGYhwZxqWIZwi9JRIMFkGFSF6Cf0t+VQ4EdbzTCpzwTwXTDYZYjRSjYzvdfr9irSYjn4Ey7sk/yBY54A6FlpK/jvMZ5s7Of8D3TozIcnRscFSgoEqYmi4tZiz1k9Vo4hbfQc0/GW8QB23Z7B4jKNst6QD2dFPzLiA=
+	t=1758898935; cv=none; b=Gn4hX5Sl4fBM2pyP9ZPlcf/7MyTmkWPe4wg465bewovHHARa0poDRXOnuiuKf2yk4cG2hb+401GBniscA9Z6RcZyRG+VwLgOxVat3T47+KTclpBIhVFRgNNQYb+YYdPSrFXNoyyDDUpelJdB69C/J+sQkcWA+dEjIZUP/Usu/y0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758898701; c=relaxed/simple;
-	bh=UX6S13400E2A2JYETUL24TlU0AW37E0wpTBHJD9VVEU=;
+	s=arc-20240116; t=1758898935; c=relaxed/simple;
+	bh=8WJ3zSomR6PmkDmz7wRLvgLPROUSg6bOSPYWkUZH4zg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D40bdt6bjik9MWM3Cq/sK1PLl/DHId2o6X3DokzAjsVupaWpaxGOq8Qy5GPXA1QxJ6Rm7i8YjxCD36ufufo66gE9EwShHpsmc0Ya14SakUwfLZumZRnioHLNLXdknBeVd7iD68cWI0lBUalVhMBM+t1kCwxzWpDOrvPOK5KESfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bQtGLSdw; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3fa528f127fso1715329f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 07:58:19 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iL4rLRQBRA24jxEF+QzDk5rwuJWx+fqHw6uva2MDlXbUAotcP+X3LH7DP1XCR6EvqVK1lYAvR5DWEqqc8TwmKIJL/mkAShXfbeSvkLvEQTL44HkHnWGAEqxZn92ea5c/x3EkzYNXvVLdspIXVbYXkqogd6NEwuNUibvHGhswwPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=GgnjqYvx; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-46e2b7eee0dso64625e9.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 08:02:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758898698; x=1759503498; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1758898932; x=1759503732; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=RG2t1x6d4pDg1biSV0ixz6bcC0WhKnoyTJ8dmqzmho4=;
-        b=bQtGLSdwazpaRM67DUOZDVEynfWt0kzZqvwT/HWOMG7jpbGujEkSInEK0Xotek14fE
-         W+5ex0SsUcYL8l1Vp/9IvaxmW4fD97VisCN6kRBE4dfCsA7CAOjTLTlprEV14Ob2/D5V
-         2CqE9txu48S+EwUhnd03Nu5neCwJIQBfpTwv6nEZMIHq4ZhruDPkQraBIkqx8R8S7mVb
-         9iWULs17/YSDX0i0iEIVScDLURFRlevEXoyKhUUYNEDno/UUcjtNwAcHDeDAwVAuxKg/
-         Fa/m/+JrDVKNg5pIs3114o2SeIOlLunSO8AEMXdem+fR5VPylX+y6rJ3IMqasUHLNbC4
-         kXfA==
+        bh=s7Baoif17kvHRJvWC6HYyOG9IuJ9PffDdtqs0FozkFg=;
+        b=GgnjqYvxycweAZLhBm3E4lVHSY/Y6ZYUX64/syiO8J5FCcMTs8w95bhLDuIdeX6wlL
+         9/nGiDoVXMP5uPEIZQkG53VDzSmrEr7pJPibdi5yg17wiwALea2nUe3QIgwLb6bBLvdB
+         +f33anEu1ipbswAevamAfdJfFEP8hKXPyp6z/IhlB3sxmPb9KIsPXQ6OXYggh/GDJOMr
+         eO/HXRbKm26zkG0lO+NmmShOr94uBDjvJKBv2acBhSotdwJtkOSOZdxjeQcWZjvywSGU
+         rIgdzoZmdbcvG4yIWFZAwg006nhkJqXeAwT5SpoaNfuvMJkGoRmdypBbvOiJrafBmqOE
+         VPkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758898698; x=1759503498;
+        d=1e100.net; s=20230601; t=1758898932; x=1759503732;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RG2t1x6d4pDg1biSV0ixz6bcC0WhKnoyTJ8dmqzmho4=;
-        b=VGukdcKQhXsuVV/Y81SlSm+qtJfEqS21WdSQFlveuU8JVqWmmhgqt8D3DDcPmfSw8H
-         wkwlT1k34E5YmSVD8Qn+4v8k0b7nGQvkDdS9zkvdPLgObLElEKsqgGwnCQcL1J7Euw7T
-         JlsYY39iWQisWIdy/trObADVKTGSMYGd7vfsFaunDz0ICURRyPOtNr7GJBlpSYoFVVda
-         zvRg73dk/JYv2vbYJpLe/Anv5jIpiO/L2v6cVKFepWlbtQ9XiCufH+3kD2CDcERitj3T
-         2wtBk+KpoQNDbB1lbRad1sreNR8oDkghIl876iXROj+DUClsLyhz8Q0ft8eEC+Umy//I
-         WOEw==
-X-Forwarded-Encrypted: i=1; AJvYcCVvHiyRBsVDD4mgrOx16FQBlEYqRNSbN9LqZnFYwHIg/2XDhRJXy7+Q58DKaLPCYkGiZDR9cCw2mhyW@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFzbeQql1qnPdILCKO4kulWZWqmtPPCxPN0OJGBnHAlBcYT0xR
-	qi70/nhaNzPl38S14jKqNpRt0DQcebbIU5lfitdCUmdKhtpV8Shi8/DF
-X-Gm-Gg: ASbGncuhKEVv7u+2OToCPSIXpyUH1za6v7sR9XAT2wEamgZ+cQL2KDQnrPLimkhtrxd
-	vkiucHJ9ZuV7ne4EFmywsBWEi2zn7bkJt6vql+mVuZYf+EbkLEmCQZWdm0RqSqAMvbrDaGBwZPU
-	MRuWWaDv6zELQ5rq/r2YYDA1/9/rLDL6nTy8C7q2eXCjYzCOm/+TwEvwyNed5S+DoE3FO0ZXh/y
-	/aZGHJuqUq9k18svX5sT27b45zdHc8NyVkkYAEOaNEKwqZE8IB6KSHy9pUAH+V3D9PPaoybIJ/y
-	jbDin4ICutzsen3KTm6x93pAcYDzfDg48aRzxYFgOkaByBjOpTTDAY5STYuSphW0iYadogKMk44
-	4RGpWjEaEl05nL1YR7ECtw2S6s8KQjCHCCbwFe3CJaUEjP8aigM5qLLf0n0hm3Me0X5c=
-X-Google-Smtp-Source: AGHT+IEw1Z3KjtLqt9s22Qg/dV2zhutzBnyhWYwXL0GgMWaC0SCBNsQXtHikROzRnh/0Y3BVcQfpmw==
-X-Received: by 2002:a05:6000:2681:b0:3e9:4fe4:2621 with SMTP id ffacd0b85a97d-40f60df5f48mr6494903f8f.7.1758898697361;
-        Fri, 26 Sep 2025 07:58:17 -0700 (PDT)
-Received: from antoni-VivoBook-ASUSLaptop-X512FAY-K512FA ([78.209.249.206])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-40fb72fb729sm7095410f8f.6.2025.09.26.07.58.15
+        bh=s7Baoif17kvHRJvWC6HYyOG9IuJ9PffDdtqs0FozkFg=;
+        b=wZEzwnQsI2et+3YWXgVqlJmm6PUpG0+zTb6c+tWgk+rhtPGsG6rTshjeT9dBZagmYg
+         q/DJL/PJ/njo8XmKNqaSI4qIIZTal0O6L+3PNV3mKIZFKLQxUk0nVHBbHtWzXHG06oTr
+         AXRfIg3NHgL9fw5OYuZPvmQO9bnaYTsPDnbTAssoMRAdmd23YxDwNG47OYUzdrVd9l9b
+         6JjGDdmR9vLNrzOwRkw7cZGMmvsg+h3dWntmIWdx9NOPVGrIdpTkeRnRphIUOzmO3Vid
+         WcDWNXUOIZ0JqtzLqX6rCUkExWmiIXHZTFq36awCs+PZ3UXz+9sG7EKrJVXCJhSSUwIq
+         u55w==
+X-Gm-Message-State: AOJu0YyfFhxj4Cok1vJANpFWeZ2VzCsmtLBZP1lBN1g2f0t1nieCovus
+	gBQrMoJz+aRk+dKA02i8gcTv4pc7C0r+GZPL1dEaA+djheHNGNZ3QIK3rtV1mK+XHQ==
+X-Gm-Gg: ASbGnctn9Fhl9raj8k8Cp232V8rjINVSmKqGZqcSf5LmM5eztLBP39PSD91oNV+9kY/
+	hGeACWMW/v2hj3sSSj8o3bRiA6njd7yLoMBbD6oGebRrdsp5ii7MvNludqTbP9160KWiZSNEaLE
+	pfBFLOFjET9pAXu4syggtHLRwuCq/t1Qz1zW61RrT9LyOZwOlae3L0DBJsLD58Hrf/6SlMV4BE5
+	L9iFz+ygK7Cap/PFEQ2CHjrYljMTaUaf6ppqVVn4hRUskhnTCMNz02AoUxX8iZ3JCcW/19sLP7y
+	9x5Ux2N8yPcirgVXX5rii5k19NQAstRQbpvBIDWeXHYFpEBfEulmzbhmgvyxH4TWdX6iCgnaDL9
+	tWGBw2IeNYeGJtadre7b4tB7lNUkIc8MjVM01mY/20X1UzeMFbuHSd4UrmZQO7zuzDc/UmtLjpQ
+	5jVw==
+X-Google-Smtp-Source: AGHT+IGGXmNBTu4UEfqjidL+GDIizhadTfvXaAwFgVVLBzv8UsZYzurqe8WWNcR71jr76VBG7flshQ==
+X-Received: by 2002:a05:600c:40c4:b0:45f:2e6d:ca01 with SMTP id 5b1f17b1804b1-46e3b009830mr1290175e9.4.1758898931549;
+        Fri, 26 Sep 2025 08:02:11 -0700 (PDT)
+Received: from google.com (140.240.76.34.bc.googleusercontent.com. [34.76.240.140])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e2a9ac5basm141572865e9.7.2025.09.26.08.02.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Sep 2025 07:58:16 -0700 (PDT)
-Date: Fri, 26 Sep 2025 16:57:53 +0200
-From: Antoni Pokusinski <apokusinski01@gmail.com>
-To: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
-	andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org, linux@roeck-us.net,
-	rodrigo.gobbi.7@gmail.com, naresh.solanki@9elements.com,
-	michal.simek@amd.com, grantpeltier93@gmail.com,
-	farouk.bouabid@cherry.de, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v2 4/4] iio: mpl3115: add support for sampling frequency
-Message-ID: <20250926145753.kitrogfvssnt5rim@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
-References: <20250925204538.63723-1-apokusinski01@gmail.com>
- <20250925204538.63723-5-apokusinski01@gmail.com>
+        Fri, 26 Sep 2025 08:02:10 -0700 (PDT)
+Date: Fri, 26 Sep 2025 15:02:07 +0000
+From: Mostafa Saleh <smostafa@google.com>
+To: Sjoerd Simons <sjoerd@collabora.com>
+Cc: devicetree@vger.kernel.org,
+	"moderated list:ARM SMMU DRIVERS" <linux-arm-kernel@lists.infradead.org>,
+	linux-rockchip@lists.infradead.org,
+	open list <linux-kernel@vger.kernel.org>,
+	Rob Herring <robh@kernel.org>, krzk+dt@kernel.org,
+	conor+dt@kernel.org, Heiko Stuebner <heiko@sntech.de>
+Subject: Re: Support for Rock PI-4b
+Message-ID: <aNaq72xKS4QaNjwx@google.com>
+References: <CAFgf54oYjUEg9KkQUzneYTZH1Z8cX56va5M0853eWPFaYT+Z2A@mail.gmail.com>
+ <638b9565b90714f56caa9535b7b9b96cd86100d6.camel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250925204538.63723-5-apokusinski01@gmail.com>
+In-Reply-To: <638b9565b90714f56caa9535b7b9b96cd86100d6.camel@collabora.com>
 
-On Thu, Sep 25, 2025 at 10:45:38PM +0200, Antoni Pokusinski wrote:
-> When the device is in ACTIVE mode the temperature and pressure measurements
-> are collected with a frequency determined by the ST[3:0] bits of CTRL_REG2
-> register.
+On Fri, Sep 26, 2025 at 04:28:48PM +0200, Sjoerd Simons wrote:
+> On Fri, 2025-09-26 at 15:07 +0100, Mostafa Saleh wrote:
+> > Hi,
+> > 
+> > I am trying to run Linux[1] on my Rock PI-4b, which I see is supported in
+> > the kernel in “rk3399-rock-pi-4b.dts”.
+> > 
+> > However, compiling “defconfig” (ARM64) and flashing my Image doesn’t
+> > work,
+> > It just hangs before any console (even with earlycon), I tried to also use
+> > some of the vendor configs with no luck.
+> > I did some research and found that [2], which indicates that the upstream
+> > support has been broken for some years?
 > 
-> Reviewed-by: Nuno S� <nuno.sa@analog.com>
-> Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
-> ---
->  drivers/iio/pressure/mpl3115.c | 81 ++++++++++++++++++++++++++++++++++
->  1 file changed, 81 insertions(+)
+> We've got the Rock 4b in our automated testing lab as part of kernelci and other
+> efforts. Upstream works just fine on those boards, so it's likely an issue in
+> your setup.
 > 
-> diff --git a/drivers/iio/pressure/mpl3115.c b/drivers/iio/pressure/mpl3115.c
-> index 13c8b338a15e..b854732e61cb 100644
-> --- a/drivers/iio/pressure/mpl3115.c
-> +++ b/drivers/iio/pressure/mpl3115.c
-> @@ -30,6 +30,7 @@
+> See e.g https://lava.collabora.dev/scheduler/job/19978558#L525 for a recent
+> upstream kernel boot.
 
-The errors are due to missing include of bitfield.h, will add it in v3
+Thanks a lot for the quick response!
 
->  #define MPL3115_INT_SOURCE 0x12
->  #define MPL3115_PT_DATA_CFG 0x13
->  #define MPL3115_CTRL_REG1 0x26
-> +#define MPL3115_CTRL_REG2 0x27
->  #define MPL3115_CTRL_REG3 0x28
->  #define MPL3115_CTRL_REG4 0x29
->  #define MPL3115_CTRL_REG5 0x2a
-> @@ -48,6 +49,8 @@
-> 2.25.1
+I can see some differences between this log and my setup.
+
+1- My uboot seems ancient
+   U-Boot 2017.09-00026-g2431fa34678 Compared to U-Boot 2024.07-rc4
+
+2- The board model in this log is not 4b as mine
+   Model: Radxa ROCK Pi 4A while mine shows Model: Radxa ROCK Pi 4B
+
+3- I am using LLVM not GCC (I don't think that matters though)
+
+4- I am using MMC to boot and not TFTP
+
+I will try to look more into the differences, and update this thread in
+case I was successful.
+
+Thanks,
+Mostafa
+
 > 
+> Regards,
+>   Sjoerd
+> 
+> 
+> > 
+> > Has anyone tried to flash a recent kernel successfully on it? or any
+> > tips are greatly appreciated.
+> > Otherwise, maybe it can be removed to avoid misleading other developers
+> > (I got this board to do some upstream kernel development on)
+> > 
+> > [1] base: 4ff71af020ae59ae2d83b174646fc2ad9fcd4dc4
+> > [2] https://wiki.radxa.com/Rockpi4/dev/kernel-mainline
+> > 
+> > Thanks,
+> > Mostafa
+> > 
+> > _______________________________________________
+> > Linux-rockchip mailing list
+> > Linux-rockchip@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
