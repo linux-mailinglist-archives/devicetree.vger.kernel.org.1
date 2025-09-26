@@ -1,220 +1,149 @@
-Return-Path: <devicetree+bounces-222008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F759BA503C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 21:57:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5CD9BA5058
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 22:01:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E9A901B26E71
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 19:58:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F22C17BE9E
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 20:01:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95423283FC2;
-	Fri, 26 Sep 2025 19:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8FB5281341;
+	Fri, 26 Sep 2025 20:01:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="aualodt1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NjaLfnbx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE841B87F0
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 19:57:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DAF87A13A;
+	Fri, 26 Sep 2025 20:01:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758916666; cv=none; b=vDPcuNW+It5zhjwoyXaPEDwSKqSIx3/XDsoq54qNmrk2rdraAALbx/WTPnRRMM1t+llR/MeONR6baMHNd9e2wqW6DzO4VTzjy+TZs2/0KTFOlMjQxCr+T5aq94dUZck8rxflfDnQRsMEym3zyP+U1zU0mseH5vFKAC5/UIU8zIk=
+	t=1758916861; cv=none; b=dRnnmLnCJczRKBA8asU5y5W8dEqPUwPY6hFLFQMgDZ/Ey+pN2HrLFEiWDQ9vNgnBwkYq/DvvZOheLmALnYk/PDedu4TZc014t/kcdQNqkUKVAJcZuUIQ+sojtalqfIU9wPRsaMeIzmusShUlsW7Uj6x1DJ+N7KHVo3pUtJqcb/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758916666; c=relaxed/simple;
-	bh=Ul90A3WXVjVOQtEWkwJb9B/4dc313g79jNrBflolSiA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ENzSKNFSg4qfcK4j8RsLS/OlUSWPjtSD7cVujepMSFw5GR93uMDWhGtcE0ZJAF/EvPGwl6dpasek74ogPISQ8WUqPyQt8el1LSajmUZSxStp7s8JhmwjsWqz+Jhjc2K4hbAZzhW5j8Qu4/qpkSWxL1f+oMf1P5217Uil4WatuEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=aualodt1; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-27d4d6b7ab5so39718735ad.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 12:57:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc.com; s=google; t=1758916664; x=1759521464; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=zASiJDz4r3vYQO3vYDYkcyVx79ekhPk89WizJj5Iigg=;
-        b=aualodt1PB8GaT0QZpHJ965PFhcpyeJMzNUBRv2XWnNdt8cTWcjm6LVoHEg9lgPvq6
-         Y6EVSKbbIzLn2glHOMhnwdRI+uGTGtXVpahrRcWiz8UH2CigIEs9C9VAy2CVf1+gHd4X
-         me8zwNTVU5hpTV56K2l1RaCqaFLP9yBlWK1W++wrjApNcXqbCyY/GedFNndGQN+Ppawx
-         m/HBBSrQDK5TLjqWuTj+FSBJb8UWZQBUpT9DZRYnPKyyL2ZRhAxio3tpyq+kc8n4kJXc
-         zpqCSBODWdqUUNvxKi3MeHwqODe4NSJ7bMNGFe+DcBX5Xq1c1XUcZRSHDsZu8Q7mIEar
-         DZSw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758916664; x=1759521464;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zASiJDz4r3vYQO3vYDYkcyVx79ekhPk89WizJj5Iigg=;
-        b=bRVdOq3jF2ZKmF5dD5oGiVZeyW9oc8McvK6xpezNiNQtvl5l0ov46k/LNzSaaFpeY6
-         uA0umV45F2ycBqGcnwJoRiBWeKe6hWwLDZ/zLgZRVq13C24tb35z4idE19sL9hojZ1J+
-         PyvPcw0fHg2bV8mc7Qw7pun62GBggG8JVz8ao/pEOnp/drc6cuxdDDQ1IVB2pLzpUZF/
-         ZH72Ijj1H1PH5TzwB7fCqhlUcjO5uqSzVYqLuk9bAHcXw8tBa7MzLyrIYK6d2l1A/APN
-         Vob6TmtT2EG01evkxKkMh5Kx1A1ZEz9gvQnWFTIPqNV29r84uDz8XEdFgSdjJA21cL1b
-         c8kA==
-X-Forwarded-Encrypted: i=1; AJvYcCVFOXdd/7aGNfDWeS8smENTyfa7WN4MrM05AOh7G35De2UHJlZ9J7iB5lVLBTVUe55Llkxa2Y/b9+Nm@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyK/rIzGJIAEWm9PsFUZl4R/JVTVKvhV/rWL9rhUaiEiH7otPo
-	bO3ZCWXX1O2XeirdmIsBGJ48ptvCUnBmDffGRLK33frvTLYOorYI+k2LkMy7/gRSMaY=
-X-Gm-Gg: ASbGncsMpFt0sLmZ9dlEAXnCg8GNVEm/yo7jP1pMtAsFaQpFZxIuvCQq9EbcScEa8ih
-	NFkz1wOp1g1RzWLTOy/w3Hz50VEYHgskqsuc2Lt0jQxWFyCVW2pAG/cXP0w5uBQqeKkxoIAm4Ar
-	juS4dOdCPGl9NYyyPCykH+402ofYPAnEW1XD52Z5bWhqZIypNSlFDbFrCgDA8XAZY0+tysGYV1D
-	zPUX9+IyVS1ZygiYWklNAgmn49yCrU+44pVrmI7n68oneX4QBuJIsoC3Ht/n1pRqdSmWruS8Q4/
-	zbgzHpd6cLq4+w2KdJ7lyBi/YqMO5T+9ulSZwVdROTZPX0zX5eR8T7QbfdVqBx7gz9tPIOPnRn1
-	0ExqtXnSh9rTCvlQvWlsOeJTBS+dHfNAFn5cbPRDdK55Co4L1mEM4pg==
-X-Google-Smtp-Source: AGHT+IHlUtnIvbNYTp+NBwFL5kAnFfogcOgIaJtDWQxwNZ7YmExERR63uIq8FMCY+Zw0lEPHKpWKJg==
-X-Received: by 2002:a17:903:28c:b0:26f:f489:bba6 with SMTP id d9443c01a7336-27ed4a5ec62mr76915745ad.50.1758916664000;
-        Fri, 26 Sep 2025 12:57:44 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed66d43ecsm62938985ad.24.2025.09.26.12.57.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 26 Sep 2025 12:57:43 -0700 (PDT)
-Date: Fri, 26 Sep 2025 12:57:40 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Charles Mirabile <cmirabil@redhat.com>
-Cc: pjw@kernel.org, Liam.Howlett@oracle.com, a.hindborg@kernel.org,
-	akpm@linux-foundation.org, alex.gaynor@gmail.com,
-	alexghiti@rivosinc.com, aliceryhl@google.com,
-	alistair.francis@wdc.com, andybnac@gmail.com, aou@eecs.berkeley.edu,
-	arnd@arndb.de, atishp@rivosinc.com, bjorn3_gh@protonmail.com,
-	boqun.feng@gmail.com, bp@alien8.de, brauner@kernel.org,
-	broonie@kernel.org, charlie@rivosinc.com, cleger@rivosinc.com,
-	conor+dt@kernel.org, conor@kernel.org, corbet@lwn.net,
-	dave.hansen@linux.intel.com, david@redhat.com,
-	devicetree@vger.kernel.org, ebiederm@xmission.com,
-	evan@rivosinc.com, gary@garyguo.net, hpa@zytor.com,
-	jannh@google.com, jim.shu@sifive.com, kees@kernel.org,
-	kito.cheng@sifive.com, krzk+dt@kernel.org,
-	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-kselftest@vger.kernel.org, linux-mm@kvack.org,
-	linux-riscv@lists.infradead.org, lorenzo.stoakes@oracle.com,
-	lossin@kernel.org, mingo@redhat.com, ojeda@kernel.org,
-	oleg@redhat.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
-	peterz@infradead.org, richard.henderson@linaro.org,
-	rick.p.edgecombe@intel.com, robh@kernel.org,
-	rust-for-linux@vger.kernel.org, samitolvanen@google.com,
-	shuah@kernel.org, tglx@linutronix.de, tmgross@umich.edu,
-	vbabka@suse.cz, x86@kernel.org, zong.li@sifive.com
-Subject: Re: [PATCH v19 00/27] riscv control-flow integrity for usermode
-Message-ID: <aNbwNN_st4bxwdwx@debug.ba.rivosinc.com>
-References: <f953ee7b-91b3-f6f5-6955-b4a138f16dbc@kernel.org>
- <20250926192919.349578-1-cmirabil@redhat.com>
+	s=arc-20240116; t=1758916861; c=relaxed/simple;
+	bh=LmM6ig4MOGV4lcn/w+S1PNw5phmfSGuH7K+di1MOKA4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nIEusxCUddRnp8WlB6czEz5/aJioz0vZpnK1fYP7oIUcKIocG80Rd+/ESxEd0XKRqYQjocCZS/nPku/miSqHdTumMK7BgW0M1xTHTqll77tSLbWDJsbcooeAR+dsc1ySgTrbfmrfFNTI7ax6C2me7ZpWew2K5Dt4uGiGouxuaRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NjaLfnbx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F7C1C4CEF4;
+	Fri, 26 Sep 2025 20:01:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1758916861;
+	bh=LmM6ig4MOGV4lcn/w+S1PNw5phmfSGuH7K+di1MOKA4=;
+	h=From:Subject:Date:To:Cc:From;
+	b=NjaLfnbxgmQJvJztY7ncapArMYJ4hE3ilw/Tyb8w5GWm6Hc5YOHpUhta0+q1QNEtj
+	 qcgpq3pyyGAYEEaW3wIjFTCK35m01Qfsrtm6wojA/RR11tSnL6kHuzeEiCqnEHWJfs
+	 RKd/Ybcty7YZl4sZtkoImdQ6cvXNms+tKhILliQW6yaUL+oKuxuiqBohOPzom9voxQ
+	 JLe5hqqDkqkGgzK/CzzDHUAxGREQHAgr9RmfSfdqetmiRYW9nrvBvLKEey0a0T0pAZ
+	 6NHOAmlm+1TAHEZIwzaX/JYjjOpJrUM5uvpB6wTYhOQWSVa+l771jPeIzbCigdjvQ2
+	 NYNFa7sq6+5tA==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Subject: [PATCH v3 0/2] accel: Add Arm Ethos-U NPU
+Date: Fri, 26 Sep 2025 15:00:47 -0500
+Message-Id: <20250926-ethos-v3-0-6bd24373e4f5@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20250926192919.349578-1-cmirabil@redhat.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO/w1mgC/1WMQQrCMBBFr1JmbSQzJWpceQ9xkaaTNiiNJCUop
+ Xc3LRVx+T7/vQkSR88JztUEkbNPPgwF6l0FtjdDx8K3hYEkKXlEJXjsQxK1a9taszs41FC+z8j
+ Ov9bO9Va492kM8b1mMy7rViDaChmFFNaiVUbapnHN5c5x4Mc+xA6WRKafdkL8alQ0Q6idVWS0+
+ tfmef4A8IKvg9IAAAA=
+X-Change-ID: 20250715-ethos-3fdd39ef6f19
+To: Tomeu Vizoso <tomeu@tomeuvizoso.net>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Oded Gabbay <ogabbay@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Sumit Semwal <sumit.semwal@linaro.org>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ Robin Murphy <robin.murphy@arm.com>, Steven Price <steven.price@arm.com>, 
+ Daniel Stone <daniel@fooishbar.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, 
+ linaro-mm-sig@lists.linaro.org
+X-Mailer: b4 0.15-dev
 
-Hi Charles,
+The Arm Ethos-U65/85 NPUs are designed for edge AI inference 
+applications[0].
 
-Thanks for response. Rest inline
+The driver works with Mesa Teflon. A merge request for Ethos support is 
+here[1]. The UAPI should also be compatible with the downstream (open 
+source) driver stack[2] and Vela compiler though that has not been 
+implemented.
 
-On Fri, Sep 26, 2025 at 03:29:19PM -0400, Charles Mirabile wrote:
->Hi -
->
->Hoping that I got everything right with git-send-email so that this is
->delivered alright...
->
->Wanted to jump in to head off a potential talking past one another /
->miscommunication situation I see here.
->
->On Wed, Sep 24, 2025 at 08:36:11AM -0600, Paul Walmsley wrote:
->> Hi,
->>
->> On Thu, 31 Jul 2025, Deepak Gupta wrote:
->>
->> [ ... ]
->>
->> > vDSO related Opens (in the flux)
->> > =================================
->> >
->> > I am listing these opens for laying out plan and what to expect in future
->> > patch sets. And of course for the sake of discussion.
->> >
->>
->> [ ... ]
->>
->> > How many vDSOs
->> > ---------------
->> > Shadow stack instructions are carved out of zimop (may be operations) and if CPU
->> > doesn't implement zimop, they're illegal instructions. Kernel could be running on
->> > a CPU which may or may not implement zimop. And thus kernel will have to carry 2
->> > different vDSOs and expose the appropriate one depending on whether CPU implements
->> > zimop or not.
->>
->> If we merge this series without this, then when CFI is enabled in the
->> Kconfig, we'll wind up with a non-portable kernel that won't run on older
->> hardware.  We go to great lengths to enable kernel binary portability
->> across the presence or absence of other RISC-V extensions, and I think
->> these CFI extensions should be no different.
->
->That is not true, this series does not contain the VDSO changes so it can
->be merged as is.
+Testing so far has been on i.MX93 boards with Ethos-U65 and a FVP model 
+with Ethos-U85. More work is needed in mesa for handling U85 command 
+stream differences, but that doesn't affect the UABI.
 
-Look at patch 23/27. It does have vDSO change. Although shadow stack
-instruction are inserted as compiled flag for vDSO only when cfi config is
-selected by user. Right now default is "No". So it won't impact anyone unles
-user explicitly says "Yes".
+A git tree is here[3].
 
->
->>
->> So before considering this for merging, I'd like to see at least an
->> attempt to implement the dual-vDSO approach (or something equivalent)
->> where the same kernel binary with CFI enabled can run on both pre-Zimop
->> and post-Zimop hardware, with the existing userspaces that are common
->> today.
->
->I agree that when the VDSO patches are submitted for inclusion they should
->be written in a way that avoids limiting the entire kernel to either
->pre-Zimop or post-Zimop hardware based on the config, but I think it
->should be quite possible to perform e.g. runtime patching of the VDSO
->to replace the Zimop instructions with nops if the config is enabled but
->the hardware does not support Zimop.
+Rob
 
-Why kernel need to do this extra work of carry two binaries and patching it
-runtime?
+[0] https://www.arm.com/products/silicon-ip-cpu?families=ethos%20npus
+[1] https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/36699/
+[2] https://gitlab.arm.com/artificial-intelligence/ethos-u/
+[3] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git ethos-v3
 
-If for instance we do this, and then this allow this kernel to be taken to
-pre-Zimop hardware, it is assumed that entire userspace for such hardware
-was compiled without shadow stack (thus no zimop). In that case, kernel
-should have been compiled without CFI option.
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Changes in v3:
+- Rework and improve job submit validation                                                            
+- Rename ethos to ethosu. There was an Ethos-Nxx that's unrelated.
+- Add missing init for sched_lock mutex
+- Drop some prints to debug level          
+- Fix i.MX93 SRAM accesses (AXI config)
+- Add U85 AXI configuration and test on FVP with U85
+- Print the current cmd value on timeout                                                              
+- Link to v2: https://lore.kernel.org/r/20250811-ethos-v2-0-a219fc52a95b@kernel.org
 
-Just for sake of thought exercise, let's say Fedora 43 is first release with
-RVA23 compatiblity (zimop and shadow stack), there is no way this and future
-release will be able to run on pre-zimop hardware. Unless redhat is going to
-start two different binary distribution. One for pre-zimop and one for
-post-zimop. If that would be the case, then compiling two different kernel for
-such two different hardware would be least of the worry.
+Changes in v2:
+- Rebase on v6.17-rc1 adapting to scheduler changes
+- scheduler: Drop the reset workqueue. According to the scheduler docs,
+  we don't need it since we have a single h/w queue.
+- scheduler: Rework the timeout handling to continue running if we are
+  making progress. Fixes timeouts on larger jobs.
+- Reset the NPU on resume so it's in a known state
+- Add error handling on clk_get() calls
+- Fix drm_mm splat on module unload. We were missing a put on the
+  cmdstream BO in the scheduler clean-up.
+- Fix 0-day report needing explicit bitfield.h include
+- Link to v1: https://lore.kernel.org/r/20250722-ethos-v1-0-cc1c5a0cbbfb@kernel.org
 
-Only other usecase is of a seasoned kernel developer or build your own stuff
-in embedded environment, those users can anyways are advanced users. But it
-forces complexity on rest of kernel. There will be more extensions taking zimop
-encodings in future, we will end up patching vDSO and keep this complexity
-while rest of the userspace will not be patched and will be separate binary
-distribution (if OS distros endup distributing multiple binaries per release)
+---
+Rob Herring (Arm) (2):
+      dt-bindings: npu: Add Arm Ethos-U65/U85
+      accel: Add Arm Ethos-U NPU driver
 
->
->However, that concern should not hold up this patch series. Raise it again
->when the VDSO patches are posted.
+ .../devicetree/bindings/npu/arm,ethos.yaml         |  79 +++
+ MAINTAINERS                                        |   9 +
+ drivers/accel/Kconfig                              |   1 +
+ drivers/accel/Makefile                             |   1 +
+ drivers/accel/ethosu/Kconfig                       |  10 +
+ drivers/accel/ethosu/Makefile                      |   4 +
+ drivers/accel/ethosu/ethosu_device.h               | 187 ++++++
+ drivers/accel/ethosu/ethosu_drv.c                  | 430 +++++++++++++
+ drivers/accel/ethosu/ethosu_drv.h                  |  15 +
+ drivers/accel/ethosu/ethosu_gem.c                  | 709 +++++++++++++++++++++
+ drivers/accel/ethosu/ethosu_gem.h                  |  46 ++
+ drivers/accel/ethosu/ethosu_job.c                  | 543 ++++++++++++++++
+ drivers/accel/ethosu/ethosu_job.h                  |  41 ++
+ include/uapi/drm/ethosu_accel.h                    | 262 ++++++++
+ 14 files changed, 2337 insertions(+)
+---
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+change-id: 20250715-ethos-3fdd39ef6f19
 
-As I said earlier, these changes default cfi config to No. So whenever this
-is selected "Yes" by a distro, they can drive such patches (if there is a real
-need)
+Best regards,
+--  
+Rob Herring (Arm) <robh@kernel.org>
 
->
->>
->> thanks Deepak,
->>
->> - Paul
->
->Best - Charlie
->
 
