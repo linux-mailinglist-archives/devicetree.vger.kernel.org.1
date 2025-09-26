@@ -1,242 +1,281 @@
-Return-Path: <devicetree+bounces-221995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE709BA4DAF
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 20:13:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52B30BA4DD4
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 20:19:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08CF47AA791
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:11:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 071AB740126
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:19:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21FE2296BC0;
-	Fri, 26 Sep 2025 18:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D611827A124;
+	Fri, 26 Sep 2025 18:18:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="MW8kK8WU";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="GCfxIpNk";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="0yYp4A0Z";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="nPFm1wL2"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="NyEiCtCc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013070.outbound.protection.outlook.com [52.101.72.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D502741AC
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 18:13:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758910393; cv=none; b=BJc2KBZd2u7QfK6+VAio537sW9EcKP6iFO2yhyP37lVYRf4OPLkEdowdVQdJ6IeXxcvNgsW7P7PRWZnQwYM6/i38Lvq5doUG3mxPheO61VSvtTi5hrou+g6R0egAHjdooV7EFDR9PygB0bHB9XDhqvqUS5yROKNLo9vVcHfpzmU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758910393; c=relaxed/simple;
-	bh=0+W1Na4CAb7UCDasIjvvPSb7/qVXNolxFmrc3sFe238=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NvEgeKUaQLIwU+dOVlbbQaxN2oB8aNcZ/e2WFhS+LN4j9qsOEt8y3GPK/8iPrOWTZfH8KJCAQhr3Xvo8JJCaAqx/6Q/xf7uSgjlIpWROu1teTm6mfWf/gWbEv5/IC2c5hjsOqzj7E+GwxDE3tomm8JY6xA563L5X5px6UY3XULg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=MW8kK8WU; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=GCfxIpNk; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=0yYp4A0Z; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=nPFm1wL2; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id EFD0922132;
-	Fri, 26 Sep 2025 18:13:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1758910389; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=b2fR5fMHUJBEiytnVArGr5QfpX9gLSLu8Btxg4OIEmY=;
-	b=MW8kK8WUaF34Ly8qdyUjbxChbw0y5E9pPwHXpYY9HveavDj+6d3QT0bACtiUHJ777fE9hx
-	9dsuAlJkTWRsaGIBIp3tQ2np68WQrsmoGpHj9uEnvLBixPtJdMuxgDJ8HnbghAESXvG126
-	vRUZVZP5U7pejlxJm7wUca1682mqsDg=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1758910389;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=b2fR5fMHUJBEiytnVArGr5QfpX9gLSLu8Btxg4OIEmY=;
-	b=GCfxIpNkdYF5Cw1hikH8B7gygjJk9sTyM9QPZKJm2AkRON9qSkbL99TcOgGodFuyz0GR/K
-	AJxMvY134B+FKTBQ==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1758910387; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=b2fR5fMHUJBEiytnVArGr5QfpX9gLSLu8Btxg4OIEmY=;
-	b=0yYp4A0Zq1yC6ADWBKoHwe/rowHUz8mxabRRnrJ1cTSNdmbCNQDFgAmB1oNwg0XTxA95tz
-	Vel5/Pwrb6AyCn2+ptmv7ea6bmHSK5EWTqO0rPz8uS40S09LDizmm1RBqBb6UMwAvH36N2
-	TOlU5YY3dLLsNRwOWjyxucFziEoD/Sk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1758910387;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=b2fR5fMHUJBEiytnVArGr5QfpX9gLSLu8Btxg4OIEmY=;
-	b=nPFm1wL2+ov3lHngOnzyzbAlO+XaJKf4ZdX8Ah0Xw+LkDYoTPX8zu+eBPPkvl3fHkvFspC
-	JYfgIb6BKoLyr5BQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5EF441386E;
-	Fri, 26 Sep 2025 18:13:07 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id +SeJFbPX1mhHMgAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Fri, 26 Sep 2025 18:13:07 +0000
-Date: Fri, 26 Sep 2025 20:13:06 +0200
-Message-ID: <87ldm1axql.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Baojun Xu <baojun.xu@ti.com>
-Cc: <broonie@kernel.org>,
-	<andriy.shevchenko@linux.intel.com>,
-	<13916275206@139.com>,
-	<alsa-devel@alsa-project.org>,
-	<shenghao-ding@ti.com>,
-	<linux-sound@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>,
-	<lgirdwood@gmail.com>,
-	<robh@kernel.org>,
-	<krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>,
-	<devicetree@vger.kernel.org>,
-	<k-yi@ti.com>,
-	<henry.lo@ti.com>,
-	<robinchen@ti.com>,
-	<jesse-ji@ti.com>,
-	<will-wang@ti.com>,
-	<jim.shil@goertek.com>,
-	<toastcheng@google.com>,
-	<chinkaiting@google.com>
-Subject: Re: [PATCH v2 1/2] ASoC: tas2781: Add tas5828 support
-In-Reply-To: <20250926043339.8419-1-baojun.xu@ti.com>
-References: <20250926043339.8419-1-baojun.xu@ti.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C30781494A8;
+	Fri, 26 Sep 2025 18:18:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1758910736; cv=fail; b=ENMj/gJhs+m9bl9eXvllVXGFVfrjVSpYrcYAxsEfhnaKIV12kDk33KK14EDFvjl1QO8BMJFtNEHH5zrNWnZbe877vg2+dqZQbmKhkIsMd9fWGYWZ7mPyp1pKNCdGBXwThVzMgBDEfuYKxMcmdu/I7TxN2Rn26ifKZeDvY4IedLk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1758910736; c=relaxed/simple;
+	bh=0CgND4WO16EtwUc3Nse3AAY8I+x8THVa8IhQIsivJLs=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=aK5LAwz8wgmVf8W+bXfG1DOZCkkVOIHJSUJgiFSc1wtBXr2+bFo4pePybpZgurq02i4svHCziFOw3gDzLCBZLwrnToiDU8aaMBKxNQXDA8Mm6ooDh15Yb3ucS2cfnhnrFLZU/qIMqdHJeZHLU+Uq47/7GHLQJgI3uDCqX7gInuA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=NyEiCtCc; arc=fail smtp.client-ip=52.101.72.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CccOkAFp0ua8hJTJFSos7+sBL3qSjXbcWTJoe6UD9H+9OBsdRPNFUWjleEHpBv6B8ZfqQDlvtQRgbzmyToGq3qvJVcjSDnASJIBKirWbsy/Tmv1QR+fTINzUtvV4CpdjmV22AZmZm3dBbD9p0Q26+SqmVx+GQzv798AM/U5LOI0z8RSUGjx2Nj4lVSpnuxSYP1954debDs3EQiNPjggsofP7iHQP2JyWMob7TUXIIM9UJOR0goueO+v8Czr7UU/iRk0iPfiABWzS0fKgd6kdMUzI+4G49AN0637OSztjlgPKTQZ/ACEc6QwqL709W3nYQWrvyX9vdy+FSJ5ESsd03Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UYZfr//Bfqxv9oWEwbXnSHi/jHGgfXUjP7T38Ql0LCY=;
+ b=dl864UGWsBjI4yBVfKxP30UmF8PPSOuqcW9m4TFcgKWkCRy8tE27fW7MMwwznfwXpnngigTdxEaWZ1Gh4mrENUMXRSehKhTq+WbPDWGZ1NvmnkIl2wPQFFtD+5ae0yHjC/s2WXrNLM7bwr4YRbnWDNhgZyfGpYxqMnvbP8r57K4iKI0eoxKjb9Cw1qhI71D99FQiO6ISgWRxCod54jh0/KopanbHTV8+elSO/vwkZIY8qHvHUDEmWNZ+2hj7nz9SB+6UlYQL55j3NdMHQdH5Ueh0nSR7rhF2d+7DrgL3hPPLQ90X54o0ylTc7/KVCxAMrp1GmTxpOcB2eYHjAm25QQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UYZfr//Bfqxv9oWEwbXnSHi/jHGgfXUjP7T38Ql0LCY=;
+ b=NyEiCtCcbrxVFe333iyfDjPviK3QDYFeCf6MlEGjmEJHU/7rwabbYWDDMqQ/Cufcqy1isvZWrsIwz7AUfv0pZ3i0pzv8fvx40VX33IIG9G6BCNAkEtemHma/vcfbxxUpkZI1bY/mvg1rMKYLR0DwV6L4sljRT3Vq0s5hTAVfhAQ7YczyCyGr+l8mzWrD2pxwESt5CuXGRws7YOYmVpwH/3banytEKY1igwun6kjXVZzZjekmZVSPKfUYRty/U/KKc3gR/9TsbbpXa1cX1JZFCJ3u2hJDE9ggopyKdJrehjaFnvp3GSj4tHrKEsh5XvcYY0F2g36g1LO7Z4rxxL91ng==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by GV2PR04MB11686.eurprd04.prod.outlook.com (2603:10a6:150:2c8::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.11; Fri, 26 Sep
+ 2025 18:18:49 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd%5]) with mapi id 15.20.9160.008; Fri, 26 Sep 2025
+ 18:18:49 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH v4 0/4] usb: dwc3: add layerscape platform driver use
+ flatten dwc3 core
+Date: Fri, 26 Sep 2025 14:17:43 -0400
+Message-Id: <20250926-ls_dma_coherence-v4-0-fa2b92781e5e@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMjY1mgC/33OQQqDMBAF0KtI1k2JiR1rV71HKWImYw3UKEkRi
+ 3j3Rje1IF3+gff/TCyQtxTYJZmYp8EG27kYskPCsKncg7g1MTMp5EmAkPwZStNWJXYNeXJIHBV
+ KDXVeGC1ZZL2n2o5r5e0ec2PDq/PvdWFIl+ufsiHlgiPk2TkzUGnIrm7sj9i1bKka5JcXUu1wu
+ XBSaQ6qAG30L1dbDjtcRR7/0ikKJNCb9XmeP6x5Tm0sAQAA
+X-Change-ID: 20250602-ls_dma_coherence-c3c2b6f79db2
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>, Shawn Guo <shawnguo@kernel.org>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ bjorn.andersson@oss.qualcomm.com, imx@lists.linux.dev, 
+ Frank Li <Frank.Li@nxp.com>, Ze Huang <huang.ze@linux.dev>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1758910702; l=3727;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=0CgND4WO16EtwUc3Nse3AAY8I+x8THVa8IhQIsivJLs=;
+ b=5fIJqbdy8/HD9pDm9zi6cN2XL2eFZ/UpVVJVWPM2FqLB5WHTtAAkQFw5xCrlx1YN7EgsyTYx5
+ EVvhc0nx3vOCKVcUZOQpoz1HudaQODACqD+5uEqu+Vi68nMI/OB+VdL
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: BY3PR05CA0049.namprd05.prod.outlook.com
+ (2603:10b6:a03:39b::24) To PAXSPRMB0053.eurprd04.prod.outlook.com
+ (2603:10a6:102:23f::21)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Level: 
-X-Spamd-Result: default: False [-1.80 / 50.00];
-	BAYES_HAM(-3.00)[100.00%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	MID_CONTAINS_FROM(1.00)[];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[dt];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_ENVRCPT(0.00)[139.com,gmail.com];
-	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,linux.intel.com,139.com,alsa-project.org,ti.com,vger.kernel.org,gmail.com,goertek.com,google.com];
-	RCVD_TLS_ALL(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ti.com:email,imap1.dmz-prg2.suse.org:helo,suse.de:mid]
-X-Spam-Flag: NO
-X-Spam-Score: -1.80
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|GV2PR04MB11686:EE_
+X-MS-Office365-Filtering-Correlation-Id: 20fc3511-b7e1-41ee-6588-08ddfd291664
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|52116014|7416014|376014|19092799006|1800799024|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?c1J6dG1BenFwVERYYXZFbDJOQ3d5WnlkckhKUkZIT2lvRzZvdXdEVDVyL3VE?=
+ =?utf-8?B?UFcvckRMY2FmWUkyTnQ2cGxSdFBqYnlUS1JJTVdycFNDUmJ3ZS9wMG1LRUFZ?=
+ =?utf-8?B?QXZBWHZQRGo5LzFxQnN6QnV4Q0doZC8rZlBKTHJUQk1tR05aSlhsWHV0REpk?=
+ =?utf-8?B?RHZheitEMW9haGt2OVlvWndxY1lwbWNoK093bDJoT2pETG14QzE1S3dBNUJF?=
+ =?utf-8?B?SkxwejZnMjFtV2poelowQ21ZdUV1eS8zVHNSZWUrZFdKL0Z3L0poYVozaFRi?=
+ =?utf-8?B?c3dMRDFKdHR4eEFkaWFsTmxpeXNsS0N1cWt6L0dwT3Y3c05mVHFoZkpxckpM?=
+ =?utf-8?B?UEVpVWxuWFN2OHF2WXBSS05CcFRkRXVqZ2d3ajRNRWlhbVczdHptYTlZZWFK?=
+ =?utf-8?B?N0JSRTh3Q3dnNXFHTGF0RWt1OHUxQ1VYWExGQTFhU3dEM2ZEaU9tZTR4QUJC?=
+ =?utf-8?B?a0NnM25Dc3N1cFc2OUt4UnJPRWdmYTZzekRsMXh0d2FxNGVNeHJ1bkpXUTV2?=
+ =?utf-8?B?VlFNYlQwaUxIRnB3bEdYS3B6Vm8rSzVqZndFdFZMVUdIS2I0Wkd3dGgxNEVW?=
+ =?utf-8?B?akovcjFPUzdrZzFlb1hpaWNnd3p4MXNONXVTVXlZbUVzclpnbUl5MFluaEJq?=
+ =?utf-8?B?Zm41c2N6Z2ZQemNtalRZQkFNcUdubHNZc3hodWlZOEs5anBjc05NN3V6TTJS?=
+ =?utf-8?B?Z3dzQ0JVWkd5N2FiQ0pnRUNtbS9rQU8yaUhBNzZDNTdmb3RnZGNEd1BPVksx?=
+ =?utf-8?B?QUxYc1N4N3A1c2dWMGVIZlhwUzBxZ0h0VzlyYkNRcFgyUTJDYW5HakRuVVhQ?=
+ =?utf-8?B?WU84Y2VCTENhMDBLbW5WMTFLZSs4SGswU3RPQktsbGJnOS9rN2hZOTVqR3lG?=
+ =?utf-8?B?eDMzT0Jsa1l0Ymlqa1VlekFmNU01UGJEVnlDdXlsTXF0eFZaZHFZMzBKakxW?=
+ =?utf-8?B?eW9OS0diN2hPTzVXYzZvWHpEdmV1bFB5S1NRTDNLSkplRExIV2pMMWxzZkc5?=
+ =?utf-8?B?YVZaQ3M1Y01tWVJiZXlJVmx1RWpHZEcxaDc5OWJaYm9yQ0V2cWR3TzVIUXRu?=
+ =?utf-8?B?L09IZEhqempwUnMyUk1od1ZpTUhKYmd0N256U3dSczF2VVkzMFc0STB1a3oz?=
+ =?utf-8?B?ak1LcGRnc1IrcXZGTi9qdTF6VTdUNEdFK0F5TmswYXUxMzBmajVtcGhtSW53?=
+ =?utf-8?B?OWI5ck1VZ2lNSzRVbFRNWG93YWtiVll6STJDT20xRlM0RncySEc3R2N4OXh4?=
+ =?utf-8?B?Sk1IZDJBVE5USzlKaldmaDVSL1ZtUzVOTVlYVXJtMHdxeG9lVERSQ0lsdFZK?=
+ =?utf-8?B?YUdwZTlpVDlSK0FiV0lZeWg4V3VYTVhNcW93QVE3SStSNElRR0RZOG95c2c5?=
+ =?utf-8?B?OHJWanJXUGFGdlkvdFZpY3JlblFlRHBsa1YwTVlLc2FNczEvQXR4aFUvekZq?=
+ =?utf-8?B?OTllaVdVYlNoSU9SN004K3dGZFdTbTFabUI0bjVJa2F1c1NQZDA5N1FyVWVo?=
+ =?utf-8?B?ZHQwWEovUklMZW1BOW9oRXEwRzV6bVRiNi9ONVYxOEQxUUF4c1REcFJUZmQv?=
+ =?utf-8?B?aHR3cmJFdmFFeHhRUVM3L2VXUHdiVEtOYTFWUlNCUGFmc1Q3WlhIOTJvZmhw?=
+ =?utf-8?B?MDNnZUFxdDJLcEtwTXN2R3lHeW9uaHpnWWlwK3lPcWRZN1packZmQWlYcFVB?=
+ =?utf-8?B?d2dxc2FkS29STHZFbGQ5dXdtdDFwSElIU0VWQTA1bC9YemNaMzgxUHVtN21u?=
+ =?utf-8?B?dEtLUFQ0S1pDcnF5aWFjUFFUOHRGdzV2b3lZSE92RTBKNVg0djloTklYRTBK?=
+ =?utf-8?B?SnhQS0J4elFycm1ZUHBKeVNmOXZxWTFxbElFMlJRNUhQakkwdjRxa2NPSWpo?=
+ =?utf-8?B?OCttWUIrRVRTVmRzNHlMeHlJRW11UmhKcFJaOVFJN040RXlUT1hnUmkzNVla?=
+ =?utf-8?B?STR2UVg4UnhRZ20wdm5HYVowcmJQZDJpUG9GMlNGRWM4bWtkaitFVkhKNFRL?=
+ =?utf-8?B?d0NzS2JsNVJKdUsrOE83WTI5TGZRNXVxUmsxUk5VQmdsTmhjVENyY0lJRXE5?=
+ =?utf-8?Q?EXFgqk?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(19092799006)(1800799024)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?c0tRaGwvVmhGbzJ0MmVsWHhRRFdoaU1jMGpucjZzWXJpRnJlNCtHNUhkMTAv?=
+ =?utf-8?B?Y2Rvc1BHc1VrbzMxb1kzSzBzUWpaZTZVaUtNNm5HbHRFTTV3OEJNYXF0RTZ1?=
+ =?utf-8?B?QVFhZnA0RmhXeHFPUlVmZkNRakNqK1h2MnJ5QVVhbTk1QjQxWklyMmoyWEJW?=
+ =?utf-8?B?SlBHbFBhMnc2UHBydGMzNnNBYjRLTjBjN3RGNkk1TVE2YzM5UEg1L3habU42?=
+ =?utf-8?B?NjByRVQ1NEV3OWxWS2pFT1lHSUFLcFVIYlJzV0xpQTlnK2tXeVZ3elpVUzZP?=
+ =?utf-8?B?N2xaUUwyZVQ0RVl4TFdtN3Z0RDd2NTZUZUN5N3JObVV4ZjRKeFJkRmlPWEpS?=
+ =?utf-8?B?Wnp2b0M2ZUpTU2lxTzRwdllwV2NKdFZPL3FNRTZGMkx5K0QrdkFha3UvR1NH?=
+ =?utf-8?B?Tk8zUi93TnhWZFRDbXB2SFo1cDNNUzRuOU1EMmFJMTh6cWxBbHRJVHloL0s0?=
+ =?utf-8?B?WXBiV1hKMnU0alJJbFZqS2MzVVlRTEd1bGpWWkZob1RHaHp1ejJHNnorS0tv?=
+ =?utf-8?B?bHNlRURCVTRZT3hLUnFjM3BUOWFYWHA2MjVocHpzSXZkOUx4MjVXOUpYc1NF?=
+ =?utf-8?B?cDhVRHR5SG1hZFFoVTk2UmRDdFN1bE0vKzU4UmZaQjZsU2RBZk5hUHVaYXR4?=
+ =?utf-8?B?L3JYZ2pMY3RvR29UNkZaOXkwa2c1NXpwYi9uSU5YWE5LclhTUlpGLythZVZk?=
+ =?utf-8?B?VWtWRldycnhxbE1HeG9ZMW9aUGVvd0xsQnF5QnhVMUc4SnR4dE1NOVBMczRx?=
+ =?utf-8?B?bStNek9GampLemV2TWhZeFFZLzFpVnZTY0VoYzRvamh5cFF1Qk10dFY5YWlZ?=
+ =?utf-8?B?YzVFdjZWelBzWnNqODQ2d3lFaEg2KzFvZlJSOUs4cEZFYjd5MzlFZ0UzTVEv?=
+ =?utf-8?B?TXJ4akNndHdObFpYU3JPWXBXRjk3VldNMHlHVmY4SllOZEJhcmw1UytZT1Vi?=
+ =?utf-8?B?akNxTG5KTG1VbmYzd2xKVDFITTUzcEYzZ0NhbVhLMm1FUmxvb1pRUHlmVlc3?=
+ =?utf-8?B?REJTdTFFQ1J4bDE1b1dpY1lsQ1BIRVBiMWx2Wm9DUU4yNDJzeHpOcXo3em5x?=
+ =?utf-8?B?cGZLVzgwSXA1ckZHWXhDeWYwMUZvR0FIN1JJeGs4UmFNN045UDlKL3dZeHBF?=
+ =?utf-8?B?U0N4d0VXZUR6Q2grc0xwM0ZpL2VsZWp6dEMzZ2g1b1EvMWZsMUlEdmpUOHdx?=
+ =?utf-8?B?OVVBNjBwaUxjVkdDWW4rbUsrRGxxTU9teCs3eFAxdCtDV1QxRlg2RXZHVSsw?=
+ =?utf-8?B?Q1pJenFZK3NiKzY1WEVXV3ZadjZMdC9TSmdLNERmaVI3SFUzdms1ZzJzZGJN?=
+ =?utf-8?B?WG1kS2hVcUhsRWZuSlRLK2c1dnBjOE5hUTBDL2JpbFpYNEVxTDFhMG5MUWJQ?=
+ =?utf-8?B?UlB6ZXFFajAwcDViaG1KNEFyK1E3N3BMMFJBT1VBVmVINTI2RWJURk5PdDBR?=
+ =?utf-8?B?M3Z2czIwU3daR3hFanBtUmg3RGNNbWErODllWEl5cGhLYzF1YUpycUtQVHpC?=
+ =?utf-8?B?S0tkTGRIZm5MVEZMME9pSk13NnV0dzV4N2xTZm9yTXdNTTlUelFrNmFlRnJ4?=
+ =?utf-8?B?RS85czB2aTNYaVJkUVNVVmdPSVJucmxWdlB0bnJmVTdoeDlKdjVCWUZCZ2NC?=
+ =?utf-8?B?ZjVTOWd6WmpCMXQxMDY3aDVCMHBEV0lYMFVjeVJMSXBIOVJLNEJTVUlGMFUz?=
+ =?utf-8?B?d3hjcWdnbDFwenBvRVY0cTVvdVppSnJnTmdZYnVmd05ydHFKT2hKa2RiZzhl?=
+ =?utf-8?B?M2I5Y3F1aUtYZ2g4NUZUWm5tWVlWZlRyMG5ySUUxOTRnZmJybUZWTHVlSzRs?=
+ =?utf-8?B?KzFLYlVNaDdRT20vMHRKdXphYzUyNXMzTU1OZjdxZS9LSUY2dWNTMjliNklJ?=
+ =?utf-8?B?cXoySUx6dFdWSmc2SnhjdCtjVnFQQ1VSSjBPdjlNT011VDFQOW9hdWJRR2RI?=
+ =?utf-8?B?OVpvNzdXNHh0cWpiQzNyTTZoaG52bDVBbUtaakhrVjRPRzBTa2kwVmlHUk1h?=
+ =?utf-8?B?NjkvZ2VCaDUvQ25YQnBKbUNLcVpMOVFKM2E0YUdsWXR4VkJuS2RwTC9nVlpN?=
+ =?utf-8?B?N2FiWTRIMWRMbUNLK2hUN2FzMkt1d0o1OXN1REIzbDBqRnNLMXIra01iaC9s?=
+ =?utf-8?Q?JF8ahPGif7s4nIzMAoLDI+LWe?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20fc3511-b7e1-41ee-6588-08ddfd291664
+X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Sep 2025 18:18:49.1485
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: SusCnIS0/G4QmRHQGrzoeTh1vm+JLdE7lOMPXwuoacwcqB/kXGMXuOIQnhqYHUWklrPch/a44CN3+T6MHJxsJg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PR04MB11686
 
-On Fri, 26 Sep 2025 06:33:38 +0200,
-Baojun Xu wrote:
-> 
-> TAS5828 have on-chip DSP without current/voltage feedback.
-> 
-> Signed-off-by: Baojun Xu <baojun.xu@ti.com>
+Add layerscape platform driver use flatten dwc3 core to enable dma-coherence.
+It needs set gsburstcfg0 to 0x2222.
 
-Please use a different subject for each patch.  Both patches are 100%
-identical subject, and that makes harder to identify.
+There are some several try before:
+[1] https://lore.kernel.org/imx/20240710-ls-dwc-v1-0-62f8cbed31d7@nxp.com/
+[2] https://lore.kernel.org/imx/20240123170206.3702413-1-Frank.Li@nxp.com/
 
+[2]: add new property, which was reject because there are no varience in
+the soc. Fortunately the below commit resolve this problem by use software
+managed property.
 
-thanks,
+d504bfa6cfd1a usb: dwc3: enable CCI support for AMD-xilinx DWC3 controller
 
-Takashi
+[1] was reject because there are not actually dwc wrap at layerscape
+platform. Fortunately Bjorn Andersson's below patch to make it possible
+by use correct dts dwc3 node layer out.
 
-> 
-> ---
-> v2:
->  - Update description for TAS5828
->  - Change commit tree to .../tiwai/sound.git.
-> ---
->  include/sound/tas2781.h        | 1 +
->  sound/soc/codecs/tas2781-i2c.c | 7 ++++++-
->  2 files changed, 7 insertions(+), 1 deletion(-)
-> 
-> diff --git a/include/sound/tas2781.h b/include/sound/tas2781.h
-> index ddd997ac3..a37b4d67c 100644
-> --- a/include/sound/tas2781.h
-> +++ b/include/sound/tas2781.h
-> @@ -122,6 +122,7 @@ enum audio_device {
->  	TAS2781,
->  	TAS5825,
->  	TAS5827,
-> +	TAS5828,
->  	TAS_OTHERS,
->  };
->  
-> diff --git a/sound/soc/codecs/tas2781-i2c.c b/sound/soc/codecs/tas2781-i2c.c
-> index 1539b7088..f62a71dca 100644
-> --- a/sound/soc/codecs/tas2781-i2c.c
-> +++ b/sound/soc/codecs/tas2781-i2c.c
-> @@ -110,6 +110,7 @@ static const struct i2c_device_id tasdevice_id[] = {
->  	{ "tas2781", TAS2781 },
->  	{ "tas5825", TAS5825 },
->  	{ "tas5827", TAS5827 },
-> +	{ "tas5828", TAS5828 },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(i2c, tasdevice_id);
-> @@ -126,6 +127,7 @@ static const struct of_device_id tasdevice_of_match[] = {
->  	{ .compatible = "ti,tas2781" },
->  	{ .compatible = "ti,tas5825" },
->  	{ .compatible = "ti,tas5827" },
-> +	{ .compatible = "ti,tas5828" },
->  	{},
->  };
->  MODULE_DEVICE_TABLE(of, tasdevice_of_match);
-> @@ -1665,7 +1667,7 @@ static void tasdevice_fw_ready(const struct firmware *fmw,
->  	}
->  	tas_priv->fw_state = TASDEVICE_DSP_FW_ALL_OK;
->  
-> -	/* There is no calibration required for TAS5825/TAS5827. */
-> +	/* There is no calibration required for TAS5825/TAS5827/TAS5828. */
->  	if (tas_priv->chip_id < TAS5825) {
->  		ret = tasdevice_create_cali_ctrls(tas_priv);
->  		if (ret) {
-> @@ -1722,6 +1724,7 @@ static void tasdevice_fw_ready(const struct firmware *fmw,
->  		case TAS2781:
->  		case TAS5825:
->  		case TAS5827:
-> +		case TAS5828:
->  			/* If DSP FW fail, DSP kcontrol won't be created. */
->  			tasdevice_dsp_remove(tas_priv);
->  		}
-> @@ -1884,6 +1887,7 @@ static int tasdevice_codec_probe(struct snd_soc_component *codec)
->  		break;
->  	case TAS5825:
->  	case TAS5827:
-> +	case TAS5828:
->  		p = (struct snd_kcontrol_new *)tas5825_snd_controls;
->  		size = ARRAY_SIZE(tas5825_snd_controls);
->  		break;
-> @@ -2056,6 +2060,7 @@ static const struct acpi_device_id tasdevice_acpi_match[] = {
->  	{ "TXNW2781", TAS2781 },
->  	{ "TXNW5825", TAS5825 },
->  	{ "TXNW5827", TAS5827 },
-> +	{ "TXNW5828", TAS5828 },
->  	{},
->  };
->  
-> -- 
-> 2.25.1
-> 
+613a2e655d4dc usb: dwc3: core: Expose core driver as library
+
+This resolve problem [1] and [2] by use flatten dwc3 core library.
+
+1. add soc specific compatible string at dt-binding.
+2. create platform driver for layerscape chips and pass down gsbuscfg0 if
+dma-coherence enabled.
+3. update layerscape dts files.
+
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+To: Shawn Guo <shawnguo@kernel.org>
+Cc: linux-usb@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: bjorn.andersson@oss.qualcomm.com
+Cc: imx@lists.linux.dev
+
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Changes in v4:
+- Use flatten properties, instead of use dt pass down information to core.
+- Link to v3: https://lore.kernel.org/r/20250926-ls_dma_coherence-v3-0-602b1c0ce6b4@nxp.com
+
+Changes in v3:
+- skipped, accident sendout
+- Link to v2: https://lore.kernel.org/r/20250923-ls_dma_coherence-v2-0-ce3176396bdb@nxp.com
+
+Changes in v2:
+- base on drivers/usb/dwc3/dwc3-generic-plat.c
+
+commit e0b6dc00c701e600e655417aab1e100b73de821a
+Author: Ze Huang <huang.ze@linux.dev>
+Date:   Sat Sep 13 00:53:48 2025 +0800
+
+    usb: dwc3: add generic driver to support flattened
+
+    To support flattened dwc3 dt model and drop the glue layer, introduce the
+    `dwc3-generic` driver. This enables direct binding of the DWC3 core driver
+    and offers an alternative to the existing glue driver `dwc3-of-simple`.
+
+- Link to v1: https://lore.kernel.org/r/20250602-ls_dma_coherence-v1-0-c67484d6ab64@nxp.com
+
+---
+Frank Li (4):
+      dt-bindings: usb: add missed compatible string for arm64 layerscape
+      usb: dwc3: Add software-managed properties for flattened model
+      usb: dwc3: dwc3-generic-plat: Add layerscape dwc3 support
+      arm64: dts: layerscape: add dma-coherent for usb node
+
+ .../devicetree/bindings/usb/fsl,ls1028a.yaml       | 33 ++++++++++++----------
+ arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi     |  3 +-
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi     |  8 ++++--
+ arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi     |  9 ++++--
+ arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi     |  9 ++++--
+ arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi     |  8 ++++--
+ arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi     |  8 ++++--
+ drivers/usb/dwc3/core.c                            | 12 ++++++--
+ drivers/usb/dwc3/dwc3-generic-plat.c               | 14 +++++++++
+ drivers/usb/dwc3/dwc3-qcom.c                       |  1 +
+ drivers/usb/dwc3/glue.h                            | 14 +++++++++
+ 11 files changed, 89 insertions(+), 30 deletions(-)
+---
+base-commit: c45d2c21b3889c520bf141d576eaecb25666895c
+change-id: 20250602-ls_dma_coherence-c3c2b6f79db2
+
+Best regards,
+--
+Frank Li <Frank.Li@nxp.com>
+
 
