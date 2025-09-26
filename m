@@ -1,155 +1,334 @@
-Return-Path: <devicetree+bounces-221971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-221977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18B9DBA4A14
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:29:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD8B1BA4B28
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 18:43:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C156562099
-	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:29:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F7524A552B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Sep 2025 16:43:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCC62261573;
-	Fri, 26 Sep 2025 16:28:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EDBC2FF15E;
+	Fri, 26 Sep 2025 16:43:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aJkel49m"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="h+iVNCIt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C69F25A2C9
-	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 16:28:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A63C2FE59F
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 16:43:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758904124; cv=none; b=ThOsSqmFAMgefeRDhkWhuNi6+etdgw8MUoImQgzEqSjiyZO73wKHI9kMEsH7y2qv6ZrAlU1S5ZmPlZ6fFB7TBHO3OK1dGbA7p7bPS+H0ieNLZOEdkZiCPjLzZT609t39I+ZVQaW0gPlzO4jW2RJqpDvuqArgXR9ytiNBCwpetgg=
+	t=1758905017; cv=none; b=f9GPHVtWZI9MhoRrtmt+EUX+phEUN+rcV37M88HWxbmyacwIfhXa8ZdPzQ+NwyIYoUS9HqwqjYKgOobIvUIH4orJ8Xj8wlulMz0xqCrmQFhTrbF5J1yQOC1g59/gzDbsBbDhmVKkXf0Cd6WEPft0sIl6xn/NVvJ5AGFyTzRlLk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758904124; c=relaxed/simple;
-	bh=advGB0s4cY+Eij/iD8U4Na+qAHs8pdRd6nx34nKFrFA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=M2XnSomYmXtat68a7VYRmOVnOVL2wtDlCP4zxiqg+JiSuWL7xlYEXek7DPKIAS0V0YMie9uhXjqaUqKTIgvnHCKUyrgqPOcJA5EE0uC6bmlucD2Xsufpl7jkl19DxWN9pYkqJqLyInpU47ZtkkLAyeqynrPahqeEGZQ7e1KcviU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aJkel49m; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-330631e534eso2408305a91.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:28:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758904122; x=1759508922; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=17SdlbsrW/H1oAGhyPo1vRPjIhKSOB2gzK7KjETew8g=;
-        b=aJkel49m22/7RXgjQEiTwgVHHdEqo3rlyx0C0kk9t74ov7a+RFJoDRRrKG75NswkZs
-         /llklE2NCccXLqnG3WZAqgoxVPoZ/w5FqM1Tik6EOIsbhBCAXLXm12ewCag2fbBn6pB4
-         mbdZNpPAcGYQ/rkAg1TRbWZavykJB/ZxaEy7iefU4YxCZBLOXTiExMGkdBFl+HmdSZ7P
-         HX++vjTw/PLTShLl/bx1KJNetNyZjYspQusDSZEiaJDJc3/1ajd2xhi5jNhOfcHBMgJi
-         VPHi8YrmKsySExBGfPPGG7FUAdhQdUHcXXFljZPsKr1qvbPrdNPsBfNe3g+pNlEdkm/n
-         AuoA==
+	s=arc-20240116; t=1758905017; c=relaxed/simple;
+	bh=rIG4cWp43cAsNeKr1YLyi9hOy3sx5IQvvF4wOGxpB34=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qYEJgtZ+dov6edYJFpeOjF77r8S+46gAqmeBym0u9O5XozMCDQW6QoQIbaIqI0KB0ub79uIzbWyt1leAx6LBPc1Hn57ZdOj7kQCMHnHPyIppULDY5+zsLh4HKExe+gr3ZALQg8g2qa9n/PNZ792ajLgnIOwgNAn2qLovP5wajgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=h+iVNCIt; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58QEWuXm010158
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 16:43:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OOAJKtszuFOluuG6qYkOjreur/Dr9vuVBO3HUnQ0sBI=; b=h+iVNCItG8IaNeo1
+	5WKet2QPTfpcZVIJTNHUnA1IGc0tJXiF0e4OMG0eP89dQxPTjv3yUpM8TBpP7DAQ
+	IhgMxGGm26m+RUmIboNHJp9FYOTEs0zvE1UKja8TxVWN01jYtZGZ2b4L7OByN55k
+	nvAF8UZh13tjgob9ioN1jL40C5FnHTr/OhnbunN9yvOMYo7nCmUH9ESTkm7Vm/Cd
+	Y4w6DOwI+N7tepyxyoudTuzUxhkDo5oieO0MmxITVHu+OEfXeGxu5D2ea3vWkkm4
+	34Ju6XGEucVq4FkxEIvY496FdY7jXIIEjEgXTT6jFF3R9nSrsLRIh0JvYbaBfdI4
+	3X+eZQ==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49drfwh592-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 16:43:34 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-780f914b5a4so2492572b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 09:43:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758904122; x=1759508922;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=17SdlbsrW/H1oAGhyPo1vRPjIhKSOB2gzK7KjETew8g=;
-        b=fVBi7IQZG4Mw7F6c1e33dLs7f1o+DeDVkUsmhMMHUceTQ3NUUe9lZLUUZFR/Mjx7oM
-         Vci7X+Eb6bXo/YHENnrl5nmqY1Qv4fZFaiejdBMrWj97YDYAk9b4QMbgajIKvikgA+h7
-         Q/4YezyyE64ddDUtlzkA5thPx9qdaI0pQFAd7FaHf2oti6JYzpTOhw5VzURdg3giyKYW
-         IWu+2jnDPXPu/wSd+C1VZ0+LOVyc78Pt5569Gxi8bwh9mg3SX26yKxidc+xFXDjGl98G
-         DPUP1n18cKW/lhktwx1zyBfdtLrs5LUaO4y5PshQVy+msFjKa8JdMpmorUGUs2m7oe3D
-         g4Ig==
-X-Forwarded-Encrypted: i=1; AJvYcCWu9g4u1uZxiFPnvrGm6jk4TgHVWDLsZh3CyI+zd1Rko+CIiZg+Qs6HDVFklcOlLnLG2EfZtzbH4LIH@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLDz9lJ8Mm0ON62JtscrKpdeqJveQrrCjxHVa2HpYbdXzWASVF
-	wclK9VBvHMuabEor14JU2q5ydKcw/b5jC89APBGEjbZtXQoKrNvnCyd4ItsL2O1640W/VpUN780
-	aeRM6czmvrQ38fQsTiSlAYr4R6hNhBHBNeU4cBWTO9dmy
-X-Gm-Gg: ASbGncsYZ1kVKygAL1IWDdYyB4jJ776Y6Xye9OY0yhtVr9ZFrR5CO8MuVfacEVHF3yA
-	vJnax9XbHH0PjMOrwdSseucMABOnQHY+1URe+7MoKmsGw/3pKeEn6JqpbcTLWKYVP28Fsiy7MQD
-	owVGe8ct0xT8FA79Px2LVFivn14QRd2rQHIuW1qaYrFgEk8Q0zv35gbdZEykt+TWVM/COcXo1AU
-	FdWaM1SUb30bS1yyzC0GQNSETvjPBSgwP8/C3loXj5uOq5M8Us=
-X-Google-Smtp-Source: AGHT+IFP1pZQQc/fe1s5lC9WTMOccd345qaOrvak7xLKmHiYtcellclXpMJlF7A8FJF338xuOE/Uc1mneQkNtUiDrKk=
-X-Received: by 2002:a17:90b:4a01:b0:32b:6eed:d203 with SMTP id
- 98e67ed59e1d1-3342a2b126emr9404474a91.24.1758904122505; Fri, 26 Sep 2025
- 09:28:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1758905014; x=1759509814;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OOAJKtszuFOluuG6qYkOjreur/Dr9vuVBO3HUnQ0sBI=;
+        b=RWglSBPGRwn4s4cYeDsVca3f28QoL5lOtrZG5Pc2isU8uEoy+XhwETnAjrRlmncj9e
+         /l+gFJoc4lh209ynf+Hi6uJjBq5zJsJ+xhDkLHrPnNMaHsoGIVOsT3szKiWRSxRpg8kG
+         tnKdjaDy6ZR/J3iDMYgZTJqXzvHAv+G9rV1jX+LWrmnA7zd/mtFR5FeG+bIbhXGX3Tqu
+         W1K/H5Ogdozq7yXWqM0R3DRfvnwHQf02IXvgItFrNX6pB8nW/0Gao/LlFHsrMystDqIC
+         GNduIN9eIujbLqJ3HblZU7lY2phK95IK/01T4rYJuJg+12K27Rj2YOg+0yBpYtXwraBR
+         4XzA==
+X-Forwarded-Encrypted: i=1; AJvYcCXoiEPTdI2nbMtVnyQlrykI57yhSzubsh7AcE5qGUrOKzC647qhpU7V+OM7gTJ7l4ZSu/cJRcXolh38@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw951gtqZKOFXZuEddXaE7DmXSoQl9XB3/USITfVnQJLkIxhMsG
+	xKqkOjmFNYEVHYKZZ1hv3jHq7tg1uWhH+RsVLo6JwpDiuYYNFZNV7+Sjesf8Y1luEcdQFcxZRlc
+	frVI8G28VRcRva5ebc2fwD6XO92cwx2+SF/hVYoL+AHGfAOIPwtSmbhVawERsgeNR
+X-Gm-Gg: ASbGnct5euy9n9R1fIKqavWzVoMj6ey6Fw5Er3b+vydwseRuHCoPSS6qahDOKpEPJIK
+	hKugXO0aU7moaFXr0Zd20BAq1Z48f8tACdogHpPStyf9iuJDyL3gkbxexwzQxhCu1tUnam1hy6y
+	C01W9mX1llCwMHVN3k1apuEwgEnW5TqJmZQ6v4jXZAysdS5atnxcrpNBvUxvDnENE3OPOAPq5sE
+	/5QqohLL4fLOv+5c7kt48+4oLLVQD+1Mda03P8SfHFrzNqKX/s/CaIBDdd4j3HHUSCvLaUXvJK2
+	mOsyUSwOgvjK1DomMlKYSWkkEI/yTzwwqgVQj48NPpCwbaCO/B+2NLcfGoWWn9hWR1VDjSo7a8A
+	=
+X-Received: by 2002:a05:6a00:2186:b0:77f:2899:d443 with SMTP id d2e1a72fcca58-780fce1d14fmr7444709b3a.10.1758905013429;
+        Fri, 26 Sep 2025 09:43:33 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH5vWBMgBvL7brIlV8nI5zcGRZcgZLch/n6zvZd8dJYGcdbkBvuKaAP5Kh0UT+1HHmZItjGyg==
+X-Received: by 2002:a05:6a00:2186:b0:77f:2899:d443 with SMTP id d2e1a72fcca58-780fce1d14fmr7444655b3a.10.1758905012812;
+        Fri, 26 Sep 2025 09:43:32 -0700 (PDT)
+Received: from [192.168.29.113] ([49.43.224.88])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-781023c8aebsm4809340b3a.28.2025.09.26.09.43.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 26 Sep 2025 09:43:32 -0700 (PDT)
+Message-ID: <7cd09815-a657-47cc-9cc2-3751996c3592@oss.qualcomm.com>
+Date: Fri, 26 Sep 2025 22:13:22 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250922131148.1917856-1-mmyangfl@gmail.com> <20250922131148.1917856-3-mmyangfl@gmail.com>
- <aNQvW54sk3EzmoJp@shell.armlinux.org.uk> <fe6a4073-eed0-499d-89ee-04559967b420@lunn.ch>
- <aNREByX9-8VtbH0n@shell.armlinux.org.uk> <CAAXyoMPmwvxsk0vMD5aUvx9ajbeAENtengzUgBteV_CFJoqXWg@mail.gmail.com>
- <f7d78131-7425-487f-a8bb-ed747dd9a194@lunn.ch>
-In-Reply-To: <f7d78131-7425-487f-a8bb-ed747dd9a194@lunn.ch>
-From: Yangfl <mmyangfl@gmail.com>
-Date: Sat, 27 Sep 2025 00:28:05 +0800
-X-Gm-Features: AS18NWC4VpC0VraXX2b7ElF7Q9xckDyqxA2rIp_ujgdQGGcV--mnzBcfmdWMe7A
-Message-ID: <CAAXyoMM3QG+zWJQ8tAgZfb4R62APgBaqaKDR=151R7+rzzakCw@mail.gmail.com>
-Subject: Re: [PATCH net-next v11 2/5] net: phy: introduce PHY_INTERFACE_MODE_REVSGMII
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>, netdev@vger.kernel.org, 
-	Vladimir Oltean <olteanv@gmail.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiner Kallweit <hkallweit1@gmail.com>, Simon Horman <horms@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 8/9] PCI: pwrctrl: Add power control driver for tc9563
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        chaitanya chundru <quic_krichai@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, Jingoo Han <jingoohan1@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, quic_vbadigan@quicnic.com,
+        amitk@kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, jorge.ramirez@oss.qualcomm.com,
+        linux-arm-kernel@lists.infradead.org,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20250925143924.GA2160097@bhelgaas>
+Content-Language: en-US
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <20250925143924.GA2160097@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: MfjS27GP5g5al0B-zU695N8eaRXwYzJw
+X-Authority-Analysis: v=2.4 cv=JKA2csKb c=1 sm=1 tr=0 ts=68d6c2b6 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=w+9hNF1SH6wH5mqaHp+xkw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=qleSEWVE8P8leAEWZfgA:9
+ a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+X-Proofpoint-GUID: MfjS27GP5g5al0B-zU695N8eaRXwYzJw
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI2MDA4OSBTYWx0ZWRfX5F5oppGONKYa
+ z8Pz/gWu/WA1msYh7Av3YpoxO3Jd9zdgRbulJfpTjimWPsg2bpswW5oVGyimBQk1wn/UV2RwLWH
+ bj5TZ99tyXrT/+KSaAvvLolz7eWBYh7QjGipaxj1vGspLJ39nc1gLRykX7KbjW+Uo1e9vTmrl1V
+ GKioF0jtlAdmJaOJaxterOacs23RiXA3sOQjb+E4ztnYw8BF2CydkKx2vPR2RrxQ0GSkwwbyX4a
+ r+qG1zfoKOjO8HSrboGKNK5ntgSFTNjmftt/9xACqEWIFw/5upxQYfLBPkku3oQVQQXH42i7FSd
+ xtLiSIls8pdXm12w01fiaj2pdeCf6jXE2X/gJ8SL6pY8Khkgzr4xExq09dGqaI2DDWpPURHULpj
+ auDnSdkwl4otSsP9+DUyUpJ5dWgkyg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-26_06,2025-09-26_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 impostorscore=0 clxscore=1015 lowpriorityscore=0
+ phishscore=0 suspectscore=0 bulkscore=0 spamscore=0 malwarescore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
+ definitions=main-2509260089
 
-On Sat, Sep 27, 2025 at 12:09=E2=80=AFAM Andrew Lunn <andrew@lunn.ch> wrote=
-:
->
-> > > > How does the databook describe reverse SGMII? How does it differ fr=
-om
-> > > > SGMII?
-> > >
-> > > It doesn't describe "reverse SGMII". Instead, it describes:
-> > >
-> > > 1. The TC bit in the MAC configuration register, which makes the bloc=
-k
-> > >    transmit the speed and duplex from the MAC configuration register
-> > >    over RGMII, SGMII or SMII links (only, not 1000base-X.)
-> > >
-> > > 2. The SGMIIRAL bit in the PCS control register, which switches where
-> > >    the SGMII rate adapter layer takes its speed configuration from -
-> > >    either the incoming in-band tx_config_reg[15:0] word, or from the
-> > >    MAC configuration register. It is explicitly stated for this bit
-> > >    that it is for back-to-back MAC links, and as it's specific to
-> > >    SGMII, that means a back-to-back SGMII MAC link.
-> > >
-> > > Set both these bits while the MAC is configured for SGMII mode, and
-> > > you have a stmmac MAC which immitates a SGMII PHY as far as the
-> > > in-band tx_config_reg[15:0] word is concerned.
-> >
-> > So any conclusion? Should I go on with REV*MII, or wait for (or write
-> > it myself) reverse-mode flag?
->
-> Sorry, i'm missing some context here.
->
-> Why do you actually need REVSGMII, or at least the concept?
->
-> REVMII is used when you connect one MAC to another. You need to
-> indicate one ends needs to play the PHY role. This is generally when
-> you connect a host MAC to an Ethernet switch, and you want the switch
-> to play the PHY role.
->
-> Now consider SGMII, when connecting a host MAC to a switch. Why would
-> you even use SGMII, 1000BaseX is the more logical choice. You don't
-> want the link to run at 100Mbps, or 10Mbps. The link between the host
-> and the switch should run as fast as possible. And 1000BaseX is
-> symmetrical, you don't need a REV concept.
->
-> Also, in these cases, stmmmac is on the host, not the switch, so it
-> will have the host role, leaving the switch to play 'PHY'. I'm not
-> sure you could even embedded stmmac in a switch, where it might want
-> to play 'PHY', because stmmac is software driven, where as a switch is
-> all hardware.
->
-> So the hardware supports reverse SGMII, but it is not clear to me why
-> you would want to use it.
->
->         Andrew
->
 
-Cause I couldn't make 1000BaseX work with qca-ssdk, so I can only
-confirm and test REVSGMII mode on my device.
+
+On 9/25/2025 8:09 PM, Bjorn Helgaas wrote:
+> On Thu, Aug 28, 2025 at 05:39:05PM +0530, Krishna Chaitanya Chundru wrote:
+>> TC9563 is a PCIe switch which has one upstream and three downstream
+>> ports. To one of the downstream ports integrated ethernet MAC is connected
+>> as endpoint device. Other two downstream ports are supposed to connect to
+>> external device. One Host can connect to TC9563 by upstream port. TC9563
+>> switch needs to be configured after powering on and before the PCIe link
+>> was up.
+>>
+>> The PCIe controller driver already enables link training at the host side
+>> even before this driver probe happens, due to this when driver enables
+>> power to the switch it participates in the link training and PCIe link
+>> may come up before configuring the switch through i2c. Once the link is
+>> up the configuration done through i2c will not have any affect.To prevent
+>> the host from participating in link training, disable link training on the
+>> host side to ensure the link does not come up before the switch is
+>> configured via I2C.
+> 
+> s/any affect/any effect/
+> s/.To prevent/. To prevent/
+> 
+>> Based up on dt property and type of the port, tc9563 is configured
+>> through i2c.
+> 
+> s/up on/on/
+> 
+> Pick "i2c" or "I2C" and use it consistently.
+> 
+>> +config PCI_PWRCTRL_TC9563
+>> +	tristate "PCI Power Control driver for TC9563 PCIe switch"
+>> +	select PCI_PWRCTRL
+>> +	help
+>> +	  Say Y here to enable the PCI Power Control driver of TC9563 PCIe
+>> +	  switch.
+>> +
+>> +	  This driver enables power and configures the TC9563 PCIe switch
+>> +	  through i2c.TC9563 is a PCIe switch which has one upstream and three
+>> +	  downstream ports. To one of the downstream ports integrated ethernet
+>> +	  MAC is connected as endpoint device. Other two downstream ports are
+>> +	  supposed to connect to external device.
+> 
+> s/i2c.TC9563/i2c. TC9563/
+> 
+>> +static int tc9563_pwrctrl_bring_up(struct tc9563_pwrctrl_ctx *ctx)
+>> +{
+>> +	struct tc9563_pwrctrl_cfg *cfg;
+>> +	int ret, i;
+>> +
+>> +	ret = regulator_bulk_enable(ARRAY_SIZE(ctx->supplies), ctx->supplies);
+>> +	if (ret < 0)
+>> +		return dev_err_probe(ctx->pwrctrl.dev, ret, "cannot enable regulators\n");
+>> +
+>> +	gpiod_set_value(ctx->reset_gpio, 0);
+>> +
+>> +	 /*
+>> +	  * From TC9563 PORSYS rev 0.2, figure 1.1 POR boot sequence
+>> +	  * wait for 10ms for the internal osc frequency to stabilize.
+>> +	  */
+>> +	usleep_range(10000, 10500);
+> 
+> Possible place for fsleep() unless you have a specific reason for the
+> +500us interval?
+> 
+>> +static int tc9563_pwrctrl_probe(struct platform_device *pdev)
+>> +{
+>> +	struct pci_host_bridge *bridge = to_pci_host_bridge(pdev->dev.parent);
+>> +	struct pci_dev *pci_dev = to_pci_dev(pdev->dev.parent);
+>> +	struct pci_bus *bus = bridge->bus;
+>> +	struct device *dev = &pdev->dev;
+>> +	enum tc9563_pwrctrl_ports port;
+>> +	struct tc9563_pwrctrl_ctx *ctx;
+>> +	struct device_node *i2c_node;
+>> +	int ret, addr;
+>> +
+>> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+>> +	if (!ctx)
+>> +		return -ENOMEM;
+>> +
+>> +	ret = of_property_read_u32_index(pdev->dev.of_node, "i2c-parent", 1, &addr);
+>> +	if (ret)
+>> +		return dev_err_probe(dev, ret, "Failed to read i2c-parent property\n");
+>> +
+>> +	i2c_node = of_parse_phandle(dev->of_node, "i2c-parent", 0);
+>> +	ctx->adapter = of_find_i2c_adapter_by_node(i2c_node);
+>> +	of_node_put(i2c_node);
+>> +	if (!ctx->adapter)
+>> +		return dev_err_probe(dev, -EPROBE_DEFER, "Failed to find I2C adapter\n");
+>> +
+>> +	ctx->client = i2c_new_dummy_device(ctx->adapter, addr);
+>> +	if (IS_ERR(ctx->client)) {
+>> +		dev_err(dev, "Failed to create I2C client\n");
+>> +		i2c_put_adapter(ctx->adapter);
+>> +		return PTR_ERR(ctx->client);
+>> +	}
+>> +
+>> +	for (int i = 0; i < TC9563_PWRCTL_MAX_SUPPLY; i++)
+>> +		ctx->supplies[i].supply = tc9563_supply_names[i];
+>> +
+>> +	ret = devm_regulator_bulk_get(dev, TC9563_PWRCTL_MAX_SUPPLY, ctx->supplies);
+>> +	if (ret) {
+>> +		dev_err_probe(dev, ret,
+>> +			      "failed to get supply regulator\n");
+>> +		goto remove_i2c;
+>> +	}
+>> +
+>> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+>> +	if (IS_ERR(ctx->reset_gpio)) {
+>> +		ret = dev_err_probe(dev, PTR_ERR(ctx->reset_gpio), "failed to get reset GPIO\n");
+>> +		goto remove_i2c;
+>> +	}
+>> +
+>> +	pci_pwrctrl_init(&ctx->pwrctrl, dev);
+>> +
+>> +	port = TC9563_USP;
+>> +	ret = tc9563_pwrctrl_parse_device_dt(ctx, pdev->dev.of_node, port);
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to parse device tree properties: %d\n", ret);
+>> +		goto remove_i2c;
+>> +	}
+>> +
+>> +	/*
+>> +	 * Downstream ports are always children of the upstream port.
+>> +	 * The first node represents DSP1, the second node represents DSP2, and so on.
+>> +	 */
+>> +	for_each_child_of_node_scoped(pdev->dev.of_node, child) {
+>> +		ret = tc9563_pwrctrl_parse_device_dt(ctx, child, port++);
+>> +		if (ret)
+>> +			break;
+>> +		/* Embedded ethernet device are under DSP3 */
+>> +		if (port == TC9563_DSP3)
+>> +			for_each_child_of_node_scoped(child, child1) {
+>> +				ret = tc9563_pwrctrl_parse_device_dt(ctx, child1, port++);
+>> +				if (ret)
+>> +					break;
+>> +			}
+>> +	}
+>> +	if (ret) {
+>> +		dev_err(dev, "failed to parse device tree properties: %d\n", ret);
+>> +		goto remove_i2c;
+>> +	}
+>> +
+>> +	if (!pcie_link_is_active(pci_dev) && bridge->ops->stop_link)
+>> +		bridge->ops->stop_link(bus);
+> 
+> Is this pcie_link_is_active() test backwards?  Seems like you would
+> want to stop the link if it *is* active.
+> 
+you are right pci_dev extracted seems wrong and not pointing to root
+port dev, and  returning always zero. It is pointing to pci_dev in host
+bridge which doesn't point root port.
+
+Thanks for pointing this.
+
+I will fix it in next version.
+> pcie_link_is_active() is racy, and this looks like a situation where
+> that could be an issue.  Would something break if you omitted the test
+> and *always* stopped and started the link here?
+if we stop the link if the pcie link is active then we might see AER's &
+linkdown.
+
+- Krishna Chaitanya.
+> 
+>> +	ret = tc9563_pwrctrl_bring_up(ctx);
+>> +	if (ret)
+>> +		goto remove_i2c;
+>> +
+>> +	if (!pcie_link_is_active(pci_dev) && bridge->ops->start_link) {
+>> +		ret = bridge->ops->start_link(bus);
+>> +		if (ret)
+>> +			goto power_off;
+>> +	}
+>> +
+>> +	ret = devm_pci_pwrctrl_device_set_ready(dev, &ctx->pwrctrl);
+>> +	if (ret)
+>> +		goto power_off;
+>> +
+>> +	platform_set_drvdata(pdev, ctx);
+>> +
+>> +	return 0;
+>> +
+>> +power_off:
+>> +	tc9563_pwrctrl_power_off(ctx);
+>> +remove_i2c:
+>> +	i2c_unregister_device(ctx->client);
+>> +	i2c_put_adapter(ctx->adapter);
+>> +	return ret;
+>> +}
 
