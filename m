@@ -1,127 +1,86 @@
-Return-Path: <devicetree+bounces-222150-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E1C5BA642C
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 00:31:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D4D9BA6459
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 00:42:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB52C4A2610
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 22:31:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3946A3A6DE2
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 22:42:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2380217F56;
-	Sat, 27 Sep 2025 22:31:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5D4723E354;
+	Sat, 27 Sep 2025 22:42:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VjZrdZmo"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="SCUrABG6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B476715855E;
-	Sat, 27 Sep 2025 22:31:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03A6A625
+	for <devicetree@vger.kernel.org>; Sat, 27 Sep 2025 22:42:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759012271; cv=none; b=k73shRqsajmfuV53aO3BXXev7106E5lBJnaLBSz6m2de7jsFh1Qz3iG5L6SPH3/Jm1EIeUjMcNU+evuJYwHvfx6TqVcIbk0AIQp7oHPb1QTN+gIQJuSDtQYiLxWPxANbd388+jsrVf/1lxFs83eD/ZJ9wTpNM4gAZQD+30w6rsw=
+	t=1759012956; cv=none; b=pdiyJYAH938bkF1rGoTSkpE9Q84qpHzDkExYi2ocy3pKLQARJHAvGi4wNxMr4YMhok7QBU3yl8UmW5+u3gxxzJn8g+XVG8CPms/ccxAjvmIFNqeM4VyNmqQCxE0WUi0STfbcE3JmyuM1DQAx5+ZkIzNN9Sb5MKNOOBfjf70mlsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759012271; c=relaxed/simple;
-	bh=dBMCnwC/+O9FTfXLyAEIuZ0DdSHoOWe/DqAJ60jmJB8=;
+	s=arc-20240116; t=1759012956; c=relaxed/simple;
+	bh=mbeAZTr3CfqeJk3liA0/Dd2y8bMANTlJcS+W4kX0krI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lXNBPMCLBuk3iE0lhCDMvJZ2YctpL8l/hBfytPS1ZdeGaEcWAbpgJJlQvNAeQnkymjQFtoMHDqTzcgkg++2FeV9heY/tAE+rUg8s6hjDkXWDS7f/73n+y+hhIShvS1kZiKZ6IUEZGtNa/GPvRYStruLvpJ00JIpdyyF5ZaMIBJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VjZrdZmo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67297C4CEE7;
-	Sat, 27 Sep 2025 22:31:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759012271;
-	bh=dBMCnwC/+O9FTfXLyAEIuZ0DdSHoOWe/DqAJ60jmJB8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VjZrdZmoYtbyhNPG7F3XzGd74PCHvufvfo+0H4pTRUJOgLW05CU5xQyJU0hAvZTH0
-	 MQzNCNFOrQ4I+JCd7yNy8sBQkyqb+D7P724ui6/6F4Hpl3vSStdYfv+7eS0QuIRSCS
-	 ibjablqCjJSDSoaJE88jILyZ0wCwbn8kEJq9V+XNDp7LTbnvSkdi1FohOUtqNeerTy
-	 akPCP+27p2SVL4GM4o/GpsFzYWxwwZaTa5PW4XdhbCyxFCkOuimLmztv+pp6PY69wY
-	 jAU4sfYrinKIGI+A6CMi00v30UemeczhLqkgdUs+pb+fMHJ4F1kt1iS8f7ShwqNUyL
-	 jrmxALXQ83jnQ==
-Date: Sat, 27 Sep 2025 23:31:05 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 1/5] regulator: dt-bindings: Add Linear Technology
- LTM8054 regulator
-Message-ID: <20250927-spoon-yearning-c1a8df796173@spud>
-References: <20250925-ltm8054-driver-v2-0-bb61a401a0dc@bootlin.com>
- <20250925-ltm8054-driver-v2-1-bb61a401a0dc@bootlin.com>
- <20250925-pushchair-charity-9ccee20d8a6e@spud>
- <5331035.LvFx2qVVIh@fw-rgant>
+	 Content-Type:Content-Disposition:In-Reply-To; b=LANURJrcyBQZSVr1XyOQbyAVYxdlMqX3NDiHNj2+6/+7QlzgSpdUzwV7WRq7pGRYISRG8lX4hom08nlNbV+kygGG3U2rovtKPkJIeLIAbr1NApLvNeDAdG/2GJgibnsjLpvrdzF5GafVMd66X9Td5A4WueIrmq7sozxZej0qm1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=SCUrABG6; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=W8gS
+	3lBr3j7Wvud1lK+lD9eX9tSSo9wWSRk6jSkPi+Y=; b=SCUrABG6nCFnoowG4VFN
+	zpzTaCxwHx6HIP8KwDMyizitPF4QVumwiuztsIKD+sL7lT3S1lvRo4c4YLHisrEK
+	VJFD5U/AiAajMgXydB6Wu/IIXMxgulA8BhcQtyWu8fB8AIkvqXGzqFSiUuonvjCS
+	/fOVsLiygNzuelks6eJ/qr/q1tzrgfrWvVV7AUb1qqDGm4UXNeqeuwMK1r1hu/Rd
+	QAZ2Mm/R0kUsonjB57vEWI4j1cq4zH5lmmeXhQp985GEQ+vAEsHpkRoq6rxO6qjA
+	aqdwoOAmzbPkY9oKqXlC4KQYI9NPal51DWikUoyEfkVJK/knMrk2NUQJOsW8jiwF
+	ZA==
+Received: (qmail 2704494 invoked from network); 28 Sep 2025 00:42:27 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 28 Sep 2025 00:42:27 +0200
+X-UD-Smtp-Session: l3s3148p1@miPlHdA/jssujnsw
+Date: Sun, 28 Sep 2025 00:42:27 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: devicetree@vger.kernel.org, qii.wang@mediatek.com,
+	andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com,
+	gregkh@linuxfoundation.org, jirislaby@kernel.org,
+	daniel.lezcano@linaro.org, tglx@linutronix.de,
+	linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-serial@vger.kernel.org,
+	kernel@collabora.com
+Subject: Re: [PATCH 3/3] dt-bindings: i2c: i2c-mt65xx: Add MediaTek
+ MT8196/6991 compatibles
+Message-ID: <aNhoU8AUVJUepzVf@shikoro>
+References: <20250611110800.458164-1-angelogioacchino.delregno@collabora.com>
+ <20250611110800.458164-4-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dO2l03q4ujQbw8Xs"
-Content-Disposition: inline
-In-Reply-To: <5331035.LvFx2qVVIh@fw-rgant>
-
-
---dO2l03q4ujQbw8Xs
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250611110800.458164-4-angelogioacchino.delregno@collabora.com>
 
-On Fri, Sep 26, 2025 at 05:59:48PM +0200, Romain Gantois wrote:
-> Hello Conor,
->=20
-> On Thursday, 25 September 2025 21:27:06 CEST Conor Dooley wrote:
-> > On Thu, Sep 25, 2025 at 02:37:33PM +0200, Romain Gantois wrote:
-> ...
-> > > +properties:
-> > > +  compatible:
-> > > +    const: adi,ltm8054
-> > > +
-> > > +  enable-gpios:
-> > > +    description: GPIO connected to the RUN pin.
-> > > +    maxItems: 1
-> > > +
-> >=20
-> > > +  lltc,fb-voltage-divider:
-> > Why does this property have a ?linear? vendor prefix?
-> > Shouldn't it be adi to match the other property and compatible?
->=20
-> This component was originally from Linear Technology, before it was acqui=
-red=20
-> by Analog Devices. The new properties and compatibles have the Analog Dev=
-ices=20
-> prefix, but the "fb-voltage-divider" property is already used by the LTC3=
-676=20
-> and LTC3589 regulators, so I left the Linear Technology prefix for this o=
-ne to=20
-> avoid introducing a new property just to specify a vendor prefix change.
->=20
-> I don't have a strong opinion about this though.
+On Wed, Jun 11, 2025 at 01:08:00PM +0200, AngeloGioacchino Del Regno wrote:
+> Add support for the MediaTek MT8196 Chromebook SoC and for its
+> close relative, the MediaTek Dimensity 9400 MT6991 SoC.
+> 
+> Those chips' multiple I2C controller instances are compatible with
+> the ones found in the MT8188 SoC.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Do they share the same driver?
+Applied a rebased version to for-next, thanks!
 
---dO2l03q4ujQbw8Xs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNhlqQAKCRB4tDGHoIJi
-0t74AQCabvjJlJT7JwqpnsYqKxgYWhQ/m7pHQbMZB2cZ2tUcDgD/bwEavC33iHAB
-OMsQgRoetYt6nmPa+Fm0cxjAGDT24wc=
-=ACPw
------END PGP SIGNATURE-----
-
---dO2l03q4ujQbw8Xs--
 
