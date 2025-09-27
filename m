@@ -1,65 +1,62 @@
-Return-Path: <devicetree+bounces-222134-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222135-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE740BA60F5
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 17:33:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE852BA618F
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 18:34:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 871E14A3EFF
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 15:33:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 422C34C0344
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 16:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D65112E11AA;
-	Sat, 27 Sep 2025 15:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE12D2236E0;
+	Sat, 27 Sep 2025 16:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uKvGRzND"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qfDQm0Hq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1D984C9D;
-	Sat, 27 Sep 2025 15:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DEB014BFA2;
+	Sat, 27 Sep 2025 16:34:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758987225; cv=none; b=XsgaAnIz6rhVnfme9Fge9Sr7VxJiaUmYPuNF/ouG0iIWybcW+4hWSppyAcqELwCG50GGGtI9onJuz5DpISa8Hv1ysrDa6fcqp9kdBHr1DMgqYCKlkeUVgXdJS2D28AiRrJCyZUx5JPreIuIh8S/wHEKkgxDZhZ91zO13rO9Kv2c=
+	t=1758990875; cv=none; b=RWO4lEmDoocBhKubX5BewGd7p5foQ3xXo2jWxB84rJiuJW4h9TbIdIWMAJVKFl73N2jjQEVjCf2Eu+M+G12EKd/UavbqsV4scopSBSX1LXx0j+Y/4syEPqjAw9eT6Cwdlb1lNzm8OxhM1aP5yVKZEJCkRiAdghTzqMpgxtKuIUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758987225; c=relaxed/simple;
-	bh=YP9XMHyMUiFPIIDHrpJNhaTLyQxop7Ve8HoR8OOr+xM=;
+	s=arc-20240116; t=1758990875; c=relaxed/simple;
+	bh=qeZC/pRCYJMpr65N9mvjYbg04no3ilGBhi0vFHl4+OY=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gqzNtZflNEw9uMKZsZtIBlmcnFqWD9NYnPPTxquLvnPkJ2TKnEXBTUjOkyCqmbOQvFK1gLz2Dau8kI6FBj3FRcbcR2scCvT0MsykpblhIzNaHLPWU0DRkpFXbmU/PyId0wHzM5IKjefTt9JTybwYV51HnpelG5MHKQqko47YHqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uKvGRzND; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D89A2C4CEE7;
-	Sat, 27 Sep 2025 15:33:38 +0000 (UTC)
+	 MIME-Version:Content-Type; b=sl+6j8w+zVyT8oXKJImJgyN3iGii97Y6zHjS7ZNoq5QyWfOI/vH4nMcjvkm0LjF6ks0Z4Gn47aRrV4e62zhCdmAlxwyYob5GWakgP/grVS1jzwneQDLfeL0Pc4qJtOWd3fPDB1fT79gtSrn3IUBC3oXoR+9muCMWE2w1KXKANVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qfDQm0Hq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E16AC4CEE7;
+	Sat, 27 Sep 2025 16:34:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758987225;
-	bh=YP9XMHyMUiFPIIDHrpJNhaTLyQxop7Ve8HoR8OOr+xM=;
+	s=k20201202; t=1758990875;
+	bh=qeZC/pRCYJMpr65N9mvjYbg04no3ilGBhi0vFHl4+OY=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=uKvGRzNDS9jYjMcVd+pc5wMr3QM22v44//bBx7gOLY6rWWAKjqlbZM8jnaKyloz1I
-	 IQpmtkWHO+mBtjCXCp6Ra/uph6kCwtx4rFrIsBH3OYOygl6WALBYHXLW4uAZLcf+V/
-	 t6+kjfJtUqEr3S/DuG7ZEQhI0Nd+WBoxC6X2KtY+oFyTbSY15MUfyMEW8xVJUqpMwm
-	 teoeMigCDa7TGKw0OpGZzX4xKoIVUu41Xr8omfZDoBo6Pj6LzXObcnHMhxPQBWtFW3
-	 uGUuPSTZBiI9Sgm8ej45bYy6aEjAUa9R9GEhN3/rbBcbQD/85oS95fQdeMgtn1ckoZ
-	 mwIf+VC/k8wCA==
-Date: Sat, 27 Sep 2025 16:33:33 +0100
+	b=qfDQm0Hq0h7niCVSsnjvSf4VehE9pbDsK/HN0UHa1EYuaTbX1aw3RSmcJUZ42yWYs
+	 SwBW8t4o55Dy4DPhvyg+QgHnlRKnyt8/gfxLvI+Hmg5APz5qWnu5CMBOo1ts1EoEL3
+	 nFwmLtiJndbcpFaO2qeZJzdOsV+HKasgCD4gksuyG0Q13Qv2c2s2s3w3SsXihdMHWY
+	 zhvid1RJVOVpHMkNL8JcGrSwqZ2IiwB/miUaV38RhZul3KmZw/b9s0tFUJnblVq8mb
+	 KZtTVdVeMj4TDxQqhk0tRc4EPw0qmWDcmNxZVinQVYkPa+05Ik6+x1qZkPqRWBNcpq
+	 2cQyogJvESSUA==
+Date: Sat, 27 Sep 2025 17:34:23 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: Marcelo Schmitt <marcelo.schmitt1@gmail.com>, Marcelo Schmitt
- <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
- michael.hennerich@analog.com, nuno.sa@analog.com, eblanc@baylibre.com,
- dlechner@baylibre.com, andy@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net
-Subject: Re: [PATCH v2 7/8] dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216
- and ADAQ4224
-Message-ID: <20250927163333.55d94113@jic23-huawei>
-In-Reply-To: <20250921-unadvised-uninjured-cdd7a6e6f326@spud>
-References: <cover.1758214628.git.marcelo.schmitt@analog.com>
-	<2d6bca62056e1254f91b45f70f4ba4614e659c1c.1758214628.git.marcelo.schmitt@analog.com>
-	<20250919-unsure-mounted-0fc49ce72216@spud>
-	<aM3HJY0GWJmP8-do@debian-BULLSEYE-live-builder-AMD64>
-	<20250921-unadvised-uninjured-cdd7a6e6f326@spud>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Antoni Pokusinski <apokusinski01@gmail.com>, dlechner@baylibre.com,
+ nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-iio@vger.kernel.org, linux@roeck-us.net,
+ rodrigo.gobbi.7@gmail.com, naresh.solanki@9elements.com,
+ michal.simek@amd.com, grantpeltier93@gmail.com, farouk.bouabid@cherry.de,
+ marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH 2/3] iio: mpl3115: add support for DRDY interrupt
+Message-ID: <20250927173423.1eada3a5@jic23-huawei>
+In-Reply-To: <CAHp75Vd8Bwk8HVc3DhG4L=SgbSh3aFTQ2VRn7Tri8YhJrqaXgw@mail.gmail.com>
+References: <20250921133327.123726-1-apokusinski01@gmail.com>
+	<20250921133327.123726-3-apokusinski01@gmail.com>
+	<CAHp75Vd8Bwk8HVc3DhG4L=SgbSh3aFTQ2VRn7Tri8YhJrqaXgw@mail.gmail.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -70,119 +67,33 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Sun, 21 Sep 2025 23:20:01 +0100
-Conor Dooley <conor@kernel.org> wrote:
 
-> On Fri, Sep 19, 2025 at 06:12:05PM -0300, Marcelo Schmitt wrote:
-> > On 09/19, Conor Dooley wrote:  
-> > > On Thu, Sep 18, 2025 at 02:39:29PM -0300, Marcelo Schmitt wrote:  
-> > > > ADAQ4216 and ADAQ4224 are similar to AD4030 except that ADAQ devices have a
-> > > > PGA (programmable gain amplifier) that scales the input signal prior to it
-> > > > reaching the ADC inputs. The PGA is controlled through a couple of pins (A0
-> > > > and A1) that set one of four possible signal gain configurations.
-> > > > 
-> > > > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > > > ---
-> > > > Change log v1 -> v2
-> > > > - Use pattern to specify devices that require gain related properties.
-> > > > - Disallow gain related properties for devices that don't come with embedded PGA.
-> > > > - Documented VDDH and VDD_FDA supplies for ADAQ4216 and ADAQ4224.
-> > > > - Updated PGA gain constants.
-> > > > 
-> > > >  .../bindings/iio/adc/adi,ad4030.yaml          | 65 +++++++++++++++++--
-> > > >  1 file changed, 60 insertions(+), 5 deletions(-)
-> > > >   
-> > ...  
-> > > >  
-> > > > +  pga-gpios:
-> > > > +    description:
-> > > > +      A0 and A1 pins for gain selection. For devices that have PGA configuration
-> > > > +      input pins, pga-gpios should be defined if adi,gain-milli is absent.
-> > > > +    minItems: 2
-> > > > +    maxItems: 2
-> > > > +
-> > > > +  adi,pga-value:
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32  
-> > > 
-> > > How come this is "value" rather than "gain"?  
-> > 
-> > Because, for this one, I drew inspiration from ad7191 bindings [1] in the hopes
-> > of avoiding creating new properties or using discontinued/deprecated
-> > nomenclature [2].
-> > 
-> > The thing is, we now have ADC chips coming with PGA circuitry in front of ADC
-> > inputs. Those PGAs are usually set/configured through hardware connections
-> > (e.g. dedicated GPIOs or pin-strapped) and have been described in dt-bindings.
-> > Though, since these added PGAs don't follow a pattern with respect to the
-> > provided gain, different properties began to appear. ad7380 and ad4000 use
-> > adi,gain-milli to describe PGA gain [3, 4], ad7191 uses adi,pga-value and,
-> > more recently, adaq7768-1 has been proposed with adi,aaf-gain-bp [5].
-> > adaq7768-1 is arguably a slightly different case since the signal gain stems
-> > from an anti-aliasing filter, but it nevertheless results in signal attenuation
-> > much like some PGAs.
-> > 
-> > I personally like the -milli (or even -permille) nomenclature because 4 digits
-> > have been more than enough to describe the gains (at least so far). Though, I
-> > acknowledge the base points suffix (-bp) which is documented in
-> > property-units.yaml [6]. The only thing I don't like much about -bp for
-> > describing PGA gain is that PGA gains are often described in terms of unitless
-> > scale factors, while bp implies the value to be described as a percent.
-> > 
-> > Anyways, whatever property name is chosen, it will probably be better settle to
-> > something rather than arguing about property names each time a new ADC comes
-> > with an integrated PGA.  
+> ...
 > 
-> If PGA gains are common, then ye it would make sense to have a standard
-> property. I guess one of the problems with doing so is that there isn't
-> a standard/common binding for adcs themselves, so without making one
-> it'd involve reviewers pushing people to the standard one. I suppose the
-> current adc.yaml could be made into adc-channel.yaml and adc.yaml
-> repurposed. I bet there are more properties than just PGA gain that
-> could go there.
+> >         mutex_lock(&data->lock);
+> > -       ret = mpl3115_request(data);
+> > -       if (ret < 0) {
+> > -               mutex_unlock(&data->lock);
+> > -               goto done;
+> > +       if (!(data->ctrl_reg1 & MPL3115_CTRL_ACTIVE)) {
+> > +               ret = mpl3115_request(data);
+> > +               if (ret < 0) {  
 > 
-> My personal objection to "pga-value" is that it doesn't communicate by
-> itself what aspect of the pga it actually controls. I don't really care
-> what "unit" qualifier is used that much or if one is used at all. That's
-> more of a thing for yourself and other IIO developers to handle.
+> > +                       mutex_unlock(&data->lock);  
 > 
-> Part of me is bothered though that all these gains are not in dB! But
-> I'd imagine there are not really any ADCs where the registers don't
-> deal in unitless gain and using dB would be nothing more than an
-> additional headache for software developers.
+> Instead, I suggest adding a prerequisite that moves the driver to use
+> cleanup.h, in particular scoped_guard(). This will reduce a churn
+> here,
 
-To me this problem isn't really about PGAs at all.  What it is really
-about is cases where a pin on a chip is either tied to a gpio or pin strapped.
-Can we provide a solution at that layer?
+I'll comment on this in version 3, but I'm not sure scoped_guard() is
+necessarily a good idea here.
 
-i.e. A way to say this GPIO input is tied high so you can't control it
-but you can still read what it's current value is. Maybe there is already
-a clean way to do this.
-
-Jonathan
-
+Also note that there is no requirement to use one style universally in
+a driver (guard / vs explicit unlocks) as often they work best in different
+usecases with the same locks.
 > 
-> > [1] Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml
-> > [2] https://lore.kernel.org/linux-iio/510f6efb-ada3-4848-ac8e-16fa5d1b5284@kernel.org/
-> > [3] Documentation/devicetree/bindings/iio/adc/adi,ad7380.yaml
-> > [4] Documentation/devicetree/bindings/iio/adc/adi,ad4000.yaml
-> > [5] https://lore.kernel.org/linux-iio/46842d4cf2c1149bd64188f94c60ce5e4f3b2beb.1757001160.git.Jonathan.Santos@analog.com/
-> > [6] https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
-> >   
-> > >   
-> > > > +    description: |
-> > > > +      Should be present if PGA control inputs are pin-strapped. The values
-> > > > +      specify the gain per mille. For example, 333 means the input signal is
-> > > > +      scaled by a 0.333 factor (i.e. attenuated to one third of it's original
-> > > > +      magnitude). Possible values:
-> > > > +      Gain 333 (A1=0, A0=0)
-> > > > +      Gain 555 (A1=0, A0=1)
-> > > > +      Gain 2222 (A1=1, A0=0)
-> > > > +      Gain 6666 (A1=1, A0=1)
-> > > > +      If defined, pga-gpios must be absent.
-> > > > +    enum: [333, 555, 2222, 6666]
-> > > > +  
-> > 
-> > Thanks,
-> > Marcelo  
+> > +                       goto done;
+> > +               }
+> >         }  
 
 
