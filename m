@@ -1,204 +1,134 @@
-Return-Path: <devicetree+bounces-222111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92AEABA5F6F
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 15:00:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62A2FBA5FA5
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 15:22:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C2467A4F23
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 12:58:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 19A927B117A
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 13:21:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C132E11AB;
-	Sat, 27 Sep 2025 13:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E85F2E266A;
+	Sat, 27 Sep 2025 13:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="BdoWsCMb"
+	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="XBxqlojz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+Received: from mail-08.mail-europe.com (mail-08.mail-europe.com [57.129.93.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E55F22E1757;
-	Sat, 27 Sep 2025 13:00:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C552E22B5;
+	Sat, 27 Sep 2025 13:22:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=57.129.93.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758978014; cv=none; b=XvTTQuRUA5pjLQlHtbFcDQD0UAelFo7yCy66iNYz91Rc7VbwLJqyTs7MfxEkQd50SqfPs8hCyjsC5p2y6UgX0ssjEG8fJfj3iPT5hfVixTkLGRSdtSNCYwU1+GOCqd5FFzkGED32ntusEqrdmdWrqm8fwXw3xsZMuKYCQIuZn1g=
+	t=1758979356; cv=none; b=SbJapRJ/g4cgJCnth0j6D/fp1FqlTuMqB05G2zCHRKrRqDBcVNBoBIgYn7Z/x9rf9DfC64lmPcP52FchOjEh34Kt4MF96ft1wDanWsEwS9nUKc7LpiGA06Ufj+dlIWzokwMhBaciUgXfMNYOxAVjpT+3UFRJ00j3ERd62tVvWoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758978014; c=relaxed/simple;
-	bh=jzebUf+63bj5rtU4hJayjc7X3+u2ceh7LqvGb8ptNi0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SNHb3WBdl0sCxdEpjQ7uPvq+aXCwCPP7TNRTN8w8tMymOT5cMIkgmxK/3U4mTdkM0azYsf5TVu2fHKj7gXOv650P3z9KVZ0cF2eadzCN3VqqbVD1lvbtrW9Oh+UAoX4Q5s+CnS0/s257QlVsEgED2913Sl2+vbBlJs2S+p3dGqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=BdoWsCMb; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1758978012; x=1790514012;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jzebUf+63bj5rtU4hJayjc7X3+u2ceh7LqvGb8ptNi0=;
-  b=BdoWsCMbtQkMPtvcEx6g07cNXQ0vaveUEkBbFjJ6o2EGXHdrLZB183D+
-   47Io1RVyqCABEe5adnakqjuAKNFBQWXYA/YMriwcCq+U7IxppJvDOFwhP
-   uqBblZP5ewdwJGxL62dHU631CnLfSMBQ1SvxY+mMJDrSOP7nfuS1ooI/p
-   HKWJ4BrCmSCUAxorFEb/0rLU5hM8mqXJiat1BdUHSFGaT4TqamkkPrRtW
-   a7ONfGltk+y+gyyecVf7z6s77YP+qV+JQ1hwju5Axk2ynlxItJbgtBWO6
-   JYeb4n1i3hPdehPOcKuewCME+Pl2D8jR2FR8eimg5DFi2D1fvwOQJjY2f
-   A==;
-X-CSE-ConnectionGUID: 6DVpSIKcRJaUycPHCj04nw==
-X-CSE-MsgGUID: mEJCOK/fShiWyy8nXJxmug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="61246388"
-X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
-   d="scan'208";a="61246388"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Sep 2025 06:00:11 -0700
-X-CSE-ConnectionGUID: anys7G8eR6S+RNK3Vl14fw==
-X-CSE-MsgGUID: RdLCaiYJQKe1fcc5HgT3TQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,297,1751266800"; 
-   d="scan'208";a="183108925"
-Received: from lkp-server02.sh.intel.com (HELO 84c55410ccf6) ([10.239.97.151])
-  by fmviesa004.fm.intel.com with ESMTP; 27 Sep 2025 06:00:07 -0700
-Received: from kbuild by 84c55410ccf6 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v2UWy-00074F-33;
-	Sat, 27 Sep 2025 13:00:04 +0000
-Date: Sat, 27 Sep 2025 20:59:36 +0800
-From: kernel test robot <lkp@intel.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, jic23@kernel.org,
-	michael.hennerich@analog.com, nuno.sa@analog.com,
-	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	corbet@lwn.net, marcelo.schmitt1@gmail.com,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Axel Haslam <ahaslam@baylibre.com>
-Subject: Re: [PATCH v3 6/8] iio: adc: ad4030: Add SPI offload support
-Message-ID: <202509272028.0zLNiR5w-lkp@intel.com>
-References: <0028720d2cb21898ef044458065ac8a0bc829588.1758916484.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1758979356; c=relaxed/simple;
+	bh=pNQkxRuoV5p9AQKFSJNbjGjphy8yw5GtPAAkqP6I1tE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=IdSqRru8KLdppbm8sPJxFxfWz1QJEdpYp+TyJkutujLxcOaRM8oJcD7n7TMQT70Kj47AYIpht2mLDabx9VbVYYUw2G5ii7JpVJzQgnDFwPtJmXVjjncQcSuzgvdiMyNN2l0YbFmFyIrB3RfWmj6jZAo9PNFATKeMvUGoH0N+/WI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=XBxqlojz; arc=none smtp.client-ip=57.129.93.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinarskis.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
+	s=protonmail; t=1758979338; x=1759238538;
+	bh=kxMBpWVoAHeEECcguI0CWGFFU3AtS6snnN6CYVaI0Vg=;
+	h=From:Subject:Date:Message-Id:To:Cc:From:To:Cc:Date:Subject:
+	 Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=XBxqlojzsE2EgW5F9TTDtE/rBS1pg9NpuVKw5k4gY+cE46esDiEQH9TsBdF37u6zG
+	 HfW6c6HecbgjleAQ4ZEvVdHnhhliv+Htp9n2yU/ZE/utYfZmQkTtG0E3/lxq4R+m0R
+	 q4j9VoWVDR6tm712yeoUcfS2dpQFCFHlWBa6g6nHEUamyMlFO+sqOK9b+LeYypVWGZ
+	 hW8r+0u0iypzXgLvxxojURbhGEQsDZiWwnIuB0sBWPU0peKtBIKw8rxRlf73+HXP9K
+	 ain+C0vKO8pFJeG2WqPxcQpiD9TnajMfNFwXbAqceIisLQAgZtA/XkNkqBaNhNtx4l
+	 HEe7dntE64CUQ==
+X-Pm-Submission-Id: 4cYp5g6kXfz1DF4J
+From: Aleksandrs Vinarskis <alex@vinarskis.com>
+Subject: [PATCH v3 0/3] arm64: dts: qcom: x1-asus-zenbook-a14: LCD, WiFi
+ for X1E support
+Date: Sat, 27 Sep 2025 15:21:34 +0200
+Message-Id: <20250927-zenbook-improvements-v3-0-d46c7368dc70@vinarskis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <0028720d2cb21898ef044458065ac8a0bc829588.1758916484.git.marcelo.schmitt@analog.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAN7k12gC/4XNywrCMBCF4VcpWRvJpVdXvoe46MSpHUqTkpSgl
+ r67aVciiMv/wHyzsICeMLBTtjCPkQI5m0IfMmb61t6R0y01U0IVohE1f6EF5wZO4+RdxBHtHLi
+ sZV6BrpWugaXTyWNHj529XFP3FGbnn/uXKLf1DxglFzzXaAA63ZhSnCPZ1oeBwtG4kW1oVB+QK
+ n9AKkFGQCFVCyUU1Te0rusbsOpuHgUBAAA=
+X-Change-ID: 20250908-zenbook-improvements-18147b38238b
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2436; i=alex@vinarskis.com;
+ h=from:subject:message-id; bh=pNQkxRuoV5p9AQKFSJNbjGjphy8yw5GtPAAkqP6I1tE=;
+ b=owGbwMvMwCX2dl3hIv4AZgHG02pJDBnXn7K2+7MJvlep49vjd6/q2UGW5WZrFTs+zNCcd3//2
+ i9pG/tfdZSyMIhxMciKKbJ0//ma1rVo7lqG6xrfYOawMoEMYeDiFICJSBkyMsyvf/ggrtk8oePk
+ rV2qjVut+vhdziw93DztLtMKPp3a9A6Gf4q2XLt3HDj59HL3/a0W9gwG77cnrDffX+Yzy23qz4+
+ 18pwA
+X-Developer-Key: i=alex@vinarskis.com; a=openpgp;
+ fpr=8E21FAE2D2967BB123303E8C684FD4BA28133815
 
-Hi Marcelo,
+Round of improvements for Asus Zenbook A14, two changes:
+1. Support LCD option on X1 (UX3407QA) variant. Until now, 'edp-panel'
+   was used for both X1/X1E models, for both OLED panels. The lower end
+   model also comes with IPS, which unfortunately needs PWM brightness
+   controls. Follow example of Lenovo t14s - create a dedicated DT with
+   dedicated 'compatible'. To maintain backward compatibility, do not
+   rename current devicetree nor the 'model'.
 
-kernel test robot noticed the following build errors:
+   As this results in 3 DTs for 3 variants of the laptop, change
+   OLED variants from 'edp-panel' to respective drivers (it appears both
+   panels happily work both in old and new setup). Compatible for the
+   panels were added to linux-next some weeks ago.
 
-[auto build test ERROR on 561285d048053fec8a3d6d1e3ddc60df11c393a0]
+2. Add WiFi nodes for X1E (UX3407RA) variant. Almost identical to
+   UX3407QA but uses ath12k instead of ath11k. Was not addded during
+   initial bring-up due to lack of hardware to verify WiFi's operation.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marcelo-Schmitt/dt-bindings-iio-adc-adi-ad4030-Reference-spi-peripheral-props/20250927-044546
-base:   561285d048053fec8a3d6d1e3ddc60df11c393a0
-patch link:    https://lore.kernel.org/r/0028720d2cb21898ef044458065ac8a0bc829588.1758916484.git.marcelo.schmitt%40analog.com
-patch subject: [PATCH v3 6/8] iio: adc: ad4030: Add SPI offload support
-config: i386-randconfig-014-20250927 (https://download.01.org/0day-ci/archive/20250927/202509272028.0zLNiR5w-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250927/202509272028.0zLNiR5w-lkp@intel.com/reproduce)
+Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+---
+Changes in v3:
+- Fixed order of Sign-off-by
+- Fixed ath11k/ath12k (driver name) to wcn6855/wcn7850 (IC name)
+- Picked R-by from Konrad
+- Link to v2: https://lore.kernel.org/r/20250926-zenbook-improvements-v2-0-c0b512ab6b57@vinarskis.com
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509272028.0zLNiR5w-lkp@intel.com/
+Changes in v2:
+- Rebased on latest linux-next
+- Dropped 'model', 'compatible' from both .dtsi
+- Link to v1: https://lore.kernel.org/r/20250908-zenbook-improvements-v1-0-43ecbbf39c60@vinarskis.com
 
-All errors (new ones prefixed by >>):
+---
+Aleksandrs Vinarskis (3):
+      dt-bindings: arm: qcom: Add Asus Zenbook A14 UX3407QA LCD/OLED variants
+      arm64: dts: qcom: Rework X1-based Asus Zenbook A14's displays
+      arm64: dts: qcom: x1e80100-asus-zenbook-a14: Enable WiFi, Bluetooth
 
-   drivers/spi/spi-offload-trigger-pwm.c: In function 'spi_offload_trigger_pwm_validate':
->> drivers/spi/spi-offload-trigger-pwm.c:55:15: error: implicit declaration of function 'pwm_round_waveform_might_sleep' [-Wimplicit-function-declaration]
-      55 |         ret = pwm_round_waveform_might_sleep(st->pwm, &wf);
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/spi/spi-offload-trigger-pwm.c: In function 'spi_offload_trigger_pwm_enable':
->> drivers/spi/spi-offload-trigger-pwm.c:81:16: error: implicit declaration of function 'pwm_set_waveform_might_sleep' [-Wimplicit-function-declaration]
-      81 |         return pwm_set_waveform_might_sleep(st->pwm, &wf, false);
-         |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/spi/spi-offload-trigger-pwm.c: In function 'spi_offload_trigger_pwm_disable':
->> drivers/spi/spi-offload-trigger-pwm.c:90:15: error: implicit declaration of function 'pwm_get_waveform_might_sleep' [-Wimplicit-function-declaration]
-      90 |         ret = pwm_get_waveform_might_sleep(st->pwm, &wf);
-         |               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Documentation/devicetree/bindings/arm/qcom.yaml    |   8 +-
+ arch/arm64/boot/dts/qcom/Makefile                  |   2 +
+ arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi  |   7 +-
+ .../boot/dts/qcom/x1e80100-asus-zenbook-a14.dts    | 102 +++++++++++++++
+ .../dts/qcom/x1p42100-asus-zenbook-a14-lcd.dts     |  62 +++++++++
+ .../boot/dts/qcom/x1p42100-asus-zenbook-a14.dts    | 133 ++------------------
+ .../boot/dts/qcom/x1p42100-asus-zenbook-a14.dtsi   | 138 +++++++++++++++++++++
+ 7 files changed, 319 insertions(+), 133 deletions(-)
+---
+base-commit: b5a4da2c459f79a2c87c867398f1c0c315779781
+change-id: 20250908-zenbook-improvements-18147b38238b
 
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for SPI_OFFLOAD_TRIGGER_PWM
-   Depends on [n]: SPI [=y] && SPI_OFFLOAD [=y] && PWM [=n]
-   Selected by [y]:
-   - AD4030 [=y] && IIO [=y] && SPI [=y] && GPIOLIB [=y]
-
-
-vim +/pwm_round_waveform_might_sleep +55 drivers/spi/spi-offload-trigger-pwm.c
-
-ebb398ae1e052c David Lechner 2025-02-07   36  
-ebb398ae1e052c David Lechner 2025-02-07   37  static int spi_offload_trigger_pwm_validate(struct spi_offload_trigger *trigger,
-ebb398ae1e052c David Lechner 2025-02-07   38  					    struct spi_offload_trigger_config *config)
-ebb398ae1e052c David Lechner 2025-02-07   39  {
-ebb398ae1e052c David Lechner 2025-02-07   40  	struct spi_offload_trigger_pwm_state *st = spi_offload_trigger_get_priv(trigger);
-ebb398ae1e052c David Lechner 2025-02-07   41  	struct spi_offload_trigger_periodic *periodic = &config->periodic;
-ebb398ae1e052c David Lechner 2025-02-07   42  	struct pwm_waveform wf = { };
-ebb398ae1e052c David Lechner 2025-02-07   43  	int ret;
-ebb398ae1e052c David Lechner 2025-02-07   44  
-ebb398ae1e052c David Lechner 2025-02-07   45  	if (config->type != SPI_OFFLOAD_TRIGGER_PERIODIC)
-ebb398ae1e052c David Lechner 2025-02-07   46  		return -EINVAL;
-ebb398ae1e052c David Lechner 2025-02-07   47  
-ebb398ae1e052c David Lechner 2025-02-07   48  	if (!periodic->frequency_hz)
-ebb398ae1e052c David Lechner 2025-02-07   49  		return -EINVAL;
-ebb398ae1e052c David Lechner 2025-02-07   50  
-ebb398ae1e052c David Lechner 2025-02-07   51  	wf.period_length_ns = DIV_ROUND_UP_ULL(NSEC_PER_SEC, periodic->frequency_hz);
-ebb398ae1e052c David Lechner 2025-02-07   52  	/* REVISIT: 50% duty-cycle for now - may add config parameter later */
-ebb398ae1e052c David Lechner 2025-02-07   53  	wf.duty_length_ns = wf.period_length_ns / 2;
-ebb398ae1e052c David Lechner 2025-02-07   54  
-ebb398ae1e052c David Lechner 2025-02-07  @55  	ret = pwm_round_waveform_might_sleep(st->pwm, &wf);
-ebb398ae1e052c David Lechner 2025-02-07   56  	if (ret < 0)
-ebb398ae1e052c David Lechner 2025-02-07   57  		return ret;
-ebb398ae1e052c David Lechner 2025-02-07   58  
-ebb398ae1e052c David Lechner 2025-02-07   59  	periodic->frequency_hz = DIV_ROUND_UP_ULL(NSEC_PER_SEC, wf.period_length_ns);
-ebb398ae1e052c David Lechner 2025-02-07   60  
-ebb398ae1e052c David Lechner 2025-02-07   61  	return 0;
-ebb398ae1e052c David Lechner 2025-02-07   62  }
-ebb398ae1e052c David Lechner 2025-02-07   63  
-ebb398ae1e052c David Lechner 2025-02-07   64  static int spi_offload_trigger_pwm_enable(struct spi_offload_trigger *trigger,
-ebb398ae1e052c David Lechner 2025-02-07   65  					  struct spi_offload_trigger_config *config)
-ebb398ae1e052c David Lechner 2025-02-07   66  {
-ebb398ae1e052c David Lechner 2025-02-07   67  	struct spi_offload_trigger_pwm_state *st = spi_offload_trigger_get_priv(trigger);
-ebb398ae1e052c David Lechner 2025-02-07   68  	struct spi_offload_trigger_periodic *periodic = &config->periodic;
-ebb398ae1e052c David Lechner 2025-02-07   69  	struct pwm_waveform wf = { };
-ebb398ae1e052c David Lechner 2025-02-07   70  
-ebb398ae1e052c David Lechner 2025-02-07   71  	if (config->type != SPI_OFFLOAD_TRIGGER_PERIODIC)
-ebb398ae1e052c David Lechner 2025-02-07   72  		return -EINVAL;
-ebb398ae1e052c David Lechner 2025-02-07   73  
-ebb398ae1e052c David Lechner 2025-02-07   74  	if (!periodic->frequency_hz)
-ebb398ae1e052c David Lechner 2025-02-07   75  		return -EINVAL;
-ebb398ae1e052c David Lechner 2025-02-07   76  
-ebb398ae1e052c David Lechner 2025-02-07   77  	wf.period_length_ns = DIV_ROUND_UP_ULL(NSEC_PER_SEC, periodic->frequency_hz);
-ebb398ae1e052c David Lechner 2025-02-07   78  	/* REVISIT: 50% duty-cycle for now - may add config parameter later */
-ebb398ae1e052c David Lechner 2025-02-07   79  	wf.duty_length_ns = wf.period_length_ns / 2;
-ebb398ae1e052c David Lechner 2025-02-07   80  
-ebb398ae1e052c David Lechner 2025-02-07  @81  	return pwm_set_waveform_might_sleep(st->pwm, &wf, false);
-ebb398ae1e052c David Lechner 2025-02-07   82  }
-ebb398ae1e052c David Lechner 2025-02-07   83  
-ebb398ae1e052c David Lechner 2025-02-07   84  static void spi_offload_trigger_pwm_disable(struct spi_offload_trigger *trigger)
-ebb398ae1e052c David Lechner 2025-02-07   85  {
-ebb398ae1e052c David Lechner 2025-02-07   86  	struct spi_offload_trigger_pwm_state *st = spi_offload_trigger_get_priv(trigger);
-ebb398ae1e052c David Lechner 2025-02-07   87  	struct pwm_waveform wf;
-ebb398ae1e052c David Lechner 2025-02-07   88  	int ret;
-ebb398ae1e052c David Lechner 2025-02-07   89  
-ebb398ae1e052c David Lechner 2025-02-07  @90  	ret = pwm_get_waveform_might_sleep(st->pwm, &wf);
-ebb398ae1e052c David Lechner 2025-02-07   91  	if (ret < 0) {
-ebb398ae1e052c David Lechner 2025-02-07   92  		dev_err(st->dev, "failed to get waveform: %d\n", ret);
-ebb398ae1e052c David Lechner 2025-02-07   93  		return;
-ebb398ae1e052c David Lechner 2025-02-07   94  	}
-ebb398ae1e052c David Lechner 2025-02-07   95  
-ebb398ae1e052c David Lechner 2025-02-07   96  	wf.duty_length_ns = 0;
-ebb398ae1e052c David Lechner 2025-02-07   97  
-ebb398ae1e052c David Lechner 2025-02-07   98  	ret = pwm_set_waveform_might_sleep(st->pwm, &wf, false);
-ebb398ae1e052c David Lechner 2025-02-07   99  	if (ret < 0)
-ebb398ae1e052c David Lechner 2025-02-07  100  		dev_err(st->dev, "failed to disable PWM: %d\n", ret);
-ebb398ae1e052c David Lechner 2025-02-07  101  }
-ebb398ae1e052c David Lechner 2025-02-07  102  
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Aleksandrs Vinarskis <alex@vinarskis.com>
+
 
