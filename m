@@ -1,95 +1,128 @@
-Return-Path: <devicetree+bounces-222103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DCAEBA5E86
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 13:53:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1B8BBA5E9B
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 13:59:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AF3C3A4C1D
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 11:52:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 516501B2260F
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 12:00:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43FB02DE6F7;
-	Sat, 27 Sep 2025 11:52:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3682DF6E3;
+	Sat, 27 Sep 2025 11:59:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="R+KLWN6C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-10624.protonmail.ch (mail-10624.protonmail.ch [79.135.106.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF8192D63F6;
-	Sat, 27 Sep 2025 11:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 457882D662F
+	for <devicetree@vger.kernel.org>; Sat, 27 Sep 2025 11:59:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758973976; cv=none; b=ReMuPezQa3G1gCO+HwpGpW8b+tT2wDyHXnqv39CRPfLvao3Jf9NRLamgMR4OuzScH39hz/hg0C7NXjdmUa4R9UYe/Fmp/DHXQVtr5jjoW4MAQVb5llSlu9RG/w3nCQhpCd7GvyR4VNyXRfb9OZDDdV6AraGZ9R9l+CKWcW5jB0w=
+	t=1758974378; cv=none; b=Eza77QwiCEO795Bp+mZhsMVbk6s8C1A8cK7+nSNjN/VmV4gtOcvs0ciJtg3jkL1ZpsBv+bLWqvmCJk8YYzH6yQsyItJx6C4yJfHE/UrVAuHkAj/7XNh/Vu1l/QiSTRq8AdeXu3muJGWNqA6VfWOUDFZkwiVhV8xA9NAR2NefLWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758973976; c=relaxed/simple;
-	bh=HX4bs8ie2dYdwL/KASZQ2qgRxEz3TPGsTAt2Z9HrWkE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FVbobGPOutowxYEEamnzX0TXw4L89eVZVTpALynnNAddLEZ4R4fCg6NX9hSDDKm55WZomxkSY0+2x/JDqez/yipRShGY66snGb9NjoQbp6SKIYs3xNrReGfytlfqGEyURTt63nI6OkNJX3sTecIFFweqFK5T7jXlNp8SZ5qRcnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.0.102] (unknown [114.241.87.235])
-	by APP-03 (Coremail) with SMTP id rQCowAAXZoD7z9doKB1YBw--.16820S2;
-	Sat, 27 Sep 2025 19:52:28 +0800 (CST)
-Message-ID: <20a5af8e-ba3d-4cca-8fad-2343455aa0aa@iscas.ac.cn>
-Date: Sat, 27 Sep 2025 19:52:27 +0800
+	s=arc-20240116; t=1758974378; c=relaxed/simple;
+	bh=j3KBdBzIOzFAeywBjLt3G+eodchurrcQPb+koMKRbjw=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=jT7z5EIecbxli7r956nQqRCjE0btM5vTr8mqkNpCizsdVGzyMDw+7zY9T1CP45FdzKJrXJTVfQcWRk1SBlaCPVEJILqMqnXjHQ9lRenrgLTmPEYJitUuQT/hf08ILJho0lchwxwZE2B72U6+UCM7B6Avy8j/PkjcPbr7f19DqoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=R+KLWN6C; arc=none smtp.client-ip=79.135.106.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinarskis.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
+	s=protonmail; t=1758974367; x=1759233567;
+	bh=j3KBdBzIOzFAeywBjLt3G+eodchurrcQPb+koMKRbjw=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=R+KLWN6CichFI60BzxuEo/zPcZnoJjm1pjATIxEi7KckAw0E6BGXdspWd0tXMNdak
+	 wekiffBTSR1pajeXvyxGs+g16iMFOSOr5O6+X7gDsXFR+FNHKvR8ukTNBxQMxDTsBg
+	 Lo2quKeYUcOC6QfPU54MUVrA2hCnLLHr/DDMSf7PFNr7ZCBqRf9COiURyReZi/qi/h
+	 PKTFY74eDwvctVLT2/q+xQLBAx+MYR0VYA/lLUUP4Ee+qhpmBdXM2L7y+unS5znGph
+	 rU0K5oqAPIn/cuNfyMP0vZz9sFr55sYlNDZjPCx6JxH5gU5h2K143KqSRrwjDNYUPj
+	 Xehck5MUAKRSg==
+Date: Sat, 27 Sep 2025 11:59:23 +0000
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+From: Aleksandrs Vinarskis <alex@vinarskis.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Subject: Re: [PATCH v2 2/3] arm64: dts: qcom: Rework X1-based Asus Zenbook A14's displays
+Message-ID: <oVKFPC4z3p0Jkm9UXaUCszvghc54lbXJhAq5VHGVhw1vVmEvDPhVE3VKKaYnWWeycdYZRzzcffAv8mamuh8lvWOVmVtP3uVVoyI2XUyRTms=@vinarskis.com>
+In-Reply-To: <nemvj6vyk2mj255l5fi372677znsptawkkhx4zlcsty5enpy6a@fhtpf2c6v4v4>
+References: <20250926-zenbook-improvements-v2-0-c0b512ab6b57@vinarskis.com> <20250926-zenbook-improvements-v2-2-c0b512ab6b57@vinarskis.com> <nemvj6vyk2mj255l5fi372677znsptawkkhx4zlcsty5enpy6a@fhtpf2c6v4v4>
+Feedback-ID: 158356072:user:proton
+X-Pm-Message-ID: a0ef6100d16c93032cf822017a4179baac111598
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/3] riscv: dts: spacemit: add 24c02 eeprom on BPI-F3
-To: Aurelien Jarno <aurelien@aurel32.net>, linux-kernel@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- Yixun Lan <dlan@gentoo.org>
-Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
- "open list:RISC-V SPACEMIT SoC Support" <spacemit@lists.linux.dev>
-References: <20250926175833.3048516-1-aurelien@aurel32.net>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <20250926175833.3048516-1-aurelien@aurel32.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID:rQCowAAXZoD7z9doKB1YBw--.16820S2
-X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUYD7k0a2IF6w4xM7kC6x804xWl14x267AK
-	xVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0rVWrJVCq3wAFIxvE14AKwVWUJVWUGw
-	A2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjxv20xvE14v26r1I
-	6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j6F4UM28EF7xvwVC2z280aVAFwI0_Cr
-	1j6rxdM28EF7xvwVC2z280aVCY1x0267AKxVWxJr0_GcWle2I262IYc4CY6c8Ij28IcVAa
-	Y2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4
-	A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY
-	1x02628vn2kIc2xKxwCF04k20xvY0x0EwIxGrwCF54CYxVCY1x0262kKe7AKxVWUtVW8Zw
-	CFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE
-	14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2
-	IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxK
-	x2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI
-	0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j04E_UUUUU=
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 9/27/25 01:54, Aurelien Jarno wrote:
 
-> The BPI-F3 board has a 24c02 eeprom connected to the i2c bus #2. It
-> holds board data. This patchset adds support for it.
 
-Reviewed-by: Vivian Wang <wangruikang@iscas.ac.cn>
 
-I guess now it's up to me to figure out how to wire the MAC address
-nodes to the two ethernet nodes, after we get 6.18-rc1 of course.
 
-Theoretically it might not matter for Linux since a bootloader can set
-mac-address, but I think it would be a nice to have for less
-full-fledged boot situations.
+
+On Saturday, September 27th, 2025 at 00:32, Dmitry Baryshkov <dmitry.barysh=
+kov@oss.qualcomm.com> wrote:
+
+>=20
+>=20
+> On Fri, Sep 26, 2025 at 09:08:53AM +0200, Aleksandrs Vinarskis wrote:
+>=20
+> > The laptop comes in two variants:
+> >=20
+> > * UX3407RA, higher end, FHD+ OLED or WOXGA+ OLED panels
+> > * UX3407QA, lower end, FHD+ OLED or FHD+ LCD panels
+> >=20
+> > Even though all three panels work with "edp-panel", unfortunately the
+> > brightness adjustmenet of LCD panel is PWM based, requiring a dedicated
+> > device-tree. Convert "x1p42100-asus-zenbook-a14.dts" into ".dtsi" to
+> > allow for this split, introduce new LCD variant. Leave current variant
+> > without postfix and with the unchanged model name, as some distros
+> > (eg. Ubuntu) rely on this for automatic device-tree detection during
+> > kernel installation/upgrade.
+> >=20
+> > As dedicated device-tree is required, update compatibles of OLED
+> > variants to correct ones. Keep "edp-panel" as fallback, since it is
+> > enough to make the panels work.
+> >=20
+> > While at it moving .dts, .dtsi around, drop 'model' from the top level
+> > x1-asus-zenbook-a14.dtsi as well.
+> >=20
+> > Signed-off-by: Aleksandrs Vinarskis alex@vinarskis.com
+> > Co-developed-by: Jens Glathe jens.glathe@oldschoolsolutions.biz
+> > Signed-off-by: Jens Glathe jens.glathe@oldschoolsolutions.biz
+>=20
+>=20
+> I'm sorry, but I think the order of tags is incorrect. You are sending
+> this patch, so your SoB should be the last one.
+
+Checked the docs, you are right, will re-spin.
 
 Thanks,
-Vivian "dramforever" Wang
+Alex
 
+>=20
+> The patch LGTM.
+>=20
+> > ---
+> > arch/arm64/boot/dts/qcom/Makefile | 2 +
+> > arch/arm64/boot/dts/qcom/x1-asus-zenbook-a14.dtsi | 7 +-
+> > .../boot/dts/qcom/x1e80100-asus-zenbook-a14.dts | 8 ++
+> > .../dts/qcom/x1p42100-asus-zenbook-a14-lcd.dts | 62 +++++++++
+> > .../boot/dts/qcom/x1p42100-asus-zenbook-a14.dts | 133 ++---------------=
+---
+> > .../boot/dts/qcom/x1p42100-asus-zenbook-a14.dtsi | 138 ++++++++++++++++=
++++++
+> > 6 files changed, 218 insertions(+), 132 deletions(-)
+>=20
+>=20
+> --
+> With best wishes
+> Dmitry
 
