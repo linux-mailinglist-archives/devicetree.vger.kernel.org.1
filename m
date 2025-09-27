@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-222138-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53D47BA61BD
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 18:55:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EABCBA61D8
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 19:01:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0918B16AB6E
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 16:55:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E646E164037
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 17:01:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FCDD27875C;
-	Sat, 27 Sep 2025 16:55:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C972212552;
+	Sat, 27 Sep 2025 17:01:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f0VFrQ02"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZzbUTwtP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230411F12F8;
-	Sat, 27 Sep 2025 16:55:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E469146B5;
+	Sat, 27 Sep 2025 17:01:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758992111; cv=none; b=se3dW8Rim8e29JGY8DaPUBxhwW3PiPTyOf2LjzI794+mS4RiFolmpWA5aym3WSf6EMIEZDtplzgtuwub1570KkbPfYOWmH2uvbFPZjdGcB/r9GhmkEkaN5Tv8otGqChN/DYcKg44vF4GKAc5pwqbmFyoxuUTnDW2+3IuVhB++wA=
+	t=1758992466; cv=none; b=cHGIoD2MRZA5Z40yoGrU461oK5qt9RFzGBCUWLwtUIv/0ZtlpQEfwa55iSFH7TaG+io6C/9s1Xb+1UBYDnh4v004An6fFa77JoVWOX+Z0OTszLwmR6RtthEBA+6O/RQAUwm0ASxNr1a9uf6HiTDpf3KX2OEACNj0C+p8sk9sReM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758992111; c=relaxed/simple;
-	bh=drBnAG/nqExeMC0SeVOzWg/l5QZw1yStpWxdPYDJaKc=;
+	s=arc-20240116; t=1758992466; c=relaxed/simple;
+	bh=n2nTeLhnB1YwsJtcxhRWqzFPO9O7HrX45d/S+eWqvMc=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nEjyPXsjN5iek915aDY4LC5882bQiLifoq5BUcwiuwkErXxlcJxGYE1IUOtImS4v7g/KUBeI4uDgIFgucTK9+atVPTGGZxvAOEadSAYKDyI23oTAuoVjsMMPCJKeYPyuWeamTQ7NWuGBzVtrdBHe9PnXQDR6wcbKMMVXiuxpY3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f0VFrQ02; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76553C4CEE7;
-	Sat, 27 Sep 2025 16:55:04 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Xs725kGbTZHfR5kfIjW/vU2ggasWwxxyOh4CWfLV5OKF+4W2rSZ6Jbf0DbiIZjh2+0xG3Yb70OyuBmI13CvhvC0pcImOi8L1cwyrL/KE2ckptdLH75XGpZ5xdVAFHa/0tNGeKMczdMwrohWMRdBU5vTPFVv2tS0hE+WgeTKePqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZzbUTwtP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 892C7C4CEE7;
+	Sat, 27 Sep 2025 17:01:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758992110;
-	bh=drBnAG/nqExeMC0SeVOzWg/l5QZw1yStpWxdPYDJaKc=;
+	s=k20201202; t=1758992465;
+	bh=n2nTeLhnB1YwsJtcxhRWqzFPO9O7HrX45d/S+eWqvMc=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=f0VFrQ02PWEFQm0sr+ZDnJDG2UNIr/3iSNq7Teh/uAYAE5tfVaAq+Rqpi0P/2fyCA
-	 QqrkvcqIHV4gUXLa6H/Rd2/JQ5YODhcLKUzyLHfbFl1DH9UIr3eakD6gz5ubFt2TyQ
-	 miLjFlGSuHsR2h16D55becXUZNpK2GqjPo5fUX8IapsWzQ1h3TwXLJYyDbY2XZvA52
-	 Scje+z2w506fXgsTv4nXeKK683al471ZGFw+e/jvhzLaODQkxhfxNvH3Jlq3i6heWd
-	 HYQV49Z8anMyi6A9p9/Nv6Wvgl4bAAymZKU+nlRqkhlmiMS6pPkoSPv4nEuKPZzqWh
-	 TXftG3s06rhAg==
-Date: Sat, 27 Sep 2025 17:54:59 +0100
+	b=ZzbUTwtPaepm7BU3gzNW3C/3tcL51N1rHjfYclMdMQLlRhpSe/8rXbvAmla/6MD37
+	 qVacOxe8an+wDefu+XyevgV5L+1b7tFaIQbifdK/jljH7efDKkT0zm0JaQ2sKqZSiA
+	 i0wpJcbER7ST6t5nZeUxKP59eKxBL4jFgXHzzVPAoDnBefLWjIfMDOcOHhBH/xYvXr
+	 mk3RK81zIpnWEEC6dxhm5NF/4wshSNE52I4IK1QadeFd/X6ptr5ukfT9vT/c0rNZrf
+	 2LQyIWtEuOgMLF4mD4fralo3bvRxbpUGCGsSOerWcD6AAFS2/yKpR6Zpi/h567N11A
+	 51EbdsW2hgxFg==
+Date: Sat, 27 Sep 2025 18:00:56 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Antoni Pokusinski <apokusinski01@gmail.com>
-Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, linux@roeck-us.net, rodrigo.gobbi.7@gmail.com,
- naresh.solanki@9elements.com, michal.simek@amd.com,
- grantpeltier93@gmail.com, farouk.bouabid@cherry.de,
- marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v3 4/4] iio: mpl3115: add support for sampling frequency
-Message-ID: <20250927175343.156e00da@jic23-huawei>
-In-Reply-To: <20250926220150.22560-5-apokusinski01@gmail.com>
-References: <20250926220150.22560-1-apokusinski01@gmail.com>
-	<20250926220150.22560-5-apokusinski01@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Ariana Lazar <ariana.lazar@microchip.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: dac: adding support for Microchip
+ MCP47FEB02
+Message-ID: <20250927180056.38b1822f@jic23-huawei>
+In-Reply-To: <7836f862-5320-4a81-b15b-4ada08e78077@baylibre.com>
+References: <20250922-mcp47feb02-v1-0-06cb4acaa347@microchip.com>
+	<20250922-mcp47feb02-v1-1-06cb4acaa347@microchip.com>
+	<7836f862-5320-4a81-b15b-4ada08e78077@baylibre.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -63,92 +63,24 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat, 27 Sep 2025 00:01:50 +0200
-Antoni Pokusinski <apokusinski01@gmail.com> wrote:
+> > +  vref-supply:
+> > +    description: |
+> > +      Vref pin is used as a voltage reference when this supply is specified.
+> > +      Into the datasheet it could be found as a Vref0.
+> > +      If it does not exists the internal reference will be used.  
+> 
+> It looks like there is also the possibility to use V_DD as the reference
+> voltage. Not sure the best way to handle that though.
 
-> When the device is in ACTIVE mode the temperature and pressure measuremen=
-ts
-> are collected with a frequency determined by the ST[3:0] bits of CTRL_REG2
-> register.
->=20
-> Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
-One minor formatting thing inline.
+Indeed that's awkward.  I suppose a custom property as choice of VDD or internal
+reference is unusual and it might be critical to how what is downstream of the DAC
+so we can't even do it via userspace _scale control.
 
-And whilst I'm here, slow down a little.  No need to send a v3 for a missing
-include.  Just do as you did and reply to say that it needs adding then wait
-for reviews on v2.
-
-In general, leaving a series on list for a week or more is a good plan to g=
-ather reviews
-before doing a new version.
-
-Jonathan
-
-
-> ---
->  drivers/iio/pressure/mpl3115.c | 82 ++++++++++++++++++++++++++++++++++
->  1 file changed, 82 insertions(+)
->=20
-> diff --git a/drivers/iio/pressure/mpl3115.c b/drivers/iio/pressure/mpl311=
-5.c
-> index 13c8b338a15e..04c126ff4d46 100644
-> --- a/drivers/iio/pressure/mpl3115.c
-> +++ b/drivers/iio/pressure/mpl3115.c
-> @@ -10,6 +10,7 @@
->   * user offset correction, raw mode
->   */
-> =20
-> +#include <linux/bitfield.h>
->  #include <linux/cleanup.h>
->  #include <linux/delay.h>
->  #include <linux/i2c.h>
-> @@ -30,6 +31,7 @@
->  #define MPL3115_INT_SOURCE 0x12
->  #define MPL3115_PT_DATA_CFG 0x13
->  #define MPL3115_CTRL_REG1 0x26
-> +#define MPL3115_CTRL_REG2 0x27
->  #define MPL3115_CTRL_REG3 0x28
->  #define MPL3115_CTRL_REG4 0x29
->  #define MPL3115_CTRL_REG5 0x2a
-> @@ -48,6 +50,8 @@
->  #define MPL3115_CTRL1_ACTIVE BIT(0) /* continuous measurement */
->  #define MPL3115_CTRL1_OS_258MS GENMASK(5, 4) /* 64x oversampling */
-> =20
-> +#define MPL3115_CTRL2_ST GENMASK(3, 0)
-> +
->  #define MPL3115_CTRL3_IPOL1 BIT(5)
->  #define MPL3115_CTRL3_IPOL2 BIT(1)
-> =20
-> @@ -57,6 +61,25 @@
-> =20
->  #define MPL3115_INT2 BIT(2) /* flag that indicates INT2 in use */
-> =20
-> +static const unsigned int mpl3115_samp_freq_table[][2] =3D {
-> +	{ 1,      0},
-
-space before } in each of these.
-
-
-> +	{ 0, 500000},
-> +	{ 0, 250000},
-> +	{ 0, 125000},
-> +	{ 0,  62500},
-> +	{ 0,  31250},
-> +	{ 0,  15625},
-> +	{ 0,   7812},
-> +	{ 0,   3906},
-> +	{ 0,   1953},
-> +	{ 0,    976},
-> +	{ 0,    488},
-> +	{ 0,    244},
-> +	{ 0,    122},
-> +	{ 0,     61},
-> +	{ 0,     30},
-> +};
-
+I'm lazy so haven't checked the values. If the internal reference is near VDD
+it is probably safe enough to just make this a userspace problem if anyone
+ever needs it.
 
 
