@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-222062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39204BA57BC
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 03:19:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2BA6BA5844
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 04:43:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F8B01C020EE
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 01:20:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C45147B452F
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 02:41:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4195B1EF09B;
-	Sat, 27 Sep 2025 01:19:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9354E1C6FE8;
+	Sat, 27 Sep 2025 02:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y2a7yqIe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i3AjyURA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 000BD17B505
-	for <devicetree@vger.kernel.org>; Sat, 27 Sep 2025 01:19:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 759DB1ADC97
+	for <devicetree@vger.kernel.org>; Sat, 27 Sep 2025 02:42:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758935979; cv=none; b=uq0eEbjPeKZwQNsnW2OQ0kR3r2IfVABNU5UhiwL9UMUEnxcikmbKOQKHB1b9MUU5F2drXbm2ugSK9d1CmgEMM61CeOXUwLD4ohskcjN3Yu1UMwaSPFoGSM4UhlKnXrzhLsSLr7TlKLq3DsbGcFWWQPOzw96VNmQ1P9/NsFsSDc8=
+	t=1758940977; cv=none; b=G9I3nW8GcF9o14tc4P1oXbnOsw7LS0hvAFG/J9ug3G3shbsToVlP7c4ySHwTqcG2RnS1yvSDrmciwmkbkJ/8A8T7I53lkfsmzx89nEWNcX5+8UfsJM+8bofDxAqU9BeLnCoEGtMmTZOL0ysnhuzFe+TYNPlGqVSs+cnRvsRriQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758935979; c=relaxed/simple;
-	bh=Sfa7AT/dfvDhhy8ffpHW/sCgMwSWf6BdJE8fz/B20IQ=;
+	s=arc-20240116; t=1758940977; c=relaxed/simple;
+	bh=V0IFeYkrRpMQxLmSPYJJ3m/Pej3OJk83kjUkQcd9JxA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RpkZguMUkvdKwaMb83g7CSCxQ7ZpO84aeFLaXi+tlpBKZNDqMiRdUNhgHeYJylWKX90MYBPEqZUGipGjBhbrnw6KdDOIDFUrCf+xcU7pwHMKa3p+ykMYsO4UzwP84bt3+E8Xy/cHGTqr0JNxZt42yZvueMEnpJcOmqTqLwkRZpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y2a7yqIe; arc=none smtp.client-ip=209.85.210.171
+	 In-Reply-To:Content-Type; b=sk0yLHRV9GSMoNfOk9ilDoydDBh8+T3LoSclRkzSU6JLbQQe6nc/RNNQhaNAiTEpAnga/XqUT9WMCAh3OtYknTuHz+zaFzUq22pz8nbk2F2BwXuRj86VjzbUBgktDfB/iZZ/e314iS/pdyX2J1sUW6zu1flcNYQDB3D/2LngGX0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i3AjyURA; arc=none smtp.client-ip=209.85.214.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-781206cce18so986228b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 18:19:36 -0700 (PDT)
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-2570bf605b1so30653995ad.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Sep 2025 19:42:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1758935976; x=1759540776; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vxxDdS9g/E2bCXmMMVj1KdY3LzJccHLzMEdhZUo/prk=;
-        b=Y2a7yqIe8/mPzj/1Pf5mCUbzWTy1/9kVgz3oFyUijWTNa3mR9HnsCA96bxiar9XKW0
-         Xn6KmAjBeNH4RPVif0sr4h8VktGtKF0CBqbw8cOSVNW55bmQqwgtpirrhIGU808I9sj7
-         94qACye1O1cc0NT9cBH/W5iK8rci8WaFyq3j7UnhE5W+E8SqibV3c1nKFYriMDh/+Ng4
-         K9qcFGE6vcmrB9zYNYHZB+M7sgMDYn6yqhDtxbNBD4qA/fcQWVd1MKB57tzeGuuGOwSs
-         jI3m4Q8h1CzxSXgg5fe2v+HUVfOIsvOUZlp87v5JfSRolnQB976nxtlx5HuyHOFN9AMt
-         FA0Q==
+        d=gmail.com; s=20230601; t=1758940975; x=1759545775; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=GZ5dEzmLV7YHIr68piHfhukDE0D06LIStlJlC4x+IlQ=;
+        b=i3AjyURAvdoCo8HukOovb090upnrZbx3m0jKbs6um5SCa/XjkiNpz2Wohuvqfjoc9R
+         EONJOyTTXftZ1lsyf3q/sUHHdzef6DxKAuv7HpUmklfWR0sNtu4OKgarmlXwdffTdDxk
+         DEi0IPwsy+nX1y5UkrUehdRKIOmUrtYf7uCRnayf7dkIMRAyihUz2onUE8cV9+vhu0BJ
+         X6blULeW9a8x4gYpo8mUCI3SlEv8zePWgRaUbxjkwCc+1YXDeG6JT8i+ZnTcFROowfFU
+         XRyQRSqpIyETNterNT2gUd+QXHlYqJlcaBvQUFk0uFZDd1QbrhK50Z0/v34jAm7fbwzq
+         6BOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1758935976; x=1759540776;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=vxxDdS9g/E2bCXmMMVj1KdY3LzJccHLzMEdhZUo/prk=;
-        b=qWS4b22XPuU4HgdtpmAOg893EF7f85wwQlP3rf/y49Wm0Hdc95PS26n0R4YU2wzfWV
-         Djs4oHH7JaYbnFqQGlrYm0Nu6bi4SMJayplEnBfVcdq4k3bDsGtlYM9gC+asoF9AqT2l
-         2sUyxtPQWN3UFtYOCrf1b5D+vM1duoVPn3oFSM7spu5WOItdKqTMVRG0UTyHaXqMFVZz
-         JRciJtMZxMp4hxzp1U0M0lqsmqOfK1ymZs+vlcNSNRmKuxndmcguDRzP89NGxwlRmYz+
-         73WN2GcuQKdDByLIUf2p6lsqMErCQhNK95YakFbJ1nw/XCUPVW2RuqEgxm/tLGSITRXf
-         PwxQ==
-X-Gm-Message-State: AOJu0YzpaliXLbsDbLPOH1yTLDFbZmzVZQCpsvlS+APMJU4CxZdRsz1v
-	02cBZ+bhcfRciGfBnCluh35IikYs3VTA6sMv9w9ehrw8jPp12It5M3bu
-X-Gm-Gg: ASbGncsxPoaElku6ucuH7ff16cUdxN0wstCF2LUrzWi1hVwVnzS7/yLuCPIUjNQljuv
-	Z8uXSNHkiYfFoETuUQfRLD/Ik5QDoeruP10IbpsLCPl3E9f2LsIAy+02ETlbGNA48uX6n6139M3
-	8oUdrvwxl3ZJCzvNlMR3XMvHs3fc/jvkrhYkI9KA4H5IGGm3gb8U/XK8PA/epS7rR/9b2tTj8HY
-	CJcGCzjsDK2mB9d6V4XIF0MDTvTg61xug3sYei+Um+RZewt/g/yhnduuLsgSrZaNY87iWFxi6o+
-	SWF4X3/ZkMNscTqq8ue3rfyO5AYcRh6xZaQjw7eHlvak/UyUWoTVRw6MOZwZC81vsfkWU0OpOGp
-	xsT7Jk41K3JY5SJY7GrcOZFAu2nwTGEVXjVYB+Mnraw==
-X-Google-Smtp-Source: AGHT+IEuw7lP+OONVuRakn8p7umvJyj0yYMelaZ2GnOZVcPVl2Jjn+c4P5e7O7+KSTp0QvY6QfZBVg==
-X-Received: by 2002:a05:6a20:7349:b0:2ba:1eb5:50e8 with SMTP id adf61e73a8af0-2e9a68ad8bdmr11497294637.17.1758935975658;
-        Fri, 26 Sep 2025 18:19:35 -0700 (PDT)
-Received: from ?IPV6:2408:8262:245d:4074:5a47:caff:fe76:9e11? ([2401:b60:5:2::a])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78102c2733fsm5603756b3a.94.2025.09.26.18.19.32
+        d=1e100.net; s=20230601; t=1758940975; x=1759545775;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=GZ5dEzmLV7YHIr68piHfhukDE0D06LIStlJlC4x+IlQ=;
+        b=WfNrK2cCh4Z8ArxIAKOEzzSKNA75yU+3kAq98XBUL8IrPbqivMwtcSZSHRqSBeC71w
+         I+jhLvuHCkbwZGke4DrY52+yliShZuBIRBgtaDfkQCeEMVdXWUbH/LSHbcp5YQ/lwmYC
+         mKUn+tQSV9zkGNvE2lMuot0zaCI08oZA5MiEtj1hTBug75pBaDVAn7JEdFKrBifpMGYh
+         51vfYYUgG/+CLnYkQFcfEYqbeY1XA58F6ZSSzKqE7konG4qvlyuzCFITKI79JktmuMv5
+         /M3V2hlCE3rluDXi/ZMMsUxZCQwwfZ6gdIOiRDn4mTzPpHnJROB4ZRGHo2E61jF2VLwo
+         RaZA==
+X-Forwarded-Encrypted: i=1; AJvYcCUREUa2N2ca7TDmGG2QqGaGTFC738rnXt5DgOF2RdaGEis781xGJc72LlKhhC6f7b/jpUoK165myGvU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4XJ/nvcyuZ+/r/wOMe+YyHR5I1WN/9zGyM2JF205tkR12Bdb9
+	HSMcNeMfDgniGjM776s1Rat0RV/aGWrPTP6NPRLOlM3rPd2Cv+fPks7Y
+X-Gm-Gg: ASbGnctrNBoxvYVmBoUBDs4FmgVcpcJp2aE8GCVHoqTVLOIu+5GOD7NVtscYAp51gnN
+	3RIOo3jT4t3oq/t2MO3gQ1qUukckBralYz18E9kEKGVfMZfMoCBa9SSfILbHmLI52jgVbq4/PzS
+	Iaa8ELixLuZINY7UZObm/6IUkswQ+YJwiJubykrTuL25VCYZ4C25x8SZlO1w+DOKEXoNt9WaEXE
+	49k2nU9gZgxAolVstAl2LguzK1+u63x7UzuzpIxcRCZ7127KL7HEVcckBmTVAtHObcrjXhamCys
+	K3VKiX6CvZr4mxyvR1Vt9kDlg3ary1EJs+6gAPjD2A9N35uB974l603w25HqIdLPGuDflvpjb+f
+	srxCkKcVshTtZE1dixqce9vY+HNr8Y7eACUEnZfI=
+X-Google-Smtp-Source: AGHT+IFfX7fMjKOcGm+vnKZdVe4tiHz7C9WUzcfjpA9w/e3H2Ogk68g6dOjY8/DPsPfwdrCVEee0hw==
+X-Received: by 2002:a17:903:19ef:b0:25d:885:5b6b with SMTP id d9443c01a7336-27ed4a76e9emr111183875ad.58.1758940974483;
+        Fri, 26 Sep 2025 19:42:54 -0700 (PDT)
+Received: from [192.168.68.106] ([177.172.30.55])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed689ffa1sm67006265ad.99.2025.09.26.19.42.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 26 Sep 2025 18:19:35 -0700 (PDT)
-Message-ID: <1bb00ad6-ffe1-4783-909b-032dfb984180@gmail.com>
-Date: Sat, 27 Sep 2025 09:19:26 +0800
+        Fri, 26 Sep 2025 19:42:54 -0700 (PDT)
+Message-ID: <43a2ba01-41f6-4d56-bf7b-6212d56b72a6@gmail.com>
+Date: Sat, 27 Sep 2025 02:42:35 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,955 +82,735 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add devicetree for the
- FriendlyElec NanoPi R76S
-To: Diederik de Haas <didi.debian@cknow.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v1 2/2] Input: add support for the STM FTS2BA61Y
+ touchscreen
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Henrik Rydberg <rydberg@bitmath.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Dragan Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250922091509.2695565-1-cnsztl@gmail.com>
- <20250922091509.2695565-2-cnsztl@gmail.com>
- <DD2V17FJ29MV.3YDX1VUWGKEH@cknow.org>
-From: Tianling Shen <cnsztl@gmail.com>
-In-Reply-To: <DD2V17FJ29MV.3YDX1VUWGKEH@cknow.org>
+ <conor+dt@kernel.org>, Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
+ devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250920014450.37787-1-ghatto404@gmail.com>
+ <20250920014450.37787-3-ghatto404@gmail.com>
+ <cxnqffq3vj22nk4nukhqb2m3gqeomajdusrhaaq77v2rkfxnup@g4mahnify2ke>
+Content-Language: en-US
+From: =?UTF-8?Q?Eric_Gon=C3=A7alves?= <ghatto404@gmail.com>
+In-Reply-To: <cxnqffq3vj22nk4nukhqb2m3gqeomajdusrhaaq77v2rkfxnup@g4mahnify2ke>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2025/9/27 0:07, Diederik de Haas wrote:
-> On Mon Sep 22, 2025 at 11:15 AM CEST, Tianling Shen wrote:
->> The NanoPi R76S (as "R76S") is an open-sourced mini IoT gateway
->> device with two 2.5G, designed and developed by FriendlyElec.
+
+On 9/20/25 21:13, Dmitry Torokhov wrote:
+> Hi Eric,
+>
+> On Sat, Sep 20, 2025 at 01:44:50AM +0000, Eric Gonçalves wrote:
+>> The ST-Microelectronics FTS2BA61Y touchscreen is a capacitive multi-touch
+>> controller connected through SPI at 0x0, the touchscreen is typically
+>> used in mobile devices (like the Galaxy S22 series)
 >>
->> Specification:
->> - Rockchip RK3576
->> - 2/4GB LPDDR4X RAM
->> - 2x 2500Base-T (PCIe, rtl8125b)
->> - 3x LEDs (Power, LAN, WAN)
->> - 32GB eMMC
->> - MicroSD Slot
->> - MDMI 1.4/2.0 OUT
->> - M.2 E-Key SDIO slot
->> - USB 3.0 Port
->> - USB Type-C 5V Power
->>
->> Signed-off-by: Tianling Shen <cnsztl@gmail.com>
+>> Signed-off-by: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+>> Signed-off-by: Eric Gonçalves <ghatto404@gmail.com>
+> Thank you for the patch. A few comments below.
+>
 >> ---
->>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->>   .../boot/dts/rockchip/rk3576-nanopi-r76s.dts  | 860 ++++++++++++++++++
->>   2 files changed, 861 insertions(+)
->>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts
+>>   drivers/input/touchscreen/Kconfig     |  11 +
+>>   drivers/input/touchscreen/Makefile    |   1 +
+>>   drivers/input/touchscreen/fts2ba61y.c | 588 ++++++++++++++++++++++++++
+>>   3 files changed, 600 insertions(+)
+>>   create mode 100644 drivers/input/touchscreen/fts2ba61y.c
 >>
->> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
->> index ad684e3831bc..2d4a1e29db6f 100644
->> --- a/arch/arm64/boot/dts/rockchip/Makefile
->> +++ b/arch/arm64/boot/dts/rockchip/Makefile
->> @@ -155,6 +155,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-armsom-sige5-v1.2-wifibt.dtbo
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-evb1-v10.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-luckfox-omni3576.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-nanopi-m5.dtb
->> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-nanopi-r76s.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-roc-pc.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3576-rock-4d.dtb
->>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3582-radxa-e52c.dtb
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts b/arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts
+>> diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+>> index 196905162945..1e199191f527 100644
+>> --- a/drivers/input/touchscreen/Kconfig
+>> +++ b/drivers/input/touchscreen/Kconfig
+>> @@ -370,6 +370,17 @@ config TOUCHSCREEN_EXC3000
+>>   	  To compile this driver as a module, choose M here: the
+>>   	  module will be called exc3000.
+>>   
+>> +config TOUCHSCREEN_FTS2BA61Y
+>> +	tristate "ST-Microelectronics FTS2BA61Y touchscreen"
+>> +	depends on SPI
+>> +	help
+>> +	  Say Y here if you have the ST-Microelectronics FTS2BA61Y touchscreen
+>> +
+>> +	  If unsure, say N.
+>> +
+>> +	  To compile this driver as a module, choose M here: the
+>> +	  module will be called fts2ba61y.
+>> +
+>>   config TOUCHSCREEN_FUJITSU
+>>   	tristate "Fujitsu serial touchscreen"
+>>   	select SERIO
+>> diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
+>> index 97a025c6a377..408a9fd5bd35 100644
+>> --- a/drivers/input/touchscreen/Makefile
+>> +++ b/drivers/input/touchscreen/Makefile
+>> @@ -43,6 +43,7 @@ obj-$(CONFIG_TOUCHSCREEN_ELO)		+= elo.o
+>>   obj-$(CONFIG_TOUCHSCREEN_EGALAX)	+= egalax_ts.o
+>>   obj-$(CONFIG_TOUCHSCREEN_EGALAX_SERIAL)	+= egalax_ts_serial.o
+>>   obj-$(CONFIG_TOUCHSCREEN_EXC3000)	+= exc3000.o
+>> +obj-$(CONFIG_TOUCHSCREEN_FTS2BA61Y)	+= fts2ba61y.o
+>>   obj-$(CONFIG_TOUCHSCREEN_FUJITSU)	+= fujitsu_ts.o
+>>   obj-$(CONFIG_TOUCHSCREEN_GOODIX)	+= goodix_ts.o
+>>   obj-$(CONFIG_TOUCHSCREEN_GOODIX_BERLIN_CORE)	+= goodix_berlin_core.o
+>> diff --git a/drivers/input/touchscreen/fts2ba61y.c b/drivers/input/touchscreen/fts2ba61y.c
 >> new file mode 100644
->> index 000000000000..731789a69677
+>> index 000000000000..b3b3abca5404
 >> --- /dev/null
->> +++ b/arch/arm64/boot/dts/rockchip/rk3576-nanopi-r76s.dts
->> @@ -0,0 +1,860 @@
->> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+>> +++ b/drivers/input/touchscreen/fts2ba61y.c
+>> @@ -0,0 +1,588 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +// Based loosely on s6sy761.c
+>> +
+>> +#include <linux/delay.h>
+>> +#include <linux/input.h>
+>> +#include <linux/interrupt.h>
+>> +#include <linux/module.h>
+>> +#include <linux/of.h>
+>> +#include <linux/input/mt.h>
+>> +#include <linux/spi/spi.h>
+>> +#include <linux/input/touchscreen.h>
+>> +#include <linux/unaligned.h>
+>> +#include <linux/regulator/consumer.h>
+>> +
+>> +/* commands */
+>> +#define FTS2BA61Y_CMD_SENSE_ON			0x10
+>> +#define FTS2BA61Y_CMD_SENSE_OFF			0x11
+>> +#define FTS2BA61Y_CMD_READ_PANEL_INFO		0x23
+>> +#define FTS2BA61Y_CMD_READ_FW_VER		0x24
+>> +#define FTS2BA61Y_CMD_TOUCHTYPE			0x30 /* R/W for get/set */
+>> +#define FTS2BA61Y_CMD_CLEAR_EVENTS		0x62
+>> +#define FTS2BA61Y_CMD_READ_EVENT		0x87
+>> +#define FTS2BA61Y_CMD_CUSTOM_W			0xC0
+>> +#define FTS2BA61Y_CMD_CUSTOM_R			0xD1
+>> +#define FTS2BA61Y_CMD_REG_W			0xFA
+>> +#define FTS2BA61Y_CMD_REG_R			0xFB
+>> +
+>> +/* touch type masks */
+>> +#define FTS2BA61Y_MASK_TOUCH			BIT(0)
+>> +#define FTS2BA61Y_MASK_HOVER			BIT(1)
+>> +#define FTS2BA61Y_MASK_COVER			BIT(2)
+>> +#define FTS2BA61Y_MASK_GLOVE			BIT(3)
+>> +#define FTS2BA61Y_MASK_STYLUS			BIT(4)
+>> +#define FTS2BA61Y_MASK_PALM			BIT(5)
+>> +#define FTS2BA61Y_MASK_WET			BIT(6)
+>> +#define FTS2BA61Y_TOUCHTYPE_DEFAULT		(FTS2BA61Y_MASK_TOUCH | \
+>> +						 FTS2BA61Y_MASK_PALM | \
+>> +						 FTS2BA61Y_MASK_WET)
+>> +
+>> +/* event status masks */
+>> +#define FTS2BA61Y_MASK_STYPE			GENMASK(5, 2)
+>> +#define FTS2BA61Y_MASK_EVENT_ID			GENMASK(1, 0)
+>> +
+>> +/* event coordinate masks */
+>> +#define FTS2BA61Y_MASK_TCHSTA			GENMASK(7, 6)
+>> +#define FTS2BA61Y_MASK_TID			GENMASK(5, 2)
+>> +#define FTS2BA61Y_MASK_X_3_0			GENMASK(7, 4)
+>> +#define FTS2BA61Y_MASK_Y_3_0			GENMASK(3, 0)
+>> +#define FTS2BA61Y_MASK_Z			GENMASK(5, 0)
+>> +#define FTS2BA61Y_MASK_TTYPE_3_2		GENMASK(7, 6)
+>> +#define FTS2BA61Y_MASK_TTYPE_1_0		GENMASK(1, 0)
+>> +#define FTS2BA61Y_MASK_LEFT_EVENTS		GENMASK(4, 0)
+>> +
+>> +/* event error status */
+>> +#define FTS2BA61Y_EVENT_STATUSTYPE_INFO		0x2
+>> +
+>> +/* information report */
+>> +#define FTS2BA61Y_INFO_READY_STATUS		0x0
+>> +
+>> +/* event status */
+>> +#define FTS2BA61Y_COORDINATE_EVENT		0x0
+>> +
+>> +/* touch types */
+>> +#define FTS2BA61Y_TOUCHTYPE_NORMAL		0x0
+>> +#define FTS2BA61Y_TOUCHTYPE_HOVER		0x1
+>> +#define FTS2BA61Y_TOUCHTYPE_FLIPCOVER		0x2
+>> +#define FTS2BA61Y_TOUCHTYPE_GLOVE		0x3
+>> +#define FTS2BA61Y_TOUCHTYPE_STYLUS		0x4
+>> +#define FTS2BA61Y_TOUCHTYPE_PALM		0x5
+>> +#define FTS2BA61Y_TOUCHTYPE_WET			0x6
+>> +#define FTS2BA61Y_TOUCHTYPE_PROXIMITY		0x7
+>> +#define FTS2BA61Y_TOUCHTYPE_JIG			0x8
+>> +
+>> +#define FTS2BA61Y_COORDINATE_ACTION_NONE	0x0
+>> +#define FTS2BA61Y_COORDINATE_ACTION_PRESS	0x1
+>> +#define FTS2BA61Y_COORDINATE_ACTION_MOVE	0x2
+>> +#define FTS2BA61Y_COORDINATE_ACTION_RELEASE	0x3
+>> +
+>> +#define FTS2BA61Y_DEV_NAME			"fts2ba61y"
+>> +#define FTS2BA61Y_EVENT_BUFF_SIZE		16
+>> +#define FTS2BA61Y_PANEL_INFO_SIZE		11
+>> +#define FTS2BA61Y_RESET_CMD_SIZE		5
+>> +#define FTS2BA61Y_EVENT_COUNT			31
+>> +#define MAX_TRANSFER_SIZE			256
+>> +
+>> +enum fts2ba61y_regulators {
+>> +	FTS2BA61Y_REGULATOR_VDD,
+>> +	FTS2BA61Y_REGULATOR_AVDD,
+>> +};
+>> +
+>> +struct fts2ba61y_data {
+>> +	struct spi_device *spi;
+>> +	struct regulator_bulk_data regulators[2];
+>> +	struct input_dev *input_dev;
+>> +	struct mutex mutex;
+>> +	struct touchscreen_properties prop;
+>> +
+>> +	u8 tx_count;
+>> +
+>> +	unsigned int max_x;
+>> +	unsigned int max_y;
+>> +};
+>> +
+>> +static int fts2ba61y_write(struct fts2ba61y_data *ts,
+>> +			   u8 *reg, int cmd_len, u8 *data, int data_len)
+>> +{
+>> +	struct spi_message msg;
+>> +	struct spi_transfer xfers;
+>> +	char *tx_buf;
+>> +	int len;
+>> +	int ret;
+> Please use "error" for variables that only contain error codes or 0.
+Okay
+>
+>> +
+>> +	tx_buf = kzalloc(cmd_len + data_len + 1, GFP_KERNEL);
+>> +	if (!tx_buf) {
+>> +		ret = -ENOMEM;
+>> +		goto out;
+>> +	}
+> Instead of allocating and freeing memory on each transfer consider
+> allocating tx and rx scratch buffers in fts2ba61y_data structure (either
+> as ____cacheline_aligned or as separate allocations).
+>
+> If you absolutely need a per transfer allocations then use
+>
+> 	u8 *tx_buf __free(kfree) = kzalloc(...);
+Will do
+>
+>> +
+>> +	memset(&xfers, 0, sizeof(xfers));
+>> +	spi_message_init(&msg);
+>> +
+>> +	memcpy(&tx_buf[0], reg, cmd_len);
+>> +	if (data_len && data)
+>> +		memcpy(&tx_buf[cmd_len], data, data_len);
+>> +
+>> +	len = cmd_len + data_len;
+>> +
+>> +	/* custom write cmd */
+>> +	if (reg[0] != FTS2BA61Y_CMD_REG_W &&
+>> +	    reg[0] != FTS2BA61Y_CMD_REG_R) {
+>> +		memmove(tx_buf + 1, tx_buf, len);
+>> +		tx_buf[0] = FTS2BA61Y_CMD_CUSTOM_W;
+>> +		len++;
+>> +	}
+>> +
+>> +	xfers.len = len;
+>> +	xfers.tx_buf = tx_buf;
+>> +
+>> +	spi_message_add_tail(&xfers, &msg);
+>> +
+>> +	mutex_lock(&ts->mutex);
+> Why is this mutex needed? spi_sync() does the bus lock already, what
+> else needs protection. Even with shared scratch buffers I believe the
+> driver at any one point would only have one read or write operation in
+> progress...
+Yeah you're right, the mutex was kept because it was in downstream code. 
+Will drop
+>> +	ret = spi_sync(ts->spi, &msg);
+>> +	if (ret)
+>> +		dev_err(&ts->spi->dev, "spi transfer error, %d", ret);
+>> +	mutex_unlock(&ts->mutex);
+>> +
+>> +out:
+>> +	kfree(tx_buf);
+>> +	return ret;
+>> +}
+>> +
+>> +static int fts2ba61y_spi_raw_read(struct fts2ba61y_data *ts,
+>> +				  u8 *tx_buf, u8 *rx_buf, int len)
+>> +{
+>> +	struct spi_message msg;
+>> +	struct spi_transfer xfer;
+>> +	int ret;
+>> +
+>> +	memset(&xfer, 0, sizeof(xfer));
+>> +	spi_message_init(&msg);
+>> +
+>> +	xfer.len = len;
+>> +	xfer.tx_buf = tx_buf;
+>> +	xfer.rx_buf = rx_buf;
+>> +	spi_message_add_tail(&xfer, &msg);
+>> +
+>> +	mutex_lock(&ts->mutex);
+>> +	ret = spi_sync(ts->spi, &msg);
+>> +	if (ret)
+>> +		dev_err(&ts->spi->dev, "spi transfer error, %d", ret);
+>> +	mutex_unlock(&ts->mutex);
+>> +
+>> +	return ret;
+>> +}
+>> +
 >> +/*
->> + * Copyright (c) 2025 FriendlyElec Computer Tech. Co., Ltd.
->> + * (http://www.friendlyelec.com)
->> + *
->> + * Copyright (c) 2025 Tianling Shen <cnsztl@gmail.com>
+>> + * higher-level wrapper that prepares the buffers for a read.
 >> + */
+>> +static int fts2ba61y_read(struct fts2ba61y_data *ts,
+>> +			  u8 reg[], int tx_len, u8 buf[], int rx_len)
+> As far as I can see fts2ba61y_read() is always used with a single byte
+> command. Why not make it "u8 cmd" or "u8 reg" and drop tx_len.
+>
+> Same goes for fts2ba61y_write(). Also the read buffer might make sense
+> as void * instead of u8 *, so that you do not have to cast.
+Alright
+>
+>> +{
+>> +	char *tx_buf, *rx_buf;
+>> +	int ret, mem_len;
+>> +	u16 reg_val;
 >> +
->> +/dts-v1/;
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/input/input.h>
->> +#include <dt-bindings/leds/common.h>
->> +#include <dt-bindings/pinctrl/rockchip.h>
->> +#include <dt-bindings/soc/rockchip,vop2.h>
+>> +	if (tx_len > 3)
+>> +		mem_len = rx_len + 1 + tx_len;
+>> +	else
+>> +		mem_len = rx_len + 4;
+> A commend why we need this "+ 4" would be useful.
+Will do
+>
 >> +
->> +#include "rk3576.dtsi"
+>> +	tx_buf = kzalloc(mem_len, GFP_KERNEL);
+>> +	rx_buf = kzalloc(mem_len, GFP_KERNEL);
+>> +	if (!tx_buf || !rx_buf) {
+>> +		ret = -ENOMEM;
+>> +		goto out;
+>> +	}
 >> +
->> +/ {
->> +	model = "FriendlyElec NanoPi R76S";
->> +	compatible = "friendlyarm,nanopi-r76s", "rockchip,rk3576";
+>> +	switch (reg[0]) {
+>> +	case FTS2BA61Y_CMD_READ_EVENT:
+>> +	case FTS2BA61Y_CMD_REG_W:
+>> +	case FTS2BA61Y_CMD_REG_R:
+>> +		memcpy(tx_buf, reg, tx_len);
+>> +		break;
 >> +
->> +	aliases {
->> +		mmc0 = &sdhci;
->> +		mmc1 = &sdmmc;
->> +		mmc2 = &sdio;
->> +	};
+>> +	default:
+>> +		tx_buf[0] = FTS2BA61Y_CMD_CUSTOM_R;
 >> +
->> +	chosen {
->> +		stdout-path = "serial0:1500000n8";
->> +	};
+>> +		if (tx_len == 1)
+>> +			reg_val = 0;
+>> +		else if (tx_len == 2)
+>> +			reg_val = reg[0];
+>> +		else if (tx_len == 3)
+>> +			reg_val = reg[0] | (reg[1] << 8);
+>> +		else {
+> If one branch has braces all of them have to have braces.
+>
+>> +			ret = -EINVAL;
+>> +			goto out;
+>> +		}
 >> +
->> +	gpio-keys {
->> +		compatible = "gpio-keys";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&reset_button_pin>;
+>> +		tx_len = 3;
+>> +		put_unaligned_be16(reg_val, &tx_buf[1]);
 >> +
->> +		button-reset {
->> +			label = "reset";
->> +			gpios = <&gpio4 RK_PA2 GPIO_ACTIVE_LOW>;
->> +			debounce-interval = <50>;
->> +			linux,code = <KEY_RESTART>;
->> +			wakeup-source;
->> +		};
->> +	};
+>> +		ret = fts2ba61y_write(ts, reg, 1, NULL, 0);
+>> +		if (ret < 0)
+>> +			goto out;
+>> +		break;
+>> +	}
 >> +
->> +	gpio-leds {
->> +		compatible = "gpio-leds";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&lan_led_pin>, <&power_led_pin>, <&wan_led_pin>;
-> 
-> It is recommended to use the labels in the schematics to define the
-> pinctl nodes (and thus their references). In quite a lot of cases that's
-> indeed the case, but not for gpio-keys (USER_BUT) or these gpio-leds
-> pinctls.
-
-I cannot find any specific naming rules from the gpio-keys[1] and 
-gpio-leds[2] bindings, did I miss any update?
-
-I think this naming matches the current practice at least in rockchip's 
-dt tree.
-
-1. 
-https://www.kernel.org/doc/Documentation/devicetree/bindings/input/gpio-keys.yaml
-2. 
-https://www.kernel.org/doc/Documentation/devicetree/bindings/leds/leds-gpio.yaml
-
-> 
+>> +	ret = fts2ba61y_spi_raw_read(ts, tx_buf, rx_buf, rx_len + 1 + tx_len);
+>> +	if (ret < 0)
+>> +		goto out;
 >> +
->> +		led-0 {
->> +			color = <LED_COLOR_ID_GREEN>;
->> +			function = LED_FUNCTION_LAN;
->> +			gpios = <&gpio2 RK_PB0 GPIO_ACTIVE_HIGH>;
->> +		};
+>> +	memcpy(buf, &rx_buf[1 + tx_len], rx_len);
 >> +
->> +		power_led: led-1 {
-> 
-> power_led is never referenced, so you can drop it.
-> 
-
-This will be used by some downstream projects but I'm fine to remove it 
-here.
-
-Thanks,
-Tianling.
-
-> Cheers,
->    Diederik
-> 
->> +			color = <LED_COLOR_ID_RED>;
->> +			function = LED_FUNCTION_POWER;
->> +			gpios = <&gpio2 RK_PB3 GPIO_ACTIVE_HIGH>;
->> +			linux,default-trigger = "heartbeat";
->> +		};
+>> +out:
+>> +	kfree(tx_buf);
+>> +	kfree(rx_buf);
+>> +	return ret;
+>> +}
 >> +
->> +		led-2 {
->> +			color = <LED_COLOR_ID_GREEN>;
->> +			function = LED_FUNCTION_WAN;
->> +			gpios = <&gpio4 RK_PC5 GPIO_ACTIVE_HIGH>;
->> +		};
->> +	};
+>> +static int fts2ba61y_wait_for_ready(struct fts2ba61y_data *ts)
+>> +{
+>> +	u8 buffer[FTS2BA61Y_EVENT_BUFF_SIZE];
+>> +	u8 cmd = FTS2BA61Y_CMD_READ_EVENT;
+>> +	u8 status_id, stype;
+>> +	int ret;
 >> +
->> +	hdmi-con {
->> +		compatible = "hdmi-connector";
->> +		hdmi-pwr-supply = <&vcc5v_hdmi_tx>;
->> +		type = "a";
+>> +	for (int retries = 5; retries > 0; retries--) {
+>> +		ret = fts2ba61y_read(ts, &cmd, 1, buffer, FTS2BA61Y_EVENT_BUFF_SIZE);
 >> +
->> +		port {
->> +			hdmi_con_in: endpoint {
->> +				remote-endpoint = <&hdmi_out_con>;
->> +			};
->> +		};
->> +	};
+>> +		stype = FIELD_GET(FTS2BA61Y_MASK_STYPE, buffer[0]);
+>> +		status_id = buffer[1];
 >> +
->> +	sdio_pwrseq: sdio-pwrseq {
->> +		compatible = "mmc-pwrseq-simple";
->> +		clocks = <&hym8563>;
->> +		clock-names = "ext_clock";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&wifi_reg_on_h>;
->> +		post-power-on-delay-ms = <200>;
->> +		reset-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
->> +	};
+>> +		if (stype == FTS2BA61Y_EVENT_STATUSTYPE_INFO &&
+>> +		    status_id == FTS2BA61Y_INFO_READY_STATUS) {
+>> +			ret = 0;
+>> +			break;
+>> +		} else
+>> +			ret = -ENODEV;
+> "else" needs braces as well.
+>
 >> +
->> +	vcc5v_dcin: regulator-vcc5v-dcin {
->> +		compatible = "regulator-fixed";
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		regulator-name = "vcc5v_dcin";
->> +	};
+>> +		msleep(20);
+>> +	}
 >> +
->> +	vcc5v_hdmi_tx: regulator-vcc5v-hdmi-tx {
->> +		compatible = "regulator-fixed";
->> +		enable-active-high;
->> +		gpios = <&gpio4 RK_PC6 GPIO_ACTIVE_HIGH>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&hdmi_tx_on_h>;
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		regulator-name = "vcc5v_hdmi_tx";
->> +		vin-supply = <&vcc5v0_sys_s5>;
->> +	};
+>> +	return ret;
+>> +}
 >> +
->> +	vcc3v3_rtc_s5: regulator-vcc3v3-rtc-s5 {
->> +		compatible = "regulator-fixed";
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		regulator-name = "vcc3v3_rtc_s5";
->> +		vin-supply = <&vcc5v0_sys_s5>;
->> +	};
+>> +static int fts2ba61y_reset(struct fts2ba61y_data *ts)
+>> +{
+>> +	u8 cmd = FTS2BA61Y_CMD_REG_W;
+>> +	/* the following sequence is undocumented */
+>> +	u8 reset[FTS2BA61Y_RESET_CMD_SIZE] = { 0x20, 0x00,
+>> +					       0x00, 0x24, 0x81 };
+>> +	int ret;
 >> +
->> +	vcc5v0_device_s0: regulator-vcc5v0-device-s0 {
->> +		compatible = "regulator-fixed";
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		regulator-name = "vcc5v0_device_s0";
->> +		vin-supply = <&vcc5v_dcin>;
->> +	};
+>> +	disable_irq(ts->spi->irq);
 >> +
->> +	vcc5v0_sys_s5: regulator-vcc5v0-sys-s5 {
->> +		compatible = "regulator-fixed";
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		regulator-name = "vcc5v0_sys_s5";
->> +		vin-supply = <&vcc5v_dcin>;
->> +	};
+>> +	ret = fts2ba61y_write(ts, &cmd, 1, &reset[0], FTS2BA61Y_RESET_CMD_SIZE);
+>> +	if (ret)
+>> +		return ret;
+> You end up with interrupts disabled on error which may be unexpected.
+> Better use
+>
+> 	guard(disable_irq)(&ts->spi->irq);
+>
+>> +	msleep(30);
 >> +
->> +	vcc5v0_usb_otg0: regulator-vcc5v0-usb-otg0 {
->> +		compatible = "regulator-fixed";
->> +		enable-active-high;
->> +		gpios = <&gpio0 RK_PD1 GPIO_ACTIVE_HIGH>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&usb_otg0_pwren_h>;
->> +		regulator-min-microvolt = <5000000>;
->> +		regulator-max-microvolt = <5000000>;
->> +		regulator-name = "vcc5v0_usb_otg0";
->> +		vin-supply = <&vcc5v0_sys_s5>;
->> +	};
+>> +	ret = fts2ba61y_wait_for_ready(ts);
+>> +	if (ret)
+>> +		return ret;
 >> +
->> +	vcc_1v1_nldo_s3: regulator-vcc-1v1-nldo-s3 {
->> +		compatible = "regulator-fixed";
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +		regulator-min-microvolt = <1100000>;
->> +		regulator-max-microvolt = <1100000>;
->> +		regulator-name = "vcc_1v1_nldo_s3";
->> +		vin-supply = <&vcc5v0_sys_s5>;
->> +	};
+>> +	enable_irq(ts->spi->irq);
 >> +
->> +	vcc_1v8_s0: regulator-vcc-1v8-s0 {
->> +		compatible = "regulator-fixed";
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +		regulator-min-microvolt = <1800000>;
->> +		regulator-max-microvolt = <1800000>;
->> +		regulator-name = "vcc_1v8_s0";
->> +		vin-supply = <&vcc_1v8_s3>;
->> +	};
+>> +	return 0;
+>> +}
 >> +
->> +	vcc_2v0_pldo_s3: regulator-vcc-2v0-pldo-s3 {
->> +		compatible = "regulator-fixed";
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +		regulator-min-microvolt = <2000000>;
->> +		regulator-max-microvolt = <2000000>;
->> +		regulator-name = "vcc_2v0_pldo_s3";
->> +		vin-supply = <&vcc5v0_sys_s5>;
->> +	};
+>> +static int fts2ba61y_set_channels(struct fts2ba61y_data *ts)
+>> +{
+>> +	int ret;
+>> +	u8 cmd = FTS2BA61Y_CMD_READ_PANEL_INFO;
+>> +	u8 data[FTS2BA61Y_PANEL_INFO_SIZE];
 >> +
->> +	vcc_3v3_s0: regulator-vcc-3v3-s0 {
->> +		compatible = "regulator-fixed";
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		regulator-name = "vcc_3v3_s0";
->> +		vin-supply = <&vcc_3v3_s3>;
->> +	};
+>> +	ret = fts2ba61y_read(ts, &cmd, 1, data, FTS2BA61Y_PANEL_INFO_SIZE);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ts->max_x = get_unaligned_be16(data);
+>> +	ts->max_y = get_unaligned_be16(data + 2);
+>> +
+>> +	/* if no tx channels defined, at least keep one */
+>> +	ts->tx_count = max_t(u8, data[8], 1);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int fts2ba61y_set_touch_func(struct fts2ba61y_data *ts)
+>> +{
+>> +	u8 cmd = FTS2BA61Y_CMD_TOUCHTYPE;
+>> +	u16 touchtype = cpu_to_le16(FTS2BA61Y_TOUCHTYPE_DEFAULT);
+>> +
+>> +	return fts2ba61y_write(ts, &cmd, 1, (u8 *)&touchtype, 2);
+>> +}
+>> +
+>> +static int fts2ba61y_hw_init(struct fts2ba61y_data *ts)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = regulator_bulk_enable(ARRAY_SIZE(ts->regulators),
+>> +								ts->regulators);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	msleep(140);
+>> +
+>> +	ret = fts2ba61y_reset(ts);
+>> +	if (ret)
+>> +		return ret;
+> You need to disable regulators on error.
+>
+>> +
+>> +	ret = fts2ba61y_set_channels(ts);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	return fts2ba61y_set_touch_func(ts);
+> In functions with multiple points of failure do not end with "return
+> function_call();". Use standard
+>
+> 	error = operation(...);
+> 	if (error)
+> 		return error;
+>
+> 	return 0;
+>
+>> +}
+>> +
+>> +static int fts2ba61y_get_event(struct fts2ba61y_data *ts, u8 *data, int *n_events)
+>> +{
+>> +	int ret;
+>> +	u8 cmd = FTS2BA61Y_CMD_READ_EVENT;
+>> +
+>> +	ret = fts2ba61y_read(ts, &cmd, 1, data, FTS2BA61Y_EVENT_BUFF_SIZE);
+>> +	if (ret < 0)
+> fts2ba61y_read() does not return positive success values, so:
+>
+> 	if (error)
+> 		return error;
+>
+>> +		return ret;
+>> +
+>> +	if (!data[0]) {
+>> +		*n_events = 0;
+>> +		return 0;
+>> +	}
+>> +
+>> +	*n_events = FIELD_GET(FTS2BA61Y_MASK_LEFT_EVENTS, data[7]);
+>> +	if (unlikely(*n_events >= FTS2BA61Y_EVENT_COUNT)) {
+>> +		cmd = FTS2BA61Y_CMD_CLEAR_EVENTS;
+>> +		fts2ba61y_write(ts, &cmd, 1, NULL, 0);
+>> +		*n_events = 0;
+>> +		return -EINVAL;
+>> +	}
+>> +
+>> +	if (*n_events > 0) {
+>> +		ret = fts2ba61y_read(ts, &cmd, 1,
+>> +				     &data[1 * FTS2BA61Y_EVENT_BUFF_SIZE],
+>> +				     FTS2BA61Y_EVENT_BUFF_SIZE * (*n_events));
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void fts2ba61y_report_coordinates(struct fts2ba61y_data *ts,
+>> +					 u8 *event, u8 tid)
+>> +{
+>> +	u8 major = event[4];
+>> +	u8 minor = event[5];
+>> +	u8 z = FIELD_GET(FTS2BA61Y_MASK_Z, event[6]);
+>> +
+>> +	u16 x = (event[1] << 4) |
+>> +		FIELD_GET(FTS2BA61Y_MASK_X_3_0, event[3]);
+>> +	u16 y = (event[2] << 4) |
+>> +		FIELD_GET(FTS2BA61Y_MASK_Y_3_0, event[3]);
+>> +	u16 ttype = (FIELD_GET(FTS2BA61Y_MASK_TTYPE_3_2, event[6]) << 2) |
+>> +		    (FIELD_GET(FTS2BA61Y_MASK_TTYPE_1_0, event[7]) << 0);
+>> +
+>> +	if (ttype != FTS2BA61Y_TOUCHTYPE_NORMAL &&
+>> +	    ttype != FTS2BA61Y_TOUCHTYPE_PALM &&
+>> +	    ttype != FTS2BA61Y_TOUCHTYPE_WET &&
+>> +	    ttype != FTS2BA61Y_TOUCHTYPE_GLOVE)
+>> +		return;
+>> +
+>> +	input_mt_slot(ts->input_dev, tid);
+>> +	input_mt_report_slot_state(ts->input_dev, MT_TOOL_FINGER, true);
+>> +	input_report_abs(ts->input_dev, ABS_MT_POSITION_X, x);
+>> +	input_report_abs(ts->input_dev, ABS_MT_POSITION_Y, y);
+>> +	input_report_abs(ts->input_dev, ABS_MT_TOUCH_MAJOR, major);
+>> +	input_report_abs(ts->input_dev, ABS_MT_TOUCH_MINOR, minor);
+>> +	input_report_abs(ts->input_dev, ABS_MT_PRESSURE, z);
+>> +
+>> +	input_mt_sync_frame(ts->input_dev);
+>> +	input_sync(ts->input_dev);
+>> +}
+>> +
+>> +static void fts2ba61y_report_release(struct fts2ba61y_data *ts, u8 tid)
+>> +{
+>> +	input_mt_slot(ts->input_dev, tid);
+>> +	input_mt_report_slot_state(ts->input_dev, MT_TOOL_FINGER, false);
+>> +
+>> +	input_mt_sync_frame(ts->input_dev);
+>> +	input_sync(ts->input_dev);
+>> +}
+>> +
+>> +static void fts2ba61y_handle_coordinates(struct fts2ba61y_data *ts, u8 *event)
+>> +{
+>> +	u8 t_id = FIELD_GET(FTS2BA61Y_MASK_TID, event[0]);
+>> +	u8 action = FIELD_GET(FTS2BA61Y_MASK_TCHSTA, event[0]);
+>> +
+>> +	if (t_id > ts->tx_count)
+>> +		return;
+>> +
+>> +	switch (action) {
+>> +	case FTS2BA61Y_COORDINATE_ACTION_PRESS:
+>> +	case FTS2BA61Y_COORDINATE_ACTION_MOVE:
+>> +		fts2ba61y_report_coordinates(ts, event, t_id);
+>> +		break;
+>> +
+>> +	case FTS2BA61Y_COORDINATE_ACTION_RELEASE:
+>> +		fts2ba61y_report_release(ts, t_id);
+>> +		break;
+>> +	}
+>> +}
+>> +
+>> +static irqreturn_t fts2ba61y_irq_handler(int irq, void *handle)
+>> +{
+>> +	struct fts2ba61y_data *ts = handle;
+>> +	u8 buffer[FTS2BA61Y_EVENT_COUNT * FTS2BA61Y_EVENT_BUFF_SIZE];
+>> +	u8 *event;
+>> +	u8 event_id;
+>> +	int n_events = 0;
+>> +	int ret;
+>> +
+>> +	usleep(1);
+> Why?
+Must've been added by mistake.
+>
+>> +
+>> +	ret = fts2ba61y_get_event(ts, buffer, &n_events);
+>> +	if (ret < 0) {
+>> +		dev_dbg(&ts->spi->dev, "failed to get event: %d", ret);
+>> +		return IRQ_HANDLED;
+>> +	}
+>> +
+>> +	for (int i = 0; i <= n_events; i++) {
+>> +		event = &buffer[i * FTS2BA61Y_EVENT_BUFF_SIZE];
+>> +		event_id = FIELD_GET(FTS2BA61Y_MASK_EVENT_ID, event[0]);
+>> +
+>> +		if (event_id == FTS2BA61Y_COORDINATE_EVENT)
+>> +			fts2ba61y_handle_coordinates(ts, event);
+>> +	}
+>> +
+>> +	return IRQ_HANDLED;
+>> +}
+>> +
+>> +static int fts2ba61y_input_open(struct input_dev *dev)
+>> +{
+>> +	struct fts2ba61y_data *ts = input_get_drvdata(dev);
+>> +	u8 cmd = FTS2BA61Y_CMD_SENSE_ON;
+>> +
+>> +	return fts2ba61y_write(ts, &cmd, 1, NULL, 0);
+>> +}
+>> +
+>> +static void fts2ba61y_input_close(struct input_dev *dev)
+>> +{
+>> +	struct fts2ba61y_data *ts = input_get_drvdata(dev);
+>> +	int ret;
+>> +	u8 cmd = FTS2BA61Y_CMD_SENSE_OFF;
+>> +
+>> +	ret = fts2ba61y_write(ts, &cmd, 1, NULL, 0);
+>> +	if (ret)
+>> +		dev_err(&ts->spi->dev, "failed to turn off sensing\n");
+>> +}
+>> +
+>> +static void fts2ba61y_power_off(void *data)
+>> +{
+>> +	struct fts2ba61y_data *ts = data;
+>> +
+>> +	disable_irq(ts->spi->irq);
+> This may get called before interrupt is requested. Why does it need to
+> be here?
+To ensure the interrupt doesn't fire during shutdown.
+>
+>> +	regulator_bulk_disable(ARRAY_SIZE(ts->regulators),
+>> +						   ts->regulators);
+>> +}
+>> +
+>> +static int fts2ba61y_probe(struct spi_device *spi) {
+>> +	struct fts2ba61y_data *ts;
+>> +	struct input_dev *input_dev;
+>> +	int error;
+>> +
+>> +	ts = devm_kzalloc(&spi->dev, sizeof(*ts), GFP_KERNEL);
+>> +	if (!ts)
+>> +		return -ENOMEM;
+>> +
+>> +	ts->spi = spi;
+>> +	mutex_init(&ts->mutex);
+>> +
+>> +	spi->mode = SPI_MODE_0;
+>> +	spi->bits_per_word = 8;
+>> +
+>> +	error = spi_setup(spi);
+>> +	if (error)
+>> +		return error;
+>> +
+>> +	ts->regulators[FTS2BA61Y_REGULATOR_VDD].supply = "vdd";
+>> +	ts->regulators[FTS2BA61Y_REGULATOR_AVDD].supply = "avdd";
+>> +	error = devm_regulator_bulk_get(&spi->dev,
+>> +									ARRAY_SIZE(ts->regulators),
+>> +									ts->regulators);
+>> +	if (error)
+>> +		return error;
+>> +
+>> +	error = fts2ba61y_hw_init(ts);
+>> +	if (error)
+>> +		return error;
+>> +
+>> +	error = devm_add_action_or_reset(&ts->spi->dev, fts2ba61y_power_off, ts);
+>> +	if (error)
+>> +		return error;
+>> +
+>> +	input_dev = devm_input_allocate_device(&spi->dev);
+>> +	if (!input_dev)
+>> +		return -ENOMEM;
+>> +
+>> +	ts->input_dev = input_dev;
+>> +
+>> +	input_dev->name = FTS2BA61Y_DEV_NAME;
+>> +	input_dev->id.bustype = BUS_SPI;
+>> +	input_dev->open = fts2ba61y_input_open;
+>> +	input_dev->close = fts2ba61y_input_close;
+>> +
+>> +	input_set_abs_params(input_dev, ABS_MT_POSITION_X, 0, ts->max_x, 0, 0);
+>> +	input_set_abs_params(input_dev, ABS_MT_POSITION_Y, 0, ts->max_y, 0, 0);
+>> +	input_set_abs_params(input_dev, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
+>> +	input_set_abs_params(input_dev, ABS_MT_TOUCH_MINOR, 0, 255, 0, 0);
+>> +	input_set_abs_params(input_dev, ABS_MT_PRESSURE, 0, 255, 0, 0);
+>> +
+>> +	touchscreen_parse_properties(input_dev, true, &ts->prop);
+>> +
+>> +	spi_set_drvdata(spi, ts);
+>> +	input_set_drvdata(input_dev, ts);
+>> +
+>> +	error = input_mt_init_slots(input_dev, ts->tx_count, INPUT_MT_DIRECT);
+>> +	if (error)
+>> +		return error;
+>> +
+>> +	error = input_register_device(input_dev);
+>> +	if (error)
+>> +		return error;
+>> +
+>> +	error = devm_request_threaded_irq(&spi->dev, spi->irq, NULL,
+>> +					  fts2ba61y_irq_handler,
+>> +					  IRQF_TRIGGER_LOW | IRQF_ONESHOT,
+> Do not encode interrupt polarity, let device tree specify it according
+> to system design. So just IRQF_ONESHOT.
+Okay
+>
+>> +					  "fts2ba61y_irq", ts);
+>> +	return error;
+>> +}
+>> +
+>> +#ifdef CONFIG_OF
+>> +static const struct of_device_id spi_touchscreen_dt_ids[] = {
+>> +	{ .compatible = "st,fts2ba61y" },
+>> +	{},
+>> +};
+>> +MODULE_DEVICE_TABLE(of, spi_touchscreen_dt_ids);
+>> +#endif
+>> +
+>> +static const struct spi_device_id fts2ba61y_spi_ids[] = {
+>> +	{ "fts2ba61y" },
+>> +	{ },
+>> +};
+>> +MODULE_DEVICE_TABLE(spi, fts2ba61y_spi_ids);
+>> +
+>> +static struct spi_driver spi_touchscreen_driver = {
+>> +	.driver = {
+>> +		.name = FTS2BA61Y_DEV_NAME,
+>> +		.of_match_table = of_match_ptr(spi_touchscreen_dt_ids),
+>> +	},
+>> +	.probe = fts2ba61y_probe,
+>> +	.id_table = fts2ba61y_spi_ids,
 >> +};
 >> +
->> +&combphy0_ps {
->> +	status = "okay";
->> +};
->> +
->> +&combphy1_psu {
->> +	status = "okay";
->> +};
->> +
->> +&cpu_b0 {
->> +	cpu-supply = <&vdd_cpu_big_s0>;
->> +};
->> +
->> +&cpu_b1 {
->> +	cpu-supply = <&vdd_cpu_big_s0>;
->> +};
->> +
->> +&cpu_b2 {
->> +	cpu-supply = <&vdd_cpu_big_s0>;
->> +};
->> +
->> +&cpu_b3 {
->> +	cpu-supply = <&vdd_cpu_big_s0>;
->> +};
->> +
->> +&cpu_l0 {
->> +	cpu-supply = <&vdd_cpu_lit_s0>;
->> +};
->> +
->> +&cpu_l1 {
->> +	cpu-supply = <&vdd_cpu_lit_s0>;
->> +};
->> +
->> +&cpu_l2 {
->> +	cpu-supply = <&vdd_cpu_lit_s0>;
->> +};
->> +
->> +&cpu_l3 {
->> +	cpu-supply = <&vdd_cpu_lit_s0>;
->> +};
->> +
->> +&gpu {
->> +	mali-supply = <&vdd_gpu_s0>;
->> +	status = "okay";
->> +};
->> +
->> +&hdmi {
->> +	status = "okay";
->> +};
->> +
->> +&hdmi_in {
->> +	hdmi_in_vp0: endpoint {
->> +		remote-endpoint = <&vp0_out_hdmi>;
->> +	};
->> +};
->> +
->> +&hdmi_out {
->> +	hdmi_out_con: endpoint {
->> +		remote-endpoint = <&hdmi_con_in>;
->> +	};
->> +};
->> +
->> +&hdmi_sound {
->> +	status = "okay";
->> +};
->> +
->> +&hdptxphy {
->> +	status = "okay";
->> +};
->> +
->> +&i2c1 {
->> +	status = "okay";
->> +
->> +	pmic@23 {
->> +		compatible = "rockchip,rk806";
->> +		reg = <0x23>;
->> +		#gpio-cells = <2>;
->> +		gpio-controller;
->> +		interrupt-parent = <&gpio0>;
->> +		interrupts = <6 IRQ_TYPE_LEVEL_LOW>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
->> +			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
->> +		system-power-controller;
->> +
->> +		vcc1-supply = <&vcc5v0_sys_s5>;
->> +		vcc2-supply = <&vcc5v0_sys_s5>;
->> +		vcc3-supply = <&vcc5v0_sys_s5>;
->> +		vcc4-supply = <&vcc5v0_sys_s5>;
->> +		vcc5-supply = <&vcc5v0_sys_s5>;
->> +		vcc6-supply = <&vcc5v0_sys_s5>;
->> +		vcc7-supply = <&vcc5v0_sys_s5>;
->> +		vcc8-supply = <&vcc5v0_sys_s5>;
->> +		vcc9-supply = <&vcc5v0_sys_s5>;
->> +		vcc10-supply = <&vcc5v0_sys_s5>;
->> +		vcc11-supply = <&vcc_2v0_pldo_s3>;
->> +		vcc12-supply = <&vcc5v0_sys_s5>;
->> +		vcc13-supply = <&vcc_1v1_nldo_s3>;
->> +		vcc14-supply = <&vcc_1v1_nldo_s3>;
->> +		vcca-supply = <&vcc5v0_sys_s5>;
->> +
->> +		rk806_dvs1_null: dvs1-null-pins {
->> +			pins = "gpio_pwrctrl1";
->> +			function = "pin_fun0";
->> +		};
->> +
->> +		rk806_dvs1_pwrdn: dvs1-pwrdn-pins {
->> +			pins = "gpio_pwrctrl1";
->> +			function = "pin_fun2";
->> +		};
->> +
->> +		rk806_dvs1_rst: dvs1-rst-pins {
->> +			pins = "gpio_pwrctrl1";
->> +			function = "pin_fun3";
->> +		};
->> +
->> +		rk806_dvs1_slp: dvs1-slp-pins {
->> +			pins = "gpio_pwrctrl1";
->> +			function = "pin_fun1";
->> +		};
->> +
->> +		rk806_dvs2_dvs: dvs2-dvs-pins {
->> +			pins = "gpio_pwrctrl2";
->> +			function = "pin_fun4";
->> +		};
->> +
->> +		rk806_dvs2_gpio: dvs2-gpio-pins {
->> +			pins = "gpio_pwrctrl2";
->> +			function = "pin_fun5";
->> +		};
->> +
->> +		rk806_dvs2_null: dvs2-null-pins {
->> +			pins = "gpio_pwrctrl2";
->> +			function = "pin_fun0";
->> +		};
->> +
->> +		rk806_dvs2_pwrdn: dvs2-pwrdn-pins {
->> +			pins = "gpio_pwrctrl2";
->> +			function = "pin_fun2";
->> +		};
->> +
->> +		rk806_dvs2_rst: dvs2-rst-pins {
->> +			pins = "gpio_pwrctrl2";
->> +			function = "pin_fun3";
->> +		};
->> +
->> +		rk806_dvs2_slp: dvs2-slp-pins {
->> +			pins = "gpio_pwrctrl2";
->> +			function = "pin_fun1";
->> +		};
->> +
->> +		rk806_dvs3_dvs: dvs3-dvs-pins {
->> +			pins = "gpio_pwrctrl3";
->> +			function = "pin_fun4";
->> +		};
->> +
->> +		rk806_dvs3_gpio: dvs3-gpio-pins {
->> +			pins = "gpio_pwrctrl3";
->> +			function = "pin_fun5";
->> +		};
->> +
->> +		rk806_dvs3_null: dvs3-null-pins {
->> +			pins = "gpio_pwrctrl3";
->> +			function = "pin_fun0";
->> +		};
->> +
->> +		rk806_dvs3_pwrdn: dvs3-pwrdn-pins {
->> +			pins = "gpio_pwrctrl3";
->> +			function = "pin_fun2";
->> +		};
->> +
->> +		rk806_dvs3_rst: dvs3-rst-pins {
->> +			pins = "gpio_pwrctrl3";
->> +			function = "pin_fun3";
->> +		};
->> +
->> +		rk806_dvs3_slp: dvs3-slp-pins {
->> +			pins = "gpio_pwrctrl3";
->> +			function = "pin_fun1";
->> +		};
->> +
->> +		regulators {
->> +			vdd_cpu_big_s0: dcdc-reg1 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-enable-ramp-delay = <400>;
->> +				regulator-min-microvolt = <550000>;
->> +				regulator-max-microvolt = <950000>;
->> +				regulator-name = "vdd_cpu_big_s0";
->> +				regulator-ramp-delay = <12500>;
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +
->> +			vdd_npu_s0: dcdc-reg2 {
->> +				regulator-boot-on;
->> +				regulator-enable-ramp-delay = <400>;
->> +				regulator-min-microvolt = <550000>;
->> +				regulator-max-microvolt = <950000>;
->> +				regulator-name = "vdd_npu_s0";
->> +				regulator-ramp-delay = <12500>;
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +
->> +			vdd_cpu_lit_s0: dcdc-reg3 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <550000>;
->> +				regulator-max-microvolt = <950000>;
->> +				regulator-name = "vdd_cpu_lit_s0";
->> +				regulator-ramp-delay = <12500>;
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +					regulator-suspend-microvolt = <750000>;
->> +				};
->> +			};
->> +
->> +			vcc_3v3_s3: dcdc-reg4 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <3300000>;
->> +				regulator-max-microvolt = <3300000>;
->> +				regulator-name = "vcc_3v3_s3";
->> +
->> +				regulator-state-mem {
->> +					regulator-on-in-suspend;
->> +					regulator-suspend-microvolt = <3300000>;
->> +				};
->> +			};
->> +
->> +			vdd_gpu_s0: dcdc-reg5 {
->> +				regulator-boot-on;
->> +				regulator-enable-ramp-delay = <400>;
->> +				regulator-min-microvolt = <550000>;
->> +				regulator-max-microvolt = <900000>;
->> +				regulator-name = "vdd_gpu_s0";
->> +				regulator-ramp-delay = <12500>;
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +					regulator-suspend-microvolt = <850000>;
->> +				};
->> +			};
->> +
->> +			vddq_ddr_s0: dcdc-reg6 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-name = "vddq_ddr_s0";
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +
->> +			vdd_logic_s0: dcdc-reg7 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <550000>;
->> +				regulator-max-microvolt = <800000>;
->> +				regulator-name = "vdd_logic_s0";
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +
->> +			vcc_1v8_s3: dcdc-reg8 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <1800000>;
->> +				regulator-max-microvolt = <1800000>;
->> +				regulator-name = "vcc_1v8_s3";
->> +
->> +				regulator-state-mem {
->> +					regulator-on-in-suspend;
->> +					regulator-suspend-microvolt = <1800000>;
->> +				};
->> +			};
->> +
->> +			vdd2_ddr_s3: dcdc-reg9 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-name = "vdd2_ddr_s3";
->> +
->> +				regulator-state-mem {
->> +					regulator-on-in-suspend;
->> +				};
->> +			};
->> +
->> +			vdd_ddr_s0: dcdc-reg10 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <550000>;
->> +				regulator-max-microvolt = <1200000>;
->> +				regulator-name = "vdd_ddr_s0";
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +
->> +			vcca_1v8_s0: pldo-reg1 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <1800000>;
->> +				regulator-max-microvolt = <1800000>;
->> +				regulator-name = "vcca_1v8_s0";
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +
->> +			vcca1v8_pldo2_s0: pldo-reg2 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <1800000>;
->> +				regulator-max-microvolt = <1800000>;
->> +				regulator-name = "vcca1v8_pldo2_s0";
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +
->> +			vdda_1v2_s0: pldo-reg3 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <1200000>;
->> +				regulator-max-microvolt = <1200000>;
->> +				regulator-name = "vdda_1v2_s0";
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +
->> +			vcca_3v3_s0: pldo-reg4 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <3300000>;
->> +				regulator-max-microvolt = <3300000>;
->> +				regulator-name = "vcca_3v3_s0";
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +
->> +			vccio_sd_s0: pldo-reg5 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <1800000>;
->> +				regulator-max-microvolt = <3300000>;
->> +				regulator-name = "vccio_sd_s0";
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +
->> +			vcca1v8_pldo6_s3: pldo-reg6 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <1800000>;
->> +				regulator-max-microvolt = <1800000>;
->> +				regulator-name = "vcca1v8_pldo6_s3";
->> +
->> +				regulator-state-mem {
->> +					regulator-on-in-suspend;
->> +					regulator-suspend-microvolt = <1800000>;
->> +				};
->> +			};
->> +
->> +			vdd_0v75_s3: nldo-reg1 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <750000>;
->> +				regulator-max-microvolt = <750000>;
->> +				regulator-name = "vdd_0v75_s3";
->> +
->> +				regulator-state-mem {
->> +					regulator-on-in-suspend;
->> +					regulator-suspend-microvolt = <750000>;
->> +				};
->> +			};
->> +
->> +			vdda_ddr_pll_s0: nldo-reg2 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <850000>;
->> +				regulator-max-microvolt = <850000>;
->> +				regulator-name = "vdda_ddr_pll_s0";
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +
->> +			vdda0v75_hdmi_s0: nldo-reg3 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <837500>;
->> +				regulator-max-microvolt = <837500>;
->> +				regulator-name = "vdda0v75_hdmi_s0";
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +
->> +			vdda_0v85_s0: nldo-reg4 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <850000>;
->> +				regulator-max-microvolt = <850000>;
->> +				regulator-name = "vdda_0v85_s0";
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +
->> +			vdda_0v75_s0: nldo-reg5 {
->> +				regulator-always-on;
->> +				regulator-boot-on;
->> +				regulator-min-microvolt = <750000>;
->> +				regulator-max-microvolt = <750000>;
->> +				regulator-name = "vdda_0v75_s0";
->> +
->> +				regulator-state-mem {
->> +					regulator-off-in-suspend;
->> +				};
->> +			};
->> +		};
->> +	};
->> +};
->> +
->> +&i2c2 {
->> +	status = "okay";
->> +
->> +	hym8563: rtc@51 {
->> +		compatible = "haoyu,hym8563";
->> +		reg = <0x51>;
->> +		#clock-cells = <0>;
->> +		clock-output-names = "hym8563";
->> +		interrupt-parent = <&gpio0>;
->> +		interrupts = <RK_PA5 IRQ_TYPE_LEVEL_LOW>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&rtc_int_l>;
->> +		wakeup-source;
->> +	};
->> +};
->> +
->> +&pcie0 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pcie0_perstn>;
->> +	reset-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_HIGH>;
->> +	vpcie3v3-supply = <&vcc_3v3_s3>;
->> +	status = "okay";
->> +};
->> +
->> +&pcie1 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pcie1_perstn>;
->> +	reset-gpios = <&gpio0 RK_PC7 GPIO_ACTIVE_HIGH>;
->> +	vpcie3v3-supply = <&vcc_3v3_s3>;
->> +	status = "okay";
->> +};
->> +
->> +&pinctrl {
->> +	bt {
->> +		bt_reg_on_h: bt-reg-on-h {
->> +			rockchip,pins = <3 RK_PC7 RK_FUNC_GPIO &pcfg_pull_up>;
->> +		};
->> +
->> +		bt_wake_host_h: bt-wake-host-h {
->> +			rockchip,pins = <0 RK_PB1 RK_FUNC_GPIO &pcfg_pull_down>;
->> +		};
->> +
->> +		host_wake_bt_h: host-wake-bt-h {
->> +			rockchip,pins = <3 RK_PD0 RK_FUNC_GPIO &pcfg_pull_up>;
->> +		};
->> +	};
->> +
->> +	gpio-keys {
->> +		reset_button_pin: reset-button-pin {
->> +			rockchip,pins = <4 RK_PA2 RK_FUNC_GPIO &pcfg_pull_up>;
->> +		};
->> +	};
->> +
->> +	gpio-leds {
->> +		lan_led_pin: lan-led-pin {
->> +			rockchip,pins = <2 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
->> +		};
->> +
->> +		power_led_pin: power-led-pin {
->> +			rockchip,pins = <2 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
->> +		};
->> +
->> +		wan_led_pin: wan-led-pin {
->> +			rockchip,pins = <4 RK_PC5 RK_FUNC_GPIO &pcfg_pull_none>;
->> +		};
->> +	};
->> +
->> +	hdmi {
->> +		hdmi_tx_on_h: hdmi-tx-on-h {
->> +			rockchip,pins = <4 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>;
->> +		};
->> +	};
->> +
->> +	hym8563 {
->> +		rtc_int_l: rtc-int-l {
->> +			rockchip,pins = <0 RK_PA5 RK_FUNC_GPIO &pcfg_pull_up>;
->> +		};
->> +	};
->> +
->> +	pcie {
->> +		pcie0_perstn: pcie0-perstn {
->> +			rockchip,pins = <2 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>;
->> +		};
->> +
->> +		pcie1_perstn: pcie1-perstn {
->> +			rockchip,pins = <0 RK_PC7 RK_FUNC_GPIO &pcfg_pull_up>;
->> +		};
->> +	};
->> +
->> +	usb {
->> +		usb_otg0_pwren_h: usb-otg0-pwren-h {
->> +			rockchip,pins = <0 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
->> +		};
->> +	};
->> +
->> +	wifi {
->> +		wifi_wake_host_h: wifi-wake-host-h {
->> +			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_down>;
->> +		};
->> +
->> +		wifi_reg_on_h: wifi-reg-on-h {
->> +			rockchip,pins = <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
->> +		};
->> +	};
->> +};
->> +
->> +&sai6 {
->> +	status = "okay";
->> +};
->> +
->> +&sdmmc {
->> +	bus-width = <4>;
->> +	cap-mmc-highspeed;
->> +	cap-sd-highspeed;
->> +	disable-wp;
->> +	no-mmc;
->> +	no-sdio;
->> +	sd-uhs-sdr104;
->> +	vmmc-supply = <&vcc_3v3_s3>;
->> +	vqmmc-supply = <&vccio_sd_s0>;
->> +	status = "okay";
->> +};
->> +
->> +&sdio {
->> +	#address-cells = <1>;
->> +	#size-cells = <0>;
->> +	bus-width = <4>;
->> +	cap-sd-highspeed;
->> +	cap-sdio-irq;
->> +	disable-wp;
->> +	keep-power-in-suspend;
->> +	mmc-pwrseq = <&sdio_pwrseq>;
->> +	no-mmc;
->> +	no-sd;
->> +	non-removable;
->> +	sd-uhs-sdr104;
->> +	vmmc-supply = <&vcc_3v3_s3>;
->> +	vqmmc-supply = <&vcc_1v8_s3>;
->> +	wakeup-source;
->> +	status = "okay";
->> +
->> +	rtl8822cs: wifi@1 {
->> +		reg = <1>;
->> +		interrupt-parent = <&gpio0>;
->> +		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_HIGH>;
->> +		interrupt-names = "host-wake";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&wifi_wake_host_h>;
->> +	};
->> +};
->> +
->> +&sdhci {
->> +	bus-width = <8>;
->> +	cap-mmc-highspeed;
->> +	full-pwr-cycle-in-suspend;
->> +	mmc-hs400-1_8v;
->> +	mmc-hs400-enhanced-strobe;
->> +	no-sdio;
->> +	no-sd;
->> +	non-removable;
->> +	status = "okay";
->> +};
->> +
->> +&saradc {
->> +	vref-supply = <&vcca_1v8_s0>;
->> +	status = "okay";
->> +};
->> +
->> +&u2phy0 {
->> +	status = "okay";
->> +};
->> +
->> +&u2phy0_otg {
->> +	phy-supply = <&vcc5v0_usb_otg0>;
->> +	status = "okay";
->> +};
->> +
->> +&uart0 {
->> +	status = "okay";
->> +};
->> +
->> +&uart5 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&uart5m0_xfer &uart5m0_ctsn &uart5m0_rtsn>;
->> +	uart-has-rtscts;
->> +	status = "okay";
->> +
->> +	bluetooth {
->> +		compatible = "realtek,rtl8822cs-bt";
->> +		enable-gpios = <&gpio3 RK_PC7 GPIO_ACTIVE_HIGH>;
->> +		device-wake-gpios = <&gpio3 RK_PD0 GPIO_ACTIVE_HIGH>;
->> +		host-wake-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&bt_wake_host_h &host_wake_bt_h &bt_reg_on_h>;
->> +	};
->> +};
->> +
->> +&usbdp_phy {
->> +	status = "okay";
->> +};
->> +
->> +&usb_drd0_dwc3 {
->> +	dr_mode = "host";
->> +	extcon = <&u2phy0>;
->> +	status = "okay";
->> +};
->> +
->> +&vop {
->> +	status = "okay";
->> +};
->> +
->> +&vop_mmu {
->> +	status = "okay";
->> +};
->> +
->> +&vp0 {
->> +	vp0_out_hdmi: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
->> +		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
->> +		remote-endpoint = <&hdmi_in_vp0>;
->> +	};
->> +};
-> 
-
+>> +module_spi_driver(spi_touchscreen_driver);
+>> +
+>> +MODULE_AUTHOR("Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>");
+>> +MODULE_DESCRIPTION("ST-Microelectronics FTS2BA61Y Touch Screen");
+>> +MODULE_LICENSE("GPL");
+> Thanks.
+Thank you for the review! I will send a v2 soon.
 
