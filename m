@@ -1,197 +1,230 @@
-Return-Path: <devicetree+bounces-222083-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222084-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30BA8BA5D0A
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 11:50:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B736DBA5D4E
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 12:19:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F12E17A44AF
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 09:49:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D92A31B24524
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 10:20:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC9A42D6E4D;
-	Sat, 27 Sep 2025 09:50:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87B6E2D94B9;
+	Sat, 27 Sep 2025 10:19:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="nHWDrUGh";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="wqsgagUJ";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="nHWDrUGh";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="wqsgagUJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DuqEZVtj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 446B5246788
-	for <devicetree@vger.kernel.org>; Sat, 27 Sep 2025 09:50:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B85A422A7E2
+	for <devicetree@vger.kernel.org>; Sat, 27 Sep 2025 10:19:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758966646; cv=none; b=dJSoqsG/ufK+nOudkHNAkKfFQm8hQxMsKRjY5FZsmCpkUaipEfdOnh9fyHvPy0dNfy23EUDKbSLDz/HAv3jIRXsaOb9BVbKtHalBjpTsiZBR8tb0Nq4OOwFen50ekb7H9+WdDooZk92YQOEed2U1H2lw6cyGcWAbSqbY6SqZYAw=
+	t=1758968392; cv=none; b=pw42pMnq0NpYZEXFCioh65aVVIETU7kcSJCulJisSe9oVyqjI4ahkK0lpruMVLdGnopTg3cYGi1N0l7hqvC7F7hhDNuehyBU24txHRVY+R5rTQYY5rltt8Isqf3Qyl3oVPtfk1Fse8sslaO3EKngqt8R+mU4nsUd5rkWPle3H5A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758966646; c=relaxed/simple;
-	bh=BotcDeRJ5Xchr3Qo6LfezDRpDesds0piADefeH4E2oE=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=F29p3waHcS77hB7BuinfyMB+UQ/3wfGcql17k/jK2HJcHgFudIg4GpnxdwJKdJTN5hs0heEjgbD8pN+wRl+kXLdcoFgptPzN9LjoD6+JtvMWnl2K65YuqQu3c6JYjMgTixk9UP5K7RYeZrBTCuuTf9JNqXk2Ar+v6GHnxHxgAJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=nHWDrUGh; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=wqsgagUJ; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=nHWDrUGh; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=wqsgagUJ; arc=none smtp.client-ip=195.135.223.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out1.suse.de (Postfix) with ESMTPS id CA119267D8;
-	Sat, 27 Sep 2025 09:50:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1758966633; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hWSLsp5Q+OBEvCxaJhtiJufQYs9Iqj0DaWEu/Y3fjh0=;
-	b=nHWDrUGhPhsS4p6nX3rWYGg+1HBuJNgbyLnB8Zx67wt351CSM6U2jtPpS22tqTFVve1dGL
-	QrPV8stgpN18MtwtXeHqBUVKGzqnlsVT8c+7Sn8zumsasPYPeASUDqZEEMf8W/j2ToHV2E
-	1khQEQk16pM68hT4R1/Dm3Eor4vYVF8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1758966633;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hWSLsp5Q+OBEvCxaJhtiJufQYs9Iqj0DaWEu/Y3fjh0=;
-	b=wqsgagUJ5zJ5eFRWpqC0GJSO5pLrcPx9OEehVtsKIdyrFz0sVh8NE5e6qpDE1/QjoSOAJN
-	BPM9/DIzPQHwr9CA==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1758966633; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hWSLsp5Q+OBEvCxaJhtiJufQYs9Iqj0DaWEu/Y3fjh0=;
-	b=nHWDrUGhPhsS4p6nX3rWYGg+1HBuJNgbyLnB8Zx67wt351CSM6U2jtPpS22tqTFVve1dGL
-	QrPV8stgpN18MtwtXeHqBUVKGzqnlsVT8c+7Sn8zumsasPYPeASUDqZEEMf8W/j2ToHV2E
-	1khQEQk16pM68hT4R1/Dm3Eor4vYVF8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1758966633;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=hWSLsp5Q+OBEvCxaJhtiJufQYs9Iqj0DaWEu/Y3fjh0=;
-	b=wqsgagUJ5zJ5eFRWpqC0GJSO5pLrcPx9OEehVtsKIdyrFz0sVh8NE5e6qpDE1/QjoSOAJN
-	BPM9/DIzPQHwr9CA==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id D4B3A13782;
-	Sat, 27 Sep 2025 09:50:32 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id 0xVUMmiz12i8UAAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Sat, 27 Sep 2025 09:50:32 +0000
-Date: Sat, 27 Sep 2025 11:50:32 +0200
-Message-ID: <87y0q09qc7.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: Shengjiu Wang <shengjiu.wang@nxp.com>,
-	andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org,
-	rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se,
-	jernej.skrabec@gmail.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	lumag@kernel.org,
-	dianders@chromium.org,
-	cristian.ciocaltea@collabora.com,
-	luca.ceresoli@bootlin.com,
-	dri-devel@lists.freedesktop.org,
-	linux-kernel@vger.kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	p.zabel@pengutronix.de,
+	s=arc-20240116; t=1758968392; c=relaxed/simple;
+	bh=0o9rKzR6gg+t55L6FVkME3POEj1s4xOONmMeC6wusr8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EGiAigWB33QgvxbS4g0q75hzt4qpXLOhMUQyjyi1DbUVKlG/kD38RRhc8XDSyIRnHXze/8wALerTgaXaH2YYh9lseBXOUl/W+eVzD7/leLILR3ubREpLuIrsB/dBF8oa+bXIFihjOfD1VV0CrJ4Js62Trz5lS+LrA5KJ7GiZWiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DuqEZVtj; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-46e3cdc1a6aso10935425e9.1
+        for <devicetree@vger.kernel.org>; Sat, 27 Sep 2025 03:19:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1758968389; x=1759573189; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wUMIhguk0q/paILF3EYM4v2HRo4Qf4m2sM5vjWbUIDk=;
+        b=DuqEZVtji3YVjgX+f4tSGSLo5unrsnSm3pmkud8JO7KCDkvS6d6GXoJOMt/Vn8QdnU
+         pdFL1UIYsyPzTVGoyA1i7fcU5y8gARG8xgnKyGTpLQ6icckaaCse1M4E+ShDskK0O5nC
+         4sMh/Ti655nRzm23ywvKsz8RrOvzyfVT0mge6abzFHiNZywYvcdtWBrdHZSB1OnRkaqU
+         PkPXKrnE0zimRXFQedyw1eYTEJm+T6WxTuLc0q9NzViAbgxTAC4omNh8naV0LAfrBIrg
+         5hLp+ufmT9I/M/XH4g9h9ZeH++Xmvtg9Cg9rZNEaiRtYPLNKxBPiieQ+qaj9HlGg6dsa
+         PGog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1758968389; x=1759573189;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wUMIhguk0q/paILF3EYM4v2HRo4Qf4m2sM5vjWbUIDk=;
+        b=Q/7joyGs7OV3Xn/t5JIWEI2sWhKoti886GzD/9v1sME16W70RzYIUCpnQmF84j4Ljx
+         27SRFZmBuwO/WM30evLMqOk7Wvg17HAh1El0oGw33n7iIv0/b0MzBdNiFxkJUxUmPkRe
+         ++e0sUAbOQ7Q8YAsJNdwa65QNRlliTs26m9O1Znjvka3IQlb5NFnPDXsKfTfxKhfUuDj
+         enKpApyfQYQ8E3xi9KZ/CJEabWWYcVKC60Mt+1jXsbyoy7+hEWUDow1Xk0ld5iabeWqa
+         GnM3r/e8RCXfpp22IyXhRc7PB1NNXWy1F/OCBIohzFUfkKhn09spauY51hAf1g0TWLto
+         C3Mw==
+X-Forwarded-Encrypted: i=1; AJvYcCXTNekzzTl/Pnq5W7AmF/wEVC/Hih7uJEbQmn5cBOrdJFnmOjyyiJ3jrzEhqflIr/g0Hria6lZTMTKL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBXAYiwNEZMIJyjkoVUPY1HW/ZX92bI5h48MwDitQnBQRtdYNX
+	DvEHYZQQ49SaIqz/KZ82inegsdfIs8FFETr56KfzCTvWiP27l/fMg+Mc
+X-Gm-Gg: ASbGnctw22bUIjVWCn6yxYtLR8AliQgdjLqPjuUxp+13HxVaB3cVuawZr/KONN50lwr
+	mt+vKqhmJYcXauG+9LsbcPViHpvd/rLXjHd82R9diVGl3HlUP/S1fje9Y6kcUPxtaSyCLhCYdTQ
+	11SOleIuWZfq/LkNXzVr9mSXe/WWFpm2xkrRvY1Z6Jxf4/EIFjumkMfZNhKGF+f9Axn3DrDMYes
+	gcuxePfZSnp14KV5fdnWYMdoG6S6eu4/b5c6C8f01UxfZ5S6I0dzGelJ+BAW186X5Uih7jIOWt7
+	6RAWbofBmIMJpjhvW9ec8rOVglHByH0Jojn/GYqZhTyniZlpDAyIIa48C0iF9wINaYyD9s0jdcM
+	0X4BjfY4vyxs2pEwjZ8btVHh83GmOf9EaVxH3
+X-Google-Smtp-Source: AGHT+IEAPARqjKK6EzkdIdiWoeQGC83mPWmTSOGI7FWVLymma48fW8utY1AM3rM/BoC0rW24tM4egw==
+X-Received: by 2002:a05:600c:630d:b0:45d:dc10:a5ee with SMTP id 5b1f17b1804b1-46e33c8e3f3mr92273335e9.15.1758968388876;
+        Sat, 27 Sep 2025 03:19:48 -0700 (PDT)
+Received: from builder.. ([2001:9e8:f11a:4416:be24:11ff:fe30:5d85])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e32c31df7sm53416435e9.4.2025.09.27.03.19.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 27 Sep 2025 03:19:48 -0700 (PDT)
+From: Jonas Jelonek <jelonek.jonas@gmail.com>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-i2c@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
-	l.stach@pengutronix.de,
-	shengjiu.wang@gmail.com,
-	perex@perex.cz,
-	tiwai@suse.com,
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH v7 0/7] drm/bridge: imx: Add HDMI PAI driver on i.MX8MP
-In-Reply-To: <d39bc215-5b67-4cf5-b9d5-6e1e9ab20159@nxp.com>
-References: <20250923053001.2678596-1-shengjiu.wang@nxp.com>
-	<b411c188-b564-4ae8-9186-d0877880fa99@nxp.com>
-	<d39bc215-5b67-4cf5-b9d5-6e1e9ab20159@nxp.com>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+	linux-kernel@vger.kernel.org,
+	Markus Stockhausen <markus.stockhausen@gmx.de>,
+	Sven Eckelmann <sven@narfation.org>,
+	Harshal Gohel <hg@simonwunderlich.de>,
+	Jonas Jelonek <jelonek.jonas@gmail.com>
+Subject: [PATCH v8 0/9] i2c: fix, rework and extend RTL9300 I2C driver
+Date: Sat, 27 Sep 2025 10:19:22 +0000
+Message-ID: <20250927101931.71575-1-jelonek.jonas@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-Spam-Level: 
-X-Spamd-Result: default: False [-1.80 / 50.00];
-	BAYES_HAM(-3.00)[99.99%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	MID_CONTAINS_FROM(1.00)[];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FREEMAIL_ENVRCPT(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[35];
-	TAGGED_RCPT(0.00)[dt];
-	RCVD_TLS_ALL(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[nxp.com,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,gmail.com,linux.intel.com,suse.de,ffwll.ch,chromium.org,collabora.com,bootlin.com,lists.freedesktop.org,vger.kernel.org,pengutronix.de,lists.linux.dev,lists.infradead.org,perex.cz,suse.com];
-	R_RATELIMIT(0.00)[to_ip_from(RL8m7tqgwaqu97o1bbfnn6ewdz)];
-	FROM_EQ_ENVFROM(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid]
-X-Spam-Flag: NO
-X-Spam-Score: -1.80
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Fri, 26 Sep 2025 08:03:15 +0200,
-Liu Ying wrote:
-> 
-> Hi Jaroslav, Takashi,
-> 
-> On 09/23/2025, Liu Ying wrote:
-> > On 09/23/2025, Shengjiu Wang wrote:
-> >> Shengjiu Wang (7):
-> >>   dt-bindings: display: imx: add HDMI PAI for i.MX8MP
-> >>   ALSA: Add definitions for the bits in IEC958 subframe
-> >>   drm/bridge: dw-hdmi: Add API dw_hdmi_to_plat_data() to get plat_data
-> >>   drm/bridge: dw-hdmi: Add API dw_hdmi_set_sample_iec958() for iec958
-> >>     format
-> >>   drm/bridge: imx: add driver for HDMI TX Parallel Audio Interface
-> >>   arm64: dts: imx8mp: Add hdmi parallel audio interface node
-> >>   arm64: dts: imx8mp-evk: enable hdmi_pai device
-> > 
-> > Jaroslav, Takashi, do you think it's ok to land patch 2 through drm-misc,
-> > as that patch touches include/sound/asoundef.h?
-> 
-> Can you please comment?
+This patch series for the RTL9300 I2C driver:
+    - fixes issues, one of them in some cases causing data corruption
+    - reworks significant parts of the current implementation
+    - add support for the (quite similar) RTL9310 series
 
-Sorry, I've been off in this week (and am catching backlogs).
+Goal of this is to fix critical issues, improve overall code quality and
+simplify maintainance and further extension of the driver. Moreover, it
+should be brought on par feature-wise with OpenWrt's downstream driver
+to be able to drop the downstream version.
 
-And, yes, feel free to take the change via drm tree.  I already gave
-my Reviewed-by tag for that.
+The first three patches address bugs in the current implementation, on
+of them being critical and causing data corruption under certain
+circumstances. Although the hardware doesn't support SMBus Quick Write,
+the driver claims to support it with a broken implementation. This
+causes to execute a 16-byte Write instead of a Quick Write, e.g. causing
+corruption on not-write-protected SFP EEPROMs and soft-bricking them.
+These three patches are also sent to 'stable' because they fix critical
+issues.
+
+Subsequent patches introduce various smaller and bigger enhancements.
+These include:
+    - use regmap_field + its API instead of macros + GENMASK + shifts
+    - refactor xfer handling
+    - variable renaming to avoid confusion
+    - move some register operations, calling them somewhere else and
+      less frequently
+    - use guarded mutex instead of explicit mutex_lock/_unlock to
+      simplify control flow
+
+Finally, the last two patches add support for RTL9310 (mango) series to
+the driver and adjust the dt-bindings accordingly.
+
+Simple operations have been tested successfully on:
+    - Zyxel XGS1210-12 (RTL9302B)
+    - TP-Link TL-ST1008F v2.0 (RTL9303)
+    - Netgear MS510TXM (RTL9313)
+
+with Byte-Read, Word-Read and I2C-Block-Read. Other operations need
+testing from people with devices available.
+
+Compile-tested with Linux, run-tested as backport in OpenWrt on the
+aforementioned devices.
+
+HINT: This depends on another series by Sven Eckelmann [1] due to some
+      issues occured during merge of some patches.
+
+[1] https://lore.kernel.org/linux-i2c/20250927-i2c-rtl9300-multi-byte-v7-0-c0fd0e78b818@narfation.org/
+
+--
+Changelog
+
+v8: - dropped accepted patches 1-3
+    - fixed minor issue in last patch to make second master work
+    - rebased on top of shyti/i2c/i2c-host to make sure it applies
+      cleanly
+
+v7: - included given Tested-By and Reviewed-By from Chris Packham and
+      Markus Stockhausen accordingly
+        - except for Chris' Tested-By on RTL9310 since he only tested
+          on RTL9302C
+    - fixed typo as mentioned by Markuf Elfring
+
+v6: - patch 'i2c: rtl9300: check if xfer length is valid'
+        - renamed to 'ensure data length is within supported range'
+        - added I2C quirk for zero length as suggested by Wolfram Sang
+    - reordered patches to have backport-worthy fixes first and
+      enhancements/others after
+        - patches 'fix channel number bound check', 'check if xfer
+          length is valid' and 'remove SMBus Quick operation support'
+          were moved before all others
+        - added CC: stable to first three patches
+    - fixed commit message of 'dt-bindings: i2c: realtek,rtl9301-i2c:
+      extend for RTL9310 support'
+    - added a patch to use guard(mutex) instead of explicit lock/unlock
+      as suggested by Markus Elfring
+    - added Reviewed-by: Rob Herring ... to dt-bindings patches
+    - added Tested-by: Sven Eckelmann ... to all patches (except the
+      new patch in this version)
+
+v5: - added more patches to fix further issues/do further cleanup
+        - remove SMBus Quick support (not supported by hardware)
+        - move setting SCL frequency to config_io
+        - only set read message format (RD_MODE) once on probing
+        - add check to avoid len = 0 being allowed as length
+    - adjusted cover letter
+
+v4: - fixed an incorrect check for number of channels which was already
+      present in original code
+
+v3: - narrowed vendor property per variant to be required only
+      for RTL9310
+    - narrowed usable child-node i2c addresses per variant
+    - no changes to driver patches
+
+v2: - Patch 1:
+        - adjusted commit message
+        - retained Tested-By and Reviewed-By from Chris Packham
+    - Patch 2:
+        - simplified check as suggested by Markus Stockhausen
+        - fixed commit message
+    - Patch 3 (all requested by Krzysztof):
+        - use vendor property instead of generic
+        - add front compatibles to make binding complete
+        - fix commit message
+    - reordered patches, dt-bindings patch now comes before its 'user'
+    - properly add device-tree list and relevant maintainers to To/Cc
+
+---
+Jonas Jelonek (9):
+  i2c: rtl9300: use regmap fields and API for registers
+  dt-bindings: i2c: realtek,rtl9301-i2c: fix wording and typos
+  i2c: rtl9300: rename internal sda_pin to sda_num
+  i2c: rtl9300: move setting SCL frequency to config_io
+  i2c: rtl9300: do not set read mode on every transfer
+  i2c: rtl9300: separate xfer configuration and execution
+  i2c: rtl9300: use scoped guard instead of explicit lock/unlock
+  dt-bindings: i2c: realtek,rtl9301-i2c: extend for RTL9310 support
+  i2c: rtl9300: add support for RTL9310 I2C controller
+
+ .../bindings/i2c/realtek,rtl9301-i2c.yaml     |  45 +-
+ drivers/i2c/busses/i2c-rtl9300.c              | 473 +++++++++++-------
+ 2 files changed, 321 insertions(+), 197 deletions(-)
 
 
-thanks,
+base-commit: 217f92d91c9faeb6b78bd6205b3585944cbcb433
+prerequisite-patch-id: 773cf36a416585adc1e955c56c0d036b6cd8ebc4
+prerequisite-patch-id: d8190d8d1904fc9ef151ffffb57622cd2fae623a
+-- 
+2.48.1
 
-Takashi
 
