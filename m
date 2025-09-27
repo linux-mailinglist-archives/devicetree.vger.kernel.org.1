@@ -1,121 +1,118 @@
-Return-Path: <devicetree+bounces-222126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE89BA604E
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 16:04:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAB5ABA6054
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 16:04:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A53404C2A1C
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 14:04:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A83E323F8E
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 14:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65A092E2F03;
-	Sat, 27 Sep 2025 14:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7262279351;
+	Sat, 27 Sep 2025 14:04:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BLBvfjbG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mPG+/srC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D045279351;
-	Sat, 27 Sep 2025 14:04:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBF841E32D3;
+	Sat, 27 Sep 2025 14:04:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758981853; cv=none; b=WuHumcY7iI/37Z8bvyhX2h9p2yf4w5vP1DBEHEJChvdmLl1ZIs8bkMfkfiJByR8D50bA5CVR4n+oqmeWXDPDooejC5Fiqm2X+n93V8nSlj6VFYbjZJiW8RsZCzC6nhDdva7ISZbt35Rq6+bIJapgx8XP8mzHNzgFO8ZnreIMnRw=
+	t=1758981885; cv=none; b=SFm0nWjexp+66dZ9w+uRljJpWpNE3IoymttaybU0odTMbSkfUk8Iv8o0vDiJc0p/HJ6cMv6OumTeo5OLWWeRNhgUCB+QrcqJYoEagJhPoW10Gjumy28TlnvnE+j/wdny1wr0rjMiwQQp+ghdNWVHhLiWh1EHcu0Mj1ntpDcKCu0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758981853; c=relaxed/simple;
-	bh=zKz5W5a/bYoV41kuFP8JGCYMqCLf0l+xh3vHJjLoYTM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Yz5MaF2ckiUgcB61ybUiW6HqUVdmw1I0TUM3St88kSoMTi9Igjm0JFWJ/G/ywqj9f0BKhr+F4oxx9W/Q1LE/e2StRJFj9NMDAJGZDGtm8PPBtz8aJ2TD1njQsN644E5VHXruJhs0tejk6mqk+BLOg5vWbq2xLYePSSBi78EATsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BLBvfjbG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75CA5C4CEF7;
-	Sat, 27 Sep 2025 14:04:12 +0000 (UTC)
+	s=arc-20240116; t=1758981885; c=relaxed/simple;
+	bh=5xdEua8X8l/TAMdd3xOutBOvPgdsHiI9AwIPUbLnkgk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CQQ2sLpkMiNQlxxojNSCLSuOu0EtdFOwiOc2dy47tTt2PrlQKAZIeP1e8SfoYPtMwyuxxQeG6gGI/BMoVm1hRNZ7JjdN+BgdMhHv5NAIFTcQenRz2CdujVRXx+3Iyo+6JqRfxATGsuFsMKPnHb86EzUG8iFxukujNJwwslYF4M0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mPG+/srC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 412F5C4CEE7;
+	Sat, 27 Sep 2025 14:04:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758981852;
-	bh=zKz5W5a/bYoV41kuFP8JGCYMqCLf0l+xh3vHJjLoYTM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=BLBvfjbGmkYx2JKf2TI+gzDX4ZsWq3IzNTsng421LaMnMMr2l9LIu8tekq3ES24kg
-	 Cy4y91IKXeyZ63nUHg+g/OkZRq43AlsNZhps/y8nLTfwFQB3XyXIfxy71zzgupUdHD
-	 3w7aqiPBBNie5GdmzIVup2qgnr8NrGy5qUcCRbnb8VUKyVsfwDWRHxWKUb6vOX3zOq
-	 huUclHjuWxETUdXAi1bp+9DgRZBWChMowI9i3rjHc4qDMRAwgzqk8vuC9r4UeduwPp
-	 oReXNIFIxZnA2SFPH+vHmYoKWgCjhANPv1pJeobRvg/8XjvKoMI7yDAO+LD+0t9f63
-	 59nDjOTGseo7A==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-Date: Sat, 27 Sep 2025 16:03:42 +0200
-Subject: [PATCH net-next v2 3/3] net: airoha: npu: Add 7583 SoC support
+	s=k20201202; t=1758981885;
+	bh=5xdEua8X8l/TAMdd3xOutBOvPgdsHiI9AwIPUbLnkgk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=mPG+/srCImPh5QR9bZ9ZXp2LsaNb1zictrvurQ+3Or6t7dHS33eOFK0zdJ9XDWKhO
+	 R/siSuyDQXkMoqOwJK3M6ltqAc/sitkxoCKszvLgpd5GuO7IQqGZ6Wnvyjw72Jvty2
+	 mbZFXiUxxBrRaR16zslzrMC1D8y9qrvmMh9Ojj04mgy+9TIUDPH1qu9hnnVAyvFm2T
+	 XHWkrB8h/Xehq1PO5bH/lVDFUVqDX77Pr7DN4EsLQQI4GqEHS0v0ib2q/FssC5icRX
+	 28cBXYvZTnrWs+9kFfADDFOKO3w2VgEyUpD6igUGVZFrTSsqyr3QxT7SOztQWkolTP
+	 vTi6bFVlw7iUg==
+Date: Sat, 27 Sep 2025 15:04:39 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Petre Rodan <petre.rodan@subdimension.ro>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
+ Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 07/18] iio: accel: bma220: move bma220_power() fct
+Message-ID: <20250927150439.34906075@jic23-huawei>
+In-Reply-To: <CAHp75Vc4TUu497JMuU0-bU0aqew9vUXLTDqDoqLMLkAC43Qv9g@mail.gmail.com>
+References: <20250913-b4-bma220_improvements-v3-0-0b97279b4e45@subdimension.ro>
+	<20250913-b4-bma220_improvements-v3-7-0b97279b4e45@subdimension.ro>
+	<CAHp75Vc4TUu497JMuU0-bU0aqew9vUXLTDqDoqLMLkAC43Qv9g@mail.gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250927-airoha-npu-7583-v2-3-e12fac5cce1f@kernel.org>
-References: <20250927-airoha-npu-7583-v2-0-e12fac5cce1f@kernel.org>
-In-Reply-To: <20250927-airoha-npu-7583-v2-0-e12fac5cce1f@kernel.org>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Introduce support for Airoha 7583 SoC NPU selecting proper firmware images.
+On Sun, 14 Sep 2025 15:05:47 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- drivers/net/ethernet/airoha/airoha_npu.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+> On Sat, Sep 13, 2025 at 6:40=E2=80=AFPM Petre Rodan <petre.rodan@subdimen=
+sion.ro> wrote:
+> >
+> > Move bma220_power() fct before bma220_init() since it will make the
+> > next patch cleaner. =20
+>=20
+> ...
+>=20
+> > +static int bma220_power(struct spi_device *spi, bool up)
+> > +{
+> > +       int i, ret;
+> > +
+> > +       /** =20
+>=20
+> It's not a kernel doc, do not inherit the mistakes from the past.
+Agreed.  To keep the series clean I'd do a cleanup of all incorrect instanc=
+es
+of this as a precursor patch.  Then these moves become cleaner.
+Otherwise we have a whole load of patch descriptions with little
+notes saying 'and fix incorrect kernel-doc markings' and that just
+muddies the water!
 
-diff --git a/drivers/net/ethernet/airoha/airoha_npu.c b/drivers/net/ethernet/airoha/airoha_npu.c
-index 41944cc5f6b062129528e9357511fd9e05cbe1e6..68b7f9684dc7f3912493876ae937207f55b81330 100644
---- a/drivers/net/ethernet/airoha/airoha_npu.c
-+++ b/drivers/net/ethernet/airoha/airoha_npu.c
-@@ -16,6 +16,8 @@
- 
- #define NPU_EN7581_FIRMWARE_DATA		"airoha/en7581_npu_data.bin"
- #define NPU_EN7581_FIRMWARE_RV32		"airoha/en7581_npu_rv32.bin"
-+#define NPU_AN7583_FIRMWARE_DATA		"airoha/an7583_npu_data.bin"
-+#define NPU_AN7583_FIRMWARE_RV32		"airoha/an7583_npu_rv32.bin"
- #define NPU_EN7581_FIRMWARE_RV32_MAX_SIZE	0x200000
- #define NPU_EN7581_FIRMWARE_DATA_MAX_SIZE	0x10000
- #define NPU_DUMP_SIZE				512
-@@ -622,8 +624,20 @@ static const struct airoha_npu_soc_data en7581_npu_soc_data = {
- 	},
- };
- 
-+static const struct airoha_npu_soc_data an7583_npu_soc_data = {
-+	.fw_rv32 = {
-+		.name = NPU_AN7583_FIRMWARE_RV32,
-+		.max_size = NPU_EN7581_FIRMWARE_RV32_MAX_SIZE,
-+	},
-+	.fw_data = {
-+		.name = NPU_AN7583_FIRMWARE_DATA,
-+		.max_size = NPU_EN7581_FIRMWARE_DATA_MAX_SIZE,
-+	},
-+};
-+
- static const struct of_device_id of_airoha_npu_match[] = {
- 	{ .compatible = "airoha,en7581-npu", .data = &en7581_npu_soc_data },
-+	{ .compatible = "airoha,an7583-npu", .data = &an7583_npu_soc_data },
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, of_airoha_npu_match);
-@@ -762,6 +776,8 @@ module_platform_driver(airoha_npu_driver);
- 
- MODULE_FIRMWARE(NPU_EN7581_FIRMWARE_DATA);
- MODULE_FIRMWARE(NPU_EN7581_FIRMWARE_RV32);
-+MODULE_FIRMWARE(NPU_AN7583_FIRMWARE_DATA);
-+MODULE_FIRMWARE(NPU_AN7583_FIRMWARE_RV32);
- MODULE_LICENSE("GPL");
- MODULE_AUTHOR("Lorenzo Bianconi <lorenzo@kernel.org>");
- MODULE_DESCRIPTION("Airoha Network Processor Unit driver");
+Jonathan
 
--- 
-2.51.0
+>=20
+> > +        * The chip can be suspended/woken up by a simple register read.
+> > +        * So, we need up to 2 register reads of the suspend register
+> > +        * to make sure that the device is in the desired state.
+> > +        */
+> > +       for (i =3D 0; i < 2; i++) {
+> > +               ret =3D bma220_read_reg(spi, BMA220_REG_SUSPEND);
+> > +               if (ret < 0)
+> > +                       return ret;
+> > +
+> > +               if (up && ret =3D=3D BMA220_SUSPEND_SLEEP)
+> > +                       return 0;
+> > +
+> > +               if (!up && ret =3D=3D BMA220_SUSPEND_WAKE)
+> > +                       return 0;
+> > +       }
+> > +
+> > +       return -EBUSY;
+> > +} =20
+>=20
+>=20
 
 
