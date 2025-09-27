@@ -1,130 +1,97 @@
-Return-Path: <devicetree+bounces-222101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FCEBBA5E4C
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 13:20:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D944BA5E7A
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 13:48:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85E7C188B435
-	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 11:21:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D17704A7A35
+	for <lists+devicetree@lfdr.de>; Sat, 27 Sep 2025 11:48:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB4042DF13E;
-	Sat, 27 Sep 2025 11:20:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B912F2BDC37;
+	Sat, 27 Sep 2025 11:48:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dqaGjjH6"
+	dkim=pass (2048-bit key) header.d=kael-k.io header.i=@kael-k.io header.b="a5Co6tQp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4E5D2D6E6E;
-	Sat, 27 Sep 2025 11:20:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741DB2AD25;
+	Sat, 27 Sep 2025 11:48:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1758972031; cv=none; b=EXLj5tpzrg0NB21fThYAfxFT34Khz/LWtE0UCx1UHxWFzdPNAUpjZgswjbD14Iv3Rm7IoB6g9FP8GjN5gPLnmE0cw8HAHtj0XWRW7OKuJvpcYo939up+LEqWQlAuKBL9uoOGQMPlkTA6I9GXWs993xgac373UX40zz/1wJJui08=
+	t=1758973731; cv=none; b=VIVeBy8guqLqHHiFEwGhlMRGAfUs28sgd9c9KkcJInZ4/3d69Xuwb5ZNk+gF/DoM/yspYtyarlre+Ns47YFmmz9rrl5xMKYVagEZp/E6X1Ra6PZ7qG167SKYkPvTO3j6bW4ZziUyhSSpPWahhY+9wOLtV/GpEPItCwUToEr+dyc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1758972031; c=relaxed/simple;
-	bh=PRorwxyPKIOq1HpgXs6bBnAwowA5ZYf8Untk48TuCTc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=I/l5MuSejZThScYu6zJdy227kCAh+lPyQx7/o18pY45XEzxxFHm+vZa9DDuSvU9wBtAlMQSX5Bopupib8t+dxqiMEQkKzsGr4fd5CXKiypfKuyAcJZLYx+7vcUlShbXpylrXhcJcPFJOqU+UQ9qs+diNseqNOqS1yzOm3t1Oil4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dqaGjjH6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 56F2EC4CEE7;
-	Sat, 27 Sep 2025 11:20:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1758972031;
-	bh=PRorwxyPKIOq1HpgXs6bBnAwowA5ZYf8Untk48TuCTc=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=dqaGjjH6FIEqyEABSgMctM76QpH9QiRGFnosxDUeGz3XqjpkbG6V8Im/D8E0CG4c9
-	 TuUN+OOkjnqEinFRvGB9NYiQYzPbmLCsKGyDcAVg5J8mBWACffEB9Ykl3hwaVh7QL3
-	 c2R5ToKCiTjvNmoWjRJ6n1sw/NGT1WlZGzleTci84BlB7o/jwfXt/CboD1U6PgvsCO
-	 9tE72dOClmuHwKWMk1g3vlEIcbKToMPWunR+5yomnY7EtyxbwAVMSVax32lhSXzuHZ
-	 JRlIUPLYJ1VVqao+ZQ6OBwp2Tmm729mplm5/SEpuETc80WzQy8DFRdV/DlvYcYMsLX
-	 xkGH/ztlyEKiw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B04ECAC5B8;
-	Sat, 27 Sep 2025 11:20:31 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Sat, 27 Sep 2025 13:20:28 +0200
-Subject: [PATCH] arm64: dts: qcom: sdm845-oneplus: Correct gpio used for
- slider
+	s=arc-20240116; t=1758973731; c=relaxed/simple;
+	bh=cjJHS/zkt0CU7rTn0fUKN9KkeAaEWmLa0/FIB9UVcVc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gln31vQljQQBXA3MWKDf7q6tmWzavK7d33ZVX1dD16B9Rronr4f/aqpNj7/WzKvCYLAdq8PyBBV2kZCLldqrXqCcgzX/CdVdePGSSUxyj9LfXEI6itkV208wpeK7ZuMFDrVm/I6enpx3Cv1NrKJ8N5OLLHRe5+SxjpPzI3ZrZGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kael-k.io; spf=pass smtp.mailfrom=kael-k.io; dkim=pass (2048-bit key) header.d=kael-k.io header.i=@kael-k.io header.b=a5Co6tQp; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kael-k.io
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kael-k.io
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cYm1n3Ykrz9shx;
+	Sat, 27 Sep 2025 13:48:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kael-k.io; s=MBO0001;
+	t=1758973725;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=nZpHKe82XIjZTyoR1Mn5EXgvHGihkX0jvH66zAs3RPI=;
+	b=a5Co6tQpKCTN2d3PQnUL5T5CLBw2H2MSZqJUFtSpFiM59eMyb0mGQVApnMGjljzpca0CDq
+	MSm+oH37FXU+X0KwOH52EMwROyky5IBZEaUNftw52muTqHgegVEjv6hlc8wgS4fcK1n2Yy
+	cCfLAX51nYdIUPK+EaPpCGDTF2ra11XwChDU2OpH1otrjfrX7EV5K3P+TT4NeKJpcnAH4F
+	DBKeFv5HOs12grUpEp6GehtBtYlR+8CLZ7yvBzt8MsZ8aUj1xSoksZD7/fNPojdqdKFazv
+	Vmn9+Y1yvoYOOZenj05BEoFPu8tRP/x18qcS5znEF3PSSAsib646QlW7nwEZhA==
+Date: Sat, 27 Sep 2025 13:48:22 +0200
+From: Kael D'Alcamo <dev@kael-k.io>
+To: Rob Herring <robh@kernel.org>
+Cc: Olivia Mackall <olivia@selenic.com>, 
+	Herbert Xu <herbert@gondor.apana.org.au>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: Re: [PATCH v2 0/2] dt-bindings: rng: sparc_sun_oracle_rng:
+ convert to DT
+Message-ID: <f6jhixs6xfwg4mk2bm4pvexfxgtu52ic5yubzyxxo57wvhyg2n@fjbzpum4zoum>
+References: <uprke6fujhmckymlpy6oskecol4awhqyroqlg25tprmhnkeyy6@ztozdrlmeotp>
+ <20250924141247.69323-2-dev@kael-k.io>
+ <20250926205301.GA1448549-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250927-slider-correct-v1-1-fb8cc7fdcedf@ixit.cz>
-X-B4-Tracking: v=1; b=H4sIAHvI12gC/x3MQQqAIBBA0avIrBPMFLOrRIvQqQaiYowIxLsnL
- d/i/wwJmTDBIDIwPpToPCraRkDY5mNFSbEatNJWee1k2ikiy3AyY7hl7Izxqjcuegs1uhgXev/
- hOJXyAXsVlF5gAAAA
-X-Change-ID: 20250927-slider-correct-d34490847d95
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Casey Connolly <casey.connolly@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Gergo Koteles <soyer@irl.hu>, 
- David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1235; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=khpBYuHNK3gqhl7+t9U8Ea2FmJkEV2t39lvpmJj2DM0=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBo18h+p2HI2zxKPnvC/Vj6ayFsg9PhzbcgnfCyI
- TFmmuL+5veJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaNfIfgAKCRBgAj/E00kg
- cleBD/4t8nv6PNKKJ1R1a3L3W7GPVE7NqprA07qLI982TV1KecZ5oxkT+HXQm+Z9EJrqipWeoPZ
- 3SFjlZdclKIN+R3PQSu24LQ7+KLy+MfC6CZ1bvECPod50WGMqprigBp9j0YnUv3dwZdEUUI+5JR
- 5KwaDwJ/nZCqMKYP2HekCaJpRbLc4KrH97O12BR8Ggkuhochlfv4ONxNtlGIV8sd5u55NZCbo6a
- R3CyacztpUNWS6ySoz31a7jrqSjv37kXespgkYTEuwqKXQIKHFf72crp62dTnKLlt9qZsYIdEFT
- Sk5pl6Hp78BpbkOimGE8KBDRjEBuvgzg1rV19Rmno1Jl+peO0st59ApSHnV2xlgbU1w7Qqpxoqz
- /6czPfGmSi9Fy3BrknzPbBpPsIWTdQNZ2aDLWx1DZJqDCfprgK07TY+H3UCGykdF+CxZzi895jG
- eBVbw3j8UiE2vgXflxsjvsnhLcatsh/y8weh5V7f0xHBJ6s/G7JCkLvKMEvL9e08WHCC5jmJ8cO
- JC5BazebyAhfbmkg6veg0Buwtie1o43m28TOlNIK4XUwTK5mJGbP8/tvJ7Ac6lC5717WORe37mZ
- W72KrWl4q8LCCYrROE/kRgrU4aQgdzAKydNP+GmZGmnKLDVsITP8nKhAZTNmgN5opyEVgkWY4rk
- L3+2ys3vbS2rQbg==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250926205301.GA1448549-robh@kernel.org>
 
-From: Gergo Koteles <soyer@irl.hu>
+On 2025-09-26 15:53:01, Rob Herring wrote:
+> On Wed, Sep 24, 2025 at 04:09:18PM +0200, Kael D'Alcamo wrote:
+> > Changelog v1 -> v2:
+> > * updated vendor-list by loosening the regex for names without prefixs
+> > * removed extra example in DT binding
+> > * updated DT binding filename
+> > * updated DT binding title
+> > 
+> > Kael D'Alcamo (2):
+> >   dt-bindings: rng: sparc_sun_oracle_rng: convert to DT schema
+> >   dt-bindings: vendor-prefixes: updated regex for properties without a
+> >     prefix
+> 
+> The reported failure is because you need to reverse the order of the 
+> patches. Normally Herbert would take it, but I went ahead and applied it 
+> reversing the order.
+>
+I'm glad to read that, thanks you for the feedbacks.
+> 
+> Thanks,
+> Rob
 
-The previous GPIO numbers were wrong. Update them to the correct
-ones and fix the label.
-
-Fixes: 288ef8a42612 ("arm64: dts: sdm845: add oneplus6/6t devices")
-Signed-off-by: Gergo Koteles <soyer@irl.hu>
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index dcfffb271fcf3146aeabda8fc19e61b456b76887..51a9a276399ac7de42f4269ace257120236fa81a 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -803,8 +803,8 @@ hall_sensor_default: hall-sensor-default-state {
- 		bias-disable;
- 	};
- 
--	tri_state_key_default: tri-state-key-default-state {
--		pins = "gpio40", "gpio42", "gpio26";
-+	alert_slider_default: alert-slider-default-state {
-+		pins = "gpio126", "gpio52", "gpio24";
- 		function = "gpio";
- 		drive-strength = <2>;
- 		bias-disable;
-
----
-base-commit: 262858079afde6d367ce3db183c74d8a43a0e83f
-change-id: 20250927-slider-correct-d34490847d95
-
-Best regards,
--- 
-David Heidelberg <david@ixit.cz>
-
-
+Kael
 
