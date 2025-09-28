@@ -1,70 +1,87 @@
-Return-Path: <devicetree+bounces-222190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6D74BA6A8B
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 10:06:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B2FEBA6ADA
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 10:22:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4BE347A94D6
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 08:04:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7E821898385
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 08:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC3CE29E0E9;
-	Sun, 28 Sep 2025 08:05:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE192BE7AA;
+	Sun, 28 Sep 2025 08:22:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="zAJe62i6"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="oKHHqryO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbgau1.qq.com (smtpbgau1.qq.com [54.206.16.166])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A83B114B08A;
-	Sun, 28 Sep 2025 08:05:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.206.16.166
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65C78221554;
+	Sun, 28 Sep 2025 08:22:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759046758; cv=none; b=gQcp3igCmyZ0aShjH1CTbk4ifsWOgOI67ofWy41cCG1AxLTEzFMsqfSfp1pxwdCa47V4U5Qap1cAGP92l66uS5RSY5cprnnM4SAZkKH3WiS9W1Na2z0hwYV/UlifKsH3Ci/UOipWZ6Ah4duYGSvYk0oGVZIoTxTkj5kgBTGITUY=
+	t=1759047726; cv=none; b=HiPdSRyujKyv3FJw/kXoBWdlvRE5eQb4WcSnZbBs7Ds3wvCTzqGosok+DVjqbJPPVHnsH5YdLyjArZkyeMOY9/9rdIYXspjgzG6lvG+CZX8ttZx8vdfGzvic8SbrT7BUV6wBYPjMnKjWLadWTzIl/r6fwaZTTxnqcpoERPplr9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759046758; c=relaxed/simple;
-	bh=+hPwyKvXo5cIFisxD0X+VGQkAAJQ9LlZh1ATQ6RWhk8=;
+	s=arc-20240116; t=1759047726; c=relaxed/simple;
+	bh=i2PZensdRzslR5Rb1unZYUP8j0DSbwhJ1xZrEK0zdjY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WJ+BZ6JJqDUejXcmTuqTV+yGRWheg3OBZjgVBWsPrvA4vDdfZpaT43YFmg1FsP/Aog1eLDqzV8sqERrBhbr7y9jkDjh5xhiYfPMIp27RgOedZnd/MSJ5guWr4j0AcQcTP57eIxQWQfbkOC+9fM5sPlneWOMZw4BamDepfEf90aQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=zAJe62i6; arc=none smtp.client-ip=54.206.16.166
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1759046733;
-	bh=XydPf2hr5/LRillZoWelSgipJxHnxGk3kjMNGJt/nPE=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version;
-	b=zAJe62i66neIscKAMAFNC62viSwONrq9JVNUIDEeXatHfPfuusRclOfWc+LY2Ny3b
-	 d07TK6EIDa7ozzoOX+EUOBjt3ImaQwYXEdCVsja/x1ckRzxwiDEOKBx8DtK9mhgtLK
-	 cpuhNKTYhNYHK76QR6AycxlTz6eSNzFv7fC1W03U=
-X-QQ-mid: esmtpgz12t1759046731te1cd0686
-X-QQ-Originating-IP: XgNb6m+8gRGQNrsjYykMtwnmjmXfp6Q8mOdpagPnEDI=
-Received: from = ( [61.145.255.150])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Sun, 28 Sep 2025 16:05:29 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 15804236060269286392
-EX-QQ-RecipientCnt: 15
-Date: Sun, 28 Sep 2025 16:05:29 +0800
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-To: Yixun Lan <dlan@gentoo.org>, Troy Mitchell <troy.mitchell@linux.dev>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=V0ZV5UBuLf5KfDCZCdQbLH1ntznLuJi8ZlsvfJGQ3Mj5IH/0G7W7pKgQB5Z9Zxqqvl6Qmqij5TR0GMb5oLf1ekABv9Jh5oo5qJoKYY5Qp70Jmb4S38UUqS1De8eVzCGUjKtDwhqbHNwmZCFFFQ/Yj0eAmDxhpuUVMbDbxGbRLuk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=oKHHqryO; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=h4AdV+djV+yTy0JX/TnMvSNKHPhRFNpLrO26oQgiLoA=; b=oKHHqryOllCf4DGRx+mmOcOyYq
+	qlL7l2DsPeXL7X9WQUyqSYuEtoQn4MyLneUOunlCH98RltxCZi4tAe6eaGjSBFD8c8C5WxbG4RbgQ
+	71qVakVU13nw89eu/EaWEEzCptoyRj321RKwY0HCjwsUfaBCohb0GsMexIBpixwfh/iGlDvRCM+tg
+	0EuVurCzgNP9xRX45J8KIo7ZcYNWb4o3rCf6ERoS7W27eiDbW1VcnmPKWjeTIHfN/eMRaJcvgBx6d
+	ClmeBe0V5/qeQ3LXj984L1UvWEHENh6jDupX0gbWL6us97wJUkbdq84/koUNhOy+ryxJffEPe1Dh8
+	9gwUPoOg==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:49782)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1v2mfE-0000000057R-3ezc;
+	Sun, 28 Sep 2025 09:21:48 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1v2mfA-000000002QE-1riS;
+	Sun, 28 Sep 2025 09:21:44 +0100
+Date: Sun, 28 Sep 2025 09:21:44 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Gatien Chevallier <gatien.chevallier@foss.st.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Yangyu Chen <cyy@cyyself.name>,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] riscv: dts: spacemit: Add MusePi Pro board device
- tree
-Message-ID: <3074FC8521909735+aNjsSWwkd1aH-moh@kernel.org>
-References: <20250928-k1-musepi-pro-dts-v1-0-64d0659dfdbc@linux.spacemit.com>
- <20250928-k1-musepi-pro-dts-v1-2-5efcca0ce3ae@linux.spacemit.com>
- <20250928080003-GYB1344940@gentoo.org>
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Christophe Roullier <christophe.roullier@foss.st.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Tristram Ha <Tristram.Ha@microchip.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 2/4] net: stmmac: stm32: add WoL from PHY
+ support
+Message-ID: <aNjwGHrefA5j3dOp@shell.armlinux.org.uk>
+References: <20250917-wol-smsc-phy-v2-0-105f5eb89b7f@foss.st.com>
+ <20250917-wol-smsc-phy-v2-2-105f5eb89b7f@foss.st.com>
+ <aMriVDAgZkL8DAdH@shell.armlinux.org.uk>
+ <aNbUdweqsCKAKJKl@shell.armlinux.org.uk>
+ <a318f055-059b-44a4-af28-2ffd80a779e6@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,139 +90,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250928080003-GYB1344940@gentoo.org>
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: OZib3KF0u0PSFjQ+SEilOrivyJyHp3vgPJwyWPijs4lM1W6VnLouy/nd
-	+X0v5DmXKdjfti5/2hsG8HV50/nMGPz+FGP/8sL3Lu3ip17Rs3r6Ca2Qi5IwTOBguMrb4YZ
-	6chKtf02w4daoMD1Im0c2awAuCWz03mupqSWRkkLGImPMac8YwgL4huD7qHKVOx8l10AhOb
-	8z8LRQjn0GjzdPFhWpfR0Nt6nCGV05CS9iCCc9ccjXwK9n+Az/G7Ct8vKu+nSzLdZDFT+oa
-	BGL+amq+gQOgkEsv1CLvFR2lYczmDfzHHOL/6lNWSLsmefUA7DhFv855YDQ4L9XBQOLMVsZ
-	w2A7oQIJBzob9vVul/nHlkqDTNL72QKJ95dePX8LbaC/jG8zr5iok3fnwz4tOYkjTI7A+lr
-	hpS1E8VFaEBFJ+XFUY77FDX7ZxZWoqa/zh3j82d780jdRUqHty2DfUhUoUjsHjFdSVNaNyP
-	Hvuzm74QYCRiHsiPN0ytC/VNopL7bK5hf/JZO5p/Kl9v0XjLzvtGB8DSfvhNyXgX983PPL8
-	Px+xp+Pipd/b2vLhu74UGPYibx+c4zyy+7Vpo97oXiIlnLXvjQnPyvro3HpNuMRqjnsYj1R
-	zE8T6ORAH/5ctUsfjHUoZ9qqG8lNP7ui76XsWK7aDxuInN8fDOXkW0lY/p65tb+vmysD6rt
-	3RhPeFq5/p7nwqlcP5+AY+iZxN10DbSlhyzLfx1QIAtzTld1w6x1pfsvNaC8pwMT3L17h2R
-	nROE0J/ga8L+LKUwjR2WdGuVKRnWswMKcyhX8AZih2QWRwL5EoX4kRJKhmEdysjoEfpZ/fq
-	6aNRrNX6wRvtjXrXHAcXTTk15J3nC11a3Lomm6ZsHWxyFJq+dCfwJcTLlAeghbFGJTb1/yu
-	KabXgaUR6p/Y606InSXN+BV/qk2DPsckP9WSu8k+Pm1bglwKrtVroAXOcb88qxUSoY9NNrn
-	8hMSUtZO+3rL/JGudWXwRkqlEnYkVut5UEebUvUw98hXTkLC8PPSwwJ5Ys8Pc8Gaviblabt
-	zeYdjUMPf+bQFDYBbo420uS6Jaynk/sRXVvWbH2iKrnAVJRUmBTAyhPnKbcLXKFJi9LTAOb
-	t6/tfrP0YbObDmyPx88d8YMXzu0lywvKjiZQn8AwbVL+0X3oXb7KN55bYawaRxT2tSUkcR2
-	Sb2z
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-X-QQ-RECHKSPAM: 0
+In-Reply-To: <a318f055-059b-44a4-af28-2ffd80a779e6@broadcom.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Sun, Sep 28, 2025 at 04:00:03PM +0800, Yixun Lan wrote:
-> Hi Troy,
-> 
-> On 12:16 Sun 28 Sep     , Troy Mitchell wrote:
-> > From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> > 
-> > Add initial device tree support for the MusePi Pro board [1].
-> > The board is using the SpacemiT K1/M1 SoC.
-> > 
-> > The device tree is adapted from the SpacemiT vendor tree [2].
-> > 
-> > This minimal device tree enables booting into a serial console with UART
-> > output and a blinking LED.
-> > 
-> > Link:
-> > https://developer.spacemit.com/documentation?token=YJtdwnvvViPVcmkoPDpcvwfVnrh&type=pdf [1]
-> > https://gitee.com/bianbu-linux/linux-6.6/blob/k1-bl-v2.2.y/arch/riscv/boot/dts/spacemit/k1-x_MUSE-Pi-Pro.dts [2]
-> > 
-> same as patch 1
-> > Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> > ---
-> >  arch/riscv/boot/dts/spacemit/Makefile          |  1 +
-> >  arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts | 40 ++++++++++++++++++++++++++
-> >  2 files changed, 41 insertions(+)
-> > 
-> > diff --git a/arch/riscv/boot/dts/spacemit/Makefile b/arch/riscv/boot/dts/spacemit/Makefile
-> > index 152832644870624d8fd77684ef33addb42b0baf3..76b98096e2a46c3192651d6d66af7742f740c635 100644
-> > --- a/arch/riscv/boot/dts/spacemit/Makefile
-> > +++ b/arch/riscv/boot/dts/spacemit/Makefile
-> > @@ -2,3 +2,4 @@
-> >  dtb-$(CONFIG_ARCH_SPACEMIT) += k1-bananapi-f3.dtb
-> >  dtb-$(CONFIG_ARCH_SPACEMIT) += k1-milkv-jupiter.dtb
-> >  dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-rv2.dtb
-> > +dtb-$(CONFIG_ARCH_SPACEMIT) += k1-musepi-pro.dtb
-> please sort
-Oh my gosh..
-That's my mistake. I will fix it in the next version.
+On Fri, Sep 26, 2025 at 12:05:19PM -0700, Florian Fainelli wrote:
+> I like the direction this is going, we could probably take one step further
+> and extract the logic present in bcmgenet_wol.c and make those helper
+> functions for other drivers to get the overlay of PHY+MAC WoL
+> options/password consistent across all drivers. What do you think?
 
-> 
-> > diff --git a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..3791186ce47b88887eab4321dcd7035668e7f02d
-> > --- /dev/null
-> > +++ b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-> > @@ -0,0 +1,40 @@
-> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> > +/*
-> > + * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
-> > + * Copyright (C) 2025 Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "k1.dtsi"
-> > +#include "k1-pinctrl.dtsi"
-> > +
-> > +/ {
-> > +	model = "MusePi Pro";
-> this is a little bit short, how about make it "SpacemiT MusePi Pro"?
-Sounds good to me.
+The logic I've implemented is fairly similar, but with one difference:
+I'm always storing the sopass, which means in the wol_get method I
+don't have to be concerned with the sopass returned by the PHY.
+This should be fine, unless the PHY was already configured for WoL
+magicsecure, and in that case we'll return a zero SOPASS but indicating
+WAKE_MAGICSECURE which probably isn't great.
 
-> 
-> > +	compatible = "spacemit,musepi-pro", "spacemit,k1";
-> > +
-> > +	aliases {
-> > +		serial0 = &uart0;
-> > +	};
-> > +
-> > +	chosen {
-> > +		stdout-path = "serial0";
-> > +	};
-> > +
-> > +	leds {
-> > +		compatible = "gpio-leds";
-> > +
-> > +		led1 {
-> > +			label = "sys-led";
-> > +			gpios = <&gpio K1_GPIO(96) GPIO_ACTIVE_HIGH>;
-> > +			linux,default-trigger = "heartbeat";
-> > +			default-state = "on";
-> > +		};
-> > +	};
-> > +};
-> > +
-> > +&uart0 {
-> ..
-> > +	pinctrl-names = "default";
-> > +	pinctrl-0 = <&uart0_2_cfg>;
-> swap these two lines, for similar reason, see my comment here
-> https://lore.kernel.org/all/20250918133209-GYB1273705@gentoo.org/
-Thanks for this link.
-> 
-> > +	status = "okay";
-> > +};
-> > 
-> > -- 
-> > 2.51.0
-> > 
-> 
-> while you are here, I'd suggest to push as many features as possible
-> instead of this minimal DT, which say - PMU, emmc, ethernet should be ready..
-> (ethernet is in next, should show up at v6.18-rc1)
-Good idea.
-I think I should split these into multiple commits, right?
-Like, PDMA and EMAC should definitely be two separate commits.
+So, my new get_wol logic is:
 
-                                  - Troy
-> 
-> -- 
-> Yixun Lan (dlan)
-> 
+        if (phylink_mac_supports_wol(pl)) {
+                if (phylink_phy_supports_wol(pl, pl->phydev))
+                        phy_ethtool_get_wol(pl->phydev, wol);
+
+                /* Where the MAC augments the WoL support, merge its support and
+                 * current configuration.
+                 */
+                if (~wol->wolopts & pl->wolopts_mac & WAKE_MAGICSECURE)
+                        memcpy(wol->sopass, pl->wol_sopass,
+                               sizeof(wol->sopass));
+
+                wol->supported |= pl->config->wol_mac_support;
+                wol->wolopts |= pl->wolopts_mac;
+
+with:
+
+static bool phylink_mac_supports_wol(struct phylink *pl)
+{
+        return !!pl->mac_ops->mac_wol_set;
+}
+
+static bool phylink_phy_supports_wol(struct phylink *pl,
+                                     struct phy_device *phydev)
+{
+        return phydev && (pl->config->wol_phy_legacy || phy_can_wakeup(phydev));
+}
+
+static inline bool phy_can_wakeup(struct phy_device *phydev)
+{
+        return device_can_wakeup(&phydev->mdio.dev);
+}
+
+This is to cope with PHYs that respond to phy_ethtool_get_wol()
+reporting that they support WoL but have no capability to actually wake
+the system up. MACs can choose whether to override that by setting
+phylink_config->wol_phy_legacy.
+
+Much like taking this logic away from MAC driver authors, I think we
+need to take the logic around "can this PHY actually wake-up the
+system" away from the PHY driver author. I believe every driver that
+supports WoL with the exception of realtek and broadcom.c reports that
+WoL is supported and accepts set_wol() even when they're not capable
+of waking the system. e.g. bcm_phy_get_wol():
+
+        wol->supported = BCM54XX_WOL_SUPPORTED_MASK;
+        wol->wolopts = 0;
+
+with no prior checks. This is why the "phylink_phy_supports_wol()"
+logic above is necessary, otherwise implementing this "use either
+the PHY or MAC" logic will break stuff.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
