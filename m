@@ -1,105 +1,130 @@
-Return-Path: <devicetree+bounces-222237-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222238-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D882BA7505
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 18:45:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85DC6BA7511
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 18:57:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84CA8188B22C
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 16:46:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BBBA178A1C
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 16:57:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F1B724166F;
-	Sun, 28 Sep 2025 16:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B7822D9E9;
+	Sun, 28 Sep 2025 16:57:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="fnSQTksZ"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="xHuubiMS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 193C2241114;
-	Sun, 28 Sep 2025 16:44:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28BB19DF9A
+	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 16:57:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759077890; cv=none; b=W0ezBf6BZspv3c0vPmZ15RZ169S3EY8AjwaugdiLhoKpA4Aen3qXGKSHoATYD1ZxJu4gLG8hvz+BiqMcNxUa/yKQQjWr69hYw80BuZTybx6jzolA3qaYB6fXqAZzYnKu85oZWkD2K7/X2L4/7UNTK6CMIRe5IGU/zOhlYQpFl3A=
+	t=1759078629; cv=none; b=BeaZDk1u+4WmyUCkuOUIPufpRuHPSyNd74mWHsVCPATUTxvX9145oR3Kz15IbBqM5UcrYpOy60vOeVrm+Tbec30bIh+51E1iHSqbeC/ZqsHYhKy0LvVOjJwsouBwQYjOM5PedDPYZPpCSFkUbxEv007PLDcwrdeJgZBGGkoi49o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759077890; c=relaxed/simple;
-	bh=10YDFCmqhSIaFGh36KjtmIevVf+bR4XnXIxhpQUM1O0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=TcfVb+beJHSkgXdRc5SHxaaBDOpyUgo4LI1pjP6UNttSuKC9M1AhXxJSZ7g36QerwEcCDjAVLNM6xsdOJZUshPy8fcg6ZRTaVhRlv0ZwXQBcTMM87xZLNEg56fjL2eXJuYs3i5tjXZ5jr0ljYSf1t/55z/X7cosFUrha0DLJuQ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=fnSQTksZ; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id BD41925E97;
-	Sun, 28 Sep 2025 18:44:47 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id AFitsIsOZg1D; Sun, 28 Sep 2025 18:44:47 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1759077887; bh=10YDFCmqhSIaFGh36KjtmIevVf+bR4XnXIxhpQUM1O0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=fnSQTksZen4L2feUOOQehH6Vr/eKqGVTLv3GSh8M8kk9jkiYIUFtx9t2i6+6VCBOJ
-	 mPF1KKGBhvykd5XagwcxKnlJtR6PTkR6hHnZgo5wcSe5/4TzhuEJa0Usu5YpgrMNc3
-	 UAmHbxyK4MnK72TefzOpOqZgNIL3ag8a9C2lrb6jHF+1UVwDIOAWdkSkYSOph2kkso
-	 Fd5h75+joCz2GCK+jhDtw93LcIrWvcjOf36can2f45iI8u3JujHnUU5N1Bw0dyjrWO
-	 EPL8cIayJJjaIGWQiZ2UosDHZqCRh8YaBCYxX0Yuu0ucfuP8daUIKHPTSHgXN93CQ3
-	 Cu4qvONpxKE+Q==
-From: Kaustabh Chakraborty <kauschluss@disroot.org>
-Date: Sun, 28 Sep 2025 22:13:58 +0530
-Subject: [PATCH 7/7] arm64: dts: exynos7870-on7xelte: add bus-width to mmc0
- node
+	s=arc-20240116; t=1759078629; c=relaxed/simple;
+	bh=xujErc0QSlYq7R2METgndt3Q6nhNzJsdH6KXtpfhUWc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hjCDbBlVLB//4YjESejrTM6jW2+HGsp2D9i7eyejTblRkzZIPdgq5ohP0s4O2Eg/aMn7hRTLWzutnBQmedefxYXXK8emxizNpnDEK7gCQvuIrVUpPQZ0UPBPcXOypPp+6ye+w+gTeOb65sL2KglHKHxR7UPduvUzkiPXklRUeMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=xHuubiMS; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cZVpy4LP0z9sST;
+	Sun, 28 Sep 2025 18:56:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1759078618;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=q3CPsXihGUBBwniCQJtpfCea9ZS+16bumyYVi9msdPY=;
+	b=xHuubiMSI1U7n2AhL8UbwNP5D24fqsTalz73+pLetWsJpayvL0H7U0vNPv/fXMsI76dT9Y
+	BA0jodO4DTAljzh5/955NxjTofoDmHZfTNUOzlkDS3J171LiYOLyY2SDUBvNsaq1Zwh5zL
+	6JrhLKl4TghKRUMVY2QndMe/TNc8ZCO/SBDtDQGLdUowAIqGUQIJk4QRKEjbHGiHF0Kkkb
+	ssTiWE8H09QNuZwWRR85eCbezsFXR7izc2l8Wz8JgyHv/B3EUqnTEKNDmL32N1AHcrAcSI
+	mz6nzP+67SteciLT+nVZFgYGAuATIL2UgbA4E/I23JKuFiecI4PRluLDgCXXUw==
+Message-ID: <a8d62ed4-38c7-4ff7-a283-3708761d94a7@mailbox.org>
+Date: Sun, 28 Sep 2025 18:56:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
+To: Rain Yang <jiyu.yang@oss.nxp.com>
+Cc: airlied@gmail.com, boris.brezillon@collabora.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ p.zabel@pengutronix.de, peng.fan@nxp.com, robh@kernel.org,
+ s.hauer@pengutronix.de, shawnguo@kernel.org, simona@ffwll.ch,
+ sre@kernel.org, steven.price@arm.com, tzimmermann@suse.de
+References: <20250904172019.58e5f589@fedora>
+ <4147d10f-fb54-4f1b-ac1b-58cf657a3aeb@mailbox.org>
+ <aMk1CISrn2_p0qzJ@oss.nxp.com>
+ <c34dc4bc-de12-42fc-aaf5-50474dc53042@mailbox.org>
+ <aMoTtr9KmdrgDUiE@oss.nxp.com>
+ <c1a45cfa-a249-4782-b5c8-0ee2d173fc97@mailbox.org>
+ <aMrDKkIoZvAlBD8d@oss.nxp.com>
+ <609113fa-6af3-4e7e-b47a-45b3152d8581@mailbox.org>
+ <aNZaatnVRRkaPrnD@oss.nxp.com>
+ <32fffaad-7738-4fa6-80cc-2f8eba7ca099@mailbox.org>
+ <aNjwyIgs9fzWiprq@oss.nxp.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aNjwyIgs9fzWiprq@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250928-exynos7870-dt-fixes-v1-7-a40e77a73f16@disroot.org>
-References: <20250928-exynos7870-dt-fixes-v1-0-a40e77a73f16@disroot.org>
-In-Reply-To: <20250928-exynos7870-dt-fixes-v1-0-a40e77a73f16@disroot.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Kaustabh Chakraborty <kauschluss@disroot.org>
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759077839; l=1070;
- i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
- bh=10YDFCmqhSIaFGh36KjtmIevVf+bR4XnXIxhpQUM1O0=;
- b=dYfyEMZutPlSnaBwITCzjzkqCBfcxWuIh8aG6HaCf3O6etZGvhshaT11+qmo01N2DbO9/yV8J
- aVpO5QJ4hYvCFTbLuwVPQKYjAfVQRtEtxOGAYDRZvYzp30kyRTKsqCh
-X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
- pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
+X-MBO-RS-ID: 09c0d8297a0a9a440e3
+X-MBO-RS-META: axcuj6fk8qs9i65ufsbua5pb77z3odbx
 
-Add the bus-width property in &mmc0 node. The Exynos DWMMC driver
-assumes bus width to be 8 if not present in devicetree, so at least with
-respect to the Linux kernel, this doesn't introduce any functional
-changes. But other drivers referring to it may not. Either way, without
-the bus-width property the hardware description remains incomplete.
+On 9/28/25 10:24 AM, Rain Yang wrote:
+> On Fri, Sep 26, 2025 at 03:32:46PM +0200, Marek Vasut wrote:
+>> On 9/26/25 11:18 AM, Rain Yang wrote:
+>>
+>> Hello Jiyu,
+>>
+>>>>> as the 0x4d810008 is a write-once register and whose operation has been moved into the SM side,
+>>>>> so please drop the reset change.
+>>>>> can you also change the label of the gpu node from gpu to mali like "mali: gpu@4d900000",
+>>>>> as the internal driver use mali label to control the thermal up/low limitation.
+>>>>
+>>>> I updated all of the AHAB container, imx-oei and imx-sm components, and the
+>>>> reset controller is no longer needed indeed.
+>>>
+>>> thanks, please update the gpu node label if possibly.
+>>
+>> Which label do you refer to, and which one would you prefer to have there ?
+> 
+> "mali: gpu@4d900000", not "gpu: gpu@4d900000".
+All of imx*.dts* use gpu: or gpu2d:/gpu3d:/vpuvg: for the GPU label.
 
-Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
----
- arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts | 1 +
- 1 file changed, 1 insertion(+)
+I see allwinner does use mali: label, but maybe it would be better to 
+stay consistent with the i.MX labels ?
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts b/arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts
-index 66413a9506276cca8925e644c0e857fb5c48112d..87549e9560643cd0692ce4a9b2c5cdff80b21173 100644
---- a/arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts
-+++ b/arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts
-@@ -463,6 +463,7 @@ &mmc0 {
- 	vmmc-supply = <&vdd_ldo26>;
- 	vqmmc-supply = <&vdd_ldo27>;
- 
-+	bus-width = <8>;
- 	fifo-depth = <64>;
- 	samsung,dw-mshc-ciu-div = <3>;
- 	samsung,dw-mshc-sdr-timing = <0 4>;
+Also, variants of gpu: label seems more popular:
 
--- 
-2.51.0
-
+linux$ grep -hro '[a-z0-9_]\+: gpu@' arch/ | sort | uniq -c
+       3 adreno_gpu: gpu@
+       1 bb2d: gpu@
+       1 gpu2d: gpu@
+       1 gpu3d: gpu@
+      80 gpu: gpu@
+       4 gpu_2d: gpu@
+       1 gpu_3d0: gpu@
+       4 gpu_3d: gpu@
+       6 gpu_mem: gpu@
+       1 gpu_reserved: gpu@
+       2 gpu_vg: gpu@
+      17 mali: gpu@
+       1 v3d: gpu@
+       2 zap_shader_region: gpu@
 
