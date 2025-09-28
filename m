@@ -1,118 +1,180 @@
-Return-Path: <devicetree+bounces-222228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7070BA7199
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 16:31:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 980AABA741C
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 17:29:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EAC63BA6C6
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 14:31:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D1C13A99FA
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 15:29:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA3671C861E;
-	Sun, 28 Sep 2025 14:31:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D437233723;
+	Sun, 28 Sep 2025 15:29:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AVM6Wzkn"
+	dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b="BeefcRxa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F322613B284
-	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 14:31:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37FA4185B67
+	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 15:29:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759069898; cv=none; b=q5/Cx/Xx0wLN6edmimESE+SyZNKN0NXyI1SkMEhPrhikd/Dse0HJPLaU8h9ka7RtfrtdiTwbRWVqyulBl6ziw7W9efJYykKwbQeuU47Nb3CmeCP6ZGfimeblTCYeDS0rtnl+EL9ixIkEfldu7y4GqP6aHeCRvsQajlDO12znHi4=
+	t=1759073367; cv=none; b=oZD8svp8rKRV4UoADiFYjqNORL3ZSwnik4ujzXJMhtnGWyMToEx2fDVkDBspVKZi6CNny9Wgi+bXXsAcsUUB2I3yQn4hdT6QY/yDoJzy3puQcOqCs5znWEPke4LME9nZAJNcv0LgoGWnlopf6sLzQveiOYrsPhjsC/N9QDrpOeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759069898; c=relaxed/simple;
-	bh=ItFmGJIZUsjauXk4IBmkjqXUpPsyfWZYBQyF9nT8sJ0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bOP39lIciVB421jFIIEghmrT97rvXtLjtEgBb/bV5WokZbWqw9sgjl8O615gI8qoLbuAa8iuD+IEop6Ob2N8ru8e8HJO+QydvT5tWVaZKgKrWOaElUh50WA3cOb4mLLum4FSGQjnTL032l2Fz6T6h2qateBfCsJ1KV89RrVjrrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AVM6Wzkn; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3f44000626bso2220650f8f.3
-        for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 07:31:36 -0700 (PDT)
+	s=arc-20240116; t=1759073367; c=relaxed/simple;
+	bh=gCtcrpyj3/nvZp3sqKvIbRgfCq9JDmLNiBiXQpYqjl4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aAfazoXIl5hoAKreMUcLeD8eYQsQOoF6QSfvcgmUDkErMhB3KmeiBoyxZU6ywrFDcbscPGlbuHF6UIBqToIN5lyJqcIbfyVVNffQt0ybTn8UXWDZByW4fTWL1aZaaxyMkbWdk93ZByOpnqe5oUvJi1msLabazwAktE1aDhRsqLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu; spf=fail smtp.mailfrom=g.harvard.edu; dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b=BeefcRxa; arc=none smtp.client-ip=209.85.160.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=g.harvard.edu
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-4dac61ed7a5so30810361cf.3
+        for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 08:29:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759069895; x=1759674695; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8lk5CQ9hpHLxRgqfNWWxK3LXxIXI2E6NJZOo1XKYj1M=;
-        b=AVM6WzknhP+0ISXCbntlC6Ck0CF/stDSTCjuJBJSF41OU20Kgq9DYb/pcka8w7OcUf
-         3JrgnB7ky2DapbZdUuUH/3U6KvrzlxC0jOqSlVSuhb8Y4RCYkgWk9/GYJ2YyLFuFvBAp
-         EvS8JRux4xIo8AbNbB54pjId4w6Ejjdy1JadGImahFQFi3SdfoHMvlC1B1aheQei31cq
-         okrYuWddD7xF+8MIV6kLcTemK+5Ri9MZJPd3rCgyUvbe30DV99zor9sivAckIJwqthzA
-         Bzu6P5hB2HDA/8tXrl0u2O/cUrSBwJwD35pvFvGPVhrUka0Lr9pCLljpwNFwlwh8kFjF
-         CiGg==
+        d=rowland.harvard.edu; s=google; t=1759073364; x=1759678164; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=o8hCVZpujpi/X6wfV8yzOK80VKQjfoVRfGXWjYBx4ck=;
+        b=BeefcRxaLl+yYr4oO9fbY6w9/wKuWLGxqvh3msrha4pGon0WCCCEmQAURaWpPOFFQ0
+         NMJ1dRKiGYf4GTLWWjHKCTNZI4nZTC2EuoHkUgyfdAg/Hwdi5SJnXuH/aTRfunQtQti2
+         Dxm+AuZtec7aAntnhcijIfHE/KbXzEDWXz+9+ZolJG49FMhT50tJyf6BE3ZjdrteO9n5
+         /RxGubgNKKpT3A+T90BOjtBg5OKGg7jXZpJpMJe19gqCSiOE4AuPDGVkgxTJn8+r/Wd4
+         VrNbdd+COcZYrHRxYiakGgE2Fz6x7pqu89bck0/ptq+zbwPoxxVAZKecUYZ02H3AfX5U
+         h1QQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759069895; x=1759674695;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8lk5CQ9hpHLxRgqfNWWxK3LXxIXI2E6NJZOo1XKYj1M=;
-        b=KKev0aHovMwjRTWC1Yrxo+5EZcNwf5WCojbuLT38hOga/h6uJYoBm7hwNfLNuXvqD/
-         ago92OdreCl79aelZIHJdaFMTKa894CfJML4Ya07ESy+TXGxLgpzC40OyG2B/sttPP3D
-         VBEn70bNxsJd1esB89Wyl3PBbJdmhHIWnXx1dzHqytYg+7CcYw+CWLJRR5vb7s7rCfG/
-         VShnKM8z07OE88xxrVV41qT+88B5qsWdgeeVXO2evBiPUVmAw6CMWov/wnct4Q+gP3/+
-         dh8GCFbdMasUvsgrLFanUPkfsLE/BT4s1UzsFhwW+B8nGg6fqCDMPAcy5TOx17qfwO1T
-         J6dQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVtrU7SfOABF4fYLsevJs9XyWGp5ySIvOPvfI5CHyQnCdowp4OzGgHZc98tU/CeEdQ0CU3M+qAlOS+l@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOIEZ8c4tsH357WxOuOt+pLcHtZg8rNsoqq6uf4nw4/jI4GBI2
-	VM3o8QlLDPO6o/mgl4NKfhNwYKkjR5K0gBwReW9xms7nZqGQaVsplvdUArApqhkdZes=
-X-Gm-Gg: ASbGnctBIVw6m3B7xhV5MOFcaLsXSrW6Cs/HgBddV4u8tVlcYtsyXTiZmSdfi4R7Mha
-	m65bIsyGfkL4UEY7kEJJTZenqQLfheZOKKnbFAgVWEF/NrCz0Nob5B0HxfP8nTJJ79cAcwkqzIz
-	ZYVvBtYolU5683ARWY1zHeI0UeOfGce14F2OVPy7HMcC1Qsw8DxlF46t//Y847dGJKfROmPIL6V
-	UcvSBldihl5zE8NtNef02JzkUqcmpeKmKaqo5QL5eEruHM4pulTozYMumhBIUvoJWeXdSAwDNiG
-	YQtYGAsvL8uu+IN+UKVLdB3PDg5CdhUye/uzN9x3fVzz3b7aJUG1X21wK4lpwqc2jLASSr6ujKT
-	1FY9SM9rlVSd3/jwb0IULaYEDSVDai4zzE+ga7wlOhxOH5exfmwQkglfo2cMLLWWewvbcXikWDx
-	+7hmR3vCdoYWqBu/Wckyva2EwfvCF00jU=
-X-Google-Smtp-Source: AGHT+IEEhQexfM/F4JIJe17ctZWPZUJrahxBOKEhTqyR4Y3AE6l5ifGji75EdFxa/fR15vbOd1XStA==
-X-Received: by 2002:a05:6000:2507:b0:3ec:d740:a71b with SMTP id ffacd0b85a97d-40e47ee096cmr11720935f8f.31.1759069895255;
-        Sun, 28 Sep 2025 07:31:35 -0700 (PDT)
-Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e33b9e902sm144002505e9.5.2025.09.28.07.31.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 28 Sep 2025 07:31:34 -0700 (PDT)
-Message-ID: <993e130e-9a5a-4dbb-a272-c3be83f5e722@linaro.org>
-Date: Sun, 28 Sep 2025 15:31:33 +0100
+        d=1e100.net; s=20230601; t=1759073364; x=1759678164;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=o8hCVZpujpi/X6wfV8yzOK80VKQjfoVRfGXWjYBx4ck=;
+        b=WtSPiM2PN5EDk7wsSZYPBo8MPEspsNdftqnldvsCXFlJHKeghAHKFwk/XtQc6vOhpE
+         gQrRTFSysPTaDp+sKZIJEvyEZ9KvsWb597ZBxvQ2Qw9iCdjiGrv+sekuk2E9Ld0lzKmx
+         YjririIlpcIBtHX5mScL36pT5k6ZxQTHAMoK/RPy5uTiE1MeYwwLKnk2i1gkmqH9bEHx
+         vAgCe0xRYlh9I4JWMY1vLUnf8rG2n+OOiYZe9jCneKCm44VUQURq0JGy8GCYj6Wj8ABh
+         oTk2I5aq4/NUrkk9gG4fis6A6qMw6zDTgPH2UwCSZLWJIQAhpohzfJIdlx2tDvXp/z9O
+         H8cw==
+X-Forwarded-Encrypted: i=1; AJvYcCW/yKqpWXX+ieXE4fnXKVLpcE/hAqAwd4iJVm95lDqcDMMXWvW/EyvdH8ExfcUDhXSxvxnrUyyAB+6e@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2uFjWNn+vXtx2cVZSZW1hdTdOIu10VW0mW9aTVGresJ+6Fyg9
+	BobXLAAayUVsFSeOwDk3wzZRFpVo/53dKQofVxxtid3por1sm3R2Ri96gW0Ui1uN+w==
+X-Gm-Gg: ASbGncteEFHD15ffE8bNp4OXWxNP0DQ886B2rNWP13tRHijDWTBn3Ur0p5w3FhBR1bH
+	Cc1ulK/L56Zfzv5TMhG++XL/beGp7zlkeIeQke+ey25A0uStjV3dhmVMYqu2Afss8epcGJ9xFlL
+	Pp/Upiw+cPlTWDuMiNklIF8NEQ5MPmZQhdRPxn/4ValnPY9vj6N6QAFEPtIgcHs2WYw20IzLo95
+	xuLWc5uAOD7MN7o6t8MpjpeKA5EVNweV3oV4UxH60aDGIOiodlTVkWBlnIMkt+vvG2b8L+EaGoN
+	XJlkBer2GPza6D4fKGhCUPo1JmJ6zfRbdTnVMczG4uX3Hk5k96rlnc7cpVV+3RIycxPa7FSkWHQ
+	5CnPC97mTPbqLctPZqL7Y/HIB
+X-Google-Smtp-Source: AGHT+IG4kRAUzCZbV50JeMVCr2hPSgsIF/3dzwloR5e/8GzkLrq/n9Yn+b4k5jIB5jCuXdXDqpjpRQ==
+X-Received: by 2002:ac8:7c42:0:b0:4b7:aaa2:c8f6 with SMTP id d75a77b69052e-4da4b42c83cmr196263091cf.43.1759073363965;
+        Sun, 28 Sep 2025 08:29:23 -0700 (PDT)
+Received: from rowland.harvard.edu ([2601:19b:d03:1700::5082])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-85c335b7050sm599023285a.58.2025.09.28.08.29.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Sep 2025 08:29:23 -0700 (PDT)
+Date: Sun, 28 Sep 2025 11:29:19 -0400
+From: Alan Stern <stern@rowland.harvard.edu>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] usb: ehci: Add Aspeed AST2700 support
+Message-ID: <0a12f3ac-2600-4ede-a738-f4ab43ad4bee@rowland.harvard.edu>
+References: <20250928032407.27764-1-ryan_chen@aspeedtech.com>
+ <20250928032407.27764-3-ryan_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: x1-dell-thena: remove dp data-lanes
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Val Packett <val@packett.cool>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Laurentiu Tudor <laurentiu.tudor1@dell.com>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250927032240.20759-1-val@packett.cool>
- <b6066559-72f0-4f1d-9134-c93f732fa6dc@linaro.org>
- <kgy2l2lmj6mv3er3nmvvpw44zort5cmhdkkix4oxijfojr4wol@tnxjxnlkum5f>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <kgy2l2lmj6mv3er3nmvvpw44zort5cmhdkkix4oxijfojr4wol@tnxjxnlkum5f>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250928032407.27764-3-ryan_chen@aspeedtech.com>
 
-On 28/09/2025 07:18, Dmitry Baryshkov wrote:
->>      fc582cd26e88 ("io_uring/msg_ring: ensure io_kiocb freeing is deferred
->> for RCU")
->>
->> With that fixed.
-> I think that's a bit of the overkill. The usual style is:
+On Sun, Sep 28, 2025 at 11:24:07AM +0800, Ryan Chen wrote:
+> Unlike earlier Aspeed SoCs (AST2400/2500/2600) which are limited to
+> 32-bit DMA addressing, the EHCI controller in AST2700 supports 64-bit
+> DMA. Update the EHCI platform driver to make use of this capability by
+> selecting a 64-bit DMA mask when the "aspeed,ast2700-ehci" compatible
+> is present in device tree.
 > 
-> The commit 0123abcdef01 ("foo: bar baz abc") has broken this-and-that on
-> my device.....
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
 
-I meant the usual style :)
+This is basically good and it can be merged.  However...
 
----
-bod
+>  drivers/usb/host/ehci-platform.c | 15 +++++++++++++--
+>  1 file changed, 13 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/usb/host/ehci-platform.c b/drivers/usb/host/ehci-platform.c
+> index 6aab45c8525c..bcd1c9073515 100644
+> --- a/drivers/usb/host/ehci-platform.c
+> +++ b/drivers/usb/host/ehci-platform.c
+> @@ -27,6 +27,7 @@
+>  #include <linux/io.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/reset.h>
+>  #include <linux/sys_soc.h>
+> @@ -239,9 +240,11 @@ static int ehci_platform_probe(struct platform_device *dev)
+>  	struct usb_hcd *hcd;
+>  	struct resource *res_mem;
+>  	struct usb_ehci_pdata *pdata = dev_get_platdata(&dev->dev);
+> +	const struct of_device_id *match;
+>  	struct ehci_platform_priv *priv;
+>  	struct ehci_hcd *ehci;
+>  	int err, irq, clk = 0;
+> +	bool dma_mask_64;
+>  
+>  	if (usb_disabled())
+>  		return -ENODEV;
+> @@ -253,8 +256,13 @@ static int ehci_platform_probe(struct platform_device *dev)
+>  	if (!pdata)
+>  		pdata = &ehci_platform_defaults;
+>  
+> +	dma_mask_64 = pdata->dma_mask_64;
+> +	match = of_match_device(dev->dev.driver->of_match_table, &dev->dev);
+
+(I just noticed this.)  The "dev->dev.driver->of_match_table" part looks 
+odd.  Why not just write "vt8500_ehci_ids"?  Do you expect that this 
+could ever have a different value?
+
+Alan Stern
+
+> +	if (match && match->data)
+> +		dma_mask_64 = true;
+> +
+>  	err = dma_coerce_mask_and_coherent(&dev->dev,
+> -		pdata->dma_mask_64 ? DMA_BIT_MASK(64) : DMA_BIT_MASK(32));
+> +		dma_mask_64 ? DMA_BIT_MASK(64) : DMA_BIT_MASK(32));
+>  	if (err) {
+>  		dev_err(&dev->dev, "Error: DMA mask configuration failed\n");
+>  		return err;
+> @@ -298,7 +306,9 @@ static int ehci_platform_probe(struct platform_device *dev)
+>  		if (of_device_is_compatible(dev->dev.of_node,
+>  					    "aspeed,ast2500-ehci") ||
+>  		    of_device_is_compatible(dev->dev.of_node,
+> -					    "aspeed,ast2600-ehci"))
+> +					    "aspeed,ast2600-ehci") ||
+> +		    of_device_is_compatible(dev->dev.of_node,
+> +					    "aspeed,ast2700-ehci"))
+>  			ehci->is_aspeed = 1;
+>  
+>  		if (soc_device_match(quirk_poll_match))
+> @@ -485,6 +495,7 @@ static const struct of_device_id vt8500_ehci_ids[] = {
+>  	{ .compatible = "wm,prizm-ehci", },
+>  	{ .compatible = "generic-ehci", },
+>  	{ .compatible = "cavium,octeon-6335-ehci", },
+> +	{ .compatible = "aspeed,ast2700-ehci",	.data = (void *)1 },
+>  	{}
+>  };
+>  MODULE_DEVICE_TABLE(of, vt8500_ehci_ids);
+> -- 
+> 2.34.1
+> 
 
