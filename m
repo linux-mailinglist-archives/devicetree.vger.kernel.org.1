@@ -1,129 +1,110 @@
-Return-Path: <devicetree+bounces-222173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25D02BA680B
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 06:58:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FA6CBA6811
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 07:02:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D0AE18996B5
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 04:59:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC1BC1899616
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 05:02:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AFD0222564;
-	Sun, 28 Sep 2025 04:58:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41B3F28DB54;
+	Sun, 28 Sep 2025 05:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EX3bEQH1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZhqbWGta"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f47.google.com (mail-pj1-f47.google.com [209.85.216.47])
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ECC2218827
-	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 04:58:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD37A1C5F23
+	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 05:01:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759035528; cv=none; b=s1non6d6QQ0j3Ss2E/NTl/os7GJBr5fCi5LZXpNlFpn+Ns+gQh2HvgCSQWlNFklteGHQzeMqr+3saN2KXdE6If7FrDCAwUEb7K3hZvdvQXrNhlg/wNA+raucirc3YCQ+D65SYdRw8t4BCqWSsM7lVEgUx3X4FkHF/z+pvjEReKY=
+	t=1759035717; cv=none; b=KoQzp2sO1GtZ4krsa5PbplZZEvkbgH1fkx+CW4ypyOV5YGXMK4v40f1zPJfOKE50v9/rQfb9le32Ae0HmY7rLDniz4TXw5fQDwk2byJFdlpxYZE0WMcnbE6TONM7yssT+QqwVj/nTuJ2xHjIAoxqbTBQdkj8iheH8l5FrTfgTDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759035528; c=relaxed/simple;
-	bh=gBdIOP8VAofWeg0VuDnNTI1eOLpqvNJeatbnz/SutbE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=CDicwN+Ek/MwzHF92rmGmAxuQhJwPWOVPOWdvk3mcXtKkDtwHc3XlLI0K3PsVYC/cph6c+LS2HRLLezLaFo+rqc6qchA8lNbwJezSqG6znD8fqAT2tDdYUftNvsqL2N5y8Tl9SObRXLojiD8A/J5QZ02GlU67I53rtg4K1cEtHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EX3bEQH1; arc=none smtp.client-ip=209.85.216.47
+	s=arc-20240116; t=1759035717; c=relaxed/simple;
+	bh=2KAdNtvOHAv0iPsSzF6JnRSyf3a/6LV1XFGg4SXH3dM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SVT/AHK5bF73KLUqWly03mOOKt8bIpuNnNCqx93v8/yss/ymx6OeL/f7ZKmSg1ZCzLHk6GthgAVu8J0bepOldhF/nKww5FGyprazIIaFk3377GsIZL1lLpETovSjmWMYPQ0koepR2LmbYVEVGzlKPCZtO2/rLeSKEJW0OAngTg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZhqbWGta; arc=none smtp.client-ip=209.85.214.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f47.google.com with SMTP id 98e67ed59e1d1-330a4d4359bso3325044a91.2
-        for <devicetree@vger.kernel.org>; Sat, 27 Sep 2025 21:58:46 -0700 (PDT)
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-24457f581aeso34283895ad.0
+        for <devicetree@vger.kernel.org>; Sat, 27 Sep 2025 22:01:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759035526; x=1759640326; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=WxpcNLUlja4tVEmgOEAKXd31nleDdtBAzU43V4PpQ1k=;
-        b=EX3bEQH1RldiCz6Q6x9VieCZGV1PZUGMArvm3sRj1ayX0+TKVJD6PdZFV/LkHOpWwc
-         AafowvR+AN339b0To54H+IYTmtYx7lHkhdUIBrWGtD7x65GnLq48zS9VeE//n8rbp5/W
-         pX/XFNIOfgGGYUlyh+A+a8TqkANRKYVzIxW0fUuVEo3q/IUvCGg7KsSxZZ8cgCmc7A1Y
-         0ekTXeY44Udkc4naOIjrn6D9fniySPkxwVe1UEi9dxwwWLbCWSLr7nXpthRqALkXP93G
-         iNt6kfCmV+nJkkFz120EciWl9Wq8cq1LOE+Goz3oV0OpbnEiRstm64xXLfZZqdUsbZf5
-         Dp0A==
+        d=gmail.com; s=20230601; t=1759035715; x=1759640515; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=0U89y2eMhj2iLIuruto3nVeAxA529zvX5Wm2O/HQL8Y=;
+        b=ZhqbWGtaxUckOZSo4F4tbV5mdHQNP93rvyc5CDtQc828TQYK1P/Fu6cwRu2T6IgQHj
+         1HRdfX7ogs82Z3WcwJeu64ibnmZb55Ls6GmwoIxNdQd9v1UmLxWCeCI+F4f81Fcm5XIQ
+         RB2T74MK8Junbjh4pJQ0tXhAFAGsEQ6U5FzGxiVVtS2wZ51i0lhVWEKNpd2g6IAuzyTu
+         EF7mUtmjeE8FbLpL+3OLTc3/Bzon/GuG+GViechN1RvOVvX7rhnAQGOEePa1KWez07CT
+         60itKa29/s6bevw60s3zK3n+a0+c4xc0xe9QP8YGbRdQDZtxgrM+tMrvpeFI6vKwt+BP
+         sDCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759035526; x=1759640326;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WxpcNLUlja4tVEmgOEAKXd31nleDdtBAzU43V4PpQ1k=;
-        b=OIrlAnttJX0+0ZH0zk0dshiOMSy2FnEpMg3vDwkmcxb8K/TD1r6N5mqGTUKrITEFSF
-         /B937JB36V+NwP7NIeLu6hf5vdCzFh+nP2B3yf4YuZrmAK2+rJEfWv+UqSERQd9nXD14
-         wHL+RYmXBC9Hly5TwbPww/ifOsNqDAUM3+oc3Qi/8rDqvC8v/6ZRtcEQ08bIB8sUE9Ln
-         CrbwIXCoddTW0ZBEV2N1o85eA/t+R7/ZkSCQMBoNQn+kYnbHKmHi6bepXQZahkMouJ3A
-         zisoIHk/CbsJeQkE9OpokIA9YdssPPZc4v4P2C0kSlRI74Se2Y5EYs6Q0CxDNd2PNtXk
-         Xdow==
-X-Gm-Message-State: AOJu0YyOTjxW7t9TaOXTzD+XR+OgCspu50iS2vvou0w4QlNrT5B0xaKH
-	+5L6UPW6hNIxpF3gHsMj0V4goGdkBMFGzG3kEZlpcxP10z4U/luhp7GY
-X-Gm-Gg: ASbGncsc5o6SjeowATDCBlkHRVjHh4hzXJ8fG2xMzvQE7R7P7WDepW6XUsPZ87k9KHE
-	HDAp4mSljoraMlJquVhTqG65GEGsNluEo9Angb4ch8Cqsrl0bJlX0QHbAbfrLSRHAHzgujr5lLe
-	i42OuVzOhRBm2dFkeZB2s4f/gGf/soIYhwGV/bLHHxV8tfepiEOUWy7W+lNGLvRFEKV2lXsfqvk
-	WZ4ycqBictLL8wPoM6M8JvlERDYqbepkwd0iY3YwmGLR5A+A4Q3lnfW1O1W5PQhD9nrz0siOcKA
-	WbaJzR9cT5OFrsZlVzZfYttq6xYLVKBvGXb192MRwVinYFsVdlGAgdxTuVxjw7JFHwHtzIbtWcF
-	WSdHK/gvqtkmB8ErJi8ToHA==
-X-Google-Smtp-Source: AGHT+IE0uum1cQjjCYy4XHrx9Lz7DJLQZgSgm0Y7FIM4nk9ZjG6E7r6a4gPVs87kQ4KMF3PhUwjdGA==
-X-Received: by 2002:a17:90b:1a8b:b0:32e:59ef:f403 with SMTP id 98e67ed59e1d1-3342a299099mr13890106a91.17.1759035526242;
-        Sat, 27 Sep 2025 21:58:46 -0700 (PDT)
-Received: from archlinux ([179.113.184.101])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3341bcd9afbsm13383430a91.0.2025.09.27.21.58.43
+        d=1e100.net; s=20230601; t=1759035715; x=1759640515;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0U89y2eMhj2iLIuruto3nVeAxA529zvX5Wm2O/HQL8Y=;
+        b=MAlwwAsQhZKAXb4mYaUaZNLF5812JTi4JPP1EKj8tZ5s21yIxEyXpjuLX3x1vFLRR6
+         8myP91fmKSk2ss4zDxD+ObOxI1hqOx1N9GdO3TrcfXtBlMRVDvf/ths6nfbRUWi5Bl8+
+         4o1paadyq9vtsL+U139UI6Spz1VBTJaodZ8omievfdkU74NwZozDKEafyaME9M3XUalN
+         vMEzdo6fcNkfqad0LNpnjJRvvaMrKt2l9tsbiAYOAedkWL/5vfE9DmdttlYaUY3Tu996
+         QIEseA0lZIKfLCnjLykOBiyEunAMm1AWkCSi4TCQOyuO30GnxJt324jJnSthR1jUWX00
+         TYfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVNZOlf53RH3OE+NddNh57IEgmPACm03OnXJefrdu/aVpUcZvpGfwvHaOjc5gEbKttclfU9xoLV1zoB@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIHjzOKc47ZkSyV3Ke3w64bKbQD54MxEGVpbQ4bvv02QvP8ysa
+	n2s4r0W92Xj9IfzKmYPrOgMngrDvrWnodlZxbbosvBushpCAH5A56HMa
+X-Gm-Gg: ASbGnctA79AR09xTrftHchPgHEMAyRfk+lUQvOOZc6X6DTrygcCq8VUKYJwhCKeLYS+
+	54FqIC6RxblfOjYqAsK4Caus1Nsa0n980EK/0AQvpsBvgqT/fS3SgQw2PU9I5/pnh25HEgY5Uyg
+	HQi+3wBXkCJHc7pM0XQPerCRTjyAm92cZA3gvrw53BJgeVwz35nPeTjo014uw1E4ag1tf2kdg8P
+	q3/Tn8qimK0NQWML5CG9DOQzH7aRseuRs6T1A9wydBOSuA7oeOlDrySbdmTkk19yrwcqLngJ9tE
+	nf6OdMfO123ymt6PWhoMwTmghhflKuBcykaTLIZNQZYG9gWqecMLbsF5n8hgEdGID9CQAeIQs/r
+	R1TAts2i5zZI6Aey6FAhBAZh51EdHJwZ1fBW9jz31e6bsrC13ovG28GZ9VUwpsOLNZjfmTYwVow
+	LLXQXMIxhh
+X-Google-Smtp-Source: AGHT+IF4gSMaafr65leHEt79++HLMxBmNFlxKbU0qyU/KcJdtn6/e0eUVQSCjElsKiida6VyLQveJA==
+X-Received: by 2002:a17:902:d2c1:b0:269:96db:94f with SMTP id d9443c01a7336-27ed4ac8880mr159569835ad.49.1759035715125;
+        Sat, 27 Sep 2025 22:01:55 -0700 (PDT)
+Received: from google.com ([2a00:79e0:2ebe:8:22dc:7b49:8c5d:38f6])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed66d43ecsm96573425ad.24.2025.09.27.22.01.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Sep 2025 21:58:45 -0700 (PDT)
-From: =?UTF-8?q?Eric=20Gon=C3=A7alves?= <ghatto404@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] arm64: dts: qcom: sm8250-samsung-common: correct reserved pins
-Date: Sun, 28 Sep 2025 04:58:17 +0000
-Message-ID: <20250928045817.37384-1-ghatto404@gmail.com>
-X-Mailer: git-send-email 2.51.0
+        Sat, 27 Sep 2025 22:01:54 -0700 (PDT)
+Date: Sat, 27 Sep 2025 22:01:51 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Luca Weiss <luca.weiss@fairphone.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH RESEND v3 1/3] dt-bindings: input: Add Awinic AW86927
+Message-ID: <rudd5cgaft43bjllspx3cb7wmcqe35cirtwfuf4b3kcntpxjad@4un73z7omcwc>
+References: <20250925-aw86927-v3-0-1fc6265b42de@fairphone.com>
+ <20250925-aw86927-v3-1-1fc6265b42de@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250925-aw86927-v3-1-1fc6265b42de@fairphone.com>
 
-The S20 series has additional reserved pins for the fingerprint sensor,
-GPIO 20-23. Correct it by adding them into gpio-reserved-ranges.
+On Thu, Sep 25, 2025 at 12:07:28PM +0200, Griffin Kroah-Hartman wrote:
+> Add bindings for the Awinic AW86927 haptic chip which can be found in
+> smartphones.
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
 
-Fixes: 6657fe9e9f23 ("arm64: dts: qcom: add initial support for Samsung Galaxy S20 FE")
-Signed-off-by: Eric Gonçalves <ghatto404@gmail.com>
----
-Changes in v3:
-- Actually fixed <40 4> indentation
-Sorry, I still had my editor on 4 spaces a tab
+Applied, thank you.
 
-Changes in v2:
-- "Fixed" the formatting of the <40 4> line
-- Added Fixes tag
----
- arch/arm64/boot/dts/qcom/sm8250-samsung-common.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-samsung-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-samsung-common.dtsi
-index 96662bf9e527..7696b147e7da 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-samsung-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250-samsung-common.dtsi
-@@ -159,7 +159,8 @@ &pon_resin {
- };
- 
- &tlmm {
--	gpio-reserved-ranges = <40 4>; /* I2C (Unused) */
-+	gpio-reserved-ranges = <20 4>, /* SPI (fingerprint scanner) */
-+			       <40 4>, /* Unused */
- };
- 
- &usb_1 {
 -- 
-2.51.0
-
+Dmitry
 
