@@ -1,209 +1,193 @@
-Return-Path: <devicetree+bounces-222250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11B56BA7624
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 20:30:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34311BA7764
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 22:10:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACD1F3B6B32
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 18:30:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D463E1759E3
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 20:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D9E222575;
-	Sun, 28 Sep 2025 18:30:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCF8C275B0F;
+	Sun, 28 Sep 2025 20:10:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b="0ESNcj8j"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pROUoRp0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15BA11F9F70
-	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 18:30:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFEAC17B425
+	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 20:10:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759084210; cv=none; b=MiMhM4t+xGiIPnGQjhK0theEdBKTCKKXgG+ig9rHxw1he1iYHfEx+UQhNsXxKVU+IwmIMnli55jJbSwJFmDshn2l+7ccrU45ujswyQpUBayvD7lcR2s4k5G65R+2PGu/dgvQK5NHjrYqhEkAPur/NrqhmYSHxgs8FQkVndiQCt8=
+	t=1759090209; cv=none; b=L8rZM1ODkflrzi9HI8wolX5u33VJ0Vp9G5FvKtWoZg6Sxh2CreMHvmWGo48MQO3EcpKf6qVBmdPQwBWzEnFpYoDurKOMOIjnCJ3uHxXzPDv+SkWY4ZgKwy9NGMBW8Aa1A6EMz1usS8iUb9sn+rCQNoHesIAOsGaMLXja76BV7Gk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759084210; c=relaxed/simple;
-	bh=3eo5q8uPvqSYZZQrCPEdKEjFUsm9Zse5NJZnpZyLVxo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Gukh4C+Gys5Rix0xcmXcmM940Zsa1ofJCRqS7PGNqXxe18ScWyzabtDuIQz7MKRizAn5pmXc2PTp4M9Z4kIpHundh0i1rUopArt769WnSXilGay8p9ovSq3jvzMFQbxWo8qrtfyA/m0+4hJIMAvNgu4RgKUgrsIdzq+MnEhbJb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com; spf=pass smtp.mailfrom=riscstar.com; dkim=pass (2048-bit key) header.d=riscstar-com.20230601.gappssmtp.com header.i=@riscstar-com.20230601.gappssmtp.com header.b=0ESNcj8j; arc=none smtp.client-ip=209.85.166.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=riscstar.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=riscstar.com
-Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-4242bb22132so38976255ab.3
-        for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 11:30:07 -0700 (PDT)
+	s=arc-20240116; t=1759090209; c=relaxed/simple;
+	bh=FpyhmO4Tg46fuj6tBOW0m/VLInKwW1rye0bqu4euVW4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YwAC6yLSDmS0Sdn7qk8Hp1FgtVLc1LdQIG6LK2zLm27gAno/HeiEGgBJeNyYTGLN3g9IJ1WbU5UGMtA+7HZQG8xlaXiPE+Sq5AkBCMwxnPokCRIuLDoe2NNI4thUlMnRdgbKh2RXkmn7plvDIZvFAiYqAW9wiotCLa/rWi9tUcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pROUoRp0; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-580585075aeso746065e87.2
+        for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 13:10:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=riscstar-com.20230601.gappssmtp.com; s=20230601; t=1759084207; x=1759689007; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OpapXATxcXIHML9Ao38TzaKDugnEtxPRqg0bV0GVyLQ=;
-        b=0ESNcj8jUPjpGQiKF8OSw/AdNCG19VzqGpMKd622jp7EPL6HaUe8KOVEGQraGzbSed
-         ors+9OZIML3fVfIsR4ZbNfSPZZzsiMqfsnuuslhVQWvX7hF7C+luIogbfg8HJBZm/JiZ
-         L15sTyjrXk2utJmBwB1acowqiwVWVED/VBI/IXGJSpAeN/DyyaSbdAPim+zOMH1Mn83q
-         hocP4jw4DCHSlI3verz2o7oGkxi3w4alZs4BVIHDeJXzYfDVw293lg6AF1zv1oCOyePQ
-         72XFn8hzgPv0VkWFJEvh430sr3xYSOgjwuTUHWjaGfrPlyPOAyUuhPenSjKnOENxlPhR
-         cWrw==
+        d=linaro.org; s=google; t=1759090206; x=1759695006; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=4QfO5iNkL+YdhwM65/lup/Zd2YD5fWZENSuRh/glh/8=;
+        b=pROUoRp0rqRdJQnhYQ2oiCy/k/TsYRwHAsNjxHl/9gwR/xcgeFNkRCBYBDzIr9lR3j
+         9C03lQtwyUfkvlQCn9YaP2nY6zSENmSoxkqsTyrY4LTbScx/5BNqItiakAZd3Sgx4dQh
+         mTBZBec+pE8X/AP+TF0RyBrWUH01Y4lmWAuYnoK1DMvKNSv0/YFUmI0PDqOipFBJsMin
+         1Y0BtarKVbVbMXXEe/T/g4PRpdwrmGJn2QyBxQHEYxbw3O+qby8PUp99LdedZxanQ7+n
+         QF8Z0rNrDT/w7o3HSzOu+la7H1210LYGv+bSYGyS9DLXCqBpHKu2p/Tt1tXkaVRDrPfu
+         Yulw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759084207; x=1759689007;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OpapXATxcXIHML9Ao38TzaKDugnEtxPRqg0bV0GVyLQ=;
-        b=L73fDgO+oiOY9Dtfc0DsRyy4VLAxhiQsTrIZYTQRWMGCSpp/ekJok3hcuB39o5ro5L
-         3nLkDLww7F6ES9sjjUfcjIhIp5xVinuPPxui5qxCLqS++hkWdbE7Q9OsS1g9qSZIEdjF
-         b5shdZ8l9AFVhrdtbeNW/F+SdWJYweXxHXRCiHK2f7fvgJ8B82ba5ZmM5kFdNe8llRDn
-         oIy1tTUx/CLtztlv0vn8xUUkOv4baT3cEqiAOH5Hd7C/oc/XQyGWV+2m5xXhcqVyVqTX
-         gvVr8ORI0lX2+FVR+3MI7idSh7K2u3zVeggse+2bmEbpFdunUKsWoOXGht2AnZ5DqXCs
-         TLfw==
-X-Forwarded-Encrypted: i=1; AJvYcCX0RMWnzvczabXMcI3f7ufR0aoyVlvHjNb4gceOousmAH1J6crvvZsCZmB+JtoeQgm1dFYHR9IHUrVR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGtQI+6FcMk1ftDKOcJrql9WOoFEUq00bdA6cyTB/8vtojdrYB
-	961eqrbpMr8W8SEJBVtscKreBjfwgcBkEy/XK5hUi6O9lvVpSQCDo6zn4jtzitpARFc=
-X-Gm-Gg: ASbGncsxSFjdk2iVFMXHSw7ZG8ZLY8gZfEjvuEiblwSnt1/kkRivBemSPQnEcokICaL
-	D+JlhYmo+Fs0l/PbflIplPv59pIfI6L3kHAsYHAVbk9MzkepSGyMUhkGPi5Pz/telaHrMvCyXas
-	NTbeEnjJo8uuZLe2VYQFeiFhATVflHUxv8CCPSmJMJ+mcHVi4zaLvWFVpmMiJ/7lhqTDWZO7inL
-	UbKQnk4Zf+AretWS+X/sI4tKDTFF/JpF5Cjw19SzcCbRPGiZFeLnxzhJ2MbvLFLdbShsVEdPtEj
-	Vrx27XGxz006ONVxH3Cy9ToReKuaVMuhNw+Kn9H71wDDtwAyeHeP93R0URvzEqgu+nGGuGXWZbU
-	uWkER5C5Hzi7dZK4aR+NPWxGidsvXPFbPRCuCF+iMABOfd7FJtZmWtr569Cbja9SdfR6WSGuJiO
-	q9FMGeIPI=
-X-Google-Smtp-Source: AGHT+IHI+KjtauowHD4Mkl39PSsrUmu2ZtoNYzP3z5aJ+BMT14naCxidriH/P9dmj7elKaDQ4sRm1g==
-X-Received: by 2002:a05:6e02:1708:b0:429:a1b7:ee3d with SMTP id e9e14a558f8ab-429a1b7f05dmr57105705ab.2.1759084207162;
-        Sun, 28 Sep 2025 11:30:07 -0700 (PDT)
-Received: from [172.22.22.28] (c-75-72-117-212.hsd1.mn.comcast.net. [75.72.117.212])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-5742a4afbc3sm238767173.2.2025.09.28.11.30.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 28 Sep 2025 11:30:06 -0700 (PDT)
-Message-ID: <127352a1-adc2-4bce-a8ad-ee3eaa111280@riscstar.com>
-Date: Sun, 28 Sep 2025 13:30:05 -0500
+        d=1e100.net; s=20230601; t=1759090206; x=1759695006;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4QfO5iNkL+YdhwM65/lup/Zd2YD5fWZENSuRh/glh/8=;
+        b=no9jd8S1nU1xssJyuj87NXXvtE0vIk57oSaBp34QPeKT+ZVl3NL+rQ6MAXLa9G76HE
+         gsA6JeFceI4mzheTP8vrQihsA2HBM785Tw+9OBmtwfvNmIOnOokLCoOL+GcOu0AgM826
+         Md2lkXeNb1UFGyEXKzYcBFoxdaJpnPT3mgIiKNECr9ynfv/8XqOZhFaeEnP6rT0YNdN8
+         6zalhGT1JGBNoQUuDYUhve23SKF5EFl+WNfAQFKMYmJDDXjts/JdRiO+pKgfsd1FOi4U
+         U8sFmiPexxymQDCfA+K73ahdxJGHimwCrBu+NZHq0Zy1DCNgkQFAfrKv+DOwSH0006AR
+         kauQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXWsEHfqEuOABOHqrIkYVA3u8tghUHojc8xkblm+z2hfQc8PYfd3haD6/2JXl5sDTpfS/DrWp/ox1eT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxc7GGcEvacMnDCQeysMOLAsREt1B2WCqhhJ3acz/aR6+2a3n6N
+	BzSNlmljp6Tf8XaK21MeCmygoRO0AG7d9PokVaTtiRwGlIzvrZcAzd4JcQ9pAV65l4Y=
+X-Gm-Gg: ASbGncs3VL7jJmrn11q5Y5ObdKYhodovbPkp+7ggPbgg7/gd8faa0c1JZ6kE2WVCEdK
+	sM4JgL2SYeJt159+BS7r84CpB3EuHKv53grVauU8aWeXwI+a+dLT+uNtbQfRDohuXZ5wyvAIHvD
+	0i7AbnCWnwNBdzbWUWpTjp8p3quWv0L3I//94M8zclx22h6r6fUXthTI4azfoaEAykYamsev9Ll
+	p9z3a3UyVQVf545WzyAaNvAdvggXbh5INgse4gH91+kzphBCvRdVp+npG86h6Gv34jniVp99Vqn
+	1LdFJDSCGvWKVqec3+TetFpw+gsc6CvSY2htx5iEkJ5oOVin/Bz/pBbCTobFbBFYWYAloeNzKfr
+	EUeUjXOFHI4ehSwNNvYZn108NBifsTf7JByu2LCtzaysAzVmMgkawIdW2K1xMIG6QVqNzknNk0P
+	80dSmBsgM6Bbg=
+X-Google-Smtp-Source: AGHT+IHOVhNU47/+DD5fBRQZEhcBAHU/AKZdn96IbRctWvk9khNi6X6pehRIlWW9dxiAJTamqzHObw==
+X-Received: by 2002:a05:6512:3c81:b0:57d:1082:e137 with SMTP id 2adb3069b0e04-582cd97be33mr2171491e87.0.1759090205895;
+        Sun, 28 Sep 2025 13:10:05 -0700 (PDT)
+Received: from thyme.. (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58316656259sm3530858e87.70.2025.09.28.13.10.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Sep 2025 13:10:03 -0700 (PDT)
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Hans Verkuil <hverkuil@kernel.org>,
+	Hans de Goede <hansg@kernel.org>
+Cc: linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH 0/2] media: i2c: add Samsung S5KJN1 image sensor device driver
+Date: Sun, 28 Sep 2025 23:09:54 +0300
+Message-ID: <20250928200956.1215285-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] spi: spacemit: introduce SpacemiT K1 SPI
- controller driver
-To: Yixun Lan <dlan@gentoo.org>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, ziyao@disroot.org, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
- aou@eecs.berkeley.edu, alex@ghiti.fr, p.zabel@pengutronix.de,
- spacemit@lists.linux.dev, linux-riscv@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250922161717.1590690-1-elder@riscstar.com>
- <20250922161717.1590690-3-elder@riscstar.com>
- <20250922230639-GYA1303776@gentoo.org>
- <786f4a5e-f62e-4cd0-a017-7b61408f34aa@riscstar.com>
- <20250928123622-GYA1347020@gentoo.org>
-Content-Language: en-US
-From: Alex Elder <elder@riscstar.com>
-In-Reply-To: <20250928123622-GYA1347020@gentoo.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 9/28/25 7:36 AM, Yixun Lan wrote:
-> Hi Alex,
-> 
-> On 07:49 Tue 23 Sep     , Alex Elder wrote:
->> On 9/22/25 6:06 PM, Yixun Lan wrote:
->>> Hi Alex,
->>>
->>> On 11:17 Mon 22 Sep     , Alex Elder wrote:
->>>> This patch introduces the driver for the SPI controller found in the
->>>> SpacemiT K1 SoC.  Currently the driver supports master mode only.
->>>> The SPI hardware implements RX and TX FIFOs, 32 entries each, and
->>>> supports both PIO and DMA mode transfers.
->>>>
->>>> Signed-off-by: Alex Elder <elder@riscstar.com>
->>>> ---
-> ..
->>
->>>> diff --git a/drivers/spi/spi-spacemit-k1.c b/drivers/spi/spi-spacemit-k1.c
->>>> new file mode 100644
->>>> index 0000000000000..2b932d80cc510
->>>> --- /dev/null
->>>> +++ b/drivers/spi/spi-spacemit-k1.c
->>>> @@ -0,0 +1,965 @@
->>>> +// SPDX-License-Identifier: GPL-2.0
->>>> +/*
->>>> + * Support for SpacemiT K1 SPI controller
->>>> + *
->>>> + * Copyright (C) 2025 by RISCstar Solutions Corporation.  All rights reserved.
->>>> + * Copyright (c) 2023, spacemit Corporation.
->>>> + */
->>
->> . . .
->>
->>>> +static irqreturn_t k1_spi_ssp_isr(int irq, void *dev_id)
->>>> +{
->>>> +	struct k1_spi_driver_data *drv_data = dev_id;
->>>> +	bool rx_done;
->>>> +	bool tx_done;
->>>> +	u32 val;
->>>> +
->>>> +	/* Get status and clear pending interrupts */
->>>> +	val = readl(drv_data->base + SSP_STATUS);
->>>> +	writel(val, drv_data->base + SSP_STATUS);
->>>> +
->>>> +	if (!drv_data->message)
->>>> +		return IRQ_NONE;
->>>> +
->>>> +	/* Check for a TX underrun or RX underrun first */
->>> s/RX underrun/RX overrun/
->>
->> OK.
->>
->>>> +	if (val & (SSP_STATUS_TUR | SSP_STATUS_ROR)) {
->>>> +		/* Disable all interrupts on error */
->>>> +		writel(0, drv_data->base + SSP_INT_EN);
->>> should clear status of SSP_STATUS instead of disabling ISR, see commet below
->>
->> The status is cleared immediately after reading, above.  We hold
->> the status value so we can act on the current state of the FIFOs.
->>
-> I'm surprised by this, do you mean the status will be cleared by reading?
-> can you double checck and prove it? by reading twice and compare?
-> 
-> while according to the docs - 18.2.4.6 SSSR REGISTERS, the status bits has
-> two types:
->    R - Read only
->    R/W1C - Read only, write 1 to clear
-> 
-> if you're right, then the docs should be fixed.
+Samsung S5KJN1 is a 50MP image sensor, it produces Bayer GRBG (2x2)
+frames in RAW10 output format, the maximum supported output resolution
+is 8160x6144 at 10 frames per second rate.
 
-The code is earlier in that function.  I'll repeat it here.
+----8<---- V4L2 compliance results (v4l-utils-1.20.0) ----8<----
 
-static irqreturn_t k1_spi_ssp_isr(int irq, void *dev_id)
-{
-         struct k1_spi_driver_data *drv_data = dev_id;
-         bool rx_done;
-         bool tx_done;
-         u32 val;
+% v4l2-compliance -d /dev/v4l-subdev28
+v4l2-compliance SHA: not available, 64 bits, 64-bit time_t
 
-         /* Get status and clear pending interrupts */
-         val = readl(drv_data->base + SSP_STATUS);
+Compliance test for device /dev/v4l-subdev28:
 
-=== Line above reads the status register
-=== Next line clears all status bits, acknowledging interrupts
 
-         writel(val, drv_data->base + SSP_STATUS);
+Required ioctls:
 
-         if (!drv_data->message)
-                 return IRQ_NONE;
+Allow for multiple opens:
+	test second /dev/v4l-subdev28 open: OK
+	test for unlimited opens: OK
+	test invalid ioctls: OK
 
-         /* Check for a TX underrun or RX underrun first */
-         if (val & (SSP_STATUS_TUR | SSP_STATUS_ROR)) {
-                 /* Disable all interrupts on error */
-                 writel(0, drv_data->base + SSP_INT_EN);
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
 
-=== And then the above line disables all interrupts if one of the
-     error conditions was shown in the status.
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
 
-I hope I'm not missing something.  I think you might have
-misunderstood what I was referring to by "above" when I said
-"The status is cleared immediately after reading, above."
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
 
-					-Alex
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+	test VIDIOC_QUERYCTRL: OK
+	test VIDIOC_G/S_CTRL: OK
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 12 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev28: 41, Succeeded: 41, Failed: 0, Warnings: 0
+
+----8<----
+
+Vladimir Zapolskiy (2):
+  dt-bindings: media: i2c: Add Samsung S5KJN1 image sensor
+  media: i2c: add Samsung S5KJN1 image sensor device driver
+
+ .../bindings/media/i2c/samsung,s5kjn1.yaml    |   95 ++
+ MAINTAINERS                                   |    8 +
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/s5kjn1.c                    | 1434 +++++++++++++++++
+ 5 files changed, 1548 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/samsung,s5kjn1.yaml
+ create mode 100644 drivers/media/i2c/s5kjn1.c
+
+-- 
+2.49.0
+
 
