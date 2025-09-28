@@ -1,180 +1,108 @@
-Return-Path: <devicetree+bounces-222229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 980AABA741C
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 17:29:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC0EEBA74C9
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 18:44:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D1C13A99FA
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 15:29:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A62057A2CE4
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 16:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D437233723;
-	Sun, 28 Sep 2025 15:29:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCC3723BCFF;
+	Sun, 28 Sep 2025 16:44:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b="BeefcRxa"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="R9CxUyk4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37FA4185B67
-	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 15:29:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58ED01C6A3;
+	Sun, 28 Sep 2025 16:44:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759073367; cv=none; b=oZD8svp8rKRV4UoADiFYjqNORL3ZSwnik4ujzXJMhtnGWyMToEx2fDVkDBspVKZi6CNny9Wgi+bXXsAcsUUB2I3yQn4hdT6QY/yDoJzy3puQcOqCs5znWEPke4LME9nZAJNcv0LgoGWnlopf6sLzQveiOYrsPhjsC/N9QDrpOeE=
+	t=1759077850; cv=none; b=JzmQU7Gq/6VgXdToX7bSj2K2Qiz3uL4kongxBF+6byWL2ThbDoBP40+DYgOflpmx9wpUk09MLT9nAcBwa6SNYaLCe4HG2ApYTBlpxsCCnrZMuME4NRTslklI7SZtCiZd+9xfrkGIGRbwLjrwY2Lr3kEPJvUgAyOc2ZxSCtgVRA8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759073367; c=relaxed/simple;
-	bh=gCtcrpyj3/nvZp3sqKvIbRgfCq9JDmLNiBiXQpYqjl4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aAfazoXIl5hoAKreMUcLeD8eYQsQOoF6QSfvcgmUDkErMhB3KmeiBoyxZU6ywrFDcbscPGlbuHF6UIBqToIN5lyJqcIbfyVVNffQt0ybTn8UXWDZByW4fTWL1aZaaxyMkbWdk93ZByOpnqe5oUvJi1msLabazwAktE1aDhRsqLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu; spf=fail smtp.mailfrom=g.harvard.edu; dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b=BeefcRxa; arc=none smtp.client-ip=209.85.160.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=g.harvard.edu
-Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-4dac61ed7a5so30810361cf.3
-        for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 08:29:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rowland.harvard.edu; s=google; t=1759073364; x=1759678164; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=o8hCVZpujpi/X6wfV8yzOK80VKQjfoVRfGXWjYBx4ck=;
-        b=BeefcRxaLl+yYr4oO9fbY6w9/wKuWLGxqvh3msrha4pGon0WCCCEmQAURaWpPOFFQ0
-         NMJ1dRKiGYf4GTLWWjHKCTNZI4nZTC2EuoHkUgyfdAg/Hwdi5SJnXuH/aTRfunQtQti2
-         Dxm+AuZtec7aAntnhcijIfHE/KbXzEDWXz+9+ZolJG49FMhT50tJyf6BE3ZjdrteO9n5
-         /RxGubgNKKpT3A+T90BOjtBg5OKGg7jXZpJpMJe19gqCSiOE4AuPDGVkgxTJn8+r/Wd4
-         VrNbdd+COcZYrHRxYiakGgE2Fz6x7pqu89bck0/ptq+zbwPoxxVAZKecUYZ02H3AfX5U
-         h1QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759073364; x=1759678164;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o8hCVZpujpi/X6wfV8yzOK80VKQjfoVRfGXWjYBx4ck=;
-        b=WtSPiM2PN5EDk7wsSZYPBo8MPEspsNdftqnldvsCXFlJHKeghAHKFwk/XtQc6vOhpE
-         gQrRTFSysPTaDp+sKZIJEvyEZ9KvsWb597ZBxvQ2Qw9iCdjiGrv+sekuk2E9Ld0lzKmx
-         YjririIlpcIBtHX5mScL36pT5k6ZxQTHAMoK/RPy5uTiE1MeYwwLKnk2i1gkmqH9bEHx
-         vAgCe0xRYlh9I4JWMY1vLUnf8rG2n+OOiYZe9jCneKCm44VUQURq0JGy8GCYj6Wj8ABh
-         oTk2I5aq4/NUrkk9gG4fis6A6qMw6zDTgPH2UwCSZLWJIQAhpohzfJIdlx2tDvXp/z9O
-         H8cw==
-X-Forwarded-Encrypted: i=1; AJvYcCW/yKqpWXX+ieXE4fnXKVLpcE/hAqAwd4iJVm95lDqcDMMXWvW/EyvdH8ExfcUDhXSxvxnrUyyAB+6e@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2uFjWNn+vXtx2cVZSZW1hdTdOIu10VW0mW9aTVGresJ+6Fyg9
-	BobXLAAayUVsFSeOwDk3wzZRFpVo/53dKQofVxxtid3por1sm3R2Ri96gW0Ui1uN+w==
-X-Gm-Gg: ASbGncteEFHD15ffE8bNp4OXWxNP0DQ886B2rNWP13tRHijDWTBn3Ur0p5w3FhBR1bH
-	Cc1ulK/L56Zfzv5TMhG++XL/beGp7zlkeIeQke+ey25A0uStjV3dhmVMYqu2Afss8epcGJ9xFlL
-	Pp/Upiw+cPlTWDuMiNklIF8NEQ5MPmZQhdRPxn/4ValnPY9vj6N6QAFEPtIgcHs2WYw20IzLo95
-	xuLWc5uAOD7MN7o6t8MpjpeKA5EVNweV3oV4UxH60aDGIOiodlTVkWBlnIMkt+vvG2b8L+EaGoN
-	XJlkBer2GPza6D4fKGhCUPo1JmJ6zfRbdTnVMczG4uX3Hk5k96rlnc7cpVV+3RIycxPa7FSkWHQ
-	5CnPC97mTPbqLctPZqL7Y/HIB
-X-Google-Smtp-Source: AGHT+IG4kRAUzCZbV50JeMVCr2hPSgsIF/3dzwloR5e/8GzkLrq/n9Yn+b4k5jIB5jCuXdXDqpjpRQ==
-X-Received: by 2002:ac8:7c42:0:b0:4b7:aaa2:c8f6 with SMTP id d75a77b69052e-4da4b42c83cmr196263091cf.43.1759073363965;
-        Sun, 28 Sep 2025 08:29:23 -0700 (PDT)
-Received: from rowland.harvard.edu ([2601:19b:d03:1700::5082])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-85c335b7050sm599023285a.58.2025.09.28.08.29.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 28 Sep 2025 08:29:23 -0700 (PDT)
-Date: Sun, 28 Sep 2025 11:29:19 -0400
-From: Alan Stern <stern@rowland.harvard.edu>
-To: Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] usb: ehci: Add Aspeed AST2700 support
-Message-ID: <0a12f3ac-2600-4ede-a738-f4ab43ad4bee@rowland.harvard.edu>
-References: <20250928032407.27764-1-ryan_chen@aspeedtech.com>
- <20250928032407.27764-3-ryan_chen@aspeedtech.com>
+	s=arc-20240116; t=1759077850; c=relaxed/simple;
+	bh=e1OfZxzNPwwiaonitVzU1HpgjvpPK0JLXAurui8x2y8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fu8JvB9snpWsA9IGONOdFb0NmilrKed1Coj6EcX7hYStaEXF5fP3x/XyooS+T5f7K+Gb6XomG3PhT4W3xvQRZDtFWMJIKP6rCw2f7h8m/+yZij8hMngLDYHB5U4rh6ti9p+311daeLFO2nBfHK/LhIJN4qWiXS96pV19/ls6prQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=R9CxUyk4; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 5422A25F6E;
+	Sun, 28 Sep 2025 18:44:05 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id M00hG7zezvcS; Sun, 28 Sep 2025 18:44:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1759077844; bh=e1OfZxzNPwwiaonitVzU1HpgjvpPK0JLXAurui8x2y8=;
+	h=From:Subject:Date:To:Cc;
+	b=R9CxUyk4oNQGd+cCwaYMXAsK12ipVbgx3Pc0ULbRephzT0/D6woVGD40hn60Urj4x
+	 nF6BEjas8BqUyZ7Vx8IrYCE8ivGb+x6VpjqqhqFlpNCupjm7SiajICkBLHtDFCVQkb
+	 Ue6ml2Pz0F9HoFcFA/M6y7RQ/qJtF8tHbXvtIJWC1VivtjAAwTkXSS6oLFMGm40PVC
+	 Vvh87cDzvW58XjXf8UgIzkEs3C1Ux8LwEC5I60nuo9dxD0f84eFohSsHhRYqP0aR8e
+	 ba8llvGWyhXsMt8ID5LSexTGU6t2oGkGeq92t1Uh/prtoVAMw5r828dYx+gQcTPXCy
+	 48+yLauXmLIQQ==
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+Subject: [PATCH 0/7] Another set of exynos7870 devicetree fixes
+Date: Sun, 28 Sep 2025 22:13:51 +0530
+Message-Id: <20250928-exynos7870-dt-fixes-v1-0-a40e77a73f16@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250928032407.27764-3-ryan_chen@aspeedtech.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMdl2WgC/x3LMQqAMAxA0atIZgOxqBWvIg5qU81SpRFRine3O
+ D4+P4FyFFboiwSRL1HZQ0ZVFrBsU1gZxWWDIdNQZwj5fsKutrOE7kQvNyvO9eTI2IV9ayGfR+Q
+ /5HEY3/cDQXTU+2UAAAA=
+X-Change-ID: 20250820-exynos7870-dt-fixes-b4ad027cef67
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Kaustabh Chakraborty <kauschluss@disroot.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759077839; l=1335;
+ i=kauschluss@disroot.org; s=20250202; h=from:subject:message-id;
+ bh=e1OfZxzNPwwiaonitVzU1HpgjvpPK0JLXAurui8x2y8=;
+ b=vOleMytmxLFyYirZlybtdfiVdvBrDujdeWsiASK9ZWdUvTF0FHgH+d4OwC8htEfp34J9a6qBt
+ l5vb8AlS5mWA7O2QcrNTD4M4M3oOwUaypzJn8JStjcSmft1qPinF5wA
+X-Developer-Key: i=kauschluss@disroot.org; a=ed25519;
+ pk=h2xeR+V2I1+GrfDPAhZa3M+NWA0Cnbdkkq1bH3ct1hE=
 
-On Sun, Sep 28, 2025 at 11:24:07AM +0800, Ryan Chen wrote:
-> Unlike earlier Aspeed SoCs (AST2400/2500/2600) which are limited to
-> 32-bit DMA addressing, the EHCI controller in AST2700 supports 64-bit
-> DMA. Update the EHCI platform driver to make use of this capability by
-> selecting a 64-bit DMA mask when the "aspeed,ast2700-ehci" compatible
-> is present in device tree.
-> 
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> ---
+Applying this patchset will introduce the following:
+* All ${x}-names properties will now follow the corresponding ${x}
+  properties.
+* bus-width of mmc0 node of all exynos7870 devices will be explicitly
+  defined.
 
-This is basically good and it can be merged.  However...
+Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+---
+Kaustabh Chakraborty (7):
+      arm64: dts: exynos7870: relocate ${x}-names property after ${x}
+      arm64: dts: exynos7870-a2corelte: relocate ${x}-names property after ${x}
+      arm64: dts: exynos7870-j6lte: relocate ${x}-names property after ${x}
+      arm64: dts: exynos7870-on7xelte: relocate ${x}-names property after ${x}
+      arm64: dts: exynos7870-a2corelte: add bus-width to mmc0 node
+      arm64: dts: exynos7870-j6lte: add bus-width to mmc0 node
+      arm64: dts: exynos7870-on7xelte: add bus-width to mmc0 node
 
->  drivers/usb/host/ehci-platform.c | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/usb/host/ehci-platform.c b/drivers/usb/host/ehci-platform.c
-> index 6aab45c8525c..bcd1c9073515 100644
-> --- a/drivers/usb/host/ehci-platform.c
-> +++ b/drivers/usb/host/ehci-platform.c
-> @@ -27,6 +27,7 @@
->  #include <linux/io.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/of_device.h>
->  #include <linux/platform_device.h>
->  #include <linux/reset.h>
->  #include <linux/sys_soc.h>
-> @@ -239,9 +240,11 @@ static int ehci_platform_probe(struct platform_device *dev)
->  	struct usb_hcd *hcd;
->  	struct resource *res_mem;
->  	struct usb_ehci_pdata *pdata = dev_get_platdata(&dev->dev);
-> +	const struct of_device_id *match;
->  	struct ehci_platform_priv *priv;
->  	struct ehci_hcd *ehci;
->  	int err, irq, clk = 0;
-> +	bool dma_mask_64;
->  
->  	if (usb_disabled())
->  		return -ENODEV;
-> @@ -253,8 +256,13 @@ static int ehci_platform_probe(struct platform_device *dev)
->  	if (!pdata)
->  		pdata = &ehci_platform_defaults;
->  
-> +	dma_mask_64 = pdata->dma_mask_64;
-> +	match = of_match_device(dev->dev.driver->of_match_table, &dev->dev);
+ .../arm64/boot/dts/exynos/exynos7870-a2corelte.dts |  21 ++--
+ arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts    |  21 ++--
+ arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts |  21 ++--
+ arch/arm64/boot/dts/exynos/exynos7870.dtsi         | 108 ++++++++++-----------
+ 4 files changed, 87 insertions(+), 84 deletions(-)
+---
+base-commit: 262858079afde6d367ce3db183c74d8a43a0e83f
+change-id: 20250820-exynos7870-dt-fixes-b4ad027cef67
 
-(I just noticed this.)  The "dev->dev.driver->of_match_table" part looks 
-odd.  Why not just write "vt8500_ehci_ids"?  Do you expect that this 
-could ever have a different value?
+Best regards,
+-- 
+Kaustabh Chakraborty <kauschluss@disroot.org>
 
-Alan Stern
-
-> +	if (match && match->data)
-> +		dma_mask_64 = true;
-> +
->  	err = dma_coerce_mask_and_coherent(&dev->dev,
-> -		pdata->dma_mask_64 ? DMA_BIT_MASK(64) : DMA_BIT_MASK(32));
-> +		dma_mask_64 ? DMA_BIT_MASK(64) : DMA_BIT_MASK(32));
->  	if (err) {
->  		dev_err(&dev->dev, "Error: DMA mask configuration failed\n");
->  		return err;
-> @@ -298,7 +306,9 @@ static int ehci_platform_probe(struct platform_device *dev)
->  		if (of_device_is_compatible(dev->dev.of_node,
->  					    "aspeed,ast2500-ehci") ||
->  		    of_device_is_compatible(dev->dev.of_node,
-> -					    "aspeed,ast2600-ehci"))
-> +					    "aspeed,ast2600-ehci") ||
-> +		    of_device_is_compatible(dev->dev.of_node,
-> +					    "aspeed,ast2700-ehci"))
->  			ehci->is_aspeed = 1;
->  
->  		if (soc_device_match(quirk_poll_match))
-> @@ -485,6 +495,7 @@ static const struct of_device_id vt8500_ehci_ids[] = {
->  	{ .compatible = "wm,prizm-ehci", },
->  	{ .compatible = "generic-ehci", },
->  	{ .compatible = "cavium,octeon-6335-ehci", },
-> +	{ .compatible = "aspeed,ast2700-ehci",	.data = (void *)1 },
->  	{}
->  };
->  MODULE_DEVICE_TABLE(of, vt8500_ehci_ids);
-> -- 
-> 2.34.1
-> 
 
