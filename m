@@ -1,153 +1,136 @@
-Return-Path: <devicetree+bounces-222225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AAE8BA6F26
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 12:32:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3327BA707A
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 14:36:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 67B3918971F1
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 10:33:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B92017B8CC
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 12:36:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDA902D9EE5;
-	Sun, 28 Sep 2025 10:32:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F81ZZNL/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE15B1E1E16;
+	Sun, 28 Sep 2025 12:36:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF4A41DC9B5;
-	Sun, 28 Sep 2025 10:32:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB1791C84A1;
+	Sun, 28 Sep 2025 12:36:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759055569; cv=none; b=mhYDjt90Yt3bwFQAJPYOPwK4+uoR/SNQX7ZPQsDF/15NIJjQRXieKdN9Vvxq3t9/UB4Ze+Xnef9oTxt9/FpVHEnYwYt8s2/THcwOUNnkYKMW1B5qUITgGWfiZxPZ1juualehvWTl/+MROzxh9DlerSGaOTU6TqWAo6isZW+3pSQ=
+	t=1759062990; cv=none; b=avXGb2BL5QOprhJxe0/D3AQyMirmqTTijnDcAD43rrK2i87F4t3l0xPJz4yxZDk0YODhVTiLHhzNtxlX4L4T0BLOiWCfCfUWd47eO7RR2/Nf3Ct/7tXq56v0WzLRffIcRYnL0bGNy/DclHOD6cjbr4UZm8WqW0CIda12UDY+sTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759055569; c=relaxed/simple;
-	bh=iW5PZ047R8tg5QXPTMoCd640qW4nDqm5nKOSscw1Q0I=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kIz+dOPD32E2cc/gNHYP/MG1+Y8SgKj3P2v26U5FvHq15QjDn4fp5C9SBO4A7tKWgGbnk5s9dRR7sOSGA7PPX8uQU6wd7/Hc/lDM105/sFF4oKkpucTqNMwMn1km2iM6dCBguBEa8X1YhKawO/K2NUZVg6SmsxJ5+jYZjnPEARo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F81ZZNL/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E75C5C4CEF0;
-	Sun, 28 Sep 2025 10:32:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759055566;
-	bh=iW5PZ047R8tg5QXPTMoCd640qW4nDqm5nKOSscw1Q0I=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=F81ZZNL/z5yVabIVXXsY82B25C8qIIiCngWBgCs5vsgoFOuZBapnROoVIRr1X+Jbm
-	 VJ7ckGwZrXEO3I+JyyMkoH9x97PKhUfnRvWgybs4eDENye39X2QEXfKIhhfL5Ng+J6
-	 YZLXmqtTDD5nb6/oH45RikBabhDQgkS5tVVikLVQ6BhXyyg8CjRcrA845JVhFdj+pX
-	 j5novLJmDT10LXDzPvbFYNof8k+OBzWHFHYtEqfX9Gbk0kQJ1lmRLdrXynrdJlJ7nt
-	 rfBu4bZGzid79nP1hHgWvJx4rEOnFfCJ8um4MLTPlSO0Aeh9NIapu64MBl1pO25tih
-	 HYc6qnxOGHadA==
-Date: Sun, 28 Sep 2025 11:32:34 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antoni Pokusinski <apokusinski01@gmail.com>
-Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org, linux@roeck-us.net, rodrigo.gobbi.7@gmail.com,
- naresh.solanki@9elements.com, michal.simek@amd.com,
- grantpeltier93@gmail.com, farouk.bouabid@cherry.de,
- marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v3 3/4] iio: mpl3115: add support for DRDY interrupt
-Message-ID: <20250928113234.3ba70df8@jic23-huawei>
-In-Reply-To: <20250928100232.tafcimfsoljdq6nt@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
-References: <20250926220150.22560-1-apokusinski01@gmail.com>
-	<20250926220150.22560-4-apokusinski01@gmail.com>
-	<20250927175125.66bcc18c@jic23-huawei>
-	<20250928100232.tafcimfsoljdq6nt@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1759062990; c=relaxed/simple;
+	bh=l9Q144PMpYoyc7MJ9uG80U7HLDSOpM3aAqyn15dVI/4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=u8LqbX+DVpVdaApSWnLhi2gAgHcHlf6k2IN9ush9f/3Y9iZ3Btrd6dLmMFWag0LHiFbhVs71Y5vJQWdkuF1Kg6koTUyskcKkzMzgcU77D7/ahCLtk2NR2ggqstKsAYa6Ri9oTtQL2RcGqdrsdjyRNpMtLx9mi0K9nQv2LCgEPXI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
+Received: from localhost (unknown [180.158.240.90])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: dlan)
+	by smtp.gentoo.org (Postfix) with ESMTPSA id BCC58340D91;
+	Sun, 28 Sep 2025 12:36:27 +0000 (UTC)
+Date: Sun, 28 Sep 2025 20:36:22 +0800
+From: Yixun Lan <dlan@gentoo.org>
+To: Alex Elder <elder@riscstar.com>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, ziyao@disroot.org, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	p.zabel@pengutronix.de, spacemit@lists.linux.dev,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] spi: spacemit: introduce SpacemiT K1 SPI
+ controller driver
+Message-ID: <20250928123622-GYA1347020@gentoo.org>
+References: <20250922161717.1590690-1-elder@riscstar.com>
+ <20250922161717.1590690-3-elder@riscstar.com>
+ <20250922230639-GYA1303776@gentoo.org>
+ <786f4a5e-f62e-4cd0-a017-7b61408f34aa@riscstar.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <786f4a5e-f62e-4cd0-a017-7b61408f34aa@riscstar.com>
 
-> > > +static int mpl3115_trigger_probe(struct mpl3115_data *data,
-> > > +				 struct iio_dev *indio_dev)
-> > > +{
-> > > +	struct fwnode_handle *fwnode = dev_fwnode(&data->client->dev);
-> > > +	int ret, irq, irq_type, irq_cfg_flags = 0;
-> > > +
-> > > +	irq = fwnode_irq_get_byname(fwnode, "INT1");
-> > > +	if (irq < 0) {
-> > > +		irq = fwnode_irq_get_byname(fwnode, "INT2");
-> > > +		if (irq < 0)
-> > > +			return 0;
-> > > +
-> > > +		irq_cfg_flags |= MPL3115_INT2;
-> > > +	}
-> > > +
-> > > +	irq_type = irq_get_trigger_type(irq);
-> > > +	if (irq_type != IRQF_TRIGGER_RISING && irq_type != IRQF_TRIGGER_FALLING)
-> > > +		return -EINVAL;
-> > > +
-> > > +	irq_cfg_flags |= irq_type;  
-> > Commented on this before, but mixing flags that are local to this driver
-> > with those that are global provides not guarantees against future changes
-> > of the global ones to overlap with your local values.
+Hi Alex,
+
+On 07:49 Tue 23 Sep     , Alex Elder wrote:
+> On 9/22/25 6:06 PM, Yixun Lan wrote:
+> > Hi Alex,
 > > 
-> > So just track these as two separate values rather than combining them.
-> >  
+> > On 11:17 Mon 22 Sep     , Alex Elder wrote:
+> >> This patch introduces the driver for the SPI controller found in the
+> >> SpacemiT K1 SoC.  Currently the driver supports master mode only.
+> >> The SPI hardware implements RX and TX FIFOs, 32 entries each, and
+> >> supports both PIO and DMA mode transfers.
+> >>
+> >> Signed-off-by: Alex Elder <elder@riscstar.com>
+> >> ---
+..
 > 
-> So you mean 2 separate variables, one for INT1/INT2 and one for the
-> trigger RISING/FALLING, am I right?
-
-Yes.
-
-> This was the approach in v1, but the code for writing the regs CTRL3 and
-> CTRL5 should be improved, I was thinking something like:
+> >> diff --git a/drivers/spi/spi-spacemit-k1.c b/drivers/spi/spi-spacemit-k1.c
+> >> new file mode 100644
+> >> index 0000000000000..2b932d80cc510
+> >> --- /dev/null
+> >> +++ b/drivers/spi/spi-spacemit-k1.c
+> >> @@ -0,0 +1,965 @@
+> >> +// SPDX-License-Identifier: GPL-2.0
+> >> +/*
+> >> + * Support for SpacemiT K1 SPI controller
+> >> + *
+> >> + * Copyright (C) 2025 by RISCstar Solutions Corporation.  All rights reserved.
+> >> + * Copyright (c) 2023, spacemit Corporation.
+> >> + */
 > 
-> if (irq_pin == MPL3115_IRQ_INT1) {
->     write_byte_data(REG5, INT_CFG_DRDY);
->     if (irq_type == IRQF_TRIGGER_RISING)
->         write_byte_data(REG3, IPOL1);
-> } else if (irq_type == IRQF_TRIGGER_RISING) {
->     write_byte_data(REG3, IPOL2);
-> }
+> . . .
 > 
-> This is perhaps a bit less readable than the switch(int_cfg_flags) with 4
-> cases... but IMO it's still quite ok and it's less verbose since we do not
-> duplicate the write_byte_data(REG5, INT_CFG_DRDY).
+> >> +static irqreturn_t k1_spi_ssp_isr(int irq, void *dev_id)
+> >> +{
+> >> +	struct k1_spi_driver_data *drv_data = dev_id;
+> >> +	bool rx_done;
+> >> +	bool tx_done;
+> >> +	u32 val;
+> >> +
+> >> +	/* Get status and clear pending interrupts */
+> >> +	val = readl(drv_data->base + SSP_STATUS);
+> >> +	writel(val, drv_data->base + SSP_STATUS);
+> >> +
+> >> +	if (!drv_data->message)
+> >> +		return IRQ_NONE;
+> >> +
+> >> +	/* Check for a TX underrun or RX underrun first */
+> > s/RX underrun/RX overrun/
+> 
+> OK.
+> 
+> >> +	if (val & (SSP_STATUS_TUR | SSP_STATUS_ROR)) {
+> >> +		/* Disable all interrupts on error */
+> >> +		writel(0, drv_data->base + SSP_INT_EN);
+> > should clear status of SSP_STATUS instead of disabling ISR, see commet below
+> 
+> The status is cleared immediately after reading, above.  We hold
+> the status value so we can act on the current state of the FIFOs.
+> 
+I'm surprised by this, do you mean the status will be cleared by reading?
+can you double checck and prove it? by reading twice and compare?
 
-That looks ok to me.
+while according to the docs - 18.2.4.6 SSSR REGISTERS, the status bits has
+two types: 
+  R - Read only
+  R/W1C - Read only, write 1 to clear
 
-...
+if you're right, then the docs should be fixed.
 
-				 indio_dev->name,
-> > > +						 iio_device_id(indio_dev));
-> > > +	if (!data->drdy_trig)
-> > > +		return -ENOMEM;
-> > > +
-> > > +	data->drdy_trig->ops = &mpl3115_trigger_ops;
-> > > +	iio_trigger_set_drvdata(data->drdy_trig, indio_dev);
-> > > +	ret = devm_iio_trigger_register(&data->client->dev, data->drdy_trig);  
-> > 
-> > Whilst unlikely the race matters. It is this call that creates the infrastructure
-> > that might allow the interrupt generation to be triggered via userspace controls.
-> > So the handler should probably be in place firsts.  I.e. do the devm_request_threaded_irq
-> > before this.
-> >  
-> Will fix in v4
-
-Side process related note: If you agree with something, just crop it out!  That means
-we get to focus in quickly on the bits where there is more discussion to be done.
-
-Your change log in v4 is where I'll see you made these changes.
-
-When there is nothing to continue the discussion around in a thread, don't reply at all.
-Thanks etc can come alongside the change log.
-
-Thanks,
-
-Jonathan
-
-p.s. I have periodic sessions of mailing people about the process stuff once the
-overall list traffic is larger than it should be for stuff like this. You just happened
-to be an 'unlucky' recipient today!
+-- 
+Yixun Lan (dlan)
 
