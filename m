@@ -1,130 +1,183 @@
-Return-Path: <devicetree+bounces-222238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85DC6BA7511
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 18:57:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1AAFBA7518
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 19:17:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BBBA178A1C
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 16:57:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AF0E1892F82
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 17:18:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B7822D9E9;
-	Sun, 28 Sep 2025 16:57:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7F021E835D;
+	Sun, 28 Sep 2025 17:17:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="xHuubiMS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EWmN8MXQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C28BB19DF9A
-	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 16:57:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 199D51E1E19;
+	Sun, 28 Sep 2025 17:17:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759078629; cv=none; b=BeaZDk1u+4WmyUCkuOUIPufpRuHPSyNd74mWHsVCPATUTxvX9145oR3Kz15IbBqM5UcrYpOy60vOeVrm+Tbec30bIh+51E1iHSqbeC/ZqsHYhKy0LvVOjJwsouBwQYjOM5PedDPYZPpCSFkUbxEv007PLDcwrdeJgZBGGkoi49o=
+	t=1759079864; cv=none; b=nx663w/pFkwMJLtuxZzcHYxiNofWiaL6gQuESIlzjZFMadduExJg0rcf08mShaGpmyZsTNoPK20dLwGZtwHZjh6YYLZpXwDmcHjPAmzNDU73+4YfYuo2OYtUoCIucAqtyMvqnss0OCbBC92wlz7zm1JRW/A4hLB8IlMlXofv3ns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759078629; c=relaxed/simple;
-	bh=xujErc0QSlYq7R2METgndt3Q6nhNzJsdH6KXtpfhUWc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hjCDbBlVLB//4YjESejrTM6jW2+HGsp2D9i7eyejTblRkzZIPdgq5ohP0s4O2Eg/aMn7hRTLWzutnBQmedefxYXXK8emxizNpnDEK7gCQvuIrVUpPQZ0UPBPcXOypPp+6ye+w+gTeOb65sL2KglHKHxR7UPduvUzkiPXklRUeMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=xHuubiMS; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cZVpy4LP0z9sST;
-	Sun, 28 Sep 2025 18:56:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1759078618;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=q3CPsXihGUBBwniCQJtpfCea9ZS+16bumyYVi9msdPY=;
-	b=xHuubiMSI1U7n2AhL8UbwNP5D24fqsTalz73+pLetWsJpayvL0H7U0vNPv/fXMsI76dT9Y
-	BA0jodO4DTAljzh5/955NxjTofoDmHZfTNUOzlkDS3J171LiYOLyY2SDUBvNsaq1Zwh5zL
-	6JrhLKl4TghKRUMVY2QndMe/TNc8ZCO/SBDtDQGLdUowAIqGUQIJk4QRKEjbHGiHF0Kkkb
-	ssTiWE8H09QNuZwWRR85eCbezsFXR7izc2l8Wz8JgyHv/B3EUqnTEKNDmL32N1AHcrAcSI
-	mz6nzP+67SteciLT+nVZFgYGAuATIL2UgbA4E/I23JKuFiecI4PRluLDgCXXUw==
-Message-ID: <a8d62ed4-38c7-4ff7-a283-3708761d94a7@mailbox.org>
-Date: Sun, 28 Sep 2025 18:56:48 +0200
+	s=arc-20240116; t=1759079864; c=relaxed/simple;
+	bh=mfsuLDXo3AMk+dQskagp6VBHkOK/uarcO+agLmlOZU4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GRS6cwCmBsvprtEkraSvC4TUx8Y5UQsvoxLV+Ow1ywPGaY4V51RYj5gARXf441pkDRi3WWTJkfb6YhTaMSWSLL3cWsUI+HdLzo+JM98mauUnRK+QNvjOUauE4fLkWjfr6tPcdDVQVf64febTcqnDIBNvf/8JofVkdHS1idBImHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EWmN8MXQ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58SEc1Xr028178;
+	Sun, 28 Sep 2025 17:17:26 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=mu19hy+Cq2LYY2B/KNvOPCMGCiPAry45bWG
+	zQlTjlF0=; b=EWmN8MXQopo4mm+LLmuUre63X8yZBorlYNTdGSls67Ilc4d9KXb
+	QcJsRukUHYbi5BUEGh5hdDccEQwTam6kiNV2JdJsx/rZMnWJlXXxCZbuQnsw6GZa
+	hwEGKOLKmkx1WoflYDtZkLC/lElVXLS8Y78Np2Q+jf5SoUQGEh9ZO4pKCOBf8h9f
+	AZnxGOuImdgryS8m5xgomleWXGdEqG8IiPputotzvyuqGjnvNQR2zPNRep4Dj1BV
+	C+it4mwwYzaL+LGoKE5uMCdJc7xj/oDiCqXonyubtmneRICpDg5yWPJraotFN3Uv
+	WUXXF2PgPOiPgJdGrtIAud9slsGAOM7OEdA==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e59muby1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 28 Sep 2025 17:17:26 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 58SHHMIC018672;
+	Sun, 28 Sep 2025 17:17:22 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 49e90k74pc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 28 Sep 2025 17:17:22 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 58SHHMXF018651;
+	Sun, 28 Sep 2025 17:17:22 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-charante-hyd.qualcomm.com [10.213.97.134])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 58SHHM2b018649
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 28 Sep 2025 17:17:22 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 389980)
+	id 316715C8; Sun, 28 Sep 2025 22:47:21 +0530 (+0530)
+From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+To: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
+        saravanak@google.com, conor+dt@kernel.org, robh@kernel.org,
+        mchehab@kernel.org, bod@kernel.org, krzk+dt@kernel.org,
+        abhinav.kumar@linux.dev, vikash.garodia@oss.qualcomm.com,
+        dikshita.agarwal@oss.qualcomm.com
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        iommu@lists.linux.dev,
+        Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+Subject: [RFC PATCH 0/3] Introduce iommu-map-masked for platform devices
+Date: Sun, 28 Sep 2025 22:47:15 +0530
+Message-Id: <20250928171718.436440-1-charan.kalla@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-To: Rain Yang <jiyu.yang@oss.nxp.com>
-Cc: airlied@gmail.com, boris.brezillon@collabora.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- p.zabel@pengutronix.de, peng.fan@nxp.com, robh@kernel.org,
- s.hauer@pengutronix.de, shawnguo@kernel.org, simona@ffwll.ch,
- sre@kernel.org, steven.price@arm.com, tzimmermann@suse.de
-References: <20250904172019.58e5f589@fedora>
- <4147d10f-fb54-4f1b-ac1b-58cf657a3aeb@mailbox.org>
- <aMk1CISrn2_p0qzJ@oss.nxp.com>
- <c34dc4bc-de12-42fc-aaf5-50474dc53042@mailbox.org>
- <aMoTtr9KmdrgDUiE@oss.nxp.com>
- <c1a45cfa-a249-4782-b5c8-0ee2d173fc97@mailbox.org>
- <aMrDKkIoZvAlBD8d@oss.nxp.com>
- <609113fa-6af3-4e7e-b47a-45b3152d8581@mailbox.org>
- <aNZaatnVRRkaPrnD@oss.nxp.com>
- <32fffaad-7738-4fa6-80cc-2f8eba7ca099@mailbox.org>
- <aNjwyIgs9fzWiprq@oss.nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aNjwyIgs9fzWiprq@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 09c0d8297a0a9a440e3
-X-MBO-RS-META: axcuj6fk8qs9i65ufsbua5pb77z3odbx
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: tWQD4WF2PEK1aphGceNujNM4d5tL3yGj
+X-Authority-Analysis: v=2.4 cv=O4g0fR9W c=1 sm=1 tr=0 ts=68d96da6 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=eXcPPdEb-0Tx6XvSbZUA:9
+ a=TjNXssC_j7lpFel5tvFf:22 a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-ORIG-GUID: tWQD4WF2PEK1aphGceNujNM4d5tL3yGj
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAwMSBTYWx0ZWRfX4gNcW0AGStRF
+ katoCjyaggoknCnPz+d8CJMWDLDpeRWMfzns0Xym7x6Qe22nO6iVjJDn8mm0LXVL5Z9TU8/jcph
+ CtanbBw72gjNkwCnBWMagK9VLrTNYHkhhsYWyA6oROU3wfDB3yha5MEsPlAIg78FdgKKwZUVvGG
+ uI1Xx7BigoeU7dZhjx5j6LEi5GGTPJiXYf+VW6938l4HIkgh7WhBgQS6k2YFvFqwWIqujpd+/pl
+ 8j8HRd3CsgFcC2Pr/A835w5tj9Ilz9EF0AOaPquS9OpYZS5c6jUJipQLje0/gb7l/TVwcHKmaH0
+ coAm2jtTjVTQKsckT8p51h0jKGj8frr6igSTKFFKqJ5dU1nnJQhOJl1OkeQ2cGXwVdCuXA5Wxew
+ B6/Xh6j+D+m/ebPBhfXYxa6d4opisA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-28_07,2025-09-26_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 phishscore=0 clxscore=1011 priorityscore=1501 lowpriorityscore=0
+ spamscore=0 impostorscore=0 bulkscore=0 suspectscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270001
 
-On 9/28/25 10:24 AM, Rain Yang wrote:
-> On Fri, Sep 26, 2025 at 03:32:46PM +0200, Marek Vasut wrote:
->> On 9/26/25 11:18 AM, Rain Yang wrote:
->>
->> Hello Jiyu,
->>
->>>>> as the 0x4d810008 is a write-once register and whose operation has been moved into the SM side,
->>>>> so please drop the reset change.
->>>>> can you also change the label of the gpu node from gpu to mali like "mali: gpu@4d900000",
->>>>> as the internal driver use mali label to control the thermal up/low limitation.
->>>>
->>>> I updated all of the AHAB container, imx-oei and imx-sm components, and the
->>>> reset controller is no longer needed indeed.
->>>
->>> thanks, please update the gpu node label if possibly.
->>
->> Which label do you refer to, and which one would you prefer to have there ?
-> 
-> "mali: gpu@4d900000", not "gpu: gpu@4d900000".
-All of imx*.dts* use gpu: or gpu2d:/gpu3d:/vpuvg: for the GPU label.
+This series introduces a new iommu property called iommu-map-masked(may
+be there is a better name), which is used to represent the IOMMU
+specifier pairs for each function of a __multi-functional platform
+device__, where each function can emit unique master id(s) that can be
+associated with individual translation context.
 
-I see allwinner does use mali: label, but maybe it would be better to 
-stay consistent with the i.MX labels ?
+Currently, the iommu configuration - at least for arm architecture-
+requires all the functions of a platform device will be represented
+under single dt node thus endup in using only a single translation
+context.
 
-Also, variants of gpu: label seems more popular:
+A simple solution to associate individual translation context for each
+function of a device can be through creating per function child nodes in
+the device tree, but dt is only to just represent the soc layout to
+linux kernel.
 
-linux$ grep -hro '[a-z0-9_]\+: gpu@' arch/ | sort | uniq -c
-       3 adreno_gpu: gpu@
-       1 bb2d: gpu@
-       1 gpu2d: gpu@
-       1 gpu3d: gpu@
-      80 gpu: gpu@
-       4 gpu_2d: gpu@
-       1 gpu_3d0: gpu@
-       4 gpu_3d: gpu@
-       6 gpu_mem: gpu@
-       1 gpu_reserved: gpu@
-       2 gpu_vg: gpu@
-      17 mali: gpu@
-       1 v3d: gpu@
-       2 zap_shader_region: gpu@
+Supporting such cases requires a new iommu property called,
+iommu-map-masked(taking cue from iommu-map for pci devices) and syntax
+is:
+   iommu-map-masked = <FUNCTION_ID1 &iommu ID1 MASK1>,
+		      <FUNCTION_ID2 &iommu ID2 MASK2>;
+NOTE: As an RFC, it is considered that this property always expects 4
+cells.
+
+During the probe phase of the driver for a multi-functional device
+behind an IOMMU, a child device is instantiated for each FUNCTION_ID.
+The call to of_dma_configure_id() on each child sets up the IOMMU
+configuration, ensuring that each function of the device is associated
+with a distinct translation context.
+
+This property can also be used in association with 'iommus=' when dt
+bindings requires the presence of 'iommus=', example[2]. For these
+cases, representation will be(on arm64):
+   iommus = <&iommu sid mask>; //for default function.
+   iommu-map-masked = <FUNCTION_ID &iommu sid mask>;//additional
+function.
+
+USECASE [1]:
+-----------
+Video IP, 32bit, have 2 hardware sub blocks(or can be called as
+functions) called as pixel and nonpixel blocks, that does decode and
+encode of the video stream. These sub blocks are __configured__ to
+generate different stream IDs.
+
+With the classical approach of representing all sids with iommus= end up
+in using a single translation context limited to the 4GB. There are
+video usecases which needs larger IOVA space, like higher concurrent
+video sessions(eg: 32 session and 192MB per session) where 4GB of IOVA
+is not sufficient.
+
+For this case, it can be considered as iommus= property can be
+associated with pixel functionality and iommu-map-masked= is with
+non-pixel or viceversa.
+
+[1] https://lore.kernel.org/all/20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com/
+
+Charan Teja Kalla (3):
+  dtbindings: add binding for iommu-map-masked property
+  of: create a wrapper for of_map_id()
+  of: implment the 'iommu-map-masked' to represent multi-functional
+    devices
+
+ .../bindings/media/qcom,sm8550-iris.yaml      | 31 ++++++++++-
+ drivers/iommu/of_iommu.c                      | 44 +++++++++++++++
+ drivers/of/base.c                             | 55 ++++++++++++++++---
+ include/linux/of.h                            | 15 +++++
+ 4 files changed, 133 insertions(+), 12 deletions(-)
+
+-- 
+2.34.1
+
 
