@@ -1,209 +1,264 @@
-Return-Path: <devicetree+bounces-222192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6957BA6AE3
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 10:24:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3E19BA6B67
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 10:30:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 66A7E178048
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 08:24:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 016BA1899013
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 08:31:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D87CD2BE7B1;
-	Sun, 28 Sep 2025 08:24:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C59AB2BE7D2;
+	Sun, 28 Sep 2025 08:30:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="k7v9WKuc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PRth4uvt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010006.outbound.protection.outlook.com [52.101.84.6])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEB1B2BDC3B
-	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 08:24:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.6
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759047889; cv=fail; b=l8AIh2FviKSeO8n6/QYzk8Rpgg/upaQ9OfCrUd4u/7DheRDMrAcecpYuDS5289mfhz8l/7Bbv5O5LYC7mEdKlBbfEH487pvfA/k0UpIg7B/Y4sIFJX2xLprecd+sGxd5o7aODOyi8cHdUdyG4YEsZjF5Hx6YbKXJsL0Ae5BSK00=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759047889; c=relaxed/simple;
-	bh=NxKu99kH3agH2FO2lgepNnWWuyInot0wVRbeUTibJ9Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=A+/UJxeA9wW94PfEdI5Yw1SOJrBhtQLms72bbBiJl9AH41HYmRPsdbJDftIKyN+Lr9PwcCghniNVguqCtSaYUVHFoV+tMBpXTs0ZYCwZBxZQu4LQI3ZWXb5MGvpZkDq8aJhwDbQLDMVhPwh8vb86ka9QZx86BC8HwbRaSAmLQLs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=k7v9WKuc; arc=fail smtp.client-ip=52.101.84.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jNRwzuGoUfZJxVvnobDmPfg/epb578QS92ZHw41Hct4rVnzAprI630VHrwcKrTJThmswzJeirfG6UdIxvQ3kjNkWQ8BWbJ6cmGoZIhi8OGr2xJMzjG4u3BMWTrsM17T5ABhwc406Qhrswgi/f4X0lUt+Xq4dhonc8uwiI2jwzAZhA52dW60t5mKYt0HxFQcxm/5uVm9eP8NABJttLrM0mFOch5fntgRoJTmEQRTNpZJZXtGxlTvDaKWirJVe0ceyGVwmMAb6S+hv8xWZ5K7EbMo+SRG94CIXmxIPPLqui5pdM2fZ5YDhjDp1wxTfYkWxC7n8oOmOZkMJ8ZTaLtw7hw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=g+iEs9uAQ4MQ7QoPF9zt758oMx4WhnEzt2hnKkTtL4Y=;
- b=WslTIuM7J+1iusDdOOEcLjQSn6EKLsdsQOpF2ueTn3ahCXgggk3ox3KABd8Yg19wVRQQ1wEvwSPKLMk+ILb2fOYE47r1MAu+bUlag70ZTx6+fw9RjWVKmSBX7ZV3wRzbJFz+G97K/hqphVOKKP6GB9t0mD6WCOgPBBguDLqUcG8xng1TWOYWy+MUhXdySowLRTNUPWYNd3KIhu7bN2VP/Rufe7N7lRHRFqunMtPZotnhwonaXS+8pbKdOv65ZFRkN8LEf3LWQa843YM48m1LmtJKr1l+5GdzifZxkj2b5rae39qjnyeT51C4UvNIdOW+ie/p1V7/lQgQLjf4bqFg/A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g+iEs9uAQ4MQ7QoPF9zt758oMx4WhnEzt2hnKkTtL4Y=;
- b=k7v9WKucC9MK0EHE9GN4Hn3LPOITRrzLK+UXQRSwGodd37CSZfOqsHuWWBhFfMyUF9Jl87t901eO1EhYFZZw1Kp58pakGevyBn0ZguLaj/1z2XXvBiUa/chMuOqJAKgTKDIzZp57rmzuxqgO3oa16vNuSIOLzZZQzDMd4ChLikatCqyzOK9hzkHU+9tPVmtIJCC6OwPj0LOU0x4jks5xRdNfzOVixdesKJUdArAU2HLg15m1LrkUQiVQVSkddWNkvrBdEXJo1t6hXHJGgpdRgGv+tnCML17sU8Ipa74OInJVBvGXlYiSn4zpFREHkAdeXOGu29xztKOIRUWiAoNjHQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AS4PR04MB9624.eurprd04.prod.outlook.com (2603:10a6:20b:4ce::9)
- by AS8PR04MB8500.eurprd04.prod.outlook.com (2603:10a6:20b:343::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.14; Sun, 28 Sep
- 2025 08:24:43 +0000
-Received: from AS4PR04MB9624.eurprd04.prod.outlook.com
- ([fe80::fa4e:dc6f:3f71:13b7]) by AS4PR04MB9624.eurprd04.prod.outlook.com
- ([fe80::fa4e:dc6f:3f71:13b7%4]) with mapi id 15.20.9160.013; Sun, 28 Sep 2025
- 08:24:43 +0000
-Date: Sun, 28 Sep 2025 16:24:40 +0800
-From: Rain Yang <jiyu.yang@oss.nxp.com>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: marek.vasut@mailbox.org, airlied@gmail.com,
-	boris.brezillon@collabora.com, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
-	krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
-	liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, p.zabel@pengutronix.de, peng.fan@nxp.com,
-	robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org,
-	simona@ffwll.ch, sre@kernel.org, steven.price@arm.com,
-	tzimmermann@suse.de
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-Message-ID: <aNjwyIgs9fzWiprq@oss.nxp.com>
-References: <20250904172019.58e5f589@fedora>
- <4147d10f-fb54-4f1b-ac1b-58cf657a3aeb@mailbox.org>
- <aMk1CISrn2_p0qzJ@oss.nxp.com>
- <c34dc4bc-de12-42fc-aaf5-50474dc53042@mailbox.org>
- <aMoTtr9KmdrgDUiE@oss.nxp.com>
- <c1a45cfa-a249-4782-b5c8-0ee2d173fc97@mailbox.org>
- <aMrDKkIoZvAlBD8d@oss.nxp.com>
- <609113fa-6af3-4e7e-b47a-45b3152d8581@mailbox.org>
- <aNZaatnVRRkaPrnD@oss.nxp.com>
- <32fffaad-7738-4fa6-80cc-2f8eba7ca099@mailbox.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <32fffaad-7738-4fa6-80cc-2f8eba7ca099@mailbox.org>
-X-ClientProxiedBy: MAXP287CA0001.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a00:49::13) To AS4PR04MB9624.eurprd04.prod.outlook.com
- (2603:10a6:20b:4ce::9)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 998F8233136;
+	Sun, 28 Sep 2025 08:30:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759048235; cv=none; b=n6g4BSCo+IV7ILOhx/W+rVhzB30eeP1X3A76Xt0zEeKrF12KH68Rg11kXWWrWZrDYUmqh53GFI3dZnvo2JaW+om5GxDvN0Bv9/63GoF38GKjv42TzscZWWH8SEwe3uDUYijibQgfQ7DUiETmJ5QDVZMQWztJO2F5Bw7iQZ/9daM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759048235; c=relaxed/simple;
+	bh=GMKC96tBhh8BbSxjp97CncZ4AG2zr2v2pDiVFBNdiXU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MhRU7wVLvhLkGSpKTEEKXKli1+Sy3ZN59Wra4aJnO939IFWnWOKNWquJpm0DVvhata7p4RkYgs8IP1UjlUKYc6CQ+7wIA24L0a93K9IHwivz0ljnZUwU8yk0UikuqF1fbMYiE5M893+Fwx9p77zx8M2k2Oo+0F5tOsnYsdRfT1o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PRth4uvt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E6FFC4CEF0;
+	Sun, 28 Sep 2025 08:30:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759048235;
+	bh=GMKC96tBhh8BbSxjp97CncZ4AG2zr2v2pDiVFBNdiXU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=PRth4uvtTfYhFnlOwi2b4sWyak1UL8Gs9PC+43Khq+mki1d43bVRwzINtK+wB20qx
+	 xOasy5sRa/PD49CTXisBzz7V4zBKzb/gDrhWy3+11pXDXB0MpKdp2OJGm0y/qCyBeX
+	 pRUSWRZwttaTy9orVPXY1sAZ2CfQQFZQSMqDx4f1K0ROytwnSJ0vWRKPhffxhqIWVS
+	 mjW9ETRVwu42/vXcOaPLz/nqnHKweYNaDkzKJWJ0jz16Dqq6J/F2yCdG3NASQXQagk
+	 M4bjO3KNM+31ydN9shIvOL4RxzMdepEJcZU6NRWgcL6Bc2iDbFcfPsKije7qu3wh6B
+	 SGJp0B4pEoANA==
+Date: Sun, 28 Sep 2025 09:30:26 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org>
+Cc: remi.buisson@tdk.com, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 2/9] iio: imu: inv_icm45600: add new inv_icm45600
+ driver
+Message-ID: <20250928093000.6753d920@jic23-huawei>
+In-Reply-To: <20250924-add_newport_driver-v6-2-76687b9d8a6e@tdk.com>
+References: <20250924-add_newport_driver-v6-0-76687b9d8a6e@tdk.com>
+	<20250924-add_newport_driver-v6-2-76687b9d8a6e@tdk.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9624:EE_|AS8PR04MB8500:EE_
-X-MS-Office365-Filtering-Correlation-Id: b77c149a-2853-4adc-9512-08ddfe6879bc
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|52116014|376014|7416014|366016|19092799006|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?LvFVbgS6bF7sAZidNrhzFov724ZugXyff5GP4jHLFg5ngZf4uDvt8alIkAbE?=
- =?us-ascii?Q?oxBFXwFkSTAmZTZvanLvmDav1t9jJdH3VnBtFsvYsYVr9hkFNJRQLGuy89E5?=
- =?us-ascii?Q?TC7Zgl7RO+lxmrsjm3kwcScShu4jY9JXTZkL77b38FioUxgaWDugqi900VkF?=
- =?us-ascii?Q?2s0V5jgB+pRa0xIDrv64ONZSUicJFM+7MmLm0VfpnEnvSGDr2baV3dnOjpwJ?=
- =?us-ascii?Q?sLJ1RzXaMD3/vqnt2oOQz786JGWEdoJICpe9LDZAl5M/A6xu+GWNHkwVWE95?=
- =?us-ascii?Q?0jej5NRom6TaXRaCjBVoYUaA7beTvR/+E69jzxbwlYFUBgOpbLQqId5TWHIL?=
- =?us-ascii?Q?xfC95afc2YXjkm3+mBO0RWjWrzaXABqR2TuZTPxKqHY+OMmIIwLr7lr5cTxq?=
- =?us-ascii?Q?dDribAcTw6fL3JjaMeMlhHZM/kg3HL1eS1ArD2Ve8csH4ymkSrnDnAut+1Ds?=
- =?us-ascii?Q?M8yE9vL5g0Rg4p25yLUGXqGbEkUotfxJResfVCyBv5PVxgsoyFsJQRf/yfdY?=
- =?us-ascii?Q?Ww1YaGdxU3UbbB9PGlv0K6aRFB8FkJW2g6IFSKrzDQ8VE7xLJN5ELUdz75fB?=
- =?us-ascii?Q?/iBMAbsSHTKUQGwIHxg32ax8Jqyvh3pDWZHjujgQYOAuSlopmsHmqkzaCVuU?=
- =?us-ascii?Q?5Z1UqsWuf3rh9wR2B1WVV8C+QF6VOXOVj2Xvcp69T7GlMwAkPACm6zZ4P3Zd?=
- =?us-ascii?Q?T6FMGmISMrdWWcnrByeHfTtLwjUe/GrM5AcCVLeUIhnn5gxe4tlmP3jkxiO6?=
- =?us-ascii?Q?OZENYDxzaUmvU974qYHcxRZ6dmxhZJa15I1DmxxFfZfckHVaL5WkBHT8I358?=
- =?us-ascii?Q?qlabsEhPQG0hkbR6iDoyFR16bdXGsx+FisxvIOXQltoH6GOE+/NHX+YutkMT?=
- =?us-ascii?Q?vGBTiZKmhGJ3INNRE98G+jLkcqx8xF5di6nlLzQMW3qXCvfoNjFK6SOr6NfD?=
- =?us-ascii?Q?i/E8oPitOEDP/pG3UyjrzLsewu0BHfPyujwm6TGmRAH+9fPuqyQ4TY8YJNZT?=
- =?us-ascii?Q?croP5P5h1PurWZe8W4DoYiwLbI0SEZC4FZYquRZzWpXAnbJlOlR9aSQF8DyD?=
- =?us-ascii?Q?FIgO/T5zBp/+Reak0vH/7GAdPEKavcynAD+Ev+EYaQSCAGMgnomDefAtcMCP?=
- =?us-ascii?Q?/VpMKov40bDV3VRjb9Gy4azSWbZUQtdu/EKWgLmXJdEhaYYEnm/5A/SAZFqF?=
- =?us-ascii?Q?xKmzQoQAewWe3yWRdeAiEUYSjMHMA7eGud5XcmV3/dArDJ/j3lgmDYce4ibi?=
- =?us-ascii?Q?EKEfo1CqzU8l8/tgvqX/N9qKK6ihcVnBz2mwfMtKfANPSvJJDD3bU9k2tn8z?=
- =?us-ascii?Q?oGojNHXOWl179tFQHtbanalOx06ORZl7+zPdZBx5GU4mA2MPaFkylhNCoNgg?=
- =?us-ascii?Q?CYk6c3S71NZSbrCD46Ku2eVofq9SRIzMZ7Au0yCnIJT/L+F2JmlYU1xB4A3m?=
- =?us-ascii?Q?oNHvtYWrawlj51QmDzocrdQ1tp+Sk2sF0ADcVq4b6xfhmINQol6EZOXR6wbo?=
- =?us-ascii?Q?jjz2+gEEl3qma7K2/ALTY1dZo0T8NYsbHnQ3?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9624.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(376014)(7416014)(366016)(19092799006)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?XKvGcRe4+Yr6WvNXT+/eNeMXw5x2hRRs48c/cBtq8sdYm0DvPF0ft5o5/Dkv?=
- =?us-ascii?Q?6ePvxdFfgkNUovCnbMWw3MDTtKKCRBWcRYa15npPKSEHwCg86UDIBB5Q+g2D?=
- =?us-ascii?Q?+yUXQiFAS+kRdi9qScqSk29sE3/4A1WFilFEOXCkMLhXkZwZ4bfQknx6djDb?=
- =?us-ascii?Q?eMojHpzeJLS6/8pfJTiVnVqkmAYSoECJqg+IDW3CoVKz+ZRZr3h9xqDe5JMU?=
- =?us-ascii?Q?EikEbcX+sHM3dflr6Bb1ppz3Fja9yomeDERK+Y009MCGTA9xFPGaaNGRM1r6?=
- =?us-ascii?Q?z84akYHDrgTb/PGYvjuOE+aYLnIOi3uFJ4wshCKgdwUE9ScndLd1grhDqmED?=
- =?us-ascii?Q?vgzK4JfA2jDr5pCkB5T/DnN12WcoBfXT3E91VvLstxYmnK2L823REuMuM+rm?=
- =?us-ascii?Q?Ve/z4pY/kYzL24AM1E39DnZ0sDAsTd8vqdo8T8WHgteWOTOb789j7+xt6l0f?=
- =?us-ascii?Q?iNRSM+XEK7fzDc57A6PpAH5xJYeuulXsgYwpJUj5XmGZbA34USu0OoGaLLxd?=
- =?us-ascii?Q?nybxWAaOy3wr7ykN+vtW1Am2OKUzUt/LVBzDz+SyhLrRVy95isFi/tUOF6py?=
- =?us-ascii?Q?pCgmP4YFFnarTNClYImeh6ifaRsIdr5ZFa4/4ZywTwpjLkcjPV3tTHQtRmcc?=
- =?us-ascii?Q?9x+mrzzq+zFZ4REDbnSFy/t2zCu7L2FmZJs753rBz+4Tai1eqMzoJU4CyHBi?=
- =?us-ascii?Q?NG2VLVrfJN4zBhV4tq2X3JfOZ62WrrtskJfM+oK5xiH1PQh8uEYd+1z2TGy4?=
- =?us-ascii?Q?uDajRYWDPvf4mD5rnsDjRAY+p7HzGWkmSapj/m7vmY5iIqX99NyQVcO6xj6f?=
- =?us-ascii?Q?xYj2kc9axctjR3o7Mtb4AB6UhDWtcsAyAAHhR+38acwimzhIWBm0gjPURu9r?=
- =?us-ascii?Q?Cc2nPKzW69MqCihHCChQChZaTPeQfhAW6zEgySZXxVFhj0cl/Sif5Nnd6Mok?=
- =?us-ascii?Q?AS66LgpA5nDlgWa/gTRWvsvH6rQQ739XXUHd71C+LRy5QagZ/QrXiq+K7sNJ?=
- =?us-ascii?Q?foXtYNrhKoLd9Vy/uPvUR5Nih/nFZHrYhgj2JDaw3vR0VE6Np/lWxYhP4uvA?=
- =?us-ascii?Q?Gore4yFkVIpg7c6CyQjG2ljBW9Xh8NBpsrb5zLKyGH7n13peRsZZ2vC/79BP?=
- =?us-ascii?Q?SmR0oJ5u9Gkp7nUH15pZb3GszjmGcnDsrsEKoPz3koh1sSPb4tP53k4q40V3?=
- =?us-ascii?Q?JwVSWwHTZ0p9RmUcqlZDDq2qU3HWWecJhkAO6FTZ9BVkytiAy0sQOpyNgzlB?=
- =?us-ascii?Q?8XsNfgvFRLmrXyBhk4ruq8bfSI3o2vlKjz1GnDcH5qrWcmvyc7NqGuyp8wgY?=
- =?us-ascii?Q?6OMbdp30rncGANh7PjXtBNwzOaFyaYkBTAYpMeEMKrdLiwsJJlaUl7sTLAHp?=
- =?us-ascii?Q?Nj6TVQqQdr53v/VSPz+aApmPI5uMSvLLX0xQboJSOkWcHVlm+W3r4PvUAQG1?=
- =?us-ascii?Q?eGS43wXjmDZSIeRKgv3gsySLetuVpGIhi6j8pzDlVrGZogBFeuEzaDeISplw?=
- =?us-ascii?Q?Wcp0WoxDnWM1fwe4kDjdm5H3IOjINTCKsuYddoccxc7wVnawaR2+lqvRq+pq?=
- =?us-ascii?Q?KdCRjtOJH7wxxLQDcUlZzVCP79iQ6SNs0ECE5AiN?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b77c149a-2853-4adc-9512-08ddfe6879bc
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9624.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2025 08:24:43.2509
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fhlIpD66egC6U4SGdGpJbgjtVLJ/tqgIE8MSd2vbDHw0AeO4yklwEBU3Vy7fPxDS3JbLrBM0ctAXJlctXFO4Cw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8500
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, Sep 26, 2025 at 03:32:46PM +0200, Marek Vasut wrote:
->On 9/26/25 11:18 AM, Rain Yang wrote:
->
->Hello Jiyu,
->
->> > > as the 0x4d810008 is a write-once register and whose operation has been moved into the SM side,
->> > > so please drop the reset change.
->> > > can you also change the label of the gpu node from gpu to mali like "mali: gpu@4d900000",
->> > > as the internal driver use mali label to control the thermal up/low limitation.
->> > 
->> > I updated all of the AHAB container, imx-oei and imx-sm components, and the
->> > reset controller is no longer needed indeed.
->> 
->> thanks, please update the gpu node label if possibly.
->
->Which label do you refer to, and which one would you prefer to have there ?
+On Wed, 24 Sep 2025 09:23:55 +0000
+Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org> wrote:
 
-"mali: gpu@4d900000", not "gpu: gpu@4d900000".
+> From: Remi Buisson <remi.buisson@tdk.com>
+> 
+> Core component of a new driver for InvenSense ICM-45600 devices.
+> It includes registers definition, main probe/setup, and device
+> utility functions.
+> 
+> ICM-456xx devices are latest generation of 6-axis IMU,
+> gyroscope+accelerometer and temperature sensor. This device
+> includes a 8K FIFO, supports I2C/I3C/SPI, and provides
+> intelligent motion features like pedometer, tilt detection,
+> and tap detection.
+> 
+> Signed-off-by: Remi Buisson <remi.buisson@tdk.com>
+Hi Remi,
 
->
->> > > BTW, does the dynamic frequency work well on your side so far with perf domain?
->> > 
->> > How do I test that ?
->> 
->> cat /sys/kernel/debug/clk/gpu/clk_rate, although its name in dts is core.
->> it is an read-only scmi-clk.
->> the clk rate should be fixed, as it can be changed only via scmi_perf in i.MX95.
->
->Right now, it is indeed fixed at 1 GHz .
->
->-- 
->Best regards,
->Marek Vasut
+Just a few really minor things from a fresh read through.
+Given the request for a commit message change on the DT that is slightly
+beyond what I'd normally just tweak whilst applying I think we'll have
+a v7 anyway, so if you could tidy these up that would be great.
+We are very early in this cycle anyway, so I'm not inclined to rush!
+
+Jonathan
+
+> diff --git a/drivers/iio/imu/inv_icm45600/inv_icm45600_core.c b/drivers/iio/imu/inv_icm45600/inv_icm45600_core.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..04f04c72e1710efde0ab8e83f9ce26d28e102c9b
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm45600/inv_icm45600_core.c
+> @@ -0,0 +1,623 @@
+
+
+
+> +u32 inv_icm45600_odr_to_period(enum inv_icm45600_odr odr)
+> +{
+> +	static const u32 odr_periods[INV_ICM45600_ODR_MAX] = {
+> +		0,		/* reserved value */
+> +		0,		/* reserved value */
+> +		0,		/* reserved value */
+
+I'd preferred this done with the enum values.
+	[INV_ICM45600_ODR_6400HZ_LN] = 156250,
+etc and just a comment to say there are some reserved initial values.
+that way we don't have to compare the comments with the enum values to be sure
+there isn't one missing etc.
+
+
+> +		156250,		/* 6.4kHz */
+> +		312500,		/* 3.2kHz */
+> +		625000,		/* 1.6kHz */
+> +		1250000,	/* 800kHz */
+> +		2500000,	/* 400Hz */
+> +		5000000,	/* 200Hz */
+> +		10000000,	/* 100Hz */
+> +		20000000,	/* 50Hz */
+> +		40000000,	/* 25Hz */
+> +		80000000,	/* 12.5Hz */
+> +		160000000,	/* 6.25Hz */
+> +		320000000,	/* 3.125Hz */
+> +		640000000,	/* 1.5625Hz */
+> +	};
+> +
+> +	return odr_periods[odr];
+> +}
+
+> +
+> +/**
+> + *  inv_icm45600_setup() - check and setup chip
+> + *  @st:	driver internal state
+> + *  @chip_info:	detected chip description
+> + *  @reset:	define whether a reset is required or not
+> + *  @bus_setup:	callback for setting up bus specific registers
+> + *
+> + *  Returns: 0 on success, a negative error code otherwise.
+> + */
+> +static int inv_icm45600_setup(struct inv_icm45600_state *st,
+> +				const struct inv_icm45600_chip_info *chip_info,
+> +				bool reset, inv_icm45600_bus_setup bus_setup)
+> +{
+> +	const struct device *dev = regmap_get_device(st->map);
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	/* Set chip bus configuration if specified. */
+> +	if (bus_setup) {
+> +		ret = bus_setup(st);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	/* Check chip self-identification value. */
+> +	ret = regmap_read(st->map, INV_ICM45600_REG_WHOAMI, &val);
+> +	if (ret)
+> +		return ret;
+> +	if (val != chip_info->whoami) {
+> +		/*
+> +		 * SPI interface has no ack mechanism.
+> +		 * 0xFF or 0x00 wwhoami means no response from the device.
+whoami?
+
+> +		 */
+> +		if (val == U8_MAX || val == 0)
+> +			return dev_err_probe(dev, -ENODEV,
+> +					     "Invalid whoami %#02x expected %#02x (%s)\n",
+> +					     val, chip_info->whoami, chip_info->name);
+> +
+> +		dev_warn(dev, "Unexpected whoami %#02x expected %#02x (%s)\n",
+> +			 val, chip_info->whoami, chip_info->name);
+> +	}
+> +
+> +	st->chip_info = chip_info;
+> +
+> +	if (reset) {
+> +		/* Reset previous state. */
+> +		ret = regmap_write(st->map, INV_ICM45600_REG_MISC2,
+> +				   INV_ICM45600_MISC2_SOFT_RESET);
+> +		if (ret)
+> +			return ret;
+> +		/*
+> +		 * IMU reset time.
+> +		 * Datasheet: 16.84 REG_MISC2
+> +		 */
+> +		fsleep(USEC_PER_MSEC);
+> +
+> +		if (bus_setup) {
+> +			ret = bus_setup(st);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +
+> +		ret = regmap_read(st->map, INV_ICM45600_REG_INT_STATUS, &val);
+> +		if (ret)
+> +			return ret;
+> +		if (!(val & INV_ICM45600_INT_STATUS_RESET_DONE)) {
+> +			dev_err(dev, "reset error, reset done bit not set\n");
+> +			return -ENODEV;
+> +		}
+> +	}
+> +
+> +	return inv_icm45600_set_conf(st, chip_info->conf);
+> +}
+
+
+
+> +
+> +/* Runtime suspend will turn off sensors that are enabled by iio devices. */
+> +static int inv_icm45600_runtime_suspend(struct device *dev)
+> +{
+> +	struct inv_icm45600_state *st = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	/* disable all sensors */
+> +	ret = inv_icm45600_set_pwr_mgmt0(st, INV_ICM45600_SENSOR_MODE_OFF,
+> +					 INV_ICM45600_SENSOR_MODE_OFF, NULL);
+> +	if (ret)
+> +		return ret;
+> +
+> +	regulator_disable(st->vddio_supply);
+> +
+> +	return 0;
+> +}
+> +
+> +/* Sensors are enabled by iio devices, no need to turn them back on here. */
+> +static int inv_icm45600_runtime_resume(struct device *dev)
+> +{
+> +	struct inv_icm45600_state *st = dev_get_drvdata(dev);
+> +
+> +	guard(mutex)(&st->lock);
+
+Trivial but why is the lock needed?  I'm fairly sure nothing can race
+with this regulator getting reenabled.
+
+I guess, given you are holding the lock in the suspend path across regulator
+disable this is reasonable for balance if not strictly needed.
+So leave this if you like.
+
+> +
+> +	return inv_icm45600_enable_regulator_vddio(st);
+> +}
+> +
+> +EXPORT_NS_GPL_DEV_PM_OPS(inv_icm45600_pm_ops, IIO_ICM45600) = {
+> +	SYSTEM_SLEEP_PM_OPS(inv_icm45600_suspend, inv_icm45600_resume)
+> +	RUNTIME_PM_OPS(inv_icm45600_runtime_suspend,
+> +			   inv_icm45600_runtime_resume, NULL)
+> +};
+> +
+> +MODULE_AUTHOR("InvenSense, Inc.");
+> +MODULE_DESCRIPTION("InvenSense ICM-456xx device driver");
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS("IIO_INV_SENSORS_TIMESTAMP");
+> 
+
 
