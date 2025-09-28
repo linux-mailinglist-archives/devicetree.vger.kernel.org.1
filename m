@@ -1,82 +1,93 @@
-Return-Path: <devicetree+bounces-222214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC5FABA6DC0
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 11:32:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCE03BA6E14
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 11:42:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 128DF18979F3
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 09:33:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 778B117D1C7
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 09:42:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 432442D8362;
-	Sun, 28 Sep 2025 09:32:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D022D9EF2;
+	Sun, 28 Sep 2025 09:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="S66go+d7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nMDDxxwq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A08A42D062F;
-	Sun, 28 Sep 2025 09:32:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D7842BF3CA
+	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 09:42:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759051954; cv=none; b=Hf5I2F1O13wExh7vpPHN7YhYlCDb4XxphU3D4ztkaBYYL8HapCDVOFXHcOxYwjfCR4ZE13oC++ethW1GLUjIZJ2ct0RObcZcawJHyZ1vy6zyvjMU+nL2tkvCVAiG/uNg89ohKJx56wiL6LMRiuO+jiN7EGnWUcbvk/HCheWoB3o=
+	t=1759052523; cv=none; b=qaNe/k10+QN4/8lewO4QRiS/AP7xbNjH7cpdqfrk0TU/gTBrAAdfuPXPqf3KFbuFfG9neqEL2EISDMYzYOd4QYvLVgSkvGdLB3x7lZI3wkSx9KBYtgRlhI47ZR3KpxXJ9vNTeZNhOKNY08XaFeiL8Gp2LdrUTU5afoRG1bN1+TA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759051954; c=relaxed/simple;
-	bh=SKwtz4qWqhPcESQg87ojaWvLmwrEotTfIBGcnSoeTbk=;
+	s=arc-20240116; t=1759052523; c=relaxed/simple;
+	bh=DUAM4seh+KWwKZYjI00J3MrOycPvJM/Yvq2EBdgrc+M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KRJ9yXHIgoMdMJnoXnKwho6oG1gGeDXiAPaYiCLXRL7yHoWuKi+KFzCjtrXDFlRSToJsEuf+agCLttdbwbmwKGcx+6FsQ9R2QJh8yu4ZfjUJ17bf/LF47V0ZEzo0/YxctAwhuqGqLZuZEiq5zj2ODLkjb5+k+oxPNBokcX0AdtY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=S66go+d7; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=W4obhf2MMc+kaVAeVoHPf3nhTo/bKPGOyQwVk/dKIYA=; b=S66go+d73VUiXXPjRKdmdmphgX
-	fJSp4bLxi+AG0GdEXOovkaskpY4ph3IFxoWPlkw5KBlq8BCDaujWApl2reNhtFcjbYdO8NWLTAu/V
-	4jlVxRjWuwXjBlWuN3blTKJRXUGJbIfujGydt2dCgCZIEqmEkDAd9oVT2mOQqCO7ldr59MR2+/rov
-	sr5t7sQXGdcwWelHGX0LbcInHhXBZQG2QvKhdOThbQMeHV3+YdBNo41m0p+mCXk2XnC/CvR06IZBL
-	hFHJHJHKFipbKSUM63/MTC3uqDEN9slMfDkAUlhX2C3f/dSobUTyU4JBwRkEJg+QyoR0+8N3pw81V
-	7G/ljcAg==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:60784)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1v2nlZ-000000005RS-1C6u;
-	Sun, 28 Sep 2025 10:32:25 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1v2nlU-000000002Si-1OQ2;
-	Sun, 28 Sep 2025 10:32:20 +0100
-Date: Sun, 28 Sep 2025 10:32:20 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc: Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	Christophe Roullier <christophe.roullier@foss.st.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, netdev@vger.kernel.org,
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
-	Simon Horman <horms@kernel.org>,
-	Tristram Ha <Tristram.Ha@microchip.com>
-Subject: Re: [PATCH RFC net-next 3/6] net: phylink: add phylink managed MAC
- Wake-on-Lan support
-Message-ID: <aNkApFc9wsnabXFW@shell.armlinux.org.uk>
-References: <aNj4HY_mk4JDsD_D@shell.armlinux.org.uk>
- <E1v2nFI-00000007jXV-1BYa@rmk-PC.armlinux.org.uk>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Lyx3YkjfesJAfkIqc8mDav5RM6s8vWNi2ZUGoTxGsc89jz86bEaF47KUwo9+s9/3WPoMS9Qj3cJcXQ2hpUyxnZLjDSC7c12bZVmqN+rPNOsD8oGbVlTIdm4lTlBxJkCpXLZ4Xp6ZJGpx88C47U6uiSf/ufQS3kd38Bk7cjpdGPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nMDDxxwq; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-46e3af7889fso17358345e9.2
+        for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 02:42:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759052519; x=1759657319; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vu/NJXREHp33yMgG701EQxLa0NQPuBp7Lu8J6U+lM+Q=;
+        b=nMDDxxwq2vsIMdluyzS4ENXcPyHcYClrIdCIDbmg1vGRzfCOoC7/poUEOIFN6U576h
+         3AMI/L34Zw367tvX+hHNbjSLBrAK7hCnwefD5PeTDZSf0ZXt7HdRxwfslGLLKejvZzdz
+         JlQxdaqQbCP68n3w899iuOUhqEyLJMrKd1Ulb/HhxP+zqZBCEGowGtgs86N1OzkupW/Y
+         OglNHPj32M0nYnlo21YLdpj5KlriNUqEYuc1QARbn231t0WCch5QTggmQkUZl8nTO4ef
+         2ZgV1P8ZyZsbrfYMq+YvkAtIv11gV+kBynjCO1c0s/K1+l3CgS6cf/c3VTWJOgER9B62
+         Zlhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759052519; x=1759657319;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vu/NJXREHp33yMgG701EQxLa0NQPuBp7Lu8J6U+lM+Q=;
+        b=gfSvG7xpCMB9fNa76NIsa7Dj532iIHin6Y2c66uD9Nek5dyhutkgI1at1d3F4jGt79
+         4uq9ZKhElKaFIWAe+tnI0OmruPESp//JMfj3n/CZyL2aPRRkPdW8wR6BSm2yxUfKjP6a
+         E930F9QCtOqHWJjd3sUL4ioagfFk2YzRt7oI8B/+kg7XNFU9gwSxb+ipT4wNjXPoDblm
+         uJsQR4CUVVik2oCiLAvWnUbf/xr+U7db01/f3f0hWohzKxiX7zkMn7NikIhVjCYFyTOL
+         YzsHuypkp4waxkE2Iw8+7kzLt+Sc0+8kAnIzV8C0k82Qir/dtkutSWRHhQn0kxR3EnNk
+         UwGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVFE4dSbNyOxaHei/QKh2V74Cpf8M2FtN4Omqwksro9vI0lZVAPpbAXnAYvDj8FZBoBJbIPM2WuiSoO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXT8kPlH7hT91t8IZCDZs5g0ZzJO2ede2Hju07QpTj94EK92v7
+	ggsxs1BAYMuiUCMHMitXUbqpcZ643jDD5Y0nWHFe3onoY30OLwJsMmAK
+X-Gm-Gg: ASbGnctXEySXlFBC4i/C5dtRK5vorh2Xo779BCxDqiQsMfICaZABhhlGAHBgrtgAy1u
+	hZd3hayLK1dd79nj2WaTMtlWAf1obsu3ULHKAMxg9A3Dx41dM4qU0/UOEXYxDqDzcW9bWQwBKSd
+	vQ2IZ28ZUzCuk/KDN4+56ZGWtnZwFiKHJYGvR4uHaaGeqK99rd6a65gqNm4GzTm9JRNOo/NWrTp
+	KXkIYDj1FIYeD8vc1eDbBhLaeyC/0Am42MJ3Xuy8hqBn7Fo90lIW8sTAXxEUkOWUJRU6r99T9ko
+	umh+TTk0DlPEY0o07a7WKU3WwSLkvV0vpZoSMwdTXuGrNG9O6A/0JPEh9coRrpDx4d1nxSpSmPd
+	pkBMvjlGmZ7MgCZ9WrzNSydNPqSS7sCjxobgOo1UoXcPk9RiF8NLLB88VZYyxSkyMKUY=
+X-Google-Smtp-Source: AGHT+IHX9VUoLygHmYlslyIRXdrJkzsw8xckiiAqyMLWxmDpD0d2AnjicSPbtMBF6XJqzI1b2bjK8A==
+X-Received: by 2002:a05:600c:a08c:b0:46e:37a7:48d1 with SMTP id 5b1f17b1804b1-46e37a74bc9mr96431435e9.34.1759052518976;
+        Sun, 28 Sep 2025 02:41:58 -0700 (PDT)
+Received: from antoni-VivoBook-ASUSLaptop-X512FAY-K512FA ([78.212.233.213])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e2a996bf1sm185108715e9.1.2025.09.28.02.41.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 28 Sep 2025 02:41:58 -0700 (PDT)
+Date: Sun, 28 Sep 2025 11:41:48 +0200
+From: Antoni Pokusinski <apokusinski01@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>, dlechner@baylibre.com,
+	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org
+Cc: conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	linux@roeck-us.net, rodrigo.gobbi.7@gmail.com,
+	naresh.solanki@9elements.com, michal.simek@amd.com,
+	grantpeltier93@gmail.com, farouk.bouabid@cherry.de,
+	marcelo.schmitt1@gmail.com
+Subject: Re: [PATCH v3 2/4] iio: mpl3115: use guards from cleanup.h
+Message-ID: <20250928094148.yid75l5jwywpvfei@antoni-VivoBook-ASUSLaptop-X512FAY-K512FA>
+References: <20250926220150.22560-1-apokusinski01@gmail.com>
+ <20250926220150.22560-3-apokusinski01@gmail.com>
+ <20250927173621.09bc9f39@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,69 +96,138 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <E1v2nFI-00000007jXV-1BYa@rmk-PC.armlinux.org.uk>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20250927173621.09bc9f39@jic23-huawei>
 
-On Sun, Sep 28, 2025 at 09:59:04AM +0100, Russell King (Oracle) wrote:
-> Add core phylink Wake-on-Lan support.
+On Sat, Sep 27, 2025 at 05:36:21PM +0100, Jonathan Cameron wrote:
+> On Sat, 27 Sep 2025 00:01:48 +0200
+> Antoni Pokusinski <apokusinski01@gmail.com> wrote:
 > 
-> Signed-off-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-> ---
->  drivers/net/phy/phylink.c | 77 +++++++++++++++++++++++++++++++++++++--
->  include/linux/phylink.h   | 26 +++++++++++++
->  2 files changed, 99 insertions(+), 4 deletions(-)
+> > Include linux/cleanup.h and use the scoped_guard() to simplify the code.
+> See below. I'm not sure this is in general a good idea in this driver, but
+> see the comments below.  I think more traditional factoring out of the code
+> under the lock into a helper function should be the main change here.
+> That might or might not make sense combined with a scoped_guard().
 > 
-> diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
-> index 9d7799ea1c17..9a3783e719bc 100644
-> --- a/drivers/net/phy/phylink.c
-> +++ b/drivers/net/phy/phylink.c
-> @@ -93,6 +93,9 @@ struct phylink {
->  	u8 sfp_port;
->  
->  	struct eee_config eee_cfg;
-> +
-> +	u32 wolopts_mac;
-> +	u8 wol_sopass[SOPASS_MAX];
->  };
->  
->  #define phylink_printk(level, pl, fmt, ...) \
-> @@ -2575,11 +2578,17 @@ EXPORT_SYMBOL_GPL(phylink_rx_clk_stop_unblock);
->   *   can also bring down the link between the MAC and PHY.
->   * - If Wake-on-Lan is active, but being handled by the MAC, the MAC
->   *   still needs to receive packets, so we can not bring the link down.
-> + *
-> + * Note: when phylink managed Wake-on-Lan is in use, @mac_wol is ignored.
-> + * (struct phylink_mac_ops.mac_set_wol populated.)
->   */
->  void phylink_suspend(struct phylink *pl, bool mac_wol)
->  {
->  	ASSERT_RTNL();
->  
-> +	if (phylink_mac_supports_wol(pl))
-> +		mac_wol = !!pl->wolopts_mac;
-> +
->  	if (mac_wol && (!pl->netdev || pl->netdev->ethtool->wol_enabled)) {
->  		/* Wake-on-Lan enabled, MAC handling */
->  		mutex_lock(&pl->state_mutex);
-> @@ -2673,6 +2682,17 @@ void phylink_resume(struct phylink *pl)
->  }
->  EXPORT_SYMBOL_GPL(phylink_resume);
->  
-> +static bool phylink_mac_supports_wol(struct phylink *pl)
-> +{
-> +	return !!pl->mac_ops->mac_wol_set;
-> +}
-> +
-> +static bool phylink_phy_supports_wol(struct phylink *pl,
-> +				     struct phy_device *phydev)
-> +{
-> +	return phydev && (pl->config->wol_phy_legacy || phy_can_wakeup(phydev));
-> +}
-> +
+> 
+> > 
+> > Signed-off-by: Antoni Pokusinski <apokusinski01@gmail.com>
+> > ---
+> >  drivers/iio/pressure/mpl3115.c | 42 +++++++++++++++-------------------
+> >  1 file changed, 19 insertions(+), 23 deletions(-)
+> > 
+> > diff --git a/drivers/iio/pressure/mpl3115.c b/drivers/iio/pressure/mpl3115.c
+> > index 579da60ef441..80af672f65c6 100644
+> > --- a/drivers/iio/pressure/mpl3115.c
+> > +++ b/drivers/iio/pressure/mpl3115.c
+> > @@ -10,14 +10,16 @@
+> >   * interrupts, user offset correction, raw mode
+> >   */
+> >  
+> > -#include <linux/module.h>
+> > +#include <linux/cleanup.h>
+> > +#include <linux/delay.h>
+> >  #include <linux/i2c.h>
+> > +#include <linux/module.h>
+> > +
+> >  #include <linux/iio/iio.h>
+> >  #include <linux/iio/sysfs.h>
+> >  #include <linux/iio/trigger_consumer.h>
+> >  #include <linux/iio/buffer.h>
+> >  #include <linux/iio/triggered_buffer.h>
+> > -#include <linux/delay.h>
+> >  
+> >  #define MPL3115_STATUS 0x00
+> >  #define MPL3115_OUT_PRESS 0x01 /* MSB first, 20 bit */
+> > @@ -163,32 +165,26 @@ static irqreturn_t mpl3115_trigger_handler(int irq, void *p)
+> >  	u8 buffer[16] __aligned(8) = { };
+> >  	int ret, pos = 0;
+> >  
+> > -	mutex_lock(&data->lock);
+> > -	ret = mpl3115_request(data);
+> > -	if (ret < 0) {
+> > -		mutex_unlock(&data->lock);
+> > -		goto done;
+> > -	}
+> > -
+> > -	if (test_bit(0, indio_dev->active_scan_mask)) {
+> > -		ret = i2c_smbus_read_i2c_block_data(data->client,
+> > -			MPL3115_OUT_PRESS, 3, &buffer[pos]);
+> > -		if (ret < 0) {
+> > -			mutex_unlock(&data->lock);
+> > +	scoped_guard(mutex, &data->lock) {
+> > +		ret = mpl3115_request(data);
+> > +		if (ret < 0)
+> >  			goto done;
+> Read the guidance in cleanup.h.  Whilst what you have here is actually not
+> a bug, it is considered fragile to combine gotos and scoped cleanup in a function.
+> Sometimes that means that if we are using guards() we need to also duplicate
+> some error handling.
+> 
+> So, the way to avoid that is to factor out the stuff under the goto to a helper
+> function.  That function than then return directly on errors like this.
+> 
+> Looks something like
+> 
+> 	scoped_guard(mutex, &data->lock) {
+> 		ret = mpl3115_fill_buffer(data, buffer);
+> 		if (ret) {
+> 			iio_trigger_notify_done(indio_dev->trig);
+> 			return IRQ_HANDLED;
+> 		}
+> 	}
+> 
+> 	iio_push_to_buffers_with_ts...
+> 	iio_trigger_notify_done(indio_dev->trig);
+> 	return IRQ_HANDLED;
+> 
+> 
+> However, it is also worth keeping in mind that sometimes scoped cleanup
+> of which guards are a special case is not the right solution for a whole
+> driver. I'm not sure if it is worth while in this case, but try the approach
+> mentioned above and see how it looks.
+> 
+> Alternative would still be to factor out the helper, but instead just have
+> 	mutex_lock(&data->lock);
+> 	ret = mpl3115_fill_buffer(data, buffer);
+> 	mutex_unlock(&data->lock);
+> 	if (ret)
+> 		goto...
+> 
+> 
+> Jonathan
+>
+Thanks for the explanation, both approaches look quite neat to me.
+However, if we use scoped_guard() then the iio_trigger_notify_done and
+return IRQ_HANDLED are duplicated, so I'd lean slightly towards the
+mutex_lock/mutex_unlock solution.
 
-Yes, these need to be earlier.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+> > +
+> > +		if (test_bit(0, indio_dev->active_scan_mask)) {
+> > +			ret = i2c_smbus_read_i2c_block_data(data->client,
+> > +				MPL3115_OUT_PRESS, 3, &buffer[pos]);
+> > +			if (ret < 0)
+> > +				goto done;
+> > +			pos += 4;
+> >  		}
+> > -		pos += 4;
+> > -	}
+> >  
+> > -	if (test_bit(1, indio_dev->active_scan_mask)) {
+> > -		ret = i2c_smbus_read_i2c_block_data(data->client,
+> > -			MPL3115_OUT_TEMP, 2, &buffer[pos]);
+> > -		if (ret < 0) {
+> > -			mutex_unlock(&data->lock);
+> > -			goto done;
+> > +		if (test_bit(1, indio_dev->active_scan_mask)) {
+> > +			ret = i2c_smbus_read_i2c_block_data(data->client,
+> > +				MPL3115_OUT_TEMP, 2, &buffer[pos]);
+> > +			if (ret < 0)
+> > +				goto done;
+> >  		}
+> >  	}
+> > -	mutex_unlock(&data->lock);
+> >  
+> >  	iio_push_to_buffers_with_ts(indio_dev, buffer, sizeof(buffer),
+> >  				    iio_get_time_ns(indio_dev));
+> 
 
