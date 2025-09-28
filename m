@@ -1,132 +1,94 @@
-Return-Path: <devicetree+bounces-222159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C4BCBA66FD
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 05:24:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3DC6BA6730
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 05:46:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D17853BF9F7
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 03:24:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C680116810F
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 03:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A35E2580EE;
-	Sun, 28 Sep 2025 03:24:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F15712620C3;
+	Sun, 28 Sep 2025 03:46:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com [91.218.175.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 601942571B9;
-	Sun, 28 Sep 2025 03:24:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F124ACA52
+	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 03:46:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759029863; cv=none; b=cVTPZgD6Gd3qpOZ67Kmu6h2MRbvJljv81ft/CfUlY0L3iEayTQohlGfuPHD63Vzt99GQjIh5xJh6roNSL+ksSYZjT+GdBMby/RlQD+XTwRYQfa5aKHa/5l/JDj7Ic3iYTuJVqC4tShwkUfOiy+JyWGXOXPJldtpa0R/ei4yWMvA=
+	t=1759031197; cv=none; b=XLLR0P/eTdC/FMmNjR3ii4wAHhlp8NqgwlwwmRBPFszGpDhHLe7EsuYgVCKIrPwQk7ZNEcR75iKSj3YkZnoNckt6BQzbw/BEYoMg8X7J5Vw+xZ4cKN9D2UI7IExqK0Go+oBxr7z/M/gnALOljTrzZqVx9wjxWv6pCfp1wWsd20Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759029863; c=relaxed/simple;
-	bh=ncHQ74VMBeChHXw3LJSTDTOQY+esT2CeSqVWwsaaPSU=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iHu/MJFEFkgS1dB28qMv2LI7xxCz2RR0rjFg9t67AUQP1LQFixmikpV5MoCbvBKrv5lKIMt8TllUW293dPGWzG6ZMuJAfv1NAbFwt7ZCsp0hticZLgsJhnQQYrcfPSfacOULoIpx5EJ9z2Mg2oySgBLDTUqGQobfPHjX5kMW3z8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Sun, 28 Sep
- 2025 11:24:07 +0800
-Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Sun, 28 Sep 2025 11:24:07 +0800
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: ryan_chen <ryan_chen@aspeedtech.com>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Alan
- Stern" <stern@rowland.harvard.edu>, <linux-usb@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 2/2] usb: ehci: Add Aspeed AST2700 support
-Date: Sun, 28 Sep 2025 11:24:07 +0800
-Message-ID: <20250928032407.27764-3-ryan_chen@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250928032407.27764-1-ryan_chen@aspeedtech.com>
-References: <20250928032407.27764-1-ryan_chen@aspeedtech.com>
+	s=arc-20240116; t=1759031197; c=relaxed/simple;
+	bh=leAHyipuOrrNM/GHdGoDUYGJ6EFVBQ6TUO5UvR4dHaM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=eD7xGbpa7es9k/MpDjsVc31+7WRx02l6iy0DU192q9rTZO6oQAa7xBtotDDwqWxcMkW2CEDaaT3SzJUsIbGLEbU8Lp9GNyuKN0/K5myrz5oCV6I5txQtirIPsYQGe2qED/tm46hTctRiSO/s/dJRiZXzPaa+Nm4SW9asxNPyk+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=pass smtp.mailfrom=linux.dev; arc=none smtp.client-ip=91.218.175.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.dev
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Subject: [PATCH 0/2] riscv: dts: spacemit: Add initial support for MusePi
+ Pro
+Date: Sun, 28 Sep 2025 11:46:14 +0800
+Message-Id: <20250928-k1-musepi-pro-dts-v1-0-64d0659dfdbc@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIav2GgC/x3MwQpAQBCA4VfRnE2taQmvIgfsYBK2HaTk3W2O3
+ +H/H1AOwgp18kDgS1T2LSJLExjmbpsYxUUDGcpNRSUuGa6nshf0YUd3KOa2cGQGa6nrIXY+8Cj
+ 3/2za9/0APJ4m42MAAAA=
+X-Change-ID: 20250928-k1-musepi-pro-dts-546d20c442ab
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Yangyu Chen <cyy@cyyself.name>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759031178; l=997;
+ i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
+ bh=leAHyipuOrrNM/GHdGoDUYGJ6EFVBQ6TUO5UvR4dHaM=;
+ b=KyplklxWO12GVPU+bp0gZ7RAp9WhOAzlXhFOisv8yAJsjTObE2dUqJ6fdZAbisASFR/pKWyjm
+ aH/L3CB9hIKBWAuh4KSRBKXJRrNG8EHIcAP/1kCZ3Ix/O6pdpBAZfHD
+X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
+ pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
+X-Migadu-Flow: FLOW_OUT
 
-Unlike earlier Aspeed SoCs (AST2400/2500/2600) which are limited to
-32-bit DMA addressing, the EHCI controller in AST2700 supports 64-bit
-DMA. Update the EHCI platform driver to make use of this capability by
-selecting a 64-bit DMA mask when the "aspeed,ast2700-ehci" compatible
-is present in device tree.
+This patchset adds initial device tree support for the MusePi Pro board.
 
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+Muse Pi Pro [1] is a single-board computer integrating a high-performance
+RISC-V 8-core processor, storage, I/O and expansion capabilities into
+a credit card-sized 1.8-inch board.
+
+Link:
+https://developer.spacemit.com/documentation?token=YJtdwnvvViPVcmkoPDpcvwfVnrh&type=pdf
+[1]
+
+Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
 ---
- drivers/usb/host/ehci-platform.c | 15 +++++++++++++--
- 1 file changed, 13 insertions(+), 2 deletions(-)
+Troy Mitchell (2):
+      dt-bindings: riscv: spacemit: Add MusePi Pro board
+      riscv: dts: spacemit: Add MusePi Pro board device tree
 
-diff --git a/drivers/usb/host/ehci-platform.c b/drivers/usb/host/ehci-platform.c
-index 6aab45c8525c..bcd1c9073515 100644
---- a/drivers/usb/host/ehci-platform.c
-+++ b/drivers/usb/host/ehci-platform.c
-@@ -27,6 +27,7 @@
- #include <linux/io.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <linux/reset.h>
- #include <linux/sys_soc.h>
-@@ -239,9 +240,11 @@ static int ehci_platform_probe(struct platform_device *dev)
- 	struct usb_hcd *hcd;
- 	struct resource *res_mem;
- 	struct usb_ehci_pdata *pdata = dev_get_platdata(&dev->dev);
-+	const struct of_device_id *match;
- 	struct ehci_platform_priv *priv;
- 	struct ehci_hcd *ehci;
- 	int err, irq, clk = 0;
-+	bool dma_mask_64;
- 
- 	if (usb_disabled())
- 		return -ENODEV;
-@@ -253,8 +256,13 @@ static int ehci_platform_probe(struct platform_device *dev)
- 	if (!pdata)
- 		pdata = &ehci_platform_defaults;
- 
-+	dma_mask_64 = pdata->dma_mask_64;
-+	match = of_match_device(dev->dev.driver->of_match_table, &dev->dev);
-+	if (match && match->data)
-+		dma_mask_64 = true;
-+
- 	err = dma_coerce_mask_and_coherent(&dev->dev,
--		pdata->dma_mask_64 ? DMA_BIT_MASK(64) : DMA_BIT_MASK(32));
-+		dma_mask_64 ? DMA_BIT_MASK(64) : DMA_BIT_MASK(32));
- 	if (err) {
- 		dev_err(&dev->dev, "Error: DMA mask configuration failed\n");
- 		return err;
-@@ -298,7 +306,9 @@ static int ehci_platform_probe(struct platform_device *dev)
- 		if (of_device_is_compatible(dev->dev.of_node,
- 					    "aspeed,ast2500-ehci") ||
- 		    of_device_is_compatible(dev->dev.of_node,
--					    "aspeed,ast2600-ehci"))
-+					    "aspeed,ast2600-ehci") ||
-+		    of_device_is_compatible(dev->dev.of_node,
-+					    "aspeed,ast2700-ehci"))
- 			ehci->is_aspeed = 1;
- 
- 		if (soc_device_match(quirk_poll_match))
-@@ -485,6 +495,7 @@ static const struct of_device_id vt8500_ehci_ids[] = {
- 	{ .compatible = "wm,prizm-ehci", },
- 	{ .compatible = "generic-ehci", },
- 	{ .compatible = "cavium,octeon-6335-ehci", },
-+	{ .compatible = "aspeed,ast2700-ehci",	.data = (void *)1 },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, vt8500_ehci_ids);
+ .../devicetree/bindings/riscv/spacemit.yaml        |  1 +
+ arch/riscv/boot/dts/spacemit/Makefile              |  1 +
+ arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts     | 40 ++++++++++++++++++++++
+ 3 files changed, 42 insertions(+)
+---
+base-commit: 0f084b221e2c5ba16eca85b3d2497f9486bd0329
+change-id: 20250928-k1-musepi-pro-dts-546d20c442ab
+
+Best regards,
 -- 
-2.34.1
+Troy Mitchell <troy.mitchell@linux.spacemit.com>
 
 
