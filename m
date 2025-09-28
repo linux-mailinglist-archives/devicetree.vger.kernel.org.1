@@ -1,192 +1,139 @@
-Return-Path: <devicetree+bounces-222152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5A45BA6527
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 02:46:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B944FBA6603
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 04:05:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 91D713C036F
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 00:46:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6446C1756D7
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 02:05:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F1451C3306;
-	Sun, 28 Sep 2025 00:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A321245010;
+	Sun, 28 Sep 2025 02:05:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Wat8rZcc"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="XwNUjyHV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbgbr2.qq.com (smtpbgbr2.qq.com [54.207.22.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC3E34BA33
-	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 00:46:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E10E34BA3B;
+	Sun, 28 Sep 2025 02:04:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.207.22.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759020390; cv=none; b=DymfCjZ3ZNV/GAsrNMMOH2SnbQzP0snWg0to85facJPk3ZuzF33A42Zm9aLGvq0lnjjpliZty9XBD4c7J2lX3+5RzNDmddK1yRExSHB/46pd9Gf586/QUePA6m+rLegP+IqN+KxpJI4oZyoi9K6d9swEO2TP2zkjbiUsgp07+bw=
+	t=1759025103; cv=none; b=LMNBxSUkvipMx8W3QoiKfCRh8A+NYZ2Cbzog1++bbhFBtOxn1NW/Fy4jFrb4DAzw12IxYbBgedg/1k1OFh4syPi14diEex8tUdOSMu1vbXh1W0VCXLq2iifxRACUfhbGoXNDWYA2R8BvEcx6b/bgTIg1OXgUlWBsB2xTwmuGt2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759020390; c=relaxed/simple;
-	bh=uFT8DD+GpvmowlrkoMgNzPNeWBkwZV4HRy1OuviWi4M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KH2oxCdxrrM/KRcWiVp6QRKKxzKFrgItk0kBJEizd0AIoSzpgv8o9mPW4ex74h0qltIDCMyoJrgbir8F4XUF6ejPT2mCurdYNuZHmMVcA4kbHVien4hJ+a4U4hRX6Qxq60qkt0OOLT3WaKyhaW/+Y6u9nyQ5Zn7N6JknY24L1Z0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Wat8rZcc; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-271d1305ad7so46441545ad.2
-        for <devicetree@vger.kernel.org>; Sat, 27 Sep 2025 17:46:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759020388; x=1759625188; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=R0SQxdo3RLHRiJ7AnzgCm7ZcELugvg2FhH462RqaNN4=;
-        b=Wat8rZcc9wy9u3iZaa1ZEAhmaw7yud0TBejGdtLK4GCW0Ov3lePDWZfN3h/8+9hx9b
-         nED1BT9BjQ116vlCN//ggNlZ/88yRn6NsEEJazSwAJhy20P+OeHQzo/7s5Uv6eeKSprt
-         apcGYm4J7n8URULQFxHr1ebYPFCUqC2H8uq5XLwih+oRQXpN1uUkgTyUkBV0G05vSio6
-         1e6uQbDGdnie6fvD806sy7O8QOpcpSVSQWju8Wbz+PkBBXYuZRANoqZTmdjSrnDF4+My
-         +jyTrUvhZx9urFkmwgaDpPxYqYiqJEYsv/HW5JQ1MVwbuHn2h92f+gQ4SVM5M8XjAzGd
-         wjKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759020388; x=1759625188;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R0SQxdo3RLHRiJ7AnzgCm7ZcELugvg2FhH462RqaNN4=;
-        b=eT9SA9BB/2CEsrhu/acJrtIBsXnsRPOY2qUbxvxipFLzxwOeCIxhAKqkvNse5NUs+j
-         As2A+h4u6PYW9aw5c/tM3P/C5JnWkTQR6uxyzu5H4oXPBaHjtFJY9nznqIkiq6q9Sc5S
-         BPMSn4MFTLlTd40BevE2Hv4TGg8iFGEZhdymKIfjy5ZtlVl198Rf1i6n3YrfusSXYpNX
-         4Tuf+vYAREVEuROrxMf4K4vMeJ3J4gJC7b0aXjGlhAghaq77BJva65W/Mdx+gdKFaXbh
-         Gh7rx9WmyMpIKajMHpb+9tOJ7IqFk+mgtXMnSK5UIIBu10eF7I5tU09BhhRebgiWNxXc
-         xXOg==
-X-Forwarded-Encrypted: i=1; AJvYcCUDDBiom/4yAgSkIsCrezOIBkl+g4Zu5k9EEGuT3SZvWlpfYjfjQYwuRKks8lKDqtJqHzsPkAPgYW3m@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyte7njzvFGnWekF7wh4VK2dqy27uX4Ve+7AySjeAA4QRQVubm5
-	z4+BNCeb7m7+8rdmJFjn/E8l5JEtu7esLVLh4vy0buFLM5aNL+AQ5eIy
-X-Gm-Gg: ASbGncsSEc1Wmbw5ZLLIOA9N4K3W3SadHjlCWyN6OpJ15/Vj53unh61Ie7Jnx7vyJTk
-	Dzp7jh+5hCTf6qYj+rnpD+jxjGj2UyD6BlJ99tg9sdfdurSs60uuzi3Nb4wzYUZw08l8JjT8H1S
-	pfubpUfh1Gq0AIYp1wif0m58tw9JrlqQB7hULdHjS3P8UIW36JyHimx5C3KKDtvMvi3hl7JZVqv
-	ipwbjHfXMssvS5bCQGrsG3OcDjp7nie8JPJOqZv61RSKrVYcIsxZrlx0exMkkzdQNqCQSo81CWm
-	SjwhmEtpjqn6Vp2r5Gk5iWyquKEMq7/TR7msN/tMb67VCAbhWJvNhKcdBbC81Ddsli2zKKxTVHw
-	rtpixPvdV7SkyRyq/B41BEi3lq4KBk/T8VYiSNfe3V1yhgzX3jpPkogjH3CzBnM7Wzwbyr4fL8Q
-	cuicRbcym1mgfmeOwwDE6E2LbmsXMBgj6I
-X-Google-Smtp-Source: AGHT+IHh6vp11a5YTPpS7Cpx/YPQS6tq6OUbtGBtN9cobxgvPjCMMdsgzvmVq+T4sqfObnWyrmGxdQ==
-X-Received: by 2002:a17:902:ef03:b0:27e:ef12:6e94 with SMTP id d9443c01a7336-27eef126f60mr78326435ad.55.1759020388025;
-        Sat, 27 Sep 2025 17:46:28 -0700 (PDT)
-Received: from setsuna.localnet (2403-580a-80ed-0-4835-5a07-49e7-f115.ip6.aussiebb.net. [2403:580a:80ed:0:4835:5a07:49e7:f115])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed6ac27d4sm88980475ad.135.2025.09.27.17.46.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Sep 2025 17:46:27 -0700 (PDT)
-From: James Calligeros <jcalligeros99@gmail.com>
-To: Janne Grunau <j@jannau.net>, Rob Herring <robh@kernel.org>
-Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org
-Subject:
- Re: [PATCH v2 02/11] dt-bindings: hwmon: Add Apple System Management
- Controller hwmon schema
-Date: Sun, 28 Sep 2025 10:36:03 +1000
-Message-ID: <2537878.PYKUYFuaPT@setsuna>
-In-Reply-To:
- <CAL_JsqK-9n3_H6vS80bZuZiSPi9UNuMzHEPFL_EzYTeyNS1cYg@mail.gmail.com>
-References:
- <20250827-macsmc-subdevs-v2-0-ce5e99d54c28@gmail.com>
- <20250925204925.GA637503@robin.jannau.net>
- <CAL_JsqK-9n3_H6vS80bZuZiSPi9UNuMzHEPFL_EzYTeyNS1cYg@mail.gmail.com>
+	s=arc-20240116; t=1759025103; c=relaxed/simple;
+	bh=dd8aTFM2Eb5B8r1iK/jAwaTrG7N7Mae22af5ILS5Ej8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k3BLk0rkKg3FQUjDotgNZ57X6BjD+aaPCqszfm7TLqfqPK6d2vTbfBBJWijq4ElLG6J09IQTlB79D4PMj7mJU/cASCsZFd2JetYDB8TGYhrJATty1jNR4PaSWoxF/ugTCQRv6mlMoSchyYgPDjBVN0uojXch/Um5jTMjBUr89x0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=XwNUjyHV; arc=none smtp.client-ip=54.207.22.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1759025079;
+	bh=m9Kk7QA8lWfdkzkFV5B/KM9BWqdwJsdsHEE8+TGRrrM=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=XwNUjyHVA5k32M95YQy28JjhMeaiz+GPu5bSxH6+lgtKwbvte3D2mUezhprlpXDd6
+	 6DjfWyoxKA8sI64pKNTzLWGiD12+94LDll+/a7bUbvxnhmsey3+H3hK9kuD9IhZf8y
+	 XHTT0vqjmPqsyQU9Bp3byH6tVyQxXVQ0lYquP3VY=
+X-QQ-mid: esmtpsz20t1759025076t46662b3f
+X-QQ-Originating-IP: lQaZvluawJANmPALLJ4FldAi7OUDYe5AwRXmjd29L0E=
+Received: from = ( [61.145.255.150])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Sun, 28 Sep 2025 10:04:35 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 14352669615158593729
+EX-QQ-RecipientCnt: 14
+Date: Sun, 28 Sep 2025 10:04:35 +0800
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+To: Aurelien Jarno <aurelien@aurel32.net>, linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yixun Lan <dlan@gentoo.org>
+Cc: "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:RISC-V ARCHITECTURE" <linux-riscv@lists.infradead.org>,
+	"open list:RISC-V SPACEMIT SoC Support" <spacemit@lists.linux.dev>,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Subject: Re: [PATCH v3 0/3] riscv: dts: spacemit: add 24c02 eeprom on BPI-F3
+Message-ID: <20B16B97E8F735FE+aNiXswZes4EM2abP@kernel.org>
+References: <20250926175833.3048516-1-aurelien@aurel32.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250926175833.3048516-1-aurelien@aurel32.net>
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: MsL7hwqo9bYsR1OWVt4oZigvDxkbg1rKsg2qsis4ncj6W0ft7V+cDOve
+	ZPjWGsSHCnTvL7bysNAZKM6hOr9b2vmI1qB1A/ubwsTyWINEeRVTQ7Vz1cjoIpk/TnouYft
+	RfzCeCbFcCxWHZ++oZWilhCiP2xbB5M5H4nsM59aKs/4Z4dSRtX53tx1svwSUCnbUAyiiD7
+	EOr476MTBSpff4XtLfXoOXJDyC+1RuNQcSB3Eq891w+TpghbBIQIEvgUJCw6UPexqrsZqkI
+	02dzbT0G8xeRvxtIdEOIOmHl7GTaliVNuHS+X/CDZOZgdFbMtMJ2/uDmS2bXpUHM2q39v+A
+	8g9QOcLqSh4VldwvGCmoMmTC4ip3cw9tb4m7rRLSsY9hXT7lMRi4stMzGnwqCyJUFYzHhnD
+	2r3M+RVhC+FR0ozmENpLu53PVyRKwkOIo2PHkk22sucPh0qgm2Myj4bpb9hgatRuHe6DyP2
+	CPQ6EAPWCvE38zGdVDBOaPfQXDjc6z2n0fw3l9C1uIDryjDT9AD8K58e8Vp+CHzZ5GtE3xX
+	stkxcyVVIT+a0B5Uwob98i8ukFeaNf+2qKX6uw9rFLvzRXwp9/9O28bZS1tCq7hWkzmiuOr
+	/hjqlom59f87gA8HCaroic6OhLZVGLMqCzXVToUhpiyfVypsC/P0PIp36h/+2L7As87da78
+	aCSleyf5n9FVnqJfRsd0jgZlqUIiMFSXRwTVeQdgw1nWp2KYzkIKBkaUy4JVQPClhDLMqNL
+	dQ/qQoPqzz84IhYJBdGUZlMpJwoWeNUpTTN0kf70+bAg58OpZrYmMHO8ftSXGcBiZjXodrn
+	LOTcVqX9l8l8OdieRWQUByqXJBS61LxgUB1zg6z2qkWNnak+hZCxdpIxZOTNqGy/Wfgnwiz
+	ZRMFt5m3XR9RvsWtxmU7ECACXTXG/excxcP8Y4V2V9vISgZ01R/Wd5bvm/1TuXN6dBJYIk0
+	z0pTUCuynSUhNo1J4jdYRz2klf6geY1obFkvRDfSawuJZfUH2iN0XwOIhTB1gWDlQo968Kh
+	pGWhom4haigIpJ+xpIFMcqTJf9QYYIcZM+uGXW0aPBSTrBNdDILXvCp47BP2eBmrmhUu2hx
+	qHse4w+Sldf
+X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
+X-QQ-RECHKSPAM: 0
 
-Hi Rob,
-
-On Friday, 26 September 2025 7:43:23=E2=80=AFam Australian Eastern Standard=
- Time Rob=20
-Herring wrote:
-> On Thu, Sep 25, 2025 at 3:49=E2=80=AFPM Janne Grunau <j@jannau.net> wrote:
-> > On Fri, Aug 29, 2025 at 11:40:57AM -0500, Rob Herring wrote:
-> > >=20
-> > > This should be something like this:
-> > >=20
-> > > "^current-[A-Za-z0-9]{4}$":
-> > >   $ref: "#/$defs/sensor"
-> > >   unevaluatedProperties: false
-> > >=20
-> > > With the $defs/sensor being:
-> > >=20
-> > > $defs:
-> > >   sensor:
-> > >     type: object
-> > >    =20
-> > >     properties:
-> > >       apple,key-id:
-> > >         $ref: /schemas/types.yaml#/definitions/string
-> > >         pattern: "^[A-Za-z0-9]{4}$"
-> > >        =20
-> > >         description:
-> > >           The SMC FourCC key of the desired sensor. Must match the
-> > >           node's suffix.
-> > >      =20
-> > >       label:
-> > >         description: Human-readable name for the sensor
-> > >    =20
-> > >     required:
-> > >       - apple,key-id
-> > >       - label
-> > >=20
-> > > Though in general, 'label' should never be required being just for hu=
-man
-> > > convenience.
-> >=20
-> > That does not sound as it would be compatible with skipping nodes in the
-> > driver if the node misses label. The driver could of course fall back
-> > to create a hwmon sensors without labels.
->=20
-> The driver absolutely should.
-
-The original submission (and our downstream version) do this, but I changed
-it for v2 per Sven's feedback [1]. Outside of development/experimentation,
-we will (should) never have a sensor in the Devicetree of uknown utility.
-If we know what a sensor is for, then we should have a label for it.
-
-> > I looks to me it would be a
-> > stretch to call the presence of the labels human convenience.
->=20
-> Then it is an abuse of 'label". "label" is supposed to be literally
-> that. Matching a sticker on a port of a device.
->=20
-> If you need to associate a sensor with some other piece of h/w, then
-> that should be via a phandle or something.
-
-I don't think doing so is particularly useful for this platform. Few of
-the sensors that we know about are directly related to any one piece of=20
-hardware.
-It's pretty much just the CPU cores and Broadcom module. The rest are things
-like fans, palm rest area temperature sensors, ammeters and voltmeters for=
-=20
-entire
-rails, etc.
-
-Even where we can reliably associate a sensor to a piece of hardware,
-(e.g. the WiFi/BT board), doing so does not by itself do anything useful. We
-still need to write a human-readable label for the sensor.
-
-I was trying to avoid yet another vendor property, but would something like
-'apple,sensor-label' work here?
-
-> Rob
-
-James
-
-[1]: https://lore.kernel.org/asahi/4a95cbf3-b3ae-4b26-8db2-dd5cf14a4c0c@ker=
-nel.org/
-
-
+On Fri, Sep 26, 2025 at 07:54:36PM +0200, Aurelien Jarno wrote:
+> The BPI-F3 board has a 24c02 eeprom connected to the i2c bus #2. It
+> holds board data. This patchset adds support for it.
+> 
+> Changes between version 2 and version 3:
+>   
+> - Revert the name change for i2c2-0-cfg and i2c2-0-pins, the second cell
+>   is not a function number, but an index.
+> 
+> Here is version 2 of this series:
+>   https://lore.kernel.org/lkml/20250923205028.2355244-1-aurelien@aurel32.net/  
+> 
+> Changes between version 1 and version 2:
+>  - Rename i2c2-0-cfg and i2c2-0-pins into i2c2-4-cfg and i2c2-4-pins to match
+>    the naming convention encoding the function number in the second cell.
+>  - Rename the 24c02 supply name label to buck3_1v8
+>  - Add a onie,tlv-layout nvmem layout describing the content of the 24c02 eeprom
+> 
+> Here is version 1 of this series:
+>   https://lore.kernel.org/lkml/20250921210237.943370-1-aurelien@aurel32.net/
+> 
+> 
+> Aurelien Jarno (3):
+>   riscv: dts: spacemit: enable the i2c2 adapter on BPI-F3
+>   riscv: dts: spacemit: add 24c02 eeprom on BPI-F3
+>   riscv: dts: spacemit: add i2c aliases on BPI-F3
+> 
+>  .../boot/dts/spacemit/k1-bananapi-f3.dts      | 33 ++++++++++++++++++-
+>  arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  |  7 ++++
+>  arch/riscv/boot/dts/spacemit/k1.dtsi          | 13 ++++++++
+>  3 files changed, 52 insertions(+), 1 deletion(-)
+Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> 
+> -- 
+> 2.47.2
+> 
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
