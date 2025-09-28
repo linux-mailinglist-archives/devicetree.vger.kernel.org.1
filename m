@@ -1,116 +1,150 @@
-Return-Path: <devicetree+bounces-222175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 065DABA6826
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 07:03:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0E59BA6829
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 07:06:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 372E7189A1E9
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 05:03:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31FB1189A713
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 05:06:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A93BE299AAB;
-	Sun, 28 Sep 2025 05:03:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TdRHcTbb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DAB428C864;
+	Sun, 28 Sep 2025 05:06:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from freeshell.de (freeshell.de [116.202.128.144])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5A61C5F23
-	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 05:03:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0838E1C5F23;
+	Sun, 28 Sep 2025 05:06:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759035800; cv=none; b=Svv/ntaRdUH3bcoduQ/5ApvrdBuoRRTa6CiJXhu94I1VBzUCkknV06GRhRq05xTkAGT9ryqCKEx+6AQHEkHl5VCH2+ItD1abbOqUUVoepdbNPt8jpzoUgICMpmyU3xihLUpC5tCR/0AMWSUFqGhsA6icBBB8mrEihArSejCoAPE=
+	t=1759035965; cv=none; b=V/+VKQGNyxxSAdde4YI3XjyeC4RGXWYMgIu3ZTuQ1w4dvhaFb6lQazE5v4tpMPnN2u23b3Cbr1GtE1LYgmZJ04iR3TD5pCd4hfPUvwqXyxW8HCkj5yTKE/x+ky3xMT8NmjddyP1pge3odphyF6yjXnkdvoQRjV/t2GEpTnSKboA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759035800; c=relaxed/simple;
-	bh=QMtV6OGFQw4H+Fr4qxLekLxCa2Qt7VL//D+5G2Q4PA4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XYKi7WjJvmNhs8rRY6FPmfLWFg0J2S7WYafULozw+udd7xJXkXu5kNmYSjhXW7+JRhcfW6u8rucOqm3G/inhyICGHXDMGdBQDyuYNq9UtUrrP5YaYypJrnKqFKdlX3aw7ulwQbq+5Lh7VunOK1oY7HKtuGKDx+0JSHSmt45al40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TdRHcTbb; arc=none smtp.client-ip=209.85.215.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b523fb676efso3432014a12.3
-        for <devicetree@vger.kernel.org>; Sat, 27 Sep 2025 22:03:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759035795; x=1759640595; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xm/OUWyFAO6MekzNliwFbpLwUdv2bsJ5HXnGJgKstlA=;
-        b=TdRHcTbb5LaW1+g2m1lt9ldBrNDJGsGIymDK4SnGNBrNSMjpTzwyl+fx6PFd196tda
-         vzJRSJ4i6MxfNzSh28mi6NeQ7pTD+4MxOKiqMZdi8ohM6hw/esAlq47ZwMK10Nkva2bK
-         /jN905kgffqE2BYeitRKEz7O0StMJ3enIxwZgmHEDfPAGUQKJ/tUjBQzQwqkRMGUYPZW
-         o0cSdm9w4dgHZ88NNWDgWFaDmjeCVbAk/GrjhR/l6cHQ37Ve2vp4jb9UXey9YVeP4OTG
-         TT2MMy5nLjyYjpgD/w8KjNNg8euIYhVrTYODvswpaNvsPyyNPiJGGziGzPVWAn3z/LXK
-         MTtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759035795; x=1759640595;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xm/OUWyFAO6MekzNliwFbpLwUdv2bsJ5HXnGJgKstlA=;
-        b=ANtYJTJ8QvEmR8MG+gUiiub6NPuMsvG4xSggX21sb58MC6rhy9rOvNY88XaJwGTCHX
-         SiB9qBJky+8mxxAzauQU08XQh3H8rvvIasynmtjG7GY3KOh5fwfIDtCuxhs2MjSGZp+T
-         eO+u6MCLQ2+9KPm1aSi9TSbsLUSIduObysZ8seah5c2hetxRBBbq7OLXoJ4BxPn+h2QF
-         FAP2+X/P2aP/48/HgeNCjf+q/8qUtLOmJ9ARxryShbo8W4hqWI4bddnytH8sbZvpDTsr
-         5HqRZhzAdklZVfzf883rq9680MiJc0Obym5u3wQhlM2UYFKQWXTbQdEtyXWitf6GGch+
-         0nJg==
-X-Forwarded-Encrypted: i=1; AJvYcCVM0kR+oZsf+rBOgrVqXkiKTiE0kxMUjsckrmYmGcblXCAKZBnqB+VQglND+3JtKzyj+2W7HyoHmJ6V@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuGBEyCz7zc3BbdAkVSdBouNg2OcKPUjKmpeCwCxu7H/GxFvWG
-	/L7B3oOobnK1jHFhKmjSo7YC9zd3fFCEGKYxvP54DUxZsC8F95tyIjuN
-X-Gm-Gg: ASbGncusArDO72noJTfRHQRjnnfjvJV6jpbUtuqohOLcHGDsGM3Uyw+hToOidnX06du
-	xEOXAZcvCt69N86iaPvFE6A0gpwWL/aEcSIlK2U+EAFigsDSBdJzOj5/3ozWw2SGUieFP4Pa/07
-	YuN2HPn+Cj8puo4JzOUf0dXebOWxFti82hzpn0I47ZUCYzki6BSSqY5DnC+ZzNazs8tNxXnshFj
-	CCCvJsX4VUaBrGhx+WyBHCFcctcboTc31+fBWXlK6B7/8vJ8OkkoxFm+52+azbs54CgmxK2m6Zz
-	Vwg0utnDmyPZPau4E5GPnp3jgqqF2C1IhwGXCcggSzqc/oSHotMLqbyGzGJOxN6WiAhc13kY3UV
-	HFVvKxuIcb0S5yQn12d6aWl3t7IiA66p9IRDSLAaP3X6vgpl1IgE1iTNgnyUjjeeIwKj7Jt2jHw
-	==
-X-Google-Smtp-Source: AGHT+IGM7HTl+rp2pt0cDMfA3KNGD3nZVxhzYLkjSlK2EgGIN6LujG//pIftIad7lmbGXj0A54imuQ==
-X-Received: by 2002:a17:902:e805:b0:267:b6f9:2ce with SMTP id d9443c01a7336-27ed4a465cbmr132772135ad.41.1759035794491;
-        Sat, 27 Sep 2025 22:03:14 -0700 (PDT)
-Received: from google.com ([2a00:79e0:2ebe:8:22dc:7b49:8c5d:38f6])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed69bf9bdsm95854355ad.127.2025.09.27.22.03.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 27 Sep 2025 22:03:14 -0700 (PDT)
-Date: Sat, 27 Sep 2025 22:03:11 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Luca Weiss <luca.weiss@fairphone.com>, linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH RESEND v3 2/3] Input: aw86927 - add driver for Awinic
- AW86927
-Message-ID: <gswz6zhukprs6q6mrv6pmzcitxrvzktubylhan7knjcs7tjbxf@325gvpk5cyt7>
-References: <20250925-aw86927-v3-0-1fc6265b42de@fairphone.com>
- <20250925-aw86927-v3-2-1fc6265b42de@fairphone.com>
+	s=arc-20240116; t=1759035965; c=relaxed/simple;
+	bh=l/e9KvT7z/Px8NoEhYsOcdJTTCJ+9kM1JQKZeBfvuxk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mPKSxwP8gTH81Y1nBIwXVXdg/wDkGk2HOwB2O3fHCQADqTrV0OV6gcp/gZ+iwcCXf5120HjSSG7bmK6fdbrHIamILBG82GaUKvNNbF3IiEwK4jg1mhox/A8m8qw4vC2SkOoBhBQF0XmbtPHpfof20e2Ff+FjYP1T8aUIPXS4WnI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [192.168.2.54] (unknown [98.97.27.29])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 2BEE9B22019D;
+	Sun, 28 Sep 2025 07:05:56 +0200 (CEST)
+Message-ID: <beacb546-e4c4-43db-8f4c-97ea3cb55b43@freeshell.de>
+Date: Sat, 27 Sep 2025 22:05:54 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250925-aw86927-v3-2-1fc6265b42de@fairphone.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] riscv: dts: spacemit: Add MusePi Pro board device
+ tree
+To: Troy Mitchell <troy.mitchell@linux.dev>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Yangyu Chen <cyy@cyyself.name>
+Cc: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+References: <20250928-k1-musepi-pro-dts-v1-0-64d0659dfdbc@linux.spacemit.com>
+ <20250928-k1-musepi-pro-dts-v1-2-5efcca0ce3ae@linux.spacemit.com>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <20250928-k1-musepi-pro-dts-v1-2-5efcca0ce3ae@linux.spacemit.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Sep 25, 2025 at 12:07:29PM +0200, Griffin Kroah-Hartman wrote:
-> Add support for the I2C-connected Awinic AW86927 LRA haptic driver.
+On 9/27/25 21:16, Troy Mitchell wrote:
+> From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
 > 
-> This driver includes a hardcoded sine waveform to be uploaded to the
-> AW86927's SRAM for haptic playback.
-> This driver does not currently support all the capabilities of the
-> AW86927, such as F0 calibration, RTP mode, and CONT mode.
+> Add initial device tree support for the MusePi Pro board [1].
+> The board is using the SpacemiT K1/M1 SoC.
 > 
-> Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+> The device tree is adapted from the SpacemiT vendor tree [2].
+> 
+> This minimal device tree enables booting into a serial console with UART
+> output and a blinking LED.
+> 
+> Link:
+> https://developer.spacemit.com/documentation?token=YJtdwnvvViPVcmkoPDpcvwfVnrh&type=pdf [1]
+> https://gitee.com/bianbu-linux/linux-6.6/blob/k1-bl-v2.2.y/arch/riscv/boot/dts/spacemit/k1-x_MUSE-Pi-Pro.dts [2]
+> 
+> Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> ---
+>  arch/riscv/boot/dts/spacemit/Makefile          |  1 +
+>  arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts | 40 ++++++++++++++++++++++++++
+>  2 files changed, 41 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/spacemit/Makefile b/arch/riscv/boot/dts/spacemit/Makefile
+> index 152832644870624d8fd77684ef33addb42b0baf3..76b98096e2a46c3192651d6d66af7742f740c635 100644
+> --- a/arch/riscv/boot/dts/spacemit/Makefile
+> +++ b/arch/riscv/boot/dts/spacemit/Makefile
+> @@ -2,3 +2,4 @@
+>  dtb-$(CONFIG_ARCH_SPACEMIT) += k1-bananapi-f3.dtb
+>  dtb-$(CONFIG_ARCH_SPACEMIT) += k1-milkv-jupiter.dtb
+>  dtb-$(CONFIG_ARCH_SPACEMIT) += k1-orangepi-rv2.dtb
+> +dtb-$(CONFIG_ARCH_SPACEMIT) += k1-musepi-pro.dtb
+> diff --git a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..3791186ce47b88887eab4321dcd7035668e7f02d
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
+> @@ -0,0 +1,40 @@
+> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> +/*
+> + * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
+> + * Copyright (C) 2025 Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "k1.dtsi"
+> +#include "k1-pinctrl.dtsi"
+> +
+> +/ {
+> +	model = "MusePi Pro";
+> +	compatible = "spacemit,musepi-pro", "spacemit,k1";
+> +
+> +	aliases {
+> +		serial0 = &uart0;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
 
-Added missing header, changed uint8_t to u8, changed some formatting and
-applied, thank you.
+> +		led1 {
+> +			label = "sys-led";
+> +			gpios = <&gpio K1_GPIO(96) GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +			default-state = "on";
 
-Thanks.
+Can you explain how you decided to sort this?  I think the documentation
+examples needs updating but it is unclear to me.
 
--- 
-Dmitry
+> +		};
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&uart0_2_cfg>;
+> +	status = "okay";
+> +};
+> 
+
+Best regards,
+
+-E Shattow
 
