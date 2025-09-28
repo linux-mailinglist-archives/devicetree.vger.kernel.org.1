@@ -1,119 +1,85 @@
-Return-Path: <devicetree+bounces-222162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FFEFBA674A
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 05:55:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF110BA6771
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 05:59:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DB6697A7CDA
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 03:54:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6ACE23BE2FD
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 03:59:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 724B826AA91;
-	Sun, 28 Sep 2025 03:55:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26E8A277030;
+	Sun, 28 Sep 2025 03:59:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b="Hi2KCnO8"
+	dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b="Apq5YTNL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from abb.hmeau.com (abb.hmeau.com [180.181.231.80])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F6A01C6A3;
-	Sun, 28 Sep 2025 03:55:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759031747; cv=pass; b=CWq2TeLMwPh2Ge/XFqRGLOYRUhxV5kE1VA4zLU09DGp7VGrcHuSMmKzrI4Eu47xyjDMvbADV+NG8mHKlcMgAiHKPl9NJoqE4oqri764UdXA+ou/twuxaaRc0YCQFxsZtbA/TyluLFN6XtgfPnVyTIBDzqdstubuxJFg88rCa/nc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759031747; c=relaxed/simple;
-	bh=T21jfvNUaKJtai3h1JBCeUbst1A5RiHxfpTitoitGtc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Fco0FgHE3ukFyEW0KRy2BKhEuvTVch1laj1m3J15eXbaPrscAXKQnUnM3b33fdo5H/UwnAyldX/ITC9FKFizn0Ko//Jt8I9kLMaeEpIRke4S2KtEWF+mxaiuTii1ahFIHLyu7d2I5ucbITkEfv2htFOp6yfEbJvn066Xo+sdJ9g=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech; spf=pass smtp.mailfrom=pigmoral.tech; dkim=pass (1024-bit key) header.d=pigmoral.tech header.i=junhui.liu@pigmoral.tech header.b=Hi2KCnO8; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pigmoral.tech
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pigmoral.tech
-ARC-Seal: i=1; a=rsa-sha256; t=1759031705; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=TXfimD2q560aPLho43hi6Uuxe4qW179hIPP7duab3tYoOPl4/vdK1N3N9Ev6u1Mzbm6g3BoD+kn/IBbD/4zEECtK8eld8h4zkBetmzM6Vs8y24CMfbl2lJ/ivkF1MswtYpDA58KLRJyHRf9PlSKr3D26e8Vh5mkqeOewG9TrlvA=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1759031705; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=tKfnmneuohN8coB1a+XGSw3Os4lO+rOJEhg1bdS4Bz8=; 
-	b=fPYT5e4/upYb5xdhouQr/mRM3SIn7M8i76Ia08te8OtWYHjoPBryTcbLS+zVGS77IUqWtQBg7tsuf53TRufWN8lIPEUjjFODNztz3wR/luMEkPcZ7z/TLoz9JuZ8tsDG8bf7hDlD8Bsl8EHHc6Z0cgS8ibWKlOK9RZ1O6Ryi0N0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=pigmoral.tech;
-	spf=pass  smtp.mailfrom=junhui.liu@pigmoral.tech;
-	dmarc=pass header.from=<junhui.liu@pigmoral.tech>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759031705;
-	s=zmail; d=pigmoral.tech; i=junhui.liu@pigmoral.tech;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=tKfnmneuohN8coB1a+XGSw3Os4lO+rOJEhg1bdS4Bz8=;
-	b=Hi2KCnO8kZjT+5DHvNRBl89zKzpUDfTXWV5rkkForhdx3w6DPQp5WDvbt4UhUXqr
-	jo/9HWV/xKBAHE7dn3XWaoJJ8sEUsAaU3/CbD/g5c+mLwD7Tf2145O/6XXFgu0bs2fi
-	vKoGQiRHSULVmGoLODHlZ14OheQXUMKMUBrrgmjo=
-Received: by mx.zohomail.com with SMTPS id 1759031692647275.44505116756466;
-	Sat, 27 Sep 2025 20:54:52 -0700 (PDT)
-Message-ID: <416407c8-9af0-4331-beaa-f53e1a5cd427@pigmoral.tech>
-Date: Sun, 28 Sep 2025 11:54:42 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E389827602C;
+	Sun, 28 Sep 2025 03:59:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=180.181.231.80
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759031994; cv=none; b=QgZqiMl6c1tUVBq6huHT3umIXfz1Mv5jG5RSwFskrKzirVW3jPHVSWwo1DWF9jgsI5R1jDfzjgu45+ReHabVF2qtaJngK6BXgMbig+AAw7rMJmn1pW4GG3He4tsDTqti0cilWCCjbtmQLoQQORkE44A4XfPRqd3A4qy2fIA0gts=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759031994; c=relaxed/simple;
+	bh=vzjOspmjJPzC7R9MBh3FkcIH6t03smFNIGFp5E4/2hc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Iaq/lmb53YF4j8SZYrnDaxyHzCa2U4iP3SUB0M35MFKWHckOvSKipbxiElWAEsgynTkVpCX+Q3yNvP3liNSc3sRkNvRY+jc089m36DRbm5L3uwFT1uJTurMq31LCsYA+x1yLhCBTEsMWx68046QrJxTJOOEpmRN0iIXVSEuRAgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; dkim=pass (2048-bit key) header.d=hmeau.com header.i=@hmeau.com header.b=Apq5YTNL; arc=none smtp.client-ip=180.181.231.80
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hmeau.com;
+	s=formenos; h=In-Reply-To:MIME-Version:References:Message-ID:Subject:Cc:To:
+	From:Date:cc:to:subject:message-id:date:from:reply-to;
+	bh=KURZhtPJ4MMnUbopcJ6PisqOLs8wVV3eFlGgFKFAdRE=; b=Apq5YTNLGSsCXBD/IqPm8A5h2P
+	eXDorf5tuYyVb+qKFi+1sxmEJDeHvytCNf1s+b+1k7xB8i0Q/TyJmq0jMq1ryT3xlOemhrllOeiNZ
+	n1w7RXxtv1VSLAB6INPQKrfzFCS1fA4r3kvSbgt515tMz2aT9zajnRMfkLGIC1vASgQG8qABQQcgl
+	ryrSeE6ldD68p3W7La8Gm1gqLzM7krV7b3XQlslxXszNx6l+kcYkp9sxm6UICRJgWZLnRkH8te3tr
+	yMb9e1NCnlKUNhU3XHaiR2G18TkghG+uWqYU05NPam3RRKJ7I5WJbm8BqVuHul7ndk59TKThURkD2
+	NkRhHtGA==;
+Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
+	by formenos.hmeau.com with smtp (Exim 4.96 #2 (Debian))
+	id 1v2iZX-008qWb-1Z;
+	Sun, 28 Sep 2025 11:59:40 +0800
+Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Sun, 28 Sep 2025 11:59:39 +0800
+Date: Sun, 28 Sep 2025 11:59:39 +0800
+From: Herbert Xu <herbert@gondor.apana.org.au>
+To: Kael D'Alcamo <dev@kael-k.io>
+Cc: Olivia Mackall <olivia@selenic.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: rng: hisi-rng: convert to DT schema
+Message-ID: <aNiyq8AmsRG2xcWe@gondor.apana.org.au>
+References: <20250921161139.99047-1-dev@kael-k.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 04/11] dt-bindings: timer: Add Anlogic DR1V90 CLINT
-To: Qingfang Deng <dqfext@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Gleixner <tglx@linutronix.de>,
- Samuel Holland <samuel.holland@sifive.com>, Anup Patel
- <anup@brainfault.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@sifive.com>,
- Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org,
- linux-serial@vger.kernel.org
-References: <20250922-dr1v90-basic-dt-v2-0-64d28500cb37@pigmoral.tech>
- <20250922-dr1v90-basic-dt-v2-4-64d28500cb37@pigmoral.tech>
- <20250927135912.3327-1-dqfext@gmail.com>
-From: Junhui Liu <junhui.liu@pigmoral.tech>
-In-Reply-To: <20250927135912.3327-1-dqfext@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250921161139.99047-1-dev@kael-k.io>
 
-Hi Qingfang,
+On Sun, Sep 21, 2025 at 06:11:34PM +0200, Kael D'Alcamo wrote:
+> Convert the Devicetree binding documentation for hisilicon,hip04-rng
+> and hisilicon,hip05-rng from plain text to YAML.
+> 
+> Signed-off-by: Kael D'Alcamo <dev@kael-k.io>
+> ---
+>  .../devicetree/bindings/rng/hisi-rng.txt      | 12 -------
+>  .../devicetree/bindings/rng/hisi-rng.yaml     | 32 +++++++++++++++++++
+>  2 files changed, 32 insertions(+), 12 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rng/hisi-rng.txt
+>  create mode 100644 Documentation/devicetree/bindings/rng/hisi-rng.yaml
 
-On 9/27/25 9:59 PM, Qingfang Deng wrote:
-> Hi, Junhui,
-> On Mon, 22 Sep 2025 20:46:34 +0800, Junhui Liu <junhui.liu@pigmoral.tech> wrote:
->> --- a/Documentation/devicetree/bindings/timer/sifive,clint.yaml
->> +++ b/Documentation/devicetree/bindings/timer/sifive,clint.yaml
->> @@ -29,6 +29,7 @@ properties:
->>       oneOf:
->>         - items:
->>             - enum:
->> +              - anlogic,dr1v90-clint    # Anlogic DR1V90
-> UX900 uses the ACLINT with SSWI. Please use the new ACLINT binding.
->
-> Link: https://www.nucleisys.com/upload/files/doc/Nuclei_RISC-V_ISA_Spec.pdf
-
-Thanks for pointing it out. I will verify it in both Kernel and OpenSBI,
-and update in next version.
-
->
->>                 - canaan,k210-clint       # Canaan Kendryte K210
->>                 - eswin,eic7700-clint     # ESWIN EIC7700
->>                 - sifive,fu540-c000-clint # SiFive FU540
->>
->> -- 
->> 2.51.0
-> Regards,
-> Qingfang
-
+Patch applied.  Thanks.
 -- 
-Best regards,
-Junhui Liu
-
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
 
