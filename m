@@ -1,208 +1,139 @@
-Return-Path: <devicetree+bounces-222154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A09ABA661C
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 04:09:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BBC0BA6682
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 04:48:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D25194E0EE9
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 02:09:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D31E617C97E
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 02:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16DC1248F51;
-	Sun, 28 Sep 2025 02:09:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71CEB22FE02;
+	Sun, 28 Sep 2025 02:48:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZGzJMNKh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jwT6uP8G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 650552459E1
-	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 02:09:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B613970809
+	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 02:48:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759025364; cv=none; b=O6cJNX0abyqLMb9M5gJeQuM6HhZ2Z2aHowH6fkS3QHpTqTUbgCt0yvqdmoT89gSDfa9H1uABERDNux+GyefTvghWNSTqDpp8UPxJCE/HW2u2v9u8R40kw4845uDsjm0eLi5Cwczk9K6LMNxcojkFz+QUJEeipDeDLrj/XndJBJY=
+	t=1759027715; cv=none; b=HHXAQ1ne4hvEM+xb/KE6YxqQrFxpwoMLxBI2WRDDS0TnHTDToPMCM9zbjGC8CFRDKU5W53TuQyKuL7kidjdhcMFWTGdFK5GS2MkTv45YjJ6Uqn1Cxq8bLdWBDL2WZvwRzNxieKRukxt2HqTpzwc7z8se8TgPOAqMSt8yPMojbdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759025364; c=relaxed/simple;
-	bh=GUSKUxYpWhOeHcuugkxc4tLA+jsAQdmXAEPQQnQote8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LnrktOwscQWiW4g76VbXYuMK9yylODPA0eDIUdfr1tJDk8BzZLc9jeVI8p9taFo0lcP406XThlA4Yf/2GIFaZ/ncgMsV5ZYmfpGLXYmlwYBQVc8F5+qxDfFJVCJ2QHddWf2698+ac/onMUTOxwDfxZY/HETErEAaV9H5GkHeRJQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZGzJMNKh; arc=none smtp.client-ip=209.85.215.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1759027715; c=relaxed/simple;
+	bh=G27Pgv7iGejxXksjp5F8tvsZrk3N83G7riJRNuh7fwA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dA45zwf47aVKZHZC3WSUsETXwUteEjyu344fJe5HLDTLiuk0qQwhJewoX44S94/EZvCT+AaeERm0KzJM7+DJfmhGvs+BBeGeUMdHbzJk/CTXDDyI5bgtZPbcNQNe4plBm0d3FG0R3zE9+R95ehZ3gncAp9RTT1t9E5lxUMpfhdM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jwT6uP8G; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-b550a522a49so3095482a12.2
-        for <devicetree@vger.kernel.org>; Sat, 27 Sep 2025 19:09:21 -0700 (PDT)
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-62f4a8dfadcso5993821a12.1
+        for <devicetree@vger.kernel.org>; Sat, 27 Sep 2025 19:48:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759025361; x=1759630161; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=eFwFGuMoBlO4UnFHFhFZsqW80xbz11TQVfcLYBTWIYY=;
-        b=ZGzJMNKhIk1nOdF7BfCPPGuBRUrfVRjFSlz6r2f8RhUP+gWm0hIT5aTYeG3ABgvUhE
-         XrLpTqw1a1i0w+GYv3UlXKt4JT7RgBQwRDRY9ClsFR3cx+52m2qaVE8hCxkeHeURt5UA
-         VgYymq9YURpH7mdV9nZGW22F2xjQ12CrzLhtFz8sjWRv5nqkoTYsd0WYWROKBnEKYUXU
-         L/aat4XOhYTzLnkcF5KBx3jzbs20X90aH2VWXe7zzS9OtBsCxqNzZGk6Tg7QyxABaQyU
-         2eJpD5zIVxEWNG+XdQlR11EqANm74xRiFIP8lFOrL/xA0ar2u6ll2S3HEa9mInTwSufJ
-         Mewg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759025361; x=1759630161;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1759027712; x=1759632512; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=eFwFGuMoBlO4UnFHFhFZsqW80xbz11TQVfcLYBTWIYY=;
-        b=FlC8cXORjVHe0H/hIjcqEjo05KLSLAUrRax0InWXrqaDUqZWAQIfiZY3Za/G8sboMg
-         yxCJ99HKO+B8reso3VVUJOSjjI7fu3WJA4lmepZMGxx1lDAniLWFgR/c+78Hr0Kg0tAe
-         rDVmba49fIWOpV7hGXqugnYJJmSR76jBzsbUMNr7eylMjtw7EYFZDUxYZCa2BPKM+8JY
-         cKk5dCAgBjgpSrzlbbzRecAzKQEPPc/6vuAnoB8yq0jaf4xBW4zcLgjsJekQAlVZxery
-         TyiBXH1Rv4mz3dM7YWGZ28argZnOgF7goiEj1ymCVi0GJCubR/plGpzn+5SdHWSFbRu5
-         zZWw==
-X-Forwarded-Encrypted: i=1; AJvYcCWHLJiF/LnrYblhcreNptoRvsqhzP/+qQGxAgthOm6XgQjy+LMw/8KHiLlwGmLmEuNC2ySZOky56PCW@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqC9B1mZepqmWLdOVi4l1xCFpsw/M/73jOEQPp82V80Ol9gK9T
-	+0BAxwtTj27enIth8R4jjbjkodnAmlPlvHFk18qVo+Y7yN1TeWlNldsi
-X-Gm-Gg: ASbGnctnLBlYQeixKKLogSDS13PgFLOmrTUSGXVGflkveLTM4O3awx5AYO+91DKDSEh
-	eobVgBdqSHKoY4ZctsMEL7LEnLxM2JyXojry8ZGfC+EsAW5t4o9KgqjExSRTRVfEcTKSI7r93tq
-	s22eOpqQr/u8SG4hgZuXz4qxr5TCWRE2vG7Dft/uv4CoA/jdwiPr6H3S7zOl0sGu4LX/rrfUuym
-	TUxblgSjQ7/6bKccSjEntJ4VzVZntAix9bk10dHbmPsumVcaTspN45CzBX4kK5GNd+zL+EQbim1
-	f1yNPG3sOogmIc3SqsjHPu261hEwb98ahBVWuCJw9X/FMPY84t1cvpK2FaAwmeVa3JdUVIB3DLd
-	17igWMh8DPllo+JuhXC0AeZgn75KbrV+m5O5PBlG9qPA18KgULFq6aWKjAPia4OtVCskTN/M=
-X-Google-Smtp-Source: AGHT+IENLcEnP9fle5P0/XBhhJQoZV1aQkW9RdCjU8CtjMNudeKurmLux3aZ05laluYZdZcozVy1ig==
-X-Received: by 2002:a17:903:38cd:b0:27e:d4a8:56ad with SMTP id d9443c01a7336-27ed4a85a82mr131587345ad.61.1759025360628;
-        Sat, 27 Sep 2025 19:09:20 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed6ae693fsm90315405ad.152.2025.09.27.19.09.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 27 Sep 2025 19:09:20 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <827f50ac-9994-4e04-bf48-51774f5d504b@roeck-us.net>
-Date: Sat, 27 Sep 2025 19:09:18 -0700
+        bh=SIqCPbhPlSD4ePjYmkMG9S4moNLTDdS5iBVcgknVqDE=;
+        b=jwT6uP8Gm6G1cuYf3Tv68Bzv49JF83PHEQS770YAk1whDTCkhllVYZqSoaOIy0AIa3
+         nwLYbQ2jFSvZ6m3vE9XbrDoOd/vS0DSKqkM4NlmlGF4v9cgG7z1HNZOy3gw1Ng05Cn8z
+         FXKPnUkeQfwk+WDRMNFvYEuciOeHWtgD9GyCQl6vcRDXAlwb1rycBPVQTcVksXHPJ5ZB
+         utdVcmydS5Fk5PK6ibrzdf02XRzSYmg21kvKKO5SjqRk4TPbCJ1VMix8qpRRYla/fUDY
+         u5KotZQR696VnmROzLURf6syKCnKtGa0m1wZp9/N7uaPFuq7f17JUS0kMAziItLmHUcN
+         cE0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759027712; x=1759632512;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SIqCPbhPlSD4ePjYmkMG9S4moNLTDdS5iBVcgknVqDE=;
+        b=G5KXxk6ybTwRkekvfpb5aMGUCeqIe4UP27sdNv4+ViuQmOM/TYxH/+mdmv8KaM2yzp
+         fjJ3jHEV5otqn+bbVjdcReNgTmMZZ8Qt9fTmRl9QsZ+JRFTgxhMrmEmQhB0vYsXJEDI0
+         sCsunmtKDUQb4kvvAFSGbrBlwU8EhG+xoT7+lngAzm+xjjETv+XiOA3G3OXprQfn+fmC
+         wQzwmVim3bsWTxKkDFZNjl7KW9WQOzw6GbeIJolq4X3hl+yjB69bB3+0cBVrsp7PE+hN
+         er5r8dNa7BX5QBQ7JCzMF53Kt9FCUpuio3GgGK8IazVKG835jHJVizZwfdjx1kA04VGk
+         IRcA==
+X-Forwarded-Encrypted: i=1; AJvYcCUPajN1v5+9xn9gPRRtStFYampPxLAXQRIflx0Y5AOzqXN2bVTJ3pFlbftWIu4GfLW4Lp6n141M8427@vger.kernel.org
+X-Gm-Message-State: AOJu0YwaNIr9vpWLyVupeKzrD205QKA6DYtJ2u1bVSJSKRJlTqepfkwh
+	O3xx2xMyVYORLdTtX6iTxW3A0Ixvjom0VdZHhXCI8Y9ZdjDxw1HgLGvfVKzInOTkVGL/jO86sLz
+	d82d5YdicP+4H6pGCBwaB2pH/2wEWnIg=
+X-Gm-Gg: ASbGncsueC7x9MuI9Fr34mZA1yBPqDceCgqBox2DyLpHYMso4fFWHcXtFReSgDq6SPC
+	CYqGzU+FWYJclW4zKGtdaHq+7XRvK2s0Baeg0aqu9pTiuLw55o1mpmz6J+I7wqGZGmw+vGbyln/
+	l7ydk2yRobSlhZOrAXrn0oSOiR+UU10swJQoOOWYUpQo2zQi1oPX64RtNyR2PVhWIbh7uBZE411
+	w/PoewEwjEaDgE1JTE=
+X-Google-Smtp-Source: AGHT+IHYFYzoo2FCZ+R42wdMNXg2gGCTC2KWOlpmGLAOuCsIbKMhKvzoC9v375rVavEqRbumDhQ8AHOLgwbwRq6XFWs=
+X-Received: by 2002:a05:6402:5210:b0:634:a546:de45 with SMTP id
+ 4fb4d7f45d1cf-634a546e2c6mr9764402a12.23.1759027711786; Sat, 27 Sep 2025
+ 19:48:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/11] dt-bindings: hwmon: Add Apple System Management
- Controller hwmon schema
-To: James Calligeros <jcalligeros99@gmail.com>, Janne Grunau <j@jannau.net>,
- Rob Herring <robh@kernel.org>
-Cc: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>,
- Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Jean Delvare <jdelvare@suse.com>, Dmitry Torokhov
- <dmitry.torokhov@gmail.com>, asahi@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org
-References: <20250827-macsmc-subdevs-v2-0-ce5e99d54c28@gmail.com>
- <20250925204925.GA637503@robin.jannau.net>
- <CAL_JsqK-9n3_H6vS80bZuZiSPi9UNuMzHEPFL_EzYTeyNS1cYg@mail.gmail.com>
- <2537878.PYKUYFuaPT@setsuna>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAmgrMyQFCSbODQkACgkQyx8mb86fmYGcWRAA
- oRwrk7V8fULqnGGpBIjp7pvR187Yzx+lhMGUHuM5H56TFEqeVwCMLWB2x1YRolYbY4MEFlQg
- VUFcfeW0OknSr1s6wtrtQm0gdkolM8OcCL9ptTHOg1mmXa4YpW8QJiL0AVtbpE9BroeWGl9v
- 2TGILPm9mVp+GmMQgkNeCS7Jonq5f5pDUGumAMguWzMFEg+Imt9wr2YA7aGen7KPSqJeQPpj
- onPKhu7O/KJKkuC50ylxizHzmGx+IUSmOZxN950pZUFvVZH9CwhAAl+NYUtcF5ry/uSYG2U7
- DCvpzqOryJRemKN63qt1bjF6cltsXwxjKOw6CvdjJYA3n6xCWLuJ6yk6CAy1Ukh545NhgBAs
- rGGVkl6TUBi0ixL3EF3RWLa9IMDcHN32r7OBhw6vbul8HqyTFZWY2ksTvlTl+qG3zV6AJuzT
- WdXmbcKN+TdhO5XlxVlbZoCm7ViBj1+PvIFQZCnLAhqSd/DJlhaq8fFXx1dCUPgQDcD+wo65
- qulV/NijfU8bzFfEPgYP/3LP+BSAyFs33y/mdP8kbMxSCjnLEhimQMrSSo/To1Gxp5C97fw5
- 3m1CaMILGKCmfI1B8iA8zd8ib7t1Rg0qCwcAnvsM36SkrID32GfFbv873bNskJCHAISK3Xkz
- qo7IYZmjk/IJGbsiGzxUhvicwkgKE9r7a1rOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAmgrMyQFCSbODQkACgkQyx8mb86fmYHlgg/9
- H5JeDmB4jsreE9Bn621wZk7NMzxy9STxiVKSh8Mq4pb+IDu1RU2iLyetCY1TiJlcxnE362kj
- njrfAdqyPteHM+LU59NtEbGwrfcXdQoh4XdMuPA5ADetPLma3YiRa3VsVkLwpnR7ilgwQw6u
- dycEaOxQ7LUXCs0JaGVVP25Z2hMkHBwx6BlW6EZLNgzGI2rswSZ7SKcsBd1IRHVf0miwIFYy
- j/UEfAFNW+tbtKPNn3xZTLs3quQN7GdYLh+J0XxITpBZaFOpwEKV+VS36pSLnNl0T5wm0E/y
- scPJ0OVY7ly5Vm1nnoH4licaU5Y1nSkFR/j2douI5P7Cj687WuNMC6CcFd6j72kRfxklOqXw
- zvy+2NEcXyziiLXp84130yxAKXfluax9sZhhrhKT6VrD45S6N3HxJpXQ/RY/EX35neH2/F7B
- RgSloce2+zWfpELyS1qRkCUTt1tlGV2p+y2BPfXzrHn2vxvbhEn1QpQ6t+85FKN8YEhJEygJ
- F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
- FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <2537878.PYKUYFuaPT@setsuna>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <cover.1758676290.git.zhoubinbin@loongson.cn> <9823e7afe713450e210dab9dba6fa18683dc1fe0.1758676290.git.zhoubinbin@loongson.cn>
+ <2025092428-glade-monologue-3663@gregkh>
+In-Reply-To: <2025092428-glade-monologue-3663@gregkh>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Sun, 28 Sep 2025 10:48:19 +0800
+X-Gm-Features: AS18NWBz68QzCTskD3KAjHQSqckmCa7a4rjPHTjPL-thUzgT97MtzfY2E2ZY19g
+Message-ID: <CAMpQs4JgR=iG6LAuYeVxOpE31S6n=dC4+FGUJczOYDVfWHDuFw@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] serial: 8250: Add Loongson uart driver support
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Haowei Zheng <zhenghaowei@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+	linux-serial@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 9/27/25 17:36, James Calligeros wrote:
-> Hi Rob,
-> 
-> On Friday, 26 September 2025 7:43:23 am Australian Eastern Standard Time Rob
-> Herring wrote:
->> On Thu, Sep 25, 2025 at 3:49 PM Janne Grunau <j@jannau.net> wrote:
->>> On Fri, Aug 29, 2025 at 11:40:57AM -0500, Rob Herring wrote:
->>>>
->>>> This should be something like this:
->>>>
->>>> "^current-[A-Za-z0-9]{4}$":
->>>>    $ref: "#/$defs/sensor"
->>>>    unevaluatedProperties: false
->>>>
->>>> With the $defs/sensor being:
->>>>
->>>> $defs:
->>>>    sensor:
->>>>      type: object
->>>>      
->>>>      properties:
->>>>        apple,key-id:
->>>>          $ref: /schemas/types.yaml#/definitions/string
->>>>          pattern: "^[A-Za-z0-9]{4}$"
->>>>          
->>>>          description:
->>>>            The SMC FourCC key of the desired sensor. Must match the
->>>>            node's suffix.
->>>>        
->>>>        label:
->>>>          description: Human-readable name for the sensor
->>>>      
->>>>      required:
->>>>        - apple,key-id
->>>>        - label
->>>>
->>>> Though in general, 'label' should never be required being just for human
->>>> convenience.
->>>
->>> That does not sound as it would be compatible with skipping nodes in the
->>> driver if the node misses label. The driver could of course fall back
->>> to create a hwmon sensors without labels.
->>
->> The driver absolutely should.
-> 
-> The original submission (and our downstream version) do this, but I changed
-> it for v2 per Sven's feedback [1]. Outside of development/experimentation,
-> we will (should) never have a sensor in the Devicetree of uknown utility.
-> If we know what a sensor is for, then we should have a label for it.
-> 
+Hi Greg:
 
-Label attributes are optional in hwmon drivers. Period.
+Thanks for your reply.
 
-Guenter
+On Wed, Sep 24, 2025 at 6:22=E2=80=AFPM Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+>
+> On Wed, Sep 24, 2025 at 02:29:37PM +0800, Binbin Zhou wrote:
+> > --- a/include/uapi/linux/serial_core.h
+> > +++ b/include/uapi/linux/serial_core.h
+> > @@ -31,6 +31,7 @@
+> >  #define PORT_ALTR_16550_F128 28 /* Altera 16550 UART with 128 FIFOs */
+> >  #define PORT_RT2880  29      /* Ralink RT2880 internal UART */
+> >  #define PORT_16550A_FSL64 30 /* Freescale 16550 UART with 64 FIFOs */
+> > +#define PORT_LOONGSON        31      /* Loongson 16550 UART */
+>
+> Why does userspace need to have this value exported?
 
+Sorry, this was a cheap mistake.
+It should follow the existing latest macro definition as follows:
+
+diff --git a/include/uapi/linux/serial_core.h b/include/uapi/linux/serial_c=
+ore.h
+index 9c007a106330..5221d86d592a 100644
+--- a/include/uapi/linux/serial_core.h
++++ b/include/uapi/linux/serial_core.h
+@@ -231,6 +231,9 @@
+ /* Sunplus UART */
+ #define PORT_SUNPLUS   123
+
++/* Loongson UART */
++#define PORT_LOONGSON  124
+
+I'll double-check and test it again in the next version.
+
+>
+> thanks,
+>
+> greg k-h
+
+--
+Thanks.
+Binbin
 
