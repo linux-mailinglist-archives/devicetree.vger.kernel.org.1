@@ -1,149 +1,189 @@
-Return-Path: <devicetree+bounces-222208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44759BA6CC2
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 11:08:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 955E2BA6CE0
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 11:16:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0210217660D
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 09:08:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46A953BCF2C
+	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 09:16:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A888E2D23A8;
-	Sun, 28 Sep 2025 09:08:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE1282D47F3;
+	Sun, 28 Sep 2025 09:16:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nOm0KrhB"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ZxCgX/0Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796762D239B;
-	Sun, 28 Sep 2025 09:08:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3401B040D;
+	Sun, 28 Sep 2025 09:16:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759050488; cv=none; b=G3kEi76dvBox4RUCVYW6egWBojWaIpXVJO0suPwFuAn/R6oyQG69FoiYMAtVA6m3lOPVRR2+dxsZ6UmJgJ5baXpVRFtU5b/5Ami18iBxmXxhGxXBNfaNcYdJtxT5ZdwjOci0bWNfdX9By1vwCpHZ/YC9zstipYS2LO/SiSSSACk=
+	t=1759050988; cv=none; b=PMSPsdjOoyTwJ1clWHg2xDF2vVg6H+JCxl/pNAjZD9KTnvePIzCGFw2UngsKBDRcMlKry95AbL5AH0GDi6U7nEkTJgkUKpD0vYjFfwpLlDnNJ6x+1q2hFJ3XIkyJ5JpoOpw9elRY+l04s5whksiOycvfd+VfO+0UChzcplXC7O4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759050488; c=relaxed/simple;
-	bh=OmuM9T4sRr6WPDNjc7Tc1qjd4o37QkfxYkxf6IUDDOw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VJ4rYBsfvjgqua+TeBV5QS96MsKgsRlvAPKaUvbQQphDC22wcllBtxnLFHvkxFu/dVKq9mQvtzXSjm05F5rV8TvdYsoNNXd+eo8fbkEMRAsu9sZ4gBo3iE75vgLbS4cyFyccewAjzAm0+klNb7Nyg50uWYB9QzLtc9GSkVv8R1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nOm0KrhB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EF63C4CEF0;
-	Sun, 28 Sep 2025 09:08:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759050488;
-	bh=OmuM9T4sRr6WPDNjc7Tc1qjd4o37QkfxYkxf6IUDDOw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=nOm0KrhBpkdei5dRVg6YcqHlmeMefQHbPnMGdwavsDljIBSLYHTqNpurjnYC8R46M
-	 rV5zER+Goj9IfPzxSKLt+ZM5FPhC15SJwbNOnlCsDG6jRLnJByoLxPdlFEXwoi/eUZ
-	 DeZ7VAFzrYUnjsR3wcxnTf5vlp3rxPG1+XaGMTuUyopgAdDePYFUp69QUGSTPwq1iR
-	 fVR9+uz5NZSUT2PiMlXQouiPoGHuc3Ti6q3pnqr2SreDulab6CHmcCqWticL3SE1g8
-	 rKe2g2+q+pIaGQ0xUfWgjk1Fy2xFwevbVyymLVx4oj1oWHoT88Hl1+MyxVGKAFt4mc
-	 27wNfnDpOxaVQ==
-Date: Sun, 28 Sep 2025 10:07:57 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko
- <andy@kernel.org>, Hans de Goede <hansg@kernel.org>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] iio: add processed write API
-Message-ID: <20250928100757.0fa73692@jic23-huawei>
-In-Reply-To: <20250925-ltm8054-driver-v2-2-bb61a401a0dc@bootlin.com>
-References: <20250925-ltm8054-driver-v2-0-bb61a401a0dc@bootlin.com>
-	<20250925-ltm8054-driver-v2-2-bb61a401a0dc@bootlin.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1759050988; c=relaxed/simple;
+	bh=WO7Z27tSHE6owtiehN79kmQW9T13C+BHAgmOEsVzu04=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=XTQ0UrWR1m3r3jeaC9MqfENIVEHbaxP2ZK49frpQEufnNXXVm5Lh505hZH7Vz00VU/+rUfasg1GvQHB1bEtBVTrdUBM+nORskdAnRF8WTzig1XDq+XGMaQxrmfnx/q7+YzPCwLIBtUCpIdzSDSFp0xtPBOjrZ2XsCWEb/Nw1NxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ZxCgX/0Y; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58S9Fo5L2465593;
+	Sun, 28 Sep 2025 04:15:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1759050950;
+	bh=R2ArzWR5Ub6mQ0s7zPGpsiwGYk24aZaU/fNB1tecknM=;
+	h=From:To:CC:Subject:Date;
+	b=ZxCgX/0YuJRCrYXeCBFnB4vcpBaFbE+qjp8x/zvE0067xAr2lxIo2OqGF0JKNxB48
+	 uQ7tALujY96as+YmODriFNMfeFLBaoDES6dfp+LbkUT19sbKnz30xml6WqAAiroI19
+	 2Vy4XX9K+4C04CFQ7+5QMkWfRh67D8MwRYto6PX8=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58S9Fo7j526884
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Sun, 28 Sep 2025 04:15:50 -0500
+Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Sun, 28
+ Sep 2025 04:15:50 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE204.ent.ti.com
+ (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Sun, 28 Sep 2025 04:15:50 -0500
+Received: from lelvem-mr06.itg.ti.com ([10.250.165.138])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58S9FbHr3697526;
+	Sun, 28 Sep 2025 04:15:39 -0500
+From: Baojun Xu <baojun.xu@ti.com>
+To: <broonie@kernel.org>, <tiwai@suse.de>
+CC: <andriy.shevchenko@linux.intel.com>, <13916275206@139.com>,
+        <alsa-devel@alsa-project.org>, <shenghao-ding@ti.com>,
+        <baojun.xu@ti.com>, <linux-sound@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <lgirdwood@gmail.com>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <k-yi@ti.com>, <henry.lo@ti.com>,
+        <robinchen@ti.com>, <jesse-ji@ti.com>, <will-wang@ti.com>,
+        <jim.shil@goertek.com>, <toastcheng@google.com>,
+        <chinkaiting@google.com>
+Subject: [PATCH v3 1/2] ASoC: tas2781: Support two newly-released amplifiers tas5815 and tas5828 in the driver
+Date: Sun, 28 Sep 2025 17:15:13 +0800
+Message-ID: <20250928091514.12349-1-baojun.xu@ti.com>
+X-Mailer: git-send-email 2.43.0.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, 25 Sep 2025 14:37:34 +0200
-Romain Gantois <romain.gantois@bootlin.com> wrote:
+TAS5815/TAS5828 has on-chip DSP without current/voltage feedback.
 
-> Add a function to allow IIO consumers to write a processed value to a
-> channel.
-> 
-> Signed-off-by: Romain Gantois <romain.gantois@bootlin.com>
-Just one trivial thing I noticed.
-Thanks for adding the unit tests btw.  Makes me much more confident we don't have
-the corner case sign errors that plagued the similar functions before unit tests and fixes
-were applied.
+Signed-off-by: Baojun Xu <baojun.xu@ti.com>
 
-J
-> ---
->  drivers/iio/inkern.c         | 120 +++++++++++++++++++++++++++++++++++++++++++
->  include/linux/iio/consumer.h |  36 +++++++++++++
->  2 files changed, 156 insertions(+)
-> 
-> diff --git a/drivers/iio/inkern.c b/drivers/iio/inkern.c
-> index 2a1ecef2b82007f5ee8e8d0f8b35846bc4d2f94a..a6ec724b7c1fb197e6261c1162f8315deda20fd7 100644
-> --- a/drivers/iio/inkern.c
-> +++ b/drivers/iio/inkern.c
-> @@ -631,6 +631,57 @@ int iio_multiply_value(int *result, s64 multiplier,
->  }
->  EXPORT_SYMBOL_GPL(iio_multiply_value);
->  
-> +int iio_divide_by_value(int *result, s64 numerator,
-> +			unsigned int type, int val, int val2)
-> +{
-> +	s64 tmp_num, tmp_den;
-> +
-> +	switch (type) {
-> +	case IIO_VAL_INT:
-> +		tmp_num = numerator;
-> +		tmp_den = val;
-> +		break;
-> +	case IIO_VAL_INT_PLUS_MICRO:
-> +	case IIO_VAL_INT_PLUS_NANO:
-> +		switch (type) {
-> +		case IIO_VAL_INT_PLUS_MICRO:
-> +			tmp_num = MICRO;
-> +			tmp_den = MICRO;
-> +			break;
-> +
-> +		case IIO_VAL_INT_PLUS_NANO:
-> +			tmp_num = NANO;
-> +			tmp_den = NANO;
-> +			break;
-> +		}
-> +
-> +		tmp_num *= (s64)numerator;
+---
+v3:
+ - Rewrite the patch title
+ - Add for TAS5815 support
+v2:
+ - Update description for TAS5828
+ - Change commit tree to .../tiwai/sound.git
+---
+ include/sound/tas2781.h        |  2 ++
+ sound/soc/codecs/tas2781-i2c.c | 16 ++++++++++++++--
+ 2 files changed, 16 insertions(+), 2 deletions(-)
 
-Seems to be casting an s64 to an s64.
-
-> +		tmp_den = (s64)abs(val) * tmp_den + (s64)abs(val2);
-> +
-> +		if (val < 0 || val2 < 0)
-> +			tmp_num *= -1;
-> +
-> +		break;
-> +	case IIO_VAL_FRACTIONAL:
-> +		tmp_num = (s64)numerator * (s64)val2;
-> +		tmp_den = val;
-> +		break;
-> +	case IIO_VAL_FRACTIONAL_LOG2:
-> +		tmp_num = (s64)numerator << val2;
-> +		tmp_den = val;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (!tmp_den)
-> +		return -ERANGE;
-> +
-> +	*result = div64_s64(tmp_num, tmp_den);
-> +
-> +	return IIO_VAL_INT;
-> +}
+diff --git a/include/sound/tas2781.h b/include/sound/tas2781.h
+index ddd997ac3..8675ceeaf 100644
+--- a/include/sound/tas2781.h
++++ b/include/sound/tas2781.h
+@@ -120,8 +120,10 @@ enum audio_device {
+ 	TAS2570,
+ 	TAS2572,
+ 	TAS2781,
++	TAS5815,
+ 	TAS5825,
+ 	TAS5827,
++	TAS5828,
+ 	TAS_OTHERS,
+ };
+ 
+diff --git a/sound/soc/codecs/tas2781-i2c.c b/sound/soc/codecs/tas2781-i2c.c
+index 1539b7088..0f5e6c85e 100644
+--- a/sound/soc/codecs/tas2781-i2c.c
++++ b/sound/soc/codecs/tas2781-i2c.c
+@@ -108,8 +108,10 @@ static const struct i2c_device_id tasdevice_id[] = {
+ 	{ "tas2570", TAS2570 },
+ 	{ "tas2572", TAS2572 },
+ 	{ "tas2781", TAS2781 },
++	{ "tas5815", TAS5815 },
+ 	{ "tas5825", TAS5825 },
+ 	{ "tas5827", TAS5827 },
++	{ "tas5828", TAS5828 },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(i2c, tasdevice_id);
+@@ -124,8 +126,10 @@ static const struct of_device_id tasdevice_of_match[] = {
+ 	{ .compatible = "ti,tas2570" },
+ 	{ .compatible = "ti,tas2572" },
+ 	{ .compatible = "ti,tas2781" },
++	{ .compatible = "ti,tas5815" },
+ 	{ .compatible = "ti,tas5825" },
+ 	{ .compatible = "ti,tas5827" },
++	{ .compatible = "ti,tas5828" },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, tasdevice_of_match);
+@@ -1665,8 +1669,10 @@ static void tasdevice_fw_ready(const struct firmware *fmw,
+ 	}
+ 	tas_priv->fw_state = TASDEVICE_DSP_FW_ALL_OK;
+ 
+-	/* There is no calibration required for TAS5825/TAS5827. */
+-	if (tas_priv->chip_id < TAS5825) {
++	/* There is no calibration required for
++	 * TAS5815/TAS5825/TAS5827/TAS5828.
++	 */
++	if (tas_priv->chip_id < TAS5815) {
+ 		ret = tasdevice_create_cali_ctrls(tas_priv);
+ 		if (ret) {
+ 			dev_err(tas_priv->dev, "cali controls error\n");
+@@ -1720,8 +1726,10 @@ static void tasdevice_fw_ready(const struct firmware *fmw,
+ 		switch (tas_priv->chip_id) {
+ 		case TAS2563:
+ 		case TAS2781:
++		case TAS5815:
+ 		case TAS5825:
+ 		case TAS5827:
++		case TAS5828:
+ 			/* If DSP FW fail, DSP kcontrol won't be created. */
+ 			tasdevice_dsp_remove(tas_priv);
+ 		}
+@@ -1882,8 +1890,10 @@ static int tasdevice_codec_probe(struct snd_soc_component *codec)
+ 		p = (struct snd_kcontrol_new *)tas2781_snd_controls;
+ 		size = ARRAY_SIZE(tas2781_snd_controls);
+ 		break;
++	case TAS5815:
+ 	case TAS5825:
+ 	case TAS5827:
++	case TAS5828:
+ 		p = (struct snd_kcontrol_new *)tas5825_snd_controls;
+ 		size = ARRAY_SIZE(tas5825_snd_controls);
+ 		break;
+@@ -2054,8 +2064,10 @@ static const struct acpi_device_id tasdevice_acpi_match[] = {
+ 	{ "TXNW2570", TAS2570 },
+ 	{ "TXNW2572", TAS2572 },
+ 	{ "TXNW2781", TAS2781 },
++	{ "TXNW5815", TAS5815 },
+ 	{ "TXNW5825", TAS5825 },
+ 	{ "TXNW5827", TAS5827 },
++	{ "TXNW5828", TAS5828 },
+ 	{},
+ };
+ 
+-- 
+2.25.1
 
 
