@@ -1,153 +1,139 @@
-Return-Path: <devicetree+bounces-222482-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222483-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE335BA977F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 16:04:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0B06BA97DB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 16:10:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F3CB3A53A6
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 14:04:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2961E7A1B7D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 14:08:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D804D3074AB;
-	Mon, 29 Sep 2025 14:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B665630AD02;
+	Mon, 29 Sep 2025 14:09:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hh/wv5U+"
+	dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b="e4HQE3bc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2F8029BDA5
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 14:04:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27662309F03
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 14:09:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759154653; cv=none; b=d+U3w5BZHk14Wtm1sYVgyUsrrkQwruqNu+fgFkb9BCup5woODWIwEAMuMMqJ3SSrTOdc/WqfzmHGa+CpnG4ufQ6w7HE6ucc/8zRXRqG5Rc27eHOd3TtbJcLWa4Tk4qvmEGEmKDXBCQs2BW6HkXfn0O+B2ggA2YtY12kChdlRYhk=
+	t=1759154970; cv=none; b=h5dWpYLhNFb4A0j/Bv8QNVuNAYHZfPz7xS2+YdIK16fF2+CvIogzZtu0rm/0WcpDNDVPVJrwsJNE/i6bm4tMCG7KVGyjLbzVGwIgKdyVF+fSilr3TkgNbhwcN8gDEZaS1f/47EjW02CjZ2XIFAXYwJNPtJSzBZEHaul8/Ty5dlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759154653; c=relaxed/simple;
-	bh=0dqbplPk5+xdd940bMeF8GS6INexn40MMj7UgHcMuYo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fkQks2t5uyEhziRrp6XTTO8pG2uUJo0hufu+/MkJ9GZUN9Uqv/7nj4xL2pmJtR6p8PhOjewJJI6Aan3DvjTxhVrFFt1YEd82qiI+VGmPvbp5dludmeRNdvaUwcnnZP6PAzK+S9gb0nmWg9CahcQaCPRgp0AmQY43nTnxIX8PifE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hh/wv5U+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A99AC4CEF4
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 14:04:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759154653;
-	bh=0dqbplPk5+xdd940bMeF8GS6INexn40MMj7UgHcMuYo=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=Hh/wv5U+UHu8TgmC1Q86biB9ot8OrMNGUaMyP5tNt6djxPAn4XS1kcjxeiVbTjUmQ
-	 1g9jt2ImDMdx94g5kp+17ng6oSJwOYqHM8K2+4TAEoU+Z3YWZdtO/xr/D+cG3+hHWD
-	 bjf4Ul7YKJp+fogwLPsjIaYXgOevsljQ3dIMEWWLPRIVHdzp4dZJODu8ibOkVnCsE+
-	 GMduY+QXyrzo54WqO3lzlj4ZIN+CVABNmBQpSR45+LZ09rjqIycHauLosyogKbpyJq
-	 byIRgewu64kGjsw0h0q9P7gzafjaEwL/eZrrrmT38Pc/WJqoFzTwTMrXXa+UJHuwp2
-	 3fIwIGz8XPfvw==
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b2ef8e00becso509898666b.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 07:04:13 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVMgWrhQcK9KbLp5MxdDBvdBVT+WTdMfOdNt17HQkn7CpZCeLOId+1dGUB92XiStvaQF48tz1QsejrO@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOu+AZS6SJfH68ydbzZEO3GF0J2hoMbLugEbZjejaCwlQ9U0lv
-	O8VP9i+ZMmTKC5Oc6c/SpqClB2PEGEbv1VNIq4vyKRYgf9lv2O3TmjJBuauiW1BF8pLCuBFWZTs
-	8gmfp3Di7WnGlextS/tAYFwodzb3PPw==
-X-Google-Smtp-Source: AGHT+IGQUkv8sSQJZtMXHXl3vj5TRLZ6dy5UjadMrQjUPv9UeUy0QibDfpGKzf8eHPJCT+VBs3ytFI88Kxw5hSp2UIU=
-X-Received: by 2002:a17:907:2d0e:b0:afd:d9e4:51e9 with SMTP id
- a640c23a62f3a-b34bf6638a0mr1764243366b.65.1759154651818; Mon, 29 Sep 2025
- 07:04:11 -0700 (PDT)
+	s=arc-20240116; t=1759154970; c=relaxed/simple;
+	bh=gvG6NzvSMixtm2uPE0qaHPy782zK2nlOUQdpYZjESSc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EfDVguxkG9Wm0py+vPeZsd1x3dQsMA2Vz3cEgeXGwe37X3Sk0otgBU2fKxscd/yrW/iohM+ADQ/jtqiCN9GSlLa+T1AZFFmWa7pXT/f2d9OsfEG0h53z9paPhMYRciIC+KoqgPkNU4za0kYuygQOKc+aaozd1jr+5GdeX7zVgHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu; spf=fail smtp.mailfrom=g.harvard.edu; dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b=e4HQE3bc; arc=none smtp.client-ip=209.85.222.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=g.harvard.edu
+Received: by mail-qk1-f172.google.com with SMTP id af79cd13be357-85ed0a1b35dso358545885a.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 07:09:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rowland.harvard.edu; s=google; t=1759154967; x=1759759767; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/D0SZIVZ9xKbqT8SP675XXBHG9S9E390zsa5x8oJXtw=;
+        b=e4HQE3bccb4VReluZ9B9Z8pE9nCg4d0Mcd1ivnU8IA9o8hwgsm2aeQzGjlW7nQMIn5
+         aikJ9u5idVnxnpn9vKdsMinrnb2J/wzbMspZEHpnWN1xpQiansKel0T0Kb4zW0DtQ5BQ
+         U2rp0DFowWM16K8faHcdVyKpJi9oR6TI3Yd82w4eTSNOwQ4smSdA2vEefy7tAorhbM8K
+         sbQeHdAgCH3oqeQ7mZ4roIb0mMkSSLJReM0lbhvXmSeCs0Y+PgYRbvys6+KSrJ8T+vvU
+         OcOhWLs51GrYtvzfBiq9HcR1DcaS9E0iigx7H1fTnoLNQd4QUd7wc6f5hNRyYD8UOCcJ
+         ftlQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759154967; x=1759759767;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/D0SZIVZ9xKbqT8SP675XXBHG9S9E390zsa5x8oJXtw=;
+        b=tNEBZVok5YHykXj8MQvy6F3r4BbwyxwZ3uy1kohsL9fGADJ7/1rrb2BD/5JQ4YDF6i
+         AwXi1ropOdywregwL97PGlBLQ3zAzI1qSR3SgOHNGap0j40Z3Q2Og+KspnURuGbRGboa
+         Bpv0z8PUKkWkCe+MbDVwXdvPiIZepZm2DyQ9YD9phhMTXobcjHBPhcz7eWUNvdfkjRaN
+         atSJUtVDAzbnCpZYpi7v4kg4svtJBhsxTrz9tEBnAIBuzcCm2ToWkPz6LfdydrxVIZGH
+         YImrodKGzmOl7jkfjNOCQqo/FcJqdkZmyfRs5uqmYq8NbbS80PAMv7u9NUn9yiQkqPDL
+         4wQw==
+X-Forwarded-Encrypted: i=1; AJvYcCVL9JxjAbeRNapoy0VVdtO9UM8xvo2Pg04K5jnYXXHvqjhCBQxw3gDobwfZPykJpTG2QvIhZmiHxGfS@vger.kernel.org
+X-Gm-Message-State: AOJu0YzEZMqOucblMAv5FM5tKaAmNB4dLRAnrxxNAqHaoRjx8/xHz/CQ
+	S6WXLhNxKTEbUwMgZr6IyNMeIbRVw5vZMa6lbirNgYPCFWY6ztlQHLAQyLT7ej+G7A==
+X-Gm-Gg: ASbGncsGCkNHfUbJiIxiF0v2K0HPDScvLFAIuoSxJCEPTwUgrKtY6u+Gfsuw4Hecx7/
+	ZakaaAV1/1tYVZlNumFYRBKLVhBsM69Rykcw85/LUaT3VedDjRwt3n0fsAQ5leesivQeAZPKZsf
+	CXXBi9Jp7VZnyPJC2uIwRnsqnwsEJbKFLff13gJFwfu3kO/jesV/mypwWd1YyCQ79CGYzWAhmiR
+	bCG1apwW7zrKgV43G6cS4IF5efEFWg35wuT0V71VWcTpDDT3KVPBfUXHyh11S1/Edhu9U8OZcYB
+	a1RY3eM2zLJnLd0MBF1xytrcKQH0Fzb8faOxQJCbAzs9lf580YQ4T26SyyrlLoAWreqzhWOfdtv
+	1/sDXl36e1ouPbwoTYSsBmSZ7+hA20iXmTvk0SvBl6abKgQ==
+X-Google-Smtp-Source: AGHT+IGGGR/fMqOGihYTULCGpoFCZCyI+PK0x12cArykoie+vVMgbypc7wAJJB8SK0sKrDD4Z06haw==
+X-Received: by 2002:a05:620a:1a90:b0:84f:2f6f:37ee with SMTP id af79cd13be357-85ae65da6eamr1849648985a.48.1759154966517;
+        Mon, 29 Sep 2025 07:09:26 -0700 (PDT)
+Received: from rowland.harvard.edu ([140.247.181.15])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-85c2737869esm823951485a.11.2025.09.29.07.09.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Sep 2025 07:09:26 -0700 (PDT)
+Date: Mon, 29 Sep 2025 10:09:23 -0400
+From: Alan Stern <stern@rowland.harvard.edu>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 2/2] usb: ehci: Add Aspeed AST2700 support
+Message-ID: <be6a9306-c88a-4cd5-9b88-dfd4d6e2933c@rowland.harvard.edu>
+References: <20250928032407.27764-1-ryan_chen@aspeedtech.com>
+ <20250928032407.27764-3-ryan_chen@aspeedtech.com>
+ <0a12f3ac-2600-4ede-a738-f4ab43ad4bee@rowland.harvard.edu>
+ <KUZSPRMB0005CC6A87F6FFC5A08F12BFF21BA@KUZSPRMB0005.apcprd06.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <aNPq42O1Ml3ppF2M@swlinux02> <20250926211023.GA2128495@bhelgaas>
-In-Reply-To: <20250926211023.GA2128495@bhelgaas>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 29 Sep 2025 09:03:59 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+HDgghAQps5M0jV7ELxR=M7pRCuEKwgSMcJQfS3Ecsrg@mail.gmail.com>
-X-Gm-Features: AS18NWAmQA2tJ--eCc8Z2eodRbVjVdQj6lT7kiA7TgSr-wS6_p_6i5Ndf_AUHzk
-Message-ID: <CAL_Jsq+HDgghAQps5M0jV7ELxR=M7pRCuEKwgSMcJQfS3Ecsrg@mail.gmail.com>
-Subject: Re: [PATCH v3 1/5] PCI: dwc: Skip failed outbound iATU and continue
-To: Bjorn Helgaas <helgaas@kernel.org>, Randolph Lin <randolph@andestech.com>
-Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	jingoohan1@gmail.com, mani@kernel.org, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, alex@ghiti.fr, aou@eecs.berkeley.edu, palmer@dabbelt.com, 
-	paul.walmsley@sifive.com, ben717@andestech.com, inochiama@gmail.com, 
-	thippeswamy.havalige@amd.com, namcao@linutronix.de, shradha.t@samsung.com, 
-	randolph.sklin@gmail.com, tim609@andestech.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <KUZSPRMB0005CC6A87F6FFC5A08F12BFF21BA@KUZSPRMB0005.apcprd06.prod.outlook.com>
 
-On Fri, Sep 26, 2025 at 4:10=E2=80=AFPM Bjorn Helgaas <helgaas@kernel.org> =
-wrote:
->
-> On Wed, Sep 24, 2025 at 08:58:11PM +0800, Randolph Lin wrote:
-> > On Tue, Sep 23, 2025 at 09:42:23AM -0500, Bjorn Helgaas wrote:
-> > > On Tue, Sep 23, 2025 at 07:36:43PM +0800, Randolph Lin wrote:
-> > > > Previously, outbound iATU programming included range checks
-> > > > based on hardware limitations. If a configuration did not meet
-> > > > these constraints, the loop would stop immediately.
-> > > >
-> > > > This patch updates the behavior to enhance flexibility. Instead
-> > > > of stopping at the first issue, it now logs a warning with
-> > > > details of the affected window and proceeds to program the
-> > > > remaining iATU entries.
-> > > >
-> > > > This enables partial configuration to complete in cases where
-> > > > some iATU windows may not meet requirements, improving overall
-> > > > compatibility.
+On Mon, Sep 29, 2025 at 05:56:13AM +0000, Ryan Chen wrote:
+> > > @@ -253,8 +256,13 @@ static int ehci_platform_probe(struct
+> > platform_device *dev)
+> > >  	if (!pdata)
+> > >  		pdata = &ehci_platform_defaults;
 > > >
-> > > It's not really clear why this is needed.  I assume it's related
-> > > to dropping qilai_pcie_outbound_atu_addr_valid().
-> >
-> > Yes, I want to drop the previous atu_addr_valid function.
-> >
-> > > I guess dw_pcie_prog_outbound_atu() must return an error for one
-> > > of the QiLai ranges?  Which one, and what exactly is the problem?
-> > > I still suspect something wrong in the devicetree description.
-> >
-> > The main issue is not the returned error; just need to avoid
-> > terminating the process when the configuration exceeds the
-> > hardware=E2=80=99s expected limits.
-> >
-> > There are two methods to fix the issue on the Qilai SoC:
-> >
-> > 1. Simply skip the entries that do not match the designware hardware
-> > iATU limitations.  An error will be returned, but it can be ignored.
-> > On the Qilai SoC, the iATU limitation is the 4GB boundary. Qilai SoC
-> > only need to configure iATU support to translate addresses below the
-> > "32-bits" address range. Although 64-bits addresses do not match the
-> > designware hardware iATU limitations, there is no need to configure
-> > 64-bits addresses, since the connection is hard-wired.
-> >
-> > 2. Set the devicetree only 2 viewport for iATU and force using
-> > devicetree value.  This is a workaround in the devicetree, but the
-> > fix logic is not easy to document.  Instead, we should enforce the
-> > use of the viewport defined in the devicetree and modify the
-> > designware generic code accordingly =E2=80=94 using the viewport values=
- from
-> > the devicetree instead of reading them from the designware
-> > registers.  Since only two viewports are available for iATU, we
-> > should reserve one for the configuration registers and the other for
-> > 32-bit address access.  Therefore, reverse logic still needs to be
-> > added to the designware generic code.
-> >
-> > Method 2 adds excessive complexity to the designware generic code.
-> > Instead, directly configuring the iATU and reporting an error when
-> > the configuration exceeds the hardware iATU limitations is a simpler
-> > and more effective approach to applying the fix.
->
-> I don't know the DesignWare iATU design very well, so I don't know if
-> this issue is something unique to Qilai or if it's something that
-> could be handled via devicetree.
+> > > +	dma_mask_64 = pdata->dma_mask_64;
+> > > +	match = of_match_device(dev->dev.driver->of_match_table, &dev->dev);
+> > 
+> > (I just noticed this.)  The "dev->dev.driver->of_match_table" part looks odd.
+> > Why not just write "vt8500_ehci_ids"?  Do you expect that this could ever
+> > have a different value?
+> > 
+> > Alan Stern
+> Thanks your feedback.
+> I used dev->dev.driver->of_match_table rather than hard-coding vt8500_ehci_ids
+> to keep the probe code generic and tied to the driver model, not to a specific symbol.
+> Functionally it's the same here, but this pattern avoids coupling the probe to a 
+> particular table name.
+> 
+> How you think ?
 
-I believe it should probably be handled in the DT. The iATU is
-programmed based on the bridge window resources which are in turn
-based on DT ranges and dma-ranges. If there's a failure, then
-ranges/dma-ranges is wrong. Or the driver could adjust the bridge
-window resources before programming the iATU.
+The code doesn't need to be any more generic than the source file it 
+containing it.  This particular probe function will never be called for 
+a different driver, or a device that matches an OF table different from 
+vt8500_ehci_ids, right?
 
-Please provide what the DT looks like (for ranges/dma-ranges) and
-where problem entry is.
+Interestingly, there are two other places in drivers/usb/host/ that call 
+of_match_device().  fsl-mph-dr-of.c uses my approach and xhci-plat.c 
+uses yours.  The difference is that the xhci-platform probe routine 
+_is_ called by other drivers, namely, by xhci-rcar.c.
 
-Rob
+I guess it's okay to keep this code as written, even though it's not 
+strictly necessary
+
+Reviewed-by: Alan Stern <stern@rowland.harvard.edu>
+
+Alan Stern
 
