@@ -1,186 +1,264 @@
-Return-Path: <devicetree+bounces-222382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84529BA890E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 11:15:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AEE3BA8B7F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 11:45:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F656163450
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 09:15:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0211169CB8
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 09:45:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C1FD2676F4;
-	Mon, 29 Sep 2025 09:15:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E07E2D877E;
+	Mon, 29 Sep 2025 09:45:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dduOpBWH"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="Itdk6z14"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f44.google.com (mail-yx1-f44.google.com [74.125.224.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF64B34BA41
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 09:15:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1F4274FCE;
+	Mon, 29 Sep 2025 09:45:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759137350; cv=none; b=M1ee4FJIkEkcA4UxrTCCfKCOHxwnCqClwsFwnNVait0uiflOwZdmshpIYIck3wf7RwXfzqOGy+ticOA64nuyMcP/5IdwqceZRRttpx1GOwWn5tOQtAitc9hkCmEhmdt37P7M/qrCg3gUf4TR8LcdOeeaBMhck2VlBgHVoZTxfts=
+	t=1759139122; cv=none; b=MuyEhVs5cQ0AVf4cGgukW/o3hK1r+bMEfUt+pKrVe51coAbHy2E47aWkVGVyOev5vRTPdPCxxvJn+51ZQyr1uOMM0qFAhf4o+FpcdFmjfEGm+EpiY8l7lOOm5HHdySIGgvWJVGbmn63bCrpt5iPb/rnxvKT/kprkXb98M2gu3lw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759137350; c=relaxed/simple;
-	bh=lBuNSNHfNlOFhEVkV+foyyq4/RL6rfGISeiZ2POVo24=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GTh6QFrlWZZQ4q4XWTOmLHvs73F+Gs2+R5JRQEOfO5MOZbHvG724mz816Yvdl4rtkZVRkHeCO0LZoFPHw0XWsFlTjPq4jDd//4CpnpUY6hQu6zAUySoL19WDvwzvqjkn2PkAnTj1ErHlUl6P/IOoUPoGBxvWB54DsyH3U8NXdHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dduOpBWH; arc=none smtp.client-ip=74.125.224.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f44.google.com with SMTP id 956f58d0204a3-633be3be1e6so3969496d50.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 02:15:48 -0700 (PDT)
+	s=arc-20240116; t=1759139122; c=relaxed/simple;
+	bh=GmQlPu7gl3wLDOBq2pqX84D3ZWLn6MYjsfs/KGS5GTY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pbtZzkR+YkBS1dKwSlAcGlfB9z3XgoQUn1TQWdGBGzlCxexeIz0Hl/6f92OgD0R36kYIQID+8mULLnBdtK8ndDJrlCXRc4FkPFVkKHpjYY3ZGJKx3groh3MJnTZSICOBzxsAvRIlv7r6WADXocYwgDJnjD43oIw+y8BvyDpb/R0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=Itdk6z14; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759137348; x=1759742148; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Nr+N/1oAI1pLjqU6aC2+UuJdu0NBIsxDWcVl4EdcQkQ=;
-        b=dduOpBWHLUmbYZtrr2ncDrdvkOkoL9yrcU3OH6+t2nLptL6VD5wRqI6FaRIXQDMHA3
-         NdVSbRsBgsrqHHCx/XUj12uqQ8dL+tlApdDPTR4rfpSEi0C3HOU1WEYjunTNnOkXn+mN
-         7gRK5TxkEik1w7/REDbxOHclHTkhxO8mazSQkNDEfhuR+5lfFA6wQUYpODPS87Ca4urf
-         Dkz5KB31yfyRiQSxmrpKS56KwlbbzCbQ5w4GQBQLc9qlwiJUKrk6RuJEbUkWYLo8H/xp
-         axx+XqDqrXfACfKri2s4wfcUzQjSr2w32rmJ9/wKtMkUSLxa9yZ+7NCrSblpIcqplwNf
-         5PXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759137348; x=1759742148;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Nr+N/1oAI1pLjqU6aC2+UuJdu0NBIsxDWcVl4EdcQkQ=;
-        b=BcoUp3L3hh8AXsQiE1fsLI1It5YZ4OLqWA1HM8kCxRYmGl/q+UOeBHRHDbfFtQtH/7
-         qqg9MHzQN21eNQTsn7gFRtA2qQUnTdVqrwHrLxmW1xflm1p944jOU8hXxjY8u9M5ERle
-         0Ot0PtkwqcT5VE3JiVrJw6+beytBnBy9GWGrttvxQxYTarlR/ueFSyTJKsatb9gql6q8
-         T+RQdAaMoMa20MOwyD44GQm4nZCTm/Zef4+qUdsWTygR6NbIka4XSHgH3NbP/pfenXdH
-         nu1juH31ylIYdae74iyGqvSrGw43gQo/IoIlBioXl/iOP9LHESZHzhHyaua+vKCmGfPP
-         Yk8w==
-X-Gm-Message-State: AOJu0YyJB74NBTVk/uVr5BYg8wmFZoKEZ4cmJBX/F1bd+KLRoGbwxvL3
-	cj6Oco2+/EazVKQjxn5BJO6uIX6XecNpF1vpD1rvkLPeTr3+uJNMHopnbCazkQqdFVLFHMsilmV
-	loP0VXgU1Th2OZkfWor2PiyHQv75YyrY=
-X-Gm-Gg: ASbGncsddDBx5xDXyIKEZlr9UIvaL7iYxBUWfa+nw7dFboF7WJihZ3HS324d2rQ/igb
-	SxaHSdR4bxA8/VfJyD0s2gtlrzRL0akMfi/CJZmpAeNxxDnMBJS8wZIAIzo9WmOOBNQbH16NvS/
-	OHvg28hrFKuGEcIFaT+t6N95C31yxXmz8WGv10k9U8lygxfiQE8doRrQ+kJsv/eidvCpTtwgnhp
-	wiYk69+cmk4iZ9ZKdQ=
-X-Google-Smtp-Source: AGHT+IEqG2WiadrrFUEa9J19hGrk6/NeihwO2YF4Qsh2jTfvkmzgqzQ2Ef58HmGi3ZPxOG7NeW+IecRnhi5uJO6qQl4=
-X-Received: by 2002:a05:690e:1a44:b0:637:cde3:c6f6 with SMTP id
- 956f58d0204a3-637cde3c72bmr5782117d50.10.1759137347594; Mon, 29 Sep 2025
- 02:15:47 -0700 (PDT)
+	d=gibson.dropbear.id.au; s=202508; t=1759139110;
+	bh=IerHrIutIyB5lVdkv5QHBhpAU/+3v08CaZJHmRoxpZc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Itdk6z14hDPurte1t4oTqVfQN6KEQKSvjQ0GUqtRdU5YktULtQYj3vAv1LSYkk0jc
+	 SzWbtCwZ/JvBS8WegHI6wgFiq12YLjLuKl6F6zJxfH+M2m7vy71AssESDoGMkfLUAX
+	 2Dcynk5pqem1KDSXUAwB/63Vis83v/O72GFlQnK093Du2OS76mtsLLl4GlDU8z/6DJ
+	 Jb/Pxqb11ji3R4uGJBSanUpAYLuo0DSoZpHP6AiL3J8nWEamQ8nLdHGaMdseV+YLaX
+	 O4spjYvRYyx6IfZ445K27C3Ibd+x6cAtlw7WfZtKuVDMbbWSK+AYz1jMV4XR/c9L9E
+	 KDiivU5wDVJTw==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4cZxBG2NsTz4wBj; Mon, 29 Sep 2025 19:45:10 +1000 (AEST)
+Date: Mon, 29 Sep 2025 19:23:21 +1000
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Ayush Singh <ayush@beagleboard.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Andrew Davis <afd@ti.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	devicetree@vger.kernel.org, Jason Kridner <jkridner@gmail.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: Device tree representation of (hotplug) connectors: discussion
+ at ELCE
+Message-ID: <aNpQCboQimgwIkJw@zatzit>
+References: <aMebXe-yJy34kST8@zatzit>
+ <20250916084631.77127e29@bootlin.com>
+ <aMt5kEI_WRDOf-Hw@zatzit>
+ <20250918094409.0d5f92ec@bootlin.com>
+ <aMzhgDYOuG4qNcc0@zatzit>
+ <dcbeaff2-0147-4a27-bb46-e247e42810d7@beagleboard.org>
+ <aNJVqSpdAJzGliNx@zatzit>
+ <20250923114849.2385736d@bootlin.com>
+ <aNNrbmZfZU-1xJFm@zatzit>
+ <20250924143130.0a34badb@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250925200625.573902-1-tmaimon77@gmail.com> <175890301752.880349.2331946518360447485.robh@kernel.org>
-In-Reply-To: <175890301752.880349.2331946518360447485.robh@kernel.org>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Mon, 29 Sep 2025 12:15:36 +0300
-X-Gm-Features: AS18NWBg8PJuv0n6gCvIlMejilS28fLD8rStQueT8p0_c7fgopvArq9qbAYJTN4
-Message-ID: <CAP6Zq1jmmhqYu3C7KHFK2tz9zjW352Bbw4cXeOYSjNSTELrp5Q@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] arm64: dts: nuvoton: add NPCM845 SoC and EVB support
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	venture@google.com, yuenn@google.com, openbmc@lists.ozlabs.org, 
-	benjaminfair@google.com, joel@jms.id.au, krzk+dt@kernel.org, 
-	tali.perry1@gmail.com, conor+dt@kernel.org, avifishman70@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Rob,
-
-Thanks for your comments
-
-Most of the warnings occur because the compatible strings are located
-in .txt device tree binding rather than in the .yaml file.
-
-The only change that needs to be done is in ti,tmp100 that
-
-Could you approve the patches, avoiding NPCM845 compatible warnings?
-Meanwhile, I will work on converting the txt to yaml
-
-Thanks,
-
-Tomer
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="OUZx14CP7tCARnAz"
+Content-Disposition: inline
+In-Reply-To: <20250924143130.0a34badb@bootlin.com>
 
 
-On Fri, 26 Sept 2025 at 19:11, Rob Herring (Arm) <robh@kernel.org> wrote:
->
->
-> On Thu, 25 Sep 2025 23:06:22 +0300, Tomer Maimon wrote:
-> > This series fix warnings and adds device tree support for peripherals on
-> > the Nuvoton NPCM845 SoC and its Evaluation Board (EVB).
-> > The first patch fix warning and arrange node order.
-> > The second patch introduces peripheral nodes for Ethernet, MMC, SPI, USB,
-> > RNG, ADC, PWM-FAN, I2C, and OP-TEE firmware in the NPCM845 SoC device tree.
-> > The third patch enables these peripherals for the NPCM845-EVB, adding
-> > MDIO nodes, reserved memory, aliases, and board-specific configurations
-> > like PHY modes and SPI flash partitions.
-> >
-> > The NPCM8XX device tree tested on NPCM845 evaluation board.
-> >
-> > Addressed comments from:
-> >       - Andrew Jeffery: https://patchwork.ozlabs.org/project/openbmc/patch/20250908125938.3584927-2-tmaimon77@gmail.com/
-> >                                         https://patchwork.ozlabs.org/project/openbmc/patch/20250908125938.3584927-3-tmaimon77@gmail.com/
-> >
-> > Changes since version 2:
-> >       - Fix dts warning
-> >       - Arrange node order by ascending unit address.
-> >
-> > Changes since version 1:
-> >       - Fix commit message
-> >       - Fix dtbs_check warnings.
-> >
-> > Tomer Maimon (3):
-> >   arm64: dts: nuvoton: fix warning and nodes order
-> >   arm64: dts: nuvoton: npcm845: Add peripheral nodes
-> >   arm64: dts: nuvoton: npcm845-evb: Add peripheral nodes
-> >
-> >  .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 732 +++++++++++++++++-
-> >  .../boot/dts/nuvoton/nuvoton-npcm845-evb.dts  | 440 +++++++++++
-> >  .../boot/dts/nuvoton/nuvoton-npcm845.dtsi     |   7 +
-> >  3 files changed, 1160 insertions(+), 19 deletions(-)
-> >
-> > --
-> > 2.34.1
-> >
-> >
-> >
->
->
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
->
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
->
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
->
->   pip3 install dtschema --upgrade
->
->
-> This patch series was applied (using b4) to base:
->  Base: attempting to guess base-commit...
->  Base: remotes/arm-soc/for-next-12027-gf60eaa447dab (exact match)
->
-> If this is not the correct base, please add 'base-commit' tag
-> (or use b4 which does this automatically)
->
-> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/nuvoton/' for 20250925200625.573902-1-tmaimon77@gmail.com:
->
-> arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/spi@fb000000: failed to match any schema with compatible: ['nuvoton,npcm845-fiu']
-> arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/spi@fb002000: failed to match any schema with compatible: ['nuvoton,npcm845-fiu']
-> arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/spi@c0000000: failed to match any schema with compatible: ['nuvoton,npcm845-fiu']
-> arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/spi@fb001000: failed to match any schema with compatible: ['nuvoton,npcm845-fiu']
-> arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/bus@f0000000/i2c@86000/tmp100@48: failed to match any schema with compatible: ['tmp100']
-> arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/bus@f0000000/pwm-fan-controller@103000: failed to match any schema with compatible: ['nuvoton,npcm845-pwm-fan']
-> arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dtb: /ahb/bus@f0000000/spi@201000: failed to match any schema with compatible: ['nuvoton,npcm845-pspi']
->
->
->
->
->
+--OUZx14CP7tCARnAz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Sep 24, 2025 at 02:31:30PM +0200, Herve Codina wrote:
+> Hi David,
+>=20
+> On Wed, 24 Sep 2025 13:54:22 +1000
+> David Gibson <david@gibson.dropbear.id.au> wrote:
+>=20
+> ...
+>=20
+> > >=20
+> > > IMHO, no extra rules are needed in DT addon rules to constraint i2c d=
+evices
+> > > to be added in a connector node, a connector sub-node or an i2c contr=
+oller
+> > > node.
+> > >=20
+> > > This will be constrained by the connector itself (out of DT addon rul=
+es). =20
+> >=20
+> > At this point I'm just considering the end-to-end rules we want to
+> > enforce.  Exactly what stage of the process enforces each rule is
+> > another question.
+> >=20
+> > > I mean, according to rule b), the connector will allow some destinati=
+on
+> > > places. Either it will allow the i2c controller node or a connector s=
+ub-node. =20
+> >=20
+> > Sure.
+> >=20
+> > > This is specific to the connector definition and it should be out of
+> > > generic DT addon rules. =20
+> >=20
+> > Hang on... what distinction are you seeing between the "connector
+> > definition" and "generic DT addon rules".  As I see it we're trying to
+> > create a protocol that defines both the base rules and what a
+> > "connector" even means.
+> >=20
+>=20
+> The "generic DT addon rules" give rules related to addon from a DT
+> perspective. In other word "What an addon DT can do"
+>  - export symbols
+>  - import symbols
+>  - Add full node only
+>  - Don't allow to modify existing node
+>  - ...
+>=20
+> The way addon are used is what I put behind "connector definition".
+> The connector is a specific node in a DT with a specific comptible string.
+> The definition of this node will tell "how to use it". For instance:
+>   - There is 2 gpios available and an addon can use it with <&connector 0=
+> and
+>     <&connector 1>.
+>   - There is an i2c bus available and an addon can use if with <&i2c-a>
+>   - The hotplug mecanism used for this specific connector (gpio, eeprom, =
+=2E..)
+>     is also part of the "connector definition".
+>=20
+> An external board DT supposed to be connected to this connector should
+>   - a) Provide its description using an addon DT (compliant with "generic=
+ DT
+>        addon rules")
+> and
+>=20
+>   - b) Use resources from connector the board is connected to (compliant =
+with
+>        "connector definition").
+>=20
+> "generic DT addon rules": DT specification
+> "connector definition": Connector binding
+
+Ok.  I think there are some further possible distinctions here between:
+
+ a. Rules for connectors in general
+ b. Rules for a specific connector type (defined by the connector type
+    binding)
+ c. Rules for a specific connector instance (defined by the property
+    values in that instance).
+
+Possible we can avoid using one or more of those categories, but we
+need to consider them and do so conciously.
+
+> Today, connectors are going to use the addon feature but I didn't want to
+> restrict addon feature to connectors.
+
+Hmm.  I'm not sure this is a good idea.  I had been envisaging this
+new "addon" support as explicitly tied to connectors - you can't
+addon, except in a way the base board allows, and connectors are the
+way it allows.
+
+> For instance, a FPGA driver could use the addon feature with an addon DT
+> to describe the internal part of the FPGA related to the FPGA bitstream
+> loaded by the FPGA driver. That might make sense, right ?
+
+With the distinction from the connector case being that the driver
+defines how to interpret the addon at runtime, rather than the base DT
+defining it statically?
+
+> Also upstream in the kernel, PCI boards can be described using DT.
+>   https://elixir.bootlin.com/linux/v6.16/source/drivers/misc/lan966x_pci.c
+>   https://elixir.bootlin.com/linux/v6.16/source/drivers/misc/lan966x_pci.=
+dtso
+>=20
+> Using addon DT in that case makes sense too even if a "connector" is not =
+present.
+
+Ok.  So I think the model you're suggesting is this:
+
+ * A bus/port driver (let's call it an "addon driver") can allow addon
+   DTs to be plugged in and removed, under constraints defined by that
+   driver at runtime.
+
+ * The connector driver would be one specific addon driver, that can
+   handle a pretty broad range of not-too-complex addons.  The
+   constraints for the addon DT are defined by the properties of the
+   connector in the base DT, rather than by runtime logic in the
+   driver.
+
+Is that correct?
+
+A few observations
+
+ - This effectively makes an addon driver a special case of a
+   discoverable bus/port driver.  Or even DT addons as a library that
+   a bus/port driver can use.  Rather than directly updating the Linux
+   device model, the driver selects an addon DT and uses that to
+   update the Linux device model.
+
+ - The distinction between a connector and a general addon driver, is
+   a bit like that between the simple-bus driver and a PCI host bridge
+   driver.  The former handles a fairly wide range of relatively
+   simple cases, the latter handles a more complex and specialized
+   case.
+
+I don't dislike this model, but it does raise some questions (these
+are not rhetorical):
+
+1) Is DT a good way of describing the addon?
+
+After all, the addon driver could make updates directly to the Linux
+device model from whatever format is convenient.
+
+2) Does it make sense to use the addon to alter the global DT?
+
+Even if the addon is described by a DT, the addon/connector driver
+could read that DT and the system DT and make corresponding updates to
+the Linux device model without altering the system DT first.
+
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
+
+--OUZx14CP7tCARnAz
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmjaT/UACgkQzQJF27ox
+2GeMjw//e5KYzaCYB3I9SlEXy1wnNnGWIYU6jQ8wi8zdcP2AbUem385LTS2rCFQH
+hqBuuIafNCnjLTnGFNVS7pg2u7I0nQw4YHgAJK8Miqc9jmrYcm++bjpI1YKAyy5I
+dJpVv6jR1uWhVZaDVbA1b2k6+ffWoGoYADl2N00CTt7bBlM4K6cBgGUs1v24AfkU
+FWdMec/vusXW9aoU+1AUj94JtERrv0cXuD01oi5cCTLpB7D7wc1POXVUK97XDJCo
+wahEWjpCQVMC2sX7+q0jUm++cz7d+/1hPvt5zaiNIKnNp4SDc4mYMpwHciXlw42C
+WkGQpAdCTrcQWNzLDBUceQ5LwPgOMJf8FKWdA3vllalwheLrtclELNNy3t92F0bz
+y6ZD3+8+cLVnXbLEdFc4O6JUrlaQSYrSwe8LgkKpcf1E1LimH3qKf6vvw7KqvJZC
+uolqfrLRAJP2oP8B+MSYRmKnJn48Y3lApkmK4dObR+ABL/+GmQF8s5XR8mB4RcYQ
+v/acGL5F8zzuvSl4ovHn7MzpvGvAYEridy7oh/+3pT8KAdct/B7D9e/1Oyxc1+Yj
+77jc9+C8zA87pP3xoL/mpfYM55iWh0LmVZHX/qRRnoJDK9o1Giofdobf4lO3sYwi
+zfrqOHfNKiMdfrBUN1G1AZncQXr2b6GkEBQDfscspYolNgNPIhk=
+=Xc5a
+-----END PGP SIGNATURE-----
+
+--OUZx14CP7tCARnAz--
 
