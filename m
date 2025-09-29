@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-222404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B23BBA8DAC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 12:17:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADA61BA8DD0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 12:18:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BBE53AD4E6
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 10:17:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F8EF1C2504
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 10:18:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B2392FB999;
-	Mon, 29 Sep 2025 10:17:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801F22FB962;
+	Mon, 29 Sep 2025 10:18:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="WUC9/Ngk"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BzHnki9z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74AE92FB963;
-	Mon, 29 Sep 2025 10:16:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B31CC2E2DCD;
+	Mon, 29 Sep 2025 10:18:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759141020; cv=none; b=WVnNjKCbnF7zexNCvb6wGcoMA8uq3X2cHoEd8E3WFYw1+E4QHnYOmA0X9ppwAYAm1a6y/841w07KpDf+rr+j0YmmDnW1ay23M0eHK0L0J+DRWftrudrKglbN57o98Da0LMnsKf04LV0gDQ8Rs2V02mD8fk4z79ZTKpZ4CjBC4JI=
+	t=1759141109; cv=none; b=SJAtci8iIkdNSQ+JrBZaAADNODS+RaolTkpaCPhciiEkhMN+4305b6ymdOaJ/TRd4w4D7Hi/zzl7u1d1dvlqi61eRMwkymb/aOwxn3R6BBp3wWs3fP/yFUCFHT4o4v76VSqyCOzeKve/TRiYDVhprN1i6Foi0iPCpuY3moBSpAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759141020; c=relaxed/simple;
-	bh=gFFRfxU0C4D89u0f4bM0By/gaq3tBosyxmopf1mr5K0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=ba6an36dbKpMVpupIuWFAx93lfNl8Vrce6mfIyl+VHLLmHGSoyT25PvYMRhBjtJA9AZh+FBMjq9EvBOZuvV69L9zdke5Z1LYWBpCbPdeK4qnS6U6gAcvR80VIOaDgq/9RRpxpVVJbD7jDhCg5zJUVxWqA5mTjV8HOqNnx7/yzW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=WUC9/Ngk; arc=none smtp.client-ip=148.251.105.195
+	s=arc-20240116; t=1759141109; c=relaxed/simple;
+	bh=wi1lnXpHpe4EgA9sOmOK/RWzeQOR0kl2BuZ3cxhqX4o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ThD0ToBnEFbZRWtR36+pPwpILY2hXOXmUgpsWCetRO574RwoTbSErBCCzkgk6QO2w8tXOkRaa1BV27rJWDVwANZ9IXF9lgpqsCyHm68N7JiTN5mCtzznrk3JWusQvgOIkhjnF1Y/Del7g4UQRwzCtq0q7milnbsPRPFbz/bNGK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BzHnki9z; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1759141016;
-	bh=gFFRfxU0C4D89u0f4bM0By/gaq3tBosyxmopf1mr5K0=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=WUC9/Ngkd/07HEYXLlEz5Yi8hfBjhKsC56RBiI1T79cwtzQl3n2eAdJtoeDBH81tx
-	 X13ajlzJrgwkByssvOjhrwIYh5WHSGtGWr9GIJ7G89KUEoDn2GeWdhGEWJ1x2wYD9H
-	 kloSZSqhs3xnujYQmwsRIhN2+lR6y1hxVAulKUFER2QVWXd22+Efk4zHvYMf4QO9sY
-	 C5uufMLLl0is97pZZOE5J+40teVdC6mtumDIT19WLo5JZ8N8cERaVtR7hSml5AQOwO
-	 11c62ZNviRXlS6gYLVdPyY1reA2kxy9SQeJkncIoz/AsegSWqps2+Q10QmKhyu3QLx
-	 RShiy6FC+eB/Q==
+	s=mail; t=1759141106;
+	bh=wi1lnXpHpe4EgA9sOmOK/RWzeQOR0kl2BuZ3cxhqX4o=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BzHnki9zN0xlRhHdiXxLQHiBKxHuOx61skzVpSHybCtEQSMJN4+YsT454BAL5om6j
+	 KyNRHkb0SVAjaGVte2TOoxUMbGqNhxlcpKjQbSCRrpIPutkeNAh0H8AJyelvTaQH5J
+	 9j5UZ3tW5DrJkQCqR5GEPSXDUYVbVCuxtakXFcZssDAHKX3K7yadGTwkmWpcxs8FoQ
+	 APDx/0dWcppqTWkpkkt5FlrlbY7z4DR8M+LhG5+PXaV683J2+K0YeRIIyX2pTmgIpX
+	 XbCX7uQ+Uk/GA8w+ocvTJmrkmwQJDZYAZmOCRgtOdRJnwEILlQzGRRVShxBurJny7/
+	 ZvOOY0kNJzcLA==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A7EA017E12E4;
-	Mon, 29 Sep 2025 12:16:55 +0200 (CEST)
-Message-ID: <8780b731-950a-490a-9dd9-7ec916e3f992@collabora.com>
-Date: Mon, 29 Sep 2025 12:16:55 +0200
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A123A17E0125;
+	Mon, 29 Sep 2025 12:18:25 +0200 (CEST)
+Message-ID: <70917563-3df1-4fbb-a602-2f3ecd20239f@collabora.com>
+Date: Mon, 29 Sep 2025 12:18:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,34 +57,57 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: watchdog: airoha: Add support for
- Airoha AN7583 SoC
-To: Christian Marangi <ansuelsmth@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Matthias Brugger <matthias.bgg@gmail.com>,
- Felix Fietkau <nbd@nbd.name>, John Crispin <john@phrozen.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-crypto@vger.kernel.org, linux-watchdog@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20250925164038.13987-1-ansuelsmth@gmail.com>
- <20250925164038.13987-3-ansuelsmth@gmail.com>
+Subject: Re: [PATCH] of: base: Add of_get_next_child_with_prefix() stub
+To: Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@google.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>
+References: <20250925195720.2200088-1-helgaas@kernel.org>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20250925164038.13987-3-ansuelsmth@gmail.com>
+In-Reply-To: <20250925195720.2200088-1-helgaas@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Il 25/09/25 18:40, Christian Marangi ha scritto:
-> Add compatible for Airoha AN7583 SoC. The implementation is exactly the
-> same of Airoha EN7581 hence we add the compatible in addition to EN7581
-> ones.
+Il 25/09/25 21:56, Bjorn Helgaas ha scritto:
+> From: Bjorn Helgaas <bhelgaas@google.com>
 > 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> 1fcc67e3a354 ("of: base: Add for_each_child_of_node_with_prefix()") added
+> of_get_next_child_with_prefix() but did not add a stub for the !CONFIG_OF
+> case.
+> 
+> Add a of_get_next_child_with_prefix() stub so users of
+> for_each_child_of_node_with_prefix() can be built for compile testing even
+> when !CONFIG_OF.
+> 
+> Fixes: 1fcc67e3a354 ("of: base: Add for_each_child_of_node_with_prefix()")
+> Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
 
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+> ---
+>   include/linux/of.h | 7 +++++++
+>   1 file changed, 7 insertions(+)
+> 
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index a62154aeda1b..5e2c6ed9370a 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -550,6 +550,13 @@ static inline struct device_node *of_get_next_child(
+>   	return NULL;
+>   }
+>   
+> +static inline struct device_node *of_get_next_child_with_prefix(
+> +	const struct device_node *node, struct device_node *prev,
+> +	const char *prefix)
+> +{
+> +	return NULL;
+> +}
+> +
+>   static inline struct device_node *of_get_next_available_child(
+>   	const struct device_node *node, struct device_node *prev)
+>   {
 
 
 
