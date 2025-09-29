@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-222497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1E81BA991D
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 16:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2971BA9920
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 16:27:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B9F03A89FC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 14:27:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB8CC3C29A7
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 14:27:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5DCA30DD09;
-	Mon, 29 Sep 2025 14:25:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE69B30DD2B;
+	Mon, 29 Sep 2025 14:25:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MnMmfYXF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k1qyMvmD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B62330CB30
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 14:25:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 557BC30CD8A
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 14:25:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759155931; cv=none; b=kEaf82f/IqaLkBVjeI/BwjeBR4p6ohBpawi/NSBAXacUuWeXcLu2FO9qShA2kAwpp0dXHCgI7popOOHT7Df3N8AA8EisQwCxd17/qmc7xaky0hhL4Ctz2eiNDRoih/UhOkfvwK7JJpXSFTpKqC6m+G1m3+I3N07VGvzYSmnS0yQ=
+	t=1759155932; cv=none; b=mASVfqXltfqRnKyFAddiFZP6TAFt5KhW0qGj6FFa2a1gbCv1VadYcGTgOP0Hp0r6WSs7ko8RyGNcZgc9Nti+8GoxHpx2CpZY2xm1CKWojWjwevw1Z892gxoedk/edkk2DtUVUBPCwmpo/EBqZ/X4wWmQHs6fzSa9sX04PxLV+ig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759155931; c=relaxed/simple;
-	bh=+GoO4hs/IEJLihbPAb1xVTX0/WXwsti4sdzlCpzm7Ok=;
+	s=arc-20240116; t=1759155932; c=relaxed/simple;
+	bh=ljrBd5OGddd2yzGqohN5FRIpAWAajBSqIFjspUtmZ1k=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lizcf57rcXxyi8c/ugQMKmPjZvo8eOEbn8CqRTabknGjZBhKjAw+EPHD4dSD0Jt/rUZ23bsiUs0GL3NZO5C5HEzlsSYT0VUFLyAf7u8ECOzqGh4ldyRS4VhGUYhUXGT6HskYs/D4BAuvJIPIUPPWqbSHb4ClOoFaUq+G9NP8UHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MnMmfYXF; arc=none smtp.client-ip=209.85.167.53
+	 MIME-Version; b=Jn6PBAononohVQ8J7NaHXDY4xi7CPpr1FLA6y1taSBJ49ehitAfcw5PFn9NxiPp8Z9hd6vmo6/oDbSqLlHYym4P2PdqhUnU6C/hYKFZWtjFk2V2A1rHKStZmYrYI2gwLJEjWh8LUemwzRwljL7V2zXvlKaHaByiMGrhOZH3TGWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k1qyMvmD; arc=none smtp.client-ip=209.85.167.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-57d93a4b5e5so5398411e87.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 07:25:28 -0700 (PDT)
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-57db15eeb11so5606005e87.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 07:25:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759155927; x=1759760727; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759155928; x=1759760728; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EMRnRE0+turkA0G+/rtvJG6tJyLftSMWq+CTV80QGeA=;
-        b=MnMmfYXFG6EOhiJOtF1D+U9ahu3h6kNzlhs6wkm0BPEj6d1bq+5WFzOT5HY4yQYgVX
-         p0PFI0EPkyPEdT8kV3FvoWhgX4ZpUFicgLaEuINlHam6xs8pWhtJ3E21KMqfLZfSZj5v
-         JS3w4KxeBnMwAcZ4NI0pT4Vr+00NUMo0nfCYjqgG7j/bYZ6yPvJ+yFn0Ockqf3vgIIIh
-         K9AkCzEID3xMPg5a+4nZCQbwS3ka0nrk2kBbcTcEq+CPfndECAWgbj0JsW67oH33f18q
-         rscxqI40ee5kfHwfqwr4fMZhy+HEq35ODfb5uFcs63pfF7yvlpyiuckHEJ1VYuyDGfQz
-         8pxA==
+        bh=wmXPjuryXSqRr8DS4zExlYZnJGP8SsHdroCjEncRXpI=;
+        b=k1qyMvmDqkdL2tClPLo8AzRJap0/h9oky7Ldgo3fD6jsWG1Kr2+P+rzSR3d2rMv5zN
+         2H2tfgHD+iUdIlXJ0fQwSx3cXeilmYUPh/BUrcZAng1OOMroYzNls1QdZVv8fhqzmf37
+         i+Mj8TAlS3RYSyeq8fhf/mJsuTAqT9m3LjJkWqB/sot7K+6LYgTy7kEnS7YAAwYaD76c
+         dOathoQfUlCEfp8vYtFI5lMjvXameqAeP1TDmwT2vy++Dhnt+sJl6oDxeLkduQzV77TJ
+         nuqo0xF+SPcbCSDcuemqc4cbQz3jk+O0xt5ok18qZHH4ejpltIOHZXZl5fs+nfuiyc4m
+         93eA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759155927; x=1759760727;
+        d=1e100.net; s=20230601; t=1759155928; x=1759760728;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EMRnRE0+turkA0G+/rtvJG6tJyLftSMWq+CTV80QGeA=;
-        b=D4y+boG6muXXZyee0/ip+swsxAuLSH2ULgH2l914zwf2SXftiQ9tRauo8Y30fcvHJG
-         UtNAHK0x5KRwqJ4IpwtvfXxNFu1lExwfEKj2/++8VdaFOhaQDRQizKlLgTEC1wFH8VRz
-         nVEN4hfIl1dc4gbEuk3WRb0DIxhvcE1kS8bd2idXfXAOJ3Cu3vdlYPasyMr+qRc6W3Ig
-         AL51I8IWOhzI316s84u4uAa6nnhlpqvM4aQ/UQu9smuUUY37Z8cWqnfw860UJgaVJBuV
-         hqsApIGDGlFIUvYv8itXZa2IP4ukwwyh3ASEvdho95r/tgBKx0LyldZGd+Pk3ZJnXtW9
-         LzNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXMl7Q9q8KCZXMW9d+881Bqne3pe1CisD8mbSmREExRE2L28zo1UK9yDZbI3cCKxSYMmq7PMtlssYtr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxgr79cAP4R42JfjhT4AwccuaHOoh3DymzkCxJ3+yzw9hoyVBDs
-	6ClUcoF3f7PXhSW977/qOWl29meNLGlloncJ5AD+lyv5vM8oANQeXOWb
-X-Gm-Gg: ASbGncsesU6gDYB9Il/VYy8QgAa6BA4gdxtZXdrRvlKhmL8n2zaPFOS81undOMkpSWP
-	psNGB4jClHOHtwYxYqA4GGFjiZXkVvYxIYRx0/6dLq+8Ip4wcqk+mb3VuniMex8OMp26QCwT2qO
-	9pUiq6mIiI5WivxjQMotk4lyaaaQPBOC/cWGsHz05ADkED1LFSKBnCJtpCKEfcgVDjwKunCIS0H
-	dOa4d3rUnWzwsNF+pcwV6mTx+VT0lBp0oaG4wY/K+a3tQ3Wd/hqQpnUrt3EtoY8nVPgHnWBA+3g
-	2bIp2GoL7zAeBofrg+NjT3oQLs3W3Y8is0UOJhX0TIQEdCen6tRyTKiOxfb5xJH60aBtwalTLDj
-	ZMQ1Cs1r+ZwiEowU/UOWyLkMK
-X-Google-Smtp-Source: AGHT+IF51Aa7Ys5uQxj6EfS4scy5ai6R/EIitZEmLlAwXhDSDzE+/Qi3wiy8AlYi0Rb1hE1xqyA5Eg==
-X-Received: by 2002:ac2:5b8e:0:b0:57b:8675:e430 with SMTP id 2adb3069b0e04-583c859468amr2843766e87.13.1759155927047;
-        Mon, 29 Sep 2025 07:25:27 -0700 (PDT)
+        bh=wmXPjuryXSqRr8DS4zExlYZnJGP8SsHdroCjEncRXpI=;
+        b=P3EiOywxBeB+J8P92kemzIVu5kTzZ3anMk6sygcBJCgUldFCX0e8959/i2w1uBnipo
+         sS04n4MkiACH2ZgMdCrpwevCPJgykMNYw21hwwfmnyseeKEV6E6qZGOWKlc/XI2D2l3S
+         N5++g/YvlrroTsQ/v1/UKIBTKMJhxwk33KSmqKx+otKCrWWtlx4UfRs+JKUk6CQOhzZy
+         xzx7SyJ2il+XmGGsEtP2An+TBUo0vTuJ4eU8pvQIkZy3r1fM2rn2Jt37/63NZFRnTAj7
+         aopLNwlNPsuxfntPrbw687+2kG524SGZyFkX6wtIqqk3j5CEtDo+wzHky3EaHbAyFsxq
+         GtYA==
+X-Forwarded-Encrypted: i=1; AJvYcCWynY4CWz5Jq4SjD920c9BvEoW9vWKcrUGTV306iO9523pzrQfKEPjGPduKgw8IL4vj1etx1oSx2Yay@vger.kernel.org
+X-Gm-Message-State: AOJu0YzgPXq+O8Hn7vMUFuq9ngpJbmuMcC+vCbBu/fToEwaLHPRzQ//E
+	ly8u4cECbglWlJY6SYdJQqqNuoZvV6EAN3Oyr7W/zykVU4IZvO1zXEiL
+X-Gm-Gg: ASbGnctXCOBYGUad6hNv3WGEFDwY7RK+s9gifKzqtwPeZ9h9HwCYrxUGzw932TbsmzB
+	oupPIr0cyM9fU+aiiU0PYHUML1B8xY0DNrGDnStua7VY57QgxbjGXy82XVNaBwejvf0ntAfCx32
+	NayrX5buTx2DDCx/oqFw6b+QXTWayaCZ/iPaiHvDv7mbxicvUy6LEtM+wN9o9eq6qx2/NU/r2/p
+	glmgKQ+qgdl+QTcoDHIzHP1HFq86Ig2AXQ3Sf/MY7XfB3jruDGfjbI1F4szpGvWpOmKX9f3yzDd
+	eCG88/RqgJHZDsu/a1pp3aUeWV6lnnIMT8YggICZyZvY4TRdZwufzJViON5MzwM2yoKNl6D2S/b
+	Gzq8/FiwQZ2adYj9TXM7INtI0IB+pYogTPxo=
+X-Google-Smtp-Source: AGHT+IHcGLKbQ/s13YElRimx5FsWcbtSM3Vf0+G5+6fyUYRzlFXaqPvOerq0bMbZhupJyyuu2WrS+g==
+X-Received: by 2002:a05:6512:1189:b0:55f:6b4d:85d8 with SMTP id 2adb3069b0e04-582d2b4cbfdmr4907344e87.28.1759155928244;
+        Mon, 29 Sep 2025 07:25:28 -0700 (PDT)
 Received: from xeon.. ([188.163.112.70])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3728c23e6c1sm13201001fa.52.2025.09.29.07.25.25
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3728c23e6c1sm13201001fa.52.2025.09.29.07.25.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Sep 2025 07:25:26 -0700 (PDT)
+        Mon, 29 Sep 2025 07:25:27 -0700 (PDT)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Jessica Zhang <quic_jesszhan@quicinc.com>,
@@ -93,9 +93,9 @@ Cc: dri-devel@lists.freedesktop.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-tegra@vger.kernel.org
-Subject: [PATCH v1 7/8] gpu/drm: panel: add Samsung LTL106HL02 MIPI DSI panel driver
-Date: Mon, 29 Sep 2025 17:24:53 +0300
-Message-ID: <20250929142455.24883-8-clamor95@gmail.com>
+Subject: [PATCH v1 8/8] gpu/drm: panel-edp: add AUO B116XAN02.0 panel entry
+Date: Mon, 29 Sep 2025 17:24:54 +0300
+Message-ID: <20250929142455.24883-9-clamor95@gmail.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20250929142455.24883-1-clamor95@gmail.com>
 References: <20250929142455.24883-1-clamor95@gmail.com>
@@ -105,248 +105,39 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: Anton Bambura <jenneron@protonmail.com>
+Add an eDP panel entry for AUO B116XAN02.0 used in Lenovo IdeaPad Yoga 11
+with Tegra 3 SoC.
 
-LTL106HL02 is a color active matrix TFT (Thin Film Transistor) liquid
-crystal display (LCD) that uses amorphous silicon TFT as switching
-devices. This model is composed of a TFT LCD panel, a driver circuit and a
-backlight unit. The resolution of a 10.6" contains 1920 x 1080 pixels and
-can display up to 16,8M color with wide viewing angle.
+The raw edid of the panel is:
 
-Signed-off-by: Jonas Schwöbel <jonasschwoebel@yahoo.de>
-Signed-off-by: Anton Bambura <jenneron@protonmail.com>
+00 ff ff ff ff ff ff 00 06 af 5c 20 00 00 00 00
+00 16 01 04 90 1a 0e 78 02 99 85 95 55 56 92 28
+22 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
+01 01 01 01 01 01 12 1b 56 5a 50 00 19 30 30 20
+46 00 00 90 10 00 00 18 00 00 00 0f 00 00 00 00
+00 00 00 00 00 00 00 00 00 20 00 00 00 fe 00 41
+55 4f 0a 20 20 20 20 20 20 20 20 20 00 00 00 fe
+00 42 31 31 36 58 41 4e 30 32 2e 30 20 0a 00 f1
+
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 ---
- drivers/gpu/drm/panel/Kconfig                 |  13 ++
- drivers/gpu/drm/panel/Makefile                |   1 +
- .../gpu/drm/panel/panel-samsung-ltl106hl02.c  | 179 ++++++++++++++++++
- 3 files changed, 193 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-samsung-ltl106hl02.c
+ drivers/gpu/drm/panel/panel-edp.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index ca5c5e60cfa1..55e4d5135562 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -745,6 +745,19 @@ config DRM_PANEL_SAMSUNG_LD9040
- 	depends on BACKLIGHT_CLASS_DEVICE
- 	select VIDEOMODE_HELPERS
- 
-+config DRM_PANEL_SAMSUNG_LTL106HL02
-+	tristate "Samsung LTL106HL02 panel"
-+	depends on OF
-+	depends on DRM_MIPI_DSI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	select VIDEOMODE_HELPERS
-+	help
-+	  Say Y here if you want to enable support for the Samsung LTL106HL02
-+	  panel driver which is used in Microsoft Surface 2.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called panel-samsung-ltl106hl02.
-+
- config DRM_PANEL_SAMSUNG_S6E3FA7
- 	tristate "Samsung S6E3FA7 panel driver"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index a673a74cd371..48a10fbdca89 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -73,6 +73,7 @@ obj-$(CONFIG_DRM_PANEL_SAMSUNG_AMS639RQ08) += panel-samsung-ams639rq08.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_ATNA33XC20) += panel-samsung-atna33xc20.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_DB7430) += panel-samsung-db7430.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_LD9040) += panel-samsung-ld9040.o
-+obj-$(CONFIG_DRM_PANEL_SAMSUNG_LTL106HL02) += panel-samsung-ltl106hl02.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6D16D0) += panel-samsung-s6d16d0.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6D27A1) += panel-samsung-s6d27a1.o
- obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6D7AA0) += panel-samsung-s6d7aa0.o
-diff --git a/drivers/gpu/drm/panel/panel-samsung-ltl106hl02.c b/drivers/gpu/drm/panel/panel-samsung-ltl106hl02.c
-new file mode 100644
-index 000000000000..362b2323b771
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-samsung-ltl106hl02.c
-@@ -0,0 +1,179 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include <linux/array_size.h>
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/module.h>
-+#include <linux/property.h>
-+#include <linux/regulator/consumer.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/drm_mipi_dsi.h>
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+#include <drm/drm_probe_helper.h>
-+
-+struct samsung_ltl106hl02 {
-+	struct drm_panel panel;
-+	struct mipi_dsi_device *dsi;
-+
-+	struct regulator *supply;
-+	struct gpio_desc *reset_gpio;
-+};
-+
-+static inline struct samsung_ltl106hl02 *to_samsung_ltl106hl02(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct samsung_ltl106hl02, panel);
-+}
-+
-+static void samsung_ltl106hl02_reset(struct samsung_ltl106hl02 *ctx)
-+{
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+	usleep_range(10000, 11000);
-+	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
-+	usleep_range(2000, 3000);
-+}
-+
-+static int samsung_ltl106hl02_prepare(struct drm_panel *panel)
-+{
-+	struct samsung_ltl106hl02 *ctx = to_samsung_ltl106hl02(panel);
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
-+	struct device *dev = &ctx->dsi->dev;
-+	int ret;
-+
-+	ret = regulator_enable(ctx->supply);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to enable power supply %d\n", ret);
-+		return ret;
-+	}
-+
-+	if (ctx->reset_gpio)
-+		samsung_ltl106hl02_reset(ctx);
-+
-+	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-+	mipi_dsi_msleep(&dsi_ctx, 70);
-+
-+	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-+	mipi_dsi_msleep(&dsi_ctx, 5);
-+
-+	return 0;
-+}
-+
-+static int samsung_ltl106hl02_unprepare(struct drm_panel *panel)
-+{
-+	struct samsung_ltl106hl02 *ctx = to_samsung_ltl106hl02(panel);
-+	struct mipi_dsi_multi_context dsi_ctx = { .dsi = ctx->dsi };
-+
-+	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
-+	mipi_dsi_msleep(&dsi_ctx, 50);
-+	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
-+	mipi_dsi_msleep(&dsi_ctx, 150);
-+
-+	if (ctx->reset_gpio)
-+		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
-+
-+	regulator_disable(ctx->supply);
-+
-+	return 0;
-+}
-+
-+static const struct drm_display_mode samsung_ltl106hl02_mode = {
-+	.clock = (1920 + 32 + 32 + 64) * (1080 + 6 + 3 + 22) * 60 / 1000,
-+	.hdisplay = 1920,
-+	.hsync_start = 1920 + 32,
-+	.hsync_end = 1920 + 32 + 32,
-+	.htotal = 1920 + 32 + 32 + 64,
-+	.vdisplay = 1080,
-+	.vsync_start = 1080 + 6,
-+	.vsync_end = 1080 + 6 + 3,
-+	.vtotal = 1080 + 6 + 3 + 22,
-+	.width_mm = 235,
-+	.height_mm = 132,
-+	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
-+};
-+
-+static int samsung_ltl106hl02_get_modes(struct drm_panel *panel,
-+					struct drm_connector *connector)
-+{
-+	return drm_connector_helper_get_modes_fixed(connector, &samsung_ltl106hl02_mode);
-+}
-+
-+static const struct drm_panel_funcs samsung_ltl106hl02_panel_funcs = {
-+	.prepare = samsung_ltl106hl02_prepare,
-+	.unprepare = samsung_ltl106hl02_unprepare,
-+	.get_modes = samsung_ltl106hl02_get_modes,
-+};
-+
-+static int samsung_ltl106hl02_probe(struct mipi_dsi_device *dsi)
-+{
-+	struct device *dev = &dsi->dev;
-+	struct samsung_ltl106hl02 *ctx;
-+	int ret;
-+
-+	ctx = devm_drm_panel_alloc(dev, struct samsung_ltl106hl02, panel,
-+				   &samsung_ltl106hl02_panel_funcs,
-+				   DRM_MODE_CONNECTOR_DSI);
-+	if (IS_ERR(ctx))
-+		return PTR_ERR(ctx);
-+
-+	ctx->supply = devm_regulator_get(dev, "power");
-+	if (IS_ERR(ctx->supply))
-+		return dev_err_probe(dev, PTR_ERR(ctx->supply),
-+				     "Failed to get power regulator\n");
-+
-+	ctx->reset_gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_LOW);
-+	if (IS_ERR(ctx->reset_gpio))
-+		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
-+				     "Failed to get reset-gpios\n");
-+
-+	ctx->dsi = dsi;
-+	mipi_dsi_set_drvdata(dsi, ctx);
-+
-+	dsi->lanes = 4;
-+	dsi->format = MIPI_DSI_FMT_RGB888;
-+	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_LPM;
-+
-+	ret = drm_panel_of_backlight(&ctx->panel);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "Failed to get backlight\n");
-+
-+	drm_panel_add(&ctx->panel);
-+
-+	ret = devm_mipi_dsi_attach(dev, dsi);
-+	if (ret < 0) {
-+		drm_panel_remove(&ctx->panel);
-+		return dev_err_probe(dev, ret, "Failed to attach to DSI host\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static void samsung_ltl106hl02_remove(struct mipi_dsi_device *dsi)
-+{
-+	struct samsung_ltl106hl02 *ctx = mipi_dsi_get_drvdata(dsi);
-+
-+	drm_panel_remove(&ctx->panel);
-+}
-+
-+static const struct of_device_id samsung_ltl106hl02_of_match[] = {
-+	{ .compatible = "samsung,ltl106hl02-001" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, samsung_ltl106hl02_of_match);
-+
-+static struct mipi_dsi_driver samsung_ltl106hl02_driver = {
-+	.driver = {
-+		.name = "panel-samsung-ltl106hl02",
-+		.of_match_table = samsung_ltl106hl02_of_match,
-+	},
-+	.probe = samsung_ltl106hl02_probe,
-+	.remove = samsung_ltl106hl02_remove,
-+};
-+module_mipi_dsi_driver(samsung_ltl106hl02_driver);
-+
-+MODULE_AUTHOR("Anton Bambura <jenneron@protonmail.com>");
-+MODULE_DESCRIPTION("DRM driver for Samsung LTL106HL02 video mode DSI panel");
-+MODULE_LICENSE("GPL");
+diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
+index 90e8c154a978..f01c11f7b59a 100644
+--- a/drivers/gpu/drm/panel/panel-edp.c
++++ b/drivers/gpu/drm/panel/panel-edp.c
+@@ -1865,6 +1865,7 @@ static const struct edp_panel_entry edp_panels[] = {
+ 	EDP_PANEL_ENTRY('A', 'U', 'O', 0x1e9b, &delay_200_500_e50, "B133UAN02.1"),
+ 	EDP_PANEL_ENTRY('A', 'U', 'O', 0x1ea5, &delay_200_500_e50, "B116XAK01.6"),
+ 	EDP_PANEL_ENTRY('A', 'U', 'O', 0x203d, &delay_200_500_e50, "B140HTN02.0"),
++	EDP_PANEL_ENTRY('A', 'U', 'O', 0x205c, &delay_200_500_e50, "B116XAN02.0"),
+ 	EDP_PANEL_ENTRY('A', 'U', 'O', 0x208d, &delay_200_500_e50, "B140HTN02.1"),
+ 	EDP_PANEL_ENTRY('A', 'U', 'O', 0x235c, &delay_200_500_e50, "B116XTN02.3"),
+ 	EDP_PANEL_ENTRY('A', 'U', 'O', 0x239b, &delay_200_500_e50, "B116XAN06.1"),
 -- 
 2.48.1
 
