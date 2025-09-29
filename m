@@ -1,175 +1,83 @@
-Return-Path: <devicetree+bounces-222453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222454-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF6DFBA948A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 15:09:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44D0FBA949F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 15:11:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2C953AB85A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 13:09:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F26881C3BDB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 13:11:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD2530505E;
-	Mon, 29 Sep 2025 13:09:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B892306B18;
+	Mon, 29 Sep 2025 13:11:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="hKTf7M4G"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="dW1xdGqy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 974EB1D90DD
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 13:09:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D460E305E09;
+	Mon, 29 Sep 2025 13:11:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759151355; cv=none; b=kW4iHxoRwA1fS9xP6/o9jpNFhq77ewdQiVLaqf2I/qHy5qkUfau6FUcHEoAvEGmVMpHDeZD8pmwawg92Fg9gzph4raUTsO/Avb33JjIySuJo79r/FIPIaeBkl6Su24zRv+caajJp6ep+i/1w1XPv2vkrNFzipTI0K82FhEIruww=
+	t=1759151501; cv=none; b=QwoLCmh1ueu3NsgfoIMjM5cRvZekoIKqIBAEtc84UJBCwl1BHCUltHRYFqrQR801H1fZQZJzQW/Q8KCMtFaIykR8lTIK/s8KN+wkYfFtZPxLx5QqQ7ImRfP7D/KJYI1sIO7VIb6S0sZAWJ16XmxvjTa9Ki+N0fhV9izsh6yH31M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759151355; c=relaxed/simple;
-	bh=YnHefLEr0fZkNdIWOQTIWjBGTGEaBPQMritBk3IAVSQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O+8CDZ6UZE3tAK6W9gem1KCCswLWxdV1BLt0mzRfHP/NlKM0hahndPlAXCTA2FNPn4d0Vzb0y6rwPzrwIdSd9et5FI6OvpSqKHzJVwyl4pukVu+3yX0uDt89iSHuZwQV3FcWPb5SaoQoYS1HfTk7fROBnNjs0hvFX/IQNcsc3oI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=hKTf7M4G; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cb1jd0W9Pz9syH;
-	Mon, 29 Sep 2025 15:09:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1759151349;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/3i8sgEYTGUHy8kVjZ5huWXY9cu39rjsciOdj7sJSMg=;
-	b=hKTf7M4GViZx9i0g741/kIoaDKF/Ama5ONUp3M3XghqN1f/SdH+In8q4URpmUNaJzHGqyq
-	Gs7gAw0+qvzRMaoumWU5sNbOPrl2Yj7Kj5ZK3ZtBuTNTwK6CXCa2Z7Aa0BeWPQXK5ocE1T
-	pot54Tu9AoOuZaTtbM++A8WQBTgXbB/LA/sGNfa6Xqeofw1jZR4Yl4ERrYCp5ERuKjY6bD
-	PxlOrFk+r/ilfEfq4omrWHGiRTsipaTHCKBB5UMU14fKa456DmMiAM82nESvkFoggh5JIu
-	M2ACFchy+OWbxfsLKp0DAosl/b44SS55aKBpy8g0iu2nClriNun9SRG4MweRdg==
-Message-ID: <cc873c8b-435c-467f-b1e9-dc78ddbfb483@mailbox.org>
-Date: Mon, 29 Sep 2025 15:09:01 +0200
+	s=arc-20240116; t=1759151501; c=relaxed/simple;
+	bh=iLOE8W2/99hWknymgXjyOoeKtMi2ze7WIIb2J/6KcFw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fIaLxj4SoyDd3J657HeYHNs7ADzZ78mTiHLwYPX9YmjPSoOvuSbCnzHhWVjQ+HeMzvjjN+IXH0zfaOUrXMJv23wpslsAFCL+ZPo8TNDnvC8vw9MZS4457KYtFmTV1vpJylMemmDfsl2ykYDGZZY5xcxcs1kf8KEdYHhdfu9Dhyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=dW1xdGqy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C4CDC4CEF4;
+	Mon, 29 Sep 2025 13:11:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1759151501;
+	bh=iLOE8W2/99hWknymgXjyOoeKtMi2ze7WIIb2J/6KcFw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dW1xdGqyVt/TrsQIXloANR3pVBr2+hrkA1b/T3cYQ9QPJOsrvw7fFgatp801pFlid
+	 ObHMHvQO2oXrx4X3Ep9oK4/GuCYOYOPY4E+MWit5LAhE4WuXMYZ0R75/sOlvxsDEJW
+	 AhVV4XiA8u5A2pYupeVYPd4nmoPRurVebXEOoXTs=
+Date: Mon, 29 Sep 2025 09:11:37 -0400
+From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
+To: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+	Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com, 
+	Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>
+Subject: Re: [PATCH 13/20] arm64: dts: qcom: kaanapali: Add QUPv3
+ configuration for serial engines
+Message-ID: <20250929-notorious-masterful-cassowary-e26114@lemur>
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <20250924-knp-dts-v1-13-3fdbc4b9e1b1@oss.qualcomm.com>
+ <9685e29d-bff3-4188-b878-230d0f161ce3@oss.qualcomm.com>
+ <5410dc83-0732-4b25-ba07-605e4956d840@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 2/2] arm64: dts: imx95: Describe Mali G310 GPU
-To: Rain Yang <jiyu.yang@oss.nxp.com>
-Cc: Frank.Li@nxp.com, airlied@gmail.com, alexander.stein@ew.tq-group.com,
- boris.brezillon@collabora.com, conor+dt@kernel.org,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- p.zabel@pengutronix.de, robh@kernel.org, s.hauer@pengutronix.de,
- shawnguo@kernel.org, simona@ffwll.ch, sre@kernel.org, steven.price@arm.com,
- tzimmermann@suse.de, xianzhong.li@nxp.com
-References: <20250925203938.169880-1-marek.vasut@mailbox.org>
- <20250925203938.169880-2-marek.vasut@mailbox.org>
- <20250926055701.GC8204@nxa18884-linux.ap.freescale.net>
- <8f4ed393-f94a-4abb-9cdd-60dd693f3ec6@mailbox.org>
- <aNpYG5VITPmKkNgl@oss.nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <aNpYG5VITPmKkNgl@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: xz6qms6rn9anx7ejke9eg1k6bifj7mya
-X-MBO-RS-ID: 2ab65ce22c334a37a55
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5410dc83-0732-4b25-ba07-605e4956d840@oss.qualcomm.com>
 
-On 9/29/25 11:57 AM, Rain Yang wrote:
-> On Mon, Sep 29, 2025 at 02:23:01AM +0200, Marek Vasut wrote:
->> On 9/26/25 7:57 AM, Peng Fan wrote:
->>
->> Hello Peng,
->>
->>> On Thu, Sep 25, 2025 at 10:38:31PM +0200, Marek Vasut wrote:
->>>> The instance of the GPU populated in i.MX95 is the G310, describe this
->>>> GPU in the DT. Include dummy GPU voltage regulator and OPP tables.
->>>>
->>>>
->>>> +		gpu: gpu@4d900000 {
->>>> +			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
->>>> +			reg = <0 0x4d900000 0 0x480000>;
->>>> +			clocks = <&scmi_clk IMX95_CLK_GPU>, <&scmi_clk IMX95_CLK_GPUAPB>;
->>>> +			clock-names = "core", "coregroup";
->>>> +			interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
->>>> +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
->>>> +				     <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>;
->>>> +			interrupt-names = "job", "mmu", "gpu";
->>>> +			mali-supply = <&gpu_fixed_reg>;
->>>> +			operating-points-v2 = <&gpu_opp_table>;
->>>> +			power-domains = <&scmi_devpd IMX95_PD_GPU>;
->>>> +			#cooling-cells = <2>;
->>>> +			dynamic-power-coefficient = <1013>;
->>>
->>> Sorry for my ignorance, would you please share how to get the value?
->> Copy-pasted from NXP downstream kernel fork DT bindings, see:
->>
->> https://github.com/nxp-imx/linux-imx.git
->>
->> 11495de7c24a ("MGS-7621-4 dts: gpu: update devfreq para")
-> Hi Marek,
-> 
-> 1. this "mali: gpu@4d900000" label can be found in this commit you showed.
-> please correct this to be compatible with the downstream
+On Mon, Sep 29, 2025 at 02:41:27PM +0800, Aiqun(Maria) Yu wrote:
+> We’ve tried using git format-patch --patience, and it did help avoid the
+> deletion lines issue. However, when we send out patches using the B4
+> tool, the formatting still defaults to the standard behavior.
+> The challenge now is: how can we integrate the functionality of git
+> format-patch --patience into the B4 workflow?
+> Any ideas?>
 
-No, sorry, that's not how it works. Upstream is not being adjusted to 
-match decisions made by downstream kernel forks unless there is a good 
-rationale for such a change. "Downstream does this" is not a good one. (*)
+You can set this in your .git/config:
 
-> and upstream kernel
+    [diff]
+    algorithm = patience
 
-All of imx*.dts* use gpu: or gpu2d:/gpu3d:/vpuvg: for the GPU label.
-Also, variants of gpu: label seems more popular:
-
-linux$ grep -hro '[a-z0-9_]\+: gpu@' arch/ | sort | uniq -c
-       3 adreno_gpu: gpu@
-       1 bb2d: gpu@
-       1 gpu2d: gpu@
-       1 gpu3d: gpu@
-      80 gpu: gpu@
-       4 gpu_2d: gpu@
-       1 gpu_3d0: gpu@
-       4 gpu_3d: gpu@
-       6 gpu_mem: gpu@
-       1 gpu_reserved: gpu@
-       2 gpu_vg: gpu@
-      17 mali: gpu@
-       1 v3d: gpu@
-       2 zap_shader_region: gpu@
-
-> 2. the compatible string is different from our downstream kernel,
-
-See above (*)
-
-> also you dropped the "nxp,imx95-mali" compatible patch in the panthor
-> driver, why?
-
-Because it is unnecessary, the generic compatible string is sufficient 
-for the in-tree kernel driver.
-
-> this will impact the mali property driver too, which
-> has already been used in many customer project.
-
-See above (*)
-
-All the more reason to focus on upstream and avoid deployment of various 
-downstream components, blobs and so on. They cannot be maintained in the 
-long run, they break, and cause all kinds of maintenance problems.
-
-Upstream cannot be hindered by downstream blobs and their issues, sorry.
-
-> 3. the number of frequency in opp-table is only one, but there are two clocks
-> in clocks property, this really make people confused.
-> CLK/CLK_COREGROUP/CLK_STACK in i.MX95 are from the same source
-> <&scmi_clk IMX95_CLK_GPU>, the other clock <&scmi_clk IMX95_CLK_GPUAPB>
-> is always-on APB clock, which can't be changed by A-cores, and has been removed
-> from clocks property in the latest release.
-
-Can the APB clock be enabled/disabled from Linux, e.g. to save power ?
+-K
 
