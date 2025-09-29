@@ -1,194 +1,160 @@
-Return-Path: <devicetree+bounces-222294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBEA3BA7F18
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 06:40:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF06ABA7F56
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 07:06:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30B00189572B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 04:40:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0A8D63ABD2A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 05:06:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 269C317996;
-	Mon, 29 Sep 2025 04:40:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73D9022127A;
+	Mon, 29 Sep 2025 05:05:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="S9VRc4MP"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="OQO8Bnbn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 665B534BA50;
-	Mon, 29 Sep 2025 04:40:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 678BD223311
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 05:05:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759120816; cv=none; b=o2SfXX1MeD7yFV/56v6+W6SqSXL3oKEOo/wmRUJoFgug43P9q+t+Jei8T7Om+ChNTLYJH/17V7Z+btxQAV7HoZrJm/Z6NminabS4fc5PJO3UUpBNEqLBo04sot6v8lcUpQ3QevSfgD9NqGejkl03gbvatHXXdllagClN6fLIUPg=
+	t=1759122347; cv=none; b=jVgICfU68Wt6QkKcZ336H9prvKEdZhatUQiEKmfSn4DGKqDwtED+6PQG3JkI3Ovj5h1XrPuWXJ47NovxVk9qhRSu2NbBU4OEPtR7ZOGos1ZPqG/hSIqCQCdruellIeVEydYfpIrRGrmCX6/yXrTIDCmG+IvHgc4QijOncVnsX/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759120816; c=relaxed/simple;
-	bh=uOlE6JF3Wlo/vFJGbhrugJ3aZGyj9ga2nv00JK3gbws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ANmcROk0+b7fim+97ljd8S0pHxdf9Z97IiEQzcwjaqEQnCAElXxywUisrXrrRJmXLABOm0wJvCZO7DnUCBeaME4HYr2lAffdQwULtVm3Gbbnm/7ZRYwwhrJ9CfNlpnKKsF7chFocUcU7M4dWRUZ3s1MRzkmn60+nCNW595OyUPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=S9VRc4MP; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58T4e58t2105225;
-	Sun, 28 Sep 2025 23:40:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1759120805;
-	bh=7PnRPMQlYyEfPuWVss3mAZp/DtxuUn4FykB5vQK+A5k=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=S9VRc4MPQTUnEHvMtmoyr8I2/wq1U14P59ZGfmvIeuEMGmX27Ho5pqFAx+lR1h+1/
-	 CkPRNjY8I/GTa9mOqXDePumg6vQWX9GJzcyRk74/PhCB2lB+KmdQq7xGZtEXT/yAwT
-	 8/bCNCun5LeKXJwLreL3ftXa8nacaISdr6f1DGSE=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58T4e5he1078855
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Sun, 28 Sep 2025 23:40:05 -0500
-Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Sun, 28
- Sep 2025 23:40:04 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE207.ent.ti.com
- (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Sun, 28 Sep 2025 23:40:04 -0500
-Received: from [172.24.231.164] (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.231.164])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58T4e0mb612567;
-	Sun, 28 Sep 2025 23:40:00 -0500
-Message-ID: <0784441c-9859-4418-a4a7-85ffe3ecf860@ti.com>
-Date: Mon, 29 Sep 2025 10:09:59 +0530
+	s=arc-20240116; t=1759122347; c=relaxed/simple;
+	bh=fjcFdJgH23VF8JsWbXTLHJaSvRl57I+MqNIoSEc6Lus=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Hx8I2llhNQDdn5ay0TdFATRvy6X3fZTfFVd+JAP/2m01cAYbRqjRoFceKeVwSfRKQ3uIfSJzsqOLq3CK8rnVc63ZX1yb32UpSAj0fCYhMiiwkGWagXxlzuVQN9ly31pAnTGiDiM5y4vhvzSQEXCTUyQYthCV+Pi/vKA+DRtKfFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=OQO8Bnbn; arc=none smtp.client-ip=91.218.175.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1759122333;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=j2Ykjpn2M9MUdD7CCOsDxyX4Ug+kRVxSWmRB5xwuvk8=;
+	b=OQO8Bnbn2I7/EjHI3H0AqudFKHMxxSIfx6y6huCR1FKsaR9Ttj56MOLOTP4nLXFnIqT2K3
+	u0NsmnSlh4bOtBHEzeEl4CDK0uLUIcJMUm8qpesohAHBrtVbtgUu01aQKUvtaRiUt1w9Tj
+	NOM5gAthCy7aBHtC6c45hiiCrwSs02aDXO0n5peiZQ5ZxxnqvPHWf+6XacjGe0q9CbddaE
+	DEsqXrvGVeNJmSLJKbLaWXk+Wo/thkUuYnm2rUeRECUIuynzCaA/1sDyVFZ1gxgTXfodKa
+	b4T4XeHlL3GMkZPIHxG76cFiMAwkF+/LMVrMv1pNP24vf3nD9nnP1awClyVqBg==
+From: Paul Sajna <sajattack@postmarketos.org>
+Subject: [PATCH v3 00/11] arm64: dts: qcom: sdm845-lg-{common, judyln}:
+ Improve HW support in dts
+Date: Sun, 28 Sep 2025 22:05:23 -0700
+Message-Id: <20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 1/3] dt-binding: Add register-settings binding
-To: Rajesh Gumasta <rgumasta@nvidia.com>, <krzk+dt@kernel.org>,
-        <robh@kernel.org>, <conor+dt@kernel.org>, <andi.shyti@kernel.org>,
-        <ulf.hansson@linaro.org>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <kyarlagadda@nvidia.com>
-CC: <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <andersson@kernel.org>, <sjg@chromium.org>, <nm@ti.com>
-References: <20250725052225.23510-1-rgumasta@nvidia.com>
- <20250725052225.23510-2-rgumasta@nvidia.com>
-Content-Language: en-US
-From: Chintan Vankar <c-vankar@ti.com>
-In-Reply-To: <20250725052225.23510-2-rgumasta@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-B4-Tracking: v=1; b=H4sIAJMT2mgC/23O2W7CMBCF4VeJfI0rL1lIhKq+R9ULLxMwS5x6T
+ FSE8u41BiQQXP4jzadzJgjBAZKuOJMAk0PnhxRyURCzUcMaqLOpiWCiYi3ndHu0p/1AbUTKG1N
+ yqFprWE/Swxigd38Z+/65doDfYzLj9UgOgKiy2RWrG8nu5KgG2NOJU06XojJNWTKptf4aPcaDC
+ juIHj98WH+SC75xGH045eETz/oNlI8bE8eokLrUTdMya+CFy9okHoX6SRBJqIDXUDNRS9W/EeZ
+ 5/gfn9tfbSgEAAA==
+X-Change-ID: 20250911-judyln-dts-17c41e59dc0f
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
+ Amir Dahan <system64fumo@protonmail.com>, 
+ Christopher Brown <crispybrown@gmail.com>, 
+ Paul Sajna <sajattack@postmarketos.org>
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759122330; l=3146;
+ i=sajattack@postmarketos.org; s=20250422; h=from:subject:message-id;
+ bh=fjcFdJgH23VF8JsWbXTLHJaSvRl57I+MqNIoSEc6Lus=;
+ b=K3kbXQT2DMDOmbcTGKVUqRQfUhBJZ11f7Bsg37vqNqgupuKd+NR5qgVaSmeGfcViNMvgCsm58
+ 3APixQTZzpGDkJ5SCEzJeh2rH8kkxGVAxd7/UW6+X9IfvfM4MTutrEx
+X-Developer-Key: i=sajattack@postmarketos.org; a=ed25519;
+ pk=TwacvEOiRJ2P2oAdEqIDrtQTL18QS4FfcHfP/zNsxkQ=
+X-Migadu-Flow: FLOW_OUT
 
-Hello Rajesh,
+Rollup of improved hardware support via devicetree for LG G7 ThinQ 
+(judyln) from sdm845-mainline kernel fork
 
-On 25/07/25 10:52, Rajesh Gumasta wrote:
-> Add a new device-tree binding for a 'reg-settings' node that can be
-> added to any device. This 'reg-settings' is used to populate register
-> settings that need to be programmed for a given operating mode of the
-> device. An example usage of the 'reg-settings' node is shown below for
-> the NVIDIA Tegra MMC controller which needs to program a specific
-> 'num-tuning-iterations' value in a register field for each operating
-> mode:
-> 
->    mmc@700b0000 {
-> 
->      reg-settings {
-> 
->        default-settings {
->          /* Default register setting */
->          nvidia,num-tuning-iterations = <0>;
->        };
-> 
->        sdr50 {
->          /* SDR50 register setting */
->          nvidia,num-tuning-iterations = <4>;
->        };
-> 
->        sdr104 {
->          /* SDR104 register setting */
->          nvidia,num-tuning-iterations = <2>;
->        };
-> 
->        hs200 {
->          /* HS200 register setting */
->          nvidia,num-tuning-iterations = <2>;
->        };
->      };
->    };
-> 
-> The 'reg-settings' child nodes are defined according to the operating
-> modes supported for a given device. Properties within each operating
-> mode are then defined by the bindings for the devices that require them.
-> 
-> Signed-off-by: Rajesh Gumasta <rgumasta@nvidia.com>
-> ---
->   .../bindings/regset/register-settings.yaml    | 31 +++++++++++++++++++
->   1 file changed, 31 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/regset/register-settings.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/regset/register-settings.yaml b/Documentation/devicetree/bindings/regset/register-settings.yaml
-> new file mode 100644
-> index 000000000000..4366cdd72813
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regset/register-settings.yaml
-> @@ -0,0 +1,31 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regset/register-settings.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Register Settings
-> +
-> +maintainers:
-> +  - Thierry Reding <thierry.reding@gmail.com>
-> +  - Krishna Yarlagadda <kyarlagadda@nvidia.com>
-> +  - Rajesh Gumasta <rgumasta@nvidia.com>
-> +  - Jon Hunter <jonathanh@nvidia.com>
-> +
-> +description: |
-> +  Register Settings provides a generic way to specify register configurations
-> +  for any hardware controllers. Settings are specified under a "reg-settings"
-> +  sub-node under the controller device tree node. It allows defining both
-> +  default and operating mode specific register settings in the device tree.
-> +
-> +properties:
-> +  reg-settings:
-> +    type: object
-> +    description: |
-> +      Container node for register settings configurations. Each child node
-> +      represents a specific configuration mode or operating condition.
-> +
-> +    additionalProperties:
-> +      type: object
-> +
-> +additionalProperties: true
+Notably, this patch-series enables full DRM acceleration and wifi,
+among other small improvements in individual commits
 
-Following your series, I would like to bring to your attention that
-Texas Instruments SoCs also have a component which requires similar kind
-of configuration, named Timesync Router(TSR). It enables the
-multiplexing of M inputs to N outputs, where inputs can be selectively
-driven based on N output configuration. A detailed explanation of the
-TSR and our attempts we tried to implement TSR can be found in following
-RFC series:
-https://lore.kernel.org/all/20250605063422.3813260-1-c-vankar@ti.com/
-https://lore.kernel.org/all/20250205160119.136639-1-c-vankar@ti.com/
+after this patch-series the main things that remain to be worked
+on include touchscreen, audio, and modem.
 
-To implement TSR, the relevant registers must be configured via the
-device tree. We initially assumed that the device could be handled as a
-mux-controller and could be extended in the same subsystem, but it was
-ineffective. Having explored both the approaches, we now plan to
-implement TSR within misc subsystem, which aligns with the dt-bindings
-that you have proposed in this series.
+Depends upon panel driver patch-series https://lore.kernel.org/all/20250910-judyln-panel-v1-1-825c74403bbb@postmarketos.org/T/#r9a976ca01e309b6c03100e984a26a0ffc2fe2002
 
-The purpose to replying over this series is to inform you that we also
-have a component requiring configuration as outlined in this series. Let
-us know if you have any suggestions for this.
+Co-developed-by: Amir Dahan <system64fumo@protonmail.com>
+Co-developed-by: Christopher Brown <crispybrown@gmail.com>
+Signed-off-by: Amir Dahan <system64fumo@protonmail.com>
+Signed-off-by: Christopher Brown <crispybrown@gmail.com>
+Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
+---
+Changes in v3:
+- change firmware paths to lowercase 'lg' (matching dt-bindings)
+- fix signoffs
+- add wifi dmesg to commit message
+- remove regulator-always-on from ibb
+- remove framebuffer
+- remove msm ids
+- don't continue commit subject into commit messages
+- split bluetooth node
+- add sbu uart details to commit message
+- change ipa gsi-loader to self
+- Link to v2: https://lore.kernel.org/r/20250916-judyln-dts-v2-0-5e16e60263af@postmarketos.org
 
-Regards,
-Chintan.
+Changes in v2:
+- sort at the start
+- drop unnecessary labels
+- drop unnecessary gmu
+- multi-led
+- split fb-panel changes
+- expand upon firmware commit message
+- use qcom,calibration-variant instead of
+  qcom,ath10k-calibration-variant
+- change firmware paths to include "LG"
+- remove framebuffer reservation
+- add lab/ibb
+
+- Link to v1: https://lore.kernel.org/r/20250913-judyln-dts-v1-0-23b4b7790dce@postmarketos.org
+
+---
+Amir Dahan (1):
+      arm64: dts: qcom: sdm845-lg-common: Add leds
+
+Christopher Brown (1):
+      arm64: dts: qcom: sdm845-lg-judyln: Add battery and charger
+
+Paul Sajna (9):
+      arm64: dts: qcom: sdm845-lg-common: Sort nodes and properties
+      arm64: dts: qcom: sdm845-lg-common: Add uarts and Bluetooth
+      arm64: dts: qcom: sdm845-lg-judyln: Add display panel
+      arm64: dts: qcom: sdm845-lg-judyln: Add firmware nodes, change path
+      arm64: dts: qcom: sdm845-lg-{common, judyln}: Add wifi node
+      arm64: dts: qcom: sdm845-lg-common: Add chassis-type
+      arm64: dts: qcom: sdm845-lg-common: Add camera flash
+      arm64: dts: qcom: sdm845-lg-judyln: Add lab/ibb
+      arm64: dts: qcom: sdm845-lg-common: Change ipa gsi-loader to 'self'
+
+ arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 222 ++++++++++++++++++-------
+ arch/arm64/boot/dts/qcom/sdm845-lg-judyln.dts  | 140 ++++++++++++++--
+ 2 files changed, 289 insertions(+), 73 deletions(-)
+---
+base-commit: 8394712bc1340df993cb167199568f44013b45d3
+change-id: 20250911-judyln-dts-17c41e59dc0f
+prerequisite-message-id: <20250910-judyln-panel-v1-1-825c74403bbb@postmarketos.org>
+prerequisite-patch-id: e51151ea7f8fdad6ad7d90713febc5c6b6fc4f9c
+prerequisite-patch-id: b3dd44250da9cd12bc5b2d0d7e865dbe19ceed92
+prerequisite-patch-id: fd6c8077806cb03fcf37d0e0d730314c2760e334
+
+Best regards,
+-- 
+Paul Sajna <sajattack@postmarketos.org>
 
 
