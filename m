@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-222532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EFCDBAA2B4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 19:28:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DE92BAA2C6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 19:29:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BD33160E57
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 17:28:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9DFE19232AF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 17:29:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A2052FD7DD;
-	Mon, 29 Sep 2025 17:28:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5CB130C10B;
+	Mon, 29 Sep 2025 17:29:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OZT3ER36"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FUM3SFEx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16802580E2;
-	Mon, 29 Sep 2025 17:28:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC67E308F09;
+	Mon, 29 Sep 2025 17:29:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759166926; cv=none; b=DWiTz2qnLfUYrUvoSkg0WrMtM+KfExW0bb38HGeSqQGothNp9laAAgzeLYK7sw6LTzr3ZGrMVBrCPerEIryAsVk4SJNhGnNrkTL589Uqaq2rZ+IHfc4Gx4158PiRO296YnR8WRNczDAjSBRhzj7RKdv1A96HAjFRKhPnGZMS3pc=
+	t=1759166957; cv=none; b=qREuKY7oXISkW6wJR7t1UTIt879lfwfGToprMKrbwZOQgzm7KB9mZgncHJevkB2/vNgfMfZ6AHIsRjssuCcx88LMF28RnXIdudPWm6nWHFpUSFTG5cJ09EQdzShzFbQgMH2VKSyIRU5y8khcGSgc6/7ccCRH99PVsRRbokag7eQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759166926; c=relaxed/simple;
-	bh=xKSdXyclKtURS/6958s8l+F1kXgju1+RQlV/tYc2Sck=;
+	s=arc-20240116; t=1759166957; c=relaxed/simple;
+	bh=T7b26ymhGrr0CuvS4bOYGG9EXhXN31gT+FlbOyKE0w8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NtrQlQw2N+lyylYibWRUJJqUambtntXEYDQYQXWrbyYb6DCP+fHE/wtpofijEkL3LhkUZFmFuzv+6oQx+yivZEdP+QeNgJEwsM+no/ZpOl/uySMwHurotgM+rOYIUOr0EgSjWt3FE5OVGMhoFu6W+EDFc680oCYp+8r8XPY31T4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OZT3ER36; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7D85C4CEF4;
-	Mon, 29 Sep 2025 17:28:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ShxfSdPS+DlkYKRYAclZAzS7eIrB6+vCV2R348KhF26l0arEglEIfwCv07HkzHL7IDQyDjfYqrXymI/DQFli1LRqW9lYOTSmYlGu7+4/OaXfxb0CBMpa6gOs5ftqef6oC31lSJ2iy0QNKbKWjnD5yY+qK0iuAuq8T78ZpRcWg10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FUM3SFEx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7DDCC4CEF4;
+	Mon, 29 Sep 2025 17:29:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759166926;
-	bh=xKSdXyclKtURS/6958s8l+F1kXgju1+RQlV/tYc2Sck=;
+	s=k20201202; t=1759166955;
+	bh=T7b26ymhGrr0CuvS4bOYGG9EXhXN31gT+FlbOyKE0w8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OZT3ER36gaOdwjVxchhpXqYhDp1qyDLzaMkoICEu1xsXmAL24HH1Q8zjhw0biljAB
-	 wTqKksQ1DAigHYHb2kOrmne5R/bqqEovtrV/3OcNCvMtKyH9Ry1SbRe4lH03mdCw7t
-	 MCmgMDyAB1H7jstxrjCtfKlyEtM3UWzJmVWK/WKLU5NQlUym2EYQLM0Eg7zxH3QetX
-	 FXkuamFKphRhIxBDRGE361UrsiL6cYCJyt0jwdlM8sBBTnArX4uN/3b6ybxCiODmDh
-	 uvj9OkjMLk6R4t4k8ntF+TSqmBzwET21pNiFNFh32gQk8AsoZG9bC3nUM1Y3fHCLuc
-	 10rt/RKRFDdsQ==
-Date: Mon, 29 Sep 2025 18:28:39 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Vladimir Moravcevic <vmoravcevic@axiado.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>,
-	Tzu-Hao Wei <twei@axiado.com>,
-	Axiado Reviewers <linux-maintainer@axiado.com>,
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Prasad Bolisetty <pbolisetty@axiado.com>
-Subject: Re: [PATCH v2 2/3] spi: axiado: Add driver for Axiado SPI DB
- controller
-Message-ID: <aNrBx4KTgGT5OE72@finisterre.sirena.org.uk>
-References: <20250929-axiado-ax3000-soc-spi-db-controller-driver-v2-0-b0c089c3ba81@axiado.com>
- <20250929-axiado-ax3000-soc-spi-db-controller-driver-v2-2-b0c089c3ba81@axiado.com>
+	b=FUM3SFExxYzFqhMUO+Wodu4lxR5ldPeUyDKBv4WeWhsTcDb6gY71DRv2rEYMXelJE
+	 YSph3lllN4r58/9ur51RBjRB3eafFPT93aG9o/JcWjbTspLyu6VCcr2L0htE/I940n
+	 fDJzoCb1AKIXpyZr1k821TvCAlMM8UPvYASSIdir5r2SkqhMtBCmiA3HvvxKS2z4wp
+	 I/CISHU9B5KABuZY04/oq6FG9WziNe5bL4WBlnNQmqkhcANiE84W0aWv6wC+u66DXS
+	 C0L7TDUDJOt2XPnLu+HD4nGB2IRh3dSSvAJwAABnAACRM+twD2x884s6lEFuvY0yuj
+	 ekpnWO7Uv4GWQ==
+Date: Mon, 29 Sep 2025 18:29:11 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: iio: adc: adi,ad4080: add support for
+ AD4084
+Message-ID: <20250929-walrus-expediter-1f5b0a3621c6@spud>
+References: <20250929145909.111243-1-antoniu.miclaus@analog.com>
+ <20250929145909.111243-2-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,120 +59,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="cZ9/Y9e1KhVhzbDv"
+	protocol="application/pgp-signature"; boundary="yGk/ti+m3vjLzL8i"
 Content-Disposition: inline
-In-Reply-To: <20250929-axiado-ax3000-soc-spi-db-controller-driver-v2-2-b0c089c3ba81@axiado.com>
-X-Cookie: The star of riches is shining upon you.
+In-Reply-To: <20250929145909.111243-2-antoniu.miclaus@analog.com>
 
 
---cZ9/Y9e1KhVhzbDv
+--yGk/ti+m3vjLzL8i
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 29, 2025 at 01:58:02AM -0700, Vladimir Moravcevic wrote:
-> The Axiado SPI controller is present in AX3000 SoC and Evaluation Board.
-> This controller is operating in Host only mode.
+On Mon, Sep 29, 2025 at 02:59:06PM +0000, Antoniu Miclaus wrote:
+> Add device tree binding support for the AD4084 16-bit SAR ADC.
+> Add adi,ad4084 to the compatible enum.
 
-This looks mostly good, but the formatting is a bit odd, one small bug
-and there are licensing problems.
+Both this and the other bindings patch need to say why a fallback is not
+usable.
 
-> Signed-off-by: Vladimir Moravcevic <vmoravcevic@axiado.com>
-> Signed-off-by: Prasad Bolisetty <pbolisetty@axiado.com>
+>=20
+> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> ---
+>  Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
+> index ed849ba1b77b..c4c5d208f502 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4080.yaml
+> @@ -26,6 +26,7 @@ properties:
+>    compatible:
+>      enum:
+>        - adi,ad4080
+> +      - adi,ad4084
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.43.0
+>=20
 
-The signoff of the person sending the mail should be last.
-
-> +++ b/drivers/spi/spi-axiado.c
-> @@ -0,0 +1,1029 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Axiado SPI controller driver (Host mode only)
-> + *
-> + * Copyright (C) 2022-2025 Axiado Corporation (or its affiliates). All rights reserved.
-> + *
-> + */
-
-All rights reserved or GPL?
-
-Please make the entire comment a C++ one so things look more
-intentional.
-
-> +	/* xspi->clk_rate - AMBA Slave clock frequency
-> +	 * transfer->speed_hz - Slave clock required frequency
-> +	 * As per data sheet - SCD = (AMBA Slave clock/SCK) - 2
-> +	 */
-
-Please use terms like "device" rather than outdated ones like slave.
-
-> +}
-> +/**
-
-Blank line between functions please.
-
-> +	/* Process any remaining bytes in the RX FIFO */
-> +	u32 avail_bytes = ax_spi_read(xspi, AX_SPI_RX_FBCAR);
-> +
-> +	// This loop handles bytes that are already staged from a previous word read
-> +	while (xspi->bytes_left_in_current_rx_word_for_irq &&
-
-The mix of /* and // seems a bit random, does it mean something?
-
-> +	 * Handle "Message Transfer Complete" interrupt.
-> +	 * This means all bytes have been shifted out of the TX FIFO.
-> +	 * It's time to harvest the final incoming bytes from the RX FIFO.
-> +	 */
-> +	if (intr_status & AX_SPI_IVR_MTCV) {
-
-> +		ax_spi_process_rx_and_finalize(ctlr);
-> +		return IRQ_HANDLED;
-> +	}
-
-> +	if (intr_status & AX_SPI_IVR_RFFV) {
-
-We can't get incoming and outgoing data interrupts simultaneously
-asserted?
-
-> +	drain_limit = AX_SPI_RX_FIFO_DRAIN_LIMIT; // Sane limit to prevent infinite loop on HW error
-> +	while (ax_spi_read(xspi, AX_SPI_RX_FBCAR) > 0 && drain_limit-- > 0)
-> +		(void)ax_spi_read(xspi, AX_SPI_RXFIFO); // Read and discard
-> +
-
-If you need the cast to void there something is going wrong.
-
-> +	ax_spi_setup_transfer(spi, transfer);
-> +	ax_spi_fill_tx_fifo(xspi);
-> +	ax_spi_write(xspi, AX_SPI_CR2, (AX_SPI_CR2_HTE | AX_SPI_CR2_SRD | AX_SPI_CR2_SWD));
-> +
-> +	spi_transfer_delay_exec(transfer);
-
-The core will implement any per transfer delays, this will double them.
-
-> +	fifo_total_bytes = xspi->tx_fifo_depth;
-> +	/* Calculate protocol overhead bytes according to the real operation each time. */
-> +	protocol_overhead_bytes = op->cmd.nbytes + op->addr.nbytes + op->dummy.nbytes;
-
-/*
- *
- */
-
-
-> +	/*Calculate the maximum data payload that can fit into the FIFO. */
-
-/* Calculate
-
---cZ9/Y9e1KhVhzbDv
+--yGk/ti+m3vjLzL8i
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjawcMACgkQJNaLcl1U
-h9D7uAf/ezOiFJAnnp9OphHFZ36w2sWLfl3KC6kZn/2aKFTkXioJE01EmJO8HPPJ
-RJDxyTI2cAGVkS2LoZiXTWf0YL16mI17L4M3lhHT7ce/s5DRdGVz6l49oXvNsod3
-M/K4RdzPhQ0f8cJPbFGkiAhEoeh6vCcBY1V2du2DUQgci2QnhNpEaUaoL/+WRbv5
-teS3pnjbOq/JgkNtI72x41qLK1930i33S79IMulm03r95rEtCA0ucaB/QaI+81px
-YZrlk9W8s7pD8gFqmwVM2bN2GS6AzIsi3TfetTA7I0vVlKTg83PytJpzRNQFzgNr
-3rzwhnjnTo6jZxQag5ZFxNVstjMwsA==
-=WP3J
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNrB5wAKCRB4tDGHoIJi
+0pm6AP9BirZI676kQL9GzcRnEAWdufUSjz7iXx7ASPoQ3uc6YgD9HGCVrBrF2GaA
+l/5K/fa/HLbP6thYVvcjaTQCjc5mVQc=
+=Xzcl
 -----END PGP SIGNATURE-----
 
---cZ9/Y9e1KhVhzbDv--
+--yGk/ti+m3vjLzL8i--
 
