@@ -1,191 +1,241 @@
-Return-Path: <devicetree+bounces-222518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222519-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2831EBA9D2A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 17:43:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 924F1BA9D3F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 17:44:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C43413BAF6C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 15:43:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F0C7D189D816
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 15:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E33D30C0E2;
-	Mon, 29 Sep 2025 15:43:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FCR94bK2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CECE130BB88;
+	Mon, 29 Sep 2025 15:44:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38C6630BBA5;
-	Mon, 29 Sep 2025 15:43:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB3E30B511;
+	Mon, 29 Sep 2025 15:44:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759160593; cv=none; b=mOTJjNO1iwkLS+HES/c6YbT7PhVGqL3lypJ8wm/QbjMXZTQc5Ylz3tUR42UjAOd4ey+F2SHcXkNWUyMatA9gGdJxNbTnmvf5+7iPEOc+K28O/IVUxOPzbDKnxiSaSmmFqTLWphsmxQdMKFz2r9VxIvh2zjNQdSkoqdaWDk0NoMY=
+	t=1759160666; cv=none; b=RumzMoPrBmYmXEWb3NIylM9m+B+SyiqEWavi7XY/JwV05CHjTQDUMO5VUvtgYMQ5Pxo1XccevqJfUDVetT/Haub/gr7VOCJ/LMpW+rsGpAmbLTpMPp0fHHCEI+tkVG8pbGnMOIYJNWLTvJf/PrQUddgxbnZytR7zkvM+MkXwiK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759160593; c=relaxed/simple;
-	bh=5q8LLF4ag2MVwttfhWyI7ecDLzD9/dPboJQ0VHDhT3A=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=obHtX7hg+ilaLgLCtZvD52phHFAaSx6nA6LY546BESu8htOkL6Onc5MsLQmoEa4yBksFqfKLdtzABWCY6wXP6MLtmaeV4bu7jKRV9M3VQLOMHQLoyXh2CeOgbtkH9XRQya3rPE6ZAvn/OuxeNum8z1AT86Vwv6OAhG5DNiILkPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FCR94bK2; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id AF3CDC02448;
-	Mon, 29 Sep 2025 15:42:51 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3B17B606AE;
-	Mon, 29 Sep 2025 15:43:09 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9E9D3102F1A0C;
-	Mon, 29 Sep 2025 17:43:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1759160588; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=S1PdaIvO7vK9SB7Z0ERMuEoy98E+U47D3nVJtH+4Aqk=;
-	b=FCR94bK24e1NoOiyF+A/RbIyOW+tTMUG3y4g3og4gWZyyXJaS00FXRsl39dlwRgRIZ/k3J
-	AK+mywa0BxPUY+nCP8IMpGuJ95/GUwJs+cTfjUrCT054gC1lsqpsr4VR9ARrrcD8fX2MaS
-	rbc1p1yzzUEDmIx25+WiAWcBf9q7i3oorfLutoPa3rGXJdTqJRA+1DplYKRG2MRKmzc4/b
-	St12Emjl4h3HuzabkOq9MNbLCJ19bjikzYM0ykLd7aoWBe3I3bFacn4PYd5Cb2wI3ydGg/
-	9fUqOIui11YZn1Aa2IoZiu+Qm638BxPUI/njFLpoL2j73b04aDsJUWBfMkpEbg==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
- <sboyd@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Conor
- Dooley <conor+dt@kernel.org>,  Linus Walleij <linus.walleij@linaro.org>,
-  Richard Cochran <richardcochran@gmail.com>,  Gregory CLEMENT
- <gregory.clement@bootlin.com>,  Marek =?utf-8?Q?Beh=C3=BAn?=
- <kabel@kernel.org>,
-  linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org,  linux-gpio@vger.kernel.org,
-  netdev@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pinctrl: Convert
- marvell,armada-3710-(sb|nb)-pinctrl to DT schema
-In-Reply-To: <20250924223528.2956771-1-robh@kernel.org> (Rob Herring's message
-	of "Wed, 24 Sep 2025 17:35:24 -0500")
-References: <20250924223528.2956771-1-robh@kernel.org>
-User-Agent: mu4e 1.12.7; emacs 30.2
-Date: Mon, 29 Sep 2025 17:43:04 +0200
-Message-ID: <87ms6di7sn.fsf@bootlin.com>
+	s=arc-20240116; t=1759160666; c=relaxed/simple;
+	bh=WsZsY/xKEEydx3+25s70BqPyqNc5xJZTSdZ+XcVdWZs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=sh8vSpynvuSKx97uA2JRSoWrSaQXNWgHNMf2SMfFwx3mUFWwxFAbYLsCKTYYTLPsEoI2mqQ7fPAgIre8sip8AWnBPSHBgxKByTNbeVtY8TzjJtG6vm12UatmRFSQeFQhW6F4RGNkImstRKMcI7/Yy7xMK+sbxYB5KXle0ffkNbw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 17EA1150C;
+	Mon, 29 Sep 2025 08:44:15 -0700 (PDT)
+Received: from [10.57.1.31] (unknown [10.57.1.31])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9429C3F59E;
+	Mon, 29 Sep 2025 08:44:19 -0700 (PDT)
+Message-ID: <2432db52-ed83-491c-81d7-f8c3e4b8bf20@arm.com>
+Date: Mon, 29 Sep 2025 16:44:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] drm/panthor: add custom ASN_HASH support for
+ mt8196
+To: Chia-I Wu <olvaffe@gmail.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Liviu Dudau <liviu.dudau@arm.com>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20250913002155.1163908-1-olvaffe@gmail.com>
+ <20250913002155.1163908-3-olvaffe@gmail.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250913002155.1163908-3-olvaffe@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 24/09/2025 at 17:35:24 -05, "Rob Herring (Arm)" <robh@kernel.org> wrote:
+On 13/09/2025 01:21, Chia-I Wu wrote:
+> Add panthor_soc_data to control custom ASN_HASH. Add compatible string
+> for "mediatek,mt8196-mali" and enable custom ASN_HASH for the soc.
+> 
+> Without custom ASN_HASH, FW fails to boot
+> 
+>   panthor 48000000.gpu: [drm] *ERROR* Unhandled Page fault in AS0 at VA 0x0000000000000000
+>   panthor 48000000.gpu: [drm] *ERROR* Failed to boot MCU (status=fatal)
+>   panthor 48000000.gpu: probe with driver panthor failed with error -110
+> 
+> With custom ASN_HASH, panthor probes fine and userspace boots to ui just
+> fine as well
+> 
+>   panthor 48000000.gpu: [drm] clock rate = 0
+>   panthor 48000000.gpu: EM: created perf domain
+>   panthor 48000000.gpu: [drm] Mali-G925-Immortalis id 0xd830 major 0x0 minor 0x1 status 0x5
+>   panthor 48000000.gpu: [drm] Features: L2:0x8130306 Tiler:0x809 Mem:0x301 MMU:0x2830 AS:0xff
+>   panthor 48000000.gpu: [drm] shader_present=0xee0077 l2_present=0x1 tiler_present=0x1
+>   panthor 48000000.gpu: [drm] Firmware protected mode entry not be supported, ignoring
+>   panthor 48000000.gpu: [drm] Firmware git sha: 27713280172c742d467a4b7d11180930094092ec
+>   panthor 48000000.gpu: [drm] CSF FW using interface v3.13.0, Features 0x10 Instrumentation features 0x71
+>   [drm] Initialized panthor 1.5.0 for 48000000.gpu on minor 1
+> 
+> Note that the clock and the regulator drivers are not upstreamed yet.
+> They might as well take a different form when upstreamed.
+> 
+> Signed-off-by: Chia-I Wu <olvaffe@gmail.com>
 
-> Convert the marvell,armada3710-(sb|nb)-pinctrl binding to DT schema
-> format. The binding includes the "marvell,armada-3700-xtal-clock"
-> subnode which is simple enough to include here.
->
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Steven Price <steven.price@arm.com>
+
+> 
 > ---
->  .../bindings/clock/armada3700-xtal-clock.txt  |  29 ---
->  .../marvell,armada-3710-xb-pinctrl.yaml       | 122 +++++++++++
->  .../pinctrl/marvell,armada-37xx-pinctrl.txt   | 195 ------------------
->  3 files changed, 122 insertions(+), 224 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/armada3700-xt=
-al-clock.txt
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,arm=
-ada-3710-xb-pinctrl.yaml
->  delete mode 100644 Documentation/devicetree/bindings/pinctrl/marvell,arm=
-ada-37xx-pinctrl.txt
->
-> diff --git a/Documentation/devicetree/bindings/clock/armada3700-xtal-cloc=
-k.txt b/Documentation/devicetree/bindings/clock/armada3700-xtal-clock.txt
-> deleted file mode 100644
-> index 4c0807f28cfa..000000000000
-> --- a/Documentation/devicetree/bindings/clock/armada3700-xtal-clock.txt
-> +++ /dev/null
-> @@ -1,29 +0,0 @@
-> -* Xtal Clock bindings for Marvell Armada 37xx SoCs
-> -
-> -Marvell Armada 37xx SoCs allow to determine the xtal clock frequencies by
-> -reading the gpio latch register.
-> -
-> -This node must be a subnode of the node exposing the register address
-> -of the GPIO block where the gpio latch is located.
-> -See Documentation/devicetree/bindings/pinctrl/marvell,armada-37xx-pinctr=
-l.txt
-> -
-> -Required properties:
-> -- compatible : shall be one of the following:
-> -	"marvell,armada-3700-xtal-clock"
-> -- #clock-cells : from common clock binding; shall be set to 0
-> -
-> -Optional properties:
-> -- clock-output-names : from common clock binding; allows overwrite defau=
-lt clock
-> -	output names ("xtal")
-> -
-> -Example:
-> -pinctrl_nb: pinctrl-nb@13800 {
-> -	compatible =3D "armada3710-nb-pinctrl", "syscon", "simple-mfd";
-> -	reg =3D <0x13800 0x100>, <0x13C00 0x20>;
-> -
-> -	xtalclk: xtal-clk {
-> -		compatible =3D "marvell,armada-3700-xtal-clock";
-> -		clock-output-names =3D "xtal";
-> -		#clock-cells =3D <0>;
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/pinctrl/marvell,armada-371=
-0-xb-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/marvell,armad=
-a-3710-xb-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..c4d09d8720bd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/marvell,armada-3710-xb-pi=
-nctrl.yaml
-> @@ -0,0 +1,122 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/marvell,armada-3710-xb-pinctr=
-l.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> v2:
+>  - remove CONFIG_DRM_PANTHOR_SOC_MT8196 and panthor_soc*.[ch]
+>  - update commit message
+> ---
+>  drivers/gpu/drm/panthor/panthor_device.c |  2 ++
+>  drivers/gpu/drm/panthor/panthor_device.h | 14 +++++++++++++
+>  drivers/gpu/drm/panthor/panthor_drv.c    |  6 ++++++
+>  drivers/gpu/drm/panthor/panthor_gpu.c    | 25 +++++++++++++++++++++++-
+>  drivers/gpu/drm/panthor/panthor_regs.h   |  4 ++++
+>  5 files changed, 50 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/panthor/panthor_device.c b/drivers/gpu/drm/panthor/panthor_device.c
+> index 81df49880bd87..c7033d82cef55 100644
+> --- a/drivers/gpu/drm/panthor/panthor_device.c
+> +++ b/drivers/gpu/drm/panthor/panthor_device.c
+> @@ -172,6 +172,8 @@ int panthor_device_init(struct panthor_device *ptdev)
+>  	struct page *p;
+>  	int ret;
+>  
+> +	ptdev->soc_data = of_device_get_match_data(ptdev->base.dev);
 > +
-> +title: Marvell Armada 37xx SoC pin and gpio controller
+>  	init_completion(&ptdev->unplug.done);
+>  	ret = drmm_mutex_init(&ptdev->base, &ptdev->unplug.lock);
+>  	if (ret)
+> diff --git a/drivers/gpu/drm/panthor/panthor_device.h b/drivers/gpu/drm/panthor/panthor_device.h
+> index 4fc7cf2aeed57..9f0649ecfc4fc 100644
+> --- a/drivers/gpu/drm/panthor/panthor_device.h
+> +++ b/drivers/gpu/drm/panthor/panthor_device.h
+> @@ -31,6 +31,17 @@ struct panthor_perfcnt;
+>  struct panthor_vm;
+>  struct panthor_vm_pool;
+>  
+> +/**
+> + * struct panthor_soc_data - Panthor SoC Data
+> + */
+> +struct panthor_soc_data {
+> +	/** @asn_hash_enable: True if GPU_L2_CONFIG_ASN_HASH_ENABLE must be set. */
+> +	bool asn_hash_enable;
 > +
-> +maintainers:
-> +  - Gregory CLEMENT <gregory.clement@bootlin.com>
-> +  - Marek Beh=C3=BAn <kabel@kernel.org>
-> +  - Miquel Raynal <miquel.raynal@bootlin.com>
+> +	/** @asn_hash: ASN_HASH values when asn_hash_enable is true. */
+> +	u32 asn_hash[3];
+> +};
 > +
-> +description: >
-> +  Each Armada 37xx SoC come with two pin and gpio controller one for the=
- south
-> +  bridge and the other for the north bridge.
-
-As I think you'll send a v2 because of the robot complaint, maybe you
-could rephrase a bit to ease the reading:
-
-"...two pin/gpio controllers, one for..."
-
+>  /**
+>   * enum panthor_device_pm_state - PM state
+>   */
+> @@ -93,6 +104,9 @@ struct panthor_device {
+>  	/** @base: Base drm_device. */
+>  	struct drm_device base;
+>  
+> +	/** @soc_data: Optional SoC data. */
+> +	const struct panthor_soc_data *soc_data;
 > +
-> +  Inside this set of register the gpio latch allows exposing some config=
-uration
-> +  of the SoC and especially the clock frequency of the xtal. Hence, this=
- node is
-> +  a represent as syscon allowing sharing the register between multiple h=
-ardware
+>  	/** @phys_addr: Physical address of the iomem region. */
+>  	phys_addr_t phys_addr;
+>  
+> diff --git a/drivers/gpu/drm/panthor/panthor_drv.c b/drivers/gpu/drm/panthor/panthor_drv.c
+> index be962b1387f03..9dd90754865ac 100644
+> --- a/drivers/gpu/drm/panthor/panthor_drv.c
+> +++ b/drivers/gpu/drm/panthor/panthor_drv.c
+> @@ -1682,7 +1682,13 @@ static struct attribute *panthor_attrs[] = {
+>  
+>  ATTRIBUTE_GROUPS(panthor);
+>  
+> +static const struct panthor_soc_data soc_data_mediatek_mt8196 = {
+> +	.asn_hash_enable = true,
+> +	.asn_hash = { 0xb, 0xe, 0x0, },
+> +};
+> +
+>  static const struct of_device_id dt_match[] = {
+> +	{ .compatible = "mediatek,mt8196-mali", .data = &soc_data_mediatek_mt8196, },
+>  	{ .compatible = "rockchip,rk3588-mali" },
+>  	{ .compatible = "arm,mali-valhall-csf" },
+>  	{}
+> diff --git a/drivers/gpu/drm/panthor/panthor_gpu.c b/drivers/gpu/drm/panthor/panthor_gpu.c
+> index db69449a5be09..9d98720ce03fd 100644
+> --- a/drivers/gpu/drm/panthor/panthor_gpu.c
+> +++ b/drivers/gpu/drm/panthor/panthor_gpu.c
+> @@ -52,6 +52,28 @@ static void panthor_gpu_coherency_set(struct panthor_device *ptdev)
+>  		ptdev->coherent ? GPU_COHERENCY_PROT_BIT(ACE_LITE) : GPU_COHERENCY_NONE);
+>  }
+>  
+> +static void panthor_gpu_l2_config_set(struct panthor_device *ptdev)
+> +{
+> +	const struct panthor_soc_data *data = ptdev->soc_data;
+> +	u32 l2_config;
+> +	u32 i;
+> +
+> +	if (!data || !data->asn_hash_enable)
+> +		return;
+> +
+> +	if (GPU_ARCH_MAJOR(ptdev->gpu_info.gpu_id) < 11) {
+> +		drm_err(&ptdev->base, "Custom ASN hash not supported by the device");
+> +		return;
+> +	}
+> +
+> +	for (i = 0; i < ARRAY_SIZE(data->asn_hash); i++)
+> +		gpu_write(ptdev, GPU_ASN_HASH(i), data->asn_hash[i]);
+> +
+> +	l2_config = gpu_read(ptdev, GPU_L2_CONFIG);
+> +	l2_config |= GPU_L2_CONFIG_ASN_HASH_ENABLE;
+> +	gpu_write(ptdev, GPU_L2_CONFIG, l2_config);
+> +}
+> +
+>  static void panthor_gpu_irq_handler(struct panthor_device *ptdev, u32 status)
+>  {
+>  	gpu_write(ptdev, GPU_INT_CLEAR, status);
+> @@ -241,8 +263,9 @@ int panthor_gpu_l2_power_on(struct panthor_device *ptdev)
+>  			      hweight64(ptdev->gpu_info.shader_present));
+>  	}
+>  
+> -	/* Set the desired coherency mode before the power up of L2 */
+> +	/* Set the desired coherency mode and L2 config before the power up of L2 */
+>  	panthor_gpu_coherency_set(ptdev);
+> +	panthor_gpu_l2_config_set(ptdev);
+>  
+>  	return panthor_gpu_power_on(ptdev, L2, 1, 20000);
+>  }
+> diff --git a/drivers/gpu/drm/panthor/panthor_regs.h b/drivers/gpu/drm/panthor/panthor_regs.h
+> index 8bee76d01bf83..8fa69f33e911e 100644
+> --- a/drivers/gpu/drm/panthor/panthor_regs.h
+> +++ b/drivers/gpu/drm/panthor/panthor_regs.h
+> @@ -64,6 +64,8 @@
+>  
+>  #define GPU_FAULT_STATUS				0x3C
+>  #define GPU_FAULT_ADDR					0x40
+> +#define GPU_L2_CONFIG					0x48
+> +#define   GPU_L2_CONFIG_ASN_HASH_ENABLE			BIT(24)
+>  
+>  #define GPU_PWR_KEY					0x50
+>  #define  GPU_PWR_KEY_UNLOCK				0x2968A819
+> @@ -110,6 +112,8 @@
+>  
+>  #define GPU_REVID					0x280
+>  
+> +#define GPU_ASN_HASH(n)					(0x2C0 + ((n) * 4))
+> +
+>  #define GPU_COHERENCY_FEATURES				0x300
+>  #define GPU_COHERENCY_PROT_BIT(name)			BIT(GPU_COHERENCY_  ## name)
+>  
 
-represented as a?
-
-> +  block.
-
-blocks?
-
-
-The rest looks fine, so:
-
-Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
-
-Thanks,
-Miqu=C3=A8l
 
