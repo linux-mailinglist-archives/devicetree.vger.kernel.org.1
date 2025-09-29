@@ -1,55 +1,96 @@
-Return-Path: <devicetree+bounces-222557-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25338BAAA92
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 23:46:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F8A0BAAAB0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 23:51:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2F2A1C3B9C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 21:46:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A92C91C17FA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 21:50:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C70724677A;
-	Mon, 29 Sep 2025 21:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CDB123506F;
+	Mon, 29 Sep 2025 21:50:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DK3Y9bNe"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="W5aopZ31";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9gMD49ud";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="W5aopZ31";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="9gMD49ud"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9929D1F30A9;
-	Mon, 29 Sep 2025 21:46:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD4F32236F7
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 21:50:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759182393; cv=none; b=aaorCcBgn+RBFUaQL8ufZH4CxbfeCMsFUg4geG6bVHK6DMwB3KuNeppwSD7FAYHnTQk2JqmZt9hTE73J3uz/dTPQWA2HLYVhp0tAbYasJgIX6lsH+iuRk/eYMw7pjZOIWTOjP43QCg1mvIy9hL3PcgTiHLLPTMi16Z9iM1uO9pg=
+	t=1759182656; cv=none; b=UoalFO32DSdMnIuPE8PeEgGCOnbn7NRgI1bvbdAPeS5ga08lcPR6OnIgLC2Yjq/jEqd5Wf0VUftvubTbpPnYTm3cKu0AXnXVyMFHQ475QQx4+VmFCPsTrbz005Wnf9phXOfYCAScPQjv2OUv9VpVnLduuZD+XWmfuiMytGpipiM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759182393; c=relaxed/simple;
-	bh=NUu0AP/Y/b6sxBMQX5+HIS4HgANg/O7SvbtfXPGtNco=;
+	s=arc-20240116; t=1759182656; c=relaxed/simple;
+	bh=aNeQuTjYwgA+JwDmrzwog4+pMu474TNFlZeZbMax3kI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dYKtHLqLUhRDlILVNkRufVIVsjtNfwfRG1BpgNA+B6waRWukWZXy+UhgDkFUPm4Qnsq7iq8JZOGJNC5q0Ua1Uv+CGgMbGck9wOhxo379nnMSe/cydDJNu5isFJfjz4Kig1I6L5ygK1FNkHh6U5IobvDmRJ4uf47MpX4ofU0AAmI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DK3Y9bNe; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1759182388;
-	bh=NUu0AP/Y/b6sxBMQX5+HIS4HgANg/O7SvbtfXPGtNco=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DK3Y9bNeZ23oe2VZsJdSI3/n95X1tBhAkQcK8G+pHt1hKrvx6XWlnd0wF+5/RAKK0
-	 LTEXQDLyq70YCp6TKoShYyrlxhrxiBn5KzRnx7Utdb3BXUlFzMKtepHA7Sr94tH3HE
-	 9VFpGor6m07Qyfd8Do6RxOHuAgmotUAA8D68SycDCanfaXW/Gm8aoAofg9GaIBbQhX
-	 ZMDLX4Nr8No65uabM3Zq8EDxhcpUYUz+sVw5n0E6/sQUI/J+XMV+dL45sosEll1Lpd
-	 Kn0oFkue5jY4p77mqW64iky393/oOaDpZ+DgRHNMDrCCM3ur7HuGHqWZaO3aEGq+C5
-	 86dMZlZO+XsVw==
-Received: from [10.40.0.100] (185-67-175-126.lampert.tv [185.67.175.126])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 In-Reply-To:Content-Type; b=P/MGCsEG9++oSW6+A+FCGLWDkFfgHObyisdrIU89BpWKWwmzxf6Z+5bzxwVrNftFD6pqw7ogmet7sUjHnfVyuxJLk5HWGKuHC+XduTkzp/yJIcvHHEh5pdRwQdu7osUwUTioTDRCAa3oAaxMJFYNDrxNqUtFkrA7Hj6UsRyTWFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=W5aopZ31; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=9gMD49ud; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=W5aopZ31; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=9gMD49ud; arc=none smtp.client-ip=195.135.223.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: mriesch)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 96E2F17E12BB;
-	Mon, 29 Sep 2025 23:46:27 +0200 (CEST)
-Message-ID: <1f1dd0a4-c6e7-4863-a99d-c0615e2746c4@collabora.com>
-Date: Mon, 29 Sep 2025 23:46:26 +0200
+	by smtp-out2.suse.de (Postfix) with ESMTPS id 545B01F7A5;
+	Mon, 29 Sep 2025 21:50:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1759182643; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=aNeQuTjYwgA+JwDmrzwog4+pMu474TNFlZeZbMax3kI=;
+	b=W5aopZ31Vxl06oaVewEIZMeTcwaVGF2PxTgTtrVqIOwsmyvJ/jpmWnin69/dUIMDZOvz8l
+	jnEvulkZyZKhqmvOzKeOaBjSAZbYoQeEr96Mqke6P+zFWAZn9thJ2JOHA5eHWsdw+1Ofr0
+	et0TetZYxtOD1P6Msx0XT+pLJysLWBw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1759182643;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=aNeQuTjYwgA+JwDmrzwog4+pMu474TNFlZeZbMax3kI=;
+	b=9gMD49ud+rRYM2mHiw7Ty6pJRMEDrNyIdhwyjCTMxHRbaolVB/SW5tiWWCePxPY5MeUK5U
+	Y6yAfAcQYhVuMfCw==
+Authentication-Results: smtp-out2.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=W5aopZ31;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=9gMD49ud
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1759182643; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=aNeQuTjYwgA+JwDmrzwog4+pMu474TNFlZeZbMax3kI=;
+	b=W5aopZ31Vxl06oaVewEIZMeTcwaVGF2PxTgTtrVqIOwsmyvJ/jpmWnin69/dUIMDZOvz8l
+	jnEvulkZyZKhqmvOzKeOaBjSAZbYoQeEr96Mqke6P+zFWAZn9thJ2JOHA5eHWsdw+1Ofr0
+	et0TetZYxtOD1P6Msx0XT+pLJysLWBw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1759182643;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=aNeQuTjYwgA+JwDmrzwog4+pMu474TNFlZeZbMax3kI=;
+	b=9gMD49ud+rRYM2mHiw7Ty6pJRMEDrNyIdhwyjCTMxHRbaolVB/SW5tiWWCePxPY5MeUK5U
+	Y6yAfAcQYhVuMfCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5EF3813A21;
+	Mon, 29 Sep 2025 21:50:42 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id GUGQFDL/2miRMQAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Mon, 29 Sep 2025 21:50:42 +0000
+Message-ID: <a5bc2227-5d25-41da-9b5b-ebc2d5fc85c8@suse.de>
+Date: Tue, 30 Sep 2025 00:50:41 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,245 +98,98 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 05/17] media: dt-bindings: add rockchip rk3568 mipi
- csi-2 receiver
-To: Rob Herring <robh@kernel.org>
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Gerald Loacker <gerald.loacker@wolfvision.net>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Markus Elfring <Markus.Elfring@web.de>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
+Subject: Re: [PATCH 2/4] hwmon: adc: rp1: Add Raspberry Pi's RP1 ADC driver
+To: Guenter Roeck <linux@roeck-us.net>, Stefan Wahren <wahrenst@gmx.net>
+Cc: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rpi-kernel@lists.infradead.org,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, linux-hwmon@vger.kernel.org,
+ Jean Delvare <jdelvare@suse.com>, Rob Herring <robh@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Kever Yang <kever.yang@rock-chips.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Collabora Kernel Team <kernel@collabora.com>,
- Paul Kocialkowski <paulk@sys-base.io>,
- Alexander Shiyan <eagle.alexander923@gmail.com>,
- Val Packett <val@packett.cool>, Philipp Zabel <p.zabel@pengutronix.de>,
- Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- Bryan O'Donoghue <bod@kernel.org>
-References: <20240220-rk3568-vicap-v11-0-af0eada54e5d@collabora.com>
- <20240220-rk3568-vicap-v11-5-af0eada54e5d@collabora.com>
- <20250922171126.GA480461-robh@kernel.org>
+ <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Saenz Julienne <nsaenz@kernel.org>,
+ Andrea della Porta <andrea.porta@suse.com>,
+ Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
+ <jonathan@raspberrypi.com>, Dave Stevenson <dave.stevenson@raspberrypi.com>
+References: <20250925000416.2408457-1-svarbanov@suse.de>
+ <20250925000416.2408457-3-svarbanov@suse.de>
+ <d07158fc-678e-4ae4-8943-168146a58fe0@roeck-us.net>
+ <e53865df-7566-4790-9214-0af875950742@gmx.net>
+ <3f1295b0-b637-4fe0-b141-67f086960072@roeck-us.net>
 Content-Language: en-US
-From: Michael Riesch <michael.riesch@collabora.com>
-In-Reply-To: <20250922171126.GA480461-robh@kernel.org>
+From: Stanimir Varbanov <svarbanov@suse.de>
+In-Reply-To: <3f1295b0-b637-4fe0-b141-67f086960072@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Spam-Level: 
+X-Spam-Flag: NO
+X-Rspamd-Queue-Id: 545B01F7A5
+X-Rspamd-Action: no action
+X-Rspamd-Server: rspamd1.dmz-prg2.suse.org
+X-Spamd-Result: default: False [-3.01 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FREEMAIL_TO(0.00)[roeck-us.net,gmx.net];
+	ARC_NA(0.00)[];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_ENVRCPT(0.00)[gmx.net];
+	RCVD_TLS_ALL(0.00)[];
+	DKIM_TRACE(0.00)[suse.de:+];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DNSWL_BLOCKED(0.00)[2a07:de40:b281:106:10:150:64:167:received,2a07:de40:b281:104:10:150:64:97:from];
+	TAGGED_RCPT(0.00)[dt];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid,suse.de:email,imap1.dmz-prg2.suse.org:rdns,imap1.dmz-prg2.suse.org:helo]
+X-Spam-Score: -3.01
 
-Hi Rob,
+Hi,
 
-Thanks for your review.
-
-On 9/22/25 19:11, Rob Herring wrote:
-> On Wed, Sep 17, 2025 at 05:38:45PM +0200, Michael Riesch wrote:
->> Add documentation for the Rockchip RK3568 MIPI CSI-2 Receiver.
+On 9/25/25 5:34 PM, Guenter Roeck wrote:
+> On Thu, Sep 25, 2025 at 07:26:10AM +0200, Stefan Wahren wrote:
+>> Hi Guenter,
 >>
->> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
->> Reviewed-by: Bryan O'Donoghue <bod@kernel.org>
->> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
->> ---
->>  .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 144 +++++++++++++++++++++
->>  MAINTAINERS                                        |   6 +
->>  2 files changed, 150 insertions(+)
+>> Am 25.09.25 um 04:42 schrieb Guenter Roeck:
+>>> On Thu, Sep 25, 2025 at 03:04:14AM +0300, Stanimir Varbanov wrote:
+>>>> A five-input successive-approximation analogue-to-digital converter
+>>>> with 12-bit (effective number of 9.5 bits) resolution at 500kSPS.
+>>>> The ADC has four external inputs and one internal temperature sensor.
+>>>>
+>>>> Signed-off-by: Phil Elwell <phil@raspberrypi.com>
+>>>> Signed-off-by: Jonathan Bell <jonathan@raspberrypi.com>
+>>>> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+>>> I just realized that there is already a hwmon driver for
+>>> Rasperri Pi - drivers/hwmon/raspberrypi-hwmon.c.
+>>>
+>>> Please add this code to that driver.
+>> could you please explain the reason for this?
 >>
->> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
->> new file mode 100644
->> index 000000000000..8cbab93b4b85
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
->> @@ -0,0 +1,144 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Rockchip RK3568 MIPI CSI-2 Receiver
->> +
->> +maintainers:
->> +  - Michael Riesch <michael.riesch@collabora.com>
->> +
->> +description:
->> +  The Rockchip RK3568 MIPI CSI-2 Receiver is a CSI-2 bridge with one input port
->> +  and one output port. It receives the data with the help of an external
->> +  MIPI PHY (C-PHY or D-PHY) and passes it to the Rockchip RK3568 Video Capture
->> +  (VICAP) block.
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - rockchip,rk3588-mipi-csi
->> +          - const: rockchip,rk3568-mipi-csi
->> +      - const: rockchip,rk3568-mipi-csi
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    items:
->> +      - description: Interrupt that signals changes in CSI2HOST_ERR1.
->> +      - description: Interrupt that signals changes in CSI2HOST_ERR2.
->> +
->> +  interrupt-names:
->> +    items:
->> +      - const: irq1
->> +      - const: irq2
-> 
-> Names that are just the index are not useful. Drop. With that,
+>> Yes, both drivers are for Raspberry Pi boards, but they don't share any code
+>> base. The raspberrypi-hwmon uses a mailbox interfaces to get the sensor data
+>> and works for the board generation 1 - 4. This driver works completely
+>> differently ( MMIO ), doesn't depend on the mailbox interface and applies
+>> only for board generation 5. Actually I don't see a benefit of merging them.
 
-I would be OK with that, but in the discussion of my recent CSI DPHY
-series I was asked to give names to two resets in order to be future
-proof (right now all these resets are (de)asserted in unison and this
-would be perfectly possible without reset names). Going back to the
-issue raised here, I would say that the names need to be there as well
-(simply for reasons of consistency).
+Thank you Stefan for the explanation.
 
-Maybe we can fix the naming here. One IRQ fires when the ERR1 status
-register changes, so maybe irq_err1 ? Other suggestions welcome.
-
-Best regards,
-Michael
-
-> 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> 
->> +
->> +  clocks:
->> +    maxItems: 1
->> +
->> +  phys:
->> +    maxItems: 1
->> +    description: MIPI C-PHY or D-PHY.
->> +
->> +  ports:
->> +    $ref: /schemas/graph.yaml#/properties/ports
->> +
->> +    properties:
->> +      port@0:
->> +        $ref: /schemas/graph.yaml#/$defs/port-base
->> +        unevaluatedProperties: false
->> +        description: Input port node. Connect to e.g., a MIPI CSI-2 image sensor.
->> +
->> +        properties:
->> +          endpoint:
->> +            $ref: video-interfaces.yaml#
->> +            unevaluatedProperties: false
->> +
->> +            properties:
->> +              bus-type:
->> +                enum: [1, 4]
->> +
->> +              data-lanes:
->> +                minItems: 1
->> +                maxItems: 4
->> +
->> +            required:
->> +              - bus-type
->> +              - data-lanes
->> +
->> +      port@1:
->> +        $ref: /schemas/graph.yaml#/properties/port
->> +        description: Output port connected to a RK3568 VICAP port.
->> +
->> +    required:
->> +      - port@0
->> +      - port@1
->> +
->> +  power-domains:
->> +    maxItems: 1
->> +
->> +  resets:
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - phys
->> +  - ports
->> +  - power-domains
->> +  - resets
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/clock/rk3568-cru.h>
->> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->> +    #include <dt-bindings/media/video-interfaces.h>
->> +    #include <dt-bindings/power/rk3568-power.h>
->> +
->> +    soc {
->> +        interrupt-parent = <&gic>;
->> +        #address-cells = <2>;
->> +        #size-cells = <2>;
->> +
->> +        csi: csi@fdfb0000 {
->> +            compatible = "rockchip,rk3568-mipi-csi";
->> +            reg = <0x0 0xfdfb0000 0x0 0x10000>;
->> +            interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
->> +                         <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
->> +            interrupt-names = "irq1", "irq2";
->> +            clocks = <&cru PCLK_CSI2HOST1>;
->> +            phys = <&csi_dphy>;
->> +            power-domains = <&power RK3568_PD_VI>;
->> +            resets = <&cru SRST_P_CSI2HOST1>;
->> +
->> +            ports {
->> +                #address-cells = <1>;
->> +                #size-cells = <0>;
->> +
->> +                csi_in: port@0 {
->> +                    reg = <0>;
->> +
->> +                    csi_input: endpoint {
->> +                        bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
->> +                        data-lanes = <1 2 3 4>;
->> +                        remote-endpoint = <&imx415_output>;
->> +                    };
->> +                };
->> +
->> +                csi_out: port@1 {
->> +                    reg = <1>;
->> +
->> +                    csi_output: endpoint {
->> +                        remote-endpoint = <&vicap_mipi_input>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +    };
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 4c39b9fd80bb..2ac4b7a5b255 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -21797,6 +21797,12 @@ F:	Documentation/userspace-api/media/v4l/metafmt-rkisp1.rst
->>  F:	drivers/media/platform/rockchip/rkisp1
->>  F:	include/uapi/linux/rkisp1-config.h
->>  
->> +ROCKCHIP MIPI CSI-2 RECEIVER DRIVER
->> +M:	Michael Riesch <michael.riesch@collabora.com>
->> +L:	linux-media@vger.kernel.org
->> +S:	Maintained
->> +F:	Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
->> +
->>  ROCKCHIP RK3568 RANDOM NUMBER GENERATOR SUPPORT
->>  M:	Daniel Golle <daniel@makrotopia.org>
->>  M:	Aurelien Jarno <aurelien@aurel32.net>
 >>
->> -- 
->> 2.39.5
->>
+> Ok. Please make sure to add this explanation to the patch description.
 
+Sure, I will extend the description in next version.
+
+~Stan
 
