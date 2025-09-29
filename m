@@ -1,55 +1,40 @@
-Return-Path: <devicetree+bounces-222406-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222407-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADA61BA8DD0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 12:18:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE8AABA8DE2
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 12:20:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F8EF1C2504
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 10:18:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E5EA3AE33C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 10:20:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801F22FB962;
-	Mon, 29 Sep 2025 10:18:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="BzHnki9z"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E9742FB968;
+	Mon, 29 Sep 2025 10:20:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B31CC2E2DCD;
-	Mon, 29 Sep 2025 10:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D5B22FB62B;
+	Mon, 29 Sep 2025 10:20:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759141109; cv=none; b=SJAtci8iIkdNSQ+JrBZaAADNODS+RaolTkpaCPhciiEkhMN+4305b6ymdOaJ/TRd4w4D7Hi/zzl7u1d1dvlqi61eRMwkymb/aOwxn3R6BBp3wWs3fP/yFUCFHT4o4v76VSqyCOzeKve/TRiYDVhprN1i6Foi0iPCpuY3moBSpAk=
+	t=1759141243; cv=none; b=s3ZZ7zXH5gim7ZGzZp0ahukBGav0V5pXJU+CP2U8u6ONChWd89IP3tCru12NhfzHm1Kz78Ap3RZ+QQQxRfyFvN5XyQPtDIYf/yeMR3cW67qjBHNuP2yk98UZkYn5hPn30mqRZIvlqORh2EjZgzdN2IouSGSS4t6phOTM19Q5NJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759141109; c=relaxed/simple;
-	bh=wi1lnXpHpe4EgA9sOmOK/RWzeQOR0kl2BuZ3cxhqX4o=;
+	s=arc-20240116; t=1759141243; c=relaxed/simple;
+	bh=iQbslAWaCshqu1eHy2Ws5vifw8ykJDXAYtKPCCCm718=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ThD0ToBnEFbZRWtR36+pPwpILY2hXOXmUgpsWCetRO574RwoTbSErBCCzkgk6QO2w8tXOkRaa1BV27rJWDVwANZ9IXF9lgpqsCyHm68N7JiTN5mCtzznrk3JWusQvgOIkhjnF1Y/Del7g4UQRwzCtq0q7milnbsPRPFbz/bNGK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=BzHnki9z; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1759141106;
-	bh=wi1lnXpHpe4EgA9sOmOK/RWzeQOR0kl2BuZ3cxhqX4o=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=BzHnki9zN0xlRhHdiXxLQHiBKxHuOx61skzVpSHybCtEQSMJN4+YsT454BAL5om6j
-	 KyNRHkb0SVAjaGVte2TOoxUMbGqNhxlcpKjQbSCRrpIPutkeNAh0H8AJyelvTaQH5J
-	 9j5UZ3tW5DrJkQCqR5GEPSXDUYVbVCuxtakXFcZssDAHKX3K7yadGTwkmWpcxs8FoQ
-	 APDx/0dWcppqTWkpkkt5FlrlbY7z4DR8M+LhG5+PXaV683J2+K0YeRIIyX2pTmgIpX
-	 XbCX7uQ+Uk/GA8w+ocvTJmrkmwQJDZYAZmOCRgtOdRJnwEILlQzGRRVShxBurJny7/
-	 ZvOOY0kNJzcLA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A123A17E0125;
-	Mon, 29 Sep 2025 12:18:25 +0200 (CEST)
-Message-ID: <70917563-3df1-4fbb-a602-2f3ecd20239f@collabora.com>
-Date: Mon, 29 Sep 2025 12:18:25 +0200
+	 In-Reply-To:Content-Type; b=i9uXF70twz7FCchd1AxbD5tKtFLg1S5kNFFiMauXMhAkw6nrOrRHbbR0y2IhEJbqFitpXq6GrCPn3ZLPeJdJ7lOwb7R3/AiIATenn9QH1oWJKGOvtb9Q5ceQfOsVKxedHUbBapaqvapJqrz1xOEyogHoZUwBZAr4e3l0gJClCKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 86C82150C;
+	Mon, 29 Sep 2025 03:20:32 -0700 (PDT)
+Received: from [10.57.34.17] (unknown [10.57.34.17])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C364E3F66E;
+	Mon, 29 Sep 2025 03:20:37 -0700 (PDT)
+Message-ID: <aec0f40a-8346-4194-8b18-1022fe3366bb@arm.com>
+Date: Mon, 29 Sep 2025 11:20:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,57 +42,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] of: base: Add of_get_next_child_with_prefix() stub
-To: Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@google.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Bjorn Helgaas <bhelgaas@google.com>
-References: <20250925195720.2200088-1-helgaas@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250925195720.2200088-1-helgaas@kernel.org>
+Subject: Re: [RFC PATCH 0/3] Introduce iommu-map-masked for platform devices
+To: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>, joro@8bytes.org,
+ will@kernel.org, saravanak@google.com, conor+dt@kernel.org, robh@kernel.org,
+ mchehab@kernel.org, bod@kernel.org, krzk+dt@kernel.org,
+ abhinav.kumar@linux.dev, vikash.garodia@oss.qualcomm.com,
+ dikshita.agarwal@oss.qualcomm.com
+Cc: linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ iommu@lists.linux.dev
+References: <20250928171718.436440-1-charan.kalla@oss.qualcomm.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250928171718.436440-1-charan.kalla@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Il 25/09/25 21:56, Bjorn Helgaas ha scritto:
-> From: Bjorn Helgaas <bhelgaas@google.com>
+On 2025-09-28 6:17 pm, Charan Teja Kalla wrote:
+> This series introduces a new iommu property called iommu-map-masked(may
+> be there is a better name), which is used to represent the IOMMU
+> specifier pairs for each function of a __multi-functional platform
+> device__, where each function can emit unique master id(s) that can be
+> associated with individual translation context.
 > 
-> 1fcc67e3a354 ("of: base: Add for_each_child_of_node_with_prefix()") added
-> of_get_next_child_with_prefix() but did not add a stub for the !CONFIG_OF
-> case.
+> Currently, the iommu configuration - at least for arm architecture-
+> requires all the functions of a platform device will be represented
+> under single dt node thus endup in using only a single translation
+> context.
 > 
-> Add a of_get_next_child_with_prefix() stub so users of
-> for_each_child_of_node_with_prefix() can be built for compile testing even
-> when !CONFIG_OF.
+> A simple solution to associate individual translation context for each
+> function of a device can be through creating per function child nodes in
+> the device tree, but dt is only to just represent the soc layout to
+> linux kernel.
 > 
-> Fixes: 1fcc67e3a354 ("of: base: Add for_each_child_of_node_with_prefix()")
-> Signed-off-by: Bjorn Helgaas <bhelgaas@google.com>
+> Supporting such cases requires a new iommu property called,
+> iommu-map-masked(taking cue from iommu-map for pci devices) and syntax
+> is:
+>     iommu-map-masked = <FUNCTION_ID1 &iommu ID1 MASK1>,
+> 		      <FUNCTION_ID2 &iommu ID2 MASK2>;
+> NOTE: As an RFC, it is considered that this property always expects 4
+> cells.
+> 
+> During the probe phase of the driver for a multi-functional device
+> behind an IOMMU, a child device is instantiated for each FUNCTION_ID.
+> The call to of_dma_configure_id() on each child sets up the IOMMU
+> configuration, ensuring that each function of the device is associated
+> with a distinct translation context.
+> 
+> This property can also be used in association with 'iommus=' when dt
+> bindings requires the presence of 'iommus=', example[2]. For these
+> cases, representation will be(on arm64):
+>     iommus = <&iommu sid mask>; //for default function.
+>     iommu-map-masked = <FUNCTION_ID &iommu sid mask>;//additional
+> function.
+> 
+> USECASE [1]:
+> -----------
+> Video IP, 32bit, have 2 hardware sub blocks(or can be called as
+> functions) called as pixel and nonpixel blocks, that does decode and
+> encode of the video stream. These sub blocks are __configured__ to
+> generate different stream IDs.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+So please clarify why you can't:
 
-> ---
->   include/linux/of.h | 7 +++++++
->   1 file changed, 7 insertions(+)
+a) Describe the sub-blocks as individual child nodes each with their own 
+distinct "iommus" property
+
+or:
+
+b) Use standard "iommu-map" which already supports mapping a masked 
+input ID to an arbitrary IOMMU specifier
+
+Thanks,
+Robin.
+
+> With the classical approach of representing all sids with iommus= end up
+> in using a single translation context limited to the 4GB. There are
+> video usecases which needs larger IOVA space, like higher concurrent
+> video sessions(eg: 32 session and 192MB per session) where 4GB of IOVA
+> is not sufficient.
 > 
-> diff --git a/include/linux/of.h b/include/linux/of.h
-> index a62154aeda1b..5e2c6ed9370a 100644
-> --- a/include/linux/of.h
-> +++ b/include/linux/of.h
-> @@ -550,6 +550,13 @@ static inline struct device_node *of_get_next_child(
->   	return NULL;
->   }
->   
-> +static inline struct device_node *of_get_next_child_with_prefix(
-> +	const struct device_node *node, struct device_node *prev,
-> +	const char *prefix)
-> +{
-> +	return NULL;
-> +}
-> +
->   static inline struct device_node *of_get_next_available_child(
->   	const struct device_node *node, struct device_node *prev)
->   {
-
+> For this case, it can be considered as iommus= property can be
+> associated with pixel functionality and iommu-map-masked= is with
+> non-pixel or viceversa.
+> 
+> [1] https://lore.kernel.org/all/20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com/
+> 
+> Charan Teja Kalla (3):
+>    dtbindings: add binding for iommu-map-masked property
+>    of: create a wrapper for of_map_id()
+>    of: implment the 'iommu-map-masked' to represent multi-functional
+>      devices
+> 
+>   .../bindings/media/qcom,sm8550-iris.yaml      | 31 ++++++++++-
+>   drivers/iommu/of_iommu.c                      | 44 +++++++++++++++
+>   drivers/of/base.c                             | 55 ++++++++++++++++---
+>   include/linux/of.h                            | 15 +++++
+>   4 files changed, 133 insertions(+), 12 deletions(-)
+> 
 
 
