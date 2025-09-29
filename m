@@ -1,218 +1,107 @@
-Return-Path: <devicetree+bounces-222525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CBE0BA9FD3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 18:16:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED449BAA004
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 18:18:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01ABD3B699A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 16:16:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF8FB3A8EDB
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 16:18:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E93D308F35;
-	Mon, 29 Sep 2025 16:16:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50A563081DB;
+	Mon, 29 Sep 2025 16:18:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="D569lMdd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cnTq070u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93E0F1F151C
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 16:16:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD091FC0ED
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 16:18:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759162586; cv=none; b=iknFncTgySJ1iai4giYoq9xK+8V+uvZeVdkQPTXHYJXLB+UU/IPftQe9YiK/SC+LjScAwSn2SSMaOUs3fWV4m3mR7DclJHHERr+HCtFE3nfVR1Gr95GPAkWbRFwqgzccvcJg2PwAEvWVhmuUmwFepCQioXv4G40LA7gvTR/ya6s=
+	t=1759162729; cv=none; b=GfZX8/SliTy2jfWWzrSe4Q570FR5QXM2nwYW68mD6gjhpaP35o52BVFg3DO0eiUE3+jqMBXpN3RlVNXu/ZFvoH5OCWmbHg0hYWs4U6opkIOCWmFCilPiosMv5WLWZiBFoBwN7ZTGF7RV+jAuvfLYdYN06JoSfxD5EeqxVwBEtPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759162586; c=relaxed/simple;
-	bh=UP0zi38iIoysyicUu4wqlIM8wUKsVlWusdH50CB/mrg=;
+	s=arc-20240116; t=1759162729; c=relaxed/simple;
+	bh=y1PFlnpoS8HMdd5eV23Hi5stegF7R3xRHDYNVRVCELc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NaIaagLvcXqUapSPWYklg40GSdcVJuSpZ3wO/JCZOsqIesM/ryTVWOqtNxeZYOsvcZyuCZuFZWrMdlPNIjwbHwmfif26Ah6iY68KA3Ew6SpB+ldrZBXkz8cv+PuYg41N1gfvrau8jAPQ/zG43eCqKYOrIHn4dWXcOLCatTnNiLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=D569lMdd; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-579363a4602so5241309e87.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 09:16:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1759162582; x=1759767382; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RzkAIyqWbByhbLEusljJFiOftspWJiXeUC9AQt6tH38=;
-        b=D569lMddRMsr87CA2o7/j/HWhUycz/6ITLt4Yq3vAl+Wi5c4NxQszqoFU/e/GZqjAQ
-         uElIPr5Dy4wnOcZo9j4IU0PC89GMSCKXN58cAobhfRYQ2NetTBdIWdSBhwBHX1fYjF/c
-         mwprV5ywntynU4YXzM6YnBNP5gyEoyp0Burz/buh73UcppDrXEV31hUvyBL6/gRjjM6X
-         TsusqLWkfzK7Wu5HGwRH3G6TY58+3FrlhRPdymvZZG6BJfU3El4OMbdPAGJQhD/7hGtN
-         4SBsc5Z2TRfP1DUJUsAD1OCp8JEsXVJNKpRWjeyTZx17agLyCNFPE6h3VVJPOk/0rIEs
-         AViQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759162582; x=1759767382;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RzkAIyqWbByhbLEusljJFiOftspWJiXeUC9AQt6tH38=;
-        b=gpnlohKmLMYHyO7ZrWL1iZNNINRAKeht+S4uysQ6LzUbNzH6WlR/k1feAsu84hPHGn
-         mXXYese7kL24pVMyGl6p6Lf53/Gdcg2JhMUbOZPUcQW0edNXIhRf52zoXBztLC+HOtls
-         2lUCGzhtYY2xTMMufLHFTf++NbNoChULooloRKqbu2LZsZrSrDWG0lR5hUFSSW5i6s2Y
-         ikpSST3uL6NHgcWUr+jFvtcsdc/qFkv+d5gSyqUJKzby5N0yrggiqkmwT2TygeJuHEYd
-         mdHB9a3ONL4viNpCq4gTeGzyB8PAOG6+eNTliRSNI1Sg1Ulo3uuBpqUsIyGBZCJqJehu
-         QHnw==
-X-Forwarded-Encrypted: i=1; AJvYcCVRErfIhnd+RmW3wWmtEzp1F5oH8h0X7yA7llk3xuoHmC/6sNeRhj6bM4D9pEdxf4W9PHHkKTW61RBA@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywx0OzHbWhi/KeSbRzp0VeA39Ztvsm/IiHOJ9uxO0X4UFGdSdPJ
-	NXdpCZKU2sSD8oZE7oaYqa6MkCoFbqNO38kaQWU+UONsbioJSek577Ec4QblTKB6w4KsQ1gmnZf
-	G+wsFy0uH24StiLo6D+ymcD2OcUQcGnEAl9tYi9Kc0A==
-X-Gm-Gg: ASbGncux7hJjjM5N+8u7s0QdpW8n1sMRtSD9MNx94m1x0DUEHQxKdSe5w6W9HVnxRBe
-	LscoZpn2Tp9XE4npA+ZXurKVqC5ARqZfLlTpxaIY/5BHSVzWTPCWt8xCjest+9LeEVffc3a1XUP
-	RimUEf8nHG0YAWlUfkx7fVWHp4UiK1g8HjUQlywyG+dM3zv9Es1kftcF7lQDK4qJXJ0sd/331OA
-	vKSft/7UvGt3zt7Zw==
-X-Google-Smtp-Source: AGHT+IFmU3wi4tOnHePsrkLhoeC52jJ7F2ZfQX4guvNO6akL0hF7fNRykrkZGq5tIOtl7Q4G/w4kyGLo4MIueW6zV24=
-X-Received: by 2002:a05:6512:61b1:b0:55f:4bf6:efed with SMTP id
- 2adb3069b0e04-582d092f44dmr4939397e87.1.1759162581685; Mon, 29 Sep 2025
- 09:16:21 -0700 (PDT)
+	 To:Cc:Content-Type; b=hq0oE83A4ylQDGPEi2eKB4wEgNRNjqKQtnHel4g8CP9b5qqdrpk0FmHuShtAwKazOLY84e+qsAaUcNybZX0BauVZvdMRBa2Ga+eCHGkIOr0qCcY6TsutFtMJOzlWoXx6ZK69yG/3fhLst92sTzcg5FfiVZZYyh5vDEv3+Ay+PSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cnTq070u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CEA5BC116C6
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 16:18:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759162728;
+	bh=y1PFlnpoS8HMdd5eV23Hi5stegF7R3xRHDYNVRVCELc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=cnTq070u68mayMVva5/URhtj0CzJoNBR8wl+UpUAivTgjFR6TukurKQzrsCY1HiwA
+	 PmqMMW0IFapZoMa9IcGueprjukyJE3aNcHFGaWd1o3+cp2NxICIpmZ3jBwpujflZGt
+	 amrO6KTTgDyRTcowIqHCfgPsS7rHAoGE2d53R/ZQ2uq8tumW3DR2Z5YxKOiDbYcVnf
+	 C6KbQoubSSr8flfQc2b56uuxKTERwC7UFYlLQ1684XV/5IVCvsC4C2KSpMh2X0djUD
+	 ZH7XLS0E63GqH/QQvJXvbIuUt6hQ3t1cpztVNCdXfIuTnnl1AoMXvbMYHimp/jZ1bM
+	 lBwOEG256kBHQ==
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b3b3a6f4dd4so379190066b.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 09:18:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXWYPunmlIQmAFvFflesnpj8StYhgHLdkbVBhI75WJwNM64HhNRgljdrL5DtwZHdkXC8kqFtHJBmr9k@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvB/Fksus5mFh6iQg2Kg7/0hSNB0guC+n1tk0BbtA/UlK5WEr8
+	hme9ieXvIGVQoXdh7te0MabCNaoWHjsncX36MlKieObOumzRtBAyiJnLuhJesBvbdpFZ9BiO0Vq
+	DghY2inxKrfgIP57r4h58qVQWJ9SlBw==
+X-Google-Smtp-Source: AGHT+IH4EdiPSx3uPpATy9sxikDxD325g38BsI88DHXzrLYBuhBcFvhw+KtcPr01sEC29n+VOeQjzjGDu5gZtwRkopk=
+X-Received: by 2002:a17:907:6d29:b0:b40:52:19c2 with SMTP id
+ a640c23a62f3a-b4000521c0fmr289546766b.20.1759162727425; Mon, 29 Sep 2025
+ 09:18:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1758916484.git.marcelo.schmitt@analog.com>
- <5dc08b622dac1db561f26034c93910ccff75e965.1758916484.git.marcelo.schmitt@analog.com>
- <20250928111955.175680cb@jic23-huawei> <20250929143132.GA4099970-robh@kernel.org>
-In-Reply-To: <20250929143132.GA4099970-robh@kernel.org>
-From: David Lechner <dlechner@baylibre.com>
-Date: Mon, 29 Sep 2025 18:16:10 +0200
-X-Gm-Features: AS18NWBfQ_PCDi7BrV3nUUthJBlzt7e5fMnLoo96Qy56YiwyIoDz8ZCBE2Bqo2Q
-Message-ID: <CAMknhBHzXLjkbKAjkgRwEps=0YrOgUcdvRpuPRrcPkwfwWo88w@mail.gmail.com>
-Subject: Re: [PATCH v3 7/8] dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216
- and ADAQ4224
-To: Rob Herring <robh@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-doc@vger.kernel.org, linux-spi@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, michael.hennerich@analog.com, 
-	nuno.sa@analog.com, eblanc@baylibre.com, andy@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, corbet@lwn.net, marcelo.schmitt1@gmail.com, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
+References: <20250904160530.66178-1-macroalpha82@gmail.com> <175760259503.1582479.14013409824773713781.b4-ty@kernel.org>
+In-Reply-To: <175760259503.1582479.14013409824773713781.b4-ty@kernel.org>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 29 Sep 2025 11:18:36 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJy9XwNrcwgk4Dhf40ajn8WwD47v2YqZ3iYZz+CjEdv5g@mail.gmail.com>
+X-Gm-Features: AS18NWD2pj_ibwVEK2mhOAIR-S-PjwlDtBsaiw-02MgcMYvm1KmFWHuD6-1e7ks
+Message-ID: <CAL_JsqJy9XwNrcwgk4Dhf40ajn8WwD47v2YqZ3iYZz+CjEdv5g@mail.gmail.com>
+Subject: Re: (subset) [PATCH v8 0/5] Add Texas Instruments BQ25703A Charger
+To: Lee Jones <lee@kernel.org>
+Cc: linux-rockchip@lists.infradead.org, Chris Morgan <macroalpha82@gmail.com>, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, broonie@kernel.org, 
+	lgirdwood@gmail.com, sre@kernel.org, heiko@sntech.de, conor+dt@kernel.org, 
+	krzk+dt@kernel.org, Chris Morgan <macromorgan@hotmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 29, 2025 at 4:31=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
-:
+On Thu, Sep 11, 2025 at 9:56=E2=80=AFAM Lee Jones <lee@kernel.org> wrote:
 >
-> On Sun, Sep 28, 2025 at 11:19:55AM +0100, Jonathan Cameron wrote:
-> > On Fri, 26 Sep 2025 17:40:47 -0300
-> > Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+> On Thu, 04 Sep 2025 11:05:25 -0500, Chris Morgan wrote:
+> > From: Chris Morgan <macromorgan@hotmail.com>
 > >
-> > > ADAQ4216 and ADAQ4224 are similar to AD4030 except that ADAQ devices =
-have a
-> > > PGA (programmable gain amplifier) that scales the input signal prior =
-to it
-> > > reaching the ADC inputs. The PGA is controlled through a couple of pi=
-ns (A0
-> > > and A1) that set one of four possible signal gain configurations.
-> > >
-> > > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
-> > > ---
-> > > Change log v2 -> v3
-> > > - PGA gain now described in decibels.
-> > >
-> > > The PGA gain is not going to fit well as a channel property because i=
-t may
-> > > affect more than one channel as in AD7191.
-> > > https://www.analog.com/media/en/technical-documentation/data-sheets/A=
-D7191.pdf
-> > >
-> > > I consulted a very trustworthy source [1, 2] and learned that describ=
-ing signal
-> > > gains in decibels is a common practice. I now think it would be ideal=
- to describe
-> > > these PGA and PGA-like gains with properties in decibel units and thi=
-s patch
-> > > is an attempt of doing so. The only problem with this approach is tha=
-t we end up
-> > > with negative values when the gain is lower than 1 (the signal is att=
-enuated)
-> > > and device tree specification doesn't support signed integer types. A=
-s the
-> > > docs being proposed fail dt_binding_check, I guess I have to nack the=
- patch myself.
-> > > Any chance of dt specification eventually support signed integers?
-> > > Any suggestions appreciated.
-> > >
-> > > [1] https://en.wikipedia.org/wiki/Decibel
-> > > [2] https://en.wikipedia.org/wiki/Gain_(electronics)
+> > Add support for the Texas Instruments BQ25703A charger manager. The
+> > device integrates a boost converter with the charger manager. This
+> > series adds the device as an MFD with separate regulator and power
+> > supply drivers. This allows us to manage a circular dependency with
+> > a type-c port manager which depends on the regulator for usb-otg
+> > but supplies power to the BQ25703A charger.
 > >
-> > I still wonder if the better way to describe this is to ignore that it
-> > has anything to do with PGA as such and instead describe the pin strapp=
-ing.
-> >
-> > DT folk, is there an existing way to do that? My grep skills are failin=
-g to
-> > spot one.
-> >
-> > We've papered over this for a long time in various IIO drivers by contr=
-olling
-> > directly what the pin strap controls with weird and wonderful device sp=
-ecific
-> > bindings. I wonder if we can't have a gpio driver + binding that reject=
-s all
-> > config and just lets us check the current state of an output pin.  Kind=
- of a
-> > fixed mode regulator equivalent for gpios.
+> > [...]
 >
-> If these are connected to GPIOs, isn't it possible that someone will
-> want to change their value?
+> Applied, thanks!
 >
-> Other than some generic 'pinstrap-gpios' property, I don't see what we'd
-> do here? I don't feel like pin strapping GPIOs is something that we see
-> all that often.
+> [1/5] dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A Charger
+>       commit: 76bc2203a46ef704a4cd8003986f6bd74139a367
+
+It seems this is still not in linux-next?
+
+> [2/5] mfd: bq257xx: Add support for BQ25703A core driver
+>       commit: 3b1bbfb5fce3ca9fffc92ac1b053b0cfbb1f322b
+> [3/5] power: supply: bq257xx: Add support for BQ257XX charger
+>       commit: 1cc017b7f9c7b7cd86fdda4aee36b92d91cc2ad2
+> [4/5] regulator: bq257xx: Add bq257xx boost regulator driver
+>       commit: 981dd162b63578aee34b5c68795e246734b76d70
 >
-> Rob
-
-I think the idea is that it is not actually a GPIO, just a hard-wired
-connection. We would want to have a "fixed-gpios" to describe these
-hard-wired connections as GPIOs so that we don't have to write complex
-binding for chip config GPIOs. I've seen configuration pins like on at
-least half a dozed of the ADCs I've been working on/reviewing over the
-last two years (since I got involved in IIO again).
-
-For example, there might be 4 mode pins, so we would like to just have
-a mode-gpios property. So this could be all 4 connected to GPIOs, all
-4 hard-wired, or a mix.
-
-(The actual bindings would need more thought, but this should give the
-general idea)
-
-fixed_gpio: hard-wires {
-    compatible =3D "fixed-gpios";
-    gpio-controller;
-    #gpio-cells =3D <1>;
-};
-
-gpio0: gpio-controller@4000000 {
-    compatible =3D "vendor,soc-gpios";
-    gpio-controller;
-    #gpio-cells =3D <2>;
-};
-
-spi {
-    adc@0 {
-        compatible =3D "vendor,adc";
-        /* All gpios */
-        mode-gpios =3D <&gpio0 0 GPIO_ACTIVE_HIGH>,
-                     <&gpio0 1 GPIO_ACTIVE_HIGH>,
-                     <&gpio0 2 GPIO_ACTIVE_HIGH>,
-                     <&gpio0 3 GPIO_ACTIVE_HIGH>;
-         /* or all hard-wired */
-        mode-gpios =3D <&fixed_gpio 0 GPIO_FIXED_HIGH>,
-                     <&fixed_gpio GPIO_FIXED_HIGH>,
-                     <&fixed_gpio GPIO_FIXED_LOW>,
-                     <&fixed_gpio GPIO_FIXED_LOW>;
-         /* or mixed */
-        mode-gpios =3D <&gpio0 0 GPIO_ACTIVE_HIGH>,
-                     <&gpio0 1 GPIO_ACTIVE_HIGH>,
-                     <&fixed_gpio GPIO_FIXED_LOW>,
-                     <&fixed_gpio GPIO_FIXED_LOW>;
-    };
-};
+> --
+> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+>
 
