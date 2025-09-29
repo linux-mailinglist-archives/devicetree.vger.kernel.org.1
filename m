@@ -1,87 +1,63 @@
-Return-Path: <devicetree+bounces-222292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B60F5BA7E47
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 05:58:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBEA3BA7F18
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 06:40:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CBEB3C2490
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 03:58:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30B00189572B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 04:40:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2058621B9C0;
-	Mon, 29 Sep 2025 03:57:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 269C317996;
+	Mon, 29 Sep 2025 04:40:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ALD1/oni"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="S9VRc4MP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94CAF219A7A
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 03:57:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 665B534BA50;
+	Mon, 29 Sep 2025 04:40:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759118272; cv=none; b=BT3BMHRssATlxuDWLudanRIqu+t0hdAzBfyNMgtAVVcXHjPTORYR2bDZrpcK9uzo2ywUdQnj/18Xq2x7vwBDIQ20jund12ek3zjDFcCatiIhML/NMZ9jVXwNY3N9A/jBCCqV4mYWUUsB3xRrHBoyx0DNUoh3BfYhF2HibLbXYuI=
+	t=1759120816; cv=none; b=o2SfXX1MeD7yFV/56v6+W6SqSXL3oKEOo/wmRUJoFgug43P9q+t+Jei8T7Om+ChNTLYJH/17V7Z+btxQAV7HoZrJm/Z6NminabS4fc5PJO3UUpBNEqLBo04sot6v8lcUpQ3QevSfgD9NqGejkl03gbvatHXXdllagClN6fLIUPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759118272; c=relaxed/simple;
-	bh=iEoKhzPpfOdEKO/nolkZGQ09h0XsBnz8AzJd6bFhW7I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FODDvdQqQMI7HidinCrXGCVRYA+vmyJg+s5IvJr2C6LdKq4+cqZQlpD5ta5e3v98CAty6z2hYIq4l9efVRjlx7W2HddLdT+M0LIwxl5bKAHoffG4RqRwIyzliZcnaMVN6Qkf6+UHxeI96Urx2Ahujs7uLyE8tA5vOPYDj33SN/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ALD1/oni; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58SNO9wr022448
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 03:57:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	x5IKET2ZNaGZqu6vqn23CHsftRhx4zpASBXEh2O62jc=; b=ALD1/oni7E0Qcubm
-	g5TALLkBGTCUmHYW+fuNpKM4J3bcx8KZDvdu+AneTt15G8DKwFGe+o38O5wHM6K3
-	q3c8oESGGT9smKgWgZ8Lrje/qBM5WrSR8sV98BjAZ3XTad223SOd2F/AqK5LCyVi
-	fMFDHqMIILqZoznI6uyDf8STPoDe9dkHZ8lR+g4h6znO7mC+dxcYZ3RuiQ50+8eZ
-	giwb0q3GaNaWJW9+77UwpCzCahaC2iU+k0xm8nJCb7pHtXbZDdQVMExvugH/eOH+
-	v0w32g89HNFpe5HJI36KaSl/HS6Ax1nR6RXuXSZSMgVi4o7Bm4+gJl8e+jXEsmDL
-	EqBjFg==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e7gxkse1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 03:57:49 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-33428befc5bso4037353a91.0
-        for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 20:57:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759118268; x=1759723068;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=x5IKET2ZNaGZqu6vqn23CHsftRhx4zpASBXEh2O62jc=;
-        b=rN8FPfqqjlHT7uEm7B1K9rAkOo/Zy/4b/V3ZlCry0x+fsTguODUAMIN20+fyDtAsNH
-         ChGTigJIyX2Y+WBsyBcadDKpWCzrLInUyl2Vu8fOeI1hQSmWGDM7aLNchlnMtJQDxTWA
-         d0NAAa0Rx9tUk/uqh72Xowg/nPxIJUkyI9fHyxiIGEYl8J43kil73xPq+BP08uzv/5bj
-         icreu8bnDwTvFGIrFx5TrPKWYX422PtyGs2rS2FEH0GChz7899WkJnUXPHH+OIoW+epV
-         KARUU0djIQLrQH9DyuUFa5QvrTLUWd27qVRqRveVFJFMw95W618ahci0HYDTK1eKXJ5m
-         jSFQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVkIppPZ0qyvHAJEtwDDTs03KK6QZ6m+wAFB1zdU+rrN2u/CGNmldgAAyamnN7Zu1tsQwEakKl7+ssu@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMLba332GwjI+PfIUE+fJzWnMF9WVQa3bXXNYyEpa/7372b8if
-	Mu/acH6/uPsD3O5gMlYqdtzzeEe4BkR6rY1mCtOfCeVK6KsILuVFXwDeKYzstHcHf6CtJ6eg19i
-	zxEpwmt2iUKYCO6Wbl/0oWAtUTAZPDS8CrN3Cr/ANDg3NptsSchcqW6z/BCHYU9ia
-X-Gm-Gg: ASbGncuua42qaJ431Pdtl3FXMGX9AlATuvubW+1w8Wxtykb7auOd9g0Ojn8o0gF0btW
-	H3P0IFhH1c6sRvcrtrioBsaGqzy4Jr6tnx4e9DcLs2pEiCRBchewDxR9beoDhQ8ZV3hQUnmiSnH
-	+cKhuQ0uwY29pwk1TGNz5VBOvd7HFithBRhir+NOErJVqcQMGmfmoMj94485CDcqhzQRQscn7t5
-	8fpLnhbNDk2IvUgjvACmGkFAopennhXChPem7oHFUU/BZhtwYu0DjksBUzp1B9DvzPtI1Z+LZJq
-	ExyPCSoX07X1BmoPwHWMEHEuQTIKcoKWoZSwBJzxbG6qFkJELD9jd+i1+UvQniSvVBw=
-X-Received: by 2002:a17:90b:314e:b0:32e:c6b6:956b with SMTP id 98e67ed59e1d1-3342a2702ebmr15297822a91.4.1759118268186;
-        Sun, 28 Sep 2025 20:57:48 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHuArBOJSGdH2d51k037g9fbFwwwtZi2aIpgGp3j1sTG3Gq9TQVKDuopvTuXrBfvMWjx4Po8Q==
-X-Received: by 2002:a17:90b:314e:b0:32e:c6b6:956b with SMTP id 98e67ed59e1d1-3342a2702ebmr15297792a91.4.1759118267758;
-        Sun, 28 Sep 2025 20:57:47 -0700 (PDT)
-Received: from [192.168.0.195] ([49.204.31.98])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b57c55be61bsm9939207a12.48.2025.09.28.20.57.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 28 Sep 2025 20:57:47 -0700 (PDT)
-Message-ID: <fc8b2845-5c1e-4f4f-962a-b1b0009114ba@oss.qualcomm.com>
-Date: Mon, 29 Sep 2025 09:27:43 +0530
+	s=arc-20240116; t=1759120816; c=relaxed/simple;
+	bh=uOlE6JF3Wlo/vFJGbhrugJ3aZGyj9ga2nv00JK3gbws=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ANmcROk0+b7fim+97ljd8S0pHxdf9Z97IiEQzcwjaqEQnCAElXxywUisrXrrRJmXLABOm0wJvCZO7DnUCBeaME4HYr2lAffdQwULtVm3Gbbnm/7ZRYwwhrJ9CfNlpnKKsF7chFocUcU7M4dWRUZ3s1MRzkmn60+nCNW595OyUPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=S9VRc4MP; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58T4e58t2105225;
+	Sun, 28 Sep 2025 23:40:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1759120805;
+	bh=7PnRPMQlYyEfPuWVss3mAZp/DtxuUn4FykB5vQK+A5k=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=S9VRc4MPQTUnEHvMtmoyr8I2/wq1U14P59ZGfmvIeuEMGmX27Ho5pqFAx+lR1h+1/
+	 CkPRNjY8I/GTa9mOqXDePumg6vQWX9GJzcyRk74/PhCB2lB+KmdQq7xGZtEXT/yAwT
+	 8/bCNCun5LeKXJwLreL3ftXa8nacaISdr6f1DGSE=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58T4e5he1078855
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Sun, 28 Sep 2025 23:40:05 -0500
+Received: from DFLE207.ent.ti.com (10.64.6.65) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Sun, 28
+ Sep 2025 23:40:04 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE207.ent.ti.com
+ (10.64.6.65) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Sun, 28 Sep 2025 23:40:04 -0500
+Received: from [172.24.231.164] (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.231.164])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58T4e0mb612567;
+	Sun, 28 Sep 2025 23:40:00 -0500
+Message-ID: <0784441c-9859-4418-a4a7-85ffe3ecf860@ti.com>
+Date: Mon, 29 Sep 2025 10:09:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,75 +65,130 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 22/24] arm64: dts: qcom: glymur: Add display clock
- controller device
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-22-24b601bbecc0@oss.qualcomm.com>
- <CAJKOXPd97tJ_1cRZQmKE_1-B7AqgRr_CJ1cYMe=v4hBb9Z3eog@mail.gmail.com>
+Subject: Re: [PATCH V3 1/3] dt-binding: Add register-settings binding
+To: Rajesh Gumasta <rgumasta@nvidia.com>, <krzk+dt@kernel.org>,
+        <robh@kernel.org>, <conor+dt@kernel.org>, <andi.shyti@kernel.org>,
+        <ulf.hansson@linaro.org>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <kyarlagadda@nvidia.com>
+CC: <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <andersson@kernel.org>, <sjg@chromium.org>, <nm@ti.com>
+References: <20250725052225.23510-1-rgumasta@nvidia.com>
+ <20250725052225.23510-2-rgumasta@nvidia.com>
 Content-Language: en-US
-From: Taniya Das <taniya.das@oss.qualcomm.com>
-In-Reply-To: <CAJKOXPd97tJ_1cRZQmKE_1-B7AqgRr_CJ1cYMe=v4hBb9Z3eog@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Chintan Vankar <c-vankar@ti.com>
+In-Reply-To: <20250725052225.23510-2-rgumasta@nvidia.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: 0qo9DbYdTX5AlII4Dl2kd0rF3BmrlTB7
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAyNSBTYWx0ZWRfXzPIynvQsLHU0
- KMPyEqdj+6NbG/gv+HyPk6ZESM7h5NVEhDjTJzfVPQCHiQssOmQnQ7AA22c2JVupgVASpFg+lVT
- CW1YfwY6IdFyMaj4pGWt2cp9f9gDyGloP9H0EK3K8ekix7r/ytPVMD+l8VfW6UphZR8510Bsov5
- OqYporrZlzTXg3uUdTWZmfANPAzu1AZpvaPgYUekMZLAVwuzmrimlsPmUsgNmlBkmffTJ74kxT9
- 9THjZLppFv7Yxd/vHHmIiFO2TM3x9AoN5CX4ZcUK4/qLmkcZZekXAQSqKPDug2JxbMVLlF+MS4v
- x/I9KCnBQSDDjW9SGYf1acDlh09BVQlWimiCbdYQcbvcdKmPL86Do/SMMFm4pS0qWhGVcvVhyky
- QRDIV3Vq9egA0kG/0CYi7Zy7TrqqXA==
-X-Proofpoint-GUID: 0qo9DbYdTX5AlII4Dl2kd0rF3BmrlTB7
-X-Authority-Analysis: v=2.4 cv=dP6rWeZb c=1 sm=1 tr=0 ts=68da03bd cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=YGGbjFxyX1jBzPa45jwK0A==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=fESiJu-7EXqA1LiMi5MA:9
- a=QEXdDO2ut3YA:10 a=iS9zxrgQBfv6-_F4QbHw:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-29_01,2025-09-26_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 clxscore=1015 priorityscore=1501 spamscore=0
- malwarescore=0 bulkscore=0 impostorscore=0 phishscore=0 suspectscore=0
- adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2509270025
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hello Rajesh,
 
-
-On 9/25/2025 1:48 PM, Krzysztof Kozlowski wrote:
-> On Thu, 25 Sept 2025 at 15:34, Pankaj Patil
-> <pankaj.patil@oss.qualcomm.com> wrote:
->>
->> From: Taniya Das <taniya.das@oss.qualcomm.com>
->>
->> Support the display clock controller for GLYMUR SoC.
+On 25/07/25 10:52, Rajesh Gumasta wrote:
+> Add a new device-tree binding for a 'reg-settings' node that can be
+> added to any device. This 'reg-settings' is used to populate register
+> settings that need to be programmed for a given operating mode of the
+> device. An example usage of the 'reg-settings' node is shown below for
+> the NVIDIA Tegra MMC controller which needs to program a specific
+> 'num-tuning-iterations' value in a register field for each operating
+> mode:
 > 
-> One clock controller is not a separate commit.
+>    mmc@700b0000 {
 > 
-> Stop inflating patch count, you just makes it difficult for us to see
-> complete picture.
+>      reg-settings {
 > 
-
-Sorry about that Krzysztof. As the display clock controller was enabled
-later point of time probably it was kept as a separate patch and not
-merged.
-
-> Is this somehow for LWN stats? That's why one node per patch?
+>        default-settings {
+>          /* Default register setting */
+>          nvidia,num-tuning-iterations = <0>;
+>        };
 > 
+>        sdr50 {
+>          /* SDR50 register setting */
+>          nvidia,num-tuning-iterations = <4>;
+>        };
+> 
+>        sdr104 {
+>          /* SDR104 register setting */
+>          nvidia,num-tuning-iterations = <2>;
+>        };
+> 
+>        hs200 {
+>          /* HS200 register setting */
+>          nvidia,num-tuning-iterations = <2>;
+>        };
+>      };
+>    };
+> 
+> The 'reg-settings' child nodes are defined according to the operating
+> modes supported for a given device. Properties within each operating
+> mode are then defined by the bindings for the devices that require them.
+> 
+> Signed-off-by: Rajesh Gumasta <rgumasta@nvidia.com>
+> ---
+>   .../bindings/regset/register-settings.yaml    | 31 +++++++++++++++++++
+>   1 file changed, 31 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/regset/register-settings.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regset/register-settings.yaml b/Documentation/devicetree/bindings/regset/register-settings.yaml
+> new file mode 100644
+> index 000000000000..4366cdd72813
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regset/register-settings.yaml
+> @@ -0,0 +1,31 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regset/register-settings.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Register Settings
+> +
+> +maintainers:
+> +  - Thierry Reding <thierry.reding@gmail.com>
+> +  - Krishna Yarlagadda <kyarlagadda@nvidia.com>
+> +  - Rajesh Gumasta <rgumasta@nvidia.com>
+> +  - Jon Hunter <jonathanh@nvidia.com>
+> +
+> +description: |
+> +  Register Settings provides a generic way to specify register configurations
+> +  for any hardware controllers. Settings are specified under a "reg-settings"
+> +  sub-node under the controller device tree node. It allows defining both
+> +  default and operating mode specific register settings in the device tree.
+> +
+> +properties:
+> +  reg-settings:
+> +    type: object
+> +    description: |
+> +      Container node for register settings configurations. Each child node
+> +      represents a specific configuration mode or operating condition.
+> +
+> +    additionalProperties:
+> +      type: object
+> +
+> +additionalProperties: true
 
-That is definitely not the intention. As it was enabled later, it was
-left as a separate patch.
+Following your series, I would like to bring to your attention that
+Texas Instruments SoCs also have a component which requires similar kind
+of configuration, named Timesync Router(TSR). It enables the
+multiplexing of M inputs to N outputs, where inputs can be selectively
+driven based on N output configuration. A detailed explanation of the
+TSR and our attempts we tried to implement TSR can be found in following
+RFC series:
+https://lore.kernel.org/all/20250605063422.3813260-1-c-vankar@ti.com/
+https://lore.kernel.org/all/20250205160119.136639-1-c-vankar@ti.com/
 
--- 
-Thanks,
-Taniya Das
+To implement TSR, the relevant registers must be configured via the
+device tree. We initially assumed that the device could be handled as a
+mux-controller and could be extended in the same subsystem, but it was
+ineffective. Having explored both the approaches, we now plan to
+implement TSR within misc subsystem, which aligns with the dt-bindings
+that you have proposed in this series.
+
+The purpose to replying over this series is to inform you that we also
+have a component requiring configuration as outlined in this series. Let
+us know if you have any suggestions for this.
+
+Regards,
+Chintan.
 
 
