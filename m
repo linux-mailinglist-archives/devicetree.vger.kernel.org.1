@@ -1,79 +1,78 @@
-Return-Path: <devicetree+bounces-222432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EB4CBA9102
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 13:38:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A7E7BA910B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 13:38:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B22B3B00F2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 11:38:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 750D01676E4
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 11:38:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5875930102C;
-	Mon, 29 Sep 2025 11:38:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9D93019DA;
+	Mon, 29 Sep 2025 11:38:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DYN+e98o"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cDg4tRWN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 715C83016FB
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 11:38:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF41E301713
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 11:38:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759145903; cv=none; b=hu9iEWCdRfVSDuF4cTqMXACdAwtjV8cXNWDmrUr0FJ/bg/mCHs50QbnoGYmIZfxix+wDPxtOXTbRCLXJUDNl5WP7Ci4GsE0+b3o/cB2gIZitOfCd7nVFB4tUxbzKsdrCR/8y+HrpiRAvBSXuBjqxGmciPF+CV1fgOSi2IMQbCu0=
+	t=1759145904; cv=none; b=CYkgBVq8XZGKLC7kFRh99UTdWexZFw/FpsgthiZ8UkR9MDUaqDjIGWXEilIZFFf+Qj08Io7WjdnxV1ycBlNtVLYY8tB3W+7X+mIfwc8rldEVTTxGvajg+gCgatWhVKAVRCh8IWCvaAZo6ww2n+2N/IzaLkIbZpNZxusO5ANmh90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759145903; c=relaxed/simple;
-	bh=JmJSN/YBNM+mDU5SsW6cP009KHpjO9jA4E3c7+XHHtg=;
+	s=arc-20240116; t=1759145904; c=relaxed/simple;
+	bh=OuzlMBf2DYxUrGozGqCnGqXutFM3aRqod7/0oO6AhUE=;
 	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=q4P8hLJZDCEXqkizECXRe57EZTuUT2YOLfY6wc5TNCVQFVkpqUPuvRQgLvQrU8pFfcRgW4oFFgp+wPdpIU8OTT9eoc26+rUwu2i+gooOwu9c4WHWvRUofP3Hr9nT1zXrg6Dm/m2V5+kAlmgTywEc+HkQIIYwSOVLepShX1mls6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DYN+e98o; arc=none smtp.client-ip=209.85.128.43
+	 MIME-Version; b=bOuLVLM7KJNwXF35F5NlU9eulNKQ3IvO7J8sbR6X6prOXHGX8+kXAtQT4SnNLtVrl3WNwgOOZ/TTWn9mwVEgOsB1MtncFxrOD90TqI3sligG94654lJuZRyE/qiLANHlO2Sp3Thg0NQ3WV5LnXNk6v0aCsoJMpfW4JO/5EVt9HU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cDg4tRWN; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-46e3af7889fso23983115e9.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 04:38:21 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-46e2e6a708fso29234705e9.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 04:38:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759145900; x=1759750700; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759145901; x=1759750701; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=M0akVzwetHFuOLRrA1RBETtHcqSI0prdy+4IQvcPTIc=;
-        b=DYN+e98oXyGkYzKeQVUq4kIMyWNoJyecT9cneTEE3SXYMgOpvNWiBzis72iZM3f0k8
-         mWiwFqdiglEAvXt8g9s/IBWZF0Ycmctu/YLqhK1+53cyo5i/6BdwELSRsM7jUQt5ZWQT
-         WAwLs+oSHnUdDyHwbRjuq58MzksfkKmTBIo7VOscH0FDAPzY6a21raZSpjYZp2x5Tvhw
-         OoZI8TU8Bg+yhDRIOdVpIskGn+R0F3eNcytwxPrvL89gaAbHbA6CeZSkwNYn32req/+7
-         y2aSAs2Cdh+1TOXrZ8S6AqwzR5ayPwmsPiH8NPAKPC/rq05G3i2PnHTCqkciZzITnUmA
-         cPDA==
+        bh=3LU04oH6Jeu7LPnO6lTLYJu+6qHSNvnAGZMQiBqSTLE=;
+        b=cDg4tRWNlagFMKq37giuUe8paoEMsdJzfqj5yqjtUm+vHz1Oyr6GKuKSVYusQ1ldqF
+         1fFTOG5vky8NLD6170RjsR2CG5P/5vV80nWCUoV4Xq4CXUsymPO/6ZzXSCAjxcOOFBHs
+         z59DyiKFx0V3HlDd5Qpf09NcM0CE+v3YRzoU62VpaKtvD//L42HPF6xO+S3xhBswl6b2
+         sRlUL5F86XW+j2LYcdyxQx09rxTQ66Gv574PT+uarL/o/0P0pkSU09goo8lgaOcp3f4y
+         7HyWyg8TG2rLnzfvTYCfweg+jdd5TC0Hw9G84sRUswxo7JVg+wX0QhtF0Cq8RCkiQgvx
+         d/Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759145900; x=1759750700;
+        d=1e100.net; s=20230601; t=1759145901; x=1759750701;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=M0akVzwetHFuOLRrA1RBETtHcqSI0prdy+4IQvcPTIc=;
-        b=pCRm96N8MfQCn6fsHDI7CNu9swRi3RpRBcfTII9MgFa37oV16FOR5Bnl10DC56yVlG
-         DWskT2FQpI8HESYf2NmPurxCEakhmxvBqFwtk6kzVYMsV4ysb/kCOiunAuMvGBYXFaeh
-         sq79IO6CT6iqVXkkfZBTCjt5WNUoMPXan//BsJIlAowYAm3A8kQ0/Sm8ydfVQWIVyLKb
-         QMwmToLWfz9G4g+rZ/PxX6CJYN9K4lrDjs86cmw3x4fDJWlX1RjukQscXgMDaHQqPHAZ
-         TljoskQj54PXmhsclFLORT7IMVL0CfEmTOfqgc2liWnqlPl8IOAsyvgGNg98u7ob1X2w
-         KObQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV2x3667Dk71RBwwynCzbxD8GhzncbGCaIEM81hYZsPiRN+8fBM1mf3n8ojVm32siGHJ//yChAS2NFi@vger.kernel.org
-X-Gm-Message-State: AOJu0YytQnIEQ1/EvnaDfzZlO3n+pB31hCE9oOPWvM5UEcGXaSPizXMI
-	XWQ8ar4rkbchv46AtiJ2Xa8cLDDsOwy0Nqzns0o7c4orn7QRgDLgv1oB
-X-Gm-Gg: ASbGnctRE+h2gx4BTl60ycS2w65vJ99qPtIJS3Qs2akwMe1sOBv+PAFmcm1beJxMMN5
-	71I0yupKlxSZ+4Nb7eK2JV7XclaA26fEglHNIuSB3KJySgwS3RfbhuvjJRfSPb6esDBAdmCOraU
-	JOJy92tGcB0LD/nJdphVGgjl/L9T/AdmP90F5IKVYkNcmoIwxp3M9jXRekQ4dckKrWauaB0HUnv
-	k9mUo/gDNzb/hu8bWbSM+8r5LTH035JVnOnPADJik1bTULMyVijUxKHgMb1wY9I5BsZk2K1l/a+
-	qu/4mvCe3RUMZMl/4JeyTA4xZ5+emKYW3RK3GjGyWpYMT4sZiaSohPSAo3/AkSW8Xsj33BCp7kw
-	uxqD7LKwOITPHSXvbMCoqAIx5k9/ZpdGEKAIjD70YkE767/JUTXFHPikehiBN80Nva0PuEkiSYl
-	/DzHjd1g==
-X-Google-Smtp-Source: AGHT+IHc2sldTrNgGF8rhPUi/DYc+1Z7wh5Q8HiRuvHW/nw/mJhTW80r4LIKdvY/BzwTBOCgANZI6A==
-X-Received: by 2002:a05:600c:181c:b0:46d:996b:826f with SMTP id 5b1f17b1804b1-46e32a02d46mr117755925e9.25.1759145899467;
-        Mon, 29 Sep 2025 04:38:19 -0700 (PDT)
+        bh=3LU04oH6Jeu7LPnO6lTLYJu+6qHSNvnAGZMQiBqSTLE=;
+        b=jDy0qURCKNl2amYQeiX8c3+cvoUHpxQt/t4GaoMeKxvGR4puHsoQKVO9Y7OOvGgj7s
+         wINwVcbbWY4D/x5jxwmG+ANyWTZToERPYsAH7mu3oPpZYqqCoicyfJYZSR/5YyWmcffi
+         IOLlZmnMu+2Kapzpwa+cLk1i4eC8dWbQ1geCyaMCGBIttZ/Hqj48hL6dUvqe24jlyQcW
+         v1TCLaG0CJAT5HwuyrLF+vukFZ+uy8AheUsRWp0lGr+qpjeMSM0B4Wk6uHk7od+RPnbO
+         EXKr/eKE+biqyITeZdI9IGITdACkoHfxEdcdTzeKLy0djaBKNWwQV95RTDN3BqVJbO/A
+         7F5A==
+X-Forwarded-Encrypted: i=1; AJvYcCUlWOwHdMDSEzm40kS4QaAWZvWbhEydub1RCwa7wpSk0Fe8MWW63G2xtqS6SgfcZkbEME27Vgt4SBIT@vger.kernel.org
+X-Gm-Message-State: AOJu0YwtlXgIium6moz0tsf4KzjIlDcncf5+JcNoRfUjBEXdJZydZ4Cw
+	4Mmlg6VZ/yALOEhtLaFMoxit/qqwlamh9YKxLpPV1xmUanMPJTevQFDG
+X-Gm-Gg: ASbGncvL1Nv8fLcGdfv1NIMOYfiIXscanBvO47rc64hskdQCzy2MwF12K1jI6/4J2IP
+	Y9LtaBxAbTRpnngK+6kZqE7zMeFzVNsmQnUgnRcSgAigN0XpN+iUjQ773BHMwnA1s89unLgYaHV
+	qSF+uGhQmybJE9V8NRwD1fgS67fJwJkf94KkTMteCKXEGdsWoqNkbTWuz6f9p7c4x1HOKmaX56A
+	JoPiC0WdrJiev8R9lEZWGkPUoxAKf3nCvl7WnO4PlajJThv7mCnuU0ns9dX1uIwVe/18TNtBuYQ
+	laO2Mu8ry6GTwd7h805JhyAZtpiuJsuP9MtE9UEXuvrpbdxAWf+6qNgvkKZyLCN9HBrnPWDiAQi
+	bozA4DjhN0j8sNvbMK8/62EbfOfM/O3Z15QQiejh5knoEIYxTBZl2UBAKOd/uzb2TlmQj3vo=
+X-Google-Smtp-Source: AGHT+IGwis8GqJEF1Qzf9bSzV6u14blzsX+OeBzCW6GOkWLJgWkwGAve2YAB0K6RDda7Irm9+euaNA==
+X-Received: by 2002:a05:600c:1e23:b0:46e:39e1:fc3c with SMTP id 5b1f17b1804b1-46e3a4e1b6amr123957035e9.5.1759145901122;
+        Mon, 29 Sep 2025 04:38:21 -0700 (PDT)
 Received: from Ansuel-XPS24 (host-95-249-236-54.retail.telecomitalia.it. [95.249.236.54])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-46e56f53596sm9502465e9.7.2025.09.29.04.38.17
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-46e56f53596sm9502465e9.7.2025.09.29.04.38.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Sep 2025 04:38:19 -0700 (PDT)
+        Mon, 29 Sep 2025 04:38:20 -0700 (PDT)
 From: Christian Marangi <ansuelsmth@gmail.com>
 To: Ryder Lee <ryder.lee@mediatek.com>,
 	Jianjun Wang <jianjun.wang@mediatek.com>,
@@ -92,9 +91,9 @@ To: Ryder Lee <ryder.lee@mediatek.com>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v4 3/5] dt-bindings: PCI: mediatek: Add support for Airoha AN7583
-Date: Mon, 29 Sep 2025 13:38:02 +0200
-Message-ID: <20250929113806.2484-4-ansuelsmth@gmail.com>
+Subject: [PATCH v4 4/5] PCI: mediatek: convert bool to single flags entry and bitmap
+Date: Mon, 29 Sep 2025 13:38:03 +0200
+Message-ID: <20250929113806.2484-5-ansuelsmth@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250929113806.2484-1-ansuelsmth@gmail.com>
 References: <20250929113806.2484-1-ansuelsmth@gmail.com>
@@ -106,185 +105,114 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Introduce Airoha AN7583 SoC compatible in mediatek PCIe controller
-binding.
-
-Similar to GEN3, the Airoha AN7583 GEN2 PCIe controller require the
-PBUS csr property to permit the correct functionality of the PCIe
-controller.
+To clean Mediatek SoC PCIe struct, convert all the bool to a bitmap and
+use a single flags to reference all the values. This permits cleaner
+addition of new flag without having to define a new bool in the struct.
 
 Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 ---
- .../bindings/pci/mediatek-pcie.yaml           | 110 ++++++++++++++++++
- 1 file changed, 110 insertions(+)
+ drivers/pci/controller/pcie-mediatek.c | 28 +++++++++++++++-----------
+ 1 file changed, 16 insertions(+), 12 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
-index fca6cb20d18b..b91b13a0220c 100644
---- a/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
-@@ -13,6 +13,7 @@ properties:
-   compatible:
-     oneOf:
-       - enum:
-+          - airoha,an7583-pcie
-           - mediatek,mt2712-pcie
-           - mediatek,mt7622-pcie
-           - mediatek,mt7629-pcie
-@@ -55,6 +56,17 @@ properties:
-   power-domains:
-     maxItems: 1
+diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+index 24cc30a2ab6c..1678461e56d3 100644
+--- a/drivers/pci/controller/pcie-mediatek.c
++++ b/drivers/pci/controller/pcie-mediatek.c
+@@ -142,24 +142,29 @@
  
-+  mediatek,pbus-csr:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      - items:
-+          - description: phandle to pbus-csr syscon
-+          - description: offset of pbus-csr base address register
-+          - description: offset of pbus-csr base address mask register
-+    description:
-+      Phandle with two arguments to the syscon node used to detect if
-+      a given address is accessible on PCIe controller.
-+
-   '#interrupt-cells':
-     const: 1
+ struct mtk_pcie_port;
  
-@@ -90,6 +102,45 @@ required:
- allOf:
-   - $ref: /schemas/pci/pci-host-bridge.yaml#
++enum mtk_pcie_flags {
++	NEED_FIX_CLASS_ID = BIT(0), /* host's class ID needed to be fixed */
++	NEED_FIX_DEVICE_ID = BIT(1), /* host's device ID needed to be fixed */
++	NO_MSI = BIT(2), /* Bridge has no MSI support, and relies on an
++			  * external block
++			  */
++};
++
+ /**
+  * struct mtk_pcie_soc - differentiate between host generations
+- * @need_fix_class_id: whether this host's class ID needed to be fixed or not
+- * @need_fix_device_id: whether this host's device ID needed to be fixed or not
+  * @no_msi: Bridge has no MSI support, and relies on an external block
+  * @device_id: device ID which this host need to be fixed
+  * @ops: pointer to configuration access functions
+  * @startup: pointer to controller setting functions
+  * @setup_irq: pointer to initialize IRQ functions
++ * @flags: pcie device flags.
+  */
+ struct mtk_pcie_soc {
+-	bool need_fix_class_id;
+-	bool need_fix_device_id;
+-	bool no_msi;
+ 	unsigned int device_id;
+ 	struct pci_ops *ops;
+ 	int (*startup)(struct mtk_pcie_port *port);
+ 	int (*setup_irq)(struct mtk_pcie_port *port, struct device_node *node);
++	u32 flags;
+ };
  
-+  - if:
-+      properties:
-+        compatible:
-+          const: airoha,an7583-pcie
-+    then:
-+      properties:
-+        reg:
-+          maxItems: 1
-+
-+        reg-names:
-+          const: port1
-+
-+        clocks:
-+          maxItems: 1
-+
-+        clock-names:
-+          const: sys_ck1
-+
-+        reset:
-+          maxItems: 1
-+
-+        reset-names:
-+          const: pcie-rst1
-+
-+        phys:
-+          maxItems: 1
-+
-+        phy-names:
-+          const: pcie-phy1
-+
-+        power-domain: false
-+
-+      required:
-+        - resets
-+        - reset-names
-+        - phys
-+        - phy-names
-+        - mediatek,pbus-csr
-+
-   - if:
-       properties:
-         compatible:
-@@ -106,6 +157,8 @@ allOf:
+ /**
+@@ -703,7 +708,7 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+ 	writel(val, port->base + PCIE_RST_CTRL);
  
-         power-domains: false
+ 	/* Set up vendor ID and class code */
+-	if (soc->need_fix_class_id) {
++	if (soc->flags & NEED_FIX_CLASS_ID) {
+ 		val = PCI_VENDOR_ID_MEDIATEK;
+ 		writew(val, port->base + PCIE_CONF_VEND_ID);
  
-+        mediatek,pbus-csr: false
-+
-       required:
-         - phys
-         - phy-names
-@@ -123,6 +176,8 @@ allOf:
+@@ -711,7 +716,7 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+ 		writew(val, port->base + PCIE_CONF_CLASS_ID);
+ 	}
  
-         phy-names: false
+-	if (soc->need_fix_device_id)
++	if (soc->flags & NEED_FIX_DEVICE_ID)
+ 		writew(soc->device_id, port->base + PCIE_CONF_DEVICE_ID);
  
-+        mediatek,pbus-csr: false
-+
-       required:
-         - power-domains
+ 	/* 100ms timeout value should be enough for Gen1/2 training */
+@@ -1099,7 +1104,7 @@ static int mtk_pcie_probe(struct platform_device *pdev)
  
-@@ -135,6 +190,8 @@ allOf:
-         clocks:
-           minItems: 6
+ 	host->ops = pcie->soc->ops;
+ 	host->sysdata = pcie;
+-	host->msi_domain = pcie->soc->no_msi;
++	host->msi_domain = !!(pcie->soc->flags & NO_MSI);
  
-+        mediatek,pbus-csr: false
-+
-       required:
-         - power-domains
+ 	err = pci_host_probe(host);
+ 	if (err)
+@@ -1187,9 +1192,9 @@ static const struct dev_pm_ops mtk_pcie_pm_ops = {
+ };
  
-@@ -157,6 +214,8 @@ allOf:
+ static const struct mtk_pcie_soc mtk_pcie_soc_v1 = {
+-	.no_msi = true,
+ 	.ops = &mtk_pcie_ops,
+ 	.startup = mtk_pcie_startup_port,
++	.flags = NO_MSI,
+ };
  
-         power-domain: false
+ static const struct mtk_pcie_soc mtk_pcie_soc_mt2712 = {
+@@ -1199,19 +1204,18 @@ static const struct mtk_pcie_soc mtk_pcie_soc_mt2712 = {
+ };
  
-+        mediatek,pbus-csr: false
-+
- unevaluatedProperties: false
+ static const struct mtk_pcie_soc mtk_pcie_soc_mt7622 = {
+-	.need_fix_class_id = true,
+ 	.ops = &mtk_pcie_ops_v2,
+ 	.startup = mtk_pcie_startup_port_v2,
+ 	.setup_irq = mtk_pcie_setup_irq,
++	.flags = NEED_FIX_CLASS_ID,
+ };
  
- examples:
-@@ -316,3 +375,54 @@ examples:
-             };
-         };
-     };
-+
-+  # AN7583
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/en7523-clk.h>
-+
-+    soc_3 {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        pcie@1fa92000 {
-+            compatible = "airoha,an7583-pcie";
-+            device_type = "pci";
-+            linux,pci-domain = <1>;
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+
-+            reg = <0x0 0x1fa92000 0x0 0x1670>;
-+            reg-names = "port1";
-+
-+            clocks = <&scuclk EN7523_CLK_PCIE>;
-+            clock-names = "sys_ck1";
-+
-+            phys = <&pciephy>;
-+            phy-names = "pcie-phy1";
-+
-+            ranges = <0x02000000 0 0x24000000 0x0 0x24000000 0 0x4000000>;
-+
-+            resets = <&scuclk>; /* AN7583_PCIE1_RST */
-+            reset-names = "pcie-rst1";
-+
-+            mediatek,pbus-csr = <&pbus_csr 0x8 0xc>;
-+
-+            interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
-+            interrupt-names = "pcie_irq";
-+            bus-range = <0x00 0xff>;
-+            #interrupt-cells = <1>;
-+            interrupt-map-mask = <0 0 0 7>;
-+            interrupt-map = <0 0 0 1 &pcie_intc1 0>,
-+                            <0 0 0 2 &pcie_intc1 1>,
-+                            <0 0 0 3 &pcie_intc1 2>,
-+                            <0 0 0 4 &pcie_intc1 3>;
-+
-+            pcie_intc1_4: interrupt-controller {
-+                interrupt-controller;
-+                #address-cells = <0>;
-+                #interrupt-cells = <1>;
-+            };
-+        };
-+    };
+ static const struct mtk_pcie_soc mtk_pcie_soc_mt7629 = {
+-	.need_fix_class_id = true,
+-	.need_fix_device_id = true,
+ 	.device_id = PCI_DEVICE_ID_MEDIATEK_7629,
+ 	.ops = &mtk_pcie_ops_v2,
+ 	.startup = mtk_pcie_startup_port_v2,
+ 	.setup_irq = mtk_pcie_setup_irq,
++	.flags = NEED_FIX_CLASS_ID | NEED_FIX_DEVICE_ID,
+ };
+ 
+ static const struct of_device_id mtk_pcie_ids[] = {
 -- 
 2.51.0
 
