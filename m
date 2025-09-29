@@ -1,68 +1,61 @@
-Return-Path: <devicetree+bounces-222534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DE00BAA2D2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 19:31:47 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 338C9BAA2E5
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 19:33:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE0913AFCDA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 17:31:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F28EF4E2032
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 17:33:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C15D21E51FB;
-	Mon, 29 Sep 2025 17:31:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CCDB21B9F1;
+	Mon, 29 Sep 2025 17:33:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E2H/+TEk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F8hWv2qe"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9454D2AE8D;
-	Mon, 29 Sep 2025 17:31:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F1C214813;
+	Mon, 29 Sep 2025 17:33:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759167102; cv=none; b=hucH74l680Eh3DKWoc7QSehSETZ0mfYNcDjSZC7HqzIF+a+rUjEWN++WcnekTlH5fP9/q3qGbtqG5eEES5ycQYfj5q988Iv4ecdwU3yxYBqedd1ZAlreVTqeqKmrTi61/aGmQT9woD9VD5uIdCMuWSsB5TF2y8mnQOtsRmVzpzY=
+	t=1759167233; cv=none; b=kihGCy5BFrYtxhGbUa4EGuvwVzTG4ILt5gv288xbPzNhjthGNHe6/9xmbDdnDvdo2ia0gMYbxFmbog+289nMqGiVg0lL6uJ7KpXr37nZWXeXW1CkoJPajOGEVxNkJAmevY2DjzNm4dVAq2krQaT03z/nONF0tP4KRRtcpUht5qY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759167102; c=relaxed/simple;
-	bh=L5taQOZ5fy1HPwxCZ3NhYxZGxI2dRfW/9CQ4Tx0pvww=;
+	s=arc-20240116; t=1759167233; c=relaxed/simple;
+	bh=4rZNsu8QGDCFma7zcOHapI/aN7/dV6PWZmNXgYGyJMY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WUWPT+CcyuMaki5qYF5/81zo8uwV5/6oTXpPG4M24VBC2WM5HI/T3vVySgiii3Zw9yPAEo86Tx33r/6SOElvPbRz4ueHQ7rrPrY452zjjXkr3X6DAmJ1KsdvcgvSC5lbVSTjRAws2VIQd91rXXTDDg/Fg7xAjnIAkK/X/8dzeXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E2H/+TEk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A73DEC4CEF4;
-	Mon, 29 Sep 2025 17:31:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yd+9kA8QEGnMW4iCoVQsGc0e5/ug/qH4MUBxoboNgJugSHtJj/+AEYEDWbwkAdC/Oe+74To8FxS3G1oOTQSzuQJp6Ur0KbJRuiywqXEs00O7V7jfjP02leVEFD5d6mLgWTWTxWqOQwenwdtPmawrHholEc0N+IHFFWopUDJbYFY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F8hWv2qe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E05A3C4CEF4;
+	Mon, 29 Sep 2025 17:33:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759167102;
-	bh=L5taQOZ5fy1HPwxCZ3NhYxZGxI2dRfW/9CQ4Tx0pvww=;
+	s=k20201202; t=1759167231;
+	bh=4rZNsu8QGDCFma7zcOHapI/aN7/dV6PWZmNXgYGyJMY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E2H/+TEkd8fEL8/p0gb75SpCX8X6iF6IxTCTi3qfbM2zU9bOFClp7xXuFFCOYQx32
-	 ISexCizfVvTtpJlrJnLUj9FcyyMi1cZ+iLl5FMQWkLhjYkbLefB32LaJgI2aJWh3WQ
-	 eyiv5rt6d1iELQ2nDhnJfWPB7dWasVAwYy2HSC2IP9f7LCq/RjzLsBJDdcRDOWyTDk
-	 l958AiHye4QE5ChB8naMrouHvdgeGayukpBjRoZjt+1xvICR5d8CpeZZfQb6/vB+Fj
-	 Af4+mAKLlgDZtD4Aygg7RYj2PiDr8JhDQqWEhiTXjU1/IrZ4Xy4pAYLulQRtTlJvOR
-	 DZiiMip4bNMQA==
-Date: Mon, 29 Sep 2025 18:31:36 +0100
+	b=F8hWv2qemqh0aLgpmmqQNk0IqAOp4EXTerzehasHk8KGl4IPWsOLUTfbBbj/b5imO
+	 odArmW+o2BxOhvAb4359t5cHtVQwyqVpPVKYCEuWgcLEF8kb1qZBOP5czSPtkIuwHJ
+	 JBjdtStCZooIK9Xz+hF5UyBwQxOYw9xueKC/1Tvq0rtbOUk1mavxK2iaNBLFX4E9MU
+	 0Ab98p3if0nFjbBgVuqzCLdYyW+JNDX5vTJMHbFXwFNgAq4qNpHijb4u04wZUlqaGR
+	 AOMKU4hfClOTlutJWXgc42ZsbYYcL4gTUKd+yKpCaxgpdjizMooqhU2nXzwAWvTCSJ
+	 sYlHdlL+vG0pg==
+Date: Mon, 29 Sep 2025 18:33:45 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Guangjie Song <guangjie.song@mediatek.com>,
-	Laura Nao <laura.nao@collabora.com>,
-	=?iso-8859-1?Q?N=EDcolas_F=2E_R=2E_A=2E?= Prado <nfraprado@collabora.com>,
-	Yassine Oudjana <y.oudjana@protonmail.com>, kernel@collabora.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 1/4] dt-bindings: clock: mediatek: Add clocks for MT8196
- mfgpll
-Message-ID: <20250929-whoops-kennel-5f54fb6559a8@spud>
-References: <20250929-mtk-pll-rpm-v1-0-49541777878d@collabora.com>
- <20250929-mtk-pll-rpm-v1-1-49541777878d@collabora.com>
+To: Lakshay Piplani <lakshay.piplani@nxp.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+	andy@kernel.org, marcelo.schmitt1@gmail.com,
+	gregkh@linuxfoundation.org, viro@zeniv.linux.org.uk,
+	peterz@infradead.org, jstephan@baylibre.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	jonathan.cameron@huawei.com, vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com, shashank.rebbapragada@nxp.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: iio: temperature: Add NXP P3T175x
+ support
+Message-ID: <20250929-panther-providing-d69e6016acc9@spud>
+References: <20250929094543.2512264-1-lakshay.piplani@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,111 +63,127 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="u4M+BrM+qE9Xid1p"
+	protocol="application/pgp-signature"; boundary="cgliMA4ktxGmPwLv"
 Content-Disposition: inline
-In-Reply-To: <20250929-mtk-pll-rpm-v1-1-49541777878d@collabora.com>
+In-Reply-To: <20250929094543.2512264-1-lakshay.piplani@nxp.com>
 
 
---u4M+BrM+qE9Xid1p
-Content-Type: text/plain; charset=us-ascii
+--cgliMA4ktxGmPwLv
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 29, 2025 at 02:13:20PM +0200, Nicolas Frattaroli wrote:
-> The clock controllers for mfgpll, mfgpll-sc0, and mfgpll-sc1 all need
-> CLK_TOP_MFG_EB to be on if their clock control registers are touched in
-> any way.
+On Mon, Sep 29, 2025 at 03:15:42PM +0530, Lakshay Piplani wrote:
+> Add bindings for the NXP P3T175x (P3T1750/P3T1755) temperature
+> sensor, supporting both I2C & I3C interfaces.
+
+Can you please mention here what the difference between devices is?
+
 >=20
-> This was not known at the time this binding was written, as this
-> dependency only came to light when I started poking at the MFlexGraphics
-> hardware, where this undocumented peculiarity made itself known through
-> SErrors being thrown during register reads.
->=20
-> Add a clocks property to the binding to describe this relationship, and
-> mark it as required for the affected clocks.
->=20
-> Fixes: dd240e95f1be ("dt-bindings: clock: mediatek: Describe MT8196 clock=
- controllers")
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
 > ---
->  .../bindings/clock/mediatek,mt8196-sys-clock.yaml  | 28 ++++++++++++++++=
-++++++
->  1 file changed, 28 insertions(+)
+> V2 -> V3: Changes since V2:
+>           - Removed nxp,interrupt-mode and nxp,fault-queue properties fro=
+m DT binding
+>           - Updated compatible strings:
+>             - nxp,p3t1750-iio =E2=86=92 nxp,p3t1750dp
+>             - nxp,p3t1755-iio =E2=86=92 nxp,p3t1755dp
+> V1 -> V2: Changes since V1:
+>           - Dropped nxp,alert-active-high
+>           - Fixed YAML formatting, line wrapping, and examples
 >=20
-> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-=
-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-cl=
-ock.yaml
-> index 660ab64f390d2e722b7d3e25cf057926da318bc0..41aacd8d5f69050eebdf8392f=
-7b652427632f491 100644
-> --- a/Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-clock.y=
-aml
-> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-clock.y=
-aml
-> @@ -45,6 +45,9 @@ properties:
->    reg:
->      maxItems: 1
-> =20
-> +  clocks:
+>  .../bindings/iio/temperature/nxp,p3t1755.yaml | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/nxp=
+,p3t1755.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/nxp,p3t175=
+5.yaml b/Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml
+> new file mode 100644
+> index 000000000000..16a01fa81251
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/temperature/nxp,p3t1755.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP P3T175xDP Temperature Sensor
+> +
+> +maintainers:
+> +  - Lakshay Piplani <lakshay.piplani@nxp.com>
+> +
+> +description: |
+> +  Datasheet: https://www.nxp.com/docs/en/data-sheet/P3T1755.pdf
+> +
+> +  P3T175xDP (P3T1750/P3T1755) is a digital temperature sensor with a ran=
+ge of
+> +  -40=C2=B0C to +125=C2=B0C and a 12-bit resolution. It supports communi=
+cation over both
+> +  I2C and I3C interfaces.
+> +
+> +  The I2C interface supports up to 32 static addresses and provides an A=
+LERT
+> +  output to signal when temperature thresholds are crossed.
+> +
+> +  The I3C interface supports In-Band interrupts (IBI) in interrupt mode,
+> +  allowing the device to notify the controller of threshold events witho=
+ut
+> +  dedicated alert pin.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,p3t1750dp
+> +      - nxp,p3t1755dp
+> +
+> +  interrupts:
 > +    maxItems: 1
 > +
->    '#clock-cells':
->      const: 1
-> =20
-> @@ -90,6 +93,23 @@ required:
-> =20
->  additionalProperties: false
-> =20
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt8196-mfgpll-pll-ctrl
-> +              - mediatek,mt8196-mfgpll-sc0-pll-ctrl
-> +              - mediatek,mt8196-mfgpll-sc1-pll-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: mfg_eb clock
-> +      required:
-> +        - clocks
-
-Don't you want an else: properties: clocks: false here?
-
+> +  reg:
+> +    maxItems: 1
+> +    description: |
+> +      In I2C mode, the device supports up to 32 static addresses.
+> +      In I3C mode, the 'reg' property encodes a triplet of
+> +      <static-address BCR PID> used for device matching.
+> +      Static address is optional if matching is done via PID.
 > +
->  examples:
->    - |
->      apmixedsys_clk: syscon@10000800 {
-> @@ -104,4 +124,12 @@ examples:
->          mediatek,hardware-voter =3D <&scp_hwv>;
->          #clock-cells =3D <1>;
->      };
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
 > +  - |
-> +    #include <dt-bindings/clock/mediatek,mt8196-clock.h>
-> =20
-> +    clock-controller@4b810000 {
-> +        compatible =3D "mediatek,mt8196-mfgpll-pll-ctrl", "syscon";
-> +        reg =3D <0x4b810000 0x400>;
-> +        clocks =3D <&topckgen CLK_TOP_MFG_EB>;
-> +        #clock-cells =3D <1>;
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        temp-sensor@48 {
+> +            compatible =3D "nxp,p3t1755dp";
+> +            reg =3D <0x48>;
+> +            interrupt-parent =3D <&gpio2>;
+> +            interrupts =3D <3 IRQ_TYPE_EDGE_FALLING>;
+> +        };
 > +    };
->=20
 > --=20
-> 2.51.0
+> 2.25.1
 >=20
 
---u4M+BrM+qE9Xid1p
+--cgliMA4ktxGmPwLv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNrCeAAKCRB4tDGHoIJi
-0iJxAP4mU6+C8Eh7IxIoYQL1Qb0tkSwfwCjYaPhrKJSDWD8nUwEAx0m/G5GfkzGq
-vzTWSFTPy8nqiETYWXzWi/6gx3Yqpwo=
-=JKYV
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNrC+QAKCRB4tDGHoIJi
+0mW2AP4uqFgdTFvca8mVJA+tAqUvGIeQxDEbIIM3/yjbo7QZ8wD/TfF3agyYq+6T
+r7amWo2btMqsEsrOfeuACJfJRyP5EAA=
+=BQew
 -----END PGP SIGNATURE-----
 
---u4M+BrM+qE9Xid1p--
+--cgliMA4ktxGmPwLv--
 
