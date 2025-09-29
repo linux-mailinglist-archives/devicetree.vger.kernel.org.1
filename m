@@ -1,78 +1,79 @@
-Return-Path: <devicetree+bounces-222439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78907BA91B0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 13:49:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E5E1BA91BC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 13:49:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 371C61890CDC
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 11:50:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B84A61891FA1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 11:50:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 847ED30505F;
-	Mon, 29 Sep 2025 11:49:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5FB93054ED;
+	Mon, 29 Sep 2025 11:49:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U3yj2FzA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IS7fUf7Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E347304BBF
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 11:49:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F237E305076
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 11:49:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759146570; cv=none; b=Pm7lJ2qjTknJPu7nGpw1g/Knot9WUcMqDM8Bwq5pJGf5YT2tlt2wLkHPymRgjLws6DfClAUlMOzDDf7a8HP2hq7qmaIh57Ax55qTsvpXueOtOwsD4q/hIi69TuGSehK73CeD/8gPR/yNqdH8bA9Wo6cob4wgmgPM+AjkOJXzn9Y=
+	t=1759146572; cv=none; b=dv/I5d+G+67YISUrA+GdL5aMDzoQO/9X1F5/nvPXv3ODSu4x3PO7r/2irPthLtRlHh37Wbeq2bqCUhjSer05a0bhpktbplr7TjwmlJIXySuOwEJ2T764eZ7No20nAGQHlDJnAldT7XR1EBBCBpjirKFPWfvqUOyaV+BoWdqwD6M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759146570; c=relaxed/simple;
-	bh=/3d+DNZ4lwjm+XshHn87ADcx87J0m4/hD0vp82cIobE=;
+	s=arc-20240116; t=1759146572; c=relaxed/simple;
+	bh=aZdTsMD9fgmVcy1PAS22fMuqSv0ykQeoRdnEip9V1nc=;
 	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VisMEfpJvFhi/DWOh6MGVDrNSLaDFej5L5yGRYIY2tl6sSyY6or1ISBseHwDIuaMPmPdMQxG8kig23vJPId7fresKdKLwwCWnXsCTLk8hUwMCBr4p6lgVyJ6oLniLi9zQChPkCGVjaTzxpGUYIcer0ELHrhf/tRRcDVlfS9Dahs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U3yj2FzA; arc=none smtp.client-ip=209.85.128.47
+	 MIME-Version; b=QCGl5czM6rJSFHwJBj9fowq8LdQ0OHal1QaBTRpf6zWRXGmN9S1TSOLKUqzaRHYrmxdb8XIWiCE9dkPNQgvYL93L1P5HUC05QgejGPW27mIGYKHtnr57ddQsxpA36wEbJjeOj5LRRVhuYOPTv34hoPaGn5r6WrD9/hrl8N21swI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IS7fUf7Y; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-46e37d10ed2so43575895e9.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 04:49:28 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-46e37d6c21eso29901085e9.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 04:49:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759146567; x=1759751367; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759146569; x=1759751369; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=eYKIS6AUB4jbN6LRMHpfAVlAKJeZBTFDpfK2oWN9FEQ=;
-        b=U3yj2FzAbuZabJWr30ta6Vu6V0YKyL7onfjk7bUGso4t/c/EReg+D1o5KlwsyK1C/U
-         mrwvK8dBP5xy+I4H6akbQRoOtbVOrSyOrpyXXE7lGbmKhZMJXJKgIvVYWvnrwFHVjaFO
-         tmxoiO2vuX2XcbkKsO5KuGJivrWuM7TqmeXevvV0LSUwKqoLfZIvAkIrf4rZ2xxBcPPI
-         730fAOBM6BCtQZkAv+5Rp8amAfbXoVczRblU+0sghTdqd00jVs06M5Wp4LOvV9avCFLL
-         DQhLLx0IfMbebSiaieEFPO42UqT2BPM4/epx69XBW/BI5qgVf1xQnDndssv0NHBd25vo
-         ZPMg==
+        bh=0mIMwirLGWfi6Q5dJnPwjrLRkS6cp6VZXhnc2huda+M=;
+        b=IS7fUf7Y8AGuLsc9ycTAdf04Ov29bBf3aBLYx96o59VOzBW6bd+csHnACC1gpT5/ln
+         cI/Ohh8FO2lQ6CW1js6/fJZbHaQHBqMm4wGA3RG6XUqI6nzYHl1zX5N6eYzerr6pjrg4
+         xXZ+f7t+DN5wQvjIyopLu8SkyHhHBPidHR8cQkPqKBICXyqUlku/9AFPh0UfGCIU3bkR
+         yv93seR3A1sHE/UmSsFA3XbUxqugdu7MOvUMDel7qonm6xmluQxFo6r+jOHw1j7yzF5e
+         ly1/ixsqxS45aPKIESJ5d+ZWpyg1ANTPorogtBXmkVbfntNiPXmKlijJIMkxkFTMOC+v
+         30wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759146567; x=1759751367;
+        d=1e100.net; s=20230601; t=1759146569; x=1759751369;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=eYKIS6AUB4jbN6LRMHpfAVlAKJeZBTFDpfK2oWN9FEQ=;
-        b=uEdBy+kov7pmVP0ZyDtsyepDQVB+r34Hz95K5xJvvNQZljp+5i3I5ZTWk/EgyDZenU
-         tKRryOh/0A4Np2XMAgvr2lP28yIelojCcv1lUqRSXEA6Olpz0uzu5avqOSxf0Y3MYN23
-         N/gfN5iFneFszioXOYSp4Wr2FOB5ibgcW8iv5fnGCI24AmDLqzYz9rQz+MzTK3K0wiOw
-         YlTLcb43poop9Zuj0+qVA7MKvQPsHvMQXRh3+Yv+NVUuGdIjhLERwJP2vrX/PQ/AIBJR
-         /Sc6ol6Iq3hssc3zZ35e20qCtUfhBzGLABir7hfBgatcV9zw2NHN2HqBZFgPg714y3Gz
-         ug8A==
-X-Forwarded-Encrypted: i=1; AJvYcCVepEb3YhiowpIb+RbZJ2TScZnRE75KGZyqogwTXS+eUqhBKuT1UgdZIP9CG+1pY5FTbE7aBIl2ygyF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/mbuBbWF7mAQ4ZC/lx/dfWTY3qLzojtX2BxlvKBMkg8azePTZ
-	4BF9BNfB/ttdUILpPsM+vpUxp+E6TAuu627W0PGpc5ajulmmDIpIAitb
-X-Gm-Gg: ASbGncuShPrVLdTiKvBVZhZZhhSFVuh1hhPZNxdaEN1anuWIVRzGamV0Fa/9p6eh44O
-	nhe2J+aQzaC8O92A97v2ZvsyU422m+tYooaEOQgJDsrlmHFpjRcjGom7ye0FIfFsh2wKs7iAzf0
-	LcI2N/FICnu+WH/skbL/MgJssMGzNTEIPL2tradCxV+1ke80EuH3OxjXO6kSytu7R3V9aKn7a2/
-	10iZq9sFNc5uY+zCcXLlU+xjgMe3blj9pdToI1rwaXPJdhAcmSyKpmNWOWeKq8oNTuiNMY8UEul
-	tVEQUCfUEXG1zd5msoeGqq0xWdT00qxIH0P34cqwzD0IM0FOTxrHQdu/FDpRUSgKqk7zf6VxXB/
-	hWF5ONIosg0xEQTtKKkEpbI0CCXzrj+Pt3tL7LJaW0jFNOucUfM22Y/HyqHEQXgsreFMeIo8=
-X-Google-Smtp-Source: AGHT+IGuqXMPmewneHZfTKdYco1M53FvKmmiliFcGFMcT7OaxUtdD6+QR3/I0y4H9RP2qzHFLrfHpg==
-X-Received: by 2002:a05:600c:468a:b0:46e:4705:4958 with SMTP id 5b1f17b1804b1-46e47054a6fmr69438625e9.30.1759146566851;
-        Mon, 29 Sep 2025 04:49:26 -0700 (PDT)
+        bh=0mIMwirLGWfi6Q5dJnPwjrLRkS6cp6VZXhnc2huda+M=;
+        b=NUYtFYYz73dPHbaVhE5qdt3aoVmOjCzivA2WDI8iq4n2qVYxguxusJjAGlcg61D/86
+         mfIqixj3I3u3X+mXX54/Q3rbc5AH9/u3AfsB+OBT7LXbMk8pan0pOhtqxaxPUBdTIDNM
+         p1MdxPI8gnTZs5eaa7e6jctEPPNfdgdUCwPf5w0u4a26715veNKY5II2gnVMJlfzxxnB
+         bsVylsg9thYRp59R1/bDfvT4NV9WcceM2/+KThiwWhuSYEjMAa2mrlDLbJHODnqH8j98
+         5cb9fiF6fKx4n47fNB9av8P3ixGSl/2rIEyLzguen1rQphnMyLeDSiCjLbpNWKNe6dSp
+         XmYQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVcUOnS7brVIibXoMiY5klcbkHB2skyTXHqUdDKGcqrxQ7YXIGjCQAqzrDm2n7zaR+zo9G2Wm8GK+RZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOCs6arPfjDe84SdlzyKJ6O7K/74mKlaVWukn2fL87CUhxxU1l
+	Uh1lo57pfk2EIXsUWOX0/92371HK43dbWA4pO1/nskKPFKltJOJ/z7jJ
+X-Gm-Gg: ASbGncu3gyqKaAu97O4QMAGtDBWTAZaHGmb4nQBh0lmemJdU7gBc+2w7u7DBjtK/XZZ
+	TP4vQjmQSshub60y1pT3NUj2PVdurWqr3JPxGiwgIZ8ZvmUKUYE2Ho5+7Nz1XlcmukL993cTmnr
+	t9+SyOqRZdnREBxKqi/5Qb20z6Y/vE9w7C3hAW5SU0S50rVhy4NBw+E3QMU39lkHK4N86QmJxux
+	GM3k8/Ce0IVSvqO4I+muZSCksEVPDOi5BP3+v490cmkyqAscudoQv9MMIt4cWTRjE4y9fo3lYdo
+	BvRKGSECy+CmQsNQhRAtcyMLrd3+rcaC8ZbNEf40Fi0+34wLh1UellaIDck7nhkApUKiVPLZ5qe
+	kioUluSjnEzf4sFIYhwDZ5+xgOcWDqveOpBgz+4gR7XGgg9KDkA/OGzskc8AB9v3Sf9cqgcq4oI
+	9SZAtBlw==
+X-Google-Smtp-Source: AGHT+IHHeeXxNQFuhvyiL0e2I2I/uphT8IlYRgLGojEB+ic7yYz9UM+mWAZxKobXSmkeRjFhavSFKQ==
+X-Received: by 2002:a05:600c:19d0:b0:468:9e79:bee0 with SMTP id 5b1f17b1804b1-46e3292ea3emr151179445e9.0.1759146569045;
+        Mon, 29 Sep 2025 04:49:29 -0700 (PDT)
 Received: from Ansuel-XPS24 (host-95-249-236-54.retail.telecomitalia.it. [95.249.236.54])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-46e56f77956sm10030835e9.20.2025.09.29.04.49.23
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-46e56f77956sm10030835e9.20.2025.09.29.04.49.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Sep 2025 04:49:25 -0700 (PDT)
+        Mon, 29 Sep 2025 04:49:28 -0700 (PDT)
 From: Christian Marangi <ansuelsmth@gmail.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -92,9 +93,9 @@ To: Rob Herring <robh@kernel.org>,
 	linux-watchdog@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v4 1/4] dt-bindings: crypto: Add support for Airoha AN7583 SoC
-Date: Mon, 29 Sep 2025 13:49:12 +0200
-Message-ID: <20250929114917.5501-2-ansuelsmth@gmail.com>
+Subject: [PATCH v4 2/4] dt-bindings: watchdog: airoha: Add support for Airoha AN7583 SoC
+Date: Mon, 29 Sep 2025 13:49:13 +0200
+Message-ID: <20250929114917.5501-3-ansuelsmth@gmail.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20250929114917.5501-1-ansuelsmth@gmail.com>
 References: <20250929114917.5501-1-ansuelsmth@gmail.com>
@@ -113,24 +114,26 @@ ones.
 Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- .../bindings/crypto/inside-secure,safexcel-eip93.yaml         | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../devicetree/bindings/watchdog/airoha,en7581-wdt.yaml     | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
-index 997bf9717f9e..2269d78a4a80 100644
---- a/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
-+++ b/Documentation/devicetree/bindings/crypto/inside-secure,safexcel-eip93.yaml
-@@ -30,6 +30,10 @@ description: |
+diff --git a/Documentation/devicetree/bindings/watchdog/airoha,en7581-wdt.yaml b/Documentation/devicetree/bindings/watchdog/airoha,en7581-wdt.yaml
+index 6bbab3cb28e5..6259478bdae5 100644
+--- a/Documentation/devicetree/bindings/watchdog/airoha,en7581-wdt.yaml
++++ b/Documentation/devicetree/bindings/watchdog/airoha,en7581-wdt.yaml
+@@ -14,7 +14,11 @@ allOf:
+ 
  properties:
    compatible:
-     oneOf:
+-    const: airoha,en7581-wdt
++    oneOf:
 +      - items:
-+          - const: airoha,an7583-eip93
-+          - const: airoha,en7581-eip93
-+          - const: inside-secure,safexcel-eip93ies
-       - items:
-           - const: airoha,en7581-eip93
-           - const: inside-secure,safexcel-eip93ies
++          - const: airoha,an7583-wdt
++          - const: airoha,en7581-wdt
++      - const: airoha,en7581-wdt
+ 
+   reg:
+     maxItems: 1
 -- 
 2.51.0
 
