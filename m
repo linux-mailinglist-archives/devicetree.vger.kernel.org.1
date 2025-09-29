@@ -1,117 +1,163 @@
-Return-Path: <devicetree+bounces-222422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D3A3BA9093
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 13:35:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FF16BA9096
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 13:35:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BC4933A7777
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 11:35:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4FDC3ACC6A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 11:35:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DEF3002DE;
-	Mon, 29 Sep 2025 11:35:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D42A03002A8;
+	Mon, 29 Sep 2025 11:35:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pIk/U9Dt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712AA3002A1
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 11:35:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4659980604;
+	Mon, 29 Sep 2025 11:35:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759145708; cv=none; b=mV3PINh81wPX2X8qE/T0uEI8k/yETYG83DJkoMprCHEK7Jh1gmmykQGN/BgwTH1hE/0pHi946Aia8XbCV/7lokLdqjnapv7byCfuAbbtEeD5RTLpIoqwxwuqKa2RUr6yIxmOfDlSEFHWzChpGF5Fot9qmMyKFv37+mlmf9jZAKQ=
+	t=1759145754; cv=none; b=uUs4z3IPb0hvCtrrxcrKf6sDxDjtFAHRldDwqSAFRQl+bZKf3U1lQvJbQQyrvZzaNVij4tolxBTbVFK2h8tR1MD5kJzrf2NsPzwblhyftBkjddUdGSe+ZJHNgyXyUKr8aYVNv0lSTKPqByepIPQ/kIzSLcsVX8O0UdPHh/AlTpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759145708; c=relaxed/simple;
-	bh=ch7c0GMzEBmON//ATPEGlDV9ckg4jFVTkG+ER5Pa/oU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O8p2zOPwXYGWoH4dNhGaa5Hl4orRgRRhlWZXu122nZ2ChifK6k+C0a4BNDEiGcDuSVl1guGmchteD3L/vR/sVf05OYXTHrCHjnROIJneATPUxhA5u+OdVtCzcgCURJssDqhesE+v9om1XBOiFcmWc0jAVjBMaZfBME2hgGs5hZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-54aa4b86b09so2305653e0c.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 04:35:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759145706; x=1759750506;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zscJNsz9LWE1JCbi4f4RqWFcZGer3C+FRtSw/qqEOSE=;
-        b=qP42nOvTfdmHgwGNxAZ/hBG1kUcp+5vzURpQA0nxXxDOXjOMfPZQytjr9qSVfIH3o5
-         k5OczUsAahPCWEHeUF2SuESfj777i38mTGshmbiDBEf7Gqk1C75sWp1OHcE2JFTBz28q
-         AHD9O0HPpjLwG6O3PWX3Nn2Q4zWqrzUyHdo4V3Epvira1rJyFuooCPamo7jehnlDUZ9Y
-         erR9oBIkbl1cFj78bKU3ns1vpkvvEuS8fDXsJ8h1xtwiLo2DszHEZ/310AgonJJj2Y7Z
-         dAHoeCW02F8uFcdrD3jRXS4iJuFSq0LhxjjQ6O3PtWkKOIYTgez4weRuX2RsMslIgYxA
-         GqQg==
-X-Forwarded-Encrypted: i=1; AJvYcCXXATS1JI+0a/ZNiPtPYDjKQw7Q2H6UIg4rTq+f35JoBsph1JwzNY8Dqz0SeU1aSUEOpb7KbGAKhIS/@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjcniarZs7oV5WG+ytWxPSN0YNYBes6mfuBkD96labncOVmChm
-	BcuhDc0kjsgGv1qrDv28w+4bPofTZW0YwrZF8wzGCwMg5cbLSxrAoE4KR6phkHsJ
-X-Gm-Gg: ASbGncuTDmpAzCpG7b9j2PmUBwGPCP8B81pl16oxZ2qEaYLImZ/0NLUdooN6jtxIdqq
-	jbPjVCdKc5xwSeAedFuiRaCo10Rgd8tBT9ntWAwD9f1yPDMIR/Og2uYztf08+pd2iXWp54DL1jl
-	+mnYGWAVrPQsYHIMvz+PAl99pRLVW9VQJufe2SY6JdbpyWF7wG7g3TVl2PElmv8v3+Zu48ffWY3
-	3vY3O0FzXRLKtbDqCFizuFd8OeaqzkePadpaoPylecA7xuCbKb6YkHiTupeJJhHptHJqucg6zt+
-	vcKubLFwTvzDuLjAoxDqmq+Q49+PuiCBhEu6ce+aknpvSDqARvced2bW0y3RzM5bTbWqg3sQmxN
-	jk5qnpqcVdchYnuQxy3ROd2h/+8qmzT/Mo54vGapMszPdQ4NhVSPJy83rJB5OPENspnzc1+c=
-X-Google-Smtp-Source: AGHT+IEC6SslM1qPyAkM4mOGvVUqK5iZqdNgKYsAraQd4AiIwyJsjx8QB4+lQPc4gMoKHjJ7s9ca2A==
-X-Received: by 2002:a05:6122:3112:b0:54a:8690:71a7 with SMTP id 71dfb90a1353d-54bea2f37c3mr6163770e0c.9.1759145706012;
-        Mon, 29 Sep 2025 04:35:06 -0700 (PDT)
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com. [209.85.222.50])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54c0c1ff0c0sm1252598e0c.11.2025.09.29.04.35.04
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Sep 2025 04:35:04 -0700 (PDT)
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-890190a3579so772132241.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 04:35:04 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXqkpZbAXP7gHA0kLRkT3kuKASW/KV7SIaXhxJAAS1V2XDOW8ji83h8iPixiHL0W7B61dE6yLqW6HU8@vger.kernel.org
-X-Received: by 2002:a05:6102:292c:b0:5a1:ea0:f56d with SMTP id
- ada2fe7eead31-5acd0efb09dmr5673188137.32.1759145704110; Mon, 29 Sep 2025
- 04:35:04 -0700 (PDT)
+	s=arc-20240116; t=1759145754; c=relaxed/simple;
+	bh=q9Mb7pcNcXXEalYS3yT1Q4mQpZ2Lm19scwoND5Vp+BA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=l1q1hRJ8Zs92Cs7HasPqtUmhnWVpUJyVfzU8jTQHA9eKu6il7+xwUuFN+u7T5jGA32tNJLRi3GI9INOAUUmaFwnaVrNuICNJYmqtrmrBHOCJKlBcYfvs6P+TShWlwhlomWi8XQqvBTWGDJ1NRUygOUrrgdVSN46qgGosOhNB8vg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pIk/U9Dt; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58TAKTDC023427;
+	Mon, 29 Sep 2025 11:35:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=ekzUPFNQTmH1ZQ8P7rtQUH5e2D89ywMvxSC
+	/bs775+s=; b=pIk/U9Dt2wnBPNV7+dZjJvr1m1HUXXFsNXAApsdWnpWSSlmFo0/
+	Bet2upts/BlPnEzj9Ovj9hQOaCulPola2YPcuD28kirjGutf1TBzQW89A8HxN9/U
+	8Cx6t3O0K8TF8dHC1BTpp7hi0wCWKfMnqkt8sMws2xJAJ5CTR/A3q03VQZrZRO4m
+	SowpOVwt5xKSLhD1bhjzTR053bxX9LFJiVDSDgY3cdD6FRzW20rO4s5VEhPytwzi
+	UM03H+CScLmISjE18syMeuKzk/AiSL35uspMSoDkmCfumlA3QDe4vpOvqTISdDpj
+	A2kiZpYJTbbPJW0zLAps/tKvMNy3se5cAAg==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e8pdcs47-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Sep 2025 11:35:49 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 58TBZjuf008883;
+	Mon, 29 Sep 2025 11:35:45 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 49e90kvy5t-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Sep 2025 11:35:45 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 58TBZjnC008878;
+	Mon, 29 Sep 2025 11:35:45 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-rampraka-hyd.qualcomm.com [10.147.247.88])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 58TBZjRP008874
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 29 Sep 2025 11:35:45 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 2305851)
+	id 2BD1D5C6; Mon, 29 Sep 2025 17:05:44 +0530 (+0530)
+From: Ram Prakash Gupta <quic_rampraka@quicinc.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dmitry.baryshkov@oss.qualcomm.com, quic_rampraka@quicinc.com,
+        quic_pragalla@quicinc.com, quic_sayalil@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com,
+        kernel@oss.qualcomm.com, Ram Prakash Gupta <rampraka@qti.qualcomm.com>
+Subject: [PATCH v4 0/4] mmc: sdhci-msm: Rectify DLL programming sequence for SDCC 
+Date: Mon, 29 Sep 2025 17:05:11 +0530
+Message-Id: <20250929113515.26752-1-quic_rampraka@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250917170202.197929-1-john.madieu.xa@bp.renesas.com>
- <20250917170202.197929-4-john.madieu.xa@bp.renesas.com> <CAMuHMdUw+cVtMkfnWjuO6BUNPRd=gZHhiD=KqPxugrJVLOe+Wg@mail.gmail.com>
-In-Reply-To: <CAMuHMdUw+cVtMkfnWjuO6BUNPRd=gZHhiD=KqPxugrJVLOe+Wg@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 29 Sep 2025 13:34:53 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVazggwwtD2pvtzwTwX5XWf=UWsuezTU4vJnU5gtT09yQ@mail.gmail.com>
-X-Gm-Features: AS18NWCxvZMcs4IKeRIKmjN1qwZhpwGWh6ZDTAZia6k6h8LSwaxFUr6lA65qWRI
-Message-ID: <CAMuHMdVazggwwtD2pvtzwTwX5XWf=UWsuezTU4vJnU5gtT09yQ@mail.gmail.com>
-Subject: Re: [PATCH v9 3/4] arm64: dts: renesas: r9a09g047: Add TSU node
-To: John Madieu <john.madieu.xa@bp.renesas.com>
-Cc: conor+dt@kernel.org, daniel.lezcano@linaro.org, krzk+dt@kernel.org, 
-	lukasz.luba@arm.com, magnus.damm@gmail.com, mturquette@baylibre.com, 
-	robh@kernel.org, rui.zhang@intel.com, sboyd@kernel.org, will@kernel.org, 
-	biju.das.jz@bp.renesas.com, catalin.marinas@arm.com, 
-	devicetree@vger.kernel.org, john.madieu@gmail.com, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	p.zabel@pengutronix.de, rafael@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 2AawOdqoEEpN915Tdon9zQxKi9feyi85
+X-Authority-Analysis: v=2.4 cv=MYZhep/f c=1 sm=1 tr=0 ts=68da6f15 cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=LKI8_1zPV-ZnuddBkK4A:9
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-ORIG-GUID: 2AawOdqoEEpN915Tdon9zQxKi9feyi85
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAzNiBTYWx0ZWRfXz0CDStnaE+ID
+ PRoQx1yXtz2VyBXn+Vi9GyBEiaPDXFAtPJpKSqTSPHmM9SGTOOaxJj7+3ehRXLiOOD8m3QYpPo2
+ msE6jqQrlZOdTIcAXjKdkbAhN68SwXKi5qOdopoz/WiSeXRYl+beA8PMBKH/xwtBwdDEMajUcSv
+ 4dJQGXrnqsH8NInhAxx3u0lZbLwefSFGT9lP4j4MYcxIVz6+sfaus8QN/RKQmEJWLQYvEOstR3j
+ rssxalkfpkJMoy726Ufm2A1m4DaAXGI4WsJOJt9e89HQKMDEkMUkX5pzXkIVUr9om/jnxRC/ysB
+ aeEF6guHkZLbBm/NPv3NlwBq3hIyRBomHFiGfn2Xgy6n0qhaYb0arirWwQM/i6NuQnHyccX1KVT
+ i11vf90ty7SNcQyADVgWh1HIVj51Sw==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-29_04,2025-09-29_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1011 bulkscore=0 lowpriorityscore=0
+ priorityscore=1501 phishscore=0 malwarescore=0 spamscore=0 impostorscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
+ definitions=main-2509270036
 
-On Wed, 24 Sept 2025 at 16:07, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
-> On Wed, 17 Sept 2025 at 19:03, John Madieu
-> <john.madieu.xa@bp.renesas.com> wrote:
-> > Add TSU node along with thermal zones and keep it enabled in the SoC DTSI.
-> >
-> > Signed-off-by: John Madieu <john.madieu.xa@bp.renesas.com>
->
-> LGTM, so
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+From: Ram Prakash Gupta <rampraka@qti.qualcomm.com>
 
-Thanks, will queue in renesas-devel for v6.19.
+With the current DLL sequence stability issues are seen in
+HS400 and HS200 mode for data transfers.
 
-Gr{oetje,eeting}s,
+Rectify the DLL programming sequence as per latest hardware
+programming guide and also incorporate support for HS200 and
+HS400 DLL settings using the device tree.
 
-                        Geert
+Changes from v3:
+1. Addressed Dmitry Baryshkov comments:
+   a. Regarding clk division by in V2 patchset
+2. Addressed Konrad Dybcio comments:
+   a. Renaming of parameters
+   b. Memory allocation
+   c. couldn't address __free, as didn't fit here
+3. Addressed Krzysztof Kozlowsk comment:
+   a. Regarding the dt binding
+   b. commit message to reflect the need of dt
+4. Additional change:
+   a. DT parsing logic
+   b. Maintain backward compatibility
+
+Changes from v2:
+1. Addressed Dmitry Baryshkov comments:
+   a. Regarding TCXO frequency.
+   b. Regarding clock rate.
+   c. regarding checkpatch.
+
+Changes from v1:
+1. Addressed Tengfei Fan comment, added missing semicolocon
+   in sdhci_msm_host structure.
+
+
+Sachin Gupta (4):
+  dt-bindings: mmc: Add dll-hsr-list for HS400 and HS200 modes
+  mmc: sdhci-msm: Add core_major, minor to msm_host structure
+  mmc: sdhci-msm: Add Device tree parsing logic for DLL settings
+  mmc: sdhci-msm: Rectify DLL programming sequence for SDCC
+
+ .../devicetree/bindings/mmc/sdhci-msm.yaml    |   5 +
+ drivers/mmc/host/sdhci-msm.c                  | 368 +++++++++++++++++-
+ 2 files changed, 354 insertions(+), 19 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.34.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
