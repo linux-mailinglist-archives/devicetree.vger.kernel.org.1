@@ -1,116 +1,143 @@
-Return-Path: <devicetree+bounces-222428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B16BBA90E7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 13:38:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38B5DBA90EA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 13:38:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 440C6189FED5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 11:38:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E95553C77D5
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 11:38:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 469C9301037;
-	Mon, 29 Sep 2025 11:37:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15DE2301038;
+	Mon, 29 Sep 2025 11:38:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YfdPqr0q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19823002DB
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 11:37:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53AF43009F6
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 11:38:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759145871; cv=none; b=C7kOBNo9LIJpLZvgRPWH484i9uxQ1UQTmAVRbb8NxdcUNY07G2hsHBnKwUVur0H2ftEbOEauFJc7bOI51/YI+N4e2dV/soGnVim2d+glA7btvvj/yuxPW3rpiXXVnzOCibhVjA8UP/7/3OIjs6IbFPi958E3FO9O1T7OLhNry3U=
+	t=1759145898; cv=none; b=fZfQTYlVzujKxdROblCqBDOCHReO7MF7vhuFYS7yo4wr13PWc6XVAq7GhNIt2biC8Z8cxUDem8Dyv72BM6SJ7h3KT/QYiQU9WAs2XvWvwDEQMdyVmNll3bHhknyrOsbL8AF9kmQDr5ZTHnu2vUMOUqEjxD4qNWcJlzdM1qNDCi4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759145871; c=relaxed/simple;
-	bh=14SGPZS9nPNEndJRTPYwlhVvLeiJWTHVwacGI0l7DKc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CU3BFpMqhfsZCv3FiCIbrfzX27m2QyA9gsca6whmom6qmqKtqDqthktt2tOCuATL0uh1ghwEy7GWIy6qZD/3e96FNXnB3bkYBfsj0rlriqpCTtkBttNdqjqU7uIFmHLYwhl8Wg9Q65931SJtwnJQTs/dhtLCKxiWOs5RiKs4QFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1759145898; c=relaxed/simple;
+	bh=4y2av6tyjlgTbUkNyHSSuQdzatlOOOBYpolj3NH1Wy4=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=QJYoIopcZxtdIpfAiaIDzl3eyI/D84J8HnaGco3/X/gToXj9IRZhmqyRvB96mVIt4KuMfRXUoTJ3mJespDK/AtEgAZD9YcU68bVMiwa5oSaVczd4dG2eZUqcPVeFWYy2yge+0YIMn0KKata0P6N0Iyc73EbbOO5Honr/YxoCFo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YfdPqr0q; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-54a8f6a2d80so1615712e0c.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 04:37:49 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-46e52279279so6863125e9.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 04:38:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759145894; x=1759750694; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uRFGCABCLXwEyWrlsO0Qq+AzjRnRQjbLGashvrpUfXo=;
+        b=YfdPqr0qs3D9rKucmAqN29w/CMVC1vWcIdLoSIEnziiBCmhG8N09CfUaJ4nEjd2o71
+         1bKWK7ol0qPDGEE009pIf6s3ES54P/f+VhzYVnKgUKN9DkTEjeMZZn3xLdovyjpYBmGB
+         P8F2kUdlAGgJ0rIieLqCq3qDp+xnHkhxWl/AnyhrnrEUbzIvK/2x8ozB5jtsb9Y2aoyR
+         x2VqWMIF9U9i37vrOgeRgeQbwBfuvc4vpZRGeu0cNDv0HuByS841fLK6SH2yLF4p7sPB
+         nSpGA6WuopVO0rApD+0r3teP9HEt5mCG9fnkfFc9oR5QdGm21zxLXo1nEjDmDrDMu4mQ
+         CGFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759145868; x=1759750668;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=weWdXbQxCnMJeHS7B7BXqXEXqPpjTdZBAI+JQlcZ3Pc=;
-        b=hxVAuey5n7WUsAm/vqABG8s0Wp/D2ZawwbU7l56Vp71Ow9pXaQGu5zauOwKPciQbky
-         JZjodY2JXCjkRMsWYWG7xITzGz9BpTJ/PBnQ91fuOOxJSGHJkGJJi7wmMs2vZL+wb9xD
-         LDfBIQb4SsSWEJG/DwDm2XD6HIVg/mih7PE+zI5GM0F1K9G1XHYRjBd/rzxmPgax/ilA
-         /G0H2io/GfA0CK5YoxJLGuWVNe02NoQHCF8f59cKEaCGb3U0ohv5KSkEhbxuB+ktJpig
-         ty1GCEGIVkqQv8+llIA3wRoUHZrZu7ESrBKa/UrjZEfvQZZz7nqdh+P/LSQ4fa7Tp8a5
-         LXvw==
-X-Forwarded-Encrypted: i=1; AJvYcCXSdWsuzX/zU3txAqqke2QkDwQrGQc3tMyFMyriSmaJKVITdOAEfLlnYEtDkJHXIv64dvWVDr/jKYf0@vger.kernel.org
-X-Gm-Message-State: AOJu0YySEvjjN2YK6WwodB+QyqwwlRfDnjH46aoexi/XyajxIPOJzhHz
-	4yT/v0U8dL6xPCUWV28i8wdHAgHkaVlzxR5PBIe4Au+7xzpmqtplXnMlBD5o/aIQ
-X-Gm-Gg: ASbGncuiG2h1oS8aO5Zg8l7vLo8eD/iH6bHenZw9CMCg/lSNDc7yuGeEcdo+rwh07M4
-	2+ZB9vwVU5UETe8hA5U5YpoOUU3YKUHgMKyaTpDAM4OD9LR0r7bJLWgceqzirHFgX1W8goena5n
-	UQoNVWHAhn2UulZF9UUM2Fj12rF78fxWazW3HdCxql7NY0ZwFIJDZjSyHMlxdJFpprr/z+Amnhi
-	omzFcgWoeBNtJlAA28cmC7O1S+hwtPtuVFN0Bm0gJL2FhmGrBPaEAzAn3afElKImTuY9koRDe5r
-	b/skvy74TPJzSIhw0UfPYuenWGL93se+6fn96EIjdGoI3DBeAqj2LB8XeD/YP2AZ1i1A0kgZO64
-	+ky0qXgqwQfqOM6waa4ruai9Xbw5qLtYbHCHOkd+iwNwzhd27uKVxDkqop6jseU4u/YuxPA+44P
-	k=
-X-Google-Smtp-Source: AGHT+IHkszEjbBNwgPU2i6D3LpZoQVZB98qIsj2dTAQgMQcLKjA1gcjZJRZnXRfdR/DNjHZSDKE7Dw==
-X-Received: by 2002:a05:6102:6488:10b0:5b4:7e28:e5c1 with SMTP id ada2fe7eead31-5b47e28ed12mr3035193137.28.1759145868506;
-        Mon, 29 Sep 2025 04:37:48 -0700 (PDT)
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com. [209.85.221.173])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-916d17f8d25sm2408624241.8.2025.09.29.04.37.47
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Sep 2025 04:37:47 -0700 (PDT)
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-54bc04b9d07so2000589e0c.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 04:37:47 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX3B2ehb42j7C/zh6WSbQAG0xpfrIj4dXVoXK+9T/Il8FKvo9NjI+Wt3F62wvNb/Wus/5KNq2xwmXPY@vger.kernel.org
-X-Received: by 2002:a05:6122:7cf:b0:544:8d16:4541 with SMTP id
- 71dfb90a1353d-54bea102e5fmr5636901e0c.7.1759145866822; Mon, 29 Sep 2025
- 04:37:46 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759145894; x=1759750694;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uRFGCABCLXwEyWrlsO0Qq+AzjRnRQjbLGashvrpUfXo=;
+        b=byj1BUgKFsz8bo5fAg/JQGqRkDRNLBampiOKC4szO/l2siB9wLOwpdIp1t7ouqpr7S
+         sgg0URhVz0tIpNWpH4HIalXMHe5AOBDTRNDqCYitkDJfh7KR0BKHhwV39UcO58Ew6qOp
+         qEtlC+9cH6Klh2CtFzOWaTeP8QxI8J8EJMgaD99K/Gc6CReVMX+s0bKvIBhLtC5BSkWb
+         TvakW4+8czmOFirs57StH4RAjtN189uDAB6eqAsCQLn7F4r/rFUPhQbVq8TZl+eEFaPM
+         EyH990e7fIQ5AV/UUGsi5G3vxsYYdVRMenoduh7RokPSNqtpZRxn7BihPnFHJycOkes7
+         ADfQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWnTqlASix3JIdTBuPpVS6lh+4OXBdkGTlKsupvEgFVETkQpZcnrVeCJgbrh1TH05MZjFXbU75yLGvO@vger.kernel.org
+X-Gm-Message-State: AOJu0YzhX+uYBz3nDC0oZsL2KGT+MZ0uJJTUeMJ7YWQY6Fv4qIE6H39r
+	PFqDEV6f6sEU2fleqxJfIljFeaPBDaKjoPH7922zxYpCCaqv1dCgbc4I
+X-Gm-Gg: ASbGncvpSQgJ7I+YhRgCbK5oLsecepXrtCFoWejtPP6LyK8ahrHwR14pk0C1mv3Ijxp
+	h0vNJ48Vp6lYKeUrTAf6jbKw4Bbpo+YdURCHGlemPknzkISt6+iiE/VJQLFoiYC4eyICauomBXk
+	vphZd6R5xqC3pqycpXiatfMxsGcrMsSNTs3Dt3xSVLfmAh5FnIVQIYL6QK4i4V8yKW0QYMPl+Lf
+	gNziz7ikuHcnE7BYRmaQvKl3WiYIBp7NYMTgplR1pVdQtBTWc0CfHB1pk+u0cwEX0XWc2zGQc+P
+	jjvjKCs7LuM7eAnJSHRnq4cAdsDPFwDqaMq/F7y8xAYKolWw5P3wjUvdvxDjEpcBq2bHJEI6X+e
+	si/ydJNPUhpj41JHgLki171enoxxMdNacDSPTLbyFEwppufF0tz3qv0ijW9qcv8euM/x+LAX+hz
+	Kzk2Wbl07/ybhnfVyl
+X-Google-Smtp-Source: AGHT+IGWicOdrTmQIVdHUSxqrzMHPdo3nASeyojQE1e0iNlPBEVxWIA083+LVJHlm20d4gbGv51hSg==
+X-Received: by 2002:a05:600c:8289:b0:46e:4a2b:d351 with SMTP id 5b1f17b1804b1-46e4a2bd52amr57340655e9.28.1759145894386;
+        Mon, 29 Sep 2025 04:38:14 -0700 (PDT)
+Received: from Ansuel-XPS24 (host-95-249-236-54.retail.telecomitalia.it. [95.249.236.54])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-46e56f53596sm9502465e9.7.2025.09.29.04.38.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Sep 2025 04:38:13 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Ryder Lee <ryder.lee@mediatek.com>,
+	Jianjun Wang <jianjun.wang@mediatek.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	linux-pci@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v4 0/5] PCI: mediatek: add support AN7583 + YAML rework
+Date: Mon, 29 Sep 2025 13:37:59 +0200
+Message-ID: <20250929113806.2484-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250810122125.792966-1-claudiu.beznea.uj@bp.renesas.com> <20250810122125.792966-4-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20250810122125.792966-4-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 29 Sep 2025 13:37:34 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX5zSX5URg4vY3Mm8zo9ghE9cTBOMg8ozLZJ2QevF=7uQ@mail.gmail.com>
-X-Gm-Features: AS18NWCeuTWOa-ri5Qlkxi0ZocAYLNnINdMinkM81tK5_mT4fKgbcdtjVA380a0
-Message-ID: <CAMuHMdX5zSX5URg4vY3Mm8zo9ghE9cTBOMg8ozLZJ2QevF=7uQ@mail.gmail.com>
-Subject: Re: [PATCH v4 3/4] arm64: dts: renesas: r9a08g045: Add TSU node
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com, 
-	lukasz.luba@arm.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	magnus.damm@gmail.com, p.zabel@pengutronix.de, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	niklas.soderlund@ragnatech.se, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Sun, 10 Aug 2025 at 15:02, Claudiu <claudiu.beznea@tuxon.dev> wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Add TSU node along with thermal zones and keep it enabled in the SoC DTSI.
-> The temperature reported by the TSU can only be read through channel 8 of
-> the ADC. Therefore, enable the ADC by default.
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+This little series convert the PCIe GEN2 Documentation to YAML schema
+and adds support for Airoha AN7583 GEN2 PCIe Controller.
 
-Thanks, will queue in renesas-devel for v6.19.
+Changes v4:
+- Additional fix/improvement for YAML conversion
+- Add review tag
+- Fix wording on hifsys patch
+- Rework PCI driver to flags and improve PBus logic
+Changes v3:
+- Rework patch 1 to drop syscon compatible
+Changes v2:
+- Add cover letter
+- Describe skip_pcie_rstb variable
+- Fix hifsys schema (missing syscon)
+- Address comments on the YAML schema for PCIe GEN2
+- Keep alphabetical order for AN7583
 
-Gr{oetje,eeting}s,
+Christian Marangi (5):
+  ARM: dts: mediatek: drop wrong syscon hifsys compatible for
+    MT2701/7623
+  dt-bindings: PCI: mediatek: Convert to YAML schema
+  dt-bindings: PCI: mediatek: Add support for Airoha AN7583
+  PCI: mediatek: convert bool to single flags entry and bitmap
+  PCI: mediatek: add support for Airoha AN7583 SoC
 
-                        Geert
+ .../bindings/pci/mediatek-pcie-mt7623.yaml    | 164 +++++++
+ .../devicetree/bindings/pci/mediatek-pcie.txt | 289 ------------
+ .../bindings/pci/mediatek-pcie.yaml           | 428 ++++++++++++++++++
+ arch/arm/boot/dts/mediatek/mt2701.dtsi        |   2 +-
+ arch/arm/boot/dts/mediatek/mt7623.dtsi        |   3 +-
+ drivers/pci/controller/pcie-mediatek.c        | 120 +++--
+ 6 files changed, 680 insertions(+), 326 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-mt7623.yaml
+ delete mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie.yaml
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.51.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
