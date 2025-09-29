@@ -1,195 +1,205 @@
-Return-Path: <devicetree+bounces-222396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7062BA8CE8
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 12:03:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6228FBA8D00
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 12:05:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F4983A3436
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 10:03:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF912188A9B1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 10:05:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6235D2F9D84;
-	Mon, 29 Sep 2025 10:03:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 886BD2F9DA7;
+	Mon, 29 Sep 2025 10:05:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mAmWDxN1"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Kx2dQB1+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B916B286894
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 10:03:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E60572E54A0;
+	Mon, 29 Sep 2025 10:05:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759140198; cv=none; b=gupDwy/6Aeeih8zjAtgf1Mr/ql5x61x7LReglWBzwJ4eVx8zdKjyx+cDbTElmqwRB1aCLXJMs1t/FjtkCo1KD6P9MaNqBhYzUzfs2L+9GVVHYa7YXMCXqLPpJjXc1y+9gvz0j1awJenOpYoYfjb7dIE1EQ/WjKI+P69Th8dF2qE=
+	t=1759140307; cv=none; b=Vkb5CCJFJ2etZPMQJANigdYu0mxN9flQr/RNZc3wDodto36RziGkKN8Uz8obdjGv/FxDC6ECdm5ErkZfFVZNvm12g0A6C/2XC3UDEWdicBIOjZNsraWbKrYLvF5WTBEyNOifwjE5gIJMuxRZPELToYM5s+j3kSSjdZ8w3tivABc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759140198; c=relaxed/simple;
-	bh=vb4zRbPoWCVNiJSGPFPQY1JkB5ZYsuOuCoh1Ay5Mp/Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uW4ovR73QcZj80AN2Tk9fydzu5fnHAjWR9QHOczRhk6Ox8TLZEQFGCyGB3G85/nORhu5HlE1FQv10XprZWzme7AgJ2j/k9AlUdB25Zw8tJAz0DPIfRLXJuYe0AJVOBmJjuWXdv4jkbwp676ORy5SGWzkQ060cM5D3D+4u9QicJM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mAmWDxN1; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58T9T8ts022438
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 10:03:15 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	q2xu/IuB6UpN3J5TmykYO0LnsIFMlTlgxYPOo4VkD0U=; b=mAmWDxN1tYeIhC7z
-	xKjhEN64GNh6L2NLd4hMn0em1lhLcq5UI3dctz/eCUrCRh192Znxno6NPuqjtWd6
-	7WOgseRI8AOvihEq9xVPtE4s6TlBlMU51KaMSZUArH9h3TTNRIky4P4+rfIp8u7l
-	86Ze1YE2591IKdLTo5L2oOpeaceSQYI9hmzooqd9Xd9r/aEuz5OhROyPl8t/lC7W
-	wowZXVdogn/8qGbovfOdiKV+hwre54UtIvPkihwvr5GdXyZ+gg1DUMCUa6Wnse4l
-	QButClLNZZeEuXskrQ4MRWcaaECSu3Xsiwk43+JDd0ZjTQFsNlUU8ByCndCUMcJt
-	SGawDg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e80tmt2g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 10:03:15 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4de35879e7dso66657001cf.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 03:03:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759140195; x=1759744995;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=q2xu/IuB6UpN3J5TmykYO0LnsIFMlTlgxYPOo4VkD0U=;
-        b=IKccgKt5uVlMmvK1SmmKSqPQE44cVGnhUOW5YONcecR71A7lmP7w4b361U4qm8hfug
-         0yUW9gHJgGrIl/LMDm06AF4JHJ765mFrhHMqQK4rC5syBoe9QEQc264Se/30PxgquZCw
-         GZrOjW0hfRfZdiY8d1SASz1oB7UMIJAEui9U8EY9Qj1XlSabziSKrpJfis05eJBYOgVz
-         6fkMuU/WF5x+yFxlweLvWJBY9WQLTH5DmGBpkn3L5RYKpzmuD4g8WplRreTDcLey7bvL
-         dZwRgYKZnsdwBe8LkStkCZKNCMPC22GQbLwqTAkoVvOCyC1E0jDRHVSibmJC1YFAs9OQ
-         6fLw==
-X-Forwarded-Encrypted: i=1; AJvYcCVs9FEa8o7no6CpHOPDQaBHxJIuyum5DEVc4l4Y/rSYdyu+vlPcbgC22HiwNbZR1jdrpQditEW8/Jrl@vger.kernel.org
-X-Gm-Message-State: AOJu0YyN/0ryECzmYP369FfjgJjNIAXMY+4P8ivU/A+/TQkVk/WI355Q
-	94sbM6d/pPoe0uXdP5LWJegcLCzOsFmO8VOO1TSTtLKQoGj2xAlqPj37jyr5pMLGg+ezK6oEuZj
-	lArFYwIID+aM1fP+pd53AlAosX5TyL5bQ18DhJ85qktroyn7+ee5pazFfVqt02aAL
-X-Gm-Gg: ASbGncv8DQLJVb84EMs+NOe3ecays7PBgGqSgQG0nh1xm1H+37uZz9SXHI6/bexkb7t
-	xQAqzuURseYOQ7pd8DCi9d+jpjzjGYEtuWVApV1a1hKKwQ0hD/ZglCoe+i9o2n8pak+cx9bUf3e
-	3bZmPwJ2t0hYAhBd+q1LRiScW0Fg3lETQbg1vzQHhLblYjuz4Qr4y5mBh7Z32+dqJ0MwvFftE2Z
-	5zjUxAFmcVNoj7MSqadctfNWERGjqjcM/Om7vWQ2B8HCKKcCvZFIAWihG8dulUGQ2VWfrNX7D/6
-	oEjbkqVa3t+rjiWO7U5iAJNUijIIqPmMWaSzRPgA4zAw30BHjmF2ufvaxe5m9G3G1roo9GRQ+Zz
-	kyHIlAYfOPkgPj3MKjygnjnVCrb1On4mX3cJ8faYMBrKS+2wBEX4b
-X-Received: by 2002:ac8:5716:0:b0:4b7:a62d:ef6f with SMTP id d75a77b69052e-4da4d314d23mr122888291cf.64.1759140194769;
-        Mon, 29 Sep 2025 03:03:14 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH2+q7FGGuMsvCVWTzqSjun2cAUChShlnzyln/aLfDIxQUWXJNULzrUScBN2u42qzJl7NWJ+A==
-X-Received: by 2002:ac8:5716:0:b0:4b7:a62d:ef6f with SMTP id d75a77b69052e-4da4d314d23mr122887731cf.64.1759140194151;
-        Mon, 29 Sep 2025 03:03:14 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58313dd679csm4031856e87.56.2025.09.29.03.03.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Sep 2025 03:03:13 -0700 (PDT)
-Date: Mon, 29 Sep 2025 13:03:10 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Cc: Krzysztof =?utf-8?Q?Koz=C5=82owski?= <k.kozlowski.k@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
-        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
-        yijie.yang@oss.qualcomm.com
-Subject: Re: [PATCH 2/6] dt-bindings: remoteproc: qcom,sm8550-pas: Add
- Kaanapali CDSP
-Message-ID: <fdfzoemfxdz2p622hvixpaznh2n22hweit2e43plfu2kdd6kad@reulvi4vs5v4>
-References: <20250924-knp-remoteproc-v1-0-611bf7be8329@oss.qualcomm.com>
- <20250924-knp-remoteproc-v1-2-611bf7be8329@oss.qualcomm.com>
- <CAJKOXPc57_0pJ2ZWf2cKSKAcQMc3S_mHKQxJDzWH7t=mgim3CA@mail.gmail.com>
- <5820a9a9-4474-4c4d-905c-0efd9442e5e1@oss.qualcomm.com>
- <o6dzhmlicwiezmxlb5uqitx7e3pjpyuhbjqfumivbdkru42hvn@r4ksfa6m5nd2>
- <540b1de6-c959-4911-925f-8163f5fa5147@oss.qualcomm.com>
+	s=arc-20240116; t=1759140307; c=relaxed/simple;
+	bh=RJmH0t/e9RqRoeOEExml5h6rWYvFYX1Evpup5hMd1Q0=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=I4tPVETqyW12zCSQy1U6gO14eNsl960VQl160WY01SYnWT1ptwN6IX537k4NVeuWBieByeeX4f5IlWW2+r6n4rjtehGrCbE0hcJI+dKtArlgl4/CUdOPfCOEf/rGSAOTkbU0xvR+VAudWqyveo6fiG4BmKAdbmQ6kuJjf2A2HiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Kx2dQB1+; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 24C92208D4;
+	Mon, 29 Sep 2025 12:05:03 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id Tg-2Lw0uafqf; Mon, 29 Sep 2025 12:05:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1759140302; bh=RJmH0t/e9RqRoeOEExml5h6rWYvFYX1Evpup5hMd1Q0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References;
+	b=Kx2dQB1+WZ4qnbocJoIEF5MigdG7ofBUuODkSjKGyV4p0GNTYm8pCuDkBTV2i3nrS
+	 31Vngit30JYzaBJQ+KoQPUoBJKBcCjxhprEdwTxa+MtGF1sVml4kM3N3eLK5q/vooA
+	 NO9+mQfeMBb2eWaghL0P/GqGj9voQBIFaOqX5AjLPJSbNAx5o0MzXodr4dUoTtUP2C
+	 pJqKwqafdTNooBLD+QmTYFfXm6i69ekufk9Btv/bckOYwCCyYLTmx83RWODfqgMKw4
+	 UUqph+FQejWWNMPfusXCNPX2nLgKQ86IqNStTJ+7BEsa08b/cpoAVfp9oZxmQFqv2n
+	 dGT3F6maeFCzQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <540b1de6-c959-4911-925f-8163f5fa5147@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAyOSBTYWx0ZWRfX0jIc6JNIBNYC
- t6l9VruJuIMbkRGbRAVYqirKh2o2Nh/RdDMnx4/aDR3gUUM4jh6vfM0AzVnh1lrzMd1v4nhjwx9
- 0Z3ORvJbT4HKJ5eJN9hcq4LfZjFqxlAxvmmorutBUZ7GfUcWjikIQnPcQsGOzgJVyXeFgiHlQYG
- I3xJk0jBS8FIRPa16xHggbDA100vMBZH1RSjN17ua+bMJh9ka+E5spEwb3hfak7mDrA0cxZAHTF
- VTS+pb+fA23Zz4El/3qbTq/DmwVuMKKLGnYGTe2DbelJ89BoAbmSWH6n0miiDGQw6LHpkX4HpUq
- XQP2D+lX16uO1nnKEPEiqNYPdPkuVuvqpBVvCZGMFh/CMi1jOBJ1dELy9Trnt4r2Ft/6bl98JbE
- b+RZoMx3JAGbwdMAEeV3erNl2l86Mg==
-X-Proofpoint-GUID: vyWY4p29fUiE1EEjdZkT6pR93stBfoVC
-X-Authority-Analysis: v=2.4 cv=OMkqHCaB c=1 sm=1 tr=0 ts=68da5963 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
- a=I1Z6VqxiEuXI--SH4ZsA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: vyWY4p29fUiE1EEjdZkT6pR93stBfoVC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-29_04,2025-09-29_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 bulkscore=0 phishscore=0 adultscore=0
- priorityscore=1501 lowpriorityscore=0 clxscore=1015 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2509270029
+Date: Mon, 29 Sep 2025 10:05:01 +0000
+From: Kaustabh Chakraborty <kauschluss@disroot.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, Alim
+ Akhtar <alim.akhtar@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v3 0/6] Support for Exynos7870's display stack (DECON,
+ MIPIPHY, DSIM, etc.)
+In-Reply-To: <175911189634.2556697.2474466935066391775.robh@kernel.org>
+References: <20250928-exynos7870-drm-dts-v3-0-bb7d8e570860@disroot.org>
+ <175911189634.2556697.2474466935066391775.robh@kernel.org>
+Message-ID: <32036b3916a944be9450e48b6be30dc0@disroot.org>
+X-Sender: kauschluss@disroot.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Sep 29, 2025 at 05:41:10PM +0800, Jingyi Wang wrote:
+On 2025-09-29 02:14, Rob Herring (Arm) wrote:
+> On Sun, 28 Sep 2025 23:26:34 +0530, Kaustabh Chakraborty wrote:
+>> Exynos7870 has a IP subsystem in its architecture dedicated to display
+>> management. Notably, this block includes the Display Enhancement
+>> Controller (DECON), and the DSI Master (DSIM).
+>> 
+>> The following series and its sub-series implement all components for a
+>> functioning display pipeline. All vital information which helped 
+>> shaping
+>> up the patches have been retrieved from Exynos7870 vendor kernel 
+>> sources
+>> as provided by Samsung.
+>> 
+>> Testing has been done on all three devices available upstream, i.e.
+>> Samsung Galaxy J7 Prime (samsung-on7xelte), Samsung Galaxy A2 Core
+>> (samsung-a2corelte), and Samsung Galaxy J6 (samsung-j6lte). 
+>> Regrettably,
+>> I've only been able to test the functionality on video mode, as none 
+>> of
+>> the devices have panels working in command mode.
+>> 
+>> This series implements changes in the SoC subsystem, which includes
+>> devicetree additions. It depends on all sub-series listed below:
+>> (Legend: [R]eviewed, [A]ccepted)
+>> 
+>> exynos-sysmmu-resv-regions A 
+>> https://lore.kernel.org/r/20250712-exynos-sysmmu-resv-regions-v1-1-e79681fcab1a@disroot.org
+>> exynos7870-mipi-phy        A 
+>> https://lore.kernel.org/r/20250612-exynos7870-mipi-phy-v1-0-3fff0b62d9d3@disroot.org
+>> exynos7870-mipi-phy-fix    A 
+>> https://lore.kernel.org/r/20250710-exynos7870-mipi-phy-fix-v2-1-5cf50d69c9d7@disroot.org
+>> exynos7870-dsim            A 
+>> https://lore.kernel.org/r/20250706-exynos7870-dsim-v3-0-9879fb9a644d@disroot.org
+>> exynosdrm-decon            A 
+>> https://lore.kernel.org/r/20250706-exynosdrm-decon-v4-0-735fd215f4b3@disroot.org
+>> panel-samsung-s6e8aa5x01   A 
+>> https://lore.kernel.org/r/20250721-panel-samsung-s6e8aa5x01-v5-0-1a315aba530b@disroot.org
+>> panel-synaptics-tddi       - 
+>> https://lore.kernel.org/r/20250625-panel-synaptics-tddi-v2-0-7a62ab1d13c7@disroot.org
+>> 
+>> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+>> ---
+>> Changes in v3:
+>> - fixed minor issues with devicetree in regards to compliance
+>> - added memory-region to framebuffer region for decon device
+>> - added related patchset to list: exynos-sysmmu-resv-regions
+>> - replaced exynos7870-pmu with exynos7-pmu compatible to the list
+>>   allowing a MIPI PHY subnode (krzk)
+>> - updated compatible string and dt node for j6lte's panel
+>> - reorder properties: ${x}, followed by ${x}-names (krzk)
+>> - Link to v2: 
+>> https://lore.kernel.org/r/20250627-exynos7870-drm-dts-v2-0-d4a59207390d@disroot.org
+>> 
+>> Changes in v2:
+>> - modified compatible hierarchy to use non-deprecated syntax (krzk)
+>> - fixed subject prefixes of [v1 2/5], [v1 3/5], [v1 4/5], [v1 5/5] 
+>> (krzk)
+>> - removed simplefb nodes instead of disabling it (krzk)
+>> - added dt-bindings patch to allow mipi-phy node under PMU
+>> - changed clock names of dsim node
+>> - Link to v1: 
+>> https://lore.kernel.org/r/20250612-exynos7870-drm-dts-v1-0-88c0779af6cb@disroot.org
+>> 
+>> ---
+>> Kaustabh Chakraborty (6):
+>>       dt-bindings: samsung: exynos-sysreg: add exynos7870 sysregs
+>>       dt-bindings: soc: samsung: exynos-pmu: allow mipi-phy subnode 
+>> for Exynos7 PMU
+>>       arm64: dts: exynos7870: add DSI support
+>>       arm64: dts: exynos7870-on7xelte: enable display panel support
+>>       arm64: dts: exynos7870-a2corelte: enable display panel support
+>>       arm64: dts: exynos7870-j6lte: enable display panel support
+>> 
+>>  .../bindings/soc/samsung/exynos-pmu.yaml           |  1 +
+>>  .../soc/samsung/samsung,exynos-sysreg.yaml         |  2 +
+>>  .../arm64/boot/dts/exynos/exynos7870-a2corelte.dts | 57 
+>> +++++++++++----
+>>  arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts    | 38 ++++++----
+>>  arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts | 57 
+>> +++++++++++----
+>>  arch/arm64/boot/dts/exynos/exynos7870.dtsi         | 84 
+>> ++++++++++++++++++++++
+>>  6 files changed, 197 insertions(+), 42 deletions(-)
+>> ---
+>> base-commit: 262858079afde6d367ce3db183c74d8a43a0e83f
+>> change-id: 20250523-exynos7870-drm-dts-87ccab731ba9
+>> 
+>> Best regards,
+>> --
+>> Kaustabh Chakraborty <kauschluss@disroot.org>
+>> 
+>> 
+>> 
 > 
 > 
-> On 9/29/2025 5:34 PM, Dmitry Baryshkov wrote:
-> > On Mon, Sep 29, 2025 at 02:20:54PM +0800, Jingyi Wang wrote:
-> >>
-> >>
-> >> On 9/25/2025 9:48 AM, Krzysztof Kozłowski wrote:
-> >>> On Thu, 25 Sept 2025 at 08:37, Jingyi Wang <jingyi.wang@oss.qualcomm.com> wrote:
-> >>>>
-> >>>> Add remote processor PAS loader for Kaanapali CDSP processor, compatible
-> >>>> with earlier SM8550 with minor difference: one more sixth "shutdown-ack"
-> >>>> interrupt.
-> >>>>
-> >>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> >>>> ---
-> >>>>  .../bindings/remoteproc/qcom,sm8550-pas.yaml          | 19 +++++++++++++++++++
-> >>>>  1 file changed, 19 insertions(+)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-> >>>> index be9e2a0bc060..031fdf36a66c 100644
-> >>>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-> >>>> @@ -35,6 +35,9 @@ properties:
-> >>>>        - items:
-> >>>>            - const: qcom,sm8750-cdsp-pas
-> >>>>            - const: qcom,sm8650-cdsp-pas
-> >>>> +      - items:
-> >>>> +          - const: qcom,kaanapali-cdsp-pas
-> >>>> +          - const: qcom,sm8550-cdsp-pas
-> >>>
-> >>>
-> >>> This time maybe without HTML:
-> >>>
-> >>> This looks wrong. This is not compatible with SM8550.
-> >>
-> >> Could you point out what is the difference from your perspecetive?
-> >> it is the same as SM8550 except for there is one more interrupt,
-> >> which is also described in this patch.
-> > 
-> > I'd second Krzysztof here. Your description points out that it is _not_
-> > compatible to SM8550.
-> > 
+> My bot found new DTB warnings on the .dts files added or changed in 
+> this
+> series.
 > 
-> Here is the binding for sm8750 cdsp. Fallback to sm8650 but describe the
-> difference in interrupt:
-> https://lore.kernel.org/all/20250221160036.159557-1-krzysztof.kozlowski@linaro.org/
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the 
+> warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to 
+> reply
+> unless the platform maintainer has comments.
+> 
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+> 
+>   pip3 install dtschema --upgrade
+> 
+> 
+> This patch series was applied (using b4) to base:
+>  Base: using specified base-commit 
+> 262858079afde6d367ce3db183c74d8a43a0e83f
+> 
+> If this is not the correct base, please add 'base-commit' tag
+> (or use b4 which does this automatically)
+> 
+> New warnings running 'make CHECK_DTBS=y for 
+> arch/arm64/boot/dts/exynos/' for 
+> 20250928-exynos7870-drm-dts-v3-0-bb7d8e570860@disroot.org:
+> 
+> arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dtb: 
+> /soc@0/dsi@14800000/panel@0: failed to match any schema with 
+> compatible: ['syna,td4300-panel']
+> arch/arm64/boot/dts/exynos/exynos7870-a2corelte.dtb: 
+> /soc@0/dsi@14800000/panel@0: failed to match any schema with 
+> compatible: ['syna,td4101-panel']
 
-Interesting. Let's wait for Krzysztof's response then.
-
--- 
-With best wishes
-Dmitry
+Note: This affects patches 4/6 and 5/6, rest should be mergeable.
 
