@@ -1,149 +1,203 @@
-Return-Path: <devicetree+bounces-222530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 632A8BAA19C
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 19:07:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28DFBBAA1B1
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 19:10:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E7D01C5A72
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 17:07:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CCD3F1C5AB6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 17:10:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52523214A97;
-	Mon, 29 Sep 2025 17:07:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05101215F4A;
+	Mon, 29 Sep 2025 17:10:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ewfAFgJH"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Ufxi6mHO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D29204C36
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 17:07:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0917C15CD7E
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 17:10:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759165668; cv=none; b=s1Ki17G8UXyZhrt+7UeUWEACWNEZ7bbhN/YuZIcn8e9IRxlnj+pctWBgCWHTYFVZPLMgCUrz+iyAdwAwYJk2hzxXBL4gWHEKhwKyXDg+fiSNpraJKoocEmNl8vHNuq6NsT1P4yUqJGgXE2NrHnUAUmJ7TvheqUs24rIUIHrW4f4=
+	t=1759165820; cv=none; b=VJ5d9lMa17UpV3Kd9LxtTiRHRDMNZ6X3hvkQQu4eIfZXD/pCD/HeCv3+AjIsknCF9he887+7VeRVWyeQSxssKdmOu+xqQnM7cvQrOFVrsyG7q2pibwtIBeayR2OTFxefV8EaeY55vJVj9jNsI5Dac40Gjm5FEYF/47z10UM2M18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759165668; c=relaxed/simple;
-	bh=GHaH6xHVSsfmMOhc3Q4Uv4imU4pJ//tOMuXYRsOMut8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=B23sDNIg/ENXfwIc5WK7AsdUxRuEn2RAu9pPdiHDOxhFvem2VMG4ImP6LTzfDpmeVBsNmrmNTgJkHeyPeXbk2wxRsJiAoXSUTwjuxq2JuPcqcblwAPKaQfv88pi8wV+pspQIv8tL9pgY8iqTr3s5yTZhpILUmEVxeUBK+TPVWTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ewfAFgJH; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-46e425de753so18010805e9.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 10:07:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759165665; x=1759770465; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zj9JtujIrCASOTxrqaUt0QRKvTAm0yHb0MuPSQjc/js=;
-        b=ewfAFgJHx40FBB5cQCI13U9paQma0tclOSnUjz4eo7r1yCwJRaNwKOw5H88HdSUKem
-         PVck37GzfTxOlPQd2Eet7e4yJLzIT4OhlDN9CmfWIcFyT4sMtdXA5+N17o3jHrZ5N8ix
-         GYQbgw2kutnIic0UklpUwoQlPUdIxBETC6/f30ksnFpPZ8ZPXGATBpRWJW4WTEG9KApb
-         +CHGDcNsYhiVvuVMW6KZ96BlsEmPHmbsw7Dg+LL8V7cNG8Whqh6z6wd3EKFzGP5drK7c
-         BB+qLJrFR66bzrZjOVuJzJgZZIUFeCtd97IPt7IaMQOSk1lzHn3oU+73yiPqYm1T8dvf
-         uzIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759165665; x=1759770465;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zj9JtujIrCASOTxrqaUt0QRKvTAm0yHb0MuPSQjc/js=;
-        b=TfuV0sRZMB1SPraML2nhp8zW6bjGvtNbzkwV2z/xYszvFczlFI338LMdSrmd21GVQh
-         6Bp2YDt3w8Aj7P+dCb5uwc37SLAxF4g6DJtf8hpNkXYszFvFlXeXR52E30dEggVhGChF
-         YhulUCHJRhBUD5OedMP64x9e0UYkDQdm69xb1+RBNr3tnGveR2BYpmA8FkPTi46A1Dc1
-         k2UKahGvgagZ+IvU/C/BGw26yrnnpOtz1GcQtwUOzA+++TXtPrmgCyadrFjNtnxixOpa
-         alFpkpiF1P1PvErlSeCSq3lPwhCMrL5wDMp5bcf9g5C6d018s7+Gwbn7CXH108HQbGJ8
-         pL8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVBsOew4AIbh25qSQr3kMAUhgvByWiYaVaumXuDydCydjw0+WC2YnKsO35XEehpjWlI3r7YWTZuYasO@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHQiSTIzYqAZAqBchJGnxPpvg2TQ4b2FiJBnasoh7/Hk1f7y+1
-	e6rcxNyNLNaJtydCUUrcpcMk7cnnnqbQ2a3EqIyXSrcELx5yvZDtV1zc
-X-Gm-Gg: ASbGnct5UwYOOL1Zntlzy2Oik7mAbLvaiFMJyRIk7DHTIs1pTHA+tXP5dtmfiS8vr3k
-	SK/Tya0bqjWfyvF6uyhRnQEQpC5j6e2PqD4ZlLsvDBzVfs447WlfeXdBT0YH4nbkuVNSaBak6lW
-	r145bfWSJk8HNCtqAIQe6L67yjAawh2jLZna3vz6xVyJ+Tg60fWAKm4hx311XeqNDyxfZgHNDn+
-	KEGQVhQcM+BFfos495UHHv82mwiyk0UBtqh1mGdGFyYp5+yoZ+jtzP9+MOpTu6ab0S4Sky+4+6V
-	FJlqLaI3gj8TElYU/h/quz2ZHnJ0gbQxuC0bZKb0aPUO35lj32zRV339WMGSVhFslrbbefMXgrQ
-	mWH7caQzUOPZncFA7wOrP+f4pp2udKadGniU07nHVIN/4RnBtiNOaPJpKPYFBBhl0AvN7rcJ7QY
-	+GSgFL
-X-Google-Smtp-Source: AGHT+IE8a0TuB4O+ROJaTBK4jhGL6wAS75qWcIM1U4/kmaIwGYyni0pYeoJGRjfNbkPbKaoBFbyg2Q==
-X-Received: by 2002:a05:6000:2307:b0:408:ffb9:9f62 with SMTP id ffacd0b85a97d-40e47ee07eamr13272578f8f.29.1759165664670;
-        Mon, 29 Sep 2025 10:07:44 -0700 (PDT)
-Received: from flaviu-Aspire-E5-572G.. ([5.15.71.99])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e2ab61eecsm232769755e9.20.2025.09.29.10.07.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Sep 2025 10:07:43 -0700 (PDT)
-From: Flaviu Nistor <flaviu.nistor@gmail.com>
-To: Conor Dooley <conor+dt@kernel.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Jean Delvare <jdelvare@suse.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Flaviu Nistor <flaviu.nistor@gmail.com>,
-	linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: tmp102: Add TMP110 and TMP113 devices
-Date: Mon, 29 Sep 2025 20:07:30 +0300
-Message-ID: <20250929170730.8285-1-flaviu.nistor@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250924-grievance-crisply-8c7da95946f1@spud>
-References: <20250924-grievance-crisply-8c7da95946f1@spud>
+	s=arc-20240116; t=1759165820; c=relaxed/simple;
+	bh=OiGpU7PnhJ4f6Knst6kdaf7sbJ/eWD9xxiqpMBXj50w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fPSC/I025J/r6yUJo3lB0ADTaictbxL+bmjqnXcWmoe+PHlKqzEz+siyBg2VG7PnzF+ceBVG9gTMdajJBP6BsP8Ji+teRO6DELXEXCZtrX+X55kxtfsb+FS2nBrauhl9qqoxF84Yg+MXifWqVHSB8v8k+hnvwLpTG6qvcG0TEII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Ufxi6mHO; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cb73q0D68z9t2F;
+	Mon, 29 Sep 2025 19:10:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1759165815;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0n/n2aPG/kzPYvO+2OVEYL5klvnYOH3rxCzc5hQBZE4=;
+	b=Ufxi6mHO2aR5i7X58ZBpLwHEL1pIEx9MUkoEvGNpNObkP7xQV8LyFtXd+zAp0BDCtSjssN
+	oh3l4R5h3ZSSr8rHmiulD6gD7roOpmZj+8qTTWOdTuHN01EcIqy/F2sT6yNjxRRSL3JJoM
+	6hlUATmJVZNi+HeQ7DnGYXjYvKQAvNEKDA7WcmlM4G9TzUvxCHx/gH9cnLziVGmgzs22sN
+	NplepLhy45jkBrUeePGTyDTs2RefZgWdrzzhBAwPeATwArcHygRT15vwKggU/gGatN1UzK
+	aF4Ls9sMYg2NPD9DakRPnpnPzCiC0KbXcam/xj78mXXAcOj1V1bJBLmlEtXhZg==
+Message-ID: <86bc3866-4188-45d2-8046-da82e44333c0@mailbox.org>
+Date: Mon, 29 Sep 2025 19:10:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v3 2/2] arm64: dts: imx95: Describe Mali G310 GPU
+To: Rain Yang <jiyu.yang@oss.nxp.com>
+Cc: Frank.Li@nxp.com, airlied@gmail.com, alexander.stein@ew.tq-group.com,
+ boris.brezillon@collabora.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ p.zabel@pengutronix.de, robh@kernel.org, s.hauer@pengutronix.de,
+ shawnguo@kernel.org, simona@ffwll.ch, sre@kernel.org, steven.price@arm.com,
+ tzimmermann@suse.de, xianzhong.li@nxp.com
+References: <20250925203938.169880-1-marek.vasut@mailbox.org>
+ <20250925203938.169880-2-marek.vasut@mailbox.org>
+ <20250926055701.GC8204@nxa18884-linux.ap.freescale.net>
+ <8f4ed393-f94a-4abb-9cdd-60dd693f3ec6@mailbox.org>
+ <aNpYG5VITPmKkNgl@oss.nxp.com>
+ <cc873c8b-435c-467f-b1e9-dc78ddbfb483@mailbox.org>
+ <aNqx6XrUGBgUJ-pF@oss.nxp.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aNqx6XrUGBgUJ-pF@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 216c242169d189a438d
+X-MBO-RS-META: 694cwbhaseu15wsa8xaqtfy7753b3yym
 
-On Mon, Sep 24, 2025 at 19:12:26 +0100, Conor Dooley wrote:
->On Wed, Sep 24, 2025 at 08:55:39AM -0700, Guenter Roeck wrote:
->> On 9/15/25 10:18, Conor Dooley wrote:
->> > On Mon, Sep 15, 2025 at 08:08:18PM +0300, Flaviu Nistor wrote:
->> > > Add a compatible string for TMP110 and TMP113 devices.
->> > > 
->> > > Signed-off-by: Flaviu Nistor <flaviu.nistor@gmail.com>
->> > > ---
->> > >   Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml | 2 ++
->> > >   1 file changed, 2 insertions(+)
->> > > 
->> > > diff --git a/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml b/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml
->> > > index 96b2e4969f78..840b5306a8cf 100644
->> > > --- a/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml
->> > > +++ b/Documentation/devicetree/bindings/hwmon/ti,tmp102.yaml
->> > > @@ -13,6 +13,8 @@ properties:
->> > >     compatible:
->> > >       enum:
->> > >         - ti,tmp102
->> > > +      - ti,tmp110
->> > > +      - ti,tmp113
->> > 
->> > The driver has no match data and no compatible based decisions added in
->> > your patch. Why is a fallback to tmp102 not suitable?
->> > 
->> 
->> That should work for tmp110. However, tmp113 does have additional registers, and it
->> might be desirable to report the content of those using debugfs. Fallback for that chip
->> would work for now, but that might have to change later if support for the additional
->> registers is added to the driver.
->
->In that case, only the driver would need to change not the binding.
->That's fine though, of course.
->
+On 9/29/25 6:20 PM, Rain Yang wrote:
+> On Mon, Sep 29, 2025 at 03:09:01PM +0200, Marek Vasut wrote:
+>> On 9/29/25 11:57 AM, Rain Yang wrote:
+>>> On Mon, Sep 29, 2025 at 02:23:01AM +0200, Marek Vasut wrote:
+>>>> On 9/26/25 7:57 AM, Peng Fan wrote:
+>>>>
+>>>> Hello Peng,
+>>>>
+>>>>> On Thu, Sep 25, 2025 at 10:38:31PM +0200, Marek Vasut wrote:
+>>>>>> The instance of the GPU populated in i.MX95 is the G310, describe this
+>>>>>> GPU in the DT. Include dummy GPU voltage regulator and OPP tables.
+>>>>>>
+>>>>>>
+>>>>>> +		gpu: gpu@4d900000 {
+>>>>>> +			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
+>>>>>> +			reg = <0 0x4d900000 0 0x480000>;
+>>>>>> +			clocks = <&scmi_clk IMX95_CLK_GPU>, <&scmi_clk IMX95_CLK_GPUAPB>;
+>>>>>> +			clock-names = "core", "coregroup";
+>>>>>> +			interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
+>>>>>> +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
+>>>>>> +				     <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>;
+>>>>>> +			interrupt-names = "job", "mmu", "gpu";
+>>>>>> +			mali-supply = <&gpu_fixed_reg>;
+>>>>>> +			operating-points-v2 = <&gpu_opp_table>;
+>>>>>> +			power-domains = <&scmi_devpd IMX95_PD_GPU>;
+>>>>>> +			#cooling-cells = <2>;
+>>>>>> +			dynamic-power-coefficient = <1013>;
+>>>>>
+>>>>> Sorry for my ignorance, would you please share how to get the value?
+>>>> Copy-pasted from NXP downstream kernel fork DT bindings, see:
+>>>>
+>>>> https://github.com/nxp-imx/linux-imx.git
+>>>>
+>>>> 11495de7c24a ("MGS-7621-4 dts: gpu: update devfreq para")
+>>> Hi Marek,
+>>>
+>>> 1. this "mali: gpu@4d900000" label can be found in this commit you showed.
+>>> please correct this to be compatible with the downstream
+>>
+>> No, sorry, that's not how it works. Upstream is not being adjusted to match
+>> decisions made by downstream kernel forks unless there is a good rationale
+>> for such a change. "Downstream does this" is not a good one. (*)
+>>
+>>> and upstream kernel
+>>
+>> All of imx*.dts* use gpu: or gpu2d:/gpu3d:/vpuvg: for the GPU label.
+>> Also, variants of gpu: label seems more popular:
+>>
+>> linux$ grep -hro '[a-z0-9_]\+: gpu@' arch/ | sort | uniq -c
+>>       3 adreno_gpu: gpu@
+>>       1 bb2d: gpu@
+>>       1 gpu2d: gpu@
+>>       1 gpu3d: gpu@
+>>      80 gpu: gpu@
+>>       4 gpu_2d: gpu@
+>>       1 gpu_3d0: gpu@
+>>       4 gpu_3d: gpu@
+>>       6 gpu_mem: gpu@
+>>       1 gpu_reserved: gpu@
+>>       2 gpu_vg: gpu@
+>>      17 mali: gpu@
+>>       1 v3d: gpu@
+>>       2 zap_shader_region: gpu@
+>>
+> 
+> Existence does not necessarily imply validity. Since a single SoC may contain
+> multiple GPUs, it's generally better to use the specific GPU name as a label
+> rather than simply using 'gpu', to avoid potential conflicts.
 
-I am a little confused and I would appreciate some advice if I should leave
-the series as it is or send a v2 only for documentation and Kconfig updates,
-droping the binding update?
+Does the MX95 contain multiple GPUs ?
 
->> 
->> Guenter
->> 
->> > >     interrupts:
->> > >       maxItems: 1
->> > > -- 
->> > > 2.43.0
->> > > 
->> 
+If no, then the statement above does not apply.
+
+If yes, then there is the gpu/gpu2d/gpu3d option.
+
+>>> 2. the compatible string is different from our downstream kernel,
+>>
+>> See above (*)
+> Additionally, there are still some performance differences between the upstream
+> driver and the Mali property driver. If compatibility with both can be achieved,
+> it would allow users to choose the driver that best suits their needs.
+> Personally, I find it convenient to switch between the two drivers using insmod
+> and rmmod, which allows for quick testing and comparison.
+
+Update the downstream fork to match upstream bindings, not the other way 
+around.
+
+>>> also you dropped the "nxp,imx95-mali" compatible patch in the panthor
+>>> driver, why?
+>>
+>> Because it is unnecessary, the generic compatible string is sufficient for
+>> the in-tree kernel driver.
+>>
+>>> this will impact the mali property driver too, which
+>>> has already been used in many customer project.
+>>
+>> See above (*)
+>>
+>> All the more reason to focus on upstream and avoid deployment of various
+>> downstream components, blobs and so on. They cannot be maintained in the long
+>> run, they break, and cause all kinds of maintenance problems.
+>>
+>> Upstream cannot be hindered by downstream blobs and their issues, sorry.
+>>
+>>> 3. the number of frequency in opp-table is only one, but there are two clocks
+>>> in clocks property, this really make people confused.
+>>> CLK/CLK_COREGROUP/CLK_STACK in i.MX95 are from the same source
+>>> <&scmi_clk IMX95_CLK_GPU>, the other clock <&scmi_clk IMX95_CLK_GPUAPB>
+>>> is always-on APB clock, which can't be changed by A-cores, and has been removed
+>>> from clocks property in the latest release.
+>>
+>> Can the APB clock be enabled/disabled from Linux, e.g. to save power ?
+> 
+> please note that the APB clock can't be turned off on the A-core.
+
+I think if the clock are connected to the GPU, then they should be 
+described in the DT.
 
