@@ -1,112 +1,175 @@
-Return-Path: <devicetree+bounces-222452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B45EBA93E5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 14:54:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF6DFBA948A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 15:09:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D972B170001
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 12:54:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2C953AB85A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 13:09:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC93C2FE563;
-	Mon, 29 Sep 2025 12:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD2530505E;
+	Mon, 29 Sep 2025 13:09:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rjFJCBU/"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="hKTf7M4G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B18E42FAC12;
-	Mon, 29 Sep 2025 12:54:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 974EB1D90DD
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 13:09:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759150474; cv=none; b=HaMX7h6DJ+1jNviMoeKyUyryt1cRAiM1ijZKFmotXm22ggfbeg4Sr3gNdQ9huipoRyK0SNjZSrJIdS0wcBtmLzIQApR6N/1cZrKLeGudQVu1v6pZw2+1JjfGFs02fVfQl9JuA8F5EQnFN5HVzjN1apGfwWka2nGuygFR775nlZg=
+	t=1759151355; cv=none; b=kW4iHxoRwA1fS9xP6/o9jpNFhq77ewdQiVLaqf2I/qHy5qkUfau6FUcHEoAvEGmVMpHDeZD8pmwawg92Fg9gzph4raUTsO/Avb33JjIySuJo79r/FIPIaeBkl6Su24zRv+caajJp6ep+i/1w1XPv2vkrNFzipTI0K82FhEIruww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759150474; c=relaxed/simple;
-	bh=P/BYUfk/mkzHib6TOHlBmvk32uOprykrIp5dMYZHmwc=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=C9iTTU/MtytK3uj43wUMXe3xoyvh63+JkU/J9NpbxHlA/UL157inhihkGJoX6aiHrk1EpcR/5At4GYtAOqW369cos9ei5WutKJmV5EEzaibrf38Wc+nqISeX6CbsnR22dTfwFXH8lY+UCIIUojfeS60D7sSmeiVFYff4Ahfa/Sc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rjFJCBU/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C8BFC4CEF4;
-	Mon, 29 Sep 2025 12:54:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759150474;
-	bh=P/BYUfk/mkzHib6TOHlBmvk32uOprykrIp5dMYZHmwc=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=rjFJCBU/Hz0ffTlTH+O4WgtWOn2phyXD9UHUaxOepC3ZxWMOgu5fPYJhKMHBfU8fl
-	 OMnmxdK7d1npNHMOth1kdw9ZIn5QwpwJGxGlpLKWYk/sV8KS/IsLfSIvcnkU36J7Nh
-	 CzyBYwGJpbRS+kgOcOVO1gDMc+sG/8yoHz2cwpybHe7E/KowWHSCzmEQHy3z1cPz1D
-	 8a5tezd3JiTs0Rim9CYT5azieX6XBSUMk6JzGkuF+2SHMGPQ+h30Y5F8uMwqQRh1Kl
-	 g2Ah/YioPPMnTzb6zGzke2xm0r6EPo+fvANlshwsKbnUG4UhBD/udVtvtmQCo8dhCb
-	 uYGht/F5lj3oQ==
-Date: Mon, 29 Sep 2025 07:54:33 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1759151355; c=relaxed/simple;
+	bh=YnHefLEr0fZkNdIWOQTIWjBGTGEaBPQMritBk3IAVSQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=O+8CDZ6UZE3tAK6W9gem1KCCswLWxdV1BLt0mzRfHP/NlKM0hahndPlAXCTA2FNPn4d0Vzb0y6rwPzrwIdSd9et5FI6OvpSqKHzJVwyl4pukVu+3yX0uDt89iSHuZwQV3FcWPb5SaoQoYS1HfTk7fROBnNjs0hvFX/IQNcsc3oI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=hKTf7M4G; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cb1jd0W9Pz9syH;
+	Mon, 29 Sep 2025 15:09:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1759151349;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/3i8sgEYTGUHy8kVjZ5huWXY9cu39rjsciOdj7sJSMg=;
+	b=hKTf7M4GViZx9i0g741/kIoaDKF/Ama5ONUp3M3XghqN1f/SdH+In8q4URpmUNaJzHGqyq
+	Gs7gAw0+qvzRMaoumWU5sNbOPrl2Yj7Kj5ZK3ZtBuTNTwK6CXCa2Z7Aa0BeWPQXK5ocE1T
+	pot54Tu9AoOuZaTtbM++A8WQBTgXbB/LA/sGNfa6Xqeofw1jZR4Yl4ERrYCp5ERuKjY6bD
+	PxlOrFk+r/ilfEfq4omrWHGiRTsipaTHCKBB5UMU14fKa456DmMiAM82nESvkFoggh5JIu
+	M2ACFchy+OWbxfsLKp0DAosl/b44SS55aKBpy8g0iu2nClriNun9SRG4MweRdg==
+Message-ID: <cc873c8b-435c-467f-b1e9-dc78ddbfb483@mailbox.org>
+Date: Mon, 29 Sep 2025 15:09:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-mediatek@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>, 
- linux-pci@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-kernel@vger.kernel.org, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Jianjun Wang <jianjun.wang@mediatek.com>, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Ryder Lee <ryder.lee@mediatek.com>, Manivannan Sadhasivam <mani@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>
-To: Christian Marangi <ansuelsmth@gmail.com>
-In-Reply-To: <20250929113806.2484-4-ansuelsmth@gmail.com>
-References: <20250929113806.2484-1-ansuelsmth@gmail.com>
- <20250929113806.2484-4-ansuelsmth@gmail.com>
-Message-Id: <175915047324.3882585.17769722251535304485.robh@kernel.org>
-Subject: Re: [PATCH v4 3/5] dt-bindings: PCI: mediatek: Add support for
- Airoha AN7583
+Subject: Re: [PATCH v3 2/2] arm64: dts: imx95: Describe Mali G310 GPU
+To: Rain Yang <jiyu.yang@oss.nxp.com>
+Cc: Frank.Li@nxp.com, airlied@gmail.com, alexander.stein@ew.tq-group.com,
+ boris.brezillon@collabora.com, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ festevam@gmail.com, imx@lists.linux.dev, kernel@pengutronix.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ liviu.dudau@arm.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ p.zabel@pengutronix.de, robh@kernel.org, s.hauer@pengutronix.de,
+ shawnguo@kernel.org, simona@ffwll.ch, sre@kernel.org, steven.price@arm.com,
+ tzimmermann@suse.de, xianzhong.li@nxp.com
+References: <20250925203938.169880-1-marek.vasut@mailbox.org>
+ <20250925203938.169880-2-marek.vasut@mailbox.org>
+ <20250926055701.GC8204@nxa18884-linux.ap.freescale.net>
+ <8f4ed393-f94a-4abb-9cdd-60dd693f3ec6@mailbox.org>
+ <aNpYG5VITPmKkNgl@oss.nxp.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aNpYG5VITPmKkNgl@oss.nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: xz6qms6rn9anx7ejke9eg1k6bifj7mya
+X-MBO-RS-ID: 2ab65ce22c334a37a55
 
-
-On Mon, 29 Sep 2025 13:38:02 +0200, Christian Marangi wrote:
-> Introduce Airoha AN7583 SoC compatible in mediatek PCIe controller
-> binding.
+On 9/29/25 11:57 AM, Rain Yang wrote:
+> On Mon, Sep 29, 2025 at 02:23:01AM +0200, Marek Vasut wrote:
+>> On 9/26/25 7:57 AM, Peng Fan wrote:
+>>
+>> Hello Peng,
+>>
+>>> On Thu, Sep 25, 2025 at 10:38:31PM +0200, Marek Vasut wrote:
+>>>> The instance of the GPU populated in i.MX95 is the G310, describe this
+>>>> GPU in the DT. Include dummy GPU voltage regulator and OPP tables.
+>>>>
+>>>>
+>>>> +		gpu: gpu@4d900000 {
+>>>> +			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
+>>>> +			reg = <0 0x4d900000 0 0x480000>;
+>>>> +			clocks = <&scmi_clk IMX95_CLK_GPU>, <&scmi_clk IMX95_CLK_GPUAPB>;
+>>>> +			clock-names = "core", "coregroup";
+>>>> +			interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
+>>>> +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
+>>>> +				     <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +			interrupt-names = "job", "mmu", "gpu";
+>>>> +			mali-supply = <&gpu_fixed_reg>;
+>>>> +			operating-points-v2 = <&gpu_opp_table>;
+>>>> +			power-domains = <&scmi_devpd IMX95_PD_GPU>;
+>>>> +			#cooling-cells = <2>;
+>>>> +			dynamic-power-coefficient = <1013>;
+>>>
+>>> Sorry for my ignorance, would you please share how to get the value?
+>> Copy-pasted from NXP downstream kernel fork DT bindings, see:
+>>
+>> https://github.com/nxp-imx/linux-imx.git
+>>
+>> 11495de7c24a ("MGS-7621-4 dts: gpu: update devfreq para")
+> Hi Marek,
 > 
-> Similar to GEN3, the Airoha AN7583 GEN2 PCIe controller require the
-> PBUS csr property to permit the correct functionality of the PCIe
-> controller.
-> 
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> ---
->  .../bindings/pci/mediatek-pcie.yaml           | 110 ++++++++++++++++++
->  1 file changed, 110 insertions(+)
-> 
+> 1. this "mali: gpu@4d900000" label can be found in this commit you showed.
+> please correct this to be compatible with the downstream
 
-My bot found errors running 'make dt_binding_check' on your patch:
+No, sorry, that's not how it works. Upstream is not being adjusted to 
+match decisions made by downstream kernel forks unless there is a good 
+rationale for such a change. "Downstream does this" is not a good one. (*)
 
-yamllint warnings/errors:
+> and upstream kernel
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/mediatek-pcie.example.dtb: pcie@1fa92000 (airoha,an7583-pcie): Unevaluated properties are not allowed ('resets' was unexpected)
-	from schema $id: http://devicetree.org/schemas/pci/mediatek-pcie.yaml#
+All of imx*.dts* use gpu: or gpu2d:/gpu3d:/vpuvg: for the GPU label.
+Also, variants of gpu: label seems more popular:
 
-doc reference errors (make refcheckdocs):
+linux$ grep -hro '[a-z0-9_]\+: gpu@' arch/ | sort | uniq -c
+       3 adreno_gpu: gpu@
+       1 bb2d: gpu@
+       1 gpu2d: gpu@
+       1 gpu3d: gpu@
+      80 gpu: gpu@
+       4 gpu_2d: gpu@
+       1 gpu_3d0: gpu@
+       4 gpu_3d: gpu@
+       6 gpu_mem: gpu@
+       1 gpu_reserved: gpu@
+       2 gpu_vg: gpu@
+      17 mali: gpu@
+       1 v3d: gpu@
+       2 zap_shader_region: gpu@
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250929113806.2484-4-ansuelsmth@gmail.com
+> 2. the compatible string is different from our downstream kernel,
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+See above (*)
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+> also you dropped the "nxp,imx95-mali" compatible patch in the panthor
+> driver, why?
 
-pip3 install dtschema --upgrade
+Because it is unnecessary, the generic compatible string is sufficient 
+for the in-tree kernel driver.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+> this will impact the mali property driver too, which
+> has already been used in many customer project.
 
+See above (*)
+
+All the more reason to focus on upstream and avoid deployment of various 
+downstream components, blobs and so on. They cannot be maintained in the 
+long run, they break, and cause all kinds of maintenance problems.
+
+Upstream cannot be hindered by downstream blobs and their issues, sorry.
+
+> 3. the number of frequency in opp-table is only one, but there are two clocks
+> in clocks property, this really make people confused.
+> CLK/CLK_COREGROUP/CLK_STACK in i.MX95 are from the same source
+> <&scmi_clk IMX95_CLK_GPU>, the other clock <&scmi_clk IMX95_CLK_GPUAPB>
+> is always-on APB clock, which can't be changed by A-cores, and has been removed
+> from clocks property in the latest release.
+
+Can the APB clock be enabled/disabled from Linux, e.g. to save power ?
 
