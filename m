@@ -1,127 +1,134 @@
-Return-Path: <devicetree+bounces-222352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2063BA8417
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 09:35:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEE12BA8429
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 09:36:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4CF047A8DC0
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 07:33:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0ED183B0A17
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 07:36:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47E9A2C029B;
-	Mon, 29 Sep 2025 07:35:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61EC2C0273;
+	Mon, 29 Sep 2025 07:36:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o2hZtDgb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jKcv5QVm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11B2E2BF3DB;
-	Mon, 29 Sep 2025 07:35:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62E372BEC26
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 07:36:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759131314; cv=none; b=EfL/yASEcOBqUj4sfo00jXgMROAEoP/fCH+94O5oiA03D3bLAEPdV6kNbhCIaZ5EZD6wFr6jusrK7D/jggVJp1Wa+4HD7MqcOThL1UZ2TUji0IF2cU8qRy0RI/wJN2dIy0s0Ix6oSWTum+vFrmoNPbiiZM/ugW8c7huI8LL59Dg=
+	t=1759131377; cv=none; b=gK65a4woWIwCtr0qy+qmEFU8WZ0dO4TyBhK9X9TUCkFCz3rJv35a0T9aqcXRN06zgubsBvRkQr+4beHRS61ZSMQe7F0mMQr+n+74pkVXs0g6Xcvl961vthuNPbh9CublnCem/0R5rBjAHAZqMCln/AGdk/Ky/KZ7tG8ay6LicM4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759131314; c=relaxed/simple;
-	bh=7NYQN/xl5KhOZgk379tTGk/P5gU5kC6zCwf6FS1ZnTQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Q+BUGPJhxKBR7wrSTflRV21vbmeXlqMwRQyJMxrzb6YvlraaTYvik4gYrvUKOm/xIcenyyVv+kWc9L8zExwub27fP0imJVz8G1j+ZU9ZWB6bJnbiR4kagjJnp8Wr9w2IMlXd2A7UzwApGtx979Eh6dlUVh57RF8FZfoKF2JPWsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o2hZtDgb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id A3A79C19422;
-	Mon, 29 Sep 2025 07:35:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759131313;
-	bh=7NYQN/xl5KhOZgk379tTGk/P5gU5kC6zCwf6FS1ZnTQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=o2hZtDgb5K9QlOfTjC98L5iRwA7E8xwtpmOTUYjQTtwmEBdwX/LOug36uTyqiqae8
-	 QjdqwHSQHR8HUKfGoX83DEpcxvsQMFiyUABwTzkySgbYboeaMbGlTYNiq28Kdo3HtU
-	 YMZ+a9WPJZg1OGXNzDZAzc0jXkImKI+lIa4TYoVVQBzJJ3okUw2HllPY52K6PLKds0
-	 dH1S/ktWVuM3L30nSi8dFAVddjBrSf/4kSBtgDolrEkG212c1pIAjr63vmHcfQMsgy
-	 rYSavRbn4tLGwXRHJ/7IVEnJg+68bFXk153AMil8UhVJLZtOQVIrlI3YhgTCYcbMoA
-	 0SidfooQBnmYA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 9BAA4CAC5BD;
-	Mon, 29 Sep 2025 07:35:13 +0000 (UTC)
-From: Rudraksha Gupta via B4 Relay <devnull+guptarud.gmail.com@kernel.org>
-Date: Mon, 29 Sep 2025 00:35:15 -0700
-Subject: [PATCH v4 4/4] arm64: dts: rk3399-pinephone-pro: Fix voltage
- threshold for volume keys
+	s=arc-20240116; t=1759131377; c=relaxed/simple;
+	bh=iI5dyLH2jL82quewevun1RJ+cRuVB4TU0GIEvBc+ppw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eVo5uBRC2pGGvezFLtrcEnQS7Yb7XU1QrYzi5+Ee00Jk2ql9QBZ1nlz4sk3PpiWoWl/Uct4VdEB5VuE9tY6zH98yl++x7TGe0+txGqoLEBLsksSuinadFxelkXWcmzZELi5nJdCHNyKcIaaR4u/T7ZboY2BSIPlCBPJB921eygY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jKcv5QVm; arc=none smtp.client-ip=209.85.215.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-b554bb615dcso3356805a12.1
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 00:36:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759131375; x=1759736175; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WtpldhRDbRzoGsO+8pMp+y65v40hHUOFZZcRghWlbXo=;
+        b=jKcv5QVmUNfgz6zP/NqcX1zRgPKHHscG77wdCIg/wYQTDeLophx6v6zwEdol5z/Y7b
+         F7JSlvHazeewAG9GSOhVpsre5vuuitAqWyL7SlEEeVpj4rkXaTjxFkvLmccDjs3t4ik6
+         6Zu7X/siZwYP9LsE+4R0Lm4BukyxGDNY6uCobb6pEEtXAF3+edHr9mSOIABVOYBBphCo
+         tXzQt/WkBGcTH+5TsfZfY4/VN24cJ/mh9LL4mFNza37RKPEQA1by7mXFEbRaL/bVaZvP
+         SjMMC4/K9KZjJWOK5W68KqD70yb14Kq7umdR5lmwDPbD8/7kWdIbml4PlIBeS4Qi7CSj
+         Co2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759131375; x=1759736175;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WtpldhRDbRzoGsO+8pMp+y65v40hHUOFZZcRghWlbXo=;
+        b=h03+EdKldYI7Fr5Js7oMJNHG0MWSoCqHril7ZIa+75XMOetfDBnoP9ZQny0IKdfyg0
+         VGrFlm835/kiq8WyTH8B9dPeYyM7nUCyQqL15WHFqOVUpbf8PVjx5px2H4IYpWXqZxxX
+         PmOv1Ogjq3r+9WSNiQZkUPMmOpM9h8Q/NRq5j3DGCo+8YsHLZRDyGqqJ0nF0yjUDl9T5
+         2w04qH3Nj31v7VBnxoY0/LoJxst209fcKGDYt8nz9ef5a5ADk7cO7ov/WDbGcYzOs76A
+         wem2X32QfxyLtTTSV7LM7e0mU07bWf+MxcQnHkPHU4SBSIUJ84JwDSnMmKpmd50DKVFv
+         iiWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXWxgpiR4D+YoOGDWzYmcvlETtxVGaKkklaiMcQtzJFwFZ2p5CxtaY60/dl0GhuVdor4WgYrVDGbBqq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2cd+kf+OAVnI8/Fljxhh/6nA1AzgW0WFvdDUbWdDlLaWNDPig
+	9RvqhbRntICGHnoHxG4zrYTjB0Sa3mv2KhF3NPH/HmVy6xh+7U5+bSgzzL/o2keI
+X-Gm-Gg: ASbGncsuR0dDM8/ol9HUG84QA6b6Tr8B7eVR/OnRTrKbOEQocjpmMJMZg8iCGJqjz8R
+	8Pk1VT7haHG3hsMBWSl8ycGoxBGvP1wUeDCHFweudHyCu9ZwKn1q7FQ1uhKl9XSqSKb2HFOmZuT
+	o1cJNro6elpWB8Q8D+OYD3+5Fgq1wGuxeOA86l7K9LPkU0yaH2dkB4WzFgshB91INXBO1smuC1U
+	X2xxXgXNx0Pvc2bz8NgCjtSxqba9n5YqDzL7Dj0DtR89zYo8VrzMaEk8QM8Wa/qSKvutEQ+uFsR
+	UbujgY4pANrz6Fgc3Hu3xLWeztkyVJoKr0fyoIOqrfekSQRhjrgyFpkOXaP5s3nt7zDqYyFHWF7
+	2im17jJvPoQxg5mLJsv4EDBmFC0Dqkj/jfdhicemYPY0idBuxvLOaTrrYeEpYqTct3+rJUJ5QZR
+	QB
+X-Google-Smtp-Source: AGHT+IEWeCcdaLlQLuxHrfc5zv7vJMgw2RSY5WHEZHUZu8lif8TvLDvdNna1pOwRzpAobj4aitc+pg==
+X-Received: by 2002:a17:903:110e:b0:266:64b7:6e38 with SMTP id d9443c01a7336-27ed4a47150mr170404685ad.46.1759131374689;
+        Mon, 29 Sep 2025 00:36:14 -0700 (PDT)
+Received: from [192.168.68.63] (104-12-136-65.lightspeed.irvnca.sbcglobal.net. [104.12.136.65])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27eec33b775sm92844965ad.12.2025.09.29.00.36.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Sep 2025 00:36:14 -0700 (PDT)
+Message-ID: <5658a127-617c-464a-9651-5ab114161f84@gmail.com>
+Date: Mon, 29 Sep 2025 00:36:13 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/5] Upstreaming Pinephone Pro Patches
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Heiko Stuebner <heiko@sntech.de>, "Leonardo G. Trombetta"
+ <lgtrombetta@gmx.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-kernel@vger.kernel.org, Ondrej Jirman <megi@xff.cz>
+References: <20250921-ppp_light_accel_mag_vol-down-v3-0-7af6651f77e4@gmail.com>
+ <175856183851.499898.2147562889507523573.robh@kernel.org>
+Content-Language: en-US
+From: Rudraksha Gupta <guptarud@gmail.com>
+In-Reply-To: <175856183851.499898.2147562889507523573.robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250929-ppp_light_accel_mag_vol-down-v4-4-6598f22d3451@gmail.com>
-References: <20250929-ppp_light_accel_mag_vol-down-v4-0-6598f22d3451@gmail.com>
-In-Reply-To: <20250929-ppp_light_accel_mag_vol-down-v4-0-6598f22d3451@gmail.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Rudraksha Gupta <guptarud@gmail.com>, Ondrej Jirman <megi@xff.cz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759131312; l=1565;
- i=guptarud@gmail.com; s=20240916; h=from:subject:message-id;
- bh=GpUQl51v5pQWdXs2BOWJyovxr7JU7F5Mge6gevMi3Lg=;
- b=ab+W3K7XcZNNPkj23XjF8RuvULAYxDqRHxKlFjqVR6ZPwZRRPaYRduyUSHUAvKCp5CjHrBRh1
- DFFnuf1ZL/cDshMh6NFs21K2ORl4epAIXZULo5mGQaKSbeKqpBQ12/D
-X-Developer-Key: i=guptarud@gmail.com; a=ed25519;
- pk=ETrudRugWAtOpr0OhRiheQ1lXM4Kk4KGFnBySlKDi2I=
-X-Endpoint-Received: by B4 Relay for guptarud@gmail.com/20240916 with
- auth_id=211
-X-Original-From: Rudraksha Gupta <guptarud@gmail.com>
-Reply-To: guptarud@gmail.com
 
-From: Ondrej Jirman <megi@xff.cz>
+Hi,
 
-Previously sometimes pressing the volume-down button would register as
-a volume-up button. Match the thresholds as shown in the Pinephone Pro
-schematic.
 
-Tests:
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+>
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>
+>    pip3 install dtschema --upgrade
+>
+>
+> This patch series was applied (using b4) to base:
+>   Base: using specified base-commit f83ec76bf285bea5727f478a68b894f5543ca76e
+>
+> If this is not the correct base, please add 'base-commit' tag
+> (or use b4 which does this automatically)
+>
+> New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20250921-ppp_light_accel_mag_vol-down-v3-0-7af6651f77e4@gmail.com:
+>
+> arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dtb: light-sensor@48 (sensortek,stk3311): 'leda-supply', 'vdd-supply' do not match any of the regexes: '^pinctrl-[0-9]+$'
+> 	from schema $id: http://devicetree.org/schemas/iio/light/stk33xx.yaml#
 
-~ $ evtest
-    // Mashed the volume down ~100 times with varying intensity
-    Event: time xxx, type 1 (EV_KEY), code 114 (KEY_VOLUMEDOWN), value 1
-    Event: time xxx, type 1 (EV_KEY), code 114 (KEY_VOLUMEDOWN), value 0
-    // Mashed the volume up ~100 times with varying intensity
-    Event: time xxx, type 1 (EV_KEY), code 115 (KEY_VOLUMEUP), value 1
-    Event: time xxx, type 1 (EV_KEY), code 115 (KEY_VOLUMEUP), value 0
+Thanks, addressed in v4!
 
-Signed-off-by: Ondrej Jirman <megi@xff.cz>
-Signed-off-by: Rudraksha Gupta <guptarud@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-index 05aaf152b5efa5a87663fc97ce034e75131670bb..e7b0d965df6f5daa3e1b7ff98d567b74e8c7715f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-@@ -40,13 +40,13 @@ adc-keys {
- 		button-up {
- 			label = "Volume Up";
- 			linux,code = <KEY_VOLUMEUP>;
--			press-threshold-microvolt = <100000>;
-+			press-threshold-microvolt = <2000>;
- 		};
- 
- 		button-down {
- 			label = "Volume Down";
- 			linux,code = <KEY_VOLUMEDOWN>;
--			press-threshold-microvolt = <600000>;
-+			press-threshold-microvolt = <300000>;
- 		};
- 	};
- 
-
--- 
-2.51.0
-
+Rudraksha
 
 
