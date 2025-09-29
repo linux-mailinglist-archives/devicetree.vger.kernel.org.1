@@ -1,119 +1,135 @@
-Return-Path: <devicetree+bounces-222261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EDA3BA7A4B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 02:52:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CD91BA7C94
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 04:14:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 062E81733F6
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 00:52:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 649297A309F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 02:12:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E4F1487F4;
-	Mon, 29 Sep 2025 00:52:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8CB11DDC2C;
+	Mon, 29 Sep 2025 02:14:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="TQlEZ+Tp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bG/DEqHO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7032232C8B
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 00:52:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CE032AD3E;
+	Mon, 29 Sep 2025 02:14:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759107132; cv=none; b=u6scqEQWszYYvtsXErM46Bjw39C4Ojnu5NrAzPP2IrXfR9sCFm0yztK9Biwu8fDUCbbMTlIJgZYh+e3vodbCmOv+tfavlvJ4y+0b6GwfeooC8RuPjipPhAEALrbwxyJKTPNhp26BhfgGcUqCfL69osEAs12IJMHlwjOIpaJ/57s=
+	t=1759112049; cv=none; b=o5cyDnfwHl3s9SD0SDvDrVB8ZXdQpAmRb06dSZwWDRviPZKgoXvXReQzFZgjwdtCyK9bg7/8Y9Yf9P3tJpCItohQV+gv1w704BfkxgLz37nSXuC7BK/LYJxqL3e8S14pJS8Q94cquSqmVsPVElD4mqmsjh8pFkNCa8/bQZK0Whc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759107132; c=relaxed/simple;
-	bh=nH4cEwe8UHf4Me7m6iollgu+m17Z1H7oxF0wNNyn+d4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HJwHN4hgFbkIZCppnLJqceARVaa2BbBRaYzwsLOgwGpNCzZb/woy9CbAd7Hk9WaCqRcatJ+4nDZBqvOaphqr6iR/3gpmJzwS+4pTq2canvrhOKU0IevWUh1WusGZHcWzPQMohLZRN9UInJxaGYt77hS+qoOnwDSdDw7v89Iu0KI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=TQlEZ+Tp; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cZjM51BFTz9sm2;
-	Mon, 29 Sep 2025 02:52:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1759107121;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Djnb22vXs0nO5rPbjymOk32EmHdD+HDxTwWNm9+Bfns=;
-	b=TQlEZ+TpP5RCDXXFkZm8omA8mNSEamptg9t1ji7874wLDbDSnOwUQmzLS6d1uEqPUm547X
-	C9/i75UD/4Rgk8z8Hg8zU7zzy5/UzAb2TtYPQCXi3u6XVooBmpOlEldYK6nFo+8JOcbCmZ
-	IA8UX8et4qJzg4DrMAmstnMnjGfFcA91ueGLlIvVrdMe3YZKAKBKfBKPCVA0QG16u2wA47
-	GJHg9Rjn1dycE8tH7fk9dVIssucguMHaCSOorXR/f8gJomjVg4uBEfl4bRaA5s5n2Wg3sT
-	ADrJxbIscWHmRtSXpRa7V/YYIV0g7Eg6ifjM2GrS2riYhGA4pTb1xFqGj8ABGQ==
-Message-ID: <8f4ed393-f94a-4abb-9cdd-60dd693f3ec6@mailbox.org>
-Date: Mon, 29 Sep 2025 02:23:01 +0200
+	s=arc-20240116; t=1759112049; c=relaxed/simple;
+	bh=YkAivuujF0wa+84kxUjj3ARg+Nn+qWZd6TXvKUr4GW4=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=RgbK9uS6vBHnF0PiS1GdV9D/oBzpZrVDB5mkZtgLl5o4OuTl+2X5NAVj7JhrForLncbHfunKs5hjGApWyDoNLTjk1iYRvg+sfKCvxizWiO3SyrBi0k3iXMRW9kIfXckHEZY/8nbc2AIxjjhA93rQa/E83WX0n5Kxh1cScxRxJoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bG/DEqHO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBD96C4CEF0;
+	Mon, 29 Sep 2025 02:14:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759112049;
+	bh=YkAivuujF0wa+84kxUjj3ARg+Nn+qWZd6TXvKUr4GW4=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=bG/DEqHOwUO6+5PEuRkhBIgm+cMA3sfH4u67mVKMdeUknfj/IxdTMlZZDyaBE4/Pc
+	 KGCEf+lS4uT6FhrX7up6ni3trwGaldLQOpCJkv/yUjow2WDqJ08YfBaQ7N58vXPB5r
+	 uItS3RxkqsDpv64HRUYTsJ+QFhq4ysGG+IHDU/7h37U877dMgszttTVDABMmZ0GgVH
+	 kGOdlbms0jwiH/nBP1dlRTPmWH7YQ3NI7fxVojKDPWrZKYefEb7oj++I7GAw/8Ui2o
+	 Gx0nkP6PDXSJlg++twKqgT3wWWaFcaV04mhjSUVSk9kyb3plR67x/IrmZwsmyUM1aK
+	 YEcazkCaKw7hA==
+Date: Sun, 28 Sep 2025 21:14:06 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v3 2/2] arm64: dts: imx95: Describe Mali G310 GPU
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: linux-arm-kernel@lists.infradead.org,
- Boris Brezillon <boris.brezillon@collabora.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Fabio Estevam <festevam@gmail.com>, "Jiyu Yang (OSS)"
- <jiyu.yang@oss.nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Xianzhong Li <xianzhong.li@nxp.com>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- imx@lists.linux.dev
-References: <20250925203938.169880-1-marek.vasut@mailbox.org>
- <20250925203938.169880-2-marek.vasut@mailbox.org>
- <20250926055701.GC8204@nxa18884-linux.ap.freescale.net>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20250926055701.GC8204@nxa18884-linux.ap.freescale.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 24eeff4a72bf94b4f8a
-X-MBO-RS-META: kgs4shqh8jgam9h18x7hnwfqw7yfhu9n
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: conor+dt@kernel.org, unicorn_wang@outlook.com, krzk+dt@kernel.org, 
+ rabenda.cn@gmail.com, alexander.sverdlin@gmail.com, 
+ thomas.bonnefille@bootlin.com, devicetree@vger.kernel.org, 
+ sophgo@lists.linux.dev, inochiama@gmail.com, chao.wei@sophgo.com
+To: Joshua Milas <josh.milas@gmail.com>
+In-Reply-To: <20250927173619.89768-1-josh.milas@gmail.com>
+References: <20250927173619.89768-1-josh.milas@gmail.com>
+Message-Id: <175911189587.2556652.14764390640619439549.robh@kernel.org>
+Subject: Re: [PATCH 0/2] Add initial Milk-V Duo S board support
 
-On 9/26/25 7:57 AM, Peng Fan wrote:
 
-Hello Peng,
-
-> On Thu, Sep 25, 2025 at 10:38:31PM +0200, Marek Vasut wrote:
->> The instance of the GPU populated in i.MX95 is the G310, describe this
->> GPU in the DT. Include dummy GPU voltage regulator and OPP tables.
->>
->>
->> +		gpu: gpu@4d900000 {
->> +			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
->> +			reg = <0 0x4d900000 0 0x480000>;
->> +			clocks = <&scmi_clk IMX95_CLK_GPU>, <&scmi_clk IMX95_CLK_GPUAPB>;
->> +			clock-names = "core", "coregroup";
->> +			interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names = "job", "mmu", "gpu";
->> +			mali-supply = <&gpu_fixed_reg>;
->> +			operating-points-v2 = <&gpu_opp_table>;
->> +			power-domains = <&scmi_devpd IMX95_PD_GPU>;
->> +			#cooling-cells = <2>;
->> +			dynamic-power-coefficient = <1013>;
+On Sat, 27 Sep 2025 13:36:17 -0400, Joshua Milas wrote:
+> This adds an initial device tree for the Milk-V Duo S board
+> with support for reading from the SD card. This is continued
+> work from Michael Opdenacker's v6 series on the ARM64 side.
+> I'm still working on confirming the RISCV side.
 > 
-> Sorry for my ignorance, would you please share how to get the value?
-Copy-pasted from NXP downstream kernel fork DT bindings, see:
+> https://lore.kernel.org/linux-riscv/20240421055710.143617-1-michael.opdenacker@bootlin.com/
+> 
+> Patch produced against the "for-next" branch of the sophgo "linux" tree:
+> https://github.com/sophgo/linux.git
+> 
+> Joshua Milas (2):
+>   dt-bindings: soc: sophgo: add Milk-V Duo S board compatibles
+>   arm64: dts: sophgo: add initial Milk-V Duo S board support
+> 
+>  .../bindings/soc/sophgo/sophgo.yaml           |  1 +
+>  arch/arm64/boot/dts/sophgo/Makefile           |  1 +
+>  .../boot/dts/sophgo/sg2000-milkv-duo-s.dts    | 88 +++++++++++++++++++
+>  3 files changed, 90 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
+> 
+> --
+> 2.51.0
+> 
+> 
+> 
 
-https://github.com/nxp-imx/linux-imx.git
 
-11495de7c24a ("MGS-7621-4 dts: gpu: update devfreq para")
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: attempting to guess base-commit...
+ Base: tags/next-20250926 (exact match)
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/sophgo/' for 20250927173619.89768-1-josh.milas@gmail.com:
+
+arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dtb: / (milkv,duo-s): compatible: 'oneOf' conditional failed, one must be fixed:
+	['milkv,duo-s', 'sophgo,sg2000'] is too short
+	'milkv,duo-s' is not one of ['milkv,duo']
+	'milkv,duo-s' is not one of ['sophgo,huashan-pi']
+	'milkv,duo-s' is not one of ['sipeed,licheerv-nano-b']
+	'milkv,duo-s' is not one of ['milkv,pioneer', 'sophgo,sg2042-evb-v1', 'sophgo,sg2042-evb-v2']
+	'milkv,duo-s' is not one of ['sophgo,srd3-10']
+	'sophgo,cv1800b' was expected
+	'sophgo,cv1812h' was expected
+	'milkv,duo-module-01' was expected
+	'sipeed,licheerv-nano' was expected
+	'sophgo,sg2042' was expected
+	'sophgo,sg2044' was expected
+	from schema $id: http://devicetree.org/schemas/soc/sophgo/sophgo.yaml#
+
+
+
+
+
 
