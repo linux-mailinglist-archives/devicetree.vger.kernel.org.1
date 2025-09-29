@@ -1,125 +1,119 @@
-Return-Path: <devicetree+bounces-222260-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E3D6BA7986
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 01:56:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EDA3BA7A4B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 02:52:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54DC83B0EE9
-	for <lists+devicetree@lfdr.de>; Sun, 28 Sep 2025 23:56:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 062E81733F6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 00:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23B4421C179;
-	Sun, 28 Sep 2025 23:56:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33E4F1487F4;
+	Mon, 29 Sep 2025 00:52:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YA3Mtz9l"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="TQlEZ+Tp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8B81D5ADE
-	for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 23:56:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7032232C8B
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 00:52:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759103802; cv=none; b=WZPetpaAmc/zO9Th3Csr7/57aAW0Y6iVnIPP28fgMgHikPNkUZNeE/q1JFNgam7kj2hWncqm7F0rsu5aCRoWtNFq7p4dsUA1W40LYo6QOmbFf/nJqy0xK8bd2pi2A2RrEOGRGU952Hsk9Vm+7Aj0GLWUXLzrA93vRbj1MRJvAW4=
+	t=1759107132; cv=none; b=u6scqEQWszYYvtsXErM46Bjw39C4Ojnu5NrAzPP2IrXfR9sCFm0yztK9Biwu8fDUCbbMTlIJgZYh+e3vodbCmOv+tfavlvJ4y+0b6GwfeooC8RuPjipPhAEALrbwxyJKTPNhp26BhfgGcUqCfL69osEAs12IJMHlwjOIpaJ/57s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759103802; c=relaxed/simple;
-	bh=PBXcdUFXV2smj1ifaK+LoGQlD79BEM5RKJP30S7aDQM=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Ggsea1X8w5LMsCmrmF1ZNddR8rsxLIVNWOOXdtOC/Yr6az4u+3eROXNeNyoljHT7X6D4KRUUwjE5c0eP8slS25js5woGLq3xcAjWAb8jaODrlxMxsvw+G6xZwvdkO42knuZyTlgrvPFMe/anGW60rix0Y+xoIfvawq3aZ63moK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YA3Mtz9l; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-58120c35d47so663875e87.1
-        for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 16:56:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759103798; x=1759708598; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from:subject
-         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DbaERkJpuwwW2s0GTceO+zDUT/u2ovHBQ/LYQFgCFf8=;
-        b=YA3Mtz9lp8WYOSmFrudhBWi8vzYu4Z1BF/jVUhu+kBx8y+v6YWH5ODtzpkIcPLJTNG
-         CVYAOb/wH7AYEItgHcvVx94Kpz6JzBf0IEHFIrOcncuA/JvD9ay4MQW/b6vWkF1jeZub
-         3GqFgfK3wJUe7vB2laoSuAqe9R2fFq15eSOr/qZbKgiIhKY8ymK0O3VmXzxkww0sPAj2
-         trVqm8xINp72QCdwIWyTyrRFmMK/2EnrtDvN9K/FqtQH+ojqbniTNHNw8uya3mhoclbF
-         HCtxZJNGdy/R9pMjTtYz7WsY1DyxMLRvldAZEV5oSzfJaTzsYsl7aOiF5grroj1jLNiM
-         4onQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759103798; x=1759708598;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=DbaERkJpuwwW2s0GTceO+zDUT/u2ovHBQ/LYQFgCFf8=;
-        b=SZjeRQ93+4OGHlZleIuaxWXLXU15PYPl1gNTCZgXIjyffth4Lb1T+rv0WBvFQ83CJ2
-         EKV/lA7LtU3GoSvXoGUbEcA05al2vBR5qbZ5H0o+waiP1G6o8hulu5k32Ndd3Du5XjQI
-         jAegaF3TjdSHAAtf0sCLi3f0Qa7VCzYqJZ6+6vqdH9SY9Ekhs+Ky7E0+3HHg6EbSisOd
-         ujPRbswUItsmxY7udzveg9ETWuxBvwLhfDBIMKuq43dNIgsfe0UCwneCN5HzKCTvrKFz
-         Ti85QAxSrEggdhwLvNGXXa7hXqnRgXZ9JBy7Jjou9MyjarBebDpHoD3HuTvsi7KCbHSb
-         8WXw==
-X-Forwarded-Encrypted: i=1; AJvYcCVc57mEixmxiwlEtMNGmADTUP8nYOD3iLf2lEXfquuI/0yheV6SYCxd0W7SDQpwJ2Xm3x+GJVGu7xJP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwF7BfElzex6Ea+hC24YdfFN6ebwoNNugkmlS+bAjvPerjU/A4L
-	1LhQ8rE7ZJ2HChMPIxknEz8nLffSYpXmEyiv/YqZ3U2ORqIMhRWwlJUoEzp7nfcKBqI=
-X-Gm-Gg: ASbGncv8doEGnCIKbpl/3gDMyMzBFYFlFlYmGjfzVmJycjXeqKJgozJ5P6l7rXfgSRu
-	DP/d6jL9cL2PWtHU3buqArpewNaRday0z53bEHBF9napnXXNkwf29a8BBND5GZIlCwy7UliUxzH
-	l5e06aMSQjnXlRTvmrSl5+nVyGJnHz8Khps1jSl4bHDUFmTg5S4exByuCths5nNwtxFYNtUFXf1
-	BJrKIgHXTRAziH+bXzUq7awIwOf12SnLKxpChVt8L6Z/xJ8W+A4wucrMjIcP2PixJq+68/RMtmx
-	TbO768j07GpnrsuAy1WWcKzy5xkX1RzoFm+R60FWmwoxUGZY5F+VlCjyqeCWKPmetghKywPoPOg
-	6Wrp4t6x+D0WSOLy5E/rui9v2Kgoub4bdxjQpRNUINyEk3ACfOTywM/kHwSrlczMFsNlsln1HQe
-	qrIQ==
-X-Google-Smtp-Source: AGHT+IEniNh/lC6fMtQqG7+hId5XHSg1wAZFEUUvL+8ztnzI/asQEKfDgprBwMaVnstmR6eSJxzAxg==
-X-Received: by 2002:a05:6512:230a:b0:578:f613:ed9b with SMTP id 2adb3069b0e04-582d267c1d8mr1996930e87.8.1759103798319;
-        Sun, 28 Sep 2025 16:56:38 -0700 (PDT)
-Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58316a32217sm3610507e87.115.2025.09.28.16.56.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 28 Sep 2025 16:56:36 -0700 (PDT)
-Message-ID: <99f2de20-054f-4122-82d7-dbbb2ee32482@linaro.org>
-Date: Mon, 29 Sep 2025 02:56:33 +0300
+	s=arc-20240116; t=1759107132; c=relaxed/simple;
+	bh=nH4cEwe8UHf4Me7m6iollgu+m17Z1H7oxF0wNNyn+d4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HJwHN4hgFbkIZCppnLJqceARVaa2BbBRaYzwsLOgwGpNCzZb/woy9CbAd7Hk9WaCqRcatJ+4nDZBqvOaphqr6iR/3gpmJzwS+4pTq2canvrhOKU0IevWUh1WusGZHcWzPQMohLZRN9UInJxaGYt77hS+qoOnwDSdDw7v89Iu0KI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=TQlEZ+Tp; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cZjM51BFTz9sm2;
+	Mon, 29 Sep 2025 02:52:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1759107121;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Djnb22vXs0nO5rPbjymOk32EmHdD+HDxTwWNm9+Bfns=;
+	b=TQlEZ+TpP5RCDXXFkZm8omA8mNSEamptg9t1ji7874wLDbDSnOwUQmzLS6d1uEqPUm547X
+	C9/i75UD/4Rgk8z8Hg8zU7zzy5/UzAb2TtYPQCXi3u6XVooBmpOlEldYK6nFo+8JOcbCmZ
+	IA8UX8et4qJzg4DrMAmstnMnjGfFcA91ueGLlIvVrdMe3YZKAKBKfBKPCVA0QG16u2wA47
+	GJHg9Rjn1dycE8tH7fk9dVIssucguMHaCSOorXR/f8gJomjVg4uBEfl4bRaA5s5n2Wg3sT
+	ADrJxbIscWHmRtSXpRa7V/YYIV0g7Eg6ifjM2GrS2riYhGA4pTb1xFqGj8ABGQ==
+Message-ID: <8f4ed393-f94a-4abb-9cdd-60dd693f3ec6@mailbox.org>
+Date: Mon, 29 Sep 2025 02:23:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] media: i2c: add Samsung S5KJN1 image sensor device
- driver
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Hans Verkuil <hverkuil@kernel.org>, Hans de Goede <hansg@kernel.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
-References: <20250928200956.1215285-1-vladimir.zapolskiy@linaro.org>
- <20250928200956.1215285-3-vladimir.zapolskiy@linaro.org>
-In-Reply-To: <20250928200956.1215285-3-vladimir.zapolskiy@linaro.org>
+Subject: Re: [PATCH v3 2/2] arm64: dts: imx95: Describe Mali G310 GPU
+To: Peng Fan <peng.fan@oss.nxp.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Fabio Estevam <festevam@gmail.com>, "Jiyu Yang (OSS)"
+ <jiyu.yang@oss.nxp.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Xianzhong Li <xianzhong.li@nxp.com>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev
+References: <20250925203938.169880-1-marek.vasut@mailbox.org>
+ <20250925203938.169880-2-marek.vasut@mailbox.org>
+ <20250926055701.GC8204@nxa18884-linux.ap.freescale.net>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20250926055701.GC8204@nxa18884-linux.ap.freescale.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 24eeff4a72bf94b4f8a
+X-MBO-RS-META: kgs4shqh8jgam9h18x7hnwfqw7yfhu9n
 
-On 9/28/25 23:09, Vladimir Zapolskiy wrote:
-> Samsung S5KJN1 is a 50MP image sensor, it produces Bayer GRBG (2x2)
-> frames in RAW10 output format, the maximum supported output resolution
-> is 8160x6144 at 10 frames per second rate.
+On 9/26/25 7:57 AM, Peng Fan wrote:
+
+Hello Peng,
+
+> On Thu, Sep 25, 2025 at 10:38:31PM +0200, Marek Vasut wrote:
+>> The instance of the GPU populated in i.MX95 is the G310, describe this
+>> GPU in the DT. Include dummy GPU voltage regulator and OPP tables.
+>>
+>>
+>> +		gpu: gpu@4d900000 {
+>> +			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
+>> +			reg = <0 0x4d900000 0 0x480000>;
+>> +			clocks = <&scmi_clk IMX95_CLK_GPU>, <&scmi_clk IMX95_CLK_GPUAPB>;
+>> +			clock-names = "core", "coregroup";
+>> +			interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-names = "job", "mmu", "gpu";
+>> +			mali-supply = <&gpu_fixed_reg>;
+>> +			operating-points-v2 = <&gpu_opp_table>;
+>> +			power-domains = <&scmi_devpd IMX95_PD_GPU>;
+>> +			#cooling-cells = <2>;
+>> +			dynamic-power-coefficient = <1013>;
 > 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Sorry for my ignorance, would you please share how to get the value?
+Copy-pasted from NXP downstream kernel fork DT bindings, see:
 
-<snip>
+https://github.com/nxp-imx/linux-imx.git
 
-> +
-> +#if 0
-> +	/* V07 */
-> +	ret = cci_write(s5kjn1->regmap, CCI_REG16(0x001e), 0x0007, NULL);
-> +	if (ret)
-> +		goto error;
-> +#endif
-> +
-
-That's an unpleasant leftover, I'll remove it in v2 since it's been
-tested that this commented out setting has no noticeable effect.
-
--- 
-Best wishes,
-Vladimir
+11495de7c24a ("MGS-7621-4 dts: gpu: update devfreq para")
 
