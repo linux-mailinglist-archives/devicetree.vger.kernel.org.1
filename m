@@ -1,144 +1,134 @@
-Return-Path: <devicetree+bounces-222498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2971BA9920
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 16:27:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A46D1BA9926
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 16:28:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB8CC3C29A7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 14:27:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EB0C1920767
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 14:28:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE69B30DD2B;
-	Mon, 29 Sep 2025 14:25:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AE3030BB9C;
+	Mon, 29 Sep 2025 14:26:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k1qyMvmD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QNfA+TYy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 557BC30CD8A
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 14:25:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D0A30BB98;
+	Mon, 29 Sep 2025 14:26:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759155932; cv=none; b=mASVfqXltfqRnKyFAddiFZP6TAFt5KhW0qGj6FFa2a1gbCv1VadYcGTgOP0Hp0r6WSs7ko8RyGNcZgc9Nti+8GoxHpx2CpZY2xm1CKWojWjwevw1Z892gxoedk/edkk2DtUVUBPCwmpo/EBqZ/X4wWmQHs6fzSa9sX04PxLV+ig=
+	t=1759155967; cv=none; b=e3JD1am/vLtf0HFn2njlx7bDX7yVZqka+oDoo5VdTSugBiGOmzzpLtPEsX1+Fajp93Qq5LF3pumWmtGVp35Kiz9u99/ibMlGhZqnMcX50bPtqisK3t9EkSZUSJjXk3Vws6Nw2OsS6BGhnoZL2tQSqFNFxREn+LXpusTCfUWVJ8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759155932; c=relaxed/simple;
-	bh=ljrBd5OGddd2yzGqohN5FRIpAWAajBSqIFjspUtmZ1k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Jn6PBAononohVQ8J7NaHXDY4xi7CPpr1FLA6y1taSBJ49ehitAfcw5PFn9NxiPp8Z9hd6vmo6/oDbSqLlHYym4P2PdqhUnU6C/hYKFZWtjFk2V2A1rHKStZmYrYI2gwLJEjWh8LUemwzRwljL7V2zXvlKaHaByiMGrhOZH3TGWU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k1qyMvmD; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-57db15eeb11so5606005e87.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 07:25:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759155928; x=1759760728; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wmXPjuryXSqRr8DS4zExlYZnJGP8SsHdroCjEncRXpI=;
-        b=k1qyMvmDqkdL2tClPLo8AzRJap0/h9oky7Ldgo3fD6jsWG1Kr2+P+rzSR3d2rMv5zN
-         2H2tfgHD+iUdIlXJ0fQwSx3cXeilmYUPh/BUrcZAng1OOMroYzNls1QdZVv8fhqzmf37
-         i+Mj8TAlS3RYSyeq8fhf/mJsuTAqT9m3LjJkWqB/sot7K+6LYgTy7kEnS7YAAwYaD76c
-         dOathoQfUlCEfp8vYtFI5lMjvXameqAeP1TDmwT2vy++Dhnt+sJl6oDxeLkduQzV77TJ
-         nuqo0xF+SPcbCSDcuemqc4cbQz3jk+O0xt5ok18qZHH4ejpltIOHZXZl5fs+nfuiyc4m
-         93eA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759155928; x=1759760728;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wmXPjuryXSqRr8DS4zExlYZnJGP8SsHdroCjEncRXpI=;
-        b=P3EiOywxBeB+J8P92kemzIVu5kTzZ3anMk6sygcBJCgUldFCX0e8959/i2w1uBnipo
-         sS04n4MkiACH2ZgMdCrpwevCPJgykMNYw21hwwfmnyseeKEV6E6qZGOWKlc/XI2D2l3S
-         N5++g/YvlrroTsQ/v1/UKIBTKMJhxwk33KSmqKx+otKCrWWtlx4UfRs+JKUk6CQOhzZy
-         xzx7SyJ2il+XmGGsEtP2An+TBUo0vTuJ4eU8pvQIkZy3r1fM2rn2Jt37/63NZFRnTAj7
-         aopLNwlNPsuxfntPrbw687+2kG524SGZyFkX6wtIqqk3j5CEtDo+wzHky3EaHbAyFsxq
-         GtYA==
-X-Forwarded-Encrypted: i=1; AJvYcCWynY4CWz5Jq4SjD920c9BvEoW9vWKcrUGTV306iO9523pzrQfKEPjGPduKgw8IL4vj1etx1oSx2Yay@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgPXq+O8Hn7vMUFuq9ngpJbmuMcC+vCbBu/fToEwaLHPRzQ//E
-	ly8u4cECbglWlJY6SYdJQqqNuoZvV6EAN3Oyr7W/zykVU4IZvO1zXEiL
-X-Gm-Gg: ASbGnctXCOBYGUad6hNv3WGEFDwY7RK+s9gifKzqtwPeZ9h9HwCYrxUGzw932TbsmzB
-	oupPIr0cyM9fU+aiiU0PYHUML1B8xY0DNrGDnStua7VY57QgxbjGXy82XVNaBwejvf0ntAfCx32
-	NayrX5buTx2DDCx/oqFw6b+QXTWayaCZ/iPaiHvDv7mbxicvUy6LEtM+wN9o9eq6qx2/NU/r2/p
-	glmgKQ+qgdl+QTcoDHIzHP1HFq86Ig2AXQ3Sf/MY7XfB3jruDGfjbI1F4szpGvWpOmKX9f3yzDd
-	eCG88/RqgJHZDsu/a1pp3aUeWV6lnnIMT8YggICZyZvY4TRdZwufzJViON5MzwM2yoKNl6D2S/b
-	Gzq8/FiwQZ2adYj9TXM7INtI0IB+pYogTPxo=
-X-Google-Smtp-Source: AGHT+IHcGLKbQ/s13YElRimx5FsWcbtSM3Vf0+G5+6fyUYRzlFXaqPvOerq0bMbZhupJyyuu2WrS+g==
-X-Received: by 2002:a05:6512:1189:b0:55f:6b4d:85d8 with SMTP id 2adb3069b0e04-582d2b4cbfdmr4907344e87.28.1759155928244;
-        Mon, 29 Sep 2025 07:25:28 -0700 (PDT)
-Received: from xeon.. ([188.163.112.70])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3728c23e6c1sm13201001fa.52.2025.09.29.07.25.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Sep 2025 07:25:27 -0700 (PDT)
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Douglas Anderson <dianders@chromium.org>,
-	Svyatoslav Ryhel <clamor95@gmail.com>,
-	Sam Ravnborg <sam@ravnborg.org>
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-tegra@vger.kernel.org
-Subject: [PATCH v1 8/8] gpu/drm: panel-edp: add AUO B116XAN02.0 panel entry
-Date: Mon, 29 Sep 2025 17:24:54 +0300
-Message-ID: <20250929142455.24883-9-clamor95@gmail.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250929142455.24883-1-clamor95@gmail.com>
-References: <20250929142455.24883-1-clamor95@gmail.com>
+	s=arc-20240116; t=1759155967; c=relaxed/simple;
+	bh=hTD3Nt4DpaJRy7P/xGnOsnI2J/j1t6BOJMHTcrErYBM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U0Y16zbp7IwbhzOH/co5+ONkeS1OkSVv7lev1OTTsSS3CDhrF/HGnGc+yTiSgFvDj0fjtQzd3GHZbuTjIpL/D6I7ALE2rJMclI5tV0PRJvDiWyLnyNgyXTvCDMTS1+KDSCouj+SaIAUymMpwfyuJ1zXZV4gwP1xRf5uHiU9qcfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QNfA+TYy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41B7CC4CEF4;
+	Mon, 29 Sep 2025 14:25:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759155966;
+	bh=hTD3Nt4DpaJRy7P/xGnOsnI2J/j1t6BOJMHTcrErYBM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QNfA+TYysm0r/r7mJIUX1cdDvGFGBTYzwOKXfuZgsoVZioa6sP+OU8gDYuRo+zqpu
+	 Rx2oqwpImf+kGSC0dtL0SGLVSUn+VAayC8BnlCCLcD6MybTCv/DakzG8I8UcBDFc/1
+	 d9cIWsyVYAT2IiatXZ/oNPEf0jt7+4+oMT/u7y37tGTWIj7jOm5hWxyudkcSil0ONf
+	 JBlkyG29FZqqyaYUt1SuDxXmD/oYcLtTCpm9Vub3AQAwtV/al/GcCpEXU11zDmtD2l
+	 bHeSrIl1E3dFC6gsYuLc0wd4CS1PNoV8/TZO/F40ekErsZSM7nbJrJk7UgBj6cRZ6v
+	 jFhxV5Lirvcgg==
+Date: Mon, 29 Sep 2025 19:55:50 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Randolph Lin <randolph@andestech.com>, linux-kernel@vger.kernel.org, 
+	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
+	jingoohan1@gmail.com, lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, 
+	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, alex@ghiti.fr, 
+	aou@eecs.berkeley.edu, palmer@dabbelt.com, paul.walmsley@sifive.com, 
+	ben717@andestech.com, inochiama@gmail.com, thippeswamy.havalige@amd.com, 
+	namcao@linutronix.de, shradha.t@samsung.com, randolph.sklin@gmail.com, 
+	tim609@andestech.com
+Subject: Re: [PATCH v3 1/5] PCI: dwc: Skip failed outbound iATU and continue
+Message-ID: <ihappv6m5k7hvbfn7h65j7e52jqben7mgrvg7sem3hskfzgxyn@meq5xq33hgpc>
+References: <aNPq42O1Ml3ppF2M@swlinux02>
+ <20250926211023.GA2128495@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250926211023.GA2128495@bhelgaas>
 
-Add an eDP panel entry for AUO B116XAN02.0 used in Lenovo IdeaPad Yoga 11
-with Tegra 3 SoC.
+On Fri, Sep 26, 2025 at 04:10:23PM -0500, Bjorn Helgaas wrote:
+> On Wed, Sep 24, 2025 at 08:58:11PM +0800, Randolph Lin wrote:
+> > On Tue, Sep 23, 2025 at 09:42:23AM -0500, Bjorn Helgaas wrote:
+> > > On Tue, Sep 23, 2025 at 07:36:43PM +0800, Randolph Lin wrote:
+> > > > Previously, outbound iATU programming included range checks
+> > > > based on hardware limitations. If a configuration did not meet
+> > > > these constraints, the loop would stop immediately.
+> > > >
+> > > > This patch updates the behavior to enhance flexibility. Instead
+> > > > of stopping at the first issue, it now logs a warning with
+> > > > details of the affected window and proceeds to program the
+> > > > remaining iATU entries.
+> > > >
+> > > > This enables partial configuration to complete in cases where
+> > > > some iATU windows may not meet requirements, improving overall
+> > > > compatibility.
+> > > 
+> > > It's not really clear why this is needed.  I assume it's related
+> > > to dropping qilai_pcie_outbound_atu_addr_valid().
+> > 
+> > Yes, I want to drop the previous atu_addr_valid function.
+> > 
+> > > I guess dw_pcie_prog_outbound_atu() must return an error for one
+> > > of the QiLai ranges?  Which one, and what exactly is the problem?
+> > > I still suspect something wrong in the devicetree description.
+> > 
+> > The main issue is not the returned error; just need to avoid
+> > terminating the process when the configuration exceeds the
+> > hardware’s expected limits.
+> > 
+> > There are two methods to fix the issue on the Qilai SoC:
+> > 
+> > 1. Simply skip the entries that do not match the designware hardware
+> > iATU limitations.  An error will be returned, but it can be ignored.
+> > On the Qilai SoC, the iATU limitation is the 4GB boundary. Qilai SoC
+> > only need to configure iATU support to translate addresses below the
+> > "32-bits" address range. Although 64-bits addresses do not match the
+> > designware hardware iATU limitations, there is no need to configure
+> > 64-bits addresses, since the connection is hard-wired.
+> > 
 
-The raw edid of the panel is:
+Why does the DT supplies broken 'ranges' in the first place? DT describes the
+hardware and if the hardware only supports 32bit OB window, then DT has to
+supply the range accordingly. It is not currently clear on what issue you are
+trying to solve by skipping the range check for broken resources.
 
-00 ff ff ff ff ff ff 00 06 af 5c 20 00 00 00 00
-00 16 01 04 90 1a 0e 78 02 99 85 95 55 56 92 28
-22 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
-01 01 01 01 01 01 12 1b 56 5a 50 00 19 30 30 20
-46 00 00 90 10 00 00 18 00 00 00 0f 00 00 00 00
-00 00 00 00 00 00 00 00 00 20 00 00 00 fe 00 41
-55 4f 0a 20 20 20 20 20 20 20 20 20 00 00 00 fe
-00 42 31 31 36 58 41 4e 30 32 2e 30 20 0a 00 f1
+> > 2. Set the devicetree only 2 viewport for iATU and force using
+> > devicetree value.  This is a workaround in the devicetree, but the
+> > fix logic is not easy to document.  Instead, we should enforce the
+> > use of the viewport defined in the devicetree and modify the
+> > designware generic code accordingly — using the viewport values from
+> > the devicetree instead of reading them from the designware
+> > registers.  Since only two viewports are available for iATU, we
+> > should reserve one for the configuration registers and the other for
+> > 32-bit address access.  Therefore, reverse logic still needs to be
+> > added to the designware generic code.
+> > 
 
-Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
----
- drivers/gpu/drm/panel/panel-edp.c | 1 +
- 1 file changed, 1 insertion(+)
+'num-viewport' property is deprecated. So should not be used in new DTs.
 
-diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
-index 90e8c154a978..f01c11f7b59a 100644
---- a/drivers/gpu/drm/panel/panel-edp.c
-+++ b/drivers/gpu/drm/panel/panel-edp.c
-@@ -1865,6 +1865,7 @@ static const struct edp_panel_entry edp_panels[] = {
- 	EDP_PANEL_ENTRY('A', 'U', 'O', 0x1e9b, &delay_200_500_e50, "B133UAN02.1"),
- 	EDP_PANEL_ENTRY('A', 'U', 'O', 0x1ea5, &delay_200_500_e50, "B116XAK01.6"),
- 	EDP_PANEL_ENTRY('A', 'U', 'O', 0x203d, &delay_200_500_e50, "B140HTN02.0"),
-+	EDP_PANEL_ENTRY('A', 'U', 'O', 0x205c, &delay_200_500_e50, "B116XAN02.0"),
- 	EDP_PANEL_ENTRY('A', 'U', 'O', 0x208d, &delay_200_500_e50, "B140HTN02.1"),
- 	EDP_PANEL_ENTRY('A', 'U', 'O', 0x235c, &delay_200_500_e50, "B116XTN02.3"),
- 	EDP_PANEL_ENTRY('A', 'U', 'O', 0x239b, &delay_200_500_e50, "B116XAN06.1"),
+- Mani
+
 -- 
-2.48.1
-
+மணிவண்ணன் சதாசிவம்
 
