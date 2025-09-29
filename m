@@ -1,88 +1,48 @@
-Return-Path: <devicetree+bounces-222320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63A0FBA80FD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 08:06:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CFCABA8176
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 08:19:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC998189B38A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 06:07:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB8D43A9555
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 06:19:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B947A23C4EA;
-	Mon, 29 Sep 2025 06:06:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102E424DFF3;
+	Mon, 29 Sep 2025 06:19:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IK2NNqDa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OzrfqDqt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF969238C0F
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 06:06:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D83AC42A99;
+	Mon, 29 Sep 2025 06:19:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759125997; cv=none; b=EL8YQfh1Z9PzlrBd+kdGhwFa6PKL4vjIbACLr49YsbYtgzKa6NkVhHvtZgZ8CwwpU6meN13mSQ58DELYyju79QOS8X1+dtpuQrXvYjF3shsIjkeoSs+Sljai75gM76Im98mQqZZUZJ9kuSYPTSvXj4YlVUa0b0gGvcOltHMpqoA=
+	t=1759126775; cv=none; b=W3NNkPKGOB3gz9ywaZKXxdNVCs6CG+LmfaBlX+6npIVRAWLgxVLu2HZxftwObjGGV24XIKqtaTHCY8BLbxpTAYh8cMwMuy2iZOefn/yGQPIzppDBMv3GgdM5c7E6fWLqJqPhbUY/SAffFgCBaKV4BeQw+9oBvqrkk3BxbkG8rUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759125997; c=relaxed/simple;
-	bh=f6eb6fxoe7BeqY+cEMOqQNNH6VG/7YpmLuYjkF1xnt8=;
+	s=arc-20240116; t=1759126775; c=relaxed/simple;
+	bh=ATTTsi3fn3UMShIPwjddnQuMazykHc6FR4/lSBTIjXo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cQjg7laJNuSnsN1TvDGnIbn+0CzlvvKTTD1jx0x3L117DLfR2Yi22wavwebq8wpajVA9hTff8xw7VLe28SewhMjlBnYzxMsY2pUdJfMCR1PgXA4KJAXFqWZnaMd9FfddSE8xLm/+3e4g7GE/gVzqEI3DTV99Gyt5GkdimFlJ+fs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IK2NNqDa; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58SNFwUK023534
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 06:06:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	yTrdBp9lXsdcKgw8haPbbC76qwmy0QVMCAGujtDV6io=; b=IK2NNqDaroVF5gr7
-	u+5yGdG4nadiphIvn23DeGd3i8e2nZTd0zX1oxmt6CwaFSiyR2tFT+ljmW8zUJPp
-	q5KQhP2/qR2CcPmgjXs7Tk+Y1GndqLIqcWJXxYcqutQa3iDUZUZkHzHznlbZe0Xx
-	py19Hxlpb51ubIb6fuYaPLn2ULVNz6bpCR9YxJm9gCTnpzpnvUQFr0PuRZWL9hW7
-	MtJdVQ9XVlG6RqwNUzfs12eGmP4fXL+5ZoBuOMxNPwwlbdsM/X0nVog79DuYMDYn
-	6fbUa7tBF56GirHC2AkuH1dtvpOdmQUlS73AjbScxzvmDKxp8k0C9hmSZog7qXwy
-	KLjgzA==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e6vqv3pn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 06:06:35 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-3306bae2119so1914530a91.0
-        for <devicetree@vger.kernel.org>; Sun, 28 Sep 2025 23:06:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759125994; x=1759730794;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yTrdBp9lXsdcKgw8haPbbC76qwmy0QVMCAGujtDV6io=;
-        b=YS7cgtknYrHZBA+IRiuYAiXBjB8B54629FjHD9FLqlvrADoOFFGeM3SXyFFl3/YtiM
-         2MEunQzRgKfP5mfc1fE51jhvcwI1C7vUykdC0tVUf8NsA2IPiXZyqjFkeUzjJHey5MGI
-         c7uhWN1n0QjcuF3dE+grwEnS97Xk31NwjJIL1iK8Npl2WjafWMytngc1v40Wx8bZPfQ6
-         Cb+s3q+GwuBldmpXQiNZxnHHl8DmAfzblPpzvFP6i8v128OwcNYcE7sqHpY8nYgA87JV
-         VViCJJisC8nP3XXLSWTi2jSd2PXWH4cWn8d+IGA5E5UwuMjkbs/F2BRU7ELpQhE7tOHh
-         ee6A==
-X-Forwarded-Encrypted: i=1; AJvYcCXtgwxFkEojXDs1WQO6yCAknUaEF3lleDZ2n6+PKWv2YbGLzRW8jqL6gFzKvIHskRT2hI4yYffn8TjA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyKRnYNwZAY0HoogM2inpIFTCNEJis0gCNCZqyfDFb7d6GKGIs
-	K+SL18N0oGJYpvSO78HgqvDaSJDIKBADf6BIRNgpTOxkVF5ivqO/iYMHvmVDHKUeTli2oOG7wQF
-	McHaU4LJtEcaIAozLLph2cAAZCc0geuzroldc0H09XJSB1LuzhbKxKxLK14/gBqxM
-X-Gm-Gg: ASbGnctk+Kr/f7c6Zb68kZlgr+ibZ06OQk32zaH2dCX51/8RHiDIt+OwIXugJr073TF
-	p/Ut8qRrDtjmMJfXMXqr4VfIDhuymuVTUqWIj/ZThBlGw2S8jj0y15/LmXQtbKPDbuxq9vI3qbP
-	DDo23XoaTb9DxYuEVW3hci1aODFNfelu+Mu9EXbi79SNHkrfvP8DpVBstyftd9qdKo81UNE+vyd
-	cWfONZC6osU0ylCxa1YlCPQ7/qsOYBO9Dw7FPUTDugkR8F7Qpn7fdTf0OB4PDPw0GEnWnfswIWq
-	lQn1gAqnsWhXtN5pPt2M6daYXX6kEdVbdo/9rFFwLU8TNe/jZiwNkK3rxrUuNT8auB1Y1LspdHR
-	6BcGBVIa8KwQMtfZLbTRyjeNWnFsbbjU=
-X-Received: by 2002:a17:90b:3891:b0:32e:1c10:74b with SMTP id 98e67ed59e1d1-3342a2c1f8cmr9523588a91.4.1759125994012;
-        Sun, 28 Sep 2025 23:06:34 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGGyXXLDXNNpY56G4BTxgRJhzBQG7LSrpZDYZVr6MZ9x+je/GnBW8FZfmS8lXB0swFcGZjTjg==
-X-Received: by 2002:a17:90b:3891:b0:32e:1c10:74b with SMTP id 98e67ed59e1d1-3342a2c1f8cmr9523562a91.4.1759125993442;
-        Sun, 28 Sep 2025 23:06:33 -0700 (PDT)
-Received: from [10.133.33.226] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3341be2073dsm15843864a91.19.2025.09.28.23.06.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 28 Sep 2025 23:06:32 -0700 (PDT)
-Message-ID: <ad56ec86-0374-46d0-9962-90519fe878fc@oss.qualcomm.com>
-Date: Mon, 29 Sep 2025 14:06:28 +0800
+	 In-Reply-To:Content-Type; b=llEBcSMawaCazui7gYfJuBNmC1q/mUFrzwFh7+4SDvrUJmBeipfb9JJOQfcoh8JZAD5WKq7xFbWnQlmijLBg6G2tr7mUZUoG8m7Kdg32qAf+DIdiq/EOCieN6Y+PFHkeA9c1T1iTU3B4B/4ek7y33seWr3mEiVRQgBLsh7Iq3bw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OzrfqDqt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4863C4CEF4;
+	Mon, 29 Sep 2025 06:19:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759126774;
+	bh=ATTTsi3fn3UMShIPwjddnQuMazykHc6FR4/lSBTIjXo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OzrfqDqtOqt1zA6Xoox5+eOkxBxYaaYCVueVsXy+UVXnjfXr/SlLWrXhSpXo9wZ5l
+	 o4w4oH0Qrz/07w8eGf4sPw0advxuNZVaaamMSTUccCULHDM1VUXpaRri8KNZBxOGrl
+	 ZDUHlCewIpGYrTiOwPBk++uI2t/jpsw3eNPFkpgY6g94crIaw7xb+FbRu3Ibq/2fPf
+	 VJwiK501DLi7wZ4j2/BNvVA4mfOg2bGPBtwsK7zADkM7xuYyPORALit9upNPP3d10X
+	 rw2ujMtOjmGz6FWgEaBK6ZWMGwLuI4MQEQP5SceTE7DP/cVK+0CgFqENxkU6B2Vzu4
+	 5KvNzupMJ7V+g==
+Message-ID: <b862846d-fb2a-4df4-8457-d858aa63031d@kernel.org>
+Date: Mon, 29 Sep 2025 08:19:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,243 +50,95 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/20] arm64: dts: qcom: kaanapali: Add USB support for
- Kaanapali SoC
-To: Rob Herring <robh@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Koz=C5=82owski?= <k.kozlowski.k@gmail.com>,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
-        yijie.yang@oss.qualcomm.com,
-        Ronak Raheja <ronak.raheja@oss.qualcomm.com>
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
- <20250924-knp-dts-v1-6-3fdbc4b9e1b1@oss.qualcomm.com>
- <CAJKOXPcbJY4JEjfZLvOAXEWCTYFpe7En+Riis2t3K5fWJgNU5A@mail.gmail.com>
- <3up4xqgd2ay3tex4ckzgews3ukyrdikcmgk7tbddggj3s5gt4d@foqcpnfptjk7>
- <20250925213151.GA2455023-robh@kernel.org>
- <c13b94ed-a240-4a32-9f11-f0e323197500@oss.qualcomm.com>
- <CAL_JsqLCLy0JxPtbg5sbXux-o8aQi3a8EOs0c=VEJCePew72nw@mail.gmail.com>
-From: "Aiqun(Maria) Yu" <aiqun.yu@oss.qualcomm.com>
+Subject: Re: [PATCH v5 2/3] serial: 8250: Add Loongson uart driver support
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen
+ <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Haowei Zheng <zhenghaowei@loongson.cn>,
+ Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>,
+ loongarch@lists.linux.dev, devicetree@vger.kernel.org,
+ linux-serial@vger.kernel.org
+References: <cover.1758676290.git.zhoubinbin@loongson.cn>
+ <9823e7afe713450e210dab9dba6fa18683dc1fe0.1758676290.git.zhoubinbin@loongson.cn>
+ <2025092428-glade-monologue-3663@gregkh>
+ <CAMpQs4JgR=iG6LAuYeVxOpE31S6n=dC4+FGUJczOYDVfWHDuFw@mail.gmail.com>
 Content-Language: en-US
-In-Reply-To: <CAL_JsqLCLy0JxPtbg5sbXux-o8aQi3a8EOs0c=VEJCePew72nw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Jiri Slaby <jirislaby@kernel.org>
+Autocrypt: addr=jirislaby@kernel.org; keydata=
+ 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
+In-Reply-To: <CAMpQs4JgR=iG6LAuYeVxOpE31S6n=dC4+FGUJczOYDVfWHDuFw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: GngKV3lWnW0L1Z6sHR5uQMCLJRgr4Zet
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAxNyBTYWx0ZWRfX2icDeQzYRCI1
- n/UEVBsNc3/Ns6JxlhrKH7QWl7MJ4qJsMuIvF11LBfcj5S2ccxg98Bclc1HTF29s/B1/2HQnypG
- xGZIv89yehS3B5ak/+wcrxZLhUIVEVLIddmjc1NBwviNIZvW6302vNLjtdxuPlsM814cL1PTh4G
- gStgAGrm7s4fUCsNJ4gWnt8TKZGuPU8U35Nhx4RmYr1800604ICO9wESoFu6ofEtP35GMh+Jp21
- nKbDWgLUAQ1KVpThRrXvB5wIeATb869YcAmv9Tn6BuboZPeTCM5/slAFytd8j6pFLH/qETmkKU6
- 8wwJIf9rnhn3vvrW9q1igqoUX2fIb48AZNmm53eLfL4F/Lc9sKPwe2GWupT8CKweK4S7F80ohKn
- 0m0x8vrNqLlG/DTAzTV+C3QxyvZHlg==
-X-Authority-Analysis: v=2.4 cv=IeiKmGqa c=1 sm=1 tr=0 ts=68da21eb cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=psDGJMaBac8z8NPHNHIA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-ORIG-GUID: GngKV3lWnW0L1Z6sHR5uQMCLJRgr4Zet
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-29_02,2025-09-29_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 clxscore=1015 priorityscore=1501 bulkscore=0
- suspectscore=0 spamscore=0 adultscore=0 impostorscore=0 phishscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2509270017
 
-On 9/26/2025 10:47 PM, Rob Herring wrote:
-> On Fri, Sep 26, 2025 at 8:21 AM Konrad Dybcio
-> <konrad.dybcio@oss.qualcomm.com> wrote:
+Hi,
+
+On 28. 09. 25, 4:48, Binbin Zhou wrote:
+> Hi Greg:
+> 
+> Thanks for your reply.
+> 
+> On Wed, Sep 24, 2025 at 6:22 PM Greg Kroah-Hartman
+> <gregkh@linuxfoundation.org> wrote:
 >>
->> On 9/25/25 11:31 PM, Rob Herring wrote:
->>> On Thu, Sep 25, 2025 at 08:57:56AM -0500, Bjorn Andersson wrote:
->>>> On Thu, Sep 25, 2025 at 10:50:10AM +0900, Krzysztof Kozłowski wrote:
->>>>> On Thu, 25 Sept 2025 at 09:17, Jingyi Wang <jingyi.wang@oss.qualcomm.com> wrote:
->>>>>>
->>>>>> From: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
->>>>>>
->>>>>> Add the base USB devicetree definitions for Kaanapali platform. The overall
->>>>>> chipset contains a single DWC3 USB3 controller (rev. 200a), SS QMP PHY
->>>>>> (rev. v8) and M31 eUSB2 PHY.
->>>>>>
->>>>>> Signed-off-by: Ronak Raheja <ronak.raheja@oss.qualcomm.com>
->>>>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
->>>>>> ---
->>>>>>  arch/arm64/boot/dts/qcom/kaanapali.dtsi | 155 ++++++++++++++++++++++++++++++++
->>>>>>  1 file changed, 155 insertions(+)
->>>>>>
->>>>>
->>>>>
->>>>> Second try, without HTML:
->>>>>
->>>>> I really don't understand why you created such huge patchset.
->>>>
->>>> Because I looked at the logical changes that went into the big squash
->>>> that was initially planned, and requested that some of those was kept
->>>> intact - because they where independent logical changes.
->>>>
->>>>> Year
->>>>> ago, two years ago, we were discussing it already and explained that's
->>>>> just inflating the patchset without reason.
->>>>>
->>>>
->>>> We used to add things node by node and that was indeed not
->>>> comprehensible. Overall this adds features in large logical chunks, but
->>>> there are a few of the patches that could have been squashed.
->>>>
->>>>> New Soc is one logical change. Maybe two. Not 18!
->>>>
->>>> I can see your argument for one patch to introduce the soc. But two
->>>> doesn't make sense, because that incremental patch is going to be the
->>>> kitchen sink.
->>>>
->>>>>
->>>>> Not one patch per node or feature.
->>>>>
->>>>
->>>> Definitely agree that we don't want one patch for every tiny block!
->>>>
->>>>> This hides big picture, makes difficult to review everything,
->>>>> difficult to test.
->>>>
->>>> The big picture is already obscured due to the size of the content
->>>> added.
->>>>
->>>> Comparing to previous targets, I see the baseline content in 2-3
->>>> patches, and the remainder of the series being things that usually has
->>>> been scattered in many more small changes in the following weeks or
->>>> months.
->>>>
->>>> There's plenty of features in this series that are yet to be concluded
->>>> for SM8750.
->>>>
->>>>> Your patch count for LWN stats doesn't matter to
->>>>> us.
->>>>
->>>> I agree with this. That's why the QRD is 1 patch, and MTP is 4 (this I
->>>> think should be squashed to 2) - compared to 13 patches for across the
->>>> pair for SM8750 with less scope.
->>>>
->>>>>
->>>>> NAK and I'm really disappointed I have to repeat the same review .
->>>>
->>>> I'm not sure what you're disappointed in, this initial series is larger
->>>> than any we've seen before. I really like the work Jingyi has done here,
->>>> aggregating the otherwise scattered patches into one series.
->>>
->>> The QCom folks can review all this first because I don't care to review
->>> the 50+ binding (just bindings!) patches sent all at once right before
->>> the merge window.
+>> On Wed, Sep 24, 2025 at 02:29:37PM +0800, Binbin Zhou wrote:
+>>> --- a/include/uapi/linux/serial_core.h
+>>> +++ b/include/uapi/linux/serial_core.h
+>>> @@ -31,6 +31,7 @@
+>>>   #define PORT_ALTR_16550_F128 28 /* Altera 16550 UART with 128 FIFOs */
+>>>   #define PORT_RT2880  29      /* Ralink RT2880 internal UART */
+>>>   #define PORT_16550A_FSL64 30 /* Freescale 16550 UART with 64 FIFOs */
+>>> +#define PORT_LOONGSON        31      /* Loongson 16550 UART */
 >>
->> Unfortunately this is sort of beyond our control. We don't expect you to
->> review or apply these patches immediately.
+>> Why does userspace need to have this value exported?
 > 
-> It is *only* in your (QCom) control. I would love to have control over
-> receiving patches to review, but sadly I do not.
-> 
-> Then you should mark them RFC at least if you know they are going into 6.18.
+> Sorry, this was a cheap mistake.
+> It should follow the existing latest macro definition as follows:
 
-We can take your advice for "RFC" for next situation for this.
+That was not the point. The point was why do you need that at all?
 
-It would be ideal if most of these patches could make it into the 6.18
-release—that is, get accepted before the merge window opens—since the
-6.18 kernel is a very important version for us.
-
-While, we fully respect the reviewers' perspective if some patches are
-not yet clean or ready. In such cases, we’re prepared to put in
-additional effort on our side, including backporting as needed.
-
-> 
->> The platform announcement just happened to occur at this and not any other
->> time, and we can't just ask the entire company to shift it to better
->> accommodate the kernel release cycle..
-> 
-> That's exactly what we expect. Companies following the rules or
-> preferences of the kernel community is exactly what is expected and
-> required. Companies that continuously fail to do that result in
-> requirements that all patches be first signed off by trusted kernel
-> developers in those companies.
-From my understanding, the community is intended to be open to all
-developers—whether they contribute individually or through a company.
-Imposing a strict "Signed-off-by" requirement risks excluding developers
-who actively participate in this community effort.
-We still strongly encourage broader participation from both individual
-contributors and company-affiliated developers to foster a more open and
-inclusive environment.
-
-That said, I do agree that companies should aim to conduct thorough
-internal reviews to reduce the burden on upstream maintainers and
-reviewers. For large patch sets, perhaps we can consider using
-"Reviewed-by" from trusted kernel developers within the company.
-
-In fact, we did perform internal reviews before posting the Kaanapali
-patches. However, we also respect the community rule that "Reviewed-by"
-should only be added based on public review within the community.
-
-Lastly, the principle of "upstream first" and submitting patches as
-early as possible remains a key guideline in the current kernel
-development process.
-
-> 
-> What would you have done if the timing hit in the merge window where
-> you have trees which have policies of don't send new content during
-> merge windows? Just going to ignore that?
-> 
-
-If some of the patches aren’t clean enough for the current review cycle
-and the merge window has just opened, would it be appropriate to resend
-them after the merge window closes—perhaps after October 12th?>
->> We do have an interest in sharing the work at the earliest time possible,
->> and with all the legal knots included, this is what it came down to.
->>
->> I (and many others) made an internal push to upstream any pre-requisite
->> patches that we didn't need to disclose any platform details for in
->> advance, so this patchbomb is actually somewhat reduced.. but of course
->> DT and bindings are the main course size-wise and we simply couldn't do
->> it earlier.
->>
->> Give or take 80% of the bindings will be "boring", i.e. "add compatbile"
->> or "add compatible and adjust clocks" because our hw is rather
->> standardized and the interesting changes often happen at a level beyond
->> bindings
->>
->>> One comment on commit messages though. Please explain how the h/w block
->>> is or isn't compatible with some existing platforms. Many just state the
->>> obvious "add a compatible" or such. I've yet to find what kaanapali is
->>> in relation to any other QCom chip. It may be the next SoC for the smart
->>> toaster market for all I know.
->>
->> Perhaps this would be useful to have in bindings commit messages, but
->> the cover letter of >this< series states that Kaanapali is the newly
->> announced Snapdragon 8 Elite Gen 5.
-> 
-> Patches should stand on their own. I'm talking about patches in other series.
-
-We can add the soc introduction information to the each patches series's
-change log and resend after merge window October 12th. Like:
-Kaanapali is the newly announced Snapdragon 8 Elite Gen 5, and here is
-the document link for reference [1]:
-[1]https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-8-elite-gen-5
-
-> 
->> The product page states at the very bottom of the spec sheet that
->> SM8850 is another name for it (although the shift to codenames
->> happened precisely to disconnect from specific SKU numbers,
->> because e.g. both SA8775P and QCS9100 are 'lemans' silicon)
-> 
-> Sorry, I'm not going to go read your product pages...
-
-
-Feel free to let me know whether the above suggested updated statements
-in the patch change log address your comments.>
-> Rob
 -- 
-Thx and BRs,
-Aiqun(Maria) Yu
+js
+suse labs
 
