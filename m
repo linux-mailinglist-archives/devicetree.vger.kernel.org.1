@@ -1,70 +1,62 @@
-Return-Path: <devicetree+bounces-222546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0716BBAA615
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 20:49:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A205ABAA639
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 20:53:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D8271923000
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 18:49:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2ABA6189F833
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 18:53:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1F7022836C;
-	Mon, 29 Sep 2025 18:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75FA123D2B2;
+	Mon, 29 Sep 2025 18:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DmLQPoLf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ckgdZBaE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 829912032D;
-	Mon, 29 Sep 2025 18:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46B78217736;
+	Mon, 29 Sep 2025 18:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759171763; cv=none; b=VQXge/WEZfN52y+fcl0GR/KLxwV2EBaopf1nISwXVt30a5jbkvDRKm+w+ji4AnS9vRGQtVIPh+pmPWnhd9QJ4DF8cvF8sOypRe5fFxr5/kUJzlAwNYSt5LSVLx7GGVWgzj1cSu+415SzgsYgTZp/zWYyNTz4xo5oP+2hV8/pP24=
+	t=1759172002; cv=none; b=TnqwjJa3/xv3dWv0D4ott+oHOo5/6m/7wRZY3NYjZlRvYibOUhlC03Allr06fkaOPM+tCkIKiH+tMo7np6JnXzUNYWID8OfF+W9faIe4LtKh+617RYN7a3VVw6UE1T4wUupc4XDYutz3GcQ4aUv7Yv1VqZQ33I7ideYQNODh+zA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759171763; c=relaxed/simple;
-	bh=CIesZg8God6+nurlZmJlDErmkC0T5rSf+vpzR1sIRAU=;
+	s=arc-20240116; t=1759172002; c=relaxed/simple;
+	bh=cNk2Xp9aKC1/fZzbSc81/LUDAhZMCewvH/hYBAA+o1c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eh65tXVQhGdmU6/c+XX9HmuR+CyFVU6jIBTQ0cstAZgwTC2fqe7pFc+FS6ZUA1xXK3qKmsBs82zdqOYMqnOA6NlBdLIDy+1tEhri0ezP5z7uf1jqSEP9UlVpwayGo9PSWdTWsl3n3/6wmAQX6ytYZ1oXHb8nrjug1wk+P5+kh7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DmLQPoLf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02A7FC4CEF4;
-	Mon, 29 Sep 2025 18:49:17 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FuGdCNzPiU+b+M2z+U252o2eH0vqXhcVWYNwwC4QdJa7Kr/RyzQ3DUMiatwX4pvUmijlcqrB7Wuugh9J6dHjz00AQi3Q+W44UyXtBHOpeCX30z1MOidSgejKbzE28CZ17onwzZlU/2KGg7kV4j/6QsmT59TpZWJjZIA+ryAJUQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ckgdZBaE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6B1F8C4CEF4;
+	Mon, 29 Sep 2025 18:53:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759171763;
-	bh=CIesZg8God6+nurlZmJlDErmkC0T5rSf+vpzR1sIRAU=;
+	s=k20201202; t=1759171999;
+	bh=cNk2Xp9aKC1/fZzbSc81/LUDAhZMCewvH/hYBAA+o1c=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DmLQPoLflrWPzRHpNZHaEQ6aDwxh9aYtXgubo4m46HHBDXYVQgDPIOQtOYSXLT0UW
-	 J0cY7HPPczP7uGVH9bcU+tgHh7JtcdZAtZ/6LkN4Q9KJns0kjSKvioKAxNeym0F/RE
-	 7Jaqb/P/p+piz8zOUQLrQ0JqLlFpk0EgPrMLapEl2mTsSX89/OCAF5ICnPviDScM8e
-	 f9N+ovN/nvQY+yVV/VjHhRlzBKhjk8QSuDeMmVdSw/y/HhudxSwo2qdDx8p6luxZWn
-	 r2qXWDt5vxv4e8T8xv12/e34WtpCFymnIXXgYbICoJ1r01KImMcZb8lqAn92hmslwc
-	 qaKj9SwXF+fMQ==
-Date: Mon, 29 Sep 2025 19:49:15 +0100
+	b=ckgdZBaEIwOILj4u0uIaJ76wpSm6QAYXTvfxzG71UvaGM118Gzsz1OzSIR4VKBijB
+	 o/ZiAUVwGkgTJZrQunJJaR8eWJOc/O8qO6Cv0+SAZ9PzzPXRVz6GpFiL7CBs+i7cJ/
+	 F1LZR7vPl9+1lArEBYr2E1vBLp/BETX7/OYcm7j/EZQl808xN2LuUugY4PmfTXAPN3
+	 fXdTaMHog3i4RlNGU0OOqs3esvC5cyfYjM2kpTdnWpvBVlKJxf2KXoJgtQI09+9EEc
+	 hnaPhcKTZ/+5qPhpj8o0OJvYoygAipHD+ZSVXhMFEkp/WcNQ354rrB0DrIKym6tvv7
+	 iNxhkTM5NqOag==
+Date: Mon, 29 Sep 2025 19:53:14 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Ricardo Ribalda <ribalda@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Hans de Goede <hansg@kernel.org>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To: Vladimir Moravcevic <vmoravcevic@axiado.com>
+Cc: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, Robert Moore <robert.moore@intel.com>,
-	Hans Verkuil <hverkuil@kernel.org>, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-acpi@vger.kernel.org, acpica-devel@lists.linux.dev
-Subject: Re: [PATCH v3 07/12] dt-bindings: media: Add usb-camera-module
-Message-ID: <20250929-disparate-fidgeting-65c2f7eff236@spud>
-References: <20250926-uvc-orientation-v3-0-6dc2fa5b4220@chromium.org>
- <20250926-uvc-orientation-v3-7-6dc2fa5b4220@chromium.org>
- <20250926-mute-boil-e75839753526@spud>
- <CANiDSCuddqjeDr80xKsZZP7CXu9qB5qqYPoZujNYLcVjK0kKkg@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>,
+	Tzu-Hao Wei <twei@axiado.com>,
+	Axiado Reviewers <linux-maintainer@axiado.com>,
+	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Prasad Bolisetty <pbolisetty@axiado.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: spi: axiado,ax3000-spi: Add binding
+ for Axiado SPI DB controller
+Message-ID: <20250929-flammable-immunity-6bc48621dba3@spud>
+References: <20250929-axiado-ax3000-soc-spi-db-controller-driver-v2-0-b0c089c3ba81@axiado.com>
+ <20250929-axiado-ax3000-soc-spi-db-controller-driver-v2-1-b0c089c3ba81@axiado.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,202 +64,124 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="T7A0TheW4Ey8c64A"
+	protocol="application/pgp-signature"; boundary="TTzfIpOXBJv0hnVG"
 Content-Disposition: inline
-In-Reply-To: <CANiDSCuddqjeDr80xKsZZP7CXu9qB5qqYPoZujNYLcVjK0kKkg@mail.gmail.com>
+In-Reply-To: <20250929-axiado-ax3000-soc-spi-db-controller-driver-v2-1-b0c089c3ba81@axiado.com>
 
 
---T7A0TheW4Ey8c64A
+--TTzfIpOXBJv0hnVG
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 29, 2025 at 10:30:35AM +0200, Ricardo Ribalda wrote:
-> Hi Conor
+On Mon, Sep 29, 2025 at 01:58:01AM -0700, Vladimir Moravcevic wrote:
+> Add documentation for Axiado Digital Block SPI controller.
 >=20
-> On Fri, 26 Sept 2025 at 18:55, Conor Dooley <conor@kernel.org> wrote:
-> >
-> > On Fri, Sep 26, 2025 at 01:11:31PM +0000, Ricardo Ribalda wrote:
-> > > For fixed cameras modules the OS needs to know where they are mounted.
-> > > This information is used to determine if images need to be rotated or
-> > > not.
-> > >
-> > > ACPI has a property for this purpose, which is parsed by
-> > > acpi_get_physical_device_location():
-> > > https://uefi.org/htmlspecs/ACPI_Spec_6_4_html/06_Device_Configuration=
-/Device_Configuration.html#pld-physical-location-of-device
-> > >
-> > > In DT we have similar properties for video-interface-devices called
-> > > orientation and rotation:
-> > > Documentation/devicetree/bindings/media/video-interface-devices.yaml
-> > >
-> > > Add a new schema that combines usb/usb-device.yaml and
-> > > media/video-interface-devices.yaml
-> > >
-> > > Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
-> > > ---
-> > >  .../bindings/media/usb-camera-module.yaml          | 46 ++++++++++++=
-++++++++++
-> > >  MAINTAINERS                                        |  1 +
-> > >  2 files changed, 47 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/usb-camera-modul=
-e.yaml b/Documentation/devicetree/bindings/media/usb-camera-module.yaml
-> > > new file mode 100644
-> > > index 0000000000000000000000000000000000000000..e4ad6f557b9151751522e=
-49b72ae6584deb0c7ba
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/usb-camera-module.yaml
-> > > @@ -0,0 +1,46 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/usb-camera-module.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: USB Camera Module
-> > > +
-> > > +maintainers:
-> > > +  - Ricardo Ribalda <ribalda@chromium.org>
-> > > +
-> > > +description: |
-> > > +  This schema allows for annotating auxiliary information for fixed =
-camera
-> > > +  modules. This information enables the system to determine if incom=
-ing frames
-> > > +  require rotation, mirroring, or other transformations. It also des=
-cribes the
-> > > +  module's relationship with other hardware elements, such as flash =
-LEDs or
-> > > +  Voice Coil Motors (VCMs).
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/usb/usb-device.yaml#
-> > > +  - $ref: /schemas/media/video-interface-devices.yaml#
-> > > +
-> > > +properties:
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> >
-> > What actually causes this schema to be applied? Did I miss it getting
-> > included somewhere?
->=20
-> I guess your question is why I have not defined the compatible field?
->=20
-> I tried this change[1] with no luck:
-> /usr/local/google/home/ribalda/work/linux/Documentation/devicetree/bindin=
-gs/media/uvc-camera.example.dtb:
-> device@1 (uvc-camera): compatible: ['uvc-camera'] does not contain
-> items matching the given schema
->=20
-> I think it failed, because If we add these allOfs as Rob proposed
-> https://lore.kernel.org/all/20250625185608.GA2010256-robh@kernel.org/:
-> ```
-> allOf:
->   - $ref: /schemas/usb/usb-device.yaml#
->   - $ref: /schemas/media/video-interface-devices.yaml#
-> ```
-> We cannot (or I do not know how to) have a different compatible than
-> the one from usb-device.yaml
->=20
->=20
-> Any suggestion on how to do this properly will be highly appreciated :)
+> Signed-off-by: Vladimir Moravcevic <vmoravcevic@axiado.com>
+> Signed-off-by: Prasad Bolisetty <pbolisetty@axiado.com>
 
-It'd work, I think, if you permitted the pattern from usb-device as a
-fallback compatible. I don't know if that would work for whatever niche
-you're attempting to fill here though.
+What did Prasad do here? Are you missing a Co-developed-by tag?
 
-Probably a Rob question ultimately.
-
+> ---
+>  .../devicetree/bindings/spi/axiado,ax3000-spi.yaml | 63 ++++++++++++++++=
+++++++
+>  1 file changed, 63 insertions(+)
 >=20
-> Thanks!
->=20
->=20
->=20
-> [1]
->=20
-> @@ -21,10 +21,14 @@ allOf:
->    - $ref: /schemas/media/video-interface-devices.yaml#
->=20
->  properties:
-> +  compatible:
-> +    const: uvc-camera
+> diff --git a/Documentation/devicetree/bindings/spi/axiado,ax3000-spi.yaml=
+ b/Documentation/devicetree/bindings/spi/axiado,ax3000-spi.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..34fa96778dfdec89bc1478226=
+5ec23c0bc455a20
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/axiado,ax3000-spi.yaml
+> @@ -0,0 +1,63 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/axiado,ax3000-spi.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->    reg:
->      maxItems: 1
->=20
->  required:
+> +title: Axiado AX3000 SoC SPI controller
+> +
+> +maintainers:
+> +  - Vladimir Moravcevic <vmoravcevic@axiado.com>
+> +  - Tzu-Hao Wei <twei@axiado.com>
+> +
+> +allOf:
+> +  - $ref: spi-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - axiado,ax3000-spi
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ref
+> +      - const: pclk
+> +
+> +  clocks:
+> +    maxItems: 2
+> +
+> +required:
 > +  - compatible
->    - reg
+> +  - reg
+> +  - interrupts
+> +  - clock-names
+> +  - clocks
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +   #include <dt-bindings/interrupt-controller/irq.h>
+> +   #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +   soc {
+> +      #address-cells =3D <2>;
+> +      #size-cells =3D <2>;
+> +
+> +      spi0: spi@80510000 {
+
+The "spi0" label here is unused and should be removed.
+
+> +         compatible =3D "axiado,ax3000-spi";
+> +         reg =3D <0x00 0x80510000 0x00 0x1000>;
+> +         clock-names =3D "ref", "pclk";
+> +         clocks =3D <&spi_clk>, <&apb_pclk>;
+> +         interrupt-parent =3D <&gic500>;
+> +         interrupts =3D <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
+> +         num-cs =3D <1>;
+
+num-cs isn't required by your binding and you have not specified a
+default. Your driver assumes a default of 4. You should include that,
+along with any maximum value, in the binding. See spi-cadence.yaml for
+an example.
+
+> +      };
+> +   };
+> +...
 >=20
->  additionalProperties: true
-> @@ -38,8 +42,8 @@ examples:
->          #size-cells =3D <0>;
->=20
->          device@1 {
-> -            compatible =3D "usb123,4567";
-> +           compatible =3D "uvc-camera";
->              reg =3D <2>;
->              orientation =3D <0>;
->              rotation =3D <90>;
->          };
->=20
-> >
-> > > +required:
-> > > +  - reg
-> > > +
-> > > +additionalProperties: true
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    usb@11270000 {
-> > > +        reg =3D <0x11270000 0x1000>;
-> > > +        interrupts =3D <0x0 0x4e 0x0>;
-> > > +        #address-cells =3D <1>;
-> > > +        #size-cells =3D <0>;
-> > > +
-> > > +        device@1 {
-> > > +            compatible =3D "usb123,4567";
-> > > +            reg =3D <2>;
-> > > +            orientation =3D <0>;
-> > > +            rotation =3D <90>;
-> > > +        };
-> > > +    };
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index ee8cb2db483f6a5e96b62b6f2edd05b1427b69f5..1503502a3aed2625e8ff4=
-88456ccd7305cc74ba7 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -26258,6 +26258,7 @@ L:    linux-media@vger.kernel.org
-> > >  S:   Maintained
-> > >  W:   http://www.ideasonboard.org/uvc/
-> > >  T:   git git://linuxtv.org/media.git
-> > > +F:   Documentation/devicetree/bindings/media/usb-camera-module.yaml
-> > >  F:   Documentation/userspace-api/media/drivers/uvcvideo.rst
-> > >  F:   Documentation/userspace-api/media/v4l/metafmt-uvc-msxu-1-5.rst
-> > >  F:   Documentation/userspace-api/media/v4l/metafmt-uvc.rst
-> > >
-> > > --
-> > > 2.51.0.536.g15c5d4f767-goog
-> > >
->=20
->=20
->=20
-> --
-> Ricardo Ribalda
+> --=20
+> 2.25.1
 >=20
 
---T7A0TheW4Ey8c64A
+--TTzfIpOXBJv0hnVG
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNrUqwAKCRB4tDGHoIJi
-0mASAP49pwqqfaBzHe/GqEE+pCyOCKLHjQV++1zecT+/WddTgAD/dP2GQvWciVeV
-ngYFC1P2vUnJOUWrondGz3NRTBBB/g0=
-=ew51
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNrVmgAKCRB4tDGHoIJi
+0vqIAQDaoK3ID+wCoVxoZ2C0zZHMOI7RwcFAW3vjlsoV+4pezQD+OLkSm7QI3424
+6TS2iP1Yc76+IilZ0IUf25FCuYukdA8=
+=sQhy
 -----END PGP SIGNATURE-----
 
---T7A0TheW4Ey8c64A--
+--TTzfIpOXBJv0hnVG--
 
