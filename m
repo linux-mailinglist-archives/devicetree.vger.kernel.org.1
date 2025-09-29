@@ -1,264 +1,181 @@
-Return-Path: <devicetree+bounces-222389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AEE3BA8B7F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 11:45:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3C93BA8A68
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 11:35:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D0211169CB8
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 09:45:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BE53161F28
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 09:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E07E2D877E;
-	Mon, 29 Sep 2025 09:45:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3063B253932;
+	Mon, 29 Sep 2025 09:35:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="Itdk6z14"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RgMP935D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1F4274FCE;
-	Mon, 29 Sep 2025 09:45:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7843B1714B7
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 09:35:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759139122; cv=none; b=MuyEhVs5cQ0AVf4cGgukW/o3hK1r+bMEfUt+pKrVe51coAbHy2E47aWkVGVyOev5vRTPdPCxxvJn+51ZQyr1uOMM0qFAhf4o+FpcdFmjfEGm+EpiY8l7lOOm5HHdySIGgvWJVGbmn63bCrpt5iPb/rnxvKT/kprkXb98M2gu3lw=
+	t=1759138503; cv=none; b=YMHKTsBC1tI3pTEiwSDzHoyRjn1Pc8yilL7uzDT8bpevih3Kdhu4XhvACFxmyc0w6NwCSCdyJD6em9AMkAvwCI4TVwQWs/cdUJXX10du7f4KR0l7ojQoVqChexDShdP0Wy+RbkQL9jGwGwR9QWdQWmCGNbFepgdPCrXmR6v07i4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759139122; c=relaxed/simple;
-	bh=GmQlPu7gl3wLDOBq2pqX84D3ZWLn6MYjsfs/KGS5GTY=;
+	s=arc-20240116; t=1759138503; c=relaxed/simple;
+	bh=mRsX3dKnTVn76I3diVMRJ5PswMmK69nK7/3BH+Z/a+I=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pbtZzkR+YkBS1dKwSlAcGlfB9z3XgoQUn1TQWdGBGzlCxexeIz0Hl/6f92OgD0R36kYIQID+8mULLnBdtK8ndDJrlCXRc4FkPFVkKHpjYY3ZGJKx3groh3MJnTZSICOBzxsAvRIlv7r6WADXocYwgDJnjD43oIw+y8BvyDpb/R0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=Itdk6z14; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202508; t=1759139110;
-	bh=IerHrIutIyB5lVdkv5QHBhpAU/+3v08CaZJHmRoxpZc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Itdk6z14hDPurte1t4oTqVfQN6KEQKSvjQ0GUqtRdU5YktULtQYj3vAv1LSYkk0jc
-	 SzWbtCwZ/JvBS8WegHI6wgFiq12YLjLuKl6F6zJxfH+M2m7vy71AssESDoGMkfLUAX
-	 2Dcynk5pqem1KDSXUAwB/63Vis83v/O72GFlQnK093Du2OS76mtsLLl4GlDU8z/6DJ
-	 Jb/Pxqb11ji3R4uGJBSanUpAYLuo0DSoZpHP6AiL3J8nWEamQ8nLdHGaMdseV+YLaX
-	 O4spjYvRYyx6IfZ445K27C3Ibd+x6cAtlw7WfZtKuVDMbbWSK+AYz1jMV4XR/c9L9E
-	 KDiivU5wDVJTw==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4cZxBG2NsTz4wBj; Mon, 29 Sep 2025 19:45:10 +1000 (AEST)
-Date: Mon, 29 Sep 2025 19:23:21 +1000
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Ayush Singh <ayush@beagleboard.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Andrew Davis <afd@ti.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	devicetree@vger.kernel.org, Jason Kridner <jkridner@gmail.com>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: Device tree representation of (hotplug) connectors: discussion
- at ELCE
-Message-ID: <aNpQCboQimgwIkJw@zatzit>
-References: <aMebXe-yJy34kST8@zatzit>
- <20250916084631.77127e29@bootlin.com>
- <aMt5kEI_WRDOf-Hw@zatzit>
- <20250918094409.0d5f92ec@bootlin.com>
- <aMzhgDYOuG4qNcc0@zatzit>
- <dcbeaff2-0147-4a27-bb46-e247e42810d7@beagleboard.org>
- <aNJVqSpdAJzGliNx@zatzit>
- <20250923114849.2385736d@bootlin.com>
- <aNNrbmZfZU-1xJFm@zatzit>
- <20250924143130.0a34badb@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RxNEOXkyMOQ+Nav6zlqhCqbpFbAxXsPcH2KvqWPkYOunkf9VQqQ2sa6yF5pITvf8yI1KTYAX63uh3I0BDNmkayHDEc1PoHZSEOGn8PAGzKy+E3w4DVaJXIc/Rp+7SG1+vkm+urwZIkrZFYOGK+hc3leg1UGbohoVBQrbWG+blf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RgMP935D; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58SLnk9t025415
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 09:35:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	fmYtyuvX+TYSvsQjEOU3V3kUhRzcJFG8FYtCxH2TOxc=; b=RgMP935DOHr3mR/S
+	eBCkOClNI0KyaU6v5fUmAs1NJhHBRm4YeoR/LeMdiSzatVciUR1yTwE3k7ZQzPxL
+	AFX3iwt11Ele7NWRlHPq+6ov1+8sfzU//Y2MbM21pjqL3Bcpjr0ZlDA/Uo0aFdas
+	N7AHE9b3OgrFAB5hB3ZQaa9BdEDMLJ2Zw0RCZws2c/KdrHBUdppaF4KLuQzsMUNu
+	WCUBJg+58UBd1zbNXTBAvTR9NfDPVxrXaBRk0d3fncEQthttjyCHaHjIPtBBRKS0
+	4onkcwrIbrcWpDUaWSMZZTLICsdjFENv4pF+u1s7c0ft0sH5QsAgjJEMkl8uAZdb
+	Sqw93w==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e78fvqtj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 09:35:00 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4d6fc3d74a2so132546501cf.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 02:35:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759138499; x=1759743299;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fmYtyuvX+TYSvsQjEOU3V3kUhRzcJFG8FYtCxH2TOxc=;
+        b=hXlokx6wGcu/lfIAsje9gBAs3N1W0pcap/qfQPv7Z0QRuFgEfkVl+JbsYzZIl7A60/
+         1/QyubOVvTp51aTZe9lRM7JXdp2Ex/2sDuMSAzxbWIdqiLZ9CYga3ghUL7SRE4uDmop9
+         mCbLxWCHaUaymvUnrwStY0eoWlV54dBY/89WzBSjiHkHQmdJuvpWc6lIgSfhnBxZ0pQ6
+         67vLTkXDrkE0gN3eVz7wzRQTZ3gR3iyK7P6NiP3CONFbroyIV7MIcqEO8miiYGtWyZ3C
+         xx3qzbBuhkO3cmfs36gIl63XOPhFh3BEFc8I4GnEcqZ4r/M5h74Z8AhCXpYbNn9/hmqF
+         G/+w==
+X-Forwarded-Encrypted: i=1; AJvYcCURQrO1kSAIbtL379cXcl/VpXoHP9h8veDGCj0QLY5p6MUH9Rh+rhAqsr91lZXs9i0lXCCIgw0AMtAx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUqjf/84+VgLGmAtn3nW3k3g/6ovfsNHuqucNdTdhm56rHT2He
+	VZL/uDbl2HzWY1jdxBuszgSqYDbpk4Ihncb0RBww1wernkmhg9Izn49PCZs3gNhJO7cnX6YBmDK
+	zOS46/PN13k0U6ye33a+F4P4NeJiHmIzoYVUBsGbo+55PZE3QGKxNVUSTLOBJyOZ8
+X-Gm-Gg: ASbGncuds+OIf9Pk3uKCk6N2AhnCCOceXdp3IQJBDQIRK7IJWi+qTU/8D1ejdGWyRaK
+	2/hFkzEqrAZDK8WXS0PPOi8o3gzfc62+nfYBMwa29QsDsblFYO8L9HK1WFdOnTe6Mcx6kqLP0Ia
+	W2bh7IiWE5il/pxVlcoAtST9+zZhtdFCQgp0Cucq5wub2J7EzYafW28966CFcQnqC8lUxt6M+9m
+	1YTFPUNPkvc4yfVfUZ5+xLlAFXTWFoSh80Rq4msc5j5qkyLYEtA+8g2+xQV2XjP1FuAWX8nmnoE
+	q70EoFnMV+M7JuG9oeHeH357XolW/qjQUkCR64NPRG3Vglofesc4oIY7lAqCuTwGh9G8Sjnrefz
+	DeLpHRkArcAX3rclVe/pxe6RUfUtzG21Koq3buLbUA+9VAlBa4B5H
+X-Received: by 2002:ac8:5d02:0:b0:4c4:695b:9712 with SMTP id d75a77b69052e-4da4b809717mr225385771cf.42.1759138499600;
+        Mon, 29 Sep 2025 02:34:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGAVn+j+N/RqaW9AiYNNjjr5aDBEy6eHhXUJcQNHS/ynl5kMhAJNVTVzSOT1Symi2t4TjZugQ==
+X-Received: by 2002:ac8:5d02:0:b0:4c4:695b:9712 with SMTP id d75a77b69052e-4da4b809717mr225385321cf.42.1759138499151;
+        Mon, 29 Sep 2025 02:34:59 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-583139fb04dsm4059633e87.44.2025.09.29.02.34.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Sep 2025 02:34:58 -0700 (PDT)
+Date: Mon, 29 Sep 2025 12:34:56 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Krzysztof =?utf-8?Q?Koz=C5=82owski?= <k.kozlowski.k@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+        yijie.yang@oss.qualcomm.com
+Subject: Re: [PATCH 2/6] dt-bindings: remoteproc: qcom,sm8550-pas: Add
+ Kaanapali CDSP
+Message-ID: <o6dzhmlicwiezmxlb5uqitx7e3pjpyuhbjqfumivbdkru42hvn@r4ksfa6m5nd2>
+References: <20250924-knp-remoteproc-v1-0-611bf7be8329@oss.qualcomm.com>
+ <20250924-knp-remoteproc-v1-2-611bf7be8329@oss.qualcomm.com>
+ <CAJKOXPc57_0pJ2ZWf2cKSKAcQMc3S_mHKQxJDzWH7t=mgim3CA@mail.gmail.com>
+ <5820a9a9-4474-4c4d-905c-0efd9442e5e1@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="OUZx14CP7tCARnAz"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250924143130.0a34badb@bootlin.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5820a9a9-4474-4c4d-905c-0efd9442e5e1@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=DZAaa/tW c=1 sm=1 tr=0 ts=68da52c4 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=Gqe_g9I57pFxb8mTp9UA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAyMiBTYWx0ZWRfXxjVilt2J2Ex+
+ 0dWE9yS7Y9O6TbFoocsHXKziD1uxf/8KgneqUqwF2twqAAK9e/90sLIpCjbB0gLhgld/S7+gX0r
+ UwNdbWsqU/LGODSrGcFRflxbCTxo36+MEsWc2hMb3r65h9S50a5N+OiAiGW4J9wadffb5kHVIbL
+ 2DHvI7/oTNeI9V06pcXfm8+jnBCj1MV5HN9durww/eoNU1dHC95Prib4j+VP6xEvsPwepATTOGI
+ XIAb3SAIU5nSVPdwy1C4y23iLTHGWDMwhpLaN04txEzHC6En+D7ej0nsfgnmxNm4aBvPL1AgCdv
+ FGaJgiW4aZN5F0We6dmJPq0uWbKYBAwUUM85XXV7dv5faGqj+cigY7JddchZrveYy+dhDtQ5Tge
+ PwJMHz4kzOVxOYFtyc5POzf7leHjyA==
+X-Proofpoint-GUID: ymsommD1UKk_55hmJqE1t7FdDzLjPUXe
+X-Proofpoint-ORIG-GUID: ymsommD1UKk_55hmJqE1t7FdDzLjPUXe
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-29_04,2025-09-29_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 malwarescore=0 bulkscore=0 clxscore=1015 adultscore=0
+ impostorscore=0 priorityscore=1501 lowpriorityscore=0 suspectscore=0
+ spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
+ definitions=main-2509270022
 
+On Mon, Sep 29, 2025 at 02:20:54PM +0800, Jingyi Wang wrote:
+> 
+> 
+> On 9/25/2025 9:48 AM, Krzysztof Kozłowski wrote:
+> > On Thu, 25 Sept 2025 at 08:37, Jingyi Wang <jingyi.wang@oss.qualcomm.com> wrote:
+> >>
+> >> Add remote processor PAS loader for Kaanapali CDSP processor, compatible
+> >> with earlier SM8550 with minor difference: one more sixth "shutdown-ack"
+> >> interrupt.
+> >>
+> >> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> >> ---
+> >>  .../bindings/remoteproc/qcom,sm8550-pas.yaml          | 19 +++++++++++++++++++
+> >>  1 file changed, 19 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+> >> index be9e2a0bc060..031fdf36a66c 100644
+> >> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+> >> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
+> >> @@ -35,6 +35,9 @@ properties:
+> >>        - items:
+> >>            - const: qcom,sm8750-cdsp-pas
+> >>            - const: qcom,sm8650-cdsp-pas
+> >> +      - items:
+> >> +          - const: qcom,kaanapali-cdsp-pas
+> >> +          - const: qcom,sm8550-cdsp-pas
+> > 
+> > 
+> > This time maybe without HTML:
+> > 
+> > This looks wrong. This is not compatible with SM8550.
+> 
+> Could you point out what is the difference from your perspecetive?
+> it is the same as SM8550 except for there is one more interrupt,
+> which is also described in this patch.
 
---OUZx14CP7tCARnAz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'd second Krzysztof here. Your description points out that it is _not_
+compatible to SM8550.
 
-On Wed, Sep 24, 2025 at 02:31:30PM +0200, Herve Codina wrote:
-> Hi David,
->=20
-> On Wed, 24 Sep 2025 13:54:22 +1000
-> David Gibson <david@gibson.dropbear.id.au> wrote:
->=20
-> ...
->=20
-> > >=20
-> > > IMHO, no extra rules are needed in DT addon rules to constraint i2c d=
-evices
-> > > to be added in a connector node, a connector sub-node or an i2c contr=
-oller
-> > > node.
-> > >=20
-> > > This will be constrained by the connector itself (out of DT addon rul=
-es). =20
-> >=20
-> > At this point I'm just considering the end-to-end rules we want to
-> > enforce.  Exactly what stage of the process enforces each rule is
-> > another question.
-> >=20
-> > > I mean, according to rule b), the connector will allow some destinati=
-on
-> > > places. Either it will allow the i2c controller node or a connector s=
-ub-node. =20
-> >=20
-> > Sure.
-> >=20
-> > > This is specific to the connector definition and it should be out of
-> > > generic DT addon rules. =20
-> >=20
-> > Hang on... what distinction are you seeing between the "connector
-> > definition" and "generic DT addon rules".  As I see it we're trying to
-> > create a protocol that defines both the base rules and what a
-> > "connector" even means.
-> >=20
->=20
-> The "generic DT addon rules" give rules related to addon from a DT
-> perspective. In other word "What an addon DT can do"
->  - export symbols
->  - import symbols
->  - Add full node only
->  - Don't allow to modify existing node
->  - ...
->=20
-> The way addon are used is what I put behind "connector definition".
-> The connector is a specific node in a DT with a specific comptible string.
-> The definition of this node will tell "how to use it". For instance:
->   - There is 2 gpios available and an addon can use it with <&connector 0=
-> and
->     <&connector 1>.
->   - There is an i2c bus available and an addon can use if with <&i2c-a>
->   - The hotplug mecanism used for this specific connector (gpio, eeprom, =
-=2E..)
->     is also part of the "connector definition".
->=20
-> An external board DT supposed to be connected to this connector should
->   - a) Provide its description using an addon DT (compliant with "generic=
- DT
->        addon rules")
-> and
->=20
->   - b) Use resources from connector the board is connected to (compliant =
-with
->        "connector definition").
->=20
-> "generic DT addon rules": DT specification
-> "connector definition": Connector binding
-
-Ok.  I think there are some further possible distinctions here between:
-
- a. Rules for connectors in general
- b. Rules for a specific connector type (defined by the connector type
-    binding)
- c. Rules for a specific connector instance (defined by the property
-    values in that instance).
-
-Possible we can avoid using one or more of those categories, but we
-need to consider them and do so conciously.
-
-> Today, connectors are going to use the addon feature but I didn't want to
-> restrict addon feature to connectors.
-
-Hmm.  I'm not sure this is a good idea.  I had been envisaging this
-new "addon" support as explicitly tied to connectors - you can't
-addon, except in a way the base board allows, and connectors are the
-way it allows.
-
-> For instance, a FPGA driver could use the addon feature with an addon DT
-> to describe the internal part of the FPGA related to the FPGA bitstream
-> loaded by the FPGA driver. That might make sense, right ?
-
-With the distinction from the connector case being that the driver
-defines how to interpret the addon at runtime, rather than the base DT
-defining it statically?
-
-> Also upstream in the kernel, PCI boards can be described using DT.
->   https://elixir.bootlin.com/linux/v6.16/source/drivers/misc/lan966x_pci.c
->   https://elixir.bootlin.com/linux/v6.16/source/drivers/misc/lan966x_pci.=
-dtso
->=20
-> Using addon DT in that case makes sense too even if a "connector" is not =
-present.
-
-Ok.  So I think the model you're suggesting is this:
-
- * A bus/port driver (let's call it an "addon driver") can allow addon
-   DTs to be plugged in and removed, under constraints defined by that
-   driver at runtime.
-
- * The connector driver would be one specific addon driver, that can
-   handle a pretty broad range of not-too-complex addons.  The
-   constraints for the addon DT are defined by the properties of the
-   connector in the base DT, rather than by runtime logic in the
-   driver.
-
-Is that correct?
-
-A few observations
-
- - This effectively makes an addon driver a special case of a
-   discoverable bus/port driver.  Or even DT addons as a library that
-   a bus/port driver can use.  Rather than directly updating the Linux
-   device model, the driver selects an addon DT and uses that to
-   update the Linux device model.
-
- - The distinction between a connector and a general addon driver, is
-   a bit like that between the simple-bus driver and a PCI host bridge
-   driver.  The former handles a fairly wide range of relatively
-   simple cases, the latter handles a more complex and specialized
-   case.
-
-I don't dislike this model, but it does raise some questions (these
-are not rhetorical):
-
-1) Is DT a good way of describing the addon?
-
-After all, the addon driver could make updates directly to the Linux
-device model from whatever format is convenient.
-
-2) Does it make sense to use the addon to alter the global DT?
-
-Even if the addon is described by a DT, the addon/connector driver
-could read that DT and the system DT and make corresponding updates to
-the Linux device model without altering the system DT first.
-
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
-
---OUZx14CP7tCARnAz
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmjaT/UACgkQzQJF27ox
-2GeMjw//e5KYzaCYB3I9SlEXy1wnNnGWIYU6jQ8wi8zdcP2AbUem385LTS2rCFQH
-hqBuuIafNCnjLTnGFNVS7pg2u7I0nQw4YHgAJK8Miqc9jmrYcm++bjpI1YKAyy5I
-dJpVv6jR1uWhVZaDVbA1b2k6+ffWoGoYADl2N00CTt7bBlM4K6cBgGUs1v24AfkU
-FWdMec/vusXW9aoU+1AUj94JtERrv0cXuD01oi5cCTLpB7D7wc1POXVUK97XDJCo
-wahEWjpCQVMC2sX7+q0jUm++cz7d+/1hPvt5zaiNIKnNp4SDc4mYMpwHciXlw42C
-WkGQpAdCTrcQWNzLDBUceQ5LwPgOMJf8FKWdA3vllalwheLrtclELNNy3t92F0bz
-y6ZD3+8+cLVnXbLEdFc4O6JUrlaQSYrSwe8LgkKpcf1E1LimH3qKf6vvw7KqvJZC
-uolqfrLRAJP2oP8B+MSYRmKnJn48Y3lApkmK4dObR+ABL/+GmQF8s5XR8mB4RcYQ
-v/acGL5F8zzuvSl4ovHn7MzpvGvAYEridy7oh/+3pT8KAdct/B7D9e/1Oyxc1+Yj
-77jc9+C8zA87pP3xoL/mpfYM55iWh0LmVZHX/qRRnoJDK9o1Giofdobf4lO3sYwi
-zfrqOHfNKiMdfrBUN1G1AZncQXr2b6GkEBQDfscspYolNgNPIhk=
-=Xc5a
------END PGP SIGNATURE-----
-
---OUZx14CP7tCARnAz--
+-- 
+With best wishes
+Dmitry
 
