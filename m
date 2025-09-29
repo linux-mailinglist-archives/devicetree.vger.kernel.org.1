@@ -1,88 +1,162 @@
-Return-Path: <devicetree+bounces-222522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4510BA9E22
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 17:54:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01671BA9F94
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 18:13:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0450A3B00A9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 15:54:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53A531922923
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 16:13:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1ADB30BF58;
-	Mon, 29 Sep 2025 15:54:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07ED330C345;
+	Mon, 29 Sep 2025 16:12:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="reO91RoA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="c1dUyX8h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD080302774
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 15:54:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D647309F1C
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 16:12:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759161286; cv=none; b=Q7hj2zHRIot648xAwZisEiWWJEmxvSsvvAfYbF6EkT1oA7g4s5vx4BF3S8+kNnASZgfzpVXbSz9KB5Uv7Wi/6bbzxL7kMvagcDm+z0aGDrltTbUg4tCqdCn8/DUrLaGNWtZu0R3bMX8iHVW4o4Kd5ylHkJa1uGdWcH56kC4ZIIg=
+	t=1759162375; cv=none; b=YiAmJkPD0yvgaKYFrnsDDAaZpAdUMQBYwjDT5WdBsi4u3C0lXN0ShJpvlRP8wGv94OWAokc8l1hsorj0jLDI/Rt7+IKkhBNOeIzwBBmVT5+2ciUIEbMFfEB1tjiXAFtFToHjOmc3DcIpsCO5WIz/fVOgn4/z/hebiJ4X1dLSNf8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759161286; c=relaxed/simple;
-	bh=eq+AQgvA9sxV/iQE9XAagE2/yUtnNw6q2aqm6/TFD2Y=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=p1bWA2zMwv9JK+sEcA3amfsfA9g0rZw4J0OLQb55JKCsaGWkw7h/wU5MSe5Yc2AVEhJYQOIPAC8ok+U0FvtlqZEAJknlCLNExEn23IysZUk+Kniymaa5KOMaVlkB7W85ra30HgTyJnTFXo55Tx8TjhnVkl8EJpXX8YUo7kS/GoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=reO91RoA; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 0928B4E40D3E;
-	Mon, 29 Sep 2025 15:54:43 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D433E606AE;
-	Mon, 29 Sep 2025 15:54:42 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 6510A102F198F;
-	Mon, 29 Sep 2025 17:54:35 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1759161281; h=from:subject:date:message-id:to:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Spm8yVAgaGCfSlHJQfFy0r1pg/IkNIzB0XaZz5q975c=;
-	b=reO91RoAuHVRsuxfoZLuZHViU4cHSpuhOFU2QzBxRmNetmG7MT2SboCpjN6Hn2aF+VsOtp
-	g749P5UOkCxiSjK9QIrdj2PUpr57XQSfkcYi/7Tvc1FD3ttCe+VeNtfFJ8PffIVJYD8Tia
-	bMfj0q81TYd6nYpV8PPhSvw6TuS9anIrXNFXXg62XFesyiuGls5ewFO6RdcIyehjNmfeQS
-	o78PcMBGyM2giYp29pEhdSXqnVgeq/5LZFvMU9eBnootXBGHYPzj/LnQ6kQv16chjLEcRK
-	N0tnxmfWSCGxxl82sH0qmoKqRY6ONwVt+W/o4KP+JouHYmXL5lvG6VjBAhllIg==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: richard@nod.at, vigneshr@ti.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, linux-mtd@lists.infradead.org, 
- devicetree@vger.kernel.org, Markus Stockhausen <markus.stockhausen@gmx.de>
-In-Reply-To: <20250919075201.4177901-1-markus.stockhausen@gmx.de>
-References: <20250919075201.4177901-1-markus.stockhausen@gmx.de>
-Subject: Re: [PATCH v3 0/2] Realtek ECC engine
-Message-Id: <175916127540.50127.8496050695970083925.b4-ty@bootlin.com>
-Date: Mon, 29 Sep 2025 17:54:35 +0200
+	s=arc-20240116; t=1759162375; c=relaxed/simple;
+	bh=Tg4GHAGSujxf07p3BKLBHupxzDzRxA4YhwnGHXjIWqg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YghX/KclhwdBKKUcJLBOZx6OG0MuMBkGwt4yU4c1Hm4bqfwH4RE1eyVABRjS4L49OAzt6vokhxsIS0UAJmfqGUG5uWBNuOyeBddr0AfzSkz+EHThrm7M4vv+AEXCkfGDov1IkJVHUatJiyute4GBnSsRPtYruOpEw3sHRT3aA2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=c1dUyX8h; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-62fca216e4aso1667312a12.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 09:12:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759162372; x=1759767172; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WKbIiyOJGnPtewg2XGQmyuDm4Je77/TR9Lj2L/HdtYA=;
+        b=c1dUyX8hhJSYyGYODEZJNq541ZKuCw/Gdz7nPQEv/xxNam6/fqe07/DWYBL7kEC3dD
+         EXqzZlE7dPBQT5g3rtAqSJGV1ZiYvgc4lu7IV7GLHHj0kZIjYjIQSF4+9/KP0y2QWiuP
+         2LlFfSPu6WtLuvy7qDyG76i9nDVWNA7cnKynvmukfpOJvIIZUDWmmnAZp0agIUq5QyCC
+         hnjK7f8n0iWjotqiwEQGMwem5PD+yZU/1fcJQDuJQ9b6lYc5A1QfMFc0qLbv7K1w0r/N
+         4gPJW1+MriX792QkKWGr934qmGWJ8fYrUHeg/W07ZQfr6JScdZAQCW0o6H9jxFoka5BT
+         iJaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759162372; x=1759767172;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WKbIiyOJGnPtewg2XGQmyuDm4Je77/TR9Lj2L/HdtYA=;
+        b=c0oyn7HK8+inY6zGGI8EssIF+3vbf7imgcdBjKM0ZtP2NG3PSJ4uIZBhrMIdbgVZ18
+         Dy+GWWKQ21QymB1HtaPhaXFDTC7azGRZGX9lhwjc0Ij12BCE2B5tIVG2CKIayukeodxI
+         dM7QKLDmmDy7GAtisHruLNCYv5BaSavlSfmqb/aaci9TobvqrEVekHEL8Y9H7sjDvrE5
+         ieCcdawPcHsw3AbPgixr8e+g7x0Bp/Ga1ODZ4W0gKTY8ahTaA6zXXWyIepMS+6GvmCo2
+         GUG7yM7jRhSrA+54BinJnZIzVBACCO6lehC/gbsX0aJ87L+9WONJQPI2d9oeNq+DjanL
+         XVDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUNrz28weE3srMarEZxaN7Jfdxv5aKL+Ws6Mx8foF4qaRhfLBu8tyedHazY5pT1W0EyxDOhJK+8mrpP@vger.kernel.org
+X-Gm-Message-State: AOJu0YxsGyWbRiug7kVuhMtGNLVCZ0TnekrqGSO/ikWvBBAgn8n/dyA0
+	n5eV1FIgCEqD0yC7lhWK7tPy+HqJBiI46aFS9J2SADlvtDAbWMX06umeW0jtafXUv/zLw12LB/p
+	ZsVMzZO3SRvnzb/y27jU0Z/shFiq4u6Q=
+X-Gm-Gg: ASbGncvjjRTlRhQFuRVRHBB/65MZIQAi0yRQrpuAJ0VrWg+HsE0lCq/SajwDo0JRN5s
+	ruN0+nwE0tDv63Yje1HL17bSbqWVfAA0HwMT5/XAt2k6ROn+Lfm2OQ7LO2mFKxglpyIGX8wgLBD
+	rvCiaP1SxA7P9jsNgd/Pg7WuZTojbNXN0p/KJT4T/ojHkXrJNlu5g4bMDPw5d5dQ4ooku1ybVnC
+	He+hlWN6JW+t5Mm
+X-Google-Smtp-Source: AGHT+IE0lqGvuA/Xz523aRKIL9hmjXUK7+0u8AEeVGECM/7avOtLvinLYTseWMgOs08RG2BDuA8KXOfxxvlTzVs/fE8=
+X-Received: by 2002:a05:6402:3508:b0:61a:7385:29e3 with SMTP id
+ 4fb4d7f45d1cf-6365af5adecmr1127595a12.18.1759162372397; Mon, 29 Sep 2025
+ 09:12:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.14.2
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20250926072905.126737-1-linux.amoon@gmail.com>
+ <20250926072905.126737-3-linux.amoon@gmail.com> <aNbXdFPrDr8V2a+1@lizhi-Precision-Tower-5810>
+ <CANAwSgT3inDQZ40uFtXwFze2m4hZUvnyKTek3PQ9jb6picgi-A@mail.gmail.com> <aw3flahx3g4exezj5245cgrixasshvf26yibctxsd3l42ygwke@equdzipwspvx>
+In-Reply-To: <aw3flahx3g4exezj5245cgrixasshvf26yibctxsd3l42ygwke@equdzipwspvx>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Mon, 29 Sep 2025 21:42:35 +0530
+X-Gm-Features: AS18NWB4VW7y7yX6xXK-2yBG9rF9CezN0Xp1TVzzbBM3LHGAaoA03PQWsyQH6Vg
+Message-ID: <CANAwSgR-sq_jRp7ZQyWxrW_o6vRnCsu7FW77odDzY5xPcMuwEw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/5] PCI: tegra: Simplify clock handling by using
+ clk_bulk*() functions
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Frank Li <Frank.li@nxp.com>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	"open list:PCI SUBSYSTEM" <linux-pci@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 19 Sep 2025 03:51:59 -0400, Markus Stockhausen wrote:
-> This series adds support for the ECC engine on Realtek RTL93xx switch SoCs.
-> 
+Hi Manivannan, Jon,
 
-Applied to nand/next, thanks!
+On Mon, 29 Sept 2025 at 19:31, Manivannan Sadhasivam <mani@kernel.org> wrot=
+e:
+>
+> On Sat, Sep 27, 2025 at 11:20:10AM +0530, Anand Moon wrote:
+> > Hi Frank,
+> >
+> > On Fri, 26 Sept 2025 at 23:42, Frank Li <Frank.li@nxp.com> wrote:
+> > >
+> > > On Fri, Sep 26, 2025 at 12:57:43PM +0530, Anand Moon wrote:
+> > > > Currently, the driver acquires clocks and prepare/enable/disable/un=
+prepare
+> > > > the clocks individually thereby making the driver complex to read.
+> > > >
+> > > > The driver can be simplified by using the clk_bulk*() APIs.
+> > > >
+> > > > Use:
+> > > >   - devm_clk_bulk_get() API to acquire all the clocks
+> > > >   - clk_bulk_prepare_enable() to prepare/enable clocks
+> > > >   - clk_bulk_disable_unprepare() APIs to disable/unprepare them in =
+bulk
+> > > >
+> > > > Following change also removes the legacy has_cml_clk flag and its a=
+ssociated
+> > > > conditional logic. Instead, the driver now relies on the clock defi=
+nitions from
+> > > > the device tree to determine the correct clock sequencing.
+> > > > This reduces hardcoded dependencies and improves the driver's maint=
+ainability.
+> > > >
+> > > > Cc: Thierry Reding <thierry.reding@gmail.com>
+> > > > Cc: Jon Hunter <jonathanh@nvidia.com>
+> > > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > > > ---
+> > > > v1: Switch from devm_clk_bulk_get_all() -> devm_clk_bulk_get() with
+> > > >       fix clks array.
+> > >
+> > > why not use devm_clk_bulk_get_all()?
+> > >
+> > My RFC used this devm_clk_bulk_get_all() which could work for all the S=
+oC,
+> > However, Jon recommended switching to named clocks, following the
+> > approach used in .
+> > but Jon suggested to use clock names as per dwmac-tegra.c driver.
+> >
+>
+> The concern was with validating the DTS files with binding. Since it was =
+in .txt
+> format, validation was not possible. But you are converting it to .yaml, =
+so you
+> can safely use devm_clk_bulk_get_all().
+>
+Yes I would also like to use the previous approach.
 
-[1/2] dt-bindings: mtd: Add realtek,rtl9301-ecc
-      commit: 12bfcb84dc0852c97baff9ac1c0292a9db90c367
-[2/2] mtd: nand: realtek-ecc: Add Realtek external ECC engine support
-      commit: 3148d0e5b1c5733d69ec51b70c8280e46488750a
-
-Patche(s) should be available on mtd/linux.git and will be
-part of the next PR (provided that no robot complains by then).
-
-Kind regards,
-Miquèl
-
+> - Mani
+Thanks
+-Anand
+>
+> --
+> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
+=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
+=E0=AF=8D
 
