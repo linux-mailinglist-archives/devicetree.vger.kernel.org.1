@@ -1,134 +1,123 @@
-Return-Path: <devicetree+bounces-222499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A46D1BA9926
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 16:28:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D14A9BA9953
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 16:31:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EB0C1920767
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 14:28:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AC2B189E5D5
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 14:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AE3030BB9C;
-	Mon, 29 Sep 2025 14:26:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B5873054D6;
+	Mon, 29 Sep 2025 14:31:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QNfA+TYy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ybofpbcx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D0A30BB98;
-	Mon, 29 Sep 2025 14:26:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E9A91DD543;
+	Mon, 29 Sep 2025 14:31:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759155967; cv=none; b=e3JD1am/vLtf0HFn2njlx7bDX7yVZqka+oDoo5VdTSugBiGOmzzpLtPEsX1+Fajp93Qq5LF3pumWmtGVp35Kiz9u99/ibMlGhZqnMcX50bPtqisK3t9EkSZUSJjXk3Vws6Nw2OsS6BGhnoZL2tQSqFNFxREn+LXpusTCfUWVJ8M=
+	t=1759156294; cv=none; b=C3TwVRyJgwxMlFHzahc3NO3DPE1DBCH9zhO/whpeSw0XxKEzE/1bitNigQpBgukinygeevNvaPm+OtToXO7EJSAn0ALRvE5XNVMUH5nMiKFO8N8mS5bRBNaKOX38ge2z2oDghZ/g+zWgkh6Yp/kUwO1QzLwDgjN4nApZSq6XWC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759155967; c=relaxed/simple;
-	bh=hTD3Nt4DpaJRy7P/xGnOsnI2J/j1t6BOJMHTcrErYBM=;
+	s=arc-20240116; t=1759156294; c=relaxed/simple;
+	bh=sKuqKNpE5dhMtZf1zaC2ZqjURpyd3C7l8Ef/qH3un8E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U0Y16zbp7IwbhzOH/co5+ONkeS1OkSVv7lev1OTTsSS3CDhrF/HGnGc+yTiSgFvDj0fjtQzd3GHZbuTjIpL/D6I7ALE2rJMclI5tV0PRJvDiWyLnyNgyXTvCDMTS1+KDSCouj+SaIAUymMpwfyuJ1zXZV4gwP1xRf5uHiU9qcfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QNfA+TYy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41B7CC4CEF4;
-	Mon, 29 Sep 2025 14:25:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y/WpLQQAY2VhIgq05GZw/Y5gWPTcD50VG9tKgVWCj9VSMe47LRQ4pPcHW7qa+Ymgbzt0AeqeqnysAAevuinVnpYfLSO5ovUaLudG3N+dsCkGTdx4yLYa4b58I73iZgL6lduSgbMgnROmvHM62Am3hddILF/UFsJMpIwp4REagP8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ybofpbcx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68AE4C4CEF4;
+	Mon, 29 Sep 2025 14:31:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759155966;
-	bh=hTD3Nt4DpaJRy7P/xGnOsnI2J/j1t6BOJMHTcrErYBM=;
+	s=k20201202; t=1759156293;
+	bh=sKuqKNpE5dhMtZf1zaC2ZqjURpyd3C7l8Ef/qH3un8E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QNfA+TYysm0r/r7mJIUX1cdDvGFGBTYzwOKXfuZgsoVZioa6sP+OU8gDYuRo+zqpu
-	 Rx2oqwpImf+kGSC0dtL0SGLVSUn+VAayC8BnlCCLcD6MybTCv/DakzG8I8UcBDFc/1
-	 d9cIWsyVYAT2IiatXZ/oNPEf0jt7+4+oMT/u7y37tGTWIj7jOm5hWxyudkcSil0ONf
-	 JBlkyG29FZqqyaYUt1SuDxXmD/oYcLtTCpm9Vub3AQAwtV/al/GcCpEXU11zDmtD2l
-	 bHeSrIl1E3dFC6gsYuLc0wd4CS1PNoV8/TZO/F40ekErsZSM7nbJrJk7UgBj6cRZ6v
-	 jFhxV5Lirvcgg==
-Date: Mon, 29 Sep 2025 19:55:50 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Randolph Lin <randolph@andestech.com>, linux-kernel@vger.kernel.org, 
-	linux-pci@vger.kernel.org, linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	jingoohan1@gmail.com, lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, 
-	bhelgaas@google.com, krzk+dt@kernel.org, conor+dt@kernel.org, alex@ghiti.fr, 
-	aou@eecs.berkeley.edu, palmer@dabbelt.com, paul.walmsley@sifive.com, 
-	ben717@andestech.com, inochiama@gmail.com, thippeswamy.havalige@amd.com, 
-	namcao@linutronix.de, shradha.t@samsung.com, randolph.sklin@gmail.com, 
-	tim609@andestech.com
-Subject: Re: [PATCH v3 1/5] PCI: dwc: Skip failed outbound iATU and continue
-Message-ID: <ihappv6m5k7hvbfn7h65j7e52jqben7mgrvg7sem3hskfzgxyn@meq5xq33hgpc>
-References: <aNPq42O1Ml3ppF2M@swlinux02>
- <20250926211023.GA2128495@bhelgaas>
+	b=Ybofpbcx+ejkNvAv75607kTZIE8CUsY9qhrXc/yrJ9X2bu9eV4OnGXQ3TNrOD/y2P
+	 ZTx2iK+hamBmIKKHDaVWhoOTCftImvcznOCK+7AEffOegIkND9rMYBhjXJdQX1r1ZL
+	 0JZPrZuBsBi3OkjiTPDsLn7YSdXtt3i13qbb2sqBLpmyWZ+oVdhkzjg1wkMuDpihUy
+	 6H4hKACxj53QRJs6VTVZG6utz4nyFWuKrwYhNjvjyPwNTkosbGPUWq/6n6pcvlANgh
+	 fQ2kDFeXinDxHted7Q2+zz5VDaq8aUMue0z6xZZqc8r3t6Teq5PIR23t0f4AHQZWzI
+	 MmqWDPc+OcTRw==
+Date: Mon, 29 Sep 2025 09:31:32 -0500
+From: Rob Herring <robh@kernel.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	michael.hennerich@analog.com, nuno.sa@analog.com,
+	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+	marcelo.schmitt1@gmail.com,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v3 7/8] dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216
+ and ADAQ4224
+Message-ID: <20250929143132.GA4099970-robh@kernel.org>
+References: <cover.1758916484.git.marcelo.schmitt@analog.com>
+ <5dc08b622dac1db561f26034c93910ccff75e965.1758916484.git.marcelo.schmitt@analog.com>
+ <20250928111955.175680cb@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250926211023.GA2128495@bhelgaas>
+In-Reply-To: <20250928111955.175680cb@jic23-huawei>
 
-On Fri, Sep 26, 2025 at 04:10:23PM -0500, Bjorn Helgaas wrote:
-> On Wed, Sep 24, 2025 at 08:58:11PM +0800, Randolph Lin wrote:
-> > On Tue, Sep 23, 2025 at 09:42:23AM -0500, Bjorn Helgaas wrote:
-> > > On Tue, Sep 23, 2025 at 07:36:43PM +0800, Randolph Lin wrote:
-> > > > Previously, outbound iATU programming included range checks
-> > > > based on hardware limitations. If a configuration did not meet
-> > > > these constraints, the loop would stop immediately.
-> > > >
-> > > > This patch updates the behavior to enhance flexibility. Instead
-> > > > of stopping at the first issue, it now logs a warning with
-> > > > details of the affected window and proceeds to program the
-> > > > remaining iATU entries.
-> > > >
-> > > > This enables partial configuration to complete in cases where
-> > > > some iATU windows may not meet requirements, improving overall
-> > > > compatibility.
-> > > 
-> > > It's not really clear why this is needed.  I assume it's related
-> > > to dropping qilai_pcie_outbound_atu_addr_valid().
+On Sun, Sep 28, 2025 at 11:19:55AM +0100, Jonathan Cameron wrote:
+> On Fri, 26 Sep 2025 17:40:47 -0300
+> Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+> 
+> > ADAQ4216 and ADAQ4224 are similar to AD4030 except that ADAQ devices have a
+> > PGA (programmable gain amplifier) that scales the input signal prior to it
+> > reaching the ADC inputs. The PGA is controlled through a couple of pins (A0
+> > and A1) that set one of four possible signal gain configurations.
 > > 
-> > Yes, I want to drop the previous atu_addr_valid function.
+> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > ---
+> > Change log v2 -> v3
+> > - PGA gain now described in decibels.
 > > 
-> > > I guess dw_pcie_prog_outbound_atu() must return an error for one
-> > > of the QiLai ranges?  Which one, and what exactly is the problem?
-> > > I still suspect something wrong in the devicetree description.
+> > The PGA gain is not going to fit well as a channel property because it may
+> > affect more than one channel as in AD7191.
+> > https://www.analog.com/media/en/technical-documentation/data-sheets/AD7191.pdf
 > > 
-> > The main issue is not the returned error; just need to avoid
-> > terminating the process when the configuration exceeds the
-> > hardware’s expected limits.
+> > I consulted a very trustworthy source [1, 2] and learned that describing signal
+> > gains in decibels is a common practice. I now think it would be ideal to describe
+> > these PGA and PGA-like gains with properties in decibel units and this patch
+> > is an attempt of doing so. The only problem with this approach is that we end up
+> > with negative values when the gain is lower than 1 (the signal is attenuated)
+> > and device tree specification doesn't support signed integer types. As the
+> > docs being proposed fail dt_binding_check, I guess I have to nack the patch myself.
+> > Any chance of dt specification eventually support signed integers?
+> > Any suggestions appreciated.
 > > 
-> > There are two methods to fix the issue on the Qilai SoC:
-> > 
-> > 1. Simply skip the entries that do not match the designware hardware
-> > iATU limitations.  An error will be returned, but it can be ignored.
-> > On the Qilai SoC, the iATU limitation is the 4GB boundary. Qilai SoC
-> > only need to configure iATU support to translate addresses below the
-> > "32-bits" address range. Although 64-bits addresses do not match the
-> > designware hardware iATU limitations, there is no need to configure
-> > 64-bits addresses, since the connection is hard-wired.
-> > 
+> > [1] https://en.wikipedia.org/wiki/Decibel
+> > [2] https://en.wikipedia.org/wiki/Gain_(electronics)
+> 
+> I still wonder if the better way to describe this is to ignore that it
+> has anything to do with PGA as such and instead describe the pin strapping.
+> 
+> DT folk, is there an existing way to do that? My grep skills are failing to
+> spot one.
+> 
+> We've papered over this for a long time in various IIO drivers by controlling
+> directly what the pin strap controls with weird and wonderful device specific
+> bindings. I wonder if we can't have a gpio driver + binding that rejects all
+> config and just lets us check the current state of an output pin.  Kind of a
+> fixed mode regulator equivalent for gpios.
 
-Why does the DT supplies broken 'ranges' in the first place? DT describes the
-hardware and if the hardware only supports 32bit OB window, then DT has to
-supply the range accordingly. It is not currently clear on what issue you are
-trying to solve by skipping the range check for broken resources.
+If these are connected to GPIOs, isn't it possible that someone will 
+want to change their value?
 
-> > 2. Set the devicetree only 2 viewport for iATU and force using
-> > devicetree value.  This is a workaround in the devicetree, but the
-> > fix logic is not easy to document.  Instead, we should enforce the
-> > use of the viewport defined in the devicetree and modify the
-> > designware generic code accordingly — using the viewport values from
-> > the devicetree instead of reading them from the designware
-> > registers.  Since only two viewports are available for iATU, we
-> > should reserve one for the configuration registers and the other for
-> > 32-bit address access.  Therefore, reverse logic still needs to be
-> > added to the designware generic code.
-> > 
+Other than some generic 'pinstrap-gpios' property, I don't see what we'd 
+do here? I don't feel like pin strapping GPIOs is something that we see 
+all that often.
 
-'num-viewport' property is deprecated. So should not be used in new DTs.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Rob
 
