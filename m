@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-222414-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222415-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44AB6BA8EE7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 12:57:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61380BA8EEA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 12:57:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B8FD1898F3F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 10:57:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CB241C2230
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 10:57:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7C1E2FF14A;
-	Mon, 29 Sep 2025 10:56:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE3542FF15F;
+	Mon, 29 Sep 2025 10:57:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RBRVLpxC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GHleWSt4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 299602FE071
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 10:56:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33E132FE059
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 10:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759143416; cv=none; b=PUDgGKgzJ0gQW71RnI3JaQO+nnBMLfMPvPeF5i31mXd6Bj2iTFF5O0rOUAfEkSLG6oucT9LTv04KI9aLibr3k7Uq12t/3E9nuTwNF4mDDBw+cCubK0/zd48V1Lpqj3CspZHSSGu3fUSCBTB09x9h2KDpLWA/j+GKvcFSk0QTqjI=
+	t=1759143420; cv=none; b=JFTwKhw9wDr3LWPpcb3teOv8m+7oSgOH4ekHmshguTEkd2vL8Q7WmPoICA/btoyZzdyjxfXxKTKq1XfoniLhJaypz0juYoRZl8aOPJCS49S8+aJN/gEeWujTXF2sTArHTfCHSIu6a8Pe+5sfFaO4whIEYpuoQ7auhE9K8s6oXPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759143416; c=relaxed/simple;
-	bh=9mw2P5dYXLdgN+jShKI5SQIuxZ2v3j8zIUKyNLfB4do=;
+	s=arc-20240116; t=1759143420; c=relaxed/simple;
+	bh=es2eQE3djkxxO7Qk3efIm3x2FtzFs1v6bsaNQwYnZRE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Ilb6hH0U60+hB518d3ODnkpNSG6YClsTw4/AoKuuFFsm+rsq2LD2nz0zxucR8bpkiLXxw++YszuPnYfyv1BgKppoOV/UL42HT+XiF6VweR+Y69goAILS5HpwhOkjWnqwa/+a/B0CfdEjtv90i/LIhhXTz2BogpAMHdMS6tYv9X4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RBRVLpxC; arc=none smtp.client-ip=209.85.214.181
+	 MIME-Version:Content-Type; b=btCqSxV233cL7qlLpm6nXpZJp311SJ1oD9XRRiEvHrG70ZiGVPJxFIb7V+jgVhjNKnswZC6soIJRjTSmJQHzJ1jFwJoIK0fl65reL1X4LalmdOXlwUW5SrzgXVa7560r+8u4mU97h5lYOyo1zSO7HoO5WVbTYS9THJnJzkOk2HA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GHleWSt4; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-27eceb38eb1so54125975ad.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 03:56:53 -0700 (PDT)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-271d1305ad7so58986345ad.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 03:56:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759143413; x=1759748213; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759143418; x=1759748218; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=T95VqkCGKcf0euLodTu/LWHeRLCEzVUvySKHy2hqsr8=;
-        b=RBRVLpxC9QGyGSg9Q0qi4u0bJJQauf8T2AH98mW8bW8JrbSv+LY6MVO4yQAs7TKa5P
-         /6H3YD8CPFNxZVz1ZkbYfYUxP5yrSFAHbeNL3jRdN96bZoBxYBWwxIYHSsCt+ekr6bsn
-         sWtC7D9Le9Hmr00Ux7pXFPL6Hu6wKpKl8iHy2U/BKjghF4teH6gXFDfm2RNa/aXdK3yX
-         bZexMTahPhGlcSaPVS6iKtOIPjc7fz0uLD6ZF6wcaHfsUh/zX0jj6Kpb7rj7et+hN6q2
-         nQLFNUb1EiP4PAXXUxDc5WP/x2Bcqwy6c9t8w+M8DHdbg2tr10t9ViPafEgE93gAymkY
-         z1Fg==
+        bh=4PY8OmxrnVOq+prHUYZH2nnjzosZ3Ye7L/hjac8Ucls=;
+        b=GHleWSt4ZnBKyLp2zmL55jpvSW4cBnRoWlDEcEiJOhSb23gIelWQM3FqkuWM+6SKP9
+         1/eoUchKd8o4jEcml7nyOMKFi9OhGejGn/Gjj8EG/+1Fdgd9G+AmZgpBMO/DZXIHXHZ7
+         LlKXetBRV2qAgTEKJSBbMxBEoIA84wB/EDfgqqdO32ihwFT46g7P6M/FFPJ+nLoWxCRx
+         Rhn8w0ERw1p/eUVrVU2y+Hot4Thpy5eU/RHjsu7HCU47/RpgS8QrDqRkfckrajH1a516
+         n7XORpSzwgE5m8qkcC02CJg2fQl+0mfg6iIepbVAyG0mEKiVQvQDbuZWcFm/zekGhIEK
+         Vcxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759143413; x=1759748213;
+        d=1e100.net; s=20230601; t=1759143418; x=1759748218;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=T95VqkCGKcf0euLodTu/LWHeRLCEzVUvySKHy2hqsr8=;
-        b=llrbc1B4Or0zMuxe9zgF00cfRyunqcWzQrfijZ6zXph3sWA6LVAPI7TX65Lv2cIhhx
-         8snygRJD1NPvisnvb3V3wm3tkmxmfPox95be9tE9yyEml7f/WJN9dfkxOCP47YKdw36O
-         O6QumMSR3jMts7gqSq3Je5bXqt9QjLXvZzKEPZxAjW6pZSaxxJJ2st0AufdAQVdPlU4u
-         5u68rfyCDgULp9xiuD0A/5Mu05Q4LSHaCzGhvU7fLGQeIwLSE41PG0jWqVygLF0ThnaK
-         dGknlo0Oef4rDdYRuWMdXG+sVSpgdiL5MpHD4SvHTaNAiNKuaktR9IP8r8NmFqMFRG5d
-         Npyw==
-X-Forwarded-Encrypted: i=1; AJvYcCWYfHSb76g/Dwy78Y9Tc1OtNATEAOTgQdqPQS2deAymY/URLMeW1fIyd/NC3k2hrwF0+D55BDUPztOq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yydtgsv6jXdS4N/BPdu2lYcKqDlY9MxKbfZgdZ+vYz7NHfLgUin
-	Fc+RrPsYhu25jxwNsQen0zXQyLAnXDi1rBBvKtMZylVgqc4wEN6ktzuv
-X-Gm-Gg: ASbGncv+OMzWewGR25NPzYyLbSsExC/yc6lRL/cnHh4yAZxmfldxGo/tLA+HgG0VMay
-	ltDktC/XSM3yDzEPUKleoNoVLceNnpp8a8Si1j8ayOcYrUnBYqOrzI1YG3zMB6lp1ri0WJU1wTT
-	X35C8YpHCsKiaujgw+1BdZyfhXBUfbTgEu8fGN8umOQx/7XIhDjC+JicHBrevLzsJiLSZ4PV2vB
-	R+1M6V60kgkmeYgatUmxGstQb/IoPynO/VLFq0tnh/tvgw6+I1IbwqV8uHBtROzf2k5zWPF1JJ4
-	a+sReRR9MFEpUbYficN+Oz4oDTfDdTNhzZ23uaa8F8Ms8aQBTRF6neA7qqMQsORWNpnmz4d9Sda
-	mCFtYqDMU/wAJ5us0jY8WRYQxus4c6XU7lVEcbyFmJpidDvbZTUq2Drsu8inV73E=
-X-Google-Smtp-Source: AGHT+IEoMv8QabwioyT9KmjtZc/cwSoM21Wiv3j8eYW1GMeY/v0EJthcpz+9aNZy7YdSJAXV7pjIOA==
-X-Received: by 2002:a17:903:2c0d:b0:250:5ff5:3f4b with SMTP id d9443c01a7336-27ed4a3e0afmr199389745ad.15.1759143413187;
-        Mon, 29 Sep 2025 03:56:53 -0700 (PDT)
+        bh=4PY8OmxrnVOq+prHUYZH2nnjzosZ3Ye7L/hjac8Ucls=;
+        b=dcAoJbDr8q18d4wW1y2tAQ2cL5thwhBQjwr+9BHagFjgWlK1dnHk7WfSyj3lVeN6Mn
+         5APtTZvpkPtyxTuU4bhvABAZc/vZzKQHpVghISUZ8HT+BDq6N3hJb7LIaMqdA/OJyoQK
+         0snHyOgXsnSPRt2NEeL5ZDkBTVasx9nwAApRmcFy3qiK2VomH+BkNZn5faPV3wCC9nZF
+         6zMK1L3TLz+K7EFPisXsh7nmb6NaTBedHcb2/0Ev0zLqh8oKzmF9ee9I5ga1JGV1LmQx
+         YRBaK0yg6NINoED4R7JehtorJCpXrA+GJ904bhl/nhSFr+Gi6uuE0vO+A1qUB8IUfsmU
+         NklA==
+X-Forwarded-Encrypted: i=1; AJvYcCV/h/fU52qEYTB0+g2Pbj3/oeGd1dh4Lae6IPv3M+caFc2+SKAgxuTVCcwKwsRae6ekYoDCPoFWqgGk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/36fwwnnQpCUKpI27M3J+h9jjmFqBA8Eb8uIwR/NK6/V4+1zy
+	KiTJrHU9P76ux/g4Hb+JAcytcbFFhwEd7HAAc4A03/h4RnkH485ZO0a+
+X-Gm-Gg: ASbGncu3a9ZBmwhdORVDsBVtIDXzUhorC/sJj0aY5OUrZqyaNAuHWg5jkOlHCk0wgkR
+	2jleagmU2X1/eS5VaUYE9+0mQs+V63dNAGkZcWk0r+HGi8p0oWhjHWomH84cEjLaz6DCVaYYbJ6
+	ZBtNpMELw9wskk7QDP9rwRnQfaSAeJNOAI4kQB214Gg2hLM6ynVgfzhl7KHk4FjOLzLGrN4G1En
+	9tA5GWaVVZf9FI/xc5VLEdl17UE0fIuZWx7gasc3eP4LmA4EmyDN0helGQNSIncurev6PeLJq5M
+	iHzt2h4M6qvY85NgechAaXCADcsEG+AMpmiWdZhX7NBUammkIk6mryX0ej07D2JEBrMpeqs+2or
+	Loh405n+U40NGgtlR1S7p1b2vo4md8e0lhG8WGSnh5NGzzXCpa11A
+X-Google-Smtp-Source: AGHT+IFjqe0V6bcffA7grVGYsuJAtlVGm62MbayVYnq93DK4PsVr92HZqeb0AfB8cpvkg7+9FmS0ww==
+X-Received: by 2002:a17:903:2847:b0:269:4741:6d33 with SMTP id d9443c01a7336-27ed49d2c35mr115317405ad.23.1759143418232;
+        Mon, 29 Sep 2025 03:56:58 -0700 (PDT)
 Received: from HYB-iPCgmhaB8Cy.ad.analog.com ([59.9.235.253])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28cef7db380sm4762325ad.107.2025.09.29.03.56.49
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28cef7db380sm4762325ad.107.2025.09.29.03.56.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Sep 2025 03:56:52 -0700 (PDT)
+        Mon, 29 Sep 2025 03:56:57 -0700 (PDT)
 From: Joan-Na-adi <joan.na.devcode@gmail.com>
 X-Google-Original-From: Joan-Na-adi <joan.na@analog.com>
 To: Liam Girdwood <lgirdwood@gmail.com>
@@ -82,11 +82,10 @@ Cc: Mark Brown <broonie@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Joan Na <joan.na@analog.com>,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH v2 2/3] regulator: max77675: Add MAX77675 regulator driver
-Date: Mon, 29 Sep 2025 19:56:17 +0900
-Message-Id: <20250929105618.177511-3-joan.na@analog.com>
+	Joan Na <joan.na@analog.com>
+Subject: [PATCH v2 3/3] dt-bindings: regulator: Add MAX77675 regulator binding
+Date: Mon, 29 Sep 2025 19:56:18 +0900
+Message-Id: <20250929105618.177511-4-joan.na@analog.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250929105618.177511-1-joan.na@analog.com>
 References: <20250929105618.177511-1-joan.na@analog.com>
@@ -96,1126 +95,229 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 From: Joan Na <joan.na@analog.com>
 
-This patch adds support for the Maxim Integrated MAX77675 PMIC regulator.
-
-The MAX77675 is a compact, highly efficient SIMO (Single Inductor Multiple Output)
-power management IC that provides four programmable buck-boost switching regulators
-with only one inductor. It supports up to 700mA total output current and operates
-from a single-cell Li-ion battery.
-
-An integrated power-up sequencer and I2C interface allow flexible startup
-configuration and runtime control.
-
-Fixes:
-- Removed unused variable 'value'
-- Removed duplicate .list_voltage initializer
-- Wrapped of_match_table with of_match_ptr() to fix build failure when CONFIG_OF is not set
-
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/20250927.cU4bEADk-lkp@intel.com/
+Add device tree binding YAML schema for the Maxim MAX77675 PMIC regulator.
+This defines the node properties and supported regulator names for use
+in device tree sources.
 
 Signed-off-by: Joan Na <joan.na@analog.com>
 ---
- drivers/regulator/Kconfig              |   9 +
- drivers/regulator/Makefile             |   1 +
- drivers/regulator/max77675-regulator.c | 792 +++++++++++++++++++++++++
- drivers/regulator/max77675-regulator.h | 252 ++++++++
- 4 files changed, 1054 insertions(+)
- create mode 100644 drivers/regulator/max77675-regulator.c
- create mode 100644 drivers/regulator/max77675-regulator.h
+ .../bindings/regulator/maxim,max77675.yaml    | 202 ++++++++++++++++++
+ 1 file changed, 202 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/maxim,max77675.yaml
 
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index eaa6df1c9f80..783e718e64a4 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -641,6 +641,15 @@ config REGULATOR_MAX77650
- 	  Semiconductor. This device has a SIMO with three independent
- 	  power rails and an LDO.
- 
-+config REGULATOR_MAX77675
-+	tristate "Maxim MAX77675 regulator driver"
-+	depends on I2C
-+	select REGMAP_I2C
-+	help
-+	  This driver controls the Maxim MAX77675 power regulator via I2C.
-+	  It supports four programmable buck-boost outputs.
-+	  Say Y here to enable the regulator driver
-+
- config REGULATOR_MAX77857
- 	tristate "ADI MAX77857/MAX77831 regulator support"
- 	depends on I2C
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index be98b29d6675..fa9dadd71edd 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -77,6 +77,7 @@ obj-$(CONFIG_REGULATOR_MAX77503) += max77503-regulator.o
- obj-$(CONFIG_REGULATOR_MAX77541) += max77541-regulator.o
- obj-$(CONFIG_REGULATOR_MAX77620) += max77620-regulator.o
- obj-$(CONFIG_REGULATOR_MAX77650) += max77650-regulator.o
-+obj-$(CONFIG_REGULATOR_MAX77675) += max77675-regulator.o
- obj-$(CONFIG_REGULATOR_MAX8649)	+= max8649.o
- obj-$(CONFIG_REGULATOR_MAX8660) += max8660.o
- obj-$(CONFIG_REGULATOR_MAX8893) += max8893.o
-diff --git a/drivers/regulator/max77675-regulator.c b/drivers/regulator/max77675-regulator.c
+diff --git a/Documentation/devicetree/bindings/regulator/maxim,max77675.yaml b/Documentation/devicetree/bindings/regulator/maxim,max77675.yaml
 new file mode 100644
-index 000000000000..8096df543727
+index 000000000000..f93dfdc499bc
 --- /dev/null
-+++ b/drivers/regulator/max77675-regulator.c
-@@ -0,0 +1,792 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (c) 2025 Analog Devices, Inc.
-+ * ADI regulator driver for MAX77675.
-+ */
++++ b/Documentation/devicetree/bindings/regulator/maxim,max77675.yaml
+@@ -0,0 +1,202 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/maxim,max77675.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Maxim MAX77675 PMIC Regulator
++
++maintainers:
++  - Joan Na <joan.na@analog.com>
++
++description: |
++  The MAX77675 is a PMIC providing multiple switching buck regulators
++  (SBB0–SBB3), accessible via I2C. Each SBB can be configured individually
++  in the Device Tree. Additional PMIC settings can be configured through
++  device-specific properties.
++  Users should use the macros from dt-bindings/regulator/maxim,max77675-regulator.h
++
++allOf:
++  - $ref: regulator.yaml#
++
++properties:
++  compatible:
++    const: maxim,max77675
++
++  reg:
++    maxItems: 1
++
++  maxim,dvs-slew-rate:
++    description: |
++      DVS slew rate setting.
++      0 (MAX77675_DVS_SLEW_5MV) - 5 mV/μs
++      1 (MAX77675_DVS_SLEW_10MV) - 10 mV/μs
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++
++  maxim,latency-mode:
++    description: |
++      Latency mode for voltage transition:
++      0 (MAX77675_LAT_MODE_HIGH_LATENCY) - Low quiescent current, high latency (~100μs)
++      1 (MAX77675_LAT_MODE_LOW_LATENCY) - High quiescent current, low latency (~10μs)
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++
++  maxim,drv-sbb-strength:
++    description: |
++      SIMO Buck-Boost Drive Strength Trim.
++      0 (MAX77675_DRV_SBB_FASTEST) - Fastest transition (~0.6 ns)
++      1 (MAX77675_DRV_SBB_FAST) - Faster transition (~1.2 ns)
++      2 (MAX77675_DRV_SBB_MEDIUM) - Moderate transition (~1.8 ns)
++      3 (MAX77675_DRV_SBB_SLOWEST) - Slowest transition (~8 ns)
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++
++  maxim,manual-reset-time:
++    description: |
++      Manual reset time in seconds:
++      0 (MAX77675_MRT_4S): 4 seconds
++      1 (MAX77675_MRT_8S): 8 seconds
++      2 (MAX77675_MRT_12S): 12 seconds
++      3 (MAX77675_MRT_16S): 16 seconds
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++
++  maxim,en-pullup-disable:
++    description: |
++      Disable internal pull-up for EN pin.
++      0 (MAX77675_PU_EN): Internal pull-up enabled (default).
++      1 (MAX77675_PU_DIS): Internal pull-up disabled.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++
++  maxim,bias-low-power-request:
++    description: |
++      Controls the bias low-power mode setting.
++      0 (MAX77675_BIAS_NORMAL): Normal bias operation
++      1 (MAX77675_BIAS_LPM_REQ): Request low-power bias mode
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++
++  maxim,simo-int-ldo-always-on:
++    description: |
++      SIMO internal channel disable configuration.
++      0 (MAX77675_SIMO_INT_NORMAL): SIMO channel enabled
++      1 (MAX77675_SIMO_INT_LDO): SIMO channel disabled
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++
++  maxim,en-mode:
++    description: |
++      Enable mode configuration.
++      0 (MAX77675_EN_PUSH_BUTTON): Push button
++      1 (MAX77675_EN_SLIDE_SWITCH): Slide switch
++      2 (MAX77675_EN_LOGIC): Logic mode
++      3 (MAX77675_EN_RESERVED): Reserved
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1, 2, 3]
++
++  maxim,en-debounce-time:
++    description: |
++      Debounce timer enable.
++      0 (MAX77675_DBEN_100US): 100us
++      1 (MAX77675_DBEN_30MS): 30ms
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum: [0, 1]
++
++  regulators:
++    type: object
++    description: Regulator child nodes
++    patternProperties:
++      "^sbb[0-3]$":
++        type: object
++        $ref: regulator.yaml#
++    properties:
++      maxim,fps-slot:
++        description: |
++          FPS slot selection.
++          0 (MAX77675_FPS_SLOT_0): FPS Slot 0
++          1 (MAX77675_FPS_SLOT_1): FPS Slot 1
++          2 (MAX77675_FPS_SLOT_2): FPS Slot 2
++          3 (MAX77675_FPS_SLOT_3): FPS Slot 3
++          4 (MAX77675_FPS_NONE): No FPS Slot (disabled)
++          5 (MAX77675_FPS_DEF): Use the defaul
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [0, 1, 2, 3, 4, 5]
++
++      maxim,slew-rate-use-dvs:
++        description: |
++          0 (MAX77675_SR_2MV_PER_US): Fixed slew rate of 2mV/μs.
++          1 (MAX77675_SR_USE_DVS): Uses maxim,dvs-slew-rate for dynamic voltage scaling.
++        $ref: /schemas/types.yaml#/definitions/uint32
++        enum: [0, 1]
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - regulators
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/regulator/maxim,max77675-regulator.h>
++
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      max77675: pmic@44 {
++        compatible = "maxim,max77675";
++        reg = <0x44>;
++
++        maxim,dvs-slew-rate = <MAX77675_DVS_SLEW_5MV>;
++        maxim,latency-mode = <MAX77675_LAT_MODE_HIGH_LATENCY>;
++        maxim,drv-sbb-strength = <MAX77675_DRV_SBB_FASTEST>;
++        maxim,manual-reset-time = <MAX77675_MRT_4S>;
++        maxim,en-pullup-disable = <MAX77675_PU_EN>;
++        maxim,bias-low-power-request = <MAX77675_BIAS_NORMAL>;
++        maxim,simo-int-ldo-always-on = <MAX77675_SIMO_INT_NORMAL>;
++        maxim,en-mode = <MAX77675_EN_PUSH_BUTTON>;
++        maxim,en-debounce-time = <MAX77675_DBEN_100US>;
++
++        regulators {
++          sbb0: sbb0 {
++            regulator-name = "sbb0";
++            regulator-min-microvolt = <500000>;
++            regulator-max-microvolt = <5500000>;
++            maxim,fps-slot = <MAX77675_FPS_DEF>;
++            maxim,slew-rate-use-dvs = <MAX77675_SR_2MV_PER_US>;
++          };
++
++          sbb1: sbb1 {
++            regulator-name = "sbb1";
++            regulator-min-microvolt = <500000>;
++            regulator-max-microvolt = <5500000>;
++            regulator-allow-set-voltage;
++            maxim,fps-slot = <MAX77675_FPS_DEF>;
++            maxim,slew-rate-use-dvs = <MAX77675_SR_2MV_PER_US>;
++          };
++
++          sbb2: sbb2 {
++            regulator-name = "sbb2";
++            regulator-min-microvolt = <500000>;
++            regulator-max-microvolt = <5500000>;
++            regulator-allow-set-voltage;
++            maxim,fps-slot = <MAX77675_FPS_DEF>;
++            maxim,slew-rate-use-dvs = <MAX77675_SR_2MV_PER_US>;
++          };
++
++          sbb3: sbb3 {
++            regulator-name = "sbb3";
++            regulator-min-microvolt = <500000>;
++            regulator-max-microvolt = <5500000>;
++            regulator-allow-set-voltage;
++            maxim,fps-slot = <MAX77675_FPS_DEF>;
++            maxim,slew-rate-use-dvs = <MAX77675_SR_2MV_PER_US>;
++          };
++        };
++      };
++    };
 +
-+#include <linux/module.h>
-+#include <linux/slab.h>
-+#include <linux/of.h>
-+#include <linux/i2c.h>
-+#include <linux/regmap.h>
-+#include <linux/platform_device.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/regulator/of_regulator.h>
-+#include <linux/bitfield.h>
-+#include <dt-bindings/regulator/maxim,max77675-regulator.h>
-+
-+#include "max77675-regulator.h"
-+
-+struct max77675_regulator_pdata {
-+	u8 fps_slot;
-+	u8 dvs_slew_rate;
-+};
-+
-+struct max77675_config {
-+	u8 drv_slew_rate;
-+	u8 latency_mode;
-+	u8 drv_sbb_strength;
-+	u8 manual_reset_time;
-+	u8 en_pullup_disable;
-+	u8 bias_low_power_request;
-+	u8 simo_int_ldo_always_on;
-+	u8 en_mode;
-+	u8 en_debounce_time;
-+};
-+
-+struct max77675_regulator {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	struct max77675_config config;
-+	struct max77675_regulator_pdata pdata[MAX77675_ID_NUM_MAX];
-+};
-+
-+/**
-+ * Set latency mode.
-+ *
-+ * @param maxreg Pointer to max77675 device structure.
-+ * @param enable true to enable latency mode, false to disable.
-+ */
-+static int max77675_set_latency_mode(struct max77675_regulator *maxreg, bool enable)
-+{
-+	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_SBB_TOP_B,
-+				  MAX77675_LAT_MODE_BIT,
-+				  FIELD_PREP(MAX77675_LAT_MODE_BIT, enable));
-+}
-+
-+/**
-+ * Set DVS slew rate mode.
-+ *
-+ * @param maxreg Pointer to max77675 device structure.
-+ * @param enable true to use DVS-controlled slew rate, false for fixed 2mV/us.
-+ */
-+static int max77675_set_dvs_slew_rate(struct max77675_regulator *maxreg, bool enable)
-+{
-+	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_SBB_TOP_B,
-+				  MAX77675_DVS_SLEW_BIT,
-+				  FIELD_PREP(MAX77675_DVS_SLEW_BIT, enable));
-+}
-+
-+/**
-+ * Set drive strength.
-+ *
-+ * @param maxreg Pointer to max77675 device structure.
-+ * @param strength 2-bit drive strength value (0-3).
-+ *
-+ * @return 0 on success, negative error code on failure.
-+ */
-+static int max77675_set_drv_sbb_strength(struct max77675_regulator *maxreg, u8 strength)
-+{
-+	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_SBB_TOP_A,
-+				  MAX77675_DRV_SBB_MASK,
-+				  FIELD_PREP(MAX77675_DRV_SBB_MASK, strength));
-+}
-+
-+/**
-+ * Set manual reset time (MRT) for EN pin.
-+ *
-+ * @param maxreg Pointer to max77675 device structure.
-+ * @param mrt 2-bit value (0x0: 4s, 0x1: 8s, 0x2: 12s, 0x3: 16s)
-+ */
-+static int max77675_set_manual_reset_time(struct max77675_regulator *maxreg, u8 mrt)
-+{
-+	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_GLBL_A,
-+				  MAX77675_MRT_MASK,
-+				  FIELD_PREP(MAX77675_MRT_MASK, mrt));
-+}
-+
-+/**
-+ * Enable or disable internal pull-up resistor on EN pin.
-+ *
-+ * @param maxreg Pointer to max77675 device structure.
-+ * @param disable true to disable pull-up, false to enable
-+ */
-+static int max77675_set_en_pullup_disable(struct max77675_regulator *maxreg, bool disable)
-+{
-+	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_GLBL_A,
-+				  MAX77675_PU_DIS_BIT,
-+				  FIELD_PREP(MAX77675_PU_DIS_BIT, disable));
-+}
-+
-+/**
-+ * Request main bias to enter low-power mode.
-+ *
-+ * @param maxreg Pointer to max77675 device structure.
-+ * @param enable true to request low-power mode, false for normal
-+ */
-+static int max77675_set_bias_low_power_request(struct max77675_regulator *maxreg, bool enable)
-+{
-+	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_GLBL_A,
-+				  MAX77675_BIAS_LPM_BIT,
-+				  FIELD_PREP(MAX77675_BIAS_LPM_BIT, enable));
-+}
-+
-+/**
-+ * Force SIMO internal LDO to always supply 1.8V.
-+ *
-+ * @param maxreg Pointer to max77675 device structure.
-+ * @param enable true to always supply 1.8V, false for normal operation
-+ */
-+static int max77675_set_simo_int_ldo_always_on(struct max77675_regulator *maxreg, bool enable)
-+{
-+	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_GLBL_A,
-+				  MAX77675_SIMO_CH_DIS_BIT,
-+				  FIELD_PREP(MAX77675_SIMO_CH_DIS_BIT, enable));
-+}
-+
-+/**
-+ * Set EN pin mode.
-+ *
-+ * @param maxreg Pointer to max77675 device structure.
-+ * @param mode 2-bit value: 0x0 (push-button), 0x1 (slide-switch), 0x2 (logic)
-+ */
-+static int max77675_set_en_mode(struct max77675_regulator *maxreg, u8 mode)
-+{
-+	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_GLBL_A,
-+				  MAX77675_EN_MODE_MASK,
-+				  FIELD_PREP(MAX77675_EN_MODE_MASK, mode));
-+}
-+
-+/**
-+ * Set debounce time for EN pin.
-+ *
-+ * @param maxreg Pointer to max77675 device structure.
-+ * @param debounce_30ms true for 30ms, false for 100us
-+ */
-+static int max77675_set_en_debounce_time(struct max77675_regulator *maxreg, bool debounce_30ms)
-+{
-+	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_GLBL_A,
-+				  MAX77675_DBEN_EN_BIT,
-+				  FIELD_PREP(MAX77675_DBEN_EN_BIT, debounce_30ms));
-+}
-+
-+static int max77675_regulator_get_fps_src(struct max77675_regulator *maxreg, int id)
-+{
-+	unsigned int reg_addr;
-+	unsigned int val;
-+	int ret;
-+
-+	switch (id) {
-+	case MAX77675_ID_SBB0:
-+		reg_addr = MAX77675_REG_CNFG_SBB0_B;
-+		break;
-+	case MAX77675_ID_SBB1:
-+		reg_addr = MAX77675_REG_CNFG_SBB1_B;
-+		break;
-+	case MAX77675_ID_SBB2:
-+		reg_addr = MAX77675_REG_CNFG_SBB2_B;
-+		break;
-+	case MAX77675_ID_SBB3:
-+		reg_addr = MAX77675_REG_CNFG_SBB3_B;
-+		break;
-+	default:
-+		dev_err(maxreg->dev, "Invalid regulator id: %d\n", id);
-+		return -EINVAL;
-+	}
-+
-+	ret = regmap_read(maxreg->regmap, reg_addr, &val);
-+	if (ret < 0) {
-+		dev_err(maxreg->dev, "Failed to read FPS source (reg 0x%02x): %d\n",
-+			reg_addr, ret);
-+		return ret;
-+	}
-+
-+	return val & MAX77675_EN_SBB_MASK;
-+}
-+
-+static int max77675_regulator_set_fps_src(struct max77675_regulator *maxreg, int id, u8 fps_src)
-+{
-+	unsigned int reg_addr;
-+	int ret;
-+
-+	switch (id) {
-+	case MAX77675_ID_SBB0:
-+		reg_addr = MAX77675_REG_CNFG_SBB0_B;
-+		break;
-+	case MAX77675_ID_SBB1:
-+		reg_addr = MAX77675_REG_CNFG_SBB1_B;
-+		break;
-+	case MAX77675_ID_SBB2:
-+		reg_addr = MAX77675_REG_CNFG_SBB2_B;
-+		break;
-+	case MAX77675_ID_SBB3:
-+		reg_addr = MAX77675_REG_CNFG_SBB3_B;
-+		break;
-+	default:
-+		dev_err(maxreg->dev, "Invalid regulator id: %d\n", id);
-+		return -EINVAL;
-+	}
-+
-+	ret = regmap_update_bits(maxreg->regmap, reg_addr,
-+				 MAX77675_EN_SBB_MASK, fps_src);
-+	if (ret < 0) {
-+		dev_err(maxreg->dev, "Failed to set FPS source (reg 0x%02x): %d\n",
-+			reg_addr, ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+/**
-+ * max77675_set_sbb_slew_rate - Set the slew rate for a specific SBB regulator channel
-+ *
-+ * @maxreg: Pointer to the max77675 regulator structure
-+ * @id: Regulator channel ID (ID_SBB0 ~ ID_SBB3)
-+ * @val: Slew rate value (0 = 2mV/us, 1 = use DVS_SLEW)
-+ *
-+ * This function configures the slew rate control source for the specified SBB channel by
-+ * updating the corresponding bits in the CNFG_SBB_TOP_B register.
-+ *
-+ * Return: 0 on success, negative error code on failure (e.g., invalid channel ID).
-+ */
-+static int max77675_set_sbb_slew_rate(struct max77675_regulator *maxreg, int id, u8 val)
-+{
-+	u8 mask, value;
-+
-+	switch (id) {
-+	case MAX77675_ID_SBB0:
-+		mask = MAX77675_SR_SBB0_BIT;
-+		value = FIELD_PREP(MAX77675_SR_SBB0_BIT, val);
-+		break;
-+
-+	case MAX77675_ID_SBB1:
-+		mask = MAX77675_SR_SBB1_BIT;
-+		value = FIELD_PREP(MAX77675_SR_SBB1_BIT, val);
-+		break;
-+
-+	case MAX77675_ID_SBB2:
-+		mask = MAX77675_SR_SBB2_BIT;
-+		value = FIELD_PREP(MAX77675_SR_SBB2_BIT, val);
-+		break;
-+
-+	case MAX77675_ID_SBB3:
-+		mask = MAX77675_SR_SBB3_BIT;
-+		value = FIELD_PREP(MAX77675_SR_SBB3_BIT, val);
-+		break;
-+
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return regmap_update_bits(maxreg->regmap, MAX77675_REG_CNFG_SBB_TOP_B, mask, value);
-+}
-+
-+static int max77675_init_regulator(struct max77675_regulator *maxreg, int id)
-+{
-+	struct max77675_regulator_pdata *rpdata = &maxreg->pdata[id];
-+	int ret;
-+
-+	if (rpdata->fps_slot == MAX77675_FPS_DEF) {
-+		ret = max77675_regulator_get_fps_src(maxreg, id);
-+		if (ret < 0) {
-+			dev_err(maxreg->dev, "Failed to read FPS source for ID %d\n", id);
-+			return ret;
-+		}
-+		rpdata->fps_slot = ret;
-+	}
-+
-+	ret = max77675_regulator_set_fps_src(maxreg, id, rpdata->fps_slot);
-+	if (ret)
-+		dev_warn(maxreg->dev, "Failed to set FPS source for ID %d\n", id);
-+
-+	ret = max77675_set_sbb_slew_rate(maxreg, id, rpdata->dvs_slew_rate);
-+	if (ret)
-+		dev_warn(maxreg->dev, "Failed to set slew rate for ID %d\n", id);
-+
-+	return 0;
-+}
-+
-+static int max77675_of_parse_cb(struct device_node *np,
-+				const struct regulator_desc *desc,
-+				struct regulator_config *config)
-+{
-+	struct max77675_regulator *maxreg = config->driver_data;
-+	struct max77675_regulator_pdata *rpdata = &maxreg->pdata[desc->id];
-+	u32 pval;
-+	int ret;
-+
-+	/* Parse FPS slot from DT */
-+	ret = of_property_read_u32(np, "maxim,fps-slot", &pval);
-+	rpdata->fps_slot = (!ret) ? (u8)pval : MAX77675_FPS_DEF;
-+
-+	/* Parse slew rate control source */
-+	ret = of_property_read_u32(np, "maxim,slew-rate-use-drv", &pval);
-+	rpdata->dvs_slew_rate = (!ret) ? (u8)pval : 0;
-+
-+	/* Apply parsed configuration */
-+	return max77675_init_regulator(maxreg, desc->id);
-+}
-+
-+static int max77675_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
-+{
-+	struct max77675_regulator *maxreg = rdev_get_drvdata(rdev);
-+	unsigned int int_flags;
-+	int id = rdev_get_id(rdev);
-+	int ret;
-+
-+	ret = regmap_read(maxreg->regmap, MAX77675_REG_INT_GLBL, &int_flags);
-+	if (ret) {
-+		dev_err(maxreg->dev, "Failed to read INT_GLBL: %d\n", ret);
-+		return ret;
-+	}
-+
-+	*flags = 0;
-+
-+	switch (id) {
-+	case MAX77675_ID_SBB0:
-+		if (int_flags & MAX77675_INT_SBB0_F_BIT)
-+			*flags |= REGULATOR_ERROR_FAIL;
-+		break;
-+	case MAX77675_ID_SBB1:
-+		if (int_flags & MAX77675_INT_SBB1_F_BIT)
-+			*flags |= REGULATOR_ERROR_FAIL;
-+		break;
-+	case MAX77675_ID_SBB2:
-+		if (int_flags & MAX77675_INT_SBB2_F_BIT)
-+			*flags |= REGULATOR_ERROR_FAIL;
-+		break;
-+	case MAX77675_ID_SBB3:
-+		if (int_flags & MAX77675_INT_SBB3_F_BIT)
-+			*flags |= REGULATOR_ERROR_FAIL;
-+		break;
-+	default:
-+		dev_warn(maxreg->dev, "Unsupported regulator ID: %d\n", id);
-+		break;
-+	}
-+
-+	if (int_flags & MAX77675_INT_TJAL2_R_BIT) {
-+		/* TJAL2 interrupt: Over-temperature condition (above 120 degree) */
-+		*flags |= REGULATOR_ERROR_OVER_TEMP;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct regulator_ops max77675_regulator_ops = {
-+	.list_voltage         = regulator_list_voltage_linear,
-+	.enable               = regulator_enable_regmap,
-+	.disable              = regulator_disable_regmap,
-+	.is_enabled           = regulator_is_enabled_regmap,
-+	.map_voltage          = regulator_map_voltage_linear,
-+	.set_voltage_sel      = regulator_set_voltage_sel_regmap,
-+	.get_voltage_sel      = regulator_get_voltage_sel_regmap,
-+	.set_active_discharge = regulator_set_active_discharge_regmap,
-+	.get_error_flags      = max77675_get_error_flags,
-+};
-+
-+static struct regulator_desc max77675_regulators[MAX77675_ID_NUM_MAX] = {
-+	{
-+		.name                  = "sbb0",
-+		.of_match              = of_match_ptr("sbb0"),
-+		.regulators_node       = of_match_ptr("regulators"),
-+		.of_parse_cb           = max77675_of_parse_cb,
-+		.id                    = MAX77675_ID_SBB0,
-+		.ops                   = &max77675_regulator_ops,
-+		.type                  = REGULATOR_VOLTAGE,
-+		.owner                 = THIS_MODULE,
-+		.n_voltages            = MAX77675_NUM_LEVELS_25MV,
-+		.min_uV                = MAX77675_MIN_UV,
-+		.uV_step               = MAX77675_STEP_25MV,
-+		.vsel_reg              = MAX77675_REG_CNFG_SBB0_A,
-+		.vsel_mask             = MAX77675_TV_SBB0_MASK,
-+		.enable_reg            = MAX77675_REG_CNFG_SBB0_B,
-+		.enable_mask           = MAX77675_EN_SBB0_MASK,
-+		.enable_val            = MAX77675_ENABLE_ON,
-+		.disable_val           = MAX77675_ENABLE_OFF,
-+		.active_discharge_off  = MAX77675_REGULATOR_AD_OFF,
-+		.active_discharge_on   = MAX77675_REGULATOR_AD_ON,
-+		.active_discharge_mask = MAX77675_REGULATOR_AD_MASK,
-+		.active_discharge_reg  = MAX77675_REG_CNFG_SBB0_B,
-+	},
-+	{
-+		.name                  = "sbb1",
-+		.of_match              = of_match_ptr("sbb1"),
-+		.regulators_node       = of_match_ptr("regulators"),
-+		.of_parse_cb           = max77675_of_parse_cb,
-+		.id                    = MAX77675_ID_SBB1,
-+		.ops                   = &max77675_regulator_ops,
-+		.type                  = REGULATOR_VOLTAGE,
-+		.owner                 = THIS_MODULE,
-+		.n_voltages            = MAX77675_NUM_LEVELS_25MV,
-+		.min_uV                = MAX77675_MIN_UV,
-+		.uV_step               = MAX77675_STEP_25MV,
-+		.vsel_reg              = MAX77675_REG_CNFG_SBB1_A,
-+		.vsel_mask             = MAX77675_TV_SBB1_MASK,
-+		.enable_reg            = MAX77675_REG_CNFG_SBB1_B,
-+		.enable_mask           = MAX77675_EN_SBB1_MASK,
-+		.enable_val            = MAX77675_ENABLE_ON,
-+		.disable_val           = MAX77675_ENABLE_OFF,
-+		.active_discharge_off  = MAX77675_REGULATOR_AD_OFF,
-+		.active_discharge_on   = MAX77675_REGULATOR_AD_ON,
-+		.active_discharge_mask = MAX77675_REGULATOR_AD_MASK,
-+		.active_discharge_reg  = MAX77675_REG_CNFG_SBB1_B,
-+	},
-+	{
-+		.name                  = "sbb2",
-+		.of_match              = of_match_ptr("sbb2"),
-+		.regulators_node       = of_match_ptr("regulators"),
-+		.of_parse_cb           = max77675_of_parse_cb,
-+		.id                    = MAX77675_ID_SBB2,
-+		.ops                   = &max77675_regulator_ops,
-+		.type                  = REGULATOR_VOLTAGE,
-+		.owner                 = THIS_MODULE,
-+		.n_voltages            = MAX77675_NUM_LEVELS_25MV,
-+		.min_uV                = MAX77675_MIN_UV,
-+		.uV_step               = MAX77675_STEP_25MV,
-+		.vsel_reg              = MAX77675_REG_CNFG_SBB2_A,
-+		.vsel_mask             = MAX77675_TV_SBB2_MASK,
-+		.enable_reg            = MAX77675_REG_CNFG_SBB2_B,
-+		.enable_mask           = MAX77675_EN_SBB2_MASK,
-+		.enable_val            = MAX77675_ENABLE_ON,
-+		.disable_val           = MAX77675_ENABLE_OFF,
-+		.active_discharge_off  = MAX77675_REGULATOR_AD_OFF,
-+		.active_discharge_on   = MAX77675_REGULATOR_AD_ON,
-+		.active_discharge_mask = MAX77675_REGULATOR_AD_MASK,
-+		.active_discharge_reg  = MAX77675_REG_CNFG_SBB2_B,
-+	},
-+	{
-+		.name                  = "sbb3",
-+		.of_match              = of_match_ptr("sbb3"),
-+		.regulators_node       = of_match_ptr("regulators"),
-+		.of_parse_cb           = max77675_of_parse_cb,
-+		.id                    = MAX77675_ID_SBB3,
-+		.ops                   = &max77675_regulator_ops,
-+		.type                  = REGULATOR_VOLTAGE,
-+		.owner                 = THIS_MODULE,
-+		.n_voltages            = MAX77675_NUM_LEVELS_25MV,
-+		.min_uV                = MAX77675_MIN_UV,
-+		.uV_step               = MAX77675_STEP_25MV,
-+		.vsel_reg              = MAX77675_REG_CNFG_SBB3_A,
-+		.vsel_mask             = MAX77675_TV_SBB3_MASK,
-+		.enable_reg            = MAX77675_REG_CNFG_SBB3_B,
-+		.enable_mask           = MAX77675_EN_SBB3_MASK,
-+		.enable_val            = MAX77675_ENABLE_ON,
-+		.disable_val           = MAX77675_ENABLE_OFF,
-+		.active_discharge_off  = MAX77675_REGULATOR_AD_OFF,
-+		.active_discharge_on   = MAX77675_REGULATOR_AD_ON,
-+		.active_discharge_mask = MAX77675_REGULATOR_AD_MASK,
-+		.active_discharge_reg  = MAX77675_REG_CNFG_SBB3_B,
-+	},
-+};
-+
-+static const struct regmap_config max77675_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = MAX77675_MAX_REGISTER,
-+	.cache_type = REGCACHE_NONE,
-+};
-+
-+static int max77675_apply_config(struct max77675_regulator *maxreg)
-+{
-+	const struct max77675_config *config = &maxreg->config;
-+	int ret;
-+
-+	ret = max77675_set_dvs_slew_rate(maxreg, config->drv_slew_rate);
-+	if (ret) {
-+		dev_err(maxreg->dev, "Failed to set DVS slew rate: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = max77675_set_latency_mode(maxreg, config->latency_mode);
-+	if (ret) {
-+		dev_err(maxreg->dev, "Failed to set latency mode: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = max77675_set_drv_sbb_strength(maxreg, config->drv_sbb_strength);
-+	if (ret) {
-+		dev_err(maxreg->dev, "Failed to set drive strength: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = max77675_set_manual_reset_time(maxreg, config->manual_reset_time);
-+	if (ret) {
-+		dev_err(maxreg->dev, "Failed to set manual reset time: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = max77675_set_en_pullup_disable(maxreg, config->en_pullup_disable);
-+	if (ret) {
-+		dev_err(maxreg->dev, "Failed to set EN pull-up disable: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = max77675_set_bias_low_power_request(maxreg, config->bias_low_power_request);
-+	if (ret) {
-+		dev_err(maxreg->dev, "Failed to set bias low-power request: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = max77675_set_simo_int_ldo_always_on(maxreg, config->simo_int_ldo_always_on);
-+	if (ret) {
-+		dev_err(maxreg->dev, "Failed to set SIMO internal LDO always-on: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = max77675_set_en_mode(maxreg, config->en_mode);
-+	if (ret) {
-+		dev_err(maxreg->dev, "Failed to set EN mode: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = max77675_set_en_debounce_time(maxreg, config->en_debounce_time);
-+	if (ret) {
-+		dev_err(maxreg->dev, "Failed to set EN debounce time: %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static int max77675_parse_config(struct max77675_regulator *maxreg)
-+{
-+	struct device_node *np = maxreg->dev->of_node;
-+	struct max77675_config *config = &maxreg->config;
-+	int ret;
-+	u32 val;
-+
-+	/* drv slew rate */
-+	ret = of_property_read_u32(np, "maxim,dvs-slew-rate", &val);
-+	if (ret < 0)
-+		val = MAX77675_DVS_SLEW_5MV;
-+	config->drv_slew_rate = val;
-+
-+	/* latency mode */
-+	ret = of_property_read_u32(np, "maxim,latency-mode", &val);
-+	if (ret < 0)
-+		val = MAX77675_LAT_MODE_HIGH_LATENCY;
-+	config->latency_mode = val;
-+
-+	/* drive strength */
-+	ret = of_property_read_u32(np, "maxim,drv-sbb-strength", &val);
-+	if (ret < 0)
-+		val = MAX77675_DRV_SBB_FASTEST;
-+	config->drv_sbb_strength = val;
-+
-+	/* Manual reset time for EN pin */
-+	ret = of_property_read_u32(np, "maxim,manual-reset-time", &val);
-+	if (ret < 0)
-+		val = MAX77675_MRT_4S;
-+	config->manual_reset_time = val;
-+
-+	/* Disable internal pull-up resistor on EN pin */
-+	ret = of_property_read_u32(np, "maxim,en-pullup-disable", &val);
-+	if (ret < 0)
-+		val = MAX77675_PU_EN;
-+	config->en_pullup_disable = val;
-+
-+	/* Request low-power mode for main bias */
-+	ret = of_property_read_u32(np, "maxim,bias-low-power-request", &val);
-+	if (ret < 0)
-+		val = MAX77675_BIAS_NORMAL;
-+	config->bias_low_power_request = val;
-+
-+	/* Force internal LDO to always supply 1.8V */
-+	ret = of_property_read_u32(np, "maxim,simo-int-ldo-always-on", &val);
-+	if (ret < MAX77675_SIMO_INT_NORMAL)
-+		val = MAX77675_BIAS_NORMAL;
-+	config->simo_int_ldo_always_on = val;
-+
-+	/* EN pin mode: push-button, slide-switch, or logic */
-+	ret = of_property_read_u32(np, "maxim,en-mode", &val);
-+	if (ret < 0)
-+		val = MAX77675_EN_SLIDE_SWITCH;
-+	config->en_mode = val;
-+
-+	/* Debounce time for EN pin */
-+	ret = of_property_read_u32(np, "maxim,en-debounce-time", &val);
-+	if (ret < 0)
-+		val = MAX77675_DBEN_100US;
-+	config->en_debounce_time = val;
-+
-+	/* Debug print all parsed values */
-+	pr_info("MAX77675 config parsed:\n"
-+		 "  dvs_slew_rate: %u\n"
-+		 "  latency_mode: %u\n"
-+		 "  drv_sbb_strength: %u\n"
-+		 "  manual_reset_time: %u\n"
-+		 "  en_pullup_disable: %u\n"
-+		 "  bias_low_power_request: %u\n"
-+		 "  simo_int_ldo_always_on: %u\n"
-+		 "  en_mode: %u\n"
-+		 "  en_debounce_time: %u\n",
-+		 config->drv_slew_rate,
-+		 config->latency_mode,
-+		 config->drv_sbb_strength,
-+		 config->manual_reset_time,
-+		 config->en_pullup_disable,
-+		 config->bias_low_power_request,
-+		 config->simo_int_ldo_always_on,
-+		 config->en_mode,
-+		 config->en_debounce_time);
-+
-+	ret = max77675_apply_config(maxreg);
-+
-+	return ret;
-+}
-+
-+static int max77675_init_event(struct max77675_regulator *maxreg)
-+{
-+	unsigned int ercflag, int_glbl;
-+	int ret;
-+
-+	ret = regmap_read(maxreg->regmap, MAX77675_REG_ERCF_GLBL, &ercflag);
-+	if (ret) {
-+		dev_err(maxreg->dev, "Failed to read CID register: %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = regmap_read(maxreg->regmap, MAX77675_REG_INT_GLBL, &int_glbl);
-+	if (ret) {
-+		dev_err(maxreg->dev, "Failed to read INT_GLBL register: %d\n", ret);
-+		return ret;
-+	}
-+
-+	if (ercflag & MAX77675_SFT_CRST_F_BIT)
-+		dev_info(maxreg->dev, "Software Cold Reset Flag is set\n");
-+
-+	if (ercflag & MAX77675_SFT_OFF_F_BIT)
-+		dev_info(maxreg->dev, "Software Off Flag is set\n");
-+
-+	if (ercflag & MAX77675_MRST_BIT)
-+		dev_info(maxreg->dev, "Manual Reset Timer Flag is set\n");
-+
-+	if (ercflag & MAX77675_UVLO_BIT)
-+		dev_info(maxreg->dev, "Undervoltage Lockout Flag is set\n");
-+
-+	if (ercflag & MAX77675_OVLO_BIT)
-+		dev_info(maxreg->dev, "Overvoltage Lockout Flag is set\n");
-+
-+	if (ercflag & MAX77675_TOVLD_BIT)
-+		dev_info(maxreg->dev, "Thermal Overload Flag is set\n");
-+
-+	if (int_glbl & MAX77675_INT_SBB3_F_BIT)
-+		dev_info(maxreg->dev, "SBB3 Channel Fault Interrupt occurred\n");
-+
-+	if (int_glbl & MAX77675_INT_SBB2_F_BIT)
-+		dev_info(maxreg->dev, "SBB2 Channel Fault Interrupt occurred\n");
-+
-+	if (int_glbl & MAX77675_INT_SBB1_F_BIT)
-+		dev_info(maxreg->dev, "SBB1 Channel Fault Interrupt occurred\n");
-+
-+	if (int_glbl & MAX77675_INT_SBB0_F_BIT)
-+		dev_info(maxreg->dev, "SBB0 Channel Fault Interrupt occurred\n");
-+
-+	if (int_glbl & MAX77675_INT_TJAL2_R_BIT)
-+		dev_info(maxreg->dev, "Thermal Alarm 2 Rising Interrupt occurred\n");
-+
-+	if (int_glbl & MAX77675_INT_TJAL1_R_BIT)
-+		dev_info(maxreg->dev, "Thermal Alarm 1 Rising Interrupt occurred\n");
-+
-+	if (int_glbl & MAX77675_INT_EN_R_BIT)
-+		dev_info(maxreg->dev, "nEN Rising Edge Interrupt occurred\n");
-+
-+	if (int_glbl & MAX77675_INT_EN_F_BIT)
-+		dev_info(maxreg->dev, "nEN Falling Edge Interrupt occurred\n");
-+
-+	return 0;
-+}
-+
-+static int max77675_regulator_probe(struct i2c_client *client)
-+{
-+	struct max77675_regulator *maxreg;
-+	struct regulator_config config = {};
-+	struct device_node *regulators_np;
-+	int i, ret;
-+
-+	maxreg = devm_kzalloc(&client->dev, sizeof(*maxreg), GFP_KERNEL);
-+	if (!maxreg)
-+		return -ENOMEM;
-+
-+	maxreg->dev = &client->dev;
-+
-+	maxreg->regmap = devm_regmap_init_i2c(client, &max77675_regmap_config);
-+	if (IS_ERR(maxreg->regmap))
-+		return dev_err_probe(maxreg->dev,
-+				     PTR_ERR(maxreg->regmap),
-+				     "Failed to init regmap\n");
-+
-+	ret = max77675_init_event(maxreg);
-+	if (ret)
-+		return dev_err_probe(maxreg->dev, ret, "Failed to init event\n");
-+
-+	ret = max77675_parse_config(maxreg);
-+	if (ret)
-+		return dev_err_probe(maxreg->dev, ret, "Failed to apply config\n");
-+
-+	config.dev = &client->dev;
-+	config.regmap = maxreg->regmap;
-+	config.driver_data = maxreg;
-+
-+	regulators_np = of_get_child_by_name(client->dev.of_node, "regulators");
-+	if (!regulators_np) {
-+		dev_err(maxreg->dev, "No 'regulators' subnode found in DT\n");
-+		return -EINVAL;
-+	}
-+
-+	for (i = 0; i < MAX77675_ID_NUM_MAX; i++) {
-+		const struct regulator_desc *desc = &max77675_regulators[i];
-+		struct regulator_dev *rdev;
-+		struct device_node *child_np;
-+
-+		child_np = of_get_child_by_name(regulators_np, desc->name);
-+		if (!child_np) {
-+			dev_warn(maxreg->dev, "No DT node for regulator %s\n", desc->name);
-+			continue;
-+		}
-+
-+		config.of_node = child_np;
-+
-+		rdev = devm_regulator_register(&client->dev, desc, &config);
-+		if (IS_ERR(rdev)) {
-+			ret = PTR_ERR(rdev);
-+			dev_err(maxreg->dev,
-+				"Failed to register regulator %d (%s): %d\n",
-+				i, desc->name, ret);
-+			of_node_put(child_np);
-+			return ret;
-+		}
-+		of_node_put(child_np);
-+	}
-+
-+	i2c_set_clientdata(client, maxreg);
-+
-+	return 0;
-+}
-+
-+static void max77675_regulator_remove(struct i2c_client *client)
-+{
-+	struct max77675_regulator *maxreg = i2c_get_clientdata(client);
-+
-+	dev_info(maxreg->dev, "MAX77675 regulators removed\n");
-+}
-+
-+static const struct i2c_device_id max77675_i2c_id[] = {
-+	{ "max77675", 0 },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, max77675_i2c_id);
-+
-+static const struct of_device_id __maybe_unused max77675_of_match[] = {
-+	{ .compatible = "maxim,max77675", },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, max77675_of_match);
-+
-+static struct i2c_driver max77675_regulator_driver = {
-+	.driver = {
-+		.name = "max77675",
-+		.of_match_table = of_match_ptr(max77675_of_match),
-+	},
-+	.probe = max77675_regulator_probe,
-+	.remove = max77675_regulator_remove,
-+	.id_table = max77675_i2c_id,
-+};
-+
-+module_i2c_driver(max77675_regulator_driver);
-+
-+MODULE_DESCRIPTION("MAX77675 Regulator Driver");
-+MODULE_AUTHOR("Joan Na <joan.na@analog.com>");
-+MODULE_LICENSE("GPL");
-diff --git a/drivers/regulator/max77675-regulator.h b/drivers/regulator/max77675-regulator.h
-new file mode 100644
-index 000000000000..087956ba7834
---- /dev/null
-+++ b/drivers/regulator/max77675-regulator.h
-@@ -0,0 +1,252 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * MAX77675 Register Definitions
-+ * Reference: MAX77675 Datasheet
-+ */
-+
-+#ifndef __MAX77675_REG_H__
-+#define __MAX77675_REG_H__
-+
-+#include <linux/bitops.h>
-+
-+/* Register Addresses */
-+#define MAX77675_REG_CNFG_GLBL_A     0x00
-+#define MAX77675_REG_CNFG_GLBL_B     0x01
-+#define MAX77675_REG_INT_GLBL        0x02
-+#define MAX77675_REG_INTM_GLBL       0x03
-+#define MAX77675_REG_STAT_GLBL       0x04
-+#define MAX77675_REG_ERCF_GLBL       0x05
-+#define MAX77675_REG_CID             0x06
-+#define MAX77675_REG_CNFG_SBB_TOP_A  0x07
-+#define MAX77675_REG_CNFG_SBB0_A     0x08
-+#define MAX77675_REG_CNFG_SBB0_B     0x09
-+#define MAX77675_REG_CNFG_SBB1_A     0x0A
-+#define MAX77675_REG_CNFG_SBB1_B     0x0B
-+#define MAX77675_REG_CNFG_SBB2_A     0x0C
-+#define MAX77675_REG_CNFG_SBB2_B     0x0D
-+#define MAX77675_REG_CNFG_SBB3_A     0x0E
-+#define MAX77675_REG_CNFG_SBB3_B     0x0F
-+#define MAX77675_REG_CNFG_SBB_TOP_B  0x10
-+
-+/* CNFG_GLBL_A (0x00) bit masks and shifts */
-+#define MAX77675_MRT_MASK           GENMASK(7, 6)    /* Manual Reset Time (bits 7:6) */
-+#define MAX77675_MRT_SHIFT          6
-+#define MAX77675_PU_DIS_BIT         BIT(5)           /* Pullup Disable (bit 5) */
-+#define MAX77675_PU_DIS_SHIFT       5
-+#define MAX77675_BIAS_LPM_BIT       BIT(4)           /* Bias Low Power Mode (bit 4) */
-+#define MAX77675_BIAS_LPM_SHIFT     4
-+#define MAX77675_SIMO_CH_DIS_BIT    BIT(3)           /* SIMO Internal Channel Disable (bit 3) */
-+#define MAX77675_SIMO_CH_DIS_SHIFT  3
-+#define MAX77675_EN_MODE_MASK       GENMASK(2, 1)    /* nEN Mode (bits 2:1) */
-+#define MAX77675_EN_MODE_SHIFT      1
-+#define MAX77675_DBEN_EN_BIT        BIT(0)           /* Debounce Enable (bit 0) */
-+#define MAX77675_DBEN_EN_SHIFT      0
-+
-+/* CNFG_GLBL_B (0x01) */
-+#define MAX77675_SFT_CTRL_MASK      GENMASK(2, 0)    /* Soft Start Control */
-+#define MAX77675_SFT_CTRL_SHIFT     0
-+
-+/* INT_GLBL (0x02) bit bits and shifts */
-+#define MAX77675_INT_SBB3_F_BIT     BIT(7)
-+#define MAX77675_INT_SBB3_F_SHIFT   7
-+#define MAX77675_INT_SBB2_F_BIT     BIT(6)
-+#define MAX77675_INT_SBB2_F_SHIFT   6
-+#define MAX77675_INT_SBB1_F_BIT     BIT(5)
-+#define MAX77675_INT_SBB1_F_SHIFT   5
-+#define MAX77675_INT_SBB0_F_BIT     BIT(4)
-+#define MAX77675_INT_SBB0_F_SHIFT   4
-+#define MAX77675_INT_TJAL2_R_BIT    BIT(3)
-+#define MAX77675_INT_TJAL2_R_SHIFT  3
-+#define MAX77675_INT_TJAL1_R_BIT    BIT(2)
-+#define MAX77675_INT_TJAL1_R_SHIFT  2
-+#define MAX77675_INT_EN_R_BIT       BIT(1)
-+#define MAX77675_INT_EN_R_SHIFT     1
-+#define MAX77675_INT_EN_F_BIT       BIT(0)
-+#define MAX77675_INT_EN_F_SHIFT     0
-+
-+/* INTM_GLBL (0x03) bits and shifts */
-+#define MAX77675_INTM_SBB3_F_BIT    BIT(7)
-+#define MAX77675_INTM_SBB3_F_SHIFT  7
-+#define MAX77675_INTM_SBB2_F_BIT    BIT(6)
-+#define MAX77675_INTM_SBB2_F_SHIFT  6
-+#define MAX77675_INTM_SBB1_F_BIT    BIT(5)
-+#define MAX77675_INTM_SBB1_F_SHIFT  5
-+#define MAX77675_INTM_SBB0_F_BIT    BIT(4)
-+#define MAX77675_INTM_SBB0_F_SHIFT  4
-+#define MAX77675_INTM_TJAL2_R_BIT   BIT(3)
-+#define MAX77675_INTM_TJAL2_R_SHIFT 3
-+#define MAX77675_INTM_TJAL1_R_BIT   BIT(2)
-+#define MAX77675_INTM_TJAL1_R_SHIFT 2
-+#define MAX77675_INTM_EN_R_BIT      BIT(1)
-+#define MAX77675_INTM_EN_R_SHIFT    1
-+#define MAX77675_INTM_EN_F_BIT      BIT(0)
-+#define MAX77675_INTM_EN_F_SHIFT    0
-+
-+/* STAT_GLBL (0x04) bits and shifts */
-+#define MAX77675_STAT_SBB3_S_BIT    BIT(7)
-+#define MAX77675_STAT_SBB3_S_SHIFT  7
-+#define MAX77675_STAT_SBB2_S_BIT    BIT(6)
-+#define MAX77675_STAT_SBB2_S_SHIFT  6
-+#define MAX77675_STAT_SBB1_S_BIT    BIT(5)
-+#define MAX77675_STAT_SBB1_S_SHIFT  5
-+#define MAX77675_STAT_SBB0_S_BIT    BIT(4)
-+#define MAX77675_STAT_SBB0_S_SHIFT  4
-+#define MAX77675_STAT_TJAL2_S_BIT   BIT(2)
-+#define MAX77675_STAT_TJAL2_S_SHIFT 2
-+#define MAX77675_STAT_TJAL1_S_BIT   BIT(1)
-+#define MAX77675_STAT_TJAL1_S_SHIFT 1
-+#define MAX77675_STAT_STAT_EN_BIT   BIT(0)
-+#define MAX77675_STAT_STAT_EN_SHIFT 0
-+
-+#define MAX77675_STAT_STAT_EN_BIT   BIT(0)
-+#define MAX77675_STAT_STAT_EN_SHIFT 0
-+
-+/* ERCFLAG (0x05) bits and shifts */
-+#define MAX77675_SFT_CRST_F_BIT     BIT(5)  /* Software Cold Reset Flag */
-+#define MAX77675_SFT_CRST_F_SHIFT   5
-+#define MAX77675_SFT_OFF_F_BIT      BIT(4)  /* Software Off Flag */
-+#define MAX77675_SFT_OFF_F_SHIFT    4
-+#define MAX77675_MRST_BIT           BIT(3)  /* Manual Reset Timer Flag */
-+#define MAX77675_MRST_SHIFT         3
-+#define MAX77675_UVLO_BIT           BIT(2)  /* Undervoltage Lockout Flag */
-+#define MAX77675_UVLO_SHIFT         2
-+#define MAX77675_OVLO_BIT           BIT(1)  /* Overvoltage Lockout Flag */
-+#define MAX77675_OVLO_SHIFT         1
-+#define MAX77675_TOVLD_BIT          BIT(0)  /* Thermal Overload Flag */
-+#define MAX77675_TOVLD_SHIFT        0
-+
-+/* CID (0x06) bits and shifts */
-+#define MAX77675_CID_MASK           GENMASK(4, 0)  /* Chip Identification Code mask */
-+#define MAX77675_CID_SHIFT          0              /* Starts at bit 0 */
-+
-+/* CNFG_SBB_TOP_A (0x07) bits and shifts */
-+#define MAX77675_STEP_SZ_SBB3_BIT   BIT(5)
-+#define MAX77675_STEP_SZ_SBB3_SHIFT 5
-+#define MAX77675_STEP_SZ_SBB2_BIT   BIT(4)
-+#define MAX77675_STEP_SZ_SBB2_SHIFT 4
-+#define MAX77675_STEP_SZ_SBB1_BIT   BIT(3)
-+#define MAX77675_STEP_SZ_SBB1_SHIFT 3
-+#define MAX77675_STEP_SZ_SBB0_BIT   BIT(2)
-+#define MAX77675_STEP_SZ_SBB0_SHIFT 2
-+#define MAX77675_DRV_SBB_MASK       GENMASK(1, 0)
-+#define MAX77675_DRV_SBB_SHIFT      0
-+
-+/* CNFG_SBB0_A (0x08) bits and shifts */
-+#define MAX77675_TV_SBB0_MASK       GENMASK(7, 0)
-+#define MAX77675_TV_SBB0_SHIFT      0
-+
-+/* CNFG_SBB0_B (0x09) bits and shifts */
-+#define MAX77675_ADE_SBB0_BIT       BIT(3)
-+#define MAX77675_ADE_SBB0_SHIFT     3
-+#define MAX77675_EN_SBB0_MASK       GENMASK(2, 0)
-+#define MAX77675_EN_SBB0_SHIFT      0
-+
-+/* CNFG_SBB1_A (0x0A) bits and shifts */
-+#define MAX77675_TV_SBB1_MASK       GENMASK(7, 0)
-+#define MAX77675_TV_SBB1_SHIFT      0
-+
-+/* CNFG_SBB1_B (0x0B) bits and shifts */
-+#define MAX77675_ADE_SBB1_BIT       BIT(3)
-+#define MAX77675_ADE_SBB1_SHIFT     3
-+#define MAX77675_EN_SBB1_MASK       GENMASK(2, 0)
-+#define MAX77675_EN_SBB1_SHIFT      0
-+
-+/* CNFG_SBB2_A (0x0C) bits and shifts */
-+#define MAX77675_TV_SBB2_MASK       GENMASK(7, 0)
-+#define MAX77675_TV_SBB2_SHIFT      0
-+
-+/* CNFG_SBB2_B (0x0D) bits and shifts */
-+#define MAX77675_ADE_SBB2_BIT       BIT(3)
-+#define MAX77675_ADE_SBB2_SHIFT     3
-+#define MAX77675_EN_SBB2_MASK       GENMASK(2, 0)
-+#define MAX77675_EN_SBB2_SHIFT      0
-+
-+/* CNFG_SBB3_A (0x0E) bits and shifts */
-+#define MAX77675_TV_SBB3_MASK       GENMASK(7, 0)
-+#define MAX77675_TV_SBB3_SHIFT      0
-+
-+/* CNFG_SBB3_B (0x0F) bits and shifts */
-+#define MAX77675_ADE_SBB3_BIT       BIT(3)
-+#define MAX77675_ADE_SBB3_SHIFT     3
-+#define MAX77675_EN_SBB3_MASK       GENMASK(2, 0)
-+#define MAX77675_EN_SBB3_SHIFT      0
-+
-+#define MAX77675_EN_SBB_MASK        GENMASK(2, 0)
-+
-+/* CNFG_SBB_TOP_B (0x10) bits and shifts */
-+#define MAX77675_DVS_SLEW_BIT       BIT(5)
-+#define MAX77675_DVS_SLEW_SHIFT     5
-+#define MAX77675_LAT_MODE_BIT       BIT(4)
-+#define MAX77675_LAT_MODE_SHIFT     4
-+#define MAX77675_SR_SBB3_BIT        BIT(3)
-+#define MAX77675_SR_SBB3_SHIFT      3
-+#define MAX77675_SR_SBB2_BIT        BIT(2)
-+#define MAX77675_SR_SBB2_SHIFT      2
-+#define MAX77675_SR_SBB1_BIT        BIT(1)
-+#define MAX77675_SR_SBB1_SHIFT      1
-+#define MAX77675_SR_SBB0_BIT        BIT(0)
-+#define MAX77675_SR_SBB0_SHIFT      0
-+
-+#define MAX77675_MAX_REGISTER       0x10
-+
-+/* Common minimum voltage (in microvolts) */
-+#define MAX77675_MIN_UV             500000     // 500 mV
-+
-+/* Voltage step configuration for 25mV mode */
-+#define MAX77675_STEP_25MV          25000      // Step size: 25 mV
-+#define MAX77675_MAX_UV_25MV        5500000    // Max voltage: 5.5 V
-+#define MAX77675_NUM_LEVELS_25MV    201        // levels = (5500mV - 500mV) / 25mV + 1
-+
-+/* Voltage step configuration for 12.5mV mode */
-+#define MAX77675_STEP_12_5MV        12500      // Step size: 12.5 mV
-+#define MAX77675_MAX_UV_12_5MV      3687500    // Max voltage: 3.6875 V
-+#define MAX77675_NUM_LEVELS_12_5MV  255        // levels = (3687.5mV - 500mV) / 12.5mV + 1
-+
-+#define MAX77675_ENABLE_MASK        0x07
-+#define MAX77675_ENABLE_OFF         0x04
-+#define MAX77675_ENABLE_ON          0x06
-+
-+#define MAX77675_REGULATOR_AD_MASK  BIT(3)
-+#define MAX77675_REGULATOR_AD_OFF   0x00
-+#define MAX77675_REGULATOR_AD_ON    BIT(3)
-+
-+/* Regulator ID enumeration */
-+enum max77675_regulator_id {
-+	MAX77675_ID_SBB0 = 0,
-+	MAX77675_ID_SBB1,
-+	MAX77675_ID_SBB2,
-+	MAX77675_ID_SBB3,
-+	MAX77675_ID_NUM_MAX,
-+};
-+
-+struct max77675_irq_status {
-+	bool sbb3_fault;
-+	bool sbb2_fault;
-+	bool sbb1_fault;
-+	bool sbb0_fault;
-+	bool tjal2_rising;
-+	bool tjal1_rising;
-+	bool nen_rising;
-+	bool nen_falling;
-+};
-+
-+struct max77675_status {
-+	bool sbb3_overload;
-+	bool sbb2_overload;
-+	bool sbb1_overload;
-+	bool sbb0_overload;
-+	bool tjal2_status;
-+	bool tjal1_status;
-+	bool nen_status;
-+};
-+
-+struct max77675_ercf_status {
-+	bool sft_crst_f;
-+	bool sft_off_f;
-+	bool mrst;
-+	bool uvlo;
-+	bool ovlo;
-+	bool tovld;
-+};
-+
-+#endif /* __MAX77675_REG_H__ */
 --
 2.34.1
 
