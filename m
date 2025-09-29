@@ -1,222 +1,108 @@
-Return-Path: <devicetree+bounces-222516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C711FBA9CE2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 17:29:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A87BA9D18
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 17:39:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65218178358
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 15:29:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 971D4189B1F3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 15:40:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7618A30C0F7;
-	Mon, 29 Sep 2025 15:29:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9DA830B532;
+	Mon, 29 Sep 2025 15:39:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L4qWA1DX"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="VWWA0KnM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4843A30C0F0;
-	Mon, 29 Sep 2025 15:29:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 623DD30649C;
+	Mon, 29 Sep 2025 15:39:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759159741; cv=none; b=gRtcW4IjAhH92VfysgZiyZ+4dRi3KnEIwW8EMi+XHVN/JFea77i1F14hAPbzREO1c1hborvh7x0uUdK9eqhqFeAzLk+tJ4QC2YBqhCS7HJdJRtuR02NGUevxxRzI5MY3W8Rjpfy1XAcNaisJ+df/xWlZnyqCPip8yW0bH+6SDqU=
+	t=1759160379; cv=none; b=HrOOZKBi1NlLbHc7osOQyrdIlBreFyV+D8PftNr0URpr3ttaa+oKTFr+IcD0jdDmq4WLdK7gzbVedWTUlxz7nTYQwqndt5h//+Q9Y8yKzH0zXccCcdQiJM0fbxfVQOuU5yQb7+IMcZIqYfxN2rjTTFtYcljKtbvHmT53Glmxj74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759159741; c=relaxed/simple;
-	bh=3pzmtsbiTCR95ZsPE9rXLst/P4KeKZ76MABSMztNLe0=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=BPI78vpVwX87UJlBTVQ1Ifg7g66xLJFnHX3oTFT6r/4HatsUfyQ31YurkcxnBtfpwo0JLtp/LRTi/cy0XEhNRgUvkUwN+4j1HfHooVU74an2nIwgiaQd8liR7EP8rcxwQoT444boNuQlGnmIBi1MN3zaB+yD2MUzsB7a9glnKlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L4qWA1DX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEC6EC4CEF7;
-	Mon, 29 Sep 2025 15:29:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759159740;
-	bh=3pzmtsbiTCR95ZsPE9rXLst/P4KeKZ76MABSMztNLe0=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=L4qWA1DX0ZNMNSox8gWc2YkrJq7qv1bSwXIrWqY3wcqEjdFlfG91Ow1od0E86VHhk
-	 Znf1BPX3HTubbz7Qi8vCEZO+w5QDEN12ZlS03wYtehIZSWyFuRa3bi4W9tM7mZ9fPt
-	 FRe1qcLgWSV13uR4qKWlM9xX5Uws78X3RFTK9QqIyOF6teuCxzB6Dtql1J7QvasgpO
-	 +DyFu2Q8Es6jDJSYCwucZG07V91FPPI26MsI39wGaV6cjGvlW4LO/Guqd/IjNbUzcs
-	 5RcKNHU1aqZNy8iYePrMFGCKgquNjlDOiHSkBOYCnqxY8rCxfHIIMyUyHLMydWMucQ
-	 LEB4B6gx8HB6g==
-Date: Mon, 29 Sep 2025 10:29:00 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1759160379; c=relaxed/simple;
+	bh=WpiRmRiNktJeHW5C/m0YQuXfG2H8PJzwMojJHmpXVQ4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ao4kNGJpHHkkiXZgj7aAMW3jNeh8bWMoDhI5iO1EnECle9JI/ZR2a2Kyj3k45QUGMNUKoDIJHjBPfebUNqo8K+I9kqwY2yUeVWrcAUymY6WgU27ZHTxDU3ni2Uoa3zwmmpGEVAKRrKrHAmwkLkuSbvVepVi97kI8OUYYzy1BEB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=VWWA0KnM; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=IsJOyWxYTnSzM823W7VRWdUdPLOKig+uzT39p4FJXVw=; b=VWWA0KnMv1KRO+v0x0Pgoe4jJL
+	Q0z7nv9BmMZQC1tgtRC6yObi66xEw8xnvKEcur2X2k4CCkq5ddT2YHB2bqniNnmHTHb92waqUnD0X
+	ZH2S4QACc2L/mpeYv3zV1Tf3GKSwX47He0qRIg2ZNLdjgGvrjOFAtPBmeo+j3OpR14Z92J+QvRO++
+	4nRsM2gQk0iicjDOGB62XT63NlY/gpGSsULrPsfGHMPMP38qOQVA6IMzFHtKrDz/BjxyZRBhp3MGV
+	aAhCSEFUjMULfwPBTeUiglSdd9BAItwct2FipqTda3/9Bf3VAkeBY6hptTSGRglGPORmfQFFRgC8b
+	7+NHyJ1Q==;
+Received: from e227-076.eduroam.tuwien.ac.at ([128.130.227.76] helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1v3FyJ-0008A3-Fe; Mon, 29 Sep 2025 17:39:27 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: guptarud@gmail.com, Dragan Simic <dsimic@manjaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Ondrej Jirman <megi@xff.cz>,
+ Martijn Braam <martijn@brixit.nl>,
+ Kamil =?UTF-8?B?VHJ6Y2nFhHNraQ==?= <ayufan@ayufan.eu>,
+ "Leonardo G. Trombetta" <lgtrombetta@gmx.com>
+Subject: Re: [PATCH v4 0/4] Upstreaming Pinephone Pro Patches
+Date: Mon, 29 Sep 2025 17:39:26 +0200
+Message-ID: <8606261.29KlJPOoH8@phil>
+In-Reply-To: <49dafe9afc5962d8fec10e6135c9b84d@manjaro.org>
+References:
+ <20250929-ppp_light_accel_mag_vol-down-v4-0-6598f22d3451@gmail.com>
+ <49dafe9afc5962d8fec10e6135c9b84d@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-To: Xilin Wu <sophon@radxa.com>
-In-Reply-To: <20250929-radxa-dragon-q6a-v5-0-aa96ffc352f8@radxa.com>
-References: <20250929-radxa-dragon-q6a-v5-0-aa96ffc352f8@radxa.com>
-Message-Id: <175915953212.54437.14578163410705944523.robh@kernel.org>
-Subject: Re: [PATCH v5 0/2] arm64: dts: qcom: qcs6490: Introduce Radxa
- Dragon Q6A
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+
+Am Montag, 29. September 2025, 10:32:59 Mitteleurop=C3=A4ische Sommerzeit s=
+chrieb Dragan Simic:
+> Hello Rudraksha,
+>=20
+> On 2025-09-29 09:35, Rudraksha Gupta via B4 Relay wrote:
+> >       arm64: dts: rk3399-pinephone-pro: Add light/proximity sensor=20
+> > support
+> >       arm64: dts: rk3399-pinephone-pro: Add accelerometer sensor=20
+> > support
+> >       arm64: dts: rk3399-pinephone-pro: Add magnetometer sensor support
+> >       arm64: dts: rk3399-pinephone-pro: Fix voltage threshold for=20
+> > volume keys
+>=20
+> Please note that the patch summaries/subjects are still a bit
+> wrong in the v4 of this series, because there should be no
+> "rk3399-pinephone-pro:" prefixes in them.
+>=20
+> You can always check the commit history for the file you're
+> editing, to see what's the expected format of the patch summary.
+> It differs a bit between the subsystems and architectures, so
+> it should always be checked.
+
+for reference for Rockchip dts files, the preferred format is:
+arm64: dts: rockchip: Do something on boardname
+
+aka "arm64: dts: rockchip: " and the rest is free form but should
+mention the board.
+
+But I'll generally fix those up myself if needed, so right now
+there is no need to resend just for that change.
 
 
-On Mon, 29 Sep 2025 14:46:40 +0800, Xilin Wu wrote:
-> Radxa Dragon Q6A (https://docs.radxa.com/en/dragon/q6a) is a single board
-> computer, based on the Qualcomm QCS6490 platform.
-> 
-> The board ships with a modified version of the Qualcomm Linux boot
-> firmware, which is stored on the onboard SPI NOR flash. This allows
-> booting standard EFI-based bootloaders from SD/eMMC/USB/UFS/NVMe. It
-> supports replaceable UFS 3.1/eMMC modules for easy user upgrades.
-> 
-> The board schematic is available at [1].
-> 
-> Features enabled and working:
-> 
-> - Configurable I2C/SPI/UART from 40-Pin GPIO
-> - Three USB-A 2.0 ports
-> - RTL8111K Ethernet connected to PCIe0
-> - eMMC module
-> - SD card
-> - M.2 M-Key 2230 PCIe 3.0 x2
-> - Headphone jack
-> - Onboard thermal sensors
-> - QSPI controller for updating boot firmware
-> - ADSP remoteproc (Type-C and charging features disabled in firmware)
-> - CDSP remoteproc (for AI applications using QNN)
-> - Venus video encode and decode accelerator
-> 
-> Features available with additional DT overlays:
-> - CSI cameras
-> - DSI display
-> 
-> Features that will be submitted separately once the required bindings are
-> merged:
-> 
-> - USB-A 3.0 port
-> - UFS 3.1 module
-> - HDMI 2.0 port including audio
-> 
-> ALSA UCM and Audioreach topology patches are available at [2] and [3].
-> 
-> [1]: https://docs.radxa.com/en/dragon/q6a/download
-> [2]: https://github.com/alsa-project/alsa-ucm-conf/pull/601
-> [3]: https://github.com/linux-msm/audioreach-topology/pull/24
-> 
-> Signed-off-by: Xilin Wu <sophon@radxa.com>
-> ---
-> Changes in v5:
-> - Change LED default function to panic-indicator
-> - Fix line break in sound node
-> - Fix status-not-last in usb_2_hsphy
-> - Remove unused regulators to avoid potential issues
-> - Link to v4: https://lore.kernel.org/r/20250924-radxa-dragon-q6a-v4-0-10d584f2c806@radxa.com
-> 
-> Changes in v4:
-> - Change CDSP firmware to use the existing one from linux-firmware
-> - Describe onboard USB 2.0 hub and ports
-> - Add configurable I2C/SPI/UART QUP controllers
-> - Link to v3: https://lore.kernel.org/r/20250915-radxa-dragon-q6a-v3-0-a6c32d988ed7@radxa.com
-> 
-> Changes in v3:
-> - Dropped patches for USB/HDMI, UFS and GPIO.
-> - Removed Reviewed-by tag from the board DTS patch as it was significantly
->   modified.
-> - Link to v2: https://lore.kernel.org/r/20250914-radxa-dragon-q6a-v2-0-045f7e92b3bb@radxa.com
-> 
-> Changes in v2:
-> - Move codec before cpu in sound node to get sorted.
-> - Drop patch dependencies in cover letter
-> - Separate the changes that have unmet dependencies, and mark them as DNM
-> - Link to v1: https://lore.kernel.org/r/20250912-radxa-dragon-q6a-v1-0-8ccdbf9cd19b@radxa.com
-> 
-> ---
-> Xilin Wu (2):
->       dt-bindings: arm: qcom: Add Radxa Dragon Q6A
->       arm64: dts: qcom: qcs6490: Introduce Radxa Dragon Q6A
-> 
->  Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
->  arch/arm64/boot/dts/qcom/Makefile                  |    1 +
->  .../boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 1095 ++++++++++++++++++++
->  3 files changed, 1097 insertions(+)
-> ---
-> base-commit: 590b221ed4256fd6c34d3dea77aa5bd6e741bbc1
-> change-id: 20250912-radxa-dragon-q6a-eedcdeaf3e66
-> 
-> Best regards,
-> --
-> Xilin Wu <sophon@radxa.com>
-> 
-> 
-> 
-
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: using specified base-commit 590b221ed4256fd6c34d3dea77aa5bd6e741bbc1
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250929-radxa-dragon-q6a-v5-0-aa96ffc352f8@radxa.com:
-
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: geniqup@9c0000 (qcom,geni-se-qup): i2c@980000: Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: geniqup@9c0000 (qcom,geni-se-qup): i2c@988000: Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: geniqup@9c0000 (qcom,geni-se-qup): i2c@998000: Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: geniqup@9c0000 (qcom,geni-se-qup): spi@99c000: Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: i2c@980000 (qcom,geni-i2c): Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/i2c/qcom,i2c-geni-qcom.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: i2c@988000 (qcom,geni-i2c): Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/i2c/qcom,i2c-geni-qcom.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: i2c@998000 (qcom,geni-i2c): Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/i2c/qcom,i2c-geni-qcom.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: spi@99c000 (qcom,geni-spi): Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/spi/qcom,spi-geni-qcom.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: geniqup@ac0000 (qcom,geni-se-qup): i2c@a88000: Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: geniqup@ac0000 (qcom,geni-se-qup): i2c@a94000: Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: geniqup@ac0000 (qcom,geni-se-qup): spi@a90000: Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: geniqup@ac0000 (qcom,geni-se-qup): spi@a98000: Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/soc/qcom/qcom,geni-se.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: i2c@a88000 (qcom,geni-i2c): Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/i2c/qcom,i2c-geni-qcom.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: spi@a90000 (qcom,geni-spi): Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/spi/qcom,spi-geni-qcom.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: i2c@a94000 (qcom,geni-i2c): Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/i2c/qcom,i2c-geni-qcom.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: spi@a98000 (qcom,geni-spi): Unevaluated properties are not allowed ('qcom,enable-gsi-dma' was unexpected)
-	from schema $id: http://devicetree.org/schemas/spi/qcom,spi-geni-qcom.yaml#
-arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dtb: edp@aea0000 (qcom,sc7280-edp): reg: [[0, 183107584, 0, 512], [0, 183108096, 0, 512], [0, 183108608, 0, 3072], [0, 183111680, 0, 1024]] is too short
-	from schema $id: http://devicetree.org/schemas/display/msm/dp-controller.yaml#
-
-
-
+Heiko
 
 
 
