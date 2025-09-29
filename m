@@ -1,194 +1,230 @@
-Return-Path: <devicetree+bounces-222376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63D90BA87D2
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 10:59:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8797BA8821
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 11:03:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF9AD189D472
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 08:59:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82EEE3A10AD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 09:03:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1FA2C1788;
-	Mon, 29 Sep 2025 08:58:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F1D8272E61;
+	Mon, 29 Sep 2025 09:03:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b="f7Q7keyZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dDBoMyhc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (mail-southcentralusazon11022119.outbound.protection.outlook.com [40.93.195.119])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C79273805;
-	Mon, 29 Sep 2025 08:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.195.119
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759136321; cv=fail; b=r6zZDcgDjPLl0j9Xr3s1AY+wuvCZb3+s2Igy6MDb+cRiI0P8iubYS6Aesb02ifCLqqhcb9jTfg1aya5DUdmxqvaYSXq7FtDCm6zBm9P4L1SiHmXRivha+mEGWiXNGgJb905Um+IxzKPzJ4YheZAKzMHOrZrEfMvoMo4klW1kSUs=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759136321; c=relaxed/simple;
-	bh=C7nnMnsyXlhPIhICq87VESYreB884vyiukeXP9i7ARY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ix4Ra3Z9Vyq72uOJV/SgISRiQn8PykunE9BhVooKBhtaFzvj37v1OVsZDRTmB5Pu5PvUAzhYAzBgn43d/HJn4iesal2PJH7RMruGV7Iu2zBEvq8+4je30DQg4DHy5ZK0IgN+srwQpwMmS4KYlghsDmPHKMyLoC8e2pIftPjktqU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com; spf=pass smtp.mailfrom=axiado.com; dkim=pass (2048-bit key) header.d=axiado.com header.i=@axiado.com header.b=f7Q7keyZ; arc=fail smtp.client-ip=40.93.195.119
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=axiado.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=axiado.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GF1LTo0yIKkHf6Bo1HGRep4vTCQmXl7juxwvTNgI4NbKbb7FkPZ/xEk6I3NOC78OMB/bSfncofRudkBYvVSwgLAaN/sJopom5Q8KfmMuBJtWY4seSDMd2MFyHA2MGdftJGSjwfRYgENe3j8IjWsA6VIRipH/stL16xCow1EdK8rphOr3TQcWhcp5aMaMu9afOdSMgt0NMteQyRihjZakcxNV3ANCbgz36HaOr//UAr/PJsEANndL1HDcXEy3gJycU1GSQpXXSVVcbf1R6w+Djy/wQdoAQ14M+8HjAnLsDZBEf8OkCUcxVbXlVIgx0pjMGV5zPehyJK8wvioFCgkjsQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uX+Rs2GpwX4p7YWz3dNrHF8TA3yFyKelo6x88KoABqw=;
- b=j/oG0bCv/cnq/pOZQ4A0DnoAShCMBWitf5Wgly4xSpyAvm0yggP6uRmDDDet4cpP/dDSE6hjGYjCDbp2Np200P/gT+CfGbwGr1TGARYh6CEi2OvSAZ9uhEOGalvXHzgj38KN7R/Jzz6JrK0qUIg8aPuAoSUbObHCZyja3JKuj+Vqga2aN/Kh73cUid+esdlA5OmSSW+R5tSyYOd/MpdzU+iVeEbI5qZs8ZvKOv/EDCPYGLJDqEOq351/wEkK3uIgp5Rh8+y4igpqAPH0AOyAqk5KxuveA21Kc83V0UugKQ3yX3qtBm3B1E7M/wywjnKIYYQr67le4pAhUktzIYVzDw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 50.233.182.194) smtp.rcpttodomain=lists.infradead.org
- smtp.mailfrom=axiado.com; dmarc=none action=none header.from=axiado.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axiado.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uX+Rs2GpwX4p7YWz3dNrHF8TA3yFyKelo6x88KoABqw=;
- b=f7Q7keyZnayh8fNKbrkZh5pF0j9MTzmxylSM8rj3k98g7L/pFSZ3GnEMd6HjKbFAj/lGDxnSu4guRbhIgkjXpuXYduMWfVlaPii/U/8C0BqkUqDNO8lSceFQXuHP/4aMnEewY5IpT5P7/tsBaGCr5hl5jqWfTzlnanSl0hcyaeSgNumYDrFJoPQGo4fRkcn1XblwVtn17cBgcFerbrdgH/+mUa/SS++Ji2wBIPoHQA0humIQTNa5TTNj3fMPClLIi8ajR5VCedzI13QSBcObq9SZBizeCdJqa14YU/uZ58uVsnoGNvXz0H542x020134gxkkS76UEKEeFrYBWy6Pdw==
-Received: from BYAPR07CA0108.namprd07.prod.outlook.com (2603:10b6:a03:12b::49)
- by DM6PR18MB3588.namprd18.prod.outlook.com (2603:10b6:5:2a6::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.16; Mon, 29 Sep
- 2025 08:58:35 +0000
-Received: from SJ5PEPF000001E9.namprd05.prod.outlook.com
- (2603:10b6:a03:12b:cafe::2e) by BYAPR07CA0108.outlook.office365.com
- (2603:10b6:a03:12b::49) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9160.16 via Frontend Transport; Mon,
- 29 Sep 2025 08:58:35 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 50.233.182.194)
- smtp.mailfrom=axiado.com; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=axiado.com;
-Received-SPF: Fail (protection.outlook.com: domain of axiado.com does not
- designate 50.233.182.194 as permitted sender)
- receiver=protection.outlook.com; client-ip=50.233.182.194;
- helo=vm-swbuild15.axiadord;
-Received: from vm-swbuild15.axiadord (50.233.182.194) by
- SJ5PEPF000001E9.mail.protection.outlook.com (10.167.242.197) with Microsoft
- SMTP Server (version=TLS1_3, cipher=TLS_AES_256_GCM_SHA384) id 15.20.9160.9
- via Frontend Transport; Mon, 29 Sep 2025 08:58:35 +0000
-From: Vladimir Moravcevic <vmoravcevic@axiado.com>
-Date: Mon, 29 Sep 2025 01:58:03 -0700
-Subject: [PATCH v2 3/3] MAINTAINERS: Add entries for the Axiado SPI DB
- controller
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23AA2208994
+	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 09:03:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759136594; cv=none; b=BjbdnfdxxeW/nSZKkphgO6suA02rU+uojKqK+5Rla+WM+KXcwixzHagZ4Aq8KPbk16nfGei+GeIB51YOBKa1dR5Dkkp+P+3eD+bXlq/tj24UVJ8fycm6SG0kV9U5RgxWDxRfPXXvbhPhYzm2i9VcuBMCiMSOryycEUJGlIbbL6M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759136594; c=relaxed/simple;
+	bh=YDkB1cC1lei3HB7fQRoAVOGBWOAs06N/aEhJ0IeU4eQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d30eqD7XvWZS8DausVhDdO+EY6eEKzCfH7nB9EXn5bF4/RUfwWJPNcgBtAARGi66pgUS5aqgnYl2Au9MdGnQxhs4uSd0nB2yR2P6gZBDzzpolqrFT40N9Bwq66QzVdU/Z4lMTyD8DFsDubm7k5ef88foeV4nZ2Elj76FgCDBjKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dDBoMyhc; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5796051ee6aso913662e87.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 02:03:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759136590; x=1759741390; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SQ1kR/YUyZ1nKY+v1ygHX/aXlVuO3SwbSwJRstRbb9s=;
+        b=dDBoMyhc87yvAJOHgaElDJMprkqDNtYY8fXo7lOlADdonOZ/cJYXHdOcxQ9rQueuBR
+         LERpIoy2kOXv+/KEbIpKqeKu4wq95AGTEyiEwXZHtnI8HMTLzF6sj6Blh35h+Hvgefoq
+         sRYzZtXijZjKxrJR9T2PYGrsGZbPNBNnHMzGHfZwRHZOXi02I0yV3VWAiIeWjMJ2ncvh
+         XiuUscm1Ea/CkRtqt7sBf4rVE+9G2kcqO8Fes2EZW0At0HqeddhTqIWWjS+xb31wKSwg
+         7c3FTEqrVe4FnFJPctZJJTaHeTjtS/eWyZgWAjxas/nJToi0p3Yyefp0kHabOB2VJVrw
+         Z5mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759136590; x=1759741390;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=SQ1kR/YUyZ1nKY+v1ygHX/aXlVuO3SwbSwJRstRbb9s=;
+        b=lS7MBM/6Yms79XuRxVUF/18UWO8sZgcXMYxJhm4tSVbHRFYsHSn4lq3N2340Npf0lH
+         mpysgE1MDLuKRnjiA+esdB3GJ9dOiFKD3xzLP04VKaBcdFB7pAOHgPKNsh8rvhdo928k
+         Gi6utPcc2dqJNW64loitCkMwgjArNqfoHapM/tjIYeBPj2IB27ttCeDcy7Ce7eoAdjlV
+         gWteUArHZSm0vH3Ttc802WNybLQTeakxAMIfdW7mQK/DTvRiFjL5h/xHkaDyQPFaoOk5
+         W2mmjvi9EGXmZzI6ADMil7wVJ4go+SUlagTVviTwP2GeZ3XVfY0uPRovbrht9RCzv1/m
+         i6GQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUOKK/u6Uhecm+SXwxsDe9QRI/lycPqc0H7zdC4Aq2ooCYxfE7SyV6FKUh/70dAnjxf07xH9RwdcH2x@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXFTpvx1xL5pwrkRTEe9YgVOOq44RUtggoXrrS3HQKAZqp0y30
+	3eh+sokQzIGDCX5pu8Bw7tOM5f8Ef9f/Ain5Jiiq2kIgKA6UP4hHf0AhcIMjki3vmJk=
+X-Gm-Gg: ASbGncug/KKoXNtY7RJkZoiwSdwfgs9/7q+sg+RYTuSh2D1IL7FEShlI2cYJBPkuUHk
+	XqnjvHWQbWAK2jByZ930V6oHNSh2w1O5wmj3Ln0vd1INNUq/KENDv8YHfvbpXU4yrWNePn1CbHP
+	n80FUI6+iobLrNOA475NZOZ++gy7ipDPDwYf7H8hMNvzoFvnnBTiclfldvDUF8xmzdWchsE4/fc
+	LLD1NWPddzYxxhISs032I4Obu5is+8r7i+2t60PSIytnGqSc+R8KFwGRE/hT0dkDnqfX2qHyIA/
+	0MM4tm6Fr6dbF4X9AQ3gAlKVSwoW40Rg9r8PkFVdErpXJhAxxpHD26TpQeLv5wahpCp5ShV22w5
+	aQrf0J88rlZCUBhB4ZY3KIBwyJsuN2XL0vgyNE/7SGQcujuaZG7ro21+rrpxkXjH2tNynUflWo+
+	2L6A==
+X-Google-Smtp-Source: AGHT+IFxskxasAcUCzpw5FlswrTo8wIg2CVztTjf3s5U11u0jYRFd9ekebyNAAIZnj0TT5QUNQxd4w==
+X-Received: by 2002:a19:5212:0:b0:584:2ad8:7cd1 with SMTP id 2adb3069b0e04-5842ad87ee4mr1305280e87.3.1759136590100;
+        Mon, 29 Sep 2025 02:03:10 -0700 (PDT)
+Received: from [192.168.1.100] (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58316ff552esm4006185e87.127.2025.09.29.02.03.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Sep 2025 02:03:09 -0700 (PDT)
+Message-ID: <d6530142-469e-4859-ac71-fd4af82ed4be@linaro.org>
+Date: Mon, 29 Sep 2025 12:03:08 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: qrb2210-rb1: Add overlay for
+ vision mezzanine
+To: Loic Poulain <loic.poulain@oss.qualcomm.com>, andersson@kernel.org,
+ konradybcio@kernel.org, dave.stevenson@raspberrypi.com,
+ sakari.ailus@linux.intel.com
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-media@vger.kernel.org, mchehab@kernel.org, conor+dt@kernel.org,
+ robh@kernel.org
+References: <20250926073421.17408-1-loic.poulain@oss.qualcomm.com>
+ <20250926073421.17408-4-loic.poulain@oss.qualcomm.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20250926073421.17408-4-loic.poulain@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250929-axiado-ax3000-soc-spi-db-controller-driver-v2-3-b0c089c3ba81@axiado.com>
-References: <20250929-axiado-ax3000-soc-spi-db-controller-driver-v2-0-b0c089c3ba81@axiado.com>
-In-Reply-To: <20250929-axiado-ax3000-soc-spi-db-controller-driver-v2-0-b0c089c3ba81@axiado.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Harshit Shah <hshah@axiado.com>, 
- Tzu-Hao Wei <twei@axiado.com>, 
- Axiado Reviewers <linux-maintainer@axiado.com>
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Vladimir Moravcevic <vmoravcevic@axiado.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759136313; l=1038;
- i=vmoravcevic@axiado.com; s=20250904; h=from:subject:message-id;
- bh=C7nnMnsyXlhPIhICq87VESYreB884vyiukeXP9i7ARY=;
- b=icejvxRouaytdxpijmKVRg7yr0FclRQlpsrUfOD3nutH6C1AxUiCwk54g8jXAfQCz3/uTIjha
- YpzyiCmx01SCN8MlUhyFBkGP0biihaaB/OYUPfaw5Jk90N1Z2YAhw/6
-X-Developer-Key: i=vmoravcevic@axiado.com; a=ed25519;
- pk=iiyhWhM1F4HlCbbW3I3qKZhPCE8JsCrDQMgCBRg4YMA=
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001E9:EE_|DM6PR18MB3588:EE_
-X-MS-Office365-Filtering-Correlation-Id: e30ca6d0-ea5f-4d87-ba2b-08ddff365f9a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|376014|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?ZCtxQUF3L1JQZ1psbWc1dTF4aTdoUXNXaTBENkF4cy9kYWEvb0xWTmJpWXNL?=
- =?utf-8?B?S2NneHFYWi9lWWtGQ2FPem9LdGNxMlUrVlovYVFOT3k1NW5ZRzFRQXNkZWUz?=
- =?utf-8?B?UGsvQkpwdmtvV05pRlJPSlFPSXlvZHVmN1Ezb2tDSVl4Z1Izd21TWXltT1JO?=
- =?utf-8?B?c0N5MTV0UHl5ZVl6MkY5TktuVWg1MUdHVWFoNzNzTjNmb3g1MGpzKy9wRzdy?=
- =?utf-8?B?RHcwTW96dlJ2YWNrbE9ra05vc2Vma0R4cmVLT0ZJdEJFc0EvREJXcmVUNTJF?=
- =?utf-8?B?bVppcHBJbFZteUlhNDMzSXdFcTJ6RVFqck1xYmx4eTZjc3BKOXdZUEo0NWRM?=
- =?utf-8?B?NVY3eG5ZeUt3S2VNNFJIUUx1ekZWa3E4T0pNUFZaL3BVRVhmSWhiSmk0MTNJ?=
- =?utf-8?B?a1ljcGpxL0daUUtLdFlRZldoeG0xMGxmNy9qZEEwS3VBNDR4ZGl2TjR4cUlk?=
- =?utf-8?B?T1lNdXBjS2p0VEZwcVphU2JwRG1nVHNmTk04WDY5OFZwVGhkU2J2VjBrQkFs?=
- =?utf-8?B?cmdCMDdOMlNUYzdPMEdZQWlHdzRsVVVGdkE1d0NzS2ZIMGFlKzNybVdVbE1m?=
- =?utf-8?B?RXFrUmVRMGYrK0hyeXl6NFRUMlVjeElpNHI0WCtRRzAwYWpVUjdmK0JteHZj?=
- =?utf-8?B?dnIySjF3bHREdUhzQ3owMktJSjV5ZjV6eGNTVVRFQjdkbmxqT2JqTURaTWJl?=
- =?utf-8?B?aS9XNWlwdytJTWE0TWZwbG5ETmQ0WGFiNElBZnRBalBJMzFmQXNxQTFUSFNt?=
- =?utf-8?B?bnRlL2JrU3Z0RC9BQXFmTkNHMW5EQkNuU2ZOY3F6M1ZzeDVkT3dSL3V3M0NL?=
- =?utf-8?B?Zm04NlFWOFJWOHpKb2daMXB2VVFTbFpmRGxwR1U0K3ZuUHhuUTQrdkJJdU50?=
- =?utf-8?B?V2xvZmROeStyVjRCQjAwblpyRnRaQjJkNWluc2Y5WEpBR2hVbFl4NmNMNkNO?=
- =?utf-8?B?a1hkUmU4TE9SemdndmplQlQvUDdJNHg2Tkc1NnlnVE1GUElGRUs2d1pjSVBH?=
- =?utf-8?B?NVFqbEFFQXRSeml2d3V5ajV0bGgwemo1UDhORkNwbEZkeEZNb3VSVks1UTdo?=
- =?utf-8?B?ekhLQzU1cUluS29jNENiTmRjU3ZNaDlmSVptUDFEYjcxWkI5dW5Id2ZXWG44?=
- =?utf-8?B?TVNDcTI1V2N0RDhXVXlKQzNwRVQ3Umw2UkF0aG5pK3ROR0NZTW50enFYNFJV?=
- =?utf-8?B?ang2S3FqSVZBY1FQclM4c0JQdGo2aVBGdzBFNFdzWldWRlBDaHZqMkRYSlVL?=
- =?utf-8?B?a3F6cnR1MHRRdnExZmZNdi9jdzRwL2VRMFRXYUdLT09lWXZvZk55N01yZTA2?=
- =?utf-8?B?S2NqKzFtMENQSnRsTmhadmhXb1pYU1RGSzNnNjJuSVUwaGhTNGtLeE53ZmZl?=
- =?utf-8?B?TXZFMGlkVEZxWUpnMGVLQWw5QTJFbmNCYVBVTC9jOTdGcGZicnAwSWp2TDBD?=
- =?utf-8?B?WHI1U1JRK2FxSlcrVXcwYVVxV0ZsajFjUzJGRWhQdzNjbDFrMmJHOEwxWUlp?=
- =?utf-8?B?dnNuQ2cxRWwxRWZXckVmbXdkeVM4Z1V4RS9QKzdXOUJleUNmVVpISml4b2JG?=
- =?utf-8?B?WjZmS1RIajFuUDU5K005ZVMzWjJPL09TYnVMdjlSWEJBUXRtTkRzcUlIbUlv?=
- =?utf-8?B?RTRtZEF4TjVtUy9pbXpaeXBGcU9QSDJ6UWk2T1FMam13MlZuNGUza2Y0V3hK?=
- =?utf-8?B?WE5IMm95aFVRZTNicE0wbjI2cmNQVTNSVVlmcEpWblRhTUFCNzBOT0E0bkdO?=
- =?utf-8?B?TVJIT2hyMGpSVnBicVpDS2pQbHhHdWkrcU5hbjNYUUU4Qks0eERNVVh5ZlN1?=
- =?utf-8?B?M0UwL2ZRMHM5VnpQVXJLN2RhSzc1UVBIWDdMTWVEVDQxYk14d2QxSFNlZVNk?=
- =?utf-8?B?bEtSTDRZZnptdzZoamxNTDA0SXJqTmJ2Tk5TRzlteWZ0OEZLcUk2Rmtpelo3?=
- =?utf-8?B?Unl5WXBpbCtCYTFBR2VSQmhtQno2OFV5Z1p0NzZGZGJ3b0JYMG80YU4zbXly?=
- =?utf-8?B?alZ3RUx0cjFtTHRpajEzK2dIblhFV05tdXAyUklsMlVGcmwrb3o0elpJUlJj?=
- =?utf-8?B?d20rbkluOVhkOXZkNGhGWVlqM0Y3UmFadXZXRjU3TzNodGZYc25ueDkyS1VU?=
- =?utf-8?Q?jtfs=3D?=
-X-Forefront-Antispam-Report:
-	CIP:50.233.182.194;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:vm-swbuild15.axiadord;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(376014)(13003099007);DIR:OUT;SFP:1102;
-X-OriginatorOrg: axiado.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2025 08:58:35.3343
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: e30ca6d0-ea5f-4d87-ba2b-08ddff365f9a
-X-MS-Exchange-CrossTenant-Id: ff2db17c-4338-408e-9036-2dee8e3e17d7
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=ff2db17c-4338-408e-9036-2dee8e3e17d7;Ip=[50.233.182.194];Helo=[vm-swbuild15.axiadord]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ5PEPF000001E9.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR18MB3588
 
-Add the MAINTAINERS entries for the Axiado SPI DB controller.
+On 9/26/25 10:34, Loic Poulain wrote:
+> This initial version includes support for OV9282 camera sensor.
+> 
+> Signed-off-by: Loic Poulain <loic.poulain@oss.qualcomm.com>
+> ---
+>   arch/arm64/boot/dts/qcom/Makefile             |  5 ++
+>   .../qcom/qrb2210-rb1-vision-mezzanine.dtso    | 76 +++++++++++++++++++
+>   2 files changed, 81 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/qcom/qrb2210-rb1-vision-mezzanine.dtso
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index d7f22476d510..bee021efc249 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -138,6 +138,11 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qrb2210-rb1.dtb
+> +
+> +qrb2210-rb1-vision-mezzanine-dtbs	:= qrb2210-rb1.dtb qrb2210-rb1-vision-mezzanine.dtbo
+> +
+> +dtb-$(CONFIG_ARCH_QCOM)	+= qrb2210-rb1-vision-mezzanine.dtb
+> +
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qrb4210-rb2.dtb
+>   dtb-$(CONFIG_ARCH_QCOM)	+= qrb5165-rb5.dtb
+>   
+> diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1-vision-mezzanine.dtso b/arch/arm64/boot/dts/qcom/qrb2210-rb1-vision-mezzanine.dtso
+> new file mode 100644
+> index 000000000000..3b6261131b75
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1-vision-mezzanine.dtso
+> @@ -0,0 +1,76 @@
+> +// SPDX-License-Identifier: BSD-3-Clause
+> +/*
+> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
 
-Acked-by: Tzu-Hao Wei <twei@axiado.com>
-Signed-off-by: Vladimir Moravcevic <vmoravcevic@axiado.com>
----
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Year is missing, please set it.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6dcfbd11efef87927041f5cf58d70633dbb4b18d..4fa4b99661b37b161e4326526e0c5049cf24691a 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4130,6 +4130,16 @@ W:	https://ez.analog.com/linux-software-drivers
- F:	Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
- F:	drivers/pwm/pwm-axi-pwmgen.c
- 
-+AXIADO SPI DB DRIVER
-+M:	Vladimir Moravcevic <vmoravcevic@axiado.com>
-+M:	Tzu-Hao Wei <twei@axiado.com>
-+R:	Axiado Reviewers <linux-maintainer@axiado.com>
-+L:	linux-spi@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/spi/axiado,ax3000-spi.yaml
-+F:	drivers/spi/spi-axiado.c
-+F:	drivers/spi/spi-axiado.h
-+
- AZ6007 DVB DRIVER
- M:	Mauro Carvalho Chehab <mchehab@kernel.org>
- L:	linux-media@vger.kernel.org
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/clock/qcom,gcc-qcm2290.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +&tlmm {
+> +	cam0a_default: cam0a-default-state {
+> +		pins = "gpio28";
+> +		function = "cam_mclk";
+> +		drive-strength = <16>;
+> +		bias-disable;
+> +	};
+> +};
+
+This is a generic non-changeable MCLK3 pin configuration, which is
+specific to the SoC. Like in a number of other cases please consider
+to define this and other MCLKx pin configurations in the SoC .dtsi file.
+
+> +
+> +&pm8008 {
+> +	status = "okay";
+> +};
+> +
+> +&camss {
+> +	status = "okay";
+> +
+> +	vdd-csiphy-1p2-supply = <&pm4125_l5>;
+> +	vdd-csiphy-1p8-supply = <&pm4125_l13>;
+> +
+> +	ports {
+> +		port@0 {
+> +			csiphy0_ep: endpoint {
+> +				data-lanes = <0 1>;
+> +				remote-endpoint = <&ov9282_ep>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&cci {
+> +	status = "okay";
+> +};
+> +
+> +&cci_i2c1 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	/* Vision Mezzanine DIP3-1 must be ON (Selects camera CAM0A&B) */
+> +	camera@60 {
+> +		compatible = "ovti,ov9282";
+> +		reg = <0x60>;
+> +
+> +		/* Note: Reset is active-low but ov9282 driver logic is inverted... */
+> +		reset-gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
+> +
+> +		pinctrl-0 = <&cam0a_default>;
+> +		pinctrl-names = "default";
+> +
+> +		clocks = <&gcc GCC_CAMSS_MCLK3_CLK>;
+> +		assigned-clocks = <&gcc GCC_CAMSS_MCLK3_CLK>;
+> +		assigned-clock-rates = <24000000>;
+> +
+
+It makes little sense to split properties with blank lines.
+
+> +		avdd-supply = <&vreg_l3p>;
+> +		dvdd-supply = <&vreg_l1p>;
+> +		dovdd-supply = <&vreg_l7p>;
+> +
+> +		port {
+> +			ov9282_ep: endpoint {
+> +				link-frequencies = /bits/ 64 <400000000>;
+> +				data-lanes = <1 2>;
+> +				remote-endpoint = <&csiphy0_ep>;
+
+It's quite strange to see CSI0 and MCLK3 in the same boat, but the
+schematics says so.
+
+> +                        };
+> +                };
+> +	};
+> +};
+
+Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 
 -- 
-2.25.1
-
+Best wishes,
+Vladimir
 
