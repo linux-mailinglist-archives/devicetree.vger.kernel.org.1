@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-222637-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222638-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05C56BAB8AB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:51:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 237FDBAB8D0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:51:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B6D654E1D00
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 05:51:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EED031892F8B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 05:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B0E27C872;
-	Tue, 30 Sep 2025 05:50:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE6E27F177;
+	Tue, 30 Sep 2025 05:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EMCnFo1v"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cpmMDhJb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D35B2773FB
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:50:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8F5B27E049
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759211433; cv=none; b=CSJ68X6/26PRq5hHbPFC1ekaXom5CSwcU3Pn1yFZ/H6Y/PHaVBf2KPOzhl8a8ByKbbMCqXBhiNDxRgVAFY0+acdb2rH/hQvdLgRXoo8bitFnWRYV3yJgseEbcf2D+8ERR14zYZpfj3hFCZiU10vQNL61eNeZEqvU3HZH9vcoqbY=
+	t=1759211439; cv=none; b=ShaxEqZ8+5G5BWSurBE+5t4WBXejIrbRySFgNkL1MFND03Xn69535g+PTX8V2FrKnDxQ+zlm8KEle2HuuNKSuIR3ObTuupHZxpUQAqFKFNzWkCiMMxGMTnGBMOave3zxu7gRL7ZaQy4DJpA7ztHHzPiZE7i/JHUN1ByHIdhknDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759211433; c=relaxed/simple;
-	bh=4WqaVu4ojyQzVM8QrCUI7LikzMb4bhIq2dq3ZVmQLGA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KJMPDHrzjFxSK4ngfcVskCfOYK7slrBp9WlhrmK8NtIlYz/zm/5FvvkPCniGV+n1f9R/ILtq64xnFmHppuZHFmhf3p2G/nYP9jdGSX/tdoVhnKIrKmxmJgFD1XLUPuyq99YNTihw2xV/3YfRCzSX2IBMoz5bBbxpC4a4NZxg8/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EMCnFo1v; arc=none smtp.client-ip=209.85.222.169
+	s=arc-20240116; t=1759211439; c=relaxed/simple;
+	bh=i8ILy3efLeOoD5Qf+e/n7DFmvbPzfKevH825MWgSvZA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ipXHStY7VyBd2NIEIznI4oNaJM5BSFjkPOtLnPfSDzPkgbQiJSxDZMj37z6jBEe8IeZmH/7DD45km8AcQDI+6JvfgAMbMYeMonLzY12HEue+SvXnCqAFaQ8DJMvzBBAABrjuLxDHKXxl5bvzZHqgNjaHNViknFWsR6FUZoNdR4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cpmMDhJb; arc=none smtp.client-ip=209.85.222.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-862cbf9e0c0so345750285a.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 22:50:30 -0700 (PDT)
+Received: by mail-qk1-f171.google.com with SMTP id af79cd13be357-8275237837fso627066685a.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 22:50:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759211430; x=1759816230; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=wDWN4g6ghBuiYarXPc9Grf4Kf/+CFy/Pefagl1DF5KE=;
-        b=EMCnFo1va318dR9SATkkgKmqJNtL+Yo9rOA9cW0WNNbwsLTZlx2cX4Tu4v90gHw+rP
-         U+Iz1JftH7cTWMXaL8e1zIXEzBsXjA49awry1f+f9DG5KG4O4Hzd0vAtzjqcZElsJlCn
-         dZGpY0ZWAL7jkykKNHAJ66ljDQXej0PE3N7EDbRkwcHn2iarF6irsosRiixiu4HadZym
-         uYA+d01IoPwGMCCJFJI0WVlKjZiu6U7W/njby3eto+Y4LFrWoR1DDh8YgaBafYQPKk++
-         z3I2cgfRsaQjWCxdMXTvZA9LDpy3piLBLN4ZIL4dsSxMlXM9YAJys3zPK+GSKe+FOJvu
-         oKnw==
+        d=gmail.com; s=20230601; t=1759211437; x=1759816237; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=r8OhPkz1QMasSzFJcM2SsPKD0i5kQ3GIw9/NmjM3cWc=;
+        b=cpmMDhJbmAAOHG3BSgQtcufOOSarxPB1NFvBRRNTNQmBbEujg9G2ccB6yUkQGV9OuQ
+         IB+AomS4L7nj2PAwPuCo6nhN9W+qiHD4YP6REBEC0UlatORKwZpTdhBsGvceR74L7/tF
+         VQnwV0S7fkjOJ2aoIJHCr+3TECBaEdFHcrZbr9BA8xlkEkRlMTuuOTmVswLhVpgl3KX1
+         EouI5urPMx/1d3WB+1Bbqk09ioLhkSqZt2xiRR4x8w/tz03jH4ThnsaPj4ps0zF45QxV
+         NON+Z6PKDuCiXSawoe1YtHIr9E2pyzs8/Nbd+oi3Zq3hymvz5mfskIw1LXKOEfIJr3S1
+         waOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759211430; x=1759816230;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wDWN4g6ghBuiYarXPc9Grf4Kf/+CFy/Pefagl1DF5KE=;
-        b=wlYujurDTcbuG4+MwqLWSDTpXGb9Bpy3aPWdGgbo/tJJ0arS/JQb+2w5wpng36tRU3
-         +L2ig3M21L2WObXlI9n9/wdFSrU4MC4t2r/8iwG+4J7pKEK36nywz5I7hv5Tv63x1PHP
-         rZJBNqGWE5TQhCBtM4cN9ZG2JI3zvynpZPUOKBwqt2+4GUSO9Ktn+3useW+iiXA9CYfE
-         O7FBgUvq+dfnmRYn0BTOjbdy0xdPgQ70J4uFKVKgvfP1EjWLcZrNzEJ5YF1An0mMqUFj
-         +6JKGdO3K+B57UrERDCjg3Ckeq+pwwXUN46VRXF88AkRn8XAH1dCr56c0qHqfSOaBiR2
-         vsJw==
-X-Gm-Message-State: AOJu0YxAHfTO3fDMsjC28v8wlKdfYskwbanBriaV/5UnXheQslFyEIHE
-	VMbU0XO8dw2Yh8JotLnlJYpISkjDu4vylOba5NPAiSjhh2qO3Ti+mSFU
-X-Gm-Gg: ASbGncsGMJ7BSnJT/ov7kwwA2xoYa2zwWe5JiYIgkn7pAIlXMfZl325V/M47DZ0J6b8
-	V04aJDF/41ENtCAVVWlzIqMRfnmuD4Njhwv8Jo8kWZUfKxywdG5rYS3KZnNN+n9RAS9+nExpHI+
-	/e767bm3ji1uUZAKAqXG+vT01Z0Bz89xBD+e+Jrpv8sQm2vBQLBuMNdL31NrxS2/3OIWLQalNp+
-	mIloGFQB/JJTGK1i9swqUKpzt8/KflUCARKG7IXaBWsQcrRXJcasFtw6ggiG3/6oH7hgIUC8Wg0
-	/B/p54HgbNoL2sIXcogs743EViE1c2pE/bRl3QIWA+N/IAv+Jc2l2a4fQkORk0uO0vYj+G6tkgy
-	vMpzq6LJdKXfcvUTubSkWWqRvf5Pe1kAzGOPSEAjB+Lpr
-X-Google-Smtp-Source: AGHT+IG9qqjmdiQSDLHuO7EpbaYz9j/RzszkZqlPiHzP5xEh40KEmQHqMDJaw66yqCAcH/AUHfDcug==
-X-Received: by 2002:a05:620a:198b:b0:863:a3da:6407 with SMTP id af79cd13be357-863a3da6711mr1776483085a.31.1759211430006;
-        Mon, 29 Sep 2025 22:50:30 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759211437; x=1759816237;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=r8OhPkz1QMasSzFJcM2SsPKD0i5kQ3GIw9/NmjM3cWc=;
+        b=XjTMiUbsaGGlGV/v1RkgKrbho+l7FfJmeujsdu8M8oVm6glPFylH5hrPkyZPJ0dE3I
+         1d/INo+kbu54sxFdJlZeMvQXjpY3A5nMESlZXW0iDpjrsYe5A79GAoJST4A/hvzMjqoF
+         smS06GSOKuEP9Us80ThLOQhnPHTC9YDz38ZfDtb9fMuwS+8xWaTrca7egTBIq3Khrw+L
+         pjuIex/a/hrfYgMvliK2OYnUi1lP74voHFB1pqnQxvrg5yDs1ImzOiNVquyaAAgiEQss
+         DssPfp3vMBivKxyMtEHcgNLNNs+/W4duTSI0ExMsQwauRdRFVlY84v1pQDcKcZyRj7XD
+         8QeQ==
+X-Gm-Message-State: AOJu0YyYnCDX8yVlzeUf9QvkHMRjzd9OPIcdZWj87D6RiyO7BcJouW92
+	leXz9vwHTsSOmUivG+HEdtNCsuAosv2qdq2jRzhljnoAxLjO/tKSBwHs
+X-Gm-Gg: ASbGncvhmPH0WzWdBjlVL3lJ1y3/Xm96fuO09ee+TqUYJrymkgwrOPT3eWm61YgWwFj
+	uDweMi/G9wreIQfpOYcFI0pofTdU0J7SROI2CUehoqF68jvZCPMcmTVVs3+hNA91qx8qGKmz+Ck
+	Jg5p/UwLkKevsh2gjffbactlVuzxMaxVu8gsuFjqebB9JPSNfshntIX5EET0+LM0q8z7ohaIJ2Y
+	aXkxMdWunVNK0QY4ek/+hh0rMI14E3XIPa4tOy/OneXFMYJWexBzdZ164X2EP52Z4zxt1eNeVU7
+	m45/vNNuSXb9tIV6xRA6WC2Ga1nnEwbGggQj5XxGEuURzZ7Kpg6X5x3hD/lq8P+bCK6U52cQ00q
+	IFKkEmJ5aKCFa5v936qpiiZLWEI4SlryuJSY20VKg2SIOjXYhphy0f8E=
+X-Google-Smtp-Source: AGHT+IF1NCZYHFGJtQBXZPM7yoZ9n80a/zNf/Zh6Vz1P6UZxNFVTcoi8V03+lauZsiqM2BR9Y4W8fw==
+X-Received: by 2002:a05:620a:2904:b0:86e:8d29:4629 with SMTP id af79cd13be357-86e8d294680mr492575185a.80.1759211436821;
+        Mon, 29 Sep 2025 22:50:36 -0700 (PDT)
 Received: from localhost.localdomain ([2a09:bac5:3981:263c::3cf:53])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-85c306b5f64sm971990985a.32.2025.09.29.22.50.23
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-85c306b5f64sm971990985a.32.2025.09.29.22.50.30
         (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Mon, 29 Sep 2025 22:50:29 -0700 (PDT)
+        Mon, 29 Sep 2025 22:50:36 -0700 (PDT)
 From: Liangbin Lian <jjm2473@gmail.com>
 To: robh@kernel.org,
 	krzk+dt@kernel.org,
@@ -92,11 +94,14 @@ To: robh@kernel.org,
 Cc: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v4 0/3] arm64: dts: rockchip: introduce LinkEase EasePi R1
-Date: Tue, 30 Sep 2025 13:50:14 +0800
-Message-ID: <20250930055017.67610-1-jjm2473@gmail.com>
+	linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v4 1/3] dt-bindings: vendor-prefixes: Document LinkEase
+Date: Tue, 30 Sep 2025 13:50:15 +0800
+Message-ID: <20250930055017.67610-2-jjm2473@gmail.com>
 X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20250930055017.67610-1-jjm2473@gmail.com>
+References: <20250930055017.67610-1-jjm2473@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -105,55 +110,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-LinkEase EasePi R1 [1] is a high-performance mini router.
+LinkEase is a company focusing on the research and development of
+network equipment and related software and hardware from Shenzhen.
 
-Specification:
-- Rockchip RK3568
-- 2GB/4GB LPDDR4 RAM
-- 16GB on-board eMMC
-- 1x M.2 key for 2280 NVMe (PCIe 3.0)
-- 1x USB 3.0 Type-A
-- 1x USB 2.0 Type-C (for USB flashing)
-- 2x 1000 Base-T (native, RTL8211F)
-- 2x 2500 Base-T (PCIe, RTL8125B)
-- 1x HDMI 2.0 Output
-- 12v DC Jack
-- 1x Power key connected to PMIC
-- 2x LEDs (one static power supplied, one GPIO controlled)
+Add vendor prefix for it.
 
-[1] https://doc.linkease.com/zh/guide/easepi-r1/hardware.html
-
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Liangbin Lian <jjm2473@gmail.com>
 ---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Changes in v2:
-- Change deprecated "rockchip,system-power-controller" to "system-power-controller"
-- Link to v1: https://lore.kernel.org/r/20250925055906.83375-1-jjm2473@gmail.com/
-
-Changes in v3:
-- Fix typo ('status = "disable"' -> 'status = "disabled"') found by kernel test robot https://lore.kernel.org/all/202509261328.Grjhp029-lkp@intel.com/
-- Link to v2: https://lore.kernel.org/r/20250925092037.13582-1-jjm2473@gmail.com/
-
-Changes in v4:
-- Fix missing "Acked-by" message in patch 1/3 and 2/3
-- Link to v3: https://lore.kernel.org/r/20250929065714.27741-1-jjm2473@gmail.com/
-
----
-
-Liangbin Lian (3):
-  dt-bindings: vendor-prefixes: Document LinkEase
-  dt-bindings: arm: rockchip: Add LinkEase EasePi R1
-  arm64: dts: rockchip: add LinkEase EasePi R1
-
- .../devicetree/bindings/arm/rockchip.yaml     |   5 +
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3568-easepi-r1.dts    | 692 ++++++++++++++++++
- 4 files changed, 700 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-easepi-r1.dts
-
-
-base-commit: 30d4efb2f5a515a60fe6b0ca85362cbebea21e2f
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 9ec8947dfcad..db496416b250 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -873,6 +873,8 @@ patternProperties:
+     description: Lincoln Technology Solutions
+   "^lineartechnology,.*":
+     description: Linear Technology
++  "^linkease,.*":
++    description: Shenzhen LinkEase Network Technology Co., Ltd.
+   "^linksprite,.*":
+     description: LinkSprite Technologies, Inc.
+   "^linksys,.*":
 -- 
 2.51.0
 
