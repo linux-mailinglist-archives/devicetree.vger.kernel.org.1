@@ -1,88 +1,88 @@
-Return-Path: <devicetree+bounces-222632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83ADABAB852
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:50:11 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E83BDBAB866
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:50:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CD583ACE83
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 05:50:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F07387A61A0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 05:48:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43A53279355;
-	Tue, 30 Sep 2025 05:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFB82277C94;
+	Tue, 30 Sep 2025 05:50:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ikP0pt55"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ii2dq5xc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9493227932E
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:49:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 284702773FC
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759211399; cv=none; b=HydL12BgRg8OokU7l6b6/FcR3g8auuSfZ8vdfvHsqECaFbIri9DJ2POy5TBLw0kI28IiU1jj6hG/jNig12zHy+7ct4hkS0b3+0wZKQSlA87dwV8C7F4Qq9szIKM9JiEDzjq9tPYu1F4STQZaYynxL9MQ0P9bK4SvpYPnc/3uPmQ=
+	t=1759211406; cv=none; b=E/O6WmxhwxGCnYeujE9pIbrxf2swQ4pQoDEk8fZPjzFxa5GJsa+hz5yl2Tlb+X4EziMDKCweQ/39CNqiJkoBpFuM/0JYcTNfE1rE3bYe7Q3P9SYl6TIew2+nB2mu2mCH+RmgSnG1c6/reQqs7vZYMcdwRAlw/5wZRViHme4UWGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759211399; c=relaxed/simple;
-	bh=rhJzPiPQh5PalUiLaJWP+g6zLitXs96Hl2pwoOg/lyo=;
+	s=arc-20240116; t=1759211406; c=relaxed/simple;
+	bh=JAlufx4bcWYhOFT96HAmSFs8ixvBu4zisfH0Ny260iw=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=r3xkCFfRMIHzVceQyV0FQDEFEKTnH97v2VXTLE2/fQxJ2ws0gu4tADhItQX8RoAF1jrmHX/Wg135zoMpYxnwVWPvIPLimc7I7dzjhFlNFTcJbdRyTSNH7QJ3aLFcjZT7Dto2cVQeKQMI3CXJcqDXdZ4fIHdHWwZQ5zENORV55OU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ikP0pt55; arc=none smtp.client-ip=205.220.180.131
+	 In-Reply-To:To:Cc; b=bcabBXb1uZMejp9yjDIAJv+8xfHD2rbYmXWrTB9kWDecoRenD7b/YhIwA3ynzVk8AQlm/QD32NAoi+N43YD62HQOmsJUgaxe0O8iC6jdNpXdHS0P5jewgvwRYdhNcZZvlzRfcfcKBFr8nUnbcvkO9UpFYL5a0BQYclZO8yYH6Yc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ii2dq5xc; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58U4I6u3018680
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:49:56 GMT
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58U4HPJs020325
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:50:04 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ThoA6YgpQiOg8S6pzAMpUUDGjl1Y3c4vNGfbI/06aRg=; b=ikP0pt55wblcGL3v
-	pJdyHoy3ltPtPgHrg7x5YK6wk3DZnBbZtbTCsNBUpJASn4/yOXv0dSU+AyjANCxU
-	nj/aqmoiwRw9ENISV+v+QDdK+bU3eR9KNmDaVc7DD/RdkfShJVCcO9nipftiHsXm
-	13INjcakMMRUtBMqP1DgqeI9+kZATrrlKxc9Ra3u45YCrE8nYExt84+ffuE+tLe/
-	X7E2eKsBvYJa+KW/BAJc8QYEGkRtHAMSvTSOYNiZUWyW/UTCPlPriDvG5C6JE6/l
-	XlbrlmdTY4P2JwqySqHhWcCr9I+vZD20L41kvtGuFP3H6xqCpeva2QCG0BzFBBw2
-	wTh+ww==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e80tqvhs-1
+	H+Y5nCYPwx7u+eftr16tQ9QPU1KFxFK+YtBkCK2a/5c=; b=ii2dq5xcszBZzzX0
+	Wi7biX5+UML7GS+Tb/ZhgIoxVbQ+1qwEi/cDIlAlwf/fMA+qWG2mMqDq0E5F/7or
+	CrNK46VHO1RKASZLO+qYahBGFq9ZBDEKVRtMXpcZhjOv8/Cv2DfBe0oiO/Ty0rYi
+	3oKTq53euWSqlqF/2G/TEoD7vGRm3FFtUleXnsc7tixui7wh+DJjFBhZtE7gJNdd
+	Yu9Zd74aPJByCatfs3g22JX1hxj7zf0s22sPpklclSv90dzTNvRcZJR+z/5orn2V
+	uqTSTu09oFreAtcz+gHSTmKM4E+H+Qc34tSDcm7/H/F9d8Irz2PTIhzUpYeog369
+	uSWR0A==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e6x5qujy-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:49:56 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-33428befd39so10657348a91.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 22:49:56 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:50:04 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-277f0ea6fc6so103790885ad.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 22:50:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759211395; x=1759816195;
+        d=1e100.net; s=20230601; t=1759211403; x=1759816203;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ThoA6YgpQiOg8S6pzAMpUUDGjl1Y3c4vNGfbI/06aRg=;
-        b=ciX+SlsSsFcu3oM9uZQpqYJevMlejf170u0fNzwsVd1yNTFFcONv3HGpO3DANPCMSC
-         s9WLaCFnbdstY85L+N84H76QD0sUTpdLn0hcoPTjx3FFFlItOJAPH0WlBDpqaeEj3KuM
-         Gfez2fZKMcf67Z1yUpz1SWBGHTlNhz83GvZpB2df4HHI8DYfwxG4hdBaE4cjD5oFOBDP
-         9Amgkri3O+Z/eRCyu5LYWpLBGmhd8VggGbXDeE2YdhYsbTIdL8p7YEfmKwxkAfoglOli
-         Su74/Zi/TvhAZrko5mizC7r32/2KMW9iVuoHsC8Z7V0amimBxJq83EXlhZhXm0l/Ezk6
-         Hdww==
-X-Forwarded-Encrypted: i=1; AJvYcCWQdxlv92rBQ5mYO8jfGmwr+m3n6nytvgwTet+QQxn1m+jmoc3/nUe9ME2hy7yHZDgGo6PkPmkq8+yA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6l4/B4a9n340FS44y1knOpOCA1DBzVdo4XxtIfisOaeHPjf1A
-	8fGvdf7I+9P29KCEd6KSdz9dwFFA4lhsszfbrHzBzvJ7yBMTdyn6C9PhxGcopLxL3SGzfPnoQet
-	fSWq2rBiIsP4oJrIjzH3J7kzCCtcitrue+SIZ+xdWkLDOwk6Ya+ntEYGTyjbzTKKr
-X-Gm-Gg: ASbGnctqVQrb+Hh7GkWVL/jx/uzsih+UqMX+T/G7QSYjLRALpovNb0sHbbxz7AiG3zi
-	ByFHMBY+nZMmRTbskXSC2K8Q4qwTVmCRJDrVqTTzVRPJwW6f6/n4BOmlNnVPgM0zSn3zy+vte5V
-	9a/7Yp/8YlE0OhgkOC6X/MInajlpYAsHWJasbsVNTxmrhZzgoxjFmkAXpWnIL+i+tIbYVPLr5j7
-	SWW2OjnuvE8SGS7gUQsormDalumzmX2MrNjucFfK1XCNvnopYkJkEEHWEd3mYESpaRatD/VjyT3
-	XGbbl/664QQOSs8FFiyQ5wb3A5JRtwjZK6bvWT3ek2kN+fnMbHpzOzBasbm0sh68xgy7eQ==
-X-Received: by 2002:a17:90b:1c8b:b0:338:3cea:608e with SMTP id 98e67ed59e1d1-3383cea6105mr3192196a91.31.1759211395342;
-        Mon, 29 Sep 2025 22:49:55 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG9p/WsjalDYjqqBpbBM4tMRq/jOyQCCf1RPlU4hhSKxmGGZ3ERYmjP7ysuZxVehRilUdsXhA==
-X-Received: by 2002:a17:90b:1c8b:b0:338:3cea:608e with SMTP id 98e67ed59e1d1-3383cea6105mr3192176a91.31.1759211394945;
-        Mon, 29 Sep 2025 22:49:54 -0700 (PDT)
+        bh=H+Y5nCYPwx7u+eftr16tQ9QPU1KFxFK+YtBkCK2a/5c=;
+        b=ack2bddoUKDW1xQfAFzuQ84A433ZHjW+pKcoMXbR2Un/RJWy55o5QvCr4sok/tPZWr
+         aBWYWe98mn/n7+tPGRbusdw2dipbz9KpwsQtocfWo1PHodsLcMJWuGgZVpFr3HgcBAC/
+         XYfLMqlGXU8vG/UTS3br3YGBXTYTte+Q178F2sYLMOqsYBrXldhqBxFJwo4qP7UViGhH
+         7F/yIUFY1i9JN9JJPZh+NUore8DENjvvkNv/BN1lzONBdPceXFYz6lni6jjwkW2WfS6T
+         He4LutZmS8WJVCy/84Tj7XvbWV90E70wNU4Q9t2/+WtXFTLscLQ5Ww39N/Cm7l7O7FlD
+         u27Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUw//qplqvEz0qSzJYOjW72gYiNvRq8spbnBHJk4byLpUjq9PpPKZMhIIGvRH1Z2pDa4iQns1chgDNJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YypVi2AKjO9qSdlHZEeyMZ3RnKDP5hQqsNNDJPTYGZ+GXgBjzaT
+	cgf4URrl1hg7eN+ZDoX5U8OI7archmBeGbgm0EDO1Yzgb7no2Omm2M+Kn4oZHZy4LEFalOPaeOM
+	UH8YPIF6OcIHMy4igOpnXhX07Mjog0kcyhdgvouA7DYXqTAMWY/zPiZJq/0x/Rtck
+X-Gm-Gg: ASbGnctRE598YgK8z3CDqspQB2po8hRtDXTacyiLQ0AX4TPXhsFTts4Qn1XEOTPdO8n
+	T/CgrTQOr6Rp9Ti/LHZOEOlsueexueY551c0B2y30XGg3gdy4RRJcxp1A1OiQB0jJIZDnjzGFV7
+	9/PxaRUpz4oGoTKes6rHHt/otToYrtIlJPCLu1suetHIsRPD4MSt3Xqm3OoXqROkvhBsY1GPa8c
+	tud6cVhVuEJ5KeV8C3/SwKNLRO4qtfX2BD37IrasabGCvVzkC27U7/RPoR7rVgi969OzGUidt/b
+	KrdNLwUg5XDdag1gLHK7yb9MF90xpb1vsIwCwIzhfqZy0VrqJxhQN7X5dEK9S2QhNNpuHg==
+X-Received: by 2002:a17:903:2343:b0:265:604c:17e7 with SMTP id d9443c01a7336-27ed4a89825mr178638005ad.60.1759211402696;
+        Mon, 29 Sep 2025 22:50:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHfxMz8cAOPh+Vs43kdCM5oU0zEFqqAy+EADwvCBEeDKHCk/6ncSzf9Kw1lSxzqRRosJ9WkNg==
+X-Received: by 2002:a17:903:2343:b0:265:604c:17e7 with SMTP id d9443c01a7336-27ed4a89825mr178637855ad.60.1759211402274;
+        Mon, 29 Sep 2025 22:50:02 -0700 (PDT)
 Received: from hu-akhilpo-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3341be23412sm19029779a91.20.2025.09.29.22.49.47
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3341be23412sm19029779a91.20.2025.09.29.22.49.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Sep 2025 22:49:54 -0700 (PDT)
+        Mon, 29 Sep 2025 22:50:01 -0700 (PDT)
 From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Date: Tue, 30 Sep 2025 11:18:06 +0530
-Subject: [PATCH 01/17] soc: qcom: ubwc: Add config for Kaanapali
+Date: Tue, 30 Sep 2025 11:18:07 +0530
+Subject: [PATCH 02/17] drm/msm/a6xx: Fix the gemnoc workaround
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -91,7 +91,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250930-kaana-gpu-support-v1-1-73530b0700ed@oss.qualcomm.com>
+Message-Id: <20250930-kaana-gpu-support-v1-2-73530b0700ed@oss.qualcomm.com>
 References: <20250930-kaana-gpu-support-v1-0-73530b0700ed@oss.qualcomm.com>
 In-Reply-To: <20250930-kaana-gpu-support-v1-0-73530b0700ed@oss.qualcomm.com>
 To: Rob Clark <robin.clark@oss.qualcomm.com>,
@@ -116,87 +116,72 @@ Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
         devicetree@vger.kernel.org, Akhil P Oommen <akhilpo@oss.qualcomm.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759211380; l=2182;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759211380; l=1521;
  i=akhilpo@oss.qualcomm.com; s=20240726; h=from:subject:message-id;
- bh=rhJzPiPQh5PalUiLaJWP+g6zLitXs96Hl2pwoOg/lyo=;
- b=xbW+/WfyGkVXE9qGR4vL2rV53p7Zg5bR2EqsFaz4PwejCII1l2bWl8VOPhhZuVJqksSfryW49
- 6muGlSfGBPvAAZf7W+0AB1ZWW4WLIyqkaz4FRTNyzyZnC7VOG5a7jD3
+ bh=JAlufx4bcWYhOFT96HAmSFs8ixvBu4zisfH0Ny260iw=;
+ b=0SDd5GWlf6Z1edx32Bey18kAogkeePh7FfDo6CnNR1gZeWIj1Lj2prEncun2xLJyodvNcrtLE
+ Us5ChPyi+I2AV+S7wi4gT4RlcjAd4tPRBxegTfXxDxVU9VnlSZRyDoS
 X-Developer-Key: i=akhilpo@oss.qualcomm.com; a=ed25519;
  pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAyOSBTYWx0ZWRfXxH8DCqzUIbzY
- qazzkdn3WSynbcxxBk6cWNF892U6kTr9Z7W26PFuyqKR5UD+lWXmVxJMUVIE2v/j73GhPb8tAO2
- DGjbOQEm+GHF0pMWjEsq5KBxPycpOOGgp7+QaQH5IxzXWg8pPhQJvZHFI2exrL6qdsz70SMUZab
- 74JnCSu+2orWuwj3rJ3v6JqEEvPzrri8AR6feFD0sv8NZLx/OopiDs77nf11yqIMoPwUBtqVRpU
- 7X9gAI1C6FhWvbnr+E/BZ89u3QRMxN8TGoX5Tj/xX4R3QUGG+W/MZEBiZKNxNjUSf/i4tx9glEs
- zt41zwGk2vnbb8/xODBpgzL72i7wa8RwJ/4zrW+Z061ykTWSkOqZg+nSAWNJmih/PK0E5HEpf4x
- d3l4xypNlBzlC4CqoEHYU4ZY0wBLvA==
-X-Proofpoint-GUID: CeHmLf9KjkrGgsN21Pr2Y7-UMBgOJNgL
-X-Authority-Analysis: v=2.4 cv=OMkqHCaB c=1 sm=1 tr=0 ts=68db6f84 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=HBDVfrJ52KAmvMVrQVYA:9
- a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-ORIG-GUID: CeHmLf9KjkrGgsN21Pr2Y7-UMBgOJNgL
+X-Proofpoint-GUID: aI-K0BnwaOCcvJEblMaXWjcz1-_2hHI3
+X-Proofpoint-ORIG-GUID: aI-K0BnwaOCcvJEblMaXWjcz1-_2hHI3
+X-Authority-Analysis: v=2.4 cv=ZtPg6t7G c=1 sm=1 tr=0 ts=68db6f8c cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=gggc3m2WwWe7Cuz57AEA:9
+ a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAxOCBTYWx0ZWRfX6/QlNMbXoygI
+ 8bFE+8+zplfCmJkufmXiCWJLv7HvR0CNrMqKtYXOxwbtmn5x4t7dtW/kXHWj86Q1YSiXaUgT3d3
+ N2j12cJTBhXEV+2PFoaK9xIah8PkPhWBOVa3/tFGHVqBoFT8gapxOOW74NukfypW3sTaTJv1Gng
+ MSOv9NxunP/pV9jnGhZh7nyQwYBRTCItXBfcgRwxq0Ocb3GR2IfHjXfMqVqqpDiesbmuYZDHwta
+ 8+yomsJieXp2KMWV4pyr3bocuTBNkumZcXjVnGM36AvJAc3djgEbv2txLuFL8FMoOx50Rwv6MIv
+ poDT443bAxj4t18qV0y9mFBjLM+BsWqoLgj2BYmmHBFhYAiADRmxddEARk/A4siduy+UrQQqIcM
+ BzygZLPQqkNqu+8Wbep6xXHbTbKAnQ==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-30_01,2025-09-29_04,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 bulkscore=0 phishscore=0 adultscore=0
- priorityscore=1501 lowpriorityscore=0 clxscore=1015 spamscore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2509270029
+ impostorscore=0 spamscore=0 priorityscore=1501 malwarescore=0 bulkscore=0
+ suspectscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270018
 
-Add the ubwc configuration for Kaanapali chipset. This chipset brings
-support for UBWC v6 version. The rest of the configurations remains
-as usual.
+Correct the register offset and enable this workaround for all A7x
+and newer GPUs to match downstream. Also, downstream does this w/a after
+moving the fence to allow mode. So do the same.
 
 Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
 ---
- drivers/soc/qcom/ubwc_config.c | 11 +++++++++++
- include/linux/soc/qcom/ubwc.h  |  1 +
- 2 files changed, 12 insertions(+)
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/soc/qcom/ubwc_config.c b/drivers/soc/qcom/ubwc_config.c
-index 15d373bff231d770e00fe0aee1b5a95c7b8a6305..48dfd76efb34319b3cee29894ee4977f105d890a 100644
---- a/drivers/soc/qcom/ubwc_config.c
-+++ b/drivers/soc/qcom/ubwc_config.c
-@@ -16,6 +16,16 @@ static const struct qcom_ubwc_cfg_data no_ubwc_data = {
- 	/* no UBWC, no HBB */
- };
+diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+index fc62fef2fed87f065cb8fa4e997abefe4ff11cd5..e22106cafc394ef85f060e4f70596e55c3ec39a4 100644
+--- a/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
++++ b/drivers/gpu/drm/msm/adreno/a6xx_gmu.c
+@@ -485,8 +485,9 @@ static void a6xx_gemnoc_workaround(struct a6xx_gmu *gmu)
+ 	 * in the power down sequence not being fully executed. That in turn can
+ 	 * prevent CX_GDSC from collapsing. Assert Qactive to avoid this.
+ 	 */
+-	if (adreno_is_a621(adreno_gpu) || adreno_is_7c3(adreno_gpu))
+-		gmu_write(gmu, REG_A6XX_GMU_AO_AHB_FENCE_CTRL, BIT(0));
++	if (adreno_is_a7xx(adreno_gpu) || (adreno_is_a621(adreno_gpu) ||
++				adreno_is_7c3(adreno_gpu)))
++		gmu_write(gmu, REG_A6XX_GPU_GMU_CX_GMU_CX_FALNEXT_INTF, BIT(0));
+ }
  
-+static const struct qcom_ubwc_cfg_data kaanapali_data = {
-+	.ubwc_enc_version = UBWC_6_0,
-+	.ubwc_dec_version = UBWC_6_0,
-+	.ubwc_swizzle = UBWC_SWIZZLE_ENABLE_LVL2 |
-+			UBWC_SWIZZLE_ENABLE_LVL3,
-+	.ubwc_bank_spread = true,
-+	.highest_bank_bit = 16,
-+	.macrotile_mode = true,
-+};
-+
- static const struct qcom_ubwc_cfg_data msm8937_data = {
- 	.ubwc_enc_version = UBWC_1_0,
- 	.ubwc_dec_version = UBWC_1_0,
-@@ -223,6 +233,7 @@ static const struct of_device_id qcom_ubwc_configs[] __maybe_unused = {
- 	{ .compatible = "qcom,apq8026", .data = &no_ubwc_data },
- 	{ .compatible = "qcom,apq8074", .data = &no_ubwc_data },
- 	{ .compatible = "qcom,apq8096", .data = &msm8998_data },
-+	{ .compatible = "qcom,kaanapali", .data = &kaanapali_data, },
- 	{ .compatible = "qcom,msm8226", .data = &no_ubwc_data },
- 	{ .compatible = "qcom,msm8916", .data = &no_ubwc_data },
- 	{ .compatible = "qcom,msm8917", .data = &no_ubwc_data },
-diff --git a/include/linux/soc/qcom/ubwc.h b/include/linux/soc/qcom/ubwc.h
-index 1ed8b1b16bc90bea2ed54586edfe21beb2db04d4..0a4edfe3d96d4face2ef98622984c66939a68c53 100644
---- a/include/linux/soc/qcom/ubwc.h
-+++ b/include/linux/soc/qcom/ubwc.h
-@@ -52,6 +52,7 @@ struct qcom_ubwc_cfg_data {
- #define UBWC_4_0 0x40000000
- #define UBWC_4_3 0x40030000
- #define UBWC_5_0 0x50000000
-+#define UBWC_6_0 0x60000000
+ /* Let the GMU know that we are about to go into slumber */
+@@ -522,10 +523,9 @@ static int a6xx_gmu_notify_slumber(struct a6xx_gmu *gmu)
+ 	}
  
- #if IS_ENABLED(CONFIG_QCOM_UBWC_CONFIG)
- const struct qcom_ubwc_cfg_data *qcom_ubwc_config_get_data(void);
+ out:
+-	a6xx_gemnoc_workaround(gmu);
+-
+ 	/* Put fence into allow mode */
+ 	gmu_write(gmu, REG_A6XX_GMU_AO_AHB_FENCE_CTRL, 0);
++	a6xx_gemnoc_workaround(gmu);
+ 	return ret;
+ }
+ 
 
 -- 
 2.51.0
