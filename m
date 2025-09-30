@@ -1,316 +1,148 @@
-Return-Path: <devicetree+bounces-222832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D861BAE0CC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 18:33:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 728C6BAE1D9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 19:01:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E23833B41FA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 16:32:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EA8F32638F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 17:01:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25AE524DD01;
-	Tue, 30 Sep 2025 16:32:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F037130AD05;
+	Tue, 30 Sep 2025 17:01:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G7TMdf3c"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bDOOVdKu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1EE1248F57
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 16:32:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66D0422F76F
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 17:01:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759249970; cv=none; b=DoQXZZlc4s3sz6dbPfVES9pFbtwpQz1T8RFFot2eU36gcl3peNSnuGRfuhMwNyI5zO33nkTcSNgsHsdmyVdhSlJVdeKLjz5WVJkBh6Uk+7OqrCrnrF9Tn4+DaxVUCZ8KU10x+zN9GdNZuBmv77w7BivAqh3YAscSyGt7NsV4wp0=
+	t=1759251680; cv=none; b=Sr/DDT/q47oc1n29O4DvrGpTJ36a2H9ixfNymfpl5KiJqxHKtZZBCTzUx9nx4KnlzPVayWFkALPtu8qo0n+YJycz0KgaPhR9R0x8F+cINDXaT5LJR+zWXV/yk7AG4kaYIoR2F4L80gABQ5zT0Q1ER5fqPfKRaFfCLn+bKX4VB4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759249970; c=relaxed/simple;
-	bh=oGF9yTei1g4gjv/QnS3yVyRP9PJi1rFlCgAm1v7R6Zo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hwh2b148oh1PG9WkfoEW/5M3l+qN2crPWqIh92tojP7GCdVwfqqSoQATb3zBAMqufGVgV8mzJsSWFgp4nyo9DojdI9CH+ssuqHS+/DiJuC1mW2BegALOUjb0WGONR2R3iJ7eokzxY4gxUpJ+/nis6zsb1NrXdG36Bv+t9JVVdRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G7TMdf3c; arc=none smtp.client-ip=209.85.208.44
+	s=arc-20240116; t=1759251680; c=relaxed/simple;
+	bh=AmHuuzpem5111casgiRIX7q6S2eHy1ZsEGaomvXBWBc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tJKA188Xs1x+mdYgWUM78eF9gfMdA5kWcWFb9J0rdbh7lAjTluQjIGkxEgYfd1skAhBFPI0ZEcQNOhdhX4eTEie0YGxrqgHBzs03D3JhEtHNlxuYtWVKw8Bw8kCyKKxq6GebOF6Pa1oJQ7oaxYn6HDZqg5GM9CSDQHEwwhLSiIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bDOOVdKu; arc=none smtp.client-ip=209.85.215.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-63667e8069aso1808636a12.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 09:32:47 -0700 (PDT)
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-b57d93ae3b0so3139457a12.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 10:01:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759249966; x=1759854766; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ywr/T8H21r9AOyqjIoUOVLC27W+yILSMEGkAVkNfxfs=;
-        b=G7TMdf3cbEgC8ruzjQ/JedFDAGQBz35rZtqyh5LkKc7R6XvJOSjv/SM2wBW68YceZY
-         S3NC0IMiV3uWjR5j3McYbz49lEMMfl14gYl/F9Co7IW5p08jZZDq0MxPIrFkrUOSlxoT
-         k6pR0Sn7/9PWhkY40lt9KnJa74j6sAv4GHNHqiFE7Fz25Aff2wOvm6VWBhmCBRbs8C1a
-         3f0t9nE5Xx7B27qVGXyzx2LtkrHA8HlRFWgO+nU/F0Bt9Y0WH8cwkYVQJipQAn3uEW8T
-         LyXY8b5e325zk4Ox3mLdnQjyEPLoWxJTrSY5GQMx39t2vj6UmjedDvc+Ty4fI+/V66uH
-         B1kg==
+        d=gmail.com; s=20230601; t=1759251677; x=1759856477; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7Qn5VqRWJrpHDhx/xNpBlaLWgEArGVytxgRrr8Ys9no=;
+        b=bDOOVdKukdiUsInRLL7W1Mr6ucwZPG0GVJ9putQ/fM8dB38/e4znvgFd8TqWdPOWv7
+         BkASLLEnQeFq+XOOQdBnVo9SiMm3cq4HzJ76ZdqA2O/vA32XeO03ELa0lNFJO53IQ/yX
+         YZM2YnBIUmufFZ0YLh1lphgiEQtMMcMW3NJO50GhlAxvWXQ9O417oWxylwiivmiBQ+uM
+         xm5QOfpmFwMsfD0hSlU9O4ytHgUQOFB/KIFUkhR7dNVoFFg5YfdZUiGx2MPuhozQWSjd
+         sJk4b+/kPzLR+ZIW6iJwSdjI+5oBC6lhIFYZylIynEqutbXMFgtwNpLlh7P6e7WbVeaR
+         Og/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759249966; x=1759854766;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ywr/T8H21r9AOyqjIoUOVLC27W+yILSMEGkAVkNfxfs=;
-        b=YeJrwiWET8HMpdntwHJ6lukRJve/BgZzP46ULS5OjCOzxm5oL4ZWyP7g8b40QGRGuR
-         zvFOM6BM30YKo7FnnboBHOODuB0wwrR28sXjiP5OWTeRmYzVxnDDjLdSngU/zy59SY8K
-         W+eFcHr1FvfK3sF61Lm3CYcXXCMc6KvFrYw3vOyniLKbeKoD8pBs6Rm4Rzfz0g2h8APE
-         p5yEXhZCuyPhxGz5lxuDEifHG9BR9qAwFqVYQTi82qzTIJan7U+Kh4QRmsfQAIjDXo4u
-         EQMwwzGsgfIak50bS+rja1aaPASJ/6JRg2mMotfisR4K4EXaoHE3SbN3XxHKfz9aO5HK
-         xTEQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW3kh4+Hsj9dO2EMZh9jaY0WgocREAaUXf+dE2dpi23NcdeLA2LoubUuc3AbWltJXodOaPnqALxh63z@vger.kernel.org
-X-Gm-Message-State: AOJu0YxkQ25H3rIbFvxxDsYjo3uDNy6dAJda9BMJANXMRgAFzjy82hwd
-	pw9v8QEsdMl5HAWarN7wJgxHLaAQWZj944ZA81dOvE6iPX/jvGmjWv0y0j2NQaFXXFpq7giFLew
-	I52dJXyeCdFG3Yr8/Vys6T3t3ZOEfflc=
-X-Gm-Gg: ASbGncv+P9Qj5n6JJ7QJZcIQJjC8BbCqaHz8RDjjOHlJx5dOHN6RHukGuv3TZyr9oLI
-	dkVc5oxZefJ4i6cmpue9NHlu6tx79Gr1QGIbVi8hQoVYa4ltJY6KHtY2W1HYo3O7JcrJ7fteOuy
-	iE17pSMpdeocpCKtl7+ZyIONQncSpylokOoyyi8rx67zOUrE6UbplbEjak1J2TAuaCQO2SsYW0Z
-	ypxLMkJIBk6XCEhMzsWG4RexQQeog==
-X-Google-Smtp-Source: AGHT+IEJHPU/9y3qBt/SABv++MOXGcN86o3VBfE4lwa8ckg4ceTKcaWY4Edg+8QEKEvz47kn06lNSjx+U7OGCjruhFQ=
-X-Received: by 2002:a05:6402:51c6:b0:634:ba7e:f6c8 with SMTP id
- 4fb4d7f45d1cf-63678d17922mr511880a12.34.1759249965859; Tue, 30 Sep 2025
- 09:32:45 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759251677; x=1759856477;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7Qn5VqRWJrpHDhx/xNpBlaLWgEArGVytxgRrr8Ys9no=;
+        b=BxYUkdtEM7cMDNh2C4W/0iBfS4erSNBrxOUfTt/eBjrU/iSdBwy1Fhsbz5lR9+EpLv
+         apTZeMdVe3cmX+SxJ4eSUk89Z60K632XiowQmEhEveF5AIX1HJZADveifYWt5yfdtFlV
+         mD7S5nOQsUZVJ8k/yqOP+3kKYcrT1Ns7eVCtMVVLeFIM9D55iNW02HEMWV551EgLGKfy
+         ce4ffTk97oQbX5ihG7lgXF3ClMUt9fo0uF6gtsH1uy9i2OtLHD7+0AUQM6v/yXOZHcVU
+         pUnzl30rtTvd8wMFViLnj807w6l0lJSraeF8PDO2u1hrsQk186dTRMSxfw5mDNHQvznK
+         u9zg==
+X-Forwarded-Encrypted: i=1; AJvYcCXC2LcAJ+hyaWjcL4rFkm7CBn2RhqlaBt5X5nSuKJqm0hvzNEdo4xpUQV2axUiXBAIxLbaXeI//FD+T@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywb8T04LIIAxs5OGMv7bNV+HsgaBsU5pQFU2TeQ7zXYl3s/bDIy
+	uhNUUFb+74kGbubwxNSLB6K50GkdudrwvJejCuTpUal6KWE0rRsfrEG/
+X-Gm-Gg: ASbGncup2qwKhFJnwladiyIWReixzQOjsE0rq9ZhSC2uHeCDTd/p68f4FoGJgGeRizB
+	DdGTOdSyWDgtfHnSb48h+O9YxE0VOZETASOhC9DJro7butb0+oCHpipagY3XBOurQmcFHUvfbts
+	6MLxfZA2ldVReiOLdij/GVi4nFpQxYYQej5t5TpEQQzDczolBmKZWBaqpY6QxENdfbMy66hqx3W
+	y30lCEC6Q/C12bEoqWtfQhXDF4FXSpuucAi7vprNewF0V9Dw4So1Hva7grBOJ5qxiSMh+C0Ikll
+	oUdxohQnrHBxMr65trZTEdPNJDpDdQjNJhgQMULIcOgD2gjkhy1rNRMaa0a6EK8+j6xTL8pVh4R
+	zLKmXeabo2u0lIxhMHIpUgY9cEbTOGEhvMAJYxsTDucwh6dhFaiF1VhN8jiqlVXIDAg==
+X-Google-Smtp-Source: AGHT+IGy446EO1dFvrwF+hn4zw2/euRdjV/W41f6FxDTzzbhNgbS5i0TkYtI/qkAdJxguBsSMF5Bfg==
+X-Received: by 2002:a17:90b:4ad1:b0:334:18f9:8008 with SMTP id 98e67ed59e1d1-339a6e28289mr264935a91.8.1759251677221;
+        Tue, 30 Sep 2025 10:01:17 -0700 (PDT)
+Received: from localhost ([2804:30c:b65:6a00:ceaa:2ed0:e81e:8f51])
+        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-3399ce47d7csm974066a91.10.2025.09.30.10.01.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Sep 2025 10:01:16 -0700 (PDT)
+Date: Tue, 30 Sep 2025 14:02:08 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, michael.hennerich@analog.com,
+	nuno.sa@analog.com, eblanc@baylibre.com, andy@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v3 7/8] dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216
+ and ADAQ4224
+Message-ID: <aNwNEHHZ4RXyz92r@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1758916484.git.marcelo.schmitt@analog.com>
+ <5dc08b622dac1db561f26034c93910ccff75e965.1758916484.git.marcelo.schmitt@analog.com>
+ <20250928111955.175680cb@jic23-huawei>
+ <20250929143132.GA4099970-robh@kernel.org>
+ <CAMknhBHzXLjkbKAjkgRwEps=0YrOgUcdvRpuPRrcPkwfwWo88w@mail.gmail.com>
+ <aNvtfPh2JLdLarE5@debian-BULLSEYE-live-builder-AMD64>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250926072905.126737-1-linux.amoon@gmail.com>
- <20250926072905.126737-2-linux.amoon@gmail.com> <CAL_JsqJr+h7pTvbRR=7eB4ognK70D1pgNXEORGXo=ndND=pMjw@mail.gmail.com>
- <CANAwSgT3jo35xBvkH4GmQcZuZH=D+SRKJ6e9fSBRz45zwuCmYw@mail.gmail.com>
- <CAL_JsqLsEDFv4T1ZMmjaoFfs7WNAjVvOk9o1eTXL2EeGF8uuDA@mail.gmail.com>
- <CANAwSgTuX3t2-SNPe4OAzGuDpL5RotxX8t+Zx+gcwFKdj3ZEng@mail.gmail.com> <CAL_JsqKBhzPwxYguy+N=eddG2nwB54dzw307A6KT5NJpRSh-Mg@mail.gmail.com>
-In-Reply-To: <CAL_JsqKBhzPwxYguy+N=eddG2nwB54dzw307A6KT5NJpRSh-Mg@mail.gmail.com>
-From: Anand Moon <linux.amoon@gmail.com>
-Date: Tue, 30 Sep 2025 22:02:28 +0530
-X-Gm-Features: AS18NWDpwy8wPfpGXTgiB-hfuQbqsocd9S2KZlBOjIaIkDW6NFhuEmGm8l9CeiA
-Message-ID: <CANAwSgTKFSf-EUGSpErdS1Y93AwunFOK7omH4T+gE_z2XttVtw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/5] dt-bindings: PCI: Convert the existing
- nvidia,tegra-pcie.txt bindings documentation into a YAML schema
-To: Rob Herring <robh@kernel.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aNvtfPh2JLdLarE5@debian-BULLSEYE-live-builder-AMD64>
 
-Hi Rob
-
-On Tue, 30 Sept 2025 at 20:07, Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Sep 29, 2025 at 10:25=E2=80=AFAM Anand Moon <linux.amoon@gmail.co=
-m> wrote:
-> >
-> > Hi Rob
-> >
-> > On Mon, 29 Sept 2025 at 19:19, Rob Herring <robh@kernel.org> wrote:
-> > >
-> > > On Mon, Sep 29, 2025 at 2:40=E2=80=AFAM Anand Moon <linux.amoon@gmail=
-.com> wrote:
-> > > >
-> > > > Hi Rob,
-> > > >
-> > > > Thanks for your review comments
-> > > >
-> > > > On Fri, 26 Sept 2025 at 19:26, Rob Herring <robh@kernel.org> wrote:
+...
+> > > > > ADAQ4216 and ADAQ4224 are similar to AD4030 except that ADAQ devices have a
+> > > > > PGA (programmable gain amplifier) that scales the input signal prior to it
+> > > > > reaching the ADC inputs. The PGA is controlled through a couple of pins (A0
+> > > > > and A1) that set one of four possible signal gain configurations.
 > > > > >
-> > > > > On Fri, Sep 26, 2025 at 2:29=E2=80=AFAM Anand Moon <linux.amoon@g=
-mail.com> wrote:
-> > > > > >
-> > > > > > Convert the legacy text-based binding documentation for
-> > > > > > nvidia,tegra-pcie into a nvidia,tegra-pcie.yaml YAML schema, fo=
-llowing
+> > > > > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > > > > ---
+> > > > > Change log v2 -> v3
+> > > > > - PGA gain now described in decibels.
 > > > > >
-> > > > > s/YAML/DT/
+> > > > > The PGA gain is not going to fit well as a channel property because it may
+> > > > > affect more than one channel as in AD7191.
+> > > > > https://www.analog.com/media/en/technical-documentation/data-sheets/AD7191.pdf
 > > > > >
-> > > > Ok,
-> > > > > > the Devicetree Schema format. This improves validation coverage=
- and enables
-> > > > > > dtbs_check compliance for Tegra PCIe nodes.
+> > > > > I consulted a very trustworthy source [1, 2] and learned that describing signal
+> > > > > gains in decibels is a common practice. I now think it would be ideal to describe
+> > > > > these PGA and PGA-like gains with properties in decibel units and this patch
+> > > > > is an attempt of doing so. The only problem with this approach is that we end up
+> > > > > with negative values when the gain is lower than 1 (the signal is attenuated)
+> > > > > and device tree specification doesn't support signed integer types. As the
+> > > > > docs being proposed fail dt_binding_check, I guess I have to nack the patch myself.
+> > > > > Any chance of dt specification eventually support signed integers?
+> > > > > Any suggestions appreciated.
 > > > > >
-> > > > > Your subject needs some work too. 'existing' and 'bindings
-> > > > > documentation' are redundant.
-> > > > >
-> > > > Here is the simplified version
+> > > > > [1] https://en.wikipedia.org/wiki/Decibel
+> > > > > [2] https://en.wikipedia.org/wiki/Gain_(electronics)
 > > > >
-> > > > dt-bindings: PCI: Convert the nvidia,tegra-pcie bindings documentat=
-ion
-> > > > into a YAML schema
-> > >
-> > > Still doesn't fit on one line and you say bindings twice:
-> > >
-> > > dt-bindings: PCI: Convert nvidia,tegra-pcie to DT schema
-> > >
-> > Ok
-> > > >
-> > > > Convert the existing text-based DT bindings documentation for the
-> > > > NVIDIA Tegra PCIe host controller to a YAML schema format.
-> > >
-> > > s/YAML/DT/
-> > >
-> > > Lots of things are YAML. Only one thing is DT schema.
-> > Ok, understood.
-> > >
-> > > >
-> > > > > >
-> > > > > > Cc: Jon Hunter <jonathanh@nvidia.com>
-> > > > > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > > > > > ---
-> > > > > > v1: new patch in this series.
-> > > > > > ---
-> > > > > >  .../bindings/pci/nvidia,tegra-pcie.yaml       | 651 ++++++++++=
-+++++++
-> > > > > >  .../bindings/pci/nvidia,tegra20-pcie.txt      | 670 ----------=
---------
-> > > > > >  2 files changed, 651 insertions(+), 670 deletions(-)
-> > > > > >  create mode 100644 Documentation/devicetree/bindings/pci/nvidi=
-a,tegra-pcie.yaml
-> > > > > >  delete mode 100644 Documentation/devicetree/bindings/pci/nvidi=
-a,tegra20-pcie.txt
-> > > > > >
-> > > > > > diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra=
--pcie.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
-> > > > > > new file mode 100644
-> > > > > > index 000000000000..dd8cba125b53
-> > > > > > --- /dev/null
-> > > > > > +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.y=
-aml
-> > > > > > @@ -0,0 +1,651 @@
-> > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > > +%YAML 1.2
-> > > > > > +---
-> > > > > > +$id: http://devicetree.org/schemas/pci/nvidia,tegra-pcie.yaml#
-> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > +
-> > > > > > +title: NVIDIA Tegra PCIe Controller
-> > > > > > +
-> > > > > > +maintainers:
-> > > > > > +  - Thierry Reding <thierry.reding@gmail.com>
-> > > > > > +  - Jon Hunter <jonathanh@nvidia.com>
-> > > > > > +
-> > > > > > +description: |
-> > > > >
-> > > > > Don't need '|'.
-> > > > >
-> > > > Ok
-> > > > > > +  PCIe controller found on NVIDIA Tegra SoCs including Tgra20,=
- Tegra30,
-> > > > > > +  Tegra124, Tegra210, and Tegra186. Supports multiple root por=
-ts and
-> > > > > > +  platform-specific clock, reset, and power supply configurati=
-ons.
-> > > > >
-> > > > > I would suggest not listing every SoC here unless the list is not=
- going to grow.
-> > > > >
-> > > > Here is the short format.
-> > > >   PCIe controller found on NVIDIA Tegra SoCs which supports multipl=
-e
-> > > >   root ports and platform-specific clock, reset, and power supply
-> > > >   configurations.
-> > > > Ok
-> > > > > > +
-> > > > > > +properties:
-> > > > > > +  compatible:
-> > > > > > +    oneOf:
-> > > > >
-> > > > > Only 1 entry here, don't need 'oneOf'.
-> > > >
-> > > > I am observing the following warning if I remove this.
-> > > >
-> > > >  make ARCH=3Darm64 -j$(nproc) dt_binding_check
-> > > > DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/pci/nvidia,tegr=
-a-pcie.yaml
-> > > >   CHKDT   ./Documentation/devicetree/bindings
-> > > > /media/nvme0/mainline/linux-tegra-6.y-devel/Documentation/devicetre=
-e/bindings/pci/nvidia,tegra-pcie.yaml:
-> > > > properties:compatible: [{'items': [{'enum': ['nvidia,tegra20-pcie',
-> > > > 'nvidia,tegra30-pcie', 'nvidia,tegra124-pcie', 'nvidia,tegra210-pci=
-e',
-> > > > 'nvidia,tegra186-pcie']}]}] is not of type 'object', 'boolean'
-> > >
-> > > Because you made 'compatible' a list rather than a schema/map/dict.
-> > > IOW, You need to remove the '-' as well.
-> > >
-> > Ok fixed.
-> > >
-> > > > > > +  nvidia,num-lanes:
-> > > > > > +    description: Number of PCIe lanes used
-> > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > > >
-> > > > > The examples show this in child nodes.
-> > > > yes it patternProperties example I missed this.
-> > > >
-> > > > patternProperties:
-> > > >   "^pci@[0-9a-f]+$":
-> > > >     type: object
-> > > >
-> > > >     properties:
-> > > >       reg:
-> > > >         maxItems: 1
-> > > >
-> > > >       nvidia,num-lanes:
-> > > >         description: Number of PCIe lanes used
-> > > >         $ref: /schemas/types.yaml#/definitions/uint32
-> > > >         minimum: 1
-> > > >
-> > > >     unevaluatedProperties: false
-> > >
-> > > What about all the other properties in the child nodes? You need a
-> > > $ref to pci-pci-bridge.yaml as well.
-> > Thanks for the input.
-> >
-> > patternProperties:
-> >   "^pci@[0-9a-f]+$":
-> >     type: object
-> >     allOf:
-> >       - $ref: /schemas/pci/pci-host-bridge.yaml#
->
-> That's not the one you need. Read my reply again.
->
-I'm sorry, I missed pci-pci-bridge.yaml
-> >       - properties:
->
-> properties doesn't need to go under allOf. Actually, don't need allOf
-> here at all.
->
-> >           reg:
-> >             maxItems: 1
->
-> >           "#address-cells":
-> >             const: 3
-> >           "#size-cells":
-> >             const: 2
->
-> These 2 are already defined in the referenced schema.
-Earlier, I had tried to search for these reference schemas,
-but I could not find them.
->
-> >           nvidia,num-lanes:
-> >             description: Number of PCIe lanes used
-> >             $ref: /schemas/types.yaml#/definitions/uint32
-> >             minimum: 1
->
-> I assume there's a maximum <=3D16?
-I will check and update
->
-> blank line here and between all DT properties.
->
-> >         required:
-> >           - "#address-cells"
-> >           - "#size-cells"
->
-> These 2 are already required in the referenced schema.
-Ok dropped
->
-> >           - nvidia,num-lanes
-> >     unevaluatedProperties: false
-> >
-> > > Rob
-Thanks
--Anand
+...
+> 
+> Though, the above is still relying on GPIOs which is not a requirement from
+> ADC peripheral perspective. Also, if GPIOs are available, one can just provide
+> them through pga-gpios and have full control over the signal gain with the IIO
+> driver. It boils down to just telling software what are the logical levels at
+> two pins on the ADC chip when GPIOs are not provided.
+> 
+Though, as mentioned, the state of A0 and A1 pins defines a certain gain applied
+to ADC input signal. Because signal gains seem to be usually described in decibels,
+the proposed dt-binding allows to provide the gain value in decibels and then
+software figures out what A0 and A1 logical levels are from the provided decibels.
+The actual levels of A0 and A1 then have to be set according to the provided
+decibel gain.
 
