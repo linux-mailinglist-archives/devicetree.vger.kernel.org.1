@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-222671-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222672-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF606BABC53
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 09:12:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6580BBABCE4
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 09:24:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 701AE1C29CA
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:12:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92DD816EA12
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D7CD2BDC3B;
-	Tue, 30 Sep 2025 07:12:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88DA92BD016;
+	Tue, 30 Sep 2025 07:24:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="P7dtSxAA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hshRb6I+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 926752940D
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A703283153
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:23:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759216332; cv=none; b=gECs/Hc2OhrCNQpuY4oMvaawdx/39T9sg1oc/AhMKPmeGJjAJGJ2HUVuIUc19v3nXwTTIeikIe4rjjhMsq5kbNU4dwF/DZ80nBVxazP+FAJTk1KIsRBSLU3xykuKirml8pjDDRRyS/ESyq1mn8w4OzbzW07Q8NDZcvB3Q0Ri5+c=
+	t=1759217040; cv=none; b=HfS9fcINMpWI+HZD3RWAnS5aBf2PGlWAPWfUSs7dOivBwFGf7JXmJ2pskYKmvot6cZ5lEPbvCW9xZdnTl2N9IgJ3YLtesv7e2WgVJoUpBU0pwQ7YJv0rH+ykKKF5KZdAHkKbQN4bWoSDcxMP36TyKxeF18iFVmdxiBize6Aei8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759216332; c=relaxed/simple;
-	bh=Anj5GTS1zAfDof36rgl72NYBu2y16TB6th5Ejufy6kw=;
+	s=arc-20240116; t=1759217040; c=relaxed/simple;
+	bh=ZgA1xLujZKlEfvb+QrPulixK+gcPs02HgGMtQGdszKs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eKdQRrY7ak8tLaz1m21MAxyvKuF0XsVmNTzrAZ7sm4ANK+gBWDtq7/9YFwr10l5bYjezBH7OdzVtp8hG1pDUuA2b7ksWvr+7iZFGx/CMCC1a2CcmFXYLwfnhHHcjljks6hkHqpmMi+M8SgOkKR98JN8WsN8gvoG6ndbrs8oJltc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=P7dtSxAA; arc=none smtp.client-ip=205.220.168.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=XjZI/BfTrW9r358BcBqGOoi6O3qNEUqA0ri2rc++iT88Ho79m90/nO6x21SwIyOTVC0ToUyWy/p/xiR/i45D5ZnmPY/PDG0zR5hoW3w4qXk17GEvBVYlB/caQ92mrr8cSapedTyxBAqluawtB0SNfmL4x8cX5l4eTsruAEVsq9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hshRb6I+; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58U4Ho3F009650
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:12:11 GMT
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58U4HONl014790
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:23:58 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=aWG8L06mAn41deSqSo+E7yGh
-	W76hJZ2Ee3eCES/ASh8=; b=P7dtSxAAUpSrQS6/yJuuLSp9MXXBagIUU63eyHxY
-	BDwxk8Zq5coSRul7FNXnLHiLMlgrRF3CYd1VrL4+wNCDypEi/OI2uwEfhZ42EiSQ
-	fnxkqeKaizh+eDLrDjUsTOL8AZKDr6+Ru1y51TA1po9l7aFEYSbankaBqDWfQvB1
-	JmeKlDi8jRn3DqHsZskcXlsU71+gGEpveKvPm0BAabH7PDBJUlPkY+ZleUDW1Mo0
-	rJbDnfYg9J8TEAfglTsrAHOfS8y4UesFIVUbs9qkL4hP6R8in+u0bx6sWLcDpr2B
-	llQibxDyLKuXD4//T2Mz+W+CjMxnHXIugB6CVEaj5Rzw2Q==
+	:references:subject:to; s=qcppdkim1; bh=n9P8C3EgLujC+SyMjcSHJMVn
+	TiYYgF5ShDLErcRG4l8=; b=hshRb6I+JHtIlOsVBCil9QBuCchiZ2SvX49aR691
+	j4cL9/QnIkuDfSpqQfv3+WCgl/DPub0oI/kSe4TthzAOFULW+uiCdcogm52iRZQT
+	ZJZMdP9SO4crLjRvGAKOwb8uPNXgd7fEbD0GWG/Dy4X0ITKMT83EHGCT01XV5xWt
+	v0FyH5XcS92EFEQ2jA5VleBvCdiKss+wqWZsuoMPqfd+fXQEoo8AZI4ejb2ings/
+	i83BZxxS1ABWC/x2xWYdwe5BqWPAxA5t6rGFisSQg6B9zYc/1EougHlhZ0oINwMM
+	cpA1JPQ23+P2stdnT5+A/9rV6lpQ0hvJ45owHmpF6LB7Pw==
 Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e977qs8c-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e6vr0211-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:12:10 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-86835654255so764758085a.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 00:12:10 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:23:58 +0000 (GMT)
+Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-871614ad3efso42433485a.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 00:23:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759216329; x=1759821129;
+        d=1e100.net; s=20230601; t=1759217036; x=1759821836;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=aWG8L06mAn41deSqSo+E7yGhW76hJZ2Ee3eCES/ASh8=;
-        b=U18pJ/cOUjUiZTh5iOg3GdUgiUGAi8nwC3aR0sK8fQAm+MzX5fw1EZ5AuIGWw8pPcc
-         9HHY91BIZXj4vlPL2e94IWKyBstKWwpKPTLFxsUvKH50LN+fVwUVCgjveyz0BavwefRm
-         t69u9Gu0xtxMP8dPIIIXCmDYh9oDcVvlPGZbZwlGH3dCdobtdAKj3eGVrRfAWiXnSWSM
-         hl4UFrMZL6Lvy/6BgtOmWnFwYO3nqYRwzlS2BWMxxhPQVhNq532BqmYIDWMtyZAv0dVD
-         qPT7ZO/2/VvJOoDbTSNcjrF56LPG6OSC3TWPsUpy/jlTgYsLrjGSSIFof86idrEs1neN
-         bfqA==
-X-Forwarded-Encrypted: i=1; AJvYcCW9yurq2K4ptBoGNBxxcpOSURW8v9sj0RO4Nupv+yfz7JgDAY7gNxRk7RkJWxQ6aFsikO5cGohYm3qr@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqeZMCYvi8hVroRRdaD0QdxB2pxFr4w/bDqPB3IkQa0kJn3DoJ
-	uMj0tP/jmoUOb+tqwliRfPAPw0Wtmxd8JUv4C2aNYhOZD1x4+AOPT+EoWImxeNjfkCzoYF9QLWw
-	ov0envJNq1qqqAznrFcd8yZu3lWXrYZA6epIXweXgJUvGUKBzqhiqXhArmSeRekhd
-X-Gm-Gg: ASbGncuhn9HLwgKEnBWacMuzZDFSHJfSOP+gWSUVwnQcnCsBsHMO1e76Hv3b4ej6xIw
-	+q5xKcjs6ICaR7KLuRFQMxfDhiLfTeQTWLkTl4n8pKCV/sw+7ip+jU7mZKZE1Wfpf5ZbtQI8nQ1
-	TebcAxZIZh93yS7qGOueJkKYJW4Y1HAvapKl2bYIyOeHksFrlJAw69dWBrfCpYPL4IMH7107z8w
-	qC45DswRNFAIm12Z0TAf+M3P8aLdfxR8frXbvq2hqpjP02tH/YIL7PZ8ouuEpHeEsWLpbFiVn7e
-	BucPcqwycIr98G7U1GCSWmjbcOxqrtrmpBDj9RP3e2yFlYrw2wFdqI0AJBt3Clte0gZjXZZXLGS
-	vj+6RfYBiGofzwvHA7qTcwlZGyASwVNHTULS/IypcTFkxDIIZ11SWcF/fHA==
-X-Received: by 2002:a05:620a:450a:b0:864:48eb:356 with SMTP id af79cd13be357-86448eb076cmr1401386985a.25.1759216329491;
-        Tue, 30 Sep 2025 00:12:09 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHl9dt1djyaC7zQdYtSaRmLXdGdPGvu1aHOByc+II7EPG2uXYQd9OC3qlxjl8GonAKh2YHTJg==
-X-Received: by 2002:a05:620a:450a:b0:864:48eb:356 with SMTP id af79cd13be357-86448eb076cmr1401383185a.25.1759216329045;
-        Tue, 30 Sep 2025 00:12:09 -0700 (PDT)
+        bh=n9P8C3EgLujC+SyMjcSHJMVnTiYYgF5ShDLErcRG4l8=;
+        b=TnGCKXOrzenQ74FNwAm4aN2eMYIqp0cUHwNWv8GcjmVSASqPitF2jjASiO1m+AQdeC
+         TJ03Mo0uxKMIfIDkLkRuaVMgEmzUnkqzU1vgDyQwuG/aLYbseQ6hzlxEgYSVTIaCyJH6
+         lypwLAVsCkwTweMyf0Rz1tmczY5lRnJGK6mdxBbxTNPLlDMJUGPief7mEZJpqa2UORV3
+         8PGbGyZx6XqgyFoax5htKOZCbWwuflEpM3HTvTg4L15S8pfRH15TdeN1ryhDsU/KOc9L
+         cekdxPWP5LRUofMaxa2NdH/inKh8lSSDd4oN+/fw58MrcxXcNKCfiS7yhY0PW5ChTh0d
+         z6+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVZpxuVsHeaLGnvYaScCTTFhyh/HSmphkcxnLjkjDDXZLEv/2tQDR2ectzOVtOv+SaIjlwfjaCDRZ2k@vger.kernel.org
+X-Gm-Message-State: AOJu0YzTmtvbTBXoM8HO0G+3V8TnT4eevMKFl5II4HLtAb6qXrVafMl9
+	wYQlC3ui51PYLdJZ9sUQ5mFUGXVFr/NtewpotG2+45okilkw5mrGCkyV0KiYqq80HKlsUjKLkuz
+	EwVR4CpRVNUOzjrC5kig/n493uxyM5wuABnsrcbnyFGijwvO/MyQl8jEfqNR8/j+x
+X-Gm-Gg: ASbGnctsLawxU7NBwGUIC5NgVpjYy42UTpTKzBkhvmiGS/ubbKQImLIZygcgB4bHaUt
+	7LfffRpeAuOoOo1oSjbwjA1mbC9h+cRFM51c/amD6YlBBtPPzrDjph2aVDKnAkfap6YtcLjv9By
+	puzFFi+Pbj2jP5wC4swfYKbztf1Enzzit94hGw7l4HTuWiW5bxmA3W1pyZL8m/CMvnuWJr1SaWd
+	eEJ8kktkmUgMcE7vQN8UpGnc9wEA+7XXCgM5wTW6ph4Dyze0QBvVxlvCvinUbb5oPCTUOShsE1I
+	6rs+K8PbeI5+URH+SLOU8QXWF6sieXE7/mtnukJF1lFFbjQmmmhBACzTg7TTZwgTDQ2H3I//gHA
+	Vf+m9karRA4dobMawGOPHWlM/aprBNUGxCQyHJ7c/iyOt4JyEcyoaYml6HA==
+X-Received: by 2002:a05:620a:298b:b0:82b:3bb5:5e03 with SMTP id af79cd13be357-85ae033ce46mr2294500785a.30.1759217036286;
+        Tue, 30 Sep 2025 00:23:56 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEtokqh05kg7AoFYMORm7EciWzypwxfanES3STHoDORc8Badi06y8IJ5mTLaRxU8ZjwP/+wMA==
+X-Received: by 2002:a05:620a:298b:b0:82b:3bb5:5e03 with SMTP id af79cd13be357-85ae033ce46mr2294499785a.30.1759217035829;
+        Tue, 30 Sep 2025 00:23:55 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-36fb4e39f3csm31049191fa.23.2025.09.30.00.12.07
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-36fb771023esm31994681fa.41.2025.09.30.00.23.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Sep 2025 00:12:08 -0700 (PDT)
-Date: Tue, 30 Sep 2025 10:12:06 +0300
+        Tue, 30 Sep 2025 00:23:54 -0700 (PDT)
+Date: Tue, 30 Sep 2025 10:23:52 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
 Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
@@ -103,11 +103,10 @@ Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
         linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
         iommu@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH 08/17] drm/msm/adreno: Add MMU fault handler to
- adreno_gpu_func
-Message-ID: <srutubksxfjwb6hd3x6oqduyapzo7qh5rjqgvdt36jzqxdegig@o3ukylxtgiy6>
+Subject: Re: [PATCH 10/17] drm/msm/a6xx: Rebase GMU register offsets
+Message-ID: <s4no2wy3yskk6l6igtx7h4vopaupc3wkmu7nhpnocv3bbs4hqi@uhie6j7xr2pt>
 References: <20250930-kaana-gpu-support-v1-0-73530b0700ed@oss.qualcomm.com>
- <20250930-kaana-gpu-support-v1-8-73530b0700ed@oss.qualcomm.com>
+ <20250930-kaana-gpu-support-v1-10-73530b0700ed@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -116,44 +115,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250930-kaana-gpu-support-v1-8-73530b0700ed@oss.qualcomm.com>
-X-Proofpoint-GUID: k3omFN3gY5tOSNafEt8foR47iJNpL8oC
-X-Proofpoint-ORIG-GUID: k3omFN3gY5tOSNafEt8foR47iJNpL8oC
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDA0MyBTYWx0ZWRfXwZmrKMfzbpfw
- QkRl7veqFbzfBiXxD1+mPydhd1Y7e4rgGLPtJq8Nqq1aPendvuzDkKZx9RTLR2UozGCOEUlG58s
- 1+LK3zfgoimqXXlPHO7PhvApEHr8KYxo/C+UsZhZM9TfUKxclAJ0IeT7nzaqlKz3evrVa7OWIuA
- +LnpopDEqypggIkLvOy6QjGO94MIKaqRMut0MCIUTdRKL3qqzRuVy9vsvTcXWfoTs2BDc0Uy9cQ
- MWHtRKGno1uyg4EPvhA/FwPBu4Soti8/AyyEKrQWqiLzKR2O/stNaYcajHxosXVl+57u9sb9ED3
- KRjSNPEqb86v816UM/OUGg5ek1o9eAUhEJhxnp/q3TIrbAoS6HMI+/QICaQQxj2ZGdQz0UAS4et
- nu1YAIQVjSczybzN4WffOG+Dx7Qktg==
-X-Authority-Analysis: v=2.4 cv=Sf36t/Ru c=1 sm=1 tr=0 ts=68db82ca cx=c_pps
+In-Reply-To: <20250930-kaana-gpu-support-v1-10-73530b0700ed@oss.qualcomm.com>
+X-Proofpoint-GUID: eqa8XKeQ_HtwtB4Cwd77nQw24eAxfXsT
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAxNyBTYWx0ZWRfX+5UNBJH/X+84
+ QDuyLVJzBrSa7sN7BEAhdkh1pq6OV1FCYW2tGJCZA/rAmEWSnaxc1+wEiXycfbgxnhaRbjJD+hD
+ sNM8oBP8rwpn4c1fap8sG8s/uxlW4LlpG/v4vVzQKTk7OkTTkqkXZTzW3W4gqWMlAawNvtFn8yH
+ Ilve4nz2CoBnBXk93LYQO7ccHJ9Q7yaNO3pzaT6iZWll0UE++DPg91bcdqQDjlGi5KUUWzTvlHH
+ S7sYrw+jAzlqJNI4fZwqBEQCxEjiKQTLF24B6fIHE77NoS6a5IUNI3tdHL1oSALWOFATw3mCjwx
+ ILn3H6GNcezsyj82G6SDQ8rMY+ap96G4EhyxrO2Aj2F/s/2RCEtq65J4w3jMUCxxna+8tR88PEY
+ xgchGwh4GbJKZa6T/ug6RinZgBi3uA==
+X-Authority-Analysis: v=2.4 cv=IeiKmGqa c=1 sm=1 tr=0 ts=68db858e cx=c_pps
  a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=scbeE0iXsUk0x8BJeo8A:9 a=CjuIK1q_8ugA:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=xSz5tX2VPR3T1CvqFR4A:9 a=CjuIK1q_8ugA:10
  a=PEH46H7Ffwr30OY-TuGO:22
+X-Proofpoint-ORIG-GUID: eqa8XKeQ_HtwtB4Cwd77nQw24eAxfXsT
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-30_01,2025-09-29_04,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 bulkscore=0 suspectscore=0 adultscore=0 spamscore=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 phishscore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ lowpriorityscore=0 clxscore=1015 priorityscore=1501 bulkscore=0
+ suspectscore=0 spamscore=0 adultscore=0 impostorscore=0 phishscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2509270043
+ definitions=main-2509270017
 
-On Tue, Sep 30, 2025 at 11:18:13AM +0530, Akhil P Oommen wrote:
-> Move MMU fault handler for each generation to adreno function list. This
-> will help to use common code for mmu pagefault handler registration between
-> a6x/a7x and a8x layer.
+On Tue, Sep 30, 2025 at 11:18:15AM +0530, Akhil P Oommen wrote:
+> GMU registers are always at a fixed offset from the GPU base address,
+> a consistency maintained at least within a given architecture generation.
+> In A8x family, the base address of the GMU has changed, but the offsets
+> of the gmu registers remain largely the same. To enable reuse of the gmu
+
+I understand the code, but I think I'd very much prefer to see it in the
+catalog file (with the note on how to calculate it). Reading resources
+for two different devices sounds too strange to be nice. This way you
+can keep the offsets for a6xx / a7xx untouched and just add the non-zero
+offset for a8xx.
+
+> code for A8x chipsets, update the gmu register offsets to be relative
+> to the GPU's base address instead of GMU's.
 > 
 > Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
 > ---
->  drivers/gpu/drm/msm/adreno/a6xx_gpu.c   | 5 ++++-
->  drivers/gpu/drm/msm/adreno/adreno_gpu.h | 1 +
->  2 files changed, 5 insertions(+), 1 deletion(-)
-> 
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-
+>  drivers/gpu/drm/msm/adreno/a6xx_gmu.c             |  44 +++-
+>  drivers/gpu/drm/msm/adreno/a6xx_gmu.h             |  20 +-
+>  drivers/gpu/drm/msm/registers/adreno/a6xx_gmu.xml | 248 +++++++++++-----------
+>  3 files changed, 172 insertions(+), 140 deletions(-)
 
 -- 
 With best wishes
