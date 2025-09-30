@@ -1,314 +1,180 @@
-Return-Path: <devicetree+bounces-222668-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222669-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8F47BABC20
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 09:09:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED2F5BABC2C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 09:10:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 970E23A5358
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:09:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A97BB3A68A6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:10:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A9D227CB31;
-	Tue, 30 Sep 2025 07:09:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EE852BD022;
+	Tue, 30 Sep 2025 07:10:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="aphjo0ME"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kMRR12IS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF221494C3;
-	Tue, 30 Sep 2025 07:09:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A0EA246348
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:10:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759216184; cv=none; b=R4h9DWgkgF8CN6rNu4r221TedeSiWq1lTffoW4p/bYU+OCuHHGb8ySJ7cBcAZbMpkwtSHHFMvalD93PuJ+rfXIAN9HvyiSCijeR191v64dIAA7xT9M7V8ygcieB66NAQIm6ixQ3ixRDUIROJ89qS3QrrqP2wPAqis8t68R/W6VI=
+	t=1759216204; cv=none; b=FFXI+3VTBfG7pZKLnKoPxcJlwlnXNVVVvnDEjYO6i+8VYm7uplzwM0wCBpjPap1qbg2i1tVEK+WMoSIcAC8p79wmafkwxYyYIvyD4DXt76XEfDPFd8OMABFcTQDALnhMGGIX/fG+XPvr3g4GnhFD6Gd+tEThU2z0d/Chl8q46Uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759216184; c=relaxed/simple;
-	bh=NI78X0vkxVcPeiH8F3i5aaFKnTiGHjAqH0QVO1HeQEY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Qa3Bjsz5mJ8WUpVRCAtO8xmO1c1zZ8WbQxdeptKD3rfj8p/QTsQm7mcQ9ZQiSmFgDAXAPsq4OERpOmJA44sdZaGJDdZdq2qs2jCnbqH2yECQQLLYWJ/lsXk1DVuNDFYw9rtw9pUf+Qio48LhDzLWjUCYZgK8Nzsj8K9DXz6r4Iw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=aphjo0ME; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id A7E551A100F;
-	Tue, 30 Sep 2025 07:09:37 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 75FDA606E4;
-	Tue, 30 Sep 2025 07:09:37 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 899AC102F1760;
-	Tue, 30 Sep 2025 09:09:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1759216176; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Pr2fwh74vGkx9cj7ksefwre+SXb8wauBsJ6yuvEOiDM=;
-	b=aphjo0ME8MyM3FQNiBjEfGZJ0cTJokftC3bxuGJ1RixJpVhyNKDfPklEwpGCjX3m7BZUO0
-	3qcyfv/2DPMTvTAyZ8Qscctd6PR3zllIZVXgsujNg+ycxMOr9COUhzwMtzRnWqabaRPNFz
-	Sg++UVOD+qKCr5qztNnxRS/VhB4H56jNVIj89YQzpOSPeK+By1/3gzJJLuzNd395TOXjuR
-	XdFXCf8wRmE9CpvrFqDsPpUhfVSQXY6ho0xl/s/iiJFx3G1W0ArrL9GNbYj5t9wI3DSG0c
-	VyKy0yqANR9DhlgCgP2cgh2xje+yf7/K19nLYqIo+J02CS3Lm8SK56UnCxjZjg==
-Date: Tue, 30 Sep 2025 09:09:24 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Ayush Singh <ayush@beagleboard.org>, Krzysztof Kozlowski
- <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Andrew Davis
- <afd@ti.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, devicetree@vger.kernel.org, Jason
- Kridner <jkridner@gmail.com>, Geert Uytterhoeven <geert@linux-m68k.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree-compiler@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>
-Subject: Re: Device tree representation of (hotplug) connectors: discussion
- at ELCE
-Message-ID: <20250930090924.1bfc8730@bootlin.com>
-In-Reply-To: <aNpQCboQimgwIkJw@zatzit>
-References: <aMebXe-yJy34kST8@zatzit>
-	<20250916084631.77127e29@bootlin.com>
-	<aMt5kEI_WRDOf-Hw@zatzit>
-	<20250918094409.0d5f92ec@bootlin.com>
-	<aMzhgDYOuG4qNcc0@zatzit>
-	<dcbeaff2-0147-4a27-bb46-e247e42810d7@beagleboard.org>
-	<aNJVqSpdAJzGliNx@zatzit>
-	<20250923114849.2385736d@bootlin.com>
-	<aNNrbmZfZU-1xJFm@zatzit>
-	<20250924143130.0a34badb@bootlin.com>
-	<aNpQCboQimgwIkJw@zatzit>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1759216204; c=relaxed/simple;
+	bh=cKThLw0NHU6Wc+n3bczOyNlGGspAuEG7VB62WabHm6w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GdkerRi15M5DB+rsRlOcAVPDe8onxPgBw4XuRpS++OKpL4SbnTOYjzgOpm4TxYqPSrv1/qe1QwHVc2wqLIZ3Pm4jYJYkKbogYD6lKp01cmS/oKOVOVc5ptSy0Pb9klVaSK6mOR4CjKsFAKo32LLZj/VnZ4MmfTvdG3306Zuqjv0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kMRR12IS; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58U4Hat6017597
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:10:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=mWB5st6dCk5SY60IEgGtzAA+
+	H2jR/8jDg8gNG+7YCGs=; b=kMRR12IS8enm8CrZ8x9ZiNOF+G75w47cVG7mJiT0
+	4MJCbnIMoifsmQJF6Qw1/CexJ1LSiBRaQp9oqReXZnznbu9/QH112t/NEIx+Krud
+	5vN+2sk+w002UwpGj8tjqEZgh/c96L4wMX3RZ8Jwj8fCSpfnC5/ZZQX7ymP00+X8
+	4VWnT5zGFBv2d7SVA9PiTWaA4ENPUYV/KhGo9XBZqbAQq78ZG2h2OwQK1UaYGDUY
+	NRs9rGVEq4wiN9orST9RFK3banvnqwa1y2Pdd0qgyaXPNfQhj0/Hvd+q1GVuiaCF
+	TZ9wz+TV2siD6SMBEZ68Gs2AbLvGi/p1X8n25Cr184U9Kw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e80tr39d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:10:01 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4e0e7caf22eso54121411cf.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 00:10:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759216201; x=1759821001;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mWB5st6dCk5SY60IEgGtzAA+H2jR/8jDg8gNG+7YCGs=;
+        b=G5/sYjgmxyHpT3IeTb7b5/xak4E6FenKo9N1TIvCouz/ms0umDxE9MiK+mf/tTYpKf
+         Zn0Lr779xHLffX2Fz7pITGwoxJyOhwjAbbfE2MU5JKpSHc9QgedPWZlUWmILZkzeRzbN
+         dvLy/BmOWO1hnGVtHGYEIRWiU98c2KvD99j4MoqgsT7K9ITRmsB5k1B30KjnObESd1dA
+         5lyIQ7Mxck/Vx4ZA8yc4ENYmJib0s0K3oYh5UpfeHNCHDuMltK6y+MADhKBCXXbX+N69
+         0eP+gn/BRDWpDMiYSHxFDdCF+hLxmZY+omGiIwmJ81K6Y4AH9Ggok3Ru+5Ha3BRE5GkI
+         S2ug==
+X-Forwarded-Encrypted: i=1; AJvYcCWH2YZlXrWksH9N5gCL3TB6UTYw3F5szJLGWa9kYC6ZyScktXAMNMlYsGHRk5x5f69wpjsFXmGTq3+D@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIVn/Q0+42LwgRLle63D3sEl51I9ZTExipC2Deu/MoKMzODe3C
+	0VlyDIBlhJEM1XwTAEQvZUzFJtjHKnqUDKq0Z5AsLeAy2d78uMIRZA1XxKraNn2v/0yuN/sh+U2
+	HtvIDMHe8aqEyi1KiuQBcLihpec9m1MOj0vZ8KsJXP8A77rVVZNUuAWM3qEQueQZV
+X-Gm-Gg: ASbGncv7n+DJZDXPEfuouY/x/bvn+f32CH1+quq8hSRoo8N7EhqmQcNd1C+e8LnXQ5q
+	xnJ/KGK1OvXI3WtBzdm9edzOx1RuLpBjfZwzWZqAqhDhSZIr3rOfcOCZiZtPSKmXWViUkb97tvp
+	/8bHLXF79SgK9nfWFlMoWozbrKf6i7oaXawye3r2bqX9M7NmYEUi/AoBn+EthGCLPUR5BYNbpEs
+	JlgKt/7Te16QpiWtMQwJ3ekjgFMy+VHx1D5iEG377szXBmxUea1ptkjfYNMkgZOSAl1+e+8wDDp
+	EJsjBZdMKPmLMWor/6tUUsquEgj/k/LEN7oZy41utQ/6qZdtw5uGY2XneZ96LJLMV26Mwp+yAe5
+	0E0KYsrAy8tH4QUK9cpgEZmwugzaZ6EPn54++9nl7243PPLzhlY3JFxabIg==
+X-Received: by 2002:ac8:7d10:0:b0:4c9:3d38:1107 with SMTP id d75a77b69052e-4da4b13ee9amr205819841cf.48.1759216200577;
+        Tue, 30 Sep 2025 00:10:00 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGqfXjb8BDoz0OLkhbqOSkOjFYvwz8YqZOgVTFVVpG1nTKdQgXBzxVthwYLzYpdiitvJ/C4Vg==
+X-Received: by 2002:ac8:7d10:0:b0:4c9:3d38:1107 with SMTP id d75a77b69052e-4da4b13ee9amr205819771cf.48.1759216200128;
+        Tue, 30 Sep 2025 00:10:00 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-36fb7710256sm31171981fa.45.2025.09.30.00.09.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Sep 2025 00:09:59 -0700 (PDT)
+Date: Tue, 30 Sep 2025 10:09:57 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse <jordan@cosmicpenguin.net>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev, devicetree@vger.kernel.org
+Subject: Re: [PATCH 06/17] drm/msm/adreno: Move adreno_gpu_func to catalogue
+Message-ID: <cp7djnezyp4whhfqcnsfpes5kxfbyvqvc2ceimdrnrl7s7agyk@z7ozx6oihezd>
+References: <20250930-kaana-gpu-support-v1-0-73530b0700ed@oss.qualcomm.com>
+ <20250930-kaana-gpu-support-v1-6-73530b0700ed@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250930-kaana-gpu-support-v1-6-73530b0700ed@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAyOSBTYWx0ZWRfX7f4c70npJOlB
+ UGXaAJUs7S7ydsqx+2TK7FNdJAIE0M7ZD0EtBXd4UWwLnmns8vM7QU2jMeKJGGcwlj/Pz0TMTZ3
+ k9TdsIqXm5Ta4BYdQQJ5yxx69545nt3zRQAOg6aRvz2ejPWf8LRw30/lGPEK6ljN2Yl7hg0P9t3
+ uy2PnN7XbY7/AGgepke4VHhymKSwAEWs443TVreQcPIsHeZljPTObUnCFoTwIMsHD5kc5q0zoql
+ 0h+rZztJ/uGTesSFRVGpoAd2dKqXhEOOMqztwmBCCpEwOqppBLjGvbPFQx6VHmi4OpWFY66LYia
+ yNxmV/0HvDbX2+td/DRc8H8JC0EDjn9C3uAtA+Gzn1uIMBqT5MZ1jMuI8+4hLp9iKFmsMH9uaDm
+ gXyOU0faN3f2IIl9RQjaJ2Dz7XHnnw==
+X-Proofpoint-GUID: -Z3324oSfwCVY5OhAd6uMpPEQD1cvq6c
+X-Authority-Analysis: v=2.4 cv=OMkqHCaB c=1 sm=1 tr=0 ts=68db8249 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=KsGV-J2CeG6-G7wVncMA:9 a=CjuIK1q_8ugA:10
+ a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-ORIG-GUID: -Z3324oSfwCVY5OhAd6uMpPEQD1cvq6c
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-30_01,2025-09-29_04,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 bulkscore=0 phishscore=0 adultscore=0
+ priorityscore=1501 lowpriorityscore=0 clxscore=1015 spamscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
+ definitions=main-2509270029
 
-Hi David,
-
-On Mon, 29 Sep 2025 19:23:21 +1000
-David Gibson <david@gibson.dropbear.id.au> wrote:
-
-> On Wed, Sep 24, 2025 at 02:31:30PM +0200, Herve Codina wrote:
-> > Hi David,
-> > 
-> > On Wed, 24 Sep 2025 13:54:22 +1000
-> > David Gibson <david@gibson.dropbear.id.au> wrote:
-> > 
-> > ...
-> >   
-> > > > 
-> > > > IMHO, no extra rules are needed in DT addon rules to constraint i2c devices
-> > > > to be added in a connector node, a connector sub-node or an i2c controller
-> > > > node.
-> > > > 
-> > > > This will be constrained by the connector itself (out of DT addon rules).    
-> > > 
-> > > At this point I'm just considering the end-to-end rules we want to
-> > > enforce.  Exactly what stage of the process enforces each rule is
-> > > another question.
-> > >   
-> > > > I mean, according to rule b), the connector will allow some destination
-> > > > places. Either it will allow the i2c controller node or a connector sub-node.    
-> > > 
-> > > Sure.
-> > >   
-> > > > This is specific to the connector definition and it should be out of
-> > > > generic DT addon rules.    
-> > > 
-> > > Hang on... what distinction are you seeing between the "connector
-> > > definition" and "generic DT addon rules".  As I see it we're trying to
-> > > create a protocol that defines both the base rules and what a
-> > > "connector" even means.
-> > >   
-> > 
-> > The "generic DT addon rules" give rules related to addon from a DT
-> > perspective. In other word "What an addon DT can do"
-> >  - export symbols
-> >  - import symbols
-> >  - Add full node only
-> >  - Don't allow to modify existing node
-> >  - ...
-> > 
-> > The way addon are used is what I put behind "connector definition".
-> > The connector is a specific node in a DT with a specific comptible string.
-> > The definition of this node will tell "how to use it". For instance:
-> >   - There is 2 gpios available and an addon can use it with <&connector 0> and
-> >     <&connector 1>.
-> >   - There is an i2c bus available and an addon can use if with <&i2c-a>
-> >   - The hotplug mecanism used for this specific connector (gpio, eeprom, ...)
-> >     is also part of the "connector definition".
-> > 
-> > An external board DT supposed to be connected to this connector should
-> >   - a) Provide its description using an addon DT (compliant with "generic DT
-> >        addon rules")
-> > and
-> > 
-> >   - b) Use resources from connector the board is connected to (compliant with
-> >        "connector definition").
-> > 
-> > "generic DT addon rules": DT specification
-> > "connector definition": Connector binding  
+On Tue, Sep 30, 2025 at 11:18:11AM +0530, Akhil P Oommen wrote:
+> In A6x family (which is a pretty big one), there are separate
+> adreno_func definitions for each sub-generations. To streamline the
+> identification of the correct struct for a gpu, move it to the
+> catalogue and move the gpu_init routine to struct adreno_gpu_funcs.
 > 
-> Ok.  I think there are some further possible distinctions here between:
+> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+> ---
+>  drivers/gpu/drm/msm/adreno/a2xx_catalog.c  |   8 +-
+>  drivers/gpu/drm/msm/adreno/a2xx_gpu.c      |  50 +++----
+>  drivers/gpu/drm/msm/adreno/a3xx_catalog.c  |  14 +-
+>  drivers/gpu/drm/msm/adreno/a3xx_gpu.c      |  52 +++----
+>  drivers/gpu/drm/msm/adreno/a4xx_catalog.c  |   8 +-
+>  drivers/gpu/drm/msm/adreno/a4xx_gpu.c      |  54 ++++----
+>  drivers/gpu/drm/msm/adreno/a5xx_catalog.c  |  18 +--
+>  drivers/gpu/drm/msm/adreno/a5xx_gpu.c      |  61 ++++-----
+>  drivers/gpu/drm/msm/adreno/a6xx_catalog.c  |  50 +++----
+>  drivers/gpu/drm/msm/adreno/a6xx_gpu.c      | 209 ++++++++++++++---------------
+>  drivers/gpu/drm/msm/adreno/adreno_device.c |   2 +-
+>  drivers/gpu/drm/msm/adreno/adreno_gpu.h    |  11 +-
+>  12 files changed, 275 insertions(+), 262 deletions(-)
 > 
->  a. Rules for connectors in general
->  b. Rules for a specific connector type (defined by the connector type
->     binding)
->  c. Rules for a specific connector instance (defined by the property
->     values in that instance).
-> 
-> Possible we can avoid using one or more of those categories, but we
-> need to consider them and do so conciously.
-> 
-> > Today, connectors are going to use the addon feature but I didn't want to
-> > restrict addon feature to connectors.  
-> 
-> Hmm.  I'm not sure this is a good idea.  I had been envisaging this
-> new "addon" support as explicitly tied to connectors - you can't
-> addon, except in a way the base board allows, and connectors are the
-> way it allows.
+> diff --git a/drivers/gpu/drm/msm/adreno/a2xx_catalog.c b/drivers/gpu/drm/msm/adreno/a2xx_catalog.c
+> index 5ddd015f930d9a7dd04e2d2035daa0b2f5ff3f27..af3e4cceadd11d4e0ec4ba75f75e405af276cb7e 100644
+> --- a/drivers/gpu/drm/msm/adreno/a2xx_catalog.c
+> +++ b/drivers/gpu/drm/msm/adreno/a2xx_catalog.c
+> @@ -8,6 +8,8 @@
+>  
+>  #include "adreno_gpu.h"
+>  
+> +extern const struct adreno_gpu_funcs a2xx_gpu_funcs;
 
-I agree with that.
+Please move these definitions to aNxx_gpu.h (a2xx_gpu.h, etc). LGTM
+otherwise.
 
-I think we just need to clarify what is the definition of "connector" in
-this context.
-
-I have the feeling that a "connector" for you is where an addon is going to
-be applied.
-
-In my mind a connector was the piece of hardware where the addon board is
-connected.
-
-Most of the time, this piece of hardware will be represented as a node in the
-DT and the addon DT will be applied to this node.
-
-I made the distinction in case of PMOD use case (Geert's use case with
-multiple connector). In that case we need to find, probably with external help,
-connectors connected to the addon board.
-
-I have the feeling that in that case the description will be:
-   /* Base board DT */
-   pmod-group {
-      pmod-connector1 {
-        ...
-      };
-      pmod-connector2 {
-        ...
-      };
-      pmod-connector3 {
-        ...
-      };
-   };
-
-The addon DT will be applied to pmod-group and the pmod-group driver
-selects multiple connectors (pmod-connector1 and/or pmod-connector2
-and/or pmod-connector3) according to the addon needs and some external
-help in order to applied the addon DT.
-   https://lore.kernel.org/all/20250911121103.40ccb112@bootlin.com/
-
-> 
-> > For instance, a FPGA driver could use the addon feature with an addon DT
-> > to describe the internal part of the FPGA related to the FPGA bitstream
-> > loaded by the FPGA driver. That might make sense, right ?  
-> 
-> With the distinction from the connector case being that the driver
-> defines how to interpret the addon at runtime, rather than the base DT
-> defining it statically?
-
-Yes
-
-> 
-> > Also upstream in the kernel, PCI boards can be described using DT.
-> >   https://elixir.bootlin.com/linux/v6.16/source/drivers/misc/lan966x_pci.c
-> >   https://elixir.bootlin.com/linux/v6.16/source/drivers/misc/lan966x_pci.dtso
-> > 
-> > Using addon DT in that case makes sense too even if a "connector" is not present.  
-> 
-> Ok.  So I think the model you're suggesting is this:
-> 
->  * A bus/port driver (let's call it an "addon driver") can allow addon
->    DTs to be plugged in and removed, under constraints defined by that
->    driver at runtime.
-> 
->  * The connector driver would be one specific addon driver, that can
->    handle a pretty broad range of not-too-complex addons.  The
->    constraints for the addon DT are defined by the properties of the
->    connector in the base DT, rather than by runtime logic in the
->    driver.
-> 
-> Is that correct?
-
-Both properties of the connector and runtime logic.
-
-In multiple connector cases, some runtime logic will be needed.
-
-Also, in my use case, several steps are required:
-1) Apply an addon DT to describe EEPROM available on all addon boards
-   we supports.
-2) Read the eeprom to identify the board
-3) Select the right full addon DT based on the board idendified
-4) Apply the full addon DT
-
-> 
-> A few observations
-> 
->  - This effectively makes an addon driver a special case of a
->    discoverable bus/port driver.  Or even DT addons as a library that
->    a bus/port driver can use.  Rather than directly updating the Linux
->    device model, the driver selects an addon DT and uses that to
->    update the Linux device model.
-> 
->  - The distinction between a connector and a general addon driver, is
->    a bit like that between the simple-bus driver and a PCI host bridge
->    driver.  The former handles a fairly wide range of relatively
->    simple cases, the latter handles a more complex and specialized
->    case.
-> 
-> I don't dislike this model, but it does raise some questions (these
-> are not rhetorical):
-> 
-> 1) Is DT a good way of describing the addon?
-> 
-> After all, the addon driver could make updates directly to the Linux
-> device model from whatever format is convenient.
-
-The DT goal is to describe hardware and we are describing hardware available
-on an addon board. DT description seems perfectly legit for this use case.
-
-Let's try as an exercise. Now we have device tree (DT), let's say we want
-to describe addons using the new "Another Representation of Generic
-Hardware" (ARGH) syntax.
-
-We need to:
- * implement arghc (similar to dtc)
- * write argh-bindings for chips that already have dt-bindings
- * write new argh_*() functions similar to of_*() functions
- * write new toooling like `make argh_binding_check` and
-   `make arghs_check`
- * etc
-
-Or we could look for an existing format and decide to use the device
-tree format, which is maybe not perfect, but it works well for a lot of
-things and has all these and more implemented already.
-
-> 
-> 2) Does it make sense to use the addon to alter the global DT?
-> 
-> Even if the addon is described by a DT, the addon/connector driver
-> could read that DT and the system DT and make corresponding updates to
-> the Linux device model without altering the system DT first.
-> 
-
-May I missed something but I think we already discussed this and you appeared
-to agree with my arguments in favor of letting the addon alter very specific
-nodes in the base tree that are explicitly marked as suitable in the connector
-description.
-  https://lore.kernel.org/all/aMebXe-yJy34kST8@zatzit/
-
-Best regards,
-Hervé
+-- 
+With best wishes
+Dmitry
 
