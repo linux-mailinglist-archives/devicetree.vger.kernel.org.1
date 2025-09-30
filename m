@@ -1,134 +1,182 @@
-Return-Path: <devicetree+bounces-222826-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22003BADF6C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 17:46:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01F88BADFA8
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 17:52:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 097974E2672
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 15:46:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A865B1685C2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 15:52:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DB38308F1F;
-	Tue, 30 Sep 2025 15:46:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 209253081B2;
+	Tue, 30 Sep 2025 15:52:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="GEmo2aaV"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="Y0sZ1FD9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.w1.samsung.com (mailout2.w1.samsung.com [210.118.77.12])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83C923081AE
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 15:46:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.12
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759247182; cv=none; b=hSgoqFrggpMSqOKY6VWkqwD29sSVA0ldUV7JoXbFrc31UwM6yu/cvEVKNMKP0+o8HvzajSI2lVS5XG6/68bqgG6NhiAAGplTHhpomrFIRgD116aN1TdQaj7V8xhTzrfiVD5A/XXNyHiyL0WqaqOfYZHXUXD66xlK4soUcjKamLQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759247182; c=relaxed/simple;
-	bh=CAUFl+LYZAZIfEQ0dOPctsXAqjVr28NSuz7MjuxJt4Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
-	 Content-Type:References; b=FGqJ+080p6Bdl/oxmARgAo7eQRZBxsc1A22lRfzKo6s0REPKoKKfePqPJIlmvUpkEnTWJ/+1PlkLFxKwK06+oT//K/wIKAqA4lo0q92zMt4TbTtKwDArSLiFw8NCHJM29RDJKDQuAZNS6CyuUAArgsx9/iaEtZoREWuHq9dWozk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=GEmo2aaV; arc=none smtp.client-ip=210.118.77.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-	by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20250930154613euoutp0207c60811df0165d2321cd3322ad011f0~qGfuky7qt2431224312euoutp02c
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 15:46:13 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20250930154613euoutp0207c60811df0165d2321cd3322ad011f0~qGfuky7qt2431224312euoutp02c
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1759247173;
-	bh=iCpr5TzyOFeRuqU82QBgsAybOuX0sXWBwEO+eHNweII=;
-	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
-	b=GEmo2aaV3Fhb+h0H+OL88S5Un3zCHcz7kvEcOruc4TmXpXvHdpKjLwI7cEBp7asMO
-	 muCNuGSqnMlJSRFBKwmUe+kxce/c8fhUiZy+mBT4fvst9i7T4SLjLU0Jge/xzV09V9
-	 trHRBO20Um+o+53qS3gt/u6DVrintZBeymx0x8lo=
-Received: from eusmtip1.samsung.com (unknown [203.254.199.221]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250930154612eucas1p2cf5b43435487dc8e6b19b60d1a3801ef~qGft4sFWT2800928009eucas1p2c;
-	Tue, 30 Sep 2025 15:46:12 +0000 (GMT)
-Received: from [106.210.134.192] (unknown [106.210.134.192]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20250930154610eusmtip1200c7ebad2fc47c80d082b3f7ac27ab7~qGfryC8yB2715127151eusmtip1T;
-	Tue, 30 Sep 2025 15:46:09 +0000 (GMT)
-Message-ID: <75d06769-4896-4095-9969-03a517705196@samsung.com>
-Date: Tue, 30 Sep 2025 17:46:09 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF62B24E00F;
+	Tue, 30 Sep 2025 15:52:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759247559; cv=pass; b=lNMAwqyHPZQf26ZVgJXFeAedG1toAm9YNj0KWanydkdqAKVUlpCjkxIftdNxFFkiLFQFMg19m386nWQz1R/GJAuvCtWtOUbCKi22gzJ7/EKSIAMygVToeAY9HyKANbFT+vjXCOzy3gxRe+h4Oq6+9peBHPN9CvpMZZiFFmdK3GU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759247559; c=relaxed/simple;
+	bh=9ITXE882P+LUOgnHYbTufmL551fHoO+D/Qt2lUtHDqM=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=euWpebEw3pGgEb9mp1weD8ZadT0yU/090X/4FW47u4BrMFPvOjrqZc+YWU9Qr4iVFxErngQ3YUUzQ+Rp/+VEmE2OpFiVofwN88kGKPYZfDyAeqh3uhtK5PVE6vUeRU7t/cJnLyeQhnn+rNeBvXuFEkwfyCWxm/sOR5wxM4UGhiY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=Y0sZ1FD9; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1759247529; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=kVQpsdffAzMr7uuaDNbAxcruc6AXa54gGhtWuU7RP3derX2sid9X9LaPZmyPs/qx5RkrDXQwuiTYu8MmStS388aVM74EKbcFXbW8GHpC6yrJeW7CqMfM0R7XUavB1Sb/74046zJ8gcIHpojximRYHTflz+eiPGWSoR5hhcgmttU=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1759247529; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=9ITXE882P+LUOgnHYbTufmL551fHoO+D/Qt2lUtHDqM=; 
+	b=PGGR2rasCESZwczXYwSbPUYDhE6H7FdyQGKwHmktDfBT8ayNcB7pdRq6+PvgLDr543aEP5IxbSzmXSksOZNTFVCi43xPcBHbggIaRQqju/7g9mdCrQfpunyl7ZhrPF8+6aO9sVQ1ZhkuAKz+L8P6+KI/7HZtmz1OwOb3rsCV6qw=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759247529;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=9ITXE882P+LUOgnHYbTufmL551fHoO+D/Qt2lUtHDqM=;
+	b=Y0sZ1FD9U89I0u6WPJnxppc90AfTzcehq4Oj4Ful7Oo4iFzHZStlU8L6Ee2LmLjK
+	G4uCWij0dyVy4KZkrSX6YDVdGVMc9+nFwPLy6DxsQ++LUBAWjppqjbkE6i0VXCxyGeK
+	uCqFw5hREg2ihyjrp6HBei7ygdEqnxJDEgKNWsqMpk1xN5XkGbSktndkxZckKVJ/kvZ
+	pFbZ233EUjhtAx+oejUV4q38xrkb3f60oA6hgj0SzGHPFf1P93KQQ7pUq7i7FjNdevq
+	WqURN6Dd8taH1miaqt4Yf7aCPGtn2iiW6SmxgYHpHbfEGU6WF7dhzhrAyvhsbRBpzA4
+	+fArzPUAng==
+Received: by mx.zohomail.com with SMTPS id 1759247527656514.7974823084481;
+	Tue, 30 Sep 2025 08:52:07 -0700 (PDT)
+Message-ID: <579dad6b4ab0c981b8d51383af2db3a9f4394609.camel@icenowy.me>
+Subject: Re: [PATCH v2 2/2] riscv: dts: starfive: add DT for Orange Pi RV
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
+ <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
+ <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Emil Renner
+ Berthing <kernel@esmil.dk>, Michael Zhu <michael.zhu@starfivetech.com>,
+ Drew Fustini <drew@beagleboard.org>, Yao Zi <ziyao@disroot.org>, E Shattow
+ <e@freeshell.de>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Date: Tue, 30 Sep 2025 23:51:58 +0800
+In-Reply-To: <20250930100318.2131968-2-uwu@icenowy.me>
+References: <20250930100318.2131968-1-uwu@icenowy.me>
+	 <20250930100318.2131968-2-uwu@icenowy.me>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Betterbird (Windows)
-Subject: =?UTF-8?Q?Re=3A_=5BPATCH_08/29=5D_media=3A_mfc=3A_Add_Exynos?=
- =?UTF-8?Q?=E2=80=91MFC_driver_probe_support?=
-To: Krzysztof Kozlowski <krzk@kernel.org>, Himanshu Dewangan
-	<h.dewangan@samsung.com>
-Cc: mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, sumit.semwal@linaro.org, christian.koenig@amd.com,
-	alim.akhtar@samsung.com, manjun@samsung.com, nagaraju.s@samsung.com,
-	ih0206.lee@samsung.com, jehyung.lee@samsung.com,
-	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linaro-mm-sig@lists.linaro.org
-Content-Language: en-US
-From: Marek Szyprowski <m.szyprowski@samsung.com>
-In-Reply-To: <CAJKOXPecLREbEDM4yfM=WD-EFfuBqPDXNZceATLeWQRj0X_w7w@mail.gmail.com>
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250930154612eucas1p2cf5b43435487dc8e6b19b60d1a3801ef
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250930035551epcas5p4ee7cb5af08eadb2f5ed6e5eaa06a60a9
-X-EPHeader: CA
-X-CMS-RootMailID: 20250930035551epcas5p4ee7cb5af08eadb2f5ed6e5eaa06a60a9
-References: <CGME20250930035551epcas5p4ee7cb5af08eadb2f5ed6e5eaa06a60a9@epcas5p4.samsung.com>
-	<20250930040348.3702923-1-h.dewangan@samsung.com>
-	<20250930040348.3702923-9-h.dewangan@samsung.com>
-	<CAJKOXPecLREbEDM4yfM=WD-EFfuBqPDXNZceATLeWQRj0X_w7w@mail.gmail.com>
+X-ZohoMailClient: External
 
-Hi Krzysztof,
-
-On 30.09.2025 07:54, Krzysztof Kozlowski wrote:
-> On Tue, 30 Sept 2025 at 12:56, Himanshu Dewangan <h.dewangan@samsung.com> wrote:
->> From: Nagaraju Siddineni <nagaraju.s@samsung.com>
->>
->> Introduce a new Kconfig entry VIDEO_EXYNOS_MFC for the Samsung
->> Exynos MFC driver that supports firmware version 13 and later.
->> Extend the top‑level Samsung platform Kconfig to disable the legacy
->> S5P‑MFC driver when its firmware version is > v12 and to select the
->> new Exynos‑MFC driver only when VIDEO_SAMSUNG_S5P_MFC is not enabled.
->>
->> Add exynos-mfc Kconfig and Makefile for probe functionality and creation
->> of decoder and encoder device files by registering the driver object
->> exynos_mfc.o and other relevant source files.
->>
->> Provide header files mfc_core_ops.h and mfc_rm.h containing core
->>    operation prototypes, resource‑manager helpers,
->>    and core‑selection utilities.
->>
->> Add a configurable option MFC_USE_COREDUMP to enable core‑dump
->> support for debugging MFC errors.
->>
->> These changes bring support for newer Exynos‑based MFC hardware,
->> cleanly separate it from the legacy S5P‑MFC driver, and lay the
->> groundwork for future feature development and debugging.
->>
-> No, NAK. Existing driver is well tested and already used on newest
-> Exynos SoC, so all this new driver is exactly how you should not work
-> in upstream. You need to integrate into existing driver.
->
-> Samsung received this review multiple times already.
-
-Please don't be so categorical. The MFC hardware evolved quite a bit 
-from the ancient times of S5PV210 SoC, when s5p-mfc driver was designed. 
-The feature list of the new hardware hardly matches those and I really 
-don't see the reason for forcing support for so different hardware in a 
-single driver. Sometimes it is easier just to have 2 separate drivers if 
-the common part is just the acronym in the hardware block name...
-
-Best regards
--- 
-Marek Szyprowski, PhD
-Samsung R&D Institute Poland
+5ZyoIDIwMjUtMDktMzDmmJ/mnJ/kuoznmoQgMTg6MDMgKzA4MDDvvIxJY2Vub3d5IFpoZW5n5YaZ
+6YGT77yaCj4gT3JhbmdlIFBpIFJWIGlzIGEgbmV3bHkgcmVsZWFzZWQgU0JDIHdpdGggSkg3MTEw
+IFNvQywgc2luZ2xlIEdiRSBwb3J0Cj4gKGNvbm5lY3RlZCB0byBKSDcxMTAgR01BQzAgdmlhIGEg
+WVQ4NTMxIFBIWSksIDQgVVNCIHBvcnRzICh2aWEgYQo+IFZMODA1Cj4gUENJZSBVU0IgY29udHJv
+bGxlciBjb25uZWN0ZWQgdG8gSkg3MTEwIFBDSUUwKSwgYSBNLjIgTS1rZXkgc2xvdAo+IChjb25u
+ZWN0ZWQgdG8gSkg3MTEwIFBDSUUxKSwgYSBIRE1JIHZpZGVvIG91dHB1dCwgYSAzLjVtbSBhdWRp
+bwo+IG91dHB1dAo+IGFuZCBhIG1pY3JvU0Qgc2xvdC4KPiAKPiBPdGhlciBPbmJvYXJkIHBlcmlw
+aGVyYWxzIGNvbnRhaW4gYSBTUEkgTk9SICh3aGljaCBjb250YWlucyB0aGUgVS0KPiBCb290Cj4g
+ZmlybXdhcmUpLCBhIDI0YzAyIEVFUFJPTSBzdG9yaW5nIHNvbWUgU3RhckZpdmUtc3BlY2lmaWMg
+aW5mb3JtYXRpb24KPiAoZmFjdG9yeSBwcm9ncmFtbWVkIGFuZCByZWFkIG9ubHkgYnkgZGVmYXVs
+dCkgYW5kIGFuIEFtcGFrIEFQNjI1Ngo+IFNESU8KPiBXaS1GaSBtb2R1bGUuCj4gCj4gU2lnbmVk
+LW9mZi1ieTogSWNlbm93eSBaaGVuZyA8dXd1QGljZW5vd3kubWU+Cj4gLS0tCj4gQ2hhbmdlcyBp
+biB2MjoKPiAtIFByb3BlcnR5IG9yZGVyIGNoYW5nZSBtZW50aW9uZWQgaW4gdGhlIHJldmlldyBv
+ZiB2MS4KPiAtIEFkZGVkIFdpLUZpIChhbG9uZyB3aXRoIHRoZSBhbHdheXMgb24gVkNDM1YzX1BD
+SUUgcmVndWxhdG9yLCB3aGljaAo+IGlzCj4gwqAgdXNlZCB0byBwb3dlciB1cCBXSUZJXzNWMyku
+IFRoZSBPT0IgSVJRIGlzIHN0aWxsIG5vdCBwb3NzaWJsZSB0bwo+IHVzZQo+IMKgIGJlY2F1c2Ug
+b2Ygc29tZSBpbmNvbXBhdGliaWxpdHkgYmV0d2VlbiBTdGFyRml2ZSBwaW5jdHJsIGRyaXZlciBh
+bmQKPiDCoCBicmNtZm1hYy4KPiAtIFJlbW92ZWQgdGhlIExFRCBiZWNhdXNlIGl0J3MgaW4gY29t
+bW9uIERUU0kuCj4gCj4gwqBhcmNoL3Jpc2N2L2Jvb3QvZHRzL3N0YXJmaXZlL01ha2VmaWxlwqDC
+oMKgwqDCoMKgwqDCoCB8wqAgMSArCj4gwqAuLi4vYm9vdC9kdHMvc3RhcmZpdmUvamg3MTEwLW9y
+YW5nZXBpLXJ2LmR0c8KgIHwgODcKPiArKysrKysrKysrKysrKysrKysrCj4gwqAyIGZpbGVzIGNo
+YW5nZWQsIDg4IGluc2VydGlvbnMoKykKPiDCoGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL3Jpc2N2
+L2Jvb3QvZHRzL3N0YXJmaXZlL2poNzExMC1vcmFuZ2VwaS0KPiBydi5kdHMKPiAKPiBkaWZmIC0t
+Z2l0IGEvYXJjaC9yaXNjdi9ib290L2R0cy9zdGFyZml2ZS9NYWtlZmlsZQo+IGIvYXJjaC9yaXNj
+di9ib290L2R0cy9zdGFyZml2ZS9NYWtlZmlsZQo+IGluZGV4IGIzYmIxMmY3OGU3ZDUuLjI0ZjFh
+NDQ4MjgzNTAgMTAwNjQ0Cj4gLS0tIGEvYXJjaC9yaXNjdi9ib290L2R0cy9zdGFyZml2ZS9NYWtl
+ZmlsZQo+ICsrKyBiL2FyY2gvcmlzY3YvYm9vdC9kdHMvc3RhcmZpdmUvTWFrZWZpbGUKPiBAQCAt
+MTAsNiArMTAsNyBAQCBkdGItJChDT05GSUdfQVJDSF9TVEFSRklWRSkgKz0gamg3MTAwLXN0YXJm
+aXZlLQo+IHZpc2lvbmZpdmUtdjEuZHRiCj4gwqAKPiDCoGR0Yi0kKENPTkZJR19BUkNIX1NUQVJG
+SVZFKSArPSBqaDcxMTAtZGVlcGNvbXB1dGluZy1mbWwxM3YwMS5kdGIKPiDCoGR0Yi0kKENPTkZJ
+R19BUkNIX1NUQVJGSVZFKSArPSBqaDcxMTAtbWlsa3YtbWFycy5kdGIKPiArZHRiLSQoQ09ORklH
+X0FSQ0hfU1RBUkZJVkUpICs9IGpoNzExMC1vcmFuZ2VwaS1ydi5kdGIKPiDCoGR0Yi0kKENPTkZJ
+R19BUkNIX1NUQVJGSVZFKSArPSBqaDcxMTAtcGluZTY0LXN0YXI2NC5kdGIKPiDCoGR0Yi0kKENP
+TkZJR19BUkNIX1NUQVJGSVZFKSArPSBqaDcxMTAtc3RhcmZpdmUtdmlzaW9uZml2ZS0yLQo+IHYx
+LjJhLmR0Ygo+IMKgZHRiLSQoQ09ORklHX0FSQ0hfU1RBUkZJVkUpICs9IGpoNzExMC1zdGFyZml2
+ZS12aXNpb25maXZlLTItCj4gdjEuM2IuZHRiCj4gZGlmZiAtLWdpdCBhL2FyY2gvcmlzY3YvYm9v
+dC9kdHMvc3RhcmZpdmUvamg3MTEwLW9yYW5nZXBpLXJ2LmR0cwo+IGIvYXJjaC9yaXNjdi9ib290
+L2R0cy9zdGFyZml2ZS9qaDcxMTAtb3JhbmdlcGktcnYuZHRzCj4gbmV3IGZpbGUgbW9kZSAxMDA2
+NDQKPiBpbmRleCAwMDAwMDAwMDAwMDAwLi41YTkxN2I3ZGI2Zjc4Cj4gLS0tIC9kZXYvbnVsbAo+
+ICsrKyBiL2FyY2gvcmlzY3YvYm9vdC9kdHMvc3RhcmZpdmUvamg3MTEwLW9yYW5nZXBpLXJ2LmR0
+cwo+IEBAIC0wLDAgKzEsODcgQEAKPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0y
+LjAgT1IgTUlUCj4gKy8qCj4gKyAqIENvcHlyaWdodCAoQykgMjAyNSBJY2Vub3d5IFpoZW5nIDx1
+d3VAaWNlbm93eS5tZT4KPiArICovCj4gKwo+ICsvZHRzLXYxLzsKPiArI2luY2x1ZGUgImpoNzEx
+MC1jb21tb24uZHRzaSIKPiArCj4gKy8gewo+ICvCoMKgwqDCoMKgwqDCoG1vZGVsID0gIlh1bmxv
+bmcgT3JhbmdlIFBpIFJWIjsKPiArwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInh1bmxvbmcs
+b3JhbmdlcGktcnYiLCAic3RhcmZpdmUsamg3MTEwIjsKPiArCj4gK8KgwqDCoMKgwqDCoMKgLyog
+VGhpcyByZWd1bGF0b3IgaXMgYWx3YXlzIG9uIGJ5IGhhcmR3YXJlICovCj4gK8KgwqDCoMKgwqDC
+oMKgcmVnX3ZjYzN2M19wY2llOiByZWd1bGF0b3ItdmNjM3YzLXBjaWUgewo+ICvCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInJlZ3VsYXRvci1maXhlZCI7Cj4gK8Kg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZ3VsYXRvci1uYW1lID0gInZjYzN2My1wY2ll
+IjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVndWxhdG9yLW1pbi1taWNyb3Zv
+bHQgPSA8MzMwMDAwMD47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZ3VsYXRv
+ci1tYXgtbWljcm92b2x0ID0gPDMzMDAwMDA+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqByZWd1bGF0b3ItYWx3YXlzLW9uOwo+ICvCoMKgwqDCoMKgwqDCoH07Cj4gKwo+ICvCoMKg
+wqDCoMKgwqDCoHdpZmlfcHdyc2VxOiB3aWZpLXB3cnNlcSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoGNvbXBhdGlibGUgPSAibW1jLXB3cnNlcS1zaW1wbGUiOwo+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXNldC1ncGlvcyA9IDwmc3lzZ3BpbyA2MiBHUElPX0FD
+VElWRV9MT1c+Owo+ICvCoMKgwqDCoMKgwqDCoH07Cj4gK307Cj4gKwo+ICsmZ21hYzAgewo+ICvC
+oMKgwqDCoMKgwqDCoGFzc2lnbmVkLWNsb2NrcyA9IDwmYW9uY3JnIEpINzExMF9BT05DTEtfR01B
+QzBfVFg+Owo+ICvCoMKgwqDCoMKgwqDCoGFzc2lnbmVkLWNsb2NrLXBhcmVudHMgPSA8JmFvbmNy
+Zwo+IEpINzExMF9BT05DTEtfR01BQzBfUk1JSV9SVFg+Owo+ICvCoMKgwqDCoMKgwqDCoHN0YXJm
+aXZlLHR4LXVzZS1yZ21paS1jbGs7Cj4gK8KgwqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOwo+
+ICt9Owo+ICsKPiArJm1tYzAgewo+ICvCoMKgwqDCoMKgwqDCoCNhZGRyZXNzLWNlbGxzID0gPDE+
+Owo+ICvCoMKgwqDCoMKgwqDCoCNzaXplLWNlbGxzID0gPDA+Owo+ICvCoMKgwqDCoMKgwqDCoGNh
+cC1zZC1oaWdoc3BlZWQ7Cj4gK8KgwqDCoMKgwqDCoMKgbW1jLXB3cnNlcSA9IDwmd2lmaV9wd3Jz
+ZXE+Owo+ICvCoMKgwqDCoMKgwqDCoHZtbWMtc3VwcGx5ID0gPCZyZWdfdmNjM3YzX3BjaWU+Owo+
+ICvCoMKgwqDCoMKgwqDCoHZxbW1jLXN1cHBseSA9IDwmdmNjXzN2Mz47Cj4gK8KgwqDCoMKgwqDC
+oMKgc3RhdHVzID0gIm9rYXkiOwo+ICsKPiArwqDCoMKgwqDCoMKgwqBhcDYyNTY6IHdpZmlAMSB7
+Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBhdGlibGUgPSAiYnJjbSxiY200
+MzQ1Ni1mbWFjIiwgImJyY20sYmNtNDMyOS0KPiBmbWFjIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgcmVnID0gPDE+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAv
+KiBUT0RPOiBvdXQtb2YtYmFuZCBJUlEgb24gR1BJTzIxICovCj4gK8KgwqDCoMKgwqDCoMKgfTsK
+PiArfTsKPiArCj4gKyZtbWMwX3BpbnMgewo+ICvCoMKgwqDCoMKgwqDCoC8qCj4gK8KgwqDCoMKg
+wqDCoMKgICogQXMgdGhlIE1NQzAgYnVzIGlzIHVzZWQgdG8gY29ubmVjdCBhIFNESU8gV2ktRmkg
+Y2FyZAo+IGluc3RlYWQgb2YKPiArwqDCoMKgwqDCoMKgwqAgKiBhbiBlTU1DIGNhcmQsIGFuZCB0
+aGUgZU1NQyBSU1QgaXMgcmVwdXJwb3NlZCB0byBiZSBhbgo+IGVuYWJsZW1lbnQKPiArwqDCoMKg
+wqDCoMKgwqAgKiBwaW4gb2YgdGhlIFNESU8gV2ktRmksIHJlbW92ZSBpdCBmcm9tIHRoZSBwaW5j
+dHJsIG5vZGUgYW5kCj4gbWFuYWdlCj4gK8KgwqDCoMKgwqDCoMKgICogaXQgYXMgYSBHUElPIGlu
+c3RlYWQuCj4gK8KgwqDCoMKgwqDCoMKgICovCj4gK8KgwqDCoMKgwqDCoMKgL2RlbGV0ZS1ub2Rl
+LyByc3QtcGluczsKPiArfTsKPiArCj4gKyZtbWMxIHsKPiArwqDCoMKgwqDCoMKgwqAvZGVsZXRl
+LXByb3BlcnR5LyBjZC1ncGlvczsKPiArwqDCoMKgwqDCoMKgwqBicm9rZW4tY2Q7CgpXZWxsIGl0
+J3MgZm91bmQgdGhhdCB0aGUgY2FyZCBkZXRlY3QgaXMgd29ya2luZywgYWx0aG91Z2ggd2l0aApk
+aWZmZXJlbnQgcG9sYXJpdHkgd2l0aCBvdGhlciBib2FyZHMuCgpIZXJlIHNob3VsZCBiZToKYGBg
+CgljZC1ncGlvcyA9IDwmc3lzZ3BpbyA0MSBHUElPX0FDVElWRV9ISUdIPjsKYGBgCgpXaWxsIGJl
+IGZpeGVkIGluIHRoZSBuZXh0IHJldmlzaW9uLgoKPiArfTsKPiArCj4gKyZwY2llMCB7Cj4gK8Kg
+wqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOwo+ICt9Owo+ICsKPiArJnBjaWUxIHsKPiArwqDC
+oMKgwqDCoMKgwqBzdGF0dXMgPSAib2theSI7Cj4gK307Cj4gKwo+ICsmcGh5MCB7Cj4gK8KgwqDC
+oMKgwqDCoMKgcngtaW50ZXJuYWwtZGVsYXktcHMgPSA8MTUwMD47Cj4gK8KgwqDCoMKgwqDCoMKg
+dHgtaW50ZXJuYWwtZGVsYXktcHMgPSA8MTUwMD47Cj4gK8KgwqDCoMKgwqDCoMKgbW90b3Jjb21t
+LHR4LWNsay1hZGotZW5hYmxlZDsKPiArwqDCoMKgwqDCoMKgwqBtb3RvcmNvbW0sdHgtY2xrLTEw
+LWludmVydGVkOwo+ICvCoMKgwqDCoMKgwqDCoG1vdG9yY29tbSx0eC1jbGstMTAwLWludmVydGVk
+Owo+ICvCoMKgwqDCoMKgwqDCoG1vdG9yY29tbSx0eC1jbGstMTAwMC1pbnZlcnRlZDsKPiArwqDC
+oMKgwqDCoMKgwqBtb3RvcmNvbW0scngtY2xrLWRydi1taWNyb2FtcCA9IDwzOTcwPjsKPiArwqDC
+oMKgwqDCoMKgwqBtb3RvcmNvbW0scngtZGF0YS1kcnYtbWljcm9hbXAgPSA8MjkxMD47Cj4gK307
+Cj4gKwo+ICsmcHdtZGFjIHsKPiArwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAib2theSI7Cj4gK307
+Cgo=
 
 
