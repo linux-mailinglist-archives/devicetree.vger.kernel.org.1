@@ -1,96 +1,73 @@
-Return-Path: <devicetree+bounces-222795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1004EBAD0E8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 15:28:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A08A8BAD12A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 15:33:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 672BC1891CA6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 13:28:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 459871940144
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 13:33:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E18B6303A0D;
-	Tue, 30 Sep 2025 13:28:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D95F3043D9;
+	Tue, 30 Sep 2025 13:32:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="B4AOmVS9"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="dKBreklB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED40823507C
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 13:28:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27A032FA0C7;
+	Tue, 30 Sep 2025 13:32:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759238907; cv=none; b=qbJvsZbapPvedzl0TEO0/LpyEq4ckVJeZwEkoWS7AccqV7LkdyXYJcffNn4pOhB2KXaUEuUF19EI0OIpKA8+0otQ+JhXQNXKH3/zLJ39KRt1SjcvC8ceIXHc8oQyPslcU98kEmmUqZUAWYJFI3TBpXo5pQImZRmXMZp5KcUzsyM=
+	t=1759239165; cv=none; b=HRCofdom1ySXjGIIKSUOCmlsrCAwvSffULa3Ala++Iza0IX9wTAv4kpY8nhYworh5vEPWXFZc/LyXrRWV07yD/x+X17guD86oLbpdQuhENCDZElaR9LFkODF8LuLoKVM2IeZ1PYONq0Oip0WjSC2d92FSruGj9dCjg0qURM22Xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759238907; c=relaxed/simple;
-	bh=aQCtEDogYo5K+HhgSRY3Q/D4yqHNS/3tcEzXSuSbqQU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=P7VH/VzatxTpFgvIOnDE06ajacSfwSOqqgZjvq9AljG4aPug4fnp7zgxENdZpnVVXa0HiLgdatbI26dZOBJtOrDm+O0+axErQAMNLnWxTqcXJxNxa3QJk7r33kKMUy2FkdEnzTj1AjDATyyajcGZaX5JSGkDl7TfW4flLsvwU0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=B4AOmVS9; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-afcb7a16441so969892766b.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 06:28:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759238904; x=1759843704; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ixK1ETMduGm99BlTcoFj/aPFW7iMIuM7nmIo04sLrUc=;
-        b=B4AOmVS97VrWljsnLDSotLlBE4oWv+/Vx6gD0m/mXC2KP00SyX7buc1bK3laznEJgn
-         OChqwB6DdysnPbR/hZbgbfjdpU3DB6O78XQAlo7ke/GTBhlwL/BTIPWBGqg3EDAB2LU/
-         +LtWWdigbNoXwUqJoefygUKU0peJlGyjGt2WAr8/HyP97RzKC0uecNIRCTE6mxAIN8Rv
-         h92q9ilaDFzKh/SkLEO9TA41JbirKVxEI5nklqRgVt/gdzju0dANVifsUDUtKRDypFuR
-         5NGlSWrjok6UJX5RwSzkiSU1gSd9WWJK0f/xoCf18U+qZiw+leYdHW+lWVb/bMj7muP6
-         +9sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759238904; x=1759843704;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ixK1ETMduGm99BlTcoFj/aPFW7iMIuM7nmIo04sLrUc=;
-        b=SncOyybLnTRJy7TGIRy3eSGjmI7Vc+ksJA4YTWIQYx5a6Uw9qgYNb6VDsmcQDyASaG
-         WYDYEGxUxZCafGrDfVP5jgyg/s6zjB8+oZNN2VEcaTw8O0coyS4dbTxMyS3AXn9+aPkF
-         UWC5YR+CIrxSd8uaR3FGzyu+K3KTWdS3YHtGlgOa7UUt/JZkcu5L2zCj+lPpJ9HlUClW
-         34AZoo7YK8SQZNlkpj5DRtM5DwJP/pWLBvLIrvDi+cBr5XxSVOs2zZltFNpf4ji/79Fy
-         2tVxy+wtj8uu2ZcBpOx39ZHjiwgJPSNLzbISeC44o6KkU3nm5wgqUnjR93uzsCEH8cH7
-         BGfg==
-X-Forwarded-Encrypted: i=1; AJvYcCUhLNdmMufI8uVR1Szlj1jWU68BRtMeKtUv322CE/ItEtninCnhAnfubKqeKZkqlGgMxOpK1DmaZlXj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHdIndHmBkvEmqIXhtCL904EcQNE7flgEUJPfWqmEonitNxki4
-	Y+TaxqOy/cIOgOnJ5tIrI8aTZr2Kw5GxTT51OcRKOkyRsvS063UTFKYd
-X-Gm-Gg: ASbGncup4XDposn9xg73myX+llFxhRVfVVbdcFqK3GXSra5WX0TYzSHLcVJ7w6sT1Oj
-	ta2newjEvRVzkpz70kLAOceP13puOeGRlSVqqo8FjZMcRHSc4NZGf1sw4FVPhYm8yZcJRhzhMXe
-	VTUkY+F7GbXTVrCRVE53ZhEh3tKmFk0/aDkbokMO/L7L2OYym2OoV9P3fJsBGPqsgJtB0fGJIkP
-	HGL3XN79ZFUY8ayxOBX5nlOUH8n9GX43FeB8po/4LMocEagChqam43wFgw/RvSALc62Z7JH0akZ
-	MmLhyiKOg0Q1ZXIuUWEt/NvL/oR2tOgzd8qgWVwI9dCKqx9+VpKH4DUwu+7V2S1gbNTA4WMaNtJ
-	RUb+vmNuztxBpQ0ec8qG2Kx5TwvBbImR9QFLe/VdgM6P+XeKPrSVT0fg=
-X-Google-Smtp-Source: AGHT+IGLnx7R2B80B9d9tAufNTvF/3v0WxPgD8/yTRQ1sR+rOyEoiQbgk51XpXcC1IGp95/m0ONvpg==
-X-Received: by 2002:a17:907:3c8c:b0:b09:c230:12dc with SMTP id a640c23a62f3a-b34b7209e46mr2179868866b.8.1759238904061;
-        Tue, 30 Sep 2025 06:28:24 -0700 (PDT)
-Received: from crusty-box ([88.223.153.72])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b353efa46b2sm1143934766b.24.2025.09.30.06.28.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Sep 2025 06:28:23 -0700 (PDT)
-From: Erikas Bitovtas <xerikasxx@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: phone-devel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Erikas Bitovtas <xerikasxx@gmail.com>
-Subject: [PATCH 2/2] arm64: dts: qcom: msm8939-asus-z00t: add initial device tree
-Date: Tue, 30 Sep 2025 16:20:10 +0300
-Message-ID: <20250930132556.266434-3-xerikasxx@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250930132556.266434-1-xerikasxx@gmail.com>
-References: <20250930132556.266434-1-xerikasxx@gmail.com>
+	s=arc-20240116; t=1759239165; c=relaxed/simple;
+	bh=8jVGE8gwmtvThuklB9t7b5MI+56LbsMnwa7w4z028cE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=UIXZHsqu/IvJmogr/pnVyrVZ+NN+7V0I8kbP1IV2UnZu0MpyOcrOnce0PL1+j6iGfdmjXaC0r5hXo2VpJG4XnXixrt9DLKJl+HsIJ2fTwu6aqRdPyY5JfN441Gr24XVXQt4RMLpF/cydtN5XvLKV9/yCBZ4z2lCXi0RvYc2Y5j0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=dKBreklB; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1759239164; x=1790775164;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=8jVGE8gwmtvThuklB9t7b5MI+56LbsMnwa7w4z028cE=;
+  b=dKBreklBdO0eb4HL21D+iZJ5g5zvdr1zCpRYqV76NnnxhenXsqveRLHW
+   Gk7HpdSfO9WzUgvX+sB8xXfcCLaEOj8y2lsmQGhGN4WoxWP554a4vMfUP
+   vmKUgI2HKgKVt2XUQwAIj0Wg83ijcO0ke/ePW0MQIKvfcVIsgtBOAL+aq
+   JvW9E/l3sGUtvr5NA3ljOTXmegVa2IdKI86jsJd+agRqgWG1C1P82ytxE
+   NFY9t3HXmi//GUSYnmE92siXWtKsSJbI+LTxBEfgUj0gKBh1AZc8xNKFU
+   ftHaJoAxhybfxxhC4IQ1ZUCUNdjn2oThQT4NecE4F+ZVsD4wxoyYC7iVB
+   Q==;
+X-CSE-ConnectionGUID: 230nnVAPSsq/Y51Dw2EIlA==
+X-CSE-MsgGUID: ulsfQcGQRq+n+6sHJ1I9bA==
+X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; 
+   d="scan'208";a="53148425"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 30 Sep 2025 06:32:37 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Tue, 30 Sep 2025 06:32:07 -0700
+Received: from vduicu-Virtual-Machine.mshome.net (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.58 via Frontend Transport; Tue, 30 Sep 2025 06:32:04 -0700
+From: <victor.duicu@microchip.com>
+To: <jic23@kernel.org>, <dlechner@baylibre.com>, <nuno.sa@analog.com>,
+	<andy@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <marius.cristea@microchip.com>, <victor.duicu@microchip.com>,
+	<linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: [PATCH v6 0/2] add support for MCP998X
+Date: Tue, 30 Sep 2025 16:31:29 +0300
+Message-ID: <20250930133131.13797-1-victor.duicu@microchip.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,302 +75,209 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Add an initial device tree for Asus ZenFone 2 Laser/Selfie. This
-includes support for:
-- UART
-- USB
-- Internal storage
-- MicroSD
-- Volume keys
-- Touchscreen: Focaltech FT5306
-- Accelerometer: Invensense MPU6515
-- Magnetometer: Asahi Kasei AK09911
-- Vibrator
-- Audio input and output
-- Modem
+From: Victor Duicu <victor.duicu@microchip.com>
 
-Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../arm64/boot/dts/qcom/msm8939-asus-z00t.dts | 255 ++++++++++++++++++
- 2 files changed, 256 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
+Add support for Microchip MCP998X/33 and MCP998XD/33D Multichannel
+Automotive Temperature Monitor Family.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 296688f7cb26..35f3ff0d6f18 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -72,6 +72,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8917-xiaomi-riva.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8929-wingtech-wt82918hd.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-asus-z00t.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-huawei-kiwi.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-longcheer-l9100.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
-new file mode 100644
-index 000000000000..687ba02a8139
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
-@@ -0,0 +1,255 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+/dts-v1/;
-+
-+#include "msm8939-pm8916.dtsi"
-+#include "msm8916-modem-qdsp6.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+
-+/ {
-+	model = "Asus ZenFone 2 Laser/Selfie (1080p)";
-+	compatible = "asus,z00t", "qcom,msm8939";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		mmc0 = &sdhc_1;
-+		mmc1 = &sdhc_2;
-+		serial0 = &blsp_uart2;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_keys_default>;
-+		pinctrl-names = "default";
-+
-+		button-volume-up {
-+			label = "Volume Up";
-+			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+			debounce-interval = <15>;
-+		};
-+
-+		button-volume-down {
-+			label = "Volume Down";
-+			gpios = <&tlmm 117 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			debounce-interval = <15>;
-+		};
-+	};
-+
-+	reg_sd_vmmc: regulator-sdcard-vmmc {
-+		compatible = "regulator-fixed";
-+		regulator-name = "sdcard-vmmc";
-+		regulator-min-microvolt = <2950000>;
-+		regulator-max-microvolt = <2950000>;
-+
-+		gpio = <&tlmm 87 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		startup-delay-us = <200>;
-+
-+		pinctrl-0 = <&sd_vmmc_en_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	usb_id: usb-id {
-+		compatible = "linux,extcon-usb-gpio";
-+		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&usb_id_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&blsp_i2c2 {
-+	status = "okay";
-+
-+	magnetometer@c {
-+		compatible = "asahi-kasei,ak09911";
-+		reg = <0x0c>;
-+
-+		vdd-supply = <&pm8916_l8>;
-+		vid-supply = <&pm8916_l6>;
-+
-+		reset-gpios = <&tlmm 112 GPIO_ACTIVE_LOW>;
-+		pinctrl-0 = <&mag_reset_default>;
-+		pinctrl-names = "default";
-+	};
-+
-+	imu@68 {
-+		compatible = "invensense,mpu6515";
-+		reg = <0x68>;
-+
-+		interrupts-extended = <&tlmm 36 IRQ_TYPE_EDGE_RISING>;
-+
-+		vdd-supply = <&pm8916_l8>;
-+		vddio-supply = <&pm8916_l6>;
-+
-+		pinctrl-0 = <&imu_default>;
-+		pinctrl-names = "default";
-+
-+		mount-matrix = "0",  "1", "0",
-+			       "-1", "0", "0",
-+			       "0",  "0", "1";
-+	};
-+};
-+
-+&blsp_i2c5 {
-+	status = "okay";
-+
-+	touchscreen@38 {
-+		compatible = "edt,edt-ft5306";
-+		reg = <0x38>;
-+
-+		interrupts-extended = <&tlmm 13 IRQ_TYPE_EDGE_FALLING>;
-+
-+		reset-gpios = <&tlmm 12 GPIO_ACTIVE_LOW>;
-+
-+		vcc-supply = <&pm8916_l8>;
-+		iovcc-supply = <&pm8916_l6>;
-+
-+		touchscreen-size-x = <1080>;
-+		touchscreen-size-y = <1920>;
-+
-+		pinctrl-0 = <&touchscreen_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&blsp_uart2 {
-+	pinctrl-0 = <&blsp_uart2_console_default>;
-+	pinctrl-1 = <&blsp_uart2_console_sleep>;
-+	pinctrl-names = "default", "sleep";
-+	status = "okay";
-+};
-+
-+&mpss_mem {
-+	reg = <0x0 0x86800000 0x0 0x5500000>;
-+};
-+
-+&pm8916_codec {
-+	qcom,micbias-lvl = <2800>;
-+	qcom,mbhc-vthreshold-low = <75 150 237 450 500>;
-+	qcom,mbhc-vthreshold-high = <75 150 237 450 500>;
-+	qcom,micbias1-ext-cap;
-+	qcom,hphl-jack-type-normally-open;
-+	status = "okay";
-+};
-+
-+&pm8916_vib {
-+	status = "okay";
-+};
-+
-+&sdhc_1 {
-+	status = "okay";
-+};
-+
-+&sdhc_2 {
-+	vmmc-supply = <&reg_sd_vmmc>;
-+
-+	pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
-+	pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
-+	pinctrl-names = "default", "sleep";
-+	cd-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
-+	status = "okay";
-+};
-+
-+&sound {
-+	audio-routing =
-+		"AMIC1", "MIC BIAS External1",
-+		"AMIC2", "MIC BIAS Internal2",
-+		"AMIC3", "MIC BIAS External1";
-+	status = "okay";
-+};
-+
-+&usb {
-+	extcon = <&usb_id>, <&usb_id>;
-+	status = "okay";
-+};
-+
-+&usb_hs_phy {
-+	extcon = <&usb_id>;
-+};
-+
-+&wcnss {
-+	status = "okay";
-+};
-+
-+&wcnss_iris {
-+	compatible = "qcom,wcn3660b";
-+};
-+
-+&wcnss_mem {
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	gpio_keys_default: gpio-keys-default-state {
-+		pins = "gpio107", "gpio117";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	imu_default: imu-default-state {
-+		pins = "gpio36";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	mag_reset_default: mag-reset-default-state {
-+		pins = "gpio112";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	sd_vmmc_en_default: sd-vmmc-en-default-state {
-+		pins = "gpio87";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	sdc2_cd_default: sdc2-cd-default-state {
-+		pins = "gpio38";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	touchscreen_default: touchscreen-default-state {
-+		touch-pins {
-+			pins = "gpio13";
-+			function = "gpio";
-+
-+			drive-strength = <2>;
-+			bias-pull-up;
-+		};
-+
-+		reset-pins {
-+			pins = "gpio12";
-+			function = "gpio";
-+
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+
-+	usb_id_default: usb-id-default-state {
-+		pins = "gpio110";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-up;
-+	};
-+};
+The chips in the family have different numbers of external channels,
+ranging from 1 (MCP9982) to 4 channels (MCP9985). Reading diodes in
+anti-parallel connection is supported by MCP9984/85/33 and
+MCP9984D/85D/33D. Dedicated hardware shutdown circuitry is present
+only in MCP998XD and MCP9933D.
+
+This driver was submitted in the IIO subsystem because the chips could use
+interrupts to handle threshold events. Each chip supports 3 user
+programmable limits per channel. The family is also capable of detecting
+hottest diode and diode faults.
+These features will be added in future patches.
+
+Differences related to previous patch:
+v6:
+- in yaml first condition list part numbers instead
+  of regular expression. Add ^ to regular expression.
+- edit coding style and comments.
+- use hex values in defines.
+- remove MCP9982_TEMP_MEM_BLOCK_LOW and
+  MCP9982_TEMP_MEM_BLOCK_HIGH.
+- in MCP9982_CHAN() place macro parameters in ().
+- move all variable definitions at the start of functions.
+- in mcp9982_parse_fw_config() initialise iio_idx to 0.
+- remove bit flags.
+- in MCP9982_CHAN remove outer ().
+- remove variable start in mcp9982_write_raw().
+- replace constant in .max_register.
+- use get_unaligned_be16 in mcp9982_read_raw().
+
+v5:
+- in yaml edit description of interrupts.
+- add min and maxItems to reg.
+- remove ideality parameter.
+- use pattern recognition in conditionals.
+- group conditions based on the chip.
+- correct microchip,parasitic-res-on-channel3-4 to true.
+- in driver include bitops.h.
+- change name of some variables.
+- rename mcp9982_parse_of_config() to mcp9982_parse_fw_config().
+- implement bulk reading of temp registers.
+- lock ideality parameter to default value.
+- implement bit flags.
+- add compound literal to MCP9982_CHAN.
+- remove hysteresis parameter.
+- edit comments.
+- change values from int to bool in mcp9982_features.
+- remove mcp9982_calc_all_3db_values() and hardcode values.
+  When filter is OFF the 3db value is equal to frequency.
+- add .max_register to regmap_config.
+- remove devm_kcalloc().
+- in mcp9982_read_avail() add an else branch to hw_thermal_shutdown
+  check.
+- in mcp9982_read_raw use USEC_PER_MSEC and set regmap_read_poll_timeout
+  to never timeout.
+  Replace switch with bitmap_weight.
+- in mcp9982_read_label() remove unnecessary if.
+- in mcp9982_write_raw() remove duplicated code.
+- in mcp9982_init add error messages when APDD and RECD are incorrectly
+  set.
+- in mcp9982_parse_fw_config() add default for reg_nr.
+
+v4:
+- lock beta parameters to default value of beta-autodetect.
+  Remove beta parameters and checks from devicetree.
+- lock temperature range to extended.
+  This change avoids the issue of the average filter using raw values
+  with different scales when changing the range.
+- change driver to wait an amount of time before reading a raw value
+  to ensure it is valid.
+- change driver to stop calculating the physical temp when reading
+  in_tempx_raw. Reading from in_tempx_raw will return the raw value.
+  The physical temp will be calculated with in_tempx_raw, scale and
+  offset parameters.
+- add scale parameter to channel definition.
+- initialise chips with "D" to work in Run state and those without
+  in Standby state.
+- when activating the low pass filter for chips without "D",
+  set the power state to RUN to ensure fresh values for the average.
+- add minimum and maximum to microchip,beta1 and microchip,beta2 in yaml.
+- rename microchip,resistance-comp-ch1-2-enable and
+  microchip,resistance-comp-ch3-4-enable to
+  microchip,parasitic-res-on-channel1-2
+  and microchip,parasitic-res-on-channel3-4
+  and edit description in yaml.
+- add conditional logic to check if the chip supports APDD
+  and force default values where necessary in yaml.
+- edit comments and coding style.
+- replace asm/div64.h with linux/math64.h.
+- add delay.h to includes.
+- redefine mcp9982_sampl_fr with new structure division.
+- in mcp9982_priv remove dev_name,extended_temp_range and beta_values.
+  Add run_state, wait_before_read, time_limit and pointer to chip
+  structure to remove all instances of matching strings.
+  Reorder parameters for memory optimization.
+- in mcp9982_features add flags to know if the chip has thermal shutdown
+  circuitry and supports APDD.
+- in mcp9982_read_avail() rework verification of chip type in sampling
+  frequency case.
+- in mcp9982_read_raw() rework switch in low pass filter case.
+- in mcp9982_parse_of_config() replace generic -EINVAL code
+  with -E2BIG and -EOVERFLOW. 
+
+v3:
+- move beta parameters to devicetree.
+- change the name of the interrupts and add
+  check to match them to the device in yaml.
+- remove label for device and remove "0x" from
+  channel registers in example in yaml.
+- edit comments in yaml and driver.
+- add minItems to interrupts in yaml.
+- rename microchip,recd12 and microchip,recd34 to
+  microchip,resistance-comp-ch1-2-enable
+  and microchip,resistance-comp-ch3-4-enable.
+- rename microchip,apdd-state to microchip,enable-anti-parallel.
+- add static to mcp9982_3db_values_map_tbl to fix
+  kernel test robot warning.
+- in mcp9982_init() add check to ensure that hardware
+  shutdown feature can't be overridden.
+- replace div_u64_rem with do_div and add
+  asm/div64.h to includes.
+- remove unused includes.
+- add iio_chan_spec in the macro definition of MCP9982_CHAN.
+- remove MCP9982_EXT_BETA_ENBL.
+- in mcp9982_init() replace regmap_assign_bits
+  with regmap_write when setting beta compensation.
+- remove custom attribute enable_extended_temp_range and
+  map it to IIO_CHAN_INFO_OFFSET.
+- add unsigned to int variables that allow it.
+- reorder parameters in mcp9982_priv, change some
+  from int to bool, add const to labels and add dev_name.
+- add check for chips with "D" in the name to not
+  allow sampling frequencies lower than 1 to
+  prevent overriding of hardware shutdown.
+- remove mcp9982_attributes.
+- move mcp9982_calc_all_3db_values() to before
+  mcp9982_init().
+- use MICRO instead of number constant.
+- in mcp9982_write_raw replace ">=" with "==".
+- rename index2 to idx in mcp9982_read_raw().
+- remove i2c_set_clientdata() in mcp9982_probe().
+- since there are no more custom ABI attributes
+  the testing file was removed.
+
+v2:
+- move hysteresis, extended temperature range and beta parameters
+  from devicetree into user space.
+- edit comments in yaml and driver.
+- remove "|" in descpriptions, remove "+" from PatternProperties in yaml.
+- add default to microchip,ideality-factor, delete blank lines and wrap to
+  80 chars in yaml.
+- remove variables with upper case.
+- add check for microchip,apdd-state and microchip,recd34 in yaml.
+- improve coding style in driver code.
+- add includes for all functions used.
+- rename MCP9982_INT_HIGH_BYTE_ADDR to MCP9982_INT_VALUE_ADDR and
+  MCP9982_INT_LOW_BYTE_ADDR to MCP9982_FRAC_VALUE_ADDR.
+- remove custom attribute running_average_window and
+  running_average_window_available and map them to a low pass filter.
+- update sysfs-bus-iio-temperature-mcp9982 to reflect current
+  driver attributes and point to next kernel version (6.17).
+- use compound literal to define driver channels.
+- replace device_property_read_string() with i2c_get_match_data() to read
+  chip name from devicetree.
+- remove MCP9982_DEV_ATTR and mcp9982_prep_custom_attributes().
+- remove client, chip_name, iio_info from mcp9982_priv.
+- replace sprintf() with sysfs_emit().
+- remove error messages which are triggered by keyboard input.
+- replace devm_kzalloc() with devm_kcalloc(), array mcp9982_chip_config[]
+  with individual structures, device_property_present() with
+  device_property_read_bool().
+- reordered parameters in mcp9982_features and mcp9982_priv to optimize
+  memory allocation.
+- remove .endianness from channel properties.
+- change name of some parameters in mcp9982_priv.
+- add check for reg value 0 from devicetree (channel 0 is for internal
+  temperature and can't be disabled).
+
+v1:
+- initial version.
+
+Victor Duicu (2):
+  dt-bindings: iio: temperature: add support for MCP998X
+  iio: temperature: add support for MCP998X
+
+ .../iio/temperature/microchip,mcp9982.yaml    | 190 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/iio/temperature/Kconfig               |  10 +
+ drivers/iio/temperature/Makefile              |   1 +
+ drivers/iio/temperature/mcp9982.c             | 862 ++++++++++++++++++
+ 5 files changed, 1070 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/microchip,mcp9982.yaml
+ create mode 100644 drivers/iio/temperature/mcp9982.c
+
+
+base-commit: 561285d048053fec8a3d6d1e3ddc60df11c393a0
 -- 
-2.51.0
+2.48.1
 
 
