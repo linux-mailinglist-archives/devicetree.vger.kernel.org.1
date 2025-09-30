@@ -1,185 +1,136 @@
-Return-Path: <devicetree+bounces-222847-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F009BAE57A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 20:48:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6328EBAE5B6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 20:52:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF6A61679B7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 18:48:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E39801945493
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 18:52:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF620259CB9;
-	Tue, 30 Sep 2025 18:48:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E257026A1A3;
+	Tue, 30 Sep 2025 18:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lXbcCMZk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TaDSCduO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D657623817E
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 18:48:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A8E2580E4;
+	Tue, 30 Sep 2025 18:51:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759258099; cv=none; b=BKSaLVsM/jO3yCQopGDnbE9lFyUzIAjCE6fsE3el5fVxLYW6al67LMfOc6WMjOje4xRkuRcoQUJMNCYaembjAaKmty6sNZ+nMV21hzPCG2PgvDTOOcY39Y+TTyvD9UgPCmdgrtQl5FrixXHhubiKdW040ysObD9K3zADvS5CpKY=
+	t=1759258318; cv=none; b=ixiRN65kakilfUaubEx1QLU17YPM3Cq7JdENE5/JrFTwlAx2Yee3HuV1I6b7NJajmYWibKoHqx0nggMSLmroGOiBN0Uo7Z74BA0gbYcPJOQswygY+iNqVCP3EXVjfTXjMMcl8QZO9TXdFkiZdWRWLxUD2+vpqvhXgKBHjxOwGiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759258099; c=relaxed/simple;
-	bh=AkSZ2p2ipyMcwGlPDAvkNQcfgzKLfIjz9ybYo7uFpDY=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=cJzIJIPqgNusvTyAMA8DH7Qi1KWyW+ee49GgwGr/FKwsXqGbXHK6blQnhMKuHyos6UHTfVh53kZGLXhZ0bhC3OdGRx2h6/2HqW0ey0TthZwHoqYMdSVTGb1j+wmjID8j7M6iENiGfSMYxOkVp1UCamZcgyOalF1CS5496SwL0pQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lXbcCMZk; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-46e2826d5c6so48569475e9.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 11:48:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759258096; x=1759862896; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ffgRfYtnm1HKc4tZUZavEotYf7CHOSNEIdJwn2PiGvQ=;
-        b=lXbcCMZknREsrO0Mtv0yPYP13BJVVZ2gkmpfkDKw6p1ZzRMiivZOqT09U4l28iNtxU
-         3iKpihgtEh4t3amIpA6sefYQe4qyPpsEonzquIoeSVXlkHyvp2hSLg9MiT20De8d5rw/
-         1l0ca3tj/lrZb29j0KYyElE0vBbucFWTt74e8ByCdG+JdRHArWmqOlrqE6RytaC3zfhD
-         GNmZezOs4Olu61uBpdonmVG2c/PCm3walosz2XHfaGw7nHI0z6Lib4yc+TuERuTAd4py
-         QeVFk73u5ro48O3P4WWo7uG7X6o1NR0Z6I0RY0v83MMNsrcQRl5NzlAv4e2tjK/fXo4x
-         bglA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759258096; x=1759862896;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ffgRfYtnm1HKc4tZUZavEotYf7CHOSNEIdJwn2PiGvQ=;
-        b=iSEGraJOsAOvBWK4juafxnJ2GV7QpgyUqtyOVxYXzswOU/SUMg8CzEnEI44wg3PWbk
-         bUlTF/hiQceBkojij+fa+z8huRuzt+Dr+oWE/KqDBvbrM/OEQoQM1lbkeq1LTQXuynac
-         TOT8U3cwUrcoayRTuUVSK4+pWdkiEchyll/Hdz9v/iyVBzmYRxYWLWnQImTJ/JD6Z1pV
-         DBvX0kwOdDqAIC4pN56Eny5iwwXKGsf7IU2nvBaqwwRGrGOcWsebq8mgJt7gG8xHXana
-         wNakBKmypb3JTOvwFRhNLQ+HMcz0sh4X0LR1gtN20DoKHmbPnOlyenMN6cTKrylebhse
-         f0Ig==
-X-Forwarded-Encrypted: i=1; AJvYcCXfhz+HTCcMrZEbymfmTmKSyoswLwEd7TRhJPowzXCN4NSb2KBILSNvsmuRzP7J03052pYZoaaU9HyI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxc25RQNV5rJ8b2I+VBJczow0tl6UGp6OJ/8DAdfeLJe2v5JMwf
-	x3cOOAyMANw6KRd7F68CSXkv2snQp0D50dTTbRXxnZ41TxRAFD9GzprK/XLQVUa5XXs=
-X-Gm-Gg: ASbGncs6CmQgMkB92yDKCdRRLclwzv5NNttgST+X+89yRsfWugevQwf/VqXIZ4y89hH
-	nC/oP/a4sh3fftB5Fi81qMmcR0k4TTxfKzhhKxlG+80zRxiSvkzLT6+lG3dqS4epaEkNKqWWLwK
-	pQsSFNH9pVekjAK1Lkjv83lxCaEvyCKQlm7Iq0aYeqDZ0wXOnNUcPJtz/Z5gEFvLgfPRATCfaSZ
-	XomBf9jAZy8SA2IblWtUdpSFgSMwMac9HQzpPSAiOH/NdD57pDEVEav6iKTObMVkdeAV2j7R5cY
-	cKPJP/dRvnvhjOWQCKaZTS8kMx/KIcLhWgPwtZW7LimnnD6fhkAfPogy875L9wpUD8nCo0ynIDw
-	DmQLNFUHpbIMWVxKY38u/bYWjmybSj6Laf0Uhn0VgE1oSM1I8j4oy6sFW+UC5jmcRDPuhPeDcNU
-	vFN84ycVwFUKvC9fhiJ7wAj7A=
-X-Google-Smtp-Source: AGHT+IEYI3huopKWdfDQEJir5e/rv3rOBRHS1Emu0fC6ieyMwwYyTSg13GLpRz3qoAuTqhlVIXzV/Q==
-X-Received: by 2002:a05:600c:5303:b0:46e:4287:a85e with SMTP id 5b1f17b1804b1-46e612192ecmr7706325e9.13.1759258095988;
-        Tue, 30 Sep 2025 11:48:15 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:9459:14e0:525e:d859? ([2a01:e0a:3d9:2080:9459:14e0:525e:d859])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e6199fb54sm5013245e9.9.2025.09.30.11.48.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Sep 2025 11:48:15 -0700 (PDT)
-Message-ID: <426679ae-03c4-47d5-895d-7c927b2c3b07@linaro.org>
-Date: Tue, 30 Sep 2025 20:48:13 +0200
+	s=arc-20240116; t=1759258318; c=relaxed/simple;
+	bh=jyBHzsxRS2jxhYbpoIYY4zJABy0+Tr0/8Tj/357Ar9I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kuuhw8T5RxUR9AQhag8c3kxZUe/7QPNpYvvw56nQHBSJbhO1PpnVIrZukH1JREiSwa+VcvJ8tCtjNrc/K/91o2/AwTK6szYt/izC6GS0ZzCuLRBSn66Zq1JMdn+4SI4aeDDKF6A3e6Cy8GzdvBZhdo0ULijqBBFUuFuFA9lgi8I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TaDSCduO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF398C4CEF0;
+	Tue, 30 Sep 2025 18:51:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759258317;
+	bh=jyBHzsxRS2jxhYbpoIYY4zJABy0+Tr0/8Tj/357Ar9I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TaDSCduObxABjop7cQX8B8UhPwkoWFb9DqDzPG2QVBMfWbM936Kp2ypzO0dkZDuOD
+	 VwBGOAQq6JEziFjCtXicd/IVG7Yh9NwMdIz0kNHTdZlOhD596ATISkf64SqI8z4e2e
+	 R9c9VjR+pJQzXCak7W+W6ZAdES2fnJg45zgznv3c+jjoHy/clX8fRjVtZBrstCcehW
+	 qvgrPxWb9GmyvvCdShYS511Eu0nzamkWYRcTVEjhQ+jnlSZ3M7MSbL4s6L4ZKHkc/Z
+	 /zhqAR0+IDat+ws1aQH8nyRxVG6BG8iVkgY957HgkjZPc0obTfRISSQeMicXUc/Gqh
+	 oV51LZ+3nTSmA==
+Date: Tue, 30 Sep 2025 19:51:52 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Jun Guo <jun.guo@cixtech.com>
+Cc: peter.chen@cixtech.com, fugang.duan@cixtech.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
+	linux-spi@vger.kernel.org, michal.simek@amd.com,
+	cix-kernel-upstream@cixtech.com,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: spi: spi-cadence: document optional
+ fifo-width DT property
+Message-ID: <20250930-vocally-closable-136829bc9fed@spud>
+References: <20250930075644.1665970-1-jun.guo@cixtech.com>
+ <20250930075644.1665970-2-jun.guo@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] dt-bindings: usb: switch: split out ports definition
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Romain Gantois <romain.gantois@bootlin.com>, Li Jun <jun.li@nxp.com>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Bjorn Andersson <andersson@kernel.org>, Luca Weiss
- <luca.weiss@fairphone.com>, Abel Vesa <abel.vesa@linaro.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20250930-topic-sm8x50-fix-qmp-usb43dp-usb-switch-v1-1-060568de9538@linaro.org>
- <vwlshz5li23xlthn5delxwxdsdci5nc22iey3xih4qf5uhbory@clskdsy64xpx>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <vwlshz5li23xlthn5delxwxdsdci5nc22iey3xih4qf5uhbory@clskdsy64xpx>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2UGIE5QG3NgUNc7j"
+Content-Disposition: inline
+In-Reply-To: <20250930075644.1665970-2-jun.guo@cixtech.com>
 
-On 9/30/25 20:43, Dmitry Baryshkov wrote:
-> On Tue, Sep 30, 2025 at 07:17:21PM +0200, Neil Armstrong wrote:
->> The ports definition currently defined in the usb-switch.yaml
->> fits standards devices which are either recipient of altmode
->> muxing and orientation switching events or an element of the
->> USB Super Speed data lanes.
->>
->> This doesn't necessarely fit combo PHYs like the Qualcomm
->> USB3/DP Combo which has a different ports representation.
->>
->> Move the ports definition to a separate usb-switch-ports.yaml
->> and reference it next to the usb-switch.yaml, except for
->> the Qualcomm USB3/DP Combo PHY bindings.
-> 
-> Isn't it easier to make QMP PHY use $ref for port nodes instead of allOf
-> and keep ports definitions inside the usb-switch schema?
 
-Rob asked to not do that... see https://lore.kernel.org/all/20250905175533.GA1000951-robh@kernel.org/
+--2UGIE5QG3NgUNc7j
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Neil
+On Tue, Sep 30, 2025 at 03:56:42PM +0800, Jun Guo wrote:
+> Add documentation for the optional 'fifo-width' device tree property
+> for the Cadence SPI controller.
+>=20
+> Signed-off-by: Jun Guo <jun.guo@cixtech.com>
+> ---
+>  .../devicetree/bindings/spi/spi-cadence.yaml          | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/spi/spi-cadence.yaml b/Doc=
+umentation/devicetree/bindings/spi/spi-cadence.yaml
+> index 8de96abe9da1..b2e3f217473b 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-cadence.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-cadence.yaml
+> @@ -62,6 +62,17 @@ properties:
+>      items:
+>        - const: spi
+> =20
+> +  fifo-width:
+> +    description: |
+> +      This property specifies the FIFO data width (in bits) of the hardw=
+are.
+> +      It must be configured according to the actual FIFO width set during
+> +      the IP design. For instance, if the hardware FIFO is 32 bits wide,
+> +      this property should be set to 32.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 8
+> +    maximum: 32
+> +    default: 8
 
-> 
->>
->> Reported-by: Rob Herring <robh@kernel.org>
->> Closes: https://lore.kernel.org/all/175462129176.394940.16810637795278334342.robh@kernel.org/
->> Fixes: 3bad7fe22796 ("dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Reference usb-switch.yaml to allow mode-switch")
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   .../bindings/phy/fsl,imx8mq-usb-phy.yaml           |  4 +-
->>   .../bindings/phy/samsung,usb3-drd-phy.yaml         |  4 +-
->>   .../devicetree/bindings/usb/fcs,fsa4480.yaml       |  1 +
->>   .../devicetree/bindings/usb/gpio-sbu-mux.yaml      |  1 +
->>   .../devicetree/bindings/usb/nxp,ptn36502.yaml      |  1 +
->>   .../devicetree/bindings/usb/onnn,nb7vpq904m.yaml   |  1 +
->>   .../devicetree/bindings/usb/parade,ps8830.yaml     |  1 +
->>   .../bindings/usb/qcom,wcd939x-usbss.yaml           |  1 +
->>   .../devicetree/bindings/usb/ti,tusb1046.yaml       |  1 +
->>   .../devicetree/bindings/usb/usb-switch-ports.yaml  | 68 ++++++++++++++++++++++
->>   .../devicetree/bindings/usb/usb-switch.yaml        | 52 -----------------
->>   11 files changed, 81 insertions(+), 54 deletions(-)
->>
-> 
+I assume this differs from fifo-depth because this is the actual width
+of the registers rather than the number of elements of that width the
+FIFO can contain?
 
+However, this isn't something defined as common in spi-controller.yaml
+so you'll need a vendor prefix for the property if the property stays.
+This does, however, seem like something that can just be determined by
+the compatible and that your omission of a soc-specific one is what's
+lead you to introduce this property. Why not just use a sky1-specific
+compatible here?
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> --=20
+> 2.34.1
+>=20
+
+--2UGIE5QG3NgUNc7j
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNwmyAAKCRB4tDGHoIJi
+0preAQCGJTXoWL3uSSINEjlopPAGGVgwBWAKQr9EmEat9qGu1wD6Av/DN+YvByfy
+v3+e5PUmjSfWH/El5UQ+yc5rLpm7cgw=
+=Sl04
+-----END PGP SIGNATURE-----
+
+--2UGIE5QG3NgUNc7j--
 
