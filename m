@@ -1,154 +1,153 @@
-Return-Path: <devicetree+bounces-222872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B89CBAEBA9
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 01:06:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91B68BAECD0
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 01:48:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF2923B8362
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 23:06:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 470344A0C50
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 23:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85B592D0C76;
-	Tue, 30 Sep 2025 23:06:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 079D725A35F;
+	Tue, 30 Sep 2025 23:48:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TLMYUycy"
+	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="NwodKnn3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60593243968
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 23:06:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FFF0223DD0
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 23:48:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759273574; cv=none; b=Jgj+EehbKFKFtP/LqtLKTlCbhasYKBwMRSHD5D1Q5HaaFmsZNdkwC/q+byYfSUs7r6Mm2bLu94+3LXXvwJm8hFUPlrDMyJb4HKfv+kKzXjzZ44KxIOUixXaPMNaMQR7bPtsQjFfcN+4a8J2h5y7A6Nu2zjkqyLXuXxETgljskJY=
+	t=1759276127; cv=none; b=neW7qFxd5LnmnlWyaFHLIV8Tso1OqAiMmkKUACTvBwjq4O0+U+uitR9TGVk7JOYHIe/8ILFNnMolLWAy4svrGOfQw4jGoemqiRKhaWOlwm2w9Rmy0C7q71J6RnC30itLvUEwgy3O+QEzew0JN1sb06D+FNM+V9EMDHVDm855rIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759273574; c=relaxed/simple;
-	bh=mFz+L72B9DjiruUWCPt3+uUkwCHLqPB81lzn9f7L9es=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QtrHDqul8P+lpED0lp+jir+NVJO+KOPiZ63DoxSZDF+YTBRlMvyLBtnwyVOjtsSSAD2e6AvgjOr5ZSZY8aX3W/og5+CT4zraTD0piNSAYSmlG0Niwi7KTVgCgtxBVqGmjE5As7VmTE/M8SxukwIxx/xn0kC3EKG7RpLjeVLTNkc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TLMYUycy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7C71C16AAE
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 23:06:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759273573;
-	bh=mFz+L72B9DjiruUWCPt3+uUkwCHLqPB81lzn9f7L9es=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=TLMYUycydyqqjUP15CWlEFWzraN18TkKIePRecxtCkCy1V5Q6/cfOULx67IJAdEQY
-	 EFNXsgnj/eXNVpwvz/ZXK8sN2Kv+2EroVbxbQTHggT3RrnWzpqW/+Z+m7tk7o9dfFo
-	 sEq6s7AbWNouIEML4E8VJ1WTkAEhu3E135shP2Vr1R/buR2pnuVKgi3JwzjqUc5Wm0
-	 DWzbQKPLIcspHPUxfkQnFXFz1R8Rm8sSnElOO/CFIwGkfzxfOMPgGpPyR3P6DpgPBJ
-	 o2/bpIo5eTMgdzFUbE3ysoaO3uOcJaWiK5lanpjA19JNzBPG/nwdL23imNUc9InoM5
-	 H64dZ454YRRPw==
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-2698384978dso47420305ad.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 16:06:13 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXUawqCzvvrsLQXbUKQQdN7a6PM1GDomLPOJ6IbYyZNQm449m3Ty6odDeoloSpaIja26qM4Wl4yiTAg@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtNwhmGvLBeNL96GYTqy+Q7RI0kPtnYURDXp1jKJLpOTPmJ2Q/
-	OPjv42OOyvfEHvngdkbJb2HDOkSfv5Aua3RNadAwCcyKhs8zceag5z00+vHfcltqAy21KONNYnX
-	fHqsHq3xlnLo7rZMUCQLYQ76bHo5asBQ=
-X-Google-Smtp-Source: AGHT+IEtVABxEKyxN7a+U3Kp2sBw7bT8AmKlK9sbcU4p8q7V3u9HMuNYcQ/g3mBtE/Xshs31HBFf6QR4rED4d0MupEk=
-X-Received: by 2002:a17:903:4b48:b0:275:2aac:fef8 with SMTP id
- d9443c01a7336-28e7f33067fmr14927905ad.38.1759273573411; Tue, 30 Sep 2025
- 16:06:13 -0700 (PDT)
+	s=arc-20240116; t=1759276127; c=relaxed/simple;
+	bh=4bm7dBKTe7VHUpax5O4A5sblWjBcLkrJbyIa/W7uP1A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=geDGUtLPuaCOo9Sy5UmUj9NX5B6U/ReZIU5VV2vs3RMWKDOsKs32nQ0R4EPsEmRwa4YJuWD2Y7LwPOIf1B13qby8RDoiV5aF+H8w3EY6Injj1i2YVPU5O3lepHjR1tCG99m5/o95uwVlHU8KbXoWojzJiblRvuo9cMkjo1PAAws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=NwodKnn3; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-7841da939deso3039376b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 16:48:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc.com; s=google; t=1759276125; x=1759880925; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=4bm7dBKTe7VHUpax5O4A5sblWjBcLkrJbyIa/W7uP1A=;
+        b=NwodKnn39OQecdVF6d8bOQQDGJ3Gwu3/er8rraGYUv3SuTXqM7jJoNUUTX1ncfQeNO
+         aVL4BoTscyDkvFc/witRmX7H6DznBmneHqFSGq3Gw/pALqTtgcSRSchoeu47dGxoazx1
+         vqzpdHAOZHplVP0PIE4cJJloFy+YxjIo6e6/dS1lqIhFdxN4cJggB67Lvl3YcPYVKqIO
+         t9iibATEJDpJ6slDDzqH5n/R/L9p/WJP9toJHOK5HynjH+6rGAsd3nQ7A2Dn0wRPOdoJ
+         ivtTlLJXlIqfICiwwgqY4RDnnVBPjUZkF97UFWMXLGl4JJCZRaYbJ1HTv2rAzyPZyCdN
+         B3uA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759276125; x=1759880925;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4bm7dBKTe7VHUpax5O4A5sblWjBcLkrJbyIa/W7uP1A=;
+        b=GQXIE62mGnd48E0dRzjDOaPyvttaj1JN01PfBLVgCQPllE4r6PJvfV51qEIB7s8Lun
+         BldQ4vYG0aBOuWuQrRpNnxLZhzLZg0L3fS++QQnpHcpX19b5/7rbGP2FnPU4jSMQydV4
+         l16o10cLqGoUtFWl6JedCmC9BAT9flRc+kuRbBJK0WkbNKXdUVPyYjaNMFYWdjW4bujG
+         tkuvwt+Zmj6MatjpqJop2ymL7kiS0xogykc0xg2HDsTqhfp/qzjhxnVrAfFfhRQm3fpi
+         bFDAfDqi/DHvq0UtTQEGzbiDhlO1vxgH9aRzOdekdEt6V7Et5jhRAy7gp7tzBzmt1qwX
+         732A==
+X-Forwarded-Encrypted: i=1; AJvYcCVgMEXvZnVPRgUL+GJ1WC9jnc1CsGIjPuUIgydB5PGNeO4UYpJ/Ljf7xahjajsXMz+PS8Q9bsVDNg7g@vger.kernel.org
+X-Gm-Message-State: AOJu0YyznHK6/6M8NHpkjzz5marAlDc9OenJYlRv6UvZORHlcKh5uj5U
+	AZ5BTYKUnB0bbWL6Zszpni0HBhMCKdEbByVHKFAMZWo4d7xjNlAqvD7Yo2DB4awSHv8=
+X-Gm-Gg: ASbGncuIyQjsyANbP4UJutS50nCvSOvQEa6fyz+1xXPAk6LwgwdWbfpqjrgMhF7b27C
+	2F74PhLv7g3LLeUr0y8mZ55cDIldN+hqFTxWVumFkiPUYQPRutgfCxx1NhMjORLQCGIEP+w1nWz
+	8MmxTtmN/VkKf/fgd6tbIjwFH59BX9oMxQ+hAplNBhw3K7EeoJCzBdiL/Uvp7wpv8b6d6ivBHPC
+	xZTo2YqgcOxFzPDKb6B8yEEtDHT3zLO5U1po3sCLyTTbYuki/kAFpRF5h8TuB/WLO9LdD5O0IA3
+	2LVlEbcYddsVhDgbc8sngOliLP/IP4aCIQrB0EOknnBykoosh8BHBqo7g/+DkShfYnAurXIVf60
+	PNaZ59Nfi+gxribKTBtlk64k2F2bqNXOPreUwRpDCvJcDIi/qDc/dSuZC
+X-Google-Smtp-Source: AGHT+IHuRRsekWNjgE7yCPLG9pq3eS/GOyyUhj/f2Q9rAEjbYAirvs/e72q2qhgNkEK8PrNvRevQ9g==
+X-Received: by 2002:a17:903:3d06:b0:27e:ea82:5ce8 with SMTP id d9443c01a7336-28e7f291db3mr15309515ad.14.1759276125338;
+        Tue, 30 Sep 2025 16:48:45 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed6882133sm171972415ad.89.2025.09.30.16.48.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Sep 2025 16:48:44 -0700 (PDT)
+Date: Tue, 30 Sep 2025 16:48:41 -0700
+From: Deepak Gupta <debug@rivosinc.com>
+To: Florian Weimer <fweimer@redhat.com>
+Cc: Charles Mirabile <cmirabil@redhat.com>, pjw@kernel.org,
+	Liam.Howlett@oracle.com, a.hindborg@kernel.org,
+	akpm@linux-foundation.org, alex.gaynor@gmail.com,
+	alexghiti@rivosinc.com, aliceryhl@google.com,
+	alistair.francis@wdc.com, andybnac@gmail.com, aou@eecs.berkeley.edu,
+	arnd@arndb.de, atishp@rivosinc.com, bjorn3_gh@protonmail.com,
+	boqun.feng@gmail.com, bp@alien8.de, brauner@kernel.org,
+	broonie@kernel.org, charlie@rivosinc.com, cleger@rivosinc.com,
+	conor+dt@kernel.org, conor@kernel.org, corbet@lwn.net,
+	dave.hansen@linux.intel.com, david@redhat.com,
+	devicetree@vger.kernel.org, ebiederm@xmission.com,
+	evan@rivosinc.com, gary@garyguo.net, hpa@zytor.com,
+	jannh@google.com, jim.shu@sifive.com, kees@kernel.org,
+	kito.cheng@sifive.com, krzk+dt@kernel.org,
+	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-kselftest@vger.kernel.org, linux-mm@kvack.org,
+	linux-riscv@lists.infradead.org, lorenzo.stoakes@oracle.com,
+	lossin@kernel.org, mingo@redhat.com, ojeda@kernel.org,
+	oleg@redhat.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
+	peterz@infradead.org, richard.henderson@linaro.org,
+	rick.p.edgecombe@intel.com, robh@kernel.org,
+	rust-for-linux@vger.kernel.org, samitolvanen@google.com,
+	shuah@kernel.org, tglx@linutronix.de, tmgross@umich.edu,
+	vbabka@suse.cz, x86@kernel.org, zong.li@sifive.com
+Subject: Re: [PATCH v19 00/27] riscv control-flow integrity for usermode
+Message-ID: <aNxsWYYnj22G5xuX@debug.ba.rivosinc.com>
+References: <f953ee7b-91b3-f6f5-6955-b4a138f16dbc@kernel.org>
+ <20250926192919.349578-1-cmirabil@redhat.com>
+ <aNbwNN_st4bxwdwx@debug.ba.rivosinc.com>
+ <CABe3_aE4+06Um2x3e1D=M6Z1uX4wX8OjdcT48FueXRp+=KD=-w@mail.gmail.com>
+ <aNcAela5tln5KTUI@debug.ba.rivosinc.com>
+ <lhu3484i9en.fsf@oldenburg.str.redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20250930035551epcas5p4ee7cb5af08eadb2f5ed6e5eaa06a60a9@epcas5p4.samsung.com>
- <20250930040348.3702923-1-h.dewangan@samsung.com> <20250930040348.3702923-9-h.dewangan@samsung.com>
- <CAJKOXPecLREbEDM4yfM=WD-EFfuBqPDXNZceATLeWQRj0X_w7w@mail.gmail.com>
- <75d06769-4896-4095-9969-03a517705196@samsung.com> <CAJKOXPe0kGFoUxOGupwD_rSshTBVFhH3184xOH=NquSGn2QxcQ@mail.gmail.com>
-In-Reply-To: <CAJKOXPe0kGFoUxOGupwD_rSshTBVFhH3184xOH=NquSGn2QxcQ@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Date: Wed, 1 Oct 2025 08:06:01 +0900
-X-Gmail-Original-Message-ID: <CAJKOXPchnA2k4sghuSBxA4h=CKJEQU0=09F+AAxPxA-rBpUW_g@mail.gmail.com>
-X-Gm-Features: AS18NWB-7qq3WRSu2_4sN54O9Pq__ESSuLB-fBN1o7du1U_PSVDKaJXEOusJU-4
-Message-ID: <CAJKOXPchnA2k4sghuSBxA4h=CKJEQU0=09F+AAxPxA-rBpUW_g@mail.gmail.com>
-Subject: =?UTF-8?Q?Re=3A_=5BPATCH_08=2F29=5D_media=3A_mfc=3A_Add_Exynos=E2=80=91MFC_drive?=
-	=?UTF-8?Q?r_probe_support?=
-To: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: Himanshu Dewangan <h.dewangan@samsung.com>, mchehab@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, sumit.semwal@linaro.org, 
-	christian.koenig@amd.com, alim.akhtar@samsung.com, manjun@samsung.com, 
-	nagaraju.s@samsung.com, ih0206.lee@samsung.com, jehyung.lee@samsung.com, 
-	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linaro-mm-sig@lists.linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <lhu3484i9en.fsf@oldenburg.str.redhat.com>
 
-On Wed, 1 Oct 2025 at 07:59, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Tue, Sep 30, 2025 at 11:20:32AM +0200, Florian Weimer wrote:
+>* Deepak Gupta:
 >
-> On Wed, 1 Oct 2025 at 00:46, Marek Szyprowski <m.szyprowski@samsung.com> =
-wrote:
-> >
-> > Hi Krzysztof,
-> >
-> > On 30.09.2025 07:54, Krzysztof Kozlowski wrote:
-> > > On Tue, 30 Sept 2025 at 12:56, Himanshu Dewangan <h.dewangan@samsung.=
-com> wrote:
-> > >> From: Nagaraju Siddineni <nagaraju.s@samsung.com>
-> > >>
-> > >> Introduce a new Kconfig entry VIDEO_EXYNOS_MFC for the Samsung
-> > >> Exynos MFC driver that supports firmware version=E2=80=AF13 and late=
-r.
-> > >> Extend the top=E2=80=91level Samsung platform Kconfig to disable the=
- legacy
-> > >> S5P=E2=80=91MFC driver when its firmware version is >=E2=80=AFv12 an=
-d to select the
-> > >> new Exynos=E2=80=91MFC driver only when VIDEO_SAMSUNG_S5P_MFC is not=
- enabled.
-> > >>
-> > >> Add exynos-mfc Kconfig and Makefile for probe functionality and crea=
-tion
-> > >> of decoder and encoder device files by registering the driver object
-> > >> exynos_mfc.o and other relevant source files.
-> > >>
-> > >> Provide header files mfc_core_ops.h and mfc_rm.h containing core
-> > >>    operation prototypes, resource=E2=80=91manager helpers,
-> > >>    and core=E2=80=91selection utilities.
-> > >>
-> > >> Add a configurable option MFC_USE_COREDUMP to enable core=E2=80=91du=
-mp
-> > >> support for debugging MFC errors.
-> > >>
-> > >> These changes bring support for newer Exynos=E2=80=91based MFC hardw=
-are,
-> > >> cleanly separate it from the legacy S5P=E2=80=91MFC driver, and lay =
-the
-> > >> groundwork for future feature development and debugging.
-> > >>
-> > > No, NAK. Existing driver is well tested and already used on newest
-> > > Exynos SoC, so all this new driver is exactly how you should not work
-> > > in upstream. You need to integrate into existing driver.
-> > >
-> > > Samsung received this review multiple times already.
-> >
-> > Please don't be so categorical. The MFC hardware evolved quite a bit
-> > from the ancient times of S5PV210 SoC, when s5p-mfc driver was designed=
-.
-> > The feature list of the new hardware hardly matches those and I really
-> > don't see the reason for forcing support for so different hardware in a
-> > single driver. Sometimes it is easier just to have 2 separate drivers i=
-f
-> > the common part is just the acronym in the hardware block name...
-> >
+>> In case of shadow stack, it similar situation. If enabled compiler
+>> decides to insert sspush and sspopchk. They necessarily won't be
+>> prologue or epilogue but somewhere in function body as deemed fit by
+>> compiler, thus increasing the complexity of runtime patching.
+>>
+>> More so, here are wishing for kernel to do this patching for usermode
+>> vDSO when there is no guarantee of such of rest of usermode (which if
+>> was compiled with shadow stack would have faulted before vDSO's
+>> sspush/sspopchk if ran on pre-zimop hardware)
 >
-> I know it is easier for Samsung to write new driver, but this should
-> answer to - why the maintainers and the community would like to
-> maintain two drivers. Sure, make a case why we would like to take this
-> code.
->
-> The easiest argument here why we wouldn't is: new vendor downstream
-> code means replicating all known issues, old coding style, everything
-> which we already fixed and changed.
+>I think this capability is desirable so that you can use a distribution
+>kernel during CFI userspace bringup.
 
-And 15 second look at one of the patches already confirmed this:
-replicating downstream issue - undocumented DT ABI not following
-current style, code relying on some other downstream drivers. 15
-seconds was enough to find it.
+I didn't get it, can you elaborate more.
+
+Why having kernel carry two vDSO (one with shadow stack and one without) would
+be required to for CFI userspace bringup?
+
+If Distro is compiling for RVA23 CONFIG_RISCV_USERCFI has to be selected yes,
+kernel can have vDSO with shadow stack. Distro can light this option only when
+its compiling entire distro for RVA23.
+
+If distro is not compiling for RVA23, then anyways CONFIG_RISCV_USERCFI is by
+default "N". This would simply build vDSO without shadow stack.
+
+>
+>Thanks,
+>Florian
+>
 
