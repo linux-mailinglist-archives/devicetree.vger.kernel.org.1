@@ -1,179 +1,185 @@
-Return-Path: <devicetree+bounces-222689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E94D0BABE8B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 09:53:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B7ECBABEC7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 09:57:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A4891C0E4A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:53:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4E9F3B43F1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:57:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D5432C028F;
-	Tue, 30 Sep 2025 07:53:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B03B2DC32D;
+	Tue, 30 Sep 2025 07:56:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022088.outbound.protection.outlook.com [52.101.126.88])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 853CE243968
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:52:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759218780; cv=none; b=QUpjAb7iuN0VZgSSpkXXMfofNuD6NeevAQ04S6Up48xkey5oZpqWKcAvMUBfH0IqtrQYY1hFWWO1MufaATTbIU3nzMLYVr52uqqMQNBFamJcANsJSgqmzG6FdaGnAajn09UlrljyQpcAZHIBQpjdecC94bZ1avRUg8m7Bss7zMo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759218780; c=relaxed/simple;
-	bh=Ks2i8mOpB744eUk2A/ODTB+R+UAfytF25Eq134pKwt0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dmrK856+XRNepvC6UX4/oiXbsajFuuAj6cn4HThKB8vDrFTETtEVreex6xCKp4JGlf5c2Q6xGXJVn/DX5bhFhZO1CHEd17KE6hduMbScyrmgP4p1Auu+/nFu/8iF5CWNFxkPBnZj+ZQHxmiKpQk6se4gcEaKqeZ1iYhDqtBMrKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-54a86cc950dso940583e0c.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 00:52:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759218777; x=1759823577;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Aa5DrkK9lamemzbezkeJMzZtq5kF5RPmPk7WlbJcb3g=;
-        b=q5/v0Elyi3sDKFy71cH8S+RSN+5D1pX6NnOuyDlHi8Hjb1/e/6eo6D2GulqbetkaLN
-         lGm96RpXqNEsrUpCkaFVAWO2/ZNjpT1mYii8wZYrjb0PlDL8fn6KO5KvnVSA9fDGjjh/
-         Vz3jtGg/5KHZvZnqkNa7H5Ue8JEEtfZrP33G4rK4EKE17uDBBMbET3yHKvHhLOdNXuCq
-         akeWJZI+w3WZNF/oYo/Ri7CH2DSuyPuBydFZMKkBku6JmeRUH7/4qeMzSz1zld62WAEU
-         aKubos6Qxk3dyBLB1i5GlgzLN6IoNVrnx0xnlXVR4v7jVsZ7YKW4y6Il+b6k9XfoKJ2e
-         um8g==
-X-Forwarded-Encrypted: i=1; AJvYcCVRLtp9q/PNg1uG+1La2UDGUIFtFnpaL+t/UNflTucZrGqMRvv2iIuiz/faFwg6fFILo0pbbBOQlQQ7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4tLucI72Fi1E4sQoKUgIk1dZZPUULaW2nEj3uK5XmASO7eLWi
-	58pzj8bWLhLJMd3t2KyZo40EW8ANos3gYCI+bLTCr1BSgWLTSfeLHVvVNlEnq+iX
-X-Gm-Gg: ASbGncv9hH1JzVX1eDt6niSub8oD3I6hGc7T1Tc9pXf4wEr1AoIdr1idwGyesC4dzGy
-	s0zIy7XIjr5YXjizGQw7bJyUeVizGdxSWD1C6iZf0wzUXvrUqlwYkYr9JaVRUmYHpaa77Djkqe4
-	owqOi9pVFEXVa9BBgOKj+0yOCE9cpc2QWUoDVC5svrefcEU/RBBc/jVZcxho9hr+IfralWJrIX2
-	AsHolGuZ/EcXt8ebmTObHfMtCVsx97Ae/MJjnH2gZ1jjllNmGkytVEP1wEthnwLcXP4LViD6hMY
-	tC1llofDx+y/V0ikFD00tPW77BftxN6+aZ++2Tmr2IG6FPoF4lZOrA0O2ku1m9OHiL81sTz28JT
-	5AER9DLTu82VsjQY4JWZdGau0/hjm25vqIj/LnplMX4R4etEIUWLUDJYSrwY3qXWCzRjXaqZ18m
-	ux+9LcmX6HVdxwbvzUiIc=
-X-Google-Smtp-Source: AGHT+IGaV+2vPFWCHm2rDF/LaEpA/fvlLiArWqxO7KsddmEjs8OJ6Msj/j7j3QwzhanreEyAcsdq5w==
-X-Received: by 2002:a05:6122:ca2:b0:53c:6d68:1cce with SMTP id 71dfb90a1353d-54bea25c24amr7843178e0c.16.1759218777074;
-        Tue, 30 Sep 2025 00:52:57 -0700 (PDT)
-Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54bedca0163sm2756809e0c.19.2025.09.30.00.52.56
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Sep 2025 00:52:56 -0700 (PDT)
-Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-890190c7912so1778920241.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 00:52:56 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUN/M/aOwVIBIsgpFBJW7FrOQQJBtddXrIR+y60WkKBilhZXbXbpxHp9L+Qi0t7P5TZnoGmUJ3rt1iD@vger.kernel.org
-X-Received: by 2002:a05:6122:3c92:b0:54a:a5ac:5107 with SMTP id
- 71dfb90a1353d-54bea256dccmr7837048e0c.15.1759218775649; Tue, 30 Sep 2025
- 00:52:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5263C22B5AC;
+	Tue, 30 Sep 2025 07:56:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.88
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759219014; cv=fail; b=YlIo/veX9qyPVxrY3w3TrmhH3/+VpIMjgF7n/fzftXXX37stKAmWzb0Y2lIFz3P+rL79m55fiUZwke+AToAGB65wEXnUkU5VGzlNblmTsfOebVmQEl7Oan0OkFAV/WFdB4ZeM/bWuPD/lXVB7Dqz0CRlntnnICv5v6Zl4dFhbL0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759219014; c=relaxed/simple;
+	bh=xvkBd8mgCFL7sfjacEt6x8stxgqbp3RyBWBOD6Mc4jk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=CM+SUdFnC/XNAChe85XxYwwk74AVYPBKU0uq5sR/PKReSOCLeCA3yszmyy8zRv1DpaGJ/ODeTsGUZJafuGCznCfZLAf/wftlnQ0Bg960EWPMAPyBXuSrPs4yAOLg9N3+vYzKCM6DfauUIgdRnMjmz5uGq+JNun1eDC8oACj1Wfs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com; spf=pass smtp.mailfrom=cixtech.com; arc=fail smtp.client-ip=52.101.126.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cixtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cixtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kpMkR4A3XgK+YmhF/bffZ3ajhuFslRnzB/6d4dNpYko7dK51WRR6+H5237QIOznIzCvY/0lzgL3HOC/iuj2N9ZD6HTagQO8CKjiIjHnS3nGyIPZVPWEj04to+KeJRSLfZnlKOOhQ6po8FVgnVE66BLTO6KsJJMRTCVL8JItzRigJWynh3HtTtMFz4ICMN7Ah/HVneV1O52aTkhKM7Lx59ebp8KcHcLXxVVAiQBZx4QjOFrMjJnY2JZyNDnPsd7dLtoo+wh7LFbU9Rc9PPRcGQYN01iSnFt38chjGyirAqGWniXz2F83PCmHY9fMNt4Rgukva1InjPmkc5ajIOaaBww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OZytqp8jHc0j5Ndwle7H43KEOM+xw9TGnMnt3zzOHWk=;
+ b=X7gBoltr7wRur8tGDAeUEoJXoX6YCnvH2DVb5hZFmpQxgEo8qa5BVXdMdL7S0u0Rbkc767q0++PfVPzUIeGNso9wi4Q1+jtXCQ09jZzTm8mnINxIDYgt7y9EXz9Ur6iYiN7WpYzgA7d1VZIBLddTCQmRlaJk6JcNfVQRPrDsRGJtCz+9Tg1vZvNmY/RTz4dCETT0MjSHCyKIJcwPtk6NkxA5BWEumbNt5sSy0cUYuxQBcHWLeOutLnA+KL9F6cre8GMeZ+yyBwgt2pH0H1UHkMkrmTdbwlsJtAcyW2SF4dIQGa4NHm41Ek0ZfTEBAeXvJsBcpd3o9sCuM9H4WAZsag==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 222.71.101.198) smtp.rcpttodomain=amd.com smtp.mailfrom=cixtech.com;
+ dmarc=bestguesspass action=none header.from=cixtech.com; dkim=none (message
+ not signed); arc=none (0)
+Received: from SE2P216CA0047.KORP216.PROD.OUTLOOK.COM (2603:1096:101:115::8)
+ by PUZPR06MB6169.apcprd06.prod.outlook.com (2603:1096:301:106::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.17; Tue, 30 Sep
+ 2025 07:56:47 +0000
+Received: from TY2PEPF0000AB89.apcprd03.prod.outlook.com
+ (2603:1096:101:115:cafe::a2) by SE2P216CA0047.outlook.office365.com
+ (2603:1096:101:115::8) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9160.17 via Frontend Transport; Tue,
+ 30 Sep 2025 07:56:40 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 222.71.101.198)
+ smtp.mailfrom=cixtech.com; dkim=none (message not signed)
+ header.d=none;dmarc=bestguesspass action=none header.from=cixtech.com;
+Received-SPF: Pass (protection.outlook.com: domain of cixtech.com designates
+ 222.71.101.198 as permitted sender) receiver=protection.outlook.com;
+ client-ip=222.71.101.198; helo=smtprelay.cixcomputing.com; pr=C
+Received: from smtprelay.cixcomputing.com (222.71.101.198) by
+ TY2PEPF0000AB89.mail.protection.outlook.com (10.167.253.7) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9160.9 via Frontend Transport; Tue, 30 Sep 2025 07:56:46 +0000
+Received: from guoo-System-Product-Name.. (unknown [172.20.64.188])
+	by smtprelay.cixcomputing.com (Postfix) with ESMTPSA id 9C3234115DE1;
+	Tue, 30 Sep 2025 15:56:44 +0800 (CST)
+From: Jun Guo <jun.guo@cixtech.com>
+To: peter.chen@cixtech.com,
+	fugang.duan@cixtech.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	broonie@kernel.org
+Cc: linux-spi@vger.kernel.org,
+	michal.simek@amd.com,
+	cix-kernel-upstream@cixtech.com,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Jun Guo <jun.guo@cixtech.com>
+Subject: [PATCH 0/3] spi-cadence: support transmission with bits_per_word
+Date: Tue, 30 Sep 2025 15:56:41 +0800
+Message-Id: <20250930075644.1665970-1-jun.guo@cixtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250916084631.77127e29@bootlin.com> <aMt5kEI_WRDOf-Hw@zatzit>
- <20250918094409.0d5f92ec@bootlin.com> <aMzhgDYOuG4qNcc0@zatzit>
- <dcbeaff2-0147-4a27-bb46-e247e42810d7@beagleboard.org> <aNJVqSpdAJzGliNx@zatzit>
- <20250923114849.2385736d@bootlin.com> <CAMuHMdWmDwedyPnBERs-tSYEG15nMUuh9u1Q+W_FdquHpUC0-A@mail.gmail.com>
- <aNNvaN4xJtKBFmWT@zatzit> <cd9763b7-919a-4b44-a347-f1491d9584b9@beagleboard.org>
- <aNtXnAeLj3xNwkyE@zatzit>
-In-Reply-To: <aNtXnAeLj3xNwkyE@zatzit>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 30 Sep 2025 09:52:44 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV+sUZpMtbCtWqJMiL_JC_nFEJcFDOoZJZPhhzhY8zQJQ@mail.gmail.com>
-X-Gm-Features: AS18NWCn2Nf_ET6vEoGNsB6ZKan8jeS0YTKv9inR2GremBjiwmJIe_zbvyBIsgE
-Message-ID: <CAMuHMdV+sUZpMtbCtWqJMiL_JC_nFEJcFDOoZJZPhhzhY8zQJQ@mail.gmail.com>
-Subject: Re: Device tree representation of (hotplug) connectors: discussion at ELCE
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Ayush Singh <ayush@beagleboard.org>, Herve Codina <herve.codina@bootlin.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Andrew Davis <afd@ti.com>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, devicetree@vger.kernel.org, 
-	Jason Kridner <jkridner@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree-compiler@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TY2PEPF0000AB89:EE_|PUZPR06MB6169:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: ef914e8b-46f4-4a7d-6104-08ddfff6e73c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|376014|1800799024|82310400026;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?8sc5jbhwaIR8+iwmCBkP4p2oLjFg72gOn5ACqP6PA5spaiheQRG1LikHplat?=
+ =?us-ascii?Q?lvzzPUuA6feP2iZfE67c4VLo8gZnIXSYzXZUmxUzr/gSJj3jF5wpLHQL7WZw?=
+ =?us-ascii?Q?Jv8UCTt7axsR+5KoStjHJfsKM2Lm0dxJh1w/HVUY7nC5gg9UKvOi7wpIdr4Q?=
+ =?us-ascii?Q?CWW9ukYugEh4i2taJrw7aCrnoVxCHJbRFrEyvL1yggP8OMrGFBwKcKW9KL75?=
+ =?us-ascii?Q?w69SDfmWhh297UyU3aRiQMWTIsezDem4d/FdXlmEPAkDOErpiKBJu5zUSDR0?=
+ =?us-ascii?Q?6IHxekAzh31B9V/EIH1NDwhHHZZzb+569lzCsG6UUVRuYAulr6vOJEXiSSgH?=
+ =?us-ascii?Q?ArumIAUYYtJIVwtoLkiD9JHARvqzXQjPbg7JXsD2WEtfv2rjNue30qEEgwNT?=
+ =?us-ascii?Q?n7VqxtyzwLBuKhFW5uWSt8kHYPUMpPIlbDkS4fJMmyPxD+PC0EvgoJz7BY1r?=
+ =?us-ascii?Q?5A0qP39a/Hjr0wEmRDbasWUKYD19+xasox+C2ox1BfVRl2gEqNy8TeGuaTmB?=
+ =?us-ascii?Q?ULqDVjPaA28P/w/1oUSBHTMWwk+QhSn1S8Je37fw+LyCBfs+vPB5AEf9bmye?=
+ =?us-ascii?Q?JwJhHc9xmy1bBYaIP/wZtKzkGkoFgyxqnzikUMCN8H1B2aGQwUhPXi6/GFMb?=
+ =?us-ascii?Q?5bIQfKa9jriLn/xaV5d0d+joifQ7QjcQMWBaKAnoaZUSgFJ7WV8knAUw6izv?=
+ =?us-ascii?Q?sexIp6e4b5bdwRq9rks5OIlejkgzEvogttnS4jKe0dMlAHvXnsTckSe8ONn7?=
+ =?us-ascii?Q?942ql2KLE/lzqgSTSp3/bN+3ZC2vn3o8b85/MRcII6aKX7vFBgGT8mlg9/WI?=
+ =?us-ascii?Q?KuYA1JY7YW3tjcy2/tnx4nBUwGhxqbMz39GK1XMBKnI+cpaFQvc3LoK/ZmrJ?=
+ =?us-ascii?Q?agxbGoyVS1eFOwcjQVA4YX15KIBADuBrUbyvT75cK6SUaRbfq5QB3a9pB3Zs?=
+ =?us-ascii?Q?hVaye9uegbSRDeD/KVXMPtW1FP7hRP8fbR99SKfDJsn4FZ8Y20UbB4Cob/v4?=
+ =?us-ascii?Q?cJ2p3mLDWYWFeCQtZj6tpSav2XzSZnNP8zQHH0sCrlykkeLBihlRtl3b0Ls/?=
+ =?us-ascii?Q?4wu+4ea8CUUDo8zcyGQfr+lgTmlJZ7RPuxLDu0pZMAnMvoqtcbH9fuFMYISU?=
+ =?us-ascii?Q?Yqy0sBybZCC0eD0TRk+i8hRX59ubSg1TDdFzO0TwR2C2ZdpTj6kKti3S9xdE?=
+ =?us-ascii?Q?yQd2Y8gnn0puVeHEowepjN1qTtimr+Pju1y5beMXgYYYWB/r8CMU4jqFWXRK?=
+ =?us-ascii?Q?LZ3wj0W/FF+8Mmo4sg/fOg1lmF2R3P71w5ZQJQ/gogQNhzC51gSg+PN9cna6?=
+ =?us-ascii?Q?aBGYsQqTuivicSyEIOAsODma9tH/RPkIraB0mFB1u3nMSCvJJ0GyY5QvcTrh?=
+ =?us-ascii?Q?XIee6pQLQQAtp/XCAkrFUdoiOoWbf0byQFyQh82lSogzmkjn6GK69gkMh8fc?=
+ =?us-ascii?Q?5CWymor/TXMq2OIxhu0+iDR+QjGQ4FDE6dXdpIY4h1AmAzg5oRnseUOtbbWU?=
+ =?us-ascii?Q?6cKE8SOfx7+ETcb8J48C946e97FLSrvlHVlnOAil9aLVJols2uZK+hgnbulE?=
+ =?us-ascii?Q?4d9naiEJYk3XAyWnZMU=3D?=
+X-Forefront-Antispam-Report:
+	CIP:222.71.101.198;CTRY:CN;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:smtprelay.cixcomputing.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(1800799024)(82310400026);DIR:OUT;SFP:1102;
+X-OriginatorOrg: cixtech.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2025 07:56:46.0690
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: ef914e8b-46f4-4a7d-6104-08ddfff6e73c
+X-MS-Exchange-CrossTenant-Id: 0409f77a-e53d-4d23-943e-ccade7cb4811
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=0409f77a-e53d-4d23-943e-ccade7cb4811;Ip=[222.71.101.198];Helo=[smtprelay.cixcomputing.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	TY2PEPF0000AB89.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PUZPR06MB6169
 
-Hi David,
+The Cadence SPI IP supports configurable FIFO data widths during
+integration. On some SoCs, the FIFO data width is designed to be 16 or
+32 bits at the chip design stage. However, the current driver only
+supports communication with an 8-bit FIFO data width. Therefore, these
+patches are added to enable the driver to support communication with
+16-bit and 32-bit FIFO data widths.
 
-On Tue, 30 Sept 2025 at 06:34, David Gibson <david@gibson.dropbear.id.au> wrote:
-> On Wed, Sep 24, 2025 at 10:33:50PM +0530, Ayush Singh wrote:
-> > On 9/24/25 09:41, David Gibson wrote:
-> > > > On Tue, 23 Sept 2025 at 11:49, Herve Codina <herve.codina@bootlin.com> wrote:
-> > > > > On Tue, 23 Sep 2025 18:09:13 +1000
-> > > > > David Gibson <david@gibson.dropbear.id.au> wrote:
-> > > > > > Ah, right.  To be clear: we absolutely don't want multiple addons
-> > > > > > altering the same nodes.  But I think we could do that in ways other
-> > > > > > than putting everything under a connector.  This is exactly why I
-> > > > > > think we should think this through as an end-to-end problem, rather
-> > > > > > trying to do it as a tweak to the existing (crap) overlay system.
-> > > > > >
-> > > > > > So, if we're thinking of this as an entirely new way of updating the
-> > > > > > base dt - not "an overlay" - we can decide on the rules to ensure that
-> > > > > > addition and removal is sane.  Two obvious ones I think we should
-> > > > > > definitely have are:
-> > > > > >
-> > > > > > a) Addons can only add completely new nodes, never modify existing
-> > > > > >     ones.  This means that whatever addons are present at runtime,
-> > > > > >     every node has a single well defined owner (either base board or
-> > > > > >     addon).
-> > > > > In this rule I suppose that "never modify existing ones" should be understood
-> > > > > as "never modify, add or remove properties in existing ones". Because, of course
-> > > > > adding a full node in a existing one is allowed (rule b).
-> > > > What if the add-on board contains a provider for the base board.
-> > > > E.g. the connector has a clock input, fed by an optional clock generator
-> > > > on the add-on board.  Hooking that into the system requires modifying
-> > > > a clocks property in the base board, cfr. [1].
-> > > > Or is there some other solution?
-> > > Hmm.  My first inclination would be that this case is not in scope for
-> > > the protocol we're trying to design now.  If the widget provides
-> > > things to the base board as well as the other way around, it's no
-> > > longer an "addon" for the purposes of this spec.
-> > >
-> > > But it's possible I've underestimated how common / useful such a case
-> > > is.
-> > >
-> > > Note that I'd expect the existing overlay mechanism to still be
-> > > around.  It may be ugly and not very well thought out, but its
-> > > drawbacks are much less severe if you're not dealing with hot unplug.
-> >
-> > Well, while that was not an initial use-case in my mind, external clock
-> > inputs are a valid use-case when talking about connectors for board headers
-> > specifically (e.g. pocketbeagle connector).
->
-> I guess I'm not familiar enough with modern embedded hardware.  I'm
-> having a hard time wrapping my head around what's going on here.  If
-> the external clock input is optional (hence under a connector), how is
-> anything on the base board dependent on it?  If nothing on the base
-> board is dependent, why do we need to modify its properties to
-> represent it?
->
-> Is this a design flaw in the clocks binding?
+This series introduces the following enhancements for Cadence SPI
+controller support on arm64 platforms:
 
-In my example, the external clock input is indeed optional, and not
-used by the base board itself.  Still, it is a clock input to the SoC,
-and may be used as a reference clock when an add-on board is connected
-that needs to use the exact clock frequency of that reference clock.
+Patch 1: Document the 'fifo-width' property as optional in
+spi-cadence device tree bindings.
+Patch 2: Enhance the SPI Cadence driver to support data transmission
+with bits_per_word values of 16 and 32.
+Patch 3: Add a new 'fifo-width' configuration property to Cadence
+SPI node in the CIX device tree.
 
-https://elixir.bootlin.com/linux/v6.17/source/arch/arm64/boot/dts/renesas/white-hawk-ard-audio-da7212.dtso
-AUDIO_CLKIN_V is the optional clock input to the SoC.
-GP1_25/SL_SW2_V/TPU is the reference clock (actually it is not
-generated on the add-on board, but by a PWM controller on the base
-board, but it could just be a crystal oscillator on the add-on board
-instead)
+The CIX Sky1 SPI supported patch is added:
+https://lore.kernel.org/all/20250919013118.853078-1-jun.guo@cixtech.com/
 
-I hope this makes it clearer.
+This series:
+- Documents the new property usage.
+- Enables 16/32 bits per word in the driver for broader hardware
+  compatibility.
+- Makes fifo-width configurable via DT.
 
-Gr{oetje,eeting}s,
+The patches have been tested on CIX SKY1 platform.
 
-                        Geert
+Jun Guo (3):
+  dt-bindings: spi: spi-cadence: document optional fifo-width DT
+    property
+  spi: spi-cadence: supports transmission with bits_per_word of 16 and
+    32
+  arm64: dts: cix: add the fifo-width configuration field for cadence
+    SPI
+
+ .../devicetree/bindings/spi/spi-cadence.yaml  |  11 ++
+ arch/arm64/boot/dts/cix/sky1.dtsi             |   2 +
+ drivers/spi/spi-cadence.c                     | 125 ++++++++++++++++--
+ 3 files changed, 125 insertions(+), 13 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.34.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
