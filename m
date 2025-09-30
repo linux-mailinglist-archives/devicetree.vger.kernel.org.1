@@ -1,80 +1,82 @@
-Return-Path: <devicetree+bounces-222676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B63E6BABD92
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 09:37:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57754BABDA7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 09:40:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5101E189EBBD
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:38:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01D2C3B4797
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:40:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FAB7277030;
-	Tue, 30 Sep 2025 07:37:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCEE32BE650;
+	Tue, 30 Sep 2025 07:39:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="SbtzrdM6"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HVK6vLpK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60682239E76
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:37:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E801D1DD0EF
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:39:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759217855; cv=none; b=Q7yW+mt99VaX7RGAZ9FJBb+L9+4xbwrfbAJabQK96VsL89fqZPqWCF7XAbJCkkl7tLj+BSL+PecOLi6cL0zZewafdY10n/mBsoqCDfw8Ic5XMezNxj3zqaAG08BAH0m0825mKmK64FH2qzRGnpS7ZwnvRipnMYhr6XhYnZy2dAw=
+	t=1759217996; cv=none; b=ZYKEHuJ7ak4kEUjmTiN1I9KquEvTaPkQQht4qRiGZ5ba+7d54dOqqAOyAgyOBlbZS4ctDaeXlL78G/a92VxebHXhL/rpQx9Ge3tarjpvbkhzEuhbcdqxBT5nZBUC5BjoCLlvIK+80yOUiJTcmdlYCgiWBrv4OLPejP7NcfIQHNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759217855; c=relaxed/simple;
-	bh=ENGheAYnNW3g5COpjG03gMGNXlOZ2EcAFRzlHVSA5ng=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ikUwavbVvAY6xZ0HaJe2Mkf6qptv6QYg7oAaLRkFGH+JzRe+6GHHlNU+FWW/ZigpvRb1WT0LCwmUyHUSG/EF8Pu2XBMKRa3LlmwIsYUoK0SikILVwSiPhDAFhwNaEYfY95+FRe9hsph/YtVI23j94gR2trdM+gfBi4CgLMnnRjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=SbtzrdM6; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b3d5088259eso357881566b.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 00:37:33 -0700 (PDT)
+	s=arc-20240116; t=1759217996; c=relaxed/simple;
+	bh=nCuzzICNiMfPq7GXzu2/94MKHl2UoBxCWeAEP7gaTvQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=V6lyBLKG0OSZqYLU0lV6TMUdZ9YBNvYf2gIMUSvuvPSoiHJZfqcM3CEXtdqCpeHfD04AA3H/p0JpyKe/NOQJrb9syDWBH0UU7ZF6+0hl9NXvflw2FxoA03vgUd52nHstuJnU3j9AX6dC37cy9l1O9bX/dFUC3im0xZPMjAO1Nt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HVK6vLpK; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-46e42fa08e4so31736145e9.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 00:39:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1759217852; x=1759822652; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=1iApKO+F77Gmy+nvt9OQEdz8JuAQZPIJ8wB7y7Z7dgA=;
-        b=SbtzrdM6fadj02L8XwAIEAp0QjVDZw8ef9lOJrgovoXOie9eIB8/j7TRtnhsDPkqZs
-         pGrqUeY5dX8X2rf3edVDV5tR0k9hO0u+3wNmzF/Cm8xXvHECc5kCInRmuN6iy1NUswfy
-         CpUrXNS4cYGsq8D/JBBbDKy8xZv3ujAdYoXSbvZxPeQTIOINyIQgvlrAqyTq0QE/3N3G
-         qiI0RVmKrJgz0kafr1YVBF5CDYyyjTwWcZLCW12xELbbUDGTGskGa3Wy9poLCgmSj/FB
-         h+kJtv3POt2SusRmn9qSZTDkcb2Ij8/Zw+DsRl3djiFaZ5W2wiaCEiimFkNVhZsdGOeu
-         owYw==
+        d=linaro.org; s=google; t=1759217992; x=1759822792; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3Eb5Y0PnbeJI8BI1fdW2DHCUoV9OexE8PXQQVWxZpXg=;
+        b=HVK6vLpKts1z8I14+HAFwBlSOVCGufh91kE1otFIjhdYTmabUNxl3AD/jGuLC9AzTe
+         PBV6iMKd4qFLjOJ11nzSrffo5O5DYdE5MgzJJV5S2K6xYsZJTxcz4o5U87JN3XNh/tK9
+         7f2Fo2XRnM+G+PqzKHuMq47DrL8C4m+Yz8inv40ayGsg+NktU6wgFlOJbxwtGyiLDoHE
+         6cQrWBQKw2y7maY9fgZWiVkaxEglNImqiw49WYJzn34O5EBXNo94rFvPag1LnwCQZkVF
+         9lzb5BUdVI0FwI1lFrLaZzV/GOi/UsBMDP8tIhfdDvZpbdi6RsEAxcS6642mvoDgAH7i
+         V+tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759217852; x=1759822652;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1759217992; x=1759822792;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=1iApKO+F77Gmy+nvt9OQEdz8JuAQZPIJ8wB7y7Z7dgA=;
-        b=gaajhm/cQMn68kC/6DL37MXhGqdDnM6in+pgn0fVnjpcl4BVhtDsfBW2DNECpere+o
-         plgpUnZBtjr4BYu3278iVcDpxgwOFNGyUMrm4BKJTOOcBuIMSYLOw0N68vMXU8o4IC6q
-         xhBzvnpRTNzA6a0C1tBT31eHK5lylT/zaDhR5mkzYcP2S86lzxOUDKqdSw3zAh+M8Tp4
-         arTuldHLN+UYhlSNb6+stQ60F70WWq4NSDRGoFHSybO3HNR2bHiuaxgVZiJxFCEMuqEm
-         xpvD9Mc0WrH0xstCG+Xy/VZXF1ARIiP4O9q5GREyuQy9M5R/dGFGIyLUyYollTJJe08T
-         nMnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW/S0V1jtaoqHYKuQPk+BgpPv+eLs4rcLV05oX/hSy2h7PpqcKHx/WI8dm2PFTk1PNUiUHlFNwT0zWe@vger.kernel.org
-X-Gm-Message-State: AOJu0YyfzqdOIXF+bCWUCaEOlpHchUTA+A6oVVMCb+iFgcbMazkuPb8K
-	j48XhN1aJ1IdqIjlZnsFSG5VpP8moA78qCGh7Z4tYD1PdMMqk+Svp9U6R88lGaKVnKg=
-X-Gm-Gg: ASbGncvs1+ymtyd/q9utMiTpnLNTnj85uwm+0MHwhxpQrvMVF8m0ZfWAjoiHcMAzzHF
-	qEJiA57yyKGSdD3P0PsE6uHdv0J4IdE/ahqWEaada8saJNOSAl+4SzGxhVcPIUUSISjh8Ro8BWx
-	i2icyDfJ8fcDK8NWAs+N0zimQMWd8R76FxxE/I4dLBx2QpEbX3WqrearBR1piA5HxFmq/hntXXR
-	81wPKbmMImAjg/neK66/x3yThOJc5DVTwNf3PBeQ0Rn7q8JNDQ8YGAKKqB4+Y6aM2+q8Ugev3cF
-	GbbQg91sgfOQ2QsAU8am2KqzRDeEiT0zTVnu9K5Hw/ZzbyyN5KAEVVGd1IlXr0RdhpguOCdn65e
-	hLFa1QpQ2dkMp4jAWWzYB48zc7hUPP2uWE6ztZHglvWiPI/mK38oGbp+y5U1zv435kwgMFP34gG
-	O6SFmiJNYe/+o3smYHAQ==
-X-Google-Smtp-Source: AGHT+IG9j4qCfb+pWcKxOWPLNAWJqVlW5gBDMAQjRf28CzIk+BsQWovz6lYnrw00odazuAg1RoDJ+A==
-X-Received: by 2002:a17:907:3c8c:b0:b09:c230:12dc with SMTP id a640c23a62f3a-b34b7209e46mr2054121866b.8.1759217851585;
-        Tue, 30 Sep 2025 00:37:31 -0700 (PDT)
-Received: from otso.local (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b353efa46b2sm1084376866b.24.2025.09.30.00.37.31
+        bh=3Eb5Y0PnbeJI8BI1fdW2DHCUoV9OexE8PXQQVWxZpXg=;
+        b=FD47GLtI/wnhUd1Vnd1g7O99BeU3sNElBVJDqW7Dc4jqJRol0mWKwQ5fk6grFqHQxZ
+         FHXFEN1noNO+hyxUwIiFxHHhH9UEESFkrE3iOA8blf7ovLNdYlF/13mpftlimjzcD23+
+         oM5H00rU7b0s2yxsK3E9EwgXDq3mfRdaVfKtuTsrIWXxF5E6DEtvkwRo/tLpEWU4qlwY
+         okbXO4ucwtGjx0nAFjOqR8+NCjB6Qzc1fVGQw90dW+FixThDDh3Li1tiwMHj0vI1i/Hg
+         iyLIlrmk/kbeWG2RkJXWOJ2R6uKUdfy0fOPTdXso8T10NUTcCT9czG+qVJtCyT2yCnYx
+         /sGg==
+X-Forwarded-Encrypted: i=1; AJvYcCWTJgcuYLGhNYABJLd2PS6ahoI0S7WidTxnHBYTUY1d4Xs272sAwM5Gx7lmJDu64uzgADB6+YN2CA+H@vger.kernel.org
+X-Gm-Message-State: AOJu0YwBVaBeiVl1UCtWLczTvEevJErs1zhZJ4ToDWpoUq1M5R7n0apV
+	VEQkm5tLiP0QLUiVQ2r0OdLHxcURL4i39XtZ8k6arVbmSCJy9D8D8kera852PuyhmPVESpZKixn
+	yrrp5
+X-Gm-Gg: ASbGncux1cD0/1cvOxD3EBByeSlaMJ/03llZdUhLANC2c6ZnZx+IkB8A+BXMrHPE6ZQ
+	K2qi/Z17dBP2Aam33DvWFmbaPDM2vPLyjAQV3b41xLDLAAHtsrYr6LlU51WTMFG7e1byJO1kO67
+	hGXtlKyvogKQJ0/fg4oVFuWFXJOdgzn0nYy8pmGRDdPfT8Zu3VXDpd1yAWYolHfdlkVZ32cxgl8
+	Zz5V9hQyM8sV2PEgt/zCsdsMjUMkjqv0ggVS1uA40pcXyxoKBxj9uzqTJrv9OPxLz7JPZRdAVGe
+	+yV9e3rJBMpkso4A9Ahok/n17Wo3ZDclb1xN/P0VpRfi4moiks+hCGnPX9XzzhZNYwMMImNFNxl
+	jpEi6kMSyvlb2mHN2mPuOi0nE+30pODsCIeC5oov4RerABX8gUuo+jz6yC//Gw64nCHk=
+X-Google-Smtp-Source: AGHT+IGE2BpXydZW6akGdRW1q0tr75JXjen4TsuJND3ge4yGDsChAE3eCrNZzkuQVJg2heu1ygWlzQ==
+X-Received: by 2002:a05:600c:46cf:b0:46e:35eb:43a with SMTP id 5b1f17b1804b1-46e35eb07b0mr176404365e9.15.1759217992244;
+        Tue, 30 Sep 2025 00:39:52 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e5707c1e7sm44021125e9.21.2025.09.30.00.39.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Sep 2025 00:37:31 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Tue, 30 Sep 2025 09:37:22 +0200
-Subject: [PATCH RFT] arm64: dts: qcom: sm8250: Add MDSS_CORE reset to mdss
+        Tue, 30 Sep 2025 00:39:51 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v4 0/3] arm64: qcom: x1e78100-lenovo-thinkpad-t14s: add
+ support for HDMI output
+Date: Tue, 30 Sep 2025 09:39:46 +0200
+Message-Id: <20250930-topic-x1e80100-hdmi-v4-0-86a14e8a34ac@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,58 +85,102 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250930-sm8250-mdss-reset-v1-1-a64522d91f12@fairphone.com>
-X-B4-Tracking: v=1; b=H4sIALGI22gC/x2MSQqAMAwAvyI5G4gt4vIAHyDexIPYqDm40IgIx
- b9bvM0cZgIoe2GFOgng+RaVY4+SpQlM67gvjOKigyGTU2UJdSsj4eZU0bPyhZaKyXJlMkcWYnd
- 6nuX5nz20TQfD+36Jp6K+aAAAAA==
-X-Change-ID: 20250930-sm8250-mdss-reset-307c3e921d03
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+X-B4-Tracking: v=1; b=H4sIAEKJ22gC/33NTQ6CMBCG4auYrq2ZTkGLK+9hXNA/mEQpKYRgC
+ He3sFEjcfl+yTwzsc5Fch077yYW3UAdhSZFtt8xU5dN5TjZ1AwBc1AoeB9aMnwUToEA4LV9EJf
+ a5jrXFm1xZOmyjc7TuKrXW+qauj7E5/pkEMv63xsEB+5FVtoik+CUutypKWM4hFixBRzwjRSA2
+ wguSGaMB+dPRal/EPmJqG1EJsTkUoNHbdB/I/M8vwC17mg0QQEAAA==
+X-Change-ID: 20250821-topic-x1e80100-hdmi-3bd5b5bd2d96
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Xilin Wu <sophon@radxa.com>, linux-arm-msm@vger.kernel.org, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759217851; l=1086;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=ENGheAYnNW3g5COpjG03gMGNXlOZ2EcAFRzlHVSA5ng=;
- b=J1uq8r0DaAiTXMXmOmZSb+gbE0/AQqQXkde/No4Im5tvKyezccWDZwJHxiAQnh5r8fiI9uUYS
- R9BxHaVroVOCzWJst1RVXSv5OAglNbGU9CNARiExyL0gF6lWU3pNxXB
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2648;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=nCuzzICNiMfPq7GXzu2/94MKHl2UoBxCWeAEP7gaTvQ=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBo24lFQK9d+D3VFC4zzO7XUKS10yyyEANY6HGInOa5
+ ChlZx+GJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaNuJRQAKCRB33NvayMhJ0VKEEA
+ DE2gHgFogFgo0IOcGJjLxBtdAg3OgEijLrPXbHUhD8EO7k6rOIOXLch9KQgsVUfV6flmNgdU26yXlO
+ E8QqBHiTTFBuOcl8VqVXWmLidh9mv/sKbolhdThEq4eNw8CqF1klwpA8VBn3fcfSLGZrCfC78kwdP/
+ GWGgMA2phVqHO+8x1E6uvK0nSVP8FypdNUFw4vgvDV5asaEV8ILiZ0GKshgsUb+NwNWsI72yur9DgM
+ Ps0kbZDw+jY8a+wTpJqoPpKrlIRMXjEjo6+Sz3yuXc9s8HSYBPJsYatJYdTkoNpP3SoJstCl1LGD0y
+ 4bbIpDe9Sk1gNJQt8tnt2s5yYsNxdz/b+75GvLDqJbBGzSZfwBiPaxuJrXe6h+V3uYP9ErqXXSuJcc
+ BMZS4L/1aWwDE6h0d494UrqZ0r9whQ/R3aERa2I2qqEd6Vrwnpp9VMzoDXTEG3MvdEXLcKO+WssYD4
+ 879rll/VKGTVOgLmkHQh20wJobYlFwDN/tZvstr8nFTxfJWkMZvDTLSYn4vPUVA7yJqtIZ+D0tfuny
+ m0exCKGSxExhPk7CGJWsTh3maHb8r9UjtGMYZP5/ltLdRkZhShl+B/RC/OGX8FRDgWK9nbKH6wytIh
+ L+FdnTgh94/X3aR0F4jKDC2wpq7/6zac1hpfj+Bl6mlBJOloz531bvt8grzA==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Like on other platforms, if the OS does not support recovering the state
-left by the bootloader it needs access to MDSS_CORE, so that it can
-clear the MDSS configuration. Add a reference to the relevant reset.
+The Thinkpad T14s embeds a transparent 4lanes DP->HDMI transceiver
+connected to the third QMP Combo PHY 4 lanes.
 
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
+of a combo glue to route either lanes to the 4 shared physical lanes.
+
+The routing of the lanes can be:
+- 1/2 DP + 2 USB3
+- 1/2/4 DP
+- 2 USB3
+
+We need be able to specify the lanes mapping to DisplayPort
+and/or USB3 peripherals when not connected to a Type-C complex.
+
+Add the documentation for data-lanes in the out endpoints amd
+use those in the driver to setup the right PHY mode and
+orientation.
+
+Finally Add all the data routing in DT, disable mode switching and specify
+the QMP Combo PHY should be in DP-Only mode to route the 4 lanes to
+the underlying DP phy.
+
+Depends on:
+- [1] https://lore.kernel.org/all/20250902-topic-sm8x50-fix-qmp-usb43dp-usb-switch-v1-1-5b4a51c8c5a8@linaro.org/
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Not tested on a device, but should be necessary on v6.17 kernel.
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Changes in v4:
+- Add definition for single lane DP
+- Fix lanes mapping for DP in bindings and driver
+- Add documentation on how to interpret the data-lanes numbers
+- Rewrite driver support for be simpler and split into helpers
+- Rebase DT on next and drop phy.h include, and use proper mapping
+- Link to v3: https://lore.kernel.org/r/20250908-topic-x1e80100-hdmi-v3-0-c53b0f2bc2fb@linaro.org
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index b30aea8b05409094837ad494389d7c22fa1ba7dd..9bcb2c4c34388f343fb93083977b8d2e9a724bb3 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -4687,6 +4687,8 @@ mdss: display-subsystem@ae00000 {
- 
- 			iommus = <&apps_smmu 0x820 0x402>;
- 
-+			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
-+
- 			status = "disabled";
- 
- 			#address-cells = <2>;
+Changes in v3:
+- Move the static lanes mapping in data-lanes in the out endpoints
+	- new bindings
+	- new drivewr implementation
+	- new DT layout
+- rebased on next, fixed simple bridge rebase
+- added link frequencies for dp2
+- Link to v2: https://lore.kernel.org/r/20250902-topic-x1e80100-hdmi-v2-0-f4ccf0ef79ab@linaro.org
+
+Changes in v2:
+- Model the HDMI transceiver as a simple bridge
+- Switch to a static lanes mapping property
+- Link to v1: https://lore.kernel.org/r/20250821-topic-x1e80100-hdmi-v1-0-f14ad9430e88@linaro.org
 
 ---
-base-commit: e5f0a698b34ed76002dc5cff3804a61c80233a7a
-change-id: 20250930-sm8250-mdss-reset-307c3e921d03
+Neil Armstrong (3):
+      dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy: Document lanes mapping when not using in USB-C complex
+      phy: qcom: qmp-combo: get the USB3 & DisplayPort lanes mapping from DT
+      arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s: add HDMI nodes
+
+ .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         |  67 +++++++++-
+ .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    |  81 ++++++++++++
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 145 +++++++++++++++++++--
+ 3 files changed, 284 insertions(+), 9 deletions(-)
+---
+base-commit: 4513b3b1a91546d0dd02c5c0eb507933b328021c
+change-id: 20250821-topic-x1e80100-hdmi-3bd5b5bd2d96
 
 Best regards,
 -- 
-Luca Weiss <luca.weiss@fairphone.com>
+Neil Armstrong <neil.armstrong@linaro.org>
 
 
