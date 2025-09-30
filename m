@@ -1,136 +1,178 @@
-Return-Path: <devicetree+bounces-222760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB4F0BACA2A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 13:08:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EFAFBACA8A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 13:16:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 962B81660C7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 11:08:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5666C18899D9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 11:16:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AC78220F20;
-	Tue, 30 Sep 2025 11:08:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E16052BE7D0;
+	Tue, 30 Sep 2025 11:16:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="R5Nye9Xu"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="EV+Dx/v3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B89F01F37C5
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 11:08:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB8CE220687
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 11:16:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759230486; cv=none; b=gGsHFVPei8GNhp+1nDqeW+W13ZnnUycwkg2A0+S3VuW5XmtwWmH1Wh8nOn0MoPv/1Cf4NPMamIILAnMbQauySznhc3JMsLRQsrpqYou+7lJjK0N3gipxQjv+MOGEwht3PN+IAL3uoifiX9cy9l4LJSz1uCvTWtbuspg6ylP2Nk4=
+	t=1759230963; cv=none; b=ZzwYZPc9SJ3LSsHt/7dQ4IDET9dM3FIx988zAsCGPSpaqN88k3wM1lnLLCJ9oVhWqZ6+xO0fTXmh+NZiMgJEGr1EfX4FJB9/IwZhP0UQdMC5IwdyoPckynjy64xVWBhS9pjZaDKPa+h+IDs/98Bhxdif2bx9MLoCRf2ZmoDwWDo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759230486; c=relaxed/simple;
-	bh=7eVuMR2uCHwAMvZTWITi7zXqx6R2MONZnM3UePRS2qc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fsD4N8PoT7QqvBGDR8Z05OLA2JsgzAQpxwKD2fHz9sk+xjsYU0nDHfENu5uwf62PCo9A1/UEPOYbZO0aD4zNS3bHS1WhSvoXl8bzScnFCbCPFc48wSVodccKKzjDwSZRzBVKJT+L6mr6Mr1uB3IT5lDm9/w9BL7m23EgdbjRPlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=R5Nye9Xu; arc=none smtp.client-ip=170.10.133.124
+	s=arc-20240116; t=1759230963; c=relaxed/simple;
+	bh=8V4GgwEO++Ce8hUatVMIQ/GshH7wdH34txBzsQRlSoA=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=afwwb2/BHH0zfxB4T3yb8S8BCNPJKoNUoaokiXX9VBpNfMbj0wyWBLX4nN1pRFHpnoqnvbPz+grrz4jpus9Dq1pEBY7vODq5oHNZFnDv8dOjciTao90X/J8S6NOPNXfaJWfRLALgh+qEtnb9twC+Q83AdV+o3Jf6Un4Fq8bxGpc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=EV+Dx/v3; arc=none smtp.client-ip=170.10.129.124
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1759230483;
+	s=mimecast20190719; t=1759230960;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=FfPcBPeiA6B4ouOuexFejWK64dOaFigAn8muMWhU3dQ=;
-	b=R5Nye9XuM2sEtKtHP/xdxt9eSc62T7WFeKop+BrfPI56JpJLdPU7Z+GzNHpME983vkFCQm
-	CF9EPO8rE/dGedB9giZekuRuGSmr2/FO5Y5QCVBBeahJJAUEIVGiMe5sQQ8BY4b4ZYjL/S
-	K0zxXSWvdG8HLQSH/BzoBBjG2UV3qcI=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-642-yWkqZ25TPJC6HPAh8w8K6Q-1; Tue, 30 Sep 2025 07:08:02 -0400
-X-MC-Unique: yWkqZ25TPJC6HPAh8w8K6Q-1
-X-Mimecast-MFC-AGG-ID: yWkqZ25TPJC6HPAh8w8K6Q_1759230481
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-46e45899798so14448035e9.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 04:08:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759230481; x=1759835281;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FfPcBPeiA6B4ouOuexFejWK64dOaFigAn8muMWhU3dQ=;
-        b=sXKUTQ9cY2JlNerHVRH5zn9G0aTlQ6zFSL244t4ftIYc3pjxpCY81/9oYDDsuvmwNi
-         4i1X8NKyDtdwKol1GPFWOGQATqOOvnAYZjF8vxhgyCJy6u8gAcaYGfK/96dacmFUi5W1
-         pYlHZRpFQ+L7/sbmRMHf6usOgRoN9oBRl6BLyTdgpJM8Bwe+pYx46ZkEE7LRJJFD3tLy
-         VF5cFtzlYAkMnJk+q3mWQn1IeJIOI67O93nd+cxe0dfKgA8ichXd8lZar86oGKJT6STI
-         GqCZxImaZk57kir0I2snABOfT8mrF8kcNKDGsFzxHpSqSbaAJJH6u7AuH/z8/MViXQ4F
-         oKQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVYAMX/Tdgo6ocMpuWqVW/EwLEGCuzhsAdlpqplexq9ZwdhgSsVKX3IhxeTJzfsMuZoxYmYdP3Q6xSE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1W8gn+KrXVpdRSnqJwKoDmSDeKUSYq1IIrJLb+coOHKU5LF0u
-	iNW4iVq0ZqivQqOOPJBmyMGEL6kV3i9CyrehEsLA8xapsWnFh4Hnf9sJy8w2u4JO79JayFh7t6/
-	GLiF0NYNji3caAhwZJmlLBjopbgUWsmqDAvGLQNcHXFQhy9jz+Spd7eTkKLpyWxI=
-X-Gm-Gg: ASbGncvF3sOkvwwnF8UdIo98uwkw24u6/WsH/zlZVoRIy9aGJxlwk/fjvdAztQM33x1
-	IluHG8mP+C2ZyP0SfbyAflq6Cd/jHjcg3Zvf1zTypXGzMZZLZK4mshcsk3Zvb9khFW51muvfaIZ
-	6pBnAkVeyMYTbjTR2edHYd3sQ7hgXYUhJ4Wud86Y4rcKfL5h8ii5GVe3q0FOxmALCCAJecf9scl
-	qkUBj2uHrZDV4W2d2wQ/tPzp7tAMlH9m0fDQntyoWa55oIr+7A2XZXmkYoZbfo+yf+m/Atr3+bM
-	SCqdQUPVrKTZftZebDedFIqj0xVPsgYBulMyIb81Cpis+MTYu/MShUt53KLwUt/MpFDu2yYW44L
-	tAIYP+XLFsbriaVlCDQ==
-X-Received: by 2002:a05:600c:8416:b0:46e:440f:144b with SMTP id 5b1f17b1804b1-46e440f1681mr106148195e9.14.1759230480821;
-        Tue, 30 Sep 2025 04:08:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEtp2PNPVi0ALjvuUKoPRLDELJ7rf4PAGV+onh7dq2Ietz1gwVjsUfUi7sNW36nUdpmYhddmA==
-X-Received: by 2002:a05:600c:8416:b0:46e:440f:144b with SMTP id 5b1f17b1804b1-46e440f1681mr106147925e9.14.1759230480426;
-        Tue, 30 Sep 2025 04:08:00 -0700 (PDT)
-Received: from ?IPV6:2a0d:3344:2712:7e10:4d59:d956:544f:d65c? ([2a0d:3344:2712:7e10:4d59:d956:544f:d65c])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-40fac4a5e41sm23693038f8f.0.2025.09.30.04.07.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Sep 2025 04:07:59 -0700 (PDT)
-Message-ID: <157578d3-c06f-4621-b707-ca4208d18807@redhat.com>
-Date: Tue, 30 Sep 2025 13:07:58 +0200
+	bh=ZEOnnvfg2VP9jFylWLMcLAcGpm2F4oh7aBv+d9st9Ec=;
+	b=EV+Dx/v32komCcfPtwwmWgVqkUYcAEao1XHlEvGJTe75vodvZcv4oGeiNnIozQZBejSyDI
+	3kVdO0EWQvNSG+ayGPNE+7/EYhzQRlMMCqUzxk0z3Jwbj4Y909qX4G7FY9UJ8ut0YkrHBd
+	+Eut26dbzB3PHtjU5TeL4+F73CabkeM=
+Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-303-2CvSDyiXOYen3hR5ZWAO6g-1; Tue,
+ 30 Sep 2025 07:15:57 -0400
+X-MC-Unique: 2CvSDyiXOYen3hR5ZWAO6g-1
+X-Mimecast-MFC-AGG-ID: 2CvSDyiXOYen3hR5ZWAO6g_1759230955
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 6AD1C1800365;
+	Tue, 30 Sep 2025 11:15:55 +0000 (UTC)
+Received: from fweimer-oldenburg.csb.redhat.com (unknown [10.44.33.56])
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 018161800447;
+	Tue, 30 Sep 2025 11:15:34 +0000 (UTC)
+From: Florian Weimer <fweimer@redhat.com>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: Paul Walmsley <pjw@kernel.org>,  Thomas Gleixner <tglx@linutronix.de>,
+  Ingo Molnar <mingo@redhat.com>,  Borislav Petkov <bp@alien8.de>,  Dave
+ Hansen <dave.hansen@linux.intel.com>,  x86@kernel.org,  "H. Peter Anvin"
+ <hpa@zytor.com>,  Andrew Morton <akpm@linux-foundation.org>,  "Liam R.
+ Howlett" <Liam.Howlett@oracle.com>,  Vlastimil Babka <vbabka@suse.cz>,
+  Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,  Paul Walmsley
+ <paul.walmsley@sifive.com>,  Palmer Dabbelt <palmer@dabbelt.com>,  Albert
+ Ou <aou@eecs.berkeley.edu>,  Conor Dooley <conor@kernel.org>,  Rob Herring
+ <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>,  Arnd
+ Bergmann <arnd@arndb.de>,  Christian Brauner <brauner@kernel.org>,  Peter
+ Zijlstra <peterz@infradead.org>,  Oleg Nesterov <oleg@redhat.com>,  Eric
+ Biederman <ebiederm@xmission.com>,  Kees Cook <kees@kernel.org>,  Jonathan
+ Corbet <corbet@lwn.net>,  Shuah Khan <shuah@kernel.org>,  Jann Horn
+ <jannh@google.com>,  Conor Dooley <conor+dt@kernel.org>,  Miguel Ojeda
+ <ojeda@kernel.org>,  Alex Gaynor <alex.gaynor@gmail.com>,  Boqun Feng
+ <boqun.feng@gmail.com>,  Gary Guo <gary@garyguo.net>,  =?utf-8?Q?Bj=C3=B6?=
+ =?utf-8?Q?rn?= Roy Baron
+ <bjorn3_gh@protonmail.com>,  Andreas Hindborg <a.hindborg@kernel.org>,
+  Alice Ryhl <aliceryhl@google.com>,  Trevor Gross <tmgross@umich.edu>,
+  Benno Lossin <lossin@kernel.org>,  linux-kernel@vger.kernel.org,
+  linux-fsdevel@vger.kernel.org,  linux-mm@kvack.org,
+  linux-riscv@lists.infradead.org,  devicetree@vger.kernel.org,
+  linux-arch@vger.kernel.org,  linux-doc@vger.kernel.org,
+  linux-kselftest@vger.kernel.org,  alistair.francis@wdc.com,
+  richard.henderson@linaro.org,  jim.shu@sifive.com,  Andy Chiu
+ <andybnac@gmail.com>,  kito.cheng@sifive.com,  charlie@rivosinc.com,
+  atishp@rivosinc.com,  evan@rivosinc.com,  cleger@rivosinc.com,
+  alexghiti@rivosinc.com,  samitolvanen@google.com,  broonie@kernel.org,
+  rick.p.edgecombe@intel.com,  rust-for-linux@vger.kernel.org,  Zong Li
+ <zong.li@sifive.com>,  David Hildenbrand <david@redhat.com>,  Heinrich
+ Schuchardt <heinrich.schuchardt@canonical.com>,  bharrington@redhat.com,
+  Aurelien Jarno <aurel32@debian.org>, bergner@tenstorrent.com,
+ jeffreyalaw@gmail.com
+Subject: Re: [PATCH v19 00/27] riscv control-flow integrity for usermode
+In-Reply-To: <aNQ7D6_ZYMhCdkmL@debug.ba.rivosinc.com> (Deepak Gupta's message
+	of "Wed, 24 Sep 2025 11:40:15 -0700")
+References: <20250731-v5_user_cfi_series-v19-0-09b468d7beab@rivosinc.com>
+	<f953ee7b-91b3-f6f5-6955-b4a138f16dbc@kernel.org>
+	<aNQ7D6_ZYMhCdkmL@debug.ba.rivosinc.com>
+Date: Tue, 30 Sep 2025 13:15:32 +0200
+Message-ID: <lhuldlwgpij.fsf@oldenburg.str.redhat.com>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 1/3] dt-bindings: net: airoha: npu: Add AN7583
- support
-To: Lorenzo Bianconi <lorenzo@kernel.org>, Andrew Lunn
- <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20250927-airoha-npu-7583-v2-0-e12fac5cce1f@kernel.org>
- <20250927-airoha-npu-7583-v2-1-e12fac5cce1f@kernel.org>
-Content-Language: en-US
-From: Paolo Abeni <pabeni@redhat.com>
-In-Reply-To: <20250927-airoha-npu-7583-v2-1-e12fac5cce1f@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
 
-On 9/27/25 4:03 PM, Lorenzo Bianconi wrote:
-> Introduce AN7583 NPU support to Airoha EN7581 NPU device-tree bindings.
-> 
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-> ---
->  Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> index c7644e6586d329d8ec2f0a0d8d8e4f4490429dcc..59c57f58116b568092446e6cfb7b6bd3f4f47b82 100644
-> --- a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> +++ b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
-> @@ -18,6 +18,7 @@ properties:
->    compatible:
->      enum:
->        - airoha,en7581-npu
-> +      - airoha,an7583-npu
->  
->    reg:
->      maxItems: 1
-> 
+* Deepak Gupta:
 
-This needs ack from the DT maintainer and we are finalizing the net-next
-PR right now. Let's defer this series to the next cycle, thanks!
+> Any distro who is shipping userspace (which all of them are) along
+> with kernel will not be shipping two different userspaces (one with
+> shadow stack and one without them). If distro are shipping two
+> different userspaces, then they might as well ship two different
+> kernels. Tagging some distro folks here to get their take on shipping
+> different userspace depending on whether hardware is RVA23 or
+> not. @Heinrich, @Florian, @redbeard and @Aurelien.
+>
+> Major distro's have already drawn a distinction here that they will drop
+> support for hardware which isn't RVA23 for the sake of keeping binary
+> distribution simple.
 
-Paolo
+The following are just my personal thoughts.
+
+For commercial distributions, I just don't see how things work out if
+you have hardware that costs less than (say) $30 over its lifetime, and
+you want LTS support for 10+ years.  The existing distribution business
+models aren't really compatible with such low per-node costs.  So it
+makes absolute sense for distributions to target more powerful cores,
+and therefore require RVA23.  Nobody is suggesting that mainstream
+distributions should target soft-float, either.
+
+For community distributions, it is a much tougher call.  Obsoleting
+virtually all existing hardware sends a terrible signal to early
+supporters of the architecture.  But given how limited the RISC-V
+baseline ISA is, I'm not sure if there is much of a choice here.  Maybe
+it's possible to soften the blow by committing to (say) two more years
+of baseline ISA support, and then making the switch, assuming that RVA23
+hardware for local installation is widely available by then.
+
+However, my real worry is that in the not-too-distant future, another
+ISA transition will be required after RVA23.  This is not entirely
+hypothetical because RVA23 is still an ISA designed mostly for C (at
+least in the scalar space, I don't know much about the vector side).
+Other architectures carry forward support for efficient overflow
+checking (as required by Ada and some other now less-popular languages,
+and as needed for efficiently implementing fixnums with arbitrary
+precision fallback).  Considering current industry trends, it is not
+inconceivable that these ISA features become important again in the near
+term.
+
+You can see the effect of native overflow checking support if you look
+at Ada code examples with integer arithmetic.  For example, this:
+
+function Fib (N: Integer) return Integer is
+begin
+   if N <= 1 then
+      return N;
+   else
+      return Fib (N - 1) + Fib (N - 2);
+   end if;
+end;
+
+produces about 370 RISC-V instructions with -gnato, compared to 218
+instructions with -gnato0 and overflow checking disabled (using GCC
+trunk).  For GCC 15, the respective instruction counts are 301 and 258
+for x86-64, and 288 and 244 for AArch64.  RVA23 reduces the instruction
+count with overflow checking to 353.  A further reduction should be
+possible once GCC starts using xnor in its overflow checks, but I expect
+that the overhead from overflow checking will remain high.
+
+Thanks,
+Florian
 
 
