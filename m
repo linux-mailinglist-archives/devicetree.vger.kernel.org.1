@@ -1,202 +1,120 @@
-Return-Path: <devicetree+bounces-222867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD1F2BAE984
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 23:08:35 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DAEFBAE9A2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 23:13:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67BF9162D28
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 21:08:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4194F4E0329
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 21:13:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92B22287272;
-	Tue, 30 Sep 2025 21:08:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3B6D280023;
+	Tue, 30 Sep 2025 21:13:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kWb6Ppzu"
+	dkim=pass (1024-bit key) header.d=redadmin.org header.i=@redadmin.org header.b="hJM1f2ST"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from www.redadmin.org (ag129037.ppp.asahi-net.or.jp [157.107.129.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F0CD1F03F3;
-	Tue, 30 Sep 2025 21:08:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759266511; cv=none; b=aksCZ5j90rtFPrWzEig+p4ecCOKotixmOhB4mYOM358RQjt3BVkpoPUOR5jnSI7cglXWzIwcoS12ai9NxMSQ9sOqq00HD7h4piEEw4E14K6XcYsaScDI6YgApMB2MwBhBEdZJ/SbQPX6HMFL2k/mW0DLd1r7GK0bceCdM4SjVnA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759266511; c=relaxed/simple;
-	bh=ZAL0HOzeNQKMFeOr3SOV5m0bdPDZddnTRwkZby2vpGQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lUYvPH+4JBTGmVY8kMYOzIJ4cJ4vduLHLlgi/WlNa6i7ro+CI5zVr8YYtKBsDLvyqRY5YMzdeqHMqK6ANAShWVD2e2THGl/lhBF04DAzS0ioeiST3tvLaBurXTWa3+FFAEvQRmJp57J5kv8SnoCFmqfcc5/9cuXWhAJYuz23FRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kWb6Ppzu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ED5F9C4CEF0;
-	Tue, 30 Sep 2025 21:08:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759266511;
-	bh=ZAL0HOzeNQKMFeOr3SOV5m0bdPDZddnTRwkZby2vpGQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kWb6Ppzu/o7rRrFRnH7qkJCRdOxle7mlQ79B74bB7L2F7zdyq4RYMk+npBtRASDSF
-	 GYJRvDm2an67MQ7vreDFwMoIX7F2TUcyzu/MeLQ/EIP7leyea6Q+V4IPFARLCRBFZ9
-	 OYl3hPRX2OHvGwaWjHUKO3hc7yZQTW3H7eH5rsUMib9mNhla5Nqx2zp+f5vXroSlN0
-	 32upOUpx0sOJtfc6lUaqIWYoUqX+orbS9DnCE3IpGH9Hnb8Z037mM0nO/Z8l0NfLEw
-	 58WNGIa5ycIRxhUoZrWNFG7rTYE3HmKkjetrJ7poubDfJJwAU3FprsGZ+N4wXbRFDD
-	 u3vN0+d+GY1mQ==
-Date: Tue, 30 Sep 2025 21:08:29 +0000
-From: Wei Liu <wei.liu@kernel.org>
-To: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
-Cc: x86@kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh@kernel.org>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Michael Kelley <mhklinux@outlook.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Saurabh Sengar <ssengar@linux.microsoft.com>,
-	Chris Oo <cho@microsoft.com>,
-	"Kirill A. Shutemov" <kirill.shutemov@linux.intel.com>,
-	linux-hyperv@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Ricardo Neri <ricardo.neri@intel.com>,
-	Yunhong Jiang <yunhong.jiang@linux.intel.com>,
-	Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v5 06/10] x86/realmode: Make the location of the
- trampoline configurable
-Message-ID: <aNxGzWMoM_oQ6n1N@liuwe-devbox-ubuntu-v2.lamzopl0uupeniq2etz1fddiyg.xx.internal.cloudapp.net>
-References: <20250627-rneri-wakeup-mailbox-v5-0-df547b1d196e@linux.intel.com>
- <20250627-rneri-wakeup-mailbox-v5-6-df547b1d196e@linux.intel.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 392202F2E;
+	Tue, 30 Sep 2025 21:13:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=157.107.129.37
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759266813; cv=pass; b=Y6Lh8lBJFZZVsbnqzH9VmP1gytdECB229XfXUK182CBWl7gdY6CtqklxbPVc7vxUzlqEVs8miDeZ6Bp5w1K6h8EfDP8Mnrlqn8S31Gg+h74W/YhdI4vUtaKITFlKs7VmcT5Jys4oXfY+fhIqtKJxKZEgkF3ptQUdyKW1wzs1Q1A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759266813; c=relaxed/simple;
+	bh=p4+2uNjB35R2yeMejhwZPZ8iZyWyKs4g1sEXSzTpbF8=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=f+S+7eXeiowOHG1KmhVPDPyS6eKfwkSMA1jb8wu2lGKBvPCeUZaLrBjjKzx3T+LARI6/kvpLV435Mj97f2IH5x/SZSKDqEC83lnijUUOvmvgwizNoVzVP/BZzsFahz4DTeJzpSfiOg8nSsoATCrwivPVrfOBHlFtxbxf/52BtGU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redadmin.org; spf=pass smtp.mailfrom=redadmin.org; dkim=pass (1024-bit key) header.d=redadmin.org header.i=@redadmin.org header.b=hJM1f2ST; arc=pass smtp.client-ip=157.107.129.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redadmin.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redadmin.org
+Received: from localhost (localhost [127.0.0.1])
+	by www.redadmin.org (Postfix) with ESMTP id E3C4B10FB2DD3;
+	Wed,  1 Oct 2025 06:13:27 +0900 (JST)
+X-Virus-Scanned: amavis at redadmin.org
+Received: from www.redadmin.org ([127.0.0.1])
+ by localhost (redadmin.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id yz-2FUAqnxxU; Wed,  1 Oct 2025 06:13:24 +0900 (JST)
+Received: from webmail.redadmin.org (redadmin.org [192.168.11.50])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature ECDSA (P-256) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: weibu@redadmin.org)
+	by www.redadmin.org (Postfix) with ESMTPSA id 4E17610F40F4E;
+	Wed,  1 Oct 2025 06:13:24 +0900 (JST)
+DMARC-Filter: OpenDMARC Filter v1.4.2 www.redadmin.org 4E17610F40F4E
+Authentication-Results: www.redadmin.org; arc=none smtp.remote-ip=192.168.11.50
+ARC-Seal: i=1; a=rsa-sha256; d=redadmin.org; s=20231208space; t=1759266804;
+	cv=none; b=OTidfFNTZyozohIUeuf7BaTn6zc6+mf9Bh6tM/8rgN2wLZbeY+FqQLlwuocg/Cbn6+bu92MUpwrSuH/Q9xD0QOLQfjJiRrWndD3v+WO8MQwdjNGon1bMYBfDlkZgq8xmoET8d6c7bYoj+5H9GHx/7BKKlyn2To7//jIKodDUyO4=
+ARC-Message-Signature: i=1; a=rsa-sha256; d=redadmin.org; s=20231208space;
+	t=1759266804; c=relaxed/relaxed;
+	bh=F4qFODM3c+r4xdS4mUJwKNjV4ZswIR7t6ClHW8ShM9Y=;
+	h=DKIM-Filter:DKIM-Signature:MIME-Version:Date:From:To:Cc:Subject:
+	 In-Reply-To:References:Message-ID:X-Sender:Content-Type:
+	 Content-Transfer-Encoding; b=gcRB/PBmgD2j0nFostj9SEo6YL/Q4AYgKQrGF2B/Xb4crFWReLTsBA7ZGlMrdOIRoojWFC4fK423PnSQWKdBz83lIBxgsCSbR2s9mHhG1ZgFThJAR0auhHrnaQmyBo4yZB7PqMP0aeV0QwuEJ+ppqt1U6iWTqw8nTRToZmEV6EE=
+ARC-Authentication-Results: i=1; www.redadmin.org
+DKIM-Filter: OpenDKIM Filter v2.11.0 www.redadmin.org 4E17610F40F4E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redadmin.org;
+	s=20231208space; t=1759266804;
+	bh=F4qFODM3c+r4xdS4mUJwKNjV4ZswIR7t6ClHW8ShM9Y=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=hJM1f2ST3i99gxJ7VuKyzgin37ikifcPd1baiFxjFqXYAQ+3NvInpZ97caSGK8288
+	 bc8CfI+z0vfcYuVtT1cwRvcBWyJAbJnXyBGYt+y+wVwdkQ9r2ZkZU2FWJbPCr/MsRK
+	 9TOvj2OMY5o9JxCkfcXikEtzbsdORawd5cnPYQa8=
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250627-rneri-wakeup-mailbox-v5-6-df547b1d196e@linux.intel.com>
+Date: Wed, 01 Oct 2025 06:13:24 +0900
+From: weibu@redadmin.org
+To: Rob Herring <robh@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mmc: Correct typo "upto" to "up to"
+In-Reply-To: <CAL_JsqL3z7P8YJuqa1tNMYSBRbxWTKfzaDE87FD2+Oe5Thoiog@mail.gmail.com>
+References: <20250930134547.1096686-1-weibu@redadmin.org>
+ <CAL_JsqL3z7P8YJuqa1tNMYSBRbxWTKfzaDE87FD2+Oe5Thoiog@mail.gmail.com>
+Message-ID: <0aa439b55555684c1bddb082a30fb0c6@redadmin.org>
+X-Sender: weibu@redadmin.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Jun 27, 2025 at 08:35:12PM -0700, Ricardo Neri wrote:
-> From: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> 
-> x86 CPUs boot in real mode. This mode uses 20-bit memory addresses (16-bit
-> registers plus 4-bit segment selectors). This implies that the trampoline
-> must reside under the 1MB memory boundary.
-> 
-> There are platforms in which the firmware boots the secondary CPUs,
-> switches them to long mode and transfers control to the kernel. An example
-> of such mechanism is the ACPI Multiprocessor Wakeup Structure.
-> 
-> In this scenario there is no restriction to locate the trampoline under 1MB
-> memory. Moreover, certain platforms (for example, Hyper-V VTL guests) may
-> not have memory available for allocation under 1MB.
-> 
-> Add a new member to struct x86_init_resources to specify the upper bound
-> for the location of the trampoline memory. Keep the default upper bound of
-> 1MB to conserve the current behavior.
-> 
-> Reviewed-by: Michael Kelley <mhklinux@outlook.com>
-> Originally-by: Thomas Gleixner <tglx@linutronix.de>
-> Signed-off-by: Yunhong Jiang <yunhong.jiang@linux.intel.com>
-> Signed-off-by: Ricardo Neri <ricardo.neri-calderon@linux.intel.com>
+Of course. Here are the English versions of the reply.
 
-Thomas, this is originally your idea. I take it you will be fine this
-patch. I can pick this up in the Hyper-V tree.
+Option 1 (Direct and concise)
+Subject: Re: [PATCH] dt-bindings: mmc: Correct typo "upto" to "up to"
 
-Let me know otherwise.
+Hi Rob,
 
-Thanks,
-Wei
+My apologies, this was sent again by mistake. Please discard this 
+version.
 
-> ---
-> Changes since v4:
->  - None
+There are no changes from the patch I sent yesterday.
+
+Sorry for the noise.
+
+Best regards,
+
+Akiyoshi Kurita
+
+
+2025-09-30 23:45 に Rob Herring さんは書きました:
+> On Tue, Sep 30, 2025 at 8:46 AM Akiyoshi Kurita <weibu@redadmin.org> 
+> wrote:
+>> 
+>> The word "upto" is a typo for "up to". Correct this typo in the
+>> mmc-controller-common binding documentation.
 > 
-> Changes since v3:
->  - Added Reviewed-by tag from Michael. Thanks!
+> You just sent this yesterday. Why are you sending another version 
+> today?
 > 
-> Changes since v2:
->  - Edited the commit message for clarity.
->  - Minor tweaks to comments.
->  - Removed the option to not reserve the first 1MB of memory as it is
->    not needed.
-> 
-> Changes since v1:
->  - Added this patch using code that Thomas suggested:
->    https://lore.kernel.org/lkml/87a5ho2q6x.ffs@tglx/
-> ---
->  arch/x86/include/asm/x86_init.h | 3 +++
->  arch/x86/kernel/x86_init.c      | 3 +++
->  arch/x86/realmode/init.c        | 7 +++----
->  3 files changed, 9 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/x86/include/asm/x86_init.h b/arch/x86/include/asm/x86_init.h
-> index 36698cc9fb44..e770ce507a87 100644
-> --- a/arch/x86/include/asm/x86_init.h
-> +++ b/arch/x86/include/asm/x86_init.h
-> @@ -31,12 +31,15 @@ struct x86_init_mpparse {
->   *				platform
->   * @memory_setup:		platform specific memory setup
->   * @dmi_setup:			platform specific DMI setup
-> + * @realmode_limit:		platform specific address limit for the real mode trampoline
-> + *				(default 1M)
->   */
->  struct x86_init_resources {
->  	void (*probe_roms)(void);
->  	void (*reserve_resources)(void);
->  	char *(*memory_setup)(void);
->  	void (*dmi_setup)(void);
-> +	unsigned long realmode_limit;
->  };
->  
->  /**
-> diff --git a/arch/x86/kernel/x86_init.c b/arch/x86/kernel/x86_init.c
-> index 0a2bbd674a6d..a25fd7282811 100644
-> --- a/arch/x86/kernel/x86_init.c
-> +++ b/arch/x86/kernel/x86_init.c
-> @@ -9,6 +9,7 @@
->  #include <linux/export.h>
->  #include <linux/pci.h>
->  #include <linux/acpi.h>
-> +#include <linux/sizes.h>
->  
->  #include <asm/acpi.h>
->  #include <asm/bios_ebda.h>
-> @@ -69,6 +70,8 @@ struct x86_init_ops x86_init __initdata = {
->  		.reserve_resources	= reserve_standard_io_resources,
->  		.memory_setup		= e820__memory_setup_default,
->  		.dmi_setup		= dmi_setup,
-> +		/* Has to be under 1M so we can execute real-mode AP code. */
-> +		.realmode_limit		= SZ_1M,
->  	},
->  
->  	.mpparse = {
-> diff --git a/arch/x86/realmode/init.c b/arch/x86/realmode/init.c
-> index 88be32026768..694d80a5c68e 100644
-> --- a/arch/x86/realmode/init.c
-> +++ b/arch/x86/realmode/init.c
-> @@ -46,7 +46,7 @@ void load_trampoline_pgtable(void)
->  
->  void __init reserve_real_mode(void)
->  {
-> -	phys_addr_t mem;
-> +	phys_addr_t mem, limit = x86_init.resources.realmode_limit;
->  	size_t size = real_mode_size_needed();
->  
->  	if (!size)
-> @@ -54,10 +54,9 @@ void __init reserve_real_mode(void)
->  
->  	WARN_ON(slab_is_available());
->  
-> -	/* Has to be under 1M so we can execute real-mode AP code. */
-> -	mem = memblock_phys_alloc_range(size, PAGE_SIZE, 0, 1<<20);
-> +	mem = memblock_phys_alloc_range(size, PAGE_SIZE, 0, limit);
->  	if (!mem)
-> -		pr_info("No sub-1M memory is available for the trampoline\n");
-> +		pr_info("No memory below %pa for the real-mode trampoline\n", &limit);
->  	else
->  		set_real_mode_mem(mem);
->  
-> 
-> -- 
-> 2.43.0
-> 
+> What changed?
 
