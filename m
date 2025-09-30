@@ -1,563 +1,168 @@
-Return-Path: <devicetree+bounces-222716-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25F4FBAC47B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 11:33:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A76E5BAC4A2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 11:37:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 008374E25A3
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 09:33:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59C76321ACF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 09:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 726922E9EA1;
-	Tue, 30 Sep 2025 09:33:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F295E2F5A28;
+	Tue, 30 Sep 2025 09:37:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n9xxRbBB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmty1ljiyny4xntuumtyw.icoremail.net (zg8tmty1ljiyny4xntuumtyw.icoremail.net [165.227.155.160])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9A301F03C9;
-	Tue, 30 Sep 2025 09:32:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=165.227.155.160
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B91842F5305;
+	Tue, 30 Sep 2025 09:37:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759224783; cv=none; b=bScYy2iYguXRpWz1hg8cGcIDzhSURa8wGyuD9S3qQ5Wj6MR1DvgXkETQ95TfEOmlFtlx5e2/wALaklcBLTQm1pA9YxJ26fubwdoEBqcXO/f50BCWY0q4W7+g4tj8r+8wHTtnnbzInTiOJGPLTL7m5C1mpz2K1NPHOHvaMI+ZWSY=
+	t=1759225051; cv=none; b=H82mNCIkHAvznb9d2rB+rVrk9kKhebNDFQ0uK8LuK8KxvnB+YL6L4JanwsRPqHk3jQ/RipMoTXR3wisAGXfyXtQbE5w3ZxMNx2x19H6SkjJOeRu+7F3J+X5ahosubqzUURFs8ZGGOpK55eTzEyIEye225HUKACAwQphlaHo88ls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759224783; c=relaxed/simple;
-	bh=hhLVtdXk+mR5aowumVxZt8RL98ZlqvLlVLYTHEuFa0Q=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=cFGbJCT1nqZkQjkXi21gns9KG7yrN1yXduJ2KGYwjZkYwjX4LZmyNAvdB04Jp9hP4DbHKRW35NgrwJqnTkystjf+TvTczw7UZjfwAmV6k4H9CxSJkUQyrnUZol+IFcztuQ5NfEMy7PQbi2KRQMCbHvfQcTQ3ADDVNuKKVfacrpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=165.227.155.160
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0005152DT.eswin.cn (unknown [10.12.96.41])
-	by app2 (Coremail) with SMTP id TQJkCgDneJK4o9toVsfuAA--.14266S2;
-	Tue, 30 Sep 2025 17:32:41 +0800 (CST)
-From: dongxuyang@eswincomputing.com
-To: p.zabel@pengutronix.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: ningyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com,
-	pinkesh.vaghela@einfochips.com,
-	Xuyang Dong <dongxuyang@eswincomputing.com>
-Subject: [PATCH v7 2/2] reset: eswin: Add eic7700 reset driver
-Date: Tue, 30 Sep 2025 17:32:38 +0800
-Message-Id: <20250930093238.2116-1-dongxuyang@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
-In-Reply-To: <20250930093132.2003-1-dongxuyang@eswincomputing.com>
-References: <20250930093132.2003-1-dongxuyang@eswincomputing.com>
+	s=arc-20240116; t=1759225051; c=relaxed/simple;
+	bh=5o+htP+rM/HKQyGn1eH3S7+MzThwQ+uX1Hq8VqONr8g=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qfAlzwfA4rot1qJjKmh0kXonbmBpLrgwUgUEbhgYW2mxxc66r2CTe75AHS/PT+7m+f+HlKlp+tGn4t6mLTt7n8qnoURQZZXq5Vnpt7fGiANIfh/X7gp5KDVr0kNGXFJWZGKz7NcUgBlL+4cvSF4WF/LbcDtMETxUIpWn0faYODc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n9xxRbBB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 44A39C4CEF0;
+	Tue, 30 Sep 2025 09:37:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759225051;
+	bh=5o+htP+rM/HKQyGn1eH3S7+MzThwQ+uX1Hq8VqONr8g=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=n9xxRbBBX96T9ogcvhLUVw8I8DhLBCLfbpk2dfxWWXyJ/khtsq8oqFcT7gGdJqit/
+	 tWd6EgzlvC+0o6Bt7lHLfzDo/6yH7naAjRWQ7xfHiml1BS1hpIL3N9vAdcUGR7SpT3
+	 Z0LNwuF6TBLCCfkRPe13i8SnOwGpuzl7LzdYjnvutHXqCzQ7mwHuxzuXC2EYyof6jH
+	 edpVAsXoS8kubU08pHR5U9LT4zwEzvQQw1N81UnIzStZ03XlSFJL/og3k0UuUxff7b
+	 zF4jiPEE3lZ5q0AOmAQgCMDSl+xXF5V2LJneUtv9+igBFiWrDje3RdijMcN/HiabZW
+	 yZbBf/QEdRPfw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 2FAB2CAC5BC;
+	Tue, 30 Sep 2025 09:37:31 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Subject: [PATCH 00/19] clk: amlogic: Add PLLs and peripheral clocks for A4
+ and A5 SoCs
+Date: Tue, 30 Sep 2025 17:37:13 +0800
+Message-Id: <20250930-a4_a5_add_clock_driver-v1-0-a9acf7951589@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TQJkCgDneJK4o9toVsfuAA--.14266S2
-X-Coremail-Antispam: 1UD129KBjvAXoWfArWkKrW3Jr4DKrW8Zw1rtFb_yoW8uF4rKo
-	WrCF12qr4rKr98ZrWakr1fG3Z8Jw4ftr1UurWYqwnrJwnrCr1qqry8Ar1q9rW3JryUAryD
-	Zr1kGr9xuay5GFWrn29KB7ZKAUJUUUU8529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
-	AaLaJ3UjIYCTnIWjp_UUUYK7AC8VAFwI0_Gr0_Xr1l1xkIjI8I6I8E6xAIw20EY4v20xva
-	j40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM28CjxkF64kEwVA0rcxSw2
-	x7M28EF7xvwVC0I7IYx2IY67AKxVWDJVCq3wA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVW8
-	Jr0_Cr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26r
-	xl6s0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
-	6xIIjxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
-	0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
-	8cxan2IY04v7M4kE6xkIj40Ew7xC0wCY1x0262kKe7AKxVWUtVW8ZwCY02Avz4vE-syl42
-	xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWU
-	GwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI4
-	8JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4U
-	MIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I
-	8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjfUOEfODUUUU
-X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/
+X-B4-Tracking: v=1; b=H4sIAMmk22gC/x3M0QoCIRBA0V9Z5jnBNC37lSXEnKmGYl1GkED89
+ 6TH83Bvh0rCVOG6dBBqXLlsE8fDAvmVticpxmkw2jgdzEWlU0wuJsSYPyW/Iwo3EmXu5xzQB+e
+ thRnvQg/+/sfrbYwfl8Id9GgAAAA=
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Xianwei Zhao <xianwei.zhao@amlogic.com>, Chuan Liu <chuan.liu@amlogic.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759225047; l=4218;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=5o+htP+rM/HKQyGn1eH3S7+MzThwQ+uX1Hq8VqONr8g=;
+ b=9UB/pSh4Qx25JQAEirqjDzvZLuzERi70Cm6gW7FIEkZawGXnWeEHArseYuIOn4cVV4sEtZAa/
+ JbTQPGuAcNjD5619B0r6CFtJhOhE2icgF32q6i9IBU4mc7tmLmTgXXe
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
+Reply-To: chuan.liu@amlogic.com
 
-From: Xuyang Dong <dongxuyang@eswincomputing.com>
+This patch series includes changes related to the PLL and peripheral
+clocks for both the A4 and A5 SoCs.
 
-Add support for reset controller in eic7700 series chips.
-Provide functionality for asserting and deasserting resets
-on the chip.
+The patches for A5 were previously submitted up to V3 by Xianwei.
+https://lore.kernel.org/all/20250103-a5-clk-v3-0-a207ce83b9e9@amlogic.com/
+After friendly coordination, I’ve taken over and continued the
+submission as part of this series. The dt-bindings patch retains Rob's
+original "Reviewed-by" tag, and I hope this hasn’t caused any
+additional confusion.
 
-Signed-off-by: Yifeng Huang <huangyifeng@eswincomputing.com>
-Signed-off-by: Xuyang Dong <dongxuyang@eswincomputing.com>
+Both A4 and A5 belong to the Audio series. Judging by their names, one
+might assume that A5 is an upgrade to A4, but in fact, A5 was released
+a year earlier than A4.
+
+Since there are differences in the PLLs and peripheral clocks between
+the A4 and A5 SoCs (especially the PLL), and taking into account factors
+such as memory footprint and maintainability, this series does not
+attempt to merge the two into a shared driver as was done for
+G12A/G12B/SM1.
+
+This patch series includes all related dt-bindings, driver, and dts
+changes for the PLLs and peripheral clocks. Following our past convention
+for clock-related submissions, the dts changes are placed at the end
+and submitted separately. If this ordering makes it harder for
+maintainers to review or pick patches, please feel free to point it out.
+
+Co-developed-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
 ---
- drivers/reset/Kconfig         |  10 +
- drivers/reset/Makefile        |   1 +
- drivers/reset/reset-eic7700.c | 429 ++++++++++++++++++++++++++++++++++
- 3 files changed, 440 insertions(+)
- create mode 100644 drivers/reset/reset-eic7700.c
+Chuan Liu (19):
+      dt-bindings: clock: Add Amlogic A4 SCMI clock controller
+      dt-bindings: clock: Add Amlogic A4 PLL clock controller
+      dt-bindings: clock: Add Amlogic A4 peripherals clock controller
+      clk: amlogic: Optimize PLL enable timing
+      clk: amlogic: Correct l_detect bit control
+      clk: amlogic: Fix out-of-range PLL frequency setting
+      clk: amlogic: Add A4 PLL clock controller driver
+      clk: amlogic: Add A4 clock peripherals controller driver
+      arm64: dts: amlogic: A4: Add scmi-clk node
+      arm64: dts: amlogic: A4: Add PLL controller node
+      arm64: dts: amlogic: A4: Add peripherals clock controller node
+      dt-bindings: clock: Add Amlogic A5 SCMI clock controller support
+      dt-bindings: clock: Add Amlogic A5 PLL clock controller
+      dt-bindings: clock: Add Amlogic A5 peripherals clock controller
+      clk: amlogic: Add A5 PLL clock controller driver
+      clk: amlogic: Add A5 clock peripherals controller driver
+      arm64: dts: amlogic: A5: Add scmi-clk node
+      arm64: dts: amlogic: A5: Add PLL controller node
+      arm64: dts: amlogic: A5: Add peripheral clock controller node
 
-diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index 78b7078478d4..ffd8e61e7d48 100644
---- a/drivers/reset/Kconfig
-+++ b/drivers/reset/Kconfig
-@@ -73,6 +73,16 @@ config RESET_BRCMSTB_RESCAL
- 	  This enables the RESCAL reset controller for SATA, PCIe0, or PCIe1 on
- 	  BCM7216 or the BCM2712.
- 
-+config RESET_EIC7700
-+	bool "Reset controller driver for ESWIN SoCs"
-+	depends on ARCH_ESWIN || COMPILE_TEST
-+	default ARCH_ESWIN
-+	help
-+	  This enables the reset controller driver for ESWIN SoCs. This driver is
-+	  specific to ESWIN SoCs and should only be enabled if using such hardware.
-+	  The driver supports eic7700 series chips and provides functionality for
-+	  asserting and deasserting resets on the chip.
-+
- config RESET_EYEQ
- 	bool "Mobileye EyeQ reset controller"
- 	depends on MACH_EYEQ5 || MACH_EYEQ6H || COMPILE_TEST
-diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index f7934f9fb90b..9c3e484dfd81 100644
---- a/drivers/reset/Makefile
-+++ b/drivers/reset/Makefile
-@@ -13,6 +13,7 @@ obj-$(CONFIG_RESET_BCM6345) += reset-bcm6345.o
- obj-$(CONFIG_RESET_BERLIN) += reset-berlin.o
- obj-$(CONFIG_RESET_BRCMSTB) += reset-brcmstb.o
- obj-$(CONFIG_RESET_BRCMSTB_RESCAL) += reset-brcmstb-rescal.o
-+obj-$(CONFIG_RESET_EIC7700) += reset-eic7700.o
- obj-$(CONFIG_RESET_EYEQ) += reset-eyeq.o
- obj-$(CONFIG_RESET_GPIO) += reset-gpio.o
- obj-$(CONFIG_RESET_HSDK) += reset-hsdk.o
-diff --git a/drivers/reset/reset-eic7700.c b/drivers/reset/reset-eic7700.c
-new file mode 100644
-index 000000000000..b72283b18b08
---- /dev/null
-+++ b/drivers/reset/reset-eic7700.c
-@@ -0,0 +1,429 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2025, Beijing ESWIN Computing Technology Co., Ltd..
-+ * All rights reserved.
-+ *
-+ * ESWIN Reset Driver
-+ *
-+ * Authors:
-+ *	Yifeng Huang <huangyifeng@eswincomputing.com>
-+ *	Xuyang Dong <dongxuyang@eswincomputing.com>
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/init.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/reset-controller.h>
-+#include <linux/slab.h>
-+#include <linux/types.h>
-+
-+#include <dt-bindings/reset/eswin,eic7700-reset.h>
-+
-+#define SYSCRG_CLEAR_BOOT_INFO_OFFSET 0xC
-+#define CLEAR_BOOT_FLAG_BIT BIT(0)
-+#define SYSCRG_RESET_OFFSET 0x100
-+
-+/**
-+ * struct eic7700_reset_data - reset controller information structure
-+ * @rcdev: reset controller entity
-+ * @regmap: regmap handle containing the memory-mapped reset registers
-+ */
-+struct eic7700_reset_data {
-+	struct reset_controller_dev rcdev;
-+	struct regmap *regmap;
-+};
-+
-+static const struct regmap_config eic7700_regmap_config = {
-+	.reg_bits = 32,
-+	.val_bits = 32,
-+	.reg_stride = 4,
-+	.max_register = 0x1fc,
-+};
-+
-+struct eic7700_reg {
-+	u32 reg;
-+	u32 bit;
-+};
-+
-+static inline struct eic7700_reset_data *
-+to_eic7700_reset_data(struct reset_controller_dev *rcdev)
-+{
-+	return container_of(rcdev, struct eic7700_reset_data, rcdev);
-+}
-+
-+#define EIC7700_RESET(id, reg, bit)[id] = \
-+		{ SYSCRG_RESET_OFFSET + (reg) * sizeof(u32), BIT(bit) }
-+
-+/* mapping table for reset ID to register offset and reset bit */
-+static const struct eic7700_reg eic7700_reset[] = {
-+	EIC7700_RESET(EIC7700_RESET_NOC_NSP, 0, 0),
-+	EIC7700_RESET(EIC7700_RESET_NOC_CFG, 0, 1),
-+	EIC7700_RESET(EIC7700_RESET_RNOC_NSP, 0, 2),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_TCU, 0, 3),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_U84, 0, 4),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_PCIE_XSR, 0, 5),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_PCIE_XMR, 0, 6),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_PCIE_PR, 0, 7),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_NPU, 0, 8),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_JTAG, 0, 9),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_DSP, 0, 10),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_DDRC1_P2, 0, 11),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_DDRC1_P1, 0, 12),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_DDRC0_P2, 0, 13),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_DDRC0_P1, 0, 14),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_D2D, 0, 15),
-+	EIC7700_RESET(EIC7700_RESET_SNOC_AON, 0, 16),
-+	EIC7700_RESET(EIC7700_RESET_GPU_AXI, 1, 0),
-+	EIC7700_RESET(EIC7700_RESET_GPU_CFG, 1, 1),
-+	EIC7700_RESET(EIC7700_RESET_GPU_GRAY, 1, 2),
-+	EIC7700_RESET(EIC7700_RESET_GPU_JONES, 1, 3),
-+	EIC7700_RESET(EIC7700_RESET_GPU_SPU, 1, 4),
-+	EIC7700_RESET(EIC7700_RESET_DSP_AXI, 2, 0),
-+	EIC7700_RESET(EIC7700_RESET_DSP_CFG, 2, 1),
-+	EIC7700_RESET(EIC7700_RESET_DSP_DIV4, 2, 2),
-+	EIC7700_RESET(EIC7700_RESET_DSP_DIV0, 2, 4),
-+	EIC7700_RESET(EIC7700_RESET_DSP_DIV1, 2, 5),
-+	EIC7700_RESET(EIC7700_RESET_DSP_DIV2, 2, 6),
-+	EIC7700_RESET(EIC7700_RESET_DSP_DIV3, 2, 7),
-+	EIC7700_RESET(EIC7700_RESET_D2D_AXI, 3, 0),
-+	EIC7700_RESET(EIC7700_RESET_D2D_CFG, 3, 1),
-+	EIC7700_RESET(EIC7700_RESET_D2D_PRST, 3, 2),
-+	EIC7700_RESET(EIC7700_RESET_D2D_RAW_PCS, 3, 4),
-+	EIC7700_RESET(EIC7700_RESET_D2D_RX, 3, 5),
-+	EIC7700_RESET(EIC7700_RESET_D2D_TX, 3, 6),
-+	EIC7700_RESET(EIC7700_RESET_D2D_CORE, 3, 7),
-+	EIC7700_RESET(EIC7700_RESET_DDR1_ARST, 4, 0),
-+	EIC7700_RESET(EIC7700_RESET_DDR1_TRACE, 4, 6),
-+	EIC7700_RESET(EIC7700_RESET_DDR0_ARST, 4, 16),
-+	EIC7700_RESET(EIC7700_RESET_DDR_CFG, 4, 21),
-+	EIC7700_RESET(EIC7700_RESET_DDR0_TRACE, 4, 22),
-+	EIC7700_RESET(EIC7700_RESET_DDR_CORE, 4, 23),
-+	EIC7700_RESET(EIC7700_RESET_DDR_PRST, 4, 26),
-+	EIC7700_RESET(EIC7700_RESET_TCU_AXI, 5, 0),
-+	EIC7700_RESET(EIC7700_RESET_TCU_CFG, 5, 1),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU0, 5, 4),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU1, 5, 5),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU2, 5, 6),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU3, 5, 7),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU4, 5, 8),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU5, 5, 9),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU6, 5, 10),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU7, 5, 11),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU8, 5, 12),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU9, 5, 13),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU10, 5, 14),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU11, 5, 15),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU12, 5, 16),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU13, 5, 17),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU14, 5, 18),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU15, 5, 19),
-+	EIC7700_RESET(EIC7700_RESET_TCU_TBU16, 5, 20),
-+	EIC7700_RESET(EIC7700_RESET_NPU_AXI, 6, 0),
-+	EIC7700_RESET(EIC7700_RESET_NPU_CFG, 6, 1),
-+	EIC7700_RESET(EIC7700_RESET_NPU_CORE, 6, 2),
-+	EIC7700_RESET(EIC7700_RESET_NPU_E31CORE, 6, 3),
-+	EIC7700_RESET(EIC7700_RESET_NPU_E31BUS, 6, 4),
-+	EIC7700_RESET(EIC7700_RESET_NPU_E31DBG, 6, 5),
-+	EIC7700_RESET(EIC7700_RESET_NPU_LLC, 6, 6),
-+	EIC7700_RESET(EIC7700_RESET_HSP_AXI, 7, 0),
-+	EIC7700_RESET(EIC7700_RESET_HSP_CFG, 7, 1),
-+	EIC7700_RESET(EIC7700_RESET_HSP_POR, 7, 2),
-+	EIC7700_RESET(EIC7700_RESET_MSHC0_PHY, 7, 3),
-+	EIC7700_RESET(EIC7700_RESET_MSHC1_PHY, 7, 4),
-+	EIC7700_RESET(EIC7700_RESET_MSHC2_PHY, 7, 5),
-+	EIC7700_RESET(EIC7700_RESET_MSHC0_TXRX, 7, 6),
-+	EIC7700_RESET(EIC7700_RESET_MSHC1_TXRX, 7, 7),
-+	EIC7700_RESET(EIC7700_RESET_MSHC2_TXRX, 7, 8),
-+	EIC7700_RESET(EIC7700_RESET_SATA_ASIC0, 7, 9),
-+	EIC7700_RESET(EIC7700_RESET_SATA_OOB, 7, 10),
-+	EIC7700_RESET(EIC7700_RESET_SATA_PMALIVE, 7, 11),
-+	EIC7700_RESET(EIC7700_RESET_SATA_RBC, 7, 12),
-+	EIC7700_RESET(EIC7700_RESET_DMA0, 7, 13),
-+	EIC7700_RESET(EIC7700_RESET_HSP_DMA, 7, 14),
-+	EIC7700_RESET(EIC7700_RESET_USB0_VAUX, 7, 15),
-+	EIC7700_RESET(EIC7700_RESET_USB1_VAUX, 7, 16),
-+	EIC7700_RESET(EIC7700_RESET_HSP_SD1_PRST, 7, 17),
-+	EIC7700_RESET(EIC7700_RESET_HSP_SD0_PRST, 7, 18),
-+	EIC7700_RESET(EIC7700_RESET_HSP_EMMC_PRST, 7, 19),
-+	EIC7700_RESET(EIC7700_RESET_HSP_DMA_PRST, 7, 20),
-+	EIC7700_RESET(EIC7700_RESET_HSP_SD1_ARST, 7, 21),
-+	EIC7700_RESET(EIC7700_RESET_HSP_SD0_ARST, 7, 22),
-+	EIC7700_RESET(EIC7700_RESET_HSP_EMMC_ARST, 7, 23),
-+	EIC7700_RESET(EIC7700_RESET_HSP_DMA_ARST, 7, 24),
-+	EIC7700_RESET(EIC7700_RESET_HSP_ETH1_ARST, 7, 25),
-+	EIC7700_RESET(EIC7700_RESET_HSP_ETH0_ARST, 7, 26),
-+	EIC7700_RESET(EIC7700_RESET_SATA_ARST, 7, 27),
-+	EIC7700_RESET(EIC7700_RESET_PCIE_CFG, 8, 0),
-+	EIC7700_RESET(EIC7700_RESET_PCIE_POWEUP, 8, 1),
-+	EIC7700_RESET(EIC7700_RESET_PCIE_PERST, 8, 2),
-+	EIC7700_RESET(EIC7700_RESET_I2C0, 9, 0),
-+	EIC7700_RESET(EIC7700_RESET_I2C1, 9, 1),
-+	EIC7700_RESET(EIC7700_RESET_I2C2, 9, 2),
-+	EIC7700_RESET(EIC7700_RESET_I2C3, 9, 3),
-+	EIC7700_RESET(EIC7700_RESET_I2C4, 9, 4),
-+	EIC7700_RESET(EIC7700_RESET_I2C5, 9, 5),
-+	EIC7700_RESET(EIC7700_RESET_I2C6, 9, 6),
-+	EIC7700_RESET(EIC7700_RESET_I2C7, 9, 7),
-+	EIC7700_RESET(EIC7700_RESET_I2C8, 9, 8),
-+	EIC7700_RESET(EIC7700_RESET_I2C9, 9, 9),
-+	EIC7700_RESET(EIC7700_RESET_FAN, 10, 0),
-+	EIC7700_RESET(EIC7700_RESET_PVT0, 11, 0),
-+	EIC7700_RESET(EIC7700_RESET_PVT1, 11, 1),
-+	EIC7700_RESET(EIC7700_RESET_MBOX0, 12, 0),
-+	EIC7700_RESET(EIC7700_RESET_MBOX1, 12, 1),
-+	EIC7700_RESET(EIC7700_RESET_MBOX2, 12, 2),
-+	EIC7700_RESET(EIC7700_RESET_MBOX3, 12, 3),
-+	EIC7700_RESET(EIC7700_RESET_MBOX4, 12, 4),
-+	EIC7700_RESET(EIC7700_RESET_MBOX5, 12, 5),
-+	EIC7700_RESET(EIC7700_RESET_MBOX6, 12, 6),
-+	EIC7700_RESET(EIC7700_RESET_MBOX7, 12, 7),
-+	EIC7700_RESET(EIC7700_RESET_MBOX8, 12, 8),
-+	EIC7700_RESET(EIC7700_RESET_MBOX9, 12, 9),
-+	EIC7700_RESET(EIC7700_RESET_MBOX10, 12, 10),
-+	EIC7700_RESET(EIC7700_RESET_MBOX11, 12, 11),
-+	EIC7700_RESET(EIC7700_RESET_MBOX12, 12, 12),
-+	EIC7700_RESET(EIC7700_RESET_MBOX13, 12, 13),
-+	EIC7700_RESET(EIC7700_RESET_MBOX14, 12, 14),
-+	EIC7700_RESET(EIC7700_RESET_MBOX15, 12, 15),
-+	EIC7700_RESET(EIC7700_RESET_UART0, 13, 0),
-+	EIC7700_RESET(EIC7700_RESET_UART1, 13, 1),
-+	EIC7700_RESET(EIC7700_RESET_UART2, 13, 2),
-+	EIC7700_RESET(EIC7700_RESET_UART3, 13, 3),
-+	EIC7700_RESET(EIC7700_RESET_UART4, 13, 4),
-+	EIC7700_RESET(EIC7700_RESET_GPIO0, 14, 0),
-+	EIC7700_RESET(EIC7700_RESET_GPIO1, 14, 1),
-+	EIC7700_RESET(EIC7700_RESET_TIMER, 15, 0),
-+	EIC7700_RESET(EIC7700_RESET_SSI0, 16, 0),
-+	EIC7700_RESET(EIC7700_RESET_SSI1, 16, 1),
-+	EIC7700_RESET(EIC7700_RESET_WDT0, 17, 0),
-+	EIC7700_RESET(EIC7700_RESET_WDT1, 17, 1),
-+	EIC7700_RESET(EIC7700_RESET_WDT2, 17, 2),
-+	EIC7700_RESET(EIC7700_RESET_WDT3, 17, 3),
-+	EIC7700_RESET(EIC7700_RESET_LSP_CFG, 18, 0),
-+	EIC7700_RESET(EIC7700_RESET_U84_CORE0, 19, 0),
-+	EIC7700_RESET(EIC7700_RESET_U84_CORE1, 19, 1),
-+	EIC7700_RESET(EIC7700_RESET_U84_CORE2, 19, 2),
-+	EIC7700_RESET(EIC7700_RESET_U84_CORE3, 19, 3),
-+	EIC7700_RESET(EIC7700_RESET_U84_BUS, 19, 4),
-+	EIC7700_RESET(EIC7700_RESET_U84_DBG, 19, 5),
-+	EIC7700_RESET(EIC7700_RESET_U84_TRACECOM, 19, 6),
-+	EIC7700_RESET(EIC7700_RESET_U84_TRACE0, 19, 8),
-+	EIC7700_RESET(EIC7700_RESET_U84_TRACE1, 19, 9),
-+	EIC7700_RESET(EIC7700_RESET_U84_TRACE2, 19, 10),
-+	EIC7700_RESET(EIC7700_RESET_U84_TRACE3, 19, 11),
-+	EIC7700_RESET(EIC7700_RESET_SCPU_CORE, 20, 0),
-+	EIC7700_RESET(EIC7700_RESET_SCPU_BUS, 20, 1),
-+	EIC7700_RESET(EIC7700_RESET_SCPU_DBG, 20, 2),
-+	EIC7700_RESET(EIC7700_RESET_LPCPU_CORE, 21, 0),
-+	EIC7700_RESET(EIC7700_RESET_LPCPU_BUS, 21, 1),
-+	EIC7700_RESET(EIC7700_RESET_LPCPU_DBG, 21, 2),
-+	EIC7700_RESET(EIC7700_RESET_VC_CFG, 22, 0),
-+	EIC7700_RESET(EIC7700_RESET_VC_AXI, 22, 1),
-+	EIC7700_RESET(EIC7700_RESET_VC_MONCFG, 22, 2),
-+	EIC7700_RESET(EIC7700_RESET_JD_CFG, 23, 0),
-+	EIC7700_RESET(EIC7700_RESET_JD_AXI, 23, 1),
-+	EIC7700_RESET(EIC7700_RESET_JE_CFG, 24, 0),
-+	EIC7700_RESET(EIC7700_RESET_JE_AXI, 24, 1),
-+	EIC7700_RESET(EIC7700_RESET_VD_CFG, 25, 0),
-+	EIC7700_RESET(EIC7700_RESET_VD_AXI, 25, 1),
-+	EIC7700_RESET(EIC7700_RESET_VE_AXI, 26, 0),
-+	EIC7700_RESET(EIC7700_RESET_VE_CFG, 26, 1),
-+	EIC7700_RESET(EIC7700_RESET_G2D_CORE, 27, 0),
-+	EIC7700_RESET(EIC7700_RESET_G2D_CFG, 27, 1),
-+	EIC7700_RESET(EIC7700_RESET_G2D_AXI, 27, 2),
-+	EIC7700_RESET(EIC7700_RESET_VI_AXI, 28, 0),
-+	EIC7700_RESET(EIC7700_RESET_VI_CFG, 28, 1),
-+	EIC7700_RESET(EIC7700_RESET_VI_DWE, 28, 2),
-+	EIC7700_RESET(EIC7700_RESET_DVP, 29, 0),
-+	EIC7700_RESET(EIC7700_RESET_ISP0, 30, 0),
-+	EIC7700_RESET(EIC7700_RESET_ISP1, 31, 0),
-+	EIC7700_RESET(EIC7700_RESET_SHUTTR0, 32, 0),
-+	EIC7700_RESET(EIC7700_RESET_SHUTTR1, 32, 1),
-+	EIC7700_RESET(EIC7700_RESET_SHUTTR2, 32, 2),
-+	EIC7700_RESET(EIC7700_RESET_SHUTTR3, 32, 3),
-+	EIC7700_RESET(EIC7700_RESET_SHUTTR4, 32, 4),
-+	EIC7700_RESET(EIC7700_RESET_SHUTTR5, 32, 5),
-+	EIC7700_RESET(EIC7700_RESET_VO_MIPI, 33, 0),
-+	EIC7700_RESET(EIC7700_RESET_VO_PRST, 33, 1),
-+	EIC7700_RESET(EIC7700_RESET_VO_HDMI_PRST, 33, 3),
-+	EIC7700_RESET(EIC7700_RESET_VO_HDMI_PHY, 33, 4),
-+	EIC7700_RESET(EIC7700_RESET_VO_HDMI, 33, 5),
-+	EIC7700_RESET(EIC7700_RESET_VO_I2S, 34, 0),
-+	EIC7700_RESET(EIC7700_RESET_VO_I2S_PRST, 34, 1),
-+	EIC7700_RESET(EIC7700_RESET_VO_AXI, 35, 0),
-+	EIC7700_RESET(EIC7700_RESET_VO_CFG, 35, 1),
-+	EIC7700_RESET(EIC7700_RESET_VO_DC, 35, 2),
-+	EIC7700_RESET(EIC7700_RESET_VO_DC_PRST, 35, 3),
-+	EIC7700_RESET(EIC7700_RESET_BOOTSPI_HRST, 36, 0),
-+	EIC7700_RESET(EIC7700_RESET_BOOTSPI, 36, 1),
-+	EIC7700_RESET(EIC7700_RESET_ANO1, 37, 0),
-+	EIC7700_RESET(EIC7700_RESET_ANO0, 38, 0),
-+	EIC7700_RESET(EIC7700_RESET_DMA1_ARST, 39, 0),
-+	EIC7700_RESET(EIC7700_RESET_DMA1_HRST, 39, 1),
-+	EIC7700_RESET(EIC7700_RESET_FPRT, 40, 0),
-+	EIC7700_RESET(EIC7700_RESET_HBLOCK, 41, 0),
-+	EIC7700_RESET(EIC7700_RESET_SECSR, 42, 0),
-+	EIC7700_RESET(EIC7700_RESET_OTP, 43, 0),
-+	EIC7700_RESET(EIC7700_RESET_PKA, 44, 0),
-+	EIC7700_RESET(EIC7700_RESET_SPACC, 45, 0),
-+	EIC7700_RESET(EIC7700_RESET_TRNG, 46, 0),
-+	EIC7700_RESET(EIC7700_RESET_TIMER0_0, 48, 0),
-+	EIC7700_RESET(EIC7700_RESET_TIMER0_1, 48, 1),
-+	EIC7700_RESET(EIC7700_RESET_TIMER0_2, 48, 2),
-+	EIC7700_RESET(EIC7700_RESET_TIMER0_3, 48, 3),
-+	EIC7700_RESET(EIC7700_RESET_TIMER0_4, 48, 4),
-+	EIC7700_RESET(EIC7700_RESET_TIMER0_5, 48, 5),
-+	EIC7700_RESET(EIC7700_RESET_TIMER0_6, 48, 6),
-+	EIC7700_RESET(EIC7700_RESET_TIMER0_7, 48, 7),
-+	EIC7700_RESET(EIC7700_RESET_TIMER0_N, 48, 8),
-+	EIC7700_RESET(EIC7700_RESET_TIMER1_0, 49, 0),
-+	EIC7700_RESET(EIC7700_RESET_TIMER1_1, 49, 1),
-+	EIC7700_RESET(EIC7700_RESET_TIMER1_2, 49, 2),
-+	EIC7700_RESET(EIC7700_RESET_TIMER1_3, 49, 3),
-+	EIC7700_RESET(EIC7700_RESET_TIMER1_4, 49, 4),
-+	EIC7700_RESET(EIC7700_RESET_TIMER1_5, 49, 5),
-+	EIC7700_RESET(EIC7700_RESET_TIMER1_6, 49, 6),
-+	EIC7700_RESET(EIC7700_RESET_TIMER1_7, 49, 7),
-+	EIC7700_RESET(EIC7700_RESET_TIMER1_N, 49, 8),
-+	EIC7700_RESET(EIC7700_RESET_TIMER2_0, 50, 0),
-+	EIC7700_RESET(EIC7700_RESET_TIMER2_1, 50, 1),
-+	EIC7700_RESET(EIC7700_RESET_TIMER2_2, 50, 2),
-+	EIC7700_RESET(EIC7700_RESET_TIMER2_3, 50, 3),
-+	EIC7700_RESET(EIC7700_RESET_TIMER2_4, 50, 4),
-+	EIC7700_RESET(EIC7700_RESET_TIMER2_5, 50, 5),
-+	EIC7700_RESET(EIC7700_RESET_TIMER2_6, 50, 6),
-+	EIC7700_RESET(EIC7700_RESET_TIMER2_7, 50, 7),
-+	EIC7700_RESET(EIC7700_RESET_TIMER2_N, 50, 8),
-+	EIC7700_RESET(EIC7700_RESET_TIMER3_0, 51, 0),
-+	EIC7700_RESET(EIC7700_RESET_TIMER3_1, 51, 1),
-+	EIC7700_RESET(EIC7700_RESET_TIMER3_2, 51, 2),
-+	EIC7700_RESET(EIC7700_RESET_TIMER3_3, 51, 3),
-+	EIC7700_RESET(EIC7700_RESET_TIMER3_4, 51, 4),
-+	EIC7700_RESET(EIC7700_RESET_TIMER3_5, 51, 5),
-+	EIC7700_RESET(EIC7700_RESET_TIMER3_6, 51, 6),
-+	EIC7700_RESET(EIC7700_RESET_TIMER3_7, 51, 7),
-+	EIC7700_RESET(EIC7700_RESET_TIMER3_N, 51, 8),
-+	EIC7700_RESET(EIC7700_RESET_RTC, 52, 0),
-+	EIC7700_RESET(EIC7700_RESET_MNOC_SNOC_NSP, 53, 0),
-+	EIC7700_RESET(EIC7700_RESET_MNOC_VC, 53, 1),
-+	EIC7700_RESET(EIC7700_RESET_MNOC_CFG, 53, 2),
-+	EIC7700_RESET(EIC7700_RESET_MNOC_HSP, 53, 3),
-+	EIC7700_RESET(EIC7700_RESET_MNOC_GPU, 53, 4),
-+	EIC7700_RESET(EIC7700_RESET_MNOC_DDRC1_P3, 53, 5),
-+	EIC7700_RESET(EIC7700_RESET_MNOC_DDRC0_P3, 53, 6),
-+	EIC7700_RESET(EIC7700_RESET_RNOC_VO, 54, 0),
-+	EIC7700_RESET(EIC7700_RESET_RNOC_VI, 54, 1),
-+	EIC7700_RESET(EIC7700_RESET_RNOC_SNOC_NSP, 54, 2),
-+	EIC7700_RESET(EIC7700_RESET_RNOC_CFG, 54, 3),
-+	EIC7700_RESET(EIC7700_RESET_MNOC_DDRC1_P4, 54, 4),
-+	EIC7700_RESET(EIC7700_RESET_MNOC_DDRC0_P4, 54, 5),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_VO_CFG, 55, 0),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_VI_CFG, 55, 1),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_VC_CFG, 55, 2),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_TCU_CFG, 55, 3),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_PCIE_CFG, 55, 4),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_NPU_CFG, 55, 5),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_LSP_CFG, 55, 6),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_HSP_CFG, 55, 7),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_GPU_CFG, 55, 8),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_DSPT_CFG, 55, 9),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_DDRT1_CFG, 55, 10),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_DDRT0_CFG, 55, 11),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_D2D_CFG, 55, 12),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_CFG, 55, 13),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_CLMM_CFG, 55, 14),
-+	EIC7700_RESET(EIC7700_RESET_CNOC_AON_CFG, 55, 15),
-+	EIC7700_RESET(EIC7700_RESET_LNOC_CFG, 56, 0),
-+	EIC7700_RESET(EIC7700_RESET_LNOC_NPU_LLC, 56, 1),
-+	EIC7700_RESET(EIC7700_RESET_LNOC_DDRC1_P0, 56, 2),
-+	EIC7700_RESET(EIC7700_RESET_LNOC_DDRC0_P0, 56, 3),
-+};
-+
-+static int eic7700_reset_assert(struct reset_controller_dev *rcdev,
-+				unsigned long id)
-+{
-+	struct eic7700_reset_data *data = to_eic7700_reset_data(rcdev);
-+
-+	return regmap_clear_bits(data->regmap, eic7700_reset[id].reg,
-+				 eic7700_reset[id].bit);
-+}
-+
-+static int eic7700_reset_deassert(struct reset_controller_dev *rcdev,
-+				  unsigned long id)
-+{
-+	struct eic7700_reset_data *data = to_eic7700_reset_data(rcdev);
-+
-+	return regmap_set_bits(data->regmap, eic7700_reset[id].reg,
-+			       eic7700_reset[id].bit);
-+}
-+
-+static int eic7700_reset_reset(struct reset_controller_dev *rcdev,
-+			       unsigned long id)
-+{
-+	int ret;
-+
-+	ret = eic7700_reset_assert(rcdev, id);
-+	if (ret)
-+		return ret;
-+
-+	usleep_range(10, 15);
-+
-+	return eic7700_reset_deassert(rcdev, id);
-+}
-+
-+static const struct reset_control_ops eic7700_reset_ops = {
-+	.reset = eic7700_reset_reset,
-+	.assert = eic7700_reset_assert,
-+	.deassert = eic7700_reset_deassert,
-+};
-+
-+static const struct of_device_id eic7700_reset_dt_ids[] = {
-+	{ .compatible = "eswin,eic7700-reset", },
-+	{ /* sentinel */ }
-+};
-+
-+static int eic7700_reset_probe(struct platform_device *pdev)
-+{
-+	struct eic7700_reset_data *data;
-+	struct device *dev = &pdev->dev;
-+	void __iomem *base;
-+
-+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-+	if (!data)
-+		return -ENOMEM;
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	data->regmap = devm_regmap_init_mmio(dev, base, &eic7700_regmap_config);
-+	if (IS_ERR(data->regmap))
-+		return dev_err_probe(dev, PTR_ERR(data->regmap),
-+				     "failed to get regmap!\n");
-+
-+	data->rcdev.owner = THIS_MODULE;
-+	data->rcdev.ops = &eic7700_reset_ops;
-+	data->rcdev.of_node = dev->of_node;
-+	data->rcdev.of_reset_n_cells = 1;
-+	data->rcdev.dev = dev;
-+	data->rcdev.nr_resets = ARRAY_SIZE(eic7700_reset);
-+
-+	/* clear boot flag so u84 and scpu could be reseted by software */
-+	regmap_set_bits(data->regmap, SYSCRG_CLEAR_BOOT_INFO_OFFSET,
-+			CLEAR_BOOT_FLAG_BIT);
-+	msleep(50);
-+
-+	return devm_reset_controller_register(dev, &data->rcdev);
-+}
-+
-+static struct platform_driver eic7700_reset_driver = {
-+	.probe	= eic7700_reset_probe,
-+	.driver = {
-+		.name		= "eic7700-reset",
-+		.of_match_table	= eic7700_reset_dt_ids,
-+	},
-+};
-+
-+builtin_platform_driver(eic7700_reset_driver);
+ .../clock/amlogic,a4-peripherals-clkc.yaml         | 122 +++
+ .../bindings/clock/amlogic,a4-pll-clkc.yaml        |  61 ++
+ .../clock/amlogic,a5-peripherals-clkc.yaml         | 134 ++++
+ .../bindings/clock/amlogic,a5-pll-clkc.yaml        |  63 ++
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        |  80 ++
+ arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        |  87 ++
+ drivers/clk/meson/Kconfig                          |  53 ++
+ drivers/clk/meson/Makefile                         |   4 +
+ drivers/clk/meson/a1-pll.c                         |   1 +
+ drivers/clk/meson/a4-peripherals.c                 | 764 ++++++++++++++++++
+ drivers/clk/meson/a4-pll.c                         | 242 ++++++
+ drivers/clk/meson/a5-peripherals.c                 | 883 +++++++++++++++++++++
+ drivers/clk/meson/a5-pll.c                         | 476 +++++++++++
+ drivers/clk/meson/clk-pll.c                        |  76 +-
+ drivers/clk/meson/clk-pll.h                        |   2 +
+ .../clock/amlogic,a4-peripherals-clkc.h            | 129 +++
+ include/dt-bindings/clock/amlogic,a4-pll-clkc.h    |  15 +
+ include/dt-bindings/clock/amlogic,a4-scmi-clkc.h   |  42 +
+ .../clock/amlogic,a5-peripherals-clkc.h            | 132 +++
+ include/dt-bindings/clock/amlogic,a5-pll-clkc.h    |  24 +
+ include/dt-bindings/clock/amlogic,a5-scmi-clkc.h   |  44 +
+ 21 files changed, 3406 insertions(+), 28 deletions(-)
+---
+base-commit: 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
+change-id: 20250928-a4_a5_add_clock_driver-2b7c9d695633
+
+Best regards,
 -- 
-2.43.0
+Chuan Liu <chuan.liu@amlogic.com>
+
 
 
