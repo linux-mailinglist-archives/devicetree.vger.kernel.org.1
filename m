@@ -1,81 +1,63 @@
-Return-Path: <devicetree+bounces-222775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB1EBACC48
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 14:03:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE249BACD93
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 14:33:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 42D7A7AB0B2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 12:01:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 68D19163348
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 12:33:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8AA42F7AD4;
-	Tue, 30 Sep 2025 12:03:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bg0cAZdT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18912221275;
+	Tue, 30 Sep 2025 12:33:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5217E2F6182
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 12:03:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E131A2FB97B;
+	Tue, 30 Sep 2025 12:32:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759233803; cv=none; b=Zk0jZrV31g11UhBxC7GWGxpWjRZtjS/zX/FH0oq0JgRIOtvtq4b3DEIaAF333BuJE5ZRgjBN1bj5o46+hyyNPJ3Fb3aQhYX5jSbYmOU6kUTvonUzxwbAg1Hv8QXHNkDfZVQthZ7y5nwLb8ioXiZiq1iPUX6CGHT29CELadeHsYE=
+	t=1759235598; cv=none; b=DPtvYwNduLBO7oD9BwDgWsZTLjJhv1tkME8tEuedxKnzjrwikS75g3SjkhbgY3Ci6OYTF8Vo2CN48D+FQupyt0c3LSJH96rvG+gDBKuoX7WrCofLeEmYKYLxwtgYMOddqMzAGdEJbMJNik5jwTUFHlb4M2JqZANmWV1Yzu8RdWY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759233803; c=relaxed/simple;
-	bh=DeeJs8Iyqemk9HQZ3dDZhXBo4w534fS/ge157ogLl1k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Bc/hxJ8zaAHlunDhT7d1B9ecaQHW3mRQMUpapqCFsBv+yjhMvzKHtFq3saMBC4GoxupJqCXK8cJ6CkmO5FfcgjYy6d4skExLzjmqzQ++fxDvuQSkq3c6fD94LJxH/GZyL4LBNf4VGEXXi+zB/nlX8kfMxa5YrjfUa0AFu8Y8qks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bg0cAZdT; arc=none smtp.client-ip=209.85.160.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-4de8bd25183so57342721cf.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:03:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759233800; x=1759838600; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gNxhbuDMMW5e1gvjhZr082pFtNBwAWv3uREKYlnISRw=;
-        b=bg0cAZdT8e0kncS3VrYX93h+wRj2nGk8vB/WfZaVPd4VQhSTTUBJePYGLY9lx5Jqop
-         WyLfMyFk4jcJvXc7mIjGn56dwalmEgn8GZPv8K+mLvtWdmyLiQxxtYQ87ePCzsIcOSA9
-         3hRano2w9TXq3FrRZ4Ps/CksGCSvrCXWR2hbjMgLrsmr9tz6yK6T5UAhR4dLrjn9KrZo
-         +VDEdH0RfIdmBlmOIsiD5d3jYgsjAGPgsbBIV12K3lUEuT1wyOO9l6z/wlwtsWo1wwAW
-         1Metjznzx2y9k+1oO+BQ5FfSoEhBUgjvpc3PpCewyW86JM85XV8o/7MUnoAQybPTo999
-         wzFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759233800; x=1759838600;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gNxhbuDMMW5e1gvjhZr082pFtNBwAWv3uREKYlnISRw=;
-        b=htEqS1+uK6S1l4aqxLX4v3DexA6hsW7GLFyA8sLQq40kufmFuX/lo/c9bRJUx+HI18
-         Ds7DUlubGeBqWwj7T+SaKVaqqATCC600fB2NPKNVJK1osRFkNMTkjYihjOAVvqfLOesv
-         V5ejKN75h6yLyzbRDykjm+qcONw2KNUTUXXEROt6y133a4FydnHBDs20QVJN4Astyk2r
-         PW6ELpxkwFLBmqmMAw2NEZT7p5SHFJ9Uku9q33qIz8lxJCYh0f/Gjyi9BPYux9NEr2ef
-         g+tFsk72Q4FpbRd7w12FupvfqfEJ+x5SuQtKLPyrLFyhJtcgyX0geQq6v40LZxyuP26P
-         EMDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUG40tChASDB8E8baQSMn4pUuHPeerTWhup86PbJK/Ad0WGqIK6TwNiti7AGsPIoVyAldx9z7FjBB5A@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywy7T9UiA0JQmDHXSgq8o33cZYu4N2gtL8LYNq1pOoX6npwz6xV
-	l3sCaAHFm8+Kp7CbK+cUdqlhi3odKSb6k3r3xCYLclzjli1m9WcWAc1YZVLekskwSxc=
-X-Gm-Gg: ASbGncuVqz7NC+suVLiMldGtfZ2lF2Q5mdLs7Eb7Rpk7yRSDjhpn9qxkkwrrr7/gemk
-	gFDKu/Xi6Owh3yH3YATjD5gmoqs7b9Shm1yNL8OTMOHqWIGHa6zekkeLZtqL/Usq+CmXKOoHv74
-	HKoruSxRWrXsrCNBFBO5oaAIr1kATTmNibMJCnNdsIv6Qfs0o3g+j7oGjmgnJ0uAAnaYF8EqMro
-	UvUT46GXY5GRbBufSPyTWKytNKDJ3m7aSBfmURyWwRrhuvqv87SG7Yn0+r93qygKoQ5f+rtusLf
-	f6YEmiZY8X0SS0uAqCHdHg8nzAXHBNCCB2YseJQVPqFXCidoUVQgGbWycWPUc1RE8Mb8AJxRJjI
-	SL8yn8alN5OmEFYTzf7ZGFvO2BNYO7q+0hqjLmwVmSGeqy+zkWY4y0kPEng==
-X-Google-Smtp-Source: AGHT+IHM02Tcn2EtoKnslaKQ7MB5RuceBly1KJFhzW2QsvlJhSpws0OshslGC6oO0T9NkTACvuSFkw==
-X-Received: by 2002:a05:622a:46:b0:4dc:d94f:cbd9 with SMTP id d75a77b69052e-4dcd94fd2ebmr188362951cf.36.1759233799756;
-        Tue, 30 Sep 2025 05:03:19 -0700 (PDT)
-Received: from [192.168.1.140] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-85c306b5f64sm1020160885a.32.2025.09.30.05.03.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Sep 2025 05:03:19 -0700 (PDT)
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 30 Sep 2025 14:02:53 +0200
-Subject: [PATCH 6/6] pinctrl: bcm: bcmbca: Add support for BCM6846
+	s=arc-20240116; t=1759235598; c=relaxed/simple;
+	bh=o5WgECBb3XEdUTamZl7EY74JCh4ZAHhDYaBuiP0jtpY=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OYK21S3GmeKj0H4p0x7LDN9zMg6YQqUYBpmDlk2DADpI6oiMgHjKOE2KMPNtlJtTBldvkj76LfPaSt+PrwLKlMm0SxvsjCb+t47gv2Bo4zBLD5WmXrxxZsPw4nrpgRhz68xPbezDDanECwI0HQSWBUBfizZqcpEuW6pLELjNovc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from Atcsqr.andestech.com (localhost [127.0.0.2] (may be forged))
+	by Atcsqr.andestech.com with ESMTP id 58UC8wsW090414;
+	Tue, 30 Sep 2025 20:08:58 +0800 (+08)
+	(envelope-from randolph@andestech.com)
+Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
+	by Atcsqr.andestech.com with ESMTPS id 58UC5hY5088638
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 30 Sep 2025 20:05:43 +0800 (+08)
+	(envelope-from randolph@andestech.com)
+Received: from swlinux02 (10.0.15.183) by ATCPCS31.andestech.com (10.0.1.89)
+ with Microsoft SMTP Server id 14.3.498.0; Tue, 30 Sep 2025 20:05:43 +0800
+Date: Tue, 30 Sep 2025 20:05:37 +0800
+From: Randolph Lin <randolph@andestech.com>
+To: Rob Herring <robh@kernel.org>
+CC: Bjorn Helgaas <helgaas@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <jingoohan1@gmail.com>,
+        <mani@kernel.org>, <lpieralisi@kernel.org>, <kwilczynski@kernel.org>,
+        <bhelgaas@google.com>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <alex@ghiti.fr>, <aou@eecs.berkeley.edu>, <palmer@dabbelt.com>,
+        <paul.walmsley@sifive.com>, <ben717@andestech.com>,
+        <inochiama@gmail.com>, <thippeswamy.havalige@amd.com>,
+        <namcao@linutronix.de>, <shradha.t@samsung.com>,
+        <randolph.sklin@gmail.com>, <tim609@andestech.com>
+Subject: Re: [PATCH v3 1/5] PCI: dwc: Skip failed outbound iATU and continue
+Message-ID: <aNvHkUwKW-vD-hwV@swlinux02>
+References: <aNPq42O1Ml3ppF2M@swlinux02>
+ <20250926211023.GA2128495@bhelgaas>
+ <CAL_Jsq+HDgghAQps5M0jV7ELxR=M7pRCuEKwgSMcJQfS3Ecsrg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,597 +65,155 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250930-bcmbca-pinctrl-v1-6-73218459a094@linaro.org>
-References: <20250930-bcmbca-pinctrl-v1-0-73218459a094@linaro.org>
-In-Reply-To: <20250930-bcmbca-pinctrl-v1-0-73218459a094@linaro.org>
-To: =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- William Zhang <william.zhang@broadcom.com>, 
- Anand Gore <anand.gore@broadcom.com>, 
- Kursad Oney <kursad.oney@broadcom.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
- Linus Walleij <linus.walleij@linaro.org>
-X-Mailer: b4 0.14.2
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_Jsq+HDgghAQps5M0jV7ELxR=M7pRCuEKwgSMcJQfS3Ecsrg@mail.gmail.com>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 58UC8wsW090414
 
-This adds groups and functions required to support the BCM6846
-BCA SoC in the BCMBCA pin control driver.
+Hi Rob,
 
-Group and function definitions are based on the vendor code
-drop which stuff all groups and functions into the device tree:
-linux-4.19.183/arch/arm/boot/dts/brcm/6846/inc/6846_pinctrl.dtsi
+On Mon, Sep 29, 2025 at 09:03:59AM -0500, Rob Herring wrote:
+> [EXTERNAL MAIL]
+> 
+> On Fri, Sep 26, 2025 at 4:10 PM Bjorn Helgaas <helgaas@kernel.org> wrote:
+> >
+> > On Wed, Sep 24, 2025 at 08:58:11PM +0800, Randolph Lin wrote:
+> > > On Tue, Sep 23, 2025 at 09:42:23AM -0500, Bjorn Helgaas wrote:
+> > > > On Tue, Sep 23, 2025 at 07:36:43PM +0800, Randolph Lin wrote:
+> > > > > Previously, outbound iATU programming included range checks
+> > > > > based on hardware limitations. If a configuration did not meet
+> > > > > these constraints, the loop would stop immediately.
+> > > > >
+> > > > > This patch updates the behavior to enhance flexibility. Instead
+> > > > > of stopping at the first issue, it now logs a warning with
+> > > > > details of the affected window and proceeds to program the
+> > > > > remaining iATU entries.
+> > > > >
+> > > > > This enables partial configuration to complete in cases where
+> > > > > some iATU windows may not meet requirements, improving overall
+> > > > > compatibility.
+> > > >
+> > > > It's not really clear why this is needed.  I assume it's related
+> > > > to dropping qilai_pcie_outbound_atu_addr_valid().
+> > >
+> > > Yes, I want to drop the previous atu_addr_valid function.
+> > >
+> > > > I guess dw_pcie_prog_outbound_atu() must return an error for one
+> > > > of the QiLai ranges?  Which one, and what exactly is the problem?
+> > > > I still suspect something wrong in the devicetree description.
+> > >
+> > > The main issue is not the returned error; just need to avoid
+> > > terminating the process when the configuration exceeds the
+> > > hardware’s expected limits.
+> > >
+> > > There are two methods to fix the issue on the Qilai SoC:
+> > >
+> > > 1. Simply skip the entries that do not match the designware hardware
+> > > iATU limitations.  An error will be returned, but it can be ignored.
+> > > On the Qilai SoC, the iATU limitation is the 4GB boundary. Qilai SoC
+> > > only need to configure iATU support to translate addresses below the
+> > > "32-bits" address range. Although 64-bits addresses do not match the
+> > > designware hardware iATU limitations, there is no need to configure
+> > > 64-bits addresses, since the connection is hard-wired.
+> > >
+> > > 2. Set the devicetree only 2 viewport for iATU and force using
+> > > devicetree value.  This is a workaround in the devicetree, but the
+> > > fix logic is not easy to document.  Instead, we should enforce the
+> > > use of the viewport defined in the devicetree and modify the
+> > > designware generic code accordingly — using the viewport values from
+> > > the devicetree instead of reading them from the designware
+> > > registers.  Since only two viewports are available for iATU, we
+> > > should reserve one for the configuration registers and the other for
+> > > 32-bit address access.  Therefore, reverse logic still needs to be
+> > > added to the designware generic code.
+> > >
+> > > Method 2 adds excessive complexity to the designware generic code.
+> > > Instead, directly configuring the iATU and reporting an error when
+> > > the configuration exceeds the hardware iATU limitations is a simpler
+> > > and more effective approach to applying the fix.
+> >
+> > I don't know the DesignWare iATU design very well, so I don't know if
+> > this issue is something unique to Qilai or if it's something that
+> > could be handled via devicetree.
+> 
+> I believe it should probably be handled in the DT. The iATU is
+> programmed based on the bridge window resources which are in turn
+> based on DT ranges and dma-ranges. If there's a failure, then
+> ranges/dma-ranges is wrong. Or the driver could adjust the bridge
+> window resources before programming the iATU.
+> 
 
-The groups and functions have been adjusted to what I believe
-is generally useful along the lines of the BCM4908 driver:
-for example I2C has two pins SCL/SDA that can be muxed out
-in one position the two pins are not muxed individually but
-as a group of (SDA,SCL), and the NAND control and data pins
-are handled in groups as well.
+Thank you very much. That’s a great hint for me.
 
-No all groups and functions are defined, like with the BCM4908
-I stopped short from implementing "everything", because I
-do not foresee that it would be useful to add all JTAG
-scan chains etc.
+My driver can handle most of the logic within the .init callback of the
+dw_pcie_host_ops structure. This includes parsing the Device Tree data
+and performing the required pre-initialization steps, such as counting
+how many bridge window resources comply with the iATU limitations and
+verifying the 32-bit address mappings within those bridge window
+resources.
 
-Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
----
- drivers/pinctrl/bcm/pinctrl-bcmbca.c | 531 +++++++++++++++++++++++++++++++++++
- 1 file changed, 531 insertions(+)
+The following additional logic is still required to ensure
+pci->num_ob_windows correctly reflects the driver’s pre-initialization
+value, with the current approach remaining more generic and purposeful.
 
-diff --git a/drivers/pinctrl/bcm/pinctrl-bcmbca.c b/drivers/pinctrl/bcm/pinctrl-bcmbca.c
-index dba25b453507300aa1435c2eb0326f5ef9694c0a..394aea544cf746f96e4563e2f5040b671620398b 100644
---- a/drivers/pinctrl/bcm/pinctrl-bcmbca.c
-+++ b/drivers/pinctrl/bcm/pinctrl-bcmbca.c
-@@ -57,6 +57,533 @@ struct bcmbca_pinctrl_pin_setup {
- 	unsigned int function;
- };
- 
-+/* BCM6846 groups and functions */
-+
-+#define BCM6846_NUM_PINS 79
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_0_pins_a[] = {
-+	{ 18, 1 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_0_pins_b[] = {
-+	{ 52, 2 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_1_pins_a[] = {
-+	{ 19, 1 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_1_pins_b[] = {
-+	{ 53, 2 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_2_pins_a[] = {
-+	{ 22, 1 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_2_pins_b[] = {
-+	{ 49, 2 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_3_pins_a[] = {
-+	{ 24, 1 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_3_pins_b[] = {
-+	{ 44, 1 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_4_pins_a[] = {
-+	{ 9, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_4_pins_b[] = {
-+	{ 44, 2 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_5_pins_a[] = {
-+	{ 10, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_5_pins_b[] = {
-+	{ 43, 2 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_6_pins_a[] = {
-+	{ 11, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_6_pins_b[] = {
-+	{ 47, 2 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_7_pins_a[] = {
-+	{ 12, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_7_pins_b[] = {
-+	{ 45, 2 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_8_pins_a[] = {
-+	{ 13, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_8_pins_b[] = {
-+	{ 5, 2 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_9_pins_a[] = {
-+	{ 16, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_9_pins_b[] = {
-+	{ 18, 2 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_10_pins_a[] = {
-+	{ 17, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_10_pins_b[] = {
-+	{ 50, 2 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_11_pins_a[] = {
-+	{ 20, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_11_pins_b[] = {
-+	{ 51, 2 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_12_pins_a[] = {
-+	{ 21, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_12_pins_b[] = {
-+	{ 56, 2 },
-+};
-+
-+/* LEDs 13 thru 17 can apparently only be muxed in one place */
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_13_pins[] = {
-+	{ 74, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_14_pins[] = {
-+	{ 56, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_15_pins[] = {
-+	{ 57, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_16_pins[] = {
-+	{ 58, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_led_17_pins[] = {
-+	{ 59, 0 },
-+};
-+
-+/* Pins used for serial LED control can come out in two places */
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_ser_led_pins_a[] = {
-+	{ 18, 3 }, /* CLK */
-+	{ 23, 3 }, /* DATA */
-+	{ 25, 3 }, /* MASK */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_ser_led_pins_b[] = {
-+	{ 43, 3 }, /* CLK */
-+	{ 45, 3 }, /* DATA */
-+	{ 44, 3 }, /* MASK */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_nand_ctrl_pins[] = {
-+	{ 26, 1 },
-+	{ 27, 1 },
-+	{ 28, 1 },
-+	{ 29, 1 },
-+	{ 30, 1 },
-+	{ 31, 1 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_nand_data_pins[] = {
-+	{ 32, 1 },
-+	{ 33, 1 },
-+	{ 34, 1 },
-+	{ 35, 1 },
-+	{ 36, 1 },
-+	{ 37, 1 },
-+	{ 38, 1 },
-+	{ 39, 1 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_nand_wp_pins[] = {
-+	{ 8, 1 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_emmc_ctrl_pins[] = {
-+	{ 20, 1 },
-+	{ 21, 1 },
-+};
-+
-+/* SPI port "M" can be muxed in three different places */
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spim_pins_a[] = {
-+	{ 62, 1 }, /* CLK */
-+	{ 63, 1 }, /* MOSI */
-+	{ 64, 1 }, /* MISO */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spim_ss0_pins_a[] = {
-+	{ 65, 1 }, /* SPI Select 0, Chip select 0 */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spim_ss1_pins_a[] = {
-+	{ 66, 1 }, /* SPI Select 1, Chip select 1 */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spim_ss2_pins_a[] = {
-+	{ 9, 1 }, /* SPI Select 2, Chip select 2 */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spim_ss3_pins_a[] = {
-+	{ 12, 1 }, /* SPI Select 3, Chip select 3 */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spim_pins_b[] = {
-+	{ 49, 0 }, /* CLK */
-+	{ 50, 0 }, /* MOSI */
-+	{ 51, 0 }, /* MISO */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spim_ss0_pins_b[] = {
-+	{ 52, 0 }, /* SPI Select 0, Chip select 0 */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spim_ss1_pins_b[] = {
-+	{ 53, 0 }, /* SPI Select 1, Chip select 1 */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spim_ss2_pins_b[] = {
-+	{ 5, 0 }, /* SPI Select 2, Chip select 2 */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spim_ss3_pins_b[] = {
-+	{ 7, 1 }, /* SPI Select 3, Chip select 3 */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spim_pins_c[] = {
-+	{ 24, 0 }, /* CLK */
-+	{ 6, 0 }, /* MOSI */
-+	{ 7, 0 }, /* MISO */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spim_ss0_pins_c[] = {
-+	{ 8, 0 }, /* SPI Select 0, Chip select 0 */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spim_ss1_pins_c[] = {
-+	{ 73, 1 }, /* SPI Select 1, Chip select 1 */
-+};
-+
-+/* SPI port "S", this has just one optional select pin but can be in two places */
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spis_pins_a[] = {
-+	{ 56, 1 }, /* CLK */
-+	{ 57, 1 }, /* MOSI */
-+	{ 58, 1 }, /* MISO */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spis_ss_pins_a[] = {
-+	{ 59, 1 }, /* SPI S Select, Chip select */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spis_pins_b[] = {
-+	{ 0, 2 }, /* CLK */
-+	{ 1, 2 }, /* MOSI */
-+	{ 2, 2 }, /* MISO */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_spis_ss_pins_b[] = {
-+	{ 3, 2 }, /* SPI S Select, Chip select */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_usb0_pwr_pins[] = {
-+	{ 74, 1 },
-+	{ 75, 1 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_usb1_pwr_pins[] = {
-+	{ 76, 1 },
-+	{ 77, 1 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_i2c_pins[] = {
-+	{ 68, 0 },	/* SCL */
-+	{ 69, 0 },	/* SDA */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_rgmii_pins[] = {
-+	{ 42, 1 },
-+	{ 43, 1 },
-+	{ 44, 1 },
-+	{ 45, 1 },
-+	{ 46, 1 },
-+	{ 47, 1 },
-+	{ 48, 1 },
-+	{ 49, 1 },
-+	{ 50, 1 },
-+	{ 51, 1 },
-+	{ 52, 1 },
-+	{ 53, 1 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_rgmii_rx_ok_pins[] = {
-+	{ 7, 3 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_rgmii_start_stop_pins[] = {
-+	{ 6, 3 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_mii_pins[] = {
-+	{ 8, 3 }, /* RX ER */
-+	{ 5, 3 }, /* TX ER */
-+};
-+
-+/* "signal detect" pin can be in two positions */
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_signal_detect_pins_a[] = {
-+	{ 58, 3 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_signal_detect_pins_b[] = {
-+	{ 15, 3 },
-+};
-+
-+/* "one sec pls" pin can be in two positions */
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_one_sec_pls_pins_a[] = {
-+	{ 40, 0 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_one_sec_pls_pins_b[] = {
-+	{ 6, 1 },
-+};
-+
-+/* "Rogue onu" pin, presumably a misspelling of "rogue one" */
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_rogue_onu_pins_a[] = {
-+	{ 56, 3 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_rogue_onu_pins_b[] = {
-+	{ 14, 3 },
-+};
-+
-+/* WAN extra pins for SynchE and PTP */
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_wan_mdio_pins[] = {
-+	{ 54, 1 }, /* MDC */
-+	{ 55, 1 }, /* MDIO */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_wan_nco_pins[] = {
-+	{ 16, 3 }, /* 10 MHz NCO clock output */
-+	{ 5, 1 }, /* 8 kHz NCO clock output */
-+	{ 20, 3 }, /* NCO programmable clock output */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_wan_early_txen_pins_a[] = {
-+	{ 10, 3 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_wan_early_txen_pins_b[] = {
-+	{ 4, 1 },
-+};
-+
-+/* 1PPS pin for IEEE 1588 PTP */
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_wan_nco_1pps_sig_pins_a[] = {
-+	{ 40, 1 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_wan_nco_1pps_sig_pins_b[] = {
-+	{ 6, 2 },
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_uart0_pins[] = {
-+	{ 60, 1 }, /* SDIN (RX) */
-+	{ 61, 1 }, /* SDOUT (TX) */
-+};
-+
-+static const struct bcmbca_pinctrl_pin_setup bcm6846_uart2_pins[] = {
-+	{ 13, 1 }, /* CTS */
-+	{ 16, 1 }, /* RTS */
-+	{ 14, 1 }, /* SIN (RX) */
-+	{ 15, 1 }, /* SOUT (TX) */
-+};
-+
-+static const struct bcmbca_pinctrl_grp bcm6846_pinctrl_grps[] = {
-+	{ "led_0_grp_a", bcm6846_led_0_pins_a, ARRAY_SIZE(bcm6846_led_0_pins_a) },
-+	{ "led_0_grp_b", bcm6846_led_0_pins_b, ARRAY_SIZE(bcm6846_led_0_pins_b) },
-+	{ "led_1_grp_a", bcm6846_led_1_pins_a, ARRAY_SIZE(bcm6846_led_1_pins_a) },
-+	{ "led_1_grp_b", bcm6846_led_1_pins_b, ARRAY_SIZE(bcm6846_led_1_pins_b) },
-+	{ "led_2_grp_a", bcm6846_led_2_pins_a, ARRAY_SIZE(bcm6846_led_2_pins_a) },
-+	{ "led_2_grp_b", bcm6846_led_2_pins_b, ARRAY_SIZE(bcm6846_led_2_pins_b) },
-+	{ "led_3_grp_a", bcm6846_led_3_pins_a, ARRAY_SIZE(bcm6846_led_3_pins_a) },
-+	{ "led_3_grp_b", bcm6846_led_3_pins_b, ARRAY_SIZE(bcm6846_led_3_pins_b) },
-+	{ "led_4_grp_a", bcm6846_led_4_pins_a, ARRAY_SIZE(bcm6846_led_4_pins_a) },
-+	{ "led_4_grp_b", bcm6846_led_4_pins_b, ARRAY_SIZE(bcm6846_led_4_pins_b) },
-+	{ "led_5_grp_a", bcm6846_led_5_pins_a, ARRAY_SIZE(bcm6846_led_5_pins_a) },
-+	{ "led_5_grp_b", bcm6846_led_5_pins_b, ARRAY_SIZE(bcm6846_led_5_pins_b) },
-+	{ "led_6_grp_a", bcm6846_led_6_pins_a, ARRAY_SIZE(bcm6846_led_6_pins_a) },
-+	{ "led_6_grp_b", bcm6846_led_6_pins_b, ARRAY_SIZE(bcm6846_led_6_pins_b) },
-+	{ "led_7_grp_a", bcm6846_led_7_pins_a, ARRAY_SIZE(bcm6846_led_7_pins_a) },
-+	{ "led_7_grp_b", bcm6846_led_7_pins_b, ARRAY_SIZE(bcm6846_led_7_pins_b) },
-+	{ "led_8_grp_a", bcm6846_led_8_pins_a, ARRAY_SIZE(bcm6846_led_8_pins_a) },
-+	{ "led_8_grp_b", bcm6846_led_8_pins_b, ARRAY_SIZE(bcm6846_led_8_pins_b) },
-+	{ "led_9_grp_a", bcm6846_led_9_pins_a, ARRAY_SIZE(bcm6846_led_9_pins_a) },
-+	{ "led_9_grp_b", bcm6846_led_9_pins_b, ARRAY_SIZE(bcm6846_led_9_pins_b) },
-+	{ "led_10_grp_a", bcm6846_led_10_pins_a, ARRAY_SIZE(bcm6846_led_10_pins_a) },
-+	{ "led_10_grp_b", bcm6846_led_10_pins_b, ARRAY_SIZE(bcm6846_led_10_pins_b) },
-+	{ "led_11_grp_a", bcm6846_led_11_pins_a, ARRAY_SIZE(bcm6846_led_11_pins_a) },
-+	{ "led_11_grp_b", bcm6846_led_11_pins_b, ARRAY_SIZE(bcm6846_led_11_pins_b) },
-+	{ "led_12_grp_a", bcm6846_led_12_pins_a, ARRAY_SIZE(bcm6846_led_12_pins_a) },
-+	{ "led_12_grp_b", bcm6846_led_12_pins_b, ARRAY_SIZE(bcm6846_led_12_pins_b) },
-+	{ "led_13_grp", bcm6846_led_13_pins, ARRAY_SIZE(bcm6846_led_13_pins) },
-+	{ "led_14_grp", bcm6846_led_14_pins, ARRAY_SIZE(bcm6846_led_14_pins) },
-+	{ "led_15_grp", bcm6846_led_15_pins, ARRAY_SIZE(bcm6846_led_15_pins) },
-+	{ "led_16_grp", bcm6846_led_16_pins, ARRAY_SIZE(bcm6846_led_16_pins) },
-+	{ "led_17_grp", bcm6846_led_17_pins, ARRAY_SIZE(bcm6846_led_17_pins) },
-+	{ "ser_led_grp_a", bcm6846_ser_led_pins_a, ARRAY_SIZE(bcm6846_ser_led_pins_a) },
-+	{ "ser_led_grp_b", bcm6846_ser_led_pins_b, ARRAY_SIZE(bcm6846_ser_led_pins_b) },
-+	{ "nand_ctrl_grp", bcm6846_nand_ctrl_pins, ARRAY_SIZE(bcm6846_nand_ctrl_pins) },
-+	{ "nand_data_grp", bcm6846_nand_data_pins, ARRAY_SIZE(bcm6846_nand_data_pins) },
-+	{ "nand_wp_grp", bcm6846_nand_wp_pins, ARRAY_SIZE(bcm6846_nand_wp_pins) },
-+	{ "emmc_ctrl_grp", bcm6846_emmc_ctrl_pins, ARRAY_SIZE(bcm6846_emmc_ctrl_pins) },
-+	{ "spim_grp_a", bcm6846_spim_pins_a, ARRAY_SIZE(bcm6846_spim_pins_a) },
-+	{ "spim_ss0_grp_a", bcm6846_spim_ss0_pins_a, ARRAY_SIZE(bcm6846_spim_ss0_pins_a) },
-+	{ "spim_ss1_grp_a", bcm6846_spim_ss1_pins_a, ARRAY_SIZE(bcm6846_spim_ss1_pins_a) },
-+	{ "spim_ss2_grp_a", bcm6846_spim_ss2_pins_a, ARRAY_SIZE(bcm6846_spim_ss2_pins_a) },
-+	{ "spim_ss3_grp_a", bcm6846_spim_ss3_pins_a, ARRAY_SIZE(bcm6846_spim_ss3_pins_a) },
-+	{ "spim_grp_b", bcm6846_spim_pins_b, ARRAY_SIZE(bcm6846_spim_pins_b) },
-+	{ "spim_ss0_grp_b", bcm6846_spim_ss0_pins_b, ARRAY_SIZE(bcm6846_spim_ss0_pins_b) },
-+	{ "spim_ss1_grp_b", bcm6846_spim_ss1_pins_b, ARRAY_SIZE(bcm6846_spim_ss1_pins_b) },
-+	{ "spim_ss2_grp_b", bcm6846_spim_ss2_pins_b, ARRAY_SIZE(bcm6846_spim_ss2_pins_b) },
-+	{ "spim_ss3_grp_b", bcm6846_spim_ss3_pins_b, ARRAY_SIZE(bcm6846_spim_ss3_pins_b) },
-+	{ "spim_grp_c", bcm6846_spim_pins_c, ARRAY_SIZE(bcm6846_spim_pins_c) },
-+	{ "spim_ss0_grp_c", bcm6846_spim_ss0_pins_c, ARRAY_SIZE(bcm6846_spim_ss0_pins_c) },
-+	{ "spim_ss1_grp_c", bcm6846_spim_ss1_pins_c, ARRAY_SIZE(bcm6846_spim_ss1_pins_c) },
-+	{ "spis_grp_a", bcm6846_spis_pins_a, ARRAY_SIZE(bcm6846_spis_pins_a) },
-+	{ "spis_ss_grp_a", bcm6846_spis_ss_pins_a, ARRAY_SIZE(bcm6846_spis_ss_pins_a) },
-+	{ "spis_grp_b", bcm6846_spis_pins_b, ARRAY_SIZE(bcm6846_spis_pins_b) },
-+	{ "spis_ss_grp_b", bcm6846_spis_ss_pins_b, ARRAY_SIZE(bcm6846_spis_ss_pins_b) },
-+	{ "usb0_pwr_grp", bcm6846_usb0_pwr_pins, ARRAY_SIZE(bcm6846_usb0_pwr_pins) },
-+	{ "usb1_pwr_grp", bcm6846_usb1_pwr_pins, ARRAY_SIZE(bcm6846_usb1_pwr_pins) },
-+	{ "i2c_grp", bcm6846_i2c_pins, ARRAY_SIZE(bcm6846_i2c_pins) },
-+	{ "rgmii_grp", bcm6846_rgmii_pins, ARRAY_SIZE(bcm6846_rgmii_pins) },
-+	{ "rgmii_rx_ok_grp", bcm6846_rgmii_rx_ok_pins, ARRAY_SIZE(bcm6846_rgmii_rx_ok_pins) },
-+	{ "rgmii_start_stop_grp", bcm6846_rgmii_start_stop_pins, ARRAY_SIZE(bcm6846_rgmii_start_stop_pins) },
-+	{ "mii_grp", bcm6846_mii_pins, ARRAY_SIZE(bcm6846_mii_pins) },
-+	{ "signal_detect_grp_a", bcm6846_signal_detect_pins_a, ARRAY_SIZE(bcm6846_signal_detect_pins_a) },
-+	{ "signal_detect_grp_b", bcm6846_signal_detect_pins_b, ARRAY_SIZE(bcm6846_signal_detect_pins_b) },
-+	{ "one_sec_pls_grp_a", bcm6846_one_sec_pls_pins_a, ARRAY_SIZE(bcm6846_one_sec_pls_pins_a) },
-+	{ "one_sec_pls_grp_b", bcm6846_one_sec_pls_pins_b, ARRAY_SIZE(bcm6846_one_sec_pls_pins_b) },
-+	{ "rogue_onu_grp_a", bcm6846_rogue_onu_pins_a, ARRAY_SIZE(bcm6846_rogue_onu_pins_a) },
-+	{ "rogue_onu_grp_b", bcm6846_rogue_onu_pins_b, ARRAY_SIZE(bcm6846_rogue_onu_pins_b) },
-+	{ "wan_mdio_grp", bcm6846_wan_mdio_pins, ARRAY_SIZE(bcm6846_wan_mdio_pins) },
-+	{ "wan_nco_grp", bcm6846_wan_nco_pins, ARRAY_SIZE(bcm6846_wan_nco_pins) },
-+	{ "wan_early_txen_grp_a", bcm6846_wan_early_txen_pins_a, ARRAY_SIZE(bcm6846_wan_early_txen_pins_a) },
-+	{ "wan_early_txen_grp_b", bcm6846_wan_early_txen_pins_b, ARRAY_SIZE(bcm6846_wan_early_txen_pins_b) },
-+	{ "wan_nco_1pps_sig_grp_a", bcm6846_wan_nco_1pps_sig_pins_a, ARRAY_SIZE(bcm6846_wan_nco_1pps_sig_pins_a) },
-+	{ "wan_nco_1pps_sig_grp_b", bcm6846_wan_nco_1pps_sig_pins_b, ARRAY_SIZE(bcm6846_wan_nco_1pps_sig_pins_b) },
-+	{ "uart0_grp", bcm6846_uart0_pins, ARRAY_SIZE(bcm6846_uart0_pins) },
-+	{ "uart2_grp", bcm6846_uart2_pins, ARRAY_SIZE(bcm6846_uart2_pins) },
-+};
-+
-+static const char * const bcm6846_led_0_groups[] = { "led_0_grp_a", "led_0_grp_b" };
-+static const char * const bcm6846_led_1_groups[] = { "led_1_grp_a", "led_1_grp_b" };
-+static const char * const bcm6846_led_2_groups[] = { "led_2_grp_a", "led_2_grp_b" };
-+static const char * const bcm6846_led_3_groups[] = { "led_3_grp_a", "led_3_grp_b" };
-+static const char * const bcm6846_led_4_groups[] = { "led_4_grp_a", "led_4_grp_b" };
-+static const char * const bcm6846_led_5_groups[] = { "led_5_grp_a", "led_5_grp_b" };
-+static const char * const bcm6846_led_6_groups[] = { "led_6_grp_a", "led_6_grp_b" };
-+static const char * const bcm6846_led_7_groups[] = { "led_7_grp_a", "led_7_grp_b" };
-+static const char * const bcm6846_led_8_groups[] = { "led_8_grp_a", "led_8_grp_b" };
-+static const char * const bcm6846_led_9_groups[] = { "led_9_grp_a", "led_9_grp_b" };
-+static const char * const bcm6846_led_10_groups[] = { "led_10_grp_a", "led_10_grp_b" };
-+static const char * const bcm6846_led_11_groups[] = { "led_11_grp_a", "led_11_grp_b" };
-+static const char * const bcm6846_led_12_groups[] = { "led_12_grp_a", "led_12_grp_b" };
-+static const char * const bcm6846_led_13_groups[] = { "led_13_grp" };
-+static const char * const bcm6846_led_14_groups[] = { "led_14_grp" };
-+static const char * const bcm6846_led_15_groups[] = { "led_15_grp" };
-+static const char * const bcm6846_led_16_groups[] = { "led_16_grp" };
-+static const char * const bcm6846_led_17_groups[] = { "led_17_grp" };
-+static const char * const bcm6846_ser_led_groups[] = { "ser_led_grp_a", "ser_led_grp_b" };
-+/* We use these three groups with the NAND function to get as many pins as we want */
-+static const char * const bcm6846_nand_groups[] = { "nand_ctrl_grp", "nand_data_grp", "nand_wp_grp" };
-+static const char * const bcm6846_emmc_groups[] = { "emmc_ctrl_grp" };
-+/* Activate SPIM with "spim_grp" and then as many selects as used with "spim_ssN_grp" groups */
-+static const char * const bcm6846_spim_groups[] = {
-+	"spim_grp_a", "spim_ss0_grp_a",	"spim_ss1_grp_a", "spim_ss2_grp_a", "spim_ss3_grp_a",
-+	"spim_grp_b", "spim_ss0_grp_b",	"spim_ss1_grp_b", "spim_ss2_grp_b", "spim_ss3_grp_b",
-+	"spim_grp_c", "spim_ss0_grp_c",	"spim_ss1_grp_c" };
-+static const char * const bcm6846_spis_groups[] = {
-+	"spis_grp_a", "spim_ss_grp_a",
-+	"spis_grp_b", "spis_ss_grp_b" };
-+static const char * const bcm6846_usb0_pwr_groups[] = { "usb0_pwr_grp" };
-+static const char * const bcm6846_usb1_pwr_groups[] = { "usb1_pwr_grp" };
-+static const char * const bcm6846_i2c_groups[] = { "i2c_grp" };
-+static const char * const bcm6846_rgmii_groups[] = { "rgmii_grp", "rgmii_rx_ok_grp", "rgmii_start_stop_grp" };
-+static const char * const bcm6846_mii_groups[] = { "mii_grp" };
-+static const char * const bcm6846_signal_detect_groups[] = { "signal_detect_grp_a", "signal_detect_grp_b" };
-+static const char * const bcm6846_one_sec_pls_groups[] = { "one_sec_pls_grp_a", "one_sec_pls_grp_b" };
-+static const char * const bcm6846_rogue_onu_groups[] = { "rogue_onu_grp_a", "rogue_onu_grp_b" };
-+static const char * const bcm6846_wan_groups[] = { "wan_mdio_grp", "wan_nco_grp",
-+	"wan_early_txen_grp_a", "wan_early_txen_grp_b", "wan_nco_1pps_sig_grp_a", "wan_nco_1pps_sig_grp_b" };
-+static const char * const bcm6846_uart0_groups[] = { "uart0_grp" };
-+static const char * const bcm6846_uart2_groups[] = { "uart2_grp" };
-+
-+static const struct bcmbca_pinctrl_function bcm6846_pinctrl_functions[] = {
-+	{ "led_0", bcm6846_led_0_groups, ARRAY_SIZE(bcm6846_led_0_groups) },
-+	{ "led_1", bcm6846_led_1_groups, ARRAY_SIZE(bcm6846_led_1_groups) },
-+	{ "led_2", bcm6846_led_2_groups, ARRAY_SIZE(bcm6846_led_2_groups) },
-+	{ "led_3", bcm6846_led_3_groups, ARRAY_SIZE(bcm6846_led_3_groups) },
-+	{ "led_4", bcm6846_led_4_groups, ARRAY_SIZE(bcm6846_led_4_groups) },
-+	{ "led_5", bcm6846_led_5_groups, ARRAY_SIZE(bcm6846_led_5_groups) },
-+	{ "led_6", bcm6846_led_6_groups, ARRAY_SIZE(bcm6846_led_6_groups) },
-+	{ "led_7", bcm6846_led_7_groups, ARRAY_SIZE(bcm6846_led_7_groups) },
-+	{ "led_8", bcm6846_led_8_groups, ARRAY_SIZE(bcm6846_led_8_groups) },
-+	{ "led_9", bcm6846_led_9_groups, ARRAY_SIZE(bcm6846_led_9_groups) },
-+	{ "led_10", bcm6846_led_10_groups, ARRAY_SIZE(bcm6846_led_10_groups) },
-+	{ "led_11", bcm6846_led_11_groups, ARRAY_SIZE(bcm6846_led_11_groups) },
-+	{ "led_12", bcm6846_led_12_groups, ARRAY_SIZE(bcm6846_led_12_groups) },
-+	{ "led_13", bcm6846_led_13_groups, ARRAY_SIZE(bcm6846_led_13_groups) },
-+	{ "led_14", bcm6846_led_14_groups, ARRAY_SIZE(bcm6846_led_14_groups) },
-+	{ "led_15", bcm6846_led_15_groups, ARRAY_SIZE(bcm6846_led_15_groups) },
-+	{ "led_16", bcm6846_led_16_groups, ARRAY_SIZE(bcm6846_led_16_groups) },
-+	{ "led_17", bcm6846_led_17_groups, ARRAY_SIZE(bcm6846_led_17_groups) },
-+	{ "ser_led", bcm6846_ser_led_groups, ARRAY_SIZE(bcm6846_ser_led_groups) },
-+	{ "nand", bcm6846_nand_groups, ARRAY_SIZE(bcm6846_nand_groups) },
-+	{ "emmc", bcm6846_emmc_groups, ARRAY_SIZE(bcm6846_emmc_groups) },
-+	{ "spim", bcm6846_spim_groups, ARRAY_SIZE(bcm6846_spim_groups) },
-+	{ "usb0_pwr", bcm6846_usb0_pwr_groups, ARRAY_SIZE(bcm6846_usb0_pwr_groups) },
-+	{ "usb1_pwr", bcm6846_usb1_pwr_groups, ARRAY_SIZE(bcm6846_usb1_pwr_groups) },
-+	{ "i2c", bcm6846_i2c_groups, ARRAY_SIZE(bcm6846_i2c_groups) },
-+	{ "rgmii", bcm6846_rgmii_groups, ARRAY_SIZE(bcm6846_rgmii_groups) },
-+	{ "mii", bcm6846_mii_groups, ARRAY_SIZE(bcm6846_mii_groups) },
-+	{ "signal_detect", bcm6846_signal_detect_groups, ARRAY_SIZE(bcm6846_signal_detect_groups) },
-+	{ "one_sec_pls", bcm6846_one_sec_pls_groups, ARRAY_SIZE(bcm6846_one_sec_pls_groups) },
-+	{ "rogue_onu", bcm6846_rogue_onu_groups, ARRAY_SIZE(bcm6846_rogue_onu_groups) },
-+	{ "wan", bcm6846_wan_groups, ARRAY_SIZE(bcm6846_wan_groups) },
-+	{ "uart0", bcm6846_uart0_groups, ARRAY_SIZE(bcm6846_uart0_groups) },
-+	{ "uart2", bcm6846_uart2_groups, ARRAY_SIZE(bcm6846_uart2_groups) },
-+};
-+
-+static const struct bcmbca_soc_info bcm6846_pinctrl_soc_info = {
-+	.num_pins = BCM6846_NUM_PINS,
-+	.groups = bcm6846_pinctrl_grps,
-+	.num_groups = ARRAY_SIZE(bcm6846_pinctrl_grps),
-+	.functions = bcm6846_pinctrl_functions,
-+	.num_functions = ARRAY_SIZE(bcm6846_pinctrl_functions),
-+};
-+
- /* BCM4908 groups and functions */
- 
- #define BCM4908_NUM_PINS 86
-@@ -474,6 +1001,10 @@ static const struct pinctrl_desc bcmbca_pinctrl_desc = {
- };
- 
- static const struct of_device_id bcmbca_pinctrl_of_match_table[] = {
-+	{
-+		.compatible = "brcm,bcm6846-pinctrl",
-+		.data = &bcm6846_pinctrl_soc_info,
-+	},
- 	{
- 		.compatible = "brcm,bcm4908-pinctrl",
- 		.data = &bcm4908_pinctrl_soc_info,
+--- a/drivers/pci/controller/dwc/pcie-designware.c
++++ b/drivers/pci/controller/dwc/pcie-designware.c
+@@ -907,8 +907,10 @@ void dw_pcie_iatu_detect(struct dw_pcie *pci)
+                max = 0;
+        }
 
--- 
-2.51.0
+-       pci->num_ob_windows = ob;
+-       pci->num_ib_windows = ib;
++       if (!pci->num_ob_windows)
++               pci->num_ob_windows = ob;
++       if (!pci->num_ib_windows)
++               pci->num_ib_windows = ib;
+        pci->region_align = 1 << fls(min);
+        pci->region_limit = (max << 32) | (SZ_4G - 1);
 
+> Please provide what the DT looks like (for ranges/dma-ranges) and
+> where problem entry is.
+> 
+
+bus@80000000 {
+	compatible = "simple-bus";
+	#address-cells = <2>;
+	#size-cells = <2>;
+	dma-ranges = <0x44 0x00000000 0x04 0x00000000 0x04 0x00000000>;
+	ranges = <0x00 0x80000000 0x00 0x80000000 0x00 0x20000000>,
+		 <0x00 0x04000000 0x00 0x04000000 0x00 0x00001000>,
+		 <0x00 0x00000000 0x20 0x00000000 0x20 0x00000000>;
+
+	pci@80000000 {
+		compatible = "andestech,qilai-pcie";
+		device_type = "pci";
+		reg = <0x00 0x80000000 0x00 0x20000000>, /* DBI registers */
+		      <0x00 0x04000000 0x00 0x00001000>, /* APB registers */
+		      <0x00 0x00000000 0x00 0x00010000>; /* Configuration registers */
+		reg-names = "dbi", "apb", "config";
+
+		linux,pci-domain = <0>;
+		bus-range = <0x0 0xff>;
+		num-viewport = <4>;
+		#address-cells = <3>;
+		#size-cells = <2>;
+		ranges = <0x02000000 0x00 0x10000000 0x00 0x10000000 0x00 0xf0000000>,
+			 <0x43000000 0x01 0x00000000 0x01 0x00000000 0x1f 0x00000000>;
+
+Just look at the last "ranges" property — the first line is the only one
+we want to program into the iATU, as its size is below SZ_4G
+(the iATU region limitation for this SoC).
+
+The next line exceeds the iATU region limitation; therefore, we do not
+want to program it into the iATU. It is natively wire-connected by
+design and does not need to pass through the iATU.
+
+> Rob
+
+Sincerely,
+Randolph
 
