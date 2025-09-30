@@ -1,60 +1,57 @@
-Return-Path: <devicetree+bounces-222848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6328EBAE5B6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 20:52:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 828F9BAE5CB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 20:53:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E39801945493
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 18:52:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35A4A3A7357
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 18:53:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E257026A1A3;
-	Tue, 30 Sep 2025 18:51:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A22D2264CD;
+	Tue, 30 Sep 2025 18:53:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TaDSCduO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IM2dFsas"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A8E2580E4;
-	Tue, 30 Sep 2025 18:51:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 165D11CF5C6;
+	Tue, 30 Sep 2025 18:53:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759258318; cv=none; b=ixiRN65kakilfUaubEx1QLU17YPM3Cq7JdENE5/JrFTwlAx2Yee3HuV1I6b7NJajmYWibKoHqx0nggMSLmroGOiBN0Uo7Z74BA0gbYcPJOQswygY+iNqVCP3EXVjfTXjMMcl8QZO9TXdFkiZdWRWLxUD2+vpqvhXgKBHjxOwGiU=
+	t=1759258402; cv=none; b=IK/69gGELRjJWXwKJf9u729RC2ggBxKLDe1Q4GF49xZEwawDto6w7KSbKC7pP/pPPjoVjCotzsG8mYqKmSksxHYkTZrXNbAX96xCwlRsfivDahP8SZxxPZHC1UEnRM3bsTAWInM66DwUa7Z6NpvOyyO5UtmD3mHct8/SoQYMp/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759258318; c=relaxed/simple;
-	bh=jyBHzsxRS2jxhYbpoIYY4zJABy0+Tr0/8Tj/357Ar9I=;
+	s=arc-20240116; t=1759258402; c=relaxed/simple;
+	bh=5IPeu5NAjLS5d1iW+Pw0qmaV7aUal6E2N1oVnFoqGU8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kuuhw8T5RxUR9AQhag8c3kxZUe/7QPNpYvvw56nQHBSJbhO1PpnVIrZukH1JREiSwa+VcvJ8tCtjNrc/K/91o2/AwTK6szYt/izC6GS0ZzCuLRBSn66Zq1JMdn+4SI4aeDDKF6A3e6Cy8GzdvBZhdo0ULijqBBFUuFuFA9lgi8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TaDSCduO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF398C4CEF0;
-	Tue, 30 Sep 2025 18:51:54 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ba95Y/F28qv9v2lh1KEU1C+evmx44njA7R51wbEylQNp03hh9ffK25F6moUH7na+xGFBzCctpjq7zvbsM7gvLJweEEsNYuJaknMPz8dlL5ExPBfCgqiOdlhmupOYYvzGTZFWHWtQ0DzBDAk4cXP112LM37lZbflM82NgFAHETJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IM2dFsas; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08E7BC4CEF0;
+	Tue, 30 Sep 2025 18:53:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759258317;
-	bh=jyBHzsxRS2jxhYbpoIYY4zJABy0+Tr0/8Tj/357Ar9I=;
+	s=k20201202; t=1759258401;
+	bh=5IPeu5NAjLS5d1iW+Pw0qmaV7aUal6E2N1oVnFoqGU8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TaDSCduObxABjop7cQX8B8UhPwkoWFb9DqDzPG2QVBMfWbM936Kp2ypzO0dkZDuOD
-	 VwBGOAQq6JEziFjCtXicd/IVG7Yh9NwMdIz0kNHTdZlOhD596ATISkf64SqI8z4e2e
-	 R9c9VjR+pJQzXCak7W+W6ZAdES2fnJg45zgznv3c+jjoHy/clX8fRjVtZBrstCcehW
-	 qvgrPxWb9GmyvvCdShYS511Eu0nzamkWYRcTVEjhQ+jnlSZ3M7MSbL4s6L4ZKHkc/Z
-	 /zhqAR0+IDat+ws1aQH8nyRxVG6BG8iVkgY957HgkjZPc0obTfRISSQeMicXUc/Gqh
-	 oV51LZ+3nTSmA==
-Date: Tue, 30 Sep 2025 19:51:52 +0100
+	b=IM2dFsasM5JHuzuDChjzqCos4pWi+hvdWVfBuCk9CZJXpp3yKmGbedq65nIHOda+j
+	 /OqEUbrZgJqMPoBctNQ9rkQ+dY+klePMM6+3kYISZHdz+oRDLah6rX1fATCGqrEeOC
+	 nh2NLB1FmsxXqx+qJQNx7vRFhAGT/4QjIL7Z5pBW+m5190ewvSURks7JhuhM7dos60
+	 yyTCNE0pyXm9YVZMLRi5hgQKERO+Ja5/Vt3CuRDlldAaN+TLsslpgRKXs5agsFiv2j
+	 E9UwEtXOQz99uCkp9v0FVBhFpjqBCVUt3IBwqG//3j9MndyeJ/+0sg7oq5FiKK/LKG
+	 wqslRiPk/FAvA==
+Date: Tue, 30 Sep 2025 19:53:17 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Jun Guo <jun.guo@cixtech.com>
-Cc: peter.chen@cixtech.com, fugang.duan@cixtech.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
-	linux-spi@vger.kernel.org, michal.simek@amd.com,
-	cix-kernel-upstream@cixtech.com,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: spi: spi-cadence: document optional
- fifo-width DT property
-Message-ID: <20250930-vocally-closable-136829bc9fed@spud>
-References: <20250930075644.1665970-1-jun.guo@cixtech.com>
- <20250930075644.1665970-2-jun.guo@cixtech.com>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] dt-bindings: iio: adc: adi,ad4080: add support
+ for AD4081
+Message-ID: <20250930-treble-depict-4e1d0be89575@spud>
+References: <20250930103229.28696-1-antoniu.miclaus@analog.com>
+ <20250930103229.28696-5-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,75 +59,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2UGIE5QG3NgUNc7j"
+	protocol="application/pgp-signature"; boundary="eud+2P2pyEfv5Z8l"
 Content-Disposition: inline
-In-Reply-To: <20250930075644.1665970-2-jun.guo@cixtech.com>
+In-Reply-To: <20250930103229.28696-5-antoniu.miclaus@analog.com>
 
 
---2UGIE5QG3NgUNc7j
+--eud+2P2pyEfv5Z8l
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 30, 2025 at 03:56:42PM +0800, Jun Guo wrote:
-> Add documentation for the optional 'fifo-width' device tree property
-> for the Cadence SPI controller.
->=20
-> Signed-off-by: Jun Guo <jun.guo@cixtech.com>
-> ---
->  .../devicetree/bindings/spi/spi-cadence.yaml          | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/spi/spi-cadence.yaml b/Doc=
-umentation/devicetree/bindings/spi/spi-cadence.yaml
-> index 8de96abe9da1..b2e3f217473b 100644
-> --- a/Documentation/devicetree/bindings/spi/spi-cadence.yaml
-> +++ b/Documentation/devicetree/bindings/spi/spi-cadence.yaml
-> @@ -62,6 +62,17 @@ properties:
->      items:
->        - const: spi
-> =20
-> +  fifo-width:
-> +    description: |
-> +      This property specifies the FIFO data width (in bits) of the hardw=
-are.
-> +      It must be configured according to the actual FIFO width set during
-> +      the IP design. For instance, if the hardware FIFO is 32 bits wide,
-> +      this property should be set to 32.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 8
-> +    maximum: 32
-> +    default: 8
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-I assume this differs from fifo-depth because this is the actual width
-of the registers rather than the number of elements of that width the
-FIFO can contain?
-
-However, this isn't something defined as common in spi-controller.yaml
-so you'll need a vendor prefix for the property if the property stays.
-This does, however, seem like something that can just be determined by
-the compatible and that your omission of a soc-specific one is what's
-lead you to introduce this property. Why not just use a sky1-specific
-compatible here?
-
-> +
->  required:
->    - compatible
->    - reg
-> --=20
-> 2.34.1
->=20
-
---2UGIE5QG3NgUNc7j
+--eud+2P2pyEfv5Z8l
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNwmyAAKCRB4tDGHoIJi
-0preAQCGJTXoWL3uSSINEjlopPAGGVgwBWAKQr9EmEat9qGu1wD6Av/DN+YvByfy
-v3+e5PUmjSfWH/El5UQ+yc5rLpm7cgw=
-=Sl04
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNwnHQAKCRB4tDGHoIJi
+0nWdAP4pEAySAM+LAqXT8t5sZ+BAHEU3SBe6IgIn7Ha/shupcgD+P0aiyeEC12+G
+5D+6eWZLvPALvb20tfSYcet7guyOVQo=
+=8RSX
 -----END PGP SIGNATURE-----
 
---2UGIE5QG3NgUNc7j--
+--eud+2P2pyEfv5Z8l--
 
