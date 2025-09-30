@@ -1,86 +1,124 @@
-Return-Path: <devicetree+bounces-222568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 129ACBAAD65
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 03:08:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6327BBAADEB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 03:24:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C00BF3C524E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 01:08:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17CAE1C174C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 01:24:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6290219DF4D;
-	Tue, 30 Sep 2025 01:08:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 878EC1B4F0A;
+	Tue, 30 Sep 2025 01:24:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ygq4Hwhl"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="GUi+wIQo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f201.google.com (mail-pg1-f201.google.com [209.85.215.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2389534BA4D;
-	Tue, 30 Sep 2025 01:08:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06EEB10785
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 01:24:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759194487; cv=none; b=kIG1TScYZO3SS8AJ0OXzGPnmTbf1EfncIWohHHZOg6/gEWT+Zch/cT/JTDBsgW9ZQclxNH9UvvZcNXy01EhmILhtvDQ9OEHj1RJsRUgE7egN6SGCbecaJdRJmh4HP9PcRzBti+XFCHjXdE57eIqgFouN+nCWkP0gI8ZDYK7NDQs=
+	t=1759195463; cv=none; b=B87l27jtzcxOaaafNtN/4Bu0ltAtmgkg/mWFmnVfWal4nqJBDQEK3I0s2zdK2EfjRsm4i59CmbFrh3Ow/JleSNLHkP0+oBBNCcchQ6kOygiVFSFwOmmLEmY1rOVjdokUZGi8hCRWz/N3sWSRTBfsv+ToOmZYlCvzQNo2URwBDbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759194487; c=relaxed/simple;
-	bh=bHK1Tz54e/Ifee6N7/zns9tcx8F25+FcDpSUAMb1Lb0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PKyopiUztm0IxPn8Cy1Z4A2FQzgK19VvZl9ymZNCl4SglLJBcqKI1fpJai0UqVz6y9D76eJfUm/a8vCEhbrgEjd2qM/AxvpoHwkzJlpjHePPEhOpqy+Y6p2Ht9n9smNaRbI/XaTRq2NKPY4GVUNMwuuenRu+e2RyuusD7Z0XpXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ygq4Hwhl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B454AC4CEF4;
-	Tue, 30 Sep 2025 01:08:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759194486;
-	bh=bHK1Tz54e/Ifee6N7/zns9tcx8F25+FcDpSUAMb1Lb0=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Ygq4HwhlykpA5CGfYsyjzP8zgqMVS1ZAhFUon3xmKXRU21GqqzwTGl8bmgWxlYSVn
-	 gLz5fQ2dKiM8rRY3F6CrfiVHbnQLvXNSKm+pVehSjR0t9jKqK369WJ/gm1ot3ksySY
-	 klbd8NsjCGKEuZnC+cw3Wl1JhH7ojDg5LQeWB+l+XxZhg5O3hI1F7KPDfAcGn44OEP
-	 dIMZCqONsnhGcxZMt/sBewGBBUeyEXXmj671Q52PF/DrUDQxPEVWTIsHvcqnGgdTXY
-	 iE4z2qKM50gNJysR3PY01mzmDK5SsSvzbqLPo2TixLRvMsTRO6O2W8VRQo36GyIQZi
-	 CWKrN4SfMGYjA==
-Date: Mon, 29 Sep 2025 18:08:04 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Andrew Lunn <andrew+netdev@lunn.ch>
-Cc: Chen-Yu Tsai <wens@kernel.org>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
- <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, Andre Przywara <andre.przywara@arm.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: Re: [PATCH net-next v8 2/2] net: stmmac: Add support for Allwinner
- A523 GMAC200
-Message-ID: <20250929180804.3bd18dd9@kernel.org>
-In-Reply-To: <20250925191600.3306595-3-wens@kernel.org>
-References: <20250925191600.3306595-1-wens@kernel.org>
-	<20250925191600.3306595-3-wens@kernel.org>
+	s=arc-20240116; t=1759195463; c=relaxed/simple;
+	bh=5kgCx0B7GtxQuKmjJS2bFCsfsTvnnLoF8qyM/AecsgU=;
+	h=Date:Mime-Version:Message-ID:Subject:From:To:Cc:Content-Type; b=pB9zvq64L1DfhQ5JGJ1NgrPUQNm00GPto41Eh7sOeOLcIVB92J//cQc0N/ke6W3TJL/box+6h0C2zr2EvgzA3feTq6QcKmhstUzySMGc/l4Y7O26xrpMXbM1vad80Y3FZ8asawyeJZXpMcrSwF/3QK6sRFg6dlmLOwY2ZcO8h5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--jthies.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=GUi+wIQo; arc=none smtp.client-ip=209.85.215.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--jthies.bounces.google.com
+Received: by mail-pg1-f201.google.com with SMTP id 41be03b00d2f7-b55397041dbso7113134a12.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 18:24:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1759195461; x=1759800261; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=J0RDHcxeZue32qFdwYRcgYnakUkcEXPAGHJR7B+xksM=;
+        b=GUi+wIQocvWRFh+8ImqR+uTt0+fb55+WxNHl2lnjbJnVBctJRasYAhUbw6L9HaEzBG
+         j9RwW9nJ8koVEayGnCDv49xyn56PfeXSX4lo+bbax93oM5LdeltwikHSMjiiKl1wE8a5
+         EbC9EpwBSHgcKew/4qjWkPVAe2c8tyNSNAbv2lM2no9O2O5XFvZEp++2CUCbqWYL1gN1
+         AzfLx5Qd6LOZ7mehIdY8xtghl/xL85SVG5+Rp+Y3Hmt2KbRCgVfSi33qVfGc6huACYjT
+         oGGdOvR2nW9EGuwcP0oe+rjYj3ffPudq1IWJW/R/+wAbUwkctlLfkgQnh/ETBW+wxv4a
+         Cm2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759195461; x=1759800261;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=J0RDHcxeZue32qFdwYRcgYnakUkcEXPAGHJR7B+xksM=;
+        b=WXGM467Dm96bRrhmFtdYlj6cLifEfyOwUMPZ8bXE/HA3aoG9DSExJFQu8PMcoMKej3
+         WLHiLVD2ZxsC6cqvokfWjiIhjaTvDrR85i7sb3TJiqOuyecL4C9DPamZuN9PRry36LGA
+         UgrRSAkSakoFNzTDEiw8QEcL1DXegrjuUX5tXSkGYaGhLR/OqhNPppjlLsAzc9RiXDJW
+         1SFdkfj2ZxMEO+KDzkdV0RkBIznUqy2kDgwxga27dnRkOdQWtL+bVxtQeHQ/AufVPw0y
+         bR/N1LWefH4LriIADPkEmQq1qNTMz+0D1KXXHX+bEuJ2pVxkvVCU+EXk3M/8++6Ymn2J
+         fJEQ==
+X-Gm-Message-State: AOJu0YxjfSubN2UXHl08JkWGtbVMOAtmNYMKDWQ2UNW3H66BdU8j7KdN
+	YSLAuqBco+ADC8ieZP6tR/3zf+6y4CalGXcnNMRqO3jqU9Y0w3du03NW9FI+ZVfyPphjVMSTe4O
+	7DCzxKw==
+X-Google-Smtp-Source: AGHT+IGhtXfXwA6L9GaEPTI+0jBf9HTCFAgbC0xjyvLvK7pztlQGMoyItS01pkGETX20SLH0jVALCpowLV4=
+X-Received: from pjqd1.prod.google.com ([2002:a17:90a:a681:b0:330:9af8:3e1d])
+ (user=jthies job=prod-delivery.src-stubby-dispatcher) by 2002:a17:90b:3b4f:b0:330:6d5e:f17b
+ with SMTP id 98e67ed59e1d1-3342a2ab8c5mr20908027a91.21.1759195461383; Mon, 29
+ Sep 2025 18:24:21 -0700 (PDT)
+Date: Tue, 30 Sep 2025 01:23:45 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.51.0.570.gb178f27e6d-goog
+Message-ID: <20250930012352.413066-1-jthies@google.com>
+Subject: [PATCH v1 0/3] Load cros_ec_ucsi from OF and ACPI definitions
+From: Jameson Thies <jthies@google.com>
+To: akuchynski@chromium.org, abhishekpandit@chromium.org, krzk+dt@kernel.org, 
+	robh@kernel.org, bleung@chromium.org, heikki.krogerus@linux.intel.com, 
+	ukaszb@chromium.org, tzungbi@kernel.org
+Cc: devicetree@vger.kernel.org, chrome-platform@lists.linux.dev, 
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Jameson Thies <jthies@google.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Fri, 26 Sep 2025 03:15:59 +0800 Chen-Yu Tsai wrote:
-> The Allwinner A523 SoC family has a second Ethernet controller, called
-> the GMAC200 in the BSP and T527 datasheet, and referred to as GMAC1 for
-> numbering. This controller, according to BSP sources, is fully
-> compatible with a slightly newer version of the Synopsys DWMAC core.
-> The glue layer around the controller is the same as found around older
-> DWMAC cores on Allwinner SoCs. The only slight difference is that since
-> this is the second controller on the SoC, the register for the clock
-> delay controls is at a different offset. Last, the integration includes
-> a dedicated clock gate for the memory bus and the whole thing is put in
-> a separately controllable power domain.
+The ChromeOS UCSI driver (cros_ec_ucsi) currently gets added as
+subdevice of cros_ec_dev. But without it being defined by an ACPI
+node or in the OF device tree, the typec connectors are not correctly
+associated with other part of the device tree. This series updates the
+cros_ec_ucsi driver to load based on device definitions in ACPI and OF.
+It also changes the cros_ec_dev driver to block adding cros_ec_ucsi
+as a subdevice if it is defined in the device tree.
 
-Hi Andrew, does this look good ?
+For context, I initially sent out this series for review in March 2025
+(https://lkml.kernel.org/20250312195951.1579682-1-jthies@google.com/).
 
-thread: https://lore.kernel.org/20250925191600.3306595-3-wens@kernel.org
+Patch 1/3 has been updated to address comments from the initial review.
+There were some open questions on patch 3/3 regarding adding MFD
+children when there is no cros_ec_ucsi node and parents conditionally
+checking if a child exists to create one.
+
+The expected behavior of this series is to only add the cros_ec_ucsi
+subdevice when there isn't a corresponding FW node because always adding
+it would result in multiple cros_ec_ucsi devices and too many ports
+being registered with the USB Type-C connector class on devices with
+correctly defined FW nodes. It also does not look for a child node to
+create a child. It is looking for a child of the parent EC device to
+only add cros_ec_ucsi if it does not already exist as a sibling.
+
+Jameson Thies (3):
+  dt-bindings: chrome: Add Cros EC UCSI driver
+  usb: typec: cros_ec_ucsi: Load driver from OF and ACPI definitions
+  mfd: cros_ec: Don't add cros_ec_ucsi if it is defined in OF or ACPI
+
+ .../bindings/chrome/google,cros-ec-ucsi.yaml  | 71 +++++++++++++++++++
+ drivers/mfd/cros_ec_dev.c                     | 38 ++++++++--
+ drivers/usb/typec/ucsi/cros_ec_ucsi.c         | 25 ++++++-
+ 3 files changed, 127 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/chrome/google,cros-ec-ucsi.yaml
+
+
+base-commit: 48633acccf38d706d7b368400647bb9db9caf1ae
+-- 
+2.51.0.570.gb178f27e6d-goog
+
 
