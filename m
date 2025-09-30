@@ -1,101 +1,142 @@
-Return-Path: <devicetree+bounces-222869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 672D8BAEB76
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 00:55:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D94BAEB82
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 00:59:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05FFA189DFD9
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 22:56:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D55B81C22C9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 22:59:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3736F2D12F5;
-	Tue, 30 Sep 2025 22:55:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F384C2D191C;
+	Tue, 30 Sep 2025 22:59:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="N3K9R98n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h9rHi+jt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DEAD2C21FB
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 22:55:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE84F2C0290
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 22:59:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759272940; cv=none; b=D7wj3naD5UfL981JokeGDgWN2aQFT/ezBYnVtEW/LfVdtduzXZHNt66RlM45mtEWog/yN3RVIT76jRDmEr6tAxlSQzB2Ux09WL3STEDP7osBRyA/ciUAk2HGf1Cf0I/ZLC6BnRaq60BMm00LXhgOdnnAIgABtJ6AM46bzFmn9t8=
+	t=1759273159; cv=none; b=NUGXVBQHy66gVDPoEE8Z5q+W2Ryk4r9oKf4hZnPBIyJa2UR0S7tK0zzjHw9fsIWkt/RXf5fIubZGaxXBmmcPtQCnlDN7AsJgsntZv6ZP9joN4qObWQwUBCgeD9VLV5XB3vZ7pJxpmJBwXSTBZsPj+QIT7YZIHaJIN7esI9H/LI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759272940; c=relaxed/simple;
-	bh=yVA9Jz0NaEGwNdHklt155W5PzrBW3E/ulBCRYzSYVKM=;
+	s=arc-20240116; t=1759273159; c=relaxed/simple;
+	bh=pZbH7LPZiV6YQRsuN23fRTyE9NZC7LXkXRPWHo3BLe8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MW/VAxzzj0AtgVDpT19X/Ik1FES3f3wWsscbTLBg4d9688wwfgCp8wktNyD99V3fM3Ds6QvCPKqfycuf8n0BuJDmLsm9NroZlJjJrMCv/6MgWfQh7+wLjFIkc4n6lOBkc/qFf8XYsQ8+nT2jj9f2ewknbuRu5y54KyuYB9PhtkI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=N3K9R98n; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3ee64bc6b90so4094069f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 15:55:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1759272937; x=1759877737; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=yVA9Jz0NaEGwNdHklt155W5PzrBW3E/ulBCRYzSYVKM=;
-        b=N3K9R98nxGxOF7OnWp7haHEZxY0ov7TQ9GKSMdYDU2gI/juQyD3zvWoHQ1utwBq1f9
-         GrzMcfiOmQn0D7Mmj5ymg+alkn/QqL6AKSMo7gAQvsg21RYlcc72VZRuQ43yMmrHfzSY
-         8coKBMDv4HpD7EOemzjWVlHT0gADklB+Fa/gMYphsUDatGFNIoDnWroUcP74Zr3Jm0hU
-         weT9qkNVyFo/TA98OQDPx2z31TgaF95c4OI0DGxjY7lx3uX8WlyQItJYYESh0mSVm5x8
-         zpCiye6Fv4oyNMdNxESSpW2YW0QRbWZ+oGwfTJKKLnUPJr3vRFsdAesiXeUBlVlzAYX4
-         8zwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759272937; x=1759877737;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=yVA9Jz0NaEGwNdHklt155W5PzrBW3E/ulBCRYzSYVKM=;
-        b=WZeCCzkpWcpdN7QTMowIQQ63iX8cQH+9/VBWZgWcN2RpzMGhwYpa5wU9NzizkUJq9s
-         U4OOVoj9SQ71KiaEsP/gZFxauigaLAtveQIVngTiEWNznN1galFZCWiSmnKEMTNNGZzu
-         2sEBwEmM/NLW2SfrhMphVDC38nHXPhzR8e4QnQauZdoqPdRikpeCQ0MSKKc0ltbvplrH
-         q9BTDvt1+wawlClzJ55mz/UjOX4u3uG3rYODqSW9IEZQipp3ZwpKRre/RFFwUZcrgCfn
-         SsiNJnlzmrQiJmjekg+z2dMKK/iN5e+l7F69mWLuMCSt7ZmGyeExw5StTvJHJtd/3thU
-         Me5g==
-X-Gm-Message-State: AOJu0Ywz8iS7tpFpNHxjBWkdZJcy8V5ughXBEm5c3/ICk9asbvJVGKo6
-	vQihugoVYkoWIgaXUjVjoVOaSEPkaZtV2BahxWaZ+ocJF5/DF8ioKTQNtK5WWX0FK+WPWtxdczU
-	48stVHnlYX/baje+bY48JjaDss4QiDYQZsNRQi34k
-X-Gm-Gg: ASbGncu28u5BLZLFx8xjNxstjFFgbmDeHeglvn7BfmnNAG9+mngTSo8xNlL+gkS/9wW
-	9M8sMsySHN7JFuQ8m8pqqfPsvhQe2G9A8h7aLbcr5vNEZ0Pjxd9j6CtoEhIWAxfs8WGRR86gLwL
-	E3bPN+7s/ZvUVVISLg9wEb9eJA7SUTiYHYiwrvpEat9b1MB2LGcV6bLzWrosqdqxOjZsybJcB/Q
-	BzcGusys5lluAATAByYsC4NCQKMEhop4buOEIiZnZB2y8htJ/2Ai5AZM8rkayoUQ49wrEHeLdsV
-	442Z5srabCxORQ==
-X-Google-Smtp-Source: AGHT+IGHRuxtWgut0Vzt6PdinBJDWxg9G0yj04Jszjbv4ItQ3wbJzXeBdiQBzEdeuLcKh8ZuTRqv06sC4HCq3f+U5jQ=
-X-Received: by 2002:a05:6000:420a:b0:3ee:114f:f89f with SMTP id
- ffacd0b85a97d-425577f1bf9mr975463f8f.15.1759272936532; Tue, 30 Sep 2025
- 15:55:36 -0700 (PDT)
+	 To:Cc:Content-Type; b=alMc31g3kM9+GMOPNRbu3XcdrlMQV7BbUIluJF6EqvGm+o419tMqFsgsZxLQkY/9eFF/gfoijeHEAceM3xNLIJXnfa4jBmMqrsQ5301qfu9Sf8rEOTc4pBwn8yZrq5Ar46jVWN7UrEn/Z1ODqDiT/rJLva1cnl0nbBftzZCxNQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h9rHi+jt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68BF6C116C6
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 22:59:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759273159;
+	bh=pZbH7LPZiV6YQRsuN23fRTyE9NZC7LXkXRPWHo3BLe8=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=h9rHi+jt8NsmaTS0OJF+mP5P2Y0zeOkF8evYC2568+HLe7liiEH3Jahjstgmmo2Pg
+	 nxd5G6ngtw3Xt8rbRgvDOHmR9sR5U5BceKMZjr9GRYRDBrqg7K4lE2OCr59GBhLGIG
+	 fFe1LkCKT3ER/mvlpsjXzGuCD4JLgRUjrIZA9rH+fJLLLk9Gw4oE41rwfcE7wOgq46
+	 YWMDVJ0iKNazX2s3s7tLrOE69GfYuG/pXM72MpkVgp5CVyIHbc8Jl1kl2+YA7qIKN/
+	 N8uw+D5FCwCjaV7Mln/ro2DtvL7SQ5XeMH75hSlCOGjx+NF8fWEbXox7zn4+csg818
+	 b+sZaEDB3bxwQ==
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-271d1305ad7so85070725ad.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 15:59:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWS0LcWpDmmZ6JUajMOrIFkxCefrSp+zBz8g6fpoHJk+QUE6wS17ox6KKB7d7B+iogVdyEbDa7CNOg1@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+aUMy2yEb2zorQGeP22xLEasrWSIkLpM6U5oHC1NJw4UC5S0q
+	ojmd38rliILdTrpwv5P7OVtXIvpKGL1wO9/+1OmqN6K+HYLh4N2i1tVqqnx1G1rTOTUiry/5yOA
+	+2KhNCdb82+D9jEPlnRQqNg5ovlem/7k=
+X-Google-Smtp-Source: AGHT+IEjOJY+T/R5p0HUNzDJbvMSExqfd4Zm4zKN7PDOWoXwQsAkRMa1cPIdhvK5mllhEGX7uEeioJja0ynGdTlQ21Y=
+X-Received: by 2002:a17:902:dad2:b0:269:8c12:909a with SMTP id
+ d9443c01a7336-28e7f31167dmr15520695ad.31.1759273158970; Tue, 30 Sep 2025
+ 15:59:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250930012352.413066-1-jthies@google.com> <20250930012352.413066-2-jthies@google.com>
- <175920697975.1402374.5817792319376446761.robh@kernel.org>
-In-Reply-To: <175920697975.1402374.5817792319376446761.robh@kernel.org>
-From: Jameson Thies <jthies@google.com>
-Date: Tue, 30 Sep 2025 15:55:24 -0700
-X-Gm-Features: AS18NWBGGK3TvBvWwAKJGudm0q5uvJFaU-KF4NSgxPec6eL4jZqolX0Co6k50AA
-Message-ID: <CAMFSAReZA3=VH+c2H3xA-ojhBnEEp8wxySFwUuKLq+6k47AA4g@mail.gmail.com>
-Subject: Re: [PATCH v1 1/3] dt-bindings: chrome: Add Cros EC UCSI driver
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, bleung@chromium.org, 
-	heikki.krogerus@linux.intel.com, ukaszb@chromium.org, 
-	linux-usb@vger.kernel.org, akuchynski@chromium.org, tzungbi@kernel.org, 
-	krzk+dt@kernel.org, linux-kernel@vger.kernel.org, abhishekpandit@chromium.org, 
-	chrome-platform@lists.linux.dev
+References: <CGME20250930035551epcas5p4ee7cb5af08eadb2f5ed6e5eaa06a60a9@epcas5p4.samsung.com>
+ <20250930040348.3702923-1-h.dewangan@samsung.com> <20250930040348.3702923-9-h.dewangan@samsung.com>
+ <CAJKOXPecLREbEDM4yfM=WD-EFfuBqPDXNZceATLeWQRj0X_w7w@mail.gmail.com> <75d06769-4896-4095-9969-03a517705196@samsung.com>
+In-Reply-To: <75d06769-4896-4095-9969-03a517705196@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Date: Wed, 1 Oct 2025 07:59:07 +0900
+X-Gmail-Original-Message-ID: <CAJKOXPe0kGFoUxOGupwD_rSshTBVFhH3184xOH=NquSGn2QxcQ@mail.gmail.com>
+X-Gm-Features: AS18NWAOxLyorh9QMzb_rAtOLuensrQj-n9XXTXgykqSdy5eNYjdJBLoFkIMVc8
+Message-ID: <CAJKOXPe0kGFoUxOGupwD_rSshTBVFhH3184xOH=NquSGn2QxcQ@mail.gmail.com>
+Subject: =?UTF-8?Q?Re=3A_=5BPATCH_08=2F29=5D_media=3A_mfc=3A_Add_Exynos=E2=80=91MFC_drive?=
+	=?UTF-8?Q?r_probe_support?=
+To: Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: Himanshu Dewangan <h.dewangan@samsung.com>, mchehab@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, sumit.semwal@linaro.org, 
+	christian.koenig@amd.com, alim.akhtar@samsung.com, manjun@samsung.com, 
+	nagaraju.s@samsung.com, ih0206.lee@samsung.com, jehyung.lee@samsung.com, 
+	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linaro-mm-sig@lists.linaro.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-> My bot found errors running 'make dt_binding_check' on your patch:
+On Wed, 1 Oct 2025 at 00:46, Marek Szyprowski <m.szyprowski@samsung.com> wr=
+ote:
+>
+> Hi Krzysztof,
+>
+> On 30.09.2025 07:54, Krzysztof Kozlowski wrote:
+> > On Tue, 30 Sept 2025 at 12:56, Himanshu Dewangan <h.dewangan@samsung.co=
+m> wrote:
+> >> From: Nagaraju Siddineni <nagaraju.s@samsung.com>
+> >>
+> >> Introduce a new Kconfig entry VIDEO_EXYNOS_MFC for the Samsung
+> >> Exynos MFC driver that supports firmware version=E2=80=AF13 and later.
+> >> Extend the top=E2=80=91level Samsung platform Kconfig to disable the l=
+egacy
+> >> S5P=E2=80=91MFC driver when its firmware version is >=E2=80=AFv12 and =
+to select the
+> >> new Exynos=E2=80=91MFC driver only when VIDEO_SAMSUNG_S5P_MFC is not e=
+nabled.
+> >>
+> >> Add exynos-mfc Kconfig and Makefile for probe functionality and creati=
+on
+> >> of decoder and encoder device files by registering the driver object
+> >> exynos_mfc.o and other relevant source files.
+> >>
+> >> Provide header files mfc_core_ops.h and mfc_rm.h containing core
+> >>    operation prototypes, resource=E2=80=91manager helpers,
+> >>    and core=E2=80=91selection utilities.
+> >>
+> >> Add a configurable option MFC_USE_COREDUMP to enable core=E2=80=91dump
+> >> support for debugging MFC errors.
+> >>
+> >> These changes bring support for newer Exynos=E2=80=91based MFC hardwar=
+e,
+> >> cleanly separate it from the legacy S5P=E2=80=91MFC driver, and lay th=
+e
+> >> groundwork for future feature development and debugging.
+> >>
+> > No, NAK. Existing driver is well tested and already used on newest
+> > Exynos SoC, so all this new driver is exactly how you should not work
+> > in upstream. You need to integrate into existing driver.
+> >
+> > Samsung received this review multiple times already.
+>
+> Please don't be so categorical. The MFC hardware evolved quite a bit
+> from the ancient times of S5PV210 SoC, when s5p-mfc driver was designed.
+> The feature list of the new hardware hardly matches those and I really
+> don't see the reason for forcing support for so different hardware in a
+> single driver. Sometimes it is easier just to have 2 separate drivers if
+> the common part is just the acronym in the hardware block name...
+>
 
-Thanks for catching this. I did run "make dt_binding_check
-DT_SCHEMA_FILES=google,cros-ec-ucsi.yaml" to check the newly added
-yaml file. But I didn't check google,cros-ec.yaml or any of the DTS
-files with "make dtbs_check" so I missed this regression. I'll follow
-up with a v2 series and test all bindings with "make dt_binding_check"
-and "make dtbs_check".
+I know it is easier for Samsung to write new driver, but this should
+answer to - why the maintainers and the community would like to
+maintain two drivers. Sure, make a case why we would like to take this
+code.
+
+The easiest argument here why we wouldn't is: new vendor downstream
+code means replicating all known issues, old coding style, everything
+which we already fixed and changed.
 
