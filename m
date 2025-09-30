@@ -1,142 +1,290 @@
-Return-Path: <devicetree+bounces-222815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59144BAD335
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 16:34:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41D1DBAD359
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 16:37:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07FBE7A2E2D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 14:32:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98A461940A36
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 14:37:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0596C307487;
-	Tue, 30 Sep 2025 14:32:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B5F92727F8;
+	Tue, 30 Sep 2025 14:37:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="phDXBWH7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ispdYJ8v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7972306B04
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 14:32:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5578421CC4B
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 14:37:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759242763; cv=none; b=f/eAvSKdZjMCo+ZY9TsEyPoTROpvHomtbRoZWTY7zdYBOHAjlKfgwUDB4k3DUjMJx8lr0oUEqHCyaQT0XpdrA2eK5BhdzgLsWk5sNPoKBIj/f3BP7qxsBjPolTQQ2dt/0U0PrQHqqrd83SYjrPTbONYMSEPPBRd7kzyqqST593U=
+	t=1759243045; cv=none; b=oNnJ/CU9FAYD+MMiA62+ABTlDmlj+yIaqXjrQ3H0YMk9bg4YSwnwpIDFcDBIyPkCOuc63YPbsktqEPoZo8bTTnDl/SaApi6LNpEs4qlcwabl1+1m2ZGckD9CWzg6C5gL7CZqBurtlpn9FLfmAHbYTTM+4mtvMKBMVLGB4u0N0BE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759242763; c=relaxed/simple;
-	bh=feC/R68VglV9TZu4Nvs7G0duXY4qW44dqlbaCoFX760=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uqYYJKkz/1LtmQLqUQ6H6HP/gG1q1PlQkPXsvEvkxSW0yYS1fJBcM4P/L6/dF6y/jAcXy5v6lf3sY0kx42rahXXQopMAFGPEOji3PNtsMIoHxgSq6PohMlc3dxXpZughyKZZHV8SbWAz01dklFI4BadTtaE2hiPxeJ/v8SgZWAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=phDXBWH7; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b3d196b7eeeso487551366b.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:32:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1759242759; x=1759847559; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=V1loSnqQxcluwc+xgRCVoTNWJKsc4VIrA6pvLqnr/gM=;
-        b=phDXBWH7bR1dE9u7Mn9oozefEu2SZKtu0Oh2kNgnS0llSf8qNgB+Vsj/GREkP8iRZR
-         QPgLnfYKNmMHc3aaLfCTObMtuDZfRkJqO22A/pmJ5A4vcIKZy78rwwa8NmKdvrZyB+h8
-         ejpQB7CCT2tOxx/Hpj5Hgk8JBzfgM1lQaQtkQyn2pvOaqaFo7wiP/dAjs0AKudx7R/TE
-         M+tlTWSr377Sfy+SacFXbuTYh8HfdsBPZVNGTqMw3PTW+AJ1lTFcZwBbjN/TqP5EXKIA
-         zQHKkEs8rDGz75C4lAJp/M9D0G1u2Xkxyoz57QZJKGY2AXKbLyohP6hmCatCH3EY5zVA
-         r/9A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759242759; x=1759847559;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=V1loSnqQxcluwc+xgRCVoTNWJKsc4VIrA6pvLqnr/gM=;
-        b=KIc2+mkaPX+7CYnTDPBgO0NndvoMSj7VOGR0IjPNgjA5bZu+Wd7Yc15JaChEharT/L
-         O/vtLJKDygsuW6PqUpyXBYKT59nI/1arxG23sNA20IfC9wI8uXUaXcylM58SJkedZThE
-         sz0EXjfllEyl79G4sWSnqLfChqNz66TKe5MEPdYJESof+hP0P/U3zgP8CLSImiaV3HMX
-         sgp0Z3vW5+Ihl+C4sWa/up/ZdDZUD9ofkexK7PXA2o78jjt25R4L6ptmTirK9mXa5XWI
-         KGfEC24diAdkV5DeV4lh4NZtfNHTAn6Apc+yYG67maS6LK4Dn1UYe8JEiNDU9OMHAiaR
-         JInw==
-X-Forwarded-Encrypted: i=1; AJvYcCV75emY3eHjA4GVDGw7zsnO8MhBjr4asN8QAqjqTQH2B4xzIkixDswSdDsbgPwyq770VdEBzZIG80/2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1ZASUD9Oh2RKK8/yjjpRGgnXxjaL5Xd24jzhgwZ8WBFLIZ3e4
-	33/DjSSvi5lQC6lYgvfpyF8ykfzELATVIrM6Q4o6gUooT2z4ezqb69gZ+FL6bezIREo=
-X-Gm-Gg: ASbGncuimlaUnVltuWY5P+VT9sXQnBnsAIb7pbFi7rFAUFsly7r81HqrfL/9g4SlT8y
-	+1bqYQhocBf8D4oDHRfX1ZJwWlhHIixZujla1LYV2YNS6jAkbyKMg/aHK3jv5mwb+Q4zozQFevL
-	bzA/RWNbh3Fuvd2aIwDP5CVVWffcqGXqUIZiW06bLS08ObHmMEtDx1eTnZ8h2DU/LZdUda8fpNV
-	aEnvMXMf3GFubqp86y6q07XS2W/EisGQo7VPPgrPq8/2pDE5LdviSNjEp/qa4sjoB7GvNepo/Gp
-	YeYQQBR/YPFwDbe7bvsWm8Q65RZlun46yRzpYArqcmXZBtree9ScQd1mfb0w04q68spwaEmmWdH
-	hwTz3EAxgqyIynLKwzRZSUMukBvmGkZUGd02vvhzdqap6V7qCx1usdD3g58CtIJl4HDQhXtkp4L
-	WWmeKjw82QCYnSHnm7Lw==
-X-Google-Smtp-Source: AGHT+IEOuIPYt67EBrcFp1mbmXrPmXz8HmqA/6GOaYFUuT7MdE59lwUX8pXH8JAbJY4iOrx/f02phQ==
-X-Received: by 2002:a17:907:d8f:b0:b3d:30d8:b885 with SMTP id a640c23a62f3a-b3d30e807e5mr988200366b.9.1759242759200;
-        Tue, 30 Sep 2025 07:32:39 -0700 (PDT)
-Received: from otso.local (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b3dc2cf61dbsm499858466b.29.2025.09.30.07.32.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Sep 2025 07:32:38 -0700 (PDT)
-From: Luca Weiss <luca.weiss@fairphone.com>
-Date: Tue, 30 Sep 2025 16:32:24 +0200
-Subject: [PATCH 6/6] arm64: dts: qcom: qcm6490-shift-otter: Enable venus
- node
+	s=arc-20240116; t=1759243045; c=relaxed/simple;
+	bh=tv8tP3CbvwVbP03SYbdUFItd/4hYvZNZmJe7AJScMmk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=F+CkRzEl+VIAhp1hZzMT0dEY3ddmYFVoY6voUQrEabZKQM3CX94uRMU9h9tzErTdJ4jl2W0kZTWgIt+BR9xcqVXQNVrymbktuDe/9TqfVhPPY2xYqgrrQQTtdK5Z+x3SJt+6tETR81KbE4ISygJ+iiV83BIXOGSqPVT03pbEPOk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ispdYJ8v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00567C116C6
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 14:37:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759243045;
+	bh=tv8tP3CbvwVbP03SYbdUFItd/4hYvZNZmJe7AJScMmk=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ispdYJ8vdVZXbkBVyhOSQaOGiikySRLfMNskFg2jlCrmWA1VdG1IeuG/BRbSZDXle
+	 WSISY7nbKNL2L9xWve9b0l77/91Pdod2UwOzp4yc+gz5YRywP0BD9kd0j/zPWmEwwM
+	 Bz4CxqheU5E+xsqSV8T7W84vsvhnDzjQLu82Lxn5HADJKwYrsXDYHnGJOjuqt/e/j3
+	 w+1mN6nTdTdyq+PRmxL/wxkNDvcSbXSVDInMPvFTA+bjLFk8edfabiwyklzQO60xyS
+	 aSdLml0y6rn7pwRqdQeNu+4Xk8tZ0eWLVtWHWsLL26u3cHso3WQILgXxeVNgQOO2yS
+	 qEomdo++8sP7Q==
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b41870fef44so307483566b.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:37:24 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV86jMLLrw7rIYmEUHvCzL96rQg3WsXm++i5MNk/SnBkARRxccrnfDEqaFz89g0XiVzSSi1fgmvsA6R@vger.kernel.org
+X-Gm-Message-State: AOJu0YwcExYciObgQceMzmRrIr4BCtwOQ++XFh+W9GPR/z32eXGldVsp
+	nHMWcchYTeIt5cNSGyeP7xqYTEwmERpHwP+/FCYxNVw5SPnGFc1Aj/QyMiV1fdHDy+s7iPI844s
+	wVNu1nOoGVKQXVyTH8yZfpYhXUB8uAA==
+X-Google-Smtp-Source: AGHT+IGgfxlodiz/IYQsAOQn6MLDa6csKlZJbZKJV75KAR1g4FNwPa42/5n0tcTx0LqLcbqk236kB6rAIkWIDfZAheg=
+X-Received: by 2002:a17:907:d19:b0:b46:31be:e8fe with SMTP id
+ a640c23a62f3a-b4631ce4b96mr125333766b.11.1759243043364; Tue, 30 Sep 2025
+ 07:37:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250930-otter-further-bringup-v1-6-7fe66f653900@fairphone.com>
-References: <20250930-otter-further-bringup-v1-0-7fe66f653900@fairphone.com>
-In-Reply-To: <20250930-otter-further-bringup-v1-0-7fe66f653900@fairphone.com>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Casey Connolly <casey.connolly@linaro.org>, 
- Alexander Martinz <amartinz@shiftphones.com>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759242752; l=887;
- i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
- bh=LSZDqnF8eZZ0YN5ymjZn52HAvKq4JeCAtEqFnPO+yIU=;
- b=T9HjfdM/hf8lvFA8aaNIljFgr/OXK6z7IUWukKa106HmG0hVjrhebnd+Ohi8ezrUz1r/FYTuI
- 02o6AxFWchfCQrsUuOLtCvOelyJsPm8O8t8rIfMmzJmEsjLUaEss3t0
-X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
- pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
+References: <20250926072905.126737-1-linux.amoon@gmail.com>
+ <20250926072905.126737-2-linux.amoon@gmail.com> <CAL_JsqJr+h7pTvbRR=7eB4ognK70D1pgNXEORGXo=ndND=pMjw@mail.gmail.com>
+ <CANAwSgT3jo35xBvkH4GmQcZuZH=D+SRKJ6e9fSBRz45zwuCmYw@mail.gmail.com>
+ <CAL_JsqLsEDFv4T1ZMmjaoFfs7WNAjVvOk9o1eTXL2EeGF8uuDA@mail.gmail.com> <CANAwSgTuX3t2-SNPe4OAzGuDpL5RotxX8t+Zx+gcwFKdj3ZEng@mail.gmail.com>
+In-Reply-To: <CANAwSgTuX3t2-SNPe4OAzGuDpL5RotxX8t+Zx+gcwFKdj3ZEng@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 30 Sep 2025 09:37:11 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKBhzPwxYguy+N=eddG2nwB54dzw307A6KT5NJpRSh-Mg@mail.gmail.com>
+X-Gm-Features: AS18NWCO_YKNXT00tTFZtChritiXVTRzlLdNG8gyHODI9fKqf3yCIJP6TlxUrps
+Message-ID: <CAL_JsqKBhzPwxYguy+N=eddG2nwB54dzw307A6KT5NJpRSh-Mg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/5] dt-bindings: PCI: Convert the existing
+ nvidia,tegra-pcie.txt bindings documentation into a YAML schema
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Alexander Martinz <amartinz@shiftphones.com>
+On Mon, Sep 29, 2025 at 10:25=E2=80=AFAM Anand Moon <linux.amoon@gmail.com>=
+ wrote:
+>
+> Hi Rob
+>
+> On Mon, 29 Sept 2025 at 19:19, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Mon, Sep 29, 2025 at 2:40=E2=80=AFAM Anand Moon <linux.amoon@gmail.c=
+om> wrote:
+> > >
+> > > Hi Rob,
+> > >
+> > > Thanks for your review comments
+> > >
+> > > On Fri, 26 Sept 2025 at 19:26, Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Fri, Sep 26, 2025 at 2:29=E2=80=AFAM Anand Moon <linux.amoon@gma=
+il.com> wrote:
+> > > > >
+> > > > > Convert the legacy text-based binding documentation for
+> > > > > nvidia,tegra-pcie into a nvidia,tegra-pcie.yaml YAML schema, foll=
+owing
+> > > >
+> > > > s/YAML/DT/
+> > > >
+> > > Ok,
+> > > > > the Devicetree Schema format. This improves validation coverage a=
+nd enables
+> > > > > dtbs_check compliance for Tegra PCIe nodes.
+> > > >
+> > > > Your subject needs some work too. 'existing' and 'bindings
+> > > > documentation' are redundant.
+> > > >
+> > > Here is the simplified version
+> > >
+> > > dt-bindings: PCI: Convert the nvidia,tegra-pcie bindings documentatio=
+n
+> > > into a YAML schema
+> >
+> > Still doesn't fit on one line and you say bindings twice:
+> >
+> > dt-bindings: PCI: Convert nvidia,tegra-pcie to DT schema
+> >
+> Ok
+> > >
+> > > Convert the existing text-based DT bindings documentation for the
+> > > NVIDIA Tegra PCIe host controller to a YAML schema format.
+> >
+> > s/YAML/DT/
+> >
+> > Lots of things are YAML. Only one thing is DT schema.
+> Ok, understood.
+> >
+> > >
+> > > > >
+> > > > > Cc: Jon Hunter <jonathanh@nvidia.com>
+> > > > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > > > > ---
+> > > > > v1: new patch in this series.
+> > > > > ---
+> > > > >  .../bindings/pci/nvidia,tegra-pcie.yaml       | 651 ++++++++++++=
++++++
+> > > > >  .../bindings/pci/nvidia,tegra20-pcie.txt      | 670 ------------=
+------
+> > > > >  2 files changed, 651 insertions(+), 670 deletions(-)
+> > > > >  create mode 100644 Documentation/devicetree/bindings/pci/nvidia,=
+tegra-pcie.yaml
+> > > > >  delete mode 100644 Documentation/devicetree/bindings/pci/nvidia,=
+tegra20-pcie.txt
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra-p=
+cie.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
+> > > > > new file mode 100644
+> > > > > index 000000000000..dd8cba125b53
+> > > > > --- /dev/null
+> > > > > +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yam=
+l
+> > > > > @@ -0,0 +1,651 @@
+> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > +%YAML 1.2
+> > > > > +---
+> > > > > +$id: http://devicetree.org/schemas/pci/nvidia,tegra-pcie.yaml#
+> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > +
+> > > > > +title: NVIDIA Tegra PCIe Controller
+> > > > > +
+> > > > > +maintainers:
+> > > > > +  - Thierry Reding <thierry.reding@gmail.com>
+> > > > > +  - Jon Hunter <jonathanh@nvidia.com>
+> > > > > +
+> > > > > +description: |
+> > > >
+> > > > Don't need '|'.
+> > > >
+> > > Ok
+> > > > > +  PCIe controller found on NVIDIA Tegra SoCs including Tgra20, T=
+egra30,
+> > > > > +  Tegra124, Tegra210, and Tegra186. Supports multiple root ports=
+ and
+> > > > > +  platform-specific clock, reset, and power supply configuration=
+s.
+> > > >
+> > > > I would suggest not listing every SoC here unless the list is not g=
+oing to grow.
+> > > >
+> > > Here is the short format.
+> > >   PCIe controller found on NVIDIA Tegra SoCs which supports multiple
+> > >   root ports and platform-specific clock, reset, and power supply
+> > >   configurations.
+> > > Ok
+> > > > > +
+> > > > > +properties:
+> > > > > +  compatible:
+> > > > > +    oneOf:
+> > > >
+> > > > Only 1 entry here, don't need 'oneOf'.
+> > >
+> > > I am observing the following warning if I remove this.
+> > >
+> > >  make ARCH=3Darm64 -j$(nproc) dt_binding_check
+> > > DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/pci/nvidia,tegra-=
+pcie.yaml
+> > >   CHKDT   ./Documentation/devicetree/bindings
+> > > /media/nvme0/mainline/linux-tegra-6.y-devel/Documentation/devicetree/=
+bindings/pci/nvidia,tegra-pcie.yaml:
+> > > properties:compatible: [{'items': [{'enum': ['nvidia,tegra20-pcie',
+> > > 'nvidia,tegra30-pcie', 'nvidia,tegra124-pcie', 'nvidia,tegra210-pcie'=
+,
+> > > 'nvidia,tegra186-pcie']}]}] is not of type 'object', 'boolean'
+> >
+> > Because you made 'compatible' a list rather than a schema/map/dict.
+> > IOW, You need to remove the '-' as well.
+> >
+> Ok fixed.
+> >
+> > > > > +  nvidia,num-lanes:
+> > > > > +    description: Number of PCIe lanes used
+> > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > >
+> > > > The examples show this in child nodes.
+> > > yes it patternProperties example I missed this.
+> > >
+> > > patternProperties:
+> > >   "^pci@[0-9a-f]+$":
+> > >     type: object
+> > >
+> > >     properties:
+> > >       reg:
+> > >         maxItems: 1
+> > >
+> > >       nvidia,num-lanes:
+> > >         description: Number of PCIe lanes used
+> > >         $ref: /schemas/types.yaml#/definitions/uint32
+> > >         minimum: 1
+> > >
+> > >     unevaluatedProperties: false
+> >
+> > What about all the other properties in the child nodes? You need a
+> > $ref to pci-pci-bridge.yaml as well.
+> Thanks for the input.
+>
+> patternProperties:
+>   "^pci@[0-9a-f]+$":
+>     type: object
+>     allOf:
+>       - $ref: /schemas/pci/pci-host-bridge.yaml#
 
-Enable the venus node so that the video encoder/decoder will start
-working.
+That's not the one you need. Read my reply again.
 
-Signed-off-by: Alexander Martinz <amartinz@shiftphones.com>
-Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
----
- arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts | 6 ++++++
- 1 file changed, 6 insertions(+)
+>       - properties:
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts b/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts
-index b4c69dc50ed0f0b3cb45341a01c89210bd261993..98c1ad4c21118831f079c83f4fe66ea30c141fac 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts
-@@ -995,6 +995,12 @@ &usb_dp_qmpphy_out {
- 	remote-endpoint = <&pmic_glink_ss_in>;
- };
- 
-+&venus {
-+	firmware-name = "qcom/qcm6490/SHIFT/otter/venus.mbn";
-+
-+	status = "okay";
-+};
-+
- &wifi {
- 	qcom,calibration-variant = "SHIFTphone_8";
- 
+properties doesn't need to go under allOf. Actually, don't need allOf
+here at all.
 
--- 
-2.51.0
+>           reg:
+>             maxItems: 1
 
+>           "#address-cells":
+>             const: 3
+>           "#size-cells":
+>             const: 2
+
+These 2 are already defined in the referenced schema.
+
+>           nvidia,num-lanes:
+>             description: Number of PCIe lanes used
+>             $ref: /schemas/types.yaml#/definitions/uint32
+>             minimum: 1
+
+I assume there's a maximum <=3D16?
+
+blank line here and between all DT properties.
+
+>         required:
+>           - "#address-cells"
+>           - "#size-cells"
+
+These 2 are already required in the referenced schema.
+
+>           - nvidia,num-lanes
+>     unevaluatedProperties: false
+>
+> > Rob
+>
+> Thanks
+> -Anand
+>
 
