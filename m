@@ -1,187 +1,316 @@
-Return-Path: <devicetree+bounces-222830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 629D9BAE05E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 18:11:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D861BAE0CC
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 18:33:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11280164E6C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 16:11:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E23833B41FA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 16:32:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 977BDFBF6;
-	Tue, 30 Sep 2025 16:11:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25AE524DD01;
+	Tue, 30 Sep 2025 16:32:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bjfqs3d0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G7TMdf3c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B720B307487
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 16:11:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1EE1248F57
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 16:32:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759248680; cv=none; b=G6tHYozKA46KUYwbJMopQTCAASskNJfXTNFbBqVbfQKaUnCvQZisb+tq8IbcK5l++dOBJoiyqPLUwb0NSpoX4zP7FWS9eoAA/zLxV4WAnHOYrlLJ01qQpSx7Pay/99DbU50ZFDPzXb8Fg9mAkIe4W0RcxdVKyYTtCvJyn99N8Ls=
+	t=1759249970; cv=none; b=DoQXZZlc4s3sz6dbPfVES9pFbtwpQz1T8RFFot2eU36gcl3peNSnuGRfuhMwNyI5zO33nkTcSNgsHsdmyVdhSlJVdeKLjz5WVJkBh6Uk+7OqrCrnrF9Tn4+DaxVUCZ8KU10x+zN9GdNZuBmv77w7BivAqh3YAscSyGt7NsV4wp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759248680; c=relaxed/simple;
-	bh=MndQLK5x5cGMTWMw/cHXzHjTxE6qM7el/nwtDsSCCTY=;
+	s=arc-20240116; t=1759249970; c=relaxed/simple;
+	bh=oGF9yTei1g4gjv/QnS3yVyRP9PJi1rFlCgAm1v7R6Zo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f0cqgUVUXRYiM3165b5MtjV64+whFoIJF2C9GS8VmUvJda7UJt1mpBIGqtTLyPdNZ0X4e7IfRog3jk17RZZygaMrZAhtSr+37XD/vDELmY9PxegGApQGdw7jq6dES6v8Ez4Rly7L8uUWL/gccAEu2ojZsFYsh9pzMqxLXJ1UIRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bjfqs3d0; arc=none smtp.client-ip=209.85.208.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-62fbc90e6f6so11053475a12.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 09:11:18 -0700 (PDT)
+	 To:Cc:Content-Type; b=hwh2b148oh1PG9WkfoEW/5M3l+qN2crPWqIh92tojP7GCdVwfqqSoQATb3zBAMqufGVgV8mzJsSWFgp4nyo9DojdI9CH+ssuqHS+/DiJuC1mW2BegALOUjb0WGONR2R3iJ7eokzxY4gxUpJ+/nis6zsb1NrXdG36Bv+t9JVVdRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G7TMdf3c; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-63667e8069aso1808636a12.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 09:32:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759248677; x=1759853477; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759249966; x=1759854766; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=oxp5oWG2zYQb/bAadgrp+7BT1AfD0ElhKVNTGDmQyfk=;
-        b=Bjfqs3d04VPJV8ct8Yz4LypBylL5fXBHzPOCB4Tp32M+2WUnrh8CXoovx+Mo3HqnUk
-         E0m3cqyt2a0mcEKyLxugCoQfCm/ttu1w8uUrikySR2gk7iznG3r3KSZUj7XB0HUi9GpM
-         uSNhZt0P07EnZ1ixxUKiYJMrtGeTf2nE+DfwraLmh1Y7p5hH5gXM4tiq+RH7dcBobsk0
-         olOh/gqH7ab7flrSThZLkW1QT1mx1BaHHTRqgNJDaJY+Hy2rArDGuAzvnuCtvceodMDv
-         IfL0/2S4Kl1w1FcDFiSKXS3awbZKP6AZw1ly7/Ej2EbYmjDiOawdvnZhkOQP/Qem2Qoo
-         zDXg==
+        bh=Ywr/T8H21r9AOyqjIoUOVLC27W+yILSMEGkAVkNfxfs=;
+        b=G7TMdf3cbEgC8ruzjQ/JedFDAGQBz35rZtqyh5LkKc7R6XvJOSjv/SM2wBW68YceZY
+         S3NC0IMiV3uWjR5j3McYbz49lEMMfl14gYl/F9Co7IW5p08jZZDq0MxPIrFkrUOSlxoT
+         k6pR0Sn7/9PWhkY40lt9KnJa74j6sAv4GHNHqiFE7Fz25Aff2wOvm6VWBhmCBRbs8C1a
+         3f0t9nE5Xx7B27qVGXyzx2LtkrHA8HlRFWgO+nU/F0Bt9Y0WH8cwkYVQJipQAn3uEW8T
+         LyXY8b5e325zk4Ox3mLdnQjyEPLoWxJTrSY5GQMx39t2vj6UmjedDvc+Ty4fI+/V66uH
+         B1kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759248677; x=1759853477;
+        d=1e100.net; s=20230601; t=1759249966; x=1759854766;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=oxp5oWG2zYQb/bAadgrp+7BT1AfD0ElhKVNTGDmQyfk=;
-        b=QTOkstL362U6/hNlYW8zqNC4d+Q0Wkrm650fxqW8Fxx0O++94uUsb3c5Msbm172dod
-         q7dzZGz0aAqOc75pZqw+ASo26YQWHFjt9Kd/LaBZOsDc7vsmzR6iPpfNlxRtQ2bo1ycA
-         xG9guuK+Q6xkyyE+Ltjkvv3FzySJfsDcJsIs9lX1j3wVjMVO9iFRYiIPty2Xk0vcBXDb
-         RI0s3NG9HudBFBmfMAVMMnxQ3hcCDGzIT8aM05WP/RqVN1pR9eKIv9wYBoAeGjwxeRqE
-         xPuZjyGJJooEuP2SdAuCBygwl+l/dH/SUH9KmZH8OjX0i51FiJKaYplHXEsFxq9KJjbu
-         q7Lw==
-X-Forwarded-Encrypted: i=1; AJvYcCVPH3IMOCQYBxvzqSfbm/7fyJcayTg7L1fB6AHcsIskFsyM9luf1Y4T6oDbTF0CHhKdUCl8Nq2XYeib@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy34ai45LQ08zK0i7+uA4OXx9KI2TrOo6qqvdKrNsXqcqslDrcM
-	/GyGO2UXe/9aYuh1wC0Lu5dKZpO3ftzsPsBjmPGpH5Dwoy60f/83Br9d76/pGdNEl/qDO4/UlrZ
-	EtdSbwSg/B8M5omN2dHZwkFi2qcsMl3qlIzOp1UkgmQ==
-X-Gm-Gg: ASbGncvELVL37PsZWdZztDofvdQAaXZo5BUQgzECHH/eK7Ij4Wn50U7Jq62dBWVY7HQ
-	Cw0N3zwDTu5iN8SoHpZSV3KbyBg3PB1Elpgfimn5b6I0MHBxS0JEtOY0DjABIvXTO4M0IJdA87X
-	S3DjSflDXQgUHWHkp8LRiVDiwizg/vTcEt9wqnJm3cbgIGtVSz1p/XlzO6bNDFUQyLhpLcBv/SK
-	ADVlGEMNIOjz2m8b7cqckEaEqrXMTaQ6Gj+nNpZTtzcbzV5baJg8Mx81Y6ykXgjRT7rlUc=
-X-Google-Smtp-Source: AGHT+IHcT65SCb0YDaj8HXJyzDEr17zNKjdB+wgbHVUN98mdk2+pEmJMBE3H+oYu+G7ZvB3GLkI42wO9NC0FtjKrGmM=
-X-Received: by 2002:a05:6402:3584:b0:634:abb6:8b4b with SMTP id
- 4fb4d7f45d1cf-63678d0a45amr507520a12.22.1759248676729; Tue, 30 Sep 2025
- 09:11:16 -0700 (PDT)
+        bh=Ywr/T8H21r9AOyqjIoUOVLC27W+yILSMEGkAVkNfxfs=;
+        b=YeJrwiWET8HMpdntwHJ6lukRJve/BgZzP46ULS5OjCOzxm5oL4ZWyP7g8b40QGRGuR
+         zvFOM6BM30YKo7FnnboBHOODuB0wwrR28sXjiP5OWTeRmYzVxnDDjLdSngU/zy59SY8K
+         W+eFcHr1FvfK3sF61Lm3CYcXXCMc6KvFrYw3vOyniLKbeKoD8pBs6Rm4Rzfz0g2h8APE
+         p5yEXhZCuyPhxGz5lxuDEifHG9BR9qAwFqVYQTi82qzTIJan7U+Kh4QRmsfQAIjDXo4u
+         EQMwwzGsgfIak50bS+rja1aaPASJ/6JRg2mMotfisR4K4EXaoHE3SbN3XxHKfz9aO5HK
+         xTEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW3kh4+Hsj9dO2EMZh9jaY0WgocREAaUXf+dE2dpi23NcdeLA2LoubUuc3AbWltJXodOaPnqALxh63z@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkQ25H3rIbFvxxDsYjo3uDNy6dAJda9BMJANXMRgAFzjy82hwd
+	pw9v8QEsdMl5HAWarN7wJgxHLaAQWZj944ZA81dOvE6iPX/jvGmjWv0y0j2NQaFXXFpq7giFLew
+	I52dJXyeCdFG3Yr8/Vys6T3t3ZOEfflc=
+X-Gm-Gg: ASbGncv+P9Qj5n6JJ7QJZcIQJjC8BbCqaHz8RDjjOHlJx5dOHN6RHukGuv3TZyr9oLI
+	dkVc5oxZefJ4i6cmpue9NHlu6tx79Gr1QGIbVi8hQoVYa4ltJY6KHtY2W1HYo3O7JcrJ7fteOuy
+	iE17pSMpdeocpCKtl7+ZyIONQncSpylokOoyyi8rx67zOUrE6UbplbEjak1J2TAuaCQO2SsYW0Z
+	ypxLMkJIBk6XCEhMzsWG4RexQQeog==
+X-Google-Smtp-Source: AGHT+IEJHPU/9y3qBt/SABv++MOXGcN86o3VBfE4lwa8ckg4ceTKcaWY4Edg+8QEKEvz47kn06lNSjx+U7OGCjruhFQ=
+X-Received: by 2002:a05:6402:51c6:b0:634:ba7e:f6c8 with SMTP id
+ 4fb4d7f45d1cf-63678d17922mr511880a12.34.1759249965859; Tue, 30 Sep 2025
+ 09:32:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250919155821.95334-1-vincent.guittot@linaro.org>
- <20250919155821.95334-3-vincent.guittot@linaro.org> <4ee5tqdjv5ogcdtysiebtoxmrvrzhkar4bjcsqi47dxtgwac4c@rezn4waubroh>
- <CAKfTPtAEkegCV-9_x-dXSWQFOoG6kO5JbJq_LToY9YuuRusoVA@mail.gmail.com>
- <lmczw5agheqbcl6xcomlhf7yfbdvfx45pozmaxjmbkkqudsxlu@c7u6s5h4xm6j>
- <CAKfTPtCacFhJztYvWycSdoWMUStaf1WAcGJKHwk3y4n-uEELSw@mail.gmail.com> <xmjgs5ssolugcq2ogjc5j3ccwalcc4q3whl64fcra2aiebhtci@qwobbjtb2wcl>
-In-Reply-To: <xmjgs5ssolugcq2ogjc5j3ccwalcc4q3whl64fcra2aiebhtci@qwobbjtb2wcl>
-From: Vincent Guittot <vincent.guittot@linaro.org>
-Date: Tue, 30 Sep 2025 18:11:05 +0200
-X-Gm-Features: AS18NWCijqY2xYOImmRNqiG0s-RQFrJ1uFUZhBOTuBa0xoCxbLUGNkckGMVPh8A
-Message-ID: <CAKfTPtDva4fUQty8b5b=tLEHcd+OGFSS9i0DJqnn3vFvgG9wrA@mail.gmail.com>
-Subject: Re: [PATCH 2/3 v2] PCI: s32g: Add initial PCIe support (RC)
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: chester62515@gmail.com, mbrugger@suse.com, ghennadi.procopciuc@oss.nxp.com, 
-	s32@nxp.com, bhelgaas@google.com, jingoohan1@gmail.com, lpieralisi@kernel.org, 
-	kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, Ionut.Vicovan@nxp.com, larisa.grigore@nxp.com, 
-	Ghennadi.Procopciuc@nxp.com, ciprianmarian.costea@nxp.com, 
-	bogdan.hamciuc@nxp.com, Frank.li@nxp.com, 
-	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	cassel@kernel.org
+References: <20250926072905.126737-1-linux.amoon@gmail.com>
+ <20250926072905.126737-2-linux.amoon@gmail.com> <CAL_JsqJr+h7pTvbRR=7eB4ognK70D1pgNXEORGXo=ndND=pMjw@mail.gmail.com>
+ <CANAwSgT3jo35xBvkH4GmQcZuZH=D+SRKJ6e9fSBRz45zwuCmYw@mail.gmail.com>
+ <CAL_JsqLsEDFv4T1ZMmjaoFfs7WNAjVvOk9o1eTXL2EeGF8uuDA@mail.gmail.com>
+ <CANAwSgTuX3t2-SNPe4OAzGuDpL5RotxX8t+Zx+gcwFKdj3ZEng@mail.gmail.com> <CAL_JsqKBhzPwxYguy+N=eddG2nwB54dzw307A6KT5NJpRSh-Mg@mail.gmail.com>
+In-Reply-To: <CAL_JsqKBhzPwxYguy+N=eddG2nwB54dzw307A6KT5NJpRSh-Mg@mail.gmail.com>
+From: Anand Moon <linux.amoon@gmail.com>
+Date: Tue, 30 Sep 2025 22:02:28 +0530
+X-Gm-Features: AS18NWDpwy8wPfpGXTgiB-hfuQbqsocd9S2KZlBOjIaIkDW6NFhuEmGm8l9CeiA
+Message-ID: <CANAwSgTKFSf-EUGSpErdS1Y93AwunFOK7omH4T+gE_z2XttVtw@mail.gmail.com>
+Subject: Re: [PATCH v1 1/5] dt-bindings: PCI: Convert the existing
+ nvidia,tegra-pcie.txt bindings documentation into a YAML schema
+To: Rob Herring <robh@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, 29 Sept 2025 at 18:32, Manivannan Sadhasivam <mani@kernel.org> wrot=
-e:
+Hi Rob
+
+On Tue, 30 Sept 2025 at 20:07, Rob Herring <robh@kernel.org> wrote:
 >
-> On Mon, Sep 29, 2025 at 06:23:05PM +0200, Vincent Guittot wrote:
->
-> [...]
->
-> > > > > > +static int s32g_pcie_resume(struct device *dev)
-> > > > > > +{
-> > > > > > +     struct s32g_pcie *s32g_pp =3D dev_get_drvdata(dev);
-> > > > > > +     struct dw_pcie *pci =3D &s32g_pp->pci;
-> > > > > > +     struct dw_pcie_rp *pp =3D &pci->pp;
-> > > > > > +     int ret =3D 0;
-> > > > > > +
-> > > > > > +     ret =3D s32g_pcie_init(dev, s32g_pp);
-> > > > > > +     if (ret < 0)
-> > > > > > +             return ret;
-> > > > > > +
-> > > > > > +     ret =3D dw_pcie_setup_rc(pp);
-> > > > > > +     if (ret) {
-> > > > > > +             dev_err(dev, "Failed to resume DW RC: %d\n", ret)=
-;
-> > > > > > +             goto fail_host_init;
-> > > > > > +     }
-> > > > > > +
-> > > > > > +     ret =3D dw_pcie_start_link(pci);
-> > > > > > +     if (ret) {
-> > > > > > +             /*
-> > > > > > +              * We do not exit with error if link up was unsuc=
-cessful
-> > > > > > +              * Endpoint may not be connected.
-> > > > > > +              */
-> > > > > > +             if (dw_pcie_wait_for_link(pci))
-> > > > > > +                     dev_warn(pci->dev,
-> > > > > > +                              "Link Up failed, Endpoint may no=
-t be connected\n");
-> > > > > > +
-> > > > > > +             if (!phy_validate(s32g_pp->phy, PHY_MODE_PCIE, 0,=
- NULL)) {
-> > > > > > +                     dev_err(dev, "Failed to get link up with =
-EP connected\n");
-> > > > > > +                     goto fail_host_init;
-> > > > > > +             }
-> > > > > > +     }
-> > > > > > +
-> > > > > > +     ret =3D pci_host_probe(pp->bridge);
-> > > > >
-> > > > > Oh no... Do not call pci_host_probe() directly from glue drivers.=
- Use
-> > > > > dw_pcie_host_init() to do so. This should simplify suspend and re=
-sume functions.
-> > > >
-> > > > dw_pcie_host_init() is doing much more than just init the controlle=
-r
-> > > > as it gets resources which we haven't released during suspend.
-> > > >
+> On Mon, Sep 29, 2025 at 10:25=E2=80=AFAM Anand Moon <linux.amoon@gmail.co=
+m> wrote:
+> >
+> > Hi Rob
+> >
+> > On Mon, 29 Sept 2025 at 19:19, Rob Herring <robh@kernel.org> wrote:
 > > >
-> > > Any specific reason to keep resources enabled, even though you were r=
-emoving the
-> > > Root bus? This doesn't make sense to me.
+> > > On Mon, Sep 29, 2025 at 2:40=E2=80=AFAM Anand Moon <linux.amoon@gmail=
+.com> wrote:
+> > > >
+> > > > Hi Rob,
+> > > >
+> > > > Thanks for your review comments
+> > > >
+> > > > On Fri, 26 Sept 2025 at 19:26, Rob Herring <robh@kernel.org> wrote:
+> > > > >
+> > > > > On Fri, Sep 26, 2025 at 2:29=E2=80=AFAM Anand Moon <linux.amoon@g=
+mail.com> wrote:
+> > > > > >
+> > > > > > Convert the legacy text-based binding documentation for
+> > > > > > nvidia,tegra-pcie into a nvidia,tegra-pcie.yaml YAML schema, fo=
+llowing
+> > > > >
+> > > > > s/YAML/DT/
+> > > > >
+> > > > Ok,
+> > > > > > the Devicetree Schema format. This improves validation coverage=
+ and enables
+> > > > > > dtbs_check compliance for Tegra PCIe nodes.
+> > > > >
+> > > > > Your subject needs some work too. 'existing' and 'bindings
+> > > > > documentation' are redundant.
+> > > > >
+> > > > Here is the simplified version
+> > > >
+> > > > dt-bindings: PCI: Convert the nvidia,tegra-pcie bindings documentat=
+ion
+> > > > into a YAML schema
+> > >
+> > > Still doesn't fit on one line and you say bindings twice:
+> > >
+> > > dt-bindings: PCI: Convert nvidia,tegra-pcie to DT schema
+> > >
+> > Ok
+> > > >
+> > > > Convert the existing text-based DT bindings documentation for the
+> > > > NVIDIA Tegra PCIe host controller to a YAML schema format.
+> > >
+> > > s/YAML/DT/
+> > >
+> > > Lots of things are YAML. Only one thing is DT schema.
+> > Ok, understood.
+> > >
+> > > >
+> > > > > >
+> > > > > > Cc: Jon Hunter <jonathanh@nvidia.com>
+> > > > > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > > > > > ---
+> > > > > > v1: new patch in this series.
+> > > > > > ---
+> > > > > >  .../bindings/pci/nvidia,tegra-pcie.yaml       | 651 ++++++++++=
++++++++
+> > > > > >  .../bindings/pci/nvidia,tegra20-pcie.txt      | 670 ----------=
+--------
+> > > > > >  2 files changed, 651 insertions(+), 670 deletions(-)
+> > > > > >  create mode 100644 Documentation/devicetree/bindings/pci/nvidi=
+a,tegra-pcie.yaml
+> > > > > >  delete mode 100644 Documentation/devicetree/bindings/pci/nvidi=
+a,tegra20-pcie.txt
+> > > > > >
+> > > > > > diff --git a/Documentation/devicetree/bindings/pci/nvidia,tegra=
+-pcie.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
+> > > > > > new file mode 100644
+> > > > > > index 000000000000..dd8cba125b53
+> > > > > > --- /dev/null
+> > > > > > +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.y=
+aml
+> > > > > > @@ -0,0 +1,651 @@
+> > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > +%YAML 1.2
+> > > > > > +---
+> > > > > > +$id: http://devicetree.org/schemas/pci/nvidia,tegra-pcie.yaml#
+> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > +
+> > > > > > +title: NVIDIA Tegra PCIe Controller
+> > > > > > +
+> > > > > > +maintainers:
+> > > > > > +  - Thierry Reding <thierry.reding@gmail.com>
+> > > > > > +  - Jon Hunter <jonathanh@nvidia.com>
+> > > > > > +
+> > > > > > +description: |
+> > > > >
+> > > > > Don't need '|'.
+> > > > >
+> > > > Ok
+> > > > > > +  PCIe controller found on NVIDIA Tegra SoCs including Tgra20,=
+ Tegra30,
+> > > > > > +  Tegra124, Tegra210, and Tegra186. Supports multiple root por=
+ts and
+> > > > > > +  platform-specific clock, reset, and power supply configurati=
+ons.
+> > > > >
+> > > > > I would suggest not listing every SoC here unless the list is not=
+ going to grow.
+> > > > >
+> > > > Here is the short format.
+> > > >   PCIe controller found on NVIDIA Tegra SoCs which supports multipl=
+e
+> > > >   root ports and platform-specific clock, reset, and power supply
+> > > >   configurations.
+> > > > Ok
+> > > > > > +
+> > > > > > +properties:
+> > > > > > +  compatible:
+> > > > > > +    oneOf:
+> > > > >
+> > > > > Only 1 entry here, don't need 'oneOf'.
+> > > >
+> > > > I am observing the following warning if I remove this.
+> > > >
+> > > >  make ARCH=3Darm64 -j$(nproc) dt_binding_check
+> > > > DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/pci/nvidia,tegr=
+a-pcie.yaml
+> > > >   CHKDT   ./Documentation/devicetree/bindings
+> > > > /media/nvme0/mainline/linux-tegra-6.y-devel/Documentation/devicetre=
+e/bindings/pci/nvidia,tegra-pcie.yaml:
+> > > > properties:compatible: [{'items': [{'enum': ['nvidia,tegra20-pcie',
+> > > > 'nvidia,tegra30-pcie', 'nvidia,tegra124-pcie', 'nvidia,tegra210-pci=
+e',
+> > > > 'nvidia,tegra186-pcie']}]}] is not of type 'object', 'boolean'
+> > >
+> > > Because you made 'compatible' a list rather than a schema/map/dict.
+> > > IOW, You need to remove the '-' as well.
+> > >
+> > Ok fixed.
+> > >
+> > > > > > +  nvidia,num-lanes:
+> > > > > > +    description: Number of PCIe lanes used
+> > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > >
+> > > > > The examples show this in child nodes.
+> > > > yes it patternProperties example I missed this.
+> > > >
+> > > > patternProperties:
+> > > >   "^pci@[0-9a-f]+$":
+> > > >     type: object
+> > > >
+> > > >     properties:
+> > > >       reg:
+> > > >         maxItems: 1
+> > > >
+> > > >       nvidia,num-lanes:
+> > > >         description: Number of PCIe lanes used
+> > > >         $ref: /schemas/types.yaml#/definitions/uint32
+> > > >         minimum: 1
+> > > >
+> > > >     unevaluatedProperties: false
+> > >
+> > > What about all the other properties in the child nodes? You need a
+> > > $ref to pci-pci-bridge.yaml as well.
+> > Thanks for the input.
 > >
-> > By ressources I mean everything before  dw_pcie_setup_rc()  in
-> > dw_pcie_host_init() which are still there after dw_pcie_host_deinit()
-> > in addition to being a waste of time. Also we don't need to remove
-> > edma and free msi
+> > patternProperties:
+> >   "^pci@[0-9a-f]+$":
+> >     type: object
+> >     allOf:
+> >       - $ref: /schemas/pci/pci-host-bridge.yaml#
+>
+> That's not the one you need. Read my reply again.
+>
+I'm sorry, I missed pci-pci-bridge.yaml
+> >       - properties:
+>
+> properties doesn't need to go under allOf. Actually, don't need allOf
+> here at all.
+>
+> >           reg:
+> >             maxItems: 1
+>
+> >           "#address-cells":
+> >             const: 3
+> >           "#size-cells":
+> >             const: 2
+>
+> These 2 are already defined in the referenced schema.
+Earlier, I had tried to search for these reference schemas,
+but I could not find them.
+>
+> >           nvidia,num-lanes:
+> >             description: Number of PCIe lanes used
+> >             $ref: /schemas/types.yaml#/definitions/uint32
+> >             minimum: 1
+>
+> I assume there's a maximum <=3D16?
+I will check and update
+>
+> blank line here and between all DT properties.
+>
+> >         required:
+> >           - "#address-cells"
+> >           - "#size-cells"
+>
+> These 2 are already required in the referenced schema.
+Ok dropped
+>
+> >           - nvidia,num-lanes
+> >     unevaluatedProperties: false
 > >
->
-> Let me take a step back and ask, why do you need to remove Root bus durin=
-g
-> suspend() and not just disable LTSSM with dw_pcie_stop_link()?
-
-That's something that I'm trying to clarify but it's so far the only
-way to get suspend/resume working. I have some hypotheses that I need
-to get confirmed but it doesn't have full control of clocks and power
-domain
-
-Vincent
-
->
-> - Mani
->
-> --
-> =E0=AE=AE=E0=AE=A3=E0=AE=BF=E0=AE=B5=E0=AE=A3=E0=AF=8D=E0=AE=A3=E0=AE=A9=
-=E0=AF=8D =E0=AE=9A=E0=AE=A4=E0=AE=BE=E0=AE=9A=E0=AE=BF=E0=AE=B5=E0=AE=AE=
-=E0=AF=8D
+> > > Rob
+Thanks
+-Anand
 
