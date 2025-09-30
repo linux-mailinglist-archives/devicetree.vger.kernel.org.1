@@ -1,219 +1,137 @@
-Return-Path: <devicetree+bounces-222808-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222809-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4DE4BAD2D2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 16:29:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93CFBBAD2F6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 16:32:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F6C91926171
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 14:29:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A9607AC581
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 14:31:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6C742FFDFC;
-	Tue, 30 Sep 2025 14:29:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B73D62F5305;
+	Tue, 30 Sep 2025 14:32:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="UppWFxpx"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="uo99jEBb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D0F1A3165
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 14:29:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0587E1B4156
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 14:32:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759242566; cv=none; b=Up5vmL9LD7VwCL+Gf81Q1JLtQ6a6EeKLUGFKapjG3mPcty3dCwd4Vze8ScVhKj2YMzaUJAqNri0iu57qTaiYgFTsGf00skYRkgYiTDjcwC/aaXckEAR5GAspkd2qGNkvhh+8TTnn7ofczyoqcsbET5gvvpnz9fm3YLPvlwtAKT4=
+	t=1759242757; cv=none; b=D9vKRhVBgXMvh5B1GcrCX7nqBdEQmmIKkKNrMnJOS3f9SktbiVFeV/sQyyCdn9TTAcOhKVO8m0Q2fYC173uTbttx2Y8wY3Cj2peGBGw9khhMuChEb6R2YLHgKsKlnJ/tyjuVemfXi8nHXR+/rPHER2d7hW+PurNkHn8WkH/n73M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759242566; c=relaxed/simple;
-	bh=rmwyO9zRp4kD2rqR5LNaTJTRO8hwzlF7oOof50A1D1s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=puGPMllnor/Q3uY5Gh6zRsZ8p2HRJR3FsGxhr1s6eqBRE9odwgWfRDN1eDnAd0vJnRU3abpk0xyewEJV/98OP9iHw13fcZRdjmTLxfI7/A8ikzX6AONf130fVPwUpDTskS2yRErv9mIynuvxm2j21D0FG5DaFiByMQetI2VIFzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=UppWFxpx; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-28a5b8b12a1so23007445ad.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:29:25 -0700 (PDT)
+	s=arc-20240116; t=1759242757; c=relaxed/simple;
+	bh=trtFIVQ7skIm+AJ2uSYPYV1+QuWRN+OapOx2C9yTkv8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kYfP1LPpImtQp9G8RNxNG13NnBR/Ca2tAGDulzsoIGXw7guz4Pg4Eu4cMEkJkznoM/2m4IrN15nwiTvSMml8X5a9vog2O2HCnHHjf9XenOkj3VPOLndFBVal6K8JZ0OoHi2LiHE41UxC8fUNACdjwGhzZD/wiImPzcevinV6WTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=uo99jEBb; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-6366d48d8ccso1242899a12.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:32:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1759242563; x=1759847363; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XL/Mc8iUtyo5W2s1qkd1yXvd0NCSK6cLxiT3Omi/7eQ=;
-        b=UppWFxpxKs4LfCeszXbB5M7clvG4X1xf3IPUeI5NaIvmYEqQucfUvurDbzX/pWMOLw
-         RPK0iWJwSuNJpGzRTIIm2CZ2xJkrnjcjFRLYWx/i6SFjhrI09BPmYtA0AEXKPQVv3I4k
-         iEsc3sCVBGN37QCAJBAHEnQrSyISGJtUW3bus=
+        d=fairphone.com; s=fair; t=1759242753; x=1759847553; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1XGzvIYD2K0dKmTD5NLqz2HHH1fk0VmQ6ZCiFWN/CWQ=;
+        b=uo99jEBb//E6n4KlO+0QKBYQJb6XRQl1vJxtpInYFxpMOYsa3pKkSd0e8ODPCrFxUK
+         u4LIUE3V1hdZ1PZwH2cL0ArZnkF7BeSj7SJ6ewamd7HMsFI1fw2po+VACQJVKNYSz/lE
+         LBPv7pWLdJ1/SCv+6MhCuPbXWNjoKsd6M4YUtTOnjR1xcNMABIb8c2eozGP7a06XuA7R
+         S8R/vC7/rWCmEYBnpDwhTyT2e+b/VmpowgGVLWnsSghpmREeTPnva89w/bGAkuPXI1P6
+         MjYHbb6T7ita6H7ydohm5Bhn0yJLbF0hAfoySuAjtzeNFNHI+x2pvuZ2kYxZsfI/AcN1
+         10gA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759242563; x=1759847363;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XL/Mc8iUtyo5W2s1qkd1yXvd0NCSK6cLxiT3Omi/7eQ=;
-        b=T8kXdITxv/xYEQgxhCeXv20w3P4JZPsCfqyLD4Yiy2pnpOT+nlC7QcEzcw7qwyPp8B
-         pk3sClHsKmxWNLZuKpihQzHj9psAVRDpDDUqA80qcObfx/LWlWl0QkAlksjvJzXBFpzL
-         MtYwdKZD91kR5SmEJTt0JmSZEcUF/py2Js5d8j0DVGEYmS7gfyrWwG9Gj/9HlBUYKQ/b
-         JCbbIhbrsCl5h73CK4bF0UlduD3+xpNflKVxJxeOgYwuVwTWNdjHjStJwf3uNTGa6ZOk
-         RXdkn/3FqTuXtSgbI8HHAfmjlBoV6n1Lyl4xC9ox0cpyIABKoLhFxep61QjP4Lxx6JfE
-         Y7dQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUcb+6SGjOKKI0IDDZmEWjQmgK41wCbs072WPOA4XCMBrmMzsvNa/mtVBUc6zdPwx1lqGi6Dw/sqTAW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9h8ZBdSrEsEFOrA7PmU3LXjfHQivgQIA0gCi6aNfHYiQBFRLX
-	7MEamTmtv7Nw3iIKLX1i4ZZVTf070QbzfYKrDn7ffyB/ps7PDMF01P4EkyyLeM//OpoGMFe51Dx
-	dB9o=
-X-Gm-Gg: ASbGnct3UFfW7gdjhCL8pjZGb/FCgY3KHLGhs9VK/19KtmHUplSLI8qjslMMjvi+9cT
-	p4O8iNAfNCJwLOWOwk+T2khcjpVaD1xkRPp7aVBvVmOe+LgWbhU4cIERKcREW6wi92pslJPlcsZ
-	HJEUQmyaaZaIpL0bXFEY1B2HEt32SjFK9DEtJ+Alc8G+r146Y5qYs87sepOQ9+h/NGGGigHIEcZ
-	yAGMgMiAVh5XvAMJE3aM2WVjlh0CyjN0yzCCVKA/RZr/usCszNAj+/kl6KiDtg+AsyqkI6/7L7b
-	8Ec+EbeexsG4iwqedvUjg5mlfEhbwuqIssDYOrfU15pWASJkxN554b7C+hHPsQMF0zsJp3fBUpX
-	jLhtdypWep0ktDehcOxSjzrgb/5KplKOTWzKzuTIR2yHZ+Ns7QbKRv6god6T8LR4iWTIL4/f/wI
-	w9FoOcP2z/bGfrzb19OlbR01Ic
-X-Google-Smtp-Source: AGHT+IGXCqJGfQPopUYYT+630xCg7mGQQsS1XtnHqvyMesqXiQh/4Zo78BPbKeCCRSVZTMDbs5Wn4A==
-X-Received: by 2002:a17:903:a8b:b0:27d:339c:4b0 with SMTP id d9443c01a7336-27ed4aa57f1mr177716275ad.35.1759242562770;
-        Tue, 30 Sep 2025 07:29:22 -0700 (PDT)
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com. [209.85.210.170])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed68821ebsm161477055ad.84.2025.09.30.07.29.21
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Sep 2025 07:29:21 -0700 (PDT)
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-782e93932ffso2766966b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:29:21 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVN6NSgNTckR4kiUyadFRqeliw+Ed8mDU4M9GHyTfqG5nKRkm2VJTE8xGbhwfJo6LpbTPX/fTtlBDxJ@vger.kernel.org
-X-Received: by 2002:a17:902:7088:b0:24c:965a:f97e with SMTP id
- d9443c01a7336-27ed4a29dacmr180245305ad.2.1759242560525; Tue, 30 Sep 2025
- 07:29:20 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759242753; x=1759847553;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1XGzvIYD2K0dKmTD5NLqz2HHH1fk0VmQ6ZCiFWN/CWQ=;
+        b=jYiaxdFtMzrOoEsAUaDXxxmz1WDInmHFrlVlWKdc/PPtXiOTgPITXCrDUE4d2tEi/1
+         zbY4tbR7YYQmuqwk1bKgNQbAmDOgI+NhJkEMySe9jN7vlySuIUOLlBkG5TYai5ier9ON
+         4+5d+xG6TP7rLxUEhl8VbJdjoKdgrK1zOxTXKz9HGvHePgt8pxsOJD8dGBnhn7JkUZqw
+         VLb/x1luvXyyAI8YUrtbF9P+kGfAEX0oMlQV67w1nDxyUaXoUhc3xfPm7A0QpdBqHLc+
+         NLiw2QWJ4HvVYHNRclyLFf4/bOeVHrKjUfOxdNLgK1II6vUWBGEoAED6ttowkEY4VwWX
+         FhNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU/ZtWoOLVtq9GxtWDokTFVSEzenET2H+L4zmjEpG4DdMiQOFHdXl3/PvMTKLCE861IZmftx9gHDXX2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuV76mq7RM401dWRtaMwICyjg2fRhN33N7+g5rhsMbUqkj+8Va
+	Hc1TtzfMUOV0f45IJ9QqB06KH89M8zdc4luJ9bAA4exwlyzVWEc/61SiIAoIs4OrylQ=
+X-Gm-Gg: ASbGncslGTf337wa0tHpDA0FP8EidRV216tpr32qMybYihrlHQDSDv79Dqm7oufwENu
+	8s7vJC/W/+0oXRT3VifHpBzQt6uBx6yQicwvTmZa5Cjs4x0EvxBhKlOXo2W2Ndn3kJIcojAk1pl
+	u38vIkqg8APtXbTtsM+goAuAuEWhugaxgqYpAftszjriS/uPs9lfV/DCFIJ3WGn++uBI1+9w+/U
+	rQ3e0UTB7SC6+ExJTiHrIbJkbcsPKN6vCAStTuCz/UZyFTPXO36n7mD4y/YBSWoJFxcgyb8/m0v
+	rxQhprGGrQKb3UCfsmU+DQVS104ag5A1+ddZ8yitxK6P8PvsO75mMEVX6vuG+GI/8hmu/bEtxIz
+	LijA9IEN/8dnotcmV1Ane1W3mzIGw7kn9fjzz8DkSK+WUVo6OVKDDz0KIoxYGVXhip1Q5ljhnkl
+	GZez+/RSJilO9ouZjRoa4PF99fA6AL
+X-Google-Smtp-Source: AGHT+IG8lOLegfuz9sdLqi92zTTH2vZJK6klR6+7kLs717bzPyf9qtgelOMxZ0NsFbtzUNaLIfkVwQ==
+X-Received: by 2002:a17:907:d14:b0:b46:8bad:6960 with SMTP id a640c23a62f3a-b468bad6d6dmr66677666b.31.1759242753382;
+        Tue, 30 Sep 2025 07:32:33 -0700 (PDT)
+Received: from otso.local (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b3dc2cf61dbsm499858466b.29.2025.09.30.07.32.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Sep 2025 07:32:33 -0700 (PDT)
+From: Luca Weiss <luca.weiss@fairphone.com>
+Subject: [PATCH 0/6] Further bringup of SHIFTphone 8
+Date: Tue, 30 Sep 2025 16:32:18 +0200
+Message-Id: <20250930-otter-further-bringup-v1-0-7fe66f653900@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250929142455.24883-1-clamor95@gmail.com> <20250929142455.24883-3-clamor95@gmail.com>
- <CAD=FV=WH5rsQR0vnsdZqfA-K-4AWSyOOfbe3g1H7pYCG0AigZw@mail.gmail.com> <CAPVz0n2Prw0ZoQhrodobmSpAu7XV6aX=NV=2ee0RwL3H5hWARg@mail.gmail.com>
-In-Reply-To: <CAPVz0n2Prw0ZoQhrodobmSpAu7XV6aX=NV=2ee0RwL3H5hWARg@mail.gmail.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Tue, 30 Sep 2025 07:29:08 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XD=L=otnj+YsQ1qEtrO_+wBD-ZYpDNmickcD1tb+6OoA@mail.gmail.com>
-X-Gm-Features: AS18NWBKEeqzCuUPltq0hFLhhfC7TR2NA7onkkxdD9X53tjrGMLTsb8gFsFvIps
-Message-ID: <CAD=FV=XD=L=otnj+YsQ1qEtrO_+wBD-ZYpDNmickcD1tb+6OoA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/8] gpu/drm: panel: add support for LG LD070WX3-SL01
- MIPI DSI panel
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPLp22gC/x2MSQqAMAwAv1JythBX1K+IB5dUc6klbUUo/t3ia
+ ZjDTAJPwuRhVAmEbvZ82SxloWA7F3uQ5j07VFi1ONSorxBItIkSzsxV2B7RaTNQ1+DWIPYEuXV
+ Chp//O83v+wGrc7SkZwAAAA==
+X-Change-ID: 20250930-otter-further-bringup-f9e640c4008e
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Casey Connolly <casey.connolly@linaro.org>, 
+ Alexander Martinz <amartinz@shiftphones.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Luca Weiss <luca.weiss@fairphone.com>, 
+ Luca Weiss <luca@lucaweiss.eu>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759242752; l=943;
+ i=luca.weiss@fairphone.com; s=20250611; h=from:subject:message-id;
+ bh=trtFIVQ7skIm+AJ2uSYPYV1+QuWRN+OapOx2C9yTkv8=;
+ b=qsGVrAkXP50Vge9B0Ma8EEFSVt6ayyjWaeKJa9SCVhcPnmY/baNqhqIzUOMWmIbK4rz7P3d/T
+ 7qL/hYgE3JQBqzQ5/ScU7vwrY2Q6i2+N8g4TaFEEZH7Zg0usT7M/IJ+
+X-Developer-Key: i=luca.weiss@fairphone.com; a=ed25519;
+ pk=O1aw+AAust5lEmgrNJ1Bs7PTY0fEsJm+mdkjExA69q8=
 
-Hi,
+Add some cleanups and fixes to shift-otter, and enable flash LED, RGB
+LED and Venus.
 
-On Mon, Sep 29, 2025 at 10:13=E2=80=AFPM Svyatoslav Ryhel <clamor95@gmail.c=
-om> wrote:
->
-> > > +static int lg_ld070wx3_unprepare(struct drm_panel *panel)
-> > > +{
-> > > +       struct lg_ld070wx3 *priv =3D to_lg_ld070wx3(panel);
-> > > +       struct mipi_dsi_multi_context ctx =3D { .dsi =3D priv->dsi };
-> > > +
-> > > +       mipi_dsi_dcs_enter_sleep_mode_multi(&ctx);
-> > > +
-> >
-> > Maybe add some comment about ignoring the accumulated error in the
-> > context and still doing the sleeps?
-> >
->
-> Isn't that obvious? Regardless of what command returns power supply
-> should be turned off, preferably with a set amount of delays (delays
-> are taken from datasheet) to avoid leaving panel in uncertain state
-> with power on.
+Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+---
+Alexander Martinz (4):
+      arm64: dts: qcom: qcm6490-shift-otter: Fix sorting and indentation
+      arm64: dts: qcom: qcm6490-shift-otter: Remove thermal zone polling delays
+      arm64: dts: qcom: qcm6490-shift-otter: Add missing reserved-memory
+      arm64: dts: qcom: qcm6490-shift-otter: Enable venus node
 
-I won't insist, though IMO any time an error return is purposely
-ignored a comment about why can be justified.
+Casey Connolly (1):
+      arm64: dts: qcom: qcm6490-shift-otter: Enable flash LED
 
+Luca Weiss (1):
+      arm64: dts: qcom: qcm6490-shift-otter: Enable RGB LED
 
-> > > +       msleep(50);
-> > > +
-> > > +       regulator_bulk_disable(ARRAY_SIZE(priv->supplies), priv->supp=
-lies);
-> > > +
-> > > +       /* power supply must be off for at least 1s after panel disab=
-le */
-> > > +       msleep(1000);
-> >
-> > Presumably it would be better to keep track of the time you turned it
-> > off and then make sure you don't turn it on again before that time?
-> > Otherwise you've got a pretty wasteful delay here.
-> >
->
-> And how do you propose to implement that? Should I use mutex?
-> Datasheet is clear regarding this, after supply is turned off there
-> MUST be AT LEAST 1 second of delay before supplies can be turned back
-> on.
+ arch/arm64/boot/dts/qcom/qcm6490-shift-otter.dts | 75 ++++++++++++++++++++----
+ 1 file changed, 63 insertions(+), 12 deletions(-)
+---
+base-commit: 3b9b1f8df454caa453c7fb07689064edb2eda90a
+change-id: 20250930-otter-further-bringup-f9e640c4008e
 
-You don't really need a mutex since the DRM core will make sure that
-prepare and unprepare can't be called at the same time. panel-edp
-implements this. See `unprepared_time` I believe.
+Best regards,
+-- 
+Luca Weiss <luca.weiss@fairphone.com>
 
-NOTE: if you want to get really deep into this, it's actually a bit of
-a complicated topic and I would also encourage you to add an
-"off-on-delay-us" to the regulator in your device tree (which only
-works on some regulators but really should be universal). This is
-important because:
-
-1. The regulator could be shared by other consumers and they could
-cause violations of this.
-
-2. The regulator could potentially be in either state when Linux starts.
-
-3. The regulator framework could adjust the state of the regulator at
-regulator probe time.
-
-The "off-on-delay-us" handles at least some more of those cases,
-though I seem to remember that at least a few of them still have rough
-edges...
-
-
-> > > +static int lg_ld070wx3_probe(struct mipi_dsi_device *dsi)
-> > > +{
-> > > +       struct device *dev =3D &dsi->dev;
-> > > +       struct lg_ld070wx3 *priv;
-> > > +       int ret;
-> > > +
-> > > +       priv =3D devm_drm_panel_alloc(dev, struct lg_ld070wx3, panel,
-> > > +                                   &lg_ld070wx3_panel_funcs,
-> > > +                                   DRM_MODE_CONNECTOR_DSI);
-> > > +       if (IS_ERR(priv))
-> > > +               return PTR_ERR(priv);
-> > > +
-> > > +       priv->supplies[0].supply =3D "vcc";
-> > > +       priv->supplies[1].supply =3D "vdd";
-> > > +
-> > > +       ret =3D devm_regulator_bulk_get(dev, ARRAY_SIZE(priv->supplie=
-s), priv->supplies);
-> > > +       if (ret < 0)
-> > > +               return dev_err_probe(dev, ret, "failed to get regulat=
-ors\n");
-> >
-> > Better to use devm_regulator_bulk_get_const() so you don't need to
-> > manually init the supplies?
->
-> So you propose to init supplies in the probe? Are you aware that
-> between probe and panel prepare may be 8-10 seconds, sometimes even
-> more. Having power supplies enabled without panel configuration may
-> result in permanent panel damage during that time especially since
-> panel has no hardware reset mechanism.
-
-Maybe look more closely at devm_regulator_bulk_get_const(). Really it
-should just save you the lines of code:
-
-  priv->supplies[0].supply =3D "vcc";
-  priv->supplies[1].supply =3D "vdd";
-
-...and it lets you put those names in a "static const" table in your
-driver. All the timings of when regulators are initted should be the
-same.
-
--Doug
 
