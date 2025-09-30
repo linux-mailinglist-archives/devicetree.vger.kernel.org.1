@@ -1,184 +1,415 @@
-Return-Path: <devicetree+bounces-222834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2774CBAE230
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 19:08:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D4B3BAE25D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 19:17:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D433F3C0B61
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 17:08:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 333D93C4584
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 17:17:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D045130AD1F;
-	Tue, 30 Sep 2025 17:08:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E727830C0E4;
+	Tue, 30 Sep 2025 17:17:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZHZ8xwu0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A660F1B142D
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 17:08:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A065525A323
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 17:17:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759252083; cv=none; b=eLNuS1T/YgVojqXlGdiaiCRli8tgKsg0Q3bzSS4KT603ShGWppKpvzqKO/xNh1+2i5kwQehFKVNU0xtdaY9Uh3BB1TKxLtaigbSndNiS2RjKc1vkWZTYVOYXfF05QX7bke2a7yEuTmBBrXwWh9CJN5ViViNxJ/ngh7ahCuAZVn8=
+	t=1759252647; cv=none; b=LQC5WS7pBzwRu8rQfed57I97+WJUNzJKHOzGVLnxsftrtMkDhSLeXMYeUfTzpBSspBqDKidc9NCTHhzg2G96UTm31vAStKuDOOHbg+HO4SOkNrKbq3hLBRQkzcr840PaOc31BI2EYvkMyi8i6WZ8UHG3ePlA2LlSiW5chh3pI0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759252083; c=relaxed/simple;
-	bh=mtP+NQ+ubBB2KD6NiDsu/L2uuOD0QdKYw0OQB1pbNmA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=F6lrRt7hOnR22uXoSOTamZH++SLqXUHW3jS7RJZyUQ9o5Gz8EeF+BIgzVbvvaLDt51SXm+3dg2uvkldT3Mhr6USo6rHxAM6TzukqDo76nIAV7NIMPS8ys/Ly/q+efowSDCn43cvz3/amKPrt+VP+bKzjpoqQ7SLBELgD7M6C5Fw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-54a80b26f88so2510188e0c.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 10:08:00 -0700 (PDT)
+	s=arc-20240116; t=1759252647; c=relaxed/simple;
+	bh=+dDf6+3YhN4vz3PDVIAYw6UpFs5vKV8CVEAHEvVlH40=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=cXTzn3fnnplcDs5UmN1+tC4wv3Vd3x/3+UfUeUGkJSI+2su7rjj5YEbo1/oM2QnwdOlBTho4U4I9EPBFlI9rgHAZk9d9Kl3l/Hx+QDzypJcKCPsKSb66gaIhO13i3U+P4F8I2iyNBbpy4hd/wT1aCBqcgZPyTLokAm1xxaz3bp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZHZ8xwu0; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-46e2e363118so59938095e9.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 10:17:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759252644; x=1759857444; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=RNePBLAvYV3wK8ibZpgmHCPCbmbpde/eqvSInVk0KIc=;
+        b=ZHZ8xwu0vt0IgYY4eg2K8R0PfVoqqLSkxQWQvL3U3Q7THTaR0Z3Abd0cACL1JL4FT7
+         Zk8LUL3Lfzi0GKkNAiILWwahVnuXOmPxlXmRSBCNLg6biK51dGY7fkm9V+YNbD4ALLXC
+         iBfoIpwcqbSix+AEgs+hUkBS/HAu+kKZiQp8TymWpcwxTdBVK+IhRKz+SmNOdGoIqDFY
+         372qINC1jdmI3DfcaoRn5/ttnz7yD7U9+P+BeZLT+FuNUPQI0E2NuZpBlUyL8vj/Rssm
+         cBZQfMCltKvi0pcTwwAlxjxOx2XO7hDxMkJ5dkkUODRGczldT/Qq9Qlm+cCOaOE2EF87
+         2hsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759252079; x=1759856879;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1759252644; x=1759857444;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2UldwRtCYqtIMyzHUgGGSi2dCQvDGYWicTSQaZYgBsI=;
-        b=s7BFjepdZCoP+KcSnMs4rjiLewY92XTqUQ/fy0GgM6dFqZY3zz6ynGjSVss7U9u9z9
-         hvGlsTgy44yozrOYqQD5mYy85TENwq3BltUHP0Veyl1Cz7GQBXCUtO86xs9ni9ERu6TQ
-         LjjIhxEr6xEFQeR3OW6J7fyp9IbhjkydsuT7CCMKR+BUHdCae3Nw7K5Rh1uttQy0BooN
-         F7ewtSL6+erLcn/BYvs6kNQB+s3GTA8xddbcJ0Ka0KCz68Of5afYvir3BsAUQw+Tu+jS
-         9jdWmsyDOp+zPaNkp1JK5PC7swzT9Wz8rWisrdgH6cLBotCRqgzK08t6/6VgDSOk3diF
-         gi4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUcJGRwinItgo55Gsk3ZQEetj0cYpBALrk3xaDU1zJTXfacGEJQiIIGnUXD55L/+GDacK3mphHcEirS@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaTbD2mYhiDgyHcse7hPTmVcy6j2WLSgFW1lhj1U6tp3AB40cs
-	WcM8IWd90gif4bDknhD/YKC78i5Ie7AslbMc8v0bN22TOW8hEx2m4XRcOQCKz1OF
-X-Gm-Gg: ASbGnctEh5XL/peK5e7JgmOcTRY/anA0dVOP4q7PHcb8nMvHlPGWeGi/iI/6YhjOayK
-	oFPuc69epk0hAEjD9fLSpo2MYzW6OBxN+1GgJzr83jcdaQRSRh2k1VLEfbRKhkgTuJ6427cHw69
-	xN75qPM/gdWKfXPRjCjQwSLpPlggLBbVyQgASQcLVIMnR188nMSLNUVk10pvnHPbrlPiYLmDHe2
-	F7j7nM80T7XG9lIpwUib3eHu1FES9Jt+im+YJfRnAbe/DSQFcIQLv7a3ueAqW3rz419j0wckjf0
-	ElsGGK8FGQ50HsNKMOhEx4U/bcUrinmm582Ff2Vqmd2PC0Moz0QSVLX7gAJGUXlYaJn+z4sE3p5
-	hnKDnz1vIqaj17RJiJOiJ6ZX/o7PFhbIQgqKSvLvUSeQIGNS/fmGfP8m8z01sbnprG+y6G58JbY
-	TA3nPrqBWR
-X-Google-Smtp-Source: AGHT+IH4u90CsDOJppoddoSdKvMyjbQA1B/XCpZy2uNF/By30Q9QzFwsx2mOxLJpI/EOUzoX5u8kfg==
-X-Received: by 2002:a05:6122:d94:b0:541:fdc4:2551 with SMTP id 71dfb90a1353d-5522d25947amr194477e0c.3.1759252078936;
-        Tue, 30 Sep 2025 10:07:58 -0700 (PDT)
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54bf7ecbdc4sm2830330e0c.6.2025.09.30.10.07.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Sep 2025 10:07:58 -0700 (PDT)
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-5ccccc1f7caso1081091137.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 10:07:58 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXMfNqVAccLUn1hgdDdUe2mDvtWNf/5cGDCS2ISsxB/wV8mFFAOt6cHxgVqZ/QvQT7F3lR+tkn19uRY@vger.kernel.org
-X-Received: by 2002:a05:6102:161e:b0:5b9:ee05:dfff with SMTP id
- ada2fe7eead31-5d3fe6af95dmr165339137.23.1759252077947; Tue, 30 Sep 2025
- 10:07:57 -0700 (PDT)
+        bh=RNePBLAvYV3wK8ibZpgmHCPCbmbpde/eqvSInVk0KIc=;
+        b=NA87QTww2OzeQQR35xdIWvyBVYNKMyp3E/DtHbMJ/rK/P9YdXwFX+kER9V7riIdeA1
+         5D2Il2ymCt0LXMZquTcydImRTicXCBGe2zlDodD9xzS4GSN/AgoNcRAn16F/Gy9p8Alk
+         Y3aztCctdXMruqVF5gmt9exwkSkWw4iCYkzhPg9PJGkPFU9apS3/YShBuErYlMF6xau0
+         G6jMLjGzyd9+uCCO23NXh/jqBTrrKnqZ+YBVZANv5WYtP1XLz91POCV9ZCicnaYOw8k6
+         5X2gOdi+C4JGQKuH0f+PFKbB+qj/x0KP7XivBSTIra3o97nzbJXIDmhgbiV4lupidGrJ
+         d6zQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWoN7ESUR3hoz4qqnMC472dXMMF0owb6uE9FhHhHKlspQHiPMT+iOeoh0+FuaxwY/XjpfPI58TzsAJl@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhlHYPTlDgY4lDbiayEqa9n5wf5/0LJ2arFW+RQ6rJcjcHDm7N
+	bZGb4KgLtHjlQDPpIsuijSjs3EUqHa9fL9paOqrmcTqmMUvKl9MIYb2lD55pAHsDJKE=
+X-Gm-Gg: ASbGncslatHo1PbrSGq0qsZZLj17J01+HjPyLS5HrHthNP922ysV8Qn3Ehxb3s0gQdn
+	sd0hVoKXi8JcwNhCzkazX8NzTIRCmYEjbPwMCDGjlQ5jrOp/hBPJneRYpHCK2lWYD4+rYU9RI36
+	P8xnUVdOvmiCpp2J09clvPU/1NSwDLVDYmS4n+od04m34LRvUl/TlTSCHz3JfQsZwRXHZvNF/Ys
+	PnHWF1gW1m2LMH4E2Y94sCeqMDCrR1IWJY2zw0IuOZyjO1JwXubmi/DSZfxkIg61sMeWWbG1PH3
+	GCxJRiy+/a+LzoECYiCvZDteOJ759sm/3JUi4OpLE37oAGjgdEm+933+c8AnV4uXWBmQHiFs9w+
+	tQWUHak8IPtBq1TgMHiELBvQJWtGwlock7lSrHNetboiAiUup6OKcQ/JvaM34j+4F8W0=
+X-Google-Smtp-Source: AGHT+IElfAfSUmqbhDMTil+yEDuc0QOUeaDmYZur34EATX4bKiElLsQT72CWpqSOwiVb4bZzmxTvtQ==
+X-Received: by 2002:a05:600c:8b18:b0:46e:4a13:e6c6 with SMTP id 5b1f17b1804b1-46e612bfe6fmr4845315e9.19.1759252643701;
+        Tue, 30 Sep 2025 10:17:23 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-40fb72fb017sm23443480f8f.3.2025.09.30.10.17.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Sep 2025 10:17:23 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Tue, 30 Sep 2025 19:17:21 +0200
+Subject: [PATCH] dt-bindings: usb: switch: split out ports definition
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250721173741.6369-1-bruno.thomsen@gmail.com>
-In-Reply-To: <20250721173741.6369-1-bruno.thomsen@gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 30 Sep 2025 19:07:46 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUb7Jb2=GqK3=Rn+Gv5G9KogcQieqDvjDCkJA4zyX4VcA@mail.gmail.com>
-X-Gm-Features: AS18NWDVvdSwN0uw_XPlk-OYICeK8kZm9oSwW7ZF3dGIkCYLyqPBpxL42XEEWf8
-Message-ID: <CAMuHMdUb7Jb2=GqK3=Rn+Gv5G9KogcQieqDvjDCkJA4zyX4VcA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: am33xx-l4: fix UART compatible
-To: Bruno Thomsen <bruno.thomsen@gmail.com>
-Cc: linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
-	Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Judith Mendez <jm@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250930-topic-sm8x50-fix-qmp-usb43dp-usb-switch-v1-1-060568de9538@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAKAQ3GgC/x2NQQqDMBBFryKz7sBoTLG9SnGhcdRZqGnGViHk7
+ gZXjweP/yMoB2GFdxEh8F9UtjVL+SjAzd06McqQHSqqLL0M4b55cahLc1rCUU78Lh5/2tdmuIl
+ 6yO5mJNfUTL0dzbOEvOYD5/p++rQpXbUAOVp5AAAA
+X-Change-ID: 20250930-topic-sm8x50-fix-qmp-usb43dp-usb-switch-0c84e0b5f361
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Romain Gantois <romain.gantois@bootlin.com>, Li Jun <jun.li@nxp.com>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Luca Weiss <luca.weiss@fairphone.com>, Abel Vesa <abel.vesa@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, imx@lists.linux.dev, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=11052;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=+dDf6+3YhN4vz3PDVIAYw6UpFs5vKV8CVEAHEvVlH40=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBo3BCihvjWzPnZJlhuvLZ6p0GUKsLhNQeMd0D0Boz9
+ 8oDpIKmJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaNwQogAKCRB33NvayMhJ0cCnD/
+ 4sX406R2aFjpxvYRVXxdYNHyWS+bQ0NWwtfX7a9BcMA2e/NxnIRA2upqPHp8CbtZUUdLxnqUkMwvic
+ ZfWZLurSh3Zul3FvrDx77K5j6N+CCwx0VAwqb0B9dR7n4oSa0e+nnnYNTvZxaPMbIUHdmW9jSZvTWe
+ sdiA6qZ2NdWWGyfPqNgbprHsJ9GulUpGM9Xf9ye4gMKcCUebeh46ztBXFuw2TyArwv5BboZRlEU8AT
+ L5N+PgzSc+GBPFr5kJe0ENIAfwsX0YWZd9bLgDqtB25SJo9Au5qAi7AvSXLALF6IheULmjPlRp0cG8
+ 1rmQFE9OAXtVWOxjVh+Dk1Sol1IYqhO4l8Am2AlscIefWGo53l2HD2VPaWVUhpMQVMElX203eoqImR
+ ALTvtipR5YQxqS2X9YSelreAAqYXhUO2wRwO6kCo+0YvC1rPRM6WdyY1A90WA2NXVVTlI82fK14d5q
+ xm2GFOQOYqgA1ZSJpDzGhoR/52iP4KGPLkxTYEi910T3qUrcy2LxFOO5C5ub4FW+CS7+roF/o6hJFg
+ 396De3BB76e2uzLq/mJPxiu9xWL+zSRGa0DHxKiC6lJVNOsANguPUXa66G1OFllKVaydZNZKqQuBm0
+ AwjcM/W3kSVdHdLFUUEwobhDutHxehRMz8PwFyh5SllOkzKHRBc5d09UMrWQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Hi Bruno,
+The ports definition currently defined in the usb-switch.yaml
+fits standards devices which are either recipient of altmode
+muxing and orientation switching events or an element of the
+USB Super Speed data lanes.
 
-On Mon, 21 Jul 2025 at 19:38, Bruno Thomsen <bruno.thomsen@gmail.com> wrote:
-> Fixes the following dtschema check warning:
->
-> serial@0 (ti,am3352-uart): compatible: 'oneOf' conditional failed, one must be fixed:
->         ['ti,am3352-uart', 'ti,omap3-uart'] is too long
->         'ti,am3352-uart' is not one of ['ti,am64-uart', 'ti,j721e-uart']
->         'ti,am654-uart' was expected
->         from schema $id: http://devicetree.org/schemas/serial/8250_omap.yaml#
->
-> Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+This doesn't necessarely fit combo PHYs like the Qualcomm
+USB3/DP Combo which has a different ports representation.
 
-Thanks for your patch, which is now commit ca8be8fc2c306efb ("ARM:
-dts: am33xx-l4: fix UART compatible") in soc/for-next.
+Move the ports definition to a separate usb-switch-ports.yaml
+and reference it next to the usb-switch.yaml, except for
+the Qualcomm USB3/DP Combo PHY bindings.
 
-This commit broke the serial console on BeagleBone Black.
-Upon closer look, my .config had CONFIG_SERIAL_OMAP (for
-"ti,omap3-uart") enabled instead of CONFIG_SERIAL_8250_OMAP (for
-"ti,am3352-uart").  However, replacing CONFIG_SERIAL_OMAP by
-CONFIG_SERIAL_8250_OMAP does not help: the serial driver now probes,
-but I still get no output nor a login prompt.
+Reported-by: Rob Herring <robh@kernel.org>
+Closes: https://lore.kernel.org/all/175462129176.394940.16810637795278334342.robh@kernel.org/
+Fixes: 3bad7fe22796 ("dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Reference usb-switch.yaml to allow mode-switch")
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ .../bindings/phy/fsl,imx8mq-usb-phy.yaml           |  4 +-
+ .../bindings/phy/samsung,usb3-drd-phy.yaml         |  4 +-
+ .../devicetree/bindings/usb/fcs,fsa4480.yaml       |  1 +
+ .../devicetree/bindings/usb/gpio-sbu-mux.yaml      |  1 +
+ .../devicetree/bindings/usb/nxp,ptn36502.yaml      |  1 +
+ .../devicetree/bindings/usb/onnn,nb7vpq904m.yaml   |  1 +
+ .../devicetree/bindings/usb/parade,ps8830.yaml     |  1 +
+ .../bindings/usb/qcom,wcd939x-usbss.yaml           |  1 +
+ .../devicetree/bindings/usb/ti,tusb1046.yaml       |  1 +
+ .../devicetree/bindings/usb/usb-switch-ports.yaml  | 68 ++++++++++++++++++++++
+ .../devicetree/bindings/usb/usb-switch.yaml        | 52 -----------------
+ 11 files changed, 81 insertions(+), 54 deletions(-)
 
-The same issue is present when using omap2plus_defconfig, which has
-both serial options enabled.
+diff --git a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+index 6a47e08e0e97b286538798190225ca2966a7ab34..f9cffbb2df07d6fa352a844071af7cc894652d0c 100644
+--- a/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml
+@@ -142,7 +142,9 @@ allOf:
+       required:
+         - orientation-switch
+     then:
+-      $ref: /schemas/usb/usb-switch.yaml#
++      allOf:
++        - $ref: /schemas/usb/usb-switch.yaml#
++        - $ref: /schemas/usb/usb-switch-ports.yaml#
+ 
+ unevaluatedProperties: false
+ 
+diff --git a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+index e906403208c02951ff2bf5ed8420d53ad70eb29c..ea1135c91fb74c01ba860b9588ca89e611701359 100644
+--- a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+@@ -125,7 +125,9 @@ allOf:
+           contains:
+             const: google,gs101-usb31drd-phy
+     then:
+-      $ref: /schemas/usb/usb-switch.yaml#
++      allOf:
++        - $ref: /schemas/usb/usb-switch.yaml#
++        - $ref: /schemas/usb/usb-switch-ports.yaml#
+ 
+       properties:
+         clocks:
+diff --git a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
+index e3a7df91f7f15e9a6d8eb4971bc2b9646bdad0c6..89b1fb90aeebc0ccfc50ea52b67015034294e1a8 100644
+--- a/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
++++ b/Documentation/devicetree/bindings/usb/fcs,fsa4480.yaml
+@@ -76,6 +76,7 @@ required:
+ 
+ allOf:
+   - $ref: usb-switch.yaml#
++  - $ref: usb-switch-ports.yaml#
+ 
+ additionalProperties: false
+ 
+diff --git a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+index e588514fab2d8c9d0d3717865fe2e733664fc28b..793662f6f3bff4a4b4b73b38983abca12e1e61d2 100644
+--- a/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
++++ b/Documentation/devicetree/bindings/usb/gpio-sbu-mux.yaml
+@@ -52,6 +52,7 @@ required:
+ 
+ allOf:
+   - $ref: usb-switch.yaml#
++  - $ref: usb-switch-ports.yaml#
+   - if:
+       required:
+         - mode-switch
+diff --git a/Documentation/devicetree/bindings/usb/nxp,ptn36502.yaml b/Documentation/devicetree/bindings/usb/nxp,ptn36502.yaml
+index d805dde80796f31a066cf52ba2f226ce2e9e9cc2..4d2fcaa718708fe5d0a05ebce211f0a729d6c617 100644
+--- a/Documentation/devicetree/bindings/usb/nxp,ptn36502.yaml
++++ b/Documentation/devicetree/bindings/usb/nxp,ptn36502.yaml
+@@ -46,6 +46,7 @@ required:
+ 
+ allOf:
+   - $ref: usb-switch.yaml#
++  - $ref: usb-switch-ports.yaml#
+ 
+ additionalProperties: false
+ 
+diff --git a/Documentation/devicetree/bindings/usb/onnn,nb7vpq904m.yaml b/Documentation/devicetree/bindings/usb/onnn,nb7vpq904m.yaml
+index 589914d22bf250ff94c98ed22b32616d2c0cca1c..25fab5fdc2cd712a8075c2ee20bdc80829c3b043 100644
+--- a/Documentation/devicetree/bindings/usb/onnn,nb7vpq904m.yaml
++++ b/Documentation/devicetree/bindings/usb/onnn,nb7vpq904m.yaml
+@@ -91,6 +91,7 @@ required:
+ 
+ allOf:
+   - $ref: usb-switch.yaml#
++  - $ref: usb-switch-ports.yaml#
+ 
+ additionalProperties: false
+ 
+diff --git a/Documentation/devicetree/bindings/usb/parade,ps8830.yaml b/Documentation/devicetree/bindings/usb/parade,ps8830.yaml
+index aeb33667818eb0d116a3467d30220002a3b5df73..eaeab1c01a594e05666d01cf6b82a6d7127ae075 100644
+--- a/Documentation/devicetree/bindings/usb/parade,ps8830.yaml
++++ b/Documentation/devicetree/bindings/usb/parade,ps8830.yaml
+@@ -81,6 +81,7 @@ required:
+ 
+ allOf:
+   - $ref: usb-switch.yaml#
++  - $ref: usb-switch-ports.yaml#
+ 
+ additionalProperties: false
+ 
+diff --git a/Documentation/devicetree/bindings/usb/qcom,wcd939x-usbss.yaml b/Documentation/devicetree/bindings/usb/qcom,wcd939x-usbss.yaml
+index 96346723f3e9c92c32325c7395eff49336cbcaf8..96dcec9b76204606397cc1e31338832e518816f3 100644
+--- a/Documentation/devicetree/bindings/usb/qcom,wcd939x-usbss.yaml
++++ b/Documentation/devicetree/bindings/usb/qcom,wcd939x-usbss.yaml
+@@ -60,6 +60,7 @@ required:
+ 
+ allOf:
+   - $ref: usb-switch.yaml#
++  - $ref: usb-switch-ports.yaml#
+ 
+ additionalProperties: false
+ 
+diff --git a/Documentation/devicetree/bindings/usb/ti,tusb1046.yaml b/Documentation/devicetree/bindings/usb/ti,tusb1046.yaml
+index f713cac4a8ac8e89c017999bc11e4b3a38d3ac2e..e1501ea6b50bf76e4bac6cbc2a3243f7107029d0 100644
+--- a/Documentation/devicetree/bindings/usb/ti,tusb1046.yaml
++++ b/Documentation/devicetree/bindings/usb/ti,tusb1046.yaml
+@@ -11,6 +11,7 @@ maintainers:
+ 
+ allOf:
+   - $ref: usb-switch.yaml#
++  - $ref: usb-switch-ports.yaml#
+ 
+ properties:
+   compatible:
+diff --git a/Documentation/devicetree/bindings/usb/usb-switch-ports.yaml b/Documentation/devicetree/bindings/usb/usb-switch-ports.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..6bf0c97e30ae7069481e41ef8745804e5efde974
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/usb-switch-ports.yaml
+@@ -0,0 +1,68 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/usb-switch-ports.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: USB Orientation and Mode Switches Ports Graph Properties
++
++maintainers:
++  - Greg Kroah-Hartman <gregkh@linuxfoundation.org>
++
++description:
++  Ports Graph properties for devices handling USB mode and orientation switching.
++
++properties:
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    description:
++      A port node to link the device to a TypeC controller for the purpose of
++      handling altmode muxing and orientation switching.
++
++    properties:
++      endpoint:
++        $ref: /schemas/graph.yaml#/$defs/endpoint-base
++        unevaluatedProperties: false
++        properties:
++          data-lanes:
++            $ref: /schemas/types.yaml#/definitions/uint32-array
++            minItems: 1
++            maxItems: 8
++            uniqueItems: true
++            items:
++              maximum: 8
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Super Speed (SS) Output endpoint to the Type-C connector
++
++      port@1:
++        $ref: /schemas/graph.yaml#/$defs/port-base
++        description:
++          Super Speed (SS) Input endpoint from the Super-Speed PHY
++        unevaluatedProperties: false
++
++        properties:
++          endpoint:
++            $ref: /schemas/graph.yaml#/$defs/endpoint-base
++            unevaluatedProperties: false
++            properties:
++              data-lanes:
++                $ref: /schemas/types.yaml#/definitions/uint32-array
++                minItems: 1
++                maxItems: 8
++                uniqueItems: true
++                items:
++                  maximum: 8
++
++oneOf:
++  - required:
++      - port
++  - required:
++      - ports
++
++additionalProperties: true
+diff --git a/Documentation/devicetree/bindings/usb/usb-switch.yaml b/Documentation/devicetree/bindings/usb/usb-switch.yaml
+index 89620191263023bec800dec114c0017c41b7c056..f77731493dc4901d0e95746b0cf1ffa3ee7ddfd0 100644
+--- a/Documentation/devicetree/bindings/usb/usb-switch.yaml
++++ b/Documentation/devicetree/bindings/usb/usb-switch.yaml
+@@ -25,56 +25,4 @@ properties:
+     description: Possible handler of SuperSpeed signals retiming
+     type: boolean
+ 
+-  port:
+-    $ref: /schemas/graph.yaml#/$defs/port-base
+-    description:
+-      A port node to link the device to a TypeC controller for the purpose of
+-      handling altmode muxing and orientation switching.
+-
+-    properties:
+-      endpoint:
+-        $ref: /schemas/graph.yaml#/$defs/endpoint-base
+-        unevaluatedProperties: false
+-        properties:
+-          data-lanes:
+-            $ref: /schemas/types.yaml#/definitions/uint32-array
+-            minItems: 1
+-            maxItems: 8
+-            uniqueItems: true
+-            items:
+-              maximum: 8
+-
+-  ports:
+-    $ref: /schemas/graph.yaml#/properties/ports
+-    properties:
+-      port@0:
+-        $ref: /schemas/graph.yaml#/properties/port
+-        description:
+-          Super Speed (SS) Output endpoint to the Type-C connector
+-
+-      port@1:
+-        $ref: /schemas/graph.yaml#/$defs/port-base
+-        description:
+-          Super Speed (SS) Input endpoint from the Super-Speed PHY
+-        unevaluatedProperties: false
+-
+-        properties:
+-          endpoint:
+-            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+-            unevaluatedProperties: false
+-            properties:
+-              data-lanes:
+-                $ref: /schemas/types.yaml#/definitions/uint32-array
+-                minItems: 1
+-                maxItems: 8
+-                uniqueItems: true
+-                items:
+-                  maximum: 8
+-
+-oneOf:
+-  - required:
+-      - port
+-  - required:
+-      - ports
+-
+ additionalProperties: true
 
-> --- a/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
-> +++ b/arch/arm/boot/dts/ti/omap/am33xx-l4.dtsi
-> @@ -200,7 +200,7 @@ SYSC_OMAP2_SOFTRESET |
->                         ranges = <0x0 0x9000 0x1000>;
->
->                         uart0: serial@0 {
-> -                               compatible = "ti,am3352-uart", "ti,omap3-uart";
-> +                               compatible = "ti,am3352-uart";
->                                 clock-frequency = <48000000>;
->                                 reg = <0x0 0x1000>;
->                                 interrupts = <72>;
-> @@ -1108,7 +1108,7 @@ SYSC_OMAP2_SOFTRESET |
->                         ranges = <0x0 0x22000 0x1000>;
->
->                         uart1: serial@0 {
-> -                               compatible = "ti,am3352-uart", "ti,omap3-uart";
-> +                               compatible = "ti,am3352-uart";
->                                 clock-frequency = <48000000>;
->                                 reg = <0x0 0x1000>;
->                                 interrupts = <73>;
-> @@ -1139,7 +1139,7 @@ SYSC_OMAP2_SOFTRESET |
->                         ranges = <0x0 0x24000 0x1000>;
->
->                         uart2: serial@0 {
-> -                               compatible = "ti,am3352-uart", "ti,omap3-uart";
-> +                               compatible = "ti,am3352-uart";
->                                 clock-frequency = <48000000>;
->                                 reg = <0x0 0x1000>;
->                                 interrupts = <74>;
-> @@ -1770,7 +1770,7 @@ SYSC_OMAP2_SOFTRESET |
->                         ranges = <0x0 0xa6000 0x1000>;
->
->                         uart3: serial@0 {
-> -                               compatible = "ti,am3352-uart", "ti,omap3-uart";
-> +                               compatible = "ti,am3352-uart";
->                                 clock-frequency = <48000000>;
->                                 reg = <0x0 0x1000>;
->                                 interrupts = <44>;
-> @@ -1799,7 +1799,7 @@ SYSC_OMAP2_SOFTRESET |
->                         ranges = <0x0 0xa8000 0x1000>;
->
->                         uart4: serial@0 {
-> -                               compatible = "ti,am3352-uart", "ti,omap3-uart";
-> +                               compatible = "ti,am3352-uart";
->                                 clock-frequency = <48000000>;
->                                 reg = <0x0 0x1000>;
->                                 interrupts = <45>;
-> @@ -1828,7 +1828,7 @@ SYSC_OMAP2_SOFTRESET |
->                         ranges = <0x0 0xaa000 0x1000>;
->
->                         uart5: serial@0 {
-> -                               compatible = "ti,am3352-uart", "ti,omap3-uart";
-> +                               compatible = "ti,am3352-uart";
->                                 clock-frequency = <48000000>;
->                                 reg = <0x0 0x1000>;
->                                 interrupts = <46>;
+---
+base-commit: 262858079afde6d367ce3db183c74d8a43a0e83f
+change-id: 20250930-topic-sm8x50-fix-qmp-usb43dp-usb-switch-0c84e0b5f361
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
+Best regards,
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Neil Armstrong <neil.armstrong@linaro.org>
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
