@@ -1,185 +1,105 @@
-Return-Path: <devicetree+bounces-222621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 779E8BAB603
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 06:34:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 504EEBAB615
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 06:36:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E7F11719BC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 04:34:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE1F03C0A86
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 04:36:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFA98222560;
-	Tue, 30 Sep 2025 04:34:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B23925D202;
+	Tue, 30 Sep 2025 04:36:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="gWsBngYr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iQEkVyLu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EF462CCC5;
-	Tue, 30 Sep 2025 04:34:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52D8021C16A;
+	Tue, 30 Sep 2025 04:36:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759206846; cv=none; b=Ey8gjDQfpiDRqk1MViKNdNVvu2IPX6K+sknbJOmdVJbhDVmyj6/h/Sip4K6FZkemolzp/2ToaPZrfrOEqKvZd/0MiO/ygPGQv94VFGDJKG+oyLNQ1l2Dch3wWOWut42Ka8WAj7oGHiX/RGag9561dz2al9/c0J5+Mv8v0QAcAAM=
+	t=1759206981; cv=none; b=vFHzaOaRIDKMHX6KNlcfYSugQvZNARxV+mq1DIwI5BDdndOeqwLvelX0rbrRFFARd6HbDHImcYzBwEs9bHZjH7WL2LqP1o1S4YQxhpI6Wtvifhzs9QIMhqygZhVqjMEl3mxkRgMrMRp2vqhgoUsrkFBEBSk4Dbv2CuDZSLUCrpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759206846; c=relaxed/simple;
-	bh=zyloaIfApG3Ugb2d/dothpTRpX4hO6cuE3NKVcalncY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yv+6NuzNCN3tZinhUqX+L/q5REJCBFMBtP2yd+VImW4IDn6OCLXfnYu3by2sxxUQxIuPLvZBY4xe6NL377tr+JlmKWLSfWJMeA3fv395XB+7Z1CvgbHTWKOOKB+RN6WXtkVUuJzxZzMtU/btgBy6MXROea4tMXaZbDpYqgMRBls=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=gWsBngYr; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202508; t=1759206839;
-	bh=bVfiIX18jPAm6SdUaAX59gr3TaU/bljhvf/jzuLZ9bk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gWsBngYrRgBaQxTz5ZqFLNoEYCwjVCLR9v6ZZV7reLU8Wp5Ibj4vsnZZPeM+4zSBf
-	 jLFoUIpAJKf5jHAYYWL9XQXWF0BdJzSi7OceYq8qJet4fXgU8jK9pbaVaYxjMTNgSe
-	 zOZkx4ZqeUSKrpDVho9IO06d9Sl+jgbNaN/N5ZNrx/xvjvH/PHuZ5DvOvu4xCKH19G
-	 nXthOpXDK1adkZ1Cq4lp7OlxLR71LdCBouDg4iZMze/ooUWW6v0sbmosPhLLYOZKQG
-	 CGX1UdmPIV2eSBijKCzhh2XEB+mTun0np2JrnP9gdHQQkkHIy100GLQrzr7zYujTmJ
-	 RxC47fARnRznQ==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4cbQDl4jDgz4w2P; Tue, 30 Sep 2025 14:33:59 +1000 (AEST)
-Date: Tue, 30 Sep 2025 14:07:56 +1000
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Ayush Singh <ayush@beagleboard.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Andrew Davis <afd@ti.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	devicetree@vger.kernel.org, Jason Kridner <jkridner@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: Device tree representation of (hotplug) connectors: discussion
- at ELCE
-Message-ID: <aNtXnAeLj3xNwkyE@zatzit>
-References: <20250916084631.77127e29@bootlin.com>
- <aMt5kEI_WRDOf-Hw@zatzit>
- <20250918094409.0d5f92ec@bootlin.com>
- <aMzhgDYOuG4qNcc0@zatzit>
- <dcbeaff2-0147-4a27-bb46-e247e42810d7@beagleboard.org>
- <aNJVqSpdAJzGliNx@zatzit>
- <20250923114849.2385736d@bootlin.com>
- <CAMuHMdWmDwedyPnBERs-tSYEG15nMUuh9u1Q+W_FdquHpUC0-A@mail.gmail.com>
- <aNNvaN4xJtKBFmWT@zatzit>
- <cd9763b7-919a-4b44-a347-f1491d9584b9@beagleboard.org>
+	s=arc-20240116; t=1759206981; c=relaxed/simple;
+	bh=YOUg77FB7Xsm2UXs9arHKbD5Bdz5tRGM5gEirnJeFdE=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=h6IztfbW3SWigVnxvdRbDkwFXH658qxG29jlDcQ3r+5K0hnkRz57NRpcfbzJRRuoW6fUubFvgLBPj17cRmZ5cREWgzp0lXNRM8CM2zzrPQ2FRjfV1AHC+PDtJL74L+jG9flpXHHfGdXi8nqMe0GfeLa/tsE+c+3Q3B5qFf4HTyM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iQEkVyLu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B6003C4CEF0;
+	Tue, 30 Sep 2025 04:36:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759206981;
+	bh=YOUg77FB7Xsm2UXs9arHKbD5Bdz5tRGM5gEirnJeFdE=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=iQEkVyLu3/LFNOy7g9AbppZPCo7MQsYG/mrwFpcgoJROTkJgCJvumEiBlVwsrJUq+
+	 FgYYiBTCLbmKHCs1+ieBhqjONqm/qfnocgvbV6dReKPRS7PZMbT8m3IxKdqy/o+lZ4
+	 zNlL9xpORTGMhhXd4nrckOHQB/0oeVUoY5DXW0dZJbCsU7axl8b/sYBhh3OGw7QY1j
+	 +2C+aPC0jWvWGn9M4/X1EAH2RhHR8QFCX/mK7iKfPRhQ1BFwmalLLrXy8Ca/KmLhWP
+	 DSHrkyrBDH3o1IHpvgy83pa6gONBVv3bzxr6VSTu+JFigQrQLcVaOfnG7B7Jj9CxF+
+	 WckMMVarBJsZA==
+Date: Mon, 29 Sep 2025 23:36:19 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="38U+DYi6yaZOgmqL"
-Content-Disposition: inline
-In-Reply-To: <cd9763b7-919a-4b44-a347-f1491d9584b9@beagleboard.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: devicetree@vger.kernel.org, bleung@chromium.org, 
+ heikki.krogerus@linux.intel.com, ukaszb@chromium.org, 
+ linux-usb@vger.kernel.org, akuchynski@chromium.org, tzungbi@kernel.org, 
+ krzk+dt@kernel.org, linux-kernel@vger.kernel.org, 
+ abhishekpandit@chromium.org, chrome-platform@lists.linux.dev
+To: Jameson Thies <jthies@google.com>
+In-Reply-To: <20250930012352.413066-2-jthies@google.com>
+References: <20250930012352.413066-1-jthies@google.com>
+ <20250930012352.413066-2-jthies@google.com>
+Message-Id: <175920697975.1402374.5817792319376446761.robh@kernel.org>
+Subject: Re: [PATCH v1 1/3] dt-bindings: chrome: Add Cros EC UCSI driver
 
 
---38U+DYi6yaZOgmqL
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, 30 Sep 2025 01:23:46 +0000, Jameson Thies wrote:
+> Chrome OS devices with PDCs allow the host to read port status and
+> control port behavior with UCSI commands sent to the embedded controller
+> (EC). Add documentation for cros-ec-ucsi node which loads the Chrome OS
+> UCSI driver.
+> 
+> Signed-off-by: Jameson Thies <jthies@google.com>
+> ---
+>  .../bindings/chrome/google,cros-ec-ucsi.yaml  | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/chrome/google,cros-ec-ucsi.yaml
+> 
 
-On Wed, Sep 24, 2025 at 10:33:50PM +0530, Ayush Singh wrote:
->=20
-> On 9/24/25 09:41, David Gibson wrote:
-> > On Tue, Sep 23, 2025 at 12:29:27PM +0200, Geert Uytterhoeven wrote:
-> > > Hi Herv=E9,
-> > >=20
-> > > On Tue, 23 Sept 2025 at 11:49, Herve Codina <herve.codina@bootlin.com=
-> wrote:
-> > > > On Tue, 23 Sep 2025 18:09:13 +1000
-> > > > David Gibson <david@gibson.dropbear.id.au> wrote:
-> > > > > Ah, right.  To be clear: we absolutely don't want multiple addons
-> > > > > altering the same nodes.  But I think we could do that in ways ot=
-her
-> > > > > than putting everything under a connector.  This is exactly why I
-> > > > > think we should think this through as an end-to-end problem, rath=
-er
-> > > > > trying to do it as a tweak to the existing (crap) overlay system.
-> > > > >=20
-> > > > > So, if we're thinking of this as an entirely new way of updating =
-the
-> > > > > base dt - not "an overlay" - we can decide on the rules to ensure=
- that
-> > > > > addition and removal is sane.  Two obvious ones I think we should
-> > > > > definitely have are:
-> > > > >=20
-> > > > > a) Addons can only add completely new nodes, never modify existing
-> > > > >     ones.  This means that whatever addons are present at runtime,
-> > > > >     every node has a single well defined owner (either base board=
- or
-> > > > >     addon).
-> > > > In this rule I suppose that "never modify existing ones" should be =
-understood
-> > > > as "never modify, add or remove properties in existing ones". Becau=
-se, of course
-> > > > adding a full node in a existing one is allowed (rule b).
-> > > What if the add-on board contains a provider for the base board.
-> > > E.g. the connector has a clock input, fed by an optional clock genera=
-tor
-> > > on the add-on board.  Hooking that into the system requires modifying
-> > > a clocks property in the base board, cfr. [1].
-> > > Or is there some other solution?
-> > Hmm.  My first inclination would be that this case is not in scope for
-> > the protocol we're trying to design now.  If the widget provides
-> > things to the base board as well as the other way around, it's no
-> > longer an "addon" for the purposes of this spec.
-> >=20
-> > But it's possible I've underestimated how common / useful such a case
-> > is.
-> >=20
-> > Note that I'd expect the existing overlay mechanism to still be
-> > around.  It may be ugly and not very well thought out, but its
-> > drawbacks are much less severe if you're not dealing with hot unplug.
-> >=20
->=20
-> Well, while that was not an initial use-case in my mind, external clock
-> inputs are a valid use-case when talking about connectors for board heade=
-rs
-> specifically (e.g. pocketbeagle connector).
+My bot found errors running 'make dt_binding_check' on your patch:
 
-I guess I'm not familiar enough with modern embedded hardware.  I'm
-having a hard time wrapping my head around what's going on here.  If
-the external clock input is optional (hence under a connector), how is
-anything on the base board dependent on it?  If nothing on the base
-board is dependent, why do we need to modify its properties to
-represent it?
+yamllint warnings/errors:
 
-Is this a design flaw in the clocks binding?
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/chrome/google,cros-ec-ucsi.example.dtb: ec@0 (google,cros-ec-spi): typec:compatible:0: 'google,cros-ec-typec' was expected
+	from schema $id: http://devicetree.org/schemas/mfd/google,cros-ec.yaml#
 
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
+doc reference errors (make refcheckdocs):
 
---38U+DYi6yaZOgmqL
-Content-Type: application/pgp-signature; name=signature.asc
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250930012352.413066-2-jthies@google.com
 
------BEGIN PGP SIGNATURE-----
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmjbV44ACgkQzQJF27ox
-2Gf7TRAAiB+fR8M9ZW43173P4pNm6v8KnaRxK8YZ+rfvserkiNQswx/mbPhinuJw
-9eQQ0d92E4ujz2cx971xnqofCvHIckzoWQkH84BjobvIvSF7iTFjJqStC2n1MmSo
-qbchBzgTUjU/ZM9krPtGWxsRFgMTwFuKfeucn3TY5KHcsGMDt2TspLw513mfDIXS
-7KwY0Z3GR7uodsHKWncQWkQmShG5iPrRNbjBCcjSd8Kjl9InsLsg944+y0cDrw87
-8/Q4WfiJS/BBTIqR+/uZvEi4p4fQzKXLMu9OMt2yEpf2trI1sa701qeZC8ASJSx1
-NuyZHjXS8KMX009EOkjTFwNiNNihsSrOQfHXetSEwqnZuMYe5oQMYDzx5GhBHZG7
-obQDBBNYmMysa3OUxQG9uhuof8XEexPITgatd2FPd1YhnlJ8Whyovpdt6Mj8ZsAK
-kcGPJaT5P4ysEPSPt+cs0zIW0coOXRPCzTeZntPPjLzDihI5sU66MIJq64jrTykq
-f4VEkmOH2s909mQVJpPomtsk2idX3G5YV13th74+/8VE3jutC9gjJaaazATosBe7
-gJiCvB9VBEQPPpZ+1e1PawcO7dzL5eKEJ/0rcYovYMUE3vmlpmFHLN8WIR9sKDDW
-250Khxb8y/6kItvvmK9uz3buo28Hl0e42zt+3eFj/RABpN3/J+k=
-=8jCr
------END PGP SIGNATURE-----
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
---38U+DYi6yaZOgmqL--
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
