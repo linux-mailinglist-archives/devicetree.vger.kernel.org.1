@@ -1,352 +1,158 @@
-Return-Path: <devicetree+bounces-222702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADEBFBAC1BE
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 10:46:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 486C0BAC1C0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 10:47:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97679192052E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 08:47:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DBEBC167226
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 08:47:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C19DB2F3C3A;
-	Tue, 30 Sep 2025 08:46:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B96B2F4A1F;
+	Tue, 30 Sep 2025 08:46:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lxf4ejqO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja5ljk3lje4mi4ymjia.icoremail.net (zg8tmja5ljk3lje4mi4ymjia.icoremail.net [209.97.182.222])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F9732147E6;
-	Tue, 30 Sep 2025 08:46:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.97.182.222
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAF8C2F4A06
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 08:46:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759222009; cv=none; b=SzCRWZG0EHZ+mRl1mUGzmXz21LJEmIxLhfGFW/r1+cC34Dc5PadIQYL/CTKwJzmUMXGfR3DSd65cQa6lshGB0cpgl6RAX4/aMvbx+wFu/GAIJfP5aJrz95G7ZeRC9e4xTL6lgaR5e7m04LEB/svwhJB0KR0WJq9/vH3SrMY2veQ=
+	t=1759222013; cv=none; b=mAflthgtRE2c6HtDQgC6OAoEZPWH4UVO8PQ1yZpAwUloofLA74mNyw3GPG7MnQGtebbE2SvSX1zLtfghqHLCNGDIr7Pf7C2NokdUoBEnJjEE2VFLbcm+/RVb3bHctz6AJdELtjYiVLPf0wLbZtPyUuDFGOiO73MWST8LdV2XrKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759222009; c=relaxed/simple;
-	bh=s9ULe7hxdEO8bjc/8y93NhWDuaH0UNtXtNAflLvDmSM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ax4IOLbHveShOgEEDzdi8rC664J8TbkAdY/G7cJmBEcvFm5EAIzNtgwS1EOm1f9x7naJTJ2sOitzh6Qw65AB2P/55+uRdgZO/a2nP2bqqIaNbwxQT1nIAgpmsrmmjj6GLwK23gjgLuTh4eCl6z/3v4ptqdp3gRIPH5sn/JqySK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=209.97.182.222
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0006800LT.eswin.cn (unknown [10.12.96.77])
-	by app2 (Coremail) with SMTP id TQJkCgD3iJLomNto0KbuAA--.14033S2;
-	Tue, 30 Sep 2025 16:46:37 +0800 (CST)
-From: Yulin Lu <luyulin@eswincomputing.com>
-To: dlemoal@kernel.org,
-	cassel@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-ide@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	vkoul@kernel.org,
-	kishon@kernel.org,
-	linux-phy@lists.infradead.org
-Cc: ningyu@eswincomputing.com,
-	zhengyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com,
-	fenglin@eswincomputing.com,
-	lianghujun@eswincomputing.com,
-	Yulin Lu <luyulin@eswincomputing.com>
-Subject: [PATCH v5 3/3] phy: eswin: Create eswin directory and add EIC7700 SATA PHY driver
-Date: Tue, 30 Sep 2025 16:46:28 +0800
-Message-Id: <20250930084628.1151-1-luyulin@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
-In-Reply-To: <20250930083754.15-1-luyulin@eswincomputing.com>
-References: <20250930083754.15-1-luyulin@eswincomputing.com>
+	s=arc-20240116; t=1759222013; c=relaxed/simple;
+	bh=Kx9E7uci+b63lQZhRViq5cTuJs8SyIKzf0cDEpj51Ok=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Z6Es4UjVdj44YyColxLJCpCIc/wR5NXE0hEKSEAkelV5ZkmEL3HWwTGgC1TNqx9v3TNjoiCa9NcSJD4gU0+gS8trHvIgiw8vTPITQP1+R8QGDtxurj/2mRT1Wr9s52g/nrS+BuEV7YIJaaL/78DGJAEOYVI6zNQ/wy6LlxPForY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lxf4ejqO; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3ecdf2b1751so3752566f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 01:46:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759222010; x=1759826810; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fVsl8vGcfYK8AgATkYy0L7h3lyqmmijzRq6HHy2CfXM=;
+        b=lxf4ejqO4xDnCAIVjwc9mV9zRWqn8PBjDQLtNn3mH0vTNnzGmGsWmJdLqSWJ83f4PQ
+         sqlWfpCvk8ZbvzyUYg18wRgnqTw/cpli3/6ALit1V1b6RGPRmcD8bCf7/5I5GOAImLA2
+         v48t9OGsaZKfOq3W9c2ijCu04Xbpp+Dsj+I08GI+6o+srBRgTd6bjGWUsAfGQuL7WuxW
+         m9IW0gv2v/Sl0NmnaUZ2MdYY/iZOaeWitohUh4gqC1+C6HcxemWommmusZF12kpce3aS
+         X80YlovevomUWIO+6ITjn2vPxIsezQ8VX0wNNGO5cOYjdKneTm6S4PVtB50VpGeWkPc/
+         oWCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759222010; x=1759826810;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fVsl8vGcfYK8AgATkYy0L7h3lyqmmijzRq6HHy2CfXM=;
+        b=W2OI9fsyURumZdWBXaGeXLc979VN7MyIoIEzjwljgPiSCcI7ZxEyAIlPqVX5xju5bS
+         gTp6G1zY1D+STdaj2YcgHhRrfHlnfVqCc/mFVwJNxS1NIIsKNOTqSlRukYMxrA+Vs4o7
+         0cpiG6nK6gJ56mxgrgg0qZ1TLlflidBXnwPB9XZ5NIZnFL8AuSywZuc0/CF/l2Ral4b5
+         pj0dXVRLIvwfb3nlvKCBrRKug3+Jvmsfavft6toPlkFLEIJgQckJkySPqZwXxHkXD5Bu
+         oEYL5MdEWd+4yS2lplLVP6IPp5kmFF8uo8D1DWQlB91XKkH4VhPBXEftwNN4MhthB/Dh
+         57+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXp7kHNOn24px8HV9xMUhlI1TySh2gZgBlWxvIBHf8vL9UAi9kZonAJM33KN/OOtnTPrP8q/AyYkYlf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxVBVnz+6RHUIh2Rt1u1YWBgvPt442kQTvlguzF2bqia1kjSUtA
+	aJrONpeLGB1AfWwvmaFkV58GKRK7ynSuf9SvrOOp3W2J38B+W7li943+bCR+HA==
+X-Gm-Gg: ASbGncskaiYe6Tw3iskMeSogVLJWn4t+3/PU5TIfG8KaIS2wgphpVsYCWNl1ur71/mD
+	nu67IYkB3mjQG7j7WAnGpqS/HSk39X7X390KF1EJnKABWF1eIdHqPa/SwgrmTSbJ3JI1qR6HhpU
+	Z/DsomkevKBQYorEPwPeN1e4vl2Tjo4mPV3/KDLqEun1CMnZ40OXI5Ecxs77m9JJorZpRkdYidd
+	9MzTgTMuCr4I1WzNoDot/yY2OTPGMVMdMKhtr5qQ2wopEWXM+xUJmVHgNZPVVOCSdjwyDN4/oSu
+	xzDdbZ4BfvBVrhNhhWSkowp+zfk+cpEE9dkAw2WloMzRg0pEkFJrbUc+tDwR9dMJksejsVF+toM
+	/9OFmFhGI7QjMDSz941PjQWls1hLVXIAh1xF7GBUcm1DL1hQvT3vAZHksPEshVQEs+Echw9+Kn0
+	rv9xr0CpSHwE+cc1G3i0zZGO+Ta4iIPoSONV0liLQCAF5PIXUBCwUoH5uAGoAvDQ==
+X-Google-Smtp-Source: AGHT+IFNKqn3I7Ak0yCQK65+PzvDoYV8kvut0/aco1wX5M8V/khPAzAoVBU1h3CVCUW6iDQw7YuIxA==
+X-Received: by 2002:a05:6000:178b:b0:3b7:9c79:32bb with SMTP id ffacd0b85a97d-40e4ff1991bmr19424072f8f.44.1759222009713;
+        Tue, 30 Sep 2025 01:46:49 -0700 (PDT)
+Received: from localhost (2a02-8440-7149-a758-f461-9bc4-1c75-ebc1.rev.sfr.net. [2a02:8440:7149:a758:f461:9bc4:1c75:ebc1])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-40fc5603356sm22122689f8f.30.2025.09.30.01.46.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Sep 2025 01:46:49 -0700 (PDT)
+From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>
+Subject: [PATCH v8 0/7] Add DDR4 memory-controller bindings and factorise
+ LPDDR and DDR bindings
+Date: Tue, 30 Sep 2025 10:46:43 +0200
+Message-Id: <20250930-b4-ddr-bindings-v8-0-fe4d8c015a50@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TQJkCgD3iJLomNto0KbuAA--.14033S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxtF43tw4rZw4rGw1fAr45Awb_yoWfXFWxpF
-	4DCFyUWrWktF47Ka93J3WqyF13GrnFqrya9FyDKasIvFW3Jr18Za9Iqa95trn0vrn7X3yU
-	K3sYqa47Ga15Aw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9C14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMx
-	C20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAF
-	wI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20x
-	vE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWxJVW8Jr1lIxAIcVCF04k26cxK
-	x2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI
-	0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRJPE-UUUUU=
-X-CM-SenderInfo: pox13z1lq6v25zlqu0xpsx3x1qjou0bp/
+X-B4-Tracking: v=1; b=H4sIAPOY22gC/3WNQQ6CMBBFr0Jm7ZhSaFFX3sOwoMwAk0hLWkM0h
+ Ltb2bt8L/nvb5A4Cie4FRtEXiVJ8BkupwL6qfMjo1Bm0EobddUaXY1EEZ14Ej8mbEpbcsWqG4y
+ FvFoiD/I+io828yTpFeLnOFibn/3fWhtU6CoirdjU5Ox9nDt5nvswQ7vv+xcaQSS5rgAAAA==
+X-Change-ID: 20250922-b4-ddr-bindings-7161e3e0af56
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Julius Werner <jwerner@chromium.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, 
+ =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>, 
+ =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>
+X-Mailer: b4 0.15-dev-0dae4
 
-Created the eswin phy driver directory and added support for
-the SATA phy driver on the EIC7700 SoC platform.
+Introduce DDR4 bindings, which is the first DDR type to be added.
+As the DDR and LPDDR use the same properties, factorise them in a
+sdram-props bindings file and rename lpddr-channel into sdram-channel.
 
-Signed-off-by: Yulin Lu <luyulin@eswincomputing.com>
+Changes in v8:
+- Globally fix typo/grammar in SDRAM props bindings:
+  - DDR4 bindings compatible description:
+    - s/lpddrX,YY,ZZZZ/lpddrX-YY,ZZZZ/
+    - s/in lower case/lowercase/
+    - s/statis/static/
+    - s/~/-/
+  - Add an "s" where a plural form is used (e.g. registers) in the DDR4
+    binding revision-id description
+- Fix the number of chars that an SPD can contain in the part number
+  field.
+- Link to v7: https://lore.kernel.org/r/20250922-b4-ddr-bindings-v7-0-b3dd20e54db6@gmail.com
+
+The v7 is a subset of the v6 and other prior versions, split to simplify
+the review and merging process.
+
+Changes in v7:
+- None
+- Link to v6: https://lore.kernel.org/all/20250909-b4-ddrperfm-upstream-v6-5-ce082cc801b5@gmail.com/
+
+Signed-off-by: Clément Le Goffic <legoffic.clement@gmail.com>
 ---
- drivers/phy/Kconfig                  |   1 +
- drivers/phy/Makefile                 |   1 +
- drivers/phy/eswin/Kconfig            |  14 ++
- drivers/phy/eswin/Makefile           |   2 +
- drivers/phy/eswin/phy-eic7700-sata.c | 192 +++++++++++++++++++++++++++
- 5 files changed, 210 insertions(+)
- create mode 100644 drivers/phy/eswin/Kconfig
- create mode 100644 drivers/phy/eswin/Makefile
- create mode 100644 drivers/phy/eswin/phy-eic7700-sata.c
+Clément Le Goffic (7):
+      dt-bindings: memory: factorise LPDDR props into SDRAM props
+      dt-bindings: memory: introduce DDR4
+      dt-bindings: memory: factorise LPDDR channel binding into SDRAM channel
+      dt-binding: memory: add DDR4 channel compatible
+      dt-bindings: memory: SDRAM channel: standardise node name
+      arm64: dts: st: add LPDDR channel to stm32mp257f-dk board
+      arm64: dts: st: add DDR channel to stm32mp257f-ev1 board
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index 678dd0452f0a..6d50704917f0 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -105,6 +105,7 @@ source "drivers/phy/allwinner/Kconfig"
- source "drivers/phy/amlogic/Kconfig"
- source "drivers/phy/broadcom/Kconfig"
- source "drivers/phy/cadence/Kconfig"
-+source "drivers/phy/eswin/Kconfig"
- source "drivers/phy/freescale/Kconfig"
- source "drivers/phy/hisilicon/Kconfig"
- source "drivers/phy/ingenic/Kconfig"
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index bfb27fb5a494..482a143d3417 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -17,6 +17,7 @@ obj-y					+= allwinner/	\
- 					   amlogic/	\
- 					   broadcom/	\
- 					   cadence/	\
-+					   eswin/	\
- 					   freescale/	\
- 					   hisilicon/	\
- 					   ingenic/	\
-diff --git a/drivers/phy/eswin/Kconfig b/drivers/phy/eswin/Kconfig
-new file mode 100644
-index 000000000000..3fcd76582c3b
---- /dev/null
-+++ b/drivers/phy/eswin/Kconfig
-@@ -0,0 +1,14 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+#
-+# Phy drivers for Eswin platforms
-+#
-+config PHY_EIC7700_SATA
-+	tristate "eic7700 Sata SerDes/PHY driver"
-+	depends on ARCH_ESWIN || COMPILE_TEST
-+	depends on HAS_IOMEM
-+	select GENERIC_PHY
-+	help
-+	  Enable this to support SerDes/Phy found on ESWIN's
-+	  EIC7700 SoC.This Phy supports SATA 1.5 Gb/s,
-+	  SATA 3.0 Gb/s, SATA 6.0 Gb/s speeds.
-+	  It supports one SATA host port to accept one SATA device.
-diff --git a/drivers/phy/eswin/Makefile b/drivers/phy/eswin/Makefile
-new file mode 100644
-index 000000000000..db08c66be812
---- /dev/null
-+++ b/drivers/phy/eswin/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0
-+obj-$(CONFIG_PHY_EIC7700_SATA)	+= phy-eic7700-sata.o
-diff --git a/drivers/phy/eswin/phy-eic7700-sata.c b/drivers/phy/eswin/phy-eic7700-sata.c
-new file mode 100644
-index 000000000000..19b7ddf2583f
---- /dev/null
-+++ b/drivers/phy/eswin/phy-eic7700-sata.c
-@@ -0,0 +1,192 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * ESWIN SATA PHY driver
-+ *
-+ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd..
-+ * All rights reserved.
-+ *
-+ * Authors: Yulin Lu <luyulin@eswincomputing.com>
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+
-+#define SATA_CLK_CTRL				0x0
-+#define SATA_AXI_LP_CTRL			0x08
-+#define SATA_MPLL_CTRL				0x20
-+#define SATA_P0_PHY_STAT			0x24
-+#define SATA_PHY_CTRL0				0x28
-+#define SATA_PHY_CTRL1				0x2c
-+#define SATA_REG_CTRL				0x34
-+#define SATA_REF_CTRL1				0x38
-+#define SATA_LOS_IDEN				0x3c
-+#define SATA_RESET_CTRL				0x40
-+
-+#define SATA_SYS_CLK_EN				BIT(28)
-+#define SATA_PHY_RESET				BIT(0)
-+#define SATA_PORT_RESET				BIT(1)
-+#define SATA_CLK_RST_SOURCE_PHY			BIT(0)
-+#define SATA_P0_PHY_TX_AMPLITUDE_GEN1_MASK	GENMASK(6, 0)
-+#define SATA_P0_PHY_TX_AMPLITUDE_GEN2_MASK	GENMASK(14, 8)
-+#define SATA_P0_PHY_TX_AMPLITUDE_GEN3_MASK	GENMASK(22, 16)
-+#define SATA_P0_PHY_TX_PREEMPH_GEN1_MASK	GENMASK(5, 0)
-+#define SATA_P0_PHY_TX_PREEMPH_GEN2_MASK	GENMASK(13, 8)
-+#define SATA_P0_PHY_TX_PREEMPH_GEN3_MASK	GENMASK(21, 16)
-+#define SATA_LOS_LEVEL_MASK			GENMASK(4, 0)
-+#define SATA_LOS_BIAS_MASK			GENMASK(18, 16)
-+#define SATA_M_CSYSREQ				BIT(0)
-+#define SATA_S_CSYSREQ				BIT(16)
-+#define SATA_REF_REPEATCLK_EN			BIT(0)
-+#define SATA_REF_USE_PAD			BIT(20)
-+#define SATA_MPLL_MULTIPLIER_MASK		GENMASK(22, 16)
-+#define SATA_P0_PHY_READY			BIT(0)
-+
-+#define PHY_READY_TIMEOUT			(usecs_to_jiffies(4000))
-+
-+struct eic7700_sata_phy {
-+	void __iomem *regs;
-+	struct phy *phy;
-+};
-+
-+static int wait_for_phy_ready(void __iomem *base, u32 reg, u32 checkbit,
-+			      u32 status)
-+{
-+	unsigned long timeout = jiffies + PHY_READY_TIMEOUT;
-+
-+	while (time_before(jiffies, timeout)) {
-+		if ((readl(base + reg) & checkbit) == status)
-+			return 0;
-+		usleep_range(50, 70);
-+	}
-+
-+	return -ETIMEDOUT;
-+}
-+
-+static int eic7700_sata_phy_init(struct phy *phy)
-+{
-+	struct eic7700_sata_phy *sata_phy = phy_get_drvdata(phy);
-+	u32 val;
-+	int ret;
-+
-+	/*
-+	 * The SATA_CLK_CTRL register offset controls the pmalive, rxoob, and
-+	 * rbc clocks gate provided by the PHY through the HSP bus, and it is
-+	 * not registered in the clock tree.
-+	 */
-+	val = readl(sata_phy->regs + SATA_CLK_CTRL);
-+	val |= SATA_SYS_CLK_EN;
-+	writel(val, sata_phy->regs + SATA_CLK_CTRL);
-+
-+	writel(SATA_CLK_RST_SOURCE_PHY, sata_phy->regs + SATA_REF_CTRL1);
-+	writel(FIELD_PREP(SATA_P0_PHY_TX_AMPLITUDE_GEN1_MASK, 0x42) |
-+	       FIELD_PREP(SATA_P0_PHY_TX_AMPLITUDE_GEN2_MASK, 0x46) |
-+	       FIELD_PREP(SATA_P0_PHY_TX_AMPLITUDE_GEN3_MASK, 0x73),
-+	       sata_phy->regs + SATA_PHY_CTRL0);
-+	writel(FIELD_PREP(SATA_P0_PHY_TX_PREEMPH_GEN1_MASK, 0x5) |
-+	       FIELD_PREP(SATA_P0_PHY_TX_PREEMPH_GEN2_MASK, 0x5) |
-+	       FIELD_PREP(SATA_P0_PHY_TX_PREEMPH_GEN3_MASK, 0x8),
-+	       sata_phy->regs + SATA_PHY_CTRL1);
-+	writel(FIELD_PREP(SATA_LOS_LEVEL_MASK, 0x9) |
-+	       FIELD_PREP(SATA_LOS_BIAS_MASK, 0x2),
-+	       sata_phy->regs + SATA_LOS_IDEN);
-+	writel(SATA_M_CSYSREQ | SATA_S_CSYSREQ,
-+	       sata_phy->regs + SATA_AXI_LP_CTRL);
-+	writel(SATA_REF_REPEATCLK_EN | SATA_REF_USE_PAD,
-+	       sata_phy->regs + SATA_REG_CTRL);
-+	writel(FIELD_PREP(SATA_MPLL_MULTIPLIER_MASK, 0x3c),
-+	       sata_phy->regs + SATA_MPLL_CTRL);
-+	usleep_range(15, 20);
-+
-+	/*
-+	 * The SATA_RESET_CTRL register offset controls reset/deassert for both
-+	 * the port and the PHY through the HSP bus, and it is not registered
-+	 * in the reset tree.
-+	 */
-+	val = readl(sata_phy->regs + SATA_RESET_CTRL);
-+	val &= ~(SATA_PHY_RESET | SATA_PORT_RESET);
-+	writel(val, sata_phy->regs + SATA_RESET_CTRL);
-+
-+	ret = wait_for_phy_ready(sata_phy->regs, SATA_P0_PHY_STAT,
-+				 SATA_P0_PHY_READY, 1);
-+	if (ret < 0)
-+		dev_err(&sata_phy->phy->dev,
-+			"PHY READY check failed\n");
-+	return ret;
-+}
-+
-+static int eic7700_sata_phy_exit(struct phy *phy)
-+{
-+	struct eic7700_sata_phy *sata_phy = phy_get_drvdata(phy);
-+	u32 val;
-+
-+	val = readl(sata_phy->regs + SATA_RESET_CTRL);
-+	val |= SATA_PHY_RESET | SATA_PORT_RESET;
-+	writel(val, sata_phy->regs + SATA_RESET_CTRL);
-+
-+	val = readl(sata_phy->regs + SATA_CLK_CTRL);
-+	val &= ~SATA_SYS_CLK_EN;
-+	writel(val, sata_phy->regs + SATA_CLK_CTRL);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops eic7700_sata_phy_ops = {
-+	.init		= eic7700_sata_phy_init,
-+	.exit		= eic7700_sata_phy_exit,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static int eic7700_sata_phy_probe(struct platform_device *pdev)
-+{
-+	struct eic7700_sata_phy *sata_phy;
-+	struct phy_provider *phy_provider;
-+	struct device *dev = &pdev->dev;
-+
-+	sata_phy = devm_kzalloc(dev, sizeof(*sata_phy), GFP_KERNEL);
-+	if (!sata_phy)
-+		return -ENOMEM;
-+
-+	sata_phy->regs = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(sata_phy->regs))
-+		return PTR_ERR(sata_phy->regs);
-+
-+	dev_set_drvdata(dev, sata_phy);
-+
-+	sata_phy->phy = devm_phy_create(dev, NULL, &eic7700_sata_phy_ops);
-+	if (IS_ERR(sata_phy->phy))
-+		return dev_err_probe(dev, PTR_ERR(sata_phy->phy),
-+				     "failed to create PHY\n");
-+
-+	phy_set_drvdata(sata_phy->phy, sata_phy);
-+
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+	if (IS_ERR(phy_provider))
-+		return dev_err_probe(dev, PTR_ERR(phy_provider),
-+				     "failed to register PHY provider\n");
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id eic7700_sata_phy_of_match[] = {
-+	{ .compatible = "eswin,eic7700-sata-phy" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, eic7700_sata_phy_of_match);
-+
-+static struct platform_driver eic7700_sata_phy_driver = {
-+	.probe	= eic7700_sata_phy_probe,
-+	.driver = {
-+		.of_match_table	= eic7700_sata_phy_of_match,
-+		.name  = "eic7700-sata-phy",
-+	}
-+};
-+module_platform_driver(eic7700_sata_phy_driver);
-+
-+MODULE_DESCRIPTION("SATA PHY driver for the ESWIN EIC7700 SoC");
-+MODULE_AUTHOR("Yulin Lu <luyulin@eswincomputing.com>");
-+MODULE_LICENSE("GPL");
--- 
-2.25.1
+ .../memory-controllers/ddr/jedec,ddr4.yaml         | 34 ++++++++
+ .../memory-controllers/ddr/jedec,lpddr-props.yaml  | 74 -----------------
+ .../memory-controllers/ddr/jedec,lpddr2.yaml       |  2 +-
+ .../memory-controllers/ddr/jedec,lpddr3.yaml       |  2 +-
+ .../memory-controllers/ddr/jedec,lpddr4.yaml       |  2 +-
+ .../memory-controllers/ddr/jedec,lpddr5.yaml       |  2 +-
+ ...lpddr-channel.yaml => jedec,sdram-channel.yaml} | 40 ++++++---
+ .../memory-controllers/ddr/jedec,sdram-props.yaml  | 94 ++++++++++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp257f-dk.dts          |  7 ++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts         |  7 ++
+ 10 files changed, 173 insertions(+), 91 deletions(-)
+---
+base-commit: 30d4efb2f5a515a60fe6b0ca85362cbebea21e2f
+change-id: 20250922-b4-ddr-bindings-7161e3e0af56
+
+Best regards,
+--  
+Clément Le Goffic <legoffic.clement@gmail.com>
 
 
