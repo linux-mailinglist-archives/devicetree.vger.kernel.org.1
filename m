@@ -1,206 +1,159 @@
-Return-Path: <devicetree+bounces-222652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F167BAB969
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:55:26 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05C56BAB8AB
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:51:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50BE11C8312
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 05:55:26 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B6D654E1D00
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 05:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E299C28136C;
-	Tue, 30 Sep 2025 05:51:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13B0E27C872;
+	Tue, 30 Sep 2025 05:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lKszC5nL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EMCnFo1v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4785C29A9FE
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:51:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D35B2773FB
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:50:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759211519; cv=none; b=MItQZvxFmdj6+PLzhcQLei6iHTDDzgj5bAYlv38TXKTe//rcl/LmYyPvAxGi76Fx1D46Mgqn6xWRO1nNyPEDUwRFri7BaDkgsso2PJfYYOXzdII7uUl7ylPUwfKEqHpZXxwxocW3e9OKuqZrr5ehNuUn8vh4JoFPesa8ZlkedBw=
+	t=1759211433; cv=none; b=CSJ68X6/26PRq5hHbPFC1ekaXom5CSwcU3Pn1yFZ/H6Y/PHaVBf2KPOzhl8a8ByKbbMCqXBhiNDxRgVAFY0+acdb2rH/hQvdLgRXoo8bitFnWRYV3yJgseEbcf2D+8ERR14zYZpfj3hFCZiU10vQNL61eNeZEqvU3HZH9vcoqbY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759211519; c=relaxed/simple;
-	bh=pH7QzqfVd66CUSD6i7hLasiAtJ31uRcCjsRKu6nI+uU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FIVgJ9ELSGxIUeFsOYp8RzSaIGVXZxL4g+f09jMCibXf48p+X9s6sJ91eZ0H3LJykdTgPgrwzoA4wi5PT2ZV4xjZmo2J0ZTmV5CAmsRdjRLKPQUbUuSFnpLscp2ZuLZOGDDZ6vElGTZbprLE+mojNAEotR/6mN5jc3mTdBQ5mM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lKszC5nL; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58U4Hg8f011523
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:51:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	5Hx2GBX9F7NQ8LRgJrlO3MtzBoxHk2zM9UYRVlbcmb0=; b=lKszC5nLb09MCfFy
-	9qAXJATNc91t9z5O/MuQrzYAQKzVp+/ETh9Ycr9nQyCqvTraXNxjiKDJtHN5DVA4
-	+8VURNjrpCnDtu6r5iwojX/EfAVmZOBXFO/pg6BjrOnYwTWlrs/1AfvpW2Y5fLQc
-	dMiEUiUQ9cVUV5GsDmeVRfNTrvEXpOwzmwUXMfZddzEyzMvhiOmPs6Zgjth7PIRi
-	Q8UsR/+X1Zwo7107X7hB+QKZ8YzwctDk5yyVUurjtGjBFSLTAja7EaD4tpiAAqtL
-	dT3dgCF87O8G6pmKRvmoA22ke0i/JK7jkXyam2ScMjLbo5H0Z6HfmU1Hgs0Jmi5u
-	XBgc7g==
-Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e5mcr2et-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:51:57 +0000 (GMT)
-Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-32eb18b5500so8789633a91.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 22:51:57 -0700 (PDT)
+	s=arc-20240116; t=1759211433; c=relaxed/simple;
+	bh=4WqaVu4ojyQzVM8QrCUI7LikzMb4bhIq2dq3ZVmQLGA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=KJMPDHrzjFxSK4ngfcVskCfOYK7slrBp9WlhrmK8NtIlYz/zm/5FvvkPCniGV+n1f9R/ILtq64xnFmHppuZHFmhf3p2G/nYP9jdGSX/tdoVhnKIrKmxmJgFD1XLUPuyq99YNTihw2xV/3YfRCzSX2IBMoz5bBbxpC4a4NZxg8/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EMCnFo1v; arc=none smtp.client-ip=209.85.222.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-862cbf9e0c0so345750285a.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 22:50:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759211430; x=1759816230; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wDWN4g6ghBuiYarXPc9Grf4Kf/+CFy/Pefagl1DF5KE=;
+        b=EMCnFo1va318dR9SATkkgKmqJNtL+Yo9rOA9cW0WNNbwsLTZlx2cX4Tu4v90gHw+rP
+         U+Iz1JftH7cTWMXaL8e1zIXEzBsXjA49awry1f+f9DG5KG4O4Hzd0vAtzjqcZElsJlCn
+         dZGpY0ZWAL7jkykKNHAJ66ljDQXej0PE3N7EDbRkwcHn2iarF6irsosRiixiu4HadZym
+         uYA+d01IoPwGMCCJFJI0WVlKjZiu6U7W/njby3eto+Y4LFrWoR1DDh8YgaBafYQPKk++
+         z3I2cgfRsaQjWCxdMXTvZA9LDpy3piLBLN4ZIL4dsSxMlXM9YAJys3zPK+GSKe+FOJvu
+         oKnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759211517; x=1759816317;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5Hx2GBX9F7NQ8LRgJrlO3MtzBoxHk2zM9UYRVlbcmb0=;
-        b=hmGw2j3/pr4cRBAEig491tnd7JmTNNieCCcNjQKMdb/gKKHQN5Ksn3ss3ODWEre+JP
-         wrSIrXJam6EliXrbbh0i13Hkvp7LuIrz0MP1xChwSrFteDUSDSc6Jsm5amguMUsIfC+0
-         ymRgWeEBPSgQR5l2qG5z2i4ycmHkrxDXllh2vllWbG6cb2D5sangXQWW9AIBAVcHr29q
-         dqRALHG4m0zObDENfm0MQwEKUBVxyqXa3SxtEwLcTjfriAqHEFncXMsn3T0F5A7HCXR2
-         wAjEcWKuPZOpjlEr8/cnaqMkxjALG67GOlRQ0LhMZEhaVzy1mdA4M4PsUhWA3s05uBn0
-         FKRw==
-X-Forwarded-Encrypted: i=1; AJvYcCV+dVUlbNHvr3/Mhdy6VygwVWNczB32iqy2ycG0RnkudcRPfEC9w4rNGF6C7eONXsvNF8cqzAzjss6P@vger.kernel.org
-X-Gm-Message-State: AOJu0YzP2s8mvbHhKr3Fnzk1C+fpOMriPdnMK9Mgr6nlwgC2mGG79VrU
-	ouAS6rawwaExxaDm9K5y3lpH7oPpr2K4I+5uPLYpWf/ZSioyWxRuT/UJzKK7nb9+bCgrMgmbISx
-	inZ54v00XGTfae+Kb8h4wZF5Eooy/cqx2RmAk9oX8+ZuAUmeZCNV5Fc7YFYG60FjV
-X-Gm-Gg: ASbGncu5NLYbPYhkqs72CB3i8G+ahEdathaEvwndZNr3ylwnLJ6kvHzHkAAznnkWSht
-	5wFTstOpl7R4LWrwuZ+Az9pZyC5rHbsgWl6ZE/ZWWnSKp52hgWxOOZGCwmNwZN1/uEQ2BV7JUXr
-	/vjJ7+1TXHvCMgWWjcSU/ihH/bbA5+eYGPm3axW+jcAopN9Q7K8KJjNcn9HLaBFDaXQvu7UMqQg
-	dM/9WThBR2Yh0Z716KjMXodXHJVU/cI3HHE5+BB34OLhdZgx6rnGfLHOrp32DeP4CnGIuIEvj6Q
-	nxHu4xTGWSrDMYsZd5GD1yTbGjNsp3YZ/P3EIe/PmPylOCdUkAuQ5TXowmK2yVeBVsOF9Q==
-X-Received: by 2002:a17:90b:4acc:b0:32b:c9c0:2a11 with SMTP id 98e67ed59e1d1-3342a257424mr20752771a91.4.1759211516700;
-        Mon, 29 Sep 2025 22:51:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHtRSNc4DK7E+v2shAPlx5lz31OGXX7JSkA3qfyFJ7DSBwKjBFDVh4Ipo5Nf9B3OBI5+WubwA==
-X-Received: by 2002:a17:90b:4acc:b0:32b:c9c0:2a11 with SMTP id 98e67ed59e1d1-3342a257424mr20752741a91.4.1759211516271;
-        Mon, 29 Sep 2025 22:51:56 -0700 (PDT)
-Received: from hu-akhilpo-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3341be23412sm19029779a91.20.2025.09.29.22.51.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Sep 2025 22:51:55 -0700 (PDT)
-From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Date: Tue, 30 Sep 2025 11:18:22 +0530
-Subject: [PATCH 17/17] dt-bindings: display/msm/gmu: Add Adreno 840 GMU
+        d=1e100.net; s=20230601; t=1759211430; x=1759816230;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wDWN4g6ghBuiYarXPc9Grf4Kf/+CFy/Pefagl1DF5KE=;
+        b=wlYujurDTcbuG4+MwqLWSDTpXGb9Bpy3aPWdGgbo/tJJ0arS/JQb+2w5wpng36tRU3
+         +L2ig3M21L2WObXlI9n9/wdFSrU4MC4t2r/8iwG+4J7pKEK36nywz5I7hv5Tv63x1PHP
+         rZJBNqGWE5TQhCBtM4cN9ZG2JI3zvynpZPUOKBwqt2+4GUSO9Ktn+3useW+iiXA9CYfE
+         O7FBgUvq+dfnmRYn0BTOjbdy0xdPgQ70J4uFKVKgvfP1EjWLcZrNzEJ5YF1An0mMqUFj
+         +6JKGdO3K+B57UrERDCjg3Ckeq+pwwXUN46VRXF88AkRn8XAH1dCr56c0qHqfSOaBiR2
+         vsJw==
+X-Gm-Message-State: AOJu0YxAHfTO3fDMsjC28v8wlKdfYskwbanBriaV/5UnXheQslFyEIHE
+	VMbU0XO8dw2Yh8JotLnlJYpISkjDu4vylOba5NPAiSjhh2qO3Ti+mSFU
+X-Gm-Gg: ASbGncsGMJ7BSnJT/ov7kwwA2xoYa2zwWe5JiYIgkn7pAIlXMfZl325V/M47DZ0J6b8
+	V04aJDF/41ENtCAVVWlzIqMRfnmuD4Njhwv8Jo8kWZUfKxywdG5rYS3KZnNN+n9RAS9+nExpHI+
+	/e767bm3ji1uUZAKAqXG+vT01Z0Bz89xBD+e+Jrpv8sQm2vBQLBuMNdL31NrxS2/3OIWLQalNp+
+	mIloGFQB/JJTGK1i9swqUKpzt8/KflUCARKG7IXaBWsQcrRXJcasFtw6ggiG3/6oH7hgIUC8Wg0
+	/B/p54HgbNoL2sIXcogs743EViE1c2pE/bRl3QIWA+N/IAv+Jc2l2a4fQkORk0uO0vYj+G6tkgy
+	vMpzq6LJdKXfcvUTubSkWWqRvf5Pe1kAzGOPSEAjB+Lpr
+X-Google-Smtp-Source: AGHT+IG9qqjmdiQSDLHuO7EpbaYz9j/RzszkZqlPiHzP5xEh40KEmQHqMDJaw66yqCAcH/AUHfDcug==
+X-Received: by 2002:a05:620a:198b:b0:863:a3da:6407 with SMTP id af79cd13be357-863a3da6711mr1776483085a.31.1759211430006;
+        Mon, 29 Sep 2025 22:50:30 -0700 (PDT)
+Received: from localhost.localdomain ([2a09:bac5:3981:263c::3cf:53])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-85c306b5f64sm971990985a.32.2025.09.29.22.50.23
+        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
+        Mon, 29 Sep 2025 22:50:29 -0700 (PDT)
+From: Liangbin Lian <jjm2473@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	quentin.schulz@cherry.de,
+	kever.yang@rock-chips.com,
+	naoki@radxa.com,
+	honyuenkwun@gmail.com,
+	inindev@gmail.com,
+	ivan8215145640@gmail.com,
+	neil.armstrong@linaro.org,
+	mani@kernel.org,
+	dsimic@manjaro.org,
+	pbrobinson@gmail.com,
+	alchark@gmail.com,
+	didi.debian@cknow.org,
+	jjm2473@gmail.com,
+	jbx6244@gmail.com
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/3] arm64: dts: rockchip: introduce LinkEase EasePi R1
+Date: Tue, 30 Sep 2025 13:50:14 +0800
+Message-ID: <20250930055017.67610-1-jjm2473@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250930-kaana-gpu-support-v1-17-73530b0700ed@oss.qualcomm.com>
-References: <20250930-kaana-gpu-support-v1-0-73530b0700ed@oss.qualcomm.com>
-In-Reply-To: <20250930-kaana-gpu-support-v1-0-73530b0700ed@oss.qualcomm.com>
-To: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, Akhil P Oommen <akhilpo@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759211380; l=1801;
- i=akhilpo@oss.qualcomm.com; s=20240726; h=from:subject:message-id;
- bh=pH7QzqfVd66CUSD6i7hLasiAtJ31uRcCjsRKu6nI+uU=;
- b=PGjrYLobY/yshGg2rKdYdHx3hBf1rR+pcl0fXzC/zlsE0Q4LT53RJdWXkdzvjlbXr1Lox1Rsg
- V1eBxYAHSsbA85oYuhGvB/V8bDV+FCIysw3mOWm7AUUVLL+RIKg+LcJ
-X-Developer-Key: i=akhilpo@oss.qualcomm.com; a=ed25519;
- pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
-X-Authority-Analysis: v=2.4 cv=RMC+3oi+ c=1 sm=1 tr=0 ts=68db6ffd cx=c_pps
- a=vVfyC5vLCtgYJKYeQD43oA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=qH2KftFUxmXysmBszocA:9
- a=QEXdDO2ut3YA:10 a=rl5im9kqc5Lf4LNbBjHf:22
-X-Proofpoint-ORIG-GUID: F0ZVRifiBBrT2B1H9wGs4PJ5YknU1ZIM
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAwNCBTYWx0ZWRfX1g5NRu9w1zNz
- MeRF3pBgsA1YksHVAGLrSxGLRShoPqaZHW/uFSt/BDl7c7mQlELJDijfgheI2v2xluT0zAEQVs8
- zg6raURFFNsGaFarnUbim/rZ8yUq2ilgmQ8zHwh8nMxXXDpK5cI2xcX64cfP6XWTC2UhBXf1cTT
- QigbLExd4DApwnyXNTKGZmcCM0w/qEB5cgQhhKvHX/5WV87wsqiogH8Gd/J0msC7d3Igav8wbUV
- kzAANkNL0sFJ4KARxvmtIAPqXLMs4cjBUG6SsgCvxN3WpCezeaDBiTouPGFzREhADOA67gVOZ2v
- DwBQlpRMMFnrBSf7rkk6X3WNDXGRvg00spg+I+QqfowYQKy7LeqVzKlQ0ZoJik3mIlaU2nfBDpG
- IYBKhNEM70UEWJ/ZndZ0fBL1gIpzwg==
-X-Proofpoint-GUID: F0ZVRifiBBrT2B1H9wGs4PJ5YknU1ZIM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-30_01,2025-09-29_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 priorityscore=1501 suspectscore=0 impostorscore=0 spamscore=0
- adultscore=0 bulkscore=0 clxscore=1015 phishscore=0 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270004
+Content-Transfer-Encoding: 8bit
 
-Document Adreno 840 GMU in the dt-binding specification.
+LinkEase EasePi R1 [1] is a high-performance mini router.
 
-Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Specification:
+- Rockchip RK3568
+- 2GB/4GB LPDDR4 RAM
+- 16GB on-board eMMC
+- 1x M.2 key for 2280 NVMe (PCIe 3.0)
+- 1x USB 3.0 Type-A
+- 1x USB 2.0 Type-C (for USB flashing)
+- 2x 1000 Base-T (native, RTL8211F)
+- 2x 2500 Base-T (PCIe, RTL8125B)
+- 1x HDMI 2.0 Output
+- 12v DC Jack
+- 1x Power key connected to PMIC
+- 2x LEDs (one static power supplied, one GPIO controlled)
+
+[1] https://doc.linkease.com/zh/guide/easepi-r1/hardware.html
+
+Signed-off-by: Liangbin Lian <jjm2473@gmail.com>
 ---
- .../devicetree/bindings/display/msm/gmu.yaml       | 30 +++++++++++++++++++++-
- 1 file changed, 29 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/gmu.yaml b/Documentation/devicetree/bindings/display/msm/gmu.yaml
-index afc1879357440c137cadeb2d9a74ae8459570a25..2ef8fd7e9f529967e28131e1d71a6a6f455c4390 100644
---- a/Documentation/devicetree/bindings/display/msm/gmu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/gmu.yaml
-@@ -21,7 +21,7 @@ properties:
-   compatible:
-     oneOf:
-       - items:
--          - pattern: '^qcom,adreno-gmu-[67][0-9][0-9]\.[0-9]$'
-+          - pattern: '^qcom,adreno-gmu-[6-8][0-9][0-9]\.[0-9]$'
-           - const: qcom,adreno-gmu
-       - items:
-           - pattern: '^qcom,adreno-gmu-x[1-9][0-9][0-9]\.[0-9]$'
-@@ -299,6 +299,34 @@ allOf:
-       required:
-         - qcom,qmp
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: qcom,adreno-gmu-840.1
-+    then:
-+      properties:
-+        reg:
-+          items:
-+            - description: Core GMU registers
-+        reg-names:
-+          items:
-+            - const: gmu
-+        clocks:
-+          items:
-+            - description: GPU AHB clock
-+            - description: GMU clock
-+            - description: GPU CX clock
-+            - description: GPU MEMNOC clock
-+            - description: GMU HUB clock
-+        clock-names:
-+          items:
-+            - const: ahb
-+            - const: gmu
-+            - const: cxo
-+            - const: memnoc
-+            - const: hub
-+
-   - if:
-       properties:
-         compatible:
+Changes in v2:
+- Change deprecated "rockchip,system-power-controller" to "system-power-controller"
+- Link to v1: https://lore.kernel.org/r/20250925055906.83375-1-jjm2473@gmail.com/
 
+Changes in v3:
+- Fix typo ('status = "disable"' -> 'status = "disabled"') found by kernel test robot https://lore.kernel.org/all/202509261328.Grjhp029-lkp@intel.com/
+- Link to v2: https://lore.kernel.org/r/20250925092037.13582-1-jjm2473@gmail.com/
+
+Changes in v4:
+- Fix missing "Acked-by" message in patch 1/3 and 2/3
+- Link to v3: https://lore.kernel.org/r/20250929065714.27741-1-jjm2473@gmail.com/
+
+---
+
+Liangbin Lian (3):
+  dt-bindings: vendor-prefixes: Document LinkEase
+  dt-bindings: arm: rockchip: Add LinkEase EasePi R1
+  arm64: dts: rockchip: add LinkEase EasePi R1
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3568-easepi-r1.dts    | 692 ++++++++++++++++++
+ 4 files changed, 700 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-easepi-r1.dts
+
+
+base-commit: 30d4efb2f5a515a60fe6b0ca85362cbebea21e2f
 -- 
 2.51.0
 
