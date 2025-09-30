@@ -1,229 +1,131 @@
-Return-Path: <devicetree+bounces-222561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 458E4BAAC43
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 01:55:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F134ABAAC72
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 02:17:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0D683BF672
-	for <lists+devicetree@lfdr.de>; Mon, 29 Sep 2025 23:55:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF8661C29FA
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 00:17:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEAE626A0D5;
-	Mon, 29 Sep 2025 23:55:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DA6136124;
+	Tue, 30 Sep 2025 00:17:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DNfIEQxz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JKQPGwXO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 159B926B2DC
-	for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 23:55:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7802D2AD14
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 00:17:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759190107; cv=none; b=rG9LI/Ql9e4yowToszmiU3rq0T7lnzX7VnPJyTr+Y2k6uqPm+vz+KpOPEIcsUASXc8jLeCeeQkuVLaBL5aC/SKbCn1KQhzhHjSgf4wfUhmbjkYlXjCqz7DPuogiqX2eqMiyHDudoOqL/6pE2zYjsm5OzMrOVH7o3jMWTDmJu24g=
+	t=1759191443; cv=none; b=BAc5iEAxkGdUM6XW6YzurIapgEyp8XX0cXdM8YRAnqcy4bk4of7Emgg1f0DtES4zD4GvDjI4LrK2GpH2KE97ArG+utvCANlRMY/lE/jl6LZLHJAP3NBEGJv64v+ly+v81fI2UB/hOxNoiqM87+HovnBQHFxYNuEiQBatFdYwwbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759190107; c=relaxed/simple;
-	bh=yHm8XI5gruwYUfE+vygBhATsguf1WxH7EgeqwJr3N2o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m+mHnBAuxNuNj/YMcfC+gF0rZ8a0cyMg5EwKbwHtdc19B4iGOBUAy7VLNDVDa/Z7w0UKf2ZxcdLOsSJM5jioDUSxpcTKOvGZSQMGRtT8N2XULmVOIat/80n+uPB0nytMTI6mhPZLbBJj0ltNA3Xk6KcTzOHXXFm9zCOdMkuGqOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DNfIEQxz; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-78104c8cbb4so5425115b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 16:55:05 -0700 (PDT)
+	s=arc-20240116; t=1759191443; c=relaxed/simple;
+	bh=R0YLBiUyp3YW7yv7x28H3CgeEQEOZJr3Y+k/HoiLimQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j4SKH8khvaWb9LUJP/X89jDIuigfkj+s0x6cigq9Lz/55g8vhSplZ2oWwp4fNebUK9hddtn0DebWSuXOkfETVO+JK6oX7TS3oKDhBgc+8zWPrIngS9cp9WQV+ND1OzHJEbQ8cTPDbVln6mlWFurY6RwDJyqYHltGFEYVQbbEmcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JKQPGwXO; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-46e29d65728so35878545e9.3
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 17:17:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759190105; x=1759794905; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=YesvkbeRlI0InhN5JBwA3kaIUEivhW2AvYJVPyt7JxY=;
-        b=DNfIEQxzYpBlMXwb6ZFlQn2zJPQVtxaB+6g7GUb8NcIrMGZmilFnKRXIKbwBGbwcXq
-         15G4QgIcKLY7D0G+EcsFYLj58V8svgf2HrfU5uCbb8lHDAP4wbD/NyPqKmOgAzNIgYmq
-         Y7Lj318FyJGj5fqg3ieifrEK2/ylTnkDto/ES9+gG9qFff8afLqxXOZQctAsqiCCuw0q
-         jn8GpfxnfjzWcQlHbT8dNmocIXjKTiR5YOQ2bvnVnhXRhdoaly8jGV3Vhe0oTHngsvMH
-         AQTBAy5cWBfnqZzJ6CVPI47/scbvdyVg+8evWoKIvNJfOneDaQbEhcT8mozxcb2DZt68
-         KiKQ==
+        d=linaro.org; s=google; t=1759191440; x=1759796240; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XdEC/q6le7nfUpMwS8QD1mrWIXjjaEQSmDLATI0QjFQ=;
+        b=JKQPGwXOroor2ZNT7QUdLk108fEYgFF8zdT+6rZBkktVM9+8+ZZkpiD4YWjZayfNWd
+         dL134bFsUU1pdnJBeWlHHb3tu2pP4kYYrZhR5Ln65B/coBrEQkTeG8HdzKqOheDMjNHs
+         s27ushuoRlb+r1Zt7OkzP1i2SLRuT11ux53i6pJx5WTIM2jBR76PKOaKRO3JgvQRw6MM
+         Vy5CTcSBd0nbz8oObMXCfeHZHBNBVIaeGNj2cgD4B7m4XS+B/Mshte6yxn7l0pVsXSSL
+         6EthYEs4+cGUPF++NT/8LZDhWvRask1jLmtuuKCZ2anDhkN6rKGeViJGcXs9oPLcd5Yt
+         8gFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759190105; x=1759794905;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YesvkbeRlI0InhN5JBwA3kaIUEivhW2AvYJVPyt7JxY=;
-        b=baa0wXQouEbPOwEqfhFsrg87s1SRiNpmoUOJtdvY6KkAPkwme91c26h6xHUQ7YAjvq
-         vE2lplB42QpgFnGMo4oP7Nw6c2FFJ9sjyIqOlRqriyaK42/N/yalca9a8bS3OaWw4JEI
-         pbwH5+ImEJhlqTKNGvAjxvezgMy0GMuQ1TtENDaxhmfWcvP2JYWxAZUZkdAaWjcAAeNs
-         xOReE/UdIsO4QSWPTDlG5+wmeE/MXHPckCVxnBzTGZqIpXSI+jA5+5xhqJ6e4oYGXeuS
-         6Z94bte2RBYtuqOWs3v+DZ+ybXDZUWhUwI1/EXfHZLzT9glRUHJkKeLuNskqjgUBHEYB
-         njEQ==
-X-Gm-Message-State: AOJu0YyAsuhrhO5ksCxom2jiOkfOZYqganNEbnPX0R2vG50jwFKbeb0J
-	OVWkTkv7fviuiz8udZqjpVgMAf8hn7nPf7Z1MkL15DfgWLAgVR0vx/2q
-X-Gm-Gg: ASbGncspVqlBGjfR5GotCfs+MOD/ZRJU9Nk/VEyI8gdkbKxih49JwNVXWoBiiVkn3E1
-	RTqeCUDmGYUt8J/tHYK+2SfJj4W5EpGhPA/h9hitU1zqmmfnA5HsOu+ugPyhLNxWijgoRuWrpX6
-	QLNqc+/m2gZ1uls5TpO10j7QA9reoSEYAZKE1OlXtmE/7pJsVovQnvCRjKOzaE4GrJzQCKzgvtr
-	rOYn2dK+u/iJ2wefj1RlNszjR/58gDNeTgQFPHSMzRaTDuxlhAI1E9IIJfQRrC32G4AJ1wy2nTk
-	nG2wXNAdhFDCcq9Txwc3jeJJYxB755sIXUCHAmKN3Yyly/geEkWeconF+ez53evMourlKFN01Vv
-	g50En74l7eCJVc1obAJBWPTmQhob2fOyqg+wm8NhF1Mgp7PTGZyZ7vp2P
-X-Google-Smtp-Source: AGHT+IF0yLjZKmx74zx7YOPFw6nZf2/BVooPN9TnbQy8BPac/NSkrGIRLd/u/AxqgakhTmso8szx5w==
-X-Received: by 2002:a05:6a00:1399:b0:781:b59c:b0cb with SMTP id d2e1a72fcca58-781b59cb1e1mr10242245b3a.6.1759190105342;
-        Mon, 29 Sep 2025 16:55:05 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-78102c1203fsm12244556b3a.92.2025.09.29.16.55.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 29 Sep 2025 16:55:04 -0700 (PDT)
-Date: Tue, 30 Sep 2025 07:54:36 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Joshua Milas <josh.milas@gmail.com>, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, unicorn_wang@outlook.com, 
-	inochiama@gmail.com, alexander.sverdlin@gmail.com, rabenda.cn@gmail.com, 
-	thomas.bonnefille@bootlin.com, chao.wei@sophgo.com
-Cc: devicetree@vger.kernel.org, sophgo@lists.linux.dev
-Subject: Re: [PATCH 2/2] arm64: dts: sophgo: add initial Milk-V Duo S board
- support
-Message-ID: <nkzpfylhxyqf5u3bjlokhe4udgcxohbaanhwuofjzatan3iwio@45ljfquf5sui>
-References: <20250927173619.89768-1-josh.milas@gmail.com>
- <20250927173619.89768-3-josh.milas@gmail.com>
+        d=1e100.net; s=20230601; t=1759191440; x=1759796240;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XdEC/q6le7nfUpMwS8QD1mrWIXjjaEQSmDLATI0QjFQ=;
+        b=kpEgQ5ERE9W5vCKWF/YAJI+zQgbqQl6MviYGDG0NIHznBlJFhrg7RcsBfT8psEqdg6
+         gzwiFTTM2jaTOKaPGSFjiJSAqttWeaWaD7FqpV6WXEHGism3Q1UpGdRYZUOrLq2caIMH
+         zl5Zh7EtT8PldSw5Bszh71lKYBgDVDXv02OEbxgMtXzSk1Fe8u9t9hnsqcuYT6IZ0PXr
+         tQEwkExxhG8sKFpZ4kyCZIUIMC7i3iblvStbUi7cayMTX7VJoJAX9VELmAKpG+DwiZze
+         3T9AD5ZGR6vwzMMv6HU/7HiYIKruyr5Sk7Yw7o+GGfO3o1kup7pofdnI02qTN72kvTWS
+         pg2A==
+X-Forwarded-Encrypted: i=1; AJvYcCWFNm43C3YBSM1tY3BzSZTlvrLTMlKAJECTrZ3flkKxsUZTa4u8d6RNx2K6RSr9TvtOfCB+aibexVcK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzso0oH+pz36Y06dkXNYHJiTZ4t6KMuFXxkZ+UoK/UE4e86Q6Rd
+	e5dCU2mUYXekOqJ+ITqsDsjQw9abHnyTJHNFm/Z/s7Af/cxssotE41KPK/7u4QYDVxQ=
+X-Gm-Gg: ASbGnctl51sFC9YzAE1Dtjwd8YMyf7mKjd9yM7zNn0h76VkJmfX/k8xBcyBCm0vF9cZ
+	dhhxKp4CX2ziLMJ35SvMV5SnqhjWyMMA6EmVvBmJUvTTItEBhvidd9XbWwrqM7XFA/yvseiuwi1
+	pHB2n1sLz52qsjNl5Z8ohYUXW1IeafRruJUDsIM6TD+2dHkTYqZopWGyb/CrtBysuL62SwPPL9o
+	m4tqFhF08GypC1wwYDGCe7cB/Xw17lw9o2Igtg4y4F+t5xhlx1lTmGLEXX3OVUcv0YUdH9H0ShI
+	Cf5z3NoJTGfxVwtQjEnd1Ed814tipB0azmlqVaZ6ec+Gp2nACcCa6A1WvVcSpg7mBhvE+cXATHJ
+	4ENR7fmQwkxUqk+oyQaJTqX/EJR06/PoFu7QclWCye18J6RPinFU/vzy8R+yrZsxXTNk0jGwjjw
+	zyBzu4o4RtxelrKJeG+7m5hoEEWXjgxbI=
+X-Google-Smtp-Source: AGHT+IF1NvJ6A8YUVxkdRJkfeGyVldxLeh1qdvb50sqvC4KYOgmP95PhemeRL1E+WA4Xb6qkHy3wsw==
+X-Received: by 2002:a05:600c:1d06:b0:45b:9912:9f30 with SMTP id 5b1f17b1804b1-46e329a0d0amr156323085e9.6.1759191439753;
+        Mon, 29 Sep 2025 17:17:19 -0700 (PDT)
+Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e2a996e2fsm266744585e9.2.2025.09.29.17.17.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Sep 2025 17:17:19 -0700 (PDT)
+Message-ID: <3594bbc8-b063-4472-a294-117582f063dd@linaro.org>
+Date: Tue, 30 Sep 2025 01:17:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250927173619.89768-3-josh.milas@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v11 03/17] media: dt-bindings: add rockchip px30 vip
+To: michael.riesch@collabora.com, Mehdi Djait <mehdi.djait@linux.intel.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>,
+ =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Gerald Loacker <gerald.loacker@wolfvision.net>,
+ Markus Elfring <Markus.Elfring@web.de>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Collabora Kernel Team <kernel@collabora.com>,
+ Paul Kocialkowski <paulk@sys-base.io>,
+ Alexander Shiyan <eagle.alexander923@gmail.com>,
+ Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, Mehdi Djait <mehdi.djait@bootlin.com>
+References: <20240220-rk3568-vicap-v11-0-af0eada54e5d@collabora.com>
+ <20240220-rk3568-vicap-v11-3-af0eada54e5d@collabora.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Content-Language: en-US
+In-Reply-To: <20240220-rk3568-vicap-v11-3-af0eada54e5d@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Sat, Sep 27, 2025 at 01:36:19PM -0400, Joshua Milas wrote:
-> This adds initial arm64 support for the Milk-V Duo S board
-> (https://milkv.io/duo-s), enabling the serial port and sdhci0,
-> making it possible to boot Linux to the command line.
-> 
-> Signed-off-by: Joshua Milas <josh.milas@gmail.com>
-> ---
->  arch/arm64/boot/dts/sophgo/Makefile           |  1 +
->  .../boot/dts/sophgo/sg2000-milkv-duo-s.dts    | 88 +++++++++++++++++++
->  2 files changed, 89 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
-> 
-> diff --git a/arch/arm64/boot/dts/sophgo/Makefile b/arch/arm64/boot/dts/sophgo/Makefile
-> index 94f52cd7d994..68aace728223 100644
-> --- a/arch/arm64/boot/dts/sophgo/Makefile
-> +++ b/arch/arm64/boot/dts/sophgo/Makefile
-> @@ -1,2 +1,3 @@
->  # SPDX-License-Identifier: GPL-2.0
->  dtb-$(CONFIG_ARCH_SOPHGO) += sg2000-milkv-duo-module-01-evb.dtb
-> +dtb-$(CONFIG_ARCH_SOPHGO) += sg2000-milkv-duo-s.dtb
-> diff --git a/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
-> new file mode 100644
-> index 000000000000..94cf89d423de
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
-> @@ -0,0 +1,88 @@
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/pinctrl/pinctrl-sg2000.h>
-> +#include "sg2000.dtsi"
-> +
-> +/ {
-> +	model = "Milk-V DuoS";
-> +	compatible = "milkv,duo-s", "sophgo,sg2000";
-> +
-> +	aliases {
-> +		serial0 = &uart0;
-> +		mmc0 = &sdhci0;
-> +	};
+On 17/09/2025 16:38, Michael Riesch via B4 Relay wrote:
+> +                enum: [5, 6]
 
-It is better for adding gpio and other serial there?
+Not required but nice to have is a comment like:
 
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +};
-> +
-> +&osc {
-> +	clock-frequency = <25000000>;
-> +};
-> +
+enum:
+   - 5 # MEDIA_BUS_TYPE_PARALLEL
+   - 6 # MEDIA_BUS_TYPE_BT656
 
-> +&pinctrl {
-> +	sdhci0_cfg: sdhci0-cfg {
-> +		sdhci0-cd-pins {
-> +			pinmux = <PINMUX(PIN_SD0_CD, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <10800>;
-> +			power-source = <3300>;
-> +		};
-> +
-> +		sdhci0-clk-pins {
-> +			pinmux = <PINMUX(PIN_SD0_CLK, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <16100>;
-> +			power-source = <3300>;
-> +		};
-> +
-> +		sdhci0-cmd-pins {
-> +			pinmux = <PINMUX(PIN_SD0_CMD, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <10800>;
-> +			power-source = <3300>;
-> +		};
-> +
-> +		sdhci0-data-pins {
-> +			pinmux = <PINMUX(PIN_SD0_D0, 0)>,
-> +				 <PINMUX(PIN_SD0_D1, 0)>,
-> +				 <PINMUX(PIN_SD0_D2, 0)>,
-> +				 <PINMUX(PIN_SD0_D3, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <10800>;
-> +			power-source = <3300>;
-> +		};
-> +	};
-> +
-> +	uart0_cfg: uart0-cfg {
-> +		uart0-pins {
-> +			pinmux = <PINMUX(PIN_UART0_TX, 0)>,
-> +				 <PINMUX(PIN_UART0_RX, 0)>;
-> +			bias-pull-up;
-> +			drive-strength-microamp = <10800>;
-> +			power-source = <3300>;
-> +		};
-> +	};
-> +};
+Just for the sake of a reviewer.
 
-Small suggestion: please ensure the pinctrl is correct, different
-board may require different configuration.
+Either way
 
-> +
-> +&uart0 {
-> +	pinctrl-0 = <&uart0_cfg>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +	/delete-property/ resets;
-> +};
-> +
-> +&sdhci0 {
-> +	bus-width = <4>;
-> +	no-1-8-v;
-> +	no-mmc;
-> +	no-sdio;
-> +	disable-wp;
-> +	pinctrl-0 = <&sdhci0_cfg>;
-> +	pinctrl-names = "default";
-> +	status = "okay";
-> +};
-> +
-> -- 
-> 2.51.0
-> 
-
-I suggest adding all the support devices instead of a minimum one.
-Like ethernet, wifi, bluetooth.
-In the next cycle, there should be a patch for adding USB device node,
-as the driver is already merged. I also hope you can take it.
-
-Regards,
-Inochi
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
