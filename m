@@ -1,191 +1,167 @@
-Return-Path: <devicetree+bounces-222853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222854-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 201CABAE61C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 20:58:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84F4FBAE637
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 21:02:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EC6954E06AF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 18:58:27 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 339484E28B9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 19:02:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 324FE27E07A;
-	Tue, 30 Sep 2025 18:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1122A283680;
+	Tue, 30 Sep 2025 19:02:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PLuiSbIW"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="prJio/p1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 022AE27A928;
-	Tue, 30 Sep 2025 18:58:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7186D1EB9E3
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 19:02:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759258703; cv=none; b=W6cWAXETRndIL6XEr5Iv1qAqFVga7s8KDypERX8ESZUUzpMqKSpoz+x2UAnYOIAF7s403IBdtnarevUj/7qhSAl0FSkAQcT/1pi1+s9UYe8W5mU2FAFO9mvwTJmanRxokcJea4C9XubL2eDxm6SeblWX9lgTmEjkJOCynxx3gmQ=
+	t=1759258957; cv=none; b=Cv3FAw6lbfs8q3hIV1QY82AIAN+YMK7NpNvMu9hjSiHwHBjo8l4uaSiv+SaBzZKIn/obxD25y3+HpzCJ0TOTEj1C70r8HzRk5UNuyNS2rsoEQxoH9Of16cQx08h/KAVm7ek2U6EOTmvIMy/OWzWEJ5ZNLf5fKt4b7zch+ZgsWcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759258703; c=relaxed/simple;
-	bh=ftQwGWLKK1s5Gh7SLQ8fWSKuz7Q2521DX+kCSsNK2TE=;
+	s=arc-20240116; t=1759258957; c=relaxed/simple;
+	bh=XaKjIs21h7X96FaSfZ/LjO9yTxhBXM+kXjoDRs+GPjI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RbHDfg1uGfjZmFmD0p88HvcV4bgvjWint8HXcSkArAgXrG9E2HXiYNP7gLm4GJHABtktLmK74T9/mFZIYJuKc2k5b0Zn9BA1taVCVCluf0LXhYcSINVtuBrCqFMg3q9kdZFCH6hqqi41mRj5auCTDyGL1ufTwat0JI+kHy7HjYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PLuiSbIW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5835C4CEF0;
-	Tue, 30 Sep 2025 18:58:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759258702;
-	bh=ftQwGWLKK1s5Gh7SLQ8fWSKuz7Q2521DX+kCSsNK2TE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PLuiSbIWeUPuyaB2cIR6Hva0pJrqWgWKi2/sn6DMebDOKbo2K/1thjS5iF2U0h2JN
-	 Cez0uXzPvBOcDq6giu0Tg0y+q3Mkr7SQlXJjhBIpgfanco4oaWjrvDZujkaB0AKPGE
-	 GmMIFW2sVuDr+jQgYh1wlbefJovOhuJnogvui0fctqU8cFlJ9hPXw5xkMI2HzB1296
-	 uzTnDYxxhxcNWhe7Idupcodh0a6myEzn3JGZNBLIecr8wSYtPSLX6cyvE7Ei/CxTOW
-	 i/MbbNCYqEs6SpR9DTysteH7ULMELtZgXR2Y+4QzcgQXSha+DIzEKcq4xKGqA6gegg
-	 KG94pAdBE4uag==
-Date: Tue, 30 Sep 2025 19:58:16 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Phil Elwell <phil@raspberrypi.com>
-Cc: Stanimir Varbanov <svarbanov@suse.de>,
-	Guenter Roeck <linux@roeck-us.net>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-	Rob Herring <robh@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Saenz Julienne <nsaenz@kernel.org>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Jonathan Bell <jonathan@raspberrypi.com>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>
-Subject: Re: [PATCH 1/4] dt-bindings: Add Raspberry Pi's RP1 ADC
-Message-ID: <20250930-overlord-scion-d60cff2ef1f5@spud>
-References: <20250925000416.2408457-1-svarbanov@suse.de>
- <20250925000416.2408457-2-svarbanov@suse.de>
- <20250925-outlying-causal-015d8ba33c53@spud>
- <89dd04b9-e261-4bdd-83ab-499e46fc9c01@roeck-us.net>
- <88bd67f2-de8c-407b-ba98-08663eee2d7e@suse.de>
- <CAMEGJJ0KqPX462iigbMP+fwoyZgZ1J1PqaWt82MrNTW1VMwbpQ@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rJh085ahTfxibsI2Wb1kXQ+7Q1jnsBxemXvdEIYjJFc+M7uvo5Meed6olbleYZCDZAbEA41VZf0y7XHSBGZo9Qhs4lXpzPGbMKn/YUjWxDCpB73bTGKIH2V0y7yO8go85lDHwe2L6/UlPDDmy7K7cpdsjiV+12Q+4OOYrRBstcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=prJio/p1; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58UCZYBO028261
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 19:02:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=GXlbr7M+4a1GxvAP+G3ZXjJw
+	cK9AWRREeeh4emtmxmk=; b=prJio/p1Pa9iQoymrsQUzUwSwVlmy62rZ0boPOeG
+	5Co5oHJaznpcAf7BJjir0I0ubdKav7gNDPOI3BNhzvNVU2u1G1uhd2a06abQovcb
+	/saq/MhHYC92LvUIaaB4jaXLPQPJtLSaK0t5ErQB6rSk7JyAd3xDQkowIG2rxbUF
+	957QygvR48Eomfe6HOQ5Stw7QNm7S+HdvSFGVn+tlzJkmY1II40Vvdyi9BTLN/oG
+	i04nl4mMg1WS4TFSJNoHVcmPcipJi5BoYPhGwlfe+D8b8gnSbpNU1REPcDVYQYl4
+	JGYK0P8WVNCLk9noVXZFSBzhqetljnENIu2G8LDgl2w9cQ==
+Received: from mail-il1-f197.google.com (mail-il1-f197.google.com [209.85.166.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49fyrf3qty-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 19:02:34 +0000 (GMT)
+Received: by mail-il1-f197.google.com with SMTP id e9e14a558f8ab-425745467d1so89498745ab.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 12:02:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759258953; x=1759863753;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GXlbr7M+4a1GxvAP+G3ZXjJwcK9AWRREeeh4emtmxmk=;
+        b=Vd6hjSq9L7LoLyLYkvvymKE32Ui/RxkiJlK34jiUUetTLDIlI5tjdY9G1EL1VOZOcd
+         /4Hk1Fu41wHe9/vaSljW0mhTCH3MyQTnaTZNeMtghv9YUgev9rBPw+M7X05K+fHs0ukH
+         1wU6cNwI5FKFgEkAPpFcU/0sD5sDTJ1AR8YFnOr6mJD2v3P8CAIz3xllXpd3NjnOUv4b
+         kjaWuBlzZ22DkEVu7BbGT/g0dUB7bsF4jUk0AQpusUko36P1ByCHVj2UvpdMl4D/26lP
+         UR0HBdRI1ZLdiIyigP33DwKaDh6kAsYJfef6uv/RBbGGtIJw0Xu6hWs3gSCrcr/Xkqwq
+         C/bw==
+X-Forwarded-Encrypted: i=1; AJvYcCVI3pZwL7heT42fbZGiSmR10bHqbcq91TcUeyztkGbJP7pHlyVUSpgy/Figjwoa8BE1CWIiPzi4Pn3h@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkANe7k95SyJHM4DwUxv5YLPrpzoUyULnn4LB0H42DnSdezP7V
+	S0HztYV0TSIKZEkI/szEKYCvUu7nWeGjL6ivy0C0RMNrqeWz2nz6kgBKQDillbNEmmQsMk926AF
+	Wpg02hSgoWqTlNSEEY9K5sqiYNKgwadELhZI+peqFXdAa48ndIEdL1gsURgjk+NT7
+X-Gm-Gg: ASbGncvjGAWPUcICQZNl4EsXqzeQm2M/1U+kxMWHU0BWGRgiFNM9ZCibTNtf+wwE6nB
+	6P38xHo6QFKRt6O6qsDEeHCs+yPLKMlzS4t+vQ33HdcAB9svGf6+4gSIqiCX4aSvOL5/rJBVSin
+	inHWxgvBjOxJIzZBW5ID4VSfmJsxkuFv0X8vZnxIYcF5mjwmSlO2prPAMvH/FLhxTtFtFKXfUn2
+	mHgODUJ+5uyHxF6Yv9AVQv60H8SQAq2nxdOyDsYMoscIJ2ZJ6hlvQTHOKhDejmhgDfggrZ40j+8
+	66v2UlZeFvwtfENyzHz35RavuBH5UHeuaFcT+LlK9wwYk6Am/Il8lcTsKIHJlS32aRl8gynAdTe
+	wAQ0IebAmH9OCdv68cHPO4UHA5GzFl4s4nasSWc7tvlrtRmhXmSX97lLPKQ==
+X-Received: by 2002:a05:6e02:230a:b0:3f2:a771:9fb3 with SMTP id e9e14a558f8ab-42d8162461dmr18055255ab.27.1759258953238;
+        Tue, 30 Sep 2025 12:02:33 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFJV3txOav9sQu2ukayU7ugj9yuYkFavKZlUgXjEWPN2HKtbR36iIvOChi6ogqZ1DDolHbXtg==
+X-Received: by 2002:a05:6e02:230a:b0:3f2:a771:9fb3 with SMTP id e9e14a558f8ab-42d8162461dmr18054575ab.27.1759258952745;
+        Tue, 30 Sep 2025 12:02:32 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-36fb7fe6b29sm35412471fa.63.2025.09.30.12.02.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Sep 2025 12:02:30 -0700 (PDT)
+Date: Tue, 30 Sep 2025 22:02:29 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Romain Gantois <romain.gantois@bootlin.com>, Li Jun <jun.li@nxp.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, imx@lists.linux.dev,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: usb: switch: split out ports definition
+Message-ID: <hio5xdgjb6oxejrnk3hy7ylro75p2ebqa6oczyuwuxk3xsbp5l@aewbvmuk3ldk>
+References: <20250930-topic-sm8x50-fix-qmp-usb43dp-usb-switch-v1-1-060568de9538@linaro.org>
+ <vwlshz5li23xlthn5delxwxdsdci5nc22iey3xih4qf5uhbory@clskdsy64xpx>
+ <426679ae-03c4-47d5-895d-7c927b2c3b07@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="7ME1twZYxASzgwyN"
-Content-Disposition: inline
-In-Reply-To: <CAMEGJJ0KqPX462iigbMP+fwoyZgZ1J1PqaWt82MrNTW1VMwbpQ@mail.gmail.com>
-
-
---7ME1twZYxASzgwyN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <426679ae-03c4-47d5-895d-7c927b2c3b07@linaro.org>
+X-Proofpoint-ORIG-GUID: EdZ3SqeYYFqQrhcSaq26Owkb9bfm30F9
+X-Proofpoint-GUID: EdZ3SqeYYFqQrhcSaq26Owkb9bfm30F9
+X-Authority-Analysis: v=2.4 cv=etzSD4pX c=1 sm=1 tr=0 ts=68dc294a cx=c_pps
+ a=5fI0PjkolUL5rJELGcJ+0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=jIQbB08qyBSz40biqjoA:9 a=CjuIK1q_8ugA:10
+ a=HaQ4K6lYObfyUnnIi04v:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI5MDE3NSBTYWx0ZWRfX2cEsxTHtzQsX
+ cprXbeWWNwCGoinWXlhiDgSxD6zT8uYGzmg9Nkny1U/FL9wIVgI7Ia7JsMqIT+OJFhuqaGCBmcy
+ DtzbpTmYX1tRuhqTs2aVV+OyPEbLV3vk0KW0S1PeAuLgCDP+Q3BNhuf4s4JBIU5z+y52+MT+7DW
+ V/Sm2+g2pI1FJrC04431/nqabzxOrUtJxrw1Mgiy1rIqH+NpjsDsziKLN7uKD4KuPUbShfQxuDa
+ fI/Br/oXCiu5IO34qfqpGU4RWBjiNuaw2NP+OlP+3Gh0HM6VFvXJCAaQ4vZmsnqVdJgOh8+BgVQ
+ 5B2TtsfwaNJghcWIVQ6npJOLourgzmNckskS02u05uLvWDJmfWQFhGcSM0qzx9mXcPTw53iZzgX
+ nfRrL2Bz3+PhLV0nB3FE/BgUshzhbA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-30_04,2025-09-29_04,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 lowpriorityscore=0 clxscore=1015 suspectscore=0 malwarescore=0
+ priorityscore=1501 spamscore=0 impostorscore=0 adultscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509290175
 
-On Tue, Sep 30, 2025 at 11:47:58AM +0100, Phil Elwell wrote:
-> Hi Stanimir, Guenter,
->=20
-> On Tue, 30 Sept 2025 at 11:21, Stanimir Varbanov <svarbanov@suse.de> wrot=
-e:
-> >
-> > Hi,
-> >
-> > On 9/25/25 11:37 PM, Guenter Roeck wrote:
-> > > On Thu, Sep 25, 2025 at 08:40:54PM +0100, Conor Dooley wrote:
-> > >> On Thu, Sep 25, 2025 at 03:04:13AM +0300, Stanimir Varbanov wrote:
-> > >>> Document dt-bindings for Raspberry Pi's RP1 ADC.
-> > >>>
-> > >>> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
-> > >>> ---
-> > >>>  .../bindings/hwmon/raspberrypi,rp1-adc.yaml   | 46 +++++++++++++++=
-++++
-> > >>>  1 file changed, 46 insertions(+)
-> > >>>  create mode 100644 Documentation/devicetree/bindings/hwmon/raspber=
-rypi,rp1-adc.yaml
-> > >>>
-> > >>> diff --git a/Documentation/devicetree/bindings/hwmon/raspberrypi,rp=
-1-adc.yaml b/Documentation/devicetree/bindings/hwmon/raspberrypi,rp1-adc.ya=
-ml
-> > >>> new file mode 100644
-> > >>> index 000000000000..5266b253fd2b
-> > >>> --- /dev/null
-> > >>> +++ b/Documentation/devicetree/bindings/hwmon/raspberrypi,rp1-adc.y=
-aml
-> > >>> @@ -0,0 +1,46 @@
-> > >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > >>> +%YAML 1.2
-> > >>> +---
-> > >>> +$id: http://devicetree.org/schemas/hwmon/raspberrypi,rp1-adc.yaml#
-> > >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > >>> +
-> > >>> +title: Rasberry Pi RP1 ADC device
-> > >>> +
-> > >>> +maintainers:
-> > >>> +  - Stanimir Varbanov <svarbanov@suse.de>
-> > >>> +
-> > >>> +description: |
-> > >>> +  The RP1 ADC is a five input successive-approximation ADC with 12=
--bit
-> > >>> +  resolution (ENOB 9.5-bit) at 500kSPS. It has four external inputs
-> > >>> +  and one internal temperature sensor.
-> > >>> +
-> > >>> +properties:
-> > >>> +  compatible:
-> > >>> +    const: raspberrypi,rp1-adc
-> > >>> +
-> > >>> +  reg:
-> > >>> +    maxItems: 1
-> > >>> +
-> > >>> +  clocks:
-> > >>> +    maxItems: 1
-> > >>> +
-> > >>> +  vref-supply:
-> > >>> +    description:
-> > >>> +      Reference voltage regulator 3.3V.
-> > >>
-> > >> Looks like you're missing the io-channels-cells property that allows
-> > >> this device to be a provider of adc channels to other devices.
-> > >>
-> > > Only makes sense if the driver is implemented as iio driver.
-> > > Which would be fine with me, assuming this is a generic ADC.
-> > > The iio -> hwmon bridge can then be used to instantiate a
-> > > hwmon device if needed.
-> > >
-> >
-> > According to the RP1 peripheral document the information about ADC is
-> > limited and I cannot be 100% sure that this is generic ADC, but it looks
-> > like it is. On RPi5 board the ADC inputs are not configurable, but that
-> > could change on another board.
-> >
-> > I personally don't have objections to implement it as IIO driver.
-> >
-> > Phil, are you fine with implementing the driver as IIO?
->=20
-> The problem with adding unused functionality, apart from the effort
-> involved, is that testing it is harder. Will the IIO driver be
-> inherently better/simpler because some of the hwmon support gets
-> picked up by the generic IIO/HWMON bridge?
->=20
-> Ultimately we'll make whatever changes are considered necessary in
-> order to get this simple driver accepted, but it would be nice to feel
-> there was some real world benefit now for the work, not on Pi 6/7/etc.
+On Tue, Sep 30, 2025 at 08:48:13PM +0200, Neil Armstrong wrote:
+> On 9/30/25 20:43, Dmitry Baryshkov wrote:
+> > On Tue, Sep 30, 2025 at 07:17:21PM +0200, Neil Armstrong wrote:
+> > > The ports definition currently defined in the usb-switch.yaml
+> > > fits standards devices which are either recipient of altmode
+> > > muxing and orientation switching events or an element of the
+> > > USB Super Speed data lanes.
+> > > 
+> > > This doesn't necessarely fit combo PHYs like the Qualcomm
+> > > USB3/DP Combo which has a different ports representation.
+> > > 
+> > > Move the ports definition to a separate usb-switch-ports.yaml
+> > > and reference it next to the usb-switch.yaml, except for
+> > > the Qualcomm USB3/DP Combo PHY bindings.
+> > 
+> > Isn't it easier to make QMP PHY use $ref for port nodes instead of allOf
+> > and keep ports definitions inside the usb-switch schema?
+> 
+> Rob asked to not do that... see https://lore.kernel.org/all/20250905175533.GA1000951-robh@kernel.org/
 
-tbh, I don't care how the driver side of things is done, I would just
-like for the binding documentation to be complete. If there's no usecase
-at all where the device provides io channels, then omit the property.
+I'll respond there.
 
---7ME1twZYxASzgwyN
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaNwoSAAKCRB4tDGHoIJi
-0sgKAPwPyHVOPL3+vGEY13Q+XNBtSaCSUTqKSTF8wzaH2E54/gD9HS1r/CHIxVmU
-pM/olI54HwZAmhzTQDkVGvN9sY8T8wI=
-=fHEy
------END PGP SIGNATURE-----
-
---7ME1twZYxASzgwyN--
+-- 
+With best wishes
+Dmitry
 
