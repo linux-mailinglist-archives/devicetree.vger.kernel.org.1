@@ -1,211 +1,208 @@
-Return-Path: <devicetree+bounces-222586-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222587-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0AB32BAB215
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 05:07:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C876EBAB22D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 05:14:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA58F3C2C4B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 03:07:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AFC0175335
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 03:14:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E9B6222560;
-	Tue, 30 Sep 2025 03:07:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B07E82264CD;
+	Tue, 30 Sep 2025 03:14:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SxsTdE/r"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="UY8xAXoH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58D4214204
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 03:07:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2564C17BB21
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 03:14:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759201660; cv=none; b=ZLaPDBWdB/g2qseiwyZ24+padLsn7sqUqG8LaS2TfYT093A7Mz/k+nWCCyzuLG0Liw4z4cM4bDNI+ma6RbxZvigNBOjWydVAOgJI7xYkIwTqf0nty/kPd3EQ3O+bZz622wDB7yFWyQ68aCz1oIE++Ahh9iQVohqVkdgS0aiQfc4=
+	t=1759202075; cv=none; b=ssSJu/lQs9QWHgra2DFb418QOIn3PIV/Vj/wvJ2uG0IC+tk924fe4RU2Oezx8KHCFvSvSu6j+0qoklALXy0jJFVn+RDYkZRFNeUeo+pYrRcYKzS+PY6kG4/Kc9D6yM5X0KbMw908v7GkixzA0r7RJ2EInWMntSJnnvgYnCec65E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759201660; c=relaxed/simple;
-	bh=trQzuaxM7PQI3lc7+SrnpL4ChZ2FG1z0MjB3OtsDT/U=;
+	s=arc-20240116; t=1759202075; c=relaxed/simple;
+	bh=1rGZa6T+nKU9H+9k5FkFiJZWT4Z/x2RL52Cr/CliJfY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R9Mkw2kfUF9FE+t/DGFbYLAEzhsmDs/1IlEsMI5/gVB4dFwTW6HktJoZ31vmlLVUMLHRCpGW5exRZNlGFsiPS+sVrBjEIompkdw8iLvPcMpdcLj360LnjOyzZfdoqqrLDBxNxGmbcN9TVtkOGLmYURB3SpbAZCGuscdMIHTfgsA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SxsTdE/r; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-b457d93c155so4085166b.1
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 20:07:38 -0700 (PDT)
+	 To:Cc:Content-Type; b=EmSPaMWHyH1BPqe94H/CFFR1G9njdQoIL3ewxd2h66EzVlPtpLREF4Kt1lgwSIeAv32HgESuFGbZztgkWwLK44KdN1P5NMK+GKIPUnnjaY6FCo3g2LOsgXmmUPoLHNWX/lAkfW8wjpDDlXPHrsJOlLtsW4IWgLPwvoOmWJlKqoc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=UY8xAXoH; arc=none smtp.client-ip=209.85.215.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-b593def09e3so2262839a12.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 20:14:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759201657; x=1759806457; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1759202071; x=1759806871; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cP8Qg3pgdasQQeaKIyYbB5fXWml1kh5kpaGwLIEk0T8=;
-        b=SxsTdE/rkBgprIZa5UbJ2RP9y7ScCY4TE0QlYKBOyP3GtjMbb/3jETtzx5t4utvj6/
-         mZ/7AJeqb4JXCvPLxJtVi+JajpadPkVu9SBk4foY0cRgh/ajxTEN+B7Um1ax+ztFfhOo
-         90jgo5dSRXPGIzAv9EnTMhGl57YtEd775qe8XEbry+58DB0pMutEyQQvQSz27nYMcIrB
-         pwbkbNy/QkRf893VrJY3969cdPCi/qkHZdi56a7+iQcZNJH7LVzC8Gft+AAlMDGhcCJp
-         zLS+4ttweD+lLq/KvxbWWexKIkxORUVoh6x9RAykcwHXRQyilV72lzlI7cZGfLBzKC75
-         7JaQ==
+        bh=psH8ce2EGDVOVWJJv98yedDgFcZ/vr9lSF0MkEmVn80=;
+        b=UY8xAXoH2x7qoAeEQQSpwcnXYBp+UO8wuZu95uh9echEnAp3g3I9t1pCAlv9V5qEF1
+         ZrHlB96gg5R/5rs5ZG6xO6l+prBF1nSqWbyM6Pzay1WybEgVC/mhTqqJFKXwg+seLXqD
+         zozmVjVjtRBpqLOxJBO3x7OybF573u+yjgjig=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759201657; x=1759806457;
+        d=1e100.net; s=20230601; t=1759202071; x=1759806871;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cP8Qg3pgdasQQeaKIyYbB5fXWml1kh5kpaGwLIEk0T8=;
-        b=chiBPI0SOhIOZ7WosYdqWfvFrckixwCx+3SINa7FhqcNgKCfGTshA71ajgAmUaqhXZ
-         XNLRgmukO3Dwq52rQ/lDfTwcxyf8sToxg4mJTlR7x58rLe5uBPaR8m6t3UwCQjf2ImON
-         pkdIiz1n3mXkEFevZSQRRM7SL1aerJedC3Ny9aBvzs0Y9SyVcNQHAHrkAYSDaBSwyS5h
-         lzR0w7YwNec/NRA5V8si5WaljpG3ZODHH7pwGFUwXIZDdKI9c2IGCbBP1oCmeYowXyRN
-         eh/x/pkay+06ZO0z9KsdXJcKDVIMjnUbM8Maxmht9gUStf+prDVrtM6+DvZGgHMtB0Qn
-         KNog==
-X-Forwarded-Encrypted: i=1; AJvYcCWLyXo7rU1YbvDieF9cErBecoXHt0R+FxKsmVN430JpD4tD73mAVrZixc+zTPXVfmcHCR1AM3NXSY/y@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHFvy4+9dHBjlzKjGWujQpnmYNQ4SBfwUwndDbIK58ztPiqwwu
-	YlDihMo+7wod2LGbnrVWnG0I9k8n9VGbStaJw8yG18TfkKLSaGd1lf6BcPHIPm94h11Spw4ZLQv
-	WHiy1OnVxbF8cYg+K7o2t4WRZHwvil2M=
-X-Gm-Gg: ASbGncvhTWcDdtc1HpSox6X6SEo3tA4uhIBQQln95vT3S9P/kZYCqEMEwj9n6VTBXfp
-	c+PnACSPh+LauspYW5wQC9m8ntcnVMZiQRA50TpGLABwlLhp2TWPz06qRTl5P5G64y4+g/KOs8d
-	XE2NiBY09u3D7RU8Jvdr+Nv1BJcVJ8NCRzeOgm5D/E7GVDrRIuoH1AznQaqWQo3tqvXrnKHdd7m
-	RFfWjaNTgjeHSfJkVoqf1u/qeQ9umDGZn7Xa/P+EX4q
-X-Google-Smtp-Source: AGHT+IEN648vI6Hm5m9/RNBdn/c6BTF3t50WrblnPLPcU3GBbVZCvpdfAA56AdTbz+ybr1l29cbfpXFz2yx0RQiYjaE=
-X-Received: by 2002:a17:906:c103:b0:b45:44f4:30e1 with SMTP id
- a640c23a62f3a-b4544f479e0mr28136366b.34.1759201656713; Mon, 29 Sep 2025
- 20:07:36 -0700 (PDT)
+        bh=psH8ce2EGDVOVWJJv98yedDgFcZ/vr9lSF0MkEmVn80=;
+        b=i+lg505fKrb/VHDsF3jwegWOWQg0A4Ucg+KF4a+aAOJq1LYmNaELr+VI7g79Fo09Kj
+         R+KqRtI+XYY4zy/D8Pd6pvR/1uCbnU19BnUTsxNcjtOTbR8Uk5NtC5jVXSpB1jlE3NpJ
+         K4asLZ8Z0PSlm2WNUHgdwA/pByDH+56YNlwjk4pttxdK9QyksKUoxcCumafirXyZMxZu
+         nHXLgIvPwi96FgpLclVESg8L96XR07cCl4cxvSY4cLpvoR0Cx0t8mA9p+j68LgyMvuBK
+         jVThWH0t0a9GXa6eEWVAOpug0Ci5uIcloSrTa/2J9KbHrmf6szflV+xSmwlCykNQGURz
+         E9IA==
+X-Forwarded-Encrypted: i=1; AJvYcCWx7/7IJrpOD/ozBPsGWRFewO7RP654JxFF6SAGXcyBAVMNdcD+S+YSMOQjtU4tjE2lwjohQJyZjHgq@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxNNZ/isjoydaxCZxnEtzVC7i8J4qZ3V7AMBPvJC2l2IA/12WV
+	AWcaZtKB5Csl5sUMyEkaGGVJsHpNWi5GmTQ5PbiMC79TPfnqX8IGiwBmt9uSe/nocQtUvwVluY4
+	oy1Y=
+X-Gm-Gg: ASbGnctnHzcE73dw6pT6XRE5d3Aq88EObdr7dqtJBn2WEAreQptjhh0/Ux0/TzkP/as
+	+W3YGlia/AyEW+NDMsqNX5L62YJbE93cdx0GfrtDS58pkw6cq2LKbPfpzqTeT7oeDb+gBNSavPc
+	sNWuB6C/Ym8mjC9RGXviTtLw9cH5BWqa2vR7KkCydxW7yVfZk06ItGXSd+AODO2zP3oezZjkJZb
+	P4mE9jqUbHm7+9T0BgegAPtplaHUaXAHN+YkWgEuzSG05EfzKWvuIDal1bZz0vfdhT8uaFdLgCx
+	XLkK+8FJaoZQ7OHUI9/ec44oLPO72r+i4ddo6PNXJns4HjooxMJrqy/EQ8Fi8gUyrcFVFLpOjXr
+	k6BICH6VAvboeljAfE4bNqukYT7+mlctirZvlAV/fWDTmd7LvZta6b91m0CFGQBU2aNjdqIipU/
+	KrPk5bx+I9EUwaN/Gm4I+hSXjv
+X-Google-Smtp-Source: AGHT+IFWprqeRDAhdtLoulFZTLFE1eVIVuyPTU+T0vt8sLC0XkQ49RYJR9O65LM3pxXwkK9Yyqoh+Q==
+X-Received: by 2002:a17:902:ec88:b0:25c:2a4c:1ca3 with SMTP id d9443c01a7336-27ed4a2d581mr206212635ad.30.1759202071212;
+        Mon, 29 Sep 2025 20:14:31 -0700 (PDT)
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com. [209.85.215.172])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed688226asm146020165ad.65.2025.09.29.20.14.29
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 29 Sep 2025 20:14:29 -0700 (PDT)
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-b57f08e88bcso3040092a12.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 20:14:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUWBUzx/c57TWBDi5atbPzCn8NF6+kIvlvAj/UgM6lrTRo8Hza01nx+T4fWXQmBB/+AI7QgXtf1UHrY@vger.kernel.org
+X-Received: by 2002:a17:903:1209:b0:27c:56af:88ea with SMTP id
+ d9443c01a7336-27ed4a60a90mr164034935ad.60.1759202068865; Mon, 29 Sep 2025
+ 20:14:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1758676290.git.zhoubinbin@loongson.cn> <9823e7afe713450e210dab9dba6fa18683dc1fe0.1758676290.git.zhoubinbin@loongson.cn>
- <a985f144-7489-4a99-bcb7-90e7b21d9885@kernel.org>
-In-Reply-To: <a985f144-7489-4a99-bcb7-90e7b21d9885@kernel.org>
-From: Binbin Zhou <zhoubb.aaron@gmail.com>
-Date: Tue, 30 Sep 2025 11:07:24 +0800
-X-Gm-Features: AS18NWDRGIX8ccYnyCzkTicMCR8HLLJvmhoh5wlIK_KmTb0hEwHglsNxtMS1qtU
-Message-ID: <CAMpQs4Kpcb5n0g=cH6_RPnjvcwPQ0k0Obcc6c8j6yMxg3THp+w@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] serial: 8250: Add Loongson uart driver support
-To: Jiri Slaby <jirislaby@kernel.org>
-Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Haowei Zheng <zhenghaowei@loongson.cn>, Huacai Chen <chenhuacai@kernel.org>, 
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-serial@vger.kernel.org
+References: <20250929142455.24883-1-clamor95@gmail.com> <20250929142455.24883-3-clamor95@gmail.com>
+In-Reply-To: <20250929142455.24883-3-clamor95@gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Mon, 29 Sep 2025 20:14:17 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WH5rsQR0vnsdZqfA-K-4AWSyOOfbe3g1H7pYCG0AigZw@mail.gmail.com>
+X-Gm-Features: AS18NWAj5Q6YXwI8UEKn83gnNL36khKZ6enBt8j4y4L77Jpu4EeJviWpKmgJt1I
+Message-ID: <CAD=FV=WH5rsQR0vnsdZqfA-K-4AWSyOOfbe3g1H7pYCG0AigZw@mail.gmail.com>
+Subject: Re: [PATCH v1 2/8] gpu/drm: panel: add support for LG LD070WX3-SL01
+ MIPI DSI panel
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hi Jiri:
+Hi,
 
-Thanks for your review.
-
-On Mon, Sep 29, 2025 at 2:27=E2=80=AFPM Jiri Slaby <jirislaby@kernel.org> w=
-rote:
+On Mon, Sep 29, 2025 at 7:25=E2=80=AFAM Svyatoslav Ryhel <clamor95@gmail.co=
+m> wrote:
 >
-> On 24. 09. 25, 8:29, Binbin Zhou wrote:
-> > Add the driver for on-chip UART used on Loongson family chips.
-> >
-> > The hardware is similar to 8250, but there are the following
-> > differences:
-> >   - Some chips (such as Loongson-2K2000) have added a fractional divisi=
-on
-> >     register to obtain the required baud rate accurately, so the
-> >     {get,set}_divisor callback is overridden.
-> >   - Due to hardware defects, quirk handling is required for
-> >     UART_MCR/UART_MSR.
->
-> So how hard would be to implement this in 8250 using existing (or new)
-> callbacks+quirks?
+> +static int lg_ld070wx3_prepare(struct drm_panel *panel)
+> +{
+> +       struct lg_ld070wx3 *priv =3D to_lg_ld070wx3(panel);
+> +       struct mipi_dsi_multi_context ctx =3D { .dsi =3D priv->dsi };
+> +       struct device *dev =3D panel->dev;
+> +       int ret;
+> +
+> +       ret =3D regulator_bulk_enable(ARRAY_SIZE(priv->supplies), priv->s=
+upplies);
+> +       if (ret < 0) {
+> +               dev_err(dev, "failed to enable power supplies: %d\n", ret=
+);
+> +               return ret;
+> +       }
+> +
+> +       /*
+> +        * According to spec delay between enabling supply is 0,
+> +        * for regulators to reach required voltage ~5ms needed.
+> +        * MIPI interface signal for setup requires additional
+> +        * 110ms which in total results in 115ms.
+> +        */
+> +       mdelay(115);
+> +
+> +       mipi_dsi_dcs_soft_reset_multi(&ctx);
+> +       mipi_dsi_msleep(&ctx, 20);
+> +
+> +       /* Differential input impedance selection */
+> +       mipi_dsi_dcs_write_seq_multi(&ctx, 0xae, 0x0b);
+> +
+> +       /* Enter test mode 1 and 2*/
+> +       mipi_dsi_dcs_write_seq_multi(&ctx, 0xee, 0xea);
+> +       mipi_dsi_dcs_write_seq_multi(&ctx, 0xef, 0x5f);
+> +
+> +       /* Increased MIPI CLK driving ability */
+> +       mipi_dsi_dcs_write_seq_multi(&ctx, 0xf2, 0x68);
+> +
+> +       /* Exit test mode 1 and 2 */
+> +       mipi_dsi_dcs_write_seq_multi(&ctx, 0xee, 0x00);
+> +       mipi_dsi_dcs_write_seq_multi(&ctx, 0xef, 0x00);
+> +
+> +       return 0;
 
-Initially, we attempted to directly add Loongson UART support to the
-existing 8250 driver. The critical section is as follows:
-
-diff --git a/drivers/tty/serial/8250/8250_port.c
-b/drivers/tty/serial/8250/8250_port.c
-index aa4de6907f77..6754f496a95c 100644
---- a/drivers/tty/serial/8250/8250_port.c
-+++ b/drivers/tty/serial/8250/8250_port.c
-@@ -395,14 +404,36 @@ static void hub6_serial_out(struct uart_port *p,
-int offset, int value)
-        outb(value, p->iobase + 1);
- }
-
- static unsigned int mem_serial_in(struct uart_port *p, int offset)
- {
-+       unsigned int val, offset0 =3D offset;
-        offset =3D offset << p->regshift;
--       return readb(p->membase + offset);
-+       val =3D readb(p->membase + offset);
-+       if (p->type =3D=3D PORT_LOONGSON)
-+               val =3D serial_in_fixup(p, offset0, val);
-+       return val;
- }
-
- static void mem_serial_out(struct uart_port *p, int offset, int value)
- {
-+       if (p->type =3D=3D PORT_LOONGSON)
-+               value =3D serial_out_fixup(p, offset, value);
-        offset =3D offset << p->regshift;
-        writeb(value, p->membase + offset);
- }
-
-This made the code difficult to read, so I concluded it was not a good
-solution. Therefore, I separated it into a standalone driver.
-
->
-> > --- /dev/null
-> > +++ b/drivers/tty/serial/8250/8250_loongson.c
-> > @@ -0,0 +1,202 @@
-> ...
-> > +struct loongson_uart_data {
-> > +     int line;
-> > +     int mcr_invert;
-> > +     int msr_invert;
->
-> These two should be unsigned. They should be u8, actually.
-
-OK....
->
-> > +     struct reset_control *rst;
-> > +};
-> > +
-> > +static unsigned int serial_fixup(struct uart_port *p, unsigned int off=
-set, unsigned int val)
->
-> Both 'val' and ret type should be u8.
-
-OK... I will check twice.
->
-> > +{
-> > +     struct loongson_uart_data *ddata =3D p->private_data;
-> > +
-> > +     if (offset =3D=3D UART_MCR)
-> > +             val ^=3D ddata->mcr_invert;
-> > +
-> > +     if (offset =3D=3D UART_MSR)
-> > +             val ^=3D ddata->msr_invert;
-> > +
-> > +     return val;
-> > +}
-> > +
-> > +static u32 loongson_serial_in(struct uart_port *p, unsigned int offset=
-)
-> > +{
-> > +     unsigned int val;
->
-> u8
->
-> > +
-> > +     val =3D readb(p->membase + (offset << p->regshift));
-> > +
-> > +     return serial_fixup(p, offset, val);
-> > +}
->
-> thanks,
-> --
-> js
-> suse labs
+Shouldn't this return the accumulated error?
 
 
---
-Thanks.
-Binbin
+> +static int lg_ld070wx3_unprepare(struct drm_panel *panel)
+> +{
+> +       struct lg_ld070wx3 *priv =3D to_lg_ld070wx3(panel);
+> +       struct mipi_dsi_multi_context ctx =3D { .dsi =3D priv->dsi };
+> +
+> +       mipi_dsi_dcs_enter_sleep_mode_multi(&ctx);
+> +
+
+Maybe add some comment about ignoring the accumulated error in the
+context and still doing the sleeps?
+
+
+> +       msleep(50);
+> +
+> +       regulator_bulk_disable(ARRAY_SIZE(priv->supplies), priv->supplies=
+);
+> +
+> +       /* power supply must be off for at least 1s after panel disable *=
+/
+> +       msleep(1000);
+
+Presumably it would be better to keep track of the time you turned it
+off and then make sure you don't turn it on again before that time?
+Otherwise you've got a pretty wasteful delay here.
+
+
+> +static int lg_ld070wx3_probe(struct mipi_dsi_device *dsi)
+> +{
+> +       struct device *dev =3D &dsi->dev;
+> +       struct lg_ld070wx3 *priv;
+> +       int ret;
+> +
+> +       priv =3D devm_drm_panel_alloc(dev, struct lg_ld070wx3, panel,
+> +                                   &lg_ld070wx3_panel_funcs,
+> +                                   DRM_MODE_CONNECTOR_DSI);
+> +       if (IS_ERR(priv))
+> +               return PTR_ERR(priv);
+> +
+> +       priv->supplies[0].supply =3D "vcc";
+> +       priv->supplies[1].supply =3D "vdd";
+> +
+> +       ret =3D devm_regulator_bulk_get(dev, ARRAY_SIZE(priv->supplies), =
+priv->supplies);
+> +       if (ret < 0)
+> +               return dev_err_probe(dev, ret, "failed to get regulators\=
+n");
+
+Better to use devm_regulator_bulk_get_const() so you don't need to
+manually init the supplies?
 
