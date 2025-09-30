@@ -1,204 +1,173 @@
-Return-Path: <devicetree+bounces-222858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 360D1BAE667
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 21:09:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5E16BAE673
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 21:10:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84C5D188E9DB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 19:09:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84EB93B07DF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 19:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8705285071;
-	Tue, 30 Sep 2025 19:09:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C17F2853FD;
+	Tue, 30 Sep 2025 19:10:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="OQRbvaoQ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LJ3EwsB1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f228.google.com (mail-pl1-f228.google.com [209.85.214.228])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2237D28033C
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 19:09:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.228
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908B428033C
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 19:10:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759259348; cv=none; b=eBrjBDCTxPKrn7d8KfQRniA/2lpJAqJ7Vlxdpe6IewKhBF2o3rGgS7Z2YgQD4EeH79NaNkenO0dUzuajB/1FrrpgSyodK+1bV99gCaqtwYHBCC33ggpTQpGnnM8guLqOhWl4u9ghoLLcZhGb+/Hu9MkNzr/raaNgtSlzwhSH9ik=
+	t=1759259432; cv=none; b=WbYX/Lx6dGS3K13sBdBnua0jtPuReFNN+v9czTNP5VH4jfDpm7OiU8quO8MoUj6fmHYvVLUDmm30n338ezCNWQoEJj5Kux+qQgDt25RGGlRn57akQGdli1LkEc38pXqaAv9NoJHDIHDC+/dGTJ07t5nYGeisancIK4TOFzpGDhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759259348; c=relaxed/simple;
-	bh=8byBzfuARLecV6jM7Fyl8z6QyeFuZed5n+JikteZAf4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uZ3c79prkOwvnEVlP8TFBET7DzxKXSZS8OWvU6+7ZehC5xYdlt0SZnYgLHjvX+GY+Wtp1x7wFGB3cbj5tS29BM7DiEwPwzv5Et1TNEeGFFftrMVqfw68Fh5J3dIfmMA7LSCWtxUvpEIATq43nKhTPaTl6h+2w/5SFkDBUPvAY0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=OQRbvaoQ; arc=none smtp.client-ip=209.85.214.228
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pl1-f228.google.com with SMTP id d9443c01a7336-28832ad6f64so33281025ad.1
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 12:09:06 -0700 (PDT)
+	s=arc-20240116; t=1759259432; c=relaxed/simple;
+	bh=pa6R9xQgA+IOf+9S+rBtBTuRG8cHJTaaKLNtl4UpGL4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NqoByiWsJ9piO5FN0PJgE7APQDShb45L4HV2ynWObd8uS0LrcFqz2t5GhFZW/sP/N388dArd/cDqHQili2zV4Z/zc7AbM2Tx89x54gJdvYqZhIA7iWgCLCDQsHV6fnwG+VFiLNOXl026RRxunLuWOI9+T3nJST5pZEo5Nvhv1Tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LJ3EwsB1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58UBwTdG014865
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 19:10:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=KaP73elixzl4ZUoebFDxy0mN
+	/aCsbQY22jycZNAiNhA=; b=LJ3EwsB1TbVDW6WIi6kQpRsBewLotwSs5Y+pi60L
+	fgQ/3S86ppNcIFGKzGAFuzwtw+yjTI3e6Uwvg9/DpB47+wU+GN6UFpUsgxH970Ni
+	eo4Z9UgCbm1KPj81wTGeSOpQNgTzzTDX+j5OOmIgdgc5NsD/LatDIYuoPuHh+mOv
+	xU1EsJywoPKlNgDSlz/5/RD9xNgT7/dR6ZSwUpJS2p/IXnHrh7f+qvPSwz8ZAy7u
+	1AvsFqG1404eSe09VUcFtuEVf2D9oE1PXyyAbA9Ja/7kTvR6vepsswmh2E9m946Y
+	Y/bXWc8dcFn9yWdY/OTS4FJs07XJtT8PYB4w1ZgRjYszTg==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e6vr2681-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 19:10:30 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4d91b91b6f8so99518871cf.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 12:10:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759259346; x=1759864146;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:dkim-signature:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mEfsyBIOLNFZekIuKmhiFVgQSrwSDxg84Ts1cNcrGIY=;
-        b=oCFRCypUPmZdkGBuzrG3lazlVl1e1LBQ5MgrDUBXxLs/uTJnLXgVcfRTtEfqSGLmup
-         Zu9pFwLwIr5T4ez1JYYcS36sjqvsCIvUZu6hWP3uT2aHV7dOwLpTyD0+H1FNkC/ivypF
-         HSbHIsOk74GQ+FTvYXnh1AMiJK1nKdVEIHQoaNgSD3+jSQqN1Uv66FhRjr2Vkf9Gx26y
-         P0qwQAt1vVQ8Jfd4zTu5JyXI4TuXK1ts8dIvrJt0Em6RUPUTklRW94favkevMJPhE/vm
-         3nDBYNggX0ME3oVg6U8C2a2dQAp6rcA4iKqplzLJF25+7A9rqMqTVyF6eI7pUkBjOc9x
-         tIgw==
-X-Forwarded-Encrypted: i=1; AJvYcCVVyZm1hM5HbhhYu95xozPUkE8BE1QHe2djuBBKAaQyJML2jamSgvGSEHbBzM0DB9AmbG56J+Nv8Mpl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/685/et/Xv6r6VtPlu/wZb1oHotD2FyWOTas2+zbUkc0BR3Rf
-	nKH+y7RphB4e4Pkr8YQVCLPqnzcRnOZJgjjAzoMXna1hT0tJamQc5+0q0g41EKv73Sk/xWek2iw
-	xyKGZEL9Al7p466VLQIsFRA2jBJnDw7emi2UdqrsOPlybzZ6hT8OwImvBayEa9nBP3Zi7xOKP9U
-	KAmptUoVazl0v4HphSJvdCu7eBSignRJgTWne6gGmsh9WUJjCKast/XBZ3RrSIuycqtyT51f2QW
-	QulKN5xzenm8Xwoeh4eVQ==
-X-Gm-Gg: ASbGncuw5nnzzd0FbQLdIz1P8qyXoXXW6ojVkljjtviUd6Lkt6c0zG6LCRmFEUaHzpf
-	7+HoePSWwm1Uwl86u4jhqJidQ6Ey7fLKsPSkZ/4d/IKDst965rq3fwpZ0cFRsVzyxZTkzSQHHYd
-	I/hwOPaz8DWXpL7z1dPlsbiBjNgXMF8tcT+I2WL1IaEbY7q0qQxkwL1h+mAd6sZmPUDE49q1pjh
-	Ii1SIRcjxKtr60up3gaqjRoG6HnzSidC8GqMjx0VtSNUtXHhznQwAlD5olmlEJ6UojIHnHMAMN0
-	tGwQx5ifXcEH2M9wrbNQzBx6LBOfw3V/XCU4S28UivPpv29M8Np+Qbrr0iPix6y6OyPKWadwdbA
-	G0Nr+f6LqoMaNSZ1NNSK+hNftkpTmHNdg86e4Kcn0O+TzO1cTa8Du8DLI5Nrvmnk62/P3ldx5UU
-	EZYlg9/Los/sLF
-X-Google-Smtp-Source: AGHT+IGvegrCOsdg0lOrA6kGPEutc6YvNMWFrPoAIBO8Ao5JcJ7gpcIppHjHJ+2leNZ5ZoaEE83INI2d8yLt
-X-Received: by 2002:a17:902:fc4c:b0:263:3e96:8c1b with SMTP id d9443c01a7336-28e7f32ff06mr9436725ad.33.1759259346281;
-        Tue, 30 Sep 2025 12:09:06 -0700 (PDT)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-117.dlp.protect.broadcom.com. [144.49.247.117])
-        by smtp-relay.gmail.com with ESMTPS id d9443c01a7336-27ed685c535sm12086165ad.73.2025.09.30.12.09.05
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 30 Sep 2025 12:09:06 -0700 (PDT)
-X-Relaying-Domain: broadcom.com
-X-CFilter-Loop: Reflected
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-3305c08d975so6339973a91.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 12:09:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1759259344; x=1759864144; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=mEfsyBIOLNFZekIuKmhiFVgQSrwSDxg84Ts1cNcrGIY=;
-        b=OQRbvaoQsJvxfH38ClbS6SmZ4WVMbXa17LQoRRvb6ro9EAqJiEIAlDlaInUIUHHq8a
-         xDb0clGurBmQtBR8MWFBCDk1DEh12pYbu4qIGS8dNUextYJ7s0uRc+WcLad7W+LAt3Vi
-         kHrLHJfCtEazLIaBAenRr1u26LrAZ6cklWKpc=
-X-Forwarded-Encrypted: i=1; AJvYcCUQXFjCUmwE8Ch/aGNYppYN5zRBGiIJ7RIn2JbqDHNX+PawNthVBsWucSdLA65WT6GH/2gYIv0NpYyN@vger.kernel.org
-X-Received: by 2002:a17:90b:3a92:b0:334:29f0:a7e4 with SMTP id 98e67ed59e1d1-339a6f36cbamr634147a91.21.1759259344353;
-        Tue, 30 Sep 2025 12:09:04 -0700 (PDT)
-X-Received: by 2002:a17:90b:3a92:b0:334:29f0:a7e4 with SMTP id 98e67ed59e1d1-339a6f36cbamr634109a91.21.1759259343918;
-        Tue, 30 Sep 2025 12:09:03 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-339a6ebe5f2sm297610a91.11.2025.09.30.12.09.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Sep 2025 12:09:02 -0700 (PDT)
-Message-ID: <1bb0f2f9-d3fa-42af-aa55-e9f0771ed5be@broadcom.com>
-Date: Tue, 30 Sep 2025 12:09:01 -0700
+        d=1e100.net; s=20230601; t=1759259429; x=1759864229;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KaP73elixzl4ZUoebFDxy0mN/aCsbQY22jycZNAiNhA=;
+        b=brM2gdb/0J/2wF/Pl7jBzp023Nj08XIIwKh5H+x3Nvk/KaU0fCrc8e4duW447MYV14
+         /gKwc1sS+/jMLav1XNROKz9FIw4cyJn/41n+yaJbH7IPdo4VKlQxnLZ0NeJsgf6WZ4E7
+         90MTmt7f2v3kN7rhe66ZYNtX3BKeij6bCWVoj5hrupwL6iTkcvTVLu2Prt0sTwlJ/Ihu
+         TX530Q6jNb7lUfn3/mH8rtv3xfX8a/rrhDKHKQwhF9MtMALr871Ws94TMwEMFbp42RJY
+         iI3c1qeUVeOSNJaUSUeRnHZcb0U3tbpPbqKEoL5k7w7pTWK+SYiUkgA/eOL6FhrErYfv
+         XFJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUD1JknjGfKLroPy6QTW4zMd6Dw/eGAT1RW704GgoL913nDIzZc25qpCeQWJ/TUDT8UgS0QypBMMSg3@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrsbafsvBszneom9O7zTRRpXttPAPldJoIKk2rfxcCG2vM9zIV
+	gLGrUOAIYIWMT/Pm6D1iqKSOFE3DWpp69fAsvR99ummpx8RHLuEzNoSYyo9CEFkkVm0uSVghVWO
+	vMyXYHv7OYlGLJ6RbygXz8AixPH19piSQn/+ZKqcNNwd3QHcwlkpF1Az4ZR1Lvqep
+X-Gm-Gg: ASbGncsMu7AKToeitazjjKuD9SeSANB//FWcNrom3XOY2CFXE470IbKluruzE0RsI9M
+	Ksf0gCutO5CUhagpSh3AANcIMLSO67cHrzdbiTMrNlOr4X2ibQ1OrqRZJQfmoqfqkr7idRsOYZ1
+	89BrMhGeTA8DtyN2wh6zMUexS6Ng4SXaPs2weVRn6XgMShx/q9t9DWG6mSnLhIV5dXasOKWLUX5
+	qRAlgMZuL6fSttTUHVhnf1QSOzuJDowDeRD8c04/7dq0OT75EEJybFKLeS6np+gtRBgNv8leZ8m
+	z2k2AL2JLHt7PEOqTp+znw1qKmAgXP/7iDtdhOZmc/llrtxKzOUq9fijbXcnl3qQbsS5yE3yN7F
+	0OVcDPk4T0yDSm3Ctw2vlio3/GUtCTVoHV9kOB3TZt9wML4A8KdryWRyTjA==
+X-Received: by 2002:ac8:590b:0:b0:4e3:2347:e09d with SMTP id d75a77b69052e-4e41de72003mr9045951cf.48.1759259428792;
+        Tue, 30 Sep 2025 12:10:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEzV2iLngdinAfpYz6LMemQN0HNVnTxKUNLX9DKPaa9tp4J7rq08PEz47QNaOv/YjDZWGvTXQ==
+X-Received: by 2002:ac8:590b:0:b0:4e3:2347:e09d with SMTP id d75a77b69052e-4e41de72003mr9045591cf.48.1759259428340;
+        Tue, 30 Sep 2025 12:10:28 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58749849177sm2220124e87.103.2025.09.30.12.10.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Sep 2025 12:10:27 -0700 (PDT)
+Date: Tue, 30 Sep 2025 22:10:25 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: do not
+ reference whole usb-switch.yaml
+Message-ID: <nwtt76n4t7tlf26ex47wrot7g7nldtmavbzgwmluls3egamjsi@mkomopb6fjh6>
+References: <20250902-topic-sm8x50-fix-qmp-usb43dp-usb-switch-v1-1-5b4a51c8c5a8@linaro.org>
+ <20250905175533.GA1000951-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: hwlock: Adding brcmstb-hwspinlock
- support
-To: Conor Dooley <conor@kernel.org>, Kamal Dasu <kamal.dasu@broadcom.com>
-Cc: bcm-kernel-feedback-list@broadcom.com, andersson@kernel.org,
- baolin.wang@linux.alibaba.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250929200628.3699525-1-kamal.dasu@broadcom.com>
- <20250929200628.3699525-2-kamal.dasu@broadcom.com>
- <20250930-slapstick-volatile-60ad540f4b66@spud>
-Content-Language: en-US, fr-FR
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20250930-slapstick-volatile-60ad540f4b66@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250905175533.GA1000951-robh@kernel.org>
+X-Proofpoint-GUID: Du1BGAqfCuJl7MHugWBFUDM3Yid4cHBW
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAxNyBTYWx0ZWRfX///nxdBz8Mvh
+ ctERcVwHiARbT80v6yq7CabR1eU4mcn9h5L9pzBPG0CGu6KX4M1tjB6abK74E/Ji/m5DCGk+IEW
+ vElHEIo9xEzi2/wvul+i1bklpQhGE5oX4CUTCKan/+TjuL6ZRqHjYM4V2WqR21u0yDh7+a8qMny
+ zAqoAEp3O1Of1bK8lnoTGYtYXuV9p1aIMSblUpxqMJHugahjWLSdynYuQZzOsWpajzbM5hJg+Un
+ IN1PcGY6ZKJT7EPXlBq6Z4/VLd1sbze8JHrIhpr/KmPenOa/J+wKLfzpQNwd6xhn1C9vanC1rRJ
+ zaShGacE2RheTu1Z0moV855DNEB/PQGgwbtqihZ9+APETnQ3PdIriExs5l/e219eCh2cahwnpr3
+ 08uJHq/KC9xhtXsnln34CXj8tQX9CQ==
+X-Authority-Analysis: v=2.4 cv=IeiKmGqa c=1 sm=1 tr=0 ts=68dc2b26 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=SzPxuEgdeXQIFyuOAFQA:9
+ a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: Du1BGAqfCuJl7MHugWBFUDM3Yid4cHBW
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-30_04,2025-09-29_04,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 clxscore=1015 priorityscore=1501 bulkscore=0
+ suspectscore=0 spamscore=0 adultscore=0 impostorscore=0 phishscore=0
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
+ definitions=main-2509270017
 
-On 9/30/25 12:03, Conor Dooley wrote:
-> On Mon, Sep 29, 2025 at 04:06:24PM -0400, Kamal Dasu wrote:
->> Adding brcmstb-hwspinlock bindings.
->>
->> Signed-off-by: Kamal Dasu <kamal.dasu@broadcom.com>
->> ---
->>   .../hwlock/brcm,brcmstb-hwspinlock.yaml       | 36 +++++++++++++++++++
->>   1 file changed, 36 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
->> new file mode 100644
->> index 000000000000..f45399b4fe0b
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/hwlock/brcm,brcmstb-hwspinlock.yaml
->> @@ -0,0 +1,36 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/hwlock/brcm,brcmstb-hwspinlock.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Broadcom settop Hardware Spinlock
->> +
->> +maintainers:
->> +  - Kamal Dasu <kamal.dasu@broadcom.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: brcm,brcmstb-hwspinlock
+On Fri, Sep 05, 2025 at 12:55:33PM -0500, Rob Herring wrote:
+> On Tue, Sep 02, 2025 at 06:10:05PM +0200, Neil Armstrong wrote:
+> > Both bindings describe a different layout of the ports properties,
+> > leading to errors when validating DT using this PHY bindings as
+> > reported by Rob Herring.
+> > 
+> > Reported-by: Rob Herring <robh@kernel.org>
+> > Closes: https://lore.kernel.org/all/175462129176.394940.16810637795278334342.robh@kernel.org/
+> > Fixes: 3bad7fe22796 ("dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Reference usb-switch.yaml to allow mode-switch")
+> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > ---
+> >  .../devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml    | 8 +++++---
+> >  1 file changed, 5 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> > index c8bc512df08b5694c8599f475de78679a4438449..5005514d7c3a1e4a8893883497fd204bc04e12be 100644
+> > --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> > @@ -73,8 +73,11 @@ properties:
+> >      description:
+> >        See include/dt-bindings/phy/phy-qcom-qmp.h
+> >  
+> > -  mode-switch: true
+> > -  orientation-switch: true
+> > +  mode-switch:
+> > +    $ref: /schemas/usb/usb-switch.yaml#properties/mode-switch
+> > +
+> > +  orientation-switch:
+> > +    $ref: /schemas/usb/usb-switch.yaml#properties/orientation-switch
 > 
-> Is "brcmstb" actually the name of a single platform?
-> Looking at the "brcmstb" pci binding, it looks like there's a whole load
-> of different devices there and none use "brcmstb":
->            - brcm,bcm2711-pcie # The Raspberry Pi 4
->            - brcm,bcm2712-pcie # Raspberry Pi 5
->            - brcm,bcm4908-pcie
->            - brcm,bcm7211-pcie # Broadcom STB version of RPi4
->            - brcm,bcm7216-pcie # Broadcom 7216 Arm
->            - brcm,bcm7278-pcie # Broadcom 7278 Arm
->            - brcm,bcm7425-pcie # Broadcom 7425 MIPs
->            - brcm,bcm7435-pcie # Broadcom 7435 MIPs
->            - brcm,bcm7445-pcie # Broadcom 7445 Arm
->            - brcm,bcm7712-pcie # Broadcom STB sibling of Rpi 5
-> 
-> If "stb" means "set top box", it sounds like a catchall for disparate
-> devices, which isn't permitted.
+> This is a pattern we try to avoid with references at a property level. I 
+> prefer you make port and ports not required in usb-switch.yaml.
 
-Unlike PCIe, the HW spinlock hardware has been stable across all Set-top 
-box chips ever since it was added, which is why the catch all is IMHO 
-adequate here.
+But this solution is also not perfect. E.g.
+Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml should
+only allow the orienttion-switch property, while using
+allOf:$ref:usb-switch.yaml allows all three (orientation-switch,
+mode-switch, retimer-switch).
+
 -- 
-Florian
+With best wishes
+Dmitry
 
