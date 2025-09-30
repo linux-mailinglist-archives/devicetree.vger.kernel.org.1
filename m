@@ -1,291 +1,125 @@
-Return-Path: <devicetree+bounces-222765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58298BACBA5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 13:45:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E90ABACBC0
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 13:56:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04F881C7D16
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 11:45:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2D861C3351
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 11:56:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED81B264F96;
-	Tue, 30 Sep 2025 11:44:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37F8C26A088;
+	Tue, 30 Sep 2025 11:56:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="duebPmOW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nbM1X5UC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52DB82641C3
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 11:44:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EEF723D288;
+	Tue, 30 Sep 2025 11:56:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759232697; cv=none; b=BODZV4/xXR6N15GSEdFjHgAxd8oozwkR4mKjVpphZS6m2IRDHd41HpuHsvbi/Ha7RLUVb4kYNRy+PsJtdux24WtKCXGGo0RIMZrjzOn0t3zvK1AOeF/7L1D4DxtCpIIevLgGaQgYNcuVUtZUcT3I2EaByk0TxpahLDxqjN0St6M=
+	t=1759233414; cv=none; b=ejmjrwIiCqTsJpipXStLEFED6W0MMljdTPexU81g+UJLKuS8s+CH71klc+EW18YX3qzNhheXBPyzzcXpRN85eVAJ5OUSKFZtxhSGDRhebEcujswPRsbKc0/Kdok37gm6gmvo7w2phx0UqwTUrr/2MgyHYxzEZOshCdNYC1DsfIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759232697; c=relaxed/simple;
-	bh=WZFp1ztP+iQAiNPILwtflJS8o6GJ5M/F6YQtJ1K8MrE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=geyHu6Dq6p5PhnOfRFMlw6kXA4GCVpuWjqAsqhGHhZNvCjlXeQ6Oev3p4l7h/jXzB1x1H9rbTEIrQ+tLjaxMUOExOa16lxI3claBc+XN8OECK3OaqZlfcXIeW9dFiKPaQ5eDwHD4aXJjqlK3xs+bMe87lsEa7Qc1TGnJEnl+mbo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=duebPmOW; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58UBK2RB009323
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 11:44:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	l0BzqZ/4sw53r69E6XghJy873Mwyh6QyOXwyOoGLze0=; b=duebPmOWUOAADAgx
-	Xb6oWB0SKfqaSemGSxG17Y6Vs2+ilBdL7yyen//7uO8d362HGEtd2/074EkDd+SS
-	IsVxX9WI0eWeoss4SC8xRguh4eoaRufAUQdrAIJUfe+YfcBKWwMvQy21/GZW/FMk
-	FyWRo4ZT2jiKA3mBZiUDE+Y8NcqHZi7sKVmWKttOntkBLsA1+H1insTqwZRxDXQZ
-	E8rTmxsVTg/vWiXfNlhT1uCwfR0/PunLFoTRUuwqJ+rjDOAkYG0Ijsipx7khbAk6
-	Ddluj2BFftVtdj9SyiVHD4cfvvidjAMEUj2a0IPpE3nKZsLnj9Zkx3AOqNL6newM
-	4SVmgg==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e977rjyb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 11:44:55 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-28c58e009d1so31722245ad.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 04:44:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759232693; x=1759837493;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=l0BzqZ/4sw53r69E6XghJy873Mwyh6QyOXwyOoGLze0=;
-        b=Mlr5S9/NYbycYeWh8WxK4qXzPlxEvdnk8jIxucdfZJVZOW+DKEf8n4UI3t8wJFDupB
-         4goIcwa0hF4ouJY45cfLFEn+XbXKDI3lU/Qw64n7OmLsZ8r7Q3W7aKrTythSxrFBazBD
-         OmisV9CFyONVsyw3h7bPGbzu5RV45v0lgYtNaFGAj5zZ6mSTP3x3BFIqeDH5DJbiZkji
-         OehZdQnJPl2tXUfwuoX8A+cy5kJ+ylgwm7X9EEtMn3Tzu2IvrrIBeTRYkkbxSoEtcCuf
-         0WX490d2yRppZS/7jo1F5IsrXExVHXizu4+Fd4JOe3rjheTDXtRNSValvB5H9Vgc6g1O
-         4cbg==
-X-Forwarded-Encrypted: i=1; AJvYcCUDYM2AnDWpYFktenKIz1FUITNeu7bd/IA8vWTtSm1TjNKxeNIdIUZJSGU4qzukhZUvm/jMxRueFQkC@vger.kernel.org
-X-Gm-Message-State: AOJu0YytR/WTkRXg9ELfs/0atvofNumLHE3TMesLaQ+7onSZ47RYpOJX
-	/db9E8kpzalLrwOV7R0ffzjbPXkUWDv/Aeqnc6knbccfj1zykEVwxjbq/uaIYGBH5FKKYNc/4sB
-	ZAIoQZJWgU/WPS22F432UiZXo8SgMm8In9bdLOsYXHdXU+RWdCktiv1ondjydPrhc
-X-Gm-Gg: ASbGncsiX0Rcoy/Yw/Xd77sKFxfFa0gd7xZq6fX6K9tZMWa9TYUsT1JZRYu0U8w4iFU
-	Y4gFv3DsSGhTNTc/R+mT7FAm6sdcaDipqdf2dmu7z1gRel7psIOKBd///T62RYObxn1nYpC9vws
-	y+I1BWeAOZKEzYSt74GsJILV19l8wb/z178KCQMf6AwvMGQOCxzjGaOkIT5ffsT06Hqs9lxMMVi
-	9hYyDUAawGebeyAfkaksJuMpQRKluaJVM4j87c+ooQ7Te3VWJGXAHrjU6D8y0/wckZxyyWBb3iw
-	4VWmEQz6sjYNU6xkru2vOclNMhAtu8JCLPJi6w6Z8H+ArZ5mOHwgZesuIQ5BA+5g1URNDNosg5m
-	y68Bo
-X-Received: by 2002:a17:902:e54f:b0:267:9c2f:4655 with SMTP id d9443c01a7336-27ed4a49254mr215222945ad.41.1759232692509;
-        Tue, 30 Sep 2025 04:44:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEve1eD+dd1r1YsJpk9PlBGwIyu3HmOFMAgn0RGL0ZK0pja/BCi89UoErtpan0WzMlLpeewzQ==
-X-Received: by 2002:a17:902:e54f:b0:267:9c2f:4655 with SMTP id d9443c01a7336-27ed4a49254mr215222655ad.41.1759232691985;
-        Tue, 30 Sep 2025 04:44:51 -0700 (PDT)
-Received: from [10.219.56.238] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed6ad1fd9sm156376915ad.142.2025.09.30.04.44.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 30 Sep 2025 04:44:51 -0700 (PDT)
-Message-ID: <2a428158-551c-0da5-17c0-b47098aecad9@oss.qualcomm.com>
-Date: Tue, 30 Sep 2025 17:08:51 +0530
+	s=arc-20240116; t=1759233414; c=relaxed/simple;
+	bh=rVEH3heWQ9CYRYUOy9sPRsybw/cgSFigHuULmvEsgIk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jeASQwMLR/A+85yXFbIfcakcjMjioPUplYy8SW86TVZSNWR59/oN3BDKbhOgQPF2Adcp2hdnoOr0+2FsLOjDlFvRvP6KMyBhp1ZQfBPcCKOMlvIY20gjoMT36Omw3Zx1c/wc9eZGIGLzE3poWghB2fiDdabyp/M6T9kxJLJps7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nbM1X5UC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15489C4CEF0;
+	Tue, 30 Sep 2025 11:56:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759233413;
+	bh=rVEH3heWQ9CYRYUOy9sPRsybw/cgSFigHuULmvEsgIk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nbM1X5UCOwCMtc5gSaozPLdjbuYKjdj4qoWN8L9+ohY6oyfmeWyC+g6oE7BVMp/GP
+	 0yVOGQMN6ZNUKmTFTRzV69wY8e+Uv1IvFQa5YfQQb35b0fpLS5xQ5brgtvVIAxIM/i
+	 Lbg/BXoROC9RqSox211SoamyQcuRRDIcvkVXFX3JBXBJfax2/oziZD5WC4BrBk5cY/
+	 8nl5DLyBetQegq1ls234yG+v3EYB2gjdBYlAXTMjIY6EcLU9DHokO5fNT7gb1ZNLl8
+	 ZZzL3gumC7yjdoDcwwPEZiWMr7L2O4IaiNCrKAMbdLeKe/It5OauunNzdZLxjFYLPU
+	 7HnexeEs0je5A==
+Date: Tue, 30 Sep 2025 13:56:50 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Paolo Abeni <pabeni@redhat.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH net-next v2 1/3] dt-bindings: net: airoha: npu: Add
+ AN7583 support
+Message-ID: <aNvFgkV-8YCnnfaP@lore-desk>
+References: <20250927-airoha-npu-7583-v2-0-e12fac5cce1f@kernel.org>
+ <20250927-airoha-npu-7583-v2-1-e12fac5cce1f@kernel.org>
+ <157578d3-c06f-4621-b707-ca4208d18807@redhat.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v15 07/14] firmware: psci: Implement vendor-specific
- resets as reboot-mode
-To: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Moritz Fischer <moritz.fischer@ettus.com>,
-        John Stultz <john.stultz@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andre Draszik
- <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srini@kernel.org>
-References: <20250922-arm-psci-system_reset2-vendor-reboots-v15-0-7ce3a08878f1@oss.qualcomm.com>
- <20250922-arm-psci-system_reset2-vendor-reboots-v15-7-7ce3a08878f1@oss.qualcomm.com>
- <4276eeea-5877-4420-98da-a5f2eb5c0505@oss.qualcomm.com>
-Content-Language: en-US
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-In-Reply-To: <4276eeea-5877-4420-98da-a5f2eb5c0505@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: isS0lHGkYvhTLqdt0Gc9S7xFkHLpDM0s
-X-Proofpoint-ORIG-GUID: isS0lHGkYvhTLqdt0Gc9S7xFkHLpDM0s
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDA0MyBTYWx0ZWRfX269LCWSQaGIU
- +LGPxusClOiBXfJFsnDU+8IM/ALiCsM5ULPHNyHRrV+7K5RwJInJIXmlHuDFrqxuE22rIZdZj/+
- BDxIRrzj5xgWfBG1dxyGk/CVCQV7q1H+D80zLdDv4Edfdjr7gvd4+BsRXfBlVflEVoowO2rO2Bj
- oMAJVgRqTXwIbjBXw7JoSOQn/YYHmOWJ1CU4CWQwNeb8qi9nhArTmwlHskVDhntXcT3f4J9w9/F
- O1Yi9BAonF2HfKLhOvJCKR/khPuiep3R0/DBJoRpedPxSLI6fEShoDv/b4sregx5SJ1Jtb1SKoN
- CZaDrznz3dSMSUOOu9l+IsUQQa9pPZEs3a1AyRhLyBYBReM/dLVWafo7B42Lzn0HSqwPVDirCP5
- frWsXc7TvHoHAXAym8qmbeySiu2Vgw==
-X-Authority-Analysis: v=2.4 cv=Sf36t/Ru c=1 sm=1 tr=0 ts=68dbc2b7 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=m9_P3jxxV_FW9xONvJ8A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-30_02,2025-09-29_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 bulkscore=0 suspectscore=0 adultscore=0 spamscore=0
- priorityscore=1501 malwarescore=0 lowpriorityscore=0 phishscore=0
- impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2509270043
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="GI8sOrmB41LyVA3t"
+Content-Disposition: inline
+In-Reply-To: <157578d3-c06f-4621-b707-ca4208d18807@redhat.com>
 
 
+--GI8sOrmB41LyVA3t
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 9/30/2025 11:15 AM, Kathiravan Thirumoorthy wrote:
-> 
-> On 9/22/2025 7:10 PM, Shivendra Pratap wrote:
->> SoC vendors have different types of resets which are controlled
->> through various hardware registers. For instance, Qualcomm SoC
->> may have a requirement that reboot with “bootloader” command
->> should reboot the device to bootloader flashing mode and reboot
->> with “edl” should reboot the device into Emergency flashing mode.
->> Setting up such reboots on Qualcomm devices can be inconsistent
->> across SoC platforms and may require setting different HW
->> registers, where some of these registers may not be accessible to
->> HLOS. These knobs evolve over product generations and require
->> more drivers. PSCI spec defines, SYSTEM_RESET2, vendor-specific
->> reset which can help align this requirement. Add support for PSCI
->> SYSTEM_RESET2, vendor-specific resets and align the implementation
->> to allow user-space initiated reboots to trigger these resets.
->>
->> Implement the PSCI vendor-specific resets by registering to the
->> reboot-mode framework. As psci init is done at early kernel init,
->> reboot-mode registration cannot be done at the time of psci init.
->> This is because reboot-mode creates a “reboot-mode” class for
->> exposing sysfs, which can fail at early kernel init. To overcome
->> this, introduce a late_initcall to register PSCI vendor-specific
->> resets as reboot modes. Implement a reboot-mode write function
->> that sets reset_type and cookie values during the reboot notifier
->> callback.  Introduce a firmware-based call for SYSTEM_RESET2
->> vendor-specific reset in the psci_sys_reset path, using
->> reset_type and cookie if supported by secure firmware. Register a
->> panic notifier and clear vendor_reset valid status during panic.
->> This is needed for any kernel panic that occurs post
->> reboot_notifiers.
->>
->> By using the above implementation, userspace will be able to issue
->> such resets using the reboot() system call with the "*arg"
->> parameter as a string based command. The commands can be defined
->> in PSCI device tree node under “reboot-mode” and are based on the
->> reboot-mode based commands.
->>
->> Signed-off-by: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
->> ---
->>   drivers/firmware/psci/Kconfig |  2 +
->>   drivers/firmware/psci/psci.c  | 89 ++++++++++++++++++++++++++++++++++++++++++-
->>   2 files changed, 90 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/firmware/psci/Kconfig b/drivers/firmware/psci/Kconfig
->> index 97944168b5e66aea1e38a7eb2d4ced8348fce64b..93ff7b071a0c364a376699733e6bc5654d56a17f 100644
->> --- a/drivers/firmware/psci/Kconfig
->> +++ b/drivers/firmware/psci/Kconfig
->> @@ -1,6 +1,8 @@
->>   # SPDX-License-Identifier: GPL-2.0-only
->>   config ARM_PSCI_FW
->>       bool
->> +    select POWER_RESET
->> +    select REBOOT_MODE
->>     config ARM_PSCI_CHECKER
->>       bool "ARM PSCI checker"
->> diff --git a/drivers/firmware/psci/psci.c b/drivers/firmware/psci/psci.c
->> index 38ca190d4a22d6e7e0f06420e8478a2b0ec2fe6f..40a27bc2cc3a3393acc14c7b2314155540ed06c9 100644
->> --- a/drivers/firmware/psci/psci.c
->> +++ b/drivers/firmware/psci/psci.c
->> @@ -13,10 +13,12 @@
->>   #include <linux/errno.h>
->>   #include <linux/linkage.h>
->>   #include <linux/of.h>
->> +#include <linux/panic_notifier.h>
->>   #include <linux/pm.h>
->>   #include <linux/printk.h>
->>   #include <linux/psci.h>
->>   #include <linux/reboot.h>
->> +#include <linux/reboot-mode.h>
->>   #include <linux/slab.h>
->>   #include <linux/suspend.h>
->>   @@ -51,6 +53,24 @@ static int resident_cpu = -1;
->>   struct psci_operations psci_ops;
->>   static enum arm_smccc_conduit psci_conduit = SMCCC_CONDUIT_NONE;
->>   +struct psci_vendor_sysreset2 {
->> +    u32 reset_type;
->> +    u32 cookie;
->> +    bool valid;
->> +};
->> +
->> +static struct psci_vendor_sysreset2 vendor_reset;
->> +
->> +static int psci_panic_event(struct notifier_block *nb, unsigned long v, void *p)
->> +{
->> +    vendor_reset.valid = false;
->> +    return NOTIFY_DONE;
->> +}
->> +
->> +static struct notifier_block psci_panic_block = {
->> +    .notifier_call = psci_panic_event
->> +};
->> +
->>   bool psci_tos_resident_on(int cpu)
->>   {
->>       return cpu == resident_cpu;
->> @@ -309,7 +329,10 @@ static int get_set_conduit_method(const struct device_node *np)
->>   static int psci_sys_reset(struct notifier_block *nb, unsigned long action,
->>                 void *data)
->>   {
->> -    if ((reboot_mode == REBOOT_WARM || reboot_mode == REBOOT_SOFT) &&
->> +    if (vendor_reset.valid && psci_system_reset2_supported) {
->> +        invoke_psci_fn(PSCI_FN_NATIVE(1_1, SYSTEM_RESET2), vendor_reset.reset_type,
->> +                   vendor_reset.cookie, 0);
->> +    } else if ((reboot_mode == REBOOT_WARM || reboot_mode == REBOOT_SOFT) &&
->>           psci_system_reset2_supported) {
->>           /*
->>            * reset_type[31] = 0 (architectural)
->> @@ -547,6 +570,70 @@ static const struct platform_suspend_ops psci_suspend_ops = {
->>       .enter          = psci_system_suspend_enter,
->>   };
->>   +static int psci_set_vendor_sys_reset2(struct reboot_mode_driver *reboot, u64 magic)
->> +{
->> +    u32 magic_32;
->> +
->> +    if (psci_system_reset2_supported) {
->> +        magic_32 = magic & 0xffffffff;
->> +        vendor_reset.reset_type = PSCI_1_1_RESET_TYPE_VENDOR_START | magic_32;
->> +        vendor_reset.cookie = (magic >> 32) & 0xffffffff;
-> 
-> 
-> Minor Nit: Can we use GENMASK(31, 0) instead of 0xffffffff? Apart from this, change LGTM. With that,
+> On 9/27/25 4:03 PM, Lorenzo Bianconi wrote:
+> > Introduce AN7583 NPU support to Airoha EN7581 NPU device-tree bindings.
+> >=20
+> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/net/airoha,en7581-npu.ya=
+ml b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> > index c7644e6586d329d8ec2f0a0d8d8e4f4490429dcc..59c57f58116b568092446e6=
+cfb7b6bd3f4f47b82 100644
+> > --- a/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> > +++ b/Documentation/devicetree/bindings/net/airoha,en7581-npu.yaml
+> > @@ -18,6 +18,7 @@ properties:
+> >    compatible:
+> >      enum:
+> >        - airoha,en7581-npu
+> > +      - airoha,an7583-npu
+> > =20
+> >    reg:
+> >      maxItems: 1
+> >=20
+>=20
+> This needs ack from the DT maintainer and we are finalizing the net-next
+> PR right now. Let's defer this series to the next cycle, thanks!
+>=20
+> Paolo
+>=20
 
-Ack. Will update this.
+ack, fine. I will repost during next cycle.
 
-> 
-> Reviewed-by: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+Regards,
+Lorenzo
 
-thanks for review.
+--GI8sOrmB41LyVA3t
+Content-Type: application/pgp-signature; name=signature.asc
 
-thanks,
-Shivendra
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCaNvFggAKCRA6cBh0uS2t
+rGOXAQD9aWmnKC+UFDiJtMtXqtAOebHLNu9HuxT+1kz7pSHUVgD/bEjQtex8chJk
+Le7FZ5a+eHigvNV2TMN3TurtWfqGbgc=
+=u+lc
+-----END PGP SIGNATURE-----
+
+--GI8sOrmB41LyVA3t--
 
