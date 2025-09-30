@@ -1,157 +1,174 @@
-Return-Path: <devicetree+bounces-222838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB67FBAE311
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 19:31:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F0D4BAE3E6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 19:48:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2CDD3B7D76
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 17:31:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F35AA164AD4
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 17:48:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B23530CDA0;
-	Tue, 30 Sep 2025 17:30:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DCAB23817D;
+	Tue, 30 Sep 2025 17:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="jV5FTpUq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SJLUTKd3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E17F30CD84
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 17:30:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF70713A3F7
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 17:48:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759253439; cv=none; b=EuaWCw5q1uMxW0wTwZDsm4J3aZ7qpK8IxA/SERjNHfP+ouMF3G6bwAq+RimfmzP61SToWDKQcej1XzIFseBmfbTeYycybBFYq8n5hplMumGjiDhgvGf13Fp9bHVtmLWDdTNGFST3l7wFmtK/z7mImUX5nh5FhY40NnPUne8jEJc=
+	t=1759254533; cv=none; b=AxGIEx3cvWGMROdj/LRnk0ZJo9nAwFEBcwlpFfZ5xG1O5G4rtMqDJoueFosJ18DzTBZ0vzKhoBcgkkU+FFx0p/sXhhlVBwojMda8Pzl39nFSpQwP2myqmFLmsqcBBHRgEcFJSV8agCtGvSWmOS7edx+fHUQzj2RvA8WPU4zci/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759253439; c=relaxed/simple;
-	bh=RAzN02ntU6we7KtqdUsGw1bQvhAKuIdoO3RtEp9cuGc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fy5S6euAWxMtggTRpl6W1ZLUJ/B7mZuiwroguOgx1lni76waRlejJuTsAU5yMq0MNab1C3NZIMroRvNDeT5CANcw7y59JsZgW1TzHgLK6rvvpkl9jj/3HxIUhLgcAkI/ctkgFFg/BjY7IHpj/WmJaxj8+HFVzDQ9WU4halA7MYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=jV5FTpUq; arc=none smtp.client-ip=209.85.221.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-54a8514f300so3271778e0c.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 10:30:36 -0700 (PDT)
+	s=arc-20240116; t=1759254533; c=relaxed/simple;
+	bh=4MlEhhaEJFg/VQYMrmuKC13C2/nF6IWoZSw/Ec98vW4=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=LSXjAv8aNS4zk5qEcjcNn46q/MhifpJ+V6hfcT3elOpiPZ8pBnJzSPTaLV0Kzr/llxEbyugym9ZIxBYkK1gmSXiaCbGZf8Pt3j8Oxp2tVpQC2ZQqjFYBFogxiEf21Pmi63ugG+/B+FK8VfC748IG1n/jQ4Ru7KWyryJ0LgO9GsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SJLUTKd3; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-421b93ee372so1328252f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 10:48:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1759253435; x=1759858235; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1759254530; x=1759859330; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8kjeYVi3BFjPoMUBum1xgGJVhZJDmP8eaKSN0CbIZRQ=;
-        b=jV5FTpUqmvFCRC7+g+bXWddcRXC4N+G4YQheXVk2/AHQzLeuTr5sE7EzOR6thnYU8F
-         nHIM8nJzwRYK+sLQq7axjaacsiFOFTrEGtMPnMyP47dr4OxxkgXGyRsSTocKj385eGmB
-         H/rKAUgyfPZK1Q2RNxdIvwvm1NgYdqv7ySczq9uuDn9jQzmDuMFmqTOOQFn/38BvipkL
-         rv8N822CTLY7CWNomIft1LSsob4V3b4xOPeBQ53dEnidyDH4ew6fux+rpzRUHxsVI1at
-         YBLw7mPdHw22BjjzoKaD/awKIJHERy073vrDUb39S+81aE2cyZJ0JLh18sRj+QyuQig4
-         DDmg==
+        bh=mq6R6SU4rLr/GrLGHLGq6gkj6VLshSOm1bf7ZPl8UYI=;
+        b=SJLUTKd3YXA1znPNC5ulXtc9RwlcIA/3SqicdMalNHA71uOGxjoEvkSeMDsptq9Aix
+         5X2PJhAILHx2R5FDv22HHFYhhqzCHpRFipAsNacuLmGb4CjIVu1OxxhfXrwO8XbZXZ1J
+         /atfSSayDl/YCa/Nos13ZsZzGIT2w8zYvnl+nKIXWOuloZwy+PSgopSUa1fnUlTTKMiF
+         dIg7HB7HF/Y12K+lbcRPwhNlZ9n2yg08t2pGwY0o0MpE2T20GzQyRl8+pS+6JlKRTywm
+         LGC/PJMINTpvB4NXK3DogRagOOfM0Jr32s0trje18tsjEzdNlHjTWAw0KzkRSPjMUb7p
+         BpDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759253435; x=1759858235;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8kjeYVi3BFjPoMUBum1xgGJVhZJDmP8eaKSN0CbIZRQ=;
-        b=Av70n1r50sCLDX4nuNzQj+0lXD0pqOHscZv9uxOFciOgwak9YCQ68TsLDysbsuGY25
-         CZLLLT3rbl4TvJo9BRKF6CjsIEN3YMv4tkJzqTDxNGRQeWygsoggNEvvSN22yO1tcQAU
-         Q72Es0N2f4m9iJ8Gg3EoSxt1HOUrsDSop+CokHUmaIEusuzgXwIy1mR90+uaroMECL2r
-         PKcp14kk4a1ndprPng4TztGZcF5wWs0JDH4mMOPwizNo3RMsg3AVTFHroQZpkor2zNIJ
-         9rLT/TNLZUgQOWTc6AdYaXzSUdDV0HjQZlMw7GfYCQAYk0hO7rRsJiIKw7NPiWKswwK+
-         uEew==
-X-Forwarded-Encrypted: i=1; AJvYcCWqArGofxHf+4QK/+Cve1a1EDETO4X7CINQjQNc9Vrs1XzUgj9gFqTErzgu0NpyuvvF/tlIyT2tFNQx@vger.kernel.org
-X-Gm-Message-State: AOJu0YzefBQFZyAkO6/4Z9RA7rU/idyGlZQg5IhSUFjXfsAe/aMXV6GE
-	5LR0d/A7nTlTFTGH/aOtitJ7agyYZ5ZDts+1yjAI8pNrWSD6Dyj45eMx5+HqWbxw/AlPVE459Sk
-	hnOsQpjTKQqmrsVJ9WIcs8GD6KG3NC25hX2fwWBWfZ43dX916Tv/YkanR
-X-Gm-Gg: ASbGncu3htwON/SlRpXhnX7aXrUrZYce44jJ6Wf5O2lgR5YKPKNCuEo4xd0+LQWF7Dv
-	RtmEZEXGl/OuitmHnps67Ndkofpii14lMvaGd5E9Q2rpiJO7erQpFYPe9GVmZEHw1SbpN60VRul
-	qFV5/SeQR1kxPJZ7bdmIVkTVEzFBscPEJrHTGjve/ke+w64uoClC1hXL5S/YJ7WDBGYkNgjdeRC
-	6UDfkMpOtFZKq+81wOB1NTk4bbDeCdfWOra
-X-Google-Smtp-Source: AGHT+IG8jJ95/JjL1D4MG02AWTuWRULg09/UHI6ETn6Cc8YDCJp+TEu0wu9vGpPMKXVhUdNr52Sp/ZXXPPXheG9lrtk=
-X-Received: by 2002:a05:6122:251a:b0:54a:992c:8164 with SMTP id
- 71dfb90a1353d-5522d37d0c7mr277987e0c.7.1759253434892; Tue, 30 Sep 2025
- 10:30:34 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759254530; x=1759859330;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mq6R6SU4rLr/GrLGHLGq6gkj6VLshSOm1bf7ZPl8UYI=;
+        b=aioeKOh5N7MznyVS0yYh2Cl5eyDvEhD5gdHJOtHeKgYfWr/ndQXXKZSrnypfDisR/u
+         ggGaA3GNTcDioNm8rzDnMofklUiQlAMVj8293QdIi+jAhCoyl5ltXf21LlgGRt9t3ti8
+         te7+LXs9kR6Xojiamhl+xrpVPuJeokNMXos4nIOE6WLMS4KmqhqNqQOArq3v0fs/IH2p
+         CawaypUte1b1ZiWrEaR2YqO/0SE49w4ob5YZnxeVGOAEp7EMw8OfBi/0Q4Jd93w63Khm
+         FW+YBIYE/NCwFtazIxYgDlX7jrkUkiarVZ/DTmA8XZc9WefvKE1x8aqr3U4SaNwGP+7/
+         Jp2g==
+X-Forwarded-Encrypted: i=1; AJvYcCXuAcUkWJHlv1EtY0dlqw3EzA8JDXfKlZfAPx2P1tQBSoDbHPp+bJXLr40dc5A8stZbHMlROD8XO8Sp@vger.kernel.org
+X-Gm-Message-State: AOJu0YzmHyuiIsmpBwu49euWO5OBpGNvM54ZPhh1IQ1OBoch8p0tzHCM
+	KI5dFvblxF9u5Grr6d2ksK0zBTeagxgc0D9u8Bs8Ck8kHYbTxsVPyEpHkFqAPfARPyM=
+X-Gm-Gg: ASbGncvlvOOtKV9P2yaBm7TVV16zFwaNiTpSOx/dUHcnsBFpTTjfNkfCxu+55h9gk2y
+	0fjt0lHxzXhNtNk4kJupr+pheuaRimZPE+VhxBH5PDmIYB1jAShiUkKWCuX84bT2V+6CI2DECnf
+	6VCClJGiu75ChSwSJyKPgANO/d5r1HCX73qyxG5pK1/BQgdudkHxgsVSMTIX+StALFLhwjDynDs
+	DeCBq8geAtZxXta2W8lvzYSvk8xJDb338rAFhSJ+JG3BigevWWj0JLJnLSUMB6mtVKeKK/y/bFN
+	MqOQJIlfXyA8+8U+c8ay4UwKWtxPoejC4KCUKmjn0B+SMQjwFM45Uj0SCBM5FU/sCZuKHpiyWM3
+	X+mBtfz18lnEp5qvQKrCVxNDPnRLJAFLGk1x/uDbV6LiAl7ayQ8hD1o8Pb2Q=
+X-Google-Smtp-Source: AGHT+IFWwL3OmBkLMnlz7uL7VcuwGSis12CpJmftU7X9TJAiNKLravUOGrhixS5GMO5ETLsekrs9fQ==
+X-Received: by 2002:a05:6000:4282:b0:40e:31a2:7efe with SMTP id ffacd0b85a97d-425577f4cb8mr509794f8f.14.1759254530117;
+        Tue, 30 Sep 2025 10:48:50 -0700 (PDT)
+Received: from localhost ([2a02:c7c:7259:a00:248:54ff:fe20:c34])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-40fb72fb017sm23545897f8f.3.2025.09.30.10.48.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Sep 2025 10:48:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250930-mmc_pwrseq-v2-1-80a8c6be0fb0@valla.it>
-In-Reply-To: <20250930-mmc_pwrseq-v2-1-80a8c6be0fb0@valla.it>
-From: Saravana Kannan <saravanak@google.com>
-Date: Tue, 30 Sep 2025 10:29:58 -0700
-X-Gm-Features: AS18NWDhaTb_SHyVdkz3H1aGObXRSKwr83vx52Zf-N7iLwTKT6lcWCzjbd3sNII
-Message-ID: <CAGETcx_eDbx1QowXzy1k9r2D-G-gT7nEgFqEfWY7wBbLzfRukQ@mail.gmail.com>
-Subject: Re: [PATCH v2] of: property: fw_devlink: Add support for "mmc-pwrseq"
-To: Francesco Valla <francesco@valla.it>
-Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 30 Sep 2025 18:48:48 +0100
+Message-Id: <DD6BOLBXKBYP.2NVXRXGJ9W3IG@linaro.org>
+Cc: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <aiqun.yu@oss.qualcomm.com>,
+ <tingwei.zhang@oss.qualcomm.com>, <trilok.soni@oss.qualcomm.com>,
+ <yijie.yang@oss.qualcomm.com>, "Tengfei Fan"
+ <tengfei.fan@oss.qualcomm.com>, "Qiang Yu" <qiang.yu@oss.qualcomm.com>,
+ "Manish Pandey" <manish.pandey@oss.qualcomm.com>, "Ronak Raheja"
+ <ronak.raheja@oss.qualcomm.com>, "Jishnu Prakash"
+ <jishnu.prakash@oss.qualcomm.com>, "Kamal Wadhwa"
+ <kamal.wadhwa@oss.qualcomm.com>, "Jyothi Kumar Seerapu"
+ <jyothi.seerapu@oss.qualcomm.com>, "Prasad Kumpatla"
+ <prasad.kumpatla@oss.qualcomm.com>, "Hangxiang Ma"
+ <hangxiang.ma@oss.qualcomm.com>, "Vikash Garodia"
+ <vikash.garodia@oss.qualcomm.com>
+Subject: Re: [PATCH 00/20] arm64: dts: qcom: Introduce Kaanapali platform
+ device tree
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Jingyi Wang" <jingyi.wang@oss.qualcomm.com>, "Bjorn Andersson"
+ <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+In-Reply-To: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
 
-On Tue, Sep 30, 2025 at 8:58=E2=80=AFAM Francesco Valla <francesco@valla.it=
-> wrote:
+On Thu Sep 25, 2025 at 1:17 AM BST, Jingyi Wang wrote:
+> Introduce the Device Tree for the recently announced Snapdragon SoC from =
+Qualcomm:
+> https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdrago=
+n-8-series-mobile-platforms/snapdragon-8-elite-gen-5
 >
-> Add support for parsing MMC power sequencing (pwrseq) binding so that
-> fw_devlink can enforce the dependency.
+> Bindings and base Device Tree for the Kaanapali SoC, MTP (Mobile Test Pla=
+tform)
+> and QRD (Qualcommm Reference Device) are splited in three:
+>
+> - 1-3: MTP board boot-to-shell with basic function.
+> - 4-16: More feature including PCIE, sdcard, usb, DSPs, PMIC related, tse=
+nse, bus, crypto etc. Add QRD board support.
+> - 17-20: Multimedia features including audio, video and camss.
+>
+> Features added and enabled:
+> - CPUs with PSCI idle states and cpufreq
+> - Interrupt-controller with PDC wakeup support
+> - Timers, TCSR Clock Controllers
+> - Reserved Shared memory
+> - GCC and RPMHCC
+> - TLMM
+> - Interconnect with CPU BWMONs
+> - QuP with uart
+> - SMMU
+> - RPMHPD and regulator
+> - UFS with inline crypto engine (ICE)
+> - LLCC
+> - Watchdog
+> - cDSP, aDSP with SMP2P and fastrpc
+> - BUS with I2C and SPI
+> - USB2/USB3
+> - Modem(see crash after bring up)
+> - SoCCP
+> - SDHCI
+> - random number generator (RNG) and Qcrypto
+> - tsens
+> - PCIE
+> - coresight
+> - Bluetooth
+> - WLAN
+> - Audio
 
-I took a quick look at the documentation. It's not clear to me that
-mmc-pwrseq always points to a supplier. Can someone with more
-experience on this confirm that is what it's supposed to point at?
+Were everything described as audio enabled and tested? As far as I was awar=
+e
+some devices required some soundwire rework to support soundwire microphone=
+s.
+Is it finished? I don't see this linked here, but you state that audio
+features "added and enabled".
 
-Meaning if A lists B as pwrseq, is it always the case that B needs to
-be powered on? The binding documentation doesn't say anything about B
-needs to be powered on first. It's just saying A and B have an
-ordering requirement.
+Do we understand this correctly that, I presume, everthing that is more-or-=
+less compatible                                                            =
+                                                                           =
+                                                                           =
+                                                                           =
+                                                   =20
+with previous platforms were added and enabled (with renames) but not _all_=
+ ?
 
-If the meaning of the binding is _ALWAYS_ B needs to be powered on
-first, then yes, this patch is correct and I can give a reviewed-by.
+Probably some rewording is required.
 
-Thanks,
-Saravana
+Best regards,
+Alexey
 
->
-> Signed-off-by: Francesco Valla <francesco@valla.it>
-> ---
-> Changes in v2:
-> - EDITME: describe what is new in this series revision.
-> - EDITME: use bulletpoints and terse descriptions.
-> - Link to v1: https://lore.kernel.org/r/20250930-mmc_pwrseq-v1-1-7fd2764f=
-5ac1@valla.it
-> ---
->  drivers/of/property.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index c1feb631e3831d7d5ec23c606af31731bfc2f8b8..fcf10c4f02dcf879e1f25e4fa=
-97b25152d58bacb 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -1377,6 +1377,7 @@ DEFINE_SIMPLE_PROP(post_init_providers, "post-init-=
-providers", NULL)
->  DEFINE_SIMPLE_PROP(access_controllers, "access-controllers", "#access-co=
-ntroller-cells")
->  DEFINE_SIMPLE_PROP(pses, "pses", "#pse-cells")
->  DEFINE_SIMPLE_PROP(power_supplies, "power-supplies", NULL)
-> +DEFINE_SIMPLE_PROP(mmc_pwrseq, "mmc-pwrseq", NULL)
->  DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
->  DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
->
-> @@ -1524,6 +1525,7 @@ static const struct supplier_bindings of_supplier_b=
-indings[] =3D {
->         { .parse_prop =3D parse_msi_parent, },
->         { .parse_prop =3D parse_pses, },
->         { .parse_prop =3D parse_power_supplies, },
-> +       { .parse_prop =3D parse_mmc_pwrseq, },
->         { .parse_prop =3D parse_gpio_compat, },
->         { .parse_prop =3D parse_interrupts, },
->         { .parse_prop =3D parse_interrupt_map, },
->
-> ---
-> base-commit: 30d4efb2f5a515a60fe6b0ca85362cbebea21e2f
-> change-id: 20250930-mmc_pwrseq-247089ac9583
->
-> Best regards,
-> --
-> Francesco Valla <francesco@valla.it>
->
 
