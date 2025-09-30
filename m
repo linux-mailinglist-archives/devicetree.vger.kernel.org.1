@@ -1,192 +1,145 @@
-Return-Path: <devicetree+bounces-222785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA22ABACD66
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 14:29:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92C2CBACCDF
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 14:23:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7A5B188C4A1
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 12:29:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E1583A708D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 12:23:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CA1D2FE580;
-	Tue, 30 Sep 2025 12:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1B412F7AB1;
+	Tue, 30 Sep 2025 12:23:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="oJjXbtJC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VeB6/Iys"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D552FD1BA
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 12:27:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D27E272617
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 12:23:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759235268; cv=none; b=NeLIlPJGI5yk7NLL7+kQ+dG52PEqtzcLflOOh+8UdzeZLCvP/9OA0uXepzADO7tTMha103lqmhJ6onp75sV5+DG6FqGtUQWJrONCBepIp1MiDbElEOIksRfrnuK6tTXeFn5CbH96MIqFQv+YAWTAf+VhgvmlwkRD0mrjW70cJS8=
+	t=1759235020; cv=none; b=qFBDtwog2FTFFSu1aZ/j9AKGP303o9zFd0GdxLedzjmAf8YOPIgqowmQ89qWlLAU0dwYen9bdDot7vK27ZM6XQWqKD372DwXVm+kl4386ds2mEg/DMLmjuAOTQFNy7r9TRWNKLp0q9LW5BgzDMmZXiuk92UBWREv2KpHb6LpDcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759235268; c=relaxed/simple;
-	bh=K+Qo9U5/8bG6S1LdtOr0WdY7ffLEzR7To9QOriX0cvM=;
-	h=From:Date:Subject:MIME-Version:Message-Id:In-Reply-To:To:Cc:
-	 Content-Type:References; b=WiZUMiQruzShjnPffN/BbDX0E5wqznfr7yZycyoxUAXCPOXlLp0iYqUeXIcg4dPE8GzLycQDlFgcrNw0kB86dY9MMsLE/JnrrJ+4fVB4Ib8i+DClkdtNi5PIz74W5HI67gM34PV87XAPhIFe2OeYRYGh2AbbSqx2rSsZ3JJnB1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=oJjXbtJC; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20250930122738euoutp01193cce0162f9119625dbcbdc91b82092~qDyWwX8zE0459504595euoutp01a
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 12:27:38 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20250930122738euoutp01193cce0162f9119625dbcbdc91b82092~qDyWwX8zE0459504595euoutp01a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1759235259;
-	bh=8ViuUbQvKkza5fLDio1ZaLLg5ogfLWW3Jq7KsiXlUPY=;
-	h=From:Date:Subject:In-Reply-To:To:Cc:References:From;
-	b=oJjXbtJCYw+yBIPOhvnXdlQEd2Tsjhmulhhnr6Y+itkMvbkQBykHYRIG608ppiskt
-	 sXxh+9nO1mSkpb/hM0FXWZZ1AksnI3q/2riEjtxjC1SFMoaIZHadtbJvFz11J/cWn3
-	 oQytSIM/7R78XfAA254PjoV7hgNE0sUmKgaRhuSk=
-Received: from eusmtip2.samsung.com (unknown [203.254.199.222]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250930122738eucas1p2ee9244532b39860f982fd7daa4cf788e~qDyWNI4cs2094020940eucas1p2K;
-	Tue, 30 Sep 2025 12:27:38 +0000 (GMT)
-Received: from AMDC4942.eu.corp.samsungelectronics.net (unknown
-	[106.210.136.40]) by eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250930122737eusmtip247e3c37468f4e6bb2b9f63c17840ea9f~qDyVHlxQY2370623706eusmtip2T;
-	Tue, 30 Sep 2025 12:27:37 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-Date: Tue, 30 Sep 2025 14:20:38 +0200
-Subject: [PATCH v15 7/7] riscv: dts: thead: Add PWM fan and thermal control
+	s=arc-20240116; t=1759235020; c=relaxed/simple;
+	bh=CFblSBEdSaQGPX0Gc4Q+qwyfooSQGZjP6fJV0qhJXws=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dONG/2XFwyRMm5rs45aaBjUTOQaXlffTrypwPUkAtjHXOJitbYMMN2enxkP7i3+MO91NXmLp5DfDDdupJZi8lkFmJMVQ/6gBBEpEjewFTlMzgVcm1JE5D6e+GtcAu5sCmr1PJkfA/9f59iLrkovqfLo3/+HKd398g5Bf0dXc188=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VeB6/Iys; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-367444a3e2aso67541521fa.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:23:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759235017; x=1759839817; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=R5mPBHZgztFe+UJNNaee0Rp7S41YshdGbGpEnWAlyw0=;
+        b=VeB6/IysHU6UTkhoMmezC0i5vJzBLzgRMh/19vWeF7D8jw5B4rsja9YZjH8aMRw1xw
+         CnZvtj8YEFLkBIivPYiE7qkA8wiw3zpREhwRqUpTmJyKNXSBM05vKlRk50IMHcxjvK61
+         21g/NhbHx+tQlNcawKDn1+yX+8e5TCgt42WZVwUr37Fpt2nPnf1Vdb5+H5n9GAM7lHQO
+         yKw/O0JjBCgSFR9PEGwgdzj0Uf6J3dSFf3ytAkLjdpOcHLhSS+G/lXOM6GkZktOes6Nj
+         hSOf2ReqPUGL57uKMz+mxc+yZsO/oIedb/z6PF12QNUw4Bt9iqlfvstfYuJCcorGOB22
+         HxsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759235017; x=1759839817;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=R5mPBHZgztFe+UJNNaee0Rp7S41YshdGbGpEnWAlyw0=;
+        b=t7mJdT73j0Wb3iLCNCmesaLECtyIv9es5bW0Xp+RPmdjhsdIUJ6fG6J991RgSPKqGv
+         VdiSvz8IJYBH+AkFknkvumy7Kpj8eXdq2B7cLA96lOf+8RJYGlBwKJTh8i5yvulM+yWm
+         uBNs9rcHm0pQHqCHSzhnq/bX0NYe7BvCZ8Qt3x2MoGhyHz4ieSfha4O/fldORK4lemN0
+         8Lqv0lXcXEGrjztH82ga8+ogDbQw9V2Rm6FL1nM0x8a4Y1HqUnP3QoSJocCrgOPA8egE
+         8fA9x+wUnlgcovD+9YDGnRwIwGH/O6eVBMXNSFoGF7pRoQVwh8ZTFUhbm3KD8jSDM+aV
+         fOEw==
+X-Forwarded-Encrypted: i=1; AJvYcCVZYfSs9y/WD5br8JNyZYdxYAEQ0cv7hlg/PPInp21E47ktt8cZxSR9o2BCJqQ9yfh/ypfIdz9tJhIc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZ33TuEaETsV5bRUhGqxFukk9F6b2zcon6P6IR2zQKV5XaULfn
+	HkgI/Q86yDvar+dfDfsLQqAGgq3Jt4ALhIpBpqS/AyAm+oZQyNpC8URmOcTr8x0PigjWhIfImRD
+	MzBeNSXiMq2Gq5lmRaBZ8NiFMQbm1EDobHAioCORODw==
+X-Gm-Gg: ASbGncvRV9Nt/LSbG29fFs7OmIWGsM71ssLOuva3/L5EVwMN1eLHr8BT22sYDo6JJXH
+	6631AIP/ih73I4cNqL9d0E2eyPT2eFtDMBffqPdbEg3qyEHeQB4ga4TtuXGsg7t9bxAv410IlAT
+	4nzOhUa9BIFV+Ijf4cZoetP75LL4jKGnEPUVEcKImRBnNgMNudvGTGtPzx3zStlSwXMD0k8CBeq
+	1uMiJ3WPHuuBsGZxvic0kg4jx1nqGWpVfGL8hhK5Q==
+X-Google-Smtp-Source: AGHT+IGSs2X9ijyFw3JfP/dbcoV1x5reGxsDzHTGImekBQcST65Fp+vF2qwnOoDfoooKD5etndPOpCBR4hOz+YmTkyE=
+X-Received: by 2002:a05:651c:1541:b0:363:f65f:ddcb with SMTP id
+ 38308e7fff4ca-36f7d8c0278mr61009281fa.18.1759235016634; Tue, 30 Sep 2025
+ 05:23:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250930-rust-next-pwm-working-fan-for-sending-v15-7-5661c3090877@samsung.com>
-In-Reply-To: <20250930-rust-next-pwm-working-fan-for-sending-v15-0-5661c3090877@samsung.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,  Miguel Ojeda
-	<ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>,  Boqun Feng
-	<boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,  Andreas
-	Hindborg <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>,  Trevor
-	Gross <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>,  Michal
-	Wilczynski <m.wilczynski@samsung.com>, Guo Ren <guoren@kernel.org>,  Fu Wei
-	<wefu@redhat.com>, Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Paul Walmsley
-	<paul.walmsley@sifive.com>,  Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>,  Alexandre Ghiti <alex@ghiti.fr>,  Marek Szyprowski
-	<m.szyprowski@samsung.com>,  Benno Lossin <lossin@kernel.org>,  Michael
-	Turquette <mturquette@baylibre.com>,  Drew Fustini <fustini@kernel.org>, 
-	Daniel Almeida <daniel.almeida@collabora.com>,  Benno Lossin
-	<lossin@kernel.org>, Drew Fustini <fustini@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	rust-for-linux@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, Elle Rhumsaa <elle@weathered-steel.dev>
-X-Mailer: b4 0.15-dev
-X-CMS-MailID: 20250930122738eucas1p2ee9244532b39860f982fd7daa4cf788e
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20250930122738eucas1p2ee9244532b39860f982fd7daa4cf788e
-X-EPHeader: CA
-X-CMS-RootMailID: 20250930122738eucas1p2ee9244532b39860f982fd7daa4cf788e
-References: <20250930-rust-next-pwm-working-fan-for-sending-v15-0-5661c3090877@samsung.com>
-	<CGME20250930122738eucas1p2ee9244532b39860f982fd7daa4cf788e@eucas1p2.samsung.com>
+References: <20250905135547.934729-1-antonio.borneo@foss.st.com> <20250905135547.934729-3-antonio.borneo@foss.st.com>
+In-Reply-To: <20250905135547.934729-3-antonio.borneo@foss.st.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 30 Sep 2025 14:23:25 +0200
+X-Gm-Features: AS18NWDLuT_uRRtCvqxguuDTeW5zZ6aEk6iy9iHLeu2I6jlVchqTLlkeIzQ-p-Y
+Message-ID: <CACRpkdZCKXYEegV1cK6X9A9k8ORLWweBQs40PWYuTof3JgcC2w@mail.gmail.com>
+Subject: Re: [PATCH v2 2/9] dt-bindings: pincfg-node: Add property "skew-delay-direction"
+To: Antonio Borneo <antonio.borneo@foss.st.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, 
+	linux-arm-kernel@lists.infradead.org, 
+	Christophe Roullier <christophe.roullier@foss.st.com>, 
+	Fabien Dessenne <fabien.dessenne@foss.st.com>, Valentin Caron <valentin.caron@foss.st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add Device Tree nodes to enable a PWM controlled fan and it's associated
-thermal management for the Lichee Pi 4A board.
+Hi Antonio,
 
-This enables temperature-controlled active cooling for the Lichee Pi 4A
-board based on SoC temperature.
+thanks for your patch!
 
-Reviewed-by: Drew Fustini <fustini@kernel.org>
-Tested-by: Drew Fustini <fustini@kernel.org>
-Reviewed-by: Elle Rhumsaa <elle@weathered-steel.dev>
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts | 67 +++++++++++++++++++++++
- 1 file changed, 67 insertions(+)
+And sorry that it takes so long for me to review it! :(
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-index 4020c727f09e8e2286fdc7fecd79dbd8eba69556..c58c2085ca92a3234f1350500cedae4157f0c35f 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-@@ -28,9 +28,76 @@ aliases {
- 	chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
-+
-+	thermal-zones {
-+		cpu-thermal {
-+			polling-delay = <1000>;
-+			polling-delay-passive = <1000>;
-+			thermal-sensors = <&pvt 0>;
-+
-+			trips {
-+				fan_config0: fan-trip0 {
-+					temperature = <39000>;
-+					hysteresis = <5000>;
-+					type = "active";
-+				};
-+
-+				fan_config1: fan-trip1 {
-+					temperature = <50000>;
-+					hysteresis = <5000>;
-+					type = "active";
-+				};
-+
-+				fan_config2: fan-trip2 {
-+					temperature = <60000>;
-+					hysteresis = <5000>;
-+					type = "active";
-+				};
-+			};
-+
-+			cooling-maps {
-+				map-active-0 {
-+					cooling-device = <&fan 1 1>;
-+					trip = <&fan_config0>;
-+				};
-+
-+				map-active-1 {
-+					cooling-device = <&fan 2 2>;
-+					trip = <&fan_config1>;
-+				};
-+
-+				map-active-2 {
-+					cooling-device = <&fan 3 3>;
-+					trip = <&fan_config2>;
-+				};
-+			};
-+		};
-+	};
-+
-+	fan: pwm-fan {
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&fan_pins>;
-+		compatible = "pwm-fan";
-+		#cooling-cells = <2>;
-+		pwms = <&pwm 1 10000000 0>;
-+		cooling-levels = <0 66 196 255>;
-+	};
-+
- };
- 
- &padctrl0_apsys {
-+	fan_pins: fan-0 {
-+		pwm1-pins {
-+			pins = "GPIO3_3"; /* PWM1 */
-+			function = "pwm";
-+			bias-disable;
-+			drive-strength = <25>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
- 	uart0_pins: uart0-0 {
- 		tx-pins {
- 			pins = "UART0_TXD";
+On Fri, Sep 5, 2025 at 3:56=E2=80=AFPM Antonio Borneo
+<antonio.borneo@foss.st.com> wrote:
 
--- 
-2.34.1
+> Add the property "skew-delay-direction" to specify on which pin's
+> direction (either input, output or both) the value of the generic
+> property 'skew-delay' applies.
+> For backward compatibility, 'skew-delay' applies on both input and
+> output directions when the new property is not present or has
+> value '0'.
+>
+> Signed-off-by: Antonio Borneo <antonio.borneo@foss.st.com>
+(...)
+> +  skew-delay-direction:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [0, 1, 2]
+> +    default: 0
+> +    description: |
+> +      0: skew-delay applies to both input and output directions
+> +      1: skew-delay applies only to the output direction
+> +      2: skew-delay applies only to the input direction
 
+Unfortunately I don't think this will work, because skew-delay
+has a value, and with this scheme we can only specify that we
+want this value to affect both in/out, only in or only out.
+
+What happens when someone want to configure different
+skew delay for input and output?
+
+I think it is better to add:
+
+skew-delay-input =3D <u32>;
+skew-delay-output =3D <u32>;
+
+So the drivers that need this explicitly specified will need
+to just define one of these instead.
+
+If you want to be very determined, make the schema
+not accept skew-delay if either skew-delay-input
+or skew-delay-output is specified.
+
+Yours,
+Linus Walleij
 
