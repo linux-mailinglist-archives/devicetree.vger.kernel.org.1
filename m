@@ -1,163 +1,125 @@
-Return-Path: <devicetree+bounces-222685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73371BABE4F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 09:49:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D0EEBABE61
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 09:51:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1C81188B25A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:50:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23A573BE18A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:51:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEBEA24168D;
-	Tue, 30 Sep 2025 07:49:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E00F12494FF;
+	Tue, 30 Sep 2025 07:50:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mbPXCIfs"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="qB4Ype2Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44EB3239E76
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:49:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 861E11D516C
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:50:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759218592; cv=none; b=Zx25MA59LOvbzF2YrfLVTVAd3nnDF2s8oWl6vYZZW2J/n+s0hIEcx7UC3TSHToPhJvCa1n9Wi/kFuSAaowETnRABilKjIjTBsSaVVG15cGA+OxUgtDc4RIDoJbJVnNS9ViIYxgyEGTx9U9xgPyGCG8XAzl1BzHpiAV/H1FFBmxE=
+	t=1759218658; cv=none; b=HBgPz3LJKeix89CjRNm0ENvAIneO6BzqeXID5EaPNazj0IdXUrC8LyauJjCEjZklFX57Q/1pPrWuMg8qTtpRSzgYg6A6fVTbNIwjdQQkXtRAApl2ELsXbkJTsPV1gVbFhVZfXQCCtTrYMERNg8cfocb43y1OsC8ajprfMFmjqFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759218592; c=relaxed/simple;
-	bh=vPPstQsecnnkIWa6DxFaHD9gRnqYStgZOVelTzbVHqY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mcbQ89a89ZMtabS7olglT3WINogdAda//hrX9ipk6x/k5TvvZKt29hbZ7A4tlHFpVXviQCPzOclSA4avqQmFPZS72kOvHdoc/JBkzp2Ee4i5z+VcyQW/C2WWJu8jQ7vzXJV1VU/P6gV8pz4xDgJ2pvVvYMXzcEGc8yEfGQ6eO4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mbPXCIfs; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58U4Hhwn001149
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:49:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=tcDYvvx/kWESRIwdIUfePzUj
-	wXfd5DkiWsQQ0UqQcPs=; b=mbPXCIfsnKiNtisq0erGetEyK+l37muV+7YinheB
-	bYj644FZBNuf1NgkhSgSbqRlm+TYG5UJuTdvExajM+vrUhtwvopVf/wSpTJ/WkqC
-	hu2tYYX0OahWkjx/XHHgJ165uF0Hdl0hZ0NmfphU42nznbmNIJHNgJcE+NtGueab
-	od5nvAuCN+cVzlntj3IJiIy7FHLagNgVuDVgefB2uDbvVHjVWmKsT3TunRetSyK/
-	SXZxXbuQKgsXBy8egQfp4FHYNPv0FfnA5OKfkxqjjmN2DiFC/r0Lp+ZgdSNra7UX
-	qUjV2tDvYdey7K8eKSeHm1dSYSwas7M8x+dBmnqjSl5Xfg==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49fppr3k94-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 07:49:50 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4e0e7caf22eso54677971cf.3
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 00:49:50 -0700 (PDT)
+	s=arc-20240116; t=1759218658; c=relaxed/simple;
+	bh=ZqUTZJxdJskdJMblbDO5abj9EGJDm9Q+viM3LofYUAQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=DIPgxHo49lZ027SqZzLCZQM9hXt3DIpq/cHmyaE1hJYTMuitrvq908t+djiataPQJHNLalHSfcZnimiPdexFblhsRnUhDLd+xOGKuPu4PKlkTiNHNRH1fRgfzxnuL/xxlFR21oqu4bV/HRvlGv81i+/bi03VyM6hsKRAyNttDmE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=qB4Ype2Q; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b55640a2e33so4391871a12.2
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 00:50:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1759218656; x=1759823456; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0RGErcP5iIWaAYOH1EdzfokXK7+mdWRIaYg5XseTui0=;
+        b=qB4Ype2QmXXzWll4VVlYW/koznYU6OIXokjODwiqI0sPqeykrpp4zYGF7zhBepaMSg
+         FlTcftZtT9ZEhPrvty2km3bg6NNzAOtHPu9hiphTQKYS9/3+9f8W1AZqvnds7RqGjhtp
+         qBg4UivNyRrbXQCqhyLvvOFg6ci2DEA2BOrKVcA/T/693tizBP+bCY/k3iUcB/LmftOe
+         zUfKk+avX3jhfpTJX5ZEYUXEi/eScB/ay+ZSwVumxWdkVuU7vOL9VqJm+BUrUOl9mj8Z
+         TY7LdG98MtG/jxLN7cbw/qAg4rbGKmJ0u7HyYnmrVJa+nA0viQslXjMaN6kpWgEkUl4f
+         7E2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759218589; x=1759823389;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tcDYvvx/kWESRIwdIUfePzUjwXfd5DkiWsQQ0UqQcPs=;
-        b=kNd1Tbej6gQb73i49VbhPhS+WMkKWBiHrN0+9EbvrbDCgrDWct8VH12s+JUDuBFonX
-         RZu6d3LogHQY+aowegfu3Wee7ZEBiwPUf/J/hmR3SGkZzEW81/vCz/n/RpMP4wsh1bXe
-         YdfgT4YGgshAo+H3WTkMGGxsZ9mQd9CmNo+YP4mUpgQQ08cotuUErDurhDNf8+8wbVZ6
-         hd4f/ui4L3pvTW0O4wtdxI98ZHwMvYdAzFRmxdxf0jEMnD6zzfND43gHGaFyBLzsptZs
-         2r08/9pRgaen1PcrvEFUkJzhI+IWLNgWgAxOgw9mYSSZU0O6tp/QsMKgKGs/mBs5tZUW
-         hn9g==
-X-Forwarded-Encrypted: i=1; AJvYcCXzPnZ9HJJFKcn5jPqxP8f0c4tabKq/ZJ4xkYHi3G1uEuxx2HF2ItrSXeY5lmgiVju5lMN9YblW1J27@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1M/As8acWqaEmzQm1Ap2O+vNOuCGIZ7CflUl6PP1hq1tkj/0Z
-	ZHv06t2bnOnlq8Q185adE00G4/C8heKFm/fcNkrck1PnfQgrAjI6iviM5aJl6KEVf7m/fjRLV3n
-	/xrrQYfr2A8tsGxuWK3dlcOMkKSlK370xmO3K0DMUTIhVQZ+8r55b6tK45/eQznvl
-X-Gm-Gg: ASbGncucOr3ikXpX2yu1ySNrAcr4c1BdO6KMtDRokczu5RRFaqhCpePhd0x3zKQ2KgS
-	+Sxo2VqeBq0+zI+3yONfUECt0HmZfLAdj2hiK5KCUljA943/Lk2cnhsUrSYY6rsg9xqInRk+CJf
-	bu5vN5Qtw+PbFtphd0Zm44M7hf4HOJnpUSQr19f6QbJl1Z9yRkco0YfUXkgQt81vtRD4zR07VFu
-	iTAOXepu4pgUgYlcrhIAIeVwAGTm6xjx6kjCiGkj99KLMGojtFUNa0QlqG+w7iR9wqAz8EFHOR5
-	KZfMTMhhbByiYkXMLKrn1BnZmMCVXdYnn4+J0C2gUFt5xi9nfJF+k6vYLIDGEjga9DFNKJBvvo5
-	REWxzbdujYhLJIj3welyfoIBGDCr6KYw0CwnUUrcIDvnnD+OWSVw1y6kZDA==
-X-Received: by 2002:a05:622a:17c3:b0:4e3:25d7:57d4 with SMTP id d75a77b69052e-4e325d772ffmr15078541cf.80.1759218589244;
-        Tue, 30 Sep 2025 00:49:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF1NOqQxAPdQp+Dh3rh+AoIDtXwXlBUdceAQk5B9YJWaQLrY/hOzC1FHHQS6Zz8p9Hkpk4YgQ==
-X-Received: by 2002:a05:622a:17c3:b0:4e3:25d7:57d4 with SMTP id d75a77b69052e-4e325d772ffmr15078221cf.80.1759218588705;
-        Tue, 30 Sep 2025 00:49:48 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58567242ef3sm2908507e87.19.2025.09.30.00.49.47
+        d=1e100.net; s=20230601; t=1759218656; x=1759823456;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0RGErcP5iIWaAYOH1EdzfokXK7+mdWRIaYg5XseTui0=;
+        b=umabJ970FyaoCVvjN1bU7sai9m1ai3hL2yh6xocLqZdYowulyZImoQjsyJ8scGtFX8
+         jzHUsl2lrKAgZ+cEFGt0G236CjnvdYH0APBNQqz7kwV4/Ma01Cy68QhBIDATc3hf1EIK
+         joWA4yWN5HL58kDHdg2eQZYBtGylLgR31uHgYTCtA6HlaOUuXhICEW6qJvsqzUFeTxtH
+         RLmC16duFnCxCcRzvhPDJvuWX6NKbakI4wonuDcjDa6yX7jYi0H9frGUbeG1TanIg/oM
+         hL5FRAr+Q/e5x4RUCb5BQa+Qkfggfj8cTZ4KxP0o5OpWJlspKE0q6RI5ckD5pr6Ak+QW
+         f9aQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUV+TADAyvhwj2yBZJZAsXqBKJXv1+q2gpUC6L8fwBc/KtUg82u/+DQ9UIg7+IP3/nDioRWYl+FaDkz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwU+AjIWeHubb0Fp000+/mX5qLu4yMacdjgwaBC5sEppHouDOfG
+	E85juFTUeGH1vN6NUfIN0nnbXwCrGVZWgIowASXkl9rR/RPIluX7/zT1ZcywDSe+3II=
+X-Gm-Gg: ASbGncvOyLwFsL5Twcph/XJzQqjTULPc5wIMr+PGTjFrQOz5Xf/onB47CWfy3qpTXXj
+	V6LF/9npHbh/yWKQ7Ytt91kH2PLW2VuwAoNFWXp68IaQ464vWX6yfsqWsllhFYxZytpz5HCGtBl
+	7yvdiYhXEcgCa02fWf+XFX0p/bFFuzgAIcO2KSBnH5zJJHeizZFBoxr0gF5oos44U9+Zo37N8aM
+	pkKZIwZ7qZhhsUmAJrnHi/gxg500gamX3Miz9TYkZoto9v0EqcqUZs7PKv4pVH5fSn035tCql7Q
+	zzPggeAt43HQRd0pAj0vJ2/rAI8q5fKPXtObV98cs5MtM0Avkak3+j/+Qn33Pdz03nLGfca7hms
+	vuc6vg2hYEwsVuY/Oct3rKXVAERPWN+LzrxP7IBbXz9QZLIWyGMOja+Jn9pO9EU4UfCWTAqKpY9
+	38l4JMKeGlP4GMBpLDnfYC76v+mnIG
+X-Google-Smtp-Source: AGHT+IHkjlHtYzmiPHDe8EY7GT2BmQZoEPe0VhhME3S6IElawm+J6e6S+KLLCXGrXpgMSliALMEWUg==
+X-Received: by 2002:a17:902:ef44:b0:246:a543:199 with SMTP id d9443c01a7336-27ed596f868mr225436925ad.54.1759218655779;
+        Tue, 30 Sep 2025 00:50:55 -0700 (PDT)
+Received: from dgp100339560-01.huaqin.com ([103.117.77.121])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed688223dsm152313565ad.86.2025.09.30.00.50.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Sep 2025 00:49:47 -0700 (PDT)
-Date: Tue, 30 Sep 2025 10:49:45 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Jordan Crouse <jordan@cosmicpenguin.net>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
-        iommu@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH 15/17] drm/msm/adreno: Do CX GBIF config before GMU start
-Message-ID: <ae2ooybajk6mcjggeztumubht6auw5qlhmsdrblikc5ruoxtmm@oj5kvpxithva>
-References: <20250930-kaana-gpu-support-v1-0-73530b0700ed@oss.qualcomm.com>
- <20250930-kaana-gpu-support-v1-15-73530b0700ed@oss.qualcomm.com>
+        Tue, 30 Sep 2025 00:50:55 -0700 (PDT)
+From: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+To: neil.armstrong@linaro.org,
+	jessica.zhang@oss.qualcomm.com,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dianders@chromium.org
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+Subject: [PATCH v1 0/2] Add support for Tianma TL121BVMS07-00 panel
+Date: Tue, 30 Sep 2025 15:50:42 +0800
+Message-Id: <20250930075044.1368134-1-yelangyan@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250930-kaana-gpu-support-v1-15-73530b0700ed@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI5MDA4MiBTYWx0ZWRfX9DTsjWcBW9hX
- 36pME5zaAlj5e1DOTQRhlxDKeQVNBVemblzgyH4KKt5uyUBpw0YjLUkqR29ABoImRDhlCMyh8zm
- ddv2ayWvEAvzVs6QuKej8pjFyVme0YHQMrSl8fcPBvf1aesxnpen2O8RqXZXdzx+kiSS4xVBCsU
- RkVUR0iIr4KN9KgZ4w1ANncDACk0KKerRTsVtXH8DIs4U0J1KuNWuKF7dLcHiQes7uzcwnUs0T7
- RaHlaG5d0WDrzTeKgMrLKSY6tCGG/roUdBhu2V/RkRJ9CwVVbBN9TcRP5KdDSo2p6UvDxjQlrZV
- HS9lBVJ/UCqTWU/FZOXt5J3MuMYvMr175A4Pbm9LC312e5Pk9cM6rrxpctj2ZW8+zMuyyEJ406A
- IUybeXocq2YoJcI9AcTejDc5pk1YBQ==
-X-Proofpoint-ORIG-GUID: bAqsfzKrz568H5KGTDWyjJ5VWC7hPoMN
-X-Authority-Analysis: v=2.4 cv=GLoF0+NK c=1 sm=1 tr=0 ts=68db8b9e cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=219S4Ll1wpRkBpzXM0IA:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-GUID: bAqsfzKrz568H5KGTDWyjJ5VWC7hPoMN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-30_01,2025-09-29_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 lowpriorityscore=0 adultscore=0 suspectscore=0
- impostorscore=0 spamscore=0 bulkscore=0 clxscore=1015 phishscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2509290082
+Content-Transfer-Encoding: 8bit
 
-On Tue, Sep 30, 2025 at 11:18:20AM +0530, Akhil P Oommen wrote:
-> GMU lies on the CX domain and accesses CX GBIF. So do CX GBIF
-> configurations before GMU wakes up. Also, move these registers to
-> the catalog.
-> 
-> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+This patch series adds device tree bindings and a DRM panel driver
+for the Tianma TL121BVMS07-00 12.1" MIPI-DSI TFT LCD panel.
 
-Fixes tag?
+The panel requires multiple power supplies (AVDD, AVEE, and 1.8V
+logic), an enable GPIO, and a backlight device. It is based on the
+Ilitek IL79900A controller.
 
-> ---
->  drivers/gpu/drm/msm/adreno/a6xx_catalog.c | 23 +++++++++++++++++++++++
->  drivers/gpu/drm/msm/adreno/a6xx_gmu.c     | 12 ++++++++++++
->  drivers/gpu/drm/msm/adreno/a6xx_gpu.c     | 17 ++++++++++-------
->  drivers/gpu/drm/msm/adreno/a6xx_gpu.h     |  1 +
->  drivers/gpu/drm/msm/adreno/a8xx_gpu.c     | 10 +++-------
->  5 files changed, 49 insertions(+), 14 deletions(-)
-> 
+Tested on a MediaTek platform.
+
+Langyan Ye (2):
+  dt-bindings: display: panel: Add Tianma TL121BVMS07-00 panel
+  drm/panel: Add driver for Tianma TL121BVMS07-00 panel
+
+ .../display/panel/tianma,tl121bvms07-00.yaml  |  85 ++++
+ .../drm/panel/panel-tianma-tl121bvms07-00.c   | 419 ++++++++++++++++++
+ 2 files changed, 504 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/tianma,tl121bvms07-00.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-tianma-tl121bvms07-00.c
 
 -- 
-With best wishes
-Dmitry
+2.34.1
+
 
