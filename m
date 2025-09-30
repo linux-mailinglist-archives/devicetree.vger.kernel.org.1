@@ -1,181 +1,131 @@
-Return-Path: <devicetree+bounces-222624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 285C3BAB71D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:03:13 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E0C2BAB740
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 07:03:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 347773AA4BD
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 05:03:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 005144E1EC8
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 05:03:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12405267B94;
-	Tue, 30 Sep 2025 05:03:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9258266581;
+	Tue, 30 Sep 2025 05:03:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TekIBcTw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TWyICfZ4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30496145B16
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:03:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0492224BBF0
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:03:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759208587; cv=none; b=Hhfuv4s6DpRBq93MN8IfSS3fMRsCg57gExY0OiDJn8MuBG8QQuEPcddLX5cmQwxOFjaVGJUYcIN05rzrK13IeeUWob+U1EpzJF36/Gkj2YXCrP10nxLcMjI0n8O60U2Z7W1NsfBHU6XblgBoSsI0ytwajyLn2ZE9D2OD1AI/WQM=
+	t=1759208612; cv=none; b=K5rln1UOV1maladlmy2kZmAj9cXeid7u+DAIoArg9ZxPo+6SZTF18gQzi/64HwbK1UuueUeTPyCUtpJKdHUXMTfNlHV7qdrj+DPH0pYRHrixaPZtG/lFd8yzKYZtARDBUsTDvZD6sCgcp6fK3jrhvS59CeTLlBC7zuXqSdaLakM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759208587; c=relaxed/simple;
-	bh=a7qb2rJ0Jw/0UIKF71j2MJv2VPSIHDCUpr68yF8O7AE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=i+kEq5mVDZGLYSEuAt8/K0IcOnBtkk3CxRf1AsCv4ngp7glldU6B5HvAyHJA7CDvtL3kwSJErjgVcoK/XMWSnotsxfOFZdTgQkzxzYWifIKYLLz0W4wdn8wdrb8evuaGOja6ta0S6FgChCFyc7tAQwtGr8tSIfEB7zMfR7n0gOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TekIBcTw; arc=none smtp.client-ip=209.85.128.41
+	s=arc-20240116; t=1759208612; c=relaxed/simple;
+	bh=/rtni81NLg6R/7V1kv9Fo73Xzse+sErQ2+dI6TO4UQc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=lDFsrszscz0M3E2Bvbit5QPkAHowBC2BID7C9pYAx+ATNrDdps/DxPuq6/21O2o0VtFp0bFGTzIcfqI5DCZMWV1UbZYsc/5iMyjgWKudJuRGSck6bVK4h2aWMkiljgs3rBSXPu/0N+ukHWme23c0qEqUnlDdfay0pt4En390pw8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TWyICfZ4; arc=none smtp.client-ip=209.85.221.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-46e52279279so13487925e9.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 22:03:04 -0700 (PDT)
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42421b1514fso247149f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 22:03:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759208583; x=1759813383; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GoR1B9T7V1pTFNhkgw0nIgS8ET98ouYhg1Jto8UVkhg=;
-        b=TekIBcTwGod/GumanHna8s0BB0Ymjmk/jpUdxJzBEfCeKHYJIG7vbA6bMlMPyhvia5
-         Rf8W78m9gL2OAVgSUQX/EQOK/dLGYgN4FZpQdRHSi1PGw4LFGzkeHoddh5pcGbIrbcpC
-         voYNfWVqtxdp+6bxrz9EqoAWjuccUksHduwNcXDTaBy4vC3RzhWPhXrGDWksZLPj6ZTM
-         1NCuhNR1YJzY/kH8KosgiHK//F5HSTlzSxFiTJDy9r8IP/xISrtEBOSplX7PV96yN8rO
-         XQrq8wHM0HGSLFCvM+IUw0aO5MrYdwpqVbFoEW/YcRp35Jcl8wxlGNGgQxVpY5rdXCkt
-         diUQ==
+        d=gmail.com; s=20230601; t=1759208609; x=1759813409; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=tDHiBgvlZKMDqbJ9iVvhp12FH415WcyIkEC0U6JcOUY=;
+        b=TWyICfZ4z2cYhY47NZ+ruiXEneICknDA2HYceTdzCyhL0cl6gZixTfImrVL3GyW+v1
+         DZBGunXX+axoxxDtqhB5jq89U2eyVvfe1OBLk+yOSB3VGp3MrRk5yz3AjShVeEX1Ah2U
+         QsvMI4fbI8tBDAvlpqPzVv9IttMgVXmgyC4t72It3Wsb1H8y8sAqB20s3EasBS6zgQ+s
+         2enDoOuPJd+wAUvZCxvTdi3H74vKfH0qc3puZCaTZA6iYGZ4kN6Iaen+E1YJ1FlwWq2e
+         CIFMoe3z7vltCTN5Ir78j5sgxLt3H9GATmZVVe81jRMl5LvbvwYT7gSKHeZwIxTIrOXA
+         cWBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759208583; x=1759813383;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GoR1B9T7V1pTFNhkgw0nIgS8ET98ouYhg1Jto8UVkhg=;
-        b=FXhIGq+7dDd5x+mp9sfYi7ZIhEHRMZ9gOmxWTc0R327iB6WmCHazxXOS0HhBq8+8Ct
-         SdY+Pqp/kyjV9kIKxDVAOYCvUsaekRAToAH0+sQk8Ynu5LqhHtrmP5NqVqrLmbeu35AQ
-         4slzoEZYwQigUub1dD5Phcjp2VHdWPznyEtrlDFCNhteZlSETCS+yqrGXED9cyX14U9Y
-         ZGtKi2Jm/qL194xcPT3SdN32L4v9EBaCA9/MSIFKRtfzpR6wVWToCkklq4Bx5gAjTHn9
-         9ab5mU7aMojQWStzgoWKhMyno9DMGFq92SqK7kaoMH4T+m7KKgPimpMYwdXPGb430t82
-         tChQ==
-X-Forwarded-Encrypted: i=1; AJvYcCViI7N8Yd8Mv1WLKmAekuP468lQawU0vkvpsOoMy/Ogv7t5/X41XA2A2RXDl8XEq21/NOHb2xVXImya@vger.kernel.org
-X-Gm-Message-State: AOJu0Yywkxf2xTsGIxk9OnIHbsK9oKUiFYtyXZYhE31LOk97m1rlIfZ1
-	UBUnIas1P9AuSRh9z3gf7SpVNCfm9pCGarologOeKm1iFASAqHNdHrrV5C/AG3YgjBJezCUGMWu
-	2LFiI/7JcmiM8JdsL8mC7/AzN10dqIOo=
-X-Gm-Gg: ASbGncvC1KFZaV12m12VdFbEvsINmt1YAoH9zmn0p1D2pHP01fsZKD72EQ/NYR520bx
-	FxzZiYXaLyLk43GcVFfX/5D6qzjyEXcHMlwo7W9MoxZJzWqYy9RjMs1zuo9Y62kAcPSAlEpCmlz
-	Fb1/0a0uUb3QeDPGLk46WDfV8wE0c1xC8CFh1H1U1CiML8RvZcCmhFZzBQTjSsxI9L37a7QXzi6
-	1TQrih3FuXJt+4+oiejfh82SioRHkBV
-X-Google-Smtp-Source: AGHT+IHtCiLZWPd6YG0+/m8xv7WXlf4TjyLf87iKzlvK+SbdMSS/Y5iMogSqKCijOs1mMK9wjtjefb1nkSZHeV4XUX4=
-X-Received: by 2002:a05:600c:3b12:b0:46e:4287:a85e with SMTP id
- 5b1f17b1804b1-46e4287ab48mr113132665e9.13.1759208583161; Mon, 29 Sep 2025
- 22:03:03 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759208609; x=1759813409;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tDHiBgvlZKMDqbJ9iVvhp12FH415WcyIkEC0U6JcOUY=;
+        b=XeEHKzMvvjyob4pOBcS2NGoVKv3j3N6bqxqtlCLOB2NEXZTLRrNOGA1ukcMniN0gYq
+         Zr3axuR27Wiurc1/cYkoGp/s7FrkpAMeU03D9IJW3RBuwup69WvRxTy+5nAQvYafMdac
+         iGavZVGmrK42uTwnVmkfMHBDkMD3MFDlGHX/62HV0Ii/EMkIpDB088NpHD5k7U+zPNUM
+         TcPu0L/penxQkk0Zj6qlsKPLEkoA0kA6i6iaZaa12xhpr+4EVjMZxJfUEj5IEf/yuLNp
+         QGacznkXaK1VgmR4B9PVLQ46efaOqcIC4PZybpCZ9g5sS4gaskiiDLWDKgudT2GkK0Mc
+         csLg==
+X-Gm-Message-State: AOJu0YyJoRaYVxmSFX42ZHWIZLlgrU7YsF1hQAjOBhEDfFPt3+9f2hyx
+	73V+CwgLWn2TlJL9drHUNGbOxoDWpoeZ2m7aQlcpLxJjRDieufwc219L
+X-Gm-Gg: ASbGnctmwDGlsEfImBy3N2E0du9jn67uK1uU//s4zw80L6/2zxT0/bAVfuSqLp9+US4
+	Ba1J35U2oglHFC/ymNNkIuUjVUfbQ19NYCiuZG0rToaVKQ5dC/ts9uOsev+G89kvEi6IxQGMoPj
+	lFLk5m0bqClk0+g7hbDjrbM1O+FGdJffaW069mzJtUKQIOciPxKBx5o5lZkhsjLCpD+YfKyV06E
+	QBSEfwTkZK/v4jMF5xheVahRh1LwFP/eUUciR32oYLesUHM4amXV0YsLeQ+waxxKuNsT3ZizPI0
+	Wwd5coPkN2/T448CmPDkwcjtZ/Cl4ChtYCA5uIZdUCnJl5ql1Mbou/kBy7c3b523CGRRIc3+J/A
+	8CMUZ9uU9HKZ4KEIOw/uZevxfR3joR7+GiPvsZfdjsJCpwiNlKM01LIIDBSiW5p/H4rGJqBJSMh
+	lBcg==
+X-Google-Smtp-Source: AGHT+IEqNXnG5AV0ehUmkE/8d34Mg5uF9Su14lUDdR+mcFSm+TA7IIv1Oj266kEd4QYdX03XSq9P0w==
+X-Received: by 2002:adf:a3c9:0:b0:410:3a4f:12c8 with SMTP id ffacd0b85a97d-4103a4f171dmr12364968f8f.20.1759208609024;
+        Mon, 29 Sep 2025 22:03:29 -0700 (PDT)
+Received: from giga-mm-2.home ([2a02:1210:8642:2b00:82ee:73ff:feb8:99e3])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-40fb72fb711sm20710267f8f.11.2025.09.29.22.03.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 29 Sep 2025 22:03:28 -0700 (PDT)
+Message-ID: <ad86009bff38ddae0b291d3edbf958ce6363ece2.camel@gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: sophgo: add initial Milk-V Duo S board
+ support
+From: Alexander Sverdlin <alexander.sverdlin@gmail.com>
+To: Inochi Amaoto <inochiama@gmail.com>, Joshua Milas
+ <josh.milas@gmail.com>, 	robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, unicorn_wang@outlook.com, 	rabenda.cn@gmail.com,
+ thomas.bonnefille@bootlin.com, chao.wei@sophgo.com
+Cc: devicetree@vger.kernel.org, sophgo@lists.linux.dev
+Date: Tue, 30 Sep 2025 07:03:24 +0200
+In-Reply-To: <nkzpfylhxyqf5u3bjlokhe4udgcxohbaanhwuofjzatan3iwio@45ljfquf5sui>
+References: <20250927173619.89768-1-josh.milas@gmail.com>
+	 <20250927173619.89768-3-josh.milas@gmail.com>
+	 <nkzpfylhxyqf5u3bjlokhe4udgcxohbaanhwuofjzatan3iwio@45ljfquf5sui>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250929142455.24883-1-clamor95@gmail.com> <20250929142455.24883-2-clamor95@gmail.com>
- <CAD=FV=Vd=muLeMJYszC2SqRBThN=Srm_bKXBEmjjqND7bqHo2g@mail.gmail.com>
-In-Reply-To: <CAD=FV=Vd=muLeMJYszC2SqRBThN=Srm_bKXBEmjjqND7bqHo2g@mail.gmail.com>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 30 Sep 2025 08:02:51 +0300
-X-Gm-Features: AS18NWD95jSyp5Bl_nRLcKiZ6--BarGD38quBofBfUrmsZQ1NRrhf1Cuovt9_j8
-Message-ID: <CAPVz0n23qNrnyP7ttchaCoLit=gBm_++7RX7B8MxR_nx+8LGHw@mail.gmail.com>
-Subject: Re: [PATCH v1 1/8] dt-bindings: display: panel: properly document LG
- LD070WX3 panel
-To: Doug Anderson <dianders@chromium.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-=D0=B2=D1=82, 30 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 06:12 Doug=
- Anderson <dianders@chromium.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> Hi,
->
-> On Mon, Sep 29, 2025 at 7:25=E2=80=AFAM Svyatoslav Ryhel <clamor95@gmail.=
-com> wrote:
-> >
-> > LG LD070WX3-SL01 was mistakenly documented as a simple DSI panel, which=
- it
-> > clearly is not. Address this by adding the proper schema for this panel=
-.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../bindings/display/panel/lg,ld070wx3.yaml   | 60 +++++++++++++++++++
-> >  .../display/panel/panel-simple-dsi.yaml       |  2 -
-> >  2 files changed, 60 insertions(+), 2 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/display/panel/lg,=
-ld070wx3.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/lg,ld070wx=
-3.yaml b/Documentation/devicetree/bindings/display/panel/lg,ld070wx3.yaml
-> > new file mode 100644
-> > index 000000000000..0a82cf311452
+Hi Inochi, Joshua,
+
+On Tue, 2025-09-30 at 07:54 +0800, Inochi Amaoto wrote:
 > > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/panel/lg,ld070wx3.yaml
-> > @@ -0,0 +1,60 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/panel/lg,ld070wx3.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +++ b/arch/arm64/boot/dts/sophgo/sg2000-milkv-duo-s.dts
+> > @@ -0,0 +1,88 @@
+> > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
 > > +
-> > +title: LG Corporation 7" WXGA TFT LCD panel
+> > +/dts-v1/;
 > > +
-> > +maintainers:
-> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
+> > +#include <dt-bindings/pinctrl/pinctrl-sg2000.h>
+> > +#include "sg2000.dtsi"
 > > +
-> > +allOf:
-> > +  - $ref: panel-common.yaml#
+> > +/ {
+> > +	model =3D "Milk-V DuoS";
+> > +	compatible =3D "milkv,duo-s", "sophgo,sg2000";
 > > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: lg,ld070wx3-sl01
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  vdd-supply: true
-> > +  vcc-supply: true
-> > +
-> > +  backlight: true
-> > +  port: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - vdd-supply
-> > +  - vcc-supply
->
-> I suspect you'll get a NAK here because you're not preserving backward
-> compatibility for existing device trees. While there can sometimes be
-> reasons to do that, you'd need to provide a very strong justification.
->
->
-> It seems like instead of breaking compatibility you could just have
-> two supplies:
->
-> * power-supply - The name for the "dvdd" supply.
-> * avdd-supply - The name for the "avdd" supply.
->
-> ...and then you make both of them not "required". Maybe you'd add some
-> documentation saying that things might not work 100% correctly if they
-> weren't provided but that old device trees didn't specify them?
+> > +	aliases {
+> > +		serial0 =3D &uart0;
+> > +		mmc0 =3D &sdhci0;
+> > +	};
+>=20
+> It is better for adding gpio and other serial there?
 
-Schema describes hardware. If it does not (and in this case it clearly
-DOES NOT), then such schema should be adjusted according to hardware.
-If there are any users of such binding, they should be adjusted too
-(third commit of this patchset does exactly that). Panel datasheet is
-explicit, panel has ONLY vdd supply and vcc supply, names are taken
-from there too.
+I believe, gpio is long time discouraged here.
+
+Link: https://lore.kernel.org/all/CACRpkdYErJH5RUjL+jPC5vnaqGiOqBwHsr0E42wO=
+WrpBGrpS3w@mail.gmail.com/
+
+--=20
+Alexander Sverdlin.
 
