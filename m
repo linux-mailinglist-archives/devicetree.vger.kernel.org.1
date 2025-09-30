@@ -1,109 +1,107 @@
-Return-Path: <devicetree+bounces-222695-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D340BABFA6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 10:16:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C66E0BABFE9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 10:22:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8636D189ED06
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 08:17:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8245217FD80
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 08:22:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 700172D7DE7;
-	Tue, 30 Sep 2025 08:16:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F30B2F3C0F;
+	Tue, 30 Sep 2025 08:22:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="bM6ttSNo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9CE419343B;
-	Tue, 30 Sep 2025 08:16:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 542472D24B1
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 08:22:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759220200; cv=none; b=lmjt6LsTBb4xdhSgQcyem4buHQiFkix7UUhsoB5uwQMT6Wh+ZsfU1hOVzjU4HiPLNRFcRsSuOFEOWqpXNtFs2Y/T7195w32kWR5stiniJjcgAi44bpAr/bJGvxuiyNVCwL/ATq209I9iu74J00gS/9qlwqw5nyR26rdqEgz8DkM=
+	t=1759220531; cv=none; b=h/IvdkRcjyfviObmJ/iMeIewbp2tgI6kACGvLDVQ4n9A05fOf9VlgZBGECSgnmDUqmgK6EDccL27bd+SZdHfCqWEz/KKJcixgzByhZRE7KniyO+Z3VjkG5qPMhuhEaQW9/slayGJCtToS6z7vKfUH66sa5VauvfiLbXcxpaqTlg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759220200; c=relaxed/simple;
-	bh=V5wuETQcgvIF648FSp/qiHyosW7aBRE9KR160cw0vcU=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=lE0tLqFA9v24WP6NjZbiAqgzfWLAo5ymUJy+2Qw75xu04ocYIdsJDKf56nukRYfaVEjKJR7PNxXUZAO+dl+w5HTC7kajwNm/FtP65SxnbYvZ1G2Q6Wx0axpLvcjtckzLTGNxtWyR9Aa/oP/aO9BFxoUr5U3JcwUg97OJxb+box4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from localhost.localdomain (unknown [202.112.113.212])
-	by APP-05 (Coremail) with SMTP id zQCowAAHpg_Ukdto_09DCQ--.10836S2;
-	Tue, 30 Sep 2025 16:16:28 +0800 (CST)
-From: Ma Ke <make24@iscas.ac.cn>
-To: robh@kernel.org,
-	saravanak@google.com,
-	lizhi.hou@amd.com
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	akpm@linux-foundation.org,
-	Ma Ke <make24@iscas.ac.cn>,
-	stable@vger.kernel.org
-Subject: [PATCH v2] of: unittest: Fix device reference count leak in of_unittest_pci_node_verify
-Date: Tue, 30 Sep 2025 16:16:18 +0800
-Message-Id: <20250930081618.794-1-make24@iscas.ac.cn>
-X-Mailer: git-send-email 2.17.1
-X-CM-TRANSID:zQCowAAHpg_Ukdto_09DCQ--.10836S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Kw1kKFWxAry3JryxuryUWrg_yoW8GFy5pw
-	47Kas0vrWkGa17Kw4jvF1xZFy5C3y2k3yrGFyxA3WI9395Z34xtryUtayUtrn8ZrWkXFs0
-	q3W7tay0kF4UtaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9l14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
-	6r4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1lnxkEFVAIw20F6cxK64vIFxWle2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xv
-	F2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r
-	4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I
-	648v4I1lc7CjxVAaw2AFwI0_JF0_Jw1lc2xSY4AK67AK6r43MxAIw28IcxkI7VAKI48JMx
-	C20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAF
-	wI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20x
-	vE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCI42IY6xAIw20EY4v2
-	0xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxV
-	WUJVW8JbIYCTnIWIevJa73UjIFyTuYvjfU0tCzDUUUU
-X-CM-SenderInfo: ppdnvj2u6l2u1dvotugofq/
+	s=arc-20240116; t=1759220531; c=relaxed/simple;
+	bh=4pE3k2VBU5zrdsB3CR7FkZwhjoZcQukX7hsPH5UvQJE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=H9iVxEXviWERn0yV+B1glMpPByk+vFKGH3ctG6d5Q30405C7jLBNa5jjLVUFrGhaMidj63UNYp175KJ8bVh3MxHgulUu0S+kg3WQ48wAm75aag0GaMOwibAFSbqTkV3WX86yniUPJ3Q147gZVfQfe880KhodVHYofdkssYigngo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=bM6ttSNo; arc=none smtp.client-ip=209.85.222.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-84827ef386aso367176285a.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 01:22:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1759220528; x=1759825328; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0MYOqdthezk2Y5aWzOzKpk43i1E5SPt8BTiExHKtReY=;
+        b=bM6ttSNo7otdGv4BLNxO4zMnBWW2WYdy6KSDTZKB/1BEq3d0PR70G6GJneitZdIHYy
+         aCP5mWEkxZb+CuEYPJ1vGlBizeawQQgo8g69L/w5lbsTccSWZ3YbXvgXBrrTDq9Qt16L
+         dmYthKXDpPm2+7dSnvZf/vlsNxxJVejrw9GTEZQ+kTuu3eKsEUkKI+kgfMGiswQWJdit
+         4GGsIHzJMFTnDD7ZisryVyJTj62d+DanYSpzhtvReMhMQaaHC0Rc5rZb7qY9WKtbDZIR
+         t2qhharnKWM2BGVsCAK0RiJzh0eCQkxjEPDP+I+9KX4ZBR48h3So8GbT9ACZz3jBPPxf
+         BeAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759220528; x=1759825328;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0MYOqdthezk2Y5aWzOzKpk43i1E5SPt8BTiExHKtReY=;
+        b=bo5LJggrqEFYbvvz7Ft8aq47KXNdl/kJRLBuRyNeWOmgTWAEsQzvOg/99h3GUo1ZpW
+         5GVQH8QcIPO+IITeOr9g++gUTga4ly/TQp8oUTR9KH6i7GGGUW484aPymqZsQBQIaa7k
+         ZogoBWjqhBRBvdrnJeEiIGCRVd7h3rzH1KItdJPF7HZ7fvztDTy2q5s1qbBAn4gRLror
+         vroSOHU8CQOi2D1M9NlMA/SBZJHSmEo+MKnBf8gC8Rr9+4LJYANx0c+dq0C2eHMfrBNN
+         Z6Fwax7YaTXWcb1H7+WGSNyHChWeQvLyQcfy8CosaEJ/h6RfZpRJgSiE4z7TwVLehcNH
+         Xx7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWh4ach2L2/N9LAhFcf9Y38m3pAymZB28PAT/5MOmN1FbIH/8fzThzrDKZXaWeNN/EZ+ARszKbtxTRa@vger.kernel.org
+X-Gm-Message-State: AOJu0YxkLKsbVMB19j2F10k+qUMIt3OrPrWvQADf8yVXMqiojlZZ9y0Q
+	f+xIHW3LnofcZsHmyWwDLjQTy5dX7CqnreNloeRXyA6k/A+wvSW8wT0ylAWZdNrPo59Z7vJWIA8
+	v7BPGRbFkJ/pb0Wzz5L5sDIewfuJmh8bgYrAPv+zUNA==
+X-Gm-Gg: ASbGncsiBgj6QaRhyyLValfsj8MwNZMnXXIvPBOLaly+QoGnzfKmjsCTvGkznvl6M6z
+	I5CpQhgdZURNdxyJDW+BemV2RmzL8Ksxe0xM6a5SHYM5WxM2XvjCFk8BubtFgvg5GEhUW4mI1tR
+	1GENCPgbB9fh7EagUujN5Stp3J7G+iE54lmyJHpmpfn7HwzEg4G+sx59gJOpJiC72avAv32n9q7
+	3/3a7bDJdHDjGGOoFn7W+2khNLSgmHi
+X-Google-Smtp-Source: AGHT+IFFpQTgFBa/WWGnT5QFcu4l0kS7gkEATk8JWkO6XxM3M12kz6g8Ct77aVC/3wWZvw3xXRdgjGXw0bvG4/9kIY0=
+X-Received: by 2002:ad4:5cc2:0:b0:81d:6f27:aff9 with SMTP id
+ 6a1803df08f44-81d6f27b588mr167506256d6.56.1759220528215; Tue, 30 Sep 2025
+ 01:22:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+References: <20250821031514.49497-1-yelangyan@huaqin.corp-partner.google.com> <CA++9cvojHApEr0b5ZbRNVjYtWvCS8WmZ-mrGMDh5O9mp1fkT0w@mail.gmail.com>
+In-Reply-To: <CA++9cvojHApEr0b5ZbRNVjYtWvCS8WmZ-mrGMDh5O9mp1fkT0w@mail.gmail.com>
+From: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+Date: Tue, 30 Sep 2025 16:21:56 +0800
+X-Gm-Features: AS18NWBUsQkpqXkip294ozPcJDVep0TBrUZwRk3B4uL8u_5nT6ff_J9AvEre7T4
+Message-ID: <CA++9cvrDRU4PStp82M0oz-ZtE-1fuPnMOEfMw4uv3wL1_DoYiQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] Add tc3408 bindings and timing
+To: dmitry.torokhov@gmail.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, jikos@kernel.org, bentiss@kernel.org
+Cc: dianders@chromium.org, linux-input@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-In of_unittest_pci_node_verify(), when the add parameter is false,
-device_find_any_child() obtains a reference to a child device. This
-function implicitly calls get_device() to increment the device's
-reference count before returning the pointer. However, the caller
-fails to properly release this reference by calling put_device(),
-leading to a device reference count leak. Add put_device() in the else
-branch immediately after child_dev is no longer needed.
+Hi,
 
-As the comment of device_find_any_child states: "NOTE: you will need
-to drop the reference with put_device() after use".
+Just a gentle ping on this 2-patch series:
 
-Found by code review.
+  [1/2] https://patchwork.kernel.org/project/linux-input/patch/20250821031514.49497-2-yelangyan@huaqin.corp-partner.google.com/
+    Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Cc: stable@vger.kernel.org
-Fixes: 26409dd04589 ("of: unittest: Add pci_dt_testdrv pci driver")
-Signed-off-by: Ma Ke <make24@iscas.ac.cn>
----
-Changes in v2:
-- modified the put_device() location as suggestions.
----
- drivers/of/unittest.c | 1 +
- 1 file changed, 1 insertion(+)
+  [2/2] https://patchwork.kernel.org/project/linux-input/patch/20250821031514.49497-3-yelangyan@huaqin.corp-partner.google.com/
+    Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-diff --git a/drivers/of/unittest.c b/drivers/of/unittest.c
-index e3503ec20f6c..388e9ec2cccf 100644
---- a/drivers/of/unittest.c
-+++ b/drivers/of/unittest.c
-@@ -4300,6 +4300,7 @@ static int of_unittest_pci_node_verify(struct pci_dev *pdev, bool add)
- 		unittest(!np, "Child device tree node is not removed\n");
- 		child_dev = device_find_any_child(&pdev->dev);
- 		unittest(!child_dev, "Child device is not removed\n");
-+		put_device(child_dev);
- 	}
- 
- failed:
--- 
-2.17.1
+Both patches have been reviewed.
+Is there anything else I should do to help get this series landed?
 
+Thanks a lot!
+
+Best regards,
+Langyan
 
