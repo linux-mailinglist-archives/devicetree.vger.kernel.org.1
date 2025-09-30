@@ -1,227 +1,149 @@
-Return-Path: <devicetree+bounces-222563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC767BAAC84
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 02:20:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C45EBAAD11
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 02:51:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BD0B189D748
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 00:20:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 887191899747
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 00:52:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB5E13EFE3;
-	Tue, 30 Sep 2025 00:20:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D88919CC3E;
+	Tue, 30 Sep 2025 00:51:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aeTUPpAF"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="F08kBBKZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CC8439ACF
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 00:20:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C9AC17BB35
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 00:51:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759191613; cv=none; b=DrLGoTE5p0U6qGDjrfh7Xw30uG99QXsQiNS4A3gJiYvkFyMt7RIVKZjcTf2s3Bpo1NzQU7KzXGP8674+7XR58Q37jF8t+cY2ATBB72D8A9dLvk9fUWA7iob6PLFuErC2k2vUO1obfAqwmEhbmY1lPY481JJfQGoMe5o2DiKWKJQ=
+	t=1759193513; cv=none; b=ISWq8JU+AzVR/S8I7BS9IqNSF6fuXsKLDQbnu/y5hTCxpmXleUMtGYZBD/R4jKVhbODAQvQTSxbPiNnhB0mYOouTt6cqoy3WlSUI14EgrtIvwTauqvfwKoQf+/be7WQHfJV1Xbf58Kr7ovFoz9QxrhPO4bXiehmn5ozh3o7ZJ/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759191613; c=relaxed/simple;
-	bh=bGJExyvnphif6tEqyhuSLem/gtWUtTjLU/NamGZuKDM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H3SjPpt7463Y954q26f8+CVvGipZnHC4E5MPxFUVCAYZazIhBXxbMjfRTf0xhC+FgA78KCYFj9xyfsyfVmJCRvyLwu7ay0CFrWW8cvTgXcKT9d0dy+JdpfXWOODYSGaXfiVEQGMSKbsPFpvdRzERkvkoihVNTO1oBa1KKR9vWmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aeTUPpAF; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-46e3af7889fso29331715e9.2
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 17:20:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759191610; x=1759796410; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=d2aCUV6OLkXwTtwNzSY66MPjJRvAozma0kNGW9LaNrE=;
-        b=aeTUPpAFcFjVVztIwRLOygSFFOCICyk1pi+SLaBo1O7Q/0i63V4Aw5JK3qb0qKlofx
-         V6+M2hwmLuUAzZ8+I4mHrUK5CLaXDQbwlU7wz6KdP6dV3azxKQ6afoE8L+4TJrVHG3MP
-         u84FIxpXONcVMyAf8of45olXaSzkU2pz63Dhi8ROpCQsvHjAoYgCBdkYSisgIgNsbGb2
-         QlJwDUzDDD4IcIK7hd5NQjBChwPSOqZEeamDCOUq/lBHdDnK03IlfWWnOMjYM1/eaSrX
-         0m4ZmKQXC+hykGUbLSLJUDFjSiqDVTa3RD0kzGHUMoG9ivFj7G6m6BlvZqACrRUqifxF
-         XYVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759191610; x=1759796410;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=d2aCUV6OLkXwTtwNzSY66MPjJRvAozma0kNGW9LaNrE=;
-        b=wx8i5P8ZhxhyZYkY/8L1WC9ayU8OAz8PJv5u0/gndcO36MzQdUrS5VAOnXeUdToi8F
-         LrXQHrE/TnDFHI6Axy9/g7LZbMI3L8sz8jLTme7kPKA419W2BTEQDWBRD2oFNihy80/+
-         8u2PIpdKIM0njXYnTSSHGG98dFeda0u76VrrMPJMGJIsPXxaii3M9UiYlr0p8o+lfQ0i
-         wjLG/TfoqfZrfAdoq3E4HzGCIB0mxARMK2IAXvgwvGPQyFXSha4SbTrQDODCg5EBCbBN
-         d8hpLDdqSRqwJUeU/EFtMm0Ijao7etRm5dDfQobNM9SxZn69+cZQqkdwONGSlHUr1QNv
-         LEHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUfoOvtZr+ST6y8yDDZ8Gk5VscP6wm+NVgeIN4/7OGv3f2K0r380+JdKfrx9iXl46Z1hOZWBM8p/mmU@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4BwxrMTbIy13kIwJtG4vCXmH3YWI96eKtF6Wn1H0xfASs7X6u
-	6p/uvtFKKPOHq96V4ALOVuXBicYtCUgO9rOHX6wgZquYYiiAcUjJyqY6/5VVyfT4olw=
-X-Gm-Gg: ASbGncti1OMJrl4iVS4i0Nsf1BZwsekh8gtZ+TPFYRdGxi31/Ns2a5uQlxwXG+J2Xy4
-	wj/jFR0h1VeCrzQ2QIDABR6TBgpCWLGVjFIeVWbOFD5SSuUoKSAptILjtyXf//JzfUCx608/tt+
-	X8A0ppM4AMqy6INP5iMI3Hm5FXrI+enNsEhWEZah44+fpjNL4pqlsZv+elhYHVHdG3QYgjzZdI3
-	AAg5DvfydQyjwR0/ezurCDln5cTxJvQo1p1LAVSwt62dKDqve9S/ojGO7p8VNfY8+N7tL2Ekxgo
-	Uc5qZdxXHGAX2HODX+tdYridt9UwFTh+a4XNRrt+oFgqt4+KimsziEqEWHX/eEVWccfqbPJbYCH
-	dwGtfaBzYc0AeAcYVtRijb8UV/pEMB/j/Vd4TdB9NoDYZhtmumZyOyKXtmKDrLjNE9YFiYzS5Fj
-	OwOyZxPFk+dX8b1HEjGTkpwyM/eIKO9Jo=
-X-Google-Smtp-Source: AGHT+IHXl9KNUIAY5LT7IQhdhWGKaz6kpmbHg2ltlnlV5LX2piwjkJPMXt7gP1unlCKB0JI7t/YWLA==
-X-Received: by 2002:a05:600c:8b65:b0:46e:36f8:1eb7 with SMTP id 5b1f17b1804b1-46e36f81fbamr160812465e9.10.1759191609420;
-        Mon, 29 Sep 2025 17:20:09 -0700 (PDT)
-Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e56f3dcacsm33715495e9.2.2025.09.29.17.20.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 29 Sep 2025 17:20:08 -0700 (PDT)
-Message-ID: <1ccec2cd-0290-4804-b274-b3dcb481449e@linaro.org>
-Date: Tue, 30 Sep 2025 01:20:07 +0100
+	s=arc-20240116; t=1759193513; c=relaxed/simple;
+	bh=T4ISR1GIOkbT9BMWirj+as+5c6tDPDqoXja51DTSV2I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=dEiu+nVuKy8n7pgnqGg7y4842J++KJZ6VwpSFxNKOYfCMNpdWk8p/6jsBpIdI8jPhjADp65wTBS8LWdT2uVgpe9pi+EMnLZ3MxosI3iyNJrsPVA9r1Ul1/2NCzCyrZfZva2xAwkpdkaJsTkH/XE7e+p2WbqNa7f7XPJbvHmsd+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=F08kBBKZ; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250930005149epoutp03c9d67dd4ee9137705536ae62f13d9531~p6S0PkkTh0241502415epoutp03H
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 00:51:49 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250930005149epoutp03c9d67dd4ee9137705536ae62f13d9531~p6S0PkkTh0241502415epoutp03H
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1759193509;
+	bh=9ogVqn3pQ7TBJXc/xpq6DvXIo0NamG6SUGhoitEXyNA=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=F08kBBKZTdXZ9frtXPIw35melJSGt3EdS/fa2bTIZV3d0L8+rC/TtsmGffSmqtajL
+	 SX+SyzGb1zTlJ4rcYGtMf1pDCGxi0ghsemeJpmafDw4E/Q9eV0mAa5POVxUMx/A3yb
+	 Lg5tflLii6PnNpiMaEIICsnaTUqb1EknegRPJgN4=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPS id
+	20250930005148epcas2p13b5b5974d6039ca2c2edd6afbffeda4c~p6Sz0KEbz0653306533epcas2p1q;
+	Tue, 30 Sep 2025 00:51:48 +0000 (GMT)
+Received: from epcas2p3.samsung.com (unknown [182.195.38.210]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4cbKJN2W9nz6B9m9; Tue, 30 Sep
+	2025 00:51:48 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250930005147epcas2p36e57d022e5c2df908550b920aafd41c0~p6Sy5o6091112811128epcas2p3r;
+	Tue, 30 Sep 2025 00:51:47 +0000 (GMT)
+Received: from asswp60 (unknown [10.229.9.60]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250930005147epsmtip25ee377061c0f74467dad29514b78c7f2~p6SyzpvRW1168411684epsmtip2C;
+	Tue, 30 Sep 2025 00:51:47 +0000 (GMT)
+From: Shin Son <shin.son@samsung.com>
+To: Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski
+	<krzk@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>, Daniel Lezcano
+	<daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
+	<lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, Henrik Grimler
+	<henrik@grimler.se>
+Cc: Shin Son <shin.son@samsung.com>, linux-pm@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/3] Add exynosautov920 thermal support
+Date: Tue, 30 Sep 2025 09:51:36 +0900
+Message-ID: <20250930005139.1424963-1-shin.son@samsung.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 04/17] media: dt-bindings: add rockchip rk3568 vicap
-To: michael.riesch@collabora.com, Mehdi Djait <mehdi.djait@linux.intel.com>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Gerald Loacker <gerald.loacker@wolfvision.net>,
- Markus Elfring <Markus.Elfring@web.de>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Kever Yang <kever.yang@rock-chips.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Collabora Kernel Team <kernel@collabora.com>,
- Paul Kocialkowski <paulk@sys-base.io>,
- Alexander Shiyan <eagle.alexander923@gmail.com>,
- Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240220-rk3568-vicap-v11-0-af0eada54e5d@collabora.com>
- <20240220-rk3568-vicap-v11-4-af0eada54e5d@collabora.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20240220-rk3568-vicap-v11-4-af0eada54e5d@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250930005147epcas2p36e57d022e5c2df908550b920aafd41c0
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250930005147epcas2p36e57d022e5c2df908550b920aafd41c0
+References: <CGME20250930005147epcas2p36e57d022e5c2df908550b920aafd41c0@epcas2p3.samsung.com>
 
-On 17/09/2025 16:38, Michael Riesch via B4 Relay wrote:
-> From: Michael Riesch <michael.riesch@collabora.com>
-> 
-> Add documentation for the Rockchip RK3568 Video Capture (VICAP) unit.
-> 
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
-> ---
->   .../bindings/media/rockchip,rk3568-vicap.yaml      | 170 +++++++++++++++++++++
->   MAINTAINERS                                        |   1 +
->   2 files changed, 171 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
-> new file mode 100644
-> index 000000000000..99861d236f5e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-vicap.yaml
-> @@ -0,0 +1,170 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/rockchip,rk3568-vicap.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip RK3568 Video Capture (VICAP)
-> +
-> +maintainers:
-> +  - Michael Riesch <michael.riesch@collabora.com>
-> +
-> +description:
-> +  The Rockchip RK3568 Video Capture (VICAP) block features a digital video
-> +  port (DVP, a parallel video interface) and a MIPI CSI-2 port. It receives
-> +  the data from camera sensors, video decoders, or other companion ICs and
-> +  transfers it into system main memory by AXI bus.
-> +
-> +properties:
-> +  compatible:
-> +    const: rockchip,rk3568-vicap
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: ACLK
-> +      - description: HCLK
-> +      - description: DCLK
-> +      - description: ICLK
-> +
-> +  clock-names:
-> +    items:
-> +      - const: aclk
-> +      - const: hclk
-> +      - const: dclk
-> +      - const: iclk
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    items:
-> +      - description: ARST
-> +      - description: HRST
-> +      - description: DRST
-> +      - description: PRST
-> +      - description: IRST
-> +
-> +  reset-names:
-> +    items:
-> +      - const: arst
-> +      - const: hrst
-> +      - const: drst
-> +      - const: prst
-> +      - const: irst
-> +
-> +  rockchip,grf:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Phandle to general register file used for video input block control.
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: The digital video port (DVP, a parallel video interface).
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              bus-type:
-> +                enum: [5, 6]
+This patch series adds support for exynosautov920, automotive-grade
+processor. Although the exynosautov920's TMU hardware differs slightly
+from exisiting platform, its read and calibration logic closely follow
+our legacy TMU interface. To prevent runtime and build time errors,
+it is kept as a single change rather than being split.
 
-I meant to add my nit-pick comment here as I added my RB.
+This change merges the new exynosautov920-specific register definitions and
+timing parameters into the exynos-tmu driver, ensuring consistent behavior
+across all Exynos series. All new code paths have been tested on a
+exynosautov920 board and verified to correctly read temperatures and
+emulate behavior.
 
-Its not important though.
+Changes in v6:
+- Add a reviewer for the thermal driver patch.
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Changes in v5:
+- Changed the maximum number of thermal sensors to 15.
+
+Changes in v4:
+- Kept 'addtionalProperties: false'.
+- Removed the 'samsung,hw-sensor-indices' property in the binding.
+- Added the 'samsung,sensors' property in the binding.
+- Dropped code-like formatting and rewrote the description in plain,
+  hardware-focused language in the commit message.
+- Removed the bitmap and replaced the tz_count to sensor_count.
+
+Changes in v3:
+- Removed redundant commit message.
+- Rephrased the sentences to describe the hardware clearly.
+- Restricted sensor indices to V920.
+- Set #thermal-sensor-cells per variant.
+- Replaced 'additionalProperties' with 'unevaluatedProperties'.
+- Removed the duplicate #define and use the original.
+- Used lowercase hex in #define.
+- Simplified 'temp_to_code' and 'code_to_temp' to one computation
+  path by normalizing calib_temp.
+
+Changes in v2:
+- Replace the generic property with a vendor-specific one.
+- Added an indices property instead of ranges.
+- Shortened thermal node name and made them more generic.
+- Updated the indices logic accordingly after removing the ranges property.
+
+Shin Son (3):
+  dt-bindings: thermal: samsung: Adjust '#thermal-sensor-cells' to 1
+  thermal: exynos_tmu: Support new hardware and update TMU interface
+  arm64: dts: exynosautov920: Add multiple sensors
+
+ .../thermal/samsung,exynos-thermal.yaml       |  32 +-
+ .../boot/dts/exynos/exynosautov920-tmu.dtsi   | 377 ++++++++++++++++++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi |  31 ++
+ drivers/thermal/samsung/exynos_tmu.c          | 322 +++++++++++++--
+ 4 files changed, 724 insertions(+), 38 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
+
+-- 
+2.50.1
+
 
