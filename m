@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-222773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B3EDBACC34
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 14:03:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6210BACC42
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 14:03:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C7728189DF59
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 12:03:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C4633ACE32
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 12:03:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AC7A27B331;
-	Tue, 30 Sep 2025 12:03:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60DB92F99AE;
+	Tue, 30 Sep 2025 12:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u2/KjarR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QhDzpsm+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64CBF2F7AB9
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 12:03:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A87052F7AC4
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 12:03:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759233796; cv=none; b=UnBvWUTT9WbNEl+y1tzVKOYL5h8v0GwSRlnrLcp+SafiEsQ+yHV0wh2jyBR6AjZVXTFZ/lXe1DGl03Y+t09KsO408LApuZoutsBKMzsAmPB0X0rZMgfgZ+WRUry70yZ8eu1UWNvihvr+5E9fcL3dBewL7Hk9Oed3a+3nIdiBFf8=
+	t=1759233801; cv=none; b=bczg29cZlIwfofB6Q0XfJCKL34k+/LHD4EjIubnSVwgadnZ8xzkJuuUA5ICG2PPbtIRzl/qyvLGchvlX5PJRPEKr1cwJ1aYeOzJD4438NgoLv8ySZmGiy/vWKDkqpbQ67BkzqnzF4gZxTztK2GbcpgdlTTzWBOfugBxFKhCPBLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759233796; c=relaxed/simple;
-	bh=WImr9vrHfeY0y5MR5N5EtvVbHApD7DoSADT/apeR04M=;
+	s=arc-20240116; t=1759233801; c=relaxed/simple;
+	bh=fOtw8gAyCH4mQS9rjon3MxYmvNIyUlZMtCK81zOCPeA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Vpf67k6LPrgrtKxRb5/Dpj5ek1boo+Uy0TFm9woEEOF6dqPA0SbveW6nEOsDUw3BQyLrRfZEvIMtzg4d4tNlW6FDwW3Q+Gt0kSGWTNaw8/MFYAHvaeJHE0PUEg4eDuHS+peAwJdoEkxQ0zHooZ286xUjNwYt4oo3/f4WGp5DJmg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u2/KjarR; arc=none smtp.client-ip=209.85.222.173
+	 In-Reply-To:To:Cc; b=N0H2M9EA9S1AyhTaZE1h4bGhLqyZ/54z+P2SATb791bimYyeJqwUUEwZ/2+DCNBfnIRtmUji+Fu3X1kG7IN6j4A30qYwqINMebbudm7runH0zMeQLPwscbaqu3e3A+iparFGYp83m6UREcOPRyRATfr7ClCStV8jPqj3faCA12U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QhDzpsm+; arc=none smtp.client-ip=209.85.222.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-856cbf74c4aso813799385a.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:03:15 -0700 (PDT)
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-86278558d6fso303586285a.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:03:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759233794; x=1759838594; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1759233797; x=1759838597; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ddmYfQfm2yXMPyNgG+28VBDkVxJ3r5jLlSFHAdpo6HY=;
-        b=u2/KjarR4QYfLX/O8isweEGlVinS+/8WwsBniWLVMXdc5ODxfNa9o+i8G8ZJWMelwE
-         MYn0bSU/SrMAaYkvQmoFGKhGXXx/bvnyFCFgHEB2mz+Eub7LI1/Tz6Cu5RSKjllAhYIB
-         fk5kmnl3N5ACwvVuGkViWP8AJjE/MM/ib0vpmR93y1tsgC64Eua7WBZ5Q0xiveH5IxLe
-         U6JOvKE7hm6dHqU27sHxaUFWY8qQ6OzHqIoOCSLiBDi4TSzf1HNvZWZ8IFaAWCazvT0Y
-         jyWQehvY1+ckBXXis1px84amUhxJGM9bVqkT13vR+Y76CivNidP8+0z9q6CoqJn+tW/p
-         SLiQ==
+        bh=U0zjmpx78ma5TPDlcHVuSGO5uslS5ssftuNZub90mYg=;
+        b=QhDzpsm+7Z34kuEwSX7MUmfHugKxpY8mtLgwzKGPuw7vh0O5pnvNzmxOCyqa5h8ZSa
+         CxHDP+l7T+CKXKVxPKfW3zdk4/eUYZYTITF3ePc80PDowI1zbxYlzXyzdTWfMm/B3GKL
+         urO9yV4bUcYfHATGlUIyiIU+qQ+Pj5dGVTzUqq7TKrHj76lSias+oyh4CDcuTd68BaWF
+         +5ZJ7HoSo78xSdlewhqGEOAPotqRbumz+UK8OZBXMbzj3dXOKbb2up144ZNPg1gK4DZf
+         sHY60c/HN9fPbdNGJUWnZcO7tq25Qirb0qp4Gf5oaweEUNb5OFR6OFSxYsUKTmwV3ONh
+         WpnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759233794; x=1759838594;
+        d=1e100.net; s=20230601; t=1759233797; x=1759838597;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ddmYfQfm2yXMPyNgG+28VBDkVxJ3r5jLlSFHAdpo6HY=;
-        b=Hm5FzraaEWZLbe3BkppADusjvssPWbMkqGVrZFO/Zdr3/ZXfQE3NFPK6oV3IFfv0BU
-         06HoSB8a9qOMAouyYbsJBZBR10hIkqkQ1y/S+wnBHUlyeeiqyqJ+z4wGjwaz2jsq1pLS
-         NqVwFGCbcnUynrWO9gLs7Cc5B00DRJCP0ILh9oDntY7ssTdlf6IrVLgTyR49/3rpp7Gv
-         GVH1BaOEdWyuHzBLwAYBhluelzFffPur4CJqSVFoVmkRkcJkPuP5wIwU6nASGxdKRrZx
-         Ng+huH4yz6VKr4EFYDqmSkSZIeNDOwQNGA37GEHpPHy0jxHfEHovDdQh7G2pKv/HfV62
-         bEeA==
-X-Forwarded-Encrypted: i=1; AJvYcCUP5q4OHJaoRdZ8MiWkPmtX3xWXqTAQ99M9SjRnV33wxtcWJg7NvWQJ3bfhcNnPl4D+6ex6R/gL8WST@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2irXyWK7ZbolTrjca71Jc2bVzdbQAidnNywxnzr8xXwnVxZ3T
-	pgqgHxUNhK6lDk5jXrNgE2EW5QEIqWYL2rZl7aldJMHlXeEkoyPNO5YnNPzUhIlr+TY=
-X-Gm-Gg: ASbGncvkiSBIY1/RTxU4iu7fnjNOdBbRhemz9/wQT4trOe2qb7CjAb5OdSUeLDhS3FC
-	x0gFSey+oTKzTnNVLQUHSeOltOvFPbkgXX1EWroCTlE1auo6q82fpZ0sX8aTjNgIPJEk5NoISWY
-	DHPaT3KkN/V8PH3qWbjfSUmn8i8Y4F1zcIbQiHW+zreXoL8SL8MfSDFs8Ga3BDs00xOEMPEQAFC
-	Xu66Xy14JdnmGMMOcLVIiz+zTNLiTkl5d7qdutstBzGKQ34lj0wVs4KMbV6npPH0aDEL1luHGhv
-	FjayAHfH+HeOtJY3oq0FvSXi5rD1fbne0UU+5Abrp23e/vIGMP++m7esqd5Dkr4dl8OkaAfBpGs
-	ji5SAJzD4/h9dTxqovlXfRqDPx1Rb+IG8zZWuJQFqacAGt7hdplbmicOyzlNjR+dVfQnT
-X-Google-Smtp-Source: AGHT+IH+1Dw7zq01fKC2gdRDExcGzD1vCDjStkF1HEAMvgt7+JzEP/XtX0rGrrtTXaZ9mjSzPEmcfQ==
-X-Received: by 2002:a05:620a:46ac:b0:85a:8fc6:5c27 with SMTP id af79cd13be357-85ae435bec0mr2811895885a.23.1759233794013;
-        Tue, 30 Sep 2025 05:03:14 -0700 (PDT)
+        bh=U0zjmpx78ma5TPDlcHVuSGO5uslS5ssftuNZub90mYg=;
+        b=HkddWzyMz3nAeiwp7lDHYyEuz/lEYYfIbqlNk0n9TfTH7Rtb3JyzkdMblX266WkcCK
+         M5YGiVjN8lz4PMzqG+9PITI8lgBB/HqxwjkyH1/IsqDUkMChgq+8Q6EMUtYvhTy6zV6O
+         vSmMDwyVQnlBTMv2G/wrYpOvSJxJT2WVvryiIJsTP1aSP9j3b4i7Pqu/iclF9mgNEd1S
+         5IDlDxAraau7htBSmiMpvJl11E6rp09Q20ooGMb+9WVbAo/ifDmi1AoXNFlVlL6rEYTh
+         t381eQjBejSA0jkCk9VIwSk4ufJyIXzbwGECyicHDXvrFKVnk0zrnxiedXBkHEdVcu1F
+         6lkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWND1ducjDAmqCypX9KLj4mC25QzqsASrJlrAzOjvgn9u9aglmptILm79ZeaIvL9b+FLO9QY6y+L3pX@vger.kernel.org
+X-Gm-Message-State: AOJu0YySS+SH4b83Ntmx/jA6zX8rwCK50QQOFafXO267cavtq+Sc17fp
+	gxRPUvJ+6T1ipylg4MJx3yrEwBDUBaQTs8B0xf13f7g2sRrefrAdao0tjNvy+ostYoU=
+X-Gm-Gg: ASbGncvX6MBeh1xkP55ecxBCQFxPPhMjEQV/rO84M9K+sqT3W6hcWqT2wjgAVcgD846
+	51aKn0p1sbxO6YBGghhztfDpPhpmiv27UBQUxloqhG0FU40Sdgqkfi2m3ahm2a6T0qPEfxInIw5
+	Uu2QMn0Zi7TUdL8TjRZ8DKVrxy01u2PBqn/NgfPEPe/N5+3Rj9uuhA+q4FZhwdAM3oEZ9oD6AL9
+	R6EjlvZr6reejvyh12R7oAK2O5+bbeEVFvam++zpkE8artr331RpyGLkVj3o5HFJCQ5uCMW2tEF
+	lONPQ1AzR3PdH0kmDBY7/IU+LqZnpFX4US55fAcL+K4dCRnWD3rM7+WOPF7/ZzwxhS/nP1cYfaS
+	SJRW773fwSqGb0C0DIOB442uv+Kmt33UzOZrrZ31EPVFdGfL4jxnQLthl/xHYy/ozf6P4
+X-Google-Smtp-Source: AGHT+IFNY4IcJFcTa1nePnQ7Sjmv3FYs4pnZY26vDEJ5Fsbdrsl7ETv/71KyLahB3VGUfn6af6Mx6A==
+X-Received: by 2002:a05:620a:2697:b0:861:5b8c:3c1f with SMTP id af79cd13be357-8615b8c4961mr1693574485a.54.1759233796792;
+        Tue, 30 Sep 2025 05:03:16 -0700 (PDT)
 Received: from [192.168.1.140] ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-85c306b5f64sm1020160885a.32.2025.09.30.05.03.11
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-85c306b5f64sm1020160885a.32.2025.09.30.05.03.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Sep 2025 05:03:13 -0700 (PDT)
+        Tue, 30 Sep 2025 05:03:16 -0700 (PDT)
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 30 Sep 2025 14:02:51 +0200
-Subject: [PATCH 4/6] pinctrl: bcm: bcmbca: Use a guarded mutex
+Date: Tue, 30 Sep 2025 14:02:52 +0200
+Subject: [PATCH 5/6] dt-bindings: pinctrl: Add binding for BCM6846 pinctrl
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,8 +83,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250930-bcmbca-pinctrl-v1-4-73218459a094@linaro.org>
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250930-bcmbca-pinctrl-v1-5-73218459a094@linaro.org>
 References: <20250930-bcmbca-pinctrl-v1-0-73218459a094@linaro.org>
 In-Reply-To: <20250930-bcmbca-pinctrl-v1-0-73218459a094@linaro.org>
 To: =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
@@ -99,42 +99,106 @@ Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
  Linus Walleij <linus.walleij@linaro.org>
 X-Mailer: b4 0.14.2
 
-Let the scoped guard handle the mutex in this driver.
+This SoC is part of the Broadcom Broadband Carrier Access (BCA)
+series. The BCM6846 has 79 muxable pins, these bindings define
+functions and groups for these.
+
+The bindings are inspired by the other BCA pin control bindings
+for the BCM4908.
 
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- drivers/pinctrl/bcm/pinctrl-bcmbca.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ .../bindings/pinctrl/brcm,bcm6846-pinctrl.yaml     | 82 ++++++++++++++++++++++
+ 1 file changed, 82 insertions(+)
 
-diff --git a/drivers/pinctrl/bcm/pinctrl-bcmbca.c b/drivers/pinctrl/bcm/pinctrl-bcmbca.c
-index b7b2552fd48227b2d318bb37f81a58e03656b954..dba25b453507300aa1435c2eb0326f5ef9694c0a 100644
---- a/drivers/pinctrl/bcm/pinctrl-bcmbca.c
-+++ b/drivers/pinctrl/bcm/pinctrl-bcmbca.c
-@@ -1,6 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0
- /* Copyright (C) 2021 Rafał Miłecki <rafal@milecki.pl> */
- 
-+#include <linux/cleanup.h>
- #include <linux/err.h>
- #include <linux/io.h>
- #include <linux/mod_devicetable.h>
-@@ -439,7 +440,7 @@ static int bcmbca_pinctrl_set_mux(struct pinctrl_dev *pctrl_dev,
- 		return -EINVAL;
- 	group = group_desc->data;
- 
--	mutex_lock(&bcmbca_pinctrl->mutex);
-+	guard(mutex)(&bcmbca_pinctrl->mutex);
- 	for (i = 0; i < group->num_pins; i++) {
- 		u32 lsb = 0;
- 
-@@ -451,7 +452,6 @@ static int bcmbca_pinctrl_set_mux(struct pinctrl_dev *pctrl_dev,
- 		writel(BCMBCA_TEST_PORT_CMD_LOAD_MUX_REG,
- 		       bcmbca_pinctrl->base + BCMBCA_TEST_PORT_COMMAND);
- 	}
--	mutex_unlock(&bcmbca_pinctrl->mutex);
- 
- 	return 0;
- }
+diff --git a/Documentation/devicetree/bindings/pinctrl/brcm,bcm6846-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/brcm,bcm6846-pinctrl.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..e9c3b1e9ae0501574b5c15d4adfc5421f535c306
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/brcm,bcm6846-pinctrl.yaml
+@@ -0,0 +1,82 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pinctrl/brcm,bcm6846-pinctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Broadcom BCM6846 pin controller
++
++maintainers:
++  - Linus Walleij <linus.walleij@linaro.org>
++
++description:
++  Binding for pin controller present on BCM6846 family SoCs.
++
++properties:
++  compatible:
++    const: brcm,bcm6846-pinctrl
++
++  reg:
++    maxItems: 1
++
++patternProperties:
++  '-pins$':
++    type: object
++    $ref: pinmux-node.yaml#
++    additionalProperties: false
++
++    properties:
++      function:
++        enum: [ led_0, led_1, led_2, led_3, led_4, led_5, led_6, led_7, led_8,
++                led_9, led_10, led_11, led_12, led_13, led_14, led_15, led_16,
++                led_17, ser_led, nand, emmc, spim, usb0_pwr, usb1_pwr, i2c,
++                rgmii, mii, signal_detect, one_sec_pls, rogue_onu, wan, uart0,
++                uart2 ]
++
++      groups:
++        minItems: 1
++        # SPIM uses up to 5 groups for different select signals
++        maxItems: 5
++        items:
++          enum: [ led_0_grp_a, led_0_grp_b, led_1_grp_a, led_1_grp_b,
++                  led_2_grp_a, led_2_grp_b, led_3_grp_a, led_3_grp_b,
++                  led_4_grp_a, led_4_grp_b, led_5_grp_a, led_5_grp_b,
++                  led_6_grp_a, led_6_grp_b, led_7_grp_a, led_7_grp_b,
++                  led_8_grp_a, led_8_grp_b, led_9_grp_a, led_9_grp_b,
++                  led_10_grp_a, led_10_grp_b, led_11_grp_a, led_11_grp_b,
++                  led_12_grp_a, led_12_grp_b, led_13_grp,
++                  led_14_grp, led_15_grp, led_16_grp, led_17_grp,
++                  ser_led_grp_a, ser_led_grp_b, nand_ctrl_grp, nand_data_grp,
++                  nand_wp_grp, emmc_ctrl_grp, spim_grp_a, spim_ss0_grp_a,
++                  spim_ss1_grp_a, spim_ss2_grp_a, spim_ss3_grp_a, spim_grp_b,
++                  spim_ss0_grp_b, spim_ss1_grp_b, spim_ss2_grp_b, spim_ss3_grp_b,
++                  spim_grp_c, spim_ss0_grp_c, spim_ss1_grp_c, spis_grp_a,
++                  spis_ss_grp_a, spis_grp_b, spis_ss_grp_b, usb0_pwr_grp
++                  usb1_pwr_grp, i2c_grp, rgmii_grp, rgmii_rx_ok_grp,
++                  rgmii_start_stop_grp, mii_grp,
++                  signal_detect_grp_a, signal_detect_grp_b, one_sec_pls_grp_a,
++                  one_sec_pls_grp_b, rogue_onu_grp_a, rogue_onu_grp_b,
++                  wan_mdio_grp, wan_nco_grp, wan_early_txen_grp_a,
++                  wan_early_txen_grp_b, wan_nco_1pps_sig_grp_a,
++                  wan_nco_1pps_sig_grp_b, uart0_grp, uart2_grp ]
++
++allOf:
++  - $ref: pinctrl.yaml#
++
++required:
++  - compatible
++  - reg
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    pinctrl@ff800550 {
++        compatible = "brcm,bcm6846-pinctrl";
++        reg = <0xff800550 0x10>;
++
++        led-0-a-pins {
++            function = "led_0";
++            groups = "led_0_grp_a";
++        };
++    };
 
 -- 
 2.51.0
