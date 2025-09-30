@@ -1,154 +1,129 @@
-Return-Path: <devicetree+bounces-222768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C5B5BACC16
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 14:01:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65F13BACC22
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 14:03:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B726167430
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 12:01:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B46297AAF17
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 12:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0C61261B8D;
-	Tue, 30 Sep 2025 12:01:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E946E264627;
+	Tue, 30 Sep 2025 12:03:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Nl/R+VE/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EE/K6B2f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6EAFDF6C;
-	Tue, 30 Sep 2025 12:01:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C970DF6C
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 12:03:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759233698; cv=none; b=pKn6b/BBpxjHTcn4DFVm/TY+DyD7HkNIVkhNF0IupZMJXVtnc5VnltwrlbrwByaye+jpMEDFBG0DkASXQyTfyq9WdTIeXsBR8R5ZHKxNddFm5ECbJjAhCFy04bvh1Bf1Ma5OpNCF3X+pIc/dIBgOiqsWK6FRnnn2gmjuWKvA6+k=
+	t=1759233784; cv=none; b=uvomTgJgL9lne+EskHKCpJFzyoYob4faIXNiGBLTZHbl2db2jZ57SqS2H74EScZ0wS3Qv4VkvebHcTYtMBoYExCQx7VMMY2HZpCWltacKIa4McxWL0CKYg9QhFnZrgfzz5j4krAmVt4E13HAqmk0/+IBqI9MCqjj2H7o+T/yiOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759233698; c=relaxed/simple;
-	bh=AWIPVrrqT+LyROqrCNhV4Nm3UljWQSbVr4QGgV0DR9U=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=Z5VODjo48z+N/a/IppjMjoFx/REWA2iGihUsNoNMdAUW7URZi/v0fgUknmVo5TDjSEu9LhAy16k3cuNB9xsAuyFkLdpiDkqd1cPr7MGVgyOFv8OhzdHm/BKyg/qqraoYjmhdyZvYQmBusTQsIevVva/+H9ygdSrXmDGrrRvvJBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Nl/R+VE/; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1759233696; x=1790769696;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=AWIPVrrqT+LyROqrCNhV4Nm3UljWQSbVr4QGgV0DR9U=;
-  b=Nl/R+VE/XKEUrfnHkzNV2whqxUqW0McApCdsca7B0LYrJAexfbLxV0Tx
-   iw1K4ZjUgRQLFXhuPjNzELkc1sbu4nNLw6F5/6u6s6kV3w+D9bi0n68nu
-   PmpI4Q5k6l3G3LaberPS2cjqUD+9gx3Iqa72SVhaCGTEovcS+lkiDICrb
-   2UXDV0XE2A3E7aM2kPXXTsPEamXhVMyeFTIicQesQfF3hMnmIqoSsT+H7
-   qRj2jCdUxOFAaQZ/cSVFDxgo/+/2N/8cS6NlJ6Ggkae/iiHnkQlfBezHC
-   1W1sXFCIO3OQHQEn1DpzbfVvr1sRzQx53gQU8zygLw+qR/vv2799uoeOb
-   Q==;
-X-CSE-ConnectionGUID: Dnj8QL1RRzahNsOAZb5Xlw==
-X-CSE-MsgGUID: YGH6nqAwTve2CNWZZINP9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11568"; a="72106746"
-X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; 
-   d="scan'208";a="72106746"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2025 05:01:18 -0700
-X-CSE-ConnectionGUID: TpF6ZX8KRayIH6/wwMSaDQ==
-X-CSE-MsgGUID: BtiOjuZkTOGZWvVYNrZu1w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,304,1751266800"; 
-   d="scan'208";a="178909874"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost) ([10.245.244.162])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2025 05:01:12 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Tue, 30 Sep 2025 15:01:09 +0300 (EEST)
-To: Jiri Slaby <jirislaby@kernel.org>
-cc: Binbin Zhou <zhoubinbin@loongson.cn>, Binbin Zhou <zhoubb.aaron@gmail.com>, 
-    Huacai Chen <chenhuacai@loongson.cn>, Rob Herring <robh+dt@kernel.org>, 
-    Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Haowei Zheng <zhenghaowei@loongson.cn>, 
-    Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, 
-    loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-    linux-serial <linux-serial@vger.kernel.org>
-Subject: Re: [PATCH v5 2/3] serial: 8250: Add Loongson uart driver support
-In-Reply-To: <a985f144-7489-4a99-bcb7-90e7b21d9885@kernel.org>
-Message-ID: <0bb67e09-94b2-ed89-2711-b6bda00f6f14@linux.intel.com>
-References: <cover.1758676290.git.zhoubinbin@loongson.cn> <9823e7afe713450e210dab9dba6fa18683dc1fe0.1758676290.git.zhoubinbin@loongson.cn> <a985f144-7489-4a99-bcb7-90e7b21d9885@kernel.org>
+	s=arc-20240116; t=1759233784; c=relaxed/simple;
+	bh=7nSI/CkjCix8JDPm8/B93fRvxxu9NXFIimNOCEQuL0Q=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=K1hGJKqo5q9GgkzGHoAtl2Fs5Zdr/TTy0jNj8t09zuEwIQZ07G0wGqWYOWrRS/YHHnL88qNC0P6ZNuc/SvbzSwhoBi5/7p5Df7D4KXmneFdIlLd6P8ff4qEOf1oupLzm7+ZaFKDsZzhTsnKMqV9abXvt7Tw2tQUwG+b9qdfOMd8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EE/K6B2f; arc=none smtp.client-ip=209.85.222.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-856222505eeso630686985a.1
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 05:03:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759233782; x=1759838582; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+AmQX7KZAcw25Hj0d4QbboWJ+nhUbcuOZWDGasIrcWk=;
+        b=EE/K6B2fGleaBV6jKRciaqgYSw7Kr51V41fAz/nCBYEAbg+sUhZYupN26FYluMFI+e
+         oyTPROmnjlfb7hDWIdhTp0feo1jUumJdf9UwFxtIsByMH2K3wrodkz7RxZL2ldqo3F14
+         ZNS7XXhndLP7M2T5k14HxVz8hssa+A9ifrftUCCk6YPcKuAP07Mx/2D9l8rHr7j0W+Gs
+         yHDsCnrSAJS65DIxys9Px7taHMo5GPAHHANsKAyJaxtUMCA+nrx2PCkaWw2SkAPlHLrv
+         7Jiag/n28czyPiRZ9KO4Nl8KYGIiPFj2Y/MotR7NnLJ+/+KKn0VKfuzTBgmCZM6gvLYl
+         bX3g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759233782; x=1759838582;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+AmQX7KZAcw25Hj0d4QbboWJ+nhUbcuOZWDGasIrcWk=;
+        b=o/MRf/A3HFVbp0u/dKoHzNCfQuXy5alvcnBp2MTyt+vslKPIEKdd5xmC9JL+Fwg8Cl
+         aBXrWYoc78Z8EA9XWgCoORzIGKLk88Obh7dCguf53aMo2IRiD92AZmgWVZyWAXnUca5o
+         CBP8kYZu6/Ugit3imyihzJTZjYL8cZfdbLAOAnWSAxH/T/itSA/8CstUzE+59FVJTrMu
+         RbZbdZEQHBEBqoynXA/RT47MdlFhPoRxnKcFSDcUMmngFRQNqKtT2ZsgUS/+jHE6MZrg
+         qwHy2AG4V20zYXV+CiK/SbcwvdUZFn4n/pLF2PZzdWJ2eDZ9XDBk//wgS6Uhu4A98NCs
+         xm5w==
+X-Forwarded-Encrypted: i=1; AJvYcCVCKXgnBkZK9xu/7WNn3VoWJkhKaw2mhCVCZ8E9bSymgmFs0FRaAZwki+gJby87UaiZfbeECn+nsDsc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy0nCb3Yw5qom6aCYeG28KiekivFMWuyfAaKny/5M/2efvJMM4f
+	jTY+3rl9ZNSdUfmbfh7Nj4dCwOMPT8EUPE1NTWfYPU+rLtsBL69OCyukkKwBX+f2W84=
+X-Gm-Gg: ASbGncu3eaYJDlqvWU+yw1OcG1Y+wsoOo+BF4EE3hb41RKP8CJI51Y8Ysrn+ukvSYNr
+	y9OdwTy3QkGZqbpYD7WJB6pRvH/TEHzdfPapHaeg0EVE4+udi3LAU6185puccCxCkQczOkl5Uc6
+	BA0Y380KGLuWOdNNUAiJ0RvfyYbqBxKVT9wrY4Q/Bvmelpy5myTV/soI+zaNOQJZFLRU5ol/goK
+	2cnq3mzGdzf4yzVQ9429vYpmGpPRaPPJsqPVRX9qiF9gdOteU20I1K9VMmCoBm3TuepsOF+EvFD
+	wtdQ6O3brGTQnNm6DErAmM+ZGmsqRqa9iE/pTMBz2R+8znzgc/1qvvRnYu88u3NKVfI3FYl7e5G
+	bj+KYnIk3tQstD5P2RKVLH+aIN6Ci3k9hbwu8DwaDI/9yJh5wbtIDTk1wDQ==
+X-Google-Smtp-Source: AGHT+IHq7jfaFTIdqtffcRCK/gavMTarxW+369vNdlfyIrYzrq0czMqdv1kGARLDyluq1sSCbe4adg==
+X-Received: by 2002:a05:620a:40c2:b0:864:c4b9:da0d with SMTP id af79cd13be357-864c4b9fb1emr1459828585a.68.1759233781837;
+        Tue, 30 Sep 2025 05:03:01 -0700 (PDT)
+Received: from [192.168.1.140] ([85.235.12.238])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-85c306b5f64sm1020160885a.32.2025.09.30.05.02.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 30 Sep 2025 05:03:01 -0700 (PDT)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH 0/6] pinctrl: bcmbca: Refactor and add BCM6846
+Date: Tue, 30 Sep 2025 14:02:47 +0200
+Message-Id: <20250930-bcmbca-pinctrl-v1-0-73218459a094@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOfG22gC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDS2MD3aTk3KTkRN2CzLzkkqIc3ZTUJAujFFNzw1RDYyWgpoKi1LTMCrC
+ B0bG1tQBtvLNDYAAAAA==
+X-Change-ID: 20250930-bcmbca-pinctrl-deb82d571e13
+To: =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ William Zhang <william.zhang@broadcom.com>, 
+ Anand Gore <anand.gore@broadcom.com>, 
+ Kursad Oney <kursad.oney@broadcom.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.14.2
 
-On Mon, 29 Sep 2025, Jiri Slaby wrote:
+This refactors the BCM4908 pin control driver into a generic
+BCMBCA driver and adds the BCM6846 SoC.
 
-> On 24. 09. 25, 8:29, Binbin Zhou wrote:
-> > Add the driver for on-chip UART used on Loongson family chips.
-> > 
-> > The hardware is similar to 8250, but there are the following
-> > differences:
-> >   - Some chips (such as Loongson-2K2000) have added a fractional division
-> >     register to obtain the required baud rate accurately, so the
-> >     {get,set}_divisor callback is overridden.
-> >   - Due to hardware defects, quirk handling is required for
-> >     UART_MCR/UART_MSR.
-> 
-> So how hard would be to implement this in 8250 using existing (or new)
-> callbacks+quirks?
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Linus Walleij (6):
+      pinctrl: bcm: Rename bcm4908 to bcmbca
+      pinctrl: bcm: bcmbca: Parameterize pins, groups, funcs
+      pinctrl: bcm: bcmbca: Prefix all BCM4908 data
+      pinctrl: bcm: bcmbca: Use a guarded mutex
+      dt-bindings: pinctrl: Add binding for BCM6846 pinctrl
+      pinctrl: bcm: bcmbca: Add support for BCM6846
 
-??
+ .../bindings/pinctrl/brcm,bcm6846-pinctrl.yaml     |   82 ++
+ drivers/pinctrl/bcm/Kconfig                        |    9 +-
+ drivers/pinctrl/bcm/Makefile                       |    2 +-
+ drivers/pinctrl/bcm/pinctrl-bcm4908.c              |  564 ----------
+ drivers/pinctrl/bcm/pinctrl-bcmbca.c               | 1114 ++++++++++++++++++++
+ 5 files changed, 1202 insertions(+), 569 deletions(-)
+---
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+change-id: 20250930-bcmbca-pinctrl-deb82d571e13
 
-Isn't it exactly what this submission did? It implements custom in/out 
-functions which handle the xor for the relevant bits?
-
+Best regards,
 -- 
- i.
+Linus Walleij <linus.walleij@linaro.org>
 
-> > --- /dev/null
-> > +++ b/drivers/tty/serial/8250/8250_loongson.c
-> > @@ -0,0 +1,202 @@
-> ...
-> > +struct loongson_uart_data {
-> > +	int line;
-> > +	int mcr_invert;
-> > +	int msr_invert;
-> 
-> These two should be unsigned. They should be u8, actually.
-> 
-> > +	struct reset_control *rst;
-> > +};
-> > +
-> > +static unsigned int serial_fixup(struct uart_port *p, unsigned int offset,
-> > unsigned int val)
-> 
-> Both 'val' and ret type should be u8.
-> 
-> > +{
-> > +	struct loongson_uart_data *ddata = p->private_data;
-> > +
-> > +	if (offset == UART_MCR)
-> > +		val ^= ddata->mcr_invert;
-> > +
-> > +	if (offset == UART_MSR)
-> > +		val ^= ddata->msr_invert;
-> > +
-> > +	return val;
-> > +}
-> > +
-> > +static u32 loongson_serial_in(struct uart_port *p, unsigned int offset)
-> > +{
-> > +	unsigned int val;
-> 
-> u8
-> 
-> > +
-> > +	val = readb(p->membase + (offset << p->regshift));
-> > +
-> > +	return serial_fixup(p, offset, val);
-> > +}
-> 
-> thanks,
-> 
 
