@@ -1,182 +1,181 @@
-Return-Path: <devicetree+bounces-222827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01F88BADFA8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 17:52:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6214DBADFB7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 17:57:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A865B1685C2
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 15:52:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1802E3AE341
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 15:57:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 209253081B2;
-	Tue, 30 Sep 2025 15:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DC893081B2;
+	Tue, 30 Sep 2025 15:57:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="Y0sZ1FD9"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="dY7IHF+e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF62B24E00F;
-	Tue, 30 Sep 2025 15:52:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B0E13043BA;
+	Tue, 30 Sep 2025 15:57:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759247559; cv=pass; b=lNMAwqyHPZQf26ZVgJXFeAedG1toAm9YNj0KWanydkdqAKVUlpCjkxIftdNxFFkiLFQFMg19m386nWQz1R/GJAuvCtWtOUbCKi22gzJ7/EKSIAMygVToeAY9HyKANbFT+vjXCOzy3gxRe+h4Oq6+9peBHPN9CvpMZZiFFmdK3GU=
+	t=1759247855; cv=pass; b=gAY6118fxjLFgw1G5Q8EThruPRHv7l7otHLQuM66wG95X4Xo5LdGzTDnLyZ9gnSTwONzavyukNrglrRfWpn7sBjHVMnzu5K3a2fhZpnxPj5zicQsNbJC0eQSpMw5XsGua3W7iR1ONPJx2ynLm5/FhMC8KgiL4SKVHmkEPZ1jloY=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759247559; c=relaxed/simple;
-	bh=9ITXE882P+LUOgnHYbTufmL551fHoO+D/Qt2lUtHDqM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=euWpebEw3pGgEb9mp1weD8ZadT0yU/090X/4FW47u4BrMFPvOjrqZc+YWU9Qr4iVFxErngQ3YUUzQ+Rp/+VEmE2OpFiVofwN88kGKPYZfDyAeqh3uhtK5PVE6vUeRU7t/cJnLyeQhnn+rNeBvXuFEkwfyCWxm/sOR5wxM4UGhiY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=Y0sZ1FD9; arc=pass smtp.client-ip=136.143.188.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1759247529; cv=none; 
+	s=arc-20240116; t=1759247855; c=relaxed/simple;
+	bh=GZntkUQ8Ib+umWwf7cn9eHpAQRh1ljdasxUPOMisB4I=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NqQvFh4eb712OsTP5OCp2Su++2kFKSxyFZSWJ6crBlJPPMGrYCTFsEYc6WzSXKUFccu5tZYqZbIoLNfv4pEysL0obH6O9SNJx3HeA7yvHpCj/zrKQqqX00xbm+jA/SPok1zhtFnH1+2gCc3ev+9e3GmhjbanuXSunHpYg/4CsmU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=dY7IHF+e; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1759247828; cv=none; 
 	d=zohomail.com; s=zohoarc; 
-	b=kVQpsdffAzMr7uuaDNbAxcruc6AXa54gGhtWuU7RP3derX2sid9X9LaPZmyPs/qx5RkrDXQwuiTYu8MmStS388aVM74EKbcFXbW8GHpC6yrJeW7CqMfM0R7XUavB1Sb/74046zJ8gcIHpojximRYHTflz+eiPGWSoR5hhcgmttU=
+	b=I5L91SFryh9PWo0AVpJ8DzEfynhJp8Qa8K6IS1VSO1hvFf2LTELb9Ppa80DMjOGzZuI4ReMWA1sAcsIrtfGkgy9sQaKq2wTA39BkgYvZurBlxpRNMyDHjzPETqJ5hsxRWeheNeJSYGa5qwIHAJLI+sfr4ZAejtzcCo8pNa2VYrQ=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1759247529; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=9ITXE882P+LUOgnHYbTufmL551fHoO+D/Qt2lUtHDqM=; 
-	b=PGGR2rasCESZwczXYwSbPUYDhE6H7FdyQGKwHmktDfBT8ayNcB7pdRq6+PvgLDr543aEP5IxbSzmXSksOZNTFVCi43xPcBHbggIaRQqju/7g9mdCrQfpunyl7ZhrPF8+6aO9sVQ1ZhkuAKz+L8P6+KI/7HZtmz1OwOb3rsCV6qw=
+	t=1759247828; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=ioMp3H6KrLSJJWEalLUIkYC5TSRKBOYlkpJQjihtMzg=; 
+	b=K2s8WVu2Mvnf6b0YwSAe8lvq2SPQlWDJJDKl/S3HiTroxlfWTwTYl/SPZamF6T2yIweDHiJblbx91cy+SwQu7+NXkLB0LR9KbXEXDpFWHQ9y3hlW8Ku1kK5YdxG/pPNrWYiL4SR7hq+w8qLCpyH6/ZLVTjQ/rpvCbJIftoK/1ws=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759247529;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=9ITXE882P+LUOgnHYbTufmL551fHoO+D/Qt2lUtHDqM=;
-	b=Y0sZ1FD9U89I0u6WPJnxppc90AfTzcehq4Oj4Ful7Oo4iFzHZStlU8L6Ee2LmLjK
-	G4uCWij0dyVy4KZkrSX6YDVdGVMc9+nFwPLy6DxsQ++LUBAWjppqjbkE6i0VXCxyGeK
-	uCqFw5hREg2ihyjrp6HBei7ygdEqnxJDEgKNWsqMpk1xN5XkGbSktndkxZckKVJ/kvZ
-	pFbZ233EUjhtAx+oejUV4q38xrkb3f60oA6hgj0SzGHPFf1P93KQQ7pUq7i7FjNdevq
-	WqURN6Dd8taH1miaqt4Yf7aCPGtn2iiW6SmxgYHpHbfEGU6WF7dhzhrAyvhsbRBpzA4
-	+fArzPUAng==
-Received: by mx.zohomail.com with SMTPS id 1759247527656514.7974823084481;
-	Tue, 30 Sep 2025 08:52:07 -0700 (PDT)
-Message-ID: <579dad6b4ab0c981b8d51383af2db3a9f4394609.camel@icenowy.me>
-Subject: Re: [PATCH v2 2/2] riscv: dts: starfive: add DT for Orange Pi RV
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-  Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
- <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Emil Renner
- Berthing <kernel@esmil.dk>, Michael Zhu <michael.zhu@starfivetech.com>,
- Drew Fustini <drew@beagleboard.org>, Yao Zi <ziyao@disroot.org>, E Shattow
- <e@freeshell.de>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Date: Tue, 30 Sep 2025 23:51:58 +0800
-In-Reply-To: <20250930100318.2131968-2-uwu@icenowy.me>
-References: <20250930100318.2131968-1-uwu@icenowy.me>
-	 <20250930100318.2131968-2-uwu@icenowy.me>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.44.4 
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759247828;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=ioMp3H6KrLSJJWEalLUIkYC5TSRKBOYlkpJQjihtMzg=;
+	b=dY7IHF+eFzJGNOppoeK/Q/lCl7//wKzf9NwwZzeKUsx/cXFOxiSSoM4wRHCqOn6r
+	cmV4HmxijmwB5nyX+T2lkhLjeclOuR7ueVENEc2VKAppT7kFYHSesZRQTBt5NxkP4Ww
+	K9vL3En+TcxQUkhorWjPofMdiqGqbMwCoOIkzxgY=
+Received: by mx.zohomail.com with SMTPS id 1759247826058389.2239892145087;
+	Tue, 30 Sep 2025 08:57:06 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Guangjie Song <guangjie.song@mediatek.com>,
+ Laura Nao <laura.nao@collabora.com>,
+ =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>,
+ Yassine Oudjana <y.oudjana@protonmail.com>, kernel@collabora.com,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+Subject:
+ Re: [PATCH 1/4] dt-bindings: clock: mediatek: Add clocks for MT8196 mfgpll
+Date: Tue, 30 Sep 2025 17:57:00 +0200
+Message-ID: <3374975.aeNJFYEL58@workhorse>
+In-Reply-To: <20250929-whoops-kennel-5f54fb6559a8@spud>
+References:
+ <20250929-mtk-pll-rpm-v1-0-49541777878d@collabora.com>
+ <20250929-mtk-pll-rpm-v1-1-49541777878d@collabora.com>
+ <20250929-whoops-kennel-5f54fb6559a8@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-5ZyoIDIwMjUtMDktMzDmmJ/mnJ/kuoznmoQgMTg6MDMgKzA4MDDvvIxJY2Vub3d5IFpoZW5n5YaZ
-6YGT77yaCj4gT3JhbmdlIFBpIFJWIGlzIGEgbmV3bHkgcmVsZWFzZWQgU0JDIHdpdGggSkg3MTEw
-IFNvQywgc2luZ2xlIEdiRSBwb3J0Cj4gKGNvbm5lY3RlZCB0byBKSDcxMTAgR01BQzAgdmlhIGEg
-WVQ4NTMxIFBIWSksIDQgVVNCIHBvcnRzICh2aWEgYQo+IFZMODA1Cj4gUENJZSBVU0IgY29udHJv
-bGxlciBjb25uZWN0ZWQgdG8gSkg3MTEwIFBDSUUwKSwgYSBNLjIgTS1rZXkgc2xvdAo+IChjb25u
-ZWN0ZWQgdG8gSkg3MTEwIFBDSUUxKSwgYSBIRE1JIHZpZGVvIG91dHB1dCwgYSAzLjVtbSBhdWRp
-bwo+IG91dHB1dAo+IGFuZCBhIG1pY3JvU0Qgc2xvdC4KPiAKPiBPdGhlciBPbmJvYXJkIHBlcmlw
-aGVyYWxzIGNvbnRhaW4gYSBTUEkgTk9SICh3aGljaCBjb250YWlucyB0aGUgVS0KPiBCb290Cj4g
-ZmlybXdhcmUpLCBhIDI0YzAyIEVFUFJPTSBzdG9yaW5nIHNvbWUgU3RhckZpdmUtc3BlY2lmaWMg
-aW5mb3JtYXRpb24KPiAoZmFjdG9yeSBwcm9ncmFtbWVkIGFuZCByZWFkIG9ubHkgYnkgZGVmYXVs
-dCkgYW5kIGFuIEFtcGFrIEFQNjI1Ngo+IFNESU8KPiBXaS1GaSBtb2R1bGUuCj4gCj4gU2lnbmVk
-LW9mZi1ieTogSWNlbm93eSBaaGVuZyA8dXd1QGljZW5vd3kubWU+Cj4gLS0tCj4gQ2hhbmdlcyBp
-biB2MjoKPiAtIFByb3BlcnR5IG9yZGVyIGNoYW5nZSBtZW50aW9uZWQgaW4gdGhlIHJldmlldyBv
-ZiB2MS4KPiAtIEFkZGVkIFdpLUZpIChhbG9uZyB3aXRoIHRoZSBhbHdheXMgb24gVkNDM1YzX1BD
-SUUgcmVndWxhdG9yLCB3aGljaAo+IGlzCj4gwqAgdXNlZCB0byBwb3dlciB1cCBXSUZJXzNWMyku
-IFRoZSBPT0IgSVJRIGlzIHN0aWxsIG5vdCBwb3NzaWJsZSB0bwo+IHVzZQo+IMKgIGJlY2F1c2Ug
-b2Ygc29tZSBpbmNvbXBhdGliaWxpdHkgYmV0d2VlbiBTdGFyRml2ZSBwaW5jdHJsIGRyaXZlciBh
-bmQKPiDCoCBicmNtZm1hYy4KPiAtIFJlbW92ZWQgdGhlIExFRCBiZWNhdXNlIGl0J3MgaW4gY29t
-bW9uIERUU0kuCj4gCj4gwqBhcmNoL3Jpc2N2L2Jvb3QvZHRzL3N0YXJmaXZlL01ha2VmaWxlwqDC
-oMKgwqDCoMKgwqDCoCB8wqAgMSArCj4gwqAuLi4vYm9vdC9kdHMvc3RhcmZpdmUvamg3MTEwLW9y
-YW5nZXBpLXJ2LmR0c8KgIHwgODcKPiArKysrKysrKysrKysrKysrKysrCj4gwqAyIGZpbGVzIGNo
-YW5nZWQsIDg4IGluc2VydGlvbnMoKykKPiDCoGNyZWF0ZSBtb2RlIDEwMDY0NCBhcmNoL3Jpc2N2
-L2Jvb3QvZHRzL3N0YXJmaXZlL2poNzExMC1vcmFuZ2VwaS0KPiBydi5kdHMKPiAKPiBkaWZmIC0t
-Z2l0IGEvYXJjaC9yaXNjdi9ib290L2R0cy9zdGFyZml2ZS9NYWtlZmlsZQo+IGIvYXJjaC9yaXNj
-di9ib290L2R0cy9zdGFyZml2ZS9NYWtlZmlsZQo+IGluZGV4IGIzYmIxMmY3OGU3ZDUuLjI0ZjFh
-NDQ4MjgzNTAgMTAwNjQ0Cj4gLS0tIGEvYXJjaC9yaXNjdi9ib290L2R0cy9zdGFyZml2ZS9NYWtl
-ZmlsZQo+ICsrKyBiL2FyY2gvcmlzY3YvYm9vdC9kdHMvc3RhcmZpdmUvTWFrZWZpbGUKPiBAQCAt
-MTAsNiArMTAsNyBAQCBkdGItJChDT05GSUdfQVJDSF9TVEFSRklWRSkgKz0gamg3MTAwLXN0YXJm
-aXZlLQo+IHZpc2lvbmZpdmUtdjEuZHRiCj4gwqAKPiDCoGR0Yi0kKENPTkZJR19BUkNIX1NUQVJG
-SVZFKSArPSBqaDcxMTAtZGVlcGNvbXB1dGluZy1mbWwxM3YwMS5kdGIKPiDCoGR0Yi0kKENPTkZJ
-R19BUkNIX1NUQVJGSVZFKSArPSBqaDcxMTAtbWlsa3YtbWFycy5kdGIKPiArZHRiLSQoQ09ORklH
-X0FSQ0hfU1RBUkZJVkUpICs9IGpoNzExMC1vcmFuZ2VwaS1ydi5kdGIKPiDCoGR0Yi0kKENPTkZJ
-R19BUkNIX1NUQVJGSVZFKSArPSBqaDcxMTAtcGluZTY0LXN0YXI2NC5kdGIKPiDCoGR0Yi0kKENP
-TkZJR19BUkNIX1NUQVJGSVZFKSArPSBqaDcxMTAtc3RhcmZpdmUtdmlzaW9uZml2ZS0yLQo+IHYx
-LjJhLmR0Ygo+IMKgZHRiLSQoQ09ORklHX0FSQ0hfU1RBUkZJVkUpICs9IGpoNzExMC1zdGFyZml2
-ZS12aXNpb25maXZlLTItCj4gdjEuM2IuZHRiCj4gZGlmZiAtLWdpdCBhL2FyY2gvcmlzY3YvYm9v
-dC9kdHMvc3RhcmZpdmUvamg3MTEwLW9yYW5nZXBpLXJ2LmR0cwo+IGIvYXJjaC9yaXNjdi9ib290
-L2R0cy9zdGFyZml2ZS9qaDcxMTAtb3JhbmdlcGktcnYuZHRzCj4gbmV3IGZpbGUgbW9kZSAxMDA2
-NDQKPiBpbmRleCAwMDAwMDAwMDAwMDAwLi41YTkxN2I3ZGI2Zjc4Cj4gLS0tIC9kZXYvbnVsbAo+
-ICsrKyBiL2FyY2gvcmlzY3YvYm9vdC9kdHMvc3RhcmZpdmUvamg3MTEwLW9yYW5nZXBpLXJ2LmR0
-cwo+IEBAIC0wLDAgKzEsODcgQEAKPiArLy8gU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0y
-LjAgT1IgTUlUCj4gKy8qCj4gKyAqIENvcHlyaWdodCAoQykgMjAyNSBJY2Vub3d5IFpoZW5nIDx1
-d3VAaWNlbm93eS5tZT4KPiArICovCj4gKwo+ICsvZHRzLXYxLzsKPiArI2luY2x1ZGUgImpoNzEx
-MC1jb21tb24uZHRzaSIKPiArCj4gKy8gewo+ICvCoMKgwqDCoMKgwqDCoG1vZGVsID0gIlh1bmxv
-bmcgT3JhbmdlIFBpIFJWIjsKPiArwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInh1bmxvbmcs
-b3JhbmdlcGktcnYiLCAic3RhcmZpdmUsamg3MTEwIjsKPiArCj4gK8KgwqDCoMKgwqDCoMKgLyog
-VGhpcyByZWd1bGF0b3IgaXMgYWx3YXlzIG9uIGJ5IGhhcmR3YXJlICovCj4gK8KgwqDCoMKgwqDC
-oMKgcmVnX3ZjYzN2M19wY2llOiByZWd1bGF0b3ItdmNjM3YzLXBjaWUgewo+ICvCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0gInJlZ3VsYXRvci1maXhlZCI7Cj4gK8Kg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZ3VsYXRvci1uYW1lID0gInZjYzN2My1wY2ll
-IjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcmVndWxhdG9yLW1pbi1taWNyb3Zv
-bHQgPSA8MzMwMDAwMD47Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZ3VsYXRv
-ci1tYXgtbWljcm92b2x0ID0gPDMzMDAwMDA+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqByZWd1bGF0b3ItYWx3YXlzLW9uOwo+ICvCoMKgwqDCoMKgwqDCoH07Cj4gKwo+ICvCoMKg
-wqDCoMKgwqDCoHdpZmlfcHdyc2VxOiB3aWZpLXB3cnNlcSB7Cj4gK8KgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoGNvbXBhdGlibGUgPSAibW1jLXB3cnNlcS1zaW1wbGUiOwo+ICvCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqByZXNldC1ncGlvcyA9IDwmc3lzZ3BpbyA2MiBHUElPX0FD
-VElWRV9MT1c+Owo+ICvCoMKgwqDCoMKgwqDCoH07Cj4gK307Cj4gKwo+ICsmZ21hYzAgewo+ICvC
-oMKgwqDCoMKgwqDCoGFzc2lnbmVkLWNsb2NrcyA9IDwmYW9uY3JnIEpINzExMF9BT05DTEtfR01B
-QzBfVFg+Owo+ICvCoMKgwqDCoMKgwqDCoGFzc2lnbmVkLWNsb2NrLXBhcmVudHMgPSA8JmFvbmNy
-Zwo+IEpINzExMF9BT05DTEtfR01BQzBfUk1JSV9SVFg+Owo+ICvCoMKgwqDCoMKgwqDCoHN0YXJm
-aXZlLHR4LXVzZS1yZ21paS1jbGs7Cj4gK8KgwqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOwo+
-ICt9Owo+ICsKPiArJm1tYzAgewo+ICvCoMKgwqDCoMKgwqDCoCNhZGRyZXNzLWNlbGxzID0gPDE+
-Owo+ICvCoMKgwqDCoMKgwqDCoCNzaXplLWNlbGxzID0gPDA+Owo+ICvCoMKgwqDCoMKgwqDCoGNh
-cC1zZC1oaWdoc3BlZWQ7Cj4gK8KgwqDCoMKgwqDCoMKgbW1jLXB3cnNlcSA9IDwmd2lmaV9wd3Jz
-ZXE+Owo+ICvCoMKgwqDCoMKgwqDCoHZtbWMtc3VwcGx5ID0gPCZyZWdfdmNjM3YzX3BjaWU+Owo+
-ICvCoMKgwqDCoMKgwqDCoHZxbW1jLXN1cHBseSA9IDwmdmNjXzN2Mz47Cj4gK8KgwqDCoMKgwqDC
-oMKgc3RhdHVzID0gIm9rYXkiOwo+ICsKPiArwqDCoMKgwqDCoMKgwqBhcDYyNTY6IHdpZmlAMSB7
-Cj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBhdGlibGUgPSAiYnJjbSxiY200
-MzQ1Ni1mbWFjIiwgImJyY20sYmNtNDMyOS0KPiBmbWFjIjsKPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgcmVnID0gPDE+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAv
-KiBUT0RPOiBvdXQtb2YtYmFuZCBJUlEgb24gR1BJTzIxICovCj4gK8KgwqDCoMKgwqDCoMKgfTsK
-PiArfTsKPiArCj4gKyZtbWMwX3BpbnMgewo+ICvCoMKgwqDCoMKgwqDCoC8qCj4gK8KgwqDCoMKg
-wqDCoMKgICogQXMgdGhlIE1NQzAgYnVzIGlzIHVzZWQgdG8gY29ubmVjdCBhIFNESU8gV2ktRmkg
-Y2FyZAo+IGluc3RlYWQgb2YKPiArwqDCoMKgwqDCoMKgwqAgKiBhbiBlTU1DIGNhcmQsIGFuZCB0
-aGUgZU1NQyBSU1QgaXMgcmVwdXJwb3NlZCB0byBiZSBhbgo+IGVuYWJsZW1lbnQKPiArwqDCoMKg
-wqDCoMKgwqAgKiBwaW4gb2YgdGhlIFNESU8gV2ktRmksIHJlbW92ZSBpdCBmcm9tIHRoZSBwaW5j
-dHJsIG5vZGUgYW5kCj4gbWFuYWdlCj4gK8KgwqDCoMKgwqDCoMKgICogaXQgYXMgYSBHUElPIGlu
-c3RlYWQuCj4gK8KgwqDCoMKgwqDCoMKgICovCj4gK8KgwqDCoMKgwqDCoMKgL2RlbGV0ZS1ub2Rl
-LyByc3QtcGluczsKPiArfTsKPiArCj4gKyZtbWMxIHsKPiArwqDCoMKgwqDCoMKgwqAvZGVsZXRl
-LXByb3BlcnR5LyBjZC1ncGlvczsKPiArwqDCoMKgwqDCoMKgwqBicm9rZW4tY2Q7CgpXZWxsIGl0
-J3MgZm91bmQgdGhhdCB0aGUgY2FyZCBkZXRlY3QgaXMgd29ya2luZywgYWx0aG91Z2ggd2l0aApk
-aWZmZXJlbnQgcG9sYXJpdHkgd2l0aCBvdGhlciBib2FyZHMuCgpIZXJlIHNob3VsZCBiZToKYGBg
-CgljZC1ncGlvcyA9IDwmc3lzZ3BpbyA0MSBHUElPX0FDVElWRV9ISUdIPjsKYGBgCgpXaWxsIGJl
-IGZpeGVkIGluIHRoZSBuZXh0IHJldmlzaW9uLgoKPiArfTsKPiArCj4gKyZwY2llMCB7Cj4gK8Kg
-wqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOwo+ICt9Owo+ICsKPiArJnBjaWUxIHsKPiArwqDC
-oMKgwqDCoMKgwqBzdGF0dXMgPSAib2theSI7Cj4gK307Cj4gKwo+ICsmcGh5MCB7Cj4gK8KgwqDC
-oMKgwqDCoMKgcngtaW50ZXJuYWwtZGVsYXktcHMgPSA8MTUwMD47Cj4gK8KgwqDCoMKgwqDCoMKg
-dHgtaW50ZXJuYWwtZGVsYXktcHMgPSA8MTUwMD47Cj4gK8KgwqDCoMKgwqDCoMKgbW90b3Jjb21t
-LHR4LWNsay1hZGotZW5hYmxlZDsKPiArwqDCoMKgwqDCoMKgwqBtb3RvcmNvbW0sdHgtY2xrLTEw
-LWludmVydGVkOwo+ICvCoMKgwqDCoMKgwqDCoG1vdG9yY29tbSx0eC1jbGstMTAwLWludmVydGVk
-Owo+ICvCoMKgwqDCoMKgwqDCoG1vdG9yY29tbSx0eC1jbGstMTAwMC1pbnZlcnRlZDsKPiArwqDC
-oMKgwqDCoMKgwqBtb3RvcmNvbW0scngtY2xrLWRydi1taWNyb2FtcCA9IDwzOTcwPjsKPiArwqDC
-oMKgwqDCoMKgwqBtb3RvcmNvbW0scngtZGF0YS1kcnYtbWljcm9hbXAgPSA8MjkxMD47Cj4gK307
-Cj4gKwo+ICsmcHdtZGFjIHsKPiArwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAib2theSI7Cj4gK307
-Cgo=
+On Monday, 29 September 2025 19:31:36 Central European Summer Time Conor Dooley wrote:
+> On Mon, Sep 29, 2025 at 02:13:20PM +0200, Nicolas Frattaroli wrote:
+> > The clock controllers for mfgpll, mfgpll-sc0, and mfgpll-sc1 all need
+> > CLK_TOP_MFG_EB to be on if their clock control registers are touched in
+> > any way.
+> > 
+> > This was not known at the time this binding was written, as this
+> > dependency only came to light when I started poking at the MFlexGraphics
+> > hardware, where this undocumented peculiarity made itself known through
+> > SErrors being thrown during register reads.
+> > 
+> > Add a clocks property to the binding to describe this relationship, and
+> > mark it as required for the affected clocks.
+> > 
+> > Fixes: dd240e95f1be ("dt-bindings: clock: mediatek: Describe MT8196 clock controllers")
+> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> > ---
+> >  .../bindings/clock/mediatek,mt8196-sys-clock.yaml  | 28 ++++++++++++++++++++++
+> >  1 file changed, 28 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-clock.yaml
+> > index 660ab64f390d2e722b7d3e25cf057926da318bc0..41aacd8d5f69050eebdf8392f7b652427632f491 100644
+> > --- a/Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-clock.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-clock.yaml
+> > @@ -45,6 +45,9 @@ properties:
+> >    reg:
+> >      maxItems: 1
+> >  
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> >    '#clock-cells':
+> >      const: 1
+> >  
+> > @@ -90,6 +93,23 @@ required:
+> >  
+> >  additionalProperties: false
+> >  
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - mediatek,mt8196-mfgpll-pll-ctrl
+> > +              - mediatek,mt8196-mfgpll-sc0-pll-ctrl
+> > +              - mediatek,mt8196-mfgpll-sc1-pll-ctrl
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: mfg_eb clock
+> > +      required:
+> > +        - clocks
+> 
+> Don't you want an else: properties: clocks: false here?
+
+Possibly. I'm never quite sure how strict bindings should be when
+it comes to stuff like this. On the one hand, none of the other
+compatibles described in it use any clocks that we know of
+right now.
+
+On the other, if we have a second set of compatibles that also
+needs clocks, but in a different way, would we repeat that for
+each such if/then condition? Or would be reformulate this as
+some oneOf/anyOf construct specifically for the clock property?
+
+Kind regards,
+Nicolas Frattaroli
+
+> 
+> > +
+> >  examples:
+> >    - |
+> >      apmixedsys_clk: syscon@10000800 {
+> > @@ -104,4 +124,12 @@ examples:
+> >          mediatek,hardware-voter = <&scp_hwv>;
+> >          #clock-cells = <1>;
+> >      };
+> > +  - |
+> > +    #include <dt-bindings/clock/mediatek,mt8196-clock.h>
+> >  
+> > +    clock-controller@4b810000 {
+> > +        compatible = "mediatek,mt8196-mfgpll-pll-ctrl", "syscon";
+> > +        reg = <0x4b810000 0x400>;
+> > +        clocks = <&topckgen CLK_TOP_MFG_EB>;
+> > +        #clock-cells = <1>;
+> > +    };
+> > 
+> 
+
+
+
 
 
