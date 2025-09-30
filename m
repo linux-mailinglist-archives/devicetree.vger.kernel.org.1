@@ -1,131 +1,193 @@
-Return-Path: <devicetree+bounces-222656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6142BABAEE
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 08:40:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31CE9BABB12
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 08:48:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74B2C1921CCF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 06:41:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBE7C3ACDDD
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 06:48:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5D64299A9E;
-	Tue, 30 Sep 2025 06:40:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 361EC299923;
+	Tue, 30 Sep 2025 06:48:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DKgSCAt1"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="EnXLBkOS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11023076.outbound.protection.outlook.com [40.107.162.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1018298CC7
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 06:40:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759214454; cv=none; b=KrAqXcfPyipXGwW1QjDPGEiwNT/AUoQQhEYsZpOSv5gJVhc9Bov4on9Tmr7BCCqNOAV3s7c+d+KsHHTb5zxV7tXGKM5KpgLXOPN513Ivh7X7LHhUEhOfiC/qFogDdrI67N1nCt+fuSeBoCnDyND6ligXPSvHGJ+hYDCQBaxJkgQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759214454; c=relaxed/simple;
-	bh=aY796e7ZjDJ3GpkqwDAOoDMWoCinINh6cbC/Z6IAkio=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YAtOvhSeIjk7cMzMFfV2u+MLR54QKPYCC9Cz/hDIgGXi2Mdu2OEbJaKcybOo1mHNeciIcxZpVQ4lSJ+BMpVnor461KaxETre54vFW0f3/sSCZpAyIVwxEIk7smpo8Dbg0ArDUdxRRAWFZDz6hX64jYNrwESq1rS4xSObHsv13S0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DKgSCAt1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 443A3C116D0
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 06:40:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759214454;
-	bh=aY796e7ZjDJ3GpkqwDAOoDMWoCinINh6cbC/Z6IAkio=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=DKgSCAt1CIUjTAPD85phyC6/D/engFWoLogA9Yz5lqVjDmSESvd0ZOchbg0bW326x
-	 SW3YgAa4BKIk40LZ6tlKLlg0+2AmH9iEDSDkRkpUyTmOL/yMRy6+l1DvFG4sNq92g5
-	 sy/a90b1stw+87lspEOgUef61/I56Yjy0Gx9rS9WSeSmXvC14Dd7DfSTvudUdeHmvs
-	 hyf2tiiH4u7VKMaBdzQnBPsrh+0ulbD0H5T3ez6ZO2r1S0BXDt/Ie+UoPYrB2Y77Zw
-	 nJdGsBiHyj7wChYx6E02wVyxskB4mWT6pVJP8RRkE4qkvJfPssQ/OibpAGmtBcuzZ0
-	 my/RmbK0cZuXA==
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-26a0a694ea8so46160055ad.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Sep 2025 23:40:54 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWzG+PJW9SPDyk6enQcQbi6xBcnt/DzzLBhMhpWbmPu8zVcG05j3D0GG4B3sBAtWnEQJwwvOd05auA+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+5SL/L7e+PWo9CYrqq1dWST9x3cnkpJTSXk6xWNgNLfwpgsxg
-	GhWTuQ2eYfVhacHx4HCivOt6d7SRuRo7LU1aojyIuR9EPGXASr7D/5ITOx6NtYD3Fu6vHjxstXT
-	Clv42io0u2L9pLRH9erMVaQiI5t8cq14=
-X-Google-Smtp-Source: AGHT+IFilulwB7yZKk8NWBisCkRd9EVIUP8wmRYd1pqL/aVk/i4cqOXK4Ip+OXNthJdD/mk9ed9ZzEkUxbiiEQK8Lsg=
-X-Received: by 2002:a17:902:f68d:b0:276:842a:f9a7 with SMTP id
- d9443c01a7336-27ed4a5aab7mr219005735ad.57.1759214453755; Mon, 29 Sep 2025
- 23:40:53 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EC5629E11B
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 06:48:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.76
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759214890; cv=fail; b=gfWICONtrN0I4PKLPxoZ9vg8rFG0NtedWrzIA9/N+ihdZA1L5ZCVL90ZorhvG82YGDm6zpHu5HwSy7DibyOdoYlhExJi86VU7WgWQxtLzzz0g10CeKSdiJmBAVMKeMNTC6FTaMZ8JdYr9V10UBiBgSeZKBtbYhsVge8jc7BU2AQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759214890; c=relaxed/simple;
+	bh=snHnkXLQo9gpS1Tl9GKlk51ibYJ/eOgiNDluulY9DAA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=i6e7Ep2W4x5LaA2ocdocBARVICzcCWlXBR96wTZ35hPsMwPGJWe1zgST4HjdJREd15AMOJZdGutt4/expSfzIeBth0CNkgJ6GT94OQP+JkmZZuQf6Q+EjidQYHEqO5bG5kUpWCbqTNihPGM8d3l3o3ZpXJIe75MYI5gwiQYeoKs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=EnXLBkOS; arc=fail smtp.client-ip=40.107.162.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fEIQg/ibkjM9Umf1jSNFE5J2bzrQCL31V+xg2GCcYSxo50VbG7T7Zk6RQ57RuzJURTD0zdcYXOssvvWqnlG0Eg08VJXAdiQXmvrSB0EwuUufVTQ4rhOpCGrrzDlzwh55tvQZ/dGp5cSBpabkb0aBejh7UPDa+DZT9rf4eYyLbssPOngBE+dGBc5Q3aqVKnnPOKob1oCCvP8tkJu+6elfo6/Auc2rMPMVeFjrHlM+854rGJ+szUiotUob2Rl0FkppZsMUEc1QTvQXYy76e155JjfS+dYSoO9oPCOaeC+MhE28WGSQRXydpm2iJcSPI4WNFFmp5iCPUFugyXSW8TlUBQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=dcEHxpMhi7cKgOinEYI7z8NY4BTIS9Uo+mREDPu5ltk=;
+ b=EREg+yrZC30Ktnb9SxZXfarYLfbA96h0WZOHP+/vLAK4QIOyFHmDFq3C4xrBHaqWG+0H64KRBpSTk/abY5JJ2f23g7hgdq/dXVP7Wtq1K95AvPfmZ+cXzHKUVqzVju9vkjgrOUUhR01BAp8ngCX2xh7vuu/ZDkPA/pn+mZSsl+5Rd6+FT7vNzwzTwtlpNewVeVNTQvEgO5S05LKOuKl1PgpyFqvNb9KS57bUsoMwrHhLL2QBMcHZP0C/ogmZ7Feeub3GYDX084xvEnWVZg07J6g5WXOvk7eVxcPrKNlqYjLzYBaEHmjjjg5TXwN99uLfZFQySUmv5TPwbvGZ2b90pw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
+ is 91.26.50.189) smtp.rcpttodomain=kernel.org smtp.mailfrom=phytec.de;
+ dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=phytec.de; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dcEHxpMhi7cKgOinEYI7z8NY4BTIS9Uo+mREDPu5ltk=;
+ b=EnXLBkOS936V6GgvHMV6fSBJ19JnJYEd2yo5WtG3su0gzYHheo4OCg+V9je+hbGwfacG17evnwJGGrNT24Ebi5i5EbVQc5geVnTAYrHLKhdb4oFYtTTgItyaS/MXRns68S+qjN88Ife1MbJGPMmq79yELpuUuvntA/KyWXLnT+89vNz+9i/hzai+ikwp1B0jX4ELxEjD6B36LVB9s3Gn0yuZxwqxeJl2pEmp2ob4aqu5LQ1afhIk+67kCaYmNMoKnP9e76NZVNlLBT45kyA7izz6C+FUL08jjRf2Gep8P4hTPuDxEq6OgfGEZX/AdAtaybs3tt319SbpTBjnZrYlWA==
+Received: from AM8P189CA0004.EURP189.PROD.OUTLOOK.COM (2603:10a6:20b:218::9)
+ by AMBP195MB3197.EURP195.PROD.OUTLOOK.COM (2603:10a6:20b:6f7::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.17; Tue, 30 Sep
+ 2025 06:48:03 +0000
+Received: from AMS0EPF000001A0.eurprd05.prod.outlook.com
+ (2603:10a6:20b:218:cafe::1b) by AM8P189CA0004.outlook.office365.com
+ (2603:10a6:20b:218::9) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9160.16 via Frontend Transport; Tue,
+ 30 Sep 2025 06:48:03 +0000
+X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
+ smtp.mailfrom=phytec.de; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
+Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
+ phytec.de discourages use of 91.26.50.189 as permitted sender)
+Received: from Postix.phytec.de (91.26.50.189) by
+ AMS0EPF000001A0.mail.protection.outlook.com (10.167.16.230) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9160.9 via Frontend Transport; Tue, 30 Sep 2025 06:48:03 +0000
+Received: from llp-jremmet.phytec.de (172.25.39.81) by Postix.phytec.de
+ (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 30 Sep
+ 2025 08:48:02 +0200
+From: Jan Remmet <j.remmet@phytec.de>
+Subject: [PATCH 0/6] arm64: dts: imx8mm-phyboard-polis: cleanup and
+ additional display
+Date: Tue, 30 Sep 2025 08:47:43 +0200
+Message-ID: <20250930-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-v1-0-d5d03ccbfca1@phytec.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20250930035525epcas5p3a1238a3a7bc6e52113838397187e36ba@epcas5p3.samsung.com>
- <20250930040348.3702923-1-h.dewangan@samsung.com> <20250930040348.3702923-3-h.dewangan@samsung.com>
-In-Reply-To: <20250930040348.3702923-3-h.dewangan@samsung.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Date: Tue, 30 Sep 2025 15:40:41 +0900
-X-Gmail-Original-Message-ID: <CAJKOXPc+ass6ftbxrodVzXVPFW+8rUYW=VyxsmGTU1wR_jBiAg@mail.gmail.com>
-X-Gm-Features: AS18NWBGk7OJKwPJ5iy8_Rm-Qzpd87k2vQsijdmZj27-buhGtUmwdQhJcd2WDg0
-Message-ID: <CAJKOXPc+ass6ftbxrodVzXVPFW+8rUYW=VyxsmGTU1wR_jBiAg@mail.gmail.com>
-Subject: Re: [PATCH 02/29] arm64: dts: mfc: Add MFC device tree for Auto V920 SoC
-To: Himanshu Dewangan <h.dewangan@samsung.com>
-Cc: mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, sumit.semwal@linaro.org, christian.koenig@amd.com, 
-	alim.akhtar@samsung.com, manjun@samsung.com, nagaraju.s@samsung.com, 
-	ih0206.lee@samsung.com, jehyung.lee@samsung.com, 
-	linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	linaro-mm-sig@lists.linaro.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABB922gC/x3NQQqDMBBA0avIrDuQjAixVylFYjI2U4gNSVCLe
+ PeGLt/m/xMKZ+EC9+6EzJsU+awN+taBC3Z9MYpvBlI0qJEG3CXhGzPHyBVT+FZ26BnnkiQeJmJ
+ vlJ4Sz2g31GrapYbJOlIj8qKV0WTJGw+tnzIvcvzfj+d1/QBE5K5AiwAAAA==
+X-Change-ID: 20250925-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-ef10812a2d8d
+To: Teresa Remmet <t.remmet@phytec.de>, Janine Hagemann
+	<j.hagemann@phytec.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo
+	<shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, "Pengutronix
+ Kernel Team" <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
+CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, Jan Remmet <j.remmet@phytec.de>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
+ (172.25.0.11)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS0EPF000001A0:EE_|AMBP195MB3197:EE_
+X-MS-Office365-Filtering-Correlation-Id: c75bdb54-d021-499c-d200-08ddffed4ddc
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|36860700013|82310400026|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?WUtTNmhUMWtFQldIUGtpMTY4Szg4ckJ6bzBoOWJESjRPdTZ1SDFoM0F1Z1pv?=
+ =?utf-8?B?TlllY1RRT1NYbVBTa3I1V0JKZmVPVWpUSEpOWWxhaWNMWXRpY1NDREd5WFFI?=
+ =?utf-8?B?RGFFc0RJbzRQZWUzK0k4ZEV3Y2RvRThLanNnQWV5RXNtalJ2RXBSRklLUjBU?=
+ =?utf-8?B?WnVwREM3eFBzeHcwUGp0K2I1VFFYaWJTY3l6SlQzMytzSjlMdE1nTys5VEll?=
+ =?utf-8?B?R2swcWdjSnZyYWc1amVwM3dUaHhGdTEzTmtPNnNDV2FIYXN4R25tMSsxY3Rv?=
+ =?utf-8?B?QXZpRG51Nko5RFdJbUovTjVQUU1pNHFrbW9jekYwTW5xSFVhdWp3enQvSU5x?=
+ =?utf-8?B?VmhlTE1mMlRXclp6SU9aaEFlL3NBY3d2R2FZRlhBODdhV1EwbFlkMGVJQVhL?=
+ =?utf-8?B?RmtTcjhqa0JuM3c3SFMzRU9rOXYxS2E5dkZLRVQ1eXNPOHRWMzMwcmUzSkVZ?=
+ =?utf-8?B?T0VONlFMK0RGTSt6NW4vQjFpWndtTHByc1pOVktlUlVSWEZtNW5zMVZ6b2Vm?=
+ =?utf-8?B?dzlYZEFCUXhNbzc1OGhaQWpJVFFzVklYWXA4dU51Mll0VyttSVpoZ0FxVFdX?=
+ =?utf-8?B?cGova0RpdWgrbE4yUE9rMlJXd2pGYjh0cGdsSVl3TUZCVjd6YTNxNEVoZ1BJ?=
+ =?utf-8?B?M1lsVzJHWE05UWV3Wit1bTFZNnJ6aVJ1YU01aGtNbWNra1NjRWYxUUNsa29t?=
+ =?utf-8?B?Ly9oVEZPcDZtaWhuRERnQldCZVNpbVI1d1dieW5leUM5N3BXY1pUa2tDcmxh?=
+ =?utf-8?B?NHpHU1RJM2RPR1U0ODBMdnJnM09TYW9KaGN0VUtWVW1YOFRwaWNSbVdDS2x4?=
+ =?utf-8?B?YUZtQlRISmN4UUR5UTVsQ1hJZFVNekJoK2NITTVZTDBsNmpwV1dQc2JDVkNM?=
+ =?utf-8?B?Ritsbm8va1hlaHRVMnZKbkhVWEE5NERFd1JNOFdPSWRwcVhKZGtodzZBQ1kz?=
+ =?utf-8?B?RCt4SXdIcU94QjlqMDBoSHVDa2VvZ0tIOThMYzhhUk9nbEU3U2JzOHNNOHJ4?=
+ =?utf-8?B?b3d0bWxFdzI4d0x5ejBuR3JzLzV5UFVKbzFHNGMzNEhBVWFpV0dRbW9VQVJl?=
+ =?utf-8?B?YUkrQmdqWWRTUjF2aDlyclU4cllhbW5ORnRkemFqa1o5NnorT1BMSm1Ta0Rp?=
+ =?utf-8?B?M2VVM3JxMWNvbVc4TXh1YkdnQ1RkYWtUNWx3bVNTRTk5VndNRXpldTJMS3lS?=
+ =?utf-8?B?c1hIVU95YXBTRkVZaGZ4ZTBPQTFRcytIbEx2WjkzTlVVUXJ1V09JWWI0MjZU?=
+ =?utf-8?B?MG90RjJFTVJHTytFck5LL0FXZlB3MDhRKzZReVQ5TDl4bWMyY3ZzVXZ1ejhQ?=
+ =?utf-8?B?MGVIVkJnVENqcmpOK0hERi9MK1BuMDN6bjI3V0dQbTBSYldSOUVURS9aZ3pL?=
+ =?utf-8?B?UTdTVEZjQWl5cDNvY05XRzFweFNzaHBaVUtWWlRnd2Q0YjdKa3ZYMHlWZ0NZ?=
+ =?utf-8?B?dkhVU1pmekVDRGNheWtQSlljVFc4QTU2ZFRGbmk3Y2NIZ0ZwSFhTWVJOWENj?=
+ =?utf-8?B?eDJWY1RiclI3dG5ZbFRqQmFINkN0OVRjczYzQWQxaGRscGt5MVowWEJKYksv?=
+ =?utf-8?B?NTQ0UkJtODB5YS9SYVptanE4ZStDY2dpaWM0eFJBYStlTGw4SHBkQ29NSE9X?=
+ =?utf-8?B?dnhFTjhZSHRXZFZSd2xlQTdPRWVwQlorK0NkMUhvMWE2L3c0VVQ5TjErZVlx?=
+ =?utf-8?B?MU9GZ004T3hMd1RuMjlPa2J3VEp5SlFXKzJCdTFpMWZ0YzZPbHFRRUt5RERK?=
+ =?utf-8?B?cEtHbnhoOVEzaDhKU2dkYUxiRVgzcjZQbDdZQ0lVSmhuUzNtanZUS2dpZ2gw?=
+ =?utf-8?B?eEs2UUQ3NXk5M2txUVF5RWtiTXhRUnUrdFUvOGZFM21UcEFHcjU4bWJxaXBv?=
+ =?utf-8?B?NFhsWVJEZVJWajBsZnI3NjZ2NDlTbmcwdU1HUHpYazNuZklzRi8xMFRlWG9y?=
+ =?utf-8?B?SHFEa1VMb01jNkNRRUtCZW9qelpJQkVDU0pkbkFiT0VSSjc5c1hMaEVBVEUx?=
+ =?utf-8?B?MUduUWJzNTNCZ2FoTU51aURVaUV2V3o0MGxMZ0NrZkpkYytOeGlVZHJRQ1Jq?=
+ =?utf-8?B?NGtxY2dOUDFxSGJ1bE9ub1BBeEpaaWVTUit2V3FqeXhqV0pRbFQzQ1VFbTNR?=
+ =?utf-8?Q?X/U8=3D?=
+X-Forefront-Antispam-Report:
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(82310400026)(7416014)(376014);DIR:OUT;SFP:1102;
+X-OriginatorOrg: phytec.de
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2025 06:48:03.4720
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c75bdb54-d021-499c-d200-08ddffed4ddc
+X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS0EPF000001A0.eurprd05.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMBP195MB3197
 
-On Tue, 30 Sept 2025 at 12:55, Himanshu Dewangan <h.dewangan@samsung.com> w=
-rote:
->
-> From: Nagaraju Siddineni <nagaraju.s@samsung.com>
->
-> Introduce the device=E2=80=91tree entries for the Samsung Exynos AUTO V92=
-0
-> multimedia=E2=80=91function controller (MFC). The patch defines:
-> - Reserved memory regions for firmware and CMA buffers.
-> - Core0 and Core1 memory mappings.
-> - The main MFC node with basic properties (compatible, reg, interrupts,
->   clocks, DMA window, firmware name, debug mode, etc.).
-> - Per=E2=80=91core sub=E2=80=91nodes (MFC=E2=80=910 and MFC=E2=80=911) wi=
-th their own sysmmu,
->   firmware region, and configuration parameters.
-> - Resource table listing supported codecs and their capabilities.
->
-> Adds full support for the V920 MFC hardware to the mainline kernel
-> device=E2=80=91tree, enabling proper memory allocation, interrupt handlin=
-g and
-> codec operation on this platform.
->
-> Signed-off-by: Nagaraju Siddineni <nagaraju.s@samsung.com>
-> Signed-off-by: Himanshu Dewangan <h.dewangan@samsung.com>
-> ---
->  .../dts/exynos/exynosautov920-evt2-mfc.dtsi   | 187 ++++++++++++++++++
+This patch stacks rework the handling of the peb-av-10 daughterboard.
+Update license.
+Move mipi bridge configuration to som.
+Allow peb-av-10 as audio only overlay.
+Add two display overlays for ETML1010G3DRA and PH128800T00.
 
-No, there are no such files. Don't push your downstream here.
+Signed-off-by: Jan Remmet <j.remmet@phytec.de>
+---
+Jan Remmet (5):
+      arm64: dts: imx8mm-phyboard-polis: Use GPL-2.0-or-later OR MIT
+      arm64: dts: imx8mm-phyboard-polis: move mipi bridge to som
+      arm64: dts: imx8mm-phyboard-polis-peb-av-10: reorder properties to match dts coding style
+      arm64: dts: imx8mm-phyboard-polis-peb-av-10: split display configuration
+      arm64: dts: imx8mm-phyboard-polis-peb-av-10-ph128800t006
 
->  .../arm64/boot/dts/exynos/exynosautov920.dtsi |   1 +
->  2 files changed, 188 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/exynos/exynosautov920-evt2-mfc.dt=
-si
->
+Teresa Remmet (1):
+      arm64: dts: imx8mm-phyboard-polis-peb-av-10: Fix audio codec reset pin ctl
 
-This doesn't belong to media patchset, don't combine them.
-
-Anyway, you completely disregarded DTS coding style and how we were
-Samsung DTS. Please don't send us downstream code.
-
-I won't be reviewing this, you need to start from scratch looming at
-other recent code.
-
-Remember also about Samsung maintainer profile, although with such
-completely broken and non working bindings it's pointless now - this
-code couldn't even be reliably tested with them.
-
+ arch/arm64/boot/dts/freescale/Makefile             |   6 +
+ ...8mm-phyboard-polis-peb-av-10-etml1010g3dra.dtso |  44 ++++
+ ...x8mm-phyboard-polis-peb-av-10-ph128800t006.dtso |  44 ++++
+ .../freescale/imx8mm-phyboard-polis-peb-av-10.dtsi | 189 +++++++++++++++++
+ .../freescale/imx8mm-phyboard-polis-peb-av-10.dtso | 234 +--------------------
+ .../imx8mm-phyboard-polis-peb-eval-01.dtso         |   3 +-
+ .../dts/freescale/imx8mm-phyboard-polis-rdk.dts    |   3 +-
+ .../boot/dts/freescale/imx8mm-phycore-som.dtsi     |  28 ++-
+ 8 files changed, 313 insertions(+), 238 deletions(-)
+---
+base-commit: 4ff71af020ae59ae2d83b174646fc2ad9fcd4dc4
+change-id: 20250925-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-ef10812a2d8d
 
 Best regards,
-Krzysztof
+-- 
+Jan Remmet <j.remmet@phytec.de>
+
 
