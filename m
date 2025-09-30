@@ -1,181 +1,155 @@
-Return-Path: <devicetree+bounces-222828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6214DBADFB7
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 17:57:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8631BADFCE
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 18:00:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1802E3AE341
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 15:57:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90409322E51
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 16:00:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DC893081B2;
-	Tue, 30 Sep 2025 15:57:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93EFB3090E8;
+	Tue, 30 Sep 2025 15:59:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="dY7IHF+e"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HTj2ldqH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B0E13043BA;
-	Tue, 30 Sep 2025 15:57:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759247855; cv=pass; b=gAY6118fxjLFgw1G5Q8EThruPRHv7l7otHLQuM66wG95X4Xo5LdGzTDnLyZ9gnSTwONzavyukNrglrRfWpn7sBjHVMnzu5K3a2fhZpnxPj5zicQsNbJC0eQSpMw5XsGua3W7iR1ONPJx2ynLm5/FhMC8KgiL4SKVHmkEPZ1jloY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759247855; c=relaxed/simple;
-	bh=GZntkUQ8Ib+umWwf7cn9eHpAQRh1ljdasxUPOMisB4I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=NqQvFh4eb712OsTP5OCp2Su++2kFKSxyFZSWJ6crBlJPPMGrYCTFsEYc6WzSXKUFccu5tZYqZbIoLNfv4pEysL0obH6O9SNJx3HeA7yvHpCj/zrKQqqX00xbm+jA/SPok1zhtFnH1+2gCc3ev+9e3GmhjbanuXSunHpYg/4CsmU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=dY7IHF+e; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1759247828; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=I5L91SFryh9PWo0AVpJ8DzEfynhJp8Qa8K6IS1VSO1hvFf2LTELb9Ppa80DMjOGzZuI4ReMWA1sAcsIrtfGkgy9sQaKq2wTA39BkgYvZurBlxpRNMyDHjzPETqJ5hsxRWeheNeJSYGa5qwIHAJLI+sfr4ZAejtzcCo8pNa2VYrQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1759247828; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=ioMp3H6KrLSJJWEalLUIkYC5TSRKBOYlkpJQjihtMzg=; 
-	b=K2s8WVu2Mvnf6b0YwSAe8lvq2SPQlWDJJDKl/S3HiTroxlfWTwTYl/SPZamF6T2yIweDHiJblbx91cy+SwQu7+NXkLB0LR9KbXEXDpFWHQ9y3hlW8Ku1kK5YdxG/pPNrWYiL4SR7hq+w8qLCpyH6/ZLVTjQ/rpvCbJIftoK/1ws=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
-	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759247828;
-	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
-	bh=ioMp3H6KrLSJJWEalLUIkYC5TSRKBOYlkpJQjihtMzg=;
-	b=dY7IHF+eFzJGNOppoeK/Q/lCl7//wKzf9NwwZzeKUsx/cXFOxiSSoM4wRHCqOn6r
-	cmV4HmxijmwB5nyX+T2lkhLjeclOuR7ueVENEc2VKAppT7kFYHSesZRQTBt5NxkP4Ww
-	K9vL3En+TcxQUkhorWjPofMdiqGqbMwCoOIkzxgY=
-Received: by mx.zohomail.com with SMTPS id 1759247826058389.2239892145087;
-	Tue, 30 Sep 2025 08:57:06 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Guangjie Song <guangjie.song@mediatek.com>,
- Laura Nao <laura.nao@collabora.com>,
- =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>,
- Yassine Oudjana <y.oudjana@protonmail.com>, kernel@collabora.com,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-Subject:
- Re: [PATCH 1/4] dt-bindings: clock: mediatek: Add clocks for MT8196 mfgpll
-Date: Tue, 30 Sep 2025 17:57:00 +0200
-Message-ID: <3374975.aeNJFYEL58@workhorse>
-In-Reply-To: <20250929-whoops-kennel-5f54fb6559a8@spud>
-References:
- <20250929-mtk-pll-rpm-v1-0-49541777878d@collabora.com>
- <20250929-mtk-pll-rpm-v1-1-49541777878d@collabora.com>
- <20250929-whoops-kennel-5f54fb6559a8@spud>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B553081B2
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 15:59:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759247992; cv=none; b=kkSqGvmgFOeIXxDbpueOVDghGXGWIRTCr7nSSk6h2N3QUBwpCEcI92LCd4OsIyJfFifDuVv4Ji3Y4ggaQsxrGSHDdPBz418n5fb2p2XFMEalc73IFoucztr2qhwItYL6t+kT66kOEFSsKSZ0rZxd3+m+Q8l3DQ6X+L9CmeAsEJ0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759247992; c=relaxed/simple;
+	bh=AVM+f6993GG3pPTGXpDB9FNg13zb0loTdcuhSe/D63Y=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=FXC+cboLTZg/+svxrCrP1aGV74d6uiu1WcHsLc+ddWf74mXZEnIFNQji2TihO+Q50nkcjnuPPTNCkz4h+iLdz9txHtQLZMLhObVc9Lmp+IZLdqMaNMrMeyFQErnT6kBkpaLHvUOp2ckzWOlfzmvPeBXAPcbb95CO7oC7cBdd6/I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HTj2ldqH; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-46e52279279so18938665e9.3
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 08:59:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759247988; x=1759852788; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jewn4YU/vUIZPW/z42z8IyS83UgUexK9MRMwSa8wuVM=;
+        b=HTj2ldqHqECeS++YJjG3LkVp9U62Kk2sFTKiNwdeaMizJxBXTU5LmE7bHHHj4WS9pg
+         GxVlQJJBYrDCD8Q6kGJzgNodFvLWVxlF7IlrVnp9BlVd0fil4tp2S5zuNMgZ2b87IAOW
+         zBCxNKKQ6u4fIcLXUkY10beovm5Zu/Ge7BdXnqYBCN53o8UULCqtqg1stn3Wz3EuapjL
+         1vvvDLa6ZuU8VwjmQoXf4tRGWBNp7asa9UoN1lRSWrSEpce3AamM9u6oSKpBsGQiz5su
+         sC4JQflC1AeLF4iWOKi8ybFXb/F9QS6Ek5WS1FsgSBhyNDk1Gixqse1hvkqhLqZ4u1hG
+         mJUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759247988; x=1759852788;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=jewn4YU/vUIZPW/z42z8IyS83UgUexK9MRMwSa8wuVM=;
+        b=VoPcpCuWZ2GS8Mu4WVqoArIzb93N/5Lh2KTr6XAyhTQm9283mCfY10u0axOFGVGil4
+         a9LphVIq60ze4qlLUimaRXF6M33SNR3t0gcNxirU5BIUgcSs20K9lWEzCDsb0bKLRdMo
+         7my+6dWGQpue381Az0E9TUqyIOvS5QOhK+YcXhhLMHjb0UayTZAO7mbwMVZaPaz1zfJ2
+         GNjy7D1ccv/pbeMYEO639d1qtgcftDdxLEVCuqXwOFyDvP41FTZ6D6VWfJxmSgE3CfDf
+         jCZhZDnd0YynHLytwK8siwxt6eOEmpQTE/4ARFB9AbAYsC1j9Kn5SsMnFU/gdQdsyJ9Y
+         KVfw==
+X-Forwarded-Encrypted: i=1; AJvYcCXIdRBdNrdk/vh0ZQottw8/ywbToHzZAoj4KQ41/rWYOGek5+jDLe6f7yOQBZPjncufo1XCX5/UVr6x@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxaVygm5bJhaTirrIgy1vHydpDv/Ox8rGcuXwPPdzzxNTzT2Am
+	pfLxPkLuk6BXcEPtWq/pu3BtlfnBzYwkGvU+vUUTLyqbH2SGCBdYIH/iI/3SHBTASiA=
+X-Gm-Gg: ASbGncuFkJ0J+C7K3R8YNj7gKz+DcX0xG656UqQ5eCdn6GVUi1AXTRw6PJz07NiIah0
+	lWvc4k/AznBnmWisB1+/LLQUwKqgjV72Eo9F0H1KxBpLXpTBtnlWFJi6eLIJGbXDbaHjyIGwANG
+	vfWzJhf8+kZjb4s0bknMb8rTHC7Rl6BAsM9U6f52G9Qq6lnMv7RXemf9djrsPb1ZG9UBOGWZvK5
+	cTzlMaJN0QX2YaaX2L82YVvHiolUk9pT/aXDHcV38CsgUU6RSSu3TTs8llCLEPmj6sdkCJnoCXQ
+	WC7AFn9IwWptNgl63ICaxAcwja6v9nHJgcaWrqbArhWQAh0q/EZf2PhRVaLzZLZUPAT7eQdEBbP
+	+ncFC0/0NSAyS3wjJ6HalMxKEl4OBI+zTUmwPK7MoukIsfC0sUZur6WkExy4=
+X-Google-Smtp-Source: AGHT+IGgWhUKC4p7LLQ65Y2Poqvj3Z/K2NZk/M2fzSl7pknsxh6YoTUT2JS4bAKz8Cg2Bjs6T9NXkQ==
+X-Received: by 2002:a05:600c:4e48:b0:46e:59f8:8546 with SMTP id 5b1f17b1804b1-46e612674afmr3283495e9.17.1759247988059;
+        Tue, 30 Sep 2025 08:59:48 -0700 (PDT)
+Received: from localhost ([2a02:c7c:7259:a00:248:54ff:fe20:c34])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e56f53802sm61255805e9.9.2025.09.30.08.59.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 30 Sep 2025 08:59:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 30 Sep 2025 16:59:46 +0100
+Message-Id: <DD69D3NF9QWG.3NJDD1L5EQFMF@linaro.org>
+Cc: "Bjorn Andersson" <andersson@kernel.org>, "Linus Walleij"
+ <linus.walleij@linaro.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Konrad Dybcio" <konradybcio@kernel.org>, "Liam Girdwood"
+ <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+ <srini@kernel.org>
+Subject: Re: [PATCH 2/5] dt-bindings: sound: qcom,sm8250: add RB1 (QCM2290)
+ soundcard
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: <dmitry.baryshkov@oss.qualcomm.com>
+X-Mailer: aerc 0.20.0
+References: <20250302-rb1_hdmi_sound_first-v1-0-81a87ae1503c@linaro.org>
+ <20250302-rb1_hdmi_sound_first-v1-2-81a87ae1503c@linaro.org>
+ <l6itr3k7taiyiokaahcg2mwtaa5lynia4bimxridpsyymk5ml4@loii4h7lhjhz>
+In-Reply-To: <l6itr3k7taiyiokaahcg2mwtaa5lynia4bimxridpsyymk5ml4@loii4h7lhjhz>
 
-On Monday, 29 September 2025 19:31:36 Central European Summer Time Conor Dooley wrote:
-> On Mon, Sep 29, 2025 at 02:13:20PM +0200, Nicolas Frattaroli wrote:
-> > The clock controllers for mfgpll, mfgpll-sc0, and mfgpll-sc1 all need
-> > CLK_TOP_MFG_EB to be on if their clock control registers are touched in
-> > any way.
-> > 
-> > This was not known at the time this binding was written, as this
-> > dependency only came to light when I started poking at the MFlexGraphics
-> > hardware, where this undocumented peculiarity made itself known through
-> > SErrors being thrown during register reads.
-> > 
-> > Add a clocks property to the binding to describe this relationship, and
-> > mark it as required for the affected clocks.
-> > 
-> > Fixes: dd240e95f1be ("dt-bindings: clock: mediatek: Describe MT8196 clock controllers")
-> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> > ---
-> >  .../bindings/clock/mediatek,mt8196-sys-clock.yaml  | 28 ++++++++++++++++++++++
-> >  1 file changed, 28 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-clock.yaml b/Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-clock.yaml
-> > index 660ab64f390d2e722b7d3e25cf057926da318bc0..41aacd8d5f69050eebdf8392f7b652427632f491 100644
-> > --- a/Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-clock.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/mediatek,mt8196-sys-clock.yaml
-> > @@ -45,6 +45,9 @@ properties:
-> >    reg:
-> >      maxItems: 1
-> >  
-> > +  clocks:
-> > +    maxItems: 1
-> > +
-> >    '#clock-cells':
-> >      const: 1
-> >  
-> > @@ -90,6 +93,23 @@ required:
-> >  
-> >  additionalProperties: false
-> >  
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - mediatek,mt8196-mfgpll-pll-ctrl
-> > +              - mediatek,mt8196-mfgpll-sc0-pll-ctrl
-> > +              - mediatek,mt8196-mfgpll-sc1-pll-ctrl
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          items:
-> > +            - description: mfg_eb clock
-> > +      required:
-> > +        - clocks
-> 
-> Don't you want an else: properties: clocks: false here?
+(update emails, drop old ones)
 
-Possibly. I'm never quite sure how strict bindings should be when
-it comes to stuff like this. On the one hand, none of the other
-compatibles described in it use any clocks that we know of
-right now.
+On Sun Mar 2, 2025 at 8:20 AM GMT, Dmitry Baryshkov wrote:
+> On Sun, Mar 02, 2025 at 02:49:52AM +0000, Alexey Klimov wrote:
+>> Add soundcard compatible for the soundcard on QRB2210 RB1 platform,
+>> which at this point seems to be compatible with soundcard on
+>> QRB4210 RB2 platform.
+>
+> Is it? The RB1 uses PM4125 for audio output, while RB2 uses WCD codec.
 
-On the other, if we have a second set of compatibles that also
-needs clocks, but in a different way, would we repeat that for
-each such if/then condition? Or would be reformulate this as
-some oneOf/anyOf construct specifically for the clock property?
+That's correct. I also managed to enable hdmi audio, vamacro dmic and
+pm4125 line out output keeping it all compatible with qrb4210-rb2-sndcard.
 
-Kind regards,
-Nicolas Frattaroli
+Things are mostly the same between RB1 and RB2 apart from last stage
+in the output and analog inputs (non-HDMI and not dmics). The diff can
+be described in board-specific device tree, amixer's control commands
+and model property.
 
-> 
-> > +
-> >  examples:
-> >    - |
-> >      apmixedsys_clk: syscon@10000800 {
-> > @@ -104,4 +124,12 @@ examples:
-> >          mediatek,hardware-voter = <&scp_hwv>;
-> >          #clock-cells = <1>;
-> >      };
-> > +  - |
-> > +    #include <dt-bindings/clock/mediatek,mt8196-clock.h>
-> >  
-> > +    clock-controller@4b810000 {
-> > +        compatible = "mediatek,mt8196-mfgpll-pll-ctrl", "syscon";
-> > +        reg = <0x4b810000 0x400>;
-> > +        clocks = <&topckgen CLK_TOP_MFG_EB>;
-> > +        #clock-cells = <1>;
-> > +    };
-> > 
-> 
+Is it still need new separate compatible "qcom,qrb2210-rb1-sndcard"?
 
+Thanks,
+Alexey
 
-
+>> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+>> ---
+>>  Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 4 ++++
+>>  1 file changed, 4 insertions(+)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/=
+Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+>> index b9e33a7429b0c063dc5f5b806925cd541e546cf6..2493ed99268bf2ff83430201=
+50c2c9aca4262514 100644
+>> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+>> @@ -21,6 +21,10 @@ properties:
+>>                - lenovo,yoga-c630-sndcard
+>>                - qcom,db845c-sndcard
+>>            - const: qcom,sdm845-sndcard
+>> +      - items:
+>> +          - enum:
+>> +              - qcom,qrb2210-rb1-sndcard
+>> +          - const: qcom,qrb4210-rb2-sndcard
+>>        - items:
+>>            - enum:
+>>                - qcom,sm8550-sndcard
+>>=20
+>> --=20
+>> 2.47.2
+>>=20
 
 
