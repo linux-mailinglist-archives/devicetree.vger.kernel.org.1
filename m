@@ -1,83 +1,82 @@
-Return-Path: <devicetree+bounces-222706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74E30BAC1F0
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 10:47:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA83DBAC1F6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 10:47:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7F6727AA3EF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 08:45:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A54717A919
+	for <lists+devicetree@lfdr.de>; Tue, 30 Sep 2025 08:47:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B972F60AC;
-	Tue, 30 Sep 2025 08:46:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AEF02F6198;
+	Tue, 30 Sep 2025 08:46:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FG+isP62"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dmQTL9pC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4958F2F546D
-	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 08:46:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA2472F5A2F
+	for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 08:46:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759222018; cv=none; b=o7x+42AcosNl+8HmU9cQT/85QznDUE+W49NDJeLm0Cy3hAWOQ7PskQznenUWbbKtM+D99c3RqxMY1se4/NrXnATsaGmBNCdhFcbmlmMP1Pj8g7bAEGwjmRoli/lF0NYe/WZvy+SXAtzO+8y3FH5lzScxRh2BF3ssyXTFsPRZeWQ=
+	t=1759222019; cv=none; b=WQsw5Jlp6jhX0kln/faTDWJ0t/UaZ1iqADgefKRZbQtQ9IrnoySwxsnS47PVremgLTwndpWc3uImWj1rtgaQW6oalTx/ihuL8rpVp6zWbKeM9PRsY69iUJZT/PQDTGhOWKUACmCqBlgP9RHyUZlvUra3F5oozNjGnnKLYIFzJbo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759222018; c=relaxed/simple;
-	bh=1Mdzq/652LBGyytQuIr/+WYxsQX1eeyePN4MTPuKWTU=;
+	s=arc-20240116; t=1759222019; c=relaxed/simple;
+	bh=1ehExbLkMmNgsVXFhI/3vAuhpWWLmzmhuVgV7QDcaGQ=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=BFbXEgWtnrT+XAx1QFTcC9g/I2pukh+zYVzntCgDERUkkGXePeRdjQQr8hreHkGzuUfl30EIlFpADqQoSNFZtZpFrGBcJQ1+R6zAjQ1Khzr2zfJLVcrdVRDYx9zYoXC2JWomLpOfyxa2/fBJ5exJKlJdJNGDH5as6XEMC4rveK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FG+isP62; arc=none smtp.client-ip=209.85.221.44
+	 In-Reply-To:To:Cc; b=nDPqVRfPhYRuzujQg54mVnGidOCjVS1HtGum3hicXIa7zwvVE1YJue7DAlzuA/1lu/SnjbfTAv5IptDedecyfdZX3XC0AyDUvmOghY3EVDWY56F6c3v7E1lrWxWPsHAsb17UfNnAx5TNIVhhHDoMYSm8vttt5i/gA7EI74inu9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dmQTL9pC; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-41174604d88so2885194f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 01:46:56 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-46e4ad36541so30926335e9.0
+        for <devicetree@vger.kernel.org>; Tue, 30 Sep 2025 01:46:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759222015; x=1759826815; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759222016; x=1759826816; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=PFM4fgZANGXRwrvQV4wSC81b8D8h+yUyMHAkucbMQWo=;
-        b=FG+isP62FmmOi9JEY0E9mfPLpjqPGU7JVZxL8jAfoeNVva8RD22hF+mRHnN8LPV8pV
-         szNOc2t/qWhxh3EWxNRgFnVP0IlZsDjgilZohFu9C08CFr9XHb20cTn9xVJhZiNGqvm2
-         A+spAtnHydmczRoK3S2fcBctcBlZrwwV1UwSwpcAWuxgWcdf5v0zSXu9S3Tl2bNwlsMM
-         /D8+RO3UvoXhKODmDFurUADo9A0JUHm5uZGSC5AGuUT/EZFw5KkHXIAO9n5SCFPjZS4j
-         9Y7w5FpLjbg5iLZtMKIhRqFXfhg2rlYaNS6nKDje7hGL0qgvnyQeDlh9rFo1OR/Y6QId
-         1tPw==
+        bh=bsYAjCVZTAgTbKUVHs9DAPmJO/mDOJAtaWrMK8+sbis=;
+        b=dmQTL9pCbHHnJ6ezanJokkt4p7Xjuk8NPZvz3qU85ZVeRhNprRq59oi9izyIVMT2i8
+         Pfz74DSzjGhG4ngzmUVHM1/sGT8GL4pD8c7FgG4JxsYDg93oRfBivz4nMGKZ+Uw9SbCE
+         7ly2mRnhIqUIQgzn/2JcMavDOH3K1OCJLRTs+3UVOxkWnLfVybpWvZzDYwtIkFauO1OV
+         3U5n8TeA2+GeiTTWvWWrk5zHfzd/AS1BAcdZoS0YilTuHU1YgypND/axQ471gyyNsB6t
+         v+hcHaaakEZDV4oUH1FunaFNhA2JW4Pmx4KAh7KvMzMuCF27vcDQ9nokh0ednfIlsHQk
+         UoeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759222015; x=1759826815;
+        d=1e100.net; s=20230601; t=1759222016; x=1759826816;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=PFM4fgZANGXRwrvQV4wSC81b8D8h+yUyMHAkucbMQWo=;
-        b=Fnqwqy2t45t2P2j6htwUa5f3KevTr8Iob6sHWwDyOKMqxKSMvoLTYwXmJEzhfrHSU9
-         alEsTOxsOBz2djWzyYuA2TxUtQ7mDOXUkDWckoklnaud/HgUGydbPh3GsVoLh/s+IyF4
-         crZYBnip3v5Zz9YDkIGg4LSHk9/RYeTSMsP9pOz8DLX/sjI5dlA3uBh1uuS4ciBviErT
-         9oP8uD1hWTzxvpGdZm9sLEs7UB0cMP/7hrKxinDdEbyMvoSjLtb5UrrBnO303QXSZwyV
-         3OGQELb7aFr6DRausIeitx3QznFJ+lZ3ZQ47GSIDFQZPinOHd1O9kUvZrr19HA14xzr1
-         px0w==
-X-Forwarded-Encrypted: i=1; AJvYcCWGzYFFsrTVhVZ5/In4CF5jDTfou/2Pf5EmYG1CrmaV8wK0n+lWDp49+voXP3bXnTjyB8E2t1fclDgR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yykq2GArNttvJ0VO0RsdUYzkg3/OyfPL1SMWZF/ASleBncNmipj
-	/FP2u5L39XRUgm+4OS+FGVEo1GQuf8S3BP/MP+hqqz7YRSwxR0G6g0Je
-X-Gm-Gg: ASbGnctV8hBwuWJ3CcOWx446TKkyVS3z1GlWiP4FB3Nf1q635AzNbdZVial4fgc6oHj
-	N3KlGPZe95h8/03y9OYoMtNOrl78TmyFOAnnmUNMGEzsPbU5BNZoyLuMwA7UeliH+5p7/DnnwSY
-	Z9NcSOTCgqCvaPS5IdyO18qX1p2ysmOWmLmCR4R+qEuEg9kZjT3vF2Hi5J0ysNU2iTL78YFKKHx
-	rOKV0kh2tHpSQNz+thKFgGcUEBvxN4STd+CksEnHMchftr87CwiD7P3Meyh2AHgCK15XxcrnmhP
-	RNLxwrCWbPryFIky36tMAXVnB8VPnFJrHrqzJmG4Bv3zMHKYPhCTP0ITS3D0QJMVqQ+cOfE0iee
-	24iU+BQo7gLZPxOwEShOcDRk03hWmBkh9MBTH/4fV+4HiG3Eea0GsLNL86JiFhL9PiTu5Hy0mMp
-	zLamTN0/Blq30fpadfWqkwlCZE/Og8JtCaLpLXpPaNIEyckhN1asE=
-X-Google-Smtp-Source: AGHT+IHTFPZzGx4b88SoI+qS9EQDgCRRYbI3BPB4d5PmhtBVYrKjFEQXmYR1LT+gc8Uw7C4dhTNdmA==
-X-Received: by 2002:a05:6000:4010:b0:3fb:ddb3:f121 with SMTP id ffacd0b85a97d-40e4b1a079dmr19776194f8f.45.1759222014438;
-        Tue, 30 Sep 2025 01:46:54 -0700 (PDT)
+        bh=bsYAjCVZTAgTbKUVHs9DAPmJO/mDOJAtaWrMK8+sbis=;
+        b=f2GAmPAMRWdYx4zmLm7Jum2kqrBeT4xavoeI6UVuiZPvlWBRuWsjlzeZ/gJs8vQvkL
+         r3ur1jW+smbJpKwC31d1fKOCIsq7FZH1D8all5EXarnwSgZn7xkBWus5i4XJsxcuRbfe
+         41wWignhm4aL6BmSRj7lURb/BJ8Q7frUb5pQiC3+UejBTSTEPTSlHVdtwqsxOIGrrfrn
+         hoBN5EywLGwB7AItm5+0ZJVO/iVbSCv7HJLrU25BL47wg3z8A7CE6Arlonvrr+9e2oWm
+         ja42H+3z94Uw2ObAYfYaAKHko0NCLotvLITSUU1W0YPpYrjOjmIRSriZ+9Bni+PMMHRG
+         spVA==
+X-Forwarded-Encrypted: i=1; AJvYcCUoMzSq8Xhlj8nqLnzy3e43q9GWQaUJnrV0NT094PUtWeIgxV+8l4d2oKpeE9VJbwuOGq31/z5jaEqf@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxvo+0qRNoc04NhXC2ZZUO1soQklQtP+7bHH1dgNHhYGP3hwGgH
+	1R2JhtBKk+c+66NPRG7o4PjLJ3ezB3ZPUfZmaX2/8bNPT2iZlchOkD3W
+X-Gm-Gg: ASbGncsBZqto4bovcj7G45K8suuZUfEkciOag2XdNDuNAGQI4xRylKvgknKu59nIif3
+	1ebI1agzbEQnEKPmgf3pW0lncTQxho2zZwvV6jqpm51fKqPKBB+vqwthkFjtYFfNjLfc1Y0B6km
+	CHA3MRzzLhCkeB1J99Ew7fxtd6y+HM/DAnJqOB21IbCGbygoAdnq2s3leh1vAi3GTbCKvvBLzZy
+	dFT+z68WHEo/3cfRmt4bPBAPVs4Lel6wR4D7ISqQYvUc9crabSyhMLFN0sufvsUWQu115si6c88
+	YXEFPgSGRfZqNkBFXvJaFaiyDJdol9EWpEGZ2nIgEKQG9+yxSkBoON2Tq5tBIJ80dg/kxZVxN+9
+	5NYwUVMsmT3XqqyjkOYb+5bwIPGvLPtsiyNyxl+NwCklPpnpUxBNV/CQIq2rBeqV6Sr4iNDalyS
+	d3J+XWIY7s5trNa63wlXCBiCCoB53QJGAQPZVHsVQes9hUXXKYBHQ=
+X-Google-Smtp-Source: AGHT+IGVQJJHamU6NUy4goartpYaIkfUJZ0iBlzOkN6u19q5qmKKBnwS/nG0zfk91bdRAJZUfDhusw==
+X-Received: by 2002:a05:600c:1d16:b0:46d:5189:3583 with SMTP id 5b1f17b1804b1-46e3292fea3mr191174625e9.0.1759222016056;
+        Tue, 30 Sep 2025 01:46:56 -0700 (PDT)
 Received: from localhost (2a02-8440-7149-a758-f461-9bc4-1c75-ebc1.rev.sfr.net. [2a02:8440:7149:a758:f461:9bc4:1c75:ebc1])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-40fc88b0779sm21417757f8f.58.2025.09.30.01.46.53
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e56f536a3sm54098975e9.8.2025.09.30.01.46.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 30 Sep 2025 01:46:54 -0700 (PDT)
+        Tue, 30 Sep 2025 01:46:55 -0700 (PDT)
 From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>
-Date: Tue, 30 Sep 2025 10:46:46 +0200
-Subject: [PATCH v8 3/7] dt-bindings: memory: factorise LPDDR channel
- binding into SDRAM channel
+Date: Tue, 30 Sep 2025 10:46:47 +0200
+Subject: [PATCH v8 4/7] dt-binding: memory: add DDR4 channel compatible
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250930-b4-ddr-bindings-v8-3-fe4d8c015a50@gmail.com>
+Message-Id: <20250930-b4-ddr-bindings-v8-4-fe4d8c015a50@gmail.com>
 References: <20250930-b4-ddr-bindings-v8-0-fe4d8c015a50@gmail.com>
 In-Reply-To: <20250930-b4-ddr-bindings-v8-0-fe4d8c015a50@gmail.com>
 To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
@@ -103,76 +102,44 @@ X-Mailer: b4 0.15-dev-0dae4
 
 From: Clément Le Goffic <clement.legoffic@foss.st.com>
 
-LPDDR, DDR and so SDRAM channels exist and share the same properties, they
-have a compatible, ranks, and an io-width.
+Add in the memory channel binding the DDR4 compatible to support DDR4
+memory channel.
 
 Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 Signed-off-by: Clément Le Goffic <legoffic.clement@gmail.com>
 ---
- ...lpddr-channel.yaml => jedec,sdram-channel.yaml} | 23 +++++++++++-----------
- 1 file changed, 12 insertions(+), 11 deletions(-)
+ .../bindings/memory-controllers/ddr/jedec,sdram-channel.yaml   | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,sdram-channel.yaml
-similarity index 83%
-rename from Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml
-rename to Documentation/devicetree/bindings/memory-controllers/ddr/jedec,sdram-channel.yaml
-index 34b5bd153f63..9892da520fe4 100644
---- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,lpddr-channel.yaml
+diff --git a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,sdram-channel.yaml b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,sdram-channel.yaml
+index 9892da520fe4..866af40b654d 100644
+--- a/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,sdram-channel.yaml
 +++ b/Documentation/devicetree/bindings/memory-controllers/ddr/jedec,sdram-channel.yaml
-@@ -1,16 +1,17 @@
- # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,lpddr-channel.yaml#
-+$id: http://devicetree.org/schemas/memory-controllers/ddr/jedec,sdram-channel.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: LPDDR channel with chip/rank topology description
-+title: SDRAM channel with chip/rank topology description
- 
- description:
--  An LPDDR channel is a completely independent set of LPDDR pins (DQ, CA, CS,
--  CK, etc.) that connect one or more LPDDR chips to a host system. The main
--  purpose of this node is to overall LPDDR topology of the system, including the
--  amount of individual LPDDR chips and the ranks per chip.
-+  A memory channel of SDRAM memory like DDR SDRAM or LPDDR SDRAM is a completely
-+  independent set of pins (DQ, CA, CS, CK, etc.) that connect one or more memory
-+  chips to a host system. The main purpose of this node is to overall memory
-+  topology of the system, including the amount of individual memory chips and
-+  the ranks per chip.
- 
- maintainers:
-   - Julius Werner <jwerner@chromium.org>
-@@ -26,14 +27,14 @@ properties:
-   io-width:
-     description:
-       The number of DQ pins in the channel. If this number is different
--      from (a multiple of) the io-width of the LPDDR chip, that means that
-+      from (a multiple of) the io-width of the SDRAM chip, that means that
-       multiple instances of that type of chip are wired in parallel on this
-       channel (with the channel's DQ pins split up between the different
-       chips, and the CA, CS, etc. pins of the different chips all shorted
-       together).  This means that the total physical memory controlled by a
-       channel is equal to the sum of the densities of each rank on the
--      connected LPDDR chip, times the io-width of the channel divided by
--      the io-width of the LPDDR chip.
-+      connected SDRAM chip, times the io-width of the channel divided by
-+      the io-width of the SDRAM chip.
+@@ -19,6 +19,7 @@ maintainers:
+ properties:
+   compatible:
      enum:
-       - 8
-       - 16
-@@ -51,8 +52,8 @@ patternProperties:
-   "^rank@[0-9]+$":
-     type: object
-     description:
--      Each physical LPDDR chip may have one or more ranks. Ranks are
--      internal but fully independent sub-units of the chip. Each LPDDR bus
-+      Each physical SDRAM chip may have one or more ranks. Ranks are
-+      internal but fully independent sub-units of the chip. Each SDRAM bus
-       transaction on the channel targets exactly one rank, based on the
-       state of the CS pins. Different ranks may have different densities and
-       timing requirements.
++      - jedec,ddr4-channel
+       - jedec,lpddr2-channel
+       - jedec,lpddr3-channel
+       - jedec,lpddr4-channel
+@@ -61,6 +62,15 @@ patternProperties:
+       - reg
+ 
+ allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: jedec,ddr4-channel
++    then:
++      patternProperties:
++        "^rank@[0-9]+$":
++          $ref: /schemas/memory-controllers/ddr/jedec,ddr4.yaml#
+   - if:
+       properties:
+         compatible:
 
 -- 
 2.43.0
