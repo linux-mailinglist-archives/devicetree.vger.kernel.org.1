@@ -1,183 +1,201 @@
-Return-Path: <devicetree+bounces-223009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA9C7BB050C
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 14:23:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4610DBB051E
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 14:23:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75623189B5BD
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 12:23:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CE88C162462
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 12:23:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C7128BABB;
-	Wed,  1 Oct 2025 12:23:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46AA32BEC45;
+	Wed,  1 Oct 2025 12:23:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="STCRlEs3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="isSYGNQl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F344270553
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 12:23:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 492122C11C4
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 12:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759321409; cv=none; b=E4jNcay6/GHeRhJovMBOPl0tUz3tikwrfmqoU1+mAaYdSMIXtnXvngR2pNLR7cpXyUQpp/KvXt5hgsGgj2mSA0GvQZUBHoJwDPhC0nHZWAVF69aBartqQN/SqR6zB9Dz5QY4Xvngk6Jv7rwtWtI7+x6KJYEP36NgP9evH4V7CK4=
+	t=1759321428; cv=none; b=oimROOA+r65MpYCwmO/PRbnhGqAB+XoPFwCGyjxbeMZbKvzFw1DxQgWFv3TzwlJu7alj7afcoW1XBIuKdZxdvT+TeI91gkmdo3ZSKhye5yTIrZSjlSax+9mv9F3Hqpr5/Elag8hXPLTB0Ltdes8c4zS84EoJ/gcgsdFKMS83AN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759321409; c=relaxed/simple;
-	bh=cAzm1k/LFtYsfMoz1fPTwsIertg3SJX77LxBl5CAl0Q=;
+	s=arc-20240116; t=1759321428; c=relaxed/simple;
+	bh=gBGrabJtd45mAFEOoJqVzc2XuZnoyBrQ0XCWSCj9+dc=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Z71Ccur5z7/cEH31UmgS1pj3gIuZjUPWd2abXgBj/dhzTgppbZx0RzcifSD3aKbgF5itdCrLVLmUV4/OPRVblDL7tOokBuYMn/LtGeZD3xxLFHMy0oFDwTiON+OL7NcJHNOzMv/oIYrzvRTiNVz2LpiQQEj6r+GLkFWbXtDNW6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=STCRlEs3; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5917Kd19020535
-	for <devicetree@vger.kernel.org>; Wed, 1 Oct 2025 12:23:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cAzm1k/LFtYsfMoz1fPTwsIertg3SJX77LxBl5CAl0Q=; b=STCRlEs3uozSjQv3
-	G8jluY9INTujJvjmpmz5oUhPEaVCUvBXho4TPh5XFMzW5+NxWIB4YY3uBc4LmQLx
-	8R3qK2nYaqeLrc9scFGUJqeY/dc+kpYetzdttljj97vvnVkxASRGtpFLZRIV0WEV
-	FLDbrWR3siDlC0J5bavIvgQ1Y3+Ac1tbHY4wymg3nmApbJCSmA9WdYmKBN29DjDY
-	QRO617j3bsqaff8SW/NxFe1sG8o07D9iXGzR5Bb65wYGNjlblHRI5g1Ve7CP0Q4X
-	sVt1gif7vosCSrK1G82pYqkQVUK9vNJ9/MAcjxDJu7tw45NN+wBZyYNsGdWoZMeT
-	4tCzzg==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49gyu18une-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 12:23:27 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-32eddb7e714so6203830a91.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 05:23:27 -0700 (PDT)
+	 To:Cc:Content-Type; b=Zop1/cOiNu1Otbokzg6/Ai2nixa4pkD99ITIjb0j3Esd2w98X3NYLOczRAZryMrar5Z/STg6KHxAYvN6x3Ainck0TeZCXvarlLtNgEORVryogwsMxamViwE4D9RQu69jEJ31fPwusLH6OhQWUXFMo+F5gvj3sZS5jVEn+44fbOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=isSYGNQl; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-46e317bc647so46390045e9.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 05:23:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759321424; x=1759926224; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gBGrabJtd45mAFEOoJqVzc2XuZnoyBrQ0XCWSCj9+dc=;
+        b=isSYGNQllL7IbiPcorn0mVirT4kJeukTbpaaJ9fnzt6HIm0+7ywRlogG3nF+XlKc+y
+         3weL1QqULtgmoADyF99KKCa6Bf79Imxl7eGsVvcWFO0bArkTFBgGMLKP1OcGwnsh+FVd
+         uY8AW6HF3YATWpttVC2yjqjHgPGdCCFZtNx4OD0oSrmlBsNUR1YIT0fq56xZQY7oRKwM
+         nOOga0KifkU1DbZhCV12VxzU7V8vMRldILLv+0BW/IzyWE/TlH20ltfPAaNG05z5YVFp
+         v4ABUPSurOXT9RmAu0QU3cdJsWlsKAMdC1+Y8mP2JdOb6ir1bpjbefFfR18CVah6DiBu
+         cO+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759321407; x=1759926207;
+        d=1e100.net; s=20230601; t=1759321424; x=1759926224;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=cAzm1k/LFtYsfMoz1fPTwsIertg3SJX77LxBl5CAl0Q=;
-        b=mMUnUYeZWhth0A/LVmRHWiMx53vxBBfgLPKOxmBpHV+dpd8jdL1jz25QmsviJHknZO
-         3NRwFWIwPf9pSarr2qqeTLBYyl0Tqn8aDxiR4lEYv6Mc9Ip06V4a1Ly+Ta0bKwT+fXpQ
-         ds/H6y8HAySy709MA8NdImMuQXOG+Eb7YEcQKYSZHFvO/h4csio+cJf+76kxeLMI3XVG
-         FALBi1yHq6V8wHZF80skuB70Ahp5ZO8V1O4KHDoQLKBeC5kEo5eQ71dXp1H34E1+yRav
-         c4YLk2ifOT6ADgnBpoc922onoAjd8r0o/YxAVXeXiazTtNRGyyS3/870ZndXoaFeK3Y/
-         Udpw==
-X-Forwarded-Encrypted: i=1; AJvYcCUFW5Q80f9HHMUP/TqlKFDs66K/lAAYvaoBjdlzN6pVsePGdmWxCLpqunmtl5KBaQUw+GNoSsFqXz1E@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxu47A2uT2H+Pa/RTpnAjt/ir2Ob/sG6RQdvhmkc8bNfv1UXbv0
-	14FJ+sKy5tTx5WtJRHJM8rjAxZBLu1Kn00QrqxDmQMBWCpdF3dL4eSjSYlzCDUXsAUparQynxBa
-	EPkcboZBLXSJj5rTvnRvKtzlw7gaMQSmsCZ8ioP8QB7WgnihFx3seF5t2EScjgH/zFg2XS6KB0P
-	f+9T2bbYEAKEooCBzvEi3i/dz9g0OQhn28y9MmraI=
-X-Gm-Gg: ASbGnctFBQ1tW1NpY4chvy74Mto1gP65dOvf+ArhuCj7jygVv0iHaS2go1xPlkXuafe
-	v8XwxUtv25iB6CNA3ZzBSwxByEPKkvwYITS/Tp8bKJ+Zb8uc4Fs4YGh47lFIoXrpUVKuWaTDOTv
-	5pBgltxa4MtgAjJsN4+gZWQmM2/kqqIa+kyt2m8VUNkUGSb8oIQ6wNcsIuC9g=
-X-Received: by 2002:a17:90b:38ce:b0:32e:8c14:5d09 with SMTP id 98e67ed59e1d1-339a6e83db9mr3743319a91.7.1759321406527;
-        Wed, 01 Oct 2025 05:23:26 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGgIgEmCWOZbOFHuIFYRCg/Km734jZV+7WJCamZI2sYC7RYyp47h5Plxy1o+W40foeNndZscq3o/Jh91cGo7nc=
-X-Received: by 2002:a17:90b:38ce:b0:32e:8c14:5d09 with SMTP id
- 98e67ed59e1d1-339a6e83db9mr3743293a91.7.1759321406092; Wed, 01 Oct 2025
- 05:23:26 -0700 (PDT)
+        bh=gBGrabJtd45mAFEOoJqVzc2XuZnoyBrQ0XCWSCj9+dc=;
+        b=Ah7hcGkFZctEqZhiPmh6cZh4pxfJO5AZQGxCZsyqkxS8wBKSavgdda1NzCJ9Ye/9qg
+         yPku/JzjGmPiROMTsNdRRBeiUDgvW9WT7xlqL8Fu3X1jH0wEJUOlqnFfSXfYAE6yNRwF
+         Y7WoQ2qFeuNILZg5G3ip9LY0znpfawKITBCh+AcO7h8Sq/HanpkwbbIys9lHx9tD62cz
+         A4Q2aPTTz5YFEra75Lmi8HgCyUqZ8KB8qNiologe6q7VpDKfiZpuSY3GcovFQbaS9jIS
+         LxEWFcwrYMqkNUIX1U6KGCx1Kyc/Vt5D0ICwUNQ0GKkeVUus4R+5CiTRkQJgLrWPSfPg
+         C8aQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUUw6dkBsIfztDwGEeNA0TkALzRxTrMQmf/8D/XR2LkPwLggVnTpy0rjPa/ZYqJfDMkZWCJVw9Lhzgu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxl5QLDWarCbvs0ag704LoDLjz+f/59ypZ+pKv8ubsQEAry6sMP
+	xRseFuACxVrAOkNQN03qM2hZn9hXnlz0y/IcHsy52gz8FrA+8nQZsQgzkqiFKmhUVss9JcsO2ii
+	aQJ8yeB5x+xEdrFfgKHNv9mLjr9UxQnM=
+X-Gm-Gg: ASbGncuSVOR3pvpFUMNAEg5n90JpK0WzpbLdgONvbIOahQyCfbKcIECRnBBantsispZ
+	ftpSx1y8cFrBvj06g9hUlGKJKYFAAxDBlfYvIwxUrR2VIk3M9l1N6hNfFvV9G+yKnx7DI8SJczd
+	gijDmubLoomGMI38IdwPBqM+9yrEjnESKSu8Grx3iy07nY2c9NugLIw3dYZlJXci8sAz2V0v3eN
+	9UM6efe4+cvTBVFErJsWXZ+F7z39181
+X-Google-Smtp-Source: AGHT+IG6w9L1LgThnpefnQm9I8OUIomLSyIMrWw3z8rhw6qFvyxmd8vXZTGsJ+SjoSiCjhbCQK0VPlSPMN9tMkkTwbU=
+X-Received: by 2002:a05:600c:820c:b0:45b:9afe:ad48 with SMTP id
+ 5b1f17b1804b1-46e6127a4bemr35253245e9.16.1759321424233; Wed, 01 Oct 2025
+ 05:23:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-17-24b601bbecc0@oss.qualcomm.com> <CAJKOXPdi0+c_FqinVA0gzoyqG6FVFp0jq5WSLsWWKiT12VVs3Q@mail.gmail.com>
-In-Reply-To: <CAJKOXPdi0+c_FqinVA0gzoyqG6FVFp0jq5WSLsWWKiT12VVs3Q@mail.gmail.com>
-From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-Date: Wed, 1 Oct 2025 17:53:15 +0530
-X-Gm-Features: AS18NWB4geW4hLTPYgmoVnPDMvTYBeUM3eY3cJp_CGVJlhX_7-fckOoruJv-GaQ
-Message-ID: <CADhhZXaB310hVo_w8_CoJLQ3j9dy1eeTwbmk0q=vUV2ga1PAYA@mail.gmail.com>
-Subject: Re: [PATCH 17/24] arm64: dts: qcom: glymur-crd: Avoid RTC probe failure
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250903161718.180488-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250903161718.180488-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <db2fc907-218c-4688-aebf-4a929f21b074@ideasonboard.com> <CA+V-a8vghwkHKWoqU8NQ3O9ZdHxB+cEvMv7Z9LQOMsZcx9vjPA@mail.gmail.com>
+ <f1e671a3-77af-4ae2-aa6e-bde93aaa54b7@ideasonboard.com>
+In-Reply-To: <f1e671a3-77af-4ae2-aa6e-bde93aaa54b7@ideasonboard.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 1 Oct 2025 13:23:17 +0100
+X-Gm-Features: AS18NWAI4MLtfZreV3_pLNGPAC-_jcQVSy6mD_NW1R1LCvbGTlMIsTFaxBIK_zI
+Message-ID: <CA+V-a8tosiUkhaWGoZ9yTBe1Kyy0DLUGreqReH2NOWmVeS5_pw@mail.gmail.com>
+Subject: Re: [PATCH v8 2/6] clk: renesas: rzv2h-cpg: Add support for DSI clocks
+To: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Authority-Analysis: v=2.4 cv=RfGdyltv c=1 sm=1 tr=0 ts=68dd1d3f cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=AfoGAnNRudiV65anGGMA:9 a=QEXdDO2ut3YA:10
- a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-ORIG-GUID: l785ANiwN_gmtlVlbdUv4wmG96DXFEi4
-X-Proofpoint-GUID: l785ANiwN_gmtlVlbdUv4wmG96DXFEi4
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDAxMDA1OCBTYWx0ZWRfXySk7FwPgB1Eh
- +dfY8ApQLPmB0Z9jxiTVYivD8cib7vGWbKEXNVrG9YL8SoSQfOJ5ljrQpjk3rPj13/vkQslvHX1
- r50OVcDs7z0GL2Td7LurG7tgCqVLK2B+hDclGSiNDCTTs38thjh0y05/bQSbwLiqU+han9J59aN
- oPChq/9LEdZNwD3KPKraF8c9SwNEVN0nVonBpucAUFk/JxxlflOI2gHAKZQq5EgTDugN4XLcGo/
- ET1aaFb2M3oSLmvRiq2LrmERmCFQK4qvQBoo0nOdOhaTf672UPOpbwFUTLofZ8McYvgJHh/bYVU
- xQqDH3nPKy17F2pQEJt8iIhuTZG6HSEpbx2YdIr+84qyEN8odxbxHoCMJL3FUyGhpcFbwsz8H2q
- 3GxJpgCd4dmgJbbiKB8CiCSt7LhpdA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-01_03,2025-09-29_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0
- priorityscore=1501 suspectscore=0 phishscore=0 bulkscore=0 clxscore=1015
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2510010058
 
-Hi Krzysztof,
+Hi Tomi,
 
-On Thu, Sep 25, 2025 at 1:41=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
+On Thu, Sep 11, 2025 at 3:26=E2=80=AFPM Tomi Valkeinen
+<tomi.valkeinen+renesas@ideasonboard.com> wrote:
 >
-> On Thu, 25 Sept 2025 at 15:34, Pankaj Patil
-> <pankaj.patil@oss.qualcomm.com> wrote:
+> Hi,
+>
+> On 11/09/2025 11:14, Lad, Prabhakar wrote:
+> > Hi Tomi,
 > >
-> > From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
+> > On Wed, Sep 10, 2025 at 1:30=E2=80=AFPM Tomi Valkeinen
+> > <tomi.valkeinen+renesas@ideasonboard.com> wrote:
+> >>
+> >> Hi,
+> >>
+> >> On 03/09/2025 19:17, Prabhakar wrote:
+> >>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >>>
+> >>> Add support for PLLDSI and PLLDSI divider clocks.
+> >>>
+> >>> Introduce the `renesas-rzv2h-cpg-pll.h` header to centralize and shar=
+e
+> >>> PLLDSI related data structures, limits, and algorithms between the
+> >>> RZ/V2H(P) CPG and DSI drivers.
+> >>>
+> >>> The DSI PLL is functionally similar to the CPG's PLLDSI, but has slig=
+htly
+> >>> different parameter limits and omits the programmable divider present=
+ in
+> >>> CPG. To ensure precise frequency calculations, especially for milliHz=
+-level
+> >>> accuracy needed by the DSI driver, the shared algorithm allows both d=
+rivers
+> >>> to compute PLL parameters consistently using the same logic and input
+> >>> clock.
+> >>
+> >> Can you elaborate a bit more why a new clock APIs are needed for the D=
+SI
+> >> PLL? This is the first time I have heard a DSI TX (well, any IP) requi=
+re
+> >> more precision than Hz. Is that really the case? Are there other reaso=
+ns?
+> >>
+> > Im pasting the same reply from Fab
+> > (https://lore.kernel.org/all/TYCPR01MB12093A7D99392BC3D6B5E5864C2BC2@TY=
+CPR01MB12093.jpnprd01.prod.outlook.com/#t)
+> > for the similar concern.
 > >
-> > On Glymur boards, the RTC alarm interrupts are routed to SOCCP
-> > subsystems and are not available to APPS. This can cause the
-> > RTC probe failure as the RTC IRQ registration will fail in
-> > probe.
-> >
-> > Fix this issue by adding `no-alarm` property in the RTC DT
-> > node. This will skip the RTC alarm irq registration and
-> > the RTC probe will return success.
+> > The PLL found inside the DSI IP is very similar to the PLLDSI found in
+> > the CPG IP block, although the limits for some of the parameters are
 >
+> Thanks. As discussed on chat, this confused me: There's a PLLDSI on CPG,
+> which doesn't provide a DSI clock, but a pixel clock. And then there's a
+> PLL in the DSI D-PHY which provides the DSI clock.
 >
-> This is ridiculous. You just added glymur CRD and you claim now that
-> it's broken and you need to fix it. So just fix that commit!
-
-I'm afraid, but this is an actual limitation we have for Glymur
-(compared to Kaanapali).
-The RTC is part of the pmk8850.dtsi that is common between Kaanapali and
-Glymur. On Glymur (unlike Kaanapali) the APPS processor does *not* have the=
- RTC
-IRQ permission for the RTC peripheral.
-
-So we need this extra change in Glymur explicitly as a workaround to
-make RTC register
-properly.
-
-But sure, we can squash this into the main DT patch, if you think this
-is not a limitation
-that needs to be highlighted in a separate patch.
-
+> A few comments overall some for this driver but also the dsi driver:
 >
-> This is a gross misinterpretation of splitting patchset, some twisted
-> LWN stats work.
-
-Sorry for this. It was not intentional (definitely not for LWN stats),
-mainly this happened
-because this is how individual driver owners/teams internally added
-their patches. So
-this is how they ended up being sent out. But we understand it is an
-inconvenience for
-reviewers to go over multiple patches and squash it all one patch.
-
-Will take care of this in the next version (and in future).
-Again, sorry for the trouble.
-
+> This hardcodes the refclk rate to 24 MHz with RZ_V2H_OSC_CLK_IN_MEGA in
+> the header file. That doesn't feel right, shouldn't the refclk rate come
+> from the clock framework with clk_get_rate()?
 >
-> NAK
+From the CPG perspective we could get the info with clk_get_rate() but
+from the DSI part we can't. So to keep it consistent I will keep this
+macro as is.
 
-Regards,
-Kamal
+> While not v2h related, I think it would be good to have a comment in the
+> dsi driver about how the g2l hs clock rate is derived directly from the
+> pixel clock.
+>
+> I still don't see why all the code here has to be in a header file.
+> Usually headers contain only a few lines of inline code. Is there a
+> reason why it's not in a .c file?
+>
+Ok, I will move the functions to rzv2h-cpg.c and export the symbols
+and have the declarations in include/linux/clk/renesas.h.
+
+Geert are you OK with the above?
+
+> And last, we discussed the milliHz a bit on chat, you said you'll come
+> back to that. I don't think it's a blocker, but I'm very curious why
+> exactly it is needed in the DSI. +/- 12 Hz with, say 3.6GHz clock does
+> not sound very much to me, and there should be enough time every line
+> during blanking period to empty any fifos and "catch up".
+>
+> In fact, if the DSI is so picky about the rate, I find the HW design
+> odd: in g2l the pixel clock and the DSI clock come from a single source,
+> which keeps them neatly in sync. If that is required, why change the
+> design here so that the DSI PLL is independent of the pixel clock, yet
+> still the DSI PLL must be programmed to be exactly matched to the pixel
+> clock.
+>
+As discussed on irc we have to live with mHz solution as the HW is picky.
+
+Cheers,
+Prabhakar
 
