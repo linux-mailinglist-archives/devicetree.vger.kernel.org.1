@@ -1,81 +1,82 @@
-Return-Path: <devicetree+bounces-222947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A599BAFB80
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 10:48:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0939BAFB8C
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 10:48:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AB09189B982
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 08:48:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A2F92A2EEB
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 08:48:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 082D8284695;
-	Wed,  1 Oct 2025 08:48:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECF3228B400;
+	Wed,  1 Oct 2025 08:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W0yINqV/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ngSsctkV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f52.google.com (mail-pj1-f52.google.com [209.85.216.52])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84E2827A906
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 08:48:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76A1826A0B9
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 08:48:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759308484; cv=none; b=EDeFqqnG8oBFhAIxdlWu4YoiLxiXpgmfXleBg+08E5lgleUPWnOelQS9Zdwsg1Z0PMwC2MNGSt6nNfZbSXktmjRfFlTN9w2oMrp50gKSD07jf2+QNggDE9EYrsKb5CrlHzKxjwIdE2gCwEZEBab3gpm/fvHSdiYRcocH1xSRtyU=
+	t=1759308489; cv=none; b=aZar7OIaAvZRiDjPglbHsqI9YzfGLNJBP7BM0sDO/Z/EsWOBlpSmxWtmoaNrm6mr1KYch40P5kaA66dye2XWyR7kpC2rwlXb+iz5A/ZOd/ZwT8xexsXQaH5F4irPLmJi3dumfmn1OOYvJLff6snt6uLgLsJO083H16SZJwhqDWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759308484; c=relaxed/simple;
-	bh=QvD/ud6DrodRNKqUA2m4nL+/50pX/gxXw21okP8DcUg=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=e6HlnsA4RQkYZ9sOZcZMb5EbjfzCSBG+hiN5NTBJS7HRlwQwZNcqDKHjf+imT4UX0UXaziuqV8gWU3x7EOi8kGuySFgHFNtBeniJ4Nek2WQDBe0tE0IhuYgwPt7+tRdKxIw+oKMhqbT+PC1M2RYBVTKUHC3C8gA7yvoHPeyptJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W0yINqV/; arc=none smtp.client-ip=209.85.216.52
+	s=arc-20240116; t=1759308489; c=relaxed/simple;
+	bh=YB1a54MMJXi5nKTH9gbuafJV6b8bO8PW9GeT78qICUA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=iwvutdt7UcWy58PqBBQU0KcgkXEVuxtfTgXKXSXdc1Yhm3vOg4uGnnZFtLoKnGcPygc4FLN2S6ULfVCI2vuQwvtXITCitsWMDcZh7/8vVzT08Gq9rC9Ot/mRsqGOqLl8VjmkF0Q47AcZuRusExgNPOr5/SPKy8ZLWx1O1lzOhBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ngSsctkV; arc=none smtp.client-ip=209.85.215.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f52.google.com with SMTP id 98e67ed59e1d1-3324fdfd54cso7530834a91.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 01:48:03 -0700 (PDT)
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b5d80f5a23eso631876a12.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 01:48:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759308483; x=1759913283; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=XMfpQioL9qF93r02i/m3R/Lc2dj1xsmt2jY1yN46fE8=;
-        b=W0yINqV/RRy+v0Z59VIdukLDb7SpqZ3WwXLqb5/ndWmZKUj1jaZ0bQFdS56EhAsPVc
-         qWWA6j1fJsG5tKY83+DgLQDApU/XKgf2Km/1xsLKp4HB1geG5UP7Q2rgwcS3zcQNPk5p
-         By2/igLAR0PQ/idOSMIBDCsi5C/1+cjovLzIzwUWQ0enD/V7YfYVjTaIQU/H2r4FELA3
-         u8/dEklXfE6iRvIRsJ1jPduYNGwjwKMvdIH+ToLoci+LOY/dDYN/l7G3nt71yHXIRKt+
-         XTKAG5EXBr/vkBXqYxqLB3xNzm2nXMgd8ZRgR6/sI6VUcB1Xq6NHCl9yPHcsRtmQEkt4
-         2mxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759308483; x=1759913283;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=gmail.com; s=20230601; t=1759308486; x=1759913286; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=XMfpQioL9qF93r02i/m3R/Lc2dj1xsmt2jY1yN46fE8=;
-        b=e2hkmuhg1TpdSQejI9fG68Jnff+PSpGhGk6GyjMAuogzs7rftnnD5xTDknIKIS7V9t
-         31LAXnTbMX9P+sFBPpC7g2gDQ3ejJ06hQ0At5hWy6SpBLJcpFaJYiUEULdS0zRqq4Y+O
-         Qcbf/ka+U7FKWbu1GWvB/IhcM1mBsRErcmTrDAltM7jRddMc0/8Fn8mssfVqQgdUcmw4
-         vSytfeQALb6abZdrteRvYUtWHJeRxrNsc/qHe3DdFI9VMtYMV/ngR0nO3uQbZGMoYEY4
-         UWlt/EysCzeUdIoxVm+iLniA72ct2N4VIYGzejchkZHl+Ey1bBHR5qRKXEis2QLd7BSq
-         5TCw==
-X-Gm-Message-State: AOJu0Yzw+ivpLp1b3fqwZP/lDIvHr1DTJC6/JVzE5hZTKnyfpK9la6b/
-	Ii3orUnRhAghY0+VlteaQPpaL1DB4b0bgFFBgn7oG6IPPslGFKpC3rBN
-X-Gm-Gg: ASbGnctaqn8PIBJy+eF0UinlNsGSTC41i8sWwYlL3st1sClbLCSdHjPWP0ek24HaaXW
-	R49ft4AIspvz7G1Sn4zX4WQGfS/doWnLNPltMKla//ADuPWzuwaZmT/VWRMjE5mr6VdLciy+oO7
-	IHxy2JQwAXBBKXl3np8qffmQJZqRucqd1DMA3nbKhHwWGU2Tabh7OBEF5NwiEiuZEeuqnNSth+u
-	3gVj/H7ypFz1MVXkjZKv46CZXkJEIJxoA8hhtDr4K7GSStd7/T+nvwFPKQuOQWVzuql1BjJEy8D
-	3i0UYvQwySh56dCBJ1DYSAS4Floo8uGaxH03dWWsXS7LNZnoH5lhqZfuVInGh4lAwf/yttnwAHn
-	obFv7uBmlQopmFnxmcSL4s5tC6IHpFVyzsinAanv4yZfFaiSEmCoDRqjPjAzR80MakTIDJymPNE
-	CJEonfIp4ij32G0GVi28hl+19jO7jZKeUIYrC6ugCJLMxdKiMBRHPCvWN/cdivnW+WkJjIJZ2uO
-	pQMSeAiYI2urr5Adp0wphP7yzxbWRSeZMDPMawr7zDhhM8=
-X-Google-Smtp-Source: AGHT+IFnWYeRu9k4Oaa4bTAUDYxWIdWeHxGT4Bg1jpuCkukhqqyjsyyOYdJn3LPL9nXEE8BZUqnazw==
-X-Received: by 2002:a17:90b:1e10:b0:32e:59ef:f403 with SMTP id 98e67ed59e1d1-339a6f2e80fmr3239453a91.17.1759308482433;
-        Wed, 01 Oct 2025 01:48:02 -0700 (PDT)
+        bh=I7ZUVg/Nr4pBk2YqBecru/L6TvemL+I2eAgpr8B6DmM=;
+        b=ngSsctkV+orETuTs/jHKwV3b0NfEvAZJvMRZrYO6TrNNhZOMCiSovUW4wHZGEwbjD3
+         xt92lRtYuS+5u8jAL9m8hYxqC5L/hnPAl4ZkCyOQn7oojbz4ZaSt4aeQ/Rb5CmdD+00T
+         37PwGpGf3n5hqiHy8TNGMVPtCR3K8Xa6prfVoj13LJBK/sEH56Bu8PCwQxF5Ef2zT1nB
+         k5MWJduRl3xecqnpq9WUhFKUfUziJXT16XlCCxpyv8+raJBFc//mXV2R4Ps/j0eoaIQn
+         wrYJfdvKFftMYe+1XVsP91dyoCmyzF7MdO6pLZxbSnICqHwpWD5SiJ3XgB+6i56KRl/t
+         haMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759308486; x=1759913286;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=I7ZUVg/Nr4pBk2YqBecru/L6TvemL+I2eAgpr8B6DmM=;
+        b=TT2T638nG9Qu7xSG46kYgssuTkBgIaH0MpTgD2sPIPtpo6SKLWuogXltwiJXuPVe6Y
+         dxSTVhEG1AdWtt3Lmr3Stxt1rMt2alatzAKlpJsWK/nJjvAnO8Cg9XqJediy6mJEM0/P
+         GmUZD3fItmpCC0XXPg0jRYT17IN8byA6jxXyeg5AopOqz6Sz62ikYJ1+GBFZjJCuatpL
+         UN35TRpOLUa0ao+BolEKS/ONwfwgVr5G9ZqeSLtXOR2YVGJKewlUph/8ReuGqtOpHkYo
+         ntqoH+JYaCcBb8zEwscA4gshHd1TB3H/8jTI9/WqL4RgFLde7zEEHtp92FzCpSobaaWv
+         8E3Q==
+X-Gm-Message-State: AOJu0YxV3oat1n3r2TkWAf9kyvnmrN8YRdnVmcUGn8Tza9TjYpjl785s
+	g49jKqIXsR4LLxT2I0JbRAGNhWwX8fKbvJ0L6rCEXiAlZrOksuGHXaCL
+X-Gm-Gg: ASbGncsmjwj4Cpn2FXpOhXKIRUZmkR46fCB/rLKWn3NcCbVN5uRaiBYI0Bwd5lsFuFk
+	Cu5Z+jfLHNJoTGlqv4e+ZfcmgSHyrdC73RO6D/lrbP6mKs++IYyAPfTSTdCfM2mRtUEXSMOmOzi
+	iPnAAfCdUJF/UfXguFkOlOUOEz/Vj68fEORpgZa6g5bRJt4mqUcN8dkYlaOZqE57Yb8Ux5u1x3R
+	9LIf/a78duCxRMuF9e2CBcFiq2Q7KFVXas7jySDypFb2nSauEgf3QWS56YHQl8V2PGMxOFOSkUz
+	21vlVijqCGBliq1N+QrOPZ/SGcMeZ9p8u9W0L8wNw5uDcc5dZYZyhHDAedDewk4rmn2wBLzurhK
+	OrgaTprYvjRKfPnrZNphgif/84NJjeO92vrYrK2xtHnk0MbelPkuPxn4mrx//5CMnhq4ZWwHJK/
+	vYreoavRqlw5NIUccut6ltboFvwsdhAZd2H/xMTIYHFWEh6qmYTR4eLmhDKY/kzJkcobpcPDvj8
+	xwZTR/MEJfYsQWejKw+fDuKsRtDwcmc1NXWeMkD1B3NCMQ=
+X-Google-Smtp-Source: AGHT+IFBY/scw80qunl2/T9Vu6PBaPWzoOPWOZLXzt1OOaGSVwS1oF91+HBdH7KtkzG6z1iTX3repQ==
+X-Received: by 2002:a17:902:f689:b0:27e:f03e:c6b7 with SMTP id d9443c01a7336-28d16e89030mr90619895ad.10.1759308485671;
+        Wed, 01 Oct 2025 01:48:05 -0700 (PDT)
 Received: from 2001-b400-e387-f8be-46e6-cc88-b318-45e6.emome-ip6.hinet.net (2001-b400-e387-f8be-46e6-cc88-b318-45e6.emome-ip6.hinet.net. [2001:b400:e387:f8be:46e6:cc88:b318:45e6])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-339a6e9d22bsm1789250a91.3.2025.10.01.01.47.59
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-339a6e9d22bsm1789250a91.3.2025.10.01.01.48.02
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Oct 2025 01:48:02 -0700 (PDT)
+        Wed, 01 Oct 2025 01:48:05 -0700 (PDT)
 From: Kevin Tung <kevin.tung.openbmc@gmail.com>
-Subject: [PATCH v3 0/2] Add Meta (Facebook) Yosemite5 BMC (AST2600)
-Date: Wed, 01 Oct 2025 16:47:49 +0800
-Message-Id: <20251001-yv5_add_dts-v3-0-54190fbc0785@gmail.com>
+Date: Wed, 01 Oct 2025 16:47:50 +0800
+Subject: [PATCH v3 1/2] dt-bindings: arm: aspeed: add Meta Yosemite5 board
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,10 +85,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIALXq3GgC/23MQQqDMBCF4avIrJuSTqKYrnqPIhKSUQeqlkRCR
- XL3pq67/B+874BIgSnCvTogUOLI61JCXSpwk11GEuxLA0qspUEt9lT31vveb1EYbFrrbtoPTkJ
- 5vAMN/Dm1Z1d64ritYT/xhL/1v5NQSKGM1bYl5Qw1j3G2/Lq6dYYu5/wFm+YtzKYAAAA=
-X-Change-ID: 20250924-yv5_add_dts-9268ac14dfc0
+Message-Id: <20251001-yv5_add_dts-v3-1-54190fbc0785@gmail.com>
+References: <20251001-yv5_add_dts-v3-0-54190fbc0785@gmail.com>
+In-Reply-To: <20251001-yv5_add_dts-v3-0-54190fbc0785@gmail.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
  Andrew Jeffery <andrew@codeconstruct.com.au>, 
@@ -99,51 +99,35 @@ Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  Kevin Tung <Kevin.Tung@quantatw.com>, Ken Chen <Ken.Chen@quantatw.com>, 
  Leo Yang <Leo-Yang@quantatw.com>, Kevin Tung <kevin.tung.openbmc@gmail.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759308478; l=1447;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759308478; l=886;
  i=kevin.tung.openbmc@gmail.com; s=20250924; h=from:subject:message-id;
- bh=QvD/ud6DrodRNKqUA2m4nL+/50pX/gxXw21okP8DcUg=;
- b=csBBxtxldogEQ8rY3FiSkJeHOhzuac4zcoGG5wphIcMFi6EvJcjhMsjESJ6SxzR6pTZfm9a2t
- NfCmbeaOchxD43dDjoBaxFLMKIIuBCb4bv9jKCT5u50KF6oapTWBuXE
+ bh=YB1a54MMJXi5nKTH9gbuafJV6b8bO8PW9GeT78qICUA=;
+ b=9gzrykNcBM16KdVMIcgRlrKvmyEZmO4QeUAovkAYB+AyBN+PsDPZv3TANn7fES73RwX8lDO9T
+ vVHS1f30eGtApZ+9z9igVVO00ELz8Jd0iYfWzrFWVfjKYXrdqQTH9bu
 X-Developer-Key: i=kevin.tung.openbmc@gmail.com; a=ed25519;
  pk=PjAss0agA0hiuLfIBlA9j/qBmJaPCDP+jmQIUB6SE7g=
 
-Summary:
-Add device tree for the Meta (Facebook) Yosemite5 compute node,
-based on the AST2600 BMC.
-
-The Yosemite5 platform provides monitoring of voltages, power,
-temperatures, and other critical parameters across the motherboard,
-CXL board, E1.S expansion board, and NIC components. The BMC also
-logs relevant events and performs appropriate system actions in
-response to abnormal conditions.
+Document the new compatibles used on Meta Yosemite5.
 
 Signed-off-by: Kevin Tung <kevin.tung.openbmc@gmail.com>
 ---
-Changes in v3:
-- add missing dtb target in arch/arm/boot/dts/aspeed/Makefile
-- remove unevaluated property `ncsi-package`
-- Link to v2: https://lore.kernel.org/r/20250924-yv5_add_dts-v2-0-39a4a8e3c9e6@gmail.com
+ Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Changes in v2:
-- send v2 of the series so that it's properly threaded.
-- add idle disconnect to i2c mux.
-- Link to v1: https://lore.kernel.org/all/20250917074812.4042797-1-kevin.tung.openbmc@gmail.com
+diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+index 456dbf7b5ec8f4442be815284e1ad085287dc443..6f2b12f96bd6ce31b4175e109a78d931dffdfe28 100644
+--- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
++++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+@@ -89,6 +89,7 @@ properties:
+               - facebook,minerva-cmc
+               - facebook,santabarbara-bmc
+               - facebook,yosemite4-bmc
++              - facebook,yosemite5-bmc
+               - ibm,blueridge-bmc
+               - ibm,everest-bmc
+               - ibm,fuji-bmc
 
----
-Kevin Tung (2):
-      dt-bindings: arm: aspeed: add Meta Yosemite5 board
-      ARM: dts: aspeed: yosemite5: Add Meta Yosemite5 BMC
-
- .../devicetree/bindings/arm/aspeed/aspeed.yaml     |    1 +
- arch/arm/boot/dts/aspeed/Makefile                  |    1 +
- .../dts/aspeed/aspeed-bmc-facebook-yosemite5.dts   | 1067 ++++++++++++++++++++
- 3 files changed, 1069 insertions(+)
----
-base-commit: 30d4efb2f5a515a60fe6b0ca85362cbebea21e2f
-change-id: 20250924-yv5_add_dts-9268ac14dfc0
-
-Best regards,
 -- 
-Kevin Tung <kevin.tung.openbmc@gmail.com>
+2.51.0
 
 
