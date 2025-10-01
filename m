@@ -1,82 +1,87 @@
-Return-Path: <devicetree+bounces-223096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D36BBB0E92
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 17:01:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C08B2BB0F85
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 17:10:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A476219C0D70
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 15:01:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 259B0188BECC
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 15:07:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCB9C3043BD;
-	Wed,  1 Oct 2025 14:56:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82C2E30ACE4;
+	Wed,  1 Oct 2025 15:03:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kqtFc5/R"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Zwjp3r5P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 224373043B2
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 14:56:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE15230AACA
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 15:03:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759330586; cv=none; b=eIuoB5ircOViUhr034WV+2ah4hxS3sNYKBDDAI4ZU4aL2FXIPzOZueXyGU1A9VNwRGsdF+lBgLYL1WS6wNvULM5Go6qjOvu9r5mbhVW9DejnYHue7mBke6LJ3KACXAwqh4GcPVwzgfy6rtIkQRE2TFICsAndJJk+oTKnOKHn3OQ=
+	t=1759331036; cv=none; b=eKbJwIUJ8TPScm3b4CcwkCjWDXBiI1S4PedrBkPrpikAE40zElW+K7OOJW5dBucoM2q+G4lRZN46dZHVnfmEqsD0byMcZecKY4sNVen04KVY8ZlU9GWntxHMd7vPjmoGJcpiFf+x4R8dxioCkV0c4zIWYMSF7q6wAoKQVBZJjis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759330586; c=relaxed/simple;
-	bh=TRyHs9IEHWxtIGR/sLNg5b2MfBrNlCsFmJrDYwg376Y=;
+	s=arc-20240116; t=1759331036; c=relaxed/simple;
+	bh=Ne/1emli/qNR+CSGY/RT6fRMcITyKtKShhbED1YmozE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r3ftYs8VylOf6nG3J9NxuSU/68LRcJuhDruVo/cqXDzDhjUix8DhwxBWDtEC5b+PP6TuMO3w3DMEo/f/nwQFJZON32XJb0qJTxh3OVwX6acVJ5PB7ADkTORK6QHk7duHGgxO5fB7Su+SCN9CxzuHbDZT43ihBh6ud7GKhbE1gPM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kqtFc5/R; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-7835321bc98so4581488b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 07:56:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759330584; x=1759935384; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=vMaRMjae5qhJ6T8LZr9SwTJXOKHeU5QOS0jWZvlSGc0=;
-        b=kqtFc5/RzIf1TYfNGW+xOrXTjfq2CpqDVvTunN6cg5r0OD6y7Yog72C2D1PcEeTTYi
-         Cxzx4xTUSmf6L0u6KWNew8SJpbdaxA3celSkacP1B616zNY0TNpuWJMoS991qw28Wp+p
-         VahG4ARxRiezCOttWKjPRat2YRuJx2ji0CxZDsc5vIMWnou5yyd9rRxLy92y0xIyDojn
-         yDygSIkDVAso1LUxojWk6f3pKoNwRk8cjbCO0Gv2tp8+DMth+GSBjocI/dw00V+66EkE
-         V1WzPoug3PoKRwVL0Cgpd704r8M/e0Qh8P8Zsw18iXpXfdgT8S5lI0H7bfWDn3w7CbKR
-         o1Sw==
+	 In-Reply-To:Content-Type; b=eUYplmlM/Knwc2QPWgqzy03d//QFNY9bl7tQljjQbpu6gFcZeWJBatJxFQTkULP4xEQP9OwEeBLC7pKffiC4a1X6490Nu7i+pReBSfjCK2z73848fKJ1fXWvNMvDGaMkpmuyOznEabCmd3gXNaAtsa1uL7BtEqaZ6e6LMoLefnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Zwjp3r5P; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59195bmr016883
+	for <devicetree@vger.kernel.org>; Wed, 1 Oct 2025 15:03:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ZJfQa+8s08ZkdGhtiYIX3xBNflVlw/lYZrO+tw+/a4M=; b=Zwjp3r5PKA0yInJc
+	AWwujlGWsfudP7B/ofYT7pw+8BkB3BxaPYp0PEp/7wMKJz0klyYxgwdab25SQjFU
+	C+AXnLlbokpthItSIMSlKycWwx/EFFp4r0aS5SuW3SADMz/cO0c5NxOYUVf9XZWV
+	XSEpVaVOvNeTYj0aUDdu4cABCjj9drtoFKHcsn9pLIFmZImB4HaHnY4AnhFClonw
+	VvhMMQVom7g1eZZCDEI0xx+sCslXMePJlubtziMLGzcMgTxfarGXz7p5csCmB4Lm
+	15dkXtuqDTnEwSE4AUJHH/7d/ZsEfY5VI3IRa1JS+P1IFulyZ7j989N1Hh/iZqls
+	8iWyYQ==
+Received: from mail-il1-f199.google.com (mail-il1-f199.google.com [209.85.166.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e93hmpuv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 15:03:53 +0000 (GMT)
+Received: by mail-il1-f199.google.com with SMTP id e9e14a558f8ab-429278a11f7so50188655ab.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 08:03:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759330584; x=1759935384;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vMaRMjae5qhJ6T8LZr9SwTJXOKHeU5QOS0jWZvlSGc0=;
-        b=j17M2wbMPhJODsR0QU5zEQ70i+td6B8E+IroLn6JN98jdK0st+8LTCMLRSVihYYz5B
-         6bqPPLTozoXDhhYbPBM15fLsbIS4aWTgbbY0lfo3bo+VnB6eKnUjLJM3D1G9fSC+sKCb
-         xmtFLsPex58q46LauKX+XpJn6CUX9TRjPVuR5nLncJgnfb/dl/djhF7sUg6eRJ7pLyBG
-         ySwZdfjXxOUF8pY4VR5A20n3cY3rYR1J4zf8BfEilv7/wq3zFkwdu86UyHLZ8M01zq1M
-         DcLZDFji00HcjMXiHe0kV2omFD7BpGKckuXUeuKcMWpFybhz7wWjEyZIaXS34XpOa43s
-         iUCw==
-X-Gm-Message-State: AOJu0YxmqAZDFpCoBx6CC+fxpQYHeyYboSDDcTxBMvkX74vOxSstskxC
-	GZ8JKRRqZM8blqtHB/yPEGxKCHVIhMyjWuLhhyn0/G/CE1gf1CRidY/f
-X-Gm-Gg: ASbGncu6tsFhYlOsj4ings8SaUCWnDABIsnhHGueBC5xM6hu56rz+WlMQGkBiphvqlM
-	EUGVS3LoERFGGg2HN5rESOLmN5i+VVt+bYB7Odez/cq4T9j1hvkLxO4VHc88NbTSdWO/apGeTfp
-	mcktoIkvzg4hKegiJ5F7M1itJp8zuoOYiz7KiAgKNjD7eqfx89F68SskS4mVdLnMs6I9tUHoeq4
-	684vSodsaIjNHGwjxz7nySDXi859nc/ac/Ytblrnb2Dwq9jhSyZ65vSOgPZS6OXNcyPmogfL+HH
-	kjMhQf+uXOHaoILM/TW+34aNQQrdkrrerwMFf5+eDcyg9FEuwwhbIZsXAt3ijE5BnxhONN8OCgG
-	90U0LbSIo6eM1wfMIMkX4/DSjeshpxHbE1mlU2jpLg+cnJD0F/eW1KjXPgWWCnAYCADrvuQkCI3
-	vUHW1N9UfU/lwkDRRRglo=
-X-Google-Smtp-Source: AGHT+IHNGQLvotx2qaUZNh8cndj8yxi/+YPCSljuENQkge2S0/2QPiWneDeKuPJFHif4je6sXsDnzA==
-X-Received: by 2002:a17:90b:3511:b0:32e:51dd:46dd with SMTP id 98e67ed59e1d1-339a6e97a92mr5001609a91.16.1759330584328;
-        Wed, 01 Oct 2025 07:56:24 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3399cd8013dsm2418350a91.4.2025.10.01.07.56.21
+        d=1e100.net; s=20230601; t=1759331031; x=1759935831;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZJfQa+8s08ZkdGhtiYIX3xBNflVlw/lYZrO+tw+/a4M=;
+        b=AQqUYLNb79ZJIRawjWFTf1q1VmYXk78x+noNu0OScoGbBfIhZXIOUPqFJ9r7iuC9/c
+         YbmFfw6x8KbBZKfMfJuFqFUOD6OP/x7A2NgxE4Qfm4xRxjfGEbYh8DD/WhjcNcvedoSX
+         J6EMBqmCuYqhIbL2yekStDvZYfAIOry1TYlIzBIXUp7QfLRLFhjHsH+w/FlIlOKkYGqv
+         mFeoWyPScSXppo9NBrYJI7GS4NNMcuIGGBr48JMXtjjbXwb/xkyhP4w6kak65JtoxpOa
+         4DpGvkEVU0bf0fXqsJYoX18b9uCCDI5gcEvYN54B84l9kYqKa7KA/8VBLV1EF+5RLNrJ
+         IvEQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUOQYMmwect6wSQAmOTg31d5laqfyqv0Uyk4kWkP2y8Ybu+iQR9xZ1fUuchflHhfgjGouizNpdghtsc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNTQylv5ZFywOkTwu/LCOVeo0qnqFc5qKU0zqm/BaL9jBWrZKx
+	Kb16TZW0wKlnKVfRTt+pHENWFCOokTVgorjkSW7CakDUwcpe2U2smQ8FijvmRa6k51equE7Ai15
+	g/MtIg7jE2H2cT3dLZwOGol5Y4RHxjDumF/5RpUFN9mLuyTHkX9BsXP8jJB6stoMA
+X-Gm-Gg: ASbGncsu8l8YYJkrDxJpHbxPBJ5Ltt25MDNgg6sGnheVFg7yb4lCUUPthZZ9Y6+O993
+	E9zr42LHxtu/0UpwMb9lHw9MclAiESPkOa08al0jWPhggZ7irYQEMaV1g/Y+J2fgj6OVWLR/RzV
+	ZjjZk/PIBS0rzmTKvJVje/hZ1qBdeEYCqDc8ucq4xfoxE203Dq+dsAQzCvzi9P4zyISDOPTp64G
+	b2Ic6DwfdFhw1BuPboIv+bHjCnV51stEQbcNLo3S5Q21Br/NxRCSik6vhuKcbETryfrmxfl5zgw
+	Dx8+BHJbkI9UdaVCLEJ2NShQWDSOs7IpO0+48dOdAH588Rd+pZMOVMiSfJmnO04bHYa2JMf6
+X-Received: by 2002:a05:6e02:1d8b:b0:42d:7dea:1e04 with SMTP id e9e14a558f8ab-42d81680306mr60426925ab.25.1759331031143;
+        Wed, 01 Oct 2025 08:03:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEAh/o38qCjV/z7AmcOIL1eFdOOFJR0dPaq1/cxvmmMMiAnwbipvHaISIPwZ6i6ggPYkIYvPQ==
+X-Received: by 2002:a05:6e02:1d8b:b0:42d:7dea:1e04 with SMTP id e9e14a558f8ab-42d81680306mr60426075ab.25.1759331030487;
+        Wed, 01 Oct 2025 08:03:50 -0700 (PDT)
+Received: from [192.168.68.121] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-46e611970easm25118405e9.2.2025.10.01.08.03.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Oct 2025 07:56:23 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <b0632c19-1b98-46fe-add8-d2926fd296ea@roeck-us.net>
-Date: Wed, 1 Oct 2025 07:56:20 -0700
+        Wed, 01 Oct 2025 08:03:50 -0700 (PDT)
+Message-ID: <b3147370-11da-4202-abac-36218487578f@oss.qualcomm.com>
+Date: Wed, 1 Oct 2025 16:03:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,75 +89,141 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 RESEND 4/7] dt-bindings: hwmon: Move max31785
- compatibles to max31790 document
-To: Eddie James <eajames@linux.ibm.com>, linux-hwmon@vger.kernel.org,
- linux-iio@vger.kernel.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-aspeed@lists.ozlabs.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andrew@codeconstruct.com.au, joel@jms.id.au,
- chanh@os.amperecomputing.com, jic23@kernel.org, dlechner@baylibre.com,
- nuno.sa@analog.com, andy@kernel.org
-References: <20251001144441.310950-1-eajames@linux.ibm.com>
- <20251001144441.310950-5-eajames@linux.ibm.com>
+Subject: Re: [PATCH] slimbus: qcom: remove unused qcom controller driver
+To: Srinivas Kandagatla <srini@kernel.org>, Rob Herring <robh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250724132808.101351-1-srinivas.kandagatla@oss.qualcomm.com>
+ <CAL_JsqKG+dcMgp1QF4F3Oxh5Shvagg6cSde=g1JMcEAquZhH_Q@mail.gmail.com>
+ <990cb5af-3846-44a3-b373-ded62d3309b9@oss.qualcomm.com>
+ <CAL_Jsq+zC91GPdzQQa9F8KEw5UL4xc13u5U_5vTyQG1WeJa5rw@mail.gmail.com>
+ <82906e08-9583-4f4c-91ad-d5b53b2dffd6@kernel.org>
+ <CAL_JsqLtLbCqzHzcaGAuYwxqr=e9HZFX8X20tndx7US-XjhH3Q@mail.gmail.com>
+ <CAL_JsqLcinpeJyib+JG7UFspUqXDTzCLguF3Nt4JJY9YncTb9A@mail.gmail.com>
+ <b8c1365a-545d-40ae-a39c-e15a3e1f07e7@kernel.org>
 Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20251001144441.310950-5-eajames@linux.ibm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+In-Reply-To: <b8c1365a-545d-40ae-a39c-e15a3e1f07e7@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDA0MSBTYWx0ZWRfX7b4fiYOyQ9dV
+ pwD/AMio/3rg3S7Ik/C+z3zt1QczxBsCzUh7oX9btTwEBH34oVvOgCry+J2yugMO0qjQ4q7P9wm
+ L37fePtCkc8DOcqKwVZClMpohcSsXSGz0zr/jb1k8BaXFibwz/DTbZx4zU/cOcbjh9BBvO2+NlN
+ Y/ROTW6A5Yj9V9DR5HYz466YOlpL2we0WnCfWlixjlXz9lw/TZsqQbZzYuYFyudoSVJtO72PklS
+ bIPcJ7KAcU8rpPmLig2e7eEScDRhWEuPe268JpMDCfAaESxBLOY2E8WWaUEhehCkt1vvRKyDMNS
+ wnGe/e0emYHXtMZb6JF+6OloKJm+Dw6GzW5wul9nymr8+JH8W+Lk4RMBqRu0Cu8P8mmT/oxTXxZ
+ 2PZwjTamc/+SdZPO25yVi4enVRMeHA==
+X-Proofpoint-GUID: pqN8gaR_jBuTEay30yRNo62I4jG4R9N_
+X-Proofpoint-ORIG-GUID: pqN8gaR_jBuTEay30yRNo62I4jG4R9N_
+X-Authority-Analysis: v=2.4 cv=Rfydyltv c=1 sm=1 tr=0 ts=68dd42d9 cx=c_pps
+ a=vy3nvQW9C2dqy/lMnN3IYg==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=gEfo2CItAAAA:8 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=WCg39QfALH1NCTeANmoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=mHQ74H5e8mo-RpSg_uaF:22 a=sptkURWiP4Gy88Gu7hUp:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-01_04,2025-09-29_04,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 bulkscore=0 adultscore=0 lowpriorityscore=0
+ impostorscore=0 clxscore=1015 malwarescore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270041
 
-On 10/1/25 07:44, Eddie James wrote:
-> The binding for the max31785 is the same as the max31790, so just add
-> some compatible strings for the max31785 chip.
+On 10/1/25 3:21 PM, Srinivas Kandagatla wrote:
 > 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> 
+> On 10/1/25 3:19 PM, Rob Herring wrote:
+>> +Greg
+>>
+>> On Fri, Sep 19, 2025 at 12:25 PM Rob Herring <robh@kernel.org> wrote:
+>>>
+>>> On Fri, Sep 5, 2025 at 12:30 AM Srinivas Kandagatla <srini@kernel.org> wrote:
+>>>>
+>>>>
+>>>>
+>>>> On 9/5/25 12:08 AM, Rob Herring wrote:
+>>>>> On Tue, Aug 19, 2025 at 8:44 AM Srinivas Kandagatla
+>>>>> <srinivas.kandagatla@oss.qualcomm.com> wrote:
+>>>>>>
+>>>>>> Thanks Rob for reporting this,
+>>>>>>
+>>>>>> On 8/19/25 2:35 PM, Rob Herring wrote:
+>>>>>>> On Thu, Jul 24, 2025 at 8:28 AM <srinivas.kandagatla@oss.qualcomm.com> wrote:
+>>>>>>>>
+>>>>>>>> From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+>>>>>>>>
+>>>>>>>> Qcom Slimbus controller driver is totally unused and dead code, there is
+>>>>>>>> no point in keeping this driver in the kernel without users.
+>>>>>>>>
+>>>>>>>> This patch removes the driver along with device tree bindings.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+>>>>>>>> ---
+>>>>>>>>  .../bindings/slimbus/qcom,slim.yaml           |  86 --
+>>>>>>>>  drivers/slimbus/Kconfig                       |   7 -
+>>>>>>>>  drivers/slimbus/Makefile                      |   3 -
+>>>>>>>>  drivers/slimbus/qcom-ctrl.c                   | 735 ------------------
+>>>>>>>>  4 files changed, 831 deletions(-)
+>>>>>>>>  delete mode 100644 Documentation/devicetree/bindings/slimbus/qcom,slim.yaml
+>>>>>>>>  delete mode 100644 drivers/slimbus/qcom-ctrl.c
+>>>>>>>
+>>>>>>> This adds warnings to dt_binding_check:
+>>>>>>>
+>>>>>>> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
+>>>>>>> /example-0/soc/slim@28080000: failed to match any schema with
+>>>>>>> compatible: ['qcom,apq8064-slim', 'qcom,slim']
+>>>>>>
+>>>>>> Will replace this example with slim-ngd and fold it in the original patch.
+>>>>>
+>>>>> Still warning in linux-next...
+>>>> Its done now!
+>>>
+>>> Now I get this:
+>>>
+>>> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
+>>> slim@28080000 (qcom,slim-ngd-v1.5.0): 'audio-codec@1,0' does not match
+>>> any of the regexes: '^pinctrl-[0-9]+$', '^slim@[0-9a-f]+$'
+>>>         from schema $id:
+>>> http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
+>>> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
+>>> slim@28080000 (qcom,slim-ngd-v1.5.0): #address-cells: 1 was expected
+>>>         from schema $id:
+>>> http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
+>>> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
+>>> slim@28080000 (qcom,slim-ngd-v1.5.0): 'dmas' is a required property
+>>>         from schema $id:
+>>> http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
+>>> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
+>>> slim@28080000 (qcom,slim-ngd-v1.5.0): 'dma-names' is a required
+>>> property
+>>>         from schema $id:
+>>> http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
+>>
+>> Still failing in linux-next.
 
-I'll pick this and the next patch of the series after the commit window closes.
+I was running the check against the the yaml file which missed this
+warnings, I should have run this against the folder instead which could
+have caught this. May be this is something that could be improved in the
+check by pulling in the dependency yamls too.
 
-Guenter
+
+make -j`nproc` dt_binding_check
+DT_SCHEMA_FILES=Documentation/devicetree/bindings/slimbus/slimbus.yaml
+
+
+--srini
+> 
+> Rob, sorry for delay..
+> 
+> will send a fix,
+> 
+> 
+> --srini
+> 
+>>
+>> Rob
+> 
 
 
