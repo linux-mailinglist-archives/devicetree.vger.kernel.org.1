@@ -1,181 +1,94 @@
-Return-Path: <devicetree+bounces-223131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED662BB1717
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 20:04:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 276D3BB175D
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 20:15:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11C4A1C42E7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 18:04:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D45C43C028F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 18:15:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C95BC2877F0;
-	Wed,  1 Oct 2025 18:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48D462D1F68;
+	Wed,  1 Oct 2025 18:15:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I+40gXSB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FogeFqwE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B53118A6CF;
-	Wed,  1 Oct 2025 18:04:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 243712D46A7
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 18:15:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759341862; cv=none; b=JHhUnFcN+qnwsunF3F3czz1nkdIOsAq4tg+W1xpl+urrfj+Z8hdU1Y5qF5K5s6e8xmtv0mIuFQpnQK6PhxfnZxMBcTQnyJ9TMOvtdajZZAPACIXzruQLHRfIPr0uOruR0dIDqJjxfwduWgwfcwiQvQQ8JZ2x9aB+3yG+7Crgikk=
+	t=1759342514; cv=none; b=fZ0XZNIAElAUuLMmeySE3lfhGKOecQSC6PjzELTdV5ZqKE3CrE6Y4Upcn7Ee3qv/dbi7/iWBVofGoN/srjycAOMRVvvvCcZpNTM6x1faCI5BO9SoJ8RIiXPPqoCEZTbKbU/SHONIYVj1d9g8WRZgrcbFV9tcbZMU56mzZ568iG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759341862; c=relaxed/simple;
-	bh=UditdOJ+p+ZmjZaYpgQPQ5OHHZIaPFJQ9pa7o91UQJg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=h4Fh7B+QxicnlNrr8BVHvDcZ5aF3nQ6syvKII2W9Hs+aljRTniihxTMReLrjYlEnydTM09HdULeS28b8fewMKd5TOcUTf/YrZEtJt7JbEwTfeayZBwaMykLzuMLah7KevfJGuTrfQIHeUuSLtAcOtK4oRPDQwZKKToChLop/eVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I+40gXSB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB1BAC4CEF1;
-	Wed,  1 Oct 2025 18:04:19 +0000 (UTC)
+	s=arc-20240116; t=1759342514; c=relaxed/simple;
+	bh=IKPYXw7CIhCfKTdGMAlf0RUh6f8e+twBhgb+c0os/9c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WHXrcn3/1M6ezkwM3jW0zsgZCJTnG+XJVfpxY1pm/EYtRtJGK+1zzh6iuD6c+oaqF3MEWR6uZ50uTqFBveiPSzG2B0gkmxCYBIp1hjjXj02DJe5M5P4YPpubOSljsacDuNzDHKUflS6qOypGvwyGuIFTOJdt5VPfqLqoV2iPGHM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FogeFqwE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF4F7C4CEFA
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 18:15:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759341862;
-	bh=UditdOJ+p+ZmjZaYpgQPQ5OHHZIaPFJQ9pa7o91UQJg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=I+40gXSBTvtBXh/2NOKHWoA/7qZULTZ+RhI4N6PGNzJoIn3hoa8/CwzVGKD7VnsS0
-	 JRf8A4DpdWbTxU5Mk4XKKZ4HbBQ6InUNvk/vhsuhiNvVgHWKk2DxgxbNEKso4P3FkL
-	 ZnBXnpXhssSZnKvDf1bjbhzEcCYahS9Re1nTPJhCDWFlbUJJtSkrzy417Ki0RpJbmC
-	 31g5ibkSBKpg9CTg3sHrRu0cawGsmOqAiSsuUoDFg8W7aZcbotFRi7N82gjpD4d5y1
-	 tayZZi9l8frhGlh0bFp4DkWGWm0+DUyvQw4wNy+fvpo8oAk8Pb23ojyRH4xQ+L2115
-	 bTWrJ1/sMDnjA==
-Date: Wed, 1 Oct 2025 19:04:17 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jun Guo <Jun.Guo@cixtech.com>
-Cc: Peter Chen <peter.chen@cixtech.com>,
-	Fugang Duan <fugang.duan@cixtech.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"broonie@kernel.org" <broonie@kernel.org>,
-	"linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-	"michal.simek@amd.com" <michal.simek@amd.com>,
-	cix-kernel-upstream <cix-kernel-upstream@cixtech.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: =?utf-8?B?5Zue5aSNOiBbUEFUQ0ggMS8zXSBk?= =?utf-8?Q?t-bindings?=
- =?utf-8?Q?=3A?= spi: spi-cadence: document optional fifo-width DT property
-Message-ID: <20251001-simple-conclude-d9cd153cee3c@spud>
-References: <20250930075644.1665970-1-jun.guo@cixtech.com>
- <20250930075644.1665970-2-jun.guo@cixtech.com>
- <20250930-vocally-closable-136829bc9fed@spud>
- <SI6PR06MB7104F6012ADAFDBC7D553F9AFFE6A@SI6PR06MB7104.apcprd06.prod.outlook.com>
- <SI6PR06MB7104AE0345763471E67CD3C0FFE6A@SI6PR06MB7104.apcprd06.prod.outlook.com>
+	s=k20201202; t=1759342513;
+	bh=IKPYXw7CIhCfKTdGMAlf0RUh6f8e+twBhgb+c0os/9c=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=FogeFqwER32gpvXetfpiBseQBzGaPT1viNx/zNJ0h+EajU1PeJR/bhSC8DbuOiT1h
+	 kQ7mVVzzngUW63HZAbdch0ftZ2Y6WGINvt5mcFsoQJRgyQSq+0ijy5BTI9t+BY1JOq
+	 bRpq0Id7etCAmdyfBjv3s+eteuuxOg8hxrhkT9ZuHSmy1LpSCBNc5z2pNiTuOOfAdZ
+	 Bltivq2MTQEnJ/I90ZmL1TOaGahKxGKU/265nZ+9sc1oGf3aoKonNlQJxBGJj3Hvd8
+	 vBtDR7kB9IckLFANmhUXxxsPS4+ADJdLUtPrnUsqrq8AG/8plWMfKxSUbuYbbK43bq
+	 w47HvAn3Kr5Og==
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b403bb7843eso38823266b.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 11:15:13 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU/mUhDz3RxKA6l5dIhj55oBHx+BaqofvNuPT5TGo+UrBwcIEsM9iO4j5ZVr6qFITS1F+cu766sntjQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGufPUEInj5Gqa81iiDuKUsz8FEwbVoGFE96K7Va46iNxf8PHT
+	zRF/LOX5I1A3n54haYJSFXEeUE4tQo83BZUI5YDhaxglriAUgBs7iLdhWwtToVjweBVGyWSdMRh
+	+l7ZbMIo1R2izFf/lDMN0Vqu0oZ0KZQ==
+X-Google-Smtp-Source: AGHT+IE6k8jT8P3cEyZLzZPg2Br8moPxo92fNy8ZlvuKtn9pVLTse0NexLbiWmnweSHt8Tx0hzLqx5eqS2EbwyjiAXE=
+X-Received: by 2002:a17:906:1c0c:b0:b47:de64:df1b with SMTP id
+ a640c23a62f3a-b47de64e296mr175579266b.39.1759342512155; Wed, 01 Oct 2025
+ 11:15:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="RZlrBQmtaAPuQAyZ"
-Content-Disposition: inline
-In-Reply-To: <SI6PR06MB7104AE0345763471E67CD3C0FFE6A@SI6PR06MB7104.apcprd06.prod.outlook.com>
-
-
---RZlrBQmtaAPuQAyZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20250929072306.5634-2-wsa+renesas@sang-engineering.com>
+ <20251001125149.GA1122744-robh@kernel.org> <CAL_Jsq+Rnmv26tjOednFuQkLf0hwfMU1xihLT+D6aym0SigNng@mail.gmail.com>
+ <aN1sjfECC8vVWngL@shikoro>
+In-Reply-To: <aN1sjfECC8vVWngL@shikoro>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 1 Oct 2025 13:14:59 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+9YjrD1A_BfyJ=S584qY5UaEwJvXqQKfUOADfL-rQ8vA@mail.gmail.com>
+X-Gm-Features: AS18NWAKpYzr27MqWOjul0DoDbygvrxNJaAlCObftxsp1Rlyvtj75B9LyFfNQr0
+Message-ID: <CAL_Jsq+9YjrD1A_BfyJ=S584qY5UaEwJvXqQKfUOADfL-rQ8vA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mfd: dlg,da9063: allow 'interrupts-extended' property
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	Support Opensource <support.opensource@diasemi.com>, Lee Jones <lee@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Steve Twiss <stwiss.opensource@diasemi.com>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 01, 2025 at 02:36:44PM +0000, Jun Guo wrote:
-> On Tue, Oct 01, 2025 at 02:52:00AM +0800, Conor Dooley wrote:
-> > On Tue, Sep 30, 2025 at 03:56:42PM +0800, Jun Guo wrote:
-> > > Add documentation for the optional 'fifo-width' device tree property
-> > > for the Cadence SPI controller.
-> > >
-> > > Signed-off-by: Jun Guo <jun.guo@cixtech.com>
-> > > ---
-> > >  .../devicetree/bindings/spi/spi-cadence.yaml          | 11 +++++++++=
-++
-> > >  1 file changed, 11 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/spi/spi-cadence.yaml b=
-/Documentation/devicetree/bindings/spi/spi-cadence.yaml
-> > > index 8de96abe9da1..b2e3f217473b 100644
-> > > --- a/Documentation/devicetree/bindings/spi/spi-cadence.yaml
-> > > +++ b/Documentation/devicetree/bindings/spi/spi-cadence.yaml
-> > > @@ -62,6 +62,17 @@ properties:
-> > >      items:
-> > >        - const: spi
-> > >
-> > > +  fifo-width:
-> > > +    description: |
-> > > +      This property specifies the FIFO data width (in bits) of the h=
-ardware.
-> > > +      It must be configured according to the actual FIFO width set d=
-uring
-> > > +      the IP design. For instance, if the hardware FIFO is 32 bits w=
-ide,
-> > > +      this property should be set to 32.
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    minimum: 8
-> > > +    maximum: 32
-> > > +    default: 8
-> >
-> > I assume this differs from fifo-depth because this is the actual width
-> > of the registers rather than the number of elements of that width the
-> > FIFO can contain?
->=20
-> Thank you for your review. You are absolutely correct. The `fifo-width`
-> indeed refers to the physical width of the FIFO data registers (e.g., 8,
-> 16, or 32 bits), whereas `fifo-depth` describes how many elements of
->  that width the FIFO can store.
->=20
-> > However, this isn't something defined as common in spi-controller.yaml
-> > so you'll need a vendor prefix for the property if the property stays.
-> > This does, however, seem like something that can just be determined by
-> > the compatible and that your omission of a soc-specific one is what's
-> > lead you to introduce this property. Why not just use a sky1-specific
-> > compatible here?
->=20
-> You raise an excellent point, and I initially had the same thought. Howev=
-er,
-> after further consideration, I realized that the IP of Cadence SPI actual=
-ly
-> supports configurable FIFO width as a feature. The choice of using 8-bit,
-> 16-bit, or 32-bit FIFO width can be made by the SoC integrator based on
-> their specific requirements. This is therefore a feature of the Cadence IP
-> itself, rather than a chip vendor-specific design constraint.
->=20
-> For this reason, I believe defining a common `fifo-width` property for
-> Cadence SPI controllers is more appropriate, as it allows any SoC using
-> this IP with different FIFO width configurations to utilize this property,
-> without needing to create a specific compatible string for each SoC varia=
-nt.
+On Wed, Oct 1, 2025 at 1:01=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+>
+> Hi Rob,
+>
+> > Now fixed in 'main' branch. There's a handful of other cases fixed
+>
+> Confirmed. Thank you a lot for this!
+>
+> Did you already clean up the reference I got this from
+> (mfd/samsung,s2mps11.yaml) or shall I?
 
-Except, you do need to create a soc-specific compatible string for every
-device, the fact that you didn't add one for your sky1 SoC was a mistake
-that you should fix. SoC-specific compatibles are a requirement.
-The "cnds,spi-r1p6" compatible seems to be used on Xilinx platforms,
-including a zynq platform that should probably be using the zynq
-soc-specific compatible. r1p6 sounds like some sort of version info, is
-that the version you are even using?
+Probably should wait a bit on that until I make a release. That will
+probably be in the next few weeks.
 
-Once you have added a compatible for the sky1, this property is not
-needed, since the depth can be determined from that. Any other user that
-wants to use non-default depths can also use their soc-specific
-compatibles for that purpose.
-
->=20
-> Thank you for your valuable time and insightful suggestions. I look forwa=
-rd to
-> your further feedback on this approach.
-
-
---RZlrBQmtaAPuQAyZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaN1tIQAKCRB4tDGHoIJi
-0oMjAP4zsaaPAMU0SQSKmTQbp1DBvtpZf4mNFIjsMrVhWzKr3gD/Rsy8ig2pCubA
-Bo1QWNZbE3AbmsqSutDk71YJ13rf9QI=
-=XRtH
------END PGP SIGNATURE-----
-
---RZlrBQmtaAPuQAyZ--
+Rob
 
