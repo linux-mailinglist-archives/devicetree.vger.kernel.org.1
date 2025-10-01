@@ -1,161 +1,137 @@
-Return-Path: <devicetree+bounces-223124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E2D9BB13A2
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 18:15:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C7DBBB1411
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 18:31:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E95923ADF52
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 16:15:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3558119216B4
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 16:32:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997092874F7;
-	Wed,  1 Oct 2025 16:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE0A827A454;
+	Wed,  1 Oct 2025 16:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SR82psbl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ez6OFCTb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6441F27703D;
-	Wed,  1 Oct 2025 16:15:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A790D239E8B;
+	Wed,  1 Oct 2025 16:31:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759335311; cv=none; b=B8wdCbS2yhfnrdavCrAd93lPJ1WPaeNcLgp8olqAeHCfmhr8/a1JIBRJ1ctPb9f/AGEZqeLy+5L0D0ORB2BcPmlLsc8L2YSHxZAuja09Lz5N98j9EunAd3jbwF1VM2sFPnmgIv1etUsUmh6BLVNQtnnP3oSBxBZ2l2/uynLK898=
+	t=1759336305; cv=none; b=SKVDdFzwWiCEHfuQD95cTZ0bmaMXyhtHIYEVHtQelVgDEToAxDOVfnwDwHaJ8cYfKFjCTNGZyAaxWDWHCqjkl77o1G/iQYjnlP7/J4r7UcJhDlFVWfz2o6/Z85Tyygr1HeEfGhZOAiKAEjPPypo6wfzH7VUdYqfg4VibYRhbGQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759335311; c=relaxed/simple;
-	bh=aZalLaE3pNBBVcnztrNI7/t8Lx2PoXLwzoQuDrkVXBc=;
+	s=arc-20240116; t=1759336305; c=relaxed/simple;
+	bh=euC6S3LiJG7HoABb999DdDDuS1mO+zTyN+ac3MVNApE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MlEotJxf7A3Avl1NILE57YO2rADBjy3vqGDihLGR3G/6PcoYO/Moulpqh3TQtPoYDGBWQGsxpQl9eDjpaZcmxplCwK7a24/sJML65Gpa3r4/ir0hRkQlnPc2d0xr797um8t5u1mo1LpBUlcZwdnEXRW9PHkJmtsI08AreQLNHqA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SR82psbl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71DEFC4CEF5;
-	Wed,  1 Oct 2025 16:15:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DBf3Jkple8Agvy50731WdNlfx4msYctbh5NpXCA2cudh2FzkUBJcAidiJEx3xxN9Gw1sL53r8movggdgQrvlyFXGXPvKXnOgFGEofISQyG/ZoJ7fYEi9cvsPTrr5JYtupRKUjQCiFagcIgbVKmeFulQdxjlaTITmv3vPKKlgkO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ez6OFCTb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F14ECC4CEF1;
+	Wed,  1 Oct 2025 16:31:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759335310;
-	bh=aZalLaE3pNBBVcnztrNI7/t8Lx2PoXLwzoQuDrkVXBc=;
+	s=k20201202; t=1759336305;
+	bh=euC6S3LiJG7HoABb999DdDDuS1mO+zTyN+ac3MVNApE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SR82psblZghYJnKH9dYti8Pt287Wmrk5yFFcGqQhITmBuiBujqt8a1+E2BBOmc1D6
-	 siOrzJd+qNS/0L3jOqVuoAy7rjkXvI34Gl4r3GXW4wh76PsuJz4t4rWi8NQpW2EcS2
-	 Nw2Ix4hGaJYkEr/KeUbEr1VzQN+v9xE9YctRGMshRFRD0yNq5HnKtSA645gFE5pEnz
-	 P9QXYC1Qvs7gnHswhuIoAEqstBz4P6z9oXU/pzLn6hgc13Kp1clcYlQCo6MW5zxxFF
-	 OdCimEvENUb3RktIAvvZWd/WHYvWGp+olOmzzItVXk1ImOK0XXtXlDEony0dtU6SBS
-	 e4E+jalp3Mflg==
-Date: Wed, 1 Oct 2025 17:15:07 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
+	b=Ez6OFCTbMYLimCzxtqaRhwayDyeKNMZFV9p2OfwD0PeyjCazvNn/yEn8AeW0ocQIo
+	 o7KDW0MUki5v9QClr61J3yaWYq0IsM0AnO3CJbVWWcRvxjwndNLjKHEnCV9UZ8w9jO
+	 SjcBGOOU7yJLOm0hEzY+53QrOGGy6P+y3140tttzA9aj7jsWfLYhgAq3nJ8VAuk1Bi
+	 0OzSaA0jojTNQflLq5OLzKL6ukzWa7/iDG8qFzoUMGWBNqN7b0hpAf/lbqUV6T1e6t
+	 wBP2dTd10B4mkZyx5Brx0yPKQZFBEtW6h1SUcDmd2wzwEwBTz3jtaFjSQRGmk44QAd
+	 9pTkSzOL8E+Vw==
+Date: Wed, 1 Oct 2025 11:31:39 -0500
+From: Rob Herring <robh@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [RFC 0/5] microchip mpfs/pic64gx pinctrl questions
-Message-ID: <20251001-unfreeze-ludicrous-9d744548bf65@spud>
-References: <20250926-manpower-glacial-e9756c82b427@spud>
- <CACRpkdYXh2MCs=vAif7BpxfYVRuDTkYYNwpV2t=J_ZRW+N4Vyg@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: do not
+ reference whole usb-switch.yaml
+Message-ID: <20251001163139.GA1877961-robh@kernel.org>
+References: <20250902-topic-sm8x50-fix-qmp-usb43dp-usb-switch-v1-1-5b4a51c8c5a8@linaro.org>
+ <20250905175533.GA1000951-robh@kernel.org>
+ <nwtt76n4t7tlf26ex47wrot7g7nldtmavbzgwmluls3egamjsi@mkomopb6fjh6>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="rtp5gPCiSpcL6Uyu"
-Content-Disposition: inline
-In-Reply-To: <CACRpkdYXh2MCs=vAif7BpxfYVRuDTkYYNwpV2t=J_ZRW+N4Vyg@mail.gmail.com>
-
-
---rtp5gPCiSpcL6Uyu
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <nwtt76n4t7tlf26ex47wrot7g7nldtmavbzgwmluls3egamjsi@mkomopb6fjh6>
 
-On Wed, Oct 01, 2025 at 01:29:01PM +0200, Linus Walleij wrote:
-> Hi Conor,
->=20
-> thanks for your patches!
->=20
-> looking at the drivers it appears to be trying extensively to make use
-> of the pinmux =3D <>; property to mux entire groups of pins.
->=20
-> pinmux =3D <nn>; is supposed to mux *one* pin per group, not entire
-> groups of pins from one property. See
-> Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml:
->=20
->   The pinmux property accepts an array of pinmux groups, each of them des=
-cribing
->   a single pin multiplexing configuration.
->=20
->   pincontroller {
->     state_0_node_a {
->       pinmux =3D <PINMUX_GROUP>, <PINMUX_GROUP>, ...;
->     };
->   };
->=20
-> So e.g. when you do this:
->=20
->        spi0_mssio: spi0-mssio-pins {
->          pinmux =3D <MPFS_PINFUNC(0, 0)>;
->        };
->=20
-> We all know SPI uses more than one pin so this is clearly abusing
-> the pinmux property.
->=20
-> It is unfortunate that so many drivers now use this "mux one pin
-> individually" concept that we cannot see the diversity of pin
-> controllers.
->=20
-> I cannot recommend using the pinmux property for this SoC.
->=20
-> What you need to do is to define the actual pins and groups
-> that you have.
->=20
-> Look for example at
-> Documentation/devicetree/bindings/pinctrl/cortina,gemini-pinctrl.txt
-> drivers/pinctrl/pinctrl-gemini.c
-> arch/arm/boot/dts/gemini/gemini.dtsi
->=20
-> This is another SoC that muxes pins in groups, not in single per-pin
-> settings.
+On Tue, Sep 30, 2025 at 10:10:25PM +0300, Dmitry Baryshkov wrote:
+> On Fri, Sep 05, 2025 at 12:55:33PM -0500, Rob Herring wrote:
+> > On Tue, Sep 02, 2025 at 06:10:05PM +0200, Neil Armstrong wrote:
+> > > Both bindings describe a different layout of the ports properties,
+> > > leading to errors when validating DT using this PHY bindings as
+> > > reported by Rob Herring.
+> > > 
+> > > Reported-by: Rob Herring <robh@kernel.org>
+> > > Closes: https://lore.kernel.org/all/175462129176.394940.16810637795278334342.robh@kernel.org/
+> > > Fixes: 3bad7fe22796 ("dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Reference usb-switch.yaml to allow mode-switch")
+> > > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > > ---
+> > >  .../devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml    | 8 +++++---
+> > >  1 file changed, 5 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> > > index c8bc512df08b5694c8599f475de78679a4438449..5005514d7c3a1e4a8893883497fd204bc04e12be 100644
+> > > --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> > > +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+> > > @@ -73,8 +73,11 @@ properties:
+> > >      description:
+> > >        See include/dt-bindings/phy/phy-qcom-qmp.h
+> > >  
+> > > -  mode-switch: true
+> > > -  orientation-switch: true
+> > > +  mode-switch:
+> > > +    $ref: /schemas/usb/usb-switch.yaml#properties/mode-switch
+> > > +
+> > > +  orientation-switch:
+> > > +    $ref: /schemas/usb/usb-switch.yaml#properties/orientation-switch
 
-This looks like something that the "gpio2" stuff could definitely go to,
-since it covers multiple functions trying to access the same pin. Do you
-have an "approved" example for a more demultiplexer case, where the
-contention is about which of multiple possible pins (or pin analogues)
-an IO from a particular block must be routed to?
+Looking at this again, this isn't even correct and I don't think it 
+works. It's missing a '/' and  should be ...#/properties/... to be a 
+valid json pointer.
 
-> Notice that the driver in this case enumerates and registers all 323
-> pins on the package! This is done because some of the groups
-> are mutually exclusive and this way the pin control framework
-> will do its job to detect collisions between pin groups and disallow
-> this, and that is what pin control is supposed to be doing.
+I thought we checked this...
 
-In that case, the mutual exclusion would be that a function can only be
-routed to one "pin", but there's no concern about multiple functions
-being routed to any given "pin".
+> > 
+> > This is a pattern we try to avoid with references at a property level. I 
+> > prefer you make port and ports not required in usb-switch.yaml.
+> 
+> But this solution is also not perfect. E.g.
+> Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml should
+> only allow the orienttion-switch property, while using
+> allOf:$ref:usb-switch.yaml allows all three (orientation-switch,
+> mode-switch, retimer-switch).
 
->=20
-> I.e. do not orient your design around which registers and settings
-> you have, and do not model your driver around that, instead
-> model the driver around which actual pins exist on the physical
-> component, how these are sorted into groups, how the groups
-> are related to function (such as the group of SPI pins being
-> related to the spi function) and define these pins, groups
-> and functions in your driver.
->=20
-> Yours,
-> Linus Walleij
+That can be handled like this:
 
---rtp5gPCiSpcL6Uyu
-Content-Type: application/pgp-signature; name="signature.asc"
+$ref: usb-switch.yaml
+properties:
+  orientation-switch: true
+additionalProperties: false
 
------BEGIN PGP SIGNATURE-----
+Though if you need unevaluatedProperties for some other reason, then 
+that won't enforce it and it's just documentation. In that case, then 
+perhaps usb-switch.yaml is not the right granularity and should be split 
+up.
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaN1TiwAKCRB4tDGHoIJi
-0rsuAP9Awy/VSOHk5xSFlfRSaEp18oj5GA6Djy6JGFkuNArVsAEAwa5jihPfC/Yu
-0qmRMUxN0jIs68SwD1bY6bIp76HZHg0=
-=Eoh8
------END PGP SIGNATURE-----
+I put this into the category of "this is the least of our problems". I'm 
+not that interested in enforcing what common properties a device uses or 
+not. It's undocumented properties I'm worried about or lack of 
+constraints (on reg, clocks, interrupts, etc.).
 
---rtp5gPCiSpcL6Uyu--
+Rob
 
