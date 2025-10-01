@@ -1,236 +1,260 @@
-Return-Path: <devicetree+bounces-223176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69936BB1DBC
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 23:34:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07180BB1E5E
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 00:00:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4AB6F7A3F30
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 21:32:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7091419C26FD
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 22:00:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E9DE2877EE;
-	Wed,  1 Oct 2025 21:34:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0479D237163;
+	Wed,  1 Oct 2025 22:00:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="PPgiFeVa"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CgHtWHf4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010022.outbound.protection.outlook.com [52.101.69.22])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C6991C28E;
-	Wed,  1 Oct 2025 21:34:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.22
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759354474; cv=fail; b=rU982swmbHXX514FnOLXybRqfCodMT2W7TQzJbxCh3lPaofitWpSZaheDI2UwcvUmO3fnOBB3mlA4DgWLf7ai/dgbu0c23iMHrO+8lvnIYI2FEItUZn4WybfoUJqYjAKWmqw/r5YVZSz1mWJJ1E62MyNBiKx/NnB4y+fATm6qaE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759354474; c=relaxed/simple;
-	bh=JmXE1VlivU1nI9rhuxZ7PTA0xYWHxLctLnIRrbpH1EE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=nHQL1oWK4EEf2N2SaT9bbu35DFKbGsy3PmHhGWuGL5NpW6IzaiHWj+jIf3XNLmDqLh2VvpXHXxl9kbnbJSFejONOtnUCApNiMnt0cWlWQYkQ6rO3/9d7oLsfcJYw29wacaUdOpuIJg45eo3ATaKBxxrIJV8qKlVWjVvKRAz5abc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=PPgiFeVa; arc=fail smtp.client-ip=52.101.69.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=vgm5WecqA2XZSZoCwvE8NKYXsPiw6x9js8MKJmNLrY3rmLqqN3l/CIsH99dNaQH2pCMOJTOVN2rn2xrAxCRVQ/BEfGHV3IxBEvXmSWyySSEpO8CaWbSq+NSVS3ZRyCsErydT5wpqJ5pnLDT9lkSgsheB8GiGF7aNkPtgaTVJvKNnlrhqYw714BFVnPl1wOWs9Yf3eeIZi07tlyl+7CLR1PImIQsTNK2wmBMAER+aimlsPztIPSOoMtkib/JwF4uqrQ9DY1yY/d9o1tZg/sSlY6RRvXGc7QNd39c0ofdJqXi51Kqs+05nkyoyFUf4bu5fJ+STM3tQcgPZKgduSgclig==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=b9KKfxs2c5+6GLiOup9HlarQumi2jiuh5Z3qahKQeFs=;
- b=K1zF+cMuUfCgHlaz+P4p+lM+B57Xn0KJpbzoxWLIcN+wwnpvSNKIq/G8S8XSJme67ZY2RDtm6TrNy7/PgxVhovooT0WhT+xrDufz/FxtcJKxQRvr+SNjS9SZ+crs9WAvNlP9o1y/mieHccsh9ZjxlVHy1IoGVdpPHM0LG5IereGJ2x4xETmxYaJ8iReqXt5Yke6kOUKxjxbZX5KgupVAivskt2F3bOGb8gOHp9KjvShpwYMWiRTODCRpxaNIcD7pK/Xg+pJlgfYU+L4u3ke2Nm9eUVNMnnfTDNlOvySf82lFjybPQxJSywE0kurD3J5KRhyMDNv2qPR7GDDqTzysYQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=b9KKfxs2c5+6GLiOup9HlarQumi2jiuh5Z3qahKQeFs=;
- b=PPgiFeVao/BTLJ/TmxS8VWc5djUjzmuLOzJwXNbt3RcCzxgLE55zoAF5eNaf2o/sZDH+cUHzR5VOL+7R0YiuLaq7fM/aVA5pT60056lqZF2YzToHNIkpnYV9ZXRDt7uK3SmPnCECWqrBp5B9mdNpERjT/6jiXg9utms4IiOjsjBSJbnEvhP6VOCZKQ9SN/JSXoi2d4F2DRYcY8oW72156f+OnLly9vQ0ZaVMZ4Q1rWuzXugl1NApbCNu0wG/1OZhQQxyjQI1+bsSgAwG5e/ThwL4lZ+aGDI4/41w2bmEnz6bLpaXE2cYn9eCCmhlSQV6HqvHFJFBjz3LXpVksxaaXw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com (2603:10a6:20b:4ff::22)
- by VI1PR04MB6829.eurprd04.prod.outlook.com (2603:10a6:803:13b::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.17; Wed, 1 Oct
- 2025 21:34:26 +0000
-Received: from AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e]) by AS4PR04MB9621.eurprd04.prod.outlook.com
- ([fe80::a84d:82bf:a9ff:171e%4]) with mapi id 15.20.9160.014; Wed, 1 Oct 2025
- 21:34:26 +0000
-Date: Wed, 1 Oct 2025 17:34:18 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
-Subject: Re: [PATCH v2 2/2] dt-bindings: touchscreen: move ar1021.txt to
- trivial-touch.yaml
-Message-ID: <aN2eWrTWsonkchJT@lizhi-Precision-Tower-5810>
-References: <20250926184720.391335-1-Frank.Li@nxp.com>
- <20250926184720.391335-2-Frank.Li@nxp.com>
- <20250930-venomous-tracing-669be2e1163b@spud>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250930-venomous-tracing-669be2e1163b@spud>
-X-ClientProxiedBy: BYAPR21CA0007.namprd21.prod.outlook.com
- (2603:10b6:a03:114::17) To AS4PR04MB9621.eurprd04.prod.outlook.com
- (2603:10a6:20b:4ff::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 504C824678F
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 22:00:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759356025; cv=none; b=Y+017lDYZDWs+mu1DbnWOHftC2R6rCxkZwidrnHtRGg+1m6PUSN52845fPuE7rSL2F4ww3xFEWZZdrs4jQ7dc6GF13vXHgLa6xuNQcJPKMAfAGHqZGNsv9Dml851Q29jz3aJGdM11Y2uve8Uamwo9WB3sNqDz0tK8ZwFuozd8HU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759356025; c=relaxed/simple;
+	bh=3SL8gHgb2F2B2yMJ3Cg/CJbBBzaA4S3zZaf05zamQ8g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iF7sCXx9Wu3f0nK1+B6qaTZgWTijra3AI/8YoNEcQvkwG6Dnd4vP0ebXVezNPYH0gLlZTt+vzw9CUYXEcTggEJ5LW56DwK0AF+weax8Ixe5UpezSp36nnXBC9fLvih49GMRil2uyz0rborgzjQfOwId1vAKFhVDlhPAepuoL8JU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CgHtWHf4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 591Ic7mB000852
+	for <devicetree@vger.kernel.org>; Wed, 1 Oct 2025 22:00:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tahmT1PTe+yL6IlloLfwZS8CDuOsIe0H/cgXQSKTibY=; b=CgHtWHf4QYacRtFJ
+	F55IPjX3GrlHxD9+Uk2GBUIWvPe04OJTlGfiOBLVizXpsvXq2htqbPQIxYB8YQLL
+	I+01S/mg2sXAa7/wg/4t8NA1nGxdG62QHOoKkse6x6Fc6nEtSHHPlQS7oP9XGNEQ
+	spwVW+ry0HYHyHGtE4p2L0xIEesd0dmOmoH1MT6P0CQiriUpb2bo203GkdzY8M+h
+	sh3Qxv/guKzd1GbQTBAaAtVwZnZ4aM1aUA/n9MusX7I2H5bskLKK0Bblg2LS9ikR
+	6Q/OUmO0yWuWb97dyyT/wmVpFnYercQ1EuTL/FI+7W/GaDtETryK2nr8/q7OlOqG
+	Z4+Ulg==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e6x5x3s8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 22:00:22 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-78038ed99d9so509662b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 15:00:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759356016; x=1759960816;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tahmT1PTe+yL6IlloLfwZS8CDuOsIe0H/cgXQSKTibY=;
+        b=nDaY/uKsUFpDlYuY45pCxFNRJpfLHfPq2iLdIQAdRbW6xS9l8zJItE2fYYrkUi1aqI
+         euf4PrK0+RVaDffxi98GXu22meCGSF9kkKBi5Db05nEnKaRN7avFON/OHniOgVczJL5a
+         iuwSvkvbFXkGKhvH+CXl2OhAH2pN3T1dP3LW8RUiG/JlEkH2vzmn6y+zmCvzac0JDWm9
+         1cRptqBE4uavsoIo48DuvNsm4pAEWgJIMC6PJlWZkOAh669C0HSzxcU5jduFoTiUyMxN
+         VCFQy87CS0Kj5AKzYy96w2jbzux24XPbHuipD5XVxZN+mdHoKu7hDbNYFnobDx8FDArW
+         wIhg==
+X-Forwarded-Encrypted: i=1; AJvYcCXhwM0Zx94tVjBQnPA5x+u/MiViKmHMDU5lLoJ1DUj9ZEQj01mdV4UTBiipvYC0YUydM5OaGDrm58rL@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPxEapxkLtkP6NbPafPEBvgidoZ4VP4Vq2viSBeN/3YZjBg3UL
+	VXE5oTiiSCC138SrifNjoLEeXWgqwAR2lw+8PAnxLdluHq6ONh4UrMoRARIdys94B+jbhm2JCEv
+	X1sacKwRBIVw8tz1NePlLubTz8rmeTJGqkmo9P1LnRyRgj6r7v0I2JJzm6AW+XRKs
+X-Gm-Gg: ASbGnct/NIiQAfLC4hm6/sb7AjtUzmV6cHXKorObkE9H9EMYSSIP1j9jV51QaCfBmM5
+	wR1gGZXaIcd2wfsnd7ENOG8ijtAaJyCOvd+HakT+6nNC203ed/sR50y2nu0mPfGcSQC/i3QHkly
+	SkcK6nhWh8Phs0ifWPUXqHnxOqmg7nx/dUBr54LMO3PVqgvE/vimMUqBHNCrjvXb060+vbFTM0I
+	NYbAKuPADD8qzMxi7AtnzJz3SVmG/mFdWVYoYtElo2t8gOsTYyyqRTvpsE1GPMTEcX3SxSuv6z2
+	N+g8Yot7uxhKOWURVHAV3wbhT++kElnXlRlXOowHsu7erL8BHR3aW6U3eQnGIf5tQG0=
+X-Received: by 2002:a05:6a00:98c:b0:781:b23:6b7e with SMTP id d2e1a72fcca58-78af41efa31mr5716885b3a.15.1759356015492;
+        Wed, 01 Oct 2025 15:00:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHifSlan3h5RBjjCLPaJeaE4EOWmKdwWuMjDg/ZbUeJT6bjRGbcINV4nFTXqWDsiHfMn8qoQA==
+X-Received: by 2002:a05:6a00:98c:b0:781:b23:6b7e with SMTP id d2e1a72fcca58-78af41efa31mr5716824b3a.15.1759356014792;
+        Wed, 01 Oct 2025 15:00:14 -0700 (PDT)
+Received: from [192.168.1.9] ([117.244.71.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78b020938b1sm636738b3a.83.2025.10.01.15.00.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Oct 2025 15:00:14 -0700 (PDT)
+Message-ID: <26e29a80-df70-4ffb-9cc0-8b1ab74873ce@oss.qualcomm.com>
+Date: Thu, 2 Oct 2025 03:30:04 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS4PR04MB9621:EE_|VI1PR04MB6829:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5cd9d85f-dc5e-4e0f-8f7b-08de01324bbd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|19092799006|52116014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?F5uQt/mIKL91ZhlQ9YkWSHZWRv/ebguEHDxSwCK6qixogEMaU41+2VOXp5Y6?=
- =?us-ascii?Q?nW7iYXnLnnIzftw+5NHXVblZL+NLny3SZNnPswZgmFMnys0Xgc+wl4td7SIk?=
- =?us-ascii?Q?J1SguRosMvg4ieMD4b0nnf0UGhL/Hl9hfQGoRj0/WD79hUGRkD8jilgfF51j?=
- =?us-ascii?Q?CkoCZDQjwOuOI8OMFzaRZW9Zq7EER1mRM5wngNXqcWmdMbEayAYkoHxjBDU3?=
- =?us-ascii?Q?NOA0aGW7DQRr48/QrxH+N6CFnj2nEVyThB/PwcoEQZkGNhPm33LetYqIZtxG?=
- =?us-ascii?Q?EXUSmRoY4wOHuvxZDtTZxwSAnc9frt2zhuXuU1OeL17jKTbSr2lJ91g/U352?=
- =?us-ascii?Q?l+wgfaY/6leeU48GE1dfcdpozrMaC7Z54pvBhPhkWLMDbdA2YiVfJAi1uB8v?=
- =?us-ascii?Q?n83P+1ekZ6lLtwLC/SRXyRXj4vfnlTzK94A5WTc7d6hRazArzmXq8BmpujDa?=
- =?us-ascii?Q?sXXtubNAe2uOTu5ssFbDxB8+W4PobSywQzLsLxjyH7gyX+vL1dNrzlDqib9z?=
- =?us-ascii?Q?Zvp7dw4Dv2i8dBCj4XP9MrexPfTqu/9BCXyn0+w3E2oSt2BfIHmaG3QH0b4X?=
- =?us-ascii?Q?Cep9JGAyS4dAjDvaGL2njYDjEoqeqhhu4fH9BEaesUQAENTZqoaJiYZjkHK9?=
- =?us-ascii?Q?tRkz20QUF4oLwGiZyDt1CGsBsomOsV+RRnOv+8hAwxEwXZ8o1ev5F95WWUDl?=
- =?us-ascii?Q?AvCxnaG1rLcIivNbzSDGZcrEQZb2vxqDfPENKTq2/FHWD7WVDwp+URVbH21z?=
- =?us-ascii?Q?Y1wkQHJaTcvnYvQkoI48VvhLNWJ+R6Pv1CvDjZ0K22sscC3IRGy9hBRWUMwk?=
- =?us-ascii?Q?QmEB3mgCfk1dr/YoBFhpjYsH7jJykYtp2U57b/NkCvsPYzFNfbUPiUAU+i9S?=
- =?us-ascii?Q?K20RaTGSflstYEaFIF14bp6baHYW5Kq7MiZfkalstYvlf4Tf8CXOOhr+n0s4?=
- =?us-ascii?Q?9hRu0zWjKACP83l8gM6hvwI1IJW+U2CZxmgzcFAyWOts1qgGY/K9TWg8zt1U?=
- =?us-ascii?Q?OrfJ6LKNnJ2GBFsTQhubNP3tXJLjtFQO3GZBTJ+8n8ACrsgkH1DrJyOm9EIP?=
- =?us-ascii?Q?jd9Of7WgZsMsepFgco1owfnyupwNykeNADFrtUpC5uzq1H8f0icjCz2IaQg2?=
- =?us-ascii?Q?guqsza0zSiYHhwQ7kxQvMU6185jNlU57FobINCj65YaPUfxrstC9FQerihPH?=
- =?us-ascii?Q?BlVoGPCeXFs4F1wGBepGsK+ovRBSa7hscQLZ3wl235ECE+NZMP7hOkzDwVfl?=
- =?us-ascii?Q?2+UqS0J7yG25KpxqsMsCDVbl82Wt3/UvQnlkvoFeBQ+gyDpco1Z90/tV+wvU?=
- =?us-ascii?Q?yRiNJj+2Qj5PNDn6tkjt2kgsJWzMqYtUj4BCMO7FQ2nxsKkNAsnR7q5nXKRi?=
- =?us-ascii?Q?X6pVOKdGWs1Jo50+O4BrqqCFV3h8frhE0Sj+ndxASHbg9yRO6aGKNfMEOAzU?=
- =?us-ascii?Q?yCXKK6yIHvrs3N6FeT866J6fZzSEqjMtCBRqkWPzEIyw42xglylNwfM30v3J?=
- =?us-ascii?Q?eIBlIsq2n0M8cbLLfLWptFgWTtT4eYvMvlbE?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9621.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(19092799006)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?gVd0LgGWzk5zPOpmo+ZerB09XwPYJQbZFZa6qxdYTS7MW3rrzDdXN7Hlqa9X?=
- =?us-ascii?Q?FFKGqbvuVuyl+2XpVbYI2GWVI06qaaAaMtZCYKGeiw7S8fCxRd7P2ercxK35?=
- =?us-ascii?Q?LNvY3tHPiKd4U+7P36QzGFFaEQMIwnNZbGGUQQ1gxh8BtfP6qLALb+IbOqWM?=
- =?us-ascii?Q?Xe8p/IbmgfKkZlK5RSZq2bxex/etiScoj8THLe2x+NAWY/6ArnYrp2GffIXr?=
- =?us-ascii?Q?tmi8Ll8nk0e07tWTspXGq78PQULUx3eZE2OMJR6AG/P2fl2XhWtQbWpWgaj1?=
- =?us-ascii?Q?T/Kn7M5BrkkBhwG+1uEpC5QAyS0+qW1xTbY0cehgIDAbrPxFwGdKSLyONXkc?=
- =?us-ascii?Q?WJoA06kJXhcaS+f0gMiSSfNFUhOc74nkf26AJGCxmZGdWlsnsFPr2zLCY+Uk?=
- =?us-ascii?Q?ETW+cO3qwAPqgFoGiFZHJUdpfDnBITZ+6fbitOg/hBaMTg8jdt2jwCZzHQFC?=
- =?us-ascii?Q?9kIofzrpeMbBZQyLI4I2F+qGvcXiso7F/QOMls/fvZwFKQeKJ94myss79jd7?=
- =?us-ascii?Q?SWPG9/etsZmLrXflWuEn+MkfoflIJIldM/Mrb/QwVKGW2cvAo+W+ung3homT?=
- =?us-ascii?Q?CbFtn8dJnd6Zo02ebVU26yqYH5ORnI9MpPgaOUg04JbMAeHJt0ELK8RXJovd?=
- =?us-ascii?Q?C2bZkTcw5d7VhFUNuMtjZW5eVgjx3rF3Ajx4u2NIFZuBDlvtAjwIoMtk4OcJ?=
- =?us-ascii?Q?OU6hfu0jMd/oSP/K+M6AfFC5gOgcYGkGbYgJHOhFWu/0WkxWPJmlw6Abl1Oo?=
- =?us-ascii?Q?m/bTnXTwIEJCG0pkWDRRFDuYSciznjOLEoEWRBniy1b8EmthFAJYIA1/3wFF?=
- =?us-ascii?Q?kNBFSHkF92xcjZNDPVG44MJtSyb2rvlXuy/8JZy+GtOIyYQxxBnrQm2QJfJC?=
- =?us-ascii?Q?nGbfhwwBJeQ06QyJw1Csm8oT7Wwf1oQs3pxOLU4YUgMskR2DdBSshesEtf2R?=
- =?us-ascii?Q?pv0TArlcHnGiOYnW5k+PxAX6dUEkXfXsG1UyZtmEDS0rbd7psscfUeTXqpY8?=
- =?us-ascii?Q?q1MSM38Xd9ZzxURWDCzBVVvqnnBwYrXu3sFYVjRiy7/nxtf1gfcAXkuao+VC?=
- =?us-ascii?Q?H1LO8uYUws99nPGIMETCdJX/hDrHOITxXowM8+/q6SKi+tGTrkNfrpiPsZLq?=
- =?us-ascii?Q?s7+ppM5znIjBw/Ru5JEnnUzvLIur26mGGo9tgnJIYqGzLKs3ckIN8wcMPwgb?=
- =?us-ascii?Q?Oim/4srgj6MoYJiJ1Hb1WB6MOIVGy3OP1ZmNMt7siA5zTzkGhcbDl6CY0fOD?=
- =?us-ascii?Q?Lr2mqduCF9spSRdMkScCr/BCltpwxlEeUKYYjGw5WsgMi3iHKJ+ubbflLkEa?=
- =?us-ascii?Q?WTesJ0UYP6RX8VKO2M6tt2ahRNsIaBEk2aaa/jhbXSB4b+YCaN4goYw3h0Op?=
- =?us-ascii?Q?LOxq0GOxmTOYP9pdwFS5VFwFTec+l7JQeRVVHV4EKtC8NCJ+R5UgBLJmghYn?=
- =?us-ascii?Q?HZUVAQQxKSFYoSpU7THgK1mLf4J91FMr603rnC/3ucjlQ/tlpAjqZrRdsMPb?=
- =?us-ascii?Q?DZ96BXei7C7ry2AaCdyWwvUOSt33vnUMQnqrHrHMoIpMPAr/XwGcLr/96wqu?=
- =?us-ascii?Q?lcVIOT/V6KWVX/p0C3LviA1vxoS/a/vDbqMw4FYG?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5cd9d85f-dc5e-4e0f-8f7b-08de01324bbd
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9621.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2025 21:34:26.7825
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: dJlDWZiZQAY92UQTYk1Lz/NwuSbQRZ7dRBo73SeZo2N/Fgke3fhYuRlsetZUkwahEgw2VC/NUDW/jMgNYCVesg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6829
+User-Agent: Betterbird (Windows)
+Subject: Re: [PATCH 13/17] drm/msm/adreno: Support AQE engine
+To: rob.clark@oss.qualcomm.com
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar
+ <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse
+ <jordan@cosmicpenguin.net>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev, devicetree@vger.kernel.org
+References: <20250930-kaana-gpu-support-v1-0-73530b0700ed@oss.qualcomm.com>
+ <20250930-kaana-gpu-support-v1-13-73530b0700ed@oss.qualcomm.com>
+ <CACSVV01UygpiUj0m_Ppd_LSxvW0MFunz+Lfhg20XHR7vyOBx7w@mail.gmail.com>
+From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <CACSVV01UygpiUj0m_Ppd_LSxvW0MFunz+Lfhg20XHR7vyOBx7w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: qr4x5oUe5fFelJvuuZd8Yyb0p4rSelqv
+X-Proofpoint-ORIG-GUID: qr4x5oUe5fFelJvuuZd8Yyb0p4rSelqv
+X-Authority-Analysis: v=2.4 cv=ZtPg6t7G c=1 sm=1 tr=0 ts=68dda476 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=2kejHg7nZSoTgEpwAwsXNQ==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=neJfBgYAGg7YAZYFY1IA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAxOCBTYWx0ZWRfX94F1KOzWqzHf
+ x5j+fqYiDQIjG6S5ut7a5NCFxebXcG1lzN8rxLX64NZ0rBXOdFjLQrXgcz0NVhbPoo7xidQjaER
+ I+k0JseMaENesWqy8uOEU9daAxNdPrxzeWhDn4gIkxq+uQrKxGU7CAITUyFNIhqppHufx2ya1dH
+ LgJx2M8tEi01LQgIyqxODNVr6p1C/b4+excMLIEhBaRvTgBZOpuwyeAQZAkfkR0MBNp0gR7nVL9
+ 8eWW/2/+PBgPu1NqF3bG+EHMJWupr/1pxzl8PaazF8fBwFXFu8mVA7Oosw34Gu69afBkwBzXgMg
+ BTYkx80MuseCSPGNggTVbmrVAfUDQJUN0aoUOt6zuBp7LdDWuHqWagQL6sFLBdREvtVwH9bgSYV
+ nXpt6SW4rhbC+twPhujG6v1ATDRD4Q==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-01_06,2025-09-29_04,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 priorityscore=1501 malwarescore=0 bulkscore=0
+ suspectscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270018
 
-On Tue, Sep 30, 2025 at 08:05:56PM +0100, Conor Dooley wrote:
-> On Fri, Sep 26, 2025 at 02:47:12PM -0400, Frank Li wrote:
-> > ar1021 have only reg and interrupts property beside touch common
-> > properties. So move context of ar1021.txt into trivial-touch.yaml.
-> >
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> > change in v2
-> >  move to trivial-touch.yaml
-> >
-> > previous discussion
-> >     https://lore.kernel.org/imx/20250925-swimming-overspend-ddf7ab4a252c@spud/T/#t
->
-> You mentioned there were a load of other devices using just these 3
-> properties. Do you intend moving those too?
 
-I go through other yaml, I have not found more. But there are somes, which
-have one additonal properties reset-gpios.
 
-If add 'reset-gpios' as optional property here, I can move more these into
-this files. But I am not sure if it is good idea to lose restriction or
-use if branch in trivial-touch.yaml.
+On 9/30/2025 1:57 PM, Rob Clark wrote:
+> On Mon, Sep 29, 2025 at 10:51 PM Akhil P Oommen
+> <akhilpo@oss.qualcomm.com> wrote:
+>>
+>> AQE (Applicaton Qrisc Engine) is a dedicated core inside CP which aides
+>> in Raytracing related workloads. Add support for loading the AQE firmware
+>> and initialize the necessary registers.
+>>
+>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>> ---
+>>   drivers/gpu/drm/msm/adreno/a6xx_gpu.c   | 24 ++++++++++++++++++++++++
+>>   drivers/gpu/drm/msm/adreno/a6xx_gpu.h   |  2 ++
+>>   drivers/gpu/drm/msm/adreno/a8xx_gpu.c   |  3 +++
+>>   drivers/gpu/drm/msm/adreno/adreno_gpu.h |  1 +
+>>   4 files changed, 30 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+>> index 4aeeaceb1fb30a9d68ac636c14249e3853ef73ac..07ac5be9d0bccf4d2345eb76b08851a94187e861 100644
+>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
+>> @@ -1093,6 +1093,30 @@ static int a6xx_ucode_load(struct msm_gpu *gpu)
+>>                  }
+>>          }
+>>
+>> +       if (!a6xx_gpu->aqe_bo && adreno_gpu->fw[ADRENO_FW_AQE]) {
+>> +               a6xx_gpu->aqe_bo = adreno_fw_create_bo(gpu,
+>> +                       adreno_gpu->fw[ADRENO_FW_AQE], &a6xx_gpu->aqe_iova);
+>> +
+>> +               if (IS_ERR(a6xx_gpu->aqe_bo)) {
+>> +                       int ret = PTR_ERR(a6xx_gpu->aqe_bo);
+>> +
+>> +                       a6xx_gpu->aqe_bo = NULL;
+>> +                       DRM_DEV_ERROR(&gpu->pdev->dev,
+>> +                               "Could not allocate AQE ucode: %d\n", ret);
+>> +
+>> +                       return ret;
+>> +               }
+>> +
+>> +               msm_gem_object_set_name(a6xx_gpu->aqe_bo, "aqefw");
+>> +               if (!a6xx_ucode_check_version(a6xx_gpu, a6xx_gpu->aqe_bo)) {
+> 
+> a6xx_ucode_check_version() doesn't do anything for aqe fw (but also
+> a6xx_ucode_check_version() should probably bail early for a8xx at this
+> point?)
+> 
+> OTOH if over time we keep growing the version checks, we might need to
+> re-think how a6xx_ucode_check_version() works.  But that is not a now
+> problem.
 
-In other trivial-*.yaml, there are one reset-gpios and one power-supply.
+Copy-paste miss. We can remove a6xx_ucode_check_version() until there 
+are some security or any other major fixes in AQE firmware.
 
-Frank
->
-> > ---
-> >  .../bindings/input/touchscreen/ar1021.txt         | 15 ---------------
-> >  .../bindings/input/touchscreen/trivial-touch.yaml |  2 ++
-> >  2 files changed, 2 insertions(+), 15 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/ar1021.txt
-> >
-> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/ar1021.txt b/Documentation/devicetree/bindings/input/touchscreen/ar1021.txt
-> > deleted file mode 100644
-> > index 82019bd6094ee..0000000000000
-> > --- a/Documentation/devicetree/bindings/input/touchscreen/ar1021.txt
-> > +++ /dev/null
-> > @@ -1,15 +0,0 @@
-> > -* Microchip AR1020 and AR1021 touchscreen interface (I2C)
-> > -
-> > -Required properties:
-> > -- compatible		: "microchip,ar1021-i2c"
-> > -- reg			: I2C slave address
-> > -- interrupts		: touch controller interrupt
-> > -
-> > -Example:
-> > -
-> > -	touchscreen@4d {
-> > -		compatible = "microchip,ar1021-i2c";
-> > -		reg = <0x4d>;
-> > -		interrupt-parent = <&gpio3>;
-> > -		interrupts = <11 IRQ_TYPE_LEVEL_HIGH>;
-> > -	};
-> > diff --git a/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml b/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
-> > index c393cce273c5b..d6aed3afd4acb 100644
-> > --- a/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
-> > +++ b/Documentation/devicetree/bindings/input/touchscreen/trivial-touch.yaml
-> > @@ -14,6 +14,8 @@ properties:
-> >      enum:
-> >        # MAXI MAX11801 Resistive touch screen controller with i2c interface
-> >        - maxim,max11801
-> > +      # Microchip AR1020 and AR1021 touchscreen interface (I2C)
-> > +      - microchip,ar1021-i2c
-> >
-> >    reg:
-> >      maxItems: 1
-> > --
-> > 2.34.1
-> >
+-Akhil.
 
+> 
+> BR,
+> -R
+> 
+>> +                       msm_gem_unpin_iova(a6xx_gpu->aqe_bo, gpu->vm);
+>> +                       drm_gem_object_put(a6xx_gpu->aqe_bo);
+>> +
+>> +                       a6xx_gpu->aqe_bo = NULL;
+>> +                       return -EPERM;
+>> +               }
+>> +       }
+>> +
+>>          /*
+>>           * Expanded APRIV and targets that support WHERE_AM_I both need a
+>>           * privileged buffer to store the RPTR shadow
+>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+>> index 18300b12bf2a8bcd5601797df0fcc7afa8943863..a6ef8381abe5dd3eb202a645bb87a3bc352df047 100644
+>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+>> @@ -58,6 +58,8 @@ struct a6xx_gpu {
+>>
+>>          struct drm_gem_object *sqe_bo;
+>>          uint64_t sqe_iova;
+>> +       struct drm_gem_object *aqe_bo;
+>> +       uint64_t aqe_iova;
+>>
+>>          struct msm_ringbuffer *cur_ring;
+>>          struct msm_ringbuffer *next_ring;
+>> diff --git a/drivers/gpu/drm/msm/adreno/a8xx_gpu.c b/drivers/gpu/drm/msm/adreno/a8xx_gpu.c
+>> index 6a64b1f96d730a46301545c52a83d62dddc6c2ff..9a09ce37687aba2f720637ec3845a25d72d2fff7 100644
+>> --- a/drivers/gpu/drm/msm/adreno/a8xx_gpu.c
+>> +++ b/drivers/gpu/drm/msm/adreno/a8xx_gpu.c
+>> @@ -599,6 +599,9 @@ static int hw_init(struct msm_gpu *gpu)
+>>                  goto out;
+>>
+>>          gpu_write64(gpu, REG_A8XX_CP_SQE_INSTR_BASE, a6xx_gpu->sqe_iova);
+>> +       if (a6xx_gpu->aqe_iova)
+>> +               gpu_write64(gpu, REG_A8XX_CP_AQE_INSTR_BASE_0, a6xx_gpu->aqe_iova);
+>> +
+>>          /* Set the ringbuffer address */
+>>          gpu_write64(gpu, REG_A6XX_CP_RB_BASE, gpu->rb[0]->iova);
+>>          gpu_write(gpu, REG_A6XX_CP_RB_CNTL, MSM_GPU_RB_CNTL_DEFAULT);
+>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>> index 6a2157f31122ba0c2f2a7005c98e3e4f1ada6acc..3de3a2cda7a1b9e6d4c32075afaadc6604e74b15 100644
+>> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>> @@ -27,6 +27,7 @@ enum {
+>>          ADRENO_FW_PFP = 1,
+>>          ADRENO_FW_GMU = 1, /* a6xx */
+>>          ADRENO_FW_GPMU = 2,
+>> +       ADRENO_FW_AQE = 3,
+>>          ADRENO_FW_MAX,
+>>   };
+>>
+>>
+>> --
+>> 2.51.0
+>>
 
 
