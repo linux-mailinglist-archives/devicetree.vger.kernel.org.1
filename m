@@ -1,115 +1,184 @@
-Return-Path: <devicetree+bounces-223162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223163-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7486BB1C89
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 23:11:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 231DBBB1CC3
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 23:22:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F6241892558
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 21:11:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D19FE3B004F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 21:22:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF8A130C600;
-	Wed,  1 Oct 2025 21:11:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D48C2F0692;
+	Wed,  1 Oct 2025 21:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="vsa7/HwA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="AEoBOZbY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14C5A1EDA0E;
-	Wed,  1 Oct 2025 21:11:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C45C2D3EF1
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 21:22:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759353077; cv=none; b=SGTrbebCbZdaVwlZY5YYkMusKvZBoRQS7EfOPpTkPT566yAtmB/BSrC5fKjofTZQO7OViQObnhQ2GOlRUClt6BsA5FU/T7RdxigNNIc3/H9CD+PVCBHMeyWxvvbfDZyzHjTokAtDvzrgvnRxfMHML74bz2HcOIV7kqjTmCme4Cs=
+	t=1759353768; cv=none; b=N4zLHu+/roFzniFZCzY2TcN9f6PVU3QndpVDCROFvN+wajNvUXuhffPXJXmVX4p+NhWfNNrdD1Eea7pEHcvHBOtX/rXGIX5YHaFH+GXJAa9lRP9iF8AoTZfiTyRWl3nf+fhiPwIJP0PjkDL/UaIoJkQxzZdm8Ofo4OQZmhKunbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759353077; c=relaxed/simple;
-	bh=DtQDevFoSt04iSsMW/iJhc0ExZPMJSGfdtsTL4hnWOY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=le8LmyekMULXBNulCUwIGvU8Hqq1dIFkTMr9Csnum6dIwjRwPRrttp2uqT11Ap0/e5GBDhBBCOyVrfS9oIgJ3ICzlXjkEhi0T1Di/iZ6k7U0JxElWpaXVgxFFJB90ZNjQH7Hq3ObyTMV3fA6+vn8OEtnC3eoq0cA9zCbDYOrQd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=vsa7/HwA; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 6FA4C316;
-	Wed,  1 Oct 2025 23:09:43 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1759352983;
-	bh=DtQDevFoSt04iSsMW/iJhc0ExZPMJSGfdtsTL4hnWOY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vsa7/HwAqyl5xjRWRovRZUTnpIz4rheVZUUzl5odP7t9SMgtVDSKYSfBZvHhmvyTA
-	 Lk387NRoE5RNrEjJQEmCq7VP8171inACQ8JiqcYxmKbB4MQO+UvM/VxMZgsRScohl3
-	 bQTuTUwHr04VlbyB3zxqhjl8jnrno76krLqRRxIc=
-Date: Thu, 2 Oct 2025 00:11:07 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Jonas Rebmann <jre@pengutronix.de>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, netdev@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>, linux-sound@vger.kernel.org,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, Frank Li <Frank.Li@nxp.com>,
-	imx@lists.linux.dev, Vladimir Oltean <olteanv@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
-	David Jander <david@protonic.nl>,
-	Lucas Stach <l.stach@pengutronix.de>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH v3 0/3] Mainline Protonic PRT8ML board
-Message-ID: <20251001211107.GC25098@pendragon.ideasonboard.com>
-References: <20250924-imx8mp-prt8ml-v3-0-f498d7f71a94@pengutronix.de>
- <175876283065.3268812.10851892974485151512.robh@kernel.org>
- <3a0ba202-23e5-41d1-8b0c-5501a6d73bb4@pengutronix.de>
+	s=arc-20240116; t=1759353768; c=relaxed/simple;
+	bh=0feXbIiv5jZYhNGUawVlPDaLEDims5YKYfHLChZrH+Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=knfs/+WdFh2zFYWZ1Ixxuk8KHWc1pLXKDGfDN++KGbPv1ZnJuX5UJ1yvwLlTLE6VuaGWt+SVXqaPwFPh+k7asma/p8wbN7UC7RVOIJ555Bt/PlWevf4KtHWtHtMIwNVUA4u9mXhH5sGWALSRPf1h4yBSmOnIheUDrNpCHPgkqbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=AEoBOZbY; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 591Icxf2021211
+	for <devicetree@vger.kernel.org>; Wed, 1 Oct 2025 21:22:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	tY1kk2Q5hRz9w3+RRK/dSbVzsoNAtpTZ1wIZRGTLaPE=; b=AEoBOZbY5dwHsaEu
+	nCz2fNZKcAZfaYdo5d5ulPVRFWJ8zMZ7Mi2+jxZ1vA7pKIwX64LOdeMVvEmiD8rr
+	sIDuv9xRcIAN69afsfe63q4APcIO2rPZE4ANruDmLiGkhcnlLxQlv0q5guwKKpdT
+	8E/5BjiSkPiIHgQSXaWF5esBN9iECy0OktYe35tQKHWp+spFR2VCg2UuIy0DOYHJ
+	lg6D0+O5lQ8xw2yAfFk6mov6NbrGiJxdlmEvUy9Vth2d2s8r+3W6cZf4dZndVJuY
+	lZdnaPHFWzfCQzJe/5uh48ZM9lA1XK4aWdq70vaLqAlFNBPOF9UaA/2fqIiNCT+p
+	+1Hnvg==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49gyu1a78f-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 21:22:45 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-33274f8ff7cso555051a91.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 14:22:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759353765; x=1759958565;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tY1kk2Q5hRz9w3+RRK/dSbVzsoNAtpTZ1wIZRGTLaPE=;
+        b=m+m1OQC1Y+xO86V2qHXt+/pxzkatYPZ1WUAsgRexr6JHTMglQVSjJK1WNZZtWv9in8
+         7KuX7PeccYdt6g8BSDnZmYX3UCi4fnYAjZGNT56lgtQ79Bm7obr8x+5JT0r3MFf/r2WB
+         6KzX5jaiVrjv+ePDvNNrcUp55sy7Bq3zreDEugXPh0uaRhawqWiR4ZDjE9ivld7/2Wyg
+         vx5ZQu2QHGWHmsXZSdVOYQ0URg0jLgcctr9S3ry4j3R+f+jfQrlzRzz8tdzGkiY+UG1b
+         q1dVUdee0UU95fNBgjq18fCuDSO8E0d+vHdVA5ay8q5s0M/Pf+NXvYh6fKa1kYAdW8yi
+         2WjA==
+X-Forwarded-Encrypted: i=1; AJvYcCUZcwuBlCQHIct9JCFcp5U2Pk6M5r+cLRoKJX61tl/SlmooHIQu2lOL8/88s9tFm4voE662JTvHI3Jw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0cFayF9bh9NTv+oGry6r2o+Klaz0rWsjKGq7MjMniAkHSbHMh
+	8Dge8sevX/zTE4586bVIvY2pMUn3Z4LQDGQ3vmnNEIc64GngzH45Qc+EWSTOg02UByCc0ksbUNR
+	HKwU9nPe23XUrqtrxOYGE7uGq0/uxvzzmplnW7gsSD9M8BLDYhk/EfC+u/V4q4b1P
+X-Gm-Gg: ASbGncsl4QIzoXriilttLKda2+TWeYcAM9rGvUqNFnVHxbNCOktD55TvxfxaWPZ1GSz
+	JKreb6EDf9kVoQ9c4fJ8NDByJvp+J63tJWKFxtwn/5b+wGXeM2UA1Mr8U8IIcRZGtjVcoumOZZj
+	t41IIB77ch8giu+KjXwxsX+bU5KBDzK+SE0j3Pvm64aTfDoCe9UV5fLILTjBbAuf1uqqw68kZxY
+	iLfrRWYQPmpTGDkr5Jxhfd/jlBLT9vX7rtYWLWwurvFEwRYGZ6LlajwtgfA9IC2Zr2bkxawMqW7
+	22CAo2DghE/2e+W1/LCGnwrFvKpvJtR2QDGywKaNAkYSE6dcxDTErGbbQOTZ9lbu11Q=
+X-Received: by 2002:a17:90b:3143:b0:338:26e3:ffb6 with SMTP id 98e67ed59e1d1-339a6f5329fmr5484031a91.26.1759353764850;
+        Wed, 01 Oct 2025 14:22:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE3J5m7IdAEVQ8YgjK8xPIMo/mwc0iZ4ZB/L76eAW/owdYw7sgKWjOIFg1cMlAzuYnR+gwPtg==
+X-Received: by 2002:a17:90b:3143:b0:338:26e3:ffb6 with SMTP id 98e67ed59e1d1-339a6f5329fmr5484006a91.26.1759353764421;
+        Wed, 01 Oct 2025 14:22:44 -0700 (PDT)
+Received: from [192.168.1.9] ([117.244.71.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-339b4f3caf9sm623334a91.13.2025.10.01.14.22.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Oct 2025 14:22:44 -0700 (PDT)
+Message-ID: <edb8b0dd-126b-4ed6-8603-119f1fd52baf@oss.qualcomm.com>
+Date: Thu, 2 Oct 2025 02:52:35 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <3a0ba202-23e5-41d1-8b0c-5501a6d73bb4@pengutronix.de>
+User-Agent: Betterbird (Windows)
+Subject: Re: [PATCH 10/17] drm/msm/a6xx: Rebase GMU register offsets
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar
+ <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse
+ <jordan@cosmicpenguin.net>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev, devicetree@vger.kernel.org
+References: <20250930-kaana-gpu-support-v1-0-73530b0700ed@oss.qualcomm.com>
+ <20250930-kaana-gpu-support-v1-10-73530b0700ed@oss.qualcomm.com>
+ <s4no2wy3yskk6l6igtx7h4vopaupc3wkmu7nhpnocv3bbs4hqi@uhie6j7xr2pt>
+From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <s4no2wy3yskk6l6igtx7h4vopaupc3wkmu7nhpnocv3bbs4hqi@uhie6j7xr2pt>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=RfGdyltv c=1 sm=1 tr=0 ts=68dd9ba5 cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=2kejHg7nZSoTgEpwAwsXNQ==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=DsFpUOTLdg6Fp_xZM74A:9
+ a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-ORIG-GUID: e3Y7Zm1RX-vA_Z49iX4qYoUEd7LE4vmd
+X-Proofpoint-GUID: e3Y7Zm1RX-vA_Z49iX4qYoUEd7LE4vmd
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDAxMDA1OCBTYWx0ZWRfXz6V/OttLWwgt
+ EhrRtOkPL0HrvKnuMWSxY8pPDlSbw1W1VuxSFaCUEuHeFGGjZrDTNRAnhx5+Tm0/YF0rC2NbAOC
+ fjIqKkBJqxMawWPRDoihzCu3Ruzb555AEnJGg1fMeWaZMs2q6bnvrtViEPIVEYyIEDGAsIGvDBV
+ XiUdn1edVkHZkdPaXo76x8K3ODGMkH8E0l5gvwTrokLS6k6gOV8cKMO4fNr7bn04TjRLjXtJjqL
+ /fsHSrC/0KzALthUJ7DPPaaaJ9ammn0ZSDDn9QNkUIUaNUDzygK6NZc3azwYh1dj07IADxit99x
+ QO95+oTOZGij73Lz69PP5lORlOHJl/Hbn2YmYU1q0ttcBY0y/sbpFSzIGiEuhSr6GYX9Z64+N9W
+ iFqnU/QJrvKV1GNhMBXR0sE1EFpMUA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-01_06,2025-09-29_04,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0
+ priorityscore=1501 suspectscore=0 phishscore=0 bulkscore=0 clxscore=1015
+ spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
+ definitions=main-2510010058
 
-On Thu, Sep 25, 2025 at 05:10:43PM +0200, Jonas Rebmann wrote:
-> Hi,
-> 
-> Regarding the warnings:
-> 
-> On 2025-09-25 03:18, Rob Herring (Arm) wrote:
-> > arch/arm64/boot/dts/freescale/imx8mp-prt8ml.dtb: codec@11 (asahi-kasei,ak4458): '#sound-dai-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> > 	from schema $id: http://devicetree.org/schemas/sound/asahi-kasei,ak4458.yaml#
-> 
-> Updated bindings have already been applied to broonie/sound for-next.
-> 
-> > arch/arm64/boot/dts/freescale/imx8mp-prt8ml.dtb: isp@32e10000 (fsl,imx8mp-isp): 'power-domain-names' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> > 	from schema $id: http://devicetree.org/schemas/media/rockchip-isp1.yaml#
-> > arch/arm64/boot/dts/freescale/imx8mp-prt8ml.dtb: isp@32e10000 (fsl,imx8mp-isp): power-domains: [[77, 6], [77, 1]] is too long
-> > 	from schema $id: http://devicetree.org/schemas/media/rockchip-isp1.yaml#
-> > arch/arm64/boot/dts/freescale/imx8mp-prt8ml.dtb: isp@32e20000 (fsl,imx8mp-isp): 'power-domain-names' does not match any of the regexes: '^pinctrl-[0-9]+$'
-> > 	from schema $id: http://devicetree.org/schemas/media/rockchip-isp1.yaml#
-> > arch/arm64/boot/dts/freescale/imx8mp-prt8ml.dtb: isp@32e20000 (fsl,imx8mp-isp): power-domains: [[77, 6], [77, 4]] is too long
-> > 	from schema $id: http://devicetree.org/schemas/media/rockchip-isp1.yaml#
-> 
-> This is an issue in imx8mp.dtsi, introduced in commit 9c60bc7f10d0
-> ("arm64: dts: imx8mp: Add pclk clock and second power domain for the
-> ISP").
 
-The corresponding changes for the DT bindings have been applied to the
-linux-media tree and included in a pull request for v6.18 ([1]).
 
-https://lore.kernel.org/all/20251001172511.2d0514ec@sal.lan/
+On 9/30/2025 12:53 PM, Dmitry Baryshkov wrote:
+> On Tue, Sep 30, 2025 at 11:18:15AM +0530, Akhil P Oommen wrote:
+>> GMU registers are always at a fixed offset from the GPU base address,
+>> a consistency maintained at least within a given architecture generation.
+>> In A8x family, the base address of the GMU has changed, but the offsets
+>> of the gmu registers remain largely the same. To enable reuse of the gmu
+> 
+> I understand the code, but I think I'd very much prefer to see it in the
+> catalog file (with the note on how to calculate it). Reading resources
+> for two different devices sounds too strange to be nice. This way you
+> can keep the offsets for a6xx / a7xx untouched and just add the non-zero
+> offset for a8xx.
 
--- 
-Regards,
+It is not clear to me whether the concern is about the calculation part 
+or the xml update part.
 
-Laurent Pinchart
+If it is about the former,I think it is okay as we have confidence on 
+the layout of both devices. They are not random platform devices. Also, 
+we may have to do something similar for other gpu/gmu reg ranges too to 
+conveniently collect a full coredump.
+
+-Akhil
+
+> 
+>> code for A8x chipsets, update the gmu register offsets to be relative
+>> to the GPU's base address instead of GMU's.
+>>
+>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>> ---
+>>   drivers/gpu/drm/msm/adreno/a6xx_gmu.c             |  44 +++-
+>>   drivers/gpu/drm/msm/adreno/a6xx_gmu.h             |  20 +-
+>>   drivers/gpu/drm/msm/registers/adreno/a6xx_gmu.xml | 248 +++++++++++-----------
+>>   3 files changed, 172 insertions(+), 140 deletions(-)
+> 
+
 
