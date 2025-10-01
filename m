@@ -1,176 +1,171 @@
-Return-Path: <devicetree+bounces-222952-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222953-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F742BAFBEF
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 10:57:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C99A5BAFC10
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 11:01:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E2BC1922D69
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 08:57:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4411D1920DAF
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 09:02:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9739B2D7DFC;
-	Wed,  1 Oct 2025 08:57:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2B472D8DD1;
+	Wed,  1 Oct 2025 09:01:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fl3B83Zp"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gSs/Fhrr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D07273594A
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 08:57:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9832D7DC3
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 09:01:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759309047; cv=none; b=OQIyOHQBz70y1RmYnVr29rANsTcnIew/FOujYa3g8Eizn70xKB35Rl7uoFZC1AWeSlx5r/I3Hofk2/cvXjUeln9UhUQAs87vU0lmayjkciXgrQo+FaHjnAed4dzK2GTQblcGKl5RAEk/xMXLv+KUDB/rUkL8b0UwlRLOsEbneLo=
+	t=1759309297; cv=none; b=X5RQbJbcPJBeMojIAo+Txn+WjEcGFzaOkDqZllOY98PEFbEcmfs19wWWY6Egvl+/jus0azE76yCBqDVPgNW2Zy7SiSeXAXJ8woxC5G2RoAL4f2jvjKQBDXvTjpJAgpxzFupaZpuCvVGmTcoQyZfKysShmiQhpBA7b5WqGi7QEDI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759309047; c=relaxed/simple;
-	bh=k9SxVIm4/yH7EwdOtG9iVyaWlVa8cX/lDmaADceMdq0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=UDX5MjdLYS1pYfJpzesNxomwqZmEaMe9Zi00vqiFtTx63tK6TfYQCQDvvwvTjxUZLCjf5gvETxEp9ZuiU4azuWu6NuhV1YA5VY9e1Q7aAUiqgD4ybmsI4ta9BGj9RHyFviMoYtsMUaWRAVc4ltOkRp/1CDYxqCEWCcaLRFSMVPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fl3B83Zp; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-279e2554c8fso69969155ad.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 01:57:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759309045; x=1759913845; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=iRXPyeGU3kLEllAg/cKWCvTTzigpysI7ZlcrsfYX+pA=;
-        b=Fl3B83ZpA36Wfy9UWWRH9/6iNewMgD3IT1R8Hf8hiHZ6p4IlxTGG5eXjxMmxjaAfhN
-         u5LI2wHoaJLGRCl7BphnV9Snx4FJIcm/3oq1nRVKV+mLHVrydJ9qVimuyYDs9ZwkL14N
-         IHZ+9q0CA8YXtLRyhMDQowgxZnv/IDID0wZQSYHJgPIHdBB28omUaHkikY0FQg5HcGKl
-         7WlGFvz7568f2T9NEce8agSb0TrmhhKq09sXc+SpcTS4H9dOwzGCtlc3kLrGNo4VjJFa
-         sWId27/W7svdpYIyBkAqhgN9l4XsGYsJxIpz+aD4VNd4TBSlh7kFFPpwjFmJedBGF9i2
-         nt8A==
+	s=arc-20240116; t=1759309297; c=relaxed/simple;
+	bh=dlajLtcAMxSk0NrozjS9CF0M15RGimUH1gNNnAg1huI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cvzMuOMcBrab1ewlJ0BCVEyWBPaiXuQ6pxXW9qQb742xWDpftXGzIcBY7rL9hMBrGHM/HNsudA5pFLNDEEq0yES3j1Ds8r/VqtNwhjAZEqwNiO0lq0o7NC0B7Sc7JEUIusukX0fxuHV6jDwKsfG3oFfyEMX0IIhMBZ7W3ktuL7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gSs/Fhrr; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5918hdau017910
+	for <devicetree@vger.kernel.org>; Wed, 1 Oct 2025 09:01:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	B42pLGH75pGjx/3inm5Dy5xji4vr0c5P39RfvM77Mi8=; b=gSs/FhrrepVTfPfO
+	rrJQv6fw3OGskESs5DXaCijLP+v+YJwoJceHzDSVbZxNhYl8Qgx0qnt3J9BY5o0J
+	OHRfhLiFnuPvxJTy7SurzjzFHD6/9uSlC2HdOY3CT/OyGiHkaXlnc5fhp1LeGbj/
+	0hKdUlGca8b9qnR51NG0tDcpz6WuhKhWEC91YD5uik5UQbONhRiA1mMVPM7hTYaR
+	eELunro5tlhROvAXtKQWfTX8F4P8oapwslYVqD2kaTfXhvQ+XZDQlqqI0mrFwWMB
+	cbexr+CMuZoRe0VvYWSyp3Xkl9tEF+ULTT5Bcgmkd6pZjcruLc74PBUEYsyITJIf
+	5TRBmg==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e93hknh2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 09:01:34 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4ddf2a2d95fso10380431cf.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 02:01:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759309045; x=1759913845;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iRXPyeGU3kLEllAg/cKWCvTTzigpysI7ZlcrsfYX+pA=;
-        b=lzfX5iccR49f4drs2+6JGEpRpKOHmQU492hEs2NbtzFbbDUI5VVAtMYCheWb/EwsrY
-         D6yq/Pc8dqJfdWkE8tTnVRaqiB34HJTXCdRpiHf0sc8B5cV+gOspCyUG+qPny3taN/DN
-         cw9Qo1KkqG4k64f5jybYgudqMn9IuSfPAnompYemzrzqredk9mel4Q5mUdnyTfwkV1ZP
-         9uKm83M5Sb3+fUuZ68S39ZZn+TfSVH9c8RETxTXY3gj/gpAAxXquSzuw75ZORrQnTkbt
-         avbdFF3KFE6OrYe35D6TimWitiZXrfSnbHlausi3ZYyQDFxj+Yg56vhWh+mmhGvMTde4
-         UC3A==
-X-Forwarded-Encrypted: i=1; AJvYcCW9ktR28QsjDHBxXdEui66gN7sX9LVg1CDQCq6TuPl0TXQfDYbjLOUcicNmZGWsOXbzsaEOIyQ8N5Nr@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx07f+VzNRE0ev61cSKzFCbHkwW2Vhl552Ag3buBBY+j7pNdkts
-	Gqkmi8azLRx1nYZuZwD5G45B0wwd/nFxGqSB4LzeYO9i669AB7oBjFyY
-X-Gm-Gg: ASbGncvSPkrjsgiFt99DZ5PJemefGCjvDHRJvc9KU19+iqPqynjVUQWld0+qT+rOeCY
-	4NYonlNY3s5NnaFEyMF8rdUP5Bpxj/HTRdObMSbIZT92MqSiM2sSnbXVZjfYpYOl4xlI7lvjTLk
-	WvkXyjp8YiCr+llMD0K65PEAZssBrdjKKEjx++wSx4ODOwB5uuIxsyXw/qIjA7eqXnl05CEPOr5
-	7OGDJ/widNdNPXli7tbw/6lS6j4m/IjLvR7a4fBNWH9CX8Wy3RB56GatPKihvoAbdJUSYIbJ01b
-	5C5T2O11kn7DTfirFqArfHY29xa+5O9kNqVyP9yKOA5awaX1SMDdjMl9WM119ea/jyyBlDz2a7k
-	2JUuR/gyCCuCa+QasPRHmdZ9zv75TB3SkqrqE6Bh4MUSCw8iufwC25Ra11fJixeR1ui6eRcw+8H
-	NcWIs=
-X-Google-Smtp-Source: AGHT+IG61FIjH34dziMXtOWfv5flwguk/t3Ek5Rl9JJ2mkWhY2/XOOReKC9NTp1ictu/iFlnRBa13A==
-X-Received: by 2002:a17:902:f78a:b0:266:63de:eefc with SMTP id d9443c01a7336-28e7f29382bmr32482615ad.14.1759309045134;
-        Wed, 01 Oct 2025 01:57:25 -0700 (PDT)
-Received: from ti-am64x-sdk.. ([157.50.93.46])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-27ed66d43d4sm182186965ad.16.2025.10.01.01.57.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Oct 2025 01:57:24 -0700 (PDT)
-From: Bhanu Seshu Kumar Valluri <bhanuseshukumar@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: bhanuseshukumar@gmail.com,
-	linux-kernel-mentees@lists.linuxfoundation.org,
-	skhan@linuxfoundation.org,
-	david.hunter.linux@gmail.com
-Subject: [PATCH] of: doc: Fix typo in doc comments.
-Date: Wed,  1 Oct 2025 14:27:16 +0530
-Message-Id: <20251001085716.45361-1-bhanuseshukumar@gmail.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1759309293; x=1759914093;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B42pLGH75pGjx/3inm5Dy5xji4vr0c5P39RfvM77Mi8=;
+        b=AsQ1M2madHljhMQ3NOEKnhdz7uhvl1yDu1GkLMEKXOB00s9q2t1gmTDtBMXx3BHPCM
+         2KCTDjdr9sLHjN6NbqBDsiDyuteGmA9NS0z9Cl6fY6DVOmJwDVfxth7pDRp05jko/GWy
+         N3KlspJTexO4wk5SuX3dlHj3KUIDbJKnWZt7w4f/inacjdwtdr7qhL4zvThl5E3TuaZI
+         56M0zmmMKiEN3JRjqcD1+4YRlQ16s7IaMhtzvILVWsoMdAp4Ebi5jBUttG++6tYL4UeE
+         at9dJsdlKeFXuGXSPLj6LID9Vv78EtDwOy5t/SlvoifHLYb5Kp5K6r8dfivD1WfeSo/o
+         Qi1A==
+X-Forwarded-Encrypted: i=1; AJvYcCXlQhGIBbUD2epixJz98LJ1Rlp1y9j0IYBRjL0vWeUwPU+b6LyJVn7GTJghDKzzZffTQspSQZ1N+c1y@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIx97N8I2LUJPn0It/w7jjoO3LF2NR2kg4YtXEQjERRWlhtFCC
+	tpe4x2sk1dPOB2XZ+LBpX3sys6he4qvxjq0asRbqiSZFNbs0tjbXrCDo0uB1O/QoqBHlsMIHhac
+	stKzYIURSn4/60kh3zUCFgBzL1nHfGKHh6juHK87EhUY12Ryn/FUw7NeBgGEaDTk7
+X-Gm-Gg: ASbGnctwKKreoAkOZUVLOeP10j+INg3BLKDhGhz1gs0YIJhH/z2nDRgHuAuiTnbO3VI
+	PqV8BgPlrVUcMYT/QJgbBODMUmxibF90RFNkhScVBGf5knYPkpKN1wUiJ2ivDMLMQyEqMC2CMhV
+	ASbF8QiYCxgVzqqZXJdrqAnHLJs1lxEjdb81eMVpC80ZaJrAUGqGwmfdjRKQkLJYJAsPyWxcFia
+	Wnir/2EC0diVTo15dDVtu1g/xBeQ9SUQX1syzmTmOOMeCb4rE6nbcb72ChBjOMH7ht3W/s+wS64
+	vQL8RF/ff3A82IEPpCVu7DCMgVrruors1u0sBdoiv9JbZm0I99zbQ522Cvlvutvf6dm9zZyj1hh
+	vbQ1DcJwlN1QUIuADt5cTlj1DVho=
+X-Received: by 2002:a05:622a:11c7:b0:4b7:94ee:4fb2 with SMTP id d75a77b69052e-4e41c54729amr23669151cf.5.1759309293291;
+        Wed, 01 Oct 2025 02:01:33 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFghnDnhD89xfq3NpxumOgiOvGyipA7QKcNPEFFvbSfXFdc2E0wmIKiKI+YIF9fBkkm1d+LAA==
+X-Received: by 2002:a05:622a:11c7:b0:4b7:94ee:4fb2 with SMTP id d75a77b69052e-4e41c54729amr23668841cf.5.1759309292804;
+        Wed, 01 Oct 2025 02:01:32 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63662dc0a3csm3035680a12.48.2025.10.01.02.01.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Oct 2025 02:01:32 -0700 (PDT)
+Message-ID: <57774099-08f1-4ede-b992-19f220bf8059@oss.qualcomm.com>
+Date: Wed, 1 Oct 2025 11:01:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 04/11] arm64: dts: qcom: sdm845-lg-common: Add leds
+To: Paul Sajna <sajattack@postmarketos.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+        Amir Dahan <system64fumo@protonmail.com>,
+        Christopher Brown <crispybrown@gmail.com>
+References: <20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org>
+ <20250928-judyln-dts-v3-4-b14cf9e9a928@postmarketos.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250928-judyln-dts-v3-4-b14cf9e9a928@postmarketos.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDA0MSBTYWx0ZWRfX4FSeSRq2pb9v
+ FnRNmSq1lTVIHlyn2j8A58DaFQwdc/hojkfhNpGsfrT5bFE2oIL4G0RHur/zjURBjdldi6OoVOk
+ JJb6SUJhbRnrvWJ53oi1FNvvGCmaNbMJssqTkJ8u3miFFdWb6FL7P93UkmJiDO3agGNM+QTuKFQ
+ i7wARRBPsYH24Xq4I8og7r1lh9MJu17VYkhHDOrAkSy5q9URgWOWwtzcgbCk+wo1a7JixJ8BopS
+ Vnd38XfJ8DucodqtnHcCSmN+YxDOAr4RsE1mRmuJxCGe6n1tlceNrjyEeaQvOJXawXJmrvIYb0L
+ BRjzDiSjPTpUrOf7XOjDKO0Rhz0pS/NwPc1v+5Atb6imzChulnMNnsFbhn3RDbSHNLEjcyVmXw8
+ pYh6nUJlKWyx++X4hx52NVvPRWIsfw==
+X-Proofpoint-GUID: IoKnwzjdEs0WfzDP1EnLfOlu5x3neKok
+X-Proofpoint-ORIG-GUID: IoKnwzjdEs0WfzDP1EnLfOlu5x3neKok
+X-Authority-Analysis: v=2.4 cv=Rfydyltv c=1 sm=1 tr=0 ts=68dcedee cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=sfOm8-O8AAAA:8 a=Gbw9aFdXAAAA:8
+ a=kAMZL_UcEcdRErClG6YA:9 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
+ a=TvTJqdcANYtsRzA46cdi:22 a=9vIz8raoGPyDa4jBFAYH:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-01_02,2025-09-29_04,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ phishscore=0 priorityscore=1501 bulkscore=0 adultscore=0 lowpriorityscore=0
+ impostorscore=0 clxscore=1015 malwarescore=0 spamscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270041
 
-synthetized => synthesized
-definied => defined
-sucess => success
+On 9/29/25 7:05 AM, Paul Sajna wrote:
+> From: Amir Dahan <system64fumo@protonmail.com>
+> 
+> Add the multicolor status led in the phone's notch
+> 
+> Signed-off-by: Amir Dahan <system64fumo@protonmail.com>
+> Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 28 ++++++++++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> index 4c631df56f262ba9e730f6720abd94d374b14692..2a612922ecf7ce3f8a0734cb1a31a8a81efdb4f2 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
+> @@ -6,6 +6,7 @@
+>   */
+>  
+>  #include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/leds/common.h>
+>  #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>  
+> @@ -504,6 +505,33 @@ &pm8998_resin {
+>  	status = "okay";
+>  };
+>  
+> +&pmi8998_lpg {
+> +	status = "okay";
 
-Signed-off-by: Bhanu Seshu Kumar Valluri <bhanuseshukumar@gmail.com>
----
- drivers/of/irq.c     | 2 +-
- drivers/of/overlay.c | 2 +-
- include/linux/of.h   | 8 ++++----
- 3 files changed, 6 insertions(+), 6 deletions(-)
+Could you read back register 0xd000+0x45 (LED_SRC_SEL) on downstream
+and make sure the value matches upstream?
 
-diff --git a/drivers/of/irq.c b/drivers/of/irq.c
-index 74aaea61de13..8951a69390b7 100644
---- a/drivers/of/irq.c
-+++ b/drivers/of/irq.c
-@@ -163,7 +163,7 @@ const __be32 *of_irq_parse_imap_parent(const __be32 *imap, int len, struct of_ph
-  * @out_irq:	structure of_phandle_args updated by this function
-  *
-  * This function is a low-level interrupt tree walking function. It
-- * can be used to do a partial walk with synthetized reg and interrupts
-+ * can be used to do a partial walk with synthesized reg and interrupts
-  * properties, for example when resolving PCI interrupts when no device
-  * node exist for the parent. It takes an interrupt specifier structure as
-  * input, walks the tree looking for any interrupt-map properties, translates
-diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-index 1af6f52d0708..255e8362f600 100644
---- a/drivers/of/overlay.c
-+++ b/drivers/of/overlay.c
-@@ -135,7 +135,7 @@ static BLOCKING_NOTIFIER_HEAD(overlay_notify_chain);
-  * @nb:		Notifier block to register
-  *
-  * Register for notification on overlay operations on device tree nodes. The
-- * reported actions definied by @of_reconfig_change. The notifier callback
-+ * reported actions defined by @of_reconfig_change. The notifier callback
-  * furthermore receives a pointer to the affected device tree node.
-  *
-  * Note that a notifier callback is not supposed to store pointers to a device
-diff --git a/include/linux/of.h b/include/linux/of.h
-index a62154aeda1b..231093032ce0 100644
---- a/include/linux/of.h
-+++ b/include/linux/of.h
-@@ -1127,7 +1127,7 @@ static inline bool of_phandle_args_equal(const struct of_phandle_args *a1,
-  * Search for a property in a device node and count the number of u8 elements
-  * in it.
-  *
-- * Return: The number of elements on sucess, -EINVAL if the property does
-+ * Return: The number of elements on success, -EINVAL if the property does
-  * not exist or its length does not match a multiple of u8 and -ENODATA if the
-  * property does not have a value.
-  */
-@@ -1146,7 +1146,7 @@ static inline int of_property_count_u8_elems(const struct device_node *np,
-  * Search for a property in a device node and count the number of u16 elements
-  * in it.
-  *
-- * Return: The number of elements on sucess, -EINVAL if the property does
-+ * Return: The number of elements on success, -EINVAL if the property does
-  * not exist or its length does not match a multiple of u16 and -ENODATA if the
-  * property does not have a value.
-  */
-@@ -1165,7 +1165,7 @@ static inline int of_property_count_u16_elems(const struct device_node *np,
-  * Search for a property in a device node and count the number of u32 elements
-  * in it.
-  *
-- * Return: The number of elements on sucess, -EINVAL if the property does
-+ * Return: The number of elements on success, -EINVAL if the property does
-  * not exist or its length does not match a multiple of u32 and -ENODATA if the
-  * property does not have a value.
-  */
-@@ -1184,7 +1184,7 @@ static inline int of_property_count_u32_elems(const struct device_node *np,
-  * Search for a property in a device node and count the number of u64 elements
-  * in it.
-  *
-- * Return: The number of elements on sucess, -EINVAL if the property does
-+ * Return: The number of elements on success, -EINVAL if the property does
-  * not exist or its length does not match a multiple of u64 and -ENODATA if the
-  * property does not have a value.
-  */
--- 
-2.34.1
+A msm8998 kernel fork I have laying around on my computer always seems
+to write '1' in there (which it claims corresponds to VPH_PWR as input)
 
+Konrad
 
