@@ -1,61 +1,64 @@
-Return-Path: <devicetree+bounces-222881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 821B9BAF03B
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 04:38:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C14CEBAF035
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 04:35:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 355FB3AF767
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 02:38:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7ED631C4989
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 02:35:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B406275860;
-	Wed,  1 Oct 2025 02:38:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57728275B1A;
+	Wed,  1 Oct 2025 02:35:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="nLxkowWd"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="BZS10cwL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 802F619CC3E
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 02:38:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7552019CC3E;
+	Wed,  1 Oct 2025 02:35:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759286331; cv=none; b=T7/oe3pEl2YsPsvm6QE3i21qDmlOq9zybPSsd4ceI6Jx31H0oINli0zTdNyEdqlmGTREWv489gbFNy3Tdhd+ocEjUUvWxBZ+C+RTMYrBUbwvy/RP5RuEJ2wJV5Ds1Y0OcU0Z2/aA6ELos3Kpop0LaHtwtxHBULpLEPipoxeE/NA=
+	t=1759286147; cv=none; b=NslGDyUPqYo7Kfsp2XVwzXIetrGtMp5aXe8uavd8s3a4cEkVFSrfZXKSLFg+8j/ecSZlfC/lo7KwMQytycBrAxdXxNpEYmcspsXsSPV9gLqEdJYn3UnuIasD9Ig66uuPF+6cx5XbLHl6ylX1x8S6kTH6mRBpKY/GqlizZnTa7NI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759286331; c=relaxed/simple;
-	bh=pnkhbNUATmLf7zEMvJhbjyeHSx0MA+6CwNPiFFAIsfk=;
+	s=arc-20240116; t=1759286147; c=relaxed/simple;
+	bh=K9fCsMOCdUbvRNo/t+o2bC2PyvUlczEgu2UBaPD1egI=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=UstyTqwSWJqR8IffkISVlEK97q+JyFIbl4+K4K/w4mkuhxR+Bc59eXjUFhyuF9a0u0ESYDLsGbRU/g7X7+YiEs4WiqasSmahWbhUoD6kUoJO6eAqEQCnAVXSb2u7tbiOGjx4bJxj3DVaBguH0l0t4dHb8t8WG6NnYuPNpp1uRmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=nLxkowWd; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=mo+pUaw2HmBngh0DUOZY5Ztv3kuo5gMcmh9QSPbpJSkqm7puwRkF1skCQUeA8KlXw/ku9P79R8+WVSy4uJJLQuTuW8UBXXr6iENR/WieLpLVxc/tcSAz9T3iZ8qxW5ih1fjPmONxRjY1S9rRjYydJWQkc/dcIPqOrB5AoNJQGFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=BZS10cwL; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1759285772;
-	bh=93pG2cTrl3v8hG0ltG0HHnvRP5q7qH37lHtkS5rvRE8=;
+	d=codeconstruct.com.au; s=2022a; t=1759286143;
+	bh=K9fCsMOCdUbvRNo/t+o2bC2PyvUlczEgu2UBaPD1egI=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=nLxkowWdJ3hPG4s8670dXGq74doY3FrG6nywm9zsB5SL537KV4oTjgx7Il+mneowR
-	 84HaBVdwy2RKUH5sa2xwgJL3/hU0dPyx5kniGv2QuYoieGBta23lwcURShSC3m02ab
-	 PGIWccSBpT90REbcmY0BhxLKEz1eE+Mhj0kkvkbDCNsAE5TKCSvVctHL8OUKHH7LF+
-	 JFxR6ynULedTnxWfIjdJCkV9fSAjqqdKG2y7yv7tRBkv0NvN2qxfH3KvcAeR3TBHit
-	 E1DiQeYTd35M2AybyodQ8mNk3CMzlUUi9xjptL32HsqL26Ilt7Njz6ePKNsdaFtFqg
-	 3JYpGDZahDWfg==
+	b=BZS10cwLGFLV5nsN0uVkLFHIq48Oo2il5WbyDSJvHm3dHPjdTV8wixUYy5gUITgc0
+	 Jyx8eIPnhDSPxODugl67iAIXBGYrAnuuNV0m8yiiz/+klC2aHN4/PzO4YJ4yEzUWsF
+	 xhEVltPYvy9tosuvwWUrB8rKBgJpe90p7deCnbFp+a40msHMA6uyxPB3EVctuJwO6E
+	 3wGaeCNu5f4IgFDQ2/M6MAC53VQUcmGn6XchruaP2BRoaOvcBulzpYnRPTD362gqYB
+	 IzkD40nZKAx/QBIIFJXTNmOReFZUB5cOSvX45trBXVN6NzJPDVrJIwISBEVZCmtCXb
+	 GGLBCpTvd9RyA==
 Received: from [IPv6:2405:6e00:243e:cd99:1d87:95e3:706d:5dc7] (unknown [120.20.48.42])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 8458464785;
-	Wed,  1 Oct 2025 10:29:30 +0800 (AWST)
-Message-ID: <7751dff931924c151f976feeafe4a888dc2095ad.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v7 6/7] ARM: dts: aspeed: Add Balcones system
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 49F6F749D1;
+	Wed,  1 Oct 2025 10:35:40 +0800 (AWST)
+Message-ID: <045c7bcd3a852e626f11e5b78c07939feac0e298.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v3 0/3] arm64: dts: nuvoton: add NPCM845 SoC and EVB
+ support
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Eddie James <eajames@linux.ibm.com>, linux-aspeed@lists.ozlabs.org
-Cc: devicetree@vger.kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org, 
-	robh@kernel.org
-Date: Wed, 01 Oct 2025 11:59:30 +0930
-In-Reply-To: <4632dab2-d6c7-4abf-8449-bd61d5ad94ad@linux.ibm.com>
-References: <20250922175804.31679-1-eajames@linux.ibm.com>
-	 <20250922175804.31679-7-eajames@linux.ibm.com>
-	 <6d117ac3297628ee6e315894460d348647b68c7f.camel@codeconstruct.com.au>
-	 <4632dab2-d6c7-4abf-8449-bd61d5ad94ad@linux.ibm.com>
+To: Tomer Maimon <tmaimon77@gmail.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, venture@google.com, yuenn@google.com, 
+	openbmc@lists.ozlabs.org, benjaminfair@google.com, joel@jms.id.au, 
+	krzk+dt@kernel.org, tali.perry1@gmail.com, conor+dt@kernel.org, 
+	avifishman70@gmail.com
+Date: Wed, 01 Oct 2025 12:05:38 +0930
+In-Reply-To: <CAP6Zq1jmmhqYu3C7KHFK2tz9zjW352Bbw4cXeOYSjNSTELrp5Q@mail.gmail.com>
+References: <20250925200625.573902-1-tmaimon77@gmail.com>
+	 <175890301752.880349.2331946518360447485.robh@kernel.org>
+	 <CAP6Zq1jmmhqYu3C7KHFK2tz9zjW352Bbw4cXeOYSjNSTELrp5Q@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.56.1-1 
@@ -66,46 +69,29 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-On Mon, 2025-09-29 at 09:52 -0500, Eddie James wrote:
+On Mon, 2025-09-29 at 12:15 +0300, Tomer Maimon wrote:
+> Hi Rob,
 >=20
-> On 9/25/25 7:03 PM, Andrew Jeffery wrote:
-> > On Mon, 2025-09-22 at 12:58 -0500, Eddie James wrote:
-> > > The Balcones system is similar to Bonnell but with a POWER11 processo=
-r.
-> > > Like POWER10, the POWER11 is a dual-chip module, so a dual chip FSI
-> > > tree is needed. Therefore, split up the quad chip FSI tree.
-> > >=20
-> > > Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> > > ---
-> > > =C2=A0=C2=A0arch/arm/boot/dts/aspeed/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
-> > > =C2=A0=C2=A0.../dts/aspeed/aspeed-bmc-ibm-balcones.dts=C2=A0=C2=A0=C2=
-=A0 | 609 ++++++++++++++
-> > Looking at Balcones specifically, there's still an immediate concern:
-> >=20
-> > =C2=A0=C2=A0=C2=A0 /home/andrew/src/kernel.org/linux/origin/build.arm.a=
-speed_g5/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-balcones.dtb: pressure-sen=
-sor@76 (infineon,dps310): '#io-channel-cells' does not match any of the reg=
-exes: '^pinctrl-[0-9]+$'
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 from=
- schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+> Thanks for your comments
 >=20
+> Most of the warnings occur because the compatible strings are located
+> in .txt device tree binding rather than in the .yaml file.
 >=20
-> Hmm, patch 3 in the series fixes this.
+> The only change that needs to be done is in ti,tmp100 that
 >=20
+> Could you approve the patches, avoiding NPCM845 compatible warnings?
+> Meanwhile, I will work on converting the txt to yaml
 
-Indeed.
+I think it's best we get the conversion done, and then subsequently
+apply the apply this series. See:
 
->  Did you apply that one?=C2=A0
->=20
+https://docs.kernel.org/process/maintainer-soc.html#validating-devicetree-f=
+iles
 
-I hadn't, as I can only take patches 1-2 and 6-7 through the bmc tree.
-3 and 4-5 should go through the iio and hwmon trees respectively.
+and
 
-Having tested after integrating the whole series I've applied 1-2 and
-6-7 to aspeed/arm/dt.
-
-Thanks,
+https://docs.kernel.org/process/maintainer-soc-clean-dts.html#strict-dts-dt=
+-schema-and-dtc-compliance
 
 Andrew
 
