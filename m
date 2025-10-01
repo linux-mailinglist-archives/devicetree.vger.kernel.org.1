@@ -1,183 +1,120 @@
-Return-Path: <devicetree+bounces-222914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECD95BAF5F6
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 09:19:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3990BAF631
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 09:23:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABAA13ABFC1
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 07:19:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2583D1C747F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 07:23:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B7E51D61B7;
-	Wed,  1 Oct 2025 07:19:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6394526B75F;
+	Wed,  1 Oct 2025 07:23:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="sFJLSkGI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yChWmFql"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 234DA3770B;
-	Wed,  1 Oct 2025 07:19:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 998F4248F47
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 07:23:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759303187; cv=none; b=K2FqvytSUscsJPZHVfjTnKnI3lkfR5IxgUnnshHEqlAiCvs3nFzGTcLMNbanWer8RCqBK+VWRuEeo9b3jLc7I5skfciBR/3YCgzV6BAbSO2QN5AcdmavqJ3Wyccvkeqv1odfveUiScBw563p8iYB3wRtqEBSxvcUTWiwVnYD5lY=
+	t=1759303410; cv=none; b=uCgSJVS3sJraLJfiAbO6iZgM3aDoL06WYkiP6saUS/1dpYqCt3KUC/rauupAEL7MORYqPL1tJa36ni6oc2nuemNHgheWrX0ZppocLDP+zNd3beoHU/T8OYeJTiKwH0zNhRlMMtAKok1HRGM3HBy13x0tUw9An0vIGOfJx5cdivc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759303187; c=relaxed/simple;
-	bh=m3GyrvFZTp0xnocM0iyhLUYbvWE/o5O0Ruc2sJ8qxg4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=B2eoD+NVpKQ7Aq0DjPLo2eCDiJ5mLQrxM0T8M3NyElm2kIy+kBrgxPrP9g5O58nLRPdr0+SayVDWx55LKxg3sut6AagCSwZ3UNGvvt16qtp2FjlU9ySkskbw7eWZphCWL1xOL1GEKBvI+BIP6STFMjskx6u7jAXDegfvRjzmago=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=sFJLSkGI; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 376754E40DF5;
-	Wed,  1 Oct 2025 07:19:43 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 0B36E606BF;
-	Wed,  1 Oct 2025 07:19:43 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 24145102F1854;
-	Wed,  1 Oct 2025 09:19:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1759303182; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=bLWzwrSTti2UytVkyEvnDMwkovA44fR84c3zWkiEaN0=;
-	b=sFJLSkGIuA4ckN4RYae9fVmbOjBs2QufWjdQyYpi74aKyuS2zbNoWPiXuD8E95nzBqdPFe
-	UNiykmAd93lF1yoY7hBbgNootC+5RintzuENkY5Z1Lt7mlKd+qkOFsKGzqPX5TXd1foG+O
-	D2y5hf4eF5uP0a4FlfVKOk5WJkDiZPo3wGda7yHocb6qmpNp1Id8yP13DQQd7sXeaIvsS3
-	TumYgVYpgFLwkm3IHnuT4mTaNX1UxySY2gflLJymE0a5aKUW/AQ2M1lHreM3jnD/X6wa+Z
-	X0YNNpYRU1Ag7E9Gs0gDixKzL13LhzAh55ZRTWVKsCGK/x6zHdx0DLZjLz3BOQ==
-From: Romain Gantois <romain.gantois@bootlin.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
- Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, David Lechner <dlechner@baylibre.com>
-Cc: Hans de Goede <hansg@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-iio@vger.kernel.org
-Subject: Re: [PATCH v2 2/5] iio: add processed write API
-Date: Wed, 01 Oct 2025 09:19:37 +0200
-Message-ID: <5015441.GXAFRqVoOG@fw-rgant>
-In-Reply-To: <2a503edb-fe9f-4d61-92c0-c1083a028e19@baylibre.com>
-References:
- <20250925-ltm8054-driver-v2-0-bb61a401a0dc@bootlin.com>
- <20250925-ltm8054-driver-v2-2-bb61a401a0dc@bootlin.com>
- <2a503edb-fe9f-4d61-92c0-c1083a028e19@baylibre.com>
+	s=arc-20240116; t=1759303410; c=relaxed/simple;
+	bh=Aw0Imp+/fA3UG6KHW7xsOYg6eFlJqPcphKlJmGfSaGA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=aQlJuRaTuN6JSCSvObpVCA5Bb0tDT7ibykn0hQDIanZTnnekEmkyBY5xHMkcHOlX2OQ7qV0o4l1n368OvzQxieRwYZFRLOSSPAIy71kBSIhaisbxqL6MDphARXNiCw2Q50Y9ZBq7Hp2t84dd4q0DuHeiyk/W8XwzHq9Cdz2T9x8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yChWmFql; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-42420c7de22so1211603f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 00:23:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759303407; x=1759908207; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VkTJvbE8D9pXlnX/SWWHYVNJ++dr8zamI8M2eVs9tNU=;
+        b=yChWmFqlFd50BVSTb4pPYRp5simE011rY7Zxqz45kKh1hb846ebEg60+SrswlNFdOh
+         z7OYSCDwSrwvFHj7xkwgFwY+EkZSXjYKNBmCOXsmC0S01WbsndS2+8eUIuElBvXw5ce2
+         douPvDa3YFRBz3c2AB9RamdjvWqSJqoSLu52YhLWTKoTK1/MVdDTBp7bTm131HRYWg9+
+         7q6vFXtNdDZH7WCote5Dl5NgP306QqlUNfdN++fs3aSBhCqascDSZbnk6vUDibthi+It
+         KnLNPc7GrgkSE9EwZoBIdChGmZgV1kiRprol7u1YIzDuAHbG+hcZEBXIM6VGa4ocYY/L
+         6D/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759303407; x=1759908207;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VkTJvbE8D9pXlnX/SWWHYVNJ++dr8zamI8M2eVs9tNU=;
+        b=qzZMvcGDUK3zos5WqfoHRnGUz99kdkAnekqxknuRJ5EQ+vllvbIYfG9Qg1k2U43i92
+         RmhrVfB9tBJ3yjgR4Nc/5DHH8hrOGeb4HAMzChA9ufgQldKW1UChsvektQnMJBd/ALoJ
+         eaWMfcP/zeHHJpeKT1aRwuArgtAdSbzQmEHKSHVbxavmOEDquZ8SR1cm0clvjNA3WfKN
+         JxafbjxlvqHBXS/xiLFbJ8cSUeCX+1WZJjiNKEFQOJzf+0KMpR5y2X5mpEE7L6O3nXED
+         6CLLqMY3+U8UuXEypgoJnVBkQRRmppq9DesydpKaYHYaYoCorH8pjZeSb2kM7O1L8x90
+         596A==
+X-Forwarded-Encrypted: i=1; AJvYcCVtuaOo0JfnS8LY8+MRVpwZx5sQKI/W1MyWnMqMEHxqB0CBGNpnUL6QQ8EwVS4qWV3YAa3Q7ZzqBAxe@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLXjjX0ifVYWlnVf6gDKIqr7+f9KfF1nj+FJhHXZdY7WG9c3zS
+	Q078IFeAnAO1yZJTYG3yWaT+PduvSwOjdu1W32zjnuW2csFvjbRbhdRpBuF8AVgasx4=
+X-Gm-Gg: ASbGncv6O7omgxYAF8NRSOzqSzZ+1eBymmxLX4ca0miEtiNZoxVl1QGXCCNCRAPbHLJ
+	kwd5Tf1GeyjjttDGs9bX1LyktLroEnyFg6oDDvP3mJrHpvcuh/22K3Q7+H1bcQdzBhmfzn6CalQ
+	vMef3ay5r2fE95x3Ird1oG6rAWoGJ0enlI1ifEt8yKpGtz4TY3VTxfNHKZijL/+89U9FWFutfw9
+	YhaIFj5j7A2vjCfpLAfSfyYDfbpVOGYEwBWBR2oSxwXN3yJeCWU1Azm7adqz6iBA8anANhin2Bc
+	thdi472i1weQEhmww4q8pBs2WF+8C8XSyxnq7NySV/PSx1PDnEISMOruw4n7d5FvDW7i0EfbUUi
+	swPOqEdaGuR8XvYDftuWiQySLCLo6imUPKcFgbx1lXC7rUoKXMXbqLWX2Fk75MulmbuKA1SyEu2
+	NQIg==
+X-Google-Smtp-Source: AGHT+IEh/bWsHUjoOariR2V8TFO96fWfpxOZDaiVpLQZxlNjTTKvAPgNTUSjyaYhz6P4xg2rtuQ7wg==
+X-Received: by 2002:a05:6000:2f82:b0:3ee:1368:a8e9 with SMTP id ffacd0b85a97d-42557807da2mr1446611f8f.17.1759303406666;
+        Wed, 01 Oct 2025 00:23:26 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e619b8507sm25805335e9.3.2025.10.01.00.23.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Oct 2025 00:23:26 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: dri-devel@lists.freedesktop.org, 
+ Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+ David Airlie <airlied@gmail.com>, 
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+In-Reply-To: <20250904200130.168263-1-marek.vasut+renesas@mailbox.org>
+References: <20250904200130.168263-1-marek.vasut+renesas@mailbox.org>
+Subject: Re: [PATCH] dt-bindings: ili9881c: Allow port subnode
+Message-Id: <175930340588.467410.15494942585777462922.b4-ty@linaro.org>
+Date: Wed, 01 Oct 2025 09:23:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart1934360.tdWV9SEqCh";
- micalg="pgp-sha512"; protocol="application/pgp-signature"
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
---nextPart1934360.tdWV9SEqCh
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
-From: Romain Gantois <romain.gantois@bootlin.com>
-Subject: Re: [PATCH v2 2/5] iio: add processed write API
-Date: Wed, 01 Oct 2025 09:19:37 +0200
-Message-ID: <5015441.GXAFRqVoOG@fw-rgant>
-In-Reply-To: <2a503edb-fe9f-4d61-92c0-c1083a028e19@baylibre.com>
-MIME-Version: 1.0
+Hi,
 
-Hello David,
-
-On Thursday, 25 September 2025 23:10:14 CEST David Lechner wrote:
-> On 9/25/25 7:37 AM, Romain Gantois wrote:
-> > Add a function to allow IIO consumers to write a processed value to a
-...
-> > +static int iio_convert_processed_to_raw_unlocked(struct iio_channel
-> > *chan,
-> > +						 int processed, int *raw,
-> > +						 unsigned int scale)
-> > +{
-> > +	int scale_type, scale_val, scale_val2;
-> > +	int offset_type, offset_val, offset_val2;
-> > +	int ret;
-> > +
-> > +	scale_type = iio_channel_read(chan, &scale_val, &scale_val2,
-> > +				      IIO_CHAN_INFO_SCALE);
-> > +	if (scale_type >= 0) {
-> > +		ret = iio_divide_by_value(raw, processed, scale_type, 
-scale_val,
-> > scale_val2); +		if (ret < 0)
-> > +			return ret;
-> > +	} else {
-> > +		*raw = processed;
-> > +	}
-> > +
-> > +	if (!scale)
-> > +		return -ERANGE;
-> > +
-> > +	*raw = div_s64(*raw, scale);
-> > +
-> > +	offset_type = iio_channel_read(chan, &offset_val, &offset_val2,
-> > +				       IIO_CHAN_INFO_OFFSET);
-> > +	if (offset_type >= 0) {
-> > +		switch (offset_type) {
-> > +		case IIO_VAL_INT:
-> > +		case IIO_VAL_INT_PLUS_MICRO:
-> > +		case IIO_VAL_INT_PLUS_NANO:
-> > +			break;
-> > +		case IIO_VAL_FRACTIONAL:
-> > +			offset_val /= offset_val2;
-> > +			break;
-> > +		case IIO_VAL_FRACTIONAL_LOG2:
-> > +			offset_val >>= offset_val2;
-> > +			break;
-> > +		default:
-> > +			return -EINVAL;
-> > +		}
-> > +
-> > +		*raw -= offset_val;
-> > +	}
+On Thu, 04 Sep 2025 22:01:08 +0200, Marek Vasut wrote:
+> The ILI9881C is a DSI panel, which can be tied to a DSI controller
+> using OF graph port/endpoint. Allow the port subnode in the binding.
 > 
-> There are some rounding biases in this function, but I'm not sure if
-> it is worth trying to make a perfectly fair function.
+> 
 
-I'm unfamiliar with the notion of rounding bias, does it mean that nested 
-calls of this function would tend to amplify rounding errors? In this case, 
-would rounding to the nearest integer instead of whatever is being done by the 
-integer division here be a good solution?
+Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
 
-Maybe I'm misunderstanding what you mean, in that case please let me know.
-
-Thanks,
+[1/1] dt-bindings: ili9881c: Allow port subnode
+      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/3684218949703ea8779aec7c3ed598a05ccb2b23
 
 -- 
-Romain Gantois, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---nextPart1934360.tdWV9SEqCh
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmjc1gkACgkQKCYAIARz
-eA6MYg//Viifao41HU18GYkLlUZn/8j/K0FDeJHL+7QGILawnj1ZTgtN37o6sZIy
-cKL3SHGYGaNwGuuSrP8Phl+f0d5TylhtlKk5lABeUu1pVJtQl2xVAo0NhnPmXt34
-gT2r+Dx+3CCYytsF2/LlWQJZXawlgRWfXyu1RI4GZ2THCks3VZXhg14WvLVJTN97
-ovCQFEgQ6DIcz9kkZvtzPtB521NZvYAeMYxgfVIFAcBcmZOX0ZLGk5JKTMpCcgwX
-29ujH5CWeAlB0ivBUcBxQXk/wIjcmQwmIow9buazeKqWt0Dg4//RnMQzcXMv9mWa
-H+ADj/V6mxi5jjZsMihOyeHUqqJCsMMbwpObEizOdot7eVbW/LZsa8PTJ/gcF71T
-YFXmGW6/sF4eRSc6bmjLnTIfaN0h7ABZ5RrI7znAgG9oz93xy9D39nHjMgpA09p5
-9dIBwMPaMngCP90VojFMeU3krzCp/1Hk82KdpvJ6gqn3Ob/47QBsDYmIjUQ6V6Sl
-7grx9/zVV2uZ6lHmrNIvFRt10o90ogJ6z4FBMjz8eWMkUKNdYtxUFbTEpCcbIOhs
-3nvvYBAKCF/UfRinVRs8ytHUGuk1r6pZfQ7Bd6Qtg3nBK7QA2gBKRst43ce7EiRU
-rG8JRM107pBXniYRUaewQ6JW3GZfuchBmRHfC3P7r79ndCM2Lk4=
-=tqTu
------END PGP SIGNATURE-----
-
---nextPart1934360.tdWV9SEqCh--
-
-
+Neil
 
 
