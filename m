@@ -1,108 +1,145 @@
-Return-Path: <devicetree+bounces-223049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6D92BB093C
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 15:53:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D46FCBB0988
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 16:01:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D04464A617E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 13:53:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74BCB16F636
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 14:01:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F3C32FC882;
-	Wed,  1 Oct 2025 13:53:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC0DA3019BD;
+	Wed,  1 Oct 2025 14:00:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="HUfgTKlY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ibx8owUy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66DA92FC86F
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 13:53:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF3C33019B3
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 14:00:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.67
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759326801; cv=none; b=teWfYoGEMv5HWi6drcBOCvUeF4S6X9CdNeyPh0FTMD8AF1DU+RD6i63tWncD6Vqg6EgqQ0xsHZcBRCoCFqSBYh1bqHwFw38agJ1sgZCoILPTB4DubVMnEo1g7CZXEXrN5CWmd9gfnp1TL5Otnf2KuHahvK5FDAzOIN1Y5bEUtx0=
+	t=1759327259; cv=none; b=CA1FfwygJ2efvlzsg9O3SI41NVPC7/pKYncl5qzupQ/7NaXqqynMWQvoS/s0kUIB/gQHvLUGEK+7X1e1B42jkORoHzJxvWuCLkpWkrM/VMH41lx9x+M0l8mBFbZpLY/KxfUsIpyUv13+xTM143fPeyG5zdqRQLFPaXA4iKxz+VY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759326801; c=relaxed/simple;
-	bh=HKbSceL0DqvzVkSf6+zthbI4p8KdIl+ZOzq+TUc17ps=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PukM7YVYBP7iUjezd9zC42Fbs9f2qnRd9xhPR2D/d+sNE8uPz6kr2rCYxPIImzKStEycO+r2RLpUn7MdKcFl6e5mdURYlEq1r+ZmmA4LyzDt+FBJwKXjS1AMp/bxHfHmVyfOgWmOmd5wksrNFgJPhnIR/ZsrF+vEACOS55Sgnww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=HUfgTKlY; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-363cb0cd8a1so83655351fa.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 06:53:19 -0700 (PDT)
+	s=arc-20240116; t=1759327259; c=relaxed/simple;
+	bh=NC3eeAM5DOVTDlmWZ97SXYb7EY5dN3ENSk5pS7FalZE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TxF5UA7HlISN/wG4UPZtoaNT/Yo8bVAc624RwuXtb4bwp7riFGEKzZV/D5jpup3jEVgilVqZyeSsg+haUBq+M5icskrSwXFzYqpdGIIa57XUq9vAHyJS9vnoq6vEAG2BWo0cNZviOFe34aKTdD4REzcgDiEzbN6nhJQzKg/i7WY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ibx8owUy; arc=none smtp.client-ip=209.85.221.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f67.google.com with SMTP id ffacd0b85a97d-3fc36b99e92so827853f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 07:00:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1759326797; x=1759931597; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iKvM2O7Z2RHzNxkLRoLXZKV8FObDukkA/ffySi/dWJQ=;
-        b=HUfgTKlYyVnJ7X1ZPU4BQieTHwWZxcpgiOjQWpJyk28jeRbcttMC8NHUtrBLFEHrGz
-         E5PVoqB56vzqIPnOXJr1ZQHz4ElFcUenbNAEzz7b8dVbxoGEYE8JmBCfmj2x4DweV3jg
-         BuK1k6EFp6q0M8bLBuPwGmaySRBukzqSB6MD2N4k+sKp92Ifcmo9A1mvqtzkRgPN4ZVk
-         fpwHo9+3bw00uZG8WtvvTjpJiqrHfIuISeG5S6+7K87SHz7L9H06bLuS4hVSCuPH5cE3
-         atKETBgXOxL1UDJ3AUwHIJarIGecYy7SoBTHXjnLw8s5VfkZ5KGnwvtC58H6nCXE971P
-         GsGg==
+        d=gmail.com; s=20230601; t=1759327256; x=1759932056; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EYsni1VBvs5YqLN8WcctEz3qmuBiq5eihYcUC9RPHrc=;
+        b=Ibx8owUyE3GWKSXaPZAX96wpg92fXZ8L8lT2fO94m+zHspJ/cMirVhyk2uKv8OhzXZ
+         0uPh0tuGWVn2siDo9kCH+2z64ow2+c9IHQpj19aHqogUZTNUT2ZNcZyiYcG6sVT/z0AI
+         2dR80t+PY5l75CZxo0zSsuek1k5GP2L/TThuS+tAASBO9Pfwl9J/brOsd4gnoXVg+aBh
+         oGq6doVPAIxZnQ52s4LzbiBsirzzMJHxSZWao9mPC3082y/cOmDQJw1mL7EmNwh9oS9a
+         GDafW503Ph+xLI0pmSVc0G5Jj6J0AqM8V6BLknrbqDqbo6eurpLCbhteTSbggPNR+rZI
+         JVow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759326797; x=1759931597;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iKvM2O7Z2RHzNxkLRoLXZKV8FObDukkA/ffySi/dWJQ=;
-        b=M9npMhV/MHnxlFmdyDkIzj6kUU1YBGIvMF5P/B7nbEiqJ6a8hZUQh4k2ZObIJhqxnW
-         jki2mJqM1S2df8q7HwulY0eAmWjVwp43vNASxIlDKfi36l7SlX2Un9rnJV7ALfbIboAe
-         OyPHgKD7X2YJYeRrnQSDdpa9y1p4sz/GUfzEf4Zs3MgqPflFVv7TZxx9MSmJ/ts1In+s
-         Elw7uKph7Uso+0dvwTnB11ijP5wyZl0O2tTX+8H/oGe1qpQ92V4MsBOzR/lXVbrkmb9f
-         0Fb5unhT5mIdV2S5fEGJvrYkHbeTycGXeEig9swqn6mTYPudVDD+EayR//ftX5UQHHEe
-         qnvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUOI9thwKfziciJWgm96OXMXGMfkDhncfFAzsvNLXnlREyAghx4feMwJsssYFwwNhEwX1odRL0K5zQQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1HuLs0pI1LZXOjtn8OCYRrA4sDZvSeQBaXFypk2Sgip3UvOOX
-	TSfAmWt6ClB6FN9iD4a80ZfWbL//7ijOxtzK+D4B0paRm262addhcofUZn9GCfep7lGv+MPanXV
-	tc92BUNNJt1EHoLOPnkdv6xojd9+mlSp1abXmNLgUoA==
-X-Gm-Gg: ASbGnct1Kpbl16emsSgHEtUgwh7WgCdFC9r8gNSsu0Gl2pa7jOb9VqR/pAFIo50aVJB
-	TBm+jpqC4WCvdasPkfkcxbgYuHDEz34RF1WPVUbUUElIKx7ZvjjhtMvd9EySPpWxTaXQXzqNAlP
-	9mb+rybZXY/kx/9ghpi3PGwXUhT+nF6Nevw+VZl/L/WNHKQFwC9W0pCWxOU9wlQvDsvB+CE43mo
-	3Dk7znSjW0gFdbNDYUB/oIA11rOqM2a2bGCoRXPkY4TOaKjx2k//9SMueoF4Kc=
-X-Google-Smtp-Source: AGHT+IEawILhQN5Tlcl9p5Mjqx/+g8BzI0MIHHSa+12Xe6GG4A6vAQ2TFwAqsdfR65LWs2suCvY9l7MTmjpZSBMVUHs=
-X-Received: by 2002:a2e:bc0b:0:b0:372:9bf0:aec9 with SMTP id
- 38308e7fff4ca-373a70e9ceemr10229771fa.8.1759326797528; Wed, 01 Oct 2025
- 06:53:17 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759327256; x=1759932056;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EYsni1VBvs5YqLN8WcctEz3qmuBiq5eihYcUC9RPHrc=;
+        b=WAf53CH+Z44TXuG3R/MZ4jPjufFJlM34PzIBUSRVWlZ/81qvHdtg9Kl9Ago9A9u+CV
+         VJpOJg09wDl+0CJfei5Mhp5dc/BCl4K5QkdpJ7Kz80IIfkjacU3v6IDlBgA81KQdBt1q
+         vO4GgLB7eyoRgTWuyHSpqK1QKhOfHFs6yR6T7YFVraSGAUotAiZt8jmnSYPl/SwU1+C2
+         YlLDfZ7JDi5u3DrhmNTgnSnBSmvCmo81pCQ0KIuQ4f0dWEDZpKbHkzwcaU8IKbLopaLb
+         Z8Jdgv2kQpyaWQJa8jKuTBt494V4/HMHS9zSqwhX5vtyjEuJ4Gl7tghl5ke+ZJSG0ZXN
+         XhMw==
+X-Forwarded-Encrypted: i=1; AJvYcCXB48e2otKVdtEgPfpVu9AbNz/Bb9WiLT0I0t1iuY+ajwZDRClTAxPvEEWpb5ii6mk7QW+Qc4aTcVLq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx34KkzOHQ/mHHo7JcuoPIobVuD9CWwMqY8OT/VvU8N1L4Nr++U
+	d14uRJAO8/a1Xn/NqAg/5PFOW625xZFg/fW6JOESCvxLnkkrnO1KRblK
+X-Gm-Gg: ASbGncsTX+xMAlFTEU412/wez2TRGQSsLBeyhxRVCWl3zG0HU/Beo4oi17Z4ZWsJzke
+	A7ho9K5fYt8s7nmxFWrhPOG0qV+UUPkLG5iJcPlJjVt9ZqvdFuSBBLL2C9/vpCPSTUCret9iXUE
+	bY50CuRB8HgxLCi0YffHxzr24VzYvhs00+mItd69dFGQarEPzuIzsK0Bu4PfmozJaiCzI6c0hky
+	WcKuJNjnyR+NaTDGCHOUIT4z/Z2+Yzqx/Jfg+su1nGesVVD9DmKAndV7EdMS1W2YIghGPVxg/nc
+	+cOTIVj4sKcAcQlPhUB2u5wZEfnmFWB+uYxilHqdmT64Z9sIvvyaz0ldYezWACiIXZw5HLgRnp4
+	qQ+7a+wEJC9zj3EVQ3wslXPOyxVsg+A920NmD9XNdZbrUOCfzz9mJLQ9aS1zY/axrC2bwM7sMB/
+	UDg7VeEO8EdjonDyDSf5uW928cf4J52/xfpoLsfPeNHLUevccK9flWDlgH5uJCAmMV
+X-Google-Smtp-Source: AGHT+IEbCi0xm7TZs0YjOtrOHHNATQAm6IprX3ckD0OQpGOtjk01tDJ8J2LVgeXv3ddJgQ52ljhLtg==
+X-Received: by 2002:a05:6000:2901:b0:3ea:6680:8fb9 with SMTP id ffacd0b85a97d-425577761c8mr3272501f8f.3.1759327255965;
+        Wed, 01 Oct 2025 07:00:55 -0700 (PDT)
+Received: from LAPTOP-AMJDAUEJ.soton.ac.uk (globalprotect-nat-extbord.soton.ac.uk. [152.78.0.24])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-40fb89065b5sm27029828f8f.17.2025.10.01.07.00.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Oct 2025 07:00:55 -0700 (PDT)
+From: Junjie Cao <caojunjie650@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Clark <robin.clark@oss.qualcomm.com>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	Antonino Maniscalco <antomani103@gmail.com>,
+	Jonathan Marek <jonathan@marek.ca>,
+	Eugene Lepshy <fekz115@gmail.com>,
+	Jun Nie <jun.nie@linaro.org>
+Cc: Junjie Cao <caojunjie650@gmail.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	freedreno@lists.freedesktop.org
+Subject: [PATCH 0/3] drm/panel: Add support for Novatek NT36532 panel
+Date: Wed,  1 Oct 2025 21:59:11 +0800
+Message-ID: <20251001135914.13754-1-caojunjie650@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251001091006.4003841-1-viken.dadhaniya@oss.qualcomm.com> <20251001091006.4003841-6-viken.dadhaniya@oss.qualcomm.com>
-In-Reply-To: <20251001091006.4003841-6-viken.dadhaniya@oss.qualcomm.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 1 Oct 2025 15:52:56 +0200
-X-Gm-Features: AS18NWAmCgokIXZ1UkEVryOtNua26Mh7SEmTh-56Mvq0WRalU4tAqLsD_FATkks
-Message-ID: <CAMRc=MfMO-+SSrTY-XQLtsDnxpj_E3TdTJ43ZxCUi-iDrvnc2w@mail.gmail.com>
-Subject: Re: [PATCH v6 5/6] can: mcp251xfd: add gpio functionality
-To: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Cc: mkl@pengutronix.de, mani@kernel.org, thomas.kopp@microchip.com, 
-	mailhol.vincent@wanadoo.fr, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linus.walleij@linaro.org, linux-can@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com, 
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 1, 2025 at 11:10=E2=80=AFAM Viken Dadhaniya
-<viken.dadhaniya@oss.qualcomm.com> wrote:
-> +
-> +       if (!device_property_present(&priv->spi->dev, "gpio-controller"))
-> +               return 0;
-> +
+This series adds support for panels using the Novatek NT36532 Display
+Driver IC, a dual-DSI, dual-DSC controller that requires DPU support
+for 'slice_per_pkt = 2'.
 
-Hi! I didn't notice this before you're returning 0 here, meaning the
-device will be attached to the driver even though it doesn't do
-anything. It would make more sense to return -ENODEV.
+Since the current DPU driver lacks this capability, PATCH 2/3 is picked
+up from Jonathan Marek and Jun Nie [1].
 
-Bart
+[1]: https://lore.kernel.org/all/20250220-dual-dsi-v2-3-6c0038d5a2ef@linaro.org
+
+Jun Nie (1):
+  drm/msm/dsi: support DSC configurations with slice_per_pkt > 1
+
+Junjie Cao (2):
+  dt-bindings: display: panel: Add Novatek NT36532
+  drm/panel: Add Novatek NT36532 panel driver
+
+ .../display/panel/novatek,nt36532.yaml        |  83 ++++
+ MAINTAINERS                                   |   7 +
+ drivers/gpu/drm/msm/dsi/dsi_host.c            |  25 +-
+ drivers/gpu/drm/panel/Kconfig                 |  10 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-novatek-nt36532.c | 437 ++++++++++++++++++
+ include/drm/drm_mipi_dsi.h                    |   2 +
+ 7 files changed, 550 insertions(+), 15 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/novatek,nt36532.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-novatek-nt36532.c
+
+
+base-commit: bf2602a3cb2381fb1a04bf1c39a290518d2538d1
+-- 
+2.48.1
+
 
