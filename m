@@ -1,59 +1,63 @@
-Return-Path: <devicetree+bounces-222972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7154FBAFE9C
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 11:49:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 201F2BAFF1A
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 11:59:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CDCB189F2AC
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 09:49:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76BE41C665D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 09:59:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B1F126F2BF;
-	Wed,  1 Oct 2025 09:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BB0E29AAFD;
+	Wed,  1 Oct 2025 09:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ewq9gBmB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R6t+EpOt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 538E52522BE;
-	Wed,  1 Oct 2025 09:49:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FF5529A31C;
+	Wed,  1 Oct 2025 09:59:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759312154; cv=none; b=GTl+iL8G3D62R+wr5gnhi4EX9OH4dK4jOhRIM3hQlTQWAR2fzmL/O090XYAA+XycsfvU/aZaASguGStltKAtNVsGCBGYN344OCyZyeXsNVEbUYuiiWpW8e3BSF9pbm7/QYxR5mVaU+bXRZOLQWS2/4YGIgx3SQ+wc91flCKmu18=
+	t=1759312750; cv=none; b=jVHyVzhP6OsTFvlEy4rgxrSarrPfM+UM6n1pmDsJ8bqZjBcOKiYnw03xpI8Bo2aYAl6A9qu9OPCfDGfYyJYtsLk0BLbPifQQyzP0ySvWBtGm3KqGvMWLUk9PThmAvWhp31huc+ngLSKwUoc5IgzhvH4yPE9zDAK9ytlTxmrHubY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759312154; c=relaxed/simple;
-	bh=MgUl2M4I5gy7yfwjFNdxRtYro6QOxzUYdb+CPt8arnM=;
+	s=arc-20240116; t=1759312750; c=relaxed/simple;
+	bh=zQh3WXGk/9eQB/zxNVg6iMZ/HSaTpK+7Py1m4QRWrMc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lbAYN5niGDz2/CKrZYTc0gY7XyoeSb4quvzfuN+/vJXhOioMCxoILXyVnTg+j2OZkWZBIwIkIgc39ZrSz5pp2/lG8QfA/MZSDTZIdfts7vGol6CZ22UQN/GX/x+aPu6Gh3TTV6xuNC9gilT1JKNuVwzi4zckK6/mpNS9LyGQeZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ewq9gBmB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DE26C4CEF4;
-	Wed,  1 Oct 2025 09:49:10 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NgN55eq+ggEBiAxP2XlPgjCBADWFjIO/UaotFWnATBkqsPZPJ0xloNVTybfnYG01XZRiLl44dYNRYk7I3PgS5LSn9w1m90B/1GnLM97K30INMw23109EID9dogxVth3/zZYyPu1ysSTtjHlRIi8SkCRFySb8ETP+wVLVzjVxy1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R6t+EpOt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3385BC4CEF7;
+	Wed,  1 Oct 2025 09:59:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759312152;
-	bh=MgUl2M4I5gy7yfwjFNdxRtYro6QOxzUYdb+CPt8arnM=;
+	s=k20201202; t=1759312749;
+	bh=zQh3WXGk/9eQB/zxNVg6iMZ/HSaTpK+7Py1m4QRWrMc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ewq9gBmBnDgDlDauay/UPPvMY/8xsrxHxg+WBWK/x+csa2eoT964/9xGabXFwpkgd
-	 jgHoN/U5JTeacJ/9GV5U44YcNCxL8dOGuUSUOkoGDrjXnTVFtqEsqY9uTpPnT69zda
-	 ZEeWVI3eOYBQL8Gjt8bL1Xg2Dbcr58d30g5pY0oPzPzWo3XvGGJe+oWF5n+nONFi9a
-	 YqjHy3qTdvRoJqIiJxqiJCY63WFCBZWnNVXBArahqlpBJv7ksNGaluZsTtpUolZfSX
-	 uP4iun9MLIpaK9YpvO4KC2F3CIRVVZqjzC2UUzMvBpew5lBVJ3etVNfq0Cew2JxmJu
-	 fySNm2JYvXMKQ==
-Date: Wed, 1 Oct 2025 10:49:07 +0100
+	b=R6t+EpOtg9phG1/VYTsHF/VnAqKQkR6zUFARBtsmb9XSfTLAFLHML9KiG8+rgeBmf
+	 Xm4/t1KD6j8c4eANQ6SdQON0liiDinPdJOvaOAKEFH7itPWtDtAiixf6wSV+34xZIJ
+	 y0nYVeevlSWlrQTEAYyzMm7XuFxw+fmNfSlNsMIdBwqSRhxDrQa5wTs2dU9XpXETRV
+	 pg5WB/6RopBuv7eUkTTduH08uSpQjN+mHcaGkIGKbUvVlm2sRbp1n2ryrjawqhlAQr
+	 k+zTngMNdWV/0KFWUIY21RFFvxE9pT9RiaBQAvg9S6aIYV6nZ14iDy0nswzwFNIWHf
+	 XwjkH6qftQTwA==
+Date: Wed, 1 Oct 2025 10:59:04 +0100
 From: Lee Jones <lee@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: linux-rockchip@lists.infradead.org,
-	Chris Morgan <macroalpha82@gmail.com>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, broonie@kernel.org, lgirdwood@gmail.com,
-	sre@kernel.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzk+dt@kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: (subset) [PATCH v8 0/5] Add Texas Instruments BQ25703A Charger
-Message-ID: <20251001094907.GN8757@google.com>
-References: <20250904160530.66178-1-macroalpha82@gmail.com>
- <175760259503.1582479.14013409824773713781.b4-ty@kernel.org>
- <CAL_JsqJy9XwNrcwgk4Dhf40ajn8WwD47v2YqZ3iYZz+CjEdv5g@mail.gmail.com>
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Chanwoo Choi <cw00.choi@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v4 3/3] dt-bindings: max77705: add interrupt-controller
+ property
+Message-ID: <20251001095904.GQ8757@google.com>
+References: <20250925-starqltechn-correct_max77705_nodes-v4-0-93b706bdda58@gmail.com>
+ <20250925-starqltechn-correct_max77705_nodes-v4-3-93b706bdda58@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,34 +67,65 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqJy9XwNrcwgk4Dhf40ajn8WwD47v2YqZ3iYZz+CjEdv5g@mail.gmail.com>
+In-Reply-To: <20250925-starqltechn-correct_max77705_nodes-v4-3-93b706bdda58@gmail.com>
 
-On Mon, 29 Sep 2025, Rob Herring wrote:
+On Thu, 25 Sep 2025, Dzmitry Sankouski wrote:
 
-> On Thu, Sep 11, 2025 at 9:56 AM Lee Jones <lee@kernel.org> wrote:
-> >
-> > On Thu, 04 Sep 2025 11:05:25 -0500, Chris Morgan wrote:
-> > > From: Chris Morgan <macromorgan@hotmail.com>
-> > >
-> > > Add support for the Texas Instruments BQ25703A charger manager. The
-> > > device integrates a boost converter with the charger manager. This
-> > > series adds the device as an MFD with separate regulator and power
-> > > supply drivers. This allows us to manage a circular dependency with
-> > > a type-c port manager which depends on the regulator for usb-otg
-> > > but supplies power to the BQ25703A charger.
-> > >
-> > > [...]
-> >
-> > Applied, thanks!
-> >
-> > [1/5] dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A Charger
-> >       commit: 76bc2203a46ef704a4cd8003986f6bd74139a367
+> Add interrupt-controller property, because max77705 has dedicated interrupt
+> source register to determine which sub device triggered an interrupt.
 > 
-> It seems this is still not in linux-next?
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> ---
+> Changes in v4:
+> - fix commit message: node -> property
+> - fix commit message: minor reword and punctuation
 
-It's located in an immutable branch.
+Please also fix the subject line.  Format should be:
 
-Probably too late to share now, but it'll be in my PR to Linus.
+  dt-bindings: mfd: <device>: Subject line starting with an uppercase char
+
+> ---
+>  Documentation/devicetree/bindings/mfd/maxim,max77705.yaml | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml b/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml
+> index 0ec89f0adc64..d265c8213a08 100644
+> --- a/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/maxim,max77705.yaml
+> @@ -26,6 +26,18 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  interrupt-controller:
+> +    description:
+> +      The driver implements an interrupt controller for the sub devices.
+> +      The interrupt number mapping is as follows
+> +      0 - charger
+> +      1 - topsys
+> +      2 - fuelgauge
+> +      3 - usb type-c management block.
+> +
+> +  '#interrupt-cells':
+> +    const: 1
+> +
+>    haptic:
+>      type: object
+>      additionalProperties: false
+> @@ -120,8 +132,10 @@ examples:
+>              reg = <0x66>;
+>              interrupt-parent = <&pm8998_gpios>;
+>              interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+> +            interrupt-controller;
+>              pinctrl-0 = <&chg_int_default>;
+>              pinctrl-names = "default";
+> +            #interrupt-cells = <1>;
+>  
+>              leds {
+>                  compatible = "maxim,max77705-rgb";
+> 
+> -- 
+> 2.39.5
+> 
 
 -- 
 Lee Jones [李琼斯]
