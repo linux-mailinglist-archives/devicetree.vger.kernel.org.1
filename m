@@ -1,190 +1,137 @@
-Return-Path: <devicetree+bounces-222975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BFBDBB00C7
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 12:44:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B5ECBB0168
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 13:09:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1B8D1940913
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 10:44:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 299B917D0BC
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 11:09:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61C2F2C028E;
-	Wed,  1 Oct 2025 10:44:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EC472C2377;
+	Wed,  1 Oct 2025 11:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="NUqiz9th"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UG+ZJM+F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD152BE7DD
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 10:43:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 955F62C234A
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 11:09:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759315442; cv=none; b=SbRzlEURaaYNI1W7x5N+Db1hNW8kwyJYemMNPy+IOetO2B539Ux6Y84Cjdy3yhVJ4e2hCOSdnnw3LSUxzB0QypuI4qNAqN++LHPEBehhAEzcgS0+wpV/55E5OjUB86G5XmW9+WFexDWPl45OxGppLeoXdiMZ5qyYl+zPYgd6S8c=
+	t=1759316953; cv=none; b=OwFsFvgyLhy715SGO+JFs7GAkB1dSkITO6CNLTqVBU+UBAWrgULO8o2JgowlBdxZc66kuHY0MoCV/tPZNUaQnjik+jQy8VgBdPeDhp7Gzb/w918Iar8zWMIOeLvp23GmJZxBgNxy0e3xGOyJ6mLCZ25j5N0OA5jJssasvYTHKpw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759315442; c=relaxed/simple;
-	bh=AgSkwJRd80VStmQzpr0QeOrgu20AtVP1C0KmVgylgnY=;
+	s=arc-20240116; t=1759316953; c=relaxed/simple;
+	bh=M0I3kYZ7l8Sp3ipz6zF/OIoci5Fwg8ccQA1jT9mCF94=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GEsCYi38ZmwtiA67PkJuM921qu35OfnpmywPu3KhdIfB29UH/Wg4YXGQWVnw23gw94mWuu5c4gxdOq+KEcFKAu/eFveSDeVTHwjIUKk4vQZNKP1dAB3mD/2M6pHO6XeUez5cM1d+JUafYpCa8bHP3GKxPvAfynD2k+Qjh/xMAOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=NUqiz9th; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-3737d09d123so27925731fa.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 03:43:59 -0700 (PDT)
+	 To:Cc:Content-Type; b=OZKTzCUiVKWF5/nQjRQMwaydQn7IeFjkrZ/wriMaN+PWswwOnJhBUa5NqyNRaGVPWVBLqRjraazYAy2L1t7yghYpLoYnug3GtboNzDx1Tv2kplxtZIqFtRFXY2xq54LG2e6z3O7eUUWWbC9mnCiS8TAyMbIpx9ZvinvW1yCtCro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UG+ZJM+F; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-3635bd94dadso61523621fa.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 04:09:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1759315438; x=1759920238; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1759316950; x=1759921750; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2lZRH7mvLyxN+MzFG95XhIKVBdnkVtDrMCoccREIXhU=;
-        b=NUqiz9thhTn9L+LZFuSJm5i0/sR/WoX8qQz92Yq/r+y1FaCIYRoF7pz5LFVD1XwTZ4
-         NLzEW78S7zm9A6FFeOi6Qk/pwB4TvAYdL3fhf5yrzKMTJL7WLTZHsdPjkhISF6gb7Ttx
-         t37NEVY/BKOie4XiDNkTnBBcjuKMBPcffdwFd4Nipmtqm8aurh7HOjg1iYrSAs64mp37
-         rCSLBWUnp7X3QY6xKGo1946D1lcfsK3EqUdsbesB1dxPyZwQKAb0wZs15owZU1xKbj4/
-         PregIOyLdFgDCSdKGdkShD9W1QC/vHFGQ5N/xGf8ozeNwI58cspGu8fb8U+B7wLBeKWJ
-         JAhQ==
+        bh=M0I3kYZ7l8Sp3ipz6zF/OIoci5Fwg8ccQA1jT9mCF94=;
+        b=UG+ZJM+FjpuVvAmGTaFLeqJWy0XF3RQFC4YmF2iA1WLhzz7tmAjBiW0BKOwQw25Kmh
+         pQKhKBo7bMDJXnRSRyFjjSr+pJpKXwg6QJOAS0EpG7BTM5iWAPgRoU+GifeTA7+vcYE0
+         mcB8ZBsRDQZ6QAl0fY5a5uPcIdhVUgkLH00kTuiR1i4LhKb8YuYa9oAceHTOot8VLkZA
+         WAYJIt5bNF0W2inR3EoGtXHGhHNjt+WEVHiAJ/TRAOjdBOW+CSH0we2eQThfqRoEnofZ
+         jIhtNzC5d8ID5QD9umE0m5lV8GVWHMVgNlJsvZQ3N5zp4cWzXv2D8fN+vROmen5GXiBO
+         NNOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759315438; x=1759920238;
+        d=1e100.net; s=20230601; t=1759316950; x=1759921750;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2lZRH7mvLyxN+MzFG95XhIKVBdnkVtDrMCoccREIXhU=;
-        b=djlBZT4R5WSH61MfnL8Jvu2qcF+VqxyNC2Sks30Ni8y7LHu7Ci30oAgJM9dgKOEmCG
-         fqUd5t0LTxeJgFdrMvGzYHNW7W2n1Uf3wrZWkTW6mEIIQmz2yecQiXyetVcrQw37gARi
-         jljlqnvmR4JwGH6OdoRWWPFrCXKkO5VoXtCLuV8/Dat2rxkSeJAMKrONlRwtoREVYlgK
-         boA0FZmtSycWGhtHmAVDypforv3SH87rmr1evNG8+/eTVkR7oFqmwdr9MGexXdvBQnFc
-         MZUaR1Thq7MUuZEhN5xoKgCt1m1l03ic/018TGjqMquJXAvv4HavlAre2PkFeNkEJCcq
-         vdjg==
-X-Forwarded-Encrypted: i=1; AJvYcCUFFqlQrwtxqTPGCMoT2WfW5p+syhSge7+s1ylbQiVAzmDOzQElHw3Mn3wW0DRMPc9tkQHhcD3VWoFW@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRQjlNBJ0RgM42h8q2zMExIz+gRC5WIYWiOub3sgIH4yF4ckqN
-	BU4r9fxOlhKt9LQ6ms2CeKEZpnqSvnFivWMdNhFHwhvE53XIe4DCosmiXF7PAK6WAjWhZ26q2Ly
-	hx6FrSgEYXEg6bEEZ3GxB6eTmzMZ40Lb/4JqdC9hspKiI+f9lwv43OVXdfsYf
-X-Gm-Gg: ASbGncvJdXM8I573FY0Kl9UCPQRJT844IHnC7p3e/TmTfIfE4Yl2SVgC2wouf1olZNq
-	3F8Wfg9m1WDG4bvG6XbDIcgfxtIPLN+fKSg0AcsywdK2XMteRuMJG1aFFcfGyk4Xs8JEQy++dXe
-	lsjp6CjCxEMzfMyVOMpXCuLpWUNzH+cm7XPDKehvkD1vzCzt8n41V5KfLlffTZW7x5CrwJjRaQ5
-	Ol6BjJvbod//iNroz1MJmWkYtlk++w=
-X-Google-Smtp-Source: AGHT+IGJ9OoCSt69qSz0S+IZPQ24WcgNAq7AL1kC005K8SJV8OJKe3mHbmPlw9uuhNpvC5T8Eyr0LjgcKU1Qm7+Wghs=
-X-Received: by 2002:a05:651c:1553:b0:36f:4c94:b55e with SMTP id
- 38308e7fff4ca-373a7487662mr6999571fa.39.1759315438106; Wed, 01 Oct 2025
- 03:43:58 -0700 (PDT)
+        bh=M0I3kYZ7l8Sp3ipz6zF/OIoci5Fwg8ccQA1jT9mCF94=;
+        b=LKRrj4JiqNEY6fPDAWeXrzuIpBqN3ZPUdCdh+tXQ9pRPOu9cK+RQKlQtWL2FIMvrnX
+         zOugUCzi62tAMNSR29iZb8WmEqnxJhQHNJUopq77mocyRbyAHalZG3AcvmZm5QfaS7wS
+         AbjNbKN1qQuIUU4S3DIzJTXAF6SLChe2dNu2K17+NNJBccD+sUUONhjDZJCiRhit/v3g
+         bRfl2OZTng01aXI53pTmpP2Fll5FHARvmwH3sArD4ez0kZ7iMNfqluLeTZLI4tDuW5gf
+         0XAd7HGEiGLu47PzW1zp16zk664FV3E5lZwySMZEa1MGvxgX+1vgKDLV35TSI30bJJZf
+         P0Vg==
+X-Forwarded-Encrypted: i=1; AJvYcCXhcqRY8/A+gPljDVZt2X5/Mi5LM9s70x//G6VrOT9teEkq2pAuvoSIpSGS+ByLbVl7+oIp+45ipo2y@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxFGrYjxYQSM28iHuNKiPdvAvG1fkP6HMv5CPeZFEmmCxm/lMr
+	ixHhxC7Ew5KQqHDnhHwvObw/OmrenOZ3h8kqrx2Z6Ni4TnBIlG2KSpGxH6J4uJDjsX21JHLeHEm
+	x5jInXj1zKeKQZtkhJLWLTxurpHe2FeEiQb6iiiu6ow==
+X-Gm-Gg: ASbGnctagPCo41FtDx2laLei7BeUu5YY6ITVYk141vmBUnoIJT9Y/gWeuAbeUtHwxyy
+	GDmuaWtfVyvIH8+Lbj20y+igK9ztZa4KJ4NPwzxcBh867lIH0n+Y01hom4NC/bnDXxVWCkqENii
+	P85vyweJ03bp7Hk6nCANPwmvVdFyPrxWLQA37+wg/rESBh/qXdE9Suvotsr4aqPLoG4Eb51+tbT
+	9x+XrzxadU89bXKmez91+FXIti7qA4=
+X-Google-Smtp-Source: AGHT+IFy9CWT3bu76of2jYZb51gRK/Cq6YQPN0H+wluFSLdTiVauO/GCXAncvl72byP2xI5nDha1WBbbYYwXFWOfJAA=
+X-Received: by 2002:a05:651c:1502:b0:372:9e15:8979 with SMTP id
+ 38308e7fff4ca-373a73b9d30mr8076211fa.24.1759316949664; Wed, 01 Oct 2025
+ 04:09:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250925-ltm8054-driver-v2-0-bb61a401a0dc@bootlin.com>
- <20250925-ltm8054-driver-v2-2-bb61a401a0dc@bootlin.com> <2a503edb-fe9f-4d61-92c0-c1083a028e19@baylibre.com>
- <5015441.GXAFRqVoOG@fw-rgant>
-In-Reply-To: <5015441.GXAFRqVoOG@fw-rgant>
-From: David Lechner <dlechner@baylibre.com>
-Date: Wed, 1 Oct 2025 12:43:47 +0200
-X-Gm-Features: AS18NWByDMtr1hcTFcPp3qerygswAkBQ0L9YHlvelZDEmKOElWDCvIdZewkZNO0
-Message-ID: <CAMknhBHJ8Je2Tcz6yBi1g5tBswoVFXr78tKeZRrfi_9TjLdMuA@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] iio: add processed write API
-To: Romain Gantois <romain.gantois@bootlin.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+References: <20250922152640.154092-1-herve.codina@bootlin.com> <20250922152640.154092-8-herve.codina@bootlin.com>
+In-Reply-To: <20250922152640.154092-8-herve.codina@bootlin.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 1 Oct 2025 13:08:57 +0200
+X-Gm-Features: AS18NWDfJ_jX8XpCwqHlGuZJbQzWdgArWZS71xjJ6JCb9D_RiGMuZ4KagfHEr2I
+Message-ID: <CACRpkdZPURiag1cUQZ319_QA83u+qOCSRALxpe10_+cTcevy+Q@mail.gmail.com>
+Subject: Re: [PATCH v4 7/8] soc: renesas: Add support for Renesas RZ/N1 GPIO
+ Interrupt Multiplexer
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	Hoan Tran <hoan@os.amperecomputing.com>, Bartosz Golaszewski <brgl@bgdev.pl>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Saravana Kannan <saravanak@google.com>, Serge Semin <fancer.lancer@gmail.com>, 
+	Phil Edworthy <phil.edworthy@renesas.com>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Pascal Eberhard <pascal.eberhard@se.com>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Apologies if you are receiving the same message twice. Re-sending as
-text email so that the mailing lists will pick up the reply.
+Hi Herve,
 
-On Wed, Oct 1, 2025 at 9:19=E2=80=AFAM Romain Gantois
-<romain.gantois@bootlin.com> wrote:
->
-> Hello David,
->
-> On Thursday, 25 September 2025 23:10:14 CEST David Lechner wrote:
-> > On 9/25/25 7:37 AM, Romain Gantois wrote:
-> > > Add a function to allow IIO consumers to write a processed value to a
-> ...
-> > > +static int iio_convert_processed_to_raw_unlocked(struct iio_channel
-> > > *chan,
-> > > +                                            int processed, int *raw,
-> > > +                                            unsigned int scale)
-> > > +{
-> > > +   int scale_type, scale_val, scale_val2;
-> > > +   int offset_type, offset_val, offset_val2;
-> > > +   int ret;
-> > > +
-> > > +   scale_type =3D iio_channel_read(chan, &scale_val, &scale_val2,
-> > > +                                 IIO_CHAN_INFO_SCALE);
-> > > +   if (scale_type >=3D 0) {
-> > > +           ret =3D iio_divide_by_value(raw, processed, scale_type,
-> scale_val,
-> > > scale_val2); +              if (ret < 0)
-> > > +                   return ret;
-> > > +   } else {
-> > > +           *raw =3D processed;
-> > > +   }
-> > > +
-> > > +   if (!scale)
-> > > +           return -ERANGE;
-> > > +
-> > > +   *raw =3D div_s64(*raw, scale);
-> > > +
-> > > +   offset_type =3D iio_channel_read(chan, &offset_val, &offset_val2,
-> > > +                                  IIO_CHAN_INFO_OFFSET);
-> > > +   if (offset_type >=3D 0) {
-> > > +           switch (offset_type) {
-> > > +           case IIO_VAL_INT:
-> > > +           case IIO_VAL_INT_PLUS_MICRO:
-> > > +           case IIO_VAL_INT_PLUS_NANO:
-> > > +                   break;
-> > > +           case IIO_VAL_FRACTIONAL:
-> > > +                   offset_val /=3D offset_val2;
-> > > +                   break;
-> > > +           case IIO_VAL_FRACTIONAL_LOG2:
-> > > +                   offset_val >>=3D offset_val2;
-> > > +                   break;
-> > > +           default:
-> > > +                   return -EINVAL;
-> > > +           }
-> > > +
-> > > +           *raw -=3D offset_val;
-> > > +   }
-> >
-> > There are some rounding biases in this function, but I'm not sure if
-> > it is worth trying to make a perfectly fair function.
->
-> I'm unfamiliar with the notion of rounding bias, does it mean that nested
-> calls of this function would tend to amplify rounding errors? In this cas=
-e,
-> would rounding to the nearest integer instead of whatever is being done b=
-y the
-> integer division here be a good solution?
+thanks for your patch!
 
-In this case, the issue is when you are taking multiple samples. When you
-look at the average of all of the samples, you will be able to see the
-bias. For example, in one of the drivers I was looking at there is an
-offset of xxxx.6. Since the IIO_VAL_INT_PLUS_MICRO case is just dropping
-any fractional part, the raw value will be on average 0.6 lsb lower that
-the requested value. This could be a problem in an application where high
-precision is required. But probably not noticeable in cases where 1 lsb is
-less than the noise level.
+On Mon, Sep 22, 2025 at 5:27=E2=80=AFPM Herve Codina (Schneider Electric)
+<herve.codina@bootlin.com> wrote:
 
-The floor division for IIO_VAL_FRACTIONAL creates a similar bias.
-DIV_ROUND_CLOSEST can help there, but even that has a small bias because
-values of exactly 0.5 always get rounded in the same direction. That kind
-of bias is much smaller though, so easier to ignore.
+> On the Renesas RZ/N1 SoC, GPIOs can generate interruptions. Those
+> interruption lines are multiplexed by the GPIO Interrupt Multiplexer in
+> order to map 32 * 3 GPIO interrupt lines to 8 GIC interrupt lines.
+>
+> The GPIO interrupt multiplexer IP does nothing but select 8 GPIO
+> IRQ lines out of the 96 available to wire them to the GIC input lines.
+>
+> Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.co=
+m>
 
+This looks like some complicated code to reimplement hierarchical
+irq domains.
 
->
-> Maybe I'm misunderstanding what you mean, in that case please let me know=
-.
->
-> Thanks,
->
-> --
-> Romain Gantois, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+Can't you just select IRQ_DOMAIN_HIERARCHY and let
+the existing infrastructure in GPIOLIB_IRQCHIP handle
+this?
+
+This kind of remapping and handling is exactly what the
+.child_to_parent_hwirq() callback in struct gpio_irq_chip
+is for. This function can fail if you run out if IRQ lines.
+
+Inspect drivers/gpio/Kconfig driver that select
+IRQ_DOMAIN_HIERARCHY for examples of how to
+do this.
+
+Even if your GPIO driver is not using GPIOLIB_IRQCHIP (in that
+case: why not?) I think you still need to use IRQ_DOMAIN_HIERARCHY
+for this.
+
+Yours,
+Linus Walleij
 
