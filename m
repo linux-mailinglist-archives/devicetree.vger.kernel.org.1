@@ -1,77 +1,79 @@
-Return-Path: <devicetree+bounces-223051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D46FCBB0988
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 16:01:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F36BB0994
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 16:01:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74BCB16F636
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 14:01:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E45202A515D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 14:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC0DA3019BD;
-	Wed,  1 Oct 2025 14:00:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E59D30216A;
+	Wed,  1 Oct 2025 14:01:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ibx8owUy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AwhFhsDY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
+Received: from mail-wm1-f65.google.com (mail-wm1-f65.google.com [209.85.128.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF3C33019B3
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 14:00:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.67
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92FD53019AB
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 14:01:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759327259; cv=none; b=CA1FfwygJ2efvlzsg9O3SI41NVPC7/pKYncl5qzupQ/7NaXqqynMWQvoS/s0kUIB/gQHvLUGEK+7X1e1B42jkORoHzJxvWuCLkpWkrM/VMH41lx9x+M0l8mBFbZpLY/KxfUsIpyUv13+xTM143fPeyG5zdqRQLFPaXA4iKxz+VY=
+	t=1759327268; cv=none; b=o15SLnxkr5wtxGaBvXbXeyn5mJ5eTFJEO4FdI6bGECcvihXnNDQuS1LKDTtF+Ap7Jvimb9sjMq+e3q4JZeXYrDNbHbYmnC6l12QXMVXiw7UWGcht7L+OSGA7c8zByefv8KpGkJZGYE5Wy2Fl4jkYbU+24cK3LsJg2zpspkkGMss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759327259; c=relaxed/simple;
-	bh=NC3eeAM5DOVTDlmWZ97SXYb7EY5dN3ENSk5pS7FalZE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TxF5UA7HlISN/wG4UPZtoaNT/Yo8bVAc624RwuXtb4bwp7riFGEKzZV/D5jpup3jEVgilVqZyeSsg+haUBq+M5icskrSwXFzYqpdGIIa57XUq9vAHyJS9vnoq6vEAG2BWo0cNZviOFe34aKTdD4REzcgDiEzbN6nhJQzKg/i7WY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ibx8owUy; arc=none smtp.client-ip=209.85.221.67
+	s=arc-20240116; t=1759327268; c=relaxed/simple;
+	bh=hfGk7uQVjLThG3ECHgakMM62Hu2CceaDtMXfIaJebeY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=JQXjI3w9fJAmoRY63xQntfqc8FG9OAUNuA2rm7Kl8VE+f3Ck3YvCIK3T332LAaRmb9sCBP330Eev/Epmcb4IFYL+wqoZngPI4BHVakVI9vR41L9yWN7tj/UxiJFEdfm2enDP6vqo7nJd6JZmUzPC44fuKh7rRZyFkXQZKIjwpVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AwhFhsDY; arc=none smtp.client-ip=209.85.128.65
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f67.google.com with SMTP id ffacd0b85a97d-3fc36b99e92so827853f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 07:00:57 -0700 (PDT)
+Received: by mail-wm1-f65.google.com with SMTP id 5b1f17b1804b1-46e3af7889fso45072315e9.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 07:01:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759327256; x=1759932056; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=EYsni1VBvs5YqLN8WcctEz3qmuBiq5eihYcUC9RPHrc=;
-        b=Ibx8owUyE3GWKSXaPZAX96wpg92fXZ8L8lT2fO94m+zHspJ/cMirVhyk2uKv8OhzXZ
-         0uPh0tuGWVn2siDo9kCH+2z64ow2+c9IHQpj19aHqogUZTNUT2ZNcZyiYcG6sVT/z0AI
-         2dR80t+PY5l75CZxo0zSsuek1k5GP2L/TThuS+tAASBO9Pfwl9J/brOsd4gnoXVg+aBh
-         oGq6doVPAIxZnQ52s4LzbiBsirzzMJHxSZWao9mPC3082y/cOmDQJw1mL7EmNwh9oS9a
-         GDafW503Ph+xLI0pmSVc0G5Jj6J0AqM8V6BLknrbqDqbo6eurpLCbhteTSbggPNR+rZI
-         JVow==
+        d=gmail.com; s=20230601; t=1759327265; x=1759932065; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Fsszsfqn6nKhuQ5ZGb0FQ/doPY/Ih/TU5I38riDkDPQ=;
+        b=AwhFhsDY3JE1nCeRaJAIyzSDW63Nn4YFOdHobpmO0CU/DPyyTxysRzPzdabLgRNVy/
+         oNR8NhgCC4YNJhbG6AJViizCULdW5qtPo2pqyg1vFTYzDD4PmRM9ptwg2ob4W14Eg51+
+         0mN+X4Vimxnqm0fvtXxBGU+S2zvSyZiY66o/llf1qaplUxTMWGz2fu71bIV7F59s88zg
+         /3k4oBhS8ao1Va22jZ5f+jvUMz3HqhCn8B2YuQcEKaeGOkwBsbsHLHIPO1GNNR8k1xlE
+         4GGw85VCiG48elOOpMDh70l72k7Flq8LwK7OPLzh1tAVoXw22rLaNJIimNLwZdIEfHG/
+         HTGw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759327256; x=1759932056;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EYsni1VBvs5YqLN8WcctEz3qmuBiq5eihYcUC9RPHrc=;
-        b=WAf53CH+Z44TXuG3R/MZ4jPjufFJlM34PzIBUSRVWlZ/81qvHdtg9Kl9Ago9A9u+CV
-         VJpOJg09wDl+0CJfei5Mhp5dc/BCl4K5QkdpJ7Kz80IIfkjacU3v6IDlBgA81KQdBt1q
-         vO4GgLB7eyoRgTWuyHSpqK1QKhOfHFs6yR6T7YFVraSGAUotAiZt8jmnSYPl/SwU1+C2
-         YlLDfZ7JDi5u3DrhmNTgnSnBSmvCmo81pCQ0KIuQ4f0dWEDZpKbHkzwcaU8IKbLopaLb
-         Z8Jdgv2kQpyaWQJa8jKuTBt494V4/HMHS9zSqwhX5vtyjEuJ4Gl7tghl5ke+ZJSG0ZXN
-         XhMw==
-X-Forwarded-Encrypted: i=1; AJvYcCXB48e2otKVdtEgPfpVu9AbNz/Bb9WiLT0I0t1iuY+ajwZDRClTAxPvEEWpb5ii6mk7QW+Qc4aTcVLq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx34KkzOHQ/mHHo7JcuoPIobVuD9CWwMqY8OT/VvU8N1L4Nr++U
-	d14uRJAO8/a1Xn/NqAg/5PFOW625xZFg/fW6JOESCvxLnkkrnO1KRblK
-X-Gm-Gg: ASbGncsTX+xMAlFTEU412/wez2TRGQSsLBeyhxRVCWl3zG0HU/Beo4oi17Z4ZWsJzke
-	A7ho9K5fYt8s7nmxFWrhPOG0qV+UUPkLG5iJcPlJjVt9ZqvdFuSBBLL2C9/vpCPSTUCret9iXUE
-	bY50CuRB8HgxLCi0YffHxzr24VzYvhs00+mItd69dFGQarEPzuIzsK0Bu4PfmozJaiCzI6c0hky
-	WcKuJNjnyR+NaTDGCHOUIT4z/Z2+Yzqx/Jfg+su1nGesVVD9DmKAndV7EdMS1W2YIghGPVxg/nc
-	+cOTIVj4sKcAcQlPhUB2u5wZEfnmFWB+uYxilHqdmT64Z9sIvvyaz0ldYezWACiIXZw5HLgRnp4
-	qQ+7a+wEJC9zj3EVQ3wslXPOyxVsg+A920NmD9XNdZbrUOCfzz9mJLQ9aS1zY/axrC2bwM7sMB/
-	UDg7VeEO8EdjonDyDSf5uW928cf4J52/xfpoLsfPeNHLUevccK9flWDlgH5uJCAmMV
-X-Google-Smtp-Source: AGHT+IEbCi0xm7TZs0YjOtrOHHNATQAm6IprX3ckD0OQpGOtjk01tDJ8J2LVgeXv3ddJgQ52ljhLtg==
-X-Received: by 2002:a05:6000:2901:b0:3ea:6680:8fb9 with SMTP id ffacd0b85a97d-425577761c8mr3272501f8f.3.1759327255965;
-        Wed, 01 Oct 2025 07:00:55 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759327265; x=1759932065;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Fsszsfqn6nKhuQ5ZGb0FQ/doPY/Ih/TU5I38riDkDPQ=;
+        b=lxRRVwolErsTlheE07jHmnYbbMuOW9JtY5N59K5lagoTwyK0C4a8HLCMAABLkanfRa
+         rnGvtA+mFCvKNMGXgXLIbzXDJgvEgUACrmFt7qrLzr0MFJTfFY38XLL+siumu8Ll+Hxq
+         tipMUoR9VCEYOHwM7npXrhzrLjduSyGCgSz0Z17T+HlTpyU83zAbYVQsc2B+PNK3IK1j
+         oFN+Q2jNyvganaFJ3i3d1MYDk3bZ0PZKbjZOUjwNYn1ceIGOdraERfe0JFhFJ+QA4nIQ
+         qKGYUe2boxfOz5U7vA9o8Sn2KxmwWaIXAtG/JN7pTC2KDzmIKts4XBGqEXTN4ZVWMQYz
+         HU/A==
+X-Forwarded-Encrypted: i=1; AJvYcCWEHYW4LUnHvqPCr7RGcxdk347DpNwHb8DhOKNsVg2S388nLz5krqVrq0tMWnAQPKpqrPDwVoBbFVH1@vger.kernel.org
+X-Gm-Message-State: AOJu0YyC7iNwoGnkC3E3eMmnhYj9N+QDBFPMNWYRachSCjQHJLU8Bbqb
+	UDT9nyFF3Ttj14dHbaonZ3ttqBs5bXe2zqTwKZAiNGiD5wk6/EISS6Pb
+X-Gm-Gg: ASbGncskjtlEVhi0YuAKmzeEYe/g18eptPO+fg5ZMUvce5/ypsqfvqSRjCx6PLBx6rU
+	xSWHWjyFla46c952S2hkZ7duBfbRxnllnkQ9yYDRDRiBTLkADBYHJL8kefU0/KmNEFl4KSxtuAE
+	9+QdACrzKN83eE/NsUE/tfubEMhgMw1Es/RyCzHJAfbu6HFJ0Djdh4N14qaFyb437n6XPWYp58m
+	172TNhD3Tiy34OnNbzr0+opmkh/LUi8TmoJUu7TyeN702euTE31ObxuzS9pvTnR3GPzAi5cK1rN
+	tQ0WDSvCkDUrIuUZGSFrtOmVDRFgSTtikQVjPwXAcIXt7o6eTVD3QG03V8zYx6SfR+0rdGCEp7f
+	3vkZPYrS2j1ugk3wSoFkcUe5WkGcYlfIHuX+AmX+ZBTTkl6oEDRC0SsKrn5Q3rHEFM3grM8XZFt
+	7i39JFwAgmMQfOB1FNh75h83gpTryCYVIKwKR1A58MHSaUww11CtCNMA==
+X-Google-Smtp-Source: AGHT+IGfdA3CFMOqzDfdHGv3iprZDyUerHzmhklMNsvWYGm9CmujeeYnsM2kSToIaaRJkR9fFhfaSg==
+X-Received: by 2002:a05:6000:18a7:b0:3ee:154e:4f9 with SMTP id ffacd0b85a97d-425577f31e3mr2814568f8f.20.1759327264519;
+        Wed, 01 Oct 2025 07:01:04 -0700 (PDT)
 Received: from LAPTOP-AMJDAUEJ.soton.ac.uk (globalprotect-nat-extbord.soton.ac.uk. [152.78.0.24])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-40fb89065b5sm27029828f8f.17.2025.10.01.07.00.45
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-40fb89065b5sm27029828f8f.17.2025.10.01.07.00.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Oct 2025 07:00:55 -0700 (PDT)
+        Wed, 01 Oct 2025 07:01:04 -0700 (PDT)
 From: Junjie Cao <caojunjie650@gmail.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
@@ -98,10 +100,12 @@ Cc: Junjie Cao <caojunjie650@gmail.com>,
 	linux-kernel@vger.kernel.org,
 	linux-arm-msm@vger.kernel.org,
 	freedreno@lists.freedesktop.org
-Subject: [PATCH 0/3] drm/panel: Add support for Novatek NT36532 panel
-Date: Wed,  1 Oct 2025 21:59:11 +0800
-Message-ID: <20251001135914.13754-1-caojunjie650@gmail.com>
+Subject: [PATCH 1/3] dt-bindings: display: panel: Add Novatek NT36532
+Date: Wed,  1 Oct 2025 21:59:12 +0800
+Message-ID: <20251001135914.13754-2-caojunjie650@gmail.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20251001135914.13754-1-caojunjie650@gmail.com>
+References: <20251001135914.13754-1-caojunjie650@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -110,35 +114,104 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This series adds support for panels using the Novatek NT36532 Display
-Driver IC, a dual-DSI, dual-DSC controller that requires DPU support
-for 'slice_per_pkt = 2'.
+NT36532 is a driver IC used to drive MIPI-DSI panels. It is found
+in OnePlus Pad 2 tablets with CSOT panels.
 
-Since the current DPU driver lacks this capability, PATCH 2/3 is picked
-up from Jonathan Marek and Jun Nie [1].
-
-[1]: https://lore.kernel.org/all/20250220-dual-dsi-v2-3-6c0038d5a2ef@linaro.org
-
-Jun Nie (1):
-  drm/msm/dsi: support DSC configurations with slice_per_pkt > 1
-
-Junjie Cao (2):
-  dt-bindings: display: panel: Add Novatek NT36532
-  drm/panel: Add Novatek NT36532 panel driver
-
- .../display/panel/novatek,nt36532.yaml        |  83 ++++
- MAINTAINERS                                   |   7 +
- drivers/gpu/drm/msm/dsi/dsi_host.c            |  25 +-
- drivers/gpu/drm/panel/Kconfig                 |  10 +
- drivers/gpu/drm/panel/Makefile                |   1 +
- drivers/gpu/drm/panel/panel-novatek-nt36532.c | 437 ++++++++++++++++++
- include/drm/drm_mipi_dsi.h                    |   2 +
- 7 files changed, 550 insertions(+), 15 deletions(-)
+Signed-off-by: Junjie Cao <caojunjie650@gmail.com>
+---
+ .../display/panel/novatek,nt36532.yaml        | 83 +++++++++++++++++++
+ 1 file changed, 83 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/display/panel/novatek,nt36532.yaml
- create mode 100644 drivers/gpu/drm/panel/panel-novatek-nt36532.c
 
-
-base-commit: bf2602a3cb2381fb1a04bf1c39a290518d2538d1
+diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36532.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36532.yaml
+new file mode 100644
+index 000000000000..ca4b16459a72
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36532.yaml
+@@ -0,0 +1,83 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/panel/novatek,nt36532.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Novatek NT36532 based DSI display Panels
++
++maintainers:
++  - Junjie Cao <caojunjie650@gmail.com>
++
++description: |
++  The NT36532 IC from Novatek is a Driver IC used to drive MIPI-DSI panels.
++
++allOf:
++  - $ref: panel-common-dual.yaml#
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - csot,ppc100hb1-1
++      - const: novatek,nt36532
++
++  reg:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++    description: phandle of gpio for reset line - This should be 8mA
++
++  vddio-supply:
++    description: regulator that supplies the I/O voltage
++
++  ports: true
++
++required:
++  - compatible
++  - reg
++  - vddio-supply
++  - reset-gpios
++  - ports
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    dsi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        panel@0 {
++            compatible = "csot,ppc100hb1-1", "novatek,nt36532";
++            reg = <0>;
++
++            reset-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
++
++            vddio-supply = <&vreg_l12b_1p8>;
++
++            ports {
++                #address-cells = <1>;
++                #size-cells = <0>;
++
++                port@0 {
++                    reg = <0>;
++                    panel_in_0: endpoint {
++                        remote-endpoint = <&dsi0_out>;
++                    };
++                };
++
++                port@1 {
++                    reg = <1>;
++                    panel_in_1: endpoint {
++                        remote-endpoint = <&dsi1_out>;
++                    };
++                };
++            };
++        };
++    };
++
++...
 -- 
 2.48.1
 
