@@ -1,132 +1,127 @@
-Return-Path: <devicetree+bounces-223001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15355BB0363
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 13:41:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3893EBB0381
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 13:42:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3FC43B7C43
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 11:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77FD52A3A49
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 11:42:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1C5F2D063B;
-	Wed,  1 Oct 2025 11:40:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6A82DE6E3;
+	Wed,  1 Oct 2025 11:41:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="S05kqDyN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iGBIcqZ+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5A052C3263;
-	Wed,  1 Oct 2025 11:40:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7100C2DE202
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 11:41:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759318857; cv=none; b=pT/VEK2VhginoKWmJYyoguubqHKJZdpKYwbLxpc3IErDwk2IUL3FegYoE+qrneX+AYfsuTGtkEJ2VRfaHFL5er6y8iEDLUz9YWkJeB/GJLudquv5s5e5f+bayFBkImejROfCQN/9OJYEpf75QEuCHjaFn+ITxTzl5RcGbcLX2G0=
+	t=1759318892; cv=none; b=YqMVdxLXbELxcgoJnTaId846AibXQY0fUhYbo9meT1WAGMS+vGIchn3FkU1nSuDwEcrqtksza7BteqmSu+PduKHOqPrOt42ebiRuGzAo4+EFnQQfUOcXrvTgGAjKXMPTqllNIV4EhbgpYNCCu4GZeSX2gD/e7DxQFoM0Z4TYXWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759318857; c=relaxed/simple;
-	bh=pe7+znf6mpyZlP+jxhc4JLkMrXrdb9R9nlQiJWAL+Ro=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CC7EtD/yHGEeu9c7uLps1GsqgN6mu/4d3bMCVSfNeQ1rL/1p2zxltEziKyK+iAidRAuK4rjAz0gDanVcVkxNzWg8NvrnlLjlPmH9WM5Ig3aEfDDzhD7nOvLMVM7JfitFTYTi3bQkcLKj+CrqO6KBHUwHTLjA8bVJCHES+SnQuWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=S05kqDyN; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1759318854;
-	bh=pe7+znf6mpyZlP+jxhc4JLkMrXrdb9R9nlQiJWAL+Ro=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=S05kqDyNRj+pe9gVvonHeRgxc9guOFsO7g6gLLdPFYpQ/9tT5CQdQdvMTE1VksqrB
-	 rmrGEPCDvOKU2Dc/a68BHzcbqMBSseRUjeHmSnVf2ZORiPxtBzoVfecyuvQyDPAIrR
-	 KOKTA6Bbbb0Eu4S+tUrceHpnEzJACVC1xROtoMHBywqK7g5K8jxdC8cXjihSr7OdST
-	 Dfrb9c66uo1GUqRSUSzWyPhLD5+QHxyjbXB3y5dL6UBRm+hXEMujV4+OKBKodLC1KG
-	 1XQ6P8rkBoWLo0I+jl6Ed/Brji/egH4mmYS5DTotXN26ouvfonaX0EYe02QSgSRPsR
-	 84ai4DMes2oDQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 769AE17E12DA;
-	Wed,  1 Oct 2025 13:40:53 +0200 (CEST)
-Message-ID: <bddf658c-c9b1-48c7-b39c-0720e9d4c934@collabora.com>
-Date: Wed, 1 Oct 2025 13:40:52 +0200
+	s=arc-20240116; t=1759318892; c=relaxed/simple;
+	bh=XNoirN2YmXOb9e+cUQx56jMaIQh+gAJtYRQuQbyuBGo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZIsC0sRUlsi4/CKmVodDpFntmQmzOPmh5L/yYDBViRoI+Z13Hg5Ed15s0eyXDECa33i25XIRswtyKCJj7D7x2siHXNq40KobhDciqvF7d3V20m/a2bA8G2cQx/7Twc8t/TFJzXeV1Gf6WQhJkbPCuobyEaNDqGtmOpV2Uk5fv4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iGBIcqZ+; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5818de29d15so9375093e87.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 04:41:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759318888; x=1759923688; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qctZSXMhs2xeiqfjqCMk0nsDO98tXumKc7sHsixp5Vw=;
+        b=iGBIcqZ+9TycTKvNSiWZkouV7Wmik5N8GdkyJAC5jTLxIaSIKYFTZi6hylI1+nEutf
+         Le2gXxMVkShPUGDqrR62j3Wf4YYeLomcJHuBTiM+BOcj6v8iXlsWcIZNjXJ5iq1SdoSi
+         Fx/lrm3zTbQh9wWIhEi/en0CvPk1lLCebQV/b12O8mF/7tuvRxt+undkh6RCOlOJvnMz
+         jBxu2ImwUKRwNGIbGFNAPr+HFkesPrzEHSlMXmPil/JiySkXwh3vc4dgktqfuuwhnZga
+         Nvt0WkU9UpLB7pyoLRHtvi1Ie1Rnzx/ofigjjRUsgSm02AZwHd9Wd3DlfGkS8au0LNek
+         sEHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759318888; x=1759923688;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qctZSXMhs2xeiqfjqCMk0nsDO98tXumKc7sHsixp5Vw=;
+        b=H1S1kiMKn0xx/ljwnQHjxTbY/XJNoaVOUCR6XTj8Tm9JTacAHxYfZRyvvnit7+oDM5
+         ZZSU+5/gxtPph3sfMGoJi/LTYxlYs35NertQjOiqgekIrDPDCHc1mEuf6sj0ds8I0SSj
+         DSS0TVjUNhAOiKXW/LUjgmonqij9iHUOtNHZ44SKLfIRGDapBE+CgP3rGI4i5sL1C25a
+         Hh/SWoCbZLYJGDP9NI8ZtEb5g37qVw8gGAq22cB0K393ronPGXDeLVcUs5I1tdihT8ys
+         Gvn6HsHhbthKwT07XYCAtN2MG275EqGV5/WPeNk28oEmX80ENgSLC3/+QDE93419RJ1H
+         LNxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWl01atsBNT0WbLfXz32z2PUSRKT9AelCM6zxygxzCPwJyQXQw+jlhP5Mom+FVQo8h24FECyuK7o5rJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxH+t+dzQI6CNfEn9J5oxrwv8PxhgLOkJf/DFUZSi4oDy/hrofX
+	ItckGrP91At1pB7A9KmFcBGyc2vsTvnOJU0trK1xe2oOy/bSOLF38z67lv5ONbRujhqOUpm5v7p
+	lcw+CjcGl6GPgguUvx+M1ZzTXekyGoukNuu1HzcsgCw==
+X-Gm-Gg: ASbGncsdGCqGeVoSyLgD2z9oxiNatQrdSCiC6yysheOgA4GaijkO9MXW/2dpwrOK1vv
+	wAS499szUb0HnmezteXhW/lS7ii0/NCTLXwlkLbRI8+qnRpgcKana3eYtploR9TyUBJNjpUSBIX
+	4AUJ6xJKLz1D+h4ZWAOwR/pSHEbRN6Ch3C84abXQm1x/jEmoek35utf+vDOgqaGEKbBo0wIODvo
+	A7giKtT5gR2o6P0lTDFHj+t/1nhUb8=
+X-Google-Smtp-Source: AGHT+IGh0WRelayFPhpsyMTnu/QogCxki2FOJNlaiws2mA6RsyILjodYZSp8V+kDGxU8+sBc5yZrKN2O5uWz8LJyuPc=
+X-Received: by 2002:a05:6512:b12:b0:581:75eb:cb0b with SMTP id
+ 2adb3069b0e04-58af9f4df8fmr956846e87.48.1759318888565; Wed, 01 Oct 2025
+ 04:41:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] clk: mediatek: Pass device to clk_hw_register for
- PLLs
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Guangjie Song <guangjie.song@mediatek.com>,
- Laura Nao <laura.nao@collabora.com>,
- =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- Yassine Oudjana <y.oudjana@protonmail.com>
-Cc: kernel@collabora.com, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20250929-mtk-pll-rpm-v1-0-49541777878d@collabora.com>
- <20250929-mtk-pll-rpm-v1-3-49541777878d@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250929-mtk-pll-rpm-v1-3-49541777878d@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250927-rda8810pl-gpio-fix-v3-0-3641cdcf6c1e@mainlining.org> <20250927-rda8810pl-gpio-fix-v3-1-3641cdcf6c1e@mainlining.org>
+In-Reply-To: <20250927-rda8810pl-gpio-fix-v3-1-3641cdcf6c1e@mainlining.org>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 1 Oct 2025 13:41:17 +0200
+X-Gm-Features: AS18NWBXAbHjbTdnQXpt6IR8KxMLhgGpEzULsJ3KqRHyjfQNnQcsJ6eT4En0sws
+Message-ID: <CACRpkdZD+QFsFSTL0c6HbPp_4op2axjpZRL=y-KEMw_rNpxgqA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] dt-bindings: gpio: rda: Make interrupts optional
+To: Dang Huynh <dang.huynh@mainlining.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-unisoc@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 29/09/25 14:13, Nicolas Frattaroli ha scritto:
-> Passing the struct device pointer to clk_hw_register allows for runtime
-> power management to work for the registered clocks. However, the
-> mediatek PLL clocks do not do this.
-> 
-> Change this by adding a struct device pointer argument to
-> mtk_clk_register_pll, and fix up the only other user of it. Also add a
-> new member to the struct mtk_clk_pll for the struct device pointer,
-> which is set by mtk_clk_register_pll and is used by
-> mtk_clk_register_pll_ops.
-> 
-> If mtk_clk_register_pll is called with a NULL struct device pointer,
-> then everything still works as expected; the clock core will simply
-> treat them as previously, i.e. without runtime power management.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->   drivers/clk/mediatek/clk-pll.c   | 9 ++++++---
->   drivers/clk/mediatek/clk-pll.h   | 4 +++-
->   drivers/clk/mediatek/clk-pllfh.c | 2 +-
->   3 files changed, 10 insertions(+), 5 deletions(-)
-> 
+Hi Dang,
 
-..snip..
+thanks for your patch!
 
-> diff --git a/drivers/clk/mediatek/clk-pllfh.c b/drivers/clk/mediatek/clk-pllfh.c
-> index 83630ee07ee976bf980c8cf2dd35ea24c1b40821..62bfe4a480f14a0a742fb094aff0e6d1a79fe0c3 100644
-> --- a/drivers/clk/mediatek/clk-pllfh.c
-> +++ b/drivers/clk/mediatek/clk-pllfh.c
-> @@ -220,7 +220,7 @@ int mtk_clk_register_pllfhs(struct device_node *node,
->   		if (use_fhctl)
->   			hw = mtk_clk_register_pllfh(pll, pllfh, base);
->   		else
-> -			hw = mtk_clk_register_pll(pll, base);
-> +			hw = mtk_clk_register_pll(NULL, pll, base);
->   
+On Sat, Sep 27, 2025 at 7:02=E2=80=AFAM Dang Huynh <dang.huynh@mainlining.o=
+rg> wrote:
 
-Seriously, you've done all that work in patch [2/4], and now you're doing that
-just only with PLLFH?
+> The GPIO controller from the modem does not have an interrupt.
+>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Dang Huynh <dang.huynh@mainlining.org>
 
-Nicolas, c'mon. It's just 5 minutes ahead. :-D
+If the GPIO controllers are so different, should they not have different
+compatible strings?
 
-Cheers,
-Angelo
+Maybe add rda,8810pl-modem-gpio compatible for the modem
+GPIO then?
 
->   		if (IS_ERR(hw)) {
->   			pr_err("Failed to register %s clk %s: %ld\n",
-> 
+ +++ b/Documentation/devicetree/bindings/gpio/gpio-rda.yaml
+> @@ -41,9 +41,6 @@ required:
+>    - gpio-controller
+>    - "#gpio-cells"
+>    - ngpios
+> -  - interrupt-controller
+> -  - "#interrupt-cells"
+> -  - interrupts
 
+Then this can be conditional using an if:-statement such that
+it is only mandatory for rda,8810pl-gpio and not for
+rda,8810pl-modem-gpio.
+
+Yours,
+Linus Walleij
 
