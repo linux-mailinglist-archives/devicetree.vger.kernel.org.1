@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-222963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD076BAFCD6
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 11:11:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAF4ABAFCE2
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 11:11:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9FAD23B538D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 09:11:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DEB33B78D2
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 09:11:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0727E2DAFB9;
-	Wed,  1 Oct 2025 09:10:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38B452DC338;
+	Wed,  1 Oct 2025 09:10:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LsIELARi"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mBqrnrN/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2568C2D8DD4
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 09:10:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FF0F2D97B4
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 09:10:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759309850; cv=none; b=qfUL1G46XkM8Fznun1YhgJAo5MQGUiTyiMmD5A//1+Ske1GxG6xoNgewpBY0nO60UIDpIbi1XPg/S8iDNo9liIpS0RJoNkDJvJ/1eubS1CSRyzpdCuHlHq3eTuh/rzVPwe6lyz4JlVuXRZ7Pg1GuKpEiZRtengVpefwx+4p32iY=
+	t=1759309855; cv=none; b=c1ssoCChncXNmrPqVN7UTOlj/wtMLMp0sl7GXJk4bpdYNy125GbYUqJoq9QU8uS1uVOJNaIUxEqPSgtV4T1BusnxuBlrkeAcbCkkleCV9w3HIfmcMnZY8Sd4L2rfXhuEmtdLKjz2yUmEjYPPA21b6Rg06z+p8305TspkwH/Tew8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759309850; c=relaxed/simple;
-	bh=9L3gQ0+1ET6P5sIpnbODjpkXwsRD7oIboYXbSSEzbwM=;
+	s=arc-20240116; t=1759309855; c=relaxed/simple;
+	bh=EDxK0JAECJqknU7nyBNM/XjceytGlGUL11eBwTOLESE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=CsXmLZLX5efb5zJT6KsyQZcTrDUiMrG/gPhVQRvFJ/1tT/dPjZCw3OGqPaOK2q1fy8fVU46zGtym0D04ubd4kLeamjr1GZV15fSFFFp4NWIM7fMgJzsR/M3lf8GxTPklg6Bh1yjHHxM4vUxZOWpG6M3+86y/i6r0armGfHhD0wk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LsIELARi; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=UXGuANMwjfJ6a1BDAKlBoM11l9MdWWZfhFnMy+jsOkrySPwFoPRzuiueH7IEDZMc20IhV7lJkvRfDrirnTqdpEnPQEl9WIWao0SHDtkmG+ADCFEopYI6jrO2ZiqSughl8taVUVHRFHD2NvtJAM6Mr+lPgBaIcSRZTIvavCmVVyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mBqrnrN/; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5918sMGD024615
-	for <devicetree@vger.kernel.org>; Wed, 1 Oct 2025 09:10:48 GMT
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5918sNlR009650
+	for <devicetree@vger.kernel.org>; Wed, 1 Oct 2025 09:10:52 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=2YfY4oJdQ6f
-	kUnOWCE1mjTXBY2BCI5s2fVtajgXgfUc=; b=LsIELARiPPwesTYXjHSHt8Z10ma
-	sFD7n5vahRbPW3fCJVxRc65va3k2uq+fs5da+E20IBDXf1vCDs4VqlBUAv7hscjY
-	deQqLb8ROinDRfnSrxiB2kqFDwzSmvAsvTIuh7Sa/X7HdmfXLhL9K+I3b+x3+ya2
-	foVwbJn8AE1oInxdoTnkj8uiyxTgIa/jfvRAcHLCqJbxXbS6tiZxXDBDSrwJh0W5
-	Yu4HNUFl8wowYPaSbwUhqVTTbVIBlE8sSd12WJOwzaZ68Z6pqGhIbWohP+eMOt/c
-	MDYHaZWlt/i7fgmr5X7pgECRzkG6GfGIx6vWuCb710on80JFWdPa5PYQIDw==
-Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e59n4ch7-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=dzJS/eOWAno
+	Hpfft1/dBeRGBEhv7bksVWKJ4cITaZw8=; b=mBqrnrN/7cpp9QY5SYGITKEOWKj
+	xRApfzEUxwU2oApr0HAAGWj6y6VPoep49b3OthJW6Z70cndLpj2t6eQ/7wnsMvSk
+	9ntvar4d6AIWcf2A897rp69IhDTNFzjnVLyGh0BsR8rZKc3MOkA7t6Fh2hqeUbgy
+	ikBeMOEUTDSWaMUIWZVNSJJsJwrEm+qZQbwIAIJMhxIH8h30sgCwPx9VjsCu4DS0
+	m9VO2oEXMfYLYnnHRDmrfUMsfkqRcRd/jyU95ibpKbMXqSx0nOIfa2lbgRU7ZXrK
+	7Eh4epIjK6tx3SBzDr8vbPbcVBVXucjQ5a2NIvlMDyII3UCkqQV5FwQmG7A==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e977us6e-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 09:10:48 +0000 (GMT)
-Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-32eddb7e714so6063041a91.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 02:10:47 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 09:10:52 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-286a252bfbfso79680695ad.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 02:10:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759309847; x=1759914647;
+        d=1e100.net; s=20230601; t=1759309852; x=1759914652;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2YfY4oJdQ6fkUnOWCE1mjTXBY2BCI5s2fVtajgXgfUc=;
-        b=QvkLAsqOMfIVhPDfa/A8wcJjOBkoQAibCp6+amaOmLEOk2IYRFuqYMCoTvLUbcM4o6
-         iuc8Q3mObNLnrwcH6stuqpFN7pIodYhVNM4J/8aQuIA//JVYtEEhb6mC7x1lI9d9rB4Y
-         at69qetYU5Oa15B9Oxv01OR9nBID2lwSFzUDArYOhu8ntVmLuYP8wBe81qP54OGkz4/c
-         RLtANj4c2xnFqUFHqeqgQEs2+XgIzbCP2xpmslwLPHWcPKwm2WHcy0P7qpAaq34HaUl5
-         w9Bt0KIhB1AVlUi8hbcUv8yCgjpFKCH9eNFymUQuD8X8BVze3GIsZVBgFZU894QuEvo2
-         Rheg==
-X-Forwarded-Encrypted: i=1; AJvYcCVtSN02I1hRT6qFn6tvQyBx3snDvzPPTZZTR74C7ICfg1iK2MSagUq2Q3kwRaEOmyAsEgdsn7Bdaf70@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxsm10uttdeh/ImBBP7VAz3i+oDjKgwJmwjmQJfnBb86O6tJ2JB
-	B3i9YD6wR3vb/nK4liswVYoEjEGi4fNlNjpSAoBgaZ9Hqg/W5ekpsBmtTreUO5M+4HOe3ijKVnb
-	6aBl+NN5ju9k2O9nhWeBz2BuGPYS6+MxRh5nMfNlzo/URYLjRAusCAFo7Du7L0z5V
-X-Gm-Gg: ASbGncuR2kljqBxifpzfynt4k3YCoomCgcwrRGdzK+EdlImxxZKdJ36akj7b88HoxMg
-	08Pf/jjyPmUDQpX2pvBwnJgfUuk77tC69IW69pZprepKJt9P8ry1jNyfoKiBj5J7dYbtUehmuGC
-	YSQR9wHRmSPx2BsIX65tHFi169l1gKRZn1QJpMcL3SU3mGy2UV/PYGkFFdOFVdmXb/FthBRjtu1
-	yJzJc6z+kPBh0k3HpmPNFpWw9y2ofkR0F9H+U5D6P57gA1Ca5GMpXF8X+lhbzoiWDLmpAQ+4Yzs
-	K+U008NrlzXP6sKEGJYRbudibw7vJa6cM4rJnAvJ07wAVEtEXAvBrQxuzlaKXsjBv6/rF/uCD6f
-	hgENkbA==
-X-Received: by 2002:a17:90b:3c92:b0:32e:23e8:2869 with SMTP id 98e67ed59e1d1-339a6f688d5mr3095994a91.30.1759309846684;
-        Wed, 01 Oct 2025 02:10:46 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IESdbSxcj6fFTqJ2XMnzUJV1v2CK57SbLMejOkZNBQx8uvv4Qof2avs+1XJXZSiDjbkGUEPlg==
-X-Received: by 2002:a17:90b:3c92:b0:32e:23e8:2869 with SMTP id 98e67ed59e1d1-339a6f688d5mr3095899a91.30.1759309845542;
-        Wed, 01 Oct 2025 02:10:45 -0700 (PDT)
+        bh=dzJS/eOWAnoHpfft1/dBeRGBEhv7bksVWKJ4cITaZw8=;
+        b=NoKq95OZ7zGkRJJJJgKR+tr0EttlCb/E3+4USODXdsf4Wp+xHnWgizcp7xLpLBixhz
+         8g0vvQ479rIlaBjolhNQOwfwpRmyptHLw8ffoewZjclCi2uZo3kk9h5lNnwrYn89LAHC
+         dzW0EsKwrxcDsOPVAvuL8XMvNGlU1ly8ufJhqY+QfknoV5SocOP1HXxsLYqqvxkQQAeb
+         gVRjKpahgZBADGSlwlzsddmFbEc0tl74+l57svWNbm1NRbP+r5mw6i00JoaOnLfy0MMT
+         es+PcfYaZXylN+waojdc2Ez4mW7lkauqV5guhXcCV//sT1I2XNQ2UDqIRuizvh0dKZnG
+         RgPA==
+X-Forwarded-Encrypted: i=1; AJvYcCVRlIe187VCAm1f8gt0yeKHn2hwBj5hJSSU03iH+JffEiAZO0DTycO7g3vrdADaYvokzzrenuifTrKc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx5MnWCZ/T/HZGDx56MoCuVPhmS+Xcw7OYLHHOY5O9Tomzp5DcV
+	gjen/swkI3T3RfkDmoEiVVrCTTmdC107dxV+YIIEEKDbm4oTyOnJCBPysKhlyRL9/0NVO8Y18XA
+	s3eHTc1H3TvILzhtkLW77pV3YanXNDJS95u+6nlXK5tBE43kboNnRPab8/FdMn5O9xLWzJNRk
+X-Gm-Gg: ASbGnctP3nDtllm33SFQq9RQmg6WxwC4CjUpGfAF0/SDyMwxRTiGuiw9SrRciqIj0LP
+	IGhTMa7U5pxp0w+tRZONhDQjUm4pHTm0RNXMua0dsXkuSAFWCGcBWqGSgSHJ21fJIFKMhDSiM5+
+	+IDNU0XD+W6Nl9b8/xjnCqVN05ZWdcoJZYfLlRR9A2uslJtNl9eB/7DwTMjnnNucyOIwsAazbEw
+	DG/3MDDiaRK27blzewlyM8HWW164zHSKqLQrU/nEsf1NI4MwAhjD+PiXegGBU2Udex4TwaFJyim
+	aEvc4euM8cxot0eKlEzu0Ydjb7jBKExYXpZDdT5ewGOtfJoLlA253OVstZr9aIvmJGEQyVz7IsR
+	6I61+OQ==
+X-Received: by 2002:a17:903:3201:b0:281:613:8449 with SMTP id d9443c01a7336-28e7f44200amr34870905ad.47.1759309851683;
+        Wed, 01 Oct 2025 02:10:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEKedvdV1/ItaIACYKHnY4KYhs298v4BEWXXcoD9/zsLksqKknUQgVmOswuXLjmaqAn+lkDdw==
+X-Received: by 2002:a17:903:3201:b0:281:613:8449 with SMTP id d9443c01a7336-28e7f44200amr34870505ad.47.1759309851282;
+        Wed, 01 Oct 2025 02:10:51 -0700 (PDT)
 Received: from hu-vdadhani-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-339a6ea09ebsm1859315a91.2.2025.10.01.02.10.40
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-339a6ea09ebsm1859315a91.2.2025.10.01.02.10.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Oct 2025 02:10:44 -0700 (PDT)
+        Wed, 01 Oct 2025 02:10:50 -0700 (PDT)
 From: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
 To: mkl@pengutronix.de, mani@kernel.org, thomas.kopp@microchip.com,
         mailhol.vincent@wanadoo.fr, robh@kernel.org, krzk+dt@kernel.org,
@@ -88,11 +88,11 @@ To: mkl@pengutronix.de, mani@kernel.org, thomas.kopp@microchip.com,
         linux-kernel@vger.kernel.org
 Cc: mukesh.savaliya@oss.qualcomm.com, anup.kulkarni@oss.qualcomm.com,
         Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-Subject: [PATCH v6 5/6] can: mcp251xfd: add gpio functionality
-Date: Wed,  1 Oct 2025 14:40:05 +0530
-Message-Id: <20251001091006.4003841-6-viken.dadhaniya@oss.qualcomm.com>
+Subject: [PATCH v6 6/6] dt-bindings: can: mcp251xfd: add gpio-controller property
+Date: Wed,  1 Oct 2025 14:40:06 +0530
+Message-Id: <20251001091006.4003841-7-viken.dadhaniya@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251001091006.4003841-1-viken.dadhaniya@oss.qualcomm.com>
 References: <20251001091006.4003841-1-viken.dadhaniya@oss.qualcomm.com>
@@ -103,254 +103,58 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: X38xW2NDeRduZ3lz1hh_F0WjLcpG2X0a
-X-Authority-Analysis: v=2.4 cv=O4g0fR9W c=1 sm=1 tr=0 ts=68dcf018 cx=c_pps
- a=RP+M6JBNLl+fLTcSJhASfg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+X-Proofpoint-GUID: K_WbJvzhkKvVzcLwT6UcRy5RrhnLeKC2
+X-Proofpoint-ORIG-GUID: K_WbJvzhkKvVzcLwT6UcRy5RrhnLeKC2
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDA0MyBTYWx0ZWRfX4Jo164nH2rlQ
+ pTmcoIOzUuZ0UJJtdGDV667QDDTOr18CgOykpvPf0Kmew4OQlAa6d90gHQ1hEyqO1PzYH7dAdg4
+ cPDBaARnPyBHM4NK20Fm2HTEDTdEWFeXcZB6KWUBds3KaZx/q0HA8nMOZJ68cmECtvYLsy7qV8o
+ y3MJuez8QOEFTj0oXJdWqQzvkf4Wi6XhsG4uZVmFA70ftleGfaBxwimJddpG30JrhqSxZnajNQF
+ gHs1RRcWfo5Du8PwnhmHz8a/HqiZCh39DU18946Nywc0t5p6bCK/TKLgWitqLeX+kFBU/HhCStK
+ avYifq/OfgY3+WGEr0lfx7fFcrR5niTl5BKaXHw/o56DEOGcCdrpEoe25v2nBMbPPtd7YmnZjED
+ 2p47WU/+Mcnge9hypQ0k32ZAux0SIg==
+X-Authority-Analysis: v=2.4 cv=Sf36t/Ru c=1 sm=1 tr=0 ts=68dcf01c cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
  a=x6icFKpwvdMA:10 a=8f9FM25-AAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
- a=tLDx1KCooYQGmN993QAA:9 a=iS9zxrgQBfv6-_F4QbHw:22 a=uSNRK0Bqq4PXrUp6LDpb:22
+ a=ubk9sFcynENsk3o0iIUA:9 a=324X-CrmTo6CU4MGRt3R:22 a=uSNRK0Bqq4PXrUp6LDpb:22
  a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: X38xW2NDeRduZ3lz1hh_F0WjLcpG2X0a
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAwMSBTYWx0ZWRfX5yL5uMJWLJkK
- 3SfqErkVYiLlxpIK81HWs8GTLREAY/xETHgiLhnZGVp5/F/aSn+3gHbxfQU3z5M1GQiIJHIiZpK
- x77gIVLn4r8qplarL08DoxmW5ZRfs1HTH7loCdVQCcc8xEyB8xrMCMDaYea9jHyIFZIV2toE5s/
- EIbTQtJDUjAWIvYF6iKjeHcu25FkqmiX5OODdTughSeUDKxZHYAHacjoFknwSjzKKkAL0U7Ud3u
- wByiHaebkgWhoS3lym+v4Bxemi3uRedg5qpY1ZmPtVkhSiYsXS8ihKhygHbhsExmZTLctVzLGgb
- UR9uCMcra2IDDeH2CrXxIZ/R5pZkVTtO33kDaikRRBOh7FJxJh/6BWZhQnk49trY9rhmrXJMdrG
- uBTgeZWCoHb0+6hn2t4qzT+/zwlPOA==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-01_02,2025-09-29_04,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 phishscore=0 clxscore=1015 priorityscore=1501 lowpriorityscore=0
- spamscore=0 impostorscore=0 bulkscore=0 suspectscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270001
+ clxscore=1015 bulkscore=0 suspectscore=0 adultscore=0 spamscore=0
+ priorityscore=1501 malwarescore=0 lowpriorityscore=0 phishscore=0
+ impostorscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
+ definitions=main-2509270043
 
 From: Gregor Herburger <gregor.herburger@ew.tq-group.com>
 
-The mcp251xfd devices allow two pins to be configured as gpio. Add this
-functionality to driver.
+The mcp251xfd has two pins that can be used as gpio. Add gpio-controller
+property to binding description.
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Gregor Herburger <gregor.herburger@ew.tq-group.com>
-Tested-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
 Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
 ---
- drivers/net/can/spi/mcp251xfd/Kconfig         |   1 +
- .../net/can/spi/mcp251xfd/mcp251xfd-core.c    | 160 ++++++++++++++++++
- drivers/net/can/spi/mcp251xfd/mcp251xfd.h     |   2 +
- 3 files changed, 163 insertions(+)
+ .../devicetree/bindings/net/can/microchip,mcp251xfd.yaml     | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/net/can/spi/mcp251xfd/Kconfig b/drivers/net/can/spi/mcp251xfd/Kconfig
-index 877e4356010d..7c29846e6051 100644
---- a/drivers/net/can/spi/mcp251xfd/Kconfig
-+++ b/drivers/net/can/spi/mcp251xfd/Kconfig
-@@ -5,6 +5,7 @@ config CAN_MCP251XFD
- 	select CAN_RX_OFFLOAD
- 	select REGMAP
- 	select WANT_DEV_COREDUMP
-+	select GPIOLIB
- 	help
- 	  Driver for the Microchip MCP251XFD SPI FD-CAN controller
- 	  family.
-diff --git a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c b/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
-index ea41f04ae1a6..586336d9e421 100644
---- a/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
-+++ b/drivers/net/can/spi/mcp251xfd/mcp251xfd-core.c
-@@ -1797,6 +1797,160 @@ static int mcp251xfd_register_check_rx_int(struct mcp251xfd_priv *priv)
- 	return 0;
- }
+diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml b/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
+index c155c9c6db39..2d13638ebc6a 100644
+--- a/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
++++ b/Documentation/devicetree/bindings/net/can/microchip,mcp251xfd.yaml
+@@ -49,6 +49,11 @@ properties:
+       Must be half or less of "clocks" frequency.
+     maximum: 20000000
  
-+static const char * const mcp251xfd_gpio_names[] = { "GPIO0", "GPIO1" };
++  gpio-controller: true
 +
-+static int mcp251xfd_gpio_request(struct gpio_chip *chip, unsigned int offset)
-+{
-+	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-+	u32 pin_mask = MCP251XFD_REG_IOCON_PM(offset);
-+	int ret;
++  "#gpio-cells":
++    const: 2
 +
-+	if (priv->rx_int && offset == 1) {
-+		netdev_err(priv->ndev, "Can't use GPIO 1 with RX-INT!\n");
-+		return -EINVAL;
-+	}
-+
-+	ret = pm_runtime_resume_and_get(priv->ndev->dev.parent);
-+	if (ret)
-+		return ret;
-+
-+	return regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON, pin_mask, pin_mask);
-+}
-+
-+static void mcp251xfd_gpio_free(struct gpio_chip *chip, unsigned int offset)
-+{
-+	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-+
-+	pm_runtime_put(priv->ndev->dev.parent);
-+}
-+
-+static int mcp251xfd_gpio_get_direction(struct gpio_chip *chip,
-+					unsigned int offset)
-+{
-+	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-+	u32 mask = MCP251XFD_REG_IOCON_TRIS(offset);
-+	u32 val;
-+	int ret;
-+
-+	ret = regmap_read(priv->map_reg, MCP251XFD_REG_IOCON, &val);
-+	if (ret)
-+		return ret;
-+
-+	if (mask & val)
-+		return GPIO_LINE_DIRECTION_IN;
-+
-+	return GPIO_LINE_DIRECTION_OUT;
-+}
-+
-+static int mcp251xfd_gpio_get(struct gpio_chip *chip, unsigned int offset)
-+{
-+	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-+	u32 mask = MCP251XFD_REG_IOCON_GPIO(offset);
-+	u32 val;
-+	int ret;
-+
-+	ret = regmap_read(priv->map_reg, MCP251XFD_REG_IOCON, &val);
-+	if (ret)
-+		return ret;
-+
-+	return !!(mask & val);
-+}
-+
-+static int mcp251xfd_gpio_get_multiple(struct gpio_chip *chip, unsigned long *mask,
-+				       unsigned long *bit)
-+{
-+	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-+	u32 val;
-+	int ret;
-+
-+	ret = regmap_read(priv->map_reg, MCP251XFD_REG_IOCON, &val);
-+	if (ret)
-+		return ret;
-+
-+	*bit = FIELD_GET(MCP251XFD_REG_IOCON_GPIO_MASK, val) & *mask;
-+
-+	return 0;
-+}
-+
-+static int mcp251xfd_gpio_direction_output(struct gpio_chip *chip,
-+					   unsigned int offset, int value)
-+{
-+	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-+	u32 dir_mask = MCP251XFD_REG_IOCON_TRIS(offset);
-+	u32 val_mask = MCP251XFD_REG_IOCON_LAT(offset);
-+	u32 val;
-+
-+	if (value)
-+		val = val_mask;
-+	else
-+		val = 0;
-+
-+	return regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON,
-+				  dir_mask | val_mask, val);
-+}
-+
-+static int mcp251xfd_gpio_direction_input(struct gpio_chip *chip,
-+					  unsigned int offset)
-+{
-+	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-+	u32 dir_mask = MCP251XFD_REG_IOCON_TRIS(offset);
-+
-+	return regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON, dir_mask, dir_mask);
-+}
-+
-+static int mcp251xfd_gpio_set(struct gpio_chip *chip, unsigned int offset, int value)
-+{
-+	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-+	u32 val_mask = MCP251XFD_REG_IOCON_LAT(offset);
-+	u32 val;
-+
-+	if (value)
-+		val = val_mask;
-+	else
-+		val = 0;
-+
-+	return regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON, val_mask, val);
-+}
-+
-+static int mcp251xfd_gpio_set_multiple(struct gpio_chip *chip, unsigned long *mask,
-+				       unsigned long *bits)
-+{
-+	struct mcp251xfd_priv *priv = gpiochip_get_data(chip);
-+	u32 val;
-+
-+	val = FIELD_PREP(MCP251XFD_REG_IOCON_LAT_MASK, *bits);
-+
-+	return regmap_update_bits(priv->map_reg, MCP251XFD_REG_IOCON,
-+				  MCP251XFD_REG_IOCON_LAT_MASK, val);
-+}
-+
-+static int mcp251fdx_gpio_setup(struct mcp251xfd_priv *priv)
-+{
-+	struct gpio_chip *gc = &priv->gc;
-+
-+	if (!device_property_present(&priv->spi->dev, "gpio-controller"))
-+		return 0;
-+
-+	gc->label = dev_name(&priv->spi->dev);
-+	gc->parent = &priv->spi->dev;
-+	gc->owner = THIS_MODULE;
-+	gc->request = mcp251xfd_gpio_request;
-+	gc->free = mcp251xfd_gpio_free;
-+	gc->get_direction = mcp251xfd_gpio_get_direction;
-+	gc->direction_output = mcp251xfd_gpio_direction_output;
-+	gc->direction_input = mcp251xfd_gpio_direction_input;
-+	gc->get = mcp251xfd_gpio_get;
-+	gc->get_multiple = mcp251xfd_gpio_get_multiple;
-+	gc->set = mcp251xfd_gpio_set;
-+	gc->set_multiple = mcp251xfd_gpio_set_multiple;
-+	gc->base = -1;
-+	gc->can_sleep = true;
-+	gc->ngpio = ARRAY_SIZE(mcp251xfd_gpio_names);
-+	gc->names = mcp251xfd_gpio_names;
-+
-+	return devm_gpiochip_add_data(&priv->spi->dev, gc, priv);
-+}
-+
- static int
- mcp251xfd_register_get_dev_id(const struct mcp251xfd_priv *priv, u32 *dev_id,
- 			      u32 *effective_speed_hz_slow,
-@@ -1930,6 +2084,12 @@ static int mcp251xfd_register(struct mcp251xfd_priv *priv)
- 
- 	mcp251xfd_ethtool_init(priv);
- 
-+	err = mcp251fdx_gpio_setup(priv);
-+	if (err) {
-+		dev_err_probe(&priv->spi->dev, err, "Failed to register gpio-controller.\n");
-+		goto out_runtime_disable;
-+	}
-+
- 	err = register_candev(ndev);
- 	if (err)
- 		goto out_runtime_disable;
-diff --git a/drivers/net/can/spi/mcp251xfd/mcp251xfd.h b/drivers/net/can/spi/mcp251xfd/mcp251xfd.h
-index bd28510a6583..085d7101e595 100644
---- a/drivers/net/can/spi/mcp251xfd/mcp251xfd.h
-+++ b/drivers/net/can/spi/mcp251xfd/mcp251xfd.h
-@@ -15,6 +15,7 @@
- #include <linux/can/dev.h>
- #include <linux/can/rx-offload.h>
- #include <linux/gpio/consumer.h>
-+#include <linux/gpio/driver.h>
- #include <linux/kernel.h>
- #include <linux/netdevice.h>
- #include <linux/regmap.h>
-@@ -676,6 +677,7 @@ struct mcp251xfd_priv {
- 
- 	struct mcp251xfd_devtype_data devtype_data;
- 	struct can_berr_counter bec;
-+	struct gpio_chip gc;
- };
- 
- #define MCP251XFD_IS(_model) \
+ required:
+   - compatible
+   - reg
 -- 
 2.34.1
 
