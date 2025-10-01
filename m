@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-223142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C0CDFBB1821
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 20:35:48 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69647BB1839
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 20:37:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 334B719476D2
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 18:36:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 288324E1929
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 18:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6396E2D5939;
-	Wed,  1 Oct 2025 18:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BD932D595D;
+	Wed,  1 Oct 2025 18:37:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b="Bus2fud+"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b="EU94pkYR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71B442D3A86;
-	Wed,  1 Oct 2025 18:35:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C0812D5939;
+	Wed,  1 Oct 2025 18:37:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759343743; cv=pass; b=deKC9AgTuTludLkan0i1RXPZrUjfnBRSAOsyvk4uYLuaVye7Yh1m3WzujqmVerOHMub3UFqTjJzmT49/8+wFh+UUnL9tae3o65UWn51f+XO2+cAygg6jHiIJQj7R5s2lAzn09GaSnaDCmrQW4EP4C4UQaGvjo8mzsj7cVxwimSM=
+	t=1759343834; cv=pass; b=e1Zed6ye9OmxerquRKkubqjVRVMCFPMDh8Q36eGOuM9XtMtCyiYV3iIXuH7Ps5LyCTrxBU4otTOR51NORYcmAUUfEIZ4ljUqB3XgjCbv5bUfXfPHvGLcFaLSFzq5S8sh6bBEwnxusPOrD/IZ3AhtMWqM/iMa4W3MgPH81SOHbAM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759343743; c=relaxed/simple;
-	bh=cPkgOhY3OViY8Eh82gk3+c/8Fz+KXpaf5MpYzxqGKLg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QfKkGEjT3R8CRLRybTzpqX+xhqw7Rsudc7bEJUkFJCYvcXW9NmZuEOGCRWL4MkbY+sO6QilzZFjzrTzrMeGS8t8yJPvvssuOUi4TX6tJPDjYNlSlDLtMqHqk+31UHriW2hm6zaBjFW51P0ii9+rY1nK6pwEea/c6F0ZlJWeWI60=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b=Bus2fud+; arc=pass smtp.client-ip=136.143.188.112
+	s=arc-20240116; t=1759343834; c=relaxed/simple;
+	bh=CUBM0mBmVPkicODbBp1xx4UtFM19E0qMmRDkuNDGH3I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cAkn9WBwftjKAg2K1n2aNCxjrnWoLRDwhka2g5N9PK107YWbNUXFPJoElfA1Mkm1eUDwnQLicJE+UBd/EkZJZCF0VegDADGqqDJZQicDPsOEg+y5PbvER2DIy16Y7pDeXiAe/gi+9zHNnG6D1oEM4X5B+Gh8AOwfBvFDbdEiQr8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b=EU94pkYR; arc=pass smtp.client-ip=136.143.188.112
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1759343728; cv=none; 
+ARC-Seal: i=1; a=rsa-sha256; t=1759343818; cv=none; 
 	d=zohomail.com; s=zohoarc; 
-	b=GO4M1NUWW6TWSbDNpVVaR40eptHIMXCdh2YjC997tWUHghEYAviXb7B2JKiHPx6ak2zqbvcohnzvplGJ0yiSZHZ5PiNeTAqXhZ74jQM4eiuy8ET7BrITFys0Mw3euZHo721CFIwsHdO5OdF3WiVHzIsf6aIx5jOZDyyW+kgLg1s=
+	b=AWR7OmKcdTzjwYLprPea9rUkBBoDL3LBfJrDJ5a25efapNpT7U98yF955niYXX1s+5BXy+yqawkeQR3YshOTbtZNDNJLqP6GETR5fGCDYvBTNWVqNI4sPtqm0r8kjIy2yiCMJl8pHRnKDR3HSOaLhWG9OLMadRXlrjMU5GnDsD0=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1759343728; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=Eih+Gvrl/V/M1VLTYZoN9wZ1OWt0+vDKt9t9071sjq8=; 
-	b=HxL6LvSjBZX0g6EJdxuatweoVCdWVSedspO8pUQ0LceXTUsGP2xbBOpWIwTxNFt3dR7t3c60oQ/qVfHc955QgrNAJnJ7yBuu/ppOc9Zoxc1OvJR2h58LhFp5pRxZJf2A8eQsLr8EguO4SCxvwd6FN8z80LERLbeFK/H7uzyRv+0=
+	t=1759343818; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=VFwVI/DzokXdehoWBWg6HSD+fLixXuRHY7gKajclmqY=; 
+	b=JMBXsiPIV9g5iDNZrsFJMoqw2MDFpMVQHtH+BSj4293ZHu0U3sGNbacsZjwdg6Tm8rdaifeEITGIVk6wS5mKXDjk8x4FxyK1YokvWvht5YODqrlSfzDdyBXF7nxIfoHc+kBctsHjDLk2RbKsFknu89Hfd1/KJDyJXV0Tto0PcMY=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
 	dkim=pass  header.i=collabora.com;
 	spf=pass  smtp.mailfrom=ariel.dalessandro@collabora.com;
 	dmarc=pass header.from=<ariel.dalessandro@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759343728;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759343818;
 	s=zohomail; d=collabora.com; i=ariel.dalessandro@collabora.com;
 	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=Eih+Gvrl/V/M1VLTYZoN9wZ1OWt0+vDKt9t9071sjq8=;
-	b=Bus2fud+WrXA21LkdBDB7ozBil6sVjRukemB2tKN9DqEPvcIj4itNHtZuQYhDxpy
-	E2AnanCOAQzgGPBM2OGiSOUh2voGxTwx2Ti521mKjUQ6Dde3GKUxorirWs7TqkqTIkk
-	DUgWf5zeUMJpbH0VWTOwgcR9DHPrh2bECZGCOOHA=
-Received: by mx.zohomail.com with SMTPS id 175934372619585.09151494021478;
-	Wed, 1 Oct 2025 11:35:26 -0700 (PDT)
+	bh=VFwVI/DzokXdehoWBWg6HSD+fLixXuRHY7gKajclmqY=;
+	b=EU94pkYRWE7J2ZNIc4MOzUEecpj2zYWkFjKjHAYEuBDbvovS5S4fUlIPCGkUPiiQ
+	UYSufsNlQHeGDi0jITJFcs4jhCj0aVqus9qE+deAlXC/dSWncif/kVxarLMrB/4fn3T
+	+0dG9z0yU6nzp+nCQOrzpi6PsEEtAO4jjIU6ueHo=
+Received: by mx.zohomail.com with SMTPS id 1759343816562112.86931271037633;
+	Wed, 1 Oct 2025 11:36:56 -0700 (PDT)
 From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 To: angelogioacchino.delregno@collabora.com,
 	ariel.dalessandro@collabora.com,
@@ -57,17 +57,14 @@ To: angelogioacchino.delregno@collabora.com,
 	conor+dt@kernel.org,
 	krzk+dt@kernel.org,
 	lgirdwood@gmail.com,
-	matthias.bgg@gmail.com,
-	robh@kernel.org
+	robh@kernel.org,
+	support.opensource@diasemi.com
 Cc: devicetree@vger.kernel.org,
 	kernel@collabora.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-sound@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: ASoC: Convert MediaTek RT5650 codecs bindings to DT schema
-Date: Wed,  1 Oct 2025 15:35:17 -0300
-Message-ID: <20251001183517.83278-1-ariel.dalessandro@collabora.com>
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: regulator: Convert Dialog DA9211 Regulators to DT schema
+Date: Wed,  1 Oct 2025 15:36:48 -0300
+Message-ID: <20251001183648.83379-1-ariel.dalessandro@collabora.com>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -78,38 +75,260 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-ZohoMailClient: External
 
-Convert the existing text-based DT bindings for Mediatek MT8173 RT5650
-codecs to a DT schema.
+Convert the existing text-based DT bindings for Dialog Semiconductor DA9211
+Voltage Regulators family to a DT schema. Examples are simplified, as these
+are all equal.
 
 Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- .../sound/mediatek,mt8173-rt5650.yaml         | 73 +++++++++++++++++++
- .../bindings/sound/mt8173-rt5650.txt          | 31 --------
- 2 files changed, 73 insertions(+), 31 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8173-rt5650.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/mt8173-rt5650.txt
+ .../devicetree/bindings/regulator/da9211.txt  | 205 ------------------
+ .../bindings/regulator/dlg,da9211.yaml        | 103 +++++++++
+ 2 files changed, 103 insertions(+), 205 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/regulator/da9211.txt
+ create mode 100644 Documentation/devicetree/bindings/regulator/dlg,da9211.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8173-rt5650.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8173-rt5650.yaml
+diff --git a/Documentation/devicetree/bindings/regulator/da9211.txt b/Documentation/devicetree/bindings/regulator/da9211.txt
+deleted file mode 100644
+index eb871447d5082..0000000000000
+--- a/Documentation/devicetree/bindings/regulator/da9211.txt
++++ /dev/null
+@@ -1,205 +0,0 @@
+-* Dialog Semiconductor DA9211/DA9212/DA9213/DA9223/DA9214/DA9224/DA9215/DA9225
+- Voltage Regulator
+-
+-Required properties:
+-- compatible: "dlg,da9211" or "dlg,da9212" or "dlg,da9213" or "dlg,da9223"
+-  or "dlg,da9214" or "dlg,da9224" or "dlg,da9215" or "dlg,da9225"
+-- reg: I2C slave address, usually 0x68.
+-- interrupts: the interrupt outputs of the controller
+-- regulators: A node that houses a sub-node for each regulator within the
+-  device. Each sub-node is identified using the node's name, with valid
+-  values listed below. The content of each sub-node is defined by the
+-  standard binding for regulators; see regulator.txt.
+-  BUCKA and BUCKB.
+-
+-Optional properties:
+-- enable-gpios: platform gpio for control of BUCKA/BUCKB.
+-- Any optional property defined in regulator.txt
+-  - regulator-initial-mode and regulator-allowed-modes may be specified using
+-    mode values from dt-bindings/regulator/dlg,da9211-regulator.h
+-
+-Example 1) DA9211
+-	pmic: da9211@68 {
+-		compatible = "dlg,da9211";
+-		reg = <0x68>;
+-		interrupts = <3 27>;
+-
+-		regulators {
+-			BUCKA {
+-				regulator-name = "VBUCKA";
+-				regulator-min-microvolt = < 300000>;
+-				regulator-max-microvolt = <1570000>;
+-				regulator-min-microamp 	= <2000000>;
+-				regulator-max-microamp 	= <5000000>;
+-				enable-gpios = <&gpio 27 0>;
+-				regulator-allowed-modes = <DA9211_BUCK_MODE_SYNC
+-							   DA9211_BUCK_MODE_AUTO>;
+-			};
+-		};
+-	};
+-
+-Example 2) DA9212
+-	pmic: da9212@68 {
+-		compatible = "dlg,da9212";
+-		reg = <0x68>;
+-		interrupts = <3 27>;
+-
+-		regulators {
+-			BUCKA {
+-				regulator-name = "VBUCKA";
+-				regulator-min-microvolt = < 300000>;
+-				regulator-max-microvolt = <1570000>;
+-				regulator-min-microamp 	= <2000000>;
+-				regulator-max-microamp 	= <5000000>;
+-				enable-gpios = <&gpio 27 0>;
+-			};
+-			BUCKB {
+-				regulator-name = "VBUCKB";
+-				regulator-min-microvolt = < 300000>;
+-				regulator-max-microvolt = <1570000>;
+-				regulator-min-microamp 	= <2000000>;
+-				regulator-max-microamp 	= <5000000>;
+-				enable-gpios = <&gpio 17 0>;
+-			};
+-		};
+-	};
+-
+-Example 3) DA9213
+-	pmic: da9213@68 {
+-		compatible = "dlg,da9213";
+-		reg = <0x68>;
+-		interrupts = <3 27>;
+-
+-		regulators {
+-			BUCKA {
+-				regulator-name = "VBUCKA";
+-				regulator-min-microvolt = < 300000>;
+-				regulator-max-microvolt = <1570000>;
+-				regulator-min-microamp 	= <3000000>;
+-				regulator-max-microamp 	= <6000000>;
+-				enable-gpios = <&gpio 27 0>;
+-			};
+-		};
+-	};
+-
+-Example 4) DA9223
+-	pmic: da9223@68 {
+-		compatible = "dlg,da9223";
+-		reg = <0x68>;
+-		interrupts = <3 27>;
+-
+-		regulators {
+-			BUCKA {
+-				regulator-name = "VBUCKA";
+-				regulator-min-microvolt = < 300000>;
+-				regulator-max-microvolt = <1570000>;
+-				regulator-min-microamp 	= <3000000>;
+-				regulator-max-microamp 	= <6000000>;
+-				enable-gpios = <&gpio 27 0>;
+-			};
+-		};
+-	};
+-
+-Example 5) DA9214
+-	pmic: da9214@68 {
+-		compatible = "dlg,da9214";
+-		reg = <0x68>;
+-		interrupts = <3 27>;
+-
+-		regulators {
+-			BUCKA {
+-				regulator-name = "VBUCKA";
+-				regulator-min-microvolt = < 300000>;
+-				regulator-max-microvolt = <1570000>;
+-				regulator-min-microamp 	= <3000000>;
+-				regulator-max-microamp 	= <6000000>;
+-				enable-gpios = <&gpio 27 0>;
+-			};
+-			BUCKB {
+-				regulator-name = "VBUCKB";
+-				regulator-min-microvolt = < 300000>;
+-				regulator-max-microvolt = <1570000>;
+-				regulator-min-microamp 	= <3000000>;
+-				regulator-max-microamp 	= <6000000>;
+-				enable-gpios = <&gpio 17 0>;
+-			};
+-		};
+-	};
+-
+-Example 6) DA9224
+-	pmic: da9224@68 {
+-		compatible = "dlg,da9224";
+-		reg = <0x68>;
+-		interrupts = <3 27>;
+-
+-		regulators {
+-			BUCKA {
+-				regulator-name = "VBUCKA";
+-				regulator-min-microvolt = < 300000>;
+-				regulator-max-microvolt = <1570000>;
+-				regulator-min-microamp 	= <3000000>;
+-				regulator-max-microamp 	= <6000000>;
+-				enable-gpios = <&gpio 27 0>;
+-			};
+-			BUCKB {
+-				regulator-name = "VBUCKB";
+-				regulator-min-microvolt = < 300000>;
+-				regulator-max-microvolt = <1570000>;
+-				regulator-min-microamp 	= <3000000>;
+-				regulator-max-microamp 	= <6000000>;
+-				enable-gpios = <&gpio 17 0>;
+-			};
+-		};
+-	};
+-
+-Example 7) DA9215
+-	pmic: da9215@68 {
+-		compatible = "dlg,da9215";
+-		reg = <0x68>;
+-		interrupts = <3 27>;
+-
+-		regulators {
+-			BUCKA {
+-				regulator-name = "VBUCKA";
+-				regulator-min-microvolt = < 300000>;
+-				regulator-max-microvolt = <1570000>;
+-				regulator-min-microamp 	= <4000000>;
+-				regulator-max-microamp 	= <7000000>;
+-				enable-gpios = <&gpio 27 0>;
+-			};
+-			BUCKB {
+-				regulator-name = "VBUCKB";
+-				regulator-min-microvolt = < 300000>;
+-				regulator-max-microvolt = <1570000>;
+-				regulator-min-microamp 	= <4000000>;
+-				regulator-max-microamp 	= <7000000>;
+-				enable-gpios = <&gpio 17 0>;
+-			};
+-		};
+-	};
+-
+-Example 8) DA9225
+-	pmic: da9225@68 {
+-		compatible = "dlg,da9225";
+-		reg = <0x68>;
+-		interrupts = <3 27>;
+-
+-		regulators {
+-			BUCKA {
+-				regulator-name = "VBUCKA";
+-				regulator-min-microvolt = < 300000>;
+-				regulator-max-microvolt = <1570000>;
+-				regulator-min-microamp 	= <4000000>;
+-				regulator-max-microamp 	= <7000000>;
+-				enable-gpios = <&gpio 27 0>;
+-			};
+-			BUCKB {
+-				regulator-name = "VBUCKB";
+-				regulator-min-microvolt = < 300000>;
+-				regulator-max-microvolt = <1570000>;
+-				regulator-min-microamp 	= <4000000>;
+-				regulator-max-microamp 	= <7000000>;
+-				enable-gpios = <&gpio 17 0>;
+-			};
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/regulator/dlg,da9211.yaml b/Documentation/devicetree/bindings/regulator/dlg,da9211.yaml
 new file mode 100644
-index 0000000000000..a3166cc40a206
+index 0000000000000..4d7e495a6f599
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/mediatek,mt8173-rt5650.yaml
-@@ -0,0 +1,73 @@
++++ b/Documentation/devicetree/bindings/regulator/dlg,da9211.yaml
+@@ -0,0 +1,103 @@
 +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/sound/mediatek,mt8173-rt5650.yaml#
++$id: http://devicetree.org/schemas/regulator/dlg,da9211.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Mediatek MT8173 with RT5650 codecs and HDMI via I2S
++title:
++  Dialog Semiconductor DA9211-9215, DA9223-9225 Voltage Regulators
 +
 +maintainers:
 +  - Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 +
 +properties:
 +  compatible:
-+    const: mediatek,mt8173-rt5650
++    enum:
++      - dlg,da9211
++      - dlg,da9212
++      - dlg,da9213
++      - dlg,da9214
++      - dlg,da9215
++      - dlg,da9223
++      - dlg,da9224
++      - dlg,da9225
 +
 +  reg:
 +    maxItems: 1
@@ -117,95 +336,79 @@ index 0000000000000..a3166cc40a206
 +  interrupts:
 +    maxItems: 1
 +
-+  mediatek,audio-codec:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      The phandles of rt5650 codecs and of the HDMI encoder node.
-+    minItems: 2
-+
-+  mediatek,platform:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      The phandle of MT8173 ASoC platform.
-+
-+  mediatek,mclk:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      The MCLK source.
-+      0: external oscillator, MCLK = 12.288M
-+      1: internal source from mt8173, MCLK = sampling rate * 256
-+
-+  codec-capture:
-+    description: Subnode of rt5650 codec capture.
++  regulators:
 +    type: object
-+
-+    properties:
-+      sound-dai:
-+        maxItems: 1
-+        description: phandle of the CPU DAI
-+
 +    additionalProperties: false
++    description:
++      List of regulators provided by the device
++
++    patternProperties:
++      "^BUCK([AB])$":
++        type: object
++        $ref: regulator.yaml#
++        unevaluatedProperties: false
++        description:
++          Properties for a single BUCK regulator
++
++        properties:
++          regulator-initial-mode:
++            items:
++              enum: [ 1, 2, 3 ]
++            description:
++              Defined in include/dt-bindings/regulator/dlg,da9211-regulator.h
++
++          regulator-allowed-modes:
++            items:
++              enum: [ 1, 2, 3 ]
++            description:
++              Defined in include/dt-bindings/regulator/dlg,da9211-regulator.h
++
++          enable-gpios:
++            maxItems: 1
 +
 +required:
 +  - compatible
-+  - mediatek,audio-codec
-+  - mediatek,platform
++  - reg
++  - interrupts
++  - regulators
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    sound {
-+        compatible = "mediatek,mt8173-rt5650";
-+        mediatek,audio-codec = <&rt5650 &hdmi0>;
-+        mediatek,platform = <&afe>;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&aud_i2s2>;
++    #include <dt-bindings/regulator/dlg,da9211-regulator.h>
 +
-+        mediatek,mclk = <1>;
-+        codec-capture {
-+            sound-dai = <&rt5650 1>;
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        regulator@68 {
++            compatible = "dlg,da9212";
++            reg = <0x68>;
++            interrupts = <3 27>;
++
++            regulators {
++                BUCKA {
++                    regulator-name = "VBUCKA";
++                    regulator-min-microvolt = < 300000>;
++                    regulator-max-microvolt = <1570000>;
++                    regulator-min-microamp = <2000000>;
++                    regulator-max-microamp = <5000000>;
++                    enable-gpios = <&gpio 27 0>;
++                };
++                BUCKB {
++                    regulator-name = "VBUCKB";
++                    regulator-min-microvolt = < 300000>;
++                    regulator-max-microvolt = <1570000>;
++                    regulator-min-microamp = <2000000>;
++                    regulator-max-microamp = <5000000>;
++                    enable-gpios = <&gpio 17 0>;
++                };
++            };
 +        };
 +    };
 +
 +...
-diff --git a/Documentation/devicetree/bindings/sound/mt8173-rt5650.txt b/Documentation/devicetree/bindings/sound/mt8173-rt5650.txt
-deleted file mode 100644
-index 29dce2ac8773a..0000000000000
---- a/Documentation/devicetree/bindings/sound/mt8173-rt5650.txt
-+++ /dev/null
-@@ -1,31 +0,0 @@
--MT8173 with RT5650 CODECS and HDMI via I2S
--
--Required properties:
--- compatible : "mediatek,mt8173-rt5650"
--- mediatek,audio-codec: the phandles of rt5650 codecs
--                        and of the hdmi encoder node
--- mediatek,platform: the phandle of MT8173 ASoC platform
--
--Optional subnodes:
--- codec-capture : the subnode of rt5650 codec capture
--Required codec-capture subnode properties:
--- sound-dai: audio codec dai name on capture path
--  <&rt5650 0> : Default setting. Connect rt5650 I2S1 for capture. (dai_name = rt5645-aif1)
--  <&rt5650 1> : Connect rt5650 I2S2 for capture. (dai_name = rt5645-aif2)
--
--- mediatek,mclk: the MCLK source
--  0 : external oscillator, MCLK = 12.288M
--  1 : internal source from mt8173, MCLK = sampling rate*256
--
--Example:
--
--	sound {
--		compatible = "mediatek,mt8173-rt5650";
--		mediatek,audio-codec = <&rt5650 &hdmi0>;
--		mediatek,platform = <&afe>;
--		mediatek,mclk = <0>;
--		codec-capture {
--			sound-dai = <&rt5650 1>;
--		};
--	};
--
 -- 
 2.51.0
 
