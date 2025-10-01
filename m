@@ -1,181 +1,287 @@
-Return-Path: <devicetree+bounces-223101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4838BBB1139
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 17:31:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66038BB1157
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 17:34:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5047B4A59E7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 15:31:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2282B3ACD0D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 15:34:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57AA97263B;
-	Wed,  1 Oct 2025 15:31:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF352275860;
+	Wed,  1 Oct 2025 15:34:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X9s2vJhw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tqPCVFTy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32DD7223DD1
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 15:31:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A769256C76
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 15:34:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759332676; cv=none; b=Tuv+nBODtGEn27GN+3MqdpeOocLMIBFJufBnFRt5QN81e8gyIxuOJYo8KxWBMW/2z3OLjyjVv+XfNj08qtXu3H7vMjgGuF5rt2E9+4Y+OaZgDTJNd/Yvxsx4gJu/7IwBD0RtYdffhtsYARoj0BPNmt/TakRznuWRe62WcuaVfJo=
+	t=1759332849; cv=none; b=tFnuLFNG8hVXGpV1aaqZNBPjPiEVzBk4RxpLcWFq2FTv6V/mHxH2UOcwwrPXt4a4ahcXkGge38cbvcOHs/T09Ai9IFdawfztn3i6pdfAkYVZMTbDrGRPBCvQ84QFv9tVhV7ud+CJsmNACjgPQrZOjOmiECZQpRWQAv6XXdWEuZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759332676; c=relaxed/simple;
-	bh=JDTAEyiZbcLvVT3hNia51TXKC13VHjeiGUJS8Hgu32o=;
+	s=arc-20240116; t=1759332849; c=relaxed/simple;
+	bh=t+5oodR2WJ89UuewrgqF2t9gtUtjMDijBW3TB8kNAk8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SsZgJAMKj6bLm90LAIZ0mIZfmHfo0MG7aWqpHwVu++sjRUmVp3D/Xxa4VruzUXzgYfMGzxhveWXUwuPN+kJwa+0EL6+GVnU3vr2EZFOvaqkWIYUy8SvgbNlPy1N3WwdSNGs++qerr8mjLg5XJTLY3rCSxUWc58MAk3oMbatAK7w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X9s2vJhw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B908BC4CEF1
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 15:31:15 +0000 (UTC)
+	 To:Cc:Content-Type; b=CL5qUknu+WgL/6UsvC6euVi3kLbYMxjwjrjzr4m1sASyCB3tSknoa5MbaEePSSdGnf7JRBUv/wbPfW81aS9jwGbAk7uJDf9X4wkMovdwsOU2pv9xhDwTyX2zCoeY42/IyHN5gGWPxj0RYk7X4obvm2/GnHOXwvQO1E+p2hSbFpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tqPCVFTy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EF8BC4CEF9
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 15:34:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759332675;
-	bh=JDTAEyiZbcLvVT3hNia51TXKC13VHjeiGUJS8Hgu32o=;
+	s=k20201202; t=1759332849;
+	bh=t+5oodR2WJ89UuewrgqF2t9gtUtjMDijBW3TB8kNAk8=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=X9s2vJhwFvLYgnC7gK/o4ZbL5fgFDbWMo2m9DC8rtEEL4x7JKB9d/kOIlK6IYksaN
-	 ijhj3/MjlbSKUq9Cl3tPq3qd/b1tYIW3KmahqNu87DAYfkDQw2S5qap5UV98S0admZ
-	 qoho8gFivpdh6iRA7RKqJs/Zdn1xWauCh/w8Pi2m/gvqKzs2sFuRz2vrMA6JrKvxta
-	 9deqCRJK7jSWhpKZ6fV2sHYyxMocueDWW/lHZFl/xf28Xr/J1r3NfrCV187VMuIBXh
-	 Wq6sHMJNs7zHCcA3E+xXXTMZqKFCgApgkYRjXMcnAWJ3oafrGKHZjtl7xZUqe/nTfH
-	 stqn8akp4VTkg==
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b3be330b1f5so481566b.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 08:31:15 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV60QFpY6UAeQgOnlZgSwyEl55oeMOESwKkXj7Ir52ITgn1Co+Zv43GTG4Z5JIML4tY+ocO5VQab2tN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz68w35sD8/GjrCNpcV9+ezMk6m5jEVsszTDlo3X1mJL7XJBliw
-	91RL58+h94GqdpN+3Zi9qvfJANcJFJUj2mTPBMvd3zJnLWzxJK/WH7iiEpvnz1F29/82PLv6BSD
-	xENtX1rbVJtsN7y/Jj4FPP054UPk2Dg==
-X-Google-Smtp-Source: AGHT+IGuAt8OqaKidKIuidndmLKgwuYuRdG+PcQotC2WNIt9dyJsL6bKltHzJtdGvoLIdTuZkQcvUO0000wUNzWaOnw=
-X-Received: by 2002:a17:906:730f:b0:b2e:6b3b:fbe7 with SMTP id
- a640c23a62f3a-b46df909bf3mr469061166b.0.1759332674337; Wed, 01 Oct 2025
- 08:31:14 -0700 (PDT)
+	b=tqPCVFTynJONnF7xNecqWlPQkX1nanVmluWVaglGetbl8lXwFFIh7YHfq1h2iI2Wh
+	 YT8Te7lMONjwYh2cxmbEQmUo31+seH30lTPApY5uiibFZMEszj1OeoBLXFpmQaCjKK
+	 HuDXYKn0Z51kUb9cH68RaaWC1AmNXo3Zkso1+/4kn0vphGYDBmIEcpHo5TekRlBPLx
+	 QXAHVFuSav2Ls0UMaIJMe/zEdCfRUWPxa2A9qIj2zA9yH/nTB6H4ZdwmB2/PuuO7pd
+	 z77KRCWtyQSMp0xhvLqp9D2O+qo3xXPjNrZQORHHOW+j6ClXcWdNrjjzBTZCGC51kY
+	 uXPyLKbOkjUFg==
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b3da3b34950so675631066b.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 08:34:09 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVTyfogaS5TXWN2HVLBkkxwUjr7wwxmrJtbkQvCXjew0h2cga/xww2OanAbTvG9jnpSo7TzMesgUxSf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxBubzk+Zf9K71VWimURgBOhjfCWLBSP+G8BwF2CXiEbWSB1zUm
+	QIjBbsZ/5Qhga3wjLP4h/NCtUmAL/M+y5ARVASunBGyPBhuzRcmENhGq8ftZDBQXp2m3x21HOUx
+	R7YDhbRUsCppmhSe/5t+qyXmeDgQ14A==
+X-Google-Smtp-Source: AGHT+IEDjD1QFaIHAE6AtoKL1XcfTfdfXJeMhpRYoI2QgQTpaRdosjYiVDpZeRAc/0K+l/wDiK57fn17gvANxESs9l4=
+X-Received: by 2002:a17:906:1c15:b0:b48:549f:6d9e with SMTP id
+ a640c23a62f3a-b4854aeb215mr10085766b.49.1759332847699; Wed, 01 Oct 2025
+ 08:34:07 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250724132808.101351-1-srinivas.kandagatla@oss.qualcomm.com>
- <CAL_JsqKG+dcMgp1QF4F3Oxh5Shvagg6cSde=g1JMcEAquZhH_Q@mail.gmail.com>
- <990cb5af-3846-44a3-b373-ded62d3309b9@oss.qualcomm.com> <CAL_Jsq+zC91GPdzQQa9F8KEw5UL4xc13u5U_5vTyQG1WeJa5rw@mail.gmail.com>
- <82906e08-9583-4f4c-91ad-d5b53b2dffd6@kernel.org> <CAL_JsqLtLbCqzHzcaGAuYwxqr=e9HZFX8X20tndx7US-XjhH3Q@mail.gmail.com>
- <CAL_JsqLcinpeJyib+JG7UFspUqXDTzCLguF3Nt4JJY9YncTb9A@mail.gmail.com>
- <b8c1365a-545d-40ae-a39c-e15a3e1f07e7@kernel.org> <b3147370-11da-4202-abac-36218487578f@oss.qualcomm.com>
-In-Reply-To: <b3147370-11da-4202-abac-36218487578f@oss.qualcomm.com>
+References: <20250926072905.126737-1-linux.amoon@gmail.com>
+ <20250926072905.126737-2-linux.amoon@gmail.com> <CAL_JsqJr+h7pTvbRR=7eB4ognK70D1pgNXEORGXo=ndND=pMjw@mail.gmail.com>
+ <CANAwSgT3jo35xBvkH4GmQcZuZH=D+SRKJ6e9fSBRz45zwuCmYw@mail.gmail.com>
+ <CAL_JsqLsEDFv4T1ZMmjaoFfs7WNAjVvOk9o1eTXL2EeGF8uuDA@mail.gmail.com>
+ <CANAwSgTuX3t2-SNPe4OAzGuDpL5RotxX8t+Zx+gcwFKdj3ZEng@mail.gmail.com>
+ <CAL_JsqKBhzPwxYguy+N=eddG2nwB54dzw307A6KT5NJpRSh-Mg@mail.gmail.com> <CANAwSgTKFSf-EUGSpErdS1Y93AwunFOK7omH4T+gE_z2XttVtw@mail.gmail.com>
+In-Reply-To: <CANAwSgTKFSf-EUGSpErdS1Y93AwunFOK7omH4T+gE_z2XttVtw@mail.gmail.com>
 From: Rob Herring <robh@kernel.org>
-Date: Wed, 1 Oct 2025 10:31:02 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+_FoOFQ92SBx1neViyzAeiVkpn2DWqi4Nt4FFoz4pR_g@mail.gmail.com>
-X-Gm-Features: AS18NWD3T-H-3Cqx3KV0EYQQkvmNWsSh9Yljc8XF87P_qTz1x5FFABioQlBsZU4
-Message-ID: <CAL_Jsq+_FoOFQ92SBx1neViyzAeiVkpn2DWqi4Nt4FFoz4pR_g@mail.gmail.com>
-Subject: Re: [PATCH] slimbus: qcom: remove unused qcom controller driver
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Cc: Srinivas Kandagatla <srini@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+Date: Wed, 1 Oct 2025 10:33:55 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLCPThkVhdTLPA_POn72LS16-e-TaRTiEYf+USYTFyNPQ@mail.gmail.com>
+X-Gm-Features: AS18NWB8eFFyUEM-YcAGL07RUx2a3G2X2k8lVDyTqs54wImwsCWcRrCeTplqd6A
+Message-ID: <CAL_JsqLCPThkVhdTLPA_POn72LS16-e-TaRTiEYf+USYTFyNPQ@mail.gmail.com>
+Subject: Re: [PATCH v1 1/5] dt-bindings: PCI: Convert the existing
+ nvidia,tegra-pcie.txt bindings documentation into a YAML schema
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	"open list:PCI NATIVE HOST BRIDGE AND ENDPOINT DRIVERS" <linux-pci@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 1, 2025 at 10:03=E2=80=AFAM Srinivas Kandagatla
-<srinivas.kandagatla@oss.qualcomm.com> wrote:
->
-> On 10/1/25 3:21 PM, Srinivas Kandagatla wrote:
-> >
-> >
-> > On 10/1/25 3:19 PM, Rob Herring wrote:
-> >> +Greg
-> >>
-> >> On Fri, Sep 19, 2025 at 12:25=E2=80=AFPM Rob Herring <robh@kernel.org>=
+On Tue, Sep 30, 2025 at 11:32=E2=80=AFAM Anand Moon <linux.amoon@gmail.com>=
  wrote:
-> >>>
-> >>> On Fri, Sep 5, 2025 at 12:30=E2=80=AFAM Srinivas Kandagatla <srini@ke=
-rnel.org> wrote:
-> >>>>
-> >>>>
-> >>>>
-> >>>> On 9/5/25 12:08 AM, Rob Herring wrote:
-> >>>>> On Tue, Aug 19, 2025 at 8:44=E2=80=AFAM Srinivas Kandagatla
-> >>>>> <srinivas.kandagatla@oss.qualcomm.com> wrote:
-> >>>>>>
-> >>>>>> Thanks Rob for reporting this,
-> >>>>>>
-> >>>>>> On 8/19/25 2:35 PM, Rob Herring wrote:
-> >>>>>>> On Thu, Jul 24, 2025 at 8:28=E2=80=AFAM <srinivas.kandagatla@oss.=
-qualcomm.com> wrote:
-> >>>>>>>>
-> >>>>>>>> From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-> >>>>>>>>
-> >>>>>>>> Qcom Slimbus controller driver is totally unused and dead code, =
-there is
-> >>>>>>>> no point in keeping this driver in the kernel without users.
-> >>>>>>>>
-> >>>>>>>> This patch removes the driver along with device tree bindings.
-> >>>>>>>>
-> >>>>>>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qual=
-comm.com>
-> >>>>>>>> ---
-> >>>>>>>>  .../bindings/slimbus/qcom,slim.yaml           |  86 --
-> >>>>>>>>  drivers/slimbus/Kconfig                       |   7 -
-> >>>>>>>>  drivers/slimbus/Makefile                      |   3 -
-> >>>>>>>>  drivers/slimbus/qcom-ctrl.c                   | 735 -----------=
--------
-> >>>>>>>>  4 files changed, 831 deletions(-)
-> >>>>>>>>  delete mode 100644 Documentation/devicetree/bindings/slimbus/qc=
-om,slim.yaml
-> >>>>>>>>  delete mode 100644 drivers/slimbus/qcom-ctrl.c
-> >>>>>>>
-> >>>>>>> This adds warnings to dt_binding_check:
-> >>>>>>>
-> >>>>>>> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
-> >>>>>>> /example-0/soc/slim@28080000: failed to match any schema with
-> >>>>>>> compatible: ['qcom,apq8064-slim', 'qcom,slim']
-> >>>>>>
-> >>>>>> Will replace this example with slim-ngd and fold it in the origina=
-l patch.
-> >>>>>
-> >>>>> Still warning in linux-next...
-> >>>> Its done now!
-> >>>
-> >>> Now I get this:
-> >>>
-> >>> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
-> >>> slim@28080000 (qcom,slim-ngd-v1.5.0): 'audio-codec@1,0' does not matc=
-h
-> >>> any of the regexes: '^pinctrl-[0-9]+$', '^slim@[0-9a-f]+$'
-> >>>         from schema $id:
-> >>> http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
-> >>> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
-> >>> slim@28080000 (qcom,slim-ngd-v1.5.0): #address-cells: 1 was expected
-> >>>         from schema $id:
-> >>> http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
-> >>> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
-> >>> slim@28080000 (qcom,slim-ngd-v1.5.0): 'dmas' is a required property
-> >>>         from schema $id:
-> >>> http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
-> >>> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
-> >>> slim@28080000 (qcom,slim-ngd-v1.5.0): 'dma-names' is a required
-> >>> property
-> >>>         from schema $id:
-> >>> http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
-> >>
-> >> Still failing in linux-next.
 >
-> I was running the check against the the yaml file which missed this
-> warnings, I should have run this against the folder instead which could
-> have caught this. May be this is something that could be improved in the
-> check by pulling in the dependency yamls too.
+> Hi Rob
 >
->
-> make -j`nproc` dt_binding_check
-> DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/slimbus/slimbus.yaml
+> On Tue, 30 Sept 2025 at 20:07, Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Mon, Sep 29, 2025 at 10:25=E2=80=AFAM Anand Moon <linux.amoon@gmail.=
+com> wrote:
+> > >
+> > > Hi Rob
+> > >
+> > > On Mon, 29 Sept 2025 at 19:19, Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > On Mon, Sep 29, 2025 at 2:40=E2=80=AFAM Anand Moon <linux.amoon@gma=
+il.com> wrote:
+> > > > >
+> > > > > Hi Rob,
+> > > > >
+> > > > > Thanks for your review comments
+> > > > >
+> > > > > On Fri, 26 Sept 2025 at 19:26, Rob Herring <robh@kernel.org> wrot=
+e:
+> > > > > >
+> > > > > > On Fri, Sep 26, 2025 at 2:29=E2=80=AFAM Anand Moon <linux.amoon=
+@gmail.com> wrote:
+> > > > > > >
+> > > > > > > Convert the legacy text-based binding documentation for
+> > > > > > > nvidia,tegra-pcie into a nvidia,tegra-pcie.yaml YAML schema, =
+following
+> > > > > >
+> > > > > > s/YAML/DT/
+> > > > > >
+> > > > > Ok,
+> > > > > > > the Devicetree Schema format. This improves validation covera=
+ge and enables
+> > > > > > > dtbs_check compliance for Tegra PCIe nodes.
+> > > > > >
+> > > > > > Your subject needs some work too. 'existing' and 'bindings
+> > > > > > documentation' are redundant.
+> > > > > >
+> > > > > Here is the simplified version
+> > > > >
+> > > > > dt-bindings: PCI: Convert the nvidia,tegra-pcie bindings document=
+ation
+> > > > > into a YAML schema
+> > > >
+> > > > Still doesn't fit on one line and you say bindings twice:
+> > > >
+> > > > dt-bindings: PCI: Convert nvidia,tegra-pcie to DT schema
+> > > >
+> > > Ok
+> > > > >
+> > > > > Convert the existing text-based DT bindings documentation for the
+> > > > > NVIDIA Tegra PCIe host controller to a YAML schema format.
+> > > >
+> > > > s/YAML/DT/
+> > > >
+> > > > Lots of things are YAML. Only one thing is DT schema.
+> > > Ok, understood.
+> > > >
+> > > > >
+> > > > > > >
+> > > > > > > Cc: Jon Hunter <jonathanh@nvidia.com>
+> > > > > > > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+> > > > > > > ---
+> > > > > > > v1: new patch in this series.
+> > > > > > > ---
+> > > > > > >  .../bindings/pci/nvidia,tegra-pcie.yaml       | 651 ++++++++=
++++++++++
+> > > > > > >  .../bindings/pci/nvidia,tegra20-pcie.txt      | 670 --------=
+----------
+> > > > > > >  2 files changed, 651 insertions(+), 670 deletions(-)
+> > > > > > >  create mode 100644 Documentation/devicetree/bindings/pci/nvi=
+dia,tegra-pcie.yaml
+> > > > > > >  delete mode 100644 Documentation/devicetree/bindings/pci/nvi=
+dia,tegra20-pcie.txt
+> > > > > > >
+> > > > > > > diff --git a/Documentation/devicetree/bindings/pci/nvidia,teg=
+ra-pcie.yaml b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie.yaml
+> > > > > > > new file mode 100644
+> > > > > > > index 000000000000..dd8cba125b53
+> > > > > > > --- /dev/null
+> > > > > > > +++ b/Documentation/devicetree/bindings/pci/nvidia,tegra-pcie=
+.yaml
+> > > > > > > @@ -0,0 +1,651 @@
+> > > > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > > > > +%YAML 1.2
+> > > > > > > +---
+> > > > > > > +$id: http://devicetree.org/schemas/pci/nvidia,tegra-pcie.yam=
+l#
+> > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > +
+> > > > > > > +title: NVIDIA Tegra PCIe Controller
+> > > > > > > +
+> > > > > > > +maintainers:
+> > > > > > > +  - Thierry Reding <thierry.reding@gmail.com>
+> > > > > > > +  - Jon Hunter <jonathanh@nvidia.com>
+> > > > > > > +
+> > > > > > > +description: |
+> > > > > >
+> > > > > > Don't need '|'.
+> > > > > >
+> > > > > Ok
+> > > > > > > +  PCIe controller found on NVIDIA Tegra SoCs including Tgra2=
+0, Tegra30,
+> > > > > > > +  Tegra124, Tegra210, and Tegra186. Supports multiple root p=
+orts and
+> > > > > > > +  platform-specific clock, reset, and power supply configura=
+tions.
+> > > > > >
+> > > > > > I would suggest not listing every SoC here unless the list is n=
+ot going to grow.
+> > > > > >
+> > > > > Here is the short format.
+> > > > >   PCIe controller found on NVIDIA Tegra SoCs which supports multi=
+ple
+> > > > >   root ports and platform-specific clock, reset, and power supply
+> > > > >   configurations.
+> > > > > Ok
+> > > > > > > +
+> > > > > > > +properties:
+> > > > > > > +  compatible:
+> > > > > > > +    oneOf:
+> > > > > >
+> > > > > > Only 1 entry here, don't need 'oneOf'.
+> > > > >
+> > > > > I am observing the following warning if I remove this.
+> > > > >
+> > > > >  make ARCH=3Darm64 -j$(nproc) dt_binding_check
+> > > > > DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/pci/nvidia,te=
+gra-pcie.yaml
+> > > > >   CHKDT   ./Documentation/devicetree/bindings
+> > > > > /media/nvme0/mainline/linux-tegra-6.y-devel/Documentation/devicet=
+ree/bindings/pci/nvidia,tegra-pcie.yaml:
+> > > > > properties:compatible: [{'items': [{'enum': ['nvidia,tegra20-pcie=
+',
+> > > > > 'nvidia,tegra30-pcie', 'nvidia,tegra124-pcie', 'nvidia,tegra210-p=
+cie',
+> > > > > 'nvidia,tegra186-pcie']}]}] is not of type 'object', 'boolean'
+> > > >
+> > > > Because you made 'compatible' a list rather than a schema/map/dict.
+> > > > IOW, You need to remove the '-' as well.
+> > > >
+> > > Ok fixed.
+> > > >
+> > > > > > > +  nvidia,num-lanes:
+> > > > > > > +    description: Number of PCIe lanes used
+> > > > > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > > >
+> > > > > > The examples show this in child nodes.
+> > > > > yes it patternProperties example I missed this.
+> > > > >
+> > > > > patternProperties:
+> > > > >   "^pci@[0-9a-f]+$":
+> > > > >     type: object
+> > > > >
+> > > > >     properties:
+> > > > >       reg:
+> > > > >         maxItems: 1
+> > > > >
+> > > > >       nvidia,num-lanes:
+> > > > >         description: Number of PCIe lanes used
+> > > > >         $ref: /schemas/types.yaml#/definitions/uint32
+> > > > >         minimum: 1
+> > > > >
+> > > > >     unevaluatedProperties: false
+> > > >
+> > > > What about all the other properties in the child nodes? You need a
+> > > > $ref to pci-pci-bridge.yaml as well.
+> > > Thanks for the input.
+> > >
+> > > patternProperties:
+> > >   "^pci@[0-9a-f]+$":
+> > >     type: object
+> > >     allOf:
+> > >       - $ref: /schemas/pci/pci-host-bridge.yaml#
+> >
+> > That's not the one you need. Read my reply again.
+> >
+> I'm sorry, I missed pci-pci-bridge.yaml
+> > >       - properties:
+> >
+> > properties doesn't need to go under allOf. Actually, don't need allOf
+> > here at all.
+> >
+> > >           reg:
+> > >             maxItems: 1
+> >
+> > >           "#address-cells":
+> > >             const: 3
+> > >           "#size-cells":
+> > >             const: 2
+> >
+> > These 2 are already defined in the referenced schema.
+> Earlier, I had tried to search for these reference schemas,
+> but I could not find them.
 
-You can also do just "DT_SCHEMA_FILES=3Dslimbus". It's just a substring
-match on the path.
-
-But any example could use any schema, so you ultimately have to run
-just 'make dt_binding_check' without DT_SCHEMA_FILES.
+They are part of dtschema, so they are on your system wherever it is
+installed. Most common schemas are in dtschema.
 
 Rob
 
