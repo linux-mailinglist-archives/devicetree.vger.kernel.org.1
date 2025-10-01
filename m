@@ -1,136 +1,148 @@
-Return-Path: <devicetree+bounces-223113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43A8CBB1244
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 17:43:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B1BBB1295
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 17:45:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9BCD11946F7E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 15:43:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01395194738B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 15:46:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED5C3285065;
-	Wed,  1 Oct 2025 15:42:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64A502765C4;
+	Wed,  1 Oct 2025 15:45:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ikGAzP3l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hio8FR4k"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE6C283FDD;
-	Wed,  1 Oct 2025 15:42:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C573219A89;
+	Wed,  1 Oct 2025 15:45:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759333362; cv=none; b=qW4rVGmXOajfSp7rvF305P0LZ3kQzPzt3tMleNdcabURz77aPtlM6kftlyZSqQMXYOsEYC/WQeXeF4DGHqGMIcOFrQq+VUyjW3gFJPHi9mKmV6807NVEu3uTCcCHD71ySn8kTjPg3yEow6CuKeI8BV5n88iD80yVlYBX9US1F3k=
+	t=1759333539; cv=none; b=lPyrSFCWDNt+4TYHYIV9w/W5M5Bhr2HgBheyySfmwyFChv0mRNzMHUXRvuFmTx0kfR/Emoy+jel6f8iEnQwbdkv1ZLOnVQNzolXVZJJF5R+61H9xk6C6+fC0uo882BsB5Lga18I8/3lmss2SEfbpiN0Bnuh8sJ6DFEXszzGTufk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759333362; c=relaxed/simple;
-	bh=aLMjkI0N9pKIbUT9f12rSPBR9IjP2dlhRR4XDWQ8FHM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NCz4jgeOKq9sOt2LEDMBRIIgMKySxCi+a98AeCarsiYqzWsZfgLu54PXYDP5p1uOHfJQUIOeqqz6xicFUVB12FnrLbbGj6xLUTMcQs/ciGbKRGXx+DZokKNwMDphywjmWDNImvn8POpxHp+QIvjexKfY5tg1fxbsA/TtuJSklBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ikGAzP3l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 86349C2BC87;
-	Wed,  1 Oct 2025 15:42:42 +0000 (UTC)
+	s=arc-20240116; t=1759333539; c=relaxed/simple;
+	bh=C+zDEytAGVJtHdXPlshDYcbrYHV+WvMLrd6CmfU3n5E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qCo8Ggs+HJURnll9Hrz0WyWynFuVnt0/GvPoqylNLynQzJBXHkBTAm3zUBu32D9iG8aif2KoZjWS5LQZr4fYecqfFgfM+AOkczP9ucG3qBc9lMA1IYEPu2M6ehFYsl/DFdAzgLs7KPQzWt+3SXNYTq2vlW2Bm5g39tZ1Xu6owN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hio8FR4k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 033A8C4CEF5;
+	Wed,  1 Oct 2025 15:45:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759333362;
-	bh=aLMjkI0N9pKIbUT9f12rSPBR9IjP2dlhRR4XDWQ8FHM=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=ikGAzP3lLY/kWgzOTHmFXvaei2ZAA6DjqrGY8DNR/jVj6NC0f+ABiEHEDmJLH9qIG
-	 cIOipNxxNQ5WOmV5wvSICj7a/+6eHnjLi+cxetoHtmHGLAyZKYsAfcGErl+mIVWTh+
-	 FNurO18Y6S+79UCxOqorBjeS7OzrvE5Nx4CQyXUmrtyzsxJX9mW6ovG2rFfSFYJu+X
-	 qqFwF+KY9EAEFbOAZ7nE7c+LcmpbkpFlLpbIgQA5/E5Bp+cZDqOJSOXgDjdfbSTVIF
-	 /bg9esHont9y+fyUoKfDSkzNJfB/Mt+7Igk2DRqwPS0jEgD7UeYmEP8ffZnbjgbSmh
-	 7VmBvm95pObbw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 72261CCA470;
-	Wed,  1 Oct 2025 15:42:42 +0000 (UTC)
-From: Samuel Kayode via B4 Relay <devnull+samuel.kayode.savoirfairelinux.com@kernel.org>
-Date: Wed, 01 Oct 2025 11:42:42 -0400
-Subject: [PATCH v12 6/6] MAINTAINERS: add an entry for pf1550 mfd driver
+	s=k20201202; t=1759333539;
+	bh=C+zDEytAGVJtHdXPlshDYcbrYHV+WvMLrd6CmfU3n5E=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Hio8FR4kA5VN0FqaJFABg54URHc3ZtZuM2f5hhr38F2OCEbCbmhoEZ6QG5FCD4ocJ
+	 EvC9bBZRwtO/2jBalZ4176+ioSAAq4L3+b8rU0F3rGlWX5WwXvPDCXj4cCn/dnmvX3
+	 gwlwrjZHhF0+T72rQjf5/J+2NH420hRW8/BWwkEFl7QwN+7XYrzi0qU3Tfnkkx1Z9k
+	 PAZWAItoLXvAFQqByBxlBDJ+ubch8hb/WqWoADG2gBt7UEgIi5k58QY3p9Jm/1xtQ3
+	 k0fokyljbqM1s/G534QTz0i0aILhAFGQnQveVCZRIcuOqTLbm3as6orHe27mmqUpZB
+	 SyPdfb8kw2yTg==
+Date: Wed, 1 Oct 2025 10:45:37 -0500
+From: Rob Herring <robh@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
+	broonie@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com, wenst@chromium.org,
+	igor.belwon@mentallysanemainliners.org
+Subject: Re: [PATCH v6 1/9] dt-bindings: regulator: Document MediaTek MT6316
+ PMIC Regulators
+Message-ID: <20251001154537.GA1833526-robh@kernel.org>
+References: <20251001111316.31828-1-angelogioacchino.delregno@collabora.com>
+ <20251001111316.31828-2-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251001-pf1550-v12-6-a3302aa41687@savoirfairelinux.com>
-References: <20251001-pf1550-v12-0-a3302aa41687@savoirfairelinux.com>
-In-Reply-To: <20251001-pf1550-v12-0-a3302aa41687@savoirfairelinux.com>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, 
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>
-Cc: imx@lists.linux.dev, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>, 
- Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>, 
- Robin Gong <yibin.gong@nxp.com>, 
- Enric Balletbo i Serra <eballetbo@gmail.com>, 
- Sean Nyekjaer <sean@geanix.com>, 
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
- Samuel Kayode <samuel.kayode@savoirfairelinux.com>, 
- Abel Vesa <abelvesa@kernel.org>, Frank Li <Frank.Li@nxp.com>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759333360; l=1229;
- i=samuel.kayode@savoirfairelinux.com; s=20250527;
- h=from:subject:message-id;
- bh=GUpwedwZ6iTM/9T8xwTWsw5t21VrPDOJAhQDVkmdBtI=;
- b=2WpW9lNVxnpyGsfvRtsbtDpNK6l2vH8C+8r+KLHpzefyxsWELgNa2VO1R6dhsXCuawvudv3dg
- wpUIgtg1lJKBm+N7Z+21QXTnU0Y4Ff2vUKhqfFEczjiZU9ln+KhAtiV
-X-Developer-Key: i=samuel.kayode@savoirfairelinux.com; a=ed25519;
- pk=TPSQGQ5kywnnPyGs0EQqLajLFbdDu17ahXz8/gxMfio=
-X-Endpoint-Received: by B4 Relay for
- samuel.kayode@savoirfairelinux.com/20250527 with auth_id=412
-X-Original-From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-Reply-To: samuel.kayode@savoirfairelinux.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251001111316.31828-2-angelogioacchino.delregno@collabora.com>
 
-From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
+On Wed, Oct 01, 2025 at 01:13:08PM +0200, AngeloGioacchino Del Regno wrote:
+> Add bindings for the regulators found in the MediaTek MT6316 PMIC,
+> usually found in board designs using the MT6991 Dimensity 9400 and
+> on MT8196 Kompanio SoC for Chromebooks.
+> 
+> This chip is fully controlled by SPMI and has multiple variants
+> providing different phase configurations.
+> 
+> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> Link: https://lore.kernel.org/r/20250715140224.206329-2-angelogioacchino.delregno@collabora.com
 
-Add MAINTAINERS entry for pf1550 PMIC.
+Why do we want a link to v5 here in the git history forever? You've seen 
+Linus' recent comments on Link usage?
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Tested-by: Sean Nyekjaer <sean@geanix.com>
-Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
----
-v9:
- - Pick up Frank's `Reviewed-by` tag
-v6:
- - Add imx mailing list
----
- MAINTAINERS | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> ---
+>  .../regulator/mediatek,mt6316b-regulator.yaml | 46 +++++++++++++++++++
+>  .../regulator/mediatek,mt6316c-regulator.yaml | 46 +++++++++++++++++++
+>  .../regulator/mediatek,mt6316d-regulator.yaml | 41 +++++++++++++++++
+>  3 files changed, 133 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316c-regulator.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316d-regulator.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
+> new file mode 100644
+> index 000000000000..e7a6b70cdab2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
+> @@ -0,0 +1,46 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6316b-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek MT6316 BP/VP SPMI PMIC Regulators
+> +
+> +maintainers:
+> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> +
+> +description:
+> +  The MediaTek MT6316BP/VP PMICs are fully controlled by SPMI interface, both
+> +  feature four step-down DC/DC (buck) converters, and provides 2+2 Phases,
+> +  joining Buck 1+2 for the first phase, and Buck 3+4 for the second phase.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt6316b-regulator
+> +
+> +  vbuck12:
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    unevaluatedProperties: false
+> +
+> +  vbuck34:
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    unevaluatedProperties: false
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    pmic {
+> +      regulators {
+> +        compatible = "mediatek,mt6316b-regulator";
+> +
+> +        vbuck12 {
+> +          regulator-min-microvolt = <450000>;
+> +          regulator-max-microvolt = <965000>;
+> +          regulator-always-on;
+> +        };
+> +      };
+> +    };
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 97d958c945e4ffa3031590823f7a2867f577ebf3..5cc042b7ffe31a79bbbcbfd1fec7831b3546054d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18293,6 +18293,17 @@ F:	Documentation/devicetree/bindings/clock/*imx*
- F:	drivers/clk/imx/
- F:	include/dt-bindings/clock/*imx*
- 
-+NXP PF1550 PMIC MFD DRIVER
-+M:	Samuel Kayode <samuel.kayode@savoirfairelinux.com>
-+L:	imx@lists.linux.dev
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/mfd/nxp,pf1550.yaml
-+F:	drivers/input/misc/pf1550-onkey.c
-+F:	drivers/mfd/pf1550.c
-+F:	drivers/power/supply/pf1550-charger.c
-+F:	drivers/regulator/pf1550-regulator.c
-+F:	include/linux/mfd/pfd1550.h
-+
- NXP PF8100/PF8121A/PF8200 PMIC REGULATOR DEVICE DRIVER
- M:	Jagan Teki <jagan@amarulasolutions.com>
- S:	Maintained
+One complete example for the pmic please rather than incomplete child 
+node examples.
 
--- 
-2.50.1
-
-
+Rob
 
