@@ -1,180 +1,231 @@
-Return-Path: <devicetree+bounces-223188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFCA9BB1F06
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 00:08:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC41BB202B
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 00:43:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8872748126F
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 22:08:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2CC73214F8
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 22:43:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F3253148B5;
-	Wed,  1 Oct 2025 22:05:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3DEE311969;
+	Wed,  1 Oct 2025 22:43:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NcV4KpZY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TR64NXoi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0687B313E14
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 22:05:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0C681F0E39
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 22:43:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759356356; cv=none; b=sftIFj1ixEsbCBMs8roXmgpGeiEAfTaVZiGm1wuqp+ocKRWYxndnekoU9mfvgaURvwMKd52poYrd1R9yl9HNHt04N8Hd3ZgnmRCiun5JqwX8Nzql8uRJpg8FvZvyVDBmkWIN4EP2FEvTwOlUuXerHHNeEgrQvI3eCiTfEcdi9sU=
+	t=1759358614; cv=none; b=jbtmKn43Xt68opvqDeQsF6iqSsQbdY5Q0D6Bsvv6hhO7RQgkrp2Oj+5nbOAVftiQ9fxJGb1C16jqLD6fS94visWSfZUNrtdJDkxPJul7oL6rIrz8x5LcqfH4lmE0T22qfVJQLfs4Ec8vaEFbN0AmlazjdVcEJDq8DG0vqJJPhno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759356356; c=relaxed/simple;
-	bh=KRfbO68RqNXGYUxEscJ9pAB4g2zVH9KTs2sCuSCOkhg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=drvbtZEAQGS8/sXnJZLyRi0q3YPthZhUGKi9R+JquooM2P0mgfxof/hhUtlXBCbXt2PW+KlBfuUoFSGxXTh8JRf/dCYCiJ6KPxFERiusa3pxqSU6A/g9VxM6c+xrCkPVkmhgNOFZ9z632xk1qyNOgqOxFMWk8alGR8wG0zxLQXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NcV4KpZY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 591IcB68022701
-	for <devicetree@vger.kernel.org>; Wed, 1 Oct 2025 22:05:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=NVYsIQDhA8R
-	ySLuD9P7ecPi4IEalfEg3vxqe/TJrcfQ=; b=NcV4KpZYz8Xya/lAqkwjI8Lx14D
-	feryq2JW3z6hAaS8oD8wcT5f/SPxN0osxdtXPEIPBBnPB8NsFTfQR8bGh4MC66K6
-	pzWZ14yvwe5T5aTtlwZKBG0E0J966qKCrqfDvGTgG1XASKrZe1KoxS7mdjHcofb3
-	QoV19uLa0TZgpuVBo8j29s7ghiVIFIjxf7I0QWhP2r/Q9n/xEFeRZP850dG7gvd0
-	rx+ZD2wV6Nuw9Jn02vfTDEPF6U6mtrvIgECbq1J9G4cnyh7pr8v0ZWW73PBTqg6D
-	+41JHmW7wKFSUaWhK9HfSNXhdW/zTWuojaJQm1Ibm5378miKohr2XGeiOvw==
-Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e59n6brc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 22:05:53 +0000 (GMT)
-Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-27ee41e062cso2946925ad.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 15:05:53 -0700 (PDT)
+	s=arc-20240116; t=1759358614; c=relaxed/simple;
+	bh=UOQdDoYVPk5MuVZO/y+CTYfvq/YX4f2qAPDfmLt+6/w=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jX3/oUqZSfPjlyuEEB5aA+haKPffCsNooC98Ru/K6pRUYJen4G/AKCvHuHpBpoT6+osAKBKDZ3Aq5Kwsl3+dRQvEbvzTZoDcj1e++hL7zPvyt7+167Y6piqIUy3seG4ODnvRZoJl8OYK0JNAMA7QLy/K0vw1jrEry18i154B2kA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TR64NXoi; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-57bd482dfd2so405101e87.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 15:43:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759358611; x=1759963411; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AJlkWvrAVlj+yQaLRTA96ZrQDqsxK1wvi2JnIevLfeg=;
+        b=TR64NXoi2duwyG0ZBX+hTmYz8YJp5zzlFF4Z0+5RUTWhopw0ONPzLDN3zaZUW/jUvp
+         ZauD6qtBn9BrcnL1wEgEdQM5JZ9iJgGyw81TAMBXPJTavVwiyiOHPYEOuFSjjfEUMwoz
+         ohnwLRR4PunZgbMOeSpEivAedZ/tcjrrzoXpVeT/FymiQhlmDjlnC0RIlyTGRXBPx5Q3
+         4szlglLBnDBXjNFga3r/j8+lmsm3JngBOwWGgUHDtojzeq4tTm6WnMijoNcbvlCLSiSw
+         OcrXUftpsB9LiEeNrH4+XHpE70uwLcJrKYyVuyNwksue4S74l8jelMa85e6x9MMYoo0A
+         C4HA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759356352; x=1759961152;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1759358611; x=1759963411;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=NVYsIQDhA8RySLuD9P7ecPi4IEalfEg3vxqe/TJrcfQ=;
-        b=LFQPPELtx0V9F8zOsiwtlyODd6hiLl2M6HeLijhVzNezX1QTn9wT4RuxAYqhZ+IBEK
-         v7QE/HTGB5PcowFPFpvK3DS9G8KHqc0pj81FdkNn8RzqJop5jHMLwEuQx0SKpCuzKcvZ
-         SAoO7kt0AmXyeBIfXvkHE4xBWeavJjhYnORqkLWLV1XBIeRYEvD7HQS3nYCjJXT38siG
-         3EWhglyTUnJtf4EViaOTBIXHSCPwgTNMmJmJqAoBn8fDwh0fyZ/CpoF94jKwxyu/MRnV
-         YavC4U62382nJZDyauq1cpyFdwcJTiwW+y0Mfp73+zwMzs+s7HugyqdGMdKyd6Ni6I5Z
-         SSSA==
-X-Forwarded-Encrypted: i=1; AJvYcCWEi7zAJjhRzQqql9vKDA2eG+AJzVI+co5r4y9bg96iCXp6sVv6xERYG7nKmi6oymc4KEjZtqIev6g0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5fO4dVcm1bfRKlviTifG5XDGMQNiAbf4Myq3+YNwAQf67M0dR
-	FCbWCWpbZ3KjfMWhpUv7oi8qzxu38yMWqpOEDR7GE61f2QXag1kggcUfN43xvIfjYtlWeo/meIv
-	j3JeVoa5vR2N/VyCcr/B70aiIw79KGAUrZKn0zQf/0QRJJJFZR68DdIjSBJR0mMzc
-X-Gm-Gg: ASbGncs/5LrklAIUyYd6a/mWMberv1TFFXqnK8X8MrkJdzaajhoDaNsKBW1wL3rTurY
-	l3pold8EWTw6GuU8EGY5msVhiEDMGA2qSiQrLhjwiPj0JoQIIOb6NGv9xPctvDJQ9Qe5rdcOdZG
-	QUfYYkom1CJAJIdSAItRZfw5138wUP4CU/jlQXAdCrndafSmPSUD2vdRYvskYceMtz3Qt98JluJ
-	pz/OB4bHeqpVUDcmkBBvmLGJAPgnJwC6+FuC9r1bxKiccQXC6B1Y3hzEDUc61NkGwRA9TOWyOqv
-	IMr48CdgQO6+vUo3bTSndBR4HRbq0GnHuYnPchUtm3BsH0g2ij4OfVXoWyzhRGyKo0pwmG8OILa
-	yqaM+f3C5CaILl7RA380Ucw==
-X-Received: by 2002:a17:903:22c2:b0:25c:46cd:1dc1 with SMTP id d9443c01a7336-28e7f31092cmr55936055ad.33.1759356352136;
-        Wed, 01 Oct 2025 15:05:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHqQqqXsWfsPcB2aMVgjy1eDaAlKWRk/y5Tw9L6ueOyV8a1NgF119HAYRfaqcXDXa4fmR6VmA==
-X-Received: by 2002:a17:903:22c2:b0:25c:46cd:1dc1 with SMTP id d9443c01a7336-28e7f31092cmr55935695ad.33.1759356351699;
-        Wed, 01 Oct 2025 15:05:51 -0700 (PDT)
-Received: from hu-wcheng-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-339b4ea3c3dsm702085a91.5.2025.10.01.15.05.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Oct 2025 15:05:51 -0700 (PDT)
-From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-To: krzk+dt@kernel.org, conor+dt@kernel.org, konrad.dybcio@oss.qualcomm.com,
-        dmitry.baryshkov@oss.qualcomm.com, kishon@kernel.org, vkoul@kernel.org,
-        gregkh@linuxfoundation.org, robh@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Wesley Cheng <wesley.cheng@oss.qualcomm.com>
-Subject: [PATCH v4 10/10] phy: qualcomm: eusb2-repeater: Add SMB2370 eUSB2 repeater support
-Date: Wed,  1 Oct 2025 15:05:34 -0700
-Message-Id: <20251001220534.3166401-11-wesley.cheng@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251001220534.3166401-1-wesley.cheng@oss.qualcomm.com>
-References: <20251001220534.3166401-1-wesley.cheng@oss.qualcomm.com>
+        bh=AJlkWvrAVlj+yQaLRTA96ZrQDqsxK1wvi2JnIevLfeg=;
+        b=cBH7/uIMrL06Kj4X/DKOFXrwptIT3kdtiXoQkPUuuCKwfi9aYB6OtUH8pL47/6ToRF
+         Bb+ACNdNgP73Ok62EMjkhELMwbF3RwCa34ZlD4jSQhJalOkdHWNbNDKo8lnip6TvsI3h
+         /nhh32GjNfrzrKRQxcDRZtqm9WR61ck0d4HXjrlvK99cGNbKWP7ZeAyTNtPlhYmDqpQw
+         kM7j6fGSJUqG+tA9CN2TccmZ066zvm/nwdikdyyx6ZuvB0Ub//BxUuZFDSr2LWjpyz3P
+         0PNEgwJjSQklbeUcH19xA7EFopXm/Od+IBup8h7j/+XuJwNbG9CAZ2/ciIt90b7evy08
+         QwQA==
+X-Forwarded-Encrypted: i=1; AJvYcCUIkgnIMQCYaUSHS8DXN6rWeF5+iXUr2r7DW8Bfx2nxJHNCKbP9dw5f507Q0w5ts7dTrxkgcyXHApg3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzy1HIHhX4DAu9Pu6LS3Wz3KzvnKno1JbUove72kJdBqEh9BKMx
+	iuj/hsDSDWKGsqQhd7ffXTUicK+rFxopgOnxUech7Ofz48GIIhJLVJjVw1uNu4Mcz8fCK7xtBpl
+	ByqMX6DW4ZJlQxUk5dPV16rsDcElf50OarjZfL+YvCA==
+X-Gm-Gg: ASbGncux0rs+d5YLnSmMmiKdPoJA+JaTV/6hCFI3N/uAw94Qzu+k3xHF9CQFyCAbSiT
+	An+ldosT4JITin9M67N5RymFGv66YqR01kvWUfWsq959zgGVwj3MHrMQ962B8a2MdwiiuPD8g82
+	IVvXFQm9Uc6MOj+a60IP4dYYvSxOulQuDytoJ5eaLdLvzRsQoLV0uoDemPOBeAW0kt73AVmyMK8
+	gJgFGXHh7MqJpwCcRU0sV0n3ddw0x4=
+X-Google-Smtp-Source: AGHT+IFdKM5xbgBHrlutRdp/DdOPN4lLh19uK4jLc2UrL7m+ouIpIDPcsf+/ShVSFNC9EZgXpRm4hlxAMqIcQ3SPUrc=
+X-Received: by 2002:a05:6512:3d0b:b0:578:3df8:7673 with SMTP id
+ 2adb3069b0e04-58af9eff3d6mr1450030e87.19.1759358610851; Wed, 01 Oct 2025
+ 15:43:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: bJV_4_BK5FOE1ORDh3oUaAvFeLL8lSTU
-X-Authority-Analysis: v=2.4 cv=O4g0fR9W c=1 sm=1 tr=0 ts=68dda5c1 cx=c_pps
- a=JL+w9abYAAE89/QcEU+0QA==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=Zq12RZiOzp0PcbRnEbUA:9
- a=324X-CrmTo6CU4MGRt3R:22
-X-Proofpoint-ORIG-GUID: bJV_4_BK5FOE1ORDh3oUaAvFeLL8lSTU
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAwMSBTYWx0ZWRfX6V5Xmu+kbFnS
- mHS2oo4FWwLnpASu/iHiX3pPoLw/8AsiqLce7YfBFkzM9kB/wnnZy3mlXyCmkokmEWa47rcJsY1
- GejFaOn2BWaVtxqnhPz0gre6EHdvRxQq3XBjFuhqhtOJFiU2+/nwDGqNHNxmIa3QikugFrDJsTH
- qwuHZ4W3ftAyE7ur1MJgt4xMwOOdt4mDpm3hhU9X/F4nHgtu4mfghp40n1xPZAN0kzHVprFRDrY
- gnV009LMwmBl1qfj8No8NoWZx0686tmZEeg7ZFmJA9n92qt9Y1d2ryw5n0uo4ABhaIIPD3fxfBk
- zXlEKEdBWgpassG1Xih7an//7p6UudBHeGtL5sO+ci8j4YKu6Ibm5L6srfo+RMkDNp2nmhCoEzK
- coH5Ka4U0vaFqVVe5rZac592gNV4mA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-01_06,2025-09-29_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 phishscore=0 clxscore=1015 priorityscore=1501 lowpriorityscore=0
- spamscore=0 impostorscore=0 bulkscore=0 suspectscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270001
+References: <20250930-bcmbca-pinctrl-v1-0-73218459a094@linaro.org>
+ <CAHi4H7HLNu9YV8+dXshFigvjfMrYL+kGz5xWwab8L1nnefohaQ@mail.gmail.com>
+ <CACRpkdaAUXpYi7Z+zgZDhLiJiSUAndLhPMA5YOvnk2GGYOoj4A@mail.gmail.com> <CAHi4H7EzydzKRZPMM-VGOJ8A2RxfEYb5umuBvBEceiwj-8KTrA@mail.gmail.com>
+In-Reply-To: <CAHi4H7EzydzKRZPMM-VGOJ8A2RxfEYb5umuBvBEceiwj-8KTrA@mail.gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 2 Oct 2025 00:43:19 +0200
+X-Gm-Features: AS18NWCTOhQMyUgnvLwAyIlqNw1Y9SpvK2SAJcfaUqnrHN3YwY3r_5sXqWNxV3I
+Message-ID: <CACRpkdbmM0nND05ODmEa4J2y6JS6getB9s7h9TXywyED5gqh0A@mail.gmail.com>
+Subject: Re: [PATCH 0/6] pinctrl: bcmbca: Refactor and add BCM6846
+To: William Zhang <william.zhang@broadcom.com>
+Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Anand Gore <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Introduce support for the SMB2370 based eUSB2 repeater.  Configure the
-proper repeater tuning settings, as if this is not done correctly, it
-can lead to instability on the USB2 link, which leads to USB2
-enumeration failures, or random disconnects.
+On Wed, Oct 1, 2025 at 7:38=E2=80=AFPM William Zhang <william.zhang@broadco=
+m.com> wrote:
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
----
- drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+> > But if you can generate say 6846_pinctrl.dtsi, I guess from some
+> > HW data that the public has no access to, then why can't you
+> > generate bcm6846.c with the same contents as C structs?
+> >
+> We could but we don't prefer to do that because we want the driver to
+> be generic and not requiring any change to support a new chip
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c b/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
-index 651a12b59bc8..441996480a67 100644
---- a/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
-+++ b/drivers/phy/qualcomm/phy-qcom-eusb2-repeater.c
-@@ -75,6 +75,13 @@ static const struct eusb2_repeater_init_tbl_reg smb2360_init_tbl[] = {
- 	{ EUSB2_TUNE_USB2_PREEM, 0x2 },
- };
- 
-+static const struct eusb2_repeater_init_tbl_reg smb2370_init_tbl[] = {
-+	{ EUSB2_TUNE_IUSB2, 0x4 },
-+	{ EUSB2_TUNE_SQUELCH_U, 0x3 },
-+	{ EUSB2_TUNE_USB2_SLEW, 0x7 },
-+	{ EUSB2_TUNE_USB2_PREEM, 0x0 },
-+};
-+
- static const struct eusb2_repeater_cfg pm8550b_eusb2_cfg = {
- 	.init_tbl	= pm8550b_init_tbl,
- 	.init_tbl_num	= ARRAY_SIZE(pm8550b_init_tbl),
-@@ -97,6 +104,13 @@ static const struct eusb2_repeater_cfg smb2360_eusb2_cfg = {
- 	.num_vregs	= ARRAY_SIZE(pm8550b_vreg_l),
- };
- 
-+static const struct eusb2_repeater_cfg smb2370_eusb2_cfg = {
-+	.init_tbl	= smb2370_init_tbl,
-+	.init_tbl_num	= ARRAY_SIZE(smb2370_init_tbl),
-+	.vreg_list	= pm8550b_vreg_l,
-+	.num_vregs	= ARRAY_SIZE(pm8550b_vreg_l),
-+};
-+
- static int eusb2_repeater_init_vregs(struct eusb2_repeater *rptr)
- {
- 	int num = rptr->cfg->num_vregs;
-@@ -278,6 +292,10 @@ static const struct of_device_id eusb2_repeater_of_match_table[] = {
- 		.compatible = "qcom,smb2360-eusb2-repeater",
- 		.data = &smb2360_eusb2_cfg,
- 	},
-+	{
-+		.compatible = "qcom,smb2370-eusb2-repeater",
-+		.data = &smb2370_eusb2_cfg,
-+	},
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, eusb2_repeater_of_match_table);
+But you will be generating big DTSI files.
+
+And it is not really the ambition of the device tree to be used as a hardwa=
+re
+abstraction layer containing a lot of per-SoC information. The device
+tree is supposed to describe and configure the hardware, not
+abstract it. There is a difference.
+
+(The DT maintainers can hit me in the head about this but I have
+certainly heard things like this before.)
+
+Alas, there is no hard definition of what this means and indeed
+some drivers in the kernel does define groups and functions
+in the device tree instead of using C files. So that happens too.
+
+> You are absolutely right that the current dtsi does not group the pin
+> properly for certain interfaces such as i2c. The tool has the same
+> goal to combine interfaces in the group whenever possible. It is just
+> we don't have the correct group config for certain interface when
+> generating the dtsi.   If I fix all these group issues and provide the
+> new dtsi files and I will be the contact if you have any question
+> regarding generator files,  would it be possible for you to use and
+> upstream that driver?
+
+I assume you fear having to follow the pattern and hand-code
+a C file for every BCA SoC and never get done. I understand that.
+Also I try to live by the stance "rough consensus and running
+code" and not be too strong in pushing things my way.
+
+We can do this if the files follows some basic process.
+You still need to use proper bindings.
+This:
+
+>         rgmii_pins: rgmii_pinmux {
+>             pins =3D <42 43 44 45 46 47 48 49 50 51 52 53>;
+>             function =3D <1>;
+>         };
+
+This isn't proper bindings.
+Documentation/devicetree/bindings/pinctrl/pinmux-node.yaml
+describe the bindings you can use.
+
+properties:
+  function:
+    $ref: /schemas/types.yaml#/definitions/string
+    description: The mux function to select
+
+  pins:
+    oneOf:
+      - $ref: /schemas/types.yaml#/definitions/uint32-array
+      - $ref: /schemas/types.yaml#/definitions/string-array
+    description:
+      The list of pin identifiers that properties in the node apply to. The
+      specific binding for the hardware defines whether the entries are int=
+egers
+      or strings, and their meaning.
+
+  groups:
+    $ref: /schemas/types.yaml#/definitions/string-array
+    description:
+      the group to apply the properties to, if the driver supports
+      configuration of whole groups rather than individual pins (either
+      this, "pins" or "pinmux" has to be specified)
+
+  pinmux:
+    description:
+      The list of numeric pin ids and their mux settings that properties in=
+ the
+      node apply to (either this, "pins" or "groups" have to be specified)
+    $ref: /schemas/types.yaml#/definitions/uint32-array
+
+  pinctrl-pin-array:
+    $ref: /schemas/types.yaml#/definitions/uint32-array
+
+function cannot be a number like that, it is intended to be string such as
+"spi" or "uart0".
+
+E.g.
+
+         rgmii_pins: rgmii_pinmux {
+             pins =3D <42 43 44 45 46 47 48 49 50 51 52 53>;
+             function =3D "rgmii";
+         };
+
+This also makes sense for at least BCM6846 because the include file
+have things like this:
+
+        b_wan_early_txen_pin_4: b_wan_early_txen_pinmux {
+            pins =3D <4>;
+            function =3D <1>;
+        };
+
+        b_wan_nco_1pps_sig_pin_6: b_wan_nco_1pps_sig_pinmux {
+            pins =3D <6>;
+            function =3D <2>;
+        };
+
+Completely different function numbers, still both are related to WAN,
+which is what pin control refers to as a function.
+
+I do understand that the "function" number is actually just a mux setting
+for that pin. But this isn't very standardized or very helpful.
+
+Also, we don't really want to see more custom properties such as
+brcm,function  =3D <2>; here either.
+
+What you can do, if you insist to just use magic numbers is to combine
+them.
+
+#define BCA_PINMUX(function,pin) ((function << 16)|pin)
+
+         rgmii_pins: rgmii-pinmux-pins {
+             pinmux =3D <BCA_PINMUX(1,42), BCA_PINMUX(1, 43),
+BCA_PINMUX(1, 44) ....>;
+         };
+
+This type of pattern in creating per-pin 32bit values in the pinmux
+attribute is acceptable and found in other drivers, and the driver
+can then decompose this and use it to poke the registers.
+
+If your tool can output something like that then it can be done.
+
+Yours,
+Linus Walleij
 
