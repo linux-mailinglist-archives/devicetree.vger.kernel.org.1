@@ -1,288 +1,618 @@
-Return-Path: <devicetree+bounces-223174-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223175-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 05AA8BB1D9B
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 23:31:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40AF0BB1DA1
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 23:32:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD43516F88E
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 21:31:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A2CA03B2E02
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 21:32:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B058F313D62;
-	Wed,  1 Oct 2025 21:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CA0828643C;
+	Wed,  1 Oct 2025 21:30:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="EthAISji"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MPd+DDp7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011060.outbound.protection.outlook.com [52.101.125.60])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A053126B7;
-	Wed,  1 Oct 2025 21:29:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.60
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759354180; cv=fail; b=FRl4C2FS/n5fb28LpNvMHGdV/ccuJ/CY5p0t4Lug+eruf65OMNThkpKfrm7ezo9ykXhRnB/BUrfRmzyds6J5EfI7lK4tvhjnbP24fed5b+/I/R5NsoleFQEsjKJklyJwLCXUfmwVNnE5Y7/2f2d91NY7TtJFBj3HgcP8aCTYVXY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759354180; c=relaxed/simple;
-	bh=jKZ9En1VYBA/n9jxqszpKOb13tWmRjuWTAM7UmYs+7w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=KvtJBRYyNVqhPNGDiQeXIqn/EbPgZlXsgV5o/llUpQFDfQ0E3rh+Sf2wML42r0ZEZrVaUVrAr3ApVaHAL5OCaYEaTQgbCxc2PUNScs9+y0mKr0FOPkf6bq+B2XW6eCgpn7W8N4KvwT17BP2o5iUY/6nf+mHUdz29q3zXokZWFsQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=EthAISji; arc=fail smtp.client-ip=52.101.125.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fyBuGZ+C+5AvftyF1waLfG0scxdhzIWjnKBxGR8d+uNhTk+5iaqHrvDmpU4rhy1dHpMxmVX/oFJYjBd1J+JhXQhSdGed+xP8KUbKOJPdPdi+rADHPZQ8ssN37dsDh6K6Faq12uBpaHD4qPHevsHjWZNFmcc3bZxa5PXoQwOFCo/CVrTv7IcZLTLWZ1R4teyYEsG0tg5qbilu+3+j6dIuNNBt1B085QYAbWlfyZHGRmA/s7VO13BVF8CYBY2k0Rn53+uqLdilZ5z5gHdKjaXPst/OWnBgZCPUPQfG1nOBHFzQbb18+dK7cSNmh0Xl45rMRRlrufUkFd3GBdhqYAzw3A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xbQBhcyEpc4jyS8ol7J78NY1uBxyz+8B8rvtFiwPJ1A=;
- b=cAUL9IZo3fCnaCtAk9ys1KTYjMdoXiwvnpvJDI/xsSOXBIfKfwKTiPcdVQCG7JBSBkp6SsaecCn4izpQlbxBJq3H3HXYcr6MJeoC7Wc6GtDtxgQG5KV8bjpABZHmShyAreAKsgUmQriW8pFSY1KRcoZxW3L2kBYic2w+Q57+kxvaeb7FK+nOysN9lOAWCFxYVK8OE52/tY8p9AW0BpEv0rq/CtoZaTMiX9wIKP7YQ1cSaEhatuIFAA2R6znlxsdxMpg/8omNG0MlGO9+RbIkVMtISglfhcf3CmUJEHKhjukZkKpf+fgkRZAKgi0jqeZFNiwDvy8RIC6qlz8Yyo81VA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xbQBhcyEpc4jyS8ol7J78NY1uBxyz+8B8rvtFiwPJ1A=;
- b=EthAISjidhUAtHoxO+s2O1TfbjZHi33NuntOqVPL+Nbn1L35aE4boUTBB1EqJCQkr7no5fYapJ5T798ZDyhqDg9e/vjzC0/ymofOFfoMqaaemxfW/89VwXfZEnWReiKwCmSy1obhibCFPfAh6Y1vFdHcz/n+FSU/CEk8mVFYU38=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com (2603:1096:400:3e1::6)
- by TY4PR01MB13012.jpnprd01.prod.outlook.com (2603:1096:405:1dd::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.14; Wed, 1 Oct
- 2025 21:29:32 +0000
-Received: from TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::63d8:fff3:8390:8d31]) by TYCPR01MB11947.jpnprd01.prod.outlook.com
- ([fe80::63d8:fff3:8390:8d31%6]) with mapi id 15.20.9160.017; Wed, 1 Oct 2025
- 21:29:32 +0000
-From: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-To: tomm.merciai@gmail.com
-Cc: linux-renesas-soc@vger.kernel.org,
-	biju.das.jz@bp.renesas.com,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-phy@lists.infradead.org
-Subject: [PATCH 18/18] arm64: dts: renesas: r9a09g047e57-smarc: Enable USB2.0 support
-Date: Wed,  1 Oct 2025 23:27:02 +0200
-Message-ID: <20251001212709.579080-19-tommaso.merciai.xr@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251001212709.579080-1-tommaso.merciai.xr@bp.renesas.com>
-References: <20251001212709.579080-1-tommaso.merciai.xr@bp.renesas.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: FR0P281CA0134.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:97::18) To TYCPR01MB11947.jpnprd01.prod.outlook.com
- (2603:1096:400:3e1::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E490239570
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 21:30:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759354220; cv=none; b=Hpp8yW1w+zc82wnzokOgWKJA6L2ZMh5zipHe5FQ70FjK2B/TZ7uEDmgcqZ5qGESL/cHZaVbYV0viQRkxn54KY4Hj83AZYSNqm4xFiGcnDsU3soHjs+hRGGsrWFxWo/RYhGltbaPbvzGRihaRxNfOaIO3VWFDfjsrvr+0xUfuHA0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759354220; c=relaxed/simple;
+	bh=VCkVjQU3vezhML6nnCOWY27HRqlKkdXIlr+gE9M5Vek=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HQOfvkPQZlX5qcBVmGmKfJwQhHPVp0jsia7ph5NlqoYd0ciB1AM0ib0kxx/GAmSvPRRY7QC7Q+dMuRAlo1R8krcxI/foJfmreaSfvg8wBGENvfSI//QIuednF92dd3TJ1yFF5QIEsAAbJLRkQSKODDm8djbNZIsYqKK7oYH6Unk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MPd+DDp7; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 591Ic3lN005924
+	for <devicetree@vger.kernel.org>; Wed, 1 Oct 2025 21:30:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	V1weNU8Af09KVcVXhgjKPJYbK4vjrZ0JqF8tO+urq2s=; b=MPd+DDp7WncNdr6e
+	JwC/+FVav+hStZ/zVCXG1aeDp/2nypZR6xIvXasqJjAERzPcCxKR5x+RP+3THVBK
+	2sZy7nUrq4yQAdagqjG41HuV0duSb9Xo2ufHP8AksXeADxTmBdBrA/KVoViFfoFQ
+	m1+mCFXkKe+oqaaQmkmX434l4w4Q2MGRkUU33emjkYaiKWJmHtxEYaUXbz9X7stA
+	rcssQlHLyMQB/l0o2N22DGkjTFXoD4At4STmBu6qF0/1cF0ONrReSKl5rNR+SMX9
+	ADXfEGOqpUY1DQTZy/Y2EWEO877h7UVWMqdF/pjVTbXCr2htFUdy5rIzzjbVCMZf
+	CC7wSQ==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e8pdnpdn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 21:30:17 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-78102ba5966so330348b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 14:30:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759354215; x=1759959015;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=V1weNU8Af09KVcVXhgjKPJYbK4vjrZ0JqF8tO+urq2s=;
+        b=aXv7BebSDqg2LFiPKYPRyF6gTAz9dqOqY2hWHUlhTc/c6IdkvpFXHCHN4vcFEAl2+C
+         fh2JDRZk1TDRJQ0U8AnANniBEipl/+KyHVnyNY5oXtBH26355p+1PnM2tcUazs5fkKyO
+         nQKhgQiFwsarvt/gHncwFCl9hSxbPUiiM4wRJEXzwPSvXUu/zWFz4vZdgTISWdkleuVn
+         AHxv4iE3ri/rs01xIND1CAjXGVyl2Kbh9oaVhxElYHdVqk9+TtBUbjCW5Nb3apOb+Fd6
+         AfTILWttv3/nhzhvBjwx2dDSX/abAtfiCJILPo/v6GMhTY5OxfkM7r+ehBUsN0jirHWT
+         lIJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWiiH0VDy0jzgFmv6LW43PiCFCn1r887+PISU6YuKvW6T3bYakStwsUZMbswF4eaCRZpAQ7IOpMpbu9@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6FI3pk2O6jf+woaCbZOVzc+bAcO23JXbbaxgKVYUkexU0bEgW
+	YJOxote0TNPR+tG88S3MMaIO6VFlddv1YlPCoXRqz03OuEDA8hUzBADXLcIdKXV0yKMHX0QLJ0y
+	ZvcrylGhns1foV9G17f35M8PkD7/rnbBg4Nd0saAT3Cms1rQVCYLjoUQe0g8aXKhT
+X-Gm-Gg: ASbGnct00IJay9FvVFY8rPxIlkaKGRHeHvtLslhwnYS+nuuLHfb/Kpyk4pTbvFz0UfV
+	67cH19JH1cWuvVTsiRvlMxk0MwVQd0FhiNs9hcnm4BQCqjddpj8MuDV0K5G5LPawAkYNK77lYVT
+	4JvuA45SFWLG/9ZvAMWNPW+GOw86hoMIOE0nwlSPjZ1X6Uz/TBgnplKoLInhhBh5Nf3kN6ICB6a
+	NYwGVvFPFxMXJM67WNrgORHsPcRlpBC/sauGiKLN55JvME2alNS1rTR5E2BnnAC/39SC0gfykVx
+	Out7JWGmTNwD1R1+kMZywc894UyPjTIpiXr/QgP8lYiJYsr7ML2Sw4NGRRmxpsGluHo=
+X-Received: by 2002:a05:6a00:14ce:b0:770:fd32:f365 with SMTP id d2e1a72fcca58-78af41bc641mr5788772b3a.25.1759354214865;
+        Wed, 01 Oct 2025 14:30:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE3KTpyKn1TOT+G/yKBNDQxcsRn3w3Nf3AMVRSFCI/XKlG4a/HPYmW/tJpjzVE8x9pRqHwGeQ==
+X-Received: by 2002:a05:6a00:14ce:b0:770:fd32:f365 with SMTP id d2e1a72fcca58-78af41bc641mr5788740b3a.25.1759354214261;
+        Wed, 01 Oct 2025 14:30:14 -0700 (PDT)
+Received: from [192.168.1.9] ([117.244.71.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78b02053767sm602612b3a.52.2025.10.01.14.30.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Oct 2025 14:30:13 -0700 (PDT)
+Message-ID: <20fb9f76-558b-48c8-92b0-9820407bb82f@oss.qualcomm.com>
+Date: Thu, 2 Oct 2025 03:00:03 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYCPR01MB11947:EE_|TY4PR01MB13012:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8c7f430f-0c65-412d-15df-08de01319c6a
-X-LD-Processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|376014|52116014|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?TyhfEDr1p5xcTaWK1W1kyDWgIstFcCfgPeQzwbWSfD9Qs20fGZIVd1FWdeT2?=
- =?us-ascii?Q?G+t0QkKTXCBNw9q+lgKR+EuGl5ZGItD/uxEe80dxmMF4thrrwo6yxCru66Sh?=
- =?us-ascii?Q?F64WmZNl5h6r1Pf1WQ1kbjed5qurnWwGbZS4Dkr+U/CWQ+5/FrCGUEg3Lp90?=
- =?us-ascii?Q?DE/NqSKGAmxL97/mqI/qfqJQVvIQRyYzOzg+kJcGchz6vcPdPZypp8GKbgdV?=
- =?us-ascii?Q?uBaqHoXNXnGZu9XPENWmpanbGxQ7zOKByd+4aYwL6t5QvzYN3bNoRev0RTT4?=
- =?us-ascii?Q?WwoyYPhZzVp4Zyz8OFHrrDBdA+LXnpRAU1dc/Zf+Caiiu/zl2AW9e5ftoLdd?=
- =?us-ascii?Q?KnJiC31kmyPL1y54s0NA5MFNiiQ2JEs/RndLj7plBVrWlveVUTiaU8oIc3Hh?=
- =?us-ascii?Q?oOqKEmxp0AUYM9Mk4lq7qlPWGSihg8JXKkHvcrShSzPvQ7jIoZVNUxVCc9de?=
- =?us-ascii?Q?AhgH4fIA9Lj5/ZW8mjfwyiGVvycBOnt+pKNjJg6pKpsWObsxozSxmOEUbEAj?=
- =?us-ascii?Q?dny7TPWzv+uzxoKhHm9J6PXhKLb6V9hYxwN9VNen/hTRzO9NCfmugonGP6tx?=
- =?us-ascii?Q?A9mH0MIpfAN5apwQcnsm0uydE3zy+KaFCXuyRni6vgFdUHRhP9D/pMNNcOJH?=
- =?us-ascii?Q?CehlfAHecHfyJQSgLTiG/Ws1J29E7K/6/JR58GhdmtvsqJ0uV/G/wf2Qy5pl?=
- =?us-ascii?Q?5c/Xbmgqlr5wh9fNfj1vF/OY8OzJoNC7x5lqvub0G8BIT0cDMK5J0HIoVMVl?=
- =?us-ascii?Q?RBMwEjzZSA71a4FszWpq1JKXbyHwaSpdpFvhwoP5PHXhVgbTqXMQQTvvUm47?=
- =?us-ascii?Q?kd3tEWkof/uQKzSk/cWnVWjws5d64Vpn3SIsPF1ub1zOsGDPIympQWye2OUc?=
- =?us-ascii?Q?/TaXp4QxNn/YMIMzxcaVSiqH94fkX/uuixWvNaN9iq35u7HoDjSQ/ZWALL1U?=
- =?us-ascii?Q?zDlEay1Ho4jl+4Zy040wqLMG20IIGqmCnLLDEEmBDzWdQY48QjKLoMMai+yN?=
- =?us-ascii?Q?B4EPYfI4Ed5F0x7NXT8esHw/WZd1gyNe8cXwJsltOnxaCRei8ZNVK6KXyL2b?=
- =?us-ascii?Q?SW+WnhaqxIKOFe/NoUzGjpt05XuqVias62mq7vc+ZnmI9zuJcl0cjQXX30rw?=
- =?us-ascii?Q?K7sqjgyAqcAcIh1G0BUYXCbeweumYZkPUTqEMmhUH3sFYFtwMPaQwYGnqgzN?=
- =?us-ascii?Q?kZmvA9/aUEyezVMizQLyUNwfjPTOWD1Zo7LiBleO7n4Z03jPLduekDd03dF8?=
- =?us-ascii?Q?3vO4MknvNf9wbZUiUF7isWZwvNco75Mcw9UCWuHhWZhRJ6UR3qNHgGicgXGl?=
- =?us-ascii?Q?ggzH+pNwBAKBuW/cWg/h5GuUR7Y7njj4VKFJIECY5GedGC62DMDJWpwrPWt0?=
- =?us-ascii?Q?JNu2Kv/co336/SQ5QpwkeVikMvBDeoZarncjhp/tIUjBKY7ZQb6rRZHUGKRB?=
- =?us-ascii?Q?ff7MqrKs9otuLFXMNjtNfnCr4I4aUWoDJmrZiM/9GJZmic9oNh34hPakqMFJ?=
- =?us-ascii?Q?SVaioyZj0Ct8ijLx0mgRObNwaZu4U6CyQYB/?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB11947.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(52116014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?jTUu8taxN3kzGdI66HHbs5RHwO/pek/+hFHNkV2Km0MUj39m01ddG1W1p3zT?=
- =?us-ascii?Q?dHj9pyuujT0IVeRg5RMIu+j/BBCrIuZdllswGvY1Z6GvlW/LhapjpLolvoR7?=
- =?us-ascii?Q?glNB1tSZkxjSV6bt0UmUuls/r+0sIaTI6Obc2Da6WiRc5Qrm/N3p46dy0Rwq?=
- =?us-ascii?Q?VpKOCskR6h82k/3hk4cqWdy+B47hyG+B+Ogd0Lzt9tgpsRrBee7PFEKX7ocm?=
- =?us-ascii?Q?8JcwOK94VFt3zFuzgxsEB7o0NbbwYdGXH/FxMFYjXq64HeXiiF6DpI/VBOBA?=
- =?us-ascii?Q?PKugLoPEnWdxAAvXQv7GAdCKgGweT9voGs5je03BxeUFaomBnG2Afd9NtJLS?=
- =?us-ascii?Q?X+7xcXGx2HArlYcFexTG3dDN4LURE7Z19D+7l3YfVwDisNqezP8VLZ95rVGu?=
- =?us-ascii?Q?27cYSxQS/c76hpzdNmy5QB28loIqxMBkC5tXYba0WmLVFI7tXOkQEyX7a7xu?=
- =?us-ascii?Q?0c95jA7AT6ilNGSqQ2ULau3YKuwPMfmGqxx6lKGd8ryFvvodeedhg/N7TM+o?=
- =?us-ascii?Q?dv+D5df0c2gyRYI7X0J79iRO6uUrFy8P8VINwHkDyvwGPHjDY3wBakyvtPzR?=
- =?us-ascii?Q?FJ7Wm8F7tmsnGRnKBxFbflL2TuceZAdULVWhPOZyJMx9k/HBuXeupYkCP3aN?=
- =?us-ascii?Q?JAJ3h7pxGtkGdNWYaqwnrqYr/M39ArTBuqUNcrdIbREZOLv/OwXW8rbmSi5u?=
- =?us-ascii?Q?Gxj4PEtyYpgOn8W1CT/mgOp8Ynbc/hjHA08zKZtYazq+4GJ4HTDHtpG33rCS?=
- =?us-ascii?Q?bIENhuje0F41kXMga4LFQ0ePC+x1B6FIH5q9tCEZQh0NxEoE7JN03wMyWwfE?=
- =?us-ascii?Q?am633i/KZrE2ID3R2bTFUKJla/XmaGVhVaIsrnN55POpi8d9p6PkMQ3pwfZC?=
- =?us-ascii?Q?bLjkbJ5pG0uQsQleboA6g1BgowfMDC++KJN2VJYOWNPxazURqTGfNItsya3G?=
- =?us-ascii?Q?o/z0501cPHlpwocMh0brTqI7Qb658aHDPDiDaWOhtsMZbCmT3jRqar2R2gNU?=
- =?us-ascii?Q?jjUOpXFZMD2hUYtORf3z3e/z7KtQM8w8n0VTg36apmP3o4Oj6UoSN9DjkTxN?=
- =?us-ascii?Q?Hy1Wm8csFxQP2pjYlhpduPDGavDgXfMXRxKJAqgRaL9IzfuiNg/Mj+/PAOcD?=
- =?us-ascii?Q?5bAaBFcKVw/6FSpHpqWvDGZPZ8O6dynJKXJG3LtT6BKQYy9Fx2Ic3s/q8aqx?=
- =?us-ascii?Q?oZXfq2KWb/8BfWeiQV1YTKj60WRAEzz4N40h8D/cDiESJGgE9lPWwy66E9j8?=
- =?us-ascii?Q?Ep5ER1xSy4VCMBP+oCbZlNpWEe6NkXQRWir2c2gKFBa/lFxSZJAbvftYjFLY?=
- =?us-ascii?Q?HMCQO5y7JBy358+5hP0zPtA8FmdOGZHCRTgpTIosf29fkPEaT1yEUqYAzYaF?=
- =?us-ascii?Q?E5ivvdE7Ss5afyThHmHdj01CmAYIXj1M3DRNO5pFPLnX2cu7+Vz6MQ4po1Is?=
- =?us-ascii?Q?SGuJztT74ZhRBNK2j6qxHZbs3AnNV3T89GVj1PV4berwHX1YKr1gVjQsLkU/?=
- =?us-ascii?Q?n9k2m/tAFfOL6lRJqVH+VfH4j+XXy2JpT53X1YTMMBbwRp9YNt9sVNpWT+fE?=
- =?us-ascii?Q?WADD+qK3nNcbeJu/7h+hMq50W7YoDDGHSJ0eNSMqjPuoWj6mLPsh2Uvxrihd?=
- =?us-ascii?Q?IvWbSUdZmMPTL+hDozDHAxU=3D?=
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8c7f430f-0c65-412d-15df-08de01319c6a
-X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB11947.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2025 21:29:32.5653
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: K+SDFAeY2DX6dEXEJhm6CjWrE+y1aiNq1TnC6WdKW1RswExVRVA+elbXgZReS4qlbuVczecRQbyIwK+fSxqJM3VQZ7zEHbJG+C8iFx1PEXERPXDDYBwqa5nw9na4twXy
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY4PR01MB13012
+User-Agent: Betterbird (Windows)
+Subject: Re: [PATCH 11/17] drm/msm/a8xx: Add support for A8x GMU
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar
+ <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse
+ <jordan@cosmicpenguin.net>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+        iommu@lists.linux.dev, devicetree@vger.kernel.org
+References: <20250930-kaana-gpu-support-v1-0-73530b0700ed@oss.qualcomm.com>
+ <20250930-kaana-gpu-support-v1-11-73530b0700ed@oss.qualcomm.com>
+ <mbx2yihv4z3y5w6fptumw47rc3l33pbdduqnu66bgv2re64cjy@wgd2qq3uv64h>
+From: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Content-Language: en-US
+In-Reply-To: <mbx2yihv4z3y5w6fptumw47rc3l33pbdduqnu66bgv2re64cjy@wgd2qq3uv64h>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: ozoX0nT2rAjJcrJ7Nbv-QF3Xl_c4AYxp
+X-Authority-Analysis: v=2.4 cv=MYZhep/f c=1 sm=1 tr=0 ts=68dd9d69 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=2kejHg7nZSoTgEpwAwsXNQ==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=e5mUnYsNAAAA:8 a=EUspDBNiAAAA:8
+ a=LKflap6YWrQmgnFgafkA:9 a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
+ a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-ORIG-GUID: ozoX0nT2rAjJcrJ7Nbv-QF3Xl_c4AYxp
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAzNiBTYWx0ZWRfX7S+0MAAizEA/
+ roW9MhzPjPhW86d2eB0m85dB6y2fyGEadpSxZoUDTOAqKRlDKcPYw0gDzy3XCtrjgP1CODeIV6Q
+ Xk+8JQCU6IBplWKqlPyUHObCVZDzB1Nm53KLczf4sfuVvaewv7raHE4w2Rzq5JmiB5WrtA4E4nY
+ orF8oj2nSZFEttr1lvi1uO+00qdCSoGkfoWr9aKCSlYqF1JeF6Zs4Meij45eXWV/oNJ++/Fi03k
+ 4Azpp3UhtQFesYoYsb4ik3fjvxoJ7Gosmo+P4D6kZr4X+VMfxwZzPPEnOnqmH2Yvm0Po5aVLTBp
+ 7aZfRjodKm6oESlYCC7IoP4nCS4KvBxpmEOjswsLaN3sacsrFuoEF35C2FIUsULGw6AMsU+AZcH
+ gQHC6gH1Vpc2hZ0zeyNBnaEPRivIjQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-01_06,2025-09-29_04,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1015 bulkscore=0 lowpriorityscore=0
+ priorityscore=1501 phishscore=0 malwarescore=0 spamscore=0 impostorscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
+ definitions=main-2509270036
 
-Enable USB2.0 support on the RZ/G3E EVK board, USB1B_1A_HOST and
-USB5_4_HOST connectors support only host operation and USB0_OTG
-supports host/peripheral operation.
 
-Signed-off-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
----
- .../boot/dts/renesas/r9a09g047e57-smarc.dts   | 49 +++++++++++++++++++
- .../boot/dts/renesas/renesas-smarc2.dtsi      | 23 +++++++++
- 2 files changed, 72 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index 08e814c03fa8..ca19e8628c80 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -164,6 +164,28 @@ sd1-data {
- 				 <RZG3E_PORT_PINMUX(G, 5, 1)>; /* SD1DAT3 */
- 		};
- 	};
-+
-+	usb20_pins: usb20 {
-+		ovc {
-+			pinmux =  <RZG3E_PORT_PINMUX(0, 0, 12)>; /* OVC */
-+			bias-pull-up;
-+		};
-+
-+		vbus {
-+			pinmux = <RZG3E_PORT_PINMUX(0, 1, 12)>; /* VBUS */
-+		};
-+	};
-+
-+	usb21_pins: usb21 {
-+		ovc {
-+			pinmux = <RZG3E_PORT_PINMUX(G, 6, 12)>; /* OVC */
-+			bias-pull-up;
-+		};
-+
-+		vbus {
-+			pinmux = <RZG3E_PORT_PINMUX(K, 3, 12)>; /* VBUS */
-+		};
-+	};
- };
- 
- &scif0 {
-@@ -179,3 +201,30 @@ &sdhi1 {
- 	vmmc-supply = <&reg_3p3v>;
- 	vqmmc-supply = <&vqmmc_sd1_pvdd>;
- };
-+
-+&usb20phyrst {
-+	status = "okay";
-+};
-+
-+&usb21phyrst {
-+	status = "okay";
-+};
-+
-+&usb2_phy0 {
-+	pinctrl-0 = <&usb20_pins>;
-+	pinctrl-names = "default";
-+
-+	vbus-supply = <&usb2_phy0_vbus_otg>;
-+	status = "okay";
-+};
-+
-+&usb2_phy0_vbus_otg {
-+	status = "okay";
-+};
-+
-+&usb2_phy1 {
-+	pinctrl-0 = <&usb21_pins>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-index 58561da3007a..2daf437abb82 100644
---- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-+++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-@@ -90,11 +90,34 @@ &canfd {
- 	status = "okay";
- };
- 
-+&ehci0 {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+&hsusb {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
- &i2c0 {
- 	status = "okay";
- 	clock-frequency = <400000>;
- };
- 
-+&ohci0 {
-+	dr_mode = "otg";
-+	status = "okay";
-+};
-+
-+&ohci1 {
-+	status = "okay";
-+};
-+
- &scif0 {
- 	status = "okay";
- };
--- 
-2.43.0
+On 9/30/2025 1:05 PM, Dmitry Baryshkov wrote:
+> On Tue, Sep 30, 2025 at 11:18:16AM +0530, Akhil P Oommen wrote:
+>> A8x GMU configuration are very similar to A7x. Unfortunately, there are
+>> minor shuffling in the register offsets in the GMU CX register region.
+>> Apart from that, there is a new HFI message support to pass table like
+>> data. This patch adds support for  perf table using this new HFI
+>> message.
+>>
+>> Apart from that, there is a minor rework in a6xx_gmu_rpmh_arc_votes_init()
+>> to simplify handling of MxG to MxA fallback along with the additional
+>> calculations for the new dependency vote.
+> 
+> I'm sorry, I've sent it too early. This looks like a description
+> of a not-that-related change which should be split to a separate commit.
+> 
+>>
+>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>> ---
+>>   drivers/gpu/drm/msm/adreno/a6xx_gmu.c             | 161 +++++++++++++++++-----
+>>   drivers/gpu/drm/msm/adreno/a6xx_gmu.h             |   5 +-
+>>   drivers/gpu/drm/msm/adreno/a6xx_hfi.c             |  53 +++++++
+>>   drivers/gpu/drm/msm/adreno/a6xx_hfi.h             |  17 +++
+>>   drivers/gpu/drm/msm/adreno/adreno_gpu.h           |   7 +
+>>   drivers/gpu/drm/msm/registers/adreno/a6xx_gmu.xml |  48 +++++--
+>>   6 files changed, 242 insertions(+), 49 deletions(-)
+>>
+>> @@ -592,12 +606,16 @@ static void a6xx_gmu_rpmh_init(struct a6xx_gmu *gmu)
+>>   	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
+>>   	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
+>>   	struct platform_device *pdev = to_platform_device(gmu->dev);
+>> -	void __iomem *pdcptr = a6xx_gmu_get_mmio(pdev, "gmu_pdc", NULL);
+>>   	u32 seqmem0_drv0_reg = REG_A6XX_RSCC_SEQ_MEM_0_DRV0;
+>>   	void __iomem *seqptr = NULL;
+>>   	uint32_t pdc_address_offset;
+>> +	void __iomem *pdcptr;
+>>   	bool pdc_in_aop = false;
+>>   
+> 
+> A comment would be nice.
+> 
+>> +	if (adreno_is_a8xx(adreno_gpu))
+>> +		return;
+>> +
+>> +	pdcptr = a6xx_gmu_get_mmio(pdev, "gmu_pdc", NULL);
+>>   	if (IS_ERR(pdcptr))
+>>   		goto err;
+>>   
+>> @@ -1489,13 +1523,14 @@ static unsigned int a6xx_gmu_get_arc_level(struct device *dev,
+>>   }
+>>   
+>>   static int a6xx_gmu_rpmh_arc_votes_init(struct device *dev, u32 *votes,
+>> -		unsigned long *freqs, int freqs_count, const char *id)
+>> +		unsigned long *freqs, int freqs_count,
+>> +		const char *pri_id, const char *sec_id)
+>>   {
+>>   	int i, j;
+>>   	const u16 *pri, *sec;
+>>   	size_t pri_count, sec_count;
+>>   
+>> -	pri = cmd_db_read_aux_data(id, &pri_count);
+>> +	pri = cmd_db_read_aux_data(pri_id, &pri_count);
+> 
+> separate commit
+> 
+>>   	if (IS_ERR(pri))
+>>   		return PTR_ERR(pri);
+>>   	/*
+>> @@ -1506,13 +1541,7 @@ static int a6xx_gmu_rpmh_arc_votes_init(struct device *dev, u32 *votes,
+>>   	if (!pri_count)
+>>   		return -EINVAL;
+>>   
+>> -	/*
+>> -	 * Some targets have a separate gfx mxc rail. So try to read that first and then fall back
+>> -	 * to regular mx rail if it is missing
+>> -	 */
+>> -	sec = cmd_db_read_aux_data("gmxc.lvl", &sec_count);
+>> -	if (IS_ERR(sec) && sec != ERR_PTR(-EPROBE_DEFER))
+>> -		sec = cmd_db_read_aux_data("mx.lvl", &sec_count);
+>> +	sec = cmd_db_read_aux_data(sec_id, &sec_count);
+>>   	if (IS_ERR(sec))
+>>   		return PTR_ERR(sec);
+>>   
+>> @@ -1566,6 +1595,57 @@ static int a6xx_gmu_rpmh_arc_votes_init(struct device *dev, u32 *votes,
+>>   	return 0;
+>>   }
+>>   
+>> +static int a6xx_gmu_rpmh_dep_votes_init(struct device *dev, u32 *votes,
+>> +		unsigned long *freqs, int freqs_count)
+> 
+> Definitely a separate commit
+> 
+>> +{
+>> +	const u16 *mx;
+>> +	size_t count;
+>> +
+>> +	mx = cmd_db_read_aux_data("mx.lvl", &count);
+>> +	if (IS_ERR(mx))
+>> +		return PTR_ERR(mx);
+>> +	/*
+>> +	 * The data comes back as an array of unsigned shorts so adjust the
+>> +	 * count accordingly
+>> +	 */
+>> +	count >>= 1;
+>> +	if (!count)
+>> +		return -EINVAL;
+>> +
+>> +	/* Fix the vote for zero frequency */
+>> +	votes[0] = 0xFFFFFFFF;
+> 
+> lowercase
+> 
+>> +
+>> +	/* Construct a vote for rest of the corners */
+>> +	for (int i = 1; i < freqs_count; i++) {
+>> +		u8 j, index = 0;
+>> +		unsigned int level = a6xx_gmu_get_arc_level(dev, freqs[i]);
+>> +
+>> +		/* Get the primary index that matches the arc level */
+>> +		for (j = 0; j < count; j++) {
+>> +			if (mx[j] >= level) {
+>> +				index = j;
+>> +				break;
+>> +			}
+>> +		}
+>> +
+>> +		if (j == count) {
+>> +			DRM_DEV_ERROR(dev,
+>> +				      "Mx Level %u not found in the RPMh list\n",
+>> +				      level);
+>> +			DRM_DEV_ERROR(dev, "Available levels:\n");
+>> +			for (j = 0; j < count; j++)
+>> +				DRM_DEV_ERROR(dev, "  %u\n", mx[j]);
+>> +
+>> +			return -EINVAL;
+>> +		}
+>> +
+>> +		/* Construct the vote */
+>> +		votes[i] = (0x3fff << 14) | (index << 8) | (0xff);
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>>   /*
+>>    * The GMU votes with the RPMh for itself and on behalf of the GPU but we need
+>>    * to construct the list of votes on the CPU and send it over. Query the RPMh
+>> @@ -1580,15 +1660,27 @@ static int a6xx_gmu_rpmh_votes_init(struct a6xx_gmu *gmu)
+>>   	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
+>>   	const struct a6xx_info *info = adreno_gpu->info->a6xx;
+>>   	struct msm_gpu *gpu = &adreno_gpu->base;
+>> +	const char *sec_id;
+>> +	const u16 *gmxc;
+>>   	int ret;
+>>   
+>> +	gmxc = cmd_db_read_aux_data("gmxc.lvl", NULL);
+>> +	if (gmxc == ERR_PTR(-EPROBE_DEFER))
+>> +		return -EPROBE_DEFER;
+>> +
+>> +	/* If GMxC is present, prefer that as secondary rail for GX votes */
+>> +	sec_id = IS_ERR_OR_NULL(gmxc) ? "mx.lvl" : "gmxc.lvl";
+> 
+> Can it be NULL?
+> 
+
+It seems it cannot be.
+
+>> +
+>>   	/* Build the GX votes */
+>>   	ret = a6xx_gmu_rpmh_arc_votes_init(&gpu->pdev->dev, gmu->gx_arc_votes,
+>> -		gmu->gpu_freqs, gmu->nr_gpu_freqs, "gfx.lvl");
+>> +		gmu->gpu_freqs, gmu->nr_gpu_freqs, "gfx.lvl", sec_id);
+>>   
+>>   	/* Build the CX votes */
+>>   	ret |= a6xx_gmu_rpmh_arc_votes_init(gmu->dev, gmu->cx_arc_votes,
+>> -		gmu->gmu_freqs, gmu->nr_gmu_freqs, "cx.lvl");
+>> +		gmu->gmu_freqs, gmu->nr_gmu_freqs, "cx.lvl", "mx.lvl");
+>> +
+>> +	ret |= a6xx_gmu_rpmh_dep_votes_init(gmu->dev, gmu->dep_arc_votes,
+>> +		gmu->gpu_freqs, gmu->nr_gpu_freqs);
+>>   
+>>   	/* Build the interconnect votes */
+>>   	if (info->bcms && gmu->nr_gpu_bws > 1)
+>> @@ -2043,14 +2135,14 @@ int a6xx_gmu_init(struct a6xx_gpu *a6xx_gpu, struct device_node *node)
+>>   	 * are otherwise unused by a660.
+>>   	 */
+>>   	gmu->dummy.size = SZ_4K;
+>> -	if (adreno_is_a660_family(adreno_gpu) ||
+>> -	    adreno_is_a7xx(adreno_gpu)) {
+>> +	if (adreno_is_a660_family(adreno_gpu) || adreno_is_a7xx(adreno_gpu) ||
+>> +			adreno_is_a8xx(adreno_gpu)) {
+>>   		ret = a6xx_gmu_memory_alloc(gmu, &gmu->debug, SZ_4K * 7,
+>>   					    0x60400000, "debug");
+>>   		if (ret)
+>>   			goto err_memory;
+>>   
+>> -		gmu->dummy.size = SZ_8K;
+>> +		gmu->dummy.size = SZ_16K;
+>>   	}
+>>   
+>>   	/* Allocate memory for the GMU dummy page */
+>> @@ -2060,8 +2152,8 @@ int a6xx_gmu_init(struct a6xx_gpu *a6xx_gpu, struct device_node *node)
+>>   		goto err_memory;
+>>   
+>>   	/* Note that a650 family also includes a660 family: */
+>> -	if (adreno_is_a650_family(adreno_gpu) ||
+>> -	    adreno_is_a7xx(adreno_gpu)) {
+>> +	if (adreno_is_a650_family(adreno_gpu) || adreno_is_a7xx(adreno_gpu) ||
+>> +			adreno_is_a8xx(adreno_gpu)) {
+> 
+> Please adjust your editor settings. It would be much easier to read if
+> it was:>
+> 	if (adreno_is_a650_family(adreno_gpu) ||
+> 	    adreno_is_a7xx(adreno_gpu) ||
+> 	    adreno_is_a8xx(adreno_gpu)) {
+> 
+
+Agree. will update.
+
+> (Adjust it here and in other places)
+> 
+>>   		ret = a6xx_gmu_memory_alloc(gmu, &gmu->icache,
+>>   			SZ_16M - SZ_16K, 0x04000, "icache");
+>>   		if (ret)
+> 
+> [...]
+> 
+>> @@ -255,11 +256,63 @@ static int a6xx_hfi_send_perf_table_v1(struct a6xx_gmu *gmu)
+>>   		NULL, 0);
+>>   }
+>>   
+>> +static int a8xx_hfi_send_perf_table(struct a6xx_gmu *gmu)
+>> +{
+>> +	unsigned int num_gx_votes = 3, num_cx_votes = 2;
+>> +	struct a6xx_hfi_table_entry *entry;
+>> +	struct a6xx_hfi_table *tbl;
+>> +	int ret, i;
+>> +	u32 size;
+> 
+> Separate commit.
+> 
+>> +
+>> +	size = sizeof(*tbl) +  (2 * sizeof(tbl->entry[0])) +
+>> +		(gmu->nr_gpu_freqs * num_gx_votes * sizeof(gmu->gx_arc_votes[0])) +
+>> +		(gmu->nr_gmu_freqs * num_cx_votes * sizeof(gmu->cx_arc_votes[0]));
+>> +	tbl = devm_kzalloc(gmu->dev, size, GFP_KERNEL);
+>> +	tbl->type = HFI_TABLE_GPU_PERF;
+>> +
+>> +	/* First fill GX votes */
+>> +	entry = &tbl->entry[0];
+>> +	entry->count = gmu->nr_gpu_freqs;
+>> +	entry->stride = num_gx_votes;
+>> +
+>> +	for (i = 0; i < gmu->nr_gpu_freqs; i++) {
+>> +		unsigned int base = i * entry->stride;
+>> +
+>> +		entry->data[base+0] = gmu->gx_arc_votes[i];
+>> +		entry->data[base+1] = gmu->dep_arc_votes[i];
+>> +		entry->data[base+2] = gmu->gpu_freqs[i] / 1000;
+>> +	}
+>> +
+>> +	/* Then fill CX votes */
+>> +	entry = (struct a6xx_hfi_table_entry *)
+>> +		&tbl->entry[0].data[gmu->nr_gpu_freqs * num_gx_votes];
+>> +
+>> +	entry->count = gmu->nr_gmu_freqs;
+>> +	entry->stride = num_cx_votes;
+>> +
+>> +	for (i = 0; i < gmu->nr_gmu_freqs; i++) {
+>> +		unsigned int base = i * entry->stride;
+>> +
+>> +		entry->data[base] = gmu->cx_arc_votes[i];
+>> +		entry->data[base+1] = gmu->gmu_freqs[i] / 1000;
+>> +	}
+>> +
+>> +	ret = a6xx_hfi_send_msg(gmu, HFI_H2F_MSG_TABLE, tbl, size, NULL, 0);
+>> +
+>> +	devm_kfree(gmu->dev, tbl);
+>> +	return ret;
+>> +}
+>> +
+>>   static int a6xx_hfi_send_perf_table(struct a6xx_gmu *gmu)
+>>   {
+>> +	struct a6xx_gpu *a6xx_gpu = container_of(gmu, struct a6xx_gpu, gmu);
+>> +	struct adreno_gpu *adreno_gpu = &a6xx_gpu->base;
+>>   	struct a6xx_hfi_msg_perf_table msg = { 0 };
+>>   	int i;
+>>   
+>> +	if (adreno_is_a8xx(adreno_gpu))
+>> +		return a8xx_hfi_send_perf_table(gmu);
+>> +
+>>   	msg.num_gpu_levels = gmu->nr_gpu_freqs;
+>>   	msg.num_gmu_levels = gmu->nr_gmu_freqs;
+>>   
+>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_hfi.h b/drivers/gpu/drm/msm/adreno/a6xx_hfi.h
+>> index 653ef720e2da4d2b0793c0b76e994b6f6dc524c7..e12866110cb8ea0c075b3ae5e4cae679405c4bd1 100644
+>> --- a/drivers/gpu/drm/msm/adreno/a6xx_hfi.h
+>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_hfi.h
+>> @@ -185,6 +185,23 @@ struct a6xx_hfi_msg_core_fw_start {
+>>   	u32 handle;
+>>   };
+>>   
+>> +#define HFI_H2F_MSG_TABLE 15
+>> +
+>> +struct a6xx_hfi_table_entry {
+>> +	u32 count;
+>> +	u32 stride;
+>> +	u32 data[];
+>> +};
+>> +
+>> +struct a6xx_hfi_table {
+>> +	u32 header;
+>> +	u32 version;
+>> +#define HFI_TABLE_BW_VOTE 0
+>> +#define HFI_TABLE_GPU_PERF 1
+>> +	u32 type;
+>> +	struct a6xx_hfi_table_entry entry[];
+>> +};
+>> +
+>>   #define HFI_H2F_MSG_GX_BW_PERF_VOTE 30
+>>   
+>>   struct a6xx_hfi_gx_bw_perf_vote_cmd {
+>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>> index b27974d97c7512ecae326eb2d22238330d6c52f0..9831401c3bc865b803c2f9759d5e2ffcd79d19f8 100644
+>> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>> @@ -50,6 +50,8 @@ enum adreno_family {
+>>   	ADRENO_7XX_GEN1,  /* a730 family */
+>>   	ADRENO_7XX_GEN2,  /* a740 family */
+>>   	ADRENO_7XX_GEN3,  /* a750 family */
+>> +	ADRENO_8XX_GEN1,  /* a830 family */
+>> +	ADRENO_8XX_GEN2,  /* a840 family */
+>>   };
+>>   
+>>   #define ADRENO_QUIRK_TWO_PASS_USE_WFI		BIT(0)
+>> @@ -555,6 +557,11 @@ static inline int adreno_is_a7xx(struct adreno_gpu *gpu)
+>>   	       adreno_is_a740_family(gpu);
+>>   }
+>>   
+>> +static inline int adreno_is_a8xx(struct adreno_gpu *gpu)
+>> +{
+>> +	return gpu->info->family >= ADRENO_8XX_GEN1;
+>> +}
+> 
+> This and the register mask updates can go to a separate commit.
+
+Which mask update exactly?
+
+I can split out the hfi table addition and arc table updates into 2 
+separate patches.
+
+-Akhil.
+
+> 
+>> +
+>>   /* Put vm_start above 32b to catch issues with not setting xyz_BASE_HI */
+>>   #define ADRENO_VM_START 0x100000000ULL
+>>   u64 adreno_private_vm_size(struct msm_gpu *gpu);
+>> diff --git a/drivers/gpu/drm/msm/registers/adreno/a6xx_gmu.xml b/drivers/gpu/drm/msm/registers/adreno/a6xx_gmu.xml
+>> index 09b8a0b9c0de7615f7e7e6364c198405a498121a..5dce7934056dd6472c368309b4894f0ed4a4d960 100644
+>> --- a/drivers/gpu/drm/msm/registers/adreno/a6xx_gmu.xml
+>> +++ b/drivers/gpu/drm/msm/registers/adreno/a6xx_gmu.xml
+>> @@ -66,10 +66,15 @@ xsi:schemaLocation="https://gitlab.freedesktop.org/freedreno/ rules-fd.xsd">
+>>   	<reg32 offset="0x1f81c" name="GMU_CM3_FW_INIT_RESULT"/>
+>>   	<reg32 offset="0x1f82d" name="GMU_CM3_CFG"/>
+>>   	<reg32 offset="0x1f840" name="GMU_CX_GMU_POWER_COUNTER_ENABLE"/>
+>> +	<reg32 offset="0x1fc10" name="GMU_CX_GMU_POWER_COUNTER_ENABLE" variants="A8XX"/>
+>>   	<reg32 offset="0x1f841" name="GMU_CX_GMU_POWER_COUNTER_SELECT_0"/>
+>>   	<reg32 offset="0x1f842" name="GMU_CX_GMU_POWER_COUNTER_SELECT_1"/>
+>> +	<reg32 offset="0x1fc40" name="GMU_CX_GMU_POWER_COUNTER_SELECT_XOCLK_0" variants="A8XX-"/>
+>> +	<reg32 offset="0x1fc41" name="GMU_CX_GMU_POWER_COUNTER_SELECT_XOCLK_1" variants="A8XX-"/>
+>>   	<reg32 offset="0x1f844" name="GMU_CX_GMU_POWER_COUNTER_XOCLK_0_L"/>
+>> +	<reg32 offset="0x1fca0" name="GMU_CX_GMU_POWER_COUNTER_XOCLK_0_L" variants="A8XX-"/>
+>>   	<reg32 offset="0x1f845" name="GMU_CX_GMU_POWER_COUNTER_XOCLK_0_H"/>
+>> +	<reg32 offset="0x1fca1" name="GMU_CX_GMU_POWER_COUNTER_XOCLK_0_H" variants="A8XX-"/>
+>>   	<reg32 offset="0x1f846" name="GMU_CX_GMU_POWER_COUNTER_XOCLK_1_L"/>
+>>   	<reg32 offset="0x1f847" name="GMU_CX_GMU_POWER_COUNTER_XOCLK_1_H"/>
+>>   	<reg32 offset="0x1f848" name="GMU_CX_GMU_POWER_COUNTER_XOCLK_2_L"/>
+>> @@ -89,7 +94,7 @@ xsi:schemaLocation="https://gitlab.freedesktop.org/freedreno/ rules-fd.xsd">
+>>   	</reg32>
+>>   	<reg32 offset="0x1f8c1" name="GMU_PWR_COL_INTER_FRAME_HYST"/>
+>>   	<reg32 offset="0x1f8c2" name="GMU_PWR_COL_SPTPRAC_HYST"/>
+>> -	<reg32 offset="0x1f8d0" name="GMU_SPTPRAC_PWR_CLK_STATUS">
+>> +	<reg32 offset="0x1f8d0" name="GMU_SPTPRAC_PWR_CLK_STATUS" variants="A6XX">
+>>   		<bitfield name="SPTPRAC_GDSC_POWERING_OFF" pos="0" type="boolean"/>
+>>   		<bitfield name="SPTPRAC_GDSC_POWERING_ON" pos="1" type="boolean"/>
+>>   		<bitfield name="SPTPRAC_GDSC_POWER_OFF" pos="2" type="boolean"/>
+>> @@ -99,7 +104,11 @@ xsi:schemaLocation="https://gitlab.freedesktop.org/freedreno/ rules-fd.xsd">
+>>   		<bitfield name="GX_HM_GDSC_POWER_OFF" pos="6" type="boolean"/>
+>>   		<bitfield name="GX_HM_CLK_OFF" pos="7" type="boolean"/>
+>>   	</reg32>
+>> -	<reg32 offset="0x1f8d0" name="GMU_SPTPRAC_PWR_CLK_STATUS" variants="A7XX-">
+>> +	<reg32 offset="0x1f8d0" name="GMU_SPTPRAC_PWR_CLK_STATUS" variants="A7XX">
+>> +		<bitfield name="GX_HM_GDSC_POWER_OFF" pos="0" type="boolean"/>
+>> +		<bitfield name="GX_HM_CLK_OFF" pos="1" type="boolean"/>
+>> +	</reg32>
+>> +	<reg32 offset="0x1f7e8" name="GMU_PWR_CLK_STATUS" variants="A8XX-">
+>>   		<bitfield name="GX_HM_GDSC_POWER_OFF" pos="0" type="boolean"/>
+>>   		<bitfield name="GX_HM_CLK_OFF" pos="1" type="boolean"/>
+>>   	</reg32>
+>> @@ -120,9 +129,12 @@ xsi:schemaLocation="https://gitlab.freedesktop.org/freedreno/ rules-fd.xsd">
+>>   		<bitfield name="GFX_MIN_VOTE_ENABLE" pos="15" type="boolean"/>
+>>   	</reg32>
+>>   	<reg32 offset="0x1f8e9" name="GMU_RPMH_HYST_CTRL"/>
+>> -	<reg32 offset="0x1f8ec" name="GPU_GMU_CX_GMU_RPMH_POWER_STATE"/>
+>> -	<reg32 offset="0x1f8f0" name="GPU_GMU_CX_GMU_CX_FAL_INTF"/>
+>> -	<reg32 offset="0x1f8f1" name="GPU_GMU_CX_GMU_CX_FALNEXT_INTF"/>
+>> +	<reg32 offset="0x1f8ec" name="GPU_GMU_CX_GMU_RPMH_POWER_STATE" variants="A6XX"/>
+>> +	<reg32 offset="0x1f7e9" name="GPU_GMU_CX_GMU_RPMH_POWER_STATE" variants="A8XX-"/>
+>> +	<reg32 offset="0x1f8f0" name="GPU_GMU_CX_GMU_CX_FAL_INTF" variants="A6XX"/>
+>> +	<reg32 offset="0x1f7ec" name="GPU_GMU_CX_GMU_CX_FAL_INTF" variants="A8XX-"/>
+>> +	<reg32 offset="0x1f8f1" name="GPU_GMU_CX_GMU_CX_FALNEXT_INTF" variants="A6XX"/>
+>> +	<reg32 offset="0x1f7ed" name="GPU_GMU_CX_GMU_CX_FALNEXT_INTF" variants="A8XX-"/>
+>>   	<reg32 offset="0x1f900" name="GPU_GMU_CX_GMU_PWR_COL_CP_MSG"/>
+>>   	<reg32 offset="0x1f901" name="GPU_GMU_CX_GMU_PWR_COL_CP_RESP"/>
+>>   	<reg32 offset="0x1f9f0" name="GMU_BOOT_KMD_LM_HANDSHAKE"/>
+>> @@ -130,8 +142,10 @@ xsi:schemaLocation="https://gitlab.freedesktop.org/freedreno/ rules-fd.xsd">
+>>   	<reg32 offset="0x1f958" name="GMU_LLM_GLM_SLEEP_STATUS"/>
+>>   	<reg32 offset="0x1f888" name="GMU_ALWAYS_ON_COUNTER_L"/>
+>>   	<reg32 offset="0x1f889" name="GMU_ALWAYS_ON_COUNTER_H"/>
+>> -	<reg32 offset="0x1f8c3" name="GMU_GMU_PWR_COL_KEEPALIVE"/>
+>> -	<reg32 offset="0x1f8c4" name="GMU_PWR_COL_PREEMPT_KEEPALIVE"/>
+>> +	<reg32 offset="0x1f8c3" name="GMU_GMU_PWR_COL_KEEPALIVE" variants="A6XX-A7XX"/>
+>> +	<reg32 offset="0x1f7e4" name="GMU_GMU_PWR_COL_KEEPALIVE" variants="A8XX-"/>
+>> +	<reg32 offset="0x1f8c4" name="GMU_PWR_COL_PREEMPT_KEEPALIVE" variants="A6XX-A7XX"/>
+>> +	<reg32 offset="0x1f7e5" name="GMU_PWR_COL_PREEMPT_KEEPALIVE" variants="A8XX-"/>
+>>   	<reg32 offset="0x1f980" name="GMU_HFI_CTRL_STATUS"/>
+>>   	<reg32 offset="0x1f981" name="GMU_HFI_VERSION_INFO"/>
+>>   	<reg32 offset="0x1f982" name="GMU_HFI_SFR_ADDR"/>
+>> @@ -164,6 +178,14 @@ xsi:schemaLocation="https://gitlab.freedesktop.org/freedreno/ rules-fd.xsd">
+>>   	<reg32 offset="0x1f9cd" name="GMU_GENERAL_8" variants="A7XX"/>
+>>   	<reg32 offset="0x1f9ce" name="GMU_GENERAL_9" variants="A7XX"/>
+>>   	<reg32 offset="0x1f9cf" name="GMU_GENERAL_10" variants="A7XX"/>
+>> +	<reg32 offset="0x1f9c0" name="GMU_GENERAL_0" variants="A8XX"/>
+>> +	<reg32 offset="0x1f9c1" name="GMU_GENERAL_1" variants="A8XX"/>
+>> +	<reg32 offset="0x1f9c6" name="GMU_GENERAL_6" variants="A8XX"/>
+>> +	<reg32 offset="0x1f9c7" name="GMU_GENERAL_7" variants="A8XX"/>
+>> +	<reg32 offset="0x1f9c8" name="GMU_GENERAL_8" variants="A8XX"/>
+>> +	<reg32 offset="0x1f9c9" name="GMU_GENERAL_9" variants="A8XX"/>
+>> +	<reg32 offset="0x1f9ca" name="GMU_GENERAL_10" variants="A8XX"/>
+>> +	<reg32 offset="0x1f9cb" name="GMU_GENERAL_11" variants="A8XX"/>
+>>   	<reg32 offset="0x1f95d" name="GMU_ISENSE_CTRL"/>
+>>   	<reg32 offset="0x23120" name="GPU_CS_ENABLE_REG"/>
+>>   	<reg32 offset="0x1f95d" name="GPU_GMU_CX_GMU_ISENSE_CTRL"/>
+>> @@ -233,12 +255,12 @@ xsi:schemaLocation="https://gitlab.freedesktop.org/freedreno/ rules-fd.xsd">
+>>   	<reg32 offset="0x03ee" name="RSCC_TCS1_DRV0_STATUS"/>
+>>   	<reg32 offset="0x0496" name="RSCC_TCS2_DRV0_STATUS"/>
+>>   	<reg32 offset="0x053e" name="RSCC_TCS3_DRV0_STATUS"/>
+>> -	<reg32 offset="0x05e6" name="RSCC_TCS4_DRV0_STATUS" variants="A7XX"/>
+>> -	<reg32 offset="0x068e" name="RSCC_TCS5_DRV0_STATUS" variants="A7XX"/>
+>> -	<reg32 offset="0x0736" name="RSCC_TCS6_DRV0_STATUS" variants="A7XX"/>
+>> -	<reg32 offset="0x07de" name="RSCC_TCS7_DRV0_STATUS" variants="A7XX"/>
+>> -	<reg32 offset="0x0886" name="RSCC_TCS8_DRV0_STATUS" variants="A7XX"/>
+>> -	<reg32 offset="0x092e" name="RSCC_TCS9_DRV0_STATUS" variants="A7XX"/>
+>> +	<reg32 offset="0x05e6" name="RSCC_TCS4_DRV0_STATUS" variants="A7XX-"/>
+>> +	<reg32 offset="0x068e" name="RSCC_TCS5_DRV0_STATUS" variants="A7XX-"/>
+>> +	<reg32 offset="0x0736" name="RSCC_TCS6_DRV0_STATUS" variants="A7XX-"/>
+>> +	<reg32 offset="0x07de" name="RSCC_TCS7_DRV0_STATUS" variants="A7XX-"/>
+>> +	<reg32 offset="0x0886" name="RSCC_TCS8_DRV0_STATUS" variants="A7XX-"/>
+>> +	<reg32 offset="0x092e" name="RSCC_TCS9_DRV0_STATUS" variants="A7XX-"/>
+>>   </domain>
+>>   
+>>   </database>
+>>
+>> -- 
+>> 2.51.0
+>>
+> 
 
 
