@@ -1,184 +1,112 @@
-Return-Path: <devicetree+bounces-223026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D50BBB05F9
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 14:44:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A83ECBB0620
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 14:51:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76D6319421D7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 12:44:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6272D3C4E36
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 12:51:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41AA42EBB84;
-	Wed,  1 Oct 2025 12:44:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 845672EBDD9;
+	Wed,  1 Oct 2025 12:51:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="TIyGFwje"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LKNFFIEZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11023111.outbound.protection.outlook.com [52.101.83.111])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D28A02EB868
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 12:44:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.111
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759322652; cv=fail; b=pGOkGq5M66ZQJVW+3stCsyvAgziOUSpHu+zaNBKKBH3SAp4yY+3Qtq6xJMCnZGx5r+MQSvjg0GFSGPCywrGwP0X7pLHP3Ryn/jz76ZJNfynBPGVsaim5XCK5Gn5VOfBb3RlK/mAbEeyFOFv0joTMUvJzjP4TJVWiSIa1NWmrqvA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759322652; c=relaxed/simple;
-	bh=lxNCYMXljVIwJtd+pNAB2vHb6Y1U5IWnC3JptCOXDxM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=sjQc2bhz9TZwdMk6NVzVMPXHxS54CZd8V6Xaa1zwu3CCs5fz4c1ZC5/6AqJJZrB7qj2nGhgva9gA0SoBvFc5klulN8ZEHMqRotTE7FsXmT0CE+pK9tDUaeq2KtjVO8NOoK+CbA0kEioOOPSgLtLUgISJP4yclY/hE/g2MK2QHKg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=TIyGFwje; arc=fail smtp.client-ip=52.101.83.111
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TOxcAyHMAehGJsW0jBpnAspRbR3gzb/bmGiHAiOjQC4n/kMkImZaNcn614CEvqo3hivsaL0UvXlc7M2f6LKqbUTbNIhXcQ0SmiBoRFWqT8I2N1hbnP/IwHqXeqKHGk8xcpcofeSZKN+PkNjw6hcEjIWOqwMR3ZhuOSn26yJY1lXxb4j5Bthz70lK3ziod/CeXrJPTkEn4lZofd9erDZzLj9Ha7LacJ0ZlkQ5oJ3RqSh9rqGcZIRZkahGKUMKQbTeFFgwVVbO/dwxl6TNeDSEO6ygyGmLe0zj7ceWffLZa2GFCeP551ct3m060CgQBl97sYcxxOsMEDBWeg0RdYFl6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kN1WcvI0Igckqy/G2cQPZm1/8qTYtmqCz2kJEO1rjGw=;
- b=HOyiOeTRYm/fT+Gsgq2wNy2txoxbnMv4W97kpaVAun100ZfGBjsnRGtFQIk2G5VQpX43p6ljhEA/+r+s51tfaVRblSi7a6HkPfxB5SWXh7i9fBFdR2W6AnOg7Utv3Yp1xAowv1Dy9djIc2u7PnuvuoSuSN17xhvq1dPGJ167efLczSIs9+GKZhpVRto1zPL9D7DmRXe5p8LS5xgiss9nkXB24Cw1ITlEoFaGFH4LZ5YQDoJ67l/u2iF+FWAgHSIBvzUCDl6uTog76gYsIVH1yzVuje4Ys7VOKyXMcO8+e0JOKZuwLVNJKmjgZK0G6QeXyuhH4e7fMY3ox+4nE6rsAw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
- is 91.26.50.189) smtp.rcpttodomain=lists.infradead.org
- smtp.mailfrom=phytec.de; dmarc=fail (p=quarantine sp=quarantine pct=100)
- action=quarantine header.from=phytec.de; dkim=none (message not signed);
- arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kN1WcvI0Igckqy/G2cQPZm1/8qTYtmqCz2kJEO1rjGw=;
- b=TIyGFwjeHp5L1VO70C3a672FnQKXmJvOT4vBLmjdWeGfbDrwzuq9JCANF9MCxOOuaItwGxc7PxZrReVe4PGOo0Tb5GmfBguFJCn7keBgNwbtkchu4WU8YH++xstC7EfPymfjEtRqhZSJIlqDmAA0YC9Hr8HX5Mu/gqeAv3ngEUo2+XW4sXAM0moqmOMXA5gOc1szpkmOwevMxVGOrD6gkjOfPuwFNjYvSNwJ9do3gVr/+868uf92BZDzHVEHqY3+xrqnkjdAxgkui4EgA1aTEuc20o2l7XblJY97ARLPF1gbMXIfQoNJHqax8STX6/bjBibS3tifIxVvAna8SLr8lA==
-Received: from DB9PR05CA0022.eurprd05.prod.outlook.com (2603:10a6:10:1da::27)
- by GV2PPFA6AF62A30.EURP195.PROD.OUTLOOK.COM (2603:10a6:158:401::8dd) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.22; Wed, 1 Oct
- 2025 12:44:03 +0000
-Received: from DB3PEPF0000885B.eurprd02.prod.outlook.com
- (2603:10a6:10:1da:cafe::71) by DB9PR05CA0022.outlook.office365.com
- (2603:10a6:10:1da::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9160.17 via Frontend Transport; Wed,
- 1 Oct 2025 12:44:03 +0000
-X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
- smtp.mailfrom=phytec.de; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- phytec.de discourages use of 91.26.50.189 as permitted sender)
-Received: from Postix.phytec.de (91.26.50.189) by
- DB3PEPF0000885B.mail.protection.outlook.com (10.167.242.6) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9182.15 via Frontend Transport; Wed, 1 Oct 2025 12:44:03 +0000
-Received: from augenblix2.phytec.de (172.25.0.51) by Postix.phytec.de
- (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Wed, 1 Oct
- 2025 14:44:01 +0200
-From: Teresa Remmet <t.remmet@phytec.de>
-Date: Wed, 1 Oct 2025 14:43:28 +0200
-Subject: [PATCH 2/2] arm64: dts: imx8mm-phygate-tauri-l: Update pad ctl for
- USB OC pin
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CBA7278158;
+	Wed,  1 Oct 2025 12:51:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759323111; cv=none; b=TjSmXzfflhnTmUSnS4KQdprK9OgyQ5URv+B9sI9FY2SsLLqEBO/Q4b2Hcj6LAsU+r4Nq5POFIIwLWXzZSVNOp8XCKic8tZWsLnRLpXXZMwP13U7bxBzdmZKSmcSiOhYT3yMEMPD7cOr+Jr0jHHOpaoCk6lNBcLbzt7B09sx6POg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759323111; c=relaxed/simple;
+	bh=vGPLUD06/U0rl4f4NPa3IVl603NeEeGBI0dMr8vFUhY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=d3/4FxAt3ot2ETJKyI83w4XDTsYK4B7Nui3R5zkC2OAneU9AOODZzB93O2fBQ+PcCRl5XQJYmXND1nOaG+Fvu9sfy0lu21wVQqFD7C0taJXU09jqa3rRCCt89umb6bnG9kpopdDv4bJUKsvEO0Z1D5CCI12slX9psQML3p15Abk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LKNFFIEZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDFE3C4CEF4;
+	Wed,  1 Oct 2025 12:51:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759323110;
+	bh=vGPLUD06/U0rl4f4NPa3IVl603NeEeGBI0dMr8vFUhY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LKNFFIEZTsiENKQjqzx05CAfq+xED2lVKa8MHJi6npG9ZvUQEYkdb40xJl34PxXR6
+	 nan06MxV4tDKWf7nO69M9bpz+uJBgB6GUWuTEiwVlZXJfNdt4ECicBDKtQpmiESSww
+	 SgwHLA3oOurFPzXHUa8xaoiLhK5vpXTQzi599gTmPIERdkE6MRe5Xr3gAz45oEiZ6i
+	 tOCkt2XWOG4d8bH9Ohsq7v/5WXx4zDuL54gQLYFf8SqIg8cTJOqdqcvrBOuTAxzA6l
+	 wYtpn4hdsdrj7UukpWsXgie+CjmJopaO4pWNlFFPHvcCKuTPR7PlCdFlRhpqxYKOJE
+	 Du1GFSFg69Kog==
+Date: Wed, 1 Oct 2025 07:51:49 -0500
+From: Rob Herring <robh@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Support Opensource <support.opensource@diasemi.com>,
+	Lee Jones <lee@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Steve Twiss <stwiss.opensource@diasemi.com>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: dlg,da9063: allow
+ 'interrupts-extended' property
+Message-ID: <20251001125149.GA1122744-robh@kernel.org>
+References: <20250929072306.5634-2-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20251001-wip-t-remmet-phytec-de-upstream-v1-2-845d71bb1e1e@phytec.de>
-References: <20251001-wip-t-remmet-phytec-de-upstream-v1-0-845d71bb1e1e@phytec.de>
-In-Reply-To: <20251001-wip-t-remmet-phytec-de-upstream-v1-0-845d71bb1e1e@phytec.de>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Sascha
- Hauer" <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>
-CC: Yannic Moog <y.moog@phytec.de>, Benjamin Hahn <b.hahn@phytec.de>,
-	Yashwanth Varakala <y.varakala@phytec.de>, Jan Remmet <j.remmet@phytec.de>,
-	<devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, Teresa Remmet <t.remmet@phytec.de>
-X-Mailer: b4 0.15-dev
-X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
- (172.25.0.11)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB3PEPF0000885B:EE_|GV2PPFA6AF62A30:EE_
-X-MS-Office365-Filtering-Correlation-Id: f464c8e7-67ee-4bbd-598d-08de00e833c3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|36860700013|1800799024|82310400026;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?M2E1TFdoOXA5N0lLdkNhSXc3bzRiWUN3UHBFdmljN0J2RTF2bGlJTFk4NSts?=
- =?utf-8?B?YUZEMk1OcTBzMytHM1FsV2ZMNVhNZkNmdCt3dkg2cG0wRHpGbTdMTjF1S21Y?=
- =?utf-8?B?TGxVWGZ0Y1BBb1FoY0xhWU5TclYyWnNxcjkwcG52TWxaS0FWSGQ1M0hXeXo4?=
- =?utf-8?B?MEFqWGQxRmN3S3pWTkpFbTVvOUQyMnRJQkdsOVc4a1k3TTJFa0xUamxmQW41?=
- =?utf-8?B?RGhCVVdXNURoeDNnQXVDSDFoMDZIN2FCK0cvb3EyeGlUeUREa3dSRWIra1RZ?=
- =?utf-8?B?SE5heUkzYWordUlGOUNkNWVoc0NTSEs1K1dtOUk1cWNUVCswRHh6TU1tTCta?=
- =?utf-8?B?NlgvaVMyb1MyTE5Fb0t6RWZ3YXdKYlRrRTRvaTc3SG5WU0NiSlR1UXR2djBu?=
- =?utf-8?B?VWdKTU1BTlNjN282Sk1ZcXlZdFlTOWFkck9XdkJhbjhrcGU3SXF4QitUSHVQ?=
- =?utf-8?B?SVh2T3N5TUxRT3Q3YUVaS1ltdkFYZjkxa0dld0lsYjlsSVZQN3YyUmxDN1h1?=
- =?utf-8?B?Mi9ja1AySWhscUhHNis1TkRuaklGMkpKMVJ5RWI1SW9GVkRFZlRXNERnUzhG?=
- =?utf-8?B?UFY2eHd5SSs2bnhXQXpsRU53VWVlZzBWMFJUeTlPTTFaOXdmVnpnRlR0a3Zy?=
- =?utf-8?B?dlI0WXhBL0lLUXFvTURrS1VkUnVBeG1iNUUveGd0Y1l2VXFOSDJoMzVTbE5h?=
- =?utf-8?B?eE8ydHh6QWhsNTcxa2xHa1QrOTFnTzM2M3dmZjBMM2dGc3BnNHp3dWhZdWRT?=
- =?utf-8?B?QnZFVTIyQ0VHNjNvNjQ1WmdUVWl4b0tTNk9UaElaOTFFZnkxSGg0cml0bCs3?=
- =?utf-8?B?MVFZWm1yeEVUVnBraHJ3empBNEM3TlcvamluelBLUUI1T1J6c0M5SU9PQm14?=
- =?utf-8?B?ZXR1Vmc0Qm1HMjJZbFFlaGJxRzQ2NUZrN2ZNdmFhUU9IUVJDM2RweVNJYTJB?=
- =?utf-8?B?TUs0Wnk4NTZ6THBSMGl2akF1aEcrNngyZEM4a3ZQRHJRc25MdWR0UW5rT3I4?=
- =?utf-8?B?RTBGSkp3YnJNMEpoS2dWNUZJZ1YvNlVQbWtSeS9UalAxcTI2L2JBSkJYTVRv?=
- =?utf-8?B?dDJ4UGRYQ1N4OUpwRVB3UnN5UkNReXl2R0FJdGs0SFM2MWpmN0ZFOW8zZFNW?=
- =?utf-8?B?WGJMZlhycklabWZXeEdTNXVrQWN1clQ4NjNHNUpIZUlEeHk1SWNDY1paMmxK?=
- =?utf-8?B?TXBDZU9aRUtkM0luM3NUTHRHc3NRTC8vYmhRWjVCM0t5MHB3ZTBzNnp0TVY2?=
- =?utf-8?B?ZTJ0SUE3Yk51L2lOSjROUUZ6VTJybXJsZGZ2Z2x6SWY4cXRZVDZHRWEwbUVl?=
- =?utf-8?B?NnNCdWlwODU0cHdzdDZPOUpkTURBKzRHL3VlZEpmK1E3cGVIOFBvN3ZaZGhm?=
- =?utf-8?B?UkJwNXFyTDcvdFJPYTNwcTZaRklDcUwxMElBeVpmalR6OVAraU41Mm01WHdx?=
- =?utf-8?B?MDJTV1k5R3hRNEJmK2pwcmZZcUxLYTVmRzNOUDI4VldTVEh1SGd5cmliVks2?=
- =?utf-8?B?VVl6RUpaeExuV0VUak5VU3hTSmk4cDBsNXRyZGZYb3lRVzY4UVVaRllPL0pj?=
- =?utf-8?B?b1RFWW91VDZsb3VGbUhPS1lBMlFtNFp5R3hucTBUSFVNK0pJenY3ZnZLNDNm?=
- =?utf-8?B?aVdrQW4rZ21VaVNNaTNNZUxObUxPanBxV0hZa2x1Zll4cFZpZS81RitCaFVD?=
- =?utf-8?B?YTNkbS9OYW5GTDdjQW9sY2pTbEZWa3dLU3JXMlI5blUvenc1cG5GeExxcHVN?=
- =?utf-8?B?UExMS1JHOEg0OERVdFZMSHVXTUpKSjF6aTFPNlB5WVVmcnlnSUFuYUtraVU0?=
- =?utf-8?B?TlJ3NG9HYkU1TmIzRmJNQ3NVbTBzbnpJTDFTVzFuanlpaktIZHBMN0t2SGtH?=
- =?utf-8?B?WnVqeDhHUUpyMkNCanBXS3J1Zmw2VWxsM1BkUW1HSEttcTF1aS84MkhTM0p2?=
- =?utf-8?B?STYwT1FGZFdTcVBGRjdqN0hubW5LNVF0QUZWRzd2aVNnK1czbnJ6dWsxcDdM?=
- =?utf-8?B?VmQ2Mmp1MzRHQS9RV0tISWEvYXV0bDhHUTQ2QzJkMU0zUG14Vm1BL25Bck9a?=
- =?utf-8?B?c0szY1VSUVZKcG9PZk95c2dQR053eXFyaHRSWFdlZXIzN3dwWDJQbGJjOWxt?=
- =?utf-8?Q?YeQE=3D?=
-X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(376014)(7416014)(36860700013)(1800799024)(82310400026);DIR:OUT;SFP:1102;
-X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2025 12:44:03.3358
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f464c8e7-67ee-4bbd-598d-08de00e833c3
-X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
-X-MS-Exchange-CrossTenant-AuthSource:
-	DB3PEPF0000885B.eurprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV2PPFA6AF62A30
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250929072306.5634-2-wsa+renesas@sang-engineering.com>
 
-Disable Hysteresis Enable Field in pad ctl register for USB OC pin
-as this is more appropriate for the signal form in our case.
+On Mon, Sep 29, 2025 at 09:20:47AM +0200, Wolfram Sang wrote:
+> If nested, DT schema cannot extend required 'interrupts' to include
+> 'interrupts-extended'. It needs to be added manually. Fixes:
+> 
+> arch/arm/boot/dts/renesas/r8a7791-koelsch.dtb: pmic@58 (dlg,da9063): 'interrupts' is a required property
+> 	from schema $id: http://devicetree.org/schemas/mfd/dlg,da9063.yaml#
+> 
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+> 
+> Copied this solution 1:1 from:
+>   Documentation/devicetree/bindings/mfd/samsung,s2mps11.yaml
+> 
+>  Documentation/devicetree/bindings/mfd/dlg,da9063.yaml | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
+> index 51612dc22748..4af5fcb856c7 100644
+> --- a/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/dlg,da9063.yaml
+> @@ -110,10 +110,16 @@ allOf:
+>              "^buck[1-4]$": false
+>          thermal: false
+>        required:
+> -        - interrupts
+>          - interrupt-controller
+>          - '#interrupt-cells'
+>  
+> +      # oneOf is required, because dtschema's fixups.py doesn't handle this
+> +      # nesting here. Its special treatment to allow either interrupt property
+> +      # when only one is specified in the binding works at the top level only.
 
-Signed-off-by: Teresa Remmet <t.remmet@phytec.de>
----
- arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+The solution is to fix dtschema. I'll take a look at it.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts
-index 755cf9cacd22..2ecc8b3c67da 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-phygate-tauri-l.dts
-@@ -452,7 +452,7 @@ MX8MM_IOMUXC_GPIO1_IO12_GPIO1_IO12	0x00
- 
- 	pinctrl_usbotg1: usbotg1grp {
- 		fsl,pins = <
--			MX8MM_IOMUXC_GPIO1_IO13_USB1_OTG_OC	0x80
-+			MX8MM_IOMUXC_GPIO1_IO13_USB1_OTG_OC	0x00
- 		>;
- 	};
- 
-
--- 
-2.25.1
-
+> +      oneOf:
+> +        - required: [interrupts]
+> +        - required: [interrupts-extended]
+> +
+>    - if:
+>        properties:
+>          compatible:
+> -- 
+> 2.47.2
+> 
 
