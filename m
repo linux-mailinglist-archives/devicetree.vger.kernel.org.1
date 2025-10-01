@@ -1,57 +1,106 @@
-Return-Path: <devicetree+bounces-223191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3026BB2107
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 01:27:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF185BB212E
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 01:37:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DFBA4A4FD0
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 23:27:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D6013C7B28
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 23:37:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B42FF29E11A;
-	Wed,  1 Oct 2025 23:27:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11FB529BDBC;
+	Wed,  1 Oct 2025 23:37:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QWU31JZD"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MzATrGwF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8259C29B8C2;
-	Wed,  1 Oct 2025 23:27:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5216523B60A
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 23:37:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759361244; cv=none; b=S1Qw108nnLqxZ0z5phqq3xVsz2vrwvdaQ2F/bcLZCNxZhB4iyyOGucnGP/kgPHupoHIDN2tTRQm9PxSx0pKL4wi7r6woColltQamTHchonB/Ir+jk1jgGB8E2h/Gsx6S98jM4hV4eFNqWquP/OKv2ElbEv2K723pmU/ptkr89BA=
+	t=1759361830; cv=none; b=QJr/Gqtgibs8oRUXzlTYs7Yy/MEo6MyQj9b+438YkUUtSE58nGDr1Z/To4eTQQKRqUehgm74c1iwjWK2+Dn5gLX9NPGM20gjhH63eAXaUv/6QJwrDCdzeexZbsU+5leJDj+k+RbstpcmL4qOONQiOIpPMbo1TIi+9VpZXcufeto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759361244; c=relaxed/simple;
-	bh=mduMZQqMjPoJhKONezcsUhE5uEQzM3rq16kAXsXlO0c=;
+	s=arc-20240116; t=1759361830; c=relaxed/simple;
+	bh=/5iicqHQjoGwUlM+9rOZ5LTZwwl6tmDWHqqXpweuOEE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iuwH9VjU6SUZT14Y1QKrwm1pIfkk18yLIbNg5d2R0kSXKkMC8f6pbsPdAOKcW+g4bDKnX3CmaQ75EMfLrqcQ79379WPPpscn9bxfTSmq1ZNczPAABeRX4UFlNKecEmi8xnBdoXedVQobgd6xBMyNSuICG5da5dbWOIweSIDusEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QWU31JZD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8249CC4CEF1;
-	Wed,  1 Oct 2025 23:27:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759361243;
-	bh=mduMZQqMjPoJhKONezcsUhE5uEQzM3rq16kAXsXlO0c=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QWU31JZDOpR9QNL7V36J8wy1TKYbb0BHSFEhpu58k1nxQf8Z81gtPjnPYlDnh7L+P
-	 Xg5UgZCy1yodnxaYx/6Lo6PsNNJTCVpizei+RM9aLRC0pXj+IcgK0DdwHLqEQKq82p
-	 fjvHFyoU/XUB7kN1fisR9EUvEp32m0OI8lEI5acgKLJVHpj8oKBOI/2knxPZF2UpjB
-	 vOKv0zdB6c1DYsqPUkAa9GI71v2kB/dLoIbkaDnTGc/TDcFUNAVxc7ijpemIGFw4VI
-	 mxYhNb3gV3E6lbv/xnRpKpk2wMTASmAoBCIdqLpeZLoJ018RgB6pbO8+36/KqTOn1S
-	 o/8s0WX4wHRuA==
-Date: Thu, 2 Oct 2025 01:27:20 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Jonas Jelonek <jelonek.jonas@gmail.com>
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-i2c@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Markus Stockhausen <markus.stockhausen@gmx.de>, 
-	Sven Eckelmann <sven@narfation.org>, Harshal Gohel <hg@simonwunderlich.de>
-Subject: Re: [PATCH v8 0/9] i2c: fix, rework and extend RTL9300 I2C driver
-Message-ID: <kzvtchxd6uchwr2iaiypl66wsnl6zirxulc2szgn7iqukj5v5m@xlqw3odgmjz4>
-References: <20250927101931.71575-1-jelonek.jonas@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BxBY02OYkVkQKm6kE7/5Zr4Q1xGSVZSZHvzyxVXicK8W3ua+ImcRR5VS4RgEr+S6ZqkN7UaoVY7hQCey673F+veyGTvJvovsa9CLjfLsZTs/ZF/A1AkuBX33Z1Htv7pXtdDWhoYM4Ocdwkpxp67Dkxdu9YdT//86SSkg3fMmDzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MzATrGwF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 591Ic5hQ005972
+	for <devicetree@vger.kernel.org>; Wed, 1 Oct 2025 23:37:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=kUhpV5L9OVSY0jP0UCvDdukq
+	clE+5qyGR802XH0NEj0=; b=MzATrGwFoZwGj85rvlhUJAGeRvpuIBuJ1gw4quo6
+	eeAENKlTkHIoSvkMnAmdtv6gU8EvGkUNeA+Q1JmwuLfQEKa/63Dy+wlXj6AtI2IE
+	FcrsyyPRTBzt4k0zfTDHGYe3Gey2jUQXlOA5QgiO8sh9GIGVxpCAYH+oG76jaK+w
+	5+NRyvV3cDcnb+/YiLnZFEFp9mwyelq6FRaJe+O734QdjPXF1Pm06P7dAVxLowFz
+	KI0Swx/Aygd7llojuoqLvCVZLyf0csBAnWk/sejEPJaPlHCZ86iMyEerIr+0qi9y
+	cffKt8abX5ZD7ddiWeF8L+SwRoyhu7nmHQNVaomHWx9oMw==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e8pdnwpd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 23:37:06 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-27ee214108cso7737275ad.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 16:37:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759361825; x=1759966625;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kUhpV5L9OVSY0jP0UCvDdukqclE+5qyGR802XH0NEj0=;
+        b=mGUtQww4dWApJmcOIgPK8V9qAGJlo6h79uNn/blN7l8uallxR9cFfuSGJP4pC7uPlj
+         lLni8mqD9fzvfw9xm53JrFdOzT8rmxmDcQJ9i7nz+9Ski26uRvWTGk96iSSXE+ofP072
+         VFi7aF3vuyuJzqE++nQAp28H0NGzdQUVDCCYylXYAvZif7Es01Sbj+e7K/IbPwxpTLnX
+         1pz4SLKrmBhy8C1pq+cHRjUHcz5upjaXWe33F/YgtWfJiDpNzNxlJCRpssdJfzav27Pg
+         Nx9ccaCRpBVaJcvX86EkdwhJX5n0Qe9uv0d95mcrzlwnuZrQ64EB3GRRe+VU0OM0jv5G
+         w1eA==
+X-Forwarded-Encrypted: i=1; AJvYcCW0z9oaLK2ZWedLe+2Dh/B6HzT3lzPhKwb6uH4h+Xs3u9qpKuO2Uzzucr7jT1sHBluZUICZ0Q9SSBEl@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnqkGxtVfDIJou6k1C1J2Zm3WRBRelIt0Vs/7dqpHoNJzhJzvy
+	LUwhJrKedK34BSDYh2ip4Lq9KGJmlyDRDlnULr5HJCnTRrZaxNQq4JJjFPG7G55kqqhe9R1U1dz
+	l71w5w9qOPu+lQjrsQpV5gyXlxgtcXNO5EES+ADBh7B6eXiSm50TNHKB07e4HNK9bqbbx1RoN
+X-Gm-Gg: ASbGnctwps3S/WZw+Qjjx9GqiJgrGpk/11qT/IT64BNkGoj8/Ox//AUH2aKzpGYr+tL
+	SuRFzS8K9BSV4JsjdibleHNM8SD7R7zzBaRghBogL5PptTS+GvQYsU7BXTDjoQXF7LQxi6tL+m3
+	X3FCmaf7Q1yZdulHdHd+oKUjZb4FVeVgkyII0PdAk/91IKXBoX5vmoXlMYq98ePFOWjzbzQrv27
+	P1f+LGioLpBKi1l5BwZZIEV54Y6gMrBLPwTKm9wIEWG/OOLM2K474k/U204JrsEnQvj25cU0yLZ
+	snqIqaVLMdFZz96TkkE5B2LegvQHmwliwrlkIq2gB/gOJDPp0XibRd1O6+v2gYMMjQEwwePXUlW
+	aJCZ4vfRbgDq3Y8/L0Xst4WQ1UEGj
+X-Received: by 2002:a17:902:82c6:b0:269:a8a8:4029 with SMTP id d9443c01a7336-28e7f16792bmr52107355ad.5.1759361824788;
+        Wed, 01 Oct 2025 16:37:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGhsy+qF/B38JhyqIfiaawE+CjEz1XsZfy+/GEYo2B04BMyD9Lk33BJRu/DQ31TIUc3DOq43A==
+X-Received: by 2002:a17:902:82c6:b0:269:a8a8:4029 with SMTP id d9443c01a7336-28e7f16792bmr52107025ad.5.1759361824293;
+        Wed, 01 Oct 2025 16:37:04 -0700 (PDT)
+Received: from hu-bjorande-lv.qualcomm.com (Global_NAT1.qualcomm.com. [129.46.96.20])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d1280a1sm7543645ad.51.2025.10.01.16.37.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 01 Oct 2025 16:37:03 -0700 (PDT)
+Date: Wed, 1 Oct 2025 16:37:01 -0700
+From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com
+Subject: Re: [PATCH v3 2/3] arm64: dts: qcom: sm8750: Add PCIe PHY and
+ controller node
+Message-ID: <aN22lamy86iesAJj@hu-bjorande-lv.qualcomm.com>
+References: <20250826-pakala-v3-0-721627bd5bb0@oss.qualcomm.com>
+ <20250826-pakala-v3-2-721627bd5bb0@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,81 +109,250 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250927101931.71575-1-jelonek.jonas@gmail.com>
+In-Reply-To: <20250826-pakala-v3-2-721627bd5bb0@oss.qualcomm.com>
+X-Proofpoint-GUID: AwvWOsYjBoGbk4cHD8JtUEHQl2WsocXC
+X-Authority-Analysis: v=2.4 cv=MYZhep/f c=1 sm=1 tr=0 ts=68ddbb22 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=yW6qr2ef8xeCN_ra_UgA:9
+ a=xF2dmcnjyTH3buFl:21 a=CjuIK1q_8ugA:10 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-ORIG-GUID: AwvWOsYjBoGbk4cHD8JtUEHQl2WsocXC
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAzNiBTYWx0ZWRfXwv9lcro4blQ1
+ +7RxT+qUL/IEnDk4uP5xguIJ5z+J057zUBnIsQxCApoiaMMAaBV960gG0ElZp0hJbqa/TUpFn2U
+ eJGeDm3Ir45sqP6gQY94rvDC+BOQZ1cJ7UuFp9GKn5UEqtyGXgBakBGKiBYY+0obAEqAs/sD3Y5
+ 950o8cxs2TI207hgzhtbmzncNysPz9087mGSyXiNi38Bw1hFkRaVFnCsfljOB8ElWZAhhwL197n
+ DxgelYJ7dmw0nWKLR7XZ8nICOrIwcg+VEG9j/be0DYbeKdCAqvL4LGzrPmDsU2tbP4URuT+KACL
+ aqp/g0loZ564MyxLCXBb9AHF2fKn6Wrhoogc7yaECYfD7A6xK+Wr9HykSY4yB8gEP7yDdYZpolM
+ ND93o8hZFWh4wsMuNiHOwzlBoHIgvQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-01_07,2025-09-29_04,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 clxscore=1015 bulkscore=0 lowpriorityscore=0
+ priorityscore=1501 phishscore=0 malwarescore=0 spamscore=0 impostorscore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
+ definitions=main-2509270036
 
-Hi Jonas,
+On Tue, Aug 26, 2025 at 04:32:54PM +0530, Krishna Chaitanya Chundru wrote:
+> Add PCIe controller and PHY nodes which supports data rates of 8GT/s
+> and x2 lane.
+> 
 
-> v8: - dropped accepted patches 1-3
->     - fixed minor issue in last patch to make second master work
->     - rebased on top of shyti/i2c/i2c-host to make sure it applies
->       cleanly
-> 
-> v7: - included given Tested-By and Reviewed-By from Chris Packham and
->       Markus Stockhausen accordingly
->         - except for Chris' Tested-By on RTL9310 since he only tested
->           on RTL9302C
->     - fixed typo as mentioned by Markuf Elfring
-> 
-> v6: - patch 'i2c: rtl9300: check if xfer length is valid'
->         - renamed to 'ensure data length is within supported range'
->         - added I2C quirk for zero length as suggested by Wolfram Sang
->     - reordered patches to have backport-worthy fixes first and
->       enhancements/others after
->         - patches 'fix channel number bound check', 'check if xfer
->           length is valid' and 'remove SMBus Quick operation support'
->           were moved before all others
->         - added CC: stable to first three patches
->     - fixed commit message of 'dt-bindings: i2c: realtek,rtl9301-i2c:
->       extend for RTL9310 support'
->     - added a patch to use guard(mutex) instead of explicit lock/unlock
->       as suggested by Markus Elfring
->     - added Reviewed-by: Rob Herring ... to dt-bindings patches
->     - added Tested-by: Sven Eckelmann ... to all patches (except the
->       new patch in this version)
-> 
-> v5: - added more patches to fix further issues/do further cleanup
->         - remove SMBus Quick support (not supported by hardware)
->         - move setting SCL frequency to config_io
->         - only set read message format (RD_MODE) once on probing
->         - add check to avoid len = 0 being allowed as length
->     - adjusted cover letter
-> 
-> v4: - fixed an incorrect check for number of channels which was already
->       present in original code
-> 
-> v3: - narrowed vendor property per variant to be required only
->       for RTL9310
->     - narrowed usable child-node i2c addresses per variant
->     - no changes to driver patches
-> 
-> v2: - Patch 1:
->         - adjusted commit message
->         - retained Tested-By and Reviewed-By from Chris Packham
->     - Patch 2:
->         - simplified check as suggested by Markus Stockhausen
->         - fixed commit message
->     - Patch 3 (all requested by Krzysztof):
->         - use vendor property instead of generic
->         - add front compatibles to make binding complete
->         - fix commit message
->     - reordered patches, dt-bindings patch now comes before its 'user'
->     - properly add device-tree list and relevant maintainers to To/Cc
-> 
+I tried to boot the upstream kernel (next-20250925 defconfig) on my
+Pakala MTP with latest LA1.0 META and unless I disable &pcie0 the device
+is crashing during boot as PCIe is being probed.
+
+Is this a known problem? Is there any workaround/changes in flight that
+I'm missing?
+
+Regards,
+Bjorn
+
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 > ---
-> Jonas Jelonek (9):
->   i2c: rtl9300: use regmap fields and API for registers
->   dt-bindings: i2c: realtek,rtl9301-i2c: fix wording and typos
->   i2c: rtl9300: rename internal sda_pin to sda_num
->   i2c: rtl9300: move setting SCL frequency to config_io
->   i2c: rtl9300: do not set read mode on every transfer
->   i2c: rtl9300: separate xfer configuration and execution
->   i2c: rtl9300: use scoped guard instead of explicit lock/unlock
->   dt-bindings: i2c: realtek,rtl9301-i2c: extend for RTL9310 support
->   i2c: rtl9300: add support for RTL9310 I2C controller
-
-Thanks for resending and sorry for lingering on these. Merged to
-i2c/i2c-host.
-
-Thanks,
-Andi
+>  arch/arm64/boot/dts/qcom/sm8750.dtsi | 180 ++++++++++++++++++++++++++++++++++-
+>  1 file changed, 179 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8750.dtsi b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> index 4643705021c6ca095a16d8d7cc3adac920b21e82..b47668a64bcead3e48f58eeb2e41c04660493cb7 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8750.dtsi
+> @@ -631,7 +631,7 @@ gcc: clock-controller@100000 {
+>  			clocks = <&bi_tcxo_div2>,
+>  				 <0>,
+>  				 <&sleep_clk>,
+> -				 <0>,
+> +				 <&pcie0_phy>,
+>  				 <0>,
+>  				 <0>,
+>  				 <0>,
+> @@ -3304,6 +3304,184 @@ gic_its: msi-controller@16040000 {
+>  			};
+>  		};
+>  
+> +		pcie0: pcie@1c00000 {
+> +			device_type = "pci";
+> +			compatible = "qcom,pcie-sm8750", "qcom,pcie-sm8550";
+> +			reg = <0x0 0x01c00000 0x0 0x3000>,
+> +			      <0x0 0x40000000 0x0 0xf1d>,
+> +			      <0x0 0x40000f20 0x0 0xa8>,
+> +			      <0x0 0x40001000 0x0 0x1000>,
+> +			      <0x0 0x40100000 0x0 0x100000>,
+> +			      <0x0 0x01C03000 0x0 0x1000>;
+> +			reg-names = "parf",
+> +				    "dbi",
+> +				    "elbi",
+> +				    "atu",
+> +				    "config",
+> +				    "mhi";
+> +
+> +			#address-cells = <3>;
+> +			#size-cells = <2>;
+> +			ranges = <0x01000000 0x0 0x00000000 0x0 0x40200000 0x0 0x100000>,
+> +				 <0x02000000 0x0 0x40300000 0x0 0x40300000 0x0 0x23d00000>,
+> +				 <0x03000000 0x4 0x00000000 0x4 0x00000000 0x3 0x00000000>;
+> +			bus-range = <0x00 0xff>;
+> +
+> +			dma-coherent;
+> +
+> +			linux,pci-domain = <0>;
+> +
+> +			msi-map = <0x0 &gic_its 0x1400 0x1>,
+> +				  <0x100 &gic_its 0x1401 0x1>;
+> +			msi-map-mask = <0xff00>;
+> +
+> +			num-lanes = <2>;
+> +
+> +			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "msi0",
+> +					  "msi1",
+> +					  "msi2",
+> +					  "msi3",
+> +					  "msi4",
+> +					  "msi5",
+> +					  "msi6",
+> +					  "msi7",
+> +					  "global";
+> +
+> +			#interrupt-cells = <1>;
+> +			interrupt-map-mask = <0 0 0 0x7>;
+> +			interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 2 &intc 0 0 0 150 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 3 &intc 0 0 0 151 IRQ_TYPE_LEVEL_HIGH>,
+> +					<0 0 0 4 &intc 0 0 0 152 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
+> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+> +				 <&gcc GCC_PCIE_0_MSTR_AXI_CLK>,
+> +				 <&gcc GCC_PCIE_0_SLV_AXI_CLK>,
+> +				 <&gcc GCC_PCIE_0_SLV_Q2A_AXI_CLK>,
+> +				 <&gcc GCC_DDRSS_PCIE_SF_QTB_CLK>,
+> +				 <&gcc GCC_AGGRE_NOC_PCIE_AXI_CLK>,
+> +				 <&gcc GCC_CNOC_PCIE_SF_AXI_CLK>;
+> +			clock-names = "aux",
+> +				      "cfg",
+> +				      "bus_master",
+> +				      "bus_slave",
+> +				      "slave_q2a",
+> +				      "ddrss_sf_tbu",
+> +				      "noc_aggr",
+> +				      "cnoc_sf_axi";
+> +
+> +			interconnects = <&pcie_noc MASTER_PCIE_0 QCOM_ICC_TAG_ALWAYS
+> +					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
+> +					 &cnoc_main SLAVE_PCIE_0 QCOM_ICC_TAG_ALWAYS>;
+> +			interconnect-names = "pcie-mem",
+> +					     "cpu-pcie";
+> +
+> +			iommu-map = <0x0   &apps_smmu 0x1400 0x1>,
+> +				    <0x100 &apps_smmu 0x1401 0x1>;
+> +
+> +			resets = <&gcc GCC_PCIE_0_BCR>;
+> +			reset-names = "pci";
+> +
+> +			power-domains = <&gcc GCC_PCIE_0_GDSC>;
+> +
+> +			operating-points-v2 = <&pcie0_opp_table>;
+> +
+> +			status = "disabled";
+> +
+> +			pcie0_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				/* GEN 1 x1 */
+> +				opp-2500000 {
+> +					opp-hz = /bits/ 64 <2500000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <250000 1>;
+> +				};
+> +
+> +				/* GEN 1 x2 and GEN 2 x1 */
+> +				opp-5000000 {
+> +					opp-hz = /bits/ 64 <5000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <500000 1>;
+> +				};
+> +
+> +				/* GEN 2 x2 */
+> +				opp-10000000 {
+> +					opp-hz = /bits/ 64 <10000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +					opp-peak-kBps = <1000000 1>;
+> +				};
+> +
+> +				/* GEN 3 x1 */
+> +				opp-8000000 {
+> +					opp-hz = /bits/ 64 <8000000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+> +					opp-peak-kBps = <984500 1>;
+> +				};
+> +
+> +				/* GEN 3 x2 */
+> +				opp-16000000 {
+> +					opp-hz = /bits/ 64 <16000000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+> +					opp-peak-kBps = <1969000 1>;
+> +				};
+> +
+> +			};
+> +
+> +			pcieport0: pcie@0 {
+> +				device_type = "pci";
+> +				reg = <0x0 0x0 0x0 0x0 0x0>;
+> +				bus-range = <0x01 0xff>;
+> +
+> +				#address-cells = <3>;
+> +				#size-cells = <2>;
+> +				ranges;
+> +				phys = <&pcie0_phy>;
+> +			};
+> +		};
+> +
+> +		pcie0_phy: phy@1c06000 {
+> +			compatible = "qcom,sm8750-qmp-gen3x2-pcie-phy";
+> +			reg = <0 0x01c06000 0 0x2000>;
+> +
+> +			clocks = <&gcc GCC_PCIE_0_AUX_CLK>,
+> +				 <&gcc GCC_PCIE_0_CFG_AHB_CLK>,
+> +				 <&tcsrcc TCSR_PCIE_0_CLKREF_EN>,
+> +				 <&gcc GCC_PCIE_0_PHY_RCHNG_CLK>,
+> +				 <&gcc GCC_PCIE_0_PIPE_CLK>;
+> +			clock-names = "aux",
+> +				      "cfg_ahb",
+> +				      "ref",
+> +				      "rchng",
+> +				      "pipe";
+> +
+> +			assigned-clocks = <&gcc GCC_PCIE_0_PHY_RCHNG_CLK>;
+> +			assigned-clock-rates = <100000000>;
+> +
+> +			resets = <&gcc GCC_PCIE_0_PHY_BCR>;
+> +			reset-names = "phy";
+> +
+> +			power-domains = <&gcc GCC_PCIE_0_PHY_GDSC>;
+> +
+> +			#clock-cells = <0>;
+> +			clock-output-names = "pcie0_pipe_clk";
+> +
+> +			#phy-cells = <0>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+>  		ufs_mem_phy: phy@1d80000 {
+>  			compatible = "qcom,sm8750-qmp-ufs-phy";
+>  			reg = <0x0 0x01d80000 0x0 0x2000>;
+> 
+> -- 
+> 2.34.1
+> 
 
