@@ -1,126 +1,157 @@
-Return-Path: <devicetree+bounces-223066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D0E8BB0A7C
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 16:12:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46DF8BB0AC1
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 16:19:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2E1634E022D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 14:12:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 082A03B1AB0
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 14:19:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E9E03019DE;
-	Wed,  1 Oct 2025 14:12:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 956E323E32D;
+	Wed,  1 Oct 2025 14:19:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="QKukphD1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p753WmTg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 596C52EC0B4
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 14:12:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71665205E26
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 14:19:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759327931; cv=none; b=sBl6S/5gLlskyOcZS+8wzo7u3fDl3Owck9lzMQLuftnke5FPbMsq9zkAX7cDM7JG8ScOo+BtX0HX+TBFALB9CjJvagGCgA/Lx3gbvYG04KspVxeaWeMHLS8/XdOn+wI+hQzbz8EPOhWRGQar+Bknm83KE1xS1pKDlKcWeFITSpo=
+	t=1759328355; cv=none; b=Va683Hf8ri6PPrkaDshMxfZGllfWR0RQ3atww5gQDRxdtWWMm0+NzWxdIuxxpv+9DKIcSiLnk6ySgFwLmTcRMHg3xkyg3mq5TW7yPfGEaOLlx+wB8gKj0IJy+NpJb3SlXcYa3jcoQ846CG8AS7hlarKMhWAIzn6YVU8z2j81MZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759327931; c=relaxed/simple;
-	bh=wFyFhTbS6MYQfUcIRKicbUEZvplEsfeplnap1waRaQM=;
+	s=arc-20240116; t=1759328355; c=relaxed/simple;
+	bh=yMblZnDjqlbOR4ZLBbmTC5UUDDnK/Eg2kXIyzuIRACE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=o4K5jSCPLbl5jSsYPi9ZoGFnNmXG6czV7ndm4KLB6ISsHv85+SBVSH06Y23Dk5K1nNejXFMmzYGaS3nCTBEdYVyjPoXWZF6LzWBbG5Pqq36TuxHD5tJjq2NSbcak10zxjO4HlvfUpFYNUipwarMvAh6KHdUDCsP7dpB9pnBiSHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=QKukphD1; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-3682ac7f33fso13082161fa.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 07:12:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1759327927; x=1759932727; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UIO3uPK5ZuAhIy7LIVCZMJNgvs3A+QGnfF2bur8/4Gc=;
-        b=QKukphD1C0MmR65Sf1btFq2nxvCf5myywiLKOGkgeF5yEM0HQkJTKryNtVZ7guQlAm
-         qG67HzpXXjKX5bMAYCVySzkKPjfUqbDlLMrzrcosQkkAbHDeX91owOcEO2cfEFPdb7NI
-         YHANQMA10jJMt976OuISBzrJPwIJe4DKAU8XRsbarjUbyyYBxN1aQjp4/UJe4BhmIAZb
-         W377KcePmoPfx4KMjflxc0a+aCOln4YsYjReOjjm13dlZbAAK4MHLe+HeSAwkZSAwaEr
-         +5oAp23oJV8GW7wPqdNLlRij13YxHRgQDHoDdgFors1FQ2SyAApucZeX568M8WPZXCEx
-         e2nA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759327927; x=1759932727;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UIO3uPK5ZuAhIy7LIVCZMJNgvs3A+QGnfF2bur8/4Gc=;
-        b=el+9C2PIyP+m/6BJcttIJ+m6oznT2hH/dOfE72dgLPRBQr9le5PrBRK16On7aNyClP
-         /pFwUZEJgVa1PZXT11h+heZMi/LrlKdhqqVEq9hOOpGsiFcx3Oaw7W2WfHfJOy4jVJzB
-         r7tB/mraBVtYRaw7humoXuNH3LiKYA2oKWvXHV7+h4IoKMovAbG+gmViK1yWE+iozjnC
-         vh4esg3lHYsDdUGEt80d8/xG3J9ZZPLKLpVHbz/wOKpoKy/iYOijYh/lRnt5XYeK7fE/
-         PmBDIhUIWkV1+7RTbhfDdppPqBvIRg6xTBFSUB2oBSiX4yNSeHiCWI3qU/cKRJxfSYJm
-         Yakg==
-X-Forwarded-Encrypted: i=1; AJvYcCWNLxrg+LiFmsndJz1QwzB876IMy6/VRZ81Si5bLD/SsqVrn7Si62jxeZpB42cinlt8ccLu/oruYoCf@vger.kernel.org
-X-Gm-Message-State: AOJu0YwrbklmGtNEh3n7O3cQIL8GgjL1qT7NVFiIPsbwnO3RkyIHSvbr
-	hTkAWVNjHLRESPcxuOqCpOeDOT8W1AAC/Wfc7Epqu2DLc5YUv0tl2PUeAeNdD0jDXQWEp4ROLHe
-	mg1k8zLOrI6lv6d+HfSe+huWiiPmt4XSzMvReN7LqTg==
-X-Gm-Gg: ASbGncsHG6PHVNFIOx7ZiGSVhEosnCdt43pjnJQDjDPSPLJcUEB9T15HzvM1Wea1g10
-	JM39nPQhzOoM5TXemGj711R3DWn061d9qz8hB33J7TPJ+KjhhIcVGhopZkG1iUBeMV10XFSQNjG
-	0EE48d6YmDdFWwOc7VZ3JxQ9pr2O6mbSHSX39vPwX1ISr08jUgDr4ihHxjyShbvVIOw5A1vXLV/
-	twh+3LN+Kq6/3m3h+2FF8b8w8p3PIjRQfeoELFT3O9+oG9UI/a8+hZOorg93cw=
-X-Google-Smtp-Source: AGHT+IGYKyPwOjoJA/hN/vRW2SG6PgxLO9/q7FFW4TMg9Moy1/qo7wnwhOI+IYoqfFAAWCFgOdsUybjzG2hZKPloTzo=
-X-Received: by 2002:a05:651c:b2a:b0:36b:2fab:fa6f with SMTP id
- 38308e7fff4ca-372fa205bc5mr26251721fa.3.1759327926662; Wed, 01 Oct 2025
- 07:12:06 -0700 (PDT)
+	 To:Cc:Content-Type; b=qTb+NI4mMQh/372n4qsn+Idw4ylUqwdN/FiBC+O1vT4YRj4EtXYUcnvB/C+hI1mfay70p8ol98b8CvdQ1WUHHi0Z2lnjqmwcragxbFBlI798rEUwmceCMdtfzv3nxrHGvdN/w9ewegOOUYMPXENByMqouac3Px6HmfA2kvasG+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p753WmTg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F76BC4CEF9
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 14:19:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759328355;
+	bh=yMblZnDjqlbOR4ZLBbmTC5UUDDnK/Eg2kXIyzuIRACE=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=p753WmTg2pMUqfgH+1weZ5z+4hJWHKycasXcafvyOFQfcxS/vbHQXtBv//tOGA8SY
+	 G7oNIwpa8EJNfeeaYiO3TMP0Z0HeITObbwTEUJOGvyx5aj4+P7GjLk3G7i5iPA51l7
+	 giPY7RTis9f7xeWjjdYewAe7Ot8NwgYrH+nL5+p5oNnp8EOSHWoJKmpzHtFUIFRAze
+	 84pvlGoMftDJL5rSWA6etnuLNLRrkFNj/szH3fZPYLW3YMZb+OvF9j6tUs18oMv23H
+	 Ye4LhkzPkPQBMr/7psdxU4rSZvJ6uL/sywIAa4u3C9atnKL/OfZNEDBHcYr5kNCWAR
+	 3E/4nyp49nQrA==
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-afcb7a16441so1186869866b.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 07:19:15 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXKaPIRea6QlOipgkI8aysz+oCdVP3ejl4tMfgMrtui9yHe3vK3nniZCKnwkHp5YAY+8h8+OEtjb4DY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6thNnF6/aDHhZTESoXyHF3bbnln89xiDiWHQLyVnqkpbgrJ3b
+	q092DOG5IhQuXJ1kQZ56CJ5Qs7glEJg9RbL0X80G1jGrMR0/MPuYEWoy0FKpEI4wmy4xwQRss9E
+	FCvcnfZ3747jEivdYcI375+LYyYrYZQ==
+X-Google-Smtp-Source: AGHT+IEib3WTgGYwGHEPa4ulr4/SbwtLGnJ8FYdVRNdQ4ERtJxf58Nv2Gj/CunqC+JHaW9i70nNh/81x9NCsd62GAPA=
+X-Received: by 2002:a17:907:94d5:b0:b3e:580a:184f with SMTP id
+ a640c23a62f3a-b46e0cb30f8mr494888066b.4.1759328353696; Wed, 01 Oct 2025
+ 07:19:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251001091006.4003841-1-viken.dadhaniya@oss.qualcomm.com>
- <20251001091006.4003841-6-viken.dadhaniya@oss.qualcomm.com>
- <CAMRc=MfMO-+SSrTY-XQLtsDnxpj_E3TdTJ43ZxCUi-iDrvnc2w@mail.gmail.com> <20251001-fascinating-orange-skunk-7545f3-mkl@pengutronix.de>
-In-Reply-To: <20251001-fascinating-orange-skunk-7545f3-mkl@pengutronix.de>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 1 Oct 2025 16:11:55 +0200
-X-Gm-Features: AS18NWBg8ZyVBRpzM7I__xJ4toRDqBMebQLTblgXUJ2wZSl8Fd91gvWOuz_1g1A
-Message-ID: <CAMRc=MfhyX+5hTz2BqSuBaZbbtayJWzR75EQeniPv6KCOSaWUA@mail.gmail.com>
-Subject: Re: [PATCH v6 5/6] can: mcp251xfd: add gpio functionality
-To: Marc Kleine-Budde <mkl@pengutronix.de>
-Cc: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>, mani@kernel.org, 
-	thomas.kopp@microchip.com, mailhol.vincent@wanadoo.fr, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linus.walleij@linaro.org, 
-	linux-can@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, mukesh.savaliya@oss.qualcomm.com, 
-	anup.kulkarni@oss.qualcomm.com, 
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+References: <20250724132808.101351-1-srinivas.kandagatla@oss.qualcomm.com>
+ <CAL_JsqKG+dcMgp1QF4F3Oxh5Shvagg6cSde=g1JMcEAquZhH_Q@mail.gmail.com>
+ <990cb5af-3846-44a3-b373-ded62d3309b9@oss.qualcomm.com> <CAL_Jsq+zC91GPdzQQa9F8KEw5UL4xc13u5U_5vTyQG1WeJa5rw@mail.gmail.com>
+ <82906e08-9583-4f4c-91ad-d5b53b2dffd6@kernel.org> <CAL_JsqLtLbCqzHzcaGAuYwxqr=e9HZFX8X20tndx7US-XjhH3Q@mail.gmail.com>
+In-Reply-To: <CAL_JsqLtLbCqzHzcaGAuYwxqr=e9HZFX8X20tndx7US-XjhH3Q@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 1 Oct 2025 09:19:02 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLcinpeJyib+JG7UFspUqXDTzCLguF3Nt4JJY9YncTb9A@mail.gmail.com>
+X-Gm-Features: AS18NWA7ezyHf-quZ8SAVzOquJtCbJ4iMZCy1XnnFDJCGg9M-CxsvZzGUG7jqiA
+Message-ID: <CAL_JsqLcinpeJyib+JG7UFspUqXDTzCLguF3Nt4JJY9YncTb9A@mail.gmail.com>
+Subject: Re: [PATCH] slimbus: qcom: remove unused qcom controller driver
+To: Srinivas Kandagatla <srini@kernel.org>, 
+	Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 1, 2025 at 3:59=E2=80=AFPM Marc Kleine-Budde <mkl@pengutronix.d=
-e> wrote:
++Greg
+
+On Fri, Sep 19, 2025 at 12:25=E2=80=AFPM Rob Herring <robh@kernel.org> wrot=
+e:
 >
-> On 01.10.2025 15:52:56, Bartosz Golaszewski wrote:
-> > On Wed, Oct 1, 2025 at 11:10=E2=80=AFAM Viken Dadhaniya
-> > <viken.dadhaniya@oss.qualcomm.com> wrote:
-> > > +
-> > > +       if (!device_property_present(&priv->spi->dev, "gpio-controlle=
-r"))
-> > > +               return 0;
-> > > +
+> On Fri, Sep 5, 2025 at 12:30=E2=80=AFAM Srinivas Kandagatla <srini@kernel=
+.org> wrote:
 > >
-> > Hi! I didn't notice this before you're returning 0 here, meaning the
-> > device will be attached to the driver even though it doesn't do
-> > anything. It would make more sense to return -ENODEV.
+> >
+> >
+> > On 9/5/25 12:08 AM, Rob Herring wrote:
+> > > On Tue, Aug 19, 2025 at 8:44=E2=80=AFAM Srinivas Kandagatla
+> > > <srinivas.kandagatla@oss.qualcomm.com> wrote:
+> > >>
+> > >> Thanks Rob for reporting this,
+> > >>
+> > >> On 8/19/25 2:35 PM, Rob Herring wrote:
+> > >>> On Thu, Jul 24, 2025 at 8:28=E2=80=AFAM <srinivas.kandagatla@oss.qu=
+alcomm.com> wrote:
+> > >>>>
+> > >>>> From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> > >>>>
+> > >>>> Qcom Slimbus controller driver is totally unused and dead code, th=
+ere is
+> > >>>> no point in keeping this driver in the kernel without users.
+> > >>>>
+> > >>>> This patch removes the driver along with device tree bindings.
+> > >>>>
+> > >>>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualco=
+mm.com>
+> > >>>> ---
+> > >>>>  .../bindings/slimbus/qcom,slim.yaml           |  86 --
+> > >>>>  drivers/slimbus/Kconfig                       |   7 -
+> > >>>>  drivers/slimbus/Makefile                      |   3 -
+> > >>>>  drivers/slimbus/qcom-ctrl.c                   | 735 -------------=
+-----
+> > >>>>  4 files changed, 831 deletions(-)
+> > >>>>  delete mode 100644 Documentation/devicetree/bindings/slimbus/qcom=
+,slim.yaml
+> > >>>>  delete mode 100644 drivers/slimbus/qcom-ctrl.c
+> > >>>
+> > >>> This adds warnings to dt_binding_check:
+> > >>>
+> > >>> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
+> > >>> /example-0/soc/slim@28080000: failed to match any schema with
+> > >>> compatible: ['qcom,apq8064-slim', 'qcom,slim']
+> > >>
+> > >> Will replace this example with slim-ngd and fold it in the original =
+patch.
+> > >
+> > > Still warning in linux-next...
+> > Its done now!
 >
-> I consider the GPIO functionality of the mcp251xfd CAN controllers
-> optional. So if the DT doesn't contain gpio-controller, continue without
-> GPIO functionality.
+> Now I get this:
 >
+> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
+> slim@28080000 (qcom,slim-ngd-v1.5.0): 'audio-codec@1,0' does not match
+> any of the regexes: '^pinctrl-[0-9]+$', '^slim@[0-9a-f]+$'
+>         from schema $id:
+> http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
+> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
+> slim@28080000 (qcom,slim-ngd-v1.5.0): #address-cells: 1 was expected
+>         from schema $id:
+> http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
+> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
+> slim@28080000 (qcom,slim-ngd-v1.5.0): 'dmas' is a required property
+>         from schema $id:
+> http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
+> Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
+> slim@28080000 (qcom,slim-ngd-v1.5.0): 'dma-names' is a required
+> property
+>         from schema $id:
+> http://devicetree.org/schemas/slimbus/qcom,slim-ngd.yaml#
 
-Ah, sorry, I thought this was the driver's probe() callback. It's
-actually just a function. This could probably be registered as an
-auxiliary device for less build-time dependencies but whatever.
-Nevermind my last comment.
+Still failing in linux-next.
 
-Bart
+Rob
 
