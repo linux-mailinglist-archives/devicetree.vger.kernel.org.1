@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-223139-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 256C6BB17F1
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 20:32:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A75EBB180F
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 20:34:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6FAA2A4509
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 18:32:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E17D21C5BEA
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 18:34:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2FCF2D47EE;
-	Wed,  1 Oct 2025 18:31:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 940772D63E8;
+	Wed,  1 Oct 2025 18:33:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b="kwOHFWIC"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b="HHdG3Ruz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76AC412CD8B;
-	Wed,  1 Oct 2025 18:31:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD732D5934;
+	Wed,  1 Oct 2025 18:33:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759343517; cv=pass; b=TMq0HhtLkre4iEgYN1mwukliG2dCuPBV7aSjPk2EMSlViSgtdTL2txZ/ssctKfFtvHlNi85uPayBWIDhEIcKVsg7RyNf/069h2NdmCwtssbOYiyLn+SVxRe/zXW2tK5vzs1G3RbA04EUrtpwSXozvEPIGyckOzxBRbfe878iCjQ=
+	t=1759343632; cv=pass; b=Bw8b2rfxTyy5qRgEobY1LJTZZlUpJl3/ca4wo8OJTq2yHiDpqGfumCpxqePL0VZZXZqz3hCk59Hl9teLKluppoOegooS4ajDfA/JaBvHm/nKpQIdv0tWLlEaJeFcmM0ENprD4BMVNOQrHOaNG0WGZc6C+z8BXNB/W1sHT9sgnmM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759343517; c=relaxed/simple;
-	bh=4BlsQK6hu84yffCNw/vLaKs56wlWnO3gqqiBdOFVmQU=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DOA8yKeRIrqsa96W1tv7fL+UD7xKqhE7uxhjyrWyrqm9G73MzDC/67fCoToqDLhLIRPDY7rZO7sNagen+9wR3Otyddon1SRmZ4g9tRpIqzuuimysrQkc4P2dNNCWHXy2ySaNaDARQ+PGQLPs5svdmwJgfMZeAOWy9H5FtrQrAHg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b=kwOHFWIC; arc=pass smtp.client-ip=136.143.188.112
+	s=arc-20240116; t=1759343632; c=relaxed/simple;
+	bh=6XPuX0m01ZFf2GseM0abEL1RU1m4cMag66VApjnqATw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=A3BgHzDZ6LLvGjUSPAMQWWVv7cPWdiDnNiRqCJxQRLHXIEXOyog0YjvyaZISb7ONuRn1Uz7m+LgUs3NF4irc/u63SR5x8rhy4FbAjY80gIW+bzzxUAUXOb5ZNXPtNluWRq09OFITS/2RV6VPWyn7K02lmXXVT8pAuBpflnH+oUU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b=HHdG3Ruz; arc=pass smtp.client-ip=136.143.188.112
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1759343499; cv=none; 
+ARC-Seal: i=1; a=rsa-sha256; t=1759343611; cv=none; 
 	d=zohomail.com; s=zohoarc; 
-	b=MnfkV/QraCT2nEFHlMtP3veonzUh8G6xopxDwoU4jmysazq5A17wHCvGl4pL1u9jZ1fBG0gYQRaAFLOLL9HzRyt12vmZI9RRKu20X9etAaPm+iyTvat52EpJQ13myv2DkK6/S0u2NMZ8uUr1tfnyf8ggoNuf7ibQ6R9wAOzNrEk=
+	b=gXAEQVDCK74OK0TzgTvTVA+MUfiCZiPJSqtb6A0RzFDlVAzkGWfdzklQ8xaf+QQ1bDrbZhTRe+Axr4oTSkK4UFTZNMkcDg2ZE2OqqeYTZjGoQXR8hf2OQ9iVPBNkpe93v4cjguLw3w8hIh7OYGF8/fX59rz0xB0+pVXtv5I8JGE=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1759343499; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=ueXnuvF8NcC5dz827yR+2fQW9nE2zi6Yqc5bfd4+/B4=; 
-	b=XqNdY3YvzBlyBZLBKfXCPZnI+l7YlhKjCYy4JUpHuBwJ4MQMgL/0E3E3A7CyjF1ZaaL5lwqiHS+mjdKWW7h3AIOnG2BrYWih6qDlsOKo1PiAvO/4IjyjEhzUVR/SLhiLur7bx9nwYFQL6fR7TahizggpqVIPVBh+1ZtXhmEQg44=
+	t=1759343611; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=5Tf1KRNvIh/o3Lawrm1/DSWDlI3pzmdrutlzoqFE9jM=; 
+	b=WVl7sfPLoh73cyvsUaNf5DoDdmjA7cK0cAPKbo7E/XC4dwdGklj0IphxKz0vqB54Q8oFOWbzul0VEH/ek5nZGf7/AxDi4vuWGewAPd2CJ3s46kdnOZcZCFu8ZkuR+CZsBRQ+ZCK8ggaTzCv5d+Gjku6JgdNwjTLbbV6iVviJ4QU=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
 	dkim=pass  header.i=collabora.com;
 	spf=pass  smtp.mailfrom=ariel.dalessandro@collabora.com;
 	dmarc=pass header.from=<ariel.dalessandro@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759343499;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759343611;
 	s=zohomail; d=collabora.com; i=ariel.dalessandro@collabora.com;
 	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=ueXnuvF8NcC5dz827yR+2fQW9nE2zi6Yqc5bfd4+/B4=;
-	b=kwOHFWICLM0m6/DktWnmiDSleXnnrcTAt6vp+DqUX2hfIAd1bEaiUFTOWsseqhDH
-	afAC6j7hogJyAiQNpyJYxcUa24upoOQjDGaaNybWu3vK4eDFJ6ZcgS5uOWHKdsDMejX
-	vecqpuCTTYZQX+kBCoOM8637ysbgm1xFRO4PMwWk=
-Received: by mx.zohomail.com with SMTPS id 1759343496555351.1782091237104;
-	Wed, 1 Oct 2025 11:31:36 -0700 (PDT)
+	bh=5Tf1KRNvIh/o3Lawrm1/DSWDlI3pzmdrutlzoqFE9jM=;
+	b=HHdG3Ruz4P6R9QgHFOYqkeIpbu1ln3qlPVXfSOXm7OUfyiZxyfaHqX0E5Khr3HWK
+	e+KQ1qOKYMrdkKpHO9hHjAxLH2HiXhKn+Vlc2JMYrVvli3IKwLze0hSbbbwWZO4mY4l
+	rqPFhfYx8Uko3TPhwfbvvwhHDKkwVP0viKtOYakE=
+Received: by mx.zohomail.com with SMTPS id 1759343610165605.9822601405356;
+	Wed, 1 Oct 2025 11:33:30 -0700 (PDT)
 From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-To: andrew-ct.chen@mediatek.com,
+To: andrew+netdev@lunn.ch,
 	angelogioacchino.delregno@collabora.com,
 	ariel.dalessandro@collabora.com,
 	conor+dt@kernel.org,
-	houlong.wei@mediatek.com,
+	davem@davemloft.net,
+	edumazet@google.com,
 	krzk+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	mchehab@kernel.org,
-	minghsiu.tsai@mediatek.com,
+	kuba@kernel.org,
+	luiz.dentz@gmail.com,
+	pabeni@redhat.com,
 	robh@kernel.org
 Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com,
+	linux-bluetooth@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com
-Subject: [PATCH v3] dt-bindings: media: Convert MediaTek mt8173-mdp bindings to DT schema
-Date: Wed,  1 Oct 2025 15:31:15 -0300
-Message-ID: <20251001183115.83111-1-ariel.dalessandro@collabora.com>
+	netdev@vger.kernel.org
+Subject: [PATCH v3] dt-bindings: net: Convert Marvell 8897/8997 bindings to DT schema
+Date: Wed,  1 Oct 2025 15:33:20 -0300
+Message-ID: <20251001183320.83221-1-ariel.dalessandro@collabora.com>
 X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -80,295 +80,210 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-ZohoMailClient: External
 
-Convert the existing text-based DT bindings for MediaTek MT8173 Media Data
-Path to a DT schema.
+Convert the existing text-based DT bindings for Marvell 8897/8997
+(sd8897/sd8997) bluetooth devices controller to a DT schema.
+
+While here, bindings for "usb1286,204e" (USB interface) are dropped from
+the DT   schema definition as these are currently documented in file [0].
+
+[0] Documentation/devicetree/bindings/net/btusb.txt
 
 Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 ---
- .../bindings/media/mediatek,mt8173-mdp.yaml   | 169 ++++++++++++++++++
- .../bindings/media/mediatek-mdp.txt           |  96 ----------
- 2 files changed, 169 insertions(+), 96 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8173-mdp.yaml
- delete mode 100644 Documentation/devicetree/bindings/media/mediatek-mdp.txt
+ .../net/bluetooth/marvell,sd8897-bt.yaml      | 79 ++++++++++++++++++
+ .../devicetree/bindings/net/btusb.txt         |  2 +-
+ .../bindings/net/marvell-bt-8xxx.txt          | 83 -------------------
+ 3 files changed, 80 insertions(+), 84 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/bluetooth/marvell,sd8897-bt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/marvell-bt-8xxx.txt
 
-diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8173-mdp.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8173-mdp.yaml
+diff --git a/Documentation/devicetree/bindings/net/bluetooth/marvell,sd8897-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/marvell,sd8897-bt.yaml
 new file mode 100644
-index 0000000000000..8ca33a733c478
+index 0000000000000..a307c64cfa4d6
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/media/mediatek,mt8173-mdp.yaml
-@@ -0,0 +1,169 @@
++++ b/Documentation/devicetree/bindings/net/bluetooth/marvell,sd8897-bt.yaml
+@@ -0,0 +1,79 @@
 +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/media/mediatek,mt8173-mdp.yaml#
++$id: http://devicetree.org/schemas/net/bluetooth/marvell,sd8897-bt.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: MediaTek MT8173 Media Data Path
++title: Marvell 8897/8997 (sd8897/sd8997) bluetooth devices (SDIO)
 +
 +maintainers:
 +  - Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 +
-+description:
-+  Media Data Path is used for scaling and color space conversion.
++allOf:
++  - $ref: /schemas/net/bluetooth/bluetooth-controller.yaml#
 +
 +properties:
 +  compatible:
-+    oneOf:
-+      - enum:
-+          - mediatek,mt8173-mdp-rdma
-+          - mediatek,mt8173-mdp-rsz
-+          - mediatek,mt8173-mdp-wdma
-+          - mediatek,mt8173-mdp-wrot
-+      - items:
-+          - const: mediatek,mt8173-mdp-rdma
-+          - const: mediatek,mt8173-mdp
++    enum:
++      - marvell,sd8897-bt
++      - marvell,sd8997-bt
 +
 +  reg:
 +    maxItems: 1
 +
-+  clocks:
-+    minItems: 1
-+    maxItems: 2
-+
-+  power-domains:
++  interrupts:
 +    maxItems: 1
 +
-+  iommus:
-+    maxItems: 1
-+
-+  mediatek,vpu:
-+    $ref: /schemas/types.yaml#/definitions/phandle
++  marvell,cal-data:
++    $ref: /schemas/types.yaml#/definitions/uint8-array
 +    description:
-+      phandle to Mediatek Video Processor Unit for HW Codec encode/decode and
-+      image processing.
++      Calibration data downloaded to the device during initialization.
++    maxItems: 28
++
++  marvell,wakeup-pin:
++    $ref: /schemas/types.yaml#/definitions/uint16
++    description:
++      Wakeup pin number of the bluetooth chip. Used by firmware to wakeup host
++      system.
++
++  marvell,wakeup-gap-ms:
++    $ref: /schemas/types.yaml#/definitions/uint16
++    description:
++      Wakeup latency of the host platform. Required by the chip sleep feature.
 +
 +required:
 +  - compatible
 +  - reg
-+  - clocks
-+  - power-domains
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: mediatek,mt8173-mdp-rdma
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Main clock
-+            - description: Mutex clock
-+    else:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Main clock
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - mediatek,mt8173-mdp-rdma
-+              - mediatek,mt8173-mdp-wdma
-+              - mediatek,mt8173-mdp-wrot
-+    then:
-+      required:
-+        - iommus
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: mediatek,mt8173-mdp
-+    then:
-+      required:
-+        - mediatek,vpu
++  - interrupts
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/mt8173-clk.h>
-+    #include <dt-bindings/memory/mt8173-larb-port.h>
-+    #include <dt-bindings/power/mt8173-power.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
 +
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
++    mmc {
++        vmmc-supply = <&wlan_en_reg>;
++        bus-width = <4>;
++        cap-power-off-card;
++        keep-power-in-suspend;
 +
-+        mdp_rdma0: rdma@14001000 {
-+            compatible = "mediatek,mt8173-mdp-rdma",
-+                         "mediatek,mt8173-mdp";
-+            reg = <0 0x14001000 0 0x1000>;
-+            clocks = <&mmsys CLK_MM_MDP_RDMA0>,
-+                     <&mmsys CLK_MM_MUTEX_32K>;
-+            power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
-+            iommus = <&iommu M4U_PORT_MDP_RDMA0>;
-+            mediatek,vpu = <&vpu>;
-+        };
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+        mdp_rdma1: rdma@14002000 {
-+            compatible = "mediatek,mt8173-mdp-rdma";
-+            reg = <0 0x14002000 0 0x1000>;
-+            clocks = <&mmsys CLK_MM_MDP_RDMA1>,
-+                     <&mmsys CLK_MM_MUTEX_32K>;
-+            power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
-+            iommus = <&iommu M4U_PORT_MDP_RDMA1>;
-+        };
++        bluetooth@2 {
++            compatible = "marvell,sd8897-bt";
++            reg = <2>;
++            interrupt-parent = <&pio>;
++            interrupts = <119 IRQ_TYPE_LEVEL_LOW>;
 +
-+        mdp_rsz0: rsz@14003000 {
-+            compatible = "mediatek,mt8173-mdp-rsz";
-+            reg = <0 0x14003000 0 0x1000>;
-+            clocks = <&mmsys CLK_MM_MDP_RSZ0>;
-+            power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
-+        };
-+
-+        mdp_rsz1: rsz@14004000 {
-+            compatible = "mediatek,mt8173-mdp-rsz";
-+            reg = <0 0x14004000 0 0x1000>;
-+            clocks = <&mmsys CLK_MM_MDP_RSZ1>;
-+            power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
-+        };
-+
-+        mdp_rsz2: rsz@14005000 {
-+            compatible = "mediatek,mt8173-mdp-rsz";
-+            reg = <0 0x14005000 0 0x1000>;
-+            clocks = <&mmsys CLK_MM_MDP_RSZ2>;
-+            power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
-+        };
-+
-+        mdp_wdma0: wdma@14006000 {
-+            compatible = "mediatek,mt8173-mdp-wdma";
-+            reg = <0 0x14006000 0 0x1000>;
-+            clocks = <&mmsys CLK_MM_MDP_WDMA>;
-+            power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
-+            iommus = <&iommu M4U_PORT_MDP_WDMA>;
-+        };
-+
-+        mdp_wrot0: wrot@14007000 {
-+            compatible = "mediatek,mt8173-mdp-wrot";
-+            reg = <0 0x14007000 0 0x1000>;
-+            clocks = <&mmsys CLK_MM_MDP_WROT0>;
-+            power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
-+            iommus = <&iommu M4U_PORT_MDP_WROT0>;
-+        };
-+
-+        mdp_wrot1: wrot@14008000 {
-+            compatible = "mediatek,mt8173-mdp-wrot";
-+            reg = <0 0x14008000 0 0x1000>;
-+            clocks = <&mmsys CLK_MM_MDP_WROT1>;
-+            power-domains = <&spm MT8173_POWER_DOMAIN_MM>;
-+            iommus = <&iommu M4U_PORT_MDP_WROT1>;
++            marvell,cal-data = /bits/ 8 <
++                0x37 0x01 0x1c 0x00 0xff 0xff 0xff 0xff 0x01 0x7f 0x04 0x02
++                0x00 0x00 0xba 0xce 0xc0 0xc6 0x2d 0x00 0x00 0x00 0x00 0x00
++                0x00 0x00 0xf0 0x00>;
++            marvell,wakeup-pin = /bits/ 16 <0x0d>;
++            marvell,wakeup-gap-ms = /bits/ 16 <0x64>;
 +        };
 +    };
 +
 +...
-diff --git a/Documentation/devicetree/bindings/media/mediatek-mdp.txt b/Documentation/devicetree/bindings/media/mediatek-mdp.txt
+diff --git a/Documentation/devicetree/bindings/net/btusb.txt b/Documentation/devicetree/bindings/net/btusb.txt
+index f546b1f7dd6d2..a68022a57c51e 100644
+--- a/Documentation/devicetree/bindings/net/btusb.txt
++++ b/Documentation/devicetree/bindings/net/btusb.txt
+@@ -14,7 +14,7 @@ Required properties:
+ 
+ 
+ Also, vendors that use btusb may have device additional properties, e.g:
+-Documentation/devicetree/bindings/net/marvell-bt-8xxx.txt
++Documentation/devicetree/bindings/net/bluetooth/marvell,sd8897-bt.yaml
+ 
+ Optional properties:
+ 
+diff --git a/Documentation/devicetree/bindings/net/marvell-bt-8xxx.txt b/Documentation/devicetree/bindings/net/marvell-bt-8xxx.txt
 deleted file mode 100644
-index 253a93eabb5e5..0000000000000
---- a/Documentation/devicetree/bindings/media/mediatek-mdp.txt
+index 957e5e5c2927c..0000000000000
+--- a/Documentation/devicetree/bindings/net/marvell-bt-8xxx.txt
 +++ /dev/null
-@@ -1,96 +0,0 @@
--* Mediatek Media Data Path
+@@ -1,83 +0,0 @@
+-Marvell 8897/8997 (sd8897/sd8997) bluetooth devices (SDIO or USB based)
+-------
+-The 8997 devices supports multiple interfaces. When used on SDIO interfaces,
+-the btmrvl driver is used and when used on USB interface, the btusb driver is
+-used.
 -
--Media Data Path is used for scaling and color space conversion.
+-Required properties:
 -
--Required properties (controller node):
--- compatible: "mediatek,mt8173-mdp"
--- mediatek,vpu: the node of video processor unit, see
--  Documentation/devicetree/bindings/media/mediatek,mt8173-vpu.yaml for 
--  details.
+-  - compatible : should be one of the following:
+-	* "marvell,sd8897-bt" (for SDIO)
+-	* "marvell,sd8997-bt" (for SDIO)
+-	* "usb1286,204e"      (for USB)
 -
--Required properties (all function blocks, child node):
--- compatible: Should be one of
--        "mediatek,mt8173-mdp-rdma"  - read DMA
--        "mediatek,mt8173-mdp-rsz"   - resizer
--        "mediatek,mt8173-mdp-wdma"  - write DMA
--        "mediatek,mt8173-mdp-wrot"  - write DMA with rotation
--- reg: Physical base address and length of the function block register space
--- clocks: device clocks, see
--  Documentation/devicetree/bindings/clock/clock-bindings.txt for details.
--- power-domains: a phandle to the power domain, see
--  Documentation/devicetree/bindings/power/power_domain.txt for details.
+-Optional properties:
 -
--Required properties (DMA function blocks, child node):
--- compatible: Should be one of
--        "mediatek,mt8173-mdp-rdma"
--        "mediatek,mt8173-mdp-wdma"
--        "mediatek,mt8173-mdp-wrot"
--- iommus: should point to the respective IOMMU block with master port as
--  argument, see Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
--  for details.
+-  - marvell,cal-data: Calibration data downloaded to the device during
+-		      initialization. This is an array of 28 values(u8).
+-		      This is only applicable to SDIO devices.
+-
+-  - marvell,wakeup-pin: It represents wakeup pin number of the bluetooth chip.
+-		        firmware will use the pin to wakeup host system (u16).
+-  - marvell,wakeup-gap-ms: wakeup gap represents wakeup latency of the host
+-		      platform. The value will be configured to firmware. This
+-		      is needed to work chip's sleep feature as expected (u16).
+-  - interrupt-names: Used only for USB based devices (See below)
+-  - interrupts : specifies the interrupt pin number to the cpu. For SDIO, the
+-		 driver will use the first interrupt specified in the interrupt
+-		 array. For USB based devices, the driver will use the interrupt
+-		 named "wakeup" from the interrupt-names and interrupt arrays.
+-		 The driver will request an irq based on this interrupt number.
+-		 During system suspend, the irq will be enabled so that the
+-		 bluetooth chip can wakeup host platform under certain
+-		 conditions. During system resume, the irq will be disabled
+-		 to make sure unnecessary interrupt is not received.
 -
 -Example:
--	mdp_rdma0: rdma@14001000 {
--		compatible = "mediatek,mt8173-mdp-rdma";
--			     "mediatek,mt8173-mdp";
--		reg = <0 0x14001000 0 0x1000>;
--		clocks = <&mmsys CLK_MM_MDP_RDMA0>,
--			 <&mmsys CLK_MM_MUTEX_32K>;
--		power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
--		iommus = <&iommu M4U_PORT_MDP_RDMA0>;
--		mediatek,vpu = <&vpu>;
--	};
 -
--	mdp_rdma1: rdma@14002000 {
--		compatible = "mediatek,mt8173-mdp-rdma";
--		reg = <0 0x14002000 0 0x1000>;
--		clocks = <&mmsys CLK_MM_MDP_RDMA1>,
--			 <&mmsys CLK_MM_MUTEX_32K>;
--		power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
--		iommus = <&iommu M4U_PORT_MDP_RDMA1>;
--	};
+-IRQ pin 119 is used as system wakeup source interrupt.
+-wakeup pin 13 and gap 100ms are configured so that firmware can wakeup host
+-using this device side pin and wakeup latency.
 -
--	mdp_rsz0: rsz@14003000 {
--		compatible = "mediatek,mt8173-mdp-rsz";
--		reg = <0 0x14003000 0 0x1000>;
--		clocks = <&mmsys CLK_MM_MDP_RSZ0>;
--		power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
--	};
+-Example for SDIO device follows (calibration data is also available in
+-below example).
 -
--	mdp_rsz1: rsz@14004000 {
--		compatible = "mediatek,mt8173-mdp-rsz";
--		reg = <0 0x14004000 0 0x1000>;
--		clocks = <&mmsys CLK_MM_MDP_RSZ1>;
--		power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
--	};
+-&mmc3 {
+-	vmmc-supply = <&wlan_en_reg>;
+-	bus-width = <4>;
+-	cap-power-off-card;
+-	keep-power-in-suspend;
 -
--	mdp_rsz2: rsz@14005000 {
--		compatible = "mediatek,mt8173-mdp-rsz";
--		reg = <0 0x14005000 0 0x1000>;
--		clocks = <&mmsys CLK_MM_MDP_RSZ2>;
--		power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
--	};
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	btmrvl: bluetooth@2 {
+-		compatible = "marvell,sd8897-bt";
+-		reg = <2>;
+-		interrupt-parent = <&pio>;
+-		interrupts = <119 IRQ_TYPE_LEVEL_LOW>;
 -
--	mdp_wdma0: wdma@14006000 {
--		compatible = "mediatek,mt8173-mdp-wdma";
--		reg = <0 0x14006000 0 0x1000>;
--		clocks = <&mmsys CLK_MM_MDP_WDMA>;
--		power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
--		iommus = <&iommu M4U_PORT_MDP_WDMA>;
+-		marvell,cal-data = /bits/ 8 <
+-			0x37 0x01 0x1c 0x00 0xff 0xff 0xff 0xff 0x01 0x7f 0x04 0x02
+-			0x00 0x00 0xba 0xce 0xc0 0xc6 0x2d 0x00 0x00 0x00 0x00 0x00
+-			0x00 0x00 0xf0 0x00>;
+-		marvell,wakeup-pin = /bits/ 16 <0x0d>;
+-		marvell,wakeup-gap-ms = /bits/ 16 <0x64>;
 -	};
+-};
 -
--	mdp_wrot0: wrot@14007000 {
--		compatible = "mediatek,mt8173-mdp-wrot";
--		reg = <0 0x14007000 0 0x1000>;
--		clocks = <&mmsys CLK_MM_MDP_WROT0>;
--		power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
--		iommus = <&iommu M4U_PORT_MDP_WROT0>;
--	};
+-Example for USB device:
 -
--	mdp_wrot1: wrot@14008000 {
--		compatible = "mediatek,mt8173-mdp-wrot";
--		reg = <0 0x14008000 0 0x1000>;
--		clocks = <&mmsys CLK_MM_MDP_WROT1>;
--		power-domains = <&scpsys MT8173_POWER_DOMAIN_MM>;
--		iommus = <&iommu M4U_PORT_MDP_WROT1>;
--	};
+-&usb_host1_ohci {
+-    #address-cells = <1>;
+-    #size-cells = <0>;
+-
+-    mvl_bt1: bt@1 {
+-	compatible = "usb1286,204e";
+-	reg = <1>;
+-	interrupt-parent = <&gpio0>;
+-	interrupt-names = "wakeup";
+-	interrupts = <119 IRQ_TYPE_LEVEL_LOW>;
+-	marvell,wakeup-pin = /bits/ 16 <0x0d>;
+-	marvell,wakeup-gap-ms = /bits/ 16 <0x64>;
+-    };
+-};
 -- 
 2.51.0
 
