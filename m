@@ -1,320 +1,294 @@
-Return-Path: <devicetree+bounces-223007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0C56BB03D2
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 13:50:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC274BB0411
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 13:55:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74323188EC49
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 11:50:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B80E93B8C62
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 11:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0CCF2E22A7;
-	Wed,  1 Oct 2025 11:49:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0889D2E6CDD;
+	Wed,  1 Oct 2025 11:55:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RXrwp3iR"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="e7vaYpAs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89BCD2E229C;
-	Wed,  1 Oct 2025 11:49:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 208172E5B1D
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 11:55:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759319399; cv=none; b=jpzbOkAWvgK1p0oS5+cWZnVRNFOSvVQ6XC6ZKQt0SyBREdFjIdlE340A7+mXbN2t7ua6eNnkal9NBgPrjD/Hp8O+/CDo3K/EUTJL5TC492Xve35hhBCYQHfKc/Wwe9ruoteLikRIErIVFNKuIuhT8NQFanG1LeZST+NIP8UJTpc=
+	t=1759319747; cv=none; b=Uyb0SNuDnrK8K62jv40DwCgJr2bV8Iavw4HV7lR1XXqe+txEvjhLxsH6AhLZuhPXH5olngQSHfb8qyBwYkrpSCfe70Kxc0sVLt2odsEALq2rzE42NRTluuTgFzd+jQFHI2uT+1+Rt2HLADDVt4nbQWMCm6W+B+193C40KL6EL9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759319399; c=relaxed/simple;
-	bh=/F77SMQlVVL9OAIkxdw2JODfBGuMaP1lWltHWiHzzDU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Bq1j7tkE9UHyNRD1/mriq4W1c9g5VJ5ZBsok9UVRNfPJSUyTj8q3ry23HQUDsnaCX/TX9hb/xly8Jp9QIQlevMYnZGPHXSfHcewMTFs3IN4ps0M+UKrSJVgKW8O6AbtcZC3rKHHhMyYoj8/ggoll4MYd0okOWddWI+WrHO9AfXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RXrwp3iR; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1759319395;
-	bh=/F77SMQlVVL9OAIkxdw2JODfBGuMaP1lWltHWiHzzDU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=RXrwp3iRm3UaMHIEdQEQUyfH/KjvjQY2rz0IAv4paMqKAAZEr8JD4Qqv/pWpBe7I7
-	 7IM/RG43EmffRL/Pm+w4lr0zw4Gag8NbBjrkoS0dGcyDEaHLxf3A0PYdhrpjAAZf8M
-	 lh88J6SxMK1SaZ+Zy0l75H6Cwbxw0WC7/W2Wg3+8aPz3gsnbdmEFpGjdObe/xbKx3w
-	 dbPr8foukNUKq237V8zybdSPkP/6DB3deYncAhJW780DsqTXclTxYOeBaCKwMuJXq1
-	 Czrb19UobgJrapwnwEjSo/wLZvlGXs6Tk23PrujLYWeKWfu8D+11mNSDRAcubRkTFV
-	 ElgTIJULpJzBQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0B75F17E00EC;
-	Wed,  1 Oct 2025 13:49:55 +0200 (CEST)
-Message-ID: <748f1176-c73c-48af-a1af-0b63d088e834@collabora.com>
-Date: Wed, 1 Oct 2025 13:49:54 +0200
+	s=arc-20240116; t=1759319747; c=relaxed/simple;
+	bh=xmpoeaaMf0gtwj7Q5LONEi34PrhfPqpYdxTWNSCI0iI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WA/DBXkSYZoGMaa+fPu+m+kxITQXzbU+oR8Rtgt5YwJCI2Yi0RzHGoiRHyAh9Q9jL7sB+hI1B37GhqUuYlHlb1S8HOMd9jJfAjqeFJVcFIxRWFkoXZzN/aUF4g6h+8sDoK/trm0tP8mrVBWNrulCQka3m9uuvwLhaDbfJI+bPE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=e7vaYpAs; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-36bf096b092so99240551fa.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 04:55:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1759319742; x=1759924542; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=s+Hd9ZpJ8NSMaaNJGGKXaZYsFab73oBzlTFfFDLABPU=;
+        b=e7vaYpAspNmcIFje+4nUyWTVp88pgwtaN1REWoKj0+GTLjOWmLPktVPVDtPyAQ3nze
+         +sqNBrfJ7dg3RRsjZ//R0/KuNnehwMqUKh+avWx0aIAdSJfH3kJYBOMAJ/QNwN47EFR/
+         QlRpPuQW/1NcaCefOfBBlno3urt7Q0EU7BmRAs/oj7ip98ZN+8GDbWcQ4gwRd/aXIKHu
+         jtvBdhUF2UmTxmYcXy0mfeYOfSmpwsKFq58vR9ai3i77tbtACPWAw5wyi3Wc2QDcU2tq
+         dJVORC8iwWdXrQW8QXm0RefQtjbF9ldgVLSuB+Ea7FzqJlwIC8uJC3TDQXce1i7O9DvJ
+         6lKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759319742; x=1759924542;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=s+Hd9ZpJ8NSMaaNJGGKXaZYsFab73oBzlTFfFDLABPU=;
+        b=rFYsHd5TouXSwN8lkJNX4P4hQ4rLh0F/1CZnLX/D9h0HuLweoAe+dItMJWtuWJ0xhW
+         W4bNA9iORWjOUdODC9xanEedXpNxqJ18/1HgtjpKz5hgm1vVSC7JlJ6X/DgVQ/e+kJUL
+         oNOcqqaoxpL8Pxm7jy7CJC2uBWT8Kty4gTC/fMH4Pjj5GdjrY14BNWm8XlX40wjgT8IX
+         mchQPJNxmavLfaLMyd8fGuOxZTUpvYAGCSbunK53F2QAnreWS+QVrgb+b5Kfln4aoAGZ
+         OhJgTgLpSfaDw7tf7g27L+9q6J/NpKPqO3kHDywEJ3D1tG/P57hZpDDK8CSEbCIgwka7
+         QGaw==
+X-Forwarded-Encrypted: i=1; AJvYcCXGNqm85ZbkW59fK0LO8jLnyfTms9iyuZkfPvdadv+4afg9FiWXhmnrYWXk/81TrFGvkTO9WhZrMpNR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxng5EyCNk/OecpPf5tQLryHIKpzci2AqmWu0fDTycmt7KKX2Q8
+	VTdpfLAIhow3gs/oHpvDEkLgftzsM3LoFBUYsj7NtfKYvj6nyI3yL1DRCYz5QTgHs/hNodC01T3
+	SwMbY0EOx8PLzpR+EtgGOZV9La9RkPsyMUJ34Hft6cw==
+X-Gm-Gg: ASbGnctxuKZclYiVA3y9FsF+ClmvbAbmdsw+radEfkItebE6keS02Yws+YNDc1Is1VY
+	6yelzN78gqlmzKhVVz/+9mPfZs0BWqrsDtoXOth1leiRMnLErhyTkoJJvNakhVZ1aD+ryyRg4FA
+	dDzyUceQAmsO/d5OrGJuhjcXTP1EQWzHFjFdCCyj6pNtRQH353FmLEuzaz2srcmq3quDyWlioIx
+	P3mk7UZhrs669fn9VVEM/uZEhzGQm4=
+X-Google-Smtp-Source: AGHT+IEkoQyCxkan5PgIYGHY6BH11JmyH8vUxK3/+mXmQXRCKdKilY7uyfLpRwifxnOw6EQlZfknfVKOeIZv4mjpxY4=
+X-Received: by 2002:a2e:a99d:0:b0:372:9453:316d with SMTP id
+ 38308e7fff4ca-373a740494emr9691271fa.32.1759319742158; Wed, 01 Oct 2025
+ 04:55:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] clk: mediatek: Add rpm clocks to clk-mt8196-mfg
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Guangjie Song <guangjie.song@mediatek.com>,
- Laura Nao <laura.nao@collabora.com>,
- =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
- Yassine Oudjana <y.oudjana@protonmail.com>
-Cc: kernel@collabora.com, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-References: <20250929-mtk-pll-rpm-v1-0-49541777878d@collabora.com>
- <20250929-mtk-pll-rpm-v1-4-49541777878d@collabora.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20250929-mtk-pll-rpm-v1-4-49541777878d@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <cover.1758916484.git.marcelo.schmitt@analog.com>
+ <5dc08b622dac1db561f26034c93910ccff75e965.1758916484.git.marcelo.schmitt@analog.com>
+ <20250928111955.175680cb@jic23-huawei> <20250929143132.GA4099970-robh@kernel.org>
+ <CAMknhBHzXLjkbKAjkgRwEps=0YrOgUcdvRpuPRrcPkwfwWo88w@mail.gmail.com> <20250930182649.GA3340740-robh@kernel.org>
+In-Reply-To: <20250930182649.GA3340740-robh@kernel.org>
+From: David Lechner <dlechner@baylibre.com>
+Date: Wed, 1 Oct 2025 13:55:31 +0200
+X-Gm-Features: AS18NWAcLP4eem2ye_LYB7prG1UNgkoIDZ3u8vohBsn6PkgMfV3oCDoCC3aLQyo
+Message-ID: <CAMknhBF-pEhMjB9MmmxpFf5wY0uvC0CCz5xtxKQ_GPCcgdW19Q@mail.gmail.com>
+Subject: Re: [PATCH v3 7/8] dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216
+ and ADAQ4224
+To: Rob Herring <robh@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Marcelo Schmitt <marcelo.schmitt@analog.com>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-spi@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, michael.hennerich@analog.com, 
+	nuno.sa@analog.com, eblanc@baylibre.com, andy@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, corbet@lwn.net, marcelo.schmitt1@gmail.com, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 29/09/25 14:13, Nicolas Frattaroli ha scritto:
-> The mfgpll clocks on mt8196 require that the MFG's EB clock is on if
-> their control registers are touched in any way at all.
+On Tue, Sep 30, 2025 at 8:26=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Mon, Sep 29, 2025 at 06:16:10PM +0200, David Lechner wrote:
+> > On Mon, Sep 29, 2025 at 4:31=E2=80=AFPM Rob Herring <robh@kernel.org> w=
+rote:
+> > >
+> > > On Sun, Sep 28, 2025 at 11:19:55AM +0100, Jonathan Cameron wrote:
+> > > > On Fri, 26 Sep 2025 17:40:47 -0300
+> > > > Marcelo Schmitt <marcelo.schmitt@analog.com> wrote:
+> > > >
+> > > > > ADAQ4216 and ADAQ4224 are similar to AD4030 except that ADAQ devi=
+ces have a
+> > > > > PGA (programmable gain amplifier) that scales the input signal pr=
+ior to it
+> > > > > reaching the ADC inputs. The PGA is controlled through a couple o=
+f pins (A0
+> > > > > and A1) that set one of four possible signal gain configurations.
+> > > > >
+> > > > > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> > > > > ---
+> > > > > Change log v2 -> v3
+> > > > > - PGA gain now described in decibels.
+> > > > >
+> > > > > The PGA gain is not going to fit well as a channel property becau=
+se it may
+> > > > > affect more than one channel as in AD7191.
+> > > > > https://www.analog.com/media/en/technical-documentation/data-shee=
+ts/AD7191.pdf
+> > > > >
+> > > > > I consulted a very trustworthy source [1, 2] and learned that des=
+cribing signal
+> > > > > gains in decibels is a common practice. I now think it would be i=
+deal to describe
+> > > > > these PGA and PGA-like gains with properties in decibel units and=
+ this patch
+> > > > > is an attempt of doing so. The only problem with this approach is=
+ that we end up
+> > > > > with negative values when the gain is lower than 1 (the signal is=
+ attenuated)
+> > > > > and device tree specification doesn't support signed integer type=
+s. As the
+> > > > > docs being proposed fail dt_binding_check, I guess I have to nack=
+ the patch myself.
+> > > > > Any chance of dt specification eventually support signed integers=
+?
+> > > > > Any suggestions appreciated.
+> > > > >
+> > > > > [1] https://en.wikipedia.org/wiki/Decibel
+> > > > > [2] https://en.wikipedia.org/wiki/Gain_(electronics)
+> > > >
+> > > > I still wonder if the better way to describe this is to ignore that=
+ it
+> > > > has anything to do with PGA as such and instead describe the pin st=
+rapping.
+> > > >
+> > > > DT folk, is there an existing way to do that? My grep skills are fa=
+iling to
+> > > > spot one.
+> > > >
+> > > > We've papered over this for a long time in various IIO drivers by c=
+ontrolling
+> > > > directly what the pin strap controls with weird and wonderful devic=
+e specific
+> > > > bindings. I wonder if we can't have a gpio driver + binding that re=
+jects all
+> > > > config and just lets us check the current state of an output pin.  =
+Kind of a
+> > > > fixed mode regulator equivalent for gpios.
+> > >
+> > > If these are connected to GPIOs, isn't it possible that someone will
+> > > want to change their value?
+> > >
+> > > Other than some generic 'pinstrap-gpios' property, I don't see what w=
+e'd
+> > > do here? I don't feel like pin strapping GPIOs is something that we s=
+ee
+> > > all that often.
+> > >
+> > > Rob
+> >
+> > I think the idea is that it is not actually a GPIO, just a hard-wired
+> > connection. We would want to have a "fixed-gpios" to describe these
+> > hard-wired connections as GPIOs so that we don't have to write complex
+> > binding for chip config GPIOs. I've seen configuration pins like on at
+> > least half a dozed of the ADCs I've been working on/reviewing over the
+> > last two years (since I got involved in IIO again).
+>
+> Until I read the example, I totally missed what you want here...
+>
+> Can you point me to some existing bindings?
 
-....so, the MFGPLL clocks are children of EB?
+Perhaps the best example is adi,ad7194.yaml [1]. It has odr-gpios for
+a 2 pin input to select 4 possible ODR values in the case where they
+are connected to gpios and can be configured at runtime. Then it has a
+separate adi,odr-value property to give the hardwired value in cases
+where they are not connected to gpios. The binding currently doesn't
+allow having one pin connected to a gpio and one hardwired. The same
+binding also has pga-gpios and adi,pga-value which work the same and
+just control a different configuration parameter.
 
-Why are you using such a convoluted way of adding a parent clock to the MFGPLL
-instead of just
----->   `.parent_name = "mfg_eb"`  <-----
+adi,ad7606.yaml [2] is a bit less complete. It has
+adi,oversampling-ratio-gpios but it only has adi,sw-mode to indicate
+that all 3 oversampling pins are hard-wired high. It doesn't have a
+way to specify other hard-wired states. IIRC, the AD7616 chip in this
+family also has some more similar config selection pins that aren't
+documented yet.
 
-???????
+In adi,ad7625 [3], we ended up making 4 enX-gpios for single
+properties plus a adi,en0-always-on boolean flag property for each ENX
+pin instead of a en-gpios array of 4 gpios. This was a case where it
+was highly likely that there would be a mix of hard-wired pins and
+gpio-connected pins, so it seemed to be the simplest way to describe
+it at the time. It would have been much more ergonomic though if we
+could have used the single array.
 
-Cheers,
-Angelo
+[1]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
+e/Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml#n52
+[2]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
+e/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml#n127
+[3]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre=
+e/Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml#n70
 
-> Failing to ensure
-> this results in a pleasant SError interrupt if the EB clock happens to
-> be off.
-> 
-> To achieve this, leverage the CCF core's runtime power management
-> support. Define the necessary suspend/resume callbacks, add the
-> necessary code to get RPM clocks from the DT, and make sure RPM is
-> enabled before clock registration happens.
-> 
-> For the RPM callbacks to really make much sense at all, we change the
-> drvdata from clk_data to a new private struct, as is common in drivers
-> across the Linux kernel.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->   drivers/clk/mediatek/clk-mt8196-mfg.c | 104 +++++++++++++++++++++++++++-------
->   drivers/clk/mediatek/clk-pll.h        |   2 +
->   2 files changed, 87 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/clk/mediatek/clk-mt8196-mfg.c b/drivers/clk/mediatek/clk-mt8196-mfg.c
-> index 8e09c0f7b7548f8e286671cea2dac64530b8ce47..64cc0c037f62d7eab8d0e7fc00c05d122bf4130c 100644
-> --- a/drivers/clk/mediatek/clk-mt8196-mfg.c
-> +++ b/drivers/clk/mediatek/clk-mt8196-mfg.c
-> @@ -13,6 +13,7 @@
->   #include <linux/of_address.h>
->   #include <linux/of_device.h>
->   #include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
->   
->   #include "clk-mtk.h"
->   #include "clk-pll.h"
-> @@ -38,7 +39,7 @@
->   	    _flags, _rst_bar_mask,				\
->   	    _pd_reg, _pd_shift, _tuner_reg,			\
->   	    _tuner_en_reg, _tuner_en_bit,			\
-> -	    _pcw_reg, _pcw_shift, _pcwbits) {			\
-> +	    _pcw_reg, _pcw_shift, _pcwbits, _rpm_clks) {	\
->   		.id = _id,					\
->   		.name = _name,					\
->   		.reg = _reg,					\
-> @@ -58,26 +59,60 @@
->   		.pcw_shift = _pcw_shift,			\
->   		.pcwbits = _pcwbits,				\
->   		.pcwibits = MT8196_INTEGER_BITS,		\
-> +		.rpm_clk_names = _rpm_clks,			\
-> +		.num_rpm_clks = ARRAY_SIZE(_rpm_clks),		\
->   	}
->   
-> +static const char * const mfgpll_rpm_clk_names[] = {
-> +	NULL
-> +};
-> +
->   static const struct mtk_pll_data mfg_ao_plls[] = {
->   	PLL(CLK_MFG_AO_MFGPLL, "mfgpll", MFGPLL_CON0, MFGPLL_CON0, 0, 0, 0,
-> -	    BIT(0), MFGPLL_CON1, 24, 0, 0, 0,
-> -	    MFGPLL_CON1, 0, 22),
-> +	    BIT(0), MFGPLL_CON1, 24, 0, 0, 0, MFGPLL_CON1, 0, 22,
-> +	    mfgpll_rpm_clk_names),
->   };
->   
->   static const struct mtk_pll_data mfgsc0_ao_plls[] = {
->   	PLL(CLK_MFGSC0_AO_MFGPLL_SC0, "mfgpll-sc0", MFGPLL_SC0_CON0,
->   	    MFGPLL_SC0_CON0, 0, 0, 0, BIT(0), MFGPLL_SC0_CON1, 24, 0, 0, 0,
-> -	    MFGPLL_SC0_CON1, 0, 22),
-> +	    MFGPLL_SC0_CON1, 0, 22, mfgpll_rpm_clk_names),
->   };
->   
->   static const struct mtk_pll_data mfgsc1_ao_plls[] = {
->   	PLL(CLK_MFGSC1_AO_MFGPLL_SC1, "mfgpll-sc1", MFGPLL_SC1_CON0,
->   	    MFGPLL_SC1_CON0, 0, 0, 0, BIT(0), MFGPLL_SC1_CON1, 24, 0, 0, 0,
-> -	    MFGPLL_SC1_CON1, 0, 22),
-> +	    MFGPLL_SC1_CON1, 0, 22, mfgpll_rpm_clk_names),
->   };
->   
-> +struct clk_mt8196_mfg {
-> +	struct clk_hw_onecell_data *clk_data;
-> +	struct clk_bulk_data *rpm_clks;
-> +	unsigned int num_rpm_clks;
-> +};
-> +
-> +static int __maybe_unused clk_mt8196_mfg_resume(struct device *dev)
-> +{
-> +	struct clk_mt8196_mfg *clk_mfg = dev_get_drvdata(dev);
-> +
-> +	if (!clk_mfg || !clk_mfg->rpm_clks)
-> +		return 0;
-> +
-> +	return clk_bulk_prepare_enable(clk_mfg->num_rpm_clks, clk_mfg->rpm_clks);
-> +}
-> +
-> +static int __maybe_unused clk_mt8196_mfg_suspend(struct device *dev)
-> +{
-> +	struct clk_mt8196_mfg *clk_mfg = dev_get_drvdata(dev);
-> +
-> +	if (!clk_mfg || !clk_mfg->rpm_clks)
-> +		return 0;
-> +
-> +	clk_bulk_disable_unprepare(clk_mfg->num_rpm_clks, clk_mfg->rpm_clks);
-> +
-> +	return 0;
-> +}
-> +
->   static const struct of_device_id of_match_clk_mt8196_mfg[] = {
->   	{ .compatible = "mediatek,mt8196-mfgpll-pll-ctrl",
->   	  .data = &mfg_ao_plls },
-> @@ -92,35 +127,60 @@ MODULE_DEVICE_TABLE(of, of_match_clk_mt8196_mfg);
->   static int clk_mt8196_mfg_probe(struct platform_device *pdev)
->   {
->   	const struct mtk_pll_data *plls;
-> -	struct clk_hw_onecell_data *clk_data;
-> +	struct clk_mt8196_mfg *clk_mfg;
->   	struct device_node *node = pdev->dev.of_node;
-> +	struct device *dev = &pdev->dev;
->   	const int num_plls = 1;
-> -	int r;
-> +	int r, i;
->   
-> -	plls = of_device_get_match_data(&pdev->dev);
-> +	plls = of_device_get_match_data(dev);
->   	if (!plls)
->   		return -EINVAL;
->   
-> -	clk_data = mtk_alloc_clk_data(num_plls);
-> -	if (!clk_data)
-> +	clk_mfg = devm_kzalloc(dev, sizeof(*clk_mfg), GFP_KERNEL);
-> +	if (!clk_mfg)
->   		return -ENOMEM;
->   
-> -	r = mtk_clk_register_plls(&pdev->dev, plls, num_plls, clk_data);
-> +	clk_mfg->num_rpm_clks = plls[0].num_rpm_clks;
-> +
-> +	if (clk_mfg->num_rpm_clks) {
-> +		clk_mfg->rpm_clks = devm_kcalloc(dev, clk_mfg->num_rpm_clks,
-> +						 sizeof(*clk_mfg->rpm_clks),
-> +						 GFP_KERNEL);
-> +		if (!clk_mfg->rpm_clks)
-> +			return -ENOMEM;
-> +
-> +		for (i = 0; i < clk_mfg->num_rpm_clks; i++)
-> +			clk_mfg->rpm_clks->id = plls[0].rpm_clk_names[i];
-> +
-> +		r = devm_clk_bulk_get(dev, clk_mfg->num_rpm_clks,
-> +				      clk_mfg->rpm_clks);
-> +		if (r)
-> +			return r;
-> +	}
-> +
-> +	clk_mfg->clk_data = mtk_alloc_clk_data(num_plls);
-> +	if (!clk_mfg->clk_data)
-> +		return -ENOMEM;
-> +
-> +	dev_set_drvdata(dev, clk_mfg);
-> +	pm_runtime_enable(dev);
-> +
-> +	r = mtk_clk_register_plls(dev, plls, num_plls, clk_mfg->clk_data);
->   	if (r)
->   		goto free_clk_data;
->   
-> -	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get, clk_data);
-> +	r = of_clk_add_hw_provider(node, of_clk_hw_onecell_get,
-> +				   clk_mfg->clk_data);
->   	if (r)
->   		goto unregister_plls;
->   
-> -	platform_set_drvdata(pdev, clk_data);
-> -
->   	return r;
->   
->   unregister_plls:
-> -	mtk_clk_unregister_plls(plls, num_plls, clk_data);
-> +	mtk_clk_unregister_plls(plls, num_plls, clk_mfg->clk_data);
->   free_clk_data:
-> -	mtk_free_clk_data(clk_data);
-> +	mtk_free_clk_data(clk_mfg->clk_data);
->   
->   	return r;
->   }
-> @@ -128,20 +188,26 @@ static int clk_mt8196_mfg_probe(struct platform_device *pdev)
->   static void clk_mt8196_mfg_remove(struct platform_device *pdev)
->   {
->   	const struct mtk_pll_data *plls = of_device_get_match_data(&pdev->dev);
-> -	struct clk_hw_onecell_data *clk_data = platform_get_drvdata(pdev);
-> +	struct clk_mt8196_mfg *clk_mfg = dev_get_drvdata(&pdev->dev);
->   	struct device_node *node = pdev->dev.of_node;
->   
->   	of_clk_del_provider(node);
-> -	mtk_clk_unregister_plls(plls, 1, clk_data);
-> -	mtk_free_clk_data(clk_data);
-> +	mtk_clk_unregister_plls(plls, 1, clk_mfg->clk_data);
-> +	mtk_free_clk_data(clk_mfg->clk_data);
->   }
->   
-> +static DEFINE_RUNTIME_DEV_PM_OPS(clk_mt8196_mfg_pm_ops,
-> +				 clk_mt8196_mfg_suspend,
-> +				 clk_mt8196_mfg_resume,
-> +				 NULL);
-> +
->   static struct platform_driver clk_mt8196_mfg_drv = {
->   	.probe = clk_mt8196_mfg_probe,
->   	.remove = clk_mt8196_mfg_remove,
->   	.driver = {
->   		.name = "clk-mt8196-mfg",
->   		.of_match_table = of_match_clk_mt8196_mfg,
-> +		.pm = pm_ptr(&clk_mt8196_mfg_pm_ops),
->   	},
->   };
->   module_platform_driver(clk_mt8196_mfg_drv);
-> diff --git a/drivers/clk/mediatek/clk-pll.h b/drivers/clk/mediatek/clk-pll.h
-> index 0f2a1d19eea78b7390b221af47016eb9897f3596..82b86b849a67359d8f23d828f50422081c2747e3 100644
-> --- a/drivers/clk/mediatek/clk-pll.h
-> +++ b/drivers/clk/mediatek/clk-pll.h
-> @@ -53,6 +53,8 @@ struct mtk_pll_data {
->   	u8 pll_en_bit; /* Assume 0, indicates BIT(0) by default */
->   	u8 pcw_chg_bit;
->   	u8 fenc_sta_bit;
-> +	const char * const *rpm_clk_names;
-> +	unsigned int num_rpm_clks;
->   };
->   
->   /*
-> 
+>
+> IIRC, Linus has expressed not caring for cases of using GPIO API on
+> things that are not GPIOs. That was more like registers which can
+> read the state of signals. Better let him weigh in before we go too far
+> down this path.
+>
+> >
+> > For example, there might be 4 mode pins, so we would like to just have
+> > a mode-gpios property. So this could be all 4 connected to GPIOs, all
+> > 4 hard-wired, or a mix.
+> >
+> > (The actual bindings would need more thought, but this should give the
+> > general idea)
+> >
+> > fixed_gpio: hard-wires {
+> >     compatible =3D "fixed-gpios";
+> >     gpio-controller;
+> >     #gpio-cells =3D <1>;
+> > };
+> >
+> > gpio0: gpio-controller@4000000 {
+> >     compatible =3D "vendor,soc-gpios";
+> >     gpio-controller;
+> >     #gpio-cells =3D <2>;
+> > };
+> >
+> > spi {
+> >     adc@0 {
+> >         compatible =3D "vendor,adc";
+> >         /* All gpios */
+> >         mode-gpios =3D <&gpio0 0 GPIO_ACTIVE_HIGH>,
+> >                      <&gpio0 1 GPIO_ACTIVE_HIGH>,
+> >                      <&gpio0 2 GPIO_ACTIVE_HIGH>,
+> >                      <&gpio0 3 GPIO_ACTIVE_HIGH>;
+> >          /* or all hard-wired */
+> >         mode-gpios =3D <&fixed_gpio 0 GPIO_FIXED_HIGH>,
+> >                      <&fixed_gpio GPIO_FIXED_HIGH>,
+> >                      <&fixed_gpio GPIO_FIXED_LOW>,
+> >                      <&fixed_gpio GPIO_FIXED_LOW>;
+> >          /* or mixed */
+> >         mode-gpios =3D <&gpio0 0 GPIO_ACTIVE_HIGH>,
+> >                      <&gpio0 1 GPIO_ACTIVE_HIGH>,
+> >                      <&fixed_gpio GPIO_FIXED_LOW>,
+> >                      <&fixed_gpio GPIO_FIXED_LOW>;
+>
+> The above seems reasonable to me.
+>
+> Just to throw out an alternative, phandle values of 0 and -1 are
+> generally reserved. Historically that means just skip the entry.
+> However, you could use that and do something like this:
+>
+> mode-gpios =3D <&gpio0 0 GPIO_ACTIVE_HIGH>,
+>              <&gpio0 1 GPIO_ACTIVE_HIGH>,
+>              <0>,
+>              <0xffffffff>;
+>
+> So 0 means low and ~0 means high. The only advantage I see with it is
 
+That works as long as we don't need other pin states like
+high-impedance. I haven't seen anything like that yet though.
 
+> you don't need a "fixed-gpios" driver. Also, I'm not sure how that would
+> work with requesting GPIOs given you've essentially defined only 2 GPIO
+> lines (high and low). Though Bartosz is doing some work on non-exclusive
+> GPIOs.
+
+Could work, or just dynamically allocate one when needed.
+
+>
+> Rob
+>
 
