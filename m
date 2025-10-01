@@ -1,137 +1,163 @@
-Return-Path: <devicetree+bounces-223125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C7DBBB1411
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 18:31:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C8FBB157D
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 19:18:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3558119216B4
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 16:32:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E84E22A564D
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 17:18:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE0A827A454;
-	Wed,  1 Oct 2025 16:31:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D68692D24B2;
+	Wed,  1 Oct 2025 17:18:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ez6OFCTb"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b="ksINNn9R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A790D239E8B;
-	Wed,  1 Oct 2025 16:31:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759336305; cv=none; b=SKVDdFzwWiCEHfuQD95cTZ0bmaMXyhtHIYEVHtQelVgDEToAxDOVfnwDwHaJ8cYfKFjCTNGZyAaxWDWHCqjkl77o1G/iQYjnlP7/J4r7UcJhDlFVWfz2o6/Z85Tyygr1HeEfGhZOAiKAEjPPypo6wfzH7VUdYqfg4VibYRhbGQU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759336305; c=relaxed/simple;
-	bh=euC6S3LiJG7HoABb999DdDDuS1mO+zTyN+ac3MVNApE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DBf3Jkple8Agvy50731WdNlfx4msYctbh5NpXCA2cudh2FzkUBJcAidiJEx3xxN9Gw1sL53r8movggdgQrvlyFXGXPvKXnOgFGEofISQyG/ZoJ7fYEi9cvsPTrr5JYtupRKUjQCiFagcIgbVKmeFulQdxjlaTITmv3vPKKlgkO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ez6OFCTb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F14ECC4CEF1;
-	Wed,  1 Oct 2025 16:31:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759336305;
-	bh=euC6S3LiJG7HoABb999DdDDuS1mO+zTyN+ac3MVNApE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ez6OFCTbMYLimCzxtqaRhwayDyeKNMZFV9p2OfwD0PeyjCazvNn/yEn8AeW0ocQIo
-	 o7KDW0MUki5v9QClr61J3yaWYq0IsM0AnO3CJbVWWcRvxjwndNLjKHEnCV9UZ8w9jO
-	 SjcBGOOU7yJLOm0hEzY+53QrOGGy6P+y3140tttzA9aj7jsWfLYhgAq3nJ8VAuk1Bi
-	 0OzSaA0jojTNQflLq5OLzKL6ukzWa7/iDG8qFzoUMGWBNqN7b0hpAf/lbqUV6T1e6t
-	 wBP2dTd10B4mkZyx5Brx0yPKQZFBEtW6h1SUcDmd2wzwEwBTz3jtaFjSQRGmk44QAd
-	 9pTkSzOL8E+Vw==
-Date: Wed, 1 Oct 2025 11:31:39 -0500
-From: Rob Herring <robh@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: do not
- reference whole usb-switch.yaml
-Message-ID: <20251001163139.GA1877961-robh@kernel.org>
-References: <20250902-topic-sm8x50-fix-qmp-usb43dp-usb-switch-v1-1-5b4a51c8c5a8@linaro.org>
- <20250905175533.GA1000951-robh@kernel.org>
- <nwtt76n4t7tlf26ex47wrot7g7nldtmavbzgwmluls3egamjsi@mkomopb6fjh6>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 790A81F4CBF;
+	Wed,  1 Oct 2025 17:18:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759339123; cv=pass; b=nhEonpOXuMYnJ5rwzrqCTmuErMMFVMOy4sm9VL1MjkGVOL7s5PGp/HkEdCu0DvVhrUxXIMsUxXMwQjGG//LX6HPCf+JpghbsWV+3edShCT84KjA8dw8e+em7FI0VDLtb2KBcoHllpRvYfE+Cyw7rQ4mCgMU2yIGW6KJNhgqaLMU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759339123; c=relaxed/simple;
+	bh=5oopaJWCCa9McYN/u5FuVWHmY0aTOrreGFImxV+XzOY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ed8srSPMl49HtS3J9EpFfnuofjw73Flr3YxlCMhunBg3amQ0+Rdx4B6bYK77Bxn0RXB9lSdJ0TPO6Xdix+YCtwMc0pQmxze6T6BVoYtyTycvCEWwTyQOrRN6D42NCLVROEggL/8xbe+P2i5KgZHlxQOsRsBcRCj21lcKh2w2ilA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b=ksINNn9R; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1759339054; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=g6eeKVe8q5UYu/Zyv+4f8spD2OVynk46aIqjrhPwvud4pg/yFU6GJ8m/Y+1A38QxhJIyMHo9XvP2zVwJvaf/koqQdRI7iWsrnIYH03ufiggiwoc8wIKBaqBtmNuHNS3TWVaLJgEmt6Fefs8/PbI5VQDaVTNFQ38gfghwAncUdSI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1759339054; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=SkWCXVZn9oQwr9fOneaWYc16aLwPTVni5B0m5Fk1lXU=; 
+	b=PXCmVyZKF60Fi3lkeBl8zsfau5T0mvo/+YUBztmCZGuI3hDgh8QllEmRMfQbbgGMoKMd6NpZArnRZfrbBQ6qU0VMrSsDFscLsUkiHKPlNfxm2mHOvEE/MuGlBOc92dOt6bAR2SQCSepwaMg2H0rHrr1SVIUaN7fmLbAM2i5Vss8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=ariel.dalessandro@collabora.com;
+	dmarc=pass header.from=<ariel.dalessandro@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759339053;
+	s=zohomail; d=collabora.com; i=ariel.dalessandro@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=SkWCXVZn9oQwr9fOneaWYc16aLwPTVni5B0m5Fk1lXU=;
+	b=ksINNn9Ry5kbkov/RYjCPthrjeR/B3ir8QZC1VLMfigTV/SQeRC/9naX5P5o+oQt
+	gcY1Xc/8D9yh670ZLUBONiSf31YNccaNSXJ9MVf3Ct2t0tT28Smz/yZBpoLObK3k8S4
+	J9608xI9dzJLMBP3t+Ok40Iuj+DdtKnf3vUZ3udU=
+Received: by mx.zohomail.com with SMTPS id 175933905208321.77046877084581;
+	Wed, 1 Oct 2025 10:17:32 -0700 (PDT)
+Message-ID: <a3b54ec9-e4d7-4d56-8493-f40be81f803e@collabora.com>
+Date: Wed, 1 Oct 2025 14:17:16 -0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <nwtt76n4t7tlf26ex47wrot7g7nldtmavbzgwmluls3egamjsi@mkomopb6fjh6>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 00/12] MediaTek dt-bindings sanitization (MT8173)
+To: Rob Herring <robh@kernel.org>
+Cc: airlied@gmail.com, amergnat@baylibre.com, andrew+netdev@lunn.ch,
+ andrew-ct.chen@mediatek.com, angelogioacchino.delregno@collabora.com,
+ broonie@kernel.org, chunkuang.hu@kernel.org, conor+dt@kernel.org,
+ davem@davemloft.net, dmitry.torokhov@gmail.com, edumazet@google.com,
+ flora.fu@mediatek.com, heiko@sntech.de, houlong.wei@mediatek.com,
+ jeesw@melfas.com, kernel@collabora.com, krzk+dt@kernel.org, kuba@kernel.org,
+ lgirdwood@gmail.com, linus.walleij@linaro.org,
+ louisalexis.eyraud@collabora.com, luiz.dentz@gmail.com,
+ maarten.lankhorst@linux.intel.com, marcel@holtmann.org,
+ matthias.bgg@gmail.com, mchehab@kernel.org, minghsiu.tsai@mediatek.com,
+ mripard@kernel.org, p.zabel@pengutronix.de, pabeni@redhat.com,
+ sean.wang@kernel.org, simona@ffwll.ch, support.opensource@diasemi.com,
+ tiffany.lin@mediatek.com, tzimmermann@suse.de, yunfei.dong@mediatek.com,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-bluetooth@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-sound@vger.kernel.org, netdev@vger.kernel.org
+References: <20250911151001.108744-1-ariel.dalessandro@collabora.com>
+ <20250923214834.GC91441-robh@kernel.org>
+Content-Language: en-US
+From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+In-Reply-To: <20250923214834.GC91441-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-On Tue, Sep 30, 2025 at 10:10:25PM +0300, Dmitry Baryshkov wrote:
-> On Fri, Sep 05, 2025 at 12:55:33PM -0500, Rob Herring wrote:
-> > On Tue, Sep 02, 2025 at 06:10:05PM +0200, Neil Armstrong wrote:
-> > > Both bindings describe a different layout of the ports properties,
-> > > leading to errors when validating DT using this PHY bindings as
-> > > reported by Rob Herring.
-> > > 
-> > > Reported-by: Rob Herring <robh@kernel.org>
-> > > Closes: https://lore.kernel.org/all/175462129176.394940.16810637795278334342.robh@kernel.org/
-> > > Fixes: 3bad7fe22796 ("dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Reference usb-switch.yaml to allow mode-switch")
-> > > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > > ---
-> > >  .../devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml    | 8 +++++---
-> > >  1 file changed, 5 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
-> > > index c8bc512df08b5694c8599f475de78679a4438449..5005514d7c3a1e4a8893883497fd204bc04e12be 100644
-> > > --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
-> > > +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
-> > > @@ -73,8 +73,11 @@ properties:
-> > >      description:
-> > >        See include/dt-bindings/phy/phy-qcom-qmp.h
-> > >  
-> > > -  mode-switch: true
-> > > -  orientation-switch: true
-> > > +  mode-switch:
-> > > +    $ref: /schemas/usb/usb-switch.yaml#properties/mode-switch
-> > > +
-> > > +  orientation-switch:
-> > > +    $ref: /schemas/usb/usb-switch.yaml#properties/orientation-switch
+Rob,
 
-Looking at this again, this isn't even correct and I don't think it 
-works. It's missing a '/' and  should be ...#/properties/... to be a 
-valid json pointer.
-
-I thought we checked this...
-
-> > 
-> > This is a pattern we try to avoid with references at a property level. I 
-> > prefer you make port and ports not required in usb-switch.yaml.
+On 9/23/25 6:48 PM, Rob Herring wrote:
+> On Thu, Sep 11, 2025 at 12:09:49PM -0300, Ariel D'Alessandro wrote:
+>> This patch series continues the effort to address Device Tree validation
+>> warnings for MediaTek platforms, with a focus on MT8173. It follows the
+>> initial cleanup series by Angelo [0].
+>>
+>> Similarly to the ongoing MT8183 work done by Julien Massot, this patchset
+>> eliminates several of the remaining warnings by improving or converting DT
+>> bindings to YAML, adding missing properties, and updating device tree files
+>> accordingly.
+>>
+>> [0] https://www.spinics.net/lists/kernel/msg5780177.html
+>>
+>> Changes in v2:
+>> * Wrapped commit messages to 75 columns line wrap.
+>> * Replaced "YAML" by "DT schema" in patches subject and content.
+>> * mt8173-mdp: Fixed properties: compatible, clocks, iommus and
+>>    mediatek,vpu.
+>> * mt8173-vpu: Fixed line wrap. Dropped memory-region property description.
+>> * mediatek,mmsys: Dropped patch as it's not a binding issue.
+>> * mediatek,od: Rewrote commit log with details on DT schema users missing
+>>    the related property. Rewrote mediatek,gce-client-reg property.
+>> * mediatek,ufoe: Rewrote commit log with details on DT schema users missing
+>>    the related property. Rewrote mediatek,gce-client-reg property.
+>> * marvell,sd8897-bt: Moved to net/bluetooth/. Added missing ref to
+>>    bluetooth-controller.yaml. Dropped example. Updated reference in another
+>>    file. Minor fixes in properties.
+>> * mediatek,mt8173-rt5650: Dropped unnecessary quotes and unused label.
+>> * dlg,da9211: Dropped enable-gpios description. Rewrote generic example
+>>    node names. Minor fixes in properties.
+>> * melfas,mip4_ts: Dropped unnecessary quotes. Added "active high" to
+>>    ce-gpios property description.
+>> * mediatek,jpeg: Dropped patch as it doesn't apply.
+>>
+>> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+>>
+>> Ariel D'Alessandro (12):
+>>    dt-bindings: media: Convert MediaTek mt8173-mdp bindings to DT schema
+>>    dt-bindings: media: Convert MediaTek mt8173-vpu bindings to DT schema
+>>    dt-bindings: net: Convert Marvell 8897/8997 bindings to DT schema
+>>    dt-bindings: ASoC: Convert MediaTek RT5650 codecs bindings to DT
+>>      schema
+>>    dt-bindings: display: mediatek,od: Add mediatek,gce-client-reg
+>>      property
+>>    dt-bindings: display: mediatek,ufoe: Add mediatek,gce-client-reg
+>>      property
+>>    arm64: dts: mediatek: mt8173: Fix mt8173-pinctrl node names
+>>    dt-bindings: pinctrl: mt65xx: Allow gpio-line-names
+>>    dt-bindings: regulator: Convert Dialog DA9211 Regulators to DT schema
+>>    arm64: dts: mediatek: mt8173-elm: Drop unused bank supply
+>>    dt-bindings: soc: mediatek: pwrap: Add power-domains property
+>>    dt-bindings: input: Convert MELFAS MIP4 Touchscreen to DT schema
 > 
-> But this solution is also not perfect. E.g.
-> Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml should
-> only allow the orienttion-switch property, while using
-> allOf:$ref:usb-switch.yaml allows all three (orientation-switch,
-> mode-switch, retimer-switch).
+> As we're close to the merge window, I applied patches 2, 8, and 11.
 
-That can be handled like this:
+Great, I can see that patches 5 and 6 were also applied (with small 
+modifications).
 
-$ref: usb-switch.yaml
-properties:
-  orientation-switch: true
-additionalProperties: false
+Thanks!
 
-Though if you need unevaluatedProperties for some other reason, then 
-that won't enforce it and it's just documentation. In that case, then 
-perhaps usb-switch.yaml is not the right granularity and should be split 
-up.
+-- 
+Ariel D'Alessandro
+Software Engineer
 
-I put this into the category of "this is the least of our problems". I'm 
-not that interested in enforcing what common properties a device uses or 
-not. It's undocumented properties I'm worried about or lack of 
-constraints (on reg, clocks, interrupts, etc.).
+Collabora Ltd.
+Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK 
+Registered in England & Wales, no. 5513718
 
-Rob
 
