@@ -1,121 +1,183 @@
-Return-Path: <devicetree+bounces-222913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F4CCBAF5E0
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 09:14:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ECD95BAF5F6
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 09:19:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB914189BE8D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 07:15:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABAA13ABFC1
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 07:19:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25B9C26E6F8;
-	Wed,  1 Oct 2025 07:14:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B7E51D61B7;
+	Wed,  1 Oct 2025 07:19:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="e5vJaUba"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="sFJLSkGI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A1A626B75F
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 07:14:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 234DA3770B;
+	Wed,  1 Oct 2025 07:19:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759302877; cv=none; b=C1hKmP/1+nfAI4c4FrZ9Fo4s0VHyjxVfyuoaDMT/0pYIKYvzapwtXWOhOF1BfyQ5ytDkemJpifBwKOyBFT5yhoGTrk1zQLRPUZqPCqOLhxFqnTECmLZaZN8c+EMX8MJIIdSXB9RtkroRiRfO+Y+m4/qNvdtDnKeqr0y7FKbGPdw=
+	t=1759303187; cv=none; b=K2FqvytSUscsJPZHVfjTnKnI3lkfR5IxgUnnshHEqlAiCvs3nFzGTcLMNbanWer8RCqBK+VWRuEeo9b3jLc7I5skfciBR/3YCgzV6BAbSO2QN5AcdmavqJ3Wyccvkeqv1odfveUiScBw563p8iYB3wRtqEBSxvcUTWiwVnYD5lY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759302877; c=relaxed/simple;
-	bh=SOSNthDQ8EtFJ9H2g60zSiqKEmfmR4BHtXlNS/cnOZk=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=F9uM4sHY3GpysNh0B2YMGosqkz21t8LZn+4K9AfTdvo45slm3w+1lqdY1jwVsjA9totw0v64hse9fpsavXDfbhYLz5VCSj2Svjh+I/bwYQl6GyIHz43IkWqxqLsEAzRXOrt3PMT0bNXhDBb20kqgpZRL4QvuEuuEoLYcCvB16Z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=e5vJaUba; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-46e542196c7so3468085e9.0
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 00:14:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759302874; x=1759907674; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CnrCm82N9RDCdUhU0ThMIOx/wxR6eW+Zxx59nq/+ZhU=;
-        b=e5vJaUbaPgta33RBv8FZVGL/kr6mZ1E5raUchujAHoD+UNXYZOnaJgUqVzwYRNQZGm
-         OoBzegBxW+qFCNpw+PmEtNdFzHxO/H3AkL7VvWfU4e5dT2zbEBncQlt3i6JjgcE4P23f
-         UYn0JrMgex4YNCFVWugjX5uXEtNK61Jmdu5WCj9B0Cnt3RE0//aud13gxudVhj8yYheA
-         6CKua/ExpbBbINEH48NhHrUgz4oBykPUXxcPW6z3w1Y+8RUlPZxOWw3D8dawVxfLGKaf
-         LZpeIa0zbml/s7q14vplPf6tp6jwxhujFs8bCyalZZgC9P9WE9GfRSaf+o7lD1vNLKm7
-         ykfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759302874; x=1759907674;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CnrCm82N9RDCdUhU0ThMIOx/wxR6eW+Zxx59nq/+ZhU=;
-        b=JV/QwRE2BDb3sLHIN7hZInpavOxV5E8jSIbmfjhlmBICCAPR3lWX8bZ9n/sFX5yyt4
-         rkBYax+25TwDUrcPU7ha09jAlGjSJbXrh2deSu2cSiWR5Sk0wxPWzQ5Ob54HaQUdU5Qh
-         0Knz1rpKvIRA11k4jvcfiMpgMeeiWczjath/Uua9TA96pV3BvIBbK9WFSmVWqkXxXISj
-         64vP3KeplTljVapU678ID30C9TH7BlneoaOSJNQfPyaSFgG81K4A9GUWh4qnwJIfG+tO
-         bRFpSKRLYiTSeD6m8EOjZOhIQb+fuFmgT13eXUIbfXPLMvRenblTAgOlzl6Z+kXyLjbl
-         eo8w==
-X-Forwarded-Encrypted: i=1; AJvYcCVv+v1JLJpjMXSnXj8LaPiFHKOJLq5zIVetde5oIkXV5ubnj/WIoaryXk93u1AEcui1OGE9wtbDnFV7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2I4o2domfFVGVb37nwaOhW01qmPTD8PzUcorm//Avn/Ff1GH+
-	uW6UrrvMcUMmNmQGOPnMJPDKcQUlPpx1v9oBKxMlSqfKLqTKUVdS6AoVw0TY+LsRDZk=
-X-Gm-Gg: ASbGnctgNinuOLl+hSu8xTVzcIOc4q3QjsLE/HdINiZGMy8i7saZ/mX91OXWDa3vSgw
-	DWRM+e3DrCDH511iyfeeawULNDNLyXxpOjtoFKVVKeaQvrDvgmTF0SzatCPf4QLJAVHCKdEF7fe
-	J4ADlYuCVNE8zsuwltmGSQvBkDhrrD4+NpA2i9pBfCQiwnwHWB71FmV5NkjzYu+s+iyzTUUmktM
-	gAIv9oAdL+KHIBoAQ7Bzmn6bxGRWE0D7hGUY0lnQo8moLVTXfUG+TKkhjcysZZWq3hjW4VYmzvD
-	RFfM4R9yrrV1JUW9wYNsNc69r8KdDjoXCRBKoUDcsxsca/W4aDt3QknC84MgwsrSIJnEUDBNitG
-	9BYuEOoc2kX6XzZegG4Br9VngKyic1E/lc/EDDfDc9ArgHQrZcior2eJgI20WxqBz2GM=
-X-Google-Smtp-Source: AGHT+IEPMG4C8VjwA3pQsA24NLtsLy61u5i8hAOBeHwnCJP8qh3051WTzyVCw5X1oRCuGh22oxkRXA==
-X-Received: by 2002:a05:600c:c117:b0:46e:6339:79c5 with SMTP id 5b1f17b1804b1-46e63397a8bmr7307155e9.5.1759302873435;
-        Wed, 01 Oct 2025 00:14:33 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e619b7e37sm25185825e9.1.2025.10.01.00.14.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Oct 2025 00:14:33 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: dri-devel@lists.freedesktop.org, 
- Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- David Airlie <airlied@gmail.com>, 
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>, 
- Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>, 
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-In-Reply-To: <20250904205743.186177-1-marek.vasut+renesas@mailbox.org>
-References: <20250904205743.186177-1-marek.vasut+renesas@mailbox.org>
-Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: ili9881c: Document 5"
- Raspberry Pi 720x1280
-Message-Id: <175930287261.425863.7680841770624369049.b4-ty@linaro.org>
-Date: Wed, 01 Oct 2025 09:14:32 +0200
+	s=arc-20240116; t=1759303187; c=relaxed/simple;
+	bh=m3GyrvFZTp0xnocM0iyhLUYbvWE/o5O0Ruc2sJ8qxg4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=B2eoD+NVpKQ7Aq0DjPLo2eCDiJ5mLQrxM0T8M3NyElm2kIy+kBrgxPrP9g5O58nLRPdr0+SayVDWx55LKxg3sut6AagCSwZ3UNGvvt16qtp2FjlU9ySkskbw7eWZphCWL1xOL1GEKBvI+BIP6STFMjskx6u7jAXDegfvRjzmago=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=sFJLSkGI; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 376754E40DF5;
+	Wed,  1 Oct 2025 07:19:43 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0B36E606BF;
+	Wed,  1 Oct 2025 07:19:43 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 24145102F1854;
+	Wed,  1 Oct 2025 09:19:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1759303182; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=bLWzwrSTti2UytVkyEvnDMwkovA44fR84c3zWkiEaN0=;
+	b=sFJLSkGIuA4ckN4RYae9fVmbOjBs2QufWjdQyYpi74aKyuS2zbNoWPiXuD8E95nzBqdPFe
+	UNiykmAd93lF1yoY7hBbgNootC+5RintzuENkY5Z1Lt7mlKd+qkOFsKGzqPX5TXd1foG+O
+	D2y5hf4eF5uP0a4FlfVKOk5WJkDiZPo3wGda7yHocb6qmpNp1Id8yP13DQQd7sXeaIvsS3
+	TumYgVYpgFLwkm3IHnuT4mTaNX1UxySY2gflLJymE0a5aKUW/AQ2M1lHreM3jnD/X6wa+Z
+	X0YNNpYRU1Ag7E9Gs0gDixKzL13LhzAh55ZRTWVKsCGK/x6zHdx0DLZjLz3BOQ==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, David Lechner <dlechner@baylibre.com>
+Cc: Hans de Goede <hansg@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] iio: add processed write API
+Date: Wed, 01 Oct 2025 09:19:37 +0200
+Message-ID: <5015441.GXAFRqVoOG@fw-rgant>
+In-Reply-To: <2a503edb-fe9f-4d61-92c0-c1083a028e19@baylibre.com>
+References:
+ <20250925-ltm8054-driver-v2-0-bb61a401a0dc@bootlin.com>
+ <20250925-ltm8054-driver-v2-2-bb61a401a0dc@bootlin.com>
+ <2a503edb-fe9f-4d61-92c0-c1083a028e19@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: multipart/signed; boundary="nextPart1934360.tdWV9SEqCh";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi,
+--nextPart1934360.tdWV9SEqCh
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+Subject: Re: [PATCH v2 2/5] iio: add processed write API
+Date: Wed, 01 Oct 2025 09:19:37 +0200
+Message-ID: <5015441.GXAFRqVoOG@fw-rgant>
+In-Reply-To: <2a503edb-fe9f-4d61-92c0-c1083a028e19@baylibre.com>
+MIME-Version: 1.0
 
-On Thu, 04 Sep 2025 22:56:56 +0200, Marek Vasut wrote:
-> Document the 5" Raspberry Pi 720x1280 DSI panel based on ili9881.
+Hello David,
+
+On Thursday, 25 September 2025 23:10:14 CEST David Lechner wrote:
+> On 9/25/25 7:37 AM, Romain Gantois wrote:
+> > Add a function to allow IIO consumers to write a processed value to a
+...
+> > +static int iio_convert_processed_to_raw_unlocked(struct iio_channel
+> > *chan,
+> > +						 int processed, int *raw,
+> > +						 unsigned int scale)
+> > +{
+> > +	int scale_type, scale_val, scale_val2;
+> > +	int offset_type, offset_val, offset_val2;
+> > +	int ret;
+> > +
+> > +	scale_type = iio_channel_read(chan, &scale_val, &scale_val2,
+> > +				      IIO_CHAN_INFO_SCALE);
+> > +	if (scale_type >= 0) {
+> > +		ret = iio_divide_by_value(raw, processed, scale_type, 
+scale_val,
+> > scale_val2); +		if (ret < 0)
+> > +			return ret;
+> > +	} else {
+> > +		*raw = processed;
+> > +	}
+> > +
+> > +	if (!scale)
+> > +		return -ERANGE;
+> > +
+> > +	*raw = div_s64(*raw, scale);
+> > +
+> > +	offset_type = iio_channel_read(chan, &offset_val, &offset_val2,
+> > +				       IIO_CHAN_INFO_OFFSET);
+> > +	if (offset_type >= 0) {
+> > +		switch (offset_type) {
+> > +		case IIO_VAL_INT:
+> > +		case IIO_VAL_INT_PLUS_MICRO:
+> > +		case IIO_VAL_INT_PLUS_NANO:
+> > +			break;
+> > +		case IIO_VAL_FRACTIONAL:
+> > +			offset_val /= offset_val2;
+> > +			break;
+> > +		case IIO_VAL_FRACTIONAL_LOG2:
+> > +			offset_val >>= offset_val2;
+> > +			break;
+> > +		default:
+> > +			return -EINVAL;
+> > +		}
+> > +
+> > +		*raw -= offset_val;
+> > +	}
 > 
-> 
+> There are some rounding biases in this function, but I'm not sure if
+> it is worth trying to make a perfectly fair function.
 
-Thanks, Applied to https://gitlab.freedesktop.org/drm/misc/kernel.git (drm-misc-next)
+I'm unfamiliar with the notion of rounding bias, does it mean that nested 
+calls of this function would tend to amplify rounding errors? In this case, 
+would rounding to the nearest integer instead of whatever is being done by the 
+integer division here be a good solution?
 
-[1/2] dt-bindings: ili9881c: Document 5" Raspberry Pi 720x1280
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/86769c7df4ce2f58ebe67c08aae3f52090727f7c
-[2/2] drm/panel: ilitek-ili9881c: Add configuration for 5" Raspberry Pi 720x1280
-      https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/97f0d2ed0c6849e24c43a1836ab5ac122f80fe9d
+Maybe I'm misunderstanding what you mean, in that case please let me know.
+
+Thanks,
 
 -- 
-Neil
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart1934360.tdWV9SEqCh
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmjc1gkACgkQKCYAIARz
+eA6MYg//Viifao41HU18GYkLlUZn/8j/K0FDeJHL+7QGILawnj1ZTgtN37o6sZIy
+cKL3SHGYGaNwGuuSrP8Phl+f0d5TylhtlKk5lABeUu1pVJtQl2xVAo0NhnPmXt34
+gT2r+Dx+3CCYytsF2/LlWQJZXawlgRWfXyu1RI4GZ2THCks3VZXhg14WvLVJTN97
+ovCQFEgQ6DIcz9kkZvtzPtB521NZvYAeMYxgfVIFAcBcmZOX0ZLGk5JKTMpCcgwX
+29ujH5CWeAlB0ivBUcBxQXk/wIjcmQwmIow9buazeKqWt0Dg4//RnMQzcXMv9mWa
+H+ADj/V6mxi5jjZsMihOyeHUqqJCsMMbwpObEizOdot7eVbW/LZsa8PTJ/gcF71T
+YFXmGW6/sF4eRSc6bmjLnTIfaN0h7ABZ5RrI7znAgG9oz93xy9D39nHjMgpA09p5
+9dIBwMPaMngCP90VojFMeU3krzCp/1Hk82KdpvJ6gqn3Ob/47QBsDYmIjUQ6V6Sl
+7grx9/zVV2uZ6lHmrNIvFRt10o90ogJ6z4FBMjz8eWMkUKNdYtxUFbTEpCcbIOhs
+3nvvYBAKCF/UfRinVRs8ytHUGuk1r6pZfQ7Bd6Qtg3nBK7QA2gBKRst43ce7EiRU
+rG8JRM107pBXniYRUaewQ6JW3GZfuchBmRHfC3P7r79ndCM2Lk4=
+=tqTu
+-----END PGP SIGNATURE-----
+
+--nextPart1934360.tdWV9SEqCh--
+
+
 
 
