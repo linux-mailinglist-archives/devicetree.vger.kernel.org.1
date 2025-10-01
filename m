@@ -1,290 +1,121 @@
-Return-Path: <devicetree+bounces-223141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223140-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A75EBB180F
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 20:34:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A4B8BB1803
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 20:33:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E17D21C5BEA
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 18:34:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 424B84A707F
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 18:33:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 940772D63E8;
-	Wed,  1 Oct 2025 18:33:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394B82D4B6C;
+	Wed,  1 Oct 2025 18:33:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b="HHdG3Ruz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nZ0jdwUA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CD732D5934;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BA6C25DB1A;
 	Wed,  1 Oct 2025 18:33:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759343632; cv=pass; b=Bw8b2rfxTyy5qRgEobY1LJTZZlUpJl3/ca4wo8OJTq2yHiDpqGfumCpxqePL0VZZXZqz3hCk59Hl9teLKluppoOegooS4ajDfA/JaBvHm/nKpQIdv0tWLlEaJeFcmM0ENprD4BMVNOQrHOaNG0WGZc6C+z8BXNB/W1sHT9sgnmM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759343632; c=relaxed/simple;
-	bh=6XPuX0m01ZFf2GseM0abEL1RU1m4cMag66VApjnqATw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=A3BgHzDZ6LLvGjUSPAMQWWVv7cPWdiDnNiRqCJxQRLHXIEXOyog0YjvyaZISb7ONuRn1Uz7m+LgUs3NF4irc/u63SR5x8rhy4FbAjY80gIW+bzzxUAUXOb5ZNXPtNluWRq09OFITS/2RV6VPWyn7K02lmXXVT8pAuBpflnH+oUU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b=HHdG3Ruz; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1759343611; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=gXAEQVDCK74OK0TzgTvTVA+MUfiCZiPJSqtb6A0RzFDlVAzkGWfdzklQ8xaf+QQ1bDrbZhTRe+Axr4oTSkK4UFTZNMkcDg2ZE2OqqeYTZjGoQXR8hf2OQ9iVPBNkpe93v4cjguLw3w8hIh7OYGF8/fX59rz0xB0+pVXtv5I8JGE=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1759343611; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=5Tf1KRNvIh/o3Lawrm1/DSWDlI3pzmdrutlzoqFE9jM=; 
-	b=WVl7sfPLoh73cyvsUaNf5DoDdmjA7cK0cAPKbo7E/XC4dwdGklj0IphxKz0vqB54Q8oFOWbzul0VEH/ek5nZGf7/AxDi4vuWGewAPd2CJ3s46kdnOZcZCFu8ZkuR+CZsBRQ+ZCK8ggaTzCv5d+Gjku6JgdNwjTLbbV6iVviJ4QU=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=ariel.dalessandro@collabora.com;
-	dmarc=pass header.from=<ariel.dalessandro@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759343611;
-	s=zohomail; d=collabora.com; i=ariel.dalessandro@collabora.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=5Tf1KRNvIh/o3Lawrm1/DSWDlI3pzmdrutlzoqFE9jM=;
-	b=HHdG3Ruz4P6R9QgHFOYqkeIpbu1ln3qlPVXfSOXm7OUfyiZxyfaHqX0E5Khr3HWK
-	e+KQ1qOKYMrdkKpHO9hHjAxLH2HiXhKn+Vlc2JMYrVvli3IKwLze0hSbbbwWZO4mY4l
-	rqPFhfYx8Uko3TPhwfbvvwhHDKkwVP0viKtOYakE=
-Received: by mx.zohomail.com with SMTPS id 1759343610165605.9822601405356;
-	Wed, 1 Oct 2025 11:33:30 -0700 (PDT)
-From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-To: andrew+netdev@lunn.ch,
-	angelogioacchino.delregno@collabora.com,
-	ariel.dalessandro@collabora.com,
-	conor+dt@kernel.org,
-	davem@davemloft.net,
-	edumazet@google.com,
-	krzk+dt@kernel.org,
-	kuba@kernel.org,
-	luiz.dentz@gmail.com,
-	pabeni@redhat.com,
-	robh@kernel.org
-Cc: devicetree@vger.kernel.org,
-	kernel@collabora.com,
-	linux-bluetooth@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: net: Convert Marvell 8897/8997 bindings to DT schema
-Date: Wed,  1 Oct 2025 15:33:20 -0300
-Message-ID: <20251001183320.83221-1-ariel.dalessandro@collabora.com>
-X-Mailer: git-send-email 2.51.0
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759343630; cv=none; b=f61ol9lQA/xPoPmL0jm52/SVW4nv6twlRSlJhafl+oGrSkfEn/+ffH6PlzEcjrTIwNimxBLDEaVa0F5sgkCkRki8ZoV/fSdrcWtcSCAM9EmqguPjcQD80asxnhYp9GPhA0vg9xipCtrW3uEyXQ1umzQzN4XeKrfnHFG6D8GeFhg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759343630; c=relaxed/simple;
+	bh=Xb2lH0sV16eeETFsmOI0Y8doM7vNsNLpecPTgoVug9M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Oi0Hp+yBdhQVg3IYpavlB8wjNA1hsQMLMS1+cGp1oJ3WJpKwcP6K0u8sa0qCqBYDt9ISaVBH+xvIvTPubntpfqsyQ1MUSSB761u/2xX4Lryhn0LNVJwhtg2K4Z+oXOU9oc/yh4EndmVmw0PBENUuHCxVde+2YTtj2+TW8gUPSk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nZ0jdwUA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC8B4C4CEF1;
+	Wed,  1 Oct 2025 18:33:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759343629;
+	bh=Xb2lH0sV16eeETFsmOI0Y8doM7vNsNLpecPTgoVug9M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nZ0jdwUAbWT/9x4SadJIY2f4V/NL3jEI+DJHNGWWhIxzczO13aFPh/6klDqwA8bL9
+	 cLcgoW557k6R40KFRWM8Tw9dxoZPfUa4sqnn8MgwMwVsxuoUTexDoY+TuVR2m1U1LS
+	 n41xfrN/iRQlc0P/yScu/JOxqqa+e5I/Xtmu3ug1AsYLlMjpsxgNJxDZ3AO2ymxE33
+	 FF51i9KgZCiSognZU8iMD11mIHZVDtNyEEG0T6AJJ0ptTU3EYOhaDlHvaGxzCvSmau
+	 EIO8mt5aff/aLLg/CfFJgfFyqDGqOGBw0+yZ08QoUJXsAuH6HptbAodY1Tba5+7l2p
+	 jFjG/5jVsEFpA==
+Date: Wed, 1 Oct 2025 19:33:44 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Kevin Tung <kevin.tung.openbmc@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Amithash Prasasd <amithash@meta.com>,
+	Kevin Tung <Kevin.Tung@quantatw.com>,
+	Ken Chen <Ken.Chen@quantatw.com>, Leo Yang <Leo-Yang@quantatw.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: aspeed: add Meta Yosemite5 board
+Message-ID: <20251001-bonding-surging-af8cd0d09e07@spud>
+References: <20251001-yv5_add_dts-v3-0-54190fbc0785@gmail.com>
+ <20251001-yv5_add_dts-v3-1-54190fbc0785@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-ZohoMailClient: External
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="N49fSXuRnpf7iDQV"
+Content-Disposition: inline
+In-Reply-To: <20251001-yv5_add_dts-v3-1-54190fbc0785@gmail.com>
 
-Convert the existing text-based DT bindings for Marvell 8897/8997
-(sd8897/sd8997) bluetooth devices controller to a DT schema.
 
-While here, bindings for "usb1286,204e" (USB interface) are dropped from
-the DT   schema definition as these are currently documented in file [0].
+--N49fSXuRnpf7iDQV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[0] Documentation/devicetree/bindings/net/btusb.txt
+On Wed, Oct 01, 2025 at 04:47:50PM +0800, Kevin Tung wrote:
+> Document the new compatibles used on Meta Yosemite5.
+>=20
+> Signed-off-by: Kevin Tung <kevin.tung.openbmc@gmail.com>
 
-Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
----
- .../net/bluetooth/marvell,sd8897-bt.yaml      | 79 ++++++++++++++++++
- .../devicetree/bindings/net/btusb.txt         |  2 +-
- .../bindings/net/marvell-bt-8xxx.txt          | 83 -------------------
- 3 files changed, 80 insertions(+), 84 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/bluetooth/marvell,sd8897-bt.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/marvell-bt-8xxx.txt
+You've repeatedly ignored my ack, so I assume you don't want it.
+Maybe you want a nak instead?
 
-diff --git a/Documentation/devicetree/bindings/net/bluetooth/marvell,sd8897-bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/marvell,sd8897-bt.yaml
-new file mode 100644
-index 0000000000000..a307c64cfa4d6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/bluetooth/marvell,sd8897-bt.yaml
-@@ -0,0 +1,79 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/bluetooth/marvell,sd8897-bt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Marvell 8897/8997 (sd8897/sd8997) bluetooth devices (SDIO)
-+
-+maintainers:
-+  - Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-+
-+allOf:
-+  - $ref: /schemas/net/bluetooth/bluetooth-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - marvell,sd8897-bt
-+      - marvell,sd8997-bt
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  marvell,cal-data:
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    description:
-+      Calibration data downloaded to the device during initialization.
-+    maxItems: 28
-+
-+  marvell,wakeup-pin:
-+    $ref: /schemas/types.yaml#/definitions/uint16
-+    description:
-+      Wakeup pin number of the bluetooth chip. Used by firmware to wakeup host
-+      system.
-+
-+  marvell,wakeup-gap-ms:
-+    $ref: /schemas/types.yaml#/definitions/uint16
-+    description:
-+      Wakeup latency of the host platform. Required by the chip sleep feature.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    mmc {
-+        vmmc-supply = <&wlan_en_reg>;
-+        bus-width = <4>;
-+        cap-power-off-card;
-+        keep-power-in-suspend;
-+
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        bluetooth@2 {
-+            compatible = "marvell,sd8897-bt";
-+            reg = <2>;
-+            interrupt-parent = <&pio>;
-+            interrupts = <119 IRQ_TYPE_LEVEL_LOW>;
-+
-+            marvell,cal-data = /bits/ 8 <
-+                0x37 0x01 0x1c 0x00 0xff 0xff 0xff 0xff 0x01 0x7f 0x04 0x02
-+                0x00 0x00 0xba 0xce 0xc0 0xc6 0x2d 0x00 0x00 0x00 0x00 0x00
-+                0x00 0x00 0xf0 0x00>;
-+            marvell,wakeup-pin = /bits/ 16 <0x0d>;
-+            marvell,wakeup-gap-ms = /bits/ 16 <0x64>;
-+        };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/net/btusb.txt b/Documentation/devicetree/bindings/net/btusb.txt
-index f546b1f7dd6d2..a68022a57c51e 100644
---- a/Documentation/devicetree/bindings/net/btusb.txt
-+++ b/Documentation/devicetree/bindings/net/btusb.txt
-@@ -14,7 +14,7 @@ Required properties:
- 
- 
- Also, vendors that use btusb may have device additional properties, e.g:
--Documentation/devicetree/bindings/net/marvell-bt-8xxx.txt
-+Documentation/devicetree/bindings/net/bluetooth/marvell,sd8897-bt.yaml
- 
- Optional properties:
- 
-diff --git a/Documentation/devicetree/bindings/net/marvell-bt-8xxx.txt b/Documentation/devicetree/bindings/net/marvell-bt-8xxx.txt
-deleted file mode 100644
-index 957e5e5c2927c..0000000000000
---- a/Documentation/devicetree/bindings/net/marvell-bt-8xxx.txt
-+++ /dev/null
-@@ -1,83 +0,0 @@
--Marvell 8897/8997 (sd8897/sd8997) bluetooth devices (SDIO or USB based)
--------
--The 8997 devices supports multiple interfaces. When used on SDIO interfaces,
--the btmrvl driver is used and when used on USB interface, the btusb driver is
--used.
--
--Required properties:
--
--  - compatible : should be one of the following:
--	* "marvell,sd8897-bt" (for SDIO)
--	* "marvell,sd8997-bt" (for SDIO)
--	* "usb1286,204e"      (for USB)
--
--Optional properties:
--
--  - marvell,cal-data: Calibration data downloaded to the device during
--		      initialization. This is an array of 28 values(u8).
--		      This is only applicable to SDIO devices.
--
--  - marvell,wakeup-pin: It represents wakeup pin number of the bluetooth chip.
--		        firmware will use the pin to wakeup host system (u16).
--  - marvell,wakeup-gap-ms: wakeup gap represents wakeup latency of the host
--		      platform. The value will be configured to firmware. This
--		      is needed to work chip's sleep feature as expected (u16).
--  - interrupt-names: Used only for USB based devices (See below)
--  - interrupts : specifies the interrupt pin number to the cpu. For SDIO, the
--		 driver will use the first interrupt specified in the interrupt
--		 array. For USB based devices, the driver will use the interrupt
--		 named "wakeup" from the interrupt-names and interrupt arrays.
--		 The driver will request an irq based on this interrupt number.
--		 During system suspend, the irq will be enabled so that the
--		 bluetooth chip can wakeup host platform under certain
--		 conditions. During system resume, the irq will be disabled
--		 to make sure unnecessary interrupt is not received.
--
--Example:
--
--IRQ pin 119 is used as system wakeup source interrupt.
--wakeup pin 13 and gap 100ms are configured so that firmware can wakeup host
--using this device side pin and wakeup latency.
--
--Example for SDIO device follows (calibration data is also available in
--below example).
--
--&mmc3 {
--	vmmc-supply = <&wlan_en_reg>;
--	bus-width = <4>;
--	cap-power-off-card;
--	keep-power-in-suspend;
--
--	#address-cells = <1>;
--	#size-cells = <0>;
--	btmrvl: bluetooth@2 {
--		compatible = "marvell,sd8897-bt";
--		reg = <2>;
--		interrupt-parent = <&pio>;
--		interrupts = <119 IRQ_TYPE_LEVEL_LOW>;
--
--		marvell,cal-data = /bits/ 8 <
--			0x37 0x01 0x1c 0x00 0xff 0xff 0xff 0xff 0x01 0x7f 0x04 0x02
--			0x00 0x00 0xba 0xce 0xc0 0xc6 0x2d 0x00 0x00 0x00 0x00 0x00
--			0x00 0x00 0xf0 0x00>;
--		marvell,wakeup-pin = /bits/ 16 <0x0d>;
--		marvell,wakeup-gap-ms = /bits/ 16 <0x64>;
--	};
--};
--
--Example for USB device:
--
--&usb_host1_ohci {
--    #address-cells = <1>;
--    #size-cells = <0>;
--
--    mvl_bt1: bt@1 {
--	compatible = "usb1286,204e";
--	reg = <1>;
--	interrupt-parent = <&gpio0>;
--	interrupt-names = "wakeup";
--	interrupts = <119 IRQ_TYPE_LEVEL_LOW>;
--	marvell,wakeup-pin = /bits/ 16 <0x0d>;
--	marvell,wakeup-gap-ms = /bits/ 16 <0x64>;
--    };
--};
--- 
-2.51.0
+> ---
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/D=
+ocumentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> index 456dbf7b5ec8f4442be815284e1ad085287dc443..6f2b12f96bd6ce31b4175e109=
+a78d931dffdfe28 100644
+> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> @@ -89,6 +89,7 @@ properties:
+>                - facebook,minerva-cmc
+>                - facebook,santabarbara-bmc
+>                - facebook,yosemite4-bmc
+> +              - facebook,yosemite5-bmc
+>                - ibm,blueridge-bmc
+>                - ibm,everest-bmc
+>                - ibm,fuji-bmc
+>=20
+> --=20
+> 2.51.0
+>=20
 
+--N49fSXuRnpf7iDQV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaN10CAAKCRB4tDGHoIJi
+0rToAP48ObGVhLOzqtINSi0uK5cZGsYs4Yk4UKr5h8fYmM++rQD/bO5IqlbvGU3Q
+ohXJpk3bM7P7wKsfp835IM8Bn2xMTAE=
+=on5v
+-----END PGP SIGNATURE-----
+
+--N49fSXuRnpf7iDQV--
 
