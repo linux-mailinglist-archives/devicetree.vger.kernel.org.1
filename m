@@ -1,325 +1,127 @@
-Return-Path: <devicetree+bounces-222999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C3CFBB030C
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 13:36:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D519BB031B
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 13:37:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8AAB0174697
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 11:35:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1FBC17B1852
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 11:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDBF02D060E;
-	Wed,  1 Oct 2025 11:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 092C12C324F;
+	Wed,  1 Oct 2025 11:37:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="VYUPVfxk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F52lhUAZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6FD12D0607;
-	Wed,  1 Oct 2025 11:35:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 382BE2522BE
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 11:37:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759318520; cv=none; b=BKpFgoqCn2aeHFTkPBjYcSzuthtNJyxJYecFhxaCwvx44TkQbmhVuMlzJTeVk7L5QNBs+eI32xwF45EWa5n76mqdrZXarho5m6a0jnrtRCuCkhxFglOHlwCmMk/iwQXPeAbZH9BcbPIT3JjZp+VsJv/uWUP32Rv4aATSWEHFx28=
+	t=1759318625; cv=none; b=Lm6t1wyg9SOgITx5ofIsxGhU76EZ1J52mU4BEPsDgPNs850CV2ARjckYK9pZdN2PBSo3O02Pg0IYDbmksmPtUVFX4dQgIBFLbuZj+xr6uN1vGLZEKo4r8x+iYA5e+z9NbCol3spuLID8PlYO2STEhQw7Zwk3QCj61+d53EdV+ls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759318520; c=relaxed/simple;
-	bh=WnOikCSnuc0MhHD5uJ+JkBcDcggU4x/o08v6yhqMGZ4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Z2zh6tM7k5hKfaTog3iOI/pNWRopQY1qrrvbrI604EhJ3tfrzOBucFpGn6OZQJcS2FmOw8iPnoZntHtWFlxAPM1k3a4h9xNtdfhtDZauTFPh8HrLMhGioEKfzUI1x3wmU1Xdjq5y/oUtYwfvylJYYtE+UiAe45xpv7pnh6jDOk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=VYUPVfxk; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1759318517;
-	bh=WnOikCSnuc0MhHD5uJ+JkBcDcggU4x/o08v6yhqMGZ4=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VYUPVfxkcaz9GYd4udVsfsdqJBfE4lS8rShpipzv+fwlJ1wMU8ZPlKMOhFsF/YSTz
-	 bJignkV+Yjd7WUCsIiLh6ZWVT3DNjZrIsSGepajzrxLfdqGGRBJVJzc2m7hQc/HGjj
-	 1NDZ27uj31jA/h2Z8+eQ4V/UkIsxcjxPyZtQSwFCf6TnIhyt1AMSKk5C67V3FUexpN
-	 cN8a25gPhqcBYiUd8inHuRpH6Eahnc6vMUQLFs80qKWNzlcpnThQad6kvdqjPRzoN+
-	 Nu+Tr2ngknP7hDE7rjhenyOvjhNbZtsiY5VG5G36BDcNhGJ6OhIX/EAV9WukK+319C
-	 +ia9SUG9iMqzg==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id BA30717E0B83;
-	Wed,  1 Oct 2025 13:35:16 +0200 (CEST)
-Message-ID: <fbe41fb5-1799-4b81-a6e2-4b783d1a2f7e@collabora.com>
-Date: Wed, 1 Oct 2025 13:35:16 +0200
+	s=arc-20240116; t=1759318625; c=relaxed/simple;
+	bh=Oh9tqT4BXfVxU9Z6FlbTpMfqC65Bh6cRSDairEHuhx4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ozELNZH+h/wYBNki2QW8BPeankV6AiBSFLM9mv1VwDe8jxpblRjaIovB5y4O9BdPu+VuYPMApXpkstY62Wa+59ffFFcyHelCSPoRdf0FNLNbXBHxvoWl0XRvqJ3NpA+19V2VrrPmIzT2iU7NExAN/+MF9dWrbszR4R5LemIntqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F52lhUAZ; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-57e03279bfeso1361665e87.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 04:37:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759318622; x=1759923422; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yA7aQRihrsbAM2bYPKB7h4TTWbFXDP3J7TuvZ5SMQX0=;
+        b=F52lhUAZ+z3M7IW9S/RJjHdbesG/xia29zuhJ/Dor9J5s2Uu2X5IGHj0Sy6w6mBN+H
+         l5qnojNbC2u1RZtkAASw9SwEDXzhThAwby3leLMlMfBVSzSmcIMtPwmWohOWJuaD33Pe
+         uiYo4KOJlVgHZctsF0j07FOfeQ1ktRfNNO7kJTJkAL1KJaQOJHY2H3Mx6QWk85qhqSGQ
+         Hl9bf8TyYLlibhj7QnrvJW6vBGxG69NDUUIaZg4pAAVjQU5um9wzLAyCRpOH35dh50H3
+         R7DPjFPp9TpaeUVJ2LVMKR09ltSyu+S2fL88smi4G18IWlRfp+qJH1Z9u+vSgiKgO6pd
+         7A/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759318622; x=1759923422;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yA7aQRihrsbAM2bYPKB7h4TTWbFXDP3J7TuvZ5SMQX0=;
+        b=dPx2F/zPixTUN5z4A0TQVyUwAsNq0ZRbo+qD1F4cVanXDTB5q1W7HO9mwtHDhBeuYz
+         lKB495KrNuYOLHVW2+5Lo3Bh5ZDmSjYG8Z6/A2m8UU2TVjRiR+Ql00WZVhuyTkpf/2v1
+         3/CjAUbVHrKPQfgPfoIu9wU8xceOmkM1JKr+JN/Sd/X7BaGSC56i6M6m2c89oG569X2x
+         3XCq3Ev40osXJRwNHM9IZYYHY0VuDbmz7rmD0farmUaQWE6e9SBJzNfAIll+YKPDfuGq
+         zSFJwG2Pzz7Wpje/StFqROsddAG6gFxnvJGtbNAvz7LUCPfbg2bKCdY2/yO1pyu9yMJC
+         pE8w==
+X-Forwarded-Encrypted: i=1; AJvYcCWA1tZimu0e71RIK9yu4zbBkUQJPfGg1oQk4kdrx1qd19fSbha4PblF9OLBLYoJiHD0RJncjEONe4Mr@vger.kernel.org
+X-Gm-Message-State: AOJu0YyD4tPcmMh9ko81cmjfU0u2j8JA3EYzE86isediNGz8H88IqeCy
+	2bNu9e0U9Bfv8TfTsiwDZ3Uj+qKt+WAfJpHjCxd9u5YCqgdDw+qYoXD+EDLh5263ZqhqguOjN1X
+	IYmnm+zVd8rrfxEyDiBwmpuqHvr5pg1OWsIkIF30t1A==
+X-Gm-Gg: ASbGnctM1vcFiDpz5/BRR1UHW4DCLyOP0V9lRdNYIOF+nrpIhhV97remD9Yuv7GEaa5
+	zytqUxo4FZlRhYmDHFCbcjy3OAW3iLfeXAvPwQROK17xbtqCtRu3v5TYjicKy/ZMXOpCM7AqUYv
+	QqU2gBCYQOQm187WXcT32qqYf5dB2/moElBj7+YLBaR3dQztNLrCx/IfxySghJDonxttMX92ria
+	ryyhuJ3AXFT/m8dwfpOnScxI1X7u9Q=
+X-Google-Smtp-Source: AGHT+IEZ39wDf5y2+FoKl/S9Pd1gyU4eNs2R/nqxRPqYxaEmOIsx03SIZ7rGxTx1idd5o96eAnjGrysxostm2ToXY7o=
+X-Received: by 2002:a05:6512:3b88:b0:585:1a9b:8b9a with SMTP id
+ 2adb3069b0e04-5897c348c2dmr2779744e87.9.1759318622276; Wed, 01 Oct 2025
+ 04:37:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] mailbox: mediatek: Add mtk-vcp-mailbox driver
-To: =?UTF-8?B?SmppYW4gWmhvdSAo5ZGo5bu6KQ==?= <Jjian.Zhou@mediatek.com>,
- "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "wenst@chromium.org" <wenst@chromium.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>
-References: <20250926090505.26267-1-jjian.zhou@mediatek.com>
- <20250926090505.26267-3-jjian.zhou@mediatek.com>
- <b62611ef-7ead-4bbe-8c96-d39e3c5c8dd8@collabora.com>
- <aa86f9012bc56231066846f423263504313b6717.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <aa86f9012bc56231066846f423263504313b6717.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250926-manpower-glacial-e9756c82b427@spud> <20250926-unshackle-jury-79f701f97e94@spud>
+ <CACRpkdZ5RCcaNJB_3ufAgpDtdJBKfOVrMbJVAQWaVSOkY0-XNQ@mail.gmail.com>
+In-Reply-To: <CACRpkdZ5RCcaNJB_3ufAgpDtdJBKfOVrMbJVAQWaVSOkY0-XNQ@mail.gmail.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 1 Oct 2025 13:36:49 +0200
+X-Gm-Features: AS18NWA9lQqxjLhryh6mWRwM5YU-v3y1Ej1S_ygRo7gjKky6YWFY61RMFP-QRag
+Message-ID: <CACRpkdZo=c0BnSLm=FKRMNYKEaPAHBgtfhD9txhPofts4ApDkw@mail.gmail.com>
+Subject: Re: [RFC 3/5] pinctrl: add polarfire soc iomux0 pinmux driver
+To: Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Il 30/09/25 04:59, Jjian Zhou (周建) ha scritto:
-> On Mon, 2025-09-29 at 12:33 +0200, AngeloGioacchino Del Regno wrote:
->> External email : Please do not click links or open attachments until
->> you have verified the sender or the content.
->>
->>
->> Il 26/09/25 11:05, Jjian Zhou ha scritto:
->>> Add mtk-vcp-mailbox driver to support the communication with
->>> VCP remote microprocessor.
->>>
->>> Signed-off-by: Jjian Zhou <jjian.zhou@mediatek.com>
->>> ---
->>>    drivers/mailbox/Kconfig                 |   9 ++
->>>    drivers/mailbox/Makefile                |   2 +
->>>    drivers/mailbox/mtk-vcp-mailbox.c       | 168
->>> ++++++++++++++++++++++++
->>>    include/linux/mailbox/mtk-vcp-mailbox.h |  32 +++++
->>>    4 files changed, 211 insertions(+)
->>>    create mode 100644 drivers/mailbox/mtk-vcp-mailbox.c
->>>    create mode 100644 include/linux/mailbox/mtk-vcp-mailbox.h
->>>
->>> diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
->>> index 02432d4a5ccd..c28bdb855663 100644
->>> --- a/drivers/mailbox/Kconfig
->>> +++ b/drivers/mailbox/Kconfig
->>> @@ -294,6 +294,15 @@ config MTK_CMDQ_MBOX
->>>          critical time limitation, such as updating display
->>> configuration
->>>          during the vblank.
->>>
->>> +config MTK_VCP_MBOX
->>> +     tristate "MediaTek VCP Mailbox Support"
->>> +     depends on ARCH_MEDIATEK || COMPILE_TEST
->>> +     help
->>> +       Say yes here to add support for the MediaTek VCP mailbox
->>> driver.
->>> +       The mailbox implementation provides access from the
->>> application
->>> +       processor to Video Companion Processor Unit.
->>> +       If unsure say N.
->>> +
->>>    config ZYNQMP_IPI_MBOX
->>>        tristate "Xilinx ZynqMP IPI Mailbox"
->>>        depends on ARCH_ZYNQMP && OF
->>> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
->>> index 98a68f838486..07278871d254 100644
->>> --- a/drivers/mailbox/Makefile
->>> +++ b/drivers/mailbox/Makefile
->>> @@ -63,6 +63,8 @@ obj-$(CONFIG_MTK_ADSP_MBOX) += mtk-adsp-mailbox.o
->>>
->>>    obj-$(CONFIG_MTK_CMDQ_MBOX) += mtk-cmdq-mailbox.o
->>>
->>> +obj-$(CONFIG_MTK_VCP_MBOX)   += mtk-vcp-mailbox.o
->>> +
->>>    obj-$(CONFIG_ZYNQMP_IPI_MBOX)       += zynqmp-ipi-mailbox.o
->>>
->>>    obj-$(CONFIG_SUN6I_MSGBOX)  += sun6i-msgbox.o
->>> diff --git a/drivers/mailbox/mtk-vcp-mailbox.c
->>> b/drivers/mailbox/mtk-vcp-mailbox.c
->>> new file mode 100644
->>> index 000000000000..a2a80d124e50
->>> --- /dev/null
->>> +++ b/drivers/mailbox/mtk-vcp-mailbox.c
->>> @@ -0,0 +1,168 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (c) 2025 MediaTek Corporation. All rights reserved.
->>> + * Author: Jjian Zhou <jjian.zhou.@mediatek.com>
->>> + */
->>> +
->>> +#include <linux/interrupt.h>
->>> +#include <linux/io.h>
->>> +#include <linux/kernel.h>
->>> +#include <linux/mailbox_controller.h>
->>> +#include <linux/mailbox/mtk-vcp-mailbox.h>
->>> +#include <linux/module.h>
->>> +#include <linux/of.h>
->>> +#include <linux/platform_device.h>
->>> +#include <linux/slab.h>
->>> +
->>> +struct mtk_vcp_mbox {
->>> +     struct mbox_controller mbox;
->>> +     void __iomem *base;
->>> +     struct device *dev;
->>> +     const struct mtk_vcp_mbox_cfg *cfg;
->>> +     struct mtk_ipi_info ipi_recv;
->>> +     struct mbox_chan chans;
->>> +};
->>> +
->>> +struct mtk_vcp_mbox_cfg {
->>> +     u32 set_in;
->>> +     u32 clr_out;
->>
->> u16 is enough for both register offsets, at least for now - and I
->> suspect it's
->> going to be enough forever.
-> 
-> OK. I change u32 to u16 in the next version.
-> 
->>
->>> +};
->>> +
->>> +static irqreturn_t mtk_vcp_mbox_irq_thread(int irq, void *data)
->>> +{
->>> +     struct mtk_vcp_mbox *priv = data;
->>> +
->>> +     /* get irq status */
->>> +     priv->ipi_recv.irq_status = readl(priv->base + priv->cfg-
->>>> clr_out);
->>> +
->>> +     __ioread32_copy(priv->ipi_recv.msg, priv->base,
->>> MBOX_SLOT_MAX_SIZE / 4);
->>> +
->>> +     mbox_chan_received_data(&priv->chans, &priv->ipi_recv);
->>> +
->>> +     /* clear irq status */
->>> +     writel(priv->ipi_recv.irq_status, priv->base + priv->cfg-
->>>> clr_out);
->>> +
->>> +     return IRQ_HANDLED;
->>> +}
->>> +
->>> +static struct mbox_chan *mtk_vcp_mbox_xlate(struct mbox_controller
->>> *mbox,
->>> +                                         const struct
->>> of_phandle_args *sp)
->>> +{
->>> +     if (sp->args_count)
->>> +             return NULL;
->>> +
->>> +     return &mbox->chans[0];
->>> +}
->>> +
->>> +static int mtk_vcp_mbox_send_data(struct mbox_chan *chan, void
->>> *data)
->>> +{
->>> +     struct mtk_vcp_mbox *priv = chan->con_priv;
->>> +     struct mtk_ipi_info *ipi_info = data;
->>> +     u32 status;
->>> +
->>> +     if (!ipi_info->msg) {
->>> +             dev_err(priv->dev, "msg buffer is NULL.\n");
->>> +             return -EINVAL;
->>> +     }
->>> +
->>> +     status = readl(priv->base + priv->cfg->set_in) &
->>> BIT(ipi_info->index);
->>
->> status = readl(priv->base + priv->cfg->set_in);
->> if (status & BIT(ipi_info->index) {
->>    ....
->> }
-> 
-> OK.
-> 
->>
->>> +     if (status) {
->>> +             dev_warn(priv->dev, "mailbox IPI %d is busy.\n",
->>> ipi_info->id);
->>> +             return -EBUSY;
->>> +     }
->>> +
->>> +     if (ipi_info->slot_ofs + ipi_info->len > MBOX_SLOT_MAX_SIZE)
->>> +             return -EINVAL;
->>> +     __iowrite32_copy(priv->base + ipi_info->slot_ofs, ipi_info-
->>>> msg,
->>> +                      ipi_info->len);
->>> +
->>> +     writel(BIT(ipi_info->index), priv->base + priv->cfg->set_in);
->>> +
->>> +     return 0;
->>> +}
->>> +
->>> +static bool mtk_vcp_mbox_last_tx_done(struct mbox_chan *chan)
->>> +{
->>> +     struct mtk_ipi_info *ipi_info = chan->active_req;
->>> +     struct mtk_vcp_mbox *priv = chan->con_priv;
->>> +
->>> +     return !(readl(priv->base + priv->cfg->set_in) &
->>> BIT(ipi_info->index));
->>> +}
->>> +
->>> +static const struct mbox_chan_ops mtk_vcp_mbox_chan_ops = {
->>> +     .send_data      = mtk_vcp_mbox_send_data,
->>> +     .last_tx_done   = mtk_vcp_mbox_last_tx_done,
->>> +};
->>> +
->>> +static int mtk_vcp_mbox_probe(struct platform_device *pdev)
->>> +{
->>> +     struct device *dev = &pdev->dev;
->>> +     struct mtk_vcp_mbox *priv;
->>> +     struct mbox_controller *mbox;
->>> +     int ret, irq;
->>> +
->>> +     priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
->>> +     if (!priv)
->>> +             return -ENOMEM;
->>> +
->>> +     priv->dev = dev;
->>> +     priv->chans.con_priv = priv;
->>> +     mbox = &priv->mbox;
->>> +     mbox->dev = dev;
->>> +     mbox->ops = &mtk_vcp_mbox_chan_ops;
->>> +     mbox->txdone_irq = false;
->>> +     mbox->txdone_poll = true;
->>> +     mbox->of_xlate = mtk_vcp_mbox_xlate;
->>> +     mbox->num_chans = 1;
->>> +     mbox->chans = &priv->chans;
->>> +
->>> +     priv->ipi_recv.msg = devm_kzalloc(dev, MBOX_SLOT_MAX_SIZE,
->>> GFP_KERNEL);
->>> +     if (!priv->ipi_recv.msg)
->>> +             return -ENOMEM;
->>> +
->>> +     priv->base = devm_platform_ioremap_resource(pdev, 0);
->>> +     if (IS_ERR(priv->base))
->>> +             return PTR_ERR(priv->base);
->>> +
->>> +     priv->cfg = of_device_get_match_data(dev);
->>> +     if (!priv->cfg)
->>> +             return -EINVAL;
->>> +
->>> +     irq = platform_get_irq(pdev, 0);
->>> +     if (irq < 0)
->>> +             return irq;
->>> +
->>
->> Please set the driver data before requesting the interrupt: what
->> happens if the
->> ISR is run before having driver data available otherwise?! :-)
->>
-> 
-> OK, I put the "platform_set_drvdata(pdev, priv)" between
-> "of_device_get_match_data(dev)" and "platform_get_irq(pdev, 0)".
-> 
-> Do you want me to submit a new version right now?
+On Wed, Oct 1, 2025 at 1:34=E2=80=AFPM Linus Walleij <linus.walleij@linaro.=
+org> wrote:
+> On Fri, Sep 26, 2025 at 4:33=E2=80=AFPM Conor Dooley <conor@kernel.org> w=
+rote:
+>
+> > +static const struct pinctrl_pin_desc mpfs_iomux0_pinctrl_pins[] =3D {
+> > +       PINCTRL_PIN(0, "spi0"),
+> > +       PINCTRL_PIN(1, "spi1"),
+> > +       PINCTRL_PIN(2, "i2c0"),
+> > +       PINCTRL_PIN(3, "i2c1"),
+> > +       PINCTRL_PIN(4, "can0"),
+> > +       PINCTRL_PIN(5, "can1"),
+> > +       PINCTRL_PIN(6, "qspi"),
+> > +       PINCTRL_PIN(7, "uart0"),
+> > +       PINCTRL_PIN(8, "uart1"),
+> > +       PINCTRL_PIN(9, "uart2"),
+> > +       PINCTRL_PIN(10, "uart3"),
+> > +       PINCTRL_PIN(11, "uart4"),
+> > +       PINCTRL_PIN(12, "mdio0"),
+> > +       PINCTRL_PIN(13, "mdio1"),
+>
+> This looks like it is abusing the API. These things do not look like
+> "pins" at all, rather these are all groups, right?
 
-Yes, please.
+Or maybe they are rather functions. Like there is a function spi0
+that can be mapped to a set of pins such as spi0_grp =3D <1, 2, 3, 4...>
 
-Cheers,
-Angelo
+I recommend a refresher with
+https://docs.kernel.org/driver-api/pin-control.html
+and work from there, and avoid looking too much at other
+drivers that don't necessarily do the right thing.
+
+Yours,
+Linus Walleij
 
