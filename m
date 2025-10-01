@@ -1,216 +1,216 @@
-Return-Path: <devicetree+bounces-222905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2695FBAF4CB
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 08:49:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C040BAF4DD
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 08:50:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C2C2189B57C
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 06:49:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F642189C76B
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 06:51:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2082737F4;
-	Wed,  1 Oct 2025 06:48:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A46D4238D32;
+	Wed,  1 Oct 2025 06:50:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="ccDQmFPG"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="HfIwClim"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MW6PR02CU001.outbound.protection.outlook.com (mail-westus2azon11012023.outbound.protection.outlook.com [52.101.48.23])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 616E927281C;
-	Wed,  1 Oct 2025 06:48:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.48.23
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759301337; cv=fail; b=TnVJOT6axYAbwETym/NdkUIxERhlrjhKoxXLjF6lx4C8Y/FcBplm4mQojY8NYTpLVkBuKWa+5ZMNhttuZXbUvr13tfRRW3Z1FaHndQvMzcuNJgrZT5hyCartXoOptWe1oTQgmG1GwMwmXCQFD6PqPYCrFYqD+2yAoXB1kAxxQ5s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759301337; c=relaxed/simple;
-	bh=qIAUNMQx6bUSf7SL8hk3oozqGh8HSqxh93dMWCi7e6I=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ht7/TJuuZppf77cw59krdLwYYeibUzIdbNC/H0wvB1N+U/G3kpjL6zd9Hguup+MRobmOa+ErbU1TvMiOlD0R/8I7BpY/wrmWsLeVyBxTwm+aAAJpAxbSI8vrtTRnpg0qk5N0dKlAtUYuFr2YfTnsjvwYC6NndXLh/XzEKK6B8Dk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=ccDQmFPG; arc=fail smtp.client-ip=52.101.48.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YHmduH4T5g6UWwt0wPcNHDphJizqwvFTB1DQtYeVI3zV1Z4klqPsfW2/w5xh1XLj002yIk/+hsv9SaSC+ONGdy/vxq64y2NTrL4H1fiBGXHQhXIIF3DYQ6Rgxzdp4OTJN2YBVZYSOAwWHFuK1x03SJ53qmRBXwPHOFSf8GFulApKRMNGU2x35hXKVr0uNmvLr5z0UOZhBPbiyR8/0f9Mdi4l7Om6ERbJ86YEPL/KQ7B0t8V+NFzvxgY9sxXtSHnrC+hoeurI82D4UKfERncKAX8PGRccUeiCaeW2xTwaqQvip4eMYc55Fx7Ibq9a0JzNKa1XrvSQP/dgsZHRUO5C+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=pJ/Xt0l41KB3wn0UXa2TEd4STHS/h7f/fkiWWAbREg8=;
- b=WADp8CfO6knas8ZbYnJMaRXYrFT3W9rmVTXwmD/NwAWiQXcXarpZ7U8yyTGGh+eil8cFU7WPQvNYQkLCm8s0TfqoYQBI7bQ2vGY2ZCWod5eS9HKv0hSn5R3UUHubFcSwBwG5j96ezpkG4oxSf5/Qm4uxjfK42pbU07K4GM8gDj7VYb3vTkaQAJU5ZMQr4uit08+Pmibo0P9Asnr7iU8dOnbkCwSJIKuKxbb3DPs9y0GD/2ZLnkHRIL5QwNpVnWjnR7B4ER/9iN3UqS8cpMP5UZyQZ4LBvmfeqGVj8nno22kLfFOb9cnVsPapoIubgaqGD6B343R9ixOy6yxRQg3KjA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.118.233) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=pJ/Xt0l41KB3wn0UXa2TEd4STHS/h7f/fkiWWAbREg8=;
- b=ccDQmFPGueWQrjCb1yYBulbI4ING6SESDVIub/k8Nh77z1Xv00zsqymve3pn8n6HIzq+dQ76rAOWZE1DRgRsMhtFQDuZJVOf428Ne4wTjk3qFmg+JYtvJZf0ygUOm4O3b81vl91aD5l8449dVv4aWL/MLHeCSkpFNtBuBGGR+uH4XVSnzys1V0tb5n0oKHqeCvScgO86B++typMufJ9e9ppfCJYwBsndSSggpcZKpuEuGk+AJabDChHMiMNOMtQYXzmUUNwHch1IPq2GFlmxhzHXy+OIQljbDRPnx6bJMT5RhC6PUu/t2PKef+ViRaf6QaZ9RCauXcL4wSdYQMbH3A==
-Received: from BN9PR03CA0863.namprd03.prod.outlook.com (2603:10b6:408:13d::28)
- by DM4PR12MB6496.namprd12.prod.outlook.com (2603:10b6:8:bd::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.19; Wed, 1 Oct
- 2025 06:48:49 +0000
-Received: from BN2PEPF00004FC1.namprd04.prod.outlook.com
- (2603:10b6:408:13d:cafe::a3) by BN9PR03CA0863.outlook.office365.com
- (2603:10b6:408:13d::28) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9182.14 via Frontend Transport; Wed,
- 1 Oct 2025 06:48:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.118.233)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.118.233 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.118.233; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.118.233) by
- BN2PEPF00004FC1.mail.protection.outlook.com (10.167.243.187) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9160.9 via Frontend Transport; Wed, 1 Oct 2025 06:48:48 +0000
-Received: from drhqmail202.nvidia.com (10.126.190.181) by mail.nvidia.com
- (10.127.129.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Tue, 30 Sep
- 2025 23:48:24 -0700
-Received: from drhqmail201.nvidia.com (10.126.190.180) by
- drhqmail202.nvidia.com (10.126.190.181) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.20; Tue, 30 Sep 2025 23:48:23 -0700
-Received: from kkartik-desktop.nvidia.com (10.127.8.13) by mail.nvidia.com
- (10.126.190.180) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
- Transport; Tue, 30 Sep 2025 23:48:19 -0700
-From: Kartik Rajput <kkartik@nvidia.com>
-To: <akhilrajeev@nvidia.com>, <andi.shyti@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <thierry.reding@gmail.com>,
-	<jonathanh@nvidia.com>, <ldewangan@nvidia.com>, <digetx@gmail.com>,
-	<linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <kkartik@nvidia.com>
-Subject: [PATCH v9 4/4] i2c: tegra: Add Tegra264 support
-Date: Wed, 1 Oct 2025 12:17:59 +0530
-Message-ID: <20251001064759.664630-5-kkartik@nvidia.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251001064759.664630-1-kkartik@nvidia.com>
-References: <20251001064759.664630-1-kkartik@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618E3C148
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 06:50:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759301452; cv=none; b=WEjhsLDUn7u/q8/EWMwA4x4hOKwM/F3rxiPgqBUMzzhqlB5wy+EFd88S/ZNl1WcPBrvr7/AI230YPXRSdMZyFO0XHqHqSJXgfTQeOjSwiR8ivL3iFaRyTHTDfRmMToClrSIx9L0pHDgnUr1zrOIU5/szcv8sSg4OUE85EPT67Q8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759301452; c=relaxed/simple;
+	bh=DqxNlrQlnkzTUIrh/e6yKwM0F9/RKaddCjZat9rXxxs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Bcb+HeQuLbQdxdy5RkM6UF+dDe4AdAkGhIr4v4DiSUAiMv22ku+LsSDClhOfTdzof+tF5rS5WxUfi9s8OdS/Ne58wVS69NleeN8ftHyvjj3K+WMUcNJqMIqKLP1EUR3pU2M0mFPf9z6c9VvdZcJqeNls9DVV2CA9UjTp5MHRzI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=HfIwClim; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=7iXMqq1U64pP/8
+	WWpnodBRQ3aZ9gPKRBHnEv+H1B6is=; b=HfIwClimSil+Rh4/nIen7e4j+AKZcQ
+	ajjpNjUlFZ00xmMdH5JL3lzwAmURadidrM+lnDZUVVOIxmhwXaqzE/YkX73CHNsz
+	GJYJ1eLNJegFGUJi0YhnOVtniPTIJofN5ylgQEwpf7L+bMESjNe9chyP5tVlFdrq
+	jhAoq0GPcGxqikxN3LdiAqN2IFOxJdO0SDfRwEJflUE5UUEWuBM0CZvEVJZsY3dh
+	kGNO/UpqSf64sdVBCUkeO7u2wiCYjU60z+HMZJ6Pyb9HG+jRsMOszGuvNOzH7poQ
+	IgB7yszm4ebzZ/NbBoiK16DgX7x+KMT3nkPRpb48wrh80vhIENDVRfug==
+Received: (qmail 3929362 invoked from network); 1 Oct 2025 08:50:45 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 1 Oct 2025 08:50:45 +0200
+X-UD-Smtp-Session: l3s3148p1@F0K1SRNAjOYujntN
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH] ARM: dts: renesas: r9a06g032-rzn1d400-eb: describe LEDs
+Date: Wed,  1 Oct 2025 08:50:01 +0200
+Message-ID: <20251001065039.22874-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-NVConfidentiality: public
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN2PEPF00004FC1:EE_|DM4PR12MB6496:EE_
-X-MS-Office365-Filtering-Correlation-Id: b4b5e785-253c-4402-aa16-08de00b69347
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|36860700013|376014|82310400026|7416014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?YFaaWqymw4d8mdNuKmCow4PpaHqVk7fLrmWnxdpuSEl3j/NTOSyyZLvTfQ3G?=
- =?us-ascii?Q?0U7JJ5f7MKw1L/Zfcw4VZIbairoapVYpiUx33ZoAqgvRYsXV0G04zslssOhs?=
- =?us-ascii?Q?45n6FZBT1oZMVHXq5FHxnDSbcPDaQJ4rwq7POiuoLS/YmxIKLhnxa5KOxvpP?=
- =?us-ascii?Q?rpWW08n4oC4BRnUbGjswIywgTwaiVYq/cFASkoPrimfF/UE0dfz5WstHLx+e?=
- =?us-ascii?Q?BUhI1A8kQRpPoPjLQuj9jY5dL7fiyAwz/pMdpstpIZEB6nEwePP3728ej44E?=
- =?us-ascii?Q?hWcjSLxwd4iZokVNo8CqdI3WNX5V2Sef7CgJoXjMJ8X7gTerNnfvA8RVZkP8?=
- =?us-ascii?Q?CTiYlz4eOnqCh9EhAZv/gonzTMr4h8QUMKAWEtUqRi3WRCZcKLTKCy5zwEHH?=
- =?us-ascii?Q?JKHxo2vZc07tz6BHAq2XZPAfNSNiTgZRcUwckbDvz3fyV7mKhYBTxn4ccMjb?=
- =?us-ascii?Q?y5Un72MTDj/sym7EysOap4H3Q1bU5f0AF6jDLPuZqBJtD+Rh4Ek627ygOk9e?=
- =?us-ascii?Q?FUq/oUqGtcfR6WLKTWbnsLGGxjSJvT+WqNCTutoi13cXRAcMcLE58LrIZ9mT?=
- =?us-ascii?Q?1QoMNEvrrKPD61uXF+2XigN1oWrGd3Zh7lWOjgJ866Aj5M34I9gR9CLcDxWs?=
- =?us-ascii?Q?O+EmlSwB9naHtepQtQFSrM/+WmQKUb34Zez/FVtEfsSPGeNnS/GbMLtNDo9l?=
- =?us-ascii?Q?wjtz7M99On6ZMuL1WZg7u70JZQTNv0Bab6CdnCPdxEih+2MT3Dp3kLLZdAVt?=
- =?us-ascii?Q?+zr1ePPbJmCgMEGzpHYGuRDac+nQlFOEHyIhwR2z1fpWvEjnGwVFtkDvevtP?=
- =?us-ascii?Q?itA1Kml20Va9NGLvC8QuNN/jaKJZ8Dg5xqJYVgBqYnTSChXeRP4dctcJkTv/?=
- =?us-ascii?Q?TzUUjWy7qvCILbCOun9Pbop0H3PMTJWl0BucC57l0xnGNjp3jfMsC7e3nQF1?=
- =?us-ascii?Q?iOMENM4n4tOeWPxE2gOnZUVcLD7nWQ3JKl4gB+3tTMqkE10wiAAuPwtMQpsr?=
- =?us-ascii?Q?V8bGLJTtJw1fmrQZSw5FaUyRGRVDC8dVAky/UzJ9rtTVLZUmumf/VLR2iEXH?=
- =?us-ascii?Q?Ctp00V2r2wLZ0lhPqzyMPIwSLooCQEyMW6tofGHjHiCjsDakwtwrby5JwQdi?=
- =?us-ascii?Q?McX9q69lv+e3VfxqXZkoYeXK86PCI/Lh23WrW9orS0MktvsCpZG+5D2Uq+vQ?=
- =?us-ascii?Q?F8rRutXs9MFddpu8aRpOOn+NXxZfA2N9F6Ul5djtzWj3iM2bTmOLLJ3ZLTvs?=
- =?us-ascii?Q?1wb1os20KSZHPM/JicHXvoVNTo+wlcis5M+t+9hgv73elAJ4lQAH3Qi2jkFy?=
- =?us-ascii?Q?H3yJ+vgDWSNkImpEnkhtJEF7ZHQ9796dzkseSw322X5APo3TkZh8sQ3ALnQ0?=
- =?us-ascii?Q?oIyXijqgsQWDvanW66u4BinzRehKMDcH/1PUokfrBzvOR1bG43tKzcN3HtCI?=
- =?us-ascii?Q?oq9Aq1rgqtP7JdoKB/LZy1L2J1t8Z5I3l055FQoWYmM8LtlKjePhWxVGTvJS?=
- =?us-ascii?Q?2aOvJi1RQ3USQmLi+sRVrYaCvgiiQQxdT8ysAZT5Ra0B6N3bJarEbKBwO7EK?=
- =?us-ascii?Q?J/u0aMkuRt2fCGYBFjO6cX3V9H/CXv1vBbDOtXgt?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.118.233;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc7edge2.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(36860700013)(376014)(82310400026)(7416014)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2025 06:48:48.6361
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b4b5e785-253c-4402-aa16-08de00b69347
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.118.233];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BN2PEPF00004FC1.namprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6496
 
-From: Akhil R <akhilrajeev@nvidia.com>
+To be able to use the LEDs, a configuration switch has to be set to a
+non-default value. So, infrastructure to support these switches (which
+modify signal routing via the CPLD on the demo board (DB)) is added as
+well.
 
-Add support for Tegra264 SoC which supports 17 generic I2C controllers,
-two of which are in the AON (always-on) partition of the SoC. In
-addition to the features supported by Tegra194 it also supports a
-SW mutex register to allow sharing the same I2C instance across
-multiple firmware.
-
-Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-Signed-off-by: Kartik Rajput <kkartik@nvidia.com>
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 ---
-v1 -> v4:
-        * Update commit message to mention the SW mutex feature
-          available on Tegra264.
----
- drivers/i2c/busses/i2c-tegra.c | 29 +++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
 
-diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegra.c
-index 1c8c24ae54ed..f324cf3b1f28 100644
---- a/drivers/i2c/busses/i2c-tegra.c
-+++ b/drivers/i2c/busses/i2c-tegra.c
-@@ -1814,7 +1814,36 @@ static const struct tegra_i2c_hw_feature tegra256_i2c_hw = {
- 	.has_interface_timing_reg = true,
+Changes since RFC:
+
+* renamed the include guard
+* improved the comment explaining SW2-2
+* renamed the define to 'DB_SW2_2'
+
+Notes: I kept the name for the header file because the switch is on the
+DB board. Adding "EB" doesn't really add something IMO because the DB
+might sit on another carrier board theoretically.
+
+Depends on "[PATCH v4 5/8] ARM: dts: r9a06g032: Add GPIO controllers"
+which is still in-flight.
+
+I wonder if this needs to be split into two patches (DB and EB part)?
+
+
+ .../renesas/r9a06g032-rzn1d400-db-switches.h  | 21 +++++++++++++
+ .../dts/renesas/r9a06g032-rzn1d400-db.dts     | 30 +++++++++++++++++++
+ .../dts/renesas/r9a06g032-rzn1d400-eb.dts     | 19 ++++++++++++
+ 3 files changed, 70 insertions(+)
+ create mode 100644 arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h
+
+diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h
+new file mode 100644
+index 000000000000..c6f9c27d286a
+--- /dev/null
++++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db-switches.h
+@@ -0,0 +1,21 @@
++/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++/*
++ * On-board switches for the Renesas RZ/N1D demo board (DB)
++ *
++ * Copyright (C) 2025 Renesas Electronics Corp.
++ */
++
++#ifndef __R9A06G032_RZN1D400_DB_SWITCHES_H
++#define __R9A06G032_RZN1D400_DB_SWITCHES_H
++
++#define SW_OFF         0
++#define SW_ON          1
++
++/*
++ * SW2-2:
++ *     SW_OFF		- enable ALT0_PMOD (PMOD1-3 + LEDs on the extension board)
++ *     SW_ON (default)	- enable ALT1_CAT_S3 (CAT/S3)
++ */
++#define DB_SW2_2 SW_ON
++
++#endif
+diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+index 3258b2e27434..c3786d54992a 100644
+--- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
++++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-db.dts
+@@ -15,6 +15,7 @@
+ #include <dt-bindings/pinctrl/rzn1-pinctrl.h>
+ 
+ #include "r9a06g032.dtsi"
++#include "r9a06g032-rzn1d400-db-switches.h"
+ 
+ / {
+ 	model = "RZN1D-DB Board";
+@@ -185,6 +186,14 @@ fixed-link {
+ 	};
  };
  
-+static const struct tegra_i2c_hw_feature tegra264_i2c_hw = {
-+	.has_continue_xfer_support = true,
-+	.has_per_pkt_xfer_complete_irq = true,
-+	.clk_divisor_hs_mode = 1,
-+	.clk_divisor_std_mode = 0x1d,
-+	.clk_divisor_fast_mode = 0x15,
-+	.clk_divisor_fast_plus_mode = 0x8,
-+	.has_config_load_reg = true,
-+	.has_multi_master_mode = true,
-+	.has_slcg_override_reg = true,
-+	.has_mst_fifo = true,
-+	.quirks = &tegra194_i2c_quirks,
-+	.supports_bus_clear = true,
-+	.has_apb_dma = false,
-+	.tlow_std_mode = 0x8,
-+	.thigh_std_mode = 0x7,
-+	.tlow_fast_fastplus_mode = 0x2,
-+	.thigh_fast_fastplus_mode = 0x2,
-+	.tlow_hs_mode = 0x4,
-+	.thigh_hs_mode = 0x2,
-+	.setup_hold_time_std_mode = 0x08080808,
-+	.setup_hold_time_fast_fast_plus_mode = 0x02020202,
-+	.setup_hold_time_hs_mode = 0x090909,
-+	.has_interface_timing_reg = true,
-+	.has_hs_mode_support = true,
-+	.has_mutex = true,
++#if DB_SW2_2 == SW_OFF
++&gpio1 {
++	pinctrl-0 = <&pins_gpio1>;
++	pinctrl-names = "default";
++	status = "okay";
 +};
++#endif
 +
- static const struct of_device_id tegra_i2c_of_match[] = {
-+	{ .compatible = "nvidia,tegra264-i2c", .data = &tegra264_i2c_hw, },
- 	{ .compatible = "nvidia,tegra256-i2c", .data = &tegra256_i2c_hw, },
- 	{ .compatible = "nvidia,tegra194-i2c", .data = &tegra194_i2c_hw, },
- 	{ .compatible = "nvidia,tegra186-i2c", .data = &tegra186_i2c_hw, },
+ &i2c2 {
+ 	pinctrl-0 = <&pins_i2c2>;
+ 	pinctrl-names = "default";
+@@ -256,6 +265,27 @@ pins_cpld: pins-cpld {
+ 			 <RZN1_PINMUX(122, RZN1_FUNC_USB)>;
+ 	};
+ 
++#if DB_SW2_2 == SW_OFF
++	pins_gpio1: pins-gpio1 {
++		pinmux = <RZN1_PINMUX(80, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(81, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(82, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(83, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(84, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(85, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(86, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(87, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(88, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(89, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(90, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(91, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(92, RZN1_FUNC_GPIO)>,
++			 <RZN1_PINMUX(93, RZN1_FUNC_GPIO)>;
++		drive-strength = <12>;
++		bias-disable;
++	};
++#endif
++
+ 	pins_eth3: pins_eth3 {
+ 		pinmux = <RZN1_PINMUX(36, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
+ 			 <RZN1_PINMUX(37, RZN1_FUNC_CLK_ETH_MII_RGMII_RMII)>,
+diff --git a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+index 97a339b30d76..5dbc09ac286f 100644
+--- a/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
++++ b/arch/arm/boot/dts/renesas/r9a06g032-rzn1d400-eb.dts
+@@ -8,11 +8,30 @@
+ 
+ #include <dt-bindings/leds/common.h>
+ #include "r9a06g032-rzn1d400-db.dts"
++#include "r9a06g032-rzn1d400-db-switches.h"
+ 
+ / {
+ 	model = "RZN1D-EB Board";
+ 	compatible = "renesas,rzn1d400-eb", "renesas,rzn1d400-db",
+ 		     "renesas,r9a06g032";
++
++#if DB_SW2_2 == SW_OFF
++	leds {
++		compatible = "gpio-leds";
++
++		led-prog0 {
++			gpios = <&gpio1b 23 GPIO_ACTIVE_HIGH>;
++			color = <LED_COLOR_ID_GREEN>;
++			function = LED_FUNCTION_PROGRAMMING;
++		};
++
++		led-prog1 {
++			gpios = <&gpio1b 24 GPIO_ACTIVE_HIGH>;
++			color = <LED_COLOR_ID_RED>;
++			function = LED_FUNCTION_PROGRAMMING;
++		};
++	};
++#endif
+ };
+ 
+ &gmac1 {
 -- 
-2.50.1
+2.47.2
 
 
