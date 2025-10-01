@@ -1,163 +1,187 @@
-Return-Path: <devicetree+bounces-222967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F7A0BAFD64
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 11:20:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5C17BAFDC7
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 11:29:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FF0B1C639D
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 09:20:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 83ACD7A2055
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 09:28:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C75283C87;
-	Wed,  1 Oct 2025 09:20:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2AAC2D9780;
+	Wed,  1 Oct 2025 09:29:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RCGJqzEz"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XBwxTJ2D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D371865FA
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 09:19:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4C131804A
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 09:29:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759310401; cv=none; b=pWm1NDvZs+PuNdJhR4725fpOC0Fx0JHKnHd4I8ugaS3fAWGwh8C0RYCVzpamsmNnrsSIbLifNGkmEaauAgKhkNk9Yc6eMVz1brqrms7XKy/iG9cyd3DLJDGCc0rGCYLtvB9llG5xURMVH6NGAILxP6x0+v5CBRi6/mrB97EHTUg=
+	t=1759310974; cv=none; b=N4cmg/iJ38kM4bTHw4SogMzza+ZY1BC8RuIfZkHg5V0ZcfHImqZ7TbhmTXIkvJmiamQGOxsTl6FZUY0vWhhpJMhpnaAL/bVqbtaq/AWeXBJc4O0vODczKyVnTAhEkMKYj6X5cjyAx61zE51hOmQIebWE5/CylkWoQXXoEiV2jHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759310401; c=relaxed/simple;
-	bh=xUbLsE7+b/6DcdaGkzKeBsXAunvj6ceqqBajwg4A+rM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h8h4+2BnX0S8XUT3m/LTgpyiqKVfkl+bS9hlz94QoSNEZN5GJol3+9c3wmJPiblwRk4ULWOfmPwox0Qe+0luFQ9mVG+YlD0RgN565JRsDWla/Nt+ciff8KZWEfQlKhM25sRoRdK4ZOTI/80jLEUuyMBqzEMnS5DjJJMylzbomis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RCGJqzEz; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58UMfgaw017702
-	for <devicetree@vger.kernel.org>; Wed, 1 Oct 2025 09:19:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Gob+/+Jnh7/czqlbfOovpHjo691+sHroBwNdrWojy3I=; b=RCGJqzEzeu85fd7H
-	KV9qLaSeXcnjfhEnYnUK9uEeUfhGlzTOnarssIYO+/NDP3AAP7C0H3bqg4tNztNY
-	jOkcabBH1GY+MDdvSOESGPZG7gYXelBjGTduG/Wr857T3ukUFf+7WALKN6omK1TH
-	LvLIxiJFfLn7dqOre2TDnONai3Ly2+vvMeugpT7o8uUBiwz4F26h4GKozicJyVlw
-	ZHj5UdeqWXM656p77+u0vflVwu2BHevXKYu0m/zR5SoDzrdstBlKn0Q372QlEcMX
-	QMPxiJ3+78mLD1q6pfFqilGi0JvHUGUUua35noTmN/8IOmZVMDFcbok+2lYbOp5B
-	nZ4W+g==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e93hkpy1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 09:19:59 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4dd729008d7so6607961cf.1
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 02:19:59 -0700 (PDT)
+	s=arc-20240116; t=1759310974; c=relaxed/simple;
+	bh=5JM1eelR1r2YpA1IVQMHYwf6ukkmJ2S/ulu6sMz9+kE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QAcDbBcPb88WNd/2aHZxlgzzQwJLLHj004qLu2Gxw8lbBoNfOX34YFPQmdZvvKnCOyyijyQ3Kkz0Uos+q+Wd+6gkTNtMPqkLkRzvsOOy2gTYVEN6EGNRsdQvFXfD68ECjj20D8g/jx+22rpvIEB8VN9DkDTb3wAsj1yNxE7XgSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XBwxTJ2D; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-46e33b260b9so24236435e9.2
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 02:29:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759310971; x=1759915771; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2WKLYLKrfpejFEaruF+EeGPfFEMHs6sMpTeLbEZAdC4=;
+        b=XBwxTJ2DyV0Kosmp8OHdzud2o21b+t9tzV/GtjnPpDOFR5BT7wgwQgNiLg2SLRFc4Y
+         z7v+baNWxPGnoRzN5HPqvvUpuW+u/t7kJyMrOYA7HQsZOd2JVBdSEC+9Ci8IbJJTCAlB
+         WMo3ojY+mZnnZJ1scBbpbjxaqXrrBXthBICtYBE/lYo4qClOmuAOPfZA/WzxDS1ZqXIA
+         XV/QncKK3ftGlQmvtbqN/vZ2AMQfX7cFtHvGPe7z0+fZ5sawlJr0K2R6ASjR2DAPZHbT
+         NdK3Y9FhZYdKFuPHbAYSwfgYsJIXi2uvjCCdcwnvGzX1wrzqqxLhBEdOer64PgDN4jpH
+         tPbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759310398; x=1759915198;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gob+/+Jnh7/czqlbfOovpHjo691+sHroBwNdrWojy3I=;
-        b=j4HbkYRxmbf22h8la7Nw4NPvOpT/Zl3g2BKkUyc16qctsG6Q9W7FzAhvnwRUQipi3N
-         W7IyOeIKvGvg8XpMoq2R8S/rdSB+08d9xj+r31Vn7OWthDizIIYs5QWdSZKQhX81sjUs
-         pkIyWQoZj09MRTW/qNVr9Xz95EqjBJ4E83jNr053+5fmQ2enI2LWyyRAfONVia9X2oXd
-         iljXxdycTK1s04if5eVrkasm+2SZTd9k+K0yB7IkJTgZfJmTrGv7KEyqZAMx7ErgHe4/
-         QbVfXCoGBUTRVFGgpRjAbt8raetn6w1GXFt99tVZvb+cGBHxW2zLspM5L2ZspvUy6io7
-         JnTA==
-X-Gm-Message-State: AOJu0YwtAHEW7Qyr3AUvn/kAhYiHK5VR1tz5PUVsfuLludL5S2frTpRM
-	yWV4qdRl/dm/9meamu0VPLn2FuFwZQQ/A+LAhU7HeZxb9mV6RUa2wpCisFQpalJvXtPgj+jWkCm
-	NlDvtuyicD56Rm4GA3E7wSvygyXGl0pgTjhs7bvya0NpbEzvAyVSk7kY6BgS7LOAe
-X-Gm-Gg: ASbGncu+8Pqtg43jQ/aSP5vN1/vTzK/iTrBi2dm3oO7fXPk6ee/iOD3XlOQCqhrmdgL
-	bzJEdr1iDanGr5iS2NB4TgvM0hBPv2ywm5Wk0s17tiVSylqcucAA7byjVFuQtq61STTu+8cWR2I
-	ZRszGcpgoctFYkk6LlC9LWiShsBlkQsiNeM0LxWt/fjFkqUI/8JVqYYzO7CTGaDSNPKughjI+KL
-	xJN2H/ewZdN7FM6be79437wgb/DbtaLdxKlFst9/fP2hXB/Yt8Pb5Y+aNOeLsbtcjuUnx4MfcAs
-	mLG0TX3d12q0bpsW3ZZbzbQgPNAzkGhGVKRkYDjcXvsMreCugUpnzOms8pJeXPT5GJvreVeWH/Y
-	lKfq3qE/SKqF3oLyg30u81fuO4GU=
-X-Received: by 2002:ac8:7d0c:0:b0:4e2:f1b3:346a with SMTP id d75a77b69052e-4e41e256f17mr21153361cf.10.1759310397743;
-        Wed, 01 Oct 2025 02:19:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGKJoQUQsWf73fTXk+gDvPvLLj3Y/I7IdgSFwb6X+1+mfUxdCGvdvgd1iqFUC8eGAWzUp8e/Q==
-X-Received: by 2002:ac8:7d0c:0:b0:4e2:f1b3:346a with SMTP id d75a77b69052e-4e41e256f17mr21152961cf.10.1759310397254;
-        Wed, 01 Oct 2025 02:19:57 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b3f7b67b883sm553368166b.79.2025.10.01.02.19.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Oct 2025 02:19:56 -0700 (PDT)
-Message-ID: <7ef97ace-e46a-44cd-b632-eb7b699c20c2@oss.qualcomm.com>
-Date: Wed, 1 Oct 2025 11:19:54 +0200
+        d=1e100.net; s=20230601; t=1759310971; x=1759915771;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2WKLYLKrfpejFEaruF+EeGPfFEMHs6sMpTeLbEZAdC4=;
+        b=xUyP69TceAdCRP38JOnvg58B90X1UwZp+PVjEnaiZI5H4kfXGpBndzPgwkFCC/hrgA
+         NfOSsCbZjJYKrPf1aS7tbFxV//Q/m13OhsovNVV55AXVi4t18qXV8LPuO+NXeEq+5BVE
+         uu1zQDBQitMzlOCMwQv5xS5ROBR+Abp1ssBeDfBQdk+rIPBqKxbG/a4FSTvWYa+KHZVk
+         +mDbj/WxdzztoBX7oMaWd/8sB/5Hni39tJ3Y3GREO85mHjKCvTAZ2agBXONMeXP8BDPr
+         SyYO9Ac3ahnDS6PiA2VG2IdzvMRccpt4MOqa0tEkhpKHBTGJatojYd+epcKTizfgHXFA
+         yfUw==
+X-Forwarded-Encrypted: i=1; AJvYcCWmx/Uvf/SWsLG8Qc2HB3AplUniySRPowpdhl+NHX3Iym4yscLo3P5rJjWyas+Oo9W4gkfw+f96Xux9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPwpoPPjXnm4v8GaHbMaEsquHOtKwqUTY03nPAGPrg9BrAgD29
+	r1nTrok3Pn+fwSOazHBuduWkYhpUoY5Ajit9ZIfsGizzOSKNK7YOGmD/WVsVmsUVUv4+QG6tuuL
+	bDfrHTdxzpGxnoR1TxqX8k8i4CK9US2A=
+X-Gm-Gg: ASbGnct0/GZxAwKvkE0yzYO/FvhtN45RtizeDMQmAlojhfpZ0n+eotoYhaiXcrFzCz+
+	hBoIyIa+xkZc5/LsTPy5tYVzHU8U24muRLZO1MzpHmQTuh/byiZa+k+dnziRkb1bZT4GVmasNsO
+	bR98IRYSRD4zVLONSU2OUAoE7CoS5pOd2PJqjHNFF92oHqKtVuNGs7Q6US2/RlSxjZ3EHInNzOK
+	6M6MbSN1HkZLY2zAgtjMjr058XKG1OD
+X-Google-Smtp-Source: AGHT+IFHnGmRHmJr+YpPGsnnoZoqfJyt9jk/+n5kLjP1CHOy6XhDxWRnAYIfrfCsIi4lEcHTSz6IGQr7yPIPxN5B9f4=
+X-Received: by 2002:a05:600c:1f96:b0:46e:27f7:80ce with SMTP id
+ 5b1f17b1804b1-46e612be465mr23677905e9.23.1759310970863; Wed, 01 Oct 2025
+ 02:29:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] arm64: dts: qcom: sm8250-samsung-common: correct
- reserved pins
-To: =?UTF-8?Q?Eric_Gon=C3=A7alves?= <ghatto404@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250928045817.37384-1-ghatto404@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250928045817.37384-1-ghatto404@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDA0MSBTYWx0ZWRfXwFIcC53DMxG3
- /NWOXG3Po93gKTh0thdJa+X1uB8C4qyzgEzsW3E8uICcn+eLCeRNNydZY/Uc61v/NGdNjbi9jMf
- 4P4XTtk9U3ePt1WuH9PytMJ2HBUFCeBuoCq8g737IVnYM9Yb0Z40CkfDipr70iSjKD+l7PzTKGo
- C7DNEi+Q/eE9Gc/1iUVbwkTkCqJkOJV01XOrQBHHjqubl3KKn3XZZWwBBeRMpB53+0Y0dibav2Z
- Ped/7b9Fnz6AjZ2T6quuSsY6+jRccigxDiJNLLQHPmT7TMtUtZEi/4c7tXZvxExJm2+BlJwYfKI
- cN/+jAp4ZcrNs+CTP7WPQtvTnF3ihcyFdjyu2FWP2+06ORMFvfLjhIQN2V2+r0jxYWTH4QGfHLq
- dOl0n6MfgQcs8wh0dd8LsFp8YWFVJA==
-X-Proofpoint-GUID: 1BGFDTWGdXi98fJUK6Qmk_WK5TiUljK0
-X-Proofpoint-ORIG-GUID: 1BGFDTWGdXi98fJUK6Qmk_WK5TiUljK0
-X-Authority-Analysis: v=2.4 cv=Rfydyltv c=1 sm=1 tr=0 ts=68dcf23f cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=pGLkceISAAAA:8 a=3bGHI0pndnSrP7k9S98A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-01_02,2025-09-29_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 bulkscore=0 adultscore=0 lowpriorityscore=0
- impostorscore=0 clxscore=1015 malwarescore=0 spamscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270041
+References: <20250903161718.180488-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250903161718.180488-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdUacF5UfiLTXuWOXAZZvEJ-St5+awkWML_HDp9b38=sXw@mail.gmail.com>
+In-Reply-To: <CAMuHMdUacF5UfiLTXuWOXAZZvEJ-St5+awkWML_HDp9b38=sXw@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 1 Oct 2025 10:29:03 +0100
+X-Gm-Features: AS18NWBlqD2UHra31fOQuHsSKmsMOeniTxCTqefAG_2I-HhVlcZOHoipA4udDNA
+Message-ID: <CA+V-a8sr3aMAnf5-RihtCSBFj6f-FYMoM6+NHWrE5A6FVc-zjQ@mail.gmail.com>
+Subject: Re: [PATCH v8 2/6] clk: renesas: rzv2h-cpg: Add support for DSI clocks
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 9/28/25 6:58 AM, Eric Gonçalves wrote:
-> The S20 series has additional reserved pins for the fingerprint sensor,
-> GPIO 20-23. Correct it by adding them into gpio-reserved-ranges.
-> 
-> Fixes: 6657fe9e9f23 ("arm64: dts: qcom: add initial support for Samsung Galaxy S20 FE")
-> Signed-off-by: Eric Gonçalves <ghatto404@gmail.com>
-> ---
-> Changes in v3:
-> - Actually fixed <40 4> indentation
-> Sorry, I still had my editor on 4 spaces a tab
-> 
-> Changes in v2:
-> - "Fixed" the formatting of the <40 4> line
-> - Added Fixes tag
-> ---
->  arch/arm64/boot/dts/qcom/sm8250-samsung-common.dtsi | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8250-samsung-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-samsung-common.dtsi
-> index 96662bf9e527..7696b147e7da 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8250-samsung-common.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8250-samsung-common.dtsi
-> @@ -159,7 +159,8 @@ &pon_resin {
->  };
->  
->  &tlmm {
-> -	gpio-reserved-ranges = <40 4>; /* I2C (Unused) */
-> +	gpio-reserved-ranges = <20 4>, /* SPI (fingerprint scanner) */
-> +			       <40 4>, /* Unused */
+Hi Geert,
 
-the above ',' should be a ';'
+Thank you for the review.
 
-Konrad
+On Wed, Sep 24, 2025 at 2:05=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Wed, 3 Sept 2025 at 18:17, Prabhakar <prabhakar.csengg@gmail.com> wrot=
+e:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add support for PLLDSI and PLLDSI divider clocks.
+> >
+> > Introduce the `renesas-rzv2h-cpg-pll.h` header to centralize and share
+> > PLLDSI related data structures, limits, and algorithms between the
+> > RZ/V2H(P) CPG and DSI drivers.
+> >
+> > The DSI PLL is functionally similar to the CPG's PLLDSI, but has slight=
+ly
+> > different parameter limits and omits the programmable divider present i=
+n
+> > CPG. To ensure precise frequency calculations, especially for milliHz-l=
+evel
+> > accuracy needed by the DSI driver, the shared algorithm allows both dri=
+vers
+> > to compute PLL parameters consistently using the same logic and input
+> > clock.
+> >
+> > Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> > --- a/drivers/clk/renesas/rzv2h-cpg.c
+> > +++ b/drivers/clk/renesas/rzv2h-cpg.c
+>
+> > +static int rzv2h_cpg_plldsi_div_determine_rate(struct clk_hw *hw,
+> > +                                              struct clk_rate_request =
+*req)
+> > +{
+> > +       struct rzv2h_plldsi_div_clk *dsi_div =3D to_plldsi_div_clk(hw);
+> > +       struct pll_clk *pll_clk =3D to_pll(clk_hw_get_parent(hw));
+> > +       struct rzv2h_cpg_priv *priv =3D dsi_div->priv;
+> > +       struct rzv2h_pll_div_pars *dsi_params;
+> > +       struct rzv2h_pll_dsi_info *dsi_info;
+> > +       u64 rate_millihz;
+> > +
+> > +       dsi_info =3D &priv->pll_dsi_info[pll_clk->pll.instance];
+> > +       dsi_params =3D &dsi_info->pll_dsi_parameters;
+> > +
+> > +       rate_millihz =3D mul_u32_u32(req->rate, MILLI);
+> > +       if (rate_millihz =3D=3D dsi_params->div.error_millihz + dsi_par=
+ams->div.freq_millihz)
+> > +               goto exit_determine_rate;
+> > +
+> > +       if (!rzv2h_get_pll_dtable_pars(dsi_info->pll_dsi_limits, dsi_pa=
+rams, dsi_div->dtable,
+> > +                                      rate_millihz)) {
+> > +               dev_err(priv->dev,
+> > +                       "failed to determine rate for req->rate: %lu\n"=
+,
+> > +                       req->rate);
+> > +               return -EINVAL;
+> > +       }
+> > +
+> > +exit_determine_rate:
+> > +       req->rate =3D DIV_ROUND_CLOSEST_ULL(dsi_params->div.freq_millih=
+z, MILLI);
+> > +       req->best_parent_rate =3D req->rate * dsi_params->div.divider_v=
+alue;
+> > +       dsi_info->req_pll_dsi_rate =3D req->best_parent_rate;
+> > +
+> > +       return 0;
+> > +};
+>
+> Unneeded semicolon (there are three more below).
+I will fix that.
+
+Cheers,
+Prabhakar
 
