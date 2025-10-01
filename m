@@ -1,178 +1,174 @@
-Return-Path: <devicetree+bounces-222909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-222910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A16D4BAF5B0
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 09:07:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E002BAF5BF
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 09:12:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0CB381897BF7
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 07:07:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7A4617D8D4
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 07:12:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43BF723BD13;
-	Wed,  1 Oct 2025 07:07:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D87626B74D;
+	Wed,  1 Oct 2025 07:12:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dmxYv+BK"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cdrQs0tf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D721C861E
-	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 07:07:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A03B256C9E;
+	Wed,  1 Oct 2025 07:12:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759302448; cv=none; b=WSaufdfsaSejabglASAuxqlQ+UV4m86akzOTdVQwdRnVQRb6w+R4lPUSXODctSEKQfAMZX9PtmENgWvM39BB6l8K8QBtYY95jXxPI6WVsWWusAHss0Ur/WioVjQ7PRjZ2x3GTdHlpamIRFBquZBY+9WujF/W+8ZLaBLQGf9GnRc=
+	t=1759302733; cv=none; b=AGUKyYGPenru0XogmrJDhaYOFUIvGRKEmMKcMFjwuRbcxaldvbyc6FnQw/ORx8cCKj9CJeIx0Ra/hIptAJJjD+NZKwumXwnjC5lv2a8jH7T+oUmEUHOmpOsv/RSH5scxujdtkfncGVCjpuxfCxfRuPgbHfd2JUfWu+3miFrScuE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759302448; c=relaxed/simple;
-	bh=TXavt5GUo/dW2X4D6klTWaoIUqB5VD85VTgMFo07NnU=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=rpkfJqEGxkX8F+ECF8Co/OYWRcg+8xlSdaIu79krgURXoz6mpomGL7+7iUrjgBASyg+osCnIOAn2DfTD7NO+QC7subXoVGUKZpaXBREzeftDjpI/4Ka5r+i2CWkcrE/oGNzWrnVbFRrDDV18dQz0hGjOBlGpKMy5HNGIvhoezr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dmxYv+BK; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-46e47cca387so49850615e9.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 00:07:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759302444; x=1759907244; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6903O+T5kzlWuzZHa7QhKxp3lHsZbgO6JKoHA8UWXyk=;
-        b=dmxYv+BKiVFZnX/Rccrm76jXUTd0jV6FweHrtRloTLYJQz1xj0KuEVB6Gmar+VvTcC
-         OpWHh9eJIvLHBkzpxRXyTVMjkxqWrFQ1pxnudvizOWxBncvvisZRw2TSLjpTL2BoWGXk
-         Cxx/G6ekAR+4DJC6DxAJwGHw7UxvsCDObUW/AA+LIqkrCeq3o4J1Lf7HCpZRZpwYAxw0
-         PT+StQRUQ6gjk1Lna8WA8hkeW/bf7anO8dhvWfoEPz9IIV+fZ0AZKDkKblrP51r2KyqJ
-         /CZrGZvNV3bYr/vdmbRytRA8trqbbleAgSkGX9FlWqdre7zdeujCGTH91NcEddgVr0bw
-         9jlg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759302444; x=1759907244;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=6903O+T5kzlWuzZHa7QhKxp3lHsZbgO6JKoHA8UWXyk=;
-        b=JD/TxyCM/eHMw6P1hpvOaQCnoEm8b31Hr2PT9+PydBxjEm3ZoFUb6FF843+LQY3W0N
-         5D8zOB/5QtfT4Re5o7oyrtnOCeBNw9DuPMJ0WLUFXGwFZnwksY+vSqBMSauA59IJaII0
-         6lmVutQrNckom0oPlyshNmZIkxAQLV55IGw9l0OtGAFcrtjSHHmjwKeOti8/kyBZCED9
-         eix73siAy9wKs9iWZ/6gyL6eBTsTDGlHh1eLLP2/VeP2pm4oDNTrjPDviIfyqYZgZayi
-         YfDy8WV4u6JCTElcwzKH1MhCsPcFDShsC/hQHQVlz0s7oR31+rIQcIGgNAulthPpEwAW
-         tTnA==
-X-Forwarded-Encrypted: i=1; AJvYcCXrFy3lI6g7D92WNpXP0pJ+6qesk8WH5m1GvkXg5a7N8ieJKk7NF3yh2WxMmtBbMSCoZLmYPGcKQbe+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyefpQEZZmP/H48pdXatdNSmiwcQIK35pD7kJgJF4YkobbYeUmv
-	IpyaY1WpDGMoRhPbYedAkKtnn1dZKnAlsxtYMHKD/um4wOoDbl21y1v13z1vufzyMiM=
-X-Gm-Gg: ASbGnctkcwAWZ8LnuqMqgl43pakK66e+ZgSOwcZzMtFV29ZTnkCxDzBqBdbEmy487nU
-	95USqwazafxFVug3fn7Le1KGG9QXbY3mqnw++U/HdKc5qV2TC0STOIQ7WiONnphCKTo48rqybJH
-	+cVlsbDkmclWXQ9cAaycV+I/VjUxOM/ZTZtoB5V6RLlVJN9WKOqwbuY6Ot6bWQogDC9leoPUuVD
-	vDLbFQc3b8GrCw9vrz6aPGWNwPNfl33IzE02Ov3f0CEyJrYwAHMeOW9zUiPTYSZ0uz0VAPX4zgM
-	pt1GLqtSGisbrCdvlnAvXmx5CfUXyMeTRHpcG/Ywytlkmhdl+sDYOXaGWW6wGPS7j2WPRWFZmC5
-	hPLaAj4IQIiHKRKAbbIFkMAo/oMaljMG3tXJh/7AUWvl5cWYSzqZ95v5E0rQbO5aWIdmPVFX4u3
-	aimZ/j5t8ditI9oymRiN+C3bw=
-X-Google-Smtp-Source: AGHT+IGBw7CxJ7qDcqycnbC3TnzJ/BlwqGMYHQoYN72vdTSBaOUGSkrrJvxGgqOYBs6co2ci25rVDw==
-X-Received: by 2002:a05:600c:3b13:b0:46e:448a:1235 with SMTP id 5b1f17b1804b1-46e612861fcmr23527745e9.16.1759302444501;
-        Wed, 01 Oct 2025 00:07:24 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:f45f:c590:9006:d394? ([2a01:e0a:3d9:2080:f45f:c590:9006:d394])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e6199193dsm25464495e9.1.2025.10.01.00.07.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Oct 2025 00:07:24 -0700 (PDT)
-Message-ID: <99eae1be-3067-4698-aa3f-a0ff565cb62e@linaro.org>
-Date: Wed, 1 Oct 2025 09:07:23 +0200
+	s=arc-20240116; t=1759302733; c=relaxed/simple;
+	bh=t7LQvWDoawtcjynybyV6CpESEqmrVI+X1jX9CcdZPZ0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cSe2yQdR5GPp6uVWL8htQ4Vj6c0ygiOq+fBU9CXsE1dLJHfkH2EdIU4zTUlMLdkTGrd73YxWKBpiWk68jK4U3gNl2aX7w6UHtKmxfgQiuykL7PzObfxol7P4M5ALCGiqabY/dvlnuAwCHSe8fa+zHEzNP5TCaLt0nmSD0bsD8SY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cdrQs0tf; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 253784E40DE7;
+	Wed,  1 Oct 2025 07:12:06 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id E7227606BF;
+	Wed,  1 Oct 2025 07:12:05 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 82FD1102F1854;
+	Wed,  1 Oct 2025 09:11:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1759302725; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=GnVI4ZR4JkJ5vv9WaP33l3msfPu596SbGWUzbRdFAx4=;
+	b=cdrQs0tfjiD2vmtme9KllctTecE2Rl9XGw801EbGjiI6ek+2YXXUv586pPfLCdZ4B/hcvn
+	EaiO/8Vvgtl1Mv9E/TN+suIX8xnA6W4i6UM50/Zl+a/MrO9Ez98fL9gtawa5ARotKhvPot
+	8LM7VFkEXsonjXF6GmRwLFcthj9PVEPfd7HzrsjWVhIQjdyis2xLzSk1AAX5XJkYt49WEM
+	X8CGD863aML1KQvQBMVNrRZvBJYHCMJrkjZlrq2Af3yztGrqVxuCIY0zeb74+ri0mlnEiL
+	CM4NdfXn51oPYdPQkBA6dbdhTZxlysutzPXNGth1iKOe9gSxRIpBKdlPnm97Ow==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ David Lechner <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Subject:
+ Re: [PATCH v2 1/5] regulator: dt-bindings: Add Linear Technology LTM8054
+ regulator
+Date: Wed, 01 Oct 2025 09:11:51 +0200
+Message-ID: <5926760.DvuYhMxLoT@fw-rgant>
+In-Reply-To: <20250927-spoon-yearning-c1a8df796173@spud>
+References:
+ <20250925-ltm8054-driver-v2-0-bb61a401a0dc@bootlin.com>
+ <5331035.LvFx2qVVIh@fw-rgant> <20250927-spoon-yearning-c1a8df796173@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: do not
- reference whole usb-switch.yaml
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Rob Herring <robh@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
- <kishon@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzk@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250902-topic-sm8x50-fix-qmp-usb43dp-usb-switch-v1-1-5b4a51c8c5a8@linaro.org>
- <20250905175533.GA1000951-robh@kernel.org>
- <nwtt76n4t7tlf26ex47wrot7g7nldtmavbzgwmluls3egamjsi@mkomopb6fjh6>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <nwtt76n4t7tlf26ex47wrot7g7nldtmavbzgwmluls3egamjsi@mkomopb6fjh6>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; boundary="nextPart6197909.lOV4Wx5bFT";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Last-TLS-Session-Version: TLSv1.3
 
-On 9/30/25 21:10, Dmitry Baryshkov wrote:
-> On Fri, Sep 05, 2025 at 12:55:33PM -0500, Rob Herring wrote:
->> On Tue, Sep 02, 2025 at 06:10:05PM +0200, Neil Armstrong wrote:
->>> Both bindings describe a different layout of the ports properties,
->>> leading to errors when validating DT using this PHY bindings as
->>> reported by Rob Herring.
->>>
->>> Reported-by: Rob Herring <robh@kernel.org>
->>> Closes: https://lore.kernel.org/all/175462129176.394940.16810637795278334342.robh@kernel.org/
->>> Fixes: 3bad7fe22796 ("dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Reference usb-switch.yaml to allow mode-switch")
->>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>> ---
->>>   .../devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml    | 8 +++++---
->>>   1 file changed, 5 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
->>> index c8bc512df08b5694c8599f475de78679a4438449..5005514d7c3a1e4a8893883497fd204bc04e12be 100644
->>> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
->>> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
->>> @@ -73,8 +73,11 @@ properties:
->>>       description:
->>>         See include/dt-bindings/phy/phy-qcom-qmp.h
->>>   
->>> -  mode-switch: true
->>> -  orientation-switch: true
->>> +  mode-switch:
->>> +    $ref: /schemas/usb/usb-switch.yaml#properties/mode-switch
->>> +
->>> +  orientation-switch:
->>> +    $ref: /schemas/usb/usb-switch.yaml#properties/orientation-switch
->>
->> This is a pattern we try to avoid with references at a property level. I
->> prefer you make port and ports not required in usb-switch.yaml.
+--nextPart6197909.lOV4Wx5bFT
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Conor Dooley <conor@kernel.org>
+Date: Wed, 01 Oct 2025 09:11:51 +0200
+Message-ID: <5926760.DvuYhMxLoT@fw-rgant>
+In-Reply-To: <20250927-spoon-yearning-c1a8df796173@spud>
+MIME-Version: 1.0
+
+On Sunday, 28 September 2025 00:31:05 CEST Conor Dooley wrote:
+...
+> > > 
+> > > > +  lltc,fb-voltage-divider:
+> > > Why does this property have a ?linear? vendor prefix?
+> > > Shouldn't it be adi to match the other property and compatible?
+> > 
+> > This component was originally from Linear Technology, before it was
+> > acquired by Analog Devices. The new properties and compatibles have the
+> > Analog Devices prefix, but the "fb-voltage-divider" property is already
+> > used by the LTC3676 and LTC3589 regulators, so I left the Linear
+> > Technology prefix for this one to avoid introducing a new property just
+> > to specify a vendor prefix change.
+> > 
+> > I don't have a strong opinion about this though.
 > 
-> But this solution is also not perfect. E.g.
-> Documentation/devicetree/bindings/phy/fsl,imx8mq-usb-phy.yaml should
-> only allow the orienttion-switch property, while using
-> allOf:$ref:usb-switch.yaml allows all three (orientation-switch,
-> mode-switch, retimer-switch).
-> 
+> Do they share the same driver?
 
-I agree, but I'm not the original author of this change.
+They do not. However, they use it in the exact same way, and I would've
+liked to factor out the handling of this property in a future patch. This
+would also make it easier to handle other types of feedback pin circuits
+and have a generic binding for "regulators using a feedback pin connected
+to some kind of analog circuit".
 
-Neil
+For example:
+
+Vout----+      
+        |      
+        |      
+       +++     
+       | |     
+       | | Rtop
+       | |     
+       +++     
+        |      
+        |      
+ FB ----+      
+        |      
+     +--+--+   
+     |  |  |   
+     |  |  |CCS
+     +--v--+   
+        |      
+        |      
+       -+-     
+        -      
+ 
+This is all speculation at this point though, so I don't mind changing the
+property to "adi,fb-voltage-divider" and handling the different compatibles
+when it comes to it.
+
+Thanks,
+
+-- 
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart6197909.lOV4Wx5bFT
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmjc1DcACgkQKCYAIARz
+eA6qTg/+Kkilr24s4UFOMInNmOfoTXbYDRNnY1G9d2/sXjYcwqNTtmnoK/iwyuta
+wsf8Aw9kycn8Daw1ra4fAdARNjHU/ky1ciPZPDRqRcuhgSoyxP2TbKHDjoKBYIBK
+KhOx9Ow267KOnJRooUbhNdX0CRwOr6PgPc2qE1ZQatDKriNc1SRkeGarUqdeyITq
+GBMGJi/uhMMVgrjsXRxGaDiDjZT9PxGGc7lGoOq0/QxdOPsFfuJmzgH/1MY6jj7b
+qRePQELC4N4So3jAGvUZgqWS+o2A7EOMGXO9MBSOi9oUwFQODYMWD1+a4QEAQN7t
+lM15POGGAhxTb2406ez8chEMamBOr+CU2Q7zsCrJfYc4+2D3qPhojxm2WAb44dOq
+x+qJS88Su6lA/b8DRUcxuem7EUSUpjKTXy2g4ox4FBbfxZqr+J4tws7xBp/wpBv9
+jsw20G74ycrru6povudm5ge5P7XVQF9BArHxjW++vNMdE9Dd0+2cqn8eZhu8rXlh
+qVQDOLzGINZUccX0b/QeA2G2JmQ3Sb/FCZQuLA/CTyNIZLF0yjPXg9MR02/hNBR9
+JI/IQ8Y/thn6+1TtAzDRPRJWzkMbJAnCXYRs92d4IRpxdbthytgI5OXN10j2H9gr
+nMS3sbxSbsJRGOmMCwuRjuki6DcHcmUZFvpg83QKJ5+oxiWuUtg=
+=/Mf9
+-----END PGP SIGNATURE-----
+
+--nextPart6197909.lOV4Wx5bFT--
+
+
+
 
