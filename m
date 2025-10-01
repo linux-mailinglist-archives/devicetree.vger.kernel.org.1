@@ -1,255 +1,228 @@
-Return-Path: <devicetree+bounces-223104-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE8CCBB119F
-	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 17:37:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE06CBB11ED
+	for <lists+devicetree@lfdr.de>; Wed, 01 Oct 2025 17:41:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 99A832A3632
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 15:37:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86FEF17847C
+	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 15:41:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ACE627E07A;
-	Wed,  1 Oct 2025 15:37:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D81DB27A904;
+	Wed,  1 Oct 2025 15:41:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="nsEK9Cph"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e23n1Qc3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com (mail-westus3azon11010023.outbound.protection.outlook.com [52.101.201.23])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB9127EFEE;
-	Wed,  1 Oct 2025 15:37:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.201.23
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759333045; cv=fail; b=rRKBHhBd+nzlJ6FuTDEjAyhotzS3JDj8tRvraKusTl+iKinj4eTMKWWX9HJ/SUjWsi3sgIe++I2Upr686w7JabEYYcfpFWt3RYRKJio6MsLmoRxwY+B5WG/at95bA8/7TJyqp4G3UuOGYPnSVJqXG8V7fNQYcbyev7Bp2O52VLI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759333045; c=relaxed/simple;
-	bh=KV76llOBeZTZayqIJ2LV5XyEolMphbU0+lXyzBUrm4w=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZCNv2fD1tKeDYxgELUBojeUt7fiHb3iAb6ultjilPFLkH0C0BPWUoAv2Rs0ZGpr4RFbLE/PAlHJk7s/+Kp/IZMDepLdL4pboR3QljDmJSt0ScpAYbyvCsaQCj4aKXncYpNQx1wjDCQ1DvP8Fyt6h1ULsX3/Huuf1UbKtndwkX2M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=nsEK9Cph; arc=fail smtp.client-ip=52.101.201.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zVRjxlIW7RbAzAPYxH/QGCsd5nXbeLJeTlWY5WVa1Da33Asxk3yaN1wf+uX01ns5lXG13umgY3LxKmOKOxVcQRqxRed48dt6eSIAQZhvtQi5WZPAXc8+DcIgGqp4mGU+GRv2rMJNcqQKJSnQHPUbBYten9LFixf6ntMWVaP5FiZQpLbifDJ6gcJfTDIdGYriQ48YsTr7U8DC2qbiS0K8V1+2QIm2tUGQssY2vJqQnhAwvTS7Pw32QoXeq/rM2pOXd4B5IvUUwt74fEsRfPtLwROTZtXuicNmWWrCbt6QEZN/e9S5d2BHEeRwm/LP6g9AY3FXb2Xf2bEmqH/JOHcapA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EOK/v+u2lYSyakDAjyWak+Ll3VrbHnC6yUIPDIOFz7E=;
- b=N2bzRzOWKPi6jETx6HKuxMP/TF4Nyxd5ViECJIB6tzX5hPDSdL4hoRCMlAf8HPQ3UKj68C/nemoeCzTjtuw172AR2v9CkRqEOzYY4dzlYFaa4P/TUL7fuT0ylBeJAtM4ljCTra9c1lxIWZhGesWeSa2Co+lRpPqktULa15Gd4MF+fXWYr1wZMu70Da/vbMQvVNh8UT3OvCI2krw1fzdOIBLAq40zH+/q8gbZ3RJxjiVq69N/Z5lm32SAf4JX8UO+HITNeld+QVcaYk5JMryJs6Dze7WTkqoBhNHJE0BU/B8G+uLNWVVXsYHYm9wU2jAa7m2bmWDz+NlZUiuyH8mojA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EOK/v+u2lYSyakDAjyWak+Ll3VrbHnC6yUIPDIOFz7E=;
- b=nsEK9CphfJw/UQym38OH/lthoKTPMzp0AVlxF/Iw475p9Nlbfx47W1oU7gpSmRpxJRoGlCUTuz5eU10f7BYiepjd7Yv+JnUORd/EuPh4AWKsE6bP9mMfQXKhOWsj66o7hJfpv+EisINLbIxf2ELMlXymxqjo8saUr7ybrgmbuwbngCMQ6EReGCrekv9VFB1N6d+2DBope1nEPupwivGGfX8h2K1j4ErSS6HWtjbqr0z/3OQIGk6l8dV+lVErRfteVuG6nVFAcb9M8gqTVz8BtWbsrp60wJLpELL7/W7dgjsHYIStgw/rmVXO23Yphz/9Sf+vUNYKGr5fdj73OZdTrw==
-Received: from SJ0PR03CA0219.namprd03.prod.outlook.com (2603:10b6:a03:39f::14)
- by CH1PPFF5B95D789.namprd12.prod.outlook.com (2603:10b6:61f:fc00::62a) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9160.9; Wed, 1 Oct
- 2025 15:37:20 +0000
-Received: from SJ5PEPF000001EB.namprd05.prod.outlook.com
- (2603:10b6:a03:39f:cafe::d7) by SJ0PR03CA0219.outlook.office365.com
- (2603:10b6:a03:39f::14) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9182.14 via Frontend Transport; Wed,
- 1 Oct 2025 15:37:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- SJ5PEPF000001EB.mail.protection.outlook.com (10.167.242.199) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9182.15 via Frontend Transport; Wed, 1 Oct 2025 15:37:20 +0000
-Received: from rnnvmail202.nvidia.com (10.129.68.7) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.34; Wed, 1 Oct
- 2025 08:37:05 -0700
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by rnnvmail202.nvidia.com
- (10.129.68.7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Wed, 1 Oct
- 2025 08:37:05 -0700
-Received: from kkartik-desktop.nvidia.com (10.127.8.13) by mail.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server id 15.2.2562.20 via Frontend
- Transport; Wed, 1 Oct 2025 08:37:00 -0700
-From: Kartik Rajput <kkartik@nvidia.com>
-To: <akhilrajeev@nvidia.com>, <andi.shyti@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <thierry.reding@gmail.com>,
-	<jonathanh@nvidia.com>, <ldewangan@nvidia.com>, <digetx@gmail.com>,
-	<smangipudi@nvidia.com>, <linux-i2c@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-CC: <kkartik@nvidia.com>
-Subject: [PATCH 2/2] i2c: tegra: Add support for Tegra410
-Date: Wed, 1 Oct 2025 21:06:48 +0530
-Message-ID: <20251001153648.667036-3-kkartik@nvidia.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251001153648.667036-1-kkartik@nvidia.com>
-References: <20251001153648.667036-1-kkartik@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B396D1FCCF8
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 15:41:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759333263; cv=none; b=rfuo+SDr6g+0AL+8y2iBoIhH4FVDVRwARf/VE5LBl1GYpJr2InMen+M6J1olkoDVLLF4FEBvMvN2SolY+CDOqRL1Mv2aGHOpteSsHcqObFt7miesy935meu0KfppHMwlNb061vTggNpAtN7Z9Cr9rXlvhHaOKyULQOi0KlEs0AE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759333263; c=relaxed/simple;
+	bh=VPFhdajTzt4PMvSoazJy32tPKtXgLDASc3DZDYmsvgc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gBabLYwFAAmqZW579MPsMGqAAAsEOnbM/cUaafKKWvAUivHYrEgGmgwr+ksTy4U72IFsaneLCKxYAvZCxlYyWnGIVRwrHgVp6plBnqv5kxPaMvSpoAYRO8zUYs56QzfuWsrSNq5tFH6V+afGRbFSSJ0xIPwJjy0nwl9j0cLJNMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e23n1Qc3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DB08C4CEFA
+	for <devicetree@vger.kernel.org>; Wed,  1 Oct 2025 15:41:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759333263;
+	bh=VPFhdajTzt4PMvSoazJy32tPKtXgLDASc3DZDYmsvgc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=e23n1Qc3HVN4q/9rR/RJ2z/QTpQP2EYU+7XtZXUBEmkvWg94/88Xcx5Xyohv2L02X
+	 oebDZeQoYJUp/eKPBkFFf9TDFrYIgNEFU+fjF4v6HUKXPTZEfAYpl6RodLriRyu59Y
+	 UZ58ngllpRf25ivv6yv1M7Uof/Sl+Di5nNGrlonEF2/+7x1WL2VRaiujoec/TMuAKP
+	 Lb6vNxovtX1mLMoAiOFoUGZX9qhxZ1vyW4F+u3ORWbkM7uMYo1rxvURMI1vaoqDBcM
+	 CSSTgzX4RL2s+PlNG62SiLPUABzoO57LA7caUyqy7xA9ZlKZj0jIZm9MGHbA7gW0fQ
+	 LW0hf6Kf0KcRA==
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-6364eb29e74so61816a12.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 08:41:03 -0700 (PDT)
+X-Gm-Message-State: AOJu0Yx8hCOO4w/z/Yvq5eXZyFA7+gJmbYoRBpdJ3Px4/FXa2cOugHSe
+	c0a38KELU+gA0Lc5ePaAuZINOzE+rYb9j3g3fAiAyWggzbKJrCbo8kNQfwPkEBOytbMT7ypOpow
+	99NuWTwBJDezJPreKmeFAVOgESFnSgQ==
+X-Google-Smtp-Source: AGHT+IEQg/Wj/A5kVG6NeqjVifOVkTFeucuHaTw0oAe89TAlFoQQ9Maf0g7ETh3zkxolZbtxGs/+9BsGvGwwYEgRweU=
+X-Received: by 2002:a17:906:6a28:b0:b3d:e9be:7ad0 with SMTP id
+ a640c23a62f3a-b46e4d7dbdamr429653566b.6.1759333262008; Wed, 01 Oct 2025
+ 08:41:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ5PEPF000001EB:EE_|CH1PPFF5B95D789:EE_
-X-MS-Office365-Filtering-Correlation-Id: 335ae237-04ff-4d72-98e2-08de010068de
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|7416014|376014|36860700013|82310400026|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?r+311aucbexvpLw5zyvMMSWXR56teMYstbre/K9B56O8q0qna6/Otxj/MPUY?=
- =?us-ascii?Q?Aj8UmwNg/oiPfOU66joda1Ds6yvM79o6k+j2AA6ZP04gVaiHSDzvkXWOQYSf?=
- =?us-ascii?Q?Im2UwBEJylQHrmYQ/93zKNSFanttKuJDdV7kldxrub3jjCuiCkq9uOg+MqWS?=
- =?us-ascii?Q?+XEcaT2Y/PWSKBxbvLJIzQx3sOjDprFYQuFQg5dGP9evT+YilUI5gw/FsrtS?=
- =?us-ascii?Q?l9NGczMG8OY4KfNWMWBmQ9dosy+rFK7kzriMENF5D696LuqDMJYp0vUmQM4S?=
- =?us-ascii?Q?qc1XtS3LVmoY7Hj9ABJq5+oRDtHAtsw5WyCk5HzLMEFXn37wZ9yh5nlS9Uf5?=
- =?us-ascii?Q?Z7L+qhVLo8HC20bEUPhs8Wqn3SzOsT832BfxM/to9zI8T9VvatkUeOtEOy0c?=
- =?us-ascii?Q?JA7kbOZ5V0HlTCZZVGU14nIYzxQBxfLCi3e/IvdIkvAH2jfpWiGUXc8StBSJ?=
- =?us-ascii?Q?QNXNCUGFpHLqH4k9r/3KVWROzF/Q3tVkDr/PGuFa9KTvSzKkeHVerC6o4hCW?=
- =?us-ascii?Q?/mi2Qu3cxoZ+7dEIV5e3t8rKAPByZEGySKKPBLvCXcdErvYuyS+wz1K9PhJr?=
- =?us-ascii?Q?BPlnCaqNmfxNP0Bcwu8a34zW5MY1B4r1vhzJPUJW8ee4msjMV2xU1XD8wPEL?=
- =?us-ascii?Q?lWBTMO7kKk3fUAUCrFexY7lKjBXuGKSm5dlqAi6uAM2QQiLjJgq+i2LOOnJ5?=
- =?us-ascii?Q?ncwFu42daN3vgdidZF3TrPSTpoUlebGpreB5b2toykzkJx3MP/iursNl+yOp?=
- =?us-ascii?Q?kMEcup+MMMa6TQ/swlO1z1ylEch4LEjgYVWZe5tLgf7EnIszoFh57YytCkKz?=
- =?us-ascii?Q?A3FSz0mqD7kaQ/h+T43nEYdyw9xZ7MZvvCrXwV7/oGplCyuGoDm3IWqst7Oi?=
- =?us-ascii?Q?XcLzK73j6WIPDC0uyiglYoRFmPSifk+ixRLxHzm27x9uLasnbFRjDt9rniu/?=
- =?us-ascii?Q?rcqNSeCs+OEcNLpQrm4oD8CmtLl3e76aSPIlIPEA4A+IwALxyA2j9caujcG+?=
- =?us-ascii?Q?K/XQQCiSCOrl+Tjhj3tytxdrxOwLII4WG2/LZ1KfDaXPZy+5TTt/xAzl8fR0?=
- =?us-ascii?Q?CtbkaTpurkdfMxp7eMModdosj4m0BAHTpna3+ZuCbI/jJFvm5OcBxjsomx83?=
- =?us-ascii?Q?on0b9uPyBLNdz3AwDE1OY/QoG7/wCqk/UMK9qJX/+SxJEw+KGliCh5SOy77+?=
- =?us-ascii?Q?fhu7xMnFE8Ykl0RfBk0/Q0rK7E3qoJBiNpxnd2oKNFIOl2GbYglWeOjDULGq?=
- =?us-ascii?Q?Xo/T8JZuChgqPDv5lal8WPlDq2xbPpTPae0dyk0+h4NIte3/fz/pJ++A2U2K?=
- =?us-ascii?Q?9i1Sn+IllHFvppGBm7QNqk8nGtNmFKS/2EV3kXVbnFQhJzzl16mCtIyMoq9k?=
- =?us-ascii?Q?Y8w4sdNbiO7dYEHhOb4Ag6o9KJ/Ro+rmUlgLoPkchZ5MGj8oVvxPWl7Fymyu?=
- =?us-ascii?Q?GC1d0Lrmm15LNrS6Dow+A5BUFeKpcyUzd5eH8B+qp6uUkoWf1X9NbFC2bLA2?=
- =?us-ascii?Q?Be7uqlGV9eBQ/LJD3ATFKBFVnfbrNnjIQkDguNMEDt6i4pITBfDvkKGgf5Hz?=
- =?us-ascii?Q?0nLfsOnl2u5wVU9CmRH6RhGScuPJlo4zfqPScw1w?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(36860700013)(82310400026)(921020);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2025 15:37:20.3364
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 335ae237-04ff-4d72-98e2-08de010068de
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SJ5PEPF000001EB.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PPFF5B95D789
+References: <20250928-exynos7870-drm-dts-v3-0-bb7d8e570860@disroot.org>
+ <175911189634.2556697.2474466935066391775.robh@kernel.org> <32036b3916a944be9450e48b6be30dc0@disroot.org>
+In-Reply-To: <32036b3916a944be9450e48b6be30dc0@disroot.org>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 1 Oct 2025 10:40:49 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLYCRfRuxtymiH50QrSXVsCQ_DFfP6E3GnnDP_Q0ofAJg@mail.gmail.com>
+X-Gm-Features: AS18NWBM0yEC5v7mwPKzU4adk5H2ji9GiLwA3JN9Wk_AB63JYvswUWeOPHSnB2c
+Message-ID: <CAL_JsqLYCRfRuxtymiH50QrSXVsCQ_DFfP6E3GnnDP_Q0ofAJg@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] Support for Exynos7870's display stack (DECON,
+ MIPIPHY, DSIM, etc.)
+To: Kaustabh Chakraborty <kauschluss@disroot.org>
+Cc: devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+	linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add support for the Tegra410 SoC, which has 4 I2C controllers. The
-controllers are feature-equivalent to Tegra264; only the register
-offsets differ.
+On Mon, Sep 29, 2025 at 5:05=E2=80=AFAM Kaustabh Chakraborty
+<kauschluss@disroot.org> wrote:
+>
+> On 2025-09-29 02:14, Rob Herring (Arm) wrote:
+> > On Sun, 28 Sep 2025 23:26:34 +0530, Kaustabh Chakraborty wrote:
+> >> Exynos7870 has a IP subsystem in its architecture dedicated to display
+> >> management. Notably, this block includes the Display Enhancement
+> >> Controller (DECON), and the DSI Master (DSIM).
+> >>
+> >> The following series and its sub-series implement all components for a
+> >> functioning display pipeline. All vital information which helped
+> >> shaping
+> >> up the patches have been retrieved from Exynos7870 vendor kernel
+> >> sources
+> >> as provided by Samsung.
+> >>
+> >> Testing has been done on all three devices available upstream, i.e.
+> >> Samsung Galaxy J7 Prime (samsung-on7xelte), Samsung Galaxy A2 Core
+> >> (samsung-a2corelte), and Samsung Galaxy J6 (samsung-j6lte).
+> >> Regrettably,
+> >> I've only been able to test the functionality on video mode, as none
+> >> of
+> >> the devices have panels working in command mode.
+> >>
+> >> This series implements changes in the SoC subsystem, which includes
+> >> devicetree additions. It depends on all sub-series listed below:
+> >> (Legend: [R]eviewed, [A]ccepted)
+> >>
+> >> exynos-sysmmu-resv-regions A
+> >> https://lore.kernel.org/r/20250712-exynos-sysmmu-resv-regions-v1-1-e79=
+681fcab1a@disroot.org
+> >> exynos7870-mipi-phy        A
+> >> https://lore.kernel.org/r/20250612-exynos7870-mipi-phy-v1-0-3fff0b62d9=
+d3@disroot.org
+> >> exynos7870-mipi-phy-fix    A
+> >> https://lore.kernel.org/r/20250710-exynos7870-mipi-phy-fix-v2-1-5cf50d=
+69c9d7@disroot.org
+> >> exynos7870-dsim            A
+> >> https://lore.kernel.org/r/20250706-exynos7870-dsim-v3-0-9879fb9a644d@d=
+isroot.org
+> >> exynosdrm-decon            A
+> >> https://lore.kernel.org/r/20250706-exynosdrm-decon-v4-0-735fd215f4b3@d=
+isroot.org
+> >> panel-samsung-s6e8aa5x01   A
+> >> https://lore.kernel.org/r/20250721-panel-samsung-s6e8aa5x01-v5-0-1a315=
+aba530b@disroot.org
+> >> panel-synaptics-tddi       -
+> >> https://lore.kernel.org/r/20250625-panel-synaptics-tddi-v2-0-7a62ab1d1=
+3c7@disroot.org
+> >>
+> >> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
+> >> ---
+> >> Changes in v3:
+> >> - fixed minor issues with devicetree in regards to compliance
+> >> - added memory-region to framebuffer region for decon device
+> >> - added related patchset to list: exynos-sysmmu-resv-regions
+> >> - replaced exynos7870-pmu with exynos7-pmu compatible to the list
+> >>   allowing a MIPI PHY subnode (krzk)
+> >> - updated compatible string and dt node for j6lte's panel
+> >> - reorder properties: ${x}, followed by ${x}-names (krzk)
+> >> - Link to v2:
+> >> https://lore.kernel.org/r/20250627-exynos7870-drm-dts-v2-0-d4a59207390=
+d@disroot.org
+> >>
+> >> Changes in v2:
+> >> - modified compatible hierarchy to use non-deprecated syntax (krzk)
+> >> - fixed subject prefixes of [v1 2/5], [v1 3/5], [v1 4/5], [v1 5/5]
+> >> (krzk)
+> >> - removed simplefb nodes instead of disabling it (krzk)
+> >> - added dt-bindings patch to allow mipi-phy node under PMU
+> >> - changed clock names of dsim node
+> >> - Link to v1:
+> >> https://lore.kernel.org/r/20250612-exynos7870-drm-dts-v1-0-88c0779af6c=
+b@disroot.org
+> >>
+> >> ---
+> >> Kaustabh Chakraborty (6):
+> >>       dt-bindings: samsung: exynos-sysreg: add exynos7870 sysregs
+> >>       dt-bindings: soc: samsung: exynos-pmu: allow mipi-phy subnode
+> >> for Exynos7 PMU
+> >>       arm64: dts: exynos7870: add DSI support
+> >>       arm64: dts: exynos7870-on7xelte: enable display panel support
+> >>       arm64: dts: exynos7870-a2corelte: enable display panel support
+> >>       arm64: dts: exynos7870-j6lte: enable display panel support
+> >>
+> >>  .../bindings/soc/samsung/exynos-pmu.yaml           |  1 +
+> >>  .../soc/samsung/samsung,exynos-sysreg.yaml         |  2 +
+> >>  .../arm64/boot/dts/exynos/exynos7870-a2corelte.dts | 57
+> >> +++++++++++----
+> >>  arch/arm64/boot/dts/exynos/exynos7870-j6lte.dts    | 38 ++++++----
+> >>  arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dts | 57
+> >> +++++++++++----
+> >>  arch/arm64/boot/dts/exynos/exynos7870.dtsi         | 84
+> >> ++++++++++++++++++++++
+> >>  6 files changed, 197 insertions(+), 42 deletions(-)
+> >> ---
+> >> base-commit: 262858079afde6d367ce3db183c74d8a43a0e83f
+> >> change-id: 20250523-exynos7870-drm-dts-87ccab731ba9
+> >>
+> >> Best regards,
+> >> --
+> >> Kaustabh Chakraborty <kauschluss@disroot.org>
+> >>
+> >>
+> >>
+> >
+> >
+> > My bot found new DTB warnings on the .dts files added or changed in
+> > this
+> > series.
+> >
+> > Some warnings may be from an existing SoC .dtsi. Or perhaps the
+> > warnings
+> > are fixed by another series. Ultimately, it is up to the platform
+> > maintainer whether these warnings are acceptable or not. No need to
+> > reply
+> > unless the platform maintainer has comments.
+> >
+> > If you already ran DT checks and didn't see these error(s), then
+> > make sure dt-schema is up to date:
+> >
+> >   pip3 install dtschema --upgrade
+> >
+> >
+> > This patch series was applied (using b4) to base:
+> >  Base: using specified base-commit
+> > 262858079afde6d367ce3db183c74d8a43a0e83f
+> >
+> > If this is not the correct base, please add 'base-commit' tag
+> > (or use b4 which does this automatically)
+> >
+> > New warnings running 'make CHECK_DTBS=3Dy for
+> > arch/arm64/boot/dts/exynos/' for
+> > 20250928-exynos7870-drm-dts-v3-0-bb7d8e570860@disroot.org:
+> >
+> > arch/arm64/boot/dts/exynos/exynos7870-on7xelte.dtb:
+> > /soc@0/dsi@14800000/panel@0: failed to match any schema with
+> > compatible: ['syna,td4300-panel']
+> > arch/arm64/boot/dts/exynos/exynos7870-a2corelte.dtb:
+> > /soc@0/dsi@14800000/panel@0: failed to match any schema with
+> > compatible: ['syna,td4101-panel']
+>
+> Note: This affects patches 4/6 and 5/6, rest should be mergeable.
 
-Signed-off-by: Kartik Rajput <kkartik@nvidia.com>
----
- drivers/i2c/busses/i2c-tegra.c | 64 ++++++++++++++++++++++++++++++++++
- 1 file changed, 64 insertions(+)
+You sent a series and it's easier for maintainers to take a whole
+series than figure out what they can and can't apply. In any case,
+we're in the middle of the merge window now, so you will need to
+resend everything after rc1. You should either fix the warnings or
+drop the 2 patches when you send it again.
 
-diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/i2c-tegra.c
-index 1e26d67cbd30..bc9f60b69020 100644
---- a/drivers/i2c/busses/i2c-tegra.c
-+++ b/drivers/i2c/busses/i2c-tegra.c
-@@ -262,6 +262,38 @@ static const struct tegra_i2c_regs tegra20_i2c_regs_vi = {
- 	.dvc_status = 0x00c,
- };
- 
-+static const struct tegra_i2c_regs tegra410_i2c_regs = {
-+	.cnfg = 0x000,
-+	.status = 0x01c,
-+	.sl_cnfg = 0x020,
-+	.sl_addr1 = 0x02c,
-+	.sl_addr2 = 0x030,
-+	.tlow_sext = 0x034,
-+	.tx_fifo = 0x054,
-+	.rx_fifo = 0x058,
-+	.packet_transfer_status = 0x05c,
-+	.fifo_control = 0x060,
-+	.fifo_status = 0x064,
-+	.int_mask = 0x068,
-+	.int_status = 0x06c,
-+	.clk_divisor = 0x070,
-+	.bus_clear_cnfg = 0x088,
-+	.bus_clear_status = 0x08c,
-+	.config_load = 0x090,
-+	.clken_override = 0x094,
-+	.interface_timing_0 = 0x098,
-+	.interface_timing_1 = 0x09c,
-+	.hs_interface_timing_0 = 0x0a0,
-+	.hs_interface_timing_1 = 0x0a4,
-+	.master_reset_cntrl = 0x0ac,
-+	.mst_fifo_control = 0x0b8,
-+	.mst_fifo_status = 0x0bc,
-+	.sw_mutex = 0x0f0,
-+	.dvc_ctrl_reg1 = 0x000,
-+	.dvc_ctrl_reg3 = 0x008,
-+	.dvc_status = 0x00c,
-+};
-+
- /*
-  * msg_end_type: The bus control which needs to be sent at end of transfer.
-  * @MSG_END_STOP: Send stop pulse.
-@@ -2020,6 +2052,37 @@ static const struct tegra_i2c_hw_feature tegra264_i2c_hw = {
- 	.regs = &tegra20_i2c_regs,
- };
- 
-+static const struct tegra_i2c_hw_feature tegra410_i2c_hw = {
-+	.has_continue_xfer_support = true,
-+	.has_per_pkt_xfer_complete_irq = true,
-+	.clk_divisor_hs_mode = 1,
-+	.clk_divisor_std_mode = 0x1d,
-+	.clk_divisor_fast_mode = 0x15,
-+	.clk_divisor_fast_plus_mode = 0x8,
-+	.has_config_load_reg = true,
-+	.has_multi_master_mode = true,
-+	.has_slcg_override_reg = true,
-+	.has_mst_fifo = true,
-+	.quirks = &tegra194_i2c_quirks,
-+	.supports_bus_clear = true,
-+	.has_apb_dma = false,
-+	.tlow_std_mode = 0x8,
-+	.thigh_std_mode = 0x7,
-+	.tlow_fast_fastplus_mode = 0x2,
-+	.thigh_fast_fastplus_mode = 0x2,
-+	.tlow_hs_mode = 0x4,
-+	.thigh_hs_mode = 0x2,
-+	.setup_hold_time_std_mode = 0x08080808,
-+	.setup_hold_time_fast_fast_plus_mode = 0x02020202,
-+	.setup_hold_time_hs_mode = 0x090909,
-+	.has_interface_timing_reg = true,
-+	.has_hs_mode_support = true,
-+	.has_mutex = true,
-+	.is_dvc = false,
-+	.is_vi = false,
-+	.regs = &tegra410_i2c_regs,
-+};
-+
- static const struct of_device_id tegra_i2c_of_match[] = {
- 	{ .compatible = "nvidia,tegra264-i2c", .data = &tegra264_i2c_hw, },
- 	{ .compatible = "nvidia,tegra256-i2c", .data = &tegra256_i2c_hw, },
-@@ -2330,6 +2393,7 @@ static const struct acpi_device_id tegra_i2c_acpi_match[] = {
- 	{.id = "NVDA0101", .driver_data = (kernel_ulong_t)&tegra210_i2c_hw},
- 	{.id = "NVDA0201", .driver_data = (kernel_ulong_t)&tegra186_i2c_hw},
- 	{.id = "NVDA0301", .driver_data = (kernel_ulong_t)&tegra194_i2c_hw},
-+	{.id = "NVDA2017", .driver_data = (kernel_ulong_t)&tegra410_i2c_hw},
- 	{ }
- };
- MODULE_DEVICE_TABLE(acpi, tegra_i2c_acpi_match);
--- 
-2.43.0
-
+Rob
 
