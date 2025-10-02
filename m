@@ -1,79 +1,104 @@
-Return-Path: <devicetree+bounces-223217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA13FBB23AD
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 03:12:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 469C1BB23FF
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 03:18:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98388327528
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 01:12:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A77A3A5C98
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 01:15:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBBCA1BCA0E;
-	Thu,  2 Oct 2025 01:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D42C445009;
+	Thu,  2 Oct 2025 01:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Hd7+oDVg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ojSiId7B"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A522A1B043A;
-	Thu,  2 Oct 2025 01:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A10D5224F6;
+	Thu,  2 Oct 2025 01:15:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759367456; cv=none; b=S0qHATtlGFBXhSLNTC7sfmv3Y8eG1Okf8ZHlI3iOrxQIRZ2zHoq/dTi8XtLnshhd4Xw/OJugEUEIQaXlXkBBYTv3C7XDRN3TfNzz0WRyeXSA+0sB68ErsZeLI9Px4mbS3UTftqICza+g8OjFzenZK15CYMgB42vavJ3ue2g9lBk=
+	t=1759367738; cv=none; b=A6XdMEdUl7YY5TOJ/z8ZK29t5LVleDjQsdOYnP7WirRjfwQyRWz8OK5zUoTYTcy/ZXwqBWlOzsjsmEQjK+wcEqwJ+YsICOeGxWnKPWPPetekX9ZE0mUMfK4DC2516CGk1luGxy/U8R7yQ4rj1FvoWTVg2jPb1DMPK6zkSrNBzBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759367456; c=relaxed/simple;
-	bh=Y/7dbKf2OvpkEFPMcVMfrEZFYDZv5zW/ZOeH+9CWmTo=;
-	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=Gh6Ho7ZuKGIAhvngx9GT8IJYpJOfNPnl1RltytwSu5+MnWqM91yQaRUjqWbhEPM2JBiMDv3IVrRvVE+ywcPk6xHC5yQVnsI7Gek0remisIVKrBaefXFRggm3OHPoNMPYrNzYfNNRWRM8E9sVfGMBZA70Tr7bs7vDgyyEeu6JXCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Hd7+oDVg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8595EC4CEF1;
-	Thu,  2 Oct 2025 01:10:56 +0000 (UTC)
+	s=arc-20240116; t=1759367738; c=relaxed/simple;
+	bh=ybWFhd4Bl669wN6zdk9DEt87ykdf3WJUYTYkdhjzDkI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jf8cjtpGr7dBQXRfXDF3XMyut4s8qLe+tgr7oEAnNaGK59eYfjIjGOqkokCmS0oXX6JYxdMGDqCDLsE0BQDBmKzf5n9OXmblqlRUXtwPeMAAYCba+aGKYk50ep+x5fghFB7tKHiH60G7CH6IXjuKTY9wgloLlXPPNoIhozW5WD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ojSiId7B; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D2B43C4CEF1;
+	Thu,  2 Oct 2025 01:15:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759367456;
-	bh=Y/7dbKf2OvpkEFPMcVMfrEZFYDZv5zW/ZOeH+9CWmTo=;
-	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
-	b=Hd7+oDVgN6MG+76+mX5A3WUHE+2/L2Fv2uWzi38jo3jCDL1V1geriPobvrurW2y8N
-	 boTVpSSgz8wez5icbZOJ1HIQRDXb/uVVaO2nw+RMpVRwebSXEyedKut+ehgOq560fp
-	 3f4Q1G/wC6Gubis8GFd3Lm+1E0P30TccmRvP2ZT/CZ+HOv1KKti6EveVtoOxvlk4oU
-	 1tZmzTwvkf6Q8sllIydPFSCjOWKGsEgQYxBGxRlnO/e1WsKB9p9Ctba7WxMoNvUG5/
-	 8Y1t5SqIrFQ/2HEIc4nph9vDRlO/RVc/k23C+H+Do3LfBuvnswx36W28e6CHt/njo/
-	 PpN03jt2+3DAw==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 270B939EF947;
-	Thu,  2 Oct 2025 01:10:50 +0000 (UTC)
-Subject: Re: [GIT PULL] Devicetree updates for v6.18
-From: pr-tracker-bot@kernel.org
-In-Reply-To: <20250929181601.GA345627-robh@kernel.org>
-References: <20250929181601.GA345627-robh@kernel.org>
-X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
-X-PR-Tracked-Message-Id: <20250929181601.GA345627-robh@kernel.org>
-X-PR-Tracked-Remote: ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.18
-X-PR-Tracked-Commit-Id: 129b91fc329604e05f794dc1a18a6da3eb518b4e
-X-PR-Merge-Tree: torvalds/linux.git
-X-PR-Merge-Refname: refs/heads/master
-X-PR-Merge-Commit-Id: 9792d660a4e91d31a6b1af105ae3f1c29107e94b
-Message-Id: <175936744875.2689671.14593389321955184162.pr-tracker-bot@kernel.org>
-Date: Thu, 02 Oct 2025 01:10:48 +0000
-To: Rob Herring <robh@kernel.org>
-Cc: Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+	s=k20201202; t=1759367738;
+	bh=ybWFhd4Bl669wN6zdk9DEt87ykdf3WJUYTYkdhjzDkI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ojSiId7BoaS8UNz6oiQJrQVUImuzaY/mzCOniA7rvODFJU4GAwUFv3dAgCJ9KmWI9
+	 1rb7vwOLVXCWEKDPZVA/QFcQ8hNXvZwihE9EUDqzN0i0LGKz3mZuFkIl+BeojgiBCU
+	 6foF4q0z6vt1vPHkePosD2qlYpq2eRtrg4Yc8uAvb+RdqD/+Kaq6mAQj3hAwsvJkjt
+	 3azSV6vbvVsz+lvu0jLtVusygK4HGehccP5CclvEsKavXAfPgmSPpGgH6h/OOEfeBH
+	 Uz3jG6rmCjTj3suHzJb09+WYEWjJH3rEfjUL2aKnnt+rELnYhKCKu0hL7aghTc4jW8
+	 qhgxpAinpzLCQ==
+Date: Wed, 1 Oct 2025 20:15:36 -0500
+From: Rob Herring <robh@kernel.org>
+To: Luo Jie <quic_luoj@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Varadarajan Narayanan <quic_varada@quicinc.com>,
+	Georgi Djakov <djakov@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Anusha Rao <quic_anusha@quicinc.com>,
+	Manikanta Mylavarapu <quic_mmanikan@quicinc.com>,
+	Devi Priya <quic_devipriy@quicinc.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	quic_kkumarcs@quicinc.com, quic_linchen@quicinc.com,
+	quic_leiwei@quicinc.com, quic_pavir@quicinc.com,
+	quic_suruchia@quicinc.com
+Subject: Re: [PATCH v6 02/10] dt-bindings: clock: Add "interconnect-cells"
+ property in IPQ9574 example
+Message-ID: <20251002011536.GA2828951-robh@kernel.org>
+References: <20250925-qcom_ipq5424_nsscc-v6-0-7fad69b14358@quicinc.com>
+ <20250925-qcom_ipq5424_nsscc-v6-2-7fad69b14358@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250925-qcom_ipq5424_nsscc-v6-2-7fad69b14358@quicinc.com>
 
-The pull request you sent on Mon, 29 Sep 2025 13:16:01 -0500:
+On Thu, Sep 25, 2025 at 10:05:36PM +0800, Luo Jie wrote:
+> The Networking Subsystem (NSS) clock controller acts as both a clock
+> provider and an interconnect provider. The #interconnect-cells property
+> is needed in the Device Tree Source (DTS) to ensure that client drivers
+> such as the PPE driver can correctly acquire ICC clocks from the NSS ICC
+> provider.
+> 
+> Add the #interconnect-cells property to the IPQ9574 Device Tree binding
+> example to complete it.
 
-> ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.18
+The subject is wrong as it #interconnect-cells, not interconnect-cells.
 
-has been merged into torvalds/linux.git:
-https://git.kernel.org/torvalds/c/9792d660a4e91d31a6b1af105ae3f1c29107e94b
+> 
+> Fixes: 28300ecedce4 ("dt-bindings: clock: Add ipq9574 NSSCC clock and reset definitions")
+> Signed-off-by: Luo Jie <quic_luoj@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/clock/qcom,ipq9574-nsscc.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Thank you!
-
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/prtracker.html
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
