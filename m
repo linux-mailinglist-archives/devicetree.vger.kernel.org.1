@@ -1,84 +1,116 @@
-Return-Path: <devicetree+bounces-223251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76810BB2729
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 05:38:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D96D4BB273D
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 05:47:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DE837AF681
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 03:36:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C9C619C6633
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 03:47:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C3B11D5CC6;
-	Thu,  2 Oct 2025 03:37:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FF892D9EF3;
+	Thu,  2 Oct 2025 03:47:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YZtgHK7x"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="h+KLTpD2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 329322C0260;
-	Thu,  2 Oct 2025 03:37:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26396285C85
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 03:47:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759376271; cv=none; b=GlzLXWRL0DJOiJ9Fk18yC+3yrEZXMg/mFp9pSpvCBbIDWpCcPnmHWKIcCMRLXUh9IslPrabTqS8EpCqpD/wL9FRbtHmXPBPoi8YwzTEDePpr+Ftjg8uFU1ZCLM6vgbhahVWMxkFhGXcm52zpttlV22Br2GgN+9zGWNVVnkKJO8c=
+	t=1759376840; cv=none; b=QfXfCq7nrpxajXRwOP4Kt9gZJ/8C8Ea10ousFjuLL3hWcnfqr2Dt5lgXLQwwCbKFSpCKxaeHHpkhd5qAYr9uF+LJbyhewM4A/sVvP+2/nb+Z64VChMGQn06+kruK6xgiTf0d4B6MI8SqDfq5cfwf+kjYThke9odLDQ2LF9kduwo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759376271; c=relaxed/simple;
-	bh=5KafbAB7/NJXwoTixCHSHk43VoeUSel+4sYcOzmnuwE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SGMcvdHxToM204m4LvvSXN19AeaoyVEgDiuzzhPAvraPW7d7GnddseP7zAYlRTSd3FPP4NX0qNMlKhwOQXZs+1F36whgP7+DfL3StQgr1dkwa6oag4rTQkItMA9wBEOdZHVyAEmKt5+qId3WhcY/xAErOVdED3yUCZUSHefQmJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YZtgHK7x; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65B69C4CEF9;
-	Thu,  2 Oct 2025 03:37:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759376270;
-	bh=5KafbAB7/NJXwoTixCHSHk43VoeUSel+4sYcOzmnuwE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YZtgHK7xZH4wEbt8+g2vs/Gwxt3MXurqW83BM26iTzuxi2Osb/Ufl5Il9gw0odhrE
-	 1VtqiraAqUgDTAab6U/eak/zzZON3m54XCjqmLgrXNz3cnphQsu7TfCuUxvZhEEfWN
-	 rKxkR77p8oJQaWXTo1co0vWvl9ytBjJQHy2q0BXxsVl3uPCtltgE9E3k49Q0TQCeT/
-	 22E3LPZMZJb7NMJmXj65ruDKUwZUNY9f7VeMB/98FvHe4HocNhGokVHPzIwkQWRjHn
-	 6YhxqQVBWWNBfI42PqvDbwGhNZ1Kd36F12ZFpPnRSPl4pY8LYqR1frRuz2xTdbaN6t
-	 t7I7Pcnf80d2A==
-Date: Wed, 1 Oct 2025 22:37:48 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Rain Yang <jiyu.yang@oss.nxp.com>
-Cc: steven.price@arm.com, devicetree@vger.kernel.org, tzimmermann@suse.de,
-	marek.vasut@mailbox.org, krzk+dt@kernel.org,
-	maarten.lankhorst@linux.intel.com, mripard@kernel.org,
-	imx@lists.linux.dev, dri-devel@lists.freedesktop.org,
-	liviu.dudau@arm.com, conor+dt@kernel.org,
-	Rain Yang <jiyu.yang@nxp.com>, simona@ffwll.ch, airlied@gmail.co,
-	boris.brezillon@collabora.com, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: gpu: mali-valhall: make mali-supply
- optional
-Message-ID: <175937626733.3023972.12745078904801093915.robh@kernel.org>
-References: <20250928090334.35389-1-jiyu.yang@oss.nxp.com>
+	s=arc-20240116; t=1759376840; c=relaxed/simple;
+	bh=CqJTrZYTK3Z0ORhw23J/pfO/CDry02I1G+tj+KnzEhY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=dATb66yvQYMF8GRVG/gA9Ot3gtA2/d/FjZJs9EPHZtAEg+NsOy4iU4lL2Pu0gX9PN7qCwZqd+ZNyyOHMdsNvwP1CQemt2xsxOoQpFit32cdD5RC8U484YfNgcHaV0Mu4MtJ8Ys75Z/NoZgQeC8dDWHba0JjNy+cEmNd4vskC2PI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=h+KLTpD2; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 3146817D8;
+	Thu,  2 Oct 2025 05:45:45 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1759376745;
+	bh=CqJTrZYTK3Z0ORhw23J/pfO/CDry02I1G+tj+KnzEhY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=h+KLTpD26CpYFaq7lCJm7HyNWgLavxGZpu5BXNFW5yNQtTZHVkdTE6ZaqsylAOo+r
+	 j8qoIPSiHxcPIiV7yB22e6fFMz2HZmgIDOwtu61rDBNj1eddvr/LTLEvhIEm1zwhrt
+	 oHGZGXbBB3jTfg1Bs0Lovjo6kOThluY/yCb4bjSo=
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Cc: Algea Cao <algea.cao@rock-chips.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Cenk Uluisik <cenk.uluisik@googlemail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Jimmy Hon <honyuenkwun@gmail.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Muhammed Efe Cetin <efectn@6tel.net>,
+	Ondrej Jirman <megi@xff.cz>,
+	Rob Herring <robh@kernel.org>,
+	Sandy Huang <hjc@rock-chips.com>
+Subject: [PATCH 0/3] arm64: dts: rockchip: Add device tree for the Orange Pi CM5 Base board
+Date: Thu,  2 Oct 2025 06:47:05 +0300
+Message-ID: <20251002034708.19248-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.49.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250928090334.35389-1-jiyu.yang@oss.nxp.com>
+Content-Transfer-Encoding: 8bit
+
+Hello,
+
+This patch series adds a device tree for the Orange Pi CM5 Base board
+from Xunlong. This is a combination of a compute module and a carrier
+board, so the device tree is split in two files.
+
+The work is based on a combination of upstream device trees for other
+RK3588-based Orange Pi boards and the downstream device tree, all
+checked against the available schematics for the carrier board. The
+compute module schematics is unfortunately not available.
+
+The series starts by adding a new compatible for the board to
+arm/rockchip.yaml. The next patch documents a missing property in the
+rk3588-dw-hdmi-qp bindings that the device tree needs. Finally, the last
+patch adds the device tree.
+
+Patch 2/3 may be slightly controversial as the new DT property could be
+better named. It has been supported in the driver for a year now, so
+there could be users in the wild. I have therefore decided to keep the
+current name. I am open to alternative solutions.
+
+Laurent Pinchart (3):
+  dt-bindings: arm: rockchip: Add Orange Pi CM5 Base
+  dt-bindings: display: rk3588-dw-hdmi-qp: Document enable-gpios
+    property
+  arm64: dts: rockchip: Add rk3588s-orangepi-cm5-base device tree
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   6 +
+ .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml  |   4 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../rockchip/rk3588s-orangepi-cm5-base.dts    | 342 +++++++++++++
+ .../dts/rockchip/rk3588s-orangepi-cm5.dtsi    | 450 ++++++++++++++++++
+ 5 files changed, 803 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-cm5-base.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-cm5.dtsi
 
 
-On Sun, 28 Sep 2025 17:03:33 +0800, Rain Yang wrote:
-> From: Rain Yang <jiyu.yang@nxp.com>
-> 
-> Not all platforms require the mali-supply regulator. This change removes
-> it from the required list in the binding schema, and make mali-supply
-> required for rk3588 only.
-> 
-> Signed-off-by: Rain Yang <jiyu.yang@nxp.com>
-> ---
->  .../devicetree/bindings/gpu/arm,mali-valhall-csf.yaml          | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
+base-commit: c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9
+-- 
+Regards,
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Laurent Pinchart
 
 
