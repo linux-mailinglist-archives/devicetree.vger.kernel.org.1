@@ -1,99 +1,143 @@
-Return-Path: <devicetree+bounces-223382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71969BB3CCD
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 13:43:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD1F4BB3CF4
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 13:46:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 289BD3A660D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 11:43:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B9D23ACD40
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 11:46:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E49853101BD;
-	Thu,  2 Oct 2025 11:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65E992571A1;
+	Thu,  2 Oct 2025 11:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dXf5HugE"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ffWouqXJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B88392797AF;
-	Thu,  2 Oct 2025 11:42:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C213430FF3F
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 11:46:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759405372; cv=none; b=qUBz2xvV2QOFep9EMmy3pF8UWJoRViKFY4yy7Vd1N3jbECvdwi/Ed/frqGbssRXheUBCFUTdh1GIplGLXBEePy8K7ngbYc+IGKfyu6cfft93GQfsbOfQu2bDywSbmSphQ45BucEzeCj8GsfE/3q/7jI1Nb/EHJhCMX409v4lBsM=
+	t=1759405582; cv=none; b=XnqV12+keJ2oDsnIg+QkoMzuMPow7PFwIvgEoEkctL6/ITHrPHJRvu+mzUVlqGxdIdjR/1kTXYS3EZ2CJneu5hk2mRRPhQXbEwFnonLFPTp/Kl/ykBUqM7UJc3hLvs60O2o0zYA7WClfdOmbCnMlvwS4n6Yh/MknkDTqKprhMMU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759405372; c=relaxed/simple;
-	bh=vbNFbdJYlLnZG2wACTOj7jBkUXMZiUzzUteZi3K/WGk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ldezFmhXYMSBq6gSGGC5sGGO6TUAxaPknLCKDBxrE7ZmjyRjlSOWtFeXtRJZP9+qPbR0qiAD/o8YH/F/bm/RWGB7Vmrgp+2BYGNmVESKIr+KC6iW3uSVgj9zXVx01wqRGNOuIitAm2+tzPRGKUc+JIX97ud4bm5nhhGkiLKrpJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dXf5HugE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3B83C4CEFC;
-	Thu,  2 Oct 2025 11:42:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759405372;
-	bh=vbNFbdJYlLnZG2wACTOj7jBkUXMZiUzzUteZi3K/WGk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dXf5HugE2M/1uw3eIrVJdnXIOaGbLjiyduT4zq89pe0c9hylUVCAqHD5fjitAzcuB
-	 6mAnIDaRYASpySLAhtVXPfY6LszYliFh8id6SuSjfQzJec0JWX54dr3gIzF411Xtcm
-	 JXe509xlNkL8dC57yFEm7OVd545/1NZ+fyWecn4o5hUUN6JydaVLnOBeoc7z0ZtKhq
-	 ktIn261RjE6P5OEdqnQE/O51+K16n2xGHpVhhUnYjkFVks4zcWKXmV/T6ASLQkoZEN
-	 3yuY15Q110BLgK0oHcXF0PBghnVUt0gQuz+0Sl59GOZYAKnhRJueAVThQl6J3IyEFx
-	 BsJ2WcJ6QLqvQ==
-Date: Thu, 2 Oct 2025 12:42:47 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Cc: angelogioacchino.delregno@collabora.com, conor+dt@kernel.org,
-	krzk+dt@kernel.org, lgirdwood@gmail.com, matthias.bgg@gmail.com,
-	robh@kernel.org, devicetree@vger.kernel.org, kernel@collabora.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: ASoC: Convert MediaTek RT5650 codecs
- bindings to DT schema
-Message-ID: <83df4958-8cdc-4ec4-a77a-0f6132513664@sirena.org.uk>
-References: <20251001183517.83278-1-ariel.dalessandro@collabora.com>
+	s=arc-20240116; t=1759405582; c=relaxed/simple;
+	bh=XAW7j/GiCX4Ldk1pbIGoe/EzygOj7TZ3MCMZKOX1tCA=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=psWcUnhaCRJ0QQhQaLuKClw7iONQT505zK217EHVflVmtTUlQh797b0kWrtl+TMk/MWLutNm3gT4+M7rvl+UQfqIiBEWyi+lC9T1i+n+0khOkfSpeHNaCtUKNyun1VsraP0nFeOhSjcpwPbAB52vZJAuHErw2opegSM05dPRS6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ffWouqXJ; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1759405580;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=XAW7j/GiCX4Ldk1pbIGoe/EzygOj7TZ3MCMZKOX1tCA=;
+	b=ffWouqXJ4YmNG8hnVktMLB2Lay/MS5QVGiGjSacR7SfPe99Vc8maSLlyoKvKVxXxVrAdiA
+	bpgNUNBxji7SxK5ZhgBs+t7tMNm4T+RxGf52quB4QgKXfFBCauqqz/Cx293XBsqtGjQcEE
+	Y/0T+RcTVOGU0sVopqQgRZzk2/ifcm0=
+Received: from mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-582-0ElKgZKKMTaiTW8-y-6wyw-1; Thu,
+ 02 Oct 2025 07:46:17 -0400
+X-MC-Unique: 0ElKgZKKMTaiTW8-y-6wyw-1
+X-Mimecast-MFC-AGG-ID: 0ElKgZKKMTaiTW8-y-6wyw_1759405572
+Received: from mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 494BD1956095;
+	Thu,  2 Oct 2025 11:46:10 +0000 (UTC)
+Received: from fweimer-oldenburg.csb.redhat.com (unknown [10.44.32.225])
+	by mx-prod-int-01.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 83FCA300018D;
+	Thu,  2 Oct 2025 11:45:51 +0000 (UTC)
+From: Florian Weimer <fweimer@redhat.com>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: Charles Mirabile <cmirabil@redhat.com>,  pjw@kernel.org,
+  Liam.Howlett@oracle.com,  a.hindborg@kernel.org,
+  akpm@linux-foundation.org,  alex.gaynor@gmail.com,
+  alexghiti@rivosinc.com,  aliceryhl@google.com,  alistair.francis@wdc.com,
+  andybnac@gmail.com,  aou@eecs.berkeley.edu,  arnd@arndb.de,
+  atishp@rivosinc.com,  bjorn3_gh@protonmail.com,  boqun.feng@gmail.com,
+  bp@alien8.de,  brauner@kernel.org,  broonie@kernel.org,
+  charlie@rivosinc.com,  cleger@rivosinc.com,  conor+dt@kernel.org,
+  conor@kernel.org,  corbet@lwn.net,  dave.hansen@linux.intel.com,
+  david@redhat.com,  devicetree@vger.kernel.org,  ebiederm@xmission.com,
+  evan@rivosinc.com,  gary@garyguo.net,  hpa@zytor.com,  jannh@google.com,
+  jim.shu@sifive.com,  kees@kernel.org,  kito.cheng@sifive.com,
+  krzk+dt@kernel.org,  linux-arch@vger.kernel.org,
+  linux-doc@vger.kernel.org,  linux-fsdevel@vger.kernel.org,
+  linux-kernel@vger.kernel.org,  linux-kselftest@vger.kernel.org,
+  linux-mm@kvack.org,  linux-riscv@lists.infradead.org,
+  lorenzo.stoakes@oracle.com,  lossin@kernel.org,  mingo@redhat.com,
+  ojeda@kernel.org,  oleg@redhat.com,  palmer@dabbelt.com,
+  paul.walmsley@sifive.com,  peterz@infradead.org,
+  richard.henderson@linaro.org,  rick.p.edgecombe@intel.com,
+  robh@kernel.org,  rust-for-linux@vger.kernel.org,
+  samitolvanen@google.com,  shuah@kernel.org,  tglx@linutronix.de,
+  tmgross@umich.edu,  vbabka@suse.cz,  x86@kernel.org,  zong.li@sifive.com
+Subject: Re: [PATCH v19 00/27] riscv control-flow integrity for usermode
+In-Reply-To: <aNxsWYYnj22G5xuX@debug.ba.rivosinc.com> (Deepak Gupta's message
+	of "Tue, 30 Sep 2025 16:48:41 -0700")
+References: <f953ee7b-91b3-f6f5-6955-b4a138f16dbc@kernel.org>
+	<20250926192919.349578-1-cmirabil@redhat.com>
+	<aNbwNN_st4bxwdwx@debug.ba.rivosinc.com>
+	<CABe3_aE4+06Um2x3e1D=M6Z1uX4wX8OjdcT48FueXRp+=KD=-w@mail.gmail.com>
+	<aNcAela5tln5KTUI@debug.ba.rivosinc.com>
+	<lhu3484i9en.fsf@oldenburg.str.redhat.com>
+	<aNxsWYYnj22G5xuX@debug.ba.rivosinc.com>
+Date: Thu, 02 Oct 2025 13:45:48 +0200
+Message-ID: <lhuwm5dh6hf.fsf@oldenburg.str.redhat.com>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="TE5evtEICq1wpIvP"
-Content-Disposition: inline
-In-Reply-To: <20251001183517.83278-1-ariel.dalessandro@collabora.com>
-X-Cookie: idleness, n.:
+Content-Type: text/plain
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.4
 
+* Deepak Gupta:
 
---TE5evtEICq1wpIvP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> On Tue, Sep 30, 2025 at 11:20:32AM +0200, Florian Weimer wrote:
+>>* Deepak Gupta:
+>>
+>>> In case of shadow stack, it similar situation. If enabled compiler
+>>> decides to insert sspush and sspopchk. They necessarily won't be
+>>> prologue or epilogue but somewhere in function body as deemed fit by
+>>> compiler, thus increasing the complexity of runtime patching.
+>>>
+>>> More so, here are wishing for kernel to do this patching for usermode
+>>> vDSO when there is no guarantee of such of rest of usermode (which if
+>>> was compiled with shadow stack would have faulted before vDSO's
+>>> sspush/sspopchk if ran on pre-zimop hardware)
+>>
+>>I think this capability is desirable so that you can use a distribution
+>>kernel during CFI userspace bringup.
+>
+> I didn't get it, can you elaborate more.
+>
+> Why having kernel carry two vDSO (one with shadow stack and one without) would
+> be required to for CFI userspace bringup?
+>
+> If Distro is compiling for RVA23 CONFIG_RISCV_USERCFI has to be selected yes,
+> kernel can have vDSO with shadow stack. Distro can light this option only when
+> its compiling entire distro for RVA23.
 
-On Wed, Oct 01, 2025 at 03:35:17PM -0300, Ariel D'Alessandro wrote:
-> Convert the existing text-based DT bindings for Mediatek MT8173 RT5650
-> codecs to a DT schema.
+I think it boils down to whether you want CFI bringup contributions from
+people who do not want to or cannot build their own custom RVA23
+kernels.
 
-Please submit patches using subject lines reflecting the style for the
-subsystem, this makes it easier for people to identify relevant patches.
-Look at what existing commits in the area you're changing are doing and
-make sure your subject lines visually resemble what they're doing.
-There's no need to resubmit to fix this alone.
+Another use case would be running container images with CFI on a
+distribution kernel which supports pre-RVA23 hardware.
 
---TE5evtEICq1wpIvP
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks,
+Florian
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjeZTYACgkQJNaLcl1U
-h9CNRQgAgB0/gZ+KlQcFzodFTVNysydvUs64RjVNx19lW3i4SQf/GsUktr4RAh9g
-9fM6ZQz7A8jXbMTRxjR6N+/ePk0Fi0UA+l68gKCNAA05qsLW/8+BQ+reEVHQ9lIi
-CeSYhmUTlX3qcE7AM/bhjSPJxyEqCQM+hDt3Hwj7FYICOD+S1djW7oKo+sHmVsYN
-Lwrxb3cL5cLE2ySupwT6rACvXkA3N969/9FkJI33fPBPM5gSdrxRcmEzxU9qlhQg
-Tm7qISufYk0OjvRcd3+Nm6l2YNrbfolcFyCKWeM2lbPVd17Ryb2E0ft4F71DhL/y
-6n1IvdgVe8vNJ7NEGDu1SYQctIoenw==
-=0b63
------END PGP SIGNATURE-----
-
---TE5evtEICq1wpIvP--
 
