@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-223241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D61B8BB2647
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 04:44:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B28C5BB2668
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 04:53:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 863CA1C6EC9
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 02:44:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D39119C0831
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 02:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFCF28725D;
-	Thu,  2 Oct 2025 02:44:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1D711A5B92;
+	Thu,  2 Oct 2025 02:53:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P4pEaIUR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RyDfaXMj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C233286D4D;
-	Thu,  2 Oct 2025 02:44:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C46C8335C7;
+	Thu,  2 Oct 2025 02:53:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759373074; cv=none; b=Ony7d03CL9Em15uINk3nR4c5M15bS6LHcYYUTfxDHjleDk4225OefdMT1nsoClAG/aMafUYEMVdPCrDfoGI1AIUbncuJoFA6kZHeKvjMFrRtO/59bsGKyqjN3DNmWNZY4tH9FfzczAHsM1QmRxsZYXX4aIaSdsqFVJE0B5qvTbQ=
+	t=1759373626; cv=none; b=LtecOUzvCpUhsgbYNU1tmHjPWgfBdFbhnh4ErIxD34tL4Bdqcv5P8SFiWFcxhPGf6KBFy97wQhqYuCERzJy5XwWhAQbX/iaAaPY2tCIN/fYbOzJCHdIw99twPlKFSufzScGVS9l7Zec7AqDxahTvw/yHW8j9LhpLdxt51RWr52c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759373074; c=relaxed/simple;
-	bh=dTowb+J6WK4jE3aFjdvelX7oyZdVONQO9cwZMgstuxE=;
+	s=arc-20240116; t=1759373626; c=relaxed/simple;
+	bh=k5Fo7WwY3d4EfZhjNQelpmfw9Ke+RYCe8Y1iFx4rh6w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nwPonPNzb4vYJqcimXfBRb9DYmf+A1B+zdc3e5Y6wRa7xVk02csUFVM/JrYQKQhU9vuhal/O7+8q1bacubjXu+YBrANISjrfynVNGL3eK1UFNLlU/u8/F7IWcy1Zl/F7Pvm0pxu1Hj5jVtrPtg027fLjejBEPGRIoMrFwwLxgMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P4pEaIUR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA78FC4CEF1;
-	Thu,  2 Oct 2025 02:44:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pbcfAIEU4tB0oG2Q10C+j65voPXprB5Jcne70pdoyse10p82x0PpU9UvvcBT4BO8XPtyAZEc5y5WL7Gb+X3y8WFGfJwQFFW/c32J7z9RG0LprAc59vL3+Yhxk9ze50Pknj6F8yIttzc4cnaJthBI6EPxHkH9Rvk8WI2lKyRMDUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RyDfaXMj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B9B1C4CEF7;
+	Thu,  2 Oct 2025 02:53:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759373074;
-	bh=dTowb+J6WK4jE3aFjdvelX7oyZdVONQO9cwZMgstuxE=;
+	s=k20201202; t=1759373626;
+	bh=k5Fo7WwY3d4EfZhjNQelpmfw9Ke+RYCe8Y1iFx4rh6w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=P4pEaIUR8a7YKRKOtnklo9MNLEMiPz8gkdMfiQNvga4ZzCxxh1W8bns6wEBHbIdd5
-	 jEPMmuQJTUv9dUBZyb2cfiAg4/MFHOZDunEDThx1/tEO2XdBasrOFxl1TYk3Flyyve
-	 DHOSRO4tvJR3w9gcitbxhP/xuC1CIm/mMDauE9XuoD6L3iwdVZ0H6FJPlo1ZPwiTwc
-	 CNbMJZJV4wJ9RV+BqB/aIBXJaBYiwCJqQJO9BuMIyGD1oFXjnttujohjazHc2xgNPL
-	 XD/m5X8xrXPbZ2sThikN++vkYp+/7MGOkIytAcqsieOmzI7dZJlvF3tSjVdcgTxxEt
-	 Cdiyt/+uTK3kg==
-Date: Wed, 1 Oct 2025 21:44:31 -0500
+	b=RyDfaXMjrk99bGqmhy78acCjsU/K613xe7YU9tO0izmOmI4uhnQsY/iZT/2TbIMpE
+	 MoBuwV6NvjgHL5i8YXGAX9DuIsL8pVKi58vNuS7ijeUJbWzhafrtZ1PYkM30AyS8nb
+	 jUv2RIujj7kPYZ3/2XnZZZkGVeCDRaSEbXB4KyygfCo/QZj7K2VsKHPkR8Oc2JJGy2
+	 iDJpL963nA3Atv+S53scx/gWeaBRSdHmu3udIHV4W4P++He3Xq3c9E9e+KpImjfktN
+	 qpQK3XLBWSaJQsdmU0UgLd22yZmO47Y9ELThsU2OhSt0stLM7vzfIn66/WDyIUb8Mf
+	 a3qj3TZLufFFw==
+Date: Wed, 1 Oct 2025 21:53:44 -0500
 From: Rob Herring <robh@kernel.org>
-To: =?iso-8859-1?Q?Jean-Fran=E7ois?= Lessard <jefflessard3@gmail.com>
-Cc: Andy Shevchenko <andy@kernel.org>,
-	Geert Uytterhoeven <geert@linux-m68k.org>,
+To: Otto =?iso-8859-1?Q?Pfl=FCger?= <otto.pflueger@abscue.de>
+Cc: Sebastian Reichel <sre@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 3/7] dt-bindings: auxdisplay: add Titan Micro
- Electronics TM16xx
-Message-ID: <20251002024431.GA2926696-robh@kernel.org>
-References: <20250926141913.25919-1-jefflessard3@gmail.com>
- <20250926141913.25919-4-jefflessard3@gmail.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>, Lee Jones <lee@kernel.org>,
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: mfd: sc2731: Reference
+ sprd,sc2731-poweroff
+Message-ID: <20251002025344.GA2958334-robh@kernel.org>
+References: <20250926-sc2730-reboot-v1-0-62ebfd3d31bb@abscue.de>
+ <20250926-sc2730-reboot-v1-2-62ebfd3d31bb@abscue.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,266 +66,51 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250926141913.25919-4-jefflessard3@gmail.com>
+In-Reply-To: <20250926-sc2730-reboot-v1-2-62ebfd3d31bb@abscue.de>
 
-On Fri, Sep 26, 2025 at 10:19:04AM -0400, Jean-François Lessard wrote:
-> Add documentation for TM16xx-compatible 7-segment LED display controllers
-> with keyscan.
+On Fri, Sep 26, 2025 at 06:23:24PM +0200, Otto Pflüger wrote:
+> Reference the new sprd,sc2731-poweroff bindings and add an example.
 > 
-> Signed-off-by: Jean-François Lessard <jefflessard3@gmail.com>
+> Signed-off-by: Otto Pflüger <otto.pflueger@abscue.de>
 > ---
+>  Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> Notes:
->     The 'segments' property is intentionally not vendor-prefixed as it
->     defines a generic hardware description concept applicable to any
->     7-segment display controller. The property describes the fundamental
->     grid/segment coordinate mapping that is controller-agnostic and could
->     be reused by other LED matrix display bindings. Similar to how 'gpios'
->     describes GPIO connections generically, 'segments' describes segment
->     connections in a standardized way using uint32-matrix format.
->     
->     The property uses explicit coordinate pairs to handle real-world
->     hardware variations. Some board manufacturers use standard layouts
->     (same grid, different segments per digit) while others use transposed
->     layouts (same segment, different grids per digit). The coordinate-pair
->     approach accommodates both patterns without requiring separate arrays
->     or boolean flags, as confirmed acceptable by DT maintainers.
-> 
->  .../bindings/auxdisplay/titanmec,tm16xx.yaml  | 463 ++++++++++++++++++
->  MAINTAINERS                                   |   5 +
->  2 files changed, 468 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
-> new file mode 100644
-> index 000000000000..d324023bbffb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
-> @@ -0,0 +1,463 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/auxdisplay/titanmec,tm16xx.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Auxiliary displays based on TM16xx and compatible LED controllers
-> +
-> +maintainers:
-> +  - Jean-François Lessard <jefflessard3@gmail.com>
-> +
-> +description: |
-> +  LED matrix controllers used in auxiliary display devices that drive individual
-> +  LED icons and 7-segment digit groups through a grid/segment addressing scheme.
-> +  Controllers manage a matrix of LEDs organized as grids (columns/banks in
-> +  vendor datasheets) and segments (rows/bit positions in vendor datasheets).
-> +  Maximum brightness and grid/segment indices are controller-specific.
-> +  Controller-specific maximum are validated in the driver.
-> +
-> +  The controller is agnostic of the display layout. Board-specific LED wiring is
-> +  described through child nodes that specify grid/segment coordinates for
-> +  individual icons and segment mapping for 7-segment digits.
-> +
-> +  The bindings use separate 'leds' and 'digits' containers to accommodate
-> +  different addressing schemes:
-> +  - LEDs use 2-cell addressing (grid, segment) for matrix coordinates
-> +  - Digits use 1-cell addressing with explicit segment mapping
-> +
-> +  The controller node exposes a logical LED-like control for the aggregate
-> +  display brightness. Child nodes describe individual icons and 7-seg digits.
-> +  The top-level control supports only label and brightness-related properties
-> +  and does not support other common LED properties such as color or function.
-> +  Child LED nodes use the standard LED binding.
-> +
-> +  Optional keypad scanning is supported when both 'linux,keymap' and
-> +  'poll-interval' properties are specified.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - fdhisi,fd628
-> +              - princeton,pt6964
-> +              - wxicore,aip1628
-> +          - const: titanmec,tm1628
-> +      - items:
-> +          - enum:
-> +              - wxicore,aip1618
-> +          - const: titanmec,tm1618
-> +      - items:
-> +          - enum:
-> +              - fdhisi,fd650
-> +              - wxicore,aip650
-> +          - const: titanmec,tm1650
-> +      - enum:
-> +          - fdhisi,fd620
-> +          - fdhisi,fd655
-> +          - fdhisi,fd6551
-> +          - titanmec,tm1618
-> +          - titanmec,tm1620
-> +          - titanmec,tm1628
-> +          - titanmec,tm1638
-> +          - titanmec,tm1650
-> +          - winrise,hbs658
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  label:
-> +    description:
-> +      The label for the top-level LED. If omitted, the label is taken from the
-> +      node name (excluding the unit address). It has to uniquely identify a
-> +      device, i.e. no other LED class device can be assigned the same label.
-> +
-> +  max-brightness:
-> +    minimum: 0  # 0=off
-> +    maximum: 8  # Maximum across all TM16xx controllers
-> +    description:
-> +      Normally the maximum brightness is determined by the hardware and this
-> +      property is not required. This property is used to put a software limit
-> +      on the brightness apart from what the driver says, as it could happen
-> +      that a LED can be made so bright that it gets damaged or causes damage
-> +      due to restrictions in a specific system, such as mounting conditions.
-> +
-> +  default-brightness:
-> +    minimum: 0  # 0=off
-> +    maximum: 8  # Maximum across all TM16xx controllers
-> +    description:
-> +      Brightness to be set if LED's default state is on. Used only during
-> +      initialization. If the option is not set then max brightness is used.
-> +
-> +  digits:
+> diff --git a/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml b/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
+> index b023e1ef8d3ccdb1d82d64ed1a60d5a712a1b910..a78d7e26b3a2c77b84da84fc23e52f3a22ab14df 100644
+> --- a/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/sprd,sc2731.yaml
+> @@ -52,6 +52,10 @@ properties:
+>    '#size-cells':
+>      const: 0
+>  
+> +  poweroff:
 > +    type: object
-> +    description: Container for 7-segment digit group definitions
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 1
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    patternProperties:
-> +      "^digit@[0-9]+$":
+> +    $ref: /schemas/power/reset/sprd,sc2731-poweroff.yaml#
 
-Unit addresses are typically hex, so: [0-9a-f]+
+You don't need a child node here as there's no DT resources. Just make 
+the parent node the power off provider.
 
-> +        type: object
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          reg:
-> +            description:
-> +              Digit position identifier numbered sequentially left-to-right,
-> +              with reg=0 representing the leftmost digit position as displayed
-> +              to the user.
-> +            maxItems: 1
-> +
-> +          segments:
-> +            $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> +            description: |
-> +              Array of grid/segment coordinate pairs for each 7-segment position.
-> +              Each entry is <grid segment> mapping to standard 7-segment positions
-> +              in order: a, b, c, d, e, f, g
-> +
-> +              Standard 7-segment layout:
-> +                 aaa
-> +                f   b
-> +                f   b
-> +                 ggg
-> +                e   c
-> +                e   c
-> +                 ddd
-> +            items:
-> +              items:
-> +                - description: Grid index
-> +                - description: Segment index
-> +            minItems: 7
-> +            maxItems: 7
-> +
-> +        required:
-> +          - reg
-> +          - segments
-> +
-> +  leds:
-> +    type: object
-> +    description: Container for individual LED icon definitions
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      "#address-cells":
-> +        const: 2
-> +      "#size-cells":
-> +        const: 0
-> +
-> +    patternProperties:
-> +      "^led@[0-9]+,[0-9]+$":
+IOW, a node with only a compatible property is pretty much always wrong 
+(though yes, you can find examples).
 
-Again, hex please.
-
-I assume this is <grid>,<segment>? Please add a description for the 
-node and say that.
-
-> +        type: object
-> +        $ref: /schemas/leds/common.yaml#
-> +        unevaluatedProperties: false
 > +
-> +        properties:
-> +          reg:
-> +            description:
-> +              Grid and segment indices as <grid segment> of this individual LED icon
+>    regulators:
+>      type: object
+>      $ref: /schemas/regulator/sprd,sc2731-regulator.yaml#
+> @@ -221,6 +225,10 @@ examples:
+>            reg = <0xec8>;
+>          };
+>  
+> +        poweroff {
+> +          compatible = "sprd,sc2731-poweroff";
+> +        };
 > +
-> +        required:
-> +          - reg
-> +
-> +dependencies:
-> +  poll-interval:
-> +    - linux,keymap
-> +  linux,keymap:
-> +    - poll-interval
-> +  autorepeat:
-> +    - linux,keymap
-> +    - poll-interval
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +allOf:
-> +  - $ref: /schemas/leds/common.yaml#
-> +    properties:
-> +      color: false
-> +      function: false
-> +      function-enumerator: false
-> +  - $ref: /schemas/input/input.yaml#
-> +  - $ref: /schemas/input/matrix-keymap.yaml#
-> +  # SPI controllers require 3-wire (combined MISO/MOSI line)
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fdhisi,fd620
-> +              - fdhisi,fd628
-> +              - princeton,pt6964
-> +              - titanmec,tm1618
-> +              - titanmec,tm1620
-> +              - titanmec,tm1628
-> +              - titanmec,tm1638
-> +              - wxicore,aip1618
-> +              - wxicore,aip1628
-> +    then:
-> +      $ref: /schemas/spi/spi-peripheral-props.yaml#
-> +      properties:
-> +        spi-3wire: true
-
-You can drop properties.
-
-> +      required:
-> +        - spi-3wire
-
-With those nits fixed,
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+>          regulators {
+>            compatible = "sprd,sc2731-regulator";
+>  
+> 
+> -- 
+> 2.50.0
+> 
 
