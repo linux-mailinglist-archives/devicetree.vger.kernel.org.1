@@ -1,280 +1,264 @@
-Return-Path: <devicetree+bounces-223324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66F1ABB3704
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 11:20:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D3AEBB3728
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 11:24:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAAB119C06A4
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 09:21:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CD423AE022
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 09:24:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC0453019BD;
-	Thu,  2 Oct 2025 09:20:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A85D3009FE;
+	Thu,  2 Oct 2025 09:24:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="HL3zqh1G"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="KvidH+Rm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48E33301015
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 09:20:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA4B72C028B
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 09:24:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759396826; cv=none; b=UBUbOLdFrRjM/03YmmMW9iig5r7nES4HZSFx7ESPtFTpazfHlSlOBk19Jv7gNcD7l0+Q0qRUpoyO7aQ7ySZ7SdByjoYZ1P/Z8eXS9fyiBkPnpiD3LRs+WAYrAWD0+SCRtvAagOJ0Waetym23vqbth6vFFu2mDfCPLkevhFVtAek=
+	t=1759397091; cv=none; b=oB91V/R5Mth42NrHqGchkPG6ChSFh25YV3Z4RsdWB0t/pbhxIbmUW3v33Kx8PhpO1pgXLLWzIebXBc6DffuwO9Rbx3G8J8DL5izhSVSvBIIr57HIE8ypBCjCPwvG7s54xPBNJnr7qKGPsA8ePYcUKkj9BnYPn42+KVYF23ifgKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759396826; c=relaxed/simple;
-	bh=p/CzlvHEnIHNvjR2z9r9G+Y/GwV0LJ8ph30ZwmlnMSY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=IzZk9ND+YPdX25toUGzZYLGO1hR4QHHmuoysIJBDdIQ2oic2O8+zsqMbAlJ7G6MSRHVxKgDB2Omu1koMBtxCrN6IJoHjyrrXcUKEue0t5rdBZJ0IEG0pIDPq6cwD21o49/JE/cHjn7tPqiDVr0k06K17ZRQJerfa0IRU3oXzjn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=HL3zqh1G; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-46e6a689bd0so4454025e9.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 02:20:23 -0700 (PDT)
+	s=arc-20240116; t=1759397091; c=relaxed/simple;
+	bh=tgbk9RmYdZkYbnbWwPdLH3MSImob3q/BtvIzQHc5jT0=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=K/CvovFZDIzsCO7AqCAdzSARrMseQefavbMlbAodC3+UBRXbuIBxnL3BHjG5f4wqVNoVfLn2SApil+FM/zSQHfZmCB99Q3rIUuvDJFLwJpHX0hZ+GL3mDw9CoQfl8h38lm1NQnRFTH7vz8iXbVRqs8/b/u2kQsyHMu525BgWH5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=KvidH+Rm; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-46e5b7dfeb0so3402835e9.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 02:24:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1759396822; x=1760001622; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6Zhldjp2yNaFyJXBTXpmr+HFpUJDsMOIwtutBNnd19s=;
-        b=HL3zqh1Gp6PYLlMx7UegozuhMXecrDuAvYeABpkMpPw822uQyq69UCdbV/MYsa0fE1
-         QUST/COOTTCj5LJEzwtz7S/wG1aNunJgjqwAVYyolDsvCVLsZn7Rjvw8I9lcydFrakW3
-         +oRDcGWN3DdoKPVBPHQQccoqpFH52Mz3hT/Bt4BeVOhUg9Ktl12cyxCFEyJRuOYyddiB
-         nZq2Amc5ApzVhHXAmmNl9+49T+Gt+YQ438RgV/eXQrEZNhVBGDHDkXYawY9qZNexGMu5
-         dp8gr+4Ow2jdPYDzjmJAy/3gwOgvJARAfcfcl31XT04z352FQLhJ61IU1vYqqs3gqWvM
-         e9nw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1759397088; x=1760001888; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/t1/wksIDf3jPXIxuPylTLhtA9vOxDXIa8eokU2PmXw=;
+        b=KvidH+RmjryCCrLhcRpCrL5Bjjk+5Y4jVCHB4bl1E1bQql3Wk+qkXRCnDqJZlgeeIc
+         etyJrS/UwhgOv+vPsL6YJWzIaADzZqzPH3NwIt8Fq5bjLDrkdwVy44Pu4FwCcTEhqqPZ
+         1Op6D+PlErVCUJrakENrb3CibeDnzgsDH1k1PUk6ZBHgbp8WG+17jRhrtThOtj9TaHtc
+         1sYqsQUcYfBtWn/LwmHIqjqF2MYY+pKGYv0eg8Gdi9Lf5xTAODXRJ64wbMG0c1g+IpP+
+         XNkXOzRJ8PZG7PrGu6LiAXMsqBHTjW7UCpWKBGdB56uZqxguw1rb03rI8jKwaqhtOj/r
+         4zZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759396822; x=1760001622;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6Zhldjp2yNaFyJXBTXpmr+HFpUJDsMOIwtutBNnd19s=;
-        b=rQbJ34+zVLC8+f6VqktEoDUA8K9OnoVw3UNsLbkoziwTcx7YIS/8vqghDhEdoEEDBS
-         BPibGRQhRSkJrVYgjs6LZ1lHopH4c20marfoKhDhEvBYoh+cfFvRCzF5iXZK5iQrT2iy
-         XMJyKpcwJPDjvQNNBP3NM3+HlA09mSRzM/2amGYdiUrdK6JUgr+hqgXvKguKPm/B/t29
-         t+u7ZSsO9ibld44ELzkPInzhIRl4KcwKPlIG9EV8vnC1WqlqVbUayXXM+YkDLQDUQCDH
-         IjV3qFlJ8PXbeNwzrBzwhJnnQkkdo+jN/fDASNjNTcbSDANMm2wLxrNLahHUcMEW3Mbx
-         9vnQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUdODiW1/9k3DNVtbNSd6NheRgQ/TbsToGw1FXOYhvlT48KGFvvvbJIrKiUiRl8B6fZoxa+LyY+Jxn0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw426jalZsnpelliQoslB6w576bWwuke/QPtr3pJpWI+UJoq0v/
-	v6n+rVAuIbaCBWoN5kLAEFFvdexNW5wr3Y9iPadoC46h64a8VX5bQPE6JhN70IJ4IZA=
-X-Gm-Gg: ASbGncvHXAHSnAP5J7WqSG1uQf35874epeiYVqIK7pZRxXGlfnwY5p4ipCTo+CsTCda
-	11fYi0JRjsRRrJLkRR7Db5CdCGgqWsyBOCUpLjLTdCDv2jNcG3rU8Re3anXHr6Dx8TK82GWIsjw
-	43JLStgvmxH+nf6zC96vc6uuRT7CriVjFD2r6iLltF1TWe5yevAg7R2tUVxnQj3NauHY1xpM6dL
-	KPuoX2j6HlM473csvHftymKYBYmD932LK0LSTEIjqok3PyV5CQ7S7yFr2hMLgkCFilK/XtYdiyy
-	+APip91XXvL0sMHGbNGrsimzhteu/+eNbh+PTcA8S61AcQV117vC0tOCqnXuqKVGtedJWmj9Xop
-	BFqV4X02UdBkyAS1zVfhqAhKMAkaR6IfAWZ2qrs7USw1MUxRV0ZHl4zM/HI9GLCuoww+PxK8=
-X-Google-Smtp-Source: AGHT+IF7CiZPQ+vX93IBD2awk1WVujnNswss6fVkdYSSXuPXelTmsVOTvm4mBoHvvqmd1eud2oD5Tw==
-X-Received: by 2002:a05:600c:c162:b0:46e:2562:e7b8 with SMTP id 5b1f17b1804b1-46e612be8b7mr41206015e9.21.1759396822249;
-        Thu, 02 Oct 2025 02:20:22 -0700 (PDT)
-Received: from [127.0.1.1] ([2a02:c7c:8a3e:8c00:3430:5fdd:d596:adae])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e6918bdebsm28958795e9.9.2025.10.02.02.20.21
+        d=1e100.net; s=20230601; t=1759397088; x=1760001888;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/t1/wksIDf3jPXIxuPylTLhtA9vOxDXIa8eokU2PmXw=;
+        b=nNkD1xatf7kQ/AXYMu2ZY0XeV3qIYRfN8U8SrLLOhV+G3JPmQXQXWG/Rh26+j6zGSH
+         jt8p9ACsp6R6PZ0UaF8NqmDBUq1NhP3if8Q+Fcu3UEw1DPJ3+/PSCU/cXrjL8VQtXpem
+         qSSJyEFn3EpO84UCPcw6uISvf4U4B0u/17S9mIA4RODNye+RO6TVPnz7YbKQhp8AnIld
+         gnZbj1iFKkRDMa+RGVZRJ1cV1bOp9JSP6214I5zWOAZt+FA21SS93qkCQPre91/WArSx
+         Ds8jShYWHqgH6H2eQUqIzdubxbCRsgdXJdgYT/pQbAfnCQaCN4fp4tdp9tWr1rPeg1Mg
+         3RVA==
+X-Forwarded-Encrypted: i=1; AJvYcCWkSw8fyCCMxkvhN8eD0vv0ixb7QfOGambnUbTSLp/jXvpl2QBt2yhP0VovEr8LojexPuHXCNw/EwPH@vger.kernel.org
+X-Gm-Message-State: AOJu0YzralaQErvGIPNGQ0iOnZyNMy4Bk5zk+xEM2Ff3zn5D6i+KlG1T
+	TuduNs+rciuc5WOWpfhSnPMqdcKkdkcVp51EXalpJ2BRlOSyEMw1B9XtYgbDD2qlkKc=
+X-Gm-Gg: ASbGncuaCXlC3XUi80jYUCnHX+S+/RLkGNBajsBN/Fox/W9l/yYV8ZtMra3oFR+he8L
+	/8GD6DqkZdRG0eQ4ucYKD/0WPToLEhYolP1kf5nig0yM7nY7k7eyo+fh1rGUtK7SpvQhu5EBIf2
+	I9iOI0peem2GORyfwxYmLSRKoJtczbqpqU/VZ6DER7TLN0ERSh4ZoTaMrf/KfE/01knMQPOtAl2
+	kbk8UGf4KoofYqNGpPBcBbbtFN1BKEQzZMfKTuvYx7gaFNsn3oD6U6YHv2CcTCXssKlFLKboscc
+	tBb1N8P4MFlNKv9fr2BLfE6MOFzPjmBTttHZRrdgwXngEeOpcimdn62Mhj0i8Dzi297XGzsA9hj
+	y8uV8LCBuAIymU2hIgrfKtKAziAnZn9uTboj+R4PcLo7n8Mz8fv4FTimzxb8dWCU1deR7SQ==
+X-Google-Smtp-Source: AGHT+IESV0coqhnpEDbT2Ff0mcbG5fodwxZU2sbL8zxaucsaY4KXStaV0RqhFdHkaqlu6kxIwfCbrA==
+X-Received: by 2002:a05:600c:a08e:b0:46d:cfc9:1d20 with SMTP id 5b1f17b1804b1-46e612bab6cmr44711815e9.22.1759397087719;
+        Thu, 02 Oct 2025 02:24:47 -0700 (PDT)
+Received: from localhost (88-127-129-70.subs.proxad.net. [88.127.129.70])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-46e619b8343sm74081805e9.2.2025.10.02.02.24.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Oct 2025 02:20:22 -0700 (PDT)
-From: Harrison Carter <hcarter@thegoodpenguin.co.uk>
-Date: Thu, 02 Oct 2025 10:20:16 +0100
-Subject: [PATCH 2/2] dt-bindings: leds: ti,lm3601x: Convert to DT Schema
+        Thu, 02 Oct 2025 02:24:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251002-ti-leds-to-dt-v1-2-1604ae333479@thegoodpenguin.co.uk>
-References: <20251002-ti-leds-to-dt-v1-0-1604ae333479@thegoodpenguin.co.uk>
-In-Reply-To: <20251002-ti-leds-to-dt-v1-0-1604ae333479@thegoodpenguin.co.uk>
-To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Dan Murphy <dmurphy@ti.com>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Harrison Carter <hcarter@thegoodpenguin.co.uk>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759396820; l=4722;
- i=hcarter@thegoodpenguin.co.uk; s=20250904; h=from:subject:message-id;
- bh=p/CzlvHEnIHNvjR2z9r9G+Y/GwV0LJ8ph30ZwmlnMSY=;
- b=wsaWlczGN2Oo1pP32CuKIimm+jmjpTFON+MfTe4/22Mi2YdFJA/9D+PuBnZo1+rWMoeXSWIc6
- mNScIWa/KXcDrGp0ZjHXW394A4WaD8+hKJgP5s+gUDvuOmFezQcltLG
-X-Developer-Key: i=hcarter@thegoodpenguin.co.uk; a=ed25519;
- pk=xn5ghTMMWQniDtZih4xwKCTAaBHDozflTmqNKtaKo6s=
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=18a92e2b6b60e172e39476fc52257f0148eab3545fa353d7b0b0e342ab6f;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Thu, 02 Oct 2025 11:24:38 +0200
+Message-Id: <DD7Q7NSX0HGG.GTQPPTS7H1FB@baylibre.com>
+Cc: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Vishal Mahaveer" <vishalm@ti.com>, "Kevin
+ Hilman" <khilman@baylibre.com>, "Dhruva Gole" <d-gole@ti.com>, "Sebin
+ Francis" <sebin.francis@ti.com>, "Kendall Willis" <k-willis@ti.com>,
+ "Akashdeep Kaur" <a-kaur@ti.com>
+Subject: Re: [PATCH v3 0/6] arm64: dts: ti: k3-am62: Add wakeup-sources for
+ low power modes
+From: "Markus Schneider-Pargmann" <msp@baylibre.com>
+To: "Markus Schneider-Pargmann (TI.com)" <msp@baylibre.com>, "Nishanth
+ Menon" <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>, "Tero Kristo"
+ <kristo@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
+X-Mailer: aerc 0.21.0
+References: <20251001-topic-am62-dt-partialio-v6-15-v3-0-7095fe263ece@baylibre.com>
+In-Reply-To: <20251001-topic-am62-dt-partialio-v6-15-v3-0-7095fe263ece@baylibre.com>
 
-Converts the ti,lm36010 and ti,lm36011 txt to dt schema
+--18a92e2b6b60e172e39476fc52257f0148eab3545fa353d7b0b0e342ab6f
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Signed-off-by: Harrison Carter <hcarter@thegoodpenguin.co.uk>
----
- .../devicetree/bindings/leds/leds-lm3601x.txt      |  51 -----------
- .../devicetree/bindings/leds/ti,lm3601x.yaml       | 100 +++++++++++++++++++++
- 2 files changed, 100 insertions(+), 51 deletions(-)
+On Wed Oct 1, 2025 at 4:34 PM CEST, Markus Schneider-Pargmann (TI.com) wrot=
+e:
+> Hi,
+>
+> This series adds devicetree changes needed for Partial-IO support on TI
+> am62, am62a, and am62p SoCs. It defines system states for various low
+> power modes and configures the wakeup-sources for devices in the CANUART
+> group. Depending on the SoC and board details, some low power modes may
+> not be available, so the wakeup-sources are described in the board
+> files. The series also adds the necessary pinctrl settings required for
+> proper wakeup functionality.
+>
+> Partial-IO Overview
+> ------------------
+> Partial-IO is a low power system state in which nearly everything is
+> turned off except the pins of the CANUART group (mcu_mcan0, mcu_mcan1,
+> wkup_uart0 and mcu_uart0). These devices can trigger a wakeup of the
+> system on pin activity. Note that this does not resume the system as the
+> DDR is off as well. So this state can be considered a power-off state
+> with wakeup capabilities.
+>
+> A documentation can also be found in section 6.2.4 in the TRM:
+>   https://www.ti.com/lit/pdf/spruiv7
+>
+> Implementation Details
+> ----------------------
+> The complete Partial-IO feature requires three coordinated series, each
+> handling a different aspect of the implementation:
 
-diff --git a/Documentation/devicetree/bindings/leds/leds-lm3601x.txt b/Documentation/devicetree/bindings/leds/leds-lm3601x.txt
-deleted file mode 100644
-index 17e940025dc26213314f5cfd54aa8e5bb09f86b7..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/leds/leds-lm3601x.txt
-+++ /dev/null
-@@ -1,51 +0,0 @@
--* Texas Instruments - lm3601x Single-LED Flash Driver
--
--The LM3601X are ultra-small LED flash drivers that
--provide a high level of adjustability.
--
--Required properties:
--	- compatible : Can be one of the following
--		"ti,lm36010"
--		"ti,lm36011"
--	- reg : I2C slave address
--	- #address-cells : 1
--	- #size-cells : 0
--
--Required child properties:
--	- reg : 0 - Indicates a IR mode
--		1 - Indicates a Torch (white LED) mode
--
--Required properties for flash LED child nodes:
--	See Documentation/devicetree/bindings/leds/common.txt
--	- flash-max-microamp : Range from 11mA - 1.5A
--	- flash-max-timeout-us : Range from 40ms - 1600ms
--	- led-max-microamp : Range from 2.4mA - 376mA
--
--Optional child properties:
--	- function : see Documentation/devicetree/bindings/leds/common.txt
--	- color : see Documentation/devicetree/bindings/leds/common.txt
--	- label : see Documentation/devicetree/bindings/leds/common.txt (deprecated)
--
--Example:
--
--#include <dt-bindings/leds/common.h>
--
--led-controller@64 {
--	compatible = "ti,lm36010";
--	#address-cells = <1>;
--	#size-cells = <0>;
--	reg = <0x64>;
--
--	led@0 {
--		reg = <1>;
--		function = LED_FUNCTION_TORCH;
--		color = <LED_COLOR_ID_WHITE>;
--		led-max-microamp = <376000>;
--		flash-max-microamp = <1500000>;
--		flash-max-timeout-us = <1600000>;
--	};
--}
--
--For more product information please see the links below:
--https://www.ti.com/product/LM36010
--https://www.ti.com/product/LM36011
-diff --git a/Documentation/devicetree/bindings/leds/ti,lm3601x.yaml b/Documentation/devicetree/bindings/leds/ti,lm3601x.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..d7d8ee44d6fe37d13ee84888c5811df3e15a5d02
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/ti,lm3601x.yaml
-@@ -0,0 +1,100 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/ti,lm3601x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments - lm3601x Single-LED Flash Driver
-+
-+description: |
-+  The LM3601X are ultra-small LED flash drivers
-+  that provide a high level of adjustability.
-+
-+  For more product information please see the links below:
-+  https://www.ti.com/product/LM36010
-+  https://www.ti.com/product/LM36011
-+
-+maintainers:
-+  - Dan Murphy <dmurphy@ti.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - "ti,lm36010"
-+      - "ti,lm36011"
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+patternProperties:
-+  "^led@[0,1]?([0-9]|[a-z])$":
-+    type: object
-+    $ref: common.yaml#
-+    properties:
-+      reg:
-+        description: |
-+          0 - Indicates IR mode
-+          1 - Indicates Torch (white LED) mode
-+        minimum: 0
-+        maximum: 1
-+
-+      flash-max-microamp:
-+        minimum: 11
-+        maximum: 1500000
-+
-+      flash-max-timeout-us:
-+        minimum: 40
-+        maximum: 1600000
-+
-+      led-max-microamp:
-+        minimum: 24
-+        maximum: 376000
-+
-+    required:
-+      - reg
-+      - flash-max-microamp
-+      - flash-max-timeout-us
-+      - led-max-microamp
-+
-+    unevaluatedProperties: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#address-cells'
-+  - '#size-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        led-controller@64 {
-+            compatible = "ti,lm36010";
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            reg = <0x64>;
-+
-+            led@1 {
-+                reg = <1>;
-+                function = LED_FUNCTION_TORCH;
-+                color = <LED_COLOR_ID_WHITE>;
-+                led-max-microamp = <376000>;
-+                flash-max-microamp = <1500000>;
-+                flash-max-timeout-us = <1600000>;
-+            };
-+        };
-+    };
-+...
-+
+I missed updating the lore links, here they are:
 
--- 
-2.51.0
+> 1. m_can driver series: Implements device-specific wakeup functionality
+>    for m_can devices, allowing them to be set as wakeup sources.
+>     https://gitlab.baylibre.com/msp8/linux/-/tree/topic/mcan-wakeup-sourc=
+e/v6.17?ref_type=3Dheads
+>     https://lore.kernel.org/r/20250812-topic-mcan-wakeup-source-v6-12-v8-=
+0-6972a810d63b@baylibre.com
 
+v10:
+https://lore.kernel.org/r/20251001-topic-mcan-wakeup-source-v6-12-v10-0-4ab=
+508ac5d1e@baylibre.com
+
+> 2. This series (devicetree): Defines system states and wakeup sources in
+>    the devicetree for am62, am62a and am62p.
+>
+> 3. TI-SCI firmware series: Implements the firmware interface to enter
+>    Partial-IO mode when appropriate wakeup sources are enabled.
+>     https://gitlab.baylibre.com/msp8/linux/-/tree/topic/tisci-partialio/v=
+6.17?ref_type=3Dheads
+
+v8:
+https://lore.kernel.org/r/20251001-topic-am62-partialio-v6-12-b4-v8-0-76a74=
+2605110@baylibre.com
+
+Best
+Markus
+
+>
+> Devicetree Bindings
+> -------------------
+> This series depends on the dt-schema pull request that adds bindings for
+> system-idle-states and updates the binding for wakeup-source:
+>   https://github.com/devicetree-org/dt-schema/pull/150
+>
+> This is merged now in upstream dt-schema. These new bindings allow us to
+> define the system states and reference them from device wakeup-source
+> properties.
+>
+> Testing
+> -------
+> A test branch is available here that includes all patches required to
+> test Partial-IO:
+>
+> https://gitlab.baylibre.com/msp8/linux/-/tree/integration/am62-partialio/=
+v6.17?ref_type=3Dheads
+>
+> After enabling Wake-on-LAN the system can be powered off and will enter
+> the Partial-IO state in which it can be woken up by activity on the
+> specific pins:
+>     ethtool -s can0 wol p
+>     ethtool -s can1 wol p
+>     poweroff
+>
+> I tested these patches on am62-lp-sk.
+>
+> Best,
+> Markus
+>
+> Previous versions
+> -----------------
+>  - Link to v2: https://lore.kernel.org/r/20250812-topic-am62-dt-partialio=
+-v6-15-v2-0-25352364a0ac@baylibre.com
+>  - Link to v1: https://lore.kernel.org/r/20250421-topic-am62-dt-partialio=
+-v6-15-v1-0-6ced30aafddb@baylibre.com
+>  - As part of the series "firmware: ti_sci: Partial-IO support"
+>    https://lore.kernel.org/r/20250306-topic-am62-partialio-v6-12-b4-v5-0-=
+f9323d3744a2@baylibre.com
+>
+> Changes in v3:
+>  - Drop patch to add WKUP_EN and rebase to linux-next to base on the
+>    patch that accepted which adds PIN_WKUP_EN instead
+>    https://lore.kernel.org/all/20250909044108.2541534-1-a-kaur@ti.com/
+>  - Fix small typos in the commit messages
+>  - Use AM62AX_MCU_IOPAD for am62a and AM62PX_MCU_IOPAD for am62p
+>
+> Changes in v2:
+>  - Combine k3-am62a7-sk.dts devicetree nodes with existing ones
+>  - Combine k3-am62p5-sk.dts devicetree nodes with existing ones
+>  - Update the idle-state-name properties to the new names from the
+>    dt-schema
+>  - Rebase to 6.17-rc1
+>
+> Signed-off-by: Markus Schneider-Pargmann (TI.com) <msp@baylibre.com>
+> ---
+> Markus Schneider-Pargmann (TI.com) (6):
+>       arm64: dts: ti: k3-am62: Define possible system states
+>       arm64: dts: ti: k3-am62a: Define possible system states
+>       arm64: dts: ti: k3-am62p: Define possible system states
+>       arm64: dts: ti: k3-am62-lp-sk: Set wakeup-source system-states
+>       arm64: dts: ti: k3-am62a7-sk: Set wakeup-source system-states
+>       arm64: dts: ti: k3-am62p5-sk: Set wakeup-source system-states
+>
+>  arch/arm64/boot/dts/ti/k3-am62-lp-sk.dts | 60 ++++++++++++++++++++++++++=
++
+>  arch/arm64/boot/dts/ti/k3-am62.dtsi      | 22 ++++++++++
+>  arch/arm64/boot/dts/ti/k3-am62a.dtsi     | 27 ++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts  | 71 ++++++++++++++++++++++++++=
+++++++
+>  arch/arm64/boot/dts/ti/k3-am62p.dtsi     | 27 ++++++++++++
+>  arch/arm64/boot/dts/ti/k3-am62p5-sk.dts  | 71 ++++++++++++++++++++++++++=
+++++++
+>  6 files changed, 278 insertions(+)
+> ---
+> base-commit: 24c4d4041c2ec11c47baf6ea54f9379cf88809fc
+> change-id: 20250415-topic-am62-dt-partialio-v6-15-327dd1ff17da
+> prerequisite-change-id: 20241009-topic-mcan-wakeup-source-v6-12-8c1d69931=
+bd8:v10
+> prerequisite-patch-id: 40ff771d13dccae91c04ab120aa1b5e406b66e47
+> prerequisite-patch-id: 830b339ea452edd750b04f719da91e721be630cb
+> prerequisite-patch-id: 2c9142d2bc47e64c49b7b8a7ca20a62a0be14870
+> prerequisite-patch-id: aa64f7e9fcc3fcbb3cb871a05a07f398f3aa8231
+>
+> Best regards,
+
+
+--18a92e2b6b60e172e39476fc52257f0148eab3545fa353d7b0b0e342ab6f
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iKMEABYKAEsWIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCaN5E1hsUgAAAAAAEAA5t
+YW51MiwyLjUrMS4xMSwyLDIRHG1zcEBiYXlsaWJyZS5jb20ACgkQhcFWaZAVSlMF
+7wEA7A4kvhpKpIXHOpsMVN+m1MRqhXoWJbGNbNUBBD4uYrsBAI4lCf/2jOr1yVOR
+fH3WH1xRgsOtHu5d0YNiT9ea7LwO
+=XyLo
+-----END PGP SIGNATURE-----
+
+--18a92e2b6b60e172e39476fc52257f0148eab3545fa353d7b0b0e342ab6f--
 
