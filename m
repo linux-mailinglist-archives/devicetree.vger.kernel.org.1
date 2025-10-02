@@ -1,188 +1,88 @@
-Return-Path: <devicetree+bounces-223264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85535BB2861
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 07:22:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AEC5BB2882
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 07:26:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F000B19C4992
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 05:23:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 543693BBDBF
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 05:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 951B427AC34;
-	Thu,  2 Oct 2025 05:22:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2258284880;
+	Thu,  2 Oct 2025 05:26:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WKGxZJVE"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="MWwjhX42"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com [91.218.175.189])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B63A9248F72
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 05:22:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0FEE27F000;
+	Thu,  2 Oct 2025 05:26:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.189
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759382562; cv=none; b=OFXGa0Gy0zI+ejHPUcHo4JdHZ+iz1zquVDOfqfugRlx9xCvGFHd7nINMECxOzJG6SDFE8fxVQ4CTzYr1U35C/cP9pjAliK3rqldk2/PzG/dLlwu9GAhirVpF8JJskwEjlkRm6SmY/DFCuNpLb+D0BF481X/78q9t88lcHgTkZcU=
+	t=1759382776; cv=none; b=A2wNJ0e2bufSzLrDsjxwa4tlO2XPcSYeZVvNrX3auhx9wJDEIyWIcqmVDGfYSI7d9S13GnwnydfXjNJT9H3MJ4ciJydAefe6PHWj1npfB3RiZtrET0FNZZx38p88JyQN6IsQiNmN5qJntUcDwB9LyhDeRB5UvOBJnAGs0PqsdRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759382562; c=relaxed/simple;
-	bh=+UEvtO4ohS3SCkCNVu2PUUuKQQlaqciarVlUS651gmA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nO8O4xgA6k31ueB9v0QGWtFMrs+YKCd4DxSOfYkT69iBwbScBx3BWHg1KoBbOZGpvFkhFfwAS2SdMfMjrSAvN7c4JvMjY1MPreNZclYW0s1fAi1iPo9dydBzCToaDVVda1dw+/V2oZEDE2yFlVQy3BP9Mpe0luXijhl7+fsxqPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WKGxZJVE; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3f44000626bso274688f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 22:22:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759382559; x=1759987359; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kIoTAVA9sjHnC7mbYGlDJX9XNa4jYRX+mhTFjapnGcE=;
-        b=WKGxZJVE9bc9SdJlNJbo6f51KykHP+8ayxVAoueB945lem4+eUB16Iscu5i2SEmc69
-         AetrqMXauSPz/IixB1UKxkh5VDFNZdYRXXZj+bzrw2MsWo18aD7PQcgREI+iYYDAr5vZ
-         KPEFpPs2JQ3T1P8+86RYn7R/Rtp5/zFvq+LUCXtObyYhdzkjToAS0ulqjpnikjOPs1UO
-         q2kMkeSiR7uPHwtLWPhjsH1DA6IXnzPVGoA9V8gRfHiIU5NxB1pBDeG6YBAKSYH0FNnC
-         HSjNLCKDdp6GHMzheLmA6vvv2tmWWYCIq7kCTlZ9iL4ll3s63IPYAg77//QIVB8VWX2P
-         JRyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759382559; x=1759987359;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kIoTAVA9sjHnC7mbYGlDJX9XNa4jYRX+mhTFjapnGcE=;
-        b=KHc7TqfgGufKdI0tkZTD8STliXnBr3Qzy5fJVbUaWTmmOUQjIf2IXTLJk0u5StVYPR
-         NH70ddlyQIVZrmYBUlRzY0z7E069HXRdhRWrK9jhzEGp6JbPZlOv6jxvrDuwOh/E+V+P
-         BMhy94TTApAi6N12hhrBxV3eC+F9WLkp0qiyMs5BWuLnp249sOYh250nb/2PY76OZrMg
-         7/BPROxjYQK/yPaJTcvdjA3XNPB04PtlBEeeyJ6BGAYylPTIPBy+/F4+vlBzxfTlLOLC
-         hF1PaWlQm6XTh6taBmwMY3RozSsboBxLSuvmez4tUFxyVehJD/GgZEwAgYEQNYw5232L
-         IOug==
-X-Forwarded-Encrypted: i=1; AJvYcCW4ybYB7OtLvIMr5mmaPbVK2nCNGxqe8fx/+SUwQiWmdftbZJmmVqptcEXvdffNSCq/a7F1Otzodjgr@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhpRV80HssVrbc6Ut53QYaBZvnNwsXwKiOv/EbLuDApy6tENRG
-	y7ExCbpIj4O11WadGIt3mgpuYxOz9Z5NoeJmu5WUHBkT8Mn8x13TtlVdB5BQV76QLPylur8l9Ix
-	WFdArffsGOz003fA52JHKpyIIX+gdTL0=
-X-Gm-Gg: ASbGncvZTIaUVSo3+iQXs/WD0tqoUx7KkFoSGOV74p7IUQZFGSfOnvETOtuO3BkVEbf
-	m31q88MqvhGQkT4SBe2KcukOKi8uhvosoruAJlPFvXnCgs77VoTWS9JOwg83UKcAdGnNhp0AQZl
-	TjpGJqtMx9Eg4EoxVV18b4vk6+/NlKc1p4mUL0jwn69nGS23to/Dnll3vzLqCcP7Uyd0iKd/YlT
-	tnm4+bUOd01u8c46DReH1G4uHH3mCLT
-X-Google-Smtp-Source: AGHT+IG0e+DFVcA7EGV4f6gb3cVHuiVS4JYjGsGK6v4oRblkAeW4rQLj6q0R0ldwH/G+/sN3B7OHJYVi23raS5THltw=
-X-Received: by 2002:a5d:5f52:0:b0:3ff:d5c5:6b03 with SMTP id
- ffacd0b85a97d-4255781466fmr4232925f8f.35.1759382558942; Wed, 01 Oct 2025
- 22:22:38 -0700 (PDT)
+	s=arc-20240116; t=1759382776; c=relaxed/simple;
+	bh=hcLhwxJJZOWXUPZwdoFe2zGZFEXuIaSy2t/7jL7qUvs=;
+	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
+	 In-Reply-To:References; b=JOBzrIaEh8tILHwqKc0vi2wOojTLydE+xri5FTXkgx8MoYPHiQHC5x7gun2bg0el47j2PHeQ8Jk5l6ALpCGXE/qoydQ5W3rrk8NirfVhJqgKg9TdfDFgAMn7Lsc4g27/GIvIKIGH0bzkU8wf1CLvjXMuycxi4LOTpusEBnvSLtY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=MWwjhX42; arc=none smtp.client-ip=91.218.175.189
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250925152806.80386-1-clamor95@gmail.com> <20250925152806.80386-2-clamor95@gmail.com>
- <20251002015554.GA2880078-robh@kernel.org>
-In-Reply-To: <20251002015554.GA2880078-robh@kernel.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 2 Oct 2025 08:22:27 +0300
-X-Gm-Features: AS18NWCy4o_ayBLITcbOWaJzzbRVpQSybS31RCoaoa8CEb7E1WnQEhadEGX4bl0
-Message-ID: <CAPVz0n150FGUvgmxM8tLyQanWjhsmi4j=DaSa-JW2JSjCM4=tw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: document Sony IMX111 CMOS sensor
-To: Rob Herring <robh@kernel.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Hans Verkuil <hverkuil@xs4all.nl>, Hans de Goede <hansg@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Dongcheng Yan <dongcheng.yan@intel.com>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
-	Sylvain Petinot <sylvain.petinot@foss.st.com>, 
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
-	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>, Jingjing Xiong <jingjing.xiong@intel.com>, 
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1759382761;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=hcLhwxJJZOWXUPZwdoFe2zGZFEXuIaSy2t/7jL7qUvs=;
+	b=MWwjhX420uIJPcauIu1sA+1f/mzHf90s3Sljby/+IE8ixTt9J+Rp6VJIjBL4zYD5RRtZrs
+	dUODL9VhVSqwrScVKLpwnlHROR0EFVzpmHpyDPRl/JXxwZI0kF3mQMIabiL+5QkU/6tpZ8
+	4fbvD8Shw+JuwJwZUFH05cDUidjpuCsQO8cjVskCNz5BG0hcl4717hEmfoeEzjq10GacPH
+	8P0RpC07K4mIemEGS5hG2yAzwCL3SBKoOWQch0qIhQb0hwn5pDeI3MXKyghBA/K0gbA0WZ
+	FCu7DvvM3SPxn3I2Q1FE3vXXRbumMT5HmMRIuaSfYyopntRhHgIdQzKBsBgjEQ==
+Date: Thu, 02 Oct 2025 05:25:59 +0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: quoted-printable
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Paul Sajna" <sajattack@postmarketos.org>
+Message-ID: <b8817a128ca13b8bcc3a90fa114d916292183729@postmarketos.org>
+TLS-Required: No
+Subject: Re: [PATCH v3 00/11] arm64: dts: qcom: sdm845-lg-{common, judyln}:
+ Improve HW support in dts
+To: "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "David Heidelberg" <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, "Amir Dahan"
+ <system64fumo@protonmail.com>, "Christopher Brown"
+ <crispybrown@gmail.com>
+In-Reply-To: <20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org>
+References: <20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org>
+X-Migadu-Flow: FLOW_OUT
 
-=D1=87=D1=82, 2 =D0=B6=D0=BE=D0=B2=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 04:55=
- Rob Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Thu, Sep 25, 2025 at 06:28:05PM +0300, Svyatoslav Ryhel wrote:
-> > Add bindings for Sony IMX111 CMOS Digital Image Sensor found in LG
-> > Optimus 4X (P880) and Optimus Vu (P895) smartphones.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  .../bindings/media/i2c/sony,imx111.yaml       | 112 ++++++++++++++++++
-> >  1 file changed, 112 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,im=
-x111.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx111.ya=
-ml b/Documentation/devicetree/bindings/media/i2c/sony,imx111.yaml
-> > new file mode 100644
-> > index 000000000000..a70017588891
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx111.yaml
-> > @@ -0,0 +1,112 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/media/i2c/sony,imx111.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Sony IMX111 8MP CMOS Digital Image Sensor
-> > +
-> > +maintainers:
-> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > +
-> > +description:
-> > +  IMX111 sensor is a Sony CMOS active pixel digital image sensor with =
-an active
-> > +  array size of 2464H x 3280V. It is programmable through I2C interfac=
-e. Image
-> > +  data is sent through MIPI CSI-2, through 1 or 2 lanes.
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/media/video-interface-devices.yaml#
-> > +  - $ref: /schemas/nvmem/nvmem-consumer.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: sony,imx111
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    description: EXTCLK with possible frequency from 6 to 54 MHz
-> > +    maxItems: 1
-> > +
-> > +  reset-gpios:
-> > +    maxItems: 1
-> > +
-> > +  iovdd-supply:
-> > +    description: Digital IO power supply (1.8V)
-> > +
-> > +  dvdd-supply:
-> > +    description: Digital power supply (1.2V)
-> > +
-> > +  avdd-supply:
-> > +    description: Analog power supply (2.7V)
-> > +
-> > +  port:
-> > +    additionalProperties: false
-> > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > +
-> > +    properties:
-> > +      endpoint:
-> > +        $ref: /schemas/media/video-interfaces.yaml#
-> > +        unevaluatedProperties: false
-> > +
-> > +        properties:
-> > +          data-lanes: true
-> > +          bus-type: true
->
-> I assume not *bus* types are supported, so this should constrain it to
-> valid ones. If it is only 1 type, you shouldn't really need the type in
-> DT.
->
+September 29, 2025 at 5:05 AM, "Paul Sajna" <sajattack@postmarketos.org m=
+ailto:sajattack@postmarketos.org?to=3D%22Paul%20Sajna%22%20%3Csajattack%4=
+0postmarketos.org%3E > wrote:
 
-Better, properties can be dropped and only required left with
-data-lanes and link-frequencies. Thank you for a hint
+> Changes in v3:
+> - remove msm ids
 
-> Rob
->
+I'm noticing now that this breaks wifi because the msm ids are used to id=
+entify the firmware
+
+> ath10k_snoc 18800000.wifi: failed to fetch board data for bus=3Dsnoc,qm=
+i-board-id=3D0,qmi-chip-id=3D0,variant=3Dlg_judyln from ath10k/WCN3990/hw=
+1.0/board-2.bin
+
+What are your thoughts on this?
 
