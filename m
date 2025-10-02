@@ -1,356 +1,230 @@
-Return-Path: <devicetree+bounces-223421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26144BB480B
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 18:20:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F759BB481C
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 18:21:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 643FF168B78
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 16:20:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6D7D1888E3B
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 16:21:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63DB9263C8F;
-	Thu,  2 Oct 2025 16:19:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DE57257836;
+	Thu,  2 Oct 2025 16:20:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N2LJGivk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LV9G5tuF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6956525DB06
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 16:19:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C92192571BC
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 16:20:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759421958; cv=none; b=IpzjDVxdNuvin5Ng7is9rKS5VpHPuqmgyQTGROrOKf1A0w9TLpTq90HOXjky7m9D/KlnuJp2/IpDQCA8dnY0Z6rrQVrOFRfeWU1XxKBYWgVTgUX8ee3ltiGVV0Lf1d5TJ+dkMV6iG678q25gdLxO3kP8ae/+6s48EYFDYXj3Fsc=
+	t=1759422051; cv=none; b=rC4o6DblE/p+8QVfxg4B574jy5tKAoyVtVmUjUD/UnzVmqUVOQUuOjAcciJroqPThyrkrsS1JuFv4rr9spMaJ2XPiZlPL80xgI6HFBoIWt/+4ZgMIYSUwCK2iGEYe4uqO5E2Qvxit8fhepihXX8YwlzMXGrOfkbSJdUed0VfzKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759421958; c=relaxed/simple;
-	bh=JsvUFrg6b+6lDk5XVXHpC85z+zVrdjy78d/YqQGfrHg=;
+	s=arc-20240116; t=1759422051; c=relaxed/simple;
+	bh=gKyyhk1fpwldfpjLQBa/D4FQewIdYo7qBumYIiDDnaQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Kgrvi6amL0QaZYfGxanyCrSUFO6aLZVNexY+/6HaTRQ7N5WhCEQUpK0o0LKYgCUFYmrBjEtL3xo00ScxI2SzciFsAnH/GydPDMQvH5onfiTEJSPZDlpNXZH8ZRulGx1nyqUQdB+k/jlrXfo3dGbYp6uMhvDqsKobYXQ8YtxxV60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N2LJGivk; arc=none smtp.client-ip=209.85.216.41
+	 To:Cc:Content-Type; b=MzKIISq697ynFAgcoz7qwtVqxNGY1R1ByqmYBrF47ws78BNgOAcGSPfPS+3W90OJ8j765aClXve0kJ3U2TDh/D4iLL1mgLZmqhVor0GPxW8+DXalgQqPBLYBhbWir40O6jOTEDAjlb9NjwTz/JJ6aaCamZbx9XxIY8T17Qg803Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LV9G5tuF; arc=none smtp.client-ip=209.85.210.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-32ec291a325so921117a91.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 09:19:16 -0700 (PDT)
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-782e93932ffso1221442b3a.3
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 09:20:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759421956; x=1760026756; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759422049; x=1760026849; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gsxj7YoiqGgfvPyXJFxW2Z8P+n52wRZ9xpiObgG4ULc=;
-        b=N2LJGivkOnwAqSgqUaug/BFeKTGR/ufZvamXkBo/U7MZV0A44sQQHA00ihFNxv8jVN
-         j2fXcKSUqiXOIl6nbdF58NUrhwE++etccKAt7anBYZp+RyBlHE861mvXV30N+SZdmNah
-         m0eYGRaCjqtpbHLnzn5502Fdh8SjBMbHl7DwvlNrksLmabsOVGx7sWAjczXcS5QOt9eh
-         ezBdlpIqdbOtzTcjRLT21+TG6eRmbhQ13y8M96ybYDYx1bWz0z50yXkLXKQJG+QEiFlL
-         BMNi0TTPlrRpLlc+jD3L2tFaruQmJuc5WJDzTZOHJm91GBPhNmI3XoS7b2+q7M+Gml8g
-         yrBA==
+        bh=Ge1wH9wa2ypd3GTYHtwr8nkyK2BaURlOW97tKSsa3bw=;
+        b=LV9G5tuFKxcwMvXx1ZoeCG6crJ3OR4/O1JOMdG3T8ttFa3KzlkU41ysBUNKHL+r4WF
+         mait03kszQqvjVhshL3Q8xG1YdTSq99foFPsl2E57NrrtJARyLsBHaZc6ZGO1MV+xWwF
+         PJ3jhxlL022BxD8Oo5m0234gu8OYkVXvWqFzw143rBW3u4cczVkAuqDpNiXCaMWvDV4e
+         b/4pbdabYCpDzGn57aWWRYoNLknhRxEF1jkKX0dAL5PR+Jf4fT61qUEFEWWpNRZ+2IW0
+         MZty8m1LYXLg3dx/ijfkNDYEGG61YbwCwNDCucFhJUznEEFj1LWVywMR4ceqQMp0OgQu
+         5FRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759421956; x=1760026756;
+        d=1e100.net; s=20230601; t=1759422049; x=1760026849;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gsxj7YoiqGgfvPyXJFxW2Z8P+n52wRZ9xpiObgG4ULc=;
-        b=Xe3BRd5J3QJ6JiJ4F4OOouQOMq9GwtE71myNInyIk84nuUVi00nKHu5qwsbrr8q3kA
-         H0ezZOFi1wyuyQwBoyQtZvOLxuEi8JPc3NdZ7eYXiRqSLxh6GgAYbdmbfJm8JM3Pa8T5
-         fH+L5bkUFO3b8yXuKv92820xAfbqulbcsMxMSqy0ptPqOS+xkv2ekwwRzMtwTduxAuAQ
-         2LPmmOCyMw5SaWpstfdrYVHciOlmR7FuIW1pvF976ZWqzDO9nPIEjTC5bN88s0muyXYE
-         XbOSr7J/NCSi3GMdRYgNMTpMObAU5Vd0WrVRgpAcYQZFAK+YlQUeBwncVTBn3QPXMZcI
-         2mmg==
-X-Forwarded-Encrypted: i=1; AJvYcCWdY4Ur1d0oLA54GmvwK3/MnsxqXMkQE0jkCbJw5yzEIU8F69OiRxOR2/5N7a8Ph5XTe2zuV9Sb6jHC@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvGmLE8z6TZCF/4OvDrPZX2yPIZGLypmW4yFi1nBRwjzp7B9ah
-	P5bo0Wzmr600CRIWuIfbFaei0gWV9uBpcWOQnPg6AvHyex9wqqh0QMr/vdMoq5iaO+PB8IaKSSG
-	XY+DjbnlJzBy90zVrRXE0xtIn06fNYt8=
-X-Gm-Gg: ASbGncuzTAvr4JPgwbQOOwyJLZ8fwybYarT3RspbLbVpDbqUiHih75t+z21N/zv3WdC
-	//gG365aF5lAeVgpXfEbChnPVJjFyPLde565xxj+zYRW3abJS4K8MwVUlWzNu3qA6zInRHo0Qlu
-	RDJpiY9oU9Q+4UCGGZ4i/8KevXF3/B0/cJ+G1eolM+EgpyVjEG9FDgl9LF/S//CYAqdF0R/xV51
-	/4jYnLk7nsbG2Q2WvewfgDns0G6F3BTjgazG43NGg==
-X-Google-Smtp-Source: AGHT+IGGp117d+C4nGWCnd+e8rq+kUzsoIMiqTOEd1myMMBz03N8LD6xRLaicAUgmaalwvLRv0UG+Wa0FrJkVem0Kfg=
-X-Received: by 2002:a17:90b:3b90:b0:330:604a:1009 with SMTP id
- 98e67ed59e1d1-339a6f38562mr9750743a91.23.1759421955640; Thu, 02 Oct 2025
- 09:19:15 -0700 (PDT)
+        bh=Ge1wH9wa2ypd3GTYHtwr8nkyK2BaURlOW97tKSsa3bw=;
+        b=EtjADs5XnFeCOpnaX54Ll6XBXg/pOjCok+h0XEEWsca73quidH40ic1LnNx4F5olal
+         rZtRHkr90jdqV88nayyW6vMs5PMFTzOR0UO5K+vZKBT3B5vlmfR9mZ+j8e3Rg8d3ChMP
+         JqzDQT4OcTtrSD5N4kTzXFM5rVXmTvQ83hzdaJEQVOrzWANmA4630zq2YHPLYabcdKT4
+         wNbq/LMkZOm/mly+DisZmndNrBm0LHSicI3L5SR0xJ1Lwh9yF5iwmhH6WW1TynbNkWHI
+         Jki94GTUzEfUeKgl6IK7xtxR8FzvwxVKUb1TE4QN1n7dQNRuIXJsBb6HbG2P4BmDUoIX
+         OveQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVJFDCc+5wlaNkBpNvyR6aE2X8TEtkoLhDIaabWUD0e1Q2+K3SXYpxLJUrHd7+XGpbvjlMhL0vkjpGC@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbFnCeYdXSozEX/w6BihevUsb2jzHy0h2A6ArAYm42DxP8kzgf
+	n1XKcSwyPAKbcrL3oA/tBaUCHbWCl5eUaNQEaj6OgxGqE9jGpZMTVAyCYTP7uhG7e27ovR8KSol
+	5xj1qkwXy00weCvQ3p8E8BTHeVxT0dps=
+X-Gm-Gg: ASbGncuFdvuZhFu2A+KKjlZUOkzeh4Q1GQZW1X6ZD8JZCBkwcXUDcUyxnOrn6O3CTrg
+	Gef4WkQY08ZKwVvgsUtc/zzVXdzMv7pfbWW+wmFwfAS7xHKrR8b+AoNj7CsHXX/uED/5IZyz3h0
+	4LeWyFnnJk+oxcN+VRoFLie/sX+LMgMlZQZo6fjzv509JT3/79DzQGqCVuXk9JvSVcduaLMG+eH
+	Mo64lPZISJ4vFN4pxvTfYT3FKGbnAM=
+X-Google-Smtp-Source: AGHT+IFU8VGlsiC9J8Z+X3r/HK350bLU+mKTbWQJm58irX10X1WcOxpbIYpLR6QYJtRE7FKv3T27WjOLklIbMC5WGLU=
+X-Received: by 2002:a17:90b:4d8a:b0:335:2823:3683 with SMTP id
+ 98e67ed59e1d1-339a6e9aa97mr9192058a91.9.1759422048896; Thu, 02 Oct 2025
+ 09:20:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250822-can-v1-0-c075f702adea@nxp.com> <20250822-can-v1-3-c075f702adea@nxp.com>
-In-Reply-To: <20250822-can-v1-3-c075f702adea@nxp.com>
+References: <cover.1755778211.git.marilene.agarcia@gmail.com> <6690320bcf9f0b8a5bf58048673e4f6a884c724b.1755778212.git.marilene.agarcia@gmail.com>
+In-Reply-To: <6690320bcf9f0b8a5bf58048673e4f6a884c724b.1755778212.git.marilene.agarcia@gmail.com>
 From: ChaosEsque Team <chaosesqueteam@gmail.com>
-Date: Thu, 2 Oct 2025 12:24:10 -0400
-X-Gm-Features: AS18NWAvvuq0JYjwHcuYxgL_GvcWi5Rt-rN98_ZHunTTnePybtwPWJ4gpWP89Yw
-Message-ID: <CALC8CXc3OAqY5XTN1XivSbSdki2ZcPKTqJfXruRiq=KWQPbR5w@mail.gmail.com>
-Subject: Re: [PATCH 3/6] phy: phy-can-transceiver: Add dual channel support
- for TJA1048
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+Date: Thu, 2 Oct 2025 12:25:45 -0400
+X-Gm-Features: AS18NWBD33DqNii_mjGXdVPhvxJT8nXTgN3ChO-5Vkyd0fP6ujIJhurj3yeloa8
+Message-ID: <CALC8CXcHcF59YHiWQVui1FYm7cxuyeMARQyhB01GOLpgQpWtmA@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: iio: adc: Add MAX14001
+To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Aswath Govindraju <a-govindraju@ti.com>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>, Haibo Chen <haibo.chen@nxp.com>, 
-	linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org
+	Marcelo Schmitt <marcelo.schmitt1@gmail.com>, Marcelo Schmitt <Marcelo.Schmitt@analog.com>, 
+	Ceclan Dumitru <dumitru.ceclan@analog.com>, Jonathan Santos <Jonathan.Santos@analog.com>, 
+	Dragos Bogdan <dragos.bogdan@analog.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Peng Fan.
-Bet you once were of the tribe of the Wolf.
-Pen Fang.
+The MMAALLLEEE hackers were thrown out of linux...
+for documentation.
 
-On Fri, Aug 22, 2025 at 12:07=E2=80=AFAM Peng Fan <peng.fan@nxp.com> wrote:
+On Thu, Aug 21, 2025 at 9:53=E2=80=AFAM Marilene Andrade Garcia
+<marilene.agarcia@gmail.com> wrote:
 >
-> - Introduce new flag CAN_TRANSCEIVER_DUAL_CH to indicate the phy
->   has two channels.
-> - Introduce can_transceiver_priv as a higher level encapsulation for
->   phy, mux_state, num_ch.
-> - Alloc a phy for each channel
-> - Support TJA1048 which is a dual high-speed CAN transceiver with
->   Sleep mode supported.
+> Add device-tree documentation for MAX14001/MAX14002 ADCs.
+> The MAX14001/MAX14002 are isolated, single-channel analog-to-digital
+> converters with programmable voltage comparators and inrush current
+> control optimized for configurable binary input applications.
 >
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> Signed-off-by: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
 > ---
->  drivers/phy/phy-can-transceiver.c | 117 +++++++++++++++++++++++++++-----=
-------
->  1 file changed, 83 insertions(+), 34 deletions(-)
+>  .../bindings/iio/adc/adi,max14001.yaml        | 78 +++++++++++++++++++
+>  MAINTAINERS                                   |  7 ++
+>  2 files changed, 85 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max1400=
+1.yaml
 >
-> diff --git a/drivers/phy/phy-can-transceiver.c b/drivers/phy/phy-can-tran=
-sceiver.c
-> index b49371a1272cd8a25b5e2271586b756103c64f0a..0e7b23073bfa8eae7200d30dc=
-657a979f6cc9d86 100644
-> --- a/drivers/phy/phy-can-transceiver.c
-> +++ b/drivers/phy/phy-can-transceiver.c
-> @@ -17,13 +17,20 @@ struct can_transceiver_data {
->         u32 flags;
->  #define CAN_TRANSCEIVER_STB_PRESENT    BIT(0)
->  #define CAN_TRANSCEIVER_EN_PRESENT     BIT(1)
-> +#define CAN_TRANSCEIVER_DUAL_CH                BIT(2)
->  };
->
->  struct can_transceiver_phy {
->         struct phy *generic_phy;
->         struct gpio_desc *standby_gpio;
->         struct gpio_desc *enable_gpio;
-> +       struct can_transceiver_priv *priv;
-> +};
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml =
+b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> new file mode 100644
+> index 000000000000..3b2a2e788a17
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2025 Marilene Andrade Garcia
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,max14001.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +struct can_transceiver_priv {
-> +       struct can_transceiver_phy *can_transceiver_phy;
->         struct mux_state *mux_state;
-> +       int num_ch;
->  };
->
->  /* Power on function */
-> @@ -32,8 +39,8 @@ static int can_transceiver_phy_power_on(struct phy *phy=
-)
->         struct can_transceiver_phy *can_transceiver_phy =3D phy_get_drvda=
-ta(phy);
->         int ret;
->
-> -       if (can_transceiver_phy->mux_state) {
-> -               ret =3D mux_state_select(can_transceiver_phy->mux_state);
-> +       if (can_transceiver_phy->priv->mux_state) {
-> +               ret =3D mux_state_select(can_transceiver_phy->priv->mux_s=
-tate);
->                 if (ret) {
->                         dev_err(&phy->dev, "Failed to select CAN mux: %d\=
-n", ret);
->                         return ret;
-> @@ -56,8 +63,8 @@ static int can_transceiver_phy_power_off(struct phy *ph=
-y)
->                 gpiod_set_value_cansleep(can_transceiver_phy->standby_gpi=
-o, 1);
->         if (can_transceiver_phy->enable_gpio)
->                 gpiod_set_value_cansleep(can_transceiver_phy->enable_gpio=
-, 0);
-> -       if (can_transceiver_phy->mux_state)
-> -               mux_state_deselect(can_transceiver_phy->mux_state);
-> +       if (can_transceiver_phy->priv->mux_state)
-> +               mux_state_deselect(can_transceiver_phy->priv->mux_state);
->
->         return 0;
->  }
-> @@ -76,6 +83,10 @@ static const struct can_transceiver_data tcan1043_drvd=
-ata =3D {
->         .flags =3D CAN_TRANSCEIVER_STB_PRESENT | CAN_TRANSCEIVER_EN_PRESE=
-NT,
->  };
->
-> +static const struct can_transceiver_data tja1048_drvdata =3D {
-> +       .flags =3D CAN_TRANSCEIVER_STB_PRESENT | CAN_TRANSCEIVER_DUAL_CH,
-> +};
+> +title: Analog Devices MAX14001-MAX14002 10-bit ADCs
 > +
->  static const struct of_device_id can_transceiver_phy_ids[] =3D {
->         {
->                 .compatible =3D "ti,tcan1042",
-> @@ -85,6 +96,10 @@ static const struct of_device_id can_transceiver_phy_i=
-ds[] =3D {
->                 .compatible =3D "ti,tcan1043",
->                 .data =3D &tcan1043_drvdata
->         },
-> +       {
-> +               .compatible =3D "nxp,tja1048",
-> +               .data =3D &tja1048_drvdata
-> +       },
->         {
->                 .compatible =3D "nxp,tja1051",
->                 .data =3D &tcan1043_drvdata
-> @@ -107,11 +122,27 @@ devm_mux_state_get_optional(struct device *dev, con=
-st char *mux_name)
->         return devm_mux_state_get(dev, mux_name);
->  }
->
-> +static struct phy *can_transceiver_phy_xlate(struct device *dev, const s=
-truct of_phandle_args *args)
-> +{
-> +       struct can_transceiver_priv *priv =3D dev_get_drvdata(dev);
-> +       u32 idx;
+> +maintainers:
+> +  - Marilene Andrade Garcia <marilene.agarcia@gmail.com>
 > +
-> +       if (priv->num_ch =3D=3D 1)
-> +               return priv->can_transceiver_phy[0].generic_phy;
+> +description:
+> +  Bindings for the Analog Devices MAX14001-MAX14002 Configurable,
+> +  Isolated 10-bit ADCs for Multi-Range Binary Inputs.
 > +
-> +       if (args->args_count !=3D 1)
-> +               return ERR_PTR(-EINVAL);
+> +  Datasheet can be found here
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+MAX14001-MAX14002.pdf
 > +
-> +       idx =3D args->args[0];
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
 > +
-> +       return priv->can_transceiver_phy[idx].generic_phy;
-> +}
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,max14001
+> +      - adi,max14002
 > +
->  static int can_transceiver_phy_probe(struct platform_device *pdev)
->  {
->         struct phy_provider *phy_provider;
->         struct device *dev =3D &pdev->dev;
-> -       struct can_transceiver_phy *can_transceiver_phy;
-> +       struct can_transceiver_priv *priv;
->         const struct can_transceiver_data *drvdata;
->         const struct of_device_id *match;
->         struct phy *phy;
-> @@ -119,52 +150,70 @@ static int can_transceiver_phy_probe(struct platfor=
-m_device *pdev)
->         struct gpio_desc *enable_gpio;
->         struct mux_state *mux_state;
->         u32 max_bitrate =3D 0;
-> -       int err;
-> -
-> -       can_transceiver_phy =3D devm_kzalloc(dev, sizeof(struct can_trans=
-ceiver_phy), GFP_KERNEL);
-> -       if (!can_transceiver_phy)
-> -               return -ENOMEM;
-> +       int num_ch =3D 1;
-> +       int err, i;
->
->         match =3D of_match_node(can_transceiver_phy_ids, pdev->dev.of_nod=
-e);
->         drvdata =3D match->data;
->
-> +       priv =3D devm_kzalloc(dev, sizeof(struct can_transceiver_priv), G=
-FP_KERNEL);
-> +       if (!priv)
-> +               return -ENOMEM;
+> +  reg:
+> +    maxItems: 1
 > +
-> +       platform_set_drvdata(pdev, priv);
+> +  vdd-supply:
+> +    description:
+> +      Isolated DC-DC power supply input voltage.
 > +
-> +       if (drvdata->flags & CAN_TRANSCEIVER_DUAL_CH)
-> +               num_ch =3D 2;
+> +  vddl-supply:
+> +    description:
+> +      Logic power supply.
 > +
-> +       priv->num_ch =3D num_ch;
-> +       priv->can_transceiver_phy =3D devm_kcalloc(dev, num_ch, sizeof(st=
-ruct can_transceiver_phy),
-> +                                                GFP_KERNEL);
-> +       if (!priv->can_transceiver_phy)
-> +               return -ENOMEM;
+> +  vrefin-supply:
+> +    description:
+> +      ADC voltage reference supply.
 > +
->         mux_state =3D devm_mux_state_get_optional(dev, NULL);
->         if (IS_ERR(mux_state))
->                 return PTR_ERR(mux_state);
->
-> -       can_transceiver_phy->mux_state =3D mux_state;
-> -
-> -       phy =3D devm_phy_create(dev, dev->of_node,
-> -                             &can_transceiver_phy_ops);
-> -       if (IS_ERR(phy)) {
-> -               dev_err(dev, "failed to create can transceiver phy\n");
-> -               return PTR_ERR(phy);
-> -       }
-> +       priv->mux_state =3D mux_state;
->
->         err =3D device_property_read_u32(dev, "max-bitrate", &max_bitrate=
-);
->         if ((err !=3D -EINVAL) && !max_bitrate)
->                 dev_warn(dev, "Invalid value for transceiver max bitrate.=
- Ignoring bitrate limit\n");
-> -       phy->attrs.max_link_rate =3D max_bitrate;
->
-> -       can_transceiver_phy->generic_phy =3D phy;
-> +       for (i =3D 0; i < num_ch; i++) {
-> +               phy =3D devm_phy_create(dev, dev->of_node, &can_transceiv=
-er_phy_ops);
-> +               if (IS_ERR(phy)) {
-> +                       dev_err(dev, "failed to create can transceiver ph=
-y\n");
-> +                       return PTR_ERR(phy);
-> +               }
->
-> -       if (drvdata->flags & CAN_TRANSCEIVER_STB_PRESENT) {
-> -               standby_gpio =3D devm_gpiod_get_optional(dev, "standby", =
-GPIOD_OUT_HIGH);
-> -               if (IS_ERR(standby_gpio))
-> -                       return PTR_ERR(standby_gpio);
-> -               can_transceiver_phy->standby_gpio =3D standby_gpio;
-> -       }
-> +               phy->attrs.max_link_rate =3D max_bitrate;
->
-> -       if (drvdata->flags & CAN_TRANSCEIVER_EN_PRESENT) {
-> -               enable_gpio =3D devm_gpiod_get_optional(dev, "enable", GP=
-IOD_OUT_LOW);
-> -               if (IS_ERR(enable_gpio))
-> -                       return PTR_ERR(enable_gpio);
-> -               can_transceiver_phy->enable_gpio =3D enable_gpio;
-> -       }
-> +               priv->can_transceiver_phy[i].generic_phy =3D phy;
-> +               priv->can_transceiver_phy[i].priv =3D priv;
+> +  interrupts:
+> +    items:
+> +      - description: |
+> +          Interrupt for signaling when conversion results exceed the con=
+figured
+> +          upper threshold for ADC readings or fall below the lower thres=
+hold for
+> +          them. Interrupt source must be attached to COUT pin.
+> +      - description: |
+> +          Alert output that asserts low during a number of different err=
+or
+> +          conditions. The interrupt source must be attached to FAULT pin=
+.
 > +
-> +               if (drvdata->flags & CAN_TRANSCEIVER_STB_PRESENT) {
-> +                       standby_gpio =3D devm_gpiod_get_index_optional(de=
-v, "standby", i,
-> +                                                                    GPIO=
-D_OUT_HIGH);
-> +                       if (IS_ERR(standby_gpio))
-> +                               return PTR_ERR(standby_gpio);
-> +                       priv->can_transceiver_phy[i].standby_gpio =3D sta=
-ndby_gpio;
-> +               }
+> +  spi-max-frequency:
+> +    maximum: 5000000
 > +
-> +               if (drvdata->flags & CAN_TRANSCEIVER_EN_PRESENT) {
-> +                       enable_gpio =3D devm_gpiod_get_index_optional(dev=
-, "enable", i,
-> +                                                                   GPIOD=
-_OUT_LOW);
-> +                       if (IS_ERR(enable_gpio))
-> +                               return PTR_ERR(enable_gpio);
-> +                       priv->can_transceiver_phy[i].enable_gpio =3D enab=
-le_gpio;
-> +               }
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - vddl-supply
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    spi {
+> +      #address-cells =3D <1>;
+> +      #size-cells =3D <0>;
+> +
+> +      max14001: adc@0 {
+> +        compatible =3D "adi,max14001";
+> +        reg =3D <0>;
+> +        spi-max-frequency =3D <5000000>;
+> +        vdd-supply =3D <&vdd>;
+> +        vddl-supply =3D <&vddl>;
+> +      };
+> +    };
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index af1c8d2bfb3d..0aeab5dbd39d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -14984,6 +14984,13 @@ W:     https://ez.analog.com/linux-software-driv=
+ers
+>  F:     Documentation/devicetree/bindings/iio/adc/maxim,max11205.yaml
+>  F:     drivers/iio/adc/max11205.c
 >
-> -       phy_set_drvdata(can_transceiver_phy->generic_phy, can_transceiver=
-_phy);
-> +               phy_set_drvdata(priv->can_transceiver_phy[i].generic_phy,
-> +                               &priv->can_transceiver_phy[i]);
-> +       }
->
-> -       phy_provider =3D devm_of_phy_provider_register(dev, of_phy_simple=
-_xlate);
-> +       phy_provider =3D devm_of_phy_provider_register(dev, can_transceiv=
-er_phy_xlate);
->
->         return PTR_ERR_OR_ZERO(phy_provider);
->  }
->
+> +MAXIM MAX14001/MAX14002 DRIVER
+> +M:     Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+> +L:     linux-iio@vger.kernel.org
+> +S:     Maintained
+> +W:     https://ez.analog.com/linux-software-drivers
+> +F:     Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> +
+>  MAXIM MAX17040 FAMILY FUEL GAUGE DRIVERS
+>  R:     Iskren Chernev <iskren.chernev@gmail.com>
+>  R:     Krzysztof Kozlowski <krzk@kernel.org>
 > --
-> 2.37.1
+> 2.34.1
 >
 >
 
