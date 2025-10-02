@@ -1,109 +1,266 @@
-Return-Path: <devicetree+bounces-223299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40F27BB2B9E
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 09:46:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 022C7BB2BBF
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 09:47:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0938189BC6E
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 07:46:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 843C219C38BC
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 07:48:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1AF238166;
-	Thu,  2 Oct 2025 07:46:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16D82BE641;
+	Thu,  2 Oct 2025 07:47:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="hdMC6LTv"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Fc5bfpOI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A932882A5
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 07:46:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74F81DD9AD;
+	Thu,  2 Oct 2025 07:47:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759391175; cv=none; b=dZM47r1bBBnp3rogAYlkRLPTAro2aVo+aDy2/EQdeMT6FScxb9x5FEldstr5kzjty2fSXlFvE5HErEUmOgfJPVLhCqnqArUZVAqekGTJ6egmSeLd+piV4gkXMV0SqHCoz+eLZJBowu59BeeE79upf4bcg763fky/SsmT6iDPEJI=
+	t=1759391266; cv=none; b=gBVG59G9zsArRvC9ZtpYmt49qswMJ3uHPWFrMVXW263e2wd0qGZ8/bdYEhIP9s9RM9bB3RIxBbpAMBBPzxNSvPEQN+5b2vSKDBy9fMt19zFjdb2InG+F0IU0lSQ30Jly3nkkqvKWenTXjvYtjKYB6YKZ67sNWSPr+KC2ZxJ/SMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759391175; c=relaxed/simple;
-	bh=cxdhP4mqFsJBNQO/VRV1m4vk7D6c4c++Lg24qQFgRZQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EVKrLapLFE/oCZa0Usv56C5y6gYdfbCu/quveMdqUhgyXXOdaf7gmcVUdWF83X2KCw86Ht5cHUeH+OVjnA/4eL7flQOBC8f+VzqpSwLGchUw2wwSX4eH1h+uqqcz1Y+psqQvzehTxRMMi8yDjagDXEAMTgbeL++pUmxNWN8WbII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=hdMC6LTv; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=cxdh
-	P4mqFsJBNQO/VRV1m4vk7D6c4c++Lg24qQFgRZQ=; b=hdMC6LTvkBHtyCgwjhtb
-	2eW/JF/5zIlSoeIQfppFGhIMUy9stGa7FvD8XyoaLprIjgDmHZ+vEJ/UKoVnGrdg
-	2NnvUIvYp7PM+y2Ggk2i6MVdfWdEy95yMVPde0LiBEF0fmPTro9aggq2ozZ0OcxP
-	rCjAi+Cq+G6/UwL6cL1RCyMfGsUIr4lidv1Y6nhsGnHURmxsJHrZrmqJ+pChfuvz
-	D+S2yKNF3I9BfuW92oAaPHa+kFMKv6zDunxxtZx+FaxQlI+7pFgUHMlVdQ8L6r9U
-	hna9oM0VnVyD01b1ueptRnTYL9Fw358/cBxPdB0Z7cD78gRvWbBefV3LVXcxJHF8
-	bw==
-Received: (qmail 163477 invoked from network); 2 Oct 2025 09:46:06 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 2 Oct 2025 09:46:06 +0200
-X-UD-Smtp-Session: l3s3148p1@oI01LShA0OsgAwDPXwQHAL/S9V79e5yL
-Date: Thu, 2 Oct 2025 09:46:01 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Rob Herring <robh@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-watchdog@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>
-Subject: Re: [PATCH 0/4] dt-bindings: watchdog: factor out RZ watchdogs
-Message-ID: <aN4tuTgRUqd0T54U@shikoro>
-References: <20250926112218.28723-1-wsa+renesas@sang-engineering.com>
- <20251002022324.GA2916027-robh@kernel.org>
+	s=arc-20240116; t=1759391266; c=relaxed/simple;
+	bh=dI0wrkAckMH7G1m4ya3Dj7swPNyC71r0eGahUHaJytU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iAOGV7yPOpORmpLjbqG5Hyk9JPlQTC1e9hvKT0XIqr6hKaaxiRJzv+BE7+7NUooRLd7mXGAwBdjsQX2PGPTk9f0ALmV8cqEKhwcBcy5EiaN2bcnZR9H2JIP5pNtRBYvTjcoBzkA344LclbMTZOx4Kpsc7NmS5pnpVJnpGbuHczA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Fc5bfpOI; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1759391262;
+	bh=dI0wrkAckMH7G1m4ya3Dj7swPNyC71r0eGahUHaJytU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Fc5bfpOIErakjiawbB16GBvXBuIlkWOx6lN+lhFFd2c2EYdM3RMGjx2N67KBbKkpN
+	 7PkU3vq1K8q9COKVq2uAXa1j5uyXD2eGedNVXUKGmLGUHYpAfB7wTnnJJoQJoQmGTk
+	 Y6S3qS+xhO5/at0687V8duOoCnGKnvI9krkjVN7g7cuRHKh7UMRyGxzBS2XncgBzoz
+	 PywfQNyp3y4GBa7mDDAYnxXj8lDAIUBetdeUNt5WEyn2B80LOA/K/3lu6eqOfR4Qyb
+	 C24m2gWXQV8n/Cetp0eecCloTXmxVouVe+ERYiQvXBIztkFsDT8B7X3FvaUwukC5j9
+	 tvZ7jYtqHpuMw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3D22817E0AC3;
+	Thu,  2 Oct 2025 09:47:42 +0200 (CEST)
+Message-ID: <6d5553da-4c0e-4957-8d74-314a9ef23301@collabora.com>
+Date: Thu, 2 Oct 2025 09:47:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kNM4CdNxEDzw257Z"
-Content-Disposition: inline
-In-Reply-To: <20251002022324.GA2916027-robh@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 5/9] dt-bindings: regulator: Document MediaTek MT6373
+ PMIC Regulators
+To: Rob Herring <robh@kernel.org>
+Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
+ broonie@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kernel@collabora.com, wenst@chromium.org,
+ igor.belwon@mentallysanemainliners.org
+References: <20251001111316.31828-1-angelogioacchino.delregno@collabora.com>
+ <20251001111316.31828-6-angelogioacchino.delregno@collabora.com>
+ <20251001155300.GC1833526-robh@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20251001155300.GC1833526-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+Il 01/10/25 17:53, Rob Herring ha scritto:
+> On Wed, Oct 01, 2025 at 01:13:12PM +0200, AngeloGioacchino Del Regno wrote:
+>> Add bindings for the regulators found in the MediaTek MT6363 PMIC,
+>> usually found in board designs using the MT6991 Dimensity 9400 and
+>> on MT8196 Kompanio SoC for Chromebooks, along with the MT6316 and
+>> MT6363 PMICs.
+>>
+>> Link: https://lore.kernel.org/r/20250715140224.206329-6-angelogioacchino.delregno@collabora.com
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../regulator/mediatek,mt6373-regulator.yaml  | 137 ++++++++++++++++++
+>>   1 file changed, 137 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6373-regulator.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6373-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6373-regulator.yaml
+>> new file mode 100644
+>> index 000000000000..cb721d81b77c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6373-regulator.yaml
+>> @@ -0,0 +1,137 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6373-regulator.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MediaTek MT6373 PMIC Regulators
+>> +
+>> +maintainers:
+>> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> +
+>> +description:
+>> +  The MT6373 SPMI PMIC provides 10 BUCK and 23 LDO (Low DropOut) regulators
+>> +  and can optionally provide overcurrent warnings with one ocp interrupt
+>> +  for each voltage regulator.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: mediatek,mt6373-regulator
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  vsys-vbuck0-supply:
+>> +    description: Input supply for vbuck0
+>> +
+>> +  vsys-vbuck1-supply:
+>> +    description: Input supply for vbuck1
+>> +
+>> +  vsys-vbuck2-supply:
+>> +    description: Input supply for vbuck2
+>> +
+>> +  vsys-vbuck3-supply:
+>> +    description: Input supply for vbuck3
+>> +
+>> +  vsys-vbuck4-supply:
+>> +    description: Input supply for vbuck4
+>> +
+>> +  vsys-vbuck5-supply:
+>> +    description: Input supply for vbuck5
+>> +
+>> +  vsys-vbuck6-supply:
+>> +    description: Input supply for vbuck6
+>> +
+>> +  vsys-vbuck7-supply:
+>> +    description: Input supply for vbuck7
+>> +
+>> +  vsys-vbuck8-supply:
+>> +    description: Input supply for vbuck8
+>> +
+>> +  vsys-vbuck9-supply:
+>> +    description: Input supply for vbuck9
+>> +
+>> +  vs1-ldo1-supply:
+>> +    description: Input supply for vant18, vaud18, vcn18io
+>> +
+>> +  vs2-ldo1-supply:
+>> +    description: Input supply for vrf12-aif, vrf13-aif
+>> +
+>> +  vs3-ldo1-supply:
+>> +    description: Input supply for vrf09-aif, vsram-digrf-aif
+>> +
+>> +  vsys-ldo1-supply:
+>> +    description: Input supply for vcn33-1, vcn33-2, vmc
+>> +
+>> +  vsys-ldo2-supply:
+>> +    description:
+>> +      Input supply for vaux18, vcn33-3, vefuse, vfp, vibr, vio28, vtp, vusb
+>> +
+>> +  vsys-ldo3-supply:
+>> +    description: Input supply for vmch, vmch-eint-high/low
+>> +
+>> +patternProperties:
+>> +  "^v(ant|aud|aux)18$":
+>> +    $ref: "#/$defs/mediatek-mt6373-ldo-common"
+>> +
+>> +  "^vbuck([0-9])$":
+> 
+> Don't need ().
+> 
+>> +    type: object
+>> +    $ref: regulator.yaml#
+>> +    properties:
+>> +      regulator-allowed-modes:
+>> +        description: |
+>> +          Allowed Buck regulator operating modes allowed. Valid values below.
+>> +            0 - Normal mode with automatic power saving, reducing the switching
+>> +                frequency when light load conditions are detected
+>> +            1 - Forced Continuous Conduction mode (FCCM) for improved voltage
+>> +                regulation accuracy with constant switching frequency but lower
+>> +                regulator efficiency
+>> +            2 - Forced Low Power mode for improved regulator efficiency, used
+>> +                when no heavy load is expected, does not limit the maximum out
+>> +                current but unless only a light load is applied, there will be
+>> +                regulation accuracy and efficiency losses.
+>> +            3 - Forced Ultra Low Power mode for ultra low load, this greatly
+>> +                reduces the maximum output power, makes the regulator to be
+>> +                efficient only for ultra light load, and greatly reduces the
+>> +                quiescent current (Iq) of the buck.
+>> +        maxItems: 3
+>> +        items:
+>> +          enum: [ 0, 1, 2, 3 ]
+>> +    unevaluatedProperties: false
+>> +
+>> +  "^v(cn18io|cn33-[123]|efuse|fp|tp|ibr|io28|sram-digrf-aif|usb)":
+> 
+> Missing '$' anchor.
+> 
+>> +    $ref: "#/$defs/mediatek-mt6373-ldo-common"
+>> +
+>> +  "^vmc(h)?$":
+> 
+> Don't need ().
+> 
+>> +    $ref: "#/$defs/mediatek-mt6373-ldo-common"
+>> +
+>> +  "^vmch-eint-(low|high)?$":
+> 
+> vmch-eint- is a valid name?
+> 
 
---kNM4CdNxEDzw257Z
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Whoops. No, that was supposed to allow vmch-eint-low, vmch-eint-high.
 
+>> +    $ref: "#/$defs/mediatek-mt6373-ldo-common"
+>> +
+>> +  "^vrf(09|12|13|18|io18)-aif$":
+>> +    $ref: "#/$defs/mediatek-mt6373-ldo-common"
+>> +
+>> +$defs:
+>> +  mediatek-mt6373-ldo-common:
+> 
+> The name is local to the schema, so 'ldo-common' would be sufficient.
+> 
 
-> Let me know if watchdog maintainers fail to pick this up. Seems to be=20
-> hit or miss for bindings...
+Okay, I was trying to avoid pollution - but effectively being this local it's not
+necessary to make this name that long.
 
-Thanks. I think the WDT tree is the better choice here because this is
-only a preparational cleanup for the actual changes...
+Will come up with a v7 sooner than later.
 
+Thanks!
+Angelo
 
---kNM4CdNxEDzw257Z
-Content-Type: application/pgp-signature; name="signature.asc"
+>> +    type: object
+>> +    $ref: regulator.yaml#
+>> +    unevaluatedProperties: false
+>> +    properties:
+>> +      regulator-allowed-modes:
+>> +        description: |
+>> +          Allowed LDO regulator operating modes allowed. Valid values below.
+>> +            0 - Normal mode with automatic power saving, reducing the switching
+>> +                frequency when light load conditions are detected
+>> +            2 - Forced Low Power mode for improved regulator efficiency, used
+>> +                when no heavy load is expected, does not limit the maximum out
+>> +                current but unless only a light load is applied, there will be
+>> +                regulation accuracy and efficiency losses.
+>> +        maxItems: 2
+>> +        items:
+>> +          enum: [ 0, 2 ]
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> -- 
+>> 2.51.0
+>>
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjeLbUACgkQFA3kzBSg
-KbYglBAAoXua78nbPkr1NGhV3hH3oSp1WpZplCPBFgZyLm55f4ENVLeIcagrkfIB
-Bh2jkRN2RYrszgfwVrNt61Jt2xcO5XuppQH5QvlICppuBL63rR1uTw65wBMZOMol
-Sa1WMO40lk0DR7Qin4DLTG1FqsDQmBD2sPDqvXUbcbVm5h6iQ0lvTonaRIAbQO+d
-SD3wPFgHqOxkC76aKkzx4vXTSIU8fTbx1EBXjDq/aHhJ71uGF12tQHw12Q37BAuQ
-c1AWb7iBfWDGaqPPljTG42lzhUw+J0n92jA9dAkcYBPNxiImaGculSlQWr+aLpbj
-TxbphFitwqwaRfFM5ou/lxBLUdDgmVu5qkSSIlqdalAj5LWYegyZwI0FhSFELeeQ
-vHtzAd3wUm4TOd7iuCqlC6RMC3SmhvWVBvctjdKmG127dK2TvZrms8u3axm1MRIm
-3y8GTrif3GREIRmKFn1KyGGCOhMMzQgNr8hj612rzYXyHlgwDzgx7MMAAScBBbZw
-ayK6yi3y+/6OJGTlBu3Mg+geyoEOrKD5shl/OK1dBei7qOJKb/r0X78JAKIcjuIe
-yquV68WPKFySB5awc9qznZoc00X29y3D1CkKagAtfF70oM/84jKGuMtbtdrNywPP
-+7XtI8d/dmWZqLjWErkooNkEiRryy50cTXuG5vSeomN25yfVMu0=
-=1+en
------END PGP SIGNATURE-----
-
---kNM4CdNxEDzw257Z--
 
