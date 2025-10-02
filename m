@@ -1,217 +1,188 @@
-Return-Path: <devicetree+bounces-223263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D87BB2836
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 07:14:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85535BB2861
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 07:22:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19897320066
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 05:14:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F000B19C4992
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 05:23:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCBF82874F7;
-	Thu,  2 Oct 2025 05:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 951B427AC34;
+	Thu,  2 Oct 2025 05:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WM9W3bu+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WKGxZJVE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C2972566F7
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 05:14:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B63A9248F72
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 05:22:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759382079; cv=none; b=bQYaCGOzaYV4GWpDRWnfqZ11Pb6d3iqdVs70xIVXF2pT4YY9Gr7OTwVeBHLHz3qV80hAQptpf6UZFUptgkbPF8yfdhXPbYlg8tdndM+FSIv8P3H2TvU4sULhej4bu45o7WLsRcfuEbC/X6E10IlC8RmzRBAYYlW+nfmn4IMhGcY=
+	t=1759382562; cv=none; b=OFXGa0Gy0zI+ejHPUcHo4JdHZ+iz1zquVDOfqfugRlx9xCvGFHd7nINMECxOzJG6SDFE8fxVQ4CTzYr1U35C/cP9pjAliK3rqldk2/PzG/dLlwu9GAhirVpF8JJskwEjlkRm6SmY/DFCuNpLb+D0BF481X/78q9t88lcHgTkZcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759382079; c=relaxed/simple;
-	bh=e8rPa43+g0cC8AQUFTt5/tjbOTK8At5/odqqFdlYePg=;
+	s=arc-20240116; t=1759382562; c=relaxed/simple;
+	bh=+UEvtO4ohS3SCkCNVu2PUUuKQQlaqciarVlUS651gmA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SGcg4AyH7UghdicUoUa1fwKKJwtUC7ZYRSpKJvJcDcQnBL/CnXSmVu3VjrMx7Ow7yNXc7zp1Mx4K2IRdCNLOC0zQh8Sf0OfKRXkoHQRyTFXQiK+Vvh7o7cpvFrotzn84rcZE/u73v8etAjplWeCDKdszrOoO2tzFfGJ+jQlDHd8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WM9W3bu+; arc=none smtp.client-ip=209.85.221.41
+	 To:Cc:Content-Type; b=nO8O4xgA6k31ueB9v0QGWtFMrs+YKCd4DxSOfYkT69iBwbScBx3BWHg1KoBbOZGpvFkhFfwAS2SdMfMjrSAvN7c4JvMjY1MPreNZclYW0s1fAi1iPo9dydBzCToaDVVda1dw+/V2oZEDE2yFlVQy3BP9Mpe0luXijhl7+fsxqPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WKGxZJVE; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3b9edf4cf6cso384061f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 22:14:36 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3f44000626bso274688f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 22:22:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759382075; x=1759986875; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759382559; x=1759987359; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YSxj89clgP9/epwjX7kNoyqXr3MHcjlhiguFCD9is4k=;
-        b=WM9W3bu+Di5VUyKk997dJCe6mXvCDO5rm7juS6Mt5h7RQvdUEQGjLxEriis6xZcrGG
-         /eYPQvTtqc6cjt9z+GUfS6b53XnBzD03StNUFlB0gFhFPsDnKASjFo51TmYRMfAZuKWH
-         0oxoNyAW9rJuyAFaUtnQp+fiLBtuByaYJB5NNd4FreMdSNCbtz0i77IR10Pp/MvVNQoy
-         FkG+H/NQRs0vpxa4DN6Nxk/U5iia813YK4bPPAPbN2LsYLfpqEFPgjMY97fz5O4kXb7o
-         NN/A6ojQxQWqMwK3/q5ds7jhLXSeq8PMrJJNR/DcBcCwghWENcbntdET0v8OQekLh42O
-         fr0w==
+        bh=kIoTAVA9sjHnC7mbYGlDJX9XNa4jYRX+mhTFjapnGcE=;
+        b=WKGxZJVE9bc9SdJlNJbo6f51KykHP+8ayxVAoueB945lem4+eUB16Iscu5i2SEmc69
+         AetrqMXauSPz/IixB1UKxkh5VDFNZdYRXXZj+bzrw2MsWo18aD7PQcgREI+iYYDAr5vZ
+         KPEFpPs2JQ3T1P8+86RYn7R/Rtp5/zFvq+LUCXtObyYhdzkjToAS0ulqjpnikjOPs1UO
+         q2kMkeSiR7uPHwtLWPhjsH1DA6IXnzPVGoA9V8gRfHiIU5NxB1pBDeG6YBAKSYH0FNnC
+         HSjNLCKDdp6GHMzheLmA6vvv2tmWWYCIq7kCTlZ9iL4ll3s63IPYAg77//QIVB8VWX2P
+         JRyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759382075; x=1759986875;
+        d=1e100.net; s=20230601; t=1759382559; x=1759987359;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YSxj89clgP9/epwjX7kNoyqXr3MHcjlhiguFCD9is4k=;
-        b=oNThofxuMrSaptsfnQ58kXayShYreU9GSK5qQ/NZ1po9cwKFyOQYPY2ktQrEHIcadc
-         CFzfNPKrBYyQYWVMCAYlK8N+DNoWMOtCuE8X2Vs0POJ8oefuPgMnIBRNq8+/F+pJDRsv
-         1exqKo0gYk3XmN6mJKEZ3B5+o2iCd1vtrcXbtsFo/Je6ykAzOKh4QgVSpZDtR3zyNtEJ
-         3co5CRHveHCrdLF9Y/XDo0L1wVc9ug0KVCs0A5ZYUBF/jnAsd5962VReMS2EIPaRkwyM
-         me9ivucT7pFFvhkO7GsC1ZP65aSjqsd3jO8C5O4Sfhb6vA0fdrXSM5suSCMf+LqNY0sV
-         aQ9A==
-X-Forwarded-Encrypted: i=1; AJvYcCVPzPAETPgwbJaC1C3/b7LelncAxTIKi1PK3nNchRi+RTxJ4yYD5k/O7NTflld91xtEcNhHMJk5w8fC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwyiyTMyAsk9ZdMvshK+8N4VGbeTBLyQm72mkcOBkdcRLyrTWSe
-	hBIj7UGWAh8ScYab8Yidvwcpgfo1SHWot/W/44GlLkvIb5pKbiICSzZ94FZASwbXqfKDS/Z3tK5
-	zZBvItcHnOlZx6bBuiMtIw61+9KfsaZA=
-X-Gm-Gg: ASbGncuh0hxrAykIPmcaTAbwSa2vESiaOoTTArN8fboqe8+0PpIRYGQEyXqND8knFeY
-	cEULf9DoW7KNK+ckJ6KwrJkJZzQpyFx2Hb/4SJrTaFcxPRdbvPzqSpdcCIYG33zRGIlr5ZibaVT
-	DUhiz9H91xXufdXcHgX9eN7D4fgEUFVXeLGbQKh3HKj0FLcVID8+T0jXofbkiwwxOdYYG8WLu6T
-	C5/gPxKsH0kOc7jYb8CPu5ZVZqCeW73b5vSlNC9YvI=
-X-Google-Smtp-Source: AGHT+IESwbqiCSEMELDkv5LXWwnsK0WT95NSCj1MTb4h7Wf7kCcDY7VLOonc/BinFz92wRYlrHkbRf2OuiKNL3e3E08=
-X-Received: by 2002:a05:6000:184e:b0:3ee:1461:1654 with SMTP id
- ffacd0b85a97d-4255781941amr3612172f8f.50.1759382074429; Wed, 01 Oct 2025
- 22:14:34 -0700 (PDT)
+        bh=kIoTAVA9sjHnC7mbYGlDJX9XNa4jYRX+mhTFjapnGcE=;
+        b=KHc7TqfgGufKdI0tkZTD8STliXnBr3Qzy5fJVbUaWTmmOUQjIf2IXTLJk0u5StVYPR
+         NH70ddlyQIVZrmYBUlRzY0z7E069HXRdhRWrK9jhzEGp6JbPZlOv6jxvrDuwOh/E+V+P
+         BMhy94TTApAi6N12hhrBxV3eC+F9WLkp0qiyMs5BWuLnp249sOYh250nb/2PY76OZrMg
+         7/BPROxjYQK/yPaJTcvdjA3XNPB04PtlBEeeyJ6BGAYylPTIPBy+/F4+vlBzxfTlLOLC
+         hF1PaWlQm6XTh6taBmwMY3RozSsboBxLSuvmez4tUFxyVehJD/GgZEwAgYEQNYw5232L
+         IOug==
+X-Forwarded-Encrypted: i=1; AJvYcCW4ybYB7OtLvIMr5mmaPbVK2nCNGxqe8fx/+SUwQiWmdftbZJmmVqptcEXvdffNSCq/a7F1Otzodjgr@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhpRV80HssVrbc6Ut53QYaBZvnNwsXwKiOv/EbLuDApy6tENRG
+	y7ExCbpIj4O11WadGIt3mgpuYxOz9Z5NoeJmu5WUHBkT8Mn8x13TtlVdB5BQV76QLPylur8l9Ix
+	WFdArffsGOz003fA52JHKpyIIX+gdTL0=
+X-Gm-Gg: ASbGncvZTIaUVSo3+iQXs/WD0tqoUx7KkFoSGOV74p7IUQZFGSfOnvETOtuO3BkVEbf
+	m31q88MqvhGQkT4SBe2KcukOKi8uhvosoruAJlPFvXnCgs77VoTWS9JOwg83UKcAdGnNhp0AQZl
+	TjpGJqtMx9Eg4EoxVV18b4vk6+/NlKc1p4mUL0jwn69nGS23to/Dnll3vzLqCcP7Uyd0iKd/YlT
+	tnm4+bUOd01u8c46DReH1G4uHH3mCLT
+X-Google-Smtp-Source: AGHT+IG0e+DFVcA7EGV4f6gb3cVHuiVS4JYjGsGK6v4oRblkAeW4rQLj6q0R0ldwH/G+/sN3B7OHJYVi23raS5THltw=
+X-Received: by 2002:a5d:5f52:0:b0:3ff:d5c5:6b03 with SMTP id
+ ffacd0b85a97d-4255781466fmr4232925f8f.35.1759382558942; Wed, 01 Oct 2025
+ 22:22:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250925151648.79510-1-clamor95@gmail.com> <20250925151648.79510-21-clamor95@gmail.com>
- <20251002015244.GA2836647-robh@kernel.org>
-In-Reply-To: <20251002015244.GA2836647-robh@kernel.org>
+References: <20250925152806.80386-1-clamor95@gmail.com> <20250925152806.80386-2-clamor95@gmail.com>
+ <20251002015554.GA2880078-robh@kernel.org>
+In-Reply-To: <20251002015554.GA2880078-robh@kernel.org>
 From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 2 Oct 2025 08:14:22 +0300
-X-Gm-Features: AS18NWBsqgazmObYsbw3vrlzreHgRP08b1AuPJOMH1TaxhTxibrteaaRf04b8Cg
-Message-ID: <CAPVz0n1By+akzp0t+GfF9nRzZ27NwYEikXxQ+=M=W2NEGpLNFw@mail.gmail.com>
-Subject: Re: [PATCH v3 20/22] dt-bindings: display: tegra: document Tegra20
- and Tegra30 CSI
+Date: Thu, 2 Oct 2025 08:22:27 +0300
+X-Gm-Features: AS18NWCy4o_ayBLITcbOWaJzzbRVpQSybS31RCoaoa8CEb7E1WnQEhadEGX4bl0
+Message-ID: <CAPVz0n150FGUvgmxM8tLyQanWjhsmi4j=DaSa-JW2JSjCM4=tw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: media: i2c: document Sony IMX111 CMOS sensor
 To: Rob Herring <robh@kernel.org>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni <skomatineni@nvidia.com>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Mikko Perttunen <mperttunen@nvidia.com>, Linus Walleij <linus.walleij@linaro.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	=?UTF-8?Q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, 
-	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, 
-	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, Aaron Kling <webgeek1234@gmail.com>, 
-	Arnd Bergmann <arnd@arndb.de>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-staging@lists.linux.dev
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Hans Verkuil <hverkuil@xs4all.nl>, Hans de Goede <hansg@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+	Dongcheng Yan <dongcheng.yan@intel.com>, =?UTF-8?Q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
+	Sylvain Petinot <sylvain.petinot@foss.st.com>, 
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>, 
+	Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>, Jingjing Xiong <jingjing.xiong@intel.com>, 
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-=D1=87=D1=82, 2 =D0=B6=D0=BE=D0=B2=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 04:52=
+=D1=87=D1=82, 2 =D0=B6=D0=BE=D0=B2=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 04:55=
  Rob Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
 >
-> On Thu, Sep 25, 2025 at 06:16:46PM +0300, Svyatoslav Ryhel wrote:
-> > Document CSI HW block found in Tegra20 and Tegra30 SoC.
+> On Thu, Sep 25, 2025 at 06:28:05PM +0300, Svyatoslav Ryhel wrote:
+> > Add bindings for Sony IMX111 CMOS Digital Image Sensor found in LG
+> > Optimus 4X (P880) and Optimus Vu (P895) smartphones.
 > >
 > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > > ---
-> >  .../display/tegra/nvidia,tegra20-csi.yaml     | 135 ++++++++++++++++++
-> >  1 file changed, 135 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvi=
-dia,tegra20-csi.yaml
+> >  .../bindings/media/i2c/sony,imx111.yaml       | 112 ++++++++++++++++++
+> >  1 file changed, 112 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,im=
+x111.yaml
 > >
-> > diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,teg=
-ra20-csi.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegr=
-a20-csi.yaml
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx111.ya=
+ml b/Documentation/devicetree/bindings/media/i2c/sony,imx111.yaml
 > > new file mode 100644
-> > index 000000000000..817b3097846b
+> > index 000000000000..a70017588891
 > > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-cs=
-i.yaml
-> > @@ -0,0 +1,135 @@
+> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx111.yaml
+> > @@ -0,0 +1,112 @@
 > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > > +%YAML 1.2
 > > +---
-> > +$id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-csi.ya=
-ml#
+> > +$id: http://devicetree.org/schemas/media/i2c/sony,imx111.yaml#
 > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > +
-> > +title: NVIDIA Tegra20 CSI controller
+> > +title: Sony IMX111 8MP CMOS Digital Image Sensor
 > > +
 > > +maintainers:
 > > +  - Svyatoslav Ryhel <clamor95@gmail.com>
 > > +
+> > +description:
+> > +  IMX111 sensor is a Sony CMOS active pixel digital image sensor with =
+an active
+> > +  array size of 2464H x 3280V. It is programmable through I2C interfac=
+e. Image
+> > +  data is sent through MIPI CSI-2, through 1 or 2 lanes.
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/media/video-interface-devices.yaml#
+> > +  - $ref: /schemas/nvmem/nvmem-consumer.yaml#
+> > +
 > > +properties:
 > > +  compatible:
-> > +    enum:
-> > +      - nvidia,tegra20-csi
-> > +      - nvidia,tegra30-csi
+> > +    const: sony,imx111
 > > +
 > > +  reg:
 > > +    maxItems: 1
 > > +
-> > +  clocks: true
-> > +  clock-names: true
-> > +
-> > +  avdd-dsi-csi-supply:
-> > +    description: DSI/CSI power supply. Must supply 1.2 V.
-> > +
-> > +  power-domains:
+> > +  clocks:
+> > +    description: EXTCLK with possible frequency from 6 to 54 MHz
 > > +    maxItems: 1
 > > +
-> > +  "#nvidia,mipi-calibrate-cells":
-> > +    description:
-> > +      The number of cells in a MIPI calibration specifier. Should be 1=
-.
-> > +      The single cell specifies an id of the pad that need to be
-> > +      calibrated for a given device. Valid pad ids for receiver would =
-be
-> > +      0 for CSI-A; 1 for CSI-B; 2 for DSI-A and 3 for DSI-B.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    const: 1
->
-> Sorry I didn't bring this up before, but is this ever not 1? If it is
-> fixed, then you don't really need the property. I prefer it just be
-> fixed rather than getting a bunch of vendor specific #foo-cells.
->
-
-This is not an introduction of property, such property already exists
-in Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-mipi.yam=
-l
-and is used in multiple device trees. As I have told before, in case
-of Tegra30 and Tegra20 CSI block combines mipi calibration function
-and CSI function, in Tegra114+ mipi calibration got a dedicated
-hardware block which is already supported. This property here is used
-to align with mipi-calibration logic used by Tegra114+
-
->
+> > +  reset-gpios:
+> > +    maxItems: 1
 > > +
-> > +  "#address-cells":
-> > +    const: 1
+> > +  iovdd-supply:
+> > +    description: Digital IO power supply (1.8V)
 > > +
-> > +  "#size-cells":
-> > +    const: 0
+> > +  dvdd-supply:
+> > +    description: Digital power supply (1.2V)
 > > +
-> > +patternProperties:
-> > +  "^channel@[0-1]$":
-> > +    type: object
-> > +    description: channel 0 represents CSI-A and 1 represents CSI-B
+> > +  avdd-supply:
+> > +    description: Analog power supply (2.7V)
+> > +
+> > +  port:
 > > +    additionalProperties: false
+> > +    $ref: /schemas/graph.yaml#/$defs/port-base
 > > +
 > > +    properties:
-> > +      reg:
-> > +        maximum: 1
+> > +      endpoint:
+> > +        $ref: /schemas/media/video-interfaces.yaml#
+> > +        unevaluatedProperties: false
 > > +
-> > +      nvidia,mipi-calibrate:
-> > +        description: Should contain a phandle and a specifier specifyi=
-ng
-> > +          which pad is used by this CSI channel and needs to be calibr=
-ated.
-> > +        $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +        properties:
+> > +          data-lanes: true
+> > +          bus-type: true
 >
-> Sounds like only one entry? Then 'maxItems: 1' is needed. If you drop
-> #nvidia,mipi-calibrate-cells, then you need to define the arg size too:
+> I assume not *bus* types are supported, so this should constrain it to
+> valid ones. If it is only 1 type, you shouldn't really need the type in
+> DT.
 >
-> items:
->   - items:
->       - description: phandle to ...
->       - description: what the arg contains.
+
+Better, properties can be dropped and only required left with
+data-lanes and link-frequencies. Thank you for a hint
+
+> Rob
 >
 
