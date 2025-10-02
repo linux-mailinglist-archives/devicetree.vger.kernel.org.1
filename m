@@ -1,79 +1,80 @@
-Return-Path: <devicetree+bounces-223277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6CA8BB2974
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 08:09:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 321DBBB2983
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 08:10:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B19B27A797E
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 06:08:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EFB91767E0
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 06:10:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98A0A296BBD;
-	Thu,  2 Oct 2025 06:09:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7347D2C21CF;
+	Thu,  2 Oct 2025 06:09:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="d5Yuli6B"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="DxaxHb4z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9C542C027B
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 06:09:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 800E5288C34
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 06:09:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759385352; cv=none; b=MDh6fVF1TLfB168L6H6e7f5K7j4max1OWGmG91Boo9UiorphT9M+J/bp9SROc6hOb6VyvpE5JJm9xnicA3t60o5e27XKF6qFbSyJIm65TcOj9j45SV9s2f2DdZc2v2BTBg1bSMP9JT9UZQB+ft/6+NUDxHmJlP5i81aGHVfxsEo=
+	t=1759385359; cv=none; b=SE5KmzN3PwANfzceVqzQkfgP0S2Db3gkdawVSurCFff9XEVYONsqR5/He4SBDzbX/CVSwL1qD01oflCPbS332bPLgBn6PhgXOK6XGs7Zl9AigBbsKJuHHodCAxTy35CIQuO93f79woFdR+UzNxN/qpRFCZ5j0bXITCZJOBNc11g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759385352; c=relaxed/simple;
-	bh=XEFA8zyiDZVVbLjKoilUQi+l/dTbcVsvCwesMof/7ow=;
+	s=arc-20240116; t=1759385359; c=relaxed/simple;
+	bh=slfHC8PAv5VIT8u+nD/h/2IirRKXgHzJULs1SA2PJNE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=t9sROcqIVJevQPPDXh1b0fEsn+tpqCJ9B5QWf/IB96LcE2K/Kl0d3DfVmXqM+FUagSwrQTb3dYbz89jJodqVboLj1uUUp+PwFDgptC1YuzKXgorfA63ca0ZVmIF/OrYwAm45PaCujZDeAS7SxpRoXuLEIq3KXqRQkkUD7Ar78UQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=d5Yuli6B; arc=none smtp.client-ip=209.85.216.44
+	 MIME-Version; b=Fhy8fGkF7bppYXNWwzogSZ6ZkSfO6gjSoLG86K1UWGWmVRfBfUMVQRvvfjPmDUrVSlGbJqysbbMopVfght6DbHJZxuRbpjtW6Gn4N3dSKRTwQtCi3HWs2DSJCsGkCPjuZRz9HfLZ+dfNbA7YyN/Ep8dyBBjuxsw6qxkPjbHDENA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=DxaxHb4z; arc=none smtp.client-ip=209.85.210.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-32df5cae0b1so974279a91.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 23:09:10 -0700 (PDT)
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-789fb76b466so715592b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 23:09:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1759385350; x=1759990150; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1759385357; x=1759990157; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9ftqbP+UQqSEu2f4CDXI8ip1QBHLXUd+nnX5oELppTk=;
-        b=d5Yuli6BxUk6olra3rf21GWsTEeVvxc8xVqhMpsV0lFhes+Fvi7zbG9TeHngG4zqG+
-         X4PJOmZHbq5BxLaX/pl02NJb5XKjxDTAM6aIwt7BPKXiW8P/GY5qJDgYigTJOVbC+2dP
-         Yr8/DNpRu7OQMohrYd0cNfnDVMo/9Epb4qXb3kVACtZ4hz6acJIZsJLoAATF4+GvF8KH
-         vyd4iye1yy6lTUoJk44JlFO0YRbKVYCGvcCxxrqQLVusXsllUpe05yxpPSI2Z7hqYt8q
-         tJx58panx1+ca9/5CiJMpO33BXpwk6a9KbJJs/JYRddaBiTaBYNpo2V7lPBdy/YZL+ol
-         R48g==
+        bh=BUQPfkbJ3dZW7yGpAIpAlgM0v37IerodzZgj+qIzfvU=;
+        b=DxaxHb4zY7HJV5iCD5NAtLnBV10HvC4Vi8pKyxGiUYLU3z0ePsxMrKBMXXZrPYtjQJ
+         IZMV8vHvIOha6VB4iy9YhwX0v8sk6a+0pzHIy7UUWNEos7CclMOJGuq7Wt1DlbHMunnS
+         AFF53q2rqEXlojAoRwBM6wPMSGezJ3iZ3VzVnZv4PXw7t6EcOLgalurQ+DPIEpy0Tnsu
+         AEGZpDiCbbYUTZLaPprPC1t311UmSv1lQvyJaQ9EDoQhsKf+eNKyQv9UGcppzJ35Mn31
+         D6ho7Vy1yKLPM9d9nOXRumjak3M5zKCRC8x2VyGnWCU+coYN01+g6BSJKH3q8qqCkGBR
+         M+4A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759385350; x=1759990150;
+        d=1e100.net; s=20230601; t=1759385357; x=1759990157;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9ftqbP+UQqSEu2f4CDXI8ip1QBHLXUd+nnX5oELppTk=;
-        b=IsOWuVaWhi1b0gc8xRp3GRY0ebbJaOgJGzsTQGW0DvuCJh5rxDq7zm6Y1Vl8O8RGE6
-         fz0ufdc2ngvlIeyg2pbWJ6xQjdMhu81wz/rq/jIn21Vw9D4XjxxuHY0714wW0CWEUJG5
-         fkifRvL2PfhbQd8k3N5x4lDMcd7KeAAOruEkBEsqekcW7FUGOlgPSy8OsqylLENS/god
-         XJ3HcPkqY+tJPiyiQbPQpnvIzBBHdefXYaSsZRORM31fUYPrIe0u1abrM416rkBFLbR5
-         +GBnVhIED+u6WUJWrBZOX/gpqp4S2Jbvc/UPMPP8jYe2nILdmGRvxIyIAwitQXECLdfr
-         s+Og==
-X-Forwarded-Encrypted: i=1; AJvYcCXGcJIjIH1hH3+WIgDhYOkY/FOXMkwFGQyrad3h79HTPzla5SqtcxOGAbO5j7mA5hc58VkxA7y+5mya@vger.kernel.org
-X-Gm-Message-State: AOJu0YzvmRK4q2Ov/fp4Hi027ZBylN3d/22Z7QaduUvRVTCpWQ6JKuNI
-	JY0v97gZlvBDAWf+KLykZa4Alr3hwRCIbaNgHLWUvK0f98e9yzEYbpEqMM1BVeLzehY=
-X-Gm-Gg: ASbGncupD/1eI0qM4AkF6WR+1UjvBZfRxMlRFBszSP5v4lvAHkvZxFmQt85Xc+QLeJT
-	fPeT0hhzvXhMlMjUzK8DlAtyWvh+lgb8aqZjyDh7KUNBXbWQwtBR2P2HzrB4c+46y3CJ4fCf+nG
-	+L2T6O5OgdvTrmZK12KMUU1RCLa6TclktbT1Lr3AhIkUUDK0UUhB5dVMwxuFEyyErhKL+IkcBOJ
-	k+kbEE+AWOUUCrSJiY5q5Ts1wh5xRM/4EvgyssknS741l9wFF6mOrBFDPDboPsJOcCC9tYjD6ZW
-	o3gY10nMwUD6JjMaHcdSxpqB7xTNJvEcelTX3k8gd4usAaQdMiNYSXi699x2nfvJYUjIzjS8ryN
-	wYptrUKL3Ja4zn+mYOBGFXq54XG8/+o7LVv4wvoRBvFTxKsUdU/B5mLCYHGEMpuY7AxhkVZzZcS
-	UacFs=
-X-Google-Smtp-Source: AGHT+IEFL89FRAz70PFiXxdbB3Wjgy9mSV6Pk0dwPsKpmwVWnajTDyjSSOaPk9cpQlVIA3PETGEPeQ==
-X-Received: by 2002:a17:90b:4a87:b0:32b:623d:ee91 with SMTP id 98e67ed59e1d1-339a6f36e19mr6863672a91.27.1759385349850;
-        Wed, 01 Oct 2025 23:09:09 -0700 (PDT)
+        bh=BUQPfkbJ3dZW7yGpAIpAlgM0v37IerodzZgj+qIzfvU=;
+        b=tSLwt2BmV/NiOCG0LEHJHZiW5BqNOMRy+0OABQZOfKqH3s4m95EgJZkRfIJ3FEujvC
+         Tr8/wsFT8AfIxOYpz0H79tKm+9FCdpT1+e50E6GcJoBUp5GkhUzJOUJ7ONIyNf6K7/3H
+         3z6sEvtvFi0r2FVRZduh/BCoEQoHbA12TofIWmkJlObMhthLWWxAKbqQtt9p5ZpB0v0J
+         6zI2tOcSo2NlCUJn8VINfiN/RhBcY1P3OH81qnk9ym49UmewAnBKS7aPyIe7MV+Sb7p8
+         CBMklZLVbhARNA3u2XaOBZ2Y5GNDeorLbSSDxXsyqoc78MA/v91Hl9QTU3JqC/WpcRUB
+         xfXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXoxA4VIJajGhgp/QwsSZLHwJcdN3VI1i5zbjE8D911h1KDqNoYJCShc8mdBCCgzyOnsMgjZUhzdTtl@vger.kernel.org
+X-Gm-Message-State: AOJu0YxtNWG60MP4gMrvDwYmqvDP5I40M5LLdMhkuRLEcHw1zfpfpeBH
+	9SpA07wKu5nI2glHAY4LN65RBsy5cn4sz7nHPXpa7ZYPtoZTak2pLIREguNwnW21vFFNnyBR2Fr
+	smJIq6XU=
+X-Gm-Gg: ASbGncupXqgOAPBxB+DuHFRpLtanyVmB0JJX7lYUYlm8+Itm183Si5X7Ncwvm8ZPamQ
+	Q4AarrUyRFMuK/K2oM6xzV70Rz4ChjDrLzqeQdN25eIwCBDjpJwznqb6rsOayK/HH3zAou+zWg6
+	oxqgn0vXHh7Wc7In6MlmczhBEKn2z3Q/8w8z2GFxpc6NHOsHe/riAN/6Cwuv1fK+IAvg4zGeQq1
+	k7eFb7Bk/tUzgTTD+ocTKuf6GJAxR2j7x4EmCcNKwTQOIe4e7LdZhJXWCy3vwmvu0Ksu2M6EUf5
+	jfUaxwaAl0ks7dgkKkT8r8g4QVqYhAIkoQ2Dl/8/3KYowjIi2YdFa384ogpf4wKbs43odgMhBGw
+	FdaoEB4+ofwizt/Mh+6yeQtQL0CVIyWZvKpMYNtDZFyyIwKPOSLkLtQFZZG/XkEQzstN9/c/LiP
+	kR2PM=
+X-Google-Smtp-Source: AGHT+IFJYhph88TXwzRm6wpDFKmxs7iIGvjnIRXrwoaN/aRyPB6wF1pi6B0teuXwXD5OsXwiw3KiPw==
+X-Received: by 2002:a05:6a21:b8a:b0:2ea:41f1:d53a with SMTP id adf61e73a8af0-321e72b876emr7793339637.41.1759385356653;
+        Wed, 01 Oct 2025 23:09:16 -0700 (PDT)
 Received: from localhost.localdomain ([122.171.19.158])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6099f594afsm1205029a12.37.2025.10.01.23.09.03
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6099f594afsm1205029a12.37.2025.10.01.23.09.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Oct 2025 23:09:09 -0700 (PDT)
+        Wed, 01 Oct 2025 23:09:16 -0700 (PDT)
 From: Anup Patel <apatel@ventanamicro.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -101,9 +102,9 @@ Cc: Alexandre Ghiti <alex@ghiti.fr>,
 	linux-kernel@vger.kernel.org,
 	Mayuresh Chitale <mchitale@ventanamicro.com>,
 	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH 07/11] rvtrace: Add trace ramsink driver
-Date: Thu,  2 Oct 2025 11:37:28 +0530
-Message-ID: <20251002060732.100213-8-apatel@ventanamicro.com>
+Subject: [PATCH 08/11] rvtrace: Add perf driver for tracing using perf tool
+Date: Thu,  2 Oct 2025 11:37:29 +0530
+Message-ID: <20251002060732.100213-9-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251002060732.100213-1-apatel@ventanamicro.com>
 References: <20251002060732.100213-1-apatel@ventanamicro.com>
@@ -117,248 +118,431 @@ Content-Transfer-Encoding: 8bit
 
 From: Mayuresh Chitale <mchitale@ventanamicro.com>
 
-Add initial implementation of RISC-V trace ramsink driver. The ramsink
-is defined in the RISC-V Trace Control Interface specification.
+Add perf driver for RISC-V tracing similar to ARM Coresight and Hisilicon
+PTT drivers. The driver adds 'rvtrace' event descriptor which can be used
+by the perf tool to record the RISC-V trace data.
 
 Co-developed-by: Anup Patel <apatel@ventanamicro.com>
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
 ---
- drivers/hwtracing/rvtrace/Kconfig           |   8 +
- drivers/hwtracing/rvtrace/Makefile          |   1 +
- drivers/hwtracing/rvtrace/rvtrace-ramsink.c | 198 ++++++++++++++++++++
- 3 files changed, 207 insertions(+)
- create mode 100644 drivers/hwtracing/rvtrace/rvtrace-ramsink.c
+ drivers/hwtracing/rvtrace/Kconfig        |   1 +
+ drivers/hwtracing/rvtrace/Makefile       |   2 +-
+ drivers/hwtracing/rvtrace/rvtrace-core.c |   8 +
+ drivers/hwtracing/rvtrace/rvtrace-perf.c | 343 +++++++++++++++++++++++
+ include/linux/rvtrace.h                  |   3 +
+ 5 files changed, 356 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/hwtracing/rvtrace/rvtrace-perf.c
 
 diff --git a/drivers/hwtracing/rvtrace/Kconfig b/drivers/hwtracing/rvtrace/Kconfig
-index ba35c05f3f54..aef7e9989165 100644
+index aef7e9989165..76379c63c5c3 100644
 --- a/drivers/hwtracing/rvtrace/Kconfig
 +++ b/drivers/hwtracing/rvtrace/Kconfig
-@@ -21,3 +21,11 @@ config RVTRACE_ENCODER
- 	default y
+@@ -4,6 +4,7 @@ menuconfig RVTRACE
+ 	tristate "RISC-V Trace Support"
+ 	depends on RISCV
+ 	depends on OF
++	select PERF_EVENTS
+ 	default RISCV
  	help
- 	  This driver provides support for RISC-V Trace Encoder component.
-+
-+config RVTRACE_RAMSINK
-+	tristate "RISC-V Trace Ramsink driver"
-+	depends on RVTRACE
-+	default y
-+	help
-+	  This driver provides support for Risc-V E-Trace Ramsink
-+	  component.
+ 	  This framework provides a kernel interface for the RISC-V trace
 diff --git a/drivers/hwtracing/rvtrace/Makefile b/drivers/hwtracing/rvtrace/Makefile
-index f320693a1fc5..122e575da9fb 100644
+index 122e575da9fb..07403f4d94e3 100644
 --- a/drivers/hwtracing/rvtrace/Makefile
 +++ b/drivers/hwtracing/rvtrace/Makefile
-@@ -3,3 +3,4 @@
+@@ -1,6 +1,6 @@
+ # SPDX-License-Identifier: GPL-2.0
+ 
  obj-$(CONFIG_RVTRACE) += rvtrace.o
- rvtrace-y := rvtrace-core.o rvtrace-platform.o
+-rvtrace-y := rvtrace-core.o rvtrace-platform.o
++rvtrace-y := rvtrace-core.o rvtrace-platform.o rvtrace-perf.o
  obj-$(CONFIG_RVTRACE_ENCODER) += rvtrace-encoder.o
-+obj-$(CONFIG_RVTRACE_RAMSINK) += rvtrace-ramsink.o
-diff --git a/drivers/hwtracing/rvtrace/rvtrace-ramsink.c b/drivers/hwtracing/rvtrace/rvtrace-ramsink.c
+ obj-$(CONFIG_RVTRACE_RAMSINK) += rvtrace-ramsink.o
+diff --git a/drivers/hwtracing/rvtrace/rvtrace-core.c b/drivers/hwtracing/rvtrace/rvtrace-core.c
+index e874899c8b43..5d4e92f22ccd 100644
+--- a/drivers/hwtracing/rvtrace/rvtrace-core.c
++++ b/drivers/hwtracing/rvtrace/rvtrace-core.c
+@@ -760,11 +760,19 @@ static int __init rvtrace_init(void)
+ 		return ret;
+ 	}
+ 
++	ret = rvtrace_perf_init();
++	if (ret) {
++		platform_driver_unregister(&rvtrace_platform_driver);
++		bus_unregister(&rvtrace_bustype);
++		return ret;
++	}
++
+ 	return 0;
+ }
+ 
+ static void __exit rvtrace_exit(void)
+ {
++	rvtrace_perf_exit();
+ 	platform_driver_unregister(&rvtrace_platform_driver);
+ 	bus_unregister(&rvtrace_bustype);
+ }
+diff --git a/drivers/hwtracing/rvtrace/rvtrace-perf.c b/drivers/hwtracing/rvtrace/rvtrace-perf.c
 new file mode 100644
-index 000000000000..7bd0cf1e4dfd
+index 000000000000..2d3039f8b681
 --- /dev/null
-+++ b/drivers/hwtracing/rvtrace/rvtrace-ramsink.c
-@@ -0,0 +1,198 @@
++++ b/drivers/hwtracing/rvtrace/rvtrace-perf.c
+@@ -0,0 +1,343 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
-+ * Copyright (c) 2025 Ventana Micro Systems Inc.
++ * Copyright(C) 2025 Ventanamicro Limited. All rights reserved.
++ * Author: Mayuresh Chitale <mchitale@venanamicro.com>
 + */
 +
++#include <linux/bitfield.h>
++#include <linux/cpumask.h>
 +#include <linux/device.h>
-+#include <linux/io.h>
-+#include <linux/of.h>
-+#include <linux/of_graph.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/rvtrace.h>
++#include <linux/list.h>
++#include <linux/mm.h>
++#include <linux/init.h>
++#include <linux/perf_event.h>
++#include <linux/vmalloc.h>
++#include <linux/percpu-defs.h>
++#include <linux/slab.h>
++#include <linux/stringhash.h>
 +#include <linux/types.h>
-+#include <linux/sizes.h>
++#include <linux/workqueue.h>
++#include <linux/rvtrace.h>
 +
-+#define RVTRACE_RAMSINK_STARTLOW_OFF		0x010
-+#define RVTRACE_RAMSINK_STARTHIGH_OFF		0x014
-+#define RVTRACE_RAMSINK_LIMITLOW_OFF		0x018
-+#define RVTRACE_RAMSINK_LIMITHIGH_OFF		0x01c
-+#define RVTRACE_RAMSINK_WPLOW_OFF		0x020
-+#define RVTRACE_RAMSINK_WPHIGH_OFF		0x024
-+#define RVTRACE_RAMSINK_RPLOW_OFF		0x028
-+#define RVTRACE_RAMSINK_RPHIGH_OFF		0x02c
++#define RVTRACE_PMU_NAME "rvtrace"
++#define RVTRACE_BUF_LEN (4 * 1024 * 1024)
 +
-+struct rvtrace_ramsink_priv {
-+	size_t size;
-+	void *va;
-+	dma_addr_t start;
-+	dma_addr_t end;
-+	/* WP from prev iteration */
-+	dma_addr_t prev_head;
++static struct pmu rvtrace_pmu;
++static DEFINE_SPINLOCK(perf_buf_lock);
++
++/**
++ * struct rvtrace_event_data - RISC-V trace specific perf event data
++ * @work:		Handle to free allocated memory outside IRQ context.
++ * @mask:		Hold the CPU(s) this event was set for.
++ * @aux_hwid_done:	Whether a CPU has emitted the TraceID packet or not.
++ * @path:		An array of path, each slot for one CPU.
++ * @buf:		Aux buffer / pages allocated by perf framework.
++ */
++struct rvtrace_event_data {
++	struct work_struct work;
++	cpumask_t mask;
++	cpumask_t aux_hwid_done;
++	struct rvtrace_path * __percpu *path;
++	struct rvtrace_perf_auxbuf buf;
 +};
 +
-+struct trace_buf {
-+	void *base;
-+	size_t size;
-+	int cur, len;
++struct rvtrace_ctxt {
++	struct perf_output_handle handle;
++	struct rvtrace_event_data *event_data;
 +};
 +
-+static void tbuf_to_pbuf_copy(struct trace_buf *src, struct trace_buf *dst)
++static DEFINE_PER_CPU(struct rvtrace_ctxt, rvtrace_ctxt);
++
++static void *alloc_event_data(int cpu)
 +{
-+	int bytes_dst, bytes_src, bytes;
-+	void *dst_addr, *src_addr;
++	struct rvtrace_event_data *event_data;
++	cpumask_t *mask;
 +
-+	while (src->size) {
-+		src_addr = src->base + src->cur;
-+		dst_addr = dst->base + dst->cur;
++	event_data = kzalloc(sizeof(*event_data), GFP_KERNEL);
++	if (!event_data)
++		return NULL;
 +
-+		if (dst->len - dst->cur < src->size)
-+			bytes_dst = dst->len - dst->cur;
-+		else
-+			bytes_dst = src->size;
-+		if (src->len - src->cur < src->size)
-+			bytes_src = src->len - src->cur;
-+		else
-+			bytes_src = src->size;
-+		bytes = bytes_dst < bytes_src ? bytes_dst : bytes_src;
-+		memcpy(dst_addr, src_addr, bytes);
-+		dst->cur = (dst->cur + bytes) % dst->len;
-+		src->cur = (src->cur + bytes) % src->len;
-+		src->size -= bytes;
-+	}
++	/* Update mask as per selected CPUs */
++	mask = &event_data->mask;
++	if (cpu != -1)
++		cpumask_set_cpu(cpu, mask);
++	else
++		cpumask_copy(mask, cpu_present_mask);
++
++	event_data->path = alloc_percpu(struct rvtrace_path *);
++	return event_data;
 +}
 +
-+static size_t rvtrace_ramsink_copyto_auxbuf(struct rvtrace_component *comp,
-+					    struct rvtrace_perf_auxbuf *buf)
++static void rvtrace_free_aux(void *data)
 +{
-+	struct rvtrace_ramsink_priv *priv = dev_get_drvdata(&comp->dev);
-+	struct trace_buf src, dst;
-+	u32 wp_low, wp_high;
-+	u64 buf_cur_head;
-+	size_t size;
++	struct rvtrace_event_data *event_data = data;
 +
-+	wp_low = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_WPLOW_OFF);
-+	wp_high = rvtrace_read32(comp->pdata, RVTRACE_RAMSINK_WPHIGH_OFF);
-+	buf_cur_head = (u64)(wp_high) << 32 | wp_low;
-+
-+	if (buf_cur_head == priv->prev_head)
-+		return 0;
-+
-+	dst.base = buf->base;
-+	dst.len = buf->length;
-+	dst.cur = buf->pos;
-+	dst.size = 0;
-+
-+	src.base = priv->va;
-+	src.len = priv->end - priv->start;
-+	if (buf_cur_head > priv->prev_head) {
-+		src.size = buf_cur_head - priv->prev_head;
-+	} else {
-+		src.size = priv->end - priv->prev_head;
-+		src.size += buf_cur_head - priv->start;
-+	}
-+
-+	src.cur = buf_cur_head - priv->start;
-+	size = src.size;
-+	tbuf_to_pbuf_copy(&src, &dst);
-+	buf->pos = dst.cur;
-+	priv->prev_head = buf_cur_head;
-+
-+	return size;
++	schedule_work(&event_data->work);
 +}
 +
-+static int rvtrace_ramsink_setup(struct rvtrace_component *comp)
++static struct rvtrace_path **rvtrace_event_cpu_path_ptr(struct rvtrace_event_data *data,
++							int cpu)
 +{
-+	struct rvtrace_ramsink_priv *priv;
++	return per_cpu_ptr(data->path, cpu);
++}
 +
-+	priv = devm_kzalloc(&comp->dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+	dev_set_drvdata(&comp->dev, priv);
++static void free_event_data(struct work_struct *work)
++{
++	struct rvtrace_event_data *event_data;
++	struct rvtrace_path *path;
++	cpumask_t *mask;
++	int cpu;
 +
-+	priv->size = SZ_4M;
-+	priv->va = dma_alloc_coherent(&comp->dev, priv->size, &priv->start, GFP_KERNEL);
-+	if (!priv->va)
-+		return -ENOMEM;
-+	priv->end = priv->start + priv->size;
-+	priv->prev_head = priv->start;
++	event_data = container_of(work, struct rvtrace_event_data, work);
++	mask = &event_data->mask;
++	for_each_cpu(cpu, mask) {
++		path = *rvtrace_event_cpu_path_ptr(event_data, cpu);
++		rvtrace_destroy_path(path);
++	}
++	free_percpu(event_data->path);
++	kfree(event_data);
++}
 +
-+	/* Setup ram sink addresses */
-+	rvtrace_write32(comp->pdata, lower_32_bits(priv->start), RVTRACE_RAMSINK_STARTLOW_OFF);
-+	rvtrace_write32(comp->pdata, upper_32_bits(priv->start), RVTRACE_RAMSINK_STARTHIGH_OFF);
-+	rvtrace_write32(comp->pdata, lower_32_bits(priv->start), RVTRACE_RAMSINK_WPLOW_OFF);
-+	rvtrace_write32(comp->pdata, upper_32_bits(priv->start), RVTRACE_RAMSINK_WPHIGH_OFF);
-+	/* Limit address needs to be set to end - 4 so that HW doesn't cause an overflow. */
-+	rvtrace_write32(comp->pdata, lower_32_bits(priv->end - 0x4), RVTRACE_RAMSINK_LIMITLOW_OFF);
-+	rvtrace_write32(comp->pdata, upper_32_bits(priv->end), RVTRACE_RAMSINK_LIMITHIGH_OFF);
++static void *rvtrace_setup_aux(struct perf_event *event, void **pages,
++			       int nr_pages, bool overwrite)
++{
++	struct rvtrace_event_data *event_data = NULL;
++	struct page **pagelist;
++	int cpu = event->cpu, i;
++	cpumask_t *mask;
 +
++	event_data = alloc_event_data(cpu);
++	if (!event_data)
++		return NULL;
++
++	INIT_WORK(&event_data->work, free_event_data);
++	mask = &event_data->mask;
++	/*
++	 * Create the path for each CPU in the mask. In case of any failure skip the CPU
++	 */
++	for_each_cpu(cpu, mask) {
++		struct rvtrace_component *src;
++		struct rvtrace_path *path;
++
++		src = rvtrace_cpu_source(cpu);
++		if (!src)
++			continue;
++
++		path = rvtrace_create_path(src, NULL, RVTRACE_COMPONENT_MODE_PERF);
++		if (!path)
++			continue;
++
++		*rvtrace_event_cpu_path_ptr(event_data, cpu) = path;
++	}
++
++	/* If we don't have any CPUs ready for tracing, abort */
++	cpu = cpumask_first(&event_data->mask);
++	if (cpu >= nr_cpu_ids)
++		goto err;
++
++	pagelist = kcalloc(nr_pages, sizeof(*pagelist), GFP_KERNEL);
++	if (!pagelist)
++		goto err;
++
++	for (i = 0; i < nr_pages; i++)
++		pagelist[i] = virt_to_page(pages[i]);
++
++	event_data->buf.base = vmap(pagelist, nr_pages, VM_MAP, PAGE_KERNEL);
++	if (!event_data->buf.base) {
++		kfree(pagelist);
++		goto err;
++	}
++
++	event_data->buf.nr_pages = nr_pages;
++	event_data->buf.length = nr_pages * PAGE_SIZE;
++	event_data->buf.pos = 0;
++	return event_data;
++err:
++	rvtrace_free_aux(event_data);
++	return NULL;
++}
++
++static void rvtrace_event_read(struct perf_event *event)
++{
++}
++
++static void rvtrace_event_destroy(struct perf_event *event)
++{
++}
++
++static int rvtrace_event_init(struct perf_event *event)
++{
++	if (event->attr.type != rvtrace_pmu.type)
++		return -EINVAL;
++
++	event->destroy = rvtrace_event_destroy;
 +	return 0;
 +}
 +
-+static void rvtrace_ramsink_cleanup(struct rvtrace_component *comp)
++static void rvtrace_event_start(struct perf_event *event, int flags)
 +{
-+	struct rvtrace_ramsink_priv *priv = dev_get_drvdata(&comp->dev);
++	struct rvtrace_ctxt *ctxt = this_cpu_ptr(&rvtrace_ctxt);
++	struct perf_output_handle *handle = &ctxt->handle;
++	struct rvtrace_event_data *event_data;
++	int cpu = smp_processor_id();
++	struct rvtrace_path *path;
 +
-+	dma_free_coherent(&comp->dev, priv->size, priv->va, priv->start);
++	if (WARN_ON(ctxt->event_data))
++		goto fail;
++
++	/*
++	 * Deal with the ring buffer API and get a handle on the
++	 * session's information.
++	 */
++	event_data = perf_aux_output_begin(handle, event);
++	if (!event_data)
++		goto fail;
++
++	if (!cpumask_test_cpu(cpu, &event_data->mask))
++		goto out;
++
++	event_data->buf.pos = handle->head % event_data->buf.length;
++	path = *rvtrace_event_cpu_path_ptr(event_data, cpu);
++	if (!path) {
++		pr_err("Error. Path not found\n");
++		return;
++	}
++
++	if (rvtrace_path_start(path)) {
++		pr_err("Error. Tracing not started\n");
++		return;
++	}
++
++	/*
++	 * output cpu / trace ID in perf record, once for the lifetime
++	 * of the event.
++	 */
++	if (!cpumask_test_cpu(cpu, &event_data->aux_hwid_done)) {
++		cpumask_set_cpu(cpu, &event_data->aux_hwid_done);
++		perf_report_aux_output_id(event, cpu);
++	}
++
++out:
++	/* Tell the perf core the event is alive */
++	event->hw.state = 0;
++	ctxt->event_data = event_data;
++	return;
++fail:
++	event->hw.state = PERF_HES_STOPPED;
 +}
 +
-+static int rvtrace_ramsink_probe(struct rvtrace_component *comp)
++static void rvtrace_event_stop(struct perf_event *event, int mode)
 +{
-+	int ret;
++	struct rvtrace_ctxt *ctxt = this_cpu_ptr(&rvtrace_ctxt);
++	struct perf_output_handle *handle = &ctxt->handle;
++	struct rvtrace_event_data *event_data;
++	int ret, cpu = smp_processor_id();
++	struct rvtrace_path *path;
++	size_t size;
 +
-+	ret = rvtrace_ramsink_setup(comp);
-+	if (ret)
-+		return dev_err_probe(&comp->dev, ret, "failed to setup ramsink.\n");
++	if (event->hw.state == PERF_HES_STOPPED)
++		return;
 +
-+	ret = rvtrace_enable_component(comp);
-+	if (ret)
-+		return dev_err_probe(&comp->dev, ret, "failed to enable ramsink.\n");
++	if (handle->event &&
++	    WARN_ON(perf_get_aux(handle) != ctxt->event_data))
++		return;
++
++	event_data = ctxt->event_data;
++	ctxt->event_data = NULL;
++
++	if (WARN_ON(!event_data))
++		return;
++
++	if (handle->event && (mode & PERF_EF_UPDATE) && !cpumask_test_cpu(cpu, &event_data->mask)) {
++		event->hw.state = PERF_HES_STOPPED;
++		perf_aux_output_end(handle, 0);
++		return;
++	}
++
++	/* stop tracing */
++	path = *rvtrace_event_cpu_path_ptr(event_data, cpu);
++	if (!path) {
++		pr_err("Error. Path not found\n");
++		return;
++	}
++
++	if (rvtrace_path_stop(path)) {
++		pr_err("Error. Tracing not stopped\n");
++		return;
++	}
++
++	event->hw.state = PERF_HES_STOPPED;
++	if (handle->event && (mode & PERF_EF_UPDATE)) {
++		if (WARN_ON_ONCE(handle->event != event))
++			return;
++		spin_lock(&perf_buf_lock);
++		ret = rvtrace_path_copyto_auxbuf(path, &event_data->buf, &size);
++		spin_unlock(&perf_buf_lock);
++		WARN_ON_ONCE(ret);
++		if (READ_ONCE(handle->event))
++			perf_aux_output_end(handle, size);
++		else
++			WARN_ON(size);
++	}
++}
++
++static int rvtrace_event_add(struct perf_event *event, int mode)
++{
++	struct hw_perf_event *hwc = &event->hw;
++	int ret = 0;
++
++	if (mode & PERF_EF_START) {
++		rvtrace_event_start(event, 0);
++		if (hwc->state & PERF_HES_STOPPED)
++			ret = -EINVAL;
++	} else {
++		hwc->state = PERF_HES_STOPPED;
++	}
 +
 +	return ret;
 +}
 +
-+static void rvtrace_ramsink_remove(struct rvtrace_component *comp)
++static void rvtrace_event_del(struct perf_event *event, int mode)
 +{
-+	int ret;
-+
-+	ret = rvtrace_disable_component(comp);
-+	if (ret)
-+		dev_err(&comp->dev, "failed to disable ramsink.\n");
-+
-+	rvtrace_ramsink_cleanup(comp);
++	rvtrace_event_stop(event, PERF_EF_UPDATE);
 +}
 +
-+static struct rvtrace_component_id rvtrace_ramsink_ids[] = {
-+	{ .type = RVTRACE_COMPONENT_TYPE_RAMSINK,
-+	  .version = rvtrace_component_mkversion(1, 0), },
-+	{},
++PMU_FORMAT_ATTR(event, "config:0-0");
++
++static struct attribute *rvtrace_pmu_formats_attr[] = {
++	&format_attr_event.attr,
++	NULL,
 +};
 +
-+static struct rvtrace_driver rvtrace_ramsink_driver = {
-+	.id_table = rvtrace_ramsink_ids,
-+	.copyto_auxbuf = rvtrace_ramsink_copyto_auxbuf,
-+	.probe = rvtrace_ramsink_probe,
-+	.remove = rvtrace_ramsink_remove,
-+	.driver = {
-+		.name = "rvtrace-ramsink",
-+	},
++static struct attribute_group rvtrace_pmu_format_group = {
++	.name = "format",
++	.attrs = rvtrace_pmu_formats_attr,
 +};
 +
-+static int __init rvtrace_ramsink_init(void)
++static const struct attribute_group *rvtrace_pmu_attr_groups[] = {
++	&rvtrace_pmu_format_group,
++	NULL,
++};
++
++int __init rvtrace_perf_init(void)
 +{
-+	return rvtrace_register_driver(&rvtrace_ramsink_driver);
++	rvtrace_pmu.capabilities	= (PERF_PMU_CAP_EXCLUSIVE | PERF_PMU_CAP_ITRACE);
++	rvtrace_pmu.attr_groups		= rvtrace_pmu_attr_groups;
++	rvtrace_pmu.task_ctx_nr		= perf_sw_context;
++	rvtrace_pmu.read		= rvtrace_event_read;
++	rvtrace_pmu.event_init		= rvtrace_event_init;
++	rvtrace_pmu.setup_aux		= rvtrace_setup_aux;
++	rvtrace_pmu.free_aux		= rvtrace_free_aux;
++	rvtrace_pmu.start		= rvtrace_event_start;
++	rvtrace_pmu.stop		= rvtrace_event_stop;
++	rvtrace_pmu.add			= rvtrace_event_add;
++	rvtrace_pmu.del			= rvtrace_event_del;
++	rvtrace_pmu.module		= THIS_MODULE;
++
++	return perf_pmu_register(&rvtrace_pmu, RVTRACE_PMU_NAME, -1);
 +}
 +
-+static void __exit rvtrace_ramsink_exit(void)
++void __exit rvtrace_perf_exit(void)
 +{
-+	rvtrace_unregister_driver(&rvtrace_ramsink_driver);
++	perf_pmu_unregister(&rvtrace_pmu);
 +}
+diff --git a/include/linux/rvtrace.h b/include/linux/rvtrace.h
+index 17d2fd9234c2..0a454707633b 100644
+--- a/include/linux/rvtrace.h
++++ b/include/linux/rvtrace.h
+@@ -335,4 +335,7 @@ static inline void rvtrace_unregister_driver(struct rvtrace_driver *rtdrv)
+ 		driver_unregister(&rtdrv->driver);
+ }
+ 
++int rvtrace_perf_init(void);
++void rvtrace_perf_exit(void);
 +
-+module_init(rvtrace_ramsink_init);
-+module_exit(rvtrace_ramsink_exit);
-+
-+/* Module information */
-+MODULE_AUTHOR("Mayuresh Chitale <mchitale@ventanamicro.com>");
-+MODULE_DESCRIPTION("RISC-V Trace Ramsink Driver");
-+MODULE_LICENSE("GPL");
+ #endif
 -- 
 2.43.0
 
