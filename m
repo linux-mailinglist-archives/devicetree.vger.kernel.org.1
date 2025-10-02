@@ -1,118 +1,112 @@
-Return-Path: <devicetree+bounces-223402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 610E2BB4231
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 16:06:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABEF5BB428E
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 16:26:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 241851C32D7
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 14:06:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F2963C5BDE
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 14:26:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF5F6311956;
-	Thu,  2 Oct 2025 14:05:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E1265464D;
+	Thu,  2 Oct 2025 14:26:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="CMBo4wuA"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="cjz2K0Nr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93721312832
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 14:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 963DE311977
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 14:26:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759413947; cv=none; b=pSmH+qyh3ZxCT26FKRRSZCR0vNq4oujsm1cJg8ZEquMN4RDCumlKBAFfLJPtG8xUUyR+JBSJS3H4MWK+MSOhckA7LS8/0zDIlv9Sxw/HiB+z5D7TdFdeFuZ1QA0Tu7TH6Rn0upO+xn76BBIbrRmI6T4e40NMwUzxKgoHAPeaRUU=
+	t=1759415212; cv=none; b=I/Jz3rALaqLwhtxvE58Dyqpkq3X5R//hPGpM8P/Mot8lsdrJZ7rZTyuD3rtQcAWNuO6+OxBPik3CFMZHLALfCcFMRW/3eq25QkvKEjxYn3mWiOVDPvBcjYuCxpKhJ5Y3jvm8ZW63J/VkXa3rGuWYhpeXKhNYXZMMZwAi/zttj48=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759413947; c=relaxed/simple;
-	bh=LYm9D5vlhSiUy616cHQLJ5BvEm6YIL752SKqypsFb5w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WgZFjROEdcbhfDpC3cMgm6L8U+SmpL7rLxXG9jjelnKHch5unhxu0zehvRFIrG8aahzGmiwxYEIzE0CPSKJn0hTgBQ6OS6YJFxV/VgwzdPAwHOiAvTMjrNGj+HEejG7YgSaz7XR2q8YC+t2Qjh/AQXQGnH1qe0TlLxi1TZnvjdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=CMBo4wuA; arc=none smtp.client-ip=194.117.254.33
+	s=arc-20240116; t=1759415212; c=relaxed/simple;
+	bh=KSZxk61Nw6d08b48cvYnYIxGwNHKkM8FCkULX1VqREg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qXZounYg9Rz/eHG5c3MewTZtax7z7U8S7Sc2PUEo9OSTMxTeN3/565MdqCBPgIv4k5SZryrIpmXsJluRFqG4aOq2HptjYuXjtO2KvKqydHVFQ+wprKUUKpFXyDJAHK+pF8lJ9oRLfvXbbHK2eN7gFMHG1GCpJCX6AMabZLOjCeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=cjz2K0Nr; arc=none smtp.client-ip=194.117.254.33
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=LYm9
-	D5vlhSiUy616cHQLJ5BvEm6YIL752SKqypsFb5w=; b=CMBo4wuAPtjTjtjdpLmm
-	qn8XDWdQSJRTAPrvIx1iDiclurdwEuFzB3C08f9exHfxyBopLh/0e1hp0TV+WTJy
-	dqpycYiHLylx89u9xJQQ7Pr7tdMH3gSqWtgTlflVHxwkWh7MMWYLz8NdB+ejvSQN
-	Ck0HXEuFewJGt09bxpI7+kFeMIryT65lq068YL6794IQQ0uQ4NFPjk89YiuDdA5F
-	hzyHONjOVLzh9c2/rT8TbOVqHBja7VToYNh1mXwIqJnKBxJ0g5StwVmwZ4XS8Jsf
-	ZpwNsSCW4b0tWQChSWq3MSzFjafkkH/E/VqqF5HuNFlPIfAntcCHneiXmIrErcZ6
-	eg==
-Received: (qmail 295296 invoked from network); 2 Oct 2025 16:05:36 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 2 Oct 2025 16:05:36 +0200
-X-UD-Smtp-Session: l3s3148p1@2PCrei1AIOIgAwDPXwQHAL/S9V79e5yL
-Date: Thu, 2 Oct 2025 16:05:35 +0200
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=Kq2DhKQo8ptLIX
+	roc27s3A+iNop2714/WUHopXrdZZI=; b=cjz2K0Nr2FCoG0OMRwodk9VwnIWnPV
+	P6SiLaJ++JhWSVDFXX0TfIQLalwADdM8sKBMHnqamXIbrRDgAlAbcOAbnrL2GUdz
+	2MXYT8LBkIYFjdMzHsd42VzzRnozb+9mYWbbVOBFPKkhI0ei9G2Ibo7M20G4lpd8
+	I7U/yY/KfDFC74m8GI8V6d9fiCi+N0iZQqeB4CrVpPd6JJXP7j8uQCIUE+5ytMu4
+	QHug3hBKATPoGbbjJaekpqZ3u+z6mUBrhqJdXrMgYsGYjAaoFlcpqiFla7tT1fz9
+	DBy0o2o4S1QKzktiCv3M+cOmpdloIVFzhiBifvYcT838JiIL7IthgNzw==
+Received: (qmail 302230 invoked from network); 2 Oct 2025 16:26:48 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 2 Oct 2025 16:26:48 +0200
+X-UD-Smtp-Session: l3s3148p1@iiN+xi1AGrogAwDPXwQHAL/S9V79e5yL
 From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Griffin Kroah-Hartman <griffin.kroah@fairphone.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Daniel Scally <djrscally@gmail.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	=?utf-8?B?QW5kcsOp?= Apitzsch <git@apitzsch.eu>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Wolfram Sang <wsa@kernel.org>, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: qcm6490-fairphone-fp5: Enable CCI
- pull-up
-Message-ID: <aN6Gr5FcfYpKgAFM@shikoro>
-References: <20251002-dw9800-driver-v1-0-c305328e44f0@fairphone.com>
- <20251002-dw9800-driver-v1-3-c305328e44f0@fairphone.com>
- <1be80052-3ba5-46de-804a-de995f8db5d4@oss.qualcomm.com>
- <DD7V3G4RLB2I.QYT4BWT1LA5U@fairphone.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mtd@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: mtd: physmap: add 'clocks' and 'power-domains'
+Date: Thu,  2 Oct 2025 16:23:11 +0200
+Message-ID: <20251002142639.17082-2-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="iN8q4H5XPZs0qq2D"
-Content-Disposition: inline
-In-Reply-To: <DD7V3G4RLB2I.QYT4BWT1LA5U@fairphone.com>
+Content-Transfer-Encoding: 8bit
 
+Physmap supports minimal PM since commit 0bc448b49e8a017e ("mtd: maps:
+physmap: Add minimal Runtime PM support"), so support it also when used
+in DT configurations.
 
---iN8q4H5XPZs0qq2D
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+---
 
+Tested with a Renesas Genmai board (RZ/A1). Passes 'dt_binding_check'
+and 'dtbs_check'. Supersedes my original approach "[RFC PATCH 0/4] ARM:
+dts: renesas: mtd-rom has no clock and power domain":
 
-> Unfortunately though this effort has stalled some years ago. There is
-> "struct regulator *bus_regulator;" in "struct i2c_adapter" already and
-> vbus-supply is documented in i2c-mt65xx but afaik this not functional
-> because some code was ripped out ago because of some AMDGPU regressions.
+https://lore.kernel.org/r/20250930101656.33435-6-wsa+renesas@sang-engineering.com
 
-Thanks for mentioning this. It all sounded familiar to me but I couldn't
-put my finger exactly.
+ Documentation/devicetree/bindings/mtd/mtd-physmap.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
+index 1b375dee83b0..a9ec3ca002c7 100644
+--- a/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
++++ b/Documentation/devicetree/bindings/mtd/mtd-physmap.yaml
+@@ -69,6 +69,16 @@ properties:
+     minItems: 1
+     maxItems: 8
+ 
++  clocks:
++    description: |
++      Chips may need clocks to be enabled for themselves or for transparent
++      bridges.
++
++  power-domains:
++    description: |
++      Chips may need power domains to be enabled for themselves or for
++      transparent bridges.
++
+   bank-width:
+     description: Width (in bytes) of the bank.  Equal to the device width times
+       the number of interleaved chips.
+-- 
+2.47.2
 
---iN8q4H5XPZs0qq2D
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjehqsACgkQFA3kzBSg
-KbbIAQ//QfAX8m49uUj1J5d915zmYl1ga2ibjh9XM98MLwfWVTrbBKLi8aoYwru5
-3n32muazTU8syFw9hftxJjKs7beuNJ7vBytCP+mvs/d3y976Ff6xM+kFnKUWiIb5
-v2wP3ECPOTeHO+OXG2pDIuLDpfjLlFVaO0nGbg1dnTmSvqnHbvOklmPAjqgehY78
-C4pCYZkaIsMPrRrp/lutY+W39Ua8v9B4BRaqYjepzq5u86+zaU/S3hglhrNt+MzX
-bONZqbB4HQKfYuZrcWtXIlATp1SAc7LnbAbJ6CU/gHheEUaQA8Fdw3Yn7CR3MGPn
-eVmkSv/U+8UIbFs1DY5UAv8oOnq+jqIVKrlcI36V9ftmmbsWkN4AE7mL6gpWuZZv
-C9olQqGYid0OJXe5qcU8gHOFvdj4Vspr7rbD4oQC20SF/6A0w/d1QEQPGt/fN1BY
-ppCM/MDH2R8Hw2Heibr1NDM62n7n5090UmTSPjZau4ksQuxJyga8sKvM9OAKMyk+
-8qAwilsIUxYcZYTT9DRrVJEyWGQxJp0LwO8N9FkN+eDiaY/BmPqFl33C79EU4WC9
-4705Uq5xK7f+v/Yts9ZqtIDILbSA2q0QRHcSeH2EK3PpJEvClgu7xVCPTz73Hkvb
-v9poLEjcB0lxNihio4NoTRHkWDtOS1Opds2CqwzTRDkcSvUk1tQ=
-=dsTU
------END PGP SIGNATURE-----
-
---iN8q4H5XPZs0qq2D--
 
