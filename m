@@ -1,93 +1,93 @@
-Return-Path: <devicetree+bounces-223465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A99DBB572F
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 23:10:38 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08A42BB56C9
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 23:05:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 704C848604A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 21:05:31 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D87C14E7239
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 21:05:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A28CF2BE658;
-	Thu,  2 Oct 2025 21:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C20327EC99;
+	Thu,  2 Oct 2025 21:05:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="IJYG+P8C"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Lla/DPB3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f226.google.com (mail-il1-f226.google.com [209.85.166.226])
+Received: from mail-qk1-f227.google.com (mail-qk1-f227.google.com [209.85.222.227])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 097F02BDC03
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 21:04:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.226
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 794E026D4C7
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 21:04:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.227
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759439094; cv=none; b=R7PL6jJ2peFclEtYzlwOtIC21gxXPyElSQmGW2EzFmYL9/CT1JbfvtHYjSEmLqWlfnn+VRJ9oUdXpcJZgELOdea3+EdCwGbFMm8hyCz7MqiylbSZs5VNKKlrqmFwDofBfX4NmpjbLjm9jpW651dNAp9BSybXPS90Lzq7MIPEeKo=
+	t=1759439101; cv=none; b=ulg70F9M7nf2d+3Zp/MSGAHt+388DzdS9eVju0NXxsPohHEATeMKV5nzj+J5EN+QY5r46d+wmX5TapWV3Ms2T4h1X+12rpzti9WzS32bnNMEKtN3TnBG6knUmxGb+UhWAIeC1s9ZilOICSjFaTWEYmBxw5+60FzWRqy0tF5oHLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759439094; c=relaxed/simple;
-	bh=SbL6UcwBpYbwRwNOueWqf3w8SnBvv9kw5WB+oOZBTow=;
+	s=arc-20240116; t=1759439101; c=relaxed/simple;
+	bh=6TAVlTK+sXTzkna2XCGhzK3JAQmXwZYk58u9/NK5elY=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=tEBkqxyO3d/6saYP4rChia4LvDl15qhJIzaUyNypARjeVsR+DCAxGSjqpzjn0tFCfaM8oAMz0kd3d9C+kWpRYL0ACdYTbH9uEi8hDE1V/Qr/llg5BLUbGVTFZZNI+8bY9WCku51yKgMjhXAk2hh6ul5G6s2yFzi5jP0qEFLCiC0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=IJYG+P8C; arc=none smtp.client-ip=209.85.166.226
+	 MIME-Version; b=Koz7D8W2OTdJeEJ82PJJqGG5rBtHNHEWKjRaM1IJUmfncTDqofarqSASoQoVX/CR+TL1MujfttJZp4aRI9qnclJ/3oap2ahyyotpcgRJGF1LyVub8jGjZyIxBC8eou/V9uFmr9nRfdgyEZdHoZKhStF9q1HZm1JAjD1d3ai1Ku4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Lla/DPB3; arc=none smtp.client-ip=209.85.222.227
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-il1-f226.google.com with SMTP id e9e14a558f8ab-42e7b22e007so1427655ab.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 14:04:52 -0700 (PDT)
+Received: by mail-qk1-f227.google.com with SMTP id af79cd13be357-8582a34639aso100249485a.3
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 14:04:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759439092; x=1760043892;
+        d=1e100.net; s=20230601; t=1759439098; x=1760043898;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:dkim-signature
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZIU73QOdUXqw8XH54gnOsyWC2NrvdvHxRkWX7Bf2XKY=;
-        b=AMr+yqewUIkPxBifDXzB/GxyPtWCr7DDFBbbxOW4tTMRW2SRoyS5S8y1vX6lNh2JC+
-         P1tVoHCZO1p6T/DvqrjmAm4lC/KDhr1I1HJTxv0tG7zmFhR3NjtHvZWebi1TCpt0bn0v
-         r79gHkTECR9VPCX9/Ma2g+5d7KPhZO3pdtlOewlaOjhQt8JYm/B1WBxkJstzK32S7tLK
-         9ExhpWZRkzqE5ngTJ4uOQJNQ8xWlKQNzqRNU4zI0nSE3rHsIajrsBdIjB9L1HjmgrJtE
-         Ub5isyJbQykXwd59fKqxzo3BqhMOPJw25CsdChBdsQX0vdt2zS046i4LK0FAVWNfVNwY
-         hqRw==
-X-Forwarded-Encrypted: i=1; AJvYcCWPTt68K2aAiJG+wwcBZe6zD67trJdCzplVz3nUSJZ3mZdw1VMiMDh0h+aYSxViaR0UbrSomSFMyLX2@vger.kernel.org
-X-Gm-Message-State: AOJu0YzNnMK+Q/afBy4kXRXBhMLLbw+8NRDTIijL50I03Rp++Hv6gLuK
-	lOCI4EOndxHkh2t9DyHY9bUdrPL58dWQrw+hZBYqYn2rU0znQj3t27FPjgH+iAdRIH4V6OS1oLb
-	7ckbWMdB//jjoRtlihisLqqxZKra5ED1Tx20OuWJSiVE0hGIhBbRYOjHT3SD5QNSLpDRlbx+EVD
-	xLctm70zwbBDJkUEpyMGrWcH9AvRe9tdZDzmkFIY24HenJreb4ZetQns/bnsy5x6qgmZ2wblocd
-	zCIX5nWA23ToA==
-X-Gm-Gg: ASbGnctqje/UpTkxGAAeC89VbaKum5tC7MTYogThJwWU6+kl+SRoqxjPI9FmvrOFKTr
-	8/3MdrXbWvEiwQg+fh2c7WE1TdU1mGuNmh8/IPizHzjaUFIHZ94xXepP8J0iMZkfT/aUVr7zRZ0
-	rIKvEKGEv03MOF3FgvtF6PD5k18e/e3YNb/bpadrzl0FIV/Er+bcdxWHLUMNh4bZ+1DZrnlP6EB
-	XMWAXBWMQ0Gd89xIMWXa0z3DRi4U6QoyMsTerb3c4GabZ5Opm6Es4Vw0SgIsfixO2h4ezxdbL/7
-	V5NIHX9ToBoYTEtBBioU++jX/1bjFfWC69K49ZEKXsrtTCMx31VvScAvOvg96k0txkvNd1c16v1
-	85rjhGQZvlMmHFpv2fqcWqXgIXZ/2psl7F2bcqOEq0cMKJ1QBn2XfC2bAnlYqdvhbk5kWNNuzuf
-	59fQ==
-X-Google-Smtp-Source: AGHT+IHNdsnZwKLf99jBBIUXBXP8c90nsPcEmDYgfffZ5VeF7Gupu7tIOKZJ53vSKElNZ+zc+fZa3tLPIlLG
-X-Received: by 2002:a05:6e02:1707:b0:428:732c:70db with SMTP id e9e14a558f8ab-42e7ad01e9cmr9994405ab.4.1759439092200;
-        Thu, 02 Oct 2025 14:04:52 -0700 (PDT)
+        bh=cwbGC/K9B4U3uycXerXPSUMJfx+iuM+3b1WmPO2FpvA=;
+        b=Ysy9aIVCRDhQ39VsyEv4JNg99mV6Dcbbn7czs5S4sc0A4AoBGketu+H8KpDA8E92KH
+         SKkR6HjHSsPJIyMn9r5UIJiyzCIJA7lp9OZTDFCB7aX4xW+sdcUTVt5vsicW3CfjLJtc
+         3wZJgX0Uex9su6PRGpwVi/O+/5XVbU+BozfJh5xesbmbQOZ94HwY/HCgVmvzsatLdcE/
+         hvxMGXApJqzSE6ghzB3GzphV4Q/IiYQYow83iTqf1d2pEF1OJpevi+VDd5P+gVUt93fh
+         DfGqTsJe6gu3wcCuftsXObhesEYFOwS0KHMKLM0+sRAC3Yq2emB2Pp9XIgSsZjJOoDol
+         KY5w==
+X-Forwarded-Encrypted: i=1; AJvYcCVuO4QR6afUgn9Gb+kmlAV3IRvRPjYligEBxClR5TLn1YJr0O562sNdjUHrZZTvAX2qV8BgnfL+8zLI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzm5kfe2T4OimkYUE1NwFAAIunplccYI6UET8OZ4YnYXyWP9Fvp
+	4VV22kY8KWQmaayc2gElhI53XkUvmMOTuzFCanUAWn2TzZgjHTX4L6nQsY+bLHmkJT+MZqaOCMT
+	XqZph05/sVRy7SXe1lMDh/h6MeTjOBHcT7AQeIZf8s1sdwQOGTt5bzpucYp1ED8v4b5NUIjvIPk
+	KEtEXW4jSu99Sm5s1BX04B7dtfE1iK0/B9SZncUfgrDk8LQk2aj/o+ArZoA8/QOmFDttw1CCWh/
+	RA2PbB6kmfSWw==
+X-Gm-Gg: ASbGnctXjiE5f9/d7+URNpbzEJDO1TBUYPpk8UF9S6LblWfQbd/GxwMsDk4WhadGZWs
+	218hHWfi3h1xtOO6TWjR9TMPOz4to7qxJ3a5qOjUNnZIr7lT3yaG9rL+sEXaDxs6lqDa2EzzkzW
+	lD0fOVwEAEtEmc6CU4mraQJBC3+Olc396en1CNHb77AE6qKpsl6zNBkvw+oj3o3g3T6riV3W4Sw
+	aYZ6+nHpfZc/s2LFDamcJxY2KvSWn/iFSa8RUiE4V1hVv9Tt99Rbm2sTbiLGQeVuCPhYIpD7efE
+	D2vxU9bb/+gwQpbirkELBI9hVhiYYWJT0FahCH+lGDODJIZlTtD7BHI68A266Gkw1/mTFNgFimU
+	H37dhe1jcLfxPZdzxrDr3ECVnePmdHlNvqvtUXuKkDQmE7dpOETMw6KVWOzFpl4jOUJaPgllkAG
+	V2hw==
+X-Google-Smtp-Source: AGHT+IEcj3p4IWiY2lS8NLx+5hFD3DJ/iUkHEezK/uJUUPDZnqvRMSxB7Ma8aYlHqCvj/8+BGBKgqD8ruWRK
+X-Received: by 2002:a05:620a:1a8f:b0:863:125d:dfbf with SMTP id af79cd13be357-87a3720ba0cmr130383885a.53.1759439098102;
+        Thu, 02 Oct 2025 14:04:58 -0700 (PDT)
 Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-19.dlp.protect.broadcom.com. [144.49.247.19])
-        by smtp-relay.gmail.com with ESMTPS id e9e14a558f8ab-42d8b201ae4sm2507735ab.8.2025.10.02.14.04.51
+        by smtp-relay.gmail.com with ESMTPS id af79cd13be357-87774db04aasm22140685a.3.2025.10.02.14.04.57
         for <devicetree@vger.kernel.org>
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 02 Oct 2025 14:04:52 -0700 (PDT)
+        Thu, 02 Oct 2025 14:04:58 -0700 (PDT)
 X-Relaying-Domain: broadcom.com
 X-CFilter-Loop: Reflected
-Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-46e2d845ebeso8851075e9.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 14:04:51 -0700 (PDT)
+Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-46e4cc8ed76so5319025e9.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 14:04:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1759439090; x=1760043890; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1759439096; x=1760043896; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ZIU73QOdUXqw8XH54gnOsyWC2NrvdvHxRkWX7Bf2XKY=;
-        b=IJYG+P8CWCe7DmKOCwG0Mn6Cm7Q1S/brh9hFNUgKNJIgIKNF/dP1kSYACpDfW7KmN+
-         MgVLwyzDpbB0aofhMsHOvi1pUKmFwVdvwj8ctX/rxnsQu/RoSR/yEORfMt6ujjjw5dK1
-         3uHoA1VdZcagfUVH25FAG5NfCbVohdJNkGthI=
-X-Forwarded-Encrypted: i=1; AJvYcCV5aELokrbW6hpvp+oGa36XvVtElK2yICTEqj+jv0j8LYHvg5zpmrfRHAYHak/oGYWL2UT5wXELkw52@vger.kernel.org
-X-Received: by 2002:a05:600c:348a:b0:46e:1f92:49aa with SMTP id 5b1f17b1804b1-46e7110ef47mr4504995e9.15.1759439090545;
-        Thu, 02 Oct 2025 14:04:50 -0700 (PDT)
-X-Received: by 2002:a05:600c:348a:b0:46e:1f92:49aa with SMTP id 5b1f17b1804b1-46e7110ef47mr4504845e9.15.1759439090152;
-        Thu, 02 Oct 2025 14:04:50 -0700 (PDT)
+        bh=cwbGC/K9B4U3uycXerXPSUMJfx+iuM+3b1WmPO2FpvA=;
+        b=Lla/DPB3WmnBpFo58glyl4E1EX6loBo97OZDqbimiK2yb+184P1kmNfbe/ttz7DQIU
+         dYWeo1bUOoQV6YnXIy045g4h3YXEYUUskeexlto/34/ObsXE+2AfmGGuHZijUNDkOtmt
+         tGD1bpDtn2tUC/d2he9dbo726UHcR0fduO9BU=
+X-Forwarded-Encrypted: i=1; AJvYcCUrtPV5xwsdlrg4ll1TRCc53Dl16XHXCj0L6yV/e26B83Cw4wjtKwdMTCaRzMgi9U7gfzHnEeMXZdvA@vger.kernel.org
+X-Received: by 2002:a05:600c:8b22:b0:45b:4a98:91cf with SMTP id 5b1f17b1804b1-46e71102657mr4393315e9.15.1759439096530;
+        Thu, 02 Oct 2025 14:04:56 -0700 (PDT)
+X-Received: by 2002:a05:600c:8b22:b0:45b:4a98:91cf with SMTP id 5b1f17b1804b1-46e71102657mr4393165e9.15.1759439096023;
+        Thu, 02 Oct 2025 14:04:56 -0700 (PDT)
 Received: from mail.broadcom.net ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e5c4c0321sm61711295e9.8.2025.10.02.14.04.47
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e5c4c0321sm61711295e9.8.2025.10.02.14.04.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Oct 2025 14:04:49 -0700 (PDT)
+        Thu, 02 Oct 2025 14:04:55 -0700 (PDT)
 From: Kamal Dasu <kamal.dasu@broadcom.com>
 To: andersson@kernel.org,
 	robh@kernel.org,
@@ -102,9 +102,9 @@ Cc: bcm-kernel-feedback-list@broadcom.com,
 	linux-kernel@vger.kernel.org,
 	linux-mmc@vger.kernel.org,
 	Kamal Dasu <kamal.dasu@broadcom.com>
-Subject: [PATCH 2/3] mmc: sdhci-brcmstb: clear CFG_OP_DLY when using HS200
-Date: Thu,  2 Oct 2025 17:04:25 -0400
-Message-Id: <20251002210426.2490368-3-kamal.dasu@broadcom.com>
+Subject: [PATCH 3/3] mmc: brcmstb: save and restore registers during PM
+Date: Thu,  2 Oct 2025 17:04:26 -0400
+Message-Id: <20251002210426.2490368-4-kamal.dasu@broadcom.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20251002210426.2490368-1-kamal.dasu@broadcom.com>
 References: <20251002210426.2490368-1-kamal.dasu@broadcom.com>
@@ -117,94 +117,225 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 
-Clear SDIO_1_CFG_OP_DLY register when using HS200 mode to be
-compliant with timing spec.  We only need this for on BCM72116
-SoCs.
+Added support to save and restore registers that are critical
+during PM.
 
 Signed-off-by: Kamal Dasu <kamal.dasu@broadcom.com>
 ---
- drivers/mmc/host/sdhci-brcmstb.c | 37 ++++++++++++++++++++++++++++----
- 1 file changed, 33 insertions(+), 4 deletions(-)
+ drivers/mmc/host/sdhci-brcmstb.c | 124 +++++++++++++++++++++++++++++--
+ 1 file changed, 119 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
-index efc2f3bdc631..0905b316a24b 100644
+index 0905b316a24b..ffa602a99ab7 100644
 --- a/drivers/mmc/host/sdhci-brcmstb.c
 +++ b/drivers/mmc/host/sdhci-brcmstb.c
-@@ -31,13 +31,13 @@
+@@ -24,7 +24,9 @@
+ #define BRCMSTB_MATCH_FLAGS_NO_64BIT		BIT(0)
+ #define BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT	BIT(1)
+ #define BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE	BIT(2)
+-#define BRCMSTB_MATCH_FLAGS_USE_CARD_BUSY	BIT(4)
++#define BRCMSTB_MATCH_FLAGS_HAS_CFG_V1		BIT(3)
++#define BRCMSTB_MATCH_FLAGS_HAS_CFG_V2		BIT(4)
++#define BRCMSTB_MATCH_FLAGS_USE_CARD_BUSY	BIT(5)
  
- #define SDHCI_ARASAN_CQE_BASE_ADDR		0x200
- 
--#define SDIO_CFG_CQ_CAPABILITY			0x4c
--#define SDIO_CFG_CQ_CAPABILITY_FMUL		GENMASK(13, 12)
--
- #define SDIO_CFG_CTRL				0x0
- #define SDIO_CFG_CTRL_SDCD_N_TEST_EN		BIT(31)
- #define SDIO_CFG_CTRL_SDCD_N_TEST_LEV		BIT(30)
--
-+#define SDIO_CFG_OP_DLY				0x34
-+#define SDIO_CFG_OP_DLY_DEFAULT			0x80000003
-+#define SDIO_CFG_CQ_CAPABILITY			0x4c
-+#define SDIO_CFG_CQ_CAPABILITY_FMUL		GENMASK(13, 12)
+ #define BRCMSTB_PRIV_FLAGS_HAS_CQE		BIT(0)
+ #define BRCMSTB_PRIV_FLAGS_GATE_CLOCK		BIT(1)
+@@ -38,19 +40,39 @@
+ #define SDIO_CFG_OP_DLY_DEFAULT			0x80000003
+ #define SDIO_CFG_CQ_CAPABILITY			0x4c
+ #define SDIO_CFG_CQ_CAPABILITY_FMUL		GENMASK(13, 12)
++#define SDIO_CFG_SD_PIN_SEL			0x44
++#define SDIO_CFG_V1_SD_PIN_SEL			0x54
++#define SDIO_CFG_PHY_SW_MODE_0_RX_CTRL		0x7C
  #define SDIO_CFG_MAX_50MHZ_MODE			0x1ac
  #define SDIO_CFG_MAX_50MHZ_MODE_STRAP_OVERRIDE	BIT(31)
  #define SDIO_CFG_MAX_50MHZ_MODE_ENABLE		BIT(0)
-@@ -212,6 +212,22 @@ static void sdhci_brcmstb_cfginit_2712(struct sdhci_host *host)
- 	}
- }
  
-+static void sdhci_brcmstb_set_72116_uhs_signaling(struct sdhci_host *host,
-+						unsigned int timing)
-+{
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct sdhci_brcmstb_priv *priv = sdhci_pltfm_priv(pltfm_host);
-+	u32 reg;
++#define SDIO_BOOT_MAIN_CTL			0x0
 +
-+	/* no change to SDIO_CFG_OP_DLY_DEFAULT when using preset clk rate */
-+	if (!(host->quirks2 & SDHCI_QUIRK2_PRESET_VALUE_BROKEN))
-+		return;
-+
-+	reg = (timing == MMC_TIMING_MMC_HS200) ? 0 : SDIO_CFG_OP_DLY_DEFAULT;
-+	writel(reg, priv->cfg_regs + SDIO_CFG_OP_DLY);
-+	sdhci_set_uhs_signaling(host, timing);
-+}
-+
- static void sdhci_brcmstb_dumpregs(struct mmc_host *mmc)
- {
- 	sdhci_dumpregs(mmc_priv(mmc));
-@@ -252,6 +268,13 @@ static struct sdhci_ops sdhci_brcmstb_ops_2712 = {
- 	.set_uhs_signaling = sdhci_set_uhs_signaling,
- };
+ #define MMC_CAP_HSE_MASK	(MMC_CAP2_HSX00_1_2V | MMC_CAP2_HSX00_1_8V)
+ /* Select all SD UHS type I SDR speed above 50MB/s */
+ #define MMC_CAP_UHS_I_SDR_MASK	(MMC_CAP_UHS_SDR50 | MMC_CAP_UHS_SDR104)
  
-+static struct sdhci_ops sdhci_brcmstb_ops_72116 = {
-+	.set_clock = sdhci_set_clock,
-+	.set_bus_width = sdhci_set_bus_width,
-+	.reset = sdhci_reset,
-+	.set_uhs_signaling = sdhci_brcmstb_set_72116_uhs_signaling,
++enum cfg_core_ver {
++	SDIO_CFG_CORE_V1 = 1,
++	SDIO_CFG_CORE_V2,
 +};
 +
- static struct sdhci_ops sdhci_brcmstb_ops_7216 = {
- 	.set_clock = sdhci_brcmstb_set_clock,
- 	.set_bus_width = sdhci_set_bus_width,
-@@ -282,6 +305,11 @@ static struct brcmstb_match_priv match_priv_7445 = {
++struct sdhci_brcmstb_saved_regs {
++	u32 sd_pin_sel;
++	u32 phy_sw_mode0_rxctrl;
++	u32 max_50mhz_mode;
++	u32 boot_main_ctl;
++};
++
+ struct sdhci_brcmstb_priv {
+ 	void __iomem *cfg_regs;
++	void __iomem *boot_regs;
++	struct sdhci_brcmstb_saved_regs saved_regs;
+ 	unsigned int flags;
+ 	struct clk *base_clk;
+ 	u32 base_freq_hz;
++	void (*save_restore_regs)(struct mmc_host *mmc, int save);
+ };
+ 
+ struct brcmstb_match_priv {
+@@ -60,6 +82,69 @@ struct brcmstb_match_priv {
+ 	const unsigned int flags;
+ };
+ 
++static void sdhci_brcmstb_save_regs(struct mmc_host *mmc, enum cfg_core_ver ver)
++{
++	struct sdhci_host *host = mmc_priv(mmc);
++	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
++	struct sdhci_brcmstb_priv *priv = sdhci_pltfm_priv(pltfm_host);
++	struct sdhci_brcmstb_saved_regs *sr = &priv->saved_regs;
++	void __iomem *cr = priv->cfg_regs;
++	bool is_emmc = mmc->caps & MMC_CAP_NONREMOVABLE;
++
++	/* save  */
++	if (is_emmc && priv->boot_regs)
++		sr->boot_main_ctl = readl(priv->boot_regs + SDIO_BOOT_MAIN_CTL);
++
++	if (ver == SDIO_CFG_CORE_V1) {
++		sr->sd_pin_sel = readl(cr + SDIO_CFG_V1_SD_PIN_SEL);
++		return;
++	}
++
++	sr->sd_pin_sel = readl(cr + SDIO_CFG_SD_PIN_SEL);
++	sr->phy_sw_mode0_rxctrl = readl(cr + SDIO_CFG_PHY_SW_MODE_0_RX_CTRL);
++	sr->max_50mhz_mode = readl(cr + SDIO_CFG_MAX_50MHZ_MODE);
++}
++
++static void sdhci_brcmstb_restore_regs(struct mmc_host *mmc,
++						enum cfg_core_ver ver)
++{
++	struct sdhci_host *host = mmc_priv(mmc);
++	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
++	struct sdhci_brcmstb_priv *priv = sdhci_pltfm_priv(pltfm_host);
++	struct sdhci_brcmstb_saved_regs *sr = &priv->saved_regs;
++	void __iomem *cr = priv->cfg_regs;
++	bool is_emmc = mmc->caps & MMC_CAP_NONREMOVABLE;
++
++	/* restore */
++	if (is_emmc && priv->boot_regs)
++		writel(sr->boot_main_ctl, priv->boot_regs + SDIO_BOOT_MAIN_CTL);
++
++	if (ver == SDIO_CFG_CORE_V1) {
++		writel(sr->sd_pin_sel, cr + SDIO_CFG_SD_PIN_SEL);
++		return;
++	}
++
++	writel(sr->sd_pin_sel, cr + SDIO_CFG_SD_PIN_SEL);
++	writel(sr->phy_sw_mode0_rxctrl, cr + SDIO_CFG_PHY_SW_MODE_0_RX_CTRL);
++	writel(sr->max_50mhz_mode, cr + SDIO_CFG_MAX_50MHZ_MODE);
++}
++
++static void sdhci_brcmstb_save_restore_regs_v1(struct mmc_host *mmc, int save)
++{
++	if (save)
++		sdhci_brcmstb_save_regs(mmc, SDIO_CFG_CORE_V1);
++	else
++		sdhci_brcmstb_restore_regs(mmc, SDIO_CFG_CORE_V1);
++}
++
++static void sdhci_brcmstb_save_restore_regs_v2(struct mmc_host *mmc, int save)
++{
++	if (save)
++		sdhci_brcmstb_save_regs(mmc, SDIO_CFG_CORE_V2);
++	else
++		sdhci_brcmstb_restore_regs(mmc, SDIO_CFG_CORE_V2);
++}
++
+ static inline void enable_clock_gating(struct sdhci_host *host)
+ {
+ 	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
+@@ -300,24 +385,33 @@ static struct brcmstb_match_priv match_priv_7425 = {
  	.ops = &sdhci_brcmstb_ops,
  };
  
-+static struct brcmstb_match_priv match_priv_72116 = {
-+	.flags = BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
-+	.ops = &sdhci_brcmstb_ops_72116,
+-static struct brcmstb_match_priv match_priv_7445 = {
++static struct brcmstb_match_priv match_priv_74371 = {
+ 	.flags = BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
+ 	.ops = &sdhci_brcmstb_ops,
+ };
+ 
++static struct brcmstb_match_priv match_priv_7445 = {
++	.flags = BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT |
++			BRCMSTB_MATCH_FLAGS_HAS_CFG_V1,
++	.ops = &sdhci_brcmstb_ops,
 +};
 +
+ static struct brcmstb_match_priv match_priv_72116 = {
+-	.flags = BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
++	.flags = BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT |
++			BRCMSTB_MATCH_FLAGS_HAS_CFG_V1,
+ 	.ops = &sdhci_brcmstb_ops_72116,
+ };
+ 
  static const struct brcmstb_match_priv match_priv_7216 = {
- 	.flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE,
+-	.flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE,
++	.flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE |
++			BRCMSTB_MATCH_FLAGS_HAS_CFG_V2,
  	.hs400es = sdhci_brcmstb_hs400es,
-@@ -298,6 +326,7 @@ static const struct of_device_id __maybe_unused sdhci_brcm_of_match[] = {
+ 	.ops = &sdhci_brcmstb_ops_7216,
+ };
+ 
+ static struct brcmstb_match_priv match_priv_74165b0 = {
+-	.flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE,
++	.flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE |
++			BRCMSTB_MATCH_FLAGS_HAS_CFG_V2,
+ 	.hs400es = sdhci_brcmstb_hs400es,
+ 	.ops = &sdhci_brcmstb_ops_74165b0,
+ };
+@@ -325,6 +419,7 @@ static struct brcmstb_match_priv match_priv_74165b0 = {
+ static const struct of_device_id __maybe_unused sdhci_brcm_of_match[] = {
  	{ .compatible = "brcm,bcm2712-sdhci", .data = &match_priv_2712 },
  	{ .compatible = "brcm,bcm7425-sdhci", .data = &match_priv_7425 },
++	{ .compatible = "brcm,bcm74371-sdhci", .data = &match_priv_74371 },
  	{ .compatible = "brcm,bcm7445-sdhci", .data = &match_priv_7445 },
-+	{ .compatible = "brcm,bcm72116-sdhci", .data = &match_priv_72116 },
+ 	{ .compatible = "brcm,bcm72116-sdhci", .data = &match_priv_72116 },
  	{ .compatible = "brcm,bcm7216-sdhci", .data = &match_priv_7216 },
- 	{ .compatible = "brcm,bcm74165b0-sdhci", .data = &match_priv_74165b0 },
- 	{},
+@@ -441,6 +536,19 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
+ 	if (res)
+ 		goto err;
+ 
++	/* map non-standard BOOT registers if present */
++	if (host->mmc->caps & MMC_CAP_NONREMOVABLE) {
++		priv->boot_regs = devm_platform_get_and_ioremap_resource(pdev, 2, NULL);
++		if (IS_ERR(priv->boot_regs))
++			priv->boot_regs = NULL;
++	}
++
++	if (match_priv->flags & BRCMSTB_MATCH_FLAGS_HAS_CFG_V1)
++		priv->save_restore_regs = sdhci_brcmstb_save_restore_regs_v1;
++
++	if (match_priv->flags & BRCMSTB_MATCH_FLAGS_HAS_CFG_V2)
++		priv->save_restore_regs = sdhci_brcmstb_save_restore_regs_v2;
++
+ 	/*
+ 	 * Automatic clock gating does not work for SD cards that may
+ 	 * voltage switch so only enable it for non-removable devices.
+@@ -533,6 +641,9 @@ static int sdhci_brcmstb_suspend(struct device *dev)
+ 	struct sdhci_brcmstb_priv *priv = sdhci_pltfm_priv(pltfm_host);
+ 	int ret;
+ 
++	if (priv->save_restore_regs)
++		priv->save_restore_regs(host->mmc, 1);
++
+ 	clk_disable_unprepare(priv->base_clk);
+ 	if (host->mmc->caps2 & MMC_CAP2_CQE) {
+ 		ret = cqhci_suspend(host->mmc);
+@@ -564,6 +675,9 @@ static int sdhci_brcmstb_resume(struct device *dev)
+ 			ret = clk_set_rate(priv->base_clk, priv->base_freq_hz);
+ 	}
+ 
++	if (priv->save_restore_regs)
++		priv->save_restore_regs(host->mmc, 0);
++
+ 	if (host->mmc->caps2 & MMC_CAP2_CQE)
+ 		ret = cqhci_resume(host->mmc);
+ 
 -- 
 2.34.1
 
