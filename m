@@ -1,261 +1,130 @@
-Return-Path: <devicetree+bounces-223193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A75DBB2146
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 01:42:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21337BB21A7
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 02:07:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D5647AED7A
-	for <lists+devicetree@lfdr.de>; Wed,  1 Oct 2025 23:40:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE5881922046
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 00:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F16C9283FFA;
-	Wed,  1 Oct 2025 23:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BACA8A41;
+	Thu,  2 Oct 2025 00:06:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XJgQigYw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iwJ9JpAz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED7014A4CC;
-	Wed,  1 Oct 2025 23:42:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90DA9163;
+	Thu,  2 Oct 2025 00:06:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759362134; cv=none; b=eENvH+m3/xzuMxdiQAHwH97Nsizxrkvu5L4Cn+dqvXOMpIBzwpZiTDdS7NG4gJcdOczgpQMN8howJ2G7u5iIbnY0nTxKltlZ3lKV1DpncYuPc9aNLZU3dFvMhz3bNzIxjX+d6JDylM/r5MxTZ5wiHrhMbK8ic5ruKLxH4MNVU9w=
+	t=1759363619; cv=none; b=JeGF97RlMNK3RwWl4I/aOrmi6BCBaXvYyxh/U1lQdOLkycOR5flBbpI6B15o26NrrROwn9M5p+UoQ3IG/B+kPgWbDMQTIVAZUilBvbnmCoRc9YK6Gk1FgK42XCM4hKHtasSmCdO/V5T6CTeP09y93ExrA66cMZYwzncV6HeP75A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759362134; c=relaxed/simple;
-	bh=56Q3mKCX5WNb0zWYZjwIbTPOM9CZ0gwVrw1wqhQJrKI=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=XGlRtXJk9EB06VOvR2WaaPSayjf1KSkWiHJVdqX41w99omMiT2KOQatSJO2cgJfIXf2jlUBR2fQ9VHwYaoe+iDBdoY0aE4JBTGswkXb8VEj2JWxvBnkyz8VQVcDQ96zdFDukSYCxoU4m5maDiZfGEeyf5yBCX1zpoTqYW8wI/pU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XJgQigYw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E96CC4CEF5;
-	Wed,  1 Oct 2025 23:42:13 +0000 (UTC)
+	s=arc-20240116; t=1759363619; c=relaxed/simple;
+	bh=1FuJjw6+SnNP6zCgHm/VGK3WK8/MBmCfRNNHkgalick=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nka3Ah2cKDQfCDG56BFWCeBN7BOeXIyprXbmpO7bdfsiPBGefeTXurzd7SmDiuNDswE3nsgPJeeA3jokLyDdCcNiLuMZMA9yxaFJC0x4glxU8J1Ihohq6L76grqkgh2hYTV4OH+fy2KTPFz0RM0NU70TcWvT5aedwsDCkWn8F6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iwJ9JpAz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C70B5C4CEF1;
+	Thu,  2 Oct 2025 00:06:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759362134;
-	bh=56Q3mKCX5WNb0zWYZjwIbTPOM9CZ0gwVrw1wqhQJrKI=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=XJgQigYw532nfL1FqUz9yrdRItxPUDJhR0WRtrM2Tqx/tYB4vSC9dDXau8xv8qJdu
-	 lkhwfTA1UQxLosGWMweB89CKn+iXKyuBpOX43LDvPjyC/mxsisjm8Pql94Ibk6Htu0
-	 Ipyx4lJRgxhnsxW6r88N0V70U/jgj5+TEW29+ZmXMuMff7kdzdcCZDvrk6SqUeqvMu
-	 xfDHoMgLoYHxEXhnGeRivsqsLAvm/jUIAGxovLCfiNP3Bp1g5G6JuJLQsATr96iLT4
-	 EYvdw+v8DCFrAK6aJfq9UMvRJtEZtrUIWH2U/CIS1o03994hJ96DOIsjxBJQ0ihYR4
-	 9zisiHQGXIiOA==
-Date: Wed, 01 Oct 2025 18:42:12 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1759363619;
+	bh=1FuJjw6+SnNP6zCgHm/VGK3WK8/MBmCfRNNHkgalick=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=iwJ9JpAzn6OY1Wsvrgw1d/8yf5zvRa4lzjxPTkXcRMxEJN/ZEB5O0GkN0C7GKiqrV
+	 mkP8CqvKb3XwpUh6N77a9vY89TbVGvB4stcuAWdf4bO8FysKnBOaOCgJuqa1q41RJ9
+	 lMLYmnZZ4uyQYJzXQuCj+tAdrIJUZfErGGLgNYaAM4uHR4pmdNHbpvYy2Sd3Z2OzLo
+	 1DnRdYBfJ6Hl9iD6QH0UcicrlNPWz/8awjayr+PERqvxab6MNiwZGeHt8CXPfQtY5V
+	 ugEl0kobslmbKzjGSQImNNYS9if0+NomZEGd1OeAn73N1X4JlkVa2nGBeWja8DO6mm
+	 GfJFV+N6LSiow==
+Date: Wed, 1 Oct 2025 19:06:57 -0500
+From: Rob Herring <robh@kernel.org>
+To: Zhengnan Chen <zhengnan.chen@mediatek.com>
+Cc: Yong Wu <yong.wu@mediatek.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH 1/2] dt-bindings: memory-controllers: mtk-smi: Add
+ support for mt8189
+Message-ID: <20251002000657.GA2511095-robh@kernel.org>
+References: <20250919081014.14100-1-zhengnan.chen@mediatek.com>
+ <20250919081014.14100-2-zhengnan.chen@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Baruch Siach <baruch.siach@siklu.com>, Baruch Siach <baruch@tkos.co.il>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Devi Priya <quic_devipriy@quicinc.com>
-To: George Moussalem <george.moussalem@outlook.com>
-In-Reply-To: <20251001-ipq-pwm-v16-0-300f237e0e68@outlook.com>
-References: <20251001-ipq-pwm-v16-0-300f237e0e68@outlook.com>
-Message-Id: <175936202881.2426650.1624694657690403545.robh@kernel.org>
-Subject: Re: [PATCH v16 0/9] Add PWM support for IPQ chipsets
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250919081014.14100-2-zhengnan.chen@mediatek.com>
 
+On Fri, Sep 19, 2025 at 04:09:55PM +0800, Zhengnan Chen wrote:
+> From: "zhengnan.chen" <zhengnan.chen@mediatek.com>
 
-On Wed, 01 Oct 2025 18:04:16 +0400, George Moussalem wrote:
-> Add PWM driver and binding support for IPQ chipsets.
-> Also, add nodes to add support for pwm in ipq6018, ipq5018, ipq5332, and
-> ipq9574.
+Please fix your name here so the S-o-b matches.
+
 > 
-> I've picked up work based on Devi's last submission (v15) which dates
-> back to 05 October 2023 as below SoCs are still active.
+> Add binding description for mt8189.
 > 
-> V16:
-> 
->   Removed reg description in bindings as the offset is not relative to
->   the TCSR region anymore since simple-mfd support was dropped and PWM
->   nodes defined as their own nodes, not child nodes. Updated the example
->   too.
-> 
->   Dropped patch to add simple-mfd support to the qcom,tcsr bindings
-> 
->   Simplified code to calculate divs and duty cycle as per Uwe's comments
-> 
->   Removed unused pwm_chip struct from ipq_pwm_chip struct
-> 
->   Removed unnecessary cast as per Uwe's comment
-> 
->   Replaced devm_clk_get & clk_prepare_enable by devm_clk_get_enabled
-> 
->   Replaced pwmchip_add by devm_pwmchip_add and removed .remove function
-> 
->   Removed .owner from driver struct
-> 
->   Added compatibles to the bindings and nodes to the device trees to add
->   PWM support PWM in the IPQ5018, IPQ5332, and IPQ9574 SoCs
-> 
-> v15:
-> 
->   No change
-> 
-> v14:
-> 
->   Picked up the R-b tag
-> 
-> v13:
-> 
->   Updated the file name to match the compatible
-> 
->   Sorted the properties and updated the order in the required field
-> 
->   Dropped the syscon node from examples
-> 
-> v12:
-> 
->   Picked up the R-b tag
-> 
-> v11:
-> 
->   No change
-> 
-> v10:
-> 
->   No change
-> 
-> v9:
-> 
->   Add 'ranges' property to example (Rob)
-> 
->   Drop label in example (Rob)
-> 
-> v8:
-> 
->   Add size cell to 'reg' (Rob)
-> 
-> v7:
-> 
->   Use 'reg' instead of 'offset' (Rob)
-> 
->   Drop 'clock-names' and 'assigned-clock*' (Bjorn)
-> 
->   Use single cell address/size in example node (Bjorn)
-> 
->   Move '#pwm-cells' lower in example node (Bjorn)
-> 
->   List 'reg' as required
-> 
-> v6:
-> 
->   Device node is child of TCSR; remove phandle (Rob Herring)
-> 
->   Add assigned-clocks/assigned-clock-rates (Uwe Kleine-König)
-> 
-> v5: Use qcom,pwm-regs for phandle instead of direct regs (Bjorn
->     Andersson, Kathiravan T)
-> 
-> v4: Update the binding example node as well (Rob Herring's bot)
-> 
-> v3: s/qcom,pwm-ipq6018/qcom,ipq6018-pwm/ (Rob Herring)
-> 
-> v2: Make #pwm-cells const (Rob Herring)
-> 
-> V15:
-> Detailed Change logs are added to the respective patches.
-> 
-> V14 can be found at:
-> https://lore.kernel.org/linux-arm-msm/20231005043127.2690639-1-quic_devipriy@quicinc.com/
-> 
-> Devi Priya (4):
->   pwm: driver for qualcomm ipq6018 pwm block
->   dt-bindings: pwm: add IPQ6018 binding
->   dt-bindings: mfd: qcom,tcsr: Add simple-mfd support for IPQ6018
->   arm64: dts: qcom: ipq6018: add pwm node
-> 
->  .../devicetree/bindings/mfd/qcom,tcsr.yaml    | 112 +++++--
->  .../bindings/pwm/qcom,ipq6018-pwm.yaml        |  45 +++
->  arch/arm64/boot/dts/qcom/ipq6018.dtsi         |  15 +-
->  drivers/pwm/Kconfig                           |  12 +
->  drivers/pwm/Makefile                          |   1 +
->  drivers/pwm/pwm-ipq.c                         | 282 ++++++++++++++++++
->  6 files changed, 435 insertions(+), 32 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml
->  create mode 100644 drivers/pwm/pwm-ipq.c
-> 
-> --
-> 2.34.1
-> 
+> Signed-off-by: Zhengnan Chen <zhengnan.chen@mediatek.com>
 > ---
-> Devi Priya (3):
->       dt-bindings: pwm: add IPQ6018 binding
->       pwm: driver for qualcomm ipq6018 pwm block
->       arm64: dts: qcom: ipq6018: add pwm node
+>  .../bindings/memory-controllers/mediatek,smi-common.yaml       | 2 ++
+>  .../bindings/memory-controllers/mediatek,smi-larb.yaml         | 3 +++
+>  2 files changed, 5 insertions(+)
 > 
-> George Moussalem (6):
->       dt-bindings: pwm: qcom,ipq6018-pwm: Add compatible for ipq5018
->       dt-bindings: pwm: qcom,ipq6018-pwm: Add compatible for ipq5332
->       dt-bindings: pwm: qcom,ipq6018-pwm: Add compatible for ipq9574
->       arm64: dts: qcom: ipq5018: add pwm node
->       arm64: dts: qcom: ipq5332: add pwm node
->       arm64: dts: qcom: ipq9574: add pwm node
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> index 0762e0ff66ef..aac8368b210c 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-common.yaml
+> @@ -40,6 +40,8 @@ properties:
+>            - mediatek,mt8186-smi-common
+>            - mediatek,mt8188-smi-common-vdo
+>            - mediatek,mt8188-smi-common-vpp
+> +          - mediatek,mt8189-smi-common
+> +          - mediatek,mt8189-smi-sub-common
+
+Perhaps some explanation what 'sub-common' is compared to just 'common'.
+
+>            - mediatek,mt8192-smi-common
+>            - mediatek,mt8195-smi-common-vdo
+>            - mediatek,mt8195-smi-common-vpp
+> diff --git a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> index 2e7fac4b5094..9a5dafd7c07e 100644
+> --- a/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> +++ b/Documentation/devicetree/bindings/memory-controllers/mediatek,smi-larb.yaml
+> @@ -27,6 +27,7 @@ properties:
+>            - mediatek,mt8183-smi-larb
+>            - mediatek,mt8186-smi-larb
+>            - mediatek,mt8188-smi-larb
+> +          - mediatek,mt8189-smi-larb
+>            - mediatek,mt8192-smi-larb
+>            - mediatek,mt8195-smi-larb
+>  
+> @@ -85,6 +86,7 @@ allOf:
+>              - mediatek,mt8183-smi-larb
+>              - mediatek,mt8186-smi-larb
+>              - mediatek,mt8188-smi-larb
+> +            - mediatek,mt8189-smi-larb
+>              - mediatek,mt8195-smi-larb
+>  
+>      then:
+> @@ -119,6 +121,7 @@ allOf:
+>                - mediatek,mt6779-smi-larb
+>                - mediatek,mt8186-smi-larb
+>                - mediatek,mt8188-smi-larb
+> +              - mediatek,mt8189-smi-larb
+>                - mediatek,mt8192-smi-larb
+>                - mediatek,mt8195-smi-larb
+>  
+> -- 
+> 2.46.0
 > 
->  .../devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml  |  51 +++++
->  arch/arm64/boot/dts/qcom/ipq5018.dtsi              |  10 +
->  arch/arm64/boot/dts/qcom/ipq5332.dtsi              |  10 +
->  arch/arm64/boot/dts/qcom/ipq6018.dtsi              |  10 +
->  arch/arm64/boot/dts/qcom/ipq9574.dtsi              |  10 +
->  drivers/pwm/Kconfig                                |  12 ++
->  drivers/pwm/Makefile                               |   1 +
->  drivers/pwm/pwm-ipq.c                              | 214 +++++++++++++++++++++
->  8 files changed, 318 insertions(+)
-> ---
-> base-commit: 846bd2225ec3cfa8be046655e02b9457ed41973e
-> change-id: 20250922-ipq-pwm-c8c75c147d52
-> 
-> Best regards,
-> --
-> George Moussalem <george.moussalem@outlook.com>
-> 
-> 
-> 
-
-
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: using specified base-commit 846bd2225ec3cfa8be046655e02b9457ed41973e
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20251001-ipq-pwm-v16-0-300f237e0e68@outlook.com:
-
-arch/arm64/boot/dts/qcom/ipq6018.dtsi:418.4-28: Warning (reg_format): /soc@0/pwm@1941010:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 2)
-arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-arch/arm64/boot/dts/qcom/ipq6018-cp01-c1.dtb: soc@0 (simple-bus): pwm@1941010:reg:0: [26480656, 32] is too short
-	from schema $id: http://devicetree.org/schemas/reg.yaml#
-
-
-
-
-
 
