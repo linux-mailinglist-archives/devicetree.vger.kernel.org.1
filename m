@@ -1,79 +1,79 @@
-Return-Path: <devicetree+bounces-223279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AC81BB2989
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 08:10:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73674BB298F
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 08:10:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4C7937B0F71
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 06:08:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23555321C4E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 06:10:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 634D02D29AC;
-	Thu,  2 Oct 2025 06:09:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11FCD2BDC0A;
+	Thu,  2 Oct 2025 06:09:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="RYr7P7Yi"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="k/3CAjt+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64F332D248A
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 06:09:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CB522D323D
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 06:09:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759385366; cv=none; b=AjGwfZ2RZ9dZTDHz6I/pnCZgtfkJod3q3QrMck6Mqp2GDybfSG7VItV67mZ+KZlRBeU59Ea9DN2Db01yRWs5VuYjnPhFZBYMFMOUSBZ1ElCouyHMak3ZyY9ikirmqUvuQGm3dwdCQeA9gsVUUq/9WuQK0GoIcGS01er8Tq19xqU=
+	t=1759385372; cv=none; b=YyguhY9ayJudE7MsJHEG3r2q/qgoI81c6pj0SOM0GvlDBxWKXdTdyLtV+T71qdOTlZb6EWQ+kXrv6j6sCDqnz7aQ+cmOCZQUXAF7pq9bv+1/+D8Mos4VZcDD9rpgrQww79RnJ6FoatS20fm3aZ5kBw17NKGYBIrgrVtZ3D60dUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759385366; c=relaxed/simple;
-	bh=xbV+rCfsZKYy3dRObZGeFxQK+7W/WDJNNtkZSU1JOQ4=;
+	s=arc-20240116; t=1759385372; c=relaxed/simple;
+	bh=A8yV6HZYjL3Q3FaHQaHm8hNAwETN0T+E21KzDymdeVs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SEs0vKQGB/NswmMJn8KbkG5I4+ZK6OtvMFXIgqZlyNnhmalPDQIZT6EBVM90W2A/QtQjkdlix4BUjy4sAWMkpx7KP0o8PaZ+1tc20xAGYiKORw8qLhvLCMuOuYKNKnc/VYzupx4pTO9zfQCBce3QGu3QHR+FMUNbrSHjyTi8b7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=RYr7P7Yi; arc=none smtp.client-ip=209.85.216.41
+	 MIME-Version; b=n10XiaDj/Ni6LYJRPgSiBmMVeZfq9NQF+uQg71Cr3SQMf2V7pgZX0U5ugvJNOWAbdHhM+aU+F0I0WQ638poaGqEqp1ZUChQl8JN+8TKrIsIwNjYyeqtUPDXlQF4LcMarS1josGBUh7rtBwAm69e+a87IdxuLvX4tEL8Ta5U0u10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=k/3CAjt+; arc=none smtp.client-ip=209.85.210.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-3306b83ebdaso723520a91.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 23:09:24 -0700 (PDT)
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-78118e163e5so1647288b3a.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 23:09:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1759385364; x=1759990164; darn=vger.kernel.org;
+        d=ventanamicro.com; s=google; t=1759385370; x=1759990170; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GmROAtU6SgDhctC5OYUrxi6P8MiR5wW5dx2HxDTamiw=;
-        b=RYr7P7YiFlMCSCASYInPkcN4OqdBfTXTowz4XG8zLzLqiEZVvc1jzs3uMHXPXaO5ua
-         KSU3dqQwEmAq3aIgSYF5zq7oCuHdtaHR7qNO4cRGqi5sfICJaNh+YOolAYcY4Y9W+hza
-         CM2fJFpOP8ucf1mvCVMoSVKp1DfnixAeiwc2cC1lD56D9WjZ+dfkxvG5bIH506sPAcUD
-         jlG/tsdNTPBMgundltOgyMcGKJtyHhXNXyq9phuVNd1QmkY3T/nZ4+EikVKQQToQ1kwX
-         MtcCgYrz25lBKoDKti8PADBcbBV6jtITuXbjSWV0eG9EBwGu/CxTgB3w0ceDXodf0KLG
-         mxZA==
+        bh=8zmmvMMm35WfJWJCu/rbPWUzK6j6v7Igidp5p7E+6WY=;
+        b=k/3CAjt+Jo16pYkpnbpvBxVzcvIbnZwFycGZMB1N+g/J9ZV1yDLUcL98Am+PW4ClrE
+         BpvAxWkCC5g16yzXuVxWMTNY428F5EnXxV92Jda3gkLBr/296zvbYMBK8lyYRhGGxw2d
+         PXY0OqQMdmmt8EfRo4/fRfpJOfXBs5ZsNobwtQckF+Qp1YFmB3uwb+rNudQzzS+cw0gC
+         K1DaS7u5VuJ5j4hjsNTF4vWtCuQ5Qjb82S81Xz1vd/e2Q6FcC1MEFkw8w3IFkrOIti3g
+         hCMiDUAN7Dvc4ZKqqyj98qMLHgF6aoHYFCzDPnrcSB5ZbdYJxnjLkPummDou+LtECDz3
+         cEmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759385364; x=1759990164;
+        d=1e100.net; s=20230601; t=1759385370; x=1759990170;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=GmROAtU6SgDhctC5OYUrxi6P8MiR5wW5dx2HxDTamiw=;
-        b=mcil6XMCrxgl22M3bKyB3ySohhhizgQIzruRWwuUh3xAQdVHbw8oKz4A4kRNsCIVgo
-         Maml69mubskX03+1Cw3TwSCG8JmpyfbJSHVHUXCgE+1qJbc2iuXATT9jKXPSh1vNe8W8
-         cbx4O1uY4tm0boTdmJv7dEkPYL+rrl3YFYhH+XUk76mE1jlj6VOGdrhkm1M5y23S/cDd
-         DKWsHOA/h8QzBjMnRNrWqGCpE4TDhfU5U2UIaayC8pBVJsSgyf+pfC4op37WbEvQZBcD
-         ikW4yWb+QqkfQKproR5wkG9bjSaxv5viGbdWVdek9+8YKYnxTwQCESfLpUjVg6cqSNPE
-         sTMg==
-X-Forwarded-Encrypted: i=1; AJvYcCUsorbmhPvdYl/v6tN5QUBdT1PpbCkaf/ExmTAa+leM5HIil1mw6+/ckGNCkPuUJxPgMEuHah+/BQU3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxA2ICJVWqzGY423F/kJp2s4LNPMxmybvO9uqepPbEJt5FI6qww
-	iwsEOrGGr22sS8nIqfDVIS6gkL3XHLWufl0EoxNvE8A7ZanGawo2Pn3D/cQBp3l+ljk=
-X-Gm-Gg: ASbGnctqZZ5r3A4GNNQexZ9NIayh4snh/vknR3rwj3wau5YWsrFPyRY9n9s94b9Xzm2
-	yBVlbtux/BA/xrur6MrA1AVPOT4Ahb9mLctNb5HdeMRbmONXZ1o5KYJEYO01Qoo7ZdUFZy2CrcZ
-	gChHCQnSbK2XtnN81pv9IAsmjkX827y5dJFm0rlPT3l2ECpCDbuX7Q5xnxVcmnLo9qFnLC1zJft
-	4y/cg5+Z4oNNKmXuSCfmMlfstR0duFca4iv8vzM6B55crtWuKbVMWMibfQc+U/9tTLNKwnJC4hA
-	8roPH7AWuMjZRFSYg+nv/ttrQ/AtTFAh/Eh5kktSCsfEkffZC0ipVcQAxO/ilKPoocMeEfPRuUV
-	h8SegEOMtDpFCF+bsS+0He1FJ9pGto17UhM1Hvc5LjcP4gatk01TEros4NIYkcyVLnqG8ps4ydQ
-	+X8Cs=
-X-Google-Smtp-Source: AGHT+IFIvD/TGVwCuMeABFCgpn8+lbAS6QxuDhvf7qSI2NatW7LF3gsrGSse9+7/agcJceCONR03+Q==
-X-Received: by 2002:a17:90b:3a91:b0:32e:dd8c:dd18 with SMTP id 98e67ed59e1d1-339a6f07273mr7438539a91.17.1759385363417;
-        Wed, 01 Oct 2025 23:09:23 -0700 (PDT)
+        bh=8zmmvMMm35WfJWJCu/rbPWUzK6j6v7Igidp5p7E+6WY=;
+        b=XTXEmQdnNstNA6PiiN50ErVJprn+L/n2A/bIPMVjdBhaNTZw2eQXys6kuAtDJx5Jgb
+         FgVx5l17QzpgELsoW9dvZX7N3EMLU9siScfSdJA5sSXK744Ig0V7ebUzo4Ksy3gVvdDS
+         l3QEldHh+//WP52XdV2ALPyzFoQN6x0DW5lbDgbYzC4TaKyAPXQzGhgOz/HOQTxt4yP9
+         7HZdAXTPMHrM1MlZ1R2Iv2nXOPd5pNV8kN0KwR4UCCvasyu+YqfeEJ2JE8lRiGhjg707
+         2TMm9tfW1ITidpxdM8Ijg2YBMTj9+WxW1C3bShtiuc6JpRjriUuFvR8AeqEjhh81ZuaG
+         eaiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXTKztouDQ5WWMuaQHek0QrcCjl42P4UiFFjlL/ph8m9KPjDwzp72P35DPv36ax9ldfU+H8GCHKUKp8@vger.kernel.org
+X-Gm-Message-State: AOJu0YwiCPNu+h9Z17ujlVMf0/gzfAu7xlE4+6J9qp06enCtjZdcvfm5
+	dzTG+8mdx9ked+0ZUavK5W5Id31hNo11/LTQKlNclqc0Py6o+dsWZh43SAuLziFlHoU=
+X-Gm-Gg: ASbGncvkTCMEx7UrBrvqvTv2vo52DfgURZn9FtGfjOZ3/2MoBg0Ej0G27VZS9KTGcf/
+	/zNl/C14vyYhhxGno3yyZt0rzo1yF5iVnlpoZVsElyuMJMda8SxtVSEA+86vXbvPeqOWaj0au8D
+	8wV6yn+kMVcrQMFSuTxy5MiU9kCR9FPNOD11NglKqsCfmTW1UC6Sw2f7byvTYepdzHlO3+fmPQv
+	GJn0DxiYrnBzGoGDV3pi27Wg+6PR0sQN6XeZ4jwBE/o3xTZbx3+E6PXG+qWbk1jUXoxEIidGgZJ
+	B3Iqpv6qkfkUul82G718X2yLSzQ76z7x4BRLfBIAK7p0s+jFvK5hkFR4H/MrYXxCyfgAWAshTjG
+	oCgUzXE7D/gOEsvr/hiKCLNKQUwifk9MXy/LstG0cQKKuZxT5X0bCYVmntCS8Ypr1GMeUCgmVLG
+	rldJc=
+X-Google-Smtp-Source: AGHT+IF+YSzJ58uViX8Nc9sdQwacWiEzaK5CydbflVdamOordFViOPRH4V5+hIAsR14420tWtxw0Bw==
+X-Received: by 2002:a05:6a21:3943:b0:243:78a:82c4 with SMTP id adf61e73a8af0-32a261f188amr2830964637.25.1759385370384;
+        Wed, 01 Oct 2025 23:09:30 -0700 (PDT)
 Received: from localhost.localdomain ([122.171.19.158])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6099f594afsm1205029a12.37.2025.10.01.23.09.17
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6099f594afsm1205029a12.37.2025.10.01.23.09.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Oct 2025 23:09:22 -0700 (PDT)
+        Wed, 01 Oct 2025 23:09:29 -0700 (PDT)
 From: Anup Patel <apatel@ventanamicro.com>
 To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -101,9 +101,9 @@ Cc: Alexandre Ghiti <alex@ghiti.fr>,
 	linux-kernel@vger.kernel.org,
 	Mayuresh Chitale <mchitale@ventanamicro.com>,
 	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH 09/11] perf tools: Add RISC-V trace PMU record capabilities
-Date: Thu,  2 Oct 2025 11:37:30 +0530
-Message-ID: <20251002060732.100213-10-apatel@ventanamicro.com>
+Subject: [PATCH 10/11] perf tools: Initial support for RISC-V trace decoder
+Date: Thu,  2 Oct 2025 11:37:31 +0530
+Message-ID: <20251002060732.100213-11-apatel@ventanamicro.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20251002060732.100213-1-apatel@ventanamicro.com>
 References: <20251002060732.100213-1-apatel@ventanamicro.com>
@@ -117,303 +117,162 @@ Content-Transfer-Encoding: 8bit
 
 From: Mayuresh Chitale <mchitale@ventanamicro.com>
 
-Introduce the required auxiliary API functions allowing the perf core
-to interact with RISC-V trace perf driver.
+Add bare bones support for RISC-V trace decoder so that the data received
+from the hardware by the RISC-V trace perf driver can be written to the
+perf record output file.
 
 Co-developed-by: Anup Patel <apatel@ventanamicro.com>
 Signed-off-by: Anup Patel <apatel@ventanamicro.com>
 Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
 ---
- tools/perf/arch/riscv/util/Build      |   1 +
- tools/perf/arch/riscv/util/auxtrace.c | 218 ++++++++++++++++++++++++++
- tools/perf/util/auxtrace.c            |   1 +
- tools/perf/util/auxtrace.h            |   1 +
- tools/perf/util/rvtrace.h             |  18 +++
- 5 files changed, 239 insertions(+)
- create mode 100644 tools/perf/arch/riscv/util/auxtrace.c
- create mode 100644 tools/perf/util/rvtrace.h
+ tools/perf/util/Build             |  1 +
+ tools/perf/util/auxtrace.c        |  3 +
+ tools/perf/util/rvtrace-decoder.c | 91 +++++++++++++++++++++++++++++++
+ tools/perf/util/rvtrace.h         |  2 +
+ 4 files changed, 97 insertions(+)
+ create mode 100644 tools/perf/util/rvtrace-decoder.c
 
-diff --git a/tools/perf/arch/riscv/util/Build b/tools/perf/arch/riscv/util/Build
-index 58a672246024..2ba1fb98a0ad 100644
---- a/tools/perf/arch/riscv/util/Build
-+++ b/tools/perf/arch/riscv/util/Build
-@@ -3,3 +3,4 @@ perf-util-y += header.o
+diff --git a/tools/perf/util/Build b/tools/perf/util/Build
+index 4959e7a990e4..2305638283c4 100644
+--- a/tools/perf/util/Build
++++ b/tools/perf/util/Build
+@@ -142,6 +142,7 @@ perf-util-$(CONFIG_AUXTRACE) += cs-etm.o
+ perf-util-$(CONFIG_AUXTRACE) += cs-etm-decoder/
+ endif
+ perf-util-$(CONFIG_AUXTRACE) += cs-etm-base.o
++perf-util-$(CONFIG_AUXTRACE) += rvtrace-decoder.o
  
- perf-util-$(CONFIG_LIBTRACEEVENT) += kvm-stat.o
- perf-util-$(CONFIG_LIBDW_DWARF_UNWIND) += unwind-libdw.o
-+perf-util-$(CONFIG_AUXTRACE) += auxtrace.o
-diff --git a/tools/perf/arch/riscv/util/auxtrace.c b/tools/perf/arch/riscv/util/auxtrace.c
-new file mode 100644
-index 000000000000..adc86bd38998
---- /dev/null
-+++ b/tools/perf/arch/riscv/util/auxtrace.c
-@@ -0,0 +1,218 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Risc-V E-Trace support
-+ */
-+
-+#include <linux/kernel.h>
-+#include <linux/types.h>
-+#include <linux/bitops.h>
-+#include <linux/log2.h>
-+#include <linux/zalloc.h>
-+#include <time.h>
-+
-+#include <internal/lib.h> // page_size
-+#include "../../../util/auxtrace.h"
-+#include "../../../util/cpumap.h"
-+#include "../../../util/debug.h"
-+#include "../../../util/event.h"
-+#include "../../../util/evlist.h"
-+#include "../../../util/evsel.h"
-+#include "../../../util/rvtrace.h"
-+#include "../../../util/pmu.h"
-+#include "../../../util/record.h"
-+#include "../../../util/session.h"
-+#include "../../../util/tsc.h"
-+
-+#define RVTRACE_PMU_NAME "rvtrace"
-+#define KiB(x) ((x) * 1024)
-+#define MiB(x) ((x) * 1024 * 1024)
-+
-+struct rvtrace_recording {
-+	struct auxtrace_record	itr;
-+	struct perf_pmu *rvtrace_pmu;
-+	struct evlist *evlist;
-+};
-+
-+static size_t rvtrace_info_priv_size(struct auxtrace_record *itr __maybe_unused,
-+				     struct evlist *evlist __maybe_unused)
-+{
-+	return RVTRACE_AUXTRACE_PRIV_SIZE;
-+}
-+
-+static int rvtrace_info_fill(struct auxtrace_record *itr, struct perf_session *session,
-+			     struct perf_record_auxtrace_info *auxtrace_info, size_t priv_size)
-+{
-+	struct rvtrace_recording *ptr = container_of(itr, struct rvtrace_recording, itr);
-+	struct perf_pmu *rvtrace_pmu = ptr->rvtrace_pmu;
-+
-+	if (priv_size != RVTRACE_AUXTRACE_PRIV_SIZE)
-+		return -EINVAL;
-+
-+	if (!session->evlist->core.nr_mmaps)
-+		return -EINVAL;
-+
-+	auxtrace_info->type = PERF_AUXTRACE_RISCV_TRACE;
-+	auxtrace_info->priv[0] = rvtrace_pmu->type;
-+
-+	return 0;
-+}
-+
-+static int rvtrace_set_auxtrace_mmap_page(struct record_opts *opts)
-+{
-+	bool privileged = perf_event_paranoid_check(-1);
-+
-+	if (!opts->full_auxtrace)
-+		return 0;
-+
-+	if (opts->full_auxtrace && !opts->auxtrace_mmap_pages) {
-+		if (privileged) {
-+			opts->auxtrace_mmap_pages = MiB(16) / page_size;
-+		} else {
-+			opts->auxtrace_mmap_pages = KiB(128) / page_size;
-+			if (opts->mmap_pages == UINT_MAX)
-+				opts->mmap_pages = KiB(256) / page_size;
-+		}
-+	}
-+
-+	/* Validate auxtrace_mmap_pages */
-+	if (opts->auxtrace_mmap_pages) {
-+		size_t sz = opts->auxtrace_mmap_pages * (size_t)page_size;
-+		size_t min_sz = KiB(8);
-+
-+		if (sz < min_sz || !is_power_of_2(sz)) {
-+			pr_err("Invalid mmap size : must be at least %zuKiB and a power of 2\n",
-+			       min_sz / 1024);
-+			return -EINVAL;
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+static int rvtrace_recording_options(struct auxtrace_record *itr, struct evlist *evlist,
-+				     struct record_opts *opts)
-+{
-+	struct rvtrace_recording *ptr = container_of(itr, struct rvtrace_recording, itr);
-+	struct perf_pmu *rvtrace_pmu = ptr->rvtrace_pmu;
-+	struct evsel *evsel, *rvtrace_evsel = NULL;
-+	struct evsel *tracking_evsel;
-+	int err;
-+
-+	ptr->evlist = evlist;
-+	evlist__for_each_entry(evlist, evsel) {
-+		if (evsel->core.attr.type == rvtrace_pmu->type) {
-+			if (rvtrace_evsel) {
-+				pr_err("There may be only one " RVTRACE_PMU_NAME "x event\n");
-+				return -EINVAL;
-+			}
-+			evsel->core.attr.freq = 0;
-+			evsel->core.attr.sample_period = 1;
-+			evsel->needs_auxtrace_mmap = true;
-+			rvtrace_evsel = evsel;
-+			opts->full_auxtrace = true;
-+		}
-+	}
-+
-+	err = rvtrace_set_auxtrace_mmap_page(opts);
-+	if (err)
-+		return err;
-+	/*
-+	 * To obtain the auxtrace buffer file descriptor, the auxtrace event
-+	 * must come first.
-+	 */
-+	evlist__to_front(evlist, rvtrace_evsel);
-+	evsel__set_sample_bit(rvtrace_evsel, TIME);
-+
-+	/* Add dummy event to keep tracking */
-+	err = parse_event(evlist, "dummy:u");
-+	if (err)
-+		return err;
-+
-+	tracking_evsel = evlist__last(evlist);
-+	evlist__set_tracking_event(evlist, tracking_evsel);
-+
-+	tracking_evsel->core.attr.freq = 0;
-+	tracking_evsel->core.attr.sample_period = 1;
-+	evsel__set_sample_bit(tracking_evsel, TIME);
-+
-+	return 0;
-+}
-+
-+static u64 rvtrace_reference(struct auxtrace_record *itr __maybe_unused)
-+{
-+	return rdtsc();
-+}
-+
-+static void rvtrace_recording_free(struct auxtrace_record *itr)
-+{
-+	struct rvtrace_recording *ptr =
-+			container_of(itr, struct rvtrace_recording, itr);
-+
-+	free(ptr);
-+}
-+
-+static struct auxtrace_record *rvtrace_recording_init(int *err, struct perf_pmu *rvtrace_pmu)
-+{
-+	struct rvtrace_recording *ptr;
-+
-+	if (!rvtrace_pmu) {
-+		*err = -ENODEV;
-+		return NULL;
-+	}
-+
-+	ptr = zalloc(sizeof(*ptr));
-+	if (!ptr) {
-+		*err = -ENOMEM;
-+		return NULL;
-+	}
-+
-+	ptr->rvtrace_pmu = rvtrace_pmu;
-+	ptr->itr.recording_options = rvtrace_recording_options;
-+	ptr->itr.info_priv_size = rvtrace_info_priv_size;
-+	ptr->itr.info_fill = rvtrace_info_fill;
-+	ptr->itr.free = rvtrace_recording_free;
-+	ptr->itr.reference = rvtrace_reference;
-+	ptr->itr.read_finish = auxtrace_record__read_finish;
-+	ptr->itr.alignment = 0;
-+
-+	*err = 0;
-+	return &ptr->itr;
-+}
-+
-+static struct perf_pmu *find_pmu_for_event(struct perf_pmu **pmus,
-+					   int pmu_nr, struct evsel *evsel)
-+{
-+	int i;
-+
-+	if (!pmus)
-+		return NULL;
-+
-+	for (i = 0; i < pmu_nr; i++) {
-+		if (evsel->core.attr.type == pmus[i]->type)
-+			return pmus[i];
-+	}
-+
-+	return NULL;
-+}
-+
-+struct auxtrace_record *auxtrace_record__init(struct evlist *evlist, int *err)
-+{
-+	struct perf_pmu	*rvtrace_pmu = NULL;
-+	struct perf_pmu *found_etm = NULL;
-+	struct evsel *evsel;
-+
-+	if (!evlist)
-+		return NULL;
-+
-+	rvtrace_pmu = perf_pmus__find(RVTRACE_PMU_NAME);
-+	evlist__for_each_entry(evlist, evsel) {
-+		if (rvtrace_pmu && !found_etm)
-+			found_etm = find_pmu_for_event(&rvtrace_pmu, 1, evsel);
-+	}
-+
-+	if (found_etm)
-+		return rvtrace_recording_init(err, rvtrace_pmu);
-+
-+	*err = 0;
-+	return NULL;
-+}
+ perf-util-y += parse-branch-options.o
+ perf-util-y += dump-insn.o
 diff --git a/tools/perf/util/auxtrace.c b/tools/perf/util/auxtrace.c
-index ebd32f1b8f12..735f6c360064 100644
+index 735f6c360064..5ccb5f3d9af8 100644
 --- a/tools/perf/util/auxtrace.c
 +++ b/tools/perf/util/auxtrace.c
-@@ -1393,6 +1393,7 @@ int perf_event__process_auxtrace_info(struct perf_session *session,
- 	case PERF_AUXTRACE_HISI_PTT:
+@@ -54,6 +54,7 @@
+ #include "arm-spe.h"
+ #include "hisi-ptt.h"
+ #include "s390-cpumsf.h"
++#include "rvtrace.h"
+ #include "util/mmap.h"
+ 
+ #include <linux/ctype.h>
+@@ -1394,6 +1395,8 @@ int perf_event__process_auxtrace_info(struct perf_session *session,
  		err = hisi_ptt_process_auxtrace_info(event, session);
  		break;
-+	case PERF_AUXTRACE_RISCV_TRACE:
+ 	case PERF_AUXTRACE_RISCV_TRACE:
++		err = rvtrace__process_auxtrace_info(event, session);
++		break;
  	case PERF_AUXTRACE_UNKNOWN:
  	default:
  		return -EINVAL;
-diff --git a/tools/perf/util/auxtrace.h b/tools/perf/util/auxtrace.h
-index f001cbb68f8e..5b7ce4a99709 100644
---- a/tools/perf/util/auxtrace.h
-+++ b/tools/perf/util/auxtrace.h
-@@ -50,6 +50,7 @@ enum auxtrace_type {
- 	PERF_AUXTRACE_ARM_SPE,
- 	PERF_AUXTRACE_S390_CPUMSF,
- 	PERF_AUXTRACE_HISI_PTT,
-+	PERF_AUXTRACE_RISCV_TRACE,
- };
- 
- enum itrace_period_type {
-diff --git a/tools/perf/util/rvtrace.h b/tools/perf/util/rvtrace.h
+diff --git a/tools/perf/util/rvtrace-decoder.c b/tools/perf/util/rvtrace-decoder.c
 new file mode 100644
-index 000000000000..93c041db8660
+index 000000000000..58db5ca62c1a
 --- /dev/null
-+++ b/tools/perf/util/rvtrace.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
++++ b/tools/perf/util/rvtrace-decoder.c
+@@ -0,0 +1,91 @@
++// SPDX-License-Identifier: GPL-2.0
 +/*
-+ * Copyright(C) 2015 Linaro Limited. All rights reserved.
-+ * Author: Mathieu Poirier <mathieu.poirier@linaro.org>
++ * RISC-V trace Decoder
 + */
 +
-+#ifndef INCLUDE__UTIL_PERF_RVTRACE_H__
-+#define INCLUDE__UTIL_PERF_RVTRACE_H__
++#include <errno.h>
++#include <inttypes.h>
++#include "evlist.h"
++#include <internal/lib.h>
++#include "rvtrace.h"
 +
-+#include "debug.h"
-+#include "auxtrace.h"
-+#include "util/event.h"
-+#include "util/session.h"
-+#include <linux/bits.h>
++struct rvtrace_decoder {
++	struct auxtrace auxtrace;
++	u32 auxtrace_type;
++	struct perf_session *session;
++	struct machine *machine;
++	u32 pmu_type;
++};
 +
-+#define RVTRACE_AUXTRACE_PRIV_SIZE	sizeof(u64)
++static int rvtrace_process_event(struct perf_session *session __maybe_unused,
++				 union perf_event *event __maybe_unused,
++				 struct perf_sample *sample __maybe_unused,
++				 const struct perf_tool *tool __maybe_unused)
++{
++	return 0;
++}
 +
-+#endif
++static int rvtrace_process_auxtrace_event(struct perf_session *session __maybe_unused,
++					  union perf_event *event __maybe_unused,
++					  const struct perf_tool *tool __maybe_unused)
++{
++	return 0;
++}
++
++static int rvtrace_flush(struct perf_session *session __maybe_unused,
++			 const struct perf_tool *tool __maybe_unused)
++{
++	return 0;
++}
++
++static void rvtrace_free_events(struct perf_session *session __maybe_unused)
++{
++}
++
++static void rvtrace_free(struct perf_session *session)
++{
++	struct rvtrace_decoder *ptr = container_of(session->auxtrace, struct rvtrace_decoder,
++					    auxtrace);
++
++	session->auxtrace = NULL;
++	free(ptr);
++}
++
++static bool rvtrace_evsel_is_auxtrace(struct perf_session *session,
++				      struct evsel *evsel)
++{
++	struct rvtrace_decoder *ptr = container_of(session->auxtrace,
++						   struct rvtrace_decoder, auxtrace);
++
++	return evsel->core.attr.type == ptr->pmu_type;
++}
++
++int rvtrace__process_auxtrace_info(union perf_event *event,
++				   struct perf_session *session)
++{
++	struct perf_record_auxtrace_info *auxtrace_info = &event->auxtrace_info;
++	struct rvtrace_decoder *ptr;
++
++	if (auxtrace_info->header.size < RVTRACE_AUXTRACE_PRIV_SIZE +
++	    sizeof(struct perf_record_auxtrace_info))
++		return -EINVAL;
++
++	ptr = zalloc(sizeof(*ptr));
++	if (!ptr)
++		return -ENOMEM;
++
++	ptr->session = session;
++	ptr->machine = &session->machines.host;
++	ptr->auxtrace_type = auxtrace_info->type;
++	ptr->pmu_type = auxtrace_info->priv[0];
++
++	ptr->auxtrace.process_event = rvtrace_process_event;
++	ptr->auxtrace.process_auxtrace_event = rvtrace_process_auxtrace_event;
++	ptr->auxtrace.flush_events = rvtrace_flush;
++	ptr->auxtrace.free_events = rvtrace_free_events;
++	ptr->auxtrace.free = rvtrace_free;
++	ptr->auxtrace.evsel_is_auxtrace = rvtrace_evsel_is_auxtrace;
++	session->auxtrace = &ptr->auxtrace;
++
++	return 0;
++}
+diff --git a/tools/perf/util/rvtrace.h b/tools/perf/util/rvtrace.h
+index 93c041db8660..fdf2e5866c85 100644
+--- a/tools/perf/util/rvtrace.h
++++ b/tools/perf/util/rvtrace.h
+@@ -15,4 +15,6 @@
+ 
+ #define RVTRACE_AUXTRACE_PRIV_SIZE	sizeof(u64)
+ 
++int rvtrace__process_auxtrace_info(union perf_event *event, struct perf_session *session);
++struct auxtrace_record *rvtrace_record_init(int *err);
+ #endif
 -- 
 2.43.0
 
