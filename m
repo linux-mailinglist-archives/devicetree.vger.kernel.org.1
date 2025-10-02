@@ -1,342 +1,146 @@
-Return-Path: <devicetree+bounces-223466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08A42BB56C9
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 23:05:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51AD1BB5769
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 23:25:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D87C14E7239
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 21:05:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B7F63B340E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 21:25:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C20327EC99;
-	Thu,  2 Oct 2025 21:05:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C6031F4621;
+	Thu,  2 Oct 2025 21:25:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Lla/DPB3"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="O+67RorE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f227.google.com (mail-qk1-f227.google.com [209.85.222.227])
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 794E026D4C7
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 21:04:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.227
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89A4D1C01
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 21:25:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759439101; cv=none; b=ulg70F9M7nf2d+3Zp/MSGAHt+388DzdS9eVju0NXxsPohHEATeMKV5nzj+J5EN+QY5r46d+wmX5TapWV3Ms2T4h1X+12rpzti9WzS32bnNMEKtN3TnBG6knUmxGb+UhWAIeC1s9ZilOICSjFaTWEYmBxw5+60FzWRqy0tF5oHLY=
+	t=1759440347; cv=none; b=RcLKFZT6E8ZkdDvdCmCvNUN9EIdbte7mXFHXMGigS0CMUovdrmfP5GhmO5GBeg790Qk0VDwZsylg4APsoXAMqLxR1dlxayZjvfUmdqgJxPyBPqvmNED3DgE99gJcaw17jDbtwg2VdKUYf6vdYNQitUBvwNvzdONUS6XPRoj2AQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759439101; c=relaxed/simple;
-	bh=6TAVlTK+sXTzkna2XCGhzK3JAQmXwZYk58u9/NK5elY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Koz7D8W2OTdJeEJ82PJJqGG5rBtHNHEWKjRaM1IJUmfncTDqofarqSASoQoVX/CR+TL1MujfttJZp4aRI9qnclJ/3oap2ahyyotpcgRJGF1LyVub8jGjZyIxBC8eou/V9uFmr9nRfdgyEZdHoZKhStF9q1HZm1JAjD1d3ai1Ku4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Lla/DPB3; arc=none smtp.client-ip=209.85.222.227
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qk1-f227.google.com with SMTP id af79cd13be357-8582a34639aso100249485a.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 14:04:59 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759439098; x=1760043898;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:dkim-signature
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cwbGC/K9B4U3uycXerXPSUMJfx+iuM+3b1WmPO2FpvA=;
-        b=Ysy9aIVCRDhQ39VsyEv4JNg99mV6Dcbbn7czs5S4sc0A4AoBGketu+H8KpDA8E92KH
-         SKkR6HjHSsPJIyMn9r5UIJiyzCIJA7lp9OZTDFCB7aX4xW+sdcUTVt5vsicW3CfjLJtc
-         3wZJgX0Uex9su6PRGpwVi/O+/5XVbU+BozfJh5xesbmbQOZ94HwY/HCgVmvzsatLdcE/
-         hvxMGXApJqzSE6ghzB3GzphV4Q/IiYQYow83iTqf1d2pEF1OJpevi+VDd5P+gVUt93fh
-         DfGqTsJe6gu3wcCuftsXObhesEYFOwS0KHMKLM0+sRAC3Yq2emB2Pp9XIgSsZjJOoDol
-         KY5w==
-X-Forwarded-Encrypted: i=1; AJvYcCVuO4QR6afUgn9Gb+kmlAV3IRvRPjYligEBxClR5TLn1YJr0O562sNdjUHrZZTvAX2qV8BgnfL+8zLI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzm5kfe2T4OimkYUE1NwFAAIunplccYI6UET8OZ4YnYXyWP9Fvp
-	4VV22kY8KWQmaayc2gElhI53XkUvmMOTuzFCanUAWn2TzZgjHTX4L6nQsY+bLHmkJT+MZqaOCMT
-	XqZph05/sVRy7SXe1lMDh/h6MeTjOBHcT7AQeIZf8s1sdwQOGTt5bzpucYp1ED8v4b5NUIjvIPk
-	KEtEXW4jSu99Sm5s1BX04B7dtfE1iK0/B9SZncUfgrDk8LQk2aj/o+ArZoA8/QOmFDttw1CCWh/
-	RA2PbB6kmfSWw==
-X-Gm-Gg: ASbGnctXjiE5f9/d7+URNpbzEJDO1TBUYPpk8UF9S6LblWfQbd/GxwMsDk4WhadGZWs
-	218hHWfi3h1xtOO6TWjR9TMPOz4to7qxJ3a5qOjUNnZIr7lT3yaG9rL+sEXaDxs6lqDa2EzzkzW
-	lD0fOVwEAEtEmc6CU4mraQJBC3+Olc396en1CNHb77AE6qKpsl6zNBkvw+oj3o3g3T6riV3W4Sw
-	aYZ6+nHpfZc/s2LFDamcJxY2KvSWn/iFSa8RUiE4V1hVv9Tt99Rbm2sTbiLGQeVuCPhYIpD7efE
-	D2vxU9bb/+gwQpbirkELBI9hVhiYYWJT0FahCH+lGDODJIZlTtD7BHI68A266Gkw1/mTFNgFimU
-	H37dhe1jcLfxPZdzxrDr3ECVnePmdHlNvqvtUXuKkDQmE7dpOETMw6KVWOzFpl4jOUJaPgllkAG
-	V2hw==
-X-Google-Smtp-Source: AGHT+IEcj3p4IWiY2lS8NLx+5hFD3DJ/iUkHEezK/uJUUPDZnqvRMSxB7Ma8aYlHqCvj/8+BGBKgqD8ruWRK
-X-Received: by 2002:a05:620a:1a8f:b0:863:125d:dfbf with SMTP id af79cd13be357-87a3720ba0cmr130383885a.53.1759439098102;
-        Thu, 02 Oct 2025 14:04:58 -0700 (PDT)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-19.dlp.protect.broadcom.com. [144.49.247.19])
-        by smtp-relay.gmail.com with ESMTPS id af79cd13be357-87774db04aasm22140685a.3.2025.10.02.14.04.57
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 02 Oct 2025 14:04:58 -0700 (PDT)
-X-Relaying-Domain: broadcom.com
-X-CFilter-Loop: Reflected
-Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-46e4cc8ed76so5319025e9.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 14:04:57 -0700 (PDT)
+	s=arc-20240116; t=1759440347; c=relaxed/simple;
+	bh=Y2gBk5CB3GMJbnKWbC0U4OjbYTzYttD0oSvzvSM0NBk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eOakjUGlZAQ1gOowGujEa33ZAmUN9WgpaLkJZyoYRjNXWMBZneo+U3aIbng3Yr3H33bCfTs7+lvgzvXjw+7S2whyqw/f0hczxfFq6D8/vsMZjeyKcrIzhKRLOuS5uKbe4oT0x4EAGr1cLypz9TSlZjlEG/GGkWO4FY42p/lVkFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=O+67RorE; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-76e4fc419a9so1589185b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 14:25:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1759439096; x=1760043896; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=chromium.org; s=google; t=1759440341; x=1760045141; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cwbGC/K9B4U3uycXerXPSUMJfx+iuM+3b1WmPO2FpvA=;
-        b=Lla/DPB3WmnBpFo58glyl4E1EX6loBo97OZDqbimiK2yb+184P1kmNfbe/ttz7DQIU
-         dYWeo1bUOoQV6YnXIy045g4h3YXEYUUskeexlto/34/ObsXE+2AfmGGuHZijUNDkOtmt
-         tGD1bpDtn2tUC/d2he9dbo726UHcR0fduO9BU=
-X-Forwarded-Encrypted: i=1; AJvYcCUrtPV5xwsdlrg4ll1TRCc53Dl16XHXCj0L6yV/e26B83Cw4wjtKwdMTCaRzMgi9U7gfzHnEeMXZdvA@vger.kernel.org
-X-Received: by 2002:a05:600c:8b22:b0:45b:4a98:91cf with SMTP id 5b1f17b1804b1-46e71102657mr4393315e9.15.1759439096530;
-        Thu, 02 Oct 2025 14:04:56 -0700 (PDT)
-X-Received: by 2002:a05:600c:8b22:b0:45b:4a98:91cf with SMTP id 5b1f17b1804b1-46e71102657mr4393165e9.15.1759439096023;
-        Thu, 02 Oct 2025 14:04:56 -0700 (PDT)
-Received: from mail.broadcom.net ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e5c4c0321sm61711295e9.8.2025.10.02.14.04.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Oct 2025 14:04:55 -0700 (PDT)
-From: Kamal Dasu <kamal.dasu@broadcom.com>
-To: andersson@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	florian.fainelli@broadcom.com,
-	ulf.hansson@linaro.org,
-	adrian.hunter@intel.com
-Cc: bcm-kernel-feedback-list@broadcom.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org,
-	Kamal Dasu <kamal.dasu@broadcom.com>
-Subject: [PATCH 3/3] mmc: brcmstb: save and restore registers during PM
-Date: Thu,  2 Oct 2025 17:04:26 -0400
-Message-Id: <20251002210426.2490368-4-kamal.dasu@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251002210426.2490368-1-kamal.dasu@broadcom.com>
-References: <20251002210426.2490368-1-kamal.dasu@broadcom.com>
+        bh=/omh4dnkehdvWXPDDTiNzbxTABAKha3OuNX6oJKT2mA=;
+        b=O+67RorETPhQUQKh63JhXwJXuAM7qhFrj3GNAIU4LqTntbWAlsaomDo36v6Tv5XINU
+         8xExeIfYWWN90jF2YJQweIOEu2vnh69C+eu/8dfVF5Pce/JjMIFQyZ+aJg5OJNWMQOPM
+         MDLBACDd0KzmNeTNyUMXXLeyh9CQEbOPTiNpw=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759440341; x=1760045141;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=/omh4dnkehdvWXPDDTiNzbxTABAKha3OuNX6oJKT2mA=;
+        b=ehQwLB4cLjR20qB+onc1j9oqjYYsMU3mvhBF9tqhPQzRZJzu73N24PPMMlfREcz5DI
+         Fpm0EWMqSm7pTfdcCzL3Pa0R10voM2iaPl3hcwlA6keMq1/v2YdZqFTkfX6WCqm7Omw1
+         ahaZccTNQ6ninX9pX0OehxTCy2W7/9qGFFqBfFiYCUHalF+wyDcb/GfYl+It9rDsaEH+
+         qjSMFzBDHq73mBd8meB2CGbAYiW4eofm3mtJikxdYbH4KeGKucqvWZtJX3BRAgvqtHJe
+         QwSdtte9hj0f/0toPO6AvVTt1lzb3R0HrPKggMUGIx1qwidJ0MgRxwzQvB3H2Ix85WwT
+         vo/A==
+X-Forwarded-Encrypted: i=1; AJvYcCWSjz3EvPzwdXjCkeMLXk+c4EC+J2xAiZYGPJ+rhzlhkVICqUBAxAnPdzzbOWJtVD0yCukjlZ6Yu4Oi@vger.kernel.org
+X-Gm-Message-State: AOJu0YzdZ1Q7UoyTZvCAs9eBMtzvXHXvxgPoDGVlVvXEesPT9LVxPdhT
+	J2e6z2AvQMV3grL4oFbjrStgb7Vmxn77UAcsLPOIjzTA32T26qSwdSyMjMRE8fWE7WjJ9DnO60+
+	QFj0=
+X-Gm-Gg: ASbGncux0LC1Nh+fR2mT0xrsgvHi5ItYKPYWe03Zmi/2BUSROYEEcnAFFOsfmkvkwR7
+	uj64ff+LVgx2qNQBIo1V9hMNfdJiWClkrh6dr+dHWcatPHYWPAdnRWHWekTu449ej+4PPuws1Zf
+	D4X+ZkWiU9WPXTZ4FEmMbb6Ei1mVtbPVRY3qZP/d6Js02Z1Nxa3t+OmOgdQcq6zVW3r1GIWav9t
+	Bg7T2KRoV71wQjIeYBaoHeHVl1PQGdz7zYAXPLR4dM99RoqCdY3zb7eE4nSIlQmijOX8ZeTfHXC
+	+ZnUx2BkFGambNd7h5J8+bqHAMos7RObWiVRYNN/RTf9sUF4sYs84FJa7l75hmYNo2nZ9OGYMIA
+	KxQyUJxZuAJ4CYBmRKuZcUPkIBbZs2u6+OfA5poPYoG1qa+gQJiD1j4b+zWZvhs3c4oOoC44NMK
+	B7qOz+CFyguF6wfA==
+X-Google-Smtp-Source: AGHT+IENXQwS5xLShdfsnWgUvMNA0/rpPrTkOQgFzwABmXBfkzRUJukDycjqtOaZP9+lmSg27P4lHQ==
+X-Received: by 2002:a05:6a00:1399:b0:781:264b:dd96 with SMTP id d2e1a72fcca58-78c98dbf0b9mr927240b3a.19.1759440341098;
+        Thu, 02 Oct 2025 14:25:41 -0700 (PDT)
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com. [209.85.210.178])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78b01fb0548sm2998136b3a.27.2025.10.02.14.25.39
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Oct 2025 14:25:39 -0700 (PDT)
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-78af9ebe337so1152528b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 14:25:39 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUwGoFMTRziki7GTiUkjM5ROdnTasMYJoWpkHc9UqNQ2QTnY/2u5egNn5jfrTTPKd9g/tAK+L2YpvJj@vger.kernel.org
+X-Received: by 2002:a17:90b:4a8f:b0:330:852e:2bcc with SMTP id
+ 98e67ed59e1d1-339c27b94e9mr883144a91.21.1759440338414; Thu, 02 Oct 2025
+ 14:25:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
+References: <20250929142455.24883-1-clamor95@gmail.com> <20250929142455.24883-9-clamor95@gmail.com>
+ <CAD=FV=VO2sXssuhZyz+aKvN22xH5eButHOQgKK+qEkPT3Ug2XQ@mail.gmail.com>
+In-Reply-To: <CAD=FV=VO2sXssuhZyz+aKvN22xH5eButHOQgKK+qEkPT3Ug2XQ@mail.gmail.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Thu, 2 Oct 2025 14:25:26 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=VOEDgUHG138d-_HyRX1EmeuZ=8v+2UL4cXQ0GN0e1FqQ@mail.gmail.com>
+X-Gm-Features: AS18NWBl_-6A1NX6XipYEQi78zuUuxrbDfjw2_uXBU-dcpIdXNfIO_PqcqCT8kc
+Message-ID: <CAD=FV=VOEDgUHG138d-_HyRX1EmeuZ=8v+2UL4cXQ0GN0e1FqQ@mail.gmail.com>
+Subject: Re: [PATCH v1 8/8] gpu/drm: panel-edp: add AUO B116XAN02.0 panel entry
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Added support to save and restore registers that are critical
-during PM.
+Hi,
 
-Signed-off-by: Kamal Dasu <kamal.dasu@broadcom.com>
----
- drivers/mmc/host/sdhci-brcmstb.c | 124 +++++++++++++++++++++++++++++--
- 1 file changed, 119 insertions(+), 5 deletions(-)
+On Mon, Sep 29, 2025 at 8:15=E2=80=AFPM Doug Anderson <dianders@chromium.or=
+g> wrote:
+>
+> Hi,
+>
+> On Mon, Sep 29, 2025 at 7:25=E2=80=AFAM Svyatoslav Ryhel <clamor95@gmail.=
+com> wrote:
+> >
+> > Add an eDP panel entry for AUO B116XAN02.0 used in Lenovo IdeaPad Yoga =
+11
+> > with Tegra 3 SoC.
+> >
+> > The raw edid of the panel is:
+> >
+> > 00 ff ff ff ff ff ff 00 06 af 5c 20 00 00 00 00
+> > 00 16 01 04 90 1a 0e 78 02 99 85 95 55 56 92 28
+> > 22 50 54 00 00 00 01 01 01 01 01 01 01 01 01 01
+> > 01 01 01 01 01 01 12 1b 56 5a 50 00 19 30 30 20
+> > 46 00 00 90 10 00 00 18 00 00 00 0f 00 00 00 00
+> > 00 00 00 00 00 00 00 00 00 20 00 00 00 fe 00 41
+> > 55 4f 0a 20 20 20 20 20 20 20 20 20 00 00 00 fe
+> > 00 42 31 31 36 58 41 4e 30 32 2e 30 20 0a 00 f1
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >  drivers/gpu/drm/panel/panel-edp.c | 1 +
+> >  1 file changed, 1 insertion(+)
+>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-diff --git a/drivers/mmc/host/sdhci-brcmstb.c b/drivers/mmc/host/sdhci-brcmstb.c
-index 0905b316a24b..ffa602a99ab7 100644
---- a/drivers/mmc/host/sdhci-brcmstb.c
-+++ b/drivers/mmc/host/sdhci-brcmstb.c
-@@ -24,7 +24,9 @@
- #define BRCMSTB_MATCH_FLAGS_NO_64BIT		BIT(0)
- #define BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT	BIT(1)
- #define BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE	BIT(2)
--#define BRCMSTB_MATCH_FLAGS_USE_CARD_BUSY	BIT(4)
-+#define BRCMSTB_MATCH_FLAGS_HAS_CFG_V1		BIT(3)
-+#define BRCMSTB_MATCH_FLAGS_HAS_CFG_V2		BIT(4)
-+#define BRCMSTB_MATCH_FLAGS_USE_CARD_BUSY	BIT(5)
- 
- #define BRCMSTB_PRIV_FLAGS_HAS_CQE		BIT(0)
- #define BRCMSTB_PRIV_FLAGS_GATE_CLOCK		BIT(1)
-@@ -38,19 +40,39 @@
- #define SDIO_CFG_OP_DLY_DEFAULT			0x80000003
- #define SDIO_CFG_CQ_CAPABILITY			0x4c
- #define SDIO_CFG_CQ_CAPABILITY_FMUL		GENMASK(13, 12)
-+#define SDIO_CFG_SD_PIN_SEL			0x44
-+#define SDIO_CFG_V1_SD_PIN_SEL			0x54
-+#define SDIO_CFG_PHY_SW_MODE_0_RX_CTRL		0x7C
- #define SDIO_CFG_MAX_50MHZ_MODE			0x1ac
- #define SDIO_CFG_MAX_50MHZ_MODE_STRAP_OVERRIDE	BIT(31)
- #define SDIO_CFG_MAX_50MHZ_MODE_ENABLE		BIT(0)
- 
-+#define SDIO_BOOT_MAIN_CTL			0x0
-+
- #define MMC_CAP_HSE_MASK	(MMC_CAP2_HSX00_1_2V | MMC_CAP2_HSX00_1_8V)
- /* Select all SD UHS type I SDR speed above 50MB/s */
- #define MMC_CAP_UHS_I_SDR_MASK	(MMC_CAP_UHS_SDR50 | MMC_CAP_UHS_SDR104)
- 
-+enum cfg_core_ver {
-+	SDIO_CFG_CORE_V1 = 1,
-+	SDIO_CFG_CORE_V2,
-+};
-+
-+struct sdhci_brcmstb_saved_regs {
-+	u32 sd_pin_sel;
-+	u32 phy_sw_mode0_rxctrl;
-+	u32 max_50mhz_mode;
-+	u32 boot_main_ctl;
-+};
-+
- struct sdhci_brcmstb_priv {
- 	void __iomem *cfg_regs;
-+	void __iomem *boot_regs;
-+	struct sdhci_brcmstb_saved_regs saved_regs;
- 	unsigned int flags;
- 	struct clk *base_clk;
- 	u32 base_freq_hz;
-+	void (*save_restore_regs)(struct mmc_host *mmc, int save);
- };
- 
- struct brcmstb_match_priv {
-@@ -60,6 +82,69 @@ struct brcmstb_match_priv {
- 	const unsigned int flags;
- };
- 
-+static void sdhci_brcmstb_save_regs(struct mmc_host *mmc, enum cfg_core_ver ver)
-+{
-+	struct sdhci_host *host = mmc_priv(mmc);
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct sdhci_brcmstb_priv *priv = sdhci_pltfm_priv(pltfm_host);
-+	struct sdhci_brcmstb_saved_regs *sr = &priv->saved_regs;
-+	void __iomem *cr = priv->cfg_regs;
-+	bool is_emmc = mmc->caps & MMC_CAP_NONREMOVABLE;
-+
-+	/* save  */
-+	if (is_emmc && priv->boot_regs)
-+		sr->boot_main_ctl = readl(priv->boot_regs + SDIO_BOOT_MAIN_CTL);
-+
-+	if (ver == SDIO_CFG_CORE_V1) {
-+		sr->sd_pin_sel = readl(cr + SDIO_CFG_V1_SD_PIN_SEL);
-+		return;
-+	}
-+
-+	sr->sd_pin_sel = readl(cr + SDIO_CFG_SD_PIN_SEL);
-+	sr->phy_sw_mode0_rxctrl = readl(cr + SDIO_CFG_PHY_SW_MODE_0_RX_CTRL);
-+	sr->max_50mhz_mode = readl(cr + SDIO_CFG_MAX_50MHZ_MODE);
-+}
-+
-+static void sdhci_brcmstb_restore_regs(struct mmc_host *mmc,
-+						enum cfg_core_ver ver)
-+{
-+	struct sdhci_host *host = mmc_priv(mmc);
-+	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-+	struct sdhci_brcmstb_priv *priv = sdhci_pltfm_priv(pltfm_host);
-+	struct sdhci_brcmstb_saved_regs *sr = &priv->saved_regs;
-+	void __iomem *cr = priv->cfg_regs;
-+	bool is_emmc = mmc->caps & MMC_CAP_NONREMOVABLE;
-+
-+	/* restore */
-+	if (is_emmc && priv->boot_regs)
-+		writel(sr->boot_main_ctl, priv->boot_regs + SDIO_BOOT_MAIN_CTL);
-+
-+	if (ver == SDIO_CFG_CORE_V1) {
-+		writel(sr->sd_pin_sel, cr + SDIO_CFG_SD_PIN_SEL);
-+		return;
-+	}
-+
-+	writel(sr->sd_pin_sel, cr + SDIO_CFG_SD_PIN_SEL);
-+	writel(sr->phy_sw_mode0_rxctrl, cr + SDIO_CFG_PHY_SW_MODE_0_RX_CTRL);
-+	writel(sr->max_50mhz_mode, cr + SDIO_CFG_MAX_50MHZ_MODE);
-+}
-+
-+static void sdhci_brcmstb_save_restore_regs_v1(struct mmc_host *mmc, int save)
-+{
-+	if (save)
-+		sdhci_brcmstb_save_regs(mmc, SDIO_CFG_CORE_V1);
-+	else
-+		sdhci_brcmstb_restore_regs(mmc, SDIO_CFG_CORE_V1);
-+}
-+
-+static void sdhci_brcmstb_save_restore_regs_v2(struct mmc_host *mmc, int save)
-+{
-+	if (save)
-+		sdhci_brcmstb_save_regs(mmc, SDIO_CFG_CORE_V2);
-+	else
-+		sdhci_brcmstb_restore_regs(mmc, SDIO_CFG_CORE_V2);
-+}
-+
- static inline void enable_clock_gating(struct sdhci_host *host)
- {
- 	struct sdhci_pltfm_host *pltfm_host = sdhci_priv(host);
-@@ -300,24 +385,33 @@ static struct brcmstb_match_priv match_priv_7425 = {
- 	.ops = &sdhci_brcmstb_ops,
- };
- 
--static struct brcmstb_match_priv match_priv_7445 = {
-+static struct brcmstb_match_priv match_priv_74371 = {
- 	.flags = BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
- 	.ops = &sdhci_brcmstb_ops,
- };
- 
-+static struct brcmstb_match_priv match_priv_7445 = {
-+	.flags = BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT |
-+			BRCMSTB_MATCH_FLAGS_HAS_CFG_V1,
-+	.ops = &sdhci_brcmstb_ops,
-+};
-+
- static struct brcmstb_match_priv match_priv_72116 = {
--	.flags = BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT,
-+	.flags = BRCMSTB_MATCH_FLAGS_BROKEN_TIMEOUT |
-+			BRCMSTB_MATCH_FLAGS_HAS_CFG_V1,
- 	.ops = &sdhci_brcmstb_ops_72116,
- };
- 
- static const struct brcmstb_match_priv match_priv_7216 = {
--	.flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE,
-+	.flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE |
-+			BRCMSTB_MATCH_FLAGS_HAS_CFG_V2,
- 	.hs400es = sdhci_brcmstb_hs400es,
- 	.ops = &sdhci_brcmstb_ops_7216,
- };
- 
- static struct brcmstb_match_priv match_priv_74165b0 = {
--	.flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE,
-+	.flags = BRCMSTB_MATCH_FLAGS_HAS_CLOCK_GATE |
-+			BRCMSTB_MATCH_FLAGS_HAS_CFG_V2,
- 	.hs400es = sdhci_brcmstb_hs400es,
- 	.ops = &sdhci_brcmstb_ops_74165b0,
- };
-@@ -325,6 +419,7 @@ static struct brcmstb_match_priv match_priv_74165b0 = {
- static const struct of_device_id __maybe_unused sdhci_brcm_of_match[] = {
- 	{ .compatible = "brcm,bcm2712-sdhci", .data = &match_priv_2712 },
- 	{ .compatible = "brcm,bcm7425-sdhci", .data = &match_priv_7425 },
-+	{ .compatible = "brcm,bcm74371-sdhci", .data = &match_priv_74371 },
- 	{ .compatible = "brcm,bcm7445-sdhci", .data = &match_priv_7445 },
- 	{ .compatible = "brcm,bcm72116-sdhci", .data = &match_priv_72116 },
- 	{ .compatible = "brcm,bcm7216-sdhci", .data = &match_priv_7216 },
-@@ -441,6 +536,19 @@ static int sdhci_brcmstb_probe(struct platform_device *pdev)
- 	if (res)
- 		goto err;
- 
-+	/* map non-standard BOOT registers if present */
-+	if (host->mmc->caps & MMC_CAP_NONREMOVABLE) {
-+		priv->boot_regs = devm_platform_get_and_ioremap_resource(pdev, 2, NULL);
-+		if (IS_ERR(priv->boot_regs))
-+			priv->boot_regs = NULL;
-+	}
-+
-+	if (match_priv->flags & BRCMSTB_MATCH_FLAGS_HAS_CFG_V1)
-+		priv->save_restore_regs = sdhci_brcmstb_save_restore_regs_v1;
-+
-+	if (match_priv->flags & BRCMSTB_MATCH_FLAGS_HAS_CFG_V2)
-+		priv->save_restore_regs = sdhci_brcmstb_save_restore_regs_v2;
-+
- 	/*
- 	 * Automatic clock gating does not work for SD cards that may
- 	 * voltage switch so only enable it for non-removable devices.
-@@ -533,6 +641,9 @@ static int sdhci_brcmstb_suspend(struct device *dev)
- 	struct sdhci_brcmstb_priv *priv = sdhci_pltfm_priv(pltfm_host);
- 	int ret;
- 
-+	if (priv->save_restore_regs)
-+		priv->save_restore_regs(host->mmc, 1);
-+
- 	clk_disable_unprepare(priv->base_clk);
- 	if (host->mmc->caps2 & MMC_CAP2_CQE) {
- 		ret = cqhci_suspend(host->mmc);
-@@ -564,6 +675,9 @@ static int sdhci_brcmstb_resume(struct device *dev)
- 			ret = clk_set_rate(priv->base_clk, priv->base_freq_hz);
- 	}
- 
-+	if (priv->save_restore_regs)
-+		priv->save_restore_regs(host->mmc, 0);
-+
- 	if (host->mmc->caps2 & MMC_CAP2_CQE)
- 		ret = cqhci_resume(host->mmc);
- 
--- 
-2.34.1
+Pushed just this patch to drm-misc-next to get it out of the way,
+since there are no dependencies.
 
+[8/8] gpu/drm: panel-edp: add AUO B116XAN02.0 panel entry
+      commit: 5b50bb435629ab206cfa1cca3d71847d4523f88b
 
