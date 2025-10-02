@@ -1,120 +1,124 @@
-Return-Path: <devicetree+bounces-223448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FBFCBB4FF2
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 21:26:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1E93BB50C1
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 21:48:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5EF1326078
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 19:26:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E09F1889C09
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 19:49:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CEBA283146;
-	Thu,  2 Oct 2025 19:26:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D897272811;
+	Thu,  2 Oct 2025 19:48:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="kPAF5kcB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LTlarZ1l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com [91.218.175.186])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69B6F2367B5
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 19:26:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.186
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B113550276
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 19:48:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759433193; cv=none; b=JSJOG9J1kbpOazFpannQiZ2hLvFbvcvPkxWXtJzRLRN+4jYh+g83XPeLjIUTZuoxmy9c20cbTLkVl2iPnFw27WZnK0njq3or/JIe5jRx5BaOiwWu176/YaTAw+Qu/bh5rpOMgrmO5+VSabd3LUXqkc2uJQ/m1Sd1yXjTPgoAZbw=
+	t=1759434518; cv=none; b=gL6EDMdUgLE/fVt8qG5cRkRPznpn8SgR4ULADfjNcApK8T1jF3wEwROrkJAN40fgkOBMd29DhlLz6H0Sy87+by515jM6fjju9tZ62hVL2VKuU7GwLn5lIP9CzXeOyXoDvDC0iWp7oiv31Rpc/GCpT58vJHdZ2tlSUYKZ+tpfB3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759433193; c=relaxed/simple;
-	bh=sF6m7Kz/PItRSwhbUbxo0QBnQFFNFeFAB2lZhTsKydI=;
-	h=MIME-Version:Date:Content-Type:From:Message-ID:Subject:To:Cc:
-	 In-Reply-To:References; b=lj1YBf5q5qwy6FeCSBxlCwpHtNiblTofuufJmLrWXdY1OXK52CYUFJFQ21TU8k3NcFK5nB88pR/2NAknEeHuMwUQClOGPlJb4aDyEGBVmXu6lVE+qipbkJ/M+dKbgyGT3K9xacYEEjWns4jA6BxAOqOpnXwZ4debJvn25CJ8sDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=kPAF5kcB; arc=none smtp.client-ip=91.218.175.186
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+	s=arc-20240116; t=1759434518; c=relaxed/simple;
+	bh=Pm4l1zpEV2NSredTPhkQVFmQa0kARI/iMaPWVjt0V6U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gXCrZki/9+3CenN6M/dxHDq1sL7kXeL76kgPciW+/3r4G+VU7Q+eXsgMBjts8Mthyk8hjYHeA/QEZvjutjr4nOBEvfjCBGMTwXuCtP+5fmjSnInsLMAOzXM/T3+WYcfBtnoNyHTOuiwN+6r9Imfc9sgoPLT1OKLMQ3yk8+JZf1E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LTlarZ1l; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-3652d7800a8so10830251fa.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 12:48:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759434515; x=1760039315; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=d/gbplP1B7qXcxXjextCIPtkE0JJrRNYjBjwQhhQcJg=;
+        b=LTlarZ1lhmHgIKH9ZtJ3jAxyr5UR8wNPf4W1w7KuJgwuxGoF6khn1gjWe/p4dW/U+d
+         UiRWmBphsPRgZvFLGENjigqVvbwHOwhKJi9LEVmCRO3jhyOO1C/I3BIIkhEcVVHLbSuu
+         dU7cV6AArQluoKVb3OFiBdluzD6oU9GfTNKZIKRgIx5fAKq/rwMqFD2iv57ffyHQoUSV
+         r11EvF+VP6QYCX02h8yWvVbknV4VBCBshkAUhPtqASFN1MP3KVa8437XeigkgMR+NS5J
+         DkDDaQyUOhQhJMaeyeTrqaIPJ9o475W3h2l5o4jn83fWjRu53VdGAAITns8wsjO9iavi
+         ci5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759434515; x=1760039315;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=d/gbplP1B7qXcxXjextCIPtkE0JJrRNYjBjwQhhQcJg=;
+        b=H3277hI4TUaGqcArKQAtcHEBYsYsfs8tlobGDFtN6Mg+IutG2t2Kj6/PhN/70XxYw3
+         Z9CR3wkhHMT+hJNAF8nm8/0mbVYKufh9zuOiSvmzl7YQSi65jVNuyq0u3MfgB5tKBEPq
+         DI4woLNZmC6I7e9IEkNjTmj2ziw9JuvQ3rnLdWhkGclmJHqI88aAPxgX2fM4TjmT58LM
+         E4b9tmnwoTBrNZYFl5YQfyGDMu/0CCAnct3K1I/CjSnLinuLF1S6PrUDIz/LcSXzL5ei
+         0AxV7F+ifreYftbMqAQJRjLgHBhmvZPwC5ckFTTJqW2FtY0gxhtr4cK/BxfEqgPhpVWt
+         cA0A==
+X-Forwarded-Encrypted: i=1; AJvYcCVuS2BMPxRFK1TNCixxDqIvUGapYS/VXNezI1AUZZLuXOdju7Fk75Y8yQdLYV3OmftGXkB7KApOwCXh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6qzvY9lLPUCbRNMLaUF4sjRKxAP/UZNmE+AthIdInt3XSNv60
+	jVhW5mYEcbt8abt9roizyxpvsL47kvCO+yZOCEdgNAHXHEumo84Hs9k24b5IWA==
+X-Gm-Gg: ASbGncs3wFvMan6RcTP9hrE1YClD6zB0jIXEGEt2mAAUEHpQ6DALCuCRJTzGxabOo9k
+	0616DiJb2ZlNulmo5ASEjPqHxeIx5TA76NGRz4zn4sDqx4zSgFMiR75zmCmabVw6r3MEwKFcTaO
+	haZAdC7OETP5avB/nWXp21CPj2Kcjeswm3Ct5QQNOLWUgzDLANjsyT8yQrqbXL9AHo3T1/zQThu
+	Vz2plBfmejm4VoBlx70AaNpTIb0IQQOi6MajzSfaf9PvcduIeh8O4zVlwz0ahk9giJZNG31B1nG
+	BMNnoU9e/nGYSWtGimqlk7WPBQyldnm0/Co4OiuKqxrCvnF3PwPc717xr6SRmMqn/ArySsG8YdG
+	mdW8wkWjRRgCMMFQdeiLzOjxK6ONGdSZqR2g1NHWWbeo8Y3H0qpaUPqA7
+X-Google-Smtp-Source: AGHT+IELrL05mo/onWVydfWqyfhsUUiXFwKvaXehHGtbG7WXIyXgpRg+lJEHtfppQeAj6E4CWfYJ6Q==
+X-Received: by 2002:a05:651c:1506:b0:36f:284:56db with SMTP id 38308e7fff4ca-374c37e9b65mr1127731fa.23.1759434514466;
+        Thu, 02 Oct 2025 12:48:34 -0700 (PDT)
+Received: from localhost.localdomain.pl ([89.151.31.85])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-373ba3127a2sm8783171fa.29.2025.10.02.12.48.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Oct 2025 12:48:34 -0700 (PDT)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	bcm-kernel-feedback-list@broadcom.com,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] ARM: dts: BCM53573: Fix address of Luxul XAP-1440's Ethernet PHY
+Date: Thu,  2 Oct 2025 21:48:52 +0200
+Message-ID: <20251002194852.13929-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
-	s=key1; t=1759433179;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=K4sPjDAwiOapYwAjhtANPQek3u9Zjdz92H9jh7Cwyh4=;
-	b=kPAF5kcB61C8BKqglZaikUlUk43vhdt+PPB95LWWmDjPlCucvdSH7AzHEyYR/9byIaGY2k
-	lJ1dxP0KYpCKaD6N+11aReG8B3xB/J2TZsTKVioUlTRd9MTPhfnYrH4hglCmmUkaM5t+Gy
-	mCEn9nYbmXXaO8RqHvOpxhhXZt3D/2agdQYGoY3DF0PSN77LDbT/0tGkJgh0a44n6G4095
-	3oJUk8gKYyPEkgCgUKzhNWLYZJ9tJidVMYThU1egGRA9J3wqyoLpVIIxMU+xxos+9xlSDc
-	qord78gBMt2T8D5fd8qmPeOt3/3lQR19W1/3KfobiJZ0FC/3+lBUxdAj1oWbSw==
-Date: Thu, 02 Oct 2025 19:26:16 +0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Paul Sajna" <sajattack@postmarketos.org>
-Message-ID: <ad721948b83a54eaa34f367e12564fe6acc222a1@postmarketos.org>
-TLS-Required: No
-Subject: Re: [PATCH v3 07/11] arm64: dts: qcom: sdm845-lg-{common, judyln}:
- Add wifi node
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Bjorn Andersson"
- <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "David Heidelberg" <david@ixit.cz>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, "Amir Dahan"
- <system64fumo@protonmail.com>, "Christopher Brown"
- <crispybrown@gmail.com>
-In-Reply-To: <7661d9d9-eca3-4708-8162-960df0d7f6c7@oss.qualcomm.com>
-References: <20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org>
- <20250928-judyln-dts-v3-7-b14cf9e9a928@postmarketos.org>
- <f58493a9-6def-4610-9c3e-d6a877dc23d3@oss.qualcomm.com>
- <d38801bc77ad00442b1669ea252ae30a5c6af5b4@postmarketos.org>
- <7661d9d9-eca3-4708-8162-960df0d7f6c7@oss.qualcomm.com>
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-October 2, 2025 at 9:37 AM, "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.c=
-om mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%22%20%3C=
-konrad.dybcio%40oss.qualcomm.com%3E > wrote:
+From: Rafał Miłecki <rafal@milecki.pl>
 
+Luxul XAP-1440 has BCM54210E PHY at address 25.
 
->=20
->=20On 10/2/25 6:51 AM, Paul Sajna wrote:
->=20
->=20>=20
->=20> October 1, 2025 at 9:14 AM, "Konrad Dybcio" <konrad.dybcio@oss.qual=
-comm.com mailto:konrad.dybcio@oss.qualcomm.com?to=3D%22Konrad%20Dybcio%22=
-%20%3Ckonrad.dybcio%40oss.qualcomm.com%3E > wrote
-> >=20=20
->=20>=20=20
->=20>=20
->=20> >=20
->=20> > As the dt-checker points out, there is no such property
-> > >=20
->=20> >  If your wi-fi works regardless of that, you probably don't need
-> > >  to set the one you intended to
-> > >=20
->=20> >  Konrad
-> > >=20
->=20>=20=20
->=20>  Perhaps this only exists in the postmarketos tree, but it definite=
-ly exists, and doesn't work without it. I'll remove it for upstreaming fo=
-r now but hopefully someone sorts that out. upstream.
-> >=20
->=20So you didn't test the tree you sent? :/
->=20
->=20fwiw
->=20
->=20drivers/net/wireless/ath/ath10k/snoc.c:
->  qcom,snoc-host-cap-8bit-quirk
->=20
->=20Konrad
->
+Fixes: 44ad82078069 ("ARM: dts: BCM53573: Fix Ethernet info for Luxul devices")
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-I think I'll probably just drop this until a bunch of other stuff is upst=
-reamed. mdss is totally broken on mainline, wi-fi doesn't work, fuel gaug=
-e is missing, etc. etc.
+diff --git a/arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dts b/arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dts
+index ac44c745bdf8..a39a021a3910 100644
+--- a/arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dts
++++ b/arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dts
+@@ -55,8 +55,8 @@ &gmac0 {
+ 	mdio {
+ 		/delete-node/ switch@1e;
+ 
+-		bcm54210e: ethernet-phy@0 {
+-			reg = <0>;
++		bcm54210e: ethernet-phy@25 {
++			reg = <25>;
+ 		};
+ 	};
+ };
+-- 
+2.51.0
 
-I tried the 8-bit quirk and it didn't help.
 
