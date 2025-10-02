@@ -1,78 +1,66 @@
-Return-Path: <devicetree+bounces-223195-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223196-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97078BB21D1
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 02:14:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4694ABB2226
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 02:20:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FFBD19C5AB4
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 00:14:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 004FB161B23
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 00:20:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9945B290F;
-	Thu,  2 Oct 2025 00:14:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2513F224F6;
+	Thu,  2 Oct 2025 00:20:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="eKVf8hHR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IBxfyob7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFC1234BA2B;
-	Thu,  2 Oct 2025 00:14:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC2C25227;
+	Thu,  2 Oct 2025 00:20:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759364048; cv=none; b=ZcUrQVuQAXcIyjMlk4spNLpsRiqujBUN2hHzGfXn423d5/OyI0Y7jRZNNjiGcsm3Prx7Ub7jNazUOI7TdS+1QdKOOW2LzzBl5v18li74q5BTEDQC65e0rWx3ciXzl/XZSBrOW428jmBZGqY0p94yEc8cweVIVhuYNIP28tQJCuo=
+	t=1759364442; cv=none; b=inJJV7JNlbQaoGEPUnlty5kf0EvtH5bdXF9EAZhzvoiPccaon703jTK3Su7akgcsqkXmhTc7VXTg9olDrWDK2HP7cVguizAEiuVM06T+KQBaPWCFkYvJcTI/m7bdSTqN5Vpn4AmQOZ6kDZcPVHVCUxJUTZ9l+cxVbz8s5xS/lTE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759364048; c=relaxed/simple;
-	bh=vgWIWdCzpsu1OacLiuXWyM5m8s3gHqWeC+dd/lMOdy0=;
+	s=arc-20240116; t=1759364442; c=relaxed/simple;
+	bh=Z5VycwaRGCTZh6B0+RfFBfHEf7Kh1kkGLViY785TdZ8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X0MTzfi5i3g08bXmhMPAt+zbRvM2EycJoQv0IFrdXBk1CNUVbsgfmSa4wP04j4kDmJ7ftalakLha0nbIaa2+lxbe4N8IJe0+DRoLMLm8j4KMZQ+QDu61hGAi/+TEweS84G2QibZDvAmzsiHb13LhzNpv9x/dEYTpYkJaSnm/r38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=eKVf8hHR; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1759364046; x=1790900046;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=vgWIWdCzpsu1OacLiuXWyM5m8s3gHqWeC+dd/lMOdy0=;
-  b=eKVf8hHRYbQbl2zCElGSncRCfO83PMMg9b9TiFWIzj/zSTJADz6JDIXp
-   ZTZ3qyB4JywU7y5iUv5OzLwIp5esFiUcQl5oiGNExuUkKom8uhGWHLtWR
-   hKE99bFHDZAznAEndbXUBkARe9waGTob2fsP9ro7yuAlCfzxIY9HFN1b1
-   RqBlkXYvsMl39nqnM+5/cy4xCsbOS7GnmiKsfPluhv1NjYFwqzoapVB+M
-   ksZoHoKqaC/DizE8p0DMo8bXh12bmpIu5P1GSpKw1ETUNCtG/Li98jhhC
-   L3JYf+GBcpjDjNFfTETMMJ/aCetxmemDV9sdqR6nOQJEDgAJXpCV06J/e
-   A==;
-X-CSE-ConnectionGUID: o7HeK5v3QYqt41TBuWE+EQ==
-X-CSE-MsgGUID: XPYR+QHdSU+XRYyb7/17KQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11569"; a="60863845"
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; 
-   d="scan'208";a="60863845"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2025 17:14:06 -0700
-X-CSE-ConnectionGUID: 43wHW9ffRLWI24eD0r22Zg==
-X-CSE-MsgGUID: N40iFHvQQp+sfTGZ1Njipw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,308,1751266800"; 
-   d="scan'208";a="178867208"
-Received: from lkp-server01.sh.intel.com (HELO 2f2a1232a4e4) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 01 Oct 2025 17:14:03 -0700
-Received: from kbuild by 2f2a1232a4e4 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v46xM-0003TT-2L;
-	Thu, 02 Oct 2025 00:14:00 +0000
-Date: Thu, 2 Oct 2025 08:13:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: victor.duicu@microchip.com, jic23@kernel.org, dlechner@baylibre.com,
-	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, marius.cristea@microchip.com,
-	victor.duicu@microchip.com, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] iio: temperature: add support for MCP998X
-Message-ID: <202510020803.3pQv1jeZ-lkp@intel.com>
-References: <20250930133131.13797-3-victor.duicu@microchip.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rRPnx+yKNXMmhTHJwRlSFRL7U4WfmMLsWkSz3fOmwmITJv1Pnl/+OREtXdapiVkD6oPh86feBuN5UnpL353OMSCvMkWVA2v+Vzp+6ObduOrwoVES9LEjW5Ejo4kWVNYe/ayo940L46pBj8TmVSRfZr7dJ3uBWbohVNHXMid/egk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IBxfyob7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7395DC4CEF1;
+	Thu,  2 Oct 2025 00:20:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759364441;
+	bh=Z5VycwaRGCTZh6B0+RfFBfHEf7Kh1kkGLViY785TdZ8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IBxfyob737auB/QcF4F3g6r4Kc+F+nDjefh76CK3QaXDH2wX/4RrVopLminyOy+Yt
+	 yBKeUbEZdPjS8nkPJ2y6ABhCR0iQWZFX3Vfnl07r2WSpNfY2PRyOtHOF4UIxKKYN72
+	 OhqpKdj3F4Q9mKHw0iWbb3gV3msoegcF7YB9llsOqwDPTpO2S8EF4DaW9hXKao3ayG
+	 D5ZUfPM1/bdBtx15W3EV3u3vZE32fBWg15xBsPX5z+iHXHPrzLKpM7XkIRL0gWtJ9g
+	 mduSCiMtwkcrZjaHDbM3d9afva2YpizvZMPz9VYO/xBjyKiqyr70IylztsVnf/9Was
+	 Tlg6E7Z+sKVHQ==
+Date: Wed, 1 Oct 2025 19:20:40 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
+Cc: linux-arm-kernel@lists.infradead.org, Stephen Boyd <sboyd@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	linux-kernel@vger.kernel.org,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Felix Fietkau <nbd@nbd.name>, Andreas Gnau <andreas.gnau@iopsys.eu>,
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: clock: airoha: Add reset support to
+ EN7523 clock binding
+Message-ID: <175936443940.2629153.2958124902767152491.robh@kernel.org>
+References: <20250924094112.1918444-1-mikhail.kshevetskiy@iopsys.eu>
+ <20250924104850.1930254-1-mikhail.kshevetskiy@iopsys.eu>
+ <20250924104850.1930254-2-mikhail.kshevetskiy@iopsys.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,118 +69,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250930133131.13797-3-victor.duicu@microchip.com>
-
-Hi,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on 561285d048053fec8a3d6d1e3ddc60df11c393a0]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/victor-duicu-microchip-com/dt-bindings-iio-temperature-add-support-for-MCP998X/20250930-213443
-base:   561285d048053fec8a3d6d1e3ddc60df11c393a0
-patch link:    https://lore.kernel.org/r/20250930133131.13797-3-victor.duicu%40microchip.com
-patch subject: [PATCH v6 2/2] iio: temperature: add support for MCP998X
-config: i386-randconfig-013-20251002 (https://download.01.org/0day-ci/archive/20251002/202510020803.3pQv1jeZ-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.4.0-5) 12.4.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251002/202510020803.3pQv1jeZ-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510020803.3pQv1jeZ-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/iio/temperature/mcp9982.c: In function 'mcp9982_read_raw':
->> drivers/iio/temperature/mcp9982.c:467:24: error: implicit declaration of function 'get_unaligned_be16' [-Werror=implicit-function-declaration]
-     467 |                 *val = get_unaligned_be16(bulk_read + 1);
-         |                        ^~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
+In-Reply-To: <20250924104850.1930254-2-mikhail.kshevetskiy@iopsys.eu>
 
 
-vim +/get_unaligned_be16 +467 drivers/iio/temperature/mcp9982.c
+On Wed, 24 Sep 2025 13:48:48 +0300, Mikhail Kshevetskiy wrote:
+> Introduce reset capability to EN7523 device-tree clock binding
+> documentation.
+> 
+> Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
+> ---
+>  .../bindings/clock/airoha,en7523-scu.yaml     |  3 +-
+>  .../dt-bindings/reset/airoha,en7523-reset.h   | 61 +++++++++++++++++++
+>  2 files changed, 62 insertions(+), 2 deletions(-)
+>  create mode 100644 include/dt-bindings/reset/airoha,en7523-reset.h
+> 
 
-   416	
-   417	static int mcp9982_read_raw(struct iio_dev *indio_dev,
-   418				    struct iio_chan_spec const *chan, int *val,
-   419				    int *val2, long mask)
-   420	{
-   421		unsigned int tmp_reg, reg_status;
-   422		struct mcp9982_priv *priv = iio_priv(indio_dev);
-   423		unsigned long *src;
-   424		int ret;
-   425		u8 bulk_read[3];
-   426	
-   427		if (priv->run_state) {
-   428			/*
-   429			 * When working in Run mode, after modifying a parameter (like sampling
-   430			 * frequency) we have to wait a delay before reading the new values.
-   431			 * We can't determine when the conversion is done based on the BUSY bit.
-   432			 */
-   433			if (priv->wait_before_read) {
-   434				if (!time_after(jiffies, priv->time_limit))
-   435					mdelay(jiffies_to_msecs(priv->time_limit - jiffies));
-   436				priv->wait_before_read = false;
-   437			}
-   438		} else {
-   439			ret = regmap_write(priv->regmap, MCP9982_ONE_SHOT_ADDR, 1);
-   440			if (ret)
-   441				return ret;
-   442			/*
-   443			 * In Standby state after writing in OneShot register wait for
-   444			 * the start of conversion and then poll the BUSY bit.
-   445			 */
-   446			mdelay(125);
-   447			ret = regmap_read_poll_timeout(priv->regmap, MCP9982_STATUS_ADDR,
-   448						       reg_status, !(reg_status & MCP9982_STATUS_BUSY),
-   449						       mcp9982_delay_ms[priv->sampl_idx] * USEC_PER_MSEC,
-   450						       0);
-   451			if (ret)
-   452				return ret;
-   453		}
-   454		guard(mutex)(&priv->lock);
-   455	
-   456		switch (mask) {
-   457		case IIO_CHAN_INFO_RAW:
-   458			/*
-   459			 * The Block Read Protocol first returns the number of user readable
-   460			 * bytes, held in bulk_read[0], followed by the data.
-   461			 */
-   462			ret = regmap_bulk_read(priv->regmap, MCP9982_TEMP_MEM_BLOCK_ADDR(chan->channel),
-   463					       &bulk_read, sizeof(bulk_read));
-   464			if (ret)
-   465				return ret;
-   466	
- > 467			*val = get_unaligned_be16(bulk_read + 1);
-   468	
-   469			return IIO_VAL_INT;
-   470		case IIO_CHAN_INFO_SCALE:
-   471			*val = 0;
-   472			*val2 = MCP9982_SCALE;
-   473			return IIO_VAL_INT_PLUS_NANO;
-   474		case IIO_CHAN_INFO_SAMP_FREQ:
-   475			*val = mcp9982_conv_rate[priv->sampl_idx][0];
-   476			*val2 = mcp9982_conv_rate[priv->sampl_idx][1];
-   477			return IIO_VAL_INT_PLUS_MICRO;
-   478		case IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY:
-   479			ret = regmap_read(priv->regmap, MCP9982_RUNNING_AVG_ADDR, &tmp_reg);
-   480			if (ret)
-   481				return ret;
-   482			*src = tmp_reg;
-   483			*val = mcp9982_3db_values_map_tbl[priv->sampl_idx][bitmap_weight(src, 2)][0];
-   484			*val2 = mcp9982_3db_values_map_tbl[priv->sampl_idx][bitmap_weight(src, 2)][1];
-   485			return IIO_VAL_INT_PLUS_MICRO;
-   486		case IIO_CHAN_INFO_OFFSET:
-   487			*val = MCP9982_OFFSET;
-   488			return IIO_VAL_INT;
-   489		default:
-   490			return -EINVAL;
-   491		}
-   492	}
-   493	
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
