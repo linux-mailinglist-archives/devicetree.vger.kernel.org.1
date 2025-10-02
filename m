@@ -1,258 +1,107 @@
-Return-Path: <devicetree+bounces-223407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1E80BB453A
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 17:30:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE75FBB462A
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 17:44:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DB22325947
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 15:30:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D7701C3CB5
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 15:44:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 792991F462C;
-	Thu,  2 Oct 2025 15:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12D7A225788;
+	Thu,  2 Oct 2025 15:44:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UfcFYhNY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Itwu3wci"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 469DE1F2C45;
-	Thu,  2 Oct 2025 15:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D85472253EC;
+	Thu,  2 Oct 2025 15:44:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759419000; cv=none; b=HYKSGXs/BzsJ2OqV9/mJaibhkXngj6mM5nNrrltE+e5jGyZ344rLRzr1fyehucsNuT0a9noyYYY6Kg2KB/SSUUOigfa3KKqTt1DvK1Q7omWqJydMlK3TJW5psHttzGH+myU67Ly7XiTwPgNqu9yxHAMYs5UGHWdNgrUovLXbwk4=
+	t=1759419866; cv=none; b=tyO6iEzvgoiowGJ/A1bsEtNw5cXzPIatW7MKVJ1t/ndRfkEXvVTWOIJTOTgdHzphryNMm4zErByP7JhUwj4IL2uYau8zcl7UQA3zirgFYyN23lR0G3biaY29v6uaNSzfb4qDC6T/dvF0Yx6K26+pweUU+c5DCCj4p9gZW+hakdw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759419000; c=relaxed/simple;
-	bh=/lfDtITrdt033G9K6Sf8CUJ+JNwPECTxs5/z8imfrh8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UH2ueW44H8SaEV2pYdMLvnu27BKXVLNYmoea2msdanVkZoeVBjmgY9MjtIUUH56gq66QdYG3s8DNr6Mv85wKjPyhYmZu4+XsUjKQNpL7ZudDrT8BvF58be6yqMdPPdpHJ1I5iLs5BmH4HwiGHvU9KDUG89ebnZ6VlkXUEd9rWP8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UfcFYhNY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B143CC4CEF4;
-	Thu,  2 Oct 2025 15:29:56 +0000 (UTC)
+	s=arc-20240116; t=1759419866; c=relaxed/simple;
+	bh=gwC5BhJBwYKgsnNt4fN26IJ79zFAZbre4VusA+f9pes=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=pP9Xc5uP2pfUtpUllowr6SvUEJsjHB0mRCtZgcDtoHi+Lb4Zi2IWQ7L4thjRmGJCSn56r0KHahqdhPVk5iz9VhzXIHw6lmg2i0xAFFWfWcwYpeDWIyH8v83XJJp6IXc+SfRNKMH1EaDsYJYxrN3vXgqf/cvqLXkPDz75xR0OVm8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Itwu3wci; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BEDDC4CEF4;
+	Thu,  2 Oct 2025 15:44:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759418999;
-	bh=/lfDtITrdt033G9K6Sf8CUJ+JNwPECTxs5/z8imfrh8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UfcFYhNYVe9LFCSZBzZWACpYul4pVNqXZh/qTM4FTzXBmZuFuE0vtbqYVMwSwioFh
-	 eG0C6syh5yiiDbtL5ilZ6u2udyWLjy2Fx0+/TxM4lbpGCefhdNTbwb12a4JhvGzy/v
-	 +xKGhsIDlo7HCQHjooCi0CZIfsZDQxc7r1ZtC0lYuYE9z5CebIDiyQw8G5cSLTsHEN
-	 5eecWRBYz3Q9VRH2RW7BiNEagiQypjl9aM9oTwnlOQqJmokvvZiZ7EL7e+D8FuPBEr
-	 AtcTo2hzGWJnOMs5CQ3D9WAyzfhTVp3OD9eFgIG65lfg83fbDIp1SdiOFIziT8JWvu
-	 vs4Y5Gl5xNGNA==
-Message-ID: <a562c510-9c08-4acd-afe8-efb8aaceec66@kernel.org>
-Date: Thu, 2 Oct 2025 16:29:54 +0100
+	s=k20201202; t=1759419865;
+	bh=gwC5BhJBwYKgsnNt4fN26IJ79zFAZbre4VusA+f9pes=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Itwu3wciA297/eNzH7IsKflMpXmHgbzbByzzUeWY++7lJqzQG0//z8vEeua0uNuGi
+	 wCUHifUd3ejiiE5D7rPb6mJcNvPXe6wgeslW0kVP31U0pjh94O4jfPJwY2kBFlefhM
+	 SAtSZT0/ONJmBewr0/tjHlkQ8zgP/8MaH7XK/B80jSDT5t8e/dHc8kZeLSNH6sD3ct
+	 /iSGvoBU1ikZfyhYnUdrpl3jhqgBTX14a42i1DQ3hk/vuReiwRdLhfx4PP3eJSCdBD
+	 Deas6xrGBPbyqDSAEAIOWixKRAtXdRtZoEdXzfRhE84fZPMmIsWgDRN4dXPPy0Cx/Z
+	 4LwZX6SXCtr9w==
+From: Mark Brown <broonie@kernel.org>
+To: linux-spi@vger.kernel.org, Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, 
+ Jun Guo <Jun.Guo@cixtech.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20251001-basics-grafting-a1a214ef65ac@spud>
+References: <20251001-basics-grafting-a1a214ef65ac@spud>
+Subject: Re: (subset) [PATCH v1 1/2] spi: dt-bindings: cadence: add
+ soc-specific compatible strings for zynqmp and versal-net
+Message-Id: <175941986332.90691.14872518520812537985.b4-ty@kernel.org>
+Date: Thu, 02 Oct 2025 16:44:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 8/8] media: iris: Add platform data for kaanapali
-To: Vikash Garodia <vikash.garodia@oss.qualcomm.com>,
- Dikshita Agarwal <dikshita.agarwal@oss.qualcomm.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Vishnu Reddy <quic_bvisredd@quicinc.com>
-References: <20250925-knp_video-v1-0-e323c0b3c0cd@oss.qualcomm.com>
- <4-Uqk007ML-Q9NW-SjN7t6kX_tmucJiWOgoCTosvL2KPNWFwQzquB-VcPUMtnHTnTIMdKSMyg7JQNpOUthu9FQ==@protonmail.internalid>
- <20250925-knp_video-v1-8-e323c0b3c0cd@oss.qualcomm.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20250925-knp_video-v1-8-e323c0b3c0cd@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-56183
 
-On 25/09/2025 00:14, Vikash Garodia wrote:
-> Add support for the kaanapali platform by re-using the SM8550
-> definitions and using the vpu4 ops.
-> Move the configurations that differs in a per-SoC platform
-> header, that will contain SoC specific data.
+On Wed, 01 Oct 2025 19:31:12 +0100, Conor Dooley wrote:
+> When the binding for the Cadence spi controller was written, a dedicated
+> compatible was added for the zynq device. Later when zynqmp and
+> versal-net, which also use this spi controller IP, were added they did
+> not receive soc-specific compatibles. Add them now, with a fallback to
+> the existing compatible for the r1p6 version of the IP so that there
+> will be no functional change. Retain the r1p6 in the string, to match
+> what was done for zynq.
 > 
-> Co-developed-by: Vishnu Reddy <quic_bvisredd@quicinc.com>
-> Signed-off-by: Vishnu Reddy <quic_bvisredd@quicinc.com>
-> Signed-off-by: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-> ---
->   .../platform/qcom/iris/iris_platform_common.h      |  1 +
->   .../media/platform/qcom/iris/iris_platform_gen2.c  | 86 ++++++++++++++++++++++
->   .../platform/qcom/iris/iris_platform_kaanapali.h   | 63 ++++++++++++++++
->   drivers/media/platform/qcom/iris/iris_probe.c      |  4 +
->   4 files changed, 154 insertions(+)
-> 
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_common.h b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> index d6d4a9fdfc189797f903dfeb56d931741b405ee2..465943db0c6671e9b564b40e31ce6ba2d645a84c 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_common.h
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_common.h
-> @@ -46,6 +46,7 @@ extern struct iris_platform_data sm8250_data;
->   extern struct iris_platform_data sm8550_data;
->   extern struct iris_platform_data sm8650_data;
->   extern struct iris_platform_data sm8750_data;
-> +extern struct iris_platform_data kaanapali_data;
-> 
->   enum platform_clk_type {
->   	IRIS_AXI_CLK, /* AXI0 in case of platforms with multiple AXI clocks */
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_gen2.c b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> index 00c6b9021b98aac80612b1bb9734c8dac8146bd9..142b7d84ee00a9b65420158ac1f168515b56f4a3 100644
-> --- a/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_gen2.c
-> @@ -15,6 +15,7 @@
->   #include "iris_platform_qcs8300.h"
->   #include "iris_platform_sm8650.h"
->   #include "iris_platform_sm8750.h"
-> +#include "iris_platform_kaanapali.h"
-> 
->   #define VIDEO_ARCH_LX 1
->   #define BITRATE_MAX				245000000
-> @@ -1095,3 +1096,88 @@ struct iris_platform_data qcs8300_data = {
->   	.enc_op_int_buf_tbl = sm8550_enc_op_int_buf_tbl,
->   	.enc_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_enc_op_int_buf_tbl),
->   };
-> +
-> +struct iris_platform_data kaanapali_data = {
-> +	.get_instance = iris_hfi_gen2_get_instance,
-> +	.init_hfi_command_ops = iris_hfi_gen2_command_ops_init,
-> +	.init_hfi_response_ops = iris_hfi_gen2_response_ops_init,
-> +	.get_vpu_buffer_size = iris_vpu4x_buf_size,
-> +	.vpu_ops = &iris_vpu4x_ops,
-> +	.set_preset_registers = iris_set_sm8550_preset_registers,
-> +	.icc_tbl = sm8550_icc_table,
-> +	.icc_tbl_size = ARRAY_SIZE(sm8550_icc_table),
-> +	.clk_rst_tbl = kaanapali_clk_reset_table,
-> +	.clk_rst_tbl_size = ARRAY_SIZE(kaanapali_clk_reset_table),
-> +	.bw_tbl_dec = sm8550_bw_table_dec,
-> +	.bw_tbl_dec_size = ARRAY_SIZE(sm8550_bw_table_dec),
-> +	.pmdomain_tbl = kaanapali_pmdomain_table,
-> +	.pmdomain_tbl_size = ARRAY_SIZE(kaanapali_pmdomain_table),
-> +	.opp_pd_tbl = sm8550_opp_pd_table,
-> +	.opp_pd_tbl_size = ARRAY_SIZE(sm8550_opp_pd_table),
-> +	.clk_tbl = kaanapali_clk_table,
-> +	.clk_tbl_size = ARRAY_SIZE(kaanapali_clk_table),
-> +	.opp_clk_tbl = kaanapali_opp_clk_table,
-> +	/* Upper bound of DMA address range */
-> +	.dma_mask = 0xe0000000 - 1,
-> +	.fwname = "qcom/vpu/vpu40_p2.mbn",
-> +	.pas_id = IRIS_PAS_ID,
-> +	.inst_caps = &platform_inst_cap_sm8550,
-> +	.inst_fw_caps_dec = inst_fw_cap_sm8550_dec,
-> +	.inst_fw_caps_dec_size = ARRAY_SIZE(inst_fw_cap_sm8550_dec),
-> +	.inst_fw_caps_enc = inst_fw_cap_sm8550_enc,
-> +	.inst_fw_caps_enc_size = ARRAY_SIZE(inst_fw_cap_sm8550_enc),
-> +	.tz_cp_config_data = tz_cp_config_kaanapali,
-> +	.tz_cp_config_data_size = ARRAY_SIZE(tz_cp_config_kaanapali),
-> +	.core_arch = VIDEO_ARCH_LX,
-> +	.hw_response_timeout = HW_RESPONSE_TIMEOUT_VALUE,
-> +	.ubwc_config = &ubwc_config_sm8550,
-> +	.num_vpp_pipe = 2,
-> +	.max_session_count = 16,
-> +	.max_core_mbpf = NUM_MBS_8K * 2,
-> +	.max_core_mbps = ((8192 * 4352) / 256) * 60,
-> +	.dec_input_config_params_default =
-> +		sm8550_vdec_input_config_params_default,
-> +	.dec_input_config_params_default_size =
-> +		ARRAY_SIZE(sm8550_vdec_input_config_params_default),
-> +	.dec_input_config_params_hevc =
-> +		sm8550_vdec_input_config_param_hevc,
-> +	.dec_input_config_params_hevc_size =
-> +		ARRAY_SIZE(sm8550_vdec_input_config_param_hevc),
-> +	.dec_input_config_params_vp9 =
-> +		sm8550_vdec_input_config_param_vp9,
-> +	.dec_input_config_params_vp9_size =
-> +		ARRAY_SIZE(sm8550_vdec_input_config_param_vp9),
-> +	.dec_output_config_params =
-> +		sm8550_vdec_output_config_params,
-> +	.dec_output_config_params_size =
-> +		ARRAY_SIZE(sm8550_vdec_output_config_params),
-> +
-> +	.enc_input_config_params =
-> +		sm8550_venc_input_config_params,
-> +	.enc_input_config_params_size =
-> +		ARRAY_SIZE(sm8550_venc_input_config_params),
-> +	.enc_output_config_params =
-> +		sm8550_venc_output_config_params,
-> +	.enc_output_config_params_size =
-> +		ARRAY_SIZE(sm8550_venc_output_config_params),
-> +
-> +	.dec_input_prop = sm8550_vdec_subscribe_input_properties,
-> +	.dec_input_prop_size = ARRAY_SIZE(sm8550_vdec_subscribe_input_properties),
-> +	.dec_output_prop_avc = sm8550_vdec_subscribe_output_properties_avc,
-> +	.dec_output_prop_avc_size =
-> +		ARRAY_SIZE(sm8550_vdec_subscribe_output_properties_avc),
-> +	.dec_output_prop_hevc = sm8550_vdec_subscribe_output_properties_hevc,
-> +	.dec_output_prop_hevc_size =
-> +		ARRAY_SIZE(sm8550_vdec_subscribe_output_properties_hevc),
-> +	.dec_output_prop_vp9 = sm8550_vdec_subscribe_output_properties_vp9,
-> +	.dec_output_prop_vp9_size =
-> +		ARRAY_SIZE(sm8550_vdec_subscribe_output_properties_vp9),
-> +
-> +	.dec_ip_int_buf_tbl = sm8550_dec_ip_int_buf_tbl,
-> +	.dec_ip_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_ip_int_buf_tbl),
-> +	.dec_op_int_buf_tbl = sm8550_dec_op_int_buf_tbl,
-> +	.dec_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_dec_op_int_buf_tbl),
-> +
-> +	.enc_op_int_buf_tbl = sm8550_enc_op_int_buf_tbl,
-> +	.enc_op_int_buf_tbl_size = ARRAY_SIZE(sm8550_enc_op_int_buf_tbl),
-> +};
-> diff --git a/drivers/media/platform/qcom/iris/iris_platform_kaanapali.h b/drivers/media/platform/qcom/iris/iris_platform_kaanapali.h
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..247fb9d7cb632d2e9a1e9832d087cb03ac9b7cf3
-> --- /dev/null
-> +++ b/drivers/media/platform/qcom/iris/iris_platform_kaanapali.h
-> @@ -0,0 +1,63 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#ifndef __IRIS_PLATFORM_KAANAPALI_H__
-> +#define __IRIS_PLATFORM_KAANAPALI_H__
-> +
-> +#define VIDEO_REGION_VM0_SECURE_NP_ID		1
-> +#define VIDEO_REGION_VM0_NONSECURE_NP_ID	5
-> +
-> +static const char *const kaanapali_clk_reset_table[] = {
-> +	"bus0",
-> +	"bus1",
-> +	"core_freerun_reset",
-> +	"vcodec0_core_freerun_reset",
-> +};
-> +
-> +static const char *const kaanapali_pmdomain_table[] = {
-> +	"venus",
-> +	"vcodec0",
-> +	"vpp0",
-> +	"vpp1",
-> +	"apv",
-> +};
-> +
-> +static const struct platform_clk_data kaanapali_clk_table[] = {
-> +	{ IRIS_AXI_CLK, "iface" },
-> +	{ IRIS_CTRL_CLK, "core" },
-> +	{ IRIS_HW_CLK, "vcodec0_core" },
-> +	{ IRIS_AXI1_CLK, "iface1" },
-> +	{ IRIS_CTRL_FREERUN_CLK, "core_freerun" },
-> +	{ IRIS_HW_FREERUN_CLK, "vcodec0_core_freerun" },
-> +	{ IRIS_BSE_HW_CLK, "vcodec_bse" },
-> +	{ IRIS_VPP0_HW_CLK, "vcodec_vpp0" },
-> +	{ IRIS_VPP1_HW_CLK, "vcodec_vpp1" },
-> +	{ IRIS_APV_HW_CLK, "vcodec_apv" },
-> +};
-> +
-> +static const char *const kaanapali_opp_clk_table[] = {
-> +	"vcodec0_core",
-> +	"vcodec_apv",
-> +	"vcodec_bse",
-> +	"core",
-> +	NULL,
-> +};
+> [...]
 
-Why are mxc and mmcx absett from this table ?
+Applied to
 
----
-bod
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+
+Thanks!
+
+[1/2] spi: dt-bindings: cadence: add soc-specific compatible strings for zynqmp and versal-net
+      commit: 4092fc5f35cecb01d59b2cdf7740b203eac6948a
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
