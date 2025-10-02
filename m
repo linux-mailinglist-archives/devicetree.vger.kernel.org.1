@@ -1,148 +1,139 @@
-Return-Path: <devicetree+bounces-223258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD4B4BB2786
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 06:04:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05433BB2791
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 06:24:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BEFF19C6D53
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 04:04:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB4E517125A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 04:24:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965932DC77F;
-	Thu,  2 Oct 2025 04:03:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C7523D288;
+	Thu,  2 Oct 2025 04:24:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nmS+2Auk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZDg9C2M9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F11B12DC353
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 04:03:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A419C155CB3
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 04:23:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759377834; cv=none; b=EtX/+dOIseVwpMCeiIOTzUYaDqK9ntUz2vmXfCFqIE6jfkwWEK/FqLvxMCHaFljK5qv4DAyVmCvPo9F1fYKln0q+7LRQKoWH9txkbE6vLq1hDrUKsnqk2gOczW3OgaoxnhT0SRdLEU7AMI5aGEJc4mnSsiQrZR0qPEiHWm5mTIc=
+	t=1759379041; cv=none; b=I38QBcbZgddKWf5zgHnDIg2JUlrUq9TXMMichSEElf/L/V20aoSLdTAeTSUsAX+hAGN2isRnluxTIze7BBUuR5gJ2CD1no8g/j3yJ2fwFiEBrKdZBlerwLH9AgffRDpw4LfH8WUoU56twK45kDE/4FWxT6zspYqYMK3wvpfh2dI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759377834; c=relaxed/simple;
-	bh=+kpouLBH3+i3L9bCw5lRcIZ8dux1NxH241oSpMjEftw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BoFidATPsWEL+mds//YZNzqIZBMrXFjNz+IYop2GyJI/vSIixZoBz15XvaamJJm48oW+XFjLAp57QAUrYqROO66djmfyRTAY+s4rqa0cT/x/FcMpGl7XyDjS/ZuLF/F6R7ULePX0osK8t2hg5YkqEZHRkq5M0bN87kaxf1Sz1ac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nmS+2Auk; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 591IcAvZ023589
-	for <devicetree@vger.kernel.org>; Thu, 2 Oct 2025 04:03:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=vDEXMrZyI5DjkHRHF3nr0kxs
-	P51hoP/2gaSxVHUCc9Q=; b=nmS+2AukrkY+m+RurA3EtNGV2FGFou88PLYeG8bd
-	AfyL6ZpDTBu/diSPVJvZE1BEXGNnGJLOvtpsZv8GZ8pTFDnpUINPxRmOwfFyJrXn
-	3Ek6K7RqFgWZNLxs/DHyicv0O2B3IuTMkBxc06bHGKgLFwCnXv2d/8J4lkvSbFW3
-	IrqpgfXHmYvAX0s6i1a9jnWHDR2EwTL8q3mEzsm02SM2l0NIapiXMOsW00tUusmm
-	QfljbzctBgRPieRVRT1+p35OaphTZD95sfOvkyWzk6KuicYA6LYNi1/XiF9Qn+KT
-	mA76i/QDwh2Pv588pcYn58+SyMTz38C+51aOBgGG8eVcHw==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e8a66n2k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 04:03:50 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4de36c623f6so14679251cf.3
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 21:03:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759377830; x=1759982630;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	s=arc-20240116; t=1759379041; c=relaxed/simple;
+	bh=ehu8376cUl/DJNnvCX5i0mJoP3uDOVuPTyuu4WOuiDI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=juKJw57eqWhUzz0jWFBbfKXpzWdGzz8P7WJovLO0Nlk0dc5YBEZ6058NQpxsbLIZ9yMPEl551niDjBHHGPmUUnx0NTpKGq35LFPrzNn4nAfaUl9G9K2ztBfX0DSJIgNwcyEujXMBuRJM6zE6Dtk30r+qIyspMxwO2ULEp30JptQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZDg9C2M9; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-28832ad6f64so6327915ad.1
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 21:23:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759379039; x=1759983839; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=vDEXMrZyI5DjkHRHF3nr0kxsP51hoP/2gaSxVHUCc9Q=;
-        b=VB2aYEiAMGlmdAy43dSg627Khccm4Teb2JaXVnkSnJcrfRVwHLNvUucPy4JybiwqsT
-         K3QkCbTbo9VeIxyxoTMHM2tOMB7W7ECbPbUrF/zh/C+PaOlZY3AlKlEmZvatsli0HsBU
-         IvbLYoNQT1yBlWJJjPImTDXKewXX7YdP+RlODoX7/hzIdlWeQTNI7YZiOrCGB3tnD7D+
-         cZTpqiqLwFeMQ10a7ciDnppjmi/EakkgsaE/9u38rzNQLpcZ6UrLMcn2vBR68whhAaBW
-         W0W8KEcEx+BvLR84a4c+UWCjOJTA+QiDFEX5dtiSB1QLMGbOi0IFk/lO1PeZ2zoUspeh
-         JdiA==
-X-Forwarded-Encrypted: i=1; AJvYcCXEjWEFDDykwRFEFsJK9Ksxk7vWjZ967a7cZXNaTwxNBBTgtvKqLDEqE3F7vHiEv2XPeQtqvNLUFT0n@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIF7MLTMz70K2tXP41OZdDIk0eERoMeBaHIfFAm/iVeTAZsWvW
-	LWIAlf0lkiPh3soco6ZX6XZPmWEwd4I8NPQ8HuNDxzl3K0wniI22LjQT7avddjyWY/f4MuewGqs
-	k1XyMmy9sSOZoILis9usf8JIWmwbXvn7OrpzV7WwlmEDwMZ21Jidsi3RrPJJaIaqXQ5zYiHytCp
-	8=
-X-Gm-Gg: ASbGncvbmRi7yPKja2teuAzPT4Nk+EraW4T+8TiVaY+Eiebv1u0kJDzgtRLZn+Y3l77
-	o6GgtDG/lbKw17H51t1nwVMe6j2vzpN3U05wABdOPUevE3saewAqhc6BtWTxx2tdHqC+5gD6V3h
-	5AHnSojBsUlCjNOf1Oovb3nUWmTbULdv0nvsDRvPpBZKaBVGaFc6iDOVnoDoVnkn09jv2lJswx6
-	/ya0LNCB5IU3MvB2aKahf3nzxLFUErumcedbmo+JGVHo9JLlzqy4WnXG1czlkGegfbaUJQay1gZ
-	oAXtBSBjAsDsWwE3diYh7SEyy9VzLNP1nroyHReEqUg9ICxbzXf6moaCnKsJYJky5EOpINdCRcV
-	KRiw/UXAjKBAxw0cnjhbtBUsZd6NMGxH/PXKSJnzaPOV1XAzRqQvbq+wHKQ==
-X-Received: by 2002:ac8:5fd1:0:b0:4bd:3e4b:ba5e with SMTP id d75a77b69052e-4e41dc7e96cmr73704401cf.48.1759377829763;
-        Wed, 01 Oct 2025 21:03:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEdRnA3NDBk05T82OdZV3hs33TJ4DX6PASBWRlUSILv290R6xNtY8dpoH23pG+GAI9V2WH+nw==
-X-Received: by 2002:ac8:5fd1:0:b0:4bd:3e4b:ba5e with SMTP id d75a77b69052e-4e41dc7e96cmr73704141cf.48.1759377829292;
-        Wed, 01 Oct 2025 21:03:49 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58b0118d3dbsm441304e87.65.2025.10.01.21.03.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 01 Oct 2025 21:03:48 -0700 (PDT)
-Date: Thu, 2 Oct 2025 07:03:46 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/5] arm64: dts: qcom: qcm6490-fairphone-fp5: Use correct
- compatible for audiocc
-Message-ID: <r2spjuu6yaz25ujrr6q5xli6dwjh4fh7vhx52ldsprbibxgcji@rhbhwupqhciw>
-References: <20250930-sc7280-dts-misc-v1-0-5a45923ef705@fairphone.com>
- <20250930-sc7280-dts-misc-v1-3-5a45923ef705@fairphone.com>
+        bh=y2QRGst729/DWiP4I9nqZ3Qxmv8ECUfQin2YGfwodis=;
+        b=ZDg9C2M9Uf+/XEzOaIAIqAKsFjYHGWSFsWmW/t7xD2L7GGT3WSCcguAQsCyJ5vYzYd
+         Tm7B3LvbT7ZwwxwJzWG+Q2AAWXY2y8DlY0TxhFj4Ha/TEWJHUL6FMjnVG0cHZ7DW/p7Z
+         te+kgOR3JiTBiz5F6VkmXZJFfE+ZLOs3rnp7daTICR4XkeUPu/4VLncQGHgL2Us7PwQ6
+         pgW4quJsmCuApTWyP9L7qI95vG4rYFP1qXIUyErOBpoakJDOdNYXGqFyvWc5S3itljxV
+         YZtUpaeoOEUgfGkffQAiiRBcVbIyxengJZOdYAq4qQCixGGXehL9+xYmGeOhb8cfDYY9
+         6XRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759379039; x=1759983839;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=y2QRGst729/DWiP4I9nqZ3Qxmv8ECUfQin2YGfwodis=;
+        b=VPfCUrs1N5IdOW6GwcFGNarsSrMqC3d1Kj9bUC+QkUPBDjzJDEuEwxIlWbYBoroHXy
+         txft5Pu57/v0qCQlOo6v8PNx2q2NOXJKeuo/UJX+LOyq/lDArWtoyxzHd+Rlg4nwynRz
+         dg0x9m6YFgD9B4gC8/T3S5sN4OjopC275Kh0ptiRfWi5i1+zNgkoLSBD7MxMRyU0r4nf
+         nhFDIwtQSwNFmO+FDWxVxikpdH9y3SZUWVoFJp03JjVt1bjtytaidE/FajAlQh4GpqQK
+         Q4ExxsWnSTUN6qyQLIslwgDiLZZaBoNgUs546geTFDIIFdxtDSP0sReiqdHucAiMmNiI
+         g/8A==
+X-Forwarded-Encrypted: i=1; AJvYcCXnHxysbpoWq2vqmMB2hu0Z1Dl3/pBmxxLCZpX/4XDA3UAlHaLNPYoFrvkG0kl0w6AMHiPc8G9I9okS@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjXxGZ0daA0d2OBACyY+ymI7wfrsDRWhECyfiY/sfFE3HLBk+D
+	AuoE9NKURV9Hx4VUzXTT6bvteOZhJqj1+gLpWYssnmr5Kwqo/CQtdCmJzQfGB2fxySpE6CKddOr
+	SI0ALZi53LdZ0jcegFlLYa0945vdG7iQ=
+X-Gm-Gg: ASbGncv3sZ4y6MKQ53AOJqTRfitXJfSuU//+aWPsgmo/Ej36ZS3moIXku672/OD9Oqg
+	50+vmaG9FcC5+GHtv3nRKd6y0Nx7Pf/x20VM1vOKU1Z+Wz9ffs2w2Bpvm30H4njVygtgg0RfKRZ
+	GuAVDYD6e/fWoWHGLvy1a4iwnNgeH/XFyH5+FcTNLoR/Em8OSo+6xzYDzRRywmwUHqOmHIcjd/I
+	yyrJmvHd5HErqc71xKRhD2l/7b61KyV
+X-Google-Smtp-Source: AGHT+IHgkuju9CUwpPT0WwGqt9+xSzAjEsWxHRza/bmAnljDvo45aLWn/1dVAmMuO1OQzeCs6YLRY6uoy1Dxbms4f2k=
+X-Received: by 2002:a17:903:3c2d:b0:269:8072:5bda with SMTP id
+ d9443c01a7336-28e7f45aa2cmr81883465ad.54.1759379038825; Wed, 01 Oct 2025
+ 21:23:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250930-sc7280-dts-misc-v1-3-5a45923ef705@fairphone.com>
-X-Authority-Analysis: v=2.4 cv=RZKdyltv c=1 sm=1 tr=0 ts=68ddf9a7 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=6H0WHjuAAAAA:8 a=EUspDBNiAAAA:8 a=ZWl6vx9Q9smWLlo6MzwA:9
- a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-GUID: 2mXcRaSoTb6GPCn79K1Jn_8KLHWgETIK
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAzMyBTYWx0ZWRfX2SzHgK59F6G/
- iMpi+TT9xp49WiG3jcjakrsqFGFI/xcvPrelw8nQpBQ+l7QiCTIaIedWdR+76IdqWwFLr3is25z
- ZrvjHYU2wS61s4mKhqNKGouG5CuIHd0PKqL7yHcjTQaa2ylzQeYlPScGLxlKS6K9kc8SWtiPS/l
- rJejKTy5baZs6El9K0LOgMDNAm/N3o+yVhIlTc7sEb/z+xvjpYw4CN6402dBmChQPVwIum6jg1k
- IzZch5bJGnBcAmyLHKAizIO0Dlnj1VHJPhCko7PBpHdZtk/QH3HFZVV/fhhHC1HfPtSdbOSX97k
- vUiLif+wEjVd9XMSbqr0U+lAFVnmnVEDM2clUEGtojutvJgtjltBUZ1rFy7oZtHkNpYLKCHFEKc
- U+z4rWgjOC2BQJ2Zez4BQc6xgbOGeg==
-X-Proofpoint-ORIG-GUID: 2mXcRaSoTb6GPCn79K1Jn_8KLHWgETIK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-02_02,2025-09-29_04,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 malwarescore=0 priorityscore=1501 adultscore=0 phishscore=0
- impostorscore=0 spamscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270033
+References: <20251001-yv5_add_dts-v3-0-54190fbc0785@gmail.com>
+ <20251001-yv5_add_dts-v3-1-54190fbc0785@gmail.com> <20251001-bonding-surging-af8cd0d09e07@spud>
+In-Reply-To: <20251001-bonding-surging-af8cd0d09e07@spud>
+From: Kevin Tung <kevin.tung.openbmc@gmail.com>
+Date: Thu, 2 Oct 2025 12:23:47 +0800
+X-Gm-Features: AS18NWCewZBOJ3_bvPqMIiAefrcZiLRdaKPOQ3p104CWc2zI58_oYaZj_KaxEko
+Message-ID: <CABh9gBcKt1zqvMQ=390HESPR5KrA42jaMFj9Ca4qmeS0d0ToAw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: aspeed: add Meta Yosemite5 board
+To: Conor Dooley <conor@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+	Andrew Jeffery <andrew@codeconstruct.com.au>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Amithash Prasasd <amithash@meta.com>, Kevin Tung <Kevin.Tung@quantatw.com>, 
+	Ken Chen <Ken.Chen@quantatw.com>, Leo Yang <Leo-Yang@quantatw.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 30, 2025 at 03:57:03PM +0200, Luca Weiss wrote:
-> Use the correct compatible for this phone with standard Qualcomm
-> firmware and remove references to power-domains from a 'reserved' node.
-> 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+On Thu, Oct 2, 2025 at 2:33=E2=80=AFAM Conor Dooley <conor@kernel.org> wrot=
+e:
+>
+> On Wed, Oct 01, 2025 at 04:47:50PM +0800, Kevin Tung wrote:
+> > Document the new compatibles used on Meta Yosemite5.
+> >
+> > Signed-off-by: Kevin Tung <kevin.tung.openbmc@gmail.com>
+>
+> You've repeatedly ignored my ack, so I assume you don't want it.
+> Maybe you want a nak instead?
+>
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Apologies for ignoring your ack repeatedly, that was not intentional.
+I truly value your review and will make sure to include it. Would you
+suggest that I send a v4 to pick it up, or is it fine to carry it
+forward in the next revision?
+Thank you again for taking the time to review my patches.
 
-
--- 
-With best wishes
-Dmitry
+Kevin
+> > ---
+> >  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b=
+/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> > index 456dbf7b5ec8f4442be815284e1ad085287dc443..6f2b12f96bd6ce31b4175e1=
+09a78d931dffdfe28 100644
+> > --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
+> > @@ -89,6 +89,7 @@ properties:
+> >                - facebook,minerva-cmc
+> >                - facebook,santabarbara-bmc
+> >                - facebook,yosemite4-bmc
+> > +              - facebook,yosemite5-bmc
+> >                - ibm,blueridge-bmc
+> >                - ibm,everest-bmc
+> >                - ibm,fuji-bmc
+> >
+> > --
+> > 2.51.0
+> >
 
