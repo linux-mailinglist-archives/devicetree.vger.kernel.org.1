@@ -1,90 +1,267 @@
-Return-Path: <devicetree+bounces-223243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72BFBBB266F
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 04:55:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54E05BB2686
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 04:58:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF22719C0C0C
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 02:56:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 217037A1DF3
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 02:57:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3841A5B92;
-	Thu,  2 Oct 2025 02:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C053A1EEA5F;
+	Thu,  2 Oct 2025 02:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BnSc6f0T"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UtM7qcJc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE60D335C7;
-	Thu,  2 Oct 2025 02:55:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19F1E157493
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 02:58:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759373744; cv=none; b=QAvfExsI/0dOhbupd0g9F6iCAn5UbFzlXYY9U78ztUgw/mtGeCZLtBOz2tU3BgrEjei4Y33hHjiqL724OnU32jTl0Q3WohA9c+Wnrib9PzKekUjHb3XdWg7j91kI4knRoo3MyfM2Cuk+l23nYfgSlSLuIyV/WQA0N6s7bOZ/1tg=
+	t=1759373927; cv=none; b=egVZObXePDTK3QRp1ZLm3UTfAUJmle3PtdMoGfP6rwbpTJg0UyfWWlM5o9nw4g25tIYBlrMLqDN+7QSMVVoXRC/klxIDuMJqr1KEvjBQT0/gAbPKbxa8tp+CXoaTCpG1AKSkDlObubJmZSSCeClg1wrtShGk0hpQGdFBTv+Zdlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759373744; c=relaxed/simple;
-	bh=4Q8KN3t8PrMWqPzYc96enM/J37p9JJO8vsuWDUnc5Os=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hk5xRiVJaB3ijOMI0o6rmWWcGTt1t8oiPhzVGI3hLjQ9LB+dtc10lH6joZ/Psw0ykcHXMJq2gLCyQV5L1zMxOkAH2RBj5OaA1IxF5jooIQwDO0OjhdIK6dSDH5qordVdePG6Nt0zOd7Z/ccDgfr0UdI38zz5O2Nqg4OHjvCv5jA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BnSc6f0T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4386AC4CEF1;
-	Thu,  2 Oct 2025 02:55:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759373743;
-	bh=4Q8KN3t8PrMWqPzYc96enM/J37p9JJO8vsuWDUnc5Os=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BnSc6f0TfYGYZ9WskfKmVbbqXanHjpwnL3DZJl7nJ3etfNAE5Tuw9b8NGu0N3EJXL
-	 0VbLPM2jeBivvOTVJk1Ep4vUaQiq/uo1hU80K09NI1+onWFjhT4IjgwNx1Be6xa8NP
-	 fYFi775l8e7L6nK1x5J3IKRaXOm19ex6c7h6LXleN2QVya6wKgZ5EKjSdjcVce/vvM
-	 Az1dtaNByOfBvWkCjE5f2VkC0ABdNJ3LVT4bbpauYKj0X3pVfv25hC9fM0hzroO+x1
-	 hrB7dOV8yfCc96bxv83Bfdbarn2GWRSNZUUSAm8Bf8Kj9HD0E6WaBof9kMQCCu34Eq
-	 jhNuT2G7w5Fig==
-Date: Wed, 1 Oct 2025 21:55:42 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: Chanwoo Choi <cw00.choi@samsung.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	Konrad Dybcio <konradybcio@kernel.org>, Lee Jones <lee@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v5 3/3] dt-bindings: max77705: add interrupt-controller
- property
-Message-ID: <175937374135.2964452.8506735773123499639.robh@kernel.org>
-References: <20250926-starqltechn-correct_max77705_nodes-v5-0-c6ab35165534@gmail.com>
- <20250926-starqltechn-correct_max77705_nodes-v5-3-c6ab35165534@gmail.com>
+	s=arc-20240116; t=1759373927; c=relaxed/simple;
+	bh=AFQ0+vnRlDOTQJXWhOhRj0G+nQ+Zs0XRhRjq4A56fVg=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=h9bAICoRJB6oN/6QiL19Q1RFK1dYqtJEcPTLgTZuhgzR0r8IlF7oGNXGxEl8uhQvBb9VMYbZXSl1JALDpYazpJPEOawzJOxIgEkj1+dL6b84SbuoGAJ3CIcfwrhZpJSprtjBe4HqWO0Zx2I9lXBrLWUkQmGDbHABWkhyKdWTrqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UtM7qcJc; arc=none smtp.client-ip=209.85.160.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-4e56cd8502aso3300011cf.0
+        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 19:58:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759373925; x=1759978725; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=SPDWoBVHdObjAFgVvHKYm/ngzKxCIMKXS+1jqg6D8Pk=;
+        b=UtM7qcJckR/kwomrVl6fdY71A+VWx4SbogP+yE746VzeR5Yvw47Q5K9FVSpS3dF4Xt
+         vSVaX20GrdIoD6CAN28Q9Fg9sWMMh/UqslKeKa9J11Nq/4srVLsiskyaCsw8Q5pt48b5
+         yug9aGZ4jrGA+Ej2Gtq8WW+ACYs/Vni3HxnKu1QPmiKO2FDG2sKjh4VI58usiZ98H+8o
+         5y1T8qlD7cgv2bWaoQh24XTyICGkeV7RFfsMASVf93lqYidg3VOY77SvA18/t99Fshke
+         5LW7ti2lkumoY8pdfqZqdSdjFeAT4ylJuK4nGc7cXxYorn66IlFAtvJpUbreGtKL43Vs
+         dUPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759373925; x=1759978725;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SPDWoBVHdObjAFgVvHKYm/ngzKxCIMKXS+1jqg6D8Pk=;
+        b=jF9mnVgXbKLYWM1sw6FRETVOaN1HN7hCh4ReJ5TV1aWwAKJnOMPpdZ0ig6qD9VkKMh
+         nfBH0fMa42yy3skz3vPqLvx6PuFMGHY1ah6Aj7hgNgcnR1dmKbTbG7XGL8ZjE+bTxWS6
+         3N5/sG8XRUaX9jCB4Ms1Cs11KBF3toqZfxXS+UoXHkkSq7P/JKD5Mbjz3zYdvQEHfU47
+         hxj3hsIk2WgtI4gqCXyarkAgckB8eOQTfOCvdpWNqG4BA3AvnHAvh2l89BdH7jyNYy7h
+         vIU49tXaz5SGcJi0nLvEPCuwXuZ8ZoEEdE+Wt6tE1pHUGj/BSoCrrkSdXkBPLlhPg1Fx
+         OR1w==
+X-Forwarded-Encrypted: i=1; AJvYcCXpQSnLzAgRnQKX8M+FE14bKN1Dit16V9cHt9HlmHeg86PFokQywMArPgBfJMqAgdmsW961wjk9fq9c@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxq8RSuKYH2L29t0Pu3zLgNAWM1xKiVzvhVLsozXlNtzblfhpv3
+	KXL8YH6Y2hdEp6CXepPhG3XvB3eCEZSkgxPiIVIAlZoMG80AmUBBJCwg
+X-Gm-Gg: ASbGncuoKY+YvlPFp/lPN/pvPi5kr5xMuPax60ArtFbeaZum8e7+ZgI2gvdTTmNVbyZ
+	Wdjp2R7J1EnZSC/w7ewbM9E1xZS0wRydryjaSnEgrV3XmYFovuABRXtYB8q9bGDHSLulmlYTbVF
+	YbyxCFb+/g/1zMzWwL1Ru09MCA/7KF3iWu/B46WgyXDeI2Bts4lJ9/dyALCtLemsiISuDVbmsr+
+	LeHplujJPbuW2OzYycbp+h1+QRif/t42NLGnYgdQ9JzEc8DdrrVHI4lFX8eNFWE5xphM/7LsaFn
+	wZ0h981D1dWHY4WtDMzLACeoj/2qn8NoOt3UUpjCZYUmle7NbIavEFe7/NRemdZ8+aYBkKesmwj
+	UkdqlKvfLXXy66QOYJMW2F7k+08be9hF6yOU7MqfOMCFGZk8fjYBQSDeV7mY9Vi/DQYp9A6DcKW
+	Hs292IFRLO5BlCvOd47Y/X/U9qdi0ajg==
+X-Google-Smtp-Source: AGHT+IHEiTChiNkm3rqtjGx8pAiTWZdt9TSl9GKNVJqXH4NffSUcy5+ncXc/xlWZubwQRixrbAWhyQ==
+X-Received: by 2002:ac8:5fcd:0:b0:4db:db96:15d3 with SMTP id d75a77b69052e-4e41cc0ce72mr76524281cf.31.1759373924633;
+        Wed, 01 Oct 2025 19:58:44 -0700 (PDT)
+Received: from ehlo.thunderbird.net (modemcable197.17-162-184.mc.videotron.ca. [184.162.17.197])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-4e55c9e77bcsm12172451cf.24.2025.10.01.19.58.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 01 Oct 2025 19:58:43 -0700 (PDT)
+Date: Wed, 01 Oct 2025 22:58:38 -0400
+From: =?ISO-8859-1?Q?Jean-Fran=E7ois_Lessard?= <jefflessard3@gmail.com>
+To: Rob Herring <robh@kernel.org>
+CC: Andy Shevchenko <andy@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v5_3/7=5D_dt-bindings=3A_auxdisp?=
+ =?US-ASCII?Q?lay=3A_add_Titan_Micro_Electronics_TM16xx?=
+User-Agent: Thunderbird for Android
+In-Reply-To: <20251002024431.GA2926696-robh@kernel.org>
+References: <20250926141913.25919-1-jefflessard3@gmail.com> <20250926141913.25919-4-jefflessard3@gmail.com> <20251002024431.GA2926696-robh@kernel.org>
+Message-ID: <A137AD5E-2D4E-4C1E-8A71-EF90E60D8F14@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250926-starqltechn-correct_max77705_nodes-v5-3-c6ab35165534@gmail.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
+Le 1 octobre 2025 22 h 44 min 31 s HAE, Rob Herring <robh@kernel=2Eorg> a =
+=C3=A9crit=C2=A0:
+>On Fri, Sep 26, 2025 at 10:19:04AM -0400, Jean-Fran=C3=A7ois Lessard wrot=
+e:
+>> Add documentation for TM16xx-compatible 7-segment LED display controlle=
+rs
+>> with keyscan=2E
+>>=20
+=2E=2E=2E
+>> +
+>> +  digits:
+>> +    type: object
+>> +    description: Container for 7-segment digit group definitions
+>> +    additionalProperties: false
+>> +
+>> +    properties:
+>> +      "#address-cells":
+>> +        const: 1
+>> +      "#size-cells":
+>> +        const: 0
+>> +
+>> +    patternProperties:
+>> +      "^digit@[0-9]+$":
+>
+>Unit addresses are typically hex, so: [0-9a-f]+
+>
 
-On Fri, 26 Sep 2025 20:13:28 +0300, Dzmitry Sankouski wrote:
-> Add interrupt-controller property, because max77705 has dedicated interrupt
-> source register to determine which sub device triggered an interrupt.
-> 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
-> ---
-> Changes for v5:
-> - group interrupt properties together, including #interrupt-cells
-> 
-> Changes in v4:
-> - fix commit message: node -> property
-> - fix commit message: minor reword and punctuation
-> ---
->  Documentation/devicetree/bindings/mfd/maxim,max77705.yaml | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
-> 
+Acknowledged=2E Will change to hex pattern=2E
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+>> +        type: object
+>> +        unevaluatedProperties: false
+>> +
+>> +        properties:
+>> +          reg:
+>> +            description:
+>> +              Digit position identifier numbered sequentially left-to-=
+right,
+>> +              with reg=3D0 representing the leftmost digit position as=
+ displayed
+>> +              to the user=2E
+>> +            maxItems: 1
+>> +
+>> +          segments:
+>> +            $ref: /schemas/types=2Eyaml#/definitions/uint32-matrix
+>> +            description: |
+>> +              Array of grid/segment coordinate pairs for each 7-segmen=
+t position=2E
+>> +              Each entry is <grid segment> mapping to standard 7-segme=
+nt positions
+>> +              in order: a, b, c, d, e, f, g
+>> +
+>> +              Standard 7-segment layout:
+>> +                 aaa
+>> +                f   b
+>> +                f   b
+>> +                 ggg
+>> +                e   c
+>> +                e   c
+>> +                 ddd
+>> +            items:
+>> +              items:
+>> +                - description: Grid index
+>> +                - description: Segment index
+>> +            minItems: 7
+>> +            maxItems: 7
+>> +
+>> +        required:
+>> +          - reg
+>> +          - segments
+>> +
+>> +  leds:
+>> +    type: object
+>> +    description: Container for individual LED icon definitions
+>> +    additionalProperties: false
+>> +
+>> +    properties:
+>> +      "#address-cells":
+>> +        const: 2
+>> +      "#size-cells":
+>> +        const: 0
+>> +
+>> +    patternProperties:
+>> +      "^led@[0-9]+,[0-9]+$":
+>
+>Again, hex please=2E
+>
 
+Acknowledged=2E Will change to hex pattern=2E
+
+>I assume this is <grid>,<segment>? Please add a description for the=20
+>node and say that=2E
+>
+
+Yes this is <grid>,<segment>=2E Will add description=2E
+
+>> +        type: object
+>> +        $ref: /schemas/leds/common=2Eyaml#
+>> +        unevaluatedProperties: false
+>> +
+>> +        properties:
+>> +          reg:
+>> +            description:
+>> +              Grid and segment indices as <grid segment> of this indiv=
+idual LED icon
+>> +
+>> +        required:
+>> +          - reg
+>> +
+>> +dependencies:
+>> +  poll-interval:
+>> +    - linux,keymap
+>> +  linux,keymap:
+>> +    - poll-interval
+>> +  autorepeat:
+>> +    - linux,keymap
+>> +    - poll-interval
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/leds/common=2Eyaml#
+>> +    properties:
+>> +      color: false
+>> +      function: false
+>> +      function-enumerator: false
+>> +  - $ref: /schemas/input/input=2Eyaml#
+>> +  - $ref: /schemas/input/matrix-keymap=2Eyaml#
+>> +  # SPI controllers require 3-wire (combined MISO/MOSI line)
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - fdhisi,fd620
+>> +              - fdhisi,fd628
+>> +              - princeton,pt6964
+>> +              - titanmec,tm1618
+>> +              - titanmec,tm1620
+>> +              - titanmec,tm1628
+>> +              - titanmec,tm1638
+>> +              - wxicore,aip1618
+>> +              - wxicore,aip1628
+>> +    then:
+>> +      $ref: /schemas/spi/spi-peripheral-props=2Eyaml#
+>> +      properties:
+>> +        spi-3wire: true
+>
+>You can drop properties=2E
+>
+
+The issue is spi-3wire is defined in the child node of spi/spi-controller=
+=2Eyaml,
+not in spi-peripheral-props=2Eyaml=2E
+
+Removing properties did not pass dt validation=2E Am I missing something?
+
+>> +      required:
+>> +        - spi-3wire
+>
+>With those nits fixed,
+>
+>Reviewed-by: Rob Herring (Arm) <robh@kernel=2Eorg>
+>
+
+Thank you!
 
