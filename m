@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-223389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 889EBBB3E15
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 14:23:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3702BB3E35
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 14:28:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6763A7A1589
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 12:22:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA9CC7A2483
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 12:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B92F30FF24;
-	Thu,  2 Oct 2025 12:23:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D9C3101DE;
+	Thu,  2 Oct 2025 12:28:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F9E4280317
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 12:23:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1B73101A9
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 12:28:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759407831; cv=none; b=E0E6Ov6s9A9kwbMeQaXGBmIsJ44H2vur68vfk9/NSNCQsSIzNJKsKFs2C4DGlGcMHeg9dEbH3O0y48bvydamtbmLjt27DXeGBiKstIzza/r5jH2B4ImQ2T41vewBt2BxLpRpJRIQCXHlVd7Gpo5It5XC6XrprZI9o3Y5W+zzv/U=
+	t=1759408120; cv=none; b=Js6d32qWl0yPomDkdJQ12xYOo5mQlZELE0oNIqqJCeVQwX3MAIwUTRMKM9s/5P1KakWgupq3ufJefIDn/Wj6Alkn5/w0xsKUXdaPIEyPVPh/niYejcW7m5mTn0UIumYXmebsSx6cQSjs5kZXnfWtfb5W30BGxiV93yaq+wDsAlU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759407831; c=relaxed/simple;
-	bh=AC0onUH/KWR12euPrEMMEF6CxzSfY+hS18p7k/rNiSI=;
+	s=arc-20240116; t=1759408120; c=relaxed/simple;
+	bh=crq8yfuHaLUS3p5H/zdDJJGaYFs9968BkE02+nGHfFA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SnhsHkcxhMIJEmrR/4GPArjgrLFsYD7RRToJctDkxKjn1zpS9kTYb4q2e+ztKUAHbVk9lDGfbNWJMQOTS6RalpfGe1TxCgAUHpU3VbTUXB96qMWvilLGTTnVMvXG2UQa/x5ytSkEJUjCyqgQ2fOPpAqIx4KosRXwwugCyMnmgIg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.49
+	 To:Cc:Content-Type; b=W8YFbI1C1hFjS03DFYda3cgPgdtRpAiwVtMFpUjawyOYBG3UAA5EARU7ZZJfEWxUrw01KgrXegLxLE/MWAQqdsiEvPeG5MKuVii39pA2k97UsVExw2i4O0z62Ijq/MBlP95LMrhKibpeVFSnDMKZyJyFGlo4I6RKK7Rv94T5BaU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.218.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b3e9d633b78so206411766b.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 05:23:49 -0700 (PDT)
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b3c2db014easo192230266b.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 05:28:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759407826; x=1760012626;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JHq3klzPYB8yjcAVOmszOfkdhflrtsWL0PRMLhhvkhU=;
-        b=MKLjL9HX9ZHOAy0PleALrreMUFUUUPBUa1Uh/ifClZdVtIwODvPYaZslnJ33/nBdh4
-         pvQlBFsgjGS23FrKUAoESDR9hn48l5cbMJW1DQUQmgTH0WPbU1TLfOxcDulN7LVKsJkq
-         J1upX67H0NNDmJ6lzwL7GxEp/l00Cql2VRQdfxoBiAwpFa+hiPK9JHnedQQwnkSFQcsZ
-         BTCVxEGgRgngeYGZm4PwFFgutLSHj4W1dI7fX5EkINBu08DKB70pDBaBa2ZtxoImJx9d
-         TzrzMJcolL13zWRvBVqw/G0tlteNWYVH+iNNxiuNMIHVLMIeOMT/vqOZCsadPlI0oRXJ
-         Bprg==
-X-Forwarded-Encrypted: i=1; AJvYcCWHNZMTnFmys5dhGAQH5Alywnx256yAh1SfraLNF81TD99sBKFsexaiKyRUUNa0pJ2SwBIqvCJJzJpV@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgMA4YlkFLZpf0Rm1DT55tkF/AgAcljpVBZ0a8GN/LB1AFJXu/
-	nUOhqZE9A162jtM2lDPr92uKoWmetqZ3vlgJCwW6JyLUcIyp7HBufHCKZOnK/L2SDIw=
-X-Gm-Gg: ASbGncsIochQ8I1w/t5IzmqN7OmfByzdWXmccEY1cBGSBbZqRNhfnWob/f0nHrEQpdV
-	dnJacv8Olbc8+Cv0570MNg3QkW/kFOV32MfxcofCoBeiKyfewYoTZeJrlFyhIK1+ikH8JWHp1Wp
-	yMxvKQa3nEnZnBJeu7TUixrKeUpnFIm++GiS2nQJRjl4khNweitxoy/gpHTWeAUQr5mcICZ82DK
-	pbQqizOq58uZ74gRJgJSVjckyTRQj2B9zwixgNDO1dNQBpsVVAMpSSlWc0SRv310c+wIQEJ51uI
-	plIOjtuhOleB50bBy/yhAbAxiYd4XydYTfRAVJbrbDzCxJJ8sJplkFvqDQ1VhG3B65En47/x4Ig
-	DkwWNGBXJiUdEEhsdbgtrmp6F9wg/jShk81rlbsqApxX4CgQbXTNCemQRkat5RrnCLomzvInN9M
-	ClgGL6PxsSQhxkSr/BgJs=
-X-Google-Smtp-Source: AGHT+IF1A6m+lMpq4ZchDOIrznV5unECqOFH3Xcte40MzCr8/Idsx2XUgppu+KfnF95ZJ6SudhfA/Q==
-X-Received: by 2002:a17:907:a893:b0:b3b:478:515f with SMTP id a640c23a62f3a-b485b8ae07cmr375460366b.22.1759407826430;
-        Thu, 02 Oct 2025 05:23:46 -0700 (PDT)
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com. [209.85.208.50])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b4865a7c660sm192381566b.22.2025.10.02.05.23.45
+        d=1e100.net; s=20230601; t=1759408116; x=1760012916;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cJO2rpeSfonOqfgPMdFd9YnOjY8waVVypT7pLmPKhlg=;
+        b=PcmkHR8JjY+1Dvf2Xsl5UwFCVYZ8hGo9E2fNO591EGrtv1eMFmVTr3vsQX6QbaNXjJ
+         zWBTLBq790rFEhOqDb5M3Zs7DM6s9YlYFuei3WQn6u7ApLa9kK3yBKe11vb8Gs0+DmWM
+         cL6tv+K4OST81gkOE9KzGUVVn7HAUafs56AeCYICPKzFAd4Vz/1R2p09HgsiMgVmp6RI
+         uevtHp2LvvS/VymDZh9jJmQD+knejFGeMsszalZ8FBZ/aC24CVR4hnKafEoyrEEOqHlG
+         yvpxARYckirXC15urm+9mhNUwq8FHnqH8DImzoN2UKFe5pNQM2xOMIUZXf9MQuunIOou
+         Xvmg==
+X-Forwarded-Encrypted: i=1; AJvYcCVgGmKYy0ccQ45VGLzNqlES+aRh3rM6U8FVxm9xy+1G1WvVv9cWoEIuFz44LajhR4Cym1Ac6jqnGNVr@vger.kernel.org
+X-Gm-Message-State: AOJu0YwyPaqkENL9K8gn3BVKBGaRqU2WwX15wOuLGEfLqQEwHyReY111
+	LJuJV5Lx8i2niwXl7yTcmT1pDH2xvc7QT9O3fEOi2GJssu2fU+sO2AAZLGJJqTyUiRE=
+X-Gm-Gg: ASbGncvTuo851KEEhiknqqpKwhcx+x1Uzcu3AN7nE7aHKyiQPetWkEjN70RDCD2jd2D
+	fpFbib1WfIj+prFKfCxD7zlR2ImP6xYBZUyqxkoa19y/QI37f7H66+kiAiMeNYYGbE7tYAJbOpK
+	MIsO7QSHsFQZOGhVdTX63Zfss1aS2T7BAXWcEJcl1Mtml+EOu3xfKh76F/JWDLpDaj+bIdDL2UT
+	gm02MzrCvP8M4mHZeOO8lkyfun2cdGeACZHqeR5/AYTlBKJ9fxm/ADYUgins31ElScBvJ+sWOZe
+	ONWrtEJmogcZsI6Yvm9KoM/CtevyD+7TcYz0Vt00iQKNrdtD6tFf4iQVY25kRR25pwwImEWKxug
+	fReZe4Jk+mtFcRJZbDYGF/6ZKfDX3WNDfMczuWE0pGKKkN+o2Jo6dk3itRZIkSz1+jK7UVUZVnp
+	BpYs0thHsjAjMCVsw+WBU=
+X-Google-Smtp-Source: AGHT+IEnVE+Aapr5Tbns2unULjlV828AzMgg2oiYgO6APwSwu3sLOLmmR7yNpTptydrXWSGu5s0kHw==
+X-Received: by 2002:a17:907:3c89:b0:b3c:42d4:1c67 with SMTP id a640c23a62f3a-b46e31e02afmr900296266b.23.1759408116344;
+        Thu, 02 Oct 2025 05:28:36 -0700 (PDT)
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com. [209.85.208.49])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b4869c4c34dsm190568066b.80.2025.10.02.05.28.33
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 02 Oct 2025 05:23:45 -0700 (PDT)
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-631df7b2dffso2034752a12.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 05:23:45 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUF5KQhPQ5yILFNkXFiOsze5JY+6w7VdwgF4BHL7y7h1aITTCrX6EXMo7piiR89xMAU7iRuLyBFQbV8@vger.kernel.org
-X-Received: by 2002:a50:99db:0:b0:631:6acd:fa3a with SMTP id
- 4fb4d7f45d1cf-6376a8cbaebmr2386247a12.4.1759407825048; Thu, 02 Oct 2025
- 05:23:45 -0700 (PDT)
+        Thu, 02 Oct 2025 05:28:33 -0700 (PDT)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-637e9f9f9fbso793543a12.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 05:28:33 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUBvcuAwLaQBKnCSadSQlSZljy+hmxJbuKBSKXJKbnMrsvPJRCRmqUawhr0nTwfbXhQonkCdkgtf5Vg@vger.kernel.org
+X-Received: by 2002:a05:6402:1d53:b0:634:b5b5:9fb5 with SMTP id
+ 4fb4d7f45d1cf-63678bb704emr8111645a12.10.1759408113266; Thu, 02 Oct 2025
+ 05:28:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251001122326.4024391-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251001122326.4024391-8-cosmin-gabriel.tanislav.xa@renesas.com>
-In-Reply-To: <20251001122326.4024391-8-cosmin-gabriel.tanislav.xa@renesas.com>
+References: <20251001122326.4024391-1-cosmin-gabriel.tanislav.xa@renesas.com> <20251001122326.4024391-4-cosmin-gabriel.tanislav.xa@renesas.com>
+In-Reply-To: <20251001122326.4024391-4-cosmin-gabriel.tanislav.xa@renesas.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 2 Oct 2025 14:23:31 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWQZzgv-St7a05Z0nr6ijDG=a5UT6dkz0apx4Ympxowgw@mail.gmail.com>
-X-Gm-Features: AS18NWAPPSWmlScZEb54OFRRxiDbKu9VBgdxP80maayV33NLkOLsg7T87DMtor8
-Message-ID: <CAMuHMdWQZzgv-St7a05Z0nr6ijDG=a5UT6dkz0apx4Ympxowgw@mail.gmail.com>
-Subject: Re: [PATCH v3 7/7] arm64: defconfig: enable RZ/T2H / RZ/N2H ADC driver
+Date: Thu, 2 Oct 2025 14:28:20 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXPEZJ11sfLDk=O1oZq_OKz22G9wz3Sw5acMr1QVYG_Qg@mail.gmail.com>
+X-Gm-Features: AS18NWC-_9Ox7ciqPoYRQmMsFw1knBxTffAhjo8400Hfa4uqpwmBsatJ-il-O0c
+Message-ID: <CAMuHMdXPEZJ11sfLDk=O1oZq_OKz22G9wz3Sw5acMr1QVYG_Qg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/7] iio: adc: add RZ/T2H / RZ/N2H ADC driver
 To: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
 Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
 	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
@@ -90,29 +90,102 @@ Cc: Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
 	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
 	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Cosmin,
 
 On Wed, 1 Oct 2025 at 14:24, Cosmin Tanislav
 <cosmin-gabriel.tanislav.xa@renesas.com> wrote:
-> Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs include three
-> 12-Bit successive approximation A/D converters.
+> Add support for the A/D 12-Bit successive approximation converters found
+> in the Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs.
 >
 > RZ/T2H has two ADCs with 4 channels and one with 6.
 > RZ/N2H has two ADCs with 4 channels and one with 15.
 >
-> Enable the driver for them.
+> Conversions can be performed in single or continuous mode. Result of the
+> conversion is stored in a 16-bit data register corresponding to each
+> channel.
+>
+> The conversions can be started by a software trigger, a synchronous
+> trigger (from MTU or from ELC) or an asynchronous external trigger (from
+> ADTRGn# pin).
+>
+> Only single mode with software trigger is supported for now.
 >
 > Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+> Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Thanks for your patch!
+
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -1403,6 +1403,16 @@ config RZG2L_ADC
+>           To compile this driver as a module, choose M here: the
+>           module will be called rzg2l_adc.
+>
+> +config RZT2H_ADC
+> +       tristate "Renesas RZ/T2H / RZ/N2H ADC driver"
+
+depends on ARCH_RENESAS || COMPILE_TEST
+
+> +       select IIO_ADC_HELPER
+> +       help
+> +         Say yes here to build support for the ADC found in Renesas
+> +         RZ/T2H / RZ/N2H SoCs.
+> +
+> +         To compile this driver as a module, choose M here: the
+> +         module will be called rzt2h_adc.
+> +
+>  config SC27XX_ADC
+>         tristate "Spreadtrum SC27xx series PMICs ADC"
+>         depends on MFD_SC27XX_PMIC || COMPILE_TEST
+
+> --- /dev/null
+> +++ b/drivers/iio/adc/rzt2h_adc.c
+> @@ -0,0 +1,309 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/cleanup.h>
+> +#include <linux/completion.h>
+> +#include <linux/delay.h>
+> +#include <linux/iio/adc-helpers.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/property.h>
+> +
+> +#define RZT2H_NAME                     "rzt2h-adc"
+> +
+> +#define RZT2H_ADCSR_REG                        0x00
+
+I would drop the "_REG"-suffix from register definitions...
+
+> +#define RZT2H_ADCSR_ADIE_MASK          BIT(12)
+
+... and the "_MASK"-suffix from single-bit definitions.  But this is
+my personal preference/taste.  Perhaps IIO uses a different convention?
+
+> +#define RZT2H_ADCSR_ADCS_MASK          GENMASK(14, 13)
+> +#define RZT2H_ADCSR_ADCS_SINGLE                0b00
+> +#define RZT2H_ADCSR_ADST_MASK          BIT(15)
 
 Gr{oetje,eeting}s,
 
                         Geert
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
                                 -- Linus Torvalds
 
