@@ -1,174 +1,153 @@
-Return-Path: <devicetree+bounces-223428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAB21BB495B
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 18:45:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9F85BB4B06
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 19:27:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 81FB74E1535
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 16:45:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 69F3E3A4DB6
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 17:27:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE14267B89;
-	Thu,  2 Oct 2025 16:45:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3AE62701CC;
+	Thu,  2 Oct 2025 17:25:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b="MnCNTtKy"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TtNHngYH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f169.google.com (mail-pg1-f169.google.com [209.85.215.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1D24239E9A
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 16:45:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BE5A243367
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 17:25:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759423546; cv=none; b=ZK1daR9EdjJMoK5FWG2fMzWNcZ/WTA7xxS7KWgOCgxlf41HyWKKO7ABEErD23syoEur4CpW1l6bOm6q1Nyrin96V+j/cwMUJkwpMilO6JjZut7Ki2ykcaZDu/f7ZgRYVoGROilaajgZqd1XYCfk/E4PbZo1E+//F2mPHd3J0I98=
+	t=1759425953; cv=none; b=cl5AcQCiIoBJknfye3la6nkcF5ony+QFhmuGx2mtmXl5JgKEa5/sZeRBFTwAP+e5yzttOIu3Po+189FapjVcbRtgdJ2p81n7Re+MdyFuXO0PpSDLqLwaRQSNG0zT1a90tPiELTtn3PbK/rlvFDV37V1uXpYon7k0EDZfSizF3Pc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759423546; c=relaxed/simple;
-	bh=1A9QR3g98F/jojxQcsQCrmr26ivi3VklZB9Uaf1MTlU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nO2OXIhx3wC30oq3M2IdAws56rsduLup1vHLHLZrZ1ld1cMfdOMv8KSg2ZC5Qz47BzslKcc0jMyYFW3tRYv8DylwIY9s/QrZgDpMTP3XSfyM0U5pjFAosgxG3V8QxKBAOGlY5ORYwVb5udQPKYWSi45qPIKcgJMUqw3co/qUYBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc.com header.i=@rivosinc.com header.b=MnCNTtKy; arc=none smtp.client-ip=209.85.215.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pg1-f169.google.com with SMTP id 41be03b00d2f7-b49c1c130c9so841654a12.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 09:45:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc.com; s=google; t=1759423544; x=1760028344; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=1A9QR3g98F/jojxQcsQCrmr26ivi3VklZB9Uaf1MTlU=;
-        b=MnCNTtKyaUFuYYeEXqZEKsPn1vNDgYmRgHmoSDQ8pqXwUSDg16tnaJOgTbmxgYCSvL
-         ttR2mJcpVSyIWsNEzqKaewCXI+Uay0LF2DDWupFbx5qC+TzrL3zZWA9hdFKOXXZVA5qK
-         Y1FaX6+H91TwLVFtSs9nB4NLFg/L8P8mEIWc7t+8xMfrysxek/vB8TIdxtYPttEjse2z
-         Y55kKHaAckwEyWi/CGg8BQ2bDzcVi95jfBDWStSUhFArx5zXdaw2gxxGx45GVeMuVQ4x
-         DVR4wQa2JaTxA7N3eLWIVOtBzIDk3bxnp+uXhzQhEyT9dpbD3pRdCf9WzKl7ERe2SexX
-         7DcA==
+	s=arc-20240116; t=1759425953; c=relaxed/simple;
+	bh=Vnx7FEyrTZzrEyMks2ISdGuYBznHpzV4bClxPPmMiao=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Qo3pN/Dv65yIoMSxiO/0C0PG0Xf3qOWxRla9Ntk/zuiX6lbrrIZQngTxS/TTzduC9EFR0v+6kCKAwoDENYL45G3CPlhSMeALm8JVi5ltexJl5ZY31CzvPM5Mnenhv8NRPDOZvrK1WCL1xQEyTAPnfzBUTFz3o8bmq9SP2zDoSQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TtNHngYH; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59291FhU012307
+	for <devicetree@vger.kernel.org>; Thu, 2 Oct 2025 17:25:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=1rqna/rBH+iajzg+XAXDikkpeuWocVd+bF8
+	bPM3no/o=; b=TtNHngYH93K+UoMcr5MaISKFeS0Ob4suJHOfijazkWAsn3rOXxS
+	ZJhsW7eUyvbkBsG7Mpbxmy4945kyMB/3rE7dqCY+3pcYc0yrXNBJlxd89TvCflJ8
+	bHf8QETvv+yM8MsxMzjg4AXQWI7cDNUrgCG6EAO2NOSv9XujYDgrO6gMWvJ2F4NT
+	4rlOF6/cEd0UDXHYg2fsuTnR9d1iYZ65iVtD602UnKLeIUkBTJbZOdexGuXHFj2O
+	LpdR5hAhf5G95Msh+zbNuUzCSe0Zznmqvkjp+k8DUN5PuBTRfwLbjzSo8JDIvDU2
+	/UWcvpuW6/sETxgIOnG0XgUCJ3wOUnT7t+w==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e80u0p7n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 17:25:49 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-78108268ea3so2310779b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 10:25:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759423544; x=1760028344;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1A9QR3g98F/jojxQcsQCrmr26ivi3VklZB9Uaf1MTlU=;
-        b=b7KwmtsNb0E6l8i5pT1HWGU+222SmCugSHR7/7yUJXafF7WU+V7mjSzQ1RqMW+xbR0
-         zbRVFWC1UgSfJAKzeBkZIYI85jiEn82N9AVVbSoJKk8ek4CNc1yJOMqvrvlP6/VyTNUM
-         Iz2wOSUqpPqoDTWm6gEX0Oh0sW4YE9EnwLdUrtrml2lvBAEt7FWy2j8EWBXoQfMeZN1a
-         vpgkC3ssNuAkJPkKCCN+Btx86qnIi38aT9ySaCMdhDLyRQo+KlYdqOgauF+BhyaJcRNY
-         +hDnIthDN0PCS59LjP7/GVQNj3ZaI7sHbdHZCwBa0Pm/9Sw1G+91vIjP1nwg9b0vbp+1
-         ZcBA==
-X-Forwarded-Encrypted: i=1; AJvYcCXH9Qs6VlSgdHGEfkWSvHNAhMYX6glgv8TqrHvtJKUWLgaWRqV0ljGw1P83UVQvkI/4aeAju6up8K4t@vger.kernel.org
-X-Gm-Message-State: AOJu0YyY9J//s9kf9gliVmA/M5RN+WW+xXRv4LIDcTmOoYOO3SDUXiw4
-	rS9WmeaIkoLMdTVb/WtNhVT3TYt/O4Tu2Oqhd1sfaXcOwXzWAiIhxfMz0pwd5a8CiV4=
-X-Gm-Gg: ASbGncuLfDvH++NgVtl6SBoFxCSWwo9AiV4z+mi3COMnk/Hp2yGz/aEjfqYwalNXXgQ
-	Ia+wVhbetErwZkcLb6dtpL63I8Wip9G1Mt+gzOJ6bhSYhx2kVJ5DHwFHrP0TnYca+AvLgsTZHy9
-	EjNlt0ijGkTM4RCsx3Dv3vbMDTE2A9hul3v8v1ux8ZAsH5BNQc0w7yDayOCldxtnKVIzGi5wHca
-	LMjH2/wKCtD3Bic9In/8Oyl4zYo7/YgFSeI2CoBL/2YpUn6IlIysnZqTB0Ie0gCYemD2W6O2tWY
-	pmcre/zQz0phRJ7c7b+Zk9z/Kc7jy3lHhb/gxY++UkUrET5NwSAUXKhSvCtjK0HBa4zTf45/z8X
-	KAaMPwllreIzllbBKM8jKThxFswH6V4eLV3GfcHhOwW7i0H80bFZUj4A9
-X-Google-Smtp-Source: AGHT+IGOeNAivntNqMaBDACXUIJXINgHBVnHmalDozgA9lIHXQF1UAZCwzUqmrzChLzk9pEqivj7cA==
-X-Received: by 2002:a17:90a:e70f:b0:32e:e186:726d with SMTP id 98e67ed59e1d1-339c27a1901mr8380a91.31.1759423544003;
-        Thu, 02 Oct 2025 09:45:44 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-339b4f3ceedsm2812742a91.18.2025.10.02.09.45.41
+        d=1e100.net; s=20230601; t=1759425949; x=1760030749;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1rqna/rBH+iajzg+XAXDikkpeuWocVd+bF8bPM3no/o=;
+        b=Xxmleh8lrujfzhQj7Ri3H97l2ZSCvDsxbDOz1eS80F2qva131f/Ya4B3Q0nplzZVJV
+         Ram6wG8d7iA+IPzLiefHKfZ1DoFCltdTcAoo9k0r3/C81wYhOkTfwWxQIVi7tX3t6zY2
+         Bkzi2SmHZ4wRtusOJeRhq0wpVOF1IrCBbXB/XttlXQOgXWasYNdpyTM2CZrR/Ax3tY8T
+         mIQckHAbqiQTp9/NqcAzHZPp74N86Y1IzWVIrP+VY+y5bH8LRaO9Ccrq6W3CUyvnKSK1
+         YeuhJ+cn+g6O/lb9gmTyTaiD3OYFKC5a/dWPDclq+OlfS6har9H1fqmi8lngVznesY4L
+         h73g==
+X-Forwarded-Encrypted: i=1; AJvYcCVT3IOhg1To+daAC8ewXEHXcaKv5Oxpx1Yjg+7vYhaFy6UkEp6q2fXCc84/H4UxLpVwGm08hHuqXndO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx84UuUiXhgO8k3drSDAI4IKAt6dNflDyvZJ9n2z2YaCau8WEsi
+	c8m/X8vf/DJzVrTzOseM7DFMhyJ+shvzIdS1ZfOFOzlYNFvBNWyRX1xgmVmofLg9iNGxwuPRIaE
+	wUNhdKPh9Mrt66e2PQylmVFg9NCPSC6SwPiK0dQiVCqLzYCw0O1cxy5y6Nk5jjF+7
+X-Gm-Gg: ASbGncty4TrAkkxk1xc0iw1FQpCRsKZBYCEIi79XqBf8qfq0cSdFBqlbF2Vqb7nL2Hr
+	rqX2w2cmVN5uGMDOStWtXz2hk0ejiNZfOm1q0Xq7tBDX7jl/V9xqJo6xCuuKpjxJ6ecGPRxiIzB
+	x69p3FP/KneTFZ/3/IDWMe8AxROvxx61Ms8w4WxGV8A7yV+TFhf92CLD/c1dBhQ3vbfUL7xR3xZ
+	I+u2MpXgTdcIXMehD3ODn9ArliMW823Tg+oodqmcbnCI9TmLtBpeLVOlthYrRt/rtiEdHLbTjee
+	QV6U5V2G+q6V8H3nVyjP5MYsfw94ttgBqVtY8kMHB+OmVFHHt0OYxv1cjQvg6MZ+OWvnl/+u65R
+	7DgYu4DI=
+X-Received: by 2002:a05:6a20:6a21:b0:2c2:f61b:5ffd with SMTP id adf61e73a8af0-32b61b4edcbmr310288637.10.1759425948698;
+        Thu, 02 Oct 2025 10:25:48 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG+enE8wuWieJoBAKDjUG3eBXUdkVEiwqNMSZ/0wvGfEYKsHkPg68VO8xF8jBbQP1OGtks3RA==
+X-Received: by 2002:a05:6a20:6a21:b0:2c2:f61b:5ffd with SMTP id adf61e73a8af0-32b61b4edcbmr310239637.10.1759425947791;
+        Thu, 02 Oct 2025 10:25:47 -0700 (PDT)
+Received: from hu-kriskura-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6099f5b6e9sm2387423a12.40.2025.10.02.10.25.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Oct 2025 09:45:43 -0700 (PDT)
-Date: Thu, 2 Oct 2025 09:45:40 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Florian Weimer <fweimer@redhat.com>
-Cc: Charles Mirabile <cmirabil@redhat.com>, pjw@kernel.org,
-	Liam.Howlett@oracle.com, a.hindborg@kernel.org,
-	akpm@linux-foundation.org, alex.gaynor@gmail.com,
-	alexghiti@rivosinc.com, aliceryhl@google.com,
-	alistair.francis@wdc.com, andybnac@gmail.com, aou@eecs.berkeley.edu,
-	arnd@arndb.de, atishp@rivosinc.com, bjorn3_gh@protonmail.com,
-	boqun.feng@gmail.com, bp@alien8.de, brauner@kernel.org,
-	broonie@kernel.org, charlie@rivosinc.com, cleger@rivosinc.com,
-	conor+dt@kernel.org, conor@kernel.org, corbet@lwn.net,
-	dave.hansen@linux.intel.com, david@redhat.com,
-	devicetree@vger.kernel.org, ebiederm@xmission.com,
-	evan@rivosinc.com, gary@garyguo.net, hpa@zytor.com,
-	jannh@google.com, jim.shu@sifive.com, kees@kernel.org,
-	kito.cheng@sifive.com, krzk+dt@kernel.org,
-	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-kselftest@vger.kernel.org, linux-mm@kvack.org,
-	linux-riscv@lists.infradead.org, lorenzo.stoakes@oracle.com,
-	lossin@kernel.org, mingo@redhat.com, ojeda@kernel.org,
-	oleg@redhat.com, palmer@dabbelt.com, paul.walmsley@sifive.com,
-	peterz@infradead.org, richard.henderson@linaro.org,
-	rick.p.edgecombe@intel.com, robh@kernel.org,
-	rust-for-linux@vger.kernel.org, samitolvanen@google.com,
-	shuah@kernel.org, tglx@linutronix.de, tmgross@umich.edu,
-	vbabka@suse.cz, x86@kernel.org, zong.li@sifive.com
-Subject: Re: [PATCH v19 00/27] riscv control-flow integrity for usermode
-Message-ID: <aN6sNFBzx8NPU3Th@debug.ba.rivosinc.com>
-References: <f953ee7b-91b3-f6f5-6955-b4a138f16dbc@kernel.org>
- <20250926192919.349578-1-cmirabil@redhat.com>
- <aNbwNN_st4bxwdwx@debug.ba.rivosinc.com>
- <CABe3_aE4+06Um2x3e1D=M6Z1uX4wX8OjdcT48FueXRp+=KD=-w@mail.gmail.com>
- <aNcAela5tln5KTUI@debug.ba.rivosinc.com>
- <lhu3484i9en.fsf@oldenburg.str.redhat.com>
- <aNxsWYYnj22G5xuX@debug.ba.rivosinc.com>
- <lhuwm5dh6hf.fsf@oldenburg.str.redhat.com>
+        Thu, 02 Oct 2025 10:25:47 -0700 (PDT)
+From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Cc: linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+Subject: [PATCH 0/2] Implement vbus support for HD3SS3220 port controller
+Date: Thu,  2 Oct 2025 22:55:37 +0530
+Message-Id: <20251002172539.586538-1-krishna.kurapati@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <lhuwm5dh6hf.fsf@oldenburg.str.redhat.com>
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAyOSBTYWx0ZWRfXy0QwvOBMIVD7
+ wJrTUC2kIwqBXTfzl33Xewi6Cdt/c9zuGymnwxCZ+vlmUSjlWckyW88ZD+Y9t9jD5afcEBPT2BL
+ EkD4xQ++Qx/gW9KbB/1Mbe5XMBhybmHkU1ABfVvIDXxB0wBd4Va+I02DfNrOdrJorPmdxDeWr1W
+ 8Brs8ZDdhzTMr3nPz2PE6ediEJr5V0xQo1UUdcXBbnheFxw2l2yzMnULYbE5soCf74kHHNm9RsB
+ VoD0vylOoGgnP3frkIFLxA4KO8LLnjsY2ePpU+2h016+Yq9xvn1Crt6wVfXMEBaNhVhTgcn6Zlv
+ 6GzlA6djTKhmX/jGVcX585qpVX0Am92FcKzNwo0Gup1e3nJ47oqV2xK9lJmL6h9pUoAdqiMzzuw
+ Ynl2cKbJYj5h+T7H5ZdECbZCXK8DnA==
+X-Proofpoint-GUID: e6m66G99btW-8P2fmVSI0Hb5Qq7Y80r5
+X-Authority-Analysis: v=2.4 cv=OMkqHCaB c=1 sm=1 tr=0 ts=68deb59d cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=x6icFKpwvdMA:10 a=0ZYI1qUNTW_HKTauMVIA:9 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-ORIG-GUID: e6m66G99btW-8P2fmVSI0Hb5Qq7Y80r5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-02_06,2025-10-02_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 bulkscore=0 phishscore=0 adultscore=0
+ priorityscore=1501 lowpriorityscore=0 clxscore=1015 spamscore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
+ definitions=main-2509270029
 
-On Thu, Oct 02, 2025 at 01:45:48PM +0200, Florian Weimer wrote:
->* Deepak Gupta:
->
->> On Tue, Sep 30, 2025 at 11:20:32AM +0200, Florian Weimer wrote:
->>>* Deepak Gupta:
->>>
->>>> In case of shadow stack, it similar situation. If enabled compiler
->>>> decides to insert sspush and sspopchk. They necessarily won't be
->>>> prologue or epilogue but somewhere in function body as deemed fit by
->>>> compiler, thus increasing the complexity of runtime patching.
->>>>
->>>> More so, here are wishing for kernel to do this patching for usermode
->>>> vDSO when there is no guarantee of such of rest of usermode (which if
->>>> was compiled with shadow stack would have faulted before vDSO's
->>>> sspush/sspopchk if ran on pre-zimop hardware)
->>>
->>>I think this capability is desirable so that you can use a distribution
->>>kernel during CFI userspace bringup.
->>
->> I didn't get it, can you elaborate more.
->>
->> Why having kernel carry two vDSO (one with shadow stack and one without) would
->> be required to for CFI userspace bringup?
->>
->> If Distro is compiling for RVA23 CONFIG_RISCV_USERCFI has to be selected yes,
->> kernel can have vDSO with shadow stack. Distro can light this option only when
->> its compiling entire distro for RVA23.
->
->I think it boils down to whether you want CFI bringup contributions from
->people who do not want to or cannot build their own custom RVA23
->kernels.
+As per the data sheet of HD3SS3220:
 
-How will they contribute to CFI bringup without having a CFI compiled usersapce?
-If their userspace is compiled with shadow stack instructions and they can't take
-this userspace to old hardware else it'll start faulting as soon as control is
-given to userspace (first sspush or sspopcheck in userspace).
+"Upon detecting a UFP device, HD3SS3220 will keep ID pin high if VBUS is
+not at VSafe0V. Once VBUS is at VSafe0V, the HD3SS3220 will assert ID pin
+low. This is done to enforce Type-C requirement that VBUS must be at
+VSafe0V before re-enabling VBUS"
 
->
->Another use case would be running container images with CFI on a
->distribution kernel which supports pre-RVA23 hardware.
+This series implements support to read ID pin state and accordingly enable
+VBUS.
 
-Container image with CFI will have glibc and ld (and all other userspace) also
-compiled with shadow stack instructions in it. As soon as you take this
-container image to a pre-RVA23 hardware, you won't even reach vDSO. It'll break
-much before that, unless kernel is taking a trap on all sspush/sspopchk
-instructions in prologue/epilogue of functions in userspace (glibc, ld, etc)
+Krishna Kurapati (3):
+  dt-bindings: usb: ti,hd3ss3220: Add support for VBUS based on ID state
+  usb: typec: hd3ss3220: Enable VBUS based on ID pin state
+  arm64: dts: qcom: lemans-evk: Add OTG support for primary USB
+    controller
 
->
->Thanks,
->Florian
->
+Krishna Kurapati (2):
+  dt-bindings: usb: ti,hd3ss3220: Add support for VBUS based on ID state
+  usb: typec: hd3ss3220: Enable VBUS based on ID pin state
+
+ .../devicetree/bindings/usb/ti,hd3ss3220.yaml | 13 +++++
+ drivers/usb/typec/hd3ss3220.c                 | 58 +++++++++++++++++++
+ 2 files changed, 71 insertions(+)
+
+-- 
+2.34.1
+
 
