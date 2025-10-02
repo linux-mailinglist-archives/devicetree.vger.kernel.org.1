@@ -1,156 +1,169 @@
-Return-Path: <devicetree+bounces-223410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31356BB46DC
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 18:01:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ABB0BB46D9
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 18:00:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2A11188DE94
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 16:01:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 609E33ADD4E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 16:00:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A45B314D29B;
-	Thu,  2 Oct 2025 16:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A13861F19A;
+	Thu,  2 Oct 2025 16:00:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="veE8CEM/"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aoikIAgR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37C651F19A
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 16:01:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C8418C2C
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 16:00:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759420867; cv=none; b=KD0wsoAi3WBNEpAKjkc6rXtLgJITRQwP4FpfoU+gnl6lOL2gC4MLXXkrVqSR21Vptxd4fqMLIJz0FTxc5VTxUQjDpsRUMSAnSZRUT7wSK+Q/q1NlS2oumKa+OXgS2CyTRgZZtgGf8j3+/fPhsj3VLFp7HlsoLCLdrujA5OLCjIY=
+	t=1759420830; cv=none; b=Df+f2DMK3YRBTp1554AEiyVEphkNA7n7duGsSsSJFTmkivP993od57DB0n9rAKhGvZrge729BYrNHt02YNXGASl35DCcH3FU20tpkjDKEx6b2lvidIBYl0iW1BBfVKsjoUwTeKk+sLLG0FxC49inhtOUw2G91qe7HTKYckEOoss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759420867; c=relaxed/simple;
-	bh=pU5ODyOpKgrJfAinV1dcdi2m1lpWYA3M5fMV34X7Kk8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qhNjTDnrFYNFpHAfmrB1VRvBh2b/Orn6ecFIRbDtkmwLBRO8L0QbVFR5mhZZhw52UOeJbO9r6p8tPPJwuO3d1IblIK21IIBrVXLYdozEg+B4kSxuzqwYpGRm5Kfkcufxy/NrtdQ9nL+gOdISb3LVB3Pt1N27a+5CQl804kjjfDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=veE8CEM/; arc=none smtp.client-ip=103.21.126.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
-Received: from ldns1.iitb.ac.in (ldns1.iitb.ac.in [10.200.12.1])
-	by smtp1.iitb.ac.in (Postfix) with SMTP id 47C2E104D0C5
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 21:21:23 +0530 (IST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in 47C2E104D0C5
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
-	t=1759420283; bh=pU5ODyOpKgrJfAinV1dcdi2m1lpWYA3M5fMV34X7Kk8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=veE8CEM/JQTrNXnNaUxSjTy3nXCrH+jcJ0yHhU9crPy+d6U4v9XY4FPPVSCuD2N2v
-	 t9P63vlHiNSifeVwoolhmazII2WDJWBSLoBRnPrlD98EoMBxFnZBsBVr1HZxn/pexM
-	 BzW8LKREjPKq4w2f/qk4yO/tYR0szF600Qr/C0Y8=
-Received: (qmail 15111 invoked by uid 510); 2 Oct 2025 21:21:23 +0530
-X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns1 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
- spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.101.4/26439} 
- Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 3.263975 secs; 02 Oct 2025 21:21:23 +0530
-X-Spam-Level: 
-X-Spam-Pyzor: Reported 0 times.
-X-Envelope-From: akhilesh@ee.iitb.ac.in
-X-Qmail-Scanner-Mime-Attachments: |
-X-Qmail-Scanner-Zip-Files: |
-Received: from unknown (HELO ldns1.iitb.ac.in) (10.200.1.25)
-  by ldns1.iitb.ac.in with SMTP; 2 Oct 2025 21:21:19 +0530
-Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	by ldns1.iitb.ac.in (Postfix) with ESMTP id 7AD1A360079;
-	Thu,  2 Oct 2025 21:21:19 +0530 (IST)
-Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	(Authenticated sender: akhilesh)
-	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id 57BC41E814C6;
-	Thu,  2 Oct 2025 21:21:19 +0530 (IST)
-Date: Thu, 2 Oct 2025 21:21:14 +0530
-From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-To: alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
-	conor+dt@kernel.org
-Cc: skhan@linuxfoundation.org, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	akhileshpatilvnit@gmail.com
-Subject: Re: [PATCH v3 0/6] rtc: m41t93: add new features alarm, clock out,
- watchdog
-Message-ID: <2025102-155114-838866@bhairav-test.ee.iitb.ac.in>
-References: <cover.1758379856.git.akhilesh@ee.iitb.ac.in>
+	s=arc-20240116; t=1759420830; c=relaxed/simple;
+	bh=L55qLLAlJuHyhIu6IcAbTzxJ6Yc1Y9J1x5XdW+9c8Gw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pSXaiKfTf2ha2W54inZxFZjfTJUsx3gghJfzunTo8E8BV04KB8Jb0Hpzea8DR0Y12uVcuwHaQiP9/i9bQDsnF+k14gqjSUCHLmzbcofap4eyR0NeZpEQfzTEK1vcPfl3jSi74s/c7KAi4dAMjEpBA55djhzdmdyoAVDDseCuEfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aoikIAgR; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59294Gi3001185
+	for <devicetree@vger.kernel.org>; Thu, 2 Oct 2025 16:00:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	rrjEEtaRvE0dVyoT2k3VZr0XIqGIMCkFp8H+n7LB3d8=; b=aoikIAgRFTTgV0EV
+	5ua5CbelK4JQFPbRaWpWSWtUrjdOTBUR1qTsLScNZs+mWIq5dpu1EG4GwNFM9hCk
+	vS4CYMUKbuBvBUWs0EjEK6otojtUpoX/GKcLsW+f1IpsKlYfopLgZixfaQqWxn4E
+	LBobMe+NDbmNNIaFSthRGfF1bIJCHlO2YnPBrMl2Mx0auRDQOJn/CMDa6L0PegnK
+	IzOwCMHYhzpLVBiwJXWg1QQVi9/pEtvnhpVkEOE41BTQQSF+G8wk/RmGLlqT82S4
+	uR8azAdn+gMKyYhb6fY98+zFbZ/IN2hYv0k3OTPzQhwILdCAA3kxPLjis23veqcF
+	ZZglkA==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e6x60dgw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 16:00:27 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-865b48c630fso314605885a.2
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 09:00:27 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759420811; x=1760025611;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rrjEEtaRvE0dVyoT2k3VZr0XIqGIMCkFp8H+n7LB3d8=;
+        b=skmkqGGEK95tCkG+RdDyJlH5llragbp8ToRnvA20hJDqmVDdASaraNmeU+QiJl624T
+         muhotfFi4KarFXpkV544LfqBjenTetEygLFaLlM15z/vTwa7rs12J/y3+Tp+Ufqmsg53
+         AgDP704wuMC5C8dhjPle19gR0OKNvoZiqG5NIHjIkHFEvIsj7FRJlANpmtxXGF2KhRo1
+         tsIMFv1vgZPImRoUWNjL9790o8o9+2xub0YOeR18aPpj7lKLGQfY47JzONH8qoL70n/M
+         uwiv1Uty2yDCvJouuxUgeY3gkDxumdwyWDknTYd83grtKf5wsYEYdoX6yz5diRHhH2I6
+         9EFQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWhuG+wqTaFBUXR9Tg+ndTO0XxK0kHvVxH6KfIZpFKGnM2nxSaafzo9ZB4ECPaFJD1QKLRDD/psljl5@vger.kernel.org
+X-Gm-Message-State: AOJu0YyDW+FIlGU/rOugCvkdsTzZFkAZSmwnrkgCzlELSz0D9xH8vBJo
+	jIHUwuYNRMDjidiVq+iRIK6cmcpUYGUzGPumbxg5GhAoFK/3K1klY8agadL2vnHC2V0fylJRm4m
+	AfxMvsL/zW9ozsDKW17mgZvkPD0gtxcDr/hL8uFNSUbGEs/c4bmWooq7LXyX3s7MiSwNXd1d2ee
+	HRFuti1ibQX1b48ZET9sk/vR6qpDILPFaEl+NrYgw=
+X-Gm-Gg: ASbGnct4uJSCDpHOjvo8oYLksEOg5wQEzg2vtgQBFy0SqYra0fn7tP4R0o5zej7CH9c
+	qoDuzS3o6h5FR+HqGMav1Q8TaHMAFYKqFMdToujchjDVzKckqRyDla8DR2LxwdLvZniwRA5VOvC
+	I7p/VzA4xuVFFu8QzEgBYSIiB720eRjTx7u50f+KKHRRwkSILYQk3FH5KCJk28
+X-Received: by 2002:a05:620a:2954:b0:858:f75a:c922 with SMTP id af79cd13be357-873705ee14dmr1151527785a.6.1759420810677;
+        Thu, 02 Oct 2025 09:00:10 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEmX8lkWW7JD1xPFoFK2TsnE5w970ZCeRAA3DNU2mdUhqhcpjReibtOkdWBCmDgCogGi7mq2UVyAmL/vymCMRA=
+X-Received: by 2002:a05:620a:2954:b0:858:f75a:c922 with SMTP id
+ af79cd13be357-873705ee14dmr1151518085a.6.1759420809940; Thu, 02 Oct 2025
+ 09:00:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1758379856.git.akhilesh@ee.iitb.ac.in>
+References: <20250926073421.17408-1-loic.poulain@oss.qualcomm.com>
+ <20250926073421.17408-2-loic.poulain@oss.qualcomm.com> <CAPY8ntC-Or2ErudHmP0mQMY6Rb8yQ53wkB5fW3b+4DTeeytbdA@mail.gmail.com>
+In-Reply-To: <CAPY8ntC-Or2ErudHmP0mQMY6Rb8yQ53wkB5fW3b+4DTeeytbdA@mail.gmail.com>
+From: Loic Poulain <loic.poulain@oss.qualcomm.com>
+Date: Thu, 2 Oct 2025 17:59:58 +0200
+X-Gm-Features: AS18NWBKPj2iACWebyncy890oBW9cdusAwWZYKBqMxptMXkMSqe-nJrKIx4MHK8
+Message-ID: <CAFEp6-1tLTviqxheTxGeeBk8vt4Nm-qSBs1jV=CFPF83_6fUsg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] media: i2c: ov9282: Fix reset-gpio logical state
+To: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, sakari.ailus@linux.intel.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, mchehab@kernel.org, conor+dt@kernel.org,
+        robh@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-GUID: SSXT0iZvqEMVoBye9whP5WOAWYMQmc8n
+X-Proofpoint-ORIG-GUID: SSXT0iZvqEMVoBye9whP5WOAWYMQmc8n
+X-Authority-Analysis: v=2.4 cv=ZtPg6t7G c=1 sm=1 tr=0 ts=68dea19b cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10
+ a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=RF00TdSWAAAA:8 a=EUspDBNiAAAA:8
+ a=-mY5VsyjxCvqmBmQmoUA:9 a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22
+ a=cvBusfyB2V15izCimMoJ:22 a=_nx8FpPT0le-2JWwMI5O:22 a=HhbK4dLum7pmb74im6QT:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAxOCBTYWx0ZWRfX9G/OMVu4tDgF
+ H4xChtGnQAoQHuQHlJkFOmAigHkLE6rrlbb/qcbf0+486JTMfsJe3gEn8mI1ykDgF2IiAdFJmRm
+ sKobakn70VOA/tK47S2YsUKmvV5/50c8I3FL4dhn0o8T53ca297G6TO8V0bnsFOWW8+6I3hYhJt
+ fqx6LO5VvcqjXj6qltSp9bQQlu+6GufaMI9LZtjhKBLfL7VKo4DLZel8qnTF08G5enzSs+0LR3S
+ WOqH6WRkAOBlJpTfs/UyfVMTM95pmeFTBKXv32ozHfF3HZ73bKvlGxG3/wNwxaPkaveg/ePHlRw
+ ORmQZGpMi/1qQNtnIAYIRGSl47Ly5zOJJOgfA704o4pQf4U+Eg4RPGMYLA9pPKbMmzScNP8Hn3l
+ 0fO7YxuGEF4UjhrS9LAReVqMVLrXMA==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-02_06,2025-10-02_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 priorityscore=1501 malwarescore=0 bulkscore=0
+ suspectscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270018
 
-On Sat, Sep 20, 2025 at 08:30:59PM +0530, Akhilesh Patil wrote:
-> This patch series adds following to m41t93 rtc driver.
-> 
-> Functionalities: 
-> - Alarm support (support to configure alarm 1)
-> - Square wave output support
-> - Watchdog support
-> 
-> Code improvements:
-> this series migrates existing driver to use standard regmap interface
-> for spi instead of direct spi calls and uses regmap for new features.
-> 
-> Device tree support:
-> Adds device tree support to the driver along with binding documentation.
-> 
-> Testing:
-> This patch series is validated on TI am62x board with m41t93 rtc chip
-> connected to spi0 bus.
-> regmap migration is additionally tested by observing spi transfers
-> with the help of logic analyzer. Short summary of test flow is added in
-> commit message of respective features.
-> 
-> Datasheet:
-> https://www.st.com/resource/en/datasheet/m41t93.pdf
-> 
-> patch 4 to 6 depend on patch 3 (regmap patch)
-> 
-> Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-> ---
+Hi Dave,
 
-Hi Alexandre, I would like to follow-up on this patch series for review
-and feedback for rtc code. Let me know if any additional improvements needed.
-I am willing to volunteer to support this driver in the kernel, in case
-needed, as a reviewer/maintainer. I have this m41t93 RTC hardware with
-me. Given we are in 6.18 merge window, looking forward for
-this patch series.
+On Mon, Sep 29, 2025 at 5:18=E2=80=AFPM Dave Stevenson
+<dave.stevenson@raspberrypi.com> wrote:
+>
+> Hi
+>
+> On Fri, 26 Sept 2025 at 08:34, Loic Poulain
+> <loic.poulain@oss.qualcomm.com> wrote:
+> >
+> > Ensure reset state is low in the power-on state and high in the
+> > power-off state (assert reset). Note that the polarity is abstracted
+> > by the GPIO subsystem, so the logic level reflects the intended reset
+> > behavior.
+> >
+> > This breaks backward compatibility for any downstream dts using the
+> > wrong polarity.
+>
+> Ouch. That'll be a nasty surprise to some if this lands, and
+> particularly with a Fixes: tag so it gets backported to stable
+> kernels.
+>
+> There are a number of sensor drivers that have been in the tree for
+> multiple years that do indeed have the reset logic inverted as it
+> wasn't something being routinely picked up in code review. ov9282,
+> imx219, imx334, and imx274 for a start. Krzysztof sent [1] recently to
+> flag that they are wrong and shouldn't be copied, but changing the
+> behaviour feels unfriendly.
+>
+> I'll defer to Sakari as to whether this change is acceptable.
+>
+> Checking all my use cases, they use regulators instead of reset-gpio,
+> so it doesn't actually have an impact.
+>
+>   Dave
+>
+> [1] https://lore.kernel.org/linux-media/20250818150025.247209-2-krzysztof=
+.kozlowski@linaro.org/
+
+Should I just clone what has been done here (pointed by Konrad) to
+keep DTS correctness while ensuring backward compatibility:
+https://lore.kernel.org/r/20230102114152.297305-4-krzysztof.kozlowski@linar=
+o.org
 
 Regards,
-Akhilesh
-
-> Changes in v3:
-> - Address comments on bindings from Krzysztof and add myself
-> as a maintainer.
-> - Re-validation/testing on top of v6.17-rc6
-> - Link to v2: https://lore.kernel.org/lkml/cover.1757510157.git.akhilesh@ee.iitb.ac.in/
-> 
-> Changes in v2:
-> - Address DTS and bindings coding style feedback from Krzysztof
-> - Verify bindings using $ make dt_binding_check 
-> - Update example in binding documentation after testing.
-> - Analyze and Fix build warnings as suggested by kernel test robot.
-> - Drop patch 5 from series (device detect logic change).
->   This will be taken separately. Focus on functionalities in this series.
-> - Update commit messages with short test steps for each feature.
-> - Link to v1: https://lore.kernel.org/lkml/cover.1756908788.git.akhilesh@ee.iitb.ac.in/
-> ---
-> 
-> Akhilesh Patil (6):
->   dt-bindings: rtc: Add ST m41t93
->   rtc: m41t93: add device tree support
->   rtc: m41t93: migrate to regmap api for register access
->   rtc: m41t93: Add alarm support
->   rtc: m41t93: Add square wave clock provider support
->   rtc: m41t93: Add watchdog support
-> 
->  .../devicetree/bindings/rtc/st,m41t93.yaml    |  50 ++
->  drivers/rtc/rtc-m41t93.c                      | 488 ++++++++++++++++--
->  2 files changed, 486 insertions(+), 52 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/rtc/st,m41t93.yaml
-> 
-> -- 
-> 2.34.1
-> 
+Loic
 
