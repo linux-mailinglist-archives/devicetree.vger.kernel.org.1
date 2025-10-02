@@ -1,114 +1,162 @@
-Return-Path: <devicetree+bounces-223384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DAE3BB3D0F
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 13:50:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D466BB3D55
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 14:00:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E994E325B78
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 11:50:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 279063BAD2D
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 12:00:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C95C3093BF;
-	Thu,  2 Oct 2025 11:49:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="MBU49MfC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AC453101C5;
+	Thu,  2 Oct 2025 12:00:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2FED3081D0
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 11:49:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADF9022538F
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 12:00:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759405794; cv=none; b=GDzSiJTIT+7BkXZ4S/gjqxALgIAIvgIA/TDldbIohFYv4gzLxGpxGqbU9L6kFgFEtqieOL/PXaHILVE1KtA1iPi68WAFIcWxeckWWrejPYa9MWaQVjBEt4VOeBfJHcjg3LjMtubYE82iFXkXlgPOtKaE/wD+4p1joyo3j9A5mEk=
+	t=1759406447; cv=none; b=nAe1X5OfBIuBJ6rkQ3pnTvBZ/19MSl7mKyF3cgdz9DyvVqOSEhPS0WIoAH7jCYlEtceinVh+tj2aTynOlN/QlZ9BwYaCpHjOrPQ1rOyRd3N6pWkS0jRPayZ/vWkoi74c+wOsr3vq5AKToElfY5WAageedbVxsRUcO2YBavpsUBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759405794; c=relaxed/simple;
-	bh=ce0/XkN5zkEtykoh4F14aijPmOF1cEWyAFp8FrBCYiI=;
+	s=arc-20240116; t=1759406447; c=relaxed/simple;
+	bh=zlFrpOe0HrWRYD2Vb3aRVlnCqzPgkaXM7sG+IHktRWE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HuSHTTpCy/TuNPsj+b2C6wQfmjh0IdVlUkWr0MRHVnsRIe4xd9zmnvA7xOgfZJyeUm0mfT7WA9uuIsA0CcTyL+NvKSfJPRJMuHJiaH4GZTZFrv+mN/+saCxE3xHZncDn7aEdJaVaa3UaYXs/4T1AYObZ5DaVQFAnHOeh1MeHsck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=MBU49MfC; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=mS+R
-	aU/N3sZxgyqOlzL7mMSLe0f1ES6Z71fhweY0cpI=; b=MBU49MfC+kEDi7tVikUQ
-	ssRZYWiyCfWRyZnCAKsaO35J4KSu4ZE8/Fbw2wrjZy/jQDkvxE3VgpyvLeRhOWvQ
-	SsetPHAq7ucBe65WHiWAeYFc6ma3u7GRyVwn/vMvkLN5n2aJMsuu0WB1l4dS3X2G
-	Qrb7RtMseKLeiydXRtRZQVsIY5fx6bpHAE86pphgAFSZhhR1zGJzklpyt4XXN0WB
-	h8BWyLeHFriAZNRGMWRxfl5nzyYdIsAjiJAx3jXjqye5McEw1TN9O7iPrUwK5Nye
-	ckVMax7RQQWaeHjjlOZIjj27fdKOerbGqTLe2Y0od+O/9TTYnW/oARWXEG4WJq8M
-	3g==
-Received: (qmail 248369 invoked from network); 2 Oct 2025 13:49:46 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 2 Oct 2025 13:49:46 +0200
-X-UD-Smtp-Session: l3s3148p1@DAbklCtAKswujnuL
-Date: Thu, 2 Oct 2025 13:49:45 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yx4blxHg8SQbLFkjPcxytMH4te9yJbUgO9dpJDO8pviFjetl/CnhT81PYC4kbBc0kKByL6ZfhfZ59RI5tx22E0CzKv5OGLhZsfgyaoXwE+4cGM2zDj8+qH56ig3pRMA6CwIlBOoGIo/OMvgKk3xBwT/oOP6k9hKG+K8HYC1kWZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1v4Hyl-00083q-Gr; Thu, 02 Oct 2025 14:00:11 +0200
+Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1v4Hyj-001ZsI-0p;
+	Thu, 02 Oct 2025 14:00:09 +0200
+Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1v4Hyj-008S1y-0P;
+	Thu, 02 Oct 2025 14:00:09 +0200
+Date: Thu, 2 Oct 2025 14:00:09 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Sebastian Reichel <sre@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/4] dt-bindings: watchdog: factor out RZ/V2H(P) watchdog
-Message-ID: <aN5m2TltHzdBQDLT@shikoro>
-References: <20250926112218.28723-1-wsa+renesas@sang-engineering.com>
- <20250926112218.28723-5-wsa+renesas@sang-engineering.com>
- <CA+V-a8tqOBz2i_7Nny488syuSXGBhe1japjX47hkN6_Ejge1ZQ@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
+	Tony Luck <tony.luck@intel.com>,
+	"Guilherme G. Piccoli" <gpiccoli@igalia.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: kernel@pengutronix.de, linux-kernel@vger.kernel.org,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+	linux-pm@vger.kernel.org,
+	=?utf-8?B?U8O4cmVu?= Andersen <san@skov.dk>,
+	Guenter Roeck <groeck@chromium.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Ahmad Fatoum <a.fatoum@pengutronix.de>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Subject: RFC: Selecting an NVMEM cell for Power State Change Reason (PSCR)
+ recording
+Message-ID: <aN5pSWBFRZlNRv3U@pengutronix.de>
+References: <20250618120255.3141862-1-o.rempel@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="CukGRbOVR6ODqes/"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CA+V-a8tqOBz2i_7Nny488syuSXGBhe1japjX47hkN6_Ejge1ZQ@mail.gmail.com>
+In-Reply-To: <20250618120255.3141862-1-o.rempel@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+Hi all,
 
---CukGRbOVR6ODqes/
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I'm seeking consensus on a minimal, upstream-acceptable way to identify the
+single NVMEM cell used to persist a Power State Change Reason (PSCR). Typical
+targets are battery-backed RTC scratchpads or small EEPROM. The aim is to have
+a tiny breadcrumb available before userspace, across full power cuts, and
+shared by bootloader/kernel/userspace.
 
-Hi Prabhakar,
+DT vs Userspace vs ACPI
 
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+* DeviceTree (preferred): Describing where the storage lives under a real
+  NVMEM provider (RTC/EEPROM) is early, robust, and OS-agnostic.
 
-Thanks for the fast and detailed reviews! From a glimpse, all your
-comments make perfect sense to me, so I will send a v2 soon.
+* Userspace (fallback): Possible via module/cmdline/sysfs, but leaves an
+  early-boot window unconfigured and reduces usefulness for embedded devices.
 
-Happy hacking,
+* ACPI: No existing shared mechanism for this use case at present (not
+  proposing an ACPI path right now).
 
-   Wolfram
+What implementations were tried
 
+* A PSCR consumer node in DT -> NACKed as not a HW node.
 
---CukGRbOVR6ODqes/
-Content-Type: application/pgp-signature; name="signature.asc"
+* Kernel/module parameters or sysfs selection -> tried earlier, but rejected
+  for new designs and cannot guarantee early availability.
 
------BEGIN PGP SIGNATURE-----
+* Name-based lookups in NVMEM -> considered fragile and not scalable.
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjeZtkACgkQFA3kzBSg
-KbZtMA/+MfrX4yFdCG4XbwClnRZRYZehLb3kx10LfVv20jtuW5sjhvWGd9HmHP9A
-jGi5Rezj24hW4SzWYBRLiwOKHF+hw0mmCtNhGydQCoslzObFRXk6z+iFNAQbcQre
-Vlvb27O14G09L7akUmHfzC5C6mE/BufFPIChxdjg4CTSUSAoI9AYR64JKjtekbKX
-Au6wfcEd7gEyb+DOsz29uzmVYqueWMFTzRd0JcK0rkypa0ACL/LNh58+rVOniGrN
-3FP3L0xUWTSKzpPpjzt2gJtwn0pmuP9Gd0xuJQ7ltJmJ6ZmnY1pPMB/ocd2BNnpk
-IiBXSkGpJDVF28Y6gQ4qn9O2MC82Xaxav/XSZT17GNLg2S9xM7La6CZxqgzuq8cX
-76Y+9tKqsqllwLDUiurUp//E+ikoUSTMxZDOi05HbCKJ7vQ3UF2vM+4axZ81ruzk
-kxh1C3LyzZ47QbgFmnYrDuuRBiY18ELaii7Zhj8LbWVAGc3Wy5DIuD/uSQTpe42C
-igNN5BSjNKqLMGALogCtXrPrSSAc01KupVoBPkL0BwhO23arrhhdbjARZBp/PLwn
-TQleCzT/PKS9XWFrvuxeEHNb7Morbg3EhZZtCZWF0PbnoenAcl3sRLlwsScZtEtt
-LR6God7zafboyc9gjWbllQkPz+qCmfvefF7K/PgP3hrmwp8CqFs=
-=XlV0
------END PGP SIGNATURE-----
+Other options which came in question (seeking guidance)
 
---CukGRbOVR6ODqes/--
+* cell-level `compatible` on a fixed-cell child (analogous to `mac-base`) to
+  nominate the PSCR cell under the existing NVMEM provider. DT remains purely
+  descriptive (location/size); encoding is documented outside DT and shared
+  across components.
+
+* `/chosen` phandle pointing to the nominated fixed-cell (simple to discover;
+  unsure about policy concerns).
+
+* pstore integration (not tried): a backend that uses a nominated NVMEM cell if
+  such a nomination is acceptable.
+
+* nvmem-layout usage (not tried): provider-side markup of the region to
+  indicate it carries PSCR, if that pattern is acceptable for this purpose.
+
+* Open to any established precedent for nominating a specific NVMEM cell for a
+  system role without introducing software/virtual DT nodes.
+
+Ask
+
+* Is a cell-level `compatible` on a `fixed-cell` child an acceptable way to
+  nominate the PSCR cell?
+
+* If not, is a `/chosen` phandle acceptable here, or is there a preferred
+  alternative?
+
+Thanks for guidance - once the selection mechanism is agreed, I can respin the
+PSCR series accordingly.
+
+Latest patch version: https://lore.kernel.org/all/aHTZTFxfS6Bn4yhz@pengutronix.de/
+
+Best Regards,
+Oleksij
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
