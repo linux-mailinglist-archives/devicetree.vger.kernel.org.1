@@ -1,410 +1,328 @@
-Return-Path: <devicetree+bounces-223240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16B4ABB25FC
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 04:31:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D61B8BB2647
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 04:44:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C071A42138F
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 02:31:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 863CA1C6EC9
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 02:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96ACF285C85;
-	Thu,  2 Oct 2025 02:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFCF28725D;
+	Thu,  2 Oct 2025 02:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="P1YVZffe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P4pEaIUR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0120280017
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 02:31:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C233286D4D;
+	Thu,  2 Oct 2025 02:44:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759372285; cv=none; b=CtDlGyz+hiJuFbhF6ABcV/BiAPgySUBmBrtKaxoguaO7rKWZDEj3ZD05GVn79bPIdzBD/zohwitI1ccu2SHGj0n+B1NlggtU1RhIAkYJ5a2ASzvzLQn0me2OW5JwMq9PcKQBU93CvrUrZK8HW5IuY39TDRpARxsHKsYe5azTyTM=
+	t=1759373074; cv=none; b=Ony7d03CL9Em15uINk3nR4c5M15bS6LHcYYUTfxDHjleDk4225OefdMT1nsoClAG/aMafUYEMVdPCrDfoGI1AIUbncuJoFA6kZHeKvjMFrRtO/59bsGKyqjN3DNmWNZY4tH9FfzczAHsM1QmRxsZYXX4aIaSdsqFVJE0B5qvTbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759372285; c=relaxed/simple;
-	bh=O1PNQ+4acklfTbwH1atUlrG2uOWiRmBFCx9O7NU0T+Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IyvtvRSDCNB0cGUngq0nk89SPGxo12hvIKfQKIllbObljK4iRww3Et3cA4NMo4jmVSeACZQugQklG2BDZfPlRZoprzQGx4ogh4pZqrczyBb1p9RpEZGzwnpWgKPLs2XadYJ4XX3BPa2r6ixqjWRxVbfDqNFzR+ZiVvQMf3iCrNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=P1YVZffe; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-27d4d6b7ab5so5752505ad.2
-        for <devicetree@vger.kernel.org>; Wed, 01 Oct 2025 19:31:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759372283; x=1759977083; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=5I4ECdFRXnYjBd0EQd1ZXxpsaFt2QIgeIetEhOiNxIc=;
-        b=P1YVZffenugXRm+gKkZQQ2Y/kpWT8Ps2g2ElgJZCMmZ20AMALJAvAOMkUb1eDX/zsg
-         QxIjVtnvKRR4+SPThYPO9vszwjXZFLPf6LaAhiE4Fv22jghvWhKBb4J6blSNUb9+sXyp
-         souR+f946gIPA000phb+0jwrq7FmQ7t/E4Nv07Rdy86MKXwtZkSBoqjNXyA0Tns5iV58
-         fsWXJR0k5Y9QycwrUB88+uMs/yj/D2eXuYgRNm1zcIUoCKJACaEJKBlD+ckmKa63RzpO
-         Tm7zys5QKkq3a6YJ6oqd2gurxrV2BHB5F3GZvC5RhD5JdUM730Q2BzdzrK7JajMfo6NR
-         v9aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759372283; x=1759977083;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5I4ECdFRXnYjBd0EQd1ZXxpsaFt2QIgeIetEhOiNxIc=;
-        b=WD+bQrfJXs2MHYNpCgvysGUXGcU77hxByp0Vo1zzVqvXg48BqCcQ9Ljwpy6VrbZ3D4
-         g4U/K44VX+ShksgvDUNHpa/AbX0VffWwH5UG5Df5xGNN7EIsByumhx6Ov0TGYMvQozsq
-         NZHifbAo3oluukWxaJpRPBSlIm7M1a9mD2SnQFp340JaKrfv4uO2/kGyyR9qlpapZfgz
-         CQ0HrUYNCjKe3W5qMdFgOVENKbiBfITHtpo7ZEcheR5Z0/G6Ll7bbJK79Z/fEDeykEXU
-         Gg3eJPW13pOnKh+Udgr7UCw9LMGpA+dXJdzZC03balLiR6fC/+xZ7nQJzzOSZSlPXj/R
-         xOpA==
-X-Forwarded-Encrypted: i=1; AJvYcCWtmnRAUEBywp75nalaNH1vJkh6BLEwITwdhV2ICPflvOqvjSZaLAIGmZdD7Zdzms4LnbRlkmsJU/nP@vger.kernel.org
-X-Gm-Message-State: AOJu0YwFQkk2Jcp/LcxO6jaXcyDml0DvQYs/lp4AXnUT2w3ONuGobfe5
-	qcNmqJf+7ZlXV13J/u3JF9uxk11x6SGvb93H1rQqJU34OQY8iKKivD0Q
-X-Gm-Gg: ASbGnctmrA48KAHOcz8MrKk/H0FdJ/T/s54owted3wh2R/inH1SnMDbt9U8CDfWCkEw
-	Zfe6942h2HT0r92sx1hfIbiTLppEB+68uXQg+LaaUKo9kP2Z92NEwidMpzC+gf6hdTXNGlEBKsk
-	rlONGFvV5X5F7TYaMn2WO0kIC/uBkAA8pZp8MgeGoO85Ag8jl+hMLq5MqperYAnmROIZxmMqdSS
-	PrDSvEjSAVFd7q83CvuRCcWwURMkW0ipwfzgmG+1wXek9QgjBbdRu2BZ87kwrlMOEmzzL/m/sJu
-	O3xQ2TgCbvhECSYNNU55RjssfEtUpr2YhBEyR0M18QpAA+DgqfOXzsH/0dZNJAofwQ1yjx3K43v
-	ZHkcTh+phuIk7xBr7SNM5snNk0HSrH7NPPNBnWelXofQYuIhHA90XF6KJNOdw4QDvrV7h52m79f
-	IY4NOq/oRUgyG7J4oBTK5bocNEG3Y8WQ==
-X-Google-Smtp-Source: AGHT+IFjRAFPZ7mBP9i+FyPZlW2baSflCyUt4AMF1Dr5WIn8lEaNfF3VUH66AX9uSIeTuN2+iZwSOA==
-X-Received: by 2002:a17:902:e74a:b0:264:f3ed:ee10 with SMTP id d9443c01a7336-28e7f2a1202mr72237395ad.11.1759372283155;
-        Wed, 01 Oct 2025 19:31:23 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d1b9e5asm9950555ad.74.2025.10.01.19.31.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 01 Oct 2025 19:31:22 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <fc9ef023-4420-4e43-b2a4-35d42184c0c7@roeck-us.net>
-Date: Wed, 1 Oct 2025 19:31:21 -0700
+	s=arc-20240116; t=1759373074; c=relaxed/simple;
+	bh=dTowb+J6WK4jE3aFjdvelX7oyZdVONQO9cwZMgstuxE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nwPonPNzb4vYJqcimXfBRb9DYmf+A1B+zdc3e5Y6wRa7xVk02csUFVM/JrYQKQhU9vuhal/O7+8q1bacubjXu+YBrANISjrfynVNGL3eK1UFNLlU/u8/F7IWcy1Zl/F7Pvm0pxu1Hj5jVtrPtg027fLjejBEPGRIoMrFwwLxgMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P4pEaIUR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA78FC4CEF1;
+	Thu,  2 Oct 2025 02:44:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759373074;
+	bh=dTowb+J6WK4jE3aFjdvelX7oyZdVONQO9cwZMgstuxE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=P4pEaIUR8a7YKRKOtnklo9MNLEMiPz8gkdMfiQNvga4ZzCxxh1W8bns6wEBHbIdd5
+	 jEPMmuQJTUv9dUBZyb2cfiAg4/MFHOZDunEDThx1/tEO2XdBasrOFxl1TYk3Flyyve
+	 DHOSRO4tvJR3w9gcitbxhP/xuC1CIm/mMDauE9XuoD6L3iwdVZ0H6FJPlo1ZPwiTwc
+	 CNbMJZJV4wJ9RV+BqB/aIBXJaBYiwCJqQJO9BuMIyGD1oFXjnttujohjazHc2xgNPL
+	 XD/m5X8xrXPbZ2sThikN++vkYp+/7MGOkIytAcqsieOmzI7dZJlvF3tSjVdcgTxxEt
+	 Cdiyt/+uTK3kg==
+Date: Wed, 1 Oct 2025 21:44:31 -0500
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?Jean-Fran=E7ois?= Lessard <jefflessard3@gmail.com>
+Cc: Andy Shevchenko <andy@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 3/7] dt-bindings: auxdisplay: add Titan Micro
+ Electronics TM16xx
+Message-ID: <20251002024431.GA2926696-robh@kernel.org>
+References: <20250926141913.25919-1-jefflessard3@gmail.com>
+ <20250926141913.25919-4-jefflessard3@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] dt-bindings: watchdog: factor out RZ/V2H(P) watchdog
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-renesas-soc@vger.kernel.org
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20250926112218.28723-1-wsa+renesas@sang-engineering.com>
- <20250926112218.28723-5-wsa+renesas@sang-engineering.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20250926112218.28723-5-wsa+renesas@sang-engineering.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250926141913.25919-4-jefflessard3@gmail.com>
 
-On 9/26/25 04:22, Wolfram Sang wrote:
-> Renesas created different watchdog IPs but they are all handled in the
-> same binding documentation. This leads to a lot of conditional handling
-> which makes it unnecessarily hard to add new items. Factor out the
-> RZ/V2H(P) watchdog to make handling easier.
+On Fri, Sep 26, 2025 at 10:19:04AM -0400, Jean-François Lessard wrote:
+> Add documentation for TM16xx-compatible 7-segment LED display controllers
+> with keyscan.
 > 
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-
+> Signed-off-by: Jean-François Lessard <jefflessard3@gmail.com>
 > ---
->   .../watchdog/renesas,r9a09g057-wdt.yaml       | 113 ++++++++++++++++++
->   .../bindings/watchdog/renesas,wdt.yaml        |  97 +--------------
->   2 files changed, 118 insertions(+), 92 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/watchdog/renesas,r9a09g057-wdt.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,r9a09g057-wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,r9a09g057-wdt.yaml
+> Notes:
+>     The 'segments' property is intentionally not vendor-prefixed as it
+>     defines a generic hardware description concept applicable to any
+>     7-segment display controller. The property describes the fundamental
+>     grid/segment coordinate mapping that is controller-agnostic and could
+>     be reused by other LED matrix display bindings. Similar to how 'gpios'
+>     describes GPIO connections generically, 'segments' describes segment
+>     connections in a standardized way using uint32-matrix format.
+>     
+>     The property uses explicit coordinate pairs to handle real-world
+>     hardware variations. Some board manufacturers use standard layouts
+>     (same grid, different segments per digit) while others use transposed
+>     layouts (same segment, different grids per digit). The coordinate-pair
+>     approach accommodates both patterns without requiring separate arrays
+>     or boolean flags, as confirmed acceptable by DT maintainers.
+> 
+>  .../bindings/auxdisplay/titanmec,tm16xx.yaml  | 463 ++++++++++++++++++
+>  MAINTAINERS                                   |   5 +
+>  2 files changed, 468 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
 > new file mode 100644
-> index 000000000000..2450ac856783
+> index 000000000000..d324023bbffb
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/renesas,r9a09g057-wdt.yaml
-> @@ -0,0 +1,113 @@
+> +++ b/Documentation/devicetree/bindings/auxdisplay/titanmec,tm16xx.yaml
+> @@ -0,0 +1,463 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/watchdog/renesas,r9a09g057-wdt.yaml#
+> +$id: http://devicetree.org/schemas/auxdisplay/titanmec,tm16xx.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Renesas RZ/V2H(P) Watchdog Timer (WDT) Controller
+> +title: Auxiliary displays based on TM16xx and compatible LED controllers
 > +
 > +maintainers:
-> +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> +  - Jean-François Lessard <jefflessard3@gmail.com>
+> +
+> +description: |
+> +  LED matrix controllers used in auxiliary display devices that drive individual
+> +  LED icons and 7-segment digit groups through a grid/segment addressing scheme.
+> +  Controllers manage a matrix of LEDs organized as grids (columns/banks in
+> +  vendor datasheets) and segments (rows/bit positions in vendor datasheets).
+> +  Maximum brightness and grid/segment indices are controller-specific.
+> +  Controller-specific maximum are validated in the driver.
+> +
+> +  The controller is agnostic of the display layout. Board-specific LED wiring is
+> +  described through child nodes that specify grid/segment coordinates for
+> +  individual icons and segment mapping for 7-segment digits.
+> +
+> +  The bindings use separate 'leds' and 'digits' containers to accommodate
+> +  different addressing schemes:
+> +  - LEDs use 2-cell addressing (grid, segment) for matrix coordinates
+> +  - Digits use 1-cell addressing with explicit segment mapping
+> +
+> +  The controller node exposes a logical LED-like control for the aggregate
+> +  display brightness. Child nodes describe individual icons and 7-seg digits.
+> +  The top-level control supports only label and brightness-related properties
+> +  and does not support other common LED properties such as color or function.
+> +  Child LED nodes use the standard LED binding.
+> +
+> +  Optional keypad scanning is supported when both 'linux,keymap' and
+> +  'poll-interval' properties are specified.
 > +
 > +properties:
 > +  compatible:
 > +    oneOf:
 > +      - items:
 > +          - enum:
-> +              - renesas,r9a09g047-wdt # RZ/G3E
-> +              - renesas,r9a09g056-wdt # RZ/V2N
-> +          - const: renesas,r9a09g057-wdt # RZ/V2H(P)
-> +
-> +      - enum:
-> +          - renesas,r9a09g057-wdt    # RZ/V2H(P)
-> +          - renesas,r9a09g077-wdt    # RZ/T2H
-> +
+> +              - fdhisi,fd628
+> +              - princeton,pt6964
+> +              - wxicore,aip1628
+> +          - const: titanmec,tm1628
 > +      - items:
-> +          - const: renesas,r9a09g087-wdt # RZ/N2H
-> +          - const: renesas,r9a09g077-wdt # RZ/T2H
+> +          - enum:
+> +              - wxicore,aip1618
+> +          - const: titanmec,tm1618
+> +      - items:
+> +          - enum:
+> +              - fdhisi,fd650
+> +              - wxicore,aip650
+> +          - const: titanmec,tm1650
+> +      - enum:
+> +          - fdhisi,fd620
+> +          - fdhisi,fd655
+> +          - fdhisi,fd6551
+> +          - titanmec,tm1618
+> +          - titanmec,tm1620
+> +          - titanmec,tm1628
+> +          - titanmec,tm1638
+> +          - titanmec,tm1650
+> +          - winrise,hbs658
 > +
 > +  reg:
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  clocks:
-> +    minItems: 1
-> +    items:
-> +      - description: Register access clock
-> +      - description: Main clock
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    items:
-> +      - const: pclk
-> +      - const: oscclk
-> +
-> +  power-domains:
 > +    maxItems: 1
 > +
-> +  resets:
-> +    maxItems: 1
+> +  label:
+> +    description:
+> +      The label for the top-level LED. If omitted, the label is taken from the
+> +      node name (excluding the unit address). It has to uniquely identify a
+> +      device, i.e. no other LED class device can be assigned the same label.
 > +
-> +  timeout-sec: true
+> +  max-brightness:
+> +    minimum: 0  # 0=off
+> +    maximum: 8  # Maximum across all TM16xx controllers
+> +    description:
+> +      Normally the maximum brightness is determined by the hardware and this
+> +      property is not required. This property is used to put a software limit
+> +      on the brightness apart from what the driver says, as it could happen
+> +      that a LED can be made so bright that it gets damaged or causes damage
+> +      due to restrictions in a specific system, such as mounting conditions.
+> +
+> +  default-brightness:
+> +    minimum: 0  # 0=off
+> +    maximum: 8  # Maximum across all TM16xx controllers
+> +    description:
+> +      Brightness to be set if LED's default state is on. Used only during
+> +      initialization. If the option is not set then max brightness is used.
+> +
+> +  digits:
+> +    type: object
+> +    description: Container for 7-segment digit group definitions
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 1
+> +      "#size-cells":
+> +        const: 0
+> +
+> +    patternProperties:
+> +      "^digit@[0-9]+$":
+
+Unit addresses are typically hex, so: [0-9a-f]+
+
+> +        type: object
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          reg:
+> +            description:
+> +              Digit position identifier numbered sequentially left-to-right,
+> +              with reg=0 representing the leftmost digit position as displayed
+> +              to the user.
+> +            maxItems: 1
+> +
+> +          segments:
+> +            $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> +            description: |
+> +              Array of grid/segment coordinate pairs for each 7-segment position.
+> +              Each entry is <grid segment> mapping to standard 7-segment positions
+> +              in order: a, b, c, d, e, f, g
+> +
+> +              Standard 7-segment layout:
+> +                 aaa
+> +                f   b
+> +                f   b
+> +                 ggg
+> +                e   c
+> +                e   c
+> +                 ddd
+> +            items:
+> +              items:
+> +                - description: Grid index
+> +                - description: Segment index
+> +            minItems: 7
+> +            maxItems: 7
+> +
+> +        required:
+> +          - reg
+> +          - segments
+> +
+> +  leds:
+> +    type: object
+> +    description: Container for individual LED icon definitions
+> +    additionalProperties: false
+> +
+> +    properties:
+> +      "#address-cells":
+> +        const: 2
+> +      "#size-cells":
+> +        const: 0
+> +
+> +    patternProperties:
+> +      "^led@[0-9]+,[0-9]+$":
+
+Again, hex please.
+
+I assume this is <grid>,<segment>? Please add a description for the 
+node and say that.
+
+> +        type: object
+> +        $ref: /schemas/leds/common.yaml#
+> +        unevaluatedProperties: false
+> +
+> +        properties:
+> +          reg:
+> +            description:
+> +              Grid and segment indices as <grid segment> of this individual LED icon
+> +
+> +        required:
+> +          - reg
+> +
+> +dependencies:
+> +  poll-interval:
+> +    - linux,keymap
+> +  linux,keymap:
+> +    - poll-interval
+> +  autorepeat:
+> +    - linux,keymap
+> +    - poll-interval
 > +
 > +required:
 > +  - compatible
 > +  - reg
-> +  - clocks
 > +
 > +allOf:
-> +  - $ref: watchdog.yaml#
-> +
+> +  - $ref: /schemas/leds/common.yaml#
+> +    properties:
+> +      color: false
+> +      function: false
+> +      function-enumerator: false
+> +  - $ref: /schemas/input/input.yaml#
+> +  - $ref: /schemas/input/matrix-keymap.yaml#
+> +  # SPI controllers require 3-wire (combined MISO/MOSI line)
 > +  - if:
 > +      properties:
 > +        compatible:
 > +          contains:
 > +            enum:
-> +              - renesas,r9a09g057-wdt
+> +              - fdhisi,fd620
+> +              - fdhisi,fd628
+> +              - princeton,pt6964
+> +              - titanmec,tm1618
+> +              - titanmec,tm1620
+> +              - titanmec,tm1628
+> +              - titanmec,tm1638
+> +              - wxicore,aip1618
+> +              - wxicore,aip1628
 > +    then:
+> +      $ref: /schemas/spi/spi-peripheral-props.yaml#
 > +      properties:
-> +        clocks:
-> +          minItems: 2
-> +        clock-names:
-> +          minItems: 2
+> +        spi-3wire: true
+
+You can drop properties.
+
 > +      required:
-> +        - clock-names
-> +    else:
-> +      properties:
-> +        clocks:
-> +          maxItems: 1
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: renesas,r9a09g077-wdt
-> +    then:
-> +      properties:
-> +        resets: false
-> +        clock-names:
-> +          maxItems: 1
-> +        reg:
-> +          minItems: 2
-> +      required:
-> +        - clock-names
-> +        - power-domains
-> +    else:
-> +      properties:
-> +        reg:
-> +          maxItems: 1
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/renesas,r9a09g057-cpg.h>
-> +
-> +    wdt0: watchdog@11c00400 {
-> +            compatible = "renesas,r9a09g057-wdt";
-> +            reg = <0x11c00400 0x400>;
-> +            clocks = <&cpg CPG_MOD 0x4b>, <&cpg CPG_MOD 0x4c>;
-> +            clock-names = "pclk", "oscclk";
-> +            resets = <&cpg 0x75>;
-> +            power-domains = <&cpg>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> index 2a15c012fd67..08ba128bf442 100644
-> --- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-> @@ -51,38 +51,14 @@ properties:
->                 - renesas,r8a779h0-wdt     # R-Car V4M
->             - const: renesas,rcar-gen4-wdt # R-Car Gen4
->   
-> -      - items:
-> -          - enum:
-> -              - renesas,r9a09g047-wdt # RZ/G3E
-> -              - renesas,r9a09g056-wdt # RZ/V2N
-> -          - const: renesas,r9a09g057-wdt # RZ/V2H(P)
-> -
-> -      - enum:
-> -          - renesas,r9a09g057-wdt    # RZ/V2H(P)
-> -          - renesas,r9a09g077-wdt    # RZ/T2H
-> -
-> -      - items:
-> -          - const: renesas,r9a09g087-wdt # RZ/N2H
-> -          - const: renesas,r9a09g077-wdt # RZ/T2H
-> -
->     reg:
-> -    minItems: 1
-> -    maxItems: 2
-> +    maxItems: 1
->   
->     interrupts:
->       maxItems: 1
->   
->     clocks:
-> -    minItems: 1
-> -    items:
-> -      - description: Register access clock
-> -      - description: Main clock
-> -
-> -  clock-names:
-> -    minItems: 1
-> -    items:
-> -      - const: pclk
-> -      - const: oscclk
-> +    maxItems: 1
->   
->     power-domains:
->       maxItems: 1
-> @@ -96,76 +72,13 @@ required:
->     - compatible
->     - reg
->     - clocks
-> +  - interrupts
-> +  - power-domains
-> +  - resets
->   
->   allOf:
->     - $ref: watchdog.yaml#
->   
-> -  - if:
-> -      not:
-> -        properties:
-> -          compatible:
-> -            contains:
-> -              enum:
-> -                - renesas,r9a09g077-wdt
-> -    then:
-> -      required:
-> -        - power-domains
-> -        - resets
-> -
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            enum:
-> -              - renesas,r9a09g057-wdt
-> -    then:
-> -      properties:
-> -        clocks:
-> -          minItems: 2
-> -        clock-names:
-> -          minItems: 2
-> -      required:
-> -        - clock-names
-> -    else:
-> -      properties:
-> -        clocks:
-> -          maxItems: 1
-> -
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            enum:
-> -              - renesas,r9a09g057-wdt
-> -              - renesas,r9a09g077-wdt
-> -    then:
-> -      properties:
-> -        interrupts: false
-> -        interrupt-names: false
-> -    else:
-> -      required:
-> -        - interrupts
-> -
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            const: renesas,r9a09g077-wdt
-> -    then:
-> -      properties:
-> -        resets: false
-> -        clock-names:
-> -          maxItems: 1
-> -        reg:
-> -          minItems: 2
-> -      required:
-> -        - clock-names
-> -        - power-domains
-> -    else:
-> -      properties:
-> -        reg:
-> -          maxItems: 1
-> -
->   additionalProperties: false
->   
->   examples:
+> +        - spi-3wire
+
+With those nits fixed,
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
