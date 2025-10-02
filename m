@@ -1,106 +1,223 @@
-Return-Path: <devicetree+bounces-223411-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EACCFBB4715
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 18:07:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EBE5BB4794
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 18:17:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC3BD16950D
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 16:07:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A74B419E2AF5
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 16:18:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71CF4241695;
-	Thu,  2 Oct 2025 16:07:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C728A254B03;
+	Thu,  2 Oct 2025 16:17:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RaW0TUJG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Id0QxmAV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AE58233722;
-	Thu,  2 Oct 2025 16:07:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAE1724DD11
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 16:17:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759421265; cv=none; b=TgoRKxXRwLHEIlU1o3n85t/IDQRgtzmMn1IihOwPgfRPKjVrk/1M2H1z/dlr2449qtXMI+1nuLPysrsaVooMEkgN7Qby8qsa0yi6HK6NzkvA4O59h1eSXYvh2gXbwpxzdPZhNneZWOpakXKMwAzwyd4UuSkiAY2ZY6Qa1cT58tE=
+	t=1759421863; cv=none; b=pzGaiR7m+1aZP46DKZJBIaLLkSIZouw0yr+msmgpoKTvEZYy/StzzrzyIKMLDS+eoz6B9ldl6qds2+1NORKFZnkfjpGS4X2DmacWfA2D1c+VvBjCYLD2n1wZEc3bHtY1utvrQAjWPTGq/i3ImhZo8eTRPVlCVh3K71sl+I8HtaI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759421265; c=relaxed/simple;
-	bh=7HS3xDv56hiDsg1+8hgJy4KB2sJ7ucY4QIiLu0ewozc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XV8xF4I+u1+3+bWxbIH8O0NMpS86rf9+Wz4PtzHoG7fSS7E2JhMccu3OD2crnv95MoK/JLUMQydQA/D/Rv7vOhllsl33WVthyZE/jfXjXOLv3dPykrkNjdBLwogic5qUIvFtHvFLHhFx4zHxJRPN3EzXZefaTk2Ry3eBpeCjHsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RaW0TUJG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F105BC4CEF4;
-	Thu,  2 Oct 2025 16:07:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759421265;
-	bh=7HS3xDv56hiDsg1+8hgJy4KB2sJ7ucY4QIiLu0ewozc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RaW0TUJGjtHO6268lGs5FWYM8bDaIXCSLtQU3OQTBfqWK+Bu/YI965Qk/RH77hHhC
-	 BZsET7tPw7jl0bEU18wN/up2OTJtKc8M2jv+0DQ32MJVxsx7TbDp8cojcNESMwRea2
-	 wcWcGGd3edXKE63RYLTUcZgyToeCQMB8m7VYypsofwxaE4Qrf7lsUc7Pe1U09/7/1U
-	 XuNwJi/gtguk59RGBUE+pGb1v41/s8SByzuXvUWx5BxBrwPAqn5CsKfwIcqlqAY3UA
-	 GmlBRjcaxB4L2oV1HxeXgJ8n5mEa2dXUcaLqVEH4cFz1dCJlF9FNiFYiLeCwr49tWe
-	 +f1IhhhmHeFWQ==
-Date: Thu, 2 Oct 2025 09:07:44 -0700
-From: Kees Cook <kees@kernel.org>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: Sebastian Reichel <sre@kernel.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	s=arc-20240116; t=1759421863; c=relaxed/simple;
+	bh=xxvRe2lk5v6z4GHvi4gvhCLEPq/UdCzzDR2ZBmyfCzs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=oIy02pGP7F4//CSQqJG2aj/JH26bIvfbSzFV/Ft2l52eAhrxgPzUlUFyPwSzL/ahNtqTa90vsT0rxCWwr4q8Hfu+HtXN4YXYNeVY7dwhJzRd9TQt2YN872+tE2EKvPNHH7lKnlWoFbFFLq7IQUbfSwzq7ezMx7BOwewErzBZvUI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Id0QxmAV; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-46e4f2696bdso15210485e9.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 09:17:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759421860; x=1760026660; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Otx1/PA4HHwSEHLDk3fPYI5aqAtZZe0cB6f3c8gmrpc=;
+        b=Id0QxmAVsJFm19U5DZ6k2PRkpsjY4QagUIM3S9go0kE5ab5rL0WG/3dwLqQ6fa/I+f
+         og3Wunt1Y7Ha1s4tRIZ16pl5e+Uc/t4V0gevhJjOrg8IqORj2rwvbC/vf41xFU0a+bg0
+         scg96Tbr9IYJ0pEpsSmZrCbXlNULtpkr7fzrX0aney7kTlRgo7BsDZ/ef5Ttj8abfToM
+         a64d+nXE4Avy//4864VlseoicNMiwAzfnD3oTKBYoG5idO3XWqX9AdykgwEdTd+sydAq
+         jPPTi9unaiK4GAGqw1TPO5QI8eL+BmJIdhZzXe0pdbwNcVVTb9dxel9RRyymy6vxsg9u
+         UEqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759421860; x=1760026660;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Otx1/PA4HHwSEHLDk3fPYI5aqAtZZe0cB6f3c8gmrpc=;
+        b=TRpxHEp9Bt9Ne0hIHW9FgMgthFH1Ymx1dhmhgd1IhbUXtxqU1WjDD7IEXjywd3WB3d
+         uoMRkLXoG0q3vQbn5LzrW0AT0CXsEFK+I4vyYgTcv02cP+lGjvRNZUdB2fBq8P6GEZ+h
+         oKgvxy4EBU/jAYU1QLlstAZLcPDsuaC7qksBQSIWD54rejJRceOnXIWSckRfbkbFMD4r
+         aEB1F07YSiR+FCI7VG1QYK4ei2DW4iDYrp7Jh58BKElm8nvJkCUJYNxRpniP8ZAV7KP3
+         XRhWV26VSo5RiE0/pBsA0LdDUqN+qlB4zZVsGlqMU/jQHGPkZsg6/jFg2POcp+gO85Yd
+         9nLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW4iHA2vYAz3pXZHOKZNsIr1b4rTUXwvhdwa0PpgOS5YnJF0TDqjDuQi+mo17jXOYsTQ+JZoIC/3vcO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEFCg/Fn9XTN1/ewEkuJSgCUF3flDGk402JZH7akgrRkY+PPBS
+	ibyROQAOEgrVC38d743YIhDfN2Kd8N25uR4UGq4+3L3oy2/wT8+3JIzU
+X-Gm-Gg: ASbGnctO15FbAomTqq00gHHgcTShA2nJ6RH4ByoLsP8dS+mMLDEOsge0gPV7c2Ez5wO
+	hjlSYqb3a5Z8lesrY11ginkHqaaxTH5m69b/UOYnZENNEAVA2gCOzvzpfj1dK9RmJaYbEHTwRCj
+	VSrE8h0ZIy4yYrPWdx+JkfAv9jyh0v2nT3cDXrIUFdQqlnhzNpvkCWPsByeAqNrtWyDkDAKqt2w
+	FKBr9ijT/+LauJnUiUKTklOndAQ+OovaSzrD8scET3nMGFwzwyjhUi0Ji/9/UXfaos4AowSNeW1
+	TJyktx2vaAYCAIqCG02jRs3N93fy/FdpJPgr+xS7yRIUcRLhiFUYUaQScy98l5/hMu5208PqZxy
+	/UQaGT40RYA+v1XVjssTeOCzFpH+5805gb27+rBFvPidNzAuG/ppe24BkLPzCGZOKyk6EKvZWQ/
+	yn98GG
+X-Google-Smtp-Source: AGHT+IHrchvEXsxFJrlTLE8YJHQSNf/sirg2DAFD48uIiyWWeicecXuXT0nMUm5JOEVAQSa7EBcWwg==
+X-Received: by 2002:a05:600c:828d:b0:46e:19f8:88d8 with SMTP id 5b1f17b1804b1-46e61293bcamr60986875e9.34.1759421859733;
+        Thu, 02 Oct 2025 09:17:39 -0700 (PDT)
+Received: from iku.example.org ([2a06:5906:61b:2d00:607d:d8e6:591c:c858])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e5b5e4922sm58605515e9.1.2025.10.02.09.17.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Oct 2025 09:17:39 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Tony Luck <tony.luck@intel.com>,
-	"Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	kernel@pengutronix.de, linux-kernel@vger.kernel.org,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	linux-pm@vger.kernel.org,
-	=?iso-8859-1?Q?S=F8ren?= Andersen <san@skov.dk>,
-	Guenter Roeck <groeck@chromium.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Ahmad Fatoum <a.fatoum@pengutronix.de>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Subject: Re: RFC: Selecting an NVMEM cell for Power State Change Reason
- (PSCR) recording
-Message-ID: <202510020904.1E48B7EB@keescook>
-References: <20250618120255.3141862-1-o.rempel@pengutronix.de>
- <aN5pSWBFRZlNRv3U@pengutronix.de>
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v9 0/6] Add support for DU/DSI clocks and DSI driver support for the Renesas RZ/V2H(P) SoC
+Date: Thu,  2 Oct 2025 17:17:22 +0100
+Message-ID: <20251002161728.186024-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aN5pSWBFRZlNRv3U@pengutronix.de>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 02, 2025 at 02:00:09PM +0200, Oleksij Rempel wrote:
-> I'm seeking consensus on a minimal, upstream-acceptable way to identify the
-> single NVMEM cell used to persist a Power State Change Reason (PSCR). Typical
-> targets are battery-backed RTC scratchpads or small EEPROM. The aim is to have
-> a tiny breadcrumb available before userspace, across full power cuts, and
-> shared by bootloader/kernel/userspace.
-> [...]
-> * pstore integration (not tried): a backend that uses a nominated NVMEM cell if
->   such a nomination is acceptable.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Several years ago I wanted to have tighter integration between pstore
-and nvdimm code. The thread is here, for reference:
-https://lore.kernel.org/lkml/CAGXu5jLtmb3qinZnX3rScUJLUFdf+pRDVPjy=CS4KUtW9tLHtw@mail.gmail.com/
+Hi All,
 
-I'm not sure it it'll be a useful as background, but I thought I'd
-mention it. :)
+This patch series adds DU/DSI clocks and provides support for the
+MIPI DSI interface on the RZ/V2H(P) SoC. It was originally part of
+series [0], but has now been split into 6 patches due to dependencies
+on the clock driver, making it easier to review and merge.
 
--Kees
+[0] https://lore.kernel.org/all/20250430204112.342123-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+v8->v9:
+- Dropped `renesas-rzv2h-cpg-pll.h` header and merged into `renesas.h`
+- Exported the symbols for PLL calculation apis
+- Updated commit message for patch 2
+- Dropped reviewed-by tags for patch 2
+- Updated to use renesas.h
+- Updated Kconfig to select CLK_RZV2H
+- Added reviewed-by tag from Tomi for patch 5 and 6
+
+v7->v8:
+- Added reviewed-by tags from Tomi, Geert and Biju
+- Dropped rzv2h_get_pll_dsi_info() helper and opencoded instead.
+- Dropped is_plldsi parameter from rzv2h_cpg_pll_clk_register()
+- Updated commit message for patch 5/6 and 6/6
+- Switched to use devm_clk_get() instead of devm_clk_get_optional()
+  as lpclk clock is available on all SoCs.
+- Simplified check in rzv2h_mipi_dsi_dphy_init() for PLL parameters
+- Renamed start_index member to base_value in struct rzv2h_mipi_dsi_timings
+- Added comments in the code for DSI arrays and their usage
+- Added comments in the code for sleeps
+- Rebased the changes on next-20250902
+
+v6->v7:
+- Renamed pllclk to pllrefclk in DT binding
+- Added a new patch to add instance field to struct pll
+- Renamed rzv2h_pll_div_limits to rzv2h_pll_limits
+- Included fout_min and fout_max in the rzv2h_pll_limits structure
+- Renamed rzv2h_plldsi_parameters to rzv2h_pll_div_pars and re-structured
+  for readability
+- Dropped rzv2h_dsi_get_pll_parameters_values() instead added modular apis
+  to calculate the PLL parameters ie rzv2h_get_pll_pars/rzv2h_get_pll_div_pars/
+  rzv2h_get_pll_dtable_pars
+- Dropped plldsi_limits from rzv2h_cpg_info structure
+- Updated the DSI driver to use the new PLL APIs
+- Included the LPCLK patch
+- Rebased the changes on next-20250728
+
+v5-> v6:
+- Renamed CPG_PLL_STBY_SSCGEN_WEN to CPG_PLL_STBY_SSC_EN_WEN
+- Updated CPG_PLL_CLK1_DIV_K, CPG_PLL_CLK1_DIV_M, and
+  CPG_PLL_CLK1_DIV_P macros to use GENMASK
+- Updated req->rate in rzv2h_cpg_plldsi_div_determine_rate()
+- Dropped the cast in rzv2h_cpg_plldsi_div_set_rate()
+- Dropped rzv2h_cpg_plldsi_round_rate() and implemented
+  rzv2h_cpg_plldsi_determine_rate() instead
+- Made use of FIELD_PREP()
+- Moved CPG_CSDIV1 macro in patch 2/4
+- Dropped two_pow_s in rzv2h_dsi_get_pll_parameters_values()
+- Used mul_u32_u32() while calculating output_m and output_k_range
+- Used div_s64() instead of div64_s64() while calculating
+  pll_k
+- Used mul_u32_u32() while calculating fvco and fvco checks
+- Rounded the final output using DIV_U64_ROUND_CLOSEST()
+- Renamed CLK_DIV_PLLETH_LPCLK to CLK_CDIV4_PLLETH_LPCLK
+- Renamed CLK_CSDIV_PLLETH_LPCLK to CLK_PLLETH_LPCLK_GEAR
+- Renamed CLK_PLLDSI_SDIV2 to CLK_PLLDSI_GEAR
+- Renamed plldsi_sdiv2 to plldsi_gear
+- Preserved the sort order (by part number).
+- Added reviewed tag from Geert.
+- Made use of GENMASK() macro for PLLCLKSET0R_PLL_*,
+  PHYTCLKSETR_* and PHYTHSSETR_* macros.
+- Replaced 10000000UL with 10 * MEGA
+- Renamed mode_freq_hz to mode_freq_khz in rzv2h_dsi_mode_calc
+- Replaced `i -= 1;` with `i--;`
+- Renamed RZV2H_MIPI_DPHY_FOUT_MIN_IN_MEGA to
+  RZV2H_MIPI_DPHY_FOUT_MIN_IN_MHZ and
+  RZV2H_MIPI_DPHY_FOUT_MAX_IN_MEGA to
+  RZV2H_MIPI_DPHY_FOUT_MAX_IN_MHZ.
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (6):
+  clk: renesas: rzv2h-cpg: Add instance field to struct pll
+  clk: renesas: rzv2h-cpg: Add support for DSI clocks
+  clk: renesas: r9a09g057: Add clock and reset entries for DSI and LCDC
+  dt-bindings: display: bridge: renesas,dsi: Document RZ/V2H(P) and
+    RZ/V2N
+  drm: renesas: rz-du: mipi_dsi: Add LPCLK clock support
+  drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
+
+ .../bindings/display/bridge/renesas,dsi.yaml  | 120 +++-
+ drivers/clk/renesas/r9a09g057-cpg.c           |  62 ++
+ drivers/clk/renesas/rzv2h-cpg.c               | 560 +++++++++++++++++-
+ drivers/clk/renesas/rzv2h-cpg.h               |  29 +-
+ drivers/gpu/drm/renesas/rz-du/Kconfig         |   1 +
+ .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c    | 453 ++++++++++++++
+ .../drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h   |  34 ++
+ include/linux/clk/renesas.h                   | 136 +++++
+ 8 files changed, 1355 insertions(+), 40 deletions(-)
 
 -- 
-Kees Cook
+2.51.0
+
 
