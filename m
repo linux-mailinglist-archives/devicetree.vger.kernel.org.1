@@ -1,108 +1,125 @@
-Return-Path: <devicetree+bounces-223291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4890BB2A46
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 08:44:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0CB1BB2A80
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 09:05:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4E073A6F32
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 06:44:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FC3D3C6B57
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 07:05:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2BEB28C2A6;
-	Thu,  2 Oct 2025 06:44:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B501239E81;
+	Thu,  2 Oct 2025 07:05:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="UG58CB2r"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="k2U0BMBK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C91641339A4;
-	Thu,  2 Oct 2025 06:44:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 780E91E1A3B
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 07:05:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759387473; cv=none; b=o3BgUNfiZofsAm4uZAeswL70pjNpAJAS9KdWSPnCCjrzERTmQGcxkd5z5rofB460IzZE7ronHEgE6FIG/d0G+TsXxuw9qC/VddsHjptryDXAYW5GouBjfq517Krr3EKXnOALGdDtIExA0DOxiT0rRhRMMktJUJhybwZoAniNQVI=
+	t=1759388752; cv=none; b=AwqfRfXvjKbgvECqQiZGoKjIbqmph6cPFdnxh7obCxImx5COY5V7LjNLIhEzPrk17j2bEEWsF5a92hVYL6wQDc76oc9WIknBbsQenEIEx/iMgBi3mZ235Mu2NH8JYvway1G5ltV6BPVWFVwSNbDhwi25g/iwuhcn97VMC/8C4jY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759387473; c=relaxed/simple;
-	bh=JnBN7j5droh3H2pGNS2Yqug4bI9vWf9w2jtC9CcI0Rs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O5zJnvTvpFDLXR2BnX0lHZRdwbYd5Kpioz5HyNslL/y2sYN8YLq5myaHiCPpgk5VlROjH1sY7RVCAPuqP8UuMjZ84tS5+XScsJ0TPzMBFA+nlf4W/zKVMaZKefSPcfWUqab9++r5YffU/raPtqUS7/0JUgDgY2KCA7PkXSuZGGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=UG58CB2r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 103B2C4CEF4;
-	Thu,  2 Oct 2025 06:44:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1759387473;
-	bh=JnBN7j5droh3H2pGNS2Yqug4bI9vWf9w2jtC9CcI0Rs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UG58CB2rWtiMXRchCHwWLofkmsXLn3fKVtWNW04+7L9eNEENg/qRLNowFt/vG/bys
-	 3HXtuDxQ1SRoqd+ysPhnEt6fgHCd+OulYKaYQCDquJ7AY+CZngGKkBZ70hzSWs67BA
-	 A9dHrIL04xDuCGqWZ5BGnqJ4rryPEuxYsAYKsM6c=
-Date: Thu, 2 Oct 2025 08:44:30 +0200
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Ian Rogers <irogers@google.com>, Alexandre Ghiti <alex@ghiti.fr>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Ingo Molnar <mingo@redhat.com>, Namhyung Kim <namhyung@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>, Jiri Olsa <jolsa@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Liang Kan <kan.liang@linux.intel.com>,
-	Mayuresh Chitale <mchitale@gmail.com>,
-	Anup Patel <anup@brainfault.org>,
-	Atish Patra <atish.patra@linux.dev>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 00/11] Linux RISC-V trace framework and drivers
-Message-ID: <2025100255-catcall-drinkable-23f5@gregkh>
-References: <20251002060732.100213-1-apatel@ventanamicro.com>
- <2025100208-challenge-protrude-d6c3@gregkh>
- <CAK9=C2U9FV6crTL1G2X6tUM=RyRnPBm1dPeFc29n3vmrFTcfHw@mail.gmail.com>
+	s=arc-20240116; t=1759388752; c=relaxed/simple;
+	bh=kqajBcfhnyiH952GdDDW4wkPaZlv3VtMaJHXRfk7Dpo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MqZ1022qOzpK2+lCXLYzjZMKWmF/LzKF6bYytT3rDSh5S/3LJUx9VXnXUIGXXhJvIoPuwXBdhvU4lAWND90foh1cN+MNYV6CzT+bjJVOgovyey6w1j6TxL6FwcvATGG3Kz3wUqUmKJAcmiGOtr9Hhm9LHzhI158LBB81V7Wwaa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=k2U0BMBK; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-62f24b7be4fso1254487a12.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 00:05:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759388749; x=1759993549; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rZWe9sJjzXFJrzJbfI4do9XirvOVhX8rsNXWi20/gUM=;
+        b=k2U0BMBKM2bp8J2X6coDT2V/tcS3OHHyRSAjC2t49vRjqBRlW2AnwQNRjGbMrvbyv9
+         tRstQ7APNV8wnoiFeiwCsTVzevzrb+CVLkE7BbVWh2Ql5GhIzAte0L0KG95fhlga8RkM
+         I4JqmOqVOuCac50s38RmYrlWzgEwRSGIv2BVklQYVGSSmxtf2CVPlrcpdh8K9y6emagl
+         WDOFUVzoPyK68ZJM8QJD4Hi5zQarnRLQa2opSqO/4wNlYz+M0qml+8lcbuQtDml1DuFl
+         y/MMYMB//H45FQOlNKRF2xd0k+q8oMGU9V5pOrVtmFP/6uCbRs4Iv0uIb4HHergbVCRD
+         z0zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759388749; x=1759993549;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rZWe9sJjzXFJrzJbfI4do9XirvOVhX8rsNXWi20/gUM=;
+        b=Q1kOz2tcdYdwth50rCeTM1k4j8+HRYMHCGlxPquiTOc455VxeXGFQjojEYJ/mp0yim
+         JozAF6k84fQcjQ97fHn1tvXrHPrY/UTROjMbY/rhEKKNoXI5vshF/Kpdwxf30Doq+p/r
+         /gq4MxOO/XGry4VENoL0ko+VedmVUtssXqhxO4PXLJWP0zC6iXWhs0eRfc4jrrVSl/eZ
+         9EHS7GWJfv2GV4r3HWsQNA1XeiXYfXMPHBbnaJvH8tha2c0SZVsENJ+5iyrhVoet2j+I
+         Y7TU83PfPUsxr5pFdSIQnRBWzh6lmWy8QcAXF9mFOLxBDqCgAjwRIx/2fits4P2ZThUd
+         udMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWe1NoOCnoKsBzReLWrM4ogAE1pEHX8JEyPXwAZnFtB7QFRvFehkUi0OPb2zwr9HbsbAMsXOng/1oQg@vger.kernel.org
+X-Gm-Message-State: AOJu0YyG8yrUTMf/SZZyQDDt6MmGjR1GH26/yehyyk7zQSHOUXGJcj1B
+	Jn+e4jqmmVaMOMb2FtnIyj1lkBRJC/2UHNdjSPinSIpEOb2n/C4Ni7dFo5sQMayj4zTonvZszV1
+	/WiCNfejsdOgdOjJGIwWq5l8qsaUowKU=
+X-Gm-Gg: ASbGncs/LWxDzfcGwofo4RPJ73vnoBLu1iI7n61AyXXqACbknafhrWulXXs93mPxV4p
+	P8vm9kOMfUYeIk65m8e+IPHeeEEm9OoziNPchheQaFPubhTi+m6UIMWh35h4NmrXI4B+8S9JHln
+	DK7s9rH8eWoHp6lwtkHnMIbGtb0P3Tru1+8Fec857p13FGp/uKFlsZS0MFWEXQUznZS7JlFvo+K
+	f0muiudxe5sxASLzFH82yahzQ9gzDqCdw==
+X-Google-Smtp-Source: AGHT+IF6z6xvP8EKQnjBWNNUYUXM4tLIvPP2DGadjVE5IQ6sdKrCnvE2y+ttQ27ur9HBknRAgOcWbfanrNPkOyv7YmE=
+X-Received: by 2002:a17:907:94d3:b0:b41:660:13b8 with SMTP id
+ a640c23a62f3a-b46e6033460mr843740366b.31.1759388748447; Thu, 02 Oct 2025
+ 00:05:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAK9=C2U9FV6crTL1G2X6tUM=RyRnPBm1dPeFc29n3vmrFTcfHw@mail.gmail.com>
+References: <961e5351afa408e69541b60ec75852fbbd1ddd24.1759121938.git.marilene.agarcia@gmail.com>
+ <476b75cff0c3e5ff23ba7c642924511f3ba09a3f.1759121938.git.marilene.agarcia@gmail.com>
+ <CAMknhBHt9JVkaf1Kq76BKFM-Ff38-7ws6gaq+5fwy=pAih-fww@mail.gmail.com>
+In-Reply-To: <CAMknhBHt9JVkaf1Kq76BKFM-Ff38-7ws6gaq+5fwy=pAih-fww@mail.gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Thu, 2 Oct 2025 10:05:11 +0300
+X-Gm-Features: AS18NWChg2Gs11byKnDJ3HgKZr9JaYy6y8zdlFJt8XDvo3BCRfuqYggwXNDKvtw
+Message-ID: <CAHp75VeXXBjc_o1ktqNnL-wH8CnjbsCHu8Rs_kpfYqCbbz6PrA@mail.gmail.com>
+Subject: Re: [PATCH v12 2/3] iio: adc: max14001: New driver
+To: David Lechner <dlechner@baylibre.com>
+Cc: Marilene Andrade Garcia <marilene.agarcia@gmail.com>, linux-iio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Kim Seer Paller <kimseer.paller@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Jonathan Cameron <jic23@kernel.org>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Marcelo Schmitt <marcelo.schmitt1@gmail.com>, Marcelo Schmitt <Marcelo.Schmitt@analog.com>, 
+	Ceclan Dumitru <dumitru.ceclan@analog.com>, Jonathan Santos <Jonathan.Santos@analog.com>, 
+	Dragos Bogdan <dragos.bogdan@analog.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 02, 2025 at 12:09:23PM +0530, Anup Patel wrote:
-> On Thu, Oct 2, 2025 at 11:56 AM Greg KH <gregkh@linuxfoundation.org> wrote:
-> >
-> > On Thu, Oct 02, 2025 at 11:37:21AM +0530, Anup Patel wrote:
-> > > This series adds initial support for RISC-V trace framework and drivers.
-> > > The RISC-V trace v1.0 specification is already ratified and can be found at:
-> > > https://github.com/riscv-non-isa/e-trace-encap/releases/tag/v1.0.0-ratified
-> > > https://github.com/riscv-non-isa/tg-nexus-trace/releases/tag/1.0_Ratified
-> > >
-> > > The RISC-V trace framework and drivers are designed to be agnostic to the
-> > > underlying trace protocol hence both RISC-V E-trace and RISC-V N-trace should
-> > > work fine. The discovery of trace protocl parameters are left to user-space
-> > > trace decoder.
-> > >
-> > > In ther future, there will be subsequent series adding:
-> > > 1) Sysfs support
-> >
-> > why does "trace" need sysfs support?  No other cpu platform uses that
-> > today, so why is a new user/kernel api needed?
-> 
-> We saw trace support for other architectures (e.g. ARM coresight) allowing
-> trace start/stop through sysfs. If this is an obsolete or not preferred approach
-> then we will deprioritize and possibly never add it.
+On Wed, Oct 1, 2025 at 5:03=E2=80=AFPM David Lechner <dlechner@baylibre.com=
+> wrote:
+> On Mon, Sep 29, 2025 at 7:59=E2=80=AFAM Marilene Andrade Garcia
+> <marilene.agarcia@gmail.com> wrote:
 
-Why is that needed for coresight and other arches do not need it?
-Perhaps it should be deleted from that codebase instead?
+...
 
-thanks,
+> > +       /* Enable writing to the SPI register */
+>
+> Always nice to put `.` at the end of the sentence in comments.
 
-greg k-h
+FWIW, for one-line comments we allow different styles, the main
+requirement is to be consistent with chosen style across the driver in
+question.
+
+1) "bla bla bla"
+2) "Foo bar baz"
+3) "Happy comment."
+
+Each of all three is okay.
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
