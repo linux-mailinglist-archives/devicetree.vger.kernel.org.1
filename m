@@ -1,135 +1,140 @@
-Return-Path: <devicetree+bounces-223473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FFC0BB5838
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 23:56:53 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2AE1BB588B
+	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 00:14:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3582419E620B
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 21:57:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CC9C74E2606
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 22:14:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FD7B7081C;
-	Thu,  2 Oct 2025 21:56:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC17426FA67;
+	Thu,  2 Oct 2025 22:14:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="LMJuhrHk"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KRssk/Hh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F0C1C148
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 21:56:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 412C9255F28
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 22:14:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759442209; cv=none; b=WSHsRtTfXoVP5Np9ftmNMA8n+uM48wHb8yitdOBz+CTRxcMyP0an6AtdzNs5uFfmX0SWZQJFRGJeVhccSyns0BgLlAvuuW6GLumAD+mXBiQKGI87gLSUGGfMpnNeDMxlVe+OptsLZ07zxnb7ZtJ34kkBu7aAAtNzBWQx2qELFY8=
+	t=1759443259; cv=none; b=Mnbvtt0sgNsUz82Sach8RnIXyN7x/DnwdtIalD5oVXJbXQh9Cno4ptVfkMrUMcJNzY1SMd2xjwxmocn53Y1GLsxyhdcXo9sc6G5nlS5y7bi3k082NFBHGY/yuFXViSL7i1a3LbanA8bk70VmUbFCpKfxdBOZc33U0Wsx3XQwDkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759442209; c=relaxed/simple;
-	bh=ShPhllfzrcEjHAglwp5h9FU1kRG9OTc0vV3QUF6vOPw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=G6c3r3+BcwCO42n/MXQFZvNkF38k+Z6fU1bAOUbeo6AFuv6sS7rZqEzZI9MNGgtfPaGp1sRbMyH5uypxR5bxeLyLqRjirg+D8wBQUf2rbqFu8VS+E1CWYnCSG/ZQy74UdzwMfWKnIbODrbQVdCY6AinfnPRMueU1tyCGp1fqScg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=LMJuhrHk; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1759442205;
-	bh=ShPhllfzrcEjHAglwp5h9FU1kRG9OTc0vV3QUF6vOPw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LMJuhrHkNJWgvMTKAZu7VN98y+ZmDJ1zCVAqZ0jWvpy0Q2gKRL3xvaTuP1T6O0BrR
-	 c8e5svsZ8rG0uzmGXeJJ4UP5sXxQnK1PGjNAgGZidLwG8Sr6WRWlmDNfTug43KWxHK
-	 TKkXvTa65m4D1ZGLYL9tGJ5muPS8R8X9xQ+KAn9aCgA68DDI+kP1DUOCtZg9UP9qEp
-	 LA0/FFG408O8oM3jNZuwI6yfv8j4oBPSQ8YIjWkyr2Y7vBcLoscF2Z+poMK8KYeAMH
-	 o7cxY5d12wVik/lxnHDGJr8Jl1rESTuDvdGGMrOZu7+wl+ifhN5pPM8GyIT36tO+4/
-	 YkXTfBG+VBDvg==
-Received: from [192.168.1.90] (unknown [82.79.138.145])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6EEFD17E12C0;
-	Thu,  2 Oct 2025 23:56:44 +0200 (CEST)
-Message-ID: <31187dc6-69ec-400e-9f01-2f3062092d26@collabora.com>
-Date: Fri, 3 Oct 2025 00:56:43 +0300
+	s=arc-20240116; t=1759443259; c=relaxed/simple;
+	bh=bJqxID90rzeZQW6x4VioAiM9HO5SSBRl9HBk2YS5H4U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jep9jkO7NK/MjxtUYwailQlgYgQReNbNrd7hJoAGn+3Wjd+Fls/GPsvCQ8H2Bh5XAebswpJXBwDVeNO6KGlsx3yvRQDqK48V70Igtp5CQiznqq80vZ2VxwmtvqJc7UeNAnaavV1j0gCr0onllhT2rITYiH0mk3qXQowKv7TZ4EE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KRssk/Hh; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-271067d66fbso14724845ad.3
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 15:14:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759443257; x=1760048057; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=H3afLalH6Ixhx5uorw5x+fuC8TSKfvIs8t48zMbaAbA=;
+        b=KRssk/HhYlk35ehaI0gpGlh9LYbeb2RurGBEnSf4DyrH6KZqkDs7PdwhtTiQ2du+eQ
+         C4UwFbmMBk7UjEOaxS786ftH0b5GYx9FU1km0nXmfjuXcjs7Gw67WFKsdwDqxXuD3fsF
+         FuRY18ILEzo/cYlmwFw34KKKo6buuuhbMm2LsQbW1jXEw/YTza3XsWk3vbssAs/VH1yX
+         5/nSXipMMKAoRB0vBs6JcbJHacaYdgx5tb+3KW8LM7uVmdo5qEy0p83Z3l/232YqqkvD
+         0WzP4A3GjHNNxBQpcbA8R5orfhwkF3q92akMxSQBSlj6CQQBekFsiCnv85P1oR/BbKKr
+         dA5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759443257; x=1760048057;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=H3afLalH6Ixhx5uorw5x+fuC8TSKfvIs8t48zMbaAbA=;
+        b=Tml7IfSAYYMneFC0ZHqpzfhGnUJ4U2D7V8MN255gjUZYXineV3+j1Go6SlWuwCD4NV
+         Kw66sVIykeFNHDVLTYwqs7xinxmugCyKiORx9dnId1mLDaXEAuKYC7Ca6eQJDujJikfw
+         TOIZ1gc6KNji6nisCgzv5yW+ffq9FiMsvuXIv+pwdVT/sb/mg1/aOaX0GrNaq5twLtsN
+         IxrtkWsjCtPjQFQtNO4+KKLbk+hHaux16XbD9xJ0brXMoqhjxPEHgDkpgfaw7Vjx7YKn
+         furxZ7o+RoZ4Itp923hocYp+3iYHijTzfZHF67G49Wyb3A2oVQI5J4/QaqMKxtFcEFzv
+         c5xg==
+X-Forwarded-Encrypted: i=1; AJvYcCUux6BCHUEEpxowyLre2CfGtnScrOCsZSR8guZ18A3zoD+QQ+GfthXJ7FD+z0VnJo4llvxRIkO2PP7S@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKE/3qkCVrKqrKBiolpdJ2esmIiHzOrVXRPvJi7uDJWa/L5oaI
+	DUhHMuWAXF9SMmykVBwu7MpKNXLoRMDm2swEJuf4FFDAfckAGGjoMIDv
+X-Gm-Gg: ASbGncucUEePjFKvMGwUuAJxJmjCXTLZUOBclP91yWzu8VMyOw+uD0hol9UpIKHXh6V
+	OjCdmhSvZ4t4OiXuNas94vh32HCNvr+BYDlgERXABSfB/TCugoUNbXAT5fcfVfjP+lSD3U9ruA2
+	9MkhTAMqG0hVQpNZH6IGzgyf5nZeIuAALg6l8l3vaItowPP5fxa8pOEkhg00CRJ713eSHYxYPXR
+	NvYsnTb0letzatDNIgvY578ZscZm3BJZE+7IFDyIUhZs1VW+5Ze9YcM6oLjD0TnNJEBY0fLtgx4
+	OWfiQagdCqE0kZ2P1F4x+DFePgmBw9GVyNUSONKx2XUxgLsogp/WQrRZn4rvmZUzkRIAK6iJUEB
+	+a2PS/Q+AFqQSSxfbmkgzhSIlrJimF2IkLcUebXvwsOAKhQgdc17J8pc=
+X-Google-Smtp-Source: AGHT+IENBul3bFqweSZ0dwqDKMkxMEi9ojWTa2JsfjOjJH/8VekQN37yrh4kPtbRCy3N115vb7fIgw==
+X-Received: by 2002:a17:903:1b4f:b0:28d:18d3:46bd with SMTP id d9443c01a7336-28e9a6be1bbmr9153845ad.43.1759443257422;
+        Thu, 02 Oct 2025 15:14:17 -0700 (PDT)
+Received: from localhost ([2804:30c:b65:6a00:ceaa:2ed0:e81e:8f51])
+        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-28e8d1127a3sm30497785ad.20.2025.10.02.15.14.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Oct 2025 15:14:16 -0700 (PDT)
+Date: Thu, 2 Oct 2025 19:15:09 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Kim Seer Paller <kimseer.paller@analog.com>
+Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pmbus: add max17616
+Message-ID: <aN75bfJINa3nV57Y@debian-BULLSEYE-live-builder-AMD64>
+References: <20250930-upstream-max17616-v1-0-1525a85f126c@analog.com>
+ <20250930-upstream-max17616-v1-1-1525a85f126c@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] arm64: dts: rockchip: Add device tree for the Orange
- Pi CM5 Base board
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Algea Cao <algea.cao@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Cenk Uluisik <cenk.uluisik@googlemail.com>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jimmy Hon <honyuenkwun@gmail.com>, Kever Yang <kever.yang@rock-chips.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Maxime Ripard
- <mripard@kernel.org>, Muhammed Efe Cetin <efectn@6tel.net>,
- Ondrej Jirman <megi@xff.cz>, Rob Herring <robh@kernel.org>,
- Sandy Huang <hjc@rock-chips.com>
-References: <20251002034708.19248-1-laurent.pinchart@ideasonboard.com>
- <1964913f-8323-4714-a061-5fa09ce0983c@collabora.com>
- <20251002205240.GF16185@pendragon.ideasonboard.com>
-Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20251002205240.GF16185@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250930-upstream-max17616-v1-1-1525a85f126c@analog.com>
 
-On 10/2/25 11:52 PM, Laurent Pinchart wrote:
-> Hi Cristian,
-> 
-> On Thu, Oct 02, 2025 at 10:24:59PM +0300, Cristian Ciocaltea wrote:
->> On 10/2/25 6:47 AM, Laurent Pinchart wrote:
->>> Hello,
->>>
->>> This patch series adds a device tree for the Orange Pi CM5 Base board
->>> from Xunlong. This is a combination of a compute module and a carrier
->>> board, so the device tree is split in two files.
->>>
->>> The work is based on a combination of upstream device trees for other
->>> RK3588-based Orange Pi boards and the downstream device tree, all
->>> checked against the available schematics for the carrier board. The
->>> compute module schematics is unfortunately not available.
->>>
->>> The series starts by adding a new compatible for the board to
->>> arm/rockchip.yaml. The next patch documents a missing property in the
->>> rk3588-dw-hdmi-qp bindings that the device tree needs. Finally, the last
->>> patch adds the device tree.
->>>
->>> Patch 2/3 may be slightly controversial as the new DT property could be
->>> better named. 
->>
->> Indeed :-). As a matter of fact I've already planned to introduce it as
->> "tmds-enable-gpios" [1], during my recent FRL related work.
->>
->>> It has been supported in the driver for a year now, so
->>> there could be users in the wild. I have therefore decided to keep the
->>> current name. I am open to alternative solutions.
->>
->> As mentioned in [2], this was "inherited" from downstream and hasn't been
->> really in use so far.  I intended to do some more testing before attempting
->> to send those patches upstream, as for now I couldn't notice any (obvious)
->> change in behavior when switching between TMDS and FRL, with or without
->> making use of it in DT.
-> 
-> Thanks for the links. The new property name is better. We may need to
-> preserve backward compatibility though, how confident are you that the
-> enabled-gpios property isn't used in the wild ?
+Hi Kim,
 
-I think we should be fine, also considering this doesn't seem to have a
-negative impact on the functionality provided so far.
+For completeness, the dt doc could also have the SMBALERT interrupt.
+Though, I see the patch has been accepted and I don't want to make upstreaming
+take longer than needed. Maybe the comment below can be taken as follow up 
+patch suggestion. Though, if you end up doing a v2 for any reason, you can add
+my review tag.
 
-> I'd like to get the device tree for the Orange Pi CM5 merged sooner than
-> later. Would you post those two patches, or should I take them in the v2
-> of my series ?
+Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
 
-Sure, feel free to take them if you wish to speed things up a bit.
+On 09/30, Kim Seer Paller wrote:
+> Add device tree documentation for MAX17616/MAX17616A current-limiter
+> with overvoltage/surge, undervoltage, reverse polarity, loss of ground
+> protection with PMBus interface.
+>
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> ---
+>  .../bindings/hwmon/pmbus/adi,max17616.yaml         | 48 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  7 ++++
+...
+> +properties:
+> +  compatible:
+> +    const: adi,max17616
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vcc-supply: true
 
->> [1] https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commit/5a32a84ee3e801daaeb974f967f6e213983feeb4
->> [2] https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commit/df4d94fdb94463dd4175338bf7044b40c5e559e4
+  interrupts:
+    description: Fault condition signal provided on SMBALERT pin.
+    maxItems: 1
 
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vcc-supply
+> +
+
+Best regards,
+Marcelo
 
