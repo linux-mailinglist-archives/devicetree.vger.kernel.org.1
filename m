@@ -1,266 +1,212 @@
-Return-Path: <devicetree+bounces-223300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 022C7BB2BBF
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 09:47:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5FC4BB2C1D
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 10:00:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 843C219C38BC
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 07:48:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4FA13C5D08
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 08:00:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16D82BE641;
-	Thu,  2 Oct 2025 07:47:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB7AE2D3231;
+	Thu,  2 Oct 2025 08:00:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Fc5bfpOI"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="ekOTAKfm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74F81DD9AD;
-	Thu,  2 Oct 2025 07:47:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1480C2D248A
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 08:00:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759391266; cv=none; b=gBVG59G9zsArRvC9ZtpYmt49qswMJ3uHPWFrMVXW263e2wd0qGZ8/bdYEhIP9s9RM9bB3RIxBbpAMBBPzxNSvPEQN+5b2vSKDBy9fMt19zFjdb2InG+F0IU0lSQ30Jly3nkkqvKWenTXjvYtjKYB6YKZ67sNWSPr+KC2ZxJ/SMY=
+	t=1759392003; cv=none; b=BHoTSCVR6aAxzcCnDR0c6sQAQWGsFiAiXQouqmxIe4rjiaYmp/YP1kRrnYGMAHZQXr5+dVKby8Ja4fN8f5LO1HYBBUO1RUDcWzfvr8s/5hlAMGIpGmfJcYVTGfKfRYn+iPHkcvWQbKcwc4HTAFXw8iTPwvMIeItw40knBUFWiz8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759391266; c=relaxed/simple;
-	bh=dI0wrkAckMH7G1m4ya3Dj7swPNyC71r0eGahUHaJytU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iAOGV7yPOpORmpLjbqG5Hyk9JPlQTC1e9hvKT0XIqr6hKaaxiRJzv+BE7+7NUooRLd7mXGAwBdjsQX2PGPTk9f0ALmV8cqEKhwcBcy5EiaN2bcnZR9H2JIP5pNtRBYvTjcoBzkA344LclbMTZOx4Kpsc7NmS5pnpVJnpGbuHczA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Fc5bfpOI; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1759391262;
-	bh=dI0wrkAckMH7G1m4ya3Dj7swPNyC71r0eGahUHaJytU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Fc5bfpOIErakjiawbB16GBvXBuIlkWOx6lN+lhFFd2c2EYdM3RMGjx2N67KBbKkpN
-	 7PkU3vq1K8q9COKVq2uAXa1j5uyXD2eGedNVXUKGmLGUHYpAfB7wTnnJJoQJoQmGTk
-	 Y6S3qS+xhO5/at0687V8duOoCnGKnvI9krkjVN7g7cuRHKh7UMRyGxzBS2XncgBzoz
-	 PywfQNyp3y4GBa7mDDAYnxXj8lDAIUBetdeUNt5WEyn2B80LOA/K/3lu6eqOfR4Qyb
-	 C24m2gWXQV8n/Cetp0eecCloTXmxVouVe+ERYiQvXBIztkFsDT8B7X3FvaUwukC5j9
-	 tvZ7jYtqHpuMw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3D22817E0AC3;
-	Thu,  2 Oct 2025 09:47:42 +0200 (CEST)
-Message-ID: <6d5553da-4c0e-4957-8d74-314a9ef23301@collabora.com>
-Date: Thu, 2 Oct 2025 09:47:41 +0200
+	s=arc-20240116; t=1759392003; c=relaxed/simple;
+	bh=twdF5Ghf90omLm8FmG8vqty38VLg0uYT52OZEV9+SEc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sSa9IurTlWAwSBgtlUCThWvtuFUXPMr6clXpoAmJi7Xd+zwcyA4OPwLFIdChrlRh6et38O+bBupVSfDd97O7mVEMQovez45aikGJsHfSqfkeiVcEOW7V0WHo+kB1qLFxqmmsytec9G0i3a09Ri1ObDEStcXQ3EWf2EeU/hI4XtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=ekOTAKfm; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1759392001;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=twdF5Ghf90omLm8FmG8vqty38VLg0uYT52OZEV9+SEc=;
+	b=ekOTAKfmvKAKWodPP+9Q48QMPiCf1jjanz2H3Pkax9CBJIxFs9qagnJBqvVNM05mQDOBE+
+	tV+5RI1rv4insBjs400AAoeZg2eeYiNawqNescb2rqJaqD3KMF1kA5xcKeDom0+5eHHO5g
+	MsaCjvq5aY03fdMWes4NcTIhSbuNctw=
+Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
+ [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-563-bBs-l8tXMx2fA-sNk4lYFA-1; Thu, 02 Oct 2025 03:59:57 -0400
+X-MC-Unique: bBs-l8tXMx2fA-sNk4lYFA-1
+X-Mimecast-MFC-AGG-ID: bBs-l8tXMx2fA-sNk4lYFA_1759391996
+Received: by mail-wr1-f71.google.com with SMTP id ffacd0b85a97d-40cfb98eddbso1024352f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 00:59:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759391996; x=1759996796;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=twdF5Ghf90omLm8FmG8vqty38VLg0uYT52OZEV9+SEc=;
+        b=lEHR8cRxuMbFjWcywX2XZjOZPMNwKDegB2BNmYS3yMqubUxqbCdHCdcaN0+yy5yWzT
+         89t2yKOJoQOHYHk1OgoFPqyluDRW/C16dTbzDUEBTbNqzCSMGBwV3rCUTJCcPvGcj0Ob
+         fObJ91fPGYtQMacqamsDVsr1qeH7WRLXD0MPcQsLuCYjnmMcSXbGjIpTXwpXQUx6JzMp
+         0Dkj4O5j0jyzqUNhBXeMUp5ipWkYxFYvx3K8mwjlVnpDGR8yIP9NMY/EDUmO3ToTixMi
+         ElsVjYXRmvJsibu4quBnV/xXhhjrUT33/dsXiXeKAiTPCld9E3xRj7+ngDLhYUFzz2aJ
+         037g==
+X-Forwarded-Encrypted: i=1; AJvYcCWMRpU2yQ+PZ0KqrxrU7pU1Rg7Y9H3XWe3HLb6IHTtGigJmHa9jzokVb6dkY5Txk9nymTc3qxzgaMBf@vger.kernel.org
+X-Gm-Message-State: AOJu0YxGJHSmNTvs6c+9IdX6PIALDRpx5wa0Bh+Qgl8fx+MMqbh3Mmfy
+	0zwfkPzHuedxIwVvNgNU7KYkmpTRBpVUKd5Tazm7tLFT7QAvXN/yyc+h6QUK20tjlHCfH2/uVF3
+	gV5IgBQaipDUr9TGcytsMWhPrfmcH2VHCsE3G/e72aFW5M4lghYcAdTGGWqee7UA=
+X-Gm-Gg: ASbGncv60nRXafyiMTadAYihFtMWv5od4sxW/9dKkeL/1p92NmUfbb7+Cb80eWp5oIi
+	f4U5qxIOudoUt1qEyJLinoq0Umv5WWTsmsYfSKtxEVv1y2YqK4uNhUG8JxSYxaqxftr47+CDrZb
+	YOMTzwybitAJuHsHjHZmM6UIPMXKyxwckokzO2Gp7N/aBG5um8s01FlEFhC34cCaaCaENpetubt
+	Mi+mRS3WMg0bvBXtoATYah/7di/q5H4NlUU7/I0Tz0NAjlcssAYH8l5LNWMKMRBFZ+as/MZF5/M
+	PUDdJ11kZJrzZ+yQEpKDsg==
+X-Received: by 2002:a5d:5f48:0:b0:3e7:617f:8458 with SMTP id ffacd0b85a97d-4255d2ca82cmr1522902f8f.24.1759391996216;
+        Thu, 02 Oct 2025 00:59:56 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEqvfeqwKeBIWk9I362srSwTFSWrOClY9YoEOQMVFqHTivLzqDGGJkfLFwQp6Kk579V7lD3LQ==
+X-Received: by 2002:a5d:5f48:0:b0:3e7:617f:8458 with SMTP id ffacd0b85a97d-4255d2ca82cmr1522879f8f.24.1759391995724;
+        Thu, 02 Oct 2025 00:59:55 -0700 (PDT)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8e9719sm2540317f8f.31.2025.10.02.00.59.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 02 Oct 2025 00:59:55 -0700 (PDT)
+Date: Thu, 2 Oct 2025 09:59:54 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: John Stultz <jstultz@google.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	Brian Starkey <Brian.Starkey@arm.com>, "T.J. Mercier" <tjmercier@google.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@redhat.com>, 
+	Mike Rapoport <rppt@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linaro-mm-sig@lists.linaro.org, linux-mm@kvack.org
+Subject: Re: [PATCH 4/9] dma-buf: heaps: Add debugfs support
+Message-ID: <20251002-cute-loud-eel-67f9a0@houat>
+References: <20250902154630.4032984-1-thierry.reding@gmail.com>
+ <20250902154630.4032984-5-thierry.reding@gmail.com>
+ <CANDhNCoM4RFX-QccF7xT=+-tduGj9OZ_8SgrTVyRucMwyVc73Q@mail.gmail.com>
+ <e6twhwxi55eesb7xirei7wezzb77qjiji2mccgqlziisjzl3q5@3ny5e6lbgebz>
+ <CANDhNCrO21O_URa1iHuroOoG-g61DL7uvECTwVxiuitCTi=i4g@mail.gmail.com>
+ <sb76bsg5d45r5qgq4zy3svbh42ydkk4vrh6a7vh73eibvqbfjd@3r4exdhogde6>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 5/9] dt-bindings: regulator: Document MediaTek MT6373
- PMIC Regulators
-To: Rob Herring <robh@kernel.org>
-Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
- broonie@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- kernel@collabora.com, wenst@chromium.org,
- igor.belwon@mentallysanemainliners.org
-References: <20251001111316.31828-1-angelogioacchino.delregno@collabora.com>
- <20251001111316.31828-6-angelogioacchino.delregno@collabora.com>
- <20251001155300.GC1833526-robh@kernel.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20251001155300.GC1833526-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="wnfwjjw7bbsf5d2u"
+Content-Disposition: inline
+In-Reply-To: <sb76bsg5d45r5qgq4zy3svbh42ydkk4vrh6a7vh73eibvqbfjd@3r4exdhogde6>
 
-Il 01/10/25 17:53, Rob Herring ha scritto:
-> On Wed, Oct 01, 2025 at 01:13:12PM +0200, AngeloGioacchino Del Regno wrote:
->> Add bindings for the regulators found in the MediaTek MT6363 PMIC,
->> usually found in board designs using the MT6991 Dimensity 9400 and
->> on MT8196 Kompanio SoC for Chromebooks, along with the MT6316 and
->> MT6363 PMICs.
->>
->> Link: https://lore.kernel.org/r/20250715140224.206329-6-angelogioacchino.delregno@collabora.com
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   .../regulator/mediatek,mt6373-regulator.yaml  | 137 ++++++++++++++++++
->>   1 file changed, 137 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6373-regulator.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6373-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6373-regulator.yaml
->> new file mode 100644
->> index 000000000000..cb721d81b77c
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6373-regulator.yaml
->> @@ -0,0 +1,137 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6373-regulator.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: MediaTek MT6373 PMIC Regulators
->> +
->> +maintainers:
->> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> +
->> +description:
->> +  The MT6373 SPMI PMIC provides 10 BUCK and 23 LDO (Low DropOut) regulators
->> +  and can optionally provide overcurrent warnings with one ocp interrupt
->> +  for each voltage regulator.
->> +
->> +properties:
->> +  compatible:
->> +    const: mediatek,mt6373-regulator
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  vsys-vbuck0-supply:
->> +    description: Input supply for vbuck0
->> +
->> +  vsys-vbuck1-supply:
->> +    description: Input supply for vbuck1
->> +
->> +  vsys-vbuck2-supply:
->> +    description: Input supply for vbuck2
->> +
->> +  vsys-vbuck3-supply:
->> +    description: Input supply for vbuck3
->> +
->> +  vsys-vbuck4-supply:
->> +    description: Input supply for vbuck4
->> +
->> +  vsys-vbuck5-supply:
->> +    description: Input supply for vbuck5
->> +
->> +  vsys-vbuck6-supply:
->> +    description: Input supply for vbuck6
->> +
->> +  vsys-vbuck7-supply:
->> +    description: Input supply for vbuck7
->> +
->> +  vsys-vbuck8-supply:
->> +    description: Input supply for vbuck8
->> +
->> +  vsys-vbuck9-supply:
->> +    description: Input supply for vbuck9
->> +
->> +  vs1-ldo1-supply:
->> +    description: Input supply for vant18, vaud18, vcn18io
->> +
->> +  vs2-ldo1-supply:
->> +    description: Input supply for vrf12-aif, vrf13-aif
->> +
->> +  vs3-ldo1-supply:
->> +    description: Input supply for vrf09-aif, vsram-digrf-aif
->> +
->> +  vsys-ldo1-supply:
->> +    description: Input supply for vcn33-1, vcn33-2, vmc
->> +
->> +  vsys-ldo2-supply:
->> +    description:
->> +      Input supply for vaux18, vcn33-3, vefuse, vfp, vibr, vio28, vtp, vusb
->> +
->> +  vsys-ldo3-supply:
->> +    description: Input supply for vmch, vmch-eint-high/low
->> +
->> +patternProperties:
->> +  "^v(ant|aud|aux)18$":
->> +    $ref: "#/$defs/mediatek-mt6373-ldo-common"
->> +
->> +  "^vbuck([0-9])$":
-> 
-> Don't need ().
-> 
->> +    type: object
->> +    $ref: regulator.yaml#
->> +    properties:
->> +      regulator-allowed-modes:
->> +        description: |
->> +          Allowed Buck regulator operating modes allowed. Valid values below.
->> +            0 - Normal mode with automatic power saving, reducing the switching
->> +                frequency when light load conditions are detected
->> +            1 - Forced Continuous Conduction mode (FCCM) for improved voltage
->> +                regulation accuracy with constant switching frequency but lower
->> +                regulator efficiency
->> +            2 - Forced Low Power mode for improved regulator efficiency, used
->> +                when no heavy load is expected, does not limit the maximum out
->> +                current but unless only a light load is applied, there will be
->> +                regulation accuracy and efficiency losses.
->> +            3 - Forced Ultra Low Power mode for ultra low load, this greatly
->> +                reduces the maximum output power, makes the regulator to be
->> +                efficient only for ultra light load, and greatly reduces the
->> +                quiescent current (Iq) of the buck.
->> +        maxItems: 3
->> +        items:
->> +          enum: [ 0, 1, 2, 3 ]
->> +    unevaluatedProperties: false
->> +
->> +  "^v(cn18io|cn33-[123]|efuse|fp|tp|ibr|io28|sram-digrf-aif|usb)":
-> 
-> Missing '$' anchor.
-> 
->> +    $ref: "#/$defs/mediatek-mt6373-ldo-common"
->> +
->> +  "^vmc(h)?$":
-> 
-> Don't need ().
-> 
->> +    $ref: "#/$defs/mediatek-mt6373-ldo-common"
->> +
->> +  "^vmch-eint-(low|high)?$":
-> 
-> vmch-eint- is a valid name?
-> 
 
-Whoops. No, that was supposed to allow vmch-eint-low, vmch-eint-high.
+--wnfwjjw7bbsf5d2u
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 4/9] dma-buf: heaps: Add debugfs support
+MIME-Version: 1.0
 
->> +    $ref: "#/$defs/mediatek-mt6373-ldo-common"
->> +
->> +  "^vrf(09|12|13|18|io18)-aif$":
->> +    $ref: "#/$defs/mediatek-mt6373-ldo-common"
->> +
->> +$defs:
->> +  mediatek-mt6373-ldo-common:
-> 
-> The name is local to the schema, so 'ldo-common' would be sufficient.
-> 
+On Thu, Sep 04, 2025 at 02:04:05PM +0200, Thierry Reding wrote:
+> On Wed, Sep 03, 2025 at 11:48:38AM -0700, John Stultz wrote:
+> > On Wed, Sep 3, 2025 at 8:38=E2=80=AFAM Thierry Reding <thierry.reding@g=
+mail.com> wrote:
+> > >
+> > > On Tue, Sep 02, 2025 at 03:37:45PM -0700, John Stultz wrote:
+> > > > On Tue, Sep 2, 2025 at 8:46=E2=80=AFAM Thierry Reding <thierry.redi=
+ng@gmail.com> wrote:
+> > > > >
+> > > > > From: Thierry Reding <treding@nvidia.com>
+> > > > >
+> > > > > Add a callback to struct dma_heap_ops that heap providers can imp=
+lement
+> > > > > to show information about the state of the heap in debugfs. A top=
+-level
+> > > > > directory named "dma_heap" is created in debugfs and individual f=
+iles
+> > > > > will be named after the heaps.
+> > > > >
+> > > >
+> > > > I know its debugfs, but this feels a little loosey-goosey as an uAP=
+I.
+> > >
+> > > Well, the whole point of debugfs is that it's not really an ABI. Noth=
+ing
+> > > should ever rely on the presence of these files.
+> > >
+> > > > Is there any expected format for the show function?
+> > > >
+> > > > What would other dmabuf heaps ideally export via this interface?
+> > >
+> > > I've thought about this a bit and I'm not sure it makes sense to
+> > > standardize on this. I think on one hand having a list of buffers
+> > > exported by the dma-buf heap is probably the lowest common denominato=
+r,
+> > > but then there might be a bunch of other things that are very heap-
+> > > specific that some heap might want to export.
+> > >
+> > > > Is there some consistent dma_heap-ish concept for it to justify it
+> > > > being under a dma_heap directory, and not just an independent debug=
+fs
+> > > > file for the driver implementing the dmabuf heap?
+> > >
+> > > Well, I think just the fact that it's a dma-heap would qualify its
+> > > corresponding debugfs to be in a well-known location. We could of cou=
+rse
+> > > pick some arbitrary location, but that's just a recipe for chaos beca=
+use
+> > > then everybody puts these whereever they want. There's really no
+> > > standard place for driver-specific debugfs files to go, so putting it
+> > > into some "subsystem"-specific directory seems like the better option.
+> >=20
+> > Ok, I guess I was thinking if the files are organizationally cohesive
+> > to be under the dma-heap directory, they ought to have some
+> > consistency between them.
+>=20
+> As far as I can tell there's not even enough information in a dma-heap
+> to add any common debugfs snippets. As I mentioned earlier, a list of
+> buffers allocated from a dma-heap is about the only generic piece of
+> information that I can think of, but we don't track these buffers in a
+> generic way. None of the existing heaps do so either seem to be
+> interested in this either.
+>=20
+> It's also not like it's very useful information most of the time, it's
+> mainly in this driver so that it can be inspected at runtime to see what
+> the allocation pattern looks like at various stages and maybe help tune
+> the division into chunks.
 
-Okay, I was trying to avoid pollution - but effectively being this local it's not
-necessary to make this name that long.
+It is somewhat useful when we're talking about cgroup though :)
 
-Will come up with a v7 sooner than later.
+I think the buffer tracking / debugging mechanism itself is redundant
+with what dmem/memcg would provide, so we probably want to just enable
+dmem (probably?) here?
 
-Thanks!
-Angelo
+Of course, it doesn't help with additional heap specific debugging
+information, so this patch might still have value.
 
->> +    type: object
->> +    $ref: regulator.yaml#
->> +    unevaluatedProperties: false
->> +    properties:
->> +      regulator-allowed-modes:
->> +        description: |
->> +          Allowed LDO regulator operating modes allowed. Valid values below.
->> +            0 - Normal mode with automatic power saving, reducing the switching
->> +                frequency when light load conditions are detected
->> +            2 - Forced Low Power mode for improved regulator efficiency, used
->> +                when no heavy load is expected, does not limit the maximum out
->> +                current but unless only a light load is applied, there will be
->> +                regulation accuracy and efficiency losses.
->> +        maxItems: 2
->> +        items:
->> +          enum: [ 0, 2 ]
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +additionalProperties: false
->> -- 
->> 2.51.0
->>
+Maxime
+
+--wnfwjjw7bbsf5d2u
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaN4w+gAKCRAnX84Zoj2+
+drPIAXwN+Pi8yzwK6HH6eGaV4PuBhOENbMJ5om+Sbvf7UIv1i3YsGC9zQ5e+WgxM
+4TB85TUBgMDvDSgCCaar57VP6ejj5nEexJYbycU0O7aIS8YHI8OUUt+RA2Us7hS/
+M7QuNSDL9Q==
+=wm+r
+-----END PGP SIGNATURE-----
+
+--wnfwjjw7bbsf5d2u--
 
 
