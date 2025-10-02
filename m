@@ -1,204 +1,109 @@
-Return-Path: <devicetree+bounces-223297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B255BBB2B1A
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 09:30:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40F27BB2B9E
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 09:46:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB9D13B9156
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 07:30:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0938189BC6E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 07:46:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 388DD2D0C9F;
-	Thu,  2 Oct 2025 07:30:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A1AF238166;
+	Thu,  2 Oct 2025 07:46:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dydpOR+K"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="hdMC6LTv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F5D72C026D;
-	Thu,  2 Oct 2025 07:30:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3A932882A5
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 07:46:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759390234; cv=none; b=r7FRjYXUX7QUrZpqdhaXTYe89cvG62ihRAxrG/r+0CHqKzT3gVfYgsEMoklwPh5VIuPdOq9Bxf59p7CRFo8kqLy5Nuy2JbjBlJOATt0NNZNx+ju03AAx4EQtYlIDTClli0UtB8gN5brDKLYN5ZnArKh/DMGvkTMLO2hlNt+Xp8o=
+	t=1759391175; cv=none; b=dZM47r1bBBnp3rogAYlkRLPTAro2aVo+aDy2/EQdeMT6FScxb9x5FEldstr5kzjty2fSXlFvE5HErEUmOgfJPVLhCqnqArUZVAqekGTJ6egmSeLd+piV4gkXMV0SqHCoz+eLZJBowu59BeeE79upf4bcg763fky/SsmT6iDPEJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759390234; c=relaxed/simple;
-	bh=jDUQ/UaqP3nn6L4P+8Y0miY/+y99XoN5WWGCGdWBQtU=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=HUNwu+ycVs+qaHZFfFFCI5zJhvZSdSx+uwP2haOt+p0cyxlh/xqLMFIMIvf7drGtofOmAFBMaH8J0syd/1MwAbhEJ+65Co3D5hvrAzDEtUyh+hvpeqATpNH/FrDCsvRpMZnZ8JgqU2RqpdYz1946kytS6q72UIdpEYbASsLwIwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dydpOR+K; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5927U9CG2838778;
-	Thu, 2 Oct 2025 02:30:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1759390209;
-	bh=71sqONH4BXGPz4VfkWdc8RIfaxiFUOFoWFT9vpabLbY=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=dydpOR+K4/xM4y9182ZTavGpXMCnfraWH5z2dtM2aQ93llm5QEpWxu9p/bfXg3fk9
-	 zRJ8V5eRzRKeZh/j9j9B8hbJKp3/Ffga+rDI+JDGa5bwwlUGgcC9P/64KEOHS1kPfL
-	 miyg4r5PQFWKEFzHTn+HMxpXFwr9fMQ8ih5rZ2qE=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5927U9LE3442626
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 2 Oct 2025 02:30:09 -0500
-Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 2
- Oct 2025 02:30:08 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE204.ent.ti.com
- (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Thu, 2 Oct 2025 02:30:08 -0500
-Received: from lelvem-mr05.itg.ti.com ([10.250.165.138])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5927TkgQ1776146;
-	Thu, 2 Oct 2025 02:29:58 -0500
-From: Baojun Xu <baojun.xu@ti.com>
-To: <broonie@kernel.org>, <tiwai@suse.de>
-CC: <andriy.shevchenko@linux.intel.com>, <13916275206@139.com>,
-        <alsa-devel@alsa-project.org>, <shenghao-ding@ti.com>,
-        <baojun.xu@ti.com>, <linux-sound@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <lgirdwood@gmail.com>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <k-yi@ti.com>, <henry.lo@ti.com>,
-        <robinchen@ti.com>, <jesse-ji@ti.com>, <will-wang@ti.com>,
-        <jim.shil@goertek.com>, <toastcheng@google.com>,
-        <chinkaiting@google.com>
-Subject: [PATCH v4 2/2] ASoC: tas2781: Update ti,tas2781.yaml for adding tas58xx
-Date: Thu, 2 Oct 2025 15:29:25 +0800
-Message-ID: <20251002072925.26242-2-baojun.xu@ti.com>
-X-Mailer: git-send-email 2.43.0.windows.1
-In-Reply-To: <20251002072925.26242-1-baojun.xu@ti.com>
-References: <20251002072925.26242-1-baojun.xu@ti.com>
+	s=arc-20240116; t=1759391175; c=relaxed/simple;
+	bh=cxdhP4mqFsJBNQO/VRV1m4vk7D6c4c++Lg24qQFgRZQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EVKrLapLFE/oCZa0Usv56C5y6gYdfbCu/quveMdqUhgyXXOdaf7gmcVUdWF83X2KCw86Ht5cHUeH+OVjnA/4eL7flQOBC8f+VzqpSwLGchUw2wwSX4eH1h+uqqcz1Y+psqQvzehTxRMMi8yDjagDXEAMTgbeL++pUmxNWN8WbII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=hdMC6LTv; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=cxdh
+	P4mqFsJBNQO/VRV1m4vk7D6c4c++Lg24qQFgRZQ=; b=hdMC6LTvkBHtyCgwjhtb
+	2eW/JF/5zIlSoeIQfppFGhIMUy9stGa7FvD8XyoaLprIjgDmHZ+vEJ/UKoVnGrdg
+	2NnvUIvYp7PM+y2Ggk2i6MVdfWdEy95yMVPde0LiBEF0fmPTro9aggq2ozZ0OcxP
+	rCjAi+Cq+G6/UwL6cL1RCyMfGsUIr4lidv1Y6nhsGnHURmxsJHrZrmqJ+pChfuvz
+	D+S2yKNF3I9BfuW92oAaPHa+kFMKv6zDunxxtZx+FaxQlI+7pFgUHMlVdQ8L6r9U
+	hna9oM0VnVyD01b1ueptRnTYL9Fw358/cBxPdB0Z7cD78gRvWbBefV3LVXcxJHF8
+	bw==
+Received: (qmail 163477 invoked from network); 2 Oct 2025 09:46:06 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 2 Oct 2025 09:46:06 +0200
+X-UD-Smtp-Session: l3s3148p1@oI01LShA0OsgAwDPXwQHAL/S9V79e5yL
+Date: Thu, 2 Oct 2025 09:46:01 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Rob Herring <robh@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-watchdog@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>
+Subject: Re: [PATCH 0/4] dt-bindings: watchdog: factor out RZ watchdogs
+Message-ID: <aN4tuTgRUqd0T54U@shikoro>
+References: <20250926112218.28723-1-wsa+renesas@sang-engineering.com>
+ <20251002022324.GA2916027-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="kNM4CdNxEDzw257Z"
+Content-Disposition: inline
+In-Reply-To: <20251002022324.GA2916027-robh@kernel.org>
 
-Update ti,tas2781.yaml for adding TAS5802/TAS5815/TAS5828.
 
-Signed-off-by: Baojun Xu <baojun.xu@ti.com>
+--kNM4CdNxEDzw257Z
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
----
-v4:
- - Change the patch title
- - Add TAS5802 support in yaml file
- - Change description for missed TAS5815
- - Change format to keep all lines within 80 bytes in length
-v3:
- - Rewrite the patch title
- - Add TAS5815 support in yaml file
-v2:
- - Update description for TAS5828
- - Change commit tree to .../tiwai/sound.git
----
- .../devicetree/bindings/sound/ti,tas2781.yaml | 43 ++++++++++++++++---
- 1 file changed, 37 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-index bd00afa47..7f84f5060 100644
---- a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-+++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-@@ -24,10 +24,10 @@ description: |
-   Instruments Smart Amp speaker protection algorithm. The
-   integrated speaker voltage and current sense provides for real time
-   monitoring of loudspeaker behavior.
--  The TAS5825/TAS5827 is a stereo, digital input Class-D audio
--  amplifier optimized for efficiently driving high peak power into
--  small loudspeakers. An integrated on-chip DSP supports Texas
--  Instruments Smart Amp speaker protection algorithm.
-+  The TAS5802/TAS5815/TAS5825/TAS5827/TAS5828 is a stereo, digital input
-+  Class-D audio amplifier optimized for efficiently driving high peak
-+  power into small loudspeakers. An integrated on-chip DSP supports
-+  Texas Instruments Smart Amp speaker protection algorithm.
- 
-   Specifications about the audio amplifier can be found at:
-     https://www.ti.com/lit/gpn/tas2120
-@@ -35,8 +35,10 @@ description: |
-     https://www.ti.com/lit/gpn/tas2563
-     https://www.ti.com/lit/gpn/tas2572
-     https://www.ti.com/lit/gpn/tas2781
-+    https://www.ti.com/lit/gpn/tas5815
-     https://www.ti.com/lit/gpn/tas5825m
-     https://www.ti.com/lit/gpn/tas5827
-+    https://www.ti.com/lit/gpn/tas5828m
- 
- properties:
-   compatible:
-@@ -65,11 +67,21 @@ properties:
-       Protection and Audio Processing, 16/20/24/32bit stereo I2S or
-       multichannel TDM.
- 
-+      ti,tas5802: 22-W, Inductor-Less, Digital Input, Closed-Loop Class-D
-+      Audio Amplifier with 96-Khz Extended Processing and Low Idle Power
-+      Dissipation.
-+
-+      ti,tas5815: 30-W, Digital Input, Stereo, Closed-loop Class-D Audio
-+      Amplifier with 96 kHz Enhanced Processing
-+
-       ti,tas5825: 38-W Stereo, Inductor-Less, Digital Input, Closed-Loop 4.5V
-       to 26.4V Class-D Audio Amplifier with 192-kHz Extended Audio Processing.
- 
--      ti,tas5827: 47-W Stereo, Digital Input, High Efficiency Closed-Loop Class-D
--      Amplifier with Class-H Algorithm
-+      ti,tas5827: 47-W Stereo, Digital Input, High Efficiency Closed-Loop
-+      Class-D Amplifier with Class-H Algorithm
-+
-+      ti,tas5828: 50-W Stereo, Digital Input, High Efficiency Closed-Loop
-+      Class-D Amplifier with Hybrid-Pro Algorithm
-     oneOf:
-       - items:
-           - enum:
-@@ -80,8 +92,11 @@ properties:
-               - ti,tas2563
-               - ti,tas2570
-               - ti,tas2572
-+              - ti,tas5802
-+              - ti,tas5815
-               - ti,tas5825
-               - ti,tas5827
-+              - ti,tas5828
-           - const: ti,tas2781
-       - enum:
-           - ti,tas2781
-@@ -177,12 +192,28 @@ allOf:
-             minimum: 0x38
-             maximum: 0x3f
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,tas5802
-+              - ti,tas5815
-+    then:
-+      properties:
-+        reg:
-+          maxItems: 4
-+          items:
-+            minimum: 0x54
-+            maximum: 0x57
-+
-   - if:
-       properties:
-         compatible:
-           contains:
-             enum:
-               - ti,tas5827
-+              - ti,tas5828
-     then:
-       properties:
-         reg:
--- 
-2.25.1
+> Let me know if watchdog maintainers fail to pick this up. Seems to be=20
+> hit or miss for bindings...
 
+Thanks. I think the WDT tree is the better choice here because this is
+only a preparational cleanup for the actual changes...
+
+
+--kNM4CdNxEDzw257Z
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjeLbUACgkQFA3kzBSg
+KbYglBAAoXua78nbPkr1NGhV3hH3oSp1WpZplCPBFgZyLm55f4ENVLeIcagrkfIB
+Bh2jkRN2RYrszgfwVrNt61Jt2xcO5XuppQH5QvlICppuBL63rR1uTw65wBMZOMol
+Sa1WMO40lk0DR7Qin4DLTG1FqsDQmBD2sPDqvXUbcbVm5h6iQ0lvTonaRIAbQO+d
+SD3wPFgHqOxkC76aKkzx4vXTSIU8fTbx1EBXjDq/aHhJ71uGF12tQHw12Q37BAuQ
+c1AWb7iBfWDGaqPPljTG42lzhUw+J0n92jA9dAkcYBPNxiImaGculSlQWr+aLpbj
+TxbphFitwqwaRfFM5ou/lxBLUdDgmVu5qkSSIlqdalAj5LWYegyZwI0FhSFELeeQ
+vHtzAd3wUm4TOd7iuCqlC6RMC3SmhvWVBvctjdKmG127dK2TvZrms8u3axm1MRIm
+3y8GTrif3GREIRmKFn1KyGGCOhMMzQgNr8hj612rzYXyHlgwDzgx7MMAAScBBbZw
+ayK6yi3y+/6OJGTlBu3Mg+geyoEOrKD5shl/OK1dBei7qOJKb/r0X78JAKIcjuIe
+yquV68WPKFySB5awc9qznZoc00X29y3D1CkKagAtfF70oM/84jKGuMtbtdrNywPP
++7XtI8d/dmWZqLjWErkooNkEiRryy50cTXuG5vSeomN25yfVMu0=
+=1+en
+-----END PGP SIGNATURE-----
+
+--kNM4CdNxEDzw257Z--
 
