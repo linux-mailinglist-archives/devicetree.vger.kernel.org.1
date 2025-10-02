@@ -1,106 +1,90 @@
-Return-Path: <devicetree+bounces-223441-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 672C0BB4ECA
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 20:46:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DABABB4F79
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 21:14:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20C373A74D7
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 18:46:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 563383C054E
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 19:14:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 582912765FB;
-	Thu,  2 Oct 2025 18:45:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AE9127FD75;
+	Thu,  2 Oct 2025 19:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iQhyisly"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EHmK4qwC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2701E22DF95;
-	Thu,  2 Oct 2025 18:45:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 267AD34BA40;
+	Thu,  2 Oct 2025 19:14:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759430759; cv=none; b=fqNGqdtkRXSRFB1zjqdhEDMfSExixtvd+l3z9Yf4KuEmf0ZYWjsZJliTegr1QSBh+25P76R91s4+0ikWPcy+CCedfzBOiVuCaPdseTR9g39SGd2tF2IqUY8G1mPV8sC0s5pMsMIqecPl0u7JXHUUun2chGXq+17iFbC6EAlIgrs=
+	t=1759432484; cv=none; b=ZIrvm0os+u687aDbwY8reAFiE9Z2X4+XVT6IpvdXhXqrkCT4ailJtjt78NJmB8nZAyF+UBHtg2khUxPmle7KtuOWLJs5Jw3fOVRBImizifeKvbSnEnUPULLVXHRBt1DXjrJkV413sc8CzRYpDxKRdJbtrn5lRbR603mTdiLxWBc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759430759; c=relaxed/simple;
-	bh=fTeswSATcB2l4kKFC+T/Jf728hFziZCZ/toefctXIrg=;
+	s=arc-20240116; t=1759432484; c=relaxed/simple;
+	bh=92MLjJs609HrhHYwGgr4oKlRLugL7eBkUYYYfFKDQz8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DnntCqtdCN7t2ycVOMKN/AfKyhaaYR0KKGlkf39qzmJzVyZFe71laYqsO0/Ycy/KYZZHrXLbsEwKwW/ayBG/tmBXE5yfg5Myu7LpRbn+DGMBk4iCm2zBpVMq+t1jxIIMkmek1bHLT9Irdp/O0KOV8eCePFN25OCQ/y6vlLmDENA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iQhyisly; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27DF9C4CEF4;
-	Thu,  2 Oct 2025 18:45:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GFSlCLJ9EKVp9GDMY5Tf17YvQaawA+LX/rHw7eRfAS6NLJ+GyO+G5/0iIWWfGqGqTEGjFtgk+Vd1Yy4XFZNvmdKVueeVEca5XwEOT9CYPC2CKWVn3QtbnT04ff+z1tIrWmuKDWrjk74WjYaFotB6bmqJxVsG19kMvTD7IQvyvE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EHmK4qwC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66B9FC4CEF4;
+	Thu,  2 Oct 2025 19:14:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759430758;
-	bh=fTeswSATcB2l4kKFC+T/Jf728hFziZCZ/toefctXIrg=;
+	s=k20201202; t=1759432483;
+	bh=92MLjJs609HrhHYwGgr4oKlRLugL7eBkUYYYfFKDQz8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iQhyisly4HVJjxG8UgkQns4wkNuHmaejeAERzdvdF1DOHjL+v6Bijl7RGahduUQX5
-	 JryMYDLDa2za9Rm7NFm6dfYQHXByP2D0h1nFvvE9WTo/ylGOFSsUjXc2gLBZh2Uzsi
-	 sOxvOaWgZfi78sMocLj7MC6NnndZTXtnjiv1Xhh0PLMCAswpJhAXjB6ITNlkE7Mphr
-	 BJBpw0B+GERHJ99qcq6CblICTnd2PEShT0lrY23J0WX/rClzikI8YutFJ4Pg0m0Wyi
-	 foVB+OzHWCWkoKDHaQIMQfQ2y11tjyk9sOrUh2+6ZXJH9fpu8hpnPEQZihVn0ou21l
-	 zvYQquUQcBCzA==
-Date: Thu, 2 Oct 2025 19:45:53 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Jammy Huang <jammy_huang@aspeedtech.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-	andrew@codeconstruct.com.au, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] dt-bindings: clock: Add AST2500/AST2600 VIDEO reset
- definition
-Message-ID: <20251002-accuracy-gloomily-a3e46d5a3f02@spud>
-References: <20251002095651.2211900-1-jammy_huang@aspeedtech.com>
+	b=EHmK4qwC7dftjxl8hzowrFB4APNOBVDoF0Mnb3aALqn3KUPLSe6sNadA0qsYwHMKk
+	 RysMe7tFnvHiLKF8xkyixOJrbeZ1CKCF2KdKdLoBTQRhHTmHVANIUcXnYLMNgTaiXI
+	 DQDxfucCPSOs+8t1hudYLx3OmcU1TUTcimMDAXCi6bZt+6yBILLBdMVp45gKuL3wrR
+	 7FKnNhtPzCYXM6Ocf0MKIukjGlZZ7fNoo3X+oMAElJHk+IH3Eyk+bmXkvCQnfAY/pP
+	 MsYcghuEGkK7Hp1SZNm1M/4cHxCiI9IyNt92uTWL6JPWfXy5XBuMDR+GVoefmFXkZS
+	 PDMYTTf4BY5wg==
+Date: Thu, 2 Oct 2025 14:14:42 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
+Cc: andrew+netdev@lunn.ch, conor+dt@kernel.org, kernel@collabora.com,
+	krzk+dt@kernel.org, angelogioacchino.delregno@collabora.com,
+	luiz.dentz@gmail.com, kuba@kernel.org, devicetree@vger.kernel.org,
+	linux-bluetooth@vger.kernel.org, davem@davemloft.net,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	pabeni@redhat.com, edumazet@google.com
+Subject: Re: [PATCH v3] dt-bindings: net: Convert Marvell 8897/8997 bindings
+ to DT schema
+Message-ID: <175943240204.235529.17735630695826458855.robh@kernel.org>
+References: <20251001183320.83221-1-ariel.dalessandro@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="eQ5hYxmKmELL5wam"
-Content-Disposition: inline
-In-Reply-To: <20251002095651.2211900-1-jammy_huang@aspeedtech.com>
-
-
---eQ5hYxmKmELL5wam
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251001183320.83221-1-ariel.dalessandro@collabora.com>
 
-On Thu, Oct 02, 2025 at 05:56:51PM +0800, Jammy Huang wrote:
-> Add VIDEO reset bit definition for AST2500/AST2600.
->=20
-> Signed-off-by: Jammy Huang <jammy_huang@aspeedtech.com>
+
+On Wed, 01 Oct 2025 15:33:20 -0300, Ariel D'Alessandro wrote:
+> Convert the existing text-based DT bindings for Marvell 8897/8997
+> (sd8897/sd8997) bluetooth devices controller to a DT schema.
+> 
+> While here, bindings for "usb1286,204e" (USB interface) are dropped from
+> the DT   schema definition as these are currently documented in file [0].
+> 
+> [0] Documentation/devicetree/bindings/net/btusb.txt
+> 
+> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
 > ---
->  include/dt-bindings/clock/aspeed-clock.h | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/include/dt-bindings/clock/aspeed-clock.h b/include/dt-bindin=
-gs/clock/aspeed-clock.h
-> index 06d568382c77..421ca577c1b2 100644
-> --- a/include/dt-bindings/clock/aspeed-clock.h
-> +++ b/include/dt-bindings/clock/aspeed-clock.h
-> @@ -53,5 +53,6 @@
->  #define ASPEED_RESET_AHB		8
->  #define ASPEED_RESET_CRT1		9
->  #define ASPEED_RESET_HACE		10
-> +#define ASPEED_RESET_VIDEO		21
+>  .../net/bluetooth/marvell,sd8897-bt.yaml      | 79 ++++++++++++++++++
+>  .../devicetree/bindings/net/btusb.txt         |  2 +-
+>  .../bindings/net/marvell-bt-8xxx.txt          | 83 -------------------
+>  3 files changed, 80 insertions(+), 84 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/marvell,sd8897-bt.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/marvell-bt-8xxx.txt
+> 
 
-What's up with the gap here? Are there another 10 resets missing?
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
---eQ5hYxmKmELL5wam
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaN7IYQAKCRB4tDGHoIJi
-0jpPAPoD3Ml/y5Zj0L/EgesLMAZ+GyKvd9Lokp4c6QrcNGpuVwD+JY5XO5FYrPik
-Fl5hcgGgK1Zfdf1qYGlZVllML/j07Q8=
-=ne6M
------END PGP SIGNATURE-----
-
---eQ5hYxmKmELL5wam--
+You'll probably have to resend this after rc1.
 
