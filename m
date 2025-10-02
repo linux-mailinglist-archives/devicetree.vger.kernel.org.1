@@ -1,134 +1,135 @@
-Return-Path: <devicetree+bounces-223444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0A25BB4F9B
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 21:18:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A61ECBB4FAA
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 21:19:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 981623C772A
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 19:18:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 660DE3C7958
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 19:19:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF6232820DC;
-	Thu,  2 Oct 2025 19:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F24E28134D;
+	Thu,  2 Oct 2025 19:19:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EO7j57o7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WtMB58od"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com [74.125.224.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B52927B34F
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 19:17:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E37A32765D0
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 19:19:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759432680; cv=none; b=FqcFhOX358iRB2c3XENsGEKXmlJh+wYHsToFWMDZ9FEeavjP5wvSnB7nofs6HAeytmXqlkrI+XZ2J1IFIuXv1X1qC6lmW/JAKz3/Pv0bzjqrW1jZjjtSCf6G2CJ5h4P01YEZWR2KYV+YyjEeZGDTJ/NXL0GAnqF0ErRxntLZCr0=
+	t=1759432761; cv=none; b=iCirxJG35pFOF2BzyRd/6exsGfNIMmiiNEMBb8322mFTDD+ylo3H0PDXvM/u8sZh7SX/CPOYXhrhhoOrX6npoFf/+QPBY7GWboCM/0i0jyjYc7PQCj3/acPhvNeEzcIQsX/ZwUlN5D7t2WU32W/ntuw7CNWdMQfsldzGfpruG6g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759432680; c=relaxed/simple;
-	bh=HD7F2OR8UwgY3zfHvXuxLFAhWFLNpYZsjIBAz0CZ8bU=;
+	s=arc-20240116; t=1759432761; c=relaxed/simple;
+	bh=EYCmAP2B58rza1pmO67EikNUlQoH1ubGX1nFMa61uJQ=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mf20S9O6uWAgrZXzeJInhhPaud5f7lNHu5lJj+P5C/+Rs4gI9qGEylWFT7U2W3V212vk3QHaqGwQRS0ocLQw7BKp1nzaqMsBiY2Gzbia3zId0IMikJwOBpM9u2zQfaWxzU17pnmZQ6XVfTdC3m3Y5z8lEst/YinFGPWDhl98ics=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EO7j57o7; arc=none smtp.client-ip=209.85.167.54
+	 To:Cc:Content-Type; b=aohj1IXT1prWYTlFBpQzq3M1ve9O612jkQagscShv5uzCatyM2gqr3un6VSWFMgFGAu62b2HNjQZCfABjYTDpmoaBykUMM0enQugR7LFo7nNKCHiA1TR1tHLqyIvhi19gXWtbaukiqfjYrOVfrvPRCos0Y5F3L4yb4UscgXqEGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WtMB58od; arc=none smtp.client-ip=74.125.224.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-57b7c83cc78so1306920e87.1
-        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 12:17:58 -0700 (PDT)
+Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-633bca5451cso1512272d50.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 12:19:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759432677; x=1760037477; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AsacFhY688kmCw3ljgQ3LXTxUKBAt2jIe9uHSGes4ZU=;
-        b=EO7j57o7Gws+ObC7jH87VyIIiZFVqer40BH+nCO2xcD4HXJIrBUR/6uTJhbw4uOdYp
-         b0OUCY9DWIwL84pDF/9TrJ4aJcv3oEtBwE4Vl+gtdPHNsVV/CoOf6ZYVQbMWhk+mkwTm
-         qLeDf9OLa6ljcODm7XlxoZwCZh1gJz+T1tGdpi7zWvKcloZVFE+IY5k0cZy7ZFn+uhqp
-         oiWzFksbg7L5ecJT0MuEHm+ZSnpGkTAi5kSBA5gkKNqqtt31/Gb6eSAB4lbKCwHc8N8M
-         0vG35nMlp4OzjN9WiDsaDK0LLmKiSl0Tzy2ZBGHYxwWj8gkoWfG9xoHfBEt3iJhOUFuC
-         351g==
+        d=gmail.com; s=20230601; t=1759432759; x=1760037559; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=iTEm/KM3nO+P6ZFw8LYiN73U+Rr4Kx1wTBiXsd/aQ7Y=;
+        b=WtMB58odEWZ5lKUPKP0ZuHD+BODAqKSIgH8YbY6oS6NDs6l7ugOXh50R4BnUDy03Uc
+         zAM1IhnzlvY3edhqr+waCdqymVm1NidAyhWAXDS1CKwB3vcs1hPzV9D6QZ26ITju+Ptq
+         RM9ft9e7AyFiUnHij4u/+NgOquWomaIkm4qfnjR42f4N7qZPh0E8H6CHmKy8UiCoqZmv
+         yVDQ2Pqnt2JAn/hocstSpE6GdsCpztsq3akPL+t/6PBwMjoWxGyojKMtWS3gZyacbYmS
+         otf0UiCOhTkGCMQ7FTXgGtRbEaZbvk79/P/IO/yYhLVP8WhUaV8fwSX1YjDy+ZVncRMF
+         49sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759432677; x=1760037477;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AsacFhY688kmCw3ljgQ3LXTxUKBAt2jIe9uHSGes4ZU=;
-        b=pSe+CUHMxfq505/X50nx1QoUvYtDSIaGwY7vuP9HSWDALi4+PBAW5bOMMZseROwwM1
-         7LXqvbwJWjSgnV1Bgzmd6wH+eUNEc0G1Wd91J44MXGZDQrwN8X+TAoUKa9mjgmnfHSIY
-         hkyz5P69C8/tKCll0k0xQQzUc907GSSsfYrZdEdoOf6tm8DshnvnjfJdffq8P5cvQli7
-         zD7tONjBiK0BRmkGtQPmzIhhP/qJXeQcdvN6AKqwN1Qi2cnBPSceT9hjm0fuufjKDGez
-         Z2FWnRECxnTiRojki+2bmo9eGI7FUc4Tk2ptP7VpvZVMkgxG33wmqoGstYp5SWMJI/Nz
-         9vAA==
-X-Forwarded-Encrypted: i=1; AJvYcCWMzswyXxwKfLsQkFfN6EXxqpjSkIJ9UPyfiWP721FBZSM0JJdIqBYTveAp3YteMwlTF/2nmzRs/2pJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxD5fPan99V3gh5Y/5ieko/iNx+tMCMxkRa//GW3XFOuIirc1Wh
-	fanTlfcsqBtadpMjRgU8J9XMcajpLb7VB2qoFTNTgYwSnNjtg1c5AG+ogmV1TUSQXsiT5gXx2HV
-	iT/feSMEH1Xb7v0I+jvrzZap2ibm/X1k=
-X-Gm-Gg: ASbGncuaDoC9v6FpplGD/mwVg6u2x0ZLXqgmV6/2Xbb7PKUWdGBtDQn8++vSJzWos0t
-	tudRHCxuhaLPK/y9K9YTtEDap0/yrstlzIEkMs3Kt1PCCjmUmKAAOTgk6TEpUk0E1eA033KRkKP
-	v5RCV91o43eDupuZDdslhTRpVRT2iZcuurzQYm3e9Nw9LDLjJl3w8i+6fRGxLDKZncu3euev+nA
-	BSr8kFU8Zgs7tTpuFyPRAnuAfEmKsn/TUoC1rbu
-X-Google-Smtp-Source: AGHT+IGanUA39EeWKN2bZPtr0nUYeSv1bV/nDDv933ayERP1FnFpJQ+koLjBOu9GVv+5Vty1qF8hdQd7PyFPxH3EVIc=
-X-Received: by 2002:a05:6512:3d18:b0:57e:9c14:ac06 with SMTP id
- 2adb3069b0e04-58b00be6121mr1327212e87.27.1759432676972; Thu, 02 Oct 2025
- 12:17:56 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759432759; x=1760037559;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iTEm/KM3nO+P6ZFw8LYiN73U+Rr4Kx1wTBiXsd/aQ7Y=;
+        b=fcild/aa53JVHP4B+rGmT5MrypMtqqdD3RhnLG7lUzWkUztrt2TKfGwHfWIM9ea6EH
+         7qlXjjFtWm0x8TSWx3Uytu1dWjtU0vCTwNOWo0vrZV+9VBSK7uN1MyneAVukP232rOQP
+         EjpN9z6khIrdz1hyZxw+l2zupOmsRW0upnjgL/CmQrDmPFbQoFyYlUDMxAyK4JPrO9t6
+         ec2nbKH1KXagb+QnYCkt47N9Nm/si+McFy3zzpWJEXx3eGoDQ9DkQAuxVZaD/Dm4M7Fc
+         modlgPdFYkGm4gVfkHcytBuZb5qCSgUFLlmsUHhhekkY8YfpnYFQrNZjzadefT0u0nnc
+         FvWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXzCzgVEx47viryhyTqk0JB1WLYmYWmVGuQur/X7O1rMNaW/BdyDb6T7gvm6gnBUg+QtV2blBX11YWp@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywd8Kg5lrQuFSvAK4vZjPnm4E9Z4HODSsdhf6VZ2SkkWFyEXlx0
+	vGH5fwneBENFpCJfyQmGG1VGEknhG7Nf+hg8MezhCY+dG6+8FsauYC7fhlcDcLpEDYPfZ80qT10
+	McposrXBOiaBAClo4uFftGSYgs2uJngk=
+X-Gm-Gg: ASbGncvMX5DcyEIqd/3W/telyrNCCUeqsqz9zGQlxbScHy6hIKT7cm2m34rMdKGQ2bP
+	CvIKx4vYNoKt3Dr4uo+VkhNQCBW2WWZccEdU1ZjVpBTrX4D8qOGAOjU9DHA1nw3kblpDD5ziwWY
+	RzUkM78DLeRAzUpDPsa6wji4txj+kVwyjocCpcS6U/yksNjI7I991Rv6q/8cHS7Szz2ROOacWND
+	icN+XYWNdUZY1II8DpdOaB6CFJSGpZ1h7k4d/a6IA==
+X-Google-Smtp-Source: AGHT+IEVtvbFpBLouDHWhbnJwj9NSB8Pq7ept+0Odbowddpf/FU0e2Uma5u5HxHffyYlalF9KHMt5Jw9aECDeN/zoBQ=
+X-Received: by 2002:a53:b10f:0:b0:635:4ecd:5fd2 with SMTP id
+ 956f58d0204a3-63b9a10a963mr341381d50.47.1759432758769; Thu, 02 Oct 2025
+ 12:19:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251001183320.83221-1-ariel.dalessandro@collabora.com> <175943240204.235529.17735630695826458855.robh@kernel.org>
-In-Reply-To: <175943240204.235529.17735630695826458855.robh@kernel.org>
-From: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Date: Thu, 2 Oct 2025 15:17:44 -0400
-X-Gm-Features: AS18NWA5rZuFqYFfCwp3TG9bhDZUCFaj7OWEGaE1URKJYiu9zd8yZE2o0Vq7Fmo
-Message-ID: <CABBYNZKSFCes1ag0oiEptKpifb=gqLt1LQ+mdvF8tYRj8uDDuQ@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: net: Convert Marvell 8897/8997 bindings
- to DT schema
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>, andrew+netdev@lunn.ch, 
-	conor+dt@kernel.org, kernel@collabora.com, krzk+dt@kernel.org, 
-	angelogioacchino.delregno@collabora.com, kuba@kernel.org, 
-	devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	davem@davemloft.net, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	pabeni@redhat.com, edumazet@google.com
+References: <63cef5c3643d359e8ec13366ca79377f12dd73b1.1759398641.git.geert+renesas@glider.be>
+ <609ec2e6-c877-4fc5-95b7-935ae2549b3a@gmail.com>
+In-Reply-To: <609ec2e6-c877-4fc5-95b7-935ae2549b3a@gmail.com>
+From: Bruno Thomsen <bruno.thomsen@gmail.com>
+Date: Thu, 2 Oct 2025 21:19:02 +0200
+X-Gm-Features: AS18NWDGIVU_xL1fm5D1v8Yjg5VdVlAOAuUPKHvGlBNPozwO0Loo6YBnGyRj8GE
+Message-ID: <CAH+2xPBmWkb-m2S68SybAakJsFRizX-0T0YtXiHGFt+2Q=kpvA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: am33xx: Add missing serial console speed
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Tony Lindgren <tony@atomide.com>, Judith Mendez <jm@ti.com>, 
+	Kevin Hilman <khilman@baylibre.com>, Arnd Bergmann <arnd@arndb.de>, linux-omap@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Den tors. 2. okt. 2025 kl. 14.32 skrev Matti Vaittinen
+<mazziesaccount@gmail.com>:
+>
+> On 02/10/2025 12:53, Geert Uytterhoeven wrote:
+> > Without a serial console speed specified in chosen/stdout-path in the
+> > DTB, the serial console uses the default speed of the serial driver,
+> > unless explicitly overridden in a legacy console= kernel command-line
+> > parameter.
+> >
+> > After dropping "ti,omap3-uart" from the list of compatible values in DT,
+> > AM33xx serial ports can no longer be used with the legacy OMAP serial
+> > driver, but only with the OMAP-flavored 8250 serial driver (which is
+> > mutually-exclusive with the former).  However, replacing
+> > CONFIG_SERIAL_OMAP=y by CONFIG_SERIAL_8250_OMAP=y (with/without enabling
+> > CONFIG_SERIAL_8250_OMAP_TTYO_FIXUP) may not be sufficient to restore
+> > serial console functionality: the legacy OMAP serial driver defaults to
+> > 115200 bps, while the 8250 serial driver defaults to 9600 bps, causing
+> > no visible output on the serial console when no appropriate console=
+> > kernel command-line parameter is specified.
+> >
+> > Fix this for all AM33xx boards by adding ":115200n8" to
+> > chosen/stdout-path.  This requires replacing the "&uartN" reference by
+> > the corresponding "serialN" DT alias.
+> >
+> > Fixes: ca8be8fc2c306efb ("ARM: dts: am33xx-l4: fix UART compatible")
+> > Fixes: 077e1cde78c3f904 ("ARM: omap2plus_defconfig: Enable 8250_OMAP")
+> > Closes: https://lore.kernel.org/CAMuHMdUb7Jb2=GqK3=Rn+Gv5G9KogcQieqDvjDCkJA4zyX4VcA@mail.gmail.com
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>
+> Reviewed-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> Tested-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-On Thu, Oct 2, 2025 at 3:14=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org> =
-wrote:
->
->
-> On Wed, 01 Oct 2025 15:33:20 -0300, Ariel D'Alessandro wrote:
-> > Convert the existing text-based DT bindings for Marvell 8897/8997
-> > (sd8897/sd8997) bluetooth devices controller to a DT schema.
-> >
-> > While here, bindings for "usb1286,204e" (USB interface) are dropped fro=
-m
-> > the DT   schema definition as these are currently documented in file [0=
-].
-> >
-> > [0] Documentation/devicetree/bindings/net/btusb.txt
-> >
-> > Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-> > ---
-> >  .../net/bluetooth/marvell,sd8897-bt.yaml      | 79 ++++++++++++++++++
-> >  .../devicetree/bindings/net/btusb.txt         |  2 +-
-> >  .../bindings/net/marvell-bt-8xxx.txt          | 83 -------------------
-> >  3 files changed, 80 insertions(+), 84 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/net/bluetooth/mar=
-vell,sd8897-bt.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/net/marvell-bt-8x=
-xx.txt
-> >
->
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->
-> You'll probably have to resend this after rc1.
+Reviewed-by: Bruno Thomsen <bruno.thomsen@gmail.com>
 
-In that case I'd like to have a Fixes tag so I can remember to send it
-as rc1 is tagged.
-
---=20
-Luiz Augusto von Dentz
+>
+> (Tested booting on Beaglebone black with a config and kernel command
+> line which were NOT affected by the issue. Well, prints do still get
+> through the UART to my minicom, so things seem to work for me after this
+> change as well :) )
+>
+> The change does also look Ok to me.
+>
+> Yours,
+>         -- Matti
 
