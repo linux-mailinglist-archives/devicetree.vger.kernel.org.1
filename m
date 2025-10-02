@@ -1,189 +1,217 @@
-Return-Path: <devicetree+bounces-223293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DFFBBB2A9B
-	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 09:11:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F02A8BB2AB6
+	for <lists+devicetree@lfdr.de>; Thu, 02 Oct 2025 09:14:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E32B320604
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 07:11:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB6C73AEE8A
+	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 07:14:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36ED52877F1;
-	Thu,  2 Oct 2025 07:11:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D0328C5A3;
+	Thu,  2 Oct 2025 07:14:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Bby2P5dN"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="T0cTGpVk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CF0223F294
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 07:11:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C4B2BE651
+	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 07:14:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759389106; cv=none; b=i82pA4fp/6DK402iWcnIS6Br/2JPLcBqn6GRM72wBHZy3zcHYFGrvVVJIb4t7+REKN0btvPZin5L4Ple19XBkgkF/NUWLuOUfVozWOU0Xy1xE4LAo3mslKDuyh4Wmu1FgyP17fKCdA/yUL8W/ZDIe1rxIHbMvFUl4NHJdrAVPps=
+	t=1759389291; cv=none; b=lcXsyN7sRJaat6wJSO4fWVlA11sfYB7pIgU+CmBmGDqmJmHZzUjUCucekmWsCqqvV+msJ+aRa+B4CTS50qERq6PpP60P6FYWlyPR0kTj5HYAjS20uWxELLNt0JLCquovmkpAZLaSta5Yc/bNMcFi7YzRnB30uv9/GbUIVDqebbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759389106; c=relaxed/simple;
-	bh=3SkLR+BabbPxgGGt7fReCFr2RJCPvXAQFeGpsqrLBOs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Gs4oeB5iajSZl0PhJoEZjAnD15mRwfPmaSLV0ng1M2uNzDNZmXczz2I8g7xB9vndx1WoL3NogOyuT45a5TbiWjIPq82d0XBsPKKLoQcLJKDgpCCVVl50Rjz5XmCzQ55QRe9C6COj8hR+npTYlVL4gaB3nmPhOUEzjUe7BoOVd9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Bby2P5dN; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-36a6a397477so6945811fa.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 00:11:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1759389101; x=1759993901; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S7+F3MJCw1zdRhN/EFswQNuWdlErwjej/UIxS2S/iC4=;
-        b=Bby2P5dN38iizUhpsAwFl1fQKJqTNIoEluueiB19mNePFCGcZetOpTc3nTeQnYqEx2
-         flKdF+ETG+eo54AhS7JWvF3szbM+8t0z7n+aegP7bOEET8SfRe7iRWp+8YUENJ2KrpaW
-         h/2wPzpNgOdTDpuVRQxYZz4fz+HO0KiGLNjKOY4yNCRIfN1PB8h7hyXgWgTDwYWDBQy6
-         DkXQVkYOfNUbtutBO8+lBVQP2otbMIM2r5qPd3xZ5p4Q6rkK1ufhpEnuc36r7rPG/Bti
-         A5tWMAglWD/lXQJyKX61ijjJSjKLB5f7e0GUUQGpvt86qZYWUhD0qbGnu57yvXDxL3Wz
-         Xh7w==
+	s=arc-20240116; t=1759389291; c=relaxed/simple;
+	bh=h5CrAYIynZVv2O7NpU57ZuvsG4aarAwdD45iSeTC3eI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=h83WJ0xPnBJkQkLmx8AGXsLHJyQswIULqHRh74oZl+OnRyoAgRYSdNgf5tBqfMYzq/QI+mftdjovsQlrtN+bsWNOEw/6JsSCIBuVWkGp6tGQ7DtpGPmBBFql3vD00ohXnI6YD4tix9FZkNsUp7OlrH8qEooMb2VdFcxwvUHBgug=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=T0cTGpVk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 591Ic5tj000841
+	for <devicetree@vger.kernel.org>; Thu, 2 Oct 2025 07:14:42 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	wsrDpj5hUw4YEIy6N4WOTSRjb0/flPiO/cgRAbN+m0U=; b=T0cTGpVkUSK/3Zx/
+	w+TJQr4hv4y+243iJyTp4LqSp2ohJ/i4HGZVrMXTEP+nYl3jvG027aNh7YBHzGsb
+	/SXP5cyk6AnZ+12zvbXidUjOgNif0mSMtDgKmWJ/zYUpzGrZw9eTdQBmyigv6c0V
+	pRhRk7aLnwYa3whwOSvviELvLkdNn0917Rzb/O9HRvm/A42k4kVG3oItY3EeMu3p
+	CQmjPiA3weTgP9MsTSNDvRti4254wuTxREynUHA1bht8XaxYZLB9lItZXchoDnGi
+	3RInFliwhqgU5Mauu+i9VCWwQJ2avP1jMkJgptqHzFR44TsI6FaxwojynxRyHFNr
+	Ct9G0Q==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e6x5y5ga-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 07:14:42 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-27356178876so4681055ad.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 00:14:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759389101; x=1759993901;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=S7+F3MJCw1zdRhN/EFswQNuWdlErwjej/UIxS2S/iC4=;
-        b=a5RQeDrrSC1HqHCvSpEEoh+UDmiLpWk5iyVrFcVh9vASauZu9wDMWDV2oajksjeX1j
-         6wrM2rrA3awc5ZRHyRUsJrhYSYRz8phfIgdZMmXVY4c68fw/90RW17c2jMkgcjSj7v9M
-         lR1yORRMVEMAFhDtJF79PQJfNtb49Fhsc2xhRXOVZnTWiaRwDfp6Gu6ITK5jPCrgcV7Y
-         WaT08hB+bUGZGRsGBOiZ6lNVJZs2/tESGmitfXJajKpQT58odYEvEBgzVyTfID+0yrx5
-         8ADWkV38TnTJHYERShh0kXBtLghE5DhrfHneeuwekNX3yjLUQxmWNmfLZIfjN+zH1X6W
-         8cHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVPYdLXvuZ78DFjJD8doxJAEva1VEFYiim81pQNKEQ9KqocOMje5YzuOb07L1dD+5E/Kk8FqFPmBqjm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5+Sy+FxEKkWdF96ki2l0LTvC/tWlDlMRbkMFaify4OTbab4AB
-	SAAqA+CLM3V4mPOdyIdAbl/aG36bqQ6RtCtoXtnkAIYVmeHhGWPoi2Flbp2vsWaMVtEJkqlvn/8
-	Wal45ioUcE89Y6CgjD4DTIpOdGWmHmTSC34Db2LaxSA==
-X-Gm-Gg: ASbGncsWLm3zkw+yKt2WaM8FztUrh08G7GnTC9u9T702ncTdlPtKLoViikZxDk8Q+tI
-	4dX9uIlG6KCaJxBBOnuGWlwZh1uBC6jfsa9sJeDBg1yS0yR27fSw/++FCQ6vSKjBYuDCgsLvBnG
-	EK/NY55rGgKuch1duKVTTbkXn7DJz1MrDNFSfFTN0y4BuXbl9/9WUVZSrqg4Z2og9j/lKoUo7rO
-	+xcdlIo1r1nBblzrksxx550iZsbosA=
-X-Google-Smtp-Source: AGHT+IFW5Sqq0j8hZYcbkmjNo7v5KP/6QB1gYXNk+QdN7ywZJZD8XGGfmVVaw52M4XwrBItOqUnHQNR3kXoyhMFZ4LA=
-X-Received: by 2002:a05:651c:1142:b0:372:9f0c:2154 with SMTP id
- 38308e7fff4ca-373a748a7e6mr16649951fa.42.1759389101230; Thu, 02 Oct 2025
- 00:11:41 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759389281; x=1759994081;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wsrDpj5hUw4YEIy6N4WOTSRjb0/flPiO/cgRAbN+m0U=;
+        b=NwH83QZ931Lrd69RPvn6WtRbhm1cup66XYKI17DOlZEN/97yrccOTRHN51GJCLJClF
+         WgTmlifrcwT3nmixKG3wvBEwcH7rRQS6WHxQoQ3yJQz3PCBJ2GLp9N3l/siZOyxoCHjY
+         MyBwrqjsCxwR0zrObKIpiK+vTeaXrevNmDtv7iq0dR9bxGcym3drts7ENdTymScsiI6n
+         aC6KZR2CQknlb2UUK3A71jL5DG0C3U4KmLhEpmo6ltgXyvd7ZbHzdg295MyrVOFzZECL
+         7J5Fiu3Dd9G+Mo7lC+O+MHaPdHZKuBl4E+NnDXnh8iMyY1o75wQGS4EX12t0AupzgRQN
+         MwVA==
+X-Forwarded-Encrypted: i=1; AJvYcCVAJJTGkVWw5SqdALC+eXImsZQqJqIk77nwRj6UQJgLOEKw6QVGKis35ZMLoiKGia74oHeUHKOyXQut@vger.kernel.org
+X-Gm-Message-State: AOJu0YxCP8KSVOd6prqs/NowPtPUSL8YFhmDXGpjgnoRRNYhu64QtYIX
+	E3Jj4U7gz79dH6zpPpJ0vNZQP74hDkLBvJ/TU5w6y3t5MZP0jFF2PDs8GVWK6iOF1qxb5xB9jni
+	m6wZ4J4c1i8VTma4S9YPcAdP8N0noH+Gn07sI9h+4o53Rd3cFMpjYEC8xkTmpKLya
+X-Gm-Gg: ASbGnctT5olVkQk4W2F2mNUNit1lf8iNTwQvxmdC7N7dOMVg/TceZkUjC6tQI1ESF+8
+	PwxYu9Bl5W/OZC3r+g5HlWHjDJPPbOFeo+KhQ21cxBCCsanIHsfT0rPh78iEDEE9oQQ1OZX6wzS
+	R3V1xkVQAa46Ybc/KM+p7EUqMnnV8fFxfdwyqG8sHdJkhWEBrsgKVPGxuONEvtfBPLY9W0UJFZT
+	4gFslOmHBqy/ALYuKWRuYbk6/YsJLQ7F59jesANG0WQd5G+PkJ6zoVMBF/gsAPhW38xd0NAsj+B
+	wDOiEyv1tYbazbGmHTjEZu7Ni7QjwtCZQ99vb2VGO7RQGHJyi8OI0R49dZbbU+A4QfhNkpz9YlJ
+	IEf6wiuv+T3iUdxgG+hvpnqF8C/mP6SUH4UtN
+X-Received: by 2002:a17:902:ce0f:b0:27e:f16f:618b with SMTP id d9443c01a7336-28e7f2a6437mr75646155ad.24.1759389280938;
+        Thu, 02 Oct 2025 00:14:40 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFBqcQoIzfkxTOkZwP9SZ5axnu1siGWGEzipZSpgfQ+MGK5IUYqzt2bTf5JM9Q+kuHEuFeBsQ==
+X-Received: by 2002:a17:902:ce0f:b0:27e:f16f:618b with SMTP id d9443c01a7336-28e7f2a6437mr75645935ad.24.1759389280423;
+        Thu, 02 Oct 2025 00:14:40 -0700 (PDT)
+Received: from [192.168.1.239] (syn-075-080-180-230.res.spectrum.com. [75.80.180.230])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d1d5680sm15167845ad.96.2025.10.02.00.14.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Oct 2025 00:14:39 -0700 (PDT)
+Message-ID: <8996bd96-0660-70ba-63f4-51111219d146@oss.qualcomm.com>
+Date: Thu, 2 Oct 2025 00:14:37 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250925-ltm8054-driver-v2-0-bb61a401a0dc@bootlin.com>
- <5331035.LvFx2qVVIh@fw-rgant> <20250927-spoon-yearning-c1a8df796173@spud>
- <5926760.DvuYhMxLoT@fw-rgant> <CAMknhBGOpODxmzU9J9nqGDKGzn6KKFV5Ed3okLvecKtHhNRB9A@mail.gmail.com>
- <20251001-glacial-synthetic-6faa84d6d047@spud>
-In-Reply-To: <20251001-glacial-synthetic-6faa84d6d047@spud>
-From: David Lechner <dlechner@baylibre.com>
-Date: Thu, 2 Oct 2025 09:11:30 +0200
-X-Gm-Features: AS18NWC22naFCVhN0qxOVgBX0jh3xnNC_HJV963X-Rb8nhwdrLQRrxDqp9KRg3U
-Message-ID: <CAMknhBG1W47iiqanQ+GQbETBy_A4zbn9U7ZeXV4dCCkJYqJ97w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] regulator: dt-bindings: Add Linear Technology
- LTM8054 regulator
-To: Conor Dooley <conor@kernel.org>
-Cc: Romain Gantois <romain.gantois@bootlin.com>, Liam Girdwood <lgirdwood@gmail.com>, 
-	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jonathan Cameron <jic23@kernel.org>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-iio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v4 07/10] phy: qualcomm: qmp-combo: Update QMP PHY with
+ Glymur settings
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, konrad.dybcio@oss.qualcomm.com,
+        kishon@kernel.org, vkoul@kernel.org, gregkh@linuxfoundation.org,
+        robh@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251001220534.3166401-1-wesley.cheng@oss.qualcomm.com>
+ <20251001220534.3166401-8-wesley.cheng@oss.qualcomm.com>
+ <ra3bq7guxunk2n7mbrjlefxvxu45clmwzp74vq7bqd2xvp2fv5@z5skxjxs4yxp>
+From: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+In-Reply-To: <ra3bq7guxunk2n7mbrjlefxvxu45clmwzp74vq7bqd2xvp2fv5@z5skxjxs4yxp>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 1baTGmMsORf-za80oAaZ0_jGG94p0r6s
+X-Proofpoint-ORIG-GUID: 1baTGmMsORf-za80oAaZ0_jGG94p0r6s
+X-Authority-Analysis: v=2.4 cv=ZtPg6t7G c=1 sm=1 tr=0 ts=68de2662 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=agQD+r7xwyS+FYqxhQjztw==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=JfrnYn6hAAAA:8 a=EUspDBNiAAAA:8
+ a=INxguLwuHvTa_v7rZvUA:9 a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
+ a=1CNFftbPRP8L7MoqJWF3:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAxOCBTYWx0ZWRfXxq0did271aiB
+ yUJT624bYWuxdLSGztFtRALCtLBw9eqot4GJRcVPgMxljRbq933YFLN2Iiv6pnDcXrt9eseO/cm
+ 8o1BdpXexZCxe+mgpXPferCncogFkXdx52Vx0u9HFwBt3B8mMy2P5Q3u8RS7UNV00gjJzrzVsMF
+ fWTIEyNRBsqmzCztvjmFnvbBkXlxtjsxb/4hyn8bmKRqSs/rAKT5SgV/su4HVnDjXl8gwywLmIS
+ X8/ekzyeVpT9TQI11HoDW2IHuKkMK6hSuP9iFA4fzqFvmmqy/208mLqg4rzZe04vV/Oijkfm+Vx
+ k+I16dwb/f+SdqkYYvCZQm/AcrfcYDThCZ96qAc9tEA592FEVVXeghQhrr1xqYzKzxZj/2rQzXC
+ +ucMSFR055NSZt9H2Kn/Nix/IxzbMg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-02_03,2025-09-29_04,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 spamscore=0 priorityscore=1501 malwarescore=0 bulkscore=0
+ suspectscore=0 clxscore=1015 lowpriorityscore=0 adultscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270018
 
-On Wed, Oct 1, 2025 at 8:40=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
-e:
->
-> On Wed, Oct 01, 2025 at 01:18:51PM +0200, David Lechner wrote:
-> > On Wed, Oct 1, 2025 at 9:12=E2=80=AFAM Romain Gantois
-> > <romain.gantois@bootlin.com> wrote:
-> > >
-> > > On Sunday, 28 September 2025 00:31:05 CEST Conor Dooley wrote:
-> > > ...
-> > > > > >
-> > > > > > > +  lltc,fb-voltage-divider:
-> > > > > > Why does this property have a ?linear? vendor prefix?
-> > > > > > Shouldn't it be adi to match the other property and compatible?
-> > > > >
-> > > > > This component was originally from Linear Technology, before it w=
-as
-> > > > > acquired by Analog Devices. The new properties and compatibles ha=
-ve the
-> > > > > Analog Devices prefix, but the "fb-voltage-divider" property is a=
-lready
-> > > > > used by the LTC3676 and LTC3589 regulators, so I left the Linear
-> > > > > Technology prefix for this one to avoid introducing a new propert=
-y just
-> > > > > to specify a vendor prefix change.
-> > > > >
-> > > > > I don't have a strong opinion about this though.
-> > > >
-> > > > Do they share the same driver?
-> > >
-> > > They do not. However, they use it in the exact same way, and I would'=
-ve
-> > > liked to factor out the handling of this property in a future patch. =
-This
-> > > would also make it easier to handle other types of feedback pin circu=
-its
-> > > and have a generic binding for "regulators using a feedback pin conne=
-cted
-> > > to some kind of analog circuit".
-> > >
-> > > For example:
-> > >
-> > > Vout----+
-> > >         |
-> > >         |
-> > >        +++
-> > >        | |
-> > >        | | Rtop
-> > >        | |
-> > >        +++
-> > >         |
-> > >         |
-> > >  FB ----+
-> > >         |
-> > >      +--+--+
-> > >      |  |  |
-> > >      |  |  |CCS
-> > >      +--v--+
-> > >         |
-> > >         |
-> > >        -+-
-> > >         -
-> > >
-> > > This is all speculation at this point though, so I don't mind changin=
-g the
-> > > property to "adi,fb-voltage-divider" and handling the different compa=
-tibles
-> > > when it comes to it.
-> > >
-> >
-> > Could we just make it `fb-voltage-divider-ohms`? The -ohms suffix
-> > makes it match the standard property-units suffix which already has
-> > the uint32-array type. There are a couple of bindings that have
-> > `vout-voltage-divider` without a vendor prefix, so it sounds like this
-> > pattern is considered somewhat of a standard property already. But I
-> > think it would be better with the -ohms suffix. For example, there is
-> > already `gw,voltage-divider-ohms` as well. But there are so many
-> > similar properties without the suffix, it is kind of the defacto
-> > standard already, so might be better to stick with that rather than
-> > making it even more different variants than there already are.
->
-> Ye, by all means standardise it. I suppose that means insertion into
-> regulator.yaml, which usually also means a regulator- prefix - unless
-> you're eyeing something wider than that?
 
-Yes, there are also hwmon and iio bindings that are already already
-using variations of ([a-z]+,)?(([a-x]+-)voltage-divider(-ohms)?.
-Although `fb-voltage-divider` specifically seems to only be common for
-regulators, so could make sense to just have
-`regulator-fb-voltage-divider-ohms`.
+
+On 10/1/2025 5:58 PM, Dmitry Baryshkov wrote:
+> On Wed, Oct 01, 2025 at 03:05:31PM -0700, Wesley Cheng wrote:
+>> For SuperSpeed USB to work properly, there is a set of HW settings that
+>> need to be programmed into the USB blocks within the QMP PHY.  Ensure that
+>> these settings follow the latest settings mentioned in the HW programming
+>> guide.  The QMP USB PHY on Glymur is a USB43 based PHY that will have some
+>> new ways to define certain registers, such as the replacement of TXA/RXA
+>> and TXB/RXB register sets.  This was replaced with the LALB register set.
+>>
+>> There are also some PHY init updates to modify the PCS MISC register space.
+>> Without these, the QMP PHY PLL locking fails.
+>>
+>> Signed-off-by: Wesley Cheng <wesley.cheng@oss.qualcomm.com>
+>> ---
+>>   drivers/phy/qualcomm/phy-qcom-qmp-combo.c     | 312 ++++++++-
+>>   .../phy/qualcomm/phy-qcom-qmp-pcs-aon-v8.h    |  17 +
+>>   .../phy/qualcomm/phy-qcom-qmp-pcs-misc-v8.h   |  12 +
+>>   .../qualcomm/phy-qcom-qmp-qserdes-lalb-v8.h   | 639 ++++++++++++++++++
+>>   .../phy/qualcomm/phy-qcom-qmp-usb43-pcs-v8.h  |  33 +
+>>   .../phy-qcom-qmp-usb43-qserdes-com-v8.h       | 224 ++++++
+>>   drivers/phy/qualcomm/phy-qcom-qmp.h           |   4 +
+>>   7 files changed, 1240 insertions(+), 1 deletion(-)
+>>   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-aon-v8.h
+>>   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-pcs-misc-v8.h
+>>   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-qserdes-lalb-v8.h
+>>   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-usb43-pcs-v8.h
+>>   create mode 100644 drivers/phy/qualcomm/phy-qcom-qmp-usb43-qserdes-com-v8.h
+>>
+>> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp.h b/drivers/phy/qualcomm/phy-qcom-qmp.h
+>> index da2a7ad2cdcc..7211c71fe68c 100644
+>> --- a/drivers/phy/qualcomm/phy-qcom-qmp.h
+>> +++ b/drivers/phy/qualcomm/phy-qcom-qmp.h
+>> @@ -32,7 +32,9 @@
+>>   #include "phy-qcom-qmp-qserdes-txrx-v7.h"
+>>   
+>>   #include "phy-qcom-qmp-qserdes-com-v8.h"
+>> +#include "phy-qcom-qmp-usb43-qserdes-com-v8.h"
+>>   #include "phy-qcom-qmp-qserdes-txrx-v8.h"
+>> +#include "phy-qcom-qmp-qserdes-lalb-v8.h"
+>>   
+>>   #include "phy-qcom-qmp-qserdes-pll.h"
+>>   
+>> @@ -60,6 +62,8 @@
+>>   
+>>   #include "phy-qcom-qmp-pcs-v8_50.h"
+>>   
+>> +#include "phy-qcom-qmp-usb43-pcs-v8.h"
+> 
+> Let's not include USB-specific header into the generic header.
+
+Hi Dmitry,
+
+This is actually referring to the QMP PCS register set for the USB43 
+based PHYs.  Even though it is a QMP PHY v8 (ie phy-qcom-qmp-pcs-v8), 
+there are some offset differences between the existing one and the one 
+being added.  In that case, should we still have it in the USB specific 
+QMP combo driver?  I guess it might make sense to have it there, as 
+technically the usb43 based phy is only really going to be there for 
+USB4 capable cores, and I don't think there's much that is common 
+between usb43 and other HW that utilize/share the QMP PHY.
+
+Thanks
+Wesley Cheng
+
+> 
+> With that fixed:
+> 
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> 
+> 
+> 
+>> +
+>>   /* QPHY_SW_RESET bit */
+>>   #define SW_RESET				BIT(0)
+>>   /* QPHY_POWER_DOWN_CONTROL */
+>>
+>> -- 
+>> linux-phy mailing list
+>> linux-phy@lists.infradead.org
+>> https://lists.infradead.org/mailman/listinfo/linux-phy
+> 
 
