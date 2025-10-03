@@ -1,100 +1,97 @@
-Return-Path: <devicetree+bounces-223599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5256BB8415
-	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 00:03:19 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FF03BB8542
+	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 00:33:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 842364E20D4
-	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 22:03:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0EB944E2D59
+	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 22:33:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE51121019C;
-	Fri,  3 Oct 2025 22:03:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE08127280C;
+	Fri,  3 Oct 2025 22:33:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="R1HBXxhT"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="k3ToQn1M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA321D88A4;
-	Fri,  3 Oct 2025 22:03:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF015218AAD
+	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 22:33:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759528995; cv=none; b=LGC7iEwKvk/e4tYefKG0bH5fCdFxYJ/bLXNJE23TFKKz5YWNrwxN4uJdnXuEpemTuctJpVkz4gCBY7M8j+8CYvZL3/0uMZU6SqWJi9HWMXrlWtQws23uFDlpHhOT+mb2B11xCMSujilA9ifh62Y5l/EZr+VLE7uY9dTvvyTpPWw=
+	t=1759530815; cv=none; b=rYKUMEHF6UyCt8w6gW61A4WQNXaqTOV9T7XHgYC1jvLBH0JN9GOw+MSoHiq1RMbluplccXcDA1XnomAaESVf2KlNXNkergucOlb47mD3+qgT0VP4e659AT3ZhnRrYsZlQPlcZCtwQlka8G+9wuv3zQEj8QVnv4LYMP0aW9U1p58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759528995; c=relaxed/simple;
-	bh=tiZd0YVKMoIgIkvCj6smKf68m23tUbllN6CAmNTCRKw=;
+	s=arc-20240116; t=1759530815; c=relaxed/simple;
+	bh=c8xSrLBPEZsi8mOVMz2L4a3EPWsxkSplh2VLhh7RLdM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r30DRvOMre0OqSvq6NtMj/5Xk8OCzCQWu6OoL1hrRApnJOnFCuWQTVwmIuhcJ08v0JiOglxcp66NFw3TZTYLlHYPTokhEIrSHCcifUqUPWnmHdSvHbDOxD2R/D75I/R9EG3bnFtFZVachuVK+Wr3RHGeI/LRUtDmkTxNkUK+Mf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=R1HBXxhT; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1759528992; x=1791064992;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=tiZd0YVKMoIgIkvCj6smKf68m23tUbllN6CAmNTCRKw=;
-  b=R1HBXxhTxG32z6r85sHvvnObzg1fRuCuJ/F7U9qKjyyFcteo1sfCNsnR
-   6845b7bYjnjTKZCdJaPBMIOstv+frTPgMCjie9QMnPS9MEXslaxP80jmb
-   aUfLfXmOwtLNv3v1wryWlX59yL+GgjdzeMVBwXVgJgfHmja+sWtDe46eJ
-   bShb7Uddii1Vcsg/sbEhtFuhMgxVUdgORalVtoKmfsDjDY/arZHWdOOS5
-   PxrULPrSFF1SYtenqGCpJw4f71o7dIkfXQELeMVKnE8liqhD8n29nNhmW
-   i9M7IjDRg7RZyXV1KOBXgekVQ3gG15RLXNfz6vxCtWmn3w18zm8vAqehg
-   w==;
-X-CSE-ConnectionGUID: 4+W4GcijQJmhrnUFLUttAg==
-X-CSE-MsgGUID: kjyS87c5Qc+QZ3ogCALPhA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11571"; a="61981554"
-X-IronPort-AV: E=Sophos;i="6.18,313,1751266800"; 
-   d="scan'208";a="61981554"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2025 15:03:12 -0700
-X-CSE-ConnectionGUID: 9UPln/QgSkGMRv7Sli7+yA==
-X-CSE-MsgGUID: xQ49hB05RM+OckHC1jHv+A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,313,1751266800"; 
-   d="scan'208";a="178674832"
-Received: from lkp-server01.sh.intel.com (HELO 2f2a1232a4e4) ([10.239.97.150])
-  by orviesa010.jf.intel.com with ESMTP; 03 Oct 2025 15:03:04 -0700
-Received: from kbuild by 2f2a1232a4e4 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v4nri-0004vn-1B;
-	Fri, 03 Oct 2025 22:03:02 +0000
-Date: Sat, 4 Oct 2025 06:02:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v9 6/6] drm: renesas: rz-du: mipi_dsi: Add support for
- RZ/V2H(P) SoC
-Message-ID: <202510040513.VEXSy8SM-lkp@intel.com>
-References: <20251002161728.186024-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RebwnXfqLqyWzgzcjdGvBY0Cwu5lrHemSuPZCFzgJLvjuwSRRAjI0aCJw0fCYO4Y4Nr4uXorkV9vv9VFHa2tSsjxZUQ1iVyTlJM+tTxL8Bp2RdFg85Uh2UxJqqA2Bi0DRH2pXJlyTou1qoL5EfkHXkyeW0c23qFR9zgak+s92LY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k3ToQn1M; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 593BDi3f024130
+	for <devicetree@vger.kernel.org>; Fri, 3 Oct 2025 22:33:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=6Y4F//iHLAsR+G0IMOGy3VBF
+	/GLgqOiAMCaLQ7uIbkI=; b=k3ToQn1MiZjSrRTp/1woXmPM6h+Er19dDOfpnOdU
+	lSpdJUfoivmcHCzA77Pr4TpHLFTfvA3Rpezic4HMMalQ+cvbclZRyKtMO10eaZTM
+	XKyh5JBpLYn9ceaHbrTQRydLbK68vr5bfFJjwGXYwYPIynrAbauRpE7Gpww0p0sV
+	CRDvFBlllasMHedVwTGjchjr+UZTuL+Yp6K4miK7ile2VqSruAfr3L9LWhrE5ZzV
+	FkQRZz8OskPV9UiDKSo46xiBnSTc4lR2ySX3kNn1dCj5Uu9e6gI8gnaa3IvqtgfX
+	KZ5u6nIOs4/MuqQoAcl7gbiq50WVcduBx3z3jYfa2qXCfg==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e8a6c573-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 22:33:32 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4e0e7caf22eso75454821cf.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 15:33:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759530812; x=1760135612;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6Y4F//iHLAsR+G0IMOGy3VBF/GLgqOiAMCaLQ7uIbkI=;
+        b=DOa+8StFVbyS67DRvdP0ayRs8C5QuZA6QGBsA9u94psamONY9NWJ9qpQUA22H2Oxsd
+         ronJEo3JPTaeaLAz8hEpojeMsR5Y+vrA13eFQ0bqrMKvgLtq1ZO5WOds+AxcrLdJK51e
+         pnGe0qVRvHRhSohu8FoiJYLBV6aP4HbAmnkfpP6tS540gVSxOP++60NtesQC26FTXTC0
+         dzDS0+Y9oVdOvi8VA1vFbJSNySAcBARDe6VztaRMHuX0Z7W5w+f2I3Ckpz30T6dUwivh
+         rryzKAdR/QqZYu9L1w0oThgE3AgMqFWuI98mAcbcc3w6YVYSSZd72MdavkFzhkCRjAHU
+         bPTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXwD4OZj+pEom7sS1oqBbtrdFA8r/E0GHOpNdoU6f98GzMDXgw5dTdRi1laYwtMg1HBCI0fwm+qTElF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx8Pj+qtS/4a+HnYJDRs9by0I8jn50IeE0q0TcvlbmTTTMNIn/b
+	E46T+HEJBuVIlJtloovpt4iUYhZ07G+IO4g/3d3//mn0edWu1Umve6bZOXI3UF8P0vMkcPsbmwv
+	6JNwkkoiyN7hRc92cDuH1EP61o8/POEbxMB3unmmrw1qoZVqfycPpOlorWsV8eqE/
+X-Gm-Gg: ASbGncsmDAIEim+4CYv2XAjej43yPeIXXo4wldmPD1Zw8GXq8wWcqDrUayzC2BsC3X0
+	9iv9rFnV0XEUSvJEnElrgpbF4tWYlyyfJ47xGa9dwYFnFMA8hIFSrfpLMW2u4Frso3XKOkOpHRg
+	75/V+3E2p0tB+i41sGiuD6hSBwjLoX2y7dWl5QC7UPJ7fDEKduMWh1gJcd6vX+4Sq3wII7AvC6d
+	wDgYeZTrnYKhakOX/8CfMufE6AsO96G6o824fEVAw30U/yJVE43gj8DlrfPujCFfrz2i/HYsLlY
+	Zg7rt4/rn+CxWAsBuwM7W8zJ+puSb59d+v32kEqEajvl4lwz+fXsAlZGs4nfFvwPpS+/HKdy0Ti
+	9a78pQi9Bvvyr6XQg8Cc4SQMLhM7gejsbipvQAyxYX9k2pq8JUvoltolRcQ==
+X-Received: by 2002:a05:622a:1344:b0:4b7:a8ce:a416 with SMTP id d75a77b69052e-4e576a7b744mr64830021cf.24.1759530811782;
+        Fri, 03 Oct 2025 15:33:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGn2bJnyKOInrEHOD8MFIsLq9WFcFcabDqb5urdGikf2oY/QBMkqU4XgOty/PdlV8LNbvKdVQ==
+X-Received: by 2002:a05:622a:1344:b0:4b7:a8ce:a416 with SMTP id d75a77b69052e-4e576a7b744mr64829521cf.24.1759530810890;
+        Fri, 03 Oct 2025 15:33:30 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58b01141f09sm2207021e87.62.2025.10.03.15.33.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Oct 2025 15:33:29 -0700 (PDT)
+Date: Sat, 4 Oct 2025 01:33:27 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Jingzhou Zhu <newwheatzjz@zohomail.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add support for Huawei MateBook
+ E 2019
+Message-ID: <pbrrkfjrqoyj4qspdrordksfueyqejxcsz2oxqctczeoll6ywn@ixpaa6v4mwlv>
+References: <20251001142107.21860-1-newwheatzjz@zohomail.com>
+ <20251003131925.15933-1-newwheatzjz@zohomail.com>
+ <20251003131925.15933-3-newwheatzjz@zohomail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -103,170 +100,219 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251002161728.186024-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251003131925.15933-3-newwheatzjz@zohomail.com>
+X-Authority-Analysis: v=2.4 cv=RZKdyltv c=1 sm=1 tr=0 ts=68e04f3c cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=WV1l7McVAAAA:8 a=90yxgAhdmVl2AmlIJZIA:9
+ a=CjuIK1q_8ugA:10 a=dK5gKXOJidcA:10 a=a_PwQJl-kcHnX1M80qC6:22
+ a=ly-PvpxawfTmY1UqWLBn:22
+X-Proofpoint-GUID: JlHZSeb8ctFHq-z7NTq-IEgRIpRyKp2F
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAzMyBTYWx0ZWRfX8hQVIvd/qttD
+ Es90VAw/EWXHA3mwj81VIgEoZb6009PL54X9DoP8ppABFwyOYU5Tp1JKgXqliuiddZqhgYHUq3r
+ JKi/drmm1LpQjdBPRIGiR3ZOoJNWxz1dMA8oNY4j68FQoNtCTvcQYaEKRb2/vp2Eg6uaFEWtPK1
+ oq+m4DJfTsC4CnF6qhFI0rvXxTQzPZNoj0o6mH292TfFY+aDLWjFkqsxnT24i55uZlI68kT77Tf
+ lp8nrW9vr7IF+GvYRYNX4ciXa6kk8SbrKjWzA2bqevbEVgu3x3IUrQKqVE2C3MA8uut2jAGcmrD
+ Rb4lLaaKyFkPrp6WKCTpPXwGcAXmBASlAeGDZZ1UurstHeSu2MNh12fZDLalepMVYg0hXPceDjz
+ QyRE5feHZrNubo7Oro9xkuF6xGELTA==
+X-Proofpoint-ORIG-GUID: JlHZSeb8ctFHq-z7NTq-IEgRIpRyKp2F
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-03_07,2025-10-02_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 malwarescore=0 priorityscore=1501 adultscore=0 phishscore=0
+ impostorscore=0 spamscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270033
 
-Hi Prabhakar,
+On Fri, Oct 03, 2025 at 09:19:25PM +0800, Jingzhou Zhu wrote:
+> Add device tree for Huawei MateBook E 2019, which is a 2-in-1 tablet based
+> on Qualcomm's sdm850 platform.
+> 
+> Supported features:
+>  - ACSP, CDSP and SLPI
+>  - Volume Key
+>  - Power Key
+>  - Tablet Mode Switching
+>  - Display
+>  - Touchscreen
+>  - Stylus
+>  - WiFi
+>  - Bluetooth
+>  - GPU
+>  - USB
+>  - Keyboard
+>  - Touchpad
+>  - UFS
+>  - SD Card
+>  - Audio (right internal mic and headphone mic not working)
+>  - Mobile Network
+> 
+> Features not supported yet:
+>  - Panel Backlight
+>  - Lid Detection
+>  - Battery
+>  - EFI Variable Access
+>  - Cameras
+> 
+> 1. Panel backlight, lid detection and battery will be supported with the
+>    EC driver upstreamed.
+> 2. EFI variables can only be read with the QSEECOM driver, and will be
+>    enabled when the driver is fixed.
+> 3. Cameras are tested to work with modified downstream driver, and once
+>    drivers for these camera modules are included in the tree, cameras can
+>    be enabled.
+> 
+> Features won't be supported:
+>  - External Display
+>  - Fingerprint
+> 
+> 1. To make external display work, more reverse engineering may be required,
+>    but it's beyond my ability.
+> 2. Fingerprint is controlled by TrustZone, meaning direct access to it
+>    isn't possible.
+> 
+> Signed-off-by: Jingzhou Zhu <newwheatzjz@zohomail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../qcom/sdm850-huawei-matebook-e-2019.dts    | 962 ++++++++++++++++++
+>  2 files changed, 963 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/sdm850-huawei-matebook-e-2019.dts
+> 
+> +
+> +	vph_pwr: regulator-vph-pwr {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vph_pwr";
+> +
+> +		regulator-min-microvolt = <3700000>;
+> +		regulator-max-microvolt = <3700000>;
+> +
+> +		regulator-always-on;
+> +	};
+> +
+> +	vlcm_3v3: regulator-vlcm-3v3 {
 
-kernel test robot noticed the following build errors:
+vlcm < vph
 
-[auto build test ERROR on geert-renesas-drivers/renesas-clk]
-[also build test ERROR on clk/clk-next robh/for-next linus/master v6.17 next-20251003]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Prabhakar/clk-renesas-rzv2h-cpg-Add-instance-field-to-struct-pll/20251003-002026
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/geert/renesas-drivers.git renesas-clk
-patch link:    https://lore.kernel.org/r/20251002161728.186024-7-prabhakar.mahadev-lad.rj%40bp.renesas.com
-patch subject: [PATCH v9 6/6] drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
-config: s390-randconfig-r131-20251003 (https://download.01.org/0day-ci/archive/20251004/202510040513.VEXSy8SM-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 8.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251004/202510040513.VEXSy8SM-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510040513.VEXSy8SM-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_del_clk_provider':
->> drivers/clk/renesas/rzv2h-cpg.c:1625: undefined reference to `of_clk_del_provider'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_ddiv_determine_rate':
->> drivers/clk/renesas/rzv2h-cpg.c:842: undefined reference to `divider_determine_rate'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_plldsi_div_determine_rate':
->> drivers/clk/renesas/rzv2h-cpg.c:497: undefined reference to `clk_hw_get_parent'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_ddiv_recalc_rate':
->> drivers/clk/renesas/rzv2h-cpg.c:833: undefined reference to `divider_recalc_rate'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_plldsi_div_set_rate':
-   drivers/clk/renesas/rzv2h-cpg.c:531: undefined reference to `clk_hw_get_parent'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_parent_clk_mux_to_index':
->> drivers/clk/renesas/rzv2h-cpg.c:1209: undefined reference to `clk_mux_val_to_index'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_ddiv_set_rate':
->> drivers/clk/renesas/rzv2h-cpg.c:868: undefined reference to `divider_get_val'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_pll_clk_register':
->> drivers/clk/renesas/rzv2h-cpg.c:806: undefined reference to `__clk_get_name'
->> s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.c:817: undefined reference to `devm_clk_hw_register'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_register_mod_clk':
-   drivers/clk/renesas/rzv2h-cpg.c:1332: undefined reference to `__clk_get_name'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.c:1346: undefined reference to `devm_clk_hw_register'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_probe':
->> drivers/clk/renesas/rzv2h-cpg.c:1686: undefined reference to `of_clk_add_provider'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_plldsi_div_clk_register':
-   drivers/clk/renesas/rzv2h-cpg.c:592: undefined reference to `__clk_get_name'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.c:602: undefined reference to `devm_clk_hw_register'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_mux_clk_register':
->> drivers/clk/renesas/rzv2h-cpg.c:959: undefined reference to `__devm_clk_hw_register_mux'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_ddiv_clk_register':
-   drivers/clk/renesas/rzv2h-cpg.c:916: undefined reference to `__clk_get_name'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.c:945: undefined reference to `devm_clk_hw_register'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_fixed_mod_status_clk_register':
-   drivers/clk/renesas/rzv2h-cpg.c:999: undefined reference to `__clk_get_name'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.c:1022: undefined reference to `devm_clk_hw_register'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_register_core_clk':
-   drivers/clk/renesas/rzv2h-cpg.c:1098: undefined reference to `__clk_get_name'
->> s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.c:1099: undefined reference to `devm_clk_hw_register_fixed_factor'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_del_clk_provider':
->> drivers/clk/renesas/rzv2h-cpg.c:1625: undefined reference to `of_clk_del_provider'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_register_core_clk':
->> drivers/clk/renesas/rzv2h-cpg.c:1115: undefined reference to `clk_fixed_factor_ops'
-   s390-linux-ld: drivers/clk/renesas/rzv2h-cpg.o: in function `rzv2h_cpg_ddiv_clk_register':
->> drivers/clk/renesas/rzv2h-cpg.c:927: undefined reference to `clk_divider_ops'
-
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for CLK_RZV2H
-   Depends on [n]: COMMON_CLK [=n] && CLK_RENESAS [=n]
-   Selected by [y]:
-   - DRM_RZG2L_USE_MIPI_DSI [=y] && HAS_IOMEM [=y] && DRM [=y] && DRM_BRIDGE [=y] && OF [=y] && (DRM_RZG2L_DU [=n] || COMPILE_TEST [=y])
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vlcm_3v3";
+> +
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&tlmm 88 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +
+> +		vin-supply = <&vph_pwr>;
+> +	};
+> +
 
 
-vim +1625 drivers/clk/renesas/rzv2h-cpg.c
+> +
+> +&gpu {
+> +	status = "okay";
+> +	zap-shader {
 
-dd22e56217495e Lad Prabhakar 2024-07-29  1622  
-dd22e56217495e Lad Prabhakar 2024-07-29  1623  static void rzv2h_cpg_del_clk_provider(void *data)
-dd22e56217495e Lad Prabhakar 2024-07-29  1624  {
-dd22e56217495e Lad Prabhakar 2024-07-29 @1625  	of_clk_del_provider(data);
-dd22e56217495e Lad Prabhakar 2024-07-29  1626  }
-dd22e56217495e Lad Prabhakar 2024-07-29  1627  
-dd22e56217495e Lad Prabhakar 2024-07-29  1628  static int __init rzv2h_cpg_probe(struct platform_device *pdev)
-dd22e56217495e Lad Prabhakar 2024-07-29  1629  {
-dd22e56217495e Lad Prabhakar 2024-07-29  1630  	struct device *dev = &pdev->dev;
-dd22e56217495e Lad Prabhakar 2024-07-29  1631  	struct device_node *np = dev->of_node;
-dd22e56217495e Lad Prabhakar 2024-07-29  1632  	const struct rzv2h_cpg_info *info;
-dd22e56217495e Lad Prabhakar 2024-07-29  1633  	struct rzv2h_cpg_priv *priv;
-dd22e56217495e Lad Prabhakar 2024-07-29  1634  	unsigned int nclks, i;
-dd22e56217495e Lad Prabhakar 2024-07-29  1635  	struct clk **clks;
-dd22e56217495e Lad Prabhakar 2024-07-29  1636  	int error;
-dd22e56217495e Lad Prabhakar 2024-07-29  1637  
-dd22e56217495e Lad Prabhakar 2024-07-29  1638  	info = of_device_get_match_data(dev);
-dd22e56217495e Lad Prabhakar 2024-07-29  1639  
-dd22e56217495e Lad Prabhakar 2024-07-29  1640  	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-dd22e56217495e Lad Prabhakar 2024-07-29  1641  	if (!priv)
-dd22e56217495e Lad Prabhakar 2024-07-29  1642  		return -ENOMEM;
-dd22e56217495e Lad Prabhakar 2024-07-29  1643  
-bc4d25fdfadfa8 Lad Prabhakar 2024-08-28  1644  	spin_lock_init(&priv->rmw_lock);
-bc4d25fdfadfa8 Lad Prabhakar 2024-08-28  1645  
-dd22e56217495e Lad Prabhakar 2024-07-29  1646  	priv->dev = dev;
-dd22e56217495e Lad Prabhakar 2024-07-29  1647  
-dd22e56217495e Lad Prabhakar 2024-07-29  1648  	priv->base = devm_platform_ioremap_resource(pdev, 0);
-dd22e56217495e Lad Prabhakar 2024-07-29  1649  	if (IS_ERR(priv->base))
-dd22e56217495e Lad Prabhakar 2024-07-29  1650  		return PTR_ERR(priv->base);
-dd22e56217495e Lad Prabhakar 2024-07-29  1651  
-dd22e56217495e Lad Prabhakar 2024-07-29  1652  	nclks = info->num_total_core_clks + info->num_hw_mod_clks;
-dd22e56217495e Lad Prabhakar 2024-07-29  1653  	clks = devm_kmalloc_array(dev, nclks, sizeof(*clks), GFP_KERNEL);
-dd22e56217495e Lad Prabhakar 2024-07-29  1654  	if (!clks)
-dd22e56217495e Lad Prabhakar 2024-07-29  1655  		return -ENOMEM;
-dd22e56217495e Lad Prabhakar 2024-07-29  1656  
-9b6e63a777ea5f Biju Das      2024-12-13  1657  	priv->mstop_count = devm_kcalloc(dev, info->num_mstop_bits,
-9b6e63a777ea5f Biju Das      2024-12-13  1658  					 sizeof(*priv->mstop_count), GFP_KERNEL);
-9b6e63a777ea5f Biju Das      2024-12-13  1659  	if (!priv->mstop_count)
-9b6e63a777ea5f Biju Das      2024-12-13  1660  		return -ENOMEM;
-9b6e63a777ea5f Biju Das      2024-12-13  1661  
-69ac2acd209a15 Biju Das      2025-02-22  1662  	/* Adjust for CPG_BUS_m_MSTOP starting from m = 1 */
-69ac2acd209a15 Biju Das      2025-02-22  1663  	priv->mstop_count -= 16;
-69ac2acd209a15 Biju Das      2025-02-22  1664  
-338b505d564c1e Raag Jadav    2025-06-10  1665  	priv->resets = devm_kmemdup_array(dev, info->resets, info->num_resets,
-338b505d564c1e Raag Jadav    2025-06-10  1666  					  sizeof(*info->resets), GFP_KERNEL);
-dd22e56217495e Lad Prabhakar 2024-07-29  1667  	if (!priv->resets)
-dd22e56217495e Lad Prabhakar 2024-07-29  1668  		return -ENOMEM;
-dd22e56217495e Lad Prabhakar 2024-07-29  1669  
-dd22e56217495e Lad Prabhakar 2024-07-29  1670  	dev_set_drvdata(dev, priv);
-dd22e56217495e Lad Prabhakar 2024-07-29  1671  	priv->clks = clks;
-dd22e56217495e Lad Prabhakar 2024-07-29  1672  	priv->num_core_clks = info->num_total_core_clks;
-dd22e56217495e Lad Prabhakar 2024-07-29  1673  	priv->num_mod_clks = info->num_hw_mod_clks;
-dd22e56217495e Lad Prabhakar 2024-07-29  1674  	priv->last_dt_core_clk = info->last_dt_core_clk;
-dd22e56217495e Lad Prabhakar 2024-07-29  1675  	priv->num_resets = info->num_resets;
-dd22e56217495e Lad Prabhakar 2024-07-29  1676  
-dd22e56217495e Lad Prabhakar 2024-07-29  1677  	for (i = 0; i < nclks; i++)
-dd22e56217495e Lad Prabhakar 2024-07-29  1678  		clks[i] = ERR_PTR(-ENOENT);
-dd22e56217495e Lad Prabhakar 2024-07-29  1679  
-dd22e56217495e Lad Prabhakar 2024-07-29  1680  	for (i = 0; i < info->num_core_clks; i++)
-dd22e56217495e Lad Prabhakar 2024-07-29  1681  		rzv2h_cpg_register_core_clk(&info->core_clks[i], priv);
-dd22e56217495e Lad Prabhakar 2024-07-29  1682  
-dd22e56217495e Lad Prabhakar 2024-07-29  1683  	for (i = 0; i < info->num_mod_clks; i++)
-dd22e56217495e Lad Prabhakar 2024-07-29  1684  		rzv2h_cpg_register_mod_clk(&info->mod_clks[i], priv);
-dd22e56217495e Lad Prabhakar 2024-07-29  1685  
-dd22e56217495e Lad Prabhakar 2024-07-29 @1686  	error = of_clk_add_provider(np, rzv2h_cpg_clk_src_twocell_get, priv);
-dd22e56217495e Lad Prabhakar 2024-07-29  1687  	if (error)
-dd22e56217495e Lad Prabhakar 2024-07-29  1688  		return error;
-dd22e56217495e Lad Prabhakar 2024-07-29  1689  
-dd22e56217495e Lad Prabhakar 2024-07-29  1690  	error = devm_add_action_or_reset(dev, rzv2h_cpg_del_clk_provider, np);
-dd22e56217495e Lad Prabhakar 2024-07-29  1691  	if (error)
-dd22e56217495e Lad Prabhakar 2024-07-29  1692  		return error;
-dd22e56217495e Lad Prabhakar 2024-07-29  1693  
-dd22e56217495e Lad Prabhakar 2024-07-29  1694  	error = rzv2h_cpg_add_pm_domains(priv);
-dd22e56217495e Lad Prabhakar 2024-07-29  1695  	if (error)
-dd22e56217495e Lad Prabhakar 2024-07-29  1696  		return error;
-dd22e56217495e Lad Prabhakar 2024-07-29  1697  
-dd22e56217495e Lad Prabhakar 2024-07-29  1698  	error = rzv2h_cpg_reset_controller_register(priv);
-dd22e56217495e Lad Prabhakar 2024-07-29  1699  	if (error)
-dd22e56217495e Lad Prabhakar 2024-07-29  1700  		return error;
-dd22e56217495e Lad Prabhakar 2024-07-29  1701  
-dd22e56217495e Lad Prabhakar 2024-07-29  1702  	return 0;
-dd22e56217495e Lad Prabhakar 2024-07-29  1703  }
-dd22e56217495e Lad Prabhakar 2024-07-29  1704  
+empty line between properties and subnodes
+
+> +		memory-region = <&gpu_mem>;
+> +		firmware-name = "qcom/sdm850/HUAWEI/AL09/qcdxkmsuc850.mbn";
+> +	};
+> +};
+> +
+> +&i2c5 {
+> +	clock-frequency = <400000>;
+> +	status = "okay";
+
+Nit: please add empty line before status property (here and further)
+
+> +
+> +
+> +&pm8998_gpios {
+> +	sw_edp_1p2_en: pm8998-gpio9-state {
+
+Up to you, but there is no need to prefix them with the pmm8998-.
+
+> +		pins = "gpio9";
+> +		function = "normal";
+> +
+> +		bias-disable;
+> +		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
+> +	};
+> +
+> +	volume_up_gpio: pm8998-gpio6-state {
+> +		pins = "gpio6";
+> +		function = "normal";
+> +
+> +		input-enable;
+> +		bias-pull-up;
+> +		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
+> +	};
+> +};
+> +
+> +
+> +&tlmm {
+> +	gpio-reserved-ranges = <0 4>, <81 4>;
+> +
+> +	cam_indicator_en: cam-indicator-en-state {
+> +		pins = "gpio12";
+> +		function = "gpio";
+> +
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	mode_pin_active: mode-pin-state {
+> +		pins = "gpio79";
+> +		function = "gpio";
+> +
+> +		bias-disable;
+> +	};
+> +
+> +	sn65dsi86_pin_active: sn65dsi86-enable-state {
+
+Please sort these too (by the name, not by the label.
+
+> +		pins = "gpio96";
+> +		function = "gpio";
+> +
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+> +	i2c5_hid_active: i2c5-hid-active-state {
+> +		pins = "gpio125";
+> +		function = "gpio";
+> +
+> +		drive-strength = <2>;
+> +		bias-pull-up;
+> +	};
+> +
+> +&wifi {
+> +	vdd-0.8-cx-mx-supply = <&vreg_l5a_0p8>;
+> +	vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
+> +	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
+> +	vdd-3.3-ch0-supply = <&vreg_l25a_3p3>;
+> +	vdd-3.3-ch1-supply = <&vreg_l23a_3p3>;
+> +
+> +	qcom,snoc-host-cap-8bit-quirk;
+> +	qcom,calibration-variant = "Huawei_Planck";
+
+Did you post the board data to the ath10k@ mailing list?
+
+See https://wireless.docs.kernel.org/en/latest/en/users/drivers/ath10k/boardfiles.html
+
+
+Also if possible, please include output from BT and WiFi probing to the
+commit message.
+
+> +
+> +	status = "okay";
+> +};
+> -- 
+> 2.47.3
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+With best wishes
+Dmitry
 
