@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-223529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3851BB6ADB
-	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 14:51:10 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6178BB6ADE
+	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 14:51:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 7BD934E26D6
-	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 12:51:09 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EF75F4E1F7E
+	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 12:51:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C73162E9ECD;
-	Fri,  3 Oct 2025 12:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F316F2EFD89;
+	Fri,  3 Oct 2025 12:51:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eWnkJxja"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E12M+7GY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50481EEA8
-	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 12:51:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CFAE156678
+	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 12:51:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759495862; cv=none; b=gve8CN2HwRiPbXLS/ZcocwGuKfbIYBknz0eFyRTswCgXafxj5I3NmyaiS8infDxQiylU4DEDy4DYwKyV4+Jq+WC1KVCMKguicXOC+QSq3evrGSRubQEaC93YkZ1RDAoEv+Ynetu4bf5Fye0TlSuvZvbFvTbHGhYoKLQkx4ehe9I=
+	t=1759495863; cv=none; b=FefpXA6Ig21xWw8hO9vemYeJqxf461uqErBeZwdv9f48Brgo8O781fp4iUVXmI4nUI7t7y6nZlH1e/UzCiBvaulqn0ID4Cx+WChgkd3PxjHRKYVVoIxunlMVfevECX/Fp7SGO1A0DlAA/J4tZUD01awg0n+dKXBoZXm2MMGok8w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759495862; c=relaxed/simple;
-	bh=mSudeg4QDvsImGywt/0dAyPlzjFfeZ24EUC1/n7/GmA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cGmesk24IM7wNN6gYphqEljw+5lLOYHsGDxhJc5CtoJbs0AlM8ryPwwmNmTBeIQxjcbn/cRGcn7/6V7Hiy4ohIE0RQVd1SLT9v21rRapkxwAlYF7JYDsBdrmB7wcI1OYkSQQh+X7iivTxu/Xs5m4PIphXKiB5S6Lo5ospBtoyaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eWnkJxja; arc=none smtp.client-ip=209.85.221.47
+	s=arc-20240116; t=1759495863; c=relaxed/simple;
+	bh=fPZ/cJSJkaF11EllnT7kgWt76oa1pY42U6aeyHqj7pg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=VOV8UlJKVMwwF2jkcBZwgXAvY0gPoxWA48ehnaq781aurwPNr2EUkRc9jnUWax2jR4ocGZ3HCpW8z5CeZ237Gcd3Ibyjo1NWtkVWKtDGH05QY+PdzS2yzN9gK9ZefyDYRRt9MUalfLkvQXST5sx7Y4dGdeoVhGxuQ4oZCpyPe8k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E12M+7GY; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3ecde0be34eso1782044f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 05:51:00 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-46e4ad36541so24881545e9.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 05:51:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759495858; x=1760100658; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=samCYGqwi9pnzVf12goEC93sXVEkXkpJUcL0gXrpXZY=;
-        b=eWnkJxja731pRID0sUB7qYHj2C2eJu4wE6TaucKQyj0WtGX2IFPh0HFDEpFYY1yo34
-         GM1NTAR+9UmVgQQifAotQ+luDvJ/uhuJok+1msCpiOhr+Rsc1dWDX2+odLtgoVU26wBR
-         EV0iNGd4EBMVg1cxBCiG2P8xx9OiN0lVbuibzkszkctX17q2+PYbV0sW1cHrlnKpT8qt
-         Ej8dUUcWqJTIpcjlTkjrbXC6hDk605u5BlwA1fYXcT5VwOnT0aUoxyJ9+3oJD5g4NUJM
-         ZJOhTmcEcrAiz01oNAzkmsc6otV7KAf54fGyPcFleGzJCrrJsjydn4WEIF+ClVHY8Mii
-         OlqQ==
+        d=gmail.com; s=20230601; t=1759495860; x=1760100660; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WaXfwSB/FRGqmKy0Vb2zzmiYO4dF/Wx+pD0HOeUkg6Y=;
+        b=E12M+7GYdz9yxn7MKWSMPlaIGG+69Y1f1EMSpigGSzcG2al79llkGku0b2Qokyt4U9
+         z5GyGZMZ9TtS+Jfk1h4iGxM3y/IQso1EN9y53Kl2tVRcCd6c6kaJCh37tXmf+vbyI5Mf
+         gwQE+KqQm71N2ialAVOqGghIvXx+FWj7ZfCN46OrIWDPVzdDy8EOLHmUu7NFC1IztFA2
+         yhJ9MsmYqBMVK7FsKuBq7PLrxW1aewdLoOEpHSJ4GiFnz7aqAP+4uNTpjZRWlg+5l3uF
+         NemA2/MLptp0ctpOGUbkIzHdvnjJKzxW4XNQW6x35uwyVesPBubTn1rlQOu36NnihCmM
+         aakA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759495858; x=1760100658;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=samCYGqwi9pnzVf12goEC93sXVEkXkpJUcL0gXrpXZY=;
-        b=Dl4NHwkPz/cfS8yJa6hzNh7be0UoUMJFx3P6lqBBSGu1hMAKLs0XJMi+8DqnV09el5
-         49A+tryfYOttq0ab/OG24Qi93RMR1ae4dIjlwbZiSh1ZFdj3zdVa9Indx1yAO09X4bOe
-         /BI6Ayyw7tfdfSDEO9ScAuGFNHVeb8r6qib4RBqBAOaIDoYzV3GsOH3NhZy1/3m+Qg8w
-         AfJGF1dfHEHJDXztDgivLPBjHzmheiPQJyJbjY6a0pI/NWWNoG59VqrihM+LuNDsxls0
-         itC7IaOsxINNrHDZ7Vq2uaeq3J6/vDRLCjHEzObmPm7dKzW4nOgnJRPXoTbV8HuV3cJC
-         /WwQ==
-X-Gm-Message-State: AOJu0YyjTg6qGYqQTjAL38hk7QtO/RNPAn6QJE6pX6/Bi7CSPwfZOyt/
-	Haomca5FJFn4LvUJGPr++mOOaUavWHeOykHnoh3/3qFzRROa2ChPOrO1461ymc0C
-X-Gm-Gg: ASbGncsxLz2IzfGYZvDg4G94J9hkXn1nYa2NH1CqcSSqjxOJhCPyRvJHnZYhWIGycIv
-	tfJlZU2ZsqyKALTHnV5f2Y2FjST3XQvES/5fM2JXyVa1I7HzzmjWK7QAkqrxCN1HrhTAFRnIVCE
-	l3cqGDEMH74sUSOAcjHiUeOxVr5zMkijsoUYFgDiod1eEr5lO3wXL2vBYSJwjDEyOpwFR/xBOiK
-	Z+zEujpJt38GQSB10Kq7l0FTwtVUvjDy9IZIe4xiB4YutnsE4bcswAvhAeTflhd0v/PVEQTJbPm
-	Nt9/Z3xyTTgtwlV+J56dSNdqLyFjaeUQy3XZY/J3VlG2WfXFBdrDPagf0KOtHhaN4jLFEVkzZYF
-	bj6lVoMzdCGbQ8JnW5Ac5bP6MyMSf+esmPd1dkq6JUJyiFsXoZ/Rz+AiAcAxIQ+TrdqC5wX0Fx2
-	+0tv69
-X-Google-Smtp-Source: AGHT+IENzuZxbYIdrHD3oo9Oii97vCN3RXSUhQc4ZEVlPzK73ksVqzVkKPvFzgGiDGx4BnU+23owmw==
-X-Received: by 2002:a05:6000:1a86:b0:3ec:dfe5:17e8 with SMTP id ffacd0b85a97d-4255d294d2emr4872007f8f.6.1759495858309;
-        Fri, 03 Oct 2025 05:50:58 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759495860; x=1760100660;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WaXfwSB/FRGqmKy0Vb2zzmiYO4dF/Wx+pD0HOeUkg6Y=;
+        b=CCKtxFr7bJKNCCDwGJqxYOhv8tfHL6WHqxP5AzEBOa8v4a0TZ7tA/K8DI+CkQTIjkY
+         03gLNC1S4+allwDCsYGha6k1Iw2QcoRhSnPceYvZ/PojofFmyXwS+38Du9ydTmFD7YyH
+         29tLkmRhO8mDF3+c3KeZ2+czxkGybu7B7mxf6ym2pexHIqirJBNjYl4ja/D4mLJlQAA6
+         egfjyAe0LvOGDIYQNFOIIA/Z2T5WfhTInAg1IiZnqbCaqDJcukMBiBIAm6RueDd6Jax/
+         jBIG96WSqqlPXII8spIBG6pTfJg35nRu168LU8/q77H/IPvKilS1iJDxYtlEBZFLFwBp
+         KrwA==
+X-Gm-Message-State: AOJu0Ywp8blOsc2JaVNq5QnCTOuKPrD/WLy9gOKadjpjx5cB5j/fyo8U
+	5DUdoUigJR2Kl0xKFW7a9kUiN15AwyTTySzU7WMcNWyGzxz68PWhK7kvpoPUBHtg
+X-Gm-Gg: ASbGnctd3gqRXsvPNhu58mNOpZHsVkahVbaCILQuuQlO5nsYqJ41v4qWBv4R47bp5Lf
+	yvawLaFnNuGZhDwMjtJje08N3XZ0zbRoBR0ZQcm6EmbkT0ueWHqxqzA7H2KFv5kmGfCsNetgRAj
+	vPZ44wzYtnv0bx0xxZGrzI7GW9tYCoiLocz8/OjfsaOHUmMZpibOMxbUcuTLhIC6Gw7ZZ3ZRwE7
+	j+gpMpG97cjFpDo2bNO3lZvpsnA+0Kg6hnHdeh0UNEODwDDi31Y4qyWalv7FnlxhqGLUh2YniSU
+	JgB23Z7afofuQNwyl8pG+KKGb42QcSHxvK2FbTfLdjF6gtI5/19OWuxFpufg5BRapxFi3mzxbSO
+	lKkRP5h0BxObI1eljI3N/7h50eqdDJnv/RznxV2MbN4d3Z0r262ioJbkRqsZ0RdGl5QMcxHJBw1
+	2Gs6h4
+X-Google-Smtp-Source: AGHT+IFK24Hmy9qDQXQFVbal729f+4HuhDIUzQDqGeKXa8THbxiFFtjcu/scKAzTeHzoz76wi6we2g==
+X-Received: by 2002:a05:600d:4392:b0:46e:74bb:6bc with SMTP id 5b1f17b1804b1-46e74bb07ecmr9696025e9.5.1759495860204;
+        Fri, 03 Oct 2025 05:51:00 -0700 (PDT)
 Received: from localhost.localdomain ([37.159.33.161])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e5c40983asm80598605e9.3.2025.10.03.05.50.56
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e5c40983asm80598605e9.3.2025.10.03.05.50.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Oct 2025 05:50:57 -0700 (PDT)
+        Fri, 03 Oct 2025 05:50:59 -0700 (PDT)
 From: Stefano Radaelli <stefano.radaelli21@gmail.com>
 To: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
@@ -82,10 +84,12 @@ Cc: Stefano Radaelli <stefano.radaelli21@gmail.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v1 0/3] arm64: dts: ti: Refactor and alignment of VAR-SOM-AM62P
-Date: Fri,  3 Oct 2025 14:50:26 +0200
-Message-ID: <20251003125031.30539-1-stefano.radaelli21@gmail.com>
+Subject: [PATCH v1 1/3] arm64: dts: ti: var-som-am62p: Refactor IPC configuration into common dtsi
+Date: Fri,  3 Oct 2025 14:50:27 +0200
+Message-ID: <20251003125031.30539-2-stefano.radaelli21@gmail.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20251003125031.30539-1-stefano.radaelli21@gmail.com>
+References: <20251003125031.30539-1-stefano.radaelli21@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,29 +98,91 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This patch series introduces updates to the VAR-SOM-AM62P device tree:
+Update the VAR-SOM-AM62P dtsi to align with the refactor introduced by
+k3-am62p-ti-ipc-firmware.dtsi common file, allowing to remove the IPC
+nodes from the board file including the new common dtsi.
 
- - Patch 1 refactors the IPC configuration to align with upstream changes
-   by including the new common k3-am62p-ti-ipc-firmware.dtsi.
- - Patch 2 adds support for the WM8904 audio codec, enabling audio
-   playback and capture.
- - Patch 3 adds support for the ADS7846 touchscreen controller available
-   on the SOM.
+No functional changes intended.
 
-These changes have been tested on the VAR-SOM-AM62P platform with
-Symphony Carrier Board.
+Signed-off-by: Stefano Radaelli <stefano.radaelli21@gmail.com>
+---
+ arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi | 52 +------------------
+ 1 file changed, 2 insertions(+), 50 deletions(-)
 
-Stefano Radaelli (3):
-  arm64: dts: ti: var-som-am62p: Refactor IPC configuration into common
-    dtsi
-  arm64: dts: ti: var-som-am62p: Add support for WM8904 audio codec
-  arm64: dts: ti: var-som-am62p: Add support for ADS7846 touchscreen
-
- arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi | 148 ++++++++++++------
- 1 file changed, 98 insertions(+), 50 deletions(-)
-
-
-base-commit: 58809f614e0e3f4e12b489bddf680bfeb31c0a20
+diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi b/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
+index edaa4f99295d..b93372f22732 100644
+--- a/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am62p5-var-som.dtsi
+@@ -63,18 +63,6 @@ rtos_ipc_memory_region: rtos-ipc-memory@9b500000 {
+ 			no-map;
+ 		};
+ 
+-		mcu_r5fss0_core0_dma_memory_region: mcu-r5fss-dma-memory-region@9b800000 {
+-			compatible = "shared-dma-pool";
+-			reg = <0x00 0x9b800000 0x00 0x00100000>;
+-			no-map;
+-		};
+-
+-		mcu_r5fss0_core0_memory_region: mcu-r5fss-memory-region@9b900000 {
+-			compatible = "shared-dma-pool";
+-			reg = <0x00 0x9b900000 0x00 0x00f00000>;
+-			no-map;
+-		};
+-
+ 		wkup_r5fss0_core0_dma_memory_region: r5f-dma-memory@9c800000 {
+ 			compatible = "shared-dma-pool";
+ 			reg = <0x00 0x9c800000 0x00 0x00100000>;
+@@ -320,44 +308,6 @@ &usbss1 {
+ 	ti,vbus-divider;
+ };
+ 
+-&mailbox0_cluster0 {
+-	status = "okay";
+-
+-	mbox_r5_0: mbox-r5-0 {
+-		ti,mbox-rx = <0 0 0>;
+-		ti,mbox-tx = <1 0 0>;
+-	};
+-};
+-
+-&mailbox0_cluster1 {
+-	status = "okay";
+-
+-	mbox_mcu_r5_0: mbox-mcu-r5-0 {
+-		ti,mbox-rx = <0 0 0>;
+-		ti,mbox-tx = <1 0 0>;
+-	};
+-};
+-
+-&mcu_r5fss0 {
+-	status = "okay";
+-};
+-
+-&mcu_r5fss0_core0 {
+-	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5_0>;
+-	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
+-			<&mcu_r5fss0_core0_memory_region>;
+-};
+-
+-&wkup_r5fss0 {
+-	status = "okay";
+-};
+-
+-&wkup_r5fss0_core0 {
+-	mboxes = <&mailbox0_cluster0 &mbox_r5_0>;
+-	memory-region = <&wkup_r5fss0_core0_dma_memory_region>,
+-			<&wkup_r5fss0_core0_memory_region>;
+-};
+-
+ /* mcu_gpio0 and mcu_gpio_intr are reserved for mcu firmware usage */
+ &mcu_gpio0 {
+ 	status = "reserved";
+@@ -385,3 +335,5 @@ &main_uart1 {
+ 	/* Main UART1 is used by TIFS firmware */
+ 	status = "reserved";
+ };
++
++#include "k3-am62p-ti-ipc-firmware.dtsi"
 -- 
 2.47.3
 
