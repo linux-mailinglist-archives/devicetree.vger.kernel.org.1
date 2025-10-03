@@ -1,140 +1,201 @@
-Return-Path: <devicetree+bounces-223474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2AE1BB588B
-	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 00:14:24 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF319BB5A67
+	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 02:02:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CC9C74E2606
-	for <lists+devicetree@lfdr.de>; Thu,  2 Oct 2025 22:14:23 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 88A334E0333
+	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 00:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC17426FA67;
-	Thu,  2 Oct 2025 22:14:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 851B8186A;
+	Fri,  3 Oct 2025 00:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KRssk/Hh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cMMhaKNx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 412C9255F28
-	for <devicetree@vger.kernel.org>; Thu,  2 Oct 2025 22:14:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C152134BA36
+	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 00:02:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759443259; cv=none; b=Mnbvtt0sgNsUz82Sach8RnIXyN7x/DnwdtIalD5oVXJbXQh9Cno4ptVfkMrUMcJNzY1SMd2xjwxmocn53Y1GLsxyhdcXo9sc6G5nlS5y7bi3k082NFBHGY/yuFXViSL7i1a3LbanA8bk70VmUbFCpKfxdBOZc33U0Wsx3XQwDkM=
+	t=1759449728; cv=none; b=GFqN9QoDXIV/Znz2P32prLRdG+llr91srhlKvCib1AyXMUEEGfe0UzB+3bx0KWYs16SoDRpSneSWuv7K831wJClyM/QaLojiLDbp9RvTWsKT+xpHzHAh+5icMWL8QIA1HlSothaliMbFVjIMySogwBKI70LUjHMBVclhUJvPOt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759443259; c=relaxed/simple;
-	bh=bJqxID90rzeZQW6x4VioAiM9HO5SSBRl9HBk2YS5H4U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jep9jkO7NK/MjxtUYwailQlgYgQReNbNrd7hJoAGn+3Wjd+Fls/GPsvCQ8H2Bh5XAebswpJXBwDVeNO6KGlsx3yvRQDqK48V70Igtp5CQiznqq80vZ2VxwmtvqJc7UeNAnaavV1j0gCr0onllhT2rITYiH0mk3qXQowKv7TZ4EE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KRssk/Hh; arc=none smtp.client-ip=209.85.214.170
+	s=arc-20240116; t=1759449728; c=relaxed/simple;
+	bh=Cf1ZNVeYMQrMjD74+zVHCbK32g47zHyuR7jQND2RLgE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZFgC7FORAn7NO1A7yb3wdWzPip04oKzE1FVEVu/0J8lu+2/L7brOY09luS5sEOwYHb4qCeEK0KLlt0fVAsFddEE+2MYaEuK6psXR7pbvBKh7VS4r23jPdozmfJhnAKMCm3hzsfpEQ9hYZ9ZaOTBKIeScmUpX7L28toCOPLIuB5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cMMhaKNx; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-271067d66fbso14724845ad.3
-        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 15:14:18 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-46e42fa08e4so14191175e9.3
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 17:02:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759443257; x=1760048057; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=H3afLalH6Ixhx5uorw5x+fuC8TSKfvIs8t48zMbaAbA=;
-        b=KRssk/HhYlk35ehaI0gpGlh9LYbeb2RurGBEnSf4DyrH6KZqkDs7PdwhtTiQ2du+eQ
-         C4UwFbmMBk7UjEOaxS786ftH0b5GYx9FU1km0nXmfjuXcjs7Gw67WFKsdwDqxXuD3fsF
-         FuRY18ILEzo/cYlmwFw34KKKo6buuuhbMm2LsQbW1jXEw/YTza3XsWk3vbssAs/VH1yX
-         5/nSXipMMKAoRB0vBs6JcbJHacaYdgx5tb+3KW8LM7uVmdo5qEy0p83Z3l/232YqqkvD
-         0WzP4A3GjHNNxBQpcbA8R5orfhwkF3q92akMxSQBSlj6CQQBekFsiCnv85P1oR/BbKKr
-         dA5Q==
+        d=gmail.com; s=20230601; t=1759449725; x=1760054525; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=coXW5Vkb6CmpealAt1z5pb6dHocrXcBIL+HK5DdIDhI=;
+        b=cMMhaKNxMnYJO7kw4hFgalUXfU6qSCLoIeKAQlTvUnNlXTGBzUYOI870FZpswtFlEA
+         iG62c0ubGbZ1q7ncNSqphO+eIGbkhGjRS+nlb3ISk3NF1zrZ0xAXdlS6myevEEiwHnxi
+         bzFSmdZPtJOTpTpjEzkJRs33LVSN1zqvXJ+vXZmJQkKoDMrh533WiaRDGuH/zdz+4F4+
+         KVtlsIoJUla3sl9VRacszyGcLtIDEMcq3CLNaGImFuXZbULM80Gb207DBmiNYaVwgUkj
+         5jB8KoyimEUqVSBMnO1+JHmMZRtZu/FY06+GeGGgr1vkLI0kSctlRUm5BlUog/jUBQZ8
+         YlVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759443257; x=1760048057;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H3afLalH6Ixhx5uorw5x+fuC8TSKfvIs8t48zMbaAbA=;
-        b=Tml7IfSAYYMneFC0ZHqpzfhGnUJ4U2D7V8MN255gjUZYXineV3+j1Go6SlWuwCD4NV
-         Kw66sVIykeFNHDVLTYwqs7xinxmugCyKiORx9dnId1mLDaXEAuKYC7Ca6eQJDujJikfw
-         TOIZ1gc6KNji6nisCgzv5yW+ffq9FiMsvuXIv+pwdVT/sb/mg1/aOaX0GrNaq5twLtsN
-         IxrtkWsjCtPjQFQtNO4+KKLbk+hHaux16XbD9xJ0brXMoqhjxPEHgDkpgfaw7Vjx7YKn
-         furxZ7o+RoZ4Itp923hocYp+3iYHijTzfZHF67G49Wyb3A2oVQI5J4/QaqMKxtFcEFzv
-         c5xg==
-X-Forwarded-Encrypted: i=1; AJvYcCUux6BCHUEEpxowyLre2CfGtnScrOCsZSR8guZ18A3zoD+QQ+GfthXJ7FD+z0VnJo4llvxRIkO2PP7S@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKE/3qkCVrKqrKBiolpdJ2esmIiHzOrVXRPvJi7uDJWa/L5oaI
-	DUhHMuWAXF9SMmykVBwu7MpKNXLoRMDm2swEJuf4FFDAfckAGGjoMIDv
-X-Gm-Gg: ASbGncucUEePjFKvMGwUuAJxJmjCXTLZUOBclP91yWzu8VMyOw+uD0hol9UpIKHXh6V
-	OjCdmhSvZ4t4OiXuNas94vh32HCNvr+BYDlgERXABSfB/TCugoUNbXAT5fcfVfjP+lSD3U9ruA2
-	9MkhTAMqG0hVQpNZH6IGzgyf5nZeIuAALg6l8l3vaItowPP5fxa8pOEkhg00CRJ713eSHYxYPXR
-	NvYsnTb0letzatDNIgvY578ZscZm3BJZE+7IFDyIUhZs1VW+5Ze9YcM6oLjD0TnNJEBY0fLtgx4
-	OWfiQagdCqE0kZ2P1F4x+DFePgmBw9GVyNUSONKx2XUxgLsogp/WQrRZn4rvmZUzkRIAK6iJUEB
-	+a2PS/Q+AFqQSSxfbmkgzhSIlrJimF2IkLcUebXvwsOAKhQgdc17J8pc=
-X-Google-Smtp-Source: AGHT+IENBul3bFqweSZ0dwqDKMkxMEi9ojWTa2JsfjOjJH/8VekQN37yrh4kPtbRCy3N115vb7fIgw==
-X-Received: by 2002:a17:903:1b4f:b0:28d:18d3:46bd with SMTP id d9443c01a7336-28e9a6be1bbmr9153845ad.43.1759443257422;
-        Thu, 02 Oct 2025 15:14:17 -0700 (PDT)
-Received: from localhost ([2804:30c:b65:6a00:ceaa:2ed0:e81e:8f51])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-28e8d1127a3sm30497785ad.20.2025.10.02.15.14.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 02 Oct 2025 15:14:16 -0700 (PDT)
-Date: Thu, 2 Oct 2025 19:15:09 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Kim Seer Paller <kimseer.paller@analog.com>
-Cc: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: hwmon: pmbus: add max17616
-Message-ID: <aN75bfJINa3nV57Y@debian-BULLSEYE-live-builder-AMD64>
-References: <20250930-upstream-max17616-v1-0-1525a85f126c@analog.com>
- <20250930-upstream-max17616-v1-1-1525a85f126c@analog.com>
+        d=1e100.net; s=20230601; t=1759449725; x=1760054525;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=coXW5Vkb6CmpealAt1z5pb6dHocrXcBIL+HK5DdIDhI=;
+        b=YjV28oHFMVH76rb48juC0cwyKVAooKncz17mtkGHkpenrh/s9Ti2pHiFGx9ErFlM2U
+         Bq4PA2PEUTRtOztk5yV9zV/v+GjGhKUV7aAZyO+FeSx92GnzAwgGjJVqHNyFD4E+Ajip
+         dyIksRmg5bhbwYRvQ8MqUUoYUZC9dMdYnSZLWZ9opfTU1yywP0MHUCrFP4sKHtsHY92i
+         Gse4gO5nKfcIfQanateVnCVYf7SiWmb/krGiSXXGqJ5BwLnauBiRg5CxfKgJtsvlteAh
+         K9SF1Uv7SQ01GhM7J8SkXjqJewu5ofwGUYIczoo1YOJlaX0pEw0em5AuvR+60w5dwPjb
+         C4JQ==
+X-Gm-Message-State: AOJu0YymGrLmHTWOQx7OxU0vPQYRweJxZYicT02QWXSkqLtf6IBIguyH
+	VLyy8v5CLNZHmCWyn6AvXVoZpgBOmsuL1etbfJD9rE7YD8nVNz+8vg92GUy9RRhdRbulZwLxEjL
+	hndeUWf0HsrkOORwjZ8VtRbF5ZyEr7yQ=
+X-Gm-Gg: ASbGncsuv9kJCyxofVwj8UNe/KnWpdQLnnDDKI0aI5iazXG+MWVpg97skyitw2fPazB
+	5Qtmd1qz9il3+Zn5Cxg9mKSLnBaJttq3qKMSP8thH0NdBJi2gRRHPgDUuQedqf1WjAZCoiFCYCz
+	qypYHLi7ic+VGbX3MKPm8pn9stIbl8YK1iDk7+2JLkvTNb2TTdxO1YxKihEDPaZSJzQdXiCxPnv
+	2+w0rrQFCSGG255H7CJRJWp/TNjbYxKXvrOevQ8H0m85lmK4A6Uim5krY8riqE=
+X-Google-Smtp-Source: AGHT+IH8H5F4Rz+w2GRajaiqGwkVljBWP+xyTsDvXZ4pEnPtSor4uaMKN91VsYpn2mPiM9ga89tuX8JFeLCJpJ65RTI=
+X-Received: by 2002:a5d:584c:0:b0:3ec:e152:e31c with SMTP id
+ ffacd0b85a97d-4256713ad7fmr600729f8f.1.1759449724680; Thu, 02 Oct 2025
+ 17:02:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250930-upstream-max17616-v1-1-1525a85f126c@analog.com>
+References: <20251002034708.19248-1-laurent.pinchart@ideasonboard.com> <20251002034708.19248-4-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <20251002034708.19248-4-laurent.pinchart@ideasonboard.com>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Thu, 2 Oct 2025 19:01:53 -0500
+X-Gm-Features: AS18NWDlylDf3oN5sbP_UNB28JThANAGdlYlt-3ts0m7FoUFxTbSDWexI2F-454
+Message-ID: <CALWfF7Lhz2brif4xepWZ71mRqMmXKzxqd=0_hO_b6aF6_GkffQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add rk3588s-orangepi-cm5-base
+ device tree
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, Algea Cao <algea.cao@rock-chips.com>, 
+	Andy Yan <andy.yan@rock-chips.com>, Cenk Uluisik <cenk.uluisik@googlemail.com>, 
+	Conor Dooley <conor+dt@kernel.org>, Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+	Heiko Stuebner <heiko@sntech.de>, Kever Yang <kever.yang@rock-chips.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Maxime Ripard <mripard@kernel.org>, 
+	Muhammed Efe Cetin <efectn@6tel.net>, Ondrej Jirman <megi@xff.cz>, Rob Herring <robh@kernel.org>, 
+	Sandy Huang <hjc@rock-chips.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Kim,
+A few nitpicks below
 
-For completeness, the dt doc could also have the SMBALERT interrupt.
-Though, I see the patch has been accepted and I don't want to make upstreaming
-take longer than needed. Maybe the comment below can be taken as follow up 
-patch suggestion. Though, if you end up doing a v2 for any reason, you can add
-my review tag.
+[ snip ]
+> +
+> +#include "rk3588s-orangepi-cm5.dtsi"
+> +
+> +/ {
+> +       model = "Xunlong Orange Pi CM5 Base";
+> +       compatible = "xunlong,orangepi-cm5-base", "xunlong,orangepi-cm5", "rockchip,rk3588s";
+> +
+> +       aliases {
+> +               ethernet0 = &gmac1;
+> +               mmc0 = &sdhci;
+Since sdhci is enabled in the SoM.dtsi, this alias should probably go
+there instead.
 
-Reviewed-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> +               mmc1 = &sdmmc;
+> +       };
+> +
 
-On 09/30, Kim Seer Paller wrote:
-> Add device tree documentation for MAX17616/MAX17616A current-limiter
-> with overvoltage/surge, undervoltage, reverse polarity, loss of ground
-> protection with PMBus interface.
+[ snip ]
+
+> +
+> +       vbus_5v0: vbus-5v0 {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "vbus_5v0";
+> +               regulator-min-microvolt = <5000000>;
+> +               regulator-max-microvolt = <5000000>;
+> +               enable-active-high;
+> +               gpio = <&gpio0 RK_PD3 GPIO_ACTIVE_HIGH>;
+> +               vin-supply = <&vcc5v0_sys>;
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&vbus_5v0_en_pin>;
+The property names in these regulators are not as organized as the
+regulators for the CPU/NPU.
+
+> +       };
+> +
+> +       vcc_3v3: regulator-vcc-3v3 {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "vcc_3v3";
+> +               regulator-min-microvolt = <3300000>;
+> +               regulator-max-microvolt = <3300000>;
+> +               startup-delay-us = <50000>;
+> +               enable-active-high;
+> +               gpio = <&gpio4 RK_PA3 GPIO_ACTIVE_HIGH>;
+> +               vin-supply = <&vcc5v0_sys>;
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&vcc_3v3_en_pin>;
+> +       };
+> +
+> +       vcc5v0_sys: regulator-vcc-5v0 {
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "vcc5v0_sys";
+> +               regulator-always-on;
+> +               regulator-boot-on;
+> +               regulator-min-microvolt = <5000000>;
+> +               regulator-max-microvolt = <5000000>;
+> +       };
+> +};
+
+[ snip ]
+
+> +
+> +&gmac1 {
+> +       clock_in_out = "output";
+> +       phy-handle = <&rgmii_phy>;
+> +       phy-mode = "rgmii-id";
+> +       phy-supply = <&vcc_3v3>;
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&gmac1_miim
+> +                    &gmac1_rx_bus2
+> +                    &gmac1_tx_bus2
+> +                    &gmac1_rgmii_clk
+> +                    &gmac1_rgmii_bus>;
+> +       tx_delay = <0x42>;
+When using "rgmii-id", tx_delay will be ignored. Does the ethernet
+work without this property?
+
+See the comment by Jonas in another review.
+https://lore.kernel.org/linux-rockchip/da752790-da17-4d26-b9b2-8240b38b3276@kwiboo.se/
+
+> +       status = "okay";
+> +};
+> +
+> +&gpu {
+> +       mali-supply = <&vdd_gpu_s0>;
+> +       status = "okay";
+> +};
+This is a feature in the SoC itself, so it's not board specific and
+can be put into the SoM.dtsi.
+
+[ snip ]
+
+> +
+> +&pd_gpu {
+> +       domain-supply = <&vdd_gpu_s0>;
+> +};
+Same comment regarding moving to the SoM.dtsi
+
+> --
+> Regards,
 >
-> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> ---
->  .../bindings/hwmon/pmbus/adi,max17616.yaml         | 48 ++++++++++++++++++++++
->  MAINTAINERS                                        |  7 ++++
-...
-> +properties:
-> +  compatible:
-> +    const: adi,max17616
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vcc-supply: true
-
-  interrupts:
-    description: Fault condition signal provided on SMBALERT pin.
-    maxItems: 1
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vcc-supply
-> +
-
-Best regards,
-Marcelo
+> Laurent Pinchart
+>
+Jimmy Hon
 
