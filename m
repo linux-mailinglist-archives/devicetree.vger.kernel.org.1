@@ -1,175 +1,248 @@
-Return-Path: <devicetree+bounces-223543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1F6FBB719C
-	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 16:01:14 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE5B3BB7232
+	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 16:14:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 62B684EC8E3
-	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 14:01:13 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8AEF94E87FC
+	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 14:14:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD8031DEFE9;
-	Fri,  3 Oct 2025 14:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2526322068D;
+	Fri,  3 Oct 2025 14:13:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y+71hOz/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B656134BD;
-	Fri,  3 Oct 2025 14:01:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D15520E023
+	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 14:13:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759500070; cv=none; b=oU83JaZrgCbTMoo4ojOe58I9EMUjdOGbzLG/ipRlP/7rj07RrN/sEjRLY7knJ7NuWEfYb1N+R4NDJc7L0VtuWLQL8T4dqiBDRbAuACY38dmpAibf6miohezbZNdVk3r/jXs/oPQ1YMFNJmyvFOiqlihrVlavDja98itH5012VWQ=
+	t=1759500834; cv=none; b=GNRSVg1zy0Zf/cx++7fJNGjzmMXiGbW/I8e5j/ONrFXb6mAIfen1/U/3QxAeDiUG2zxeEYx4HNZB00ugYDl2qovbR1avDFsVAeW9kYOPC8coLSWecKybUJql7Zzjmbos8HCwsojJ8WmU8sosx61c9B9pyaGgEKpvHRFzru4ahpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759500070; c=relaxed/simple;
-	bh=RNm8+bIzCty7wKMJsfmMxSNvFNgStXeHIk3/eWA2BCo=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=X9yMfphFH8pOdvHk5PDBvtZPvZ/+AU2n3p3IcnXWVB+zMlvWjmyULhKx4D2On/KB972aNkzyo0fzfrIMIS3CNWAXE+mdqgWuZ3gLD+vFpTZ3SLHCUyBLw2j4bcNntiku2rAzgU19ZeGqr+Ww6gUc8evVcmMagYeHcRN0mR+dU7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cdVgF2bRxz6L4tn;
-	Fri,  3 Oct 2025 22:00:41 +0800 (CST)
-Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
-	by mail.maildlp.com (Postfix) with ESMTPS id 1AF2114044F;
-	Fri,  3 Oct 2025 22:01:05 +0800 (CST)
-Received: from localhost (10.203.177.15) by dubpeml100005.china.huawei.com
- (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Fri, 3 Oct
- 2025 15:01:03 +0100
-Date: Fri, 3 Oct 2025 15:01:02 +0100
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Eddie James <eajames@linux.ibm.com>
-CC: <linux-hwmon@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-aspeed@lists.ozlabs.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <andrew@codeconstruct.com.au>, <joel@jms.id.au>,
-	<linux@roeck-us.net>, <chanh@os.amperecomputing.com>, <jic23@kernel.org>,
-	<dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>
-Subject: Re: [PATCH v7 RESEND 3/7] dt-bindings: iio: Add Infineon DPS310
- sensor documentation
-Message-ID: <20251003150102.00007dae@huawei.com>
-In-Reply-To: <20251001144441.310950-4-eajames@linux.ibm.com>
-References: <20251001144441.310950-1-eajames@linux.ibm.com>
-	<20251001144441.310950-4-eajames@linux.ibm.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1759500834; c=relaxed/simple;
+	bh=kduyRQqmJomIISeCztwIy/b6RkbOKuS2RUCJOxYEgeY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZxaKhNJRouHCSbmdpR8IqLc1vcdtMD/koJ+ETaBVSOqUpa8eWLuzBKk4OuIRuzLzY62HgHvoJjhRioPmTSWlygsZGxMHh3f1v7kiiXZhHbTWTDcZ6iejR2EgooU+Bh8ModDaQ651OSEBXan1nN170H0Ri7ezds+kwgdAPJkylt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y+71hOz/; arc=none smtp.client-ip=209.85.222.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-86420079b01so219638585a.1
+        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 07:13:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759500831; x=1760105631; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5eiR0rgb8eb14UCK8OF6nqxlziRjDbGGmUvvYEGUxVw=;
+        b=Y+71hOz/OVBO+NS+65+YWle0yg3yHsBFbZuNkEkfjImEnyG4WdThEq361TNQrSNKj+
+         PQcGaOnDrQvg6P9ie2qF8e2LqFSF4+aJWz7dxnrkgbXQZmWbhAvsF9D7yt+D8l4S2l3t
+         xJWSP1J6WVMAWq58Zwav5BgFdWA19UE758MFj37Lkv0ie3nBOfaCgBlKi6SnvmcTWhox
+         IPRkKX7hzDJ+DIFk6hwgOQXQRsVaa53uiG4ssmy9p9wPKOEGMgxI8fuDmiL0N/mobQzJ
+         FfHn5Fds0By4w9ayvFMpmkoMXLpy019cANyPSVl4Yxm8URWttvRzJnXipixyBwWI7usO
+         t3ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759500831; x=1760105631;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5eiR0rgb8eb14UCK8OF6nqxlziRjDbGGmUvvYEGUxVw=;
+        b=vZc1hkKMUoZ0nK1DaOx/z47HxqsZVl8mSibBqA2TRgxmTvFjsWPqKi6hE2ncGryqdW
+         5ZGN3KwU3EBgBMdNm8MOWGlLk+aXnw9DNv1mXmhDwDiuLgxhfQApVqCDeAjLrfu7nsoy
+         KU078k+6mA+U2INf8A7HNes/psTSf7bQdnWOTi+yp1s6SyI33pnQtwkSemzGJAjWjdtD
+         HJMOqs0oNjSFXcLB87lmUyE62ZeI3aI8rp12x3kt+aaiZMBeMBap9+a6pLgHG1JSW8wt
+         NjAeZkGgyXw6e7saYnfJsBAWMCplFXMasdzMYEHrzPdGfXpaipngZ+L41s04XyMIMCdx
+         TneQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXchqnBotiSAaQsU1RS/es64PqXeuBZ8rru18gdgYHZCFdZYS1I2PtMeTguCmNGNyUEha3TqDrvSVWi@vger.kernel.org
+X-Gm-Message-State: AOJu0YxF2eT5Lv3tq9RR//D76E7X/SALExWoTm5rhA+5sP5OaJ5lZHrh
+	Lq+N7mzQ0QOXQjI0mD+02Jdie4M/oWsh3r2gY63XVe6HkewZwjOeZYiDnhjrMt5l5+HpGRarny+
+	CY/ouo+0hf6PAX73BltC9yLkzOpW6Tx4=
+X-Gm-Gg: ASbGncuYFqG4gIiMJmz9uIhfqXMy/26t0Gap67u8bBbMAdMT87DnaOKXylmyq5IYyDh
+	5OhbFS3TsOMxD0rltMioei9e1HY17mTeQB11OxUvet4wCbTDpLJU8Q9aEoJXH4/w990gBdQurfd
+	0gDb5CVUG7L/+RRvk76Mkxb35IPMCD1oAEdp+KdZ7VewTxh5w7OuIFQKIM9S1fgu2Qa5RwF4uyF
+	ThLY5D0mCQztNwyBU1bUpSB6+sTPNs3uQStHqf+kzd66sPc+O61pPvo3+XRjWci0sLJ55gOfDq1
+	Mg7EcFO+DQ==
+X-Google-Smtp-Source: AGHT+IF1x6d1SXgWlIOwQSzb64vcGY7LmH9kcXNKvkdLjUNWf0fEfHQbonCQLlSRkqLoUgYilLGKYu0omGuSD7gRJpw=
+X-Received: by 2002:a05:620a:2a0d:b0:866:a24e:2eb1 with SMTP id
+ af79cd13be357-87a378d2e60mr519951485a.40.1759500831038; Fri, 03 Oct 2025
+ 07:13:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100009.china.huawei.com (7.191.174.83) To
- dubpeml100005.china.huawei.com (7.214.146.113)
+References: <20250124052611.3705-1-eagle.alexander923@gmail.com>
+ <CABjd4YwA8P9LVuDviO6xydkHpuuOY7XT0pk1oa+FDqOo=uZN4A@mail.gmail.com>
+ <a76f315f023a3f8f5435e0681119b4eb@manjaro.org> <CABjd4Ywh_AkbXHonx-8vL-hNY5LMLJge5e4oqxvUG+qe6OF-Og@mail.gmail.com>
+ <61b494b209d7360d0f36adbf6d5443a4@manjaro.org> <CABjd4Yx0p0B=e00MjCpDDq8Z=0FtM0s9EN86WdvRimt-_+kh2w@mail.gmail.com>
+ <CABjd4Yy14bpjzvFyc8et-=pmds5uwzfxNqcs7L=+XRXBogZEsQ@mail.gmail.com> <20251003133304.GA21023@pendragon.ideasonboard.com>
+In-Reply-To: <20251003133304.GA21023@pendragon.ideasonboard.com>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Fri, 3 Oct 2025 18:13:39 +0400
+X-Gm-Features: AS18NWBIZkivEeoQjAejLL_ZipTHn0V26YdQouI-n9UYPc0VVnN7Wrl6g590H6Y
+Message-ID: <CABjd4YxbyUWghd1ya8UayFkAE-VWQSd5-J2QD0sV7WmS8AXkCg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
+ for rk3588
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Dragan Simic <dsimic@manjaro.org>, Alexander Shiyan <eagle.alexander923@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	devicetree@vger.kernel.org, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, stable@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed,  1 Oct 2025 09:44:37 -0500
-Eddie James <eajames@linux.ibm.com> wrote:
+Hi Laurent,
 
-> The DPS310 is a barometric pressure and temperature sensor with
-> an I2C interface. Remove it from trivial-devices.yaml and add its
-> own documentation.
+On Fri, Oct 3, 2025 at 5:33=E2=80=AFPM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> On Fri, Jan 24, 2025 at 11:44:34PM +0400, Alexey Charkov wrote:
+> > On Fri, Jan 24, 2025 at 9:23=E2=80=AFPM Alexey Charkov <alchark@gmail.c=
+om> wrote:
+> > > On Fri, Jan 24, 2025 at 2:37=E2=80=AFPM Dragan Simic <dsimic@manjaro.=
+org> wrote:
+> > > > On 2025-01-24 11:25, Alexey Charkov wrote:
+> > > > > On Fri, Jan 24, 2025 at 2:06=E2=80=AFPM Dragan Simic <dsimic@manj=
+aro.org>
+> > > > > wrote:
+> > > > >> On 2025-01-24 09:33, Alexey Charkov wrote:
+> > > > >> > On Fri, Jan 24, 2025 at 9:26=E2=80=AFAM Alexander Shiyan
+> > > > >> > <eagle.alexander923@gmail.com> wrote:
+> > > > >> >>
+> > > > >> >> There is no pinctrl "gpio" and "otpout" (probably designed as
+> > > > >> >> "output")
+> > > > >> >> handling in the tsadc driver.
+> > > > >> >> Let's use proper binding "default" and "sleep".
+> > > > >> >
+> > > > >> > This looks reasonable, however I've tried it on my Radxa Rock =
+5C and
+> > > > >> > the driver still doesn't claim GPIO0 RK_PA1 even with this cha=
+nge. As
+> > > > >> > a result, a simulated thermal runaway condition (I've changed =
+the
+> > > > >> > tshut temperature to 65000 and tshut mode to 1) doesn't trigge=
+r a PMIC
+> > > > >> > reset, even though a direct `gpioset 0 1=3D0` does.
+> > > > >> >
+> > > > >> > Are any additional changes needed to the driver itself?
+> > > > >>
+> > > > >> I've been digging through this patch the whole TSADC/OTP thing i=
+n the
+> > > > >> last couple of hours, and AFAIK some parts of the upstream drive=
+r are
+> > > > >> still missing, in comparison with the downstream driver.
+> > > > >>
+> > > > >> I've got some small suggestions for the patch itself, but the is=
+sue
+> > > > >> you observed is obviously of higher priority, and I've singled i=
+t out
+> > > > >> as well while digging through the code.
+> > > > >>
+> > > > >> Could you, please, try the patch below quickly, to see is it goi=
+ng to
+> > > > >> fix the issue you observed?  I've got some "IRL stuff" to take c=
+are of
+> > > > >> today, so I can't test it myself, and it would be great to know =
+is it
+> > > > >> the right path to the proper fix.
+> > > > >>
+> > > > >> diff --git i/drivers/thermal/rockchip_thermal.c
+> > > > >> w/drivers/thermal/rockchip_thermal.c
+> > > > >> index f551df48eef9..62f0e14a8d98 100644
+> > > > >> --- i/drivers/thermal/rockchip_thermal.c
+> > > > >> +++ w/drivers/thermal/rockchip_thermal.c
+> > > > >> @@ -1568,6 +1568,11 @@ static int rockchip_thermal_probe(struct
+> > > > >> platform_device *pdev)
+> > > > >>          thermal->chip->initialize(thermal->grf, thermal->regs,
+> > > > >>                                    thermal->tshut_polarity);
+> > > > >>
+> > > > >> +       if (thermal->tshut_mode =3D=3D TSHUT_MODE_GPIO)
+> > > > >> +               pinctrl_select_default_state(dev);
+> > > > >> +       else
+> > > > >> +               pinctrl_select_sleep_state(dev);
+> > > > >
+> > > > > I believe no 'else' block is needed here, because if tshut_mode i=
+s not
+> > > > > TSHUT_MODE_GPIO then the TSADC doesn't use this pin at all, so th=
+ere's
+> > > > > no reason for the driver to mess with its pinctrl state. I'd rath=
+er
+> > > > > put a mirroring block to put the pin back to its 'sleep' state in=
+ the
+> > > > > removal function for the TSHUT_MODE_GPIO case.
+> > > >
+> > > > You're right, but the "else block" is what the downstream driver do=
+es,
+> > >
+> > > Does it though? It only handles the TSHUT_MODE_GPIO case as far as I
+> > > can tell (or TSHUT_MODE_OTP in downstream driver lingo) [1]
+> > >
+> > > [1] https://github.com/radxa/kernel/blob/edb3eeeaa4643ecac6f4185d6d39=
+1c574735fca1/drivers/thermal/rockchip_thermal.c#L2564
+> > >
+> > > > so I think it's better to simply stay on the safe side and follow t=
+hat
+> > > > logic in the upstream driver.  Is it really needed?  Perhaps not, b=
+ut
+> > > > it also shouldn't hurt.
+> > > >
+> > > > > Will try and revert.
+> > > >
+> > > > Awesome, thanks!
+> > > >
+> > > > > P.S. Just looked at the downstream driver, and it actually calls
+> > > > > TSHUT_MODE_GPIO TSHUT_MODE_OTP instead, so it seems that "otpout"=
+ was
+> > > > > not a typo in the first place. So maybe the right approach here i=
+s not
+> > > > > to change the device tree but rather fix the "gpio" / "otpout" pi=
+nctrl
+> > > > > state handling in the driver.
+> > > >
+> > > > Indeed, "otpout" wasn't a typo, and I've already addressed that in =
+my
+> > > > comments to Alexander's patch.  Will send that response a bit later=
+.
+> > > >
+> > > > I think it's actually better to accept the approach in Alexander's
+> > > > patch, because the whole thing applies to other Rockchip SoCs as we=
+ll,
+> > > > not just to the RK3588(S).
+> > >
+> > > Anyway, I've just tried it after including the changes below, and
+> > > while /sys/kernel/debug/pinctrl/pinctrl-handles shows the expected
+> > > pinctrls under tsadc, the driver still doesn't seem to be triggering =
+a
+> > > PMIC reset. Weird. Any thoughts welcome.
+> >
+> > I found the culprit. "otpout" (or "default" if we follow Alexander's
+> > suggested approach) pinctrl state should refer to the &tsadc_shut_org
+> > config instead of &tsadc_shut - then the PMIC reset works.
+>
+> I've recently brought up an RK3588S-based Orange Pi CM5 Base board, made
+> of a compute module (CM5, see [1]) and a carrier board (Base, see [2]).
+> The carrier board has a reset button which pulls the PMIC_RESET_L signal
+> of the CM5 to GND (see page 3 of the schematics in [3]).
+>
+> With &tsadc_shut_org the reset button has absolutely no effect. With
+> &tsadc_shut it resets the board as expected.
 
-Hi Eddie,
+Interesting. The TSADC shouldn't affect the physical button operation
+at all, if it's really wired to the PMIC as the signal name implies.
+There isn't even any default pull value associated with the TSHUT pin
+config.
 
-Why?  I guess you need the #io-channel-cells which trivial devices
-doesn't allow because you have a consumer driver?
+What if you switch the GPIO0_A1 pin to GPIO output mode with no pull?
+Does the button work then? Does the board reset if you toggle the GPIO
+value with `gpioset`?
 
-Obviously the binding patch shouldn't mention that, but it could call
-out that there can be such consumers.
-
-I'd also expect to see some supplies even if the driver doesn't yet
-explicitly handle them.
-
-Jonathan
-
-> 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../iio/pressure/infineon,dps310.yaml         | 44 +++++++++++++++++++
->  .../devicetree/bindings/trivial-devices.yaml  |  2 -
->  MAINTAINERS                                   |  1 +
->  3 files changed, 45 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml b/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
-> new file mode 100644
-> index 0000000000000..7c0782e2a821b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
-> @@ -0,0 +1,44 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/pressure/infineon,dps310.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Infineon DPS310 barometric pressure and temperature sensor
-> +
-> +maintainers:
-> +  - Eddie James <eajames@linux.ibm.com>
-> +
-> +description:
-> +  The DPS310 is a barometric pressure and temperature sensor with an I2C
-> +  interface.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - infineon,dps310
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#io-channel-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pressure-sensor@76 {
-> +          compatible = "infineon,dps310";
-> +          reg = <0x76>;
-> +          #io-channel-cells = <0>;
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 7609acaa752d5..a72b7fabc7034 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -127,8 +127,6 @@ properties:
->            - ibm,cffps2
->              # IBM On-Chip Controller hwmon device
->            - ibm,p8-occ-hwmon
-> -            # Infineon barometric pressure and temperature sensor
-> -          - infineon,dps310
->              # Infineon IR36021 digital POL buck controller
->            - infineon,ir36021
->              # Infineon IRPS5401 Voltage Regulator (PMIC)
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 0c8281ea4cc64..92b9854a0e07d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12191,6 +12191,7 @@ INFINEON DPS310 Driver
->  M:	Eddie James <eajames@linux.ibm.com>
->  L:	linux-iio@vger.kernel.org
->  S:	Maintained
-> +F:	Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
->  F:	drivers/iio/pressure/dps310.c
->  
->  INFINEON PEB2466 ASoC CODEC
-
+Best regards,
+Alexey
 
