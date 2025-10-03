@@ -1,156 +1,185 @@
-Return-Path: <devicetree+bounces-223545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B84FBB72FC
-	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 16:33:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D26FDBB7320
+	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 16:36:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1CEDE4EC056
-	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 14:33:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65A8D189158B
+	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 14:36:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB5A513D2B2;
-	Fri,  3 Oct 2025 14:33:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94BF915E8B;
+	Fri,  3 Oct 2025 14:36:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fgtkU7tp"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eMQTxe5P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4B214A9B
-	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 14:32:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF41347DD
+	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 14:36:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759501981; cv=none; b=YtQZyyByfIAQ4GhlcC1TkH+zdiAfoJszeVhH1Bzj8uNFiAWY2DhFZsqj+T1foywrxNDWhAb79aDJt3Ty136L5/1F3Rk8lurhh9XrcpBFs6MTdVuUMm9FIZpl8uYSmhfXG3h8Zuzblepg9smxb8oIL8n6V/A2mfhu0Dw7yCkEJ+Y=
+	t=1759502172; cv=none; b=qiV+mmcmvAFZTjl/Jz5WC09Ft0jAlNykoJ2WLBMP6e9h87DL5yzP253LsN/AQwt34qfmVRU+pUW9lUkL5QHVijK6B2ToA0DV0SGXgg11TMYloCPhpq1XxeBx1tS+e9WpHkgZIG7wDUbXf0oSAIy4QXZJnizjHtgeG1BUPSZgYTs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759501981; c=relaxed/simple;
-	bh=ArI0GMic8uk/1kAkM79WN6gznjdosKe4PSqQZ8k9PK0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FXXACoBVGX7/2j63dvnlEB3X25tejJbWfoERfrVNnwR87/qLpOExx1l3X0RvIW26mbCmAonW0vV4o4utPNqAFAbQVvqWFcVmCCbvTAN8WCEIuwR3qhIXFgEZcwuKnnFFe2tfD1sssckkzBg8YMUhMwOsmVy7FFx4kTMysMnsA/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fgtkU7tp; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-373a1ab2081so19409421fa.3
-        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 07:32:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759501978; x=1760106778; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1mxBl+91XREs3rrt+Mm+HGe169ZpfgbUuMF9IKmnb3I=;
-        b=fgtkU7tp8t9FJx+n6MdmpSaI96wKnMB946Ia6juEpMapqFaiDzBKU6Myu/l99TPONl
-         X5NzYAznh9OzpsvyXuK+O8vHNGlTTUQ1WjUPFWSSi1o3O4pVptvRrU7M0ADp7xg313qo
-         Go50Y9Q+75bf4JbHAzc72ujOQu5a5jJUpSrzrR3PA09KstyJbTEkjzZNOvf5fBxYqROX
-         5v8IYWSutFofAk1ESXC42mRAIHRn3kXhGopqySi46gJwiXHBTy6/rvHRwNdFwxLx1PN+
-         M4zyU0ka9hzeLELILZOgUcgvH3jnrvBJJn/8HxfwzfpX0Iloz7Z9St9zi8x8iRLHF+7d
-         r6Pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759501978; x=1760106778;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1mxBl+91XREs3rrt+Mm+HGe169ZpfgbUuMF9IKmnb3I=;
-        b=ldHj1S1jmweoy9H1vSc7xELNlv4W1gRX5D8fZzIS+BfRQWNCqqlzHXP8WVwLTPKQ5B
-         zscVGHUVueEHOYt4Vo3qag4+4or1dJDQaWuaGCYGdJYBmD5G1enur6ewcu/nw297Cdyn
-         qmKZmtj8w7FQeHLZ3I8J05QDLWeaCxK78ix0hNqdX5JkreLQxo3MqN5Bo13dUND/mK9M
-         rDC1D31Y0ynAY79YmBHNQzbuhLNSBQk/HgjpeQjR/o3AF/YA1LSvZkNsOKA7P9h54K+f
-         npMZgBjGIWKa02az2zSYYVL0OTcT22vcZPfU97QXk8p8Qn/Cp43PjHEAbQtUDlQHKKfp
-         SEAA==
-X-Forwarded-Encrypted: i=1; AJvYcCXRUXXVbW54e/xaUdOLa/qlbXuB02dqphGlTw0tZa5RndsVAqBHgHmE8Bum/SdbeuTi9tepFcRn5f1A@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxeaq0f6jBeUTfNPIXN91/2Hd1hyFGNS4JryyMIYISx70p3LGSw
-	IQgroKJE2hfL1Su2vSog+rLLRwRPopLtcVWymcZRREkpSRPp4BYgG1izVFPlCw3tWCUoqAjtlah
-	j86ZybCEd9zMScy0wLYvTffzFO38G5v8=
-X-Gm-Gg: ASbGncsBovqn8sIWC1W/eOVvOC0iuoJMZ/AS7SFVQeYt9hx6nEH+b27UjwNBNdzFSL2
-	b0CXsUytqUd05Oalk5xbrfSE+3X+QVt4BK3SETbTGivsiHFQ5tYdNbzuiFw3P35leGHAllq9ndd
-	NjKtuHrM8NFY458aTrhi0lS2q/KfBePWWj4tdgOl09ar2ATrgjd0MR3NDb+MzNIxp2D7jL1kThr
-	DsFakQjuDSY+JvHqHc+0cFSk2+zad0+7rAe1cI4
-X-Google-Smtp-Source: AGHT+IHMEYf9LUvT+7M4GPywBvEmEbLwMBFLFIBedNHzqtzmaPYWYwMrkMOiqneX0J3Yyd6PeW5sBlD7r5kNWSSHALo=
-X-Received: by 2002:a05:651c:a07:b0:372:950f:2aff with SMTP id
- 38308e7fff4ca-374c37eb5d7mr10596021fa.27.1759501977328; Fri, 03 Oct 2025
- 07:32:57 -0700 (PDT)
+	s=arc-20240116; t=1759502172; c=relaxed/simple;
+	bh=VyohuO4CZGUcGR62GS+0n04Mx5bz3VjGW5hDt2YqbmY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=l7bEjSIhP3tJY6vIv8pQ4wukKPFE2fcplQAufRJ+p6kPsGVB2SKolxpNtfYlb5QPooh0l9xlQElaXziGDZLD/8ldGWs4zwr3GHx70jK/XCoFrTj4+hOmNXJwtd8wwtFD4SomomsHgFEjYej9WVgYM6MfhC/4+sOqHisaJb4OnCg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=eMQTxe5P; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 7D5B6C00DA7;
+	Fri,  3 Oct 2025 14:35:50 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 7DFAB60683;
+	Fri,  3 Oct 2025 14:36:08 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E4BD6102F1B8A;
+	Fri,  3 Oct 2025 16:36:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1759502167; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=7ENhq4LPUBj+5tdkC5VWGQKUjz+S/mLq1l/k1oBmWF4=;
+	b=eMQTxe5PK2DpR3qfK4LbwutTQbIoLivxguVmJQIcLxBA/1R9sPXFDdP0/mR54JIBSTgyJX
+	14uqxisQdKpT4CyiYu3bKsPCGIBDIQOnAnBwyRPHBiRLNHy1kuEu3ojPlUTszjSVOMDiIy
+	D5xexCWCMgtcNbe/5xV9HCLi9b2sEOoWkTgXI4v6nZtN1AEzGepP8Ojf7q3wwrRi+HHosl
+	qggAuElvSY6POoHkzshV3vmTKJW7tKSUjWDXcL0uYOgM2nwJPRnZO4auwKVtsccPP4dR1s
+	KpFQeUiWsH2vVLB+kMepRDLkQyQUSTddOpDBpX0eRp8C4BmFPOUNx0tIs3VGiQ==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jonathan Cameron <jic23@kernel.org>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Hans de Goede <hansg@kernel.org>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-iio@vger.kernel.org
+Subject: Re: [PATCH v2 2/5] iio: add processed write API
+Date: Fri, 03 Oct 2025 16:35:59 +0200
+Message-ID: <2406495.tdWV9SEqCh@fw-rgant>
+In-Reply-To:
+ <CAMknhBG_o=jTKtHHDyK=bq7wcHMnDM1ZHaYAfX0K2hjHfkX3Bg@mail.gmail.com>
+References:
+ <20250925-ltm8054-driver-v2-0-bb61a401a0dc@bootlin.com>
+ <5015441.GXAFRqVoOG@fw-rgant>
+ <CAMknhBG_o=jTKtHHDyK=bq7wcHMnDM1ZHaYAfX0K2hjHfkX3Bg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251001183320.83221-1-ariel.dalessandro@collabora.com>
- <175943240204.235529.17735630695826458855.robh@kernel.org>
- <CABBYNZKSFCes1ag0oiEptKpifb=gqLt1LQ+mdvF8tYRj8uDDuQ@mail.gmail.com> <CAL_Jsq+Y6uuyiRo+UV-nz+TyjQzxx4H12auHHy6RdsLtThefhA@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+Y6uuyiRo+UV-nz+TyjQzxx4H12auHHy6RdsLtThefhA@mail.gmail.com>
-From: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Date: Fri, 3 Oct 2025 10:32:44 -0400
-X-Gm-Features: AS18NWAxN1IhfgHRDQEAVNRk-gv2qRra_zfz_DZsOprYcJI8wwK8KzxwPe_vG4Y
-Message-ID: <CABBYNZKxGNXS2m7_VAf1d_Ci3uW4xG2NamXZ0UVaHvKvHi07Jg@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: net: Convert Marvell 8897/8997 bindings
- to DT schema
-To: Rob Herring <robh@kernel.org>
-Cc: "Ariel D'Alessandro" <ariel.dalessandro@collabora.com>, andrew+netdev@lunn.ch, 
-	conor+dt@kernel.org, kernel@collabora.com, krzk+dt@kernel.org, 
-	angelogioacchino.delregno@collabora.com, kuba@kernel.org, 
-	devicetree@vger.kernel.org, linux-bluetooth@vger.kernel.org, 
-	davem@davemloft.net, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, 
-	pabeni@redhat.com, edumazet@google.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; boundary="nextPart2710806.irdbgypaU6";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-Last-TLS-Session-Version: TLSv1.3
+
+--nextPart2710806.irdbgypaU6
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: David Lechner <dlechner@baylibre.com>
+Subject: Re: [PATCH v2 2/5] iio: add processed write API
+Date: Fri, 03 Oct 2025 16:35:59 +0200
+Message-ID: <2406495.tdWV9SEqCh@fw-rgant>
+MIME-Version: 1.0
 
-Hi Rob,
+On Wednesday, 1 October 2025 12:03:21 CEST David Lechner wrote:
+> On Wed, Oct 1, 2025 at 9:19=E2=80=AFAM Romain Gantois <romain.gantois@boo=
+tlin.com>
+>=20
+=2E..
+> > > > +           case IIO_VAL_INT_PLUS_MICRO:
+> > > > +           case IIO_VAL_INT_PLUS_NANO:
+> > > > +                   break;
+> > > > +           case IIO_VAL_FRACTIONAL:
+> > > > +                   offset_val /=3D offset_val2;
+> > > > +                   break;
+> > > > +           case IIO_VAL_FRACTIONAL_LOG2:
+> > > > +                   offset_val >>=3D offset_val2;
+> > > > +                   break;
+> > > > +           default:
+> > > > +                   return -EINVAL;
+> > > > +           }
+> > > > +
+> > > > +           *raw -=3D offset_val;
+> > > > +   }
+> > >=20
+> > > There are some rounding biases in this function, but I'm not sure if
+> > > it is worth trying to make a perfectly fair function.
+> >=20
+> > I'm unfamiliar with the notion of rounding bias, does it mean that nest=
+ed
+> > calls of this function would tend to amplify rounding errors? In this
+> > case,
+> > would rounding to the nearest integer instead of whatever is being done=
+ by
+> > the
+> > integer division here be a good solution?
+>=20
+> In this case, the issue is when you are taking multiple samples. When you
+> look at the average of all of the samples, you will be able to see the
+> bias. For example, in one of the drivers I was looking at there is an
+> offset of xxxx.6. Since the IIO_VAL_INT_PLUS_MICRO case is just dropping
+> any fractional part, the raw value will be on average 0.6 lsb lower that
+> the requested value. This could be a problem in an application where high
+> precision is required. But probably not noticeable in cases where 1 lsb is
+> less than the noise level.
+>=20
 
-On Fri, Oct 3, 2025 at 9:38=E2=80=AFAM Rob Herring <robh@kernel.org> wrote:
->
-> On Thu, Oct 2, 2025 at 2:18=E2=80=AFPM Luiz Augusto von Dentz
-> <luiz.dentz@gmail.com> wrote:
-> >
-> > Hi,
-> >
-> > On Thu, Oct 2, 2025 at 3:14=E2=80=AFPM Rob Herring (Arm) <robh@kernel.o=
-rg> wrote:
-> > >
-> > >
-> > > On Wed, 01 Oct 2025 15:33:20 -0300, Ariel D'Alessandro wrote:
-> > > > Convert the existing text-based DT bindings for Marvell 8897/8997
-> > > > (sd8897/sd8997) bluetooth devices controller to a DT schema.
-> > > >
-> > > > While here, bindings for "usb1286,204e" (USB interface) are dropped=
- from
-> > > > the DT   schema definition as these are currently documented in fil=
-e [0].
-> > > >
-> > > > [0] Documentation/devicetree/bindings/net/btusb.txt
-> > > >
-> > > > Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-> > > > ---
-> > > >  .../net/bluetooth/marvell,sd8897-bt.yaml      | 79 +++++++++++++++=
-+++
-> > > >  .../devicetree/bindings/net/btusb.txt         |  2 +-
-> > > >  .../bindings/net/marvell-bt-8xxx.txt          | 83 ---------------=
-----
-> > > >  3 files changed, 80 insertions(+), 84 deletions(-)
-> > > >  create mode 100644 Documentation/devicetree/bindings/net/bluetooth=
-/marvell,sd8897-bt.yaml
-> > > >  delete mode 100644 Documentation/devicetree/bindings/net/marvell-b=
-t-8xxx.txt
-> > > >
-> > >
-> > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > >
-> > > You'll probably have to resend this after rc1.
-> >
-> > In that case I'd like to have a Fixes tag so I can remember to send it
-> > as rc1 is tagged.
->
-> A Fixes tag is not appropriate for a conversion to DT schema.
+Thanks a lot for the detailed explanation. For the IIO_VAL_INT_PLUS_MICRO/N=
+ANO=20
+cases, I think that scaling by MICRO/NANO, then subtracting the offset, the=
+n=20
+dividing and rounding to the closest would give a small precision improveme=
+nt=20
+in some cases. It would be a bit slower though, but for low sample-rate=20
+devices like the ones in IIO I don't think it would be noticeable. I'll giv=
+e=20
+it a try.
 
-Ok, but then how do you justify merging it for an RC? Or I'm
-misunderstanding and that should just be merged to bluetooth-next and
-wait for the next merge window? In that case I can just merge it right
-away.
+> The floor division for IIO_VAL_FRACTIONAL creates a similar bias.
+> DIV_ROUND_CLOSEST can help there, but even that has a small bias because
+> values of exactly 0.5 always get rounded in the same direction. That kind
+> of bias is much smaller though, so easier to ignore.
+>=20
 
-> Rob
+DIV_ROUND_CLOSEST would indeed reduce the bias at no substantial cost,=20
+so I think I'll go with that.
 
+Thanks,
+
+=2D-=20
+Romain Gantois, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--nextPart2710806.irdbgypaU6
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmjf308ACgkQKCYAIARz
+eA4YERAAm4m2/w4+jcoswY51aGJZqKrSPOzOpO8q6r9YFkh7HwV1oCP/ChhhdBXF
+fY0mg8b9JgN/9kk2tSSjnhf8yhxNQu9U/j3W+pnFV5LNZPhqxJgdjQDmg4NnVaEm
+yUA+cf7/RAVlJz8RTPZJi5NlTdZbTQUiPDV2GBGjFwejtlg1Nf1LArXfQmVB8kS4
+ZWvyTc3HaWHHcrjlz6EV534ewUTURMT1hH5uUVbdv7OKva7LRkbskHBMDvwTs+UF
+DLztHWy4h2CFmPMN0/qlF6hIUrNVPkR0FoMtFRYbwpREDfWLsGdSsz5Jo/0Rc3Kf
+E8zzwb7ghaC8JD0evSLoSJ9ie8S5hMhqvCXc66ZSagoE9xA0V0ZWEc9a0UbcVh2m
++e/q2N9xsDSjrAPJZLlU0E3AHelhRjMQOEq4iESPld2rM5IJb3HDEBjQzCNWz86k
+ZBprOos/x8XXHaWg31s1cSdU0owOfzZ2I1wptwIer6k18hvwYzBuyCXZcfcSyWjY
+RDU40EibBcglu0imyRhwW5rkRhsfulUkkM7D2s8PDh0fblNBf12wRBtQraRoEmCp
+/XHxZ0T206JkI3jjgq7MkxHEzcMcCrcCYiv3h26beu3WmTC1FGdVeHMnBC0A7E6d
+farq3q/R3hZas94F3irQJjakRXyGV8/+C1embayiuxBM81qLE/A=
+=gBYg
+-----END PGP SIGNATURE-----
+
+--nextPart2710806.irdbgypaU6--
 
 
---=20
-Luiz Augusto von Dentz
+
 
