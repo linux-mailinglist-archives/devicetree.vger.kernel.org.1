@@ -1,120 +1,114 @@
-Return-Path: <devicetree+bounces-223497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A197CBB5FCB
-	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 08:39:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B160BB5FEF
+	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 08:51:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BEBD486A9B
-	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 06:39:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A4E43C667E
+	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 06:51:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1E662153D4;
-	Fri,  3 Oct 2025 06:39:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Jur5vE1F"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E98221B195;
+	Fri,  3 Oct 2025 06:51:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25A702139CE;
-	Fri,  3 Oct 2025 06:39:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70D031F63CD
+	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 06:51:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759473581; cv=none; b=KIjgBuSh6wNLWPuLr484jjNRZs6Fhq+FHKRTwvLKWgyvcTJw9OKdp+m3oJFYJ2OOdn4xiFZfcz0qCyH70jvShyg+pG0VnYbjSw9zlygM61WcVTynshQqCMJlv8dUi/rP4/OEs8PB4qe0DTrct/3qRmTA/1amzNrO11DDBhRX6YE=
+	t=1759474265; cv=none; b=ELfJNMJ/zlAAwZW7vztSPp6xes8E5BNuAPdBtIcI55DnxzA6vsn4uzTSwGCP+/Y9p0a36ipbHNREzwEIsqXwiv/aCPVcn76bTcfzQBDLW8m4OVEhhOxN41dMutDokZhtP9OjI9g0nVY8j09EvrHAY8w0nUVBVwGqzujqMur91yk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759473581; c=relaxed/simple;
-	bh=1udu7BCVdf/1HJxKb7sLZXkalgIJcCkVINf8u8yM/dI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mYve4ZQ2ErPMQVATJqPOxJywOgrtrlhZom+cvWJZJRgXSSmMpU4oj6DnChb4mlFUqWCSzmi0nolIbNAdmM7y9X9ZbFM7r0yTmJ08SWnkbke8R5ZHzTOO7iJtuSdPfCsA2vOXonGTAkqAy/xB/Qh+EOcY5VwCQzd5e+EPO1+iWis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Jur5vE1F; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1759473580; x=1791009580;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=1udu7BCVdf/1HJxKb7sLZXkalgIJcCkVINf8u8yM/dI=;
-  b=Jur5vE1FggTkN6aJGJQNUR3Lcl4i4wx+CJ1luApLqFPZrZ7SG6oCtL7v
-   Jd4rpgV1rzUaVJIuCgb7JkFZDCGjl1G2huNKk0la4aDLitCqJwXf4AV8b
-   LsUcS0kLINi9A+Vt8sW8cmudxznSiWZW16SCgVr/Cb4nJ0EmBQL0PiVX4
-   LBAlNpq38KSw0Z2Uj2+oq/ZKSyPpi3h/vWxUSNn07Y1xQYDMtQRbvNmEX
-   yezVHke++xxhT0j//Vf8HLSIq3XiPv9+X05id/e+DPAUT7bLIfVoVyMFn
-   kjlCwDN6AW9FfH2D9mlbDWPM08Gcz4RETRqkfBQnpmrKWG6WyZ6nQ4Z4U
-   A==;
-X-CSE-ConnectionGUID: KCCLFGMUSP+VgOG02C+CNA==
-X-CSE-MsgGUID: o+zkqvasSuqYawhDjepDGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11570"; a="72860285"
-X-IronPort-AV: E=Sophos;i="6.18,311,1751266800"; 
-   d="scan'208";a="72860285"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2025 23:39:39 -0700
-X-CSE-ConnectionGUID: gZ4GhqDhS+aj3/CLaF9nhQ==
-X-CSE-MsgGUID: FI2EvZm+S42jGXxwG/Rx9A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,311,1751266800"; 
-   d="scan'208";a="179167487"
-Received: from lkp-server01.sh.intel.com (HELO 2f2a1232a4e4) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 02 Oct 2025 23:39:36 -0700
-Received: from kbuild by 2f2a1232a4e4 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v4ZS1-0004NP-13;
-	Fri, 03 Oct 2025 06:39:33 +0000
-Date: Fri, 3 Oct 2025 14:38:48 +0800
-From: kernel test robot <lkp@intel.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-mediatek@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, lee@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
-	angelogioacchino.delregno@collabora.com, lgirdwood@gmail.com,
-	broonie@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com, wenst@chromium.org,
-	igor.belwon@mentallysanemainliners.org
-Subject: Re: [PATCH v7 4/9] regulator: Add support for MediaTek MT6363 SPMI
- PMIC Regulators
-Message-ID: <202510031435.HCIv3oqu-lkp@intel.com>
-References: <20251002090028.1796462-5-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1759474265; c=relaxed/simple;
+	bh=dcVJSHkjM/b+CmIXXZsGHyQxX5J+FZ3NLyDZIV/u+Ak=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=siirV1AuNbBaRUPPfLCpXaIuik6VliWrw155sEzeTV2xyxZmtr4xqv/vvp+AVH1g4ZB+jxcwTA1qQ517qt+MEV634WvUmCUhvfR4E3iIZrrbPzUiV+YqGJytXRJEFN0W+u8yM8BLHY/lbis1A9nbnLd3+8xPJfrLOTbELoLVVqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5838680e242so661664137.0
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 23:51:02 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759474261; x=1760079061;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7QYI64cW+XHmj+sby6MngC+206bn5fsu3IzSbvpr/6s=;
+        b=EXnLwO3mGri2NoONT4MSUJir94b8K40tsfeL0yhFgYabZwGT7/vAwdIoubFwXpJ9En
+         WJB5T/NOwm/6Nx0dtI5V8zjNIpZ6j9gI4JmCk+TOZXtB2ndHM03dXk3gzgz0++VhF/nt
+         NsmkrPwLv14AL/aDi9bWFfQOGSnh0wL9DL/18ngs/pCiDMimEb1cCsmd2sRjC94IhV98
+         XOOmWo6cGgfayIyLYtF6sUhRDc5cVPwm1tipP+PUws51YkMG8mA1cnYAOZHGiRaJkCkh
+         E/VmgT0Xu+7nRO8j/L8i1vdM6n0tieZe4FqrXeyawM9dDb88J+ud1F+pW0SqUq+v2n1R
+         turA==
+X-Forwarded-Encrypted: i=1; AJvYcCUkLsMLuR+e6bvJ6O6XHUW7KBklD5M3zuz0Np6vWimWAzTSqwDwU2ZWiDr0jDCWRZOkGE+tZuqI+eL5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxZbrs+DFl4ylv5wkxU3BdOi+I/OwOeBWRj2SbVNaTGnEPKfd1P
+	/u8A01phexsU7IeF6JNRBp+jyffTMy3aNpEmACiI9CpI/HyO+XWp41Oh9v/VrVb4CwM=
+X-Gm-Gg: ASbGnctjhx04XoVvsMKE76/M++YONXqQmQk8GjDSjP/FniNFvN4/6VR59EcnN1PnX1n
+	CT/Z+v1lV0GODzElzKS7URhWVPoiTF8TZ+i5Blbto12qnEkT/Ksdud1dI+POrex+aWff/1JW9F5
+	cuGfhe+gTamiNRrx9ZBAS9QvUaZmdEgFnJke6TdXmuBOyc/n3JgSWPC26N1C2X3K1WhNmi47aiV
+	HmO5Wmuocvec2YAbVn/pvp4oGJdDNRlx8map3C0Rs883yX4SF3DQp2CehnDMS58us4Vnpby76CV
+	S4+LGm8R3eHyHm0ULqjQtyRmU33RjvPvWePphrVjpiwvIFNl/AYzvyKay/DnIkXnZiPSBmpZ/Od
+	Tx3sxjFjTpcxxFXQ9pgpnAjS6iiFip7z7H5kvtszI9iYsnN1p6wpWWeQRxXGVH8ckzn1Y+xI+eu
+	ylNp2k/BQ2lDtMg9NRe+w=
+X-Google-Smtp-Source: AGHT+IG6l5AJCiTgiY+wjWiJTdt93oZ37J+3cnzCcyUUzCoTHXysAhcdu4pkjBaVy6E06+S4/7XagQ==
+X-Received: by 2002:a05:6102:5a87:b0:521:27b:bea4 with SMTP id ada2fe7eead31-5d41cfd5af0mr523811137.6.1759474261055;
+        Thu, 02 Oct 2025 23:51:01 -0700 (PDT)
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5523cf64c4asm1016541e0c.21.2025.10.02.23.50.59
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 02 Oct 2025 23:50:59 -0700 (PDT)
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-574d36a8c11so722773137.1
+        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 23:50:59 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWVXvShZ0xQmTrE25bX7LsoJ04JshnQBcfNQum/5jqxXINa0hPWfU0HrFhWgWyPpcex/YXUuMeNSCV5@vger.kernel.org
+X-Received: by 2002:a67:e70f:0:b0:4c5:1c2e:79f5 with SMTP id
+ ada2fe7eead31-5d41d0e7a0dmr687881137.16.1759474259285; Thu, 02 Oct 2025
+ 23:50:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251002090028.1796462-5-angelogioacchino.delregno@collabora.com>
+References: <20251002142639.17082-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20251002142639.17082-2-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 3 Oct 2025 08:50:48 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUZke-=yvKTYdj_K2iRrtiQvw2_papQr92p7qFfMYt_qg@mail.gmail.com>
+X-Gm-Features: AS18NWB3eHLy8T1jBKvTcs-a-FuOQsD2BAEeM1FO7vparrzr8v4t9PBKVzDwMXY
+Message-ID: <CAMuHMdUZke-=yvKTYdj_K2iRrtiQvw2_papQr92p7qFfMYt_qg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: mtd: physmap: add 'clocks' and 'power-domains'
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	Linus Walleij <linus.walleij@linaro.org>, Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-mtd@lists.infradead.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi AngeloGioacchino,
+On Thu, 2 Oct 2025 at 16:26, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Physmap supports minimal PM since commit 0bc448b49e8a017e ("mtd: maps:
+> physmap: Add minimal Runtime PM support"), so support it also when used
+> in DT configurations.
+>
+> Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-kernel test robot noticed the following build errors:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-[auto build test ERROR on broonie-regulator/for-next]
-[also build test ERROR on lee-mfd/for-mfd-next jic23-iio/togreg lee-leds/for-leds-next lee-mfd/for-mfd-fixes linus/master v6.17 next-20251002]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Gr{oetje,eeting}s,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-regulator-Document-MediaTek-MT6316-PMIC-Regulators/20251002-170532
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-patch link:    https://lore.kernel.org/r/20251002090028.1796462-5-angelogioacchino.delregno%40collabora.com
-patch subject: [PATCH v7 4/9] regulator: Add support for MediaTek MT6363 SPMI PMIC Regulators
-config: x86_64-randconfig-001-20251003 (https://download.01.org/0day-ci/archive/20251003/202510031435.HCIv3oqu-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251003/202510031435.HCIv3oqu-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510031435.HCIv3oqu-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "__devm_regmap_init_spmi_ext" [drivers/regulator/mt6363-regulator.ko] undefined!
+                        Geert
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
