@@ -1,154 +1,165 @@
-Return-Path: <devicetree+bounces-223503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BE62BB63DF
-	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 10:36:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82187BB64FC
+	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 11:06:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E87AA3B5B26
-	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 08:36:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 776994875F8
+	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 09:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9A1626D4D4;
-	Fri,  3 Oct 2025 08:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4804B285CA6;
+	Fri,  3 Oct 2025 09:04:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mSj+X3hk"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MduUiZA/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D27B326A0B3
-	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 08:36:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA9F32820A4
+	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 09:04:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759480571; cv=none; b=uvfcpGmKp42f3D62jrK7GvSIbeV2k/pa0OVwHgq7pFArj2h89rf5rQ8txroyKKhJHNRF6KOI+PoRKngOXvOwRwJywzfykLsHvUCRSCIWOCDelyfjEqlSdcrGm61TecC7soF5GZBohzo7pDKBXyHKhlMxJmki7wVhE8gIsHNbnSw=
+	t=1759482283; cv=none; b=Xbl+P3FvD8CQv4h+MmsiiFxrGtzQvlpn9NYMpTsU7SBrOuny5vV0Toq8lB6PuYIs85PdsWCXVYm1n/dopT74ljBES38idFVNNjqKxykyXUa6TrvBMDjKBMcqPPB+Jdrgx3SLDr8oDVR9tVURlXTr262Iwcl1OxA3AKKC0FID0IM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759480571; c=relaxed/simple;
-	bh=PKc37E4toOI+coMwxopVyqNk25skEmj4ksL4V0/afI0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=dvXhiSLWdos+h6XFMVPswEwz/Ov4ltVUrCZ2MHYcspk33gn5VY6bmqTnzX5GhJKaLa8qN2esTo6GZuMW6fm8tAGpEysjFauyfis/UJR3Ai+HCv5o7PPolh81rSbTsJb4LNSdJUIVeAJmprhixinkCbHGNLScnMJSCUjaBtO1jcM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mSj+X3hk; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-42557c5cedcso1093488f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 01:36:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759480568; x=1760085368; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=bSviWDocZr7eRFQ1iMDzT5Qi5FWE3ORY1UYGHnObtBk=;
-        b=mSj+X3hkHQqL9nxLy8hobaLpuddY4uGLoWu2Z8d8cma35a5a79B39Z32JcJHXx61cH
-         mpYyPa21aCT2/MA3qtyUr4Q+0wM5YZ9+OEDd26OXzN2UlIJe5uEmiT16kiQOLjS0w4Qh
-         XcT8mO6RGQI/m6Ibca9EnCwAnMGrkVZurjQNU0LMiGtj7VO21E/QbCdWoRX95LPPYpTR
-         w2rAIdPEsAl6GqSYkC0FC913LoWXpSKqJ2522ZJx8GnhDBQB5J/ZhQBBQXkmPyTkQbJx
-         HiLFpKjQBqHG5hVSLEoIvdUHYpLuKWE92Vy3yRS5q8DiED35vumgcGnR/EyYU+hveFzk
-         T2jw==
+	s=arc-20240116; t=1759482283; c=relaxed/simple;
+	bh=BuT24nSXvzllvHpbGMwermrZuD8IyeMFRfXE9Wlb4xM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=PNJCCEXma7WvV2xwDxcXbF5YaFA/R11WZH5FE4k3EPClglHzBd5L8pJ9YawJE4xWYcOb/RCFg13GJO41herXuAx9awaF5UJhQ1tQ/NIRQP1BK5Eoz2Rj6nPnvh12F/wKIqajqhhJ6XUlcZcV8l1wwESs16Yj35SxKQ1h18t8YHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MduUiZA/; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 592L99NG024148
+	for <devicetree@vger.kernel.org>; Fri, 3 Oct 2025 09:04:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	qLWZtUs5fVCswzg3NxSw0ymwhU21Dbhg4Nf1Ubu3B3k=; b=MduUiZA/NDh0Esax
+	BTQNOqyqAHSO9Vww0gxpBsbXOIuZarsajaYJ0+bKqzAo0SsIoR361XBB7Q1bb2dv
+	cjha7pakwKPu/H8qK/+RQeMyzcDwULQFXUqsYsovoee2e1AgUIFv8ytwfobSQcTW
+	bydV0EmrlfK9UojlHtOdWSR87KzUCi1bcRrY6Utfag8uHkTJMif2H+s51F/XXMz5
+	KaQ3WIBHJBb6Fd2NvTnZ5EY8X540f4AiwsMVS2P23ThHHUwROzf81d6Ah68OLcb5
+	BmVVWLmfr2xAUatTbwu9YL6IE06WhRIXj0ZRNDjEtM526tRKC7X1IDncPLo+kox4
+	xpeUiw==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e8a6abmu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 09:04:39 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-2681623f927so19149285ad.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 02:04:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759480568; x=1760085368;
-        h=in-reply-to:content-disposition:mime-version:message-id:subject:cc
-         :to:from:date:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bSviWDocZr7eRFQ1iMDzT5Qi5FWE3ORY1UYGHnObtBk=;
-        b=GENbB/MkeQaf+WUaImIW61h2jFhFRh/SfuFBnNKJz5Sn+wFmjVhObdBxRFBZ3gUEOJ
-         +/IOnTPLOI2emKuux5ccJROTm61MppL+GZ/KZZ9lUx36dhCnBjLRZZY5TFcoz5Z9O6M5
-         cE8Yb/O3ODmSF/ADwgI/g0Ffg4uQuge0WdvNvxmM/0Tkp1SOGGHI7i5PmoPRlRx6sBA5
-         puX8GCDwkQw3N8IoO9bxyecG9F7w/pauy16b4nwOz8pYzO7trXNczQrA8oCa3B8ni7QQ
-         oI51Q5LYjEsH11YTMn84nOcQJaEUJ9q2ZWQ4GM9JZPKNcMCDH4l3uNYH+j+fRqrIhRkb
-         tKtw==
-X-Forwarded-Encrypted: i=1; AJvYcCWeiDORmg/r/QeVJ/5qsjOP5i7WXnKh1kPfzMGkjemgOrFkZBTREg6bgDllA8vAehqxB66EbGxTcdJ1@vger.kernel.org
-X-Gm-Message-State: AOJu0YytmrrXNpSAVMEVsevFs6NGGZdIFMDrXRjzGYGDaw+YfhA3o56H
-	58OOUQEvPNt/Dq8gFMnkOg8lHFkNYeGPqXoyDINgDDbxA4R3mWlXEMytXfmQSCOTLDE=
-X-Gm-Gg: ASbGncu8aHuuoKlWuP+gwxHlh1zBlAxSPHtXS3BeQbiXfKe+7OuJLIPz1A5oQGB3HY9
-	k2mVQ07iZvB/BwtpWcu/GAaMYnd6ghoOeU4AZi+PjLPgEuvo1F+r+ogy54/e0/xNQL+NstERCLw
-	m6iBpvVvHdOiY1edGTVjJ6nHrE3aVKLDCYlAt1NUMkPkx1fuSdTwutX0qwZyKXeMuSvxb/jYNYc
-	AeSXNOIBdXnUPEdkMGZVmrmB4JdFqQ7TaDpI+BOJ/sdmw8KwUAfzLRgffE1MNmoRyFfxllB++6k
-	2BjM6VpRGrcjCP0N2wHtBsgkQLYaffEegGdtVMkWKGxhzaqyae7Ck9g7PV3GdtlyT/mOd5+UKda
-	ENCMBjH3/3s1Dxdd+696Pjra3GYDUbU3HJa11EyFWrZzFAyIToJIiTm7l
-X-Google-Smtp-Source: AGHT+IE76AssVOnYZ6flrpm/T7LxOGT/eMAoKYwNOlcK4L0ObcJKZqXObYnm2Ncd1mks7lx/eY9Deg==
-X-Received: by 2002:a05:6000:2887:b0:3ee:126a:7aab with SMTP id ffacd0b85a97d-425671c3abemr1117681f8f.57.1759480567855;
-        Fri, 03 Oct 2025 01:36:07 -0700 (PDT)
-Received: from localhost ([196.207.164.177])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-4255d8abf0bsm6826213f8f.17.2025.10.03.01.36.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Oct 2025 01:36:07 -0700 (PDT)
-Date: Fri, 3 Oct 2025 11:36:03 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: oe-kbuild@lists.linux.dev,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	linux-mediatek@lists.infradead.org
-Cc: lkp@intel.com, oe-kbuild-all@lists.linux.dev, lee@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	matthias.bgg@gmail.com, angelogioacchino.delregno@collabora.com,
-	lgirdwood@gmail.com, broonie@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com, wenst@chromium.org,
-	igor.belwon@mentallysanemainliners.org
-Subject: Re: [PATCH v7 6/9] regulator: Add support for MediaTek MT6373 SPMI
- PMIC Regulators
-Message-ID: <202510030902.aQS5rL8n-lkp@intel.com>
+        d=1e100.net; s=20230601; t=1759482279; x=1760087079;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qLWZtUs5fVCswzg3NxSw0ymwhU21Dbhg4Nf1Ubu3B3k=;
+        b=cXpUiKXEtZYbC4L8rdKfONH2VZpnS8jJozlQFRzDKcQ2MvtX+tvbP/CyhyHFAqe8Jq
+         178Fb6CNoEIPlPJPsdsZUSRzv5a6PXFwM3fWqu+hoFTDo9UJYhss1eay5UeSGsQ9G+Iw
+         Qgac8XDQgVX5gMJV5CIjmF3qvXp2C7Vfn0GAgRcO46CMjpZFsllqQOhF8rSvGb8qso7k
+         61dV23VTyZYFoIw5YiUTgPfBcyEqKq/EU4dfWuPPmYsH3LqqjleFz2n0S2A0tJf3f7Zs
+         8MgkuUFM5UgImkeP7wWkbxFIuYM7wJh5WttXuatGHUBISmtO/hGTZhawRnaLVvrbF7eZ
+         e8Ew==
+X-Forwarded-Encrypted: i=1; AJvYcCXAD8hBfkODBR9abGiDmRU5aXKJ381T4aCWW+mEhxeOvvXEqs/Z9/sCw9NyUcmlrso3JNkSkNla9kR6@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOEm0dn/O60lN10zdS0ROSdWvqnOh8KZu9pgv4yoUCuzBV7G1u
+	Ec7grAf6XLcriUe2HXXApEB6315QTQ61sA9GYlG/+pMsaSgMCDHN9X4uV6gIepNw9YkCEcqN4Rc
+	Z84XP1P5O1QJ36Jv9xLRUcoYtXPr4JU/r6+g1yBCe1kGXjhUh4H3EXnLgP5X4B3s1
+X-Gm-Gg: ASbGncskqvUGL2RAyumsTYfPEhTkkP805mscR2uZQc6/5GPYux50U5bML8tDDqpa0Y7
+	sRquxoKz4uKBQFmk6YFy9MbZVpDh9QQ9/imAQJ5P/ZtUIBk9f61jjZ8RIAoDJNBipX0j/tvjkO6
+	IdP/mGAlo7tJRWOkWww5IL4Qt32inKm59Fo2rePqwg5CsDuJ/j+Xs5Wl3x/9vl+saY1pR95dWSe
+	RljzKoVJb7fID98fQ5NtVtFVsi3sXz+YoeinQEcf+iO3Fp0OHYTwKzJ7iaKXZaV0RKzUQf2Hako
+	EsjP+e/gyyCzVO2T2Q54gXcK5aTF6KnmIOGBW57Q8i6Svs8nGz2QnvCHWG6GkhsTp+E1WAA37tE
+	5Ae1eq5lpuqA98g==
+X-Received: by 2002:a17:903:fa7:b0:256:2b13:5f11 with SMTP id d9443c01a7336-28e9a645c5emr30186725ad.40.1759482278649;
+        Fri, 03 Oct 2025 02:04:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE8osZ94IBlmYS6mfN6OxharIdntATWBnaR1H/rolxzIfSfK2AidWvRxzbO2yAgkm6oFVwbqA==
+X-Received: by 2002:a17:903:fa7:b0:256:2b13:5f11 with SMTP id d9443c01a7336-28e9a645c5emr30186365ad.40.1759482278141;
+        Fri, 03 Oct 2025 02:04:38 -0700 (PDT)
+Received: from [10.151.37.217] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d1d95bdsm43659375ad.119.2025.10.03.02.04.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Oct 2025 02:04:37 -0700 (PDT)
+Message-ID: <3cb50330-effc-4089-b80c-d454bccc63f3@oss.qualcomm.com>
+Date: Fri, 3 Oct 2025 14:34:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251002090028.1796462-7-angelogioacchino.delregno@collabora.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v16 0/9] Add PWM support for IPQ chipsets
+To: george.moussalem@outlook.com,
+        =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?=
+ <ukleinek@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, Baruch Siach <baruch@tkos.co.il>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Devi Priya <quic_devipriy@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Baruch Siach <baruch.siach@siklu.com>
+References: <20251001-ipq-pwm-v16-0-300f237e0e68@outlook.com>
+Content-Language: en-US
+From: Kathiravan Thirumoorthy <kathiravan.thirumoorthy@oss.qualcomm.com>
+In-Reply-To: <20251001-ipq-pwm-v16-0-300f237e0e68@outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=RZKdyltv c=1 sm=1 tr=0 ts=68df91a7 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=MaTjDNABAf216yt7wJUA:9
+ a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22
+X-Proofpoint-GUID: 6bBQ-EcQQNMDiPdMxg85b8FXu8AjjbY_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAzMyBTYWx0ZWRfX4UMem530y6rI
+ BVxCwk0Xdj+NE3G7Cweq2m4+1FRMi6ehIWtKgomGMmDVj169mKYoNC1OgMfw06M1/lm0xnufYfJ
+ AXkxip0QWDreXs4OMSrjZuuYw24+fy0s5Zyy7yXhcO2BwKrM9Tivt4CI2//H0gBBfTvG6CI756x
+ lELtZmeyYXqTcmgHRpG1LGpJn190LAFGWNLwHcahH20Sz6NQrMQ323jvZseWYWdF4maeOSCT10C
+ mMxycXEEsSx0OachZTngqEbzrMhbC5tknb9pLdoylRJkZVur3DrNTBPYhn4aK22zNFjHm6dbpSG
+ JEKt+NLZTzHTuY7MK3IZ8bgkgOjcn+/pwNtbrc3UJ4Zf979mhw7/x5TU7f7fsGpeL5W2TqIQLAs
+ NhGbIgp61YaxN/Uaq0tmfFbcfGNjeg==
+X-Proofpoint-ORIG-GUID: 6bBQ-EcQQNMDiPdMxg85b8FXu8AjjbY_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-03_02,2025-10-02_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 malwarescore=0 priorityscore=1501 adultscore=0 phishscore=0
+ impostorscore=0 spamscore=0 bulkscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270033
 
-Hi AngeloGioacchino,
 
-kernel test robot noticed the following build warnings:
+On 10/1/2025 7:34 PM, George Moussalem via B4 Relay wrote:
+> Add PWM driver and binding support for IPQ chipsets.
+> Also, add nodes to add support for pwm in ipq6018, ipq5018, ipq5332, and
+> ipq9574.
+>
+> I've picked up work based on Devi's last submission (v15) which dates
+> back to 05 October 2023 as below SoCs are still active.
+>
+> V16:
+>
+>    Removed reg description in bindings as the offset is not relative to
+>    the TCSR region anymore since simple-mfd support was dropped and PWM
+>    nodes defined as their own nodes, not child nodes. Updated the example
+>    too.
+>
+>    Dropped patch to add simple-mfd support to the qcom,tcsr bindings
 
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+George, thanks for taking up this series.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/AngeloGioacchino-Del-Regno/dt-bindings-regulator-Document-MediaTek-MT6316-PMIC-Regulators/20251002-170532
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-patch link:    https://lore.kernel.org/r/20251002090028.1796462-7-angelogioacchino.delregno%40collabora.com
-patch subject: [PATCH v7 6/9] regulator: Add support for MediaTek MT6373 SPMI PMIC Regulators
-config: arm-randconfig-r071-20251003 (https://download.01.org/0day-ci/archive/20251003/202510030902.aQS5rL8n-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 8.5.0
+Can you elaborate on why the qcom,tcsr binding change is dropped and 
+made the PWM as an independent node? IIUC, it should be child of TCSR 
+node. In V15, I see the qcom,tcsr binding is applied and *dropped only* 
+due to dependencies / lack of information on the "pwm-cells" property.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Reported-by: Dan Carpenter <dan.carpenter@linaro.org>
-| Closes: https://lore.kernel.org/r/202510030902.aQS5rL8n-lkp@intel.com/
+Thanks,
 
-smatch warnings:
-drivers/regulator/mt6373-regulator.c:664 mt6373_regulator_probe() warn: passing zero to 'PTR_ERR'
-
-vim +/PTR_ERR +664 drivers/regulator/mt6373-regulator.c
-
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  645  static int mt6373_regulator_probe(struct platform_device *pdev)
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  646  {
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  647  	struct irq_fwspec fwspec = {
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  648  		.param_count = 2,
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  649  		.param = { 0, IRQ_TYPE_LEVEL_HIGH },
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  650  	};
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  651  	struct device_node *interrupt_parent;
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  652  	struct regulator_config config = {};
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  653  	struct mt6373_regulator_info *info;
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  654  	struct device *dev = &pdev->dev;
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  655  	struct regulator_dev *rdev;
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  656  	struct irq_domain *domain;
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  657  	bool is_vbuck4_hw_ctrl;
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  658  	bool is_cw_variant;
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  659  	int i, ret;
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  660  	u32 val;
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  661  
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  662  	config.regmap = mt6373_spmi_register_regmap(dev);
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  663  	if (!config.regmap)
-
-This should be if (IS_ERR(config.regmap)) ...
-
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02 @664  		return dev_err_probe(dev, PTR_ERR(config.regmap)i,
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  665  				     "Cannot get regmap\n");
-910ce1c7c9122a AngeloGioacchino Del Regno 2025-10-02  666  	config.dev = dev;
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Kathiravan T.
 
 
