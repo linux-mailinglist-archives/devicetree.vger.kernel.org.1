@@ -1,168 +1,190 @@
-Return-Path: <devicetree+bounces-223494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6758EBB5E37
-	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 06:15:34 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DA42BB5F64
+	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 07:45:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 42CD84E024F
-	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 04:15:33 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CBC234E9B37
+	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 05:45:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E68BA1A08A4;
-	Fri,  3 Oct 2025 04:15:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFB361F181F;
+	Fri,  3 Oct 2025 05:45:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="OrCN+WPM"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="qhNIOAvP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1F462AF03
-	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 04:15:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84A4B1FF1C7
+	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 05:45:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759464930; cv=none; b=Fy0iFH/cxbFfk4p2EgqcmqMR5b69KJTwEl8anmEie8UVBfCw34g7sGfsoulanfdFKxy5MFE8K+SMh2sUKYYdMTlGoqDqcjBm98JayEElIyRH5KqYoqssVoICecrgABoxvuq6RWo6Rb5mC78n9i1wU/rHgZAZDnxYBOic9G23VpE=
+	t=1759470313; cv=none; b=ZjoqwZVcILJgYX/mZfBlSRkyPMd61vqi9qpEbHegOFj2OitqXjr9flhXVupAgQuhEi0Ex4hJwAOoh9zMhWthEwe+gwYhCQP4Gd5YHf8jEGiG7dARw4wJf2GwSGxtAt7PwzptzbJKsS/U4T4MmFuLe8S1u57gVBDJY88opz+NXJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759464930; c=relaxed/simple;
-	bh=G85DL8v2r2+qHVH756TgppdFCEhhpAaDq1H+AtraN/k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=P2UekeEhOqtb1nsvOZOI57D3BSfAPyh3esbkn6M3LkhD/8q1FulUBJs1NVzyo5Q9ifVupZbYvDVJ3VFvjbMBwIUloNsQ+RP9fB7pro9GrbkRFyzGTtGumZyH2MlFGJa7NS9G0GWPbwxsEU04XKmM3T6m1/kx/nkqQlT+SdF30C0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=OrCN+WPM; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-373ac916b35so20744881fa.0
-        for <devicetree@vger.kernel.org>; Thu, 02 Oct 2025 21:15:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1759464927; x=1760069727; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yjn8OgXaU5K1wFSTR6No5vtQmblOm/S8wCAtRj8MtV0=;
-        b=OrCN+WPML97y8Ch1BX8kiVzC/lDLLL3ltmkkNAsgpGMu+C7x8XAsRjZKnQJgNNblxo
-         oUmDv4x8+ToQ0TKpOmsmb19NmDEnxfKbBs5L/yvM4yEHB+4O/OtsKZTzX6+sxk0n0lTM
-         5/+7DkWGl0RunYhTcudXc/+txvePhm3Y0yfffS3711BwO+mgdewyPdZWzE1OyNhd5fyx
-         Nw013tumqTwjBSz1DNx07QZSVjvpExB0fCM5lb4SMbGgiluuHn/QhPEQh0F9s6PJsLvh
-         +nz4rZX2ekefVEy2uaBfWh4YJ9vEm8MCPsYgCWCryBeMT6keNHEkh77q/Cy6QFAFuZys
-         fCyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759464927; x=1760069727;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yjn8OgXaU5K1wFSTR6No5vtQmblOm/S8wCAtRj8MtV0=;
-        b=bHNA9mJgeonAD8xIS7BS8FikwAdOfXORcuz7EuG9MjY+XX+FiLCv5cPynbSyQ3Q8WJ
-         Sobf5WX/c8kpJaoX7x0F1FDzWJk0uVUdQeK24vyNjtu2zMWzzcYioLV1YbJfsruwKRGx
-         njJDEB9CkQscb7BVKHrdVmxuLLhioAvap2623d0VqNvHeg4nOrlB/27/NMVUJHiEPU7T
-         4XjP6GOXx8hPkPaJIMXdVlb3c3XH39TKoDVMrwzu8X0jFvk4X1yOYPIXBfkZTsUj/c1z
-         6qz42rYaudUPFDpFGESc9T/dh/jZjkXaNpYodyhZ0VQU0b9FB0qPWmuGwhKe0AnAJ+UO
-         YL8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWBfcSWuk6XJQgMG2zOXdJfQ9WGCeZ8zVbNNMuB+qPicQ/gsQM0bHC3FuwiiXXLuQLl6vG3Gm7/WvwL@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgHE9gRVP0YFfDvbJpDDNhewQFaWHWvX+tXEBHGefbqRp2/rgg
-	OkrsLIo0YJf3RHddI3aNprl+BEROH1nH1KEAwUzGvLasWCLPQSQxKAU2ncMphMUuXvYyuTxDw31
-	/04j3XICRtHVtRFxHjxrSP2KmtHGUQkusuimw0adwtw==
-X-Gm-Gg: ASbGnctAIJl3lZaxMn43ao/Z+pk74arh4AXsOwyzHozyOaPAbsYD7Agqewq4cZJWrWU
-	Y8uU2J5Nx3SSOTFfxJQ/Wc3Yz6Y78zrFOhaL5C+PsJNW8TaHM55m12ZrDRX4EtPrv0NXKVQMQ7r
-	BcZAHFuuXnYdDsUv8g5rpRqh+KmI4UGinYpVLJdHZd1IVY6frFzNb3Jszxf4BLSYmt31xXX7NCL
-	SIG88ATpSIoq5WiA4xeLLutHkSHTM7F
-X-Google-Smtp-Source: AGHT+IHv8BGLAUrC90J0sK3NMTjOQ31CiSfYXIY0hQiE3tOeBGV6iKJ8BSFWipdy28vsBsFlMAlpKEvxI7FL6usEuyg=
-X-Received: by 2002:a2e:be0f:0:b0:36b:2fab:fa6f with SMTP id
- 38308e7fff4ca-373b8ca6ab8mr16482051fa.3.1759464926574; Thu, 02 Oct 2025
- 21:15:26 -0700 (PDT)
+	s=arc-20240116; t=1759470313; c=relaxed/simple;
+	bh=z6SlgDCFOBi9h8Zr7L2vlVB4Qa0jU3GPw7jT23nrerc=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=ac+JVZmlCSxQ9yt8oIT6IVVNOHx1hYSmShp0TsgMH83jn7MsMWnr+TfKbO298MQ4aB4gKjDuAluCnISsAhZ1zh5HuilQMTpq/oR/VGFDQoBDlocM2DVDTFGWv2+hUDN1xibpJWtQkhd0eRNMIzkl+NpZE01zX3cxw+OHEj7y0p0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=qhNIOAvP; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20251003054503epoutp03963474b257b469c07cdd35fd75ab9b16~q5OtUYOzp2916329163epoutp031
+	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 05:45:03 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20251003054503epoutp03963474b257b469c07cdd35fd75ab9b16~q5OtUYOzp2916329163epoutp031
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1759470303;
+	bh=z6SlgDCFOBi9h8Zr7L2vlVB4Qa0jU3GPw7jT23nrerc=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=qhNIOAvPx6uoDmXmCwXxj95uNjHaogCl3At7rjuiK+JWfgK9h8VrxSVOiU3sbyb0L
+	 Q+exqebSpMvX+0OGrQ9/YD0NbLP9zB56J6LiXykWijBTKN3Q5CcqJe1Ec7KTNy08+5
+	 gvewGiE7y978nIop2sKmDL6fB/ScDQ9s48tWpY/Q=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
+	20251003054502epcas5p147f4ac05e859f93ced29739c9dd6db1b~q5OsU5Zyx2599925999epcas5p1B;
+	Fri,  3 Oct 2025 05:45:02 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.91]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4cdHgK5jwVz6B9m7; Fri,  3 Oct
+	2025 05:45:01 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20251003054501epcas5p17ec2255ee66f0ea533b8dc9a058e33e9~q5Oq8U0mF2736927369epcas5p12;
+	Fri,  3 Oct 2025 05:45:01 +0000 (GMT)
+Received: from FDSFTE411 (unknown [107.122.81.184]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20251003054456epsmtip1431a24308d04a35b90a24f8eb7b752a2~q5Omvl53I2540725407epsmtip16;
+	Fri,  3 Oct 2025 05:44:56 +0000 (GMT)
+From: "Ravi Patel" <ravi.patel@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
+Cc: <jesper.nilsson@axis.com>, <mturquette@baylibre.com>,
+	<sboyd@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <s.nawrocki@samsung.com>, <cw00.choi@samsung.com>,
+	<alim.akhtar@samsung.com>, <linus.walleij@linaro.org>,
+	<tomasz.figa@gmail.com>, <catalin.marinas@arm.com>, <will@kernel.org>,
+	<arnd@arndb.de>, <ksk4725@coasia.com>, <kenkim@coasia.com>,
+	<pjsin865@coasia.com>, <gwk1013@coasia.com>, <hgkim05@coasia.com>,
+	<mingyoungbo@coasia.com>, <smn1196@coasia.com>, <shradha.t@samsung.com>,
+	<inbaraj.e@samsung.com>, <swathi.ks@samsung.com>,
+	<hrishikesh.d@samsung.com>, <dj76.yang@samsung.com>,
+	<hypmean.kim@samsung.com>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<linux-arm-kernel@axis.com>, <devicetree@vger.kernel.org>,
+	<linux-gpio@vger.kernel.org>
+In-Reply-To: <CAJKOXPe7Hn0qwg8jDMg4KoF-n4kziLQnvAx9vbNKEcS_KjzEdw@mail.gmail.com>
+Subject: RE: [PATCH v4 0/6] Add support for the Axis ARTPEC-8 SoC
+Date: Fri, 3 Oct 2025 11:14:55 +0530
+Message-ID: <000001dc3428$dc2990c0$947cb240$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251002060732.100213-1-apatel@ventanamicro.com>
- <2025100208-challenge-protrude-d6c3@gregkh> <CAK9=C2U9FV6crTL1G2X6tUM=RyRnPBm1dPeFc29n3vmrFTcfHw@mail.gmail.com>
- <2025100255-catcall-drinkable-23f5@gregkh> <30efd90b-ba9f-4291-b9a1-8739f1c5f24b@gmail.com>
-In-Reply-To: <30efd90b-ba9f-4291-b9a1-8739f1c5f24b@gmail.com>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Fri, 3 Oct 2025 09:45:15 +0530
-X-Gm-Features: AS18NWCV4kwPzdl3pVRzJuYKfCe4eENRKX3BJfzp0ornYWfxAm9sGwDdK5zEYFo
-Message-ID: <CAK9=C2UPHf29DeLh6DikyLPAw-cQ+-FW8-uqzbjJWYaraJYO8w@mail.gmail.com>
-Subject: Re: [PATCH 00/11] Linux RISC-V trace framework and drivers
-To: Bo Gan <ganboing@gmail.com>
-Cc: Greg KH <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Ian Rogers <irogers@google.com>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
-	Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Jiri Olsa <jolsa@kernel.org>, 
-	Adrian Hunter <adrian.hunter@intel.com>, Liang Kan <kan.liang@linux.intel.com>, 
-	Mayuresh Chitale <mchitale@gmail.com>, Anup Patel <anup@brainfault.org>, 
-	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
-	Sunil V L <sunilvl@ventanamicro.com>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKKMINb5ygeSmhM7iNuat0EV5IHsAIgbsJhATIDr/2zOVZ1wA==
+Content-Language: en-in
+X-CMS-MailID: 20251003054501epcas5p17ec2255ee66f0ea533b8dc9a058e33e9
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-541,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250901054234epcas5p1e4b34b6ccb304b0306b1fe616edda9e2
+References: <CGME20250901054234epcas5p1e4b34b6ccb304b0306b1fe616edda9e2@epcas5p1.samsung.com>
+	<20250901051926.59970-1-ravi.patel@samsung.com>
+	<CAJKOXPe7Hn0qwg8jDMg4KoF-n4kziLQnvAx9vbNKEcS_KjzEdw@mail.gmail.com>
 
-On Fri, Oct 3, 2025 at 2:13=E2=80=AFAM Bo Gan <ganboing@gmail.com> wrote:
->
-> On 10/1/25 23:44, Greg KH wrote:
-> > On Thu, Oct 02, 2025 at 12:09:23PM +0530, Anup Patel wrote:
-> >> On Thu, Oct 2, 2025 at 11:56=E2=80=AFAM Greg KH <gregkh@linuxfoundatio=
-n.org> wrote:
-> >>>
-> >>> On Thu, Oct 02, 2025 at 11:37:21AM +0530, Anup Patel wrote:
-> >>>> This series adds initial support for RISC-V trace framework and driv=
-ers.
-> >>>> The RISC-V trace v1.0 specification is already ratified and can be f=
-ound at:
-> >>>> https://github.com/riscv-non-isa/e-trace-encap/releases/tag/v1.0.0-r=
-atified
-> >>>> https://github.com/riscv-non-isa/tg-nexus-trace/releases/tag/1.0_Rat=
-ified
-> >>>>
-> >>>> The RISC-V trace framework and drivers are designed to be agnostic t=
-o the
-> >>>> underlying trace protocol hence both RISC-V E-trace and RISC-V N-tra=
-ce should
-> >>>> work fine. The discovery of trace protocl parameters are left to use=
-r-space
-> >>>> trace decoder.
-> >>>>
-> >>>> In ther future, there will be subsequent series adding:
-> >>>> 1) Sysfs support
-> >>>
-> >>> why does "trace" need sysfs support?  No other cpu platform uses that
-> >>> today, so why is a new user/kernel api needed?
-> >>
-> >> We saw trace support for other architectures (e.g. ARM coresight) allo=
-wing
-> >> trace start/stop through sysfs. If this is an obsolete or not preferre=
-d approach
-> >> then we will deprioritize and possibly never add it.
+Hi Krzysztof,
+
+The dt-bindings patch was merged earlier in v3 series (https://lore.kernel.=
+org/linux-samsung-soc/175664688891.195158.13270877080433356384.b4-ty=40lina=
+ro.org/ on 31st August)
+into respective maintainer repo.=20
+Then I have been asked to drop the applied v3 patches and send rebased v4 s=
+eries (https://lore.kernel.org/linux-samsung-soc/15508cb4-843c-42d1-8854-5e=
+abd79ca0df=40kernel.org/)
+
+Since the 4 patches from v3 series has been already merged, I have not the =
+mentioned dependency while sending remaining v4 patches considering
+It is going to same maintainer repo and it will be applied in sequence.
+
+For future patches (like artpec-9), I will mention the dependency even it i=
+s merged in same repo.
+
+Thanks,
+Ravi
+
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: 02 October 2025 12:10
+> To: Ravi Patel <ravi.patel=40samsung.com>
+> Cc: jesper.nilsson=40axis.com; mturquette=40baylibre.com; sboyd=40kernel.=
+org; robh=40kernel.org; krzk+dt=40kernel.org;
+> conor+dt=40kernel.org; s.nawrocki=40samsung.com; cw00.choi=40samsung.com;=
+ alim.akhtar=40samsung.com; linus.walleij=40linaro.org;
+> tomasz.figa=40gmail.com; catalin.marinas=40arm.com; will=40kernel.org; ar=
+nd=40arndb.de; ksk4725=40coasia.com; kenkim=40coasia.com;
+> pjsin865=40coasia.com; gwk1013=40coasia.com; hgkim05=40coasia.com; mingyo=
+ungbo=40coasia.com; smn1196=40coasia.com;
+> shradha.t=40samsung.com; inbaraj.e=40samsung.com; swathi.ks=40samsung.com=
+; hrishikesh.d=40samsung.com;
+> dj76.yang=40samsung.com; hypmean.kim=40samsung.com; linux-kernel=40vger.k=
+ernel.org; linux-arm-kernel=40lists.infradead.org; linux-
+> samsung-soc=40vger.kernel.org; linux-arm-kernel=40axis.com; devicetree=40=
+vger.kernel.org; linux-gpio=40vger.kernel.org
+> Subject: Re: =5BPATCH v4 0/6=5D Add support for the Axis ARTPEC-8 SoC
+>=20
+> On Mon, 1 Sept 2025 at 14:42, Ravi Patel <ravi.patel=40samsung.com> wrote=
+:
 > >
-> > Why is that needed for coresight and other arches do not need it?
-> > Perhaps it should be deleted from that codebase instead?
+> > Add basic support for the Axis ARTPEC-8 SoC which contains
+> > quad-core Cortex-A53 CPU and other several IPs. This SoC is an
+> > Axis-designed chipset used in surveillance camera products such as
+> > the AXIS Q1656-LE and AXIS Q3538-LVE.
 > >
-> > thanks,
+> > This ARTPEC-8 SoC has a variety of Samsung-specific IP blocks and
+> > Axis-specific IP blocks and SoC is manufactured by Samsung Foundry.
 > >
-> > greg k-h
->
-> Hi Greg,
->
-> sysfs is helpful for controlling the trace if not utilized through perf
-> framework. It can also be used by userspace to discover the topology of
-> trace components and their capabilities. @Anup I assume this driver is
-> designed with other sinks in mind (not just ramsink), so it can be used
-> to emit trace to external probes, right?
->
+> > List of Samsung-provided IPs:
+> > - UART
+> > - Ethernet (Vendor: Synopsys)
+> > - SDIO
+> > - SPI
+> > - HSI2C
+> > - I2S
+> > - CMU (Clock Management Unit)
+> > - Pinctrl (GPIO)
+> > - PCIe (Vendor: Synopsys)
+> > - USB (Vendor: Synopsys)
+> >
+> > List of Axis-provided IPs:
+> > - VIP (Image Sensor Processing IP)
+> > - VPP (Video Post Processing)
+> > - GPU
+> > - CDC (Video Encoder)
+> >
+> > This patch series includes below changes:
+> > - CMU (Clock Management Unit) driver and its bindings
+> > - GPIO pinctrl configuration and its bindings
+> > - Basic Device Tree for ARTPEC-8 SoC and boards
+> >
+>=20
+> Pretty useless cover letter since it doesn't say the damn most
+> important thing : dependency=21
+>=20
+> So this went unnoticed and now mainline (Linus tree) is affected. See
+> Linus rant on soc pull request
+>=20
+> I'm very disappointed, actually mostly on me that I picked this up.
+> Your future patches, need to improve quality and probably you need to
+> go back to how Git works and how maintainer trees are organized. Read
+> carefully, really carefully please maintainer profile .
+>=20
+> I'll be putting artpec 9 on hold, till you confirm what was wrong here
+> and how are you going to fix it in the future.
 
-The rvtrace driver framework is intended to support all types of trace
-components and any topology between these components. The current
-patchset only adds encoder and ramsink trace component drivers since
-that is what we emulate in QEMU right now.
-
-Regarding sysfs based tracing, the main use-case (like you mentioned)
-is the enabling tracing when the sinks are external devices which capture
-and store trace data somewhere outside. The perf based tracing is used
-for hosted tracing where the ramsink stores trace data in ram and perf
-tool captures it in the form of perf data.
-
-Regards,
-Anup
 
