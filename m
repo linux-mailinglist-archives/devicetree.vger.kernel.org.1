@@ -1,80 +1,63 @@
-Return-Path: <devicetree+bounces-223527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60A05BB6908
-	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 13:53:54 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DF5CBB6963
+	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 14:05:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B31573452B9
-	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 11:53:53 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E95EF345550
+	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 12:05:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCBC725A640;
-	Fri,  3 Oct 2025 11:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF7122ECD01;
+	Fri,  3 Oct 2025 12:05:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D5MpwQ9Y"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="B05SXjQm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0430C266B59
-	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 11:53:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43CE11DFDB8;
+	Fri,  3 Oct 2025 12:05:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759492430; cv=none; b=NrnuQjDl7YwdX+nvfYayijGVONKr1kKbV2SMdi6Bfjdf+ULZ468R2liqYH1Y8Tq/lcAs4voZ1l6KuKM4CaPE+K2Y38K2nzlbInzllAWJDQ1vO6UtxoNJlQU/BU5KutiOx5sFlhb9+7jIbOBcEn6M8ktdMNl6yF8dRYOoSnobXDs=
+	t=1759493124; cv=none; b=oPDKFm9wWrG+cxz48mlA+8PolKqrzVHwyACr6YpgFsIqak2vjP8u3A2na7X1Ac9EmqwEems5J2SXXi0xIw2W50s/Z10A82MkaVUPtNUoZ2r+mTbHKTzhdue/5LrlEzawJnBMHSmAzMvWwBaU9nO9ZJKu9D+1GcpEHymzcJaO8RI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759492430; c=relaxed/simple;
-	bh=xxNiT++Ko9RTw9HOwLGTPFz5Lc+N7FUYBe8+a9G5faw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PP7iaY/XojAAdCJqstVc3dcFU74uQBgTPGjg4jcgj3YU+fBTkXxPZfdnnxNM0B2GjSlVWgcZUsL4Bq1cVinWhjiSwos1QELphbzhrRQ06xu099aEYpbQ9sguovEeJWo9slB0WZ9Gb8VZ8nslSjirT7nbeshpRjPE86fuRDDh5hw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D5MpwQ9Y; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-634cef434beso5973404a12.1
-        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 04:53:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759492427; x=1760097227; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=v348Sd1HyGnZQBz/neaZqbiR/lhhLUWkTvsJPcWV5Ok=;
-        b=D5MpwQ9Yvwa0gPLhdrjtHBdug+tLd/dV37tlrTHl+hGtuDz2EflORc9mp1b5dGlILC
-         uhf2f8ar3J8tLLD6T8GaqR1AyBDShoWlsIQPo8FcTeN8n7i2lTfM6EQ2sNFmbuvQIQT+
-         KQkHG4oH071+/BakPXEaRB6GyehwBVGMu9Qp94sZlBV4zbqPrpn8v1DEJmbcxu1DqWrk
-         sS+YiwWT2IEUfEE4D2LXosZxGiqRhM7zd0Xl/3vExzYfkj/ARb4pd7JLkphMBxFi2uAi
-         5gj8hG1D/5t7zS8We8nIXnPNcC7SJRKultY1+olmWeSIZcCsA+16N5kqLehqxZ6macR7
-         GO1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759492427; x=1760097227;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v348Sd1HyGnZQBz/neaZqbiR/lhhLUWkTvsJPcWV5Ok=;
-        b=ouCjY4A0OBxUYdwNqfLb0JO7BSftAJ6IuRu8oJmvw+PwtKd3KLzCOCq1bW+zEMpf5N
-         DqW1OXq69iCopcGZZsTMO35Sx2mLv1ZGcqeD/z6z7+Dtv0cb7FjhsYQo9OPnlWUQPdAk
-         Jio9nrRs2bbrwGg4ekth/Q27OdF4VlKgGH+XWZSKzLrazY5Q7xsd20mzIHyy2IOHuUAY
-         vF4zQRSgc1oxoamdcnzOKZ8nfTSzZoGiKpUCDsehAfw6YZhXKIlxWB4IW9mSB7M5+AYI
-         zgshoDxAFJLsxa6VTrg835+ho6znuAtgXV2mqk+aMsuxedUM6t9bhg31nAakeKiooYPf
-         /Pig==
-X-Forwarded-Encrypted: i=1; AJvYcCU/evolBE8Pexqzmi7tCnIy1LIfJYW83in8bs9+Sfo72zF7YhIStN/ZTcY6L1mN2/ZZzYSpC4dUPypZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAkJH9kZtZuj9DiLh8kUCHZGe0AbkS0okbTc3rMvRfH2CYKPhO
-	hinL8uBNAu8H3HG7vF1wxqaXk5lGBdH+R/0Zh91cJYl0fTajCuhj+442rN8iKMhdEco=
-X-Gm-Gg: ASbGncvhCQVsmfpbk3lpp6rafIZMp3v/iTERD65cIC2vZUKB9/NE7nIStcnP7i23fVh
-	n7LIeoyPrdvZ19KgGfRtC4V0VoM1IVpu0ewC0shdjqQ0aKIaxfIfccnwTKuI0oYd+rzweoClxlI
-	HdZazzqFrBeZabZjh6jz/3HokbZrFmvPjOQEUFpmXNmDAa99dh6S+MXx/ri0DKvquCfE7YG5kev
-	nhgZ5NsonpczfQl39nVv6VBMsGavrsqKNRDvbPDPgRU1Ju735Ccre/kunnd5oqcxq5F6A0HwIZm
-	jH9IdYELrpyGCUzv0tovnwf5CMNcLJLe923NUJkNa1SqVEkl3q0n4xn7IKoEnWTJy3ahDqSTJPY
-	MZXv+plYNAhySTlRDI8TWZAewRT1yRF863s3y0tj9C/xX0EclOuvBQ+s8JAlcJ5eNQEX1
-X-Google-Smtp-Source: AGHT+IHYR3iC2LH79LtowBLJrojMWjOE+pppainz+qSkeukLPpqSESK6b5VQ8mGniwQIYMRLlwAVvA==
-X-Received: by 2002:a17:907:6eab:b0:afe:159:14b1 with SMTP id a640c23a62f3a-b49c1971e56mr369945366b.9.1759492427304;
-        Fri, 03 Oct 2025 04:53:47 -0700 (PDT)
-Received: from [192.168.0.25] ([82.76.24.202])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b4865e7c47fsm430327666b.37.2025.10.03.04.53.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Oct 2025 04:53:46 -0700 (PDT)
-Message-ID: <8e687353-f505-4122-bd46-57ba0d84dabf@linaro.org>
-Date: Fri, 3 Oct 2025 14:53:40 +0300
+	s=arc-20240116; t=1759493124; c=relaxed/simple;
+	bh=ptduPWZF+p7O6Z/N03kFlG32Pd6KM9xhdqdMdyDaPpU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=UkaGWgofjzamflYnDyLHGADwG+JZ5T+xZ3XrA8crmu1Tdg833+yQR5t60iEVKFatX5kaHd0bmyaJSXrgXg81Ws5zmWJx+uEItwmPpfPKhQrbYdlDLCPS/J0eXsR9R3QR0Z5wGahXGE7r5dkEkWjWC+aqO0sMkFUPkUmURF8vrQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=B05SXjQm; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 593C4fLM3032131;
+	Fri, 3 Oct 2025 07:04:41 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1759493081;
+	bh=XY/NICcYo4c4EqbeoVxlLf6ZpKoUb9CC4wsHsE205m8=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=B05SXjQms13cJWGFp7OSJSs4G9q6PGegh5oUltsyKP99PXVPrJ8+icJ6deUJ6iwot
+	 LKpxSnOoY1Pt0RnjK41r/dEYBmb4duNbsJDblfzJSStcZBX1fN/MIMXn6i45B40C59
+	 WYFwE2ouvyC+7NaCCFQ4wGm03j/rqyn3CAlxu34k=
+Received: from DLEE209.ent.ti.com (dlee209.ent.ti.com [157.170.170.98])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 593C4fRY126874
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 3 Oct 2025 07:04:41 -0500
+Received: from DLEE200.ent.ti.com (157.170.170.75) by DLEE209.ent.ti.com
+ (157.170.170.98) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 3 Oct
+ 2025 07:04:40 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE200.ent.ti.com
+ (157.170.170.75) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Fri, 3 Oct 2025 07:04:40 -0500
+Received: from [172.24.233.20] (a0512632.dhcp.ti.com [172.24.233.20])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 593C4aEV3606964;
+	Fri, 3 Oct 2025 07:04:37 -0500
+Message-ID: <5d91923f-8929-4bce-94e7-2b96fa2062af@ti.com>
+Date: Fri, 3 Oct 2025 17:34:36 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,60 +65,267 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] dt-bindings: firmware: qcom,scm: document SCM on
- Kaanapali SOC
-To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Robert Marko <robimarko@gmail.com>,
- Das Srinagesh <quic_gurus@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
- tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
- yijie.yang@oss.qualcomm.com
-References: <20250924-knp-soc-binding-v1-0-93a072e174f9@oss.qualcomm.com>
- <20250924-knp-soc-binding-v1-3-93a072e174f9@oss.qualcomm.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: ti: am625-phyboard-lyra: Add Lincoln
+ LCD185-101CT panel overlay
+To: Wadim Egorov <w.egorov@phytec.de>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <aradhya.bhatia@linux.dev>,
+        "Thakkar, Devarsh"
+	<devarsht@ti.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
+References: <20250925100038.3008298-1-w.egorov@phytec.de>
+ <20250925100038.3008298-3-w.egorov@phytec.de>
 Content-Language: en-US
-From: Eugen Hristev <eugen.hristev@linaro.org>
-In-Reply-To: <20250924-knp-soc-binding-v1-3-93a072e174f9@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+From: Swamil Jain <s-jain1@ti.com>
+In-Reply-To: <20250925100038.3008298-3-w.egorov@phytec.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hi Wadim,
 
-
-On 9/25/25 02:31, Jingyi Wang wrote:
-> Document scm compatible for the Qualcomm Kaanapali SoC. It is an interface
-> to communicate to the secure firmware.
-
-Same nitpicks on subject name and extra sentence
-
-Reviewed-by: Eugen Hristev <eugen.hristev@linaro.org>
+On 9/25/25 15:30, Wadim Egorov wrote:
+> The panel is a Lincoln Technology Solutions LCD185-101CT [0]. It is
+> a dual-link LVDS panel and supports WUXGA resolution (1920x1200).
+> Furthermore, it has an I2C based touch controller: Goodix-GT928.
 > 
-> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+> Add an device tree overlay to support the Lincoln LCD185-101CT panel
+> in combination with the phyBOARD-Lyra-AM62x.
+> 
+> [0] https://lincolntechsolutions.com/wp-content/uploads/2024/09/LCD185-101CTL1ARNTT_DS_R1.3.pdf
+> 
+> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
 > ---
->  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+NACK. PATCH 1/3 and 2/3 are posted and reviewed already, please add link 
+to your PATCH and mention to apply it on top of the series[1].
+
+[1]: https://lore.kernel.org/all/20250913064205.4152249-1-s-jain1@ti.com/
+
+Regards,
+Swamil
+> v1: https://lists.infradead.org/pipermail/linux-arm-kernel/2025-September/1065767.html
+> v2: Use port dummies defined in previous patch
+> ---
+>   arch/arm64/boot/dts/ti/Makefile               |   3 +
+>   .../k3-am625-phyboard-lyra-oldi-lcd185.dtso   | 188 ++++++++++++++++++
+>   2 files changed, 191 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-oldi-lcd185.dtso
 > 
-> diff --git a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> index ef97faac7e47..340b754e6322 100644
-> --- a/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> +++ b/Documentation/devicetree/bindings/firmware/qcom,scm.yaml
-> @@ -31,6 +31,7 @@ properties:
->            - qcom,scm-ipq806x
->            - qcom,scm-ipq8074
->            - qcom,scm-ipq9574
-> +          - qcom,scm-kaanapali
->            - qcom,scm-mdm9607
->            - qcom,scm-milos
->            - qcom,scm-msm8226
-> @@ -202,6 +203,7 @@ allOf:
->            compatible:
->              contains:
->                enum:
-> +                - qcom,scm-kaanapali
->                  - qcom,scm-milos
->                  - qcom,scm-sm8450
->                  - qcom,scm-sm8550
-> 
+> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> index aad9177930e6..aa34a0d77615 100644
+> --- a/arch/arm64/boot/dts/ti/Makefile
+> +++ b/arch/arm64/boot/dts/ti/Makefile
+> @@ -13,6 +13,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-ov5640.dtbo
+>   dtb-$(CONFIG_ARCH_K3) += k3-am625-beagleplay-csi2-tevi-ov5640.dtbo
+>   dtb-$(CONFIG_ARCH_K3) += k3-am625-phyboard-lyra-rdk.dtb
+> +dtb-$(CONFIG_ARCH_K3) += k3-am652-phyboard-lyra-oldi-lcd185.dtbo
+>   dtb-$(CONFIG_ARCH_K3) += k3-am625-sk.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dahlia.dtb
+>   dtb-$(CONFIG_ARCH_K3) += k3-am625-verdin-nonwifi-dev.dtb
+> @@ -165,6 +166,8 @@ k3-am625-phyboard-lyra-gpio-fan-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
+>   	k3-am62x-phyboard-lyra-gpio-fan.dtbo
+>   k3-am625-phyboard-lyra-qspi-nor-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
+>   	k3-am6xx-phycore-qspi-nor.dtbo
+> +k3-am625-phyboard-lyra-oldi-lcd185-dtbs := k3-am625-phyboard-lyra-rdk.dtb \
+> +	k3-am625-phyboard-lyra-oldi-lcd185.dtbo
+>   k3-am625-sk-csi2-imx219-dtbs := k3-am625-sk.dtb \
+>   	k3-am62x-sk-csi2-imx219.dtbo
+>   k3-am625-sk-csi2-ov5640-dtbs := k3-am625-sk.dtb \
+> diff --git a/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-oldi-lcd185.dtso b/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-oldi-lcd185.dtso
+> new file mode 100644
+> index 000000000000..b1feb665248b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-am625-phyboard-lyra-oldi-lcd185.dtso
+> @@ -0,0 +1,188 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2025 PHYTEC Messtechnik GmbH
+> + * Author: Wadim Egorov <w.egorov@phytec.de>
+> + */
+> +
+> +/dts-v1/;
+> +/plugin/;
+> +
+> +#include <dt-bindings/pwm/pwm.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include "k3-pinctrl.h"
+> +
+> +&{/} {
+> +	display {
+> +		compatible = "lincolntech,lcd185-101ct";
+> +		backlight = <&backlight>;
+> +		power-supply = <&vdd_usb_5v0>;
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				dual-lvds-odd-pixels;
+> +				lcd_in0: endpoint {
+> +					remote-endpoint = <&oldi_0_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +				dual-lvds-even-pixels;
+> +				lcd_in1: endpoint {
+> +					remote-endpoint = <&oldi_1_out>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +
+> +	backlight: backlight {
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&bl_pwm_pins_default>;
+> +
+> +		compatible = "pwm-backlight";
+> +
+> +		brightness-levels = <0 4 8 16 32 64 128 255>;
+> +		default-brightness-level = <6>;
+> +
+> +		enable-gpios = <&gpio_exp 5 GPIO_ACTIVE_HIGH>;
+> +		pwms = <&epwm0 1 50000 0>;
+> +	};
+> +
+> +        vdd_usb_5v0: regulator-vdd-usb5v0 {
+> +                compatible = "regulator-fixed";
+> +                regulator-name = "vdd-usb5v0";
+> +                regulator-min-microvolt = <5000000>;
+> +                regulator-max-microvolt = <5000000>;
+> +                regulator-always-on;
+> +                regulator-boot-on;
+> +        };
+> +};
+> +
+> +&dss {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&main_oldi0_pins_default &main_dss0_pins_default>;
+> +};
+> +
+> +&dss_ports {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	/* VP1: Output to OLDI */
+> +	port@0 {
+> +		reg = <0>;
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		dpi0_out0: endpoint@0 {
+> +			reg = <0>;
+> +			remote-endpoint = <&oldi_0_in>;
+> +		};
+> +
+> +		dpi0_out1: endpoint@1 {
+> +			reg = <1>;
+> +			remote-endpoint = <&oldi_1_in>;
+> +		};
+> +	};
+> +};
+> +
+> +&epwm0 {
+> +	status = "okay";
+> +};
+> +
+> +&main_i2c1 {
+> +	#address-cells = <1>;
+> +	#size-cells = <0>;
+> +
+> +	touchscreen@5d {
+> +		compatible = "goodix,gt928";
+> +		reg = <0x5d>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&touch_screen_pins_default>;
+> +
+> +		interrupt-parent = <&main_gpio0>;
+> +		interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
+> +
+> +		reset-gpios = <&main_gpio0 18 GPIO_ACTIVE_HIGH>;
+> +		irq-gpios = <&main_gpio0 19 GPIO_ACTIVE_HIGH>;
+> +	};
+> +};
+> +
+> +&main_pmx0 {
+> +	bl_pwm_pins_default: bl-pwm-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x01b8, PIN_INPUT, 2) /* (C13) SPI0_CS1.EHRPWM0_B */
+> +		>;
+> +	};
+> +
+> +	touch_screen_pins_default: touch-screen-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x048, PIN_OUTPUT, 7) /* (N25) GPMC0_AD3.GPIO0_18 - RST */
+> +			AM62X_IOPAD(0x04c, PIN_INPUT, 7) /* (P24) GPMC0_AD4.GPIO0_19 - INT */
+> +		>;
+> +	};
+> +
+> +	main_oldi0_pins_default: main-oldi0-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x0260, PIN_OUTPUT, 0) /* (AA5) OLDI0_A0N */
+> +			AM62X_IOPAD(0x025c, PIN_OUTPUT, 0) /* (Y6) OLDI0_A0P */
+> +			AM62X_IOPAD(0x0268, PIN_OUTPUT, 0) /* (AD3) OLDI0_A1N */
+> +			AM62X_IOPAD(0x0264, PIN_OUTPUT, 0) /* (AB4) OLDI0_A1P */
+> +			AM62X_IOPAD(0x0270, PIN_OUTPUT, 0) /* (Y8) OLDI0_A2N */
+> +			AM62X_IOPAD(0x026c, PIN_OUTPUT, 0) /* (AA8) OLDI0_A2P */
+> +			AM62X_IOPAD(0x0278, PIN_OUTPUT, 0) /* (AB6) OLDI0_A3N */
+> +			AM62X_IOPAD(0x0274, PIN_OUTPUT, 0) /* (AA7) OLDI0_A3P */
+> +			AM62X_IOPAD(0x0280, PIN_OUTPUT, 0) /* (AC6) OLDI0_A4N */
+> +			AM62X_IOPAD(0x027c, PIN_OUTPUT, 0) /* (AC5) OLDI0_A4P */
+> +			AM62X_IOPAD(0x0288, PIN_OUTPUT, 0) /* (AE5) OLDI0_A5N */
+> +			AM62X_IOPAD(0x0284, PIN_OUTPUT, 0) /* (AD6) OLDI0_A5P */
+> +			AM62X_IOPAD(0x0290, PIN_OUTPUT, 0) /* (AE6) OLDI0_A6N */
+> +			AM62X_IOPAD(0x028c, PIN_OUTPUT, 0) /* (AD7) OLDI0_A6P */
+> +			AM62X_IOPAD(0x0298, PIN_OUTPUT, 0) /* (AD8) OLDI0_A7N */
+> +			AM62X_IOPAD(0x0294, PIN_OUTPUT, 0) /* (AE7) OLDI0_A7P */
+> +			AM62X_IOPAD(0x02a0, PIN_OUTPUT, 0) /* (AD4) OLDI0_CLK0N */
+> +			AM62X_IOPAD(0x029c, PIN_OUTPUT, 0) /* (AE3) OLDI0_CLK0P */
+> +			AM62X_IOPAD(0x02a8, PIN_OUTPUT, 0) /* (AE4) OLDI0_CLK1N */
+> +			AM62X_IOPAD(0x02a4, PIN_OUTPUT, 0) /* (AD5) OLDI0_CLK1P */
+> +		>;
+> +	};
+> +};
+> +
+> +&oldi0 {
+> +	ti,companion-oldi = <&oldi1>;
+> +	status = "okay";
+> +};
+> +
+> +&oldi0_port0 {
+> +	oldi_0_in: endpoint {
+> +		remote-endpoint = <&dpi0_out0>;
+> +	};
+> +};
+> +
+> +&oldi0_port1 {
+> +	oldi_0_out: endpoint {
+> +		remote-endpoint = <&lcd_in0>;
+> +	};
+> +};
+> +
+> +&oldi1 {
+> +	ti,secondary-oldi;
+> +	status = "okay";
+> +};
+> +
+> +&oldi1_port0 {
+> +	oldi_1_in: endpoint {
+> +		remote-endpoint = <&dpi0_out1>;
+> +	};
+> +};
+> +
+> +&oldi1_port1 {
+> +	oldi_1_out: endpoint {
+> +		remote-endpoint = <&lcd_in1>;
+> +	};
+> +};
 
 
