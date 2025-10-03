@@ -1,206 +1,230 @@
-Return-Path: <devicetree+bounces-223505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F646BB6532
-	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 11:10:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93F79BB6556
+	for <lists+devicetree@lfdr.de>; Fri, 03 Oct 2025 11:12:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD9CE188D3CE
-	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 09:10:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B5D819C49E9
+	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 09:12:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A154287518;
-	Fri,  3 Oct 2025 09:10:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFD10287518;
+	Fri,  3 Oct 2025 09:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Mf1ynVAR"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="kuGnapxY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 867C12882D3
-	for <devicetree@vger.kernel.org>; Fri,  3 Oct 2025 09:10:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 700FC280014;
+	Fri,  3 Oct 2025 09:12:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759482607; cv=none; b=ViBIVY71K+RjaAF8v35D+jUPklRaqLTAZqP8x0Dy9dTkeAvUH0txZeinLwjG5U3/VDMfkB3gCZwyUvZ34+no3lj+M2bMfWrbKE2JPMLSFHh5QijhqLGWMpDQZwSvXKaKrp6W+vSup/YB3mejv1U9ssaZnheROIaHdR1t0469Qek=
+	t=1759482725; cv=none; b=onDDBYVWojcJrMMwb2s1Ml+Soq/BR6/eQ9VS5ZcdNvJl79KQYM/nfPErPN1CUu/h7soWNBhsQvKyOz+rXsiLYaH85LQGVz8HdzFummrXEBr7dRD3qvg/irYS5LdIoqW+a+5MZMBNYJkRkBF2Adj6AmtwHfN3fP/FB1qfaIvptNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759482607; c=relaxed/simple;
-	bh=g+UyabP7D/WYt51zePGNa1iOGkEPveNswKAW4d9GM9Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lGJ261qBrwSO6lCiUX5OG+XVjGnK4E/mlruTy6m7UuJn+Xrlu3XBCud3ZJaHJWXlB6YDSnrDEIBrpczJ/xr3I8C7Q0izmr1wP5It3w8AwSjmqXnCnr3TfXbrdRA0hsiQQDz7UWzZC1gG7p3DZ5KtxFP2HkxcrISB0KHQ2ds8KlY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Mf1ynVAR; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 592LUofr022677
-	for <devicetree@vger.kernel.org>; Fri, 3 Oct 2025 09:10:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	9G+ZsHAD1n3qGPEQOvfOjFGqmrOTP8PC0DMNouciob8=; b=Mf1ynVARGjaPpLa1
-	RcUrlPuW2pYAkB77JOlTBVI9k6BXS1qOrKy1Y5TB3Knh8jptEB8tDfRq9QlMWwXp
-	NQtyc7ek0v8IbWI+ew3enhe5Z0f0zrhIbrSZCLpaN2SQVXpKzlXzRuy6iASBIxCg
-	WnYBCd1zFAwGwzx6e/zGcE00q915QzeJugs6NsmMJiCi6s24s6Io/AR6P8/7Ovlc
-	PAvQbwKOzHUL+afjaCNa3y1AWQtnjCI8IhSz+coyCD8gntboN0F090Yl9YEheXPf
-	e8F7KfcbTIDmtz7B9NO1cLMwfw+kdyBE3kqIy0/W1uqogE8j3kyHGP8zvmGwaOH5
-	qnbmRA==
-Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e59naqt6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 09:10:04 +0000 (GMT)
-Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b554fdd710bso1352066a12.3
-        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 02:10:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759482603; x=1760087403;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9G+ZsHAD1n3qGPEQOvfOjFGqmrOTP8PC0DMNouciob8=;
-        b=q0GkjHJP6C/HZnfoi3YPUD8nFXEz3HpOFRzf88vQEumA9okzljsTGfgxhnJMIEyJfE
-         toQEnz0rStrrJp9h5/jxL0AWYgA8Hp3J9Tn4vOrEV0EaB6p0NmKnLWo3aIYLM19TuUm3
-         OLZeEx1PH6bWN1zUijkkSDI1suBhb5FF7wrNDua8s9Oh2B476ujqwuw1564AQ646dnPu
-         YvF4b1bGyD7ZOlqI1J62rP7+VcR/GCuMAV2bsrNB53zVslkbYo1AX+rzjxhwSFkCv5IW
-         FAIJLkMRBkswxS5T9zkPwgjgDG/p85xhlmGfeFNDuwJUxwlSFPwH7v8M/Yeg4BD/lYYx
-         6TXA==
-X-Forwarded-Encrypted: i=1; AJvYcCWY2ei4F1z/o8hvFIiU7Bw5vQDj9LJ7vjWOD0qTDGloMEKk7rE8VWVX68Gqg4xZ+e00qAl4scL85KHF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1hDeW8Lw1NCGsO79w/Rbf3yp0VjQX6YqcQ/5KucuwLOWpbfBH
-	nEydlvgZ4JKfnoQz5zgA9gyTc1XG19ogM3o1VQ4qLLvihonLZ1f0h/wSC2GH4gM4xt6TmXm3pR/
-	wRfWgzqcpzIA2tOtC05sKfuD1G566v9FVwe5mmKXVf9+6JvAaBkK4cw2A1UMKkLhA
-X-Gm-Gg: ASbGncsFLW+Orkj2aeqQ88zYbk9RDscbd0VJKRYFtFGNTs5GElvgkN5CmtZQ/riGhX2
-	BL3ATDh64CThHAjHBAEQe5k/jfneY6ET5FWcuTV+IROGoacq9aFo9gmPbTk+4UlGlJx3aXbK5Hp
-	GcU2WwUxpfyZBDF6RIV6GmtPpOdbp2OmYwHM2dRUhOgqTfN5UPvzzZYYhvyaWH026Yxaeewuo26
-	RkieLwJMHLLXYHdTjIPbtOlIuVqbkxzkp+40GMfkc5U2JI3/tYFa6v28Sc4BJjDjUkHp2sVG2Qp
-	uSguPSbsfZwJk7KsVoGE30fKFlSmiduRVWum47/75nBN1D9vvx7+SFGqzUrLGiPHUTzaJxWZPXl
-	Volg=
-X-Received: by 2002:a17:903:3c70:b0:269:ae5a:e32b with SMTP id d9443c01a7336-28e9a5668e1mr30170465ad.13.1759482602885;
-        Fri, 03 Oct 2025 02:10:02 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IED/ngo+VR5SYkELB9gRDWFieCrqK8UHsEA2FB7sm98eH67+OUnQaYh4ScjWZbBPm9CWIZQ8w==
-X-Received: by 2002:a17:903:3c70:b0:269:ae5a:e32b with SMTP id d9443c01a7336-28e9a5668e1mr30170065ad.13.1759482602391;
-        Fri, 03 Oct 2025 02:10:02 -0700 (PDT)
-Received: from [10.219.49.214] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d1dc168sm44215525ad.120.2025.10.03.02.09.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 03 Oct 2025 02:10:01 -0700 (PDT)
-Message-ID: <58a69bdd-f26e-4cc2-bbe2-6e9d5bb69aa0@oss.qualcomm.com>
-Date: Fri, 3 Oct 2025 14:39:54 +0530
+	s=arc-20240116; t=1759482725; c=relaxed/simple;
+	bh=/hHX1Tyilb/GoDqQ7xipmoiTYR4B4XYZ3E+fQk/rX38=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Wv19aMwUzTIxYvDZgNzNPeJf3ywC9s0szENbPW6onvigPbg36GEqts8c9w9iGQ8erXEVcJ/ycF6f5UZymWuwyRDVjYvJQF4hpBK+f8PJ1CIR5JsbO1P1ovVEm4lafGLcSTaaJBZcDzMTgvs10sqDav7Nd5T6Ouq43u3qJWdSq08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=kuGnapxY; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1759482721;
+	bh=/hHX1Tyilb/GoDqQ7xipmoiTYR4B4XYZ3E+fQk/rX38=;
+	h=From:To:Cc:Subject:Date:From;
+	b=kuGnapxYkpy3WKrfJ8k665VehWug4tdrmJ18mCdPW7pHerXvu3LQgcTi9eNEiVsJa
+	 4z7Ci745EGpP6q+GoJvCybfRdNNq3Yn7i1bqcVN17Rt2NHuyuKmUvRcsLtGqxR3d2d
+	 U5cK/g2lrhE8TOnN+Mz6y9U58nr8/IdxDsL3Px6r34diM3ZtspScY6uQqRdWK8nZbh
+	 bKL2M+9nKcOd771ppLU++0BlzQS0st/coGy+z+GdKuBUm32DbKB81N4nICPuUPMSKL
+	 XglwqTfCwlQlO8MGe+zPKaiRpsokVf2MLGCek/NqLXTVLa4VHXhcbTnYhz24j10C5k
+	 LVbTZItBVqPfw==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0963F17E108C;
+	Fri,  3 Oct 2025 11:12:00 +0200 (CEST)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: linux-mediatek@lists.infradead.org
+Cc: lee@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	angelogioacchino.delregno@collabora.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com,
+	wenst@chromium.org,
+	igor.belwon@mentallysanemainliners.org
+Subject: [PATCH v8 0/9] Add support MT6316/6363/MT6373 PMICs regulators and MFD
+Date: Fri,  3 Oct 2025 11:11:49 +0200
+Message-ID: <20251003091158.26748-1-angelogioacchino.delregno@collabora.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/20] arm64: dts: qcom: Introduce Kaanapali platform
- device tree
-To: Alexey Klimov <alexey.klimov@linaro.org>,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
-        tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
-        yijie.yang@oss.qualcomm.com,
-        Tengfei Fan <tengfei.fan@oss.qualcomm.com>,
-        Qiang Yu <qiang.yu@oss.qualcomm.com>,
-        Manish Pandey <manish.pandey@oss.qualcomm.com>,
-        Ronak Raheja <ronak.raheja@oss.qualcomm.com>,
-        Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
-        Jyothi Kumar Seerapu <jyothi.seerapu@oss.qualcomm.com>,
-        Hangxiang Ma <hangxiang.ma@oss.qualcomm.com>,
-        Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
- <DD6BOLBXKBYP.2NVXRXGJ9W3IG@linaro.org>
-Content-Language: en-US
-From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
-In-Reply-To: <DD6BOLBXKBYP.2NVXRXGJ9W3IG@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: tWoESyg12DX2twjjSH57iCNwRJW0B5rS
-X-Authority-Analysis: v=2.4 cv=O4g0fR9W c=1 sm=1 tr=0 ts=68df92ec cx=c_pps
- a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=k2UVWlRvf9iVtZTx9S8A:9
- a=QEXdDO2ut3YA:10 a=3WC7DwWrALyhR5TkjVHa:22
-X-Proofpoint-ORIG-GUID: tWoESyg12DX2twjjSH57iCNwRJW0B5rS
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAwMSBTYWx0ZWRfX+kzelX/CcIXO
- 9WLOoVzQAZmCSxtpjLBy/W5oyJbHzOIikyUbNIHcDb1sQPSvK255gTPdwWIoOAwapmaj40ZWBK+
- CDmgLmgjKZ/1ITg+dghhyCv4oHXXqhtAfIq5HtRjmr92Qp815i+dn0VVdmYeBWerlvQtqOTllwG
- t0FL9/zi1ZbvrzJh1asSMXHLj/Rbl1WtnAnFfQo032WK8ge2I8zZszYLKglODqmtulw7d1BMKRD
- C+FX27E0MJTBdn7wU9WtaEnX1ndd6VpO1EtgyR0e8xdeB8Ivhm5Uy8yVMUs1jBSs+/gyBvGpFCN
- OFtOOZvH2Mw0uwN6x1xON6o0lEcfDYzXvUfIzx5eO8FKPZszcYScPw2/uJhy/0jHStGZfxKMVBb
- c9+/JRkISLdm8d4awKBEsoxJlIP2JA==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-03_02,2025-10-02_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 phishscore=0 clxscore=1015 priorityscore=1501 lowpriorityscore=0
- spamscore=0 impostorscore=0 bulkscore=0 suspectscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270001
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Changes in v8:
+ - Added REGMAP_SPMI selection in Kconfig for all of MT6316/6363/6373
+   to satisfy __devm_regmap_init_spmi_ext() dependency in case they
+   are built with COMPILE_TEST (+randconfig) configuration
+ - Fixed indentation in Kconfig on help lines (some were using spaces
+   instead of tab + 2 spaces, don't know how that happened)
+ - Removed forgotten final blank line on mt63{6,7}3-regulator.h header
+ - Fixed error checks in mt6363-regulator, mt6373-regulator for call
+   to mt63{6,7}e_spmi_register_regmap()
+ - Tested again on MT8196 Chromebook.
+
+Changes in v7:
+ - Removed unintentionally added, useless Link tags from all patches
+ - #size-cells is now required in mfd mt6363 binding
+ - Further fixes in mt6363/73 regulator bindings
+ - Mentioned weird 9-bits BE format and usage of undocumented set/clr
+   registers in commit description for the MT6316 regulator driver
+ - Refactored bindings for MT6316 PMIC (regulators):
+   - Added reg, #address-cells as required properties
+   - Added regulator-allowed-modes and its description
+   - Changed mt6316b/mt6316c to use patternProperties instead, as it
+     now makes sense to avoid duplication while keeping documentation
+     for the regulator-allowed-modes property in all vbuck entries
+   - Added decent examples that correctly describes the MT6316 PMICs
+
+Changes in v6:
+ - Added missing bitfield.h header inclusion in mt6363-regulator.c
+ - Added commit "dt-bindings: iio: adc: mt6359: Allow reg for SPMI PMICs AuxADC"
+   to fix warnings on specifying reg property in adc node
+ - Added $ref in mt6363/73 regulator bindings to reduce duplication on LDOs
+ - Moved MT6363 regulators example to MFD binding
+ - Rebased on next-20250929
+
+Changes in v5:
+ - This time the dt-bindings commits are the right ones... sorry again :-)
+ - Removed accidentally added Link: tags in all patches.
+
+Changes in v4:
+ - Rewritten all register definitions for both MT6363 and MT6373
+   regulators to be register offsets instead
+ - Added the appropriate supply_name to all vregs in 6363 and 6373
+ - Simplified the macro parameters for all vregs in 6363 and 6373
+   - Added common definitions pattern in macros to avoid plain writing
+     register definitions in every macro call
+ - Added registration of SPMI sub-device in MT6363/73 and setup of
+   regmap reg_base based on `reg` parsed from devicetree
+ - Removed interrupts parsing from devicetree
+   - Moved (pmic-internal) IRQs to macros
+ - mtk-spmi-pmic: Added parsing if irqspec with param_count=2 for
+   easier irqs registration from regulator drivers
+
+Changes in v3:
+ - Added buck and ldo supplies to mt6363 and mt6373 drivers and bindings;
+ - Removed interrupts from mt6363 and mt6373 bindings;
+ - Added registering interrupts in mt6363/73 drivers instead:
+   this avoids big arrays in the mfd driver, which will grow
+   uncontrollably (as it already happened in multiple MediaTek
+   drivers) and with each new(future) supported PMIC;
+ - Removed "ldo-" and "buck-" prefixes from mt6363 regulators
+   - Renamed "vbX" to "vbuckX", reflecting datasheet name
+ - Changed all LDOs in MT6363 and MT6373 to add VOCAL usage, both
+   increasing the number of voltage steps (2.5 or 10mV increments
+   depending on the LDO) and the accuracy of the reported voltages
+ - Tested again on MT8196 board
+
+Changes in v2:
+ - Merged MFD and regulator in one series
+ - Split mediatek,mt6316-regulator.yaml in three files as
+   suggested by krzk
+ - Added interrupt-names list in MT6363/MT6373 bindings as
+   suggested by krzk
+ - Documented regulator modes in MT6363/73 as suggested by krzk
+ - Fixed interrupt and interrupt-names maxItems in both 6363/73
+   because, well... I miscounted them in v1 :-)
+ - Removed keys from mt6363 binding: the compatible was not yet
+   added to the keys binding and doing that will take quite a
+   while, as I have to find a way to test the code before that
+   as unfortunately my HW does not provide any way to test the
+   PMIC keys (thought it did, but then turns out it doesn't...)
+ - Completed the mt6363 MFD example with ADC as suggested by Rob
+ - Avoided applying regulator schemas multiple times as pointed
+   out by Rob (in mfd binding)
+ - Fixed MT6363/73 issues pointed out by lkp (eh, sorry, that
+   happened during a last minute cleanup... ugh!).
+ - Brewed some more coffee :-)
 
 
-On 9/30/2025 11:18 PM, Alexey Klimov wrote:
-> On Thu Sep 25, 2025 at 1:17 AM BST, Jingyi Wang wrote:
->> Introduce the Device Tree for the recently announced Snapdragon SoC from Qualcomm:
->> https://www.qualcomm.com/products/mobile/snapdragon/smartphones/snapdragon-8-series-mobile-platforms/snapdragon-8-elite-gen-5
->>
->> Bindings and base Device Tree for the Kaanapali SoC, MTP (Mobile Test Platform)
->> and QRD (Qualcommm Reference Device) are splited in three:
->>
->> - 1-3: MTP board boot-to-shell with basic function.
->> - 4-16: More feature including PCIE, sdcard, usb, DSPs, PMIC related, tsense, bus, crypto etc. Add QRD board support.
->> - 17-20: Multimedia features including audio, video and camss.
->>
->> Features added and enabled:
->> - CPUs with PSCI idle states and cpufreq
->> - Interrupt-controller with PDC wakeup support
->> - Timers, TCSR Clock Controllers
->> - Reserved Shared memory
->> - GCC and RPMHCC
->> - TLMM
->> - Interconnect with CPU BWMONs
->> - QuP with uart
->> - SMMU
->> - RPMHPD and regulator
->> - UFS with inline crypto engine (ICE)
->> - LLCC
->> - Watchdog
->> - cDSP, aDSP with SMP2P and fastrpc
->> - BUS with I2C and SPI
->> - USB2/USB3
->> - Modem(see crash after bring up)
->> - SoCCP
->> - SDHCI
->> - random number generator (RNG) and Qcrypto
->> - tsens
->> - PCIE
->> - coresight
->> - Bluetooth
->> - WLAN
->> - Audio
-> Were everything described as audio enabled and tested? As far as I was aware
-> some devices required some soundwire rework to support soundwire microphones.
-> Is it finished? I don't see this linked here, but you state that audio
-> features "added and enabled".
->
-> Do we understand this correctly that, I presume, everthing that is more-or-less compatible
-> with previous platforms were added and enabled (with renames) but not _all_ ?
->
-> Probably some rewording is required.
+This series adds support for three new MediaTek PMICs: MT6316, MT6363
+and MT6373 and their variants - used in board designs featuring the
+MediaTek MT8196 Chromebook SoC, or the MT6991 Dimensity 9400 Smartphone
+SoC.
 
-No, As outlined in the commit message, validation was performed on the 
-Kaanapali-MTP platform having
-WSA8845 and On board Microphones(Mic Bias supply from WCD939x) , and 
-there is no SoundWire
-microphones support on this MTP platform.
+In particular, MT6316 is a regulator, but the MT6363 and MT6373 PMICs
+are multi-function devices, as they have and expose multiple sub-devices;
+moreover, some of those also contain an interrupt controller, managing
+internal IPs interrupts: for those, a chained interrupt handler is
+registered, which parent is the SPMI controller itself.
 
-Thanks,
-Prasad
+This series adds support for all of the MT6316 regulator variants and
+for MT6363, MT6373 SPMI PMICs and their interrupt controller.
 
->
-> Best regards,
-> Alexey
->
+
+AngeloGioacchino Del Regno (9):
+  dt-bindings: regulator: Document MediaTek MT6316 PMIC Regulators
+  regulator: Add support for MediaTek MT6316 SPMI PMIC Regulators
+  dt-bindings: regulator: Document MediaTek MT6363 PMIC Regulators
+  regulator: Add support for MediaTek MT6363 SPMI PMIC Regulators
+  dt-bindings: regulator: Document MediaTek MT6373 PMIC Regulators
+  regulator: Add support for MediaTek MT6373 SPMI PMIC Regulators
+  dt-bindings: iio: adc: mt6359: Allow reg for SPMI PMICs AuxADC
+  dt-bindings: mfd: Add binding for MediaTek MT6363 series SPMI PMIC
+  drivers: mfd: Add support for MediaTek SPMI PMICs and MT6363/73
+
+ .../iio/adc/mediatek,mt6359-auxadc.yaml       |  17 +
+ .../bindings/mfd/mediatek,mt6363.yaml         | 116 +++
+ .../regulator/mediatek,mt6316b-regulator.yaml |  80 ++
+ .../regulator/mediatek,mt6316c-regulator.yaml |  80 ++
+ .../regulator/mediatek,mt6316d-regulator.yaml |  79 ++
+ .../regulator/mediatek,mt6363-regulator.yaml  | 146 +++
+ .../regulator/mediatek,mt6373-regulator.yaml  | 137 +++
+ drivers/mfd/Kconfig                           |  17 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/mtk-spmi-pmic.c                   | 410 ++++++++
+ drivers/regulator/Kconfig                     |  30 +
+ drivers/regulator/Makefile                    |   3 +
+ drivers/regulator/mt6316-regulator.c          | 345 +++++++
+ drivers/regulator/mt6363-regulator.c          | 935 ++++++++++++++++++
+ drivers/regulator/mt6373-regulator.c          | 762 ++++++++++++++
+ include/linux/mfd/mt6363.h                    |  26 +
+ include/linux/mfd/mt6373.h                    |  21 +
+ include/linux/regulator/mt6363-regulator.h    | 330 +++++++
+ include/linux/regulator/mt6373-regulator.h    | 161 +++
+ 19 files changed, 3696 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/mediatek,mt6363.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316c-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316d-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6363-regulator.yaml
+ create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6373-regulator.yaml
+ create mode 100644 drivers/mfd/mtk-spmi-pmic.c
+ create mode 100644 drivers/regulator/mt6316-regulator.c
+ create mode 100644 drivers/regulator/mt6363-regulator.c
+ create mode 100644 drivers/regulator/mt6373-regulator.c
+ create mode 100644 include/linux/mfd/mt6363.h
+ create mode 100644 include/linux/mfd/mt6373.h
+ create mode 100644 include/linux/regulator/mt6363-regulator.h
+ create mode 100644 include/linux/regulator/mt6373-regulator.h
+
+-- 
+2.51.0
+
 
