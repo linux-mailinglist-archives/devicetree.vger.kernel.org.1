@@ -1,60 +1,62 @@
-Return-Path: <devicetree+bounces-223626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D8E1BB8DC9
-	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 15:17:00 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EA8FBB8DF7
+	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 15:30:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DC1404E5E29
-	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 13:16:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 148104E4DB8
+	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 13:30:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9689272E6D;
-	Sat,  4 Oct 2025 13:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 130B3335C7;
+	Sat,  4 Oct 2025 13:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ccjXR+w5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qnB62fHz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FE1C25A642;
-	Sat,  4 Oct 2025 13:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4AA3A932;
+	Sat,  4 Oct 2025 13:30:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759583815; cv=none; b=kKiKGbbeRUGvct5VIvqcvDH4gsA9kZLstTaVAp4Ie5V/eA2wZLBZ/5By4qLq4d6xjLEcPFoHTdZCqWhfTlK3Y+nfWNMNI+8WXlaMm7UGBe3x64HH+jYQdVucaT35p+nPyf4nYZu1ePgu7eovWNDta16FAzSkfEmCDin0GcUjqbQ=
+	t=1759584640; cv=none; b=HJZCvaUN65hh/ctYgPdhgEuHzFfkhmo0x32xnOOxhpwvh8T4X5xFII63KNhyk+i5dFzQ7aGs0w6GpbSsEwdQpFgA9JT1zOyagC9IBaOufglbRrmQ17W4B4q2ZiKGrHqiJi80Q5rwHa0xZ5Fxr7MmYu4JbuX98UohXwf4mfrN7Rk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759583815; c=relaxed/simple;
-	bh=hzxcdp7JsMWXprVyzYy5th44+3G4WR8/1+0zoIxXo1Q=;
+	s=arc-20240116; t=1759584640; c=relaxed/simple;
+	bh=CArLsWXqcWM2/vGAYix/smoQl6kT2P4qKZXNV+IgUSk=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ev/oD4BFGa5/kUqWqmecbKNN1/Oe+p4RkPsZ3R4bwujUGEQAzifI0bVXmY7U/keA1JyMzhQf2iwh7AiL6meYrbFe5NHeYeyHnESYcpQWM4uM0Ae07GdzVFwt8daEZtmN+b1lDNvEtGiB/R2DTewFzxTh+it9mg3CGJ4aSYh3Vrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ccjXR+w5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA180C4CEF1;
-	Sat,  4 Oct 2025 13:16:49 +0000 (UTC)
+	 MIME-Version:Content-Type; b=k3O4matsbPQUBaLgPhmGtS9oibHHAY4f/VQWEkwrKE28VN/uLLd+h2zgH7M+apVn87liXZM8B1NrDtOyrt9bX8sOlf0iYf5u4GKmInS64mDkclMg58uKUwotY5QWUl2EnRTzfW9P8nN61sCubwnrmLiK937IiZmEhB9ggeQGh6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qnB62fHz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95B39C4CEF1;
+	Sat,  4 Oct 2025 13:30:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759583814;
-	bh=hzxcdp7JsMWXprVyzYy5th44+3G4WR8/1+0zoIxXo1Q=;
+	s=k20201202; t=1759584639;
+	bh=CArLsWXqcWM2/vGAYix/smoQl6kT2P4qKZXNV+IgUSk=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ccjXR+w5iVWiklHsEyDLwvfx+No3oghNKAD9wybGzpQ9awVF9sdbKBxlPzJwEFDZ1
-	 BQtB/pOgi1xItVlYT4ydp+g49Bfa3U23sfrReTgwyZTsm7LtQWg7W2nGvaajGhS//5
-	 JZZrQ/uLhiXPWzojWz0b/zFa9dQakc94+Mugrw4a94OQuQ00WxzBzB/3Kk8PpaCMvg
-	 LsJfshbpEOp/HQwZ3fdZhk1U0FOYnwbqnIdkktSBnvhuo/IM7v1e+i2544d+9wf+3V
-	 nS8Eah+H6x9GpUg3HUPIzx90KTD+FEjymu1p3huNu3EoCJcHqXTmmfLl5u6mYysRCd
-	 gfyjzgNk3p6Zg==
-Date: Sat, 4 Oct 2025 14:16:44 +0100
+	b=qnB62fHz3IROPsk8TypNaVCfhXdzCGSafFbRT3MWgiB8OrEqrPZYKAO42NvcJoj9G
+	 wTF/oWTgc36C0R04ks9G+ZiIp2dmka8H1DZXmyMt4Ctc4jJ7MiW8gG8Pr7nCBVoAz0
+	 i+8DsdR9Llta3cvDWwXYTZbGBGkQyJbPczGBhi/7DWmpzgdjgX6xtsD2i4vTM2lm/3
+	 1WZOkTiLK0PqJSLRytc2ABZ5QqOOL8YGEQL6J7pacYyiKxTedJEDBE99WH3DclC/x+
+	 KGWhXgC72ApYjupWhy5TsfBHyFlMZtackczAMjW9gMlFAlB9b73WZ+Rf4xYGSOTrUS
+	 p6ILY87PgSyjQ==
+Date: Sat, 4 Oct 2025 14:30:29 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Shrikant Raskar <raskar.shree97@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- matt@ranostay.sg, skhan@linuxfoundation.org, david.hunter.linux@gmail.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-kernel-mentees@lists.linux.dev
-Subject: Re: [PATCH 2/2] iio: health: max30100: Add pulse-width
- configuration via DT
-Message-ID: <20251004141644.7fcb9106@jic23-huawei>
-In-Reply-To: <20251004015623.7019-3-raskar.shree97@gmail.com>
-References: <20251004015623.7019-1-raskar.shree97@gmail.com>
-	<20251004015623.7019-3-raskar.shree97@gmail.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>, David Lechner
+ <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy
+ Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Magnus
+ Damm <magnus.damm@gmail.com>, linux-iio@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/7] iio: adc: add RZ/T2H / RZ/N2H ADC driver
+Message-ID: <20251004143029.02f026a2@jic23-huawei>
+In-Reply-To: <CAMuHMdXPEZJ11sfLDk=O1oZq_OKz22G9wz3Sw5acMr1QVYG_Qg@mail.gmail.com>
+References: <20251001122326.4024391-1-cosmin-gabriel.tanislav.xa@renesas.com>
+	<20251001122326.4024391-4-cosmin-gabriel.tanislav.xa@renesas.com>
+	<CAMuHMdXPEZJ11sfLDk=O1oZq_OKz22G9wz3Sw5acMr1QVYG_Qg@mail.gmail.com>
 X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,123 +67,56 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Sat,  4 Oct 2025 07:26:23 +0530
-Shrikant Raskar <raskar.shree97@gmail.com> wrote:
 
-> The MAX30100 driver previously hardcoded the SPO2 pulse width to
-> 1600us. This patch adds support for reading the pulse width from
-> device tree (`maxim,pulse-width`) and programming it into the SPO2
-> configuration register.
+> > --- /dev/null
+> > +++ b/drivers/iio/adc/rzt2h_adc.c
+> > @@ -0,0 +1,309 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/cleanup.h>
+> > +#include <linux/completion.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/iio/adc-helpers.h>
+> > +#include <linux/iio/iio.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/io.h>
+> > +#include <linux/iopoll.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/pm_runtime.h>
+> > +#include <linux/property.h>
+> > +
+> > +#define RZT2H_NAME                     "rzt2h-adc"
+> > +
+> > +#define RZT2H_ADCSR_REG                        0x00  
 > 
-> If no property is provided, the driver falls back to 1600us to
-> preserve existing behavior.
+> I would drop the "_REG"-suffix from register definitions...
 > 
-> Testing:
-> Hardware: Raspberry Pi 3B + MAX30100 breakout
-> Verified DT property read in probe()
-> Confirmed SPO2_CONFIG register written correctly using regmap_read()
-A few minor comments inline.
-Thanks,
+> > +#define RZT2H_ADCSR_ADIE_MASK          BIT(12)  
+> 
+> ... and the "_MASK"-suffix from single-bit definitions.  But this is
+> my personal preference/taste.  Perhaps IIO uses a different convention?
+
+Problem with dropping _REG is we regularly see registers with complex
+multi part names and it can be come confusing at point of use wrt to
+whether a given define is a register address, or field.  
+
+I don't mind dropping MASK for single bits though as there inherently can't
+be confusion between those and field values as the 'mask' defines the value
+as well.
 
 Jonathan
 
 > 
-> Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
-> ---
->  drivers/iio/health/max30100.c | 39 +++++++++++++++++++++++++++++++++--
->  1 file changed, 37 insertions(+), 2 deletions(-)
+> > +#define RZT2H_ADCSR_ADCS_MASK          GENMASK(14, 13)
+> > +#define RZT2H_ADCSR_ADCS_SINGLE                0b00
+> > +#define RZT2H_ADCSR_ADST_MASK          BIT(15)  
 > 
-> diff --git a/drivers/iio/health/max30100.c b/drivers/iio/health/max30100.c
-> index 814f521e47ae..2b3348c75beb 100644
-> --- a/drivers/iio/health/max30100.c
-> +++ b/drivers/iio/health/max30100.c
-> @@ -5,7 +5,6 @@
->   * Copyright (C) 2015, 2018
->   * Author: Matt Ranostay <matt.ranostay@konsulko.com>
->   *
-> - * TODO: enable pulse length controls via device tree properties
->   */
->  
->  #include <linux/module.h>
-> @@ -54,6 +53,9 @@
->  #define MAX30100_REG_SPO2_CONFIG		0x07
->  #define MAX30100_REG_SPO2_CONFIG_100HZ		BIT(2)
->  #define MAX30100_REG_SPO2_CONFIG_HI_RES_EN	BIT(6)
-> +#define MAX30100_REG_SPO2_CONFIG_200US		0x0
-> +#define MAX30100_REG_SPO2_CONFIG_400US		0x1
-> +#define MAX30100_REG_SPO2_CONFIG_800US		0x2
->  #define MAX30100_REG_SPO2_CONFIG_1600US		0x3
->  
->  #define MAX30100_REG_LED_CONFIG			0x09
-> @@ -306,19 +308,52 @@ static int max30100_led_init(struct max30100_data *data)
->  		MAX30100_REG_LED_CONFIG_LED_MASK, reg);
->  }
->  
-> +static int max30100_get_pulse_width(unsigned int pwidth_us)
-> +{
-> +	switch (pwidth_us) {
-> +	case 200:
-> +		return MAX30100_REG_SPO2_CONFIG_200US;
-> +	case 400:
-> +		return MAX30100_REG_SPO2_CONFIG_400US;
-> +	case 800:
-> +		return MAX30100_REG_SPO2_CONFIG_800US;
-> +	case 1600:
-> +		return MAX30100_REG_SPO2_CONFIG_1600US;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
->  static int max30100_chip_init(struct max30100_data *data)
->  {
->  	int ret;
-> +	unsigned int pulse_us;
-> +	unsigned int pulse_width;
-> +	struct device *dev = &data->client->dev;
->  
->  	/* setup LED current settings */
->  	ret = max30100_led_init(data);
->  	if (ret)
->  		return ret;
->  
-> +	/* Get pulse width from DT, default = 1600us */
-> +	ret = device_property_read_u32(dev, "maxim,pulse-width", &pulse_us);
-> +	if (ret) {
-> +		dev_warn(dev, "no pulse-width defined, defaulting to 1600us\n");
-> +		pulse_width = MAX30100_REG_SPO2_CONFIG_1600US;
-
-Usual trick for these is to set pulse_us to 1600 before calling the
-device_property_read_u32(). If that fails then the default value will remain
-in the variable and we can just call the code below without needing
-to explicitly handle two cases.
-
-> +	} else {
-> +		pulse_width = max30100_get_pulse_width(pulse_us);
-> +		if (pulse_width < 0) {
-> +			dev_err(dev, "invalid pulse-width %u\n", pulse_us);
-
-Only happens in probe() so prefer use of return dev_err_probe()
-for compactness in this case.
-
-> +			return pulse_width;
-> +		}
-> +	}
-> +
->  	/* enable hi-res SPO2 readings at 100Hz */
->  	ret = regmap_write(data->regmap, MAX30100_REG_SPO2_CONFIG,
->  				 MAX30100_REG_SPO2_CONFIG_HI_RES_EN |
-> -				 MAX30100_REG_SPO2_CONFIG_100HZ);
-> +				 MAX30100_REG_SPO2_CONFIG_100HZ |
-> +				 pulse_width);
-
-Even though it's the lowest field in this register. I'd prefer
-a mask being defined and FIELD_PREP() used to set it.
-That way we don't need to know it is the lowest field when looking at this
-code.
-
->  	if (ret)
->  		return ret;
->  
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
 
 
