@@ -1,202 +1,133 @@
-Return-Path: <devicetree+bounces-223603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83098BB86F7
-	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 01:52:44 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D302BBB87B1
+	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 03:19:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AA1F4A79C1
-	for <lists+devicetree@lfdr.de>; Fri,  3 Oct 2025 23:52:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BE57C4E2441
+	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 01:19:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEED3277C94;
-	Fri,  3 Oct 2025 23:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33D3F4207F;
+	Sat,  4 Oct 2025 01:19:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="UV+d3WKy"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ktCZCCQr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9CDD24679F;
-	Fri,  3 Oct 2025 23:52:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7627EEEA8;
+	Sat,  4 Oct 2025 01:19:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759535560; cv=none; b=ool8n89LLetuQJtDiC74ZmUpp62EcuPFmQGLaeWd8i7uX/+T3PFYFeqkubc3NE7Fu2/sasqnEGcic3GIZfWPNDYXd+6P6r4kKaf8bVwNGpGeOKKBIG4BvmRAo8zQrk6+5thYCTa3CvycMX+z4MPb7qEMjhfwRn7OPDrhycRw7OY=
+	t=1759540765; cv=none; b=A6H71/Hpj/i8ivncvbrTFAZrI8dBAvd1KmYH1TN2tjn9mLuhTcGe2MgzGdJr+DaB8cgyf0CDnDw63qxPPt4ZAAOUo44cDyhPM8sBCx5VpLZ6ggyULmJq8MEUT4ROtm256yAENrcOo4p+2Q9qJm/o7WHMVNX5Da2fjkALSHTEZ2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759535560; c=relaxed/simple;
-	bh=bgbeQkYqa1A2Y3gpDzbMy9FRoP1Nbs7BaWl5sEjJKKM=;
+	s=arc-20240116; t=1759540765; c=relaxed/simple;
+	bh=fNfRYHZRZciYP1VNcc5BID8iEUccG3YVhkfMXauiGIc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XjMy8i8FX3AGXNssx6nOAG4OEvLzK0oT3g20PgbGsu/3WR2kpbufK3E2u2OcvCfmkf9SW7jGzUjH7SSv3sikNZvYSWm51UgGYea+cmh04vV5XUdvxYa7w+q2E/iPoNpS3Ghej/Wy4nJWXzMrttyVScGhmeSshtiUjpgIISqyviw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=UV+d3WKy; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id B41371340;
-	Sat,  4 Oct 2025 01:51:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1759535465;
-	bh=bgbeQkYqa1A2Y3gpDzbMy9FRoP1Nbs7BaWl5sEjJKKM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UV+d3WKy7zPh0026oTMivv9SmFnqH8QBxKHMiBRLoktA855IEEoyfVH5DUrIBwQG5
-	 /xyeEuU58IE4NnOf95DpLw8AiQkJ6QN7jjVp6J1cybnDVBHhwe0dcdXVI/sz8goi3I
-	 YvFc/W2Emwa5wRbNljuwPeXQBbhA8AzM2Ka9Mx68=
-Date: Sat, 4 Oct 2025 02:52:30 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Dragan Simic <dsimic@manjaro.org>,
-	Alexander Shiyan <eagle.alexander923@gmail.com>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	stable@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
- for rk3588
-Message-ID: <20251003235230.GD1492@pendragon.ideasonboard.com>
-References: <20250124052611.3705-1-eagle.alexander923@gmail.com>
- <CABjd4YwA8P9LVuDviO6xydkHpuuOY7XT0pk1oa+FDqOo=uZN4A@mail.gmail.com>
- <a76f315f023a3f8f5435e0681119b4eb@manjaro.org>
- <CABjd4Ywh_AkbXHonx-8vL-hNY5LMLJge5e4oqxvUG+qe6OF-Og@mail.gmail.com>
- <61b494b209d7360d0f36adbf6d5443a4@manjaro.org>
- <CABjd4Yx0p0B=e00MjCpDDq8Z=0FtM0s9EN86WdvRimt-_+kh2w@mail.gmail.com>
- <CABjd4Yy14bpjzvFyc8et-=pmds5uwzfxNqcs7L=+XRXBogZEsQ@mail.gmail.com>
- <20251003133304.GA21023@pendragon.ideasonboard.com>
- <CABjd4YxbyUWghd1ya8UayFkAE-VWQSd5-J2QD0sV7WmS8AXkCg@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HVQTQyqjD4t9YtFRhDxqVx4iE3cU6lCP+ZG7vHGr8DgPfXcDpOFFkj4Or9tzA8Zv61E4f13Ul12szPrm/0OhXZIpmjTGBAKutEhNRiDrdydPGS8NvVzR9CcCfRZVv/EL+4PMjPZamZuz+pY/QUt+x+stA3047Bc9pcBrVym5sX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ktCZCCQr; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1759540764; x=1791076764;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=fNfRYHZRZciYP1VNcc5BID8iEUccG3YVhkfMXauiGIc=;
+  b=ktCZCCQrnFGXis9AaiZLIevQVceogQxjQi+0XxrtVQbGex2Z8aaBwp+g
+   bJfAXOnBk7INmyALnYLesShpPbWsPouITS+Hfb+nKperkxxueKSFQGIRR
+   WwnliC3xQHclCw9//kw1Fz2UFebSaQ0u7CJHsDZbKoktWQoExHBzjoGLG
+   ApO+wh8F52Y2lyTLO9p3hDxS0Xt+CcsAT1YMa2UVZgd9F86OgmBuPPPMk
+   AwsaR5l/jxBpgwlSZ91q9Hi0FqlDUhJ0eiFG9+wm2OAikEebf/mpQyc9O
+   ZoLVbWIr4K0y29EDUijeBUtWHzrF8gUsGzzd/8RcG8NmAsJvEiedYx3Kx
+   A==;
+X-CSE-ConnectionGUID: H/hDFKyJRbelj0cwge65gQ==
+X-CSE-MsgGUID: IeTkcbNyRUiDWizL9Sq2kA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11571"; a="61988898"
+X-IronPort-AV: E=Sophos;i="6.18,314,1751266800"; 
+   d="scan'208";a="61988898"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2025 18:19:23 -0700
+X-CSE-ConnectionGUID: 7KqFVGjMReazrN229o0DBA==
+X-CSE-MsgGUID: qNiyH4HgSxOJmfJN43zV6g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,314,1751266800"; 
+   d="scan'208";a="179840945"
+Received: from lkp-server01.sh.intel.com (HELO 2f2a1232a4e4) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 03 Oct 2025 18:19:20 -0700
+Received: from kbuild by 2f2a1232a4e4 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1v4qvd-00050h-1N;
+	Sat, 04 Oct 2025 01:19:17 +0000
+Date: Sat, 4 Oct 2025 09:18:53 +0800
+From: kernel test robot <lkp@intel.com>
+To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>,
+	linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, herbert@gondor.apana.org.au,
+	robh@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, krzk+dt@kernel.org,
+	conor+dt@kernel.org, Ruud.Derwig@synopsys.com,
+	manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com,
+	Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>,
+	kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v6 4/4] Add SPAcc Kconfig and Makefile
+Message-ID: <202510040852.qK4TiL4k-lkp@intel.com>
+References: <20250929074334.118413-5-pavitrakumarm@vayavyalabs.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABjd4YxbyUWghd1ya8UayFkAE-VWQSd5-J2QD0sV7WmS8AXkCg@mail.gmail.com>
+In-Reply-To: <20250929074334.118413-5-pavitrakumarm@vayavyalabs.com>
 
-On Fri, Oct 03, 2025 at 06:13:39PM +0400, Alexey Charkov wrote:
-> On Fri, Oct 3, 2025 at 5:33 PM Laurent Pinchart wrote:
-> > On Fri, Jan 24, 2025 at 11:44:34PM +0400, Alexey Charkov wrote:
-> > > On Fri, Jan 24, 2025 at 9:23 PM Alexey Charkov <alchark@gmail.com> wrote:
-> > > > On Fri, Jan 24, 2025 at 2:37 PM Dragan Simic <dsimic@manjaro.org> wrote:
-> > > > > On 2025-01-24 11:25, Alexey Charkov wrote:
-> > > > > > On Fri, Jan 24, 2025 at 2:06 PM Dragan Simic <dsimic@manjaro.org>
-> > > > > > wrote:
-> > > > > >> On 2025-01-24 09:33, Alexey Charkov wrote:
-> > > > > >> > On Fri, Jan 24, 2025 at 9:26 AM Alexander Shiyan
-> > > > > >> > <eagle.alexander923@gmail.com> wrote:
-> > > > > >> >>
-> > > > > >> >> There is no pinctrl "gpio" and "otpout" (probably designed as
-> > > > > >> >> "output")
-> > > > > >> >> handling in the tsadc driver.
-> > > > > >> >> Let's use proper binding "default" and "sleep".
-> > > > > >> >
-> > > > > >> > This looks reasonable, however I've tried it on my Radxa Rock 5C and
-> > > > > >> > the driver still doesn't claim GPIO0 RK_PA1 even with this change. As
-> > > > > >> > a result, a simulated thermal runaway condition (I've changed the
-> > > > > >> > tshut temperature to 65000 and tshut mode to 1) doesn't trigger a PMIC
-> > > > > >> > reset, even though a direct `gpioset 0 1=0` does.
-> > > > > >> >
-> > > > > >> > Are any additional changes needed to the driver itself?
-> > > > > >>
-> > > > > >> I've been digging through this patch the whole TSADC/OTP thing in the
-> > > > > >> last couple of hours, and AFAIK some parts of the upstream driver are
-> > > > > >> still missing, in comparison with the downstream driver.
-> > > > > >>
-> > > > > >> I've got some small suggestions for the patch itself, but the issue
-> > > > > >> you observed is obviously of higher priority, and I've singled it out
-> > > > > >> as well while digging through the code.
-> > > > > >>
-> > > > > >> Could you, please, try the patch below quickly, to see is it going to
-> > > > > >> fix the issue you observed?  I've got some "IRL stuff" to take care of
-> > > > > >> today, so I can't test it myself, and it would be great to know is it
-> > > > > >> the right path to the proper fix.
-> > > > > >>
-> > > > > >> diff --git i/drivers/thermal/rockchip_thermal.c
-> > > > > >> w/drivers/thermal/rockchip_thermal.c
-> > > > > >> index f551df48eef9..62f0e14a8d98 100644
-> > > > > >> --- i/drivers/thermal/rockchip_thermal.c
-> > > > > >> +++ w/drivers/thermal/rockchip_thermal.c
-> > > > > >> @@ -1568,6 +1568,11 @@ static int rockchip_thermal_probe(struct
-> > > > > >> platform_device *pdev)
-> > > > > >>          thermal->chip->initialize(thermal->grf, thermal->regs,
-> > > > > >>                                    thermal->tshut_polarity);
-> > > > > >>
-> > > > > >> +       if (thermal->tshut_mode == TSHUT_MODE_GPIO)
-> > > > > >> +               pinctrl_select_default_state(dev);
-> > > > > >> +       else
-> > > > > >> +               pinctrl_select_sleep_state(dev);
-> > > > > >
-> > > > > > I believe no 'else' block is needed here, because if tshut_mode is not
-> > > > > > TSHUT_MODE_GPIO then the TSADC doesn't use this pin at all, so there's
-> > > > > > no reason for the driver to mess with its pinctrl state. I'd rather
-> > > > > > put a mirroring block to put the pin back to its 'sleep' state in the
-> > > > > > removal function for the TSHUT_MODE_GPIO case.
-> > > > >
-> > > > > You're right, but the "else block" is what the downstream driver does,
-> > > >
-> > > > Does it though? It only handles the TSHUT_MODE_GPIO case as far as I
-> > > > can tell (or TSHUT_MODE_OTP in downstream driver lingo) [1]
-> > > >
-> > > > [1] https://github.com/radxa/kernel/blob/edb3eeeaa4643ecac6f4185d6d391c574735fca1/drivers/thermal/rockchip_thermal.c#L2564
-> > > >
-> > > > > so I think it's better to simply stay on the safe side and follow that
-> > > > > logic in the upstream driver.  Is it really needed?  Perhaps not, but
-> > > > > it also shouldn't hurt.
-> > > > >
-> > > > > > Will try and revert.
-> > > > >
-> > > > > Awesome, thanks!
-> > > > >
-> > > > > > P.S. Just looked at the downstream driver, and it actually calls
-> > > > > > TSHUT_MODE_GPIO TSHUT_MODE_OTP instead, so it seems that "otpout" was
-> > > > > > not a typo in the first place. So maybe the right approach here is not
-> > > > > > to change the device tree but rather fix the "gpio" / "otpout" pinctrl
-> > > > > > state handling in the driver.
-> > > > >
-> > > > > Indeed, "otpout" wasn't a typo, and I've already addressed that in my
-> > > > > comments to Alexander's patch.  Will send that response a bit later.
-> > > > >
-> > > > > I think it's actually better to accept the approach in Alexander's
-> > > > > patch, because the whole thing applies to other Rockchip SoCs as well,
-> > > > > not just to the RK3588(S).
-> > > >
-> > > > Anyway, I've just tried it after including the changes below, and
-> > > > while /sys/kernel/debug/pinctrl/pinctrl-handles shows the expected
-> > > > pinctrls under tsadc, the driver still doesn't seem to be triggering a
-> > > > PMIC reset. Weird. Any thoughts welcome.
-> > >
-> > > I found the culprit. "otpout" (or "default" if we follow Alexander's
-> > > suggested approach) pinctrl state should refer to the &tsadc_shut_org
-> > > config instead of &tsadc_shut - then the PMIC reset works.
-> >
-> > I've recently brought up an RK3588S-based Orange Pi CM5 Base board, made
-> > of a compute module (CM5, see [1]) and a carrier board (Base, see [2]).
-> > The carrier board has a reset button which pulls the PMIC_RESET_L signal
-> > of the CM5 to GND (see page 3 of the schematics in [3]).
-> >
-> > With &tsadc_shut_org the reset button has absolutely no effect. With
-> > &tsadc_shut it resets the board as expected.
-> 
-> Interesting. The TSADC shouldn't affect the physical button operation
-> at all, if it's really wired to the PMIC as the signal name implies.
-> There isn't even any default pull value associated with the TSHUT pin
-> config.
-> 
-> What if you switch the GPIO0_A1 pin to GPIO output mode with no pull?
-> Does the button work then? Does the board reset if you toggle the GPIO
-> value with `gpioset`?
+Hi Pavitrakumar,
 
-The button works when GPIO0_A1 is configured as a GPIO input. It doesn't
-work anymore when the GPIO is set to 1, and setting the GPIO to 0 resets
-the board. This confirms your hypothesis that the reset button
-functionality conflicts with TSADC_SHUT being configured as a push-pull
-output.
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on 166c83f7789ed02dc1f25bc7bed4a1beb25343aa]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Pavitrakumar-Managutte/dt-bindings-crypto-Document-support-for-SPAcc/20250929-155434
+base:   166c83f7789ed02dc1f25bc7bed4a1beb25343aa
+patch link:    https://lore.kernel.org/r/20250929074334.118413-5-pavitrakumarm%40vayavyalabs.com
+patch subject: [PATCH v6 4/4] Add SPAcc Kconfig and Makefile
+config: i386-randconfig-013-20251004 (https://download.01.org/0day-ci/archive/20251004/202510040852.qK4TiL4k-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251004/202510040852.qK4TiL4k-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510040852.qK4TiL4k-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> ld.lld: error: undefined symbol: crypto_engine_alloc_init
+   >>> referenced by spacc_device.c:88 (drivers/crypto/dwc-spacc/spacc_device.c:88)
+   >>>               drivers/crypto/dwc-spacc/spacc_device.o:(spacc_crypto_probe) in archive vmlinux.a
+--
+>> ld.lld: error: undefined symbol: crypto_engine_start
+   >>> referenced by spacc_device.c:95 (drivers/crypto/dwc-spacc/spacc_device.c:95)
+   >>>               drivers/crypto/dwc-spacc/spacc_device.o:(spacc_crypto_probe) in archive vmlinux.a
+--
+>> ld.lld: error: undefined symbol: crypto_engine_stop
+   >>> referenced by spacc_device.c:203 (drivers/crypto/dwc-spacc/spacc_device.c:203)
+   >>>               drivers/crypto/dwc-spacc/spacc_device.o:(spacc_crypto_probe) in archive vmlinux.a
+   >>> referenced by spacc_device.c:250 (drivers/crypto/dwc-spacc/spacc_device.c:250)
+   >>>               drivers/crypto/dwc-spacc/spacc_device.o:(spacc_crypto_remove) in archive vmlinux.a
+--
+>> ld.lld: error: undefined symbol: crypto_engine_exit
+   >>> referenced by spacc_device.c:206 (drivers/crypto/dwc-spacc/spacc_device.c:206)
+   >>>               drivers/crypto/dwc-spacc/spacc_device.o:(spacc_crypto_probe) in archive vmlinux.a
+   >>> referenced by spacc_device.c:251 (drivers/crypto/dwc-spacc/spacc_device.c:251)
+   >>>               drivers/crypto/dwc-spacc/spacc_device.o:(spacc_crypto_remove) in archive vmlinux.a
 
 -- 
-Regards,
-
-Laurent Pinchart
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
