@@ -1,219 +1,198 @@
-Return-Path: <devicetree+bounces-223617-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223618-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB08BBB8A1D
-	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 08:46:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6056BB8A48
+	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 08:53:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F95E3C7291
-	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 06:46:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56E9719C1A2C
+	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 06:53:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEC8918FC97;
-	Sat,  4 Oct 2025 06:46:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9215022D4C3;
+	Sat,  4 Oct 2025 06:53:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jRDARAtj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="P+Nf/o9I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11CD212B94
-	for <devicetree@vger.kernel.org>; Sat,  4 Oct 2025 06:46:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE13F224234
+	for <devicetree@vger.kernel.org>; Sat,  4 Oct 2025 06:52:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759560401; cv=none; b=WhV0sXXHyRKcdFwxVJcY52aIFfdam0lJcyNi8evm2czfnL8gv6IahCIlpa8DqAhUb5eCpcRWljm7htArbAxKbdhbyhPT7kTHNUVcI6qf4x3QVCWvNRXBd4hyShkR9MyrLYkkt8hjdismlKm9SQkkn4Ke2KqbBPpwbJoNoDhd8U8=
+	t=1759560781; cv=none; b=gyxiFMFZmbvyZGgYp4jVFzfCOxc5pBChP83IFVcyxrv1RTPTKLcd9ZMMd90Uk0SUF20c4fP/L7t9U2ZICkVEZ46Z85WmFReRHE87v63vhVYB5tQPJM2SFgQqJHmnIw6T1x6CzoA6yPa0vn1/BLfoK47BAUVqivsrWGD+2LPizwI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759560401; c=relaxed/simple;
-	bh=5++0P7uz052KSdAfnQftmsr2lS2tYCz4teFtQ5Joy7I=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ohieu8w9IrTBafwFVSewuNrey2YXhcqn87fsjPcGxtMs0uCAz/1bGyX/Eis+p7/pxTur5EuL+tJeFxDwdG1Cbzfd+7YAdHgfqQ97Sco0Jnj4PlkKesLj7Z++79tYJDtH6533DByS5OMWEcQfUeWzhbvkOG2v2Qn9OnpX1OToU3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jRDARAtj; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5943PYQ9024744
-	for <devicetree@vger.kernel.org>; Sat, 4 Oct 2025 06:46:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=SxgQPHjjkx8c1JmVgGvAmy4X
-	988IpWVIdlbWqL8CFH0=; b=jRDARAtjbq1gFjlUyxD12R0QuUfkOgrk6+KqdLVf
-	+fWmZWHod+zsco+B/5ABnyRJ/ITSHHBm7Zk7yrJiD81xjkkNd8ls5vT5DOQcxdWc
-	uu0f+iDA94oeWUjj+2fRV+ht4luJSUjrN/7n9zM8vlDeYr3G9S2H1BcnWHtx9XC+
-	l5sOEEoKO8c4CeCjPblMezVV1CPAsX1MaDv6GDIfP6I8JjdUSeKlXK8LYM/qeuIn
-	73HJ/VlSyT3sPX5kbmSuR5ALzJ+YVwI+xcicBd/AwHts8p7Voo3oZEJCzD64PjYr
-	tGTdnEef4yFfu9YJObPWZSuurQUdXZb1ZkDDVxMvBX//pw==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49junu09k7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 04 Oct 2025 06:46:39 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4e002f413e4so32078121cf.2
-        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 23:46:38 -0700 (PDT)
+	s=arc-20240116; t=1759560781; c=relaxed/simple;
+	bh=5J1baIdSL45ACTd+W/44QqTvopOgQHTKpCcOhxSE0Es=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=USdjqVO822Bt8NgNoR0WyY4bMXLpEb/HU6QX3dgIJUltcMMKF+EvXL7934zYv5uQiYX2dznymsDM0pCMm5uPfdXh2qjhanBPm3+1sLBCDzoSGW9i6uo89gFajPLGzXWVWDujB4i5CJCpI72DjQmlYfs5gn38u4mx/v4K+jvXLDU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=P+Nf/o9I; arc=none smtp.client-ip=209.85.216.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-33833a0a58cso618984a91.3
+        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 23:52:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759560779; x=1760165579; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gnkFM/YLSQkgvC/0LCYL21076eyFbXRBtw4lKWhs2uM=;
+        b=P+Nf/o9IV9RKUdF/heAwoIfjj4lfCQ1PpPOJZT3a1zQfc3tuADZ8XpifnS87C6p8J2
+         AjSYD4SgA6hFAP/rOU8gBlpg3onFokzCEu42lklKB3K+c8qSSWRyDJdBwtxO6J/N/kHz
+         4iYsWxIszOitb62rthYlDDi+3EEOh13+xd/XkSEePLw4Pvz2LyYOYs7JI2ZKBDCN5v0F
+         u2m3ANZKk41jkBpLsgwVA6kJFR8yYPrwrpW0c1LJbT9otv0D11Y/8AXsyfUSW5b8wxQj
+         S+N9cj8L+/20T9maHFH7MHRWiMkKparjWUp8pKuB1kIT706SbU8BdFkCwWkXL8lCz3K5
+         V1VQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759560398; x=1760165198;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SxgQPHjjkx8c1JmVgGvAmy4X988IpWVIdlbWqL8CFH0=;
-        b=vCXtBoSyOym9vUCEBfJxK2hppWH3J9VZpjjTzINSBvCQVRuiYPYhYDc6V5KTTOSHk5
-         eRrgjTybalnVHVE0097OQxbkzXC/I9cWbOld2yaxaVlTDJwc+E+DSPhcMw/1T0Bh2ITm
-         fAeZqkw2+fyQeNZwRN4MlSh8OalwF1O4CqltvGSOKMZEgfz+iEyHADd4We9r2RdQKzkq
-         hG9IoyRC8lZD6YcxUwda/APxeu2VA4lKInXd2EhE5Uh1iQC7OOK4qe4uf0iil9B5HEKi
-         JRedJe1uNfERjW272GECbr/Ig2FUDj817MxHBWiiUNpY2GZUgOTriohHO47jX2YIk5ZI
-         A4vA==
-X-Forwarded-Encrypted: i=1; AJvYcCUgrF+pUfR0WWmcf7OZlPRMgBKGUAZzoV+SkRkl57Eat3tY2tamp16d0ow/gHM2h1f51YLvv7cDWase@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqpZ+3fV+4CeywlzG6q3dsBGNmNZuDToS97O7niKgQjOKryHqh
-	+2/WcwQaX7QwDEzZwuHdFkGOm9v60kFmTOMWWrKuOzLjtUTIJ6IblNky4em8nGctEDxsgrZUnPb
-	ksFFLw+pkuHWE8P4o2eK+VXwhmATkD4wlp1BuITR6BwydiCBFpJhZeK12QdUIEpaJ
-X-Gm-Gg: ASbGncuG79fcuSW0rVmsXoeZKOb+wN5i4lY1rNkJ1zi/l+aNKZa/0rg2KIs03JA09EY
-	06aQkktnVOt35tujLl38J2O4zyzEctcM8ZfnXAqDXVfcwrTd1RK4O6gALrAzuIEazqZSPG+13xJ
-	Nxuetcz2cLlOxGxKoHIJ5fi1TN/HN2uGWonFfm2dqCutriCEYZFb0Vy1OvfJausIOWrf6hCsOt/
-	MiY4bAfwvLUmk1TWTzpJZUBaqeAh+iItSFNWfBrzTv/ma4NZgkauSfM1k+RdHnQAgo4JgoOLiay
-	I/kXNIU/Vr6kuivAYhhSA2/jby4TPtHg+pNb2z9pLrUmD/4nclBNopnuxmoO8i2mwqeiECz1vVf
-	4u3APNJbu1EyKLrGB3eFP/yIUIe9zF63XdBCbUA+vEG5YZqSaq5xlmHhrQQ==
-X-Received: by 2002:a05:622a:1445:b0:4d0:7158:b18f with SMTP id d75a77b69052e-4e576b1372dmr72499291cf.63.1759560398146;
-        Fri, 03 Oct 2025 23:46:38 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGQvslGGL2S9yvJwcUTY/EvgxyUZIovyV0WIRAR6wT5X3G5XXzp9YE1BKwE2cINLOH+uPi89w==
-X-Received: by 2002:a05:622a:1445:b0:4d0:7158:b18f with SMTP id d75a77b69052e-4e576b1372dmr72499151cf.63.1759560397681;
-        Fri, 03 Oct 2025 23:46:37 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58b01134eeasm2555271e87.34.2025.10.03.23.46.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Oct 2025 23:46:36 -0700 (PDT)
-Date: Sat, 4 Oct 2025 09:46:33 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Xilin Wu <sophon@radxa.com>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] phy: qcom: qmp-combo: get the USB3 & DisplayPort
- lanes mapping from DT
-Message-ID: <3i3euwqqvtqgyqgxbylbrj3dk2cyyavinb5v7ocevi4x6o25y5@66fodqy736kq>
-References: <20250930-topic-x1e80100-hdmi-v4-0-86a14e8a34ac@linaro.org>
- <20250930-topic-x1e80100-hdmi-v4-2-86a14e8a34ac@linaro.org>
- <uozgwot7yuwmaiwmqoo6ickblpqe52tnj44tnxcorygqxwou52@hksvktgq5zp7>
- <9d020a8e-22d8-4f1f-803c-d00bb912f699@linaro.org>
+        d=1e100.net; s=20230601; t=1759560779; x=1760165579;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gnkFM/YLSQkgvC/0LCYL21076eyFbXRBtw4lKWhs2uM=;
+        b=Jx5LtoWoGx7Ka0dfsIodyRpKxKQhz6hW2T96fPNOjvIKD5aHIjjOuth8QOt4MhEoVp
+         33oZMAUeIaom+bHV+9IGZYZG4OYZOVjFKOzGRTE91PYiAqnCFTmOWUT8Sj7BGL1gKCCq
+         MY9JG0ymDEfqXRojGo51w/VglTBWjd4oVJqi1qnLmsyS3mgYXy8joabmey9aWaLUVm9C
+         5ys0SYoqjhdfpZHZPt2Oy0yfLpvsf9LfxT0YXIytyHMzwhaHhVDI12kK7Ao+3kcgwfnr
+         zRmWzpUfRG97GWnVsAMkJNSb9OpZKC3jtWcXDZTAjm0Qg8j+erD39rbTl/0e4p0ljE/z
+         BDiw==
+X-Forwarded-Encrypted: i=1; AJvYcCUfxWBHIf+Tb4wzonvh2mG9Dw4CVv4NYaq5pYlELxtSL4t+xudpAjfA23NuEYnNPIrZ164RMu3IHpTi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzy8JK4LfPYjIgyzkln9GXTP/34W1a5YHO4jgLM09c/dpX6QbKh
+	zRdGJ900Vbyd0BX4vBJq4Oj8whae4EBX+kgJixt29tt/lllpxwvYTKhPkgmo4Mwj1BiQlKDEGIy
+	+zzI7edQQ+o+N3jcPib+X/8C5bSqQPuvM2Paggo8GJw==
+X-Gm-Gg: ASbGncsMlXKtNP8J1Wo4Vh2Wk6+4YwuvmXcZ5+OgBUqokxV/eFPxhDehGwmbgQXOuaD
+	p8JvWleopfl53zRHI9eXKT7GuGvPN86juWT8gWx3i/3uobkhPhALQQlmOqDaUThd6rDSgg0PVRC
+	aPvmZm/g6bEk3feLfeRW1PrKBm0QZEnseJ0xTdIkvCHuAEAhvuWRiKMPEtwZpl+6Qsk7mDMaQsU
+	DEF4GpGAHoRqVOnKKpYuja9dfTEqbLxWJIdxVjJnlDgnIvP9DKtenE=
+X-Google-Smtp-Source: AGHT+IHRCGDfDow62sK4NuMTOWAffGvGwOQJ68YmDpR7uTO2azp/umx3vjWJEb/8Uryh4XdPpaafIIgOzzXi9FgKazs=
+X-Received: by 2002:a17:902:d2d1:b0:27e:f07c:8429 with SMTP id
+ d9443c01a7336-28e9a54edfbmr41659685ad.1.1759560778950; Fri, 03 Oct 2025
+ 23:52:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9d020a8e-22d8-4f1f-803c-d00bb912f699@linaro.org>
-X-Proofpoint-ORIG-GUID: MYvLydrWfrFNE01tNObvPo20D7HwDqkC
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAyMyBTYWx0ZWRfX+XPtLhO7aPwI
- 7G4NF6or5BkfY5GG51Snz2vpLGYSbr88i8gaAJJI2IBjeDuVCI8WiA4SzYVdop9VmL/764Obmk4
- n2ierfHZLL9d1Iq//x3VV4Pd+3guNT4KoIj33zTScxJbVsj2nlGolugqlTv78bFPs31NOFJDlQH
- 1G3en6KUbj5NWCbzk1DHbJmSs6raDHn/pvswkqrj8VjXHURkjJQ9IS6jPE/8dOtxVqXSbEBFRcy
- SPPxl+hKw+ZojhF7AxzP3cieG1CKsUhjtV6xdY+WhQlPLPhObKqm708IE6BdR9NJAPtqfyaF6M/
- ASkrCOIRDDEsaZdwX9isu/2HtJptkNPOcbBZVc2h/lkKth7dOkwQE4zdjoLETwXTIUWkYcPLJRS
- 43+AcT3D7FKXEZTIWER34P6fJvgTdA==
-X-Authority-Analysis: v=2.4 cv=CbIFJbrl c=1 sm=1 tr=0 ts=68e0c2cf cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=P-s5V6jcMkwkI3aNiSkA:9
- a=CjuIK1q_8ugA:10 a=dawVfQjAaf238kedN5IG:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: MYvLydrWfrFNE01tNObvPo20D7HwDqkC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-03_07,2025-10-02_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 malwarescore=0 clxscore=1015 adultscore=0 suspectscore=0
- spamscore=0 priorityscore=1501 phishscore=0 impostorscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040023
+References: <20250826083657.4005727-1-jishnu.prakash@oss.qualcomm.com>
+ <20250826083657.4005727-4-jishnu.prakash@oss.qualcomm.com>
+ <20250829-classic-dynamic-clam-addbd8@kuoka> <5d662148-408f-49e1-a769-2a5d61371cae@oss.qualcomm.com>
+ <4e974e77-adfc-49e5-90c8-cf8996ded513@kernel.org> <a0e885be-e87d-411a-884e-3e38a0d761e5@oss.qualcomm.com>
+ <8c90cc3f-115e-4362-9293-05d9bee24214@linaro.org> <5d4edecf-51f3-4d4a-861f-fce419e3a314@oss.qualcomm.com>
+ <20250927144757.4d36d5c8@jic23-huawei> <a3158843-dfac-4adc-838a-35bb4b0cbea4@oss.qualcomm.com>
+In-Reply-To: <a3158843-dfac-4adc-838a-35bb4b0cbea4@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Date: Sat, 4 Oct 2025 15:52:46 +0900
+X-Gm-Features: AS18NWDVJCQB4nr_mbc2c7gb7f3R-Lx013HaHTF8W9UGQYmZaYQrsAiPHuxiRwQ
+Message-ID: <CAGE=qrrCvq28pr9Y7it-CGMW=szKUnU+XBj1TmpoUwuASM05ig@mail.gmail.com>
+Subject: Re: [PATCH V7 3/5] dt-bindings: iio: adc: Add support for QCOM PMIC5
+ Gen3 ADC
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, agross@kernel.org, 
+	andersson@kernel.org, lumag@kernel.org, dmitry.baryshkov@oss.qualcomm.com, 
+	konradybcio@kernel.org, daniel.lezcano@linaro.org, sboyd@kernel.org, 
+	amitk@kernel.org, thara.gopinath@gmail.com, lee@kernel.org, rafael@kernel.org, 
+	subbaraman.narayanamurthy@oss.qualcomm.com, david.collins@oss.qualcomm.com, 
+	anjelique.melendez@oss.qualcomm.com, kamal.wadhwa@oss.qualcomm.com, 
+	rui.zhang@intel.com, lukasz.luba@arm.com, devicetree@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
+	cros-qcom-dts-watchers@chromium.org, quic_kotarake@quicinc.com, 
+	neil.armstrong@linaro.org, stephan.gerhold@linaro.org, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Oct 01, 2025 at 09:06:10AM +0200, Neil Armstrong wrote:
-> On 9/30/25 20:56, Dmitry Baryshkov wrote:
-> > On Tue, Sep 30, 2025 at 09:39:48AM +0200, Neil Armstrong wrote:
-> > > The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
-> > > of a combo glue to route either lanes to the 4 shared physical lanes.
-> > > 
-> > > The routing of the lanes can be:
-> > > - 2 DP + 2 USB3
-> > > - 4 DP
-> > > - 2 USB3
-> > > 
-> > > Get the lanes mapping from DT and stop registering the USB-C
-> > > muxes in favor of a static mode and orientation detemined
-> > > by the lanes mapping.
-> > > 
-> > > This allows supporting boards with direct connection of USB3 and
-> > > DisplayPort lanes to the QMP Combo PHY lanes, not using the
-> > > USB-C Altmode feature.
-> > > 
-> > > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > > ---
-> > >   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 145 ++++++++++++++++++++++++++++--
-> > >   1 file changed, 137 insertions(+), 8 deletions(-)
-> > > 
-> > > @@ -4167,9 +4269,41 @@ static int qmp_combo_probe(struct platform_device *pdev)
-> > >   	if (ret)
-> > >   		goto err_node_put;
-> > > -	ret = qmp_combo_typec_register(qmp);
-> > > -	if (ret)
-> > > -		goto err_node_put;
-> > > +	qmp->qmpphy_mode = QMPPHY_MODE_USB3DP;
-> > > +
-> > > +	if (of_find_property(dev->of_node, "mode-switch", NULL) ||
-> > > +	    of_find_property(dev->of_node, "orientation-switch", NULL)) {
-> > > +		ret = qmp_combo_typec_register(qmp);
-> > > +		if (ret)
-> > > +			goto err_node_put;
-> > > +	} else {
-> > > +		enum typec_orientation dp_orientation = TYPEC_ORIENTATION_NONE;
-> > > +		enum typec_orientation usb3_orientation = TYPEC_ORIENTATION_NONE;
-> > > +
-> > > +		ret = qmp_combo_get_dt_dp_orientation(dev, &dp_orientation);
-> > > +		if (ret)
-> > > +			goto err_node_put;
-> > > +
-> > > +		ret = qmp_combo_get_dt_usb3_orientation(dev, &usb3_orientation);
-> > > +		if (ret)
-> > > +			goto err_node_put;
-> > > +
-> > > +		if (dp_orientation == TYPEC_ORIENTATION_NONE &&
-> > > +		    usb3_orientation != TYPEC_ORIENTATION_NONE) {
-> > > +			qmp->qmpphy_mode = QMPPHY_MODE_USB3_ONLY;
-> > > +			qmp->orientation = usb3_orientation;
-> > > +		} else if (usb3_orientation == TYPEC_ORIENTATION_NONE &&
-> > > +			 dp_orientation != TYPEC_ORIENTATION_NONE) {
-> > > +			qmp->qmpphy_mode = QMPPHY_MODE_DP_ONLY;
-> > > +			qmp->orientation = dp_orientation;
-> > > +		} else if (dp_orientation != TYPEC_ORIENTATION_NONE &&
-> > > +			 dp_orientation == usb3_orientation) {
-> > > +			qmp->qmpphy_mode = QMPPHY_MODE_USB3DP;
-> > > +			qmp->orientation = dp_orientation;
-> > > +		} else {
-> > > +			dev_warn(dev, "unable to determine orientation & mode from data-lanes");
-> > > +		}
-> > > +	}
-> > >   	ret = drm_aux_bridge_register(dev);
-> > >   	if (ret)
-> > > @@ -4189,11 +4323,6 @@ static int qmp_combo_probe(struct platform_device *pdev)
-> > >   	if (ret)
-> > >   		goto err_node_put;
-> > > -	/*
-> > > -	 * The hw default is USB3_ONLY, but USB3+DP mode lets us more easily
-> > > -	 * check both sub-blocks' init tables for blunders at probe time.
-> > > -	 */
-> > > -	qmp->qmpphy_mode = QMPPHY_MODE_USB3DP;
-> > 
-> > SHouldn't this still be a default in the 'normal' USB-C case?
-> 
-> It is, I just moved it before the added logic, but the comment doesn't really
-> apply anymore
+On Sat, 4 Oct 2025 at 11:42, Jishnu Prakash
+<jishnu.prakash@oss.qualcomm.com> wrote:
+>
+> Hi Jonathan,
+>
+> On 9/27/2025 7:17 PM, Jonathan Cameron wrote:
+> > On Fri, 19 Sep 2025 20:17:43 +0530
+> > Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
+> >
+> >> Hi Krzysztof,
+> >>
+> >> On 9/18/2025 5:45 AM, Krzysztof Kozlowski wrote:
+> >>> On 18/09/2025 04:47, Jishnu Prakash wrote:
+> >>>> Hi Krzysztof,
+> >>>>
+> >>>> On 9/17/2025 5:59 AM, Krzysztof Kozlowski wrote:
+> >>>>> On 16/09/2025 16:28, Jishnu Prakash wrote:
+> >>>>>>> You cannot have empty spaces in ID constants. These are abstract
+> >>>>>>> numbers.
+> >>>>>>>
+> >>>>>>> Otherwise please point me to driver using this constant.
+> >>>>>>
+> >>>>>> These constants are for ADC channel numbers, which are fixed in HW.
+> >>>>>>
+> >>>>>> They are used in this driver: drivers/iio/adc/qcom-spmi-adc5-gen3.c,
+> >>>>>> which is added in patch 4 of this series.
+> >>>>>>
+> >>>>>> They can be found in the array named adc5_gen3_chans_pmic[].
+> >>>>>
+> >>>>> Really? So point me to the line there using ADC5_GEN3_VREF_BAT_THERM.
+> >>>>>
+> >>>>
+> >>>> We may not be using all of these channels right now - we can add them
+> >>>> later based on requirements coming up. For now, I'll remove the channels
+> >>>> not used in adc5_gen3_chans_pmic[].
+> >>>
+> >>> You are not implementing the feedback then. Please read it carefully.
+> >>>
+> >>
+> >> Sorry, I misunderstood - so you actually meant I should remove the
+> >> empty spaces in the definitions, like this?
+> >>
+> >> -#define ADC5_GEN3_VREF_BAT_THERM               0x15
+> >> +#define ADC5_GEN3_VREF_BAT_THERM 0x15
+> >>
+> >> I thought this at first, but I somehow doubted this later, as I saw some
+> >> other recently added files with empty spaces in #define lines, like:
+> >>
+> >> include/dt-bindings/iio/adc/mediatek,mt6373-auxadc.h
+> >> include/dt-bindings/regulator/st,stm32mp15-regulator.h
+> >>
+> >> I can make this change, if you prefer this. Please let me know
+> >> if I'm still missing something.
+> >>
+> >> Also please let me know if you want me to remove the unused
+> >> channels - I would prefer to keep them if there's no issue,
+> >> as we might need them later.
+> >>
+> > He is referring to 0x14 and below not being defined values.  So what
+> > do they mean if they turn up in the DT?
+> >
+>
+> Thanks for your clarification. To address your first point above, the macros
+> added here only represent the ADC channel numbers which are supported for
+> ADC5 Gen3 devices. If there are numbers missing in between (like 0x14),
+> that is because there exist no valid ADC channels in HW matching those
+> channel numbers.
+>
+> For your question above, if any of the undefined channels are used in the DT,
+> they should ideally be treated as invalid when parsed in the driver probe and
+> lead to an error. When I checked the code again, I saw we do not have such an
+> explicit check right now, so I will add that in the next patch series.
+>
+> And to be clear on which channel numbers are supported, I think it may be
+> best if, for now, we only add support for the channel numbers referenced in
+> the array adc5_gen3_chans_pmic[] in drivers/iio/adc/qcom-spmi-adc5-gen3.c.
+>
+> There are only 18 channel numbers used in this array and I would remove
+> all channels except for these from the binding files. During parsing, we
+> would use this array to confirm if an ADC channel added in DT is supported.
+>
+> In case we need to add support for any more channels later, we could add
+> their macros in the binding file and update the array correspondingly at
+> that time.
+>
+> Does all this sound fine? Please let me know if you have any more concerns
+> or queries.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-
-
--- 
-With best wishes
-Dmitry
+No, it doesn't.  You keep ignoring my arguments and responding to
+something else. I prefer not to store hardware values as bindings,
+because these are not bindings (and you failed to prove which SW
+interface they bind) and it's really not necessary.
 
