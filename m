@@ -1,182 +1,433 @@
-Return-Path: <devicetree+bounces-223633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE36CBB8EE3
-	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 16:33:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B51BB8F2B
+	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 16:55:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B37B189EF4E
-	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 14:33:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3ED993A6E40
+	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 14:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A9DE20E023;
-	Sat,  4 Oct 2025 14:33:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0060523D2A3;
+	Sat,  4 Oct 2025 14:55:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WPi+BIyx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA3B61F91E3
-	for <devicetree@vger.kernel.org>; Sat,  4 Oct 2025 14:33:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5B9423C50A;
+	Sat,  4 Oct 2025 14:55:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759588401; cv=none; b=a4HMRyFUhegJjgR8IV04Lu2nWch7zMCaSVtU254XnnJW4G7RNphiLNJSjsqJDIZGU4ANG7Nm1kgQ56f8LWEfqkrJ9IZzn+ih53tY1TWEUZIZ11ENq/dsFvLT8bE3FM4TBmqVzqXYcgcQdTBL82pUQrfGJnnTUZLfyMpZ9SXcI7Q=
+	t=1759589719; cv=none; b=CBjXOp3E8iytY6P2Kt4eUluDWjT1AKAKAXC4CWmDh+IaPBimYfCcxSDPT53VCEo69DL3PMbpyyNXb9qbbaALNqu8O/sOnrdhfDvoQ/DzV+kV5UMSoNrasJw25dSuOvqHiyZs6XbGx5ZxpHQ7FOvvHCDae5wJ3ReRp+JAPJdoU0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759588401; c=relaxed/simple;
-	bh=0J55Y2HmqgcnbS+RXB3tiJFIIySx+Rr5EZpIa0gAB24=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OMu72EDVuGoTFUUc8fyUHCoOv9ftiJK+3A5PGj4gHbl3LsWAJ3xy4EnU36Bh1pq0/UUnRVi3gXHvt0i3HljDyHLzUXp6ubO74YzEeryJOM9LWzfCNscFgkpUTqdK9lBRtc8RmKknBWs74JE42wrle5AcS0RWXjorb6ZFG0HQgxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-54a79cadd1fso2251495e0c.3
-        for <devicetree@vger.kernel.org>; Sat, 04 Oct 2025 07:33:18 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759588397; x=1760193197;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xthzmHjkhKJUrri8Wf1E3AifPP/ZxbkaJDpboT1dzM4=;
-        b=Om6Y9ZZVWnasw/ObG0MjzegkNma7osEetG/JJtR8MBo22iAR62Kx8AQmJj3AOTPZrX
-         j0MsD7k3koiY9vNq+der8g3bkJgJbH4o7WJ8beo8Dry6U3yje84586Yyn7mFxRR0Yv+i
-         bSdi3OOoxBYn4/YkQ2so9wkmukMvcNVtNl5dz53rCgrEbmV2xTHmNvsqiP61pRyipnwB
-         +YqT201/YjKJiGWM7k0hVL1/KtVY1Y/aNjfHK6q1IwVU5r+zTIVkML7V8cN2bS0A3PV1
-         J9W1WwLq/1zuS/FqcTI0BnSvgUU6Gz0GRaM7UbHMq47pEeb31CKL9Le2phZMxbHBZMoS
-         G2Bw==
-X-Forwarded-Encrypted: i=1; AJvYcCX9ZIQ8oUqpfk4xsZC97BqPge4iwEErZjUsUY6h/LEBhVsUb00tIfkB5GPuYXwOCJmqO05wE0rMeXWp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9VGshEQTf6+z7sf28YrfL16PdacH29S4URv26ew8k/h9VnfBr
-	PX9UGvml0GJfWO+2KXQd6f3NwIRpov8RcNzA6WDtvdHeHvcYbkpv26vh0TpKBfHl
-X-Gm-Gg: ASbGncvZAiDJfdPL4uahm8tBBiPlBaXCmrGel4rV7lAfYWXMm+e5ID4Mb+Ymz/vm4EL
-	EHMvoBRcFIRR2k56bZvM31009z8FXbshKCwncZcfnKH2Zqz+7Bjo7JqwZV0TN+zNek38qpY/f0d
-	iszZRh0Hj/66ym3q1Iy7s6kFy6BURpX89iXpgQqnQvdQzwtVnq7O9B+c+QYJiShGsF0HLa0XTAO
-	TtZFTozqWjED3UsKC1irTSaovZwmlQEA9GjYpDhdq3lFoiFpfiLvLJ3Ipy9RwkBQshr+12MUyxW
-	5v7qhCpD/ZPQ/laxiLG42Sz8B1mCJVqsApoXXkzasLjWsWZ5s6nw/BsYkNcU6wGYnkfCtvdaGyx
-	G1uCFCxojzVuXdzWKaxTUE8fC8zxGJ7Z008tyuCOJqV9JkldXqlA7S0wMwEZDm2hn6H8rdIDumH
-	BgaSttyTKLou8GC0cySEY=
-X-Google-Smtp-Source: AGHT+IGaxsAdzvZDS5KCcJlz5P3ffKSy0nkUzwMEoBB4Pws0ItW5kjzx5T/jPp84uvZQoECzCfp5aQ==
-X-Received: by 2002:a05:6122:514:b0:54b:bc60:93f8 with SMTP id 71dfb90a1353d-5524ea2517fmr2556877e0c.9.1759588397383;
-        Sat, 04 Oct 2025 07:33:17 -0700 (PDT)
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com. [209.85.222.52])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5523cf63c6asm1865051e0c.19.2025.10.04.07.33.17
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 04 Oct 2025 07:33:17 -0700 (PDT)
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-8e8163d94bbso2399303241.3
-        for <devicetree@vger.kernel.org>; Sat, 04 Oct 2025 07:33:17 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUso3R53BXUiiTVoXaTAWd3fFHyJUhy/0RdSvK3WSK6pxaOocYG3yswG8vp8kW3Q8sQ38k0ZYjAUHP0@vger.kernel.org
-X-Received: by 2002:a05:6102:291f:b0:5a2:668d:f20b with SMTP id
- ada2fe7eead31-5d41d0dd17bmr3054407137.16.1759588396956; Sat, 04 Oct 2025
- 07:33:16 -0700 (PDT)
+	s=arc-20240116; t=1759589719; c=relaxed/simple;
+	bh=fqd/1/Wyatmf5aspgaffyoDM0tdTiAxhBNfRUMozzVI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ue7CKR20MSglJluCachl6AoXiUM+zXNLZDjoaBz3NE1+kEqc5YrUY0oNlz+IQVJnyd00qs4UjusWPWEm5J23UQcpZ62z/J/1B5ZZX4FMz/M/lZcXcxBV4YphVQQSaP9vHY+t8ZeacsgedJ4x6xLdOr85LqLlflm69VCJ45u02Sg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WPi+BIyx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7CA1C4CEF1;
+	Sat,  4 Oct 2025 14:55:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759589719;
+	bh=fqd/1/Wyatmf5aspgaffyoDM0tdTiAxhBNfRUMozzVI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=WPi+BIyxMiohCopaFMsaNJdENYyeJv/Yoo/sG/2RZSKG+E9K1cGFKGEW+PD0I7mZH
+	 trx3koPhQhKjhxJnSGrlxHGLTv0rpOC1YnVZG/4LNk/CnZxenW2qPM/tTAIgQPOuz4
+	 lr6juvg6AEVNdHmHI0bAiXgcoL/HQyztZKYl/zQC+oNja1yV+KkVX4sSMsZLSodjBW
+	 SAYkTemdfmRnVEgtAT9N9BUryBYFmV+UV+GSwNaRyImnIisXClYSlfmn/FuHU+IIoj
+	 GAO+EWCFqHTSXnfcafTlcOoVIrX1hdxJPznf6Jyd+QZeKYzqkO+9E8cCQMCklWjmTO
+	 ptNRxrnxQZc0g==
+Date: Sat, 4 Oct 2025 15:55:07 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Lakshay Piplani <lakshay.piplani@nxp.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+ marcelo.schmitt1@gmail.com, gregkh@linuxfoundation.org,
+ viro@zeniv.linux.org.uk, peterz@infradead.org, jstephan@baylibre.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, jonathan.cameron@huawei.com,
+ vikash.bansal@nxp.com, priyanka.jain@nxp.com, shashank.rebbapragada@nxp.com
+Subject: Re: [PATCH v3 2/2] iio: temperature: Add driver for NXP P3T175x
+ temperature sensor
+Message-ID: <20251004155507.44798db5@jic23-huawei>
+In-Reply-To: <20250929094543.2512264-2-lakshay.piplani@nxp.com>
+References: <20250929094543.2512264-1-lakshay.piplani@nxp.com>
+	<20250929094543.2512264-2-lakshay.piplani@nxp.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.51; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251001122326.4024391-1-cosmin-gabriel.tanislav.xa@renesas.com>
- <20251001122326.4024391-4-cosmin-gabriel.tanislav.xa@renesas.com> <20251004143901.505ec386@jic23-huawei>
-In-Reply-To: <20251004143901.505ec386@jic23-huawei>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Sat, 4 Oct 2025 16:33:05 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV+V60pZSRmu6SjeBNyi_0+Un5pXjWDLDDBt6UbYfTmeQ@mail.gmail.com>
-X-Gm-Features: AS18NWBkap4dmgI1LydXdtTPg0XGaFgAjq5oqq5cMsJWqAup1M73smsgPeqmT7I
-Message-ID: <CAMuHMdV+V60pZSRmu6SjeBNyi_0+Un5pXjWDLDDBt6UbYfTmeQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/7] iio: adc: add RZ/T2H / RZ/N2H ADC driver
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>, 
-	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat, 4 Oct 2025 at 15:39, Jonathan Cameron <jic23@kernel.org> wrote:
->
-> On Wed,  1 Oct 2025 15:23:10 +0300
-> Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com> wrote:
->
-> > Add support for the A/D 12-Bit successive approximation converters foun=
-d
-> > in the Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs.
-> >
-> > RZ/T2H has two ADCs with 4 channels and one with 6.
-> > RZ/N2H has two ADCs with 4 channels and one with 15.
-> >
-> > Conversions can be performed in single or continuous mode. Result of th=
-e
-> > conversion is stored in a 16-bit data register corresponding to each
-> > channel.
-> >
-> > The conversions can be started by a software trigger, a synchronous
-> > trigger (from MTU or from ELC) or an asynchronous external trigger (fro=
-m
-> > ADTRGn# pin).
-> >
-> > Only single mode with software trigger is supported for now.
-> >
-> > Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
-> > Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
-> Hi Cosmin
->
-> A few really minor comments.
->
-> I might have ignored these or tweaked whilst applying but looks
-> like you'll probably be doing a v4 anyway so I thought I'd mention them.
->
-> Thanks,
->
-> Jonathan
->
->
-> > diff --git a/drivers/iio/adc/rzt2h_adc.c b/drivers/iio/adc/rzt2h_adc.c
-> > new file mode 100644
-> > index 000000000000..51d1852d814d
-> > --- /dev/null
-> > +++ b/drivers/iio/adc/rzt2h_adc.c
-> > @@ -0,0 +1,309 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/cleanup.h>
-> > +#include <linux/completion.h>
-> > +#include <linux/delay.h>
-> > +#include <linux/iio/adc-helpers.h>
-> > +#include <linux/iio/iio.h>
-> > +#include <linux/interrupt.h>
-> > +#include <linux/io.h>
-> > +#include <linux/iopoll.h>
-> > +#include <linux/mod_devicetable.h>
-> > +#include <linux/module.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pm_runtime.h>
-> > +#include <linux/property.h>
-> > +
-> > +#define RZT2H_NAME                   "rzt2h-adc"
->
-> I'm not a huge fan of defines like this as there is no inherent reason th=
-e two
-> places it is used should take the same value. If you feel it's really jus=
-tified
-> then I don't mind too much though.
+On Mon, 29 Sep 2025 15:15:43 +0530
+Lakshay Piplani <lakshay.piplani@nxp.com> wrote:
 
-I am not a fan either, as using a define in the initialization of
-platform_driver.driver.name means I have to do another grep to
-find the actual name.
+> Add support for the NXP P3T175x (P3T1750/P3T1755) family of temperature
+> sensor devices. These devices communicates via both I2C or I3C interfaces.
+> 
+> Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
+Hi Lakshay,
 
-Gr{oetje,eeting}s,
+Please add a cover letter. I would have replied to that if there was one.
 
-                        Geert
+After some recent feedback on hwmon vs IIO sensors and the fact we do
+indeed seem to be slowly drifting wrt to the boundary for what I let into IIO
+I'm asking people to +CC the hwmon maintainers and provide an explanation of why
+they think a particular device should be supported with an IIO driver rather than
+a hwmon one. 
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+So +CC Guenter and Jean,
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Sorry I didn't raise this earlier. I've clearly not been paying quite enough attention
+to this.  Had my head down in code reviews rather than looking at the bigger picture.
+
+I'm not immediately spotting characteristics that would clearly justify this being
+in IIO.
+
+Review comments inline.
+
+Thanks,
+
+Jonathan
+
+
+> ---
+> V2 -> V3: Changes since V2:
+>           - Dropped nxp,interrupt-mode and nxp,fault-queue from driver and YAML (not suitable for DT)
+>           - Removed trigger_one_shot sysfs attribute and its ABI doc
+>           - Applied IWYU principle: cleaned up unused headers
+>           - Fixed sampling frequency handling
+>           - Removed dev_err/dev_dbg statements wherever not necessary
+> V1 -> V2: Changes since V1:
+>           - Added endian-safe handling for register read (__be16 conversion)
+>           - Replaced manual bit masking with FIELD_GET bit extraction
+>           - Dropped sysfs attributes for fault queue length and thermostat mode (comparator or interrupt)
+>           - Added ABI doc: Documentation/ABI/testing/sysfs-bus-iio-temperature-p3t1755 describing
+>             trigger_one_shot attribute
+>           - Updated Kconfig to allow building both I2C and I3C drivers simultaneously
+>           - I3C: switched to device_property_* from of_property_*
+>           - Added devm_add_action_or_reset() for IBI disable/free
+> 
+>  drivers/iio/temperature/Kconfig            |   2 +
+>  drivers/iio/temperature/p3t/Kconfig        |  28 ++
+>  drivers/iio/temperature/p3t/Makefile       |   5 +
+>  drivers/iio/temperature/p3t/p3t1755.h      |  45 +++
+>  drivers/iio/temperature/p3t/p3t1755_core.c | 362 +++++++++++++++++++++
+>  drivers/iio/temperature/p3t/p3t1755_i2c.c  |  68 ++++
+>  drivers/iio/temperature/p3t/p3t1755_i3c.c  | 108 ++++++
+>  7 files changed, 618 insertions(+)
+>  create mode 100644 drivers/iio/temperature/p3t/Kconfig
+>  create mode 100644 drivers/iio/temperature/p3t/Makefile
+>  create mode 100644 drivers/iio/temperature/p3t/p3t1755.h
+>  create mode 100644 drivers/iio/temperature/p3t/p3t1755_core.c
+>  create mode 100644 drivers/iio/temperature/p3t/p3t1755_i2c.c
+>  create mode 100644 drivers/iio/temperature/p3t/p3t1755_i3c.c
+> 
+
+> diff --git a/drivers/iio/temperature/p3t/p3t1755.h b/drivers/iio/temperature/p3t/p3t1755.h
+> new file mode 100644
+> index 000000000000..1dc0e37322c6
+> --- /dev/null
+> +++ b/drivers/iio/temperature/p3t/p3t1755.h
+
+> diff --git a/drivers/iio/temperature/p3t/p3t1755_core.c b/drivers/iio/temperature/p3t/p3t1755_core.c
+> new file mode 100644
+> index 000000000000..61486eb0e265
+> --- /dev/null
+> +++ b/drivers/iio/temperature/p3t/p3t1755_core.c
+
+
+> +
+> +static int p3t1755_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *channel, int *val,
+> +			    int *val2, long mask)
+> +{
+> +	struct p3t1755_data *data = iio_priv(indio_dev);
+> +	unsigned int cfgr;
+> +	__be16 be;
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_RAW:
+> +		ret = regmap_bulk_read(data->regmap, P3T1755_REG_TEMP, &be, sizeof(be));
+> +		if (ret)
+> +			return ret;
+> +
+> +		*val = sign_extend32(be16_to_cpu(be) >> 4, 11);
+> +
+> +		return IIO_VAL_INT;
+> +
+> +	case IIO_CHAN_INFO_SCALE:
+> +		*val = 625;
+> +		*val2 = 10000;
+> +
+> +		return IIO_VAL_FRACTIONAL;
+> +
+> +	case IIO_CHAN_INFO_ENABLE:
+> +		ret = regmap_read(data->regmap, P3T1755_REG_CFGR, &cfgr);
+> +		if (ret)
+> +			return ret;
+> +
+> +		*val = !FIELD_GET(P3T1755_SHUTDOWN_BIT, cfgr);
+> +
+> +		return IIO_VAL_INT;
+> +
+> +	case IIO_CHAN_INFO_SAMP_FREQ: {
+> +		unsigned int freq_uhz;
+> +		u8 sel;
+> +
+> +		ret = regmap_read(data->regmap, P3T1755_REG_CFGR, &cfgr);
+> +		if (ret)
+> +			return ret;
+> +
+> +		sel = FIELD_GET(P3T1755_CONVERSION_TIME_BITS, cfgr);
+> +		if (sel >= ARRAY_SIZE(p3t1755_samp_freqs_uhz))
+> +			return -EINVAL;
+> +
+> +		freq_uhz = p3t1755_samp_freqs_uhz[sel];
+> +
+> +		*val = freq_uhz / 1000000;
+> +		*val2 = freq_uhz % 1000000;
+
+MICRO (see below).
+
+> +
+> +		return IIO_VAL_INT_PLUS_MICRO;
+> +	}
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+> +
+> +static int p3t1755_write_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan, int val,
+> +			     int val2, long mask)
+> +{
+> +	struct p3t1755_data *data = iio_priv(indio_dev);
+> +	int ret;
+> +
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_ENABLE:
+> +		ret = regmap_update_bits(data->regmap, P3T1755_REG_CFGR,
+> +					 P3T1755_SHUTDOWN_BIT,
+> +					 val == 0 ? P3T1755_SHUTDOWN_BIT : 0);
+> +		if (ret)
+> +			return ret;
+> +
+> +		return 0;
+> +	case IIO_CHAN_INFO_SAMP_FREQ: {
+> +		unsigned int i;
+> +		u32 regbits;
+> +		u64 input_uhz;
+> +
+> +		input_uhz = (u64)val * 1000000 + val2;
+
+MICRO perhaps as that's on the border of how many zeros are easy to count.
+
+> +
+> +		for (i = 0; i < ARRAY_SIZE(p3t1755_samp_freqs_uhz); i++) {
+> +			if (p3t1755_samp_freqs_uhz[i] == input_uhz)
+> +				break;
+> +		}
+> +
+> +		if (i == ARRAY_SIZE(p3t1755_samp_freqs_uhz))
+> +			return -EINVAL;
+> +
+> +		regbits = FIELD_PREP(P3T1755_CONVERSION_TIME_BITS, i);
+> +
+> +		return regmap_update_bits(data->regmap, P3T1755_REG_CFGR,
+> +					  P3T1755_CONVERSION_TIME_BITS,
+> +					  regbits);
+> +	}
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +}
+
+> +
+> +static int p3t1755_write_event_value(struct iio_dev *indio_dev,
+> +				     const struct iio_chan_spec *chan,
+> +				     enum iio_event_type type,
+> +				     enum iio_event_direction dir,
+> +				     enum iio_event_info info,
+> +				     int val, int val2)
+> +{
+> +	struct p3t1755_data *data = iio_priv(indio_dev);
+> +	unsigned int reg;
+> +	__be16 be;
+> +	int raw;
+> +
+> +	if (type != IIO_EV_TYPE_THRESH || info != IIO_EV_INFO_VALUE)
+> +		return -EINVAL;
+> +
+> +	if (val2)
+> +		return -EINVAL;
+> +
+> +	reg = (dir == IIO_EV_DIR_RISING) ? P3T1755_REG_HIGH_LIM :
+> +	       P3T1755_REG_LOW_LIM;
+> +
+> +	raw = DIV_ROUND_CLOSEST(val * 2, 125);
+> +
+> +	if (raw < -2048 || raw > 2047)
+> +		return -ERANGE;
+> +
+> +	be = cpu_to_be16((u16)(raw << 4));
+> +
+> +	return regmap_raw_write(data->regmap, reg, &be, sizeof(be));
+
+Why is raw write appropriate here rather than bulk_write ?
+Perhaps a comment would be a good idea for anyone wondering in future.
+
+> +}
+
+> +
+> +MODULE_AUTHOR("Lakshay Piplani <lakshay.piplani@nxp.com>");
+> +MODULE_DESCRIPTION("NXP P3T175x Driver");
+
+As below wrt to wild cards.
+
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/iio/temperature/p3t/p3t1755_i2c.c b/drivers/iio/temperature/p3t/p3t1755_i2c.c
+> new file mode 100644
+> index 000000000000..f5d7799f091c
+> --- /dev/null
+> +++ b/drivers/iio/temperature/p3t/p3t1755_i2c.c
+
+> +static int p3t1755_i2c_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+> +	const struct p3t1755_info *chip;
+> +	struct regmap *regmap;
+> +	int ret;
+> +
+> +	regmap = devm_regmap_init_i2c(client, &p3t1755_i2c_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(dev, PTR_ERR(regmap),
+> +				     "regmap init failed\n");
+> +
+> +	chip = i2c_get_match_data(client);
+> +
+> +	ret = p3t1755_probe(dev, chip, regmap, client->irq);
+> +
+Drop this blank line. We want the error handling closely coupled with the call.
+
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "p3t175x probe failed: %d\n", ret);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct i2c_driver p3t1755_driver = {
+> +	.driver = {
+> +		.name = "p3t175x_i2c",
+
+Pick a part number rather than using a wild card. Wildcards often down withstand
+the desire of marketing departments to fill in the holes.
+
+> +		.of_match_table = p3t1755_i2c_of_match,
+> +	},
+> +	.probe = p3t1755_i2c_probe,
+> +	.id_table = p3t1755_i2c_id_table,
+> +};
+> +module_i2c_driver(p3t1755_driver);
+> +
+> +MODULE_AUTHOR("Lakshay Piplani <lakshay.piplani@nxp.com>");
+> +MODULE_DESCRIPTION("NXP P3T175x I2C Driver");
+
+I'd use a part number rather than wild card here as well.
+
+> +MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS(IIO_P3T1755);
+> diff --git a/drivers/iio/temperature/p3t/p3t1755_i3c.c b/drivers/iio/temperature/p3t/p3t1755_i3c.c
+> new file mode 100644
+> index 000000000000..df031280e08d
+> --- /dev/null
+> +++ b/drivers/iio/temperature/p3t/p3t1755_i3c.c
+> @@ -0,0 +1,108 @@
+
+...
+
+> +
+> +static void p3t1755_disable_ibi(void *data)
+> +{
+> +	i3c_device_disable_ibi((struct i3c_device *)data);
+
+As below - unnecessary cast.
+
+> +}
+> +
+> +static void p3t1755_free_ibi(void *data)
+> +{
+> +	i3c_device_free_ibi((struct i3c_device *)data);
+
+That cast isn't needed.  Casting from void * to any other pointer is implicitly allowed
+by the c spec.  So just pass data directly.
+
+> +}
+> +
+> +static int p3t1755_i3c_probe(struct i3c_device *i3cdev)
+> +{
+> +	const struct i3c_device_id *id = i3c_device_match_id(i3cdev, p3t1755_i3c_ids);
+> +	const struct p3t1755_info *chip;
+> +	struct device *dev = &i3cdev->dev;
+> +	struct i3c_ibi_setup ibi_setup;
+> +	struct regmap *regmap;
+> +	int ret;
+> +
+> +	chip = id ? id->data : NULL;
+> +
+> +	regmap = devm_regmap_init_i3c(i3cdev, &p3t1755_i3c_regmap_config);
+> +	if (IS_ERR(regmap))
+> +		return dev_err_probe(&i3cdev->dev, PTR_ERR(regmap),
+> +				     "Failed to register I3C regmap %ld\n", PTR_ERR(regmap));
+> +
+> +	ret = p3t1755_probe(dev, chip, regmap, 0);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "p3t175x probe failed: %d\n", ret);
+> +
+> +	ibi_setup = (struct i3c_ibi_setup) {
+> +		.handler = p3t1755_ibi_handler,
+> +		.num_slots = 4,
+> +		.max_payload_len = 0,
+> +	};
+> +
+> +	ret = i3c_device_request_ibi(i3cdev, &ibi_setup);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to request IBI\n");
+> +
+> +	ret = devm_add_action_or_reset(dev, p3t1755_free_ibi, i3cdev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to register IBI free action\n");
+
+As below.
+
+> +
+> +	ret = i3c_device_enable_ibi(i3cdev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to enable IBI\n");
+> +
+> +	ret = devm_add_action_or_reset(dev, p3t1755_disable_ibi, i3cdev);
+> +	if (ret)
+
+Don't bother with error prints for devm_add_action_or_reset().
+The only failure path returns -ENOMEM which doesn't result in a print in
+dev_err_probe() because the expectation is that it is an unlikely condition
+which results in plenty of prints anyway.
+So simple
+		return ret;
+appropriate for these calls.
+
+
+> +		return dev_err_probe(dev, ret, "Failed to register IBI disable action\n");
+> +
+> +	return 0;
+> +}
 
