@@ -1,101 +1,255 @@
-Return-Path: <devicetree+bounces-223641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 278CDBB9180
-	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 22:00:30 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFDB9BB9231
+	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 00:03:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8F87B4E757E
-	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 20:00:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 736324E1700
+	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 22:03:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E43323A984;
-	Sat,  4 Oct 2025 20:00:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 839FA200BBC;
+	Sat,  4 Oct 2025 22:03:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="gK3JVhjB"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="m3yu5bd/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B88FD217648
-	for <devicetree@vger.kernel.org>; Sat,  4 Oct 2025 20:00:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05CF31DE2A0;
+	Sat,  4 Oct 2025 22:03:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759608025; cv=none; b=Ts9Akjo/WnX/ITpY82vh03ak4S7yKa8uPeolNktJxE/27MTe/M/5WZEEB9zih+murTrzPcmIPAvaxxE2OdN+yiB2lBcIaGEjTRgzuahM421bEaMmyQzqCEdyGQttZuYu1dN9HPn4zKDV82O8wsLXN8h4heMsJQpWsyIkehq6lUw=
+	t=1759615425; cv=none; b=j9WVefnBQpV//84RMtm0kh12VZDmf/raQJt0NGUJSVLmnBGkd7Tg3NjpazDY8WLeom4VT4Qw8RuWgxRa0A8Uflyh1dUUPSJgq2WUWNByKkWg6LIch+2tb55r39TqdqtfJxcnsG3aWFQRNj1kbTBbksg4qOn4ZRytO2h9zZj0yYQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759608025; c=relaxed/simple;
-	bh=Y7aP5ANWHznsHRPpXqT15itWt6xDKWtsAwFYNj6Ecek=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PNk2j6Cu8k33rMpD74+oavYNwLXfByf95Rxhxj2kdVudfCGPKzuft3oDYzlHJCyJ29qc1vu7plgUYsLsuc34iphVX6LHTzgogp+Pyh6m6BFPN0BTQpSK4rdvStVLVdwRs9vCjqcVzYxHUY6562VUbiVmCvbCiUMlsLJ4eafhGpA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=gK3JVhjB; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-279e2554c8fso32191275ad.2
-        for <devicetree@vger.kernel.org>; Sat, 04 Oct 2025 13:00:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1759608023; x=1760212823; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y7aP5ANWHznsHRPpXqT15itWt6xDKWtsAwFYNj6Ecek=;
-        b=gK3JVhjBVzca2lJCqNHEZe4BhwnRugbTEFHsJWLYXZEfbfwMCqjEK1uPnVOPpNNBEd
-         YE0Ab3rl3NuN6LSTtlB+YvmlQ6o+JTcFKIrnCXLUALmVj5dBdtPag3OYVHtjnZXa50by
-         vXZ6+fGf/dtYMruvlzyA4fwH8O55UHQZteWg/IRzwR3X3WXMxceMqAUjNb4p8z6z+dPx
-         sZVz5fOPIgwUKFeYwgZ5zcYIJqjTq0nv7eeqh0B0qmCpbYiqH3qpvLRxqaqQUQCdSQ9s
-         CbCmnJz/LaKK+d61+xiPRxwS+u7vq9B+1CAy3WJYQ5BnAsWbx1BIFVZVx8jYiJ6HKIIx
-         5ohQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759608023; x=1760212823;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y7aP5ANWHznsHRPpXqT15itWt6xDKWtsAwFYNj6Ecek=;
-        b=qLqW1/nsgtFJFDDJPywKMk5wbgf0JZ0JIMy/7QjcOWLwZs7bYApLJ2IpHKQxAR8yy8
-         PYlSgjasNBJTWfUZpK9wqDjvr/YMqUIherpnUW8rVKIizPSehJDzu/s1ywNyH4UFcSh7
-         ya4ddRftu9e9AyTjDm7gUw7BUKrBQ9cGNNXijdjCG9iQa/d1xRJFeXqqF7C0PZeOVDUK
-         2vF1I8ZMMQoLeG/62uKusfaG3X2LSz0xuMag8E8mjWIJo7yMSZTLO5mMO0M2rbCIbkyJ
-         lNeaG8lKvRyglXtIAMxaQsaCJnmgQlWmmgASxpsEV0e0120YVU+FD7O8RNRsAEb3Ta9M
-         LpCg==
-X-Forwarded-Encrypted: i=1; AJvYcCV6wWf8SNgdDdSkNRyQlqocV+NJo+brm3tlnFTghn6YoiKHDokbBJJ83WUabRj1Kz9+h/bPUujT6LQA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy9qnWMe0uU8Qzm5LSBh9/o2gWuPGU2eRwv7/6bF7i0yRb4bLtp
-	tqEcPV8CUzaHBhZg9d+dF64atcr5jeH2ewuq6v8tzSpK5gd6gBL4z5Yl924+ep0yKNtvc+r8b8G
-	SDzLJ9qA8gHoB7G/FyMaOOoTNidpGr7s=
-X-Gm-Gg: ASbGnctq8mDWA+MzKn4fB8HNA6oCv4KybH3m7aRc+bB8+f6cD4wJRGlFutKDj9fnuT+
-	cGfkvONgG8U1VNz6jKRUQylGep1PCDoC3IrgHs0lbX+Xfn8e+7GnrYMrQJ7Gl3jlvNMaB5DkBEC
-	c+7h9MaFH/GQZ7ui3BqJAPaBQuWdBQo+HqPlrWCL4GV4wDr9eYA0foHHcQN7+58EynbNaAtfriq
-	ROme7jxnPaPRRcX5agn531+tA3HwCTh/w3bkbPVxlE/GJ2HfM1eZZiUfXJ9a11O
-X-Google-Smtp-Source: AGHT+IGt39Nt9p5q066AwuwZ4TSsvdBdT0kbd0QVrdYOaUXToPuPqoewdXCA9vnV1UglZ/I0nfi7H/q2TLlH53BiA4k=
-X-Received: by 2002:a17:903:b8c:b0:276:76e1:2e84 with SMTP id
- d9443c01a7336-28e9a542c2bmr87291145ad.3.1759608022835; Sat, 04 Oct 2025
- 13:00:22 -0700 (PDT)
+	s=arc-20240116; t=1759615425; c=relaxed/simple;
+	bh=MdzP23QtrxfKPKp7bAx2Wb/OsRq/e/Rri2FPu0hUTOY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CDkUmB6TTD/UXp6w4VHFaY64fsZjtTM25Y+xakg+jV//6sYqA9lvgQxQ5MxC4oyRtLkX4yYnDlwEUSVvfcl3L+lBWhyHTVPi8UhDTW1l5w9fwBU2MaqNBPX5rkSSJlPS1WDMPTOm/gPGE78J2DPnTVitTNtd5pSS4g+/3JEvBDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=m3yu5bd/; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 1D79A208E;
+	Sun,  5 Oct 2025 00:02:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1759615322;
+	bh=MdzP23QtrxfKPKp7bAx2Wb/OsRq/e/Rri2FPu0hUTOY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=m3yu5bd/6l0e9ap9a2F9fpPxFFmhiKm+2tBCkTwtzjrlkYuaF9YSwaU7j6/hxrHWt
+	 FP5yYiausCCnsGijKPSONQ0Bw/wehT/KioVZiJ1Tz7L698KPU2+mT8/c+ZFsmWNzOD
+	 QRq0XLOCNbCG7Dg2hWYnnvncxOByefbSKAg6lLek=
+Date: Sun, 5 Oct 2025 01:03:26 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Dragan Simic <dsimic@manjaro.org>,
+	Alexander Shiyan <eagle.alexander923@gmail.com>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+	Sebastian Reichel <sebastian.reichel@collabora.com>,
+	stable@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
+ for rk3588
+Message-ID: <20251004220326.GC20317@pendragon.ideasonboard.com>
+References: <a76f315f023a3f8f5435e0681119b4eb@manjaro.org>
+ <CABjd4Ywh_AkbXHonx-8vL-hNY5LMLJge5e4oqxvUG+qe6OF-Og@mail.gmail.com>
+ <61b494b209d7360d0f36adbf6d5443a4@manjaro.org>
+ <CABjd4Yx0p0B=e00MjCpDDq8Z=0FtM0s9EN86WdvRimt-_+kh2w@mail.gmail.com>
+ <CABjd4Yy14bpjzvFyc8et-=pmds5uwzfxNqcs7L=+XRXBogZEsQ@mail.gmail.com>
+ <20251003133304.GA21023@pendragon.ideasonboard.com>
+ <CABjd4YxbyUWghd1ya8UayFkAE-VWQSd5-J2QD0sV7WmS8AXkCg@mail.gmail.com>
+ <CABjd4YwtwUYFX4bX5vy=AFi=Dn1r6nxWtMvmeKBSjkvriNJtsQ@mail.gmail.com>
+ <20251003232856.GC1492@pendragon.ideasonboard.com>
+ <CABjd4Yx9rt2W=MhCSyO5vaxndD1jvGHNWsz7J=HnvnJcgOvQHw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250927125006.824293-1-christianshewitt@gmail.com>
-In-Reply-To: <20250927125006.824293-1-christianshewitt@gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Sat, 4 Oct 2025 22:00:11 +0200
-X-Gm-Features: AS18NWCuGwewacgkM0Ab0HEEi4QG9Szb0DHvCKwfduJRn9-rG355CymOveg6Dfw
-Message-ID: <CAFBinCD9qq0_ppwt9gbyKW3kcSr8PTX+rnVPbrM33YOABxSoGA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add support for Tanix TX9 Pro
-To: Christian Hewitt <christianshewitt@gmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, 
-	Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CABjd4Yx9rt2W=MhCSyO5vaxndD1jvGHNWsz7J=HnvnJcgOvQHw@mail.gmail.com>
 
-On Sat, Sep 27, 2025 at 2:50=E2=80=AFPM Christian Hewitt
-<christianshewitt@gmail.com> wrote:
->
-> The Oranth Tanix TX9 Pro is an Android STB using the Amlogic S912 chip
->
-> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+On Sat, Oct 04, 2025 at 03:41:41PM +0400, Alexey Charkov wrote:
+> On Sat, Oct 4, 2025 at 3:29 AM Laurent Pinchart wrote:
+> > On Fri, Oct 03, 2025 at 06:55:26PM +0400, Alexey Charkov wrote:
+> > > On Fri, Oct 3, 2025 at 6:13 PM Alexey Charkov wrote:
+> > > > On Fri, Oct 3, 2025 at 5:33 PM Laurent Pinchart wrote:
+> > > > > On Fri, Jan 24, 2025 at 11:44:34PM +0400, Alexey Charkov wrote:
+> > > > > > On Fri, Jan 24, 2025 at 9:23 PM Alexey Charkov wrote:
+> > > > > > > On Fri, Jan 24, 2025 at 2:37 PM Dragan Simic wrote:
+> > > > > > > > On 2025-01-24 11:25, Alexey Charkov wrote:
+> > > > > > > > > On Fri, Jan 24, 2025 at 2:06 PM Dragan Simic wrote:
+> > > > > > > > >> On 2025-01-24 09:33, Alexey Charkov wrote:
+> > > > > > > > >> > On Fri, Jan 24, 2025 at 9:26 AM Alexander Shiyan wrote:
+> > > > > > > > >> >>
+> > > > > > > > >> >> There is no pinctrl "gpio" and "otpout" (probably designed as
+> > > > > > > > >> >> "output")
+> > > > > > > > >> >> handling in the tsadc driver.
+> > > > > > > > >> >> Let's use proper binding "default" and "sleep".
+> > > > > > > > >> >
+> > > > > > > > >> > This looks reasonable, however I've tried it on my Radxa Rock 5C and
+> > > > > > > > >> > the driver still doesn't claim GPIO0 RK_PA1 even with this change. As
+> > > > > > > > >> > a result, a simulated thermal runaway condition (I've changed the
+> > > > > > > > >> > tshut temperature to 65000 and tshut mode to 1) doesn't trigger a PMIC
+> > > > > > > > >> > reset, even though a direct `gpioset 0 1=0` does.
+> > > > > > > > >> >
+> > > > > > > > >> > Are any additional changes needed to the driver itself?
+> > > > > > > > >>
+> > > > > > > > >> I've been digging through this patch the whole TSADC/OTP thing in the
+> > > > > > > > >> last couple of hours, and AFAIK some parts of the upstream driver are
+> > > > > > > > >> still missing, in comparison with the downstream driver.
+> > > > > > > > >>
+> > > > > > > > >> I've got some small suggestions for the patch itself, but the issue
+> > > > > > > > >> you observed is obviously of higher priority, and I've singled it out
+> > > > > > > > >> as well while digging through the code.
+> > > > > > > > >>
+> > > > > > > > >> Could you, please, try the patch below quickly, to see is it going to
+> > > > > > > > >> fix the issue you observed?  I've got some "IRL stuff" to take care of
+> > > > > > > > >> today, so I can't test it myself, and it would be great to know is it
+> > > > > > > > >> the right path to the proper fix.
+> > > > > > > > >>
+> > > > > > > > >> diff --git i/drivers/thermal/rockchip_thermal.c
+> > > > > > > > >> w/drivers/thermal/rockchip_thermal.c
+> > > > > > > > >> index f551df48eef9..62f0e14a8d98 100644
+> > > > > > > > >> --- i/drivers/thermal/rockchip_thermal.c
+> > > > > > > > >> +++ w/drivers/thermal/rockchip_thermal.c
+> > > > > > > > >> @@ -1568,6 +1568,11 @@ static int rockchip_thermal_probe(struct
+> > > > > > > > >> platform_device *pdev)
+> > > > > > > > >>          thermal->chip->initialize(thermal->grf, thermal->regs,
+> > > > > > > > >>                                    thermal->tshut_polarity);
+> > > > > > > > >>
+> > > > > > > > >> +       if (thermal->tshut_mode == TSHUT_MODE_GPIO)
+> > > > > > > > >> +               pinctrl_select_default_state(dev);
+> > > > > > > > >> +       else
+> > > > > > > > >> +               pinctrl_select_sleep_state(dev);
+> > > > > > > > >
+> > > > > > > > > I believe no 'else' block is needed here, because if tshut_mode is not
+> > > > > > > > > TSHUT_MODE_GPIO then the TSADC doesn't use this pin at all, so there's
+> > > > > > > > > no reason for the driver to mess with its pinctrl state. I'd rather
+> > > > > > > > > put a mirroring block to put the pin back to its 'sleep' state in the
+> > > > > > > > > removal function for the TSHUT_MODE_GPIO case.
+> > > > > > > >
+> > > > > > > > You're right, but the "else block" is what the downstream driver does,
+> > > > > > >
+> > > > > > > Does it though? It only handles the TSHUT_MODE_GPIO case as far as I
+> > > > > > > can tell (or TSHUT_MODE_OTP in downstream driver lingo) [1]
+> > > > > > >
+> > > > > > > [1] https://github.com/radxa/kernel/blob/edb3eeeaa4643ecac6f4185d6d391c574735fca1/drivers/thermal/rockchip_thermal.c#L2564
+> > > > > > >
+> > > > > > > > so I think it's better to simply stay on the safe side and follow that
+> > > > > > > > logic in the upstream driver.  Is it really needed?  Perhaps not, but
+> > > > > > > > it also shouldn't hurt.
+> > > > > > > >
+> > > > > > > > > Will try and revert.
+> > > > > > > >
+> > > > > > > > Awesome, thanks!
+> > > > > > > >
+> > > > > > > > > P.S. Just looked at the downstream driver, and it actually calls
+> > > > > > > > > TSHUT_MODE_GPIO TSHUT_MODE_OTP instead, so it seems that "otpout" was
+> > > > > > > > > not a typo in the first place. So maybe the right approach here is not
+> > > > > > > > > to change the device tree but rather fix the "gpio" / "otpout" pinctrl
+> > > > > > > > > state handling in the driver.
+> > > > > > > >
+> > > > > > > > Indeed, "otpout" wasn't a typo, and I've already addressed that in my
+> > > > > > > > comments to Alexander's patch.  Will send that response a bit later.
+> > > > > > > >
+> > > > > > > > I think it's actually better to accept the approach in Alexander's
+> > > > > > > > patch, because the whole thing applies to other Rockchip SoCs as well,
+> > > > > > > > not just to the RK3588(S).
+> > > > > > >
+> > > > > > > Anyway, I've just tried it after including the changes below, and
+> > > > > > > while /sys/kernel/debug/pinctrl/pinctrl-handles shows the expected
+> > > > > > > pinctrls under tsadc, the driver still doesn't seem to be triggering a
+> > > > > > > PMIC reset. Weird. Any thoughts welcome.
+> > > > > >
+> > > > > > I found the culprit. "otpout" (or "default" if we follow Alexander's
+> > > > > > suggested approach) pinctrl state should refer to the &tsadc_shut_org
+> > > > > > config instead of &tsadc_shut - then the PMIC reset works.
+> > > > >
+> > > > > I've recently brought up an RK3588S-based Orange Pi CM5 Base board, made
+> > > > > of a compute module (CM5, see [1]) and a carrier board (Base, see [2]).
+> > > > > The carrier board has a reset button which pulls the PMIC_RESET_L signal
+> > > > > of the CM5 to GND (see page 3 of the schematics in [3]).
+> > > > >
+> > > > > With &tsadc_shut_org the reset button has absolutely no effect. With
+> > > > > &tsadc_shut it resets the board as expected.
+> > > >
+> > > > Interesting. The TSADC shouldn't affect the physical button operation
+> > > > at all, if it's really wired to the PMIC as the signal name implies.
+> > > > There isn't even any default pull value associated with the TSHUT pin
+> > > > config.
+> > >
+> > > On a second thought, I've got another hypothesis. Your baseboard only
+> > > pulls the reset line through  a 100 Ohm resistor when the button is
+> > > pressed. So if the TSHUT pin is in its default push-pull mode and
+> > > stays high when no thermal runaway reset is requested, the reset
+> > > button won't pull the line fully to zero, as the TSHUT line pulls it
+> > > high at the same time.
+> >
+> > That's the most likely cause, I agree.
+> >
+> > > If you switch it from &tsadc_shut_org to &tsadc_shut, then it stops
+> > > working properly as the thermal protection reset, and GPIO0_A1 remains
+> > > high-impendance, thus allowing the reset button to function even
+> > > though its pull is too weak.
+> >
+> > By the way, what is the difference between tsadc_shut_org and tsadc_shut
+> > ? I haven't seen it being clearly documented in the TRM.
+> 
+> No idea frankly. Looks like a half-finished design change to me, which
+> left the non-"org" version unconnected internally.
+
+:-/
+
+> > > So maybe change the pin configuration of &tsadc_shut_org in
+> > > rk3588-base-pinctrl.dtsi to open drain and retry?
+> >
+> > That's a good idea, but... how ? The pinctrl-rockchip driver doesn't
+> > seem to support generic open-drain configuration.
+> 
+> I thought I saw open-drain configurations here, but after reviewing
+> the TRM, bindings and the driver it turns out I must have been
+> daydreaming :( Sorry.
+> 
+> Looks like the best we can try is a lower drive strength while keeping
+> the push-pull mode, but I'm afraid this 100 Ohm pulldown is too weak,
+> because the lowest TSHUT drive strength Rockchip offers is 100 Ohm,
+> while the PMIC would only count anything below 30% reference voltage
+> as logical low. Maybe adding a pulldown to the pin config can help,
+> but most likely this board will require switching the pin to GPIO
+> input for high-z, and switching the TSHUT mode to CRU.
+
+I agree with you, going through the CRU seems the best solution for this
+board. This is actually the default mode in
+arch/arm64/boot/dts/rockchip/rk3588-base.dtsi:
+
+	rockchip,hw-tshut-mode = <0>; /* tshut mode 0:CRU 1:GPIO */
+	rockchip,hw-tshut-polarity = <0>; /* tshut polarity 0:LOW 1:HIGH */
+	pinctrl-0 = <&tsadc_shut_org>;
+	pinctrl-1 = <&tsadc_gpio_func>;
+
+If hw-tshut-mode defaults to 0, why do we need to setup the GPIO0_A1 pin
+to output the TSADC_SHUT signal ?
+
+> So how about something like this first:
+> 
+> &tsadc_shut_org {
+>         rockchip,pins = <0 RK_PA1 1 &pcfg_pull_down_drv_level_0>;
+> };
+
+I've tested that and it's indeed not enough, the reset button still
+doesn't work.
+
+-- 
+Regards,
+
+Laurent Pinchart
 
