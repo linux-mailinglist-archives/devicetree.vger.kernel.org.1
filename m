@@ -1,147 +1,147 @@
-Return-Path: <devicetree+bounces-223621-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223622-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6E9DBB8D4E
-	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 14:45:45 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9996ABB8D9C
+	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 15:12:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 950F13AC9C8
-	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 12:45:44 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 28474341380
+	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 13:12:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1EBE263F34;
-	Sat,  4 Oct 2025 12:45:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE1227465C;
+	Sat,  4 Oct 2025 13:12:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="pYd0LZgf"
+	dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b="bVxV4tJt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-08.mail-europe.com (mail-08.mail-europe.com [57.129.93.249])
+Received: from dragonfly.birch.relay.mailchannels.net (dragonfly.birch.relay.mailchannels.net [23.83.209.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCE1E34BA34;
-	Sat,  4 Oct 2025 12:45:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=57.129.93.249
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759581942; cv=none; b=o5/VIk6+8uF0QUd7XmPGIVTUs/P9Cc/jiSuw+SP/rihJX+2QpKH0AW2pfv4W48hhmrdSXSUogo+/LtMQ9PJIdOWbaZ7IZkTZaySHNMYsN3NvBfLTG8g3oASxHtV8FJ9qVWwO/eW21RWpX4RNAVDfgL93/bffVQBJRjkJZVDyqRE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759581942; c=relaxed/simple;
-	bh=QR/lh3QxpQlCba4iDyrEsV2/Q7r7YUgtlx9cK63lcug=;
-	h=Date:To:From:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=kskyRoQlDprhzliWTSswb/RxtzCvc/BBLObaMr6BHM1GIXwUR6cOYYHbsDPEjUfATRpsFyPNfSb4RMeSalbxrr3cGqJn5ZpRFmQy28NoeeMgPN9/ab/PnI3m5ayFTvOVNsmnTq1YA2q9zqvgosf6DEQAw46MtN0NFvIVVa+MuL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com; spf=pass smtp.mailfrom=protonmail.com; dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b=pYd0LZgf; arc=none smtp.client-ip=57.129.93.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=protonmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=protonmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-	s=protonmail3; t=1759581924; x=1759841124;
-	bh=TECu1AwZYSMVFzAux5O/EFPsJ/2nsyQcS30gfFj/DSM=;
-	h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=pYd0LZgf2cT/os06IGPl1IHQpGZwiiPCJ6Kmqu6dD/dNpcq8oAJmqekXU8ZRAqQgd
-	 X7Q70gO48aW0otTSBPqJsBvw2V96qrAgQOa4nEaOA68fKQ2r2/10KzCaokrdI2Zgdz
-	 PSz1z2Gu/EyLS8dQ8E1PVBHAzBAZVFaZ0/OYAaH5kH2FY2/Neyyx2eWiv/of9x+QJ+
-	 2OJUgOwAdCaAtNSrgnyn6437f6yzzeOY631QLJDvVhxrlUg1PQdq+W1F/M7nAJOr2B
-	 mN8sKEx8bgJmt5W+pWd9KFPrMXKVh0L3k0dmbEj3mz22fZo2jPHTiz3nqF0BUEZ8l0
-	 cDJBfJp8VFE2g==
-Date: Sat, 04 Oct 2025 12:45:16 +0000
-To: linux-kernel@vger.kernel.org
-From: Raymond Hackley <raymondhackley@protonmail.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>, Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, Raymond Hackley <raymondhackley@protonmail.com>
-Subject: [PATCH] arm64: dts: qcom: msm8916-samsung-rossa: Move touchscreen to common device tree
-Message-ID: <20251004123907.84270-1-raymondhackley@protonmail.com>
-Feedback-ID: 49437091:user:proton
-X-Pm-Message-ID: 68a59a08884522522b02b3c56040bf9396bbf5e9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 580FC1A4F3C;
+	Sat,  4 Oct 2025 13:12:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=23.83.209.51
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759583551; cv=pass; b=VkgHXvLKxR30o4W3Wumrrz0xT1D1NzDawsoTZUK6xnIMsKK+yA/21Hnz1gUZxDC1c5yujnl0tesZ/ExR/jnHHWStnE+FHRKbzS9tJeEIuU+1BTRxk/Lw9gnPOxEioiXcT3hwszWrfn7Rmf5cyPWZpEf0xjZXP2ESRZh1MQlvxTk=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759583551; c=relaxed/simple;
+	bh=isTPXxe36rEOosjGAJZBp/SvYZDzRhxZ5jxnRH8Ht7A=;
+	h=From:Subject:Message-Id:MIME-Version:Content-Type:To:Cc:Date; b=NVVmMwCGO4RSesNh9pZfzmD+UOw6r593Ng4Gs0I9XbOQCZTulhmkB2IJROFQDkU49e3prKPuUd3TuSpSvFPKoYmA5q4J77cviW1Oz+Nvq5aGEGLfSBHElEmG9vJsJK8bEVBwTeGGviBm2sI6IVDn33dOlh77RsacsQWxsv6Zcpw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com; spf=pass smtp.mailfrom=smankusors.com; dkim=pass (2048-bit key) header.d=smankusors.com header.i=@smankusors.com header.b=bVxV4tJt; arc=pass smtp.client-ip=23.83.209.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=smankusors.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=smankusors.com
+X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
+Received: from relay.mailchannels.net (localhost [127.0.0.1])
+	by relay.mailchannels.net (Postfix) with ESMTP id 65B4F2E09D0;
+	Sat, 04 Oct 2025 13:12:22 +0000 (UTC)
+Received: from de-fra-smtpout2.hostinger.io (100-114-189-49.trex-nlb.outbound.svc.cluster.local [100.114.189.49])
+	(Authenticated sender: hostingeremail)
+	by relay.mailchannels.net (Postfix) with ESMTPA id 434022E0269;
+	Sat, 04 Oct 2025 13:12:18 +0000 (UTC)
+ARC-Seal: i=1; s=arc-2022; d=mailchannels.net; t=1759583539; a=rsa-sha256;
+	cv=none;
+	b=UBoLemD+jK0lRBvJXvqRGedtgO87pApZdPOqR09KomB63zaHKtzA/mz4/SEi40AJV/Vf3Q
+	0k+jbnHE9NzSl9y/8UoFlOqwaiC1flXWLMy3i6urWkoU89EmwnusFyVX2JTCj3CTSCh6aM
+	KBo2oRNnYkTWYcPCS8myT6Y0F5rLH3SXkolobYK1XtMmuV0hozv/susfseauIWDAW8oZe+
+	Q79EY9UkDUyiH6e5z9uTJPbu5TqOSWKBEr1yC4xQXcnWDPERcsgwmsgxAuBUI7Z5wZM/Xf
+	awOvgGPItf8TnfGXtr8CmHNklZYpz8uMpfZVebH0zGzo67B9kuFX9PCsNGjDPg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mailchannels.net;
+	s=arc-2022; t=1759583539;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:dkim-signature;
+	bh=12vtsuogjisVIWYolq9JuHsBSHiUgGV0RnLP/ifRQxo=;
+	b=W5+DJ0gN8tfgCaFIw2GX9nOJH5ZcqlcLZtpEeN7JNJdetNyIq1bZw0sW44wXcdfdZhoWe4
+	BFdV6qU0NEBLDDCYvnEsy65mBut9PmCE/rjeMcdFgLtbd2cgzV2dTBAmwkNUlLaPuG9Y88
+	z8gHm+WLKqtqWgUlM5gB84BCzxP5Y30dIxODn9Ga5wN/so3XUT9WczDijdQbhFB9f/5VLK
+	tzwvSWd/G5W0eAHK58H+qlrZX6dG8Sz0QKdY+/8a6uHVzlxzlS/LZ1QnXP/Z7j592OA9Ch
+	yPl6IHbmIRpyORuJd/adAIFtOlDcFQSQUQ+JoG9qTtmCt4l8auPk4DpAeZwk4g==
+ARC-Authentication-Results: i=1;
+	rspamd-84f8cfc67-wgjd4;
+	auth=pass smtp.auth=hostingeremail smtp.mailfrom=linux@smankusors.com
+X-Sender-Id: hostingeremail|x-authuser|linux@smankusors.com
+X-MC-Relay: Neutral
+X-MailChannels-SenderId: hostingeremail|x-authuser|linux@smankusors.com
+X-MailChannels-Auth-Id: hostingeremail
+X-Chemical-Illustrious: 62bd8b3a7914a1dd_1759583542210_2040494716
+X-MC-Loop-Signature: 1759583542210:3910955182
+X-MC-Ingress-Time: 1759583542209
+Received: from de-fra-smtpout2.hostinger.io (de-fra-smtpout2.hostinger.io
+ [148.222.55.5])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384)
+	by 100.114.189.49 (trex/7.1.3);
+	Sat, 04 Oct 2025 13:12:22 +0000
+Received: from [172.17.0.2] (unknown [36.79.124.169])
+	(Authenticated sender: linux@smankusors.com)
+	by smtp.hostinger.com (smtp.hostinger.com) with ESMTPSA id 4cf5Xt4c3Vz3wbl;
+	Sat,  4 Oct 2025 13:12:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=smankusors.com;
+	s=hostingermail-a; t=1759583536;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=12vtsuogjisVIWYolq9JuHsBSHiUgGV0RnLP/ifRQxo=;
+	b=bVxV4tJtStdFcsen/u5APBbzYkGmdGtXrecPJS3lkVuiUxXi4jw+qrTeKEDDw0HU6yDbW+
+	DnubZYNc4PTgp0C1RXN4vHLjAORb9AzUwj5JB44xcWzLIMCdIh7MrZeWtIAvy/k+4nLxBR
+	L8trKJH2/l3HsvPNxQnSPZ89enc5fxcrx+f9UE73J2QXfMp44mbq2NaczXNLfpUBlPa++2
+	yBSQdJnz/yRUh/z/kq4UF6kqTR8ZY5NXZ+ZumEwNQC41jy1Uou6Wo2a3aMNmoQnif4UcF8
+	lsGRl14QkY5BXh6P6JAMqVol8fOTJCo+N8LKYmg9gXwwWqepttYtDm3h+6SlbQ==
+From: Antony Kurniawan Soemardi <linux@smankusors.com>
+Subject: [PATCH 0/2] arm64: dts: qcom: pmi8950: VADC channels corrections
+Message-Id: <20251004-fix-pmi8950-vadc-v1-0-3143ecab99e9@smankusors.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAEd4WgC/x2MQQqAIBAAvyJ7bkGFDe0r0SFyrT1kohBB+Pek4
+ 8DMvFC5CFeY1AuFb6lypQ5mULAda9oZJXQGqy1pbx1GeTCf4jxpvNewoSGKjiJT1CP0LBfuzr+
+ cl9Y+7+Qho2IAAAA=
+X-Change-ID: 20250928-fix-pmi8950-vadc-155f85fe5f06
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Antony Kurniawan Soemardi <linux@smankusors.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759583534; l=768;
+ i=linux@smankusors.com; s=20250609; h=from:subject:message-id;
+ bh=isTPXxe36rEOosjGAJZBp/SvYZDzRhxZ5jxnRH8Ht7A=;
+ b=LbxCRIDtKOVSPXyt4RsCf4PJufiM/gBRO47xVONiXRbcHQWUvu/hcL5yj8d3NP0iejgOynjBU
+ iSD8sWnxzslCcBQJybzGKPJvQmXBn7mDdrVGA+aD+Uy7Pv5tSRL92g9
+X-Developer-Key: i=linux@smankusors.com; a=ed25519;
+ pk=65wTy06fJl2/h/EJwjr704YG+yjHFhZObJBWzzK+N00=
+Date: Sat,  4 Oct 2025 13:12:14 +0000 (UTC)
+X-CM-Analysis: v=2.4 cv=OcPKDQTY c=1 sm=1 tr=0 ts=68e11d30 a=aGBhDEDgd9rkiRpfI0k7ZQ==:117 a=aGBhDEDgd9rkiRpfI0k7ZQ==:17 a=IkcTkHD0fZMA:10 a=wxLWbCv9AAAA:8 a=EU4vko7WZ9QRDQrebR8A:9 a=QEXdDO2ut3YA:10 a=QJY96suAAestDpCc5Gi9:22
+X-CM-Envelope: MS4xfNB/LnGVdiHVBQfrgxHfLVW+vw5kn2ShuYtS/3+Epdcn1ax0OwlNGu/En0FEAYX5n5IGbonkMzMat4b1lxEFK3KP79Ea2FjPDCdHhPynZepgYk8DTiho TQjyEwWshEzHkFx8J762h/on02vOruJesc0lNL/RM8q62OBEnoeMfBL6TAeWy2rUg0NVOI3reEjnFaHC8WjqXj8ypVGTgcO24e0H2Glrg4UOYwo0Rg/Ya94s 4nPuOH7uman2DO2VG8gNhv0qC3s7h/qFjrrIwMaBEKQC8DJ8OTBqnVZhpl+S0CXyodYwRBm5W3EL/7E7o5ncrF7FeistnGo2znfYXuSGt0nODWDYZIkz6YzX XyrNIUN8MaaqSwU33vrGImzgJ1yt9reFmMaZkLqItlX6aPDfyoU6Jh4CKSkTnsCStmyOUlBT6FIEjtYFDCdCw9EH1WciLbN9qHKyKIJSmiDgvTJE/HE=
+X-AuthUser: linux@smankusors.com
 
-Every Core Prime uses an Imagis IST3038 touchscreen that is connected to
-&blsp_i2c5. Move it to the common device tree.
+Addresses issues with VADC channels on the pmi8950.dtsi
 
-Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+1. Missing VDD and GND channels. I think these channels are using same
+   address as other Qualcomm's PMIC?
+2. Incorrect scaling factors for the USBIN, DCIN, and VCHG_SNS channels
+
+Signed-off-by: Antony Kurniawan Soemardi <linux@smankusors.com>
 ---
- .../qcom/msm8916-samsung-rossa-common.dtsi    | 22 ++++++++++++++++++-
- .../boot/dts/qcom/msm8916-samsung-rossa.dts   | 20 -----------------
- 2 files changed, 21 insertions(+), 21 deletions(-)
+Antony Kurniawan Soemardi (2):
+      arm64: dts: qcom: pmi8950: Add missing VADC channels
+      arm64: dts: qcom: pmi8950: Fix VADC channel scaling factors
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-rossa-common.dtsi b/a=
-rch/arm64/boot/dts/qcom/msm8916-samsung-rossa-common.dtsi
-index e7f265e3c2ab..e33453c3e51e 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-rossa-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-rossa-common.dtsi
-@@ -5,7 +5,7 @@
- /* SM5504 MUIC instead of SM5502 */
- /delete-node/ &muic;
-=20
--/* Touchscreen varies depending on model variant */
-+/* IST3038 instead of Zinitix BT541 */
- /delete-node/ &touchscreen;
-=20
- &blsp_i2c1 {
-@@ -24,6 +24,26 @@ usb_con: connector {
- =09};
- };
-=20
-+&blsp_i2c5 {
-+=09touchscreen: touchscreen@50 {
-+=09=09compatible =3D "imagis,ist3038";
-+=09=09reg =3D <0x50>;
-+
-+=09=09interrupts-extended =3D <&tlmm 13 IRQ_TYPE_EDGE_FALLING>;
-+
-+=09=09touchscreen-size-x =3D <480>;
-+=09=09touchscreen-size-y =3D <800>;
-+
-+=09=09vdd-supply =3D <&reg_vdd_tsp_a>;
-+=09=09vddio-supply =3D <&pm8916_l6>;
-+
-+=09=09pinctrl-0 =3D <&tsp_int_default>;
-+=09=09pinctrl-names =3D "default";
-+
-+=09=09linux,keycodes =3D <KEY_APPSELECT KEY_BACK>;
-+=09};
-+};
-+
- /* On rossa backlight is controlled with MIPI DCS commands */
- &clk_pwm {
- =09status =3D "disabled";
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-rossa.dts b/arch/arm6=
-4/boot/dts/qcom/msm8916-samsung-rossa.dts
-index 3413b0970c4a..1981bb71f6a9 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-rossa.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-rossa.dts
-@@ -16,26 +16,6 @@ &battery {
- =09constant-charge-voltage-max-microvolt =3D <4400000>;
- };
-=20
--&blsp_i2c5 {
--=09touchscreen@50 {
--=09=09compatible =3D "imagis,ist3038";
--=09=09reg =3D <0x50>;
--
--=09=09interrupts-extended =3D <&tlmm 13 IRQ_TYPE_EDGE_FALLING>;
--
--=09=09touchscreen-size-x =3D <480>;
--=09=09touchscreen-size-y =3D <800>;
--
--=09=09vdd-supply =3D <&reg_vdd_tsp_a>;
--=09=09vddio-supply =3D <&pm8916_l6>;
--
--=09=09pinctrl-0 =3D <&tsp_int_default>;
--=09=09pinctrl-names =3D "default";
--
--=09=09linux,keycodes =3D <KEY_APPSELECT KEY_BACK>;
--=09};
--};
--
- &mpss_mem {
- =09/* Firmware for rossa needs more space */
- =09reg =3D <0x0 0x86800000 0x0 0x5800000>;
---=20
-2.47.3
+ arch/arm64/boot/dts/qcom/pmi8950.dtsi | 14 +++++++++++---
+ 1 file changed, 11 insertions(+), 3 deletions(-)
+---
+base-commit: cbf33b8e0b360f667b17106c15d9e2aac77a76a1
+change-id: 20250928-fix-pmi8950-vadc-155f85fe5f06
 
+Best regards,
+--
+Antony Kurniawan Soemardi <linux@smankusors.com>
 
 
