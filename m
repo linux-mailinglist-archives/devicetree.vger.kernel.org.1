@@ -1,203 +1,209 @@
-Return-Path: <devicetree+bounces-223607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DDBEBB8802
-	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 03:57:07 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A709BBB885E
+	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 04:29:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44CDF3C8702
-	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 01:57:04 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4F6244E2296
+	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 02:29:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76FE121B9DB;
-	Sat,  4 Oct 2025 01:56:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 542C927D77A;
+	Sat,  4 Oct 2025 02:29:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ironIDZ4"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="cqlAqblR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f195.google.com (mail-pl1-f195.google.com [209.85.214.195])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD5AB21FF41
-	for <devicetree@vger.kernel.org>; Sat,  4 Oct 2025 01:56:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA3954774;
+	Sat,  4 Oct 2025 02:29:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759543016; cv=none; b=gX3dgcQh3rJahXZTI7knpSgRYeSRvbyJ0m4ON5almoFY+TPIGQP4CsPFzplTd4ZSSRdxnNy0Lig4QX4OBnvV0XCyqN3PBXSWojXTmbcSy3Q+QYZrVgSphzH6pZffGJJcrQJZtg1kUbIxHZWpYxP9txgNKuC816/JEScYqBeJCsE=
+	t=1759544977; cv=none; b=QIbknYlnKm+SsLGQ9U6ZAgIr9JCTmAmXTu3obix2ybRlDyWd+IOPNnqOyTHhySzNssqriG+0G842hI5s9vlj8A73ZQ7jD9hdorMefHcej7b/WLsb1KgRgDdL0PHEbBi3/yrLETTEMMORHgEM78R8FNrR7zCcALjZ0RXaR6EwLds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759543016; c=relaxed/simple;
-	bh=60sFE8dH95IQRhjstRyY7EVNnqU2lIgts0o7HyQejn8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Quh2wSVr/eL9y7sunibk9WuvSCiRvYFDGf/5X9RWOl2GfxcuJJC762Cm3NgOF5qFUh8CnrKG8GxqeeDUdJ0cI3+x3Tlim68w9ZHmJ9jmao2rgwkkAjEokHMaLYKIg+A7rIkQvZpEriXKN57vUAuyQT/Os2kyHvQ9s3DIi12sOpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ironIDZ4; arc=none smtp.client-ip=209.85.214.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f195.google.com with SMTP id d9443c01a7336-27eceb38eb1so28929735ad.3
-        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 18:56:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759543014; x=1760147814; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bXs1QSVIqrmDB/CsKZ6PEf+V8gETdC9cB2i9VQlHTvA=;
-        b=ironIDZ4udqKpjhSZpwBgM5dXqqf6gjHm26vva9HCngT685JrolL9UNhibj0dBlwSx
-         l+AKJP2jbVFRSCUtOHvzGDcQ8s5ujWJxPduox8/VF4ydymvgS6SU7/QGtKqC3bTLz5L/
-         nK1XtYtyMpw5F8efTW6rxPOniakQxBIcq5Lyr898t4N3FBjorBk0p2qvZr02LkVK4mZj
-         9acOYCcHfHoxsQGAnfJc7lTS+vl7IdAuUEEJzl2dQVgmzW1qfEQBzEzReoHc1rXCc2rr
-         l/oWm+YAW+0KdQofSBE3HOQGYxIXAKT8wir7eXCwqpZyoMCrhB2urOm3eMxYxT1KJRmU
-         DBBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759543014; x=1760147814;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bXs1QSVIqrmDB/CsKZ6PEf+V8gETdC9cB2i9VQlHTvA=;
-        b=YXVI6R9RA1mueGf9jaohrdG7MjuhwsaMyPf86QdhltCY3LO9KVY4QBRbuq1kEg3veg
-         hyTF/D9LFRSad+bAmTUctel1JThOjSi+1NbIPokl5R6tgkARDfVXNAYhXiazwtP2pxCC
-         I5oCVATBLHAAiWMGHN9ywoeSiSrwHBbTZf4iLTXmkwCCX66uCwd9bcdskWfdOM1exVg7
-         2tQDsMfrySSegDJThVN3T/MY74iAhwx+F/fF+p2KGJglYByU8bxXV4ywAEHm5910d0Pg
-         pFVnLVHoR0bsD89lU8SmZ4Olu57LSMZRvqNzkycy9UaHqeFjCqXwhfE3o3hYsaxssNk0
-         oZFg==
-X-Forwarded-Encrypted: i=1; AJvYcCWm+gYeyQXVqCdhZCAnWyWFoFWg8WHD6o4YvbmYCCcRg7fmbJO3bTx3vVyc00cvd8xVlzaNln8dErgf@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDkCMoqecHVaaFfNpMqTaehLXgW+L/azeX5VoWHQL8duiQ0IJE
-	43yy2vGTOZnntkc6Rr1nQb0V9A+cGMKWL5hTMm3gEeRt7Q8dWapmSA1g
-X-Gm-Gg: ASbGncseW6r75LD0WCY04b/nMHME/yMCxRgiHpQD+YLOVv60+JBIih7pjPr9XRTB4HF
-	D4rC2oSq9GXDa0Bdti1LceoANbkhRyorD552OoR+i4sFP4JcMf0SE2rVAxzxCbnDEW2R5AUEzNz
-	XOqlhL+m9IAk5QPgMuo8uUs8PKNkTEh+jaxgn/1GUk8lzZ1TZ/W8Gvl/OZ1RIj6/zT/GjHL6kt+
-	k/x2S1+r8IW6LhYWhRftP8bGvA80PZdEVA7IwZQ4NsY/FIQYxmM/6v5K7SwWnUhMsuD/QUD8NLy
-	Wejq0vtt98yuhyespWvsmM7HmwJBGeFM4nZwF+SEIhVN3MeZZDc7CxMNkhKqPiKqO7aUCeb/++6
-	NoQ+XHgkB5bUMKgnydFe1SgUV3/CuMOM7sM3qDIihqJoGS/CheB3yKho=
-X-Google-Smtp-Source: AGHT+IFkvcg76qipc69NuQnIWNLwlZfZsq2gWo9bV8jdBE0nvip+ixi0boun0gdtaOb85HXiysRS2w==
-X-Received: by 2002:a17:903:40d1:b0:27e:f16f:618b with SMTP id d9443c01a7336-28e9a55c07fmr62108745ad.24.1759543014242;
-        Fri, 03 Oct 2025 18:56:54 -0700 (PDT)
-Received: from Ubuntu24.. ([157.33.197.131])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d134859sm63197485ad.57.2025.10.03.18.56.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 03 Oct 2025 18:56:53 -0700 (PDT)
-From: Shrikant Raskar <raskar.shree97@gmail.com>
-To: jic23@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	matt@ranostay.sg,
-	skhan@linuxfoundation.org,
-	david.hunter.linux@gmail.com,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-kernel-mentees@lists.linux.dev,
-	Shrikant Raskar <raskar.shree97@gmail.com>
-Subject: [PATCH 2/2] iio: health: max30100: Add pulse-width configuration via DT
-Date: Sat,  4 Oct 2025 07:26:23 +0530
-Message-ID: <20251004015623.7019-3-raskar.shree97@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251004015623.7019-1-raskar.shree97@gmail.com>
-References: <20251004015623.7019-1-raskar.shree97@gmail.com>
+	s=arc-20240116; t=1759544977; c=relaxed/simple;
+	bh=kzhYlF7toSJUYLhb6Zjs2f+TE43JU+j0Ai5mwSU6n38=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BUrWy1EMWGhB+XCMFCM8voUGg1pcqkaCNX5NDdFHCyDqZD4fB0MbOBeR7eOB2FMhSwiuEj++cFffiT1ZaRzuIzr8YikSCw+b2OBSmMrih2hoPW3RdsvdQqbJ/VwqPryAP5vWOuoot2ljLlO5WfQmsQtwQUTlatSq3nIMFs9rjGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=cqlAqblR; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 7A9E626222;
+	Sat,  4 Oct 2025 04:22:02 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id L-mAlgRG7zDV; Sat,  4 Oct 2025 04:22:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1759544521; bh=kzhYlF7toSJUYLhb6Zjs2f+TE43JU+j0Ai5mwSU6n38=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=cqlAqblRnzhq6/cP064tVaoFUxarJaXkP0yLySa8sYNPgz6z6SYKJidlwnZtewnIA
+	 qLK1FM++X1Rz+7cKIx59TfPCPTMh9fbKuG58Cl5YZ/QU0qfr4NZiQEbciQhsPjZZie
+	 jvEk6AD1y+A8znqWUWrAmmVG2zBY2I112w0LOJ9+LDPiNnkXPd4iCyflRYTuR6lh4a
+	 9kZ7UhXyChlPWBPSJHOwi8bH3P70W8h/yKmGuVEk1eZFe/8TSjNF3MA1tj/lVxURqU
+	 /++dUO20g/4qX9Beg0bmSEKHe7SiuP+4Kw3LQexE734gZaXjSr9ObmfANvODxGMWAD
+	 frPgVDe3rUqvw==
+Date: Sat, 4 Oct 2025 02:21:43 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Drew Fustini <fustini@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Michal Wilczynski <m.wilczynski@samsung.com>,
+	Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org,
+	Han Gao <gaohan@iscas.ac.cn>, Han Gao <rabenda.cn@gmail.com>,
+	linux-kernel@vger.kernel.org, Guo Ren <guoren@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-riscv@lists.infradead.org, Fu Wei <wefu@redhat.com>
+Subject: Re: [PATCH v2 2/5] dt-bindings: reset: thead,th1520-reset: Add
+ controllers for more subsys
+Message-ID: <aOCEt7UGpSyWTury@pie>
+References: <20250915095331.53350-1-ziyao@disroot.org>
+ <20250915095331.53350-3-ziyao@disroot.org>
+ <aOBSOZzOAeelS6Gi@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aOBSOZzOAeelS6Gi@x1>
 
-The MAX30100 driver previously hardcoded the SPO2 pulse width to
-1600us. This patch adds support for reading the pulse width from
-device tree (`maxim,pulse-width`) and programming it into the SPO2
-configuration register.
+On Fri, Oct 03, 2025 at 03:46:17PM -0700, Drew Fustini wrote:
+> On Mon, Sep 15, 2025 at 09:53:28AM +0000, Yao Zi wrote:
+> > TH1520 SoC is divided into several subsystems, most of them have
+> > distinct reset controllers. Let's document reset controllers other than
+> > the one for VO subsystem and IDs for their reset signals.
+> > 
+> > Signed-off-by: Yao Zi <ziyao@disroot.org>
+> 
+> Thanks for sending these patches.
+> 
+> > ---
+> >  .../bindings/reset/thead,th1520-reset.yaml    |   8 +-
+> >  .../dt-bindings/reset/thead,th1520-reset.h    | 216 ++++++++++++++++++
+> >  2 files changed, 223 insertions(+), 1 deletion(-)
+> > 
+> [snip]
+> > diff --git a/include/dt-bindings/reset/thead,th1520-reset.h b/include/dt-bindings/reset/thead,th1520-reset.h
+> > index e51d6314d131..68ac52ed69de 100644
+> > --- a/include/dt-bindings/reset/thead,th1520-reset.h
+> > +++ b/include/dt-bindings/reset/thead,th1520-reset.h
+> > @@ -7,6 +7,200 @@
+> >  #ifndef _DT_BINDINGS_TH1520_RESET_H
+> >  #define _DT_BINDINGS_TH1520_RESET_H
+> [snip]
+> > +/* DSP Subsystem */
+> > +#define TH1520_RESET_ID_X2X_DSP1	0
+> > +#define TH1520_RESET_ID_X2X_DSP0	1
+> > +#define TH1520_RESET_ID_X2X_SLAVE_DSP1	2
+> > +#define TH1520_RESET_ID_X2X_SLAVE_DSP0	3
+> > +#define TH1520_RESET_ID_DSP0_CORE	4
+> > +#define TH1520_RESET_ID_DSP0_DEBUG	5
+> > +#define TH1520_RESET_ID_DSP0_APB	6
+> > +#define TH1520_RESET_ID_DSP1_CORE	4
+> > +#define TH1520_RESET_ID_DSP1_DEBUG	5
+> > +#define TH1520_RESET_ID_DSP1_APB	6
+> > +#define TH1520_RESET_ID_DSPSYS_APB	7
+> > +#define TH1520_RESET_ID_AXI4_DSPSYS_SLV	8
+> > +#define TH1520_RESET_ID_AXI4_DSPSYS	9
+> > +#define TH1520_RESET_ID_AXI4_DSP_RS	10
+> 
+> This doesn't seem right. The numbers for each subsystem should not
+> repeat. Here the DSP0 and DSP1 items have the same numbers: 4, 5, 6.
+> 
+> This causes both clang and sparse to complain. I think you can just
+> change this so that TH1520_RESET_ID_DSP1_CORE is 7 and so on. The
+> indexes don't really have any concrete meaning other than how they are
+> used as unique keys.
 
-If no property is provided, the driver falls back to 1600us to
-preserve existing behavior.
+You're correct, it's a copy-paste error, just like the one spotted in v1
+of the series...
 
-Testing:
-Hardware: Raspberry Pi 3B + MAX30100 breakout
-Verified DT property read in probe()
-Confirmed SPO2_CONFIG register written correctly using regmap_read()
+I'm not sure why either my GCC or sparse yielded no warning about them.
+Will figure it out and send v3 with this fixed. Much sorry for these
+stupid mistakes.
 
-Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
----
- drivers/iio/health/max30100.c | 39 +++++++++++++++++++++++++++++++++--
- 1 file changed, 37 insertions(+), 2 deletions(-)
+Best regards,
+Yao Zi
 
-diff --git a/drivers/iio/health/max30100.c b/drivers/iio/health/max30100.c
-index 814f521e47ae..2b3348c75beb 100644
---- a/drivers/iio/health/max30100.c
-+++ b/drivers/iio/health/max30100.c
-@@ -5,7 +5,6 @@
-  * Copyright (C) 2015, 2018
-  * Author: Matt Ranostay <matt.ranostay@konsulko.com>
-  *
-- * TODO: enable pulse length controls via device tree properties
-  */
- 
- #include <linux/module.h>
-@@ -54,6 +53,9 @@
- #define MAX30100_REG_SPO2_CONFIG		0x07
- #define MAX30100_REG_SPO2_CONFIG_100HZ		BIT(2)
- #define MAX30100_REG_SPO2_CONFIG_HI_RES_EN	BIT(6)
-+#define MAX30100_REG_SPO2_CONFIG_200US		0x0
-+#define MAX30100_REG_SPO2_CONFIG_400US		0x1
-+#define MAX30100_REG_SPO2_CONFIG_800US		0x2
- #define MAX30100_REG_SPO2_CONFIG_1600US		0x3
- 
- #define MAX30100_REG_LED_CONFIG			0x09
-@@ -306,19 +308,52 @@ static int max30100_led_init(struct max30100_data *data)
- 		MAX30100_REG_LED_CONFIG_LED_MASK, reg);
- }
- 
-+static int max30100_get_pulse_width(unsigned int pwidth_us)
-+{
-+	switch (pwidth_us) {
-+	case 200:
-+		return MAX30100_REG_SPO2_CONFIG_200US;
-+	case 400:
-+		return MAX30100_REG_SPO2_CONFIG_400US;
-+	case 800:
-+		return MAX30100_REG_SPO2_CONFIG_800US;
-+	case 1600:
-+		return MAX30100_REG_SPO2_CONFIG_1600US;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
- static int max30100_chip_init(struct max30100_data *data)
- {
- 	int ret;
-+	unsigned int pulse_us;
-+	unsigned int pulse_width;
-+	struct device *dev = &data->client->dev;
- 
- 	/* setup LED current settings */
- 	ret = max30100_led_init(data);
- 	if (ret)
- 		return ret;
- 
-+	/* Get pulse width from DT, default = 1600us */
-+	ret = device_property_read_u32(dev, "maxim,pulse-width", &pulse_us);
-+	if (ret) {
-+		dev_warn(dev, "no pulse-width defined, defaulting to 1600us\n");
-+		pulse_width = MAX30100_REG_SPO2_CONFIG_1600US;
-+	} else {
-+		pulse_width = max30100_get_pulse_width(pulse_us);
-+		if (pulse_width < 0) {
-+			dev_err(dev, "invalid pulse-width %u\n", pulse_us);
-+			return pulse_width;
-+		}
-+	}
-+
- 	/* enable hi-res SPO2 readings at 100Hz */
- 	ret = regmap_write(data->regmap, MAX30100_REG_SPO2_CONFIG,
- 				 MAX30100_REG_SPO2_CONFIG_HI_RES_EN |
--				 MAX30100_REG_SPO2_CONFIG_100HZ);
-+				 MAX30100_REG_SPO2_CONFIG_100HZ |
-+				 pulse_width);
- 	if (ret)
- 		return ret;
- 
--- 
-2.43.0
-
+> The warnings:
+> 
+>   AR      kernel/built-in.a
+>   CC      drivers/reset/reset-th1520.o
+> drivers/reset/reset-th1520.c:655:32: warning: initializer overrides prior initialization of this subobject [-Winitializer-overrides]
+>   655 |         [TH1520_RESET_ID_DSP1_CORE] = {
+>       |                                       ^
+>   656 |                 .bit = BIT(12),
+>       |                 ~~~~~~~~~~~~~~~
+>   657 |                 .reg = TH1520_DSPSYS_RST_CFG,
+>       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>   658 |         },
+>       |         ~
+> drivers/reset/reset-th1520.c:643:32: note: previous initialization is here
+>   643 |         [TH1520_RESET_ID_DSP0_CORE] = {
+>       |                                       ^
+>   644 |                 .bit = BIT(8),
+>       |                 ~~~~~~~~~~~~~~
+>   645 |                 .reg = TH1520_DSPSYS_RST_CFG,
+>       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>   646 |         },
+>       |         ~
+> drivers/reset/reset-th1520.c:659:33: warning: initializer overrides prior initialization of this subobject [-Winitializer-overrides]
+>   659 |         [TH1520_RESET_ID_DSP1_DEBUG] = {
+>       |                                        ^
+>   660 |                 .bit = BIT(13),
+>       |                 ~~~~~~~~~~~~~~~
+>   661 |                 .reg = TH1520_DSPSYS_RST_CFG,
+>       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>   662 |         },
+>       |         ~
+> drivers/reset/reset-th1520.c:647:33: note: previous initialization is here
+>   647 |         [TH1520_RESET_ID_DSP0_DEBUG] = {
+>       |                                        ^
+>   648 |                 .bit = BIT(9),
+>       |                 ~~~~~~~~~~~~~~
+>   649 |                 .reg = TH1520_DSPSYS_RST_CFG,
+>       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>   650 |         },
+>       |         ~
+> drivers/reset/reset-th1520.c:663:31: warning: initializer overrides prior initialization of this subobject [-Winitializer-overrides]
+>   663 |         [TH1520_RESET_ID_DSP1_APB] = {
+>       |                                      ^
+>   664 |                 .bit = BIT(14),
+>       |                 ~~~~~~~~~~~~~~~
+>   665 |                 .reg = TH1520_DSPSYS_RST_CFG,
+>       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>   666 |         },
+>       |         ~
+> drivers/reset/reset-th1520.c:651:31: note: previous initialization is here
+>   651 |         [TH1520_RESET_ID_DSP0_APB] = {
+>       |                                      ^
+>   652 |                 .bit = BIT(10),
+>       |                 ~~~~~~~~~~~~~~~
+>   653 |                 .reg = TH1520_DSPSYS_RST_CFG,
+>       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>   654 |         },
+>       |         ~
+> 3 warnings generated.
+>   CHECK   drivers/reset/reset-th1520.c
+> drivers/reset/reset-th1520.c:643:10: warning: Initializer entry defined twice
+> drivers/reset/reset-th1520.c:655:10:   also defined here
+> 
+> 
+> Thanks,
+> Drew
+> 
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
