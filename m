@@ -1,133 +1,118 @@
-Return-Path: <devicetree+bounces-223604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D302BBB87B1
-	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 03:19:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 178A6BB87F4
+	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 03:56:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BE57C4E2441
-	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 01:19:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C8C2D3C86A3
+	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 01:56:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33D3F4207F;
-	Sat,  4 Oct 2025 01:19:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15FA521B191;
+	Sat,  4 Oct 2025 01:56:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ktCZCCQr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="coyUrBqa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f195.google.com (mail-pg1-f195.google.com [209.85.215.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7627EEEA8;
-	Sat,  4 Oct 2025 01:19:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97D89218AAB
+	for <devicetree@vger.kernel.org>; Sat,  4 Oct 2025 01:56:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759540765; cv=none; b=A6H71/Hpj/i8ivncvbrTFAZrI8dBAvd1KmYH1TN2tjn9mLuhTcGe2MgzGdJr+DaB8cgyf0CDnDw63qxPPt4ZAAOUo44cDyhPM8sBCx5VpLZ6ggyULmJq8MEUT4ROtm256yAENrcOo4p+2Q9qJm/o7WHMVNX5Da2fjkALSHTEZ2A=
+	t=1759542998; cv=none; b=aAWuKO933E8iIHKPvdvZyxXxqPzld5E4HmsnPjPNIT0OdAwMIaulZjFmpCcFlvSVhsLKB9cQWd9zO7yuCaWjZcBMlEC4LfpioBKg1VL6XSHblAe1pKnjlxdhTGB808aD8DYgQoWhG/iad9zG+JSuxvbLWaZF9+G9BF0FrzVaUiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759540765; c=relaxed/simple;
-	bh=fNfRYHZRZciYP1VNcc5BID8iEUccG3YVhkfMXauiGIc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HVQTQyqjD4t9YtFRhDxqVx4iE3cU6lCP+ZG7vHGr8DgPfXcDpOFFkj4Or9tzA8Zv61E4f13Ul12szPrm/0OhXZIpmjTGBAKutEhNRiDrdydPGS8NvVzR9CcCfRZVv/EL+4PMjPZamZuz+pY/QUt+x+stA3047Bc9pcBrVym5sX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ktCZCCQr; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1759540764; x=1791076764;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=fNfRYHZRZciYP1VNcc5BID8iEUccG3YVhkfMXauiGIc=;
-  b=ktCZCCQrnFGXis9AaiZLIevQVceogQxjQi+0XxrtVQbGex2Z8aaBwp+g
-   bJfAXOnBk7INmyALnYLesShpPbWsPouITS+Hfb+nKperkxxueKSFQGIRR
-   WwnliC3xQHclCw9//kw1Fz2UFebSaQ0u7CJHsDZbKoktWQoExHBzjoGLG
-   ApO+wh8F52Y2lyTLO9p3hDxS0Xt+CcsAT1YMa2UVZgd9F86OgmBuPPPMk
-   AwsaR5l/jxBpgwlSZ91q9Hi0FqlDUhJ0eiFG9+wm2OAikEebf/mpQyc9O
-   ZoLVbWIr4K0y29EDUijeBUtWHzrF8gUsGzzd/8RcG8NmAsJvEiedYx3Kx
-   A==;
-X-CSE-ConnectionGUID: H/hDFKyJRbelj0cwge65gQ==
-X-CSE-MsgGUID: IeTkcbNyRUiDWizL9Sq2kA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11571"; a="61988898"
-X-IronPort-AV: E=Sophos;i="6.18,314,1751266800"; 
-   d="scan'208";a="61988898"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2025 18:19:23 -0700
-X-CSE-ConnectionGUID: 7KqFVGjMReazrN229o0DBA==
-X-CSE-MsgGUID: qNiyH4HgSxOJmfJN43zV6g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,314,1751266800"; 
-   d="scan'208";a="179840945"
-Received: from lkp-server01.sh.intel.com (HELO 2f2a1232a4e4) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 03 Oct 2025 18:19:20 -0700
-Received: from kbuild by 2f2a1232a4e4 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1v4qvd-00050h-1N;
-	Sat, 04 Oct 2025 01:19:17 +0000
-Date: Sat, 4 Oct 2025 09:18:53 +0800
-From: kernel test robot <lkp@intel.com>
-To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>,
-	linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, herbert@gondor.apana.org.au,
-	robh@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev, krzk+dt@kernel.org,
-	conor+dt@kernel.org, Ruud.Derwig@synopsys.com,
-	manjunath.hadli@vayavyalabs.com, adityak@vayavyalabs.com,
-	Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>,
-	kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v6 4/4] Add SPAcc Kconfig and Makefile
-Message-ID: <202510040852.qK4TiL4k-lkp@intel.com>
-References: <20250929074334.118413-5-pavitrakumarm@vayavyalabs.com>
+	s=arc-20240116; t=1759542998; c=relaxed/simple;
+	bh=hORoEnA4rNo9eZ2TnSKm6bO35jEMPOOzljSvUmmDcv8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=aPT2KTilf1J/5Oua9HTJnrqHG0TO6DbC7qyPYavUu8wt6yqrKxZ3AB2lLhvrqO6Q9wP81nZq5dK/2fsdjSFSQVM7xIIePZO85kKC8JbIKj4ewdcSx3ty5DNaByWcATb/RvYVXfDjHKWTZ+O+UyBhLltTXfk8riEvfB+JbGek4fs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=coyUrBqa; arc=none smtp.client-ip=209.85.215.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f195.google.com with SMTP id 41be03b00d2f7-b5f2c1a7e48so2172400a12.0
+        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 18:56:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759542996; x=1760147796; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yTEqLH7hif0P56GR/htRgCIrTJyGDU/Of++XnbDqejk=;
+        b=coyUrBqapuTJexS7xn3g52pQ2K4nTdBao9aI7hgyXEBvxBzjbXPVYEPAiGkDDgmnFr
+         Gj4obPiJ+uRwZUtTXaldiG4X+rsurHtUqdrb/uCZ153jMkHOB0gLvCgzT4BwNeC0IKxs
+         ayKdB/OUwX42ILX/ON58RzDbMZ0gVoxf8TH+rnyzn+aDdQliK5aTFyXZ2AaehD4X7QMt
+         Sou4Cb/aGyOvh30hb3OAqoLWh7RK45UhszORo/t4EDBuuaa8HL3uSTdowrwjGTG6K83o
+         dg/1GmKic5Hfy1UP9LyJiFFk4IC45H9MmDQ6nfZNgZaQN0Of8cZvSqals0Y6SJCqldIF
+         Oxdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759542996; x=1760147796;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yTEqLH7hif0P56GR/htRgCIrTJyGDU/Of++XnbDqejk=;
+        b=uONdmznB3oykvMquf8jeSc4BPncsJyANUjSayaovyrgMHkHmedxCGSF+npkWHm5iVs
+         vf0Mz8VtxG7f6M6LBVH2v9mD20EqFQ74AiapptY6rzcuEiUVgh+jOi6n4bbUL02btA03
+         y9wEZIFe8T+5oN3gdX35YYZkXKNnAVhPuVtpeohPc77s3omPjPGKPWivzzMVDT9i65Ov
+         rBk6wy+Q6z97/w0eSvSeYV9Drbb5QH4oqXrSEqOhyJri4qHa91sMcJJ4vN0LGFI4blfR
+         VtMIXdK+m3n0aH3QmtcnMuwS+pnzlXWS+hvcgf8I2fZ+kK9yx1pIliEIAAEt5T8jvUSv
+         Xi9w==
+X-Forwarded-Encrypted: i=1; AJvYcCUKXd/Ap6ITu99mVtxGp3O+dQI7j1s5BD5baLyvQuIXtz6K/iU98LeH5DWpOLXhz3bKcC3CVW5LNhDt@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMZQ606bFZKjm/ub2dU9P5KamS5Fx87uIpz3+8j9zqA9wm0zDV
+	7eKMU+h61Da61fsie9kuSpAsEhoZsw250YkDfT11Ffd6VwFGM3mIyBrg
+X-Gm-Gg: ASbGncsajeeOWqNQI93U/TFWgSPvc1UbAXFgPc/drU6F/5Zi5N98jlVBFwrmY6QjsVo
+	RolcIXqPed1Msd59qSfYS2SwqayAtxh9jwUb5G4VFZ5K9gafz22HdQ9pChy3Q0FqniDGgYWE48T
+	Kml2FbWsZf/yDMgfK0wEdILG6YRdEqiciOyQTeVWLNMGkK9tgaeBXUbeQRRcy0kflnoQTBS6svc
+	j9sF5cIF9YUp9fdAlInBMPle7zrmhpuxUd40W9+psOgNUsL2/LbnlinQfl3wnq+MqwbA3TTaKSB
+	2r6XipxFdnZ2Y9vVFLCPRGChkWBMdZElTLGIfs3ZtVAeJ/drJeZmB6PznzzkJq1+9K2CEgD2bo6
+	CeqfIZG2mc1mtit3TZDXJETKG0V1F9DBTAVkoCGA3ln15MpdPJqVLSXc=
+X-Google-Smtp-Source: AGHT+IFNiL0NAmoLijKiqKFOV1i/A4WOPLrh/tgGYP4tBcXBAwrLn0RbO3aVkg2rfnZrEJWChZJVIA==
+X-Received: by 2002:a17:903:a86:b0:248:fc2d:3a21 with SMTP id d9443c01a7336-28e9a5cdd22mr51596345ad.4.1759542995628;
+        Fri, 03 Oct 2025 18:56:35 -0700 (PDT)
+Received: from Ubuntu24.. ([157.33.197.131])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d134859sm63197485ad.57.2025.10.03.18.56.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 03 Oct 2025 18:56:35 -0700 (PDT)
+From: Shrikant Raskar <raskar.shree97@gmail.com>
+To: jic23@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: dlechner@baylibre.com,
+	nuno.sa@analog.com,
+	andy@kernel.org,
+	matt@ranostay.sg,
+	skhan@linuxfoundation.org,
+	david.hunter.linux@gmail.com,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-kernel-mentees@lists.linux.dev,
+	Shrikant Raskar <raskar.shree97@gmail.com>
+Subject: [PATCH 0/2] iio: health: max30100: Add DT pulse-width support
+Date: Sat,  4 Oct 2025 07:26:21 +0530
+Message-ID: <20251004015623.7019-1-raskar.shree97@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250929074334.118413-5-pavitrakumarm@vayavyalabs.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Pavitrakumar,
+Add device tree and driver support for configuring the MAX30100
+pulse width, addressing a long-standing TODO in the driver.
 
-kernel test robot noticed the following build errors:
+Tested on Raspberry Pi 3B with MAX30100 breakout module.
 
-[auto build test ERROR on 166c83f7789ed02dc1f25bc7bed4a1beb25343aa]
+Shrikant Raskar (2):
+  dt-bindings: iio: max30100: Add pulse-width property
+  iio: health: max30100: Add pulse-width configuration via DT
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Pavitrakumar-Managutte/dt-bindings-crypto-Document-support-for-SPAcc/20250929-155434
-base:   166c83f7789ed02dc1f25bc7bed4a1beb25343aa
-patch link:    https://lore.kernel.org/r/20250929074334.118413-5-pavitrakumarm%40vayavyalabs.com
-patch subject: [PATCH v6 4/4] Add SPAcc Kconfig and Makefile
-config: i386-randconfig-013-20251004 (https://download.01.org/0day-ci/archive/20251004/202510040852.qK4TiL4k-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251004/202510040852.qK4TiL4k-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202510040852.qK4TiL4k-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> ld.lld: error: undefined symbol: crypto_engine_alloc_init
-   >>> referenced by spacc_device.c:88 (drivers/crypto/dwc-spacc/spacc_device.c:88)
-   >>>               drivers/crypto/dwc-spacc/spacc_device.o:(spacc_crypto_probe) in archive vmlinux.a
---
->> ld.lld: error: undefined symbol: crypto_engine_start
-   >>> referenced by spacc_device.c:95 (drivers/crypto/dwc-spacc/spacc_device.c:95)
-   >>>               drivers/crypto/dwc-spacc/spacc_device.o:(spacc_crypto_probe) in archive vmlinux.a
---
->> ld.lld: error: undefined symbol: crypto_engine_stop
-   >>> referenced by spacc_device.c:203 (drivers/crypto/dwc-spacc/spacc_device.c:203)
-   >>>               drivers/crypto/dwc-spacc/spacc_device.o:(spacc_crypto_probe) in archive vmlinux.a
-   >>> referenced by spacc_device.c:250 (drivers/crypto/dwc-spacc/spacc_device.c:250)
-   >>>               drivers/crypto/dwc-spacc/spacc_device.o:(spacc_crypto_remove) in archive vmlinux.a
---
->> ld.lld: error: undefined symbol: crypto_engine_exit
-   >>> referenced by spacc_device.c:206 (drivers/crypto/dwc-spacc/spacc_device.c:206)
-   >>>               drivers/crypto/dwc-spacc/spacc_device.o:(spacc_crypto_probe) in archive vmlinux.a
-   >>> referenced by spacc_device.c:251 (drivers/crypto/dwc-spacc/spacc_device.c:251)
-   >>>               drivers/crypto/dwc-spacc/spacc_device.o:(spacc_crypto_remove) in archive vmlinux.a
+ .../bindings/iio/health/maxim,max30100.yaml   |  6 +++
+ drivers/iio/health/max30100.c                 | 39 ++++++++++++++++++-
+ 2 files changed, 43 insertions(+), 2 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
