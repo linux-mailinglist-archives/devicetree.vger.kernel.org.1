@@ -1,209 +1,248 @@
-Return-Path: <devicetree+bounces-223608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id A709BBB885E
-	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 04:29:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2645BBB888B
+	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 04:42:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4F6244E2296
-	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 02:29:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 267E41B21961
+	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 02:42:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 542C927D77A;
-	Sat,  4 Oct 2025 02:29:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAABF21FF25;
+	Sat,  4 Oct 2025 02:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="cqlAqblR"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ft3a855I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DA3954774;
-	Sat,  4 Oct 2025 02:29:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4072421A94F
+	for <devicetree@vger.kernel.org>; Sat,  4 Oct 2025 02:42:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759544977; cv=none; b=QIbknYlnKm+SsLGQ9U6ZAgIr9JCTmAmXTu3obix2ybRlDyWd+IOPNnqOyTHhySzNssqriG+0G842hI5s9vlj8A73ZQ7jD9hdorMefHcej7b/WLsb1KgRgDdL0PHEbBi3/yrLETTEMMORHgEM78R8FNrR7zCcALjZ0RXaR6EwLds=
+	t=1759545723; cv=none; b=cWBtPl+HPeWGZ6Ayl5Tg5qZ4nwoh9Y1Mz0Fke9DVd+k9jzMv/pqKc17oXwv9rBbykLTQ2u79Vy29q1H9NQd2HXM0XG07ltDDzdsHDId6HJSv5obFKzpTSWHzBmQKNNQtcXm9gfQpeol9x/oxE/ixWgVpIoLB/NoxPDnqwgZPlaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759544977; c=relaxed/simple;
-	bh=kzhYlF7toSJUYLhb6Zjs2f+TE43JU+j0Ai5mwSU6n38=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BUrWy1EMWGhB+XCMFCM8voUGg1pcqkaCNX5NDdFHCyDqZD4fB0MbOBeR7eOB2FMhSwiuEj++cFffiT1ZaRzuIzr8YikSCw+b2OBSmMrih2hoPW3RdsvdQqbJ/VwqPryAP5vWOuoot2ljLlO5WfQmsQtwQUTlatSq3nIMFs9rjGY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=cqlAqblR; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 7A9E626222;
-	Sat,  4 Oct 2025 04:22:02 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id L-mAlgRG7zDV; Sat,  4 Oct 2025 04:22:01 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1759544521; bh=kzhYlF7toSJUYLhb6Zjs2f+TE43JU+j0Ai5mwSU6n38=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=cqlAqblRnzhq6/cP064tVaoFUxarJaXkP0yLySa8sYNPgz6z6SYKJidlwnZtewnIA
-	 qLK1FM++X1Rz+7cKIx59TfPCPTMh9fbKuG58Cl5YZ/QU0qfr4NZiQEbciQhsPjZZie
-	 jvEk6AD1y+A8znqWUWrAmmVG2zBY2I112w0LOJ9+LDPiNnkXPd4iCyflRYTuR6lh4a
-	 9kZ7UhXyChlPWBPSJHOwi8bH3P70W8h/yKmGuVEk1eZFe/8TSjNF3MA1tj/lVxURqU
-	 /++dUO20g/4qX9Beg0bmSEKHe7SiuP+4Kw3LQexE734gZaXjSr9ObmfANvODxGMWAD
-	 frPgVDe3rUqvw==
-Date: Sat, 4 Oct 2025 02:21:43 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Drew Fustini <fustini@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Michal Wilczynski <m.wilczynski@samsung.com>,
-	Alexandre Ghiti <alex@ghiti.fr>, devicetree@vger.kernel.org,
-	Han Gao <gaohan@iscas.ac.cn>, Han Gao <rabenda.cn@gmail.com>,
-	linux-kernel@vger.kernel.org, Guo Ren <guoren@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org, Fu Wei <wefu@redhat.com>
-Subject: Re: [PATCH v2 2/5] dt-bindings: reset: thead,th1520-reset: Add
- controllers for more subsys
-Message-ID: <aOCEt7UGpSyWTury@pie>
-References: <20250915095331.53350-1-ziyao@disroot.org>
- <20250915095331.53350-3-ziyao@disroot.org>
- <aOBSOZzOAeelS6Gi@x1>
+	s=arc-20240116; t=1759545723; c=relaxed/simple;
+	bh=GrG+sZoFKRUNsfWBm/ynu78GdpzwzH9S+BPs1TW4kbo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OHUwqE9xh1pBQl+9Lj19SB3U+YEi6WY9sGTRi+Tun3VPRMV685gNGpfYTOD7yyq9XVlK7n7YPVNgYA9QE1DCitDAROF0yJZclR9rBmttlhmDumuWg89MaCrUrzBhTZSlHiGR/4BlH2k7HUjJbgu3rtg2Li72NVCBc+TvBi9txTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ft3a855I; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5942ZiD1005570
+	for <devicetree@vger.kernel.org>; Sat, 4 Oct 2025 02:42:01 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8LKTW72ANVRWqbBbs1orSLC8F5L2PbgtH5ZHTOYbBuc=; b=ft3a855IBg2OWRMS
+	nbEgEinUC+Q4mu3cLXd85jjLj7n8OO+Ucb94YSBzV9M5iSWwKetL3Jsq4a017sm3
+	cUwHRP5HjLnh0yHLysMi0QaZz40BiJsG+tY4MKyYaSkGLwsw1bDzdS/CGipJqsiY
+	7L2gTQb0941neWt3rAVYORT29ZMYfGyPGsjyNAQdgDcOkbEVECBxvw8eeUiRALnq
+	ei11ZUNXHGrhrTpevLeGySZ6xGBdvFGGSt/+RjFwqSjvI+U2NTgOodJBAHW9HoQe
+	hFrKTcGbHL+aukMz9E71YIsi5Bo7uj2gsJ6GVc9qFoi8h6MsRCr0B67/lsDkNLi1
+	WxBtvg==
+Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49e851vf4r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Sat, 04 Oct 2025 02:42:01 +0000 (GMT)
+Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-77f2466eeb5so2872740b3a.2
+        for <devicetree@vger.kernel.org>; Fri, 03 Oct 2025 19:42:01 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759545720; x=1760150520;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8LKTW72ANVRWqbBbs1orSLC8F5L2PbgtH5ZHTOYbBuc=;
+        b=Zg3t/XX7UMHjq61YJBUetIAo3r6dGIhR0oZRutZj2kUd46nANjo1pRTRrlcqvDNhqA
+         V5swcpz4ijfA+53sSSQTc7UBJPKxBJaex1yWhmWv/JC0KVuOi/sMmgVwmEy5p1WDAOAa
+         J2dEPRcAUY/00nIUn2/lMv7aH/IhlLYEyoq9Nqt8VS33k0wY5fiZ54Jp5aSOsEe8eQ2F
+         WwgfMfrNl71Ink2IBK/HiLEiQzXp6T+422Kl98K+l/IdMnsX7H772MdpLx+sKg6lVoCX
+         9CU+NCnl7B/FEs51TMKFvj7mwaedMjKPxkTGGgz3W8U0xHYU9Ht4GZy/2nfKPioq2f5h
+         qOJg==
+X-Forwarded-Encrypted: i=1; AJvYcCVJQ369T/aqz2JM8BwaGYaEpdrq3B5KtU7K1JNt/Ocxs7Q8Ld7VYNaE4i3synbcjZRpFJE8YbFlmoYh@vger.kernel.org
+X-Gm-Message-State: AOJu0YzptTTO27JyEnIGpwEuzY2EyqmjzjZ4eX0mnKPG5HfCS6X52Wtj
+	/jL55bW8i3OSXkWoWq2ol0OYLJDeu5PLi/JK9Q6bDaNGpvosy+F6F8DN5z6IcLbpUBF2ONepLig
+	eS60GiVC8yNLcpvLQunWx/xYq5SRp+Qx5djyqsHFcWFSYnBTEMrxADslY4nNUVpl5
+X-Gm-Gg: ASbGnct1gfq51J3JcmKNaY6bW4yB1wpkee6ia5CmtA/J7v4G4tIKsO+uKXMe8aBydUW
+	hzNgc9KKKOEI4tLZ+OXkECzC8O/s+a2Wvub/WOqGIPdJhnwgPhsiUPtYyiVo+Up4rVomEwNeFoj
+	hFu45yEfZBazzm+ymhHSzEp6GXxMY+kxdNUrjNfEN9CQ0V25n1tbRiFi5yTdRuURiaj8XhtHOqF
+	fjPCQ1WIe+u3ukfShq1fkntVKl+JVQnTPdWmw0otr2muH20NMjkWFNAC28Wxo3NoXvqlsXkyXIL
+	8pNNG/8zYxBM1RQRbrtHXj4JRRgGmXhwI0lpeHfitnMc6fzuhMPJXgwoF1iq+3498MugJMTWrG+
+	2XQ==
+X-Received: by 2002:a05:6a00:8c6:b0:781:2538:bfb4 with SMTP id d2e1a72fcca58-78c98d5cb4cmr5364071b3a.10.1759545720396;
+        Fri, 03 Oct 2025 19:42:00 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHoqhjBr0QjJZhFy4pINP5TXEFjwtPrvEKpTZgZJvp0XgVHp0FpeliOUWBrj6cq1uLbRLNrvA==
+X-Received: by 2002:a05:6a00:8c6:b0:781:2538:bfb4 with SMTP id d2e1a72fcca58-78c98d5cb4cmr5364023b3a.10.1759545719824;
+        Fri, 03 Oct 2025 19:41:59 -0700 (PDT)
+Received: from [10.216.33.177] ([202.46.23.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78b01f9a2b9sm6189511b3a.19.2025.10.03.19.41.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 03 Oct 2025 19:41:59 -0700 (PDT)
+Message-ID: <a3158843-dfac-4adc-838a-35bb4b0cbea4@oss.qualcomm.com>
+Date: Sat, 4 Oct 2025 08:11:48 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aOBSOZzOAeelS6Gi@x1>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V7 3/5] dt-bindings: iio: adc: Add support for QCOM PMIC5
+ Gen3 ADC
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, agross@kernel.org,
+        andersson@kernel.org, lumag@kernel.org,
+        dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
+        daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org,
+        thara.gopinath@gmail.com, lee@kernel.org, rafael@kernel.org,
+        subbaraman.narayanamurthy@oss.qualcomm.com,
+        david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
+        kamal.wadhwa@oss.qualcomm.com, rui.zhang@intel.com,
+        lukasz.luba@arm.com, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        cros-qcom-dts-watchers@chromium.org, quic_kotarake@quicinc.com,
+        neil.armstrong@linaro.org, stephan.gerhold@linaro.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+References: <20250826083657.4005727-1-jishnu.prakash@oss.qualcomm.com>
+ <20250826083657.4005727-4-jishnu.prakash@oss.qualcomm.com>
+ <20250829-classic-dynamic-clam-addbd8@kuoka>
+ <5d662148-408f-49e1-a769-2a5d61371cae@oss.qualcomm.com>
+ <4e974e77-adfc-49e5-90c8-cf8996ded513@kernel.org>
+ <a0e885be-e87d-411a-884e-3e38a0d761e5@oss.qualcomm.com>
+ <8c90cc3f-115e-4362-9293-05d9bee24214@linaro.org>
+ <5d4edecf-51f3-4d4a-861f-fce419e3a314@oss.qualcomm.com>
+ <20250927144757.4d36d5c8@jic23-huawei>
+Content-Language: en-US
+From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+In-Reply-To: <20250927144757.4d36d5c8@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=OJoqHCaB c=1 sm=1 tr=0 ts=68e08979 cx=c_pps
+ a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=u19HPSzwk6W4tZ9FH_gA:9
+ a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTI3MDAzMiBTYWx0ZWRfX/P7jZzp182d7
+ ocet7PTYHKEpO5AlFretJ74cDBc1ipBq6WRn1QQab2H+pWvSHQIbO+njjCIBVZRDMPogCrR9RIC
+ OGtV/PxhlhWmlaNIMO5ikHMz8iyVS74ShEJJ//UXMinLZIRmu4As2dFGDen7Zrq7cx8iAKs93Xz
+ 08bBL2dOsK3lrExAfQTeCF3pWJwZx80D8PAwaUCyTYXijBw9heVnipYuujCk09aEaYAHYOf5rzn
+ Is2FL4RuYt++RF0dx+LnDi6olXRSvHRefebSerdDziEIaOWCnxeEh5wwzoEld87SODxA0Ph2cDM
+ pbZie5dV5ti+vaAJRAlcIZnuy8PYreWWjH+8W/kRkgtBqls+Z5l7bTtJl+IsFjGUfNkZBj4JFyB
+ AbqsArYEAq16w3PspVu2aJDMZAXE9A==
+X-Proofpoint-ORIG-GUID: 3N7Lf-soxFf8Te3I3omiHkiuZV98DJFl
+X-Proofpoint-GUID: 3N7Lf-soxFf8Te3I3omiHkiuZV98DJFl
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-03_07,2025-10-02_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 priorityscore=1501 bulkscore=0 impostorscore=0
+ suspectscore=0 lowpriorityscore=0 phishscore=0 malwarescore=0 clxscore=1015
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2509270032
 
-On Fri, Oct 03, 2025 at 03:46:17PM -0700, Drew Fustini wrote:
-> On Mon, Sep 15, 2025 at 09:53:28AM +0000, Yao Zi wrote:
-> > TH1520 SoC is divided into several subsystems, most of them have
-> > distinct reset controllers. Let's document reset controllers other than
-> > the one for VO subsystem and IDs for their reset signals.
-> > 
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> 
-> Thanks for sending these patches.
-> 
-> > ---
-> >  .../bindings/reset/thead,th1520-reset.yaml    |   8 +-
-> >  .../dt-bindings/reset/thead,th1520-reset.h    | 216 ++++++++++++++++++
-> >  2 files changed, 223 insertions(+), 1 deletion(-)
-> > 
-> [snip]
-> > diff --git a/include/dt-bindings/reset/thead,th1520-reset.h b/include/dt-bindings/reset/thead,th1520-reset.h
-> > index e51d6314d131..68ac52ed69de 100644
-> > --- a/include/dt-bindings/reset/thead,th1520-reset.h
-> > +++ b/include/dt-bindings/reset/thead,th1520-reset.h
-> > @@ -7,6 +7,200 @@
-> >  #ifndef _DT_BINDINGS_TH1520_RESET_H
-> >  #define _DT_BINDINGS_TH1520_RESET_H
-> [snip]
-> > +/* DSP Subsystem */
-> > +#define TH1520_RESET_ID_X2X_DSP1	0
-> > +#define TH1520_RESET_ID_X2X_DSP0	1
-> > +#define TH1520_RESET_ID_X2X_SLAVE_DSP1	2
-> > +#define TH1520_RESET_ID_X2X_SLAVE_DSP0	3
-> > +#define TH1520_RESET_ID_DSP0_CORE	4
-> > +#define TH1520_RESET_ID_DSP0_DEBUG	5
-> > +#define TH1520_RESET_ID_DSP0_APB	6
-> > +#define TH1520_RESET_ID_DSP1_CORE	4
-> > +#define TH1520_RESET_ID_DSP1_DEBUG	5
-> > +#define TH1520_RESET_ID_DSP1_APB	6
-> > +#define TH1520_RESET_ID_DSPSYS_APB	7
-> > +#define TH1520_RESET_ID_AXI4_DSPSYS_SLV	8
-> > +#define TH1520_RESET_ID_AXI4_DSPSYS	9
-> > +#define TH1520_RESET_ID_AXI4_DSP_RS	10
-> 
-> This doesn't seem right. The numbers for each subsystem should not
-> repeat. Here the DSP0 and DSP1 items have the same numbers: 4, 5, 6.
-> 
-> This causes both clang and sparse to complain. I think you can just
-> change this so that TH1520_RESET_ID_DSP1_CORE is 7 and so on. The
-> indexes don't really have any concrete meaning other than how they are
-> used as unique keys.
+Hi Jonathan,
 
-You're correct, it's a copy-paste error, just like the one spotted in v1
-of the series...
+On 9/27/2025 7:17 PM, Jonathan Cameron wrote:
+> On Fri, 19 Sep 2025 20:17:43 +0530
+> Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
+> 
+>> Hi Krzysztof,
+>>
+>> On 9/18/2025 5:45 AM, Krzysztof Kozlowski wrote:
+>>> On 18/09/2025 04:47, Jishnu Prakash wrote:  
+>>>> Hi Krzysztof,
+>>>>
+>>>> On 9/17/2025 5:59 AM, Krzysztof Kozlowski wrote:  
+>>>>> On 16/09/2025 16:28, Jishnu Prakash wrote:  
+>>>>>>> You cannot have empty spaces in ID constants. These are abstract
+>>>>>>> numbers.
+>>>>>>>
+>>>>>>> Otherwise please point me to driver using this constant.  
+>>>>>>
+>>>>>> These constants are for ADC channel numbers, which are fixed in HW.
+>>>>>>
+>>>>>> They are used in this driver: drivers/iio/adc/qcom-spmi-adc5-gen3.c,
+>>>>>> which is added in patch 4 of this series.
+>>>>>>
+>>>>>> They can be found in the array named adc5_gen3_chans_pmic[].  
+>>>>>
+>>>>> Really? So point me to the line there using ADC5_GEN3_VREF_BAT_THERM.
+>>>>>  
+>>>>
+>>>> We may not be using all of these channels right now - we can add them
+>>>> later based on requirements coming up. For now, I'll remove the channels
+>>>> not used in adc5_gen3_chans_pmic[].  
+>>>
+>>> You are not implementing the feedback then. Please read it carefully.
+>>>   
+>>
+>> Sorry, I misunderstood - so you actually meant I should remove the
+>> empty spaces in the definitions, like this?
+>>
+>> -#define ADC5_GEN3_VREF_BAT_THERM               0x15
+>> +#define ADC5_GEN3_VREF_BAT_THERM 0x15
+>>
+>> I thought this at first, but I somehow doubted this later, as I saw some
+>> other recently added files with empty spaces in #define lines, like:
+>>
+>> include/dt-bindings/iio/adc/mediatek,mt6373-auxadc.h
+>> include/dt-bindings/regulator/st,stm32mp15-regulator.h
+>>
+>> I can make this change, if you prefer this. Please let me know
+>> if I'm still missing something.
+>>
+>> Also please let me know if you want me to remove the unused
+>> channels - I would prefer to keep them if there's no issue,
+>> as we might need them later.
+>>
+> He is referring to 0x14 and below not being defined values.  So what
+> do they mean if they turn up in the DT?
+> 
 
-I'm not sure why either my GCC or sparse yielded no warning about them.
-Will figure it out and send v3 with this fixed. Much sorry for these
-stupid mistakes.
+Thanks for your clarification. To address your first point above, the macros
+added here only represent the ADC channel numbers which are supported for
+ADC5 Gen3 devices. If there are numbers missing in between (like 0x14),
+that is because there exist no valid ADC channels in HW matching those
+channel numbers.
 
-Best regards,
-Yao Zi
+For your question above, if any of the undefined channels are used in the DT,
+they should ideally be treated as invalid when parsed in the driver probe and
+lead to an error. When I checked the code again, I saw we do not have such an
+explicit check right now, so I will add that in the next patch series.
 
-> The warnings:
+And to be clear on which channel numbers are supported, I think it may be
+best if, for now, we only add support for the channel numbers referenced in
+the array adc5_gen3_chans_pmic[] in drivers/iio/adc/qcom-spmi-adc5-gen3.c.
+
+There are only 18 channel numbers used in this array and I would remove
+all channels except for these from the binding files. During parsing, we
+would use this array to confirm if an ADC channel added in DT is supported.
+
+In case we need to add support for any more channels later, we could add
+their macros in the binding file and update the array correspondingly at
+that time.
+
+Does all this sound fine? Please let me know if you have any more concerns
+or queries.
+
+Thanks,
+Jishnu
+
+> Hence the request for context on how this define is being used so that
+> you can get some feedback on how it should be done.
 > 
->   AR      kernel/built-in.a
->   CC      drivers/reset/reset-th1520.o
-> drivers/reset/reset-th1520.c:655:32: warning: initializer overrides prior initialization of this subobject [-Winitializer-overrides]
->   655 |         [TH1520_RESET_ID_DSP1_CORE] = {
->       |                                       ^
->   656 |                 .bit = BIT(12),
->       |                 ~~~~~~~~~~~~~~~
->   657 |                 .reg = TH1520_DSPSYS_RST_CFG,
->       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->   658 |         },
->       |         ~
-> drivers/reset/reset-th1520.c:643:32: note: previous initialization is here
->   643 |         [TH1520_RESET_ID_DSP0_CORE] = {
->       |                                       ^
->   644 |                 .bit = BIT(8),
->       |                 ~~~~~~~~~~~~~~
->   645 |                 .reg = TH1520_DSPSYS_RST_CFG,
->       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->   646 |         },
->       |         ~
-> drivers/reset/reset-th1520.c:659:33: warning: initializer overrides prior initialization of this subobject [-Winitializer-overrides]
->   659 |         [TH1520_RESET_ID_DSP1_DEBUG] = {
->       |                                        ^
->   660 |                 .bit = BIT(13),
->       |                 ~~~~~~~~~~~~~~~
->   661 |                 .reg = TH1520_DSPSYS_RST_CFG,
->       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->   662 |         },
->       |         ~
-> drivers/reset/reset-th1520.c:647:33: note: previous initialization is here
->   647 |         [TH1520_RESET_ID_DSP0_DEBUG] = {
->       |                                        ^
->   648 |                 .bit = BIT(9),
->       |                 ~~~~~~~~~~~~~~
->   649 |                 .reg = TH1520_DSPSYS_RST_CFG,
->       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->   650 |         },
->       |         ~
-> drivers/reset/reset-th1520.c:663:31: warning: initializer overrides prior initialization of this subobject [-Winitializer-overrides]
->   663 |         [TH1520_RESET_ID_DSP1_APB] = {
->       |                                      ^
->   664 |                 .bit = BIT(14),
->       |                 ~~~~~~~~~~~~~~~
->   665 |                 .reg = TH1520_DSPSYS_RST_CFG,
->       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->   666 |         },
->       |         ~
-> drivers/reset/reset-th1520.c:651:31: note: previous initialization is here
->   651 |         [TH1520_RESET_ID_DSP0_APB] = {
->       |                                      ^
->   652 |                 .bit = BIT(10),
->       |                 ~~~~~~~~~~~~~~~
->   653 |                 .reg = TH1520_DSPSYS_RST_CFG,
->       |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->   654 |         },
->       |         ~
-> 3 warnings generated.
->   CHECK   drivers/reset/reset-th1520.c
-> drivers/reset/reset-th1520.c:643:10: warning: Initializer entry defined twice
-> drivers/reset/reset-th1520.c:655:10:   also defined here
+> J
+>> Thanks,
+>> Jishnu
+>>
+>>> Best regards,
+>>> Krzysztof  
+>>
 > 
-> 
-> Thanks,
-> Drew
-> 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+
 
