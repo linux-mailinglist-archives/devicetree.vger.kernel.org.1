@@ -1,183 +1,182 @@
-Return-Path: <devicetree+bounces-223632-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223633-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 046E9BB8ECB
-	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 16:29:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE36CBB8EE3
+	for <lists+devicetree@lfdr.de>; Sat, 04 Oct 2025 16:33:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B25544E7E6F
-	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 14:29:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B37B189EF4E
+	for <lists+devicetree@lfdr.de>; Sat,  4 Oct 2025 14:33:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9039B2206A7;
-	Sat,  4 Oct 2025 14:29:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jIDYkr7L"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A9DE20E023;
+	Sat,  4 Oct 2025 14:33:21 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+Received: from mail-vk1-f179.google.com (mail-vk1-f179.google.com [209.85.221.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D566C21FF41
-	for <devicetree@vger.kernel.org>; Sat,  4 Oct 2025 14:29:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA3B61F91E3
+	for <devicetree@vger.kernel.org>; Sat,  4 Oct 2025 14:33:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759588150; cv=none; b=nwFY04u9HFwWLo5n9c7mig7Fkxo9QslOWtV8gLq+obyMgfm7EJ1c+TcpnctZmwVZ3dHWCCg3RXi0T7QdDqrhailuRiZjC7wnbhjLgd3K5JKP3ehurbeatMnilnle1Ko1OwZjw+weAuB7hVrylehaiVTRjSDCDHMKzOoLDU+xocw=
+	t=1759588401; cv=none; b=a4HMRyFUhegJjgR8IV04Lu2nWch7zMCaSVtU254XnnJW4G7RNphiLNJSjsqJDIZGU4ANG7Nm1kgQ56f8LWEfqkrJ9IZzn+ih53tY1TWEUZIZ11ENq/dsFvLT8bE3FM4TBmqVzqXYcgcQdTBL82pUQrfGJnnTUZLfyMpZ9SXcI7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759588150; c=relaxed/simple;
-	bh=DMeykmPN5Hn52oroDMprGiqhW3PY40d3FDFFHM4U6So=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZZgFp8xa9tOeCugqFFNJlymW2J9TL2f8AYKUaibtoy30qLmIXdPu6s9yOpPcEJEXcdQzTZGX9jZcxqG1FEi2DBcH3AY7Barpax3jfjUjlTYT3bPJ/RVdzClt3YONO98pL4Gz5yE/MW1y/cfbFxIEufvVsyxpQ7HNqKYvMSufnuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jIDYkr7L; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1759588401; c=relaxed/simple;
+	bh=0J55Y2HmqgcnbS+RXB3tiJFIIySx+Rr5EZpIa0gAB24=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OMu72EDVuGoTFUUc8fyUHCoOv9ftiJK+3A5PGj4gHbl3LsWAJ3xy4EnU36Bh1pq0/UUnRVi3gXHvt0i3HljDyHLzUXp6ubO74YzEeryJOM9LWzfCNscFgkpUTqdK9lBRtc8RmKknBWs74JE42wrle5AcS0RWXjorb6ZFG0HQgxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-78af743c232so2799189b3a.1
-        for <devicetree@vger.kernel.org>; Sat, 04 Oct 2025 07:29:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759588148; x=1760192948; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=dJLJddt6znxw/vx9IIBy8Llpdg1rWPPK3LlhQpupMwY=;
-        b=jIDYkr7LG+/ENVFlYvvsjumnqBZ//djnoW29SFjg/DbatgT0KnkyIJOpY0hVHuZCw/
-         CRCuXwmcpLEjJaC4jR3pydZAjnfp69c8VOqWBXvVXW4+puQnYgIwU5WSVJlgJbSLZcFz
-         ei2/xMmGN4xt25DKm144YFLxDMEdMX1QjvyDjgkIinkOHBVzJ1lwSdDLIvFaUySfURj5
-         6AlKLcPPQnWiF5R8MrxQjuOrcArHperrWAJnnJszjMqv1qmsF1xQ7j0cH1cmam5A9TPK
-         UmCpuRPCSJNyhhntLCFEOhMK1OAqiAUnGWEFWF2kcz6uXlHMFuqo6ddR/7F7NgqWD0pI
-         OVSw==
+Received: by mail-vk1-f179.google.com with SMTP id 71dfb90a1353d-54a79cadd1fso2251495e0c.3
+        for <devicetree@vger.kernel.org>; Sat, 04 Oct 2025 07:33:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759588148; x=1760192948;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=dJLJddt6znxw/vx9IIBy8Llpdg1rWPPK3LlhQpupMwY=;
-        b=OKvZxPB7BwI6tabszHBaUyMl5542y1izCBc50zpgnX9B3sL/pyiswNqsbZ0x1p65/B
-         4oZd5Gql/pM062wX2uDMho46rckR1kl/nFdThzHq8tVUHojFJiJVfLnmMhoNqEAt0CAs
-         G85xqqH6AB13byhHP0yypYrj4xFWaDIsVvdP2RqPGZr2ZCy51AiM3a/Tn0kdWLq7Z6G7
-         0+PvwSXkObarU4gycN+Jtb/Q4v0xgY3ctESJ+PXNmBRmOjx6FbvEy3K+2vysIPSt7UxS
-         56MvxAUQYRXQgq5GpgP8+6XNTecCoXJQ1ptdldQoqa+OahnFxVBDvFNDod8moWrglbvT
-         +Z7g==
-X-Forwarded-Encrypted: i=1; AJvYcCVP6IQLmJ5jhyJtXkYAjBoAudtG3/k/YC6KJ6MaPkADUaiApEy8WdCQP8adWDdFukIiXTm2NG9Fu3Ss@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9RR5PzMUKFVrW9DLDcqEDaKUrb3LWa0aq0XkFRjqFqzjCwVcH
-	9fPW/U5LtxFKg0l3us/hRhZnyunbzEeCcKYcsYSmq3j9GNTP4+bYhC9f
-X-Gm-Gg: ASbGncugXsTcMrxmcteMFa7nTh+il3a9xwK+7hguXPwaYy3QiVeT5wMygDZV/y8fyJ8
-	VZ+ktmdBj11E/iRxJIxobC81Q+5nlokB5s2Y0pLIUfSs3eHElc7SpFrNq7ISz9C92nY9jQbEi28
-	r6n53Zc34KW+JdGME6sGjPziN5ctiER93vN7fKjwER7JbdGL5qUTMaw8MFn3HYDYZ+DIOFbrK+Z
-	+vxRGjVO5PJxoBRjqDw8+HsH83nI3fU7iPZdXCOCsfKoVpQ7Az3XRBBrgLB1EWw9Op3Kt/BhuJZ
-	luWPEv2ktZKt1R0B01hvojdpvmDJLMlu1lMIBmC0aB30szRebHXpF/UQi2zRYHvoOM5Ux61mYem
-	/vv+mWuZ/Lb5DOPe/ROseB9IeFlFGgkAONFtYxdlPTamRAxsUqLdYqYIb8QG1FRWa+VBM7iYDQP
-	w6ve5WYMMLHPB+axQcqAs=
-X-Google-Smtp-Source: AGHT+IGrnta0K2AVOdKuQUrDuH3DDW9htsxyGfKGvsM7d3Z1hpoBhD1zMahhNW3M63rAxzw3T6obEQ==
-X-Received: by 2002:a05:6a20:a128:b0:262:1611:6528 with SMTP id adf61e73a8af0-32b6209c4b6mr9839268637.29.1759588148024;
-        Sat, 04 Oct 2025 07:29:08 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6099f594afsm7410427a12.37.2025.10.04.07.29.06
+        d=1e100.net; s=20230601; t=1759588397; x=1760193197;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xthzmHjkhKJUrri8Wf1E3AifPP/ZxbkaJDpboT1dzM4=;
+        b=Om6Y9ZZVWnasw/ObG0MjzegkNma7osEetG/JJtR8MBo22iAR62Kx8AQmJj3AOTPZrX
+         j0MsD7k3koiY9vNq+der8g3bkJgJbH4o7WJ8beo8Dry6U3yje84586Yyn7mFxRR0Yv+i
+         bSdi3OOoxBYn4/YkQ2so9wkmukMvcNVtNl5dz53rCgrEbmV2xTHmNvsqiP61pRyipnwB
+         +YqT201/YjKJiGWM7k0hVL1/KtVY1Y/aNjfHK6q1IwVU5r+zTIVkML7V8cN2bS0A3PV1
+         J9W1WwLq/1zuS/FqcTI0BnSvgUU6Gz0GRaM7UbHMq47pEeb31CKL9Le2phZMxbHBZMoS
+         G2Bw==
+X-Forwarded-Encrypted: i=1; AJvYcCX9ZIQ8oUqpfk4xsZC97BqPge4iwEErZjUsUY6h/LEBhVsUb00tIfkB5GPuYXwOCJmqO05wE0rMeXWp@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy9VGshEQTf6+z7sf28YrfL16PdacH29S4URv26ew8k/h9VnfBr
+	PX9UGvml0GJfWO+2KXQd6f3NwIRpov8RcNzA6WDtvdHeHvcYbkpv26vh0TpKBfHl
+X-Gm-Gg: ASbGncvZAiDJfdPL4uahm8tBBiPlBaXCmrGel4rV7lAfYWXMm+e5ID4Mb+Ymz/vm4EL
+	EHMvoBRcFIRR2k56bZvM31009z8FXbshKCwncZcfnKH2Zqz+7Bjo7JqwZV0TN+zNek38qpY/f0d
+	iszZRh0Hj/66ym3q1Iy7s6kFy6BURpX89iXpgQqnQvdQzwtVnq7O9B+c+QYJiShGsF0HLa0XTAO
+	TtZFTozqWjED3UsKC1irTSaovZwmlQEA9GjYpDhdq3lFoiFpfiLvLJ3Ipy9RwkBQshr+12MUyxW
+	5v7qhCpD/ZPQ/laxiLG42Sz8B1mCJVqsApoXXkzasLjWsWZ5s6nw/BsYkNcU6wGYnkfCtvdaGyx
+	G1uCFCxojzVuXdzWKaxTUE8fC8zxGJ7Z008tyuCOJqV9JkldXqlA7S0wMwEZDm2hn6H8rdIDumH
+	BgaSttyTKLou8GC0cySEY=
+X-Google-Smtp-Source: AGHT+IGaxsAdzvZDS5KCcJlz5P3ffKSy0nkUzwMEoBB4Pws0ItW5kjzx5T/jPp84uvZQoECzCfp5aQ==
+X-Received: by 2002:a05:6122:514:b0:54b:bc60:93f8 with SMTP id 71dfb90a1353d-5524ea2517fmr2556877e0c.9.1759588397383;
+        Sat, 04 Oct 2025 07:33:17 -0700 (PDT)
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com. [209.85.222.52])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5523cf63c6asm1865051e0c.19.2025.10.04.07.33.17
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 04 Oct 2025 07:29:07 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <44a1a1c4-813d-4540-a73e-b136032e79a2@roeck-us.net>
-Date: Sat, 4 Oct 2025 07:29:05 -0700
+        Sat, 04 Oct 2025 07:33:17 -0700 (PDT)
+Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-8e8163d94bbso2399303241.3
+        for <devicetree@vger.kernel.org>; Sat, 04 Oct 2025 07:33:17 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUso3R53BXUiiTVoXaTAWd3fFHyJUhy/0RdSvK3WSK6pxaOocYG3yswG8vp8kW3Q8sQ38k0ZYjAUHP0@vger.kernel.org
+X-Received: by 2002:a05:6102:291f:b0:5a2:668d:f20b with SMTP id
+ ada2fe7eead31-5d41d0dd17bmr3054407137.16.1759588396956; Sat, 04 Oct 2025
+ 07:33:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/2] add support for MCP998X
-To: Jonathan Cameron <jic23@kernel.org>, victor.duicu@microchip.com
-Cc: dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- marius.cristea@microchip.com, linux-iio@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- Jean Delvare <jdelvare@suse.com>
-References: <20250930133131.13797-1-victor.duicu@microchip.com>
- <20251004151138.77886486@jic23-huawei>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20251004151138.77886486@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20251001122326.4024391-1-cosmin-gabriel.tanislav.xa@renesas.com>
+ <20251001122326.4024391-4-cosmin-gabriel.tanislav.xa@renesas.com> <20251004143901.505ec386@jic23-huawei>
+In-Reply-To: <20251004143901.505ec386@jic23-huawei>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Sat, 4 Oct 2025 16:33:05 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV+V60pZSRmu6SjeBNyi_0+Un5pXjWDLDDBt6UbYfTmeQ@mail.gmail.com>
+X-Gm-Features: AS18NWBkap4dmgI1LydXdtTPg0XGaFgAjq5oqq5cMsJWqAup1M73smsgPeqmT7I
+Message-ID: <CAMuHMdV+V60pZSRmu6SjeBNyi_0+Un5pXjWDLDDBt6UbYfTmeQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/7] iio: adc: add RZ/T2H / RZ/N2H ADC driver
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>, 
+	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	linux-iio@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/4/25 07:11, Jonathan Cameron wrote:
-> On Tue, 30 Sep 2025 16:31:29 +0300
-> <victor.duicu@microchip.com> wrote:
-> 
->> From: Victor Duicu <victor.duicu@microchip.com>
->>
->> Add support for Microchip MCP998X/33 and MCP998XD/33D Multichannel
->> Automotive Temperature Monitor Family.
->>
->> The chips in the family have different numbers of external channels,
->> ranging from 1 (MCP9982) to 4 channels (MCP9985). Reading diodes in
->> anti-parallel connection is supported by MCP9984/85/33 and
->> MCP9984D/85D/33D. Dedicated hardware shutdown circuitry is present
->> only in MCP998XD and MCP9933D.
->>
->> This driver was submitted in the IIO subsystem because the chips could use
->> interrupts to handle threshold events.
-> 
-> This reasoning isn't particularly strong as hwmon has support for events etc.
-> This device is also 'slow' so I'm not immediately seeing a strong reason why
-> IIO is the right choice.
-> 
+On Sat, 4 Oct 2025 at 15:39, Jonathan Cameron <jic23@kernel.org> wrote:
+>
+> On Wed,  1 Oct 2025 15:23:10 +0300
+> Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com> wrote:
+>
+> > Add support for the A/D 12-Bit successive approximation converters foun=
+d
+> > in the Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs.
+> >
+> > RZ/T2H has two ADCs with 4 channels and one with 6.
+> > RZ/N2H has two ADCs with 4 channels and one with 15.
+> >
+> > Conversions can be performed in single or continuous mode. Result of th=
+e
+> > conversion is stored in a 16-bit data register corresponding to each
+> > channel.
+> >
+> > The conversions can be started by a software trigger, a synchronous
+> > trigger (from MTU or from ELC) or an asynchronous external trigger (fro=
+m
+> > ADTRGn# pin).
+> >
+> > Only single mode with software trigger is supported for now.
+> >
+> > Signed-off-by: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+> > Reviewed-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+> Hi Cosmin
+>
+> A few really minor comments.
+>
+> I might have ignored these or tweaked whilst applying but looks
+> like you'll probably be doing a v4 anyway so I thought I'd mention them.
+>
+> Thanks,
+>
+> Jonathan
+>
+>
+> > diff --git a/drivers/iio/adc/rzt2h_adc.c b/drivers/iio/adc/rzt2h_adc.c
+> > new file mode 100644
+> > index 000000000000..51d1852d814d
+> > --- /dev/null
+> > +++ b/drivers/iio/adc/rzt2h_adc.c
+> > @@ -0,0 +1,309 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/cleanup.h>
+> > +#include <linux/completion.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/iio/adc-helpers.h>
+> > +#include <linux/iio/iio.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/io.h>
+> > +#include <linux/iopoll.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/pm_runtime.h>
+> > +#include <linux/property.h>
+> > +
+> > +#define RZT2H_NAME                   "rzt2h-adc"
+>
+> I'm not a huge fan of defines like this as there is no inherent reason th=
+e two
+> places it is used should take the same value. If you feel it's really jus=
+tified
+> then I don't mind too much though.
 
-Correct. hwmon supports both events and udev events.
+I am not a fan either, as using a define in the initialization of
+platform_driver.driver.name means I have to do another grep to
+find the actual name.
 
-> After some recent feedback from Guenter I'm keen to get a clearer set
-> of reasoning when I take a temperature monitoring chip into IIO.
-> 
-> Also asking that we +CC Guenter for his input on devices where the decision
-> isn't clear cut.
+Gr{oetje,eeting}s,
 
-IMO this _is_ (or should be) clear cut: This is a hardware monitoring device.
-It should be a hardware monitoring driver. FWIW, writing one should be
-straightforward (including interrupt/event support).
+                        Geert
 
-Guenter
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
