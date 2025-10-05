@@ -1,180 +1,138 @@
-Return-Path: <devicetree+bounces-223645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92EBEBB93DC
-	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 05:39:55 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3454BB93E7
+	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 05:50:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 455A73BDBA5
-	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 03:39:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E64A14E1B7B
+	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 03:50:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BA75189BB6;
-	Sun,  5 Oct 2025 03:39:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69471A0BF1;
+	Sun,  5 Oct 2025 03:50:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eyI1E5ln"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SXeBx7/2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC5D6FC3
-	for <devicetree@vger.kernel.org>; Sun,  5 Oct 2025 03:39:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7799019DF5F
+	for <devicetree@vger.kernel.org>; Sun,  5 Oct 2025 03:50:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759635591; cv=none; b=aSSlc0hdgVXswz8tFvrJtnOM49ED0h6BhrUkXVmNbKQyd2hRkVLmd8s4OcVaAtI8t+ieNUmiWxYvrYGfrbKPopnnOCW57HrivKFTOnBcHrHd8xO4XxKrMFwUdx/cYfg+F7hKul3sBiui4V9z1MoyTwmWWHPeAPtE653vMAeNMzM=
+	t=1759636224; cv=none; b=Er3VGk4RrlGOV6VYUYq5M5XJI/D+X9iZEJ6iL+nFMbElaYnp4CSkAaf9rsvumRAMLxKU1oQK3e5P3XneyYuIsziBsjadgPOEw9288v8nAp6HmoJ+Z30/yY3yQ1RvtpL7QVMlp/CAMRXk1I44ZVV6O6vyc9zjxXYGC+mhkpSq6vY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759635591; c=relaxed/simple;
-	bh=5DXVhQJVWPa7BTZiMU1CWGKQEMRR10aBUHK104FQf7A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I4Fgxmch8G08qZOwpWKBwQWiRizxSbbi/a1o3DAzzWX3AJ7vGaWq+k+NW/f2TlfbSMe1kF99XMv/LWVxYt32o2txqH20kF8i5mGlCFtdD22zWgxMpOtbKVLgtWeRreh1/YeSIi+FSS5DmW8FBebCIRBiMZda+wtTS0gYl4oEc/Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eyI1E5ln; arc=none smtp.client-ip=209.85.216.50
+	s=arc-20240116; t=1759636224; c=relaxed/simple;
+	bh=+xM3jlWWcZ0O3zm4JBTc30PBKSwwJDsHM/u/wFG/UTs=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=hwXirAs5GOK+OxmaIF9F4b0sadrPyA4JjTTLXGYGNLUdkbLpBKNy4WiCfUkX06otZ4ltFfVtHgDN+tGK9iiBYBYpfbEiOz799B07bhW2E459rb6i3DmVoZoENvi62sc5tWRJbqWYSOylHOLBlP6PCD1+iU/Xd85rCpAuayK5khE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SXeBx7/2; arc=none smtp.client-ip=209.85.216.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-330a4d4359bso3084042a91.2
-        for <devicetree@vger.kernel.org>; Sat, 04 Oct 2025 20:39:49 -0700 (PDT)
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-3306b83ebdaso3663439a91.3
+        for <devicetree@vger.kernel.org>; Sat, 04 Oct 2025 20:50:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759635589; x=1760240389; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+g7HNgxMDfLXKAWzxyzzrvk58l1g/AkfeI8B7sftDTM=;
-        b=eyI1E5lnxRUpK2ao1Vy5noAyBKkFDf0bb5fe/FKloyMtg2t7jD96eD9OzhRXYR9shI
-         U6hBQQMrETLbziI2W5Iz2UahnvvMBh6njwWzzZgjbKyocxxbyXcNov67oSufA7E6QlUU
-         /m1ueJbliA7FrtHK8o5EDUemehf0ys0sBpeWyA1hbZIOO5WaC0fURBD2+lGVG+dgwS4p
-         7ze+5Yi/qs8uxc9/RHn1HU7mmZ+xDikvkuyl4PGec4SiA9t1ktoAb/dfeYrb2hCY1PSQ
-         1b1PQANEm5GzNo7wKz98ZF1hAi4LzFut22yen8KS4otfwqrzO2qszeGurhKs1ZjKaYMw
-         hU/A==
+        d=gmail.com; s=20230601; t=1759636221; x=1760241021; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=c5eVUz6w+EoFaDLEM3O5W2lqhgMgUFUDbpzSqKfqJ4E=;
+        b=SXeBx7/2Pvzpq3snwaE1C5O2MPJ8vKRkotHFZZ1GvYbsB9S6w3NN5SoBrB3PFgxEzE
+         lI1haz4LSFWAHpecnMs1LLKWdIcZ7OMp2u0RHJW423mvyMBk1FKwUfTQTmTsOtSWnhlz
+         Bu6BqutqyxkUbLZ6EXunGjFxItY22K6RXn5IKsoHf6EpQwVEdmuTgh6eDE8a9KewrS5Y
+         SY6a2fYkPWxz3exO1zvP6cxC7BWZfjoxiRjHw2nsZlfz6wT3J9NPmISMExOwjuCHcWKS
+         LkBEtaX8GUVCjSecR+5Fno3hxO+X1i8/XUdr2qm8PUFCUj8OIB1QdvOeegYv0AoMYR+u
+         rWjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759635589; x=1760240389;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+g7HNgxMDfLXKAWzxyzzrvk58l1g/AkfeI8B7sftDTM=;
-        b=cbMhZrNeJY4D30rT8IUpa0n1yrRPgAxVAg7c0fdv771yZGnJ8JrXSRQGVnt+fBGhzy
-         LWook+dGSvyV+HFWCxJy4UH+j0XgcuMPOjukxU3c9mmZZy/hxpZlEWuoBNdl4y1thVS8
-         bmMpZOwD5d9AFgH5G5ifd37CW4gWA92x9QWbOXYL2X8Ehdc0Sh8nabUy33mItJlAz4fJ
-         e2kRMGPLHIMsRyhTHwEhPPGzx2Ua9J01nD5Q7flwpNmoFDiVlHwhUqJyE7xDe7c+RM9r
-         LKAI7gxro5RFvdPHzrbUFb+tBQcJxvfTPjhFhdqfL69GNeLIkMqajaLXfjJWL34jKX9K
-         TEWg==
-X-Forwarded-Encrypted: i=1; AJvYcCWwOpQt6RQwGeGYE3jbmvRsqqx0dIXgDAC2duyezO+RFGObviHFIJrbTEEsGyMwLZEmPnM2YJ8fE5hu@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMxSQxqbS+vxuW8LuR1eWcczH55XwWHAuhJeGAC7YSnLj6fYHx
-	yXzXoLQyhtXJNla8h2VgcfBAYzChm91zl1XHV8jdrJ5zhkX6fg+Zkrvs
-X-Gm-Gg: ASbGnctJJpKlcP3UuPUWENyglanE5tvd6A13w6uQ4mJmnqpNmoFWjS4TlLGNR1uijV+
-	loEt2aX6V7KdBB6dtEsJ/KSTTmgK0/jrkpcilCJ2K2eYfp0DeLgXO/qv7X1IeIV8kALspfF7+Be
-	RhxG9cRU9gv+ylbTHUbG2W2vWlWXbA57dK5BZjCOfRQVx8Inn87r489/ylXegZk60MsMGbKBGkq
-	I1OUwcbf8jVnu4GwfZxz8F62juPs+B6TKMsiVM1xOAsPow/kUwV487UsuRI1zogKdp0d5xvjGVi
-	Y5GyyyiFTYLhHcYZRHhT9Or1YukzAuG6jRAJfhK2i2Mshn8qzL8nq9C32QirkcQEcIvBGHg0pwa
-	QN55h4XcKAAvqo9X5PfCezHmfC3hpnC7P0xtyFBh0L6Y2UqETfNqYiw5f
-X-Google-Smtp-Source: AGHT+IH6XtWdzGlhlZv85anzGuYP/KOgTHTcVV5Smrvelg3UJ+cGVAkyZ231iYNJVwr5XleNxsLBQA==
-X-Received: by 2002:a17:902:fc87:b0:250:b622:c750 with SMTP id d9443c01a7336-28e9a61ec6amr96084485ad.27.1759635589349;
-        Sat, 04 Oct 2025 20:39:49 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-28e8d1edabasm91909375ad.124.2025.10.04.20.39.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 04 Oct 2025 20:39:48 -0700 (PDT)
-Date: Sun, 5 Oct 2025 11:39:13 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Joshua Milas <josh.milas@gmail.com>, 
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	unicorn_wang@outlook.com, alexander.sverdlin@gmail.com, rabenda.cn@gmail.com, 
-	thomas.bonnefille@bootlin.com, chao.wei@sophgo.com, devicetree@vger.kernel.org, 
-	sophgo@lists.linux.dev
-Subject: Re: [PATCH 2/2] arm64: dts: sophgo: add initial Milk-V Duo S board
- support
-Message-ID: <oxke5yy22pb7nqzlbjsvhcq32xz77pmmxkcrnxr3lxqvhe6cxp@n43f2yngnfcc>
-References: <20250927173619.89768-1-josh.milas@gmail.com>
- <20250927173619.89768-3-josh.milas@gmail.com>
- <nkzpfylhxyqf5u3bjlokhe4udgcxohbaanhwuofjzatan3iwio@45ljfquf5sui>
- <aN8isoQpdENTrxNJ@sleek>
+        d=1e100.net; s=20230601; t=1759636221; x=1760241021;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=c5eVUz6w+EoFaDLEM3O5W2lqhgMgUFUDbpzSqKfqJ4E=;
+        b=VPNsy7zSE/6mLFkOb+LIAy7E5zyrDP6/Q0W1jJjrKL6YUE4qQoM675s1LfazmYUfGJ
+         jaVK8cPV/ysuuLZ3cBja1tbFJlCnnNUHCTfLc9Ngo+gPt6hPq5ZMoXmH8ZINHy4RNjlt
+         USP4eIZTPwI+ZS2UMfZcW2M2MWa97e3JzdAIH6rppWl1s8fG/yxtV/BaBDnxFj5jwSVo
+         GylECAiJDC2CVBrJbDy/dCnv8nbbQKAuO2SYU2z7XpkVvfmeQH6yg9ijBdQG2zPi5smL
+         AYSLlvq6wc4S54cy96KDGSWzr/ke0UxfiNNi9KJuGvjIkH0BAMintCqmVZTRwvBi1w8X
+         VmSg==
+X-Gm-Message-State: AOJu0YwRm51XyyoDelwraNz6JTrNX5ENYCjzifvs85hGgnwD0Z0xKtLV
+	Ry16lIzov5y4tWAO38csLcbsnbI12jHbgic2LglAFzTI/THSX8dKGySa
+X-Gm-Gg: ASbGnctsQVRk8/jTxcFjLb8D4+lgLZqR1GH7Tf+mDQKTPw8nuE6QR26yau8TWRD9aH3
+	7wIBlzIZoOFfUMsgiYSAxyo5p13lcUzwpTNJIHiikeV5epN6eVmGjMMbZ6P6dl8xMDXAscohLvN
+	S//PEIilCBZ6iDFoAmqiMJkO2ZpJYwRcUUP2ZYYadOSDoyzZr+c2njBnPXvLVArjx3KzJVVMdhf
+	9jb/nnrRKJFheWh3OaCIOeJwNP3pjJZGpDsEY1IF7kDhoYSJt0zwF/sQO0AwMAKGN+t556fUZDS
+	Il9AgaoSGgkHt0Df+ob8sbtwLpNyDIDDSi9rCgid4CsOSJ5jpynpwtIFL+LUJxZ4J4Jx1brQIkk
+	WooypCcMbugDtGEVvxDYKsveNohkuklzh6B45Kh4Xm8E5uemaE7soD4SwWApMW0XRvFAUQw==
+X-Google-Smtp-Source: AGHT+IHcTbMO5+we3ZfilD94T2VHeJ0hOb2Fn1NDL5mTMC08c7x71iIANmz2jzxUESzENW+NrQvLww==
+X-Received: by 2002:a17:90b:390f:b0:336:b60f:3935 with SMTP id 98e67ed59e1d1-339c27db5a8mr10757968a91.23.1759636220504;
+        Sat, 04 Oct 2025 20:50:20 -0700 (PDT)
+Received: from ehlo.thunderbird.net ([2804:7f0:9241:9618:6db0:456f:e63a:4e6c])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-339c4a0d531sm6470367a91.4.2025.10.04.20.50.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 04 Oct 2025 20:50:19 -0700 (PDT)
+Date: Sun, 05 Oct 2025 00:50:16 -0300
+From: =?ISO-8859-1?Q?Eric_Gon=E7alves?= <ghatto404@gmail.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: r0q: enable hardware clocks
+User-Agent: Thunderbird for Android
+In-Reply-To: <d16e8c07-6c10-4c91-9bbe-a260f0497d29@oss.qualcomm.com>
+References: <20250920014637.38175-1-ghatto404@gmail.com> <20250920014637.38175-5-ghatto404@gmail.com> <d16e8c07-6c10-4c91-9bbe-a260f0497d29@oss.qualcomm.com>
+Message-ID: <99D0B281-03A5-447E-A6BF-892C99829D0B@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aN8isoQpdENTrxNJ@sleek>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 02, 2025 at 09:11:14PM -0400, Joshua Milas wrote:
-> Hi Inochi,
-> 
-> > Small suggestion: please ensure the pinctrl is correct, different
-> > board may require different configuration.
-> 
-> Is there a certain way to do that? I have been checking it against
-> the board schematic [1]. It shows that it is using UART0 on the
-> pins defined in pinctrl-sg2000.h.
-> 
-> Link: https://github.com/milkv-duo/duo-files/blob/main/duo-s/hardware/duo_s_SCH_v1.1.pdf
-> 
-> 
-> > I suggest adding all the support devices instead of a minimum one.
-> > Like ethernet, wifi, bluetooth.
-> > In the next cycle, there should be a patch for adding USB device node,
-> > as the driver is already merged. I also hope you can take it.
-> 
-> Lets do it! I tried adding the following but could not get some items working:
-> * emmc from 'sg2000-milkv-duo-module-01.dtsi'
-> * sdhci1 from 'sg2000-milkv-duo-module-01.dtsi'
-> * mdio
-> * gmac0
-> * dmac
-> * saradc
-> * i2c*
-> * spi*
-> 
-> I pulled the following logs of interest:
-> 
-> ---
-> ...
-> [    0.647426] faux_driver regulatory: no of_node; not parsing pinctrl DT
-> ...
-> [    0.732380] serial8250 serial8250: no of_node; not parsing pinctrl DT
-> ...
-> [    2.418965] sophgo-cv1800-rtc cv1800b-rtc.0.auto: no of_node; not parsing pinctrl DT
-> [    2.427695] alarmtimer alarmtimer.1.auto: no of_node; not parsing pinctrl DT
-> ...
-> [    2.441722] sophgo-cv1800-rtc cv1800b-rtc.0.auto: hctosys: unable to read the hardware clock
-> ...
-> [    2.525580] SPI driver fb_st7789v has no spi_device_id for sitronix,st7789v
-> ...
-> [    2.555363] faux_driver snd-soc-dummy: no of_node; not parsing pinctrl DT
-> ...
-> [    2.767235] mmc1: Failed to initialize a non-removable card
-> ...
-> [    2.900631] dw-apb-uart 4140000.serial: forbid DMA for kernel console
-> ...
-> [   13.058020] stmmaceth 4070000.ethernet: IRQ eth_wake_irq not found
-> [   13.086915] stmmaceth 4070000.ethernet: IRQ eth_lpi not found
-> [   13.096993] stmmaceth 4070000.ethernet: IRQ sfty not found
-> [   13.105407] stmmaceth 4070000.ethernet: Hash table entries set to unexpected value 0
-> [   13.115751] stmmaceth 4070000.ethernet: dt configuration failed
-> [   13.127832] platform 3009800.mdio-mux: deferred probe pending: mdio-mux-mmioreg: failed to register mdio-mux bus /soc/mdio-mux@3009800
-> [   13.142739] platform 4070000.ethernet: deferred probe pending: (reason unknown)
-> [   13.152434] platform 4000000.i2c: deferred probe pending: (reason unknown)
-> [   13.161898] platform 4010000.i2c: deferred probe pending: (reason unknown)
-> [   13.171078] platform 4020000.i2c: deferred probe pending: (reason unknown)
-> [   13.180353] platform 4030000.i2c: deferred probe pending: (reason unknown)
-> [   13.189629] platform 4040000.i2c: deferred probe pending: (reason unknown)
-> [   13.198817] platform 3020000.gpio: deferred probe pending: gpio-dwapb: Cannot get reset descriptor
-> [   13.210208] platform 3021000.gpio: deferred probe pending: gpio-dwapb: Cannot get reset descriptor
-> [   13.221737] platform 3022000.gpio: deferred probe pending: gpio-dwapb: Cannot get reset descriptor
-> [   13.233111] platform 3023000.gpio: deferred probe pending: gpio-dwapb: Cannot get reset descriptor
-> [   13.244422] platform 4150000.serial: deferred probe pending: (reason unknown)
-> [   13.253971] platform 4160000.serial: deferred probe pending: (reason unknown)
-> [   13.263513] platform 4170000.serial: deferred probe pending: (reason unknown)
-> [   13.274037] platform 41c0000.serial: deferred probe pending: (reason unknown)
-> ---
-> 
-> I believe I have the correct drivers enabled for everything. I'm figuring there
-> is some pinctrl configuration ('PIN_ETH_*'?) I have to add to the device tree
-> but unsure what it would look like.
-> 
 
-Weird, I don't see it in riscv build. Can you post your dts here?
 
-Regards,
-Inochi
+On September 25, 2025 10:09:48 AM GMT-03:00, Konrad Dybcio <konrad=2Edybci=
+o@oss=2Equalcomm=2Ecom> wrote:
+>On 9/20/25 3:46 AM, Eric Gon=C3=A7alves wrote:
+>> Enable the real-time clocks found in R0Q board=2E
+>>=20
+>> Signed-off-by: Eric Gon=C3=A7alves <ghatto404@gmail=2Ecom>
+>> ---
+>>  arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts | 15 +++++++++++++++
+>>  1 file changed, 15 insertions(+)
+>>=20
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts b/arch/a=
+rm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
+>> index c1b0b21c0ec5=2E=2Ec088f1acf6ea 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
+>> @@ -225,6 +225,21 @@ vol_up_n: vol-up-n-state {
+>>  	};
+>>  };
+>> =20
+>> +&pmk8350_rtc {
+>> +	nvmem-cells =3D <&rtc_offset>;
+>> +	nvmem-cell-names =3D "offset";
+>> +
+>> +	status =3D "okay";
+>> +};
+>> +
+>> +&pmk8350_sdam_2 {
+>> +	status =3D "okay";
+>> +
+>> +	rtc_offset: rtc-offset@bc {
+>
+>Is this an offset you took from somewhere downstream?
+>
+>Generally you *really don't want to* poke at random SDAM cells,
+>as they contain a lot of important settings (incl=2E battery/charging)
+From=20another sm8450 device, I'm sure it's okay=2E
+>
+>Konrad
 
