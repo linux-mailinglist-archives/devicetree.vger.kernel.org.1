@@ -1,121 +1,158 @@
-Return-Path: <devicetree+bounces-223658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68715BB9621
-	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 14:08:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F16EBB9746
+	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 15:20:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CC4018954E6
-	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 12:09:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AA553A3FA1
+	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 13:20:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A6B28727E;
-	Sun,  5 Oct 2025 12:08:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B48C2882C9;
+	Sun,  5 Oct 2025 13:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XXMPeWOx"
+	dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="UR/GKyRv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.subdimension.ro (nalicastle.subdimension.ro [172.105.74.154])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0DD4269CF1
-	for <devicetree@vger.kernel.org>; Sun,  5 Oct 2025 12:08:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC5727404E;
+	Sun,  5 Oct 2025 13:20:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=172.105.74.154
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759666118; cv=none; b=f2dIGV34iN4y9iDFlb/EWYSlE2Xr6Z7tJ0EM20N2586kMLb5pCx75/S5J7nzURKsH8CIeU/qgrrIQUa9UMgcnvEu4Q9tjZjjve9SXkbDnyqirqAs9WgBAT5KNTj7klBDdmcXPtvvEinmHbn1AJ8dSeQe7OxnbeDUiObhvkkDu2Q=
+	t=1759670415; cv=none; b=ibxVsLGU/n0ZAqzKspU+L2oz665MBYvGzToR+pUf3B9JFn/DbKonAwdGBXv/Q68pB6BVuR3ta1vQN7yI71zxE3YIosw4q6FC55SBzIag/UMYsUUGH9d+6GUzpVCWHnvgeRORI0nmFu6vR651H7UkCES1GIzFB9a7ThkUo6cj1bo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759666118; c=relaxed/simple;
-	bh=wyvLuY5n+tvnuGwyGp7qNTcrqSENQNXuYBiM64dU+qc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pRum+k4wnOIor/yeLG33ofRSehoUEr0UQEPBd23WUQ4J2yKvYD3AQ82adw5SI7FhE6oGLm6NZHisTe9z4/CQX23GzECXcxb9hrNs0zvD1RHukCRyuVMjFXa+IRxipIZyvk9iqYbsLGVHqWPiFdpfxpbaW7790FCpUQaEirmimfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XXMPeWOx; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-279e2554b5fso29511415ad.1
-        for <devicetree@vger.kernel.org>; Sun, 05 Oct 2025 05:08:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759666116; x=1760270916; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=n0Iz/V6AwGwcxIZ7A+Dvd5REDaxdSj8jP0Jy7VCRDG8=;
-        b=XXMPeWOx5r1MWkUFU5lg07rkebP78zAaM3DeeqAIIiBZviExCCaW5VW8QwuMyvDDin
-         6yaSURm/fgJRBR/8xK2p5HR6r4+jbMygMG9qwG9o+lp5RiWOWD+EwTss4d0TO4TevORj
-         IfCGNYDlWEw0W8ME65Dw+nndn+HCatvpAj7ad/For2rCriF16yrX0nmbaKAquaSmyQZX
-         rFmzpVo5GT/sZgWNCn36tQFEUr8O5nJp5Lk7do/Jdqs/2XvgD26oJlDEFRzTyPlCds/N
-         9NK/a7VPCnjbFbhcss9olGo4JA8nJreSeb4u9E+OFdmmBfw8EYScHTWsfwczKiGhdjq9
-         xKzQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759666116; x=1760270916;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n0Iz/V6AwGwcxIZ7A+Dvd5REDaxdSj8jP0Jy7VCRDG8=;
-        b=tLde81Stx5KEYPJNA9zsb/1piFosfxQAFnlKy/4Dp942XQpSOA4ca6v7DbupNSC/4f
-         tNXH9k2aqYYbaHfKq2Tww1qhRrLCMNQFEkctGhzt3wrfPR6KTVeDJQv/i6aYTJvqxryN
-         BU+ERcauitC2qYsRtCXyelhIHIxSOL2xX5nXfXV409eA1Lh/bVHfuzIIDauqpjQvWAxC
-         yP6XJD+D8uhtR86u/YdlVV4uh8jEgSNhK2G6QhtRAjU44DlzhIrVREg3tXj0vrE7eI17
-         hnyHMbDcl3jVme336bA2/gDGa+ni8cIagdwZaVL+4toFeVvTZ+FCAbkupVFIQFGjxY/k
-         0VPw==
-X-Forwarded-Encrypted: i=1; AJvYcCXkiOJ2nD1j3poRYwfS1IUAlOxozmmIPtCnxTh/JxmPw033z86Q+HJEQQZP4MBjL9YuCYACgkGBpd1B@vger.kernel.org
-X-Gm-Message-State: AOJu0YwH1fnrpwKPwhGRWos/nuQozdTancSHSJEBnXH9z5o5k4C4Zs34
-	N422oFXGxxJoTqnkcUlqr95EYFe4lvJq5f5iK/e5wxn+N1SZc9v7AJJu
-X-Gm-Gg: ASbGncuR6kSKbD0K5KZ6jHGDNTVlz7ifP0fUjiomddDGqW6M6BFNMcPKSjKNdZlBCag
-	b0TsNXmC3wXC3AthjBpwewE7KXTrwVzmd5s+gbOofSzyMKGiQZjWf263YWKbdfnllkHVM2Qej/N
-	2nHDw1xpa20fRZiaqD2g6Bkj3pMI5WQtOyexSKbtrXg8TJu6KJwnVec8SfKSv7zFKRKMdOtH+Xm
-	QoA3GaQxUYwfNHSAr41WIlsAube9JbU3BF0FsQRJeWyJizYHij3aBNKWAPhOoj4a6zM2Wsoqn/+
-	e2sHUfGNVaYJdt6iTJybNNmFkmeixmSyYdVPLv2nfkr9B1bcDYhzwNGG0TiKqL0EFtcbrpfMJrz
-	Irv2Ytib+SJmER9xaMBFjyJ8pjQCKypbqf8vlfpeA5Zii3WO1UR65go4p
-X-Google-Smtp-Source: AGHT+IHBt7NH7TN1KsDxkRb650MBtCb+3uYntKRfpifHFzA5B6tzFUrAE5OSO+EE5Xiib+t6EfWyUA==
-X-Received: by 2002:a17:903:190:b0:271:9b0e:54ca with SMTP id d9443c01a7336-28e8d04f303mr174512775ad.13.1759666115849;
-        Sun, 05 Oct 2025 05:08:35 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-28e8d1d564csm101640685ad.98.2025.10.05.05.08.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Oct 2025 05:08:34 -0700 (PDT)
-Date: Sun, 5 Oct 2025 20:07:55 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Joshua Milas <josh.milas@gmail.com>, 
-	Inochi Amaoto <inochiama@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	unicorn_wang@outlook.com, alexander.sverdlin@gmail.com, rabenda.cn@gmail.com, 
-	thomas.bonnefille@bootlin.com, chao.wei@sophgo.com, devicetree@vger.kernel.org, 
-	sophgo@lists.linux.dev
-Subject: Re: [PATCH 2/2] arm64: dts: sophgo: add initial Milk-V Duo S board
- support
-Message-ID: <i5ymzikmayu4hmucm46v2mq2qrgdsmm7f6wsfo3rhj4o7pgdnu@ts7uczeb7qxr>
-References: <20250927173619.89768-1-josh.milas@gmail.com>
- <20250927173619.89768-3-josh.milas@gmail.com>
- <nkzpfylhxyqf5u3bjlokhe4udgcxohbaanhwuofjzatan3iwio@45ljfquf5sui>
- <aN8isoQpdENTrxNJ@sleek>
+	s=arc-20240116; t=1759670415; c=relaxed/simple;
+	bh=f7KLDAodIHfk17l27mAPyJygswUhI6CzvIQ+CXzSVBo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BAE1MszzJ99v1EPIjC9JJNtm0HNkGKF+TfjlzRVd4BwYG/ZNCvCagH2lily0f34nHWii5prxJEmjhH+UsP8nRGdpWou3ZVlZkAX9vlPMsOtZPa+2ERKXehePZtrKzgObZemyesio+1yCic8ENhZkO6QouPMG7hDUvYtYUJ91OEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro; spf=pass smtp.mailfrom=subdimension.ro; dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b=UR/GKyRv; arc=none smtp.client-ip=172.105.74.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
+Received: from [10.212.0.13] (unknown [IPv6:2a02:2f0e:3e0c:5b00:e2d5:5eff:fed9:f1c4])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id 5D198173BE2;
+	Sun, 05 Oct 2025 16:12:59 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=subdimension.ro;
+	s=mail; t=1759669979;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=UzX+EUuxYZCKZQCIkyxrwphKqB7kjA8IgCPgmxiC86c=;
+	b=UR/GKyRvkAb6Kdeh2qruTdOthQqm326b+jMmsrw1McqIyljwTIDA9EXvJNJhFKjyzgHTRS
+	Xr07jWt+wjjENE/GgRKlvcUKiLZs7BQsIGZw3sWgdoS9SB0MXFRO+hQHvco9kIozmFMjMu
+	ZugTSej5CB3Wv3lc9vVTfBMUiTwr5PzFbaqALAmfersxueFSARnEt09IXNkFZcesaFWo+W
+	7zZODiX+zWq13E8ejnFjdA4gDghKcQxr/2/Eq9n0HciRQ9ULfPGDAegX89LfBrUh5uIIQV
+	NKqWq0PFsZ48tIDbObMNgnRG8nVp79CijJ98fWUDYg3Y8D4IwuBcxyxCyITWag==
+From: Petre Rodan <petre.rodan@subdimension.ro>
+Subject: [PATCH v4 00/19] iio: accel: bma220 improvements
+Date: Sun, 05 Oct 2025 16:12:09 +0300
+Message-Id: <20251005-b4-bma220_improvements-v4-0-0f449ba31585@subdimension.ro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aN8isoQpdENTrxNJ@sleek>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKlu4mgC/4WOQQ7CIBBFr9LMWgwCTVNX3sM0hpGpnQXQQCWap
+ neX9gIu38z/b2aFTIkpw7VZIVHhzDFUMKcGnpMNLxLsKoOSqpX9RQs0Ar1VSj7YzykW8hSWLKy
+ TqN1YU4hQy3OikT+H+D5UnjgvMX2PO0Xv07/KooUUEvtOdT0aMu0tv9FxXe5PnlOEYdu2HyV3l
+ oDCAAAA
+X-Change-ID: 20250913-b4-bma220_improvements-ad0b3df025bb
+To: Jonathan Cameron <jic23@kernel.org>, 
+ David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2267;
+ i=petre.rodan@subdimension.ro; h=from:subject:message-id;
+ bh=f7KLDAodIHfk17l27mAPyJygswUhI6CzvIQ+CXzSVBo=;
+ b=LS0tLS1CRUdJTiBQR1AgTUVTU0FHRS0tLS0tCgpvd0o0bkFGdEFwTDlrQTBEQUFvQmRDc25wM
+ k02U1dNQnl5WmlBR2ppYnF6MEVKdVp5RzZUU1h5RjZkSlhTL3FYCncxRkZpeVAzOUJReTExWU1Z
+ bEErcG9rQ013UUFBUW9BSFJZaEJCb2ltQncrRGJ4UXBFNmlkM1FySjZkak9rbGoKQlFKbzRtNnN
+ BQW9KRUhRcko2ZGpPa2xqRFdjUC9pK1c1VUt1NWJFZllJdCtERlh0ZktadWRDS1dHd25ZcGlhWQ
+ pKYVBzZ3hwSGNmN3BsWjBVQXZoS3dsL3pHRC9xUE4zU20rc0wxeHpacGdVV2xLVUttM2YzQ2Uve
+ llpemFueTZUCk9teTlTcU1JNzZsVmRuMkRMeUVIWEVLNkpzSks4c1ZXVGNBZGZZeWFQYXQ1TUxZ
+ TDF0azAxYzJuSWkyZjVEaGwKcFlZQytXcHFIL3d3Y3FjYzduQ3FoQVU3TVhpcmFpSERneW1zVUQ
+ 2dThZY2NFampBelNraWN0QUE0c2lYL1JsaApJRC9naVZCVzVTcEwxb2xsYmgyMGNUcGkxcU9zZW
+ RRTDBTUHlZRzFyeHFHVzh2VmVldGJWMlc3T2VWbDZUMGdYCld5cmliTklaZEIwMHduY2N6dHhtW
+ loya1lITWtKQVZKUjZlSXlqOXFjMVpWMllSS3o1dXUvNFgyU3dNbVBtK3IKamNubGNyV3c1MU1u
+ dW5PTEtITVVvTTh3R2VhbXdnZC91blNWRTEvUTNjcHA1ZWlYY2lab3FDbUpSSEljNFgxegp0RmM
+ 4REZRYldKMHlWQ1E0ZTJFV2pMMTZCeXdlanE2SkJhMHhzRVdUaHloTzhvUnFMcmVZeWMxS0NPdT
+ JBbnVUCklKWit6Nks3RGpmN2hHU3ljQ0hPaGJQV1dZaGt6OVg2TWtTVERGUzl5aitFa095NnFsM
+ mFuNW53cUJWSlRGc2kKQ2Ruei85ZERmMW84UEtoS0FPSzdwZEc3SWc5cjVyaGxmeXluWVVlLzQw
+ L1J4dVpqT1Nuc25SWXBJTGJMckpBRwo2Z1QwSXBoMFRodTB2SHhneVlVYkUyeDFTQUMwNndxdmx
+ qdG9MTDJBVEJONHNJdG4zdno3bk9xSFJ0bjdGV2hVCmNnQnZyeVd0aHh3ZStnPT0KPUUxZkwKLS
+ 0tLS1FTkQgUEdQIE1FU1NBR0UtLS0tLQo=
+X-Developer-Key: i=petre.rodan@subdimension.ro; a=openpgp;
+ fpr=D80A7FC176151935EC3E5FA9CF269999844E7F30
 
-On Thu, Oct 02, 2025 at 09:11:14PM -0400, Joshua Milas wrote:
-> Hi Inochi,
-> 
-> > Small suggestion: please ensure the pinctrl is correct, different
-> > board may require different configuration.
-> 
-> Is there a certain way to do that? I have been checking it against
-> the board schematic [1]. It shows that it is using UART0 on the
-> pins defined in pinctrl-sg2000.h.
-> 
-> Link: https://github.com/milkv-duo/duo-files/blob/main/duo-s/hardware/duo_s_SCH_v1.1.pdf
-> 
-> 
+Series of patches that switch the driver to the regmap API and add
+i2c connectivity.
 
-Sorry for missing this. A simple way is to dump the vendor configuration
-for an example. It should show almost all you want to know. But if you
-want to find the best, it is necessary to check the peripheral manual,
-and it will tell the typical configuration.
+Tested in I2C and SPI modes with two different sensors.
 
-Regards,
-Inochi
+Event-related code was skipped since the patch series was getting too
+large.
+
+Bindings have been merged into testing branch, but this series is still
+based on 'togreg'.
+
+Contains fixes based on feedback from Krzysztof, David, Jonathan and Andy.
+
+Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
+---
+Changes in v4:
+- fixes based on Andy's feedback
+- patch reordering (Andy)
+- Link to v3: https://lore.kernel.org/r/20250913-b4-bma220_improvements-v3-0-0b97279b4e45@subdimension.ro
+
+---
+Petre Rodan (19):
+      iio: accel: bma220: remove incorrect kernel-doc marking
+      iio: accel: bma220: relax constraints during probe()
+      iio: accel: bma220: cleanup license string
+      iio: accel: bma220: shorten spi->dev calls
+      iio: accel: bma220: move bma220_power function
+      iio: accel: bma220: cleanup includes
+      iio: accel: bma220: split original driver
+      iio: accel: bma220: add open firmware table
+      iio: accel: bma220: turn power supplies on
+      iio: accel: bma220: reset registers during init stage
+      iio: accel: bma220: migrate to regmap API
+      iio: accel: bma220: populate buffer ts in trigger handler
+      iio: accel: bma220: use find_match_table fct
+      iio: accel: bma220: add i2c module
+      iio: accel: bma220: add i2c watchdog feature
+      iio: accel: bma220: add interrupt trigger
+      iio: accel: bma220: add LPF cut-off frequency mapping
+      iio: accel: bma220: add debugfs reg access
+      iio: accel: bma220: add maintainer
+
+ MAINTAINERS                     |   7 +
+ drivers/iio/accel/Kconfig       |  19 +-
+ drivers/iio/accel/Makefile      |   4 +-
+ drivers/iio/accel/bma220.h      |  22 ++
+ drivers/iio/accel/bma220_core.c | 603 ++++++++++++++++++++++++++++++++++++++++
+ drivers/iio/accel/bma220_i2c.c  |  58 ++++
+ drivers/iio/accel/bma220_spi.c  | 319 ++-------------------
+ 7 files changed, 735 insertions(+), 297 deletions(-)
+---
+base-commit: 561285d048053fec8a3d6d1e3ddc60df11c393a0
+change-id: 20250913-b4-bma220_improvements-ad0b3df025bb
+
+Best regards,
+-- 
+Petre Rodan <petre.rodan@subdimension.ro>
+
 
