@@ -1,279 +1,281 @@
-Return-Path: <devicetree+bounces-223704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD58CBB9B23
-	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 20:31:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35970BB9B3E
+	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 20:47:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A99218894A3
-	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 18:32:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE3113B5737
+	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 18:47:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E9A81DE2A5;
-	Sun,  5 Oct 2025 18:29:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="d4xcUnIv"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2DD61D5ABA;
+	Sun,  5 Oct 2025 18:47:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E07E1D63CD;
-	Sun,  5 Oct 2025 18:29:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BDF335962;
+	Sun,  5 Oct 2025 18:47:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759688953; cv=none; b=WGwBZ/MojJSv6Dpg6Eqv2qfyvr9R6gq98aeLxsRlOxEPslHdfQePVopH0aKuSbx4uO/C6T2Ao6tOErSDeVu8SqYMrAlmT0X5+7rfvFrIXM6icufWAtPDOkV9y3VX920LZUhjdLFhMSmY1FQ0r4KHG3KwpTA3uYZ9ujH6ApwoY9w=
+	t=1759690060; cv=none; b=NMeFCBHxl3uW4CUJEUy0Lfuq51dST5PzZVl0CkWM86YO6M6R8QxTII5o5dHUl8qOFvAQ6/AKpiPYT9iVVrzK4X05sYtCIWRN9S8MIdQoXcboEAMmbAU9AIy6rzTCHwFYBNOhxvHgrJrbsLHE9GRdkKH8fHyhpg926ZZNMS/zl2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759688953; c=relaxed/simple;
-	bh=TH3yJBoT1mUNCSNf2l7RFS/wz9BfOxVp0X2N76eTNkE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FNvhuGxswfwRkQbvZyytISHS3TcVurVAMR1sc57bkCNJv2g124jF/zHlH0GN71aDBves4MukIenWyz1qEjfd5hSUQxN8/JQ23wq1pBvOv9UCw8O9YN+NWwAzqMGXD3vRkVCn0b70VFB0HMq4J0a0pgfLOJZ6+khvBhn+WyUa8sY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=d4xcUnIv; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (81-175-209-231.bb.dnainternet.fi [81.175.209.231])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 4DB701A89;
-	Sun,  5 Oct 2025 20:27:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1759688857;
-	bh=TH3yJBoT1mUNCSNf2l7RFS/wz9BfOxVp0X2N76eTNkE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d4xcUnIvV0WL2SnbyFsyAiEuedlq5f1Hkj9Wjdv1UDdjEDXh7gsy7XYDNhx5H+HGu
-	 g34QPioBoSfVUJfvlPy14h4njDrexj3cgtW1O9qJZ2n2CO9vUzKUVpVNRwVCiTLPok
-	 /jZyTqqA/0SxHvsmU/43MTLc+KCpiVbkZaXIUBv8=
-Date: Sun, 5 Oct 2025 21:29:03 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Dragan Simic <dsimic@manjaro.org>,
-	Alexander Shiyan <eagle.alexander923@gmail.com>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	stable@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
- for rk3588
-Message-ID: <20251005182903.GA29493@pendragon.ideasonboard.com>
-References: <61b494b209d7360d0f36adbf6d5443a4@manjaro.org>
- <CABjd4Yx0p0B=e00MjCpDDq8Z=0FtM0s9EN86WdvRimt-_+kh2w@mail.gmail.com>
- <CABjd4Yy14bpjzvFyc8et-=pmds5uwzfxNqcs7L=+XRXBogZEsQ@mail.gmail.com>
- <20251003133304.GA21023@pendragon.ideasonboard.com>
- <CABjd4YxbyUWghd1ya8UayFkAE-VWQSd5-J2QD0sV7WmS8AXkCg@mail.gmail.com>
- <CABjd4YwtwUYFX4bX5vy=AFi=Dn1r6nxWtMvmeKBSjkvriNJtsQ@mail.gmail.com>
- <20251003232856.GC1492@pendragon.ideasonboard.com>
- <CABjd4Yx9rt2W=MhCSyO5vaxndD1jvGHNWsz7J=HnvnJcgOvQHw@mail.gmail.com>
- <20251004220326.GC20317@pendragon.ideasonboard.com>
- <CABjd4YwLQ_kr3tA=XnzR4_zmQ0CQs4TuQr-2OWbiOWQfDhP4xw@mail.gmail.com>
+	s=arc-20240116; t=1759690060; c=relaxed/simple;
+	bh=gED3S8ccspfVXZz2lRG9Skb15smgiAQICDm9pQJAR1Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MtizWk6XDFaPWkjPUaBgTa3NIHosL6QLmCW0TPfiemr8gcJKO6lbXA1Ttx+B66K8z9fak5pD6gb1tQnmbzUZke7DZwA/NbmVLvSQFv1lvrLK5jPN+5RTvaU3aVWHjdU+dqn17hDVx+qudBS+luwQRfo0KOrCJIcjbA4PiJt0JQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
+Received: from [10.73.18.150] (static-68-235-38-18.cust.tzulo.com [68.235.38.18])
+	(Authenticated sender: e)
+	by freeshell.de (Postfix) with ESMTPSA id 24E92B22034F;
+	Sun,  5 Oct 2025 20:47:31 +0200 (CEST)
+Message-ID: <b8db0cdf-163e-416d-94b8-c9e1f10c8011@freeshell.de>
+Date: Sun, 5 Oct 2025 11:47:29 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] riscv: dts: starfive: add DT for Orange Pi RV
+To: Icenowy Zheng <uwu@icenowy.me>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
+ Michael Zhu <michael.zhu@starfivetech.com>,
+ Drew Fustini <drew@beagleboard.org>, Yao Zi <ziyao@disroot.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250930100318.2131968-1-uwu@icenowy.me>
+ <20250930100318.2131968-2-uwu@icenowy.me>
+ <579dad6b4ab0c981b8d51383af2db3a9f4394609.camel@icenowy.me>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <579dad6b4ab0c981b8d51383af2db3a9f4394609.camel@icenowy.me>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CABjd4YwLQ_kr3tA=XnzR4_zmQ0CQs4TuQr-2OWbiOWQfDhP4xw@mail.gmail.com>
 
-On Sun, Oct 05, 2025 at 02:55:07PM +0400, Alexey Charkov wrote:
-> On Sun, Oct 5, 2025 at 2:03 AM Laurent Pinchart wrote:
-> > On Sat, Oct 04, 2025 at 03:41:41PM +0400, Alexey Charkov wrote:
-> > > On Sat, Oct 4, 2025 at 3:29 AM Laurent Pinchart wrote:
-> > > > On Fri, Oct 03, 2025 at 06:55:26PM +0400, Alexey Charkov wrote:
-> > > > > On Fri, Oct 3, 2025 at 6:13 PM Alexey Charkov wrote:
-> > > > > > On Fri, Oct 3, 2025 at 5:33 PM Laurent Pinchart wrote:
-> > > > > > > On Fri, Jan 24, 2025 at 11:44:34PM +0400, Alexey Charkov wrote:
-> > > > > > > > On Fri, Jan 24, 2025 at 9:23 PM Alexey Charkov wrote:
-> > > > > > > > > On Fri, Jan 24, 2025 at 2:37 PM Dragan Simic wrote:
-> > > > > > > > > > On 2025-01-24 11:25, Alexey Charkov wrote:
-> > > > > > > > > > > On Fri, Jan 24, 2025 at 2:06 PM Dragan Simic wrote:
-> > > > > > > > > > >> On 2025-01-24 09:33, Alexey Charkov wrote:
-> > > > > > > > > > >> > On Fri, Jan 24, 2025 at 9:26 AM Alexander Shiyan wrote:
-> > > > > > > > > > >> >>
-> > > > > > > > > > >> >> There is no pinctrl "gpio" and "otpout" (probably designed as
-> > > > > > > > > > >> >> "output")
-> > > > > > > > > > >> >> handling in the tsadc driver.
-> > > > > > > > > > >> >> Let's use proper binding "default" and "sleep".
-> > > > > > > > > > >> >
-> > > > > > > > > > >> > This looks reasonable, however I've tried it on my Radxa Rock 5C and
-> > > > > > > > > > >> > the driver still doesn't claim GPIO0 RK_PA1 even with this change. As
-> > > > > > > > > > >> > a result, a simulated thermal runaway condition (I've changed the
-> > > > > > > > > > >> > tshut temperature to 65000 and tshut mode to 1) doesn't trigger a PMIC
-> > > > > > > > > > >> > reset, even though a direct `gpioset 0 1=0` does.
-> > > > > > > > > > >> >
-> > > > > > > > > > >> > Are any additional changes needed to the driver itself?
-> > > > > > > > > > >>
-> > > > > > > > > > >> I've been digging through this patch the whole TSADC/OTP thing in the
-> > > > > > > > > > >> last couple of hours, and AFAIK some parts of the upstream driver are
-> > > > > > > > > > >> still missing, in comparison with the downstream driver.
-> > > > > > > > > > >>
-> > > > > > > > > > >> I've got some small suggestions for the patch itself, but the issue
-> > > > > > > > > > >> you observed is obviously of higher priority, and I've singled it out
-> > > > > > > > > > >> as well while digging through the code.
-> > > > > > > > > > >>
-> > > > > > > > > > >> Could you, please, try the patch below quickly, to see is it going to
-> > > > > > > > > > >> fix the issue you observed?  I've got some "IRL stuff" to take care of
-> > > > > > > > > > >> today, so I can't test it myself, and it would be great to know is it
-> > > > > > > > > > >> the right path to the proper fix.
-> > > > > > > > > > >>
-> > > > > > > > > > >> diff --git i/drivers/thermal/rockchip_thermal.c
-> > > > > > > > > > >> w/drivers/thermal/rockchip_thermal.c
-> > > > > > > > > > >> index f551df48eef9..62f0e14a8d98 100644
-> > > > > > > > > > >> --- i/drivers/thermal/rockchip_thermal.c
-> > > > > > > > > > >> +++ w/drivers/thermal/rockchip_thermal.c
-> > > > > > > > > > >> @@ -1568,6 +1568,11 @@ static int rockchip_thermal_probe(struct
-> > > > > > > > > > >> platform_device *pdev)
-> > > > > > > > > > >>          thermal->chip->initialize(thermal->grf, thermal->regs,
-> > > > > > > > > > >>                                    thermal->tshut_polarity);
-> > > > > > > > > > >>
-> > > > > > > > > > >> +       if (thermal->tshut_mode == TSHUT_MODE_GPIO)
-> > > > > > > > > > >> +               pinctrl_select_default_state(dev);
-> > > > > > > > > > >> +       else
-> > > > > > > > > > >> +               pinctrl_select_sleep_state(dev);
-> > > > > > > > > > >
-> > > > > > > > > > > I believe no 'else' block is needed here, because if tshut_mode is not
-> > > > > > > > > > > TSHUT_MODE_GPIO then the TSADC doesn't use this pin at all, so there's
-> > > > > > > > > > > no reason for the driver to mess with its pinctrl state. I'd rather
-> > > > > > > > > > > put a mirroring block to put the pin back to its 'sleep' state in the
-> > > > > > > > > > > removal function for the TSHUT_MODE_GPIO case.
-> > > > > > > > > >
-> > > > > > > > > > You're right, but the "else block" is what the downstream driver does,
-> > > > > > > > >
-> > > > > > > > > Does it though? It only handles the TSHUT_MODE_GPIO case as far as I
-> > > > > > > > > can tell (or TSHUT_MODE_OTP in downstream driver lingo) [1]
-> > > > > > > > >
-> > > > > > > > > [1] https://github.com/radxa/kernel/blob/edb3eeeaa4643ecac6f4185d6d391c574735fca1/drivers/thermal/rockchip_thermal.c#L2564
-> > > > > > > > >
-> > > > > > > > > > so I think it's better to simply stay on the safe side and follow that
-> > > > > > > > > > logic in the upstream driver.  Is it really needed?  Perhaps not, but
-> > > > > > > > > > it also shouldn't hurt.
-> > > > > > > > > >
-> > > > > > > > > > > Will try and revert.
-> > > > > > > > > >
-> > > > > > > > > > Awesome, thanks!
-> > > > > > > > > >
-> > > > > > > > > > > P.S. Just looked at the downstream driver, and it actually calls
-> > > > > > > > > > > TSHUT_MODE_GPIO TSHUT_MODE_OTP instead, so it seems that "otpout" was
-> > > > > > > > > > > not a typo in the first place. So maybe the right approach here is not
-> > > > > > > > > > > to change the device tree but rather fix the "gpio" / "otpout" pinctrl
-> > > > > > > > > > > state handling in the driver.
-> > > > > > > > > >
-> > > > > > > > > > Indeed, "otpout" wasn't a typo, and I've already addressed that in my
-> > > > > > > > > > comments to Alexander's patch.  Will send that response a bit later.
-> > > > > > > > > >
-> > > > > > > > > > I think it's actually better to accept the approach in Alexander's
-> > > > > > > > > > patch, because the whole thing applies to other Rockchip SoCs as well,
-> > > > > > > > > > not just to the RK3588(S).
-> > > > > > > > >
-> > > > > > > > > Anyway, I've just tried it after including the changes below, and
-> > > > > > > > > while /sys/kernel/debug/pinctrl/pinctrl-handles shows the expected
-> > > > > > > > > pinctrls under tsadc, the driver still doesn't seem to be triggering a
-> > > > > > > > > PMIC reset. Weird. Any thoughts welcome.
-> > > > > > > >
-> > > > > > > > I found the culprit. "otpout" (or "default" if we follow Alexander's
-> > > > > > > > suggested approach) pinctrl state should refer to the &tsadc_shut_org
-> > > > > > > > config instead of &tsadc_shut - then the PMIC reset works.
-> > > > > > >
-> > > > > > > I've recently brought up an RK3588S-based Orange Pi CM5 Base board, made
-> > > > > > > of a compute module (CM5, see [1]) and a carrier board (Base, see [2]).
-> > > > > > > The carrier board has a reset button which pulls the PMIC_RESET_L signal
-> > > > > > > of the CM5 to GND (see page 3 of the schematics in [3]).
-> > > > > > >
-> > > > > > > With &tsadc_shut_org the reset button has absolutely no effect. With
-> > > > > > > &tsadc_shut it resets the board as expected.
-> > > > > >
-> > > > > > Interesting. The TSADC shouldn't affect the physical button operation
-> > > > > > at all, if it's really wired to the PMIC as the signal name implies.
-> > > > > > There isn't even any default pull value associated with the TSHUT pin
-> > > > > > config.
-> > > > >
-> > > > > On a second thought, I've got another hypothesis. Your baseboard only
-> > > > > pulls the reset line through  a 100 Ohm resistor when the button is
-> > > > > pressed. So if the TSHUT pin is in its default push-pull mode and
-> > > > > stays high when no thermal runaway reset is requested, the reset
-> > > > > button won't pull the line fully to zero, as the TSHUT line pulls it
-> > > > > high at the same time.
-> > > >
-> > > > That's the most likely cause, I agree.
-> > > >
-> > > > > If you switch it from &tsadc_shut_org to &tsadc_shut, then it stops
-> > > > > working properly as the thermal protection reset, and GPIO0_A1 remains
-> > > > > high-impendance, thus allowing the reset button to function even
-> > > > > though its pull is too weak.
-> > > >
-> > > > By the way, what is the difference between tsadc_shut_org and tsadc_shut
-> > > > ? I haven't seen it being clearly documented in the TRM.
-> > >
-> > > No idea frankly. Looks like a half-finished design change to me, which
-> > > left the non-"org" version unconnected internally.
-> >
-> > :-/
-> >
-> > > > > So maybe change the pin configuration of &tsadc_shut_org in
-> > > > > rk3588-base-pinctrl.dtsi to open drain and retry?
-> > > >
-> > > > That's a good idea, but... how ? The pinctrl-rockchip driver doesn't
-> > > > seem to support generic open-drain configuration.
-> > >
-> > > I thought I saw open-drain configurations here, but after reviewing
-> > > the TRM, bindings and the driver it turns out I must have been
-> > > daydreaming :( Sorry.
-> > >
-> > > Looks like the best we can try is a lower drive strength while keeping
-> > > the push-pull mode, but I'm afraid this 100 Ohm pulldown is too weak,
-> > > because the lowest TSHUT drive strength Rockchip offers is 100 Ohm,
-> > > while the PMIC would only count anything below 30% reference voltage
-> > > as logical low. Maybe adding a pulldown to the pin config can help,
-> > > but most likely this board will require switching the pin to GPIO
-> > > input for high-z, and switching the TSHUT mode to CRU.
-> >
-> > I agree with you, going through the CRU seems the best solution for this
-> > board. This is actually the default mode in
-> > arch/arm64/boot/dts/rockchip/rk3588-base.dtsi:
-> >
-> >         rockchip,hw-tshut-mode = <0>; /* tshut mode 0:CRU 1:GPIO */
-> >         rockchip,hw-tshut-polarity = <0>; /* tshut polarity 0:LOW 1:HIGH */
-> >         pinctrl-0 = <&tsadc_shut_org>;
-> >         pinctrl-1 = <&tsadc_gpio_func>;
-> >
-> > If hw-tshut-mode defaults to 0, why do we need to setup the GPIO0_A1 pin
-> > to output the TSADC_SHUT signal ?
+Hi Icenowy,
+
+On 9/30/25 08:51, Icenowy Zheng wrote:
+> 在 2025-09-30星期二的 18:03 +0800，Icenowy Zheng写道：
+>> Orange Pi RV is a newly released SBC with JH7110 SoC, single GbE port
+>> (connected to JH7110 GMAC0 via a YT8531 PHY), 4 USB ports (via a
+>> VL805
+>> PCIe USB controller connected to JH7110 PCIE0), a M.2 M-key slot
+>> (connected to JH7110 PCIE1), a HDMI video output, a 3.5mm audio
+>> output
+>> and a microSD slot.
+>>
+>> Other Onboard peripherals contain a SPI NOR (which contains the U-
+>> Boot
+>> firmware), a 24c02 EEPROM storing some StarFive-specific information
+>> (factory programmed and read only by default) and an Ampak AP6256
+>> SDIO
+>> Wi-Fi module.
+>>
+>> Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+>> ---
+>> Changes in v2:
+>> - Property order change mentioned in the review of v1.
+>> - Added Wi-Fi (along with the always on VCC3V3_PCIE regulator, which
+>> is
+>>   used to power up WIFI_3V3). The OOB IRQ is still not possible to
+>> use
+>>   because of some incompatibility between StarFive pinctrl driver and
+>>   brcmfmac.
+>> - Removed the LED because it's in common DTSI.
+>>
+>>  arch/riscv/boot/dts/starfive/Makefile         |  1 +
+>>  .../boot/dts/starfive/jh7110-orangepi-rv.dts  | 87
+>> +++++++++++++++++++
+>>  2 files changed, 88 insertions(+)
+>>  create mode 100644 arch/riscv/boot/dts/starfive/jh7110-orangepi-
+>> rv.dts
+>>
+>> diff --git a/arch/riscv/boot/dts/starfive/Makefile
+>> b/arch/riscv/boot/dts/starfive/Makefile
+>> index b3bb12f78e7d5..24f1a44828350 100644
+>> --- a/arch/riscv/boot/dts/starfive/Makefile
+>> +++ b/arch/riscv/boot/dts/starfive/Makefile
+>> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-
+>> visionfive-v1.dtb
+>>  
+>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-deepcomputing-fml13v01.dtb
+>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
+>> +dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-orangepi-rv.dtb
+>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
+>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-
+>> v1.2a.dtb
+>>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-
+>> v1.3b.dtb
+>> diff --git a/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+>> b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+>> new file mode 100644
+>> index 0000000000000..5a917b7db6f78
+>> --- /dev/null
+>> +++ b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+>> @@ -0,0 +1,87 @@
+>> +// SPDX-License-Identifier: GPL-2.0 OR MIT
+>> +/*
+>> + * Copyright (C) 2025 Icenowy Zheng <uwu@icenowy.me>
+>> + */
+>> +
+>> +/dts-v1/;
+>> +#include "jh7110-common.dtsi"
+>> +
+>> +/ {
+>> +       model = "Xunlong Orange Pi RV";
+>> +       compatible = "xunlong,orangepi-rv", "starfive,jh7110";
+>> +
+>> +       /* This regulator is always on by hardware */
+>> +       reg_vcc3v3_pcie: regulator-vcc3v3-pcie {
+>> +               compatible = "regulator-fixed";
+>> +               regulator-name = "vcc3v3-pcie";
+>> +               regulator-min-microvolt = <3300000>;
+>> +               regulator-max-microvolt = <3300000>;
+>> +               regulator-always-on;
+>> +       };
+>> +
+>> +       wifi_pwrseq: wifi-pwrseq {
+>> +               compatible = "mmc-pwrseq-simple";
+>> +               reset-gpios = <&sysgpio 62 GPIO_ACTIVE_LOW>;
+>> +       };
+>> +};
+>> +
+>> +&gmac0 {
+>> +       assigned-clocks = <&aoncrg JH7110_AONCLK_GMAC0_TX>;
+>> +       assigned-clock-parents = <&aoncrg
+>> JH7110_AONCLK_GMAC0_RMII_RTX>;
+>> +       starfive,tx-use-rgmii-clk;
+>> +       status = "okay";
+>> +};
+>> +
+>> +&mmc0 {
+>> +       #address-cells = <1>;
+>> +       #size-cells = <0>;
+>> +       cap-sd-highspeed;
+>> +       mmc-pwrseq = <&wifi_pwrseq>;
+>> +       vmmc-supply = <&reg_vcc3v3_pcie>;
+>> +       vqmmc-supply = <&vcc_3v3>;
+>> +       status = "okay";
+>> +
+>> +       ap6256: wifi@1 {
+>> +               compatible = "brcm,bcm43456-fmac", "brcm,bcm4329-
+>> fmac";
+>> +               reg = <1>;
+>> +               /* TODO: out-of-band IRQ on GPIO21 */
+>> +       };
+>> +};
+>> +
+
+>> +&mmc0_pins {
+>> +       /*
+>> +        * As the MMC0 bus is used to connect a SDIO Wi-Fi card
+>> instead of
+>> +        * an eMMC card, and the eMMC RST is repurposed to be an
+>> enablement
+>> +        * pin of the SDIO Wi-Fi, remove it from the pinctrl node and
+>> manage
+>> +        * it as a GPIO instead.
+>> +        */
+>> +       /delete-node/ rst-pins;
+>> +};
+>> +
+
+Listed on the schematic [1] as:
+Default function SDIO0 RSTn GPIO62 for eMMC:J9
+Highlighted (non-default?) function GPIO62 D17 << WIFI_EN_H_GPIO62
+WIFI_EN_H_GPIO62 >> WIFI_PWREN (pin 12 WL_REG_ON of module AP6256)
+
+I've sent a patch [2] to portion out mmc0 reset pins from jh7110-common.dtsi
+
+>> +&mmc1 {
+>> +       /delete-property/ cd-gpios;
+>> +       broken-cd;
 > 
-> I believe the thinking was along the lines of "it can't hurt, so let's
-> provide a default that's likely to work both for the boards where
-> TSHUT is routed to the PMIC and those where it's not, with an added
-> benefit of hogging the pin to prevent anyone from accidentally
-> triggering it to a low level from user space thus suddenly resetting
-> the board".
+> Well it's found that the card detect is working, although with
+> different polarity with other boards.
 > 
-> But this case of "TSHUT is routed, but with a deviation from the
-> reference schematic which makes it impossible to use as designed" was
-> likely never envisaged.
+> Here should be:
+> ```
+> 	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_HIGH>;
+> ```
 > 
-> Technically, there is no reason to switch the pin to tsadc_shut_org
-> when CRU mode is used, and the boottime default for this pin is
-> high-impedance.
+> Will be fixed in the next revision.
 
-I tried to trigger an over-temperature condition by setting
-rockchip,hw-tshut-temp to 40°C (yes, it's getting cold in Finland). With
-pinctrl-0 set to <&tsadc_shut_org>, the system reset when the trip point
-was reached, regardless of rockchip,hw-tshut-mode.
+Yes, listed on the schematic [1] as:
+SD SDIO0 CD GPIO41 for MicroSD:J10
 
-With pinctrl-0 set to <&tsadc_gpio_func>, reaching 40°C caused a reset
-with rockchip,hw-tshut-mode set to 0 (CRU), and no action occurred when
-rockchip,hw-tshut-mode was set to 1 (GPIO).
+There is not a mention of active high or active low on the schematic
+label, however there is listed a 10Kohm pull-up to +Vdd1.833 for the
+circuit diagram of the Micro SD Card. The card holder is referenced to
+ground and could reasonably be N/O or N/C switch operation depending on
+the exact part selected for manufacture.
 
-I've also tested <&tsadc_shut>. It resulted in a reset in CRU mode and
-no action in GPIO mode.
+> 
+>> +};
+>> +
+>> +&pcie0 {
+>> +       status = "okay";
+>> +};
+>> +
+>> +&pcie1 {
+>> +       status = "okay";
+>> +};
+>> +
 
-> Heiko, shall we remove the pinctrl properties from the common .dtsi
-> and move them to board specific .dts for those boards that use
-> PMIC-assisted thermal resets? Happy to produce a patch to that effect.
+>> +&phy0 {
+>> +       rx-internal-delay-ps = <1500>;
+>> +       tx-internal-delay-ps = <1500>;
+>> +       motorcomm,tx-clk-adj-enabled;
+>> +       motorcomm,tx-clk-10-inverted;
+>> +       motorcomm,tx-clk-100-inverted;
+>> +       motorcomm,tx-clk-1000-inverted;
+>> +       motorcomm,rx-clk-drv-microamp = <3970>;
+>> +       motorcomm,rx-data-drv-microamp = <2910>;
+>> +};
 
--- 
-Regards,
+'motorcomm,rx' before 'motorcomm,tx' in `LANG=C sort` of vendor-specific
+properties.
 
-Laurent Pinchart
+>> +
+>> +&pwmdac {
+>> +       status = "okay";
+>> +};
+> 
+Additional non-default GPIO as listed in the Orange Pi design:
+GPIO21 WIFI_WAKE_HOST_H /* default vf2 function PCIE_PWREN_H_GPIO21 */
+GPIO22 >> BT_UART_RXD /* default vf2 function MIPI_PWR_EN */
+GPIO23 << BT_UART_TXD /* default vf2 function LCD RESET */
+GPIO24 << BT_UART_CTS /* default vf2 function MIPI_LCD_BL */
+GPIO25 << BT_UART_RTS /* default vf2 function TP_DET_GPIO25 */
+GPIO30 << BT_EN_H_GPIO30 /* default vf2 function TP_INT_L */
+GPIO31 << BT_WAKE_GPIO31 /* default vf2 function TP_RST_L */
+
+Of all the above, GPIO21 is defined in jh7110-common.dtsi
+&pcie1_pins/wake-pins and may need consideration.
+
+There is a note about "PMIC_PWRON as Key" and so does this have the
+meaning of it is used as an input device?
+
+Also noted is that the USB over-current circuit appears to be
+implemented, different than being absent in other VF2 designs.
+
+1:
+http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/service-and-support/Orange-Pi-RV.html
+2: https://lore.kernel.org/lkml/20251005174450.1949110-1-e@freeshell.de/
+
+With the card detect describing hardware corrected, and clean up the
+vendor property sort, then please confirm if you think GPIO21 is
+described correctly.
+
+Acked-by: E Shattow <e@freeshell.de>
+
 
