@@ -1,68 +1,95 @@
-Return-Path: <devicetree+bounces-223691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A14F3BB9885
-	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 16:44:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D2C2BB98CC
+	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 17:34:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9BBC3B907E
-	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 14:44:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E309C1893115
+	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 15:34:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56346288511;
-	Sun,  5 Oct 2025 14:44:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A9542877D4;
+	Sun,  5 Oct 2025 15:34:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="ZrlMJhKR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lg1//RrH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A3A328AAF9
-	for <devicetree@vger.kernel.org>; Sun,  5 Oct 2025 14:44:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2A8FC0A
+	for <devicetree@vger.kernel.org>; Sun,  5 Oct 2025 15:34:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759675495; cv=none; b=Duvimv2oX7YSUX+3xppfrgsHcaSOnJXc2YaVm2nfm7OnwJeOZkH4e8uih1u0cJLdjGEc1O5Ra9V1JL7tWCfE/QRRRL6H+NKbm6RNqil+jb6kv5Sh4AF2I9qJAk17/SZNCO+4jRrIIYA+0D042l4/mLRVPeCXQ0gObR7pZKKQdlE=
+	t=1759678456; cv=none; b=qc6WGOWfY4mewnmyF27KSgftMvR8xer2GmTfQZnJpZkVqa9LFKGH8Q2t+zcKTtJL1n4FpAsIfIpiJC9y5cdtxiKsu9SpjkE3ULJXGwJnpjkaMsY1j/YsC25azUfKdPedck/O35b1eht5bJ4wGUuzizuUpaZvZzOyW4SsmWoagjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759675495; c=relaxed/simple;
-	bh=yhjdbjA8BKbYAloqzb6fGDISkdwl7sTzxrAB6MOHAH0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cVW0S96RDjHYJLnTDS0ty924sxqXIJKrI7bukvjMTzhZPlDxHW7jddrQ/kIwGk3YnQOESfR+Mv6tgYDk48Z1Aw6IDjxg9bdC5jgslp87Ge2QKUeLg21PjUHiPsOR1WC6OgmkXhW39iPbOrXbHdyFGRBxqc5+3ulO73hWpFvnPmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=ZrlMJhKR; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=Gs+onLVZ/ahmhLP9c5pjFo3Jc9zVNSLBN5TdFn9zv98=; b=ZrlMJh
-	KRTT8IBAUUNzarzVSXZWPhOxbRw3xYC23zNFD/B+IAvV8h/86Ae2GjfyMS/RTxf0
-	LJ6M5y3vDKQKRTx+5VWv7CCJ2zGNT1wjn8kax+B1iJL1c/wHyLRo4EhOrv0r95DL
-	YdP9ChPQr2oWJ80tzW/U5xvERyUqUFIPBFcJQ2CH0FutTp/KO6QRJkYnIc+H1ewe
-	jz+8sBZIyWTnIkGsyj0Biijdj0skx027IBtVt+yat3BLmsl0FmxbqByblLe7tb9z
-	2ee+VncsjqMyIdZ7A2s01SgJgZEG8tt/13+5LsQcHowg2HeJDw+oMU/KKwodii7P
-	2j85vJjLocbGcC8A==
-Received: (qmail 1418982 invoked from network); 5 Oct 2025 16:44:44 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Oct 2025 16:44:44 +0200
-X-UD-Smtp-Session: l3s3148p1@THktYGpACNQujnsm
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 4/4] dt-bindings: watchdog: factor out RZ/V2H(P) watchdog
-Date: Sun,  5 Oct 2025 16:44:19 +0200
-Message-ID: <20251005144416.3699-10-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20251005144416.3699-6-wsa+renesas@sang-engineering.com>
-References: <20251005144416.3699-6-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1759678456; c=relaxed/simple;
+	bh=iQzbIk/slWn5/cU1rgoZthfG/8WPBtURHYwSxxo4UCA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=e6MXZLPDD/o7Rrs5RV6v/sEsY+cGMontP20p5KeRppWg5DU47PssQlZvFuq5HFLkbIGEYjQkzDICo5Z8270bRAFLuROs/xhXSVlyLOOvZ32OzQSuI6FcJoOvdKp1eEB0hGMtxGRAVOhsW17vftN7CE6Vz7KCrUxSP33OwdYEjz0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lg1//RrH; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b5d80f5a23eso3871662a12.1
+        for <devicetree@vger.kernel.org>; Sun, 05 Oct 2025 08:34:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759678454; x=1760283254; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jq20lgfp4UGyan5UUuybwgG1UfvUvtqwvi+Sl755tg8=;
+        b=Lg1//RrHGUqE2IXiXuFqhBdNP9O0Us/OZ5rouP1MTNKSLDn34AR/b1mWdCGPhcQATI
+         d+U5a+6i+PAXdJBzxrYHBCn6EYX8JMpt0WMERP0bOFd7xnpeFJggDQSGz6HSRr2YgLSw
+         tqLoSEhC6VpDznX1G6guLmdJGv5srZ5InOFC28an9K6nTbInjWfHQ7z3Lep7jSfmqqW1
+         yJesposhqeVVWL241gEB2w5n7MLpA8YvnhfGozESPDEs4HM4KXpb/o8ucNPrze4g15QC
+         2jHzrOW+clTYZmuLKQ8jmOiLxyrzumSQnNbMz9ObYLNwGVhRiFvZIfDs3yXVha1ySOYA
+         DnTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759678454; x=1760283254;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jq20lgfp4UGyan5UUuybwgG1UfvUvtqwvi+Sl755tg8=;
+        b=ibbVvo6cL08KeAK0I8kLJpk/GyiwIILBe6+U3dBuTCi+tnlMTBwxpcr4WTyz++jRNx
+         B8uIeOsSXZV8+Xe36cl6HYFKr6oy90v5UgVVAPMCfuK5sslLjM2bM4L2o50SKTX2IaPc
+         zq7RZA9kiHF2/kYzScKuXehhp7xN6UJ71+vmjiFA0Low3nLHvKAYZezTXjRTAIwpVvY4
+         2R4UdOyly6PV8e5a5J3fVD4ASP4rXb1MCuXwgr8PykeCcFCyS8ZHV3qQ4qDlrMRD3Kix
+         zDdAPsZNaNJ7sSdxswIK1pVMEUysqImzKfqChMYhwfZnxok16hqjVmG/78Ze/Abs5sMk
+         +jdg==
+X-Forwarded-Encrypted: i=1; AJvYcCX9SK5XAdJWvIYyLKLTgdVPQ7NSOR33hYL8yHAXTz6Gm2F96xIJK+mv8quOu8qM9/VdVv5a84niOq7r@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEVey1IszpA6yn+jfkYvozhX8xkoA8UBhISTmoCF7S28HSalE4
+	+WpJMoBDKBtxRx2ULz4XhlIBH/kpffDDzmqFTQjPhjhsYkK/ptnR4IjP
+X-Gm-Gg: ASbGnctdyv8I9CCgKEI52m93s3XAZaUzzUOYmI/eIAghPayWWM9RYdsWYvZF1YJGUXC
+	u8ngseLNtp/Yw3iXXVJmdHoDVXh2D1BjmFD3k3yOwkUHEehaNleleeMta3MOrvqf6ci6x1c93S2
+	Wf9Y57NtD8cHo27fkVdRY7E9qJskcvs/6SgbvpqmrmFMzUnDDx1DbpeTvkaL0+aEa6wB/mPE1Nz
+	kt90tglXErJlSyVjxkzfCvBGvEE1miTCHVfdJ4GDqqHgwOn8my4+3oUZALkU8ppCpeyxz62lhFz
+	aoUE2sBFSSBju+G8Qj4KKMo4NoDKepy8tLRnXXT6iF1lbXrapsCUG/3gji8afKJ6QsOwN/fKszP
+	2bVK7KRGXoh10cYNy1YbhETMMeFWhfq9GjvlUz+CKxK06W+p8yh26Dck=
+X-Google-Smtp-Source: AGHT+IGnVudF+tfMNdkzzgHsLDgqv6dF4h9vKHcDlsWU+rTkf+wyR+VO4Q7ela5gq+4AWbEeTvyaGw==
+X-Received: by 2002:a17:903:1a0d:b0:267:44e6:11d6 with SMTP id d9443c01a7336-28e99bab52emr119306445ad.6.1759678453456;
+        Sun, 05 Oct 2025 08:34:13 -0700 (PDT)
+Received: from DESKTOP-P76LG1N.lan ([58.187.66.63])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d110d9csm105555965ad.2.2025.10.05.08.34.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 05 Oct 2025 08:34:12 -0700 (PDT)
+From: Nam Tran <trannamatk@gmail.com>
+To: lee@kernel.org
+Cc: pavel@kernel.org,
+	gregkh@linuxfoundation.org,
+	rdunlap@infradead.org,
+	christophe.jaillet@wanadoo.fr,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	corbet@lwn.net,
+	linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	Nam Tran <trannamatk@gmail.com>
+Subject: [PATCH v15 0/3] led: add new LED driver for TI LP5812
+Date: Sun,  5 Oct 2025 22:33:34 +0700
+Message-Id: <20251005153337.94025-1-trannamatk@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,269 +98,145 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Renesas created different watchdog IPs but they are all handled in the
-same binding documentation. This leads to a lot of conditional handling
-which makes it unnecessarily hard to add new items. Factor out the
-RZ/V2H(P) watchdog to make handling easier.
+This patch series adds initial support for the TI LP5812,
+a 4x3 matrix RGB LED driver with autonomous engine control.
+This version provides a minimal, clean implementation focused
+on core functionality only. The goal is to upstream a solid
+foundation, with the expectation that additional features can
+be added incrementally in future patches.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
-Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+The driver integrates with the LED multicolor framework and
+supports a set of basic sysfs interfaces for LED control and
+chip management.
+
+Signed-off-by: Nam Tran <trannamatk@gmail.com>
+---
+Changes in v15:
+- Removed all custom sysfs attributes; driver now fully relies on standard LED multicolor class interfaces.
+- Added new device tree property `ti,operation-mode` to configure direct, TCM, and mix scan modes.
+- Dropped previous Reviewed-by tag from the binding patch due to property addition.
+- Removed ABI documentation since no new sysfs entries are created.
+- Updated lp5812.rst documentation accordingly.
+- Link to v14: https://lore.kernel.org/linux-leds/20250907160944.149104-1-trannamatk@gmail.com/
+
+Changes in v14:
+- Replaced inline constants with proper macros for readability and maintainability.
+- Refactored lp5812_read() and lp5812_write() to simplify logic and improve clarity.
+- Updated lp5812_fault_clear() to use switch() instead of if/else chain.
+- Refactored parse_drive_mode() for cleaner logic, removed string parsing of concatenated data.
+- Updated activate_store() and led_current_store() to replace strsep()/kstrtoint() parsing with sscanf().
+- Removed redundant comments and renamed variables for better clarity.
+- Link to v13: https://lore.kernel.org/lkml/20250818012654.143058-1-trannamatk@gmail.com/
+
+Changes in v13:
+- Fixes build warnings reported by kernel test robot:
+  - Inconsistent indent in lp5812_probe()
+  - Uninitialized variable 'ret' in lp5812_multicolor_brightness()
+- Drop of_match_ptr() and directly assign of_match_table, as the driver is DT-only.
+- Link to v12: https://lore.kernel.org/lkml/20250728065814.120769-1-trannamatk@gmail.com/
+
+Changes in v12:
+- Reordered helper functions above lp5812_probe() for better structure.
+- Clarified DT-only support by removing fallback paths and i2c_device_id table.
+- Directly assign platform_data to the correct pointer instead of relying on
+  string comparisons (LP5812_SC_LED, LP5812_MC_LED) and container_of() casting.
+  This simplifies the logic and avoids unnecessary type checks.
+- Removed redundant messages.
+- Update ABI documentation to reflect reduced feature set.
+- Link to v11: https://lore.kernel.org/lkml/20250714172355.84609-1-trannamatk@gmail.com/
+
+Changes in v11:
+- Drop autonomous animation and other advanced features; reduce driver to core functionality only.
+- Simplify LED parsing to use a unified path.
+- Clean up and streamline code
+  - Use alphabetically ordered includes
+  - Remove redundant comments
+  - Fix style issues (e.g., comment capitalization, code placement)
+- Update ABI documentation to reflect reduced feature set.
+- Link to v10: https://lore.kernel.org/lkml/20250618183205.113344-1-trannamatk@gmail.com/
+
+Changes in v10:
+- Address feedback on v9 regarding missing Reviewed-by tag
+- Added explanation: binding structure changed significantly to integrate
+  with the standard leds-class-multicolor.yaml schema and support multi-led@
+  nodes with nested led@ subnodes. This change introduced a new patternProperties
+  hierarchy and removed the previous flat led@ layout used in the earlier versions.
+  So the Reviewed-by tag was dropped out of caution.
+- Address binding document feedback
+  - Use consistent quotes
+  - Replace 'max-cur' with the standard 'led-max-microamp'
+  - Remove 'led-cur' property
+  - Fix mixed indentation
+- Updated core driver to align with the updated binding schema.
+- Address core driver feedback
+  - Use for_each_available_child_of_node_scoped() to simplify the code
+  - Add a return checks for lp5812_write() and lp5812_read()
+  - Remove unneeded trailing commas
+  - Fix unsafe usage of stack-allocated strings
+- Link to v9: https://lore.kernel.org/lkml/20250617154020.7785-1-trannamatk@gmail.com/
+
+Changes in v9:
+- Move driver back to drivers/leds/rgb/
+- Integrate with LED multicolor framework
+- Refactor and simplify custom sysfs handling
+- Extend Device Tree binding to support multi-led@ nodes using leds-class-multicolor.yaml
+- Update documentation to reflect the updated sysfs.
+- Link to v8: https://lore.kernel.org/lkml/20250427082447.138359-1-trannamatk@gmail.com/
+
+Changes in v8:
+- Move driver to drivers/auxdisplay/ instead of drivers/leds/.
+- Rename files from leds-lp5812.c/.h to lp5812.c/.h.
+- Move ti,lp5812.yaml binding to auxdisplay/ directory,
+  and update the title and $id to match new path.
+- No functional changes to the binding itself (keep Reviewed-by).
+- Update commit messages and patch titles to reflect the move.
+- Link to v7: https://lore.kernel.org/linux-leds/20250422190121.46839-1-trannamatk@gmail.com/
+
+Changes in v7:
+- Mark `chip_leds_map` as const.
+- Use consistent `ret` initialization.
+- Simplify the function `set_mix_sel_led()`.
+- Refactor `dev_config_show()` and `led_auto_animation_show()` to avoid temp buffer, malloc/free.
+- Simplify the code and ensure consistent use of mutex lock/unlock in show/store functions.
+- Remove `total_leds` and `total_aeu`.
+- Link to v6: https://lore.kernel.org/linux-leds/20250419184333.56617-1-trannamatk@gmail.com/
+
+Changes in v6:
+- Add `vcc-supply` property to describe the LP5812 power supply.
+- Remove `chan-name` property and entire LED subnodes, as they are not needed.
+- Update LP5812 LED driver node to Raspberry Pi 4 B Device Tree, based on updated binding.
+- Link to v5: https://lore.kernel.org/linux-leds/20250414145742.35713-1-trannamatk@gmail.com/
+
+Changes in v5:
+- Rebase on v6.15-rc2
+- Removed unused functions (lp5812_dump_regs, lp5812_update_bit).
+- Address Krzysztof's review comments
+- Link to v4: https://lore.kernel.org/linux-leds/20250405183246.198568-1-trannamatk@gmail.com/
 ---
 
-Changes since v1:
-* moved 'clock-names' and 'power-domains' to top-level 'required:'
-  (Thanks, Prabhakar)
-* removed unneeded label from example (Thanks, Prabhakar)
-* added tags from Guenter and Prabhakar (Thanks!)
+Nam Tran (3):
+  dt-bindings: leds: add TI/National Semiconductor LP5812 LED Driver
+  leds: add basic support for TI/National Semiconductor LP5812 LED
+    Driver
+  docs: leds: Document TI LP5812 LED driver
 
- .../watchdog/renesas,r9a09g057-wdt.yaml       | 110 ++++++++++++++++++
- .../bindings/watchdog/renesas,wdt.yaml        |  97 +--------------
- 2 files changed, 115 insertions(+), 92 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/watchdog/renesas,r9a09g057-wdt.yaml
+ .../devicetree/bindings/leds/ti,lp5812.yaml   | 290 +++++++
+ Documentation/leds/index.rst                  |   1 +
+ Documentation/leds/leds-lp5812.rst            |  50 ++
+ MAINTAINERS                                   |  11 +
+ drivers/leds/rgb/Kconfig                      |  13 +
+ drivers/leds/rgb/Makefile                     |   1 +
+ drivers/leds/rgb/leds-lp5812.c                | 726 ++++++++++++++++++
+ drivers/leds/rgb/leds-lp5812.h                | 197 +++++
+ 8 files changed, 1289 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/ti,lp5812.yaml
+ create mode 100644 Documentation/leds/leds-lp5812.rst
+ create mode 100644 drivers/leds/rgb/leds-lp5812.c
+ create mode 100644 drivers/leds/rgb/leds-lp5812.h
 
-diff --git a/Documentation/devicetree/bindings/watchdog/renesas,r9a09g057-wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,r9a09g057-wdt.yaml
-new file mode 100644
-index 000000000000..1c1c464b95e6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/renesas,r9a09g057-wdt.yaml
-@@ -0,0 +1,110 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/renesas,r9a09g057-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas RZ/V2H(P) Watchdog Timer (WDT) Controller
-+
-+maintainers:
-+  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - renesas,r9a09g047-wdt # RZ/G3E
-+              - renesas,r9a09g056-wdt # RZ/V2N
-+          - const: renesas,r9a09g057-wdt # RZ/V2H(P)
-+
-+      - enum:
-+          - renesas,r9a09g057-wdt    # RZ/V2H(P)
-+          - renesas,r9a09g077-wdt    # RZ/T2H
-+
-+      - items:
-+          - const: renesas,r9a09g087-wdt # RZ/N2H
-+          - const: renesas,r9a09g077-wdt # RZ/T2H
-+
-+  reg:
-+    minItems: 1
-+    maxItems: 2
-+
-+  clocks:
-+    minItems: 1
-+    items:
-+      - description: Register access clock
-+      - description: Main clock
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: pclk
-+      - const: oscclk
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  timeout-sec: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - power-domains
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - renesas,r9a09g057-wdt
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 2
-+        clock-names:
-+          minItems: 2
-+    else:
-+      properties:
-+        clocks:
-+          maxItems: 1
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: renesas,r9a09g077-wdt
-+    then:
-+      properties:
-+        resets: false
-+        clock-names:
-+          maxItems: 1
-+        reg:
-+          minItems: 2
-+    else:
-+      properties:
-+        reg:
-+          maxItems: 1
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/renesas,r9a09g057-cpg.h>
-+
-+    watchdog@11c00400 {
-+            compatible = "renesas,r9a09g057-wdt";
-+            reg = <0x11c00400 0x400>;
-+            clocks = <&cpg CPG_MOD 0x4b>, <&cpg CPG_MOD 0x4c>;
-+            clock-names = "pclk", "oscclk";
-+            resets = <&cpg 0x75>;
-+            power-domains = <&cpg>;
-+    };
-diff --git a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-index 2a15c012fd67..08ba128bf442 100644
---- a/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/renesas,wdt.yaml
-@@ -51,38 +51,14 @@ properties:
-               - renesas,r8a779h0-wdt     # R-Car V4M
-           - const: renesas,rcar-gen4-wdt # R-Car Gen4
- 
--      - items:
--          - enum:
--              - renesas,r9a09g047-wdt # RZ/G3E
--              - renesas,r9a09g056-wdt # RZ/V2N
--          - const: renesas,r9a09g057-wdt # RZ/V2H(P)
--
--      - enum:
--          - renesas,r9a09g057-wdt    # RZ/V2H(P)
--          - renesas,r9a09g077-wdt    # RZ/T2H
--
--      - items:
--          - const: renesas,r9a09g087-wdt # RZ/N2H
--          - const: renesas,r9a09g077-wdt # RZ/T2H
--
-   reg:
--    minItems: 1
--    maxItems: 2
-+    maxItems: 1
- 
-   interrupts:
-     maxItems: 1
- 
-   clocks:
--    minItems: 1
--    items:
--      - description: Register access clock
--      - description: Main clock
--
--  clock-names:
--    minItems: 1
--    items:
--      - const: pclk
--      - const: oscclk
-+    maxItems: 1
- 
-   power-domains:
-     maxItems: 1
-@@ -96,76 +72,13 @@ required:
-   - compatible
-   - reg
-   - clocks
-+  - interrupts
-+  - power-domains
-+  - resets
- 
- allOf:
-   - $ref: watchdog.yaml#
- 
--  - if:
--      not:
--        properties:
--          compatible:
--            contains:
--              enum:
--                - renesas,r9a09g077-wdt
--    then:
--      required:
--        - power-domains
--        - resets
--
--  - if:
--      properties:
--        compatible:
--          contains:
--            enum:
--              - renesas,r9a09g057-wdt
--    then:
--      properties:
--        clocks:
--          minItems: 2
--        clock-names:
--          minItems: 2
--      required:
--        - clock-names
--    else:
--      properties:
--        clocks:
--          maxItems: 1
--
--  - if:
--      properties:
--        compatible:
--          contains:
--            enum:
--              - renesas,r9a09g057-wdt
--              - renesas,r9a09g077-wdt
--    then:
--      properties:
--        interrupts: false
--        interrupt-names: false
--    else:
--      required:
--        - interrupts
--
--  - if:
--      properties:
--        compatible:
--          contains:
--            const: renesas,r9a09g077-wdt
--    then:
--      properties:
--        resets: false
--        clock-names:
--          maxItems: 1
--        reg:
--          minItems: 2
--      required:
--        - clock-names
--        - power-domains
--    else:
--      properties:
--        reg:
--          maxItems: 1
--
- additionalProperties: false
- 
- examples:
+
+base-commit: 6093a688a07da07808f0122f9aa2a3eed250d853
 -- 
-2.47.2
+2.25.1
 
 
