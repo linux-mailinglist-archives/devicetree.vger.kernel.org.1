@@ -1,138 +1,175 @@
-Return-Path: <devicetree+bounces-223646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3454BB93E7
-	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 05:50:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8585DBB940C
+	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 06:55:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E64A14E1B7B
-	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 03:50:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 293293AFF7A
+	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 04:55:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69471A0BF1;
-	Sun,  5 Oct 2025 03:50:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A979A1A4F12;
+	Sun,  5 Oct 2025 04:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SXeBx7/2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FUoKGH6d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7799019DF5F
-	for <devicetree@vger.kernel.org>; Sun,  5 Oct 2025 03:50:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AA1ACA4B
+	for <devicetree@vger.kernel.org>; Sun,  5 Oct 2025 04:55:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759636224; cv=none; b=Er3VGk4RrlGOV6VYUYq5M5XJI/D+X9iZEJ6iL+nFMbElaYnp4CSkAaf9rsvumRAMLxKU1oQK3e5P3XneyYuIsziBsjadgPOEw9288v8nAp6HmoJ+Z30/yY3yQ1RvtpL7QVMlp/CAMRXk1I44ZVV6O6vyc9zjxXYGC+mhkpSq6vY=
+	t=1759640124; cv=none; b=QSEwUlAwBw2xLvri8hjZPlUnY/t6dmcdIEiCjHT8w4RDxkxF8cQH3kSBIqIJ/aA1gejdy3P+Z6+LzIP4N6JhF9ZnPB29DHT7Zejf4N+pQPbpy3Y3oQiq/tE0idp0zvz5iO6+7VKWwcNytqmA2qbaWqKJmmeuqAfgGr47eJ0W7nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759636224; c=relaxed/simple;
-	bh=+xM3jlWWcZ0O3zm4JBTc30PBKSwwJDsHM/u/wFG/UTs=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=hwXirAs5GOK+OxmaIF9F4b0sadrPyA4JjTTLXGYGNLUdkbLpBKNy4WiCfUkX06otZ4ltFfVtHgDN+tGK9iiBYBYpfbEiOz799B07bhW2E459rb6i3DmVoZoENvi62sc5tWRJbqWYSOylHOLBlP6PCD1+iU/Xd85rCpAuayK5khE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SXeBx7/2; arc=none smtp.client-ip=209.85.216.54
+	s=arc-20240116; t=1759640124; c=relaxed/simple;
+	bh=uUxZnW5KUkMiHEzGNRHBsp+KaVM7fDpIrP+h9PlG5Rw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=J1ImRuF2vH6MpcXMFyZXAOy+jacGLcMC9QSptbaZI+V+lZS9JDMnvYQO7Rp1GHwKfEgH36rqKhEuCv10smOTPPf33HdAxa1WwB/yp5jlyDvdKMMXp1J6r+t+kYlSEnn3fZJ+tOtbn0uh1bm6PyCKUQop2KksaY5kbXBzou3rcdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FUoKGH6d; arc=none smtp.client-ip=209.85.210.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-3306b83ebdaso3663439a91.3
-        for <devicetree@vger.kernel.org>; Sat, 04 Oct 2025 20:50:21 -0700 (PDT)
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-78af743c232so3062774b3a.1
+        for <devicetree@vger.kernel.org>; Sat, 04 Oct 2025 21:55:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759636221; x=1760241021; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=c5eVUz6w+EoFaDLEM3O5W2lqhgMgUFUDbpzSqKfqJ4E=;
-        b=SXeBx7/2Pvzpq3snwaE1C5O2MPJ8vKRkotHFZZ1GvYbsB9S6w3NN5SoBrB3PFgxEzE
-         lI1haz4LSFWAHpecnMs1LLKWdIcZ7OMp2u0RHJW423mvyMBk1FKwUfTQTmTsOtSWnhlz
-         Bu6BqutqyxkUbLZ6EXunGjFxItY22K6RXn5IKsoHf6EpQwVEdmuTgh6eDE8a9KewrS5Y
-         SY6a2fYkPWxz3exO1zvP6cxC7BWZfjoxiRjHw2nsZlfz6wT3J9NPmISMExOwjuCHcWKS
-         LkBEtaX8GUVCjSecR+5Fno3hxO+X1i8/XUdr2qm8PUFCUj8OIB1QdvOeegYv0AoMYR+u
-         rWjg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759636221; x=1760241021;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+        d=gmail.com; s=20230601; t=1759640121; x=1760244921; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=c5eVUz6w+EoFaDLEM3O5W2lqhgMgUFUDbpzSqKfqJ4E=;
-        b=VPNsy7zSE/6mLFkOb+LIAy7E5zyrDP6/Q0W1jJjrKL6YUE4qQoM675s1LfazmYUfGJ
-         jaVK8cPV/ysuuLZ3cBja1tbFJlCnnNUHCTfLc9Ngo+gPt6hPq5ZMoXmH8ZINHy4RNjlt
-         USP4eIZTPwI+ZS2UMfZcW2M2MWa97e3JzdAIH6rppWl1s8fG/yxtV/BaBDnxFj5jwSVo
-         GylECAiJDC2CVBrJbDy/dCnv8nbbQKAuO2SYU2z7XpkVvfmeQH6yg9ijBdQG2zPi5smL
-         AYSLlvq6wc4S54cy96KDGSWzr/ke0UxfiNNi9KJuGvjIkH0BAMintCqmVZTRwvBi1w8X
-         VmSg==
-X-Gm-Message-State: AOJu0YwRm51XyyoDelwraNz6JTrNX5ENYCjzifvs85hGgnwD0Z0xKtLV
-	Ry16lIzov5y4tWAO38csLcbsnbI12jHbgic2LglAFzTI/THSX8dKGySa
-X-Gm-Gg: ASbGnctsQVRk8/jTxcFjLb8D4+lgLZqR1GH7Tf+mDQKTPw8nuE6QR26yau8TWRD9aH3
-	7wIBlzIZoOFfUMsgiYSAxyo5p13lcUzwpTNJIHiikeV5epN6eVmGjMMbZ6P6dl8xMDXAscohLvN
-	S//PEIilCBZ6iDFoAmqiMJkO2ZpJYwRcUUP2ZYYadOSDoyzZr+c2njBnPXvLVArjx3KzJVVMdhf
-	9jb/nnrRKJFheWh3OaCIOeJwNP3pjJZGpDsEY1IF7kDhoYSJt0zwF/sQO0AwMAKGN+t556fUZDS
-	Il9AgaoSGgkHt0Df+ob8sbtwLpNyDIDDSi9rCgid4CsOSJ5jpynpwtIFL+LUJxZ4J4Jx1brQIkk
-	WooypCcMbugDtGEVvxDYKsveNohkuklzh6B45Kh4Xm8E5uemaE7soD4SwWApMW0XRvFAUQw==
-X-Google-Smtp-Source: AGHT+IHcTbMO5+we3ZfilD94T2VHeJ0hOb2Fn1NDL5mTMC08c7x71iIANmz2jzxUESzENW+NrQvLww==
-X-Received: by 2002:a17:90b:390f:b0:336:b60f:3935 with SMTP id 98e67ed59e1d1-339c27db5a8mr10757968a91.23.1759636220504;
-        Sat, 04 Oct 2025 20:50:20 -0700 (PDT)
-Received: from ehlo.thunderbird.net ([2804:7f0:9241:9618:6db0:456f:e63a:4e6c])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-339c4a0d531sm6470367a91.4.2025.10.04.20.50.18
+        bh=l9ES7sgSCHDlhobwO0ZrFKVNTVshI11voBNNIhtfWjA=;
+        b=FUoKGH6dnOK6ESX9CySoBBsh8dD9OYlQ9zEhdkedYJpLQATW4x17vUQ+BXDA3UDS9F
+         wAnAAePn1EFbUKdyDkZXVPa4UaJSHm76B6pJmY7MT46h+7rH0x4bSEZ0xzGlSdRtVWbF
+         98NP18UNddcO6fMnABNOXRrToDiu5I7KwLuk0XrnfBD4dN68JGyVm1oHrwx+ia47Ntyi
+         ixM1/UrgvvbVmt9GCEtAG/myNDMVwBctTMpGwZq515dLaAPSl5OINEqWWzlWDdgDd3kZ
+         6+/6uFHI2bL2d2cR0pHFSjmOjZBsU4W8+xeGo4sgo01l8V5TY23lTWPqlYqIQrZp2DKy
+         EEWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759640121; x=1760244921;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=l9ES7sgSCHDlhobwO0ZrFKVNTVshI11voBNNIhtfWjA=;
+        b=amqdlPnPzZ6iYrUahLomiAwWtQ3CdPJ0VR8CszUg2+Kk7GpBWmDUNZNCNbaS3PctFk
+         QyZZRRLDQLXA/TnpEQoGfqkqLV/YIpdutnv7qWN5dxUP4SVxStv8ElRfUOuFx+/+5aft
+         P0xRs/fg2iRilEFYMzT51s62e6heLmWR4p6Z/J5x6ZeFIvHvR1HptLCRRoP2a6DRUO3P
+         xO6rQ2DZrdGCXbBI/LfROZafs8X1a6gcwEshqv3GwdoiFW17YIvivHZkDNkhUC6sFm9h
+         wuv4/8fNv8lCG/bZoA+CgnuTlfjuAOyyy8LnMwWvIZCvJEYX3fQa3vc5FRoWcLAgj28w
+         wkjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX4K0RGh3gbKc+hJO+30kXXly0660XBUr/zz4NFHn6hDU2pkFKQkUJUDsr5sLCuNQMDOAuM3rtDhpjp@vger.kernel.org
+X-Gm-Message-State: AOJu0YwErz1U/DRlLOu4widYdVpJjT6dksP3PrApWesuOJ3TCehvv6Gm
+	AcAlGz4UI+3av4/hPdgcZmxwspC8TovNI0uVysHy/9VkEgDBPUrI54Aa
+X-Gm-Gg: ASbGncuoY+uK0dk0ihSAAjCJ/EFDL11LzZ5YREiW2oxb7RBeInpNxEoPC8BETwiZekh
+	UXSE1UUsBBOQpozlekiAe6wxyo61yssujIwj19olZc0ZL3Qz/Db/FX+qC1XTZEWN2KS9LLULgVa
+	NkzH0/f+zRbk60TP1c9yDs1O4eNpCVWIMbM0tUVwfvu31S8O8JDS0Nlnq+fnpwDPGE3jXpjIY8s
+	eiSK6j7by9P4WAggUMar2mpGWQ0uoflgBKy/pePM4Ti+3Nw9KysosMMprCENz9gLOxDfUtFJ1i4
+	+JwRe2jAiU+SWzVlr4EFNoFz5/L4nu0cpSsqzQR55NM2VkccSWNHnbo7T5M55GZ+31pIWTSjChS
+	SlrCUiuDQub0ZssjbBXT+doXxchLxzmc5P6MpXMs768RAbDiow4lB06i0Xsj8fBwLaejK3z6exk
+	KVU4BTHuwPqDuhnxfc4ahz4fO3ldp8gkRq44A=
+X-Google-Smtp-Source: AGHT+IHrXDCzsLNximokCsFX8BTq6/xEQSVOcieVuoemZgV4yRTvna8trHt71DcqUkLSfovmVG7MFg==
+X-Received: by 2002:a05:6a21:999d:b0:2f6:cabe:a7a8 with SMTP id adf61e73a8af0-32b6209626amr10163253637.32.1759640121168;
+        Sat, 04 Oct 2025 21:55:21 -0700 (PDT)
+Received: from [192.168.68.61] (104-12-136-65.lightspeed.irvnca.sbcglobal.net. [104.12.136.65])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6099d4cfbesm8686558a12.28.2025.10.04.21.55.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 04 Oct 2025 20:50:19 -0700 (PDT)
-Date: Sun, 05 Oct 2025 00:50:16 -0300
-From: =?ISO-8859-1?Q?Eric_Gon=E7alves?= <ghatto404@gmail.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: r0q: enable hardware clocks
-User-Agent: Thunderbird for Android
-In-Reply-To: <d16e8c07-6c10-4c91-9bbe-a260f0497d29@oss.qualcomm.com>
-References: <20250920014637.38175-1-ghatto404@gmail.com> <20250920014637.38175-5-ghatto404@gmail.com> <d16e8c07-6c10-4c91-9bbe-a260f0497d29@oss.qualcomm.com>
-Message-ID: <99D0B281-03A5-447E-A6BF-892C99829D0B@gmail.com>
+        Sat, 04 Oct 2025 21:55:20 -0700 (PDT)
+Message-ID: <37f2603e-8c51-4f92-a7af-0e60cd577004@gmail.com>
+Date: Sat, 4 Oct 2025 21:55:19 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/5] Upstreaming Pinephone Pro Patches
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Ondrej Jirman <megi@xff.cz>, "Leonardo G. Trombetta" <lgtrombetta@gmx.com>
+References: <20250921-ppp_light_accel_mag_vol-down-v3-0-7af6651f77e4@gmail.com>
+ <53eabe34a310ea9c74315fa09a604e4a@manjaro.org>
+ <b01ed528-8b29-4a6a-bdff-88f2e3b5dd2e@gmail.com>
+ <115da845d9161e6ecfa67cf189b84aa8@manjaro.org>
+Content-Language: en-US
+From: Rudraksha Gupta <guptarud@gmail.com>
+In-Reply-To: <115da845d9161e6ecfa67cf189b84aa8@manjaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Hello Dragan,
 
 
+> Thanks for improving the patch descriptions in the v4 of this series.
+> I just went quickly through the v4 and it looks much better.
+>
+> It could be said that the new patch descriptions are now a bit too
+> verbose, in the sense that the test procedures and their results could
+> be summed up a bit better in prose, instead of providing the "raw"
+> inputs and outputs.  However, it's still better to have those, than
+> not to have anything.  Writing good prose is a skill that usually
+> requires learning and practice.
 
-On September 25, 2025 10:09:48 AM GMT-03:00, Konrad Dybcio <konrad=2Edybci=
-o@oss=2Equalcomm=2Ecom> wrote:
->On 9/20/25 3:46 AM, Eric Gon=C3=A7alves wrote:
->> Enable the real-time clocks found in R0Q board=2E
->>=20
->> Signed-off-by: Eric Gon=C3=A7alves <ghatto404@gmail=2Ecom>
->> ---
->>  arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts | 15 +++++++++++++++
->>  1 file changed, 15 insertions(+)
->>=20
->> diff --git a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts b/arch/a=
-rm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
->> index c1b0b21c0ec5=2E=2Ec088f1acf6ea 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
->> +++ b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
->> @@ -225,6 +225,21 @@ vol_up_n: vol-up-n-state {
->>  	};
->>  };
->> =20
->> +&pmk8350_rtc {
->> +	nvmem-cells =3D <&rtc_offset>;
->> +	nvmem-cell-names =3D "offset";
->> +
->> +	status =3D "okay";
->> +};
->> +
->> +&pmk8350_sdam_2 {
->> +	status =3D "okay";
->> +
->> +	rtc_offset: rtc-offset@bc {
->
->Is this an offset you took from somewhere downstream?
->
->Generally you *really don't want to* poke at random SDAM cells,
->as they contain a lot of important settings (incl=2E battery/charging)
-From=20another sm8450 device, I'm sure it's okay=2E
->
->Konrad
+Awesome! I was hoping that others would comment on the testing I've done 
+(especially for the accelerometer and magnetometer patches) as I can't 
+tell if userspace is wrong or if my testing/conclusion is wrong. Mobile 
+Linux is very early stages at the moment, and I suspect the Pinephone 
+and Pinephone Pro were used as reference devices with Megi's downstream 
+kernel. Wrong mount matrices in the downstream kernel might be affecting 
+userspace. This means that with the corrected mount matrices in this 
+patch series, userspace is slightly broken (eg. since I fixed the 
+accelerometer, the screen in Phosh and KDE Plasma are upside down. I 
+suspect KDE's Kompass and Leonardo's compass app might be the same if 
+I'm changing the mount matrix for the magnetometer). This is why I 
+decided to showcase the raw values in my testing. If my testing is 
+incorrect, please feel free to let me know.
+
+I think I will leave my testing in the commits itself this time. If the 
+mount matrices are correct based on my testing, it will probably be 
+helpful in the future in identifying why downstream is slightly broken.
+
+
+> You haven't done anything technically wrong, but the way you submitted
+> the v2 and v3 made them feel a bit like you picked those patches from
+> some random place and submitted them to the mailing list without really
+> understanding the subject matter.  In other words, it's the contributor's
+> job to convince everyone else that the submitted patches are fine to
+> become accepted, and the v2 and v3 simply lacked that.
+
+That's fair. I was under the assumption I had to keep the patches mostly 
+in its original form.
+
+
+> I wonder how would some forge prevent "spamming"?  It isn't about the
+> possible "spamming", but about the act of submitting different versions,
+> which would be present regardless of the way they'd be submitted, and
+> the reviewers would need to be aware (i.e. "spammed") of them anyway.
+
+At least with Gitlab & Codeberg, a lot of the notifications can be muted 
+(I believe updates to pull requests is one of them) and pipelines can be 
+created to ensure that formatting is correct and that the proper sub 
+maintainers are notified automagically. In my opinion, b4 just brings 
+some of the forge's functionalities into an email based workflow, but 
+will have to fight it's own problems such as: 
+https://social.kernel.org/notice/AypvdTWyAs5km0Gc3k. I don't mean to 
+detract from it; it is very commendable what Konstantin Ryabitsev is doing.
+
+If there are concerns about centralization, there are alternatives like 
+Radical. I heard that Codeberg is looking to also decentralize in the 
+future as well (Maybe using Radical's protocol? Not sure). If there is a 
+call to action from the Linux maintainers about looking into 
+decentralized forges, I bet there would be many projects excited to be 
+used by the Linux kernel. It will also help get new people excited to be 
+involved in the Linux kernel and potentially become kernel maintainers 
+in the future
+
+I think I will leave it at that, as I don't want to further derail the 
+conversation from the ppp series.
+
+
+Rudraksha
+
 
