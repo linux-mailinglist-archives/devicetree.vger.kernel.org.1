@@ -1,144 +1,187 @@
-Return-Path: <devicetree+bounces-223707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B598BB9C93
-	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 21:36:17 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A452ABB9CC3
+	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 21:58:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 755CA3B8B74
-	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 19:36:15 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 650F24E053A
+	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 19:58:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8110C1DFE22;
-	Sun,  5 Oct 2025 19:36:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B8631DF26A;
+	Sun,  5 Oct 2025 19:58:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FnuYQTmn"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="iCmTayLk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F5E1C69D
-	for <devicetree@vger.kernel.org>; Sun,  5 Oct 2025 19:36:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 014121D63C5;
+	Sun,  5 Oct 2025 19:58:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759692973; cv=none; b=BJd3FITaKhsviM8kdkkgxArafMFIR0aqvYyUThmAOf8ZG6LYwEhijcF6kM6iQnAjdPHs3X9cNNbfNJ8uUq0cCJ0nEMpsFGPP+yh+DWqVtqWV7k/P+V7eUTV4l1ULrKvS4cFJ5qzm5++iZP3C5hIoD8FFp6nph3Y1FU+Ipo6mgSs=
+	t=1759694324; cv=none; b=SUVfxz4VfXBzyieyV5GKwkKKhbeSMeUde8jPU1nKKPDu0igHpIqeJuk9tgYRgoIBXWd9bbZ23CzQz3DcTemXIhyeSGJUTRETdrod5njmIvjFBHd2UzMQcZkUs8r04WV6p9qZp/rcL5w4XUZKdWO2ACxKTAbGZjOoFeVi3sJ6pok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759692973; c=relaxed/simple;
-	bh=HpCPwTV6Ymso2jLvEaOmKrvUbLjDDf+rF1XltKBbEo0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Gh/Ci+zzICyTV3sOb/LiK3XAjiYTqTVL96es7SvkuXxeuImycywlqPB5EguNuh/pW2Jwth/ABTUkJVgKEymQc0qMjDwzoPlv5UiWOmAGsnSMN7EQGlyuVcRgpkSAwnl4x1Xnc5zvthH/J7uKIsVviy6igpjl9Nn/0SppTZzoT6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FnuYQTmn; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-57bd482dfd2so4551576e87.2
-        for <devicetree@vger.kernel.org>; Sun, 05 Oct 2025 12:36:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759692970; x=1760297770; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=B8ByiJnX+QP06S+C98Ev13SN/Q5Wa0f7/4hHRsHwc/k=;
-        b=FnuYQTmn26+cBaC0AwP1dStC58+OZP1x5qrT/Ikq2HfFvgfel66g3Co+QjS72KOQbT
-         BWdRp3XPT/vPU6s2SQUjhTUe7CCgiMAn/zMEFHEKe7/Uv26Nu2QJ6kAzrKBnKR86T4bx
-         n9VpBw4ns6NN9+IHH1bH39cxhhEGVy9sgrFG58yUG6l6DkAsiK/8ztdJYoc4oZGnSweh
-         8DB8ApsS4grL4flVePSv1g081o+CEs2C0MHyl78b50rYaH4Wco/zi5Acrtq+6ieR0Cxv
-         NjHgoNwPHxOBlARJpkTP4SB/fahH3VEj6PIHLOD0zhhFt+prFEvuzHfk6jzNExRW6bYh
-         Yzvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759692970; x=1760297770;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=B8ByiJnX+QP06S+C98Ev13SN/Q5Wa0f7/4hHRsHwc/k=;
-        b=FOhmDWps5+FJQgJJb3EPMQr1nLY9nETCAHRcAPwUyYnWBgOFPMV3fbdXzXPGgAC8GM
-         Cn34ZuNdHgnXMyHkFsmTK7xOjyzp6a7cRiQPxGP9wKtb8C+OsdUEsREXL3Bp4miWD64V
-         wFO7y6Ic8mY7PC+Pm1K/MTiXv/BQDKajSHBnFhIbJTbdTSrun0EFjbB2gwUYecVqAAgX
-         MdQi1U2ZbWVtlJuIeTWijQDq0LMCY3lhj9Ed8bnTKWtM/FNX2O3/fAdfEi4/W0vI927V
-         1/jYTSn+uGSoB9yGMRvzcBxHfR1iGlJoWWEm3w9rP1/r3QeZ9lplhxafR+pFzc/0ezkU
-         pgoA==
-X-Forwarded-Encrypted: i=1; AJvYcCVcvPXUHU0CaVitkQKBk6aHwvHiXSATLdhstINbWrn+gz8qfzUbWcMtd5QZHUCjY+lgBH4pX/ULivJc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyk+1JDRByOMp9HzZ9wtl5tzwMA94iBmTE5zJnq1H4Kvc/QlHi7
-	gpMrOcZF+ROCBfPw/B0EmYv3Ly75EtM6qEnRoH+grakybak+bwXObi87dTFJCouWM8RttUu5fM1
-	Gb5qizwVNYi2cV5odJdecaMHvjZpB/4M=
-X-Gm-Gg: ASbGnctyFiwSNAwkyl+TcggThhvUJiGuMrFI8+sW5hrLk+dzjBIA5mWkL6XVJzwWl3g
-	oc7AMembcKD8vBEbgm6j45ESmLlHMuvIs2/9jugttqtwxz/TIN9s/yfPN7Mku/wbr7bauGW0lue
-	PqAArAvcZCUFCQEHWloNbF3Bfy3ok5S6Q/GYR3klkKiFV/pRUS7IYR4cpJZWvinHIbQGINrJ1+6
-	EO74gmPkxHHolpa315+PHUtpzUPlgSpfJjj1PY1mkokA1kxb9bJeVkkDEH2gS3cv/RbDP9kFi6z
-	GxsiMXzK/4Z8mqSOxdyYFL3Eqa8PJ1NyfBAZtTRMLVVCmeQ4iEJ5iCD0RzoDLHZ6K3SoZfpan4W
-	xl+fqiDk=
-X-Google-Smtp-Source: AGHT+IGeuKU8klCmxB4Wd39ZsY1VEQw2A/8b61XgTuTEMmx63wy7XwkjXnKRo8krqB/HqCUkM+y01HIC7xEEEyhzQ+g=
-X-Received: by 2002:a05:6512:230b:b0:585:1ca7:1b7b with SMTP id
- 2adb3069b0e04-58cbb255fcbmr3402254e87.31.1759692969485; Sun, 05 Oct 2025
- 12:36:09 -0700 (PDT)
+	s=arc-20240116; t=1759694324; c=relaxed/simple;
+	bh=hcHoPuDASvo7L4YoQIIOIVa3he8Xm/yVQ4dMNyufHBc=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=rnkPBA3fT+RlByJAsC2QgT3VS4WSYijxLgoacRD4zvJ+VtPFklh45Tdkc2Ev1tOU+5rFoVvqCCRLlaDfUl6tIpWFd+vdoHKLG7C9Q4EBwLm5a9/GMyksjE7A7YB/l6p89isV1EWqh40TFA70Enzggepeq7jGbWOBP+R+IHsuFdc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=iCmTayLk; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4FAC2C7A;
+	Sun,  5 Oct 2025 21:57:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1759694227;
+	bh=hcHoPuDASvo7L4YoQIIOIVa3he8Xm/yVQ4dMNyufHBc=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=iCmTayLk9hIK6HaDN+pHYnMRTzULWpiRwz3JYNchd6BO+xgXcfVn6F0CSlrGEllD9
+	 fwh9DuqvY6G8pCw19T95Y1+RcCXtluAHVUayaru6DSDgM3+kiXE5vmSPuta2LiaxSr
+	 s6Zng1KSRWC6QEUi+4KWXEhkade0a+mir4xuTmis=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org>
- <20250928-judyln-dts-v3-9-b14cf9e9a928@postmarketos.org> <42463474-7fba-4df3-9dbb-24140581690f@oss.qualcomm.com>
-In-Reply-To: <42463474-7fba-4df3-9dbb-24140581690f@oss.qualcomm.com>
-From: Chris Brown <crispybrown@gmail.com>
-Date: Sun, 5 Oct 2025 15:35:56 -0400
-X-Gm-Features: AS18NWD0klMI-Y0ok5kdj815WG__q8Dt0zdKpCJrqe8wE9-WN-Ydtjc6OrnZJzM
-Message-ID: <CABN5=wEpekmKxFCr7nBcYGSt6ZH-g+bx7Y5Nmoo=tMrorz2XBg@mail.gmail.com>
-Subject: Re: [PATCH v3 09/11] arm64: dts: qcom: sdm845-lg-common: Add camera flash
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Paul Sajna <sajattack@postmarketos.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	David Heidelberg <david@ixit.cz>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org, 
-	Amir Dahan <system64fumo@protonmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251005180025.69602-1-asmirnou@pinefeat.co.uk>
+References: <175967476560.756374.10666787102940352317@ping.linuxembedded.co.uk> <20251005180025.69602-1-asmirnou@pinefeat.co.uk>
+Subject: Re: [PATCH v5 2/2] media: i2c: Pinefeat cef168 lens control board driver
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: asmirnou@pinefeat.co.uk, conor+dt@kernel.org, devicetree@vger.kernel.org, hverkuil@xs4all.nl, jacopo.mondi@ideasonboard.com, krzk+dt@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, mchehab@kernel.org, robh@kernel.org
+To: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>
+Date: Sun, 05 Oct 2025 20:58:36 +0100
+Message-ID: <175969431602.1246375.2429212814766056041@ping.linuxembedded.co.uk>
+User-Agent: alot/0.9.1
 
-850mA looks correct for the flash, whereas the flashlight/torch should
-be 100mA based on
-https://github.com/EmanuelCN/android_kernel_lge_sdm845/blob/U/arch/arm64/boot/dts/lge/sdm845-judy/sdm845-camera/sdm845-judy-camera.dtsi
-i.e. led-max-microamp = <100000>;
+Quoting Aliaksandr Smirnou (2025-10-05 19:00:25)
+> Hi Kieran,
+>=20
+> On Sun, 05 Oct 2025 15:32:45 +0100, Kieran Bingham wrote:
+> > I'm really looking forward to trying this device out sometime. Very
+> > interesting piece of kit - Thank you for working directly to upstream
+> > the support! That's really awesome.
+>=20
+> Thanks! I appreciate that. It's been interesting work, and it's great
+> to see the device getting some attention. I'm looking forward to hearing
+> your impressions once you get a chance to try it out.
+>=20
+> > > +  rx_data->focus_distance_min =3D le16_to_cpup((__le16 *)&rx_data->f=
+ocus_distance_min);
+> > > +  rx_data->focus_distance_max =3D le16_to_cpup((__le16 *)&rx_data->f=
+ocus_distance_max);
+> >
+> > What is the focus distance in this case? Is it a measured distance that
+> > could be applied to focus?
+>=20
+> The focus distance reported by the lens is the distance between the
+> camera's sensor and the subject currently in focus, measured in meters.
+> It correlates with the focus position - higher positions correspond to
+> greater distances - but the relationship is non-linear.
 
-On Wed, 1 Oct 2025 at 05:04, Konrad Dybcio
-<konrad.dybcio@oss.qualcomm.com> wrote:
->
-> On 9/29/25 7:05 AM, Paul Sajna wrote:
-> > So it can be used as a flashlight
-> >
-> > Signed-off-by: Paul Sajna <sajattack@postmarketos.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi | 13 +++++++++++++
-> >  1 file changed, 13 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> > index a8c8706f2057d36d5ef4130f11d9ad417f93d575..f309e6ebc075a691c7a522238b4a93ba9e63f3c0 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sdm845-lg-common.dtsi
-> > @@ -509,6 +509,19 @@ &pm8998_resin {
-> >       status = "okay";
-> >  };
-> >
-> > +&pmi8998_flash {
-> > +     status = "okay";
-> > +
-> > +     led-0 {
-> > +             function = LED_FUNCTION_FLASH;
-> > +             color = <LED_COLOR_ID_WHITE>;
-> > +             led-sources = <1>;
-> > +             led-max-microamp = <850000>;
-> > +             flash-max-microamp = <850000>;
->
-> Allowing the same current for flash (brief on/off for night photos)
-> and LED (flashlight which you normally toggle through quick settings)
-> sounds no less than suspicious
->
-> Konrad
->
-> > +             flash-max-timeout-us = <500000>;
-> > +     };
-> > +};
-> > +
-> >  &pmi8998_lpg {
-> >       status = "okay";
-> >
-> >
+What's measuring this distance ? Something in the lens, rather than the
+sensor?
+
+>=20
+> Libcamera's autofocus algorithm works in dioptres, which are the inverse
+> of distance. In the driver, reading the distance from the lens allows
+> the creation of a piecewise linear (PWL) function that maps inverse
+> distance to the hardware lens setting.
+>=20
+> > > +       case CEF168_V4L2_CID_CUSTOM(calibrate):
+> > > +               return cef168_i2c_write(dev, INP_CALIBRATE, 0);
+> >=20
+> > Is there any documentation on how to use this control?
+>=20
+> The control performs a calibration action operated by the controller
+> to determine the total number of focus steps. The action is invoked
+> by the calibration utility, which moves the lens, reads the changing
+> focus distance, and finally generates a PWL function to be included
+> in the Libcamera tuning file.
+>=20
+> End users are not expected to trigger this control manually through
+> the V4L2 API, as it is intended for use by the calibration tool during
+> system setup. For this reason, separate user-facing documentation for
+> the control has not been added.
+>=20
+> In other use cases, calibration can be performed simply by toggling
+> the AF/MF switch on the lens three times within 15 seconds.
+>=20
+> > > +       case CEF168_V4L2_CID_CUSTOM(focus_range):
+> > > +               ctrl->p_new.p_u32[0] =3D ((u32)data.focus_position_mi=
+n << 16) |
+> > > +                                      (u32)data.focus_position_max;
+> >=20
+> > Is this really a custom control ? Is there any way to convey this
+> > through the min/max of the FOCUS_ABSOLUTE control ?
+>=20
+> We aimed to minimize the use of custom controls, but in this case one
+> is necessary.
+>=20
+> When the driver is already loaded and initialized, the focus range of
+> the lens may vary depending on the lens state and configuration
+> options. Because the control's operational range is defined during
+> driver probe, the Linux V4L2 API does not allow the minimum and
+> maximum values to be changed while the driver is running.
+
+Have you tried with __v4l2_ctrl_modify_range() ?
+
+We should make sure this also generates an event that libcamera can
+subscribe to to make sure it knows there's been an update.
+
+
+> The maximum focus position is not known until calibration is
+> performed, so initially the position is set to zero. The focus range
+> may vary slightly between calibration runs, as it is derived from
+> counting motor steps, and its precision depends on the lens's focusing
+> mechanics.
+>=20
+> Additionally, some lenses provide a two-position switch that changes
+> the minimum focusing distance, significantly reducing the focus range
+>  - for example, from 2100 to 800.
+
+I see, so a user interaction can update it too. Does the driver have to
+poll to get this update? Or does it just find out on the next read ?
+
+>=20
+> > > +       case CEF168_V4L2_CID_CUSTOM(lens_id):
+> > > +               ctrl->p_new.p_u8[0] =3D data.lens_id;
+> > > +               return 0;
+> >=20
+> > Is this a specific individual ID value for the connected lens (i.e.
+> > every lens has a custom id?) or is it a reference to the lens
+> > model/type?
+> >=20
+> > Is this something we could use in libcamera for instance to select an
+> > appropriate tuning file per lens (type) ?
+>=20
+> It represents the ID of the lens model/type. Correct, it's purpose to
+> assist in selecting the appropriate autofocus algorithm settings.
+
+We're also pushing for a core control for this I think. That's something
+we 'need' in libcamera globally for all cameras. Unfortunately I can't
+point you at an existing control yet ;-(
+
+
+> For calibrated lenses, the controller stores the focus range in EEPROM,
+> allowing lenses to be swapped without repeating calibration. The
+> Libcamera tuning file includes an autofocus algorithm section that is
+> linked to the lens's focus range, focus distance, and focusing speed.
+> Therefore, reading the lens ID when loading the corresponding tuning
+> file after a lens swap is both convenient and necessary.
+>=20
+> It can be read as follows:
+>=20
+> v4l2-ctl -d /dev/v4l-subdev3 -C lens_id
+
+I'll see if I can find time to order a kit, and get a compatible lens. I
+have a Nikon DSLR though so I don't have lenses to match this yet :-(
+
+--
+Kieran
 
