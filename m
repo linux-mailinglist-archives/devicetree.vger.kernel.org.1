@@ -1,342 +1,133 @@
-Return-Path: <devicetree+bounces-223649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D898BBB95A1
-	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 12:55:25 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 727C9BB95B9
+	for <lists+devicetree@lfdr.de>; Sun, 05 Oct 2025 13:14:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 70EA63A57AD
-	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 10:55:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 23CDA4E23D1
+	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 11:14:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDEAD26C383;
-	Sun,  5 Oct 2025 10:55:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MH2BspGu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7166273D8A;
+	Sun,  5 Oct 2025 11:14:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2B1E24DD00
-	for <devicetree@vger.kernel.org>; Sun,  5 Oct 2025 10:55:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.170
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BDEF26D4EA;
+	Sun,  5 Oct 2025 11:13:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759661721; cv=none; b=InfRK4V6Snlyb66wL/zNw95EEQ+iCXJDb+ynY84qwmnr471Uaqabmj5+XW8s7iysvVF2wlxCQrNrrQo/Vou0v/Hj3NIVmyPlxFI5TMEkn7T8uRIIwRptoq+zU63Bkr4uNxIAnc9xMlBcZjA1Hq156/UKcGoF5RBReimsV1fc3wc=
+	t=1759662843; cv=none; b=ViAmNu98U2DpQJ2Ab3VNInb2efDlGRsXsmPY/lH/69ydPhryj6etYRjDGGAbItZHw1g6AKcFpPL6mmhPuVH2xvneGZmLr9hH788DnGQZ847jvAdyOoq00hts/0Fflu2WgAyBhsaZsQdNN9R2sRjoLIY0sugzqW9lRrEllAhapZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759661721; c=relaxed/simple;
-	bh=hv0t13XpMCzGMfLrYnuxn0PEco6xD5F90AQBZpOQ2GI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PB6kzE9v+zirNON2icRTzao5T+VzZTp4WfCIV0hzbkN4/NDmTX7hk0pNoNS3s9aUvR8yqirtjTnC1l3w/ZM0WVth2at34yJKztU4RSFcCBeoRDhXmQvV1mavWkayBULQBjRX7bBzslDg5at/yL/zM9bDlK0/mn4MFdNxNpNFTaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MH2BspGu; arc=none smtp.client-ip=209.85.222.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f170.google.com with SMTP id af79cd13be357-85ed0a1b35dso318580785a.2
-        for <devicetree@vger.kernel.org>; Sun, 05 Oct 2025 03:55:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759661719; x=1760266519; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SzLT2VU9AZrprVMKaIriIjeuBSSmoOGolyPhiSrywBQ=;
-        b=MH2BspGu5mh4G0qGdA8iIABEEVQl/qEK04KgDFgtRYqOPRGEDLqSVDK29QUjRG+FYO
-         RIbOMJ890LqqERR4kCXm9/Xwj+t+97b9oW4mkmfTSOnQY9RFb8/i3PVbPkKpdOQGOy3A
-         MAGEV6LFKld5ciksZhYH1/jyuxCWi+hCRo5Wa3bOzHkRx2pLvb8wA5Yy9CK9hWsMMx94
-         gS4P2M/nk8BrDFyYO3Pk62KpGVxyMb0KW31Kq9BYfl2VOaWYVzRAbB3c8we+osL3vSiP
-         3pWtp8fePeuTeWcLTDnIsBiDLMz638GoYkMKKPpB9ISrhkg/FCIx6NPoF3bbgh+W7QxO
-         StvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759661719; x=1760266519;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SzLT2VU9AZrprVMKaIriIjeuBSSmoOGolyPhiSrywBQ=;
-        b=C5dvub8F3z/R9GYb1sbD/Nhb/GAqrQ+54i5om+81EDMWdlJc1L+NjJbRKT8iTQaYtu
-         ZscaFr/YP3S/BhiuyCp5/iJP+uMfVbUXKJ2NZs0BGpTvvdKyBgzdiVAgX4LD1oqKhe1y
-         Aqegf/T7EAgx3svueVMiA07lFFllbVyacezUUdjnheVU54D106P/GAv4LiAztw7z7B/i
-         xZCs5pu0YPYRTfzlQ/YNOhTlxnfoVXfhskI7553y4YMx0F7CCqMsvFU8IOlUuM5YT0oU
-         0r7nHTf0wpM5+cdu1wX/EAn3PRDUHMjohS8fXA1b68jj51/rbw5dZ8jgEWOV7XHhMxLv
-         xGMg==
-X-Forwarded-Encrypted: i=1; AJvYcCXANcDqLV4WRRCqL3F2gCwPDKgjZMjkwV32aDkJf+ZDlUYGFJ07IgNrancjD2jq6TEOYvu8c3Fy68gf@vger.kernel.org
-X-Gm-Message-State: AOJu0YxYoleqVHN6B5fkzwwrZafibDpn1v8EwbiX0Q1LaBp+SIXc4EtQ
-	4mxNl4ozaexa/yPXHP9pFrfWz+khe5WA4NjV6aWe6Nmx/0Gbi5zdfox/7kmr7aijMBRmZV6yjx2
-	0D894lS9V48DyAmIyFggcPG33TbDhunI=
-X-Gm-Gg: ASbGncsqXlSEe1uFNLFk66a/uSjJQqxh5razBTStAvAQnluNG2S2tcIifLkvcQyb1/O
-	2vO2k+Ul4g15d/gW29PaOfvMDqjgZ+S8s2toXNkXwpnpWjLzwDddNZe2yvQYvC+/Fqwm/KcDl0w
-	j22HuZtyfOKb7AIc7FaJEeGijfLsUD4eZBrGbxhrIsezyAo8BexbQJkXsIgis1gpp2fe9KzP8dZ
-	weYOdfVxul0vczoqFXzKGSQcQ31zczRjnPeJswAoSd2JCG0QjG5Lx0=
-X-Google-Smtp-Source: AGHT+IFCrj2Udm0U0cWFhFJiQLU1ddUKbzdouHN8/JOmQqz2+KfbPT/k9liTJOs+57MzVtTZ8JhEfUehhe7xAfv7PN8=
-X-Received: by 2002:a05:620a:29c8:b0:85e:5fef:8710 with SMTP id
- af79cd13be357-87a377dd5e1mr1187717885a.47.1759661718455; Sun, 05 Oct 2025
- 03:55:18 -0700 (PDT)
+	s=arc-20240116; t=1759662843; c=relaxed/simple;
+	bh=ZuqlNmZNB72taXLYYYR99ChYgDT8P68Crw/8aM/Lo2I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=icQDu0T/beukHCHsAWCrLR3eTTM4/DuvP67v7NfjF7zqBh4ZKtbJCvxu1H6OypZEm4j6dpa0RYPHMIvuD71k5VWhTFWRUQO4lEsmVPhDF6gxZa7aeMLqNMCCRxRgcyzhdDbWFxASxJ5H6jNrutA2OL7ViFCTPCP+zqGg13k3XKU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+X-CSE-ConnectionGUID: 0yATbTy6R0a0bmstYq6miw==
+X-CSE-MsgGUID: wxPWLmcTQP6eHW2ZwCoprA==
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 05 Oct 2025 20:13:53 +0900
+Received: from demon-pc.localdomain (unknown [10.226.92.25])
+	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 0466640065C2;
+	Sun,  5 Oct 2025 20:13:48 +0900 (JST)
+From: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>
+To: 
+Cc: Cosmin Tanislav <cosmin-gabriel.tanislav.xa@renesas.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-iio@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/6] Add ADCs support for RZ/T2H and RZ/N2H
+Date: Sun,  5 Oct 2025 14:13:16 +0300
+Message-ID: <20251005111323.804638-1-cosmin-gabriel.tanislav.xa@renesas.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <a76f315f023a3f8f5435e0681119b4eb@manjaro.org> <CABjd4Ywh_AkbXHonx-8vL-hNY5LMLJge5e4oqxvUG+qe6OF-Og@mail.gmail.com>
- <61b494b209d7360d0f36adbf6d5443a4@manjaro.org> <CABjd4Yx0p0B=e00MjCpDDq8Z=0FtM0s9EN86WdvRimt-_+kh2w@mail.gmail.com>
- <CABjd4Yy14bpjzvFyc8et-=pmds5uwzfxNqcs7L=+XRXBogZEsQ@mail.gmail.com>
- <20251003133304.GA21023@pendragon.ideasonboard.com> <CABjd4YxbyUWghd1ya8UayFkAE-VWQSd5-J2QD0sV7WmS8AXkCg@mail.gmail.com>
- <CABjd4YwtwUYFX4bX5vy=AFi=Dn1r6nxWtMvmeKBSjkvriNJtsQ@mail.gmail.com>
- <20251003232856.GC1492@pendragon.ideasonboard.com> <CABjd4Yx9rt2W=MhCSyO5vaxndD1jvGHNWsz7J=HnvnJcgOvQHw@mail.gmail.com>
- <20251004220326.GC20317@pendragon.ideasonboard.com>
-In-Reply-To: <20251004220326.GC20317@pendragon.ideasonboard.com>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Sun, 5 Oct 2025 14:55:07 +0400
-X-Gm-Features: AS18NWCuY7b2iQ0RZGkQTZdghFPEhu9IsvjzDeHFMK_prX2xIp0MyG4PQ_3f7Y0
-Message-ID: <CABjd4YwLQ_kr3tA=XnzR4_zmQ0CQs4TuQr-2OWbiOWQfDhP4xw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: rockchip: Fix broken tsadc pinctrl binding
- for rk3588
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Dragan Simic <dsimic@manjaro.org>, Alexander Shiyan <eagle.alexander923@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	devicetree@vger.kernel.org, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, stable@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sun, Oct 5, 2025 at 2:03=E2=80=AFAM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> On Sat, Oct 04, 2025 at 03:41:41PM +0400, Alexey Charkov wrote:
-> > On Sat, Oct 4, 2025 at 3:29=E2=80=AFAM Laurent Pinchart wrote:
-> > > On Fri, Oct 03, 2025 at 06:55:26PM +0400, Alexey Charkov wrote:
-> > > > On Fri, Oct 3, 2025 at 6:13=E2=80=AFPM Alexey Charkov wrote:
-> > > > > On Fri, Oct 3, 2025 at 5:33=E2=80=AFPM Laurent Pinchart wrote:
-> > > > > > On Fri, Jan 24, 2025 at 11:44:34PM +0400, Alexey Charkov wrote:
-> > > > > > > On Fri, Jan 24, 2025 at 9:23=E2=80=AFPM Alexey Charkov wrote:
-> > > > > > > > On Fri, Jan 24, 2025 at 2:37=E2=80=AFPM Dragan Simic wrote:
-> > > > > > > > > On 2025-01-24 11:25, Alexey Charkov wrote:
-> > > > > > > > > > On Fri, Jan 24, 2025 at 2:06=E2=80=AFPM Dragan Simic wr=
-ote:
-> > > > > > > > > >> On 2025-01-24 09:33, Alexey Charkov wrote:
-> > > > > > > > > >> > On Fri, Jan 24, 2025 at 9:26=E2=80=AFAM Alexander Sh=
-iyan wrote:
-> > > > > > > > > >> >>
-> > > > > > > > > >> >> There is no pinctrl "gpio" and "otpout" (probably d=
-esigned as
-> > > > > > > > > >> >> "output")
-> > > > > > > > > >> >> handling in the tsadc driver.
-> > > > > > > > > >> >> Let's use proper binding "default" and "sleep".
-> > > > > > > > > >> >
-> > > > > > > > > >> > This looks reasonable, however I've tried it on my R=
-adxa Rock 5C and
-> > > > > > > > > >> > the driver still doesn't claim GPIO0 RK_PA1 even wit=
-h this change. As
-> > > > > > > > > >> > a result, a simulated thermal runaway condition (I'v=
-e changed the
-> > > > > > > > > >> > tshut temperature to 65000 and tshut mode to 1) does=
-n't trigger a PMIC
-> > > > > > > > > >> > reset, even though a direct `gpioset 0 1=3D0` does.
-> > > > > > > > > >> >
-> > > > > > > > > >> > Are any additional changes needed to the driver itse=
-lf?
-> > > > > > > > > >>
-> > > > > > > > > >> I've been digging through this patch the whole TSADC/O=
-TP thing in the
-> > > > > > > > > >> last couple of hours, and AFAIK some parts of the upst=
-ream driver are
-> > > > > > > > > >> still missing, in comparison with the downstream drive=
-r.
-> > > > > > > > > >>
-> > > > > > > > > >> I've got some small suggestions for the patch itself, =
-but the issue
-> > > > > > > > > >> you observed is obviously of higher priority, and I've=
- singled it out
-> > > > > > > > > >> as well while digging through the code.
-> > > > > > > > > >>
-> > > > > > > > > >> Could you, please, try the patch below quickly, to see=
- is it going to
-> > > > > > > > > >> fix the issue you observed?  I've got some "IRL stuff"=
- to take care of
-> > > > > > > > > >> today, so I can't test it myself, and it would be grea=
-t to know is it
-> > > > > > > > > >> the right path to the proper fix.
-> > > > > > > > > >>
-> > > > > > > > > >> diff --git i/drivers/thermal/rockchip_thermal.c
-> > > > > > > > > >> w/drivers/thermal/rockchip_thermal.c
-> > > > > > > > > >> index f551df48eef9..62f0e14a8d98 100644
-> > > > > > > > > >> --- i/drivers/thermal/rockchip_thermal.c
-> > > > > > > > > >> +++ w/drivers/thermal/rockchip_thermal.c
-> > > > > > > > > >> @@ -1568,6 +1568,11 @@ static int rockchip_thermal_pro=
-be(struct
-> > > > > > > > > >> platform_device *pdev)
-> > > > > > > > > >>          thermal->chip->initialize(thermal->grf, therm=
-al->regs,
-> > > > > > > > > >>                                    thermal->tshut_pola=
-rity);
-> > > > > > > > > >>
-> > > > > > > > > >> +       if (thermal->tshut_mode =3D=3D TSHUT_MODE_GPIO=
-)
-> > > > > > > > > >> +               pinctrl_select_default_state(dev);
-> > > > > > > > > >> +       else
-> > > > > > > > > >> +               pinctrl_select_sleep_state(dev);
-> > > > > > > > > >
-> > > > > > > > > > I believe no 'else' block is needed here, because if ts=
-hut_mode is not
-> > > > > > > > > > TSHUT_MODE_GPIO then the TSADC doesn't use this pin at =
-all, so there's
-> > > > > > > > > > no reason for the driver to mess with its pinctrl state=
-. I'd rather
-> > > > > > > > > > put a mirroring block to put the pin back to its 'sleep=
-' state in the
-> > > > > > > > > > removal function for the TSHUT_MODE_GPIO case.
-> > > > > > > > >
-> > > > > > > > > You're right, but the "else block" is what the downstream=
- driver does,
-> > > > > > > >
-> > > > > > > > Does it though? It only handles the TSHUT_MODE_GPIO case as=
- far as I
-> > > > > > > > can tell (or TSHUT_MODE_OTP in downstream driver lingo) [1]
-> > > > > > > >
-> > > > > > > > [1] https://github.com/radxa/kernel/blob/edb3eeeaa4643ecac6=
-f4185d6d391c574735fca1/drivers/thermal/rockchip_thermal.c#L2564
-> > > > > > > >
-> > > > > > > > > so I think it's better to simply stay on the safe side an=
-d follow that
-> > > > > > > > > logic in the upstream driver.  Is it really needed?  Perh=
-aps not, but
-> > > > > > > > > it also shouldn't hurt.
-> > > > > > > > >
-> > > > > > > > > > Will try and revert.
-> > > > > > > > >
-> > > > > > > > > Awesome, thanks!
-> > > > > > > > >
-> > > > > > > > > > P.S. Just looked at the downstream driver, and it actua=
-lly calls
-> > > > > > > > > > TSHUT_MODE_GPIO TSHUT_MODE_OTP instead, so it seems tha=
-t "otpout" was
-> > > > > > > > > > not a typo in the first place. So maybe the right appro=
-ach here is not
-> > > > > > > > > > to change the device tree but rather fix the "gpio" / "=
-otpout" pinctrl
-> > > > > > > > > > state handling in the driver.
-> > > > > > > > >
-> > > > > > > > > Indeed, "otpout" wasn't a typo, and I've already addresse=
-d that in my
-> > > > > > > > > comments to Alexander's patch.  Will send that response a=
- bit later.
-> > > > > > > > >
-> > > > > > > > > I think it's actually better to accept the approach in Al=
-exander's
-> > > > > > > > > patch, because the whole thing applies to other Rockchip =
-SoCs as well,
-> > > > > > > > > not just to the RK3588(S).
-> > > > > > > >
-> > > > > > > > Anyway, I've just tried it after including the changes belo=
-w, and
-> > > > > > > > while /sys/kernel/debug/pinctrl/pinctrl-handles shows the e=
-xpected
-> > > > > > > > pinctrls under tsadc, the driver still doesn't seem to be t=
-riggering a
-> > > > > > > > PMIC reset. Weird. Any thoughts welcome.
-> > > > > > >
-> > > > > > > I found the culprit. "otpout" (or "default" if we follow Alex=
-ander's
-> > > > > > > suggested approach) pinctrl state should refer to the &tsadc_=
-shut_org
-> > > > > > > config instead of &tsadc_shut - then the PMIC reset works.
-> > > > > >
-> > > > > > I've recently brought up an RK3588S-based Orange Pi CM5 Base bo=
-ard, made
-> > > > > > of a compute module (CM5, see [1]) and a carrier board (Base, s=
-ee [2]).
-> > > > > > The carrier board has a reset button which pulls the PMIC_RESET=
-_L signal
-> > > > > > of the CM5 to GND (see page 3 of the schematics in [3]).
-> > > > > >
-> > > > > > With &tsadc_shut_org the reset button has absolutely no effect.=
- With
-> > > > > > &tsadc_shut it resets the board as expected.
-> > > > >
-> > > > > Interesting. The TSADC shouldn't affect the physical button opera=
-tion
-> > > > > at all, if it's really wired to the PMIC as the signal name impli=
-es.
-> > > > > There isn't even any default pull value associated with the TSHUT=
- pin
-> > > > > config.
-> > > >
-> > > > On a second thought, I've got another hypothesis. Your baseboard on=
-ly
-> > > > pulls the reset line through  a 100 Ohm resistor when the button is
-> > > > pressed. So if the TSHUT pin is in its default push-pull mode and
-> > > > stays high when no thermal runaway reset is requested, the reset
-> > > > button won't pull the line fully to zero, as the TSHUT line pulls i=
-t
-> > > > high at the same time.
-> > >
-> > > That's the most likely cause, I agree.
-> > >
-> > > > If you switch it from &tsadc_shut_org to &tsadc_shut, then it stops
-> > > > working properly as the thermal protection reset, and GPIO0_A1 rema=
-ins
-> > > > high-impendance, thus allowing the reset button to function even
-> > > > though its pull is too weak.
-> > >
-> > > By the way, what is the difference between tsadc_shut_org and tsadc_s=
-hut
-> > > ? I haven't seen it being clearly documented in the TRM.
-> >
-> > No idea frankly. Looks like a half-finished design change to me, which
-> > left the non-"org" version unconnected internally.
->
-> :-/
->
-> > > > So maybe change the pin configuration of &tsadc_shut_org in
-> > > > rk3588-base-pinctrl.dtsi to open drain and retry?
-> > >
-> > > That's a good idea, but... how ? The pinctrl-rockchip driver doesn't
-> > > seem to support generic open-drain configuration.
-> >
-> > I thought I saw open-drain configurations here, but after reviewing
-> > the TRM, bindings and the driver it turns out I must have been
-> > daydreaming :( Sorry.
-> >
-> > Looks like the best we can try is a lower drive strength while keeping
-> > the push-pull mode, but I'm afraid this 100 Ohm pulldown is too weak,
-> > because the lowest TSHUT drive strength Rockchip offers is 100 Ohm,
-> > while the PMIC would only count anything below 30% reference voltage
-> > as logical low. Maybe adding a pulldown to the pin config can help,
-> > but most likely this board will require switching the pin to GPIO
-> > input for high-z, and switching the TSHUT mode to CRU.
->
-> I agree with you, going through the CRU seems the best solution for this
-> board. This is actually the default mode in
-> arch/arm64/boot/dts/rockchip/rk3588-base.dtsi:
->
->         rockchip,hw-tshut-mode =3D <0>; /* tshut mode 0:CRU 1:GPIO */
->         rockchip,hw-tshut-polarity =3D <0>; /* tshut polarity 0:LOW 1:HIG=
-H */
->         pinctrl-0 =3D <&tsadc_shut_org>;
->         pinctrl-1 =3D <&tsadc_gpio_func>;
->
-> If hw-tshut-mode defaults to 0, why do we need to setup the GPIO0_A1 pin
-> to output the TSADC_SHUT signal ?
+Renesas RZ/T2H (R9A09G077) and RZ/N2H (R9A09G087) SoCs include three
+12-Bit successive approximation A/D converters.
 
-I believe the thinking was along the lines of "it can't hurt, so let's
-provide a default that's likely to work both for the boards where
-TSHUT is routed to the PMIC and those where it's not, with an added
-benefit of hogging the pin to prevent anyone from accidentally
-triggering it to a low level from user space thus suddenly resetting
-the board".
+RZ/T2H has two ADCs with 4 channels and one with 6.
+RZ/N2H has two ADCs with 4 channels and one with 15.
 
-But this case of "TSHUT is routed, but with a deviation from the
-reference schematic which makes it impossible to use as designed" was
-likely never envisaged.
+Add support for them.
 
-Technically, there is no reason to switch the pin to tsadc_shut_org
-when CRU mode is used, and the boottime default for this pin is
-high-impedance.
+V4:
+ * pick up tags
+ * require r9a09g077 as fallback for r9a09g087
+ * remove per-SoC restrictions
+ * add depends on ARCH_RENESAS || COMPILE_TEST
+ * inline RZT2H_NAME, RZT2H_ADC_VREF_MV, RZT2H_ADC_RESOLUTION values
+ * remove renesas,r9a09g087-adc from of_match_table
 
-Heiko, shall we remove the pinctrl properties from the common .dtsi
-and move them to board specific .dts for those boards that use
-PMIC-assisted thermal resets? Happy to produce a patch to that effect.
+V3:
+ * remove leftover renesas,max-channels property from SoC dts
+ * split rzt2h_adc_start_stop() into rzt2h_adc_start() and
+   rzt2h_adc_stop(), getting rid of mask variable
+ * use FIELD_MODIFY() to clear and set at the same time
+ * switch from guard(mutex) to mutex_lock() & mutex_unlock() to keep
+   pm_runtime_put_autosuspend() out of the mutex and to avoid using both
+   guard() and goto in the same function
+ * inline ret and irq declarations
+ * use private state rather than indio_dev for platform_set_drvdata() to
+   avoid extra pointer arithmetic
+ * pick up Reviewed-by for the driver from Nuno
+ * pick up Acked-by for the bindings from Conor
+ * pick up Reviewed-by for the bindings from Geert
 
-Best regards,
-Alexey
+V2:
+ * pick up Reviewed-by from Geert
+ * dt-bindings: move required after patternProperties
+ * dt-bindings: describe 16 channels, but limit per-SoC to 6 / 15
+ * dt-bindings: use uppercase for clock descriptions
+ * remove max-channels property and find it from parsed channel subnodes
+ * remove start/stop wrappers
+ * stop calibration even on failure
+ * move data reading to rzt2h_adc_read_single() instead of interrupt
+ * handler
+
+Cosmin Tanislav (6):
+  dt-bindings: iio: adc: document RZ/T2H and RZ/N2H ADC
+  iio: adc: add RZ/T2H / RZ/N2H ADC driver
+  arm64: dts: renesas: r9a09g077: Add ADCs support
+  arm64: dts: renesas: r9a09g087: Add ADCs support
+  arm64: dts: renesas: rzt2h/rzn2h-evk: enable ADCs
+  arm64: defconfig: enable RZ/T2H / RZ/N2H ADC driver
+
+ .../iio/adc/renesas,r9a09g077-adc.yaml        | 135 ++++++++
+ MAINTAINERS                                   |   8 +
+ arch/arm64/boot/dts/renesas/r9a09g077.dtsi    |  66 ++++
+ .../dts/renesas/r9a09g077m44-rzt2h-evk.dts    |  28 ++
+ arch/arm64/boot/dts/renesas/r9a09g087.dtsi    |  66 ++++
+ .../dts/renesas/r9a09g087m44-rzn2h-evk.dts    |  64 ++++
+ .../dts/renesas/rzt2h-n2h-evk-common.dtsi     |  79 +++++
+ arch/arm64/configs/defconfig                  |   1 +
+ drivers/iio/adc/Kconfig                       |  11 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/rzt2h_adc.c                   | 304 ++++++++++++++++++
+ 11 files changed, 763 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/renesas,r9a09g077-adc.yaml
+ create mode 100644 drivers/iio/adc/rzt2h_adc.c
+
+-- 
+2.51.0
+
 
