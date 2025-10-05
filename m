@@ -1,104 +1,99 @@
-Return-Path: <devicetree+bounces-223719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF16DBBCD4B
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 00:23:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D96CBBCDD3
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 01:22:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 8EEDA4E0589
-	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 22:23:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 123CF3B235A
+	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 23:22:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14FB823D7E6;
-	Sun,  5 Oct 2025 22:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21702226CF7;
+	Sun,  5 Oct 2025 23:22:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GSyeppwx"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="lSZqoVy/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABA211E47A8
-	for <devicetree@vger.kernel.org>; Sun,  5 Oct 2025 22:23:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58A331E47A8
+	for <devicetree@vger.kernel.org>; Sun,  5 Oct 2025 23:22:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759703010; cv=none; b=YlNDFROwLHwpcW4eFilaA4zg36PCt7GkMwF58D3CWYweOKcSfsMBD0nmsXIrZcUqk4zOwHqSClX0Y3Vm0gjzGzCNWVANLe9485Fs424jxkelak7sk5CWY4tNYJQOb4vdtdPyyIYOaaXHKaspKZm2qwdqyu9CONumpRR8Qd3E7rY=
+	t=1759706529; cv=none; b=TdxyTh91f3rqvELTAkng6zyhgfPTiTj7G45rKkyTTS1X7DfpTLTzz8RHLz8o/VxSdZncuaVtrDBmMsOisSDizBEmZVsKmYVAb4MifiN6b2suEVSULXoXDop7DvYE6DidG4cllTeQ3m0XzY0GbhiOGizGDbRq1sy3SEbabh7kYYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759703010; c=relaxed/simple;
-	bh=Z/d1cmHnIpZcYmrdaRS5TreRCAVULFhW1i/E94Fp3Wk=;
+	s=arc-20240116; t=1759706529; c=relaxed/simple;
+	bh=n5Vtzxojo2wmWBghdlmj8H+Pd5c51UdEJ4MCqmEx6aU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rPOuck7xf49OUWaLrhgfrGs4dug/hAVKg5tcUadzyJ4PVAf+sdiIuJX1QYG+rykK7aMIU7dbVR+5utlAYBEO+dBAXtQiCKwFL28G/LzuhIsdUo3BN02IZpBw/tH/rKcl9WIYHtguMRHES27tCov7R+68rvUhiKyTDrJtNgD6RYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GSyeppwx; arc=none smtp.client-ip=205.220.168.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=cgCrA1zqbjWneNNcInVN3jlRsL1gvGRMLKySHGD5unBEfpgGMaipWPy19olvCw7wnP+TD2riEnynuGUq8bI05IPaq5Q1ZZacPEF1SvKR5eiBo0ChEYl6IdrFkT2cGs4WNVczrtpKt3cyheqjoR+hcsJekh2gYjBPScfvFEGZP0c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=lSZqoVy/; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 595LRcqX030559
-	for <devicetree@vger.kernel.org>; Sun, 5 Oct 2025 22:23:28 GMT
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 595NDkLe032557
+	for <devicetree@vger.kernel.org>; Sun, 5 Oct 2025 23:22:06 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=HkavZTNmerI5o65w8ncgVohP
-	1tuZa7qLx/+DCZ97ays=; b=GSyeppwxYtkpNvEB9CXu7VHD8FyexvjJz09BThVA
-	5MPxqhXZyJSts66XXHTAxIR1bFnuhC9DZxsASNgp66jNYt0kM6qL/Gy6SQKvEEEo
-	IagmU8JAAN0dm9q940Icup3xpYtcRaW72MRXDOLf/wW2l0Ejo3v3RL90taL3/BFO
-	UIC5+m1OO2oec3Ed5BxYdFO02cLR/WApAA+MVl8jKA5PR+iweERhqBIos9th3Drr
-	ZlOyJGcpArwWipc/xO53vlvDiZ02uxsfClYVmhkCRigoAvrGYsVy9e5LHy5EwoLp
-	Xes3IC5K/wDYnhj9azlBhgUkRU7gTaggao9l9ZcX0hj3xQ==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49jthptnbp-1
+	:references:subject:to; s=qcppdkim1; bh=Tb08ffW4DbsnaOmuGQXt22LR
+	uzui+lNjPwPW3k8wy1s=; b=lSZqoVy/4aXEtSB+LkhqFrCu5WmeS1yItyTkUslR
+	TeMNRjI1gyFIeY5cKmyvs22hVPxtjr8sCbLUgRqAPMHBYCzWsgj4KgIaMhnXa/Ix
+	LRe1mNpfRBLosC7iQijY6tzDHImClzkBjJGyzFEV6uRFKqf3V/Sr4wvP0c/5P4kM
+	CISymuSyY2T3IMg5BiyvAOnSpSx/BWiEJXdI1R1HebMjSJoKgNjOm43WAzRNjlGy
+	Br6DZfU8BygeuY3gOrJIb5/wolDAniUGavobQj+XxCVfOq18fmXCq/XWjxUTz5fo
+	ntnbqHHAi4eeBfNAsEmJEOgshz6bGGuN/lwMf4Cs+N20lw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49k6bfhrbg-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 05 Oct 2025 22:23:27 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4e574e01ed8so95541251cf.0
-        for <devicetree@vger.kernel.org>; Sun, 05 Oct 2025 15:23:27 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Sun, 05 Oct 2025 23:22:06 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4e5739a388bso92306791cf.2
+        for <devicetree@vger.kernel.org>; Sun, 05 Oct 2025 16:22:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759703006; x=1760307806;
+        d=1e100.net; s=20230601; t=1759706525; x=1760311325;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HkavZTNmerI5o65w8ncgVohP1tuZa7qLx/+DCZ97ays=;
-        b=bSxYSvVGpwFFhWZA/2RqFnhl5xFiBgpblmdnyHoY75nV9Z2vS+QErS7+s2c6aIfeO3
-         93DUUp6dVHTDbj6/AMF59j3q3itayDpWdxGb9ItbWcz0C1hNzAie3s1NPLMdLWdgMy8F
-         BvyRKZk4LWTOuZKRbQMGoGSEAJiq9L8Vkq8kUJIbnXVLH6j/lb7DKk3X0po6yGPSzaTM
-         FTAD/tZgvEY+Es4BZ6gWgGTyqpNrp4tM6s4bfN4UbIOWxWcNcU4m2NQibKF7Gok6aWma
-         2bbZvoaVWd5ig1WjEC1Ul+Wl6vfS99KwS+xZKqivIeZCPxys2MgSgLte0d/EQJ6iS+MY
-         /voQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUJVsYpTDH+yrfQ/XiNuWGoI+v9FV+KIEfNvrgOMYmWjFuIqNHJjddQ6Dy4btYDwNczOQAnbEItApM5@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrklQV6qTO6O43cZtZfuoB9RRmhfmhQKez8EaBdOQDU/klRLNc
-	BbJHZVJ93vo/4D4AxbbdmuwUl8zNF5v6mYl+lYpEGVXRKV+4oKXSRg5LBDEhL9fxpNOsUVk5E0X
-	VzJwWaNKPerW6QtprHo5v6c4mXytjVNyDbXnH5ClGlcunOW6PxxKc262VG9RiohtU
-X-Gm-Gg: ASbGncsiSdY8g4INRia1i8WVx32OXtaNidqf1ZzE53Dhe8E346dgX7OzaAThlYInUEE
-	C/sv2KCMtvLdTikyUu6NXciLirAhN7ZMViZIwhlzWhKnxEuC3CX3fXcu5ixVpVPph1nZQQl9yuy
-	7bUyJm+imQ5R9o/sm02KxKdgNUKz5qjkgyON+bOiUCLcfP6dzrcfPk31/C5B4M+fi3vrO9Mfjk2
-	1xMbwKpxU1hypB1huAsQwq1u1VPp14l8fR/pAsVhMIHP+GlLlzJKKgFaI8if3US24/ggFsa4LyK
-	Z1zbbLfUCMg7xbwWXmbLuktRh0ogowBndFZovIR7PlcHMNM5+rTL2rQeLLKZ0yaJZtAQ6Z4BK1p
-	VwK8BzZxYAUdv10qzyUOvbiXwK5HRcuyIh6OZRHvTZNaP9tEmdaKbw8EXug==
-X-Received: by 2002:ac8:6f19:0:b0:4b5:781c:8841 with SMTP id d75a77b69052e-4e576ab89d5mr143936791cf.42.1759703006374;
-        Sun, 05 Oct 2025 15:23:26 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHusGPKlhdeM3kKfumOVt6gnrGqSczS5SCraNaBCAp+0/JuOqrHjGq6QZKCt6SI0m+MD3AuKQ==
-X-Received: by 2002:ac8:6f19:0:b0:4b5:781c:8841 with SMTP id d75a77b69052e-4e576ab89d5mr143936711cf.42.1759703005960;
-        Sun, 05 Oct 2025 15:23:25 -0700 (PDT)
+        bh=Tb08ffW4DbsnaOmuGQXt22LRuzui+lNjPwPW3k8wy1s=;
+        b=nuTdjORJadz5N0auXxWr9pvSsssnmT5znVKaShvmTp+xzlJz0U3p56r9jTWHequwsV
+         rWlc6Q+Iecn7kUXEMiPh0rBGzYn2kY5WJif9VyuC6D+e71SBzUXXG0doBDoPGLi+H/tY
+         dI9+yA44kTwDsMg24q1IcXK6rTU4sLDNnNjZ8PkpYr/d5UiTHTIY8yfPl3YPv13ypvyY
+         +gZbuD27RlECK1xPChMP1iina9afPnkalL0DEfepB+ZGr1sZ09W+TFn7F6aiqaAvXzQm
+         hKuFe1FZ8S/b+YEhdfloKw+v/LEg+0kWWXFEjdTEqqLx8YedIKyeoNIszAUoBCBThZqH
+         s2qQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUgMv1H8goOO/mgY/78oY/MmF3rV9+ctsTQWLBxG4XKFL0JdZ7qh/bdDeD8b5cpxqznH4hBHeUobLcr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8Lh/FMWj/qr/YtRNS68Vix0uZAEmuL3y9xx5ah4YWgpOR6t7a
+	px+NoZ1mBng8zWA7qeClRvdm30F6SetLvxKtqoMx6A4SIVHUC8kjNHn1crgq9JEgBvdu4oemd/C
+	pj7rWRmn2u/wAPa7b21a7FotwFUYzVmzeSQK5u6GskFU0gcdTBnPekBY6ChO/bogo
+X-Gm-Gg: ASbGnculb3WBTtKYXVHo2egztERaobK8CwMLcHpqNVW7NOsbByizrPUsWRqRR2OtreA
+	Wp3o3UKA4FN2lPhgnzv78BOfaFaUJizljoN1o5vxLNaPLpWOOA8ck1W+8epMB0PSXJ/3Vdly1Eh
+	JZnerDoJUEo1GyYCDU2HYd5il8xHfBej+sE7U1YNDniDiOBlncIzFdM7GwYFQogW4dcWamRE6u5
+	rF53Jt5Q/45sC6e1b+sA4tXhzNyC23BxLeDZCuSHyUcWfIsf261CCcXkN0gcqXo669ApYx6qhe3
+	cbNc9tlpMomwWr53B0UppdM6ckR9f5wT+FLL771PMeaFrSCIqHyIghsjC6TN/ZD9EU53MMFCOA2
+	oDkvsfqYHEoDwHmeMp1g4Sya8VtFPrR/2UDKLjYI/PXarn1bBe2uV/mGb1w==
+X-Received: by 2002:a05:622a:998:b0:4db:9c75:abad with SMTP id d75a77b69052e-4e576b307c5mr126255651cf.74.1759706524727;
+        Sun, 05 Oct 2025 16:22:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFJULL2VZQjCLXKuYta5vackW0AYBFaK3yrYJMbji+l7aGMwmBnu+kqmtXsQ9JSHKRG6CXTOA==
+X-Received: by 2002:a05:622a:998:b0:4db:9c75:abad with SMTP id d75a77b69052e-4e576b307c5mr126255421cf.74.1759706524145;
+        Sun, 05 Oct 2025 16:22:04 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-373ba444480sm37937761fa.30.2025.10.05.15.23.22
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58b0118d88fsm4371863e87.69.2025.10.05.16.22.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 05 Oct 2025 15:23:24 -0700 (PDT)
-Date: Mon, 6 Oct 2025 01:23:21 +0300
+        Sun, 05 Oct 2025 16:22:02 -0700 (PDT)
+Date: Mon, 6 Oct 2025 02:21:59 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Chris Brown <crispybrown@gmail.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Paul Sajna <sajattack@postmarketos.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-        Amir Dahan <system64fumo@protonmail.com>
-Subject: Re: [PATCH v3 09/11] arm64: dts: qcom: sdm845-lg-common: Add camera
- flash
-Message-ID: <gk4dxz4wavdc66xr76bwiwu6o4f2d3iyxxwnyr3onmkwhlgk4k@tlvnmzbfbzbl>
-References: <20250928-judyln-dts-v3-0-b14cf9e9a928@postmarketos.org>
- <20250928-judyln-dts-v3-9-b14cf9e9a928@postmarketos.org>
- <42463474-7fba-4df3-9dbb-24140581690f@oss.qualcomm.com>
- <CABN5=wEpekmKxFCr7nBcYGSt6ZH-g+bx7Y5Nmoo=tMrorz2XBg@mail.gmail.com>
+To: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+Cc: neil.armstrong@linaro.org, jessica.zhang@oss.qualcomm.com,
+        airlied@gmail.com, simona@ffwll.ch, maarten.lankhorst@linux.intel.com,
+        mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, dianders@chromium.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] drm/panel: Add driver for Tianma TL121BVMS07-00
+ panel
+Message-ID: <anldo4jltvbu2smqo4ognxkauqs6aomm742f5v7bhryi6jappx@lfcig7pn5go6>
+References: <20250930075044.1368134-1-yelangyan@huaqin.corp-partner.google.com>
+ <20250930075044.1368134-3-yelangyan@huaqin.corp-partner.google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,53 +102,355 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CABN5=wEpekmKxFCr7nBcYGSt6ZH-g+bx7Y5Nmoo=tMrorz2XBg@mail.gmail.com>
-X-Proofpoint-GUID: ldvas1O-JGl6r-HnCScWLZ4vDb5h0Pi2
-X-Authority-Analysis: v=2.4 cv=N5gk1m9B c=1 sm=1 tr=0 ts=68e2efdf cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8 a=4fvD49LNPrp0q1SnXk4A:9
- a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAxNiBTYWx0ZWRfX2YcIYaIBND7I
- Ab3OYjaW3xK2+gB4qHgmL55gis9wnYQc1dEbkqOuNuuTitU4C/KggYLJw0N3L9HmXOOIbKKCWbc
- osmL70kKX1TlpEoKsvwCwLsjp94iep8qRZdfXC+GlS2J4moGBb6hLg3vvX1PS8ybEnv/rhZEsvR
- Yst0C3PL+NA/a+pHplYlXEXV7uxTm5EOc3ZaCmNNWzx56/CtufhWbTSSqF4jbRfpqLjnUzi4iKQ
- KdhtyR1XKJ2oDdbdRS0CGKz8m8m7+VGPDt0Y/8lHXnfAwNPCs86hmli4G07W4UAp3VVKlx8OUyN
- j9YPIS1GjVi0qxNHHnj2x0rcAhS9j7zo2ULnZgZHUlonT7iPMUdZJhzM8QlVt/0aPYgr8AaWGJd
- 6AKRnIeCTKzEj7/t0LVCLuGJajLsrw==
-X-Proofpoint-ORIG-GUID: ldvas1O-JGl6r-HnCScWLZ4vDb5h0Pi2
+In-Reply-To: <20250930075044.1368134-3-yelangyan@huaqin.corp-partner.google.com>
+X-Proofpoint-GUID: _3GBkWn0MlkIaew2VUGKMApvvrZCKacU
+X-Proofpoint-ORIG-GUID: _3GBkWn0MlkIaew2VUGKMApvvrZCKacU
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDEzNSBTYWx0ZWRfX0Zzzw8PgClcK
+ 6cTKohjcsD1Xz58RfbkrURZnIsZtbCk8h5X+HY3/sF9TcgOB3oQeH64GMA33wqYIRhdwSr51IjQ
+ uw7qSikAZlaw9iog5RtxOyaiID+9hvbrF01h1dgjVOtkYYVqz1QGqKH+xiYre8IdjGuubey+fOT
+ g12j8WrwmpaPJUqKQfkpAk2qaeCWHF7QNg+cYzlfVbJJQrZ+v7kqd52vfkzNjy76LEx9eLnP8Zw
+ VEOOSBlmGFnsbVmTSWYDv852d8gd6EnNJDJPT+y3HJt2wT6IAH1bhy4sEcyza0+vMCSL69qo9mL
+ cvNT0wo6dIZ4Y2WMAhsFZw3EcB8Y7QTzboYWQBc2JAEcfzAikMyw9I+eAQyfhEOglA+WCGet/QX
+ 7N/HAfHNVX7Yv5xINQlZX4Mpbn4FRA==
+X-Authority-Analysis: v=2.4 cv=Hr572kTS c=1 sm=1 tr=0 ts=68e2fd9e cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=1XWaLZrsAAAA:8 a=NJAL_iFP5D2qNw8AoYUA:9 a=CjuIK1q_8ugA:10
+ a=a_PwQJl-kcHnX1M80qC6:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-05_07,2025-10-02_03,2025-03-28_01
+ definitions=2025-10-05_08,2025-10-02_03,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 clxscore=1015 suspectscore=0 adultscore=0
- impostorscore=0 phishscore=0 priorityscore=1501 lowpriorityscore=0
- spamscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2510040016
+ malwarescore=0 suspectscore=0 lowpriorityscore=0 priorityscore=1501
+ spamscore=0 bulkscore=0 impostorscore=0 phishscore=0 clxscore=1015
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
+ definitions=main-2510040135
 
-On Sun, Oct 05, 2025 at 03:35:56PM -0400, Chris Brown wrote:
-> 850mA looks correct for the flash, whereas the flashlight/torch should
-> be 100mA based on
-> https://github.com/EmanuelCN/android_kernel_lge_sdm845/blob/U/arch/arm64/boot/dts/lge/sdm845-judy/sdm845-camera/sdm845-judy-camera.dtsi
-> i.e. led-max-microamp = <100000>;
+On Tue, Sep 30, 2025 at 03:50:44PM +0800, Langyan Ye wrote:
+> Add a DRM panel driver for the Tianma TL121BVMS07-00 12.1"
+> MIPI-DSI TFT LCD panel. The panel requires multiple power
+> supplies (AVDD, AVEE, 1.8V logic), an enable GPIO, and a
+> backlight device. The panel is based on the Ilitek IL79900A
+> controller.
 
-Please post your answers before the question rather than at the top of
-the email.
+The rest of panels based on Ilitek controllers are handled by
+panel-ilitek-iliNNNN.c drivers (which might or might not be shared by
+several panels). Is there a reason to deviate from that custom?
 
-> On Wed, 1 Oct 2025 at 05:04, Konrad Dybcio
-> <konrad.dybcio@oss.qualcomm.com> wrote:
-> >
-> > On 9/29/25 7:05 AM, Paul Sajna wrote:
-> > > So it can be used as a flashlight
-> > >
-> > > +             led-max-microamp = <850000>;
-> > > +             flash-max-microamp = <850000>;
-> >
-> > Allowing the same current for flash (brief on/off for night photos)
-> > and LED (flashlight which you normally toggle through quick settings)
-> > sounds no less than suspicious
-> >
-> > > +             flash-max-timeout-us = <500000>;
+> 
+> Signed-off-by: Langyan Ye <yelangyan@huaqin.corp-partner.google.com>
+> ---
+>  .../drm/panel/panel-tianma-tl121bvms07-00.c   | 419 ++++++++++++++++++
+>  1 file changed, 419 insertions(+)
+>  create mode 100644 drivers/gpu/drm/panel/panel-tianma-tl121bvms07-00.c
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-tianma-tl121bvms07-00.c b/drivers/gpu/drm/panel/panel-tianma-tl121bvms07-00.c
+> new file mode 100644
+> index 000000000000..5facffeda864
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-tianma-tl121bvms07-00.c
+> @@ -0,0 +1,419 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * DRM panel driver for Tianma TL121BVMS07-00 12.1" MIPI-DSI TFT LCD panel
+> + *
+> + * Based on drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
+> + */
+> +
+> +
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/regulator/consumer.h>
+> +
+> +#include <drm/drm_connector.h>
+> +#include <drm/drm_crtc.h>
+
+Unnecessary
+
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_panel.h>
+> +
+> +#include <video/mipi_display.h>
+> +
+> +struct tm_panel;
+> +
+> +struct panel_desc {
+> +	const struct drm_display_mode *modes;
+> +	unsigned int bpc;
+> +
+> +	/**
+> +	 * @width_mm: width of the panel's active display area
+> +	 * @height_mm: height of the panel's active display area
+> +	 */
+> +	struct {
+> +		unsigned int width_mm;
+> +		unsigned int height_mm;
+> +	} size;
+> +
+> +	unsigned long mode_flags;
+> +	enum mipi_dsi_pixel_format format;
+> +	int (*init)(struct tm_panel *tm);
+> +	unsigned int lanes;
+> +	bool discharge_on_disable;
+> +	bool lp11_before_reset;
+> +};
+> +
+> +struct tm_panel {
+> +	struct drm_panel base;
+> +	struct mipi_dsi_device *dsi;
+> +
+> +	const struct panel_desc *desc;
+> +
+> +	enum drm_panel_orientation orientation;
+> +	struct regulator *pp1800;
+> +	struct regulator *avee;
+> +	struct regulator *avdd;
+> +	struct gpio_desc *enable_gpio;
+> +
+> +	bool prepared;
+> +};
+> +
+> +static int tm_tl121bvms07_00_init(struct tm_panel *tm)
+> +{
+> +	struct mipi_dsi_multi_context ctx = { .dsi = tm->dsi };
+> +	struct mipi_dsi_device *dsi = ctx.dsi;
+> +
+> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xff, 0x5a, 0xa5, 0x06);
+> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0x3e, 0x62);
+> +
+> +
+> +	mipi_dsi_generic_write_seq(dsi, 0xff, 0x5a, 0xa5, 0x02);
+> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0x1b, 0x20);
+> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0x5d, 0x00);
+> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0x5e, 0x40);
+> +
+> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0xff, 0x5a, 0xa5, 0x07);
+> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0X29, 0x00);
+> +
+> +	mipi_dsi_generic_write_seq(dsi, 0xff, 0x5a, 0xa5, 0x00);
+> +
+> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0X11);
+> +
+> +	if (ctx.accum_err)
+> +		return ctx.accum_err;
+> +
+> +	msleep(120);
+> +
+> +	mipi_dsi_dcs_write_seq_multi(&ctx, 0X29);
+> +
+> +	if (ctx.accum_err)
+> +		return ctx.accum_err;
+> +
+> +	msleep(80);
+> +
+> +	return 0;
+> +};
+> +
+> +static inline struct tm_panel *to_tm_panel(struct drm_panel *panel)
+> +{
+> +	return container_of(panel, struct tm_panel, base);
+> +}
+
+I'd expect this function to be present right after struct tm_panel
+definition.
+
+> +
+> +static int tm_panel_enter_sleep_mode(struct tm_panel *tm)
+> +{
+> +	struct mipi_dsi_device *dsi = tm->dsi;
+> +	int ret;
+> +
+> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	ret = mipi_dsi_dcs_set_display_off(dsi);
+
+Use _multi.
+
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = mipi_dsi_dcs_enter_sleep_mode(dsi);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return 0;
+> +}
+> +
+> +static int tm_panel_disable(struct drm_panel *panel)
+> +{
+> +	struct tm_panel *tm = to_tm_panel(panel);
+> +	int ret;
+> +
+> +	ret = tm_panel_enter_sleep_mode(tm);
+
+Inline
+
+> +	if (ret < 0) {
+> +		dev_err(panel->dev, "failed to set panel off: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	msleep(150);
+
+And here use DSI-specific wrapper.
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int tm_panel_unprepare(struct drm_panel *panel)
+> +{
+> +	struct tm_panel *tm = to_tm_panel(panel);
+> +
+> +	if (!tm->prepared)
+> +		return 0;
+> +
+> +	if (tm->desc->discharge_on_disable) {
+> +		regulator_disable(tm->avee);
+> +		regulator_disable(tm->avdd);
+> +		usleep_range(5000, 7000);
+> +		gpiod_set_value(tm->enable_gpio, 0);
+> +		usleep_range(5000, 7000);
+> +		regulator_disable(tm->pp1800);
+> +	} else {
+> +		gpiod_set_value(tm->enable_gpio, 0);
+> +		usleep_range(1000, 2000);
+> +		regulator_disable(tm->avee);
+> +		regulator_disable(tm->avdd);
+> +		usleep_range(5000, 7000);
+> +		regulator_disable(tm->pp1800);
+> +	}
+> +
+> +	tm->prepared = false;
+> +
+> +	return 0;
+> +}
+> +
+> +static int tm_panel_prepare(struct drm_panel *panel)
+> +{
+> +	struct tm_panel *tm = to_tm_panel(panel);
+> +	int ret;
+> +
+> +	if (tm->prepared)
+> +		return 0;
+> +
+> +	ret = regulator_enable(tm->pp1800);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	usleep_range(6000, 8000);
+> +
+> +	ret = regulator_enable(tm->avdd);
+> +	if (ret < 0)
+> +		goto poweroff1v8;
+> +	ret = regulator_enable(tm->avee);
+> +	if (ret < 0)
+> +		goto poweroffavdd;
+> +
+> +	usleep_range(11000, 12000);
+> +
+> +	gpiod_set_value(tm->enable_gpio, 1);
+> +
+> +	if (tm->desc->lp11_before_reset) {
+> +		ret = mipi_dsi_dcs_nop(tm->dsi);
+> +		if (ret < 0) {
+> +			dev_err(&tm->dsi->dev, "Failed to send NOP: %d\n", ret);
+> +			goto poweroff;
+> +		}
+> +		usleep_range(1000, 2000);
+> +	}
+> +	gpiod_set_value(tm->enable_gpio, 0);
+> +	usleep_range(1000, 2000);
+> +	gpiod_set_value(tm->enable_gpio, 1);
+> +	usleep_range(20000, 21000);
+> +
+> +	ret = tm->desc->init(tm);
+> +	if (ret < 0)
+> +		goto poweroff;
+> +
+> +	tm->prepared = true;
+> +	return 0;
+> +
+> +poweroff:
+> +	gpiod_set_value(tm->enable_gpio, 0);
+> +	regulator_disable(tm->avee);
+> +poweroffavdd:
+> +	regulator_disable(tm->avdd);
+> +poweroff1v8:
+> +	usleep_range(5000, 7000);
+> +	regulator_disable(tm->pp1800);
+> +
+> +	return ret;
+> +}
+> +
+> +static int tm_panel_enable(struct drm_panel *panel)
+> +{
+> +	msleep(130);
+> +	return 0;
+> +}
+> +
+> +static const struct drm_display_mode tm_tl121bvms07_00_default_mode = {
+> +	.clock = 264355,
+> +	.hdisplay = 1600,
+> +	.hsync_start = 1600 + 20,
+> +	.hsync_end = 1600 + 20 + 4,
+> +	.htotal = 1600 + 20 + 4 + 20,
+> +	.vdisplay = 2560,
+> +	.vsync_start = 2560 + 82,
+> +	.vsync_end = 2560 + 82 + 2,
+> +	.vtotal = 2560 + 82 + 2 + 36,
+> +};
+> +
+> +static const struct panel_desc tm_tl121bvms07_00_desc = {
+> +	.modes = &tm_tl121bvms07_00_default_mode,
+> +	.bpc = 8,
+> +	.size = {
+> +		.width_mm = 163,
+> +		.height_mm = 260,
+> +	},
+> +	.lanes = 3,
+> +	.format = MIPI_DSI_FMT_RGB888,
+> +	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_SYNC_PULSE |
+> +		      MIPI_DSI_MODE_LPM,
+> +	.init = tm_tl121bvms07_00_init,
+> +	.lp11_before_reset = true,
+> +};
+> +
+> +static int tm_panel_get_modes(struct drm_panel *panel,
+> +			       struct drm_connector *connector)
+> +{
+> +	struct tm_panel *tm = to_tm_panel(panel);
+> +	const struct drm_display_mode *m = tm->desc->modes;
+> +	struct drm_display_mode *mode;
+> +
+> +	mode = drm_mode_duplicate(connector->dev, m);
+> +	if (!mode) {
+> +		dev_err(panel->dev, "failed to add mode %ux%u@%u\n",
+> +			m->hdisplay, m->vdisplay, drm_mode_vrefresh(m));
+> +		return -ENOMEM;
+> +	}
+
+See drm_connector_helper_get_modes_fixed()
+
+> +
+> +	mode->type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED;
+> +	drm_mode_set_name(mode);
+> +	drm_mode_probed_add(connector, mode);
+> +
+> +	connector->display_info.width_mm = tm->desc->size.width_mm;
+> +	connector->display_info.height_mm = tm->desc->size.height_mm;
+> +	connector->display_info.bpc = tm->desc->bpc;
+> +	/*
+> +	 * TODO: Remove once all drm drivers call
+> +	 * drm_connector_set_orientation_from_panel()
+> +	 */
+> +	drm_connector_set_panel_orientation(connector, tm->orientation);
+> +
+> +	return 1;
+> +}
+> +
 
 -- 
 With best wishes
