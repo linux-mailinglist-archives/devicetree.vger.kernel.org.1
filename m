@@ -1,81 +1,63 @@
-Return-Path: <devicetree+bounces-223721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9944BBBCDD9
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 01:25:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A037DBBCE2A
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 01:54:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12BA93A36B5
-	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 23:25:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B6C618947DB
+	for <lists+devicetree@lfdr.de>; Sun,  5 Oct 2025 23:54:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD14F233722;
-	Sun,  5 Oct 2025 23:25:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09BB11A9FA8;
+	Sun,  5 Oct 2025 23:54:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dDz10yre"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="on41rkU5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60622198A11
-	for <devicetree@vger.kernel.org>; Sun,  5 Oct 2025 23:25:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D70992905;
+	Sun,  5 Oct 2025 23:54:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759706722; cv=none; b=DkGxq7rBxowkXHdVsG8AB1DTpqF0rgp6Fs0fUUG8sYSpXjGKWhSXqoJkeGuUmGH7Be0PGANUuQYDdmOhlBIrpdjLXZiwg9Z2JiZK+X2cPuGv7OFgDlGH93aOamutzO+7Kikn4V8JEl99vCQV4LQXp0yyJKVk8yybL+Ff7+VNFws=
+	t=1759708461; cv=none; b=jks5oRorjgYScQnR/KvXnAYy10RMtSgZIvF5CTkr1IIeuVGYIOBQF7f5Hl/Y/yexgn3NK8XRjQ0EgyDD8uEVGq0Z+uXfOPPQisRvThUrwdBNgMDOmux3J0gXoC+1TpOKx6BA8jpOwnYEkvbSK5hhB4En0D9ZxagA6EMfOvfebNY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759706722; c=relaxed/simple;
-	bh=nq24OG00nbd2TINXwilaodUVdAgf+dAFMRkKWUpwtuw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HKmW7GYehgL59pn+wqcmTCb/IAO6dHLNTp+lfShJOX0DZUETwv/SzxX/D7+1lUHB3sgJ9en8EAky1J4JJizqlXXBjY2rw1LOE2ICL++JBalImlbkstyyZpxslx3JvNgZTOsEzxhyvPk8dOmGStK46e4sbCA5Pvkho2YkwpaNwrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dDz10yre; arc=none smtp.client-ip=209.85.215.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-b523fb676efso3698406a12.3
-        for <devicetree@vger.kernel.org>; Sun, 05 Oct 2025 16:25:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759706721; x=1760311521; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yYv7vpVBKthNnff+UlSd90a9wZD1vAq0DYVBuSy3Ej4=;
-        b=dDz10yreinvjfIWuZWLXoS8YW1dD6uMP3qcutBaqUp6zY/2bw9G++WugdlvyxqLIGz
-         fKJNgNQKHJ22UYwCsguXL3ZZq24WYSBwMd0Zx2CHsCn7qZKilT8OImiW20/r02AOLHcG
-         RhFe7mdAA20bo6fCL5vn/sqfgbptnplMUDaN9fe+FlXn2ZkpouICPEwYWCdn138p2Q9S
-         jhoyxKWIABMbkrBOwYrYQ6AQONs/M0JrZ6dZqGIVqhMEMIF7Rcw78s+ENF4zSlJYDxjH
-         OCjNdmtU7Cw1L6kn5D5FI+A32K/CE60NWm/y1KevfihWjR7hhO33W3S1CRYedgMXqRfY
-         DExQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759706721; x=1760311521;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yYv7vpVBKthNnff+UlSd90a9wZD1vAq0DYVBuSy3Ej4=;
-        b=wzhDCf08zLW+lB8A2ggHTaXCKDyDKpZF8YX7469kdmKIej3hmLm89gteb109YHltE4
-         4DU+TwpH3PklPVmgAp/GERJPKd7dweMfl4QqACIEqW5YA8tnrIciR97MAjm5ZJkPhuy1
-         m1aBh8f/mZLL3QMc0Xd8AxBbdkq7kUdHEsoHmMtzZyXp3iYvZ0119Kktw6cR0M4acudQ
-         fC1jc6UU6TLIkC1AISfi0EXx/bQUg8/JLpIh7rurZAe4R0C9AiuknP6wcgvp/1GJQtK3
-         +voLEOEJEbSrYdKE7Umw74fgC9LZoNWp7YRfe3wl7oCCE8V0DMQnM510VK4uagYr4roa
-         NDbA==
-X-Forwarded-Encrypted: i=1; AJvYcCWJGuzWGUNV7E8ZGzRjJE1NblGdbYyE2yQKV5vVAAccAa9gw3MoQ+VV4acuakxMFA2bP++IVlSRG8LB@vger.kernel.org
-X-Gm-Message-State: AOJu0YycqaloiampDBjhvfrTnxK5BQIWZvRT9GosXjIun1oQbCsYZaam
-	loufbUYqYNnQ536143oecUiIFg1c4ssHxni+4rifdtVlsB5uOYSpQLaTaby1oWY5
-X-Gm-Gg: ASbGncv6+x/0KOTymZ40mUnnggUsx9mIXuq4/uVBMnsLtsCiEHltz/GNDU4QouFZlDa
-	bgew0qqGg9YGx9fwDEcnNvaGvCREf4Y7YGiVdgrAn5qWtM4nG8EMZZaegn6qwJAMdTbGfO52Cxq
-	NU+UWP68owzeQYRivpnvwEsb+4ZLzsazYXkJ3LJfkdo+DsKejSSbezrOW3byIURTQgxQwt5V2XM
-	IW7QD0kMDFvp8WRIHIUdwH3fgHliE+y9apCwEE7FnuZB4nXbi0oTwapDzzs0wsm7Wt6e0XdL17O
-	/cbPSlFzlU3iU5bk1Xnv4oiJFbjHEXUm4Y3fp2tVN0eFhNMUZPIcqYSafDnlM4H7+OHjzm/Q2z7
-	Whw5efdsVTXvbE8US/HjoHsqW1OvCXK+nOe+roU035iJCc9HQfGXLv0874emIiTC7RGjcrN4vRY
-	rZk5Uw1qSAiqSs74ELlOJfV6AtDQ==
-X-Google-Smtp-Source: AGHT+IFzFKXXmzM6dN5RZJw7Ftapo+Zr47psegQMmyZHZB026uVazIjrxM7ymwGOI3B4kPadLZCnrQ==
-X-Received: by 2002:a17:903:1210:b0:266:64b7:6e38 with SMTP id d9443c01a7336-28e9a6dc994mr115732895ad.46.1759706720577;
-        Sun, 05 Oct 2025 16:25:20 -0700 (PDT)
-Received: from ?IPV6:2804:7f5:b08b:8d8b:4efe:bacf:243c:8ba8? ([2804:7f5:b08b:8d8b:4efe:bacf:243c:8ba8])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d1d95a0sm113075095ad.115.2025.10.05.16.25.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 05 Oct 2025 16:25:20 -0700 (PDT)
-Message-ID: <9ee20209-efba-44b1-9902-5885bacfb290@gmail.com>
-Date: Sun, 5 Oct 2025 20:25:12 -0300
+	s=arc-20240116; t=1759708461; c=relaxed/simple;
+	bh=6zDSAiaG5Yn78oQ+HLbBUTqMhvHHdjrEYRh8XsLjTGI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=W4rE4aL8A0i9v2dlsgaZsMfgGfNZbW5m+raR98/V+p1jNx8cgIv94/zpKhdjUeNSL5UJQ3OCN7PYNeWbgZ0/YpqtQ0pslqqI+L5Vf0lQ8nlLvVo0bLEIlsfE5cWf8gT/XYkCpQShDyDbgRz73BGKef0qYcKTHSQh8cbrMJsSH6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=on41rkU5; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 595Nf9G4025787;
+	Sun, 5 Oct 2025 23:54:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Qn86KvLo5Zq5nm0mEJqPF9Wx0XnyTrU9sJXzFKCQSrE=; b=on41rkU5TKx3B6jl
+	2A7gWWgxeP9l0dLzagfk0mQDhIs5fD/zk4zMTd/ppXrqjqqLn28vqqTYVA0hsRo2
+	vEIu0/ssDGMxBYTUcDTMYVW+xmpsnbRH/W8HOnBYk3JTVC2k0DZOlODrBMf/opvO
+	Rrdg4RGossUIKVTO7TzHBpdix+qpidc9Qj6aYmRrqHd98NUIwd+aOY27dQ11uqpM
+	TfH7FZvC2u0WoPADuremGNSrJ/HGm4aqR+zxvuOVqXgPRmPxUzjdj/6N9OzFdzZN
+	FGg0NKMs6kqo50YtoVZwVGatH8xochfFJXYUuoyPiKHjGbqpUOXRfCPpEpyR97pZ
+	z1GIog==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49ju5xan4b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 05 Oct 2025 23:54:04 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 595Ns3bP030825
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sun, 5 Oct 2025 23:54:03 GMT
+Received: from [10.216.28.59] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Sun, 5 Oct
+ 2025 16:53:56 -0700
+Message-ID: <d5f87af9-be76-4343-a425-fb20a9e6c6e8@quicinc.com>
+Date: Mon, 6 Oct 2025 05:23:53 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,82 +65,139 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 2/3] iio: adc: max14001: New driver
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Kim Seer Paller <kimseer.paller@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
- Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
- Ceclan Dumitru <dumitru.ceclan@analog.com>,
- Jonathan Santos <Jonathan.Santos@analog.com>,
- Dragos Bogdan <dragos.bogdan@analog.com>
-References: <961e5351afa408e69541b60ec75852fbbd1ddd24.1759121938.git.marilene.agarcia@gmail.com>
- <476b75cff0c3e5ff23ba7c642924511f3ba09a3f.1759121938.git.marilene.agarcia@gmail.com>
- <CAMknhBHt9JVkaf1Kq76BKFM-Ff38-7ws6gaq+5fwy=pAih-fww@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: qcs8300: add Display Serial
+ Interface device nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robdclark@gmail.com>,
+        <sean@poorly.run>, <marijn.suijten@somainline.org>,
+        <andersson@kernel.org>, <robh@kernel.org>, <robh+dt@kernel.org>,
+        <krzk+dt@kernel.org>, <konradybcio@kernel.org>, <conor+dt@kernel.org>,
+        <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>,
+        <rfoss@kernel.org>, <Laurent.pinchart@ideasonboard.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@gmail.com>,
+        <quic_rajeevny@quicinc.com>, <quic_vproddut@quicinc.com>,
+        <quic_jesszhan@quicinc.com>
+References: <20250925053602.4105329-1-quic_amakhija@quicinc.com>
+ <20250925053602.4105329-3-quic_amakhija@quicinc.com>
+ <vsty7sy7gi2eeyifokwcqpoycmarxietkijmlkymwrmzmdsfws@x64f4ulbc6ja>
+ <aaa9f760-70aa-4bee-b6ab-d6fb02ea3c78@quicinc.com>
+ <CAO9ioeWHJSj74VBR=2kHJDe_p1oG9Ngs6q9+s=CySGD3KY6sPQ@mail.gmail.com>
 Content-Language: en-US
-From: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
-In-Reply-To: <CAMknhBHt9JVkaf1Kq76BKFM-Ff38-7ws6gaq+5fwy=pAih-fww@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Ayushi Makhija <quic_amakhija@quicinc.com>
+In-Reply-To: <CAO9ioeWHJSj74VBR=2kHJDe_p1oG9Ngs6q9+s=CySGD3KY6sPQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Authority-Analysis: v=2.4 cv=FooIPmrq c=1 sm=1 tr=0 ts=68e3051c cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=gEfo2CItAAAA:8
+ a=COk6AnOGAAAA:8 a=9TVuvPmJ-SUQZ-tjHVgA:9 a=QEXdDO2ut3YA:10
+ a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22 a=nl4s5V0KI7Kw-pW0DWrs:22
+ a=pHzHmUro8NiASowvMSCR:22 a=xoEH_sTeL_Rfw54TyV31:22
+X-Proofpoint-ORIG-GUID: YzWOODIdLUXruPPsViLlinqHkKmFgKmb
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAyMiBTYWx0ZWRfX30ukWfGq3BR+
+ pLInk52ZQj76yrfv11FukCoN2F1RocV7e1B5LOLgp+emm9Zhto+BCcyF9cY6Z5nPoJp1HkbmEhl
+ CX7T8vJukZZLUT+WU39WOyZT6ew6i7aXL81FvC62LLY7S93e81T4E4fD47tDCwEwBF628uYptqo
+ IvBnedv0qVO6I3IL7OSdIA3qjmqFrS4ow6EFxC6Zyt6xx5THs6GUwHD1dks0VwHirg5TyC0efP1
+ qIX5fIaECJZGnPKj7CjgrIVRrjFaMtmPm2btq0uukzpiaKyKCwdU6ZjUq3lTM71rLcNNRJ8xSFQ
+ 2GB8B7nV7gMTPhcpEssJTZdXzRUSXrYXQNh3miS8SA1Wx/PXyJ6wFk3m+Qrsfxlcl9wa0LbeS58
+ j4u8277uQMFUFq5JRer/U7s+VUmqrQ==
+X-Proofpoint-GUID: YzWOODIdLUXruPPsViLlinqHkKmFgKmb
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-05_08,2025-10-02_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 malwarescore=0 suspectscore=0 impostorscore=0 bulkscore=0
+ phishscore=0 priorityscore=1501 adultscore=0 lowpriorityscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040022
 
-On 01/10/2025 11:03, David Lechner wrote:
-> On Mon, Sep 29, 2025 at 7:59 AM Marilene Andrade Garcia
-> <marilene.agarcia@gmail.com> wrote:
+On 10/6/2025 3:31 AM, Dmitry Baryshkov wrote:
+> On Sun, 5 Oct 2025 at 19:49, Ayushi Makhija <quic_amakhija@quicinc.com> wrote:
 >>
+>> On 9/26/2025 3:32 AM, Dmitry Baryshkov wrote:
+>>> On Thu, Sep 25, 2025 at 11:06:01AM +0530, Ayushi Makhija wrote:
+>>>> Add device tree nodes for the DSI0 controller with their corresponding
+>>>> PHY found on Qualcomm QCS8300 SoC.
+>>>>
+>>>> Signed-off-by: Ayushi Makhija <quic_amakhija@quicinc.com>
+>>>> ---
+>>>>  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 95 ++++++++++++++++++++++++++-
+>>>>  1 file changed, 94 insertions(+), 1 deletion(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs8300.dtsi b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>>>> index e0e1f63fc45b..834ae0522f2f 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/qcs8300.dtsi
+>>>> @@ -3,6 +3,7 @@
+>>>>   * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>>>>   */
+>>>>
+>>>> +#include <dt-bindings/clock/qcom,dsi-phy-28nm.h>
+>>>>  #include <dt-bindings/clock/qcom,qcs8300-gcc.h>
+>>>>  #include <dt-bindings/clock/qcom,rpmh.h>
+>>>>  #include <dt-bindings/clock/qcom,sa8775p-camcc.h>
+>>>> @@ -4854,6 +4855,13 @@ dpu_intf0_out: endpoint {
+>>>>                                                      remote-endpoint = <&mdss_dp0_in>;
+>>>>                                              };
+>>>>                                      };
+>>>> +
+>>>> +                                    port@1 {
+>>>> +                                            reg = <1>;
+>>>> +                                            dpu_intf1_out: endpoint {
+>>>> +                                                    remote-endpoint = <&mdss_dsi0_in>;
+>>>> +                                            };
+>>>> +                                    };
+>>>>                              };
+>>>>
+>>>>                              mdp_opp_table: opp-table {
+>>>> @@ -4881,6 +4889,89 @@ opp-650000000 {
+>>>>                              };
+>>>>                      };
+>>>>
+>>>> +                    mdss_dsi0: dsi@ae94000 {
+>>>> +                            compatible =  "qcom,sa8775p-dsi-ctrl","qcom,mdss-dsi-ctrl";
+>>>
+>>> qcom,qcs8300-dsi-ctrl. You might use three compatibles (qcs8300, sa8775p
+>>> and the generic one), but there should be qcs8300 one.
+>>>
+>>
+>> Hi Dmitry,
+>>
+>> If I am adding three compatible string for ctrl,
+>>
+>> compatible = "qcom,qcs8300-dsi-ctrl",
+>>              "qcom,sa8775p-dsi-ctrl",
+>>              "qcom,mdss-dsi-ctrl";
+>>
+>> while validating dt-binding and dtsi against dt-schema. I am getting below errors
+>>
+>>
+>> /local/mnt/workspace/amakhija/linux_next/linux/arch/arm64/boot/dts/qcom/qcs8300-ride.dtb: dsi@ae94000: compatible: 'oneOf' conditional failed, one must be fixed:
+>>         ['qcom,qcs8300-dsi-ctrl', 'qcom,sa8775p-dsi-ctrl', 'qcom,mdss-dsi-ctrl'] is too long
+>>         'qcom,qcs8300-dsi-ctrl' is not one of ['qcom,dsi-ctrl-6g-qcm2290', 'qcom,mdss-dsi-ctrl']
+>>         'qcom,mdss-dsi-ctrl' was expected
+>>         from schema $id: http://devicetree.org/schemas/display/msm/dsi-controller-main.yaml#
+>>
+>> According to the dsi-controller-main.yaml schema only two strings are allowed one is the SOC specific and other one is generic "qcom,mdss-dsi-ctrl".
+>>
+>> Shall I keep only two strings qcom,qcs8300-mdss.yaml and the generic one "qcom,mdss-dsi-ctrl" or if we want to support 3 strings in compatible sting we need to modify the dsi-controller-main.yaml ?
 > 
-...
->> +static int max14001_read_raw(struct iio_dev *indio_dev,
->> +                            struct iio_chan_spec const *chan,
->> +                            int *val, int *val2, long mask)
->> +{
->> +       struct max14001_state *st = iio_priv(indio_dev);
->> +       int ret;
->> +
->> +       switch (mask) {
->> +       case IIO_CHAN_INFO_RAW:
->> +               ret = regmap_read(st->regmap, MAX14001_REG_ADC, val);
->> +               if (ret)
->> +                       return ret;
->> +
->> +               return IIO_VAL_INT;
->> +       case IIO_CHAN_INFO_AVERAGE_RAW:
->> +               ret = regmap_read(st->regmap, MAX14001_REG_FADC, val);
+> Of course.
 > 
-> I don't remember... did you give a reason why this should not be a
-> separate channel? Or just use REG_FADC as the raw value and forget
-> about REG_ADC? In any case we would want another attribute to control
-> the filter window size.
-...
+>> Similarly, I am getting error for dsi_phy compatible string only one SOC specific compatible string is allow.
+> 
+> So, what's the question? You are adding support for the platform. So
+> yes, you need to modify the schema.
+> 
 
-Hello David,
+Thanks Dmitry for the clarification will modify the dsi-controller-main.yaml to support more than 2 strings in the compatible and dsi-phy-7nm.yaml schema to support more than one string in the compatible.
 
-Thank you for the review and suggestions.
-Sorry for not adding any comments about that in v12. From what I 
-understood from our previous conversation, for now the code could have 
-one channel to keep things simple, since we’re not sure if anyone will 
-actually need to read both the filtered and unfiltered data at the same 
-time.
-
-I was thinking of sending a separate set of commits to address that 
-after this one gets merged, as it will involve new code changes related 
-to adding a function to configure how many ADC readings are included in 
-the mean calculation, and adding a new attribute to sysfs.
-
-Since both IIO_CHAN_INFO_RAW and IIO_CHAN_INFO_AVERAGE_RAW are currently 
-returning the same value, I could drop IIO_CHAN_INFO_AVERAGE_RAW in v13 
-and add it back in the next series of commits to implement the related 
-feature.
-
-I would like to know your thoughts about it, because if you prefer, I 
-could change my plans and implement it in v13.
-
-Best Regards,
-Marilene
-
+Thanks,
+Ayushi 
 
