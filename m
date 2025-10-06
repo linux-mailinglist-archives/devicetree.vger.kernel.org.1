@@ -1,521 +1,366 @@
-Return-Path: <devicetree+bounces-223746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 727DABBD3A2
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 09:37:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76DBEBBD3BA
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 09:40:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C1D484E8B92
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 07:37:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6BF514E5ED0
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 07:40:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2CF625522B;
-	Mon,  6 Oct 2025 07:37:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9256424A06D;
+	Mon,  6 Oct 2025 07:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qAutZWl7"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="GdF1hOpX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com [136.143.188.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA218254B1F;
-	Mon,  6 Oct 2025 07:37:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759736273; cv=none; b=dgQZ9la6gylJ8VqPeayhihTmkQZ080cfQQeCRaS/BKBwpVGMGs1FSB5MT6LRvgIoBlJxnJ6WRUtA7+JGGcnngapCqqYKe14hkDkTEdxr68Eo3+pODZlxw/hvid7K09xufsuxztGraLgD12QVjfRdg+jc/PjZKm4KkS964q1ZTF0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759736273; c=relaxed/simple;
-	bh=y/5BOeetd5j2fEywc55W5ox2cCkF90gtTW7PY+lZrlA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=P+RmHq/74YoRdwNtgo7gv9AXIOwylWGT2EoDF8ZigbCtTJ0O6goCYZSh1D3eH+INxlixjX3II6CBlIrm90tUlekWR31QuaT8cCThzFsagNbWAmuKr1xN/fpmfZOigzwn0qbX7JSRlo0o96czW4NtnO0tkAxeJLf69/1rUd7QawE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qAutZWl7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 31DD7C4CEF5;
-	Mon,  6 Oct 2025 07:37:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759736273;
-	bh=y/5BOeetd5j2fEywc55W5ox2cCkF90gtTW7PY+lZrlA=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=qAutZWl7gaZflmcVC3n0WExFJe72K7BLLfcy4fTitT2JbqGkIaVpFq7T/uGf5U64K
-	 IA3BRpLqZ+t2ju07qpJAFZjRMc0XtP1y+xeCOwKa7llWngGCSrB0hfdUYAWygpSqaF
-	 5pvYK9LSBlX4LwnReGTyBCta0316hxXWuyc/e0bhHaaa5uy6x60BmSXuWhJ92lGFes
-	 dup+6ce+7mwgODb+NQg5iAf4Eh2n5VDfOkKnck7fEfTjv7dZUhbkFdpJbnQViDagWx
-	 OuHy7uGL7dDBTqWUpslIHronaKXBuB3HhgwXEFtcCYVETDVcuno6sCxbPxfRUzd/eU
-	 USkvHpoXL61BQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 12826CAC5B8;
-	Mon,  6 Oct 2025 07:37:53 +0000 (UTC)
-From: Hrishabh Rajput via B4 Relay <devnull+hrishabh.rajput.oss.qualcomm.com@kernel.org>
-Date: Mon, 06 Oct 2025 07:37:20 +0000
-Subject: [PATCH v2] watchdog: Add driver for Gunyah Watchdog
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BE8D1DE4C2;
+	Mon,  6 Oct 2025 07:40:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759736403; cv=pass; b=Xmg73J+M66rdbLTlS/JbsHt7C+4Lrpat5C+hqVgKmTqB4iD7/fpwT/8cUYVy6xT82URPS1zDx7Nz5MGpEaA9Ms/yGo8GpIGlpoct80r2MFsZIZIcBCh9Op4MFN/BZLbxxSvH82bF619rFhU1buWrES/dSgYGGV2cM3z8FKt4csA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759736403; c=relaxed/simple;
+	bh=ifeD1V/OydxIYOlqq1CGyt3UyEIZCjP68IbdLsxz1MA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Q2JwHzJMHEvXAEQ535QgvzytkjhRgIlk4Qnp4PaWmLFyQ8JujEOrDo6dM19AnkxyadcDGTBpIiBHjWHiZWcVccjWU32hhGrRXmuL8+DF9es8O91+4NMKC+Tm4PjISberL8jkZQGGbBecQHN+1H507M0XvqrJ44Of7gs8zOxMb0w=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=GdF1hOpX; arc=pass smtp.client-ip=136.143.188.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1759736368; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=ntQ+Q3Zt7hjvwmAMc61+m55aPhnxvQ99FrjBKqw3np9sdBKLIzgkAoFwR8pWn1T5k6KYKKDPlRaLED5FKnKsJsfI3B7CtKCpqmJ+A8OmYnHJ9j65KEDknUeHxrRGNFvrHIlGZg6hoChedx8bsMqR4I5ViXLYbcPBiPorYAqAaPs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1759736368; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=ifeD1V/OydxIYOlqq1CGyt3UyEIZCjP68IbdLsxz1MA=; 
+	b=U+fVHvZXtgLqIn3An9KyyjFm/Ty6mhYhD413v5FcfVF1Pp9Ffdf3GsU/1S+rZKunj9e25PgGBR0rkqX7VLFVeUpIx556EDgQETAQG8loDh5d2JrIV9gq2C2GYPwkN0DTOM2rAS52+cvmu8P8Xb3UYCRalzP2S+o0xIE8t2h0Eac=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759736368;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=ifeD1V/OydxIYOlqq1CGyt3UyEIZCjP68IbdLsxz1MA=;
+	b=GdF1hOpX0ILWomAWJGPuV6sp8nrBeTf4tJrhMxW++vnx/i9qHd6PwVaPMhHWzzGa
+	eV/74NaQM4t6trV2bn/ckbrITajoqXnmPCtKIGu5aM4cCG424ahFU9pc2vpREZ+EKkp
+	6W0qlDT/pEih0sr/lEYLKKUUvTtJ42H2nCawVKLUkUs2YP5osfsmD4jwYUjHwU/sRgy
+	htFJXOEZPeIQegZnSe67FTntg0IeYV7mEwr7adoA7gUs/N457kyj2u0Fb1nPulYIZpw
+	4u7NSmYqWVZfxQNOdnqRGKBSive0HFaqCtTGAF+i0zx/jZBB4JGDxy/fnRvvINklo5E
+	gwc2EUHz+g==
+Received: by mx.zohomail.com with SMTPS id 1759736364875221.86100194966173;
+	Mon, 6 Oct 2025 00:39:24 -0700 (PDT)
+Message-ID: <2e6ce092996f2717bc274e1c82873c42b2ab18ce.camel@icenowy.me>
+Subject: Re: [PATCH v2 2/2] riscv: dts: starfive: add DT for Orange Pi RV
+From: Icenowy Zheng <uwu@icenowy.me>
+To: E Shattow <e@freeshell.de>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Emil
+ Renner Berthing <kernel@esmil.dk>, Michael Zhu
+ <michael.zhu@starfivetech.com>, Drew Fustini <drew@beagleboard.org>, Yao Zi
+ <ziyao@disroot.org>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Date: Mon, 06 Oct 2025 15:39:16 +0800
+In-Reply-To: <b8db0cdf-163e-416d-94b8-c9e1f10c8011@freeshell.de>
+References: <20250930100318.2131968-1-uwu@icenowy.me>
+	 <20250930100318.2131968-2-uwu@icenowy.me>
+	 <579dad6b4ab0c981b8d51383af2db3a9f4394609.camel@icenowy.me>
+	 <b8db0cdf-163e-416d-94b8-c9e1f10c8011@freeshell.de>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251006-gunyah_watchdog-v2-1-b99d41d45450@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAK9x42gC/3WNQQ6CMBREr0L+2pJPW4h15T0MMRW+tIlQbaFKS
- O9uZe9mkjfJvNkgkLcU4FRs4CnaYN2UgR8K6IyeBmK2zwwceY0KBRuWadXm+tZzZ3o3MN7zRio
- pjsQV5NXT091+duOlzWxsmJ1f94NY/dr/rlgxZEJTo7AWSPJ2diGUr0U/OjeOZQ5oU0pf3Dgon
- 7UAAAA=
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759736271; l=13002;
- i=hrishabh.rajput@oss.qualcomm.com; s=20250903; h=from:subject:message-id;
- bh=8xSved5BPqmRxH5nBgPZPTyI2zCHlJfJxVdZLdAS2Tk=;
- b=wmIBcINST0k+5ZSV3mHR6UYmG3FDCOfpPCYC181eRHt0HmMBctmih90TwjsI23YPMklfwlFPN
- J9bVti/UW0rBFNStXpfYCdSl+UkB3kkAT9gSrlOZEzlZFPjokp7et9U
-X-Developer-Key: i=hrishabh.rajput@oss.qualcomm.com; a=ed25519;
- pk=syafMitrjr3b/OYAtA2Im06AUb3fxZY2vJ/t4iCPmgw=
-X-Endpoint-Received: by B4 Relay for
- hrishabh.rajput@oss.qualcomm.com/20250903 with auth_id=509
-X-Original-From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-Reply-To: hrishabh.rajput@oss.qualcomm.com
+X-ZohoMailClient: External
 
-From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+=E5=9C=A8 2025-10-05=E6=98=9F=E6=9C=9F=E6=97=A5=E7=9A=84 11:47 -0700=EF=BC=
+=8CE Shattow=E5=86=99=E9=81=93=EF=BC=9A
+> Hi Icenowy,
+>=20
+> On 9/30/25 08:51, Icenowy Zheng wrote:
+> > =E5=9C=A8 2025-09-30=E6=98=9F=E6=9C=9F=E4=BA=8C=E7=9A=84 18:03 +0800=EF=
+=BC=8CIcenowy Zheng=E5=86=99=E9=81=93=EF=BC=9A
+> > > Orange Pi RV is a newly released SBC with JH7110 SoC, single GbE
+> > > port
+> > > (connected to JH7110 GMAC0 via a YT8531 PHY), 4 USB ports (via a
+> > > VL805
+> > > PCIe USB controller connected to JH7110 PCIE0), a M.2 M-key slot
+> > > (connected to JH7110 PCIE1), a HDMI video output, a 3.5mm audio
+> > > output
+> > > and a microSD slot.
+> > >=20
+> > > Other Onboard peripherals contain a SPI NOR (which contains the
+> > > U-
+> > > Boot
+> > > firmware), a 24c02 EEPROM storing some StarFive-specific
+> > > information
+> > > (factory programmed and read only by default) and an Ampak AP6256
+> > > SDIO
+> > > Wi-Fi module.
+> > >=20
+> > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > ---
+> > > Changes in v2:
+> > > - Property order change mentioned in the review of v1.
+> > > - Added Wi-Fi (along with the always on VCC3V3_PCIE regulator,
+> > > which
+> > > is
+> > > =C2=A0 used to power up WIFI_3V3). The OOB IRQ is still not possible
+> > > to
+> > > use
+> > > =C2=A0 because of some incompatibility between StarFive pinctrl drive=
+r
+> > > and
+> > > =C2=A0 brcmfmac.
+> > > - Removed the LED because it's in common DTSI.
+> > >=20
+> > > =C2=A0arch/riscv/boot/dts/starfive/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 1 +
+> > > =C2=A0.../boot/dts/starfive/jh7110-orangepi-rv.dts=C2=A0 | 87
+> > > +++++++++++++++++++
+> > > =C2=A02 files changed, 88 insertions(+)
+> > > =C2=A0create mode 100644 arch/riscv/boot/dts/starfive/jh7110-orangepi=
+-
+> > > rv.dts
+> > >=20
+> > > diff --git a/arch/riscv/boot/dts/starfive/Makefile
+> > > b/arch/riscv/boot/dts/starfive/Makefile
+> > > index b3bb12f78e7d5..24f1a44828350 100644
+> > > --- a/arch/riscv/boot/dts/starfive/Makefile
+> > > +++ b/arch/riscv/boot/dts/starfive/Makefile
+> > > @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7100-starfive-
+> > > visionfive-v1.dtb
+> > > =C2=A0
+> > > =C2=A0dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-deepcomputing-fml13v01.=
+dtb
+> > > =C2=A0dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-milkv-mars.dtb
+> > > +dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-orangepi-rv.dtb
+> > > =C2=A0dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-pine64-star64.dtb
+> > > =C2=A0dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-
+> > > v1.2a.dtb
+> > > =C2=A0dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7110-starfive-visionfive-2-
+> > > v1.3b.dtb
+> > > diff --git a/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+> > > b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+> > > new file mode 100644
+> > > index 0000000000000..5a917b7db6f78
+> > > --- /dev/null
+> > > +++ b/arch/riscv/boot/dts/starfive/jh7110-orangepi-rv.dts
+> > > @@ -0,0 +1,87 @@
+> > > +// SPDX-License-Identifier: GPL-2.0 OR MIT
+> > > +/*
+> > > + * Copyright (C) 2025 Icenowy Zheng <uwu@icenowy.me>
+> > > + */
+> > > +
+> > > +/dts-v1/;
+> > > +#include "jh7110-common.dtsi"
+> > > +
+> > > +/ {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0model =3D "Xunlong Orange =
+Pi RV";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "xunlong,or=
+angepi-rv", "starfive,jh7110";
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/* This regulator is alway=
+s on by hardware */
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0reg_vcc3v3_pcie: regulator=
+-vcc3v3-pcie {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "regulator-fixed";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0regulator-name =3D "vcc3v3-pcie";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0regulator-min-microvolt =3D <3300000>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0regulator-max-microvolt =3D <3300000>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0regulator-always-on;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0wifi_pwrseq: wifi-pwrseq {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "mmc-pwrseq-simple";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0reset-gpios =3D <&sysgpio 62 GPIO_ACTIVE_LOW>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > > +};
+> > > +
+> > > +&gmac0 {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0assigned-clocks =3D <&aonc=
+rg JH7110_AONCLK_GMAC0_TX>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0assigned-clock-parents =3D=
+ <&aoncrg
+> > > JH7110_AONCLK_GMAC0_RMII_RTX>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0starfive,tx-use-rgmii-clk;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > > +};
+> > > +
+> > > +&mmc0 {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#address-cells =3D <1>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0#size-cells =3D <0>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cap-sd-highspeed;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0mmc-pwrseq =3D <&wifi_pwrs=
+eq>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0vmmc-supply =3D <&reg_vcc3=
+v3_pcie>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0vqmmc-supply =3D <&vcc_3v3=
+>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > > +
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ap6256: wifi@1 {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "brcm,bcm43456-fmac", "brcm,bcm4329-
+> > > fmac";
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0reg =3D <1>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0/* TODO: out-of-band IRQ on GPIO21 */
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0};
+> > > +};
+> > > +
+>=20
+> > > +&mmc0_pins {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/*
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * As the MMC0 bus is used=
+ to connect a SDIO Wi-Fi card
+> > > instead of
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * an eMMC card, and the e=
+MMC RST is repurposed to be an
+> > > enablement
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * pin of the SDIO Wi-Fi, =
+remove it from the pinctrl node
+> > > and
+> > > manage
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * it as a GPIO instead.
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/delete-node/ rst-pins;
+> > > +};
+> > > +
+>=20
+> Listed on the schematic [1] as:
+> Default function SDIO0 RSTn GPIO62 for eMMC:J9
+> Highlighted (non-default?) function GPIO62 D17 << WIFI_EN_H_GPIO62
+> WIFI_EN_H_GPIO62 >> WIFI_PWREN (pin 12 WL_REG_ON of module AP6256)
+>=20
+> I've sent a patch [2] to portion out mmc0 reset pins from jh7110-
+> common.dtsi
+>=20
+> > > +&mmc1 {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0/delete-property/ cd-gpios=
+;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0broken-cd;
+> >=20
+> > Well it's found that the card detect is working, although with
+> > different polarity with other boards.
+> >=20
+> > Here should be:
+> > ```
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0cd-gpios =3D <&sysgpio =
+41 GPIO_ACTIVE_HIGH>;
+> > ```
+> >=20
+> > Will be fixed in the next revision.
+>=20
+> Yes, listed on the schematic [1] as:
+> SD SDIO0 CD GPIO41 for MicroSD:J10
+>=20
+> There is not a mention of active high or active low on the schematic
+> label, however there is listed a 10Kohm pull-up to +Vdd1.833 for the
+> circuit diagram of the Micro SD Card. The card holder is referenced
+> to
+> ground and could reasonably be N/O or N/C switch operation depending
+> on
+> the exact part selected for manufacture.
+>=20
+> >=20
+> > > +};
+> > > +
+> > > +&pcie0 {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > > +};
+> > > +
+> > > +&pcie1 {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > > +};
+> > > +
+>=20
+> > > +&phy0 {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0rx-internal-delay-ps =3D <=
+1500>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0tx-internal-delay-ps =3D <=
+1500>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0motorcomm,tx-clk-adj-enabl=
+ed;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0motorcomm,tx-clk-10-invert=
+ed;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0motorcomm,tx-clk-100-inver=
+ted;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0motorcomm,tx-clk-1000-inve=
+rted;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0motorcomm,rx-clk-drv-micro=
+amp =3D <3970>;
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0motorcomm,rx-data-drv-micr=
+oamp =3D <2910>;
+> > > +};
+>=20
+> 'motorcomm,rx' before 'motorcomm,tx' in `LANG=3DC sort` of vendor-
+> specific
+> properties.
+>=20
+> > > +
+> > > +&pwmdac {
+> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > > +};
+> >=20
+> Additional non-default GPIO as listed in the Orange Pi design:
+> GPIO21 WIFI_WAKE_HOST_H /* default vf2 function PCIE_PWREN_H_GPIO21
+> */
+> GPIO22 >> BT_UART_RXD /* default vf2 function MIPI_PWR_EN */
+> GPIO23 << BT_UART_TXD /* default vf2 function LCD RESET */
+> GPIO24 << BT_UART_CTS /* default vf2 function MIPI_LCD_BL */
+> GPIO25 << BT_UART_RTS /* default vf2 function TP_DET_GPIO25 */
+> GPIO30 << BT_EN_H_GPIO30 /* default vf2 function TP_INT_L */
+> GPIO31 << BT_WAKE_GPIO31 /* default vf2 function TP_RST_L */
+>=20
+> Of all the above, GPIO21 is defined in jh7110-common.dtsi
+> &pcie1_pins/wake-pins and may need consideration.
+>=20
+> There is a note about "PMIC_PWRON as Key" and so does this have the
+> meaning of it is used as an input device?
+>=20
+> Also noted is that the USB over-current circuit appears to be
+> implemented, different than being absent in other VF2 designs.
+>=20
+> 1:
+> http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/service=
+-and-support/Orange-Pi-RV.html
+> 2:
+> https://lore.kernel.org/lkml/20251005174450.1949110-1-e@freeshell.de/
+>=20
+> With the card detect describing hardware corrected, and clean up the
+> vendor property sort, then please confirm if you think GPIO21 is
+> described correctly.
 
-On Qualcomm SoCs running under the Gunyah hypervisor, access to watchdog
-through MMIO is not available on all platforms. Depending on the
-hypervisor configuration, the watchdog is either fully emulated or
-exposed via ARM's SMC Calling Conventions (SMCCC) through the Vendor
-Specific Hypervisor Service Calls space.
+Well yes, GPIO21 should be splitted from PCIe pinctrl and assigned to
+be the out-of-band IRQ of the Wi-Fi module. My DT omits this because
+the jh7110 pinctrl driver is currently not compatible with brcmfmac
+out-of-band IRQ code.
 
-When Gunyah is not present or Gunyah emulates MMIO-based watchdog, we
-expect MMIO watchdog device to be present in the devicetree. If we
-detect this device node, we don't proceed ahead. Otherwise, we go ahead
-and invoke GUNYAH_WDT_STATUS SMC to initiate the discovery of the
-SMC-based watchdog.
+Should I add /delete-node/ for it?
 
-Add driver to support the SMC-based watchdog provided by the Gunyah
-Hypervisor. module_exit() is intentionally not implemented as this
-driver is intended to be a persistent module.
-
-Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
----
-Gunyah is a Type-I hypervisor which was introduced in the patch series
-[1]. It is an open source hypervisor. The source repo is available at
-[2].
-
-The Gunyah Hypervisor doesn't allow its Virtual Machines to directly
-access the MMIO watchdog. It either provides the fully emulated MMIO
-based watchdog interface or the SMC-based watchdog interface depending
-on the hypervisor configuration.
-The SMC-based watchdog follows ARM's SMC Calling Convention (SMCCC)
-version 1.1 and uses Vendor Specific Hypervisor Service Calls space.
-
-This patch series adds support for the SMC-based watchdog interface
-provided by the Gunyah Hypervisor.
-
-This series is tested on SM8750 platform.
-
-[1]
-https://lore.kernel.org/all/20240222-gunyah-v17-0-1e9da6763d38@quicinc.com/
-
-[2]
-https://github.com/quic/gunyah-hypervisor
----
-Changes in v2:
-- Move away from platform driver model since the devicetree overlay does
-  not happen by default.
-  See https://lore.kernel.org/all/91002189-9d9e-48a2-8424-c42705fed3f8@quicinc.com/
-- Only when MMIO-based watchdog device is absent in the devicetree,
-  proceed to detect SMC-based watchdog using GUNYAH_WDT_STATUS SMC and
-  initialize if SMC returns success.
-- Implement pm notifiers as gunyah_wdt is no longer a platform driver so
-  dev_pm_ops cannot be used.
-- Pretimeout IRQ is no longer supported.
-- Remove struct gunyah_wdt since it is not required.
-- Move the contents of gunyah_errno.h to gunyah_wdt.c.
-- Link to v1: https://lore.kernel.org/r/20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com
----
- MAINTAINERS                   |   1 +
- drivers/watchdog/Kconfig      |  14 ++
- drivers/watchdog/Makefile     |   1 +
- drivers/watchdog/gunyah_wdt.c | 310 ++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 326 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c0b444e5fd5a..56dbd0d3e31b 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3083,6 +3083,7 @@ F:	arch/arm64/boot/dts/qcom/
- F:	drivers/bus/qcom*
- F:	drivers/firmware/qcom/
- F:	drivers/soc/qcom/
-+F:	drivers/watchdog/gunyah_wdt.c
- F:	include/dt-bindings/arm/qcom,ids.h
- F:	include/dt-bindings/firmware/qcom,scm.h
- F:	include/dt-bindings/soc/qcom*
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index 0c25b2ed44eb..c6572d707ee9 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -2343,4 +2343,18 @@ config KEEMBAY_WATCHDOG
- 	  To compile this driver as a module, choose M here: the
- 	  module will be called keembay_wdt.
- 
-+config GUNYAH_WATCHDOG
-+	tristate "Qualcomm Gunyah Watchdog"
-+	depends on ARCH_QCOM || COMPILE_TEST
-+	depends on HAVE_ARM_SMCCC
-+	depends on CONFIG_OF
-+	select WATCHDOG_CORE
-+	help
-+	  Say Y here to include support for watchdog timer provided by the
-+	  Gunyah hypervisor. The driver uses ARM SMC Calling Convention (SMCCC)
-+	  to interact with Gunyah Watchdog.
-+
-+	  To compile this driver as a module, choose M here: the
-+	  module will be called gunyah_wdt.
-+
- endif # WATCHDOG
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index bbd4d62d2cc3..308379782bc3 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -102,6 +102,7 @@ obj-$(CONFIG_MSC313E_WATCHDOG) += msc313e_wdt.o
- obj-$(CONFIG_APPLE_WATCHDOG) += apple_wdt.o
- obj-$(CONFIG_SUNPLUS_WATCHDOG) += sunplus_wdt.o
- obj-$(CONFIG_MARVELL_GTI_WDT) += marvell_gti_wdt.o
-+obj-$(CONFIG_GUNYAH_WATCHDOG) += gunyah_wdt.o
- 
- # X86 (i386 + ia64 + x86_64) Architecture
- obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
-diff --git a/drivers/watchdog/gunyah_wdt.c b/drivers/watchdog/gunyah_wdt.c
-new file mode 100644
-index 000000000000..0e4b8196709e
---- /dev/null
-+++ b/drivers/watchdog/gunyah_wdt.c
-@@ -0,0 +1,310 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-+ */
-+
-+#include <linux/arm-smccc.h>
-+#include <linux/delay.h>
-+#include <linux/errno.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/suspend.h>
-+#include <linux/watchdog.h>
-+
-+#define GUNYAH_WDT_SMCCC_CALL_VAL(func_id) \
-+	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, ARM_SMCCC_SMC_32,\
-+			   ARM_SMCCC_OWNER_VENDOR_HYP, func_id)
-+
-+/* SMCCC function IDs for watchdog operations */
-+#define GUNYAH_WDT_CONTROL   GUNYAH_WDT_SMCCC_CALL_VAL(0x0005)
-+#define GUNYAH_WDT_STATUS    GUNYAH_WDT_SMCCC_CALL_VAL(0x0006)
-+#define GUNYAH_WDT_PING      GUNYAH_WDT_SMCCC_CALL_VAL(0x0007)
-+#define GUNYAH_WDT_SET_TIME  GUNYAH_WDT_SMCCC_CALL_VAL(0x0008)
-+
-+/*
-+ * Control values for GUNYAH_WDT_CONTROL.
-+ * Bit 0 is used to enable or disable the watchdog. If this bit is set,
-+ * then the watchdog is enabled and vice versa.
-+ * Bit 1 should always be set to 1 as this bit is reserved in Gunyah and
-+ * it's expected to be 1.
-+ */
-+#define WDT_CTRL_ENABLE  (BIT(1) | BIT(0))
-+#define WDT_CTRL_DISABLE BIT(1)
-+
-+enum gunyah_error {
-+	GUNYAH_ERROR_OK				= 0,
-+	GUNYAH_ERROR_UNIMPLEMENTED		= -1,
-+	GUNYAH_ERROR_RETRY			= -2,
-+
-+	GUNYAH_ERROR_ARG_INVAL			= 1,
-+	GUNYAH_ERROR_ARG_SIZE			= 2,
-+	GUNYAH_ERROR_ARG_ALIGN			= 3,
-+
-+	GUNYAH_ERROR_NOMEM			= 10,
-+
-+	GUNYAH_ERROR_ADDR_OVFL			= 20,
-+	GUNYAH_ERROR_ADDR_UNFL			= 21,
-+	GUNYAH_ERROR_ADDR_INVAL			= 22,
-+
-+	GUNYAH_ERROR_DENIED			= 30,
-+	GUNYAH_ERROR_BUSY			= 31,
-+	GUNYAH_ERROR_IDLE			= 32,
-+
-+	GUNYAH_ERROR_IRQ_BOUND			= 40,
-+	GUNYAH_ERROR_IRQ_UNBOUND		= 41,
-+
-+	GUNYAH_ERROR_CSPACE_CAP_NULL		= 50,
-+	GUNYAH_ERROR_CSPACE_CAP_REVOKED		= 51,
-+	GUNYAH_ERROR_CSPACE_WRONG_OBJ_TYPE	= 52,
-+	GUNYAH_ERROR_CSPACE_INSUF_RIGHTS	= 53,
-+	GUNYAH_ERROR_CSPACE_FULL		= 54,
-+
-+	GUNYAH_ERROR_MSGQUEUE_EMPTY		= 60,
-+	GUNYAH_ERROR_MSGQUEUE_FULL		= 61,
-+};
-+
-+/**
-+ * gunyah_error_remap() - Remap Gunyah hypervisor errors into a Linux error code
-+ * @gunyah_error: Gunyah hypercall return value
-+ */
-+static inline int gunyah_error_remap(enum gunyah_error gunyah_error)
-+{
-+	switch (gunyah_error) {
-+	case GUNYAH_ERROR_OK:
-+		return 0;
-+	case GUNYAH_ERROR_NOMEM:
-+		return -ENOMEM;
-+	case GUNYAH_ERROR_DENIED:
-+	case GUNYAH_ERROR_CSPACE_CAP_NULL:
-+	case GUNYAH_ERROR_CSPACE_CAP_REVOKED:
-+	case GUNYAH_ERROR_CSPACE_WRONG_OBJ_TYPE:
-+	case GUNYAH_ERROR_CSPACE_INSUF_RIGHTS:
-+	case GUNYAH_ERROR_CSPACE_FULL:
-+		return -EACCES;
-+	case GUNYAH_ERROR_BUSY:
-+	case GUNYAH_ERROR_IDLE:
-+		return -EBUSY;
-+	case GUNYAH_ERROR_IRQ_BOUND:
-+	case GUNYAH_ERROR_IRQ_UNBOUND:
-+	case GUNYAH_ERROR_MSGQUEUE_FULL:
-+	case GUNYAH_ERROR_MSGQUEUE_EMPTY:
-+		return -EIO;
-+	case GUNYAH_ERROR_UNIMPLEMENTED:
-+	case GUNYAH_ERROR_RETRY:
-+		return -EOPNOTSUPP;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
-+static int gunyah_wdt_call(unsigned long func_id, unsigned long arg1,
-+			   unsigned long arg2, struct arm_smccc_res *res)
-+{
-+	arm_smccc_1_1_smc(func_id, arg1, arg2, res);
-+	return gunyah_error_remap(res->a0);
-+}
-+
-+static int gunyah_wdt_start(struct watchdog_device *wdd)
-+{
-+	struct arm_smccc_res res;
-+	unsigned int timeout_ms;
-+	int ret;
-+
-+	ret = gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_DISABLE, 0, &res);
-+	if (ret && watchdog_active(wdd)) {
-+		pr_err("%s: Failed to stop gunyah wdt %d\n", __func__, ret);
-+		return ret;
-+	}
-+
-+	timeout_ms = wdd->timeout * 1000;
-+	ret = gunyah_wdt_call(GUNYAH_WDT_SET_TIME,
-+			      timeout_ms, timeout_ms, &res);
-+	if (ret) {
-+		pr_err("%s: Failed to set timeout for gunyah wdt %d\n",
-+		       __func__,  ret);
-+		return ret;
-+	}
-+
-+	ret = gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_ENABLE, 0, &res);
-+	if (ret)
-+		pr_err("%s: Failed to start gunyah wdt %d\n", __func__, ret);
-+
-+	return ret;
-+}
-+
-+static int gunyah_wdt_stop(struct watchdog_device *wdd)
-+{
-+	struct arm_smccc_res res;
-+
-+	return gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_DISABLE, 0, &res);
-+}
-+
-+static int gunyah_wdt_ping(struct watchdog_device *wdd)
-+{
-+	struct arm_smccc_res res;
-+
-+	return gunyah_wdt_call(GUNYAH_WDT_PING, 0, 0, &res);
-+}
-+
-+static int gunyah_wdt_set_timeout(struct watchdog_device *wdd,
-+				  unsigned int timeout_sec)
-+{
-+	wdd->timeout = timeout_sec;
-+
-+	if (watchdog_active(wdd))
-+		return gunyah_wdt_start(wdd);
-+
-+	return 0;
-+}
-+
-+static unsigned int gunyah_wdt_get_timeleft(struct watchdog_device *wdd)
-+{
-+	struct arm_smccc_res res;
-+	unsigned int seconds_since_last_ping;
-+	int ret;
-+
-+	ret = gunyah_wdt_call(GUNYAH_WDT_STATUS, 0, 0, &res);
-+	if (ret)
-+		return 0;
-+
-+	seconds_since_last_ping = res.a2 / 1000;
-+	if (seconds_since_last_ping > wdd->timeout)
-+		return 0;
-+
-+	return wdd->timeout - seconds_since_last_ping;
-+}
-+
-+static int gunyah_wdt_restart(struct watchdog_device *wdd,
-+			      unsigned long action, void *data)
-+{
-+	struct arm_smccc_res res;
-+
-+	/* Set timeout to 1ms and send a ping */
-+	gunyah_wdt_call(GUNYAH_WDT_CONTROL, WDT_CTRL_ENABLE, 0, &res);
-+	gunyah_wdt_call(GUNYAH_WDT_SET_TIME, 1, 1, &res);
-+	gunyah_wdt_call(GUNYAH_WDT_PING, 0, 0, &res);
-+
-+	/* Wait to make sure reset occurs */
-+	mdelay(100);
-+
-+	return 0;
-+}
-+
-+static const struct watchdog_info gunyah_wdt_info = {
-+	.identity = "Gunyah Watchdog",
-+	.firmware_version = 0,
-+	.options = WDIOF_SETTIMEOUT
-+		 | WDIOF_KEEPALIVEPING
-+		 | WDIOF_MAGICCLOSE,
-+};
-+
-+static const struct watchdog_ops gunyah_wdt_ops = {
-+	.owner = THIS_MODULE,
-+	.start = gunyah_wdt_start,
-+	.stop = gunyah_wdt_stop,
-+	.ping = gunyah_wdt_ping,
-+	.set_timeout = gunyah_wdt_set_timeout,
-+	.get_timeleft = gunyah_wdt_get_timeleft,
-+	.restart = gunyah_wdt_restart
-+};
-+
-+static int gunyah_wdt_pm_notifier(struct notifier_block *nb, unsigned long mode,
-+				  void *data)
-+{
-+	struct watchdog_device *wdd;
-+	int ret = 0;
-+
-+	wdd = container_of(nb, struct watchdog_device, pm_nb);
-+
-+	if (!watchdog_active(wdd))
-+		return NOTIFY_DONE;
-+
-+	switch (mode) {
-+	case PM_HIBERNATION_PREPARE:
-+	case PM_RESTORE_PREPARE:
-+	case PM_SUSPEND_PREPARE:
-+		gunyah_wdt_ping(wdd);
-+		ret = gunyah_wdt_stop(wdd);
-+		if (ret)
-+			return NOTIFY_BAD;
-+		break;
-+	case PM_POST_HIBERNATION:
-+	case PM_POST_RESTORE:
-+	case PM_POST_SUSPEND:
-+		ret = gunyah_wdt_start(wdd);
-+		if (ret)
-+			return NOTIFY_BAD;
-+		gunyah_wdt_ping(wdd);
-+		break;
-+	}
-+
-+	return NOTIFY_DONE;
-+}
-+
-+static int __init gunyah_wdt_init(void)
-+{
-+	struct arm_smccc_res res;
-+	struct watchdog_device *wdd;
-+	struct device_node *np;
-+	int ret;
-+
-+	np = of_find_compatible_node(NULL, NULL, "qcom,kpss-wdt");
-+	if (np) {
-+		of_node_put(np);
-+		return -ENODEV;
-+	}
-+
-+	np = of_find_compatible_node(NULL, NULL, "arm,sbsa-gwdt");
-+	if (np) {
-+		of_node_put(np);
-+		return -ENODEV;
-+	}
-+
-+	ret = gunyah_wdt_call(GUNYAH_WDT_STATUS, 0, 0, &res);
-+	if (ret)
-+		return -ENODEV;
-+
-+	wdd = kzalloc(sizeof(*wdd), GFP_KERNEL);
-+	if (!wdd)
-+		return -ENOMEM;
-+
-+	wdd->info = &gunyah_wdt_info;
-+	wdd->ops = &gunyah_wdt_ops;
-+
-+	/*
-+	 * Although Gunyah expects 16-bit unsigned int values as timeout values
-+	 * in milliseconds, values above 0x8000 are reserved. This limits the
-+	 * max timeout value to 32 seconds.
-+	 */
-+	wdd->max_timeout = 32; /* seconds */
-+	wdd->min_timeout = 1; /* seconds */
-+	wdd->timeout = wdd->max_timeout;
-+
-+	gunyah_wdt_stop(wdd);
-+
-+	watchdog_set_restart_priority(wdd, 0);
-+
-+	wdd->pm_nb.notifier_call = gunyah_wdt_pm_notifier;
-+	ret = register_pm_notifier(&wdd->pm_nb);
-+	if (ret)
-+		pr_warn("Failed to register pm handler: %d\n", ret);
-+
-+	ret = watchdog_register_device(wdd);
-+	if (ret) {
-+		pr_err("Failed to register watchdog device: %d\n", ret);
-+		unregister_pm_notifier(&wdd->pm_nb);
-+		kfree(wdd);
-+		return ret;
-+	}
-+
-+	pr_debug("Gunyah watchdog registered\n");
-+	return 0;
-+}
-+
-+module_init(gunyah_wdt_init);
-+
-+MODULE_DESCRIPTION("Gunyah Watchdog Driver");
-+MODULE_LICENSE("GPL");
-
----
-base-commit: 038d61fd642278bab63ee8ef722c50d10ab01e8f
-change-id: 20250903-gunyah_watchdog-2d2649438e29
-
-Best regards,
--- 
-Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-
+>=20
+> Acked-by: E Shattow <e@freeshell.de>
+>=20
 
 
