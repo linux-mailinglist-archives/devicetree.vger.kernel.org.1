@@ -1,252 +1,136 @@
-Return-Path: <devicetree+bounces-223963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA08FBBFAEC
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 00:22:51 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF53CBBFC38
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 01:22:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79556189E18D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 22:23:14 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 0EC9034C29D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 23:22:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4ADA1E47B3;
-	Mon,  6 Oct 2025 22:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E801213254;
+	Mon,  6 Oct 2025 23:21:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VFNfrcD2"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="uDHvzIw+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f201.google.com (mail-pg1-f201.google.com [209.85.215.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 942002B9A7;
-	Mon,  6 Oct 2025 22:21:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAAD31D54FE
+	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 23:21:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759789275; cv=none; b=W5xjS3P5BAY57gyryFqcVWsNWF7zqQBNu/Hd+z5hIhJdj3D4W3XKbE9qj6Yi2RfpjDKnEvy2NGd92nd+0HTGECsdIiZY/6Qr4g3CY8SRhfyxnO/tB7MRFG2o4z9RPcfpUf5ek5ug6on6aghlBWuD7LPNeX4GlkoaE6a1oeIbudM=
+	t=1759792908; cv=none; b=kUVEsBRozx2IGAFXWYnlhP+LkmEu7qWJS6u9B4GYQr88q8Am4BDb8TUaWEJn4ryW+rSyKyRtCmDS77rN+c0M/nNG6H6eQ4JSur/QREktXKpbhqPQnrEpwQq5NYnRD4wxrOtPPOkZow8b8D4Wa1qBxwS7WRdpLiIXqnTSQ4CMXGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759789275; c=relaxed/simple;
-	bh=y9HkAkMswhuhnlObmY879hYAYn5iP/hSOUaR/NYB2Ms=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NqxWTElAmumunWxUNWntifnHQEouz+5yNZ/41u8BInjL2cFAStQsaeGjQ4RmkhL1at45c6xcrEjEQl8q+MyuFFNx9tzHHKfhcdrhTYgOAGelJgSy8xVufEsLC/bJmVGYjI9eGhgFFJOZUc4hrohlxyGt0j9UsQ+kA+G1RfnlbHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VFNfrcD2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4CC2CC4CEF5;
-	Mon,  6 Oct 2025 22:21:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759789275;
-	bh=y9HkAkMswhuhnlObmY879hYAYn5iP/hSOUaR/NYB2Ms=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VFNfrcD2/2boUqakycWq4TlbFMTApjkUYi8DjvsiDpzm85PyxuQiuWX9Qkv3mlqwf
-	 7T8UZVNdBAPTbG2eELOgBrrBZ6I0jqDAjMLw7aVeqF4QGVfqlyGBBNbwY0/BfX2Mpr
-	 NOD6rPyi4OmcgOqxcT8golJ7xV73/9WTIGTu2IY/zfx2AR0SZODIRAKVqvQIc6LGHO
-	 kGF4XsN/Oa61ChgQmX0etTDTarcF1Nw2E2hdKZdTw9I6BQ/SHx/xJB+ib1V1kIJyGC
-	 /BSxGwNIUnaC2xi0psmWHIopi5S4NMEpNbpapuwdsdX7uMxYvMS5shyQ2P9mOp3muH
-	 tmx7NwjI2FWEw==
-Message-ID: <6492e444-4196-4900-a741-a74a8c506a6d@kernel.org>
-Date: Mon, 6 Oct 2025 23:21:08 +0100
+	s=arc-20240116; t=1759792908; c=relaxed/simple;
+	bh=1qMbcIpf0Z3Ab03rwmeKct8kSYRJGu8/jk5K/4kkiK0=;
+	h=Date:Mime-Version:Message-ID:Subject:From:To:Cc:Content-Type; b=OhAjohISsNJMh71RWmjVjgbVymilf1Qht6N3FosywUAdYX1nlOyna/6jQaHxJ1Chrssc0S11sb/L16O6EHZ7ayQadnr4CF7W5bDZ97PZR2kDlEZ+Hrk8IUOdt8uIoX5V4nUKsYCkVzwN2OrSHyg/c8dPUqrcTraBh4q0fTmW5Jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=uDHvzIw+; arc=none smtp.client-ip=209.85.215.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com
+Received: by mail-pg1-f201.google.com with SMTP id 41be03b00d2f7-b57cf8dba28so4671230a12.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 16:21:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1759792906; x=1760397706; darn=vger.kernel.org;
+        h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=XzfK1528ICmc0tXAsZYoRPv5AMX4H8ddjdDCNZ7iAFo=;
+        b=uDHvzIw+AHaP65gAVE8yvZoZJOpGoCb1wZ7HrGR55Wf5C5Mqg8vo5L8Ssrkif1UVjK
+         U47iYDZrLCm/g1meLeuNUc8ET7eYnyJN6sa8/z7qNEwSGtjJUTjXIpWu8LY9JAb232c6
+         hEVR+mPRK9WBJBO3Uh07YWXyaafPOcNil9D1XTNn1JZfAGsnJhwJu9U8G67okTrsZTtE
+         nkrA4kVvR+UEMLAGv/0uj+eiyUcOkUM4HjPycFoXu51zCcdAYjH5qj0uTuaIlsVGnsVk
+         oH9c90qJsniby9EwfZj1uITIeHQm2+oDChmCP5FsfC1usqaKGYXRQpRB2Yu5D3go32ov
+         L1Gg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759792906; x=1760397706;
+        h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XzfK1528ICmc0tXAsZYoRPv5AMX4H8ddjdDCNZ7iAFo=;
+        b=Y18StTgbEAvFoEtZAzflv14/nIW/XUiS+hC/HfJSDqMS61w2lU0PUBHb3jVY3IwVuu
+         CxVi4F7YF8h34ddkeXNMt3uSETKYLV3rkf1RmhZ6sNZgWC9t8txWUl9TG81xGVHQEwlE
+         CwOIOC/qyMW4v73hqDpuc/UXytddtY7aHNI3kivVYz/fXX7zmuUd9sj5wkkgUYBzdzXD
+         wC89C8v5X6ExwOUkDn7sXmLnPDTYHrtCU0+PXUGM6dyeCKrzfppJhtjqJod6Pj/t5XRE
+         +0DzTOWVIt5nN0CQzBGR/GAH9zuR15fvLYHIcgGzLWD6Sh5FwbM1UjrCCSCpy8MsOyX7
+         Sq0g==
+X-Forwarded-Encrypted: i=1; AJvYcCUVLEHyRUPC52KqWoAcPPlTEwYAQbzZewlJtWG4mlZqYGfLl6LIWiTzivYqTLELpMGAbL6D21EMyjmL@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/St7dQXAH7Llv/P8sewl09qoYlX078LqqMyo7tz3RmP/D32+j
+	IWAu9f96hgTYG/ujaqTA7BzueJ8VZJo24Um5eRlETlVEScX7xxrFYNG0n4FMSYpKyNqJzgV2wC6
+	mmy9NEw==
+X-Google-Smtp-Source: AGHT+IFQk/JRlFBeeVilrRKrIrWvH98VXOUhHqyPMmczUypQ4yLO+zGXFQ3cFbalFp6SbZeQtiGfVA0tVYA=
+X-Received: from pfbgj18.prod.google.com ([2002:a05:6a00:8412:b0:77d:12a5:d3dc])
+ (user=royluo job=prod-delivery.src-stubby-dispatcher) by 2002:a05:6a21:99a3:b0:261:b20d:3ee5
+ with SMTP id adf61e73a8af0-32b61e65fb4mr17776464637.23.1759792905892; Mon, 06
+ Oct 2025 16:21:45 -0700 (PDT)
+Date: Mon,  6 Oct 2025 23:21:21 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC 3/6] ASoC: soc: qcom: sc8280xp: add support for I2S
- clocks
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251006-topic-sm8x50-next-hdk-i2s-v1-0-184b15a87e0a@linaro.org>
- <20251006-topic-sm8x50-next-hdk-i2s-v1-3-184b15a87e0a@linaro.org>
-Content-Language: en-US
-From: Srinivas Kandagatla <srini@kernel.org>
-In-Reply-To: <20251006-topic-sm8x50-next-hdk-i2s-v1-3-184b15a87e0a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.51.0.618.g983fd99d29-goog
+Message-ID: <20251006232125.1833979-1-royluo@google.com>
+Subject: [PATCH v1 0/4] Add Google Tensor SoC USB support
+From: Roy Luo <royluo@google.com>
+To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Peter Griffin <peter.griffin@linaro.org>, 
+	"=?UTF-8?q?Andr=C3=A9=20Draszik?=" <andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>, Roy Luo <royluo@google.com>, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+
+This series introduces support for the USB controller and PHY found on
+Google Tensor SoCs (G5 and newer). This includes:
+
+1.  DWC3 Glue Driver: A new glue layer for the Synopsys DesignWare USB 3.0
+    controller (DWC3) as integrated into Google Tensor SoCs, including
+    hibernation support.
+2.  DWC3 DT Bindings: Device Tree binding documentation for the Google
+    Tensor SoC DWC3 controller.
+3.  USB PHY Driver: A new driver for the Google Tensor SoC USB PHY,
+    initially supporting high-speed operations.
+4.  USB PHY DT Bindings: Device Tree binding documentation for the Google
+    Tensor SoC USB PHY.
+
+Co-developed-by: Joy Chakraborty <joychakr@google.com>
+Signed-off-by: Joy Chakraborty <joychakr@google.com>
+Co-developed-by: Naveen Kumar <mnkumar@google.com>
+Signed-off-by: Naveen Kumar <mnkumar@google.com>
+Signed-off-by: Roy Luo <royluo@google.com>
+---
+Roy Luo (4):
+  usb: dwc3: Add Google SoC DWC3 glue driver
+  dt-bindings: usb: dwc3: Add Google SoC DWC3 USB
+  usb: dwc3: Add Google SoC USB PHY driver
+  dt-bindings: phy: google: Add Google SoC USB PHY
+
+ .../bindings/phy/google,usb-phy.yaml          |  91 +++
+ .../bindings/usb/google,snps-dwc3.yaml        | 144 +++++
+ drivers/phy/Kconfig                           |   1 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/google/Kconfig                    |  15 +
+ drivers/phy/google/Makefile                   |   2 +
+ drivers/phy/google/phy-google-usb.c           | 286 +++++++++
+ drivers/usb/dwc3/Kconfig                      |   8 +
+ drivers/usb/dwc3/Makefile                     |   1 +
+ drivers/usb/dwc3/dwc3-google.c                | 597 ++++++++++++++++++
+ 10 files changed, 1146 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/google,usb-phy.yaml
+ create mode 100644 Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
+ create mode 100644 drivers/phy/google/Kconfig
+ create mode 100644 drivers/phy/google/Makefile
+ create mode 100644 drivers/phy/google/phy-google-usb.c
+ create mode 100644 drivers/usb/dwc3/dwc3-google.c
 
 
-
-On 10/6/25 7:37 PM, Neil Armstrong wrote:
-> Add support for getting the I2S clocks used for the MI2S
-> interfaces, and enable/disable the clocks on the PCM
-> startup and shutdown card callbacks.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  sound/soc/qcom/sc8280xp.c | 104 +++++++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 103 insertions(+), 1 deletion(-)
-> 
-> diff --git a/sound/soc/qcom/sc8280xp.c b/sound/soc/qcom/sc8280xp.c
-> index 78e327bc2f07767b1032f09af7f45b947e7eb67a..ad4ee5c6fab8994f18de572842f3dab6f4f5397e 100644
-> --- a/sound/soc/qcom/sc8280xp.c
-> +++ b/sound/soc/qcom/sc8280xp.c
-> @@ -4,6 +4,8 @@
->  #include <dt-bindings/sound/qcom,q6afe.h>
->  #include <linux/module.h>
->  #include <linux/platform_device.h>
-> +#include <linux/clk.h>
-> +#include <linux/of_clk.h>
->  #include <sound/soc.h>
->  #include <sound/soc-dapm.h>
->  #include <sound/pcm.h>
-> @@ -15,12 +17,16 @@
->  #include "common.h"
->  #include "sdw.h"
->  
-> +#define I2S_MAX_CLKS	5
-> +
->  struct sc8280xp_snd_data {
->  	bool stream_prepared[AFE_PORT_MAX];
->  	struct snd_soc_card *card;
->  	struct sdw_stream_runtime *sruntime[AFE_PORT_MAX];
->  	struct snd_soc_jack jack;
->  	struct snd_soc_jack dp_jack[8];
-> +	struct clk *i2s_clk[I2S_MAX_CLKS];
-> +	struct clk *i2s_mclk[I2S_MAX_CLKS];
->  	bool jack_setup;
->  };
->  
-> @@ -68,12 +74,66 @@ static int sc8280xp_snd_init(struct snd_soc_pcm_runtime *rtd)
->  	return qcom_snd_wcd_jack_setup(rtd, &data->jack, &data->jack_setup);
->  }
->  
-> +static int sc8280xp_snd_i2s_index(struct snd_soc_dai *dai)
-> +{
-> +	switch (dai->id) {
-> +	case PRIMARY_MI2S_RX..PRIMARY_MI2S_TX:
-> +		return 0;
-> +	case  SECONDARY_MI2S_RX.. SECONDARY_MI2S_TX:
-> +		return 1;
-> +	case TERTIARY_MI2S_RX..TERTIARY_MI2S_TX:
-> +		return 2;
-> +	case QUATERNARY_MI2S_RX..QUATERNARY_MI2S_TX:
-> +		return 3;
-> +	case QUINARY_MI2S_RX..QUINARY_MI2S_TX:
-> +		return 4;
-> +	default:
-> +		return -1;
-> +	}
-> +}
-> +
-> +static int sc8280xp_snd_startup(struct snd_pcm_substream *substream)
-> +{
-> +	unsigned int codec_dai_fmt = SND_SOC_DAIFMT_BC_FC | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_I2S;
-> +	struct snd_soc_pcm_runtime *rtd = substream->private_data;
-> +	struct sc8280xp_snd_data *pdata = snd_soc_card_get_drvdata(rtd->card);
-> +	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
-> +	struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
-> +	int index;
-> +
-> +	switch (cpu_dai->id) {
-> +	case PRIMARY_MI2S_RX...QUATERNARY_MI2S_TX:
-> +	case QUINARY_MI2S_RX...QUINARY_MI2S_TX:
-> +		index = sc8280xp_snd_i2s_index(cpu_dai);
-
-What is the mclk and bitclk rate set here, we can not rely on the
-default rate.
---srini
-> +		clk_enable(pdata->i2s_mclk[index]);
-> +		clk_enable(pdata->i2s_clk[index]);
-> +		snd_soc_dai_set_fmt(codec_dai, codec_dai_fmt);
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return qcom_snd_sdw_startup(substream);
-> +}
-> +
->  static void sc8280xp_snd_shutdown(struct snd_pcm_substream *substream)
->  {
->  	struct snd_soc_pcm_runtime *rtd = snd_soc_substream_to_rtd(substream);
->  	struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
->  	struct sc8280xp_snd_data *pdata = snd_soc_card_get_drvdata(rtd->card);
->  	struct sdw_stream_runtime *sruntime = pdata->sruntime[cpu_dai->id];
-> +	int index;
-> +
-> +	switch (cpu_dai->id) {
-> +	case PRIMARY_MI2S_RX..TERTIARY_MI2S_RX:
-> +	case QUINARY_MI2S_RX...QUINARY_MI2S_TX:
-> +		index = sc8280xp_snd_i2s_index(cpu_dai);
-> +		clk_disable(pdata->i2s_clk[index]);
-> +		clk_disable(pdata->i2s_mclk[index]);
-> +		break;
-> +	default:
-> +		break;
-> +	}
->  
->  	pdata->sruntime[cpu_dai->id] = NULL;
->  	sdw_release_stream(sruntime);
-> @@ -141,7 +201,7 @@ static int sc8280xp_snd_hw_free(struct snd_pcm_substream *substream)
->  }
->  
->  static const struct snd_soc_ops sc8280xp_be_ops = {
-> -	.startup = qcom_snd_sdw_startup,
-> +	.startup = sc8280xp_snd_startup,
->  	.shutdown = sc8280xp_snd_shutdown,
->  	.hw_params = sc8280xp_snd_hw_params,
->  	.hw_free = sc8280xp_snd_hw_free,
-> @@ -162,6 +222,44 @@ static void sc8280xp_add_be_ops(struct snd_soc_card *card)
->  	}
->  }
->  
-> +static const char * const i2s_bus_names[I2S_MAX_CLKS] = {
-> +	"primary",
-> +	"secondary",
-> +	"tertiary",
-> +	"quaternary",
-> +	"quinary",
-> +};
-> +
-> +static int sc8280xp_get_i2c_clocks(struct platform_device *pdev,
-> +				   struct sc8280xp_snd_data *data)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	int i;
-> +
-> +	if (!device_property_present(dev))
-> +		return 0;
-> +
-> +	for (i = 0; i < I2S_MAX_CLKS; ++i) {
-> +		char name[16];
-> +
-> +		snprintf(name, 16, "%s-mi2s", i2s_bus_names, i);
-> +		data->i2s_clk[i] = devm_clk_get_optional_prepared(dev, name);
-> +		if (IS_ERR(data->i2s_clk[i]))
-> +			return dev_err_probe(dev, PTR_ERR(data->i2s_clk[i]),
-> +					     "unable to get %s clock\n",
-> +					     name);
-> +
-> +		snprintf(name, 16, "%s-mclk", i2s_bus_names, i);
-> +		data->i2s_mclk[i] = devm_clk_get_optional_prepared(dev, name);
-> +		if (IS_ERR(data->i2s_mclk[i]))
-> +			return dev_err_probe(dev, PTR_ERR(data->i2s_mclk[i]),
-> +					     "unable to get %s clock\n",
-> +					     name);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int sc8280xp_platform_probe(struct platform_device *pdev)
->  {
->  	struct snd_soc_card *card;
-> @@ -185,6 +283,10 @@ static int sc8280xp_platform_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> +	ret = sc8280xp_get_i2c_clocks(pdev, data);
-> +	if (ret)
-> +		return ret;
-> +
->  	card->driver_name = of_device_get_match_data(dev);
->  	sc8280xp_add_be_ops(card);
->  	return devm_snd_soc_register_card(dev, card);
-> 
+base-commit: e5f0a698b34ed76002dc5cff3804a61c80233a7a
+-- 
+2.51.0.618.g983fd99d29-goog
 
 
