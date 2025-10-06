@@ -1,86 +1,86 @@
-Return-Path: <devicetree+bounces-223870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037E0BBE7FA
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 17:35:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4474BBE800
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 17:35:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id DFDDC4E2D72
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 15:35:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D5CE1897F17
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 15:35:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D56F2D7DE8;
-	Mon,  6 Oct 2025 15:35:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 848D82D7DF1;
+	Mon,  6 Oct 2025 15:35:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
+Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7947E27FD51
-	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 15:34:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA22283FDF
+	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 15:35:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759764899; cv=none; b=lVI+W26kOPlxT2GJUU1awmpiPynouaO9pC4jJo7bWV6ULrm0uZ4c06YvQWaSsjBMMV6rSN7FrO/YT3og3gnrdhW/yAXvxWJHmt6qFeQvE69hV4gbeAib31HhORa1n49dqbTCZ/YZ8vnKNzSNU86bjUadIYXAh9n0DUBbIwS2TFo=
+	t=1759764925; cv=none; b=QwDer2zw78mLaVFxvWO8vL4kCy2nE+IYx41S1G9ipjmIyDhYBXL27RloBozTEvlsQmUlWsBOdGLIpucXCqpDE46wizY2dvf/WR1yQZlqq8trujh5e9G1il0/7Hd7EgesIIX8fnAk8n65qpyvO1uOuI/iRPMpin9eWcznj1lg8+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759764899; c=relaxed/simple;
-	bh=ZD3wq3u//1+z6LqbsvgXhOM6CP7Nx5fSpPj0C2X/bE0=;
+	s=arc-20240116; t=1759764925; c=relaxed/simple;
+	bh=dSnfb3yL4QKj2jW1vkztCLpaRi4oy5M2m+qzcux2G/c=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Cq5KgKi85xWlSVqp/qqz8N0F44S/dZj+Ve5okfU8/VbFOV6aFeBNem3XHQR8RpgGmYWOHVf+4dAUJc1VqyQ7DSd3gDw3RrADVKX5UMOBCa6J399GFtxOgAD/0yOmuknhWm51WMvFOm8OCblmJXYQPGOWsRDYhicN4frqtRK0T64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
+	 To:Cc:Content-Type; b=dVdqPHH0aC8FxTPM8/rQGa3SbcVxHqG+Cz1eA94Bkdn9gWY401yBJ2WjjWqyfro3RTmQ7RZ2iXyLCG16iGF8zuSVeZZ477u4lEQiashEImgbQeJ/9WtJFvsIQdk36YLD9MP33K6V3pey7Te85Eyd/cgQ8eeGnuq/okpj306WcJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-54bc04b9d07so2007627e0c.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 08:34:58 -0700 (PDT)
+Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-8fea25727a9so1487904241.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 08:35:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759764897; x=1760369697;
+        d=1e100.net; s=20230601; t=1759764923; x=1760369723;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=WDkJ9FF5nhqfcMcTa7/MTCnbJ3v4Dd3szx41XuF9lTU=;
-        b=J9MZoLiiCq7jEJXhzUWrbxaVAb34X29tw+CLPzyeTbQrWUj1vk8dOZ8jRoAI5csAEc
-         4tQEL18zjMqXNp1JnsacKnMIMnnzGQQMmLb3vdYotBJEQtkjzzEHLz2138hZXaDeiWOz
-         Ys2Wl1jSkorIpuuiP8sdVbJZ9c2IU5P8GTNXfoZz7Gg5ATEk3WHoAFL0suJNebTjVZhv
-         sS846KiLa8Wo5EkgLy8OwA/lpTErSU5SDMeD8vY1fpluMUiHF+P9bn2x3SJUrElHXk/T
-         f4dplBp5Q9lBO76OnLu8Y5zPcH275KghFNiWqaET9MK253M8/8viZdbGV+D4+cEW06o+
-         7mGg==
-X-Forwarded-Encrypted: i=1; AJvYcCUQtGgU8EpveDL52+dK5zwnr7fsjpyoglyDkRJrdq7aGRbEIi1mntw1lgJwgal5c0Z3+SmnJxN8ukbd@vger.kernel.org
-X-Gm-Message-State: AOJu0YwyZCpjcEerDSTVNP8xhxR/zvtN5URWe10mFgIdsL91yvU6YI5T
-	dxXt7LqGntSXuVdKDE64OkNkXQ7ixRkmNwuSyd1zOn2HnWohpGPiH0apC/9GAAcy
-X-Gm-Gg: ASbGncvx4L3mHXj52Jrde+gGCiPBwsvTkBejgVKZJWVMq0+pOf2AQxjridPUe7nkM3p
-	ctCNL+0HEJPDeXa52A0db5a+KPoCsk46DfCjU/YoU/gCrvzrcJ0emoVcVyBmULEaX2ndXnza8fW
-	JfGu26DKxmSIMICDv8KkmBwOEkESxMhu9+rWH6EULycgJgq1rYpHWf0HaUgARE2jYrlWInB2Kq4
-	ijeopWVtgTvBsgsjjgBBVlOgjUzOEhqsi2vaCg4Fzz8o/QEM4kGwsU/lw2bdpUdUVDMjQKzAV62
-	synqpm2ILtzvcVB7aWbcBjBxYqMrTW/52/8xN1En0g43ZyNuE4pAZclP/ifWMvj+trnegvgR9uh
-	neJ8DHZ87qUXWPAs/3HhbjGjMMXtEcSnsG7HA5A9oPuAINPi8SAj3Pj+Nu21Y+YOCy5hQUWl3Nw
-	5DnrMZtnL5
-X-Google-Smtp-Source: AGHT+IH4WT1nuppbSeYqg0l22nYfuscKGkwkMJeD8P/XmFuwO0aq9CfGOKMWHhE6r+czGQr6ZqikHg==
-X-Received: by 2002:a05:6122:1812:b0:53f:8fcb:b630 with SMTP id 71dfb90a1353d-5524e8a6bc1mr4489168e0c.4.1759764897079;
-        Mon, 06 Oct 2025 08:34:57 -0700 (PDT)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5549ab319e0sm760277e0c.0.2025.10.06.08.34.56
+        bh=+jg3+SSfQDF+38T7p3MLG0Dd2g8S6PQVTqm3cXu4YzM=;
+        b=Tm3b2pfo0/SqZLsq1xBRKgs1nHmvQR+0lyR+9d/lsq8gIgUULKRIDAZkQVAKQteqQn
+         lqa6tOxp6H4hQEzjgY6/J6w3GT/7hl43RfPBLU5fjySrX+GNcJVYWVURq2OvR9XXtiCS
+         75oaGC7zRBVhNKJ8CYznnnIObTMlwmfqLTuhd+8k22Ov/sV345VmqtuCFt5RVcGliWx8
+         jqKVrAe1Em2U2vzizqWNGvnkNQqWQc2aWg8zraOjDr8ZZKxHiS1oswQO44EwLWm9CMiS
+         KridUz9k9uGA1CceA0HhhqBI1oVVFQStYltXJ3mcY9V3O/CR3a/xxgIyIgbyB1ikYgI3
+         sOgg==
+X-Forwarded-Encrypted: i=1; AJvYcCVK3Fh9okJULvkZjxMUz+toq/NaKsTMJ97FRliLE6t55UrlqB7gSUK6n+CQqCNtRAtTrwQOo9sLr4XR@vger.kernel.org
+X-Gm-Message-State: AOJu0YwrH0UZFuttwX+8oXHgwxYkXC5ZIgzSxTgfABEp4IMyzAFFATF3
+	YO1gZPP0bcKeikY3utKJc8cA3xoRnkJ3Muc65G11BJawJGjCCXfWkAvioPJzxhFZ
+X-Gm-Gg: ASbGncvduCnLKx2sfqeJhCEn2c9eQInl+//BMH7SrKAdKLAjab3uGakh0xpRTZxoBqZ
+	FTKjiI2oOmjJjD4NRsYTpl5hnPlP0Vpbqbpldej11T1ASXGxxyrCF7E1CNhxUG0lVtL6U9hoIx/
+	hj0j4p7iL+Bs2MzxJZ1lrJWyIUSrs/zxaNYKSf0gwM4OBS6xz9jaev114V/ds1tta4jhXzJjk7Z
+	O4hc0A33CQ72+R/F1Dpt3WoBkaU+nUdnfiOfHo2DSkv1Rlv/G2wTOAAtMxyJeDohavvskw7naWg
+	ZqEg2SIM8xNb8Dgy/p2CEywQ/cISvdnRUtApuSZ4bGVSvok/Bgx6fxyivv5EsiZ1WSNp237QWPK
+	X/5RyCWfxjun0LRKtu4kCWomI7LoOtBGyy8TmyybopeCrNTZiFOuXuhBcZsiEQCELmeq59zVzVC
+	pvGYZIXJbC
+X-Google-Smtp-Source: AGHT+IHm5zIDD8xZJ7wafN8BUPNsqujqzANkBgZcmtPdqnmzwc1FmLPLECQCLHxVWavgKHKOxzgATQ==
+X-Received: by 2002:a05:6102:161e:b0:4fd:35ca:6df5 with SMTP id ada2fe7eead31-5d41cfd8d72mr4382937137.7.1759764922491;
+        Mon, 06 Oct 2025 08:35:22 -0700 (PDT)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5d5d383430asm82167137.2.2025.10.06.08.35.22
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Oct 2025 08:34:56 -0700 (PDT)
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5838680e242so1806218137.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 08:34:56 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW5ZNallnUJTOFmbjzqlhA0cfGlnsjFcDwS3H1sCl+rsqeLYgniktbPUWdH30rW78fCtyfRSZbrpSFl@vger.kernel.org
+        Mon, 06 Oct 2025 08:35:22 -0700 (PDT)
+Received: by mail-vs1-f44.google.com with SMTP id ada2fe7eead31-5d128733742so2200290137.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 08:35:22 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWPQ+xUyEm8nEA90hUBV7g5EVWGBrH9UYAdSZhi4fHXl403ZmtBRSIm+I8T/ms0AZSwRHgg3LZ2yxFK@vger.kernel.org
 X-Received: by 2002:a05:6102:5793:b0:54e:76ce:8fb5 with SMTP id
- ada2fe7eead31-5d41d001020mr4223697137.9.1759764896428; Mon, 06 Oct 2025
- 08:34:56 -0700 (PDT)
+ ada2fe7eead31-5d41d001020mr4224388137.9.1759764922078; Mon, 06 Oct 2025
+ 08:35:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251006082520.10570-11-wsa+renesas@sang-engineering.com> <20251006082520.10570-15-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20251006082520.10570-15-wsa+renesas@sang-engineering.com>
+References: <20251006082520.10570-11-wsa+renesas@sang-engineering.com> <20251006082520.10570-16-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20251006082520.10570-16-wsa+renesas@sang-engineering.com>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 6 Oct 2025 17:34:45 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXJqsZswHBCcPK0KXvfgoFsL5Xq2NLoLgxd5J8soe-=pQ@mail.gmail.com>
-X-Gm-Features: AS18NWCIBt4AaVbUamhTqhXAClfpqJPWlffXNRSzt0N2Sq7y-S5LjrOyGROJ2kA
-Message-ID: <CAMuHMdXJqsZswHBCcPK0KXvfgoFsL5Xq2NLoLgxd5J8soe-=pQ@mail.gmail.com>
-Subject: Re: [PATCH 4/9] arm64: dts: renesas: s4: mark SWDT as reserved
+Date: Mon, 6 Oct 2025 17:35:10 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXwhsYjHvHPjtGWmSJTp-Zu_5ZNB8P5dqYED-iR1XRqUQ@mail.gmail.com>
+X-Gm-Features: AS18NWDaGoDl0gW_ZVX7-GNkRqZENsT-45ppIcJcSJ-FeFiGnUMc-x4usiLGAsY
+Message-ID: <CAMuHMdXwhsYjHvHPjtGWmSJTp-Zu_5ZNB8P5dqYED-iR1XRqUQ@mail.gmail.com>
+Subject: Re: [PATCH 5/9] arm64: dts: renesas: r8a779g0: add SWDT node
 To: Wolfram Sang <wsa+renesas@sang-engineering.com>
 Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -89,10 +89,6 @@ Content-Type: text/plain; charset="UTF-8"
 
 On Mon, 6 Oct 2025 at 10:29, Wolfram Sang
 <wsa+renesas@sang-engineering.com> wrote:
-> This watchdog can't be used with Linux because the firmware needs it on
-> S4 boards. Sadly, it doesn't mark the node as reserved, so this is added
-> manually here.
->
 > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
 Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
