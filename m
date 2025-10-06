@@ -1,501 +1,234 @@
-Return-Path: <devicetree+bounces-223835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E1DCBBE139
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 14:45:08 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45DBBBBE145
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 14:45:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18D6C3B0113
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 12:45:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 115104EBAF7
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 12:45:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7531027FD7D;
-	Mon,  6 Oct 2025 12:45:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 187EF280CFB;
+	Mon,  6 Oct 2025 12:45:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Bu+TQ+o1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from SN4PR2101CU001.outbound.protection.outlook.com (mail-southcentralusazon11012033.outbound.protection.outlook.com [40.93.195.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 595BC280CC9
-	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 12:45:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759754705; cv=none; b=UtXRzpQ1/s9RQSellMDmOzaSGDBzXH2SjfXxiSomiKy4OPD/DVbmCw0E9vfCaXisDCz25VPuif/MmMZNaeZSkFnjd4Sm5/PV7wnqBURqxRyK5apGyU+AspXYeGAkKrhaEgwQFBC+DNeIUCEttRanESNzgdR7XkvBKje68EFf9Sc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759754705; c=relaxed/simple;
-	bh=OL4lGMCyjAX3UVZZQcHgeC+VCKW+F3KONnRI3VthqAY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GBQQxb6CgRnO797R+3byhvbV5E5ns7DhxNnx0gg6QnQgZ0FvBYdxJa+Mxr7gdRFU+lv1eFRrphQCqPEfFtOzXOm4RowCz0PHJxYMXAGMErveZcDlk86SXSl+511VgNqVBlWnh7a2bBjkThywI+Y5pOy9OJLqKg2U2nfj4XlDVkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-59a8c1eb90cso2734110137.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 05:45:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759754702; x=1760359502;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ho6ZY8xNwM+EAsNC64leoQCnflv58g1Ah42jCSjX7S4=;
-        b=MaIuGsE7pDcP/VW5JMeGHv8OQpG/ZBj5i5889k9Qx6ZG/Iy7zkHVxiAK6R+Wf11TUn
-         kwDleVV7RCFb5QdRcUl2BINayEW6Af7Atcv4ld7k3jsUoDQM8IuqoWYcmMk8qQ/w9w4h
-         rNnoN8fBhSSUP+Zb1P4G0/IOCm6BjjVbS4ZPu55TuH0k6xGS7fNyXyIhNoWXs5w+reAz
-         lK5NwAre7Z+IoJsFn8X17Np4voFOIhhOhGtpanuMko7nhmyW2GicClC5GmHlzNRumFsN
-         GC5c9kqo0QKdfQUEUG9B9htpwiPl8T+mvAFGQojoBZ9NuAtC4QG4wvKkVrLzQK8WRdq5
-         d9pg==
-X-Forwarded-Encrypted: i=1; AJvYcCU4vEW1dsalrK4qWqrC5bFa98vSkUNKpWXRNBvA0q6LDH1mcIqQxKC8RGOTpypneC73A6OQWGTuUS5t@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6QGEomqMFTBozmLTL7kiYI4J9ILtsEFT9rUMPGc6HntSb0nB4
-	0gj4D+adqsI1ZeGoSAcPxFGbQf9Axc+8GbziRJ6joHeFAfOHGGAJEffW7qnJlJ3X
-X-Gm-Gg: ASbGncs97bsSjGYrPiRCqNexsovOlFBnqrRfwjH+hMxGF9JGRtMSQyyp0Iat2LHpM80
-	HRSf3htxGCo5Ae/fJQDdtTszaOdNpJiTYnuXWYxMZ9ir1pGd+AXh4eYSCayjquDfIFIq4zUUZvP
-	LiRrDIM8aNZqwYsaM5kEQJL+kcSiQHLhochaQousraYq8+oaXhbSfx2IGVuPreOTlXMa/ylpDB7
-	bB/lLLfiFsIF++VybNl8GK6oKUAjhtC+4y2/cmsRF/V77ILgOM3atJVwLilH5CxmnRcyXJNknfI
-	TRMv9Yly1cQ4vym0ud3xBAl54igdJL0cD5SjvoNj3EAXwHnH2Xi0G8krsF8QtASrKs9/5VwB5IW
-	EEQSNPFlsB5SdS2ynSmzAhXa5shpJ5R9W7Te15Z3OLlBRGGgzAklL7JWQnpliHpnCayqScBzvQ2
-	natAd0oedcuALr7jVPM2Y=
-X-Google-Smtp-Source: AGHT+IGT0YXZ4/RB0qtajVA36PRLRDii7FAFBTwklgHGc/BBIFTZc9qdo3pWAdF9Wg2nNaVMUuY3ug==
-X-Received: by 2002:a05:6102:50a3:b0:57d:9305:63db with SMTP id ada2fe7eead31-5d41d08b522mr3849521137.15.1759754701724;
-        Mon, 06 Oct 2025 05:45:01 -0700 (PDT)
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5d40c6c7e73sm3332485137.15.2025.10.06.05.45.00
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Oct 2025 05:45:01 -0700 (PDT)
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-59dff155dc6so3146554137.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 05:45:00 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX0aa4ZhvpsD+u/UZt8Uoth+gymS+YMxkX3lq4aA1tiAfdZGN90ZGDneURfnWWwajCobbzTBgZo/TRL@vger.kernel.org
-X-Received: by 2002:a05:6102:8390:20b0:59c:110b:d09 with SMTP id
- ada2fe7eead31-5d41d119086mr2823864137.21.1759754700652; Mon, 06 Oct 2025
- 05:45:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F83128151E;
+	Mon,  6 Oct 2025 12:45:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.93.195.33
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759754727; cv=fail; b=DZ1yCxV8GVVhPBpGMgRda3okzpP76elDuoKfuhITZqOE/JDZufMVfIBBAZNP5GktpbyyFPaU0CNluG5GeNopiOiXiGSPpwv41aMjX3LK0EyQb3G7oX08mzxg08a6Exz6pxm7gQG7+oeRIVSuUgrwIfPEzp0J+cf+158VFZS0/Ek=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759754727; c=relaxed/simple;
+	bh=7/My7vamDiBr3F5s4B0jtgeYyPz8UwEkKVPkzr+z3G4=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=fGCtoejsFN4HnQ4xR+RkQ/8thOqH3cl5LoMJp0ssBYlJaep7snRfbpgGiQxaw7aHQqugWU3hutdhDe8YQv8e9D7gwB4vTHXzbtjJNK7vZMbeQhaXYgmcmVOgAsJIHBtUuVAnRJMfOBFVi5cXF5L5cO+O5ukIRba7+jYzZ151Prg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Bu+TQ+o1; arc=fail smtp.client-ip=40.93.195.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=xsTvQlgaU9z92ggb0+MkYtjXk0oyeUeeoupGOntYCIBqDfEkpfq5KNBjPhwa5HU1WPzcVu7yEJr90aSIwkiOaQIoRRrX954OK4t8skhQapaq9GeE58y+ghOboPAqwtJYUuGXYNKgodtMu2UqhRps3KXrR2XiJkHnL435uDBRWxmLoRExzrN63bOVvtHuST+H9lJadWsqfFWKdul0Fk9bjLLOeTYc3AGQel+VTgZlOWtvEXMK3+0WTWgrDKZfLtJh89erkToXIQlycX2LflnAtWQ2B+NK8u1Y8AAKcIoSP7g7FpVFCiC5ICuSWNJmzAuwQAJstfOMsThymVBa79+t8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=IXwYiPRUPYYI8Lqu9sk5FLVIQINDS5hYG1IlDAD/GUM=;
+ b=pE0c7K7sxPI8FLyUFvYy1rV2E7erAPz3vUSV78huxnbxMj123vX6V3hKf1ST4VRmRI7ryOMbsPmL2VoCaeY4wWytcjUD3HgBdH42f7otYU7sIxgPAmxetywPxswslcrqrMWXStBovFy7s6OGS5qFinSPtS+WT/rkY6Q2JVCxib266S/WtBgEVtYaF9iKBHXrE4WcEnAV3y+ZVNSJNb9s+A7SwLUzPqs8R+PWs/w/uTa55YdYx4wMAao1+LHt/1UpzSbz2vvUdyV/+2HqtoiYxRK+vsgZir9ivKcngzI9F4BU/OdPnSP6GqJsnQuXRvrgI6bAX3bR0TRTE+uPe+0vYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=IXwYiPRUPYYI8Lqu9sk5FLVIQINDS5hYG1IlDAD/GUM=;
+ b=Bu+TQ+o1dBohfR1JR8ileVSvBxvrUssZjwFrFdh3z6MIiSoMb1pFjN709hfzQ1SjAZsjMDbMzHSKKGobKQLKr6XEhh6uSeVXvM+LTbclTYxpmLh4Z+dxAVflaFaYZ3FWdEiHye7QFFT7IxceqFA7ntjpaDp0HSzEsC098/RSh1g=
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com (2603:10b6:408:176::16)
+ by SN7PR12MB7204.namprd12.prod.outlook.com (2603:10b6:806:2ab::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Mon, 6 Oct
+ 2025 12:45:13 +0000
+Received: from LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::b5c5:3390:35bc:eb9f]) by LV2PR12MB5869.namprd12.prod.outlook.com
+ ([fe80::b5c5:3390:35bc:eb9f%6]) with mapi id 15.20.9182.017; Mon, 6 Oct 2025
+ 12:45:13 +0000
+From: "Neeli, Ajay" <Ajay.Neeli@amd.com>
+To: Bart Van Assche <bvanassche@acm.org>
+CC: "alim.akhtar@samsung.com" <alim.akhtar@samsung.com>, "avri.altman@wdc.com"
+	<avri.altman@wdc.com>, "linux-scsi@vger.kernel.org"
+	<linux-scsi@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "git (AMD-Xilinx)" <git@amd.com>, "Simek,
+ Michal" <michal.simek@amd.com>, "Goud, Srinivas" <srinivas.goud@amd.com>,
+	"Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>, "Potthuri, Sai Krishna"
+	<sai.krishna.potthuri@amd.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"martin.petersen@oracle.com" <martin.petersen@oracle.com>,
+	"pedrom.sousa@synopsys.com" <pedrom.sousa@synopsys.com>,
+	"James.Bottomley@HansenPartnership.com"
+	<James.Bottomley@HansenPartnership.com>, "robh@kernel.org" <robh@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>
+Subject: RE: [PATCH 5/5] ufs: amd-versal2: Add AMD Versal Gen 2 UFS support
+Thread-Topic: [PATCH 5/5] ufs: amd-versal2: Add AMD Versal Gen 2 UFS support
+Thread-Index: AQHcKWKCuDUMeQekFkqjRSjml59V6bSax2UAgAjU5/A=
+Date: Mon, 6 Oct 2025 12:45:00 +0000
+Deferred-Delivery: Mon, 6 Oct 2025 12:30:00 +0000
+Message-ID:
+ <LV2PR12MB5869753B10DD898CD38BDCCE8BE3A@LV2PR12MB5869.namprd12.prod.outlook.com>
+References: <20250919123835.17899-1-ajay.neeli@amd.com>
+ <20250919123835.17899-6-ajay.neeli@amd.com>
+ <911ac2e9-2f3d-41d2-8a2f-74d2aebef21d@acm.org>
+In-Reply-To: <911ac2e9-2f3d-41d2-8a2f-74d2aebef21d@acm.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+ MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-09-25T08:37:24.0000000Z;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
+ Source;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: LV2PR12MB5869:EE_|SN7PR12MB7204:EE_
+x-ms-office365-filtering-correlation-id: 81431ad1-56fa-498f-9c31-08de04d6316c
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?q2ZghWuv/9cjH+lPnISO6ILcpiG57Zrb4vCdhI4FKZP2F6CQhIfe7l9AF8vh?=
+ =?us-ascii?Q?qJ4pEb8h40gmLxAhcKCnysXfsHJU3Uwl47Nim7VRnLARkbRIKJ2XYCj6S5x4?=
+ =?us-ascii?Q?GiYGMXm6KRE3vKgKgkieqxcwhh6Gry2baS3XFAyO85CTgidQdR30b6ymetN/?=
+ =?us-ascii?Q?g6HnEOTRrYplDDcoQ5ByQqa3PPs3a1zwlWx1EUPQJCvBAkRbFqEhOwKdOxUR?=
+ =?us-ascii?Q?kaQGB7LaCidzhWwgPVcRm0LnMuLoU5lIC0BT9Y2BxRBP4rHMzwr9WUPLc+vX?=
+ =?us-ascii?Q?ZwDNJpwulVIlIJLQSF6YRNX4bEWVhV61kJKvKZxCxD3AIMgBg+eehMbdGSOn?=
+ =?us-ascii?Q?HTrx8YKDJ8yLcIuC60DWiezZo0f9pnHuJDwPbs5FlM8nN3dkgiaJ/8iakHHe?=
+ =?us-ascii?Q?wkVHzv9oKY5cJXJ2/KqV8WYbwaShWOfQPmCBrze7yeKe80PNaSUd59TyZwic?=
+ =?us-ascii?Q?wMr47hyJBnxELD52w1zKrcJmDe+rIdD4SPEyuPAUUnsX5tWo8dUpuvBuck6o?=
+ =?us-ascii?Q?MRhR83/GgF8rGWC2Huj1vwbSuycBVQbB7kZGmj+z9Jh++FOXOwsI7/leCHMC?=
+ =?us-ascii?Q?YxhNc549XT/o5aen3EqGPz85VyxsOlQEtZy0dhUA0q1RoJfRY9P0JhUGvRAq?=
+ =?us-ascii?Q?xa4l+oeCglheEaATwtLP9EA2rCTjQ9v7cFCwDZfhHcerZXjdMqLNq+IFinlL?=
+ =?us-ascii?Q?NypYrIkGhB34Q5Mw6FQ2s29sRK+9kFWkiywxqYYyoOEXHi1AT6w+exMdAkTn?=
+ =?us-ascii?Q?YXYUaFL8beaTFu9D9F02+FKO0sfIyFApiCLhfG1evZ3KAV6fyyP+B5k7PHbD?=
+ =?us-ascii?Q?HJmJJu7MKusjp9rcDjnYHs9s1kxmY4z9M6giXX6lutS+rsLZIfjizIXk9Xa4?=
+ =?us-ascii?Q?QL1oqMzLykaBLH2OXmSqeyosPecb/5Sxq2QZExHhu+Wz/J8puXYVkDwyrSR1?=
+ =?us-ascii?Q?KcLI2zO6qKchI8EMlSsAA6bq82UUtUTi05bvBKCVHY/SuzkZqJ3CSsObRciH?=
+ =?us-ascii?Q?K8JLiQC+TBhoXclq3RLtsxhIMMLp9+H/l1BJMNI8KdJrWjE05oUEq5RFfFFa?=
+ =?us-ascii?Q?Jccv4xmrLqBzho4gMI/VWEu7IWyAeFSuG/xADAChbSQbRvmWabMmBj0gaszR?=
+ =?us-ascii?Q?HQpgbPS0j/KrxFbomlNXl5UOWq3LoD3SnWvDQ7lzkX8HqoYEKxKK1QI2O0qs?=
+ =?us-ascii?Q?2jowPQ9sQSL7X10Aj1NmOZLmcwn32VeW+2bLHjdO2yYFpSvcxqghERQQQQMY?=
+ =?us-ascii?Q?kuVpzTFL6TBl3BBIcRfZdFHOXjNbiTiZRGfQ+RGzM3WxaEqWGkWxUe4tI/v2?=
+ =?us-ascii?Q?nStS3FKvtikDUr0ShEav1qubpFlN9WYX7B7XEfD6WkzUTFgsqhXl3EVc83cg?=
+ =?us-ascii?Q?qsyIbURaUJh7vUZx4CGPHeqrVoazffAoyo9p/1rr6WSw0XtIUBChP9r+4PI6?=
+ =?us-ascii?Q?YOkDzkmqbA+U03tkdZRMIJ4XCnpMWj0BjE0DhsV4xplRiffOpigP8S/W8wn3?=
+ =?us-ascii?Q?Pe4FhlSypuU+kl/4x/iqWaOb1LSu6uXQ9Pvk?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV2PR12MB5869.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?7XR96E5mE7hhLF6TXm6wxvdLykPZiDilguEzWWy35mUbWvybcKDcHm0tZ3KB?=
+ =?us-ascii?Q?CFhi8Ua87P9XMJqrdo6htnkmi1G/bsu19PmwjmDKFG72Mgpiq4O3wMjAkdCM?=
+ =?us-ascii?Q?8R1MuvbEhY/EE698cf6Hvit5jhiJFYGXl6WGv1Jnk88lKieSZfX+zkk4YWK1?=
+ =?us-ascii?Q?+W/VZGFgveM0RBUwHYcZisAfE8rsSw4LKRiHozruJHvTrD8D2yI6FAuzcqLL?=
+ =?us-ascii?Q?u/PY3togvihE505vLn+pi+TPQH9gMXsNHwVuiY4sFXk57xE4MLM/rD4pk13Y?=
+ =?us-ascii?Q?f5UF8x/L1oa+LfIqV/lSygnjA2erW6buORwA+gwIvjhbP0h707KUOTpUQM8l?=
+ =?us-ascii?Q?8ZFoIQ3+IcbFGtisHnOUs82z5buigEpYK6D8KufBseaXZUxvlgUXqmSo9M1N?=
+ =?us-ascii?Q?UBBc33y8a2t1IkLI/AF2ayoIzkR2ngLqOOo1G5Feou4+axPiEGIPrlhipBE/?=
+ =?us-ascii?Q?7DEkXQUinCnTWPFTsQ6GnecIy6gDuNQoLdSS7nFdt0B/tXpIKBVdE2FfjDP6?=
+ =?us-ascii?Q?rWxBDThrwvA9FNwrHfQvJf1oLF3KbIdCI7/wScIRig4Aqm7CItsuWFHKHDr+?=
+ =?us-ascii?Q?TLp3WQGUI0+FdA0tdgyGsl3EjNMyDCdBMM7cY23af4JGV0vPsKOg9UuGQIcK?=
+ =?us-ascii?Q?IRJFHpozRLuGm3a+Bh8+SmDrWB+QIXOYcO/rhQSmGpbJNvVIkj1KXpVLdSSZ?=
+ =?us-ascii?Q?Z3J8cvTKmaXqxXHTgUDjsNoa/T1LPssH6s17DCgYpnaNzMMDNPv1unsBFfcJ?=
+ =?us-ascii?Q?GnaWmcnCzQJUctVWm7aEJq3TJt5eUTziNAEMD7jFU6nkdNv6k/mrCkXXEoj5?=
+ =?us-ascii?Q?gdFyhC8y9ShCyPlGqkE5zQW7L/uh/SrcZw+5z+e2HPYtz2l9YtjRVNBbU6Qg?=
+ =?us-ascii?Q?FwD6PDX2rjIr3yf5uPBmcN9+bVGQo4PWqkLBsb+BZ4PgJmNthjoF6IPGaEvb?=
+ =?us-ascii?Q?ibaofN0uDvT7OGNbiY/JDncmZuGuKY4HJQ75VTsH1DvnxzkNzLkvghYnJEt1?=
+ =?us-ascii?Q?NX9g0QyhBcS3siXh/JY4rgtUTVjOhLOK6cWfoCnqi+xfJSiQ/K0wRdXh79Mj?=
+ =?us-ascii?Q?+tj2M2olOsfA3Bp0Schzq41fXhruL7q8CXa5VtY1ol7k/7+6PbxXdAmD+0TB?=
+ =?us-ascii?Q?76lbdGOTqKWPNn1IIcIAs056xgbX17qnEHZdeU5CfxYcW2HM9a3/AH+azufD?=
+ =?us-ascii?Q?tisCvyoFjxbNRG5nHVQKk0gN1Rf6tkpEFygcFqEDVI5ZshvNx1Wx42RbAVYU?=
+ =?us-ascii?Q?MvPe0RKz2gahKUWGrtLcAQhf3BJxDeWQEAsaaVGNQ2e/+gxseaVce9ShP+rJ?=
+ =?us-ascii?Q?A2x0SRADs4TTdClBhYVZsJIFqLjCi19w5ScTrhlmXRQy14rZxvICZnHX3Xg/?=
+ =?us-ascii?Q?qyJs4cFm3KIc+6cmflnotczW14QkZoR7tzilZBynY3sQ+ejVG1LzJZKcBUtK?=
+ =?us-ascii?Q?pTnYZY0AfWOS9QyJb6v4tHi4hB15CH2x3z0h81N0q213qiYdDU9HsmIanIqB?=
+ =?us-ascii?Q?uvBArVa8nQfLClyYjkTxop4d5rmcxUQ8LiB6JdbeOVtZVyWTGw83GesFpT0i?=
+ =?us-ascii?Q?z9y49XvjrwR+/cGiaconLeAAgfq2i3wvrxDnLoMc?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251002161728.186024-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251002161728.186024-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20251002161728.186024-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 6 Oct 2025 14:44:49 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVP4xgsc6rD_Z6OMAXR-mOe9WdfZb2jXZSzDmXdgZzFSw@mail.gmail.com>
-X-Gm-Features: AS18NWAKcswsGBx4X1VkXRPN2VpzHKv-APvKiuQzxFxRIZ_kWAvuysedQxbLQ04
-Message-ID: <CAMuHMdVP4xgsc6rD_Z6OMAXR-mOe9WdfZb2jXZSzDmXdgZzFSw@mail.gmail.com>
-Subject: Re: [PATCH v9 2/6] clk: renesas: rzv2h-cpg: Add support for DSI clocks
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: LV2PR12MB5869.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 81431ad1-56fa-498f-9c31-08de04d6316c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Oct 2025 12:45:13.1270
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: iVJ5FFahz0zoMsC9hxZ0HTRKXqHDnjfYLMmiZ69DOHiOPqv9IBG+I/ynf9nQ+frGDw6K4I/tkH4ewiO/a0GE8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7204
 
-Hi Prabhakar,
+[Public]
 
-On Thu, 2 Oct 2025 at 18:17, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> -----Original Message-----
+> From: Bart Van Assche <bvanassche@acm.org>
+> Sent: Friday, September 19, 2025 11:15 PM
+> To: Neeli, Ajay <Ajay.Neeli@amd.com>; martin.petersen@oracle.com; James.B=
+ottomley@HansenPartnership.com;
+> robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org; pedrom.sousa@sy=
+nopsys.com
+> Cc: alim.akhtar@samsung.com; avri.altman@wdc.com; linux-scsi@vger.kernel.=
+org; devicetree@vger.kernel.org; git (AMD-
+> Xilinx) <git@amd.com>; Simek, Michal <michal.simek@amd.com>; Goud, Sriniv=
+as <srinivas.goud@amd.com>; Pandey,
+> Radhey Shyam <radhey.shyam.pandey@amd.com>; Potthuri, Sai Krishna <sai.kr=
+ishna.potthuri@amd.com>
+> Subject: Re: [PATCH 5/5] ufs: amd-versal2: Add AMD Versal Gen 2 UFS suppo=
+rt
 >
-> Add support for PLLDSI and its post-dividers in the RZ/V2H CPG driver and
-> export helper APIs for use by the DSI driver.
+> Caution: This message originated from an External Source. Use proper caut=
+ion when opening attachments, clicking links, or
+> responding.
 >
-> Introduce per-PLL-DSI state in the CPG private structure and provide a
-> set of helper functions that find valid PLL parameter combinations for
-> a requested frequency. The new helpers are rzv2h_get_pll_pars(),
-> rzv2h_get_pll_div_pars(), rzv2h_get_pll_divs_pars() and
-> rzv2h_get_pll_dtable_pars() and they are exported in the "RZV2H_CPG"
-> namespace for use by other consumers (notably the DSI driver). These
-> helpers perform iterative searches over PLL parameters (M, K, P, S)
-> and optional post-dividers and return the best match (or an exact
-> match when possible).
 >
-> Move PLL/CLK related limits and parameter types into the shared
-> include (include/linux/clk/renesas.h) by adding struct rzv2h_pll_limits,
-> struct rzv2h_pll_pars and struct rzv2h_pll_div_pars plus the
-> RZV2H_CPG_PLL_DSI_LIMITS() helper macro to define DSI PLL limits.
+> On 9/19/25 5:38 AM, Ajay Neeli wrote:
+> > +#include "ufshcd-dwc.h"
+> > +#include "ufshcd-pltfrm.h"
+> > +#include "ufshci-dwc.h"
 >
-> This change centralises the PLLDSI algorithms so the CPG and DSI
-> drivers compute PLL parameters consistently and allows the DSI driver
-> to accurately request rates and program its PLL.
+> The *-dwc.h header files are for Synopsys Designware UFS host
+> controllers only and hence should not be included in the implementation
+> of the AMD Versal UFS host controller.
+
+AMD Versal Gen2 UFS Host controller is built on top of DWC Synopsys UFS hos=
+t controller,
+which is why included those header files in the implementation.
+
 >
-> Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v8->v9:
-> - Dropped `renesas-rzv2h-cpg-pll.h` header and merged into `renesas.h`
-> - Exported the symbols for PLL calculation apis
-> - Updated commit message
-> - Dropped reviewed-by tags due to above changes
-
-Thanks for the update!
-
-> --- a/drivers/clk/renesas/rzv2h-cpg.c
-> +++ b/drivers/clk/renesas/rzv2h-cpg.c
-
-> +/*
-> + * rzv2h_get_pll_div_pars - Finds the best combination of PLL parameters
-> + * and divider value for a given frequency.
-> + *
-> + * @limits: Pointer to the structure containing the limits for the PLL parameters
-> + * @pars: Pointer to the structure where the best calculated PLL parameters and
-> + * divider values will be stored
-> + * @divider: Divider value to be applied to the PLL output
-> + * @freq_millihz: Target output frequency in millihertz
-> + *
-> + * This function calculates the best set of PLL parameters (M, K, P, S) where
-> + * the divider value is already known. See rzv2h_get_pll_pars() for more details
-> + * on how the PLL parameters are calculated.
-> + */
-> +bool rzv2h_get_pll_div_pars(const struct rzv2h_pll_limits *limits,
-> +                           struct rzv2h_pll_div_pars *pars, u8 divider,
-> +                           u64 freq_millihz)
-> +{
-> +       if (!rzv2h_get_pll_pars(limits, &pars->pll, freq_millihz * divider))
-> +               return false;
-> +
-> +       pars->div.divider_value = divider;
-> +       pars->div.freq_millihz = DIV_U64_ROUND_CLOSEST(pars->pll.freq_millihz, divider);
-> +       pars->div.error_millihz = freq_millihz - pars->div.freq_millihz;
-> +
-> +       return true;
-> +}
-> +EXPORT_SYMBOL_NS_GPL(rzv2h_get_pll_div_pars, "RZV2H_CPG");
-
-This function does not seem to be used outside this module yet,
-so why is it exported?
-
-If you do ever need it, you could define a simple wrapper in the
-header file:
-
-    static inline bool rzv2h_get_pll_div_pars(const struct
-rzv2h_pll_limits *limits,
-                                              struct rzv2h_pll_div_pars *pars,
-                                              u8 divider, u64 freq_millihz)
-    {
-            return rzv2h_get_pll_divs_pars(limits, pars, &divider, 1,
-freq_millihz);
-    }
-
-> +
-> +/*
-> + * rzv2h_get_pll_divs_pars - Finds the best combination of PLL parameters
-> + * and divider value for a given frequency.
-> + *
-> + * @limits: Pointer to the structure containing the limits for the PLL parameters
-> + * @pars: Pointer to the structure where the best calculated PLL parameters and
-> + * divider values will be stored
-> + * @table: Pointer to the array of valid divider values
-> + * @table_size: Size of the divider values array
-> + * @freq_millihz: Target output frequency in millihertz
-> + *
-> + * This function calculates the best set of PLL parameters (M, K, P, S) and divider
-> + * value to achieve the desired frequency. See rzv2h_get_pll_pars() for more details
-> + * on how the PLL parameters are calculated.
-> + *
-> + * freq_millihz is the desired frequency generated by the PLL followed by a
-> + * a gear.
-> + */
-> +bool rzv2h_get_pll_divs_pars(const struct rzv2h_pll_limits *limits,
-> +                            struct rzv2h_pll_div_pars *pars,
-> +                            const u8 *table, u8 table_size, u64 freq_millihz)
-> +{
-> +       struct rzv2h_pll_div_pars p, best;
-> +
-> +       best.div.error_millihz = S64_MAX;
-> +       p.div.error_millihz = S64_MAX;
-> +       for (unsigned int i = 0; i < table_size; i++) {
-> +               if (!rzv2h_get_pll_div_pars(limits, &p, table[i], freq_millihz))
-
-If you don't need rzv2h_get_pll_div_pars() elsewhere, you could just
-expand it here.
-
-> +                       continue;
-> +
-> +               if (p.div.error_millihz == 0) {
-> +                       *pars = p;
-> +                       return true;
-> +               }
-> +
-> +               if (abs(best.div.error_millihz) > abs(p.div.error_millihz))
-> +                       best = p;
-> +       }
-> +
-> +       if (best.div.error_millihz == S64_MAX)
-> +               return false;
-> +
-> +       *pars = best;
-> +       return true;
-> +}
-> +EXPORT_SYMBOL_NS_GPL(rzv2h_get_pll_divs_pars, "RZV2H_CPG");
-> +
-> +/*
-> + * rzv2h_get_pll_dtable_pars - Finds the best combination of PLL parameters
-> + * and divider value for a given frequency using a divider table.
-> + *
-> + * @limits: Pointer to the structure containing the limits for the PLL parameters
-> + * @pars: Pointer to the structure where the best calculated PLL parameters and
-> + * divider values will be stored
-> + * @dtable: Pointer to the array of valid divider values
-> + * @freq_millihz: Target output frequency in millihertz
-> + *
-> + * See rzv2h_get_pll_divs_pars() for more details on how the PLL
-> + * parameters and divider values are calculated.
-> + */
-> +bool rzv2h_get_pll_dtable_pars(const struct rzv2h_pll_limits *limits,
-> +                              struct rzv2h_pll_div_pars *pars,
-> +                              const struct clk_div_table *dtable, u64 freq_millihz)
-> +{
-> +       const struct clk_div_table *div = dtable;
-> +       u8 table[RZV2H_MAX_DIV_TABLES] = { 0 };
-> +       unsigned int i = 0;
-> +
-> +       for (; div->div; div++) {
-> +               if (i >= RZV2H_MAX_DIV_TABLES)
-> +                       return false;
-> +               table[i++] = div->div;
-> +       }
-> +
-> +       return rzv2h_get_pll_divs_pars(limits, pars, table, i, freq_millihz);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(rzv2h_get_pll_dtable_pars, "RZV2H_CPG");
-
-This function does not seem to be used outside this module yet,
-so why is it exported?
-
-> +
-> +static unsigned long rzv2h_cpg_plldsi_div_recalc_rate(struct clk_hw *hw,
-> +                                                     unsigned long parent_rate)
-> +{
-> +       struct rzv2h_plldsi_div_clk *dsi_div = to_plldsi_div_clk(hw);
-> +       struct rzv2h_cpg_priv *priv = dsi_div->priv;
-> +       struct ddiv ddiv = dsi_div->ddiv;
-> +       u32 div;
-> +
-> +       div = readl(priv->base + ddiv.offset);
-> +       div >>= ddiv.shift;
-> +       div &= clk_div_mask(ddiv.width);
-> +       div = dsi_div->dtable[div].div;
-> +
-> +       return DIV_ROUND_CLOSEST_ULL(parent_rate, div);
-> +}
-> +
-> +static int rzv2h_cpg_plldsi_div_determine_rate(struct clk_hw *hw,
-> +                                              struct clk_rate_request *req)
-> +{
-> +       struct rzv2h_plldsi_div_clk *dsi_div = to_plldsi_div_clk(hw);
-> +       struct pll_clk *pll_clk = to_pll(clk_hw_get_parent(hw));
-> +       struct rzv2h_cpg_priv *priv = dsi_div->priv;
-> +       struct rzv2h_pll_div_pars *dsi_params;
-> +       struct rzv2h_pll_dsi_info *dsi_info;
-> +       u64 rate_millihz;
-> +
-> +       dsi_info = &priv->pll_dsi_info[pll_clk->pll.instance];
-> +       dsi_params = &dsi_info->pll_dsi_parameters;
-> +
-> +       rate_millihz = mul_u32_u32(req->rate, MILLI);
-> +       if (rate_millihz == dsi_params->div.error_millihz + dsi_params->div.freq_millihz)
-> +               goto exit_determine_rate;
-> +
-> +       if (!rzv2h_get_pll_dtable_pars(dsi_info->pll_dsi_limits, dsi_params, dsi_div->dtable,
-> +                                      rate_millihz)) {
-
-If you don't need rzv2h_get_pll_dtable_pars() elsewhere, you could just
-expand it here.
-
-> +               dev_err(priv->dev,
-> +                       "failed to determine rate for req->rate: %lu\n",
-> +                       req->rate);
-> +               return -EINVAL;
-> +       }
-> +
-> +exit_determine_rate:
-> +       req->rate = DIV_ROUND_CLOSEST_ULL(dsi_params->div.freq_millihz, MILLI);
-> +       req->best_parent_rate = req->rate * dsi_params->div.divider_value;
-> +       dsi_info->req_pll_dsi_rate = req->best_parent_rate;
-> +
-> +       return 0;
-> +}
-
-> --- a/include/linux/clk/renesas.h
-> +++ b/include/linux/clk/renesas.h
-> @@ -10,7 +10,9 @@
->  #ifndef __LINUX_CLK_RENESAS_H_
->  #define __LINUX_CLK_RENESAS_H_
+> > diff --git a/drivers/ufs/host/ufshcd-dwc.h b/drivers/ufs/host/ufshcd-dw=
+c.h
+> > index ad91ea5..379f3cf 100644
+> > --- a/drivers/ufs/host/ufshcd-dwc.h
+> > +++ b/drivers/ufs/host/ufshcd-dwc.h
+> > @@ -12,6 +12,55 @@
+> >
+> >   #include <ufs/ufshcd.h>
+> >
+> > +/* PHY modes */
+> > +#define UFSHCD_DWC_PHY_MODE_ROM         0
 >
-> +#include <linux/clk-provider.h>
->  #include <linux/types.h>
-> +#include <linux/units.h>
->
->  struct device;
->  struct device_node;
-> @@ -32,4 +34,138 @@ void cpg_mssr_detach_dev(struct generic_pm_domain *unused, struct device *dev);
->  #define cpg_mssr_attach_dev    NULL
->  #define cpg_mssr_detach_dev    NULL
->  #endif
-> +
-> +/**
-> + * struct rzv2h_pll_limits - PLL parameter constraints
-> + *
-> + * This structure defines the minimum and maximum allowed values for
-> + * various parameters used to configure a PLL. These limits ensure
-> + * the PLL operates within valid and stable ranges.
-> + *
-> + * @fout: Output frequency range (in MHz)
-> + * @fout.min: Minimum allowed output frequency
-> + * @fout.max: Maximum allowed output frequency
-> + *
-> + * @fvco: PLL oscillation frequency range (in MHz)
-> + * @fvco.min: Minimum allowed VCO frequency
-> + * @fvco.max: Maximum allowed VCO frequency
-> + *
-> + * @m: Main-divider range
-> + * @m.min: Minimum main-divider value
-> + * @m.max: Maximum main-divider value
-> + *
-> + * @p: Pre-divider range
-> + * @p.min: Minimum pre-divider value
-> + * @p.max: Maximum pre-divider value
-> + *
-> + * @s: Divider range
-> + * @s.min: Minimum divider value
-> + * @s.max: Maximum divider value
-> + *
-> + * @k: Delta-sigma modulator range (signed)
-> + * @k.min: Minimum delta-sigma value
-> + * @k.max: Maximum delta-sigma value
-> + */
-> +struct rzv2h_pll_limits {
-> +       struct {
-> +               u32 min;
-> +               u32 max;
-> +       } fout;
-> +
-> +       struct {
-> +               u32 min;
-> +               u32 max;
-> +       } fvco;
-> +
-> +       struct {
-> +               u16 min;
-> +               u16 max;
-> +       } m;
-> +
-> +       struct {
-> +               u8 min;
-> +               u8 max;
-> +       } p;
-> +
-> +       struct {
-> +               u8 min;
-> +               u8 max;
-> +       } s;
-> +
-> +       struct {
-> +               s16 min;
-> +               s16 max;
-> +       } k;
-> +};
-> +
-> +/**
-> + * struct rzv2h_pll_pars - PLL configuration parameters
-> + *
-> + * This structure contains the configuration parameters for the
-> + * Phase-Locked Loop (PLL), used to achieve a specific output frequency.
-> + *
-> + * @m: Main divider value
-> + * @p: Pre-divider value
-> + * @s: Output divider value
-> + * @k: Delta-sigma modulation value
-> + * @freq_millihz: Calculated PLL output frequency in millihertz
-> + * @error_millihz: Frequency error from target in millihertz (signed)
-> + */
-> +struct rzv2h_pll_pars {
-> +       u16 m;
-> +       u8 p;
-> +       u8 s;
-> +       s16 k;
-> +       u64 freq_millihz;
-> +       s64 error_millihz;
-> +};
-> +
-> +/**
-> + * struct rzv2h_pll_div_pars - PLL parameters with post-divider
-> + *
-> + * This structure is used for PLLs that include an additional post-divider
-> + * stage after the main PLL block. It contains both the PLL configuration
-> + * parameters and the resulting frequency/error values after the divider.
-> + *
-> + * @pll: Main PLL configuration parameters (see struct rzv2h_pll_pars)
-> + *
-> + * @div: Post-divider configuration and result
-> + * @div.divider_value: Divider applied to the PLL output
-> + * @div.freq_millihz: Output frequency after divider in millihertz
-> + * @div.error_millihz: Frequency error from target in millihertz (signed)
-> + */
-> +struct rzv2h_pll_div_pars {
-> +       struct rzv2h_pll_pars pll;
-> +       struct {
-> +               u8 divider_value;
-> +               u64 freq_millihz;
-> +               s64 error_millihz;
-> +       } div;
-> +};
-> +
-> +#define RZV2H_CPG_PLL_DSI_LIMITS(name)                                 \
-> +       static const struct rzv2h_pll_limits (name) = {                 \
-> +               .fout = { .min = 25 * MEGA, .max = 375 * MEGA },        \
-> +               .fvco = { .min = 1600 * MEGA, .max = 3200 * MEGA },     \
-> +               .m = { .min = 64, .max = 533 },                         \
-> +               .p = { .min = 1, .max = 4 },                            \
-> +               .s = { .min = 0, .max = 6 },                            \
-> +               .k = { .min = -32768, .max = 32767 },                   \
-> +       }                                                               \
-> +
-> +bool rzv2h_get_pll_pars(const struct rzv2h_pll_limits *limits,
-> +                       struct rzv2h_pll_pars *pars, u64 freq_millihz);
+> Please do not modify header files from other controller vendors.
 
-Please add a dummy returning false for the !CONFIG_CLK_RZV2H case.
+Sure, will add the macro to the driver source file instead
 
-> +
-> +bool rzv2h_get_pll_div_pars(const struct rzv2h_pll_limits *limits,
-> +                           struct rzv2h_pll_div_pars *pars, u8 divider,
-> +                           u64 freq_millihz);
+Regards,
+Ajay.
 
-Unused, please drop.
 
-> +
-> +bool rzv2h_get_pll_divs_pars(const struct rzv2h_pll_limits *limits,
-> +                            struct rzv2h_pll_div_pars *pars,
-> +                            const u8 *table, u8 table_size, u64 freq_millihz);
-
-Please add a dummy returning false for the !CONFIG_CLK_RZV2H case.
-
-> +
-> +bool rzv2h_get_pll_dtable_pars(const struct rzv2h_pll_limits *limits,
-> +                              struct rzv2h_pll_div_pars *pars,
-> +                              const struct clk_div_table *dtable, u64 freq_millihz);
-
-Unused, please drop.
-
-> +
->  #endif
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
