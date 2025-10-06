@@ -1,134 +1,135 @@
-Return-Path: <devicetree+bounces-223751-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223752-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9304DBBD4FC
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 10:10:57 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51F4CBBD517
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 10:16:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66112189430C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 08:11:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3BD4D4E8642
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 08:16:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 112A425B31B;
-	Mon,  6 Oct 2025 08:10:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 698D81A83F8;
+	Mon,  6 Oct 2025 08:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oKGWMH0K"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="cRXE+qfS";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Owd47VP2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-a4-smtp.messagingengine.com (fout-a4-smtp.messagingengine.com [103.168.172.147])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B74F44A06;
-	Mon,  6 Oct 2025 08:10:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 355361E5205;
+	Mon,  6 Oct 2025 08:16:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.147
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759738253; cv=none; b=AaUGmDbMIuPO8dctUlGH/eVe4rd4TlQcVW5F3zoZUxkQuW9i8ZiJ23VqaVUVLQqLqWZtZEpUMeKc+8kIo4Vnz/5y7XXkSToDafU3ieAnzJ3zyGMAJKdfuf36YXxqJx+7tYYcOkhhxM8czoZ5IFWNXHTOzkT7A3Hotj6tnb4rtN8=
+	t=1759738584; cv=none; b=mq9skgxYSaY6j3tVhZoh8hw5LB1M60LMK3P6hpUHFzDZ8oFsNC+XNiyj4/UPZ414mL4DhnUegIG4vevxWbjHl6SxVSuU6lKAQ/YsxaUfLO5bPVw8oT4IpOJZMum8t4pRj3yVHx/EyIzFRdkGrfFh19kZK5wmFEJKBHGz0WZa1hM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759738253; c=relaxed/simple;
-	bh=oTIhDkCwIM+9ZK5Yt+oN2PlT5Rae3WkdT7logVkhR1Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BpMqbBrVBhzALLbfM08hc9O0cuS5HuYbRl5Ur0KOe8feUnLOtE1+7W7FBMVpFa0o5EV74GiTqjvQuMFfUMwqaQncfpjy8jDSAUMPSROKk0HL2X0k+CrzQ3/I8tzJJJhl+X0Vo6o3BTYcwn1JNViVnxsEEUosxeBmkMiNxgZHJaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oKGWMH0K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63DA1C4CEF5;
-	Mon,  6 Oct 2025 08:10:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759738252;
-	bh=oTIhDkCwIM+9ZK5Yt+oN2PlT5Rae3WkdT7logVkhR1Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oKGWMH0KZJtsbAcJei006XfuUXtKczdbm3Xl5oqE8EjsnrK9Zx04ugriW9i2opzIr
-	 SIz2ZLRFkp1Iir6b6+LP+rFzrHBreyWfWSNbNc0lUyslslR7T/fdSKFV6d3SRnY4yI
-	 DfLg35YeN6WAm56dJxcazYtsQKg1KF5BfeHup2Myz5xNOpjkoeSM1as++n9EmpopnX
-	 grKAccYk38/uoI1S8jqAdBzHvKWcNW4d1j7d5TqX8UihstZe+A+xsKy1W1xa1bQYC7
-	 xWYggN/Et/9innfB9p5EEFEBgXQmT5zh8fFi+/d1tTJJIXFlLPmVsNslG1I9ya/cL2
-	 s+VXGXPk4f3Yg==
-Message-ID: <17eb5593-5057-4843-ac9e-42645605c320@kernel.org>
-Date: Mon, 6 Oct 2025 17:10:47 +0900
+	s=arc-20240116; t=1759738584; c=relaxed/simple;
+	bh=aU/AkKh6cHB1YKAxjl1qYdPyn6VUitmFNS5MdoyPgZ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VErMAqlBeQOsk8E2JrLUF9e6yDoRtsY4gb6XnsKoot6kIEq2OGIH1zmy8vNPH3DIj8hJfWC5Iwa+o715c+6umDtFGKDkGDA6jQd/F32e/VOa71l9Y3WPKk+iXxr/d+wU+flFnuRxmp31r8JdiBuhqT2p6QL2mnwvfOzz34Ufa9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=cRXE+qfS; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Owd47VP2; arc=none smtp.client-ip=103.168.172.147
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfout.phl.internal (Postfix) with ESMTP id 3AFF9EC0067;
+	Mon,  6 Oct 2025 04:16:20 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-05.internal (MEProxy); Mon, 06 Oct 2025 04:16:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1759738580;
+	 x=1759824980; bh=Xv7bIzSvavlTq8K9r7KxROHxvemSDepUR8eWdNq3pYE=; b=
+	cRXE+qfSXTr47tmW2DvyUmdf0+BaxaAcbRB/jb0je86gglnXdtvr0rN4Ic1TLCms
+	WVdzCZbwpBwvMB0wBFMM/W1jsGQONX7LTmqsYrzBHsuaWz3ClaeGRS32hqRfjtHq
+	7+jCmoYuGNgXj0/3dSNz11ZWURL325Kq7MYoyx6dhOdvj6dTaHFFNiqiuV6oiY0f
+	VD9gFlM613X2lSeUEFdF6ukqEf7iuQSbgciDz6hVIRwU2c30NAPLTWZszwfBDrqQ
+	m8/t/GCKcjM9Jrbu6raw3Hfe9qBbs95n8gn2WY1qt/U5Z+rDP6qlTw4VtLGFQueE
+	/Q8gdDPPczwiuoOFQr315A==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1759738580; x=
+	1759824980; bh=Xv7bIzSvavlTq8K9r7KxROHxvemSDepUR8eWdNq3pYE=; b=O
+	wd47VP2PzyoRKJFzTmioNwQaZYRy3B/gKmUtKKglKcrvomLJL9Aa32855UA9l2G7
+	FwRQ4rtl2XfplEQ1mlafTQ6LOK3PJ5gq/A8y+JPAo1uTDn+/xSFJIc8aKoumH+PA
+	qlx3oz2E8u0uAx0zXx91w1tTa+zaG6/0PZe83b9sPL9Mcq6Ro+ySg2KFtK+2K4IF
+	+0GVWQkT0evt7EDMyj8Oxo5j30nEAamB/QBx3TmqkqrdQfSx8u0PNUCsybDsGF8g
+	3EcBN4QjuQAxMibjMl+ODD/2xBeznwgnAvsFhNJgGXkRd5E9dPqEiwDKgdCliaVJ
+	jxiAJctrfoPYRmdwdg0fA==
+X-ME-Sender: <xms:03rjaHXpGEJk_wcYCpJQGnyJ49v1j1tzix-I2N-BKYmqQjEOT73RKw>
+    <xme:03rjaJmiH6kP1DU8IdvskqmG4DZfPhJ42_xUWEYP1YeMn8bfveBwSOziVBR5uJmDF
+    kJLIIXt-hwY-hOsYPXj4SlWkH787h4Z9aAIIiTVC1n3Qa6RttidZduc>
+X-ME-Received: <xmr:03rjaKA_2CnVAKrkEK6dkVm370xNj1OSmLIWL9SBgySPm1q97I0R614oe9lR-nXvPpdI5XgH8RFimqShldE1fjWKD_qeC3A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeljedtfecutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpeffhffvvefukfhfgggtugfgjgesthekredttddtjeenucfhrhhomheppfhikhhlrghs
+    ucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsohguvghrlhhunhguodhrvghnvghsrg
+    hssehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepfefhleelhfffjefg
+    fedugfegjeelhfevheeikefhueelgfdtfeeuhefftddvleeinecuvehluhhsthgvrhfuih
+    iivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhsohguvghrlhhu
+    nhguodhrvghnvghsrghssehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpthhtohepke
+    dpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepfihsrgdorhgvnhgvshgrshesshgr
+    nhhgqdgvnhhgihhnvggvrhhinhhgrdgtohhmpdhrtghpthhtohepghgvvghrthdorhgvnh
+    gvshgrshesghhlihguvghrrdgsvgdprhgtphhtthhopehmrghgnhhushdruggrmhhmsehg
+    mhgrihhlrdgtohhmpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtph
+    htthhopehkrhiikhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhr
+    odgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepuggvvhhitggvthhrvggvsehvgh
+    gvrhdrkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrhgvnhgvshgrshdq
+    shhotgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:03rjaAjVdGJyCQC4U5XtKPl77gRtOH7HfhbTrJWeEo3cILLyMUfniw>
+    <xmx:03rjaPw0R7mzah1oj7FcHwH6c8a7gQONFF7wbelgGaX3Hulxl_0fUA>
+    <xmx:03rjaJ3X72_MwMciCAPlKQo_fpgz-ndReZJzjNdezDYrqkQQkfEECQ>
+    <xmx:03rjaM-wr5Y__oe6Ay3lQ-Xr9wFAnkwyrCMnFxg73LSxMXDKUmvmug>
+    <xmx:1HrjaPRK4NiLa4mxjhbZ_bZUoksZwgEs1Ufo4E_e0syY7mDJJg6PkxbT>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 6 Oct 2025 04:16:19 -0400 (EDT)
+Date: Mon, 6 Oct 2025 10:16:17 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: renesas: koelsch: Update ADV7180 binding
+Message-ID: <20251006081617.GA1353934@ragnatech.se>
+References: <20251003215318.39757-1-niklas.soderlund+renesas@ragnatech.se>
+ <aONmeDgUPCn8rphM@shikoro>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: spi: add SpacemiT K1 SPI support
-To: Alex Elder <elder@riscstar.com>, broonie@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org, dlan@gentoo.org,
- paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
- alex@ghiti.fr, p.zabel@pengutronix.de, spacemit@lists.linux.dev,
- linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250917220724.288127-1-elder@riscstar.com>
- <20250917220724.288127-2-elder@riscstar.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250917220724.288127-2-elder@riscstar.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aONmeDgUPCn8rphM@shikoro>
 
-On 18/09/2025 07:07, Alex Elder wrote:
-> +    #include <dt-bindings/clock/spacemit,k1-syscon.h>
-> +    spi3: spi@d401c000 {
-> +        compatible = "spacemit,k1-spi";
-> +        reg = <0xd401c000 0x30>;
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        clocks = <&syscon_apbc CLK_SSP3>,
-> +                 <&syscon_apbc CLK_SSP3_BUS>;
-> +        clock-names = "core",
-> +                      "bus";
-> +        resets = <&syscon_apbc RESET_SSP3>;
-> +        interrupts-extended = <&plic 55>;
-> +        spacemit,k1-ssp-id = <3>;
-> +        dmas = <&pdma 20>,
-> +               <&pdma 19>;
-> +        dma-names = "rx",
-> +                    "tx";
-> +        status = "disabled";
-Please drop, status is not valid in the example.
+On 2025-10-06 08:49:28 +0200, Wolfram Sang wrote:
+> On Fri, Oct 03, 2025 at 11:53:18PM +0200, Niklas Söderlund wrote:
+> > Use the more modern adi,adv7180cp compatible for the CVBS input found on
+> > R-Car Gen2 Koelsch boards. This aligns the bindings with the other Gen2
+> > board with the same setup Gose.
+> > 
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> 
+> I think this could be added?
+> 
+> Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> 
 
-Best regards,
-Krzysztof
+Good point, sorry for forgetting it.
+
+
+-- 
+Kind Regards,
+Niklas Söderlund
 
