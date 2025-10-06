@@ -1,124 +1,158 @@
-Return-Path: <devicetree+bounces-223876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A91CCBBE87C
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 17:47:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3FCABBE8A0
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 17:49:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 693DA3BCFDB
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 15:47:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7F343BE52F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 15:49:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EBB02D63E5;
-	Mon,  6 Oct 2025 15:47:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661972D879A;
+	Mon,  6 Oct 2025 15:48:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2zo+Zien"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53792727ED
-	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 15:47:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA2572D662D
+	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 15:48:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759765636; cv=none; b=euVT5KkBO8n8YoO4w6GwRfhpiBIklpnZsHrNcKGOika1OyypNAJBeSaYMyjCv+FsI03oAG4yq/vsW7ojuC7SwKG4cT0GyCiuYe8rzLv87lRr2U3j1yeBhcyneQm22qq3i3ATSlmqpdBCtw02ZOstmai2aWuLIex1izXHj6yYPRw=
+	t=1759765737; cv=none; b=uUXPbr5Ze2sb2jtmaXSL2dHKvci/n24sw0GtWIk7B63MsavVQHOzEjcglXg31fkWcDW40enKqn20XDBqxFN87xPKYQ81IF6qdgK8VDRgQ35dXVVgBA91Fz/eEl3HJM3OTJGyF2kl/HpRjI3sHI3TrOjeGom24z8ezXICbHm0VG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759765636; c=relaxed/simple;
-	bh=VXVFUxV6lOZVeHIaGD8b7dszxK+l1QNd9a0CBcsxlVc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=A/iWcK6rtD77m7IUxegleZqGJPOF7Nt3WSRQmfzV3vkGpuiP7j/WAfYvqo2G/9NXFoy53bsRcCKTXvCDfnkNse7ZCeTTjzOxE6JcYNbaD7tqYUXgLL5vlCKySxOjEsp4eLOMj9joJa0TZkJABtAqy0uqK+02SGzJz8H9KcQdlD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-54a98bcdedeso901724e0c.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 08:47:14 -0700 (PDT)
+	s=arc-20240116; t=1759765737; c=relaxed/simple;
+	bh=7cCqsIleQbTCE8nJ/cqNLb6Xh7ymZFZDoUIkZvvwW5c=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Im8/s4jXoXmZL9TiCg+h/Hag6tq2kl5e1hw225oy7xi/jVc1VPYpCmW6gwyRySnEhgy/bSYgJBoM2SPUpYPJhOuh+tfI7erBwvLx0b8jOuxW31TMrvu3DJlZJZWh2aVyueNlhxWClsr8R69pGviampQC74BXtSQwX9p1HlxCmy0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2zo+Zien; arc=none smtp.client-ip=209.85.210.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-7b6ac55cf86so3189285a34.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 08:48:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1759765734; x=1760370534; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=T869gDVevA9LpG7p7hXPgb7SP5eHhcw4WWhaTQBkq5A=;
+        b=2zo+ZienJvyGr8v4PFCMg777UXY9YbInkEZSYVHaJh1LkrIiNQ5HSe30lkob5edkt5
+         gcX38kXd54+hdz1yB+LZchELWJwKFEYW6WPTMhoDU2sZJV9RMloSAwWUqZ30V8Lnx+uc
+         PY/8SPITCvzJqOCIRj+gVJDSKdycdYsh6BimWJeM4zC+xWQvYFDAWTaZ4m5iS/d0p01y
+         hkgQo2wu9L+mIVevhyMuhUgNS2SGZslZyXHWJhw9wI/cOl8vTr+GfP/IIkvlCHeBX7wx
+         uzYomOekrrB/vn4cgha4lqO2Iw/ryKlaHS7hjIrj06Wl2Zbe+nTh1//C9yR+dyrsEnkv
+         XTGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759765633; x=1760370433;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=baxwn0lz/mgVFFB21nG5BxqQzMuKCxMSfDK/zsQ1nbY=;
-        b=S7E/7B8t9BjwveNrmYBiNrrfaxyNo73TM8Dqg50rYD+q5ktG6SvT3IpN1s9LB7N+GA
-         Tx0vcqR2NNnb9g5GlcvL1CcZgGQymbyPCV6LDerkP/Dmq336vsDPIpUSpopybeyuP4tk
-         000yEwnOdeh7yf/EfO8hmp7aTIWdPBSIPVJivzTxkFi9x3+/PbKvMy304ndFmScUNpxk
-         olkl32MFYAVUvFoF65gO/1bl9obE3YRaCMjn1Bk2jqZoOJ4d6UlXwI4jiVHibAmkRNZ2
-         MjblS2jDdAckeazQ4mvRYrmwEX/lAVycgSCv4NnyT7Qvco1VXXIHLOBD7kumzsM6G3Zq
-         VHlg==
-X-Forwarded-Encrypted: i=1; AJvYcCUc6Jv2LE3h/isV81u61OwWHacMEe5HQtOrDyxQuRZSdwartB2yo8S/u9dWlTyY61fJ3fanxIbTBEEC@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuD4/qaEZrWkJae5h26DBsBJiP31eUSpaaiZ/fBRzXSuIWXv9X
-	bfMsZb3tg2B7tDsGQIHl5r+VJrsKLm501VRbXuiGQT4k0nD90uWbeU29BYiCrU6w
-X-Gm-Gg: ASbGncv8PeOU+gmL5MREVBI7vvHG2RTZq9lBpXEyASPMZQ8yEQzoyowJpc+P9MgwJTk
-	JHECrboq+PVPRFERhqs/hc8tcz2vxxbrYRh8gt1Uj9YfHOSPApQpXZEbRDdg4T+fo3bu7IoZ4tf
-	et6PSPN3Yai2SAN/OV/rzigQfW8GKQcQsKFBSi/ETYQ54iVJPG1blQn6liKgpWGecmwq531l49x
-	eCK7eFUq7CvXSIYYK2xJ1pujp1p6Nsx53tooiU6zE7LRWVZQkWXBqYzmOCEs7IsO8LiCckHDLmv
-	6/LMEOBCPbTOqqGUfp3aho0ItS8NKzVLpyxF/uQ40MG5+RoiICGicJXI0F5M/mJyqfFluh1yLd6
-	R8/xUlsD2Tw/GkPvVJcSnk3wLNh9x1Zm4PavChmYg8F/xf+NTQP8DglyEqQuBBLA+o8z7AEquZC
-	wvBTIBz2e7lK+K6YG+GWM=
-X-Google-Smtp-Source: AGHT+IGZ3HkzUMRYGeKsLbuCYlV8iWYvezGA31k2AKxr8A1XJ3geOkhcdEEF98tKScc9CXX61QVytQ==
-X-Received: by 2002:a05:6122:1e09:b0:545:eb6c:c6bb with SMTP id 71dfb90a1353d-5524ea695aemr4215657e0c.12.1759765633352;
-        Mon, 06 Oct 2025 08:47:13 -0700 (PDT)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-92eb4d83c45sm2926857241.4.2025.10.06.08.47.12
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1759765734; x=1760370534;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=T869gDVevA9LpG7p7hXPgb7SP5eHhcw4WWhaTQBkq5A=;
+        b=DZwLSaRtICVS6LUsG/b7UPYoseiiJs0LCXLyIS5nllGIrLq3ThUr9d3AEzZsgd1atC
+         /dTjJq72C0E1yCwX4+UzzQcuYlHzDPenE1CNZn9CEcDaJzWo4QUkCX6KuqpF3uvsn68L
+         JmpAkSap1QYgzjnmzNTetiMOsUUJpLkyXo0zgJKt4jsjLDVvcu4X9/QtvZhfmjBvJGt6
+         oHO124Q3T3zQSukM9buQe4eZKdL9Qaq2thYORjvdDJCQTz+V5+quQL/aOgjSK9hfuUd5
+         y9dZXqnbeYPhcBhpaFSKaLY8fwz5xxOP1Fr9qC8ruyldpcwvYYLmOnFt4S8pzk90AZ2/
+         VFxw==
+X-Forwarded-Encrypted: i=1; AJvYcCXieDhQvKWj98F29FuYcatktvesBhm77tANmNz87F3ilXwQ0Olfjn5+28Z+mrWxdXplgxIaAANWqZAg@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJBamaM4b5TJgtKKuTlkz5xAjjNFZkPxDSv2qAsi+L/SUb8XqZ
+	7F5lJ/Ev18lv3zwHSIpFLfdOAdNUd5o5b13j776yAuT/3bjpCO40bkPUxSCo4BLbWEc=
+X-Gm-Gg: ASbGncvRiNq/KrQtoMCVhxtAiE+VlWaoozsP35zJJaA4zKjNToNr++qB7xnqvONx9oO
+	U2iV47ccXxoiQ+5r3UI5H958J0EoJbpZ0Y451kLaiAk1Pr8GBryGmxeob3zmiDiybS5yFkYhpQr
+	UcyjEolos1IIFCS9KVxPn7HBOPp7S9DVGpZtugiqikbxKnsPFH9042zr0SSGLijj6JGNGKiMlDl
+	Sbr1+353cldnD90xM7e//Ol6cHvV43ZiILT8AvI4gbcz06UBiL1AoOgCQ7xmhP0Jbf2RDkFF3nd
+	ugLGJ4YLinozcMqj0EW3BYv/yWyGo5OCie6h0yARa5x5cNBvLSTMKOnPhOFMvETUaEfvaKvuuoO
+	h85+UURUMFb+P6atHUN6zHZx4zlMHLB+sjc/wiBzvSCfIYdH9xXBfXvKbol3y567OD74q5S+CN5
+	5afqVkJoAnRYyhOoOP/YtXX/jQYDBIhvy4bg==
+X-Google-Smtp-Source: AGHT+IH6njM+4Hb3ORuQPgRlqgDWQXTIapYtLEi8wuRV94ziPpiWcaXvJxfwgPJWYXWshy0ytCVboA==
+X-Received: by 2002:a05:6830:374c:b0:7bb:79ad:6604 with SMTP id 46e09a7af769-7bf77538cccmr7827018a34.22.1759765733844;
+        Mon, 06 Oct 2025 08:48:53 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:a1fd:4fbd:e7a6:9246? ([2600:8803:e7e4:1d00:a1fd:4fbd:e7a6:9246])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7bf3fdcfb69sm3892248a34.13.2025.10.06.08.48.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Oct 2025 08:47:12 -0700 (PDT)
-Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-8c0e2d1efd5so1749549241.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 08:47:12 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX1d7uxwMUe3Ns0aCv5pXvQAi5udk0zvqnUIbSIjq79KQhQADHou8FhENGcdtJlNoOzwYXD3JB997gp@vger.kernel.org
-X-Received: by 2002:a05:6102:41a9:b0:59e:68dd:4167 with SMTP id
- ada2fe7eead31-5d41d028226mr4721054137.7.1759765631839; Mon, 06 Oct 2025
- 08:47:11 -0700 (PDT)
+        Mon, 06 Oct 2025 08:48:53 -0700 (PDT)
+Message-ID: <da087553-c6d6-4e51-ac57-1be95a3c04b7@baylibre.com>
+Date: Mon, 6 Oct 2025 10:48:51 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251003215318.39757-1-niklas.soderlund+renesas@ragnatech.se> <aONmeDgUPCn8rphM@shikoro>
-In-Reply-To: <aONmeDgUPCn8rphM@shikoro>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 6 Oct 2025 17:47:00 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXvn52Kh242mSdb+bFLowQ9jgyegRGh6ZZaY0z+Qm2faA@mail.gmail.com>
-X-Gm-Features: AS18NWDKqcFvLxyfi7FxcJ-zF3zj1ASVGyV53_H6SUlUTrSHB21YlZyQvRY9HqQ
-Message-ID: <CAMuHMdXvn52Kh242mSdb+bFLowQ9jgyegRGh6ZZaY0z+Qm2faA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: renesas: koelsch: Update ADV7180 binding
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 2/3] iio: adc: max14001: New driver
+To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Kim Seer Paller <kimseer.paller@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+ Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>,
+ Jonathan Santos <Jonathan.Santos@analog.com>,
+ Dragos Bogdan <dragos.bogdan@analog.com>
+References: <961e5351afa408e69541b60ec75852fbbd1ddd24.1759121938.git.marilene.agarcia@gmail.com>
+ <476b75cff0c3e5ff23ba7c642924511f3ba09a3f.1759121938.git.marilene.agarcia@gmail.com>
+ <CAMknhBHt9JVkaf1Kq76BKFM-Ff38-7ws6gaq+5fwy=pAih-fww@mail.gmail.com>
+ <9ee20209-efba-44b1-9902-5885bacfb290@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <9ee20209-efba-44b1-9902-5885bacfb290@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Wolfram,
+On 10/5/25 6:25 PM, Marilene Andrade Garcia wrote:
+> On 01/10/2025 11:03, David Lechner wrote:
+>> On Mon, Sep 29, 2025 at 7:59 AM Marilene Andrade Garcia
+>> <marilene.agarcia@gmail.com> wrote:
+>>>
+>>
+> ...
+>>> +static int max14001_read_raw(struct iio_dev *indio_dev,
+>>> +                            struct iio_chan_spec const *chan,
+>>> +                            int *val, int *val2, long mask)
+>>> +{
+>>> +       struct max14001_state *st = iio_priv(indio_dev);
+>>> +       int ret;
+>>> +
+>>> +       switch (mask) {
+>>> +       case IIO_CHAN_INFO_RAW:
+>>> +               ret = regmap_read(st->regmap, MAX14001_REG_ADC, val);
+>>> +               if (ret)
+>>> +                       return ret;
+>>> +
+>>> +               return IIO_VAL_INT;
+>>> +       case IIO_CHAN_INFO_AVERAGE_RAW:
+>>> +               ret = regmap_read(st->regmap, MAX14001_REG_FADC, val);
+>>
+>> I don't remember... did you give a reason why this should not be a
+>> separate channel? Or just use REG_FADC as the raw value and forget
+>> about REG_ADC? In any case we would want another attribute to control
+>> the filter window size.
+> ...
+> 
+> Hello David,
+> 
+> Thank you for the review and suggestions.
+> Sorry for not adding any comments about that in v12. From what I understood from our previous conversation, for now the code could have one channel to keep things simple, since we’re not sure if anyone will actually need to read both the filtered and unfiltered data at the same time.
+> 
+> I was thinking of sending a separate set of commits to address that after this one gets merged, as it will involve new code changes related to adding a function to configure how many ADC readings are included in the mean calculation, and adding a new attribute to sysfs.
+> 
+> Since both IIO_CHAN_INFO_RAW and IIO_CHAN_INFO_AVERAGE_RAW are currently returning the same value, I could drop IIO_CHAN_INFO_AVERAGE_RAW in v13 and add it back in the next series of commits to implement the related feature.
+> 
+> I would like to know your thoughts about it, because if you prefer, I could change my plans and implement it in v13.
+> 
+> Best Regards,
+> Marilene
+> 
 
-On Mon, 6 Oct 2025 at 08:49, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> On Fri, Oct 03, 2025 at 11:53:18PM +0200, Niklas S=C3=B6derlund wrote:
-> > Use the more modern adi,adv7180cp compatible for the CVBS input found o=
-n
-> > R-Car Gen2 Koelsch boards. This aligns the bindings with the other Gen2
-> > board with the same setup Gose.
-> >
-> > Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatec=
-h.se>
->
-> I think this could be added?
->
-> Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-I don't think I am the first one suggesting that ;-)
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Since everything else looks good, I think Marcelo's suggestion to drop
+averaging from this series and add it in a later series is the best advice.
 
