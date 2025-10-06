@@ -1,373 +1,265 @@
-Return-Path: <devicetree+bounces-223888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223889-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99BD4BBEA8B
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 18:32:36 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50784BBEAAF
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 18:34:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67E933C1033
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 16:31:56 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 065B84E1158
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 16:34:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A27872DA749;
-	Mon,  6 Oct 2025 16:31:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04A0C2DCBFC;
+	Mon,  6 Oct 2025 16:34:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CwnYn4NH"
+	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="ZxUUdVw5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BB7A21FF3E;
-	Mon,  6 Oct 2025 16:31:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759768314; cv=none; b=BNcqk0gcciXtU/oruH/K+yx0xt6zOQshs8fttmyPW/g5huqhEpmIwqGOBHUWz9ml3/jl4PZOkWzt1YdPYATHFNi+mo1HwgVpcU5KfdmB7k/gBilMo7/RN08cS3rgl3dLJ+SEHfPHdugfv0wqecEa0FMkkvmelwbClLf2A1SL9W8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759768314; c=relaxed/simple;
-	bh=lmmhiSMSM0QI5UtyLT1oRwAi1Xu2NtSABJdRNdbbkNE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=OBrDHVRkKAzsCD/t4B/4QsL0x0zi9Et8SsM5Q7HoNcAyzIQQRMQZV+QqBq4LV7F/wXQ4LaVUIk9PIKsjRLGY5R1jQ5TYyoWCXmO3kVK/RlLMTmTEo+Ig2bR58mxU4+GGIqbMBv9V/BEmWrYglRx8B4uFMd36SkZqZdX5riwTZEA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CwnYn4NH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id EC01DC4CEF5;
-	Mon,  6 Oct 2025 16:31:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759768314;
-	bh=lmmhiSMSM0QI5UtyLT1oRwAi1Xu2NtSABJdRNdbbkNE=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=CwnYn4NHuuK2n+KeFOkVrYSrz7n6GusDJdpomGbI25ZrSucN60q12b+U00K9N5Jqo
-	 tIxIu75efDoSY0RpM6GXkUJ7gFlKNK+Swvp1ee4nlNimP5stM0KRRgznWB3ykSBFhh
-	 pszmsF/cfWyXCmT1AR00Cyy1O8ROROl2A3QiLzBLp+gmTea4mBWqaqgOlFiJOPGYfJ
-	 Goxm52Ko5z7ft7lhqv+oQ83w5QN6N6I7g7LRLx9tvp+eI62DzGEJIbjh3QtYH7xrje
-	 gq/qXCKamoh5wGnf/u7uDmGtc7NLtawyIw6Zp3+Bxc4PbQ9RkwJV18VlWVMRT5/Sks
-	 zVE9CJFsWMdJg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D95F8CCA470;
-	Mon,  6 Oct 2025 16:31:53 +0000 (UTC)
-From: Jan Petrous via B4 Relay <devnull+jan.petrous.oss.nxp.com@kernel.org>
-Date: Mon, 06 Oct 2025 18:31:28 +0200
-Subject: [PATCH] arm64: dts: freescale: Add GMAC Ethernet for S32G2 EVB and
- RDB2 and S32G3 RDB3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E754C13E41A;
+	Mon,  6 Oct 2025 16:34:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759768457; cv=pass; b=iVkIvbSBYIJ/ju6YZKadZsh3WW8hyEikHfbuIDe+cFkmG47YaW9i6R0G9Pi3+j/9nlxVt9saEQL0fVJQfU3H420sx+gifYotaI54/hc3uJxnoBpRY1Pee09keNNNNd2UgN5o2Bq3q02u4HOq0PqRbgXgVgXdzSN88hk6ubXlQmo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759768457; c=relaxed/simple;
+	bh=j89+y91SMmY2hlRzBk7eDWdVkd7Zq8mu43vpMSD6zW4=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=nSb0fxnn+5Hnq8j5X3VQMptOQ9MWkyVr1FgGY/g37zmIlgJdTn30LB0EM62Jl29ltzuKHXY7A4oHW3Gd1umavxUVrly8a9+watt2So7tAPMQ7IG+F14Kc5JecKWgQX898t4wiPVBZodwu1EccHzgH0+2/xIhzElOaAGMz/AYE4o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=ZxUUdVw5; arc=pass smtp.client-ip=136.143.188.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
+ARC-Seal: i=1; a=rsa-sha256; t=1759768404; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=cg8w3Yx8IggkB+zBhluhjMbMmUsvUcFTp8sS3UkaQyPYCI+kKozce/VxlfQIH2kNKZz+W0TluZmqZOpSaXRnxQ1cOJ+yTbkxSfzRBBXWK7yKp4QCfWtFhM78+uyDIvTeyLvbj/29T87jf7C50Lzs89v25R4fVUL1Zt1jFDtjdHM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1759768404; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=j89+y91SMmY2hlRzBk7eDWdVkd7Zq8mu43vpMSD6zW4=; 
+	b=OKZEpyRFbGh8q0dvfbB6gCs7d7Vv6TvpHKJTBq+scm1/FFn8ekZ3oBgww6Tj/9vsZYaLUX+J5ORw2je/Hbe9WmstHKtyUQhpA691sUYrAFmWGaCkO1wQFo5wRqRWOsm/ngVNOWtfN10LdPDfEjnfwdZ28oQg+xm0Qps0SKF0uHM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=icenowy.me;
+	spf=pass  smtp.mailfrom=uwu@icenowy.me;
+	dmarc=pass header.from=<uwu@icenowy.me>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759768404;
+	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
+	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
+	bh=j89+y91SMmY2hlRzBk7eDWdVkd7Zq8mu43vpMSD6zW4=;
+	b=ZxUUdVw5ekZSbUQcOuicx0i81q5Ne2CN2GTkN+P9+TzORpuUWT48oYwY2qN3n94D
+	NcaPbfAOo1GJ1ROqgWm2oXT4ScJIuTwwGfYIVdUeTdyWAT3i3zgO0hg0BHNP0W5xJ6u
+	/iHwUj/UL1EtopJU9rpHyD7F403dOU4zyMjHpdppeZpt1fBST16KibUP+C29P59aY66
+	tUWF3wUtxCJar/Vz3YdCjqiuwPMibhErxftYJkse8jhGBp4fNBkccmNlPLudBVq9Og4
+	kyzbOaiIFCclZUOKKinsM2ZhcnNft0fz8xkk7N+UTQgkki+ficqGLYE0+kWNopyrpUa
+	77Vtb0vN1g==
+Received: by mx.zohomail.com with SMTPS id 1759768399312157.2926223095094;
+	Mon, 6 Oct 2025 09:33:19 -0700 (PDT)
+Message-ID: <c7d79542aedb6c074c4be21eaa15c71a53e87da4.camel@icenowy.me>
+Subject: Re: [PATCH v2 2/8] dt-bindings: display: add verisilicon,dc
+From: Icenowy Zheng <uwu@icenowy.me>
+To: Christian Gmeiner <christian.gmeiner@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Lucas Stach <l.stach@pengutronix.de>, 
+ Russell King <linux+etnaviv@armlinux.org.uk>, moderated for non-subscribers
+ <etnaviv@lists.freedesktop.org>,  Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>, Guo
+ Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Michal Wilczynski
+ <m.wilczynski@samsung.com>, Han Gao <rabenda.cn@gmail.com>, Yao Zi
+ <ziyao@disroot.org>, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-riscv@lists.infradead.org
+Date: Tue, 07 Oct 2025 00:33:06 +0800
+In-Reply-To: <84566b33d0d08ad070c3aa8a01e07f3a0e3bff50.camel@icenowy.me>
+References: <20250921083446.790374-1-uwu@icenowy.me>
+	 <20250921083446.790374-3-uwu@icenowy.me>
+	 <20250922204349.GA1290045-robh@kernel.org>
+	 <1ac8c72206abf9f3e0a13e1fcf44be5c605f6372.camel@icenowy.me>
+	 <36040a0a40311cb1e871075f0c5ad175342ed5db.camel@icenowy.me>
+	 <CAH9NwWdx-Ut35RvhmNsdQbC4vfm3rH1VPN7H2uDBRsmsFjZU_Q@mail.gmail.com>
+	 <84566b33d0d08ad070c3aa8a01e07f3a0e3bff50.camel@icenowy.me>
+Organization: Anthon Open-Source Community
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.44.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251006-nxp-s32g-boards-v1-1-f70a57b8087f@oss.nxp.com>
-X-B4-Tracking: v=1; b=H4sIAN/u42gC/x3MMQqAMAxA0atIZgNtJIJeRRysjTVLlQZEEO9uc
- XzD/w+YFBWDsXmgyKWmR67wbQPrvuQkqLEayBF753rM94nWUcJwLCUaUvTcE3PggaBWZ5FN7/8
- 4ze/7AaoG5dxhAAAA
-To: Chester Lin <chester62515@gmail.com>, 
- Matthias Brugger <mbrugger@suse.com>, 
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
- NXP S32 Linux Team <s32@nxp.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Richard Cochran <richardcochran@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- netdev@vger.kernel.org, "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759768312; l=7038;
- i=jan.petrous@oss.nxp.com; s=20240922; h=from:subject:message-id;
- bh=TMWFQ/FCO7r1LG54aYnEDegZ7oUI5MIx6sPdhGBxOcA=;
- b=BYkrZtIcJy8FigoNiS7KdvSacfpqLvQ8+glEubaeNymGK1JA+8tu/tR1m9gshcgR22HkuQ5Mw
- Cmy9eQyLBqgD4z5OxjWHaoTIiGXyJAXPiv+S2FEYTssNJq0IC465zL+
-X-Developer-Key: i=jan.petrous@oss.nxp.com; a=ed25519;
- pk=Ke3wwK7rb2Me9UQRf6vR8AsfJZfhTyoDaxkUCqmSWYY=
-X-Endpoint-Received: by B4 Relay for jan.petrous@oss.nxp.com/20240922 with
- auth_id=217
-X-Original-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
-Reply-To: jan.petrous@oss.nxp.com
+X-ZohoMailClient: External
 
-From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+=E5=9C=A8 2025-09-25=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 13:57 +0800=EF=BC=
+=8CIcenowy Zheng=E5=86=99=E9=81=93=EF=BC=9A
+> =E5=9C=A8 2025-09-24=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 20:15 +0200=EF=
+=BC=8CChristian Gmeiner=E5=86=99=E9=81=93=EF=BC=9A
+> > > > > > Verisilicon has a series of display controllers prefixed
+> > > > > > with
+> > > > > > DC
+> > > > > > and
+> > > > > > with self-identification facility like their GC series
+> > > > > > GPUs.
+> > > > > >=20
+> > > > > > Add a device tree binding for it.
+> > > > > >=20
+> > > > > > Depends on the specific DC model, it can have either one or
+> > > > > > two
+> > > > > > display
+> > > > > > outputs, and each display output could be set to DPI signal
+> > > > > > or
+> > > > > > "DP"
+> > > > > > signal (which seems to be some plain parallel bus to HDMI
+> > > > > > controllers).
+> > > > > >=20
+> > > > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > > > > ---
+> > > > > > Changes in v2:
+> > > > > > - Fixed misspelt "versilicon" in title.
+> > > > > > - Moved minItems in clock properties to be earlier than
+> > > > > > items.
+> > > > > > - Re-aligned multi-line clocks and resets in example.
+> > > > > >=20
+> > > > > > =C2=A0.../bindings/display/verisilicon,dc.yaml=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 | 127
+> > > > > > ++++++++++++++++++
+> > > > > > =C2=A01 file changed, 127 insertions(+)
+> > > > > > =C2=A0create mode 100644
+> > > > > > Documentation/devicetree/bindings/display/verisilicon,dc.ya
+> > > > > > ml
+> > > > > >=20
+> > > > > > diff --git
+> > > > > > a/Documentation/devicetree/bindings/display/verisilicon,dc.
+> > > > > > ya
+> > > > > > ml
+> > > > > > b/Documentation/devicetree/bindings/display/verisilicon,dc.
+> > > > > > ya
+> > > > > > ml
+> > > > > > new file mode 100644
+> > > > > > index 0000000000000..07fedc4c7cc13
+> > > > > > --- /dev/null
+> > > > > > +++
+> > > > > > b/Documentation/devicetree/bindings/display/verisilicon,dc.
+> > > > > > ya
+> > > > > > ml
+> > > > > > @@ -0,0 +1,127 @@
+> > > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > > +%YAML 1.2
+> > > > > > +---
+> > > > > > +$id:
+> > > > > > http://devicetree.org/schemas/display/verisilicon,dc.yaml#
+> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > +
+> > > > > > +title: Verisilicon DC-series display controllers
+> > > > > > +
+> > > > > > +maintainers:
+> > > > > > +=C2=A0 - Icenowy Zheng <uwu@icenowy.me>
+> > > > > > +
+> > > > > > +properties:
+> > > > > > +=C2=A0 $nodename:
+> > > > > > +=C2=A0=C2=A0=C2=A0 pattern: "^display@[0-9a-f]+$"
+> > > > > > +
+> > > > > > +=C2=A0 compatible:
+> > > > > > +=C2=A0=C2=A0=C2=A0 const: verisilicon,dc
+> > > > >=20
+> > > > > This needs an SoC specific compatible. Generally licensed IP
+> > > > > compatibles
+> > > > > are useless because the specs aren't public and there's
+> > > > > always
+> > > > > integration quirks.
+> > > >=20
+> > > > This mimics the GPU IPs by the same vendor, see
+> > > > gpu/vivante,gc.yaml ,
+> > > > which contain the exact same set of identification registers
+> > > > (including
+> > > > a "customer id" one that can differienate the same configured
+> > > > IP
+> > > > on
+> > > > StarFive JH7110 and T-Head TH1520).
+> > > >=20
+> > > > If we can get vivante,gc to work w/o SoC specific compatible,
+> > > > then we
+> > > > should be able to get verisilicon,dc to work too.
+> > >=20
+> > > Well maybe I should add etnaviv people to the recipient list, to
+> > > allow
+> > > them to tell us the magic behind vivante,gc .
+> > >=20
+> >=20
+> > Vivante GPUs are special because they contain registers that allow
+> > them to
+> > be fully identified - see etnaviv_hw_identify(..).
+> >=20
+> > We can read out the following information:
+> > =C2=A0- model
+> > =C2=A0- revision
+> > =C2=A0- product_id
+> > =C2=A0- customer_id
+> > =C2=A0- eco_id
+>=20
+> Well Verisilicon DCs (sometimes also called Vivante DCs because
+> Vivante
+> is now part of Verisilicon) except DCNano have the same set of ID
+> registers (In fact the registers before 0x1500 seem to have mostly
+> the
+> same meaning with GPUs, see [1], here the registers are even named
+> GC{,REG}_xxx), so it's why I assume "verisilicon,dc" will work here.
+>=20
+> An example of identification registers readout on TH1510 is shown
+> below: (the register names are from etnaviv state_hi.xml)
+> ```
+> root@lpi4a66 [ ~ ] # busybox devmem 0xffef600020 # MODEL=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> 0x00008200
+> root@lpi4a66 [ ~ ] # busybox devmem 0xffef600024 # REV
+> 0x00005720
+> root@lpi4a66 [ ~ ] # busybox devmem 0xffef600028 # DATE
+> 0x20210201
+> root@lpi4a66 [ ~ ] # busybox devmem 0xffef60002c # TIME
+> 0x11133000
+> root@lpi4a66 [ ~ ] # busybox devmem 0xffef600030 # CUSTOMER_ID
+> 0x0000030A
+> root@lpi4a66 [ ~ ] # busybox devmem 0xffef6000a8 # PRODUCT_ID
+> 0x02082000
+> root@lpi4a66 [ ~ ] # busybox devmem 0xffef6000e8 # ECO_ID
+> 0x00000000
+> ```
+>=20
 
-Add support for the Ethernet connection over GMAC controller connected to
-the Micrel KSZ9031 Ethernet RGMII PHY located on the boards.
+Rob,
 
-The mentioned GMAC controller is one of two network controllers
-embedded on the NXP Automotive SoCs S32G2 and S32G3.
+Is this an acceptable answer of not having a vendor-specific
+compatible?
 
-The supported boards:
- * EVB:  S32G-VNP-EVB with S32G2 SoC
- * RDB2: S32G-VNP-RDB2
- * RDB3: S32G-VNP-RDB3
+If it isn't, I will add vendor-specific compatible strings to the next
+revision of the binding, and maybe also try to add them for vivante,gc.
 
-Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
----
- arch/arm64/boot/dts/freescale/s32g2.dtsi        | 50 ++++++++++++++++++++++++-
- arch/arm64/boot/dts/freescale/s32g274a-evb.dts  | 21 ++++++++++-
- arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts | 19 ++++++++++
- arch/arm64/boot/dts/freescale/s32g3.dtsi        | 50 ++++++++++++++++++++++++-
- arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts | 21 ++++++++++-
- 5 files changed, 157 insertions(+), 4 deletions(-)
+Thanks,
+Icenowy
 
-diff --git a/arch/arm64/boot/dts/freescale/s32g2.dtsi b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-index d167624d1f0c..d06103e9564e 100644
---- a/arch/arm64/boot/dts/freescale/s32g2.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g2.dtsi
-@@ -3,7 +3,7 @@
-  * NXP S32G2 SoC family
-  *
-  * Copyright (c) 2021 SUSE LLC
-- * Copyright 2017-2021, 2024 NXP
-+ * Copyright 2017-2021, 2024-2025 NXP
-  */
- 
- #include <dt-bindings/interrupt-controller/arm-gic.h>
-@@ -738,5 +738,53 @@ gic: interrupt-controller@50800000 {
- 			interrupt-controller;
- 			#interrupt-cells = <3>;
- 		};
-+
-+		gmac0: ethernet@4033c000 {
-+			compatible = "nxp,s32g2-dwmac";
-+			reg = <0x4033c000 0x2000>, /* gmac IP */
-+			      <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq";
-+			snps,mtl-rx-config = <&mtl_rx_setup>;
-+			snps,mtl-tx-config = <&mtl_tx_setup>;
-+			status = "disabled";
-+
-+			mtl_rx_setup: rx-queues-config {
-+				snps,rx-queues-to-use = <5>;
-+
-+				queue0 {
-+				};
-+				queue1 {
-+				};
-+				queue2 {
-+				};
-+				queue3 {
-+				};
-+				queue4 {
-+				};
-+			};
-+
-+			mtl_tx_setup: tx-queues-config {
-+				snps,tx-queues-to-use = <5>;
-+
-+				queue0 {
-+				};
-+				queue1 {
-+				};
-+				queue2 {
-+				};
-+				queue3 {
-+				};
-+				queue4 {
-+				};
-+			};
-+
-+			gmac0mdio: mdio {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				compatible = "snps,dwmac-mdio";
-+			};
-+		};
- 	};
- };
-diff --git a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts b/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
-index c4a195dd67bf..f020da03979a 100644
---- a/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
-+++ b/arch/arm64/boot/dts/freescale/s32g274a-evb.dts
-@@ -1,7 +1,7 @@
- // SPDX-License-Identifier: GPL-2.0-or-later OR MIT
- /*
-  * Copyright (c) 2021 SUSE LLC
-- * Copyright 2019-2021, 2024 NXP
-+ * Copyright 2019-2021, 2024-2025 NXP
-  */
- 
- /dts-v1/;
-@@ -15,6 +15,7 @@ / {
- 
- 	aliases {
- 		serial0 = &uart0;
-+		ethernet0 = &gmac0;
- 	};
- 
- 	chosen {
-@@ -43,3 +44,21 @@ &usdhc0 {
- 	no-1-8-v;
- 	status = "okay";
- };
-+
-+&gmac0 {
-+	clocks = <&clks 24>, <&clks 19>, <&clks 18>, <&clks 15>;
-+	clock-names = "stmmaceth", "tx", "rx", "ptp_ref";
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&rgmiiaphy4>;
-+	status = "okay";
-+};
-+
-+&gmac0mdio {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* KSZ 9031 on RGMII */
-+	rgmiiaphy4: ethernet-phy@4 {
-+		reg = <4>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts b/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
-index 4f58be68c818..b9c2f964b3f7 100644
---- a/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
-+++ b/arch/arm64/boot/dts/freescale/s32g274a-rdb2.dts
-@@ -16,6 +16,7 @@ / {
- 	aliases {
- 		serial0 = &uart0;
- 		serial1 = &uart1;
-+		ethernet0 = &gmac0;
- 	};
- 
- 	chosen {
-@@ -77,3 +78,21 @@ &usdhc0 {
- 	no-1-8-v;
- 	status = "okay";
- };
-+
-+&gmac0 {
-+	clocks = <&clks 24>, <&clks 19>, <&clks 18>, <&clks 15>;
-+	clock-names = "stmmaceth", "tx", "rx", "ptp_ref";
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&rgmiiaphy1>;
-+	status = "okay";
-+};
-+
-+&gmac0mdio {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* KSZ 9031 on RGMII */
-+	rgmiiaphy1: ethernet-phy@1 {
-+		reg = <1>;
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-index be3a582ebc1b..e31184847371 100644
---- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
- /*
-- * Copyright 2021-2024 NXP
-+ * Copyright 2021-2025 NXP
-  *
-  * Authors: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-  *          Ciprian Costea <ciprianmarian.costea@nxp.com>
-@@ -883,6 +883,54 @@ gic: interrupt-controller@50800000 {
- 			      <0x50420000 0x2000>;
- 			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 		};
-+
-+		gmac0: ethernet@4033c000 {
-+			compatible = "nxp,s32g2-dwmac";
-+			reg = <0x4033c000 0x2000>, /* gmac IP */
-+			      <0x4007c004 0x4>;    /* GMAC_0_CTRL_STS */
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "macirq";
-+			snps,mtl-rx-config = <&mtl_rx_setup>;
-+			snps,mtl-tx-config = <&mtl_tx_setup>;
-+			status = "disabled";
-+
-+			mtl_rx_setup: rx-queues-config {
-+				snps,rx-queues-to-use = <5>;
-+
-+				queue0 {
-+				};
-+				queue1 {
-+				};
-+				queue2 {
-+				};
-+				queue3 {
-+				};
-+				queue4 {
-+				};
-+			};
-+
-+			mtl_tx_setup: tx-queues-config {
-+				snps,tx-queues-to-use = <5>;
-+
-+				queue0 {
-+				};
-+				queue1 {
-+				};
-+				queue2 {
-+				};
-+				queue3 {
-+				};
-+				queue4 {
-+				};
-+			};
-+
-+			gmac0mdio: mdio {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				compatible = "snps,dwmac-mdio";
-+			};
-+		};
- 	};
- 
- 	timer {
-diff --git a/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts b/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
-index e94f70ad82d9..4a74923789ae 100644
---- a/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
-+++ b/arch/arm64/boot/dts/freescale/s32g399a-rdb3.dts
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
- /*
-- * Copyright 2021-2024 NXP
-+ * Copyright 2021-2025 NXP
-  *
-  * NXP S32G3 Reference Design Board 3 (S32G-VNP-RDB3)
-  */
-@@ -18,6 +18,7 @@ aliases {
- 		mmc0 = &usdhc0;
- 		serial0 = &uart0;
- 		serial1 = &uart1;
-+		ethernet0 = &gmac0;
- 	};
- 
- 	chosen {
-@@ -93,3 +94,21 @@ &usdhc0 {
- 	disable-wp;
- 	status = "okay";
- };
-+
-+&gmac0 {
-+	clocks = <&clks 24>, <&clks 19>, <&clks 18>, <&clks 15>;
-+	clock-names = "stmmaceth", "tx", "rx", "ptp_ref";
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&rgmiiaphy1>;
-+	status = "okay";
-+};
-+
-+&gmac0mdio {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	/* KSZ 9031 on RGMII */
-+	rgmiiaphy1: ethernet-phy@1 {
-+		reg = <1>;
-+	};
-+};
-
----
-base-commit: fd94619c43360eb44d28bd3ef326a4f85c600a07
-change-id: 20251006-nxp-s32g-boards-2d156255b592
-
-Best regards,
--- 
-Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
-
+> But as Rob pointed out, maybe acquiring informations from the IDs
+> cannot solve all the problem of integration quirks? As these IDs are
+> already determined when Verisilicon generates the RTL for the
+> customer,
+> it's possible for them to reuse the RTL twice, mess up something in
+> one
+> silicon and have the issues fixed in another.
+>=20
+> [1]
+> https://github.com/milkv-megrez/rockos-u-boot/blob/c9221cf2fa77d39c0b241a=
+b4b030c708e7ebe279/drivers/video/eswin/eswin_dc_reg.h
+>=20
+> >=20
+> > This information, in combination with a hardware database (hwdb) in
+> > kernel/userspace, is enough to support these GPUs/NPUs across
+> > different SoC vendors.
+> >=20
+>=20
 
 
