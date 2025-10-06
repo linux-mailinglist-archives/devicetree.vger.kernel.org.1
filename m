@@ -1,198 +1,160 @@
-Return-Path: <devicetree+bounces-223919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F00ABBF055
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 20:52:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA196BBF081
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 20:55:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D755734A065
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 18:52:19 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 95D2D34AE6D
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 18:55:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDFB42D9498;
-	Mon,  6 Oct 2025 18:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA902DE70C;
+	Mon,  6 Oct 2025 18:55:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dQr/WvAh"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SLuhxf/3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F47B1B042E;
-	Mon,  6 Oct 2025 18:52:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A272D2459F8;
+	Mon,  6 Oct 2025 18:55:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759776734; cv=none; b=OIdA9/XLxHfp1WHR1jVcp0A4Vsm6Nm3vBy8bTBTurco6Tyv2KnD6Py5//yAu5kGmQDRO6ZBescsXQH5Bkm1HkUKSrPkfjfEk2qPSU3eqzVCNqr4q48XIOZOxgNlnepGVfO7MVNGrb0Vm44b0gd6yZW/fuEgrzbyoubH8xh1nOOw=
+	t=1759776909; cv=none; b=YtjssVHSgYK8rasiYDjkNQkZa3inWXe6OVUL4b4Newt3VussPjWcz+V4DdCJLi28GPTLPTHXoWSvqSN3nO/fL9XJ2YQzfYDYzr1IK9OOZTH0a5aamujl1yCB8Ni0sRg3/0WGAjGSBuLINOGcpViIybTg+0FrF0zee9pvZ1Q2/h8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759776734; c=relaxed/simple;
-	bh=ZWvIVGXtiM/1nsG2Z8koPrcNspjPo3e9IYnBwDXQV30=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=V8jhfpcnuvKQFhzaEX/hNg+JzRU0YULemUfxHMlW+asXgK8lJ+olugzN1bID13K4Hc3zqcjlRr8CXM4tL6pSDLH3ESfOaT8Lgujprm8emHxVSMQcNAu0NgUsh+YhOAJ3BfivgTSJ8uko1Ps5ZpIlQiONq4UDv7mDCDZ+6+TZJ+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dQr/WvAh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7F48C4CEF5;
-	Mon,  6 Oct 2025 18:52:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759776734;
-	bh=ZWvIVGXtiM/1nsG2Z8koPrcNspjPo3e9IYnBwDXQV30=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dQr/WvAh+y+d0RJDvIqzaEvsC4+YqkpNRMZegn/9RhfuEcXIP6vbZ2lCb3vhMACbv
-	 SbnNR3Zi8ly3zOl0WSV0C2aIWTKEImCE2awKQfcOc23+bRjW/F5KrZpkRD1vErunSF
-	 okbn6i9YHOzA+dMm3dQVE8km3I9EpbAcnB+Ys7BptD8Ku9sVRbwDG37QBs20F2Zu2N
-	 +2OAy063JaSuqbW6dXkezvxfSujipaTFr5jR7crcFntRQI5pD5b5B6LuKz0enfW7hz
-	 Ey7Y94ARuIdrWNtG47GlzfclMUmYmJ5taDoIK3UlOOVOThML9BM5gsCXmxJTUbOtti
-	 t/Y7HONM29MvA==
-Date: Mon, 6 Oct 2025 13:52:13 -0500
-From: Rob Herring <robh@kernel.org>
-To: Randolph Lin <randolph@andestech.com>
-Cc: linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	jingoohan1@gmail.com, mani@kernel.org, lpieralisi@kernel.org,
-	kwilczynski@kernel.org, bhelgaas@google.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, alex@ghiti.fr, aou@eecs.berkeley.edu,
-	palmer@dabbelt.com, paul.walmsley@sifive.com, ben717@andestech.com,
-	inochiama@gmail.com, thippeswamy.havalige@amd.com,
-	namcao@linutronix.de, shradha.t@samsung.com, pjw@kernel.org,
-	randolph.sklin@gmail.com, tim609@andestech.com
-Subject: Re: [PATCH v6 2/5] dt-bindings: PCI: Add Andes QiLai PCIe support
-Message-ID: <20251006185213.GA61386-robh@kernel.org>
-References: <20251003023527.3284787-1-randolph@andestech.com>
- <20251003023527.3284787-3-randolph@andestech.com>
+	s=arc-20240116; t=1759776909; c=relaxed/simple;
+	bh=zATYGJ5s94ipPbFwAl7MAY7cDQkGbW0aMQw7dvwOS7Y=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=YvEvpKcCjaUzRsay34QZ/2J72vorXeZMWNQQwhjhhgA1vziCj01UNa8I4M8EXJaVdqQwB27/8o5MDx1yvrwRs8n8DHj2eRB468qWgCpxvoCS5is7igF3M52tBBA0vO6Pl8wDaSKdqCTNDfIfah3VRMwBf9cko0ZElD/Wx+X1x0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SLuhxf/3; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 52BFFC085D2;
+	Mon,  6 Oct 2025 18:54:41 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 60899606B7;
+	Mon,  6 Oct 2025 18:54:59 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1C559102F2116;
+	Mon,  6 Oct 2025 20:54:39 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1759776897; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=KEzW3jit24CmXPxdwBbp7La6xIwBqgbqQZqEtvxRu/Q=;
+	b=SLuhxf/3XYFe9lSvtSeMg9+E9K5RRLzpeO6V1c2rDu+XPhBiz9+8CC4HkyDTDVE/k20H6P
+	mUw0uLt/vC1lUh/ptOhnnN8s02feywmxLly41Gn7Beb+CryrbBeU3h6VkynVX2v4t9fRTi
+	3e48jHMLpg2HeiMGvVWTkIi2YToLzMywVXpG6Nf0uFRKXHRhrrdGVLCUdyhBhRH9oBlmX/
+	HUg29WHlMfpvRBX/GpCd0eFB4Avn/1q/OnnDDz2h46/KHmYKXa2ljekJVxfmHKCqTPGgsj
+	sU9xl8XMOy8Q5/T9K6xwDjAlgwkSW3O8LqIiudrODya8XLUfODnncHp1fGWUZw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251003023527.3284787-3-randolph@andestech.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 06 Oct 2025 20:54:38 +0200
+Message-Id: <DDBGU9ELXIAW.1RLHSNOPVR9B3@bootlin.com>
+Cc: "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob
+ Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Thierry Reding"
+ <thierry.reding@gmail.com>, "Jonathan Hunter" <jonathanh@nvidia.com>,
+ "Sowjanya Komatineni" <skomatineni@nvidia.com>, "Prashant Gaikwad"
+ <pgaikwad@nvidia.com>, "Michael Turquette" <mturquette@baylibre.com>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Linus Walleij"
+ <linus.walleij@linaro.org>, "Mauro Carvalho Chehab" <mchehab@kernel.org>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ =?utf-8?q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, "Dmitry
+ Osipenko" <digetx@gmail.com>, "Charan Pedumuru"
+ <charan.pedumuru@gmail.com>, "Diogo Ivo" <diogo.ivo@tecnico.ulisboa.pt>,
+ "Aaron Kling" <webgeek1234@gmail.com>, "Arnd Bergmann" <arnd@arndb.de>,
+ <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+ <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-media@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <linux-gpio@vger.kernel.org>, <linux-staging@lists.linux.dev>
+Subject: Re: [PATCH v3 15/22] staging: media: tegra-video: tegra20: simplify
+ format align calculations
+From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
+To: "Svyatoslav Ryhel" <clamor95@gmail.com>, "Mikko Perttunen"
+ <mperttunen@nvidia.com>
+X-Mailer: aerc 0.20.1
+References: <20250925151648.79510-1-clamor95@gmail.com>
+ <3665995.U7HbjWM52l@senjougahara>
+ <CAPVz0n3CrVufs8vbw8XnYuwoZoQ2Xsi3V4HimgT0=4RQySzvaw@mail.gmail.com>
+ <3862885.G96rZvMJ2N@senjougahara>
+ <CAPVz0n2shn41h4z4PoMdtCXzj+96ak69TCqt7Ag5qpqdWi6UWA@mail.gmail.com>
+In-Reply-To: <CAPVz0n2shn41h4z4PoMdtCXzj+96ak69TCqt7Ag5qpqdWi6UWA@mail.gmail.com>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, Oct 03, 2025 at 10:35:24AM +0800, Randolph Lin wrote:
-> Add the Andes QiLai PCIe node, which includes 3 Root Complexes.
-> Only one example is required in the DTS bindings YAML file.
-> 
-> Signed-off-by: Randolph Lin <randolph@andestech.com>
-> ---
->  .../bindings/pci/andestech,qilai-pcie.yaml    | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml b/Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
-> new file mode 100644
-> index 000000000000..419468430e7e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/andestech,qilai-pcie.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/andestech,qilai-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Andes QiLai PCIe host controller
-> +
-> +description:
-> +  Andes QiLai PCIe host controller is based on the Synopsys DesignWare
-> +  PCI core. It shares common features with the PCIe DesignWare core and
-> +  inherits common properties defined in
-> +  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml.
-> +
-> +maintainers:
-> +  - Randolph Lin <randolph@andestech.com>
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/snps,dw-pcie.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: andestech,qilai-pcie
-> +
-> +  reg:
-> +    items:
-> +      - description: Data Bus Interface (DBI) registers.
-> +      - description: APB registers.
-> +      - description: PCIe configuration space region.
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dbi
-> +      - const: apb
-> +      - const: config
-> +
-> +  ranges:
-> +    maxItems: 2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  "#interrupt-cells":
-> +    const: 1
+Hello Svyatoslav,
 
-You can drop this. #interrupt-cells is already defined in 
-pci-bus-common.yaml.
+On Thu Oct 2, 2025 at 8:20 AM CEST, Svyatoslav Ryhel wrote:
+>> > > > 12 represents amount of bits used per pixel, 8 for Y plane, 2 for =
+U
+>> > > > plane and 2 for V plane, total is 12. "but explainable with a comm=
+ent
+>> > > > and improve-able later" why then we cannot use 12 with a comment? =
+this
+>> > > > is all arbitrary. Downstream is not wrong from this perspective, y=
+ou
+>> > > > don't take into account that YUV420 is planar and it uses 3 planes=
+ a
+>> > > > whole Y plane and 1/4 of U and V which in total results in wigth +=
+ 2 *
+>> > > > 1/4 width which is width * 3/2
+>> > >
+>> > > Yes -- but AIUI, the only thing the bpp value is used for the bytesp=
+erline calculation. When we add the special case for planar formats, which =
+doesn't use the bpp value, then the value 12 is never used anywhere. We sho=
+uld at least have a comment saying it is unused. (At that point, we could j=
+ust hardcode the bpp values in the fmt_align function -- but I don't mind e=
+ither way.)
+>> > >
+>> > https://ffmpeg.org/pipermail/ffmpeg-user/2023-June/056488.html
+>>
+>> I understand very well that for YUV420, each pixel has 12 bits of color =
+information. But how many bits of color information each pixel has is not u=
+seful in the context of this driver. The number of bytes per line is not re=
+lated to how many bits of color information each pixel has for planar forma=
+ts.
+>
+> No, it has direct impact. This is how buffer size / image size is
+> calculated since we place each plane consecutive. And bytes per line
+> is used specifically in image size calculation. This is common part
+> with non-planar formats. Then since Tegra provides a dedicated
+> channels/buffers for each plane, configuration of planar format
+> includes an additional step with calculation for each plane.
 
-> +
-> +  interrupt-map: true
-> +
-> +required:
-> +  - reg
-> +  - reg-names
-> +  - "#interrupt-cells"
-> +  - interrupts
-> +  - interrupt-names
-> +  - interrupt-map-mask
-> +  - interrupt-map
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    soc {
-> +      #address-cells = <2>;
-> +      #size-cells = <2>;
-> +
-> +      bus@80000000 {
-> +        compatible = "simple-bus";
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
+Sorry, I haven't followed the discussion in detail, but I tested you series
+on Tegra20 VIP and capture does not work, with a SIGSEGV in
+gstreamer. Bisecting pointed to this as the first commit where the issue
+happens.
 
-Drop this node. No reason to show "simple-bus" in this example. Also it 
-fails checks:
+I compared the input and output values of tegra20_fmt_align() at this
+commit and at the previous one, and this is the result:
 
-Documentation/devicetree/bindings/pci/andestech,qilai-pcie.example.dts:30.24-59.13: Warning (unit_address_vs_reg): /example-0/soc/bus@80000000: node has a unit name, but no reg or ranges property
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/andestech,qilai-pcie.example.dtb: bus@80000000 (simple-bus): 'ranges' is a required property
-	from schema $id: http://devicetree.org/schemas/simple-bus.yaml#
+                       before this patch     with this patch
+  At function entry:
+  bpp                        1                     12
+  pix->width                 640                   640
+  pix->height                480                   480
+  		          =20
+  On return:       =20
+  pix->bytesperline          640                   960
+  pix->sizeimage             460800                460800
 
-> +
-> +        pcie@80000000 {
-> +          compatible = "andestech,qilai-pcie";
-> +          device_type = "pci";
-> +          reg = <0x0 0x80000000 0x0 0x20000000>,
-> +                <0x0 0x04000000 0x0 0x00001000>,
-> +                <0x0 0x00000000 0x0 0x00010000>;
-> +          reg-names = "dbi", "apb", "config";
-> +
-> +          linux,pci-domain = <0>;
-> +          #address-cells = <3>;
-> +          #size-cells = <2>;
-> +          ranges = <0x02000000 0x00 0x10000000 0x00 0x10000000 0x0 0xf0000000>,
-> +                   <0x43000000 0x01 0x00000000 0x01 0x0000000 0x1f 0x00000000>;
-> +
-> +          #interrupt-cells = <1>;
-> +          interrupts = <0xf>;
-> +          interrupt-names = "msi";
-> +          interrupt-parent = <&plic0>;
-> +          interrupt-map-mask = <0 0 0 7>;
-> +          interrupt-map = <0 0 0 1 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>,
-> +                          <0 0 0 2 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>,
-> +                          <0 0 0 3 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>,
-> +                          <0 0 0 4 &plic0 0xf IRQ_TYPE_LEVEL_HIGH>;
-> +        };
-> +      };
-> +    };
-> -- 
-> 2.34.1
-> 
+I hope these info will help.
+
+Best regards,
+Luca
+
+--
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
