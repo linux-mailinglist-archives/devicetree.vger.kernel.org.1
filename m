@@ -1,160 +1,261 @@
-Return-Path: <devicetree+bounces-223920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA196BBF081
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 20:55:19 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B494BBF0D2
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 21:01:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 95D2D34AE6D
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 18:55:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 526A84F0CE8
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 19:01:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAA902DE70C;
-	Mon,  6 Oct 2025 18:55:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F5C1F5846;
+	Mon,  6 Oct 2025 19:01:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="SLuhxf/3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KPxWcljH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A272D2459F8;
-	Mon,  6 Oct 2025 18:55:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2093B1DAC95
+	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 19:01:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759776909; cv=none; b=YtjssVHSgYK8rasiYDjkNQkZa3inWXe6OVUL4b4Newt3VussPjWcz+V4DdCJLi28GPTLPTHXoWSvqSN3nO/fL9XJ2YQzfYDYzr1IK9OOZTH0a5aamujl1yCB8Ni0sRg3/0WGAjGSBuLINOGcpViIybTg+0FrF0zee9pvZ1Q2/h8=
+	t=1759777298; cv=none; b=RL5cbU4J8S5EQQDgj/m1eRg8x3fRcqBcODxVAfLt5pBMVdKzmCLXw8mvxM5bv0a/sh0XOsxZoh/ofQ0XMu7CtzTK8KqITQN04YXO3eummOyrCEszIxexFeU0TKn6Y3oy5c3oGTqDsyRqDfVzACDlS7Vbvy1K4ezoE9VaMuYWWyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759776909; c=relaxed/simple;
-	bh=zATYGJ5s94ipPbFwAl7MAY7cDQkGbW0aMQw7dvwOS7Y=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=YvEvpKcCjaUzRsay34QZ/2J72vorXeZMWNQQwhjhhgA1vziCj01UNa8I4M8EXJaVdqQwB27/8o5MDx1yvrwRs8n8DHj2eRB468qWgCpxvoCS5is7igF3M52tBBA0vO6Pl8wDaSKdqCTNDfIfah3VRMwBf9cko0ZElD/Wx+X1x0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=SLuhxf/3; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 52BFFC085D2;
-	Mon,  6 Oct 2025 18:54:41 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 60899606B7;
-	Mon,  6 Oct 2025 18:54:59 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1C559102F2116;
-	Mon,  6 Oct 2025 20:54:39 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1759776897; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=KEzW3jit24CmXPxdwBbp7La6xIwBqgbqQZqEtvxRu/Q=;
-	b=SLuhxf/3XYFe9lSvtSeMg9+E9K5RRLzpeO6V1c2rDu+XPhBiz9+8CC4HkyDTDVE/k20H6P
-	mUw0uLt/vC1lUh/ptOhnnN8s02feywmxLly41Gn7Beb+CryrbBeU3h6VkynVX2v4t9fRTi
-	3e48jHMLpg2HeiMGvVWTkIi2YToLzMywVXpG6Nf0uFRKXHRhrrdGVLCUdyhBhRH9oBlmX/
-	HUg29WHlMfpvRBX/GpCd0eFB4Avn/1q/OnnDDz2h46/KHmYKXa2ljekJVxfmHKCqTPGgsj
-	sU9xl8XMOy8Q5/T9K6xwDjAlgwkSW3O8LqIiudrODya8XLUfODnncHp1fGWUZw==
+	s=arc-20240116; t=1759777298; c=relaxed/simple;
+	bh=TKc6LcA/O0wC2QX0fyGBva4WKaaRG2QZc1Of5qcREYI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bOTrvoqNyNDZUwZgM1B0KDFh1g5pFgae4fLOFsCkjyo+Po8+E4DdPaIpAYm8u82k3bsZfHwB97j4p2W2iF2ghf7AIlxrNSDsOY3g/+p+6i38KOhgpsVXZPr3vmKOk9xArEi9aivtwjK2d3aGXd2ElbNe2WsW9WOwKMZG4TpICfY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KPxWcljH; arc=none smtp.client-ip=209.85.216.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-33255011eafso5307167a91.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 12:01:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759777295; x=1760382095; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mYZ8UHayERgN9wwxms25R/WIMLPdiBWsn9w/tx9HKCQ=;
+        b=KPxWcljHCb2VHa5ktipT+mGQjnlH5Mxvt49mFK0Rdz9fNYxrqdZAQCCrRzqFBmsULM
+         3ZlkQJ9Zrh9kICiqwhq0F1U7DOPQL57TZ25i2AumFU/+td6wfag4l4XH2zjjZR5KWab5
+         82a+j40cas5v227OnGc3RmmZlyPJPHf885PdIvv+jnykTzC6g40mDQYlb3bsT6ZNmof2
+         lQD84hzvX5VM1NQLqi5SmdWoegKjo+eGiMcOLS8uXkD38pjXfmAYFQyurgyV5q18716e
+         v7sXrL5hrLiJULBo1x6IN41rsWjTnhCZCMjkDBPdzVX+Vmlk+gA/qKaqApEjPzKbmwiI
+         UT4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759777295; x=1760382095;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mYZ8UHayERgN9wwxms25R/WIMLPdiBWsn9w/tx9HKCQ=;
+        b=v+KZvtd4jox7TJKXvZ8r+sxwwOPH/Sk6C4+uCnQosMU4ApX+tdLI56Q29NUMPUgrWz
+         c44Pvpr6Z5Pq4IiYx4HzI0OeytLM6EOoRrraFZuBl4MECfLDZQ8RItbA2e1uHe61a94N
+         wkzCNB9ZpGpEioSOPZzcTWG9IN0eEoxPSk5S+MHQuWl0g8uvay+eZ4mzqqfCiEHQf0dF
+         jrMt6+HyyTtpX3Fn9/K182/D+KRblejRWqhPJncFNCrC2w3Wy0yGT0QOBAJV+qgexO1I
+         EKEZHdmcqOEKJeLtecryXHrUtwzQoGYM37wUDwPtIL6WqwqmGu7CbpRaQbw4mHs39+hb
+         QblQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXhWTQKyGq6mkOn/XhjOuvwhIUyX3FDGjE0ABiI4Ff7ys5gP3M7SSb5MeG68jSwZ4Var+7FIDUBFDzC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqmwkXqcQmqxXuhnoHo7IAVlr9yvAmEPP7Ivbfk/hx9uCGA7Cr
+	qjlmNRF3lAmL1yC8ErZqqWGbepNBHZV/A4AIk5p7a/sfViPwLcLvBhtpKkbcpZepRKhAbaZJTGG
+	N9D0p9lQvCh2AYuge92Zy52RwWRO+0oE=
+X-Gm-Gg: ASbGncsgul+pwtmnFS7kv5OXbYIGUMG95OQuuZZPKIHZE3848qnMzL12YQOOq0Dfp45
+	NW1rQbBj9FjVPiCAm6xzvTxyXIR2AMjz5wrKnoamD1h1wklagQy9QTS+XDD1Mx3GvbNENRInL1w
+	Xoy4cslHGiCathZdD6JhmAkMHFUV9TcIs3Wnwvs4dXjdBcZz3BESLvQXK1RdHFVXwUa86ZVLpwv
+	NvIZYLSx0goa112TYONEMQaRRxT/M5MRxjuCg4T
+X-Google-Smtp-Source: AGHT+IHjbRQmxK9nItl2HffExFNwVAi7q3n9PoNqjUew1CuTn1djxW2xNlMPlH1OQdzQN2XzFyIHcR/X/BEeXf1S/Xs=
+X-Received: by 2002:a17:90b:4d05:b0:329:e2b1:def3 with SMTP id
+ 98e67ed59e1d1-339c271e913mr18582984a91.10.1759777295000; Mon, 06 Oct 2025
+ 12:01:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20250921083446.790374-1-uwu@icenowy.me> <20250921083446.790374-3-uwu@icenowy.me>
+ <20250922204349.GA1290045-robh@kernel.org> <1ac8c72206abf9f3e0a13e1fcf44be5c605f6372.camel@icenowy.me>
+ <36040a0a40311cb1e871075f0c5ad175342ed5db.camel@icenowy.me>
+ <CAH9NwWdx-Ut35RvhmNsdQbC4vfm3rH1VPN7H2uDBRsmsFjZU_Q@mail.gmail.com>
+ <84566b33d0d08ad070c3aa8a01e07f3a0e3bff50.camel@icenowy.me> <c7d79542aedb6c074c4be21eaa15c71a53e87da4.camel@icenowy.me>
+In-Reply-To: <c7d79542aedb6c074c4be21eaa15c71a53e87da4.camel@icenowy.me>
+From: Christian Gmeiner <christian.gmeiner@gmail.com>
+Date: Mon, 6 Oct 2025 21:01:22 +0200
+X-Gm-Features: AS18NWCjcsoivBsp8jaWAwEQpEhhNVJLV_pDpFJNQ8qKcsWUh9zL3A2T5EiSJg8
+Message-ID: <CAH9NwWe+eStPai5baFY62RCUB=3c9qmOSXpFuAvyX2a7_v=0Vw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/8] dt-bindings: display: add verisilicon,dc
+To: Icenowy Zheng <uwu@icenowy.me>
+Cc: Rob Herring <robh@kernel.org>, Lucas Stach <l.stach@pengutronix.de>, 
+	Russell King <linux+etnaviv@armlinux.org.uk>, 
+	moderated for non-subscribers <etnaviv@lists.freedesktop.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Drew Fustini <fustini@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Michal Wilczynski <m.wilczynski@samsung.com>, Han Gao <rabenda.cn@gmail.com>, 
+	Yao Zi <ziyao@disroot.org>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 06 Oct 2025 20:54:38 +0200
-Message-Id: <DDBGU9ELXIAW.1RLHSNOPVR9B3@bootlin.com>
-Cc: "David Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Thierry Reding"
- <thierry.reding@gmail.com>, "Jonathan Hunter" <jonathanh@nvidia.com>,
- "Sowjanya Komatineni" <skomatineni@nvidia.com>, "Prashant Gaikwad"
- <pgaikwad@nvidia.com>, "Michael Turquette" <mturquette@baylibre.com>,
- "Stephen Boyd" <sboyd@kernel.org>, "Linus Walleij"
- <linus.walleij@linaro.org>, "Mauro Carvalho Chehab" <mchehab@kernel.org>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- =?utf-8?q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, "Dmitry
- Osipenko" <digetx@gmail.com>, "Charan Pedumuru"
- <charan.pedumuru@gmail.com>, "Diogo Ivo" <diogo.ivo@tecnico.ulisboa.pt>,
- "Aaron Kling" <webgeek1234@gmail.com>, "Arnd Bergmann" <arnd@arndb.de>,
- <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
- <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-media@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <linux-gpio@vger.kernel.org>, <linux-staging@lists.linux.dev>
-Subject: Re: [PATCH v3 15/22] staging: media: tegra-video: tegra20: simplify
- format align calculations
-From: "Luca Ceresoli" <luca.ceresoli@bootlin.com>
-To: "Svyatoslav Ryhel" <clamor95@gmail.com>, "Mikko Perttunen"
- <mperttunen@nvidia.com>
-X-Mailer: aerc 0.20.1
-References: <20250925151648.79510-1-clamor95@gmail.com>
- <3665995.U7HbjWM52l@senjougahara>
- <CAPVz0n3CrVufs8vbw8XnYuwoZoQ2Xsi3V4HimgT0=4RQySzvaw@mail.gmail.com>
- <3862885.G96rZvMJ2N@senjougahara>
- <CAPVz0n2shn41h4z4PoMdtCXzj+96ak69TCqt7Ag5qpqdWi6UWA@mail.gmail.com>
-In-Reply-To: <CAPVz0n2shn41h4z4PoMdtCXzj+96ak69TCqt7Ag5qpqdWi6UWA@mail.gmail.com>
-X-Last-TLS-Session-Version: TLSv1.3
 
-Hello Svyatoslav,
-
-On Thu Oct 2, 2025 at 8:20 AM CEST, Svyatoslav Ryhel wrote:
->> > > > 12 represents amount of bits used per pixel, 8 for Y plane, 2 for =
-U
->> > > > plane and 2 for V plane, total is 12. "but explainable with a comm=
-ent
->> > > > and improve-able later" why then we cannot use 12 with a comment? =
-this
->> > > > is all arbitrary. Downstream is not wrong from this perspective, y=
-ou
->> > > > don't take into account that YUV420 is planar and it uses 3 planes=
- a
->> > > > whole Y plane and 1/4 of U and V which in total results in wigth +=
- 2 *
->> > > > 1/4 width which is width * 3/2
->> > >
->> > > Yes -- but AIUI, the only thing the bpp value is used for the bytesp=
-erline calculation. When we add the special case for planar formats, which =
-doesn't use the bpp value, then the value 12 is never used anywhere. We sho=
-uld at least have a comment saying it is unused. (At that point, we could j=
-ust hardcode the bpp values in the fmt_align function -- but I don't mind e=
-ither way.)
->> > >
->> > https://ffmpeg.org/pipermail/ffmpeg-user/2023-June/056488.html
->>
->> I understand very well that for YUV420, each pixel has 12 bits of color =
-information. But how many bits of color information each pixel has is not u=
-seful in the context of this driver. The number of bytes per line is not re=
-lated to how many bits of color information each pixel has for planar forma=
-ts.
+Am Mo., 6. Okt. 2025 um 18:34 Uhr schrieb Icenowy Zheng <uwu@icenowy.me>:
 >
-> No, it has direct impact. This is how buffer size / image size is
-> calculated since we place each plane consecutive. And bytes per line
-> is used specifically in image size calculation. This is common part
-> with non-planar formats. Then since Tegra provides a dedicated
-> channels/buffers for each plane, configuration of planar format
-> includes an additional step with calculation for each plane.
+> =E5=9C=A8 2025-09-25=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 13:57 +0800=EF=
+=BC=8CIcenowy Zheng=E5=86=99=E9=81=93=EF=BC=9A
+> > =E5=9C=A8 2025-09-24=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 20:15 +0200=EF=
+=BC=8CChristian Gmeiner=E5=86=99=E9=81=93=EF=BC=9A
+> > > > > > > Verisilicon has a series of display controllers prefixed
+> > > > > > > with
+> > > > > > > DC
+> > > > > > > and
+> > > > > > > with self-identification facility like their GC series
+> > > > > > > GPUs.
+> > > > > > >
+> > > > > > > Add a device tree binding for it.
+> > > > > > >
+> > > > > > > Depends on the specific DC model, it can have either one or
+> > > > > > > two
+> > > > > > > display
+> > > > > > > outputs, and each display output could be set to DPI signal
+> > > > > > > or
+> > > > > > > "DP"
+> > > > > > > signal (which seems to be some plain parallel bus to HDMI
+> > > > > > > controllers).
+> > > > > > >
+> > > > > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+> > > > > > > ---
+> > > > > > > Changes in v2:
+> > > > > > > - Fixed misspelt "versilicon" in title.
+> > > > > > > - Moved minItems in clock properties to be earlier than
+> > > > > > > items.
+> > > > > > > - Re-aligned multi-line clocks and resets in example.
+> > > > > > >
+> > > > > > >  .../bindings/display/verisilicon,dc.yaml      | 127
+> > > > > > > ++++++++++++++++++
+> > > > > > >  1 file changed, 127 insertions(+)
+> > > > > > >  create mode 100644
+> > > > > > > Documentation/devicetree/bindings/display/verisilicon,dc.ya
+> > > > > > > ml
+> > > > > > >
+> > > > > > > diff --git
+> > > > > > > a/Documentation/devicetree/bindings/display/verisilicon,dc.
+> > > > > > > ya
+> > > > > > > ml
+> > > > > > > b/Documentation/devicetree/bindings/display/verisilicon,dc.
+> > > > > > > ya
+> > > > > > > ml
+> > > > > > > new file mode 100644
+> > > > > > > index 0000000000000..07fedc4c7cc13
+> > > > > > > --- /dev/null
+> > > > > > > +++
+> > > > > > > b/Documentation/devicetree/bindings/display/verisilicon,dc.
+> > > > > > > ya
+> > > > > > > ml
+> > > > > > > @@ -0,0 +1,127 @@
+> > > > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > > > > > +%YAML 1.2
+> > > > > > > +---
+> > > > > > > +$id:
+> > > > > > > http://devicetree.org/schemas/display/verisilicon,dc.yaml#
+> > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > > > > +
+> > > > > > > +title: Verisilicon DC-series display controllers
+> > > > > > > +
+> > > > > > > +maintainers:
+> > > > > > > +  - Icenowy Zheng <uwu@icenowy.me>
+> > > > > > > +
+> > > > > > > +properties:
+> > > > > > > +  $nodename:
+> > > > > > > +    pattern: "^display@[0-9a-f]+$"
+> > > > > > > +
+> > > > > > > +  compatible:
+> > > > > > > +    const: verisilicon,dc
+> > > > > >
+> > > > > > This needs an SoC specific compatible. Generally licensed IP
+> > > > > > compatibles
+> > > > > > are useless because the specs aren't public and there's
+> > > > > > always
+> > > > > > integration quirks.
+> > > > >
+> > > > > This mimics the GPU IPs by the same vendor, see
+> > > > > gpu/vivante,gc.yaml ,
+> > > > > which contain the exact same set of identification registers
+> > > > > (including
+> > > > > a "customer id" one that can differienate the same configured
+> > > > > IP
+> > > > > on
+> > > > > StarFive JH7110 and T-Head TH1520).
+> > > > >
+> > > > > If we can get vivante,gc to work w/o SoC specific compatible,
+> > > > > then we
+> > > > > should be able to get verisilicon,dc to work too.
+> > > >
+> > > > Well maybe I should add etnaviv people to the recipient list, to
+> > > > allow
+> > > > them to tell us the magic behind vivante,gc .
+> > > >
+> > >
+> > > Vivante GPUs are special because they contain registers that allow
+> > > them to
+> > > be fully identified - see etnaviv_hw_identify(..).
+> > >
+> > > We can read out the following information:
+> > >  - model
+> > >  - revision
+> > >  - product_id
+> > >  - customer_id
+> > >  - eco_id
+> >
+> > Well Verisilicon DCs (sometimes also called Vivante DCs because
+> > Vivante
+> > is now part of Verisilicon) except DCNano have the same set of ID
+> > registers (In fact the registers before 0x1500 seem to have mostly
+> > the
+> > same meaning with GPUs, see [1], here the registers are even named
+> > GC{,REG}_xxx), so it's why I assume "verisilicon,dc" will work here.
+> >
+> > An example of identification registers readout on TH1510 is shown
+> > below: (the register names are from etnaviv state_hi.xml)
+> > ```
+> > root@lpi4a66 [ ~ ] # busybox devmem 0xffef600020 # MODEL
+> > 0x00008200
+> > root@lpi4a66 [ ~ ] # busybox devmem 0xffef600024 # REV
+> > 0x00005720
+> > root@lpi4a66 [ ~ ] # busybox devmem 0xffef600028 # DATE
+> > 0x20210201
+> > root@lpi4a66 [ ~ ] # busybox devmem 0xffef60002c # TIME
+> > 0x11133000
+> > root@lpi4a66 [ ~ ] # busybox devmem 0xffef600030 # CUSTOMER_ID
+> > 0x0000030A
+> > root@lpi4a66 [ ~ ] # busybox devmem 0xffef6000a8 # PRODUCT_ID
+> > 0x02082000
+> > root@lpi4a66 [ ~ ] # busybox devmem 0xffef6000e8 # ECO_ID
+> > 0x00000000
+> > ```
+> >
+>
+> Rob,
+>
+> Is this an acceptable answer of not having a vendor-specific
+> compatible?
+>
+> If it isn't, I will add vendor-specific compatible strings to the next
+> revision of the binding, and maybe also try to add them for vivante,gc.
+>
 
-Sorry, I haven't followed the discussion in detail, but I tested you series
-on Tegra20 VIP and capture does not work, with a SIGSEGV in
-gstreamer. Bisecting pointed to this as the first commit where the issue
-happens.
+There is no need to touch anything for vivante,gc.
 
-I compared the input and output values of tegra20_fmt_align() at this
-commit and at the previous one, and this is the result:
-
-                       before this patch     with this patch
-  At function entry:
-  bpp                        1                     12
-  pix->width                 640                   640
-  pix->height                480                   480
-  		          =20
-  On return:       =20
-  pix->bytesperline          640                   960
-  pix->sizeimage             460800                460800
-
-I hope these info will help.
-
-Best regards,
-Luca
-
+--=20
+greets
 --
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Christian Gmeiner, MSc
+
+https://christian-gmeiner.info/privacypolicy
 
