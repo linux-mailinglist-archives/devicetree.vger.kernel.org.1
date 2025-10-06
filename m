@@ -1,161 +1,206 @@
-Return-Path: <devicetree+bounces-223739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34A1FBBCFEF
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 05:04:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04B34BBD014
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 05:17:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EE4524E1A33
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 03:04:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B7FE64E115F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 03:17:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E7D21D5ABA;
-	Mon,  6 Oct 2025 03:04:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3E5A13BC0C;
+	Mon,  6 Oct 2025 03:17:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YJIXXkSs"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="t+fLBcrT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f66.google.com (mail-ej1-f66.google.com [209.85.218.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010064.outbound.protection.outlook.com [52.101.229.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8561E19ADBA
-	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 03:04:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.66
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759719858; cv=none; b=S6wuesZWrhCRMP8oDCvBTOa14ri3BezJ3gVkdJ3yr20igXj/IPHOcMX9bGvJA6M2VPCAOZP/+TeUdJ1f54t+h1JFGx8Oz3qyUN5C3dcT+kBaE1bVdreDFk10mn1aXPtQIZMG+a0GijesCHxm3IvEDw2r2R2H9wdhjQunTj4zbfw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759719858; c=relaxed/simple;
-	bh=zrCv2LuYmCw0DiAsIUBqoGDXiizxKiHny8jAmmjwrG4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qBnQnfceKiAF6SltyCxT5OMZRaihYQlEBFV4sd+OBRgu3r1HEGAo8s4lwVbrmJWKSi5eBEqoVFu5raMfjRo8OzlWA8fyEtjGWyD9K99/coQslPS4Jt/lOiOICKAQOXnsqtm0gN+I4HvwrSDnxHpUamV+gtwbJsWfLve3h2fHml0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YJIXXkSs; arc=none smtp.client-ip=209.85.218.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f66.google.com with SMTP id a640c23a62f3a-b3b27b50090so794597566b.0
-        for <devicetree@vger.kernel.org>; Sun, 05 Oct 2025 20:04:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759719855; x=1760324655; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g8HZij/mNEbJxirmDzZ6t2wS0k3yCLSvvwCRqNRU6uM=;
-        b=YJIXXkSsgC2BoGgPSWJYw5kEoT86Eplto3z1sfN8z54Uy07oKHcC/hjVaIUFtaDU4A
-         /7ULBpartBIlKjKPsPe9/dUQttddwyIEx20x3DFMWSWUoplHyT577QrLn35HXLdd2RDg
-         n8rRlFEte8KHyrTzBmglmcCGGt01nMCrSfjAVNywtNNyp/GgoefOIGL3S3eb7Jc4Npb8
-         9ETmhiySQHBx0PONg7yGkilRzWrJ734CNL1I76/0tyD5Om8nHvJm/hcLMYCfRMygAK3n
-         tONATrfZ/K3hP+XFCssyeFlfDYFQ1JtqqlGyPMO2FEFzOJGeNb/Dod/mdw/rtkSobodi
-         qwuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759719855; x=1760324655;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=g8HZij/mNEbJxirmDzZ6t2wS0k3yCLSvvwCRqNRU6uM=;
-        b=CfbZFiPgXycx97pCyo/nSX8PDpxUO5OCV8dllShWfaiyA9JaWEs6TE4B3zWWAkBAZ/
-         ViFdjqpoNNNXdSbTMKcZdJCzPfNWLbuMPNSEUffWlFHZOpFGWLbx3bVAnYlT21qYrZZ8
-         vVM8xReXeZegTyxCK1BGrTNlHLjF06ktWLjPXwCdjfCCzZ5tX6iXAVxLpCsfYteOaEeD
-         9V83HUrMQXuXrr4dHPQd2jbsnHRsv+8sDL3bMEBoBoG/WJjQWb0jiciFwFZehB/3Iv3y
-         KSkgaw1rOVuT7xjzx/u6yqYPJhU50DMH8RrgxLmYsvLl2iYioK0Ns2EgGBIo3faZKeby
-         /+AA==
-X-Forwarded-Encrypted: i=1; AJvYcCU6aeOY1c2zl8QBpkJqxw9vMKhgoERNoPSyBNrq+xczgilLfVIYwSM483P9m/pPpAenlRjdqDTdzyvx@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxg9E74eedVd+UNeLTN3SqVYliA4YFmZ2Bh5V7z3UHLwZ58Dnvu
-	NkhNoXWN0T+KFZN10YVAvDdmt5U08UR2EQ/4qAixRL8suG+8MdKAbf7Am7ZqTPcdjdyhP8fWZUE
-	f4XTByJ5Lx/r6tRYA7472e72IY2w9WjS4sJpxIRM=
-X-Gm-Gg: ASbGncuWOITVD1Sk+Cm7hkw7pqyCO7DoxDK99MmZfh/zJN2jHlsUfMXVomXFjN0TVoL
-	KCBd0Pz813Z0H66ELJVH/A1FZwr0hge1A/fkhYjmikwDNEU13eeg/U9iWyzWfYzffx5zm0ZT5op
-	fXQUWXA9Nc10NO9yxnbLjbbou7XTmMHqCwUd7fFkElifoXWvaUIOG+WTV/4XtUFpCgbd3r5zy18
-	MX4m26x0qRoi4WCpR1Xz0c1yCa9etniNOIKXbizOQ==
-X-Google-Smtp-Source: AGHT+IF3g5iOV5bBmvcCjDZVj28/wSv9TwXn03R1OV6xFO9+YKnCOgJo0QkX4WrE9j8JvzAze30xlaVLyrf8o/PLByI=
-X-Received: by 2002:a17:907:7e8c:b0:b04:5b0a:5850 with SMTP id
- a640c23a62f3a-b49c3b25f61mr1442292266b.40.1759719854642; Sun, 05 Oct 2025
- 20:04:14 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DE61B661;
+	Mon,  6 Oct 2025 03:17:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.64
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759720656; cv=fail; b=NRwwFXo9EJtCQZW4z/jHX4K8vNKohjgC/ZXDpYK35e4G9cEDEpLNCSbeHTV5l+hHIQdlRxo24I/r9HivCCqbduZk0UrNnROWdb3ySaqtPK/wtXYbaJgHxjB6hqxOC1TJ67BlCEYfiC/NTZlgWYDxMAWlGV2pr/SyhgJ/qkR4xxo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759720656; c=relaxed/simple;
+	bh=MzHYFwCBdDJrrvWNUO04NQplMmd/ALLFFV9ALNC0xnY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=fjIkFkfyUxIOQXIRN/CF62LQSczwB0jVK3w0Qos++leze+Eton4B4jLv0hJ2JIAZKojsR1CKhrXgaK9lR+hgd55thqZvvuGK7M/DYweN4FgkB4JDSWAI4iUqcsouMkNAXjaUNojLXY0Cl5mMhbGoI/N6Yd527I+Op8iEKvGCwXg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=t+fLBcrT; arc=fail smtp.client-ip=52.101.229.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wTqdxdJjn1dJTTxq4gcM0G5/+3d2RzVMLeqNK3TFhGlHO0RnTlp2uP55PVSGRgeKKx/ls+mLPDgoB24bO2rIVIySHNgra9iheCd5gBHg9+Ee99B0BpRRrvpEda7oyLb6YE5pxQ6c4r7AGm6FVuZRvUyPqrLBl4ihtWsYcOdKYVqT5yxy8UyDx+qvMmGDj/S/iA/Huc9vpXz6tnaRO3dW5B8ds72iY6E/R0TcEqf9U48f5zLUppK4MpiKPzSsjjrL0oO3ocqU/bpvWLj9TaWKnYmFT/9evui4gbz9fOfc4E/Rd6Xq+h2/DFCP3d0n9DBrVkEO2APN2RsMaLlx4bgMYw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=eCy7Chv1BrTLQIGNpllHR5aOmWiey7ujvC7xmqaWwwk=;
+ b=SuJ2QPgfzIPUHTJhTFtQseTIT2kEms3R40h2R8hU+PaST3hk8Us0n3fRDpUoiBbMJ4rBOd9xmHHyzLNBaNMg7OyaVTV7dxmgTuw/8W0g4qXVYmVzXwYoQEIoUl9Zh9Y5rPFjwcTn21W/9oLP3l7HATCaM3FbVXFZA9ZfdUK2vHQQkXYkFrAxScwaeRDY5LnKOgR40kwK0RwidtIyJ+1IfS7+H55VdDEY39IWrkq1Q++TF4rtwhJ9TW6nhyRWHbo2+5AmmGXVLL30YpkJDAQhLhwoyEFCbLtgvRjGxQ40pmKrH5yVBRviCa7WmRuEUaDTVoYPjWuF2wzZ2134WMyL/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eCy7Chv1BrTLQIGNpllHR5aOmWiey7ujvC7xmqaWwwk=;
+ b=t+fLBcrT1RXaXKrY3bgJ1mLF/8MV/PprXHgK7gziXuD+4zDeBrd5t5w7gGstJhok16bb0hG1Iq5e5j99TuSXDM4KzejQ3GDjhcNxyu4CWF07EcWE03ADosdHmr7WOIiuBQAXXmdHczVU4TdrFwkzIHD5hOq0Gs7iQKK1G3VJPrQ=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by TYYPR01MB12384.jpnprd01.prod.outlook.com (2603:1096:405:fb::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Mon, 6 Oct
+ 2025 03:17:26 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%4]) with mapi id 15.20.9203.007; Mon, 6 Oct 2025
+ 03:17:26 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: wsa+renesas <wsa+renesas@sang-engineering.com>
+CC: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, Wim Van Sebroeck
+	<wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
+	<geert+renesas@glider.be>, magnus.damm <magnus.damm@gmail.com>,
+	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH v2 4/4] dt-bindings: watchdog: factor out RZ/V2H(P)
+ watchdog
+Thread-Topic: [PATCH v2 4/4] dt-bindings: watchdog: factor out RZ/V2H(P)
+ watchdog
+Thread-Index: AQHcNgagQ5/85CLbrUmtG4qDdk4zRbSzt7/wgAAD1ACAALcMwA==
+Date: Mon, 6 Oct 2025 03:17:26 +0000
+Message-ID:
+ <TY3PR01MB113460EB1918AD06D8F2ADD0C86E3A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20251005144416.3699-6-wsa+renesas@sang-engineering.com>
+ <20251005144416.3699-10-wsa+renesas@sang-engineering.com>
+ <TY3PR01MB11346E3690F0E74C5E1AF9B7586E2A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <aOKajKzRlrQD7plt@shikoro>
+In-Reply-To: <aOKajKzRlrQD7plt@shikoro>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYYPR01MB12384:EE_
+x-ms-office365-filtering-correlation-id: 7c4b663e-af73-469c-0e8f-08de0486dfe5
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|366016|1800799024|7416014|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?gwtQq1ghVBzG2C2R8ikAuCadsD+qNlmOOKOIhhjPjTUj9W45+i6RD6E1dO+D?=
+ =?us-ascii?Q?SZPnuuegC63MhbiOkYODEWnOzRYlKLkNvUCciblt36QLELKeuTB+b1jhEC5K?=
+ =?us-ascii?Q?02vmeMdtb1/vsz12eFo4+TvE+TyAkEu+vVaBMjnyH5UUpkWy8WgMzVzbUH8Z?=
+ =?us-ascii?Q?8srr5O9K0OYF+tEA0maI+luta+xc32sF7Bz/oLeegLuVy/gA8voftXU+awsv?=
+ =?us-ascii?Q?ewj5DNd8WixVHSSIhI12Ax4+5CCT72IqZhVvX/gjyNWbARohWuulLXmrgoJ1?=
+ =?us-ascii?Q?dFzpvdDl3r39ym+TIF6c76CgW8hAZUoOMnXyjw7SgW90VK2KpW4GEiSl04C4?=
+ =?us-ascii?Q?rlMgjsmF025l9aOiZz5DphQIic0MV1jdj2d00Qe1tb8qWwco8LhDnEZF3i4Y?=
+ =?us-ascii?Q?UOtrJpcL0OvQyHe10aTi2pwOskbyaW/s2lpQlVnY/K7kya1ZNcDxu9k/Mytz?=
+ =?us-ascii?Q?Xqs0rr7bXNv/FWkqLDghYELmKSg9AgoiIivMKIUSGi26EGkYx9YQMiubNbxi?=
+ =?us-ascii?Q?511mJ+QWsV4lJjll0rgMLHElXj1pbMqU0pnBLVuUecVF0zJYatOPb+p6uzX3?=
+ =?us-ascii?Q?QDJBzyFMDpfVjdZN96ilwF6C7DFhf3ZXAOB1R01OD2t6PyKQOwTswPJhBKgA?=
+ =?us-ascii?Q?6hLRsMSicBDC75Dp9Ftl4wmvwvzMNz0I1bD9oTWfmkdHe00ZnB84T+ZIeV0V?=
+ =?us-ascii?Q?Kc5v5DjFA7EwjDBuSUP2UL0rGlhQmYYCZsIP/OBKySuWv88JDfbDItgQ9W9W?=
+ =?us-ascii?Q?ylFg8L2PXwcWvm1UFkh1LMCYhgvTWwZC6jmylHCSOJHPX7yjLVeMRY+hOvE+?=
+ =?us-ascii?Q?7Oi+ucjFMq5CA47W20R2pYpiHepSkLtZ4y8aDEIUr6tAREEOI5jxj9Kbo6DR?=
+ =?us-ascii?Q?l2lhK5AGOJlHkS6/91oWogKNJce0l4/z5NKrqdSHtfNlyQaSXc6+LzMMERi2?=
+ =?us-ascii?Q?GxDyRPzoS0wU8IrSrde3Jk0RyQ0hLXBaGSMo707p+QvGJ6Jwk/ZQIeLXkim/?=
+ =?us-ascii?Q?JpDknn4jzL4o48sx6rsPQ8I04dKhHl1B7/5/rCNS0nShepjCP1JyTf2S1lo2?=
+ =?us-ascii?Q?wEPxBID/c1gDfjDZsAeCnlacPdItmJf1rGcYrUY5sa8zShcE6JYCnoHHuGcS?=
+ =?us-ascii?Q?4SRquRh14B47cA/3k23m0+ApnRGt8Y0Q9UeGhzUhIHe/cPhyHM0in7+dr/vQ?=
+ =?us-ascii?Q?NKv5Rl+r1DsuYfeYxSJbbl0G5bbiHI1CyqvFzy1FSfjFxSrhzXCuQ/EcrwEd?=
+ =?us-ascii?Q?XNasqKVyt9B7hxWR/Hx0XYQNMr4zJaLCyoHV3zNPfzutdD9A+ryEpTATiZd8?=
+ =?us-ascii?Q?RACVoK2Px+hydTku4Mgjs/yV0ftmjX28XBBGSsLcnLZTANnLbpnTQoK2zt0M?=
+ =?us-ascii?Q?VItpFiSh44W/EYFGs1xrZtJnPHWFS5uO5GZakk8LX6Z39Nso1ZNLT7u96Tra?=
+ =?us-ascii?Q?QF/gYZKx0T5JoVHpT042p4R8TP1GoJe+oaQW6h2qXnDiYZGOHc69MemJG7kG?=
+ =?us-ascii?Q?F6oV4hwmsFc8MNQZ1KbXMujWhAsKQft4kMlQ?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(7416014)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?k7vnOSUAdBJGn7ek8R8gypOoGtkucLz6XhIX13Teo7P/QEwAbHlZg3SAaRkk?=
+ =?us-ascii?Q?CZNWMkfQUvTY7JTQSqJz1B8e0zG9X1N9PgNCMedam9GTsVC9+Bo25iI3++3J?=
+ =?us-ascii?Q?qCb3G8INaCbctZp4ZMOkR7lFFyKa2oQ5syS+2lvE1Zadra7CcBdgtnrSYr1N?=
+ =?us-ascii?Q?tbmfERw27/ai4V8YPNtoNuTEpGnttPbwYN5s9HQoYnTlm2LwJ+RiXMU2Ix1N?=
+ =?us-ascii?Q?Kqiyjlsrv49KjLae33ppqGg+OcYvIcUIevQhm9mgaBUiK4H4dn3sdvmdUZSU?=
+ =?us-ascii?Q?mT+o9FI4PAS05cNR80PdHl3gVxvFpABlnX0vbZKqiiYA9NyEeYvD0J1VxuO8?=
+ =?us-ascii?Q?4nYHjNoklwh6CXhma/1uNtS759blo9fAt15300BKCKPVjtH5nUc1VzObHSiM?=
+ =?us-ascii?Q?Y3LoCVmevQ1gT6A0xfXNeb68KUyl04XxUeUvzNWE/LjNFBHEKTZweUr9plYu?=
+ =?us-ascii?Q?0rB96YoqB/czJ/AnILbRuLX22oaJGruZTtPTKATdsTBg28UnHjfY2DonbuM9?=
+ =?us-ascii?Q?CgoC7aSfXMx1u6xhcV7LAOQ0hn5C009U6jMgdGDLO3+XixjI594QNoTaSRB3?=
+ =?us-ascii?Q?PptHfJ4HuD2Q9SoDWWgEJXTK22caQxwgYdpHn++bM5rs6j8hxRwEgTkgra2X?=
+ =?us-ascii?Q?iQOGWJ/+AO8O8MVSbm1PJlY+kwLfyoJ47zSxhKbkjl+c+PhPo//7FRPzPSTp?=
+ =?us-ascii?Q?gEl6f0cC8sKKHh/EHAi4GgtXEyzdq3w66tJiEQYbtGPuHfj/ck4ipAUqk6Fd?=
+ =?us-ascii?Q?d1xLWUFSBXoiQNhlm9LAtvC6lTpFREvtUEhUwAn99awBp8UPY+F9JQGwxE1x?=
+ =?us-ascii?Q?2bi4hBhL0O0yQTXSne2wa80sIsoOh/+SFjWNubOV3fk01I6t3BVRfEyasLwX?=
+ =?us-ascii?Q?QGvs5krNavqYGhBQyu4K9zp8wbsX9bN+heM/84q6ReK+GnXu2w+xq8y7/mne?=
+ =?us-ascii?Q?TkvDMKsAgReLySjsDv3mAWD9RCD3u4TKx4WRqY7DJDkLd0v1UUTVilbPkiWS?=
+ =?us-ascii?Q?LGN02yMNkmjIdgpEIQBy9wZ6RJVx1GKavbsFTXFUgbnIX6hHfpwCVz+gsRX3?=
+ =?us-ascii?Q?LaBFmeRqtSwMSkMLjGlNfvsQ5+EI3MtC55kSTskqWGT0GVUiODIXcPHmVRR7?=
+ =?us-ascii?Q?gUScgwnxz4P7HhoSbq+eLLhxNd77uAwhhTlrhoc05nAyi9arAhRh2hWJ3mn6?=
+ =?us-ascii?Q?+v4QPJKHrxA5wf1hol5a84FfWE004GTCkbBOkfRNKdI9fWww5cq64kEhlHO0?=
+ =?us-ascii?Q?7LXDcepKks71k16imD0fQK/L24b18UBUtDbjcHwa132nupSZB4N4oCAXh9rS?=
+ =?us-ascii?Q?J8a0T5XomHCIa8M3BiPzFeTDDgPUb7TlqOQs/iGPwL+reMtQRpvWlLPLzfBu?=
+ =?us-ascii?Q?8sb+5zhQf76t8kyNu3RG1FX6L2Nlqi89/WpAn6QYB6UJWO4MLjf28rH6K6Dl?=
+ =?us-ascii?Q?124PwTfYxPaUIPq2HA/mZEgA/qiH7fx/3ITmQ0MAqROqkvXGnA2rBKbLZQHs?=
+ =?us-ascii?Q?9OhwlKamkjGRMGgV8YQ2O+41a7cVOT34vBARh+1svB4XPrlQ1Nq752RXDO1I?=
+ =?us-ascii?Q?QfvYY89vt3wcNENdEDUF/Nub4++RAVkLjPSzyYBm?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251004015623.7019-1-raskar.shree97@gmail.com>
- <20251004015623.7019-2-raskar.shree97@gmail.com> <20251004141231.632c311d@jic23-huawei>
-In-Reply-To: <20251004141231.632c311d@jic23-huawei>
-From: Shrikant <raskar.shree97@gmail.com>
-Date: Mon, 6 Oct 2025 08:34:03 +0530
-X-Gm-Features: AS18NWCdUtEmwAviFScR6aUatO9T_ZkTtEYw9JwSoZ6crvMFN1TNWl_QFZoYWvY
-Message-ID: <CAHc1_P7MU=BYf_8sbZqikpXpfuvAtLNJ2E_hmi-50ohoh+gQcg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: max30100: Add pulse-width property
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, matt@ranostay.sg, 
-	skhan@linuxfoundation.org, david.hunter.linux@gmail.com, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-kernel-mentees@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c4b663e-af73-469c-0e8f-08de0486dfe5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Oct 2025 03:17:26.1253
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fzUBg5/Z7ZdXAwueylprfrS9zePWghFjXbaSJSyW6dXSfOK4NE0Od9gbfiulJRC8P7nK0OuJi5uy6uGlJHggbZgWxvjRX7dgp68ClsxIHDY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB12384
 
-On Sat, Oct 4, 2025 at 6:42=E2=80=AFPM Jonathan Cameron <jic23@kernel.org> =
-wrote:
->
-> On Sat,  4 Oct 2025 07:26:22 +0530
-> Shrikant Raskar <raskar.shree97@gmail.com> wrote:
->
-> > The MAX30100 sensor supports multiple LED pulse widths (200us, 400us,
-> > 800us, 1600us). These settings affect measurement resolution and power
-> > consumption. Until now, the driver always defaulted to 1600us.
+Hi Wolfram,
+
+Thanks for feedback.
+
+> -----Original Message-----
+> From: wsa+renesas <wsa+renesas@sang-engineering.com>
+> Sent: 05 October 2025 17:19
+> Subject: Re: [PATCH v2 4/4] dt-bindings: watchdog: factor out RZ/V2H(P) w=
+atchdog
+>=20
+> Hi Biju,
+>=20
+> > > +      - enum:
+> > > +          - renesas,r9a09g057-wdt    # RZ/V2H(P)
+> > > +          - renesas,r9a09g077-wdt    # RZ/T2H
+> > > +
+> > > +      - items:
+> > > +          - const: renesas,r9a09g087-wdt # RZ/N2H
+> > > +          - const: renesas,r9a09g077-wdt # RZ/T2H
+
+I guess a comment like # fallback RZ/T2H here will avoid confusion.
+
 > >
-> > Introduce a new device tree property `maxim,pulse-width` that allows
-> > users to select the desired pulse width in microseconds from device
-> > tree.
-> >
-> > Valid values are: 200, 400, 800, 1600.
-> >
-> > This prepares for driver changes that read this property and configure
-> > the SPO2 register accordingly.
-> >
-> > Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
-> Hi Shrikant,
->
-> Explain why this is in some way related to characteristics of how the
-> system containing this chip is built (wiring, lenses etc).  Otherwise
-> this might instead be something that should be controlled from userspace
-> not firmware.
->
-> Also, give a little more on why we care about controlling it at all.
-> Is there a usecase where power use of this chip matters?  Mostly I'd expe=
-ct
-> it to be in measurement equipment with relatively short measuring periods=
-.
->
-> Jonathan
-Hi Jonathan,
+> > Looks there is duplication of entries for RZ/T2H?
+>=20
+> The first one is plain T2H, the second one N2H with a fallback to T2H.
+> This is how I read it, at least, and how it already was in the original b=
+inding description.
 
-Thanks for the feedback.
+I agree.
 
-The pulse width configuration is indeed dependent on the hardware integrati=
-on
-of the MAX30100. It affects how much optical energy the LEDs emit per sampl=
-e,
-which in turn depends on physical factors such as:
-
- - The type and thickness of the optical window or lens covering the sensor
- - The distance between the LED and photodiode
- - The reflectivity of the skin/contact surface
-
-For example:
- - A smartwatch/wearable ring with a thin glass window can operate
-with 200=E2=80=93400 =C2=B5s pulses to
-   save power, while
- - A medical-grade pulse oximeter or a sensor mounted behind a thicker
-   protective layer may require 800=E2=80=931600 =C2=B5s for reliable signa=
-l amplitude.
-
-I believe it would be appropriate to describe these fixed,
-board-specific characteristics in the Device Tree,
-since they are determined by the hardware design rather than being
-runtime or user-controlled parameters.
-
-Would it be okay if I send v2 of the patch with the above explanation
-included in the commit message?
-
-Thanks and regards,
-Shrikant
+Cheers,
+Biju
 
