@@ -1,162 +1,223 @@
-Return-Path: <devicetree+bounces-223838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B4CBBE19F
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 14:56:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7262BBE184
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 14:50:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 426304E4A71
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 12:56:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D9D41897173
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 12:50:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4E58283FD9;
-	Mon,  6 Oct 2025 12:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7A9283FCE;
+	Mon,  6 Oct 2025 12:50:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="akLfpc1i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CEA228312B
-	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 12:56:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5FE32836A3
+	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 12:50:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759755397; cv=none; b=AQq6pvQe1DTliO1sHij+1/wO5O4V/xuosu4R4xZT8Tc8I1Y/5oMjMpMMrvaKso+cPzZuFQec+DO7ix4S1AMhlCSz6Nf7NqpRdFwA+WsKJEe95YXER0p0NTEBLWHorseVyuDfxtNIe2CeB32vB+lW6aNWcx7oP2rLcqO9mNqTQ+E=
+	t=1759755019; cv=none; b=lGxp3g9Tt6MQTbzzb7qo9l8FHPrYq7YZkR8I5nVavJRI7YqdYU5LN4E0oybcsZP1lYpdmbDMPiaLFP3l1T8iRCRV/PTMOHl32fhqr9SPKw1Jt7ei0+TI9z40rce0JeRnPxGkBMF+f8o9irOtjWcoXwPD3UhdhtCc1xopv3Ztp1I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759755397; c=relaxed/simple;
-	bh=W/ngLzzEijzJIH8PvuzO5TM2e6lsyzUmai6PG+VNePA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SVqhEPwUejjKArk9qaCKuug4n/2hLZr+VORvaiAkhSKXDuhWJsuMWaJklQCv2mgefMXu7vNppDcsRFO5b1PKOGNHSXDpUZwPZd56itKhVRxfxIVO2Qj75ZuFpq0NjusGYWjhklfRkr5q4l48DKckHTyIz1KEoVuO3cclWGv46WY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7b7325d8fb5so3136649a34.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 05:56:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759755395; x=1760360195;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+	s=arc-20240116; t=1759755019; c=relaxed/simple;
+	bh=1+ke2TkHctZOigrivj+U7Q7F20sV5pMDl2nkjiByetM=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=tkYkvRdodhM8OlX7IFQOOssKOZR35YIGji7TfT4Rxh4NwmT5GivRrJ5uHwyeoUwnAbk2flR/sa0J1oRhOHms4tmsWQ51g0x+DVNvYhzyvWw+ebHqT4viph6DwRtaL0CCdKQQeWpWC6bWyZq07mM5oAxv084LhCHuplTIYm85EVc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=akLfpc1i; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-46e491a5b96so28013175e9.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 05:50:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759755015; x=1760359815; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=OwPjpMz/0J4A8goGwBvaeTijAxI7KyJ1C6GbFZyEwbs=;
-        b=HzmXm8Y6ktnUuoXrxXWZj0vJc5x5pte2bM9k27lizHMELD/1XK7aE1yObNgumCLxAq
-         I6lFn+qa3k36gRxnDvfwzBPlbSQtAJTTGcSXQFeY+1tI8PhMRImCzpXyQwxs/9c/E2Us
-         0PY0Rai5AtZmhxl+INUpoktJAlvo/Jdm9zVzXXdNr8B9LGKRvfEbqcbDWW544K5rofJw
-         /YHcIcqvppQwPGfAVuFLpBMpZZAhPytX+dm0L5AXdT2yYJp7+NczwDiz28fjcRVLLOs7
-         SLtdAVcZbgtx43tLH26biXu3wO87Qj2RQu7jS/ID6B7kSr+2K1H+UXzfE/jjTPeqsE63
-         DBHQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUDItdaQY+djLa59RxQUBGwJa4mltJzYJwH5C/XLlOrOXUH4kXpLHQzUCsUzN2Jg2vVyh95bsArwBEv@vger.kernel.org
-X-Gm-Message-State: AOJu0YztKYoFVcHrB0O7XuU6o/GwixloIh8uVt7zPMRuQDkJ/wepg/vB
-	MPVc59kcH8xW2Gfl5gr2elT8yCh6lElnnoJTcxEj/Nb5btz1i4d3SwuDyikEUtsd
-X-Gm-Gg: ASbGncsTsVra884U6uyPtRs1PNWYrW+aKqitOg3t7OBtcVVxXzlThG1o7wFTnSSrV2r
-	YCi4Bs9aP5DUwBS+ZMVd/MFqGvhP8GLgK+DzOQw34B4Npd2TYGhKnvk3mVIWyoxOoYRKiaG0hSd
-	AGI4AHkjDlQZmYRNvisuYbHJtidobfqHfduj+QPb4JFD7VVBF2mj7IjDOLMoVjG9wPqYsVLTxm5
-	X6VY74K5hSqNSjgb3qKQYILACQiF1yX9Mw2k8zic+JYpWJ31DpbxAg6bFDslMQukqPq6eQa250j
-	o/Sht9EvbVTUngrWJis4CX+IdN0nrm+d8kC/DCGV8MVbKZU5JDGcIU50m1HtQyZDyKfY0mN2sTZ
-	hkTpQDXNA+kC3m1Jez/u8JH7YbwJy6F1gMnU5YEAMx+pMMgudU0Q+QwUhErp+NKAR0RJGmmromP
-	72Ryn99zCeE7WmsPt4o+I=
-X-Google-Smtp-Source: AGHT+IFHFpsFtxEEdpRdg7T/VGh8qoD4BF/V3pcJLLU7AceFzpCLFWC0V/NZ4eYTsQz4nKVa+E1peg==
-X-Received: by 2002:a05:6830:2b1f:b0:790:710f:60e3 with SMTP id 46e09a7af769-7bf772bd7fbmr6253822a34.23.1759755394897;
-        Mon, 06 Oct 2025 05:56:34 -0700 (PDT)
-Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com. [209.85.160.50])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-64e29b50c7asm2499677eaf.2.2025.10.06.05.56.34
-        for <devicetree@vger.kernel.org>
+        bh=TvDhuie6qY8dt8ec7g1A3HAHuwzFnTbr7gEWQFFeMLg=;
+        b=akLfpc1i4vHLpXIQu7/IBGKFhjAR6cVqc0ts24uQF1GlW+XePrzg9ttrtW8B/lfe0r
+         hSMk8k2KcaQ49lUys7bRRnlXOStad0jZ+XtAo02ALepbVltK2dgDlRovCOiyzXruepdV
+         Eef/8cMwXR7mWjAOXF17GeIL+OEiIXN39L3IBEFHiNftc+RqJSIahVEe+F18XJZBHnJj
+         ZObUb/fOd/GGUoFyxBrTy6UsJ/+6JzBxK23l6v1Osnotvw2GNelKa23JXHgMGk1FrcJp
+         uARvcH1BC0dgEPuduSbo9ynlG7+zmD/IcMWIlCrJOlbxXnOwvzMBtCot+yGWm06ejER0
+         tsnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759755015; x=1760359815;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=TvDhuie6qY8dt8ec7g1A3HAHuwzFnTbr7gEWQFFeMLg=;
+        b=WFoz5OSnMzCVp3W4DB1ChR38HTCz4K4efcy0LE1YyW4MU2pJ2XwcRZ+9cBsRtngkXU
+         PelkHqoGJGp+beosTo/EDl0C0uHn4KtVd28DxiaZt7fIESLoI4SqHOgCf1H8CZV1m3b8
+         ItTkQGQC6LnQsQVtqXtJdj+Ep6RR8rzYR3FZc64HyCUNqFN9CCb/G2mRh5e3QiYlI+E4
+         pJIunOcg03/bhBWPGmEDwcg2pnYo0SpdzpCYJJJsO8cHzZJcxHmz3/YmHj8uh9S6EWoI
+         +qTnbzXsPJlhxgFNh0hYdNTezKaJuEjPRwJrEh8N3+cb2OfupEGzT7QCy0LRNM5g7kA6
+         323A==
+X-Forwarded-Encrypted: i=1; AJvYcCWIHHgGUfKsvCz6fKygxR01/8/GqlLRdWiCHD+1mWSyqtW/nDsSn2utbvVLojCdWNFSEdSdKDNzd0Zm@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKeM+fNMj2kmpHJWzhIZJbJk0ebhi5YqlWqQK1SrwGSjbzz20C
+	yXyd+OaVSwrHKc5Dm+d/cgnpWPL9DYaQa7YCVgI42f5W1s/Cc8UZg9qDeBmnIwLDMig=
+X-Gm-Gg: ASbGncu8zzhS5Klc6Cno1h/lD2U+sHjseqobuu1/rJXbqlYWrgnyzJjaO9O5nCsHSSC
+	qTudmUIfQinWMZ0Oytj8aSQq/VVSsFE845+F21HhuQyNp2/A7qotoaoYp//8/zKtMMKeQuYx92d
+	5lvCfwCc1el6d/ud16YlSjzpoZgdTk8HVcBDsXIN6nOX2+1DEFq1wd3JvvQ4hI7UDdBmhOltm3f
+	Qu1PBF4bkrkn355A9rt9MaeQ9eeq9Bn47I/eq3+R0gZhl5wQFAwzcwLoZlqzxlgqYzWzCVCfD5j
+	rOTWx5HW4PMPiwulev+bRvfPDhYBFQ+HcIOC/r9mlEk+JQKZlib45qglIOpIG5en8z2C3+cSgNV
+	fCdGCvX+uawh1CN7jhG1FmnM64hHaIDQhQ0ZsrYAGRyF/sUxWsr9e0g6rZe6/IBFr7FyYQl+l42
+	IXldl6psy3Sm/Btr6jPGbwAedstqI=
+X-Google-Smtp-Source: AGHT+IGxYNrhR5rb1hMdZacbBTASV6s/vat0+OUcrWk/mznR4enIUg1haus1BRrmnxmBozboXRQ6Ug==
+X-Received: by 2002:a05:600c:3b08:b0:46e:396b:f5ae with SMTP id 5b1f17b1804b1-46e7110cf6fmr95364035e9.16.1759755014953;
+        Mon, 06 Oct 2025 05:50:14 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:2dd0:9118:d7f5:51d9? ([2a01:e0a:3d9:2080:2dd0:9118:d7f5:51d9])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e723593d8sm173623055e9.11.2025.10.06.05.50.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Oct 2025 05:56:34 -0700 (PDT)
-Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-394587df7c4so2482412fac.2
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 05:56:34 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUbwokDNL5iOBZmGk7HwfV7CT4K+wa/VQXjsoE58k3Y67ZfMs2vWRJHPBwZ08yEqn/o3/jKs7sqKb2e@vger.kernel.org
-X-Received: by 2002:a05:6102:1620:b0:520:c4ea:4bcd with SMTP id
- ada2fe7eead31-5d41d055f58mr4323006137.9.1759754980548; Mon, 06 Oct 2025
- 05:49:40 -0700 (PDT)
+        Mon, 06 Oct 2025 05:50:14 -0700 (PDT)
+Message-ID: <4bb1c10d-b8fe-485e-b4aa-faa43033be76@linaro.org>
+Date: Mon, 6 Oct 2025 14:50:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251002161728.186024-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251002161728.186024-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20251002161728.186024-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 6 Oct 2025 14:49:29 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUugFOOvHqjRyoPErh6rqpVuAS_Yr6mGqerKT0VQ-Y6KQ@mail.gmail.com>
-X-Gm-Features: AS18NWBb9B-DekEKpQfUFSovMcE6-nb-Pn4OxZ0U_p0Jp7pux_ucj5r-aIzp9-s
-Message-ID: <CAMuHMdUugFOOvHqjRyoPErh6rqpVuAS_Yr6mGqerKT0VQ-Y6KQ@mail.gmail.com>
-Subject: Re: [PATCH v9 6/6] drm: renesas: rz-du: mipi_dsi: Add support for
- RZ/V2H(P) SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v4 2/3] phy: qcom: qmp-combo: get the USB3 & DisplayPort
+ lanes mapping from DT
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Xilin Wu <sophon@radxa.com>, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250930-topic-x1e80100-hdmi-v4-0-86a14e8a34ac@linaro.org>
+ <20250930-topic-x1e80100-hdmi-v4-2-86a14e8a34ac@linaro.org>
+ <74446713-15a1-4706-b3c7-801724467575@oss.qualcomm.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <74446713-15a1-4706-b3c7-801724467575@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Prabhakar,
+On 10/6/25 12:08, Konrad Dybcio wrote:
+> On 9/30/25 9:39 AM, Neil Armstrong wrote:
+>> The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
+>> of a combo glue to route either lanes to the 4 shared physical lanes.
+>>
+>> The routing of the lanes can be:
+>> - 2 DP + 2 USB3
+>> - 4 DP
+>> - 2 USB3
+>>
+>> Get the lanes mapping from DT and stop registering the USB-C
+>> muxes in favor of a static mode and orientation detemined
+>> by the lanes mapping.
+>>
+>> This allows supporting boards with direct connection of USB3 and
+>> DisplayPort lanes to the QMP Combo PHY lanes, not using the
+>> USB-C Altmode feature.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+> 
+> [...]
+> 
+>> +struct qmp_combo_lane_mapping {
+>> +	unsigned int lanes_count;
+> 
+> "num_lanes"?
 
-On Thu, 2 Oct 2025 at 18:17, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add MIPI DSI support for the Renesas RZ/V2H(P) SoC. Compared to the
-> RZ/G2L family, the RZ/V2H(P) requires dedicated D-PHY PLL programming,
-> different clock configuration, and additional timing parameter handling.
-> The driver introduces lookup tables and helpers for D-PHY timings
-> (TCLK*, THS*, TLPX, and ULPS exit) as specified in the RZ/V2H(P) hardware
-> manual. ULPS exit timing depends on the LPCLK rate and is now handled
-> explicitly.
->
-> The implementation also adds support for 16 bpp RGB format, updates the
-> clock setup path to use the RZ/V2H PLL divider limits, and provides new
-> .dphy_init, .dphy_conf_clks, and .dphy_startup_late_init callbacks to
-> match the RZ/V2H sequence.
->
-> With these changes, the RZ/V2H(P) can operate the MIPI DSI interface in
-> compliance with its hardware specification while retaining support for
-> existing RZ/G2L platforms.
->
-> Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
-> ---
-> v8->v9:
-> - Updated Kconfig to select CLK_RZV2H
-> - Updated to use renesas.h
-> - Added reviewed-by tag from Tomi
+Is this significant ?
 
-Thanks for the update!
+> 
+>> +	enum typec_orientation orientation;
+>> +	u32 lanes[4];
+>> +};
+>> +
+>> +static const struct qmp_combo_lane_mapping usb3_data_lanes[] = {
+>> +	{ 2, TYPEC_ORIENTATION_NORMAL, { 1, 0 }},
+>> +	{ 2, TYPEC_ORIENTATION_REVERSE, { 2, 3 }},
+>> +};
+>> +
+>> +static const struct qmp_combo_lane_mapping dp_data_lanes[] = {
+>> +	{ 1, TYPEC_ORIENTATION_NORMAL, { 0 }},
+>> +	{ 1, TYPEC_ORIENTATION_REVERSE, { 3 }},
+> 
+> This is not corroborated by your bindings change ^
 
-> --- a/drivers/gpu/drm/renesas/rz-du/Kconfig
-> +++ b/drivers/gpu/drm/renesas/rz-du/Kconfig
-> @@ -19,6 +19,7 @@ config DRM_RZG2L_USE_MIPI_DSI
->         depends on DRM_BRIDGE && OF
->         depends on DRM_RZG2L_DU || COMPILE_TEST
->         default DRM_RZG2L_DU
-> +       select CLK_RZV2H
+Damn you're right, I'll fix it...
 
-As the kernel test robot has already told you, this is not a good idea.
-RZ/V2H support is optional, just rely on (dummy) rzv2h_get_pll_*()
-helpers returning false if CLK_RZV2H is not enabled.
+> 
+> I'm also frankly not sure whether it's pin 2 or 3 that 1-lane-DP
+> would be TXd on
+> 
+>> +	{ 2, TYPEC_ORIENTATION_NORMAL, { 3, 2 }},
+>> +	{ 2, TYPEC_ORIENTATION_REVERSE, { 0, 1 }},
+>> +	{ 4, TYPEC_ORIENTATION_NORMAL, { 3, 2, 1, 0 }},
+>> +	{ 4, TYPEC_ORIENTATION_REVERSE, { 0, 1, 2, 3 }},
+> 
+> Would it be too cheesy to check orientation based like:
+> 
+> static bool qmpphy_mapping_orient_flipped(u32 *data_lanes)
+> {
+> 	return data_lanes[0] == 0;
+> }
+> 
+> ?
 
->         help
->           Enable support for the RZ/G2L Display Unit embedded MIPI DSI encoders.
->
+Do we want a proper check of the property content or some random check ?
+Sorry I prefer something formal, since perhaps sometime we will have
+a full lanes remapping available instead of just orientation and if
+we have some random input it will explose...
 
-Gr{oetje,eeting}s,
+> 
+>> -	ret = qmp_combo_typec_register(qmp);
+>> -	if (ret)
+>> -		goto err_node_put;
+>> +	qmp->qmpphy_mode = QMPPHY_MODE_USB3DP;
+>> +
+>> +	if (of_find_property(dev->of_node, "mode-switch", NULL) ||
+>> +	    of_find_property(dev->of_node, "orientation-switch", NULL)) {
+> 
+> of_property_present()
 
-                        Geert
+I'll replace with that.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Thanks,
+Neil
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> 
+> Konrad
+
 
