@@ -1,1150 +1,346 @@
-Return-Path: <devicetree+bounces-223829-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223830-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25AB3BBDFEC
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 14:15:46 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A94EBBE00B
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 14:17:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9E5E534B6FF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 12:15:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3C0CA4EB6A2
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 12:17:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE23727E06C;
-	Mon,  6 Oct 2025 12:15:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC64327CB35;
+	Mon,  6 Oct 2025 12:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=zohomail.com header.i=newwheatzjz@zohomail.com header.b="SYqXxO25"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="j8w2nfgu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-o95.zoho.com (sender4-pp-o95.zoho.com [136.143.188.95])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A0BA27E05F;
-	Mon,  6 Oct 2025 12:15:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBE096ADD;
+	Mon,  6 Oct 2025 12:17:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759752929; cv=pass; b=idESzqIDxyrzlNKQ/HQCoDXbsU82JShzAQMCCh9RGhLGoYXTuHJ4+i8ewbBjonqyP3MI+hweYTVZ4MVaad1ylT43qixciFSGvAUhcySLWPwFnWfHw1Ewtl8y7CrT1Zcm1KWoUGjwygGpgNCPLNSTLFGRJ6Njlk5D6bgPi36yVms=
+	t=1759753033; cv=pass; b=K1ESzBUM4fKmbpdRWroerS3TvixXHDHmdvvfeiaHR1Hm0iR3QQ45Gbs72P1xvZL32L8EjauXT3xi4H3qvunZiJd65GlH3kiKtOe2UeUzrqIdDEHqJNdsjQF3Bdqx2nxrKNsCJikbUSVqvC+/toa2nsbHkrbuVP8StcC5q2oh93A=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759752929; c=relaxed/simple;
-	bh=dORZz2suKBY5T57AypVEgHe6RmqbcFF69WmBLiQKmDg=;
+	s=arc-20240116; t=1759753033; c=relaxed/simple;
+	bh=2Zx+tXBSarxz3GdgnZjdxsuO/Mjn1dCc7LWfB1OweWQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=SbBvfDOoidx8A341a2aiQXhyLynEscUaBvk1dFX4JDsq4AYB42zvjnQtcdlqrg38ojSVexhvOmV4pJ73UVJ9GNpa5s3psZgpKiSztfPDOckbgq2X8Mfl2vGocWha4Wfdp9UdEyRH2K9kAurKlHzDvRiGClqy6Py8Kx6AD0PMF7M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=newwheatzjz@zohomail.com header.b=SYqXxO25; arc=pass smtp.client-ip=136.143.188.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
-ARC-Seal: i=1; a=rsa-sha256; t=1759752920; cv=none; 
+	 MIME-Version:Content-Type; b=m1J20h1ja/uMiw0mWUTJx9JV4MdJH1eXYqHRzvtHitIcPNZnVz8ApYHqYYZ4OlCe4iySYJSNmRlBSlun6yyxb9R4+NYYxeAjCmv6n5lehvy/mBjivtP7rt5OiuKaZSagjwHOziR0VriUAg6Tn8AVZZvltxDTyu5w3Sg6R8Oaur0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=j8w2nfgu; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1759752989; cv=none; 
 	d=zohomail.com; s=zohoarc; 
-	b=YmeMbu/PHOJr1mmFylmrG2CEhkY9eqwW1G9nnD+lgSxL7dFU3D4svGknbuOhr9EMVh+fACDyUe9KkYoPCG1U8VHsGhxvBCkZXkdNMHI3Zv7axJwnOVzPqoYIfkp0SVrf267Jhyibyekt5jdd1AMbkx2RKhMQ6S8L6qebWRv6xkk=
+	b=a6x7zuYkIf6pcWAp1t84saCIQagHj6w7SvYm40DB6O4vOCK8JkwoMBEhoa5dujrzLm8m9U7Z+fLMobrYy8+U4eG/X7kY+FfbYf5e5Q7n1PsUVwjlI1FHk3rj+78KYhqr6YJC1GUxrHqqwAZM4/qerIjywq1daQMIPEjGFWYm3eI=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1759752920; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=up99qxzO4uBbGj4Dvhwf8sdbOh6eUULvzDPKwGk0gXw=; 
-	b=GOzxyELqJ87AL9zlkd4hSLbCYzcx8No0xRcEngD96M7dgSk8gVIzo0v4ISj/AjR/0/fpR3b8sm2Gr21JisGqYdQ1kakqhJmnhWsJjd04nK+EMRGchxjQmS9e8cNDuUDeEOkOMe1ghug+G5ZU0EZ5JQ6+LnOt2TbbiC5WxcqW6aM=
+	t=1759752989; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=xzolk6m0qZ/E++3QNlLoa9z0TzMad5MeklLKYrPsI5A=; 
+	b=he0euUpyZen3eJWtsT6mHoJlusD8TdcJDKTPrBRGnbQdJ5qJ61T0itmskwDXiRwD8xqJCQAoSizonffxlL6zA4uHF4xvS4gVZ81KyD34sBaCJ/5ZJ6Bi/ZyaOe3Vw8aBtQfPvTE4eU60Q4MudWKJ63qzAs9MHuIUdhJgCZsMgo0=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=zohomail.com;
-	spf=pass  smtp.mailfrom=newwheatzjz@zohomail.com;
-	dmarc=pass header.from=<newwheatzjz@zohomail.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759752920;
-	s=zm2022; d=zohomail.com; i=newwheatzjz@zohomail.com;
-	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
-	bh=up99qxzO4uBbGj4Dvhwf8sdbOh6eUULvzDPKwGk0gXw=;
-	b=SYqXxO25OSKGPox2B8Zob/oGCD4JW8npdAU/pkqWJZGN/ayGPFf4QsCDlfLgZR3p
-	6R+nz6lE155QXwlha3JktwoERz/xsXUCprWFHMkehGmz9XtQ1Ub/amb52EsLdyHYGam
-	viTTBbFyB/lYM8xn5QxicPeLsSIOkzyPOJLnJCgA=
-Received: by mx.zohomail.com with SMTPS id 1759752919162682.0322979043126;
-	Mon, 6 Oct 2025 05:15:19 -0700 (PDT)
-From: Jingzhou Zhu <newwheatzjz@zohomail.com>
-To: andersson@kernel.org,
-	konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jingzhou Zhu <newwheatzjz@zohomail.com>
-Subject: [PATCH v4 2/2] arm64: dts: qcom: Add support for Huawei MateBook E 2019
-Date: Mon,  6 Oct 2025 20:14:55 +0800
-Message-ID: <20251006121456.26509-3-newwheatzjz@zohomail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20251006121456.26509-1-newwheatzjz@zohomail.com>
-References: <20251006121456.26509-1-newwheatzjz@zohomail.com>
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759752989;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=xzolk6m0qZ/E++3QNlLoa9z0TzMad5MeklLKYrPsI5A=;
+	b=j8w2nfguUCjVtBHEGUD2kliwcNRekCVM/F3ivqwnqFGqeZ3cddCU2c5z1A8A6pIk
+	cFr4jPgQssRHCSaVxvRBr0J7RhL0Kav70tcQmvwt/ZHo0urjfuoShO2+G6U9j7qqhaf
+	aylj+KCZYezaEQMCzrp73IHudQHmOVnpp4eVDbmw=
+Received: by mx.zohomail.com with SMTPS id 1759752987761633.2600925458459;
+	Mon, 6 Oct 2025 05:16:27 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Chia-I Wu <olvaffe@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>,
+ Jassi Brar <jassisinghbrar@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, kernel@collabora.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-hardening@vger.kernel.org,
+ linux-pm@vger.kernel.org
+Subject: Re: [PATCH v6 7/7] pmdomain: mediatek: Add support for MFlexGraphics
+Date: Mon, 06 Oct 2025 14:16:16 +0200
+Message-ID: <4457422.ejJDZkT8p0@workhorse>
+In-Reply-To: <94866bc6-0fdb-4e6c-ba78-5ebd7138f193@collabora.com>
+References:
+ <20251003-mt8196-gpufreq-v6-0-76498ad61d9e@collabora.com>
+ <8586490.T7Z3S40VBb@workhorse>
+ <94866bc6-0fdb-4e6c-ba78-5ebd7138f193@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Feedback-ID: rr08011227f33339a3b8bb887f6f664897000045d192f010594f9340c504e0319b3402e48b2bc6789847b8cc:zu08011227410fdba52cfa1270a9a4c31a00003f63ec82f158cbb667817aa7bdf58de97013a3e94c6438cfec:rf080112260df2201f070c944843a2c90c00001f08938fd1aaa8e6d47669f5ba78645363ccad41a2e2bfe3:ZohoMail
-X-ZohoMailClient: External
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Add device tree for Huawei MateBook E 2019, which is a 2-in-1 tablet based
-on Qualcomm's sdm850 platform.
+On Monday, 6 October 2025 13:37:28 Central European Summer Time AngeloGioac=
+chino Del Regno wrote:
+> Il 06/10/25 12:58, Nicolas Frattaroli ha scritto:
+> > On Friday, 3 October 2025 23:41:16 Central European Summer Time Chia-I =
+Wu wrote:
+> >> On Fri, Oct 3, 2025 at 1:16=E2=80=AFPM Nicolas Frattaroli
+> >> <nicolas.frattaroli@collabora.com> wrote:
+> >>>
+> >>> Various MediaTek SoCs use GPU integration silicon named "MFlexGraphic=
+s"
+> >>> by MediaTek. On the MT8196 and MT6991 SoCs, interacting with this
+> >>> integration silicon is required to power on the GPU.
+> >>>
+> >>> This glue silicon is in the form of an embedded microcontroller runni=
+ng
+> >>> special-purpose firmware, which autonomously adjusts clocks and
+> >>> regulators.
+> >>>
+> >>> Implement a driver, modelled as a pmdomain driver with a
+> >>> set_performance_state operation, to support these SoCs.
+> >> I like this model a lot. Thanks!
+> >>
+> >> panthor might potentially need to interact with this driver beyond
+> >> what pmdomain provides. I am thinking about querying
+> >> GF_REG_SHADER_PRESENT. Not sure if we've heard back from the vendor.
+> >=20
+> > We did. The vendor confirmed this value is read by the EB firmware
+> > from an efuse, but considers the efuse address to be confidential.
+> > Consequently, we are not allowed to know the efuse address, or any
+> > of the other information required to read the efuse ourselves
+> > directly, such as what clocks and power domains it depends on.
+> >=20
+> > We therefore likely need to pass GF_REG_SHADER_PRESENT onward, but
+> > I do have an idea for that: struct generic_pm_domain has a member
+> > "cpumask_var_t cpus", which is there to communicate a mask of which
+> > CPUs are attached to a power domain if the power domain has the flag
+> > GENPD_FLAG_CPU_DOMAIN set. If the flag isn't set, the member is
+> > unused.
+>=20
+> cpumask_var_t is not going to be the right type for anything else that is
+> not a cpumask, as that is limited by NR_CPUS.
 
-Supported features:
- - ADSP, CDSP and SLPI
- - Volume Key
- - Power Key
- - Tablet Mode Switching
- - Display
- - Touchscreen
- - Stylus
- - WiFi [1]
- - Bluetooth [2]
- - GPU
- - USB
- - Keyboard
- - Touchpad
- - UFS
- - SD Card
- - Audio (right internal mic and headphone mic not working)
- - Mobile Network
+Hmmm, good point, I thought that would be done by the allocation
+but nope.
+=20
+> You'd have to declare a new bitmap, suitable for generic devices, which m=
+ay
+> get a little complicated on deciding how many bits would be enough... and
+> if we look at GPUs... AMD and nV have lots of cores, so that becomes a bit
+> unfeasible to put in a bitmap.
+>=20
+> Not sure then how generic that would be.
 
-[1] WiFi probing log:
-ath10k_snoc 18800000.wifi: Adding to iommu group 12
-ath10k_snoc 18800000.wifi: qmi chip_id 0x30214 chip_family 0x4001 board_id 0xff soc_id 0x40030001
-ath10k_snoc 18800000.wifi: qmi fw_version 0x2009856b fw_build_timestamp 2018-07-19 12:28 fw_build_id QC_IMAGE_VERSION_STRING=WLAN.HL.2.0-01387-QCAHLSWMTPLZ-1
-ath10k_snoc 18800000.wifi: wcn3990 hw1.0 target 0x00000008 chip_id 0x00000000 sub 0000:0000
-ath10k_snoc 18800000.wifi: kconfig debug 1 debugfs 1 tracing 1 dfs 0 testmode 0
-ath10k_snoc 18800000.wifi: firmware ver  api 5 features wowlan,mgmt-tx-by-reference,non-bmi crc32 b3d4b790
-ath10k_snoc 18800000.wifi: htt-ver 3.53 wmi-op 4 htt-op 3 cal file max-sta 32 raw 0 hwcrypto 1
-ath10k_snoc 18800000.wifi: invalid MAC address; choosing random
+Yeah, at this point I'm rapidly approaching "shove stuff into pmdomain
+for no obvious pmdomain reason" territory, because we're not really
+communicating that this pmdomain is only tied to these cores, but
+rather that only these cores are present. Subtle difference that
+could come bite us in the rear once some other chip has several power
+domains that tie to different GPU shader cores.
 
-[2] Bluetooth probing log:
-Bluetooth: hci0: setting up wcn399x
-Bluetooth: hci0: QCA Product ID   :0x0000000a
-Bluetooth: hci0: QCA SOC Version  :0x40010214
-Bluetooth: hci0: QCA ROM Version  :0x00000201
-Bluetooth: hci0: QCA Patch Version:0x00000001
-Bluetooth: hci0: QCA controller version 0x02140201
-Bluetooth: hci0: QCA Downloading qca/crbtfw21.tlv
-Bluetooth: hci0: QCA Downloading qca/crnv21.bin
-Bluetooth: hci0: QCA setup on UART is completed
+>=20
+> >=20
+> > This means we could overload its meaning, e.g. with a new flag, to
+> > communicate such masks for other purposes, since it's already the
+> > right type and all. This would be quite a generic way for hardware
+> > other than cpus to communicate such core masks. I was planning to
+> > develop and send out an RFC series for this, to gauge how much Ulf
+> > Hansson hates that approach.
+> >=20
+> > A different solution could be that mtk-mfg-pmdomain could act as an
+> > nvmem provider, and then we integrate generic "shader_present is
+> > stored in nvmem" support in panthor, and adjust the DT binding for
+> > this.
+> >=20
+> > This approach would again be generic across vendors from panthor's
+> > perspective. It would, however, leak into DT the fact that we have
+> > to implement this in the gpufreq device, rather than having the
+> > efuse read directly.
+> >=20
+> >> Have you considered moving this to drivers/soc/mediatek such that we
+> >> can provide include/linux/mtk-mfg.h to panthor?
+> >=20
+> > Having panthor read data structures from mtk-mfg-pmdomain would be a
+> > last resort for me if none of the other approaches work out, as I'm
+> > not super keen on adding vendor-specific code paths to panthor
+> > itself. A new generic code path in panthor that is only used by one
+> > vendor for now is different in that it has the potential to be used
+> > by a different vendor's integration logic in the future as well.
+> >=20
+> > So for now I'd like to keep it out of public includes and panthor as
+> > much as possible, unless the two other approaches don't work out for
+> > us.
+> >=20
+>=20
+> I don't really like seeing more and more vendor specific APIs: MediaTek d=
+oes
+> suffer quite a lot from that, with cmdq being one of the examples - and t=
+he
+> fact that it's not just MediaTek having those, but also others like Qualc=
+omm,
+> Rockchip, etc, is not an excuse to keep adding new ones when there are ot=
+her
+> alternatives.
+>=20
+> Also another fact there is that I don't think that panthor should get any
+> vendor specific "things" added (I mean, that should be avoided as much as
+> possible).
 
-Features not supported yet:
- - Panel Backlight
- - Lid Detection
- - Battery
- - EFI Variable Access
- - Cameras
+The big issue to me is that vendors will always prefer to shoehorn
+more vendor specific hacks into panthor, because the alternative is
+to tell us how the hardware actually works. Which they all hate
+doing. I definitely agree that we should work from the assumption
+that panthor can support a Mali implementation without adding too
+much special code for it, because in 10 years there will still be
+new devices that use panthor as a driver, but few people will still
+be testing MT8196 codepaths within panthor, which makes refactoring
+prone to subtle breakage.
 
-1. Panel backlight, lid detection and battery will be supported with the
-   EC driver upstreamed.
-2. EFI variables can only be read with the QSEECOM driver, and will be
-   enabled when the driver is fixed.
-3. Cameras are tested to work with modified downstream driver, and once
-   drivers for these camera modules are included in the tree, cameras can
-   be enabled.
+Not to mention that we don't want to rewrite all the vendor specific
+code for Tyr.
 
-Features won't be supported:
- - External Display
- - Fingerprint
+> That said - what you will be trying to pass is really a value that is read
+> from eFuse, with the EB firmware being a wrapper over that: if we want, we
+> could see that yet-another-way of interfacing ourselves with reading nvmem
+> where, instead of a direct MMIO read, we're asking a firmware to give us a
+> readout.
+>=20
+> This leads me to think that one of the possible options could be to actua=
+lly
+> register (perhaps as a new platform device, because I'm not sure that it =
+could
+> be feasible to register a pmdomain driver as a nvmem provider, but ultima=
+tely
+> that is Ulf and Srinivas' call I guess) a nvmem driver that makes an IPI =
+call
+> to GPUEB and gives back the value to panthor through generic bindings.
 
-1. To make external display work, more reverse engineering may be required,
-   but it's beyond my ability.
-2. Fingerprint is controlled by TrustZone, meaning direct access to it
-   isn't possible.
+Lee Jones will probably tell me to use MFD instead and that I'm silly
+for not using MFD, so we might as well. Should I do that for v7 or
+should v7 be less disruptive? Also, would I fillet out the clock
+provider stuff into an MFD cell as well, or is that too much?
 
-Signed-off-by: Jingzhou Zhu <newwheatzjz@zohomail.com>
----
- arch/arm64/boot/dts/qcom/Makefile             |   1 +
- .../qcom/sdm850-huawei-matebook-e-2019.dts    | 975 ++++++++++++++++++
- 2 files changed, 976 insertions(+)
- create mode 100644 arch/arm64/boot/dts/qcom/sdm850-huawei-matebook-e-2019.dts
+Also, nb: there is no IPI call for getting the SHADER_PRESENT value
+that we know of. It's a location in the reserved shared memory
+populated by the EB during the shared mem init, which ideally isn't
+done multiple times by multiple drivers because that's dumb.
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 296688f7cb26..a6bcebe66dd7 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -258,6 +258,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium-ebbg.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-beryllium-tianma.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-xiaomi-polaris.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-shift-axolotl.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-huawei-matebook-e-2019.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-lenovo-yoga-c630.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdm850-samsung-w737.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= sdx75-idp.dtb
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-huawei-matebook-e-2019.dts b/arch/arm64/boot/dts/qcom/sdm850-huawei-matebook-e-2019.dts
-new file mode 100644
-index 000000000000..e6ca67c6456c
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/sdm850-huawei-matebook-e-2019.dts
-@@ -0,0 +1,975 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Huawei MateBook E 2019
-+ *
-+ * Copyright (c) 2025, Jingzhou Zhu <newwheatzjz@zohomail.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/input/gpio-keys.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+#include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-+#include <dt-bindings/sound/qcom,q6afe.h>
-+#include <dt-bindings/sound/qcom,q6asm.h>
-+#include <dt-bindings/sound/qcom,wcd934x.h>
-+#include "sdm850.dtsi"
-+#include "sdm845-wcd9340.dtsi"
-+#include "pm8998.dtsi"
-+
-+/*
-+ * Update following upstream (sdm845.dtsi) reserved
-+ * memory mappings for firmware loading to succeed
-+ * and enable the IPA device.
-+ */
-+/delete-node/ &tz_mem;
-+/delete-node/ &rmtfs_mem;
-+/delete-node/ &qseecom_mem;
-+/delete-node/ &ipa_fw_mem;
-+/delete-node/ &ipa_gsi_mem;
-+/delete-node/ &gpu_mem;
-+/delete-node/ &adsp_mem;
-+/delete-node/ &wlan_msa_mem;
-+/delete-node/ &slpi_mem;
-+
-+/ {
-+	model = "Huawei MateBook E 2019";
-+	compatible = "huawei,planck", "qcom,sdm845";
-+	chassis-type = "convertible";
-+
-+	aliases {
-+		serial0 = &uart9;
-+		serial1 = &uart6;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&volume_up_gpio &mode_pin_active>;
-+		pinctrl-names = "default";
-+
-+		key-vol-up {
-+			label = "Volume up";
-+			gpios = <&pm8998_gpios 6 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+			debounce-interval = <15>;
-+			wakeup-source;
-+		};
-+
-+		switch-mode {
-+			label = "Tablet mode switch";
-+			gpios = <&tlmm 79 GPIO_ACTIVE_HIGH>;
-+			linux,input-type = <EV_SW>;
-+			linux,code = <SW_TABLET_MODE>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		pinctrl-0 = <&cam_indicator_en>;
-+		pinctrl-names = "default";
-+
-+		led: led-camera-indicator {
-+			label = "white:camera-indicator";
-+			function = LED_FUNCTION_INDICATOR;
-+			color = <LED_COLOR_ID_WHITE>;
-+			gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "none";
-+			default-state = "off";
-+			/* Reuse as a panic indicator until we get a "camera on" trigger */
-+			panic-indicator;
-+		};
-+	};
-+
-+	sw_edp_1p2: regulator-edp-1p2 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "sw_edp_1p2";
-+
-+		regulator-min-microvolt = <1200000>;
-+		regulator-max-microvolt = <1200000>;
-+
-+		pinctrl-0 = <&sw_edp_1p2_en>;
-+		pinctrl-names = "default";
-+
-+		gpio = <&pm8998_gpios 9 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		vin-supply = <&vreg_l2a_1p2>;
-+	};
-+
-+	vlcm_3v3: regulator-vlcm-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vlcm_3v3";
-+
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 88 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		vin-supply = <&vph_pwr>;
-+	};
-+
-+	vph_pwr: regulator-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+
-+		regulator-always-on;
-+	};
-+
-+	reserved-memory {
-+		cont_splash_mem: framebuffer@80100000 {
-+			reg = <0 0x80100000 0 0xd00000>;
-+			no-map;
-+		};
-+
-+		tz_mem: tz@86d00000 {
-+			reg = <0 0x86d00000 0 0x4600000>;
-+			no-map;
-+		};
-+
-+		qseecom_mem: qseecom@8b500000 {
-+			reg = <0 0x8b500000 0 0xa00000>;
-+			no-map;
-+		};
-+
-+		wlan_msa_mem: wlan-msa@8c400000 {
-+			reg = <0 0x8c400000 0 0x100000>;
-+			no-map;
-+		};
-+
-+		adsp_mem: adsp@8c500000 {
-+			reg = <0 0x8c500000 0 0x1a00000>;
-+			no-map;
-+		};
-+
-+		ipa_fw_mem: ipa-fw@8df00000 {
-+			reg = <0 0x8df00000 0 0x100000>;
-+			no-map;
-+		};
-+
-+		slpi_mem: slpi@96700000 {
-+			reg = <0 0x96700000 0 0x1200000>;
-+		};
-+
-+		gpu_mem: gpu@97900000 {
-+			reg = <0 0x97900000 0 0x5000>;
-+			no-map;
-+		};
-+
-+		rmtfs_mem: rmtfs@97c00000 {
-+			compatible = "qcom,rmtfs-mem";
-+			reg = <0 0x97c00000 0 0x200000>;
-+			no-map;
-+
-+			qcom,client-id = <1>;
-+			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
-+
-+		};
-+	};
-+
-+	sn65dsi86_refclk: sn65dsi86-refclk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+
-+		clock-frequency = <19200000>;
-+	};
-+};
-+
-+&adsp_pas {
-+	firmware-name = "qcom/sdm850/HUAWEI/AL09/qcadsp850.mbn";
-+
-+	status = "okay";
-+};
-+
-+&apps_rsc {
-+	regulators-0 {
-+		compatible = "qcom,pm8998-rpmh-regulators";
-+		qcom,pmic-id = "a";
-+
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+		vdd-s4-supply = <&vph_pwr>;
-+		vdd-s5-supply = <&vph_pwr>;
-+		vdd-s6-supply = <&vph_pwr>;
-+		vdd-s7-supply = <&vph_pwr>;
-+		vdd-s8-supply = <&vph_pwr>;
-+		vdd-s9-supply = <&vph_pwr>;
-+		vdd-s10-supply = <&vph_pwr>;
-+		vdd-s11-supply = <&vph_pwr>;
-+		vdd-s12-supply = <&vph_pwr>;
-+		vdd-s13-supply = <&vph_pwr>;
-+		vdd-l1-l27-supply = <&vreg_s7a_1p025>;
-+		vdd-l2-l8-l17-supply = <&vreg_s3a_1p35>;
-+		vdd-l3-l11-supply = <&vreg_s7a_1p025>;
-+		vdd-l4-l5-supply = <&vreg_s7a_1p025>;
-+		vdd-l6-supply = <&vph_pwr>;
-+		vdd-l7-l12-l14-l15-supply = <&vreg_s5a_2p04>;
-+		vdd-l26-supply = <&vreg_s3a_1p35>;
-+		vin-lvs-1-2-supply = <&vreg_s4a_1p8>;
-+
-+		vreg_s2a_1p125: smps2 {
-+		};
-+
-+		vreg_s3a_1p35: smps3 {
-+			regulator-min-microvolt = <1352000>;
-+			regulator-max-microvolt = <1352000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s4a_1p8: smps4 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s5a_2p04: smps5 {
-+			regulator-min-microvolt = <2040000>;
-+			regulator-max-microvolt = <2040000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s6a_0p8: smps6 {
-+			regulator-min-microvolt = <800000>;
-+			regulator-max-microvolt = <800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_s7a_1p025: smps7 {
-+			regulator-min-microvolt = <1028000>;
-+			regulator-max-microvolt = <1028000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vdd_qusb_hs0:
-+		vdda_hp_pcie_core:
-+		vdda_mipi_csi0_0p9:
-+		vdda_mipi_csi1_0p9:
-+		vdda_mipi_csi2_0p9:
-+		vdda_mipi_dsi0_pll:
-+		vdda_mipi_dsi1_pll:
-+		vdda_qlink_lv:
-+		vdda_qlink_lv_ck:
-+		vdda_qrefs_0p875:
-+		vdda_pcie_core:
-+		vdda_pll_cc_ebi01:
-+		vdda_pll_cc_ebi23:
-+		vdda_sp_sensor:
-+		vdda_ufs1_core:
-+		vdda_ufs2_core:
-+		vdda_usb1_ss_core:
-+		vdda_usb2_ss_core:
-+		vreg_l1a_0p875: ldo1 {
-+			regulator-min-microvolt = <880000>;
-+			regulator-max-microvolt = <880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vddpx_10:
-+		vreg_l2a_1p2: ldo2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-always-on;
-+		};
-+
-+		vreg_l3a_1p0: ldo3 {
-+		};
-+
-+		vdd_wcss_cx:
-+		vdd_wcss_mx:
-+		vdda_wcss_pll:
-+		vreg_l5a_0p8: ldo5 {
-+			regulator-min-microvolt = <800000>;
-+			regulator-max-microvolt = <800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vddpx_13:
-+		vreg_l6a_1p8: ldo6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l7a_1p8: ldo7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l8a_1p2: ldo8 {
-+		};
-+
-+		vreg_l9a_1p8: ldo9 {
-+		};
-+
-+		vreg_l10a_1p8: ldo10 {
-+		};
-+
-+		vreg_l11a_1p0: ldo11 {
-+		};
-+
-+		vdd_qfprom:
-+		vdd_qfprom_sp:
-+		vdda_apc1_cs_1p8:
-+		vdda_gfx_cs_1p8:
-+		vdda_qrefs_1p8:
-+		vdda_qusb_hs0_1p8:
-+		vddpx_11:
-+		vreg_l12a_1p8: ldo12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vddpx_2:
-+		vreg_l13a_2p95: ldo13 {
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l14a_1p88: ldo14 {
-+			regulator-min-microvolt = <1880000>;
-+			regulator-max-microvolt = <1880000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+			regulator-always-on;
-+		};
-+
-+		vreg_l15a_1p8: ldo15 {
-+		};
-+
-+		vreg_l16a_2p7: ldo16 {
-+		};
-+
-+		vreg_l17a_1p3: ldo17 {
-+			regulator-min-microvolt = <1304000>;
-+			regulator-max-microvolt = <1304000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l18a_2p7: ldo18 {
-+		};
-+
-+		vreg_l19a_3p0: ldo19 {
-+			regulator-min-microvolt = <3000000>;
-+			regulator-max-microvolt = <3000000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l20a_2p95: ldo20 {
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l21a_2p95: ldo21 {
-+			regulator-min-microvolt = <2960000>;
-+			regulator-max-microvolt = <2960000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l22a_2p85: ldo22 {
-+			regulator-min-microvolt = <2800000>;
-+			regulator-max-microvolt = <2800000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+
-+			regulator-always-on;
-+		};
-+
-+		vreg_l23a_3p3: ldo23 {
-+		};
-+
-+		vdda_qusb_hs0_3p1:
-+		vreg_l24a_3p075: ldo24 {
-+			/* 3075000 uV causes -ENOTRECOVERABLE error */
-+			regulator-min-microvolt = <3088000>;
-+			regulator-max-microvolt = <3088000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l25a_3p3: ldo25 {
-+			regulator-min-microvolt = <3104000>;
-+			regulator-max-microvolt = <3104000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vdda_hp_pcie_1p2:
-+		vdda_hv_ebi0:
-+		vdda_hv_ebi1:
-+		vdda_hv_ebi2:
-+		vdda_hv_ebi3:
-+		vdda_mipi_csi_1p25:
-+		vdda_mipi_dsi0_1p2:
-+		vdda_mipi_dsi1_1p2:
-+		vdda_pcie_1p2:
-+		vdda_ufs1_1p2:
-+		vdda_ufs2_1p2:
-+		vdda_usb1_ss_1p2:
-+		vdda_usb2_ss_1p2:
-+		vreg_l26a_1p2: ldo26 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_l28a_3p0: ldo28 {
-+			/* 3300000 uV causes -ENOTRECOVERABLE error */
-+			regulator-min-microvolt = <2856000>;
-+			regulator-max-microvolt = <3008000>;
-+			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-+		};
-+
-+		vreg_lvs1a_1p8: lvs1 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		vreg_lvs2a_1p8: lvs2 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,pm8005-rpmh-regulators";
-+		qcom,pmic-id = "c";
-+
-+		vdd-s1-supply = <&vph_pwr>;
-+		vdd-s2-supply = <&vph_pwr>;
-+		vdd-s3-supply = <&vph_pwr>;
-+		vdd-s4-supply = <&vph_pwr>;
-+
-+		vreg_s2c_0p752: smps2 {
-+			regulator-min-microvolt = <752000>;
-+			regulator-max-microvolt = <752000>;
-+		};
-+	};
-+};
-+
-+&cci_i2c0 {
-+	/* chipnext,cn3927e vcm@0xc */
-+	/* samsung,s5k3l6 camera@0x10 */
-+	/* eeprom@0x50 */
-+};
-+
-+&cci_i2c1 {
-+	/* galaxycore,gc5025 camera@0x36 */
-+	/* eeprom@0x50 */
-+};
-+
-+&cdsp_pas {
-+	firmware-name = "qcom/sdm850/HUAWEI/AL09/qccdsp850.mbn";
-+
-+	status = "okay";
-+};
-+
-+&crypto {
-+	/* FIXME: qce_start triggers an SError */
-+	status = "disabled";
-+};
-+
-+&gcc {
-+	protected-clocks = <GCC_QSPI_CORE_CLK>,
-+			   <GCC_QSPI_CORE_CLK_SRC>,
-+			   <GCC_QSPI_CNOC_PERIPH_AHB_CLK>,
-+			   <GCC_LPASS_Q6_AXI_CLK>,
-+			   <GCC_LPASS_SWAY_CLK>;
-+};
-+
-+&gpu {
-+	status = "okay";
-+
-+	zap-shader {
-+		memory-region = <&gpu_mem>;
-+		firmware-name = "qcom/sdm850/HUAWEI/AL09/qcdxkmsuc850.mbn";
-+	};
-+};
-+
-+&i2c5 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	touchscreen: hid@5d {
-+		compatible = "hid-over-i2c";
-+		reg = <0x5d>;
-+		hid-descr-addr = <0x1>;
-+
-+		interrupts-extended = <&tlmm 125 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&i2c5_hid_active>;
-+		pinctrl-names = "default";
-+
-+		wakeup-source;
-+	};
-+};
-+
-+&i2c7 {
-+	/* ec@0x76 */
-+};
-+
-+&i2c10 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	sn65dsi86: bridge@2c {
-+		compatible = "ti,sn65dsi86";
-+		reg = <0x2c>;
-+
-+		pinctrl-0 = <&sn65dsi86_pin_active>;
-+		pinctrl-names = "default";
-+
-+		enable-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
-+
-+		vcca-supply = <&sw_edp_1p2>;
-+		vcc-supply = <&sw_edp_1p2>;
-+		vpll-supply = <&vreg_l14a_1p88>;
-+		vccio-supply = <&vreg_l14a_1p88>;
-+
-+		clocks = <&sn65dsi86_refclk>;
-+		clock-names = "refclk";
-+
-+		no-hpd;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				sn65dsi86_in: endpoint {
-+					remote-endpoint = <&mdss_dsi0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				sn65dsi86_out: endpoint {
-+					remote-endpoint = <&panel_in_edp>;
-+				};
-+			};
-+		};
-+
-+		aux-bus {
-+			panel: panel {
-+				compatible = "innolux,p120zdg-bf1";
-+				power-supply = <&vlcm_3v3>;
-+
-+				port {
-+					panel_in_edp: endpoint {
-+						remote-endpoint = <&sn65dsi86_out>;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&ipa {
-+	qcom,gsi-loader = "self";
-+	memory-region = <&ipa_fw_mem>;
-+	firmware-name = "qcom/sdm850/HUAWEI/AL09/ipa_fws.elf";
-+
-+	status = "okay";
-+};
-+
-+&mdss {
-+	status = "okay";
-+};
-+
-+&mdss_dsi0 {
-+	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&mdss_dsi0_out {
-+	remote-endpoint = <&sn65dsi86_in>;
-+	data-lanes = <0 1 2 3>;
-+};
-+
-+&mdss_dsi0_phy {
-+	vdds-supply = <&vdda_mipi_dsi0_pll>;
-+
-+	status = "okay";
-+};
-+
-+&mss_pil {
-+	firmware-name = "qcom/sdm850/HUAWEI/AL09/qcdsp1v2850.mbn",
-+			"qcom/sdm850/HUAWEI/AL09/qcdsp2850.mbn";
-+
-+	status = "okay";
-+};
-+
-+&pm8998_gpios {
-+	sw_edp_1p2_en: sw-edp-1p2-en-state {
-+		pins = "gpio9";
-+		function = "normal";
-+
-+		bias-disable;
-+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
-+	};
-+
-+	volume_up_gpio: volume-up-gpio-state {
-+		pins = "gpio6";
-+		function = "normal";
-+
-+		input-enable;
-+		bias-pull-up;
-+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
-+	};
-+};
-+
-+&pm8998_pwrkey {
-+	status = "okay";
-+};
-+
-+&pm8998_resin {
-+	linux,code = <KEY_VOLUMEDOWN>;
-+
-+	status = "okay";
-+};
-+
-+&qupv3_id_0 {
-+	status = "okay";
-+};
-+
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
-+&q6asmdai {
-+	dai@0 {
-+		reg = <MSM_FRONTEND_DAI_MULTIMEDIA1>;
-+	};
-+
-+	dai@1 {
-+		reg = <MSM_FRONTEND_DAI_MULTIMEDIA2>;
-+	};
-+
-+	dai@2 {
-+		reg = <MSM_FRONTEND_DAI_MULTIMEDIA3>;
-+	};
-+};
-+
-+&sdhc_2 {
-+	pinctrl-0 = <&sdc2_default_state &sdc2_card_det_n>;
-+	pinctrl-names = "default";
-+
-+	vmmc-supply = <&vreg_l21a_2p95>;
-+	vqmmc-supply = <&vddpx_2>;
-+
-+	bus-width = <4>;
-+	cd-gpios = <&tlmm 126 GPIO_ACTIVE_HIGH>;
-+
-+	status = "okay";
-+};
-+
-+&slpi_pas {
-+	firmware-name = "qcom/sdm850/HUAWEI/AL09/qcslpi850.mbn";
-+
-+	status = "okay";
-+};
-+
-+&sound {
-+	compatible = "lenovo,yoga-c630-sndcard", "qcom,sdm845-sndcard";
-+	model = "HUAWEI-PAK_AL09-M1040";
-+
-+	audio-routing = "RX_BIAS", "MCLK",
-+			"AMIC2", "MIC BIAS2",
-+			"DMIC0", "MCLK",
-+			"DMIC0", "MIC BIAS1",
-+			"DMIC2", "MCLK",
-+			"DMIC2", "MIC BIAS3",
-+			"SpkrLeft IN", "SPK1 OUT",
-+			"SpkrRight IN", "SPK2 OUT";
-+
-+	mm1-dai-link {
-+		link-name = "MultiMedia1";
-+		cpu {
-+			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA1>;
-+		};
-+	};
-+
-+	mm2-dai-link {
-+		link-name = "MultiMedia2";
-+		cpu {
-+			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA2>;
-+		};
-+	};
-+
-+	mm3-dai-link {
-+		link-name = "MultiMedia3";
-+		cpu {
-+			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA3>;
-+		};
-+	};
-+
-+	slim-dai-link {
-+		link-name = "SLIM Playback";
-+		cpu {
-+			sound-dai = <&q6afedai SLIMBUS_0_RX>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6routing>;
-+		};
-+
-+		codec {
-+			sound-dai = <&left_spkr>, <&right_spkr>, <&swm 0>, <&wcd9340 AIF1_PB>;
-+		};
-+	};
-+
-+	slimcap-dai-link {
-+		link-name = "SLIM Capture";
-+		cpu {
-+			sound-dai = <&q6afedai SLIMBUS_0_TX>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6routing>;
-+		};
-+
-+		codec {
-+			sound-dai = <&wcd9340 AIF1_CAP>;
-+		};
-+	};
-+
-+	slim-wcd-dai-link {
-+		link-name = "SLIM WCD Playback";
-+		cpu {
-+			sound-dai = <&q6afedai SLIMBUS_1_RX>;
-+		};
-+
-+		platform {
-+			sound-dai = <&q6routing>;
-+		};
-+
-+		codec {
-+			sound-dai = <&wcd9340 AIF2_PB>;
-+		};
-+	};
-+};
-+
-+&tlmm {
-+	gpio-reserved-ranges = <0 4>, <81 4>;
-+
-+	cam_indicator_en: cam-indicator-en-state {
-+		pins = "gpio12";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+
-+	i2c5_hid_active: i2c5-hid-active-state {
-+		pins = "gpio125";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
-+	mode_pin_active: mode-pin-state {
-+		pins = "gpio79";
-+		function = "gpio";
-+
-+		bias-disable;
-+	};
-+
-+	sdc2_default_state: sdc2-default-state {
-+		clk-pins {
-+			pins = "sdc2_clk";
-+
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+
-+		cmd-pins {
-+			pins = "sdc2_cmd";
-+
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+
-+		data-pins {
-+			pins = "sdc2_data";
-+
-+			drive-strength = <16>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	sdc2_card_det_n: sd-card-det-n-state {
-+		pins = "gpio126";
-+		function = "gpio";
-+
-+		bias-pull-up;
-+	};
-+
-+	sn65dsi86_pin_active: sn65dsi86-enable-state {
-+		pins = "gpio96";
-+		function = "gpio";
-+
-+		drive-strength = <2>;
-+		bias-disable;
-+	};
-+};
-+
-+&uart6 {
-+	pinctrl-0 = <&qup_uart6_4pin>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn3990-bt";
-+
-+		vddio-supply = <&vreg_s4a_1p8>;
-+		vddxo-supply = <&vreg_l7a_1p8>;
-+		vddrf-supply = <&vreg_l17a_1p3>;
-+		vddch0-supply = <&vreg_l25a_3p3>;
-+		vddch1-supply = <&vreg_l23a_3p3>;
-+		max-speed = <3200000>;
-+	};
-+};
-+
-+&uart9 {
-+	status = "okay";
-+};
-+
-+&ufs_mem_hc {
-+	reset-gpios = <&tlmm 150 GPIO_ACTIVE_LOW>;
-+
-+	vcc-supply = <&vreg_l20a_2p95>;
-+	vcc-max-microamp = <600000>;
-+
-+	status = "okay";
-+};
-+
-+&ufs_mem_phy {
-+	vdda-phy-supply = <&vdda_ufs1_core>;
-+	vdda-pll-supply = <&vdda_ufs1_1p2>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1 {
-+	status = "okay";
-+};
-+
-+&usb_1_dwc3 {
-+	dr_mode = "host";
-+};
-+
-+&usb_1_hsphy {
-+	vdd-supply = <&vdda_usb1_ss_core>;
-+	vdda-pll-supply = <&vdda_qusb_hs0_1p8>;
-+	vdda-phy-dpdm-supply = <&vdda_qusb_hs0_3p1>;
-+
-+	qcom,imp-res-offset-value = <8>;
-+	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_21_6_MA>;
-+	qcom,preemphasis-level = <QUSB2_V2_PREEMPHASIS_5_PERCENT>;
-+	qcom,preemphasis-width = <QUSB2_V2_PREEMPHASIS_WIDTH_HALF_BIT>;
-+
-+	status = "okay";
-+};
-+
-+&usb_1_qmpphy {
-+	vdda-phy-supply = <&vdda_usb1_ss_1p2>;
-+	vdda-pll-supply = <&vdda_usb1_ss_core>;
-+
-+	status = "okay";
-+};
-+
-+&usb_2 {
-+	status = "okay";
-+};
-+
-+&usb_2_dwc3 {
-+	dr_mode = "host";
-+};
-+
-+&usb_2_hsphy {
-+	vdd-supply = <&vdda_usb2_ss_core>;
-+	vdda-pll-supply = <&vdda_qusb_hs0_1p8>;
-+	vdda-phy-dpdm-supply = <&vdda_qusb_hs0_3p1>;
-+
-+	qcom,imp-res-offset-value = <8>;
-+	qcom,hstx-trim-value = <QUSB2_V2_HSTX_TRIM_22_8_MA>;
-+
-+	status = "okay";
-+};
-+
-+&usb_2_qmpphy {
-+	vdda-phy-supply = <&vdda_usb2_ss_1p2>;
-+	vdda-pll-supply = <&vdda_usb2_ss_core>;
-+
-+	status = "okay";
-+};
-+
-+&venus {
-+	firmware-name = "qcom/sdm850/HUAWEI/AL09/qcvss850.mbn";
-+
-+	status = "okay";
-+};
-+
-+&wcd9340 {
-+	reset-gpios = <&tlmm 64 GPIO_ACTIVE_HIGH>;
-+	vdd-buck-supply = <&vreg_s4a_1p8>;
-+	vdd-buck-sido-supply = <&vreg_s4a_1p8>;
-+	vdd-tx-supply = <&vreg_s4a_1p8>;
-+	vdd-rx-supply = <&vreg_s4a_1p8>;
-+	vdd-io-supply = <&vreg_s4a_1p8>;
-+	qcom,mbhc-buttons-vthreshold-microvolt = <75000 150000 237000 500000
-+						  500000 500000 500000 500000>;
-+	qcom,mbhc-headset-vthreshold-microvolt = <1700000>;
-+	qcom,mbhc-headphone-vthreshold-microvolt = <50000>;
-+	qcom,micbias1-microvolt = <1800000>;
-+	qcom,micbias2-microvolt = <2700000>;
-+	qcom,micbias3-microvolt = <1800000>;
-+
-+	swm: soundwire@c85 {
-+		left_spkr: speaker@0,3 {
-+			compatible = "sdw10217211000";
-+			reg = <0 3>;
-+			powerdown-gpios = <&wcdgpio 1 GPIO_ACTIVE_LOW>;
-+			#thermal-sensor-cells = <0>;
-+			sound-name-prefix = "SpkrLeft";
-+			#sound-dai-cells = <0>;
-+		};
-+
-+		right_spkr: speaker@0,4 {
-+			compatible = "sdw10217211000";
-+			reg = <0 4>;
-+			powerdown-gpios = <&wcdgpio 2 GPIO_ACTIVE_LOW>;
-+			#thermal-sensor-cells = <0>;
-+			sound-name-prefix = "SpkrRight";
-+			#sound-dai-cells = <0>;
-+		};
-+	};
-+};
-+
-+&wifi {
-+	vdd-0.8-cx-mx-supply = <&vreg_l5a_0p8>;
-+	vdd-1.8-xo-supply = <&vreg_l7a_1p8>;
-+	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
-+	vdd-3.3-ch0-supply = <&vreg_l25a_3p3>;
-+	vdd-3.3-ch1-supply = <&vreg_l23a_3p3>;
-+
-+	qcom,snoc-host-cap-8bit-quirk;
-+	qcom,calibration-variant = "Huawei_Planck";
-+
-+	status = "okay";
-+};
--- 
-2.47.3
+On the other hand, I don't really know what we get out of splitting
+this up into several drivers, other than a more pleasing directory
+structure and get_maintainers picking up the right subsystem people.
+
+> >>>
+> >>> The driver also exposes the actual achieved clock rate, as read back
+> >>> from the MCU, as common clock framework clocks, by acting as a clock
+> >>> provider as well.
+> >>>
+> >>> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> >>> ---
+> >>>   drivers/pmdomain/mediatek/Kconfig            |   16 +
+> >>>   drivers/pmdomain/mediatek/Makefile           |    1 +
+> >>>   drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c | 1027 +++++++++++++++=
++++++++++++
+> >>>   3 files changed, 1044 insertions(+)
+> >> [...]
+> >>> +static int mtk_mfg_init_shared_mem(struct mtk_mfg *mfg)
+> >>> +{
+> >>> +       struct device *dev =3D &mfg->pdev->dev;
+> >>> +       struct mtk_mfg_ipi_msg msg =3D {};
+> >>> +       int ret;
+> >>> +
+> >>> +       dev_dbg(dev, "clearing GPUEB shared memory, 0x%X bytes\n", mf=
+g->shared_mem_size);
+> >>> +       memset_io(mfg->shared_mem, 0, mfg->shared_mem_size);
+> >>> +
+> >>> +       msg.cmd =3D CMD_INIT_SHARED_MEM;
+> >>> +       msg.u.shared_mem.base =3D mfg->shared_mem_phys;
+> >>> +       msg.u.shared_mem.size =3D mfg->shared_mem_size;
+> >>> +
+> >>> +       ret =3D mtk_mfg_send_ipi(mfg, &msg);
+> >>> +       if (ret)
+> >>> +               return ret;
+> >>> +
+> >>> +       if (readl(mfg->shared_mem) !=3D GPUEB_MEM_MAGIC) {
+> >> Add the offset GF_REG_MAGIC, even though it is 0.
+> >=20
+> > Good catch, will do!
+> >=20
+> >>
+> >>> +               dev_err(dev, "EB did not initialise shared memory cor=
+rectly\n");
+> >>> +               return -EIO;
+> >>> +       }
+> >>> +
+> >>> +       return 0;
+> >>> +}
+> >> [...]
+> >>> +static int mtk_mfg_mt8196_init(struct mtk_mfg *mfg)
+> >>> +{
+> >>> +       void __iomem *e2_base;
+> >>> +
+> >>> +       e2_base =3D devm_platform_ioremap_resource_byname(mfg->pdev, =
+"hw-revision");
+> >>> +       if (IS_ERR(e2_base))
+> >>> +               return dev_err_probe(&mfg->pdev->dev, PTR_ERR(e2_base=
+),
+> >>> +                                    "Couldn't get hw-revision regist=
+er\n");
+> >>> +
+> >>> +       if (readl(e2_base) =3D=3D MFG_MT8196_E2_ID)
+> >>> +               mfg->ghpm_en_reg =3D RPC_DUMMY_REG_2;
+> >>> +       else
+> >>> +               mfg->ghpm_en_reg =3D RPC_GHPM_CFG0_CON;
+> >>> +
+> >>> +       return 0;
+> >>> +};
+> >> Extraneous semicolon.
+> >=20
+> > Good catch, will fix!
+> >=20
+> >>
+> >>> +static int mtk_mfg_init_mbox(struct mtk_mfg *mfg)
+> >>> +{
+> >>> +       struct device *dev =3D &mfg->pdev->dev;
+> >>> +       struct mtk_mfg_mbox *gf;
+> >>> +       struct mtk_mfg_mbox *slp;
+> >>> +
+> >>> +       gf =3D devm_kzalloc(dev, sizeof(*gf), GFP_KERNEL);
+> >>> +       if (!gf)
+> >>> +               return -ENOMEM;
+> >>> +
+> >>> +       gf->rx_data =3D devm_kzalloc(dev, GPUEB_MBOX_MAX_RX_SIZE, GFP=
+_KERNEL);
+> >> It looks like gfx->rx_data can simply be "struct mtk_mfg_ipi_msg rx_da=
+ta;".
+> >=20
+> > Hmmm, good point. I'll change it to that.
+> >=20
+>=20
+> Honestly, I prefer the current version. No strong opinions though.
+
+And I just realised you're sorta right in that; struct mtk_mfg_mbox is
+a type used by both the gpufreq mbox and the sleep mbox. The struct
+mtk_mfg_ipi_msg type is only the right type to use for the gpufreq
+mbox. By making rx_data a `struct mtk_mfg_ipi_msg` type, we're
+allocating it for both channels, and in the case of the sleep mailbox,
+it's the wrong type to boot (though not like sleep replies).
+
+So yeah I think I'll keep the current construct. If this driver grows
+another limb in the future that talks to yet another mailbox channel,
+we'll appreciate not having to untangle that.
+
+> [...]
+
+Kind regards,
+Nicolas Frattaroli
+
 
 
