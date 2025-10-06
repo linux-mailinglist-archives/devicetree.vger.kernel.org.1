@@ -1,88 +1,55 @@
-Return-Path: <devicetree+bounces-223818-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223819-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7939ABBDDB4
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 13:27:02 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 37CDEBBDE2E
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 13:37:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD1B53B39A4
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 11:26:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 484884EC4C1
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 11:37:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72DBB26C3AE;
-	Mon,  6 Oct 2025 11:26:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05B5626A0F8;
+	Mon,  6 Oct 2025 11:37:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Bc2S6BiZ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="pYdlA9Ow"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECB8F233155
-	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 11:26:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2719527145B;
+	Mon,  6 Oct 2025 11:37:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759750015; cv=none; b=SxpL49j53a2aLVE2QkXvaq3jA7V9UPTCB/kT8OgDUwxHHIx5UY+D2WFOHlLS1g1+ZKhNlc/mli8Xqohi4qyIXvzJRVLA53w9IM8o9XGQ3EdOZGnJyBdD2XSU0dUoUj2iSHR3msiYZt1xaLLaYYx6CqnPTPaPr7I22DrC8/8zBAc=
+	t=1759750654; cv=none; b=HRiOUBBaiStyaWi21ZCzssi1ggOHBvlxN9O8hOa5f9JyWAWRYAc/3mBl6irlr/j6uz3xL8bDec9qgT4PZa6kW1mEr2FMpYb+Y6iKTAT6X0PMfGEXRWe2fJQTK2S0ZbZwG8dpoiG+Aia0DM3G5oykAYgXvviy38bC/lHO5JM+tEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759750015; c=relaxed/simple;
-	bh=OJJklOwu3/0SKE5EsxHn29Z7yBO5CNM0dSLYYxjUZCE=;
+	s=arc-20240116; t=1759750654; c=relaxed/simple;
+	bh=OCo3Y1mMSATVLIHgm7jliFk9xOitHLwpDahp1KfGqfY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lhFyD2jXLGJCM5T2wmcWSwv5H2o9BJOK8SCwLzBp/CXemdpggzAP+2BzV1bn1jLagys6cvI/GtJvsuUN9dkGqTAs0uzGPGUy7veWLws1JcyWBPIp/mSCuH6YvV0T/O78F5aRV90qIy5IKofA166RZkBNB3ieUfTjVCBOZ3fnu04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Bc2S6BiZ; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 595NKHuJ014025
-	for <devicetree@vger.kernel.org>; Mon, 6 Oct 2025 11:26:53 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ha4U0nUFlXsSLIdmAWsMkj190valyUtBSyykuTVk9/4=; b=Bc2S6BiZQlMJIPA/
-	U2os9d1vCU4hGWgRx2V/73jUppow+qi876Utd4KzELGvMSmpGPGHNy1oiPq2KLWu
-	acK+BZy08Li0olxyXydSoXHiQbkYqyW5DXJ9XB2dJCpP37EXQjit38EbItfSUj4b
-	ZWYVJUPhBvX9jLEnxnYqqTyYsQWs9wtA8jewHgWnBfNslYVu0LwNhjw1xvTBH5JM
-	4Pyy4rbF+cQ5B/OpNBLXPZNQfkv0azKiSiLEAlpOvpcTsJSni2quDPl/nF7E0fpr
-	3bqNvrr008vbEuMYlrDJ5J0K1zwkgajFPWlGVBnyJLWdVQfCpt8h1TOjlzP1jnj5
-	c2/QTw==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49jvv7kh3d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 11:26:53 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4e6d173e2a2so2680941cf.2
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 04:26:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759750012; x=1760354812;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ha4U0nUFlXsSLIdmAWsMkj190valyUtBSyykuTVk9/4=;
-        b=tMwG8VEF6wpsU9oL4PlqHpxn3SxntgvIIdjtZdsDcIk2kk+nMAZ7xGLoI8xSrthI6e
-         UQMZ2d1gIri29XFWcYZdJitztauq2S7p3reR1QnfFHKXf35WO0j9PQyELQ1ucsWsB8H+
-         EXUkRPV/idaXkxEcmU6mWliR/IqW9k5VlzVi6Ke82lrkHxoGwRseH9ACbnpPKQGVJBk/
-         zluJA7b76tgtPvmKz4+1PntyIDkaHxescUvfnWu0ikaSvK90ByJnIPIpb8ePUWZCF61+
-         qx+T7+BCJrNlJnhfLXb2h8MiJNcpK7WzrKzLtHqXAeMRep09kpivt8JZBxqKSe/pq+pR
-         JCcQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXPHIA9ug51P8h8fefMh2ErhBol2V9d3F+5XV2/scDriIK7UF/0obeUwIPZW/FNQ45mxe2aazn9zl3B@vger.kernel.org
-X-Gm-Message-State: AOJu0YzbzE5SRqdZ4rvbk6k8l0dQ3NjVJ+91UB1jLL34AcYhAn99Rg9+
-	01L3Gl35AQi9Y6ilI/ov/7+q94eRD0B5a56z9IhB5LBOMa7m2RoLLHunDrhsxTAl6do408RKal3
-	NvAQhIrdNiuODMuolwuZzplc4SikgXocuFMpdibXlSfOqHUv7yxSZcjfTn0dTOMrg
-X-Gm-Gg: ASbGncvN/zPRgXXrkEKEP1tTMeu/+WDZM2nsAmUnGqgnNDn/Ws+/yQP1vSWg7sRDFVr
-	uhyfgfx0+yNKy7NYCvNYZ4SjO8UtaAMYK6cE6UbYjbSGK85HkUmNuf28OETg+ABXlFJ12nOJpAu
-	9eAfXKv6oBroWf6DJI7AoDGVYAVncTT5d7pSvFcbkZcRKOmLNbzDnRbv1HrrN/+7UWd4WZ+HSSZ
-	jvQGNfoA8nJtopZ5qnDABU6C6Uod7Nt8F9ZGZd4fKe5uN9kQ85guYq3UIOjCFlu7DvJgHnd2ndI
-	fUECMljKf9smBI5WQz+Z0zbUP+/tRycBqgTpbSh/i1eYuC54J73jKXGD5HrTNWU68LTOVmTva39
-	PTS8XURbx/55Loo3piU4haZcLBJg=
-X-Received: by 2002:ac8:5fce:0:b0:4b5:e606:dc13 with SMTP id d75a77b69052e-4e576ae6a6bmr98906011cf.10.1759750011476;
-        Mon, 06 Oct 2025 04:26:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFr5JugyuxL6R7D1qRUKV0mDdmfW8tgzw1IX2E9rrHEvRPTlDCKIkmW585y0xMCFlDqneE/DQ==
-X-Received: by 2002:ac8:5fce:0:b0:4b5:e606:dc13 with SMTP id d75a77b69052e-4e576ae6a6bmr98905681cf.10.1759750010736;
-        Mon, 06 Oct 2025 04:26:50 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b4c83adec08sm419592766b.56.2025.10.06.04.26.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Oct 2025 04:26:50 -0700 (PDT)
-Message-ID: <cfd85d73-a019-4cb1-8162-3c12611d9296@oss.qualcomm.com>
-Date: Mon, 6 Oct 2025 13:26:47 +0200
+	 In-Reply-To:Content-Type; b=PRgsUPU6YEnm3tJT7pOjE5JyaGW25eCnJR6lOhTAvz2sss0TgOlFfjwpBx5thrQOV6/84x4kA1EfE2U1rwggU+NTYbFUTexWfy8k1ui+frRw/6Ef6K7mvBLXk9DNJ+H8Pv5uTYMV3AcYCsbKrXK/FTeAHyA8gF60rT06Rn0CHzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=pYdlA9Ow; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1759750650;
+	bh=OCo3Y1mMSATVLIHgm7jliFk9xOitHLwpDahp1KfGqfY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=pYdlA9OwTrBcGXXp6JR53CLqQMc8z5UkPIbAPwMuX3s1qU5vuG6OezO7F3vbuYdsP
+	 dvsfDXEcKPM9KpXuffM4FEkAJGizjPGBK43joCPBTNDc+P0u2tqEVjkKeKT6K8UHjd
+	 WXbALCk/4j9L8ZpO9psBUN6aGBDKAbrRbEAy/dFw7GCyr8O39uYKcZuclaVZVSZ/bY
+	 v807XZcYJe2h6tKHzabTYLE8bA1BkQ7KbhiiGBIlXdyRdpSPIln+Nt62hTMgYh5e4n
+	 phUUi9K5AAlR6C3V42HvTAEMhPQdqSJpN61KTdwN8MzfRLs7synvGRCF0CIExhHCfC
+	 ESKWJ+8rmT3qQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 114AB17E0B83;
+	Mon,  6 Oct 2025 13:37:29 +0200 (CEST)
+Message-ID: <94866bc6-0fdb-4e6c-ba78-5ebd7138f193@collabora.com>
+Date: Mon, 6 Oct 2025 13:37:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,91 +57,386 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: qcm6490-fairphone-fp5: Add UW cam
- actuator
-To: Luca Weiss <luca.weiss@fairphone.com>,
-        Griffin Kroah-Hartman <griffin.kroah@fairphone.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Daniel Scally <djrscally@gmail.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        =?UTF-8?Q?Andr=C3=A9_Apitzsch?=
- <git@apitzsch.eu>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20251002-dw9800-driver-v1-0-c305328e44f0@fairphone.com>
- <20251002-dw9800-driver-v1-4-c305328e44f0@fairphone.com>
- <dfc093a1-e13b-4342-9015-5a896bf18d5a@oss.qualcomm.com>
- <DDB553DRF89P.15C4AKUO7IQXH@fairphone.com>
+Subject: Re: [PATCH v6 7/7] pmdomain: mediatek: Add support for MFlexGraphics
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Chia-I Wu <olvaffe@gmail.com>
+Cc: Boris Brezillon <boris.brezillon@collabora.com>,
+ Jassi Brar <jassisinghbrar@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Kees Cook <kees@kernel.org>,
+ "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, kernel@collabora.com,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-hardening@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20251003-mt8196-gpufreq-v6-0-76498ad61d9e@collabora.com>
+ <20251003-mt8196-gpufreq-v6-7-76498ad61d9e@collabora.com>
+ <CAPaKu7QWBShwr+YhFi+nUFo0kJ06k4PK3zggcCefWGjqUmTx5w@mail.gmail.com>
+ <8586490.T7Z3S40VBb@workhorse>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <DDB553DRF89P.15C4AKUO7IQXH@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAzNyBTYWx0ZWRfXwA9tSgSYjBi0
- 6XDgc1KHv2jVNK7X2tUcgtUL5RwO3FhQdBDWoBRmy6v+FCvArLycPx6zcEea7CuuY0cbbZuSBBC
- Qfi6sNvsdroGRUd56j4WhaLgfzroC72+7sXMSDcPiUvXyTutUjnLnQeL/ChnRZRt+gvrswOeLaj
- IdeqATZMzqIhzCUJ9e+icRVv4lAN5ZPG2T5m+tvKIvIlobnIArqlMAfXRlPgze8Uco2sHv8Tgn9
- G1b2ICq/1P8IwdCp14jg4Lz/sqXJh86KYKuqxRlE9opvj/91o991WQedkTqCJa0E9pJ4esSbncL
- BxaGEM2Oen+RpmSkl7RWEh8CsKWJcqjbcrGxr5fvIqZLa0V5klThNqmdIZK6K58oFOWoW0WJgvl
- biWEFzOQypUwayFSYgvSpoTXJDG0sQ==
-X-Proofpoint-ORIG-GUID: Miq8xzrrN16QxLUs7qIVoGNUTfzw1G62
-X-Authority-Analysis: v=2.4 cv=WIdyn3sR c=1 sm=1 tr=0 ts=68e3a77d cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=HDjIzE35AAAA:8
- a=6H0WHjuAAAAA:8 a=gTkJHdstRq_Xg2VDakwA:9 a=QEXdDO2ut3YA:10
- a=a_PwQJl-kcHnX1M80qC6:22 a=y3C0EFpLlIT0voqNzzLR:22 a=Soq9LBFxuPC4vsCAQt-j:22
-X-Proofpoint-GUID: Miq8xzrrN16QxLUs7qIVoGNUTfzw1G62
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-06_04,2025-10-02_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
- bulkscore=0 spamscore=0 adultscore=0 clxscore=1015 lowpriorityscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040037
+In-Reply-To: <8586490.T7Z3S40VBb@workhorse>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 10/6/25 11:44 AM, Luca Weiss wrote:
-> Hi Konrad,
-> 
-> On Mon Oct 6, 2025 at 11:20 AM CEST, Konrad Dybcio wrote:
->> On 10/2/25 12:15 PM, Griffin Kroah-Hartman wrote:
->>> Add a node for the Dongwoon DW9800K actuator, used for focus of the
->>> ultra-wide camera sensor.
+Il 06/10/25 12:58, Nicolas Frattaroli ha scritto:
+> On Friday, 3 October 2025 23:41:16 Central European Summer Time Chia-I Wu wrote:
+>> On Fri, Oct 3, 2025 at 1:16 PM Nicolas Frattaroli
+>> <nicolas.frattaroli@collabora.com> wrote:
 >>>
->>> Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
->>> ---
->>>  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 9 +++++++++
->>>  1 file changed, 9 insertions(+)
+>>> Various MediaTek SoCs use GPU integration silicon named "MFlexGraphics"
+>>> by MediaTek. On the MT8196 and MT6991 SoCs, interacting with this
+>>> integration silicon is required to power on the GPU.
 >>>
->>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
->>> index 2dd2c452592aa6b0ac826f19eb9cb1a8b90cee47..0e86cd5ff527925c7dba15c4e0ee5fc409fe4ce6 100644
->>> --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
->>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
->>> @@ -627,6 +627,15 @@ eeprom@50 {
->>>  };
->>>  
->>>  &cci0_i2c1 {
->>> +	camera_imx858_dw9800k: actuator@e {
->>> +		compatible = "dongwoon,dw9800k";
->>> +		reg = <0x0e>;
->>> +		vdd-supply = <&vreg_afvdd_2p8>;
->>> +
->>> +		dongwoon,sac-mode = <1>;
+>>> This glue silicon is in the form of an embedded microcontroller running
+>>> special-purpose firmware, which autonomously adjusts clocks and
+>>> regulators.
+>>>
+>>> Implement a driver, modelled as a pmdomain driver with a
+>>> set_performance_state operation, to support these SoCs.
+>> I like this model a lot. Thanks!
 >>
->> This property exists, but isn't documented (you need to extend the bindings)
+>> panthor might potentially need to interact with this driver beyond
+>> what pmdomain provides. I am thinking about querying
+>> GF_REG_SHADER_PRESENT. Not sure if we've heard back from the vendor.
 > 
-> Please see the patchset this one depends on, which adds dt-bindings and
-> adds prerequisite driver support:
+> We did. The vendor confirmed this value is read by the EB firmware
+> from an efuse, but considers the efuse address to be confidential.
+> Consequently, we are not allowed to know the efuse address, or any
+> of the other information required to read the efuse ourselves
+> directly, such as what clocks and power domains it depends on.
 > 
-> https://lore.kernel.org/lkml/20250920-dw9719-v2-1-028cdaa156e5@apitzsch.eu/
+> We therefore likely need to pass GF_REG_SHADER_PRESENT onward, but
+> I do have an idea for that: struct generic_pm_domain has a member
+> "cpumask_var_t cpus", which is there to communicate a mask of which
+> CPUs are attached to a power domain if the power domain has the flag
+> GENPD_FLAG_CPU_DOMAIN set. If the flag isn't set, the member is
+> unused.
 
-Sorry, I overlooked that!
+cpumask_var_t is not going to be the right type for anything else that is
+not a cpumask, as that is limited by NR_CPUS.
 
-Konrad
+You'd have to declare a new bitmap, suitable for generic devices, which may
+get a little complicated on deciding how many bits would be enough... and
+if we look at GPUs... AMD and nV have lots of cores, so that becomes a bit
+unfeasible to put in a bitmap.
+
+Not sure then how generic that would be.
+
+> 
+> This means we could overload its meaning, e.g. with a new flag, to
+> communicate such masks for other purposes, since it's already the
+> right type and all. This would be quite a generic way for hardware
+> other than cpus to communicate such core masks. I was planning to
+> develop and send out an RFC series for this, to gauge how much Ulf
+> Hansson hates that approach.
+> 
+> A different solution could be that mtk-mfg-pmdomain could act as an
+> nvmem provider, and then we integrate generic "shader_present is
+> stored in nvmem" support in panthor, and adjust the DT binding for
+> this.
+> 
+> This approach would again be generic across vendors from panthor's
+> perspective. It would, however, leak into DT the fact that we have
+> to implement this in the gpufreq device, rather than having the
+> efuse read directly.
+> 
+>> Have you considered moving this to drivers/soc/mediatek such that we
+>> can provide include/linux/mtk-mfg.h to panthor?
+> 
+> Having panthor read data structures from mtk-mfg-pmdomain would be a
+> last resort for me if none of the other approaches work out, as I'm
+> not super keen on adding vendor-specific code paths to panthor
+> itself. A new generic code path in panthor that is only used by one
+> vendor for now is different in that it has the potential to be used
+> by a different vendor's integration logic in the future as well.
+> 
+> So for now I'd like to keep it out of public includes and panthor as
+> much as possible, unless the two other approaches don't work out for
+> us.
+> 
+
+I don't really like seeing more and more vendor specific APIs: MediaTek does
+suffer quite a lot from that, with cmdq being one of the examples - and the
+fact that it's not just MediaTek having those, but also others like Qualcomm,
+Rockchip, etc, is not an excuse to keep adding new ones when there are other
+alternatives.
+
+Also another fact there is that I don't think that panthor should get any
+vendor specific "things" added (I mean, that should be avoided as much as
+possible).
+
+That said - what you will be trying to pass is really a value that is read
+from eFuse, with the EB firmware being a wrapper over that: if we want, we
+could see that yet-another-way of interfacing ourselves with reading nvmem
+where, instead of a direct MMIO read, we're asking a firmware to give us a
+readout.
+
+This leads me to think that one of the possible options could be to actually
+register (perhaps as a new platform device, because I'm not sure that it could
+be feasible to register a pmdomain driver as a nvmem provider, but ultimately
+that is Ulf and Srinivas' call I guess) a nvmem driver that makes an IPI call
+to GPUEB and gives back the value to panthor through generic bindings.
+
+>>>
+>>> The driver also exposes the actual achieved clock rate, as read back
+>>> from the MCU, as common clock framework clocks, by acting as a clock
+>>> provider as well.
+>>>
+>>> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+>>> ---
+>>>   drivers/pmdomain/mediatek/Kconfig            |   16 +
+>>>   drivers/pmdomain/mediatek/Makefile           |    1 +
+>>>   drivers/pmdomain/mediatek/mtk-mfg-pmdomain.c | 1027 ++++++++++++++++++++++++++
+>>>   3 files changed, 1044 insertions(+)
+>> [...]
+>>> +static int mtk_mfg_init_shared_mem(struct mtk_mfg *mfg)
+>>> +{
+>>> +       struct device *dev = &mfg->pdev->dev;
+>>> +       struct mtk_mfg_ipi_msg msg = {};
+>>> +       int ret;
+>>> +
+>>> +       dev_dbg(dev, "clearing GPUEB shared memory, 0x%X bytes\n", mfg->shared_mem_size);
+>>> +       memset_io(mfg->shared_mem, 0, mfg->shared_mem_size);
+>>> +
+>>> +       msg.cmd = CMD_INIT_SHARED_MEM;
+>>> +       msg.u.shared_mem.base = mfg->shared_mem_phys;
+>>> +       msg.u.shared_mem.size = mfg->shared_mem_size;
+>>> +
+>>> +       ret = mtk_mfg_send_ipi(mfg, &msg);
+>>> +       if (ret)
+>>> +               return ret;
+>>> +
+>>> +       if (readl(mfg->shared_mem) != GPUEB_MEM_MAGIC) {
+>> Add the offset GF_REG_MAGIC, even though it is 0.
+> 
+> Good catch, will do!
+> 
+>>
+>>> +               dev_err(dev, "EB did not initialise shared memory correctly\n");
+>>> +               return -EIO;
+>>> +       }
+>>> +
+>>> +       return 0;
+>>> +}
+>> [...]
+>>> +static int mtk_mfg_mt8196_init(struct mtk_mfg *mfg)
+>>> +{
+>>> +       void __iomem *e2_base;
+>>> +
+>>> +       e2_base = devm_platform_ioremap_resource_byname(mfg->pdev, "hw-revision");
+>>> +       if (IS_ERR(e2_base))
+>>> +               return dev_err_probe(&mfg->pdev->dev, PTR_ERR(e2_base),
+>>> +                                    "Couldn't get hw-revision register\n");
+>>> +
+>>> +       if (readl(e2_base) == MFG_MT8196_E2_ID)
+>>> +               mfg->ghpm_en_reg = RPC_DUMMY_REG_2;
+>>> +       else
+>>> +               mfg->ghpm_en_reg = RPC_GHPM_CFG0_CON;
+>>> +
+>>> +       return 0;
+>>> +};
+>> Extraneous semicolon.
+> 
+> Good catch, will fix!
+> 
+>>
+>>> +static int mtk_mfg_init_mbox(struct mtk_mfg *mfg)
+>>> +{
+>>> +       struct device *dev = &mfg->pdev->dev;
+>>> +       struct mtk_mfg_mbox *gf;
+>>> +       struct mtk_mfg_mbox *slp;
+>>> +
+>>> +       gf = devm_kzalloc(dev, sizeof(*gf), GFP_KERNEL);
+>>> +       if (!gf)
+>>> +               return -ENOMEM;
+>>> +
+>>> +       gf->rx_data = devm_kzalloc(dev, GPUEB_MBOX_MAX_RX_SIZE, GFP_KERNEL);
+>> It looks like gfx->rx_data can simply be "struct mtk_mfg_ipi_msg rx_data;".
+> 
+> Hmmm, good point. I'll change it to that.
+> 
+
+Honestly, I prefer the current version. No strong opinions though.
+
+>>
+>>> +       if (!gf->rx_data)
+>>> +               return -ENOMEM;
+>>> +
+>>> +       gf->mfg = mfg;
+>>> +       init_completion(&gf->rx_done);
+>>> +       gf->cl.dev = dev;
+>>> +       gf->cl.rx_callback = mtk_mfg_mbox_rx_callback;
+>>> +       gf->cl.tx_tout = GPUEB_TIMEOUT_US / USEC_PER_MSEC;
+>>> +       gf->ch = mbox_request_channel_byname(&gf->cl, "gpufreq");
+>>> +       if (IS_ERR(gf->ch))
+>>> +               return PTR_ERR(gf->ch);
+>>> +
+>>> +       mfg->gf_mbox = gf;
+>>> +
+>>> +       slp = devm_kzalloc(dev, sizeof(*slp), GFP_KERNEL);
+>>> +       if (!slp)
+>>> +               return -ENOMEM;
+>>> +
+>>> +       slp->mfg = mfg;
+>>> +       init_completion(&slp->rx_done);
+>>> +       slp->cl.dev = dev;
+>>> +       slp->cl.tx_tout = GPUEB_TIMEOUT_US / USEC_PER_MSEC;
+>>> +       slp->cl.tx_block = true;
+>>> +       slp->ch = mbox_request_channel_byname(&slp->cl, "sleep");
+>>> +       if (IS_ERR(slp->ch))
+>>> +               return PTR_ERR(slp->ch);
+>> Free gf->ch.
+> 
+> Good catch! Will do.
+> 
+>>> +
+>>> +       mfg->slp_mbox = slp;
+>>> +
+>>> +       return 0;
+>>> +}
+>>> +
+>>> +static int mtk_mfg_init_clk_provider(struct mtk_mfg *mfg)
+>>> +{
+>>> +       struct device *dev = &mfg->pdev->dev;
+>>> +       struct clk_hw_onecell_data *clk_data;
+>>> +       int ret;
+>>> +
+>>> +       clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, 2), GFP_KERNEL);
+>>> +       if (!clk_data)
+>>> +               return -ENOMEM;
+>>> +
+>>> +       clk_data->num = 2;
+>>> +
+>>> +       mfg->clk_core_hw.init = &mtk_mfg_clk_gpu_init;
+>>> +       mfg->clk_stack_hw.init = &mtk_mfg_clk_stack_init;
+>>> +
+>>> +       ret = devm_clk_hw_register(dev, &mfg->clk_core_hw);
+>>> +       if (ret)
+>>> +               return dev_err_probe(dev, ret, "Couldn't register GPU core clock\n");
+>>> +
+>>> +       ret = devm_clk_hw_register(dev, &mfg->clk_stack_hw);
+>>> +       if (ret)
+>>> +               return dev_err_probe(dev, ret, "Couldn't register GPU stack clock\n");
+>>> +
+>>> +       clk_data->hws[0] = &mfg->clk_core_hw;
+>>> +       clk_data->hws[1] = &mfg->clk_stack_hw;
+>>> +
+>>> +       ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_data);
+>>> +       if (ret)
+>>> +               return dev_err_probe(dev, ret, "Couldn't register clock provider\n");
+>>> +
+>>> +       return 0;
+>>> +}
+>>> +
+>>> +static int mtk_mfg_probe(struct platform_device *pdev)
+>>> +{
+>>> +       struct device_node *shmem __free(device_node);
+>>> +       struct mtk_mfg *mfg;
+>>> +       struct device *dev = &pdev->dev;
+>>> +       const struct mtk_mfg_variant *data = of_device_get_match_data(dev);
+>>> +       struct resource res;
+>>> +       int ret, i;
+>>> +
+>>> +       mfg = devm_kzalloc(dev, sizeof(*mfg), GFP_KERNEL);
+>>> +       if (!mfg)
+>>> +               return -ENOMEM;
+>>> +
+>>> +       mfg->pdev = pdev;
+>>> +       mfg->variant = data;
+>>> +
+>>> +       dev_set_drvdata(dev, mfg);
+>>> +
+>>> +       mfg->gpr = devm_platform_ioremap_resource(pdev, 0);
+>>> +       if (IS_ERR(mfg->gpr))
+>>> +               return dev_err_probe(dev, PTR_ERR(mfg->gpr),
+>>> +                                    "Couldn't retrieve GPR MMIO registers\n");
+>>> +
+>>> +       mfg->rpc = devm_platform_ioremap_resource(pdev, 1);
+>>> +       if (IS_ERR(mfg->rpc))
+>>> +               return dev_err_probe(dev, PTR_ERR(mfg->rpc),
+>>> +                                    "Couldn't retrieve RPC MMIO registers\n");
+>>> +
+>>> +       mfg->clk_eb = devm_clk_get(dev, "eb");
+>>> +       if (IS_ERR(mfg->clk_eb))
+>>> +               return dev_err_probe(dev, PTR_ERR(mfg->clk_eb),
+>>> +                                    "Couldn't get 'eb' clock\n");
+>>> +
+>>> +       mfg->gpu_clks = devm_kcalloc(dev, data->num_clks, sizeof(*mfg->gpu_clks),
+>>> +                                    GFP_KERNEL);
+>>> +       if (!mfg->gpu_clks)
+>>> +               return -ENOMEM;
+>>> +
+>>> +       for (i = 0; i < data->num_clks; i++)
+>>> +               mfg->gpu_clks[i].id = data->clk_names[i];
+>>> +
+>>> +       ret = devm_clk_bulk_get(dev, data->num_clks, mfg->gpu_clks);
+>>> +       if (ret)
+>>> +               return dev_err_probe(dev, ret, "Couldn't get GPU clocks\n");
+>>> +
+>>> +       mfg->gpu_regs = devm_kcalloc(dev, data->num_regulators,
+>>> +                                    sizeof(*mfg->gpu_regs), GFP_KERNEL);
+>>> +       if (!mfg->gpu_regs)
+>>> +               return -ENOMEM;
+>>> +
+>>> +       for (i = 0; i < data->num_regulators; i++)
+>>> +               mfg->gpu_regs[i].supply = data->regulator_names[i];
+>>> +
+>>> +       ret = devm_regulator_bulk_get(dev, data->num_regulators, mfg->gpu_regs);
+>>> +       if (ret)
+>>> +               return dev_err_probe(dev, ret, "Couldn't get GPU regulators\n");
+>>> +
+>>> +       ret = of_reserved_mem_region_to_resource(dev->of_node, 0, &res);
+>>> +       if (ret)
+>>> +               return dev_err_probe(dev, ret, "Couldn't get GPUEB shared memory\n");
+>>> +
+>>> +       mfg->shared_mem = devm_ioremap(dev, res.start, resource_size(&res));
+>>> +       if (!mfg->shared_mem)
+>>> +               return dev_err_probe(dev, -ENOMEM, "Can't ioremap GPUEB shared memory\n");
+>>> +       mfg->shared_mem_size = resource_size(&res);
+>>> +       mfg->shared_mem_phys = res.start;
+>>> +
+>>> +       if (data->init) {
+>>> +               ret = data->init(mfg);
+>>> +               if (ret)
+>>> +                       return dev_err_probe(dev, ret, "Variant init failed\n");
+>>> +       }
+>>> +
+>>> +       mfg->pd.name = dev_name(dev);
+>>> +       mfg->pd.attach_dev = mtk_mfg_attach_dev;
+>>> +       mfg->pd.detach_dev = mtk_mfg_detach_dev;
+>>> +       mfg->pd.power_off = mtk_mfg_power_off;
+>>> +       mfg->pd.power_on = mtk_mfg_power_on;
+>>> +       mfg->pd.set_performance_state = mtk_mfg_set_performance;
+>>> +       mfg->pd.flags = GENPD_FLAG_OPP_TABLE_FW;
+>>> +
+>>> +       ret = pm_genpd_init(&mfg->pd, NULL, false);
+>>> +       if (ret)
+>>> +               return dev_err_probe(dev, ret, "Failed to initialise power domain\n");
+>> We need to clean up mgf->md on errors from this point on. Maybe we can
+>> move this to a later point?
+>>
+>>> +
+>>> +       ret = mtk_mfg_init_mbox(mfg);
+>>> +       if (ret)
+>>> +               return dev_err_probe(dev, ret, "Couldn't initialise mailbox\n");
+>> We need to free the mboxes from this point on.
+>>
+> 
+> For this and the one above, does .remove not get called on probe failure? If not,
+> I'll definitely do this. Otherwise it seems redundant, though with the added
+> concern that .remove does not check before calling those functions.
+> 
+
+Failing during probe doesn't make this much of a working (probed -> bound) device,
+so no, .remove() is not going to get called upon probe failure.
+
+Cheers,
+Angelo
 
