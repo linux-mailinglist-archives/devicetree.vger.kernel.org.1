@@ -1,158 +1,144 @@
-Return-Path: <devicetree+bounces-223877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3FCABBE8A0
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 17:49:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A2FABBE8B2
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 17:49:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7F343BE52F
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 15:49:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 637BC3BF2F6
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 15:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661972D879A;
-	Mon,  6 Oct 2025 15:48:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2zo+Zien"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67FDB2D8DA6;
+	Mon,  6 Oct 2025 15:49:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+Received: from mail-vk1-f181.google.com (mail-vk1-f181.google.com [209.85.221.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA2572D662D
-	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 15:48:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C32A72D5408
+	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 15:49:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759765737; cv=none; b=uUXPbr5Ze2sb2jtmaXSL2dHKvci/n24sw0GtWIk7B63MsavVQHOzEjcglXg31fkWcDW40enKqn20XDBqxFN87xPKYQ81IF6qdgK8VDRgQ35dXVVgBA91Fz/eEl3HJM3OTJGyF2kl/HpRjI3sHI3TrOjeGom24z8ezXICbHm0VG4=
+	t=1759765754; cv=none; b=NajVB5RmZEKIqxwFiHduIlupVAsxYY8KIgj5jd24K14GVm7CxjbR0tHc6TJjXwCmyT8Byo2LIsGTzP8SyIdqrnstIPbLum5gF7AWUJRHC9CU+bl93aMtZcRv/RKYMNdg4wiwmFqdFUTaAKHeZKXLKqg1AN815XP7fcKCje74Qu8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759765737; c=relaxed/simple;
-	bh=7cCqsIleQbTCE8nJ/cqNLb6Xh7ymZFZDoUIkZvvwW5c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Im8/s4jXoXmZL9TiCg+h/Hag6tq2kl5e1hw225oy7xi/jVc1VPYpCmW6gwyRySnEhgy/bSYgJBoM2SPUpYPJhOuh+tfI7erBwvLx0b8jOuxW31TMrvu3DJlZJZWh2aVyueNlhxWClsr8R69pGviampQC74BXtSQwX9p1HlxCmy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2zo+Zien; arc=none smtp.client-ip=209.85.210.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-7b6ac55cf86so3189285a34.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 08:48:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1759765734; x=1760370534; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=T869gDVevA9LpG7p7hXPgb7SP5eHhcw4WWhaTQBkq5A=;
-        b=2zo+ZienJvyGr8v4PFCMg777UXY9YbInkEZSYVHaJh1LkrIiNQ5HSe30lkob5edkt5
-         gcX38kXd54+hdz1yB+LZchELWJwKFEYW6WPTMhoDU2sZJV9RMloSAwWUqZ30V8Lnx+uc
-         PY/8SPITCvzJqOCIRj+gVJDSKdycdYsh6BimWJeM4zC+xWQvYFDAWTaZ4m5iS/d0p01y
-         hkgQo2wu9L+mIVevhyMuhUgNS2SGZslZyXHWJhw9wI/cOl8vTr+GfP/IIkvlCHeBX7wx
-         uzYomOekrrB/vn4cgha4lqO2Iw/ryKlaHS7hjIrj06Wl2Zbe+nTh1//C9yR+dyrsEnkv
-         XTGg==
+	s=arc-20240116; t=1759765754; c=relaxed/simple;
+	bh=PVdvCVE2eYWFiP3cR9c4GvqYb8gZt/OyTsTupK/w8CU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KDoonPOmRwfnpAtzSiJxkg9yBJoGY/gB+9D+aIfvd7Y7YHDJ6KrX8iN5UinZjA99z7U1n6iM0yHE5Z7Hgs/TRgHW0EQe8R3DbC42UyS6CxZc1mm3fBDlOCwoTsoMUBUTCxS9FhnctZt2zzS4aBL7fcSaGXjYIMsm4LV+LI9/BMc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f181.google.com with SMTP id 71dfb90a1353d-5523142df73so3690988e0c.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 08:49:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759765734; x=1760370534;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=T869gDVevA9LpG7p7hXPgb7SP5eHhcw4WWhaTQBkq5A=;
-        b=DZwLSaRtICVS6LUsG/b7UPYoseiiJs0LCXLyIS5nllGIrLq3ThUr9d3AEzZsgd1atC
-         /dTjJq72C0E1yCwX4+UzzQcuYlHzDPenE1CNZn9CEcDaJzWo4QUkCX6KuqpF3uvsn68L
-         JmpAkSap1QYgzjnmzNTetiMOsUUJpLkyXo0zgJKt4jsjLDVvcu4X9/QtvZhfmjBvJGt6
-         oHO124Q3T3zQSukM9buQe4eZKdL9Qaq2thYORjvdDJCQTz+V5+quQL/aOgjSK9hfuUd5
-         y9dZXqnbeYPhcBhpaFSKaLY8fwz5xxOP1Fr9qC8ruyldpcwvYYLmOnFt4S8pzk90AZ2/
-         VFxw==
-X-Forwarded-Encrypted: i=1; AJvYcCXieDhQvKWj98F29FuYcatktvesBhm77tANmNz87F3ilXwQ0Olfjn5+28Z+mrWxdXplgxIaAANWqZAg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJBamaM4b5TJgtKKuTlkz5xAjjNFZkPxDSv2qAsi+L/SUb8XqZ
-	7F5lJ/Ev18lv3zwHSIpFLfdOAdNUd5o5b13j776yAuT/3bjpCO40bkPUxSCo4BLbWEc=
-X-Gm-Gg: ASbGncvRiNq/KrQtoMCVhxtAiE+VlWaoozsP35zJJaA4zKjNToNr++qB7xnqvONx9oO
-	U2iV47ccXxoiQ+5r3UI5H958J0EoJbpZ0Y451kLaiAk1Pr8GBryGmxeob3zmiDiybS5yFkYhpQr
-	UcyjEolos1IIFCS9KVxPn7HBOPp7S9DVGpZtugiqikbxKnsPFH9042zr0SSGLijj6JGNGKiMlDl
-	Sbr1+353cldnD90xM7e//Ol6cHvV43ZiILT8AvI4gbcz06UBiL1AoOgCQ7xmhP0Jbf2RDkFF3nd
-	ugLGJ4YLinozcMqj0EW3BYv/yWyGo5OCie6h0yARa5x5cNBvLSTMKOnPhOFMvETUaEfvaKvuuoO
-	h85+UURUMFb+P6atHUN6zHZx4zlMHLB+sjc/wiBzvSCfIYdH9xXBfXvKbol3y567OD74q5S+CN5
-	5afqVkJoAnRYyhOoOP/YtXX/jQYDBIhvy4bg==
-X-Google-Smtp-Source: AGHT+IH6njM+4Hb3ORuQPgRlqgDWQXTIapYtLEi8wuRV94ziPpiWcaXvJxfwgPJWYXWshy0ytCVboA==
-X-Received: by 2002:a05:6830:374c:b0:7bb:79ad:6604 with SMTP id 46e09a7af769-7bf77538cccmr7827018a34.22.1759765733844;
-        Mon, 06 Oct 2025 08:48:53 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:a1fd:4fbd:e7a6:9246? ([2600:8803:e7e4:1d00:a1fd:4fbd:e7a6:9246])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7bf3fdcfb69sm3892248a34.13.2025.10.06.08.48.51
+        d=1e100.net; s=20230601; t=1759765751; x=1760370551;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=z9cUjdoCYBcQFUwR15PiM4qDt/xHkJtXxPd5pO9yUZ8=;
+        b=WyP7fXbASwbUb+n5THF0+hgPjKUR0wrObiTP9wKh/MGG04V1xnLYlyYkWuJnwYAmfR
+         cX20A6f/g1fDiac+de3wVhlNO+0Kae4aamRAUT9olEljyL38a68exq1Z4UxkcIhqdGTq
+         R3s9xr3q7ibZ3rRjJx+Y3+uXjLGfLlVJ87jR/m+0BuXhC2tv/cADMDzEyvcMKQwLFlby
+         0kILR4o9ciuZh02TBhVPJfkY3ocmVB/qlQq3tLPbak5ASmRfl3+ikGmMV45vxPVmqRQ8
+         iGx5fw5eZm6nEIKGyirFODIOehVTpEqzN6VlKieO+ZVWoAA1wINM7CDEIJF3GQojO0Rd
+         PMuw==
+X-Forwarded-Encrypted: i=1; AJvYcCWRUbM7roA2NRqbjd1spNY5SDFat98lP97oa/Ox8P3dTY7wTC4u6GHwuBHJ5Ks12mVESN66nFFBy4ia@vger.kernel.org
+X-Gm-Message-State: AOJu0YzU9vWVy+kr3f7eNvhoDGttOMwDtvZITTCwWuQCCtYvHdThF2Rg
+	/sajahuI/p1PVaTzgsfeD3zYREed3jCn5hx93VNNi6fPZmPmLq2CTNPw7sBURfLX
+X-Gm-Gg: ASbGnctRT5Pd8oSSZAwIZ9EU4N0jiqvNGlWWwORoIGFcw80/9GR62xF6GCr/jktQ4Js
+	VHx6uQMZ5lY/LpxxbRenR95U2fRtYbhICsICj2tuNRLaQgA1qx4x39Vv1wRkpAUcUMI1WzFZ+aW
+	3QldjpqGA6PH1D4vJc/dUPZFTkYqx8BiWXFx0yWODb0Ql6nIdtzNbepSSNzEzWnWE3pwmErgjzo
+	f+bDAwRmoqNbTq7ccJmbddmBUIrt07TetyjpLfECPeVcc3PWMIR0Q0merB3vx5R1Jf1EkR85J5t
+	Bl7/hVrgNrDRJvh2NypNbytlj3AYQOjymESRhvJCxqc6CdmpYFrp8dQawbPJtMdamqrqxHw9LA6
+	FSkB9BUgekQuBqBIBPgEnzabFQXIS/ZCnEVdYDsrGbgbveJz3SDoeCj0NBAG/a05tfI6uar5DGq
+	ENxbSIgxG2qNbP3soOoJAooGL2+FbG6A8THg==
+X-Google-Smtp-Source: AGHT+IEDuUwRbfWheIxvTvCaMYrrAk6t0CtMJe3yN10pbTUnAwOHc4TQkBOgsS1QuHZUbTMGil3SIQ==
+X-Received: by 2002:a05:6122:1828:b0:54a:93be:46fc with SMTP id 71dfb90a1353d-5524e41594bmr4628970e0c.0.1759765751294;
+        Mon, 06 Oct 2025 08:49:11 -0700 (PDT)
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com. [209.85.221.177])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-55497ee3001sm808512e0c.6.2025.10.06.08.49.10
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Oct 2025 08:48:53 -0700 (PDT)
-Message-ID: <da087553-c6d6-4e51-ac57-1be95a3c04b7@baylibre.com>
-Date: Mon, 6 Oct 2025 10:48:51 -0500
+        Mon, 06 Oct 2025 08:49:10 -0700 (PDT)
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-554a7e98e19so93122e0c.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 08:49:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXWiaKh9kIPb9+nfSCFNPV9HLV6qt4sO+v44piVVvI4ioT/R9ZU3/v9pzxqaDB3woLp2QUtX+7lwl+N@vger.kernel.org
+X-Received: by 2002:a05:6122:1828:b0:54a:93be:46fc with SMTP id
+ 71dfb90a1353d-5524e41594bmr4628932e0c.0.1759765750015; Mon, 06 Oct 2025
+ 08:49:10 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 2/3] iio: adc: max14001: New driver
-To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Kim Seer Paller <kimseer.paller@analog.com>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
- Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
- Ceclan Dumitru <dumitru.ceclan@analog.com>,
- Jonathan Santos <Jonathan.Santos@analog.com>,
- Dragos Bogdan <dragos.bogdan@analog.com>
-References: <961e5351afa408e69541b60ec75852fbbd1ddd24.1759121938.git.marilene.agarcia@gmail.com>
- <476b75cff0c3e5ff23ba7c642924511f3ba09a3f.1759121938.git.marilene.agarcia@gmail.com>
- <CAMknhBHt9JVkaf1Kq76BKFM-Ff38-7ws6gaq+5fwy=pAih-fww@mail.gmail.com>
- <9ee20209-efba-44b1-9902-5885bacfb290@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <9ee20209-efba-44b1-9902-5885bacfb290@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20251003215318.39757-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20251003215318.39757-1-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 6 Oct 2025 17:48:58 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdX-arzDXgv-2gUs8uAt_APkoM3VnAvAYbp1N8oc2v84Hw@mail.gmail.com>
+X-Gm-Features: AS18NWB5kY2B2y6TFB5oLhNDBm5KpJIF8LceyyLdhipcCtPerf86ByWEmMs2hLA
+Message-ID: <CAMuHMdX-arzDXgv-2gUs8uAt_APkoM3VnAvAYbp1N8oc2v84Hw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: renesas: koelsch: Update ADV7180 binding
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/5/25 6:25 PM, Marilene Andrade Garcia wrote:
-> On 01/10/2025 11:03, David Lechner wrote:
->> On Mon, Sep 29, 2025 at 7:59 AM Marilene Andrade Garcia
->> <marilene.agarcia@gmail.com> wrote:
->>>
->>
-> ...
->>> +static int max14001_read_raw(struct iio_dev *indio_dev,
->>> +                            struct iio_chan_spec const *chan,
->>> +                            int *val, int *val2, long mask)
->>> +{
->>> +       struct max14001_state *st = iio_priv(indio_dev);
->>> +       int ret;
->>> +
->>> +       switch (mask) {
->>> +       case IIO_CHAN_INFO_RAW:
->>> +               ret = regmap_read(st->regmap, MAX14001_REG_ADC, val);
->>> +               if (ret)
->>> +                       return ret;
->>> +
->>> +               return IIO_VAL_INT;
->>> +       case IIO_CHAN_INFO_AVERAGE_RAW:
->>> +               ret = regmap_read(st->regmap, MAX14001_REG_FADC, val);
->>
->> I don't remember... did you give a reason why this should not be a
->> separate channel? Or just use REG_FADC as the raw value and forget
->> about REG_ADC? In any case we would want another attribute to control
->> the filter window size.
-> ...
-> 
-> Hello David,
-> 
-> Thank you for the review and suggestions.
-> Sorry for not adding any comments about that in v12. From what I understood from our previous conversation, for now the code could have one channel to keep things simple, since we’re not sure if anyone will actually need to read both the filtered and unfiltered data at the same time.
-> 
-> I was thinking of sending a separate set of commits to address that after this one gets merged, as it will involve new code changes related to adding a function to configure how many ADC readings are included in the mean calculation, and adding a new attribute to sysfs.
-> 
-> Since both IIO_CHAN_INFO_RAW and IIO_CHAN_INFO_AVERAGE_RAW are currently returning the same value, I could drop IIO_CHAN_INFO_AVERAGE_RAW in v13 and add it back in the next series of commits to implement the related feature.
-> 
-> I would like to know your thoughts about it, because if you prefer, I could change my plans and implement it in v13.
-> 
-> Best Regards,
-> Marilene
-> 
+Hi Niklas,
 
-Since everything else looks good, I think Marcelo's suggestion to drop
-averaging from this series and add it in a later series is the best advice.
+On Fri, 3 Oct 2025 at 23:53, Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Use the more modern adi,adv7180cp compatible for the CVBS input found on
+> R-Car Gen2 Koelsch boards. This aligns the bindings with the other Gen2
+> board with the same setup Gose.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
+
+Thanks for your patch!
+
+> --- a/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts
+> @@ -295,6 +295,16 @@ hdmi_con_in: endpoint {
+>                 };
+>         };
+>
+> +       composite-in {
+> +               compatible =3D "composite-video-connector";
+> +
+> +               port {
+> +                       composite_con_in: endpoint {
+> +                               remote-endpoint =3D <&adv7180_in>;
+> +                       };
+> +               };
+> +       };
+> +
+
+Moving this below cec-clock while applying, to "preserve" (sic) sort order.=
+..
+
+>         cec_clock: cec-clock {
+>                 compatible =3D "fixed-clock";
+>                 #clock-cells =3D <0>;
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.19.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
