@@ -1,173 +1,247 @@
-Return-Path: <devicetree+bounces-223857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87B1EBBE5B6
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 16:32:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0133BBBE5D1
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 16:34:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0281E4E96E3
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 14:32:52 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 914F24EEC1F
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 14:34:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD0242D5C6E;
-	Mon,  6 Oct 2025 14:32:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A960F2D480F;
+	Mon,  6 Oct 2025 14:34:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hbZwmWGN"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="gJlUlzXX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013004.outbound.protection.outlook.com [52.101.72.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADFD02D5950;
-	Mon,  6 Oct 2025 14:32:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759761166; cv=none; b=fL/ELGd40fJ+bALp65Dn9W9svW0X1OBomZWgVnit6R1PyrlCPpsgIaO+9jRdoMxjwVjfZi+bPlNmAOlNwxkVAvk73H3hNlnkDjK8M1knzhm2o90S86QX9yuu7J96U7WKVEhnR3eYEsfgrt2p5lqy7xIPZXIR0wxCmb8VjemT9KA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759761166; c=relaxed/simple;
-	bh=wU9DxXm+qu6R0SFIhOlAKbdS49ObGXC9RJRPGsqm/3g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BumynXXjyt0RnENqeMrLwPgfpJcu/RTrYrTm8vhryAtyv8Uyi9ZozR3rPLX21lOQ+yof60fBHK4/8MsaI6PesshdQ4PQ+NqV7GYRPIEK3mr2BuoRSPX68zMoUlozgvg4bcfr7rmVR8zvksFMeQgKTZ7V1grUT83KO06rbbXDlCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hbZwmWGN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BB0CC4CEF5;
-	Mon,  6 Oct 2025 14:32:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759761166;
-	bh=wU9DxXm+qu6R0SFIhOlAKbdS49ObGXC9RJRPGsqm/3g=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hbZwmWGNan2w0RszUynQopmF6QZOzg35mAM/HEi+gymwZYwqiOwcAnx9G/WRWBo9m
-	 iATaMxmuNdpQY8izZQIQRDlenG6MZFAaVAOdRMCa8XT8eJigNOulYDtkCPyNE0JXMb
-	 y4qdGOxNIsQTegKggbdJNnPna/vsJmOZ6NXVkMAACfpENY6uk1dY07pjWjfmh1f6Bz
-	 AGBg1/4KE8enDbNiY+2CBp8IdSIwz1/pM9VaWPoReGkjco8SODd97cdaVwNasjA98d
-	 7fUvszQuFl+H+jHtsajt9JBYC3ycNA0WVyLq2jPVz636Arbzq070HwHrqqT0r64Dql
-	 +VuQtSdetYLJQ==
-Message-ID: <691334e4-8c00-4bcc-8009-13139b10463b@kernel.org>
-Date: Mon, 6 Oct 2025 23:32:38 +0900
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 491012D4818;
+	Mon,  6 Oct 2025 14:33:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.4
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759761240; cv=fail; b=f8GGiGluSGDd2Iet8G2JsSqjWopgj0Ya9MWWzegf+4qaJJ5Xlupd3/JvaOeI007fM0R/uxANZwAmg5ig2oyh1FzYhO08M2lw/PkOEMV2reaeAXwOLPAh7HJL32nzyK2PwYHHKUjreZMVvH11ERNL5kzlSP5C1NXT8rwl6giZdPQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759761240; c=relaxed/simple;
+	bh=gkmRITcGCsEd00nK7wWMaTWnKvV8+jLxhmWQCafUG1c=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=iBzJQIcmcVE9axDpoSiVITWwi38MayXwj+iuYK3zHzQ+lYqwn51QujVhcrtzsP6Q8x+Bbtj3fHmn9giOl/8rZ2n8HZBLRaoXCOaCIlxnrmpOBwgiiz/DrznufQ7uCirKZ0MOYqI2W0YdRS1CwNtXGj5cDf7B4aVw0DepOTnLGB0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=gJlUlzXX; arc=fail smtp.client-ip=52.101.72.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=rzz7FYpP7smIwUDu4Wt8nj1Rkya+5F6r6hyniD1lsYbnfLKu28ixGpROwMJf/p/AP553W3FfyZeRSJyC6g1seR1JJAhEezK1jj9qC4Qmm/b5sMdRqWouPDOU/Do036R7+wJad4L8f7rflOUgDdFErUACRMxV7KBlrEaMIjuVwjRfSRLHqq38IynBmnJrcQGaHKnjSuZyaZfpL81IglScGqbPu90ek+r74z6udNqTY9Db2RrwCBHhv8cxYZF8S8Z7XjLnPXLWywWwKsUdqbGStbInmLhA04cy5ci0n1VgVSCYaGJBPWnK83QH+q++Dt88bl4Kx2J3bCbmoYOwrVr7+g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gkmRITcGCsEd00nK7wWMaTWnKvV8+jLxhmWQCafUG1c=;
+ b=iH3xP1pj+gbrJO+MCXd0sNY3NOAlEZSc6Jkx3nPLZdfHWxKcNjXPBgau5ZrBPLmcw+J/E87Mwihtbu1fTDkIQLjt0DN/LwgXmqwB1gb+QAwpFM4BZafwM6xFGVO9SR0CbVJnkuMO8cFD+ACxzm6an5pq0WDR6Vu6clYJtCivSL/y9UQWBQGeSthG9daEIA8uO9te8vm5KeOER44YMdXXoxL50bvBTc4ugraA3yOqIQc4dJklMIbXMx2EyYEUgfljCHClu9VsUNK2D/Z8n9efaa6qQv5omDnFr1/VTcbkjfLC+evADON9fyrL0CHVslTYF8Y4Chru4tLElkq9Ewx3yA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gkmRITcGCsEd00nK7wWMaTWnKvV8+jLxhmWQCafUG1c=;
+ b=gJlUlzXXPYk/InN68kAmyTeZ61P89B/enyeuqtJhadS8gP3rrARRab64l1DC7i1mc0FeYd24Co4as42ne5YEF3EWdLJrkzC2yBlX2ctrHOP8Qs1I6iVMJI7jTNwPuX6yG8RA8Ngi8qFnXmA+PZlT5HMQn9kUbOuyakbEeqb0kDkcqY15g+E/za4hcrNZ98ZUuDb4LRlXOvXNimLbIwBitbgUQZtQwCXys1wJaSIIKkydkkKqqhRRNlJSzp0WaGIR9RQ+N18AtW+tGYXmL1cRKyvNb/IRi9SFJEc4HcAbNuOt7r/n+jgGZm4SnVMBJw5SPWDKJXm5Tlt5NKE88Q6O1Q==
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
+ by PA2PR04MB10121.eurprd04.prod.outlook.com (2603:10a6:102:408::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Mon, 6 Oct
+ 2025 14:33:50 +0000
+Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::21bf:975e:f24d:1612]) by PAXPR04MB9185.eurprd04.prod.outlook.com
+ ([fe80::21bf:975e:f24d:1612%4]) with mapi id 15.20.9182.017; Mon, 6 Oct 2025
+ 14:33:50 +0000
+From: Shenwei Wang <shenwei.wang@nxp.com>
+To: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>, Bjorn Andersson
+	<andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
+	<s.hauer@pengutronix.de>, Linus Walleij <linus.walleij@linaro.org>, Bartosz
+ Golaszewski <brgl@bgdev.pl>
+CC: Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+	<festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
+	"linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, dl-linux-imx <linux-imx@nxp.com>,
+	"openamp-rp@lists.openampproject.org" <openamp-rp@lists.openampproject.org>
+Subject: Re: [PATCH v2 3/4] gpio: imx-rpmsg: add imx-rpmsg GPIO driver
+Thread-Topic: [PATCH v2 3/4] gpio: imx-rpmsg: add imx-rpmsg GPIO driver
+Thread-Index: AQHcNs47QlZV5Sbfy0motK7SwtSbjA==
+Date: Mon, 6 Oct 2025 14:33:50 +0000
+Message-ID:
+ <PAXPR04MB91857A02029EB7F923C5767F89E3A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+References: <20250922200413.309707-1-shenwei.wang@nxp.com>
+ <20250922200413.309707-4-shenwei.wang@nxp.com>
+ <86bf1252-9b2b-4001-830d-2746403539e6@foss.st.com>
+ <PAXPR04MB9185924ED129E87C77F34DCC89E4A@PAXPR04MB9185.eurprd04.prod.outlook.com>
+ <5624965c-8d00-431b-92b4-cda4bf7cbd5b@foss.st.com>
+In-Reply-To: <5624965c-8d00-431b-92b4-cda4bf7cbd5b@foss.st.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PAXPR04MB9185:EE_|PA2PR04MB10121:EE_
+x-ms-office365-filtering-correlation-id: bb2d9ca4-eca6-469c-e3b0-08de04e55dd7
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|19092799006|7416014|376014|921020|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?NnuEq7kIfgNP+S3j+IUHH/5dfcO2EXajFM4Rhe5mAjqDxZEjUT2AWQJnXtAK?=
+ =?us-ascii?Q?OkEUIR9WbHtXdpKnzRKo4wpFGR9mz3VuQ2FA+1gp0S/QeHkPGsVVQfhLqqB3?=
+ =?us-ascii?Q?itGX2/7scOzbFtOf5FoGBhZtsePvY7Y3UkouQUAGmPc798I6/DtJPnNC8uel?=
+ =?us-ascii?Q?Uo6FK3ovZlXSSjrbGLCYisJFLlZnqCWDcwvEj/j56MH3D7Yp/n9U/lsuYVoB?=
+ =?us-ascii?Q?4dTQrqsSRRK7sdV2dDY1LswNRxR4L6ezhXglkN3/XfsxHnKMocqwgSCqwP4q?=
+ =?us-ascii?Q?w0UCkBqDoDMMWNWksftEKzOyHJUe73kpXxdT4ykR7lxPFp7g3nLct7cxDf7w?=
+ =?us-ascii?Q?0xF7wdyseJMdZDOMkUgIRYw5MtT5m2Tue/2f3x9r4wl7z0Q23Vs6F+a4tuTE?=
+ =?us-ascii?Q?aHs1nCyTbn67TfjIbGiwODLY2ADedG0sIcda+HG8Wm49ae0OFFJOUhMnSjEc?=
+ =?us-ascii?Q?RM+ZCT9eMgc6NzTFe49xDxIahSJ5aVAIppI8K3iYuefN8jw0XS+AIQR5eVqX?=
+ =?us-ascii?Q?chQ1gK37KkkslXQqjcevxFE1xFSkL4dQHuMbCrPyyZoiID5d8jMUKu6wpvwP?=
+ =?us-ascii?Q?NRg6NKKPP1P9drbFrbBbjcIR/9c5c7YcxqF8vxE2HcocQm4H1CotyFCAUAGA?=
+ =?us-ascii?Q?amsk1zHQV2z2zWeevb5RT4wofhMzeqPfhP3pJCXciLD1N6+Kyba6RyGXLGno?=
+ =?us-ascii?Q?eL4yJlb65kBXfaQq0SnBT5aueF5qLGsfibtSwJjd/erJxA8x3vJ0pqmEePFK?=
+ =?us-ascii?Q?+GbuvuM5iIPmAAxRjsxxfIZjgTsClnrxJASX1VcFZ2Q1f3dtDmP46tRzYX+O?=
+ =?us-ascii?Q?b8EseMJ6C7GgzF1+/yxMPpx591Nf30iaWMaUXrZraJsoKKZGrAnmqduiPrkb?=
+ =?us-ascii?Q?C21sIxFDmRByMz0Zjqg6lJ4SuF8PDpKqQdlo77DIUKChHDVK6d+E0QMsR22c?=
+ =?us-ascii?Q?PGQsE6f/8kqKQqvqej8zGhy6ewRjs20f9jmU3xpUcMEAi86aJU2wQm18VRGg?=
+ =?us-ascii?Q?sP1ekzT0lNNXHqyZ//MUohHhDzgz2WatjTU5uX7BlaEv1/JZqs5p4aOBiMjS?=
+ =?us-ascii?Q?JIfg3JJfcJ412abjEk5Fk/RFcc+ntD+x5ghKFY5EViairiKtWxxCdwtIrajF?=
+ =?us-ascii?Q?x5XhXKUxDlKslwAsOZiOUJ9kTWA3n0dPwkXnV0B4zUa1mG2Qog9oG1wl74Cr?=
+ =?us-ascii?Q?WQAmffTlDgH7uyriUuDIYWMT6tNwy169lVhMvK4DYCrdSLQKJxRHJ5xbkW/U?=
+ =?us-ascii?Q?gr08UdrS7qYeRhi0EkKAs+33svdijqR2aeVwKSPzCDI14YoAD9BBIifSTkWk?=
+ =?us-ascii?Q?ykEkJZTZcGr+xFfHeVpkp53xyXKwICSND29w1NADIvNstK2BxNHL468bP0qY?=
+ =?us-ascii?Q?9xUhBWVdliNnVp0WOxFdjC+NQ1RqmVIzUGPVBr43VMPAiEuQYZTJWo44Qnsb?=
+ =?us-ascii?Q?3Uu23v535KI1GGOVzd4H8tE2yafxKYKkRj6kV+RYg4eFPjf1M4VRMpPy0HKu?=
+ =?us-ascii?Q?rD5TO6mVqx0K9syc5Edhh1COkWdHSo87zdLdqytddJ/kqmsqTk3nehCRMA?=
+ =?us-ascii?Q?=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(7416014)(376014)(921020)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?W9pJ2rErsgenyZ0ahBwsLmOl1V+5ViSh/fPnUdHnff35+t8vMfotm2IByH4p?=
+ =?us-ascii?Q?Ba/AcGuwuV2y6uwfWJgy9dwOZkSqR7Nklh2EkREtxGGhslp7JlH4QsyCHv2p?=
+ =?us-ascii?Q?w9DjHP6bEkA4QYZqmrofpFkkKJzxsMxhf0ZPOZ8osEOR5hjbMoNhhVg8hozY?=
+ =?us-ascii?Q?zaI7XXJ+PKD+Xq0kCS8YaWZE8ADRtP6E6sCu8PZJmJVN7KYQGWqQsAgzuTB5?=
+ =?us-ascii?Q?MTR1Vws5HctqznO091P3qnds3LKPkmmG8HGbrbXFzcF/RTqiJ59XtNm2Cmmc?=
+ =?us-ascii?Q?AU04kpRXkZ9yC7dWNJiIndt8L4h+LrDgnoKU0pPZeFUGJjFSYNCSnGLzmFgA?=
+ =?us-ascii?Q?OaX3gLWnurw+c49nKqP0l7qxHB/oDexyCGbgFi8bzzWFj+alP3dhYm2wppcn?=
+ =?us-ascii?Q?NT3c95JVAvaaZdl5cNUAjWyCclG8k31OOn6qeE/nPrHhO6x7zvjIZmmQLbbu?=
+ =?us-ascii?Q?H/LWjKAlgm8MwD/2FqLssgKzvjkL/2b6HPQ6OA84v+gleFkHiDVjRgxqChHM?=
+ =?us-ascii?Q?1fSxvWlbCReEPm9HqKYyOj9lxZ+Q5STeQVZvnUQAZP1mKZnTJQiAOmwlETku?=
+ =?us-ascii?Q?zjBs44kXcP60n7yDquP+dykeV6ifyXj9+3M4ciy320+/8cj+mF4SlfBQTEcA?=
+ =?us-ascii?Q?Va+P/Th0PvXEQhAIpnCpQlcM5g8AXck5InWOnZIBlW79d2YTe49+M5ZkfueF?=
+ =?us-ascii?Q?/RA8eKxR3dZOP770kWpuk+ZMh4rCljw3BauBQO3Jim7h+LqsNW/+2SQyxtvI?=
+ =?us-ascii?Q?kzfWTEVXcirCWNGF6SY1WnLhITjPcu+A1JOUsmdugPRAOqwxnKTrRXhCwYu7?=
+ =?us-ascii?Q?C52GuEN+QuETNkt234EcOrV2bBR+cVtTJXnusFyNiEIo6aoNBbDyh9awsQet?=
+ =?us-ascii?Q?OnSAC3wwznpEemlDqmOGOLXnMk5LIlsQTipx2LxXB/Qd5ccM22+QLPc8me4w?=
+ =?us-ascii?Q?W09yh8KsdQyhZu3Ubfyp8hH3I4p3fdtNJ/JkxA9+jx+DK/07CE7apA6nhHIo?=
+ =?us-ascii?Q?0XAjbiDMxA/0OOuk4Ab38CAuGpnvSkonryeDY81Vg56jcrjYlO8DY5IGYEzG?=
+ =?us-ascii?Q?Fk4v7q2rpkTTNodJIsTTGFqbJxKydu1ihX6axREHLjVrfTrNJH+Dlza1fqsV?=
+ =?us-ascii?Q?jR5TRl+n7xMpGE921lmhSb/HHlZZmw0PGm9zii6F9hcXcfJsIGA4Ys5XP3Vn?=
+ =?us-ascii?Q?00ogopJBwP0fMfFqcUedVvTjpwa7qdirj98r75CnLsDDlgzbwqbXwjUIx1Aa?=
+ =?us-ascii?Q?xugNfYKMh+9db7BFmZuWDur+MwADIjCtwXvsDslqbkhVxDDHBwUYg8TvcJlJ?=
+ =?us-ascii?Q?sb0yKKvNgQEYrcHSHa2N1wcA28NEtjmlOGEu9qWf2qrjIEVnj3h4l2bfoi5n?=
+ =?us-ascii?Q?c0rs3V8qilqKtHlOuTGxXmP1nz13tysnGsVdwCuhMAjrNSlICSeBUhNVo4cE?=
+ =?us-ascii?Q?h1CmDJde8+0T5K1mWczOlSSi3Tbgt7sEGOQ/ObJ4n2aHGb6iLX9VTe4dldRa?=
+ =?us-ascii?Q?Bft60TPS1XZZu0fGlN0hptatKNeElqnAeboZxB05Q4QszVzSiM4t1bMxWkr5?=
+ =?us-ascii?Q?rIqoFh/SFg5f5ypiCJgFUNrN0wvjU6BwDy8oZy2P?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 17/24] arm64: dts: qcom: glymur-crd: Avoid RTC probe
- failure
-To: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-Cc: Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-17-24b601bbecc0@oss.qualcomm.com>
- <CAJKOXPdi0+c_FqinVA0gzoyqG6FVFp0jq5WSLsWWKiT12VVs3Q@mail.gmail.com>
- <CADhhZXaB310hVo_w8_CoJLQ3j9dy1eeTwbmk0q=vUV2ga1PAYA@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CADhhZXaB310hVo_w8_CoJLQ3j9dy1eeTwbmk0q=vUV2ga1PAYA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-On 01/10/2025 21:23, Kamal Wadhwa wrote:
-> Hi Krzysztof,
-> 
-> On Thu, Sep 25, 2025 at 1:41 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On Thu, 25 Sept 2025 at 15:34, Pankaj Patil
->> <pankaj.patil@oss.qualcomm.com> wrote:
->>>
->>> From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
->>>
->>> On Glymur boards, the RTC alarm interrupts are routed to SOCCP
->>> subsystems and are not available to APPS. This can cause the
->>> RTC probe failure as the RTC IRQ registration will fail in
->>> probe.
->>>
->>> Fix this issue by adding `no-alarm` property in the RTC DT
->>> node. This will skip the RTC alarm irq registration and
->>> the RTC probe will return success.
->>
->>
->> This is ridiculous. You just added glymur CRD and you claim now that
->> it's broken and you need to fix it. So just fix that commit!
-> 
-> I'm afraid, but this is an actual limitation we have for Glymur
-> (compared to Kaanapali).
-> The RTC is part of the pmk8850.dtsi that is common between Kaanapali and
-> Glymur. On Glymur (unlike Kaanapali) the APPS processor does *not* have the RTC
-> IRQ permission for the RTC peripheral.
-> 
-> So we need this extra change in Glymur explicitly as a workaround to
-> make RTC register
-> properly.
-> 
-> But sure, we can squash this into the main DT patch, if you think this
-> is not a limitation
-> that needs to be highlighted in a separate patch.
-> 
->>
->> This is a gross misinterpretation of splitting patchset, some twisted
->> LWN stats work.
-> 
-> Sorry for this. It was not intentional (definitely not for LWN stats),
-> mainly this happened
-> because this is how individual driver owners/teams internally added
-> their patches. So
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bb2d9ca4-eca6-469c-e3b0-08de04e55dd7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Oct 2025 14:33:50.1107
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: LGaFydN+rYzBdNwJ5TXKgDIHRGJkv+Le1aanxQiu9qLW5hzM2FMg3+b6AYaHvpm+D8zGl9SwUcdc3roH6dgTRg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10121
 
 
-You upstream all this, so YOU should organize this work for upstream,
-not just copy-paste what internal owners/teams did.
+Hi Arnaud,
 
-Upstream community does not care about owners/teams concept. You must
-send logically consistent and organized in sane way patchset, which
-means squashing all such stuff so in new code you will never use word
-"fix" for something you just added.
+> -----Original Message-----
+> From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+> Sent: Monday, October 6, 2025 4:53 AM
+> To: Shenwei Wang <shenwei.wang@nxp.com>; Bjorn Andersson
+> <andersson@kernel.org>; Mathieu Poirier <mathieu.poirier@linaro.org>; Rob
+> Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Cono=
+r
+> Dooley <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>; Sascha
+> Hauer <s.hauer@pengutronix.de>; Linus Walleij <linus.walleij@linaro.org>;
+> Bartosz Golaszewski <brgl@bgdev.pl>
+> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
+> <festevam@gmail.com>; Peng Fan <peng.fan@nxp.com>; linux-
+> remoteproc@vger.kernel.org; devicetree@vger.kernel.org; imx@lists.linux.d=
+ev;
+> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org; dl-li=
+nux-imx
+> <linux-imx@nxp.com>; openamp-rp@lists.openampproject.org
+> Subject: [EXT] Re: [PATCH v2 3/4] gpio: imx-rpmsg: add imx-rpmsg GPIO dri=
+ver
+> >> Then, the RPMsg device should be probed either by the remote
+> >> processor using the name service announcement mechanism or if not
+> >> possible by your remoteproc driver.
+> >>
+> > The idea is to probe the GPIO driver successfully only after the remote
+> processor is online and has sent the name service announcement.
+> > Until then, the GPIO driver will remain in a deferred state, ensuring t=
+hat all
+> consumers of the associated GPIOs are also deferred.
+> > The implementation you provided below does not guarantee that the
+> > related consumers will be properly deferred. This is the most important
+> behavior for a GPIO/I2C controllers.
+>=20
+>=20
+> As long as you keep the GPIO/I2C device as a child of the remote processo=
+r node,
+> you should not have deferred probe issues.
+> The|of_platform_populate()|function ensures
+> that the I2C/GPIO devices are probed when the remote processor is started=
+.
+> Calling|devm_gpiochip_add_data|in the RPMsg driver probe should also
+> prevent such issues.
+>=20
 
+Here, deferred probing is not an issue -it's an intentional feature. We nee=
+d to ensure that all consumers of the GPIO/I2C controllers remain
+in the deferred state until the remote processor is fully online.
 
-Best regards,
-Krzysztof
+For instance, consider a regulator node that references a GPIO line from th=
+e RPMSG GPIO controller. The regulator will stay in the deferred state=20
+until the remote processor comes online and its services are announced and =
+received.
+
+Thanks,
+Shenwei
+
+> Regards,
+> Arnaud
+>=20
+> >
+> > Thanks,
+> > Shenwei
+> >
+> >> To better understand my proposal you can have a look to [1]and [2].
+> >> Here is another example for an rpmsg_i2c( ST downstream implementation=
+):
+> >> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fgi=
+t
 
