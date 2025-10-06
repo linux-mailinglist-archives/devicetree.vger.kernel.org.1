@@ -1,60 +1,65 @@
-Return-Path: <devicetree+bounces-223942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EB6FBBF93C
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 23:34:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC6C2BBF95A
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 23:36:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 85486189CD10
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 21:34:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F1C23BDFBC
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 21:36:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF83C2566F7;
-	Mon,  6 Oct 2025 21:33:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BFB325B31B;
+	Mon,  6 Oct 2025 21:36:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nRSnBoEt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KSJbfBOI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7F491A83F7;
-	Mon,  6 Oct 2025 21:33:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D57F7246760;
+	Mon,  6 Oct 2025 21:36:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759786438; cv=none; b=m7TFEmNwD463lpn6uh0GFLfTQN1A1dHiyJFPiBoKzCcAarqGGllQAfl/WMHcRB0UwgCg/FufvGhMKNh6KpVxLOj/zFtmfWPu0HD5fJ7fToY85w39hO1Mt7PTmfSkK7z+RiZximZM+7yq59h14PUvQC5B1NNDrjLLnRD9y6cVAOg=
+	t=1759786606; cv=none; b=MtztxQi/pklvxwii81DApaWfxtPt56NIAZPyX+9nigebAkdBusLi4j5TjmgTzfTGjzBxFNDnrz6tChJ/eL05CBJpHKBlZS39FP5z2K3Dd0UHNluy2e7POQKrVjheErvUxk3D02WiQoxvfTPyGbhiuybXGAEivtJ+B6ohsJwAjkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759786438; c=relaxed/simple;
-	bh=lP7mcxzX5c4S2EKINh1jIaVdxeKDs4Uj12BGQ2za1WQ=;
+	s=arc-20240116; t=1759786606; c=relaxed/simple;
+	bh=Wc+JgdfB2HdH0elOKIjjG6YIjjzGSAhaMhztbt8QOzw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WGFx04ZEIRt7scGmkzal7XX/G4qXYG8xVbTiWm9CS5MBdZi9DjFQoRM0dz5+LTy4zFIMW3mfRvHpL5mJUezZ6GUsf/fVFwecje+KcHxe5nxpd45Fs5hY10ZLyAERCXTGq1w8UdRLSRx2MRHymUF7Ah61ep3GCWoWTnd2IyqKIDs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nRSnBoEt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F18CCC4CEF5;
-	Mon,  6 Oct 2025 21:33:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=rsqVrfFPX7RWCoU1dwJ6PMHZEMgEMu2AR8czzW5Ejfp2W8evW1v4bB9LU+SJ/xyrc5HBQuVZdiPKfnbvgrhTpsoyjHOINTgi76ydwxJWMIqJ7BGA350wlSgOUlfPtlS+drkFs0PvTkAPtEkWfGvEp3qM9tDJPj8IucNniaYLW/s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KSJbfBOI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BC37C4CEF5;
+	Mon,  6 Oct 2025 21:36:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759786437;
-	bh=lP7mcxzX5c4S2EKINh1jIaVdxeKDs4Uj12BGQ2za1WQ=;
+	s=k20201202; t=1759786605;
+	bh=Wc+JgdfB2HdH0elOKIjjG6YIjjzGSAhaMhztbt8QOzw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nRSnBoEtKcb6rzHp3oEgUf4uwonyhS5nrKAQ6FkrNRPWdfaqMXt/MFimfOoI9MKIh
-	 D/OtWxfNKWCJggCKn/0bL8GMi0zaGqvRfJC0iVj9tUv9wqNYcS/8zsa8jSRYOmMKXO
-	 3qbXLgzOamFZFXMGrFXWM2SlqjetEMOA98cQgWrLavtIZpRow5FB/kMD9s7o3Ead58
-	 8tTXtPEHolLZqBcJrW3TU9fCpJI71BfmP1mishPaCDWH/A5GNKV8qRmICrS5DlH0fH
-	 NyKU4wTjyVpbNWqvePKMoI3TRcgaaC6QNmEDWTwBGteYLTPoKwgg0iILuwcM8WBDf/
-	 tySzAaOtFbR2Q==
-Date: Mon, 6 Oct 2025 16:33:56 -0500
+	b=KSJbfBOIuUhvEerY6D13zJsFE6bPufqjG2fMQYtMuR3GaU9AkOagbe1wXishsyuFy
+	 yaAXw72c0NyBZO6hr3NC0CmWuQGY24hg/26ZlnXngujAGzzAgQRR2gynSYa9jcnx6w
+	 XfMT15F/nDAbc2xPv8iBQadx7suWCBi4BFUennKXJ7XN2Xws9wawVcgtWHrluYdiT4
+	 32TD6Dl3uU5N67rbb4e8EswXaRC2Jt1Nk/s6o7oYi83ekbHZ8YuItbokVV4abiL7RP
+	 cBC96KLw6IWtSUb2fUiBGcJ0a0AHFFdwQ4o/YtlrHiHGqjvZ8MfVtr3NHx3JyU3irR
+	 RN7SUOzG5Waaw==
+Date: Mon, 6 Oct 2025 16:36:44 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	devicetree@vger.kernel.org, Hans de Goede <hansg@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: Add Samsung S5KJN1 image
- sensor
-Message-ID: <175978643460.621524.3603907831690218107.robh@kernel.org>
-References: <20250928200956.1215285-1-vladimir.zapolskiy@linaro.org>
- <20250928200956.1215285-2-vladimir.zapolskiy@linaro.org>
+To: "Sheetal ." <sheetal@nvidia.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	linux-tegra@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+	Sameer Pujar <spujar@nvidia.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+	linux-arm-kernel@lists.infradead.org,
+	Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-sound@vger.kernel.org,
+	dmaengine@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 2/4] dt-bindings: sound: Update ADMAIF bindings for
+ tegra264
+Message-ID: <175978660352.625360.14343154592016440283.robh@kernel.org>
+References: <20250929105930.1767294-1-sheetal@nvidia.com>
+ <20250929105930.1767294-3-sheetal@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,17 +68,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250928200956.1215285-2-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20250929105930.1767294-3-sheetal@nvidia.com>
 
 
-On Sun, 28 Sep 2025 23:09:55 +0300, Vladimir Zapolskiy wrote:
-> Add device tree bindings documentation for Samsung S5KJN1 image sensor.
+On Mon, 29 Sep 2025 16:29:28 +0530, Sheetal . wrote:
+> From: sheetal <sheetal@nvidia.com>
 > 
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+> Update the ADMAIF bindings as tegra264 supports 64 channels, which includes
+> 32 RX and 32 TX channels.
+> 
+> Signed-off-by: sheetal <sheetal@nvidia.com>
 > ---
->  .../bindings/media/i2c/samsung,s5kjn1.yaml    | 95 +++++++++++++++++++
->  1 file changed, 95 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/samsung,s5kjn1.yaml
+>  .../sound/nvidia,tegra210-admaif.yaml         | 106 +++++++++++-------
+>  1 file changed, 66 insertions(+), 40 deletions(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
