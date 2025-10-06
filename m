@@ -1,389 +1,501 @@
-Return-Path: <devicetree+bounces-223834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3F34BBE0FB
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 14:41:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E1DCBBE139
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 14:45:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A19A63AE484
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 12:41:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18D6C3B0113
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 12:45:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DED5727FD56;
-	Mon,  6 Oct 2025 12:41:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="T7ioULsY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7531027FD7D;
+	Mon,  6 Oct 2025 12:45:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f53.google.com (mail-vs1-f53.google.com [209.85.217.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 138ED26E70B
-	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 12:41:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 595BC280CC9
+	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 12:45:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759754486; cv=none; b=joJ7oeE3WofMYtxIYzji1vb0vVT1rLdCFDbuKRnBdXpphh2b4FVwfdwVjBs4JkazwmtP+RWShB+DwB+dsoD37vj9Ik48jOECCYiz66bSrCnZBEcLryZmZGrc1Qi+BhwDBZM3P6LxcOClZ8V2sNTZ+YTXDIOLlcr4et1Lsa6tnGI=
+	t=1759754705; cv=none; b=UtXRzpQ1/s9RQSellMDmOzaSGDBzXH2SjfXxiSomiKy4OPD/DVbmCw0E9vfCaXisDCz25VPuif/MmMZNaeZSkFnjd4Sm5/PV7wnqBURqxRyK5apGyU+AspXYeGAkKrhaEgwQFBC+DNeIUCEttRanESNzgdR7XkvBKje68EFf9Sc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759754486; c=relaxed/simple;
-	bh=0mkWvVdXxn2wUvjtU5oKLtZo4yzstBLNeZ/HFxFhqgM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gZUeUYl79FjZYVIYXwUSe7F+1eCxKmelcBakHDYtZE98BNdVifypj6/6+7jMFEDC18ZG+roix5caIG3bTUKDq+TJ4kxTIAzM+clphKSj/pc62BO+F/lgKopruouI/JqjF7rzpSXKC59QfI5hRImDiDGijieGffYCPZ89P3IPtSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=T7ioULsY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5962jUtY017673
-	for <devicetree@vger.kernel.org>; Mon, 6 Oct 2025 12:41:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ylaB+oXrxe0+pgv6AwGh4kUHExSYxwOnq/WJa7AKAso=; b=T7ioULsYmZpcoJwl
-	bC8S+pVrCYbMmhaPV6dFUQHJtctpi/LoYkP91rjmwV3BvKpciKUHkQubKkgV2ZmI
-	8xQ3eWdI/uWlFja2MoprBXPKeC/TEywClVGLCw1eLKKa/JvkaENcBWTaTeDG4Lkq
-	6uUIC/6LM2CWPdD7FbKkpYfUF5nbTmfq1W1e8NCXP4iybW5MuBHG7HAZN2whhD/D
-	HbS1zNUTxUDReRQQ57CEkvlpNEJ7YlDp0V2N2FxCwt/8La4/VNMyB0mWT/IiU+VE
-	RfBnfuMAWLb5z3cK4+WRNA6XPUqRKoWzTFgK5ri6TtV+X+LDcm3szTJlTteA17mn
-	gvUP3w==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49juy6us3w-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 12:41:23 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4dee3f74920so8407071cf.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 05:41:23 -0700 (PDT)
+	s=arc-20240116; t=1759754705; c=relaxed/simple;
+	bh=OL4lGMCyjAX3UVZZQcHgeC+VCKW+F3KONnRI3VthqAY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GBQQxb6CgRnO797R+3byhvbV5E5ns7DhxNnx0gg6QnQgZ0FvBYdxJa+Mxr7gdRFU+lv1eFRrphQCqPEfFtOzXOm4RowCz0PHJxYMXAGMErveZcDlk86SXSl+511VgNqVBlWnh7a2bBjkThywI+Y5pOy9OJLqKg2U2nfj4XlDVkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f53.google.com with SMTP id ada2fe7eead31-59a8c1eb90cso2734110137.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 05:45:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759754483; x=1760359283;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ylaB+oXrxe0+pgv6AwGh4kUHExSYxwOnq/WJa7AKAso=;
-        b=fNgyv+qXCxru323D1Q7K9rHd8+gmLv2zu8gwyGTh49rKkqryIrppo7o/jqL21gTkBW
-         Wn8+OFwP/LARDQV+kVqVl49jHQYME8tgo4ykLcqi9naSyTQsDiNH/72cO3kso2pcp9wR
-         32d5UugIJC7uOcbzq6AXnLQSqjKMWZLgJH1LNfhKqFLJujKyIIaVK6vpSj2LsHrX2/kE
-         kv3Eq6Ev2ONRZIZoBcVEwzbr8Wq8L1I86epj0sv1MZhzjlB0x2cDPXqusUcgJaHV0fEX
-         QNO/p4x2pU1eY9klQWTfHEMKL5rNeOoo7nR0bex06ihwMbOVmbt0thbHA84TQOTkOkpS
-         UYUg==
-X-Forwarded-Encrypted: i=1; AJvYcCWDMNd2v+mmEhQg4K6y+dt+GxvIVgkLLnJk3LXUE4RDM06gErnP34cRrZWIsyA+2A/XRsSAPIP5Y5yq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx47tG/PWt9umYQsDdF+lbeOzMB4M922gv/WMJdhS9qWUqlLEui
-	pfE2db5DE+7fJ9i8XAZX7BUE8PhsD1GvfWpeBADdNRWGWsw1z+XRfbFrcYdL2Tow8NMmjQXtafR
-	LNFky8FTytgrInXipvf+Uhb38uGdT8M9V17mat/+W25oPkWWEr+l/YylcNJyM/F8ADxU8a6XC
-X-Gm-Gg: ASbGncuELlT1CxxiCM0VfRz6W4G9knBCPKCYQJJ2A2NmxN2RcCWZoZAdXMr+LKHVnJn
-	LphfTDj3aFCfLYvne/x5v94XzD1uTiHNtKCybyU3sN2MxsTJhIA9ceLqAYRqCQZv7WhkVDpumGc
-	KfsfyqLhFJ4rScbA2HI9GSFAmgl/aLUpXFv0C9x9sGwPt4J+x/yI028DqHafMaO98o8tVGO2bBx
-	dHNq+04Ty6UHlGKod6IoILGYzdilzKoK26dsiApTy0egp262tNtc/fOLEiFTMn21SpZ9PnzfDap
-	242bjhtmY55GZ3aUomlPv/qJAgOXt0MyfGBkl0iyMRfYXqtpckeOnLo1o0Zyf8ADVKKGT5qpax2
-	xdkKS9qJPxqcTaKR/f6EezQ1hIzM=
-X-Received: by 2002:ac8:5f91:0:b0:4b7:aa56:c0f8 with SMTP id d75a77b69052e-4e576a4b14emr99167261cf.4.1759754482417;
-        Mon, 06 Oct 2025 05:41:22 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGWf8WDHwf7+GFY86q3ArprOZHi6q5sn356YIXo0h3Tx0U51KUsNyxrt2pDL2G4L8m5exlggA==
-X-Received: by 2002:ac8:5f91:0:b0:4b7:aa56:c0f8 with SMTP id d75a77b69052e-4e576a4b14emr99166921cf.4.1759754481760;
-        Mon, 06 Oct 2025 05:41:21 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63788111f1fsm10279311a12.36.2025.10.06.05.41.19
+        d=1e100.net; s=20230601; t=1759754702; x=1760359502;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ho6ZY8xNwM+EAsNC64leoQCnflv58g1Ah42jCSjX7S4=;
+        b=MaIuGsE7pDcP/VW5JMeGHv8OQpG/ZBj5i5889k9Qx6ZG/Iy7zkHVxiAK6R+Wf11TUn
+         kwDleVV7RCFb5QdRcUl2BINayEW6Af7Atcv4ld7k3jsUoDQM8IuqoWYcmMk8qQ/w9w4h
+         rNnoN8fBhSSUP+Zb1P4G0/IOCm6BjjVbS4ZPu55TuH0k6xGS7fNyXyIhNoWXs5w+reAz
+         lK5NwAre7Z+IoJsFn8X17Np4voFOIhhOhGtpanuMko7nhmyW2GicClC5GmHlzNRumFsN
+         GC5c9kqo0QKdfQUEUG9B9htpwiPl8T+mvAFGQojoBZ9NuAtC4QG4wvKkVrLzQK8WRdq5
+         d9pg==
+X-Forwarded-Encrypted: i=1; AJvYcCU4vEW1dsalrK4qWqrC5bFa98vSkUNKpWXRNBvA0q6LDH1mcIqQxKC8RGOTpypneC73A6OQWGTuUS5t@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6QGEomqMFTBozmLTL7kiYI4J9ILtsEFT9rUMPGc6HntSb0nB4
+	0gj4D+adqsI1ZeGoSAcPxFGbQf9Axc+8GbziRJ6joHeFAfOHGGAJEffW7qnJlJ3X
+X-Gm-Gg: ASbGncs97bsSjGYrPiRCqNexsovOlFBnqrRfwjH+hMxGF9JGRtMSQyyp0Iat2LHpM80
+	HRSf3htxGCo5Ae/fJQDdtTszaOdNpJiTYnuXWYxMZ9ir1pGd+AXh4eYSCayjquDfIFIq4zUUZvP
+	LiRrDIM8aNZqwYsaM5kEQJL+kcSiQHLhochaQousraYq8+oaXhbSfx2IGVuPreOTlXMa/ylpDB7
+	bB/lLLfiFsIF++VybNl8GK6oKUAjhtC+4y2/cmsRF/V77ILgOM3atJVwLilH5CxmnRcyXJNknfI
+	TRMv9Yly1cQ4vym0ud3xBAl54igdJL0cD5SjvoNj3EAXwHnH2Xi0G8krsF8QtASrKs9/5VwB5IW
+	EEQSNPFlsB5SdS2ynSmzAhXa5shpJ5R9W7Te15Z3OLlBRGGgzAklL7JWQnpliHpnCayqScBzvQ2
+	natAd0oedcuALr7jVPM2Y=
+X-Google-Smtp-Source: AGHT+IGT0YXZ4/RB0qtajVA36PRLRDii7FAFBTwklgHGc/BBIFTZc9qdo3pWAdF9Wg2nNaVMUuY3ug==
+X-Received: by 2002:a05:6102:50a3:b0:57d:9305:63db with SMTP id ada2fe7eead31-5d41d08b522mr3849521137.15.1759754701724;
+        Mon, 06 Oct 2025 05:45:01 -0700 (PDT)
+Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com. [209.85.217.54])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5d40c6c7e73sm3332485137.15.2025.10.06.05.45.00
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Oct 2025 05:41:21 -0700 (PDT)
-Message-ID: <2e4b995e-57ae-412f-ae88-c3708a5f67ee@oss.qualcomm.com>
-Date: Mon, 6 Oct 2025 14:41:18 +0200
+        Mon, 06 Oct 2025 05:45:01 -0700 (PDT)
+Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-59dff155dc6so3146554137.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 05:45:00 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX0aa4ZhvpsD+u/UZt8Uoth+gymS+YMxkX3lq4aA1tiAfdZGN90ZGDneURfnWWwajCobbzTBgZo/TRL@vger.kernel.org
+X-Received: by 2002:a05:6102:8390:20b0:59c:110b:d09 with SMTP id
+ ada2fe7eead31-5d41d119086mr2823864137.21.1759754700652; Mon, 06 Oct 2025
+ 05:45:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add support for Pixel 3 and Pixel 3
- XL
-To: david@ixit.cz, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Amit Pundir <amit.pundir@linaro.org>,
-        Casey Connolly <casey@connolly.tech>,
-        Joel Selvaraj <foss@joelselvaraj.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>, Vinod Koul <vkoul@kernel.org>
-References: <20251005-pixel-3-v1-0-ab8b85f6133f@ixit.cz>
- <20251005-pixel-3-v1-2-ab8b85f6133f@ixit.cz>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251005-pixel-3-v1-2-ab8b85f6133f@ixit.cz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=IrITsb/g c=1 sm=1 tr=0 ts=68e3b8f3 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=ev71qlw1QQQPEuQK8qEA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-GUID: moIRmfeeCFeJRJVDgmqmnhrkaq326lwy
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAyOSBTYWx0ZWRfX1Izx3m2E5/E7
- P2UYW7Beao7Qkxo8X+f3pqQq8KSmOxiIIFrzY1wbrhCqT5VpiL0BqQUherCfC76cdF1/KzCMb9I
- zIAl/09/SAtpSQP+8m47VEORE06TB+G17N91eHltFyO31F3A/nJez0vaqLLM4tCnFAl/iilb/5G
- jleGRHO4OFxdO1CdOvjCqZxLE1uqtGPqWUfd9+aeWS1kbafcD9wEdZoDzI+KOHGJWnVYg2fcGgd
- LYEChYkuGzzrwmep8P77Yx0eZYqbvOIbK/j+DD7EUhp9ETbzGYyaxLFk0dzIUofc/RQJZ9iKTLe
- R4zpVxYzM7XZW7RUIh0IJ2OwwHHUZ0ToCtHIYbHcHRH8jh1wXLTgaRokQ9XdKCqUUQmgHEYXNrB
- 5K0lU2sX7aGo05j21xzTULODnB1vcQ==
-X-Proofpoint-ORIG-GUID: moIRmfeeCFeJRJVDgmqmnhrkaq326lwy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-06_04,2025-10-02_03,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 bulkscore=0 clxscore=1015 malwarescore=0
- spamscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040029
+References: <20251002161728.186024-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20251002161728.186024-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20251002161728.186024-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 6 Oct 2025 14:44:49 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVP4xgsc6rD_Z6OMAXR-mOe9WdfZb2jXZSzDmXdgZzFSw@mail.gmail.com>
+X-Gm-Features: AS18NWAKcswsGBx4X1VkXRPN2VpzHKv-APvKiuQzxFxRIZ_kWAvuysedQxbLQ04
+Message-ID: <CAMuHMdVP4xgsc6rD_Z6OMAXR-mOe9WdfZb2jXZSzDmXdgZzFSw@mail.gmail.com>
+Subject: Re: [PATCH v9 2/6] clk: renesas: rzv2h-cpg: Add support for DSI clocks
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+	Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 10/5/25 3:16 PM, David Heidelberg via B4 Relay wrote:
-> From: David Heidelberg <david@ixit.cz>
-> 
-> This adds initial device tree support for the following phones:
-> 
->  - Google Pixel 3 (blueline)
->  - Google Pixel 3 XL (crosshatch)
-> 
-> Both phone boards use the same identifiers and differ only slightly
-> in their connected peripherals.
-> 
-> Supported functionality includes:
->  - Debug UART
->  - UFS
->  - Charger
->  - USB-C (peripheral mode)
->  - Display (Pixel 3 only)
-> 
-> GPIOs 0–3 and 81–84 are not accessible from the application CPUs,
-> so they are marked as reserved to allow the Pixel 3 to boot.
-> 
-> The rmtfs region is allocated using UIO, making it technically "dynamic."
-> 
-> Its address and size can be read from sysfs:
-> 
-> $ cat /sys/class/uio/uio0/name
-> /sys/class/uio/uio0/maps/map0/addr
-> 0x00000000f2701000
-> 
-> $ cat /sys/class/uio/uio0/maps/map0/size
-> 0x0000000000200000
-> 
-> Like the OnePlus 6, the Pixel 3 requires 1 kB of reserved memory on either
-> side of the rmtfs region to work around an XPU bug that would otherwise
-> cause erroneous violations when accessing the rmtfs_mem region.
+Hi Prabhakar,
 
-[...]
+On Thu, 2 Oct 2025 at 18:17, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add support for PLLDSI and its post-dividers in the RZ/V2H CPG driver and
+> export helper APIs for use by the DSI driver.
+>
+> Introduce per-PLL-DSI state in the CPG private structure and provide a
+> set of helper functions that find valid PLL parameter combinations for
+> a requested frequency. The new helpers are rzv2h_get_pll_pars(),
+> rzv2h_get_pll_div_pars(), rzv2h_get_pll_divs_pars() and
+> rzv2h_get_pll_dtable_pars() and they are exported in the "RZV2H_CPG"
+> namespace for use by other consumers (notably the DSI driver). These
+> helpers perform iterative searches over PLL parameters (M, K, P, S)
+> and optional post-dividers and return the best match (or an exact
+> match when possible).
+>
+> Move PLL/CLK related limits and parameter types into the shared
+> include (include/linux/clk/renesas.h) by adding struct rzv2h_pll_limits,
+> struct rzv2h_pll_pars and struct rzv2h_pll_div_pars plus the
+> RZV2H_CPG_PLL_DSI_LIMITS() helper macro to define DSI PLL limits.
+>
+> This change centralises the PLLDSI algorithms so the CPG and DSI
+> drivers compute PLL parameters consistently and allows the DSI driver
+> to accurately request rates and program its PLL.
+>
+> Co-developed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> v8->v9:
+> - Dropped `renesas-rzv2h-cpg-pll.h` header and merged into `renesas.h`
+> - Exported the symbols for PLL calculation apis
+> - Updated commit message
+> - Dropped reviewed-by tags due to above changes
 
-> +&gmu {
-> +	status = "okay";
+Thanks for the update!
+
+> --- a/drivers/clk/renesas/rzv2h-cpg.c
+> +++ b/drivers/clk/renesas/rzv2h-cpg.c
+
+> +/*
+> + * rzv2h_get_pll_div_pars - Finds the best combination of PLL parameters
+> + * and divider value for a given frequency.
+> + *
+> + * @limits: Pointer to the structure containing the limits for the PLL parameters
+> + * @pars: Pointer to the structure where the best calculated PLL parameters and
+> + * divider values will be stored
+> + * @divider: Divider value to be applied to the PLL output
+> + * @freq_millihz: Target output frequency in millihertz
+> + *
+> + * This function calculates the best set of PLL parameters (M, K, P, S) where
+> + * the divider value is already known. See rzv2h_get_pll_pars() for more details
+> + * on how the PLL parameters are calculated.
+> + */
+> +bool rzv2h_get_pll_div_pars(const struct rzv2h_pll_limits *limits,
+> +                           struct rzv2h_pll_div_pars *pars, u8 divider,
+> +                           u64 freq_millihz)
+> +{
+> +       if (!rzv2h_get_pll_pars(limits, &pars->pll, freq_millihz * divider))
+> +               return false;
+> +
+> +       pars->div.divider_value = divider;
+> +       pars->div.freq_millihz = DIV_U64_ROUND_CLOSEST(pars->pll.freq_millihz, divider);
+> +       pars->div.error_millihz = freq_millihz - pars->div.freq_millihz;
+> +
+> +       return true;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(rzv2h_get_pll_div_pars, "RZV2H_CPG");
+
+This function does not seem to be used outside this module yet,
+so why is it exported?
+
+If you do ever need it, you could define a simple wrapper in the
+header file:
+
+    static inline bool rzv2h_get_pll_div_pars(const struct
+rzv2h_pll_limits *limits,
+                                              struct rzv2h_pll_div_pars *pars,
+                                              u8 divider, u64 freq_millihz)
+    {
+            return rzv2h_get_pll_divs_pars(limits, pars, &divider, 1,
+freq_millihz);
+    }
+
+> +
+> +/*
+> + * rzv2h_get_pll_divs_pars - Finds the best combination of PLL parameters
+> + * and divider value for a given frequency.
+> + *
+> + * @limits: Pointer to the structure containing the limits for the PLL parameters
+> + * @pars: Pointer to the structure where the best calculated PLL parameters and
+> + * divider values will be stored
+> + * @table: Pointer to the array of valid divider values
+> + * @table_size: Size of the divider values array
+> + * @freq_millihz: Target output frequency in millihertz
+> + *
+> + * This function calculates the best set of PLL parameters (M, K, P, S) and divider
+> + * value to achieve the desired frequency. See rzv2h_get_pll_pars() for more details
+> + * on how the PLL parameters are calculated.
+> + *
+> + * freq_millihz is the desired frequency generated by the PLL followed by a
+> + * a gear.
+> + */
+> +bool rzv2h_get_pll_divs_pars(const struct rzv2h_pll_limits *limits,
+> +                            struct rzv2h_pll_div_pars *pars,
+> +                            const u8 *table, u8 table_size, u64 freq_millihz)
+> +{
+> +       struct rzv2h_pll_div_pars p, best;
+> +
+> +       best.div.error_millihz = S64_MAX;
+> +       p.div.error_millihz = S64_MAX;
+> +       for (unsigned int i = 0; i < table_size; i++) {
+> +               if (!rzv2h_get_pll_div_pars(limits, &p, table[i], freq_millihz))
+
+If you don't need rzv2h_get_pll_div_pars() elsewhere, you could just
+expand it here.
+
+> +                       continue;
+> +
+> +               if (p.div.error_millihz == 0) {
+> +                       *pars = p;
+> +                       return true;
+> +               }
+> +
+> +               if (abs(best.div.error_millihz) > abs(p.div.error_millihz))
+> +                       best = p;
+> +       }
+> +
+> +       if (best.div.error_millihz == S64_MAX)
+> +               return false;
+> +
+> +       *pars = best;
+> +       return true;
+> +}
+> +EXPORT_SYMBOL_NS_GPL(rzv2h_get_pll_divs_pars, "RZV2H_CPG");
+> +
+> +/*
+> + * rzv2h_get_pll_dtable_pars - Finds the best combination of PLL parameters
+> + * and divider value for a given frequency using a divider table.
+> + *
+> + * @limits: Pointer to the structure containing the limits for the PLL parameters
+> + * @pars: Pointer to the structure where the best calculated PLL parameters and
+> + * divider values will be stored
+> + * @dtable: Pointer to the array of valid divider values
+> + * @freq_millihz: Target output frequency in millihertz
+> + *
+> + * See rzv2h_get_pll_divs_pars() for more details on how the PLL
+> + * parameters and divider values are calculated.
+> + */
+> +bool rzv2h_get_pll_dtable_pars(const struct rzv2h_pll_limits *limits,
+> +                              struct rzv2h_pll_div_pars *pars,
+> +                              const struct clk_div_table *dtable, u64 freq_millihz)
+> +{
+> +       const struct clk_div_table *div = dtable;
+> +       u8 table[RZV2H_MAX_DIV_TABLES] = { 0 };
+> +       unsigned int i = 0;
+> +
+> +       for (; div->div; div++) {
+> +               if (i >= RZV2H_MAX_DIV_TABLES)
+> +                       return false;
+> +               table[i++] = div->div;
+> +       }
+> +
+> +       return rzv2h_get_pll_divs_pars(limits, pars, table, i, freq_millihz);
+> +}
+> +EXPORT_SYMBOL_NS_GPL(rzv2h_get_pll_dtable_pars, "RZV2H_CPG");
+
+This function does not seem to be used outside this module yet,
+so why is it exported?
+
+> +
+> +static unsigned long rzv2h_cpg_plldsi_div_recalc_rate(struct clk_hw *hw,
+> +                                                     unsigned long parent_rate)
+> +{
+> +       struct rzv2h_plldsi_div_clk *dsi_div = to_plldsi_div_clk(hw);
+> +       struct rzv2h_cpg_priv *priv = dsi_div->priv;
+> +       struct ddiv ddiv = dsi_div->ddiv;
+> +       u32 div;
+> +
+> +       div = readl(priv->base + ddiv.offset);
+> +       div >>= ddiv.shift;
+> +       div &= clk_div_mask(ddiv.width);
+> +       div = dsi_div->dtable[div].div;
+> +
+> +       return DIV_ROUND_CLOSEST_ULL(parent_rate, div);
+> +}
+> +
+> +static int rzv2h_cpg_plldsi_div_determine_rate(struct clk_hw *hw,
+> +                                              struct clk_rate_request *req)
+> +{
+> +       struct rzv2h_plldsi_div_clk *dsi_div = to_plldsi_div_clk(hw);
+> +       struct pll_clk *pll_clk = to_pll(clk_hw_get_parent(hw));
+> +       struct rzv2h_cpg_priv *priv = dsi_div->priv;
+> +       struct rzv2h_pll_div_pars *dsi_params;
+> +       struct rzv2h_pll_dsi_info *dsi_info;
+> +       u64 rate_millihz;
+> +
+> +       dsi_info = &priv->pll_dsi_info[pll_clk->pll.instance];
+> +       dsi_params = &dsi_info->pll_dsi_parameters;
+> +
+> +       rate_millihz = mul_u32_u32(req->rate, MILLI);
+> +       if (rate_millihz == dsi_params->div.error_millihz + dsi_params->div.freq_millihz)
+> +               goto exit_determine_rate;
+> +
+> +       if (!rzv2h_get_pll_dtable_pars(dsi_info->pll_dsi_limits, dsi_params, dsi_div->dtable,
+> +                                      rate_millihz)) {
+
+If you don't need rzv2h_get_pll_dtable_pars() elsewhere, you could just
+expand it here.
+
+> +               dev_err(priv->dev,
+> +                       "failed to determine rate for req->rate: %lu\n",
+> +                       req->rate);
+> +               return -EINVAL;
+> +       }
+> +
+> +exit_determine_rate:
+> +       req->rate = DIV_ROUND_CLOSEST_ULL(dsi_params->div.freq_millihz, MILLI);
+> +       req->best_parent_rate = req->rate * dsi_params->div.divider_value;
+> +       dsi_info->req_pll_dsi_rate = req->best_parent_rate;
+> +
+> +       return 0;
+> +}
+
+> --- a/include/linux/clk/renesas.h
+> +++ b/include/linux/clk/renesas.h
+> @@ -10,7 +10,9 @@
+>  #ifndef __LINUX_CLK_RENESAS_H_
+>  #define __LINUX_CLK_RENESAS_H_
+>
+> +#include <linux/clk-provider.h>
+>  #include <linux/types.h>
+> +#include <linux/units.h>
+>
+>  struct device;
+>  struct device_node;
+> @@ -32,4 +34,138 @@ void cpg_mssr_detach_dev(struct generic_pm_domain *unused, struct device *dev);
+>  #define cpg_mssr_attach_dev    NULL
+>  #define cpg_mssr_detach_dev    NULL
+>  #endif
+> +
+> +/**
+> + * struct rzv2h_pll_limits - PLL parameter constraints
+> + *
+> + * This structure defines the minimum and maximum allowed values for
+> + * various parameters used to configure a PLL. These limits ensure
+> + * the PLL operates within valid and stable ranges.
+> + *
+> + * @fout: Output frequency range (in MHz)
+> + * @fout.min: Minimum allowed output frequency
+> + * @fout.max: Maximum allowed output frequency
+> + *
+> + * @fvco: PLL oscillation frequency range (in MHz)
+> + * @fvco.min: Minimum allowed VCO frequency
+> + * @fvco.max: Maximum allowed VCO frequency
+> + *
+> + * @m: Main-divider range
+> + * @m.min: Minimum main-divider value
+> + * @m.max: Maximum main-divider value
+> + *
+> + * @p: Pre-divider range
+> + * @p.min: Minimum pre-divider value
+> + * @p.max: Maximum pre-divider value
+> + *
+> + * @s: Divider range
+> + * @s.min: Minimum divider value
+> + * @s.max: Maximum divider value
+> + *
+> + * @k: Delta-sigma modulator range (signed)
+> + * @k.min: Minimum delta-sigma value
+> + * @k.max: Maximum delta-sigma value
+> + */
+> +struct rzv2h_pll_limits {
+> +       struct {
+> +               u32 min;
+> +               u32 max;
+> +       } fout;
+> +
+> +       struct {
+> +               u32 min;
+> +               u32 max;
+> +       } fvco;
+> +
+> +       struct {
+> +               u16 min;
+> +               u16 max;
+> +       } m;
+> +
+> +       struct {
+> +               u8 min;
+> +               u8 max;
+> +       } p;
+> +
+> +       struct {
+> +               u8 min;
+> +               u8 max;
+> +       } s;
+> +
+> +       struct {
+> +               s16 min;
+> +               s16 max;
+> +       } k;
 > +};
-
-It's already enabled> +
-> +&mdss {
-> +	status = "okay";
+> +
+> +/**
+> + * struct rzv2h_pll_pars - PLL configuration parameters
+> + *
+> + * This structure contains the configuration parameters for the
+> + * Phase-Locked Loop (PLL), used to achieve a specific output frequency.
+> + *
+> + * @m: Main divider value
+> + * @p: Pre-divider value
+> + * @s: Output divider value
+> + * @k: Delta-sigma modulation value
+> + * @freq_millihz: Calculated PLL output frequency in millihertz
+> + * @error_millihz: Frequency error from target in millihertz (signed)
+> + */
+> +struct rzv2h_pll_pars {
+> +       u16 m;
+> +       u8 p;
+> +       u8 s;
+> +       s16 k;
+> +       u64 freq_millihz;
+> +       s64 error_millihz;
 > +};
 > +
-> +&mdss_dsi0 {
-> +	status = "okay";
-> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-
-'status' should be last, with a \n before it
-
-> +
-> +	ports {
-> +		port@1 {
-> +			endpoint {
-
-&mdss_dsi0_out {} instead
-
-> +				remote-endpoint = <&panel_in>;
-> +				data-lanes = <0 1 2 3>;
-> +				qcom,te-source = "mdp_vsync_e";
-> +			};
-> +		};
-> +	};
-> +
-> +	panel@0 {
-> +		compatible = "lg,sw43408";
-> +		reg = <0>;
-> +
-> +		vddi-supply = <&vreg_l14a_1p88>;
-> +		vpnl-supply = <&vreg_l28a_3p0>;
-> +
-> +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&panel_reset_pins &panel_te_pin &panel_pmgpio_pins>;
-
-property-n
-property-names
-
-in this order, please
-
-> +
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&mdss_dsi0_out>;
-> +			};
-> +		};
-> +	};
+> +/**
+> + * struct rzv2h_pll_div_pars - PLL parameters with post-divider
+> + *
+> + * This structure is used for PLLs that include an additional post-divider
+> + * stage after the main PLL block. It contains both the PLL configuration
+> + * parameters and the resulting frequency/error values after the divider.
+> + *
+> + * @pll: Main PLL configuration parameters (see struct rzv2h_pll_pars)
+> + *
+> + * @div: Post-divider configuration and result
+> + * @div.divider_value: Divider applied to the PLL output
+> + * @div.freq_millihz: Output frequency after divider in millihertz
+> + * @div.error_millihz: Frequency error from target in millihertz (signed)
+> + */
+> +struct rzv2h_pll_div_pars {
+> +       struct rzv2h_pll_pars pll;
+> +       struct {
+> +               u8 divider_value;
+> +               u64 freq_millihz;
+> +               s64 error_millihz;
+> +       } div;
 > +};
 > +
-> +&mdss_dsi0_out {
-> +	remote-endpoint = <&panel_in>;
-> +	data-lanes = <0 1 2 3>;
-> +};
-
-(as mentioned above..)
-
-[...]
-
-> +		/* rmtfs lower guard */
-> +		memory@f2700000 {
-> +			reg = <0 0xf2700000 0 0x1000>;
-> +			no-map;
-> +		};
+> +#define RZV2H_CPG_PLL_DSI_LIMITS(name)                                 \
+> +       static const struct rzv2h_pll_limits (name) = {                 \
+> +               .fout = { .min = 25 * MEGA, .max = 375 * MEGA },        \
+> +               .fvco = { .min = 1600 * MEGA, .max = 3200 * MEGA },     \
+> +               .m = { .min = 64, .max = 533 },                         \
+> +               .p = { .min = 1, .max = 4 },                            \
+> +               .s = { .min = 0, .max = 6 },                            \
+> +               .k = { .min = -32768, .max = 32767 },                   \
+> +       }                                                               \
 > +
-> +		rmtfs_mem: memory@f2701000 {
-> +			compatible = "qcom,rmtfs-mem";
-> +			reg = <0 0xf2701000 0 0x200000>;
-> +			no-map;
-> +
-> +			qcom,client-id = <1>;
-> +			qcom,vmid = <15>;
-> +		};
-> +
-> +		/* rmtfs upper guard */
-> +		memory@f2901000 {
-> +			reg = <0 0xf2901000 0 0x1000>;
-> +			no-map;
-> +		};
+> +bool rzv2h_get_pll_pars(const struct rzv2h_pll_limits *limits,
+> +                       struct rzv2h_pll_pars *pars, u64 freq_millihz);
 
-qcom,use-guard-pages instead
-
-[...]
-
-> +		vreg_l14a_1p88: ldo14 {
-> +			regulator-min-microvolt = <1800000>;
-> +			regulator-max-microvolt = <1800000>;
-> +			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
-> +			regulator-boot-on;
-> +			/*
-> +			 * We can't properly bring the panel back if it gets turned off
-> +			 * so keep it's regulators always on for now.
-> +			 */
-> +			regulator-always-on;
-
-Sounds like your panel driver is not sequencing things properly
-
-[...]
-
-> +&uart9 {
-> +	label = "LS-UART1";
-
-This is a 96boards-ism> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_1_dwc3 {
-> +	dr_mode = "peripheral";
-
-Are you sure?
-
-[...]
-
-> +&usb_2 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_2_dwc3 {
-> +	dr_mode = "host";
-
-Does the phone actually have something connected to both USB hosts?
-
-Would that be the weasel(?) security chip?
-
-[...]
-
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts b/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts
-> new file mode 100644
-> index 0000000000000..dc9938ffc0ab8
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts
-> @@ -0,0 +1,137 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/dts-v1/;
-> +
-> +#include "sdm845-google-common.dtsi"
-> +
-> +/ {
-> +	model = "Google Pixel 3 XL";
-> +	compatible = "google,crosshatch", "qcom,sdm845";
-> +
-> +	battery: battery {
-> +		compatible = "simple-battery";
-> +
-> +		charge-full-design-microamp-hours = <3480000>;
-> +		voltage-min-design-microvolt = <3600000>;
-> +		voltage-max-design-microvolt = <4400000>;
-> +	};
-> +
-> +	chosen {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		/* for u-boot */
-> +		framebuffer: framebuffer@9d400000 {
-> +			compatible = "simple-framebuffer";
-> +			reg = <0 0x9d400000 0 (2960 * 1440 * 4)>;
-> +			width = <1440>;
-> +			height = <2960>;
-> +			stride = <(1440 * 4)>;
-> +			format = "a8r8g8b8";
-> +		};
-> +	};
-> +
-> +	reserved-memory {
-> +		framebuffer_region@9d400000 {
-> +			no-map;
-> +			reg = <0 0x9d400000 0 0x02400000>;
-> +		};
-> +	};
-> +};
-> +
-> +&gmu {
-> +	status = "okay";
-> +};
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-
-I'm sure you can push some of this into -common
+Please add a dummy returning false for the !CONFIG_CLK_RZV2H case.
 
 > +
-> +&mdss_dsi0 {
-> +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-> +
-> +	status = "okay";
-> +
-> +	ports {
-> +		port@1 {
-> +			endpoint {
-> +				remote-endpoint = <&panel_in>;
-> +				data-lanes = <0 1 2 3>;
-> +				qcom,te-source = "mdp_vsync_e";
-> +			};
-> +		};
-> +	};
-> +
-> +	panel@0 {
-> +		compatible = "samsung,s6e3ha8";
-> +		reg = <0>;
-> +
-> +		vci-supply = <&vreg_l28a_3p0>; // downstream
+> +bool rzv2h_get_pll_div_pars(const struct rzv2h_pll_limits *limits,
+> +                           struct rzv2h_pll_div_pars *pars, u8 divider,
+> +                           u64 freq_millihz);
 
-which supply should /* upstream */ use then? :(
+Unused, please drop.
 
-Konrad
+> +
+> +bool rzv2h_get_pll_divs_pars(const struct rzv2h_pll_limits *limits,
+> +                            struct rzv2h_pll_div_pars *pars,
+> +                            const u8 *table, u8 table_size, u64 freq_millihz);
+
+Please add a dummy returning false for the !CONFIG_CLK_RZV2H case.
+
+> +
+> +bool rzv2h_get_pll_dtable_pars(const struct rzv2h_pll_limits *limits,
+> +                              struct rzv2h_pll_div_pars *pars,
+> +                              const struct clk_div_table *dtable, u64 freq_millihz);
+
+Unused, please drop.
+
+> +
+>  #endif
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
