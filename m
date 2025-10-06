@@ -1,100 +1,180 @@
-Return-Path: <devicetree+bounces-223940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 266E9BBF90C
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 23:23:14 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5590BBF921
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 23:24:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F069D189D460
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 21:23:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A58204F2560
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 21:24:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA0FE2E03FB;
-	Mon,  6 Oct 2025 21:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F56A263F32;
+	Mon,  6 Oct 2025 21:23:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JtlKtv1w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TjpuRupZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2EA92E03F2;
-	Mon,  6 Oct 2025 21:21:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D81592638AF;
+	Mon,  6 Oct 2025 21:23:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759785717; cv=none; b=RSmOQnHmT4xFmTA4Kn7DOA/7exz0AAl+5skUwrR3lvuCm5sTpk0Kac1jRG0PB/vWBYLMtv7qChGFONhsFBssBZRAoZ633tf50EEDpm6J82eDXyQsdmsbE86s4Dg7OuOtmMikmyC/fi11oFbrmlPCHJFCcyrC/3c1smVe/ZZS0UU=
+	t=1759785832; cv=none; b=d85HWFrZZW5d3G7BPQS9uv5ubijl96YUCHLw+v4ipX5wFyxkN2azJANl6qbtpDPKCJxXhAo3RUr3a3Bl/zRLrOdqERcVLXH+OVd7meuXKnoUmGlsA+SMvIjb5boPdxXs4dgZaaVICzwp4TmlXVWxxuK5h+giV4y2WZjZyVSC3i8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759785717; c=relaxed/simple;
-	bh=KaLZw6EnRFqDo1Q2vZRWuIPK9V6qjnWoh4bOBSt73+U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Yaj/jllp2qn7f0fiN1kN1x+ITFxw3+EvH1/R5ILTXBF3hSyAmPuLupl5muzDvjk+y3oAlxnbRviQi30xgnlOpoU5rj99p50jGOD2g+wqkTue8mkioe1paySxeqIIVLDasLRHXsE+RvevnSt4EmBjWUp+sz0IdBP/BgZ7UbYCcak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JtlKtv1w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E895EC4CEF5;
-	Mon,  6 Oct 2025 21:21:56 +0000 (UTC)
+	s=arc-20240116; t=1759785832; c=relaxed/simple;
+	bh=BfJQAZxDC6dKFjbtAynN+TxQko/NOFIg89M8FdIAZpY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QJS0tfdXm2Uwn8VlW/9uOnHhTX5kYIOk9XwfUy/GzAt1oSje7Fb2eGxGNxnTyZsE/eOXrZSlsHWQ8lzvzg92Vg5s/zt+EinmMBSx6qnVSrjAJC1hF5Rc2SNkKqNNWMkz6611lQZ4lZUEiHJIFYPXEGCgMwSzBJ8Qbw6heUpaVIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TjpuRupZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 31AE3C4CEF5;
+	Mon,  6 Oct 2025 21:23:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759785717;
-	bh=KaLZw6EnRFqDo1Q2vZRWuIPK9V6qjnWoh4bOBSt73+U=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=JtlKtv1wmeNw3UxPzsIp69DSuFSfRMYN/4neNXoDpRqyhzJZiZyaum758KpSm0/oN
-	 jh9CDMTymoroGfg06d2uXrXah3HEHSEtPJ9E/Mfbi3ieAX5YtAQCY8pogTDeFmcvhp
-	 DqlKjgxCT6QAVzK6F56ALzys22spnpY4uoMC8Eisj2FzBFRw60RTuMKwPTcny0D13g
-	 uzOi0cSHO4r1v4sV/tA8uSmKWYc7SA6fEc8/JfoWv1uHpsDMvV2u+B2tIg0i0TkThn
-	 1qeFTTD3EF6rcGeOhdeNe8URLgoWAUcUjdn+UsBlKmSXkBuodo0wCeFryYmRzrgerV
-	 mWmHfKI7ZfSrA==
-From: Drew Fustini <fustini@kernel.org>
-Date: Mon, 06 Oct 2025 14:21:48 -0700
-Subject: [PATCH v2 8/8] riscv: defconfig: Enable Tenstorrent SoCs
+	s=k20201202; t=1759785832;
+	bh=BfJQAZxDC6dKFjbtAynN+TxQko/NOFIg89M8FdIAZpY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TjpuRupZ3zN34y6/OYwNhS1O9Dw50ZqiyPavqMrOM+b9uz+uyDJnzK6W/HjKeoqYQ
+	 m2S6nC265NePs7ejkKjeT8bclxj5aO+TR/WElnoJAspKIEhWePz/GaNpIS5SQiZF1f
+	 OVjx0HXuYk1Kw3HA/mINKbZQnWgitadxsEU7qaIE/+yLGpACFyHlXP5++QRVYHck4p
+	 2aKLoab02vayooCpsZb422i24XGuYB8NMXnIuUXSiqRDs0hKRrz+HqEh78V/qS52pU
+	 El8mN4SNFvDxiBP5xS4OzsZyWNK4ckr+k2gMzLWQGso7hv4g7BdVrAuRkW38urNjzq
+	 o3kIwmdg8lFdA==
+Date: Mon, 6 Oct 2025 16:23:51 -0500
+From: Rob Herring <robh@kernel.org>
+To: Baojun Xu <baojun.xu@ti.com>
+Cc: broonie@kernel.org, tiwai@suse.de, andriy.shevchenko@linux.intel.com,
+	13916275206@139.com, alsa-devel@alsa-project.org,
+	shenghao-ding@ti.com, linux-sound@vger.kernel.org,
+	linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	k-yi@ti.com, henry.lo@ti.com, robinchen@ti.com, jesse-ji@ti.com,
+	will-wang@ti.com, jim.shil@goertek.com, toastcheng@google.com,
+	chinkaiting@google.com
+Subject: Re: [PATCH v3 2/2] ASoC: tas2781: Update ti,tas2781.yaml for adding
+ tas5815 and tas5828
+Message-ID: <20251006212351.GA602416-robh@kernel.org>
+References: <20250928091514.12349-1-baojun.xu@ti.com>
+ <20250928091514.12349-2-baojun.xu@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251006-tt-bh-dts-v2-8-ed90dc4b3e22@oss.tenstorrent.com>
-References: <20251006-tt-bh-dts-v2-0-ed90dc4b3e22@oss.tenstorrent.com>
-In-Reply-To: <20251006-tt-bh-dts-v2-0-ed90dc4b3e22@oss.tenstorrent.com>
-To: Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Alexandre Ghiti <alex@ghiti.fr>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Gleixner <tglx@linutronix.de>, Anup Patel <anup@brainfault.org>, 
- Arnd Bergmann <arnd@arndb.de>, Joel Stanley <jms@oss.tenstorrent.com>, 
- Joel Stanley <joel@jms.id.au>, Michael Neuling <mikey@neuling.org>, 
- Nicholas Piggin <npiggin@gmail.com>, Michael Ellerman <mpe@kernel.org>, 
- Andy Gross <agross@kernel.org>, 
- Anirudh Srinivasan <asrinivasan@tenstorrent.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org, 
- Drew Fustini <dfustini@oss.tenstorrent.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250928091514.12349-2-baojun.xu@ti.com>
 
-From: Drew Fustini <dfustini@oss.tenstorrent.com>
+On Sun, Sep 28, 2025 at 05:15:14PM +0800, Baojun Xu wrote:
+> Update ti,tas2781.yaml for adding TAS5815/TAS5828.
 
-Enable support for Tenstorrent SoCs in the default configuration.
+That is clear from the diff. Say something about how these chips compare 
+to the existing ones.
 
-Signed-off-by: Drew Fustini <dfustini@oss.tenstorrent.com>
----
- arch/riscv/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+> 
+> Signed-off-by: Baojun Xu <baojun.xu@ti.com>
+> 
+> ---
+> v3:
+>  - Rewrite the patch title
 
-diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-index 7b5eed17611ad2260a28f9fe9985b88682eb1ebe..031d8f8f6e9d278eb802d195111f1cf9075b076d 100644
---- a/arch/riscv/configs/defconfig
-+++ b/arch/riscv/configs/defconfig
-@@ -29,6 +29,7 @@ CONFIG_ARCH_SOPHGO=y
- CONFIG_ARCH_SPACEMIT=y
- CONFIG_SOC_STARFIVE=y
- CONFIG_ARCH_SUNXI=y
-+CONFIG_ARCH_TENSTORRENT=y
- CONFIG_ARCH_THEAD=y
- CONFIG_ARCH_VIRT=y
- CONFIG_ARCH_CANAAN=y
+'git log --oneline' on the file or subsystem is a hint of what the 
+subject should look like. In this case, something like:
 
--- 
-2.34.1
+ASoC: dt-bindings: ti,tas2781: Add TAS5815 and TAS5828
 
+>  - Add TAS5815 support in yaml file
+> v2:
+>  - Update description for TAS5828
+>  - Change commit tree to .../tiwai/sound.git
+> ---
+>  .../devicetree/bindings/sound/ti,tas2781.yaml | 27 ++++++++++++++++++-
+>  1 file changed, 26 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> index bd00afa47..192d8c560 100644
+> --- a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> +++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
+> @@ -24,7 +24,7 @@ description: |
+>    Instruments Smart Amp speaker protection algorithm. The
+>    integrated speaker voltage and current sense provides for real time
+>    monitoring of loudspeaker behavior.
+> -  The TAS5825/TAS5827 is a stereo, digital input Class-D audio
+> +  The TAS5825/TAS5827/TAS5828 is a stereo, digital input Class-D audio
+>    amplifier optimized for efficiently driving high peak power into
+>    small loudspeakers. An integrated on-chip DSP supports Texas
+>    Instruments Smart Amp speaker protection algorithm.
+> @@ -35,8 +35,10 @@ description: |
+>      https://www.ti.com/lit/gpn/tas2563
+>      https://www.ti.com/lit/gpn/tas2572
+>      https://www.ti.com/lit/gpn/tas2781
+> +    https://www.ti.com/lit/gpn/tas5815
+>      https://www.ti.com/lit/gpn/tas5825m
+>      https://www.ti.com/lit/gpn/tas5827
+> +    https://www.ti.com/lit/gpn/tas5828m
+>  
+>  properties:
+>    compatible:
+> @@ -65,11 +67,17 @@ properties:
+>        Protection and Audio Processing, 16/20/24/32bit stereo I2S or
+>        multichannel TDM.
+>  
+> +      ti,tas5815: 30-W, Digital Input, Stereo, Closed-loop Class-D Audio
+> +      Amplifier with 96 kHz Enhanced Processing
+> +
+>        ti,tas5825: 38-W Stereo, Inductor-Less, Digital Input, Closed-Loop 4.5V
+>        to 26.4V Class-D Audio Amplifier with 192-kHz Extended Audio Processing.
+>  
+>        ti,tas5827: 47-W Stereo, Digital Input, High Efficiency Closed-Loop Class-D
+>        Amplifier with Class-H Algorithm
+> +
+> +      ti,tas5828: 50-W Stereo, Digital Input, High Efficiency Closed-Loop Class-D
+> +      Amplifier with Hybrid-Pro Algorithm
+>      oneOf:
+>        - items:
+>            - enum:
+> @@ -80,8 +88,10 @@ properties:
+>                - ti,tas2563
+>                - ti,tas2570
+>                - ti,tas2572
+> +              - ti,tas5815
+>                - ti,tas5825
+>                - ti,tas5827
+> +              - ti,tas5828
+>            - const: ti,tas2781
+>        - enum:
+>            - ti,tas2781
+> @@ -177,12 +187,27 @@ allOf:
+>              minimum: 0x38
+>              maximum: 0x3f
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - ti,tas5815
+> +    then:
+> +      properties:
+> +        reg:
+> +          maxItems: 4
+> +          items:
+> +            minimum: 0x54
+> +            maximum: 0x57
+> +
+>    - if:
+>        properties:
+>          compatible:
+>            contains:
+>              enum:
+>                - ti,tas5827
+> +              - ti,tas5828
+>      then:
+>        properties:
+>          reg:
+> -- 
+> 2.25.1
+> 
 
