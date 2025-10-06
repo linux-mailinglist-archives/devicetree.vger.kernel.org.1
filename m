@@ -1,171 +1,112 @@
-Return-Path: <devicetree+bounces-223880-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223881-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07F7ABBE8C7
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 17:50:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F3D7BBE8D8
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 17:51:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C226718981F8
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 15:50:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 496AD18918AD
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 15:52:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C673B2D8DDD;
-	Mon,  6 Oct 2025 15:50:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DEA52D8DA9;
+	Mon,  6 Oct 2025 15:51:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bibJvolT"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="0cKSouln"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4202F261393
-	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 15:50:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BAEE2D8DBB;
+	Mon,  6 Oct 2025 15:51:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759765803; cv=none; b=FSmOKRa1XUcK3GdFW2eVbSkXt4FcNztkzRnoLGuLXpWhBL8nPn+lMTZgqRu51I85Mv8AZNyq+t/ddCxU0wd+aH+BDaK0NfKS7D5tiQWPBdYDZeXpm2oHa2A71Z5P6PpzMl+hQc6OFO2G35fgQ2GX72RBP1idUMO+uqhiyk/qXtw=
+	t=1759765895; cv=none; b=C+FLWiSKf3VrA44PMZQ/7OQ/imv06ho8NraXOmgxNBJtaHPHPCXOVc4qolH92eINz1L8FINiqg+nqqj6l0K0JmK3/I2PAQnvCkyoN+qjX6dMshW3cLhMXghACN9SiwA1TVvvKATzfI7LAwPc9Q/NuW0AkpC3JOZgCw9OYxqZseQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759765803; c=relaxed/simple;
-	bh=W3PMT+hwZQ6aWg/sisolkXdcpO27FcPguWJfzNMoLuU=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=cFGtUeABvqH1mW2B1iSJ24aya6Czh7kWwSq9oQaRzpSZ3+MrLD3+a2k1ybRUuPf1sSmdq4GA+4btTuP1DKtzs8P/vbuPvhv86zciRUZlkwwDaJ8jBo2CST9wy4UEj0r9oV573V+sG2T1+rUwmbJQZD8ZguD08PEZ/LtmwscUFXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bibJvolT; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-782023ca359so4856451b3a.2
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 08:50:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759765800; x=1760370600; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=aBmtSE528Py14xtzoWyp+hmgQ/aJvwHpZdOMZKJdoak=;
-        b=bibJvolTrTu9+1p3keFG5lKoehhluFuAGAw0GSjuywIGF6RbHSL11Df4XsvM96ywhe
-         qQ/VXPsCsLQje60f0d6Ma4u2S05mytMsaSStlOmK/HVcZgr1YdtPoWWeoLaEK5F6Cb4Z
-         CPhQOPTfO6tnBojusQxLfUjpZZBqgBi5fu4x89SV5bDaqkLH0jy3NYiYeqA0MFUgLnje
-         SZNRbWjRALq4qecf3R5qcKjos0MW5uCL8xSkr3S1I0cRql097i+2tXlX4Lser5W+mxqH
-         RIKfMOlGbF2Yb/bVoCOyVK06C8aDueRt/tHO476gyq1Mp71wBbJRKye/LXxqGdSNNfsg
-         GPpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759765800; x=1760370600;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=aBmtSE528Py14xtzoWyp+hmgQ/aJvwHpZdOMZKJdoak=;
-        b=wAI/LgnOfdOVbeUrAP37iNPkkkhdme6+XpyPTb9goqxpyBShj8g6oxoaGo/r8342/v
-         w3YVcv0XDkv43wlZX+fFGo6Zo0hhSwS9/CSIefuQWw0dMtsOZQ42LEPF3Se3QkfQ+Wib
-         ohJDANXIDoZD8BRJWadet+mLKAEwZyPS6Nnn1ZEnERtiBIPswpAUZNMuIDs1CE6+Rmv9
-         BEfnp1CkoXLfnmh6Lbcgm56D2L09uvVyt+jhSwyifxPCz/89YspQVpzQpKSPuZrGf1Bm
-         OrqdilkmtHGaO4lG8ARfq4bYO/AxhHN3z33uVrT9AEmzxhBZ/gji8abVEKFN2hIKu1eT
-         w/9Q==
-X-Gm-Message-State: AOJu0Yx/JzVN9F1rmC7Pl/a/4vG0ejLOmYiJEXEDb6GvqXEwL+xMSmlV
-	cmx3mA7w4IQ8BtZacOa2wPymf6WJRjKvWg6VMQNd73wkqJQdQEO69WxT
-X-Gm-Gg: ASbGncumr/ndBEF1pwR6yXISvYbUsBohOUu41vzKE8IidgLgL85x/sHRfYDJMrCbleu
-	thwFOyBnTcn3AGmWFIeijPdgMETiBKZ9OI0slZZJKOy4/GWnHQF39sOEy7Fj34+c89pYbTKzRH1
-	COibtwOw0DpMP1qnw3tTIGAJ3Ig1E7RhBAnfVMStQX177r6DhPr2Xe6V28iJScHnScn6z9wPipo
-	bEAvHdrt76Yoc7JkKNUNu/ijpPUVCE+TGc8s8dmwUJyQy28V6tPcbV+sl6kkIdINTpO7NUZQ7yM
-	l3hYhhWI4NzmJd8vGBPcfw4mOhd2oHtbsJAMs91oh8bLMuY6VW+uyNWz33eF82Z0APPbDfOuyBa
-	p2ozr9uktdcmgsaRH1JcPUlAhEVGN1FCbckd3wAdWXDvv83Ugn1S4uMyBHrHw1LZc7f0k
-X-Google-Smtp-Source: AGHT+IGWCHtuMHA7m1kQjEv0z+l6rbbms0Kog1pe29YFHLTZBAPJ2rs/rWtsmuM8c24eMOHMFoatnw==
-X-Received: by 2002:a05:6a20:3d8f:b0:24c:1f78:1803 with SMTP id adf61e73a8af0-32b62093c5amr16080333637.38.1759765800563;
-        Mon, 06 Oct 2025 08:50:00 -0700 (PDT)
-Received: from ehlo.thunderbird.net ([2804:18:932:c1e3:aaa3:c804:f5ef:49e7])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78b01fb281bsm13088496b3a.37.2025.10.06.08.49.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Oct 2025 08:50:00 -0700 (PDT)
-Date: Mon, 06 Oct 2025 12:49:55 -0300
-From: =?ISO-8859-1?Q?Eric_Gon=E7alves?= <ghatto404@gmail.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: r0q: enable ufs storage
-User-Agent: Thunderbird for Android
-In-Reply-To: <7875ad35-366d-4480-979f-426f5760aa2a@oss.qualcomm.com>
-References: <20250920014637.38175-1-ghatto404@gmail.com> <20250920014637.38175-6-ghatto404@gmail.com> <f032db60-d625-4814-a5c9-0610618b7351@oss.qualcomm.com> <97CA26D8-2CB5-4F90-A4C8-BCD81C688F35@gmail.com> <7875ad35-366d-4480-979f-426f5760aa2a@oss.qualcomm.com>
-Message-ID: <289A60D2-9184-4DAC-BE41-D202F02361B5@gmail.com>
+	s=arc-20240116; t=1759765895; c=relaxed/simple;
+	bh=/OenKGRr35gNUbyLyVxQicdCNICTTtsFY0QGrKbxgfo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HvcwWFJr//LIqpODgLsONZdfKxkjlp8ftq5w2nScqYUUG6MzzJC5x9TJDyfM4Ay8oVSEog9ByovcjwNoecPQA7q2eSu3sh5AGVj8/7mwkwFKyujmgxTpApY4h8rzgXQNrtvz2pGBXnynXs7Yiyvv+RPzs+XIuaVR1FXbeccRy5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=0cKSouln; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=Wdd5c/PHXgFX18ZoE3M5BpB+K9x9piTq/ykZtbdV/vs=; b=0cKSouln3fYahi+dyaR8+Yz9uV
+	CXgXVf4HWqLJUlmoB648heg2O1fZ8rgmGn/F1ne3hILrCyD+TNQDDxzvVj4iO2hZRTVllVKlo1KMr
+	aL+Zu3WYEcwCWPuQFBCDH4LpLnis/cxt9Ouv1iFnXC3unxAxAN+cMED+PYx2faXsGgFA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1v5nUZ-00AIzL-PJ; Mon, 06 Oct 2025 17:51:15 +0200
+Date: Mon, 6 Oct 2025 17:51:15 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Liangbin Lian <jjm2473@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	heiko@sntech.de, quentin.schulz@cherry.de,
+	kever.yang@rock-chips.com, naoki@radxa.com, honyuenkwun@gmail.com,
+	inindev@gmail.com, ivan8215145640@gmail.com,
+	neil.armstrong@linaro.org, mani@kernel.org, dsimic@manjaro.org,
+	pbrobinson@gmail.com, alchark@gmail.com, didi.debian@cknow.org,
+	jbx6244@gmail.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: add LinkEase EasePi R1
+Message-ID: <d8ad476c-d0c7-4e97-9e76-540a539ffb52@lunn.ch>
+References: <20250929065714.27741-1-jjm2473@gmail.com>
+ <20250929065714.27741-4-jjm2473@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250929065714.27741-4-jjm2473@gmail.com>
 
+> +&gmac0 {
+> +	phy-mode = "rgmii";
 
+Did i really miss this patch series in its earlier version, or did you
+ignore me?
 
-On October 6, 2025 9:08:54 AM GMT-03:00, Konrad Dybcio <konrad=2Edybcio@os=
-s=2Equalcomm=2Ecom> wrote:
->On 9/25/25 11:37 PM, Eric Gon=C3=A7alves wrote:
->>=20
->>=20
->> On September 25, 2025 10:07:31 AM GMT-03:00, Konrad Dybcio <konrad=2Edy=
-bcio@oss=2Equalcomm=2Ecom> wrote:
->>> On 9/20/25 3:46 AM, Eric Gon=C3=A7alves wrote:
->>>> Enable UFS internal storage of the Samsung Galaxy S22=2E
->>>>
->>>> Signed-off-by: Eric Gon=C3=A7alves <ghatto404@gmail=2Ecom>
->>>> ---
->>>>  =2E=2E=2E/boot/dts/qcom/sm8450-samsung-r0q=2Edts      | 39 +++++++++=
-++++++++++
->>>>  1 file changed, 39 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts b/arch=
-/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
->>>> index c088f1acf6ea=2E=2E0a55ce952f93 100644
->>>> --- a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
->>>> +++ b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
->>>> @@ -146,6 +146,24 @@ vreg_l5b_0p88: ldo5 {
->>>>  			regulator-max-microvolt =3D <888000>;
->>>>  			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
->>>>  		};
->>>> +
->>>> +		vreg_l6b_1p2: ldo6 {
->>>> +			regulator-min-microvolt =3D <1200000>;
->>>> +			regulator-max-microvolt =3D <1200000>;
->>>> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
->>>> +		};
->>>> +
->>>> +		vreg_l7b_2p5: ldo7 {
->>>> +			regulator-min-microvolt =3D <2504000>;
->>>> +			regulator-max-microvolt =3D <2504000>;
->>>> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
->>>> +		};
->>>> +
->>>> +		vreg_l9b_1p2: ldo9 {
->>>> +			regulator-min-microvolt =3D <1200000>;
->>>> +			regulator-max-microvolt =3D <1200000>;
->>>> +			regulator-initial-mode =3D <RPMH_REGULATOR_MODE_HPM>;
->>>> +		};
->>>>  	};
->>>> =20
->>>>  	regulators-1 {
->>>> @@ -370,6 +388,27 @@ tsp_int_sleep: tsp_int_sleep_state {
->>>>  	};
->>>>  };
->>>> =20
->>>> +&ufs_mem_hc {
->>>> +	reset-gpios =3D <&tlmm 210 GPIO_ACTIVE_LOW>;
->>>> +
->>>> +	vcc-supply =3D <&vreg_l7b_2p5>;
->>>> +	vcc-max-microamp =3D <1100000>;
->>>
->>> because you set this, you should also set regulator-allow-set-mode and
->>> regulator-allowed-modes
->>>
->>> Konrad
->> Why is that necessary?
->
->Because that is then translated into the mode selection, based on
->the aggregated usage
->
->That said, you may also choose to omit this if you want to run all
->regulators at high-power mode (less efficient at idle), which forcefully
->ensures you're not hitting any current limits=20
-Will do, thanks
->
->Konrad
+https://elixir.bootlin.com/linux/v6.15/source/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L287
+
+> +	tx_delay = <0x3c>;
+> +	rx_delay = <0x2f>;
+
+Please change it to rgmii-id, and smaller tx/rx_delay values. Or show
+us the schematics which clearly show extra long clock lines.
+
+> +/* Micro SD card slot is not mounted */
+> +&sdmmc0 {
+> +	max-frequency = <150000000>;
+> +	no-sdio;
+> +	no-mmc;
+> +	bus-width = <4>;
+> +	cap-mmc-highspeed;
+> +	cap-sd-highspeed;
+> +	disable-wp;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
+> +	vmmc-supply = <&vcc3v3_sd>;
+> +	vqmmc-supply = <&vccio_sd>;
+> +	status = "disabled";
+> +};
+> +
+> +/* Wifi module is not mounted */
+> +&sdmmc2 {
+
+What do you mean by "not mounted"?
+
+Often you would say "not populated", to indicate the PCB has all the
+tracks in place, but the chip has simply not been soldered in place.
+
+Or is there a connector here, and nothing plugged into the connector?
+
+   Andrew
 
