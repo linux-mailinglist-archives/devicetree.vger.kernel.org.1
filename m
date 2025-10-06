@@ -1,265 +1,154 @@
-Return-Path: <devicetree+bounces-223889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50784BBEAAF
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 18:34:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC029BBEABE
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 18:36:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 065B84E1158
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 16:34:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F2BC18966F7
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 16:36:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04A0C2DCBFC;
-	Mon,  6 Oct 2025 16:34:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2459E2DC798;
+	Mon,  6 Oct 2025 16:36:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b="ZxUUdVw5"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="sXaTjoOA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-op-o15.zoho.com (sender4-op-o15.zoho.com [136.143.188.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E754C13E41A;
-	Mon,  6 Oct 2025 16:34:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759768457; cv=pass; b=iVkIvbSBYIJ/ju6YZKadZsh3WW8hyEikHfbuIDe+cFkmG47YaW9i6R0G9Pi3+j/9nlxVt9saEQL0fVJQfU3H420sx+gifYotaI54/hc3uJxnoBpRY1Pee09keNNNNd2UgN5o2Bq3q02u4HOq0PqRbgXgVgXdzSN88hk6ubXlQmo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759768457; c=relaxed/simple;
-	bh=j89+y91SMmY2hlRzBk7eDWdVkd7Zq8mu43vpMSD6zW4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=nSb0fxnn+5Hnq8j5X3VQMptOQ9MWkyVr1FgGY/g37zmIlgJdTn30LB0EM62Jl29ltzuKHXY7A4oHW3Gd1umavxUVrly8a9+watt2So7tAPMQ7IG+F14Kc5JecKWgQX898t4wiPVBZodwu1EccHzgH0+2/xIhzElOaAGMz/AYE4o=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me; spf=pass smtp.mailfrom=icenowy.me; dkim=pass (2048-bit key) header.d=icenowy.me header.i=uwu@icenowy.me header.b=ZxUUdVw5; arc=pass smtp.client-ip=136.143.188.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=icenowy.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=icenowy.me
-ARC-Seal: i=1; a=rsa-sha256; t=1759768404; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=cg8w3Yx8IggkB+zBhluhjMbMmUsvUcFTp8sS3UkaQyPYCI+kKozce/VxlfQIH2kNKZz+W0TluZmqZOpSaXRnxQ1cOJ+yTbkxSfzRBBXWK7yKp4QCfWtFhM78+uyDIvTeyLvbj/29T87jf7C50Lzs89v25R4fVUL1Zt1jFDtjdHM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1759768404; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=j89+y91SMmY2hlRzBk7eDWdVkd7Zq8mu43vpMSD6zW4=; 
-	b=OKZEpyRFbGh8q0dvfbB6gCs7d7Vv6TvpHKJTBq+scm1/FFn8ekZ3oBgww6Tj/9vsZYaLUX+J5ORw2je/Hbe9WmstHKtyUQhpA691sUYrAFmWGaCkO1wQFo5wRqRWOsm/ngVNOWtfN10LdPDfEjnfwdZ28oQg+xm0Qps0SKF0uHM=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=icenowy.me;
-	spf=pass  smtp.mailfrom=uwu@icenowy.me;
-	dmarc=pass header.from=<uwu@icenowy.me>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759768404;
-	s=zmail2; d=icenowy.me; i=uwu@icenowy.me;
-	h=Message-ID:Subject:Subject:From:From:To:To:Cc:Cc:Date:Date:In-Reply-To:References:Content-Type:Content-Transfer-Encoding:MIME-Version:Message-Id:Reply-To;
-	bh=j89+y91SMmY2hlRzBk7eDWdVkd7Zq8mu43vpMSD6zW4=;
-	b=ZxUUdVw5ekZSbUQcOuicx0i81q5Ne2CN2GTkN+P9+TzORpuUWT48oYwY2qN3n94D
-	NcaPbfAOo1GJ1ROqgWm2oXT4ScJIuTwwGfYIVdUeTdyWAT3i3zgO0hg0BHNP0W5xJ6u
-	/iHwUj/UL1EtopJU9rpHyD7F403dOU4zyMjHpdppeZpt1fBST16KibUP+C29P59aY66
-	tUWF3wUtxCJar/Vz3YdCjqiuwPMibhErxftYJkse8jhGBp4fNBkccmNlPLudBVq9Og4
-	kyzbOaiIFCclZUOKKinsM2ZhcnNft0fz8xkk7N+UTQgkki+ficqGLYE0+kWNopyrpUa
-	77Vtb0vN1g==
-Received: by mx.zohomail.com with SMTPS id 1759768399312157.2926223095094;
-	Mon, 6 Oct 2025 09:33:19 -0700 (PDT)
-Message-ID: <c7d79542aedb6c074c4be21eaa15c71a53e87da4.camel@icenowy.me>
-Subject: Re: [PATCH v2 2/8] dt-bindings: display: add verisilicon,dc
-From: Icenowy Zheng <uwu@icenowy.me>
-To: Christian Gmeiner <christian.gmeiner@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Lucas Stach <l.stach@pengutronix.de>, 
- Russell King <linux+etnaviv@armlinux.org.uk>, moderated for non-subscribers
- <etnaviv@lists.freedesktop.org>,  Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Drew Fustini <fustini@kernel.org>, Guo
- Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Philipp Zabel
- <p.zabel@pengutronix.de>, Heiko Stuebner <heiko@sntech.de>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Michal Wilczynski
- <m.wilczynski@samsung.com>, Han Gao <rabenda.cn@gmail.com>, Yao Zi
- <ziyao@disroot.org>, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-riscv@lists.infradead.org
-Date: Tue, 07 Oct 2025 00:33:06 +0800
-In-Reply-To: <84566b33d0d08ad070c3aa8a01e07f3a0e3bff50.camel@icenowy.me>
-References: <20250921083446.790374-1-uwu@icenowy.me>
-	 <20250921083446.790374-3-uwu@icenowy.me>
-	 <20250922204349.GA1290045-robh@kernel.org>
-	 <1ac8c72206abf9f3e0a13e1fcf44be5c605f6372.camel@icenowy.me>
-	 <36040a0a40311cb1e871075f0c5ad175342ed5db.camel@icenowy.me>
-	 <CAH9NwWdx-Ut35RvhmNsdQbC4vfm3rH1VPN7H2uDBRsmsFjZU_Q@mail.gmail.com>
-	 <84566b33d0d08ad070c3aa8a01e07f3a0e3bff50.camel@icenowy.me>
-Organization: Anthon Open-Source Community
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.44.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452BC2DC767
+	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 16:36:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759768589; cv=none; b=mVT59wC3HLc4plesK+CrmesBvXZT4X5amy70GZq/xS6jfvAUidS47/k+UGGwvpk0TsgUaZH6PYI5SEGVQ+ErArkMzr8oZ00AYfegihKwwMGdNI3/hZTDpTiFi6xJriQ/Yvn7JZiNkVl3oAUggpRuhhmfVS1ou8jcZBqK0JQEFEY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759768589; c=relaxed/simple;
+	bh=XupdU8p7RDNBPxkCkrppIhSp1IiOvpdpp1bberfEOrY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Zc6jhXdHqnXqicaYNjjaZFSbAINIg0ZH/Zw+lqaKASiifoLs5DCDifkZ24STO+JFt6PvCPDnnpO1X3YKEo4BYEk/g7gCY6L4ErhG/jzSVYhy+Kj2nV7aXNGMkkkUR8IL7yboXjTx0cAIBUnFoRLrKpMIT/NrbSuX/olC0BC3d3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=sXaTjoOA; arc=none smtp.client-ip=209.85.167.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-43f935f8dd3so1105298b6e.2
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 09:36:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1759768585; x=1760373385; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AbcfXyJqSZx7fTHy1yz/EONzLBPcuXMGSsDmeC55Fxk=;
+        b=sXaTjoOARxNqAWo4sVZA9X9GOXatwtec4DlhDddXDCiMn0z+Tq6sa1d+uDzMqYxIaD
+         /M4PC3DHA2p6dL2q1iD6u17rogcviqVZHe9rrPWrr+w3oRzuqBhvLbBikjN6438OxLjv
+         I/EEnEjuyZCzv6pOhn3ZwdYVL0cTn5eQPpPibcJnHdWi6jfa7HDt5wAqp8tRBTVMlb/U
+         c3llZYgCDjUhrkbN6hxGiVKQRyn22PJpLZiCokWk8Y/n6NMEVRJfAot/dMlL8s5ufTcW
+         OvnRAqcMX+2A2SHqbQiobgTRhUrHBxw+EcynPRP368PdiJFRuONzwoCOnmXx5qJ3Qz3V
+         wFdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759768585; x=1760373385;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AbcfXyJqSZx7fTHy1yz/EONzLBPcuXMGSsDmeC55Fxk=;
+        b=V8eA0MdExR6aEtA2x2DPOQndMtGmumkfse7CITIvGh7j7R5IV+7X4czaPRnKL9vLHW
+         R7+QGAHb5jngIkyIjYBmIDIP+n0Hfc0vjRn61VAniy2mjzLXEt6FADcEQFQAihgnoRyW
+         KoqRgDhcm6/1K5DcUESZ4XdVC/mFu8bURNd/n/262OjNPucUqJMs4a2NGqRHwoQJnxFe
+         qf+GxkVRuvtneJWXphqJShljAJdo83V6Tef16TOr6CG+vM9Y1DG1lfDt+JVdzHimEj64
+         aKvvvyfHcLeb/0wCgyxTOCGUZtjT06jkq9s6fDMHwBEjG+g9Fd6VE5YNZh/DyvUaAh+o
+         1/sg==
+X-Forwarded-Encrypted: i=1; AJvYcCWKbkamWwEDcjeZr8mRCcqM2Ja2RFHBeM1OT8/CHqwz6tOMm3L0QS78hbxPZWKq3uHkVxhDYAs3s4Wv@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNiIyUJaRpk0ipHiSQDNHnFDaNENDRgPxqqjWEIdUjqqUrYuth
+	r+N1uF7IGD41D02SclBVwd4v4KzIIY7au1W0ZLJfbwzCBsqpwiDPl6phX3MrFzeQe1M=
+X-Gm-Gg: ASbGncuk4z4Bysa+pcE7eb535lvmHm49xnLA8JhNtd8Ds8HWuIJCUJK0qu2EISom2vc
+	3GIZeoe1ngeZNlMwOhMRUZx96ixoQlfaNSoqudlbL0kZRCic3PFprDe7fXPYlJcfN9OcOULjupe
+	z1dJTu7LEK1rx0M2NwLuZvK5Fpq6Ssf5LyMXzZgNdzBPb4ynEj/OVL5ft/9XXr4D4R/WITXr5qZ
+	E+VnoJAASCt4ma2eCE4nYvKEJ4Nj47xJrxJfQQJDhVngdrAy0MaOj+abl7fYrQ2YGqzV9StiEtH
+	8rxSoRDO5UGgtEEawS5d/Ec+Y2iCBWEES59NF1aJcYDaHULqsSDb8sSGs38lcqW7QiABxR+xww1
+	+V4X2nLvAhzaz81pcjlf5ltBCHuVqr7/t4S3k9bNpapiXqh66J9mwt1Ni0XCUUC60xRXTC0EEXA
+	s6evcTOeTmXj8NJIaDMA6Kf7QhkdU/ULbcZE1x/TLGFDk2
+X-Google-Smtp-Source: AGHT+IE+s66uq6txDkspOfSvOVKKS0M3qJTnSdw0NOGPySxvEJLlIa6shKJ7jyPKDkvJTaOBdI0yrw==
+X-Received: by 2002:a05:6808:2e48:b0:43f:7dee:469c with SMTP id 5614622812f47-43fc1798d8cmr6884069b6e.11.1759768585304;
+        Mon, 06 Oct 2025 09:36:25 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:a1fd:4fbd:e7a6:9246? ([2600:8803:e7e4:1d00:a1fd:4fbd:e7a6:9246])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-43fb25b991esm3008529b6e.26.2025.10.06.09.36.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Oct 2025 09:36:24 -0700 (PDT)
+Message-ID: <5e043789-75b4-4586-b9ea-a6cda8532431@baylibre.com>
+Date: Mon, 6 Oct 2025 11:36:23 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ZohoMailClient: External
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12-1 3/3] iio: ABI: Add voltage mean raw attribute
+To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Kim Seer Paller <kimseer.paller@analog.com>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+ Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>,
+ Jonathan Santos <Jonathan.Santos@analog.com>,
+ Dragos Bogdan <dragos.bogdan@analog.com>
+References: <6106ee185045ade8e1938f87f9588733d6358844.1759123847.git.marilene.agarcia@gmail.com>
+ <c9c3b7e67703313913a7fd411cb0cc152a288c82.1759123847.git.marilene.agarcia@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <c9c3b7e67703313913a7fd411cb0cc152a288c82.1759123847.git.marilene.agarcia@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-=E5=9C=A8 2025-09-25=E6=98=9F=E6=9C=9F=E5=9B=9B=E7=9A=84 13:57 +0800=EF=BC=
-=8CIcenowy Zheng=E5=86=99=E9=81=93=EF=BC=9A
-> =E5=9C=A8 2025-09-24=E6=98=9F=E6=9C=9F=E4=B8=89=E7=9A=84 20:15 +0200=EF=
-=BC=8CChristian Gmeiner=E5=86=99=E9=81=93=EF=BC=9A
-> > > > > > Verisilicon has a series of display controllers prefixed
-> > > > > > with
-> > > > > > DC
-> > > > > > and
-> > > > > > with self-identification facility like their GC series
-> > > > > > GPUs.
-> > > > > >=20
-> > > > > > Add a device tree binding for it.
-> > > > > >=20
-> > > > > > Depends on the specific DC model, it can have either one or
-> > > > > > two
-> > > > > > display
-> > > > > > outputs, and each display output could be set to DPI signal
-> > > > > > or
-> > > > > > "DP"
-> > > > > > signal (which seems to be some plain parallel bus to HDMI
-> > > > > > controllers).
-> > > > > >=20
-> > > > > > Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
-> > > > > > ---
-> > > > > > Changes in v2:
-> > > > > > - Fixed misspelt "versilicon" in title.
-> > > > > > - Moved minItems in clock properties to be earlier than
-> > > > > > items.
-> > > > > > - Re-aligned multi-line clocks and resets in example.
-> > > > > >=20
-> > > > > > =C2=A0.../bindings/display/verisilicon,dc.yaml=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 127
-> > > > > > ++++++++++++++++++
-> > > > > > =C2=A01 file changed, 127 insertions(+)
-> > > > > > =C2=A0create mode 100644
-> > > > > > Documentation/devicetree/bindings/display/verisilicon,dc.ya
-> > > > > > ml
-> > > > > >=20
-> > > > > > diff --git
-> > > > > > a/Documentation/devicetree/bindings/display/verisilicon,dc.
-> > > > > > ya
-> > > > > > ml
-> > > > > > b/Documentation/devicetree/bindings/display/verisilicon,dc.
-> > > > > > ya
-> > > > > > ml
-> > > > > > new file mode 100644
-> > > > > > index 0000000000000..07fedc4c7cc13
-> > > > > > --- /dev/null
-> > > > > > +++
-> > > > > > b/Documentation/devicetree/bindings/display/verisilicon,dc.
-> > > > > > ya
-> > > > > > ml
-> > > > > > @@ -0,0 +1,127 @@
-> > > > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > > > +%YAML 1.2
-> > > > > > +---
-> > > > > > +$id:
-> > > > > > http://devicetree.org/schemas/display/verisilicon,dc.yaml#
-> > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > +
-> > > > > > +title: Verisilicon DC-series display controllers
-> > > > > > +
-> > > > > > +maintainers:
-> > > > > > +=C2=A0 - Icenowy Zheng <uwu@icenowy.me>
-> > > > > > +
-> > > > > > +properties:
-> > > > > > +=C2=A0 $nodename:
-> > > > > > +=C2=A0=C2=A0=C2=A0 pattern: "^display@[0-9a-f]+$"
-> > > > > > +
-> > > > > > +=C2=A0 compatible:
-> > > > > > +=C2=A0=C2=A0=C2=A0 const: verisilicon,dc
-> > > > >=20
-> > > > > This needs an SoC specific compatible. Generally licensed IP
-> > > > > compatibles
-> > > > > are useless because the specs aren't public and there's
-> > > > > always
-> > > > > integration quirks.
-> > > >=20
-> > > > This mimics the GPU IPs by the same vendor, see
-> > > > gpu/vivante,gc.yaml ,
-> > > > which contain the exact same set of identification registers
-> > > > (including
-> > > > a "customer id" one that can differienate the same configured
-> > > > IP
-> > > > on
-> > > > StarFive JH7110 and T-Head TH1520).
-> > > >=20
-> > > > If we can get vivante,gc to work w/o SoC specific compatible,
-> > > > then we
-> > > > should be able to get verisilicon,dc to work too.
-> > >=20
-> > > Well maybe I should add etnaviv people to the recipient list, to
-> > > allow
-> > > them to tell us the magic behind vivante,gc .
-> > >=20
-> >=20
-> > Vivante GPUs are special because they contain registers that allow
-> > them to
-> > be fully identified - see etnaviv_hw_identify(..).
-> >=20
-> > We can read out the following information:
-> > =C2=A0- model
-> > =C2=A0- revision
-> > =C2=A0- product_id
-> > =C2=A0- customer_id
-> > =C2=A0- eco_id
->=20
-> Well Verisilicon DCs (sometimes also called Vivante DCs because
-> Vivante
-> is now part of Verisilicon) except DCNano have the same set of ID
-> registers (In fact the registers before 0x1500 seem to have mostly
-> the
-> same meaning with GPUs, see [1], here the registers are even named
-> GC{,REG}_xxx), so it's why I assume "verisilicon,dc" will work here.
->=20
-> An example of identification registers readout on TH1510 is shown
-> below: (the register names are from etnaviv state_hi.xml)
-> ```
-> root@lpi4a66 [ ~ ] # busybox devmem 0xffef600020 # MODEL=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
-> 0x00008200
-> root@lpi4a66 [ ~ ] # busybox devmem 0xffef600024 # REV
-> 0x00005720
-> root@lpi4a66 [ ~ ] # busybox devmem 0xffef600028 # DATE
-> 0x20210201
-> root@lpi4a66 [ ~ ] # busybox devmem 0xffef60002c # TIME
-> 0x11133000
-> root@lpi4a66 [ ~ ] # busybox devmem 0xffef600030 # CUSTOMER_ID
-> 0x0000030A
-> root@lpi4a66 [ ~ ] # busybox devmem 0xffef6000a8 # PRODUCT_ID
-> 0x02082000
-> root@lpi4a66 [ ~ ] # busybox devmem 0xffef6000e8 # ECO_ID
-> 0x00000000
-> ```
->=20
+On 9/29/25 12:59 AM, Marilene Andrade Garcia wrote:
+> Add the missing in_voltageY_mean_raw attribute for the average of voltage
+> measurements.
+> 
+> Signed-off-by: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+> ---
+> 
+> When I use _mean_raw (IIO_CHAN_INFO_AVERAGE_RAW), I get a file called 
+> in_voltageY_mean_raw, so I added it to the documentation. 
+> Thanks.
+> 
+>  Documentation/ABI/testing/sysfs-bus-iio | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
+> index 352ab7b8476c..3efaf91248ca 100644
+> --- a/Documentation/ABI/testing/sysfs-bus-iio
+> +++ b/Documentation/ABI/testing/sysfs-bus-iio
+> @@ -422,6 +422,7 @@ Description:
+>  		Scaled humidity measurement in milli percent.
+>  
+>  What:		/sys/bus/iio/devices/iio:deviceX/in_Y_mean_raw
+> +What:		/sys/bus/iio/devices/iio:deviceX/in_voltageY_mean_raw
+>  KernelVersion:	3.5
+>  Contact:	linux-iio@vger.kernel.org
+>  Description:
 
-Rob,
+I did a search of the IIO subsystem for IIO_CHAN_INFO_AVERAGE_RAW and saw
+that it is also being used for temperature channels (both indexed and not)
+and indexed current and capacitance channels and also one indexed light
+channel.
 
-Is this an acceptable answer of not having a vendor-specific
-compatible?
+So we could either delete the line with in_Y_mean_raw and add all of the
+ones that are actually being used or we could leave it as-is since I think
+in_Y_mean_raw is meant to be in_<any type>Y_mean_raw. This is the only
+attribute in the docs like that though, so making it more explicit like
+everything else seems like an improvement to me.
 
-If it isn't, I will add vendor-specific compatible strings to the next
-revision of the binding, and maybe also try to add them for vivante,gc.
-
-Thanks,
-Icenowy
-
-> But as Rob pointed out, maybe acquiring informations from the IDs
-> cannot solve all the problem of integration quirks? As these IDs are
-> already determined when Verisilicon generates the RTL for the
-> customer,
-> it's possible for them to reuse the RTL twice, mess up something in
-> one
-> silicon and have the issues fixed in another.
->=20
-> [1]
-> https://github.com/milkv-megrez/rockos-u-boot/blob/c9221cf2fa77d39c0b241a=
-b4b030c708e7ebe279/drivers/video/eswin/eswin_dc_reg.h
->=20
-> >=20
-> > This information, in combination with a hardware database (hwdb) in
-> > kernel/userspace, is enough to support these GPUs/NPUs across
-> > different SoC vendors.
-> >=20
->=20
+If we do change it, the change stands on it's own, so you can just start
+a new series for it rather than calling it v13-1. Just include a link to
+the previous discussion after the --- so we don't forget about it. And you
+can drop some of the folks from the Cc:, like the DT maintainers that don't
+need to be bothered with this.
 
 
