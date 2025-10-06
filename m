@@ -1,106 +1,127 @@
-Return-Path: <devicetree+bounces-223926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67661BBF39F
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 22:44:35 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id F367DBBF3A5
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 22:45:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BB6F189A8D0
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 20:44:58 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8DE4434B0B4
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 20:45:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB6EE2DC764;
-	Mon,  6 Oct 2025 20:44:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96A8C11713;
+	Mon,  6 Oct 2025 20:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="AFeQ2oWX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sY8ueBp4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.205])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 130C52D592F
-	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 20:44:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DF14A08;
+	Mon,  6 Oct 2025 20:45:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759783471; cv=none; b=nPnT8/mP1pnKI+xQPRdri2ixZPT30YOSQzXig7g7VJKJbVvUWwCmKCEt4M9AD56fxaBdsUV+Fdtr5TuJQaTiQZEyX+vngnNWt6uTUIfwiyEWM3moRh8ftefwBVTqTmf/2kXuZENkFttOhSeVyVXOlhTP7lt+a7YwWuzj12bIYGw=
+	t=1759783531; cv=none; b=dDCDSLmNI/yO/aUQENHFan14de4N1XeLsT4Qm1kB8kw3DuKIjngWGzzPhTphE6EEdHVnrQvVM3/mb6b3MULjmubkD+XJn+2V4ab6trLGiNOFJwh5IQdG2ShfRebNcbRH7CRVf/dfkYbNTLjzA4uKIMyY8xpYQEcgzHDczScV60g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759783471; c=relaxed/simple;
-	bh=QAbf8X36aPDRfLP6OAz+rPPolYsLhmCrJbChrkSk9LE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FmohPoRmoINexjBuIZTv1YyS6B3+pki6sgkMF5+9NjJ4z3AUPfHPEzj8JzAitT+EiW7iY0/q76fTXeHmGr9LWwpD9kwQZGJutm+Cs5WihmFu2W4otIY/Qtp2Viuawbb7pyQzcSIoVDY4aQJb82YnMGikZjgfftE98EaWpstwS3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=AFeQ2oWX; arc=none smtp.client-ip=192.19.144.205
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 80112C000C8F;
-	Mon,  6 Oct 2025 13:35:10 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 80112C000C8F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1759782910;
-	bh=QAbf8X36aPDRfLP6OAz+rPPolYsLhmCrJbChrkSk9LE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=AFeQ2oWXgXZ/MW6Jyiv1pse8hNq2AVExj2Br1J5LnX4lO1ZjTxRmd+pPhx1GAGT45
-	 snoIatZmdthSyX0L2IwkFL/nni/6ZpsCQHunsPsJAmcNvgARqrmFxWC2bnQjlShZ1f
-	 +GWQ90pIbyWI0h8eX/0LK895EALGEfVkp5C4FH1I=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 12E6318000530;
-	Mon,  6 Oct 2025 13:35:10 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: bcm-kernel-feedback-list@broadcom.com,
-	Stefan Wahren <wahrenst@gmx.net>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1759783531; c=relaxed/simple;
+	bh=Msplel+2vngn0wszovGQc3AienJz2287rwZ/jQ5RlKQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Hs4JbLwVxbiB3iVC7HTf39CuzXtTI1gKKm8A7sNEO4TRkSo+/kd0kgKE6yCOoE1jrseZGNOZ2UPMNs+/BYc4K6RZhr7DuWqeJprpxgb8jk66RlQ2DD2JMRO/RfSn79YM9KNzyTapvniIHWTjz7ScsxgN34urMqSIJrNyxH/PXi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sY8ueBp4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B05CEC4CEF5;
+	Mon,  6 Oct 2025 20:45:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759783530;
+	bh=Msplel+2vngn0wszovGQc3AienJz2287rwZ/jQ5RlKQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sY8ueBp4USjv/gu/UnTqZMG68tY83xRGMo/6KwFUFSiB7ZHymiqy6+FGbDlOosqd/
+	 jUf6llB99AsWoXliaizf7WLEnpJV7/8nDASOPfyjfzWgznS+cJepG1T7AflpjDGxVE
+	 iH0fRjGfBAEetLI4RmqCzLUxK4K7OlcG2Vlu10NgJEEFocL1zUdYEr5yBsYIrn3bVR
+	 Mw0tXM5mzGlVDwX3NcGbRgQOKEf4EmAMb71RYnH9sPUKPiDRH9edifCvqVOTCIAoyr
+	 B5cJmodEifygc6Hk7cYt3zIrjUyc2d6mkKjN97cupcmbIbJQjJdaZkWDXS5Po3W+Eo
+	 SXRNrDIkUgnkQ==
+Date: Mon, 6 Oct 2025 15:45:29 -0500
+From: Rob Herring <robh@kernel.org>
+To: "Sven Eckelmann (Plasma Cloud)" <se@simonwunderlich.de>
+Cc: Felix Fietkau <nbd@nbd.name>, Lorenzo Bianconi <lorenzo@kernel.org>,
+	Ryder Lee <ryder.lee@mediatek.com>,
+	Shayne Chen <shayne.chen@mediatek.com>,
+	Sean Wang <sean.wang@mediatek.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Johannes Berg <johannes@sipsolutions.net>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Florian Fainelli <f.fainelli@gmail.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	Melissa Wen <mwen@igalia.com>,
-	=?iso-8859-1?b?TWHtcmE=?= Canal <mcanal@igalia.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	kernel-dev@igalia.com,
-	kernel-list@raspberrypi.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] ARM: dts: broadcom: rpi: Switch to V3D firmware clock
-Date: Mon,  6 Oct 2025 13:35:09 -0700
-Message-ID: <20251006203509.2056322-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251005113816.6721-1-wahrenst@gmx.net>
-References: <20251005113816.6721-1-wahrenst@gmx.net>
+	Conor Dooley <conor+dt@kernel.org>, linux-wireless@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH mt76 v2 1/3] dt-bindings: net: wireless: mt76: Document
+ power-limits country property
+Message-ID: <20251006204529.GA549972-robh@kernel.org>
+References: <20250926-backoff-table-support-v2-0-16d3726646c4@simonwunderlich.de>
+ <20250926-backoff-table-support-v2-1-16d3726646c4@simonwunderlich.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250926-backoff-table-support-v2-1-16d3726646c4@simonwunderlich.de>
 
-From: Florian Fainelli <f.fainelli@gmail.com>
-
-On Sun,  5 Oct 2025 13:38:16 +0200, Stefan Wahren <wahrenst@gmx.net> wrote:
-> Until commit 919d6924ae9b ("clk: bcm: rpi: Turn firmware clock on/off
-> when preparing/unpreparing") the clk-raspberrypi driver wasn't able
-> to change the state of the V3D clock. Only the clk-bcm2835 was able
-> to do this before. After this commit both drivers were able to work
-> against each other, which could result in a system freeze. One step
-> to avoid this conflict is to switch all V3D consumer to the firmware
-> clock.
+On Fri, Sep 26, 2025 at 12:04:52PM +0200, Sven Eckelmann (Plasma Cloud) wrote:
+> The commit 22b980badc0f ("mt76: add functions for parsing rate power limits
+> from DT") added filtering of the power limits based on two properties:
 > 
-> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> Closes: https://lore.kernel.org/linux-arm-kernel/727aa0c8-2981-4662-adf3-69cac2da956d@samsung.com/
-> Fixes: 919d6924ae9b ("clk: bcm: rpi: Turn firmware clock on/off when preparing/unpreparing")
-> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
-> Co-developed-by: Melissa Wen <mwen@igalia.com>
-> Signed-off-by: Melissa Wen <mwen@igalia.com>
+> * regdomain
+> * country
+> 
+> If either the country or the regdomain matches, the power limits are
+> applied and the search is aborted. If none of the two is defined for the
+> power limit, it is a global (or "fallback") power limit. The last
+> "fallback" power limit in the list will be returned when not matching
+> regdomain or country was found.
+> 
+> The idea is here to allow to specify "overwriting" country limits in front
+> of the list - just in case a regdomain is shared but a country has
+> additional limitations.
+> 
+> But this property was forgotten to be defined in commit 2de6ccebe0e7
+> ("dt-bindings:net:wireless:mediatek,mt76: introduce power-limits node").
+> 
+> Signed-off-by: Sven Eckelmann (Plasma Cloud) <se@simonwunderlich.de>
 > ---
+>  Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> index eabceb849537c418650697da86682ef04c979193..f8f72f3f1b1dd185b4797be38b87c621ef3eac08 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/mediatek,mt76.yaml
+> @@ -151,6 +151,11 @@ properties:
+>                - ETSI
+>                - JP
+>  
+> +          country:
+> +            $ref: /schemas/types.yaml#/definitions/string
+> +            description:
+> +              ISO 3166-1 alpha-2 country code for power limits
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree/fixes, thanks!
---
-Florian
+This would be constrained to something like this?:
+
+pattern: '^[A-Z]{2}$'
+
+> +
+>          patternProperties:
+>            "^txpower-[256]g$":
+>              type: object
+> 
+> -- 
+> 2.47.3
+> 
 
