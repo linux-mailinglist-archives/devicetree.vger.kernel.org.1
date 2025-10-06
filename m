@@ -1,130 +1,206 @@
-Return-Path: <devicetree+bounces-223908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 561A9BBED9A
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 19:49:36 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E7BD0BBEE3D
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 20:11:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51B62189B0FF
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 17:49:59 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BD8A54E337E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 18:11:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B3FD2D7DE1;
-	Mon,  6 Oct 2025 17:49:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B66B52517AC;
+	Mon,  6 Oct 2025 18:10:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WwWkXxpj"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="H47PG8JT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC5782C374B
-	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 17:49:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1185E17DFE7;
+	Mon,  6 Oct 2025 18:10:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759772956; cv=none; b=aboTkl6x+eI3U7UZ/GS9lJ47hOUvptp9rjsgW53GL12JL8+rIyDZ8nGywDwjJXIQA5d+FTqkXg8ZyMXLRmJc5fRpeAwMNO2SJf7uNInNioXBIW8sGoanf+vN8VCQ2Ui6FVBGX4baxx4RmczSN0gZpBw7RW5ZwcddRv5Ox/JMrY0=
+	t=1759774257; cv=none; b=gza9QD2yR4ce7EMkmKzuxkUJ0Mn1FqJo3VyCnVgI2P68gzgGVIJz8Izrg9m66VdRcS5iEfE/YbqCSh3aqqOAby79i0HODF7Iy5yHF5qhVEoZQu/p4jbnll8CEPRsJQgbG5goFugGN0/2c1yVej/WHsKPWh7qQH6Yre/Q8od8O1U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759772956; c=relaxed/simple;
-	bh=3ngI3i1BG0C9azbqBN/4q7nJ2yCSJxmqD7ABvsTPKbo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ik2CBbyZ38u411SsPlSTWfhtIBMSHbN4ibEJtEQfW2n15NEIujDGr8Jl5L1EDKpdCNzgOkRB6MLUZ+5OWTHQt3z7loqkITGNQE1NBccVTsa9B8HTHEkpDxYKor8L404t4NfvdSqESG/bWNnvgM/XYEtzbfd/mSSMZTW45B2jgt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WwWkXxpj; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3fa528f127fso3931635f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 10:49:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759772953; x=1760377753; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m97kyP3HTS70kAnw3EPRct0ZUapkHpzYxU+r81cO+AM=;
-        b=WwWkXxpjYos2/qMK2ZLnapYpV2ifijI5TPpo1Xy+hmWOJ+dAfVzs8SNegpoye19zuJ
-         YV4LBT5TweCPKQbXheOHqv8ygzTVUqywdrSum8YtZCEvpgSsLzkL7OLoOiBhqTGDErIn
-         ZGigfVhE4mm89mCl8cjNdm9j6VDEkmyzYu0pTcUltnnlGr54z3VGPsis0sgnHMEhnWml
-         22rHF/ppLvNbNFqh5Z9TBOQ5dPEU6mAjN7O+84QQ9/av+2sRYNQIQtasZwD5ZpQza2KI
-         fY+gYTgkT/i/qG957LilELrODFGtjG5RuBcw+5RDk5PEkBLlPqDPt8LZpkCzM/o5Mq4M
-         nTmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759772953; x=1760377753;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m97kyP3HTS70kAnw3EPRct0ZUapkHpzYxU+r81cO+AM=;
-        b=Kdz+PbuhCcKjSjfjCuTvCG1vRsZX6m10APJNpbCU4ywug8veTQ0uhFB5s6oeWW9yiw
-         nlLsd5wHWVEJ5ZkBELPeitRqojSK/jZ8rLQJwKCd5ia5Fr7CY4h1WCZdLD2xFtpSeUnf
-         JSNvU3E9isXwqoLtyXDa73JFgJlDhjP4rAm5cWfJ7dk7uSdEYJg+lt0ETW11kJV0ycKZ
-         EfPDO60YF9Ym2WNkyBEW+f9eN6zhhXh0w8//hUHZNIqmdn5xyb31G8mw2LcuDWZ0HpAn
-         m9KxBUORdOJsTvVMPh8CbQwehPzBuBZ6gUYL9NBVS9IHZyEffKYu/plGJuKFcoF+Pkeu
-         Ehbg==
-X-Forwarded-Encrypted: i=1; AJvYcCUDU+tG/MOvnPazzRsstIwdEMpjOpWjlEHi4d5GC2leVeVXDY08Dn3gy2SAncyq4I9hL1r7fMPaIL6U@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxQT8uD4R/ZkJIBZGn29FrpUN+q1q9Bh//g4+8Aiw3k3x8Er2u
-	szvufclpZDPzvY24RBzxiLSB6bEXwnBkBbSfxkWs80zSI9zcLYxUvFJ1
-X-Gm-Gg: ASbGncsqitTtIJzbOLvrRM2tuN3UPL79742+sv4mmXPFcMmVNNpYTqD8SsvrsXXSBqQ
-	py5vE/C2x47wLJ/yagLklTBXS7KcTRdhypqietUQsiXY1r9bmlIEuH138wHHPGMtLF1Ew6fc9k+
-	v0yoq5Imi5vCWhlv9XKo+nxdO4Fmq+OSO9mzbbxpv9CKrBHHDUZ+2f+YP4Bclw/liVRGUHsA9eM
-	eq6cKnYLqlUEZuWbV+C7e0wLPyOpqVRsGckPdQ/rx2JtJWzT1VH6DpOBghVr22blHpHKw6njbqX
-	X2sW1dOAK/ufHZ2j+7uxX48vs7WcprrEJOXUTJBbwuGDqVNZGJvJ4NfDCgyAnI9rdLSLlaQA7uu
-	xWpFimZ9UwvjCNqoaJt+x5Eas7hpVRZjcFZqh7OQ0122ucL0Gaon96Wi0Cszk/8Hks/J3jhqdCF
-	MtIGLPMsTOQUhl
-X-Google-Smtp-Source: AGHT+IE2Pzmgs3VUZH/0TbCLMEfb48/r3e2i7E/BkZcZEo5ZwNdHsN2nAkcr5VfRqIzxaVDfKWYPyg==
-X-Received: by 2002:adf:e58d:0:b0:425:82b4:a099 with SMTP id ffacd0b85a97d-42582b4a0bcmr165796f8f.0.1759772952950;
-        Mon, 06 Oct 2025 10:49:12 -0700 (PDT)
-Received: from ipedrosa-thinkpadx1carbongen12.rmtes.csb ([5.225.139.156])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e723431f5sm165583805e9.2.2025.10.06.10.49.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Oct 2025 10:49:12 -0700 (PDT)
-From: Iker Pedrosa <ikerpedrosam@gmail.com>
-Date: Mon, 06 Oct 2025 19:48:55 +0200
-Subject: [PATCH v3 3/3] MAINTAINERS: Add entry for Sitronix ST7920 driver
+	s=arc-20240116; t=1759774257; c=relaxed/simple;
+	bh=bFlVusYledbzV6kZzMCqdHFUerESt+ciTv2aOWN2M9s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=rX9A1oQ+ewA5Ie7kJb9OzATh3hhHG3OKfl9HlhP1f+64CBoWwyrKm5JOaz0tpMEIFNH8w5q2OnJnkOMLbRiQr+f06qY5ecVCTMPSpQmSt0ZAJT71K0Efa6FrvvjM0O5hnAAucd7ctJyBaiH8EJ5t9u5+HCTRzdV0h7urXlblD6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=H47PG8JT; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0360083.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 596DS4kT006249;
+	Mon, 6 Oct 2025 18:10:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=cc
+	:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=pp1; bh=rbzSosSP831aQq0DTGiJxDg+xxTE0zSTAmTTY47AE
+	kA=; b=H47PG8JTpegbfS/Tf0m7VwVRYD0kyqKVre46BXKFWWTaiXhmBux5K240+
+	vgQ+BWX+lWVNGSwgS8Smv63c1k5iaNW0M4vz1mu8KayqHj8TnO83MKXyAqsLctxd
+	4pb44tuWe4aEOMtX7xkzAplxx9ViIrRwILGtFoH43mLQbfcjABI7dhmfXTF7VXrq
+	noaRXN+iDw7IFO/tcWpOFy+4VzFAlGY2q1Q3SZM/J/Bzs9C48ilzzA0sVYMum4d7
+	5b46dzHKn7oM5myDi8fyWk5yCoowqAfKz/d596tkEmO7tnBqG8slXRTIizr0aPQ5
+	KZCHDliDsQJvA+aIlEFHczWRzLUag==
+Received: from ppma21.wdc07v.mail.ibm.com (5b.69.3da9.ip4.static.sl-reverse.com [169.61.105.91])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 49ju3gu0va-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 06 Oct 2025 18:10:49 +0000 (GMT)
+Received: from pps.filterd (ppma21.wdc07v.mail.ibm.com [127.0.0.1])
+	by ppma21.wdc07v.mail.ibm.com (8.18.1.2/8.18.1.2) with ESMTP id 596GXi9i028410;
+	Mon, 6 Oct 2025 18:10:48 GMT
+Received: from smtprelay06.dal12v.mail.ibm.com ([172.16.1.8])
+	by ppma21.wdc07v.mail.ibm.com (PPS) with ESMTPS id 49kewmydu0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 06 Oct 2025 18:10:48 +0000
+Received: from smtpav05.wdc07v.mail.ibm.com (smtpav05.wdc07v.mail.ibm.com [10.39.53.232])
+	by smtprelay06.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 596IAlkZ25821800
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Mon, 6 Oct 2025 18:10:47 GMT
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 7FD5558061;
+	Mon,  6 Oct 2025 18:10:47 +0000 (GMT)
+Received: from smtpav05.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id DD55F58059;
+	Mon,  6 Oct 2025 18:10:46 +0000 (GMT)
+Received: from slate16 (unknown [9.61.74.248])
+	by smtpav05.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Mon,  6 Oct 2025 18:10:46 +0000 (GMT)
+From: Eddie James <eajames@linux.ibm.com>
+To: linux-iio@vger.kernel.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        conor+dt@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+        andy@kernel.org, nuno.sa@analog.com, dlechner@baylibre.com,
+        jic23@kernel.org, eajames@linux.ibm.com
+Subject: [PATCH v8] dt-bindings: iio: Add Infineon DPS310 sensor documentation
+Date: Mon,  6 Oct 2025 13:10:40 -0500
+Message-ID: <20251006181040.25845-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251006-st7920-v3-3-4f89d656fa03@gmail.com>
-References: <20251006-st7920-v3-0-4f89d656fa03@gmail.com>
-In-Reply-To: <20251006-st7920-v3-0-4f89d656fa03@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Javier Martinez Canillas <javierm@redhat.com>, 
- Iker Pedrosa <ikerpedrosam@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAxOCBTYWx0ZWRfX7HJyPlMaCDMV
+ vjP7FT8O2l82BIqU3Mtpl62P8y1J1oYHncM1xYEavU/KUxsRelUd3Ynu4dhae1+QsAbUtDPP4xe
+ iszzKy1/Std3c4LUU8/xNZgONUqOb/R6FywlXjDol4A/gVAMBct9QWEMNrRMNwO3SOg67q+N0go
+ L9sDCDV0F3caI8QPN7SD5E8bQLXJVtT1gXt3iYiZrxrCdQ/ZjHkpgJk7gU9+1VHH55sm7Y9egq+
+ 20QEdn+1gB1IDaK7byso8GXhoHRAfbDIWsgdxkBC/1nV7oSW3DciXUPNisNLHK/PueQ+k1Loxey
+ m5VymkZq5b0qFUizxr3HHmub47QQDPCBcjGktSQr4iCSbfytWmvuXo15v7LwGSWdEEhIrYUkX3q
+ KKLkbqLNutyLSc5PNdQ9sPD7eYC+Pw==
+X-Authority-Analysis: v=2.4 cv=I4dohdgg c=1 sm=1 tr=0 ts=68e40629 cx=c_pps
+ a=GFwsV6G8L6GxiO2Y/PsHdQ==:117 a=GFwsV6G8L6GxiO2Y/PsHdQ==:17
+ a=x6icFKpwvdMA:10 a=gEfo2CItAAAA:8 a=VnNF1IyMAAAA:8 a=VwQbUJbxAAAA:8
+ a=lG3Z5ILtqDq3c0xvBIoA:9 a=sptkURWiP4Gy88Gu7hUp:22 a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-GUID: 6I9M5AfC7YbFFug4Vi_X7qBdwjj81TkN
+X-Proofpoint-ORIG-GUID: 6I9M5AfC7YbFFug4Vi_X7qBdwjj81TkN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-06_05,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 lowpriorityscore=0 malwarescore=0 adultscore=0 spamscore=0
+ bulkscore=0 suspectscore=0 clxscore=1015 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040018
 
-Add Iker as ST7920 driver maintainer.
+The DPS310 is a barometric pressure and temperature sensor with
+an I2C interface. Remove it from trivial-devices.yaml and add its
+own documentation, with a hwmon iio channel consumer example.
 
-Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
+Signed-off-by: Eddie James <eajames@linux.ibm.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 ---
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+Changes since v7:
+ - Add consumer example and update commit message slightly
 
+ .../iio/pressure/infineon,dps310.yaml         | 48 +++++++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |  2 -
+ MAINTAINERS                                   |  1 +
+ 3 files changed, 49 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml b/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
+new file mode 100644
+index 0000000000000..f35ef2ce74d6f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/pressure/infineon,dps310.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Infineon DPS310 barometric pressure and temperature sensor
++
++maintainers:
++  - Eddie James <eajames@linux.ibm.com>
++
++description:
++  The DPS310 is a barometric pressure and temperature sensor with an I2C
++  interface.
++
++properties:
++  compatible:
++    enum:
++      - infineon,dps310
++
++  reg:
++    maxItems: 1
++
++  "#io-channel-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    iio-hwmon {
++      compatible = "iio-hwmon";
++      io-channels = <&dps 0>;
++    };
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        dps: pressure-sensor@76 {
++          compatible = "infineon,dps310";
++          reg = <0x76>;
++          #io-channel-cells = <0>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 58ff948d93c96..a76c58f3b1de4 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -127,8 +127,6 @@ properties:
+           - ibm,cffps2
+             # IBM On-Chip Controller hwmon device
+           - ibm,p8-occ-hwmon
+-            # Infineon barometric pressure and temperature sensor
+-          - infineon,dps310
+             # Infineon IR36021 digital POL buck controller
+           - infineon,ir36021
+             # Infineon IRPS5401 Voltage Regulator (PMIC)
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 5ddf37f0acc960039422ef988cadfa7176972fc5..79b8a277e38b55ebcff05450d6c565c0d87c6b51 100644
+index 3773c74b31d6d..bde80ddb99e9d 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -7861,6 +7861,13 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
- F:	Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
- F:	drivers/gpu/drm/sitronix/st7735r.c
- 
-+DRM DRIVER FOR SITRONIX ST7920 LCD DISPLAYS
-+M:	Iker Pedrosa <ikerpedrosam@gmail.com>
-+S:	Maintained
-+T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
-+F:	Documentation/devicetree/bindings/display/sitronix,st7920.yaml
-+F:	drivers/gpu/drm/sitronix/st7920.c
-+
- DRM DRIVER FOR SOLOMON SSD130X OLED DISPLAYS
- M:	Javier Martinez Canillas <javierm@redhat.com>
+@@ -12217,6 +12217,7 @@ INFINEON DPS310 Driver
+ M:	Eddie James <eajames@linux.ibm.com>
+ L:	linux-iio@vger.kernel.org
  S:	Maintained
-
++F:	Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
+ F:	drivers/iio/pressure/dps310.c
+ 
+ INFINEON PEB2466 ASoC CODEC
 -- 
 2.51.0
 
