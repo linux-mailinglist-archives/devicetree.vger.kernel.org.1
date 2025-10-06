@@ -1,273 +1,192 @@
-Return-Path: <devicetree+bounces-223794-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223795-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9C1DBBD93C
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 12:03:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 894F8BBD978
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 12:05:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7239418967C7
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 10:04:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59ECC18969BF
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 10:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92C7121CFE0;
-	Mon,  6 Oct 2025 10:03:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 364C821D585;
+	Mon,  6 Oct 2025 10:04:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b="eIGZLXRq"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="drXkFUCo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11020132.outbound.protection.outlook.com [52.101.84.132])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E0812135D7;
-	Mon,  6 Oct 2025 10:03:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.132
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759745022; cv=fail; b=okSSvuVrYmBYyBfMwQmD9u1Z8AenzeDK7AV+xuz95jB/dGaWNHlZp1DrG2ROQ8L0vZSYBFRWHN41PVbOGQAtEXJFvuLKOGQBjb7+IOUF0DnWPObE7viR46ZfjdBJ0XIkr2+Spchk4btBZds6Z/YlRUaALZnWckpCvq5HHZnEaqw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759745022; c=relaxed/simple;
-	bh=y96QswxoPQqU3s6eitVjmrEsJbIlW8cGISIawCM2I6I=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=dJFMdlJGvF5b4VJrOqXYH6w1WqaO7FH+NjT3eAwfjDUWh87XRj6R9OgnmrfM6nn5vqbJmkvAfPyrtU7811KKua6vC6blD0ZIBH2/dwi1X8taQjdCuZvGTiHINlMs8tKF4HomsishNvPT7g5PAJ5EXjfAdSxVF54KMHvwJSYcOhQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com; spf=pass smtp.mailfrom=gocontroll.com; dkim=pass (2048-bit key) header.d=gocontrollcom.onmicrosoft.com header.i=@gocontrollcom.onmicrosoft.com header.b=eIGZLXRq; arc=fail smtp.client-ip=52.101.84.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gocontroll.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gocontroll.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DEmWZyPVEDga/YVRbB0rBcAl4pGFDI8OU3ciLJ8F+GGJKpDWk2JoYv1J7EK+pPJq0j4ds0jkWpKAKRCFtsoI++Z1AMCXU5lEPoIOqHJTRb8cXEe3ULpKBjpTMLfM2Fdr0YKyMh9G/5lchs9bEDwcXv1phTAcZXctopBQb/cHoE+NudhgQMZ+Fj5jDk6SzugbUSveU6wYrp0Jb96Ml/9oAb6yeltQ/qaPDx78/HW4AIPYknxsBSLJEHxGPztEPIlpqIo/2PR7FXLHRXYyv2nt7Bx7t3Yxqmr5Ob/lnUkL9X/drL8CV47JHGcHXAwZmy9CW+OsX2biSGgE/POxrytpGg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vYdv4SGfdrXn6SZIeaZsVc0w5axvdFAOM8v3r8fxOro=;
- b=hoS6CEA6b4vx5FJVK1n09wtdoBCDVQdUVDxOzvUwRLtHz0Eg9av4XjM2/aw/4R+ZWbG2+82MDLoHd+jjvO8hM5UIK3tFkgrQDdZI3heloA9KCOG9tZulc2GagI+0GtadqAQAq2fgl5lfapX9w0+C+D3Flo9fb0FPvox5pqjl2VL2Tyl3aCQ3S055Ib9MS1hIuqEpR3o/O3rfDXeAUuubu/1bxD3qomeqMzaiI4+5haau2V1YT+CfQri23x3wVRSZb7ysvuezT1e3aRXPsgMkEV07tM6uPvvO62n/seRjKz4dALqyyCvnwzmg/1xQhdH9QwTiYYpxKneJh5J4HihojQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=gocontroll.com; dmarc=pass action=none
- header.from=gocontroll.com; dkim=pass header.d=gocontroll.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gocontrollcom.onmicrosoft.com; s=selector1-gocontrollcom-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vYdv4SGfdrXn6SZIeaZsVc0w5axvdFAOM8v3r8fxOro=;
- b=eIGZLXRqZa1O4JVqfOYlH8WJ3djnBG1ImYloTmiHsUJexR8mY/BuQmzTU6168KNjSAT+Ss2NIthHBNpzKJqWlNykomishOfh4DctTdY/O1UiszalcSgvgx1lA6VkyUoW4t5EuL0AD9KEtTtS3bK2t7+hv/z4ZDBYTLdPRn1YtOOZQEgr8c7RVuQo8tDlYqHjSs5SN1WwCg6OLWJ+eJ4Is+VRaLm/Yx0U4pSlrHSNCSDTBb/Tl5V33kp/8OCTCdxdbVQW13Kt1T2+rysTDqbzukf40pbQBokGIC48ZngRz2UVS4dC2a3DuOXBbnKHQgo47AcrR3i9CxOu7zYfvnZ7zw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=gocontroll.com;
-Received: from DBBPR04MB7628.eurprd04.prod.outlook.com (2603:10a6:10:204::21)
- by DB9PR04MB9865.eurprd04.prod.outlook.com (2603:10a6:10:4f0::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Mon, 6 Oct
- 2025 10:03:32 +0000
-Received: from DBBPR04MB7628.eurprd04.prod.outlook.com
- ([fe80::13ac:aaf4:c0fd:2106]) by DBBPR04MB7628.eurprd04.prod.outlook.com
- ([fe80::13ac:aaf4:c0fd:2106%4]) with mapi id 15.20.9182.017; Mon, 6 Oct 2025
- 10:03:32 +0000
-Message-ID: <5c5cf363-db5c-4d0b-902f-97c6ef06c08f@gocontroll.com>
-Date: Mon, 6 Oct 2025 12:02:46 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: backlight: Add max25014 bindingsy
-To: Frank Li <Frank.li@nxp.com>
-Cc: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>,
- Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>,
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, dri-devel@lists.freedesktop.org,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20250911-max25014-v3-0-d03f4eba375e@gocontroll.com>
- <20250911-max25014-v3-1-d03f4eba375e@gocontroll.com>
- <aMLrrcBZ2Kc4o84t@lizhi-Precision-Tower-5810>
- <3960b845-3838-4690-b01d-21e61ccfa8fd@gocontroll.com>
- <aMQ6rZJzbMeBrrFv@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Maud Spierings <maudspierings@gocontroll.com>
-In-Reply-To: <aMQ6rZJzbMeBrrFv@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: AM0P190CA0026.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:208:190::36) To DBBPR04MB7628.eurprd04.prod.outlook.com
- (2603:10a6:10:204::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 960F322AE45
+	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 10:04:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759745050; cv=none; b=W+kKbatkfznpc+1l3UljfVPVAgFxU0rm1qEQnIr1MJoFF2X+LlRD9YwWwyOcaKB3s/tZviLsU0dbl7gRN/WBNlA3y7yK0qZ7gnWEmZ3wJtRc4HgeuuU0t/wopOvcI3c3Pb5baBZY8VSItc+575h7I73L+bzXqXRIGwxYMoFQ+oI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759745050; c=relaxed/simple;
+	bh=yA3VOCeWJpMeFPPSvsnSB7GRPYFUREqE/fSTw/m8jVo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NM1LVVOvWJiqlXL9NgwEfxdWJ9wWU5SfRLpUVIu3lAo6tjg/R3Ssa+0ORmGtQKaXZypnVGB027GIhIrJQ/UFhjpKMbWn+jXNN6dik9AH+8252cVTwpVgZijjJ+y3nHkDpkmrulmsToExNlyXkrX9MQpFVIWV1bYSy7PFXJOcUTw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=drXkFUCo; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5961THsO029492
+	for <devicetree@vger.kernel.org>; Mon, 6 Oct 2025 10:04:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=ue1wSy69VigC+Md65Qg2LywO
+	1m5qENAP2gsLG1UwtMM=; b=drXkFUCow2VacKOQ4WAGbx/LxgoMHcroSNSFsk9y
+	v30uTWmoQjVE4w8Mj8et6SGkM9ozwO8jOlErLGhczGwaHwK8jBg2LU84Kwj4tmCt
+	ZpOCvmUObqaZU6UwxneMf91ZUYLG31ts3+IOlUjt36IWeLDK0FmF+R27f66xJku5
+	Pdq05yU/roFJcNbFhej6dnMitj10BLHaclknHrurzlHP/TwSLsTNJBuBFijSJJ0X
+	gPFMURuMCxjnDHp7eFmOpi+HY5HfkNEFE1n2txJ/6Gy//Ooqni8m7F6T+AIFdB57
+	CWL1RTf8x2Tx8JpCSiiwN1tLuNNrx5Xv1y1XZcvBVPS9Tg==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49jtwgkm02-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 10:04:07 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-286a252bfc2so52991065ad.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 03:04:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759745046; x=1760349846;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ue1wSy69VigC+Md65Qg2LywO1m5qENAP2gsLG1UwtMM=;
+        b=xHDMfewMoF+jvD5s3MgHzgPIwU7xhCAffVLAkjEp5PNNgssr8U2r3DFMG19NOAGKmR
+         8MCkC5VeG/xDLhCG3ZZhh8AdboTdvysuzMBzG34BWG3n31/liNw8/px9A2ChQOFcY3SF
+         3Wx9oIV+G1fBShd9MgaFm6I1jlO3+xLItgawJtZHalQ5sIEcKN+y/qPKgVmS4lTco1Ww
+         yQqFvd6rbCCX6CZMtWfJHf60YXxEDiaXjSRaMuKlovCr8dIq3SZ6INHVh4h0mVoQXiu3
+         RmjNCcf+n+F3YMYtxDxDcRfZCbq9+o14qXF9JNwymLYr1ubF/Ez7HAva0P0e65y46kgZ
+         UxZA==
+X-Forwarded-Encrypted: i=1; AJvYcCXQYrAlmcXxPdAOdxzMRxMdhjLenzECcmKVTjWB7D5tkfXD7J/nEA+mRk0hpHeQRc3S/bT8JZaVKixu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxrc1D0fCvLuz8IbiD4OiUsQzT3mPlrzr2Twvunen9YPU2OmlbR
+	XxC8Qi9XK4nUPRbABbTNjYp2Ssm6JEbV29J7QcngoafD86JT8ts+eEBNjnxG7BtEqv+O5Xk0ozf
+	egEZq+8ob+cMe2wP8VN/DLIIwrRM4G3fkb3BWj8rFrVGRU+bPqtzyW8w4NHtmwoMN
+X-Gm-Gg: ASbGnctjfv+1ySWVF2n3Ti9YslHWMpj9VX5hqdVrbh+i97XuRBNgyZkfQsdtm+OXdLW
+	Ahc+Y79ru26PlrlNteLTs13Udm0BdZEvh8hANsaPBKfiEQwq8dDIgCGtFOrum3FoeOv9j6bM2ct
+	2M8goVgeTkVW5CiRF+s847pl/f0XYyXIW5mK9nsxdb9RIBsZ3Axv2zDCrwtZ/mS7ALIqisXjhrH
+	OoZiTzd0j6IQ6cDyBjQHXfkZviF2rkMpqwVFGSVrYqTT8piAvEdaGkR2CCAyG3zb0nFdl+NgPN3
+	tHp9ULy4BbGDNtkip+u5y1Sai9GXH4pzn1O8jgxvl1uNcDOwV4IiqnYHswQ+UUdycl6KFSdCxzh
+	pe7c=
+X-Received: by 2002:a17:903:2c0e:b0:27e:f03e:c6b7 with SMTP id d9443c01a7336-28e8d038b9cmr202072325ad.10.1759745046075;
+        Mon, 06 Oct 2025 03:04:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGXGuzsXDqH+HypDtrXeh1/naCIbPt2MMoelAPp09TjufTVxo08OD/KS48Pkf9lpBlURXi7ww==
+X-Received: by 2002:a17:903:2c0e:b0:27e:f03e:c6b7 with SMTP id d9443c01a7336-28e8d038b9cmr202071845ad.10.1759745045504;
+        Mon, 06 Oct 2025 03:04:05 -0700 (PDT)
+Received: from hu-pkondeti-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d111931sm127803415ad.17.2025.10.06.03.04.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Oct 2025 03:04:05 -0700 (PDT)
+Date: Mon, 6 Oct 2025 15:33:59 +0530
+From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: hrishabh.rajput@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2] watchdog: Add driver for Gunyah Watchdog
+Message-ID: <a7633abf-0005-423b-b152-e8c70aa5c27a@quicinc.com>
+References: <20251006-gunyah_watchdog-v2-1-b99d41d45450@oss.qualcomm.com>
+ <3b901f9d-dbfa-4f93-a8d2-3e89bd9783c9@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DBBPR04MB7628:EE_|DB9PR04MB9865:EE_
-X-MS-Office365-Filtering-Correlation-Id: 665a5e91-4c3f-4eb6-b508-08de04bf9aa8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|10070799003|366016|376014|7416014|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?aTRDaDdta3ZoVk1SVGVBNmxnTFpvSVFLWC9OeVlHaTNPenRpOXB4MFNwbXdZ?=
- =?utf-8?B?cG8rYnRCZnp3TVlCQUFvM01jclUybVczNUJWd0kxWnFtU3dzVGthMWdJZHJR?=
- =?utf-8?B?NUd0alNOT2h1MS9ST3kzWHhyRnJ6cmJYVEkzd0ZRaVlLdUhhUWYxNmsvNEtu?=
- =?utf-8?B?Y1RxL3VTcUFpUnpDeXlzOXNYeWRpQUdBL2taaGVQVUZmSGVvMTVJR29HWGcx?=
- =?utf-8?B?NEYveEtaczF4dGxRQTkwb1oxTmNrc25JM2FsTHhoUHJzUFdaTC9HUVNtREwx?=
- =?utf-8?B?eGtsVmtvK1ZleGRMY3Z5elpHQzNNOTJINHY0TXIrZWdPMUpsZW1SL2pidk5O?=
- =?utf-8?B?UFc2QVhCYnJjWktRUnpNTk1mR29oWFZIWDE1OUFXY3JqWDNZSjQ1TGpCdlRV?=
- =?utf-8?B?KzJycmQ3N3RqaWtNTVYxVFk5eENSN252b2dyQ2luaHlMdldSRkpUWGZtbUlE?=
- =?utf-8?B?d2tHcHBmdEVpdHJzNmJuNGdQOFoyWTRxeVl4MmFLWGdXWUxGck51VjVselJO?=
- =?utf-8?B?MlZMTHdwUVFUWk5tdXVjMDFlSDRnblRhN3RDTCtIRzVWOGR4YUNvUGZxbTUv?=
- =?utf-8?B?V0Y3NytBMU1nR1kzVFVoSWoxUUN5eDdlL1RrQ1Z6TE9yamN6dms5ejhucmk4?=
- =?utf-8?B?N1ZmRDFlOVNld3R6Z0R0Z0dzczJNN01BbGxlL1lNTlRvbjIrcWtoWHFsRTF2?=
- =?utf-8?B?SVF5WVVhckVEOWxUTCtQT3BEOVRIODlXa3NiRzZtakRINmZuNE1MaVVSL1Jm?=
- =?utf-8?B?ZzR6OExLQ0tvcm55U21mNEkxSVNtQUY2SHVEU3NuNjhOcWJhWUFJTzdVTGEr?=
- =?utf-8?B?OG1MbmZjUUhsbjNXZE9HUzU0WXJweXpueXFsRUZpNktHeldzcFlmcVJhWTYw?=
- =?utf-8?B?WGh5N2xxbVFSQkVPWTZBeGJaK0l4S01lMGU1VUphODk4cVlUNVRrMWY4MGhR?=
- =?utf-8?B?Y2N5U00zZkRPVk5jRVFaWExvYnBqRndWdkgvS1htVENTK01NZm1TMWFoMVBO?=
- =?utf-8?B?SURhRGJvWEhZUFJETURzVGVlMmh4eW1KWWdEZDFOWW5XNmQ4SmhGa1NndmRv?=
- =?utf-8?B?RFdqSTdTT1FVSjJJSS93TmU5L1lpQW5pWk9qdnVnSXgvQzJTR2YwbExaQ3NY?=
- =?utf-8?B?N2drN0dBZDdpTEVJdWJLSEFpQkQ5TnB0dEZsZWdwSlQ3TUVONUNLVVR2blV4?=
- =?utf-8?B?SFB3MlhOem9TUnUyVmZiWWdhZ2JKOThJOWxBZ29FZGNQeXNRV3MzaUNRbVVC?=
- =?utf-8?B?THJONUl1VU1FaHYwd1lNcUw1NHBOOTIvSXRtell6dUhCWWtaQ2ZxcVljZzY3?=
- =?utf-8?B?b0lTR011U2hzUktvM1RKWm8xVUxNZHhvV0puNmtXc1RkdUpCNzlvOUxvT1c5?=
- =?utf-8?B?ZG8xUEVhSFFOOVhnZy9EVllVR3M3UEE3T0x4cloyM3Fpd3htYUhlbzFpVStB?=
- =?utf-8?B?MW5iMHEwZ2JNQ20wTzFIdm5UZkJhODB6UktUMXJmM2hrbFdyRXRvRXpVVm5q?=
- =?utf-8?B?VS9vcTRHVjRKOVI4TWQyUmVIRUxVaVgxSE5NVDRYaVEvbGlnd0JnaDJ4K1Br?=
- =?utf-8?B?SFRUWjU4c29HWXg5ZG5xVU5rc2Z0bW8vUUJqWm9yU3kvSmFWUE5ZVDFrOWgz?=
- =?utf-8?B?WUFFUDY4TXNUTmo5bDEyU2Y0VlFEeVVjSjJZUWVSTmNDcWV6TkpQYVJDeWhp?=
- =?utf-8?B?bWhTY29IcUtmR1V5aC9BaitZdy9BK1pjWnNpOFE1QmxkUEhScE01ajFCRytH?=
- =?utf-8?B?N0hsUHZqRWtPN1lLSkNwdWpNSGVvYS9jcUtiSzNPekFZVmxPV2hzQXlDUU8r?=
- =?utf-8?B?Uk4zS1JzTDViSldpcmNsSDBpWFRJSUlocVpVdkd2QnBGTmIwaWZlOGFpU28r?=
- =?utf-8?B?VDU2WVpHblZQZmtXNnBHNUNNY2NrUUxLaGc2SS91NEJQdFE9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DBBPR04MB7628.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(366016)(376014)(7416014)(1800799024);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?dUZpeEk5NEt4L2ZQNVRpcnJoNGNwK2dyaXJJNWtwNnk3SG1uejFGamhCaStu?=
- =?utf-8?B?UnRnSFRybWtvQ1hHSkJrblhxK1JMQ3czTFFuZ2RqSVVJdnlPTWZKMXlXWTJW?=
- =?utf-8?B?OWFaNjRITVUyL3Qxcys0Rm5ubzd1YitOSmpqTEpYMnZvVW43WVdXSzdOYXJj?=
- =?utf-8?B?SHJiNU1GTEpkdWxkazJ5QUkveFd5SGpqakdmeFBjNFRGQjE2ZWE1c0loUVJm?=
- =?utf-8?B?aHZHNWVRRUdMVkNqU2Z2cm84bkFFeUxDMk9kc3lpcVIwUTJodVY5QmREVzZT?=
- =?utf-8?B?OUR0d20zR2I3MDdObXo2eDNNV2dzeXlXcWltNFQ1SCtkMzUrcGt2VGJwTDBY?=
- =?utf-8?B?aUtkRmx1bWVadllCUXdtV254NUhwQndTby9pUi81WHAxNDlGQkJrS1dhZE5H?=
- =?utf-8?B?blpnTWJnVnFXUUM2ZWZGemVhQmJnWVJpL2Rya3VsWjQ4UHVIekg5U3FtZkFJ?=
- =?utf-8?B?S0VtZ0RaVWdzUjA1V3d4TmlyeitZd3IxbEU3eU5ucG5xbjAvS25xU25ITXBI?=
- =?utf-8?B?YUhHR2QrSDhVam9TY0VtK3V0d1V1OEQzckYxR3RoU05aNXlHYkFCN3FwQnho?=
- =?utf-8?B?M3RJRExqL0pJR0liaU1ocUV2Zk4yeXVxOGxXSExQeGV6eUFIYmprc3U4OUxu?=
- =?utf-8?B?L1ZDWURWdlh2ektzcHNvU0krZHVDNXl6TzlFRlJFSk9NRnZBKzhRY0V6VUgw?=
- =?utf-8?B?UFFmTm9sYzMva1R6Qk0vKzEvR25UR1B3L3RudFM4aWl3NGUvTzZCSFRwSU9L?=
- =?utf-8?B?MDd5eW1jTTFQR3YxRzFReXRpRGR3UUVhamJtb0pHcDNHeVhTekdpTCt6c1pB?=
- =?utf-8?B?Z1F2ZWlVcDNQUWthb2xxNDBaYmkzYWhnSkNXVCtyZG5zWlRNTlo4VTRRNVhW?=
- =?utf-8?B?OTNiQWd4dUZDNWd1dWNlSVlLL2kwdzl6K0daamxVc1NaQkRUanhBSUt4WlF4?=
- =?utf-8?B?YkFzYUp2amJ6TnV5elNnU1hEcG5MMXE1TTB3TXAzOTZLNUFFT0FiUTVXdVVZ?=
- =?utf-8?B?R3ZTcEE2cjhSRFByeXRTdUs0eTFkNlFwZkFyYVhzck56dXlzUlVXdDNQQ1Zi?=
- =?utf-8?B?enc1ZlpSTzYxYjJmZFFJZEtyeTZ6NS9TY2FWeDNtUDkzK0tyRm9UNmJZcXho?=
- =?utf-8?B?UDZnTWNoZU9kVUFOWkJvV29tSUlpdjdGNitQN1ZKR25EN1FaSm9kelZOQ1hq?=
- =?utf-8?B?VTlFbndYVWEwNXZKY2licUdmcGpiOHF3UVZ0elRqTlRtZjg0VHF2dmZ4akNl?=
- =?utf-8?B?c0ZJek5WL2tOdFZJRGlUbUFNalNoaHVhYzJwYXBFU0dCQ2dKMzlGcFM3RXZr?=
- =?utf-8?B?eEtrbVViM2svbVd1MDA5YlFwRWErNWdXcVpsNkxzK2Q4TkJGaS9uV3dxbHZ6?=
- =?utf-8?B?RFdRMGtqR1FvZWhySFozWmtqdHNpajNLdFZhMkwrSU83KzRqLzBOQjVDRmNh?=
- =?utf-8?B?WVpEdmpZUXZKUXJOR0ZVK1JuZ05ZZUtBNG02M2NBc0Y1bTlQYTBqS2c5TWVD?=
- =?utf-8?B?dHg4bkZvbzlCTzBJUFVMcldPczVIeU1nTjZOVnFBeGJXVnJVZm16cmd3Z1J5?=
- =?utf-8?B?VkZaaEgxS2NmS0F2eXdNSGcreEZWeHdKbFN6Nzh4N0dOSnZzdkpPdU92b1Qx?=
- =?utf-8?B?ODBTOExwVHRHU2IyNmFZRnZsNm9tYVdyYnpJK0luVzVOK2hRdkQ2czh0S09C?=
- =?utf-8?B?TFJEcEpVRTNPeVRlOEZOWGpkYmxueGQzRXdsa2YyOHVjbkVpcjhuam5lTTg1?=
- =?utf-8?B?UUxrYjQwazViZ2dhSkYwc2c3Q2ZEN3hJdUo4Uk5oeUJPM1BkKy9RMEJIcVR2?=
- =?utf-8?B?VUVkOFA2ZWZkRVV5ejBNZWFFVEhxUlI0MnYvQWRKczFxelZVN214N2pkdlM5?=
- =?utf-8?B?enRuRmcyeDFqTXZpVC9yRmYxYStKOGxnMDZiM2doY1hTT2VhMUtWa0tHZkVh?=
- =?utf-8?B?dnEwRXNjbUhXakVrb3JXMVNmWGprTWFlSUtlb1R3ZDNhZWxZeW93aVhRYTRC?=
- =?utf-8?B?cUtaTjA3Q0UrK3pDYWFnSitzUHVKZVFlN1FFVk0vTDFaVHFxNk5xT2huQXNl?=
- =?utf-8?B?RWZsQXViMmpON0FFTExmakpKLzVKSXpRYUxrWEJ4TUxNTVIyK0RXN0MzNFp4?=
- =?utf-8?B?MzJkZnpkKzZqUmR3cGEyczFzUXJGWitCSHVCcSt6VFo4elQ5MWhCU0xjcjAx?=
- =?utf-8?B?Vk44emlsNHROQnl0TVh0TG9VTjlqN1dSdmFsQjVDQXJWanNvajQxRzMzUG44?=
- =?utf-8?B?SEwvWWhNOW40N0dmOWhxSXh3Ujd3PT0=?=
-X-OriginatorOrg: gocontroll.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 665a5e91-4c3f-4eb6-b508-08de04bf9aa8
-X-MS-Exchange-CrossTenant-AuthSource: DBBPR04MB7628.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Oct 2025 10:03:31.6061
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 4c8512ff-bac0-4d26-919a-ee6a4cecfc9d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: JfRrZvKxKDb1HGPeIzwimT3Mv/BUt5VjaheGilBNMwmd3dE/7ya89jJx/mAMhQdETFWdh6TqcQODVd4h9KVnfHQS6BirBUzPpbRL9cnSBn0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9865
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3b901f9d-dbfa-4f93-a8d2-3e89bd9783c9@kernel.org>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAxOSBTYWx0ZWRfXyovU20J73cj6
+ /3qarl4gwNKuFPh70Swi93ecbwoSEnhLLr7tuVOiwxFLAUBpiKHs0NXDvafjOX22fD58nW5nsm5
+ wrwu4uneR7B1bAcjRcQgO/YgtNBap/S2TDe7TOHoX6bfkj1NnSdG1iQPsUWr9l0wO72JzUW3Gdw
+ rGV+302IJR7/8cMu6l4CEe2l+6jqFkxvM1n8aEyKZjiPzQnnWy5xTg1NEPVVwV68Pu3XuVB8BB2
+ nxTwYDw2lsa3MK4pTPy7ceRlgF3/VfNT89g4qiPGzTXLPvVIox7krfNYefOTDI3Fv1trgK8phOE
+ XwXZV7wrEJ8RV97mnjnC51rJwfw8JASnVVpLvhyWha1lLAnOIz7YMu8mDz0UnsZ5CAnoF0KMeWp
+ Kt/OHeNTaOyzHbYrlxLvVPw9FdxyVQ==
+X-Authority-Analysis: v=2.4 cv=B6O0EetM c=1 sm=1 tr=0 ts=68e39417 cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=kM1oLTEIhtBy5IrTauIA:9 a=CjuIK1q_8ugA:10 a=324X-CrmTo6CU4MGRt3R:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: vzijzFzKGinXKt4AF5O27slTkGodf7bK
+X-Proofpoint-ORIG-GUID: vzijzFzKGinXKt4AF5O27slTkGodf7bK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-06_03,2025-10-02_03,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 priorityscore=1501 lowpriorityscore=0 adultscore=0
+ impostorscore=0 spamscore=0 bulkscore=0 phishscore=0 malwarescore=0
+ suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
+ definitions=main-2510040019
 
-On 9/12/25 17:22, Frank Li wrote:
-> On Fri, Sep 12, 2025 at 08:17:09AM +0200, Maud Spierings wrote:
->> Hi Frank,
->> Thanks for the review.
->>
->> On 9/11/25 17:33, Frank Li wrote:
->>> On Thu, Sep 11, 2025 at 09:53:18AM +0200, Maud Spierings via B4 Relay wrote:
->>>> From: Maud Spierings <maudspierings@gocontroll.com>
->>>>
->>>> The Maxim MAX25014 is a 4-channel automotive grade backlight driver IC
->>>> with integrated boost controller.
->>>>
->>>> Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
->>>> ---
->>>>    .../bindings/leds/backlight/maxim,max25014.yaml    | 81 ++++++++++++++++++++++
->>>>    MAINTAINERS                                        |  5 ++
->>>>    2 files changed, 86 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
->>>> new file mode 100644
->>>> index 0000000000000000000000000000000000000000..e113a2ad16aa74f982b9c2ea80578aed2d9424fe
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/leds/backlight/maxim,max25014.yaml
->>>> @@ -0,0 +1,81 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/leds/backlight/maxim,max25014.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Maxim max25014 backlight controller
->>>> +
->>>> +maintainers:
->>>> +  - Maud Spierings <maudspierings@gocontroll.com>
->>>> +
->>>> +allOf:
->>>> +  - $ref: common.yaml#
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - maxim,max25014
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  enable-gpios:
->>>> +    maxItems: 1
->>>> +
->>>> +  interrupts:
->>>> +    maxItems: 1
->>>> +
->>>> +  power-supply:
->>>> +    description: Regulator which controls the boost converter input rail.
->>>> +
->>>> +  pwms:
->>>> +    maxItems: 1
->>>> +
->>>> +  maxim,iset:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    maximum: 15
->>>> +    default: 11
->>>> +    description:
->>>> +      Value of the ISET register field. This controls the current scale of the
->>>> +      outputs, a higher number means more current.
->>>
->>> Use standard unit. Do not use register value directly.
->>
->> It is unfortunately not just a value in Amps, it depends on the hardware
->> design. There is a kind of "default" table with a 49.9K resistor, but
->> depending on that resistor the current is different.
+On Mon, Oct 06, 2025 at 05:56:42PM +0900, Krzysztof Kozlowski wrote:
+> On 06/10/2025 16:37, Hrishabh Rajput via B4 Relay wrote:
+> > +
+> > +static int __init gunyah_wdt_init(void)
+> > +{
+> > +	struct arm_smccc_res res;
+> > +	struct watchdog_device *wdd;
+> > +	struct device_node *np;
+> > +	int ret;
+> > +
+> > +	np = of_find_compatible_node(NULL, NULL, "qcom,kpss-wdt");
+> > +	if (np) {
+> > +		of_node_put(np);
+> > +		return -ENODEV;
+> > +	}
+> > +
+> > +	np = of_find_compatible_node(NULL, NULL, "arm,sbsa-gwdt");
+> > +	if (np) {
+> > +		of_node_put(np);
+> > +		return -ENODEV;
+> > +	}
+> > +
+> > +	ret = gunyah_wdt_call(GUNYAH_WDT_STATUS, 0, 0, &res);
+> > +	if (ret)
+> > +		return -ENODEV;
 > 
-> You should calculate in your driver. if 49.9K is dependence, you should
-> add xxx_ohm at dts.
+> No, your hypervisor driver (which you have) should start the module via
+> adding platform/aux/something devices. Now you are running this on every
+> machine, which is clearly wrong...
+> 
 
-I've tried to find the logic behind the Riref resistor and its 
-values/effects, but there is no formula for it, there are example values 
-for 49.9k and 40.2k, besides that all that is stated that the minimum 
-allowed value is 27.5k and the maximum value is 83.5k.
+This is a good point. Thanks for bringing it up. We don't have a
+hypervisor glue driver (yet!) that can add an aux device. Based on v1
+feedback, we would like to be a standalone module that can self discover
+gunyah hypercall interface.
 
-Not sure how to continue after that, I cannot verify/approximate any 
-relation with only two data points.
-Kind regards,
-Maud
+Currently this driver depends on ARCH_QCOM || COMPILE_TEST. So,
+technically this can be built and loaded on all non-Qualcomm machines.
 
+We can make the STATUS SMCC before looking for the other watchdog
+devices and fail early.
+
+Our Gunyah glue driver [1] do make SMCC call to establish that we
+are actually a guest under Gunyah. Since our intention here is to
+support watchdog on as many as platform as possible, it is better not to
+tie this with glue driver and make it a stand alone and self discovery
+module.
+
+If this is not an acceptable solution (Please let us know), we can find other 
+ways to limit it to only work on Qualcomm machines. For ex: Socinfo
+platform device is added from SMEM driver which make it only probed on 
+Qualcomm machines. We can look into this. 
+
+Thanks,
+Pavan
+
+
+[1]
+https://lore.kernel.org/all/20240222-gunyah-v17-4-1e9da6763d38@quicinc.com/ 
 
