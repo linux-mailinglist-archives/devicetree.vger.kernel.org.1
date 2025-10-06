@@ -1,65 +1,66 @@
-Return-Path: <devicetree+bounces-223945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id B437ABBF99F
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 23:48:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 079E5BBF9F3
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 23:57:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 610A53483A8
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 21:48:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1FC93A3E4E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 21:57:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6362613B5A9;
-	Mon,  6 Oct 2025 21:48:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8BC19539F;
+	Mon,  6 Oct 2025 21:57:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pSkAmXjX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t9TeKt4y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3076D8F4A;
-	Mon,  6 Oct 2025 21:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DA8238DD8;
+	Mon,  6 Oct 2025 21:57:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759787312; cv=none; b=syJcOJ9/QLGQxR1SLZY4J/CWgHp6qspTK2AZntkIVLmOa8BLc01bzYYmCLz3ejxf8AeQ/YKnc+wBACRcPGkw/ymp4kDv7WnIQkKTkxgQUjeJ5h58uOnsjPSxCZa/hVXdNwqCG2iQL+IYdGmIqP86jKAcN5HDJV3nIgkBaLw/erU=
+	t=1759787848; cv=none; b=uAsKCTmDfdZx/jSwcskKEIm6gARwVGl9HTXjK7EMKw6YgsJUipmnCsi0t7aoCxCXD8nIuGI0d2D46XkL6DpjUDUDnTCWF5WHfU0JVdhtHwldffC67Xeuka/QwVuJ2UzqP8sLvoZaxd+lWEcVs8E0L61pTLEcqJg5/YaAcmQctQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759787312; c=relaxed/simple;
-	bh=OpaSlgNgbG6LGQ9WKZLEg5SEp0sOr8exS4JYKgFQGjM=;
+	s=arc-20240116; t=1759787848; c=relaxed/simple;
+	bh=oC0jqHVnHIvEcTI9DKySEPRWFpYU6+vKH9z1AzExQOI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LRaC3qSBj5T+WeVN/SBG7DeTM3gV5ADhuA0Ofc+VRCgnZRu91tmPiV5Vl5XWQCUK2FOUC3gbcZh1pCfWA4QYFjM+qQIIu+ISrCUDwOOLlCgX2AdZ2UiWtxI2p1f9Itd2OeqxAUyJb8TksgBbv/jzc5v0RWfFvuzPEoeQ9um+NYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pSkAmXjX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 757E2C4CEF5;
-	Mon,  6 Oct 2025 21:48:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PDfRRbn/aho8jBkF4MiAo6knVActDQDhzsRiFdM96Uv8SC3XZ6o4ZiADEICQHIrrCH9PjDXQHWlQ8zuFyh0zAM+9CvPvRKkiBnqZ/jHdcsYTTlzvpfWI/0d8C2vyBnKVwEfzNFME6TT+3slEIgkbFSMozSSjC+9XmgSQuPllRZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t9TeKt4y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D717C4CEF5;
+	Mon,  6 Oct 2025 21:57:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759787311;
-	bh=OpaSlgNgbG6LGQ9WKZLEg5SEp0sOr8exS4JYKgFQGjM=;
+	s=k20201202; t=1759787847;
+	bh=oC0jqHVnHIvEcTI9DKySEPRWFpYU6+vKH9z1AzExQOI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pSkAmXjXHg+U1pTbtnA1GTbUm+N8VigWWBlFWZC7/fkAo2wP2inbeV0Hnv6pNIKk9
-	 DeEv7BqPEUkLPhVke5T2sokJ9BjI/SBbQFQmzAmuS0qUWnkp2NUVz8Z78Q1eJFIXWh
-	 IVpxt6cVUz1rDA62F6x43EVhPsHrC8fy1iAd1Acszuj6oqLT6axu4Lf4HSovx5iB0d
-	 F1IwMwYd31zCgBu5AJ+nQ+SgosfEXX6Nh/0dhcCpg183bun5a/Xg6NSzGS6RF1IBKA
-	 IwyRX9j4JYS5bvmZOQTqs13CE8Sy5db2LOINSbFkzwEXDVR72zxe74evPUpXQ66iAM
-	 BlVlJIgTtkixA==
-Date: Mon, 6 Oct 2025 16:48:30 -0500
-From: Rob Herring <robh@kernel.org>
-To: Ram Prakash Gupta <quic_rampraka@quicinc.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
+	b=t9TeKt4yls+RcjonUeLIfc4nzq9BpZ/xAa4Tsum8c84bh+xiKAn+qAk+9ySOO5m6q
+	 yeTdAULdjrDiHQ3LH1uPvLJOhDQH5uKcpgLsy/bu8Rcmo8sAHVH0UXJkeXz6uV+EIV
+	 LC7oMdtcdrdsDSnsh4zBLk/c+oEwO1H8zN2/jRzIGhsW9C+MkQE3u5lXlwn8d8Q5yH
+	 tyu5WCPqXkEnASGPZ+KEcQ/PCHhHF3BniA6WLJqEdVOnG6pSAhNTWAcmKIt9synyeE
+	 KgvAwmr6oSGz+PyfxsaG0U3W+1m7K0F9z0MUqO3GoXwhkiy6SNZYhG1Y1P/Jq18YIe
+	 l3TAez9/04AgA==
+Date: Mon, 6 Oct 2025 16:57:26 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Felix Fietkau <nbd@nbd.name>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+	John Crispin <john@phrozen.org>, linux-mediatek@lists.infradead.org,
+	Guenter Roeck <linux@roeck-us.net>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	linux-watchdog@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	Conor Dooley <conor+dt@kernel.org>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>, linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com,
-	quic_pragalla@quicinc.com, quic_sayalil@quicinc.com,
-	quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com,
-	kernel@oss.qualcomm.com, Sachin Gupta <quic_sachgupt@quicinc.com>
-Subject: Re: [PATCH v4 1/4] dt-bindings: mmc: Add dll-hsr-list for HS400 and
- HS200 modes
-Message-ID: <20251006214830.GB625548-robh@kernel.org>
-References: <20250929113515.26752-1-quic_rampraka@quicinc.com>
- <20250929113515.26752-2-quic_rampraka@quicinc.com>
+	"David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
+	Herbert Xu <herbert@gondor.apana.org.au>
+Subject: Re: [PATCH v4 1/4] dt-bindings: crypto: Add support for Airoha
+ AN7583 SoC
+Message-ID: <175978784599.652158.16607714695009330937.robh@kernel.org>
+References: <20250929114917.5501-1-ansuelsmth@gmail.com>
+ <20250929114917.5501-2-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,46 +69,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250929113515.26752-2-quic_rampraka@quicinc.com>
+In-Reply-To: <20250929114917.5501-2-ansuelsmth@gmail.com>
 
-On Mon, Sep 29, 2025 at 05:05:12PM +0530, Ram Prakash Gupta wrote:
-> From: Sachin Gupta <quic_sachgupt@quicinc.com>
+
+On Mon, 29 Sep 2025 13:49:12 +0200, Christian Marangi wrote:
+> Add compatible for Airoha AN7583 SoC. The implementation is exactly the
+> same of Airoha EN7581 hence we add the compatible in addition to EN7581
+> ones.
 > 
-> Document the 'dll-hsr-list' property for MMC device tree bindings.
-> The 'dll-hsr-list' property defines the DLL configurations for HS400
-> and HS200 modes.
-> 
-> QC SoCs can have 0 to 4 SDHCI instances, and each one may need
-> different tuning.
-> 
-> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
-> Signed-off-by: Ram Prakash Gupta <quic_rampraka@quicinc.com>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  .../bindings/crypto/inside-secure,safexcel-eip93.yaml         | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> index 22d1f50c3fd1..a60222473990 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> @@ -137,6 +137,11 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      description: platform specific settings for DLL_CONFIG reg.
->  
-> +  qcom,dll-hsr-list:
 
-'-list' doesn't add anything.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-What is 'hsr'?
-
-> +    maxItems: 10
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    description: platform specific settings for DLL registers.
-> +
->    iommus:
->      minItems: 1
->      maxItems: 8
-> -- 
-> 2.34.1
-> 
 
