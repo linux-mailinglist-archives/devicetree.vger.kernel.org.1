@@ -1,96 +1,124 @@
-Return-Path: <devicetree+bounces-223875-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223876-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12E9BBBE86D
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 17:44:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A91CCBBE87C
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 17:47:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 13B574F0239
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 15:44:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 693DA3BCFDB
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 15:47:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A79B82D8779;
-	Mon,  6 Oct 2025 15:43:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="DUJ9mxgd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EBB02D63E5;
+	Mon,  6 Oct 2025 15:47:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 839862D877F;
-	Mon,  6 Oct 2025 15:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C53792727ED
+	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 15:47:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759765438; cv=none; b=VZ7aBaqBi08s8CvtGlTAvKYXAjegkT7jXhu4li74l+WSVf/WzwctwPMhM6UhL7km5mNlGlyxTRYgK/Z4nOGVpx4JfJiowtv9W54NdS8fxEr9y0Umf+pM3eEF+Q8SIzkrs4uxCCPPvmhCoX2ECZv9a5ctZkJKilusVJRvpk003ys=
+	t=1759765636; cv=none; b=euVT5KkBO8n8YoO4w6GwRfhpiBIklpnZsHrNcKGOika1OyypNAJBeSaYMyjCv+FsI03oAG4yq/vsW7ojuC7SwKG4cT0GyCiuYe8rzLv87lRr2U3j1yeBhcyneQm22qq3i3ATSlmqpdBCtw02ZOstmai2aWuLIex1izXHj6yYPRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759765438; c=relaxed/simple;
-	bh=p9YuerllexJf5L7/+ezExpNFZn7dJhZXDuCz5Tf46zE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Tqs+62Hke90sNkhBA6rsc1i4wlILSr7gH6C753yGYx6MRTi+yzuxEWFL9f8z2KH6rkSwoTvMKaK4JNhdIpz/CaFiA1/sGe5gCCHACQs4c8bv3J5dUHqVho9QADUAxwrWDDXJFcuFo8d4QdF0fgDfO4jYx+t4J1V0gf1SaRP2LK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=DUJ9mxgd; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=5lizV0k8IvCTAEiYWCtHMTokoOjYS99KwY/En0ypzY4=; b=DU
-	J9mxgdICTXHVmXLXd/h2dC36s8rbQWQZwud+V5Py7qhz4LGMYIo0W+pZ81un18cjeEkCf4a2cKClj
-	ydermpj2SPzI1QPUzMs9WVL1LtDY1FPyTYui2JelvlPMRGQXOPPqwuGF3e537Pv9zkhzVqKVQCFmH
-	P9jxMvkJaUh0bbk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1v5nN8-00AIxf-9q; Mon, 06 Oct 2025 17:43:34 +0200
-Date: Mon, 6 Oct 2025 17:43:34 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: jjm2473 <jjm2473@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, quentin.schulz@cherry.de,
-	kever.yang@rock-chips.com, naoki@radxa.com, honyuenkwun@gmail.com,
-	inindev@gmail.com, ivan8215145640@gmail.com,
-	neil.armstrong@linaro.org, mani@kernel.org, dsimic@manjaro.org,
-	pbrobinson@gmail.com, alchark@gmail.com, didi.debian@cknow.org,
-	jbx6244@gmail.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] dt-bindings: arm: rockchip: Add LinkEase EasePi R1
-Message-ID: <6a5b9e68-4f23-49b9-b744-e84fc28a96b0@lunn.ch>
-References: <20250929065714.27741-1-jjm2473@gmail.com>
- <20250929065714.27741-3-jjm2473@gmail.com>
- <5700676.tIAgqjz4sF@phil>
- <CAP_9mL6e8ekL14xycSfPmVSkL7pANLeyewWd=rjxbtMgMQXxxw@mail.gmail.com>
+	s=arc-20240116; t=1759765636; c=relaxed/simple;
+	bh=VXVFUxV6lOZVeHIaGD8b7dszxK+l1QNd9a0CBcsxlVc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=A/iWcK6rtD77m7IUxegleZqGJPOF7Nt3WSRQmfzV3vkGpuiP7j/WAfYvqo2G/9NXFoy53bsRcCKTXvCDfnkNse7ZCeTTjzOxE6JcYNbaD7tqYUXgLL5vlCKySxOjEsp4eLOMj9joJa0TZkJABtAqy0uqK+02SGzJz8H9KcQdlD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-54a98bcdedeso901724e0c.0
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 08:47:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759765633; x=1760370433;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=baxwn0lz/mgVFFB21nG5BxqQzMuKCxMSfDK/zsQ1nbY=;
+        b=S7E/7B8t9BjwveNrmYBiNrrfaxyNo73TM8Dqg50rYD+q5ktG6SvT3IpN1s9LB7N+GA
+         Tx0vcqR2NNnb9g5GlcvL1CcZgGQymbyPCV6LDerkP/Dmq336vsDPIpUSpopybeyuP4tk
+         000yEwnOdeh7yf/EfO8hmp7aTIWdPBSIPVJivzTxkFi9x3+/PbKvMy304ndFmScUNpxk
+         olkl32MFYAVUvFoF65gO/1bl9obE3YRaCMjn1Bk2jqZoOJ4d6UlXwI4jiVHibAmkRNZ2
+         MjblS2jDdAckeazQ4mvRYrmwEX/lAVycgSCv4NnyT7Qvco1VXXIHLOBD7kumzsM6G3Zq
+         VHlg==
+X-Forwarded-Encrypted: i=1; AJvYcCUc6Jv2LE3h/isV81u61OwWHacMEe5HQtOrDyxQuRZSdwartB2yo8S/u9dWlTyY61fJ3fanxIbTBEEC@vger.kernel.org
+X-Gm-Message-State: AOJu0YwuD4/qaEZrWkJae5h26DBsBJiP31eUSpaaiZ/fBRzXSuIWXv9X
+	bfMsZb3tg2B7tDsGQIHl5r+VJrsKLm501VRbXuiGQT4k0nD90uWbeU29BYiCrU6w
+X-Gm-Gg: ASbGncv8PeOU+gmL5MREVBI7vvHG2RTZq9lBpXEyASPMZQ8yEQzoyowJpc+P9MgwJTk
+	JHECrboq+PVPRFERhqs/hc8tcz2vxxbrYRh8gt1Uj9YfHOSPApQpXZEbRDdg4T+fo3bu7IoZ4tf
+	et6PSPN3Yai2SAN/OV/rzigQfW8GKQcQsKFBSi/ETYQ54iVJPG1blQn6liKgpWGecmwq531l49x
+	eCK7eFUq7CvXSIYYK2xJ1pujp1p6Nsx53tooiU6zE7LRWVZQkWXBqYzmOCEs7IsO8LiCckHDLmv
+	6/LMEOBCPbTOqqGUfp3aho0ItS8NKzVLpyxF/uQ40MG5+RoiICGicJXI0F5M/mJyqfFluh1yLd6
+	R8/xUlsD2Tw/GkPvVJcSnk3wLNh9x1Zm4PavChmYg8F/xf+NTQP8DglyEqQuBBLA+o8z7AEquZC
+	wvBTIBz2e7lK+K6YG+GWM=
+X-Google-Smtp-Source: AGHT+IGZ3HkzUMRYGeKsLbuCYlV8iWYvezGA31k2AKxr8A1XJ3geOkhcdEEF98tKScc9CXX61QVytQ==
+X-Received: by 2002:a05:6122:1e09:b0:545:eb6c:c6bb with SMTP id 71dfb90a1353d-5524ea695aemr4215657e0c.12.1759765633352;
+        Mon, 06 Oct 2025 08:47:13 -0700 (PDT)
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-92eb4d83c45sm2926857241.4.2025.10.06.08.47.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Oct 2025 08:47:12 -0700 (PDT)
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-8c0e2d1efd5so1749549241.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 08:47:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX1d7uxwMUe3Ns0aCv5pXvQAi5udk0zvqnUIbSIjq79KQhQADHou8FhENGcdtJlNoOzwYXD3JB997gp@vger.kernel.org
+X-Received: by 2002:a05:6102:41a9:b0:59e:68dd:4167 with SMTP id
+ ada2fe7eead31-5d41d028226mr4721054137.7.1759765631839; Mon, 06 Oct 2025
+ 08:47:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAP_9mL6e8ekL14xycSfPmVSkL7pANLeyewWd=rjxbtMgMQXxxw@mail.gmail.com>
+References: <20251003215318.39757-1-niklas.soderlund+renesas@ragnatech.se> <aONmeDgUPCn8rphM@shikoro>
+In-Reply-To: <aONmeDgUPCn8rphM@shikoro>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 6 Oct 2025 17:47:00 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXvn52Kh242mSdb+bFLowQ9jgyegRGh6ZZaY0z+Qm2faA@mail.gmail.com>
+X-Gm-Features: AS18NWDKqcFvLxyfi7FxcJ-zF3zj1ASVGyV53_H6SUlUTrSHB21YlZyQvRY9HqQ
+Message-ID: <CAMuHMdXvn52Kh242mSdb+bFLowQ9jgyegRGh6ZZaY0z+Qm2faA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: renesas: koelsch: Update ADV7180 binding
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>, 
+	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 30, 2025 at 02:20:57AM +0800, jjm2473 wrote:
-> Heiko Stuebner <heiko@sntech.de> 于2025年9月29日周一 20:28写道：
-> >
-> > Am Montag, 29. September 2025, 08:57:13 Mitteleuropäische Sommerzeit schrieb Liangbin Lian:
-> > > LinkEase EasePi R1 is a high-performance mini router based on RK3568.
-> > >
-> > > Signed-off-by: Liangbin Lian <jjm2473@gmail.com>
-> >
-> > In v1 this patch received an
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> >
-> >
-> >
-> 
-> In the next version, I will add 'Acked-by' to the commit message
-> and then run `git format-patch` to avoid missing it.
+Hi Wolfram,
 
-Please consider using b4. It will automagically collect all these
-reviewed-by, acked-by tags and all them to the patches for you.
+On Mon, 6 Oct 2025 at 08:49, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> On Fri, Oct 03, 2025 at 11:53:18PM +0200, Niklas S=C3=B6derlund wrote:
+> > Use the more modern adi,adv7180cp compatible for the CVBS input found o=
+n
+> > R-Car Gen2 Koelsch boards. This aligns the bindings with the other Gen2
+> > board with the same setup Gose.
+> >
+> > Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatec=
+h.se>
+>
+> I think this could be added?
+>
+> Suggested-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-	     Andrew
+I don't think I am the first one suggesting that ;-)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
