@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-223881-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223882-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F3D7BBE8D8
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 17:51:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BDC4BBE967
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 18:06:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 496AD18918AD
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 15:52:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB38B188F28E
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 16:06:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DEA52D8DA9;
-	Mon,  6 Oct 2025 15:51:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C4602D8DDD;
+	Mon,  6 Oct 2025 16:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="0cKSouln"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="HA4YuuoO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BAEE2D8DBB;
-	Mon,  6 Oct 2025 15:51:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B5841DF982
+	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 16:06:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759765895; cv=none; b=C+FLWiSKf3VrA44PMZQ/7OQ/imv06ho8NraXOmgxNBJtaHPHPCXOVc4qolH92eINz1L8FINiqg+nqqj6l0K0JmK3/I2PAQnvCkyoN+qjX6dMshW3cLhMXghACN9SiwA1TVvvKATzfI7LAwPc9Q/NuW0AkpC3JOZgCw9OYxqZseQ=
+	t=1759766787; cv=none; b=PoUOozfDsrubFRAdIiDYw6rF21jLzH141o9nh2p4wCYC5pUWxf6wUlS4FhVqPE2tLA16lSmThObYa5CF9di+zoComPbRZcKD5UPmkNlZTd+H74GfdpgoHNrMclVZyf9oyPuLT8501avCF5XIHiNwB8Y7JEkqbp9eFz7FopYihMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759765895; c=relaxed/simple;
-	bh=/OenKGRr35gNUbyLyVxQicdCNICTTtsFY0QGrKbxgfo=;
+	s=arc-20240116; t=1759766787; c=relaxed/simple;
+	bh=v3I3+Nb0oUDC+fgbfsWOdqsxZI5UzCh8nFKw6LzhycU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HvcwWFJr//LIqpODgLsONZdfKxkjlp8ftq5w2nScqYUUG6MzzJC5x9TJDyfM4Ay8oVSEog9ByovcjwNoecPQA7q2eSu3sh5AGVj8/7mwkwFKyujmgxTpApY4h8rzgXQNrtvz2pGBXnynXs7Yiyvv+RPzs+XIuaVR1FXbeccRy5o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=0cKSouln; arc=none smtp.client-ip=156.67.10.101
+	 Content-Type:Content-Disposition:In-Reply-To; b=IxLTY/ycj1WzUiaRkhU2zs5+oBsItOZJD8lPHygZTHKy1l4lPlG2xZ3EeZWkGajQFUiTRvN97F7562hkKRV8K1HH8lnbHdrtd4hftKKFAkbDzDqj+RdaMn4tyXV18+4eB9tTSxDSgI4cL2CDlqfWmrSjRbMygTJMgtFEX3X6/As=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=HA4YuuoO; arc=none smtp.client-ip=156.67.10.101
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
@@ -36,28 +36,33 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
 	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
 	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
 	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=Wdd5c/PHXgFX18ZoE3M5BpB+K9x9piTq/ykZtbdV/vs=; b=0cKSouln3fYahi+dyaR8+Yz9uV
-	CXgXVf4HWqLJUlmoB648heg2O1fZ8rgmGn/F1ne3hILrCyD+TNQDDxzvVj4iO2hZRTVllVKlo1KMr
-	aL+Zu3WYEcwCWPuQFBCDH4LpLnis/cxt9Ouv1iFnXC3unxAxAN+cMED+PYx2faXsGgFA=;
+	bh=BAgyMAPnS0Hb98FmqDxYvuYrFMU1TlWK4dPYQ9fT3xA=; b=HA4YuuoOqpokJk8bCto6LWkS/V
+	WleA3AulFkSF3p82isDuCbu0Dh+q3ItRjOittlQj70j1jlclODyAkx+nmI55npIjVnSnzIWHd5rTS
+	0Hb12jTUzyH/qw4Le25IpcIBwjkU0Eg5UmFSw6U4U3GFVIb2PsCLPHhFMqIsS6fsioho=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
 	(envelope-from <andrew@lunn.ch>)
-	id 1v5nUZ-00AIzL-PJ; Mon, 06 Oct 2025 17:51:15 +0200
-Date: Mon, 6 Oct 2025 17:51:15 +0200
+	id 1v5njB-00AJ3z-A6; Mon, 06 Oct 2025 18:06:21 +0200
+Date: Mon, 6 Oct 2025 18:06:21 +0200
 From: Andrew Lunn <andrew@lunn.ch>
-To: Liangbin Lian <jjm2473@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	heiko@sntech.de, quentin.schulz@cherry.de,
-	kever.yang@rock-chips.com, naoki@radxa.com, honyuenkwun@gmail.com,
-	inindev@gmail.com, ivan8215145640@gmail.com,
-	neil.armstrong@linaro.org, mani@kernel.org, dsimic@manjaro.org,
-	pbrobinson@gmail.com, alchark@gmail.com, didi.debian@cknow.org,
-	jbx6244@gmail.com, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: add LinkEase EasePi R1
-Message-ID: <d8ad476c-d0c7-4e97-9e76-540a539ffb52@lunn.ch>
-References: <20250929065714.27741-1-jjm2473@gmail.com>
- <20250929065714.27741-4-jjm2473@gmail.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Algea Cao <algea.cao@rock-chips.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Cenk Uluisik <cenk.uluisik@googlemail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+	Heiko Stuebner <heiko@sntech.de>, Jimmy Hon <honyuenkwun@gmail.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Muhammed Efe Cetin <efectn@6tel.net>, Ondrej Jirman <megi@xff.cz>,
+	Rob Herring <robh@kernel.org>, Sandy Huang <hjc@rock-chips.com>
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add rk3588s-orangepi-cm5-base
+ device tree
+Message-ID: <4d337915-e3a9-46b7-a30b-ccb47ad33556@lunn.ch>
+References: <20251002034708.19248-1-laurent.pinchart@ideasonboard.com>
+ <20251002034708.19248-4-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,47 +71,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250929065714.27741-4-jjm2473@gmail.com>
+In-Reply-To: <20251002034708.19248-4-laurent.pinchart@ideasonboard.com>
 
-> +&gmac0 {
-> +	phy-mode = "rgmii";
-
-Did i really miss this patch series in its earlier version, or did you
-ignore me?
-
-https://elixir.bootlin.com/linux/v6.15/source/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L287
-
-> +	tx_delay = <0x3c>;
-> +	rx_delay = <0x2f>;
-
-Please change it to rgmii-id, and smaller tx/rx_delay values. Or show
-us the schematics which clearly show extra long clock lines.
-
-> +/* Micro SD card slot is not mounted */
-> +&sdmmc0 {
-> +	max-frequency = <150000000>;
-> +	no-sdio;
-> +	no-mmc;
-> +	bus-width = <4>;
-> +	cap-mmc-highspeed;
-> +	cap-sd-highspeed;
-> +	disable-wp;
+> +&gmac1 {
+> +	clock_in_out = "output";
+> +	phy-handle = <&rgmii_phy>;
+> +	phy-mode = "rgmii-id";
+> +	phy-supply = <&vcc_3v3>;
 > +	pinctrl-names = "default";
-> +	pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
-> +	vmmc-supply = <&vcc3v3_sd>;
-> +	vqmmc-supply = <&vccio_sd>;
-> +	status = "disabled";
-> +};
-> +
-> +/* Wifi module is not mounted */
-> +&sdmmc2 {
+> +	pinctrl-0 = <&gmac1_miim
+> +		     &gmac1_rx_bus2
+> +		     &gmac1_tx_bus2
+> +		     &gmac1_rgmii_clk
+> +		     &gmac1_rgmii_bus>;
+> +	tx_delay = <0x42>;
 
-What do you mean by "not mounted"?
+Nice to see phy-mode 'rgmii-id', but 0x42 is pretty high in comparison
+to other boards correctly using 'rgmii-id', and is asymmetric with no
+rx_delay value.
 
-Often you would say "not populated", to indicate the PCB has all the
-tracks in place, but the chip has simply not been soldered in place.
+I cannot say this is wrong, it is just odd, not what i would expect.
 
-Or is there a connector here, and nothing plugged into the connector?
-
-   Andrew
+  Andrew
 
