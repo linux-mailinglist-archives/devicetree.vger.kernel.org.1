@@ -1,187 +1,312 @@
-Return-Path: <devicetree+bounces-223787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-223788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A41ABBD7F9
-	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 11:48:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 121CCBBD81B
+	for <lists+devicetree@lfdr.de>; Mon, 06 Oct 2025 11:52:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8A441894B4C
-	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 09:48:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFF103B6E89
+	for <lists+devicetree@lfdr.de>; Mon,  6 Oct 2025 09:52:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCA60205E3B;
-	Mon,  6 Oct 2025 09:48:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC4B2101AE;
+	Mon,  6 Oct 2025 09:52:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eun9mhZr"
+	dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="UkdsGKcs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx-relay95-hz2.antispameurope.com (mx-relay95-hz2.antispameurope.com [94.100.136.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 160231F37D3
-	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 09:48:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759744109; cv=none; b=YOqVpQa0VvQd70MelD/iJi6r9K9dFOPHV+YyYsxQ354NaPKMDkA8ofEY2orV8sLdUR1vjI52WPvPsNzf/eqrO4HU+VurbdoMbPZPXc82cQcYVxjDF1UWuRzbij2ibJYnVV0EM/SOlDzaZgR/K307BAScCCGraUBXZrxaZzayMY8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759744109; c=relaxed/simple;
-	bh=K7+0htyuoirxpSFu/xMi/nH7Dp6XDVMsELNSRKgsD6E=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=iZqZD7CgNw17uxSRBY41/ITdi6tfMDc3KOqzhkJEqFSHKlWpuXXZP8g8OtIs/Fqo9mAxMuMFmgRJQc0qlDU7PAcJcs96xZ3Amf/ZFFrEG47F04TlcqakC4Lvhmy+Wj2R1N6cqrFuOExXrkhNWXkSBD97VKKN7HxGUsZiLwh43b4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eun9mhZr; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-46e2c3b6d4cso37723425e9.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 02:48:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759744106; x=1760348906; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=E9nCOIOWicslN4YZSsSssDCNnRYoc3KUcXalh/A1uR4=;
-        b=eun9mhZrr9gdbQYQPeCodrWHFfrZpnvyRi80m1Yzw+2Kkp8m+G4Ynr8ARJhxym8JV9
-         ryp8auXJj5a0NK+c/Ve0BBKX9e4lV66Q8Ulz9iGvC1Kigg1+jwxviAzC+jZPSRO6RtU8
-         yIe4ifpACdJuHunLL1UghAYQICp/NINj7rP0IuMTY+BhTIHQP8otFej9hi6WNRjdf4J+
-         oyqcaJzMDw9kWZpAexwJXMqxjoXfDHSaPAhn9rbGYtdN1OniXt1p24YV6lA9bfx2rqCP
-         gPOR3BZOOrzOuc2NdXpZoN92IOHHAE4qXc7IIJ3jI9rkyQ4ezbSGpwLThUrJYdLWPozi
-         7tHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759744106; x=1760348906;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=E9nCOIOWicslN4YZSsSssDCNnRYoc3KUcXalh/A1uR4=;
-        b=d8AXhn56RJPVEThueSx0nBgioBVrt+9VQv0JoyVdgfEZTM/3spT3OwLSgS+Cjz67/0
-         V3LzsfpObkzq7TsAoQHQHsN6z7Cn073xsD/gcDfk9OXYfe5cxKWmxtyMYWBNDmFU/SSL
-         vNHZB8jzkofIL7JfCul+LMfLO5u9U44kx226oc64fXCHopyBeqZ5fTfWQhDYwlYuXxYQ
-         urHNiccuFJnqKJh8TGxEeZ7ExfnuKIvmml7dZc3Rlk0oN3imGEUsDoPwRkd0wT8/JAix
-         T1XklHfjYkTiq2jdBxMyy+z1Oi/ChwDVUAoFZyWRy0jwDzKprtnFbNysWVqG3JYGmoTx
-         wDww==
-X-Forwarded-Encrypted: i=1; AJvYcCXF+62PHO92uYNSgPmCh6UkBMOJ/KAYiDDtuCKVXFx756LH8tuELQAyilK6Ae1Jba5sPHe3s1vhF8/5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw4WZcEkyqbt1Iyd74odhhRgO/nnKxyBblLrH8Q0nvhDJUYpDGr
-	8hBvVUmow1ivafQDnu1WgKHtUg19FcSaqDhDboqNPzwnijYflekaL4a09mAC+PQAvsc=
-X-Gm-Gg: ASbGncsOWs9Z1Coq2uPgw6GsV9H32ivprGndfBcpnPGAhT0VCf3JcLZP/UqWXDPOn3Y
-	70pzEcMcqqw1m4I84EZmJo8yAyoG83aFhYMlSRRJUPcZHtXxq0C7+GXf484XPeqfoyn1hThyptW
-	NA5Dq3rA58nuPTKKO+hTK8ymzhHERwbrFKehxpWbFYoV5kW5pxzhShhiOkL7NnNt2+QzgpF8Zfx
-	aYisfksOAw+y3qIefcbdLABrdsoGtYIqZQlpOLaBqh/t+ljDKucKT36Ae4SEFVpNs26+oORyrUZ
-	tf5Q2z60PUOjpQwXpSveTYfTXs2hngGSzJHO4z8K0EIXOINoLTWMgYNaESqA7ab8Oz1YOuKxP/m
-	62xD5RR6HLwN9/NCAT8zkNJ5KNmHldBdbtA/E697JR/nsoL0S7ttAsLbDIa3dWvhotcSFIRrNX7
-	6hULzcfUaSyKJElLOhfgjvgEb/P58=
-X-Google-Smtp-Source: AGHT+IEtNxlbVFFWezzK/SaGtuPwKo272TEGVXiS0sDNJ1j0UC/5uBY5FceXCv8FXS6IrSRPjNnCpA==
-X-Received: by 2002:a05:600c:3b1f:b0:46e:3dc3:b645 with SMTP id 5b1f17b1804b1-46e710ffc1amr73835685e9.3.1759744106291;
-        Mon, 06 Oct 2025 02:48:26 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:2dd0:9118:d7f5:51d9? ([2a01:e0a:3d9:2080:2dd0:9118:d7f5:51d9])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8e96e0sm20168586f8f.33.2025.10.06.02.48.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Oct 2025 02:48:25 -0700 (PDT)
-Message-ID: <64ae6d27-d89b-401c-bf9e-027967e6b859@linaro.org>
-Date: Mon, 6 Oct 2025 11:48:25 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CC3E20B80B
+	for <devicetree@vger.kernel.org>; Mon,  6 Oct 2025 09:52:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=94.100.136.195
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759744327; cv=pass; b=JRkH0/k/pXnZCodc+Hy1PrShgSMhJ2vtyfZTOMCq2kovXaPTD62gZfVU8u0oKYV1I3a3dDgN4vsM/7yNWFeX/+dwEdnv3PSUl6KjZr5JuFr0Dna01SGe8rtEYyxoHZORT1QSEkskxmENCdPJO1w0E0Lp7t3hjlAm/ha7EBXZtp8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759744327; c=relaxed/simple;
+	bh=j3WCsairq1WgCQgA3EtS8OrUwtY6E+K5lC9wJPKVWtE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Y8E9duBVEodN+SDG9aOMPuYlz2ffLz47bXPiCnMnJL+JE24WhBsPZ3KJGWp6uiq/GZ2tNeukoOOXYiCKcGc39o/RTyw+QXfejps6wKZEY1nCnF5aG44Szumy+pHzp/x5S0AU3HQ/aWqc6AKUxCD2BwMkQMaWeg6u0GyQdA+QEsY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=UkdsGKcs; arc=pass smtp.client-ip=94.100.136.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+ARC-Authentication-Results: i=1; mx-gate95-hz2.hornetsecurity.com 1; spf=pass
+ reason=mailfrom (ip=94.100.132.6, headerfrom=ew.tq-group.com)
+ smtp.mailfrom=ew.tq-group.com smtp.helo=smtp-out01-hz1.hornetsecurity.com;
+ dmarc=pass header.from=ew.tq-group.com orig.disposition=pass
+ARC-Message-Signature: a=rsa-sha256;
+ bh=ZrFYIzPuk9rtzNXWXOQAERqhNp/BdwtufnfrutqIGq8=; c=relaxed/relaxed;
+ d=hornetsecurity.com; h=from:to:date:subject:mime-version:; i=1; s=hse1;
+ t=1759744263;
+ b=oCODfywvY01m/OTJuxJqFm3VBzvn8VpkYidhKiRMxvjKShInykC2puR66ETa1RtbnY3prefC
+ T/2SzGW14bcs4HGm+UyWdwdPXtto0KnSSoGHQQCxUOBPXVyFpIWDTvZmgRIYXpZG7HNdTWZT4e3
+ hzoq+73Wr/utwLyhcy7rwcpSfem6jRUMc/eBsP4a7mvFaxBOEG3ISAGF/WqOTGpww4lGi//3Yun
+ vUk3wO+8bG64Z1yjT8pqPNVzz2NIObWisj9JWrq3qBuMFrBjPqNUczJcMxdosN6I22QgV5QQDl+
+ llD+1wywbZhxo1XrfFg3/dOPlU0CQ5I2SFtX8nBmDDHoA==
+ARC-Seal: a=rsa-sha256; cv=none; d=hornetsecurity.com; i=1; s=hse1;
+ t=1759744263;
+ b=NVzcyLVXJWgo3GAbZHl0RVgeQSZpkCjRWl1nUEVvO5WJ3k5Id6/8Mm42SCZTXfUPLEUr8jMM
+ DBtOjG7LUC4ENOlWBbaHQbnwTcTn5DjlXr/jHdQfIK8IhWnuc1reRRSevZZJiLjXV8djR3kr5ZS
+ ByWvPvbpVeD78pLFGOlzwp2oOTe2w44Fr0maMKZj+kR+CWd71JwN32lKW0WmlQOWAUzwuip+3iD
+ tJOZEk/tKylj4Cr61ZUyvVOe5YCItKljNWq77MU9vL7Kg1DWMtIdAIyy+94dxiMO6R/mPm7Iu9c
+ hjuJdi+WQF1Bstanofg9SiVGRsaPU65R6cWlsXadtQ5hw==
+Received: from he-nlb01-hz1.hornetsecurity.com ([94.100.132.6]) by mx-relay95-hz2.antispameurope.com;
+ Mon, 06 Oct 2025 11:51:02 +0200
+Received: from schifferm-ubuntu.tq-net.de (host-82-135-125-110.customer.m-online.net [82.135.125.110])
+	(Authenticated sender: matthias.schiffer@ew.tq-group.com)
+	by smtp-out01-hz1.hornetsecurity.com (Postfix) with ESMTPSA id 279CFA4070E;
+	Mon,  6 Oct 2025 11:50:57 +0200 (CEST)
+From: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+To: Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@ew.tq-group.com,
+	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+Subject: [PATCH] arm64: dts: ti: k3-am642-tqma64xxl: add boot phase tags
+Date: Mon,  6 Oct 2025 11:50:36 +0200
+Message-ID: <20251006095036.16367-1-matthias.schiffer@ew.tq-group.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v4 1/3] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy:
- Document lanes mapping when not using in USB-C complex
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Xilin Wu <sophon@radxa.com>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250930-topic-x1e80100-hdmi-v4-0-86a14e8a34ac@linaro.org>
- <20250930-topic-x1e80100-hdmi-v4-1-86a14e8a34ac@linaro.org>
- <c8dca827-b089-48e0-9dc2-a5b6e3c5b88d@oss.qualcomm.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <c8dca827-b089-48e0-9dc2-a5b6e3c5b88d@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-cloud-security-sender:matthias.schiffer@ew.tq-group.com
+X-cloud-security-recipient:devicetree@vger.kernel.org
+X-cloud-security-crypt: load encryption module
+X-cloud-security-Mailarchiv: E-Mail archived for: matthias.schiffer@ew.tq-group.com
+X-cloud-security-Mailarchivtype:outbound
+X-cloud-security-Virusscan:CLEAN
+X-cloud-security-disclaimer: This E-Mail was scanned by E-Mailservice on mx-relay95-hz2.antispameurope.com with 4cgDzj62dxz2Dj9k
+X-cloud-security-connect: he-nlb01-hz1.hornetsecurity.com[94.100.132.6], TLS=1, IP=94.100.132.6
+X-cloud-security-Digest:a80b39d10b8b7722f74fa46e8949e3b1
+X-cloud-security:scantime:1.793
+DKIM-Signature: a=rsa-sha256;
+ bh=ZrFYIzPuk9rtzNXWXOQAERqhNp/BdwtufnfrutqIGq8=; c=relaxed/relaxed;
+ d=ew.tq-group.com;
+ h=content-type:mime-version:subject:from:to:message-id:date; s=hse1;
+ t=1759744262; v=1;
+ b=UkdsGKcsLpL318NYfDgqlLvGICF7YQMu0uF7WAO2AGiXnkZAaEJrorPIKOJEBJ1LymMBXNZW
+ Ddrrvoc3uIPhlHw9s9AhjGGCbq7h/Ky5UfPdhZe7mUdlcoL8zFFNc9UgwDwQYKA9yi8qrMZniTG
+ Yk1mTXbRvrY06yDzgKOFOYdgP25eaykAIc6GKh40tRfmJS2RQqbP5o/FmL+ipha7o5+T+D2oyB+
+ vLy3V25nuxme9TGiorGgn1beRgCtp7PZ8mcqgJbEV4E2NYEbPFs6IABEOhXjdZ7EOPTcKA/BIuh
+ sBZDVD+MTTRIPxHvC6yYf0SM8qMORJy6O1L+13+2lFWjQ==
 
-On 10/6/25 11:43, Konrad Dybcio wrote:
-> On 9/30/25 9:39 AM, Neil Armstrong wrote:
->> The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
->> of a combo glue to route either lanes to the 4 shared physical lanes.
->>
->> The routing of the lanes can be:
->> - 2 DP + 2 USB3
->> - 4 DP
->> - 2 USB3
->>
->> The layout of the lanes was designed to be mapped and swapped
->> related to the USB-C Power Delivery negociation, so it supports
->> a finite set of mappings inherited by the USB-C Altmode layouts.
->>
->> Nevertheless those QMP Comby PHY can be used to drive a DisplayPort
->> connector, DP->HDMI bridge, USB3 A Connector, etc... without
->> an USB-C connector and no PD events.
->>
->> Document the data-lanes on numbered port@0 out endpoints,
->> allowing us to document the lanes mapping to DisplayPort
->> and/or USB3 connectors/peripherals.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
-> 
-> [...]
-> 
->> +          endpoint@1:
->> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
->> +            description: USB Output lanes of the PHY when used with static mapping.
->> +			 The entry index is the USB3 lane in the order TX then RX, and the
->> +			 number is the PHY signal in the order RX0, TX0, TX1, RX1.> +            unevaluatedProperties: false
->> +
->> +            properties:
->> +              data-lanes:
-> 
-> Can this be described in a somewhat reasonable way to be non-compatible
-> with Type-C properties for more validation?
+Similar to other AM64x-based boards, add boot phase tags to make the
+Device Trees usable for firmware/bootloaders without modification.
 
-I tried, but failed. Let me try again !
+Supported boot devices are eMMC/SD card, SPI-NOR and USB (both mass
+storage and DFU). The I2C EEPROM is included to allow the firmware to
+select the correct RAM configuration for different TQMa64xxL variants.
 
-> 
-> If not, let's just maybe add a comment like
-> 
-> # Static lane mappings are mutually exclusive with typec-mux/orientation-mux
+Signed-off-by: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
+---
+ .../dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts     | 18 ++++++++++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-tqma64xxl.dtsi | 12 ++++++++++++
+ 2 files changed, 30 insertions(+)
 
-Ack
-
-Thanks,
-Neil
-
-> 
-> Konrad
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
+index 8f64d6272b1ba..81e9e047281fd 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
++++ b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl-mbax4xxl.dts
+@@ -167,6 +167,7 @@ reg_pwm_fan: regulator-pwm-fan {
+ 	};
+ 
+ 	reg_sd: regulator-sd {
++		bootph-all;
+ 		compatible = "regulator-fixed";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&main_mmc1_reg_pins>;
+@@ -245,6 +246,7 @@ icssg1_phy0c: ethernet-phy@c {
+ 
+ 
+ &main_gpio0 {
++	bootph-all;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_gpio0_digital_pins>,
+ 		    <&main_gpio0_hog_pins>;
+@@ -263,6 +265,7 @@ &main_gpio0 {
+ };
+ 
+ &main_gpio1 {
++	bootph-all;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_gpio1_hog_pins>,
+ 		    <&main_gpio1_pru_pins>;
+@@ -332,6 +335,7 @@ &main_spi0 {
+ 
+ /* UART/USB adapter port 1 */
+ &main_uart0 {
++	bootph-pre-ram;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_uart0_pins>;
+ 	status = "okay";
+@@ -492,11 +496,17 @@ &mcu_uart1 {
+ };
+ 
+ &serdes_ln_ctrl {
++	bootph-all;
+ 	idle-states = <AM64_SERDES0_LANE0_USB>;
+ };
+ 
++&serdes_refclk {
++	bootph-all;
++};
++
+ &serdes0 {
+ 	serdes0_usb_link: phy@0 {
++		bootph-all;
+ 		reg = <0>;
+ 		#phy-cells = <0>;
+ 		resets = <&serdes_wiz0 1>;
+@@ -506,6 +516,7 @@ serdes0_usb_link: phy@0 {
+ };
+ 
+ &sdhci1 {
++	bootph-all;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_mmc1_pins>;
+ 	bus-width = <4>;
+@@ -524,6 +535,7 @@ adc {
+ };
+ 
+ &usb0 {
++	bootph-all;
+ 	/*
+ 	 * The CDNS USB driver currently doesn't support overcurrent GPIOs,
+ 	 * so there is no overcurrent detection. The OC pin is configured
+@@ -538,6 +550,7 @@ &usb0 {
+ };
+ 
+ &usbss0 {
++	bootph-all;
+ 	ti,vbus-divider;
+ };
+ 
+@@ -621,6 +634,7 @@ AM64X_IOPAD(0x00ac, PIN_INPUT, 7)
+ 	};
+ 
+ 	main_gpio0_hog_pins: main-gpio0-hog-pins {
++		bootph-all;
+ 		pinctrl-single,pins = <
+ 			/* (P19) GPMC0_CSn2.GPIO0_43 - MMC1_CTRL */
+ 			AM64X_IOPAD(0x00b0, PIN_OUTPUT, 7)
+@@ -730,6 +744,7 @@ AM64X_IOPAD(0x0258, PIN_OUTPUT, 0)
+ 	};
+ 
+ 	main_mmc1_pins: main-mmc1-pins {
++		bootph-all;
+ 		pinctrl-single,pins = <
+ 			/* (J19) MMC1_CMD */
+ 			AM64X_IOPAD(0x0294, PIN_INPUT, 0)
+@@ -751,6 +766,7 @@ AM64X_IOPAD(0x0290, PIN_INPUT, 0)
+ 	};
+ 
+ 	main_mmc1_reg_pins: main-mmc1-reg-pins {
++		bootph-all;
+ 		pinctrl-single,pins = <
+ 			/* (C13) SPI0_CS1.GPIO1_43 - MMC1_SD_EN */
+ 			AM64X_IOPAD(0x020c, PIN_OUTPUT, 7)
+@@ -791,6 +807,7 @@ AM64X_IOPAD(0x026c, PIN_INPUT, 7)
+ 	};
+ 
+ 	main_uart0_pins: main-uart0-pins {
++		bootph-pre-ram;
+ 		pinctrl-single,pins = <
+ 			/* (D15) UART0_RXD */
+ 			AM64X_IOPAD(0x0230, PIN_INPUT, 0)
+@@ -861,6 +878,7 @@ AM64X_IOPAD(0x0088, PIN_OUTPUT, 2)
+ 	};
+ 
+ 	main_usb0_pins: main-usb0-pins {
++		bootph-all;
+ 		pinctrl-single,pins = <
+ 			/* (E19) USB0_DRVVBUS */
+ 			AM64X_IOPAD(0x02a8, PIN_OUTPUT, 0)
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl.dtsi b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl.dtsi
+index ff3b2e0b8dd45..a78297b9fa57e 100644
+--- a/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-am642-tqma64xxl.dtsi
+@@ -14,6 +14,7 @@ aliases {
+ 	};
+ 
+ 	memory@80000000 {
++		bootph-pre-ram;
+ 		device_type = "memory";
+ 		/* 1G RAM - default variant */
+ 		reg = <0x00000000 0x80000000 0x00000000 0x40000000>;
+@@ -54,7 +55,12 @@ reg_1v8: regulator-1v8 {
+ 	};
+ };
+ 
++&fss {
++	bootph-all;
++};
++
+ &main_i2c0 {
++	bootph-pre-ram;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&main_i2c0_pins>;
+ 	clock-frequency = <400000>;
+@@ -67,6 +73,7 @@ tmp1075: temperature-sensor@4a {
+ 	};
+ 
+ 	eeprom0: eeprom@50 {
++		bootph-pre-ram;
+ 		compatible = "st,24c02", "atmel,24c02";
+ 		reg = <0x50>;
+ 		vcc-supply = <&reg_1v8>;
+@@ -89,11 +96,13 @@ eeprom1: eeprom@54 {
+ };
+ 
+ &ospi0 {
++	bootph-all;
+ 	status = "okay";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&ospi0_pins>;
+ 
+ 	flash@0 {
++		bootph-all;
+ 		compatible = "jedec,spi-nor";
+ 		reg = <0>;
+ 		spi-tx-bus-width = <8>;
+@@ -116,6 +125,7 @@ partitions {
+ };
+ 
+ &sdhci0 {
++	bootph-all;
+ 	status = "okay";
+ 	non-removable;
+ 	disable-wp;
+@@ -126,6 +136,7 @@ &sdhci0 {
+ 
+ &main_pmx0 {
+ 	main_i2c0_pins: main-i2c0-pins {
++		bootph-pre-ram;
+ 		pinctrl-single,pins = <
+ 			/* (A18) I2C0_SCL */
+ 			AM64X_IOPAD(0x0260, PIN_INPUT_PULLUP, 0)
+@@ -135,6 +146,7 @@ AM64X_IOPAD(0x0264, PIN_INPUT_PULLUP, 0)
+ 	};
+ 
+ 	ospi0_pins: ospi0-pins {
++		bootph-all;
+ 		pinctrl-single,pins = <
+ 			/* (N20) OSPI0_CLK */
+ 			AM64X_IOPAD(0x0000, PIN_OUTPUT, 0)
+-- 
+TQ-Systems GmbH | Mühlstraße 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht München, HRB 105018
+Geschäftsführer: Detlef Schneider, Rüdiger Stahl, Stefan Schneider
+https://www.tq-group.com/
 
 
