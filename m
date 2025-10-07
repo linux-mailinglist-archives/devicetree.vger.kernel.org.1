@@ -1,109 +1,107 @@
-Return-Path: <devicetree+bounces-224121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9E82BC0CB4
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 10:58:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADD97BC0D29
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 11:11:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4202189B2A7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 08:58:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E25C3A374A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 09:11:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDF0F25743E;
-	Tue,  7 Oct 2025 08:58:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D3AC154BF5;
+	Tue,  7 Oct 2025 09:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="bH3h03gJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C9C62D6E59
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 08:58:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 370432D6E4F;
+	Tue,  7 Oct 2025 09:11:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759827504; cv=none; b=ft9H0HD/+0IXwFonuvUV9yd908aKaiI2ASVCY/bozM2sew8DHv4KRUd2fbzf+zqKJA255xyVubhNC9OCtcu+iJaCK4fgaD3vfOyDI5MnTI56YbXCFffVmXL/4uJuwq33ko/MhUdkVgeU2B4wqrdMR1uTnckLfcRvc4ljSw25EHI=
+	t=1759828270; cv=none; b=hfmZp0QNU2wt+uURnbNGT4biyXAFPHvsHzn8XwEcOObFDet7Z0RD15DItF2lH0a9kEU9LlhlhxU4NIpKjAKwBqybj/SqwaJBIHynLLhQMR306Q9vrvqfoXDHFj7iCQthoM2edZkfG02VxqKNcVQV6/+oc2Tcb2QKCJ19GEsM5p8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759827504; c=relaxed/simple;
-	bh=s3kbGH2m7tYAq0Ru+MGjztJlEXICfIdT9WzMkCBCWFM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=EfEyh6wBd+nw+sctD8Cx0kM5/r1GqP7AS3a2LXTIWAJ3NNNEy3AAMNKd0tsTFIRM5ysFWuErBHQFc3hLlMjbhsi1DTaePc97BuPNzf9daG+RvLtWQxRoQ8ZHbt94Le9PNiy7lgtFATOArQtYcCuN3xdYoEWWKjGAYbGFPeYVVu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.trumtrar.info)
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <s.trumtrar@pengutronix.de>)
-	id 1v63WO-0007XY-Km; Tue, 07 Oct 2025 10:58:12 +0200
-From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
-Date: Tue, 07 Oct 2025 10:58:04 +0200
-Subject: [PATCH v4 3/3] Documentation: ABI: add lp5860 led matrix
- controller
+	s=arc-20240116; t=1759828270; c=relaxed/simple;
+	bh=YCPXdnG5zQAocVXJ3TiIrBnpkKTBpqwF0eKVaj6G9aM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ay1E1N8xiBXvizIHdq+BVCF6JIl/Tl+GHHJXdiyOkHbj3tae/Ezkm1vHNqT1mRCCNpzbbmq2s80GFf/K2pFwYFWQ/h3iABzIMKJUwSvzGpzzqF9MU2jtoAx0pFKbWjKeas5nnLBAGGUOBxgYRX8AlBNXhRrzIfWExOdwMnXcz40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=bH3h03gJ; arc=none smtp.client-ip=195.181.215.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
+	t=1759827912; bh=YCPXdnG5zQAocVXJ3TiIrBnpkKTBpqwF0eKVaj6G9aM=;
+	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
+	b=bH3h03gJn2Olv7O538Cv+ijkF+N4ZzLrxe9yoduUJCcd0s0Y6p9ALFEaiYfj+65hL
+	 /JxpPE2biHy2FiKR8xH65AJKuZgQ92CyWpPPiO6dTW3UH3Lfyj6hMJDloe3/M3moz/
+	 fZCZ1z14I8IYXdy/dsYZNZn1X3wWAFXoAysyMr6Q=
+Date: Tue, 7 Oct 2025 11:05:11 +0200
+From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
+To: Rudraksha Gupta <guptarud@gmail.com>
+Cc: Dragan Simic <dsimic@manjaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	"Leonardo G. Trombetta" <lgtrombetta@gmx.com>
+Subject: Re: [PATCH v3 0/5] Upstreaming Pinephone Pro Patches
+Message-ID: <6joes3gufls2bx37gf2uoywyahlqprn73qfz6gfico5jxkua7z@irixdgkqp66p>
+Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
+	Rudraksha Gupta <guptarud@gmail.com>, Dragan Simic <dsimic@manjaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	"Leonardo G. Trombetta" <lgtrombetta@gmx.com>
+X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
+ <https://xff.cz/key.txt>
+References: <20250921-ppp_light_accel_mag_vol-down-v3-0-7af6651f77e4@gmail.com>
+ <53eabe34a310ea9c74315fa09a604e4a@manjaro.org>
+ <b01ed528-8b29-4a6a-bdff-88f2e3b5dd2e@gmail.com>
+ <115da845d9161e6ecfa67cf189b84aa8@manjaro.org>
+ <37f2603e-8c51-4f92-a7af-0e60cd577004@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251007-v6-14-topic-ti-lp5860-v4-3-967758069b60@pengutronix.de>
-References: <20251007-v6-14-topic-ti-lp5860-v4-0-967758069b60@pengutronix.de>
-In-Reply-To: <20251007-v6-14-topic-ti-lp5860-v4-0-967758069b60@pengutronix.de>
-To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Steffen Trumtrar <kernel@pengutronix.de>, Pavel Machek <pavel@kernel.org>, 
- Mark Brown <broonie@kernel.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
- kernel@pengutronix.de, Steffen Trumtrar <s.trumtrar@pengutronix.de>
-X-Mailer: b4 0.14.2
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <37f2603e-8c51-4f92-a7af-0e60cd577004@gmail.com>
 
-The lp5860 is an LED matrix controller that can be connected to SPI or I2C.
-It supports setting the maximum brightness of the three basic
-colors (R,G,B) with a global value.
+On Sat, Oct 04, 2025 at 09:55:19PM -0700, Rudraksha Gupta wrote:
 
-To: Mark Brown <broonie@kernel.org>
-Cc: linux-spi@vger.kernel.org
-Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
----
- Documentation/ABI/testing/sysfs-class-spi-lp5860 | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+> Awesome! I was hoping that others would comment on the testing I've done
+> (especially for the accelerometer and magnetometer patches) as I can't tell
+> if userspace is wrong or if my testing/conclusion is wrong. Mobile Linux is
+> very early stages at the moment, and I suspect the Pinephone and Pinephone
+> Pro were used as reference devices with Megi's downstream kernel. Wrong
+> mount matrices in the downstream kernel might be affecting userspace. This
+> means that with the corrected mount matrices in this patch series, userspace
+> is slightly broken (eg. since I fixed the accelerometer, the screen in Phosh
+> and KDE Plasma are upside down. I suspect KDE's Kompass and Leonardo's
+> compass app might be the same if I'm changing the mount matrix for the
+> magnetometer). This is why I decided to showcase the raw values in my
+> testing. If my testing is incorrect, please feel free to let me know.
+> 
 
-diff --git a/Documentation/ABI/testing/sysfs-class-spi-lp5860 b/Documentation/ABI/testing/sysfs-class-spi-lp5860
-new file mode 100644
-index 0000000000000000000000000000000000000000..80b22a9d6642100a25efbf658cfed8604150baa5
---- /dev/null
-+++ b/Documentation/ABI/testing/sysfs-class-spi-lp5860
-@@ -0,0 +1,23 @@
-+What:           /sys/class/spi_master/spi<bus>/spi<bus>.<dev>/b_global_brightness_set
-+Date:           July 2025
-+KernelVersion:  6.16
-+Contact:        Steffen Trumtrar <kernel@pengutronix.de>
-+Description:
-+	Contains and sets the global brightness for the B color group.
-+	Can be adjusted in 128 steps from 0% to 100% of the maximum brightness.
-+
-+What:           /sys/class/spi_master/spi<bus>/spi<bus>.<dev>/g_global_brightness_set
-+Date:           July 2025
-+KernelVersion:  6.16
-+Contact:        Steffen Trumtrar <kernel@pengutronix.de>
-+Description:
-+	Contains and sets the global brightness for the G color group.
-+	Can be adjusted in 128 steps from 0% to 100% of the maximum brightness.
-+
-+What:           /sys/class/spi_master/spi<bus>/spi<bus>.<dev>/r_global_brightness_set
-+Date:           July 2025
-+KernelVersion:  6.16
-+Contact:        Steffen Trumtrar <kernel@pengutronix.de>
-+Description:
-+	Contains and sets the global brightness for the R color group.
-+	Can be adjusted in 128 steps from 0% to 100% of the maximum brightness.
+KDE Kompass uses this as an algorithm: 
 
--- 
-2.49.0
+ https://invent.kde.org/smigaud/kompass/-/blob/master/src/compass.cpp?ref_type=heads
 
+which is largely inadequate and doesn't take mount matrix (in_mount_matrix) into
+account at all. So that's not a good reference app. Also it doesn't even
+claim to support "af8133j" sensor.
+
+Leonardo's compass app has its own mount matrices, when kernel doesn't contain
+one:
+
+https://gitlab.com/lgtrombetta/compass/-/blob/main/src/compass.py?ref_type=heads
+
+which we can also use for comaprison/confusion and is different from what your
+patches are trying to upstream. :)
+
+regards,
+	o.
 
