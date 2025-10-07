@@ -1,252 +1,256 @@
-Return-Path: <devicetree+bounces-224251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60F1DBC21E6
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 18:32:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DFA4BC2264
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 18:49:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 332894E370D
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 16:32:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 747224E1BBC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 16:49:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972901DF759;
-	Tue,  7 Oct 2025 16:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 849172E7F39;
+	Tue,  7 Oct 2025 16:49:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b="POqvVnku"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="YhPEHR/e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011015.outbound.protection.outlook.com [52.101.70.15])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B1B220330;
-	Tue,  7 Oct 2025 16:32:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.15
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759854747; cv=fail; b=VdDdBjTNglSpYCbfDYjg8ujTSWblYePg9jixE4pBok8e3cmyHs/+vTWS6fcFUt87xlwAfhYlpXoROcuOa0AjbU0LmOstV9OZ2Qrfb4RAE/lAiWqnRy455yd2b2zELhkp2T+HJSCf/a5tBoVrjBV62YEg/isaNKeyky8Sev+JBj0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759854747; c=relaxed/simple;
-	bh=0ZyoYR3CVF4T4w6yG/noioLW4tSSx+KHr/Gge6Owauw=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=FkSevBB08K8Y6f4YCmYMV5E1aPVNcTcuwVWl2sX6yfuhdJI7sZgmPNZ+DoXKHsFSy64HFVeOWDua+ao9CNXo2z796iRhHgZpVTiPci7nA011eWtxpT5dmY6bnJAEtRQyOlgInp8iy01nAm4L3asJAvLBOJwZZokPB+8xWn0BaGk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de; spf=pass smtp.mailfrom=cherry.de; dkim=pass (1024-bit key) header.d=cherry.de header.i=@cherry.de header.b=POqvVnku; arc=fail smtp.client-ip=52.101.70.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cherry.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cherry.de
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Mvz9JB2JL+yPegPrnzVG9iNTFFnICpM3hP+PFf7+wgZNt+7ErBXgBAVhMqyCTG3iKyOfUWL+YWTXKM53vW/OPOy85HVyFFSXZ58HptZ+bC078guP5ytRN+T/yLoZU9d33kDBAf7UcnWNWfWUKARODct/gHcdyx9G6eitvndu3vMUKgJLbXJkmgzI4bAihBhQBl13vYEPcmZpzg6eaM5NSm0Q5rp3WkqC8T4aAjuIRfJ9AKjMfv2yyUtF2SLJlStKRNQl+gkaENZuU61fwnqbReVtEurdLiZl3IY3yz69DZTh0dyxT4zzKmgjfpleNZ9z0CdhHTl0eIzWUv5+elw5XQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=MoMycbd1GHC9ZF3SPhH94/NJvBoKw7yzV4t8HZNYkM8=;
- b=ajCQKV2Nklv9KQfkP9JYaVigqtem5r70zV1Qw//HsujvvtnWt3SlN5XyVOXK2w6mAtOelOMu7X9ib86zRWJA+FqmPy59TLXLAdIEu0UtJElHPigLihFsbJxP/DLhEroMtg4y2AOnaok7btv0q1C4raUliItGmD5s3hRAI7BYaW2qD38JIBL8KxCTWtCPoswvBEvlJ6YORs65S9eJniEnjKpwjHbQhnt712Y3x+Y9wPJJVkCL8pBYbzF3/unj5q4Zqmjt/SqLD8QUuZqxUVSPZUvKiJwFy5GKoihieOHKUgmw2EkP6rdVx8lfJ5n12tYtHmqi6LIakdmnqM7UqXHElg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=cherry.de; dmarc=pass action=none header.from=cherry.de;
- dkim=pass header.d=cherry.de; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cherry.de;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MoMycbd1GHC9ZF3SPhH94/NJvBoKw7yzV4t8HZNYkM8=;
- b=POqvVnkuH4N2kjcN25UMJpXopomofq5J9fHN7r3W4s8mkBF9tUgf3K3Vn+KhjzbsF+g/laPHCHu9erefI8h9bCWWBhIYwU/mZt3ydlzVYYMrhp5G+NyOPd1IbmMpyeel12h2Sdd80mIQsYaTpWknnabauK/W67qUyMQJ6kK4XlA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=cherry.de;
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com (2603:10a6:20b:42c::20)
- by PAXPR04MB9075.eurprd04.prod.outlook.com (2603:10a6:102:229::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Tue, 7 Oct
- 2025 16:32:16 +0000
-Received: from AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::5ee:7297:93b4:a8d1]) by AS8PR04MB8897.eurprd04.prod.outlook.com
- ([fe80::5ee:7297:93b4:a8d1%6]) with mapi id 15.20.9182.017; Tue, 7 Oct 2025
- 16:32:16 +0000
-Message-ID: <88c6c40e-8c19-429d-a7d8-c8f2755f515c@cherry.de>
-Date: Tue, 7 Oct 2025 18:32:15 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: add LinkEase EasePi R1
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>,
- Andrew Lunn <andrew@lunn.ch>
-Cc: jjm2473 <jjm2473@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, heiko@sntech.de, kever.yang@rock-chips.com,
- naoki@radxa.com, honyuenkwun@gmail.com, inindev@gmail.com,
- ivan8215145640@gmail.com, neil.armstrong@linaro.org, mani@kernel.org,
- dsimic@manjaro.org, pbrobinson@gmail.com, alchark@gmail.com,
- didi.debian@cknow.org, jbx6244@gmail.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20250929065714.27741-1-jjm2473@gmail.com>
- <20250929065714.27741-4-jjm2473@gmail.com>
- <d8ad476c-d0c7-4e97-9e76-540a539ffb52@lunn.ch>
- <CAP_9mL4ofig-X-w9wx1A5D_eVXROo6AVFBSwp4mh=kj7webpPA@mail.gmail.com>
- <7e219aef-88a0-4184-9553-30dcbc8dbd79@lunn.ch>
- <aOU-_tPOmkyuw_kx@shell.armlinux.org.uk>
-Content-Language: en-US
-From: Quentin Schulz <quentin.schulz@cherry.de>
-In-Reply-To: <aOU-_tPOmkyuw_kx@shell.armlinux.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR0P281CA0058.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:49::19) To AS8PR04MB8897.eurprd04.prod.outlook.com
- (2603:10a6:20b:42c::20)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6B581DFD9A
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 16:49:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759855760; cv=none; b=SbEYOovNJYCEo28jbiWqAOuItQLFwmkz6i2YztQATQAkiOeJJanuE0bh7CfI7rSWDsEKUrCP4v5Fn6K0yX0f1lH4BWXWc2BixSZIIdiHZ4yCfQp/nXIN5GYYSpjyDf+o71Ueiv40mCD6RedWDGBat4Xv/+Rw9NR4rlFho+6/oK4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759855760; c=relaxed/simple;
+	bh=ORACqGs0noVFjkqRIzC7mgkhXoMvVcz9xFF8BLGfL4k=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=kjBN+QjrV/LYSjj43aT8jd+AwCpu26OmBBgwtKn6B2uQLiqwFtb4DiunMNw2Z7O9MYFlj2rC2Y0ID5ZLX3OKTPqMLS/SvdMEPvwEXEnMc2vqo2TcBibGJs0U+R9WT8mgX9Jd64UHoQetoAPZWbcU0hwNFON2vVA9l99cKzcuqA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=YhPEHR/e; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 597ETYle008250
+	for <devicetree@vger.kernel.org>; Tue, 7 Oct 2025 16:49:17 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=3SsHbrRlk80DtQuFub/knm
+	jcStfwYscfjlXoW0LXl4Y=; b=YhPEHR/eZWjAqdlHzZX80N8CU3LYt8w/qDDmOq
+	y7+veEl4xOSQcSt/XOStjB7GqAJDc/FPwT1Zfzgrn/ef9FjSVdvSUj2zlN9eF9Wt
+	AYn5cY0llFiPJjUCHjV46Gv/47uCfNrsHNf/kadenwP3nd4nm7kqjq33I9WRUMpL
+	RsCkl9OfLPmQUSstdP+HYumV65MEklPFncDRMwOUFkaSEaU5HghsJqcPPQOzQkvi
+	qWeGWi8ZFRqo6pxgrIvQGYmrSSFzsH/iwIc1XKI1s62clRPKchqxU/8Yuy8DTBdR
+	QG5IylgGjc88i9TpzBvBaeJ7qbbGlt2ieNNi+663QkGEbREA==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49juy6ywyj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 16:49:17 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-286a252bfbfso128843065ad.3
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 09:49:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759855756; x=1760460556;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3SsHbrRlk80DtQuFub/knmjcStfwYscfjlXoW0LXl4Y=;
+        b=kmWJDkbHXVidH5mVm9qyfgTt3cZ3DUH8CtLouTv29lxTN1AJyeekpA0ngcB+zVs3qB
+         jhRlhnYQ+kuul8yfbOTQZ2N7t3z6ZRdTfu/wbzpn9h+ZlgP1gZnJLLvgWa5VK2uPeZP0
+         h07EoOTgrwDVS2Bkf0BsOF9vfroJQWlRVoKdiVWtEdvYFIvxQ6lgQQJL/jcLLnLbId+a
+         f8XrDvTE0HJwLMK1Yg6I/J0H7Gd6Ryqi2RNznXq7wnpfpZFnccBJX9XrS2kXOOK6Q0d2
+         tgTIl1+0SiAdOe1FIuy/g5NQOc8Xr8IGV5fjyKhadKHO9RFZ3Arniy7b35+LORwpaxU8
+         CgAA==
+X-Forwarded-Encrypted: i=1; AJvYcCV24xUOZxUvr3I+2KsNwEu+/+OsuUcNmH+pNp4ARRbgxWP0f8tV4mot0aqWXFw8Pni//uwWqMcgBR/V@vger.kernel.org
+X-Gm-Message-State: AOJu0YyN6nHuJEWH3sfFiL55wXwRLJ6ssa6pM7vxO9lq7Sl/i/8d3WuX
+	uNVWA0eCfkhHxqgnNiNHwE9OIQvqycOGsVycbX9zqzUgv+b81DBsJzjcyNDjXGzHRdWYC3f28W0
+	oN1w8H+A4gLyYfsm0/rnVOfPbmfc9ulS/xxSzC4o16WlGa85AxjFM/WuJPI4dFqXZ
+X-Gm-Gg: ASbGncuqdCUJQYot8LqSsG/88nhHcKNrctPNxH4zGBd9e/ei9bbKdpqZhJX14Slx5md
+	zvS/+Z5ZZn7VcJkmXzYrvOm959bz3QbBxjORB39UYim7z+SztFxnitWERQ7UEnYl54h53+abbQN
+	sZUXBWro7DfkRjL3mB48Z5e/6PgMZ+sfLvuPEaEHjed5ZeYD6LJi8775mb69pqXuKwOmJJIh5Jo
+	JPWjfjX1Ewy/jmTrybvjQhOazpl2KVahR/uc87G+O2HCYv9/vn/7XI2KCCESmh3CYb4NEIYzQD5
+	xTg4p2VK1tRlWON4Rx9uaggqDylipVyTrUww+upVZAwPLgIezhKuyJi/8PC6l8tP/ga70SCb
+X-Received: by 2002:a17:902:ce0e:b0:275:6baa:d9 with SMTP id d9443c01a7336-290272e38b6mr5347455ad.40.1759855755535;
+        Tue, 07 Oct 2025 09:49:15 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG7Cwbjhk9Ln1a/sV6MFv28g8oouuSH+rzC3RmgYPdyZOA+8Ox7HF5JQoYQkIi8mUXs7Kz7ng==
+X-Received: by 2002:a17:902:ce0e:b0:275:6baa:d9 with SMTP id d9443c01a7336-290272e38b6mr5347105ad.40.1759855754854;
+        Tue, 07 Oct 2025 09:49:14 -0700 (PDT)
+Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d1261e2sm171990825ad.38.2025.10.07.09.49.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Oct 2025 09:49:14 -0700 (PDT)
+From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+Subject: [PATCH v4 00/12] Peripheral Image Loader support for Qualcomm SoCs
+ running Linux host at EL2
+Date: Tue, 07 Oct 2025 22:18:45 +0530
+Message-Id: <20251007-kvm_rprocv4_next-20251007-v4-0-de841623af3c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB8897:EE_|PAXPR04MB9075:EE_
-X-MS-Office365-Filtering-Correlation-Id: be8f1ebc-eb53-4835-196a-08de05bf13e4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?RDVZY2NBVE5vNFoyQktoTU9MSFU0UVNMa09CckFhci9LR3l0N1hNWUZNdDNp?=
- =?utf-8?B?b1A4bWJUaFZpaHdHVFdLSml4Nk85a3Q0ZmpJWEw3WHdvYzgvWDlmQkRFeGNB?=
- =?utf-8?B?dHhidy9TZi8ybWRYNmZTQUFyZmVpaysydlNXdlNSM2F4SlUwN2hpakdyVzJV?=
- =?utf-8?B?bjczYjNIeEVTVFR5Kzd3Vk5VSytkU3BPUEl5REc0WTdDaWVrSGhIblNOSWVP?=
- =?utf-8?B?L0ZIbjF3SnBkanFhdStUNFF5YlllRW1xaW5QUnRQRmNHSW1xcEZXdHhubmhP?=
- =?utf-8?B?Sis0WnFEWE0xSHdua2Zja1ZwQy9acHJ4MVVyMnZFUFJIeDJDelhvdzBwYWpT?=
- =?utf-8?B?Y3pUbzN3M2RsZmg4KzVmRTNDQ3BaWjN0SDRZdWgvSVl4K0xNZzgwa24rN0Rj?=
- =?utf-8?B?KzVNWmpvQVZmbnE4QzNhcXc4TjBKdisveklQcXA3S2tLbkQ2V3BQQWdiRlFo?=
- =?utf-8?B?b1ZkcitzTTFCWXFhcEZhN2tqMm5SN2RiT1lBaDh1enJZbkRwZkFtQ1M1YzhG?=
- =?utf-8?B?NWpRWnQ0TExmdFZaUlR6RVhtZVVTT2JXUVlVOWtwdW42S25sUjkwdURMS25N?=
- =?utf-8?B?ejg5NTZsSGhlbitnejhRbnJKWnlQQTFpMkRkNDBJbDJHKzdIU3dmbFZzcVMx?=
- =?utf-8?B?VlZ2djZhaDhDRDNSVEdEQ3ErWmN6MloyVzhrOWQ0T1QwTDE4aG5zaG9qUjVk?=
- =?utf-8?B?TmxxVit0VTBncG1mUnJWZjNSQklXa1JEZlZpR2hOWEQ3Q0Y1aWhzcHNkemxX?=
- =?utf-8?B?U2VGZmJUYlNCQmxYSjhnMFlCOUJoRjJzbkhYdHZUYmhIR3FqNE9lVnZPWkxK?=
- =?utf-8?B?M0dQUDRVQjZJV2NkRG9aTHZ5YzhzUEJrWmhrVWQ0cE4xMUg4cXRDNkMwYVNZ?=
- =?utf-8?B?NTVlaXJkWWZ0L0pxRlBaM0hNTlcvYnVsOC9nWGZhM1B1ZDdTNWhZVThsZnFt?=
- =?utf-8?B?ZzB2d0xTYTZJcTZ0ejN5RTlPWDFEdU9JRzVJeEt0QmJFUEhna09LalNta0Z5?=
- =?utf-8?B?VlRoWGswZHJhTE1qcjVnbXdJNXlacWRLbnJRaFJxeVBKcStvV1N2TnFVRzZH?=
- =?utf-8?B?Vk9FVnk0ZStUcGR5VFhTSkFEM2JPN2kySEVsc0krZysySVdrSnE0SWJHYzNI?=
- =?utf-8?B?dWxNSGw2L2ZGMWV3SHpnMEVyQkdxMGxSd2hqNG54VE1MZCtCb2lkZFFTL21E?=
- =?utf-8?B?ODh2aUhmTWRJTE9scGZpSXFTY2h2SFJZN2xVVld3c2dveURzY2JRZ29QV00y?=
- =?utf-8?B?cWdCNHJvd1dwZC9MbEhkdXJXVHA5YXlCVlpvNm12UlExWExUQ2pyVEpZditr?=
- =?utf-8?B?R01WaGsyTVZoT0MrMkEwUVorUStvb2JvZG9wQmMwOTk2NzlER1MwNkNqSzEv?=
- =?utf-8?B?MzF3TUVxSS9rSXkxTGlaQ0FITGNtRTA4WHJ4SEpMYjVxMi9PcldCSmF3TXlI?=
- =?utf-8?B?N2xtVXluLzJRY1czZytySFBCdGlTNC90YW4zZFVVeDdaNnU0bldqd0g4QnF3?=
- =?utf-8?B?K3RaOFVGenV5a3RySkdqZU84K0RqQTl3UzQyZGJHM0hwb2dVRTJNRERFaEk2?=
- =?utf-8?B?dzNKVW8xUExkUjlpV3RiNkExdkdQaENuRWNEdkxSeWhGZ2ZleXFhdUcvK1lR?=
- =?utf-8?B?K24yK0F0VHlocTJ4TEsrd2pKKzE4NHdUZndvbHl1c3BjVEM0VXR5dUd3TXdJ?=
- =?utf-8?B?NG1XaWhrdkg2dUlXSVgwdFMxNGxoaUg2US94YXRWWkZZV0k4N1VqNHh5Rnc1?=
- =?utf-8?B?NzB1TXR4bFNveFhscllkeDh6YkllZW1DOC9uS1JZZ040bDdkcjd3RlgyRWdD?=
- =?utf-8?B?NW9GdFRZZHpJNjBoRGJWRUZ4SmhoM3VwZllyd3V5UnU3QWRYdXE0eHFLanRT?=
- =?utf-8?B?OFNLc0F4VDFsU0l2OVZ1aERSb2laTncxWUdsdVlYNDNUMHc9PQ==?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB8897.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?dWFocU94V3RyeU9EdStFRWtvL1VjTHFwcHNIeXVnaGp1NVNsWFpWcUxrTXRx?=
- =?utf-8?B?NWtodjdVV04yK1Y1VDlwQUlZckZZZFVtVGNPQXVpWm1tNjlkYWRLWEZKc0RD?=
- =?utf-8?B?WVNDK2NkNmlhV3pOSFEycC9SRGVNVlFXMmQ3N1gyWE5kVDIyaU5MdU5UZm8r?=
- =?utf-8?B?NXZvQkRkc2JTeXJKOTgwU0JxdEFxYTJWaG5GTEhrSU1SZ1EvSEVaNmlpQWhM?=
- =?utf-8?B?YTI4aDFQWnNsN2ZBTGg0b0xmaWhTT2ZFY2I4ZHkyZHZraE94MHVmaW5ZQVg4?=
- =?utf-8?B?WXJpZWtQOGlxdngwTGEzK1JKcUk1ZzVjc3RUREp4N25ZV0tERVBMbEU2b2Nr?=
- =?utf-8?B?NHBqK3E5UVZRRkxhN3hvaVBPNW5abGt6KzlISzFNWUdoNG1YcFNSUjhOeTR6?=
- =?utf-8?B?UlNiVU5QQU1xS2djaVNNMnoyckcxNjlBYTE2SGNiWXJmM28yL3FodCtMVk1R?=
- =?utf-8?B?YzNuWk0ySmVMM3FDMXQwQk9jL2thcjVyNi9CaFc2Zkt5UytsWmpZM3FVbVFI?=
- =?utf-8?B?WWgveXUyTTBQYkdnZGtXRjVlanBEOFI4ZElKcWYrU3BaSlFLUnUxNVNhcVpZ?=
- =?utf-8?B?OVhQZE5KbXpsd0YwVU94WXhuWlZJS00xL0lLUkJodU5WMTN3QnhjSTNuY1VR?=
- =?utf-8?B?RXpvYjFYU0N6bHhSRVRFNU9ERk5nOFpvbzA3YjZRdStxTHd4QmUrcjRNZGV4?=
- =?utf-8?B?dFFJWWp4U1FManJDU2hPQWxha1Mva2pDMC9vNmFoNnlVYlFJcWF6alNKbjVY?=
- =?utf-8?B?QVBGOGMxcnM4N3ZZQzFmbWxCOURyRTlQdUlpVFhUTzErUHpRVDhFTDlPcjQ0?=
- =?utf-8?B?K1NDcEtCVnEvRCtTNm90T2h5Z2JQaFFPYm5JS0NUR1daWW9VMDYwaEhBQkxa?=
- =?utf-8?B?OUorV2xFd09rdmxMVVdWM1FESmRxZGpLclp3em9OSndWdnFJOWhmaytGQnV3?=
- =?utf-8?B?em5pV2RSdVZDcFF0VEgzdnB3akwwLzYveUtNanQ3UDM5VDl6R1hvbERrQTJ5?=
- =?utf-8?B?RWVvMkYxcW1LS2c3UDF5cjdSVDRqT3I4QjJWREFneE1IS2xvVFJxU3JjeW9P?=
- =?utf-8?B?b05PMmdaSElodnFRMXlpMWpMK2t0d1VkaHc2TkcxTW9wYlpoY0NkRjJ5VVdK?=
- =?utf-8?B?d2dlM1JGSXdvSjRnRmhhZXMzMkxyTDhKQmpkeS95R0tENWpTRmo4TDVIZmdS?=
- =?utf-8?B?WDJCc0E5R1V2d2tyeUc0K1V3QlpYVVg5a2d6blhLcXJ6WnRSS2ZlRVJkaXJQ?=
- =?utf-8?B?cEtTS3JuWE1QOUlQOGdzdmExMk83cFpwSUppczZwb1NUUXQxKzNGbDhrTXEx?=
- =?utf-8?B?Vkt1UmFsSTRoYkRXb2JPU0RCQ0doZTkwUFdYVEpjQWxKaGExSEYrWEZTeVNR?=
- =?utf-8?B?T2VobHB0NVhsRy9CcHNFaG1GU3R3eDJjZVNMSThkcVcrNjAxRXZ4S3NlL0ph?=
- =?utf-8?B?cFJPNmw0OWlteW9qMXIrZ3BITHMzaHBQRjhoRytUak03OEFkbWJlcW9pNkN2?=
- =?utf-8?B?NGQxKzhuTlJ0d0JEUTh3REY1a2ZzU0Vpb2ZlZGtoanlYUVFRK2tlNzBNZWRk?=
- =?utf-8?B?eEpkOGZPWlpXaHY2K2ZaTHRBSEZxSnJLREYvbXJyV1drQkVsR3ZqTUZnZ3JI?=
- =?utf-8?B?VDVWQTlTbWVDaENEOU9TUzBiT1czOCtIQzN2OVo4SXVQbHhOeEQ2d0Y2bXNQ?=
- =?utf-8?B?MjhxKzJ6ODhaeVRpTVk3R0hOZzdNTlNzRW1EOS9DR0lvTVFnYVFWMmN3YWpq?=
- =?utf-8?B?Z3p1NmFzNlNZWDFpNEg0VFZ6MXVIdEpGcnhsT1hxZC9kQ0RYU1E0eTlJbTcw?=
- =?utf-8?B?Qklia1UzMHRveEowQUtaYmhxQWJ2U3UrbDVnTzNqVGJzNVB4SWVULy9tdFNU?=
- =?utf-8?B?ZTM1SUdoQjdJT1ZDMUZSZnlBMWZBRFlra2NwTEtGajAreXh4UTdXNmJuTVds?=
- =?utf-8?B?dGFHOXVCRWhGUGlSaysyZTFtU1hrMG1XRmNsNWhQOWhSZEZ2RmRYdUJBMm1h?=
- =?utf-8?B?SDc0OStEanFJN0lhMis5eWVWeUtsMGowaDJ1MFRhRjR2bGlTZjNQcG1JWE5F?=
- =?utf-8?B?RFhBcGZuNHhXTzFkeWNJTjU1ZGl3NXVNN3BIQ05uUEZaZDRDREdsQVJZdlNR?=
- =?utf-8?B?cWREVGJ4N0dtVnNmNVpFVEtYTWVNOWtGdUtSSFlJTWJ5K0swaU1nd25oTVVo?=
- =?utf-8?B?N2c9PQ==?=
-X-OriginatorOrg: cherry.de
-X-MS-Exchange-CrossTenant-Network-Message-Id: be8f1ebc-eb53-4835-196a-08de05bf13e4
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB8897.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2025 16:32:16.5549
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 5e0e1b52-21b5-4e7b-83bb-514ec460677e
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: qMsQOGqRXgIU4zvd8VEsJjfgSSAVEb7n0FNk79bwwmVKOl3tsyxKNm85djsUbP84LZQWCsiNokPhrsy+3Xbn6lpa1pv9nQUUe4a6LUCAGe0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9075
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAG1E5WgC/z2MWwqAIBAAryL7nWCi9LhKhEhttUQWa0gQ3T3po
+ 89hmLkhIhNGaMUNjIki7SGDKQQMiw8zShozg1balkpVck2b44P3IRkX8Drlbywa9NY3VT16yP3
+ BONH1vbv+eV7Qlr5WawAAAA==
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+X-Mailer: b4 0.14-dev-f7c49
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759855750; l=6187;
+ i=mukesh.ojha@oss.qualcomm.com; s=20250708; h=from:subject:message-id;
+ bh=ORACqGs0noVFjkqRIzC7mgkhXoMvVcz9xFF8BLGfL4k=;
+ b=FJqyngBWGKTeiZeXciyek46l96eCRS9NYAMZ38KvI8TMJG6MvVWs2QREhJ9UaJOTJ8MVnSYTK
+ zPgA8mw6Q4CD4+y3/wwQsfKHno/fCxtZ3hGllPfip4+Omdg9mKvE/i1
+X-Developer-Key: i=mukesh.ojha@oss.qualcomm.com; a=ed25519;
+ pk=eX8dr/7d4HJz/HEXZIpe3c+Ukopa/wZmxH+5YV3gdNc=
+X-Authority-Analysis: v=2.4 cv=IrITsb/g c=1 sm=1 tr=0 ts=68e5448d cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8
+ a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=49n8dk0KqV-O-Ing9ysA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=324X-CrmTo6CU4MGRt3R:22 a=cvBusfyB2V15izCimMoJ:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: SBbd8o1XAz91laj-ZQQdxxTn23vXh3n_
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAyOSBTYWx0ZWRfX7AhUmt0T/bat
+ HZqMsOU/0PuTrikxDNDdzNz3wUyM5u19PXyKUX5+YXurUhfnJUUjPHd1g7iNx9Un1eQBwckEByJ
+ KV3CI2t5TczeQMuYEW/YS+sMHkRb2qSEGdVuvOFoEAVcwsVs522PO9NvhGIAHRUjM8Pem7Xtf1D
+ /Au0m/UennW4JHjkEEja1OLKLQhJ0Y0/HiTRzm0z+iYOuE6UeVPtxlN1Hw++hdj9a/U9R/Cg4uH
+ jDV3gRcBmD2/k2UHKknu1todvLRVJySCouHe577911WIhKP5G/dJQZplpyu/ujUqtvEliVB5cI9
+ kgX2C9g+jiI1FdfxelGvMtUN17+tGqY7SS5rfT2nGOVRoWtLxyRN5P1AbH35MUiShMhOCUQXgXR
+ pjtmYj4GusnCk6qw+EE5OwGTGbEB1Q==
+X-Proofpoint-ORIG-GUID: SBbd8o1XAz91laj-ZQQdxxTn23vXh3n_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-07_02,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 bulkscore=0 clxscore=1015 malwarescore=0
+ spamscore=0 phishscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040029
 
-Hi Russel,
+A few months ago, we discussed the challenges at Linaro Connect 2025 [1] 
+related to Secure PAS remoteproc enablement when Linux is running at EL2.
 
-On 10/7/25 6:25 PM, Russell King (Oracle) wrote:
-> On Tue, Oct 07, 2025 at 04:57:32PM +0200, Andrew Lunn wrote:
->> On Tue, Oct 07, 2025 at 10:32:26PM +0800, jjm2473 wrote:
->>> Andrew Lunn <andrew@lunn.ch> 于2025年10月6日周一 23:51写道：
->>>> Please change it to rgmii-id, and smaller tx/rx_delay values. Or show
->>>> us the schematics which clearly show extra long clock lines.
->>>
->>> In fact, the RTL8211F's RXDLY and TXDLY signals are both pulled low,
->>> just like the Banana Pi BPI-R2 Pro, so the configuration is also referenced:
->>> https://elixir.bootlin.com/linux/v6.15/source/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts#L237
->>
->> Pull low makes no difference to the 2ns RGMII delays.
-> 
-> To be clear, while the RXDLY and TXDLY are hardware strapping controls
-> the hardware configuration of the 2ns RGMII clock delays, the realtek
-> driver can (and does) override this according to the phy-mode property.
-> Thus hardware strapping makes no difference to Linux.
-> 
-> So, what we get at the RTL8211F PHY is:
-> 
-> 	phy-mode	receive clock delay	transmit clock delay
-> 	"rgmii"		0ns			0ns
-> 	"rgmii-rxid"	2ns			0ns
-> 	"rgmii-txid"	0ns			2ns
-> 	"rgmii-id"	2ns			2ns
-> 
-> irrespective of RXDLY / TXDLY hardware strapping.
-> 
->>> The tx_delay and rx_delay values were obtained using Rockchip's
->>> automatic scanning tool:
->>> https://github.com/istoreos/istoreos/blob/54746dfdb5bd34d1f281cf41d1d1620d0c3ee686/target/linux/rockchip/files/drivers/net/ethernet/stmicro/stmmac/dwmac-rk-tool.c
->>> https://gitlab.com/firefly-linux/docs/-/blob/rk356x/firefly/Common/GMAC/Rockchip_Developer_Guide_Linux_GMAC_RGMII_Delayline_EN.pdf
->>> https://github.com/axlrose/rkdocs/blob/main/Common/GMAC/Rockchip_Developer_Guide_Linux_GMAC_RGMII_Delayline_EN.pdf
->>
->> Vendors get things wrong, including this. 'rgmii' means the PCB adds
->> the 2ns delay. Nearly every Rockchip board follows Rockchip broken
->> vendor recommendations, and then i come along, point out how it is
->> wrong, and ask for it to be fixed, before being merged to Mainline.
-> 
-> Can we at least get the "tx_delay" and "rx_delay" DT properties (which
-> are register values) properly documented in the DT binding document?
-> I know from the driver code that a value of 0 means "no delay". Other
-> values add an unspecified delay - it is not obvious what any non-zero
-> value means, or what the default means.
-> 
-> This would help us understand what values such as:
-> 
-> 	tx_delay = 0x3c or 0x4f
-> 
-> and
-> 
-> 	rx_delay = 0x2f or 0x26
-> 
-> actually mean in terms of the resulting delay at the MAC.
-> 
+[1] https://resources.linaro.org/en/resource/sF8jXifdb9V1mUefdbfafa
 
-I couldn't figure out what they actually mean empirically, see 
-https://lore.kernel.org/linux-rockchip/96d32ce8-394b-4454-8910-a66be2813588@cherry.de/
+Below, is the summary of the discussion.
 
-Without Rockchip's explanation on what this actually does, I'm not sure 
-there's something we can do on this side.
+Qualcomm is working to enable remote processors on the SA8775p SoC with
+a Linux host running at EL2. In doing so, it has encountered several
+challenges related to how the remoteproc framework is handled when Linux
+runs at EL1.
 
-Cheers,
-Quentin
+One of the main challenges arises from differences in how IOMMU
+translation is currently managed on SoCs running the Qualcomm EL2
+hypervisor (QHEE), where IOMMU translation for any device is entirely
+owned by the hypervisor. Additionally, the firmware for remote
+processors does not contain a resource table, which would typically
+include the necessary IOMMU configuration settings.
+
+Qualcomm SoCs running with QHEE (EL2) have been utilizing the Peripheral
+Authentication Service (PAS) from TrustZone (TZ) firmware to securely
+authenticate and reset remote processors via a single SMC call,
+_auth_and_reset_. This call is first trapped by QHEE, which then invokes
+TZ for authentication. Once authentication is complete, the call returns
+to QHEE, which sets up the IOMMU translation scheme for the remote
+processors and subsequently brings them out of reset. The design of the
+Qualcomm EL2 hypervisor dictates that the Linux host OS running at EL1
+is not permitted to configure IOMMU translation for remote processors,
+and only a single-stage translation is configured.
+
+To make the remote processor bring-up (PAS) sequence
+hypervisor-independent, the auth_and_reset SMC call is now handled
+entirely by TZ. However, the issue of IOMMU configuration remains
+unresolved, for example a scenario, when KVM host at EL2 has no
+knowledge of the remote processors’ IOMMU settings.  This is being
+addressed by overlaying the IOMMU properties when the SoC runs a Linux
+host at EL2. SMC call is being provided from the TrustZone firmware to
+retrieve the resource table for a given subsystem.
+
+There are also remote processors such as those for video, camera, and
+graphics that do not use the remoteproc framework to manage their
+lifecycle. Instead, they rely on the Qualcomm PAS service to
+authenticate their firmware. These processors also need to be brought
+out of reset when Linux is running at EL2. The client drivers for these
+processors use the MDT loader function to load and authenticate
+firmware. Similar to the Qualcomm remoteproc PAS driver, they also need
+to retrieve the resource table, create a shared memory bridge
+(shmbridge), and map the resources before bringing the processors out of
+reset.
+
+It is based on next-20251007 and tested on SA8775p which is now called
+ Lemans IOT platform and does not addresses DMA problem discussed at
+[1] which is future scope of the series.
+
+Changes in v4: https://lore.kernel.org/lkml/20250921-kvm_rproc_pas-v3-0-458f09647920@oss.qualcomm.com/
+ - Fixed kernel robot warning/errors.
+ - Reworded some of the commit log, code comment as per suggestion from Bryan.
+ - Added support of gpdsp0 and gpdsp1 and disabled iris node.
+ - Add R-b tag to some of the reviewed patches.
+ - Rename struct qcom_scm_pas_cxt to qcom_scm_pas_context.
+
+Changes in v3: https://lore.kernel.org/lkml/20250819165447.4149674-1-mukesh.ojha@oss.qualcomm.com/
+ - Dropped video subsystem enablement for now, could add it in future
+   or on a separate series.
+ - Addressed most of the suggestion from Stephen and Bryan like some
+   remoteproc code checking resource table presence or right error
+   code propagation above the layer.
+ - Added leman-el2 overlay file.
+ - Added missed iommus binding which was missed last series.
+ - Separated qcom_mdt_pas_load() patch and its usage.
+ - Patch numbering got changed compared to last version
+
+Changes in v2: https://lore.kernel.org/lkml/20241004212359.2263502-1-quic_mojha@quicinc.com/
+ - A lot has changed from the V1 and a fresh look would be preferred.
+ - Removed approach where device tree contain devmem resources in
+   remoteproc node.
+ - SHMbridge need to created for both carveout and metadata memory
+   shared to TZ in a new way.
+ - Now, resource table would be given by SMC call which need to mapped
+   along with carveout before triggering _auth_and_reset_.
+ - IOMMU properties need to be added to firmware devices tree node when Linux
+   control IOMMU.
+
+---
+Mukesh Ojha (12):
+      dt-bindings: remoteproc: qcom,pas: Add iommus property
+      firmware: qcom_scm: Rename peripheral as pas_id
+      firmware: qcom_scm: Introduce PAS context initialization and destroy helper
+      soc: qcom: mdtloader: Add PAS context aware qcom_mdt_pas_load() function
+      remoteproc: pas: Replace metadata context with PAS context structure
+      firmware: qcom_scm: Add a prep version of auth_and_reset function
+      firmware: qcom_scm: Simplify qcom_scm_pas_init_image()
+      firmware: qcom_scm: Add SHM bridge handling for PAS when running without QHEE
+      firmware: qcom_scm: Add qcom_scm_pas_get_rsc_table() to get resource table
+      remoteproc: pas: Extend parse_fw callback to fetch resources via SMC call
+      remoteproc: qcom: pas: Enable Secure PAS support with IOMMU managed by Linux
+      arm64: dts: qcom: Add EL2 overlay for Lemans
+
+ .../bindings/remoteproc/qcom,pas-common.yaml       |   3 +
+ arch/arm64/boot/dts/qcom/Makefile                  |   7 +-
+ arch/arm64/boot/dts/qcom/lemans-el2.dtso           |  41 ++
+ drivers/firmware/qcom/qcom_scm.c                   | 415 ++++++++++++++++++---
+ drivers/firmware/qcom/qcom_scm.h                   |   1 +
+ drivers/remoteproc/qcom_q6v5_pas.c                 | 187 ++++++++--
+ drivers/soc/qcom/mdt_loader.c                      |  32 +-
+ include/linux/firmware/qcom/qcom_scm.h             |  36 +-
+ include/linux/soc/qcom/mdt_loader.h                |  16 +-
+ 9 files changed, 635 insertions(+), 103 deletions(-)
+---
+base-commit: 68842969e138d9ad3e3aa2bbd65d514df1581b5c
+change-id: 20251007-kvm_rprocv4_next-20251007-5e4ea5a978da
+
+Best regards,
+-- 
+-Mukesh Ojha
+
 
