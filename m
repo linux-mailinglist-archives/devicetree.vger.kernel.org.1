@@ -1,145 +1,213 @@
-Return-Path: <devicetree+bounces-224192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B7D7BC1881
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 15:39:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 399A8BC18B7
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 15:42:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2CF8019A345E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 13:39:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D661188C395
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 13:42:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36F3B2E3360;
-	Tue,  7 Oct 2025 13:37:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12DB02E11BF;
+	Tue,  7 Oct 2025 13:41:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="kWLdZvJr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bCdjMsf4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AFD22E22BD
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 13:37:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 144682E0B58
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 13:41:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759844248; cv=none; b=DdGB8c/5LyoIYilqdx3Lcm+vbZBJFlDaSmBXOoTum2JG6wWZ9tiyrwcDiOCtpTc3Ejm7QkL0rHB0OY2556YnxwG04jx749WhF2q18yKgVIoINkzgpu2CkPjsof/fUgVTibJO/ddLJt0zkR43hVb5diEv+FqUPwuhTGwjjAt7YbA=
+	t=1759844513; cv=none; b=g3qrzFf7YNkU9ZJDGYO+M/5l4Nnp5zf5BsE0AKHz0eVNRkljIRw+2LFvRKnXIfER0BXwvtm0ufvfRlpIy0x715Ehv4sMkZApO/olkbcTZzsiKGFhKNLhPBc/T7D2g8Zt0iSq5cMul83f6F5kI8iaMaU1l2NgzxgBc5qqxJ4YjcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759844248; c=relaxed/simple;
-	bh=SlrBBpX7XFA4K8jiRjYNYq/rnOvVx1EIF4UCFXLAU9A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MbrfxDE4pI33/jlPgjYmR05LNF2LvVd+2QGhd8KnvV2Ws4qcG/+Tnw2aYlRSmuSCtert7Lm+5ryoC2wNlvu+RAL9D3Ya1Edbe4yZu2cxPA0oO8T/SFAqWjdkRyew17vFbqnSPMvLholp4hesAmppRGAo9jmXHZw9Byrr8UKv8FU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=kWLdZvJr; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-46e4f2696bdso75526665e9.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 06:37:26 -0700 (PDT)
+	s=arc-20240116; t=1759844513; c=relaxed/simple;
+	bh=nkeOwih2wxnDJdpLI6Dz/78w4EhHeT1xmOgbx9n/oo8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SxFa150/1NuaTAUnXop3sSgQLia4WYKNZYsdAoLi1Zu8QW9L8Ix8K8meOKLFfM4gOm36xaLNDBWiUQfRmIgCi18lX+/+B4Piduphz6XL99k44uPjKk+8ok8yu8Zwfd/hH6EYgeiQp2vc+0WTsq/ebKBU3ksNH5RI2o/7b4eQcnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bCdjMsf4; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-782bfd0a977so5451672b3a.3
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 06:41:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1759844245; x=1760449045; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GXLUY6O3ALE+kss75XVolMctp4DQQxT3EVfm+7GyHeg=;
-        b=kWLdZvJruCwqnhmr0yLlSWfi24iPBQFtfWCtg6QHt94afuaIkbCPzycj06r3p6+ct/
-         ymo40DMkFSjS+ljpcZOLWx9swxyO2pvg7K/0iZrQr4vaphyMiZTdat3ZurIUrAgbbpqp
-         UwVAAukZdwRhna6JQPsds8vjKPV2/ji3stMa4anS6c+7uPlgCHF9/DjUld0ZS5T2IwHt
-         jmDTdCmv5lUM7cgYxNjZW84eXTLYyHqLzQtU2y5DO/aZMVd2xCAJWS+x3erqHCfobRhT
-         OyZMjtvnWn6NnTsNN/tYQHxIDCbTkmRIk76qOa1WATEBLgtFK3NHmcLJ6KNDxfnjd3Sn
-         LliA==
+        d=gmail.com; s=20230601; t=1759844509; x=1760449309; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=rnHeuaAxXkLy83WQ0FvFcsx02OTH0C9r7FOqh/BgxF0=;
+        b=bCdjMsf42+G+Iq+ji/1GArMqIcWj6oKTYVK5orzQHtLUCGvOtSAqA0dWkLF7sUP8sw
+         eX0k534hyD/mknL1wCoSQY3fh4bnndYZAM70huiMM1u1ZuwTEPzsO8AwOOhByerVfwLz
+         dlJyJ1pGXnFUBytFoyPKhqjp/oo/uHDN9YRmMqoETyy5iTXJWmadXhS5fvupeixoG85U
+         3/Jld1ZzIZkZ1GxAJrVRH4QK/jJ4QUVEnV01dgQfKxpyZKOFt2Vxgf/UxqS2gYydZJk7
+         /d2HK7FfobHLCQQDDDYpA+5J6aOYqaocVz38qWolaC7tV0yUpSTBNl7brMas23/uwshM
+         K0xw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759844245; x=1760449045;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GXLUY6O3ALE+kss75XVolMctp4DQQxT3EVfm+7GyHeg=;
-        b=d/yz/XN+6a22w/3+MP7Ug/Cn2TouDd8pRIbPg6bgwzAq+UmwomDjP4tzC+0DygcX0d
-         Q+YkVP5ch2uC8XpSzKwfYzvFvEEXASgsOWx+4hM+APuxmQzdq1+MnUWQlubpymcMjcWE
-         j/IDQnSu2HqMBQihe4RTUN29KDPNzWTiZENGgoy7WMmKYLb3vh7LqO2lV/sHUX8HKnNy
-         TBP3Y/BHiGfMhxiAHISo9Rw8IYvS83GrXY+8uLFBZakROpUv03ak9tKZU6R9QVhzlwnv
-         urEb8R32JFqZ/HqhBLJQ9LdC+F5PW2F+cG0+3hCEHfjmjQPApp4MhTiGZONPUtSpVx0M
-         Uv1A==
-X-Forwarded-Encrypted: i=1; AJvYcCUuIHZfdLuG/Yl0dD4ur90LKlaDx64LCHl7KjAQYopHnLnQEDD1oaGuUDMxileFzke49MZpCju2jBs5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKN539xUBqua6l7BQFO5G8V2AuFsI0tgzaXXfNr0dqt+AGSTM/
-	jbpGq95bz4tbmyeyfDUyp8iYAgDPVb7cxwuPhowvw9/BN3wooyNj7QISpaUknral4+A=
-X-Gm-Gg: ASbGncsws5/mW2FjWk8JWEV/wHLL67XnQUPY56jybA7+TVUAevzQm7jT0VEIE82/3xC
-	fIoElU9UMZMyh5FpEbijZoNbl2ZRafWkUUfh5Umw4XpQ2udRVDrQKrLkSvDShZZsKOzHsLOFy6L
-	QRquC7oax1t3qYuflb5+PFW64ZUd02PfpADcCFSeX1sHC+2o4Wk9vDbyObN++J8gg8QShG2FeDE
-	QEDz/ZMOd7LekoanYBGkzIcIZtDCyLL27f/0FMkoiMPzEEib1Q8f3qDFYgEyVM4/Al6kL6XECZQ
-	TXJJsbckiV+KUeZ1OCQmIpJYI7Pl2+NUkm7pvXDOFBsrOZ8cX1hYvpcuFqoeW1YYe6XjE9JV0WL
-	rGJjjmXVNpi9jNTxYhapT4DuSsxdNVaUl
-X-Google-Smtp-Source: AGHT+IFUMsIWmk0AdblJ1v0CAZflHye79n+otg2nhOCKiGVeiOkUM0AyVJvRyVI3KKsBIXxIN2lCmQ==
-X-Received: by 2002:a05:600c:5406:b0:46e:47cc:a17e with SMTP id 5b1f17b1804b1-46e71101ae7mr95191315e9.1.1759844244701;
-        Tue, 07 Oct 2025 06:37:24 -0700 (PDT)
-Received: from claudiu-X670E-Pro-RS.. ([82.78.167.59])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46e674b6591sm272189625e9.4.2025.10.07.06.37.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Oct 2025 06:37:24 -0700 (PDT)
-From: Claudiu <claudiu.beznea@tuxon.dev>
-X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com
-To: lpieralisi@kernel.org,
-	kwilczynski@kernel.org,
-	mani@kernel.org,
-	robh@kernel.org,
-	bhelgaas@google.com,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	geert+renesas@glider.be,
-	magnus.damm@gmail.com,
-	p.zabel@pengutronix.de
-Cc: claudiu.beznea@tuxon.dev,
-	linux-pci@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: [PATCH v5 6/6] arm64: defconfig: Enable PCIe for the Renesas RZ/G3S SoC
-Date: Tue,  7 Oct 2025 16:36:57 +0300
-Message-ID: <20251007133657.390523-7-claudiu.beznea.uj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251007133657.390523-1-claudiu.beznea.uj@bp.renesas.com>
-References: <20251007133657.390523-1-claudiu.beznea.uj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1759844509; x=1760449309;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rnHeuaAxXkLy83WQ0FvFcsx02OTH0C9r7FOqh/BgxF0=;
+        b=SIebfNnG5vi37jfy51z3ZZSs5VxU6YZSCflfAVjRQlifEs64s33RVTUzhTN3UCPHuP
+         sUaWdg3Pb1FfJzwuTIClolfzOE/uD24uv7qwdEzvtJcZqVbGDnChkYucS5G5QGJbdFL2
+         n9T/MmVxlWO3kOjLlzwvzfMjg59eA6Uj+sybrabXksYUfR2nKYt9NnPAnAYjqan36/N8
+         ZeJ8YjAIhiFVV2Ta6kgFi8nk8XUdQGRZPl0MMRgp7QzG0NXpDWHI528BVmM/0xIatMr/
+         6qAtM1WDcI2RhzVjLJ4veC0DFjK/a3AO4WvLw7jXkBZOy8M/sF3eQAFmAOC9qkPsJb+s
+         4GCg==
+X-Forwarded-Encrypted: i=1; AJvYcCXTGW+upc+YbQBDydQXNP9m0hnVVESpVoH5Bi/P1UNf9gooE5IirBGb1Lmb99qwvJwjN4FR+vv4gBiX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxSLh582Pd89HeO5oR+nl7hbjcudG6mwsLDAOk4dVDtdZztdQnw
+	dhabLr5a8v4yjgJF6NcJa+C334k/KXtMjXbJVVuW853i3FojsZYVYmIt
+X-Gm-Gg: ASbGncuQHh/D0UQ/0qSyVe47LW8R7/03lv6UU+9p/XUTk2bQirY2TyZ2RDP/vYQJn2z
+	wYU4prvEDvw4EstMULTq8MgZxkVrFB8qIrNL4IYvAaHkaVsv7avAj3c/DGcES7dyy/Wya8s4EAp
+	6NgpjG0iSI2HxHuN+2MMiGASA4jGE+kxSvs5kxFs2n9ADL6JydwwQ2HsLAqDfhBSpJ7pvSkK5oo
+	vjX97GOejegeO5BdcfWn7XeeXKZSohcEBcmi9pWWKKUbpxvhY51cxWFoovSL2XiVBzSVWdviuNc
+	q2IWRtaTK6beqoF4x9cxR1QFMVTh1/jLPwqgWy4YZFAyu0b3qXvX3p6XM0vXd1+sU2D967q2H69
+	rKWlKtm7LKCxiFnruE5vo3PDe3ETUuj3/QRVX+oN90KBmrqU2sFi0qNTMUozguTL5zS1pJRBPvw
+	fc2qZIxtd+o18iOpvZX9A=
+X-Google-Smtp-Source: AGHT+IFVJf+JxdKIUBEal2NKbaOSA5Jm7ewMijN3A3/MHNXXdwLzwZQSOta0mANRwv7CKcqgs4HloQ==
+X-Received: by 2002:a05:6a00:2ea9:b0:77f:6971:c590 with SMTP id d2e1a72fcca58-78c98dd92bcmr19639116b3a.22.1759844509033;
+        Tue, 07 Oct 2025 06:41:49 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78b01f9a364sm15776636b3a.6.2025.10.07.06.41.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Oct 2025 06:41:48 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <57d0775a-0450-4384-b4ab-b6f2d976499f@roeck-us.net>
+Date: Tue, 7 Oct 2025 06:41:46 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] watchdog: Add driver for Gunyah Watchdog
+To: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>
+References: <20251006-gunyah_watchdog-v2-1-b99d41d45450@oss.qualcomm.com>
+ <6e7eaac2-0859-4bfd-b76b-2f81e384a91c@roeck-us.net>
+ <166a0b99-879c-43cd-b3c0-37eb04afca5a@oss.qualcomm.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
+ RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
+ nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
+ 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
+ gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
+ IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
+ kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
+ VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
+ jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
+ BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
+ ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
+ CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAmgrMyQFCSbODQkACgkQyx8mb86fmYGcWRAA
+ oRwrk7V8fULqnGGpBIjp7pvR187Yzx+lhMGUHuM5H56TFEqeVwCMLWB2x1YRolYbY4MEFlQg
+ VUFcfeW0OknSr1s6wtrtQm0gdkolM8OcCL9ptTHOg1mmXa4YpW8QJiL0AVtbpE9BroeWGl9v
+ 2TGILPm9mVp+GmMQgkNeCS7Jonq5f5pDUGumAMguWzMFEg+Imt9wr2YA7aGen7KPSqJeQPpj
+ onPKhu7O/KJKkuC50ylxizHzmGx+IUSmOZxN950pZUFvVZH9CwhAAl+NYUtcF5ry/uSYG2U7
+ DCvpzqOryJRemKN63qt1bjF6cltsXwxjKOw6CvdjJYA3n6xCWLuJ6yk6CAy1Ukh545NhgBAs
+ rGGVkl6TUBi0ixL3EF3RWLa9IMDcHN32r7OBhw6vbul8HqyTFZWY2ksTvlTl+qG3zV6AJuzT
+ WdXmbcKN+TdhO5XlxVlbZoCm7ViBj1+PvIFQZCnLAhqSd/DJlhaq8fFXx1dCUPgQDcD+wo65
+ qulV/NijfU8bzFfEPgYP/3LP+BSAyFs33y/mdP8kbMxSCjnLEhimQMrSSo/To1Gxp5C97fw5
+ 3m1CaMILGKCmfI1B8iA8zd8ib7t1Rg0qCwcAnvsM36SkrID32GfFbv873bNskJCHAISK3Xkz
+ qo7IYZmjk/IJGbsiGzxUhvicwkgKE9r7a1rOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
+ 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
+ pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
+ J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
+ pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
+ 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
+ ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
+ I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
+ nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
+ HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
+ JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAmgrMyQFCSbODQkACgkQyx8mb86fmYHlgg/9
+ H5JeDmB4jsreE9Bn621wZk7NMzxy9STxiVKSh8Mq4pb+IDu1RU2iLyetCY1TiJlcxnE362kj
+ njrfAdqyPteHM+LU59NtEbGwrfcXdQoh4XdMuPA5ADetPLma3YiRa3VsVkLwpnR7ilgwQw6u
+ dycEaOxQ7LUXCs0JaGVVP25Z2hMkHBwx6BlW6EZLNgzGI2rswSZ7SKcsBd1IRHVf0miwIFYy
+ j/UEfAFNW+tbtKPNn3xZTLs3quQN7GdYLh+J0XxITpBZaFOpwEKV+VS36pSLnNl0T5wm0E/y
+ scPJ0OVY7ly5Vm1nnoH4licaU5Y1nSkFR/j2douI5P7Cj687WuNMC6CcFd6j72kRfxklOqXw
+ zvy+2NEcXyziiLXp84130yxAKXfluax9sZhhrhKT6VrD45S6N3HxJpXQ/RY/EX35neH2/F7B
+ RgSloce2+zWfpELyS1qRkCUTt1tlGV2p+y2BPfXzrHn2vxvbhEn1QpQ6t+85FKN8YEhJEygJ
+ F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
+ FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <166a0b99-879c-43cd-b3c0-37eb04afca5a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On 10/6/25 23:52, Hrishabh Rajput wrote:
+> 
+> On 10/6/2025 7:48 PM, Guenter Roeck wrote:
+>> On 10/6/25 00:37, Hrishabh Rajput via B4 Relay wrote:
+>>> From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+>>>
+>>> On Qualcomm SoCs running under the Gunyah hypervisor, access to watchdog
+>>> through MMIO is not available on all platforms. Depending on the
+>>> hypervisor configuration, the watchdog is either fully emulated or
+>>> exposed via ARM's SMC Calling Conventions (SMCCC) through the Vendor
+>>> Specific Hypervisor Service Calls space.
+>>>
+>>> When Gunyah is not present or Gunyah emulates MMIO-based watchdog, we
+>>> expect MMIO watchdog device to be present in the devicetree. If we
+>>> detect this device node, we don't proceed ahead. Otherwise, we go ahead
+>>> and invoke GUNYAH_WDT_STATUS SMC to initiate the discovery of the
+>>> SMC-based watchdog.
+>>>
+>>> Add driver to support the SMC-based watchdog provided by the Gunyah
+>>> Hypervisor. module_exit() is intentionally not implemented as this
+>>> driver is intended to be a persistent module.
+>>>
+>>> Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+>>> ---
+>>> Gunyah is a Type-I hypervisor which was introduced in the patch series
+>>> [1]. It is an open source hypervisor. The source repo is available at
+>>> [2].
+>>>
+>>> The Gunyah Hypervisor doesn't allow its Virtual Machines to directly
+>>> access the MMIO watchdog. It either provides the fully emulated MMIO
+>>> based watchdog interface or the SMC-based watchdog interface depending
+>>> on the hypervisor configuration.
+>>> The SMC-based watchdog follows ARM's SMC Calling Convention (SMCCC)
+>>> version 1.1 and uses Vendor Specific Hypervisor Service Calls space.
+>>>
+>>> This patch series adds support for the SMC-based watchdog interface
+>>> provided by the Gunyah Hypervisor.
+>>>
+>>> This series is tested on SM8750 platform.
+>>>
+>>> [1]
+>>> https://lore.kernel.org/all/20240222-gunyah-v17-0-1e9da6763d38@quicinc.com/
+>>>
+>>> [2]
+>>> https://github.com/quic/gunyah-hypervisor
+>>> ---
+>>> Changes in v2:
+>>> - Move away from platform driver model since the devicetree overlay does
+>>>    not happen by default.
+>>
+>> This is just wrong. Platform drivers do not depend on devicetree. I am not even
+>> going to review the rest of the driver. 
+> 
+> Thanks for pointing out the mistake here. Platform drivers are independent of devicetree. Therefore the line you've pointed to is wrong as it erroneously portrays that the platform drivers are dependent on devicetrees. It is a mistake and I would rephrase it to following to make the intent clearer:
+> 
+> "Do not depend on devicetree to discover (and probe) watchdog as devicetree overlay does not happen by default. Instead invoke GUNYAH_WDT_STATUS SMC Call to discover (and initialize) the watchdog."
+> 
 
-Enable PCIe for the Renesas RZ/G3S SoC.
+Let _me_ rephrase: A platform driver does not depend on devicetree.
+This can and should be a platform driver.
 
-Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
----
-
-Changes in v5:
-- dropped Tb tag
-
-Changes in v4:
-- made it builtin
-
-Changes in v3:
-- collected tags
-
-Changes in v2:
-- none
-
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e3a2d37bd104..54fd09317edf 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -230,6 +230,7 @@ CONFIG_PCIE_MEDIATEK_GEN3=m
- CONFIG_PCI_TEGRA=y
- CONFIG_PCIE_RCAR_HOST=y
- CONFIG_PCIE_RCAR_EP=y
-+CONFIG_PCIE_RENESAS_RZG3S_HOST=y
- CONFIG_PCIE_ROCKCHIP_HOST=m
- CONFIG_PCI_XGENE=y
- CONFIG_PCI_IMX6_HOST=y
--- 
-2.43.0
+Guenter
 
 
