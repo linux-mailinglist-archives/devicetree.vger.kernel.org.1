@@ -1,184 +1,135 @@
-Return-Path: <devicetree+bounces-224240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0CBBBC1FB9
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 17:49:14 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B4199BC1FEC
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 17:55:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E9C2E34F97A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 15:49:13 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 880BC4E2531
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 15:55:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13AE027713;
-	Tue,  7 Oct 2025 15:49:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96B7B2E284A;
+	Tue,  7 Oct 2025 15:55:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZFInhnsO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CWm2hSDM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62F12DE200
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 15:48:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FDBF42AA3
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 15:55:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759852140; cv=none; b=CIDZO+G/Fre7d51157bpJ0AwqOxFX5LUexUI/5/N30BhQYOwJOiKJa2Pkfuyb/NW5qU5wwUQecDyJJAbvYS45OGlTEAJU9PIMm0wB3lMXALiD2xIxDJzteviX1DUHX0zyvWhDPeCT1uWFa0/DCaPZkD0mFdDuSQ1q7raoV4Ejd0=
+	t=1759852510; cv=none; b=Wy7ZXNPGH17WSAIiiQrYhXpng9MK2k+8Lp2+EEf3JtsvjVEjjGh+ycGouWFbaHbb4lPtz0AVvobuhczAv8r/f5MiDAGrI1H/d7/NXdVmOku7kREO65CNNYY/9Ko8GiCBpc3LCymTZMDBQywGv8tSr4JAdE3nWj6AMI5tLbBHiaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759852140; c=relaxed/simple;
-	bh=idsLDC2Nv76ap5anKli8m472glzZKQst8172esv0100=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=txsCk6ylaSNfQpcgLiDuGXDtEnemVMhyGHrBsLv7zlNi4KzF8SbowUbTG10aUnZi444EcFcC/EBn7jhUrhiFB50mFOkmq/Wd4nmMN8jnIxSGgH5uZVUDQwXYiYvfERY5sHd+utdgXia5PmonTUouPdhX871Q5NgqJXaPhI8kU3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZFInhnsO; arc=none smtp.client-ip=209.85.221.43
+	s=arc-20240116; t=1759852510; c=relaxed/simple;
+	bh=SrQ0izSJThSrT/IpzfFEkCObODKK/0BzDV6aFd4HJRs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=nN76wOa3LDVXB8XHn9F8GdSysgboymu1ysgyl6iWHW4ElfEMar1yN1AmbgSqo36gt68L+GMn/MCUviTE6nsASTBfKJNY8bbUQxu4gH3+zj9XZbl0wMGICcF1TmBFou+MWhQW5XgpigMIVDWsFvaCZUobWbiZRq1N1lvJVS4yDVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CWm2hSDM; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-41174604d88so3468232f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 08:48:57 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b463f986f80so1008349466b.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 08:55:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759852136; x=1760456936; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ujqZTrSIRL5Br3jVEaXKCPK1WTB5adLLumme0kdn1es=;
-        b=ZFInhnsO9qhM3O/HHfNTgrDRYv8gVabeM8l4nUyFUgIWCzqtulABXukRNPi7k9GtEN
-         ducrv5yeGokrvoM2TaIWAepIhkm2QT6AEDJAoxXEQ9lQIg7EtR3gIfsljhuFn/uLS0Qp
-         wfiQaREyKXSRwhPMs23C23ICE5H2zT+JBX2zlgxHwtA6eDinW/ujEX6zbX/l2Wv7gPNA
-         7SV4joVUFwhunB1aP+iD52MfiNvoKAYRn+N5tCfzoGxW5QHQ74B1ADGVsNhnl+FIvsnp
-         cIEtr/+QIBtp9cf0Vd+JQLJ5EL0qJMZKSW+VGJZDZHXhSl8GJ9W7DF1KaRkA9Dc4XKNM
-         OcLA==
+        d=linaro.org; s=google; t=1759852507; x=1760457307; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wwn4iJ0kBXeAlbYIX5lfnaPGY5x3TCgAKgWBsfGbbTA=;
+        b=CWm2hSDM3JRTPGemHdI8shDXDd03ugwh1jEHL2MqtQEWXEQzV5KuGBvyEazeT9DFul
+         OxwK/FgIryZajV16jRWeQrn7/InnYkrb1qsEqeYZUwnMnXijm4caVnitDE0gQHhVMv7f
+         d8njaVOelVhtxlhjTKsjk+9zI+CLDjZRxuuS8oeEnwY2+BQVE8F3Oy8Z2Kw/xxkyzRG0
+         Tcz61JumUMFVM+14yoL8Scg6aLM7aqIZPyPl3cbD+44wlga3eaTVST1uU/FFNIGAWCQ1
+         hCnaM3sD0vEZMVeIb0Kuvhk94rYS9knOnvbFXm5oTaOKZZfxEe6xqERWhm13IwEm55BF
+         sxnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759852136; x=1760456936;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=ujqZTrSIRL5Br3jVEaXKCPK1WTB5adLLumme0kdn1es=;
-        b=EIbyqv60vVXFq12T19U8GFpAYVV7HPFGQB/S8Ugw++o/mQ0Flf6Y/XE0LQ4YAyxa1S
-         t/qI74GmuRqPaxQyVqFJ+aIlILjEwD7EqrGTWW/LYPJENYLoK00BlwmU0IGrWiBDtzul
-         jm2Uety3pAEaHvwZk3nBu7AJEjz87YQE5vRNpDgbATWxVlfaxdY6HtWVHIKcpV1S+jvw
-         nWUTryQyWSXlA7reQIZqqwioah9sKhFtL1+kN8FXtqiv7HlSFsLXYxv4KNI9mvbfYV7e
-         mj1yb8roR/19859N95pYPgrOMYpTx376JI+sIkZuQEcpvtLZ1wAWw7FCy7jTx20+uRg4
-         uxqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWSEmHFW38GqPRGXQ5iEGRrJJODNfQPO29a2CBXL52jwmMOQxKBPvqIe86064Obxon4pmjDSLHQu8Kk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx+as/MtdB2ju066MR9rNQNgJrcMhPfGRuW5ezMuCjHAO+TUd2f
-	1Kdk2+4C0x7+DdfFEWmif0Tdv7l27IXRWWjSuDurqRzcD1+h3T4hOZW4tflO2F8+a7o=
-X-Gm-Gg: ASbGnctVZouRWTRPEDqWoQaOAT3zL2VZEQWCngGeeC4rKwFwCJnu69bYY2+V0c9HSeT
-	mf8ys5l7grlKLfg5Y1+vb9eHW5XJ5GBJ6eydVojsFWkPh0YhccLN1gsBMjgRfTwnnK5B8QkQb/0
-	GJcl72v1skaGJM+BcgqsQ1z5JbPnLFZH3/flE1ukYYSJx9smXjCBNDxv/lTVdhkBHV1L6l4aB53
-	qR1VTTNyGQBn151j+HDojw8x7Uny8ciXll8yc7r8sZkq/2aqjEZzvgAIcje7LIoE1kM18LzAsH5
-	joo2+XuPVI5AMP0HBOO+nEFuPZCtZQ9SqfVxzN5asrvpHCzPpO0E4wMfAqBJ6wGq6PgkY+/CtBg
-	7+8bnh3ECQh+tO6xeK23zM32nZhBklpUViGIFKSq+vdIb4ksfpqN2r4oOmopE+daloJ0PwccANX
-	zCA9Kyvs0qqxFIHSZQoKxuQJe+hkg=
-X-Google-Smtp-Source: AGHT+IGlCt3WNje/lItmY3GQsKoJPUs6M1EHh44EgkG7EO1ZdmP5CqynBnMwr5jKEwAuFYo6Szge1Q==
-X-Received: by 2002:a05:6000:1a8b:b0:3fb:6f9d:2704 with SMTP id ffacd0b85a97d-42567174a0cmr10730399f8f.28.1759852136117;
-        Tue, 07 Oct 2025 08:48:56 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:bd88:41d2:33ce:f74a? ([2a01:e0a:3d9:2080:bd88:41d2:33ce:f74a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8f0170sm26770403f8f.49.2025.10.07.08.48.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Oct 2025 08:48:55 -0700 (PDT)
-Message-ID: <a5dfaf2a-d2c8-468a-9bbe-38d11b1214a8@linaro.org>
-Date: Tue, 7 Oct 2025 17:48:55 +0200
+        d=1e100.net; s=20230601; t=1759852507; x=1760457307;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wwn4iJ0kBXeAlbYIX5lfnaPGY5x3TCgAKgWBsfGbbTA=;
+        b=V3EM98yk2x2szqoLNuqEVGM6cbtltxx68JzzHVffUhV6iLzF50+Jrcu4TjnNCqukUL
+         WI1ac1fjfGjXNCKXPgNyPwmyRwCaI20CdzD6s+edTJ1IJyHvTwlWUKqPSWYOzfiIR9I4
+         nQiIAxtzkD5Qxzd8/dol2Aw4Q9D6zZ8WrKLq8654gonNXq3v/TNqBCpUZDMcaO4nRD6+
+         z4VfE2AzXWwdS94PGdNE0B2h5IDqzayP6UBfTaH+EXqVNcO3w4frJ9ie1cE8J5Xm2C93
+         +jOAc+pzajcSIfabZBN+nkY7kBSXrENKzReprla6DvhuARJIiLX5dodnUC1hSd5fS00c
+         Iglg==
+X-Forwarded-Encrypted: i=1; AJvYcCWBoV39mmccyixtFnGTjG/b7fkcY/7wj0lXmVZItO24uDBOmRSBr9XyL3PXs+Xu2PnARvC4h+MlfJkO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfWC2DoeUsg05Q2p28SaqJ1S8io5E1vJdwFICK/gULxKFbnl4w
+	oenMAyiksOn3/d7LdRE3wrYR1RQdOZKacydWBDcNKgnyjt1X4kS/5/nJCYFTPYX+HLooMhCiUi8
+	jFL/Dvao=
+X-Gm-Gg: ASbGncvQM1gSHum/Eh6Ue5/BRBwpTSjlcTKcd/JMUFJfhWpmiBTS2n37x8BUYgjHE8l
+	fC8mQO97CFt+SXnKK02XLcrHF9NEvZkPe7To5E40c75KfllYtLHU/S3BsE0GW1m+DXUWesX0sfV
+	q61ENWp6rBEnm+zk6c/OerwozuXpE7xvBhxJSsKimvmh8uMMXQUpg+1NWJeYmAby0N8FbgfrOEV
+	TkK7PIXiplFSLrVjeCE24bIXCPNOREngjvN1HtL4ZaBcR5A3djZKfPIB2rnH98/pzFi6mlVjPM0
+	jUUic0zL0XpC7EkhsnhZuOYq02e5JiqVGmvcP9nSTH8xya+mqJ3bS5J3pOQ+hCD/OTn5EKSDZWo
+	dKwzB2cPLQutkTce0tNJUl0UgJ/XerqzLAK+LKSF3n/UiAT4fXQZSrAyNxOEbYD/mZ6SlbXWJn3
+	338bWz+gsl2i5WJc7pRHB2XGmGjjRS3GfIjbisZbiMXgq1X3FgN80=
+X-Google-Smtp-Source: AGHT+IFMkqhgkZjYTFJJlsb6ohBZEtxooSZT5I4ro08N0+thklTNSC1wFRUbLDiJOSsfJFdfZDi8ng==
+X-Received: by 2002:a17:906:7312:b0:b48:44bc:44e7 with SMTP id a640c23a62f3a-b50abfd68b2mr14143566b.48.1759852506937;
+        Tue, 07 Oct 2025 08:55:06 -0700 (PDT)
+Received: from puffmais2.c.googlers.com (224.138.204.35.bc.googleusercontent.com. [35.204.138.224])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b4f7eacdfe6sm225312766b.27.2025.10.07.08.55.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Oct 2025 08:55:06 -0700 (PDT)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Date: Tue, 07 Oct 2025 16:55:04 +0100
+Subject: [PATCH] dt-bindings: usb: samsung,exynos-dwc3: add power-domains
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH RFC 3/6] ASoC: soc: qcom: sc8280xp: add support for I2S
- clocks
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251006-topic-sm8x50-next-hdk-i2s-v1-0-184b15a87e0a@linaro.org>
- <20251006-topic-sm8x50-next-hdk-i2s-v1-3-184b15a87e0a@linaro.org>
- <6492e444-4196-4900-a741-a74a8c506a6d@kernel.org>
- <1eab5200-1292-4d39-bdf8-0c5084cfaab9@linaro.org>
- <f15ea346-43f7-49bc-bd5e-47510a48892d@oss.qualcomm.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <f15ea346-43f7-49bc-bd5e-47510a48892d@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+Message-Id: <20251007-power-domains-dt-bindings-usb-samsung-exynos-dwc3-v1-1-b63bacad2b42@linaro.org>
+X-B4-Tracking: v=1; b=H4sIANg35WgC/x2NywqDMBAAf0X23IVoDSn9ldJDHtt0D24kW6tF/
+ PcGj8PAzA5KlUnh3u1Q6cvKRRr0lw7i20sm5NQYBjPY3hiHc1mpYiqTZ1FMHwwsiSUrLhpQ/aS
+ LZKTtJ6XpNV7RmjGYaJ13twCtO1d68XY+H8/j+APzX4i2gwAAAA==
+X-Change-ID: 20251007-power-domains-dt-bindings-usb-samsung-exynos-dwc3-504b0c57a78b
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ Krzysztof Kozlowski <krzk@kernel.org>, linux-usb@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.14.2
 
-On 10/7/25 12:23, Konrad Dybcio wrote:
-> On 10/7/25 9:02 AM, Neil Armstrong wrote:
->> On 10/7/25 00:21, Srinivas Kandagatla wrote:
->>>
->>>
->>> On 10/6/25 7:37 PM, Neil Armstrong wrote:
->>>> Add support for getting the I2S clocks used for the MI2S
->>>> interfaces, and enable/disable the clocks on the PCM
->>>> startup and shutdown card callbacks.
->>>>
->>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>> ---
-> 
-> [...]
-> 
->>>> +static int sc8280xp_snd_startup(struct snd_pcm_substream *substream)
->>>> +{
->>>> +    unsigned int codec_dai_fmt = SND_SOC_DAIFMT_BC_FC | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_I2S;
->>>> +    struct snd_soc_pcm_runtime *rtd = substream->private_data;
->>>> +    struct sc8280xp_snd_data *pdata = snd_soc_card_get_drvdata(rtd->card);
->>>> +    struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
->>>> +    struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
->>>> +    int index;
->>>> +
->>>> +    switch (cpu_dai->id) {
->>>> +    case PRIMARY_MI2S_RX...QUATERNARY_MI2S_TX:
->>>> +    case QUINARY_MI2S_RX...QUINARY_MI2S_TX:
->>>> +        index = sc8280xp_snd_i2s_index(cpu_dai);
->>>
->>> What is the mclk and bitclk rate set here, we can not rely on the
->>> default rate.
->>
->> The default rates are set in DT:
->> +        assigned-clocks = <&q6prmcc LPASS_CLK_ID_PRI_MI2S_IBIT LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
->> +                  <&q6prmcc LPASS_CLK_ID_MCLK_1 LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
->> +        assigned-clock-rates = <1536000>,
->> +                       <24576000>;
-> 
-> Is there a way to infer these rates based on the DT audio
-> connection graph?
+The DWC3 can be part of a power domain, so we need to allow the
+relevant property 'power-domains'.
 
-Good question, it's not done for pre-audioreach. Let me investigate.
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+---
+ Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Neil
+diff --git a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
+index 6d39e50669447917a2cd94dacee5822467eeb36e..3098845a90f342dc29f4343fc0ff5cec009d9629 100644
+--- a/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
++++ b/Documentation/devicetree/bindings/usb/samsung,exynos-dwc3.yaml
+@@ -36,6 +36,9 @@ properties:
+     minItems: 1
+     maxItems: 4
+ 
++  power-domains:
++    maxItems: 1
++
+   ranges: true
+ 
+   '#size-cells':
 
-> 
-> Konrad
+---
+base-commit: 3b9b1f8df454caa453c7fb07689064edb2eda90a
+change-id: 20251007-power-domains-dt-bindings-usb-samsung-exynos-dwc3-504b0c57a78b
+
+Best regards,
+-- 
+André Draszik <andre.draszik@linaro.org>
 
 
