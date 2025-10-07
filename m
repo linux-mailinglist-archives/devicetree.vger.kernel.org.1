@@ -1,173 +1,136 @@
-Return-Path: <devicetree+bounces-224243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB8CCBC200D
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 17:58:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FB2FBC202F
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 18:00:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 7836F34F82C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 15:58:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D91BE19A2D04
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 16:01:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11C32E1758;
-	Tue,  7 Oct 2025 15:58:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2500E2E6CB3;
+	Tue,  7 Oct 2025 16:00:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="w40GcyIV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0680042AA3;
-	Tue,  7 Oct 2025 15:57:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503321F873B
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 16:00:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759852681; cv=none; b=NMtzYNrB7QsNq5hKmClwyuHj/OdBWd0k0f4fPAouiumHRT6hh1WG9ePzTcU6czOO7lyPlRBcJfcD9FAeB9J50lGr0OO0wSwkax6s5t74FticH8wjoaZcCZ6aomAjksg6HKQorEPV2XLRxlrw/3i1ptO4QgyQ3plP+jHjQO8ymV4=
+	t=1759852839; cv=none; b=Sr47FRUd5tjXMZQhv2GbHS620f8+sxo6kLQpIQTEmE4/YW+9ixAr6NLEc7U9lQ1cXFHpTwCuL7dPbWuiMG881GUGpTFHkbqklPf97AV1WJ9V0LgDSBX3G9/vrwyuvG5/m4We/+stYEcAA97KR7lXLHabEWVJ1FneTXF01pj3fxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759852681; c=relaxed/simple;
-	bh=EGCnRPxktw5M3mQTb2qivVH9GYbxPtl2jq87ALU+giA=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=f+nkbymsEeg9DO7fvjl/UHBqBuZWADxXDnNaduAlfz28C492NRb3+yv/43/C91S4rN4cHMdkjdEFCWFnarYbNruUI+U0Beknb2tY4lG4ZgI4D+ISxfeUFPghkyPxOH9/s80/w81pWCcc5s3nCJsSHNB173NbbI1ACioZrcGsbgI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ch11p3Mgbz6L51c;
-	Tue,  7 Oct 2025 23:55:26 +0800 (CST)
-Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
-	by mail.maildlp.com (Postfix) with ESMTPS id C5A5D1402F5;
-	Tue,  7 Oct 2025 23:57:56 +0800 (CST)
-Received: from localhost (10.203.177.15) by dubpeml100005.china.huawei.com
- (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Tue, 7 Oct
- 2025 16:57:56 +0100
-Date: Tue, 7 Oct 2025 16:57:54 +0100
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Eddie James <eajames@linux.ibm.com>
-CC: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
-	<robh@kernel.org>, <andy@kernel.org>, <nuno.sa@analog.com>,
-	<dlechner@baylibre.com>, <jic23@kernel.org>
-Subject: Re: [PATCH v8] dt-bindings: iio: Add Infineon DPS310 sensor
- documentation
-Message-ID: <20251007165754.00001e8e@huawei.com>
-In-Reply-To: <20251006181040.25845-1-eajames@linux.ibm.com>
-References: <20251006181040.25845-1-eajames@linux.ibm.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1759852839; c=relaxed/simple;
+	bh=o+OJ58HWM0DIrIqi/TF3GdVjuFQu1dVzJaZpj2W8Jas=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=lKJSR+zlEj5vQ1x3wRu1BdW1msoS650ETv/pPhv5nqFYROQD5eSE9fLK4XlMGDaxxaWS6uI+UxWZr/Ls9nsLhDNRIWW8mJyLe47OTsgsINGGb5aT12Be5zQ8wyAo5UCo2LiLi3VhUJdGrHml6Ko1N7x4TfD3fmnvyh6ESnp+gBo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=w40GcyIV; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-637e74e9104so6948603a12.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 09:00:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759852835; x=1760457635; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mjKb1ezpRpl7M3iFhpiWd2sjqaAYaZ6YNqsdcXvRIf4=;
+        b=w40GcyIVeaZq96mjq8lWyjZCFKP7nKLPxHAyD6mlYR5Xj5Wbm5xacQRhskoYyHYey+
+         8TsYI0coO/BW9q8JPk9UzvwQD6DoF3bKmKqRlx0MorFnKBcRsFnuseZd/jjybminJzFY
+         pDa/xakBwVH0+XCqq/S7sEO3jvLL/riggR9aqVsvhmYBXYVGlevr8CuvnptqUmGIftpj
+         dQCfqdV4c0KlSI1BBmvW87HsBvkCR5XiGRbcB1/SoUiQm0ETO9JWkV4IB3euNsketwIL
+         LuMDULwDVzhXc/EjRa4/NwyLvvziTk4BvCvBFFdAycPi1c+AB978X4oOx4hdzWvlH31T
+         zCYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759852835; x=1760457635;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mjKb1ezpRpl7M3iFhpiWd2sjqaAYaZ6YNqsdcXvRIf4=;
+        b=rcGDAH+bujg8CYVBrGk1MNLLCpHSn03mCJL+LYNwplKNqerRnkbICDrb6gtUEj0PeK
+         6YrEym5M3//knAY8QlWjV4qP3pdWCVf4p1VDfL7D61iIj4+ccKpfbtFh4c00cII0vWEt
+         K4Ojr0Q6P3gfsdSva3cfqHDS+kCTcm7UaixsE474hRELGyqwYCbyaZpgM28ajjS5sfvN
+         EiGxGNMpZrH9aOebGHk8IX7/dSdBlCxq8ZYAFYpcanIvJWaNTOAxajbPx/3dTNymU9g7
+         77ONCcttTFm6QVnBZywQHMQozfMJ5Bbzhtn5b6nbPCnNdPocDFTeZeSdWF36spCaJ3mf
+         1mEg==
+X-Forwarded-Encrypted: i=1; AJvYcCWqRkTuF0ZZnRX751mp64OoWQNrfzyWECJG4TvfdJmcKBkypbFaZBr89F4aWrEjTf/87RVNNKD8tSiT@vger.kernel.org
+X-Gm-Message-State: AOJu0YyH5xTDDcDveJ7M7vztJufwCaCs1rpxgU6eHxXXxsSM+AFqNtPi
+	6W2pz4AvWo3QVxnEj7udd7GQiJTq3mIic5ejxSjp7hIZc6n7ZqG1kRlhRcSqoUdDMv8=
+X-Gm-Gg: ASbGncuD6V79g+zdgjtFPE5JzefHWty0TTT7VA57PP/J+vxYG5K6Fpjo069pQ+TcAr2
+	fYNZkSnQmr7YTwgYiW0cgAI/29FpIhLgTUviMooV++X1Xeic9jsG1ueVo/oHjDYMUDDiDYnc3Xp
+	rPRUCQBcBjokcNeoz/Q/9mk/o7bJOp9YbumTA+tUxk/6imw6A7T9xWCU7F6M3w+XKu30Ht4Zxda
+	7G1R3UJG56gy8GD1iTRhmg93WOQP3H3FWmsBM1tLXFIPo4iuz29ZhuMc9YSTRVUjI2y9MCJ8zw5
+	sgF/YyJIs001lHVXJgjPKCJ5+6I/vZexbaNtXEQ6RSJuzcj3SSTDmLXunuV9MYAIHilWC/TrqnG
+	DPYSzBnBRztg/OIFWUSvzhRBJaXPxfe3ll0TB/e5y7ak0cxt75NiXKcEmUgSzpu4QwcldrpRcb4
+	cD6Sk3yiaErwdYXYTKBkhVqD4EbNM5LHtwfbHeC7ft
+X-Google-Smtp-Source: AGHT+IGyutPnseJcYgmno2XcoY0l08n3SSLeGdWklnJBKgIvM1+oFnfvYzhNSc6Fhvupmb0TG3Vp6g==
+X-Received: by 2002:a17:907:2d0e:b0:b3d:98fa:b3fe with SMTP id a640c23a62f3a-b50ac6ca199mr13352866b.63.1759852835469;
+        Tue, 07 Oct 2025 09:00:35 -0700 (PDT)
+Received: from puffmais2.c.googlers.com (224.138.204.35.bc.googleusercontent.com. [35.204.138.224])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b503c779df2sm96445566b.34.2025.10.07.09.00.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Oct 2025 09:00:35 -0700 (PDT)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Date: Tue, 07 Oct 2025 17:00:34 +0100
+Subject: [PATCH] dt-bindings: phy: samsung,usb3-drd-phy: add power-domains
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml100012.china.huawei.com (7.191.174.184) To
- dubpeml100005.china.huawei.com (7.214.146.113)
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20251007-power-domains-phy-samsung-usb3-drd-phy-v1-1-3cb5f80a72ef@linaro.org>
+X-B4-Tracking: v=1; b=H4sIACE55WgC/x2NMQ6DMAwAv4I8YymkJEj9SsUQGgMeSCJb0FaIv
+ zdivBvuTlASJoVnc4LQwco5VejaBt5rSAshx8pgjXWdMQOW/CHBmLfASbGsP9Sw6Z4W3HV6YJR
+ 4y8lZ2zs/ePIBaqwIzfy9R6/xuv7tiLp+eAAAAA==
+X-Change-ID: 20251007-power-domains-phy-samsung-usb3-drd-phy-b52245676e6a
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.14.2
 
-On Mon,  6 Oct 2025 13:10:40 -0500
-Eddie James <eajames@linux.ibm.com> wrote:
+The USB phy can be part of a power domain, so we need to allow the
+relevant property 'power-domains'.
 
-> The DPS310 is a barometric pressure and temperature sensor with
-> an I2C interface. Remove it from trivial-devices.yaml and add its
-> own documentation, with a hwmon iio channel consumer example.
-> 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-> Changes since v7:
->  - Add consumer example and update commit message slightly
-Ah. Sorry I was unclear on my feedback wrt to this. I was just
-looking for a statement in the commit message to say that you were
-doing this to allow for consumers such as the iio/hwmon bridge.
-I wasn't expecting any change to the example.
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+---
+ Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-+ the supplies as per reply on previous version I just sent.
+diff --git a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+index e906403208c02951ff2bf5ed8420d53ad70eb29c..2e14e5fbb1331d2bbb7c3e2f37df1280415c79ee 100644
+--- a/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml
+@@ -51,6 +51,9 @@ properties:
+           settings register.  For Exynos5420 this is given as 'sclk_usbphy30'
+           in the CMU. It's not needed for Exynos2200.
+ 
++  power-domains:
++    maxItems: 1
++
+   "#phy-cells":
+     const: 1
+ 
 
+---
+base-commit: 3b9b1f8df454caa453c7fb07689064edb2eda90a
+change-id: 20251007-power-domains-phy-samsung-usb3-drd-phy-b52245676e6a
 
-> 
->  .../iio/pressure/infineon,dps310.yaml         | 48 +++++++++++++++++++
->  .../devicetree/bindings/trivial-devices.yaml  |  2 -
->  MAINTAINERS                                   |  1 +
->  3 files changed, 49 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml b/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
-> new file mode 100644
-> index 0000000000000..f35ef2ce74d6f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/pressure/infineon,dps310.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Infineon DPS310 barometric pressure and temperature sensor
-> +
-> +maintainers:
-> +  - Eddie James <eajames@linux.ibm.com>
-> +
-> +description:
-> +  The DPS310 is a barometric pressure and temperature sensor with an I2C
-> +  interface.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - infineon,dps310
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#io-channel-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    iio-hwmon {
-> +      compatible = "iio-hwmon";
-> +      io-channels = <&dps 0>;
-> +    };
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        dps: pressure-sensor@76 {
-> +          compatible = "infineon,dps310";
-> +          reg = <0x76>;
-> +          #io-channel-cells = <0>;
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 58ff948d93c96..a76c58f3b1de4 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -127,8 +127,6 @@ properties:
->            - ibm,cffps2
->              # IBM On-Chip Controller hwmon device
->            - ibm,p8-occ-hwmon
-> -            # Infineon barometric pressure and temperature sensor
-> -          - infineon,dps310
->              # Infineon IR36021 digital POL buck controller
->            - infineon,ir36021
->              # Infineon IRPS5401 Voltage Regulator (PMIC)
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 3773c74b31d6d..bde80ddb99e9d 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12217,6 +12217,7 @@ INFINEON DPS310 Driver
->  M:	Eddie James <eajames@linux.ibm.com>
->  L:	linux-iio@vger.kernel.org
->  S:	Maintained
-> +F:	Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
->  F:	drivers/iio/pressure/dps310.c
->  
->  INFINEON PEB2466 ASoC CODEC
+Best regards,
+-- 
+André Draszik <andre.draszik@linaro.org>
 
 
