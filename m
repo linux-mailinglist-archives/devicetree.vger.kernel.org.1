@@ -1,57 +1,58 @@
-Return-Path: <devicetree+bounces-224312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C4B5BC2B0A
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 22:47:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62D6ABC2B1C
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 22:49:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81A4B1893D07
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 20:48:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F54319A09D1
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 20:49:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F1F22D4DE;
-	Tue,  7 Oct 2025 20:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BCC623958C;
+	Tue,  7 Oct 2025 20:49:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X5ZgX2/d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mi2TbDiq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D13C5227;
-	Tue,  7 Oct 2025 20:47:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D35065227;
+	Tue,  7 Oct 2025 20:49:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759870053; cv=none; b=s6Jr7U7Od7yEIYEV/KCEfShXeZEjzmS8eZtFqomeHvEqnVfohHFoeNPDrE3X3LQ2hCTIRzTLyRJDLPNDFPwtQ9vnGdnkLee1P+vJ034YBjvOvfudG9j49DiynwXq1bpXi0p6iwhkHI9ASoO4sbOFbgqVMILsOeSofZ96X5OOSeU=
+	t=1759870151; cv=none; b=Te1DCw4DjCUDmXBWFoXaiQO8N/0O5IQxIHNKHexehRk3X+vI/dmaglt8kv+RB3So5A1T/lLKX5TG3QwrNGDRNLD7r5fSb0Ze3ukuNqxaW1fQh6KMD8Lo2UWU3Q5Z2pdODvcjXHK7CeDCThcyNzHv2wvzWUPUggcCekBKL6TJsuY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759870053; c=relaxed/simple;
-	bh=23u1ryQA4pkVgghEK/FjlCql33thr7bf7nrPRRN5i6Q=;
+	s=arc-20240116; t=1759870151; c=relaxed/simple;
+	bh=EaFww+AteBs9x5Mdj1PZzJJPkX0MNrmJtb/x/NBSKZI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FEyo7R555rppxh/tjJmmjJxslWLYEStt+ligfkcdTYucitejIkHfYP++GV89AyPxAcDCEOU7oqHkP2B/HHp7+O/tSPjOTNPsAqH662XZH213UjR9QpbPM+RoRO0Wh+bBoBdzDuDKJWTYb9CuMdTt25LfD+a7pk2ZMPB95n8OwyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X5ZgX2/d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DF94C4CEF1;
-	Tue,  7 Oct 2025 20:47:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NpHAtvdcVUI57VCEdfMlBfojxxWGU5q7pWqoSR+GcMMFndyAI5e0pizjHni8NMTNlXCPin5Hp29fIH2zd6gs9AvmLRrutnD17c/kKpeEpklYoaY3a7Sm8RDjmvav+I7CCqPpc3CEws9nzFAMbkpR4qr/eDxutBSZj/M1UM1LgLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mi2TbDiq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92B4EC4CEF1;
+	Tue,  7 Oct 2025 20:49:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759870053;
-	bh=23u1ryQA4pkVgghEK/FjlCql33thr7bf7nrPRRN5i6Q=;
+	s=k20201202; t=1759870151;
+	bh=EaFww+AteBs9x5Mdj1PZzJJPkX0MNrmJtb/x/NBSKZI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X5ZgX2/dvBtfhlELBUQDRuuHSWQhZPXCt6SRVfbp2P4M5bQR+lMd43FoZVFzJb0ED
-	 qL7SDYslX//Bm6ftvZ61qgcYGpFa1Kfj4n1a+kPIobVo0kkp7/JWzVbY/oHDlWShPK
-	 pqAnUp1ZEFNIiovXrwDyOWG6VAHCvGnRMW4YFO5JKiDh73VWAPfVgUfpcJ6Enmo8bE
-	 DYjRE8YXyDNOTp/B/V28xIS/gEAfxMJpluVfumzHvxl22d+IjyLWz+hh28T4ssJr9k
-	 CSF+nphmiEdbZhD1Jmu5DTh0jeklgy4Tui9gHb5jOsDNJJ+GIHDr3usndmFpfrnRq9
-	 ZCqa94/JT2O1g==
-Date: Tue, 7 Oct 2025 21:47:29 +0100
+	b=Mi2TbDiqMuL8Bq2TxziXjd29Otc0Zha88N7bLPetAmnkzdDzvgsQQ5Ks8vKB9s5Z9
+	 OhYLg7UCPTQeOVaaVEqMDKeKNSBS4e69VdXEIlMigvsr13EzPLfQqE/S4kNmC5W8Q5
+	 ByHeBoifqfxmOAp6GMONrjW6FBl5MQV7/2Qnw7CZaXt+XCrgx9HOKw043HbhybNSfM
+	 8KlBYEPTedUYwQC4rLEKJyW83FWkz+ltVyFpDcqwXYvHzPMKZ1XQ474b/JbNf2J8pT
+	 JhOseYrGTnCkC5iouTM/k4JlzKaDrf7n5g8EsvYNhBtuYgjT6a/ZiK8ByzdFeMaZ4s
+	 uG+aMm2RxSaZA==
+Date: Tue, 7 Oct 2025 21:49:07 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>
-Cc: jacopo.mondi@ideasonboard.com, hverkuil@xs4all.nl, mchehab@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: Pinefeat cef168 lens control board
-Message-ID: <20251007-obscure-thrower-1afcdb23c4b8@spud>
-References: <20251007195732.16436-1-asmirnou@pinefeat.co.uk>
- <20251007195732.16436-2-asmirnou@pinefeat.co.uk>
+To: Kael D'Alcamo <dev@kael-k.io>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Wei Yan <sledge.yanwei@huawei.com>, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: i2c: hisilicon,hix5hd2-i2c convert to DT
+ schema
+Message-ID: <20251007-computer-animation-b7e6322f234b@spud>
+References: <20251004154808.116143-2-dev@kael-k.io>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,41 +60,31 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mr8WqQAh4oYIhLeV"
+	protocol="application/pgp-signature"; boundary="lCP7PNDosPoQdFe7"
 Content-Disposition: inline
-In-Reply-To: <20251007195732.16436-2-asmirnou@pinefeat.co.uk>
+In-Reply-To: <20251004154808.116143-2-dev@kael-k.io>
 
 
---mr8WqQAh4oYIhLeV
+--lCP7PNDosPoQdFe7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 07, 2025 at 08:57:31PM +0100, Aliaksandr Smirnou wrote:
-> Add the Device Tree schema and examples for the Pinefeat cef168 lens
-> control board. This board interfaces Canon EF & EF-S lenses with
-> non-Canon camera bodies, enabling electronic control of focus and
-> aperture via V4L2.
->=20
-> Power supply is derived from fixed supplies via connector or GPIO
-> header. Therefore, the driver does not manage any regulator, so
-> representing any supply in the binding is redundant.
->=20
-> Signed-off-by: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>
+On Sat, Oct 04, 2025 at 05:48:02PM +0200, Kael D'Alcamo wrote:
+> Signed-off-by: Kael D'Alcamo <dev@kael-k.io>
 
-I acked v5, any reason for not applying it?
-https://lore.kernel.org/all/20251007-geologic-epidemic-2f667f232cf6@spud/#t
+With a commit body,
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---mr8WqQAh4oYIhLeV
+--lCP7PNDosPoQdFe7
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaOV8YQAKCRB4tDGHoIJi
-0hqiAP90PFWFzZJiPBzdjssP55kYAixNabTHplEl1fb+BgNQvAEAlJbTXs4JOoAY
-uYvdtLm2YM6oKb/Z/9nYZNmvTD/uIgc=
-=cPvn
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaOV8wwAKCRB4tDGHoIJi
+0h5nAP9XALoblx3krFyNWX9eAG/scYhcUYk9v+kb5EzKKUngkgD/Qg32WQX7zjGx
+R4P46EDr5c4tN3b3xqr5XJBfbB4ojwQ=
+=Ceti
 -----END PGP SIGNATURE-----
 
---mr8WqQAh4oYIhLeV--
+--lCP7PNDosPoQdFe7--
 
