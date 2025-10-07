@@ -1,285 +1,136 @@
-Return-Path: <devicetree+bounces-224265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DEA6BC2409
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 19:30:22 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9030CBC2507
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 20:03:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6E4DB4E394B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 17:30:21 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3FE094E21C5
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 18:03:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 825152E7F2A;
-	Tue,  7 Oct 2025 17:30:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2907B20E03F;
+	Tue,  7 Oct 2025 18:03:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fdmKeMvW"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="YDGW7iSt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59EA72E8B64
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 17:30:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EAD1205E25
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 18:03:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759858215; cv=none; b=FiU5OiFkoC9ngeicVsrlDcJRyOPjJNQhw3JKFkM3CR+DIEE7HADUDZMC8RC3MchcwdM4JKRPEmvDUfs6cT7JaOG0HsKlTlx64BjxFBi0SkQnV9PxRSQX/+MxdD32lYMQ71TSp5JGmZpuznIU9Yvz67MCTUdy9XjAOz5DZ4mIuFk=
+	t=1759860234; cv=none; b=r734T/S+d1Lw9QYptNTaC79MbAM1KxtxdmNMEiq9fS4MqtwE1wFkh1M0742B023nzlxNH3jLdG+vceg/oH/kPdaBW+Yh6RwV4Q9Lu0RtGGjwJ8M6mloO2QvaDKSpuvO8yALEF9mrkoWZQq8rM5dzh8hD831kCacrXnLXSNYEH18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759858215; c=relaxed/simple;
-	bh=ymtKH/86nnVE10cOxvy7YF/kwCVKux3lBOpB8deHHBA=;
+	s=arc-20240116; t=1759860234; c=relaxed/simple;
+	bh=NHEmrtJIgEleCWQcevq6nqZY7xNB77jO7eLNYiB6sEU=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RUVVpzMuVXh5W/6Js3UdjtclYyzyDWmfZ6zfrZGQfnY4E5ChcqQtjHIw1i4lzKoSFwLCRNQHwfqMwLjEgmX2dhLmZledpZHq9mJoN9Z5BpkLA3H7shO3/sNitG280vHNJrJ1Q/bBdO7xb0kQtSLOmRM9/5wRPNHjEmbwK8lrz5w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fdmKeMvW; arc=none smtp.client-ip=209.85.160.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4da894db6e9so57179101cf.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 10:30:12 -0700 (PDT)
+	 To:Cc:Content-Type; b=szdwqhWtkoe7KwyoqF8LD6EaCp/h+gJCfbrCj97tUG/gPZBz9hQ1Yf5UVkbd7A5JnxndFI0HMWGWJTCLXx/zwpCarZ33bOLUGfodZ76vitDYOVEGSTcGTEf7UloPJjBpJ2zYxRCFXjhHxqoLDXBaV0oWw09UpsH9HKHR8OT9bvw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=YDGW7iSt; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-28a5b8b12a1so65901215ad.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 11:03:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759858211; x=1760463011; darn=vger.kernel.org;
+        d=google.com; s=20230601; t=1759860232; x=1760465032; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=sMAj+aiM1byyV8qUW2iRSeox1tE1lo5J3rRUTQoSTSc=;
-        b=fdmKeMvWIavgTo1QkTMRGeheFo0Xn2d04dqJ4HN6z71yjQLTegLtMYo7Bn/bfU6ljr
-         d8OOA+YzRKm7HinaajhAnOquDH6xvDDkty2PgN0zE0jnPM8vEy8UZWk0vPEjJJ6GdmFZ
-         5vYlJHcvjGDk9sD0J3iYd50bZlUoVT0Y5MGNp5YiGav5E98urQ0nuOPjfiA55Ui2XZ8v
-         dilee9gjehp/XlyM8yn2NIVD0h5fSCllwQ/Cx9y3WTvJd60EFnft1hbcskPE3AmLdJI7
-         GumZdbUnWs48bdRkWcbeSJy2EKXPlcxlCliwnk6bxC6YwqbOQ7i0e9BcgDfp0deJWuER
-         hUIQ==
+        bh=BoeUTdyH6Ho2hK/WV0Pq7ReoILwQzxKPA2QdB9ZFVa0=;
+        b=YDGW7iStLghTCfJ7+MCFpdhgAbzOjwWdGzzI4+L/86ppjDjIEg1yv6gMYK7LVKlQyQ
+         A62FUxwi7lyqLo86FJjSoCt4Cxl4tlO0fCBif7yXNu8b81yfL6+NpNlMBvDELrOz4KVD
+         Mp4yh4bsPfcGIXLH+lA7B/v9L+KcJsb0YxXnrsQuPpXPe7MF7chjW77QqwsBWQENainV
+         SJ7yKYtzDCRymEeRt44ed1JSClqUNeFjqaFZkerPO885JnyLV+4lo/2X9BHI3g2q8V4F
+         wm5F1GT8MSgfQGG8KePscMiHadq35L2g5kGW3vkcIM9+NuZVdcIgraWFc+UXAqJzXYQe
+         4OsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759858211; x=1760463011;
+        d=1e100.net; s=20230601; t=1759860232; x=1760465032;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=sMAj+aiM1byyV8qUW2iRSeox1tE1lo5J3rRUTQoSTSc=;
-        b=bGoObBywko8ZTNghDiSEjRD6nNvd4WDnzVAXlFrLJFFWaH+934cZJTUDIrfLyPWfc6
-         FelOKA8RQp104O0ldzoLb+shk+lleWTUtheZJJusDua+3kaDa0H1eSJL755y4IgMg9Ju
-         uc81kfMqUh4IyMNVnCq8zPBbvatXZps5DLbHFgPGbhebbLqsAsEgIvvZcHurWRsxXZxg
-         EHIv8dLXxeg4hrCEJbk44rnccpRcQjeDkoXmTiKEoF3ogweMjrmyoGBVePoxbPglAJdv
-         83zFmsV1LXaxusu2o6EcSN8VKZH6e7noAo3N6SfLGT6w9PeX4QLICXfn+oM8fm2P1Eji
-         Odog==
-X-Forwarded-Encrypted: i=1; AJvYcCWKsrbVAsXz/Vw1/E4VM2EX22VGRenbxe5zuIpGjX9qtaRlcL42xRi6cB2OF3oZs0vLrgYvFRsOeuYD@vger.kernel.org
-X-Gm-Message-State: AOJu0YwD4Bupd8JZ8hxO+F4nAfwGj/N32U3uL6OTivZtyU5rdGkuMSNP
-	l99ZnCB8F69Dy6fofBDKLRncMinsBBuhRgV/uvNLMIIGhipkKG4d2sQKfwrkr/7QP9WQ4PMO08u
-	VmpuL1EOE/4xo2rEn6gUJLC9WqPpm6hM=
-X-Gm-Gg: ASbGncuKihInHUgWlqo9RlUblx49xdXKVgtprkChsb3n8bug3H4GwMElXALzfUqGHGb
-	Tb+eh+qFahC1h0c5ucLw9wg4CrzZmNc18m5re1eW1IlMyFidhuXGdSYxu9hbq7RFzvC3T9qR6CT
-	VHyHKQrSE+45f9C7F9yUiVnsEd4n9SqlSJyyZiBXpMxLBuCSUVlR0AYwkgA5xsXUhI+2+YFTGdO
-	F34EBhHQe0UjzQ/lj72btAJ1hGJ2bXH
-X-Google-Smtp-Source: AGHT+IGJRfUjE/oeQKG0hRpMB1UxYS7CMPbyUsEgb4VJAH4jITPPVIHBmZKNXDNSbvw+FOss5T4/jom7TqKt2zeh/lw=
-X-Received: by 2002:a05:622a:28b:b0:4df:504:ef88 with SMTP id
- d75a77b69052e-4e6eacd88a2mr6233551cf.23.1759858210804; Tue, 07 Oct 2025
- 10:30:10 -0700 (PDT)
+        bh=BoeUTdyH6Ho2hK/WV0Pq7ReoILwQzxKPA2QdB9ZFVa0=;
+        b=WULiEAeV3JzcW977g4zOFKPFmpthOlwTPPjVA5cv7yxNKOXn0efgR5pmuiA+o8gKu2
+         IsHBJhea/0V7WJh5ut+X1+QWcbnvEwE9MfWnaN7irLr3mfQrBPT/uRxUh11Qejwcrti4
+         1TiRUOb/6gKeYwNtJpoh4tR64kJ+7efK2Nmvj4/Q12lUMjnVRIToVRFo7YanIiI46Nea
+         0zYeh5SivSOaS3RyAggBt5hnA5dMOdzZMokysZtTOiOvgPwOcWU4rSfeb90kW6BX6tzZ
+         MQciOcnMoRtY4WKJ71OxObTDLCEMqjYbeRtuSOpccXcRNnt43fqGuUBPvIucM4gwK0Ed
+         0IQA==
+X-Forwarded-Encrypted: i=1; AJvYcCXbJ6PlWqan8GCGnJoFHoi8teqWzpuBHUZ1KD+CMfN2Vj923Wa0DV38+xv8cor000TQnYfA41wb4MRw@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5OV7+r0JfmvMYBL9+6ZGXxL3eZzk+ohk4kMUVuNPksyTeFjsw
+	Pi+XwZ6F7v8sTnk+QllCrPYRP+3HWLPb/quQiES362UJ7jzj1eplWJyC9HsVN4b1Z4XJ0RgsABO
+	aQe8He/YMCUXxBdws5GOO2jrnTHHKHb+yC8xNkv9j
+X-Gm-Gg: ASbGnctGvMWOPqi9ueX3qGUMcF2d/cG2dpANDlPMfHLY4t4aNFUbvyp8N+Lqxx18jBK
+	Lb2gYmA9GOK9g82kiSfVysRNXWFW12RYY6u8EuBcSu2dpXdGohH8DxyVk1DNwz884nnlM9xk+VA
+	+ZgN24Tttk7y1MoZIpLf5i68DCOG2qXigaXU0V/uEROgRrgZPJ+Jcc2rC8h/N9hezaDGSedORHy
+	XO+qCubT9JOuL/Gzx+XGcUbdZAFb7APmS5FFTewEpX1FjktsV0wgfU4LqCwZGJ1mmymNsqav8b2
+	P+gqEFVd/HhmOQ==
+X-Google-Smtp-Source: AGHT+IErqs+kJVv5rsWGTN2Z0xZ0ickiFqF1IQ4SpRF/lYWHEWgJPEacLea7fTefk87mdvoXJ1AdDn7lRgB9V20xPD0=
+X-Received: by 2002:a17:902:d58d:b0:266:cb8c:523 with SMTP id
+ d9443c01a7336-290273ffe89mr5647285ad.48.1759860231518; Tue, 07 Oct 2025
+ 11:03:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250929065714.27741-1-jjm2473@gmail.com> <20250929065714.27741-4-jjm2473@gmail.com>
- <d8ad476c-d0c7-4e97-9e76-540a539ffb52@lunn.ch> <CAP_9mL4ofig-X-w9wx1A5D_eVXROo6AVFBSwp4mh=kj7webpPA@mail.gmail.com>
- <7e219aef-88a0-4184-9553-30dcbc8dbd79@lunn.ch>
-In-Reply-To: <7e219aef-88a0-4184-9553-30dcbc8dbd79@lunn.ch>
-From: jjm2473 <jjm2473@gmail.com>
-Date: Wed, 8 Oct 2025 01:29:57 +0800
-X-Gm-Features: AS18NWBZUMXa0jkDLOJvcTfIew6vRsl83_rLRSuXeQfl3Nd8OcKbfEdsvkWXLgw
-Message-ID: <CAP_9mL6utQjN_2EZ4vs3K8jzcxHxvKWNTNEXZ9fAx4HuA=DNXA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: add LinkEase EasePi R1
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de, 
-	quentin.schulz@cherry.de, kever.yang@rock-chips.com, naoki@radxa.com, 
-	honyuenkwun@gmail.com, inindev@gmail.com, ivan8215145640@gmail.com, 
-	neil.armstrong@linaro.org, mani@kernel.org, dsimic@manjaro.org, 
-	pbrobinson@gmail.com, alchark@gmail.com, didi.debian@cknow.org, 
-	jbx6244@gmail.com, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
+References: <20251006232125.1833979-1-royluo@google.com> <36068ca3-912e-4e71-b688-8689ead8194b@kernel.org>
+In-Reply-To: <36068ca3-912e-4e71-b688-8689ead8194b@kernel.org>
+From: Roy Luo <royluo@google.com>
+Date: Tue, 7 Oct 2025 11:03:15 -0700
+X-Gm-Features: AS18NWA8U90B63ffP5jXdkUD5e6eOAqItmxz5SXEaQputDmKkvJD4mEmS6I0ARg
+Message-ID: <CA+zupgyLx8q23b-ecrLhYAU27HV_ZFMiH9XR81Q2MKRmMwpcNw@mail.gmail.com>
+Subject: Re: [PATCH v1 0/4] Add Google Tensor SoC USB support
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Peter Griffin <peter.griffin@linaro.org>, 
+	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Joy Chakraborty <joychakr@google.com>, 
+	Naveen Kumar <mnkumar@google.com>, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Andrew Lunn <andrew@lunn.ch> =E4=BA=8E2025=E5=B9=B410=E6=9C=887=E6=97=A5=E5=
-=91=A8=E4=BA=8C 22:57=E5=86=99=E9=81=93=EF=BC=9A
+On Mon, Oct 6, 2025 at 6:06=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
 >
-> On Tue, Oct 07, 2025 at 10:32:26PM +0800, jjm2473 wrote:
-> > Andrew Lunn <andrew@lunn.ch> =E4=BA=8E2025=E5=B9=B410=E6=9C=886=E6=97=
-=A5=E5=91=A8=E4=B8=80 23:51=E5=86=99=E9=81=93=EF=BC=9A
-> > >
-> > > > +&gmac0 {
-> > > > +     phy-mode =3D "rgmii";
-> > >
-> > > Did i really miss this patch series in its earlier version, or did yo=
-u
-> > > ignore me?
-> > >
-> > > https://elixir.bootlin.com/linux/v6.15/source/Documentation/devicetre=
-e/bindings/net/ethernet-controller.yaml#L287
-> > >
-> > > > +     tx_delay =3D <0x3c>;
-> > > > +     rx_delay =3D <0x2f>;
-> > >
-> > > Please change it to rgmii-id, and smaller tx/rx_delay values. Or show
-> > > us the schematics which clearly show extra long clock lines.
-> > >
-> > > > +/* Micro SD card slot is not mounted */
-> > > > +&sdmmc0 {
-> > > > +     max-frequency =3D <150000000>;
-> > > > +     no-sdio;
-> > > > +     no-mmc;
-> > > > +     bus-width =3D <4>;
-> > > > +     cap-mmc-highspeed;
-> > > > +     cap-sd-highspeed;
-> > > > +     disable-wp;
-> > > > +     pinctrl-names =3D "default";
-> > > > +     pinctrl-0 =3D <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_d=
-et>;
-> > > > +     vmmc-supply =3D <&vcc3v3_sd>;
-> > > > +     vqmmc-supply =3D <&vccio_sd>;
-> > > > +     status =3D "disabled";
-> > > > +};
-> > > > +
-> > > > +/* Wifi module is not mounted */
-> > > > +&sdmmc2 {
-> > >
-> > > What do you mean by "not mounted"?
-> > >
-> > > Often you would say "not populated", to indicate the PCB has all the
-> > > tracks in place, but the chip has simply not been soldered in place.
-> > >
-> > > Or is there a connector here, and nothing plugged into the connector?
-> > >
-> > >    Andrew
+> On 07/10/2025 08:21, Roy Luo wrote:
+> > This series introduces support for the USB controller and PHY found on
+> > Google Tensor SoCs (G5 and newer). This includes:
 > >
-> > Andrew:
-> >  Hello! I ran `./scripts/get_maintainer.pl
-> > patches-v4/v4-0003-arm64-dts-rockchip-add-LinkEase-EasePi-R1.patch`
-> > to get maintainer list, and got:
-> > ```
-> > Rob Herring <robh@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED
-> > DEVICE TREE BINDINGS)
-> > Krzysztof Kozlowski <krzk+dt@kernel.org> (maintainer:OPEN FIRMWARE AND
-> > FLATTENED DEVICE TREE BINDINGS,commit_signer:3/41=3D7%)
-> > Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND
-> > FLATTENED DEVICE TREE BINDINGS)
-> > Heiko Stuebner <heiko@sntech.de> (maintainer:ARM/Rockchip SoC
-> > support,commit_signer:43/41=3D100%,authored:4/41=3D10%,added_lines:12/1=
-17=3D10%,commit_signer:5/6=3D83%)
-> > Quentin Schulz <quentin.schulz@cherry.de>
-> > (commit_signer:10/41=3D24%,authored:8/41=3D20%,added_lines:63/117=3D54%=
-)
-> > Dragan Simic <dsimic@manjaro.org> (commit_signer:5/41=3D12%,commit_sign=
-er:1/6=3D17%)
-> > FUKAUMI Naoki <naoki@radxa.com>
-> > (commit_signer:3/41=3D7%,authored:3/41=3D7%,removed_lines:1/1=3D100%)
-> > Peter Robinson <pbrobinson@gmail.com>
-> > (added_lines:9/117=3D8%,commit_signer:1/6=3D17%,authored:1/6=3D17%)
-> > Alexey Charkov <alchark@gmail.com> (added_lines:6/117=3D5%)
-> > Diederik de Haas <didi.debian@cknow.org>
-> > (commit_signer:4/6=3D67%,authored:3/6=3D50%)
-> > Liangbin Lian <jjm2473@gmail.com> (commit_signer:1/6=3D17%,authored:1/6=
-=3D17%)
-> > Johan Jonker <jbx6244@gmail.com> (authored:1/6=3D17%)
-> > devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-> > DEVICE TREE BINDINGS)
-> > linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC s=
-upport)
-> > linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support)
-> > linux-kernel@vger.kernel.org (open list)
-> > ```
-> > your email address is not listed above.
+> > 1.  DWC3 Glue Driver: A new glue layer for the Synopsys DesignWare USB =
+3.0
+> >     controller (DWC3) as integrated into Google Tensor SoCs, including
+> >     hibernation support.
+> > 2.  DWC3 DT Bindings: Device Tree binding documentation for the Google
+> >     Tensor SoC DWC3 controller.
+> > 3.  USB PHY Driver: A new driver for the Google Tensor SoC USB PHY,
+> >     initially supporting high-speed operations.
+> > 4.  USB PHY DT Bindings: Device Tree binding documentation for the Goog=
+le
+> >     Tensor SoC USB PHY.
 >
-> What i eventually found is that you posted v3 separately, and then
-> threaded v4 to v2, which makes no sense.
+> This is useless message in the cover letter. We see what patches do from
+> the patches.
 >
-> Please always start a new thread for each patchset.
+> What you are supposed to explain here and in the bindings patches, is
+> why we want this driver and what is Tensor SoC, considering we already
+> have one Tensor SoC... IOW, explain everything which is not obvious -
+> and duplicating SoCs with some generic name is for sure not obvious.
 >
-> > > What do you mean by "not mounted"?
-> > >
-> > > Often you would say "not populated", to indicate the PCB has all the
-> > > tracks in place, but the chip has simply not been soldered in place.
-> > >
-> > > Or is there a connector here, and nothing plugged into the connector?
-> >
-> > The chip/slot has not been soldered. So here should be "not
-> > populated", forgive my poor English.
->
-> Thanks for the clarification. I'm not sure it is worth adding these DT
-> properties. When a new board is produced which does populate these
-> devices, you are going to need a new .dts file. So you can put the
-> properties into that new file.
->
-> >
-> > > Please change it to rgmii-id, and smaller tx/rx_delay values. Or show
-> > > us the schematics which clearly show extra long clock lines.
-> >
-> > In fact, the RTL8211F's RXDLY and TXDLY signals are both pulled low,
-> > just like the Banana Pi BPI-R2 Pro, so the configuration is also refere=
-nced:
-> > https://elixir.bootlin.com/linux/v6.15/source/arch/arm64/boot/dts/rockc=
-hip/rk3568-bpi-r2-pro.dts#L237
->
-> Pull low makes no difference to the 2ns RGMII delays.
->
-> > The tx_delay and rx_delay values were obtained using Rockchip's
-> > automatic scanning tool:
-> > https://github.com/istoreos/istoreos/blob/54746dfdb5bd34d1f281cf41d1d16=
-20d0c3ee686/target/linux/rockchip/files/drivers/net/ethernet/stmicro/stmmac=
-/dwmac-rk-tool.c
-> > https://gitlab.com/firefly-linux/docs/-/blob/rk356x/firefly/Common/GMAC=
-/Rockchip_Developer_Guide_Linux_GMAC_RGMII_Delayline_EN.pdf
-> > https://github.com/axlrose/rkdocs/blob/main/Common/GMAC/Rockchip_Develo=
-per_Guide_Linux_GMAC_RGMII_Delayline_EN.pdf
->
-> Vendors get things wrong, including this. 'rgmii' means the PCB adds
-> the 2ns delay. Nearly every Rockchip board follows Rockchip broken
-> vendor recommendations, and then i come along, point out how it is
-> wrong, and ask for it to be fixed, before being merged to Mainline.
->
->         Andrew
+> Best regards,
+> Krzysztof
 
-Andrew:
- Hello!
+Thanks for the review. Will remove the redundant info and ensure the next
+cover letter provides the necessary context on the Google Tensor G5 SoC
+this series intends to support.
 
->
-> What i eventually found is that you posted v3 separately, and then
-> threaded v4 to v2, which makes no sense.
->
-
-This is v2 link
-https://lore.kernel.org/all/20250925092037.13582-1-jjm2473@gmail.com/
-.
-I don't see 'v4' in there. I have no idea why you see 'v4', can you
-please share a link?
-
-This is v3 link
-https://lore.kernel.org/all/20250929065714.27741-1-jjm2473@gmail.com/
-.
-I don't see threading issue.
-I use `git send-email --to '***' --cc '***' patches-v3` to send email,
-should be OK.
-(`patches-v3` is a folder contains patches generaterated by `git
-format-patch --base=3Dmaster --cover-letter -v3 HEAD -3 -o patches-v3`).
-
-> When a new board is produced which does populate these
-> devices, you are going to need a new .dts file. So you can put the
-> properties into that new file.
-
-These two nodes just describe the gpio and regulator found in the schematic=
-.
-If some users solder these connectors or modules themselves,
-they only need to change the status to ok and they can use them.
-If this will cause confusion, I can delete these two nodes.
-
-> Vendors get things wrong, including this. 'rgmii' means the PCB adds
-> the 2ns delay. Nearly every Rockchip board follows Rockchip broken
-> vendor recommendations, and then i come along, point out how it is
-> wrong, and ask for it to be fixed, before being merged to Mainline.
-
-I will try `rgmii-id` and rescan {tx|rx}_delay, just like
-https://lore.kernel.org/all/20250925092923.2184187-3-heiko@sntech.de/
-
-I also notice that you suggest use {tx|rx}-internal-delay-ps instead
-of  {tx|rx}_delay in
-https://lore.kernel.org/all/e4d3127b-c879-4931-9ea0-de7449bc508c@lunn.ch/ ,
-but I think this depends on stmmac driver.
-
-  Liangbin Lian
+Regards,
+Roy Luo
 
