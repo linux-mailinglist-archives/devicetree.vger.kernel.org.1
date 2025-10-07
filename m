@@ -1,172 +1,136 @@
-Return-Path: <devicetree+bounces-224125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A8F3BC0D17
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 11:09:52 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00AFDBC0D38
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 11:12:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1086A1898DF3
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 09:10:15 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A0B5E34A963
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 09:12:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D4D12D6E5C;
-	Tue,  7 Oct 2025 09:09:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F2A2D5940;
+	Tue,  7 Oct 2025 09:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HPetP9p3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GjLECfe1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 072AFE571
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 09:09:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B24C7288527;
+	Tue,  7 Oct 2025 09:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759828185; cv=none; b=Za/hDvO4PX0RzccQjF5HKs0IdIucqg0i6sO48bZ9nuequVzwL0kJ5QfoRVqrsBmhdpRcVDpdtU77FDwJxjigQPrwdiiSHH+xFkHo7sh+SzsyvJis7G5m7es6DwqHmfLcJIzal9FmdDBgdM+uWx5cGSRFo3emTcWvnZ5h7dTV1z0=
+	t=1759828368; cv=none; b=oK90u28VzblyRUwuNqLZ9HgbHCbfcboUOZNFg9iH6BwqtGGDugnBcCVFrOg027IF9yTXd8MvD0SYatLeBmMQWUO/asjnlchfUKr+nosL+A04LI4iZRc+PArXc+UKKeeMFcT6VYaNx2IzxB3EMagQ5MV9PfIxfoQ+aINJRULJBgA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759828185; c=relaxed/simple;
-	bh=1yfqm08lPzP84DqSlgtHVuQqNXB/UVXPe0ZvuASpvXY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pya7/7RNjVHmczZFChswyumHmjHunBSRzYSnvcaG35uY/brn1nHpeb60TJnGvyP4xD1fomN3UHuBETNcwhyhwMlowb6B+0wo6ZXl0dz3zPBdOZD6j5TxlACyKeRPt/AAvU6BxRyrCAuCsaoPvKN3bOr0WnQu0+Vj7VxSmy3O3IU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HPetP9p3; arc=none smtp.client-ip=209.85.210.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7bc626c5461so1988954a34.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 02:09:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759828182; x=1760432982; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=k5Gn50jfOxZiiSgXxR/gre/tjvhockNBFkRAG2DI30U=;
-        b=HPetP9p3Rcyr+4Rerd3eUcPywk0U+/cpJZQguNYVaEhi7UH/pho9dG27K39tRbutjz
-         a0msZ7YzoHLi9+3ghjpUAlBzlRx6+1sWCr2Z4KhFtLX4tG9M982U9qdv5bud/9NTZUGc
-         351joCL0Y7gZnCKbdSccb7ySAXAV8ceGTLNjziRVI0+G/nNVs8vYNsF24q0n2UgxGcOZ
-         nbfZD2kF4gB6fqOPhtOSkqLJOStWZQS6yLLezTzyhXtrNt9fEk7uQTEvnwX7yWUWGrAm
-         MGXAG3D/dEvSMMgJst7VT5SiBd9mDvh+2KcQ9W2vfZG3031A+yRAa6o6hOWlwfecydVF
-         OLpA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759828182; x=1760432982;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k5Gn50jfOxZiiSgXxR/gre/tjvhockNBFkRAG2DI30U=;
-        b=fOEco7Wnw4rHfNkofrsuftKN/M2nIUWXZK6fRwRjxQQJGvjMtsH13I8O+wVs+FP4K0
-         mzAWUy2AvnKj6xQjK/oWRdK4kjh8SElgwWDULHI7Ldzi2RPppgVxpyFNtck1eP50h9O/
-         tpRkzSRIHP0ZnIyASrGZzMVE41CiW92AOiL4hnKt2lI/wZud1MLnEjncoRqWPVpmmeY5
-         /md6/j2nWZ9/Na5LAj9vPjldachq5/5MEs+KBufSubsjr4xrk7Bm0POOgHEbIeVky/oz
-         4lFyFf8DCwk7XO4soqM2T2iq+3l6rA5EeKT+r1odeZBoJGUmopqdC6uMnprIfoQ6DE4i
-         HGRw==
-X-Forwarded-Encrypted: i=1; AJvYcCX4ol7Mm1qmXaHGvEtL79lUxlj60OqMI9oSEFKQrzDGneMnsQj4A7kAJ5gPSlg2BEITHaqWKVQRxfKl@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5ZqLN1dpLu4V1MDPyo9kzQjx/bsJCeIGUtN74OY4eBzd7vh6u
-	hCDgxZqCQTnobaYiTaCW/Yg4dvipDxXRZ+2Io9b4cKmcsdGLNqnsmJGTmcueVgHjRNp69tPaTxZ
-	5LJzpYzzAiwKeJY0+a/j6iZBQCSkIlgkU2fJOgpXdOQ==
-X-Gm-Gg: ASbGncu0tJO4kpbcqfkEFcX/noaazyKF/hLE5BmXGdH5lYVYcovhT1/B5YaRj+6Dosi
-	iemjUD/2VBCQIm4vt8qfDqIv4IVC8gddwgHxbThmK7gNz4ec1etYlQscJdvCKCAQ1p1AtyYv92n
-	sOWJFCGsAfnPLCPOGd7t0FFwrhccI5exHKKsbxGT0fPldJccWIUSsFF3seuWgdJXc/orVL+lfrX
-	D7vYeBCXn1GPjgVQ+fvOPXKpYy1iozvPB0LTg==
-X-Google-Smtp-Source: AGHT+IFtOrLlwJK0/TEgM+f2IS4t9o4gV7fAIVv15sfMLe5yqLK9nGKna5+x4B1VTMirLjZ+oFvqM3iKI6ns6JfL4hs=
-X-Received: by 2002:a05:6808:3096:b0:438:2907:2ead with SMTP id
- 5614622812f47-43fc18a2091mr6585032b6e.50.1759828182026; Tue, 07 Oct 2025
- 02:09:42 -0700 (PDT)
+	s=arc-20240116; t=1759828368; c=relaxed/simple;
+	bh=kmFVEHYynTGtBgWjEFFo3Ub3yXk8g9+FzYoSt7V5FGI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kmEu/4I1QOEqY1a1o4380xL/N6oK+I850HjPPkY6ZUXrmnm8GRBqqn/To3ev36AGYyQsc9vL4wX7IP8bnuM+nVLQchZl1a5aRvUp3rIlevcscXjf+k4HGgS3tvrLYGA3Y9rW2xFzRcTpdQ7RhDycuraAGEF5KjmdxQyY9/wm1Sc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GjLECfe1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02D7FC4CEF1;
+	Tue,  7 Oct 2025 09:12:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759828368;
+	bh=kmFVEHYynTGtBgWjEFFo3Ub3yXk8g9+FzYoSt7V5FGI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=GjLECfe10llD7k7kZZdUOiwCu4V7y1XitgnpTrAa0a9Z5282h2sKlyMHny4/f6HEw
+	 IeMcChw3xMIgCPGV0oBh+YY5gezXTuEy1UpOqN9NrKGahXico7JIU3OL0U3CJXEudl
+	 lP5wzjcnMGrC9urtKCqTrhVpdZDoBM5QqBCEp048FmWlJzvCqGab+dKHcyKGk9YJq7
+	 1KLm2bZuy59y4u2TNo4HIdAAY6E2WbsGW3r7ym1WGvrwI3gBL0/yjDtl+pbE83bcr4
+	 Z8QInosbv6EdBw4FkV7jMkiFFJVa8JFwUTUvKEznIvLDt/8H3O3TvjLBFrfodGBzoW
+	 vsH4xSxNlSaZQ==
+Message-ID: <bf207d35-3ca9-40a2-807a-0dbb0d1504de@kernel.org>
+Date: Tue, 7 Oct 2025 18:12:44 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251006232125.1833979-1-royluo@google.com> <20251006232125.1833979-3-royluo@google.com>
- <8ca61364-df47-41f2-b0d1-f2a8a74ec728@kernel.org>
-In-Reply-To: <8ca61364-df47-41f2-b0d1-f2a8a74ec728@kernel.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Tue, 7 Oct 2025 10:09:31 +0100
-X-Gm-Features: AS18NWD7ktu7qt-H0DxecJcoZK61ZH3ap7EbdS2ccz0Z-j7ffn7elGuijfKqbpQ
-Message-ID: <CADrjBPr7Jp_ZyGv2Krv6iLG0avgFWpcWJEO-Z=cEkhwEY-+z5Q@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] dt-bindings: usb: dwc3: Add Google SoC DWC3 USB
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Roy Luo <royluo@google.com>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Joy Chakraborty <joychakr@google.com>, 
-	Naveen Kumar <mnkumar@google.com>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: display: sitronix,st7920: Add DT
+ schema
+To: Iker Pedrosa <ikerpedrosam@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Javier Martinez Canillas <javierm@redhat.com>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org
+References: <20251006-st7920-v3-0-4f89d656fa03@gmail.com>
+ <20251006-st7920-v3-1-4f89d656fa03@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251006-st7920-v3-1-4f89d656fa03@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof & Roy,
+On 07/10/2025 02:48, Iker Pedrosa wrote:
+> +
+> +properties:
+> +  compatible:
+> +    const: sitronix,st7920
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 600000
+> +
 
-Firstly thanks Roy for your patches, it's great to see more Tensor
-support being posted upstream!
+Datasheet I found on the web clearly stats you have at least VDD and XRESET.
 
-On Tue, 7 Oct 2025 at 01:44, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> On 07/10/2025 08:21, Roy Luo wrote:
-> > Document the DWC3 USB bindings for Google Tensor SoCs.
-> >
-> > Signed-off-by: Roy Luo <royluo@google.com>
-> > ---
-> >  .../bindings/usb/google,snps-dwc3.yaml        | 144 ++++++++++++++++++
-> >  1 file changed, 144 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml b/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
-> > new file mode 100644
-> > index 000000000000..3e8bcc0c2cef
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
-> > @@ -0,0 +1,144 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +# Copyright (c) 2025, Google LLC
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/usb/google,snps-dwc3.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Google DWC3 USB SoC Controller
-> > +
-> > +maintainers:
-> > +  - Roy Luo <royluo@google.com>
-> > +
-> > +description:
-> > +  Describes the Google DWC3 USB block, based on Synopsys DWC3 IP.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - google,lga-dwc3
-> > +      - const: google,snps-dwc3
->
->
-> There is no such soc as snps, so you grossly misuse other company name
-> as name of SoC. Neither lga. Otherwise please point me to the top-level
-> bindings describing that SoC.
->
-> You need to better describe the hardware here - why this is something
-> completely different than GS which. Or switch to existing bindings and
-> existing drivers. Did you align this with Peter Griffin?
+Your binding is still not complete (and I asked...), while it should be
+complete (See writing bindings doc).
 
-I think (from what I've seen at least) this is the first submission
-for drivers in the Tensor G5 SoC used in Pixel 10 devices (which as I
-understand it isn't based on any Samsung IP). Hence the new drivers,
-bindings etc.
 
-However the issue is that none of the other base SoC drivers on which
-this driver depends currently exist upstream (like clocks, reset
-driver, power domains, pinctrl etc). So it's very hard to reason about
-the correctness or otherwise of this submission. It is also likely
-that when those drivers are upstreamed things could change in the
-review process, to how it looks today in the downstream kernel.
-
-So in summary I think to progress with this we need to get the base
-Tensor G5 SoC drivers merged first (e.g. boot to console with pinctrl,
-basic clock support, reset driver etc). Then we can start adding in
-some of the other peripherals like i2c/spi/usb etc and build up the
-mainline support from there.
-
-Thanks,
-
-Peter.
+Best regards,
+Krzysztof
 
