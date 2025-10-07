@@ -1,105 +1,125 @@
-Return-Path: <devicetree+bounces-224309-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13041BC2A21
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 22:22:30 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90668BC2A9E
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 22:40:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07FC81887E7A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 20:22:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3FDAE4E3BAC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 20:40:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F0822D4D3;
-	Tue,  7 Oct 2025 20:22:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5075B2264B0;
+	Tue,  7 Oct 2025 20:40:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jEGsN72w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VajO108n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB98C1D5ABA
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 20:22:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22153218AB4;
+	Tue,  7 Oct 2025 20:40:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759868547; cv=none; b=FQwK1aDfQ59yKIwnm4JPteKsD8PAaOhvXVIPDKhBMms1ogUOUx56e3GDIBUmIvQhM4yReT/FOU4f2rwYiZjeQmZoYNwyHgjR2OyGUHu5rbDtWCufOXBo0BaeweDW+yTVSPQis4ZTyHGEEWzxk2HOZlMZVCXGcxc7BcEDAwjqGwE=
+	t=1759869610; cv=none; b=mH9SYJ/DlwsZXHL0pEGBzmAUmQeC1EjBTUXmdsYp+aIy8FWuyr2OfsiVZmcGZ6CZ/8oe/mzftayk0ZetAhvCFgNAkYZpTp186dtyp0LAU3/KPJg8uO+thEF4xF88KW073zKjMMz9Ytx5DZW7q9GYVR9X0ufQLLjkBEdLd8AH7ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759868547; c=relaxed/simple;
-	bh=99kLDRNcHlgnavL66VTSyY3RE11yFNpexHuJRqTB2DE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HaO4mt0vcfHBVc3prcDD6QOzVYQVytsGojeCPyn5NECdZkLMlO3CDE1L8mdunIdY48WCtY0HtV2CBbbRuC50OEE8Nt4273UqSnp5ZQip8oiDmnfLUWxqI2uyrn54Zr+5l6odycPMCvrNxE5O9SF4VyZpcd0UePtX+XMsedTcnAw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jEGsN72w; arc=none smtp.client-ip=209.85.210.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ot1-f54.google.com with SMTP id 46e09a7af769-74526ca79beso3930207a34.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 13:22:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759868544; x=1760473344; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=99kLDRNcHlgnavL66VTSyY3RE11yFNpexHuJRqTB2DE=;
-        b=jEGsN72wwWOYB1s9dDZGGjmxvsBoZaVh+7og/6APuboLh1rbaknQlyOxctsbGBXkVp
-         uv7vebONGNKGMkZ7mREY/w/MJf4XI3hYghO3cc+zMf0vxBINOeoLB7PnWyLZzEMQUtFx
-         rdvmvb8AGtaCjsi6YAoSD/LDUIW/pxZlgmN+2dQ8hOEM/obiNmiZn6rH/IO6c7lx6Bv1
-         g0oj99/4xc52fFLubwL7DW8kPqj4fwy3YFD+JZ0ouuw7sfTg3odhTs8+dU+Qx44QrXwr
-         /JTYSoeY9rtNYDC2fM6twa3OZfamtzMetoIH6M8Hy7VGEua4CCVp2JwztLXwXZST9L6C
-         ropw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759868544; x=1760473344;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=99kLDRNcHlgnavL66VTSyY3RE11yFNpexHuJRqTB2DE=;
-        b=ESAIT5qF9/SE6lUhZO7vmfceRDJG175z+LCLWboJg7hvux39s3hCaaK0LZwyMZ2WJ5
-         pvS5lmpNu6Tcd8hUKUIJOjLVZyQ9hhe8YENixDlT8X3jHqYBInKgmRc/sx6um1ScQknf
-         +2MU20Ae5kyohjux76bLNLdD9wiU2M7Xu509FY0dW3nV64ziYnD0dnare+nBSvGjRFMF
-         NwlYLmGqPUyMXAAOXQwPJjyE51Zko+pl6eak4nGSCAWmgkKChd3EMfFos9acRU+HDPyQ
-         zQ0gCeu00f2OPYYdwEhEeVLDE+PN+RlF0ZvSYezA6w7lWzbued7b5LEBRMJ9+XQ0dxYF
-         dHVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXIZCPQb+Dg3FTF7tC7Q08lukpEj4O0rx6GNYPAXW2OeD17bQRwWgq9/NjfgBl0md12MO8yj0oOCisK@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqByR93yOZHw/1fm3PD98gegSLvhoKMVaDwWdBUKC7OdG7MIS/
-	0PjUHviUFNDpwugj+fIZ2j9IVGnJc/8Uuf4v6WTEHKDf2a6vBS9Kz9FEJpEg+0ElZkNHIiFJ/tp
-	w3WXnDAllzzO32N+xmyXVU1zBmzmBriNC5Etk8T79JA==
-X-Gm-Gg: ASbGncvG0QCH2ATgpxHnxM3VTAe/7i0eKuf30JFgJHf9nn86NQiwPLMsw2r/utGSD/E
-	So1VzziJBD6uLL+0+YrMHghBHiQZ/tbh4zCjPyd3UsfJ68aCNtTvuZzRMte+1CQxJAI4m0bFZ8d
-	NDQRxSe321sGioJOqmvUPWjlfWmpUgPKaDkRhAmsDvENuKRb3z+dUTLGfmXk6n50+2/I7lrZiAE
-	qXNJkwULQpyF5HqW7ylkSckA9VJus3LUplWnw==
-X-Google-Smtp-Source: AGHT+IE/AGhWoEZF8eeHiwHizK+fQtU9vN562PI/VURhBYA8B0UfvYKXR081LitZs9K/HxZnjQrqasxdS5YMFPxMAew=
-X-Received: by 2002:a05:6808:1586:b0:43f:2c27:b720 with SMTP id
- 5614622812f47-4417b2fad79mr438719b6e.20.1759868543830; Tue, 07 Oct 2025
- 13:22:23 -0700 (PDT)
+	s=arc-20240116; t=1759869610; c=relaxed/simple;
+	bh=WjOlGE690Cju9uez8gCAXio7GQ+uSNWuP+sUwijBUsg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZhTWI/me7pXBJNAyfLrwPuPQWjbhq/EMcdw1S8rLPu4Zs6SUYEseqHZ8LWv/9PUbl6VnY3vPAx1HZNSmwH91WHDZFitZiVgfHLaXPrOF+7x7FEJRFyExs/HFrS7nb7dXBE52ZhNz2XDcUgR+UzdxUd/weaMWgfldYeSYJ6OJfLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VajO108n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8621C4CEFE;
+	Tue,  7 Oct 2025 20:40:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759869608;
+	bh=WjOlGE690Cju9uez8gCAXio7GQ+uSNWuP+sUwijBUsg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VajO108nCDRTBoEksmGItunqsCqZy5Mif++sFX3CjQt5cvoQSPN49IDstfKSlgj4K
+	 j6JyjHtVPmxDRH03FrfvTOD8hj3vCbROPEr36y/9584idFEZVi41Hnmrlg31PKNtMH
+	 7e6wQM+yuDpAmrRw/s7EizcNFsGKodn4e1PmA70VmIo6T7kgx4UdIVUslOk8NvJFVm
+	 8oBtoH23DirdYaww93SuTJcHYbZZ6gQYxXYHO/GZZXNxmeCALr+uhJp0aiEoLDKd0Q
+	 yVypmteZz4Tb5TF8Sww4sBzslzx1pw8IFfkfSB6/uOm+8ic/IPJwssc/uyjLvO3+vd
+	 G6UDegOb51FjA==
+Date: Tue, 7 Oct 2025 21:40:03 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Thomas Wismer <thomas@wismer.xyz>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	Kory Maincent <kory.maincent@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Wismer <thomas.wismer@scs.ch>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: pse-pd: ti,tps23881: Add TPS23881B
+Message-ID: <20251007-stipulate-replace-1be954b0e7d2@spud>
+References: <20251004180351.118779-2-thomas@wismer.xyz>
+ <20251004180351.118779-8-thomas@wismer.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251007-power-domains-phy-samsung-usb3-drd-phy-v1-1-3cb5f80a72ef@linaro.org>
-In-Reply-To: <20251007-power-domains-phy-samsung-usb3-drd-phy-v1-1-3cb5f80a72ef@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Tue, 7 Oct 2025 21:22:13 +0100
-X-Gm-Features: AS18NWBUEeIDeP4sTK_A9MLo1ylabC6RjwGQmLe7UcknWuIT9I9jC3p7X44WHog
-Message-ID: <CADrjBPokeXuKGQP1Pi6dwt46bYYTGOthfvFv=Zn3toi03wwDWA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: phy: samsung,usb3-drd-phy: add power-domains
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Marek Szyprowski <m.szyprowski@samsung.com>, Sylwester Nawrocki <s.nawrocki@samsung.com>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
-	kernel-team@android.com, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Z9ytksPVlhkGPYpP"
+Content-Disposition: inline
+In-Reply-To: <20251004180351.118779-8-thomas@wismer.xyz>
+
+
+--Z9ytksPVlhkGPYpP
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, 7 Oct 2025 at 17:00, Andr=C3=A9 Draszik <andre.draszik@linaro.org> =
-wrote:
->
-> The USB phy can be part of a power domain, so we need to allow the
-> relevant property 'power-domains'.
->
-> Signed-off-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> ---
+On Sat, Oct 04, 2025 at 08:03:53PM +0200, Thomas Wismer wrote:
+> From: Thomas Wismer <thomas.wismer@scs.ch>
+>=20
+> Add the TPS23881B I2C power sourcing equipment controller to the list of
+> supported devices.
 
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+Missing an explanation for why a fallback compatible is not suitable
+here. Seems like it is, if the only difference is that the firmware is
+not required to be refreshed, provided that loading the non-B firmware
+on a B device would not be problematic.
+
+>=20
+> Signed-off-by: Thomas Wismer <thomas.wismer@scs.ch>
+> ---
+>  Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yam=
+l b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
+> index bb1ee3398655..0b3803f647b7 100644
+> --- a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
+> +++ b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
+> @@ -16,6 +16,7 @@ properties:
+>    compatible:
+>      enum:
+>        - ti,tps23881
+> +      - ti,tps23881b
+> =20
+>    reg:
+>      maxItems: 1
+> --=20
+> 2.43.0
+>=20
+
+--Z9ytksPVlhkGPYpP
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaOV6owAKCRB4tDGHoIJi
+0oFTAQDWK3RLnS1dd804AcyEPm0D/tSzKkHQ49oSwoC2VwaP/QEA7TJUT3vu7/NY
+whEhmbz2E3Fdscuy2U8mlpCMGnk+xQc=
+=Oby5
+-----END PGP SIGNATURE-----
+
+--Z9ytksPVlhkGPYpP--
 
