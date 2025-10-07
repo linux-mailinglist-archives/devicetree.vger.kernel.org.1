@@ -1,107 +1,172 @@
-Return-Path: <devicetree+bounces-224126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224125-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADD97BC0D29
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 11:11:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A8F3BC0D17
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 11:09:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E25C3A374A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 09:11:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1086A1898DF3
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 09:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D3AC154BF5;
-	Tue,  7 Oct 2025 09:11:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D4D12D6E5C;
+	Tue,  7 Oct 2025 09:09:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b="bH3h03gJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HPetP9p3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps.xff.cz (vps.xff.cz [195.181.215.36])
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 370432D6E4F;
-	Tue,  7 Oct 2025 09:11:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.181.215.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 072AFE571
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 09:09:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759828270; cv=none; b=hfmZp0QNU2wt+uURnbNGT4biyXAFPHvsHzn8XwEcOObFDet7Z0RD15DItF2lH0a9kEU9LlhlhxU4NIpKjAKwBqybj/SqwaJBIHynLLhQMR306Q9vrvqfoXDHFj7iCQthoM2edZkfG02VxqKNcVQV6/+oc2Tcb2QKCJ19GEsM5p8=
+	t=1759828185; cv=none; b=Za/hDvO4PX0RzccQjF5HKs0IdIucqg0i6sO48bZ9nuequVzwL0kJ5QfoRVqrsBmhdpRcVDpdtU77FDwJxjigQPrwdiiSHH+xFkHo7sh+SzsyvJis7G5m7es6DwqHmfLcJIzal9FmdDBgdM+uWx5cGSRFo3emTcWvnZ5h7dTV1z0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759828270; c=relaxed/simple;
-	bh=YCPXdnG5zQAocVXJ3TiIrBnpkKTBpqwF0eKVaj6G9aM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ay1E1N8xiBXvizIHdq+BVCF6JIl/Tl+GHHJXdiyOkHbj3tae/Ezkm1vHNqT1mRCCNpzbbmq2s80GFf/K2pFwYFWQ/h3iABzIMKJUwSvzGpzzqF9MU2jtoAx0pFKbWjKeas5nnLBAGGUOBxgYRX8AlBNXhRrzIfWExOdwMnXcz40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz; spf=pass smtp.mailfrom=xff.cz; dkim=pass (1024-bit key) header.d=xff.cz header.i=@xff.cz header.b=bH3h03gJ; arc=none smtp.client-ip=195.181.215.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=xff.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xff.cz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xff.cz; s=mail;
-	t=1759827912; bh=YCPXdnG5zQAocVXJ3TiIrBnpkKTBpqwF0eKVaj6G9aM=;
-	h=Date:From:To:Cc:Subject:X-My-GPG-KeyId:References:From;
-	b=bH3h03gJn2Olv7O538Cv+ijkF+N4ZzLrxe9yoduUJCcd0s0Y6p9ALFEaiYfj+65hL
-	 /JxpPE2biHy2FiKR8xH65AJKuZgQ92CyWpPPiO6dTW3UH3Lfyj6hMJDloe3/M3moz/
-	 fZCZ1z14I8IYXdy/dsYZNZn1X3wWAFXoAysyMr6Q=
-Date: Tue, 7 Oct 2025 11:05:11 +0200
-From: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>
-To: Rudraksha Gupta <guptarud@gmail.com>
-Cc: Dragan Simic <dsimic@manjaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	"Leonardo G. Trombetta" <lgtrombetta@gmx.com>
-Subject: Re: [PATCH v3 0/5] Upstreaming Pinephone Pro Patches
-Message-ID: <6joes3gufls2bx37gf2uoywyahlqprn73qfz6gfico5jxkua7z@irixdgkqp66p>
-Mail-Followup-To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>, 
-	Rudraksha Gupta <guptarud@gmail.com>, Dragan Simic <dsimic@manjaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	"Leonardo G. Trombetta" <lgtrombetta@gmx.com>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
-References: <20250921-ppp_light_accel_mag_vol-down-v3-0-7af6651f77e4@gmail.com>
- <53eabe34a310ea9c74315fa09a604e4a@manjaro.org>
- <b01ed528-8b29-4a6a-bdff-88f2e3b5dd2e@gmail.com>
- <115da845d9161e6ecfa67cf189b84aa8@manjaro.org>
- <37f2603e-8c51-4f92-a7af-0e60cd577004@gmail.com>
+	s=arc-20240116; t=1759828185; c=relaxed/simple;
+	bh=1yfqm08lPzP84DqSlgtHVuQqNXB/UVXPe0ZvuASpvXY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pya7/7RNjVHmczZFChswyumHmjHunBSRzYSnvcaG35uY/brn1nHpeb60TJnGvyP4xD1fomN3UHuBETNcwhyhwMlowb6B+0wo6ZXl0dz3zPBdOZD6j5TxlACyKeRPt/AAvU6BxRyrCAuCsaoPvKN3bOr0WnQu0+Vj7VxSmy3O3IU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HPetP9p3; arc=none smtp.client-ip=209.85.210.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7bc626c5461so1988954a34.3
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 02:09:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759828182; x=1760432982; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=k5Gn50jfOxZiiSgXxR/gre/tjvhockNBFkRAG2DI30U=;
+        b=HPetP9p3Rcyr+4Rerd3eUcPywk0U+/cpJZQguNYVaEhi7UH/pho9dG27K39tRbutjz
+         a0msZ7YzoHLi9+3ghjpUAlBzlRx6+1sWCr2Z4KhFtLX4tG9M982U9qdv5bud/9NTZUGc
+         351joCL0Y7gZnCKbdSccb7ySAXAV8ceGTLNjziRVI0+G/nNVs8vYNsF24q0n2UgxGcOZ
+         nbfZD2kF4gB6fqOPhtOSkqLJOStWZQS6yLLezTzyhXtrNt9fEk7uQTEvnwX7yWUWGrAm
+         MGXAG3D/dEvSMMgJst7VT5SiBd9mDvh+2KcQ9W2vfZG3031A+yRAa6o6hOWlwfecydVF
+         OLpA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759828182; x=1760432982;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=k5Gn50jfOxZiiSgXxR/gre/tjvhockNBFkRAG2DI30U=;
+        b=fOEco7Wnw4rHfNkofrsuftKN/M2nIUWXZK6fRwRjxQQJGvjMtsH13I8O+wVs+FP4K0
+         mzAWUy2AvnKj6xQjK/oWRdK4kjh8SElgwWDULHI7Ldzi2RPppgVxpyFNtck1eP50h9O/
+         tpRkzSRIHP0ZnIyASrGZzMVE41CiW92AOiL4hnKt2lI/wZud1MLnEjncoRqWPVpmmeY5
+         /md6/j2nWZ9/Na5LAj9vPjldachq5/5MEs+KBufSubsjr4xrk7Bm0POOgHEbIeVky/oz
+         4lFyFf8DCwk7XO4soqM2T2iq+3l6rA5EeKT+r1odeZBoJGUmopqdC6uMnprIfoQ6DE4i
+         HGRw==
+X-Forwarded-Encrypted: i=1; AJvYcCX4ol7Mm1qmXaHGvEtL79lUxlj60OqMI9oSEFKQrzDGneMnsQj4A7kAJ5gPSlg2BEITHaqWKVQRxfKl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5ZqLN1dpLu4V1MDPyo9kzQjx/bsJCeIGUtN74OY4eBzd7vh6u
+	hCDgxZqCQTnobaYiTaCW/Yg4dvipDxXRZ+2Io9b4cKmcsdGLNqnsmJGTmcueVgHjRNp69tPaTxZ
+	5LJzpYzzAiwKeJY0+a/j6iZBQCSkIlgkU2fJOgpXdOQ==
+X-Gm-Gg: ASbGncu0tJO4kpbcqfkEFcX/noaazyKF/hLE5BmXGdH5lYVYcovhT1/B5YaRj+6Dosi
+	iemjUD/2VBCQIm4vt8qfDqIv4IVC8gddwgHxbThmK7gNz4ec1etYlQscJdvCKCAQ1p1AtyYv92n
+	sOWJFCGsAfnPLCPOGd7t0FFwrhccI5exHKKsbxGT0fPldJccWIUSsFF3seuWgdJXc/orVL+lfrX
+	D7vYeBCXn1GPjgVQ+fvOPXKpYy1iozvPB0LTg==
+X-Google-Smtp-Source: AGHT+IFtOrLlwJK0/TEgM+f2IS4t9o4gV7fAIVv15sfMLe5yqLK9nGKna5+x4B1VTMirLjZ+oFvqM3iKI6ns6JfL4hs=
+X-Received: by 2002:a05:6808:3096:b0:438:2907:2ead with SMTP id
+ 5614622812f47-43fc18a2091mr6585032b6e.50.1759828182026; Tue, 07 Oct 2025
+ 02:09:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <37f2603e-8c51-4f92-a7af-0e60cd577004@gmail.com>
+References: <20251006232125.1833979-1-royluo@google.com> <20251006232125.1833979-3-royluo@google.com>
+ <8ca61364-df47-41f2-b0d1-f2a8a74ec728@kernel.org>
+In-Reply-To: <8ca61364-df47-41f2-b0d1-f2a8a74ec728@kernel.org>
+From: Peter Griffin <peter.griffin@linaro.org>
+Date: Tue, 7 Oct 2025 10:09:31 +0100
+X-Gm-Features: AS18NWD7ktu7qt-H0DxecJcoZK61ZH3ap7EbdS2ccz0Z-j7ffn7elGuijfKqbpQ
+Message-ID: <CADrjBPr7Jp_ZyGv2Krv6iLG0avgFWpcWJEO-Z=cEkhwEY-+z5Q@mail.gmail.com>
+Subject: Re: [PATCH v1 2/4] dt-bindings: usb: dwc3: Add Google SoC DWC3 USB
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Roy Luo <royluo@google.com>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Joy Chakraborty <joychakr@google.com>, 
+	Naveen Kumar <mnkumar@google.com>, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Sat, Oct 04, 2025 at 09:55:19PM -0700, Rudraksha Gupta wrote:
+Hi Krzysztof & Roy,
 
-> Awesome! I was hoping that others would comment on the testing I've done
-> (especially for the accelerometer and magnetometer patches) as I can't tell
-> if userspace is wrong or if my testing/conclusion is wrong. Mobile Linux is
-> very early stages at the moment, and I suspect the Pinephone and Pinephone
-> Pro were used as reference devices with Megi's downstream kernel. Wrong
-> mount matrices in the downstream kernel might be affecting userspace. This
-> means that with the corrected mount matrices in this patch series, userspace
-> is slightly broken (eg. since I fixed the accelerometer, the screen in Phosh
-> and KDE Plasma are upside down. I suspect KDE's Kompass and Leonardo's
-> compass app might be the same if I'm changing the mount matrix for the
-> magnetometer). This is why I decided to showcase the raw values in my
-> testing. If my testing is incorrect, please feel free to let me know.
-> 
+Firstly thanks Roy for your patches, it's great to see more Tensor
+support being posted upstream!
 
-KDE Kompass uses this as an algorithm: 
+On Tue, 7 Oct 2025 at 01:44, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> On 07/10/2025 08:21, Roy Luo wrote:
+> > Document the DWC3 USB bindings for Google Tensor SoCs.
+> >
+> > Signed-off-by: Roy Luo <royluo@google.com>
+> > ---
+> >  .../bindings/usb/google,snps-dwc3.yaml        | 144 ++++++++++++++++++
+> >  1 file changed, 144 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml b/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
+> > new file mode 100644
+> > index 000000000000..3e8bcc0c2cef
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
+> > @@ -0,0 +1,144 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright (c) 2025, Google LLC
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/google,snps-dwc3.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Google DWC3 USB SoC Controller
+> > +
+> > +maintainers:
+> > +  - Roy Luo <royluo@google.com>
+> > +
+> > +description:
+> > +  Describes the Google DWC3 USB block, based on Synopsys DWC3 IP.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - google,lga-dwc3
+> > +      - const: google,snps-dwc3
+>
+>
+> There is no such soc as snps, so you grossly misuse other company name
+> as name of SoC. Neither lga. Otherwise please point me to the top-level
+> bindings describing that SoC.
+>
+> You need to better describe the hardware here - why this is something
+> completely different than GS which. Or switch to existing bindings and
+> existing drivers. Did you align this with Peter Griffin?
 
- https://invent.kde.org/smigaud/kompass/-/blob/master/src/compass.cpp?ref_type=heads
+I think (from what I've seen at least) this is the first submission
+for drivers in the Tensor G5 SoC used in Pixel 10 devices (which as I
+understand it isn't based on any Samsung IP). Hence the new drivers,
+bindings etc.
 
-which is largely inadequate and doesn't take mount matrix (in_mount_matrix) into
-account at all. So that's not a good reference app. Also it doesn't even
-claim to support "af8133j" sensor.
+However the issue is that none of the other base SoC drivers on which
+this driver depends currently exist upstream (like clocks, reset
+driver, power domains, pinctrl etc). So it's very hard to reason about
+the correctness or otherwise of this submission. It is also likely
+that when those drivers are upstreamed things could change in the
+review process, to how it looks today in the downstream kernel.
 
-Leonardo's compass app has its own mount matrices, when kernel doesn't contain
-one:
+So in summary I think to progress with this we need to get the base
+Tensor G5 SoC drivers merged first (e.g. boot to console with pinctrl,
+basic clock support, reset driver etc). Then we can start adding in
+some of the other peripherals like i2c/spi/usb etc and build up the
+mainline support from there.
 
-https://gitlab.com/lgtrombetta/compass/-/blob/main/src/compass.py?ref_type=heads
+Thanks,
 
-which we can also use for comaprison/confusion and is different from what your
-patches are trying to upstream. :)
-
-regards,
-	o.
+Peter.
 
