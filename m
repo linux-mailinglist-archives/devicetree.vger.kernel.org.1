@@ -1,135 +1,120 @@
-Return-Path: <devicetree+bounces-224118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A18BC0C7B
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 10:50:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D3BBC0CAE
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 10:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A46293AACFE
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 08:50:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99C62189AFBD
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 08:58:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27E422D47F5;
-	Tue,  7 Oct 2025 08:50:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="Gn1bR3mQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54B752D6630;
+	Tue,  7 Oct 2025 08:58:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 646EFEACD
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 08:50:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C12282D5959
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 08:58:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759827049; cv=none; b=Iq59koxcgBcnGTY/+mDcH4J8frdPsKOF834Is3awF7z4Of+/HApPKaXkOU33lK4ROAwIuDZ5SCkHrhcIapXwP4CbbzoNNmtrevdcLFg7xOPIUGtuTkSmjaIP+H4g2ytDaBsFqr4Pb7kEGs5X4FQPISm7U7/Ah0GnSgHmw6KupZY=
+	t=1759827502; cv=none; b=nwvaHfKZV60fUmEU2C0/cEp52axUbf36Ip9TuBAH6acfG1voiFpezrF2gBIVQV2psW+fJHo7dlWqYV2od9bPhPCFNtgRwwO8rmWixteNwZYqkq0th3Ruenr3l65AZaWoJy2bqfBKPe1qJkqX6AxZuEwe5HpMVCc4Myd1f7N2f7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759827049; c=relaxed/simple;
-	bh=lFQQD1kfwmUI6v7i/ui2xsw2z6+nFOrNxxiZr8pKY5o=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=guFhm4SHXD93ELTouHjLixaUvF4BTz/+VDWe4YQspBoapr7S5h+eJGDZ4/wLFyOdjbkFGHpVgkynoo1kM7tQWIWs2EYlZtQvFF0sFP9Ak6DZkiUnKtDL3/9WiG1yZTJtkG/oF+MiOWhwpmQ0obT4wh0qYIafsVscVNYHQGrdzek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=Gn1bR3mQ; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-b4f323cf89bso159817266b.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 01:50:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1759827045; x=1760431845; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=9RR0C/JB1d7ykj+jJFgkQc/kXwCszluvkRpWmLXUJs8=;
-        b=Gn1bR3mQy9eUlIj+VzHszpb1YkD6usAjNuhC9P7AfkOMARVIw+EuthV5IIY53WIqdA
-         hQBxDsBnwiuZSn5dHuwrkmWckGzHmbIf/2K8ucSHEgrjbVMlW1ebD1BG4H83+EWoKwBg
-         AzXlTCCCqgL3k9TWdJKXQEe0ElG0gdGcqzMXAKP1DWPzILKplnbwsqw2XS8UqfXVwRJ0
-         dKFyZCcp6gz+ANa3qhZ5IDftAQcqXfWFoYsRTdsQSoQmov+Pi7BuYdVP/uLSTy2vDTv7
-         qv9YeOdwSVL/SbBSCMon9Dg2iU4IZcdQ/jzqXJTYWd9jQH6GW6Kud14ivevbpn9LuMQX
-         wcHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759827045; x=1760431845;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=9RR0C/JB1d7ykj+jJFgkQc/kXwCszluvkRpWmLXUJs8=;
-        b=Ft5Gb5CS/iXzhEQjSK4J92aNVbNSRLKoSUpBsqHcHuRA6MkVNZxaUn9/oZgTitfRS3
-         jaDhy4dry/Q3KDMEtjPpdpb80V4vwahdDFXBXIpEbA3qGTpyUOFwT/KR/x0j2o45bqfC
-         VCdk/3zWayo9jjidG6reYP8SCqnoj2629NLmnf4y7DcLbptmkVGIUSemr/SbKAkKheih
-         8VckYlkQprF/1f+RwFUTd7Xd9hnr50bSD7IF08BHZdi6PLbvHZe0fEb1HwYZCLoW1hVa
-         w6rZTZ10E9wCgGBaPhSRE8qYN2ynNcoANQYEpu6+qaBluQmX/ZBQweV3bHjGaF7s+SSd
-         YDJA==
-X-Gm-Message-State: AOJu0YyuXvUseqLvuWDtxmsV/D2iO3FJdBwmZDITGj+ONE707BaigDx2
-	lXAbmeYj/tolnCIQSUr1vCm/pTVFb6y/Y/17SkjRLMHNi5X74o7TovidIhjhMg==
-X-Gm-Gg: ASbGncs1DRgjWZCSowCZUvsXXwFXXf4Zvob/MhwL2aaYTdPgbDr6h1oNjD+CYebSSX4
-	k7LM8y6568lM26OB2g3TdsVEE+1nKfeVoa+dU1xyEP8/OeUXXK2cRnnaxbsfGf6KCEKB/Cx1MNN
-	9XDO3vh534m3sq9RR1BEUtOMOjP40GDYSKCdjzkZu436oCoG3cW1OFYZG5F2vXfLGcb20B6M5Gx
-	+u3NBpts7kd3AqXrmSXwltSzBmPRSnMo0JdfisXzRel2KaX2pLBhwoW99LVORIcTBvk0oJ9dTVN
-	nwmPNUd3hCMBBWUa1v5P9bXF/hj/DzFwPuRSocDVhz95gj48kkWS8+bNstvpKQA0quXqGhrnlFd
-	fmaA3P3lIm+oEaNnslwPOJHxbUv8YpbKe8v66XYJ0Tg2rveKUvVwJyAILVnMj2JChxKrPJp2rMi
-	6s/bWTp34EvvAe4uVb033Yy0fsgiM=
-X-Google-Smtp-Source: AGHT+IE5I6pAehl64dLI+tk+cDMSA/nXs9NV/Qr4tTYFn4D1sGRgfc5sdTa3WnU/2IhzWgfZzzbt9w==
-X-Received: by 2002:a17:907:3ccc:b0:b3d:c42d:6655 with SMTP id a640c23a62f3a-b49c429b4b2mr2133994966b.54.1759827045051;
-        Tue, 07 Oct 2025 01:50:45 -0700 (PDT)
-Received: from development2.visionsystems.local (mail.visionsystems.de. [213.209.99.202])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b4869b4e49esm1339090966b.72.2025.10.07.01.50.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Oct 2025 01:50:44 -0700 (PDT)
-From: yegorslists@googlemail.com
-To: devicetree@vger.kernel.org
-Cc: linux-omap@vger.kernel.org,
-	tony@atomide.com,
-	robh@kernel.org,
-	Yegor Yefremov <yegorslists@googlemail.com>
-Subject: [PATCH] ARM: dts: ti: omap: am335x-baltos: add a regulator for the mPCIe slot
-Date: Tue,  7 Oct 2025 10:50:37 +0200
-Message-Id: <20251007085037.3605676-1-yegorslists@googlemail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1759827502; c=relaxed/simple;
+	bh=IrvxxkLwFABk4TiFDKEMMLnWLEBmHz3iXRRFiwaGMuI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=doAiIZhW56rZPEOwAEEyRXKuri+I/JCZxwppatcLJJHuJt7OqKAUYcZntzBAPB3fPXEVAGVzesekWbKJsr0nAfClL/BmyFfs7DaFGYQPwIfG4xOGEIK33FcP3VgtBSayQYBsnZ1fjl3tPAoV8tTlH+ExmrtpCzCE+euQJe9soEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=ratatoskr.trumtrar.info)
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <s.trumtrar@pengutronix.de>)
+	id 1v63WM-0007XY-Fy; Tue, 07 Oct 2025 10:58:10 +0200
+From: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Subject: [PATCH v4 0/3] LED: Add basic LP5860 LED matrix driver
+Date: Tue, 07 Oct 2025 10:58:01 +0200
+Message-Id: <20251007-v6-14-topic-ti-lp5860-v4-0-967758069b60@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABrW5GgC/3XNQWrDMBCF4asErTtBGkmWlFXvEbqwpXEyUGwju
+ yIh+O6VQyCL1sv/wXzzEDNlplmcDg+RqfDM41DDfBxEvLbDhYBTbYESrUQVoDSgDCzjxBEWhu/
+ J+kZCj7Y1vmswuiDq7ZSp59vTPX/VvvK8jPn+fFPUtr5ElDtiUSDBoHemS9FZpT8nGi4/Sx4Hv
+ h0TiY0t+KZsRXYorJRDitH3rWmT+5fSbyootUfpSukgnfbUh+TUH2pd11+nHCUfVQEAAA==
+X-Change-ID: 20250219-v6-14-topic-ti-lp5860-f25a48b62c79
+To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Steffen Trumtrar <kernel@pengutronix.de>, Pavel Machek <pavel@kernel.org>, 
+ Mark Brown <broonie@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ kernel@pengutronix.de, Steffen Trumtrar <s.trumtrar@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: s.trumtrar@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-From: Yegor Yefremov <yegorslists@googlemail.com>
+The lp5860 is a LED matrix driver with 18 constant current sinks and 11
+scan switches which allows controlling up to 196 LED dots.
 
-Baltos device provide a mPCIe slot that can be power cycled via a GPIO.
+This series adds just the basic support for the device on the SPI bus.
+It is also possible to use it on I2C. The interface can be
+switched/selected via an interface select pin.
 
-Add a userspace consumer mpcie-power-switch that references a fixed
-regulator attached to the GPIO3_4.
-
-Signed-off-by: Yegor Yefremov <yegorslists@googlemail.com>
+Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
 ---
- arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+Changes in v4:
+- move to drivers/leds/rgb
+- fix some upper/lowercase
+- use ATTRIBUTE_GROUPS macro
+- unwrap some lines
+- Link to v3: https://lore.kernel.org/r/20250911-v6-14-topic-ti-lp5860-v3-0-390738ef9d71@pengutronix.de
 
-diff --git a/arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi b/arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi
-index ea47f9960c35..afb38f023b83 100644
---- a/arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi
-@@ -45,6 +45,23 @@ wl12xx_vmmc: fixedregulator2 {
- 		startup-delay-us = <70000>;
- 		enable-active-high;
- 	};
-+
-+	mpcie_regulator: mpcie-regulator {
-+		compatible = "regulator-fixed";
-+		regulator-name = "mpcie-regulator";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio3 4 0>;
-+		enable-active-high;
-+		regulator-boot-on;
-+	};
-+
-+	mpcie_power_switch: mpcie-power-switch {
-+		compatible = "regulator-output";
-+		regulator-name = "mpcie-power-switch";
-+		regulator-supplies = "vcc";
-+		vout-supply = <&mpcie_regulator>;
-+	};
- };
- 
- &am33xx_pinmux {
+Changes in v3:
+- fix c-styling errors
+- rename functions/defines/variables
+- split out ABI documentation
+- rename [rgb]_current* to [rgb]_global_brightness*
+- rework multi-led probing
+- Link to v2: https://lore.kernel.org/r/20250514-v6-14-topic-ti-lp5860-v2-0-72ecc8fa4ad7@pengutronix.de
+
+Changes in v2:
+- add open and short detection
+- add ABI documentation
+- fix devicetree binding (maxItems/minItems)
+- fix commit message to imperative mood
+- minor cleanup
+- Link to v1: https://lore.kernel.org/r/20250220-v6-14-topic-ti-lp5860-v1-0-42874bdc7513@pengutronix.de
+
+---
+Steffen Trumtrar (3):
+      dt-bindings: leds: add lp5860 LED controller
+      leds: add support for TI LP5860 LED driver chip
+      Documentation: ABI: add lp5860 led matrix controller
+
+ Documentation/ABI/testing/sysfs-class-spi-lp5860   |  23 ++
+ .../devicetree/bindings/leds/leds-lp5860.yaml      | 111 ++++++++
+ drivers/leds/rgb/Kconfig                           |  27 ++
+ drivers/leds/rgb/Makefile                          |   2 +
+ drivers/leds/rgb/leds-lp5860-core.c                | 222 +++++++++++++++
+ drivers/leds/rgb/leds-lp5860-spi.c                 |  89 ++++++
+ include/linux/platform_data/leds-lp5860.h          | 305 +++++++++++++++++++++
+ 7 files changed, 779 insertions(+)
+---
+base-commit: a32cf8a562e776ee75d4fa9432719e855d70fc03
+change-id: 20250219-v6-14-topic-ti-lp5860-f25a48b62c79
+
+Best regards,
 -- 
-2.34.1
+Steffen Trumtrar <s.trumtrar@pengutronix.de>
 
 
