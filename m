@@ -1,89 +1,88 @@
-Return-Path: <devicetree+bounces-224263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 978F9BC22CD
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 18:52:08 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4A8EBC2306
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 18:53:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB93E19A54C0
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 16:52:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 10D9C4F892C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 16:52:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 356802EAB61;
-	Tue,  7 Oct 2025 16:50:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 844F42EAD0A;
+	Tue,  7 Oct 2025 16:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Ujd4Rfbq"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="R5G9uckc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2812EAB6A
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 16:49:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EBED2E8DF7
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 16:50:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759855800; cv=none; b=OilDbj6euS2zLIFiUyHCnacSgs2lx6VKYdDg7qP9YSL0GDET5fXeg0UhJQpCxKgb+NXujISJrKvRBEuSRoz1msarBcTLZgdT74GU0n8Bk+ycGvPlC5+pcFLlhc+IZ8/tgopU7BDH9ZJVW/t8RDqR95RJiX0aDuJmidRsW2fm4TE=
+	t=1759855803; cv=none; b=d0IhUjhBe256WAhZLHQRhAWlIbHlHr8Pa+zTnnN3jZ6FKz4xsdP+djjrwL44hbN04bQCZTXnSNGjvCcKZUxoJaRx3eonYzsFi23ZhtsMfnM8LJU21APOOwHQkP6EDTcXrHdJP5/qarYD6Bp4cZzz0SHAyOHEXE7PXUNffGIgODg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759855800; c=relaxed/simple;
-	bh=gJKqFUZHYzvx7skd+COKa+uj15iUdsIf5S3yo7akmn0=;
+	s=arc-20240116; t=1759855803; c=relaxed/simple;
+	bh=F3NWSBYzpCkjgyaRvqE1+rv4nyzrirHjZJXt87AtH/U=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=U0xoXffhk19rgtm+2sLimf5w+kYNqgvrEi03R3afSozsmx7IlwGpLHHVtD6QniXIuh0ncnoWIF1/VZ7xlUeQesSjCZLaTHDepVOdiip9SJ7BTfUyOucACR6KsXtNOaedNuacb5uyF7Lb0WMptLxmTf4ZGr0anP+aojgtZlx2W+k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Ujd4Rfbq; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:To:Cc; b=StK+EI18p5wumzSquP0AjV1AD6hTBSA5jnVeEduta6/2eji4OMv8zFSHZ1uYtGRTAmN039O7sv5jrkVoVDP4YafFn2RoDAX8yC/JttH1otdosBVrYFhxcRGX7F+0OH64fvgZxhbpfbbJiNZPpSTC5WBcPDYlapKuT5QwvtX4kHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=R5G9uckc; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 597ETJRH016478
-	for <devicetree@vger.kernel.org>; Tue, 7 Oct 2025 16:49:57 GMT
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 597EjpsP011053
+	for <devicetree@vger.kernel.org>; Tue, 7 Oct 2025 16:50:00 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	gp1xD1m/DskKjBQHramIDkOW0/yEypn06NYGkHNWYWk=; b=Ujd4RfbqSFsS+pbi
-	0LXzE/gHaQ+1HxhPtUNCXu5SdO5BLHOWlz9p+XOjyaBa41JJHjvjM2IduJ6uNSza
-	iWTsHz4mmslTpqynfDdTeSxy7vIb1dNGl9wr5VrGKrhOQ908wty8lUjgwt+MJ+Td
-	EfxSJ0KtMIzXJZ8sibiQ52kd0E4Ix96aYXK8GD3nyY5vNVLOF+fJLMVI/+2Jch+M
-	lbPSY1jW5+4KHtfDXgzLdS/4wL6II/3xtteob3ZyUixobJGlkD4PRUNd4t7Cc/xH
-	4CBgj2dxNKA1o6iwaLI2dZC0coT68OmTc6SokhO4lHIafoCUG73/4IyaVdzoZDo6
-	wjwMvA==
-Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49mg6abnem-1
+	25H4FuSYBPF18o2Cn+NmxkJ4j3R4BT0xsk49N2ga+sM=; b=R5G9uckcBRl0Byi3
+	ZF60r4LPFlKZWB6RDtH+YZ2sftEXqkeEFhXAL58MVS6MRoI7N4e45lajsgmwvdqd
+	y0SZqlwLNEIjSGK1wGP4Hkhhl2UB9oDcfLyODNg7DAYJOYIWSiI1Uwy0ubZ17Wlh
+	1hJ5cVILmiz1gx4KvhZBStpMaSWm9PS+AqoX61V+r10cpPke6blU5en4RfRz8wKa
+	D4hLUL8OZTyoKRQzNE8ckDZ0w/xzhXxThvpV05ovmlaTr9CkHfL7oBn6jH0P+CTi
+	cMR2H60tfaIrPBVgA10fH/0PKRfeKIGNB+ttC7k7A5DMj0LjGH0rfOsT50bylOvN
+	Kne1BA==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49n4wkrcu9-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 16:49:57 +0000 (GMT)
-Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-27356178876so42443715ad.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 09:49:57 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 16:50:00 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b632471eda1so741578a12.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 09:50:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759855796; x=1760460596;
+        d=1e100.net; s=20230601; t=1759855800; x=1760460600;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gp1xD1m/DskKjBQHramIDkOW0/yEypn06NYGkHNWYWk=;
-        b=PcS3kp+277Te7GmNB0Voh2oicznWH5Q5EnywehLPLEpLBSWnRtGPDCyz2llNqljJbO
-         cBVh5evZzNEay3Jy5nKCRtQiq4NpMu1GQzuKBPQTB3nlzTpJvovaBHSy3GC4WMxax+Pc
-         BRtFIldB3ITxr+SFGWHoizfk4ku6SrXJkIVmdi+gPZuYOuwE5KckAnRb//fu8CnCJ33W
-         mYWRKj8n9qWnunh/llijOxu/nYJR1BfAKYvpAWhDSooKZLpKD5scrVyFvW/5vQ7rngNK
-         oN5O5PQRdqFeiCaJeIwp/wfqmxSQGRU+J5ZerF7qFhJZagrdAHxCi+6bSVDMbiFfrE5r
-         /xIQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUpq0Ae8W378ArF0xYDfjET69z28xvaZR2agZ2vD80kkDkFP7wt4Yns7a95ycZtMUy+N+q5gIjh9VbI@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoSz88EPa5e5GfB+5hICQbYx3F/6Mt9xIuwrG9rudvDGvcUeeh
-	XybH6sRQdqSULXYM8ICsl+dFeR08O/AnWbCj6wNFpJviuO6sPeDkm/PeAsRhr+8wvn7hJ0O3LBu
-	1P17kvmmBMserW1IzTvRI71TkhpJcszmBQ1WP1rJXatRMnE3J9gIl9DKM+cxLkT21+1T14dD7
-X-Gm-Gg: ASbGncsLIFZ76XnEjBZ4Oi+ujOdgMaECNHJNyzvwbVNEpslhjnBoGHXBGgfrqjeN9gr
-	HZAEIZsrg7s7Eb43poH0IF3+p2mWAnfUHyo8piglOHCKaKL4TqtlcbYuaS7BCxJ+DvRf4ZaKqU8
-	HASw/wd6tg/9/QRorjkk6zCuv7FV8OQDHuLWrnahMr9+UC0EBLzuW/+yAhDKPisV+e+pk6AtZYl
-	aPD+yH6LDqvT1OFoe0WnmGQakRUCaJwIyFxS5dyV9bj8TqqNQRWDgwegnqhLCMAtEG4cFWnHBWp
-	9Ko8WCzpRpdLgHbvV29FRtlfHTH14ngAdDZgieM2uj22VGJyq3GNAKibGUyKXhT4itbgc/sU
-X-Received: by 2002:a17:902:ccc8:b0:28d:18d3:46ce with SMTP id d9443c01a7336-290273ed885mr4400805ad.31.1759855796134;
-        Tue, 07 Oct 2025 09:49:56 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGXmn9mJzR2s1aE87b6mgEAGEI6jvhRvRbkXkx/f7MApydYJUTAm6MtSAssMfKNQdrihGqjmg==
-X-Received: by 2002:a17:902:ccc8:b0:28d:18d3:46ce with SMTP id d9443c01a7336-290273ed885mr4400415ad.31.1759855795396;
-        Tue, 07 Oct 2025 09:49:55 -0700 (PDT)
+        bh=25H4FuSYBPF18o2Cn+NmxkJ4j3R4BT0xsk49N2ga+sM=;
+        b=SR7FnzDW2QuWRmu7yukpdegls5c0OjMnAWcrB8UEG4IKl9bWCtIYyCTnbfL8KVyakF
+         yJu3vktV9oIkuCvC5/XtPpyER5k/Yn5dkg5Js7LswozM42MwZ6V5fT8taCYv+Yjyq+Gg
+         cFcOj+Rys2/Tsq9FhgSh64V8F5xE1P1cnf2dwjJzKxAHOTe6ABpn6DGV1fKyFAH39TVv
+         ag1QdDUt9njs3/0IUUj0a36RZ2ipI2MU/G2D24X9E3hJw4SnfiuxvMCvU7QWkejKV6eK
+         v+jro58Rq6EWyabz1MWkXDdWr9hSmUTMaIHSQpqS2lSk21K0NhcW83TcuFxFm6X4DzCO
+         5U4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCX+s2myLGm0t/oQUYnxL+aWVFF7y9evBBd6eW3Wuo8UoChuOV3P7ouBtjDPFKfQuVOpsOjWMxk/YAIY@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyqbYbUkWpYt+/9aaADMuij5FFiML3OWZdtqIlkixzq+KlWW8/
+	w3ZU6zoKj7Vjlt5eHMLMYRh9ct41o05hhdM7adVzzEtL8xzAm42FupzE0WG8S6cwMAgYa2AMJcg
+	FJm1ZR7ONPqiuVyTo9MrH4IqNdh7U3LYV3YbM2NDlvUOMmnA19VXm3m0bgdpb3gjD
+X-Gm-Gg: ASbGncsYPX9s8L+JGgRFBUsygooj6OeNy+SMvHss1ZSacYe6JOnN+A5wNC5TIPYkwtq
+	awivmGx495U2buXtRmgYOfQBo83VmJiNBzswJy7JqsH3mmgWIWPLhzY+WSy7NkWWUln6ri9D2+x
+	iaTU1LMml0sERdbACehMv7ToXcyNaIYRZGPvu3whL4Y83krpILiviQOjRjA+orbnW0ovLKgqzlo
+	x+DVByCqs7f981m+VDghhrJgNDyGuLTUqqfImdYzgpGWtE7OHdV6XvwRZ6HYowMi5fDKiDFpxzV
+	S3/WNLRz2RcjVCbfnWw+bIYbQSJeooPcdTjFGmQN8+5BgM3Q+tGJ6tguFpuY/7cYZ0nnFyk+
+X-Received: by 2002:a17:902:ea0d:b0:267:44e6:11b3 with SMTP id d9443c01a7336-2902737494amr5222705ad.45.1759855799540;
+        Tue, 07 Oct 2025 09:49:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHIi1+jMvYM3hfkSwfZPoQPAWtPLhTQvtT8StZu5DngvXCi1e8+FlEYG1a5D0B5GmJw7emrfw==
+X-Received: by 2002:a17:902:ea0d:b0:267:44e6:11b3 with SMTP id d9443c01a7336-2902737494amr5222335ad.45.1759855798963;
+        Tue, 07 Oct 2025 09:49:58 -0700 (PDT)
 Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d1261e2sm171990825ad.38.2025.10.07.09.49.52
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d1261e2sm171990825ad.38.2025.10.07.09.49.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Oct 2025 09:49:55 -0700 (PDT)
+        Tue, 07 Oct 2025 09:49:58 -0700 (PDT)
 From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-Date: Tue, 07 Oct 2025 22:18:56 +0530
-Subject: [PATCH v4 11/12] remoteproc: qcom: pas: Enable Secure PAS support
- with IOMMU managed by Linux
+Date: Tue, 07 Oct 2025 22:18:57 +0530
+Subject: [PATCH v4 12/12] arm64: dts: qcom: Add EL2 overlay for Lemans
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,7 +91,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251007-kvm_rprocv4_next-20251007-v4-11-de841623af3c@oss.qualcomm.com>
+Message-Id: <20251007-kvm_rprocv4_next-20251007-v4-12-de841623af3c@oss.qualcomm.com>
 References: <20251007-kvm_rprocv4_next-20251007-v4-0-de841623af3c@oss.qualcomm.com>
 In-Reply-To: <20251007-kvm_rprocv4_next-20251007-v4-0-de841623af3c@oss.qualcomm.com>
 To: Bjorn Andersson <andersson@kernel.org>,
@@ -106,201 +105,128 @@ Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
 X-Mailer: b4 0.14-dev-f7c49
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759855751; l=5694;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759855751; l=3459;
  i=mukesh.ojha@oss.qualcomm.com; s=20250708; h=from:subject:message-id;
- bh=gJKqFUZHYzvx7skd+COKa+uj15iUdsIf5S3yo7akmn0=;
- b=99EcZ89WiQrXLaw076CmJ14XhkhyvRFWhtcGqy/Z12tcB2y1ipeoJc7PCkFkCJJNk+UDRg8AV
- ZxPn6EwyAt6Ahiga86E70U9X/CyCRkHDUOmL3okAdubHsbJ6qqR3J/z
+ bh=F3NWSBYzpCkjgyaRvqE1+rv4nyzrirHjZJXt87AtH/U=;
+ b=uwqnx7wZmY7J482R8H4+UHEnKcuS9Z5RTeTM7ihPD4/cn8vP1pcCis9ZCl7y7vpeHg8IHiOY0
+ tLrdJv2T62uBOHMcq8DBGoR0DJpNfp5EUkG0GCA+NMoccnyGWRVKyiK
 X-Developer-Key: i=mukesh.ojha@oss.qualcomm.com; a=ed25519;
  pk=eX8dr/7d4HJz/HEXZIpe3c+Ukopa/wZmxH+5YV3gdNc=
-X-Authority-Analysis: v=2.4 cv=QtdTHFyd c=1 sm=1 tr=0 ts=68e544b5 cx=c_pps
- a=cmESyDAEBpBGqyK7t0alAg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=58pnfTnN0ARRJNaB1lkA:9
- a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
-X-Proofpoint-ORIG-GUID: 0oWfnF5nqg7S9M1xJHi8KncBDuOaTII9
-X-Proofpoint-GUID: 0oWfnF5nqg7S9M1xJHi8KncBDuOaTII9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA2MDEyMSBTYWx0ZWRfX5ijODRhrcH8c
- /skGRa+6LKxcW/nqpkg2v+c5wJcrVk6TS1O00XOHZyV/zytaXJ5CewhrB2L7oBDcN4F5Y4LGVrJ
- W7SuBWKNNpT0DR8gifHmCUrMpb7eF6vhPgbGGpIe9hHijgZqSPSrxfGGEqf6CCzdXi1QVv/iSLQ
- Orgv23Hm1oZu4BVAdnRjc7BK7jQjVrzjxpMffqg18G5y/o6kNW/7dCoTcp0ExX3sAQ2ONWh/S2z
- zyKHd/x983pMDtdZmxothtIdrZXJEcd5FZwqsK4arKB/Ym/4Ii7NDDxIzcXy4DS66LDUztwatl9
- mADuYOxU/20hYVc9SjBAg0IuMtgyC4z5psYlNNXVup1ZJLHj0GplTwKp8eGw1QEK8b71pmcUzQt
- UyxLIrHDw1Lcgp0K1YX8uJlks8nD0A==
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA3MDExNyBTYWx0ZWRfXx5dv6m0sWLYw
+ mP+XLbczSCLSNXPwCvQGg0+sQRZVqQTgxvBLzpdhA7e//39dNtvdK9ULQ5EWiS2GF7G8kFog2VH
+ BtDxi643YMgc3gU6JpQWUKgke6KBhWp3W/3pv67+1Ki5CBvR8mydGz18WD0mcyIPFw84tBcewX0
+ MeyaICxhTy7AkdwdTHzaae5taVFt0orRtuiJ29BC54JxlVyny5IpoqBeMrG8ImuWgiIDSKqDLCk
+ hZ2JTar1/BJCI6a6ai7+s5KRj3ZhShLtTsUcxupEyCiQUscRgsTEK/FJz5sApHHamd/J9HKLzUY
+ pQEbSN3kBbjJyR/EgzIwbXdmI3f0l96csE3g4RRbUPOUmM15SFOqBJadpW53itKZSKm3Cu97qfA
+ mOoLYrvASOMOFnGAa3+l9nTP1XlumA==
+X-Authority-Analysis: v=2.4 cv=BP2+bVQG c=1 sm=1 tr=0 ts=68e544b8 cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=YVouBxmdtFDgX_swM-UA:9
+ a=QEXdDO2ut3YA:10 a=eSe6kog-UzkA:10 a=bFCP_H2QrGi7Okbo017w:22
+X-Proofpoint-GUID: Jcx4zH9hBxbwC2s5wOR2hNpwzVvc1swT
+X-Proofpoint-ORIG-GUID: Jcx4zH9hBxbwC2s5wOR2hNpwzVvc1swT
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-07_02,2025-10-06_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 impostorscore=0 malwarescore=0 lowpriorityscore=0 bulkscore=0
- adultscore=0 clxscore=1015 suspectscore=0 spamscore=0 priorityscore=1501
+ clxscore=1015 bulkscore=0 malwarescore=0 impostorscore=0 suspectscore=0
+ phishscore=0 lowpriorityscore=0 priorityscore=1501 spamscore=0 adultscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510060121
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510070117
 
-Most Qualcomm platforms feature Gunyah hypervisor, which typically
-handles IOMMU configuration. This includes mapping memory regions and
-device memory resources for remote processors by intercepting
-qcom_scm_pas_auth_and_reset() calls. These mappings are later removed
-during teardown. Additionally, SHM bridge setup is required to enable
-memory protection for both remoteproc metadata and its memory regions.
-When the aforementioned hypervisor is absent, the operating system must
-perform these configurations instead.
+All the Lemans IOT variants boards are using Gunyah hypervisor which
+means that, so far, Linux-based OS could only boot in EL1 on those
+devices.  However, it is possible for us to boot Linux at EL2 on these
+devices [1].
 
-When Linux runs as the hypervisor (@ EL2) on a SoC, it will have its
-own device tree overlay file that specifies the firmware stream ID now
-managed by Linux for a particular remote processor. If the iommus
-property is specified in the remoteproc device tree node, it indicates
-that IOMMU configuration must be handled by Linux. In this case, the
-has_iommu flag is set for the remote processor, which ensures that the
-resource table, carveouts, and SHM bridge are properly configured before
-memory is passed to TrustZone for authentication. Otherwise, the
-has_iommu flag remains unset, which indicates default behavior.
+When running under Gunyah, remote processor firmware IOMMU streams is
+controlled by the Gunyah however when Linux take ownership of it in EL2,
+It need to configure it properly to use remote processor.
 
-Enables Secure PAS support for remote processors when IOMMU configuration
-is managed by Linux.
+Add a EL2-specific DT overlay and apply it to Lemans IOT variant
+devices to create -el2.dtb for each of them alongside "normal" dtb.
+
+[1]
+https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-4/boot-developer-touchpoints.html#uefi
 
 Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
 ---
- drivers/remoteproc/qcom_q6v5_pas.c | 61 ++++++++++++++++++++++++++++++++++----
- 1 file changed, 56 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/qcom/Makefile        |  7 +++++-
+ arch/arm64/boot/dts/qcom/lemans-el2.dtso | 41 ++++++++++++++++++++++++++++++++
+ 2 files changed, 47 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-index ed7bd931dfd5..940fd89d4fc4 100644
---- a/drivers/remoteproc/qcom_q6v5_pas.c
-+++ b/drivers/remoteproc/qcom_q6v5_pas.c
-@@ -11,6 +11,7 @@
- #include <linux/delay.h>
- #include <linux/firmware.h>
- #include <linux/interrupt.h>
-+#include <linux/iommu.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/of.h>
-@@ -255,6 +256,22 @@ static int qcom_pas_load(struct rproc *rproc, const struct firmware *fw)
- 	return ret;
- }
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 296688f7cb26..e2eb6c4f8e25 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -35,6 +35,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk.dtb
+ lemans-evk-camera-csi1-imx577-dtbs	:= lemans-evk.dtb lemans-evk-camera-csi1-imx577.dtbo
  
-+static void qcom_pas_unmap_carveout(struct rproc *rproc, phys_addr_t mem_phys, size_t size)
-+{
-+	if (rproc->has_iommu)
-+		iommu_unmap(rproc->domain, mem_phys, size);
-+}
+ dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-camera-csi1-imx577.dtb
++lemans-evk-el2-dtbs := lemans-evk.dtb lemans-el2.dtbo
++dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-el2.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= msm8216-samsung-fortuna3g.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-acer-a1-724.dtb
+@@ -136,7 +138,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-vision-mezzanine.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
+-dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
++qcs9100-ride-el2-dtbs := qcs9100-ride.dtb lemans-el2.dtbo
++dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb qcs9100-ride-el2.dtb
++qcs9100-ride-r3-el2-dtbs := qcs9100-ride-r3.dtb lemans-el2.dtbo
++dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb qcs9100-ride-r3-el2.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qrb2210-rb1.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= qrb4210-rb2.dtb
+diff --git a/arch/arm64/boot/dts/qcom/lemans-el2.dtso b/arch/arm64/boot/dts/qcom/lemans-el2.dtso
+new file mode 100644
+index 000000000000..582b0a3a291a
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/lemans-el2.dtso
+@@ -0,0 +1,41 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
++ */
 +
-+static int qcom_pas_map_carveout(struct rproc *rproc, phys_addr_t mem_phys, size_t size)
-+{
-+	int ret = 0;
++/*
++ * Lemans specific modifications required to boot in EL2.
++ */
 +
-+	if (rproc->has_iommu)
-+		ret = iommu_map(rproc->domain, mem_phys, mem_phys, size,
-+				IOMMU_READ | IOMMU_WRITE, GFP_KERNEL);
-+	return ret;
-+}
++/dts-v1/;
++/plugin/;
 +
- static int qcom_pas_start(struct rproc *rproc)
- {
- 	struct qcom_pas *pas = rproc->priv;
-@@ -289,11 +306,15 @@ static int qcom_pas_start(struct rproc *rproc)
- 	}
- 
- 	if (pas->dtb_pas_id) {
--		ret = qcom_scm_pas_auth_and_reset(pas->dtb_pas_id);
-+		ret = qcom_pas_map_carveout(rproc, pas->dtb_mem_phys, pas->dtb_mem_size);
-+		if (ret)
-+			goto disable_px_supply;
++&iris {
++	/* TODO: Add video-firmware iommus to start IRIS from EL2 */
++	status = "disabled";
++};
 +
-+		ret = qcom_scm_pas_prepare_and_auth_reset(pas->dtb_pas_ctx);
- 		if (ret) {
- 			dev_err(pas->dev,
- 				"failed to authenticate dtb image and release reset\n");
--			goto disable_px_supply;
-+			goto unmap_dtb_carveout;
- 		}
- 	}
- 
-@@ -304,18 +325,22 @@ static int qcom_pas_start(struct rproc *rproc)
- 
- 	qcom_pil_info_store(pas->info_name, pas->mem_phys, pas->mem_size);
- 
--	ret = qcom_scm_pas_auth_and_reset(pas->pas_id);
-+	ret = qcom_pas_map_carveout(rproc, pas->mem_phys, pas->mem_size);
-+	if (ret)
-+		goto release_pas_metadata;
++/*
++ * When running under Gunyah, remote processor firmware IOMMU streams is
++ * controlled by the Gunyah however when we take ownership of it in EL2,
++ * we need to configure it properly to use remote processor.
++ */
++&remoteproc_adsp {
++	iommus = <&apps_smmu 0x3000 0x0>;
++};
 +
-+	ret = qcom_scm_pas_prepare_and_auth_reset(pas->pas_ctx);
- 	if (ret) {
- 		dev_err(pas->dev,
- 			"failed to authenticate image and release reset\n");
--		goto release_pas_metadata;
-+		goto unmap_carveout;
- 	}
- 
- 	ret = qcom_q6v5_wait_for_start(&pas->q6v5, msecs_to_jiffies(5000));
- 	if (ret == -ETIMEDOUT) {
- 		dev_err(pas->dev, "start timed out\n");
- 		qcom_scm_pas_shutdown(pas->pas_id);
--		goto release_pas_metadata;
-+		goto unmap_carveout;
- 	}
- 
- 	qcom_scm_pas_metadata_release(pas->pas_ctx);
-@@ -327,10 +352,16 @@ static int qcom_pas_start(struct rproc *rproc)
- 
- 	return 0;
- 
-+unmap_carveout:
-+	qcom_pas_unmap_carveout(rproc, pas->mem_phys, pas->mem_size);
- release_pas_metadata:
- 	qcom_scm_pas_metadata_release(pas->pas_ctx);
- 	if (pas->dtb_pas_id)
- 		qcom_scm_pas_metadata_release(pas->dtb_pas_ctx);
++&remoteproc_cdsp0 {
++	iommus = <&apps_smmu 0x21c0 0x0400>;
++};
 +
-+unmap_dtb_carveout:
-+	if (pas->dtb_pas_id)
-+		qcom_pas_unmap_carveout(rproc, pas->dtb_mem_phys, pas->dtb_mem_size);
- disable_px_supply:
- 	if (pas->px_supply)
- 		regulator_disable(pas->px_supply);
-@@ -386,8 +417,12 @@ static int qcom_pas_stop(struct rproc *rproc)
- 		ret = qcom_scm_pas_shutdown(pas->dtb_pas_id);
- 		if (ret)
- 			dev_err(pas->dev, "failed to shutdown dtb: %d\n", ret);
++&remoteproc_cdsp1 {
++	iommus = <&apps_smmu 0x29c0 0x0400>;
++};
 +
-+		qcom_pas_unmap_carveout(rproc, pas->dtb_mem_phys, pas->dtb_mem_size);
- 	}
- 
-+	qcom_pas_unmap_carveout(rproc, pas->mem_phys, pas->mem_size);
++&remoteproc_gpdsp0 {
++       iommus = <&apps_smmu 0x38a0 0x0>;
++};
 +
- 	handover = qcom_q6v5_unprepare(&pas->q6v5);
- 	if (handover)
- 		qcom_pas_handover(&pas->q6v5);
-@@ -757,6 +792,20 @@ static int qcom_pas_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 	}
- 
-+	if (of_property_present(pdev->dev.of_node, "iommus")) {
-+		struct of_phandle_args args;
-+
-+		ret = of_parse_phandle_with_args(pdev->dev.of_node, "iommus",
-+						 "#iommu-cells", 0, &args);
-+		if (ret < 0)
-+			return ret;
-+
-+		rproc->has_iommu = true;
-+		of_node_put(args.np);
-+	} else {
-+		rproc->has_iommu = false;
-+	}
-+
- 	rproc->auto_boot = desc->auto_boot;
- 	rproc_coredump_set_elf_info(rproc, ELFCLASS32, EM_NONE);
- 
-@@ -835,6 +884,8 @@ static int qcom_pas_probe(struct platform_device *pdev)
- 		goto destroy_pas_ctx;
- 	}
- 
-+	pas->pas_ctx->has_iommu = rproc->has_iommu;
-+	pas->dtb_pas_ctx->has_iommu = rproc->has_iommu;
- 	ret = rproc_add(rproc);
- 	if (ret)
- 		goto destroy_dtb_pas_ctx;
++&remoteproc_gpdsp1 {
++       iommus = <&apps_smmu 0x38c0 0x0>;
++};
 
 -- 
 2.50.1
