@@ -1,306 +1,261 @@
-Return-Path: <devicetree+bounces-224297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79430BC2938
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 22:01:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 258F5BC296E
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 22:07:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id EF629350714
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 20:01:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5FD21891261
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 20:07:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A9731990B7;
-	Tue,  7 Oct 2025 20:01:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C31C623C512;
+	Tue,  7 Oct 2025 20:06:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lLmGfuz4"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="AR4kzLt0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010070.outbound.protection.outlook.com [52.101.84.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC71B15C0;
-	Tue,  7 Oct 2025 20:00:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759867262; cv=none; b=L8+ZOt0h1EScEBnUiL2+mCXgqyGXDpKeJjn7bS89Ii+iu6/SuKT46iAfP0W/HPt6lVve/3MYKEY3Q2PdCl5WX4fRj7SCbDxiJkmyTG4AHD5Pc/9HKLrBb3us09fiEfCBxeGueAewCisR9+lR/ZbSG/nZqIlzDH0pU89TasNnJDY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759867262; c=relaxed/simple;
-	bh=NK24BaQ9xWl+tVnNXQiE60htjjVsEiyaZFyhIAwv8Lk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QYHJYQZ9DpPUId9U8kqTxBkhqh6XlfnrNESUFpwMrcy0exn8muTVYtOZdtNJEhK3FBqB/KjLIQJL2Cn7EqOf3CSbfyFno4yoNklQcUrAZH6MKkqWjkQbU0s812+2DwtmRbAP1ZleheR5427t9/MqcnCIayeK3zt0nymNM67npgQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lLmGfuz4; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1759867260; x=1791403260;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NK24BaQ9xWl+tVnNXQiE60htjjVsEiyaZFyhIAwv8Lk=;
-  b=lLmGfuz4A52UYH/0apuAExXWg4lMTMRpNZBl/HiqXojKxbBrOctyi7Gs
-   K7VXxtd4U/37r3s+UYlYn7nAUT6Np3SnsRoGoa6axd2spUUi//E3HBzYr
-   +5yBJw1D8vZv1WnJFA1QAvPBrwB4anuNw9Ruc8Agc6/dzM9CfdIScAxMi
-   ji974XgR78f4bdzbQ7neya0qUUryMXGOJvznA69MPlcZmnPGwBNxn/RAc
-   oePMPe3npaUsPhsmMtY7MTl4RPGczz2YgRFEdKbL5keG15YRuXRnyJKxn
-   TOFzjR3Bg2oIcYiTEg9+OHjvD4hMHwnxjFm1+C2dGFPFLCfNtqPkRGxd6
-   Q==;
-X-CSE-ConnectionGUID: 5lhCTWZrRLWU/uDRgXIMmw==
-X-CSE-MsgGUID: MzXxcACCQ3izazBWDoOWRQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11575"; a="73482588"
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; 
-   d="scan'208";a="73482588"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Oct 2025 13:00:59 -0700
-X-CSE-ConnectionGUID: 9ETq42g/Trm9vsdAgEjDMg==
-X-CSE-MsgGUID: j6SYt8suQBCKkEB45Z0qlw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,321,1751266800"; 
-   d="scan'208";a="179917379"
-Received: from fdefranc-mobl3.ger.corp.intel.com (HELO kekkonen.fi.intel.com) ([10.245.244.53])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Oct 2025 13:00:52 -0700
-Received: from kekkonen.localdomain (localhost [IPv6:::1])
-	by kekkonen.fi.intel.com (Postfix) with SMTP id DA85011F8B0;
-	Tue, 07 Oct 2025 23:00:49 +0300 (EEST)
-Date: Tue, 7 Oct 2025 23:00:49 +0300
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6 krs, Bertel Jungin Aukio 5, 02600 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: michael.riesch@collabora.com
-Cc: Mehdi Djait <mehdi.djait@linux.intel.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	=?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Gerald Loacker <gerald.loacker@wolfvision.net>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Markus Elfring <Markus.Elfring@web.de>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Kever Yang <kever.yang@rock-chips.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Sebastian Reichel <sebastian.reichel@collabora.com>,
-	Collabora Kernel Team <kernel@collabora.com>,
-	Paul Kocialkowski <paulk@sys-base.io>,
-	Alexander Shiyan <eagle.alexander923@gmail.com>,
-	Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Bryan O'Donoghue <bod@kernel.org>
-Subject: Re: [PATCH v11 05/17] media: dt-bindings: add rockchip rk3568 mipi
- csi-2 receiver
-Message-ID: <aOVxcQV-8c9m6Stg@kekkonen.localdomain>
-References: <20240220-rk3568-vicap-v11-0-af0eada54e5d@collabora.com>
- <20240220-rk3568-vicap-v11-5-af0eada54e5d@collabora.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 990A2239570;
+	Tue,  7 Oct 2025 20:06:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759867605; cv=fail; b=baf9hoDHDE3Ki9+4Lpa+khmck6cO6Wmu9sfTvvFg8VZnTQqPqVKYPQZxuUr8sjeonbCHRkMijFkYHsbnRuwCivFNsx7HxW19E4nquTFly4uhbLiIsgseoufQQORPaHPgrR0KwWx8xSrBBEGmvXOV4rbxStNd34XInY0MpekCHMo=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759867605; c=relaxed/simple;
+	bh=kJGqBJ9Oc2TL1s2TZlf2DrNMptbzQj8dV32Wz7uKJwM=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=I2LGG1Iy5CLnEaUKfGHNyGWHVG2eJqAtlqadU1njTRacovehM2ESJUrzz9T9+sFYGusNelKbonpPQZSIo4Cwp2AU7Y+7YdECYxGJ0J0QvVbNra0v65pIs5mcfPuNt5hWtYCAh0m2h2HXuK6FKHOjhnmXfUwEXgARUh362GRTPFI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=AR4kzLt0; arc=fail smtp.client-ip=52.101.84.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Z1d4bDWBfHQYN/uvUiSKoAMGm1hllBd/dBPGmzQb3ItAQo9a5RJHkNLxn9kMBaY8ARORwyhVGQlAvcq6ISGh/nABbcEcWmcQVF2GMixelVfTQxwWZdRndpVM9XXd13Am6XzNkSp9Fdj0vyhtibSyGzKZimrpTuRfSr88SdcMaZRwRR6pAlAG04E2/ZxG5/v2zVgYhB561j598UbsekjxkuXPuiCTyYCEMSNjGXyjC706+1e0jLB3aJbrWh0fT3ku8VJBAJbj/qgBLIfox6lHIqhzP3cBuT69vJ/rmESrf3aMXdZHQUccVqC5NtFxfZehMf1E0/AENfDbjR4DZ874IQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=lCELxrpp5jAzdSYO4FA+kWQV0lFpQH/3JRI/gg6mvW0=;
+ b=WVcZF0mhrzn9SmxOiVL7vYrvSND8y5E81dfgqqUu9TDBhfll6dEzVQLpy+hu6ZBRRyZcum4b6PRoh0Ee/881y2F4BXYuTk6A2qdITwPhMCX/SaoksgBb869qnP37gx/pTDze3elalytOqBWE6r5m/pxG3vCGAAlTGZg476OflGRazfWUzHe1rDrlEgbgfriq1CJ+YHuMfZQGlY0aXg88NeM1/uaGKfT2BjLvbVvhMo6vT2BNq/56kMA0wnJoPYlOjEWrq6EQTd8M/wIpaJgZFzTUjPszeM/xpVUkArXcMIdrycBNFCJnh4rE6pa/lEwrhJ/GRJ2xfkefvbpXK8lklA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lCELxrpp5jAzdSYO4FA+kWQV0lFpQH/3JRI/gg6mvW0=;
+ b=AR4kzLt0I5WzwyHhN8o/Kka5yjW9h1PMlreVsXrH3eXbzs1opZNzU5sEhN2I0w6zTQibNJqhZn/Gp1fiq6/X2UX5bt8V6NFQz99doWSowCZgrdcnmQm0czEMM5/JarKhnvK+lCyzoqc0W1PYFThaPJ82J7usk/DUo+o74fsjshNHoZjPE/XMPBaa7JV2W/RvM0A+PXpoFcWG1kkxyu8aF8GtIY41FLwY9MjGwqhsfwr31DT2+qR5U/NDYbirmkE0ppSG+C5x05aLPGjkmGD9BmKTeYCNmrtATh+fwfrAScVUjdlbBPMQoQ5BF/mJGQq82+NeXXBfiFeiuthfa7pziQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by PAXPR04MB9424.eurprd04.prod.outlook.com (2603:10a6:102:2b2::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Tue, 7 Oct
+ 2025 20:06:40 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd%2]) with mapi id 15.20.9182.017; Tue, 7 Oct 2025
+ 20:06:40 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH v5 0/5] i3c: Add basic HDR mode support
+Date: Tue, 07 Oct 2025 16:06:12 -0400
+Message-Id: <20251007-i3c_ddr-v5-0-444184f7725e@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALRy5WgC/2XMTQ7CIBCG4asY1mKGAQp15T2MMbRMLQvbBkyjM
+ b276EL8WX6Ted47SxQDJbZd3VmkOaQwDnno9Yq1vRtOxIPPmyGgBoE1D7I9eh95I7SytgZBjWX
+ 5e4rUheurtD/k3Yd0GePtFZ7F8/rfmAUHDmidcdoriWo3XKdNO57ZszBjUTWqojCryqIDaiRqg
+ 99KfigJRcmsmgqNb5E68avUWwkAU5TKSrqOXL5rY3RRy7I8AMw8eio+AQAA
+X-Change-ID: 20250129-i3c_ddr-b15488901eb8
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+ Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+ =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-i3c@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-iio@vger.kernel.org, 
+ joshua.yeong@starfivetech.com, devicetree@vger.kernel.org, 
+ Frank Li <Frank.Li@nxp.com>, Carlos Song <carlos.song@nxp.com>, 
+ Adrian Fluturel <fluturel.adrian@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759867595; l=2562;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=kJGqBJ9Oc2TL1s2TZlf2DrNMptbzQj8dV32Wz7uKJwM=;
+ b=ZiN4DRalWhGofAEww4pPuL0r4qbteVD/T8YWMOF/0IIqodU8T2qw4BJlJ3D5XYsXuIzuQk21K
+ y3pOvfwRMs6BQ8zb0sEuEBk5OBY7/QGxA8ev2MC5LRJYpPQXNDuCfny
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: BYAPR08CA0045.namprd08.prod.outlook.com
+ (2603:10b6:a03:117::22) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240220-rk3568-vicap-v11-5-af0eada54e5d@collabora.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|PAXPR04MB9424:EE_
+X-MS-Office365-Filtering-Correlation-Id: dde53663-46be-4e8a-d1ec-08de05dd0731
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|376014|52116014|366016|1800799024|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?TnlSVXQrMUR4UHl1Q05UVktiMzNpdDVncFo2anFvNS9GVEkyNStjZG50MXNx?=
+ =?utf-8?B?Rk5raWcyWEFLK1l0YWRMMm5IcGEwbk11MlhuTStwQnZCS3dXVmw3ZnNjMkMx?=
+ =?utf-8?B?SllEVG1JWFQ4aGlXcHUrdmhKRWhiMlk0YzJFTVdiUW9MTFgreTI4WnIxUWFT?=
+ =?utf-8?B?SEMwSFpxWWkxeU1kRmc1SGtVa2UyTXZsOUVQaFBPcURKZFh2OGpVeVgwNEQv?=
+ =?utf-8?B?Zk13RUlUMDUzMVFwUlZEMC9oZi9xMEdiUDRCMkdEeU9qcGw3M3ZtWkZSSmpx?=
+ =?utf-8?B?U1A3S1p3Z09OT1ZzRWhNUHhXTTB0Rks5TFFOQWdPQlVZc1FvcXZNUVN0aVRF?=
+ =?utf-8?B?clRPamd0eUJ3MUFTYWp5NEluSkFhcXJsc0xYbjZ4NTV2ZHF0T3B3WE5mM0Rt?=
+ =?utf-8?B?bkdYdmJId0dpOUM3RjE1QkFJUk5zT2gvc210R2JBaC9UZTd6aGtoWWd4ejQr?=
+ =?utf-8?B?ZW56bGNqcXNBU2NXN0wrVFV6YWlXZzdxbzRGYUkzMUozQ0FYUFpxc1YzZUhz?=
+ =?utf-8?B?dlhnY2NKT25rWlZqV200YkNJM0xBdTBJVGo0SGNqa3FsZm80S2hVMzQrc0Jn?=
+ =?utf-8?B?cW85TGFYbUZ3aitoMDd2M1F4U0E4WlpYWHdhaHFKMXB0d0NlSDJHamlWTVoz?=
+ =?utf-8?B?REhDbHJ2Y2NMOHAxeXEwZkZRa3VPK05tbXU5WlN6UHYrbk5UcE5teEJEZFZy?=
+ =?utf-8?B?L3ZJdDZxVmp5dkJsYmR3YVAyc0FacG5CSktncjVIQ0FLeTlvSU9YZkhLWGhN?=
+ =?utf-8?B?YkpXcTdOSnZrMzBxQnpTUk5US3M3ZkxZOGYvWWljbHVOb3U3TEYxY3ZLMGcv?=
+ =?utf-8?B?UnRxSmYydlIxdVU1b1cycXJnMFc4Rjc4aFRhcE0vcTJ2aHIranVET2hUUUUx?=
+ =?utf-8?B?OFdENm1CUzlMQlE1ZlJ4QmpMeXgwRHpFaVhTR0tUU3o2TFFtWEVBdDdFRmgv?=
+ =?utf-8?B?dE9uMU1SYk1lemwzajdNSUVkbFg3QkQwNTlIa1RDT1pwQW5Pak5VcWdiMzRp?=
+ =?utf-8?B?NE9ibHFRWjRGdkplOHdVd0huc1AxREdKTUVIYStDckpnQU1mTmZ6STBVamNh?=
+ =?utf-8?B?SmtFOVpnY2N6T3QrYTJESmF4dHA2N2J2TG1qM3NsVVJIRXI4SVZ3Y2tUaTRT?=
+ =?utf-8?B?VXgvVkhOcmkySHV2blNOWHFsa0hnNEpQQ2p6WDFMeUx5cG9FWFZQS05oTXVa?=
+ =?utf-8?B?NzB1WDRxTkE3cGlOR2hJbmN5OS9za2JoTjc1WjBKQ0lkRzhiTlB3d04yamZx?=
+ =?utf-8?B?M3hsTDNKYmVXTWRiVXoxdC83Y1M3ZkpJWkVFTEIwODZwQkJFaS9mMEpFREJO?=
+ =?utf-8?B?eFRydzJESmxtMnJGZjJIQytOaU1kNzRTZEZiaE40bWRFa1h0dVlKK0o3S1lE?=
+ =?utf-8?B?TmNodGV6U1lHeTZUSjcvTWJoaUZWQ0ZyZUhtZGZPV2lybkE5U2lteFlTQ28w?=
+ =?utf-8?B?VlQzNktYZldJQW01Umd6ZzVBSDlUV210ZDhqSGxhMkpXbElBQWZhTEZoay9S?=
+ =?utf-8?B?WDJtTUVva3VZd2kwbEZQdGZGR2pudjB5dHlud0lTajNMckp2SHJQU0t1d3ZQ?=
+ =?utf-8?B?UHFqZlI5dmJpZjVTUTY3ZXVuWHVMS0pLMGpSQ0FpaHdpT1JBWDJoMHpXQnFz?=
+ =?utf-8?B?QjJMTWZSdkdIQWNRSG5scGFwczhLcE1zKzF4TUFVcE5YZUxRTWhJbVoyTzNO?=
+ =?utf-8?B?N0o1UnA1bWlhRjNleGxUbjhPOGs4bWtXcUJZZ0l0VFh5dy8xbmtTcjFzbFYr?=
+ =?utf-8?B?MW1BM2xMeEptUTFnbGN5a2dkMW12ZjhqYUVmcXJ1SXFKWlpSVHlrcHhpSDFC?=
+ =?utf-8?B?dVIybGlCdk9IMm5VeE14NTdNMFhUYTJmMjdMNkxJbFlsK0NURGZtZHRva29J?=
+ =?utf-8?B?Ly9kSjMycytKQmQvL3ZydmR4UFF2RSs2c0J5ZlpjRWd3bmhJOWpTY2lWRG9q?=
+ =?utf-8?B?Q2I1NDBYN0pGdE5rVDJUakwyZldIMjQvZFNybERnMGtPM1AwTmozOTZLdlFu?=
+ =?utf-8?B?a1g4dE40b3F3PT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(366016)(1800799024)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?YUdBTitKTzBPOEV0QzFmQ0N4aE5SOVhRc1d5cURGVHBvUk9hT1AydVdhWFJD?=
+ =?utf-8?B?Vk0vWDJEM2c3aXNUMWJOWWgrUGZHYnJuSWJGM2VLbnFUUVBvRFNlVVlyNlBt?=
+ =?utf-8?B?bTJBTHhFUG9yWnI3L0VhVTlnRTZzeEtGNHR5V1hGOHNWYkQzU2I4a1lZL3ln?=
+ =?utf-8?B?Wmk4U0lTSW1GbG55S0w2VG1ienNvWEc1RHBiakwwOXhlNzJZVVJkdHRpVVNa?=
+ =?utf-8?B?blA4U1RpcTYxUWNSc055S1lSOVJkQzlXd2VQZHZMa25ZbTd5VWdLVExXUDk4?=
+ =?utf-8?B?TU41V0J5Mlh2SlVueGhWUWF2NGVoNFBwczFtaTZKWHRuK2FhSmx2S2g5OUpI?=
+ =?utf-8?B?UlAvK0xYdzYwTmttYUs5Zlh1ZmNOUmJqWlVSSm5wckFheUVpRlVUZ0ZwZUE0?=
+ =?utf-8?B?YnU5Smp4NWVvWWZSVzdKM2dpRGdLT2pFTFF5clF2UXBWbWRDb2JtZXVmcGtq?=
+ =?utf-8?B?TmVUNysxQ0tsdENRNzJZajU0aGhEcy81VUNmVTZUdm05MTR3TUZqMDg1c2xC?=
+ =?utf-8?B?MGdGQ3NvRkxVa3QrZnIzdXhqS0hsbmtQd1VaOWNOdVd1eW1KVU1XdzRUbkI1?=
+ =?utf-8?B?bU1wOWwvQitEZWVseDU1aXZ3TURQVUxUNjYwNVR1Rk56bVBWQ3JiTm54MitE?=
+ =?utf-8?B?d0JNZU0veUJGQmtOc25melk3TzViL1VPeDVpQ1lWQVd3UGFZTy84MFlCdEFv?=
+ =?utf-8?B?QWtLU2xlUUZwYWw3RktlNFE2aEFaMTMxU2pmYzBrbUIvZG1Xc2VpUkJ0bjFv?=
+ =?utf-8?B?YWRVc0xBUmZNbVFGa1hGL3pONTJyQ2tvRm9Cb3Mzc081RUJmMHJaQjEzSy9p?=
+ =?utf-8?B?aVlIc3NVWS92aml5bnI0Q1dXMENrbmpSc0w0eVVDVkhsclNadHlxYXB3YjZL?=
+ =?utf-8?B?SXdTQzEyeTUvZ3RwYzV1dE9tUDdWSllKOGs1ZGxwamhvWktieldPRVpxR3RW?=
+ =?utf-8?B?NHFoZEtzS1B4YytXMUdFa3JzZnByNGtvMEVIZE4xNC8ybnp1cU02M2kvSjV4?=
+ =?utf-8?B?bVYzZ05WZ0s1TXlES25IRUhXOXlOam9lMlUrZlZyaE1JN0F1R2dOY2dza1FX?=
+ =?utf-8?B?U1ZNRTI1NHFUb2QxYnczbEhrSnFYaE1Jamc1RVNldmovTjh6L3VKSGlHMy9C?=
+ =?utf-8?B?S3lxWmZpQ1laMXlBSDZMSTJjZE1FSDMvN0xsdHJ1ZDdhVzdTd1pqWkswcVgr?=
+ =?utf-8?B?NEYvL0JEa09YS2d2T003Sjk1Wld2anRHN2R5RWV1TitISkRYYUNtcjNSQUlE?=
+ =?utf-8?B?VGVvVGJnOTh1WjdlN2UvaXVVZ3BsZlI3SXgxMHpWY1F3NnhMOUozRVZkK3NE?=
+ =?utf-8?B?aU1vTVpiWHNyNmlYTWUzSzM3N0dHUWFJRWZHU0xmek5JcEppOVc2dG1HLy92?=
+ =?utf-8?B?dklyYTFlaFBHRys3aGRRbEFuK3hRNGk0YmcreTQ4eXZTMHgvYVhVUUJmdnVD?=
+ =?utf-8?B?amVpU0tmeVlYOTlST2VCM00veEJKV1d6MnZiZVlyalRxQjVmOHRHSG5OL2pN?=
+ =?utf-8?B?UmtLNTVrQkI2ZVdHdnl3STY4NnBVb3NBdWlpcXBadnBFTS95ZUJ0ZVYyYmdM?=
+ =?utf-8?B?eEhyb3Z1OTRaZm0rT25pd0wydWFtT3ZzM0tzYnJLM3dsQTM4QnVsdXZEcWJR?=
+ =?utf-8?B?RzJPS0NkNG9VamRJZXY5VTRuRWFaay9rTy83TTYzdzZ5dDU0dXg1SU84enpq?=
+ =?utf-8?B?d042TG90bHRFdTNUTGZRRldCWWdvdExJNDNRdGp1Y1Y4UFl0eklCT2Rpd2Np?=
+ =?utf-8?B?QTFjb2oya1k2ZlgxeHdiL1Z3TEt6TDh5QnJBZVlHYmxKM3JrWWZkMVhMaEFC?=
+ =?utf-8?B?K21FL1pCQUN4NlZ5YU5mOG9QVjZ0RnlRODhrNXE5bmRub250K1ZwbjJGZi90?=
+ =?utf-8?B?SjkzMThYV2hIUlE5ekR6enBWdHk1SVdCQWRPL0VXN2tuUFF5OVBBNDFwdHNu?=
+ =?utf-8?B?dWM3b21QdlY1bGsyUGxUMEJDV3NiQmlERElSblVobGNQd1VCay95cFlId0FL?=
+ =?utf-8?B?SVVXT1dCL2o5SzJnVXhSVjZIdUJ1VEl6R3hJR0xTeHVrY1MzYmU2ZmIycDJt?=
+ =?utf-8?B?b2lCTUlJUGJodjN2allZbU42NGdkY2NZcjJvMFg5Z1JmYmUvK08xaWVUejA0?=
+ =?utf-8?Q?NZXtMyf+LwM9QEhGY4C6dKU4D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dde53663-46be-4e8a-d1ec-08de05dd0731
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2025 20:06:40.1428
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: C8Yz47pWlIVw3Y2d7xXr5LmsQPqFLd4gG917xVdZud+f+uI0de6H+UsfwubGIJr7TZJJl4WPT6iCh6jmMOoTuw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB9424
 
-Hi Michael,
+Add basic HDR mode support, only support private transfer, not support
+CCC command.
 
-On Wed, Sep 17, 2025 at 05:38:45PM +0200, Michael Riesch via B4 Relay wrote:
-> From: Michael Riesch <michael.riesch@collabora.com>
-> 
-> Add documentation for the Rockchip RK3568 MIPI CSI-2 Receiver.
-> 
-> Signed-off-by: Michael Riesch <michael.riesch@wolfvision.net>
-> Reviewed-by: Bryan O'Donoghue <bod@kernel.org>
-> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
-> ---
->  .../bindings/media/rockchip,rk3568-mipi-csi.yaml   | 144 +++++++++++++++++++++
->  MAINTAINERS                                        |   6 +
->  2 files changed, 150 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
-> new file mode 100644
-> index 000000000000..8cbab93b4b85
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
-> @@ -0,0 +1,144 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/rockchip,rk3568-mipi-csi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Rockchip RK3568 MIPI CSI-2 Receiver
-> +
-> +maintainers:
-> +  - Michael Riesch <michael.riesch@collabora.com>
-> +
-> +description:
-> +  The Rockchip RK3568 MIPI CSI-2 Receiver is a CSI-2 bridge with one input port
-> +  and one output port. It receives the data with the help of an external
-> +  MIPI PHY (C-PHY or D-PHY) and passes it to the Rockchip RK3568 Video Capture
-> +  (VICAP) block.
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - rockchip,rk3588-mipi-csi
-> +          - const: rockchip,rk3568-mipi-csi
-> +      - const: rockchip,rk3568-mipi-csi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: Interrupt that signals changes in CSI2HOST_ERR1.
-> +      - description: Interrupt that signals changes in CSI2HOST_ERR2.
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: irq1
-> +      - const: irq2
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  phys:
-> +    maxItems: 1
-> +    description: MIPI C-PHY or D-PHY.
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: Input port node. Connect to e.g., a MIPI CSI-2 image sensor.
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              bus-type:
-> +                enum: [1, 4]
-> +
-> +              data-lanes:
-> +                minItems: 1
-> +                maxItems: 4
-> +
-> +            required:
-> +              - bus-type
-> +              - data-lanes
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: Output port connected to a RK3568 VICAP port.
+Update i3c framework API to allow pass down mode and extend driver callback
+function.
 
-As the VICAP port appears to be a DVP/Bt.565 receiver, also this output can
-presumably be connected elsewhere, too.
+Implement HDR transfer in svc i3c master driver.
 
-Either way, aren't signal polarity or sampling related properties relevant
-here, too, and perhaps more so for the VICAP bindings?
+Simplifed HDR flow is (ref i3c spec line 5514) Figure 129
 
-See e.g.
-Documentation/devicetree/bindings/media/allwinner,sun4i-a10-csi.yaml .
+<--              SDR            ---> | <--- HDR
+START 0x7E RnW(0) ACK CCC(ENTHDR0) T   HDR-CMD(00-7f write, 80--ff read)
 
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - phys
-> +  - ports
-> +  - power-domains
-> +  - resets
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/rk3568-cru.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/media/video-interfaces.h>
-> +    #include <dt-bindings/power/rk3568-power.h>
-> +
-> +    soc {
-> +        interrupt-parent = <&gic>;
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        csi: csi@fdfb0000 {
-> +            compatible = "rockchip,rk3568-mipi-csi";
-> +            reg = <0x0 0xfdfb0000 0x0 0x10000>;
-> +            interrupts = <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "irq1", "irq2";
-> +            clocks = <&cru PCLK_CSI2HOST1>;
-> +            phys = <&csi_dphy>;
-> +            power-domains = <&power RK3568_PD_VI>;
-> +            resets = <&cru SRST_P_CSI2HOST1>;
-> +
-> +            ports {
-> +                #address-cells = <1>;
-> +                #size-cells = <0>;
-> +
-> +                csi_in: port@0 {
-> +                    reg = <0>;
-> +
-> +                    csi_input: endpoint {
-> +                        bus-type = <MEDIA_BUS_TYPE_CSI2_DPHY>;
-> +                        data-lanes = <1 2 3 4>;
-> +                        remote-endpoint = <&imx415_output>;
-> +                    };
-> +                };
-> +
-> +                csi_out: port@1 {
-> +                    reg = <1>;
-> +
-> +                    csi_output: endpoint {
-> +                        remote-endpoint = <&vicap_mipi_input>;
-> +                    };
-> +                };
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 4c39b9fd80bb..2ac4b7a5b255 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -21797,6 +21797,12 @@ F:	Documentation/userspace-api/media/v4l/metafmt-rkisp1.rst
->  F:	drivers/media/platform/rockchip/rkisp1
->  F:	include/uapi/linux/rkisp1-config.h
->  
-> +ROCKCHIP MIPI CSI-2 RECEIVER DRIVER
-> +M:	Michael Riesch <michael.riesch@collabora.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/media/rockchip,rk3568-mipi-csi.yaml
-> +
->  ROCKCHIP RK3568 RANDOM NUMBER GENERATOR SUPPORT
->  M:	Daniel Golle <daniel@makrotopia.org>
->  M:	Aurelien Jarno <aurelien@aurel32.net>
-> 
+                                    ----> |
+HDR-DATA HDR-CRC HDR-RESTART .... HDR-EXIT
 
--- 
-Kind regards,
+Note: HDR-CMD is 16bit data, which included 7bit slave address and 8bit
+read/write command.
 
-Sakari Ailus
+svc hardware can auto issue SDR part.
+
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Changes in v5:
+- Just realized missed CC mail list devicetree@vger.kernel.org and resend
+- Link to v4: https://lore.kernel.org/r/20251007-i3c_ddr-v4-0-3afea5105775@nxp.com
+
+Changes in v4:
+- use master's hdr_cap to check HDR cap.
+- add mmc5603 support.
+- Link to v3: https://lore.kernel.org/r/20250930-i3c_ddr-v3-0-b627dc2ef172@nxp.com
+
+Changes in v3:
+- Add new patch for change rnw to union for svc.
+- Detial changes see each patch's change log.
+- Link to v2: https://lore.kernel.org/r/20250924-i3c_ddr-v2-0-682a0eb32572@nxp.com
+
+Changes in v2:
+- Add sensor driver, which use HDR mode read/write data.
+- change priv_xfer to i3c_xfer.
+- Link to v1: https://lore.kernel.org/r/20250129-i3c_ddr-v1-0-028a7a5d4324@nxp.com
+
+---
+Frank Li (5):
+      i3c: Add HDR API support
+      i3c: master: svc: Replace bool rnw with union for HDR support
+      i3c: master: svc: Add basic HDR mode support
+      dt-bindings: trivial-devices: add MEMSIC 3-axis magnetometer
+      iio: magnetometer: Add mmc5633 sensor
+
+ .../devicetree/bindings/trivial-devices.yaml       |   4 +
+ drivers/i3c/device.c                               |  27 +-
+ drivers/i3c/internals.h                            |   6 +-
+ drivers/i3c/master.c                               |  19 +-
+ drivers/i3c/master/svc-i3c-master.c                |  96 +++-
+ drivers/iio/magnetometer/Kconfig                   |  12 +
+ drivers/iio/magnetometer/Makefile                  |   1 +
+ drivers/iio/magnetometer/mmc5633.c                 | 579 +++++++++++++++++++++
+ include/linux/i3c/device.h                         |  34 +-
+ include/linux/i3c/master.h                         |   4 +
+ 10 files changed, 745 insertions(+), 37 deletions(-)
+---
+base-commit: 5248ab97a6dd1dc6856422f6b1595baaf4fa85ce
+change-id: 20250129-i3c_ddr-b15488901eb8
+
+Best regards,
+--
+Frank Li <Frank.Li@nxp.com>
+
 
