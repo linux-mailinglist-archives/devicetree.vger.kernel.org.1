@@ -1,258 +1,137 @@
-Return-Path: <devicetree+bounces-224008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 892A1BC0324
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 07:24:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AACDBC033C
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 07:36:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3FAD04EEBC8
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 05:24:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A3121895C28
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 05:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 902C3202F7B;
-	Tue,  7 Oct 2025 05:24:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TSBR0j+/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBB021DB546;
+	Tue,  7 Oct 2025 05:36:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 696BD1F7580
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 05:24:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3817E3D987
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 05:36:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759814662; cv=none; b=QxRKP3dhLgG8Pp4VVo6eiICDBgmQznhVYsKjwUTxRmCOGOfRcUlLYH/eBhTowSln+wE8WuY4nIP2V3MMv1uFrLxIkCgbXDiV/RBYtpSWriVVWS5Qf5bF8mbtVz33afXgJn9RfSyRDJZjr52mm+c+xUOfQjz2EMFNWrbuk0lKGMU=
+	t=1759815379; cv=none; b=to4cP4JT/egk4FOdUwaBEe/iZFZ7WsgCCkoOAzOIBAWokersxt7aA2ax5t2F2mURi7h4vhUNa74mhU/BgFHjbKQ4lq4h9Aoh6xjClp1uIxvTsrhpnxN3D2ZU6aY2aEV+oj7BBrBgpj5ECYzsKQ0AqhV5VI+IRr0xLq9dM3imdsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759814662; c=relaxed/simple;
-	bh=03ukawHLBBiuq3lXimxzPdIM3F7QbvULRv7gKC39Z/w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iRSs5uBjdgODE7YuTvQnUSPjsqhUmZkaIveAVQokpt338sJLuujhzvS0J4t6pKszxV0TIhuDBoq5Qj9XE8GPCjVTubT4As8CU2oxygzwNkeAENbtqeytF/91Pt/52nQgrJqhcvAARuht5jVXvlZO7rZ+V9BsdjJCLA/QOP4PV6g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TSBR0j+/; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3fc36b99e92so4740249f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 22:24:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759814658; x=1760419458; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sLnHbmNpMD4epIcKjnyPaJrpyCwbEXYNf6ehl6bEb60=;
-        b=TSBR0j+/M7cfPExgvPBQqJVH4ou6kac2FBJG4KDVhNfVkhbILOKx8wBRumLyrqFDEG
-         TOr3GNpr/qeWqiSrKpMonQoeNlou7eVqBLkmJc0xS4URvCpaYLstJRw/Ark5Eubqqvoj
-         AhnRQU5mqjbdOV+qlqSy111etQooFm3hHSEwB44UIm+CU9mKc2RucVyRxzscUyCKSK4M
-         C1rWH8Z93Lxwbw6KdJhqtdQMPBDwomNxxDhBOiE9VuCGanrQ4Cq20QRmk1EAcOT3wF2i
-         NZu0JDfZ6VY8FTJQ2xUIUNNt79yTtE29usrIPWZ+p+FP32eAsLMMlCzLmq4juHSJQ1zZ
-         DB7Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759814658; x=1760419458;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sLnHbmNpMD4epIcKjnyPaJrpyCwbEXYNf6ehl6bEb60=;
-        b=gUjWMENiCn9PbHLAnmFxxAxnobCm/68UnfkqxaRSf/wUXqt5AWlvdtPjdmpxsg5qlv
-         2gBvmtW810HL7DxlTdonix5D7v9AH/yogrINyxtxgECHNVtnLGzWiwVQ04l1/OaJDb0s
-         E0ullGqZQsI1OFN1ILOPwIoteLvIFAn3kb/9vD8aFxLuUF/FcHo0MLkI7dcD9CFnArfr
-         llx2Ef2DPSqahG5pHvUr8KQJ0eQt2sHQ8qhmj49+IdRQ1D1GdYpQRHNRqkQvhT3gq3z9
-         8BNlwWOyNtuULBI2dw0Hzd7C0rCXjfTQy2bZTazjC7+0V4R0TcfhckvwNRd14PkWXFu1
-         pynw==
-X-Forwarded-Encrypted: i=1; AJvYcCXnK78AvEIZvjGm6uqyFigjNIhwvkO+s9YkE6LM98S31NHVG4XyDT+UmStvlQuQzLV67WYx6Z4aQ1UA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHjJ0rE6ufuCmg2hCE6bEvbXQH0i10iM56NexzZEcWs54IVsYi
-	QFQP1B91bdtw2IH5/C/1xef04ehUWP/qjnp6ugj4Wh/tNkr5VVNU/YGmz+XWVcnag/HZe5uOdL6
-	wnTc2eb5FFy3n6fgx8nG0hS4shdcSYZ8=
-X-Gm-Gg: ASbGncs6sxskj6ASv3kglC58NOzL4Wz7JDzucF8/PzBpFmLVTllKeEzWowmgud65+eF
-	72bm2Gw9BlH2Cl1ZnWb4H2ki79sTQPoszOQOvuPwgdMvF36fAQBbVQPKuhoHqGlkFIEtmjybLEw
-	b1AkH7vaqP1nsFfSG3aZV5hUxJSIE+X07qTVuGrz66KZD3hfFtL8nB7iQ8CDRFzDcQlFNdnYYrF
-	SqPQKcb5kmLskSLsPtVK9Hw3sWW/7yT
-X-Google-Smtp-Source: AGHT+IEqm1Cnm5JSU8P7+erEx9aLkQi3brzS+KjxKcgqGgPXKaswgBRSqgdDnMzPTqldRk/rKa7ILjK4DFwNEE+3/5s=
-X-Received: by 2002:a05:6000:24c4:b0:3f4:ad3f:7c35 with SMTP id
- ffacd0b85a97d-42582a0534bmr1024206f8f.27.1759814657634; Mon, 06 Oct 2025
- 22:24:17 -0700 (PDT)
+	s=arc-20240116; t=1759815379; c=relaxed/simple;
+	bh=zz6lPYQ1IJfuZS0Yj9SN8f1ym0BJqcUgvwAez0hXJaY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=KSyG3HLv65X9g94JTh1/J9/44UvRXvBI9XBut3zV6XdZabjLw16bA6SQhrq8scsIB099iXwFnF9U0O6UtWCVxxb1beGfXXH6NYtL4cEQFxVkM9w56ZvnqKnvb2fSZ8ATjisjpmh2Snkz0yA/in4BjfH8bDUJV4FjnDG7pkWXCeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1v60Mv-0002SK-Fp; Tue, 07 Oct 2025 07:36:13 +0200
+Received: from dude05.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::54])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1v60Mu-002Li7-11;
+	Tue, 07 Oct 2025 07:36:12 +0200
+Received: from localhost ([::1] helo=dude05.red.stw.pengutronix.de)
+	by dude05.red.stw.pengutronix.de with esmtp (Exim 4.98.2)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1v60Mu-0000000C6Jh-12wQ;
+	Tue, 07 Oct 2025 07:36:12 +0200
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Date: Tue, 07 Oct 2025 07:36:02 +0200
+Subject: [PATCH] ARM: dts: stm32: lxa: drop unnecessary vusb_d/a-supply
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250929142455.24883-1-clamor95@gmail.com> <20250929142455.24883-2-clamor95@gmail.com>
- <CAD=FV=Vd=muLeMJYszC2SqRBThN=Srm_bKXBEmjjqND7bqHo2g@mail.gmail.com>
- <CAPVz0n23qNrnyP7ttchaCoLit=gBm_++7RX7B8MxR_nx+8LGHw@mail.gmail.com>
- <CAD=FV=UCcQ1AweLwNucYP8kNHx+K1UF=VbEZdqE4hXN=bHqGuQ@mail.gmail.com> <20251006221308.GA653118-robh@kernel.org>
-In-Reply-To: <20251006221308.GA653118-robh@kernel.org>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Tue, 7 Oct 2025 08:24:06 +0300
-X-Gm-Features: AS18NWDToXA58gus5hDUvN4FNyaQ6Lgn-00bI-Bbb3jdyK_JaChVX5A0PwIJW1E
-Message-ID: <CAPVz0n0VfjW_=E9oM0FAhjqzAQnPXaL40gDqOsz2mwBaaA_0Fg@mail.gmail.com>
-Subject: Re: [PATCH v1 1/8] dt-bindings: display: panel: properly document LG
- LD070WX3 panel
-To: Rob Herring <robh@kernel.org>
-Cc: Doug Anderson <dianders@chromium.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251007-lxa-usb-dt-v1-1-cacde8088bb9@pengutronix.de>
+X-B4-Tracking: v=1; b=H4sIAMGm5GgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDAwNz3ZyKRN3S4iTdlBLd5NQkA0MLS2NLs1QzJaCGgqLUtMwKsGHRsbW
+ 1AF85bcxcAAAA
+X-Change-ID: 20251007-lxa-usb-dt-ceb0189396e6
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc: devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ kernel@pengutronix.de, Ahmad Fatoum <a.fatoum@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-=D0=B2=D1=82, 7 =D0=B6=D0=BE=D0=B2=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 01:13=
- Rob Herring <robh@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Thu, Oct 02, 2025 at 02:35:42PM -0700, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Mon, Sep 29, 2025 at 10:03=E2=80=AFPM Svyatoslav Ryhel <clamor95@gma=
-il.com> wrote:
-> > >
-> > > =D0=B2=D1=82, 30 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 06:1=
-2 Doug Anderson <dianders@chromium.org> =D0=BF=D0=B8=D1=88=D0=B5:
-> > > >
-> > > > Hi,
-> > > >
-> > > > On Mon, Sep 29, 2025 at 7:25=E2=80=AFAM Svyatoslav Ryhel <clamor95@=
-gmail.com> wrote:
-> > > > >
-> > > > > LG LD070WX3-SL01 was mistakenly documented as a simple DSI panel,=
- which it
-> > > > > clearly is not. Address this by adding the proper schema for this=
- panel.
-> > > > >
-> > > > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > > ---
-> > > > >  .../bindings/display/panel/lg,ld070wx3.yaml   | 60 +++++++++++++=
-++++++
-> > > > >  .../display/panel/panel-simple-dsi.yaml       |  2 -
-> > > > >  2 files changed, 60 insertions(+), 2 deletions(-)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/display/pan=
-el/lg,ld070wx3.yaml
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/display/panel/lg,l=
-d070wx3.yaml b/Documentation/devicetree/bindings/display/panel/lg,ld070wx3.=
-yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..0a82cf311452
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/display/panel/lg,ld070wx3=
-.yaml
-> > > > > @@ -0,0 +1,60 @@
-> > > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id: http://devicetree.org/schemas/display/panel/lg,ld070wx3.yam=
-l#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: LG Corporation 7" WXGA TFT LCD panel
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > > > > +
-> > > > > +allOf:
-> > > > > +  - $ref: panel-common.yaml#
-> > > > > +
-> > > > > +properties:
-> > > > > +  compatible:
-> > > > > +    items:
-> > > > > +      - const: lg,ld070wx3-sl01
-> > > > > +
-> > > > > +  reg:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  vdd-supply: true
-> > > > > +  vcc-supply: true
-> > > > > +
-> > > > > +  backlight: true
-> > > > > +  port: true
-> > > > > +
-> > > > > +required:
-> > > > > +  - compatible
-> > > > > +  - vdd-supply
-> > > > > +  - vcc-supply
-> > > >
-> > > > I suspect you'll get a NAK here because you're not preserving backw=
-ard
-> > > > compatibility for existing device trees. While there can sometimes =
-be
-> > > > reasons to do that, you'd need to provide a very strong justificati=
-on.
-> > > >
-> > > >
-> > > > It seems like instead of breaking compatibility you could just have
-> > > > two supplies:
-> > > >
-> > > > * power-supply - The name for the "dvdd" supply.
-> > > > * avdd-supply - The name for the "avdd" supply.
-> > > >
-> > > > ...and then you make both of them not "required". Maybe you'd add s=
-ome
-> > > > documentation saying that things might not work 100% correctly if t=
-hey
-> > > > weren't provided but that old device trees didn't specify them?
-> > >
-> > > Schema describes hardware. If it does not (and in this case it clearl=
-y
-> > > DOES NOT), then such schema should be adjusted according to hardware.
->
-> The priority is:
->
-> 1) ABI
-> 2) describe h/w accurately
->
-> IMO, if there are 2 rails on the h/w and you have 2 supplies in the DT,
-> then you have described the h/w. names are less important.
->
-> > > If there are any users of such binding, they should be adjusted too
-> > > (third commit of this patchset does exactly that). Panel datasheet is
-> > > explicit, panel has ONLY vdd supply and vcc supply, names are taken
-> > > from there too.
-> >
-> > I'm more than happy to defer to DT people on this, but the general
-> > argument is that "device tree" is supposed to remain forever forward
-> > compatible. In other words, someone could have taken a snapshot of the
-> > "tegra114-tn7.dts" device tree at any point in time and then shipped
-> > it in some BIOS. Presumably the old "tegra114-tn7.dts" (for some
-> > reason) managed to init the panel properly in the past and the idea is
-> > that there should still be a way to init the panel with the old device
-> > tree now.
-> >
-> > Obviously, that's an ideal version of the world and sometimes
-> > hard/impossible to make a reality, but it's supposed to be what we
-> > strive for.
-> >
-> > >From a more practical standpoint, the dts changes and code changes
-> > will go through different trees and so making them mutually depend on
-> > each other can leave people broken if they happen to have one patch
-> > but not the other.
-> >
-> > I suppose one way to handle this (if DT people like it) is to keep the
-> > bindings the way you have it but then add some layer of backward
-> > compatibility in the driver. It will mean that anyone with the old DTS
-> > would officially not "validate" properly against the new bindings, but
-> > I think that could be OK as long as it was explicitly mentioned in the
-> > commit message. Obviously, though, DT bindings reviewers would have
-> > the last word there...
->
-> That's fine, but then I prefer we keep 'power-supply' as deprecated.
-> Then if we ever validate that drivers only use documented properties,
-> it would pass. We already check drivers use documented compatible
-> strings, so that wouldn't be too hard to do.
->
+The LXA device trees are the only STM32MP1 device tree that specify
+vusb_d/usb_a-supply and apparently not for good reason:
 
-Sure, but ATM there is only one user of this compatible in the
-mainline Linux kernel, which is Nvidia tablet Tegra Note 7 and:
+- vusb_d-supply (vdd_usb) is the same as the phy-supply for usbphyc_port1
+- vusb_a-supply (reg18) is the same as vdda1v8-supply for usbphyc_port1
 
-1. Node used in its tree is addressed in the third commit of this patchset
-2. Its panel is broken anyway since it cannot init properly if
-bootloader does not leave a pre-inited panel, it cannot suspend
-properly and it has a loose regulator which relies on always-on
-property rather then being hooked to the panel.
+and usbphyc_port1 is linked to the usbotg_hs node via the phys property.
 
-I can assure you that besides me there seems to be no one interested
-in this tablet.
+Specifying the regulators in the &usbotg_hs node is thus superfluous and
+has been even found to be harmful in one instance:
+Linux v6.10 was found to lock up every 50-125 or so reboots on the LXA
+TAC when the DWC2 driver probe enables the regulators in bulk, unless
+both properties were removed.
 
-> Rob
+This issue was so far not reproducible on v6.17 (> 500 reboots), but as
+these properties are unnecessary and different from other STM32MP1
+boards, remove them anyway.
+
+Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+---
+ arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi | 3 ---
+ arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi       | 3 ---
+ 2 files changed, 6 deletions(-)
+
+diff --git a/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi b/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi
+index 9eeb9d6b5eb0ed35d4a83b743e8007f19422e2ed..7d3a6a3b5d09ea06689ebca11eda48785207aa31 100644
+--- a/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp153c-lxa-fairytux2.dtsi
+@@ -374,9 +374,6 @@ &usbotg_hs {
+ 	phys = <&usbphyc_port1 0>;
+ 	phy-names = "usb2-phy";
+ 
+-	vusb_d-supply = <&vdd_usb>;
+-	vusb_a-supply = <&reg18>;
+-
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
+index be0c355d3105b89d4374d4f6972c7927970f06b1..9179075f2ead14a4deb45fcd2cefd60ab426a8d8 100644
+--- a/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
++++ b/arch/arm/boot/dts/st/stm32mp15xc-lxa-tac.dtsi
+@@ -493,9 +493,6 @@ &usbotg_hs {
+ 	phys = <&usbphyc_port1 0>;
+ 	phy-names = "usb2-phy";
+ 
+-	vusb_d-supply = <&vdd_usb>;
+-	vusb_a-supply = <&reg18>;
+-
+ 	g-rx-fifo-size = <512>;
+ 	g-np-tx-fifo-size = <32>;
+ 	g-tx-fifo-size = <128 128 64 16 16 16 16 16>;
+
+---
+base-commit: 33f3d92bd1bee0e37d68124dd6e7df793a6af745
+change-id: 20251007-lxa-usb-dt-ceb0189396e6
+
+Best regards,
+-- 
+Ahmad Fatoum <a.fatoum@pengutronix.de>
+
 
