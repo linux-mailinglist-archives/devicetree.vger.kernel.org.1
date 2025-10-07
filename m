@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-224026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 981C4BC0578
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 08:33:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E5F9BC0593
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 08:35:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9A25C4F2A20
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 06:33:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DA0D3A671A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 06:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 429EE22154F;
-	Tue,  7 Oct 2025 06:32:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 354CF2248B8;
+	Tue,  7 Oct 2025 06:35:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="odz106TM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kpDUhvjH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15CFE1D86DC;
-	Tue,  7 Oct 2025 06:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C820223DE7;
+	Tue,  7 Oct 2025 06:35:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759818776; cv=none; b=hBNxqYqhOzdHh0+aW49+UHrAZiO4HGXA22dbZ5gWXGf6tnfLgW3JUqBR1tgboOo/VQjKIQ/lwjExouk1fsTPmQV+WK3lt1mPG43Veqqousqr2DWDcxxk1Tw+Dce7CQdczqrNy8f9cV5dnS7xp5saBL0ABM/EZ6fSY5E67o2Ppk4=
+	t=1759818935; cv=none; b=oeISjioq0J7eXdPHBkpW+H7UoTYSg0jNkaFQ6npMHqERoWvMTsXsNkyt4c3XyEkU5kpcFFKDwhrq6mJChDmF8BZryAKAvkzbgVW3xkuQ8L0fcLuwBe97fl6C3NwXy5EbCKeAX/yDmmTbLE9yjEwsCqCj8ycfs1SqU4vNRra2k+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759818776; c=relaxed/simple;
-	bh=yexCi0CSSbwuHHsbvKOWPYwornynNG9uwFDQFJBE5R0=;
+	s=arc-20240116; t=1759818935; c=relaxed/simple;
+	bh=+rs4B8RYkOruOw+0klo7abhTG1Z6c0No+NhmE2DC0ak=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ys5DpDUv58TlFd1bFVXbs/MFFFDwF6TXpXPq56mLfnrWRmXtILjy412czHH4E3zG8nXXeCHSMv+ZVpGSwOs4buXWWg9SF0vnwz/9BTQ43ugfBKcMnsrC/80zQzmtcJBG/x9zGrblIYm9O1/42pbuAHgnf3ENfPHCM+AWOP1BXPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=odz106TM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1CC31C4CEF1;
-	Tue,  7 Oct 2025 06:32:50 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=FCMZkdkoGFlvx/VOWzaNjSdJdX1WAq1CpfvER98NFLGIhoE9L7AFVByZkCTmb30HZThrxPWQdPw5rW7jwqRh5FeQjni3xuUKh2Yz+RDjTBTbFpa8nxMPJtYJc39TdrVXfeTm6OCI2UC6cQovh6oQUyez+6P0iJw5ieUyKqrwb7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kpDUhvjH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6BDBC4CEF1;
+	Tue,  7 Oct 2025 06:35:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759818775;
-	bh=yexCi0CSSbwuHHsbvKOWPYwornynNG9uwFDQFJBE5R0=;
+	s=k20201202; t=1759818934;
+	bh=+rs4B8RYkOruOw+0klo7abhTG1Z6c0No+NhmE2DC0ak=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=odz106TM854yKNKoH36btKdFaOjbZQIb4dlLQFvGxMXlY2jgMrLgiMtVL72bOXBRS
-	 Z6DG4M4GAZZa24DaNemPF3b6DVS+QFKT8OehL3f8wLD5/TLe/kjZ50U1bARq8AosiK
-	 1aWcCrpqSP/pQsLB+oe4CgTCs+Bd30WC/GuOXm1w5fbYIlsDv7beuaQAtvbj2zk0vW
-	 50zq8i9cc8u9KG9yTBR4uaLCLzC4gzFQVVPxKaN3IUlDU30b3zlVpfsHg4QIvHxPM4
-	 pJxSCZvNQyjV+/aNfmt1jnvr1eWkXFtK3DY0d1LMNYGk5aS/lv1sb0FpqNMIQxaPrq
-	 mJ8GGHc06XpYw==
-Message-ID: <ea85d388-c0c1-4b4a-96d6-d3f27622ed54@kernel.org>
-Date: Tue, 7 Oct 2025 15:32:48 +0900
+	b=kpDUhvjHumwQsb767/AQ/+7r6OdbuAcSWH1zwrrMsopcu6gYjJ43z2I45JeEOvHcv
+	 2IrGXYHvRiEuggzZtxtQm9VzMfEXsFR2Ykh16Zf8uZJz4D3+DjXGc+nRnpl80uF6ke
+	 OYUEJPz07RcvdbQZct8G6TtqmYPfN4CCK0FBanDiKxUsdXNBbEyx+vMUW42T3D6pV7
+	 lslCSrVUIC3tYkq3Z/4mEHRchrtr+JwZeDcYeChjcs9zl4ey1GODPXxEBoZMF2Y+fJ
+	 S2+SrKpMRN8clRTrT/fKbYvUru2Y/mySuCDUpcRxCC+jD7MgmX4JTuOiSrS32Mx1DC
+	 Q5pkyAEe3pUfQ==
+Message-ID: <30101fb9-e2eb-4050-896a-7be629ced44d@kernel.org>
+Date: Tue, 7 Oct 2025 15:35:28 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: ExynosAutov920: add PCIe PHY DT nodes
-To: Sanghoon Bae <sh86.bae@samsung.com>, robh@kernel.org,
- conor+dt@kernel.org, vkoul@kernel.org, alim.akhtar@samsung.com,
- kishon@kernel.org, m.szyprowski@samsung.com, jh80.chung@samsung.com,
- shradha.t@samsung.com
-Cc: krzk+dt@kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20250926073921.1000866-1-sh86.bae@samsung.com>
- <CGME20250926074021epcas2p36a8dc02c84c9ca11e2318a1a8931d68a@epcas2p3.samsung.com>
- <20250926073921.1000866-4-sh86.bae@samsung.com>
+Subject: Re: [PATCH 1/2] dt-bindings: counter: Add new ti,omap-dmtimer-cap
+ compatible
+To: Gokul Praveen <g-praveen@ti.com>, j-keerthy@ti.com, vigneshr@ti.com,
+ wbg@kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
+Cc: u-kumar1@ti.com, n-francis@ti.com
+References: <20250909080042.36127-1-g-praveen@ti.com>
+ <20250909080042.36127-2-g-praveen@ti.com>
+ <6faff5b1-65b1-41ee-aba8-8c06a2bc6f58@kernel.org>
+ <9653740a-44fe-46bb-92c8-f7fc26cbe5ee@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,58 +105,44 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250926073921.1000866-4-sh86.bae@samsung.com>
+In-Reply-To: <9653740a-44fe-46bb-92c8-f7fc26cbe5ee@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 26/09/2025 16:39, Sanghoon Bae wrote:
-> Add pcie_4l_phy, pcie_2l_phy dt node for all PCIe PHY instances
-> in ExynosAutov920 SoC.
+On 26/09/2025 18:06, Gokul Praveen wrote:
+>>
+>>> +
+>>> +  ti,timers:
+>>> +    description: Timer instance phandle for the Capture
+>>
+>> So the only resource is phandle? That's completely fake device then. NAK.
+>>
 > 
-> Add HSI sysreg to control PCIe sysreg registers.
 > 
-> Signed-off-by: Sanghoon Bae <sh86.bae@samsung.com>
-> ---
->  .../arm64/boot/dts/exynos/exynosautov920.dtsi | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
+> The OMAP Timer IP can operate in 3 modes: Timer, PWM mode or capture
+> (mutually exclusive).
+> The timer/ti,timer-dm.yaml file describes the timer mode of operation.
+> It encapsulates base IP block and reg property is also part the same
+> binding.
 > 
-> diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> index 2cb8041c8a9f..9e45bfcd7980 100644
-> --- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> @@ -1021,12 +1021,40 @@ cmu_hsi0: clock-controller@16000000 {
->  				      "noc";
->  		};
->  
-> +		syscon_hsi0: syscon@16030000 {
-> +			compatible = "samsung,exynosautov920-hsi0-sysreg",
-> +				     "syscon";
-> +			reg = <0x16030000 0x1000>;
-> +		};
-> +
->  		pinctrl_hsi0: pinctrl@16040000 {
->  			compatible = "samsung,exynosautov920-pinctrl";
->  			reg = <0x16040000 0x10000>;
->  			interrupts = <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>;
->  		};
->  
-> +		pcie_2l_phy: pcie-phy2l@161c6000{
+> This node represents the capture mode with phandle reference to the
+> timer DT node. This is modeled all the same lines as how PWM
+> functionality is implemented in pwm/ti,omap-dmtimer-pwm.yaml
 
+Different modes do not have their own device nodes. It is still one
+device, so one device node.
 
+> 
+> Now, if this needs to change, please suggest alternate.
+> 
+> One solution is perhaps to add a new property to ti,timer-dm.yaml itself
+> to indicate the mode of IP?
 
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-If you cannot find a name matching your device, please check in kernel
-sources for similar cases or you can grow the spec (via pull request to
-DT spec repo).
+Not sure, depends what this really is and how it is used. I can also
+imagine that consumer defines the mod of operation.
 
-Plus style issues... missing space.
-
-I would like to see also PCIe nodes somewhere, because I wonder if
-num-lanes should not be moved to PCI node (phy consumer) instead.
-Current approach feels better, but maybe it just duplicates num-lanes
-from the PCI?
+Or mode of operation could be even configured runtime, thus not suitable
+for DT at all.
 
 Best regards,
 Krzysztof
