@@ -1,125 +1,140 @@
-Return-Path: <devicetree+bounces-224003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 313E7BC00DF
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 05:00:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3AB3BC00E4
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 05:03:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D7E464E1562
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 03:00:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 891813AE20A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 03:03:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E6DD1C6FE1;
-	Tue,  7 Oct 2025 03:00:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CE0417D346;
+	Tue,  7 Oct 2025 03:03:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="U/xq3k/T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="psyBvlZU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com [74.125.224.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F8D71862A
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 03:00:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4ED2D1C27;
+	Tue,  7 Oct 2025 03:03:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759806029; cv=none; b=kh2LhqZ41XLeOv8feKs6x1oe6pfj3e6VQPF4Kfj4DOht0B0EDDDKlmW7hyqHWEpbIf7ygxGs4mOcWzzKIPTRLlhA9pxzCvjVUHOWQ9bojrFdDNkp95tfgy/47ZvYsfug8SeZZeo+jxDXju5q4uFvswvzkOWp1aIM32NWz0y88J8=
+	t=1759806190; cv=none; b=KqF7vJX6QG5qjXJPzL9N3fp+NabtWirt4Lnu30zAMRWbzOx5KzZfdf+qs6UiWAIgMgJ2FoYmPLudtoFIMIy5J8jNv5rLkeuCGaHFeaw0bAX/lGr9klHxmHpW9fbbIMSlPWXJYRxF5VE0eS/WmSgYfnTRiY/NbOeitvPSpEqls60=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759806029; c=relaxed/simple;
-	bh=DgmUKVVAZxAHjL7E2EyoaY9AqFDFj5rBrGDH69lmLlk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MmQqH8ZKIj2mVMPH21Te0V8SGpBZfL2uCD1X5+qUIOZq1Tmf+Nkccmns5FP7J/Ja3Ed1S0v/Uykjswzya/oqLpCI6v8K2bsGZ5cWKez1Kr6aSPvWQf0GBeqSPHnLthSapFEB6IbwD3qH0RV8zxrTtjxyt5KiB/snf9DW5D2UhKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=U/xq3k/T; arc=none smtp.client-ip=74.125.224.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=oss.tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-yx1-f54.google.com with SMTP id 956f58d0204a3-635355713d9so6150034d50.3
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 20:00:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1759806026; x=1760410826; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rh3JimG/CE0+qqNKzktY8zBG1UkDVFkdOnHFQNnTyw8=;
-        b=U/xq3k/TaiCW4WynxSWpjsJKlWkiRkBeSSfgXbdsdJ5B1BMC6z0ET3VhaG6ocehXrj
-         XMELG9vn4x2F1NhX5i7rvWqEY3LV9pETPgETgoyKAW1oHabzclm+slUd//gYhqmCp1ZK
-         91vb2s3iWQAvIUY7xtvWVE72df5RxYZTK0adYbS1q17AvU5BEBTapc48T5XEgnbe3Y7+
-         /Kj2fE9j3GkLS7eAxVmPHNAzNiAG5q3uQ7KkVbXywXoAUxgVPVNdSJD3+jXsR3wLt2h7
-         iuCjnQK+QmbSrOFN4N9moSXnlmU6lGygVFuUKOgW7Rfpfo6cc86vULItbz0/oKWLFwT9
-         58lg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759806026; x=1760410826;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Rh3JimG/CE0+qqNKzktY8zBG1UkDVFkdOnHFQNnTyw8=;
-        b=FluQD3wZx7BPaS86W0YdeuaBtUrAz8ONkPQHmqUr4RNDkKxfM094yFmENdF/fBxCGR
-         cl8VsNQ1u06saERglSISna9EXYlP/DoDcJv9rn40EYzqJDrq5egfP48BwCuQP9Atvdj9
-         312Tj+6Cpi4M8uq0bmtYWJNkP43iCGBpEsg6fgctsDE9Yv3IpFUUFdn1uQRcPI7qwhHC
-         pnzpr1P475nFtTTj4AJyj9ihX5srbgSZOurkO8/mA/tFdwuIugaiPLEomEcPjA5ff7BQ
-         ojzJGMZu6uVMzoyIzsK00MWPUGXDopWjXz9TPFZ7HMw/BQ6Y+fjoEA4VtmxkG1rESzmC
-         2KvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWIbQOf7qNqiYQo1E/rYsfsrQtJ1oLwivQZj5xQJsfJNg1sXydxlGEag4VNjR3EsINIm57UGqXyYeSf@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVEDP1IKV1c987m4VKFjnzVO0GiFHelqMb2GJ73lbCTwxYvFDL
-	RyGxG6Ku/XyfAu9/dmej9EodzZ0Rs79XdUo6hg4SdNjOEQWL+Pm1FYUqh1wNP4eH6xzN9baEXbB
-	4vMjdg0miXW8bV/aXe5ob5KTR5/aoi4Aihy91nEob0g==
-X-Gm-Gg: ASbGncv9r3xOubqaIaOCRuY0kqW/37HTSKU6kDeyFfPXD1qvwuHIMnj57MRy6T2xyOK
-	SGmD4zGnYxKcG1FlHCjNzBbZgq8A7omg3d7SwSMM4ieQeVd6FftPn4gSt/0t/WOoMnpzE55LCCQ
-	L6Px5/E5RbCUXspZ2XxBXaJlybl2Qkp9BNSTqTQ2x8NZKo5YQ//uX8bxGl6CLArogrCZromwI/k
-	qqH41csD6KZZbqAt5uSGXqt3IeFXRg=
-X-Google-Smtp-Source: AGHT+IFpDeFYpJdIwoVLGKv3fyPFV65e4Lo6dOLiNHuo0GiL2CcLB0AMN4rustNbq6B28NgtaFZYGIh1Plud38WHyM4=
-X-Received: by 2002:a53:bb89:0:b0:636:1f40:2f5a with SMTP id
- 956f58d0204a3-63b9a0f0326mr13414591d50.44.1759806025867; Mon, 06 Oct 2025
- 20:00:25 -0700 (PDT)
+	s=arc-20240116; t=1759806190; c=relaxed/simple;
+	bh=BoGndQA4BAfeJvTJqPB+wFLlE32HU9519m66T9GaIdQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Zl46vjyYs4ytSqWh7omabfeUEv66o4ij2vinMAw+P346sYR3Klqaq3pvNS5Er+Mi3XLasQlc+ZzqHFov87v6r8UlncMfUtdpwjmCwoz3HeHhyUEU2KK6wV/iduS00zm1BCeE0xZcDAzfaeVtvNH7ODUxUmhN3hCPxNdZEbdFYbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=psyBvlZU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E84BC4CEF5;
+	Tue,  7 Oct 2025 03:02:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759806189;
+	bh=BoGndQA4BAfeJvTJqPB+wFLlE32HU9519m66T9GaIdQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=psyBvlZUaJYfxTaG3WQtKUB3v1fujVH4/bZEmhMpTD1sf5pb9qTLM6i4/3+tpTpwJ
+	 kLk56n7SoA55qsi5dhfHHQDlWSgkiMBGA8nVTiTniKjoTYz4tFoTLgqAdPT2hhtJzO
+	 s4QvUPsSSJs3e3B6BbWFRENNdRglIhy0CF8ffLbrVzFC0/EZrjwPVT+Fp3oPvycJud
+	 cLG2pZyXWnjO5Fv5iOz+WMyVoQkGgxEAdxm8qJlZkoH8zksXI06kkb/oU+BErxUmZ6
+	 nPOgs78LWos1OE9kKRhPdYexOO7WZgwwqWfHH7tdHRG7dJcVA9XH3U/qjCIUe4spHU
+	 Aj5SlWRpzmC1g==
+Message-ID: <ca44af80-1fe4-4003-bd13-2ba26ade33b3@kernel.org>
+Date: Tue, 7 Oct 2025 12:02:56 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251006-tt-bh-dts-v2-0-ed90dc4b3e22@oss.tenstorrent.com> <CAM3sHeA2HUpcFJ7LOw1XfjJjLA+A5KsnqFoHe03bv1wHJ_zoMA@mail.gmail.com>
-In-Reply-To: <CAM3sHeA2HUpcFJ7LOw1XfjJjLA+A5KsnqFoHe03bv1wHJ_zoMA@mail.gmail.com>
-From: Joel Stanley <jms@oss.tenstorrent.com>
-Date: Tue, 7 Oct 2025 13:30:09 +1030
-X-Gm-Features: AS18NWDkCe_iVrENrFktcYB8dLpg514o3M98A_0nmkuNLzig91F_L4PMhgS3hjQ
-Message-ID: <CAM3sHeDPN2AVQHL9VnO-Fk=6Vt6Cs6Cv3qTvb1Mtxif2hNseDA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/8] RISC-V: Add support for Tenstorrent Blackhole SoC
-To: Drew Fustini <fustini@kernel.org>
-Cc: Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Samuel Holland <samuel.holland@sifive.com>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Thomas Gleixner <tglx@linutronix.de>, Anup Patel <anup@brainfault.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Joel Stanley <joel@jms.id.au>, Michael Neuling <mikey@neuling.org>, Nicholas Piggin <npiggin@gmail.com>, 
-	Michael Ellerman <mpe@kernel.org>, Andy Gross <agross@kernel.org>, 
-	Anirudh Srinivasan <asrinivasan@tenstorrent.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Drew Fustini <dfustini@oss.tenstorrent.com>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/8] riscv: dts: Add Tenstorrent Blackhole SoC PCIe
+ cards
+To: Joel Stanley <jms@tenstorrent.com>
+Cc: Drew Fustini <fustini@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Alexandre Ghiti <alex@ghiti.fr>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Samuel Holland <samuel.holland@sifive.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Anup Patel <anup@brainfault.org>,
+ Arnd Bergmann <arnd@arndb.de>, Joel Stanley <joel@jms.id.au>,
+ Michael Neuling <mikey@neuling.org>, Nicholas Piggin <npiggin@gmail.com>,
+ Michael Ellerman <mpe@kernel.org>, Andy Gross <agross@kernel.org>,
+ Anirudh Srinivasan <asrinivasan@tenstorrent.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-riscv@lists.infradead.org, Drew Fustini <dfustini@oss.tenstorrent.com>
+References: <20251006-tt-bh-dts-v2-0-ed90dc4b3e22@oss.tenstorrent.com>
+ <20251006-tt-bh-dts-v2-6-ed90dc4b3e22@oss.tenstorrent.com>
+ <a05be32b-dc8f-444f-8c1c-2d49eb19536d@kernel.org>
+ <CAM3sHeBweq285Mwqzwd7no3zwzoosRgsHkunnVkYSgHyh37eAw@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAM3sHeBweq285Mwqzwd7no3zwzoosRgsHkunnVkYSgHyh37eAw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, 7 Oct 2025 at 11:32, Joel Stanley <jms@tenstorrent.com> wrote:
->
-> On Tue, 7 Oct 2025 at 07:51, Drew Fustini <fustini@kernel.org> wrote:
-> >
-> > Enable support for the Tenstorrent Blackhole SoC in the Blackhole P100
-> > and P150 PCIe cards [1]. The Blackhole SoC contains four RISC-V CPU
-> > tiles consisting of 4x SiFive X280 cores. Each tile is capable of
-> > running an instance of Linux.
->
-> Nice work Drew!
->
-> for the series:
->
-> Reviewed-by: Joel Stanley <joel@oss@tenstorrent.com>
+On 07/10/2025 11:56, Joel Stanley wrote:
+> On Tue, 7 Oct 2025 at 11:50, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>> You should have at least serial or any other interface, otherwise I
+>> don't see how this can be used at this stage.
+> 
+> If you read the cover letter it explains how it is used:
 
-I got my email address wrong in three different ways. I meant to say:
 
-Reviewed-by: Joel Stanley <jms@oss.tenstorrent.com>
+We usually do not read cover letters, except when looking for
+changelog... Commits should stand on their own.
 
-I tested it on hardware with v6.17 too:
+> 
+>  > The HVC SBI console is sufficient for boot testing.
 
-[    0.000000] Booting Linux on hartid 3
-[    0.000000] Linux version
-6.17.0-tt-defconfig-jms-00062-g5874d2146391 (jms@donnager-debian)
-(riscv64-unknown-linux-gnu-gcc (g5a43bcc73) 16.0.0 20250923
-(experimental), GNU ld (GNU Binutils) 2.45.50.20250912) #76 SMP Tue
-Oct  7 12:54:40 ACDT 2025
-[    0.000000] Machine model: Tenstorrent Blackhole SoC PCIe card
+
+Best regards,
+Krzysztof
 
