@@ -1,128 +1,195 @@
-Return-Path: <devicetree+bounces-224228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96E39BC1D2A
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 16:56:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D04CBC1D3A
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 16:57:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4357E34D675
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 14:56:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9391188E41C
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 14:58:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3E0B2E229E;
-	Tue,  7 Oct 2025 14:56:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2EB82E264C;
+	Tue,  7 Oct 2025 14:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="a4fYmzd/"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="2aCWQWXq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f46.google.com (mail-qv1-f46.google.com [209.85.219.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D31970808
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 14:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFAD8213E7A;
+	Tue,  7 Oct 2025 14:57:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759848995; cv=none; b=TmbPaTMnRCPhzVsPoUxbhNHUoIQxqjSgUX8Lfqlefz35fXbsJg+UuqagHymKQHmbIwbIKgbizCNaSj40sur3AKpMLqqMpWrMUI741AEwmyoyMPpt81Ara/16eybm+lSfCExGrdRlHaYUEmcEw2uND8ljT0E4pEzXdt8ovsPc5JE=
+	t=1759849073; cv=none; b=bJVW3PN2gUaluBnm5R6KXmhX/EkY7OSzwWxlim33QTn9CWDyX54NgfPw7RiX8bOKD/i4rCJqmSL5e+aCcnMlvQONRfSiYESLw+mPYOtSXi7dZx86coJ0mDwxzl/ZrGZBZkZy4HW2Pmcg3UqB9uTX0xuszE/Hk/vYntbGpob+YjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759848995; c=relaxed/simple;
-	bh=ENDqyO+GBOTd7fOpBp9AzXSrQiEB5GrAN3MzmVDHS2g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uwDq4Ru3UsUypOuArhGuCSPWpnTyo+cyFZIQ+2ypdnAE6jIUlOCP5d6OrTjyUvZ2Khj33A8As/13ux6SmCgT5ctvAViRRSgSrxwiSGDk7a/K5g0rY3di7jJRUMWNYtjuXmRQOqBPo4FNCXSceyAmKgGDOhu43gmQqPihT/Wkw5I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=a4fYmzd/; arc=none smtp.client-ip=209.85.219.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f46.google.com with SMTP id 6a1803df08f44-78ea15d3489so56821026d6.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 07:56:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759848993; x=1760453793; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2GhP8a/ZKQuCgI57gL3YaLW/ubXrMPM4jolOkHKTB/I=;
-        b=a4fYmzd/tCLJ4KuR8CdghIDGboNkAYUZ6gkD5bHvmWWLdZYT2oXkzz7o6bhTGr/NG3
-         ZwYXsILqkh4mDVWTM0yeL7/Lla/eRazX28i6W929l3uY5pGfGYObneQrsx/Nb1M3cli3
-         7N8JKzD/2bUcrM2i4QSXEGq7rTAIlDE6FjgDtNdXKijadJjmqZr1+A4IPb8ANxWbMlqj
-         XPPH/74KpkkOD2avAC6EhLQSy5sMkxwp+rnhcMDQEYtArtHLwln2XVZNYd1HqVRpkmK0
-         odxmnCivwA4MomSyg1hvWrIW65zTG0ywIoHQ5R09ahg+rJYGNzbg90Y8F/0p+OFbWGHG
-         v8dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759848993; x=1760453793;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2GhP8a/ZKQuCgI57gL3YaLW/ubXrMPM4jolOkHKTB/I=;
-        b=NpPKDx1ygAsMra4Pk1NUcT7xRQd5bo6iKKcRAKDSvLiefqDmEsjmuPRJOMo2WFO2mk
-         3BBdbzzmuSTfnqDc6VvfDF28zR8jJ53o4KUfbyr8ec5+ePvRm6QAYBJZvJQt2K0RmumV
-         G2pGEEmkR6Q+sFf9p6RwA7ZZQolfMQtxAtlnSGUFJqXYzQyjOEWwPBv/7WHu0AtIdOTe
-         EoT7oxugl2Bgu8M615TRx//cyif+PJac6jp5P7djQDyrmPzMnZ73YhFVWLc5ri77NNED
-         CNEfkYAtrtcGuDFYlfcja54uRX9UObYATnLjHaJFMgFg88FJDK5Ir0Qv4L70IgupDMTO
-         iyRg==
-X-Forwarded-Encrypted: i=1; AJvYcCWp9IIywPYutPx8czE8zMkAA2FERfV0Vq2a4JvVOMlK+Id9xZoQHy2djpVhJei+++Vn+lffVRkOavH5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIQ+DwCR1JAnAhHUcdH8Sw8NP1n6vd/kejuzd/Zxvwhi8ksFJ3
-	z4nAt2XitED7HfeOX8YWvovz18TFKobN63g3m8CHFwAwXGhhg43yZQXDKzo9klGkop9D9HZVUjA
-	4nZaGef6BD7dwO9BQnfCcsXkAQveKmCA=
-X-Gm-Gg: ASbGncstfHlc5BXuB42ps0JWaojkvFZZdS/f6DIfghW+QHEW0uwDkdi2+z3qHuCReih
-	fCmavouMSxgBZmPAKeVe2VMxhFpsWykltg/rNdeJ5XrbBLuml4ZxiMR+c8wkgPE00zn3KtiNjFK
-	GKxlb9CVy31eIBig1lDHZKJBBdoTvj+SZu4CuM0q+FBd0glFsl1GM6zN9yuCx9dL5N1115OMD/S
-	3f6yO3fxFU/mqBR63rrfiCmIhmc+Sup
-X-Google-Smtp-Source: AGHT+IFrXi3dEsVh64oUPSZQJlGSlVMkDxHPAisOxAhnbSx/xiMMXQ/o7YtNW7v7WGp9iWQQ9a0t5dArstXdxIY4V5U=
-X-Received: by 2002:a05:6214:1cc2:b0:78d:5f57:e91a with SMTP id
- 6a1803df08f44-879dc860afcmr228051616d6.55.1759848992842; Tue, 07 Oct 2025
- 07:56:32 -0700 (PDT)
+	s=arc-20240116; t=1759849073; c=relaxed/simple;
+	bh=K3mj/WnPQsXS94Kvuj++ux/qTDZhBvfjAAZQA4Qi09g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ADWL2k+oOFQ4VddK2cTleakRlZM3LeIWuXwuddsVd7bYWSZ2iQQgwE6nMrOCyZ1pNyBCywg54milNBQaj1tp9jTPCklApRYXz4Tp9euwxuFTYMK7hRylWIvKgqA6zNenKMsYHtuX/zICeZUhukOKEYRSkR01E4IV/TQ/e4YDQhk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=2aCWQWXq; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+	In-Reply-To:References; bh=DziWPGL5BCnrXGXlnLfK6L+lOv9RgOdC/X+zoXjgv1Y=; b=2a
+	CWQWXq5F5H/isDImCeFmCXqqNSZQy0pPiAie+UizenttXDfEZphJ6/AjqiP5y9aybnQAstXk40jN6
+	roZnrOuqIbIiBDQdDyWLyHubInBwLNhZxJwIDxFzO1FU0Ahzg1lJM8fM7Friedv+USP0WzDIHsOKs
+	8N0XHuMRHcntHhI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1v6988-00ANQz-D4; Tue, 07 Oct 2025 16:57:32 +0200
+Date: Tue, 7 Oct 2025 16:57:32 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: jjm2473 <jjm2473@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	heiko@sntech.de, quentin.schulz@cherry.de,
+	kever.yang@rock-chips.com, naoki@radxa.com, honyuenkwun@gmail.com,
+	inindev@gmail.com, ivan8215145640@gmail.com,
+	neil.armstrong@linaro.org, mani@kernel.org, dsimic@manjaro.org,
+	pbrobinson@gmail.com, alchark@gmail.com, didi.debian@cknow.org,
+	jbx6244@gmail.com, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: add LinkEase EasePi R1
+Message-ID: <7e219aef-88a0-4184-9553-30dcbc8dbd79@lunn.ch>
+References: <20250929065714.27741-1-jjm2473@gmail.com>
+ <20250929065714.27741-4-jjm2473@gmail.com>
+ <d8ad476c-d0c7-4e97-9e76-540a539ffb52@lunn.ch>
+ <CAP_9mL4ofig-X-w9wx1A5D_eVXROo6AVFBSwp4mh=kj7webpPA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250929065714.27741-1-jjm2473@gmail.com> <20250929065714.27741-3-jjm2473@gmail.com>
- <5700676.tIAgqjz4sF@phil> <CAP_9mL6e8ekL14xycSfPmVSkL7pANLeyewWd=rjxbtMgMQXxxw@mail.gmail.com>
- <6a5b9e68-4f23-49b9-b744-e84fc28a96b0@lunn.ch>
-In-Reply-To: <6a5b9e68-4f23-49b9-b744-e84fc28a96b0@lunn.ch>
-From: jjm2473 <jjm2473@gmail.com>
-Date: Tue, 7 Oct 2025 22:56:21 +0800
-X-Gm-Features: AS18NWCQpv-6neUw-wCX8BxmrQo_hHgklBBZppkW0N1Nfv2AVai07jEpSNzQRn8
-Message-ID: <CAP_9mL5C1vKJq=bGM6DoK47vU4p-qvPeF-k6kztdnEp3y=kUhA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: arm: rockchip: Add LinkEase EasePi R1
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Heiko Stuebner <heiko@sntech.de>, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, quentin.schulz@cherry.de, kever.yang@rock-chips.com, 
-	naoki@radxa.com, honyuenkwun@gmail.com, inindev@gmail.com, 
-	ivan8215145640@gmail.com, neil.armstrong@linaro.org, mani@kernel.org, 
-	dsimic@manjaro.org, pbrobinson@gmail.com, alchark@gmail.com, 
-	didi.debian@cknow.org, jbx6244@gmail.com, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAP_9mL4ofig-X-w9wx1A5D_eVXROo6AVFBSwp4mh=kj7webpPA@mail.gmail.com>
 
-Andrew Lunn <andrew@lunn.ch> =E4=BA=8E2025=E5=B9=B410=E6=9C=886=E6=97=A5=E5=
-=91=A8=E4=B8=80 23:43=E5=86=99=E9=81=93=EF=BC=9A
->
-> On Tue, Sep 30, 2025 at 02:20:57AM +0800, jjm2473 wrote:
-> > Heiko Stuebner <heiko@sntech.de> =E4=BA=8E2025=E5=B9=B49=E6=9C=8829=E6=
-=97=A5=E5=91=A8=E4=B8=80 20:28=E5=86=99=E9=81=93=EF=BC=9A
-> > >
-> > > Am Montag, 29. September 2025, 08:57:13 Mitteleurop=C3=A4ische Sommer=
-zeit schrieb Liangbin Lian:
-> > > > LinkEase EasePi R1 is a high-performance mini router based on RK356=
-8.
-> > > >
-> > > > Signed-off-by: Liangbin Lian <jjm2473@gmail.com>
-> > >
-> > > In v1 this patch received an
-> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > >
-> > >
-> > >
+On Tue, Oct 07, 2025 at 10:32:26PM +0800, jjm2473 wrote:
+> Andrew Lunn <andrew@lunn.ch> 于2025年10月6日周一 23:51写道：
 > >
-> > In the next version, I will add 'Acked-by' to the commit message
-> > and then run `git format-patch` to avoid missing it.
->
-> Please consider using b4. It will automagically collect all these
-> reviewed-by, acked-by tags and all them to the patches for you.
->
->              Andrew
+> > > +&gmac0 {
+> > > +     phy-mode = "rgmii";
+> >
+> > Did i really miss this patch series in its earlier version, or did you
+> > ignore me?
+> >
+> > https://elixir.bootlin.com/linux/v6.15/source/Documentation/devicetree/bindings/net/ethernet-controller.yaml#L287
+> >
+> > > +     tx_delay = <0x3c>;
+> > > +     rx_delay = <0x2f>;
+> >
+> > Please change it to rgmii-id, and smaller tx/rx_delay values. Or show
+> > us the schematics which clearly show extra long clock lines.
+> >
+> > > +/* Micro SD card slot is not mounted */
+> > > +&sdmmc0 {
+> > > +     max-frequency = <150000000>;
+> > > +     no-sdio;
+> > > +     no-mmc;
+> > > +     bus-width = <4>;
+> > > +     cap-mmc-highspeed;
+> > > +     cap-sd-highspeed;
+> > > +     disable-wp;
+> > > +     pinctrl-names = "default";
+> > > +     pinctrl-0 = <&sdmmc0_bus4 &sdmmc0_clk &sdmmc0_cmd &sdmmc0_det>;
+> > > +     vmmc-supply = <&vcc3v3_sd>;
+> > > +     vqmmc-supply = <&vccio_sd>;
+> > > +     status = "disabled";
+> > > +};
+> > > +
+> > > +/* Wifi module is not mounted */
+> > > +&sdmmc2 {
+> >
+> > What do you mean by "not mounted"?
+> >
+> > Often you would say "not populated", to indicate the PCB has all the
+> > tracks in place, but the chip has simply not been soldered in place.
+> >
+> > Or is there a connector here, and nothing plugged into the connector?
+> >
+> >    Andrew
+> 
+> Andrew:
+>  Hello! I ran `./scripts/get_maintainer.pl
+> patches-v4/v4-0003-arm64-dts-rockchip-add-LinkEase-EasePi-R1.patch`
+> to get maintainer list, and got:
+> ```
+> Rob Herring <robh@kernel.org> (maintainer:OPEN FIRMWARE AND FLATTENED
+> DEVICE TREE BINDINGS)
+> Krzysztof Kozlowski <krzk+dt@kernel.org> (maintainer:OPEN FIRMWARE AND
+> FLATTENED DEVICE TREE BINDINGS,commit_signer:3/41=7%)
+> Conor Dooley <conor+dt@kernel.org> (maintainer:OPEN FIRMWARE AND
+> FLATTENED DEVICE TREE BINDINGS)
+> Heiko Stuebner <heiko@sntech.de> (maintainer:ARM/Rockchip SoC
+> support,commit_signer:43/41=100%,authored:4/41=10%,added_lines:12/117=10%,commit_signer:5/6=83%)
+> Quentin Schulz <quentin.schulz@cherry.de>
+> (commit_signer:10/41=24%,authored:8/41=20%,added_lines:63/117=54%)
+> Dragan Simic <dsimic@manjaro.org> (commit_signer:5/41=12%,commit_signer:1/6=17%)
+> FUKAUMI Naoki <naoki@radxa.com>
+> (commit_signer:3/41=7%,authored:3/41=7%,removed_lines:1/1=100%)
+> Peter Robinson <pbrobinson@gmail.com>
+> (added_lines:9/117=8%,commit_signer:1/6=17%,authored:1/6=17%)
+> Alexey Charkov <alchark@gmail.com> (added_lines:6/117=5%)
+> Diederik de Haas <didi.debian@cknow.org>
+> (commit_signer:4/6=67%,authored:3/6=50%)
+> Liangbin Lian <jjm2473@gmail.com> (commit_signer:1/6=17%,authored:1/6=17%)
+> Johan Jonker <jbx6244@gmail.com> (authored:1/6=17%)
+> devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+> DEVICE TREE BINDINGS)
+> linux-arm-kernel@lists.infradead.org (moderated list:ARM/Rockchip SoC support)
+> linux-rockchip@lists.infradead.org (open list:ARM/Rockchip SoC support)
+> linux-kernel@vger.kernel.org (open list)
+> ```
+> your email address is not listed above.
 
-Thanks for the tip!
+What i eventually found is that you posted v3 separately, and then
+threaded v4 to v2, which makes no sense.
+
+Please always start a new thread for each patchset.
+
+> > What do you mean by "not mounted"?
+> >
+> > Often you would say "not populated", to indicate the PCB has all the
+> > tracks in place, but the chip has simply not been soldered in place.
+> >
+> > Or is there a connector here, and nothing plugged into the connector?
+> 
+> The chip/slot has not been soldered. So here should be "not
+> populated", forgive my poor English.
+
+Thanks for the clarification. I'm not sure it is worth adding these DT
+properties. When a new board is produced which does populate these
+devices, you are going to need a new .dts file. So you can put the
+properties into that new file.
+
+> 
+> > Please change it to rgmii-id, and smaller tx/rx_delay values. Or show
+> > us the schematics which clearly show extra long clock lines.
+> 
+> In fact, the RTL8211F's RXDLY and TXDLY signals are both pulled low,
+> just like the Banana Pi BPI-R2 Pro, so the configuration is also referenced:
+> https://elixir.bootlin.com/linux/v6.15/source/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts#L237
+
+Pull low makes no difference to the 2ns RGMII delays.
+
+> The tx_delay and rx_delay values were obtained using Rockchip's
+> automatic scanning tool:
+> https://github.com/istoreos/istoreos/blob/54746dfdb5bd34d1f281cf41d1d1620d0c3ee686/target/linux/rockchip/files/drivers/net/ethernet/stmicro/stmmac/dwmac-rk-tool.c
+> https://gitlab.com/firefly-linux/docs/-/blob/rk356x/firefly/Common/GMAC/Rockchip_Developer_Guide_Linux_GMAC_RGMII_Delayline_EN.pdf
+> https://github.com/axlrose/rkdocs/blob/main/Common/GMAC/Rockchip_Developer_Guide_Linux_GMAC_RGMII_Delayline_EN.pdf
+
+Vendors get things wrong, including this. 'rgmii' means the PCB adds
+the 2ns delay. Nearly every Rockchip board follows Rockchip broken
+vendor recommendations, and then i come along, point out how it is
+wrong, and ask for it to be fixed, before being merged to Mainline.
+
+	Andrew
 
