@@ -1,216 +1,184 @@
-Return-Path: <devicetree+bounces-224239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74332BC1FA7
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 17:49:01 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0CBBBC1FB9
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 17:49:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CF743BFEFF
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 15:49:00 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E9C2E34F97A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 15:49:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 491C0214A64;
-	Tue,  7 Oct 2025 15:48:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13AE027713;
+	Tue,  7 Oct 2025 15:49:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZFInhnsO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B00E27713;
-	Tue,  7 Oct 2025 15:48:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62F12DE200
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 15:48:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759852136; cv=none; b=sRdlNqEjjnEz+4EJkNrxULwzhjSM1qwtjjV4MtyN+ROd6ld6OFaGQna0BuReazJhHvLOy1tjqACsKKttzT8CQ+rtNih1ly7y60CgdwY9C+zN+6Ey5yVlOcJvbmIFCI9muoYsfbm9SIqigFrioQ6dmQqBq5fM0xi0AoPa0O9MyZU=
+	t=1759852140; cv=none; b=CIDZO+G/Fre7d51157bpJ0AwqOxFX5LUexUI/5/N30BhQYOwJOiKJa2Pkfuyb/NW5qU5wwUQecDyJJAbvYS45OGlTEAJU9PIMm0wB3lMXALiD2xIxDJzteviX1DUHX0zyvWhDPeCT1uWFa0/DCaPZkD0mFdDuSQ1q7raoV4Ejd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759852136; c=relaxed/simple;
-	bh=14zGdsZU2iAqyiMq4YrRUm3M/uNB5Pt47SJQCBr51tI=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kaxJY3Eb3y5SXfNRuYvxXIY7aPSYS0XwGIpcr7I/UX6AVOzpzq21vqywrIgPzZ4W37zDkUC0AAF1owKH4ILLoVbaRMO1ZNgdwiNLO7fjyQj9bYFNlZ46fQuS2BEvpOxBuuheSMom45rA71OtVBYdL+wYzerpi2EJeTgzgq/sMdU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4ch0qJ1ttyz6L4sX;
-	Tue,  7 Oct 2025 23:46:20 +0800 (CST)
-Received: from dubpeml100005.china.huawei.com (unknown [7.214.146.113])
-	by mail.maildlp.com (Postfix) with ESMTPS id 8D8E11402F7;
-	Tue,  7 Oct 2025 23:48:50 +0800 (CST)
-Received: from localhost (10.203.177.15) by dubpeml100005.china.huawei.com
- (7.214.146.113) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.11; Tue, 7 Oct
- 2025 16:48:49 +0100
-Date: Tue, 7 Oct 2025 16:48:48 +0100
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Eddie James <eajames@linux.ibm.com>
-CC: <linux-hwmon@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-aspeed@lists.ozlabs.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <andrew@codeconstruct.com.au>, <joel@jms.id.au>,
-	<linux@roeck-us.net>, <chanh@os.amperecomputing.com>, <jic23@kernel.org>,
-	<dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>
-Subject: Re: [PATCH v7 RESEND 3/7] dt-bindings: iio: Add Infineon DPS310
- sensor documentation
-Message-ID: <20251007164848.00004d96@huawei.com>
-In-Reply-To: <8ab87732-71e1-4101-9aed-14f68c27fea1@linux.ibm.com>
-References: <20251001144441.310950-1-eajames@linux.ibm.com>
-	<20251001144441.310950-4-eajames@linux.ibm.com>
-	<20251003150102.00007dae@huawei.com>
-	<8ab87732-71e1-4101-9aed-14f68c27fea1@linux.ibm.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1759852140; c=relaxed/simple;
+	bh=idsLDC2Nv76ap5anKli8m472glzZKQst8172esv0100=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=txsCk6ylaSNfQpcgLiDuGXDtEnemVMhyGHrBsLv7zlNi4KzF8SbowUbTG10aUnZi444EcFcC/EBn7jhUrhiFB50mFOkmq/Wd4nmMN8jnIxSGgH5uZVUDQwXYiYvfERY5sHd+utdgXia5PmonTUouPdhX871Q5NgqJXaPhI8kU3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZFInhnsO; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-41174604d88so3468232f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 08:48:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759852136; x=1760456936; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ujqZTrSIRL5Br3jVEaXKCPK1WTB5adLLumme0kdn1es=;
+        b=ZFInhnsO9qhM3O/HHfNTgrDRYv8gVabeM8l4nUyFUgIWCzqtulABXukRNPi7k9GtEN
+         ducrv5yeGokrvoM2TaIWAepIhkm2QT6AEDJAoxXEQ9lQIg7EtR3gIfsljhuFn/uLS0Qp
+         wfiQaREyKXSRwhPMs23C23ICE5H2zT+JBX2zlgxHwtA6eDinW/ujEX6zbX/l2Wv7gPNA
+         7SV4joVUFwhunB1aP+iD52MfiNvoKAYRn+N5tCfzoGxW5QHQ74B1ADGVsNhnl+FIvsnp
+         cIEtr/+QIBtp9cf0Vd+JQLJ5EL0qJMZKSW+VGJZDZHXhSl8GJ9W7DF1KaRkA9Dc4XKNM
+         OcLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759852136; x=1760456936;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ujqZTrSIRL5Br3jVEaXKCPK1WTB5adLLumme0kdn1es=;
+        b=EIbyqv60vVXFq12T19U8GFpAYVV7HPFGQB/S8Ugw++o/mQ0Flf6Y/XE0LQ4YAyxa1S
+         t/qI74GmuRqPaxQyVqFJ+aIlILjEwD7EqrGTWW/LYPJENYLoK00BlwmU0IGrWiBDtzul
+         jm2Uety3pAEaHvwZk3nBu7AJEjz87YQE5vRNpDgbATWxVlfaxdY6HtWVHIKcpV1S+jvw
+         nWUTryQyWSXlA7reQIZqqwioah9sKhFtL1+kN8FXtqiv7HlSFsLXYxv4KNI9mvbfYV7e
+         mj1yb8roR/19859N95pYPgrOMYpTx376JI+sIkZuQEcpvtLZ1wAWw7FCy7jTx20+uRg4
+         uxqQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWSEmHFW38GqPRGXQ5iEGRrJJODNfQPO29a2CBXL52jwmMOQxKBPvqIe86064Obxon4pmjDSLHQu8Kk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx+as/MtdB2ju066MR9rNQNgJrcMhPfGRuW5ezMuCjHAO+TUd2f
+	1Kdk2+4C0x7+DdfFEWmif0Tdv7l27IXRWWjSuDurqRzcD1+h3T4hOZW4tflO2F8+a7o=
+X-Gm-Gg: ASbGnctVZouRWTRPEDqWoQaOAT3zL2VZEQWCngGeeC4rKwFwCJnu69bYY2+V0c9HSeT
+	mf8ys5l7grlKLfg5Y1+vb9eHW5XJ5GBJ6eydVojsFWkPh0YhccLN1gsBMjgRfTwnnK5B8QkQb/0
+	GJcl72v1skaGJM+BcgqsQ1z5JbPnLFZH3/flE1ukYYSJx9smXjCBNDxv/lTVdhkBHV1L6l4aB53
+	qR1VTTNyGQBn151j+HDojw8x7Uny8ciXll8yc7r8sZkq/2aqjEZzvgAIcje7LIoE1kM18LzAsH5
+	joo2+XuPVI5AMP0HBOO+nEFuPZCtZQ9SqfVxzN5asrvpHCzPpO0E4wMfAqBJ6wGq6PgkY+/CtBg
+	7+8bnh3ECQh+tO6xeK23zM32nZhBklpUViGIFKSq+vdIb4ksfpqN2r4oOmopE+daloJ0PwccANX
+	zCA9Kyvs0qqxFIHSZQoKxuQJe+hkg=
+X-Google-Smtp-Source: AGHT+IGlCt3WNje/lItmY3GQsKoJPUs6M1EHh44EgkG7EO1ZdmP5CqynBnMwr5jKEwAuFYo6Szge1Q==
+X-Received: by 2002:a05:6000:1a8b:b0:3fb:6f9d:2704 with SMTP id ffacd0b85a97d-42567174a0cmr10730399f8f.28.1759852136117;
+        Tue, 07 Oct 2025 08:48:56 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:bd88:41d2:33ce:f74a? ([2a01:e0a:3d9:2080:bd88:41d2:33ce:f74a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8f0170sm26770403f8f.49.2025.10.07.08.48.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Oct 2025 08:48:55 -0700 (PDT)
+Message-ID: <a5dfaf2a-d2c8-468a-9bbe-38d11b1214a8@linaro.org>
+Date: Tue, 7 Oct 2025 17:48:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml100012.china.huawei.com (7.191.174.184) To
- dubpeml100005.china.huawei.com (7.214.146.113)
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH RFC 3/6] ASoC: soc: qcom: sc8280xp: add support for I2S
+ clocks
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251006-topic-sm8x50-next-hdk-i2s-v1-0-184b15a87e0a@linaro.org>
+ <20251006-topic-sm8x50-next-hdk-i2s-v1-3-184b15a87e0a@linaro.org>
+ <6492e444-4196-4900-a741-a74a8c506a6d@kernel.org>
+ <1eab5200-1292-4d39-bdf8-0c5084cfaab9@linaro.org>
+ <f15ea346-43f7-49bc-bd5e-47510a48892d@oss.qualcomm.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <f15ea346-43f7-49bc-bd5e-47510a48892d@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Mon, 6 Oct 2025 08:44:55 -0500
-Eddie James <eajames@linux.ibm.com> wrote:
+On 10/7/25 12:23, Konrad Dybcio wrote:
+> On 10/7/25 9:02 AM, Neil Armstrong wrote:
+>> On 10/7/25 00:21, Srinivas Kandagatla wrote:
+>>>
+>>>
+>>> On 10/6/25 7:37 PM, Neil Armstrong wrote:
+>>>> Add support for getting the I2S clocks used for the MI2S
+>>>> interfaces, and enable/disable the clocks on the PCM
+>>>> startup and shutdown card callbacks.
+>>>>
+>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>> ---
+> 
+> [...]
+> 
+>>>> +static int sc8280xp_snd_startup(struct snd_pcm_substream *substream)
+>>>> +{
+>>>> +    unsigned int codec_dai_fmt = SND_SOC_DAIFMT_BC_FC | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_I2S;
+>>>> +    struct snd_soc_pcm_runtime *rtd = substream->private_data;
+>>>> +    struct sc8280xp_snd_data *pdata = snd_soc_card_get_drvdata(rtd->card);
+>>>> +    struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
+>>>> +    struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
+>>>> +    int index;
+>>>> +
+>>>> +    switch (cpu_dai->id) {
+>>>> +    case PRIMARY_MI2S_RX...QUATERNARY_MI2S_TX:
+>>>> +    case QUINARY_MI2S_RX...QUINARY_MI2S_TX:
+>>>> +        index = sc8280xp_snd_i2s_index(cpu_dai);
+>>>
+>>> What is the mclk and bitclk rate set here, we can not rely on the
+>>> default rate.
+>>
+>> The default rates are set in DT:
+>> +        assigned-clocks = <&q6prmcc LPASS_CLK_ID_PRI_MI2S_IBIT LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+>> +                  <&q6prmcc LPASS_CLK_ID_MCLK_1 LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+>> +        assigned-clock-rates = <1536000>,
+>> +                       <24576000>;
+> 
+> Is there a way to infer these rates based on the DT audio
+> connection graph?
 
-> On 10/3/25 9:01 AM, Jonathan Cameron wrote:
-> > On Wed,  1 Oct 2025 09:44:37 -0500
-> > Eddie James <eajames@linux.ibm.com> wrote:
-> > =20
-> >> The DPS310 is a barometric pressure and temperature sensor with
-> >> an I2C interface. Remove it from trivial-devices.yaml and add its
-> >> own documentation. =20
-> > Hi Eddie,
-> >
-> > Why?  I guess you need the #io-channel-cells which trivial devices
-> > doesn't allow because you have a consumer driver? =20
->=20
->=20
-> Correct.
->=20
->=20
-> >
-> > Obviously the binding patch shouldn't mention that, but it could call
-> > out that there can be such consumers. =20
->=20
->=20
-> OK, I can add that.
->=20
->=20
-> >
-> > I'd also expect to see some supplies even if the driver doesn't yet
-> > explicitly handle them. =20
->=20
->=20
-> You mean in the example section? Sure. I'll send a patch separately=20
-> since the rest is merged
+Good question, it's not done for pre-audioreach. Let me investigate.
 
-Supplies need listing as actual properties (+ in the example)
-=46rom a binding point of view they are 'required' if the power needs
-to be turned on for the chip to work.  On actual DT files they might
-not be there if a fixed supply is in use and someone didn't other providing
-it. In those cases the regulator code provides a fake regulator to make
-everything work.
+Neil
 
->=20
->=20
-> Thanks,
->=20
-> Eddie
->=20
->=20
-> >
-> > Jonathan
-> > =20
-> >> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> >> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> >> ---
-> >>   .../iio/pressure/infineon,dps310.yaml         | 44 +++++++++++++++++=
-++
-> >>   .../devicetree/bindings/trivial-devices.yaml  |  2 -
-> >>   MAINTAINERS                                   |  1 +
-> >>   3 files changed, 45 insertions(+), 2 deletions(-)
-> >>   create mode 100644 Documentation/devicetree/bindings/iio/pressure/in=
-fineon,dps310.yaml
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/iio/pressure/infineon,d=
-ps310.yaml b/Documentation/devicetree/bindings/iio/pressure/infineon,dps310=
-.yaml
-> >> new file mode 100644
-> >> index 0000000000000..7c0782e2a821b
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/iio/pressure/infineon,dps310.y=
-aml
-> >> @@ -0,0 +1,44 @@
-> >> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/iio/pressure/infineon,dps310.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: Infineon DPS310 barometric pressure and temperature sensor
-> >> +
-> >> +maintainers:
-> >> +  - Eddie James <eajames@linux.ibm.com>
-> >> +
-> >> +description:
-> >> +  The DPS310 is a barometric pressure and temperature sensor with an =
-I2C
-> >> +  interface.
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    enum:
-> >> +      - infineon,dps310
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  "#io-channel-cells":
-> >> +    const: 0
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +  - reg
-> >> +
-> >> +additionalProperties: false
-> >> +
-> >> +examples:
-> >> +  - |
-> >> +    i2c {
-> >> +        #address-cells =3D <1>;
-> >> +        #size-cells =3D <0>;
-> >> +
-> >> +        pressure-sensor@76 {
-> >> +          compatible =3D "infineon,dps310";
-> >> +          reg =3D <0x76>;
-> >> +          #io-channel-cells =3D <0>;
-> >> +        };
-> >> +    };
-> >> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/=
-Documentation/devicetree/bindings/trivial-devices.yaml
-> >> index 7609acaa752d5..a72b7fabc7034 100644
-> >> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> >> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> >> @@ -127,8 +127,6 @@ properties:
-> >>             - ibm,cffps2
-> >>               # IBM On-Chip Controller hwmon device
-> >>             - ibm,p8-occ-hwmon
-> >> -            # Infineon barometric pressure and temperature sensor
-> >> -          - infineon,dps310
-> >>               # Infineon IR36021 digital POL buck controller
-> >>             - infineon,ir36021
-> >>               # Infineon IRPS5401 Voltage Regulator (PMIC)
-> >> diff --git a/MAINTAINERS b/MAINTAINERS
-> >> index 0c8281ea4cc64..92b9854a0e07d 100644
-> >> --- a/MAINTAINERS
-> >> +++ b/MAINTAINERS
-> >> @@ -12191,6 +12191,7 @@ INFINEON DPS310 Driver
-> >>   M:	Eddie James <eajames@linux.ibm.com>
-> >>   L:	linux-iio@vger.kernel.org
-> >>   S:	Maintained
-> >> +F:	Documentation/devicetree/bindings/iio/pressure/infineon,dps310.yaml
-> >>   F:	drivers/iio/pressure/dps310.c
-> >>  =20
-> >>   INFINEON PEB2466 ASoC CODEC =20
-> > =20
+> 
+> Konrad
 
 
