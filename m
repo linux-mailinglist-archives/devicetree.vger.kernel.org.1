@@ -1,149 +1,183 @@
-Return-Path: <devicetree+bounces-224027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E5F9BC0593
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 08:35:40 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C58CBC05CC
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 08:46:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DA0D3A671A
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 06:35:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 865064F1260
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 06:46:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 354CF2248B8;
-	Tue,  7 Oct 2025 06:35:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09BD22264CC;
+	Tue,  7 Oct 2025 06:46:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kpDUhvjH"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="l+3F2tAj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C820223DE7;
-	Tue,  7 Oct 2025 06:35:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63E0321FF45;
+	Tue,  7 Oct 2025 06:46:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759818935; cv=none; b=oeISjioq0J7eXdPHBkpW+H7UoTYSg0jNkaFQ6npMHqERoWvMTsXsNkyt4c3XyEkU5kpcFFKDwhrq6mJChDmF8BZryAKAvkzbgVW3xkuQ8L0fcLuwBe97fl6C3NwXy5EbCKeAX/yDmmTbLE9yjEwsCqCj8ycfs1SqU4vNRra2k+0=
+	t=1759819583; cv=none; b=P+gL7fW4St+W/ccJFn0x5qxzmnhXgsT4q0pamv/R7fYc0fZ78ILI3Zu3qwZpABsRbSWlXw71f0NXewlUkjeT5U5bey9rrYPQODZOpVclQB4uhwGCok2okG6hTLIek8mMdg6wthA5IbWAYZj5O7ag5KcHgpif1k4WZk33V4QErT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759818935; c=relaxed/simple;
-	bh=+rs4B8RYkOruOw+0klo7abhTG1Z6c0No+NhmE2DC0ak=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FCMZkdkoGFlvx/VOWzaNjSdJdX1WAq1CpfvER98NFLGIhoE9L7AFVByZkCTmb30HZThrxPWQdPw5rW7jwqRh5FeQjni3xuUKh2Yz+RDjTBTbFpa8nxMPJtYJc39TdrVXfeTm6OCI2UC6cQovh6oQUyez+6P0iJw5ieUyKqrwb7s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kpDUhvjH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6BDBC4CEF1;
-	Tue,  7 Oct 2025 06:35:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759818934;
-	bh=+rs4B8RYkOruOw+0klo7abhTG1Z6c0No+NhmE2DC0ak=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kpDUhvjHumwQsb767/AQ/+7r6OdbuAcSWH1zwrrMsopcu6gYjJ43z2I45JeEOvHcv
-	 2IrGXYHvRiEuggzZtxtQm9VzMfEXsFR2Ykh16Zf8uZJz4D3+DjXGc+nRnpl80uF6ke
-	 OYUEJPz07RcvdbQZct8G6TtqmYPfN4CCK0FBanDiKxUsdXNBbEyx+vMUW42T3D6pV7
-	 lslCSrVUIC3tYkq3Z/4mEHRchrtr+JwZeDcYeChjcs9zl4ey1GODPXxEBoZMF2Y+fJ
-	 S2+SrKpMRN8clRTrT/fKbYvUru2Y/mySuCDUpcRxCC+jD7MgmX4JTuOiSrS32Mx1DC
-	 Q5pkyAEe3pUfQ==
-Message-ID: <30101fb9-e2eb-4050-896a-7be629ced44d@kernel.org>
-Date: Tue, 7 Oct 2025 15:35:28 +0900
+	s=arc-20240116; t=1759819583; c=relaxed/simple;
+	bh=8MXcsHwutcf+qsZ/rNq6dfPMRguOGwRckvbM3PtJDW4=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=J6ydvIAesgSy0dwFAA0Vbq9NGrQp9diOtbDap4dk02OHogZL3I2XzDPwyOXtIAJOkfcKEYrqly/VTjj4rCGAZSxXLqd8PDax0VP0KoNGkvFoWS/7HTNr3HLhx0fBXWZB/f7ybCprz/VmZ2mkJwMt9md2Vz8/N2MLkZYLXjqevns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=l+3F2tAj; arc=none smtp.client-ip=142.132.176.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id EECCF409F9;
+	Tue,  7 Oct 2025 08:39:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
+	t=1759819170; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=DNAXiQNHZKvLPmuSvHGH4xfiW4QLvC5MPDpiztpmQtc=;
+	b=l+3F2tAjUyIOhktb/XyLvEnDUXX2dOrNO/bgw39WI2UIIax0uB4BvAQRK8p0JNEekq55gj
+	A8tyodsL5OdWkTXLCMkne4mq1+V0HhnwVQJlXbL52CfEfLq3xFmziVM7Qjvpkz2BXqtz2v
+	4UcbUmqyk7gdRdRfFYdsYbDqCeq1Q4WaJ5d6YVKyTcPGnPYdXPI2sNVg2dDQ/S9HRXCmGr
+	JdHqffjocrzlvo1F2j0iLaoWltxVKgON9Mmd0nYUVd0XQ2e4zFPBbhosWOLi0Cl6jXOmRd
+	9wELyLkk0duy1rwEenQ2a1BC8ITrgiwXbpb87Z/ODqSHfTsbPrjO1slgS2YYuA==
+From: "Dragan Simic" <dsimic@manjaro.org>
+In-Reply-To: <37f2603e-8c51-4f92-a7af-0e60cd577004@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+References: <20250921-ppp_light_accel_mag_vol-down-v3-0-7af6651f77e4@gmail.com>
+ <53eabe34a310ea9c74315fa09a604e4a@manjaro.org>
+ <b01ed528-8b29-4a6a-bdff-88f2e3b5dd2e@gmail.com>
+ <115da845d9161e6ecfa67cf189b84aa8@manjaro.org> <37f2603e-8c51-4f92-a7af-0e60cd577004@gmail.com>
+Date: Tue, 07 Oct 2025 08:39:29 +0200
+Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, "Ondrej Jirman" <megi@xff.cz>, =?utf-8?q?Leonardo_G=2E_Trombetta?= <lgtrombetta@gmx.com>
+To: "Rudraksha Gupta" <guptarud@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: counter: Add new ti,omap-dmtimer-cap
- compatible
-To: Gokul Praveen <g-praveen@ti.com>, j-keerthy@ti.com, vigneshr@ti.com,
- wbg@kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: u-kumar1@ti.com, n-francis@ti.com
-References: <20250909080042.36127-1-g-praveen@ti.com>
- <20250909080042.36127-2-g-praveen@ti.com>
- <6faff5b1-65b1-41ee-aba8-8c06a2bc6f58@kernel.org>
- <9653740a-44fe-46bb-92c8-f7fc26cbe5ee@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <9653740a-44fe-46bb-92c8-f7fc26cbe5ee@ti.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Message-ID: <eae79f9b-7127-6808-6a46-57ebc079ca50@manjaro.org>
+Subject: =?utf-8?q?Re=3A?= [PATCH v3 0/5] Upstreaming Pinephone Pro Patches
+User-Agent: SOGoMail 5.12.3
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: None
 
-On 26/09/2025 18:06, Gokul Praveen wrote:
->>
->>> +
->>> +  ti,timers:
->>> +    description: Timer instance phandle for the Capture
->>
->> So the only resource is phandle? That's completely fake device then. NAK.
->>
-> 
-> 
-> The OMAP Timer IP can operate in 3 modes: Timer, PWM mode or capture
-> (mutually exclusive).
-> The timer/ti,timer-dm.yaml file describes the timer mode of operation.
-> It encapsulates base IP block and reg property is also part the same
-> binding.
-> 
-> This node represents the capture mode with phandle reference to the
-> timer DT node. This is modeled all the same lines as how PWM
-> functionality is implemented in pwm/ti,omap-dmtimer-pwm.yaml
+Hello Rudraksha,
 
-Different modes do not have their own device nodes. It is still one
-device, so one device node.
+On Sunday, October 05, 2025 06:55 CEST, Rudraksha Gupta <guptarud@gmail=
+.com> wrote:
+> > Thanks for improving the patch descriptions in the v4 of this serie=
+s.
+> > I just went quickly through the v4 and it looks much better.
+> >
+> > It could be said that the new patch descriptions are now a bit too
+> > verbose, in the sense that the test procedures and their results co=
+uld
+> > be summed up a bit better in prose, instead of providing the "raw"
+> > inputs and outputs.=C2=A0 However, it's still better to have those,=
+ than
+> > not to have anything.=C2=A0 Writing good prose is a skill that usua=
+lly
+> > requires learning and practice.
+>=20
+> Awesome! I was hoping that others would comment on the testing I've d=
+one=20
+> (especially for the accelerometer and magnetometer patches) as I can'=
+t=20
+> tell if userspace is wrong or if my testing/conclusion is wrong. Mobi=
+le=20
+> Linux is very early stages at the moment, and I suspect the Pinephone=20
+> and Pinephone Pro were used as reference devices with Megi's downstre=
+am=20
+> kernel. Wrong mount matrices in the downstream kernel might be affect=
+ing=20
+> userspace. This means that with the corrected mount matrices in this=20
+> patch series, userspace is slightly broken (eg. since I fixed the=20
+> accelerometer, the screen in Phosh and KDE Plasma are upside down. I=20
+> suspect KDE's Kompass and Leonardo's compass app might be the same if=20
+> I'm changing the mount matrix for the magnetometer). This is why I=20
+> decided to showcase the raw values in my testing. If my testing is=20
+> incorrect, please feel free to let me know.
+>=20
+> I think I will leave my testing in the commits itself this time. If t=
+he=20
+> mount matrices are correct based on my testing, it will probably be=20
+> helpful in the future in identifying why downstream is slightly broke=
+n.
 
-> 
-> Now, if this needs to change, please suggest alternate.
-> 
-> One solution is perhaps to add a new property to ti,timer-dm.yaml itself
-> to indicate the mode of IP?
+I'll prepare and send to the mailing list a couple of patches that
+will also adjust the mount-matrix values, so you might want to have
+a look at those patch descriptions I'll prepare, as an inspiration
+how could such information be presented in prose.
 
-Not sure, depends what this really is and how it is used. I can also
-imagine that consumer defines the mod of operation.
+I'll also review your patches, to make sure that the mount-matrix
+values are correct, hopefully around the end of this week, or next
+week.  I'm having some issues with email, which I must resolve first.
+(I'm actually hoping that this message won't come through as HTML,
+as a result of those issues).
 
-Or mode of operation could be even configured runtime, thus not suitable
-for DT at all.
+> > You haven't done anything technically wrong, but the way you submit=
+ted
+> > the v2 and v3 made them feel a bit like you picked those patches fr=
+om
+> > some random place and submitted them to the mailing list without re=
+ally
+> > understanding the subject matter.=C2=A0 In other words, it's the co=
+ntributor's
+> > job to convince everyone else that the submitted patches are fine t=
+o
+> > become accepted, and the v2 and v3 simply lacked that.
+>=20
+> That's fair. I was under the assumption I had to keep the patches mos=
+tly=20
+> in its original form.
+>=20
+> > I wonder how would some forge prevent "spamming"?=C2=A0 It isn't ab=
+out the
+> > possible "spamming", but about the act of submitting different vers=
+ions,
+> > which would be present regardless of the way they'd be submitted, a=
+nd
+> > the reviewers would need to be aware (i.e. "spammed") of them anywa=
+y.
+>=20
+> At least with Gitlab & Codeberg, a lot of the notifications can be mu=
+ted=20
+> (I believe updates to pull requests is one of them) and pipelines can=
+ be=20
+> created to ensure that formatting is correct and that the proper sub=20
+> maintainers are notified automagically. In my opinion, b4 just brings=20
+> some of the forge's functionalities into an email based workflow, but=20
+> will have to fight it's own problems such as:=20
+> https://social.kernel.org/notice/AypvdTWyAs5km0Gc3k. I don't mean to=20
+> detract from it; it is very commendable what Konstantin Ryabitsev is =
+doing.
 
-Best regards,
-Krzysztof
+When it comes to submitting patches and their different versions,
+reviewers have to be notified about each and every version, which
+means that muting the notifications or ignoring some patch versions
+simply isn't an option.  Even fully ignoring the patches that one
+isn't interested in isn't a great option, despite sounding good,
+because leaving out such parts makes one less insightful about
+the subsystem they're contributing to.
+
+Of course, the associated level of interest depends on one being
+a "drive-by" contributor or being in for the long term, but for
+the former different options exist to help with their periodic
+contributions, such as the b4 or GitGitGadget.
+
+You're right that the automagic features of forges may help with
+setting up the lists of recipients and whatnot, but that's just
+offloading of the complexity elsewhere, in hope that the automagic
+part will work flawlessly, which is hardly the case with highly
+complex projects, such as the Linux kernel. In other words, the
+mailing-list based workflow does have its deficiencies, but it
+leaves the contributors in full control, without relying on some
+automagic things to do everything perfectly instead.
+
+When it comes to formatting and whatnot, I'm sure you know that
+there's already scripts/checkpatch.pl.
+
 
