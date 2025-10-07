@@ -1,88 +1,48 @@
-Return-Path: <devicetree+bounces-224215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224217-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9984BC1A89
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 16:11:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98303BC1AE1
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 16:18:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C32F44E1B6B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 14:11:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CA353B8104
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 14:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BE5A2E1758;
-	Tue,  7 Oct 2025 14:11:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A5FE1EA7C9;
+	Tue,  7 Oct 2025 14:18:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RCNjlgwf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VLEBgklu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC95219755B
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 14:11:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AAEE374EA;
+	Tue,  7 Oct 2025 14:18:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759846286; cv=none; b=nDFr3sKeKVbYhlDDqezACtPkJKeXSZQLBN6pad8sYEwYUHITxne5cM/q/D2F83h1xbN6ezVmYQm80Uu+w9qRQNhlkeedKDqJVlnG3DcvhTkIqbR+AsVwnIblZXoWh8rE2EKJbz9ZmsZU4oDHcAKgBIpbawfpk2jdpHElOMm2Eko=
+	t=1759846696; cv=none; b=fM4fmnBXB1kk7qUBPZy2AAhW4+plB8BOhmhQQE4LMgApOX5/RGsR8WsdS39z7wQEgnjVLjD5fGsftJNUlmgFLwOBXWb0g9+nH7Vyc6f4ckYpNTLehmkInxZQnCU2Gl8ItFgwpHUht9iGmniHSrBPQNoO9AN+dXrXlBqSol5n2Y8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759846286; c=relaxed/simple;
-	bh=5wQfQwqYI2fZ4w1KXVMOyK6TI0qttDsdvBxjxVjo+ns=;
+	s=arc-20240116; t=1759846696; c=relaxed/simple;
+	bh=G/NshkMJ1GZbtO3UIa9SqYi+nufWNB4mZlO3zufyam0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sDK2lAUJDolRlsVsSnDhNYjD1ASYKSuzE+f8awqDR+XuhD9gthSJrEiElLzQ1A+6dq/g3GiBsVvOETYFSjHbMJ4sHqrflZvRf/bxhi8o32sVpXp7Zp/sqJU75Sz4JipVJtI/DlULgdSI4LWnkPJIpHRXV+EiorjyM9Nzs8OVwEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RCNjlgwf; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 597BoJBF017633
-	for <devicetree@vger.kernel.org>; Tue, 7 Oct 2025 14:11:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ktSaSroeEeu0/UwzC26whCkkXqXo9Ky2cJhuhNttXgY=; b=RCNjlgwfOop7gG5d
-	arwVlWqSWExlXBE6AuPhk+OBM/Fi3R2S05wbdkdR11TQlbTGttahPn4eJx5RVywe
-	rQ0LKj+G0QTwoIEYLDRU+sTorcqIZhyO1GDBKiHzUSH7kXgW2rlVhuK8pLN6oQZi
-	4VRmdeEKvYRlue5bjWQqHZ1VNxjmx7nfF4AFYRCjSl2UN++KPN8YXZaP1N0IBU1V
-	TQRvLb98F3O3c6SBcwn0UsAeJylMkjWshN8YO/S410q8JUv8Qp10ihZUAz9j5JQ8
-	M404ZUaj6jOK4Hj2B062p6BD89kZ/9PESg0Rw35r/tT+0JqO5hYG4WKMwqAcADu4
-	0sNCAA==
-Received: from mail-pf1-f200.google.com (mail-pf1-f200.google.com [209.85.210.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49jvrhq8cw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 14:11:23 +0000 (GMT)
-Received: by mail-pf1-f200.google.com with SMTP id d2e1a72fcca58-7810e5a22f3so10745298b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 07:11:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759846283; x=1760451083;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ktSaSroeEeu0/UwzC26whCkkXqXo9Ky2cJhuhNttXgY=;
-        b=LJtf2EJn6dybWCPJc68yxVr4wtR4GO3Y8pOcTLhmcsPQv49sumNmq4LZfUoNRZgf4f
-         MMJ3bnM5IYOVGHtBTa1oZ1JnYBYk2WYZZeK4pjIidMe/wZfLePwXNS8F/GC1oIfLkYCT
-         Wt8PGicf/8zq4ICAnUTexXvJCE8vnTGdAAtxapzr2Bl+73Rh4Td3vSPYP2wmowEBfuu8
-         AOd+4Hbr9+VzcdWt742cq3O2JywUIFLnAftC+/fXevTCEFn6MHiVKwkKtgz6cFpKGbyG
-         j9BXQ976ms6F7oUvfVBiJXrjRin/46NsIL4idjyfpdgcFpdtOlA/f+IBiHkvMMQTg1p/
-         CNtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXKif9iDmNX65fNYDq0OpPHrPhmzdRAOTBIBOnRFuOkN/6tNjDuJQu/jHvnZKpsmAy1lbtmVypIdHdf@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBlBxbrFtcMGlBYTnFspVwhpr3xFiQ+9yekF5re65swck3bYu/
-	TcyV+qx6qGRgDgCVHlDhB1GBF6cnfnkdvdYHH/f6+nwicINAM76h+RPNrT83JEWTD7++Acz23bs
-	jzVHqX4PPGVJ971/td0WnYT8zrrXxUjI23L2Ut7IXs5yZ4IJQDgpz9A9AHNG7sB99
-X-Gm-Gg: ASbGncuFXZGjUGIjbb6Fj7qkRDLwuju1Pv1aHyOgHcMnAUXEGVY2kMvC4vcJkrMZQma
-	kR3pRLOauPCTs3Ltcy29OKgsOcBkUmUEMOX14PSMn43Xyan0Dehp0vDfzfSOisjjYEXtz9ik1HU
-	3eREE0bHYdlLgKgQaKKSq+JjUXaWf5hC4GP6aU0RH0QgnQo/BP666Xzh1gBYsEx+FyEgiBk2cZk
-	k8T76Mn1Lr9ygJPvDJr07iufUaDDdFANnxWlI3AzCd+EnYxBHK/LWYkGvYFHsH+0oNyCDz+YDoo
-	6ERo+o2e7WxEyKknaw5KR2RLKN+0LoHHkv7D1YDlwUPF9/R8+J3iMElwLVRWtm0pVHlhf2Tbnw=
-	=
-X-Received: by 2002:a05:6a21:998e:b0:302:9f3b:3e5c with SMTP id adf61e73a8af0-32b620a8d65mr21677927637.39.1759846282881;
-        Tue, 07 Oct 2025 07:11:22 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGiWYBtr6EzAYm3iarthma/0DUKSsRzYme+v56XXtnu78Nq/GDSGSQ38ocKvh8T4EgfkEtS3g==
-X-Received: by 2002:a05:6a21:998e:b0:302:9f3b:3e5c with SMTP id adf61e73a8af0-32b620a8d65mr21677873637.39.1759846282301;
-        Tue, 07 Oct 2025 07:11:22 -0700 (PDT)
-Received: from [10.219.56.14] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6099d4cfbesm15316893a12.28.2025.10.07.07.11.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Oct 2025 07:11:21 -0700 (PDT)
-Message-ID: <4a32bbec-2baf-4210-a7c1-1ddcd45d30c8@oss.qualcomm.com>
-Date: Tue, 7 Oct 2025 19:41:16 +0530
+	 In-Reply-To:Content-Type; b=RUXvIQHwbgnmtbf46RpJIL+u4dCa1sTU2JILIKmX6FF9n9LOLB9GG+ggCkgrGQ7GSxvHILHfBEEi2uGoVtBTIW12qnmem2r65ULlyZdCXD7PJXr36qnaWD1+HXR752vUrb53TR60WxnOjgEprCoakaeA0VPsnvSxtHnyIj6Bz5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VLEBgklu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FCD1C4CEF9;
+	Tue,  7 Oct 2025 14:18:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759846696;
+	bh=G/NshkMJ1GZbtO3UIa9SqYi+nufWNB4mZlO3zufyam0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=VLEBgkluXeahLBiq1Q8q74aSbv9sUk8S4cduCCxdRDeAUEmAGnpgT2dd+ksDo9KZp
+	 TPcksti+HsUH8pFCU61wkEbT/aYAaPpHRA+y6NTCHqP4xPH9SG397h9kS32wIqs24s
+	 h44CpSGxzl9ePGWUWhOWW0kb3oAphuENyakg/QfeoPzuPIGh/Mzf9mUhmNsfi58zNj
+	 Be3k2bbXybJQvjBHxrSobLIrxkG3l+2U+rKsvU0OWna64yWtAl8pECHgqRcOo8fBc4
+	 MtJ1mNa8tuXV+8tIXqt8l2v/2d8Sc5OUh3ac4tc1vGBQ5kXqT4AZQ5EiAf//4c1t+e
+	 YJ8MxK/7lqJ/w==
+Message-ID: <d592eb91-84e9-4bdc-8363-1d0bfd47c17c@kernel.org>
+Date: Tue, 7 Oct 2025 23:18:04 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,122 +50,154 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/5] Introduce "non-pixel" sub node within iris video
- node
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Vikash Garodia <quic_vgarodia@quicinc.com>,
-        Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <7b6db4fa-2f73-376d-4eb3-64c1c7e6cda3@quicinc.com>
- <f5ebf0d6-2f0b-45cc-b99a-b786e5df9edc@linaro.org>
- <5qsgbqml367yq6g5vb4lotrzulojqhi5zlwwribze373a63qrn@rxi4kwyt66m2>
- <4f38058d-a2f1-4ac5-b234-228cfb2e85ff@kernel.org>
- <1ad2ca1e-1d57-4ad8-a057-ab0d804f1d49@oss.qualcomm.com>
- <7da769b4-88e9-401f-bb21-0ff123818b9c@kernel.org>
- <6840d462-8269-4359-a6e5-d154842b62db@oss.qualcomm.com>
- <af0da28c-3ca0-41dc-aaa4-572723ea74bf@linaro.org>
- <klhvgzizub33f46buqsog54wqksqp24a5tijwyv355l2ao2imo@wdkojfebc6s2>
- <e1a6e75a-2a5d-44a2-8bbc-140eb86d1806@linaro.org>
- <2hh3zkdwgqbdurpr4tibr3gjat6arwl3dd3gxakdaagafwjdrm@aj5em4tbsjen>
+Subject: Re: [PATCH v1 2/4] dt-bindings: usb: dwc3: Add Google SoC DWC3 USB
+To: Peter Griffin <peter.griffin@linaro.org>
+Cc: Roy Luo <royluo@google.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
+References: <20251006232125.1833979-1-royluo@google.com>
+ <20251006232125.1833979-3-royluo@google.com>
+ <8ca61364-df47-41f2-b0d1-f2a8a74ec728@kernel.org>
+ <CADrjBPr7Jp_ZyGv2Krv6iLG0avgFWpcWJEO-Z=cEkhwEY-+z5Q@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
-In-Reply-To: <2hh3zkdwgqbdurpr4tibr3gjat6arwl3dd3gxakdaagafwjdrm@aj5em4tbsjen>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CADrjBPr7Jp_ZyGv2Krv6iLG0avgFWpcWJEO-Z=cEkhwEY-+z5Q@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAzNiBTYWx0ZWRfXyjeWUJ8Yi846
- f/FtA7nFkrHI3iQxZjs80xcRpLEHx+JhxF6T7X7Ym6mV/q4B8hxA+ihLgFmrr2Pl4ljabO31YB9
- 3zQwV4RfTQUvza2VHwIYgwOELfckt9B6QhNDkqRBj+Uv5/bNC8f4lQzm7R6F6Z69IXb7it+PJq9
- XODfzQEXd23y7vmkilijWXPRCiSFzJ9HjMEpAfVNIr8ZrVyWgTtNRmWugUzIvA52kbX/AMJmJbU
- ZZ0KSSs9gNjvObCpXSFTGCeCCbcqc2lgRcROHaXkSp18EaS48OtaP7bDAJwy11imQa2PqYEQHGw
- pFT6OwdpTKKhaj+GFT4SpISKMG3t4VQ46zHB6YpP7UJI3/jUoEXuoMSotSOem/as8QD7VKy4Stt
- +g0qcBHUtXXIoAeSCJFs+9O3HmDLRA==
-X-Proofpoint-GUID: -xomPHXJq0rG7QoJ26NNzkbCclsMwGbn
-X-Authority-Analysis: v=2.4 cv=XIQ9iAhE c=1 sm=1 tr=0 ts=68e51f8b cx=c_pps
- a=mDZGXZTwRPZaeRUbqKGCBw==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
- a=XxnNId_WCiCfXLSGgVMA:9 a=QEXdDO2ut3YA:10 a=zc0IvFSfCIW2DFIPzwfm:22
-X-Proofpoint-ORIG-GUID: -xomPHXJq0rG7QoJ26NNzkbCclsMwGbn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-07_01,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 suspectscore=0 lowpriorityscore=0 impostorscore=0 phishscore=0
- clxscore=1015 adultscore=0 spamscore=0 priorityscore=1501 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040036
 
-
-On 7/4/2025 10:15 PM, Dmitry Baryshkov wrote:
-> On Fri, Jul 04, 2025 at 09:23:06AM +0100, Bryan O'Donoghue wrote:
->> On 03/07/2025 22:23, Dmitry Baryshkov wrote:
->>>> I still give my RB for the series.
->>>>
->>>> To me the only question is should it be applied to sm8550 or to new SoCs
->>>> from now on, sa8775p, x1e and derivatives.
->>> I think we need to apply it to_all_ SoCs, maybe starting from MSM8x26
->>> and MSM8x16. Likewise, we need to think bout secure buffers usecase. And
->>> once we do that, we will realize that it also changes the ABI for all
->>> SoCs that support either Venus or Iris.
->> I think a dts change is a non-starter as its an ABI break.
+On 07/10/2025 18:09, Peter Griffin wrote:
+> Hi Krzysztof & Roy,
+> 
+> Firstly thanks Roy for your patches, it's great to see more Tensor
+> support being posted upstream!
+> 
+> On Tue, 7 Oct 2025 at 01:44, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >>
->> So if ABI break is out and reworking future dts to allow for a new device is
->> out, then some API change is needed to allow the driver to stop the kernel
->> automatically setting up the IOMMUs, create the new device as a platform
->> device not dependent on DT change and have the probe() of the relevant
->> drivers setup their own IOMMU extents based on - probably indexes we have in
->> the driver configuration parameters.
+>> On 07/10/2025 08:21, Roy Luo wrote:
+>>> Document the DWC3 USB bindings for Google Tensor SoCs.
+>>>
+>>> Signed-off-by: Roy Luo <royluo@google.com>
+>>> ---
+>>>  .../bindings/usb/google,snps-dwc3.yaml        | 144 ++++++++++++++++++
+>>>  1 file changed, 144 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml b/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
+>>> new file mode 100644
+>>> index 000000000000..3e8bcc0c2cef
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
+>>> @@ -0,0 +1,144 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +# Copyright (c) 2025, Google LLC
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/usb/google,snps-dwc3.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Google DWC3 USB SoC Controller
+>>> +
+>>> +maintainers:
+>>> +  - Roy Luo <royluo@google.com>
+>>> +
+>>> +description:
+>>> +  Describes the Google DWC3 USB block, based on Synopsys DWC3 IP.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - google,lga-dwc3
+>>> +      - const: google,snps-dwc3
+>>
+>>
+>> There is no such soc as snps, so you grossly misuse other company name
+>> as name of SoC. Neither lga. Otherwise please point me to the top-level
+>> bindings describing that SoC.
+>>
+>> You need to better describe the hardware here - why this is something
+>> completely different than GS which. Or switch to existing bindings and
+>> existing drivers. Did you align this with Peter Griffin?
 > 
-> What about instead:
+> I think (from what I've seen at least) this is the first submission
+> for drivers in the Tensor G5 SoC used in Pixel 10 devices (which as I
+> understand it isn't based on any Samsung IP). Hence the new drivers,
+> bindings etc.
+
+
+That could explain a lot. I would be happy to see background of hardware
+in the bindings commit msg and the cover letter.
+
 > 
-> - keep IOMMU entries as is
-> - Add iommu-maps, mapping the non-pixel SID
+> However the issue is that none of the other base SoC drivers on which
+> this driver depends currently exist upstream (like clocks, reset
+> driver, power domains, pinctrl etc). So it's very hard to reason about
+> the correctness or otherwise of this submission. It is also likely
+> that when those drivers are upstreamed things could change in the
+> review process, to how it looks today in the downstream kernel.
 
-Otherways to avoid the ABI breakage:
-a) Keep iommus max items as 2, which is unchanged.
-b) Repeat the same sid for both entries, i.e.,
-         iommus = <&apps_smmu 0x1940 0x0000>,
-                - <&apps_smmu 0x1947 0x0000>;
-	        + <&apps_smmu 0x1940 0x0000>;
 
-and then create the new device as a platform device independent of dt.
-RFC for this is posted[1].
+Bindings and drivers can be contributed without core SoC support, but
+then please describe the hardware (SoC) here. Having core support posted
+earlier is of course preferred, but I think not a requirement.
 
-However,  Dmitry(in offline forums) termed creating 2 same sid entries
-as -- "ridiculous band-aid just to fulfill the "ABI" requirements and
-really doesn't make sense". Looks Fair.
+Anyway, compatibles and all commit messages in this patchset are too
+generic and need to reflect this actual SoC, not "Tensor" because we
+already have a Tensor with USB. So basically based on existing support
+all this patchset would be redundant, right? :)
 
-OTOH, To exactly implement the idea mentioned here, I have the below
-questions, can you please help me with:
-1) By keeping the entries in 'iommu=' as is, then add non-pixel sid in
-iommu-maps actually creates the overlapping entries.
-
-So, IIUC -- this requires changes to the iommu driver to ignore the
-setting up the non-pixel sid(or whatever is mentioned in iommu-maps) and
-then use newly created platform device to program the entries mentioned
-in iommu-maps. Please CMIW.
-
-If the above understanding correct -- Doesn't it look like we are trying
-to fix in the iommu driver for the problem statement related to dt bindings?
-
-2) However, I still think that problem statement of __non-eligibility
-for video IP to create the sub devices in the dt__  is still valid and
-can be taken separately and actually [1] is targetting this. I believe
-this is atleast required for secure contexts. please CMIW.
-
-[1]
-https://lore.kernel.org/all/20250928171718.436440-1-charan.kalla@oss.qualcomm.com/
-
-Thanks,
-Charan> - In future expand iommu-maps, describing the secure contexts?
-
+Best regards,
+Krzysztof
 
