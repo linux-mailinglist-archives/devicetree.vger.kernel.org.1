@@ -1,213 +1,311 @@
-Return-Path: <devicetree+bounces-224193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 399A8BC18B7
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 15:42:06 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9243BC18C9
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 15:44:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D661188C395
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 13:42:24 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A16EE4E40E1
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 13:44:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12DB02E11BF;
-	Tue,  7 Oct 2025 13:41:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE8FD2E093E;
+	Tue,  7 Oct 2025 13:44:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bCdjMsf4"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="WfxYKU+E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011068.outbound.protection.outlook.com [40.107.74.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 144682E0B58
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 13:41:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759844513; cv=none; b=g3qrzFf7YNkU9ZJDGYO+M/5l4Nnp5zf5BsE0AKHz0eVNRkljIRw+2LFvRKnXIfER0BXwvtm0ufvfRlpIy0x715Ehv4sMkZApO/olkbcTZzsiKGFhKNLhPBc/T7D2g8Zt0iSq5cMul83f6F5kI8iaMaU1l2NgzxgBc5qqxJ4YjcI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759844513; c=relaxed/simple;
-	bh=nkeOwih2wxnDJdpLI6Dz/78w4EhHeT1xmOgbx9n/oo8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SxFa150/1NuaTAUnXop3sSgQLia4WYKNZYsdAoLi1Zu8QW9L8Ix8K8meOKLFfM4gOm36xaLNDBWiUQfRmIgCi18lX+/+B4Piduphz6XL99k44uPjKk+8ok8yu8Zwfd/hH6EYgeiQp2vc+0WTsq/ebKBU3ksNH5RI2o/7b4eQcnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bCdjMsf4; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-782bfd0a977so5451672b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 06:41:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759844509; x=1760449309; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=rnHeuaAxXkLy83WQ0FvFcsx02OTH0C9r7FOqh/BgxF0=;
-        b=bCdjMsf42+G+Iq+ji/1GArMqIcWj6oKTYVK5orzQHtLUCGvOtSAqA0dWkLF7sUP8sw
-         eX0k534hyD/mknL1wCoSQY3fh4bnndYZAM70huiMM1u1ZuwTEPzsO8AwOOhByerVfwLz
-         dlJyJ1pGXnFUBytFoyPKhqjp/oo/uHDN9YRmMqoETyy5iTXJWmadXhS5fvupeixoG85U
-         3/Jld1ZzIZkZ1GxAJrVRH4QK/jJ4QUVEnV01dgQfKxpyZKOFt2Vxgf/UxqS2gYydZJk7
-         /d2HK7FfobHLCQQDDDYpA+5J6aOYqaocVz38qWolaC7tV0yUpSTBNl7brMas23/uwshM
-         K0xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759844509; x=1760449309;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rnHeuaAxXkLy83WQ0FvFcsx02OTH0C9r7FOqh/BgxF0=;
-        b=SIebfNnG5vi37jfy51z3ZZSs5VxU6YZSCflfAVjRQlifEs64s33RVTUzhTN3UCPHuP
-         sUaWdg3Pb1FfJzwuTIClolfzOE/uD24uv7qwdEzvtJcZqVbGDnChkYucS5G5QGJbdFL2
-         n9T/MmVxlWO3kOjLlzwvzfMjg59eA6Uj+sybrabXksYUfR2nKYt9NnPAnAYjqan36/N8
-         ZeJ8YjAIhiFVV2Ta6kgFi8nk8XUdQGRZPl0MMRgp7QzG0NXpDWHI528BVmM/0xIatMr/
-         6qAtM1WDcI2RhzVjLJ4veC0DFjK/a3AO4WvLw7jXkBZOy8M/sF3eQAFmAOC9qkPsJb+s
-         4GCg==
-X-Forwarded-Encrypted: i=1; AJvYcCXTGW+upc+YbQBDydQXNP9m0hnVVESpVoH5Bi/P1UNf9gooE5IirBGb1Lmb99qwvJwjN4FR+vv4gBiX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxSLh582Pd89HeO5oR+nl7hbjcudG6mwsLDAOk4dVDtdZztdQnw
-	dhabLr5a8v4yjgJF6NcJa+C334k/KXtMjXbJVVuW853i3FojsZYVYmIt
-X-Gm-Gg: ASbGncuQHh/D0UQ/0qSyVe47LW8R7/03lv6UU+9p/XUTk2bQirY2TyZ2RDP/vYQJn2z
-	wYU4prvEDvw4EstMULTq8MgZxkVrFB8qIrNL4IYvAaHkaVsv7avAj3c/DGcES7dyy/Wya8s4EAp
-	6NgpjG0iSI2HxHuN+2MMiGASA4jGE+kxSvs5kxFs2n9ADL6JydwwQ2HsLAqDfhBSpJ7pvSkK5oo
-	vjX97GOejegeO5BdcfWn7XeeXKZSohcEBcmi9pWWKKUbpxvhY51cxWFoovSL2XiVBzSVWdviuNc
-	q2IWRtaTK6beqoF4x9cxR1QFMVTh1/jLPwqgWy4YZFAyu0b3qXvX3p6XM0vXd1+sU2D967q2H69
-	rKWlKtm7LKCxiFnruE5vo3PDe3ETUuj3/QRVX+oN90KBmrqU2sFi0qNTMUozguTL5zS1pJRBPvw
-	fc2qZIxtd+o18iOpvZX9A=
-X-Google-Smtp-Source: AGHT+IFVJf+JxdKIUBEal2NKbaOSA5Jm7ewMijN3A3/MHNXXdwLzwZQSOta0mANRwv7CKcqgs4HloQ==
-X-Received: by 2002:a05:6a00:2ea9:b0:77f:6971:c590 with SMTP id d2e1a72fcca58-78c98dd92bcmr19639116b3a.22.1759844509033;
-        Tue, 07 Oct 2025 06:41:49 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78b01f9a364sm15776636b3a.6.2025.10.07.06.41.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Oct 2025 06:41:48 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <57d0775a-0450-4384-b4ab-b6f2d976499f@roeck-us.net>
-Date: Tue, 7 Oct 2025 06:41:46 -0700
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA9CEACD;
+	Tue,  7 Oct 2025 13:44:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.68
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759844669; cv=fail; b=oNGqUdY5hLy39vQNf0061pQKQgi1hQK5BsuH2yJAteKNjcrCczpPreK5hRW99aZhEZhzAYJHwXOMFfGlDTnUAajnRGPF0XlS4+spAIYUf9T+5G7FK78KsGOu6L6ZDSnZ5+12epQc8vxmzGNJBIzlv5oZ6hAlm4yrTwqdidHnfPw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759844669; c=relaxed/simple;
+	bh=lHPqzn9tTQ0IO2AB3FWDipx8f+WYQUMbJ0Psoyp2tGA=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=KsrGSEQRA8SjJ7SWkmof7s6jDwnUAo6McxSHnUbf43AhHxtwSTp2y3+NOHM+LyRnt6UIcBEF/K36VDjsWmuTZCuSuWIMHo7kvX+lNGzu/3GdZBMV0oS0fqObenCugmEz8tl24RiurKc5KaAUPO7w/Lu5AyWDzbKe44b8+US7W8s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=WfxYKU+E; arc=fail smtp.client-ip=40.107.74.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Jy+DJoXteGFWcyMcHqzTXNYQp86U6mJRQn004wCjx5mznGpnkOgsMmTF8G/10UiPkRKhtkNvCvEoBqX9A7VWHtP7m68mcWQesfIjqOdV1tHHM5RQ/8LKN7sjrdSvD2RTccIYeY3RTEebSll9aykh1rwaTDvMgjWsfShsVCuWg3e5SRXTHSmkTw4Pcrf8S8sZZR2r0ro2A5uq6W1Yt8X+NL+uo0U+xPODGqIYVfkSlbZuB5SGuDnXYTiypYtCfouWts5uX+8YlGx/aMsqy2MsTULbauSZ/udcHs6syOC5x4dmcxllyJ+mVtULvBSAZRQvO69fZU5dTMQ/B9mJQhaG9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tqyoXwoBHV5cVPYD21Gy9dPEukpIKlnjzfhpFWnfYXY=;
+ b=w5aaoMCVrGFZnxJjVx8xC0pI0WitaFz/t4d9iUiIysy+SPzs9Vx3u4A8KWzpkZFV5vLtMuhVqoUcR76MPARPynkp3Y8OsE4zNvah51mg2ptgvPXb7MuwTKU54+CAH9rFKVAdalk3RxXVyjGtXAq3V1X9Mj51KWIo0oV5oS03L1Yb3aEOPweXWU4STn59BO70jjKiMADmDizovxKcxSh48j2LPPepli1wRkInHqeCPhEAAkdLmKDzmg7W3ClVDKuxC5lk+nFW5BCCgV3etlNozCufwDEqe49tZk20QPhPgstjA9kTrFPVLpLGwf7cSywmLXvN5QFLIkcaqkHjdkZJUw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tqyoXwoBHV5cVPYD21Gy9dPEukpIKlnjzfhpFWnfYXY=;
+ b=WfxYKU+EgjnAW/a44D6E1sm4m4DzNlz4KdP1kZiEftwyLM9YV6TqERps9b+3/Kl7yESoGjHkMVu9tGmLVl8xENFFCjFSUPNtAGKBYZ8I59eJ4PzMfsC0VY3IcyIGid2spZuaDibRLQxiALshbhxNNDzo2/qY9KPU2bUWmQ1MU7Q=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by OSOPR01MB12378.jpnprd01.prod.outlook.com (2603:1096:604:2dd::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Tue, 7 Oct
+ 2025 13:44:20 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%4]) with mapi id 15.20.9203.007; Tue, 7 Oct 2025
+ 13:44:20 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Claudiu.Beznea <claudiu.beznea@tuxon.dev>, "lpieralisi@kernel.org"
+	<lpieralisi@kernel.org>, "kwilczynski@kernel.org" <kwilczynski@kernel.org>,
+	"mani@kernel.org" <mani@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"bhelgaas@google.com" <bhelgaas@google.com>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"geert+renesas@glider.be" <geert+renesas@glider.be>, magnus.damm
+	<magnus.damm@gmail.com>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+CC: Claudiu.Beznea <claudiu.beznea@tuxon.dev>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, Claudiu Beznea
+	<claudiu.beznea.uj@bp.renesas.com>, wsa+renesas
+	<wsa+renesas@sang-engineering.com>
+Subject: RE: [PATCH v5 3/6] arm64: dts: renesas: r9a08g045: Add PCIe node
+Thread-Topic: [PATCH v5 3/6] arm64: dts: renesas: r9a08g045: Add PCIe node
+Thread-Index: AQHcN4+Xl3bUT1Hya0C1BFZ2Fpr8n7S2sSOw
+Date: Tue, 7 Oct 2025 13:44:19 +0000
+Message-ID:
+ <TY3PR01MB113461AF51BD346E1D96E43B486E0A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20251007133657.390523-1-claudiu.beznea.uj@bp.renesas.com>
+ <20251007133657.390523-4-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20251007133657.390523-4-claudiu.beznea.uj@bp.renesas.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|OSOPR01MB12378:EE_
+x-ms-office365-filtering-correlation-id: f4f27f25-8e61-4f92-ca46-08de05a79dd8
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|1800799024|366016|921020|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?8vgv4mKs/qrgaHEZZSzAeRZ86TaF6+qXHqgrAqkCmPaAErqhTkAlfxZiZTJ5?=
+ =?us-ascii?Q?a0sMmHpvP/fTYm+xhJOVrsxwbVxVToXFxlw2LzsBuEnLEW8TO4p+ux08Yvoy?=
+ =?us-ascii?Q?rF2uju8Y25js1B86JBAkQUoVjcE7dnS+bXW2OsLXqxFoEfMrJD47UdfBFs6n?=
+ =?us-ascii?Q?84agz7c7VGo9XAAxGqQq0ctoQruibf+Hjdk3U2zfmQCZ7fON5fBr2eTaKA/1?=
+ =?us-ascii?Q?W4pFSZ9QIJ3PPgJ06NgBxfatIKwIf0iTGn6Qe9fvYRPv6cXGbWmNlwWzpkBQ?=
+ =?us-ascii?Q?XfAHvV7Qu8UEsyyLEMONQaUzRJ456dF+dSdH++8jOhY0PS+uIQpDBKRj0Qjk?=
+ =?us-ascii?Q?Qd55GvmF3D96U3bLCtSLoKUwJXjaP7Toa0x8dt2AZuWQXXm4TyFk/bh4pfTG?=
+ =?us-ascii?Q?PJY++2AIIkmbg+kjgWdNCP62ePkLKGT0475bg14zJLpv+kYGNy/q6+U1wA21?=
+ =?us-ascii?Q?DfYcU6WF+CxYRqb7Ozuxiq+w6gZ+oOulwFaW5XLbj9ar8HlfIiP89vDKQwTv?=
+ =?us-ascii?Q?bUNTPzeG465F+SnXV4SV0gze77zFN5ZQUBjfrYo2ociDhff8wVMwXhiRtGrO?=
+ =?us-ascii?Q?pZybn9yHK7QTVPwiUkl5Bmw1o3C1VNa6LOHjeqsiMnRIQKsJDlHuTxQkyh5u?=
+ =?us-ascii?Q?oA7w3bsi9j8tSQKHrpeQCLxehMwioPkYLJw1OWX28VhJg24ZEJY3rWZuOxST?=
+ =?us-ascii?Q?nO5GIb6ej7swetFrbB7tlBBzXCcPjH0nksuGcx7PjK1JsLI8c391hRxYscHs?=
+ =?us-ascii?Q?0SjS4AvDqsBRglR17q/5/euV3HVzH0f1/5vqKGEgja/EZ5O8gGtgyH/XDPmI?=
+ =?us-ascii?Q?QXvWyYywWd1lzM87dQoIUK1JEeXTQUW7W5uTwKIfr5UGzAa3uI6O4j2ywYJS?=
+ =?us-ascii?Q?Ts1Jw7gnPMT9ItLYshh5tjaITEihT77dpcAYccdKpfABSVdL6jf94K0fMapk?=
+ =?us-ascii?Q?iq1qHeH6wEpbunojM1NxAwu6BnueZ60rO5VWCTzJ6H+7WHy1I2GfKVx4mmRp?=
+ =?us-ascii?Q?ZG9HXcdft+AP1dWxM5Oo7S3VHmDKIV3aRjwrjaR3m/2ExnS9QAYM1TAb1XC5?=
+ =?us-ascii?Q?ge8conAG+nM0yahL0e1Ses/ZlZiD2BM0xd6bqYEVxogKn1Nwisw49jTewQof?=
+ =?us-ascii?Q?smX1WpcLsAI5IqaWFWnjWCxCecaK5nwPpyYb6n1GrTI2n5UpC0Vr4/s/GulI?=
+ =?us-ascii?Q?ojR3ogniyzMpH9yw/FkMG6rKrpcmFvCsLv7sUCwjlZvj9MP9/JS3L6DOMiJ+?=
+ =?us-ascii?Q?bwI8exSWIMU58Yr79RSiCkKKoSzjTccyalPA0PUCbI78wwXtB78zJh5piEeu?=
+ =?us-ascii?Q?RnYXxyEYZ45iWrvSgvaM0AiTHB4dUXcMayhxiLmzxRFpNjK/h9DK+FYc1YjM?=
+ =?us-ascii?Q?BNCo7cCyYyPTi7Zd6BMqv41SmYIvntpcyZhR+P0oLs/Bj8FGX2ZcND3nbzc8?=
+ =?us-ascii?Q?fddj2vVBYEP3x4tg5YxNzEzjGg2o2t9eSrXnZo5bNLt7k3ZUKshbqFs19H/g?=
+ =?us-ascii?Q?WcgWKtkkyK4mkZRFS9Ed5y5uvp1CbUSUCVWw4I6AT+qgRB2JhR9IPWG2uQ?=
+ =?us-ascii?Q?=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(921020)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?Cy570k8m9ERMGXJ0Vw1w7VJZTPY+zeRLVhvQzRfOUhcMMT5iRgGnuhwHwgdQ?=
+ =?us-ascii?Q?4PHTD4Ery4p+rc2l1CpLOQ/4pGJozdDgQ8AWdeU+4s/n6j1rxhnt0YTAnaGr?=
+ =?us-ascii?Q?v0KullIXjXMku8d/ge0KDmvjmfwIqNDVazl9ySl27CGKkGVJiv4gzyx2CnQv?=
+ =?us-ascii?Q?GLNsKVFWU0d5MD3ARkmSHmwtfMhk2BGN9+XIkk5enSx6xK8l1cgj2MUsFXf7?=
+ =?us-ascii?Q?Zw/aB9v2yPJky3hgEZtpxxd2+qUTMV5UroLRrmyy6LTj5JfcT3MVjSVBXHiP?=
+ =?us-ascii?Q?n8orm5m8FzvVsODMDuw7P98r70ejZwLt1HAN18qA+VfeXSGRtVxdUTWR0sXR?=
+ =?us-ascii?Q?gJxXXYQPObY4XM47Lf2AUgnEnWKWxwNVVkZaOVIlnwM3E7HIYcMCQP/U5sUQ?=
+ =?us-ascii?Q?iTLxppGnsPfb2g1r/cINiLeRzCpN0/GOTX21CcLi4CDDFKdzz6LZYHWn1wZZ?=
+ =?us-ascii?Q?naNLwxz/JCldtAGu89rBD00Sl1gxCIjvfunde6ql0PVOW+DvbputV6wuBnVL?=
+ =?us-ascii?Q?ATdUA3PldkvjvRFye+6EY1Msg22dE7ABvIZlw0JAIAvJh9cdZ+T1c7oMqqWI?=
+ =?us-ascii?Q?CH1OjG9rsB6ha8xr42GZp0+5pETW1ea2NVUqV06cYLKRRd6cfehwFMNgEOpH?=
+ =?us-ascii?Q?K55mUhYs0CZEw8sRDl3m3p+J7rN+qxom1MUvgWLxBUUxq+OlYXc6yb8rheR8?=
+ =?us-ascii?Q?BJgN4cfh06/cXKBmEhO4Y7m/fFYCGcFY4F5+hkQV0PrTCYGKy/kE/orUuZoK?=
+ =?us-ascii?Q?MsNdhHSkEJpiyqR/JPyQVpfp5FINiBPT1xjkSzq1Txs2hZOWF9U9Mj3Jjd0p?=
+ =?us-ascii?Q?qCfCaTzHAJMt6RRQhiwlsEgN+HmFNScucgdhipG0C/vp+Zkx74ChGyAPFg4F?=
+ =?us-ascii?Q?kf/o+ZFuF90zZEPJPbaKnhJBoc7MWkhZ3JEjL/K0FrAG59MI9IC7NVSH+jUQ?=
+ =?us-ascii?Q?U5EY1TwNUWSiQhxNxl3o71OpqfBXAyR6aWS4PKZNwHUBboDbMKY8125YEFGD?=
+ =?us-ascii?Q?EnW25fjwflSkQJ8tXP9/Ve/lGsxBu9mfXq9z9Au9AKCLhH2BWC9Q1gvKlRO1?=
+ =?us-ascii?Q?UcdQ4BYt138+H9PzL/JUrxq/kZchIjO2PDqnbhA5ECv/dBIMuDSh4rmcgpgz?=
+ =?us-ascii?Q?cTd2coPK7lEgVguCp752Ys6O2g2+1oxWFvcjlwtX5vMBEBePd3Xf1KY2NKOk?=
+ =?us-ascii?Q?TEp7ERdLZAaYgGverbkPvJc0ji2mQS/bqmfCioXFYpHYeRrlt8XNqc8z3Lj8?=
+ =?us-ascii?Q?sVFKINsw1bfnGqz0XI58fD09jpsTtKSLjh8nWdAw8prRXoiAgLng9Kh2+oKT?=
+ =?us-ascii?Q?xQc6zVSwCk8xwxpG15vH8O9j3YKBJm9HCKTadBo4hpC89RVlmFwEcqLMmd8c?=
+ =?us-ascii?Q?ApfoTS/lzehBULXSYo3F5BSWSZ4zIm1C5sCWYPeRbE6zVAkZaUnfP1K/B3q1?=
+ =?us-ascii?Q?5dxbRTp6OaC03NgVxGQ0wnkgUmQHJNF9LmGKDqheefme9SDFSUWH+XcH56WT?=
+ =?us-ascii?Q?5nQfKPMFVkZhSijeK+YDuGkRycOGXuU/elurT5qabYIrsY44EWHVxJULxqDS?=
+ =?us-ascii?Q?E2WIVvb1904hp+0TopZ9F2BM0aKmE7m5WFcHBnL+?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] watchdog: Add driver for Gunyah Watchdog
-To: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
- Neil Armstrong <neil.armstrong@linaro.org>
-References: <20251006-gunyah_watchdog-v2-1-b99d41d45450@oss.qualcomm.com>
- <6e7eaac2-0859-4bfd-b76b-2f81e384a91c@roeck-us.net>
- <166a0b99-879c-43cd-b3c0-37eb04afca5a@oss.qualcomm.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAmgrMyQFCSbODQkACgkQyx8mb86fmYGcWRAA
- oRwrk7V8fULqnGGpBIjp7pvR187Yzx+lhMGUHuM5H56TFEqeVwCMLWB2x1YRolYbY4MEFlQg
- VUFcfeW0OknSr1s6wtrtQm0gdkolM8OcCL9ptTHOg1mmXa4YpW8QJiL0AVtbpE9BroeWGl9v
- 2TGILPm9mVp+GmMQgkNeCS7Jonq5f5pDUGumAMguWzMFEg+Imt9wr2YA7aGen7KPSqJeQPpj
- onPKhu7O/KJKkuC50ylxizHzmGx+IUSmOZxN950pZUFvVZH9CwhAAl+NYUtcF5ry/uSYG2U7
- DCvpzqOryJRemKN63qt1bjF6cltsXwxjKOw6CvdjJYA3n6xCWLuJ6yk6CAy1Ukh545NhgBAs
- rGGVkl6TUBi0ixL3EF3RWLa9IMDcHN32r7OBhw6vbul8HqyTFZWY2ksTvlTl+qG3zV6AJuzT
- WdXmbcKN+TdhO5XlxVlbZoCm7ViBj1+PvIFQZCnLAhqSd/DJlhaq8fFXx1dCUPgQDcD+wo65
- qulV/NijfU8bzFfEPgYP/3LP+BSAyFs33y/mdP8kbMxSCjnLEhimQMrSSo/To1Gxp5C97fw5
- 3m1CaMILGKCmfI1B8iA8zd8ib7t1Rg0qCwcAnvsM36SkrID32GfFbv873bNskJCHAISK3Xkz
- qo7IYZmjk/IJGbsiGzxUhvicwkgKE9r7a1rOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAmgrMyQFCSbODQkACgkQyx8mb86fmYHlgg/9
- H5JeDmB4jsreE9Bn621wZk7NMzxy9STxiVKSh8Mq4pb+IDu1RU2iLyetCY1TiJlcxnE362kj
- njrfAdqyPteHM+LU59NtEbGwrfcXdQoh4XdMuPA5ADetPLma3YiRa3VsVkLwpnR7ilgwQw6u
- dycEaOxQ7LUXCs0JaGVVP25Z2hMkHBwx6BlW6EZLNgzGI2rswSZ7SKcsBd1IRHVf0miwIFYy
- j/UEfAFNW+tbtKPNn3xZTLs3quQN7GdYLh+J0XxITpBZaFOpwEKV+VS36pSLnNl0T5wm0E/y
- scPJ0OVY7ly5Vm1nnoH4licaU5Y1nSkFR/j2douI5P7Cj687WuNMC6CcFd6j72kRfxklOqXw
- zvy+2NEcXyziiLXp84130yxAKXfluax9sZhhrhKT6VrD45S6N3HxJpXQ/RY/EX35neH2/F7B
- RgSloce2+zWfpELyS1qRkCUTt1tlGV2p+y2BPfXzrHn2vxvbhEn1QpQ6t+85FKN8YEhJEygJ
- F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
- FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <166a0b99-879c-43cd-b3c0-37eb04afca5a@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f4f27f25-8e61-4f92-ca46-08de05a79dd8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Oct 2025 13:44:19.8702
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /2t6CN1Ap+JCawMhlIhLZxQwd918ACHW41e8r2ZjRduB/hhIXOZb9J6hA0HgncCuxry2hwpVHCup7i4Oy6WjQmnJRB94Spf5AEWIieI9/F0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSOPR01MB12378
 
-On 10/6/25 23:52, Hrishabh Rajput wrote:
-> 
-> On 10/6/2025 7:48 PM, Guenter Roeck wrote:
->> On 10/6/25 00:37, Hrishabh Rajput via B4 Relay wrote:
->>> From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
->>>
->>> On Qualcomm SoCs running under the Gunyah hypervisor, access to watchdog
->>> through MMIO is not available on all platforms. Depending on the
->>> hypervisor configuration, the watchdog is either fully emulated or
->>> exposed via ARM's SMC Calling Conventions (SMCCC) through the Vendor
->>> Specific Hypervisor Service Calls space.
->>>
->>> When Gunyah is not present or Gunyah emulates MMIO-based watchdog, we
->>> expect MMIO watchdog device to be present in the devicetree. If we
->>> detect this device node, we don't proceed ahead. Otherwise, we go ahead
->>> and invoke GUNYAH_WDT_STATUS SMC to initiate the discovery of the
->>> SMC-based watchdog.
->>>
->>> Add driver to support the SMC-based watchdog provided by the Gunyah
->>> Hypervisor. module_exit() is intentionally not implemented as this
->>> driver is intended to be a persistent module.
->>>
->>> Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
->>> ---
->>> Gunyah is a Type-I hypervisor which was introduced in the patch series
->>> [1]. It is an open source hypervisor. The source repo is available at
->>> [2].
->>>
->>> The Gunyah Hypervisor doesn't allow its Virtual Machines to directly
->>> access the MMIO watchdog. It either provides the fully emulated MMIO
->>> based watchdog interface or the SMC-based watchdog interface depending
->>> on the hypervisor configuration.
->>> The SMC-based watchdog follows ARM's SMC Calling Convention (SMCCC)
->>> version 1.1 and uses Vendor Specific Hypervisor Service Calls space.
->>>
->>> This patch series adds support for the SMC-based watchdog interface
->>> provided by the Gunyah Hypervisor.
->>>
->>> This series is tested on SM8750 platform.
->>>
->>> [1]
->>> https://lore.kernel.org/all/20240222-gunyah-v17-0-1e9da6763d38@quicinc.com/
->>>
->>> [2]
->>> https://github.com/quic/gunyah-hypervisor
->>> ---
->>> Changes in v2:
->>> - Move away from platform driver model since the devicetree overlay does
->>>    not happen by default.
->>
->> This is just wrong. Platform drivers do not depend on devicetree. I am not even
->> going to review the rest of the driver. 
-> 
-> Thanks for pointing out the mistake here. Platform drivers are independent of devicetree. Therefore the line you've pointed to is wrong as it erroneously portrays that the platform drivers are dependent on devicetrees. It is a mistake and I would rephrase it to following to make the intent clearer:
-> 
-> "Do not depend on devicetree to discover (and probe) watchdog as devicetree overlay does not happen by default. Instead invoke GUNYAH_WDT_STATUS SMC Call to discover (and initialize) the watchdog."
-> 
+Hi Claudiu,
 
-Let _me_ rephrase: A platform driver does not depend on devicetree.
-This can and should be a platform driver.
+> -----Original Message-----
+> From: Claudiu <claudiu.beznea@tuxon.dev>
+> Sent: 07 October 2025 14:37
+> Subject: [PATCH v5 3/6] arm64: dts: renesas: r9a08g045: Add PCIe node
+>=20
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>=20
+> The RZ/G3S SoC has a variant (R9A08G045S33) which supports PCIe. Add the =
+PCIe node.
+>=20
+> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>=20
+> Changes in v5:
+> - updated the last part of ranges and dma-ranges
+> - collected tags
+>=20
+> Changes in v4:
+> - moved the node to r9a08g045.dtsi
+> - dropped the "s33" from the compatible string
+> - added port node
+> - re-ordered properties to have them grouped together
+>=20
+> Changes in v3:
+> - collected tags
+> - changed the ranges flags
+>=20
+> Changes in v2:
+> - updated the dma-ranges to reflect the SoC capability; added a
+>   comment about it.
+> - updated clock-names, interrupt names
+> - dropped legacy-interrupt-controller node
+> - added interrupt-controller property
+> - moved renesas,sysc at the end of the node to comply with
+>   DT coding style
+>=20
+>  arch/arm64/boot/dts/renesas/r9a08g045.dtsi | 66 ++++++++++++++++++++++
+>  1 file changed, 66 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi b/arch/arm64/boot=
+/dts/renesas/r9a08g045.dtsi
+> index 16e6ac614417..00b43377877e 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
+> @@ -717,6 +717,72 @@ eth1: ethernet@11c40000 {
+>  			status =3D "disabled";
+>  		};
+>=20
+> +		pcie: pcie@11e40000 {
+> +			compatible =3D "renesas,r9a08g045-pcie";
+> +			reg =3D <0 0x11e40000 0 0x10000>;
+> +			ranges =3D <0x02000000 0 0x30000000 0 0x30000000 0 0x08000000>;
+> +			/* Map all possible DRAM ranges (4 GB). */
+> +			dma-ranges =3D <0x42000000 0 0x40000000 0 0x40000000 1 0x00000000>;
 
-Guenter
+On RZ/G3E, HW manual mentions PCIe can access up to a 36-bit address space =
+(access to DDR and PCIE0).
+
+Not sure about RZ/G3S?
+
+Cheers,
+Biju
+
+
+
+> +			bus-range =3D <0x0 0xff>;
+> +			interrupts =3D <GIC_SPI 395 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 396 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 397 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 398 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 399 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 401 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 402 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 403 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 404 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 405 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 406 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 407 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 408 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>,
+> +				     <GIC_SPI 410 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names =3D "serr", "serr_cor", "serr_nonfatal",
+> +					  "serr_fatal", "axi_err", "inta",
+> +					  "intb", "intc", "intd", "msi",
+> +					  "link_bandwidth", "pm_pme", "dma",
+> +					  "pcie_evt", "msg", "all";
+> +			#interrupt-cells =3D <1>;
+> +			interrupt-controller;
+> +			interrupt-map-mask =3D <0 0 0 7>;
+> +			interrupt-map =3D <0 0 0 1 &pcie 0 0 0 0>, /* INTA */
+> +					<0 0 0 2 &pcie 0 0 0 1>, /* INTB */
+> +					<0 0 0 3 &pcie 0 0 0 2>, /* INTC */
+> +					<0 0 0 4 &pcie 0 0 0 3>; /* INTD */
+> +			clocks =3D <&cpg CPG_MOD R9A08G045_PCI_ACLK>,
+> +				 <&cpg CPG_MOD R9A08G045_PCI_CLKL1PM>;
+> +			clock-names =3D "aclk", "pm";
+> +			resets =3D <&cpg R9A08G045_PCI_ARESETN>,
+> +				 <&cpg R9A08G045_PCI_RST_B>,
+> +				 <&cpg R9A08G045_PCI_RST_GP_B>,
+> +				 <&cpg R9A08G045_PCI_RST_PS_B>,
+> +				 <&cpg R9A08G045_PCI_RST_RSM_B>,
+> +				 <&cpg R9A08G045_PCI_RST_CFG_B>,
+> +				 <&cpg R9A08G045_PCI_RST_LOAD_B>;
+> +			reset-names =3D "aresetn", "rst_b", "rst_gp_b", "rst_ps_b",
+> +				      "rst_rsm_b", "rst_cfg_b", "rst_load_b";
+> +			power-domains =3D <&cpg>;
+> +			device_type =3D "pci";
+> +			#address-cells =3D <3>;
+> +			#size-cells =3D <2>;
+> +			max-link-speed =3D <2>;
+> +			renesas,sysc =3D <&sysc>;
+> +			status =3D "disabled";
+> +
+> +			pcie_port0: pcie@0,0 {
+> +				reg =3D <0x0 0x0 0x0 0x0 0x0>;
+> +				ranges;
+> +				device_type =3D "pci";
+> +				vendor-id =3D <0x1912>;
+> +				device-id =3D <0x0033>;
+> +				#address-cells =3D <3>;
+> +				#size-cells =3D <2>;
+> +			};
+> +		};
+> +
+>  		gic: interrupt-controller@12400000 {
+>  			compatible =3D "arm,gic-v3";
+>  			#interrupt-cells =3D <3>;
+> --
+> 2.43.0
+>=20
 
 
