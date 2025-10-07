@@ -1,77 +1,78 @@
-Return-Path: <devicetree+bounces-224294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1787BC2908
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 21:57:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5ACFBC2910
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 21:57:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C39BF19A12A2
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 19:58:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78B103A9E3A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 19:57:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 504C6239E67;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 760E023A9B0;
 	Tue,  7 Oct 2025 19:57:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b="HSQ4TJX2"
+	dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b="kxrzJFK2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA38822156C
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 19:57:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BEC622A7F2
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 19:57:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759867063; cv=none; b=rsp0TJgX+Ac7rY+zJNS/352QIV4IpW2JExjqhuxVgih7RqU9+fQisya0ba1qHHGUrLwXeErWwdLoujV1t8YH3LU3Ilgz+x/48ltegjCm05uV8mNiH9s99tJj7BQLwSXTXmMTszM1OmQ0HBeI9khPNMbzrgCfwzhz2slQKoM+xIs=
+	t=1759867063; cv=none; b=rKQngXZe22G6vvuUJfddn2Hxd2DucETMrTbVfbMFvI9SAhFBT8PgamLsm3WsSsgq3iGpe0BB1CLukDpMutR2Qb1gnvlCoOZCvKYPnqjjOL5EGS0xfnE9aJcSYUPkiJsTNFlz8um5G09GI27NTohV1P/8/HnwQh8a8nl7uc1SjPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1759867063; c=relaxed/simple;
-	bh=LLFoPlsqXZ6cVvc1iROcimhAMsfDr/77J/uNnPt8xZ8=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Ft9tOZ+yvkIVAmZrAuKk7TBIWUtr1JaSc1FMgH0ZaL6IIy7HYaOt84Fykcl6jrWntJkC7vKwJTygRj/kuEi8ywCM2nuBcJZMZGzrVDt8pAvFnwbcTHVPMwrCZAB2m7mCxpn/Z+AE+M8mFm9hVNpZOhijE5+uDrIlb10z3l1zr20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk; spf=pass smtp.mailfrom=pinefeat.co.uk; dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b=HSQ4TJX2; arc=none smtp.client-ip=209.85.221.51
+	bh=f6vqOFM1ClMIQTvzAyqnN3otmVngL9gxp0vwpvcnK+Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=emmhvhsSHDLoRRbpDpm/5wZESDmD9kKYTs0BOVTlHUwFKbUsapFmKwSZnc5MA29dLiH4qXKlYoZ5ZUvpXTPnIGdIOcyQ1Srh+2G7y6u82LLgb5l64gnaQaREmz4uQB6P+HgaDMkMD3ZRCIgiRgvAvF8hFx+joXEr52NL4fANNvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk; spf=pass smtp.mailfrom=pinefeat.co.uk; dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b=kxrzJFK2; arc=none smtp.client-ip=209.85.221.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pinefeat.co.uk
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3f0134ccc0cso4092037f8f.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 12:57:40 -0700 (PDT)
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-421851bcb25so3568937f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 12:57:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pinefeat.co.uk; s=google; t=1759867059; x=1760471859; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=7+qx4RaKoGovMIC4vNJLjFd56LfO6/L90wBU+eqHXZo=;
-        b=HSQ4TJX2O6cUh8iVr48fLJla1S2tqFm7CmIPMdpNGlhD/n2+dwCduwU0krxVGbSId7
-         egsF0AoPLJQ0AI77pkW+QURNoG+FeN61Hv2CPSvbljFly3d5Aomn6rqy/vvmlJRQHb/n
-         9TDFodWMsAyu4sJ9CSDr5RZzpJOVApfVqfSj+c5ibvwWIOtyASFbaHmB5irUWxojZcPF
-         iFfxB4NCx/a4ZuwmN0NU5lbFjI5iHA4qtbNZIystXl6aIRD90p/KF30Xb7A5E7g2OhN1
-         pgdlem5jo/1Y5cuja6r1h0ITztyd7pfFFsDWr8eeU6/AiURybN7YfCiueYIhi4KfdiOg
-         clQA==
+        d=pinefeat.co.uk; s=google; t=1759867060; x=1760471860; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2j+Q9MMzpQKCegI0LqVFwaTuZf6jfnXFIw0HL+3JIHQ=;
+        b=kxrzJFK2iIv5rfTU+WGNlkG4qFK4p+ksVZi1b5eNpzbMhqeGzVt0ZDBMlNbC0knqk9
+         Gy4fGBW7zZLVSalrrDq6HOslEu4zFFYGs6Is8U7nLTPZz/hfdRManbfGFkBQXb3Wck7V
+         +XTdIrR9XgB0NaL2xYEt5wxjfbNKpIWYbQirDYGfY0ngKebNScYDT0wtjGxBCbV/wEP2
+         eyXLCKakc8ealQ70CHtP54vYOb0GTgO8AIfH337Rr4hC18MUGpnUS3HBxhvBdQNxcpmM
+         vOjTvk22HXdmcq6j4tkK65hUZE5sMIlzhH7VHu0d0YM3sKw1lfUPQre2hhypOpP+JLEl
+         kPVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759867059; x=1760471859;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7+qx4RaKoGovMIC4vNJLjFd56LfO6/L90wBU+eqHXZo=;
-        b=djyFM60cxjNeWtP7sK0YdQtvdvtIs4gPGp+5BYIdmDZ3ZO9ov+2DZ6GlMc0UFP3bbX
-         jJOPI0Geb6Do2XVCloyl5/Mfmuy2i7uPBIXGOjzpVLNV/iq2bGGnZEivpP3QVHZ/PsK7
-         SCEpRt4ZCKyaNqH5Sq+RV0Bk8sNhLpVYD5N5mSSC+3OkID66BjlWyl78a2fP3zuTZcsK
-         a0Wn9nUhvuodgtt8LQb8UfwTa5m0ZjmvXa8CwFefEA+PncxJjFtqa6GPl4FjjZTZbDCG
-         Tll1ZmP2ocq4WSQT/pVM1cEXkx8OazbuMS0h1dSilZKX/sfQuRoA4rf7u3XIO/RpV1E5
-         Zp/w==
-X-Gm-Message-State: AOJu0YyXDhqENAun+nNKnny0lBfKNau4igT7pKK9MKEZMmVgyDGBN6ZT
-	pplOnwFJNGs7BcI7raeidQFX5lvvuRMDx1uaFt3mJ2tr9sEKcwsy0bAmXThxfpfftksXATSwPsq
-	1fguhTNK1pA==
-X-Gm-Gg: ASbGncvdR0LuQMwmFgYrMB/kSWOK78pmODQafUpla49ab+n1rWlohAscsHaz8z8Uu7E
-	XujLfvEE+scUi83QbL8UR9NQ11xUxfCPp0rYrXoFqdusiwRDiir5aFeI9Ci88Av2lH5TAVM8Pwv
-	QpsufUp2YiD06RtwwArVDE0bF3r+rm5PBYejr9u9wG/dquGcJSRJ8qkvabUM6aM2/dcAl9Xw/HF
-	6SQBpj4+t2h/0dS2JRdvyu47W9bhvW4FOE4EuG54cv1LuMIMJ5ZLxxk7aPum62GLJn+4VGnLN1Z
-	du2pFfBRDle+nQ7XztqGXTuINEMv3nBl02ZxuS3KNDRzBrKIC+IetdLFPGTu99DaTpl+AfXwaPA
-	A+i7myuiRn8v4EkSZIrZF+anvJ4IGOIWXsEhduzc6b0lAdPwNYHXJjQEnTTW8p15JuNm/TY4yKF
-	A=
-X-Google-Smtp-Source: AGHT+IG+/J0gFUNE9o2hpPt+WBbb/cdcTnJFI5jfr4VSMTfm5DuIbrq+63b/Wf83a/Mm/bMhowHzng==
-X-Received: by 2002:a05:6000:4284:b0:3f9:1571:fe04 with SMTP id ffacd0b85a97d-4266e8de175mr353643f8f.48.1759867059042;
+        d=1e100.net; s=20230601; t=1759867060; x=1760471860;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2j+Q9MMzpQKCegI0LqVFwaTuZf6jfnXFIw0HL+3JIHQ=;
+        b=vzWnU9GvxyTwwpS317vnRtMyzY0NMdYspni0aIBFHDbWAi1MrWRx0P760YrqvI4NKI
+         mYH1Sq+nRzM4cDhTAKKqtyyqQf/ycvOdmnTRR3MV78Zk5qDPx2wt6fuCnx3qr0ByS7l0
+         TD8bZ2Sc7T75fxqDP0LkH2aNa1rsOfX8Ev5f8FcSNc/oTIf5uO6ptBxyKWFg+azjxR6L
+         LYeiK7B82gmLKyd25uTJ9S4QtVwhwj2r6VTrxw/I0xWg8/wy+19DtZwiEN1IGFflytyT
+         qBtPLrjaDuXNWH9guPLqFEq3iuNSPk7fgtrVONw1JKPpXQWMhlDOr7CbUX3pfLL2ax9g
+         wixw==
+X-Gm-Message-State: AOJu0YxMGcn0DycoybKXRK+hFYm3n6twwLQsfmbNjRNxAX3n7LTfKsFs
+	N2gS28f8ogK17/2SD8bnVRJxMwsH5MaKoVP4mN9MFceSMlbAxUZATo154/KdUxTbMVkm0+wvxaP
+	YQ6syQl8w9w==
+X-Gm-Gg: ASbGnctUvVyjAFG8V48eDJljDOtMH+bPFZWSD1NRgRx1yDHxBUmw1EU2oV9rvcnqCDI
+	HelJgxWQVF0h0f//Wf7TaVlWjPg3jswMsMcYurF5om8+wIm63+x2b4AP9KV6lxfM795F4VlmnTf
+	HQzSInU1bL026iJ+l0ybvQI79TsE//sVUoXOx8Kp5+91fGMchoEpPRCPhFARr7t0DjBtXV7hq0V
+	hNzoYXPTxS8yJ3N77gqJVMIrLoa0Sl4iRXLKYPumY+BRDoq54sPHMKSWxPiS9wHARmR3CXo7Szl
+	q+AbtTTXC1ELM7DtGz3MqSRJzKQ+VjYahjMUkNo3gtYSSLq6Uj0M4qZVqS89pklfwGWyWOpJMnL
+	eCITj46cbKxMxPVanpAnT1xf7kL+trdI7E+iS8BuVOegjYpm1qlmcVX9JnFdemnWW
+X-Google-Smtp-Source: AGHT+IG9cbogcwOF6WmVSeyEhHXG7ZHMIzZWC4Mn8mt/VZI5xaGBB2qXeSTvBwUq847PUK7YWE1qgQ==
+X-Received: by 2002:a05:6000:26c2:b0:3ce:bf23:3c32 with SMTP id ffacd0b85a97d-4266e7beb06mr328269f8f.22.1759867059593;
         Tue, 07 Oct 2025 12:57:39 -0700 (PDT)
 Received: from asmirnov-G751JM.Home ([2a02:c7c:b28c:1f00:bdb:8f55:60a1:c8ff])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8b0068sm26830896f8f.26.2025.10.07.12.57.38
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8b0068sm26830896f8f.26.2025.10.07.12.57.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Oct 2025 12:57:38 -0700 (PDT)
+        Tue, 07 Oct 2025 12:57:39 -0700 (PDT)
 From: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>
 To: jacopo.mondi@ideasonboard.com,
 	hverkuil@xs4all.nl,
@@ -83,10 +84,12 @@ Cc: devicetree@vger.kernel.org,
 	linux-media@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>
-Subject: [PATCH v6 0/2] Pinefeat cef168 lens control board driver
-Date: Tue,  7 Oct 2025 20:57:30 +0100
-Message-Id: <20251007195732.16436-1-asmirnou@pinefeat.co.uk>
+Subject: [PATCH v6 1/2] dt-bindings: Pinefeat cef168 lens control board
+Date: Tue,  7 Oct 2025 20:57:31 +0100
+Message-Id: <20251007195732.16436-2-asmirnou@pinefeat.co.uk>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20251007195732.16436-1-asmirnou@pinefeat.co.uk>
+References: <20251007195732.16436-1-asmirnou@pinefeat.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,39 +98,106 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-This patch series adds support for the Pinefeat adapter, which interfaces
-Canon EF and EF-S lenses to non-Canon camera bodies. The cef168 circuit
-control board provides an I2C interface for electronic focus and aperture
-control. The driver integrates with the V4L2 sub-device API.
+Add the Device Tree schema and examples for the Pinefeat cef168 lens
+control board. This board interfaces Canon EF & EF-S lenses with
+non-Canon camera bodies, enabling electronic control of focus and
+aperture via V4L2.
 
-For more information about the product, see:
-https://github.com/pinefeat/cef168
+Power supply is derived from fixed supplies via connector or GPIO
+header. Therefore, the driver does not manage any regulator, so
+representing any supply in the binding is redundant.
 
-Changes in v6:
- - removed "focus_range" custom control, instead modified the range of
-   the standard "focus_absolute"
-
-There were no changes in dt-bindings patch.
-
-Link to v5: https://lore.kernel.org/all/20251005133228.62704-1-asmirnou@pinefeat.co.uk/
-
-Patches:
-  dt-bindings: Pinefeat cef168 lens control board
-  media: i2c: Pinefeat cef168 lens control board driver
-
- .../bindings/media/i2c/pinefeat,cef168.yaml   |  47 +++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- MAINTAINERS                                   |   7 +
- drivers/media/i2c/Kconfig                     |   9 +
- drivers/media/i2c/Makefile                    |   1 +
- drivers/media/i2c/cef168.c                    | 317 ++++++++++++++++++
- include/uapi/linux/v4l2-controls.h            |   6 +
- 7 files changed, 389 insertions(+)
+Signed-off-by: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>
+---
+ .../bindings/media/i2c/pinefeat,cef168.yaml   | 47 +++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ MAINTAINERS                                   |  6 +++
+ 3 files changed, 55 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/media/i2c/pinefeat,cef168.yaml
- create mode 100644 drivers/media/i2c/cef168.c
 
-
-base-commit: 6093a688a07da07808f0122f9aa2a3eed250d853
+diff --git a/Documentation/devicetree/bindings/media/i2c/pinefeat,cef168.yaml b/Documentation/devicetree/bindings/media/i2c/pinefeat,cef168.yaml
+new file mode 100644
+index 000000000000..1295b1f4edeb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/pinefeat,cef168.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (c) 2025 Pinefeat LLP
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/pinefeat,cef168.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Pinefeat cef168 lens driver
++
++maintainers:
++  - Aliaksandr Smirnou <support@pinefeat.co.uk>
++
++description: |
++  Pinefeat produces an adapter designed to interface between
++  Canon EF & EF-S lenses and non-Canon camera bodies, incorporating
++  features for electronic focus and aperture adjustment. The cef168
++  circuit board, included with the adapter, provides a software
++  programming interface that allows control of lens focus and
++  aperture positions.
++
++properties:
++  compatible:
++    enum:
++      - pinefeat,cef168
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        camera-lens@d {
++            compatible = "pinefeat,cef168";
++            reg = <0x0d>;
++        };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index f1d1882009ba..4f50c35ed670 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1241,6 +1241,8 @@ patternProperties:
+     description: Picochip Ltd
+   "^pine64,.*":
+     description: Pine64
++  "^pinefeat,.*":
++    description: Pinefeat LLP
+   "^pineriver,.*":
+     description: Shenzhen PineRiver Designs Co., Ltd.
+   "^pixcir,.*":
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5a2cde903910..a59cd27caf11 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -20332,6 +20332,12 @@ S:	Supported
+ F:	Documentation/devicetree/bindings/input/pine64,pinephone-keyboard.yaml
+ F:	drivers/input/keyboard/pinephone-keyboard.c
+ 
++PINEFEAT CEF168 LENS DRIVER
++M:	Aliaksandr Smirnou <support@pinefeat.co.uk>
++L:	linux-media@vger.kernel.org
++S:	Supported
++F:	Documentation/devicetree/bindings/media/i2c/pinefeat,cef168.yaml
++
+ PLANTOWER PMS7003 AIR POLLUTION SENSOR DRIVER
+ M:	Tomasz Duszynski <tduszyns@gmail.com>
+ S:	Maintained
 -- 
 2.34.1
 
