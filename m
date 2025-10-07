@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-224101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AF51BC0B57
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 10:39:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A34F3BC0C0D
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 10:43:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A7B2F4F4F9C
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 08:39:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7814D3AE915
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 08:39:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E255F2E172B;
-	Tue,  7 Oct 2025 08:34:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3076C2E2825;
+	Tue,  7 Oct 2025 08:34:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZKOGJKpy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mUZk0Fb8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FD2E2D543E
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 08:34:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 288862D978D
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 08:34:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759826079; cv=none; b=al+ikjbVTe/1WhZV3xoeDaE6kZbTxXy0pKAoNCXMttSjaEET8cZdAEsuuG1tiGtd5Yv1U/kDvwP95+DUuqhWrn6g61A/Qh5tXVRbP9WmUHCv6RR4caOIpNLVDZK288GBjmHzhql28AOWQFuGsfzc/sixilpPT3xV7OKU+RRhw4s=
+	t=1759826091; cv=none; b=ROxTL2uFsXqv01qsBeV5MmUpfBnY6kRZEMsnEbj2tj3mz6uFtIR2TBV1Hadgs9hvmfj92Ols2WLjqrQe9U3hr/dQOLZbg+CJrS4+/T2eXLRmrwn5C6X9y9U8hxaUDmHlA/uT4HKdD+TxFIGSKEpn2YnmzqIF0fHBeu0SsUSxBMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759826079; c=relaxed/simple;
-	bh=R8clJqIWgxqfvV6jstEVcRU6Y5M+f9dOjXk/4CdXbEc=;
+	s=arc-20240116; t=1759826091; c=relaxed/simple;
+	bh=GUSjLjlYDEl8o6/jXjuzBG5/s1EogFROA51N25GkeDA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XE7Zp4cBIFat+CISVtfbawqzJN+254GW2EO6JaXDAbIbGnu6VzVwPLK85rdDaAqZPUcSdIIesnJ7qPbzh3s4LID/JIrW3zTYUh3Uu+Xi4it9ENlf5wNWk4q5A6dEzxAskCPNRoTlMdleMYEiP/+owqS7jw7+pBDXtBF6D+RowUo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZKOGJKpy; arc=none smtp.client-ip=209.85.167.54
+	 Content-Type:Content-Disposition:In-Reply-To; b=hUI8oZ/U3D7Hv+8DWivy8HhG10GMMEHYM+daKGwWnKfaSkuVCjPR2Lx7yesoN/GjIHGiiCTegikbjUBmQJpPVjcW0FM9JuQn8dczno5w+tBLGtrYx1UGTHpfgY3ly1YlpQHpkfHZplPbK5GRZRCLmtHvuADwRt9lBS3lh1x5SUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mUZk0Fb8; arc=none smtp.client-ip=209.85.208.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-57d5ccd73dfso6482633e87.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 01:34:36 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-367444a3e2aso73893931fa.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 01:34:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759826075; x=1760430875; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759826087; x=1760430887; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cYqOhwjmD7QzSDhAXWMY9rlGZsX+SISq8DSEREyGLpc=;
-        b=ZKOGJKpy7XckcOzY2xg2mgVcVwsBC2+oKfQoV+z8cWw5PrF9Ontn7f10p9tZskYtf2
-         o/sGLylZmrGvsGgW8AC3ToldZsfny8+6rkh/56cidkM24UvOeyYCJlAn7TfxYBeKgWwc
-         1bIlfgFoIeYtKOeRTijasgRvdoAWI6rgFFWEsTVrdpTX9DJpWC3lWb80Y6tEwZ3ssiCr
-         eGa+sPG1M91kZekK8r0KloA8g5Uf5/hC8F8AQ53rrMk8E5LvYlf9IHIpMpwZQD6JDpq8
-         WpdbRhnqde30BVooqFIwFIDVCQvWkbAkcILmUZyLBH8OwWxzEYOwZ72kNCNL7PKB9Uag
-         N2UQ==
+        bh=N4czLOo5ZnN18HLnOcC7pqQ0t9QPNLqdBoEDTR9BH/I=;
+        b=mUZk0Fb8f9hWI98v4xxsInXObeVr8oqrgB9R0/IwE1M9YVV3VGz+Sr5UpDrQAbG++J
+         kwy6COdt8ZLpkvq1UUl6h+cDMS1cP1f0cCLK7A7L4Kwewo1U1uO+UtU1nSeLHH0O5Gco
+         S64RPPU4OaOe4qcZCUp1hnC6xoz4qys8kROWCj+1fJY35K1uaj9nrG5aLa0q55P6UJkZ
+         5nOdjbdylg1f7zeDDttzoFdYi9rl4ABdcvg3jDI42Q4L0Krq0gdzHIYJX7jMi1v4cohm
+         n6fSo0FraSyifJVjFT5RaoqJyfVLP4TcdqTTiH18lONXVuKWigIPdbVt0DLKg7FjcnrU
+         w6Vw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759826075; x=1760430875;
+        d=1e100.net; s=20230601; t=1759826087; x=1760430887;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=cYqOhwjmD7QzSDhAXWMY9rlGZsX+SISq8DSEREyGLpc=;
-        b=ZH1IMTLT8eROfOlOyWIA/+5nSzpvm4lB3zh1038TCQ36Mi+0tMd3GHpL88fuyVSjv9
-         tp5f3VpQFQzfxW8gJDI/f2J8AiS318KZF5NWnIxxJlwcgbhqrFcsqN8E9Z12AiRuLb5G
-         Y6eFb43QTXi7OXCxeI78/CyEEAZHVsIg3oGXgafyqiSBaNUL8NzANl27gbBpMbd+XW4a
-         u6ymv1xfPD/tNFxn9tD9FRy74nfQaFUNhb/cEgMlh24oWKLJ5jPNBFuqfN2u8Ox3CEs7
-         k/8GZrcrSXeFiYEu7HYtxl9rGWbWzQYdfzf+7eRYzz9twINPvL+vlQheVtXu1vOxbBHf
-         aQmg==
-X-Forwarded-Encrypted: i=1; AJvYcCXa+7ZSbMoDO1Pz1/yX4SAZ6UI26lVRPhtJLFkafbBV/1Tx27ZaVUflHFEMc6XwZ78XUljllAdnX1V7@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAeY7u4p8a76I3OkVSzdPnnZkLf9pB6RvhCkZBAd1VT3HWgg9V
-	MUKM3qXJT3VtVT1yfZplqoI8fvpkDQfAKBnArDNwOHELUM2YMFlKEOZA
-X-Gm-Gg: ASbGnct2RJTUjcj2BdzsTthccsLQeeecZpRbUpiXEt1ldnl4yO+75VZiAtAJeZuVkxF
-	gBzmHp28FtzQpQ70woWaLaC3v7aNulKM5S66Vn20TUcGtnLI9GrDgeL+FaQGoFfpSU1kQ5A0qpp
-	RmpPeYjH3uajgR5/2oHNsNYLxBPc8ZmiocFrTfK1I5VgtbaobqT4sZBpRs6tIUzOBrFYGIiRWqP
-	vlYLTHzQjssKTT1tfX/AobkK5VBZrGuqE37mTRs5oNSsCmjCSW6sGwUFBE40gTUfVeFJBz/Xcz9
-	4QeJ7D3IGXHO3pmoYwqPv/18CvUlRIjcTA0j78wHi6FKxouXkF9KuioRXZ0TfadDQWAf5xYwLbj
-	g2bM2X0OudPjgArG2CqLnSfEytCSj1TtMobv1Z50mEOGjCzzx71a8Wg==
-X-Google-Smtp-Source: AGHT+IHsASn0unx/AEqza4jAFGTdIMbVTcQ/sQcaQeucT8a7hY37xmWlyEPjz5QPdJAWskjmEMEQJA==
-X-Received: by 2002:a05:6512:b09:b0:560:8b86:75ba with SMTP id 2adb3069b0e04-58cbc680d7dmr4384427e87.52.1759826074944;
-        Tue, 07 Oct 2025 01:34:34 -0700 (PDT)
+        bh=N4czLOo5ZnN18HLnOcC7pqQ0t9QPNLqdBoEDTR9BH/I=;
+        b=Y2rnE468gc5pixPzTFwhEY6xZnJLtMuhgAJUwQwiJ5Z5VltfHQyNsWvNrp7w3ZOcnV
+         l9nRNSwwjBboh5yjohO6MhaX3aevtlpeNs/p3+A0K7te8OGdOmTOwZs3WLBh5WGIYor7
+         seaOZFaJbzH2FvGsVF6R9X19m0I9VKwYXZXozzMkS06pEXb24fbnI+or1OUodprmAVVC
+         7cxG12mRiV5eSKFQf16/g4P3iSzHspYEY22QiJ2jrGRhxgHnE+lFkkLi6P7OSPHGH5y7
+         ki9xCEGi4hXm7FO907H1YzroH2KPldbuqXzG5u0uUNZgT47jxsB9/kYGUi/aOs+QvDOr
+         pmeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXVaQ16epuU2NOEuEoj+j4GO7X2D5rIHB/USatJ2RPCKp3o3N+TUl4TNMn5F/SQuWjvDWUfLlIa37d2@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy22IisTmRmw8Ix0oGOJv4m1KZ+iu7QFMLCDe0NxbDAUXGjOoTK
+	krOU4usk1OUu/OMK1G7IdGqPmkuYGfR3MZe73Ab+IZv8wG11/5MKEKHT
+X-Gm-Gg: ASbGncuCcvg5sNbXHOJavxDEDtJhxdlb8ZaxbhkSwss74AuWTLeA5idkbfK/YmXe6lM
+	rlCS6ljJJRnRgeT4ae7ns+FsneYtiq3b+ouOXTqDDNE4ykPxBIbGbZb4s7Cgf57EfedepwuUlYZ
+	gKiugRGscojx+TTFjOWD0OX2S+xB8ezCVhAtfpTBW6RbZiKqz/r4pKxX6OLBAwC5COxf6OPwaL1
+	5tiEfuX+WkW0Gg3vpkFfKs4x6gv93UpTtYyBcrPBlKg04eA4LLl5Dz9uNKeoA/OsNu76nRh9G12
+	7P+4CtkDCTxWVvT4BTEl/7v42iEVJjU+oka+dtP/VEt8u+tQNTIZ/RXMcE4PG0fXQt1YUcYyRRm
+	JYrq8Jnyb6/bhj9hcWCysms7d5Qn3sAoiDmImEi9xE7Xra3DXFOijmRaTB49yOlUx
+X-Google-Smtp-Source: AGHT+IFJwLelYLgNdfM+CTGIlVmgHDyXSlhZErg/oypat4GW4z8fl0IXAAmciErEk8L811heCPgGOA==
+X-Received: by 2002:a2e:bcc2:0:b0:372:8cc8:fc3d with SMTP id 38308e7fff4ca-374c36a532bmr52952751fa.1.1759826087055;
+        Tue, 07 Oct 2025 01:34:47 -0700 (PDT)
 Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58b0119ed6csm5819943e87.105.2025.10.07.01.34.33
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-375f39d2f9asm7808841fa.2.2025.10.07.01.34.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Oct 2025 01:34:33 -0700 (PDT)
-Date: Tue, 7 Oct 2025 11:34:30 +0300
+        Tue, 07 Oct 2025 01:34:45 -0700 (PDT)
+Date: Tue, 7 Oct 2025 11:34:42 +0300
 From: Matti Vaittinen <mazziesaccount@gmail.com>
 To: Matti Vaittinen <mazziesaccount@gmail.com>,
 	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
@@ -89,8 +89,8 @@ Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
 	Andreas Kemnade <andreas@kemnade.info>, linux-leds@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-pm@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: [RFC PATCH 09/13] gpio: Support ROHM BD72720 gpios
-Message-ID: <ed65074dbedaf2b503d789b38bd9710926d08a55.1759824376.git.mazziesaccount@gmail.com>
+Subject: [RFC PATCH 10/13] clk: clk-bd718x7: Support BD72720 clk gate
+Message-ID: <73e5485c34db0667b505bf73b597e0b3cd1b6060.1759824376.git.mazziesaccount@gmail.com>
 References: <cover.1759824376.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -99,388 +99,102 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bPmL0Nc6G4goy3sK"
+	protocol="application/pgp-signature"; boundary="4M+VUMaCtdns8Dyt"
 Content-Disposition: inline
 In-Reply-To: <cover.1759824376.git.mazziesaccount@gmail.com>
 
 
---bPmL0Nc6G4goy3sK
+--4M+VUMaCtdns8Dyt
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-The ROHM BD72720 has 6 pins which may be configured as GPIOs. The
-GPIO1 ... GPIO5 and EPDEN pins. The configuration is done to OTP at the
-manufacturing, and it can't be read at runtime. The device-tree is
-required to tell the software which of the pins are used as GPIOs.
+The BD72720 has similar simple clk gate as a few other ROHM PMICs.
 
-Keep the pin mapping static regardless the OTP. This way the user-space
-can always access the BASE+N for GPIO(N+1) (N =3D 0 to 4), and BASE + 5
-for the EPDEN pin. Do this by setting always the number of GPIOs to 6,
-and by using the valid-mask to invalidate the pins which aren't configured
-as GPIOs.
-
-First two pins can be set to be either input or output by OTP. Direction
-can't be changed by software. Rest of the pins can be set as outputs
-only. All of the pins support generating interrupts.
-
-Support the Input/Output state getting/setting and the output mode
-configuration (open-drain/push-pull).
+Add support for BD72720 clk gate.
 
 Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 ---
- drivers/gpio/Kconfig        |   9 ++
- drivers/gpio/Makefile       |   1 +
- drivers/gpio/gpio-bd72720.c | 281 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 291 insertions(+)
- create mode 100644 drivers/gpio/gpio-bd72720.c
+ drivers/clk/Kconfig       |  4 ++--
+ drivers/clk/clk-bd718x7.c | 10 ++++++++--
+ 2 files changed, 10 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-index d8ac40d0eb6f..86498c2cb949 100644
---- a/drivers/gpio/Kconfig
-+++ b/drivers/gpio/Kconfig
-@@ -1315,6 +1315,15 @@ config GPIO_BD71828
- 	  This driver can also be built as a module. If so, the module
- 	  will be called gpio-bd71828.
+diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+index 4d56475f94fc..9742a3d0c1cb 100644
+--- a/drivers/clk/Kconfig
++++ b/drivers/clk/Kconfig
+@@ -474,8 +474,8 @@ config COMMON_CLK_BD718XX
+ 	tristate "Clock driver for 32K clk gates on ROHM PMICs"
+ 	depends on MFD_ROHM_BD718XX || MFD_ROHM_BD71828
+ 	help
+-	  This driver supports ROHM BD71837, BD71847, BD71850, BD71815
+-	  and BD71828 PMICs clock gates.
++	  This driver supports ROHM BD71837, BD71847, BD71850, BD71815,
++	  BD71828, and BD72720 PMICs clock gates.
 =20
-+config GPIO_BD72720
-+	tristate "ROHM BD72720 and BD73900 PMIC GPIO support"
-+	depends on MFD_ROHM_BD71828
-+	help
-+	  Support for GPIO on ROHM BD72720 and BD73900 PMICs. There are two
-+	  pins which can be configured to GPI or GPO, and three pins which can
-+	  be configured to GPO on the ROHM PMIC. The pin configuration is done
-+	  on OTP at manufacturing.
-+
- config GPIO_BD9571MWV
- 	tristate "ROHM BD9571 GPIO support"
- 	depends on MFD_BD9571MWV
-diff --git a/drivers/gpio/Makefile b/drivers/gpio/Makefile
-index 379f55e9ed1e..15bdaa680ca7 100644
---- a/drivers/gpio/Makefile
-+++ b/drivers/gpio/Makefile
-@@ -45,6 +45,7 @@ obj-$(CONFIG_GPIO_BCM_KONA)		+=3D gpio-bcm-kona.o
- obj-$(CONFIG_GPIO_BCM_XGS_IPROC)	+=3D gpio-xgs-iproc.o
- obj-$(CONFIG_GPIO_BD71815)		+=3D gpio-bd71815.o
- obj-$(CONFIG_GPIO_BD71828)		+=3D gpio-bd71828.o
-+obj-$(CONFIG_GPIO_BD72720)		+=3D gpio-bd72720.o
- obj-$(CONFIG_GPIO_BD9571MWV)		+=3D gpio-bd9571mwv.o
- obj-$(CONFIG_GPIO_BLZP1600)		+=3D gpio-blzp1600.o
- obj-$(CONFIG_GPIO_BRCMSTB)		+=3D gpio-brcmstb.o
-diff --git a/drivers/gpio/gpio-bd72720.c b/drivers/gpio/gpio-bd72720.c
-new file mode 100644
-index 000000000000..6549dbf4c7ad
---- /dev/null
-+++ b/drivers/gpio/gpio-bd72720.c
-@@ -0,0 +1,281 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Support to GPIOs on ROHM BD72720 and BD79300
-+ * Copyright 2025 ROHM Semiconductors.
-+ * Author: Matti Vaittinen <mazziesaccount@gmail.com>
-+ */
-+
-+#include <linux/gpio/driver.h>
-+#include <linux/init.h>
-+#include <linux/irq.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/mfd/rohm-bd72720.h>
-+
-+#define BD72720_GPIO_OPEN_DRAIN		0
-+#define BD72720_GPIO_CMOS		BIT(1)
-+#define BD72720_INT_GPIO1_IN_SRC	4
-+/*
-+ * The BD72720 has several "one time programmable" (OTP) configurations wh=
-ich
-+ * can be set at manufacturing phase. A set of these options allow using p=
-ins
-+ * as GPIO. The OTP configuration can't be read at run-time, so drivers re=
-ly on
-+ * device-tree to advertise the correct options.
-+ *
-+ * Both DVS[0,1] pins can be configured to be used for:
-+ *  - OTP0: regulator RUN state control
-+ *  - OTP1: GPI
-+ *  - OTP2: GPO
-+ *  - OTP3: Power sequencer output
-+ *  Data-sheet also states that these PINs can always be used for IRQ but =
-the
-+ *  driver limits this by allowing them to be used for IRQs with OTP1 only.
-+ *
-+ * Pins GPIO_EXTEN0 (GPIO3), GPIO_EXTEN1 (GPIO4), GPIO_FAULT_B (GPIO5) hav=
-e OTP
-+ * options for a specific (non GPIO) purposes, but also an option to confi=
-gure
-+ * them to be used as a GPO.
-+ *
-+ * OTP settings can be separately configured for each pin.
-+ *
-+ * DT properties:
-+ * "rohm,pin-dvs0" and "rohm,pin-dvs1" can be set to one of the values:
-+ * "dvs-input", "gpi", "gpo".
-+ *
-+ * "rohm,pin-exten0", "rohm,pin-exten1" and "rohm,pin-fault_b" can be set =
-to:
-+ * "gpo"
-+ */
-+
-+enum bd72720_gpio_state {
-+	BD72720_PIN_UNKNOWN,
-+	BD72720_PIN_GPI,
-+	BD72720_PIN_GPO,
-+};
-+
-+enum {
-+	BD72720_GPIO1,
-+	BD72720_GPIO2,
-+	BD72720_GPIO3,
-+	BD72720_GPIO4,
-+	BD72720_GPIO5,
-+	BD72720_GPIO_EPDEN,
-+	BD72720_NUM_GPIOS
-+};
-+
-+struct bd72720_gpio {
-+	/* chip.parent points the MFD which provides DT node and regmap */
-+	struct gpio_chip chip;
-+	/* dev points to the platform device for devm and prints */
-+	struct device *dev;
-+	struct regmap *regmap;
-+	int gpio_is_input;
-+};
-+
-+static int bd72720gpi_get(struct bd72720_gpio *bdgpio, unsigned int reg_of=
-fset)
-+{
-+	int ret, val, shift;
-+
-+	ret =3D regmap_read(bdgpio->regmap, BD72720_REG_INT_ETC1_SRC, &val);
-+	if (ret)
-+		return ret;
-+
-+	shift =3D BD72720_INT_GPIO1_IN_SRC + reg_offset;
-+
-+	return (val >> shift) & 1;
-+}
-+
-+static int bd72720gpo_get(struct bd72720_gpio *bdgpio,
-+			  unsigned int offset)
-+{
-+	const int regs[] =3D { BD72720_REG_GPIO1_CTRL, BD72720_REG_GPIO2_CTRL,
-+			     BD72720_REG_GPIO3_CTRL, BD72720_REG_GPIO4_CTRL,
-+			     BD72720_REG_GPIO5_CTRL, BD72720_REG_EPDEN_CTRL };
-+	int ret, val;
-+
-+	ret =3D regmap_read(bdgpio->regmap, regs[offset], &val);
-+	if (ret)
-+		return ret;
-+
-+	return val & BD72720_GPIO_HIGH;
-+}
-+
-+static int bd72720gpio_get(struct gpio_chip *chip, unsigned int offset)
-+{
-+	struct bd72720_gpio *bdgpio =3D gpiochip_get_data(chip);
-+
-+	if (BIT(offset) & bdgpio->gpio_is_input)
-+		return bd72720gpi_get(bdgpio, offset);
-+
-+	return bd72720gpo_get(bdgpio, offset);
-+}
-+
-+static int bd72720gpo_set(struct gpio_chip *chip, unsigned int offset,
-+			  int value)
-+{
-+	struct bd72720_gpio *bdgpio =3D gpiochip_get_data(chip);
-+	const int regs[] =3D { BD72720_REG_GPIO1_CTRL, BD72720_REG_GPIO2_CTRL,
-+			     BD72720_REG_GPIO3_CTRL, BD72720_REG_GPIO4_CTRL,
-+			     BD72720_REG_GPIO5_CTRL, BD72720_REG_EPDEN_CTRL };
-+
-+	if (BIT(offset) & bdgpio->gpio_is_input) {
-+		dev_dbg(bdgpio->dev, "pin %d not output.\n", offset);
-+		return -EINVAL;
-+	}
-+
-+	if (value)
-+		return regmap_set_bits(bdgpio->regmap, regs[offset],
-+				      BD72720_GPIO_HIGH);
-+
-+	return regmap_clear_bits(bdgpio->regmap, regs[offset],
-+					BD72720_GPIO_HIGH);
-+}
-+
-+static int bd72720_gpio_set_config(struct gpio_chip *chip, unsigned int of=
-fset,
-+				   unsigned long config)
-+{
-+	struct bd72720_gpio *bdgpio =3D gpiochip_get_data(chip);
-+	const int regs[] =3D { BD72720_REG_GPIO1_CTRL, BD72720_REG_GPIO2_CTRL,
-+			     BD72720_REG_GPIO3_CTRL, BD72720_REG_GPIO4_CTRL,
-+			     BD72720_REG_GPIO5_CTRL, BD72720_REG_EPDEN_CTRL };
-+
-+	/*
-+	 * We can only set the output mode, which makes sense only when output
-+	 * OTP configuration is used.
-+	 */
-+	if (BIT(offset) & bdgpio->gpio_is_input)
-+		return -ENOTSUPP;
-+
-+	switch (pinconf_to_config_param(config)) {
-+	case PIN_CONFIG_DRIVE_OPEN_DRAIN:
-+		return regmap_update_bits(bdgpio->regmap,
-+					  regs[offset],
-+					  BD72720_GPIO_DRIVE_MASK,
-+					  BD72720_GPIO_OPEN_DRAIN);
-+	case PIN_CONFIG_DRIVE_PUSH_PULL:
-+		return regmap_update_bits(bdgpio->regmap,
-+					  regs[offset],
-+					  BD72720_GPIO_DRIVE_MASK,
-+					  BD72720_GPIO_CMOS);
-+	default:
+ config COMMON_CLK_FIXED_MMIO
+ 	bool "Clock driver for Memory Mapped Fixed values"
+diff --git a/drivers/clk/clk-bd718x7.c b/drivers/clk/clk-bd718x7.c
+index ac40b669d60b..1cae974e6d1d 100644
+--- a/drivers/clk/clk-bd718x7.c
++++ b/drivers/clk/clk-bd718x7.c
+@@ -19,7 +19,8 @@
+ #define BD71828_REG_OUT32K	0x4B
+ /* BD71837 and BD71847 */
+ #define BD718XX_REG_OUT32K	0x2E
+-
++/* BD72720 */
++#define BD72720_REG_OUT32K	0x9a
+ /*
+  * BD71837, BD71847, and BD71828 all use bit [0] to clk output control
+  */
+@@ -118,6 +119,10 @@ static int bd71837_clk_probe(struct platform_device *p=
+dev)
+ 		c->reg =3D BD71815_REG_OUT32K;
+ 		c->mask =3D CLK_OUT_EN_MASK;
+ 		break;
++	case ROHM_CHIP_TYPE_BD72720:
++		c->reg =3D BD72720_REG_OUT32K;
++		c->mask =3D CLK_OUT_EN_MASK;
 +		break;
-+	}
-+
-+	return -ENOTSUPP;
-+}
-+
-+static int bd72720gpo_direction_get(struct gpio_chip *chip,
-+				    unsigned int offset)
-+{
-+	struct bd72720_gpio *bdgpio =3D gpiochip_get_data(chip);
-+
-+	if (BIT(offset) & bdgpio->gpio_is_input)
-+		return GPIO_LINE_DIRECTION_IN;
-+
-+	return GPIO_LINE_DIRECTION_OUT;
-+}
-+
-+static int bd72720_valid_mask(struct gpio_chip *gc,
-+			      unsigned long *valid_mask,
-+			      unsigned int ngpios)
-+{
-+	static const char * const properties[] =3D {
-+		"rohm,pin-dvs0", "rohm,pin-dvs1", "rohm,pin-exten0",
-+		"rohm,pin-exten1", "rohm,pin-fault_b"
-+	};
-+	struct bd72720_gpio *g =3D gpiochip_get_data(gc);
-+	const char *val;
-+	int i, ret;
-+
-+	*valid_mask =3D BIT(BD72720_GPIO_EPDEN);
-+
-+	if (!gc->parent)
-+		return 0;
-+
-+	for (i =3D 0; i < ARRAY_SIZE(properties); i++) {
-+		ret =3D fwnode_property_read_string(dev_fwnode(gc->parent),
-+						  properties[i], &val);
-+
-+		if (ret) {
-+			if (ret =3D=3D -EINVAL)
-+				continue;
-+
-+			dev_err(g->dev, "pin %d (%s), bad configuration\n", i,
-+				properties[i]);
-+
-+			return ret;
-+		}
-+
-+		if (strcmp(val, "gpi") =3D=3D 0) {
-+			if (i !=3D BD72720_GPIO1 && i !=3D BD72720_GPIO2) {
-+				dev_warn(g->dev,
-+					 "pin %d (%s) does not support INPUT mode",
-+					 i, properties[i]);
-+				continue;
-+			}
-+
-+			*valid_mask |=3D BIT(i);
-+			g->gpio_is_input |=3D BIT(i);
-+		} else if (strcmp(val, "gpo") =3D=3D 0) {
-+			*valid_mask |=3D BIT(i);
-+		}
-+	}
-+
-+	return 0;
-+}
-+
-+/* Template for GPIO chip */
-+static const struct gpio_chip bd72720gpo_chip =3D {
-+	.label			=3D "bd72720",
-+	.owner			=3D THIS_MODULE,
-+	.get			=3D bd72720gpio_get,
-+	.get_direction		=3D bd72720gpo_direction_get,
-+	.set			=3D bd72720gpo_set,
-+	.set_config		=3D bd72720_gpio_set_config,
-+	.init_valid_mask	=3D bd72720_valid_mask,
-+	.can_sleep		=3D true,
-+	.ngpio			=3D BD72720_NUM_GPIOS,
-+	.base			=3D -1,
-+};
-+
-+static int gpo_bd72720_probe(struct platform_device *pdev)
-+{
-+	struct bd72720_gpio *g;
-+	struct device *parent, *dev;
-+
-+	/*
-+	 * Bind devm lifetime to this platform device =3D> use dev for devm.
-+	 * also the prints should originate from this device.
-+	 */
-+	dev =3D &pdev->dev;
-+	/* The device-tree and regmap come from MFD =3D> use parent for that */
-+	parent =3D dev->parent;
-+
-+	g =3D devm_kzalloc(dev, sizeof(*g), GFP_KERNEL);
-+	if (!g)
-+		return -ENOMEM;
-+
-+	g->chip =3D bd72720gpo_chip;
-+	g->dev =3D dev;
-+	g->chip.parent =3D parent;
-+	g->regmap =3D dev_get_regmap(parent, NULL);
-+
-+	return devm_gpiochip_add_data(dev, &g->chip, g);
-+}
-+
-+static const struct platform_device_id bd72720_gpio_id[] =3D {
-+	{ "bd72720-gpio" },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(platform, bd72720_gpio_id);
-+
-+static struct platform_driver gpo_bd72720_driver =3D {
-+	.driver =3D {
-+		.name =3D "bd72720-gpio",
-+		.probe_type =3D PROBE_PREFER_ASYNCHRONOUS,
-+	},
-+	.probe =3D gpo_bd72720_probe,
-+	.id_table =3D bd72720_gpio_id,
-+};
-+module_platform_driver(gpo_bd72720_driver);
-+
-+MODULE_AUTHOR("Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>");
-+MODULE_DESCRIPTION("GPIO interface for BD72720 and BD73900");
-+MODULE_LICENSE("GPL");
+ 	default:
+ 		dev_err(&pdev->dev, "Unknown clk chip\n");
+ 		return -EINVAL;
+@@ -146,6 +151,7 @@ static const struct platform_device_id bd718x7_clk_id[]=
+ =3D {
+ 	{ "bd71847-clk", ROHM_CHIP_TYPE_BD71847 },
+ 	{ "bd71828-clk", ROHM_CHIP_TYPE_BD71828 },
+ 	{ "bd71815-clk", ROHM_CHIP_TYPE_BD71815 },
++	{ "bd72720-clk", ROHM_CHIP_TYPE_BD72720 },
+ 	{ },
+ };
+ MODULE_DEVICE_TABLE(platform, bd718x7_clk_id);
+@@ -161,6 +167,6 @@ static struct platform_driver bd71837_clk =3D {
+ module_platform_driver(bd71837_clk);
+=20
+ MODULE_AUTHOR("Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>");
+-MODULE_DESCRIPTION("BD718(15/18/28/37/47/50) and chip clk driver");
++MODULE_DESCRIPTION("BD718(15/18/28/37/47/50) and BD72720 chip clk driver");
+ MODULE_LICENSE("GPL");
+ MODULE_ALIAS("platform:bd718xx-clk");
 --=20
 2.51.0
 
 
---bPmL0Nc6G4goy3sK
+--4M+VUMaCtdns8Dyt
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmjk0JYACgkQeFA3/03a
-ocVRSQgAsGU4yl/v9avbTHL13POxAGZTvz0dBHS8YmZ8iZ0q8NYZf+Rd4mFp6DWC
-GFQjV6ttE8VfpKQnD3YYTY/+ZqX2mKpMrJ2EuLHIFGse7VR1pVmpFhnLKgJE9zAw
-RsFeeU1ZtnZIy7pmt77VWw+TLGuwfzBt7mY0miRbnu5pQ4RvrX3vc2F7IjfDAjTw
-ZsHtEXcfl0TsrQ1IWVKQyP0zei6vt7b/oLLVwPuypd0mMOAzgh+pACtrIMDT4V89
-yOtVvjmBITgfgHKhNSF3Vh2AEFne6xWe+8LAJ/lWcRazdpX/J6BK+DWHijSVthjD
-nn2oeJ3ecs/2lreA4JD5b8ZqY2ZN0w==
-=vhGB
+iQEyBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmjk0KIACgkQeFA3/03a
+ocU5WQf459k37WyeXVlkrKuVW7Svb4MOFVMVF+lU5Ux0Ov1BTXkwmyryvKWnRVcU
+m8N29E9g+ugj9vvNdnEVMKYcFM1F5VhGz1NdmIZ07SCDA8hw0/efqI7kE/0ye1g6
++5AQgMLpSxOnUy7gXAJnQXIASTfn+fkMTVmuSARJwV/VO2Rvhe3R97uOXTczzhxF
+BGFkeZXLr5ZM0p/UWKwoWk4GBtPNADjXnIgoQ+nGxnosR6YgwHNkWnNvs/O+XhM5
+Hdew+uEBnmvmrjPpGKI00q5xV+6HC74toCTut0C4JZq2LwhXELCmrPJUhowOWV2s
+12St76wJX1azrQiHe7ecQR+O8RYL
+=XN3R
 -----END PGP SIGNATURE-----
 
---bPmL0Nc6G4goy3sK--
+--4M+VUMaCtdns8Dyt--
 
