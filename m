@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-224217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98303BC1AE1
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 16:18:20 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AB45BC1B7A
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 16:25:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CA353B8104
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 14:18:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 00F9D4E1846
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 14:25:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A5FE1EA7C9;
-	Tue,  7 Oct 2025 14:18:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14D502DC34E;
+	Tue,  7 Oct 2025 14:25:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VLEBgklu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A9DLaP/z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AAEE374EA;
-	Tue,  7 Oct 2025 14:18:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D2C189BB0;
+	Tue,  7 Oct 2025 14:25:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759846696; cv=none; b=fM4fmnBXB1kk7qUBPZy2AAhW4+plB8BOhmhQQE4LMgApOX5/RGsR8WsdS39z7wQEgnjVLjD5fGsftJNUlmgFLwOBXWb0g9+nH7Vyc6f4ckYpNTLehmkInxZQnCU2Gl8ItFgwpHUht9iGmniHSrBPQNoO9AN+dXrXlBqSol5n2Y8=
+	t=1759847135; cv=none; b=njevpisSHdxvCaScQMjXA/M4IDBkoGTSg58QtV6dGujMqe/CD6DFm4R2xQeGFkwM6jiSX5EHazlRxlA3Q2pWhwyuecMJ8mPhJ46Px41TmUpt9X/tvYRu33y1IN3btjEOKJ5JZUtMRNmNQsugP2sWaxbfbC4V5l/RhqPZwJsm9Z0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759846696; c=relaxed/simple;
-	bh=G/NshkMJ1GZbtO3UIa9SqYi+nufWNB4mZlO3zufyam0=;
+	s=arc-20240116; t=1759847135; c=relaxed/simple;
+	bh=MPMxpOSE6OzsmAXqv7ooiDkQUYAGQfGXpkT9hMjKexg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RUXvIQHwbgnmtbf46RpJIL+u4dCa1sTU2JILIKmX6FF9n9LOLB9GG+ggCkgrGQ7GSxvHILHfBEEi2uGoVtBTIW12qnmem2r65ULlyZdCXD7PJXr36qnaWD1+HXR752vUrb53TR60WxnOjgEprCoakaeA0VPsnvSxtHnyIj6Bz5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VLEBgklu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FCD1C4CEF9;
-	Tue,  7 Oct 2025 14:18:07 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Zy7679elpKcDyxqYF3raqRcgx6zZjOeHogm8ZbDaR4iRpXTn/99vH4A09vdD81vIYgvgunOAxGWH5G6V4IBQSBmVu++Nv9EQDb7HhJhvOZ05TxNDnjRAsyLJC66h9KcozZwjHypfTbiLiQwjhMQClOgzK581yA3s86EDZEfUPns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A9DLaP/z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAEE8C4CEF1;
+	Tue,  7 Oct 2025 14:25:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759846696;
-	bh=G/NshkMJ1GZbtO3UIa9SqYi+nufWNB4mZlO3zufyam0=;
+	s=k20201202; t=1759847134;
+	bh=MPMxpOSE6OzsmAXqv7ooiDkQUYAGQfGXpkT9hMjKexg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VLEBgkluXeahLBiq1Q8q74aSbv9sUk8S4cduCCxdRDeAUEmAGnpgT2dd+ksDo9KZp
-	 TPcksti+HsUH8pFCU61wkEbT/aYAaPpHRA+y6NTCHqP4xPH9SG397h9kS32wIqs24s
-	 h44CpSGxzl9ePGWUWhOWW0kb3oAphuENyakg/QfeoPzuPIGh/Mzf9mUhmNsfi58zNj
-	 Be3k2bbXybJQvjBHxrSobLIrxkG3l+2U+rKsvU0OWna64yWtAl8pECHgqRcOo8fBc4
-	 MtJ1mNa8tuXV+8tIXqt8l2v/2d8Sc5OUh3ac4tc1vGBQ5kXqT4AZQ5EiAf//4c1t+e
-	 YJ8MxK/7lqJ/w==
-Message-ID: <d592eb91-84e9-4bdc-8363-1d0bfd47c17c@kernel.org>
-Date: Tue, 7 Oct 2025 23:18:04 +0900
+	b=A9DLaP/z42vpJj8nK5oelwNydW9EkYNlFNm2h7ca4FdwZzbQt6gwz+43EFh09Aov1
+	 9MiTC3ysWrx9NPFlUETQL9dsRM9CCX47KYQFElnPuvHiKTceiOHbxwKKa0oJWkUCyB
+	 /URI/tBlO7shL6sg1NGXTp1V/978ogYnqyaYoCH0qIvK+TcFunjpb0Vu38nTAZc9af
+	 pdSldnoEGYRwoUQL9Qe/1Fnr7bkmBQVdbbB2QxaLDD/c1s4V6qvg2mQk1alNYQTsmF
+	 FyQHeQHFOjQARBPrUJ1OTk3Q9EAnZwAxPLzZYXzxgBFO0d6fSfGQt1v3Qvdg+VN8/X
+	 rMB7kExaV+Oqw==
+Message-ID: <4d87d1ca-55b2-426e-aa73-e3fd8c6fe7bd@kernel.org>
+Date: Tue, 7 Oct 2025 15:25:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,154 +50,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/4] dt-bindings: usb: dwc3: Add Google SoC DWC3 USB
-To: Peter Griffin <peter.griffin@linaro.org>
-Cc: Roy Luo <royluo@google.com>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v3 0/5] Introduce "non-pixel" sub node within iris video
+ node
+To: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org
-References: <20251006232125.1833979-1-royluo@google.com>
- <20251006232125.1833979-3-royluo@google.com>
- <8ca61364-df47-41f2-b0d1-f2a8a74ec728@kernel.org>
- <CADrjBPr7Jp_ZyGv2Krv6iLG0avgFWpcWJEO-Z=cEkhwEY-+z5Q@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <7b6db4fa-2f73-376d-4eb3-64c1c7e6cda3@quicinc.com>
+ <f5ebf0d6-2f0b-45cc-b99a-b786e5df9edc@linaro.org>
+ <5qsgbqml367yq6g5vb4lotrzulojqhi5zlwwribze373a63qrn@rxi4kwyt66m2>
+ <4f38058d-a2f1-4ac5-b234-228cfb2e85ff@kernel.org>
+ <1ad2ca1e-1d57-4ad8-a057-ab0d804f1d49@oss.qualcomm.com>
+ <7da769b4-88e9-401f-bb21-0ff123818b9c@kernel.org>
+ <6840d462-8269-4359-a6e5-d154842b62db@oss.qualcomm.com>
+ <af0da28c-3ca0-41dc-aaa4-572723ea74bf@linaro.org>
+ <klhvgzizub33f46buqsog54wqksqp24a5tijwyv355l2ao2imo@wdkojfebc6s2>
+ <e1a6e75a-2a5d-44a2-8bbc-140eb86d1806@linaro.org>
+ <2hh3zkdwgqbdurpr4tibr3gjat6arwl3dd3gxakdaagafwjdrm@aj5em4tbsjen>
+ <Ujyoj3HGLVFhS2b0XzcYAMjSiCAuO-lSJ8PMEQLOaaX83tk_0D5zjrL0VDyZAmD3i4zLB3ElKSZBltISb5jJHA==@protonmail.internalid>
+ <4a32bbec-2baf-4210-a7c1-1ddcd45d30c8@oss.qualcomm.com>
+From: Bryan O'Donoghue <bod@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CADrjBPr7Jp_ZyGv2Krv6iLG0avgFWpcWJEO-Z=cEkhwEY-+z5Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+In-Reply-To: <4a32bbec-2baf-4210-a7c1-1ddcd45d30c8@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 07/10/2025 18:09, Peter Griffin wrote:
-> Hi Krzysztof & Roy,
+On 07/10/2025 15:11, Charan Teja Kalla wrote:
+> a) Keep iommus max items as 2, which is unchanged.
+> b) Repeat the same sid for both entries, i.e.,
+>           iommus = <&apps_smmu 0x1940 0x0000>,
+>                  - <&apps_smmu 0x1947 0x0000>;
+> 	        + <&apps_smmu 0x1940 0x0000>;
 > 
-> Firstly thanks Roy for your patches, it's great to see more Tensor
-> support being posted upstream!
-> 
-> On Tue, 7 Oct 2025 at 01:44, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 07/10/2025 08:21, Roy Luo wrote:
->>> Document the DWC3 USB bindings for Google Tensor SoCs.
->>>
->>> Signed-off-by: Roy Luo <royluo@google.com>
->>> ---
->>>  .../bindings/usb/google,snps-dwc3.yaml        | 144 ++++++++++++++++++
->>>  1 file changed, 144 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml b/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
->>> new file mode 100644
->>> index 000000000000..3e8bcc0c2cef
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
->>> @@ -0,0 +1,144 @@
->>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->>> +# Copyright (c) 2025, Google LLC
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/usb/google,snps-dwc3.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Google DWC3 USB SoC Controller
->>> +
->>> +maintainers:
->>> +  - Roy Luo <royluo@google.com>
->>> +
->>> +description:
->>> +  Describes the Google DWC3 USB block, based on Synopsys DWC3 IP.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - google,lga-dwc3
->>> +      - const: google,snps-dwc3
->>
->>
->> There is no such soc as snps, so you grossly misuse other company name
->> as name of SoC. Neither lga. Otherwise please point me to the top-level
->> bindings describing that SoC.
->>
->> You need to better describe the hardware here - why this is something
->> completely different than GS which. Or switch to existing bindings and
->> existing drivers. Did you align this with Peter Griffin?
-> 
-> I think (from what I've seen at least) this is the first submission
-> for drivers in the Tensor G5 SoC used in Pixel 10 devices (which as I
-> understand it isn't based on any Samsung IP). Hence the new drivers,
-> bindings etc.
+> and then create the new device as a platform device independent of dt.
+> RFC for this is posted[1].
 
+If you are going to bury iommu data into the platform code in the 
+driver, why do you need to modify this array at all ?
 
-That could explain a lot. I would be happy to see background of hardware
-in the bindings commit msg and the cover letter.
+The upstream DT should describe what is correct for the APSS - Linux.
 
-> 
-> However the issue is that none of the other base SoC drivers on which
-> this driver depends currently exist upstream (like clocks, reset
-> driver, power domains, pinctrl etc). So it's very hard to reason about
-> the correctness or otherwise of this submission. It is also likely
-> that when those drivers are upstreamed things could change in the
-> review process, to how it looks today in the downstream kernel.
+There's nothing to stop having an exotic set of platform code in drivers 
+to setup SMMU entries for non-APSS system agents though.
 
+Seems a shame though - in the ideal the DT should describe the whole 
+hardware and the FUNCTION_ID would be included into the iommu entries.
 
-Bindings and drivers can be contributed without core SoC support, but
-then please describe the hardware (SoC) here. Having core support posted
-earlier is of course preferred, but I think not a requirement.
+Rob suggested using an implicit index for function id
 
-Anyway, compatibles and all commit messages in this patchset are too
-generic and need to reflect this actual SoC, not "Tensor" because we
-already have a Tensor with USB. So basically based on existing support
-all this patchset would be redundant, right? :)
+https://lore.kernel.org/all/CAL_JsqK9waZK=i+ov0jV-PonWSfddwHvE94Q+pks4zAEtKc+yg@mail.gmail.com/
 
-Best regards,
-Krzysztof
+Couldn't we list the entire set of iommus - then detach - subsequently 
+re-attaching in our platform code with FUNCTION_IDs we keep listed in 
+our drivers ?
+
+That way the DT is complete and correct, we have a compliant upstream DT 
+but we also find a way to make the FUNCTION_ID specific setup we need.
+
+---
+bod
 
