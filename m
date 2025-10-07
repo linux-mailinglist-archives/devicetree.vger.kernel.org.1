@@ -1,182 +1,120 @@
-Return-Path: <devicetree+bounces-224170-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224171-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8946BC13F2
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 13:42:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 332B7BC1434
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 13:52:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76A823BC949
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 11:42:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A493189CD79
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 11:53:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09FE12DA76C;
-	Tue,  7 Oct 2025 11:42:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05E342DAFC4;
+	Tue,  7 Oct 2025 11:52:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HEJZ7KTG"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="RvnpCRIB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 616982D9EE6
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 11:42:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2CEC35972;
+	Tue,  7 Oct 2025 11:52:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759837343; cv=none; b=HSQVmOO8JVhcJ87hGKGrHsjYDZWVuXJSnZsH9mNncWb9s3NY0XiaitRTrmqEASBSPtkwDA7ASWHyJKSf7NjwmUih7RAztuzu0Y+EiPKBLNqJ2AsmRzS+j2XYNusN724jeAkdhnT7r5va/NYnjjfO6F4lIpnQX4KHh9NPbcqHOwg=
+	t=1759837958; cv=none; b=sNzd0aASk/iwIt4eBNP0Q9Z0xg3yeeFCEz23BMs3rhBdWs747FotMzIIAexybTqGbkQiE2kszRLbssQqG3TzAdJjnHJHJcRDBDIrQChnItP8PxFyAZSfEunwd+sodVtreivTa7YHYqCmvayEVkCk+s3UvN6Tpn8Il7PCoIguxSE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759837343; c=relaxed/simple;
-	bh=v0istXODWIHL1ltiHYtAZ8N5d97LsN0HcUB5gpH3dT8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eHXZtRc7tPxikapoHXOMP0r9d2axQ7z8gyUTdwvidfZvroj2zuke+dAs83nYYot9CcnpPA00xyFEDIaIt7ZBPqznSHkXu9BzNMAh/Ha8X4UOEmTS+7EUFlGfINn+u1tQbJ3Tt2wgSvHtG3lZ2xAhQX4QzIdjo2kP7tt3+wKBYG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HEJZ7KTG; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59738klP005144
-	for <devicetree@vger.kernel.org>; Tue, 7 Oct 2025 11:42:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	XQGXZvj+fHOBfHt2M7ZMsptXc4V1NWsTLPFuu0fCYV4=; b=HEJZ7KTGYM02TND8
-	zMyYndX8ElSYmYg2eI1B6ARKpshVPejHauwn59rDm825JkFKqVrjy4rQC6S6pbER
-	nPtBDdVhUhVUOomfFaQsaU+VVvSIMLXWFUFPxMKw+TiigzTqeina2fgfCzAfixoq
-	qF/RRHGVofaf1SK51BnkRi22q4NARM1EgvuLgcK+YkjlD6drPgIxAZr1IRXfDVLs
-	n3nw8cOgnv0BVHm6j0aOFub3cN5rFoRKfXPCU+DSYK3t0QklcYGnyAhwuYSaXiFY
-	b1DzFXnZu4RKDcCnEPMNuzcJPPkP3MDb9AfNvnFIbHtLnSLTsDRlu7C7qfO32fOL
-	OLr+ug==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49jrxn7c6g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 11:42:21 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-7f5798303b3so14814076d6.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 04:42:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759837340; x=1760442140;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XQGXZvj+fHOBfHt2M7ZMsptXc4V1NWsTLPFuu0fCYV4=;
-        b=e/ipVdxJNY4xoyHm3O4gDMJZG4UE39DycTTUx/tOALTvXhFD/YYn52rEkGoz7vC+Kj
-         xMEFmsPYF67LjMpkVqXeDIsPRm0jiPhsG9GCLguiS3LwjAqeA8LlLYy+J08O54LfSJxz
-         7R1Ie1tMnTNYQHDaxPd12dHV57YIvJ+ENaireQHaD+VbtPGXdjdTZpKmn+5GesEnyf9+
-         0I7imxpmmypHbWrak1yxCMQsBJS3iLmIksy56LtLSBt0TbbdpZCqSy1UzWVI0Bljt750
-         55OMF1h+Q4x4I+w3XQmtY0QaI03pK7GPU+vr7qvDjwkCkn6iUY+CHVqNpOt78P8D37+r
-         TUwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUoK1D70n8RxT0C4iixMPabqpM6i2ob25XvRO60lwHndXad02c3ZfBb1Na4yGR//KL0dLC0drAJ9LK/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDXaihPs2o8a+d/hI//4OxXWpT1+s4OeuOXfzB92SFh+XuSxeU
-	/ArIjBxHuaE5634l63Ch/uZAJg6sWmCYx40rZ1GLyeXgsLU9qxmWGZjCNkJTGr1IBI9Vk2PLU71
-	ggvlpbTQVgbREuwhp2TTnaTuVw0hDnYjW5a3jwm8AKmZpBD4HhHfeCpibh+TZQYT4
-X-Gm-Gg: ASbGncuuoVi1BoTuOcFHHWh5Yf0wJrXYAUcRX68+nDi2D1jr9albc45UDxGk9hAfi1k
-	Czcm9AWJ59oAI8rk1qQwoS/hlmZuFbo84QSe+HDikdVOie/UUSw7DCeg6ec6m4ACxlRAYQ1V8ZK
-	dp7HOr54SMYXpLo7cmBQedWqDDWKYMDo7W/R7oS3PvjHpyHpRCzNmb11SOWkczXapnDsmmwjqC2
-	rcVoLiJdFvHGOT1yAsjQmNE/I0K/fPFOZbviJhcfgdxrT/OraeHIhMivydLbGv1e0nR73wthze+
-	kA6aNK85L0BQyj7iRxTLK1T6RUzaAOgcECu9io5cWk0ZdD8MiSMCUYS0Ws/8rs2u/h9nDWzk00o
-	poodoa4CROyvZczR8sXNV0GZb7zY=
-X-Received: by 2002:ad4:5d4d:0:b0:81f:3abf:dc1f with SMTP id 6a1803df08f44-879dc8e8b5amr134636836d6.8.1759837340075;
-        Tue, 07 Oct 2025 04:42:20 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGPO0pc61D7PrUDHek89IoEYYlLKOAWdzRK3cyRnVKS0r8C4VHw9zr6UpiSxFXAKmAVKcrTbg==
-X-Received: by 2002:ad4:5d4d:0:b0:81f:3abf:dc1f with SMTP id 6a1803df08f44-879dc8e8b5amr134636436d6.8.1759837339372;
-        Tue, 07 Oct 2025 04:42:19 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6397c9355c3sm5880830a12.0.2025.10.07.04.42.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Oct 2025 04:42:17 -0700 (PDT)
-Message-ID: <1d052b98-4dfd-4ee3-b46f-ac043b406d58@oss.qualcomm.com>
-Date: Tue, 7 Oct 2025 13:42:15 +0200
+	s=arc-20240116; t=1759837958; c=relaxed/simple;
+	bh=2AJflxKtq5+v/023pQVHuifTumNDGfX1QboKFC1H4FU=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=OIvIzqPSRL0HTBHm42YOGn7/4JxOdua8rlDLrjibFHf68Q/tzd84CcN+0R6ElJeCrSoyDapAN7Xi9buvT18xxUb3OQJr2eAwVgPqCQQdPMkQDJXCFhm78VwJAvxL1iLSuQjWIa1iMS63UyipBn/f5TlJpoutCT/+FfPB4E4xc0M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=RvnpCRIB; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c68:b33c:92a2:e532:1826:f0a3])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 21363669;
+	Tue,  7 Oct 2025 13:50:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1759837854;
+	bh=2AJflxKtq5+v/023pQVHuifTumNDGfX1QboKFC1H4FU=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=RvnpCRIBN+6SjgAtNl6l0INcZPkGtNBUIKyRveCE3j0hGKx4f6kGbakDhkxMySU18
+	 6DlIiNWg0tnHE+0bK1hykgW6u/RE15anNDIEnhy/SMoM4Pt1SOFKhFylS6ySWldHtO
+	 37/Fnwu+TDbxNALcv14a2zvCrWWp0PqIviNSiAEM=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] dt-bindings: mmc: Add dll-hsr-list for HS400 and
- HS200 modes
-To: Ram Prakash Gupta <quic_rampraka@quicinc.com>,
-        Rob Herring <robh@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dmitry.baryshkov@oss.qualcomm.com,
-        quic_pragalla@quicinc.com, quic_sayalil@quicinc.com,
-        quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com,
-        kernel@oss.qualcomm.com, Sachin Gupta <quic_sachgupt@quicinc.com>
-References: <20250929113515.26752-1-quic_rampraka@quicinc.com>
- <20250929113515.26752-2-quic_rampraka@quicinc.com>
- <20251006214830.GB625548-robh@kernel.org>
- <817f02aa-dfb8-a134-2fd4-fbdf8e8a714e@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <817f02aa-dfb8-a134-2fd4-fbdf8e8a714e@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAwMSBTYWx0ZWRfXyKzLuCQH48EQ
- 3t3ZEl5/6gqKXKXPG9TJAnobqnYm3pBhiORder/BU5kFiVP4zzKot2FEqKQxA8QgthfvYO00Sb8
- LZpvuMmL72aksFG9T7oa1bPCkyAf0H6YGyX1FIOR4u+a9z80ssRAGe+4aT5P7e2bNwIES2J2PRZ
- UuCOeb9L0zqL3TmlKV38nhvIkbnALOTN+qReH+ftTVkpS0wHFfTB5OBlfh79QgFDGUEqpaqZx4N
- j8SFVGu4yyz34vS0cWa4xkbykuH8xTbF+AhEg3qdBIWxzkJN9LhkJ+PzAn/MvRJAnHyuDiSEJbz
- +Hg4R/AHH5NZMQ0h4R2YDxbq2Dp8gO/9u1uxaqeIJpM2DmLXtFWHshGxgnnhhIf1UDNfcPFeULk
- 2wLHdlxo6vB85S4SYmw0WsMNZGBq8g==
-X-Proofpoint-GUID: 82--WxeNqB0BCsLYemtuHQYUsZ2Zc7Jl
-X-Proofpoint-ORIG-GUID: 82--WxeNqB0BCsLYemtuHQYUsZ2Zc7Jl
-X-Authority-Analysis: v=2.4 cv=EqnfbCcA c=1 sm=1 tr=0 ts=68e4fc9d cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=COk6AnOGAAAA:8 a=Nkk5IEO714fOIWWTyTAA:9
- a=QEXdDO2ut3YA:10 a=1HOtulTD9v-eNWfpl4qZ:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-06_07,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0 malwarescore=0
- adultscore=0 suspectscore=0 bulkscore=0 impostorscore=0 clxscore=1015
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040001
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <4534a09b-7eef-4e61-835a-c70d07df3416@ideasonboard.com>
+References: <20250911102832.1583440-1-r-donadkar@ti.com> <20250911102832.1583440-12-r-donadkar@ti.com> <4534a09b-7eef-4e61-835a-c70d07df3416@ideasonboard.com>
+Subject: Re: [PATCH v7 11/16] media: ti: j721e-csi2rx: add multistream support
+From: Jai Luthra <jai.luthra@ideasonboard.com>
+Cc: y-abhilashchandra@ti.com, devarsht@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, p.zabel@pengutronix.de, conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, sjoerd@collabora.com, hverkuil+cisco@kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
+To: Rishikesh Donadkar <r-donadkar@ti.com>, Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com, mripard@kernel.org
+Date: Tue, 07 Oct 2025 17:22:22 +0530
+Message-ID: <175983794202.36451.17500767517117494893@freya>
+User-Agent: alot/0.12.dev28+gd2c823fe
 
-On 10/7/25 1:16 PM, Ram Prakash Gupta wrote:
-> 
-> On 10/7/2025 3:18 AM, Rob Herring wrote:
->> On Mon, Sep 29, 2025 at 05:05:12PM +0530, Ram Prakash Gupta wrote:
->>> From: Sachin Gupta <quic_sachgupt@quicinc.com>
->>>
->>> Document the 'dll-hsr-list' property for MMC device tree bindings.
->>> The 'dll-hsr-list' property defines the DLL configurations for HS400
->>> and HS200 modes.
->>>
->>> QC SoCs can have 0 to 4 SDHCI instances, and each one may need
->>> different tuning.
->>>
->>> Signed-off-by: Sachin Gupta <quic_sachgupt@quicinc.com>
->>> Signed-off-by: Ram Prakash Gupta <quic_rampraka@quicinc.com>
->>> ---
->>>  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 5 +++++
->>>  1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
->>> index 22d1f50c3fd1..a60222473990 100644
->>> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
->>> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
->>> @@ -137,6 +137,11 @@ properties:
->>>      $ref: /schemas/types.yaml#/definitions/uint32
->>>      description: platform specific settings for DLL_CONFIG reg.
->>>  
->>> +  qcom,dll-hsr-list:
->> '-list' doesn't add anything.
-> 
-> list was used as there are 5 dll register, but '-list' can be
-> dropped, and it can be renamed to qcom,dll-hsr, I will update in
-> next patchset.
-> 
->>
->> What is 'hsr'?
-> 
-> Hardware Settings Reference
+Hi Tomi,
 
-Maybe "qcom,dll-presets" would be more clear?
+Quoting Tomi Valkeinen (2025-09-25 17:47:38)
+> Hi,
+>=20
+> On 11/09/2025 13:28, Rishikesh Donadkar wrote:
+> > From: Jai Luthra <j-luthra@ti.com>
+> >=20
+> > Each CSI2 stream can be multiplexed into 4 independent streams, each
+> > identified by its virtual channel number. To capture this multiplexed
+>=20
+> The split can also be done with the datatype. I don't see it supported
+> in the driver, but afaics the HW supports it. Was there a reason not to
+> support DT filtering? I would think it would be very simple addition.
+>=20
 
-Konrad
+I believe DT filtering should work as-is with the current driver, given we
+program the SHIM DMACNTX register with the correct datatype depending upon
+the v4l2 format of the video node.
+
+So if there is multi-stream source with two different datatypes, it should
+be possible to route it to different video devices and it "just" works. But
+I agree that it would be good if it can be tested once, and this commit
+message can mention that both VC and DT based filtering is supported.
+
+Rishikesh, would you be able to use an IMX219 to test capturing embedded
+data and frame data?
+
+>  Tomi
+>=20
+
+Thanks,
+    Jai
+
+> > stream, the application needs to tell the driver how it wants to route
+> > the data. It needs to specify which context should process which stream.
+> > This is done via the new routing APIs.
+> >=20
+> > Add ioctls to accept routing information from the application and save
+> > that in the driver. This can be used when starting streaming on a
+> > context to determine which route and consequently which virtual channel
+> > it should process.
+> >=20
+> > Support the new enable_stream()/disable_stream() APIs in the subdev
+> > instead of s_stream() hook.
+> >=20
+> > De-assert the pixel interface reset on first start_streaming() and asse=
+rt
+> > it on the last stop_streaming().
+> >=20
+> > Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+> > Co-developed-by: Pratyush Yadav <p.yadav@ti.com>
+> > Signed-off-by: Pratyush Yadav <p.yadav@ti.com>
+> > Signed-off-by: Jai Luthra <j-luthra@ti.com>
+> > Co-developed-by: Rishikesh Donadkar <r-donadkar@ti.com>
+> > Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
+
+[snip]
 
