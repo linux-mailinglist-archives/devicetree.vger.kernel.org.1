@@ -1,214 +1,211 @@
-Return-Path: <devicetree+bounces-224028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3897FBC05BA
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 08:44:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41EC8BC0605
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 08:50:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08246189D0C6
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 06:44:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42D37189E8F0
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 06:51:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59876227E95;
-	Tue,  7 Oct 2025 06:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AE4F22A4CC;
+	Tue,  7 Oct 2025 06:50:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H2NXGA1T"
+	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="GwDAa8UH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2846F1DFE12;
-	Tue,  7 Oct 2025 06:44:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C870C1B2186
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 06:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759819448; cv=none; b=ZOB9uD1/KCc2ZnmbKU6eLcIMJLAS3aE3tsL0bGIJ/VShf7yCKdcRgh7BWWpmyNZGJwC93oNiWpDRw3ElFXxG7kjMwsqmDeGGUeckFoIrnFYVg0DXlcbovBj0yJh71eGEtzIjd0DpkYEjof/piYKY3lUqZq8SaiOjPh/B2eb4LNQ=
+	t=1759819839; cv=none; b=awWnEgaBJEKudNTD8aeiUlCgGAmE0cxyrx1pGp9Dqoj+tMvEp5Hm0bxbXFIFGF10Hl/HytyZiXZxKaWHN8+ZudNH4gRkFgnkpmymhGHsVxuU1Uu0cO4V9bMcZU8OZ/+qNf4WYmIB5xNDrC+acVEsbzvtc46ZXL/SpXYZVh9iG0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759819448; c=relaxed/simple;
-	bh=ortTdRbp29kvA57ub10lSkTj/eY7/3lHwfhRGCyyHSk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ip4OZ6SFdatwTSgO6mNFcedvlNSLzYdh+S8GenfBRbIivVmbEe5ze237V1zQrqVC0zMHp9Z/Ph36KC9TnOILuCdrj34kL1nStmKM+EGV3LtVFy6Ukn0MWmk5nf3V669aLnCFHeyzy6NMRhVDWL9+sDrv01mmxb6SREbRS9Pr62A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H2NXGA1T; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3366C4CEF9;
-	Tue,  7 Oct 2025 06:43:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759819447;
-	bh=ortTdRbp29kvA57ub10lSkTj/eY7/3lHwfhRGCyyHSk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=H2NXGA1Tb86DHODQYJ8t3Ufn3jCk0w4pXOIa5bAQyPZ5c0W5sfrB8htI679R97K/6
-	 PgoQoXj2VgFEdgEkk+cLSzq/qWyKd87hmqjFbksLNKBmthf3qQrVZUk9ZLTWyl81b1
-	 s5S16ZX38QEdtLRBcVDa1V8mFzJzn5csfKewLisRK1i5F0W4zXR0wcyonpNekI6CyS
-	 uQb58e4CK//x+lyO3apmdpACAtWnDCycvPPwo+BnFfLEeFpre5mc75ajkY/ReznEVr
-	 T0gSMP6mpXyvAkxeqPgFiLFbuxgWXGf0bBaYqiO/msrcP4VpnEt3SErHLDSspggW8W
-	 8/3SkkzgVs44Q==
-Message-ID: <8a6861a0-f546-475b-907c-65b691d1d340@kernel.org>
-Date: Tue, 7 Oct 2025 15:43:56 +0900
+	s=arc-20240116; t=1759819839; c=relaxed/simple;
+	bh=QnTLV3o19IG6q9YeHZebGR923u5V9mmkqGyVmvzfLc8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=SWv+bxUeDhNOnRirxSXKBfUfEITbbV6o1pAP2HkHnpLHYgWj+vTBlYiDuMGasmITQOcAoAv6jd555SLwh56kopJNQ+EZ57YZojvqcn3LcQ2k6aLEjed2bJgBCDUkVRIrDAZjlmUbCGxlOoEzpfFVrXcKYQmkZr9znL5KigOL8nA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=GwDAa8UH; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-269af38418aso71498935ad.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 23:50:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=vayavyalabs.com; s=google; t=1759819837; x=1760424637; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1ue3YLt56/lr86Z7z674epKcb+OTcReM8+sZPVWTsKU=;
+        b=GwDAa8UHYRjEi52ycFVQ04djnMFU4iM3bQU46XZVynA8kB1fsZI+V72Zq+STjkjofn
+         BMVYvtrQNKpdhm5VumSmUalNa6uQ1jLAm2T2ynYbOOTxwAOXmSZm7qZ972TLN2I6dOSF
+         W/MaV4tkmWOEigTefoaI7d7r9wyZ3+FKxKxAM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759819837; x=1760424637;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1ue3YLt56/lr86Z7z674epKcb+OTcReM8+sZPVWTsKU=;
+        b=u6UU+mcZbUydi/fsEp/0v5OQEvVbjw851Pp7+HzumspeOtYQSHRF7bgIyeMMvovteI
+         ffShh8YFb81hu0+C+2gR6H28ymCyfWuJcoqEk1TdEQE5EfzIBTmG689FGrWrqOnWaJ74
+         7d4OMtWixVCNtdW9nH2l3XAO3HKDBvqbVy8kbpN/WW+UuUxk4tORI+ynoYq65xtdcrh3
+         ZXbIh4AMPR+gse2+c9G+XLnl4gP8QnogNl7m2YTWXF8rN+F3Dudp3b9eyXWq0ZDt5hxq
+         2JxXU54ENPKQQDI2sMEzvg/D0sW/1gXZXK79sJF/3KloyXUNhyBhwQpBvuM46qjZfYtW
+         tlQA==
+X-Forwarded-Encrypted: i=1; AJvYcCXcbF/rTsbiPIHGOgwVDDq+TS5zK7j4oiZB5rHa714L02sQjPAvhiloKKqAThtxWlZWlneOb18E6vMq@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXKNVSvrLC4BHePH24HOH1QpVeHxs4AWt3vu726rMG7ONeATeY
+	aXqTExhZIzgEnoDPD49+Xqf64yfM4rBfkmhs6fGAY0Au9/kf0LaooaT8dDVGTUbjTTo=
+X-Gm-Gg: ASbGnctAQaeWotL1PWsl+X/u15AZ0iRt4vx6UJDoMe27htZygFZowGO74vvBPvl/7Aw
+	8NCa8S43oEpJ4RLedo3mtmEh6LmFR4QD00kgGEl1izLNu40jd6IWFLkbwy0Xv1ckoY1MOIFQpHH
+	h2cPzPlfPxGjvlncPmcHqUwHLA7kyAMjiLP/IQaT9DMS/N8WZISU+MzKpfNhcnfkJVgcodwUwcv
+	OtoqVxc5xNRNHLKrvt6u4V3nZf2K0cqWhBPFGXRxauZwSJO/GUpAY/oIAzyo9n7PuHfNVokGKGZ
+	Y3FohNjwHzSowLQ8Yg2vEQI6NUk+7m7W7p8QglNUUOiDcyriQH59v8IRgWCK4qB3hLtcXdTHzl3
+	MycnZHqUZoOmzrtzZGsvmeOHF5vEsrTzIdA5RNRP+dNZZy4NuGr63msvYTfRvN9wmvavdqQ==
+X-Google-Smtp-Source: AGHT+IGyuOfQcD629SA8YXpzQqVGAaDQkA881473yXUv9GAx21Pra7oLfp+Z5y2AIx6o3w56Q0/m5A==
+X-Received: by 2002:a17:903:3bcf:b0:273:1516:3ed2 with SMTP id d9443c01a7336-28e9a6dd480mr172564515ad.50.1759819837084;
+        Mon, 06 Oct 2025 23:50:37 -0700 (PDT)
+Received: from localhost.localdomain ([103.108.57.9])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d111905sm153287745ad.24.2025.10.06.23.50.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 06 Oct 2025 23:50:36 -0700 (PDT)
+From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+To: linux-crypto@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	herbert@gondor.apana.org.au,
+	robh@kernel.org
+Cc: krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	Ruud.Derwig@synopsys.com,
+	manjunath.hadli@vayavyalabs.com,
+	adityak@vayavyalabs.com,
+	Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
+Subject: [PATCH v7 0/4] Add SPAcc Crypto Driver
+Date: Tue,  7 Oct 2025 12:20:16 +0530
+Message-Id: <20251007065020.495008-1-pavitrakumarm@vayavyalabs.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 3/5] dt-bindings: display/msm: Document MDSS on
- QCS8300
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Yongxing Mou <yongxing.mou@oss.qualcomm.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kuogee Hsieh <quic_khsieh@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
- dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250911-qcs8300_mdss-v12-0-5f7d076e2b81@oss.qualcomm.com>
- <20250911-qcs8300_mdss-v12-3-5f7d076e2b81@oss.qualcomm.com>
- <20250918-spectral-seahorse-of-witchcraft-69553c@kuoka>
- <b745c515-2264-42aa-8d92-663efc7f6276@oss.qualcomm.com>
- <6c195b42-d994-4d24-9c40-48d8069304e3@kernel.org>
- <rkuihu3pmhexeahfch6j7bvwn5rn4ecccbhamluh7fas5qgaup@av2foeiwmcz3>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <rkuihu3pmhexeahfch6j7bvwn5rn4ecccbhamluh7fas5qgaup@av2foeiwmcz3>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 27/09/2025 08:26, Dmitry Baryshkov wrote:
-> On Fri, Sep 19, 2025 at 01:34:39PM +0900, Krzysztof Kozlowski wrote:
->> On 18/09/2025 13:14, Yongxing Mou wrote:
->>>
->>>
->>> On 9/18/2025 9:01 AM, Krzysztof Kozlowski wrote:
->>>> On Thu, Sep 11, 2025 at 07:24:03PM +0800, Yongxing Mou wrote:
->>>>> Document the MDSS hardware found on the Qualcomm QCS8300 platform.
->>>>>
->>>>> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
->>>>
->>>> Patch v11 and still basic issues. I am very dissapointed.
->>>>
->>>> <form letter>
->>>> This is a friendly reminder during the review process.
->>>>
->>>> It looks like you received a tag and forgot to add it.
->>>>
->>>> If you do not know the process, here is a short explanation:
->>>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
->>>> versions of patchset, under or above your Signed-off-by tag, unless
->>>> patch changed significantly (e.g. new properties added to the DT
->>>> bindings). Tag is "received", when provided in a message replied to you
->>>> on the mailing list. Tools like b4 can help here. However, there's no
->>>> need to repost patches *only* to add the tags. The upstream maintainer
->>>> will do that for tags received on the version they apply.
->>>>
->>>> Please read:
->>>> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
->>>>
->>>> If a tag was not added on purpose, please state why and what changed.
->>>> </form letter>
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>>
->>> Hi,
->>> Sorry for the confusion. I did intend to remove the Reviewed-by tag, and 
->>> I mentioned this in the cover letter, but maybe explanation in 
->>> cover-letter was probe not clear at all.
->>>
->>> This patch includes three changes:
->>>
->>> 1.In the displayport-controller compatible property, "items" was changed 
->>> to "contains".
->>> 2.Use "qcom,sa8775p-dp" as fallback.
->>>
->>> These changes might not be considered significant. So I’ll be more 
->>> careful next time. Thanks~
->>
->>
->> I really do not expect v12 to receive so significant changes in the
->> first place. If you keep sending us buggy code, which then you keep
->> changing after review, I will just not do the review. It's easier for me
->> to wait for v20...
-> 
-> I'm not sure how to react to this missage. The changes reflect the
+Add the driver for SPAcc(Security Protocol Accelerator), which is a             
+crypto acceleration IP from Synopsys. The SPAcc supports multiple ciphers,      
+hashes and AEAD algorithms with various modes. The driver currently supports    
+below                                                                           
+                                                                                
+hash:                                                                           
+- cmac(aes)                                                                     
+- xcbc(aes)                                                                     
+- cmac(sm4)                                                                     
+- xcbc(sm4)                                                                     
+- hmac(md5)                                                                     
+- md5                                                                           
+- hmac(sha1)                                                                    
+- sha1                                                                          
+- sha224
+- sha256                                                                        
+- sha384                                                                        
+- sha512                                                                        
+- hmac(sha224)                                                                  
+- hmac(sha256)                                                                  
+- hmac(sha384)                                                                  
+- hmac(sha512)                                                                  
+- sha3-224                                                                      
+- sha3-256                                                                      
+- sha3-384                                                                      
+- sha3-512                                                                      
+- hmac(sm3)                                                                     
+- sm3                                                                           
+- michael_mic                                              
+
+Pavitrakumar Managutte (4):
+  dt-bindings: crypto: Document support for SPAcc
+  Add SPAcc ahash support
+  Add SPAcc AUTODETECT Support
+  Add SPAcc Kconfig and Makefile
+
+changelog:
+  v1->v2 changes:
+    - Added local_bh_disable() and local_bh_enable() for the below calls.
+      a. for ciphers skcipher_request_complete()
+      b. for aead aead_request_complete()
+      c. for hash ahash_request_complete()
+    - dt-bindings updates
+      a. removed snps,vspacc-priority and made it into config option
+      b. renamed snps,spacc-wdtimer to snps,spacc-internal-counter
+      c. Added description to all properties
+    - Updated corresponding dt-binding changes to code 
+
+  v2->v3 changes:
+    - cra_init and cra_exit replaced with init_tfm and exit_tfm for hashes.
+    - removed mutex_lock/unlock for spacc_skcipher_fallback call
+    - dt-bindings updates
+     a. updated SOC related information
+     b. renamed compatible string as per SOC
+   - Updated corresponding dt-binding changes to code 
+
+  v3->v4 changes:
+   - removed snps,vspacc-id from the dt-bindings 
+   - removed mutex_lock from ciphers
+   - replaced magic numbers with macros
+   - removed sw_fb variable from struct mode_tab and associated code from the
+     hashes
+   - polling code is replaced by wait_event_interruptible
+
+  v4->v5 changes:
+   - Updated to register with the crypto-engine
+   - Used semaphore to manage SPAcc device hardware context pool
+   - This patchset supports Hashes only 
+   - Dropping the support for Ciphers and AEADs in this patchset 
+   - Added Reviewed-by tag on the Device tree patch since it was reviewed on 
+     v4 patch by Krzysztof Kozlowski and Rob Herring (Arm)
+
+  v5->v6 changes:
+   - Removed CRYPTO_DEV_SPACC_CIPHER and CRYPTO_DEV_SPACC_AEAD Kconfig options,
+     since the cipher and aead support is not part of this patchset
+   - Dropped spacc_skcipher.o and spacc_aead.o from Makefile to fix build errors
+     reported by kernel test robot
+   - Added Reported-by and Closes tags as suggested
+
+  v6->v7 changes:
+   - Fixed build error reported by Kernel test robot
+   - Added Reported-by and Closes tags as suggested
+
+ .../bindings/crypto/snps,dwc-spacc.yaml       |   50 +
+ drivers/crypto/Kconfig                        |    1 +
+ drivers/crypto/Makefile                       |    1 +
+ drivers/crypto/dwc-spacc/Kconfig              |   80 +
+ drivers/crypto/dwc-spacc/Makefile             |    8 +
+ drivers/crypto/dwc-spacc/spacc_ahash.c        |  980 +++++++
+ drivers/crypto/dwc-spacc/spacc_core.c         | 2394 +++++++++++++++++
+ drivers/crypto/dwc-spacc/spacc_core.h         |  830 ++++++
+ drivers/crypto/dwc-spacc/spacc_device.c       |  283 ++
+ drivers/crypto/dwc-spacc/spacc_device.h       |  233 ++
+ drivers/crypto/dwc-spacc/spacc_hal.c          |  374 +++
+ drivers/crypto/dwc-spacc/spacc_hal.h          |  114 +
+ drivers/crypto/dwc-spacc/spacc_interrupt.c    |  328 +++
+ drivers/crypto/dwc-spacc/spacc_manager.c      |  613 +++++
+ 14 files changed, 6289 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
+ create mode 100644 drivers/crypto/dwc-spacc/Kconfig
+ create mode 100644 drivers/crypto/dwc-spacc/Makefile
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_ahash.c
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_core.c
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_core.h
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_device.c
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_device.h
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_hal.c
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_hal.h
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_interrupt.c
+ create mode 100644 drivers/crypto/dwc-spacc/spacc_manager.c
 
 
-This message represents my annoyance with low quality submissions from
-Qualcomm, which needs multiple iterations and often apply tag, then
-change significantly thus drop the tag or completely ignore the review
-tag. And I review again.. and tag is dropped again because patch was
-again seriously reworked. Or even without serious rework - Qualcomm
-authors drop the tags, just "because".
+base-commit: c0d36727bf39bb16ef0a67ed608e279535ebf0da
+-- 
+2.25.1
 
-~2 months ago simple patch from Qualcomm required three involvements
-from DT maintainers, because even trivial patch was being continuously
-changed and author was dropping or ignoring review tags.
-
-
-
-> process in other patchsets and in my understanding on how to describe
-> the particular hardware block. The changes were reflected in the
-> changelog. If you plan to review this patchset once you get back from
-> your vacation, that's fine. If you don't plan to, I can ask Yongxing to
-> send v20 just for that number.
-
-Solution for me could be to ignore Qualcomm patches till they reach some
-sort of maturity.
-
-I am not planning to review this patch, because:
-1. I already reviewed it, so not really necessary, but even if I wanted:
-2. It is gone from my inbox...
-
-Best regards,
-Krzysztof
 
