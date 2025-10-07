@@ -1,134 +1,181 @@
-Return-Path: <devicetree+bounces-224245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54529BC2047
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 18:02:05 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03BEDBC2059
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 18:03:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13B753AD2F5
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 16:02:04 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D23234F39FF
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 16:03:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A72482E7199;
-	Tue,  7 Oct 2025 16:01:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F1372E62C5;
+	Tue,  7 Oct 2025 16:02:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aKKOCpsX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XvqNWKl3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E2D32E62C5
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 16:01:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C8F52E6CC1
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 16:02:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759852912; cv=none; b=cImJ48Z3UZtK+Pl4ZYshDVu+rAPa1W5gCzG3ALdRsKlV/JvmTntb2clZ5+xnqohE3CSIqS0EkI14qzr/noYLarRkd757Ko8DWJFM37ITKX1RM5z7xwxfOpK9/1N5b1DCi1YvAtokhe8mAYywFL5g3fwsvUEbd9G0O8P5a7vUqG4=
+	t=1759852977; cv=none; b=rT9AYT0QU44j/NNHlIVRboaNgjO1BGa1L44GPf8EMmdGTnaai2jSCCc5ByHApCEBLO8aaD0mxD8iF5z6PoMdOwhxOF/x0vDy3EmqjlUqpMpSGNkB211U5h25WouvwTWJHot6eg/S+8NYmO+qq+Caz6M70hOWB4pDBradNeUTuWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759852912; c=relaxed/simple;
-	bh=JESQkAaKU/J+NFwewP61WmovszCLFhCP0rBghjse7Ug=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=KRWj9eRZL8chKNkCsAUWZ23V69yWsXbPRwcZrhCWVwCx1INogyztJRsqzG5SFtNMR6FEoKsxX7zxc1CbyR1ZaBmyIiBghlHwlqRLfRfuMbPPmqiQN2IfxC/+F3s2o8+3vNLx69r8JhDapbDBHUkDtbUki9pwyoSjpSvoMOWySOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aKKOCpsX; arc=none smtp.client-ip=209.85.208.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-62ecd3c21d3so11907106a12.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 09:01:46 -0700 (PDT)
+	s=arc-20240116; t=1759852977; c=relaxed/simple;
+	bh=SCnV/SabJq2ovGK98h5wOYxzXudBJL5PJVppHhdQK9c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CcQnymHW6jfQ2kKluIhJNyhoBfaDxuRGg0HcXKQhEcqwjs+cIN/4rqnHbTZ+I9vm3zEGbIDmQYOb3c4Jqq4dLauP9gxs3B0PXbaAuS1MevW3CrjCV5cl1MYswn4kYOoaX9dETJWaSVL/0jA6S42iDnVHC33DJRmuTamq7uNR8vU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XvqNWKl3; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3ed20bdfdffso5632903f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 09:02:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759852905; x=1760457705; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vIKhzvptts89Sbix0kNSsLk9FsLBPvSNCFN51YR9CMM=;
-        b=aKKOCpsXYF9MBzm9tofaf8KFNiRxZ++vYVOr1T19IFwHKd91h1BlH3WS6BdMBQp4Zm
-         lq+Tmc3L0QK9pBPk7sxmadsUuXEKCHD23LjSNZMMXPxs8Ej/EUnhX49P7l4YmzcLg1U4
-         EqDwjM6y4FsIBjL009CGNI344f/jbhscY0IOwdiZn00VlJWoqplQppkNctbsuzcGnUIJ
-         OeNbtH3as5/zWChNfSh8YW3N7gJml2tjq54SGCwqzEHouaieupKOfl6eLyygiSeuB0Ph
-         opb9pU/YkAMsm76+zuBubJi/KgTynwZ9vYmHGtgvH0ByUSSW6NoVun0E1niZoTZHTGvD
-         TPeg==
+        d=gmail.com; s=20230601; t=1759852974; x=1760457774; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=n4PmXw+t4eyfqIclsgOdvNmiteqEthYNwo+QzRmYvOU=;
+        b=XvqNWKl3Qd6AhrxjqBbVjHogEY1LbkMFx7+yZX3bIxK4pFxEFuTQQ0qRotDTVAva+a
+         PbH4R+Vb1JHL6JRJC9iq+oKX+NvX2bnK9B9mXFOPwRR3OK+88Mzk+3PwvaPvkVJa+m6r
+         AvjU8HJNH2H88cZnKBVClEpSd+oIQ0A0mr+KILGrWgypA0UbgUW3A8D3fihLl9myKU6j
+         1oVMUuh3dwn93wtlQyRZlZxClt3xqu19ft5ojq861jLdVjBfStHga7kuVwVKbGgfkbWE
+         gICCj6Qo2hpo614zCss25u8uAY71RPqNf8TPJ7VYXynVNCOR2STESj0aiyPT/oQYWqT0
+         uhLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759852905; x=1760457705;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vIKhzvptts89Sbix0kNSsLk9FsLBPvSNCFN51YR9CMM=;
-        b=qp6ZP2uz0hm3mkHYOEfqXRZxQW86vvgdpI3yoh3LYfqDdgmHn1EK9cZ91tXdZ59JMv
-         xQPJjs15ny8FlGnuXn72DQ+/HNPfo0FH8YRozygLe8AmVhH+HvoAYhilVlB6ZX2fYE0s
-         tbFNA7eDgAA3L3RH95Q/TXNNdCn1eg/Z1xvms18kve5+hz+9tuyLIUVfY/hh6ETGmZPA
-         VltCrY4XsGgdPd5qtcQV4OWoBAHnSQO+SK+LFDEavIncAKH+SPTh62AWtol9SDdNeFb7
-         D5LUMYgqvPPhMGUsyLpD2RfbVxkCePW8Je/AketABu1+hb1JeqSXOCg67btdiD2Y+IVX
-         Vb1g==
-X-Forwarded-Encrypted: i=1; AJvYcCVmEHNZrAqQcBtSKsMEHxlufPpfyOohhwklL25C3NGXVat4NdD59gMm9cOxYvRKE+FkjCk03oBY5vMJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwDCN/bPmHbpmW6/Q5BuEJmcYJtN0qTihycpgUec8PTYbz+gPRg
-	HA1SVBiCxVM5WxNryU4ikK+l/dswqx5F1v0gDVngKiOUscJa96CfFKzjmS1M0LErHWY=
-X-Gm-Gg: ASbGnctgH8cH+j7ks3WD4uhfUQoWY9PFeD4kXdMnx1XeB3+wyJjPLC3xId2qlvG8xkS
-	fX/ueDM4/VldDX5ZcB/K8H+45uSWtPNVWrjg5wKTkualvUrffaKUZBWSrmGtzEmUSSDzhX4GX+G
-	64uY7Kc+383KKaMsX2dPU9EZXu0hJtq4b97ALl9BK4FcexnzOLdE3MdMzAzXKtnPq4Q13S++toI
-	nOCSmFz1MvQ1Mydohv+5upYAr/aMu6DXcJBlayCPgCFjnJiQM2r3gUkAN3u9UbtXHO+0j9AORCr
-	P1IDpuDu2amTyrdriA4KNEK+pmurgu9ZcRqq4r7TDlNEZPwwR7SzoZo4keiIKlobJK00HMj9o5d
-	jAo5c0j2wPbScdut7WiNDAjxLkzIQ2A0niTmH9FoVJNvi8PseqdWXZDqZ3Q32UAdAtupYcyh8Xu
-	SuQO59EvUnh49q4zerN7A4UlOo/ye+QLoqcFhN/yePwhTIjvWqNEI=
-X-Google-Smtp-Source: AGHT+IGf9IQ2wpi7EPhCeaXvA4php2sl46FSyFnA7c6eHrUoUGEvZyyl6soc6Yh6K+i89mmku9HqRQ==
-X-Received: by 2002:a17:907:7f0d:b0:b2b:c145:ab9a with SMTP id a640c23a62f3a-b50acd2b3c8mr14811566b.60.1759852905201;
-        Tue, 07 Oct 2025 09:01:45 -0700 (PDT)
-Received: from puffmais2.c.googlers.com (224.138.204.35.bc.googleusercontent.com. [35.204.138.224])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b486970a60dsm1402129266b.63.2025.10.07.09.01.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Oct 2025 09:01:44 -0700 (PDT)
-From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-Date: Tue, 07 Oct 2025 17:01:44 +0100
-Subject: [PATCH] dt-bindings: phy: samsung,ufs-phy: add power-domains
+        d=1e100.net; s=20230601; t=1759852974; x=1760457774;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=n4PmXw+t4eyfqIclsgOdvNmiteqEthYNwo+QzRmYvOU=;
+        b=XYX2mwqMNjB8L0emscvlaeuWW9AlJRxb/+Mvi4JqPV27QhyyYnhnp0voRu/JEbzRNp
+         X1myZsG1KdwAJNUlrpNudlkq2xx0VBfkYn7dgCCm8dlovfg4o53Sy/kta3n1IN6tdZ5X
+         foQrgycUrwjXyaHfSgUbgF42iMdKI/SWIcvceOTvciQoNMPwNRn3fPHnEozfyNETxj38
+         raloQSfxU7aW6NVyhJVIJ5SkLw4AOViqYsMSMx/7aKK+2Wy+xHX3jci47S+Gsm+oIBgG
+         rE+b+wP2i0XpJFdVNWuIoknniI0SHh+x90j585c6hqKrna8GBo2vj6w0K4PxQ0LghX46
+         U+wQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXy/rbhk3XWueij/yiNERTp3+thhgOF9xdI6mxDrTeZhMTNw1vJrRXA95y66Qi0qwlMTaFMsjuUZoWB@vger.kernel.org
+X-Gm-Message-State: AOJu0YzrdB2xJOR2BQ6CRBtmkUNeAAmWy3CilSTR+fsFmR2ITRf6QFP8
+	oBwRafDlg1Hax/YnBmBsv5QjwkvyjoEwb3nO/hEaq9x+gtS7r04v2YvI5EULnsYPCVJu1OCM3HJ
+	nsHUP9EBxEzrTZynf10Nh9L21lFGSAao=
+X-Gm-Gg: ASbGnctEziHhcnJW6e4JHEs+k4Bu9NKNrfS396RBGJZAyswFuTGMT5tVt1jOkmcDHTN
+	/ciTggxOGAIwW4mq7p4MyKAFVLYKzmC29ytJ9SJyM2Fn8cSiJ4EL1I/eLFdGnSfk08psJ8ygWH7
+	Gzj+spmIOsgdk0VJm37UeUrQ0lHtinuCT1gu33cf8sgfyzKjO3bC5wwoV+1W8DCwLk0cY0RIkK+
+	F9sNoDR1vjR98KcSDT+gmpPbgDEvjce
+X-Google-Smtp-Source: AGHT+IHPiGma+g9SGHGjEWg4n/9lGyovmyEGrAEuRu7FYqeClC1xj+DQW9WgaUsZaZ919iLvptfJi5Wpw0gBngpF0QA=
+X-Received: by 2002:a05:6000:26cc:b0:3ec:d740:a72b with SMTP id
+ ffacd0b85a97d-425671bf3e0mr10964826f8f.42.1759852973374; Tue, 07 Oct 2025
+ 09:02:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251007-power-domains-dt-bindings-phy-samsung-ufs-phy-v1-1-d9030d14af59@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAGc55WgC/yXNQQ6CMBBA0auQWTtJKSEKVzEuCp2WWTBtOoIaw
- t1tdPk2/x+gVJgUxuaAQjsrJ6loLw3Mi5NIyL4arLF9a8wVc3pRQZ9Wx6LonzixeJaomJcPqlt
- 1k4hb+DvMNPRkyVF3g9rMhQK/f7/74zy/0CuPoX8AAAA=
-X-Change-ID: 20251007-power-domains-dt-bindings-phy-samsung-ufs-phy-fce95e2eae38
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>, 
- Tudor Ambarus <tudor.ambarus@linaro.org>, 
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
-X-Mailer: b4 0.14.2
+References: <20250925151648.79510-1-clamor95@gmail.com> <3665995.U7HbjWM52l@senjougahara>
+ <CAPVz0n3CrVufs8vbw8XnYuwoZoQ2Xsi3V4HimgT0=4RQySzvaw@mail.gmail.com>
+ <3862885.G96rZvMJ2N@senjougahara> <CAPVz0n2shn41h4z4PoMdtCXzj+96ak69TCqt7Ag5qpqdWi6UWA@mail.gmail.com>
+ <DDBGU9ELXIAW.1RLHSNOPVR9B3@bootlin.com>
+In-Reply-To: <DDBGU9ELXIAW.1RLHSNOPVR9B3@bootlin.com>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Tue, 7 Oct 2025 19:02:41 +0300
+X-Gm-Features: AS18NWB8Gbllc1ZtoSEL2LuStkUA7Ll89S2q913cljwsgWixJe1BcsNEJhM9egs
+Message-ID: <CAPVz0n3EB-tw0af+O4acmbvXNHkH62t5v3r3O0nedLs_XJ39PA@mail.gmail.com>
+Subject: Re: [PATCH v3 15/22] staging: media: tegra-video: tegra20: simplify
+ format align calculations
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Mikko Perttunen <mperttunen@nvidia.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Sowjanya Komatineni <skomatineni@nvidia.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, =?UTF-8?Q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, 
+	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, 
+	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, Aaron Kling <webgeek1234@gmail.com>, 
+	Arnd Bergmann <arnd@arndb.de>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-staging@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The UFS phy can be part of a power domain, so we need to allow the
-relevant property 'power-domains'.
+=D0=BF=D0=BD, 6 =D0=B6=D0=BE=D0=B2=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 21:55=
+ Luca Ceresoli <luca.ceresoli@bootlin.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> Hello Svyatoslav,
+>
+> On Thu Oct 2, 2025 at 8:20 AM CEST, Svyatoslav Ryhel wrote:
+> >> > > > 12 represents amount of bits used per pixel, 8 for Y plane, 2 fo=
+r U
+> >> > > > plane and 2 for V plane, total is 12. "but explainable with a co=
+mment
+> >> > > > and improve-able later" why then we cannot use 12 with a comment=
+? this
+> >> > > > is all arbitrary. Downstream is not wrong from this perspective,=
+ you
+> >> > > > don't take into account that YUV420 is planar and it uses 3 plan=
+es a
+> >> > > > whole Y plane and 1/4 of U and V which in total results in wigth=
+ + 2 *
+> >> > > > 1/4 width which is width * 3/2
+> >> > >
+> >> > > Yes -- but AIUI, the only thing the bpp value is used for the byte=
+sperline calculation. When we add the special case for planar formats, whic=
+h doesn't use the bpp value, then the value 12 is never used anywhere. We s=
+hould at least have a comment saying it is unused. (At that point, we could=
+ just hardcode the bpp values in the fmt_align function -- but I don't mind=
+ either way.)
+> >> > >
+> >> > https://ffmpeg.org/pipermail/ffmpeg-user/2023-June/056488.html
+> >>
+> >> I understand very well that for YUV420, each pixel has 12 bits of colo=
+r information. But how many bits of color information each pixel has is not=
+ useful in the context of this driver. The number of bytes per line is not =
+related to how many bits of color information each pixel has for planar for=
+mats.
+> >
+> > No, it has direct impact. This is how buffer size / image size is
+> > calculated since we place each plane consecutive. And bytes per line
+> > is used specifically in image size calculation. This is common part
+> > with non-planar formats. Then since Tegra provides a dedicated
+> > channels/buffers for each plane, configuration of planar format
+> > includes an additional step with calculation for each plane.
+>
+> Sorry, I haven't followed the discussion in detail, but I tested you seri=
+es
+> on Tegra20 VIP and capture does not work, with a SIGSEGV in
+> gstreamer. Bisecting pointed to this as the first commit where the issue
+> happens.
+>
+> I compared the input and output values of tegra20_fmt_align() at this
+> commit and at the previous one, and this is the result:
+>
+>                        before this patch     with this patch
+>   At function entry:
+>   bpp                        1                     12
+>   pix->width                 640                   640
+>   pix->height                480                   480
+>
+>   On return:
+>   pix->bytesperline          640                   960
+>   pix->sizeimage             460800                460800
+>
+> I hope these info will help.
 
-Signed-off-by: André Draszik <andre.draszik@linaro.org>
----
- Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Which command did you use? I have tested with ffmpeg and
+yuv422/yuv420p and it worked perfectly fine.
 
-diff --git a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-index d70ffeb6e824bfc19668e0f678276acd879a6217..2b20c0a5e5094889eb3e80dcc21b505943c68523 100644
---- a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml
-@@ -36,6 +36,9 @@ properties:
-     minItems: 1
-     maxItems: 4
- 
-+  power-domains:
-+    maxItems: 1
-+
-   samsung,pmu-syscon:
-     $ref: /schemas/types.yaml#/definitions/phandle-array
-     maxItems: 1
-
----
-base-commit: 3b9b1f8df454caa453c7fb07689064edb2eda90a
-change-id: 20251007-power-domains-dt-bindings-phy-samsung-ufs-phy-fce95e2eae38
-
-Best regards,
--- 
-André Draszik <andre.draszik@linaro.org>
-
+> Best regards,
+> Luca
+>
+> --
+> Luca Ceresoli, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
