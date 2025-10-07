@@ -1,102 +1,109 @@
-Return-Path: <devicetree+bounces-224014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67502BC0426
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 07:51:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9648CBC045A
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 07:56:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 317BC4E4489
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 05:51:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EA44188FC6A
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 05:56:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B25F218ADD;
-	Tue,  7 Oct 2025 05:51:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4952228CBC;
+	Tue,  7 Oct 2025 05:55:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="JAJlWI1h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DIe5+Hwm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A371747F;
-	Tue,  7 Oct 2025 05:51:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2E4226CF7;
+	Tue,  7 Oct 2025 05:55:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759816290; cv=none; b=gVfyGrn1gzuQosz7QG+plN7f96r0+u2UxbGcZmDdvu3KnhE6ArvD5rNLSjTHt7FksRhDhJ5rZwFUZq7q8IJXXWgQn7LZMc01vbxgp+0VvIxHPNm003I8mvczNq3Tf+mP5MYU/CznGWBcIRGWB0iYzw93mRS/ONd0/R4uB0V6udA=
+	t=1759816549; cv=none; b=ksIMDpaOWa+QKpol1IVIdBkkUIf3ciY5+7el/46yZ9PDNwCOo3BYAp7S52c07cogmeF4dTKrwOPWCqnayIf+oj3JSXgt01b0wugutJR0Z16HlhE7eguxN4aI+AYlEd/UFVJyvCDVZd/JNfZMeuUxzCGquUXUaNBaEtijesp+rxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759816290; c=relaxed/simple;
-	bh=LPQQPlIwuR2+Qcdx0QIWLHqlQNGepDAbb03LkBRGWUE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d0kEsFH/w8myI/5faQDJ2yBbgelCUR+cly+NDYVV4qncNvWcKPEXdqv6JfupNLv/uwBVOc4DNylLBCK4M7fV9+tH5gWOcFbRjbjgjsr2UDnEGTPbjoAekSxdjLojaf20PaQpjO5tXTfXIyBLxWRDqfJ164RG6eYofo1P5a1YiEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=JAJlWI1h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 384EAC4CEF1;
-	Tue,  7 Oct 2025 05:51:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1759816289;
-	bh=LPQQPlIwuR2+Qcdx0QIWLHqlQNGepDAbb03LkBRGWUE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JAJlWI1h8cZeELmkitk9Hz2GVuULYk1cHI3gCRt/ZfSKrGohI+U9rVFP8ZXwFrSa9
-	 DW/iLS9KT0KU+6L0wk+LFrZMaDdcd0RIeAbBO49gFGrHqZu2RNnBuGI2/+9phU+GhB
-	 Y9c1+pAR4MLaUzmZetibux383gBX/aA7BoudcwkM=
-Date: Tue, 7 Oct 2025 07:51:27 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Roy Luo <royluo@google.com>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Peter Griffin <peter.griffin@linaro.org>,
-	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Joy Chakraborty <joychakr@google.com>,
-	Naveen Kumar <mnkumar@google.com>, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v1 3/4] usb: dwc3: Add Google SoC USB PHY driver
-Message-ID: <2025100735-gulf-error-2ce2@gregkh>
-References: <20251006232125.1833979-1-royluo@google.com>
- <20251006232125.1833979-4-royluo@google.com>
+	s=arc-20240116; t=1759816549; c=relaxed/simple;
+	bh=Gf2m2IDyByH7gmdlj92TgGHt/kPecA91fuSLd1/3x9A=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=BaEsHWa7R2L+MjAmjtbwwpEuleNsbG8L6TgE8rzk3hEmjdykgaaZMNBdGKv1oDniYea5iE29uKRvtPnU7doWh0k9+ciaOQv6Kw9eLwfr12d4yB+Uk9n6mNZgGfFVS9NO/XlGb2pGKzY8vSUFyZ+Z0hfjgliTgT+G2jStAwF4tYY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DIe5+Hwm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id EAA07C4CEF9;
+	Tue,  7 Oct 2025 05:55:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759816549;
+	bh=Gf2m2IDyByH7gmdlj92TgGHt/kPecA91fuSLd1/3x9A=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=DIe5+HwmMh+CxenYgQjBf7eh7ra6GAu+eA/KSdv/htod35kmYPfc7cEvFkVTyafXt
+	 jA2XHc0thB3aGYnj1XtL1G0zW+TnlYzsFWj7J+ldl67uMkFyslnvnthgbvblDMGTgi
+	 ODHwxPQhXmOfYIn+7sPK9Y0mnvkPPDGwczrz8S/N+EguHkne9nrN5HL2S6Q2Y3x5Vo
+	 sRDU5P9r5amJZtt33yARnHKEwWgWKyn8WoQFPEtShqKYFvefyzOV1IeYTpKZINo/zv
+	 wcd0fco8eAZD8ZeK1+25hmL6t+W8ADe6SSqqqCeelzaM9rkUDVafNhZdDStsEKkGsL
+	 5qW90SIdSe7mw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id D6622CAC5B8;
+	Tue,  7 Oct 2025 05:55:48 +0000 (UTC)
+From: Alexandre Messier via B4 Relay <devnull+alex.me.ssier.org@kernel.org>
+Subject: [PATCH 0/4] Describe more hardware of the HTC One (M8)
+Date: Tue, 07 Oct 2025 01:55:41 -0400
+Message-Id: <20251007-m8-dts-additions-v1-0-53d7ab3594e7@me.ssier.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251006232125.1833979-4-royluo@google.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAF2r5GgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1NDAwNz3VwL3ZSSYt3ElJTMEqBaICsZKGdpmJiWaGSiBNRWUJSallkBNjI
+ 6trYWACYatAdiAAAA
+X-Change-ID: 20251007-m8-dts-additions-ac20291afa24
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Luca Weiss <luca@lucaweiss.eu>, linux-arm-kernel@lists.infradead.org, 
+ linux-arm-msm@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht, 
+ phone-devel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Alexandre Messier <alex@me.ssier.org>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759816548; l=751;
+ i=alex@me.ssier.org; s=20240603; h=from:subject:message-id;
+ bh=Gf2m2IDyByH7gmdlj92TgGHt/kPecA91fuSLd1/3x9A=;
+ b=5ibouckw/wXrYl4/1BrXypwgXknGcJqzOUQh6dcjqcFKMMvY/k9z74zd60/bSZG0EfDv9s+B8
+ EzG91zLwpQFB8ZlYwSVn66l7/BfCCKOPEQDf/3bXylR5woqjL2zMLfY
+X-Developer-Key: i=alex@me.ssier.org; a=ed25519;
+ pk=JjRqVfLd2XLHX2QTylKoROw346/1LOyZJX0q6cfnrKw=
+X-Endpoint-Received: by B4 Relay for alex@me.ssier.org/20240603 with
+ auth_id=168
+X-Original-From: Alexandre Messier <alex@me.ssier.org>
+Reply-To: alex@me.ssier.org
 
-On Mon, Oct 06, 2025 at 11:21:24PM +0000, Roy Luo wrote:
-> Support the USB PHY found on Google Tensor SoCs.
+Add hardware description for these parts of the HTC One (M8):
 
-That's great, but that's not what your subject line says (it says "usb:
-dwc3")
+ - Notification LEDs
+ - Bluetooth
+ - NFC
+ - Touchscreen
 
-> This particular USB PHY supports both high-speed and super-speed
-> operations, and is paired with the SNPS DWC3 controller that's also
-> integrated on the SoCs.
-> This initial patch specifically adds functionality for high-speed.
-> 
-> Co-developed-by: Joy Chakraborty <joychakr@google.com>
-> Signed-off-by: Joy Chakraborty <joychakr@google.com>
-> Co-developed-by: Naveen Kumar <mnkumar@google.com>
-> Signed-off-by: Naveen Kumar <mnkumar@google.com>
-> Signed-off-by: Roy Luo <royluo@google.com>
-> ---
->  drivers/phy/Kconfig                 |   1 +
->  drivers/phy/Makefile                |   1 +
->  drivers/phy/google/Kconfig          |  15 ++
->  drivers/phy/google/Makefile         |   2 +
->  drivers/phy/google/phy-google-usb.c | 286 ++++++++++++++++++++++++++++
+Signed-off-by: Alexandre Messier <alex@me.ssier.org>
+---
+Alexandre Messier (4):
+      ARM: dts: qcom: msm8974pro-htc-m8: add status LEDs
+      ARM: dts: qcom: msm8974pro-htc-m8: add NFC support
+      ARM: dts: qcom: msm8974pro-htc-m8: add Bluetooth pins
+      ARM: dts: qcom: msm8974pro-htc-m8: add touchscreen
 
-And as others said, you don't need a whole new directory for one single
-.c file.
+ arch/arm/boot/dts/qcom/qcom-msm8974pro-htc-m8.dts | 88 +++++++++++++++++++++--
+ 1 file changed, 84 insertions(+), 4 deletions(-)
+---
+base-commit: e5f0a698b34ed76002dc5cff3804a61c80233a7a
+change-id: 20251007-m8-dts-additions-ac20291afa24
 
-thanks,
+Best regards,
+-- 
+Alexandre Messier <alex@me.ssier.org>
 
-greg k-h
+
 
