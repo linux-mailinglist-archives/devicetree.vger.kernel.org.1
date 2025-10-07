@@ -1,166 +1,250 @@
-Return-Path: <devicetree+bounces-224272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA607BC2616
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 20:26:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 697B6BC2637
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 20:30:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1C4E1885CE3
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 18:26:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67FFD3B05DB
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 18:30:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A690D21ABDC;
-	Tue,  7 Oct 2025 18:26:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 650322E9731;
+	Tue,  7 Oct 2025 18:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="F+mu4+Ik"
+	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="HghqC0EM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f227.google.com (mail-vk1-f227.google.com [209.85.221.227])
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com [209.85.219.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D112C9D
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 18:26:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.227
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EED131E521B
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 18:30:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759861570; cv=none; b=uyBPuw4t1YSCwBwehUMudDj6x/z2hphK5aVUH0GAl6zd1f4Uuncxr1vNGp3BMMjwmbvzyRRe+LkpYcxzZYcGbTl0KYKAJyLEqYDekPHX/GQMHHzfCa5cfitAKskPv9YgJd0HFgGiw7reLZabiiUTBJpHE2tinqjYwQbWdShwev8=
+	t=1759861841; cv=none; b=BCZw38a0TdB/r6TEX+kBSaDANfqSoHuQUo+Z2YU/usyy+Cc4aX82txNEb7hU06rmFS8bfv4K8wCnISTX6fWyRkBjf0uy0VJ2jiDwdnTFxE0rwzuaiyivFpMOPMI1asKErVp3tQN+6Vv5ZEviDsBcVsEacSoJL4BRqrWFsz+0dU0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759861570; c=relaxed/simple;
-	bh=lgxPmQeUgDdBYByZONZ7GXCsvf6RdzHyLvwZHMau6sc=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:References:
-	 In-Reply-To:Content-Type; b=SaV5APO8HTvEatT6m1aC2Fy4XIl5Mi1ayEzE7sGulhqeRIBE9DKtcuztPoELx63rU8QoZIUixymt2eXVzL6u3OWqteMsNOVZT74+403Cth0xqVFVHt/ppnksEXexY++eKgi/B/ViCIShj8sFSrlsdmT2WbCUjWbPCexxWVSdmr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=F+mu4+Ik; arc=none smtp.client-ip=209.85.221.227
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-vk1-f227.google.com with SMTP id 71dfb90a1353d-54aa0792200so4873859e0c.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 11:26:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759861568; x=1760466368;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:to:subject:from:user-agent:mime-version:date:message-id
-         :dkim-signature:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6g+XCuA2ZoLfUqXFlcoNx1Oae85JVvQnsRhb0x3YAZQ=;
-        b=Pocihpxctk+UxJX5WSE6ExzVxhpO6V3jeunG0ei02SIuVEl6JUM+A8uZbdt5fQnib0
-         hzPHtSj0fspcQKQftXG/vaMDA1sysKcyw5Rk8oc48qWsLEAJod0zASHziuDckSW7c8yc
-         jFMRykKs/MAbDek75MBVenssZXrfhtzPVUIsUEKdmD13XVhmYiRqTD341haaKHHzqSPE
-         11wBYfAFC02EQ8Uk6rxa8B7fjFXxWgEhGINCfstFdO6WLPvd+Yrh7wvF3Qw1tAkvGiao
-         O4zintVvMGx+LqvIFZSbsMs/ARsvaEAoeTShkHnQ6kNBV7auj5QvztFYGASj6Lt02O5m
-         oqkA==
-X-Forwarded-Encrypted: i=1; AJvYcCX+bvxN9cgoxv8xtBt3x3pp8mc9fi591CWLOSPsNJMZS9hkjJhcexRmzgzI6OoYfZP/1FbSlc1GbERk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9Z8ug+i9QkvZQlp17G2jee9hUqWDOLk32WaJHLiFGbA8obiIc
-	kFvp8QKggnlTTgNn9bBWzaaRyeWfgORs7TxkLEMh0Il220ksW86gD1NEQkl/gV2+j1qXXDIv9rs
-	aijXGmvi1D72rHqNLgjLgB15YShLqcK4soNNFqXGfKPRmochZ7EGO9zex9a/FTXnmzN9lfTVyNN
-	qh2HD7LznZ2NTWlebOhB9NcLiZQ7hBKbOAwD6DIiqbwIU4rWiED5P6Uib2AlC2jbyvyp1nOWK1l
-	gw4N8vQoW5BUd/ckl6Jpg==
-X-Gm-Gg: ASbGncsDEMtROq0UFOtOMFtKJo6PV3onkTyDuqT9yeNU1wF8GjKQx8y9qakbxWOxpTA
-	qS0GDQrG0WzmfXWJf1sm0sl2v9V/RtS2OydRMZsgfV91GNx3I6oT7vqnsKDt3SvrkV/TMyBr2tW
-	ClInYJ1jqmMrrNFty7Epm+vPuqyfRUWLdEJNXcJ3yGc/0eM5achnaPkeuotQIvsXl0AN0usnlyM
-	bxrCr6CF8DfLCef/kNXDmQItJKYz4YJ3jwtFITy68iGScOUvhyXlcMHqEwa1/Vo8QIFSvtsvgPA
-	FBZOe0B3DQ+vXzfYvXM0ahQBpNBUUv8gCQFVscH3iNJDXHMi1glTKVGYsq6LLxyyJjS5Tn/Q74K
-	BDgDrWTmBkJiGCe14J5Ig1qx6XR7SjbGuV39ACVgUKe91zofqxCT5iPB9h3kEjlphB8ZwPEOOPC
-	f7NSmxiB06RXMF
-X-Google-Smtp-Source: AGHT+IH/e4bPdxhrAM4T5hKXCl5T8w1sZ5Cg/ygPX6ROyFNeU/BejJeZtDgMbGI3aIZIIhNOonNMYgSBh8gb
-X-Received: by 2002:a05:6122:4592:b0:549:f04a:6eb3 with SMTP id 71dfb90a1353d-554b8b95420mr294660e0c.9.1759861567912;
-        Tue, 07 Oct 2025 11:26:07 -0700 (PDT)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-118.dlp.protect.broadcom.com. [144.49.247.118])
-        by smtp-relay.gmail.com with ESMTPS id 71dfb90a1353d-5523d06a33fsm1711557e0c.8.2025.10.07.11.26.07
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 07 Oct 2025 11:26:07 -0700 (PDT)
-X-Relaying-Domain: broadcom.com
-X-CFilter-Loop: Reflected
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-27ee41e062cso80825675ad.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 11:26:07 -0700 (PDT)
+	s=arc-20240116; t=1759861841; c=relaxed/simple;
+	bh=rgvjfcmnd+vOPKN4aV9RDXNfnNvBMNsSm36Mtj/m7yA=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=kDYvm1KmTPnOZkmliYEA/fSaS5pgsRs46S3rR5PSWAAAt23Zn4vuC/gX9zuHjMyAOSyaj/hiPXdqTt3Bv5oqvAykxicO7wYUL/cusLGwClJ4Tq1q5Uvc7g6a1yiAoc7W12hXVtf1wAITH3dUPgGHrDTEWV2hkkNAo1uz1TvH/+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=HghqC0EM; arc=none smtp.client-ip=209.85.219.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
+Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-7946137e7a2so72742646d6.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 11:30:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1759861567; x=1760466367; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:to:subject:from:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6g+XCuA2ZoLfUqXFlcoNx1Oae85JVvQnsRhb0x3YAZQ=;
-        b=F+mu4+IkuGhxWQWgENSzXMnuAd7EgExQ8OF4SxY7NZ/f5AkfAgjfSenxcEXi9Ppjjm
-         /h87T9NqPROCiQXoYl1kdWFNmtWmu+xc7ZMtzMbKmiyGn7F06Ce1hGUrgRDnMhUatmYX
-         9ChVwwJ/zTSH0ihxZ45AH/rku8VifuRAdcO68=
-X-Forwarded-Encrypted: i=1; AJvYcCWRV8VhnNhDXG596ZykUhFU/+Ah02MP/EfzIAiA2+sxP1UAJwbvcv+hACazUBZz/QQrgNPhKPA8fv18@vger.kernel.org
-X-Received: by 2002:a17:903:37c7:b0:27c:3a0f:f066 with SMTP id d9443c01a7336-290272af173mr6676835ad.22.1759861566813;
-        Tue, 07 Oct 2025 11:26:06 -0700 (PDT)
-X-Received: by 2002:a17:903:37c7:b0:27c:3a0f:f066 with SMTP id d9443c01a7336-290272af173mr6676655ad.22.1759861566388;
-        Tue, 07 Oct 2025 11:26:06 -0700 (PDT)
-Received: from [192.168.1.3] (ip68-4-215-93.oc.oc.cox.net. [68.4.215.93])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d1d564csm171830275ad.98.2025.10.07.11.26.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Oct 2025 11:26:04 -0700 (PDT)
-Message-ID: <69e38689-4779-49df-9ec4-e26391493e72@broadcom.com>
-Date: Tue, 7 Oct 2025 11:26:04 -0700
+        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1759861838; x=1760466638; darn=vger.kernel.org;
+        h=mime-version:user-agent:references:in-reply-to:date:cc:to:from
+         :subject:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jb3tcA1W3FmGk+8TVe8vqOzjSK1aS/TXDE04iZAy/ws=;
+        b=HghqC0EMKm2aR8xyYsMr3IPyHsVaY2M0kz4LaG8QZNuQ6hSugxGzqyEMOOvo1pF849
+         yo8PfqPFwGjdsE7f61jMMvZJvNUu1KMGKXpkpkKdvOFftRnO8YSvq6Pl4XSMSQEXc9sy
+         zDLEsxUnsf1/fDyFtLXmC+Oo8DSjS12zc/Pkxta+8Yu9kOylkKHKv82G2AiDWIn5mEIr
+         vLFsISmuCkfRam+6AiN2sBuenIuHqEtoHd8LDg/L6pIoDuFz39qfzvRxCn5fWmb16oFF
+         ZqZQnfleIooMY45/LFatbLZZj6kXLEFUALKFKZxIzEdOue6uwf9+6EJNkRpZri2WMPJC
+         eAAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759861838; x=1760466638;
+        h=mime-version:user-agent:references:in-reply-to:date:cc:to:from
+         :subject:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Jb3tcA1W3FmGk+8TVe8vqOzjSK1aS/TXDE04iZAy/ws=;
+        b=Rz32RaBmg82D7SZ9B+4TOymLBCMbQBswKJE+psaTHLNWxUvDWv54NYPMZHwha87pUh
+         ixY88U0pF5Rfh4dEn8I6YhDNl8mJii2Q/6UQb8mwL73/sK0lMsYDV7xI71SoHYk3wDUa
+         tX09886fKwPmcFonF+5kME57I3gVu3/4eKSJYQ7u08gX1ZSEuuxcqKp1LsN36rZV9y4m
+         MJz4kKiXCH/dO/OwtFh9QifRD2iBjJJPQW+wSRRC4HSOWgTPsZs54jBlHPyTHyRDaqyM
+         XGS23x/z6neoNgrz+nbio4ijW8QmtsQTLGB/flb2U/8V6ytUtBufFZKL08oPpSWgb7g2
+         HG3w==
+X-Forwarded-Encrypted: i=1; AJvYcCWDynwdbrZOwu5YLLdGSmSHGuovXfkIYE6lfwX3hmxyY89VG9HCQIhU88F9BJfW6ZSLyU5Etk93IFi0@vger.kernel.org
+X-Gm-Message-State: AOJu0YxADb9/b1gpEuTikz2r7pUNA1dgvdZp/FN0ldLO+i9TbpFx+zbQ
+	rUDQAs6KYIO4e4aifElIhLqyN5pJzXGSBxZT8pM80wCio+nuzuMzx761ytLL9FKmUBY=
+X-Gm-Gg: ASbGncv1mn3Kaz74R/jNbx4skpQimNz5bBIg7YHvXcWQhKth7OY6y1pZpFf+9rCGcSA
+	RFsP9W/1n9xAVI8kfADZehTt5cHoAKhxGQTfb5dVJW5xykHGkOGfRuCDf9dh0/29mUjNFjpbJ+q
+	ykcQeUdrZH/QXhdSyY+d1kMiD7yjsLbzCvEyc3oyjDZvNs55x+RT0ylEwUB1x2l3xIIjNAUp+Tn
+	VM4ERnG5zedrLAgoVSVdfvDOMhAs6cyUbbhMDLJ6lEh5RLwkGVbqm8bNyPkLu0Nl1ocTXDuo/JS
+	T9zQccXa7UpeTQiOnnyX3eNx4wTMbx/SylzVz0VxoKqriY16S1vai6xoltMPEHx3g0jWhCksbm4
+	m0wPuLuxYARCkWlup53JvaSzeE7y3DoeyYD0MiS8yxlyrUn+04/Wd
+X-Google-Smtp-Source: AGHT+IG7oPC1tRwzaeHEd7zVyRiz9owBfrM5atH+5WnqTKGdGFmZwYm2VcF1mt295mM1N+XGahIowQ==
+X-Received: by 2002:a05:6214:c65:b0:78d:ae5d:961e with SMTP id 6a1803df08f44-87b2efc2c83mr5392146d6.44.1759861837282;
+        Tue, 07 Oct 2025 11:30:37 -0700 (PDT)
+Received: from ?IPv6:2606:6d00:17:ebd3::c41? ([2606:6d00:17:ebd3::c41])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-878bb53badbsm144330446d6.21.2025.10.07.11.30.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Oct 2025 11:30:36 -0700 (PDT)
+Message-ID: <97879b9b078055fb130edfd126d253320ce616a1.camel@ndufresne.ca>
+Subject: Re: [PATCH 11/16] media: rockchip: rga: add iommu restore function
+From: Nicolas Dufresne <nicolas@ndufresne.ca>
+To: Sven =?ISO-8859-1?Q?P=FCschel?= <s.pueschel@pengutronix.de>, Jacob Chen
+	 <jacob-chen@iotwrt.com>, Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, 
+ Mauro Carvalho Chehab
+	 <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Rob Herring
+	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	 <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, kernel@pengutronix.de
+Date: Tue, 07 Oct 2025 14:30:34 -0400
+In-Reply-To: <20251007-spu-rga3-v1-11-36ad85570402@pengutronix.de>
+References: <20251007-spu-rga3-v1-0-36ad85570402@pengutronix.de>
+	 <20251007-spu-rga3-v1-11-36ad85570402@pengutronix.de>
+Content-Type: multipart/signed; micalg="pgp-sha512";
+	protocol="application/pgp-signature"; boundary="=-XMJL5X6bcbRTnPR2VvM0"
+User-Agent: Evolution 3.56.2 (3.56.2-2.fc42) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Subject: Re: [PATCH v2] arm64: dts: broadcom: bcm2712: Enable RNG
-To: Peter Robinson <pbrobinson@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- Stefan Wahren <wahrenst@gmx.net>, Phil Elwell <phil@raspberrypi.com>,
- Andrea della Porta <andrea.porta@suse.com>, devicetree@vger.kernel.org,
- linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org
-References: <20250927075643.716179-1-pbrobinson@gmail.com>
-Content-Language: en-US
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20250927075643.716179-1-pbrobinson@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 
 
+--=-XMJL5X6bcbRTnPR2VvM0
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 9/27/2025 12:56 AM, Peter Robinson wrote:
-> The RNG is the same IP as in the bcm2711 so add the
-> device tree block to enable the device.
-> 
-> Signed-off-by: Peter Robinson <pbrobinson@gmail.com>
+Hi,
+
+Le mardi 07 octobre 2025 =C3=A0 10:32 +0200, Sven P=C3=BCschel a =C3=A9crit=
+=C2=A0:
+> Add an iommu restore function in preparation for the rga3 addition.
+> This is necessary for a soft reset, as the rga3 will also reset
+> it's iommu paging table to 0 and disable paging.
+>=20
+> The empty domain attach/detach to restore the iommu is copied
+> from the rkvdec driver.
+
+We did receive negative feedback after the fact on this one. We will likely
+upset further the iommu subsystem maintainers with that. Have you considere=
+d
+adding a restore function in the rkiommu driver, similar to TI mmu and Benj=
+amin
+VSI MMU proposal ?
+
+I have no precise objection, I know it works, but adding a restore function
+seems also pretty straight forward.
+
+>=20
+> Signed-off-by: Sven P=C3=BCschel <s.pueschel@pengutronix.de>
 > ---
+> =C2=A0drivers/media/platform/rockchip/rga/rga.c | 24 ++++++++++++++++++++=
+++++
+> =C2=A0drivers/media/platform/rockchip/rga/rga.h |=C2=A0 7 +++++++
+> =C2=A02 files changed, 31 insertions(+)
+>=20
+> diff --git a/drivers/media/platform/rockchip/rga/rga.c
+> b/drivers/media/platform/rockchip/rga/rga.c
+> index
+> cd4da01645611e5fb51ed94e09b5f1463dad72c5..0a725841b0cfa41bbc5b861b8f5ceac=
+2452f
+> c2b5 100644
+> --- a/drivers/media/platform/rockchip/rga/rga.c
+> +++ b/drivers/media/platform/rockchip/rga/rga.c
+> @@ -9,6 +9,7 @@
+> =C2=A0#include <linux/delay.h>
+> =C2=A0#include <linux/fs.h>
+> =C2=A0#include <linux/interrupt.h>
+> +#include <linux/iommu.h>
+> =C2=A0#include <linux/module.h>
+> =C2=A0#include <linux/of.h>
+> =C2=A0#include <linux/pm_runtime.h>
+> @@ -560,6 +561,19 @@ static const struct video_device rga_videodev =3D {
+> =C2=A0	.device_caps =3D V4L2_CAP_VIDEO_M2M_MPLANE | V4L2_CAP_STREAMING,
+> =C2=A0};
+> =C2=A0
+> +void rga_iommu_restore(struct rockchip_rga *rga)
+> +{
+> +	if (rga->empty_domain) {
+> +		/*
+> +		 * To rewrite mapping into the attached IOMMU core, attach a
+> new empty domain that
+> +		 * will program an empty table, then detach it to restore the
+> default domain and
+> +		 * all cached mappings.
+> +		 */
+> +		iommu_attach_device(rga->empty_domain, rga->dev);
+> +		iommu_detach_device(rga->empty_domain, rga->dev);
+> +	}
+> +}
+> +
+> =C2=A0static int rga_parse_dt(struct rockchip_rga *rga)
+> =C2=A0{
+> =C2=A0	struct reset_control *core_rst, *axi_rst, *ahb_rst;
+> @@ -657,6 +671,13 @@ static int rga_probe(struct platform_device *pdev)
+> =C2=A0		goto err_put_clk;
+> =C2=A0	}
+> =C2=A0
+> +	if (iommu_get_domain_for_dev(rga->dev)) {
+> +		rga->empty_domain =3D iommu_paging_domain_alloc(rga->dev);
+> +
+> +		if (!rga->empty_domain)
 
-Applied to 
-https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
--- 
-Florian
+Its an error pointer, see:
 
+https://gitlab.freedesktop.org/linux-media/media-committers/-/commit/6347dc=
+7fb967521a77f9ff0774d25ef0cca4c6cd
 
+> +			dev_warn(rga->dev, "cannot alloc new empty
+> domain\n");
+> +	}
+> +
+> =C2=A0	ret =3D v4l2_device_register(&pdev->dev, &rga->v4l2_dev);
+> =C2=A0	if (ret)
+> =C2=A0		goto err_put_clk;
+> @@ -741,6 +762,9 @@ static void rga_remove(struct platform_device *pdev)
+> =C2=A0	v4l2_device_unregister(&rga->v4l2_dev);
+> =C2=A0
+> =C2=A0	pm_runtime_disable(rga->dev);
+> +
+> +	if (rga->empty_domain)
+> +		iommu_domain_free(rga->empty_domain);
+> =C2=A0}
+> =C2=A0
+> =C2=A0static int __maybe_unused rga_runtime_suspend(struct device *dev)
+> diff --git a/drivers/media/platform/rockchip/rga/rga.h
+> b/drivers/media/platform/rockchip/rga/rga.h
+> index
+> fc4805ba4e8ef7fb311f780a198ba6ba4d3aff17..e19c4c82aca5ae2056f52d525138093=
+fbbb8
+> 1af8 100644
+> --- a/drivers/media/platform/rockchip/rga/rga.h
+> +++ b/drivers/media/platform/rockchip/rga/rga.h
+> @@ -75,6 +75,7 @@ struct rockchip_rga {
+> =C2=A0	void __iomem *regs;
+> =C2=A0	struct clk_bulk_data clks[3];
+> =C2=A0	struct rockchip_rga_version version;
+> +	struct iommu_domain *empty_domain;
+> =C2=A0
+> =C2=A0	/* vfd lock */
+> =C2=A0	struct mutex mutex;
+> @@ -114,6 +115,12 @@ static inline struct rga_vb_buffer *vb_to_rga(struct
+> vb2_v4l2_buffer *vb)
+> =C2=A0
+> =C2=A0struct rga_frame *rga_get_frame(struct rga_ctx *ctx, enum v4l2_buf_=
+type
+> type);
+> =C2=A0
+> +/*
+> + * This should be called in an interrupt handler to make sure no memory
+> + * is mapped through the IOMMU while the empty domain is attached.
+> + */
+> +void rga_iommu_restore(struct rockchip_rga *rga);
+> +
+> =C2=A0/* RGA Buffers Manage */
+> =C2=A0extern const struct vb2_ops rga_qops;
+> =C2=A0
+
+--=-XMJL5X6bcbRTnPR2VvM0
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaOVcSgAKCRDZQZRRKWBy
+9OYnAP9DZqU3/sor4ifbznDD8fkkIm921ew6ADeaBvy0V9AxfgEAwHVV4+jp7xPf
+P3ZUAog4C977zT1IhEvYYMKGr4Gjpwg=
+=aUgZ
+-----END PGP SIGNATURE-----
+
+--=-XMJL5X6bcbRTnPR2VvM0--
 
