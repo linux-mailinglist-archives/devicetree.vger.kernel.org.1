@@ -1,286 +1,169 @@
-Return-Path: <devicetree+bounces-224236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE5C6BC1EE4
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 17:28:20 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAD7DBC1F3B
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 17:39:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 89D94189B71B
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 15:28:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6ED2B4F2958
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 15:39:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A005B2E62CF;
-	Tue,  7 Oct 2025 15:28:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8D362D29CE;
+	Tue,  7 Oct 2025 15:39:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jEJiXXUG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xDm5i9zk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f52.google.com (mail-oo1-f52.google.com [209.85.161.52])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBB043FF1
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 15:28:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E331C2E0B74
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 15:39:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759850896; cv=none; b=MeezmfTWHewTgRHCtnsW0Kl0j6elVIyuAlu3aNttMf55ZwSfje/lJ5TULTWV0TNsl5EfNrAnDpuEmbgoq5IfQ9V0ZwUwKa24d4EO5LP6s7JVQh8an+/TD+lAn0vW9bOVmWsl3Q2Wugfs1QXpJ8JDtWKJnLvBH7nJYcEce55pM0g=
+	t=1759851546; cv=none; b=IHnErCns1oPwlSewnhfxOrTgsike/kxjTyXOMHX59xX9wxOLQN82UN+7eurpjsko62JUEP/Z+N+nbMOYoEZTyN3fSUAPdcOWICOl5dWbEs6HPvdOkcozJpF1HAF4Re6HVP15NaG64qZ1bf8nFK7VNcjtMo1/pcjKNDkmfLkLbbc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759850896; c=relaxed/simple;
-	bh=kWXitx8WofhpxyiCGLF4fVh/bhkDwN8vVR0ngmxKw+o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OXkbvOWMW8FtUNnpg8pMx/QMEouFPRbPMpgmIn2chiyvFsxfh6885YejkQ9rJWxnCoTJw0rLWBOkQs/56VozkWXtRj42Yw5E5yuQsDcwOa6dZ4e71HTH6SlHfWfFLQ/u582V8DuhYTfMSPZ/Y0J1d6Cx///+CsQN5uL6fTKF5kk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jEJiXXUG; arc=none smtp.client-ip=209.85.161.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f52.google.com with SMTP id 006d021491bc7-647562cc04cso3215984eaf.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 08:28:14 -0700 (PDT)
+	s=arc-20240116; t=1759851546; c=relaxed/simple;
+	bh=ai4LGPuL3rEMggixLNvM6kWUprS+X4rTlrv1/oQ6sJ8=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=cMFK23gjkQBjb/vizD62JqumfvXHXvGIfDtTX7owG56HG6cImJZUSINdAdAVpo0y5tCReLQfnBxEYNdOwgdzC7+DMf58+o3vpkBu9VfVOx/DzOd2jLW2B3pUhUD5Mchgl+qzD5OWUP9juwzD/goPck/0dHtK8ssVueE7tBTnfYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xDm5i9zk; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3ee15505cdeso10528f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 08:39:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759850894; x=1760455694; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1759851543; x=1760456343; darn=vger.kernel.org;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1AtSgdu/zhEIwEp8jrIIUZRzuV/9W+89fOYn2ZCku1g=;
-        b=jEJiXXUG2KQHvGXnPjLueqSKIZLtZuI4lNpCNC7hJdJVwG4bvX3FX3liXGXsdrwSFX
-         WS2tQOrg8vwgiE5BG0xC/IxWvKjIbuuCY2Y9QoY+pc9WOdhlwFKNxpLFis9MkZKgknX9
-         3E/qDsSGWmeqp0OCvcMuao/abHJiXu/soLzr2der2aAZkTi2dDaiUk/vqvPd+K6TjI7/
-         81uDHCVucjZpebVOQqQ+C/IABnp9YGwWILYExWe/JFgBSHDMYuTfOkq7NmDmod+8Cq1W
-         vw8JP9ZP9l0SZKM/F5SHnYJPba/lhQXWVfXsWvzN2Wd3UydXLybgsqKQGR/PHvo3SrkB
-         1F5A==
+        bh=k8DX9q0w9bvA3uWv/K5h42L9FfWuzySG8u4E46pyKaU=;
+        b=xDm5i9zkOCUoD7QiwqfKRCqDhRV5uv80wOLiF4mrKd8VDiuFsVyyMCO+vn5+LZRzcd
+         kZbTmFYeUFD8QZQnnRR2bSSP4fksoQ3DUHdYtJhK/MZKwi/kqYkxS/Ave8QXSNpw8iHX
+         HAOi4zLQzqhRloJUzGrNv8T5ps+yz2YQxm64syS1CDh9R2Nny8bDINY+RmC9OADWDX41
+         mZOj2zI7U1CvyBrVJ4EWKHVZVVA11uH0rTS+aguSpqBedbYyZJ78pdx98v+C/ENxvexl
+         eQJVX9U60k4ZnSRqxZdjSjtKXTOFwmtmDwOZHBRt3DStY3eVb/RPNaLAuidLZEa2cBR2
+         lZWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759850894; x=1760455694;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1AtSgdu/zhEIwEp8jrIIUZRzuV/9W+89fOYn2ZCku1g=;
-        b=pGTj2QlnOdHXRtGM8unjp8epNzfE0AZ7i74QR7fmodKeWBLcF6i7J2PnwuNLEX99aD
-         LVDiWrFGGiFhecqd2o7uTthLbh9LQO3SeX1sPHcVVGNATTVVB0uCNPCa/tcL3O25/fXQ
-         5xRy1pe2fbqm7YxwMqLr5++WTXjoqKFzded8lWlWvytUqnBNU07jUgwzW+/oRnEpEuOv
-         mMJur8EWQu/8P5BS2IAMM8FgHDPNRBpCgiPU2qZzSyvUoj1CKelEUdbgrHBsbuR8V/F2
-         2CrLqsJ4EprAPh18GPGfZaOPnLV8QmGTDHPY2VeFLn3nFbXmRkN5dW1fFPppHxCvBWwh
-         aHnw==
-X-Forwarded-Encrypted: i=1; AJvYcCXjAGKZUgReDsLANRHz8meM3RTkKaNtnQ8B08+588eaz3yyFHyFqjySufx6Q47X2qW9COoWPiKJLmq7@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJVkrmRRQSk0EKRMMEFM+FdveN2IsqtF2LBiHQR2tGJNqnp7dz
-	TSsyJ4mvbEnjEwThxzZ9WrA0/JiOC8u5/XMChV2ZpVl8kEtksNZ0irzIaGpYnqXXDkJhkK1GWOc
-	JDQhfFHB9NZmAKllXNFOgxxiW3c46HlQ=
-X-Gm-Gg: ASbGncs35Eza9Q4OAIM/62MYOVPsANibBT3kM/06rky0llQuo/Jwn8EOshfFqYorqDR
-	xXMW8DYBSSMk6Brh92pxoU8+Xgtb3suCvTIMRbEU0WniYGwgzRDtQwiRYGM2wuAKj9+ipcrvyig
-	5KoICd/5+BMiTEXx9ScSiSQtgO7BxxgdMy8SIApJ7N8hUjuij/tYKZVhEB9Jdnjh2vOaHcAVSDH
-	WV3UfIw1yeb5EGd0gNtVjZiDCGFCIcIw8ye2x6B9ro=
-X-Google-Smtp-Source: AGHT+IFFCD+05k/f2pnhMy8ZzAH383HR9gPRjWkOyfaj0oG6GpKVsVXnHQIOkpY8Be0wAaj5uUymmdOl4EjjYOj/MsA=
-X-Received: by 2002:a05:6870:c1c6:b0:377:bbde:5278 with SMTP id
- 586e51a60fabf-3b0fa24fd92mr9347675fac.37.1759850893884; Tue, 07 Oct 2025
- 08:28:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759851543; x=1760456343;
+        h=in-reply-to:references:subject:cc:to:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=k8DX9q0w9bvA3uWv/K5h42L9FfWuzySG8u4E46pyKaU=;
+        b=B8dTtc1LORKaBDa3KsOYiKVhJ8KoyYWizGrMzWNIT53MwRHP758RtilpMhSrXLYZ09
+         jkDjNAOafzt0ZOAwnUIURu43NP2wpGnhYaVp3f99SisXL5UcLhrTDL46mz72Koo2rbGH
+         zd0pHKX+iMdx36njY2OflvDM97BmWWkVxQOx/BxxN95EBeM5s/SIzScNlYrNXVQJ8Aqv
+         mOeJn654inIZZohAUXgrRvw3REwaFbV+r4n25KQ6CzEpcnHQnTogjSSQ2S+pciyShxIE
+         02hiUIulDTEZhTLlbflveoUAQANVEJey7RkcyK3kOUSE5KjWlhY8eC42bEd+kl6Ks2ic
+         VpxA==
+X-Forwarded-Encrypted: i=1; AJvYcCUncq1/PblS2zLfEt/l26GBnv4mLHSMN+0RCBhaNWYlHR04XwB3M7o5jV3HrjkIzdDwYlyMqyYjSpR6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxkbpy6fYVvsoIm4YJ0VLtv7SWwvDRXBhiV9yQFp622NvVjgdnr
+	DkhaPL+a3bFaFYjI6gw38cd0SVl8wTehA5vahL0t7d02R6kzueGSVtFpV7yqFTqVb34=
+X-Gm-Gg: ASbGncsDndJnk3BGiCRnobmjCM6uQYiZPwUAXEb0cd/buTxUJGIUj7pwt2ZMtwNRcg8
+	9irg8TbD+zZhvE4pNBeR7QaVXb5+4Sa2Y0hUKnKLtRsuHXsz1cqzST9av4F3jro9Qr+lGvEyKhG
+	isUunTEWVIO5XWEcTZJ9UVgWC5OGAF/3YhOpUH3VbvCxUIZE3OUzmhen+B6PvM8M9KS4g/KJ2QR
+	2+9ho1nkXPKOU9G0jJiQo9N5OPPvYCdun3zf0S91wOHlZokly73ibCcz/UrpjrI87YKH7e9Ma47
+	lJkru0eRYN1rQJFLJjIidIwvyCFi1UXI2fWowDE0CGInxHn2tPu3nUwrLaOKCbmECLc0i8AjvUo
+	GraIS9us/vNLajZdoAjsP0NJOzlxYQaqq8odMl089Y9cfxMxX0CpGNheNHPSLlkY5gg==
+X-Google-Smtp-Source: AGHT+IGPYTEBM7rthUf88Ia5HZrtFvZ/rrQd5/6C2vMcuGkG3ki1p9x7pdGI+whXVL1GGpI4sFIxqg==
+X-Received: by 2002:a05:6000:240b:b0:3eb:ad27:9802 with SMTP id ffacd0b85a97d-425829a5a91mr2835454f8f.2.1759851542939;
+        Tue, 07 Oct 2025 08:39:02 -0700 (PDT)
+Received: from localhost ([2a02:c7c:7259:a00:22ae:baa0:7d1a:8c1f])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8e97fbsm25787403f8f.34.2025.10.07.08.39.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Oct 2025 08:39:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20251002084204.15898-1-jjian.zhou@mediatek.com> <20251002084204.15898-3-jjian.zhou@mediatek.com>
-In-Reply-To: <20251002084204.15898-3-jjian.zhou@mediatek.com>
-From: Jassi Brar <jassisinghbrar@gmail.com>
-Date: Tue, 7 Oct 2025 10:28:00 -0500
-X-Gm-Features: AS18NWA1zX6Oa-17YwjJlyhdpYlXfh240reFbRpuwEmWd3JTrDtYGE7kwX4p96A
-Message-ID: <CABb+yY1Z+F=emOi2Q58bGv6AtKOMjY3qsNgRYqheNni+yN4_yQ@mail.gmail.com>
-Subject: Re: [PATCH v7 2/2] mailbox: mediatek: Add mtk-vcp-mailbox driver
-To: Jjian Zhou <jjian.zhou@mediatek.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Chen-Yu Tsai <wenst@chromium.org>, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 07 Oct 2025 16:39:01 +0100
+Message-Id: <DDC7B1BDTZCN.D7JXN4RVKYHM@linaro.org>
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Neil Armstrong" <neil.armstrong@linaro.org>
+Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Liam Girdwood"
+ <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>, "Jaroslav Kysela"
+ <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Bjorn Andersson" <andersson@kernel.org>,
+ "Konrad Dybcio" <konradybcio@kernel.org>, <linux-sound@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>
+Subject: Re: [PATCH RFC 4/6] sm8650-hdk: Enable I2S for HDMI
+X-Mailer: aerc 0.20.0
+References: <20251006-topic-sm8x50-next-hdk-i2s-v1-0-184b15a87e0a@linaro.org> <20251006-topic-sm8x50-next-hdk-i2s-v1-4-184b15a87e0a@linaro.org> <DDBPGIDN8SKS.2GF6TZC6KGXVI@linaro.org> <de955ab3-26de-43ed-a450-d58ffe0df7af@linaro.org>
+In-Reply-To: <de955ab3-26de-43ed-a450-d58ffe0df7af@linaro.org>
 
-On Thu, Oct 2, 2025 at 3:42=E2=80=AFAM Jjian Zhou <jjian.zhou@mediatek.com>=
- wrote:
+On Tue Oct 7, 2025 at 8:04 AM BST, Neil Armstrong wrote:
+> On 10/7/25 03:39, Alexey Klimov wrote:
+>> On Mon Oct 6, 2025 at 7:37 PM BST, Neil Armstrong wrote:
+>>> Add the necessary nodes to configure the right I2S interface
+>>> to output audio via the DSI HDMI bridge.
+>>>
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> ---
+>>>   arch/arm64/boot/dts/qcom/sm8650-hdk.dts | 30 ++++++++++++++++++++++++=
++
+>>>   arch/arm64/boot/dts/qcom/sm8650.dtsi    | 40 ++++++++++++++++++++++++=
++++++++++
+>>>   2 files changed, 70 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/=
+dts/qcom/sm8650-hdk.dts
+>>> index 87d7190dc991b11f5d1162aabb693dcadd198c51..1286ce95235d5544322a187=
+7292cbdd426298c11 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+>>> @@ -171,6 +171,19 @@ sound {
+>>>   				"TX SWR_INPUT1", "ADC2_OUTPUT",
+>>>   				"TX SWR_INPUT3", "ADC4_OUTPUT";
+>>>  =20
+>>> +		pinctrl-0 =3D <&i2s0_default_state>, <&audio_mclk0_default_state>;
+>>> +		pinctrl-names =3D "default";
+>>> +
+>>> +		clocks =3D <&q6prmcc LPASS_CLK_ID_PRI_MI2S_IBIT LPASS_CLK_ATTRIBUTE_=
+COUPLE_NO>,
+>>> +			 <&q6prmcc LPASS_CLK_ID_MCLK_1 LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+>>> +		clock-names =3D "pri-mi2s",
+>>> +			      "pri-mclk";
+>>> +
+>>> +		assigned-clocks =3D <&q6prmcc LPASS_CLK_ID_PRI_MI2S_IBIT LPASS_CLK_A=
+TTRIBUTE_COUPLE_NO>,
+>>> +				  <&q6prmcc LPASS_CLK_ID_MCLK_1 LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+>>> +		assigned-clock-rates =3D <1536000>,
+>>> +				       <24576000>;
+>>> +
+>>>   		wcd-playback-dai-link {
+>>>   			link-name =3D "WCD Playback";
+>>>  =20
+>>> @@ -218,6 +231,22 @@ platform {
+>>>   				sound-dai =3D <&q6apm>;
+>>>   			};
+>>>   		};
+>>> +
+>>> +		pri-mi2s-dai-link {
+>>> +			link-name =3D "Primary MI2S Playback";
+>>=20
+>> Is it HDMI only audio playback or does it have switches to playback it a=
+s raw i2s
+>> (when external DAC is needed)?
 >
-> Add mtk-vcp-mailbox driver to support the communication with
-> VCP remote microprocessor.
->
-> Signed-off-by: Jjian Zhou <jjian.zhou@mediatek.com>
-> ---
->  drivers/mailbox/Kconfig                 |   9 ++
->  drivers/mailbox/Makefile                |   2 +
->  drivers/mailbox/mtk-vcp-mailbox.c       | 170 ++++++++++++++++++++++++
->  include/linux/mailbox/mtk-vcp-mailbox.h |  32 +++++
->  4 files changed, 213 insertions(+)
->  create mode 100644 drivers/mailbox/mtk-vcp-mailbox.c
->  create mode 100644 include/linux/mailbox/mtk-vcp-mailbox.h
->
-> diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-> index 02432d4a5ccd..c28bdb855663 100644
-> --- a/drivers/mailbox/Kconfig
-> +++ b/drivers/mailbox/Kconfig
-> @@ -294,6 +294,15 @@ config MTK_CMDQ_MBOX
->           critical time limitation, such as updating display configuratio=
-n
->           during the vblank.
->
-> +config MTK_VCP_MBOX
-> +       tristate "MediaTek VCP Mailbox Support"
-> +       depends on ARCH_MEDIATEK || COMPILE_TEST
-> +       help
-> +         Say yes here to add support for the MediaTek VCP mailbox driver=
-.
-> +         The mailbox implementation provides access from the application
-> +         processor to Video Companion Processor Unit.
-> +         If unsure say N.
-> +
->  config ZYNQMP_IPI_MBOX
->         tristate "Xilinx ZynqMP IPI Mailbox"
->         depends on ARCH_ZYNQMP && OF
-> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-> index 98a68f838486..07278871d254 100644
-> --- a/drivers/mailbox/Makefile
-> +++ b/drivers/mailbox/Makefile
-> @@ -63,6 +63,8 @@ obj-$(CONFIG_MTK_ADSP_MBOX)   +=3D mtk-adsp-mailbox.o
->
->  obj-$(CONFIG_MTK_CMDQ_MBOX)    +=3D mtk-cmdq-mailbox.o
->
-> +obj-$(CONFIG_MTK_VCP_MBOX)     +=3D mtk-vcp-mailbox.o
-> +
->  obj-$(CONFIG_ZYNQMP_IPI_MBOX)  +=3D zynqmp-ipi-mailbox.o
->
->  obj-$(CONFIG_SUN6I_MSGBOX)     +=3D sun6i-msgbox.o
-> diff --git a/drivers/mailbox/mtk-vcp-mailbox.c b/drivers/mailbox/mtk-vcp-=
-mailbox.c
-> new file mode 100644
-> index 000000000000..94dac59ca32b
-> --- /dev/null
-> +++ b/drivers/mailbox/mtk-vcp-mailbox.c
-> @@ -0,0 +1,170 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2025 MediaTek Corporation. All rights reserved.
-> + * Author: Jjian Zhou <jjian.zhou.@mediatek.com>
-> + */
-> +
-> +#include <linux/interrupt.h>
-> +#include <linux/io.h>
-> +#include <linux/kernel.h>
-> +#include <linux/mailbox_controller.h>
-> +#include <linux/mailbox/mtk-vcp-mailbox.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +
-> +struct mtk_vcp_mbox {
-> +       struct mbox_controller mbox;
-> +       void __iomem *base;
-> +       struct device *dev;
-> +       const struct mtk_vcp_mbox_cfg *cfg;
-> +       struct mtk_ipi_info ipi_recv;
-> +       struct mbox_chan chans;
-> +};
-> +
-> +struct mtk_vcp_mbox_cfg {
-> +       u16 set_in;
-> +       u16 clr_out;
-> +};
-> +
-> +static irqreturn_t mtk_vcp_mbox_irq_thread(int irq, void *data)
-> +{
-> +       struct mtk_vcp_mbox *priv =3D data;
-> +
-> +       /* get irq status */
-> +       priv->ipi_recv.irq_status =3D readl(priv->base + priv->cfg->clr_o=
-ut);
-> +
-> +       __ioread32_copy(priv->ipi_recv.msg, priv->base,
-> +                       MTK_VCP_MBOX_SLOT_MAX_SIZE / 4);
-> +
-> +       mbox_chan_received_data(&priv->chans, &priv->ipi_recv);
-> +
-> +       /* clear irq status */
-> +       writel(priv->ipi_recv.irq_status, priv->base + priv->cfg->clr_out=
-);
-> +
-> +       return IRQ_HANDLED;
-> +}
-> +
-> +static struct mbox_chan *mtk_vcp_mbox_xlate(struct mbox_controller *mbox=
+> The HDK has i2s lines of the secondary i2s on the LS connector, but witho=
+ut any additional
+> boards connected it has no on-board i2s dacs.
+
+Ah, like on RB3 and RB5 boards.
+
+In such case the suggestion is to add mention of HDMI here in the link name=
 ,
-> +                                           const struct of_phandle_args =
-*sp)
-> +{
-> +       if (sp->args_count)
-> +               return NULL;
-> +
-> +       return &mbox->chans[0];
-> +}
-> +
-> +static int mtk_vcp_mbox_send_data(struct mbox_chan *chan, void *data)
-> +{
-> +       struct mtk_vcp_mbox *priv =3D chan->con_priv;
-> +       struct mtk_ipi_info *ipi_info =3D data;
-> +       u32 status;
-> +
-> +       if (!ipi_info->msg) {
-> +               dev_err(priv->dev, "msg buffer is NULL.\n");
-> +               return -EINVAL;
-> +       }
-> +
-> +       status =3D readl(priv->base + priv->cfg->set_in);
-> +       if (status & BIT(ipi_info->index)) {
-> +               dev_warn(priv->dev, "mailbox IPI %d is busy.\n", ipi_info=
-->id);
-> +               return -EBUSY;
-> +       }
-> +
-> +       if (ipi_info->slot_ofs + ipi_info->len > MTK_VCP_MBOX_SLOT_MAX_SI=
-ZE)
-> +               return -EINVAL;
-> +       __iowrite32_copy(priv->base + ipi_info->slot_ofs, ipi_info->msg,
-> +                        ipi_info->len);
-> +
-> +       writel(BIT(ipi_info->index), priv->base + priv->cfg->set_in);
-> +
-> +       return 0;
-> +}
-> +
-> +static bool mtk_vcp_mbox_last_tx_done(struct mbox_chan *chan)
-> +{
-> +       struct mtk_ipi_info *ipi_info =3D chan->active_req;
-> +       struct mtk_vcp_mbox *priv =3D chan->con_priv;
-> +
-> +       return !(readl(priv->base + priv->cfg->set_in) & BIT(ipi_info->in=
-dex));
-> +}
-> +
-> +static const struct mbox_chan_ops mtk_vcp_mbox_chan_ops =3D {
-> +       .send_data      =3D mtk_vcp_mbox_send_data,
-> +       .last_tx_done   =3D mtk_vcp_mbox_last_tx_done,
-> +};
-> +
-> +static int mtk_vcp_mbox_probe(struct platform_device *pdev)
-> +{
-> +       struct device *dev =3D &pdev->dev;
-> +       struct mtk_vcp_mbox *priv;
-> +       struct mbox_controller *mbox;
-> +       int ret, irq;
-> +
-> +       priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +       if (!priv)
-> +               return -ENOMEM;
-> +
-> +       priv->dev =3D dev;
-> +       priv->chans.con_priv =3D priv;
-> +       mbox =3D &priv->mbox;
-> +       mbox->dev =3D dev;
-> +       mbox->ops =3D &mtk_vcp_mbox_chan_ops;
-> +       mbox->txdone_irq =3D false;
-> +       mbox->txdone_poll =3D true;
-> +       mbox->of_xlate =3D mtk_vcp_mbox_xlate;
-> +       mbox->num_chans =3D 1;
-> +       mbox->chans =3D &priv->chans;
-> +
-> +       priv->ipi_recv.msg =3D devm_kzalloc(dev, MTK_VCP_MBOX_SLOT_MAX_SI=
-ZE
-> +                                         GFP_KERNEL);
->
-Please compile-test at least before submitting. Dropping it, sorry.
+otherwise it might be not clear what this multi i2s playback is about.
+Maybe "Primary MI2S/HDMI Playback" will do.
 
--jassi
+Thanks,
+Alexey
+
 
