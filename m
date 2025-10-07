@@ -1,183 +1,214 @@
-Return-Path: <devicetree+bounces-224029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C58CBC05CC
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 08:46:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3897FBC05BA
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 08:44:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 865064F1260
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 06:46:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08246189D0C6
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 06:44:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09BD22264CC;
-	Tue,  7 Oct 2025 06:46:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59876227E95;
+	Tue,  7 Oct 2025 06:44:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="l+3F2tAj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H2NXGA1T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail1.manjaro.org (mail1.manjaro.org [142.132.176.110])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63E0321FF45;
-	Tue,  7 Oct 2025 06:46:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=142.132.176.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2846F1DFE12;
+	Tue,  7 Oct 2025 06:44:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759819583; cv=none; b=P+gL7fW4St+W/ccJFn0x5qxzmnhXgsT4q0pamv/R7fYc0fZ78ILI3Zu3qwZpABsRbSWlXw71f0NXewlUkjeT5U5bey9rrYPQODZOpVclQB4uhwGCok2okG6hTLIek8mMdg6wthA5IbWAYZj5O7ag5KcHgpif1k4WZk33V4QErT8=
+	t=1759819448; cv=none; b=ZOB9uD1/KCc2ZnmbKU6eLcIMJLAS3aE3tsL0bGIJ/VShf7yCKdcRgh7BWWpmyNZGJwC93oNiWpDRw3ElFXxG7kjMwsqmDeGGUeckFoIrnFYVg0DXlcbovBj0yJh71eGEtzIjd0DpkYEjof/piYKY3lUqZq8SaiOjPh/B2eb4LNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759819583; c=relaxed/simple;
-	bh=8MXcsHwutcf+qsZ/rNq6dfPMRguOGwRckvbM3PtJDW4=;
-	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
-	 Message-ID:Subject; b=J6ydvIAesgSy0dwFAA0Vbq9NGrQp9diOtbDap4dk02OHogZL3I2XzDPwyOXtIAJOkfcKEYrqly/VTjj4rCGAZSxXLqd8PDax0VP0KoNGkvFoWS/7HTNr3HLhx0fBXWZB/f7ybCprz/VmZ2mkJwMt9md2Vz8/N2MLkZYLXjqevns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=l+3F2tAj; arc=none smtp.client-ip=142.132.176.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPA id EECCF409F9;
-	Tue,  7 Oct 2025 08:39:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=dkim;
-	t=1759819170; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=DNAXiQNHZKvLPmuSvHGH4xfiW4QLvC5MPDpiztpmQtc=;
-	b=l+3F2tAjUyIOhktb/XyLvEnDUXX2dOrNO/bgw39WI2UIIax0uB4BvAQRK8p0JNEekq55gj
-	A8tyodsL5OdWkTXLCMkne4mq1+V0HhnwVQJlXbL52CfEfLq3xFmziVM7Qjvpkz2BXqtz2v
-	4UcbUmqyk7gdRdRfFYdsYbDqCeq1Q4WaJ5d6YVKyTcPGnPYdXPI2sNVg2dDQ/S9HRXCmGr
-	JdHqffjocrzlvo1F2j0iLaoWltxVKgON9Mmd0nYUVd0XQ2e4zFPBbhosWOLi0Cl6jXOmRd
-	9wELyLkk0duy1rwEenQ2a1BC8ITrgiwXbpb87Z/ODqSHfTsbPrjO1slgS2YYuA==
-From: "Dragan Simic" <dsimic@manjaro.org>
-In-Reply-To: <37f2603e-8c51-4f92-a7af-0e60cd577004@gmail.com>
-Content-Type: text/plain; charset="utf-8"
-References: <20250921-ppp_light_accel_mag_vol-down-v3-0-7af6651f77e4@gmail.com>
- <53eabe34a310ea9c74315fa09a604e4a@manjaro.org>
- <b01ed528-8b29-4a6a-bdff-88f2e3b5dd2e@gmail.com>
- <115da845d9161e6ecfa67cf189b84aa8@manjaro.org> <37f2603e-8c51-4f92-a7af-0e60cd577004@gmail.com>
-Date: Tue, 07 Oct 2025 08:39:29 +0200
-Cc: "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, "Ondrej Jirman" <megi@xff.cz>, =?utf-8?q?Leonardo_G=2E_Trombetta?= <lgtrombetta@gmx.com>
-To: "Rudraksha Gupta" <guptarud@gmail.com>
+	s=arc-20240116; t=1759819448; c=relaxed/simple;
+	bh=ortTdRbp29kvA57ub10lSkTj/eY7/3lHwfhRGCyyHSk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ip4OZ6SFdatwTSgO6mNFcedvlNSLzYdh+S8GenfBRbIivVmbEe5ze237V1zQrqVC0zMHp9Z/Ph36KC9TnOILuCdrj34kL1nStmKM+EGV3LtVFy6Ukn0MWmk5nf3V669aLnCFHeyzy6NMRhVDWL9+sDrv01mmxb6SREbRS9Pr62A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H2NXGA1T; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3366C4CEF9;
+	Tue,  7 Oct 2025 06:43:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759819447;
+	bh=ortTdRbp29kvA57ub10lSkTj/eY7/3lHwfhRGCyyHSk=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=H2NXGA1Tb86DHODQYJ8t3Ufn3jCk0w4pXOIa5bAQyPZ5c0W5sfrB8htI679R97K/6
+	 PgoQoXj2VgFEdgEkk+cLSzq/qWyKd87hmqjFbksLNKBmthf3qQrVZUk9ZLTWyl81b1
+	 s5S16ZX38QEdtLRBcVDa1V8mFzJzn5csfKewLisRK1i5F0W4zXR0wcyonpNekI6CyS
+	 uQb58e4CK//x+lyO3apmdpACAtWnDCycvPPwo+BnFfLEeFpre5mc75ajkY/ReznEVr
+	 T0gSMP6mpXyvAkxeqPgFiLFbuxgWXGf0bBaYqiO/msrcP4VpnEt3SErHLDSspggW8W
+	 8/3SkkzgVs44Q==
+Message-ID: <8a6861a0-f546-475b-907c-65b691d1d340@kernel.org>
+Date: Tue, 7 Oct 2025 15:43:56 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <eae79f9b-7127-6808-6a46-57ebc079ca50@manjaro.org>
-Subject: =?utf-8?q?Re=3A?= [PATCH v3 0/5] Upstreaming Pinephone Pro Patches
-User-Agent: SOGoMail 5.12.3
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: None
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v12 3/5] dt-bindings: display/msm: Document MDSS on
+ QCS8300
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Yongxing Mou <yongxing.mou@oss.qualcomm.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
+ <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kuogee Hsieh <quic_khsieh@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250911-qcs8300_mdss-v12-0-5f7d076e2b81@oss.qualcomm.com>
+ <20250911-qcs8300_mdss-v12-3-5f7d076e2b81@oss.qualcomm.com>
+ <20250918-spectral-seahorse-of-witchcraft-69553c@kuoka>
+ <b745c515-2264-42aa-8d92-663efc7f6276@oss.qualcomm.com>
+ <6c195b42-d994-4d24-9c40-48d8069304e3@kernel.org>
+ <rkuihu3pmhexeahfch6j7bvwn5rn4ecccbhamluh7fas5qgaup@av2foeiwmcz3>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <rkuihu3pmhexeahfch6j7bvwn5rn4ecccbhamluh7fas5qgaup@av2foeiwmcz3>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hello Rudraksha,
+On 27/09/2025 08:26, Dmitry Baryshkov wrote:
+> On Fri, Sep 19, 2025 at 01:34:39PM +0900, Krzysztof Kozlowski wrote:
+>> On 18/09/2025 13:14, Yongxing Mou wrote:
+>>>
+>>>
+>>> On 9/18/2025 9:01 AM, Krzysztof Kozlowski wrote:
+>>>> On Thu, Sep 11, 2025 at 07:24:03PM +0800, Yongxing Mou wrote:
+>>>>> Document the MDSS hardware found on the Qualcomm QCS8300 platform.
+>>>>>
+>>>>> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+>>>>
+>>>> Patch v11 and still basic issues. I am very dissapointed.
+>>>>
+>>>> <form letter>
+>>>> This is a friendly reminder during the review process.
+>>>>
+>>>> It looks like you received a tag and forgot to add it.
+>>>>
+>>>> If you do not know the process, here is a short explanation:
+>>>> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+>>>> versions of patchset, under or above your Signed-off-by tag, unless
+>>>> patch changed significantly (e.g. new properties added to the DT
+>>>> bindings). Tag is "received", when provided in a message replied to you
+>>>> on the mailing list. Tools like b4 can help here. However, there's no
+>>>> need to repost patches *only* to add the tags. The upstream maintainer
+>>>> will do that for tags received on the version they apply.
+>>>>
+>>>> Please read:
+>>>> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+>>>>
+>>>> If a tag was not added on purpose, please state why and what changed.
+>>>> </form letter>
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
+>>> Hi,
+>>> Sorry for the confusion. I did intend to remove the Reviewed-by tag, and 
+>>> I mentioned this in the cover letter, but maybe explanation in 
+>>> cover-letter was probe not clear at all.
+>>>
+>>> This patch includes three changes:
+>>>
+>>> 1.In the displayport-controller compatible property, "items" was changed 
+>>> to "contains".
+>>> 2.Use "qcom,sa8775p-dp" as fallback.
+>>>
+>>> These changes might not be considered significant. So I’ll be more 
+>>> careful next time. Thanks~
+>>
+>>
+>> I really do not expect v12 to receive so significant changes in the
+>> first place. If you keep sending us buggy code, which then you keep
+>> changing after review, I will just not do the review. It's easier for me
+>> to wait for v20...
+> 
+> I'm not sure how to react to this missage. The changes reflect the
 
-On Sunday, October 05, 2025 06:55 CEST, Rudraksha Gupta <guptarud@gmail=
-.com> wrote:
-> > Thanks for improving the patch descriptions in the v4 of this serie=
-s.
-> > I just went quickly through the v4 and it looks much better.
-> >
-> > It could be said that the new patch descriptions are now a bit too
-> > verbose, in the sense that the test procedures and their results co=
-uld
-> > be summed up a bit better in prose, instead of providing the "raw"
-> > inputs and outputs.=C2=A0 However, it's still better to have those,=
- than
-> > not to have anything.=C2=A0 Writing good prose is a skill that usua=
-lly
-> > requires learning and practice.
->=20
-> Awesome! I was hoping that others would comment on the testing I've d=
-one=20
-> (especially for the accelerometer and magnetometer patches) as I can'=
-t=20
-> tell if userspace is wrong or if my testing/conclusion is wrong. Mobi=
-le=20
-> Linux is very early stages at the moment, and I suspect the Pinephone=20
-> and Pinephone Pro were used as reference devices with Megi's downstre=
-am=20
-> kernel. Wrong mount matrices in the downstream kernel might be affect=
-ing=20
-> userspace. This means that with the corrected mount matrices in this=20
-> patch series, userspace is slightly broken (eg. since I fixed the=20
-> accelerometer, the screen in Phosh and KDE Plasma are upside down. I=20
-> suspect KDE's Kompass and Leonardo's compass app might be the same if=20
-> I'm changing the mount matrix for the magnetometer). This is why I=20
-> decided to showcase the raw values in my testing. If my testing is=20
-> incorrect, please feel free to let me know.
->=20
-> I think I will leave my testing in the commits itself this time. If t=
-he=20
-> mount matrices are correct based on my testing, it will probably be=20
-> helpful in the future in identifying why downstream is slightly broke=
-n.
 
-I'll prepare and send to the mailing list a couple of patches that
-will also adjust the mount-matrix values, so you might want to have
-a look at those patch descriptions I'll prepare, as an inspiration
-how could such information be presented in prose.
+This message represents my annoyance with low quality submissions from
+Qualcomm, which needs multiple iterations and often apply tag, then
+change significantly thus drop the tag or completely ignore the review
+tag. And I review again.. and tag is dropped again because patch was
+again seriously reworked. Or even without serious rework - Qualcomm
+authors drop the tags, just "because".
 
-I'll also review your patches, to make sure that the mount-matrix
-values are correct, hopefully around the end of this week, or next
-week.  I'm having some issues with email, which I must resolve first.
-(I'm actually hoping that this message won't come through as HTML,
-as a result of those issues).
+~2 months ago simple patch from Qualcomm required three involvements
+from DT maintainers, because even trivial patch was being continuously
+changed and author was dropping or ignoring review tags.
 
-> > You haven't done anything technically wrong, but the way you submit=
-ted
-> > the v2 and v3 made them feel a bit like you picked those patches fr=
-om
-> > some random place and submitted them to the mailing list without re=
-ally
-> > understanding the subject matter.=C2=A0 In other words, it's the co=
-ntributor's
-> > job to convince everyone else that the submitted patches are fine t=
-o
-> > become accepted, and the v2 and v3 simply lacked that.
->=20
-> That's fair. I was under the assumption I had to keep the patches mos=
-tly=20
-> in its original form.
->=20
-> > I wonder how would some forge prevent "spamming"?=C2=A0 It isn't ab=
-out the
-> > possible "spamming", but about the act of submitting different vers=
-ions,
-> > which would be present regardless of the way they'd be submitted, a=
-nd
-> > the reviewers would need to be aware (i.e. "spammed") of them anywa=
-y.
->=20
-> At least with Gitlab & Codeberg, a lot of the notifications can be mu=
-ted=20
-> (I believe updates to pull requests is one of them) and pipelines can=
- be=20
-> created to ensure that formatting is correct and that the proper sub=20
-> maintainers are notified automagically. In my opinion, b4 just brings=20
-> some of the forge's functionalities into an email based workflow, but=20
-> will have to fight it's own problems such as:=20
-> https://social.kernel.org/notice/AypvdTWyAs5km0Gc3k. I don't mean to=20
-> detract from it; it is very commendable what Konstantin Ryabitsev is =
-doing.
 
-When it comes to submitting patches and their different versions,
-reviewers have to be notified about each and every version, which
-means that muting the notifications or ignoring some patch versions
-simply isn't an option.  Even fully ignoring the patches that one
-isn't interested in isn't a great option, despite sounding good,
-because leaving out such parts makes one less insightful about
-the subsystem they're contributing to.
 
-Of course, the associated level of interest depends on one being
-a "drive-by" contributor or being in for the long term, but for
-the former different options exist to help with their periodic
-contributions, such as the b4 or GitGitGadget.
+> process in other patchsets and in my understanding on how to describe
+> the particular hardware block. The changes were reflected in the
+> changelog. If you plan to review this patchset once you get back from
+> your vacation, that's fine. If you don't plan to, I can ask Yongxing to
+> send v20 just for that number.
 
-You're right that the automagic features of forges may help with
-setting up the lists of recipients and whatnot, but that's just
-offloading of the complexity elsewhere, in hope that the automagic
-part will work flawlessly, which is hardly the case with highly
-complex projects, such as the Linux kernel. In other words, the
-mailing-list based workflow does have its deficiencies, but it
-leaves the contributors in full control, without relying on some
-automagic things to do everything perfectly instead.
+Solution for me could be to ignore Qualcomm patches till they reach some
+sort of maturity.
 
-When it comes to formatting and whatnot, I'm sure you know that
-there's already scripts/checkpatch.pl.
+I am not planning to review this patch, because:
+1. I already reviewed it, so not really necessary, but even if I wanted:
+2. It is gone from my inbox...
 
+Best regards,
+Krzysztof
 
