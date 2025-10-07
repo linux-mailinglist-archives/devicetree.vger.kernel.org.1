@@ -1,213 +1,153 @@
-Return-Path: <devicetree+bounces-224277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16B2FBC2703
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 20:50:15 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAEF3BC271B
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 20:53:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D85C019A1D0E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 18:50:37 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 97C153500A4
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 18:53:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED242E9757;
-	Tue,  7 Oct 2025 18:50:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 000C72E8B9F;
+	Tue,  7 Oct 2025 18:53:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="qF6tLWKa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GFtCGwrh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEEC9285CA4
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 18:50:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B0392E92D0
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 18:53:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759863005; cv=none; b=JMhuq46D5otTFBFu62xBjXTYLI7MUsz9es1Qfa4pNS2a5VUfDkU/GtlYWw/4koWdYkod36nW6DZQq7fo1nTVrLSYH+f/5u+2xu723fLZ4q9srRMCBgZ+N95g/fOttxiqEoSURSlSopQronX3fBkC4H2RSY74xJaNS1q/ZZNcG7Y=
+	t=1759863229; cv=none; b=LXXDpWbuWoPcVqX/PxuhJXe+X/tjpmfGbIJTLANQC8pv6WmcS9MLvAu871cCDel5zKldVPyljhaMWd84d/xEeSJrktAvAEA1cb95LvPuEJAqRv1ivpNuYEagMVy6wDJptWto9hemEd4CUIIGP5P45ng5/zr8xqyPx2hfTjR7jbQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759863005; c=relaxed/simple;
-	bh=CjaCQl6yVB4wEbVAM7cWUmIAOOgx45oYuyglLl2ufaY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HR5G8CO0sJ6bLoo+yKv46M+JxCHx9TiMHonnHGoQtgFanxoK23GlWkQGXzIOAjNEYlppfWP4obqeySZWZyfRo8c1xloWVxgIvZGh/KLjZieJGSyYPoOHQdQXlNRxYgTNNwztPM9HZVyw+GQ/zsOfTmxPJJJtvJ6TRw1UJARgx+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=qF6tLWKa; arc=none smtp.client-ip=209.85.219.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-8738c6fdbe8so2126386d6.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 11:50:02 -0700 (PDT)
+	s=arc-20240116; t=1759863229; c=relaxed/simple;
+	bh=Op+QTRcfwfbsxIix4ouiAegGQuvQEcmggnJefJxWt30=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=gLf9z1j/a7D4cy14HYWFdDZE8/y/y/pmD2Gfg2MO/OXCesnWUd0eFGYGJ9gJ5suM4ViqOtET/iCLCM1tHdZjcfnqbFm3uFs2p2K7o7fvrq8BbiIJDjV8oaqFZbAwD/b22o5pFRP5/Q4mYUhGNSaNYLdjgg+S1hYEdYplmOvYuk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GFtCGwrh; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-46e4f2696bdso79747685e9.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 11:53:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1759863002; x=1760467802; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2aNYGyYwV4vw7l+4kbvJWnzel0gTCPuhPYenonekONo=;
-        b=qF6tLWKajbHA/gNtsVQspJfpVRTIsqLgQzxlmfN0M57gEKtFDJuks161QhUJGMuMDU
-         H9xHPW+t005SkW1qGN4XPVIGR2satEKPWVQKqXm0BIzzDLz4FjquMKb4eP42gVqlSGuF
-         plEetkP8Op2Q9R/766+Jw7FAfG3AFIdFa6ogEg9y755skM28I3bWD4brqP7jVeHVRvkv
-         gw+XXnt1Dy3Ddzdi4DsM7NCNJCZ5rJZhRcqqoiu+yf3ldnLCfH4ORtEbJs1X4M3wy0CA
-         RIs39RSXXZArXIfmm0D9Zlbv54rUwgQlajDprILN+VFTfYk44KuIYRUsKgqRW8CBitWF
-         oF9A==
+        d=linaro.org; s=google; t=1759863226; x=1760468026; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=1B8FMEvRCjdBduWbBN4BHAuWdLmc7inqVvHYEcRSHj8=;
+        b=GFtCGwrhkdsYQssycM8owoQtcjBxYxvPimzMEppIZXwkGysbaUiKbz4o9P7whVkDpP
+         CEt9by12pLtniK+RV7vOonDINzTZtmzZKuY+pwKxcZ/TwAlZzF4ZzjHf2flZoCSTknvL
+         yQ1N4KLPoTJXhuXiB9BLefeBKEh3YWRERUt+bfKPxneY3ERs/ma2e7Tw4VYCmda65fxJ
+         GWQaHbRO4NYcdaRSRV7btDjVw1NfEKCY+o1KCuRyaC5BokHeWVzUUGRhHM2FvrrKLaT2
+         z4WNlDo1lKoREAjzWGMuOmzgRnzFx1TJ0jzyfw7+c1yltXDdTVEnjqgvtHl9xEb4YJvR
+         Bc2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759863002; x=1760467802;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2aNYGyYwV4vw7l+4kbvJWnzel0gTCPuhPYenonekONo=;
-        b=Rjbihz5x5VYGNxkyPlR1jVP16+wLiI72ngwv276sxtjKypvi7ZDbgBk6ipBMEahPZK
-         g2i6m7985PADprCm6EFk8ejk29IZ4IdPUE/pETLnNUa51Qwnkmd1vofX5QaxXGAqU5ML
-         hY0/1EKSwV1y9nghuYg/Ye4nj6/jvh5Di4D4ak54G85/2+b6in2yxvPmqETN9Qi9dVYN
-         Uy4jRwR7/X5mdEppz5L38PyOKxSaswrKTXZIvH1WU3qpvuzwrONaYsCOml5inZ3Kg3IE
-         FTQxhHcWOg6hhJrzrYYcoOaZNa+AjnIb2GWCrrr3O81lCmOdsRCQM0IKxjBKDY8iV6KE
-         is1A==
-X-Forwarded-Encrypted: i=1; AJvYcCX9eyTRsdvrj0yPhIBaPs69qTiLDUB76GP5ApLP5Ufn0MtQYNfASFjERIAwWHxyl1fwZmvg6Tkx5Y59@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFMYehz+7dm7fKL+oJrzGY7atspmQ6gdRloCdRxPjFLL/08g7e
-	smDOCtBJ4vMdqbVz3idLEvXdwgC+POYoXNHxoq+xwf1gUvymlWT6gjaV+oauM+KpG0YkJJzickF
-	PG/n00UL5WNkvyZVuGS3Zlmm1wvIzAGFdZzmKBklg
-X-Gm-Gg: ASbGncsw+pzLGwmnRVxERh4X0oMqfcfM16ig+Cj643Ui47ZPmd+TPmfRt+1GarQyo+4
-	SHjC9QOc8ci37oSX06QkL5wVyB21oIamWpdOLT1swq+OllEoS85+g3Auu+xphyK/tOXXc1VOEN8
-	chZGYNLWn3QGwMEdHwefXdd6zUb+/dS5BP9ZUnJ31JAx/xWLiCU9gbDaCPu0ZyNLI2MkHgR+vzT
-	FGwjtwAJdwgAig4bb8fSVDntHFRn/9xvBuUowitzxITuiwOkcZdeZCK0sKAgIFTDx6PpAmY0vkK
-	mnA=
-X-Google-Smtp-Source: AGHT+IGo6iqnWrqDrtRo1an3vJuKouV5RjS5DRtWGy3IQp7nt9esDi9MQIuwsCqJ8H6093glYV4xzd90Bb/yR8LhGEE=
-X-Received: by 2002:a05:6214:1ccf:b0:86c:a297:9c97 with SMTP id
- 6a1803df08f44-87a052877b1mr67912886d6.18.1759863001273; Tue, 07 Oct 2025
- 11:50:01 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1759863226; x=1760468026;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1B8FMEvRCjdBduWbBN4BHAuWdLmc7inqVvHYEcRSHj8=;
+        b=Cne49kSoEIjJw9rMyuG9p09mfV1EPC4FKZAKhDZXUFGLK0Boy/nPxdFpg3axlxf1Ri
+         owjXcAkhMw5F9UIO5NOchbvjw0wsTjEpMc6kc6vcqBtsh5rBlNWMLQQ3zDbGT+A3ZVpJ
+         0HbmDQ+xYYYYB1Ng13yph5qMvLV0pKWZZ3NuTHMQMgazxQFB3oD2qPl5Vl5R1OOBxSOM
+         Pf0xwaOGQNxndkGGgoCUpVCLLfNGni5bJrUVoVJfc3fC62lJY3ehoQuXyY+pJ8onElMW
+         967iSUFv5AaU1TiiP/P/GJkKq+RY1saxtBbT/98tzBECAoTQeEsFpuUVBBiWdnEkKURe
+         hB8g==
+X-Forwarded-Encrypted: i=1; AJvYcCWt4vUQE6Ip06bJbYOhB2ThV0ci5z/9k+Ht6YjAW6UtYXqTlySysel6K+Wf30tj+T0FmbWqaIIKDjYc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz8N/iIrXpsyUdncG1HDrWtNQGuoyxgwIG//sCvj6MjlEddwFF7
+	oaD78FJVMJ75lM3t01iN/+Q/AbM65RwWauP/bccrTtcjXErvfi54tGJCle1ovFA5gAY=
+X-Gm-Gg: ASbGnct/V8VRzS0ucnoLXOjmSpio8GBV0RUOZq2t/lFzFwaqDeJMUkwZyAnguD+E4xm
+	J1TZsC2ywRN4mB/1CY+31t0x635wSR/THjAUCwGMnKCY/mIv74zzP8Uhad1kdY3AZ9vbYDypiya
+	mTGJBO74xxIfyPU+93or5c1KqcXiDPMlkRTCwsLHCyXq6vSbwmR1mjQecvXhGli69YR+mY2TBz3
+	eo5iOpuooh0icxZylixZLy3W7F/O5KiKRuaO/7KcpjpFQ+RC9lPnNKe4mGq07u9MH+zVuQQMcoq
+	vlIgA2nB1iedjjMW4DYQGXoSlBOulurSkN+NlT0EmMCF7fe26oWxAhrsJSIDC9TFSOl1O94kWyU
+	N3//7o/VdhvG8AZBmCaNnU1z+a/gm6UYvE6uViXFz9MVtS6EdHNbIU9HephbeT84aoUottrA=
+X-Google-Smtp-Source: AGHT+IH5zHVLrizZeH0JOY25vGwDqk7lqwvYB2VQUuAGyhwLO96qot3/7SYhbnr39uYNrtvz3cFCdw==
+X-Received: by 2002:a05:600c:4745:b0:46d:cfc9:1d0f with SMTP id 5b1f17b1804b1-46fa9af30e5mr5064635e9.19.1759863226080;
+        Tue, 07 Oct 2025 11:53:46 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8f01absm26399548f8f.44.2025.10.07.11.53.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 07 Oct 2025 11:53:45 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Tue, 07 Oct 2025 20:53:44 +0200
+Subject: [PATCH] arm64: dts: qcom: sm8650: set ufs as dma coherent
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251006232125.1833979-1-royluo@google.com> <20251006232125.1833979-3-royluo@google.com>
- <8ca61364-df47-41f2-b0d1-f2a8a74ec728@kernel.org> <CADrjBPr7Jp_ZyGv2Krv6iLG0avgFWpcWJEO-Z=cEkhwEY-+z5Q@mail.gmail.com>
- <d592eb91-84e9-4bdc-8363-1d0bfd47c17c@kernel.org>
-In-Reply-To: <d592eb91-84e9-4bdc-8363-1d0bfd47c17c@kernel.org>
-From: Roy Luo <royluo@google.com>
-Date: Tue, 7 Oct 2025 11:49:24 -0700
-X-Gm-Features: AS18NWB1W-NkF9ZGaROK3BKRMdthcWV6kVzDTDNtLUYtC_DV2IHX4qZyOhy-2Gs
-Message-ID: <CA+zupgyQGpQEoqCm9rbnw2Aum4j3mu-dqvDVN=RUEVY9E7q7Hg@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] dt-bindings: usb: dwc3: Add Google SoC DWC3 USB
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Joy Chakraborty <joychakr@google.com>, 
-	Naveen Kumar <mnkumar@google.com>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251007-topic-sm8650-upstream-ufs-dma-coherent-v1-1-f3cfeaee04ce@linaro.org>
+X-B4-Tracking: v=1; b=H4sIALdh5WgC/x3NTQoCMQxA4asMWRtoB1rFq4iL2qZOFv0h6Ygwz
+ N0tLr/NewcoCZPCfTlA6MPKrU7YywJxC/VNyGkaVrM6a8wVR+scUcvNO4N71yEUCu5ZMZWAsW0
+ kVAf6aFJwmV5kPcxYF8r8/Y8ez/P8AbXTiht4AAAA
+X-Change-ID: 20251007-topic-sm8650-upstream-ufs-dma-coherent-6c0da5febe16
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1376;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=Op+QTRcfwfbsxIix4ouiAegGQuvQEcmggnJefJxWt30=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBo5WG5oSqx1X3ytDB+hQonl1G38RphNXIieR2OJJ/J
+ QgykVcqJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaOVhuQAKCRB33NvayMhJ0RdoEA
+ DQdY3TtihKd6kF3vihFn8DFB4XXmIepTKeJbn5X+wHti6bMmXrMtOmqtClmF/y4xetCM46ktSNh2eE
+ AGoWxAh0+0dhaTrNUfOhZHGkeUB2SiwGOpiaiMZIT16w2rFz8pBQHbNMTELtja6E7e/zkQ6aHMSoo+
+ 3vDJgllxAZa7bV8NaopaMKGHUeoUi1Y76kdn8BbcMM2+Hh0XQ/1kt5+oETiAOmJ4WJNdSHQzqXo6Ls
+ 0tDUVNqokvRigiIT0uz7/8vfBKqzm9s0WJdm2vlykhZkC4sr+oUj16T7OK9vyIGV7xp9ENub1KACX3
+ DBaNLRU333kT5/yworEhF8ziXWjFhIMLTDA6eS9RCC54mLCMOSsKco+T8L3aXa/RPSx/DkLXQGr+vf
+ pSoD8P6qRadJCtoMHML6egLtYmWb6mTE6CosbyFZsp6vfbYNiX41KADZPyF1wgiclloUPiR+B2xu5f
+ MdJee3v1ZGGncxNUJ3kColvabHJYAzT0sFU3h8VvvHG/eDqHB/DKKTzmi6hn+FzxwwJ4ypShF+4xhU
+ US1WEg7rdcVV5an1Ea030YXXbrqitgNOAN2N037WZwENcAZI8HoGrBJ0wtqOq7Lmcx84o9KO6ez7pd
+ Y2G810bN8csB0kuz/MWhBGYSGbOciCA3sF/VfDDutdpjDMd4+MZXIjEDnTBQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-On Tue, Oct 7, 2025 at 7:18=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 07/10/2025 18:09, Peter Griffin wrote:
-> > Hi Krzysztof & Roy,
-> >
-> > Firstly thanks Roy for your patches, it's great to see more Tensor
-> > support being posted upstream!
-> >
-> > On Tue, 7 Oct 2025 at 01:44, Krzysztof Kozlowski <krzk@kernel.org> wrot=
-e:
-> >>
-> >> On 07/10/2025 08:21, Roy Luo wrote:
-> >>> Document the DWC3 USB bindings for Google Tensor SoCs.
-> >>>
-> >>> Signed-off-by: Roy Luo <royluo@google.com>
-> >>> ---
-> >>>  .../bindings/usb/google,snps-dwc3.yaml        | 144 ++++++++++++++++=
-++
-> >>>  1 file changed, 144 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/usb/google,snps=
--dwc3.yaml
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/usb/google,snps-dwc3.y=
-aml b/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
-> >>> new file mode 100644
-> >>> index 000000000000..3e8bcc0c2cef
-> >>> --- /dev/null
-> >>> +++ b/Documentation/devicetree/bindings/usb/google,snps-dwc3.yaml
-> >>> @@ -0,0 +1,144 @@
-> >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >>> +# Copyright (c) 2025, Google LLC
-> >>> +%YAML 1.2
-> >>> +---
-> >>> +$id: http://devicetree.org/schemas/usb/google,snps-dwc3.yaml#
-> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>> +
-> >>> +title: Google DWC3 USB SoC Controller
-> >>> +
-> >>> +maintainers:
-> >>> +  - Roy Luo <royluo@google.com>
-> >>> +
-> >>> +description:
-> >>> +  Describes the Google DWC3 USB block, based on Synopsys DWC3 IP.
-> >>> +
-> >>> +properties:
-> >>> +  compatible:
-> >>> +    items:
-> >>> +      - enum:
-> >>> +          - google,lga-dwc3
-> >>> +      - const: google,snps-dwc3
-> >>
-> >>
-> >> There is no such soc as snps, so you grossly misuse other company name
-> >> as name of SoC. Neither lga. Otherwise please point me to the top-leve=
-l
-> >> bindings describing that SoC.
-> >>
-> >> You need to better describe the hardware here - why this is something
-> >> completely different than GS which. Or switch to existing bindings and
-> >> existing drivers. Did you align this with Peter Griffin?
-> >
-> > I think (from what I've seen at least) this is the first submission
-> > for drivers in the Tensor G5 SoC used in Pixel 10 devices (which as I
-> > understand it isn't based on any Samsung IP). Hence the new drivers,
-> > bindings etc.
->
->
-> That could explain a lot. I would be happy to see background of hardware
-> in the bindings commit msg and the cover letter.
->
-> >
-> > However the issue is that none of the other base SoC drivers on which
-> > this driver depends currently exist upstream (like clocks, reset
-> > driver, power domains, pinctrl etc). So it's very hard to reason about
-> > the correctness or otherwise of this submission. It is also likely
-> > that when those drivers are upstreamed things could change in the
-> > review process, to how it looks today in the downstream kernel.
->
->
-> Bindings and drivers can be contributed without core SoC support, but
-> then please describe the hardware (SoC) here. Having core support posted
-> earlier is of course preferred, but I think not a requirement.
->
-> Anyway, compatibles and all commit messages in this patchset are too
-> generic and need to reflect this actual SoC, not "Tensor" because we
-> already have a Tensor with USB. So basically based on existing support
-> all this patchset would be redundant, right? :)
->
-> Best regards,
-> Krzysztof
+The UFS device is ovbiously dma coherent like the other IOMMU devices
+like usb, mmc, ... let's fix this by adding the flag.
 
-Hi Krzysztof and Peter,
+To be sure an extensive test has been performed to be sure it's
+safe, as downstream uses this flag for UFS as well.
 
-My apologies for not providing the full context on the SoC supported in thi=
-s
-series. Thanks to Peter for clarifying; yes, the Tensor G5 SoC is a new
-generation of Google silicon that is significantly different from previous
-generations which are based on Samsung/Exynos IP. This necessitates
-new bindings and drivers for the G5 and future generations, and I will
-ensure this is clearly detailed in the next patch set's cover letter and
-commit message.
+As an experiment, I checked how the dma-coherent could impact
+the UFS bandwidth, and it happens the max bandwidth on cached
+write is slighly highter (up to 10%) while using less cpu time
+since cache sync/flush is skipped.
 
-I acknowledge that the core SoC support (clocks, reset, etc.) for G5 is sti=
-ll
-missing from upstream. We do have plans to push this forward, but I don't
-have a firm timeline yet. Thanks for confirming that this won't be a show
-stopper for this patchset.
+Fixes: 10e024671295 ("arm64: dts: qcom: sm8650: add interconnect dependent device nodes")
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Thanks,
-Roy Luo
+diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+index e14d3d778b71bbbd0c8fcc851eebc9df9ac09c31..d7ed45027ff453a2d7988678c9e9568837a1c086 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
+@@ -4020,6 +4020,8 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+ 
+ 			iommus = <&apps_smmu 0x60 0>;
+ 
++			dma-coherent;
++
+ 			lanes-per-direction = <2>;
+ 			qcom,ice = <&ice>;
+ 
+
+---
+base-commit: e5f0a698b34ed76002dc5cff3804a61c80233a7a
+change-id: 20251007-topic-sm8650-upstream-ufs-dma-coherent-6c0da5febe16
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
