@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-224102-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224103-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A34F3BC0C0D
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 10:43:16 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FF78BC0B80
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 10:39:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7814D3AE915
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 08:39:41 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DB1D134E039
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 08:39:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3076C2E2825;
-	Tue,  7 Oct 2025 08:34:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813CE2D9EE1;
+	Tue,  7 Oct 2025 08:35:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mUZk0Fb8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DDo6RDzK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 288862D978D
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 08:34:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83ED12D9787
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 08:35:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759826091; cv=none; b=ROxTL2uFsXqv01qsBeV5MmUpfBnY6kRZEMsnEbj2tj3mz6uFtIR2TBV1Hadgs9hvmfj92Ols2WLjqrQe9U3hr/dQOLZbg+CJrS4+/T2eXLRmrwn5C6X9y9U8hxaUDmHlA/uT4HKdD+TxFIGSKEpn2YnmzqIF0fHBeu0SsUSxBMQ=
+	t=1759826102; cv=none; b=o0bmMoAdV0puQZ3AlHN3M1G6RMt5DLbm1gjtY6Ny24xTuN/TDZm9lfS16M1KxUaGcUw5tbxsp4Coqq2TMAlp3d75Wp/aSm2xL3Nxs5wpZSGcj4M+/IYeYKpN5MO10lljgBkjqM8GwQivlTfZeeA8careum2HGvoxbnVaO4sz+qg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759826091; c=relaxed/simple;
-	bh=GUSjLjlYDEl8o6/jXjuzBG5/s1EogFROA51N25GkeDA=;
+	s=arc-20240116; t=1759826102; c=relaxed/simple;
+	bh=fMwGdCHxW6MohES2gJ+t6jTXcg1ARbhvMneIwOskBWs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hUI8oZ/U3D7Hv+8DWivy8HhG10GMMEHYM+daKGwWnKfaSkuVCjPR2Lx7yesoN/GjIHGiiCTegikbjUBmQJpPVjcW0FM9JuQn8dczno5w+tBLGtrYx1UGTHpfgY3ly1YlpQHpkfHZplPbK5GRZRCLmtHvuADwRt9lBS3lh1x5SUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mUZk0Fb8; arc=none smtp.client-ip=209.85.208.171
+	 Content-Type:Content-Disposition:In-Reply-To; b=DZarE77f56gAHaKnjZig/ws29WwQiHT+l83aeJwto6x03wGgPnkLoEhI22+Xa3kdXRZlhbdKgBIwn/Xey1XdomKL2oqz1gaK7bUYNwPcidkE1j626OS5Hc+7hNi0MN4OEKgi//fPc3NiY2LE0s5kILASHNe5/WBVvp5n2aOyun0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DDo6RDzK; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-367444a3e2aso73893931fa.2
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 01:34:48 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-57db15eeb11so7393386e87.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 01:35:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759826087; x=1760430887; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759826099; x=1760430899; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=N4czLOo5ZnN18HLnOcC7pqQ0t9QPNLqdBoEDTR9BH/I=;
-        b=mUZk0Fb8f9hWI98v4xxsInXObeVr8oqrgB9R0/IwE1M9YVV3VGz+Sr5UpDrQAbG++J
-         kwy6COdt8ZLpkvq1UUl6h+cDMS1cP1f0cCLK7A7L4Kwewo1U1uO+UtU1nSeLHH0O5Gco
-         S64RPPU4OaOe4qcZCUp1hnC6xoz4qys8kROWCj+1fJY35K1uaj9nrG5aLa0q55P6UJkZ
-         5nOdjbdylg1f7zeDDttzoFdYi9rl4ABdcvg3jDI42Q4L0Krq0gdzHIYJX7jMi1v4cohm
-         n6fSo0FraSyifJVjFT5RaoqJyfVLP4TcdqTTiH18lONXVuKWigIPdbVt0DLKg7FjcnrU
-         w6Vw==
+        bh=kcGIK7vGgNItvss7aw1s/UA59XuZ3yqeQ2L8mlry6dY=;
+        b=DDo6RDzKLMxcXJ86L6Y39g8g6DMEhIHvdAWtTbvTsNiNPQ1KUSj7zaSuskbF0W4f1F
+         slvwDRUGHv5xxqcEsbuariWD5j6ZibeyIpc9r4iuxqOieELM3XmuJNjC1IWU+7ZBqBWp
+         lLgM10DKe55aZf1zmwpV859DEFBEDdJXh3G4pqYfdvAMQgmmB0wiQNCe/7mM3NvtSQ5R
+         XVFlFdiSJtMaoXJQzjSJISd5XUjOrnSeSiznsBr0495gisBzzv4LHHvS0/H/ihYwr8ti
+         zQy6KjvKnBQn5d+Ixz4Heve0+H1YEOCNDoR3nOEDOzrTJLhZRvIii/gRvyn+cIZaJiCR
+         byDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759826087; x=1760430887;
+        d=1e100.net; s=20230601; t=1759826099; x=1760430899;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=N4czLOo5ZnN18HLnOcC7pqQ0t9QPNLqdBoEDTR9BH/I=;
-        b=Y2rnE468gc5pixPzTFwhEY6xZnJLtMuhgAJUwQwiJ5Z5VltfHQyNsWvNrp7w3ZOcnV
-         l9nRNSwwjBboh5yjohO6MhaX3aevtlpeNs/p3+A0K7te8OGdOmTOwZs3WLBh5WGIYor7
-         seaOZFaJbzH2FvGsVF6R9X19m0I9VKwYXZXozzMkS06pEXb24fbnI+or1OUodprmAVVC
-         7cxG12mRiV5eSKFQf16/g4P3iSzHspYEY22QiJ2jrGRhxgHnE+lFkkLi6P7OSPHGH5y7
-         ki9xCEGi4hXm7FO907H1YzroH2KPldbuqXzG5u0uUNZgT47jxsB9/kYGUi/aOs+QvDOr
-         pmeQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXVaQ16epuU2NOEuEoj+j4GO7X2D5rIHB/USatJ2RPCKp3o3N+TUl4TNMn5F/SQuWjvDWUfLlIa37d2@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy22IisTmRmw8Ix0oGOJv4m1KZ+iu7QFMLCDe0NxbDAUXGjOoTK
-	krOU4usk1OUu/OMK1G7IdGqPmkuYGfR3MZe73Ab+IZv8wG11/5MKEKHT
-X-Gm-Gg: ASbGncuCcvg5sNbXHOJavxDEDtJhxdlb8ZaxbhkSwss74AuWTLeA5idkbfK/YmXe6lM
-	rlCS6ljJJRnRgeT4ae7ns+FsneYtiq3b+ouOXTqDDNE4ykPxBIbGbZb4s7Cgf57EfedepwuUlYZ
-	gKiugRGscojx+TTFjOWD0OX2S+xB8ezCVhAtfpTBW6RbZiKqz/r4pKxX6OLBAwC5COxf6OPwaL1
-	5tiEfuX+WkW0Gg3vpkFfKs4x6gv93UpTtYyBcrPBlKg04eA4LLl5Dz9uNKeoA/OsNu76nRh9G12
-	7P+4CtkDCTxWVvT4BTEl/7v42iEVJjU+oka+dtP/VEt8u+tQNTIZ/RXMcE4PG0fXQt1YUcYyRRm
-	JYrq8Jnyb6/bhj9hcWCysms7d5Qn3sAoiDmImEi9xE7Xra3DXFOijmRaTB49yOlUx
-X-Google-Smtp-Source: AGHT+IFJwLelYLgNdfM+CTGIlVmgHDyXSlhZErg/oypat4GW4z8fl0IXAAmciErEk8L811heCPgGOA==
-X-Received: by 2002:a2e:bcc2:0:b0:372:8cc8:fc3d with SMTP id 38308e7fff4ca-374c36a532bmr52952751fa.1.1759826087055;
-        Tue, 07 Oct 2025 01:34:47 -0700 (PDT)
+        bh=kcGIK7vGgNItvss7aw1s/UA59XuZ3yqeQ2L8mlry6dY=;
+        b=eMZNUOpDMXBQazsLYlyLeAHR86Sl1tdngFAPZ5/VZJCgYwT9dIin05TNkwhYiym6IN
+         dLI3LmMt3cEjuxByVl0nQQmXk0JAi0XWAs7/dhyPOiiQ+PLJw6SBg1tjGs7xVPb8pVF2
+         OurjqRzlVQ+TUBnJp87IphZLUBewAwPRgV/sE+//+Fg6DJoqXa0ShfQmkFDzz9l39N62
+         o5zTKP1dGjR1P3uA+0IlGLcisH1h+3R41Ux4Ff8hUY7VBI/euFqtTvDFxgrKzNfqijVd
+         oqy7do2/nEAvS8WwNM8eWZrJRkawij2+FmW/k798I3ez9sQR2a7AzQHgAValwT9pY+aj
+         wSiw==
+X-Forwarded-Encrypted: i=1; AJvYcCWvXURkpAYKLJBq3PvLDLrskt/mymx60Fe4TjvvbWkGbPz0NeTRAEUDSeiU2AWzorwDhP2der01H6F7@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJfxM1/8kdAnWlOejlsFyVaD7pbT/0EzKHW1FMWsA1ltcaeOUp
+	igHigs7Bxmzo5DeUa1XHSk41BFBoQEdsaZSiRxPv5Q3ZH3FJQIhTfnYa
+X-Gm-Gg: ASbGncvOm/7zWcCEnj9e9H8yTIf8Xh05PbmmShj644U1J9GqIZfFR2W2G0Y+aXfZEMg
+	TVz00Mq84rXRBNA1kCcffkX8yCcWj3+u+ZJ+lZry8YB6jZaSYqIY6bPjS/TPzUV5yy6yViXGy3z
+	RBh69R06lnImx+MmbushVe7k0ebEhVDS51THvrKLtRz7jpMi+h7MORWrzGN5gqHZrbCkdDdSYII
+	k318IdB0XBxzsWuvRp7Cq/IiANvLuKeZ9eX3pHwLlo56E0CdA7SlRUjqnVwK29hLOjvEo4mW6QF
+	VnLPRVvTm/ktPhCsAUODt1nNq69B/ARKojLo5tphSke9R6ZiLiJYq11+l5D1c6sggRQx843jZ8z
+	NbjztAMYULYdVSUkdqstMuGFQXAQCQgY2ifC6kXkcig1DIjfkwpls0A==
+X-Google-Smtp-Source: AGHT+IGCbWe72EPI8Kp5w6LOnXEcbYgJJAxOm5elS0846ZapppkzFMhVx/E//4GlXKMS6GDX9s2FtA==
+X-Received: by 2002:a05:6512:2242:b0:57b:b4da:2712 with SMTP id 2adb3069b0e04-58cb9f0b31emr4945789e87.4.1759826098553;
+        Tue, 07 Oct 2025 01:34:58 -0700 (PDT)
 Received: from mva-rohm ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-375f39d2f9asm7808841fa.2.2025.10.07.01.34.45
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58b0118d857sm5845292e87.84.2025.10.07.01.34.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Oct 2025 01:34:45 -0700 (PDT)
-Date: Tue, 7 Oct 2025 11:34:42 +0300
+        Tue, 07 Oct 2025 01:34:57 -0700 (PDT)
+Date: Tue, 7 Oct 2025 11:34:53 +0300
 From: Matti Vaittinen <mazziesaccount@gmail.com>
 To: Matti Vaittinen <mazziesaccount@gmail.com>,
 	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
@@ -89,8 +89,8 @@ Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
 	Andreas Kemnade <andreas@kemnade.info>, linux-leds@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	linux-pm@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: [RFC PATCH 10/13] clk: clk-bd718x7: Support BD72720 clk gate
-Message-ID: <73e5485c34db0667b505bf73b597e0b3cd1b6060.1759824376.git.mazziesaccount@gmail.com>
+Subject: [RFC PATCH 11/13] rtc: bd70528: Support BD72720 rtc
+Message-ID: <bdafe71d478386aded6a72e1de8b70b31e00f366.1759824376.git.mazziesaccount@gmail.com>
 References: <cover.1759824376.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -99,102 +99,111 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4M+VUMaCtdns8Dyt"
+	protocol="application/pgp-signature"; boundary="07FidvfY5dUcjP6S"
 Content-Disposition: inline
 In-Reply-To: <cover.1759824376.git.mazziesaccount@gmail.com>
 
 
---4M+VUMaCtdns8Dyt
+--07FidvfY5dUcjP6S
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-The BD72720 has similar simple clk gate as a few other ROHM PMICs.
+The BD72720 has similar RTC block as a few other ROHM PMICs.
 
-Add support for BD72720 clk gate.
+Add support for BD72720 RTC.
 
 Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 ---
- drivers/clk/Kconfig       |  4 ++--
- drivers/clk/clk-bd718x7.c | 10 ++++++++--
- 2 files changed, 10 insertions(+), 4 deletions(-)
+ drivers/rtc/Kconfig       |  3 ++-
+ drivers/rtc/rtc-bd70528.c | 21 ++++++++++++++-------
+ 2 files changed, 16 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 4d56475f94fc..9742a3d0c1cb 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -474,8 +474,8 @@ config COMMON_CLK_BD718XX
- 	tristate "Clock driver for 32K clk gates on ROHM PMICs"
- 	depends on MFD_ROHM_BD718XX || MFD_ROHM_BD71828
+diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+index 64f6e9756aff..bf7d78a65ac3 100644
+--- a/drivers/rtc/Kconfig
++++ b/drivers/rtc/Kconfig
+@@ -541,7 +541,8 @@ config RTC_DRV_BD70528
+ 	depends on MFD_ROHM_BD71828
  	help
--	  This driver supports ROHM BD71837, BD71847, BD71850, BD71815
--	  and BD71828 PMICs clock gates.
-+	  This driver supports ROHM BD71837, BD71847, BD71850, BD71815,
-+	  BD71828, and BD72720 PMICs clock gates.
+ 	  If you say Y here you will get support for the RTC
+-	  block on ROHM BD71815 and BD71828 Power Management IC.
++	  block on ROHM BD71815, BD71828 and BD72720 Power
++	  Management ICs.
 =20
- config COMMON_CLK_FIXED_MMIO
- 	bool "Clock driver for Memory Mapped Fixed values"
-diff --git a/drivers/clk/clk-bd718x7.c b/drivers/clk/clk-bd718x7.c
-index ac40b669d60b..1cae974e6d1d 100644
---- a/drivers/clk/clk-bd718x7.c
-+++ b/drivers/clk/clk-bd718x7.c
-@@ -19,7 +19,8 @@
- #define BD71828_REG_OUT32K	0x4B
- /* BD71837 and BD71847 */
- #define BD718XX_REG_OUT32K	0x2E
--
-+/* BD72720 */
-+#define BD72720_REG_OUT32K	0x9a
- /*
-  * BD71837, BD71847, and BD71828 all use bit [0] to clk output control
-  */
-@@ -118,6 +119,10 @@ static int bd71837_clk_probe(struct platform_device *p=
-dev)
- 		c->reg =3D BD71815_REG_OUT32K;
- 		c->mask =3D CLK_OUT_EN_MASK;
+ 	  This driver can also be built as a module. If so, the module
+ 	  will be called rtc-bd70528.
+diff --git a/drivers/rtc/rtc-bd70528.c b/drivers/rtc/rtc-bd70528.c
+index 954ac4ef53e8..4c8599761b2e 100644
+--- a/drivers/rtc/rtc-bd70528.c
++++ b/drivers/rtc/rtc-bd70528.c
+@@ -7,6 +7,7 @@
+ #include <linux/bcd.h>
+ #include <linux/mfd/rohm-bd71815.h>
+ #include <linux/mfd/rohm-bd71828.h>
++#include <linux/mfd/rohm-bd72720.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/platform_device.h>
+@@ -262,13 +263,13 @@ static int bd70528_probe(struct platform_device *pdev)
+=20
+ 		/*
+ 		 * See also BD718XX_ALM_EN_OFFSET:
+-		 * This works for BD71828 and BD71815 as they have same offset
+-		 * between ALM0 start and ALM0_MASK. If new ICs are to be
+-		 * added this requires proper check as ALM0_MASK is not located
+-		 * at the end of ALM0 block - but after all ALM blocks so if
+-		 * amount of ALMs differ the offset to enable/disable is likely
+-		 * to be incorrect and enable/disable must be given as own
+-		 * reg address here.
++		 * This works for BD71828, BD71815, and BD72720 as they all
++		 * have same offset between the ALM0 start and the ALM0_MASK.
++		 * If new ICs are to be added this requires proper check as
++		 * the  ALM0_MASK is not located at the end of ALM0 block -
++		 * but after all ALM blocks. If amount of ALMs differ, the
++		 * offset to enable/disable is likely to be incorrect and
++		 * enable/disable must be given as own reg address here.
+ 		 */
+ 		bd_rtc->bd718xx_alm_block_start =3D BD71815_REG_RTC_ALM_START;
+ 		hour_reg =3D BD71815_REG_HOUR;
+@@ -278,6 +279,11 @@ static int bd70528_probe(struct platform_device *pdev)
+ 		bd_rtc->bd718xx_alm_block_start =3D BD71828_REG_RTC_ALM_START;
+ 		hour_reg =3D BD71828_REG_RTC_HOUR;
  		break;
 +	case ROHM_CHIP_TYPE_BD72720:
-+		c->reg =3D BD72720_REG_OUT32K;
-+		c->mask =3D CLK_OUT_EN_MASK;
++		bd_rtc->reg_time_start =3D BD72720_REG_RTC_START;
++		bd_rtc->bd718xx_alm_block_start =3D BD72720_REG_RTC_ALM_START;
++		hour_reg =3D BD72720_REG_RTC_HOUR;
 +		break;
  	default:
- 		dev_err(&pdev->dev, "Unknown clk chip\n");
- 		return -EINVAL;
-@@ -146,6 +151,7 @@ static const struct platform_device_id bd718x7_clk_id[]=
- =3D {
- 	{ "bd71847-clk", ROHM_CHIP_TYPE_BD71847 },
- 	{ "bd71828-clk", ROHM_CHIP_TYPE_BD71828 },
- 	{ "bd71815-clk", ROHM_CHIP_TYPE_BD71815 },
-+	{ "bd72720-clk", ROHM_CHIP_TYPE_BD72720 },
+ 		dev_err(&pdev->dev, "Unknown chip\n");
+ 		return -ENOENT;
+@@ -337,6 +343,7 @@ static int bd70528_probe(struct platform_device *pdev)
+ static const struct platform_device_id bd718x7_rtc_id[] =3D {
+ 	{ "bd71828-rtc", ROHM_CHIP_TYPE_BD71828 },
+ 	{ "bd71815-rtc", ROHM_CHIP_TYPE_BD71815 },
++	{ "bd72720-rtc", ROHM_CHIP_TYPE_BD72720 },
  	{ },
  };
- MODULE_DEVICE_TABLE(platform, bd718x7_clk_id);
-@@ -161,6 +167,6 @@ static struct platform_driver bd71837_clk =3D {
- module_platform_driver(bd71837_clk);
-=20
- MODULE_AUTHOR("Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>");
--MODULE_DESCRIPTION("BD718(15/18/28/37/47/50) and chip clk driver");
-+MODULE_DESCRIPTION("BD718(15/18/28/37/47/50) and BD72720 chip clk driver");
- MODULE_LICENSE("GPL");
- MODULE_ALIAS("platform:bd718xx-clk");
+ MODULE_DEVICE_TABLE(platform, bd718x7_rtc_id);
 --=20
 2.51.0
 
 
---4M+VUMaCtdns8Dyt
+--07FidvfY5dUcjP6S
 Content-Type: application/pgp-signature; name=signature.asc
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEyBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmjk0KIACgkQeFA3/03a
-ocU5WQf459k37WyeXVlkrKuVW7Svb4MOFVMVF+lU5Ux0Ov1BTXkwmyryvKWnRVcU
-m8N29E9g+ugj9vvNdnEVMKYcFM1F5VhGz1NdmIZ07SCDA8hw0/efqI7kE/0ye1g6
-+5AQgMLpSxOnUy7gXAJnQXIASTfn+fkMTVmuSARJwV/VO2Rvhe3R97uOXTczzhxF
-BGFkeZXLr5ZM0p/UWKwoWk4GBtPNADjXnIgoQ+nGxnosR6YgwHNkWnNvs/O+XhM5
-Hdew+uEBnmvmrjPpGKI00q5xV+6HC74toCTut0C4JZq2LwhXELCmrPJUhowOWV2s
-12St76wJX1azrQiHe7ecQR+O8RYL
-=XN3R
+iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmjk0K0ACgkQeFA3/03a
+ocXDUgf/ZbkPG920ohos13zRqVRAQv+HF6pfsQERzwzHlzfgMSY3VkeeJm3b9kxN
+Ue5IgVM6nwFTNtrr4SRu1raabFMIyBLeIzwxwsO6XimDtaeTbCkYsvkz9th4IMAB
+cXun1LA/d/NBCXS/tiR+sofrpCPnAB1Mug2/U2I8yimHWHTYWOok3xkLIAbl10H9
+iDeH8HPaRR2QQgHJcYexf8uoq9vR3PQfT+qJnOFVaCDqYZLr+jdG5TPtoB7avWL4
+B0BjmJ/Wg5RhqN8aWTlBldxjJeUKlBW/+ITEZYcZjUKCXr30Z2TYx9jHV7378hLh
+lU7OZE9Yd/96TA6C2NbsUg5cs6ONLQ==
+=koec
 -----END PGP SIGNATURE-----
 
---4M+VUMaCtdns8Dyt--
+--07FidvfY5dUcjP6S--
 
