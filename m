@@ -1,81 +1,88 @@
-Return-Path: <devicetree+bounces-224035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 003AABC067D
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 08:54:44 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDCF9BC0659
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 08:54:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 792FB4F3B0E
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 06:53:48 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 6B66634CC0E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 06:54:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91EBE248898;
-	Tue,  7 Oct 2025 06:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87F02367BF;
+	Tue,  7 Oct 2025 06:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NK50/cll"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VM+3Hh6L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFDFA247DEA
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 06:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A501273FD
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 06:52:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759819923; cv=none; b=QmaWMfBn2J3ZmzqHrFqUd6BxYSwIC+PH7TAcxVERx94yh/dj8TaRZ9Xp2ClR88QNBuOk1XSRdIRy3zOupIKMRBioYXHAJrL/EeQa3OEcKBqXNcCrzKkuileJamblxNeGFHeDwGSq4CcVIX6WI6Vc7YnZFwN+A8pY4OZa4RKxQcE=
+	t=1759819973; cv=none; b=bp0W0OnfF/6Xi4hfapzodiZF3HZupyraVIaUDHLC0eqQWIFiqfJE0odjBBXEBScZZUIflwz7fooKCwDsoj7FzoSDjewwRETNG6WHF0HtILbU4So3Gh3PF/bA7F44kwuz0ykRMJk7OPT/aOj3JtBzLbssMz7rPrfvL/h61Tl0bIs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759819923; c=relaxed/simple;
-	bh=4loRM5gaCb0DmrQhpmPykT92MCQHM1mMk27AIHOqax4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=sHyuB1Gr3gciPaLps4FoWqjUuYu4GTZkSVdm4VEv0YV8CZ4xCCoFeR9nJi+Z2J42qTi6+SjqtpfYAF/ZsSzVydDPBQ9rAlshL5LztCCBpOWipwSqnEUxC6VvFs7hrTaiEKEMCxtEWw/qv1j3MAbzt/1o0q+jSdh2IeltimhGdfM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NK50/cll; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-62fc28843ecso8710291a12.1
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 23:52:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759819920; x=1760424720; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qi4jSexlkWUECSgX2tttLCZoyDCErk3ZozLNSj/B39w=;
-        b=NK50/cllulywJQvmFClNR3eoMhJoWhwLHrjoPJAntq0k5TnKhI1hc87JVOgqS5RZFi
-         WVmSeGYqh/tRDuBH825GEzcCUTxOcL1xZtYdEI3CU1RdUnOtnjzqc/JEPm6896+SludR
-         WL6Zz8g0mr9q27ytEuYthP5C56YkAFvCzk6rFJBWO9K12Eal3Cbl9QqiCMBkrpSEmpUM
-         Q6w5dV995K/0W8XdLbIFXWQmhRMD0M3ZlaOK3ZDrwMjjEjKQQsF6yGr3Hmo7SuYU+fqS
-         HRfzGA34a+cfgbrWGu1qEGjykmzG5QgDexGAbh4YdFDbCPUd+LWiM0qUQuy0Rpe6INbs
-         fiug==
+	s=arc-20240116; t=1759819973; c=relaxed/simple;
+	bh=ZSjlhghuDjwIeHnl71xo1QfnL/uEr7xaGmW26iAiHh0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Wgum6hwrxkoDKB1LbDa4TymllUOPOgTcsyyUSY+uzi63/IFYW6j8tV1hRde+yDQy6m3fExMVE2zXBK9b4jbJiAykbIwCptYafOXJBYd+RxKfuMVzLCw6s+tjlWPoM63cGacn/DEC3r817kPEbAkABBDPzQhPBbkRPNfqi1bFNQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VM+3Hh6L; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5974H0hH026717
+	for <devicetree@vger.kernel.org>; Tue, 7 Oct 2025 06:52:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	orLZT7zL3V4+D2PmyvlqkkoTTPi2f83cdPN1hh+UFig=; b=VM+3Hh6LFQ+Mpawq
+	Tr+pzqrIs1eQ+pmdaPEtcju3yDEeqyg2uh8Jp9ccOknskLiLqwgO739t7fRwlClR
+	c7ceLb/vf/SeNob19qAuSaS0qnQ9HPZDvjdKwkSHvKn8naQW46MXd4afqhLHiDTf
+	KRiL43eubQqUQRszG8uUz7pDuLanoAt8CkHbETaUiFOKnTdknAmlobJpctlK27vp
+	KcUNRDCG49LPhb7zOKRAWzidchMbEUZp/ZDajbHWxhshuFeM0KZ8u0fMkRjQHZ2H
+	m6IGNRLDYmrVEMreEEIDoDMgWtnbfOPcP7+iBrq1ZHK/oL0sp/p+C38qi33M3rR+
+	MSQVUg==
+Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49mgd0j0yt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 06:52:49 +0000 (GMT)
+Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-28e538b5f23so63517215ad.3
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 23:52:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759819920; x=1760424720;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1759819969; x=1760424769;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qi4jSexlkWUECSgX2tttLCZoyDCErk3ZozLNSj/B39w=;
-        b=Jzprl58KuIRdtR3H7qZ7hw3UwvToUguNMCdXtteAFNMZOHfkLqc+dPOVhpH7WM53ju
-         PqtV91SBO3GvfDe9zCSYo9wc9SGlmC3Ic5W0iWqYBYTatyXcHCM/x8ZhxslstKwwU2Pk
-         x9pUikHl9/Z/Mc7gmW1etccMvpM/brU9vzDSgvqwetmI6IHM5KiseYU5/neu6w3AJxC4
-         uGltOAmtrFkfMZeUXHS5tisGxTKdgDnLxLjnMSctcUYQyF7VI6byE4s9SKhIH+fIjAdz
-         l/sbe28AyRlWcTPwmdLrRDF4SMGBTib5AdHqJiu+t0tjPi3IXM1mwxSqdAZ8iFkzjch5
-         4c9g==
-X-Forwarded-Encrypted: i=1; AJvYcCVk3nn7lmwi8p0aaFUu3KcO+ALDX3MSRsN0VpEcza709mkXptCsyinKClK5OdGU1oPNRwZVk4OrT2ih@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGpJTs8ZRTyZWYTZBygp46Qwe04Qtsj6wCogDNXz/EaYHhy2Qm
-	iXbR0HfHSDe+9uhIWQ9XqLYxmb3uWQHd7O6/RXBTWeYf7CVxUYiV9lTO
-X-Gm-Gg: ASbGncvWzUTNxD5a5U7HpG9998pX0gdma6pTRzWdr5c6ecV3kwJ60P3D5CsuX+kZuYl
-	YEC1lQ4KmJC9wl41KvsovWYtsznTx/ZRhdhP658LHw7dAV589sad06dGPocpuTTfA5j94i5jWc5
-	9VDcYrIVfhWPE/hC+yllnpcNtE27otruuHl39T5TF3IWvLPAeNzyfrZfg4qHo7TQcdjL9fZrrC/
-	ymz44ifG5vE9nsjeD810d4mjldedhtmKsi+Y3EOyysCE5B5ZGl1r0dJBD6yLVgwdbrwAQR8RO9Z
-	Uy+us3zA/sm1EVnW6tX3lVuzxsTRoooXU9OhqKd0shwF97aGYnYOvWhYCeNc4niHOfO3RABxzuD
-	I5h4TVYw4l3D3GO3cqETA4MlSJpZ+5KPtsch6k/MGq4oQZdHTi5at4LTeU8jJc9R+b1kBxWhPmP
-	J587MQFLFOsw8ft4p2ig==
-X-Google-Smtp-Source: AGHT+IFvQ+6sECDp6X1RNdh4i7W+52rk1hyacY0z/SIBtBQwCNvXpsQ4sXmTPd2Hk7QYTKW33PKEiw==
-X-Received: by 2002:a17:907:7ea6:b0:b43:5c22:7e62 with SMTP id a640c23a62f3a-b49c408734dmr2046124866b.50.1759819919751;
-        Mon, 06 Oct 2025 23:51:59 -0700 (PDT)
-Received: from [192.168.1.10] (83.21.74.153.ipv4.supernova.orange.pl. [83.21.74.153])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b486970a684sm1299412866b.52.2025.10.06.23.51.57
+        bh=orLZT7zL3V4+D2PmyvlqkkoTTPi2f83cdPN1hh+UFig=;
+        b=aqjsKubUaFQ9bysgV9fs0JMIHl3c7zvpIKvFN5mKKeUq/snj31TYkIDFWzZ0P1Qapl
+         v/mXeUvatSsecrIL2QbYmSAv2s7BixsQIudOWOin0TG9Bl7xIRhKWOAno25wQLF7BBHi
+         eNYSok8mqml0FHw3MevMrfEbwZZRXZyCick64CFR2vgLQcBQjRPHJFjp97ri7OjmUgmn
+         efci4w3HyqNwamtp4L4jrqt9rNNR4FqAdf12xl5TIXIJO3uxI23LqprL6jCDC7sj5pBY
+         EIYWUPSAiq3fpgFstrkz2hmK0dH3lxGEc9eeqdnx65JD/Wfj+pOa5Ae7rRHUZpTpQbo5
+         uiFw==
+X-Forwarded-Encrypted: i=1; AJvYcCXPZtArtJZw7WruR5o3LCPyeAU0xLI1vwNtRzZt+FpgOvfDDSYaX7gWfYYm3yMUdCeKPvjiNScjJZzQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YynI1t+BCBpNN4dpwD/f7qPkragEZ+I8ScprCUPWPMTLV3pG0tL
+	+UiFjXEpBPFggoe0bqW9fMY2wjefY/OWH1rUhAHLCkyGRRhh/HorsZiKv/ZyfD9vudagoBcqFG/
+	q4TfhQM4shAHC69vJNaAjDz3gVzG29MNkuWtUW0Yb2oySxUNlfakBlIyJ09NYiZYt
+X-Gm-Gg: ASbGnctMzlds51bAmSPiRAsM/6ly7shRxE2tQ0SaJK4CJQN4sit5zEq2GqUzr/jbgDY
+	VGOumXL2Xnw49JWKyGoKAu6ig3ClsNqSx9p1/y+M8QUYIMZEuGhZjjtwNQXurZS/vfz9pVzWpVb
+	TVvn2+Z/+63+GMVz9vNJv837sKwnmzaDMsXItR0YNNI6mi+jr19qDb5tt+CVVTn4mbROx5v7ij6
+	YHK0e3vBd5r4It8uDWeHwM/+65J2uVAMYY4DhGiQ0ywJaTNRlTJiCer9aEQwZDPhD7DjXG1kvcO
+	32lY69AHc+MF26FOBm7iOKr1Y41UwIc3mHjyGdk+eNtsRS5Qn6QxH7pgIoelLTjm0PpTAIT0C+T
+	kaw2CpPqLw7DWjvitlvvhKAVRXHPQH+ya6es4/zjet6sFw5KHo78ZoNYepEhyEUFg1n4=
+X-Received: by 2002:a17:902:ebc5:b0:28d:1815:6382 with SMTP id d9443c01a7336-28e9a64925cmr164252095ad.46.1759819968684;
+        Mon, 06 Oct 2025 23:52:48 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEWs7dD71EQBt8SniMOLPxdgiNr5aQ3jTTG8yNgF3kNyUIvGY7hrt9bbkSOQkdsWoCRJlV7Xg==
+X-Received: by 2002:a17:902:ebc5:b0:28d:1815:6382 with SMTP id d9443c01a7336-28e9a64925cmr164251785ad.46.1759819968129;
+        Mon, 06 Oct 2025 23:52:48 -0700 (PDT)
+Received: from [10.190.210.68] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com. [103.229.18.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d1b8444sm154035465ad.86.2025.10.06.23.52.44
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 06 Oct 2025 23:51:59 -0700 (PDT)
-Message-ID: <cd54058e-0208-4357-8a5b-4c6bb9f6cfb9@gmail.com>
-Date: Tue, 7 Oct 2025 08:51:56 +0200
+        Mon, 06 Oct 2025 23:52:47 -0700 (PDT)
+Message-ID: <166a0b99-879c-43cd-b3c0-37eb04afca5a@oss.qualcomm.com>
+Date: Tue, 7 Oct 2025 12:22:42 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,69 +90,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v6 0/9] clk: bcm: kona: Add bus clock support, bus
- clocks for BCM21664/BCM281xx
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
- Stephen Boyd <sboyd@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Ray Jui <rjui@broadcom.com>,
- Rob Herring <robh@kernel.org>, Scott Branden <sbranden@broadcom.com>
-Cc: Alex Elder <elder@kernel.org>, Stanislav Jakubek
- <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Alex Elder <elder@riscstar.com>
-References: <20250901-kona-bus-clock-v6-0-c3ac8215bd4d@gmail.com>
- <d36c5597-e26e-4ddc-93b3-222d8b40dab7@broadcom.com>
- <175834646902.4354.13114906749225372224@lazor>
- <7eed7848-b3ca-4415-85c6-7267c91560a6@broadcom.com>
+From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+Subject: Re: [PATCH v2] watchdog: Add driver for Gunyah Watchdog
+To: Guenter Roeck <linux@roeck-us.net>,
+        Bjorn Andersson
+ <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20251006-gunyah_watchdog-v2-1-b99d41d45450@oss.qualcomm.com>
+ <6e7eaac2-0859-4bfd-b76b-2f81e384a91c@roeck-us.net>
 Content-Language: en-US
-From: Artur Weber <aweber.kernel@gmail.com>
-In-Reply-To: <7eed7848-b3ca-4415-85c6-7267c91560a6@broadcom.com>
+In-Reply-To: <6e7eaac2-0859-4bfd-b76b-2f81e384a91c@roeck-us.net>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: X64tWOMt0ufEfZzpDD7aDOI_YVn8iPvU
+X-Authority-Analysis: v=2.4 cv=T8aBjvKQ c=1 sm=1 tr=0 ts=68e4b8c2 cx=c_pps
+ a=IZJwPbhc+fLeJZngyXXI0A==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8 a=GK14inuqRTfZ8P4RZYYA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=uG9DUKGECoFWVXl0Dc02:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: X64tWOMt0ufEfZzpDD7aDOI_YVn8iPvU
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA2MDEyMyBTYWx0ZWRfX2/+QpBBAG3gQ
+ WkKeVAJXliyeznnYUUsmVh6wuP+TgzzaaV3pWnneSojGpNEKZVvAujw2P32D6lVcDff1eZ5ip7H
+ pHQ1GUMIHWW2UK+phsPe1dYhJtSkkj5ZG6oa9vAsFzuo1vlxJ3ktlbzsfiBK0KtwlPy/Vqtm8B3
+ tefYtOpUow7e9Bma8gSJDKQV82BknCw/OhCE9aN2wXX9uyZlvLFDOdpLtdrYKlaOA45psFd2Yha
+ ffatYdO78jiPVeDspoJ2dRvpzsMnPW00+IECQOoO39qLv2ESR+K2ftA7lHBQDn0Qgt5FFe+UWkh
+ RVIT5hh1Mat/7b+qiPoihJD7n2U2dm3z+GJvKb9kEvYCzbOLz32OsirEtARIo70X6Z+tY11d5su
+ PFfkYAXFQaUFFelV5TrCbnF4p+fgQg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-06_07,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 phishscore=0 clxscore=1015 priorityscore=1501
+ impostorscore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510060123
 
 
-
-On 25.09.2025 23:04, Florian Fainelli wrote:
-> 
-> 
-> On 9/19/2025 10:34 PM, Stephen Boyd wrote:
->> Quoting Florian Fainelli (2025-09-04 11:28:34)
->>> On 9/1/25 10:07, Artur Weber wrote:
->>>> This patchset does the following:
->>>>
->>>> - Introduce support for bus clocks. These are fairly similar to
->>>>     peripheral clocks, but only implement policy, gate and hyst.
->>>>
->>>> - Add matching bus clocks for BCM21664 and BCM281xx peripheral clocks
->>>>     and update device tree bindings to match.
->>>>
->>>> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
->>>
->>> Stephen, are you OK with taking all of those patches through the clock
->>> tree? Patches #8 and #9 have a dependency on patches #2 and #3.
->>>
+On 10/6/2025 7:48 PM, Guenter Roeck wrote:
+> On 10/6/25 00:37, Hrishabh Rajput via B4 Relay wrote:
+>> From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
 >>
->> I don't normally do that but sure. Is that a Reviewed-by?
-> 
-> Sure, let's make it official:
-> 
-> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
-> 
-> if you prefer that I take those patches through the ARM SoC tree, that 
-> works just as well, I would need a suitable acknowledgement from you to 
-> do that.
-> 
-> Thanks
+>> On Qualcomm SoCs running under the Gunyah hypervisor, access to watchdog
+>> through MMIO is not available on all platforms. Depending on the
+>> hypervisor configuration, the watchdog is either fully emulated or
+>> exposed via ARM's SMC Calling Conventions (SMCCC) through the Vendor
+>> Specific Hypervisor Service Calls space.
+>>
+>> When Gunyah is not present or Gunyah emulates MMIO-based watchdog, we
+>> expect MMIO watchdog device to be present in the devicetree. If we
+>> detect this device node, we don't proceed ahead. Otherwise, we go ahead
+>> and invoke GUNYAH_WDT_STATUS SMC to initiate the discovery of the
+>> SMC-based watchdog.
+>>
+>> Add driver to support the SMC-based watchdog provided by the Gunyah
+>> Hypervisor. module_exit() is intentionally not implemented as this
+>> driver is intended to be a persistent module.
+>>
+>> Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+>> ---
+>> Gunyah is a Type-I hypervisor which was introduced in the patch series
+>> [1]. It is an open source hypervisor. The source repo is available at
+>> [2].
+>>
+>> The Gunyah Hypervisor doesn't allow its Virtual Machines to directly
+>> access the MMIO watchdog. It either provides the fully emulated MMIO
+>> based watchdog interface or the SMC-based watchdog interface depending
+>> on the hypervisor configuration.
+>> The SMC-based watchdog follows ARM's SMC Calling Convention (SMCCC)
+>> version 1.1 and uses Vendor Specific Hypervisor Service Calls space.
+>>
+>> This patch series adds support for the SMC-based watchdog interface
+>> provided by the Gunyah Hypervisor.
+>>
+>> This series is tested on SM8750 platform.
+>>
+>> [1]
+>> https://lore.kernel.org/all/20240222-gunyah-v17-0-1e9da6763d38@quicinc.com/ 
+>>
+>>
+>> [2]
+>> https://github.com/quic/gunyah-hypervisor
+>> ---
+>> Changes in v2:
+>> - Move away from platform driver model since the devicetree overlay does
+>>    not happen by default.
+>
+> This is just wrong. Platform drivers do not depend on devicetree. I am 
+> not even
+> going to review the rest of the driver. 
 
-If it helps, I could re-submit the DTS commits as a separate patchset, 
-and only keep the clock subsystem changes here. Then the clock patchset
-can be merged first, and the DTS patchset can be merged once that lands.
+Thanks for pointing out the mistake here. Platform drivers are 
+independent of devicetree. Therefore the line you've pointed to is wrong 
+as it erroneously portrays that the platform drivers are dependent on 
+devicetrees. It is a mistake and I would rephrase it to following to 
+make the intent clearer:
 
-Best regards
-Artur
+"Do not depend on devicetree to discover (and probe) watchdog as 
+devicetree overlay does not happen by default. Instead invoke 
+GUNYAH_WDT_STATUS SMC Call to discover (and initialize) the watchdog."
+
+
+Thanks,
+Hrishabh
+
 
