@@ -1,242 +1,151 @@
-Return-Path: <devicetree+bounces-224034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88C93BC0628
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 08:52:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 003AABC067D
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 08:54:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0609C4F33E1
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 06:52:26 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 792FB4F3B0E
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 06:53:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84CFA23ABA9;
-	Tue,  7 Oct 2025 06:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91EBE248898;
+	Tue,  7 Oct 2025 06:52:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="Iow1UycH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NK50/cll"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D506623B63C
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 06:51:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFDFA247DEA
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 06:52:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759819867; cv=none; b=GRT7fsQVhEB2RsJvTedd5fpgtzMqvQj2CdG97bxpRjKByQRgeiTav66slyR3DOwaAyfSK2wHzo/Zici595hcjhX0429EoWTZkNVhXrMv7s0Pk17WSN5WF1sy4D5e0EYE2+jvI6R9mGUoH6vlU/CdvXtRZ/VdJ1LPPha144Xt1eE=
+	t=1759819923; cv=none; b=QmaWMfBn2J3ZmzqHrFqUd6BxYSwIC+PH7TAcxVERx94yh/dj8TaRZ9Xp2ClR88QNBuOk1XSRdIRy3zOupIKMRBioYXHAJrL/EeQa3OEcKBqXNcCrzKkuileJamblxNeGFHeDwGSq4CcVIX6WI6Vc7YnZFwN+A8pY4OZa4RKxQcE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759819867; c=relaxed/simple;
-	bh=PzPp5lh4w9MAIVL6Y3lW3zsso39XiIKfrNvEK/RYtJ0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=GH6OlBS3dkcnLGpxqJmLWH/S8nKuDa3shY7M6zuyr5U28SmXvIFKxcxr5q1Xx3nmSjdY7PIaRkzcRCgyGs2To3kq5G2lEguRx6AuiGed5G5Gc/QtBajYhm71tublFNypr2atnR/XQEdL7FRQYzmRlbfEufk7gZxi5luoly5IuGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=Iow1UycH; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=vayavyalabs.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-27edcbbe7bfso91829665ad.0
-        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 23:51:05 -0700 (PDT)
+	s=arc-20240116; t=1759819923; c=relaxed/simple;
+	bh=4loRM5gaCb0DmrQhpmPykT92MCQHM1mMk27AIHOqax4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sHyuB1Gr3gciPaLps4FoWqjUuYu4GTZkSVdm4VEv0YV8CZ4xCCoFeR9nJi+Z2J42qTi6+SjqtpfYAF/ZsSzVydDPBQ9rAlshL5LztCCBpOWipwSqnEUxC6VvFs7hrTaiEKEMCxtEWw/qv1j3MAbzt/1o0q+jSdh2IeltimhGdfM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NK50/cll; arc=none smtp.client-ip=209.85.208.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-62fc28843ecso8710291a12.1
+        for <devicetree@vger.kernel.org>; Mon, 06 Oct 2025 23:52:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1759819865; x=1760424665; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=x1JvAAk4cJnEamYn3QhmqYlNG1sfQI/VEnnjVQb6AzA=;
-        b=Iow1UycHOMUL7jid1e8QJpV9hAgyKrlOJG2uLUTuAE1wFcKcxSWeFOJoU/J+9WJap9
-         usSaINIKdj630BrR+KKDxO1r6HrtNYDvN+QCdC/nwFJOjZuJDVAp58mcaZREK6cYPXsy
-         GzSWHEJzCVCc/pAv9innZT4mIYounYQZFOJ1k=
+        d=gmail.com; s=20230601; t=1759819920; x=1760424720; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=qi4jSexlkWUECSgX2tttLCZoyDCErk3ZozLNSj/B39w=;
+        b=NK50/cllulywJQvmFClNR3eoMhJoWhwLHrjoPJAntq0k5TnKhI1hc87JVOgqS5RZFi
+         WVmSeGYqh/tRDuBH825GEzcCUTxOcL1xZtYdEI3CU1RdUnOtnjzqc/JEPm6896+SludR
+         WL6Zz8g0mr9q27ytEuYthP5C56YkAFvCzk6rFJBWO9K12Eal3Cbl9QqiCMBkrpSEmpUM
+         Q6w5dV995K/0W8XdLbIFXWQmhRMD0M3ZlaOK3ZDrwMjjEjKQQsF6yGr3Hmo7SuYU+fqS
+         HRfzGA34a+cfgbrWGu1qEGjykmzG5QgDexGAbh4YdFDbCPUd+LWiM0qUQuy0Rpe6INbs
+         fiug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759819865; x=1760424665;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=x1JvAAk4cJnEamYn3QhmqYlNG1sfQI/VEnnjVQb6AzA=;
-        b=j+UF4TQQOpcTcbDGT4xGYJNM5vUubiAQFcXfCg1xOwtilvAK6VUQif9sMoEUrzpyI4
-         diRzQ7y8eRuXMiJ1IO0XOOjl62knGT7+riSaTV4za7ZRFtpf3AZMWrbx40h6GoPHPPUp
-         EBJSALCbg+uR7oSKaORn40i8L/2a+PJLcGsJZtVy4TD7lr0lUlp3uUEvD04rS5deeXlk
-         ga/cRltU/Bp4MEHcr8dcV4BjBXirp5+kObR85lxkQeMIQ4JXBlyBhOp30LLzXtobskWR
-         wJKp/o27Ttvgs+OPuDFM+pX/2ZFE8J4+L40x6H8yQFS2ck35Oaa5MxOijOJ3PNrqbSpD
-         Rprw==
-X-Forwarded-Encrypted: i=1; AJvYcCUkotDwJ60o9BtFz4oYruNiR/lkQxSGE87MPvmr4qw0csrcay4fMADt9sJuVsEj6AcF0B3SX54jlJ/k@vger.kernel.org
-X-Gm-Message-State: AOJu0Yywb2HT7XKqz8oPhRfUt7FXz5FoZvFfCcwM6xhZJwsgGOushRrb
-	8TbplbCoDMV0lJ7f5n6szT0ZKEtDg7SPT2Q8JFx8mBz+9dO6gc+irO3fEozquYMYmHY=
-X-Gm-Gg: ASbGncvW19oYNvJI35bnqN1MWzhPefNizuPk9Zn8KxGoGuEVoeiZZhlIkofXJ9kEAdb
-	xHcTklcS3E6fAIfNBwJJcXmz9Dh/rZuzt40hkFs+81VgQcDes5hoOMnu8GB3+d0J2/0BlyDJi4z
-	IrSDyQ9Tf8Rrlfr/oQ0AmkQPkvjQwPbq1wgPMCtFkGg/c3qqDaULfZ2R0uo/YEQ+EE6tepOtaT7
-	ncl0L2i/8qjC6eyFMUwwztFGqUTnOqp6LdEWSQvat1wbydqQ4EZNJPnKzOc1TGcJETMGDsu+zW6
-	bYs/N5Au+7lx5W8hjPHheVFkCiP7dA/j/SOKbjgP28DMZvUbLv62voppmEvp/hFQDyPmbNS/fuy
-	MVDg4mfxzyFLwt1R+eSz0PQiakptErnAwA0FcJEjWJVJhbC3LrEAZ2PN8PavNHNW9D70N6g==
-X-Google-Smtp-Source: AGHT+IH/Mv8ei/4xdbbFNwnpkB2DI8J/Gdq1XPNmETcnbdutsxPo4WAgyfoB4/wa01Wc9l2mpIRYkA==
-X-Received: by 2002:a17:903:196b:b0:271:479d:3de3 with SMTP id d9443c01a7336-28e9a5609bfmr187778975ad.12.1759819864927;
-        Mon, 06 Oct 2025 23:51:04 -0700 (PDT)
-Received: from localhost.localdomain ([103.108.57.9])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d111905sm153287745ad.24.2025.10.06.23.51.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 06 Oct 2025 23:51:04 -0700 (PDT)
-From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-To: linux-crypto@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	herbert@gondor.apana.org.au,
-	robh@kernel.org
-Cc: krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	Ruud.Derwig@synopsys.com,
-	manjunath.hadli@vayavyalabs.com,
-	adityak@vayavyalabs.com,
-	Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>,
-	kernel test robot <lkp@intel.com>
-Subject: [PATCH v7 4/4] Add SPAcc Kconfig and Makefile
-Date: Tue,  7 Oct 2025 12:20:20 +0530
-Message-Id: <20251007065020.495008-5-pavitrakumarm@vayavyalabs.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20251007065020.495008-1-pavitrakumarm@vayavyalabs.com>
-References: <20251007065020.495008-1-pavitrakumarm@vayavyalabs.com>
+        d=1e100.net; s=20230601; t=1759819920; x=1760424720;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=qi4jSexlkWUECSgX2tttLCZoyDCErk3ZozLNSj/B39w=;
+        b=Jzprl58KuIRdtR3H7qZ7hw3UwvToUguNMCdXtteAFNMZOHfkLqc+dPOVhpH7WM53ju
+         PqtV91SBO3GvfDe9zCSYo9wc9SGlmC3Ic5W0iWqYBYTatyXcHCM/x8ZhxslstKwwU2Pk
+         x9pUikHl9/Z/Mc7gmW1etccMvpM/brU9vzDSgvqwetmI6IHM5KiseYU5/neu6w3AJxC4
+         uGltOAmtrFkfMZeUXHS5tisGxTKdgDnLxLjnMSctcUYQyF7VI6byE4s9SKhIH+fIjAdz
+         l/sbe28AyRlWcTPwmdLrRDF4SMGBTib5AdHqJiu+t0tjPi3IXM1mwxSqdAZ8iFkzjch5
+         4c9g==
+X-Forwarded-Encrypted: i=1; AJvYcCVk3nn7lmwi8p0aaFUu3KcO+ALDX3MSRsN0VpEcza709mkXptCsyinKClK5OdGU1oPNRwZVk4OrT2ih@vger.kernel.org
+X-Gm-Message-State: AOJu0YzGpJTs8ZRTyZWYTZBygp46Qwe04Qtsj6wCogDNXz/EaYHhy2Qm
+	iXbR0HfHSDe+9uhIWQ9XqLYxmb3uWQHd7O6/RXBTWeYf7CVxUYiV9lTO
+X-Gm-Gg: ASbGncvWzUTNxD5a5U7HpG9998pX0gdma6pTRzWdr5c6ecV3kwJ60P3D5CsuX+kZuYl
+	YEC1lQ4KmJC9wl41KvsovWYtsznTx/ZRhdhP658LHw7dAV589sad06dGPocpuTTfA5j94i5jWc5
+	9VDcYrIVfhWPE/hC+yllnpcNtE27otruuHl39T5TF3IWvLPAeNzyfrZfg4qHo7TQcdjL9fZrrC/
+	ymz44ifG5vE9nsjeD810d4mjldedhtmKsi+Y3EOyysCE5B5ZGl1r0dJBD6yLVgwdbrwAQR8RO9Z
+	Uy+us3zA/sm1EVnW6tX3lVuzxsTRoooXU9OhqKd0shwF97aGYnYOvWhYCeNc4niHOfO3RABxzuD
+	I5h4TVYw4l3D3GO3cqETA4MlSJpZ+5KPtsch6k/MGq4oQZdHTi5at4LTeU8jJc9R+b1kBxWhPmP
+	J587MQFLFOsw8ft4p2ig==
+X-Google-Smtp-Source: AGHT+IFvQ+6sECDp6X1RNdh4i7W+52rk1hyacY0z/SIBtBQwCNvXpsQ4sXmTPd2Hk7QYTKW33PKEiw==
+X-Received: by 2002:a17:907:7ea6:b0:b43:5c22:7e62 with SMTP id a640c23a62f3a-b49c408734dmr2046124866b.50.1759819919751;
+        Mon, 06 Oct 2025 23:51:59 -0700 (PDT)
+Received: from [192.168.1.10] (83.21.74.153.ipv4.supernova.orange.pl. [83.21.74.153])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b486970a684sm1299412866b.52.2025.10.06.23.51.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 06 Oct 2025 23:51:59 -0700 (PDT)
+Message-ID: <cd54058e-0208-4357-8a5b-4c6bb9f6cfb9@gmail.com>
+Date: Tue, 7 Oct 2025 08:51:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v6 0/9] clk: bcm: kona: Add bus clock support, bus
+ clocks for BCM21664/BCM281xx
+To: Florian Fainelli <florian.fainelli@broadcom.com>,
+ Stephen Boyd <sboyd@kernel.org>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Ray Jui <rjui@broadcom.com>,
+ Rob Herring <robh@kernel.org>, Scott Branden <sbranden@broadcom.com>
+Cc: Alex Elder <elder@kernel.org>, Stanislav Jakubek
+ <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Alex Elder <elder@riscstar.com>
+References: <20250901-kona-bus-clock-v6-0-c3ac8215bd4d@gmail.com>
+ <d36c5597-e26e-4ddc-93b3-222d8b40dab7@broadcom.com>
+ <175834646902.4354.13114906749225372224@lazor>
+ <7eed7848-b3ca-4415-85c6-7267c91560a6@broadcom.com>
+Content-Language: en-US
+From: Artur Weber <aweber.kernel@gmail.com>
+In-Reply-To: <7eed7848-b3ca-4415-85c6-7267c91560a6@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Add Makefile and Kconfig for SPAcc driver.
 
-Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202510040852.qK4TiL4k-lkp@intel.com/
-Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
----
- drivers/crypto/Kconfig            |  1 +
- drivers/crypto/Makefile           |  1 +
- drivers/crypto/dwc-spacc/Kconfig  | 80 +++++++++++++++++++++++++++++++
- drivers/crypto/dwc-spacc/Makefile |  8 ++++
- 4 files changed, 90 insertions(+)
- create mode 100644 drivers/crypto/dwc-spacc/Kconfig
- create mode 100644 drivers/crypto/dwc-spacc/Makefile
 
-diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
-index 657035cfe940..ada04311c370 100644
---- a/drivers/crypto/Kconfig
-+++ b/drivers/crypto/Kconfig
-@@ -780,6 +780,7 @@ config CRYPTO_DEV_BCM_SPU
- 	  ahash, and aead algorithms with the kernel cryptographic API.
- 
- source "drivers/crypto/stm32/Kconfig"
-+source "drivers/crypto/dwc-spacc/Kconfig"
- 
- config CRYPTO_DEV_SAFEXCEL
- 	tristate "Inside Secure's SafeXcel cryptographic engine driver"
-diff --git a/drivers/crypto/Makefile b/drivers/crypto/Makefile
-index 170e10b18f9b..e0d5e1301232 100644
---- a/drivers/crypto/Makefile
-+++ b/drivers/crypto/Makefile
-@@ -43,6 +43,7 @@ obj-$(CONFIG_CRYPTO_DEV_BCM_SPU) += bcm/
- obj-y += inside-secure/
- obj-$(CONFIG_CRYPTO_DEV_ARTPEC6) += axis/
- obj-y += xilinx/
-+obj-y += dwc-spacc/
- obj-y += hisilicon/
- obj-$(CONFIG_CRYPTO_DEV_AMLOGIC_GXL) += amlogic/
- obj-y += intel/
-diff --git a/drivers/crypto/dwc-spacc/Kconfig b/drivers/crypto/dwc-spacc/Kconfig
-new file mode 100644
-index 000000000000..e254a1bf9cbf
---- /dev/null
-+++ b/drivers/crypto/dwc-spacc/Kconfig
-@@ -0,0 +1,80 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+
-+config CRYPTO_DEV_SPACC
-+	tristate "Support for dwc_spacc Security Protocol Accelerator"
-+	depends on HAS_DMA
-+	select CRYPTO_ENGINE
-+	default n
-+
-+	help
-+	  This enables support for SPAcc Hardware Accelerator.
-+
-+config CRYPTO_DEV_SPACC_HASH
-+	bool "Enable HASH functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	select CRYPTO_HASH
-+	select CRYPTO_SHA1
-+	select CRYPTO_MD5
-+	select CRYPTO_SHA256
-+	select CRYPTO_SHA512
-+	select CRYPTO_HMAC
-+	select CRYPTO_SM3
-+	select CRYPTO_CMAC
-+	select CRYPTO_MICHAEL_MIC
-+	select CRYPTO_XCBC
-+	select CRYPTO_AES
-+	select CRYPTO_SM4_GENERIC
-+
-+	help
-+	  Say y to enable Hash functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_AUTODETECT
-+	bool "Enable Autodetect functionality"
-+	depends on CRYPTO_DEV_SPACC
-+	default y
-+	help
-+	  Say y to enable Autodetect functionality of SPAcc.
-+
-+config CRYPTO_DEV_SPACC_DEBUG_TRACE_IO
-+	bool "Enable Trace MMIO reads/writes stats"
-+	depends on CRYPTO_DEV_SPACC
-+	default n
-+	help
-+	  Say y to enable Trace MMIO reads/writes stats.
-+	  To Debug and trace IO register read/write oprations.
-+
-+config CRYPTO_DEV_SPACC_DEBUG_TRACE_DDT
-+	bool "Enable Trace DDT entries stats"
-+	default n
-+	depends on CRYPTO_DEV_SPACC
-+	help
-+	  Say y to enable Enable DDT entry stats.
-+	  To Debug and trace DDT opration
-+
-+config CRYPTO_DEV_SPACC_SECURE_MODE
-+	bool "Enable Spacc secure mode stats"
-+	default n
-+	depends on CRYPTO_DEV_SPACC
-+	help
-+	  Say y to enable SPAcc secure modes stats.
-+
-+config CRYPTO_DEV_SPACC_PRIORITY
-+	int "VSPACC priority value"
-+	depends on CRYPTO_DEV_SPACC
-+	range 0 15
-+	default 1
-+	help
-+	  Default arbitration priority weight for this Virtual SPAcc instance.
-+	  Hardware resets this to 1. Higher values means higher priority.
-+
-+config CRYPTO_DEV_SPACC_INTERNAL_COUNTER
-+	int "SPAcc internal counter value"
-+	depends on CRYPTO_DEV_SPACC
-+	range 100000 1048575
-+	default 100000
-+	help
-+	  This value configures a hardware watchdog counter in the SPAcc engine.
-+	  The counter starts ticking when a completed cryptographic job is
-+	  sitting in the STATUS FIFO. If the job remains unprocessed for the
-+	  configured duration, an interrupt is triggered to ensure it is serviced.
-diff --git a/drivers/crypto/dwc-spacc/Makefile b/drivers/crypto/dwc-spacc/Makefile
-new file mode 100644
-index 000000000000..45d0166dfc8f
---- /dev/null
-+++ b/drivers/crypto/dwc-spacc/Makefile
-@@ -0,0 +1,8 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+obj-$(CONFIG_CRYPTO_DEV_SPACC) += snps-spacc.o
-+snps-spacc-objs = spacc_hal.o spacc_core.o \
-+spacc_manager.o spacc_interrupt.o spacc_device.o
-+
-+ifeq ($(CONFIG_CRYPTO_DEV_SPACC_HASH),y)
-+snps-spacc-objs += spacc_ahash.o
-+endif
--- 
-2.25.1
+On 25.09.2025 23:04, Florian Fainelli wrote:
+> 
+> 
+> On 9/19/2025 10:34 PM, Stephen Boyd wrote:
+>> Quoting Florian Fainelli (2025-09-04 11:28:34)
+>>> On 9/1/25 10:07, Artur Weber wrote:
+>>>> This patchset does the following:
+>>>>
+>>>> - Introduce support for bus clocks. These are fairly similar to
+>>>>     peripheral clocks, but only implement policy, gate and hyst.
+>>>>
+>>>> - Add matching bus clocks for BCM21664 and BCM281xx peripheral clocks
+>>>>     and update device tree bindings to match.
+>>>>
+>>>> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+>>>
+>>> Stephen, are you OK with taking all of those patches through the clock
+>>> tree? Patches #8 and #9 have a dependency on patches #2 and #3.
+>>>
+>>
+>> I don't normally do that but sure. Is that a Reviewed-by?
+> 
+> Sure, let's make it official:
+> 
+> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> 
+> if you prefer that I take those patches through the ARM SoC tree, that 
+> works just as well, I would need a suitable acknowledgement from you to 
+> do that.
+> 
+> Thanks
 
+If it helps, I could re-submit the DTS commits as a separate patchset, 
+and only keep the clock subsystem changes here. Then the clock patchset
+can be merged first, and the DTS patchset can be merged once that lands.
+
+Best regards
+Artur
 
