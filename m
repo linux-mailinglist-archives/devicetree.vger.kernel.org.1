@@ -1,43 +1,43 @@
-Return-Path: <devicetree+bounces-224068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B3DBC093A
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 10:13:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D4B5BC0934
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 10:13:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D32754E5EA9
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 08:13:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53061188EABC
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 08:13:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F1332874F2;
-	Tue,  7 Oct 2025 08:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73983287511;
+	Tue,  7 Oct 2025 08:13:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="IkFv84Xd"
+	dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b="TiXF2tYJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11022082.outbound.protection.outlook.com [52.101.66.82])
+Received: from OSPPR02CU001.outbound.protection.outlook.com (mail-norwayeastazon11023088.outbound.protection.outlook.com [40.107.159.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 898C72594B7
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 08:13:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.82
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CBFF2868A1
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 08:13:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.159.88
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759824793; cv=fail; b=gBOFTJQb3b/IgitbLnbs5VVtehKy5SSMYb6kdR//xzNyi58ME0/IBxLPgF3JHUeiGITXxntoZ5aeLMkWV+bWancIVSAizK8/DpsMbeUOcyJq3RFWQMW8cdUiWwBdLowI885YYdchScMuM+p0fM6LWuPZ9mfR8qWW7/aCw+WZjkQ=
+	t=1759824789; cv=fail; b=o8dv/JWzbxDa6VMdOI0udmdMAF/0bSzY9dPWR0Nq5h9hE80bVEORpjJ165qY0YU13ZVDksS6e06jDURY+qvNbSbZK9vPacWnl7mwymc5arl60FOZVdJjauud4+M0cLg340TjsoJZkKgn6Cr7wg4miykYsNMdN3L8iV9e+rcph2w=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759824793; c=relaxed/simple;
-	bh=9iko0f+tSHI1r8E9bryFm5CWlAAl5CZKnMA18PPv1L0=;
+	s=arc-20240116; t=1759824789; c=relaxed/simple;
+	bh=A5f7eG5Vc8W3fUMBpXMsbVzaSIQD+oNkCAtb1O0hhtA=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=Nt0BPVfPCJBQrzGUy+U/dqPiKEoDKTAMEwRqsBDY3bZ0YeIZCF8nS2jd8ascJ/HtnYBvFAqjKCznLNzFW+LZoDZ5Dj+CwuIQMKag9Lc9yNymJu3x5DzDFVPNRW1CUjk2nxxEjg17T/PdCO/JvNfzKj2B0B4KMDalg8AJV8qVRDE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=IkFv84Xd; arc=fail smtp.client-ip=52.101.66.82
+	 In-Reply-To:To:CC; b=tkBo8616TfNtrwWxHliBk8z8bdlTprMM1ClZ6HpMBrehYei2wc32NykGoWGnjEjxktUto7DUawiBI8RGC3UH3Ef/k8CLjkai8DwYjCBWjjodonP00Zc8bZP+k5HqNtEKjKJ0DF+do7JamzDePuI6VRMPTSALX4j/lOn53rdlE9E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (2048-bit key) header.d=phytec.de header.i=@phytec.de header.b=TiXF2tYJ; arc=fail smtp.client-ip=40.107.159.88
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=phytec.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P/9v9TQ1XUJCI0TOWvXZ3CIAz1VzXUjvMcPuLCU9uppWqxJn0pEsGcLrrW9yGIEIUGD8RwvzCmQNi/MtdkT0YniDVTSsGK/UPTAegKSn3rYrsz/bv50BBIVCbajzODwJ7DxbsWRM6MbsYXI3uC1jWG257n/1XD1rafGMwUYbBCI2x4b06muBHJOOCxwEvihHkFehDevgmGLS7nBdW9Qhr07I4rcqygw5S4jC5uoyszqOOVk2oXrLIGiI1tpyQA0LC6aR6tBiXzXyebzEYc47upfCIAQ0Y24Mh4V3nWuos3wJwV5tx1bltBrpfH1crzyJa3YyKrv3QXelIX4McHIzrw==
+ b=CKMTY0xnXx3dlOFKRRhn2T+Tr+fcmCql+b9MoSuD6jK4/5xPadT2djUeqfqC6L4cD6/oLgL3wFrkRN2JvQH/+Btnx/h4Lht8/9Kdol+O+xZ0gga4H0GqCPOo+vza9pF2PYaCyNiuz0YcwYP+2oYtTaXTnpf5dpQkavTP6Ua71RbXfhpIDkOjjFACh+jAM+zGeNW9NdxUU3R3xp+G4JWm14Cq7MDFsf2rLfrbkTOtFS6HYASvSH5oHhbaFQaltgHi482ymB1J+EuVrzunbGZLaysQIooBloG5RNivf6sVeds8iJnVolWn/TbrEURjuJ354p70Gdq+YRiGj1UnoPjN7Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vCmkZgKFMyuT+sM7m0n7s9ktzIaXj5k2PNLO9h9tIOA=;
- b=arcxzQjGxF2gsEyxp3A2JAfHkbdPXvBz0mN9rEAxLicDhV3ah3NLNRCJD/DovBHQ56RXUDw/CM2MyBJmWzrqRC0OGsMwI+k3sQKqZ3m0R+91tN6qVSw0bsa9xz/fe8BLVxyuY0UgBLxIq2SAQtC6VAGurU89pbsXpItu1VV34azm24bK5YufVK1bcluo9ITCIqsi93/0lvrs++OUy9wreKzvdCwXV3LfaOrsxedM+lDr1104Tg7VzuJ9ilPzJA4uuuyYMrF5KOSdibU0PCpFtSK5gxw74POn+wmMHsfLG8tdn2kT7DSQJrR+knY8Fwiz/U0U16KrYw85t3pO7WMNbA==
+ bh=OZKj4oNonDTvbD/JLwbIUiCkk2Sb55s15U28K8EVUEc=;
+ b=ezDDPcPaRqgQgjMsmsJBOhEdeEGsDjHuniLPtyX/qa+JIBSK5uEBgyiVJw7LrDSQfw+DsbiCcibplM1zE6gtk6+ecuENjZlBhqzCwUuOrHhnOkviR+Q/3/RTPfhwaKJjuV8ocYYj8Y0QRPH6jVMvcdyl89x0ujf6LxGNoKkQ7Sbl1z5UDBaAFHwtZx00i0RHyxvk2rp3y5ew8GOf6dn2nkZhmos+Kgz3sVRTT1VXO9gyY2KmsB42J3nJgGs7DKV5NLrIFiVWfPpxlvRwaVZVTJscutl2yT9E3nZ+d2joYn4iRU20eyxZVn4IGk0tvV8/T7iYRknEJFI63KuCe47P5g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
  is 91.26.50.189) smtp.rcpttodomain=kernel.org smtp.mailfrom=phytec.de;
  dmarc=fail (p=quarantine sp=quarantine pct=100) action=quarantine
@@ -45,18 +45,18 @@ ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=softfail (sender ip
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.de;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vCmkZgKFMyuT+sM7m0n7s9ktzIaXj5k2PNLO9h9tIOA=;
- b=IkFv84XdzSDP7DSr9Vr+5fx5HXzAcCI0hZFp+lTgrqsBcAwA/RNPfrBHiGh6i9FJaWW7lzFdlTUP8nNP6Y5vUSJkT1T/OxE+kegzoYMRSIMvKENRQseQBJl6NNmBvdWxRbXqdaH3yz4cZm2LDEZCpgUsjSjlAdfoLQE/l7WAyg3gr/Azr2055/mgOCekKltm9iEDWsSCMFA3QKQNAR7LpvIl14VkaSZifj8Kl1cWh0+ctcNg4TA8p08cAoK0zpqDnh1jS4SRlmUo0IAw8RVahhaOsYmmYjElr5VGyGFGk5ZaX3ByOnVnc+exEPv9n/JjIaUIPmV1xm4+Uhqa7i9HvA==
+ bh=OZKj4oNonDTvbD/JLwbIUiCkk2Sb55s15U28K8EVUEc=;
+ b=TiXF2tYJGn0FLpU0VqAWqsz3eCAYAJv6pEvOeKgf+mJlXBNsNxH9r2689vxNaV2ii+fjhX4vacmA2Ivn/DaG2IRDeFZB4ZAYl1bO7bVuBYNXt2J6Ucqok7FoziTzX6tpy8+iGx4XakegHM+TyVBFzI+kSH+lX2P+ak17aAuM8FrQLNd4382suMD1pVMjr1dcavqB+lTP7BAnDecXJQbDi7M/1PGXlkKelqPCR0yibvEBAP6JF77Mwtl57+vtdgkNN7vVfZ4rntseoyRvZAP7SofdzbPbJHbywyJW9pG5JH012Zu1UKv4u7NNF/bNuVN+JgWYMLqq6WwCKoa8YSnLZw==
 Received: from DUZP191CA0001.EURP191.PROD.OUTLOOK.COM (2603:10a6:10:4f9::24)
- by VI2P195MB2545.EURP195.PROD.OUTLOOK.COM (2603:10a6:800:22c::10) with
+ by VI0P195MB2625.EURP195.PROD.OUTLOOK.COM (2603:10a6:800:24f::19) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.20; Tue, 7 Oct
- 2025 08:12:54 +0000
+ 2025 08:12:55 +0000
 Received: from DB1PEPF000509EE.eurprd03.prod.outlook.com
- (2603:10a6:10:4f9:cafe::6b) by DUZP191CA0001.outlook.office365.com
+ (2603:10a6:10:4f9:cafe::4) by DUZP191CA0001.outlook.office365.com
  (2603:10a6:10:4f9::24) with Microsoft SMTP Server (version=TLS1_3,
  cipher=TLS_AES_256_GCM_SHA384) id 15.20.9182.20 via Frontend Transport; Tue,
- 7 Oct 2025 08:12:44 +0000
+ 7 Oct 2025 08:12:45 +0000
 X-MS-Exchange-Authentication-Results: spf=softfail (sender IP is 91.26.50.189)
  smtp.mailfrom=phytec.de; dkim=none (message not signed)
  header.d=none;dmarc=fail action=quarantine header.from=phytec.de;
@@ -69,11 +69,11 @@ Received: from Postix.phytec.de (91.26.50.189) by
 Received: from llp-jremmet.phytec.de (172.25.39.81) by Postix.phytec.de
  (172.25.0.11) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Tue, 7 Oct
- 2025 10:12:45 +0200
+ 2025 10:12:46 +0200
 From: Jan Remmet <j.remmet@phytec.de>
-Date: Tue, 7 Oct 2025 10:12:28 +0200
-Subject: [PATCH v2 3/6] arm64: dts: imx8mm-phyboard-polis-peb-av-10:
- reorder properties to match dts coding style
+Date: Tue, 7 Oct 2025 10:12:29 +0200
+Subject: [PATCH v2 4/6] arm64: dts: imx8mm-phyboard-polis-peb-av-10: split
+ display configuration
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,7 +82,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20251007-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-v2-3-7e5de62c79bf@phytec.de>
+Message-ID: <20251007-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-v2-4-7e5de62c79bf@phytec.de>
 References: <20251007-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-v2-0-7e5de62c79bf@phytec.de>
 In-Reply-To: <20251007-wip-j-remmet-phytec-de-bspimx8m-3801_peb-av-10_with_ac209-v2-0-7e5de62c79bf@phytec.de>
 To: Teresa Remmet <t.remmet@phytec.de>, Janine Hagemann
@@ -97,187 +97,554 @@ X-ClientProxiedBy: Postix.phytec.de (172.25.0.11) To Postix.phytec.de
  (172.25.0.11)
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB1PEPF000509EE:EE_|VI2P195MB2545:EE_
-X-MS-Office365-Filtering-Correlation-Id: 532b0c30-8549-43f2-3144-08de05795102
+X-MS-TrafficTypeDiagnostic: DB1PEPF000509EE:EE_|VI0P195MB2625:EE_
+X-MS-Office365-Filtering-Correlation-Id: b672a0bc-d17f-474e-1939-08de05795185
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|376014|7416014|82310400026;
+	BCL:0;ARA:13230040|36860700013|82310400026|7416014|376014|1800799024;
 X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?dmZxckhlM0VEZGN4YldKbWliSlhJdUJYdUlPRUVZRDB5d2hHeTFicXZEYW5G?=
- =?utf-8?B?aHRKQ1p2L051L0VvRDZlQ1JHeS9SOHR2RURybFdGQ25zMG9ZcVZONThQN1hN?=
- =?utf-8?B?eWtORjFmNmt5ejU2WU9Hb0JLWEltN3Uvb1ZtQTVGamNNWmFuMjhZUmx1Z3Rq?=
- =?utf-8?B?Ri9Yb29pSEdrZFdUV0M2RXF1OVRPbXptVCttNExhd3EzMmZiREdLcGM2Yktl?=
- =?utf-8?B?NUJieGxXYm5Gd0VwQmxPeU5FVmZDMS9TZVRZV1k2WDZxbU5abC9xSSt6T3Jq?=
- =?utf-8?B?VkZzVWQ4K05UUm9RUldydVMzY0ZOYURxcmtQdVBtWHZ0dXJ3RzIyTjFkNjU1?=
- =?utf-8?B?VTZONWpEbHJSWlFxdFZGOHFYalRuSXg5Vi9pejhTVUp1cTYzNzl4T0JOVkVK?=
- =?utf-8?B?NnFvYnp5VjdCSG9XMFFrZ0pQb1dzY1NWbUg2K0kydWllRExUUncreDJRTWo3?=
- =?utf-8?B?Sm5HVXJPWTJ5YlRMSVlnNGVOdjdMOHRDRkY4QWRKT2RXUGFJcmFOYmQ3Tm9i?=
- =?utf-8?B?emNjOUtMNVdDQ3VaaXhIQ1VmTjh4Q3RSY094ZUgvaUVIS211VmFsdTlZME1J?=
- =?utf-8?B?R1o1STc1emFhT29jdGUxTkl1ZmJKZDgvS3UwMVRodnloTnBTREVtZWJ2SU1Z?=
- =?utf-8?B?aW5QdE1kMHBRd25YZmh0VU9QVUtJUVh6MUEvYmVuenZNeFZNVjkvNkFORjdp?=
- =?utf-8?B?RVUxNXh4NjM4Q0hkYTZ2ZUdtN0xSWnhyOVFUWUdXdkt1TDJHU1VPazB6Zy9v?=
- =?utf-8?B?ZUJIZEsxajhyaE5YNkVHNFRyckpuT0duREZJb0pWeElnbmhNZ0RqLzF5RG9o?=
- =?utf-8?B?QTlFUm5mVEdkU0xBdUVCZmtCdnh6UG1JUmRhejc5cGZ2YlJJL0swUWRhWFJL?=
- =?utf-8?B?OXhBamRJVHFvTlYrNFhJY1puRUs5QVRiRmpMNngzL2dmSWw2NG82UG1VV3NX?=
- =?utf-8?B?SnFGVlRmRXRoS2lVckZiUUprQlRnWTFneDBhYmRtK3ZPM1NOcEhpYzZPdDcz?=
- =?utf-8?B?dW0xRUpVQVBVekZYeEt6eXFuWjBaeDJBRE5VWWhIZkIvWEpCeDluL2ZWc3NS?=
- =?utf-8?B?THcyTVVZK2pESFNtM1NiNFRReHRsZmdlYlZrQXIxMmV5VkRmSFM2Zjd1TkJ6?=
- =?utf-8?B?MEdZQi81RVd5WHRISU80VkhRVjRzZVFjZmZqbmZ3dUl2WS9oZmZiZjc0dWhO?=
- =?utf-8?B?MUZRWW1XY2RFQVZsbno0bmY1c28xczhrdlpiSFFKS21STE1jWW1FbjZhMzNP?=
- =?utf-8?B?SUlCNTBxZjBuRXNnc0traHZBMWF1ekdpOHVIeU1halVMVTdoYmltMkxOakFZ?=
- =?utf-8?B?Y0dTc2RraVZ5U055QnV4N0h0RE5EMXIveW4zYTdhWnZFYUVsR3IrMFZhQWJX?=
- =?utf-8?B?YVFhMFFzdzNNU21NbzA2cVUxc3hURjdxRndkTENHaW5nTSsxZDhzZStrdHls?=
- =?utf-8?B?Q3JDdDlLZDJPdnEwZURibmowRVRDZnNZanFlblZPVVhFczBTSUJaK2IzVXcy?=
- =?utf-8?B?bmdtOE03S09NZExCM1VJUkh0cXVDa2FieVlMek1JdE1YYmtvTzBlVWY5TEJj?=
- =?utf-8?B?VzFQN1I1SUU1bHFXMmNydU5SUkFOZGlsaUpmbVp0WW0wbEtUVmVPV2gzTmVw?=
- =?utf-8?B?YnJWcTFMYWlMait6MnpVSUt0TXN4RVpQRVlGa0VLUWVMVS9yWS81TGduVm1t?=
- =?utf-8?B?cGdjMnJ5bmJqU1N2Qkt0eU1WelAvMFluNkdaT1kzbitsNTZyZS8zOFFYaW50?=
- =?utf-8?B?dC91Ykh4NkhWME1zY3NvaDVIOVBPb0JrQnovd0ZEQjhqR3dWSHVIR0ZPRC9p?=
- =?utf-8?B?TlczYldhRldvdlQwTHBlNHQ4Q213RkJ4NEc3WFlpU2FvVTMzUlcxb3ZqVGs0?=
- =?utf-8?B?YVZYSmxlTU9IRWZQTldsTkJCZkYyU3E5VGZ1a2ZMNGFQdklPR1BuWElGOW44?=
- =?utf-8?B?YXo2WmFpdTJRU09nYWI0TWFFOEZzTlZTNlJpZ2IxdzZQUmJqcWRXek1paFBw?=
- =?utf-8?B?bm9CK2R6RlBMMEtheExvUis1QkZGcURFdzh3ajZYN1ZmQURTN2xOT0tMOHdW?=
- =?utf-8?B?MlQ0cmJnYlFSbGpoWTRacUpCMDROWThLWEZyVm5ldHBnakRTOVkyNEJRcWs3?=
- =?utf-8?Q?NL68=3D?=
+	=?utf-8?B?MUE1eE40eEV3TktDbGFTVi9aQ0FnNDd2Y0NwZjhEUGt3YTdmR2wxWEx4ZUpv?=
+ =?utf-8?B?RTBGbWlYNWpkSk15ZW9ZWUtDU29HRzFmOG9XL1M5SlgwZFl3bHgvTVRmWTZR?=
+ =?utf-8?B?cHg4ZEtwZ01BUU14VWgra2hpRlNrbkppa3F6S3FiaXJ0bG9IM0l4V0Q5M1lN?=
+ =?utf-8?B?TDh5Ky90RUxwVEhwWTZoVW5penpxR01SeHNab3lnS3FwcGhtcVZmUWd5VTRX?=
+ =?utf-8?B?bE8wdlRjZnM1RDJBODUya3B1Zjhabk43RnRwSVZ5c0wyNGluQzU1cnJmUkd2?=
+ =?utf-8?B?c3JzSEJHcmJjY0VYS1RDWDJZclpWbExva0Z4MnFjY2xGMkxuR09sc1FCR0I4?=
+ =?utf-8?B?NFErR0NuUFFCRDBvazhwbC9yYzh4c21QVzlMSnNQMjNQZ3AwZzF2SVBlR3NR?=
+ =?utf-8?B?WFZyRUx4SHFzVWw3WGxmOVdmaFJvK0tkSkVOOG56VzVEVHFVWmluWFE2ZHZu?=
+ =?utf-8?B?NFZJUXQ2SytrbUhjS2NHelczblRlb2NrUnptRm9hTXM1ZVhpYlZWcmNvMGEz?=
+ =?utf-8?B?eHVHcWZka1RVS1lIUmxJa3F4bGpwaGFENC82NWYvNTlGclA4cjh1RUMxcWtU?=
+ =?utf-8?B?KytvYVlGWlBsSzJoRWpBY1oxdEgyeG5aRW5JQ21HZ2o0VDFCVWdCZitJdTRE?=
+ =?utf-8?B?NUY1Nk9sU0IxRjRLQnBQMG5FQ0tUUGFYaXREdzNzN2pqS3RjVXlQbXRyWFVR?=
+ =?utf-8?B?MTlmUnZqc3J4a2VVMUN1YjNSaEF6bmlKWlhIT3diYWRmM2xyY0MvclBXUnFD?=
+ =?utf-8?B?RkNMUG5wZ3I5eGtSd2Q3QTVBMVZ5YXJVZ2FIK1F4VDRrWXh3cXNPZ2VseGZm?=
+ =?utf-8?B?RGpRVFdKNnRObTdad05qQmdCTTJzZy9QelBwVEJ1Qzl2Rkd5ZW1iR2FEc3RD?=
+ =?utf-8?B?a3NBRVkzNGEvaUlBUEhpMW9SOUZ5eThuVlRXR1RBOTRyMm9FU0txZVVQVmV2?=
+ =?utf-8?B?cWhOM1ZKdXlPd0JsMXN6NEQ1U00vc2pZR3Y0N3R5cGY4WjhxcEh3TzZUSHBp?=
+ =?utf-8?B?WUNTWEovTkNjNkYxZjdvSHZRMTBTL2ZHR1FkM2w1blZ2Q0JnRE5GL3cyd2Zs?=
+ =?utf-8?B?UVhMRVNMMXZ5UjhEeURYRWdueVBaZlYzSjluWTFyRlhSaWdOWUUwUnFZM2pE?=
+ =?utf-8?B?U0U1VTY2N1ZzejVzQUgrRUdWcHZnVmZRTUlydlVHUVRiWFQ5OW9vQmNDd3NK?=
+ =?utf-8?B?M2hzWVhGRGRVOEVoNW1GQWF6anM0RWR2OW1PVDVCTUJDbjdZOFo4TmpsblNw?=
+ =?utf-8?B?cG9XWlEzZWxsK1hHSFJCMVBhbzJ2bHkzT0FWZ2l6ZHdTODJIM2dBUEwydFcv?=
+ =?utf-8?B?UnNiRUhOT1ZCNE84T2dWSWJ1WmFOekN3UnhmWnRONGJrcFFBWGxZcHhXSGxU?=
+ =?utf-8?B?cjFxUTRVWFo5L1RlVVUzZHhUMFQwM2NYaGxkQ1FneEk2ZWU5NE1SRkVIS043?=
+ =?utf-8?B?bVJUdGIxOGxkYjBOL01tbCt1RVJvSkM2VmtJVVNVMXppbTBtZDk5NVcyNWcw?=
+ =?utf-8?B?WjRNc2RLYWU0ek4walBsazZBeER6T0M2VlI1M0FNaTJwblAyTXpYRXRCZ2x0?=
+ =?utf-8?B?b0JpRHlkVWFCa05TMmtxaVc0T1dqSVUvRUJMbjRYRWFLdE9nY1ZHVGNlUXhG?=
+ =?utf-8?B?QkVFU2krNThkdlhkYXkrdVFkZEVKZnlzdzkyOVBZS0pYMEIwVTJldmQ4RUNv?=
+ =?utf-8?B?NUd1OGNqR0NqWHVjRXdNSkVqQmgxTGh4RUtVeDRPRDdtUkkyR1A3NmhpVUxr?=
+ =?utf-8?B?STVZd25QQUdXVXBYeTkvZUFQYjZ1bjZ6OW9zVkxkdFNMKzh0QkkrNFY0RUph?=
+ =?utf-8?B?YjdiRHd6QWF5aCtOQkFMOW1rQ2lXOFozK1FIalNERUVFM1hTQUZicHdycW5u?=
+ =?utf-8?B?NWJxTDlPM1RUOVlWRjM5eHhyR04wdkg2RHIrVy9YanlYY0U3UmVXZ3VWL1Vw?=
+ =?utf-8?B?bkNFK2RLTGIxdVhpSi94NU4xZklWNUgvMnF6c2xRdmJBUThTSGZUbTZ2NHlZ?=
+ =?utf-8?B?ejY0WHEvbkVPVTN1VGtOb1dlMWNRS0doa2s5cXF3U3VkNDUwMitsWE1oZUZS?=
+ =?utf-8?B?THpLOGpXblk0ZVNCdXJwWHMyMkh1THllZnJlaklGeEVqbVFRTXVFOHRLeHRo?=
+ =?utf-8?Q?RjeA=3D?=
 X-Forefront-Antispam-Report:
-	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(7416014)(82310400026);DIR:OUT;SFP:1102;
+	CIP:91.26.50.189;CTRY:DE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:Postix.phytec.de;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(7416014)(376014)(1800799024);DIR:OUT;SFP:1102;
 X-OriginatorOrg: phytec.de
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2025 08:12:54.0757
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2025 08:12:54.9334
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 532b0c30-8549-43f2-3144-08de05795102
+X-MS-Exchange-CrossTenant-Network-Message-Id: b672a0bc-d17f-474e-1939-08de05795185
 X-MS-Exchange-CrossTenant-Id: e609157c-80e2-446d-9be3-9c99c2399d29
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=e609157c-80e2-446d-9be3-9c99c2399d29;Ip=[91.26.50.189];Helo=[Postix.phytec.de]
 X-MS-Exchange-CrossTenant-AuthSource:
 	DB1PEPF000509EE.eurprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI2P195MB2545
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0P195MB2625
 
-Sort properties. Rename regulator label to match schematics.
+The PEB-AV-10 board can be used with different displays or in audio-only
+mode.
+Split the device tree overlays to reflect these use cases. To use the
+board with the EDT ETML1010G3DRA display, the overlay
+imx8mm-phyboard-polis-peb-av-10-etml1010g3dra.dtbo must now be used
+instead of imx8mm-phyboard-polis-peb-av-10.dtbo.
 
 Signed-off-by: Jan Remmet <j.remmet@phytec.de>
 ---
- .../freescale/imx8mm-phyboard-polis-peb-av-10.dtso | 48 +++++++++++-----------
- 1 file changed, 24 insertions(+), 24 deletions(-)
+ arch/arm64/boot/dts/freescale/Makefile             |   3 +
+ ...8mm-phyboard-polis-peb-av-10-etml1010g3dra.dtso |  44 +++++
+ .../freescale/imx8mm-phyboard-polis-peb-av-10.dtsi | 189 +++++++++++++++++++
+ .../freescale/imx8mm-phyboard-polis-peb-av-10.dtso | 203 +--------------------
+ 4 files changed, 237 insertions(+), 202 deletions(-)
 
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index 23535ed47631ca8f9db65bec5c07b6a7a7e36525..98fac7e718c06c4e860ec8c9db72ceff72268232 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -134,12 +134,15 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-phg.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-phyboard-polis-rdk.dtb
+ 
+ imx8mm-phyboard-polis-peb-av-10-dtbs += imx8mm-phyboard-polis-rdk.dtb imx8mm-phyboard-polis-peb-av-10.dtbo
++imx8mm-phyboard-polis-peb-av-10-etml1010g3dra-dtbs += imx8mm-phyboard-polis-rdk.dtb \
++	imx8mm-phyboard-polis-peb-av-10-etml1010g3dra.dtbo
+ imx8mm-phyboard-polis-peb-eval-01-dtbs += imx8mm-phyboard-polis-rdk.dtb imx8mm-phyboard-polis-peb-eval-01.dtbo
+ imx8mm-phycore-no-eth-dtbs += imx8mm-phyboard-polis-rdk.dtb imx8mm-phycore-no-eth.dtbo
+ imx8mm-phycore-no-spiflash-dtbs += imx8mm-phyboard-polis-rdk.dtb imx8mm-phycore-no-spiflash.dtbo
+ imx8mm-phycore-rpmsg-dtbs += imx8mm-phyboard-polis-rdk.dtb imx8mm-phycore-rpmsg.dtbo
+ 
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-phyboard-polis-peb-av-10.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mm-phyboard-polis-peb-av-10-etml1010g3dra.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-phyboard-polis-peb-eval-01.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-phycore-no-eth.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mm-phycore-no-spiflash.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10-etml1010g3dra.dtso b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10-etml1010g3dra.dtso
+new file mode 100644
+index 0000000000000000000000000000000000000000..189818eb8316c655be3731d0a675970499eac31e
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10-etml1010g3dra.dtso
+@@ -0,0 +1,44 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
++/*
++ * Copyright (C) 2025 PHYTEC Messtechnik GmbH
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include "imx8mm-phyboard-polis-peb-av-10.dtsi"
++
++&backlight {
++	brightness-levels= <0 4 8 16 32 64 128 255>;
++	default-brightness-level = <6>;
++	enable-gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>;
++	pwms = <&pwm4 0 50000 0>;
++	status = "okay";
++};
++
++&bridge_out {
++	ti,lvds-vod-swing-clock-microvolt = <200000 600000>;
++	ti,lvds-vod-swing-data-microvolt = <200000 600000>;
++};
++
++&lcdif {
++	status = "okay";
++};
++
++&mipi_dsi {
++	status = "okay";
++};
++
++&panel {
++	compatible = "edt,etml1010g3dra";
++	status = "okay";
++};
++
++&pwm4 {
++	status = "okay";
++};
++
++&sn65dsi83 {
++	status = "okay";
++};
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtsi
+new file mode 100644
+index 0000000000000000000000000000000000000000..3d4ffeecb8dd8e6f7a68eeafba761534fae9deb4
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtsi
+@@ -0,0 +1,189 @@
++// SPDX-License-Identifier: (GPL-2.0-or-later OR MIT)
++/*
++ * Copyright (C) 2025 PHYTEC Messtechnik GmbH
++ */
++
++#include <dt-bindings/clock/imx8mm-clock.h>
++#include <dt-bindings/gpio/gpio.h>
++#include "imx8mm-pinfunc.h"
++
++&{/} {
++	backlight: backlight {
++		compatible = "pwm-backlight";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_lcd>;
++		power-supply = <&reg_vdd_3v3_s>;
++		status = "disabled";
++	};
++
++	panel: panel {
++		backlight = <&backlight>;
++		power-supply = <&reg_vcc_3v3>;
++		status = "disabled";
++
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&bridge_out>;
++			};
++		};
++	};
++
++	reg_sound_1v8: regulator-1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_1V8_Audio";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
++
++	reg_sound_3v3: regulator-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "VCC_3V3_Analog";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++	};
++
++	sound-peb-av-10 {
++		compatible = "simple-audio-card";
++		simple-audio-card,name = "snd-peb-av-10";
++		simple-audio-card,format = "i2s";
++		simple-audio-card,bitclock-master = <&dailink_master>;
++		simple-audio-card,frame-master = <&dailink_master>;
++		simple-audio-card,mclk-fs = <32>;
++		simple-audio-card,widgets =
++			"Line", "Line In",
++			"Speaker", "Speaker",
++			"Microphone", "Microphone Jack",
++			"Headphone", "Headphone Jack";
++		simple-audio-card,routing =
++			"Speaker", "SPOP",
++			"Speaker", "SPOM",
++			"Headphone Jack", "HPLOUT",
++			"Headphone Jack", "HPROUT",
++			"LINE1L", "Line In",
++			"LINE1R", "Line In",
++			"MIC3R", "Microphone Jack",
++			"Microphone Jack", "Mic Bias";
++
++		simple-audio-card,cpu {
++			sound-dai = <&sai5>;
++		};
++
++		dailink_master: simple-audio-card,codec {
++			sound-dai = <&codec>;
++			clocks = <&clk IMX8MM_CLK_SAI5>;
++		};
++	};
++};
++
++&bridge_out {
++	remote-endpoint = <&panel_in>;
++};
++
++&i2c3 {
++	clock-frequency = <400000>;
++	pinctrl-names = "default", "gpio";
++	pinctrl-0 = <&pinctrl_i2c3>;
++	pinctrl-1 = <&pinctrl_i2c3_gpio>;
++	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
++	#address-cells = <1>;
++	#size-cells = <0>;
++	status = "okay";
++
++	codec: codec@18 {
++		compatible = "ti,tlv320aic3007";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_tlv320>;
++		#sound-dai-cells = <0>;
++		reg = <0x18>;
++		reset-gpios = <&gpio4 28 GPIO_ACTIVE_LOW>;
++		ai3x-gpio-func = <0xd 0x0>;
++		ai3x-micbias-vg = <2>;
++		AVDD-supply = <&reg_sound_3v3>;
++		IOVDD-supply = <&reg_sound_3v3>;
++		DRVDD-supply = <&reg_sound_3v3>;
++		DVDD-supply = <&reg_sound_1v8>;
++	};
++
++	eeprom@57 {
++		compatible = "atmel,24c32";
++		pagesize = <32>;
++		reg = <0x57>;
++		vcc-supply = <&reg_vdd_3v3_s>;
++	};
++
++	eeprom@5f {
++		compatible = "atmel,24c32";
++		pagesize = <32>;
++		reg = <0x5f>;
++		size = <32>;
++		vcc-supply = <&reg_vdd_3v3_s>;
++	};
++};
++
++&pwm4 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_pwm4>;
++};
++
++&sai5 {
++	assigned-clocks = <&clk IMX8MM_CLK_SAI5>;
++	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL2_OUT>;
++	assigned-clock-rates = <11289600>;
++	clocks = <&clk IMX8MM_CLK_SAI5_IPG>, <&clk IMX8MM_CLK_DUMMY>,
++		<&clk IMX8MM_CLK_SAI5_ROOT>, <&clk IMX8MM_CLK_DUMMY>,
++		<&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_AUDIO_PLL1_OUT>,
++		<&clk IMX8MM_AUDIO_PLL2_OUT>;
++	clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3", "pll8k",
++			"pll11k";
++	fsl,sai-mclk-direction-output;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_sai5>;
++	#sound-dai-cells = <0>;
++	status = "okay";
++};
++
++&iomuxc {
++
++	pinctrl_i2c3: i2c3grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL          0x400001c2
++			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA          0x400001c2
++		>;
++	};
++
++	pinctrl_i2c3_gpio: i2c3gpiogrp {
++		fsl,pins = <
++			MX8MM_IOMUXC_I2C3_SCL_GPIO5_IO18        0x1e2
++			MX8MM_IOMUXC_I2C3_SDA_GPIO5_IO19        0x1e2
++		>;
++	};
++	pinctrl_lcd: lcd0grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SAI3_TXD_GPIO5_IO1		0x12
++		>;
++	};
++
++	pinctrl_pwm4: pwm4grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SAI3_MCLK_PWM4_OUT		0x12
++		>;
++	};
++
++	pinctrl_sai5: sai5grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SAI5_MCLK_SAI5_MCLK        0xd6
++			MX8MM_IOMUXC_SAI5_RXD0_SAI5_RX_DATA0    0xd6
++			MX8MM_IOMUXC_SAI5_RXD1_SAI5_TX_SYNC     0xd6
++			MX8MM_IOMUXC_SAI5_RXD2_SAI5_TX_BCLK     0xd6
++			MX8MM_IOMUXC_SAI5_RXD3_SAI5_TX_DATA0    0xd6
++		>;
++	};
++
++	pinctrl_tlv320: tlv320grp {
++		fsl,pins = <
++			MX8MM_IOMUXC_SAI3_RXFS_GPIO4_IO28       0x16
++			MX8MM_IOMUXC_SAI5_RXC_GPIO3_IO20        0x16
++		>;
++	};
++};
 diff --git a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso
-index 5d4f6a9c348b57ee903c7b74f8c8e2b318060945..74547642a34aadc60ace9a9cd2ddea37877d6aeb 100644
+index 74547642a34aadc60ace9a9cd2ddea37877d6aeb..28e8589f9f951ad79dfcd4d0ca2335fafdc683cd 100644
 --- a/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso
 +++ b/arch/arm64/boot/dts/freescale/imx8mm-phyboard-polis-peb-av-10.dtso
-@@ -13,13 +13,13 @@
- &{/} {
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_lcd>;
+@@ -6,205 +6,4 @@
+ /dts-v1/;
+ /plugin/;
+ 
+-#include <dt-bindings/clock/imx8mm-clock.h>
+-#include <dt-bindings/gpio/gpio.h>
+-#include "imx8mm-pinfunc.h"
+-
+-&{/} {
+-	backlight: backlight {
+-		compatible = "pwm-backlight";
+-		brightness-levels= <0 4 8 16 32 64 128 255>;
 -		default-brightness-level = <6>;
--		pwms = <&pwm4 0 50000 0>;
--		power-supply = <&reg_vdd_3v3_s>;
 -		enable-gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>;
- 		brightness-levels= <0 4 8 16 32 64 128 255>;
-+		default-brightness-level = <6>;
-+		enable-gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&pinctrl_lcd>;
-+		pinctrl-names = "default";
-+		power-supply = <&reg_vdd_3v3_s>;
-+		pwms = <&pwm4 0 50000 0>;
- 	};
- 
- 	panel {
-@@ -34,27 +34,27 @@ panel_in: endpoint {
- 		};
- 	};
- 
--	reg_sound_1v8: regulator-1v8 {
-+	reg_vcc_1v8_audio: regulator-1v8 {
- 		compatible = "regulator-fixed";
--		regulator-name = "VCC_1V8_Audio";
--		regulator-min-microvolt = <1800000>;
- 		regulator-max-microvolt = <1800000>;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-name = "VCC_1V8_Audio";
- 	};
- 
--	reg_sound_3v3: regulator-3v3 {
-+	reg_vcc_3v3_analog: regulator-3v3 {
- 		compatible = "regulator-fixed";
--		regulator-name = "VCC_3V3_Analog";
--		regulator-min-microvolt = <3300000>;
- 		regulator-max-microvolt = <3300000>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-name = "VCC_3V3_Analog";
- 	};
- 
- 	sound-peb-av-10 {
- 		compatible = "simple-audio-card";
--		simple-audio-card,name = "snd-peb-av-10";
--		simple-audio-card,format = "i2s";
- 		simple-audio-card,bitclock-master = <&dailink_master>;
-+		simple-audio-card,format = "i2s";
- 		simple-audio-card,frame-master = <&dailink_master>;
- 		simple-audio-card,mclk-fs = <32>;
-+		simple-audio-card,name = "snd-peb-av-10";
- 		simple-audio-card,widgets =
- 			"Line", "Line In",
- 			"Speaker", "Speaker",
-@@ -89,28 +89,28 @@ &bridge_out {
- 
- &i2c3 {
- 	clock-frequency = <400000>;
--	pinctrl-names = "default", "gpio";
- 	pinctrl-0 = <&pinctrl_i2c3>;
- 	pinctrl-1 = <&pinctrl_i2c3_gpio>;
--	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	pinctrl-names = "default", "gpio";
- 	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
-+	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 	status = "okay";
- 
- 	codec: codec@18 {
- 		compatible = "ti,tlv320aic3007";
+-		pinctrl-0 = <&pinctrl_lcd>;
 -		pinctrl-names = "default";
- 		pinctrl-0 = <&pinctrl_tlv320>;
-+		pinctrl-names = "default";
- 		#sound-dai-cells = <0>;
- 		reg = <0x18>;
+-		power-supply = <&reg_vdd_3v3_s>;
+-		pwms = <&pwm4 0 50000 0>;
+-	};
+-
+-	panel {
+-		compatible = "edt,etml1010g3dra";
+-		backlight = <&backlight>;
+-		power-supply = <&reg_vcc_3v3>;
+-
+-		port {
+-			panel_in: endpoint {
+-				remote-endpoint = <&bridge_out>;
+-			};
+-		};
+-	};
+-
+-	reg_vcc_1v8_audio: regulator-1v8 {
+-		compatible = "regulator-fixed";
+-		regulator-max-microvolt = <1800000>;
+-		regulator-min-microvolt = <1800000>;
+-		regulator-name = "VCC_1V8_Audio";
+-	};
+-
+-	reg_vcc_3v3_analog: regulator-3v3 {
+-		compatible = "regulator-fixed";
+-		regulator-max-microvolt = <3300000>;
+-		regulator-min-microvolt = <3300000>;
+-		regulator-name = "VCC_3V3_Analog";
+-	};
+-
+-	sound-peb-av-10 {
+-		compatible = "simple-audio-card";
+-		simple-audio-card,bitclock-master = <&dailink_master>;
+-		simple-audio-card,format = "i2s";
+-		simple-audio-card,frame-master = <&dailink_master>;
+-		simple-audio-card,mclk-fs = <32>;
+-		simple-audio-card,name = "snd-peb-av-10";
+-		simple-audio-card,widgets =
+-			"Line", "Line In",
+-			"Speaker", "Speaker",
+-			"Microphone", "Microphone Jack",
+-			"Headphone", "Headphone Jack";
+-		simple-audio-card,routing =
+-			"Speaker", "SPOP",
+-			"Speaker", "SPOM",
+-			"Headphone Jack", "HPLOUT",
+-			"Headphone Jack", "HPROUT",
+-			"LINE1L", "Line In",
+-			"LINE1R", "Line In",
+-			"MIC3R", "Microphone Jack",
+-			"Microphone Jack", "Mic Bias";
+-
+-		simple-audio-card,cpu {
+-			sound-dai = <&sai5>;
+-		};
+-
+-		dailink_master: simple-audio-card,codec {
+-			sound-dai = <&codec>;
+-			clocks = <&clk IMX8MM_CLK_SAI5>;
+-		};
+-	};
+-};
+-
+-&bridge_out {
+-	remote-endpoint = <&panel_in>;
+-	ti,lvds-vod-swing-clock-microvolt = <200000 600000>;
+-	ti,lvds-vod-swing-data-microvolt = <200000 600000>;
+-};
+-
+-&i2c3 {
+-	clock-frequency = <400000>;
+-	pinctrl-0 = <&pinctrl_i2c3>;
+-	pinctrl-1 = <&pinctrl_i2c3_gpio>;
+-	pinctrl-names = "default", "gpio";
+-	scl-gpios = <&gpio5 18 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+-	sda-gpios = <&gpio5 19 (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN)>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	status = "okay";
+-
+-	codec: codec@18 {
+-		compatible = "ti,tlv320aic3007";
+-		pinctrl-0 = <&pinctrl_tlv320>;
+-		pinctrl-names = "default";
+-		#sound-dai-cells = <0>;
+-		reg = <0x18>;
+-		ai3x-gpio-func = <0xd 0x0>;
+-		ai3x-micbias-vg = <2>;
 -		reset-gpios = <&gpio4 28 GPIO_ACTIVE_LOW>;
- 		ai3x-gpio-func = <0xd 0x0>;
- 		ai3x-micbias-vg = <2>;
--		AVDD-supply = <&reg_sound_3v3>;
--		IOVDD-supply = <&reg_sound_3v3>;
--		DRVDD-supply = <&reg_sound_3v3>;
--		DVDD-supply = <&reg_sound_1v8>;
-+		reset-gpios = <&gpio4 28 GPIO_ACTIVE_LOW>;
-+		AVDD-supply = <&reg_vcc_3v3_analog>;
-+		DRVDD-supply = <&reg_vcc_3v3_analog>;
-+		DVDD-supply = <&reg_vcc_1v8_audio>;
-+		IOVDD-supply = <&reg_vcc_3v3_analog>;
- 	};
- 
- 	eeprom@57 {
-@@ -138,8 +138,8 @@ &mipi_dsi {
- };
- 
- &pwm4 {
+-		AVDD-supply = <&reg_vcc_3v3_analog>;
+-		DRVDD-supply = <&reg_vcc_3v3_analog>;
+-		DVDD-supply = <&reg_vcc_1v8_audio>;
+-		IOVDD-supply = <&reg_vcc_3v3_analog>;
+-	};
+-
+-	eeprom@57 {
+-		compatible = "atmel,24c32";
+-		pagesize = <32>;
+-		reg = <0x57>;
+-		vcc-supply = <&reg_vdd_3v3_s>;
+-	};
+-
+-	eeprom@5f {
+-		compatible = "atmel,24c32";
+-		pagesize = <32>;
+-		reg = <0x5f>;
+-		size = <32>;
+-		vcc-supply = <&reg_vdd_3v3_s>;
+-	};
+-};
+-
+-&lcdif {
+-	status = "okay";
+-};
+-
+-&mipi_dsi {
+-	status = "okay";
+-};
+-
+-&pwm4 {
+-	pinctrl-0 = <&pinctrl_pwm4>;
 -	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pwm4>;
-+	pinctrl-names = "default";
- 	status = "okay";
- };
- 
-@@ -154,8 +154,8 @@ &sai5 {
- 	clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3", "pll8k",
- 			"pll11k";
- 	fsl,sai-mclk-direction-output;
+-	status = "okay";
+-};
+-
+-&sai5 {
+-	assigned-clocks = <&clk IMX8MM_CLK_SAI5>;
+-	assigned-clock-parents = <&clk IMX8MM_AUDIO_PLL2_OUT>;
+-	assigned-clock-rates = <11289600>;
+-	clocks = <&clk IMX8MM_CLK_SAI5_IPG>, <&clk IMX8MM_CLK_DUMMY>,
+-		<&clk IMX8MM_CLK_SAI5_ROOT>, <&clk IMX8MM_CLK_DUMMY>,
+-		<&clk IMX8MM_CLK_DUMMY>, <&clk IMX8MM_AUDIO_PLL1_OUT>,
+-		<&clk IMX8MM_AUDIO_PLL2_OUT>;
+-	clock-names = "bus", "mclk0", "mclk1", "mclk2", "mclk3", "pll8k",
+-			"pll11k";
+-	fsl,sai-mclk-direction-output;
+-	pinctrl-0 = <&pinctrl_sai5>;
 -	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_sai5>;
-+	pinctrl-names = "default";
- 	#sound-dai-cells = <0>;
- 	status = "okay";
- };
+-	#sound-dai-cells = <0>;
+-	status = "okay";
+-};
+-
+-&sn65dsi83 {
+-	status = "okay";
+-};
+-
+-&iomuxc {
+-
+-	pinctrl_i2c3: i2c3grp {
+-		fsl,pins = <
+-			MX8MM_IOMUXC_I2C3_SCL_I2C3_SCL          0x400001c2
+-			MX8MM_IOMUXC_I2C3_SDA_I2C3_SDA          0x400001c2
+-		>;
+-	};
+-
+-	pinctrl_i2c3_gpio: i2c3gpiogrp {
+-		fsl,pins = <
+-			MX8MM_IOMUXC_I2C3_SCL_GPIO5_IO18        0x1e2
+-			MX8MM_IOMUXC_I2C3_SDA_GPIO5_IO19        0x1e2
+-		>;
+-	};
+-	pinctrl_lcd: lcd0grp {
+-		fsl,pins = <
+-			MX8MM_IOMUXC_SAI3_TXD_GPIO5_IO1		0x12
+-		>;
+-	};
+-
+-	pinctrl_pwm4: pwm4grp {
+-		fsl,pins = <
+-			MX8MM_IOMUXC_SAI3_MCLK_PWM4_OUT		0x12
+-		>;
+-	};
+-
+-	pinctrl_sai5: sai5grp {
+-		fsl,pins = <
+-			MX8MM_IOMUXC_SAI5_MCLK_SAI5_MCLK        0xd6
+-			MX8MM_IOMUXC_SAI5_RXD0_SAI5_RX_DATA0    0xd6
+-			MX8MM_IOMUXC_SAI5_RXD1_SAI5_TX_SYNC     0xd6
+-			MX8MM_IOMUXC_SAI5_RXD2_SAI5_TX_BCLK     0xd6
+-			MX8MM_IOMUXC_SAI5_RXD3_SAI5_TX_DATA0    0xd6
+-		>;
+-	};
+-
+-	pinctrl_tlv320: tlv320grp {
+-		fsl,pins = <
+-			MX8MM_IOMUXC_SAI3_RXFS_GPIO4_IO28       0x16
+-			MX8MM_IOMUXC_SAI5_RXC_GPIO3_IO20        0x16
+-		>;
+-	};
+-};
++#include "imx8mm-phyboard-polis-peb-av-10.dtsi"
 
 -- 
 2.43.0
