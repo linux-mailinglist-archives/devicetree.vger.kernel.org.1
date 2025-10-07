@@ -1,98 +1,202 @@
-Return-Path: <devicetree+bounces-224178-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224179-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D9DCBC158B
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 14:19:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB3D0BC15F0
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 14:33:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AF0F188A1D7
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 12:19:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4037188C5E7
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 12:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F03472DCF43;
-	Tue,  7 Oct 2025 12:19:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Y2/8exEl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB9F82D978D;
+	Tue,  7 Oct 2025 12:33:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A27732DC330;
-	Tue,  7 Oct 2025 12:18:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4912C19006B
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 12:33:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759839541; cv=none; b=rclS6iE3eI8wd7LyXq8CYW1mfxbcMoEYaO1QAq1hmeJrFKBmQj8XGgHaf0vxCzWXK3zb8bp9L+M0H9SUrOLrEhaan7Pe/zt5+/96Gfvqbm5VYIisEAN4othhp1SdAMQK3b0P6xn/wdU5tdtthI/WVxm50UeIoYqbL5guB5cX480=
+	t=1759840418; cv=none; b=q0sShjtp0tN0tCghZECFumzoxwNf1tdXaHz1ALnVX3uFiclmnnr0l7g2J3csBbKN1RR0LIYJw4Dg8eG3qLy9UnRz0C+S+Jy8/0i311sZYqB1L9oStBCddMjARGxgzDD28qZ8EStyLyOkBOIVsohniDl7k74HA1gyDLV6QyXQEB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759839541; c=relaxed/simple;
-	bh=bZHluZBNV11Zf3vbOrys+ScLVNV5qSrBfiC1kacumGs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YKR20da6Qjw13uxmsiJLn6nPVl+hoLF5oKHg7AEXngtlOeaXhrOUo8CwKUZ2Nj0S30Fbq/uUcj23DYmQtUkrWoVRBaz9SwG8HR98eQfK8z1hqH6patU3JOS+xpS1AuckBePqo+B0YHRGvHE5wDV+71ctdt5uUdaMb52E6ajQ1xg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Y2/8exEl; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=AhQrHnwyOhDOXQIAuypnMzei7NY5hbIJrqPdUv7/8jM=; b=Y2/8exEllfLEHpA5WTArpPHWTZ
-	sMw+ILUuC+Bqlfe5jyqeB6ja2vulvhvPkSPZw9hp1VAQkBFpviEoTF4govHa1mrvYL3lPoyEKVoeU
-	BmHurfwh47cFYRr/C1Jh/npibUcHe/wgh9RG7E1evbCOlo9pz76UfmAG17cpYSf+mcq0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1v66eZ-00AMew-KR; Tue, 07 Oct 2025 14:18:51 +0200
-Date: Tue, 7 Oct 2025 14:18:51 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Ariel D'Alessandro <ariel.dalessandro@collabora.com>,
-	andrew+netdev@lunn.ch, conor+dt@kernel.org, kernel@collabora.com,
-	krzk+dt@kernel.org, angelogioacchino.delregno@collabora.com,
-	kuba@kernel.org, devicetree@vger.kernel.org,
-	linux-bluetooth@vger.kernel.org, davem@davemloft.net,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	pabeni@redhat.com, edumazet@google.com
-Subject: Re: [PATCH v3] dt-bindings: net: Convert Marvell 8897/8997 bindings
- to DT schema
-Message-ID: <89bb83ec-200c-4ed6-bfd8-ac55375e4ee1@lunn.ch>
-References: <20251001183320.83221-1-ariel.dalessandro@collabora.com>
- <175943240204.235529.17735630695826458855.robh@kernel.org>
- <CABBYNZKSFCes1ag0oiEptKpifb=gqLt1LQ+mdvF8tYRj8uDDuQ@mail.gmail.com>
- <CAL_Jsq+Y6uuyiRo+UV-nz+TyjQzxx4H12auHHy6RdsLtThefhA@mail.gmail.com>
- <CABBYNZKxGNXS2m7_VAf1d_Ci3uW4xG2NamXZ0UVaHvKvHi07Jg@mail.gmail.com>
+	s=arc-20240116; t=1759840418; c=relaxed/simple;
+	bh=DWZcXv4LGKuHQYrqbAmttjXhAkTF8/LAO+/rgtkGZWg=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rPqoxA2SrL1HlUxiBQtuWIlxL3krs0k3y0hvgjdthlsDcsq+Yf9xZ3ReMvXnJe1Ulk5KqSPxZgZhH7CJTt194Lc+1nK156eAWlPfQ96DihL1dhhQ/nQMWQwJd8K7rvImaQfgfYl/vJpAZGWN+auz0s6faJ2MypnKnKmt5oFT0dc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=unknown smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=tempfail smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
+	by Atcsqr.andestech.com with ESMTPS id 597CX1bh055627
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 7 Oct 2025 20:33:01 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from swlinux02 (10.0.15.183) by ATCPCS31.andestech.com (10.0.1.89)
+ with Microsoft SMTP Server id 14.3.498.0; Tue, 7 Oct 2025 20:33:01 +0800
+Date: Tue, 7 Oct 2025 20:33:01 +0800
+From: CL Wang <cl634@andestech.com>
+To: Conor Dooley <conor@kernel.org>
+CC: <vkoul@kernel.org>, <dmaengine@vger.kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <tim609@andestech.com>, <cl634@andestech.com>
+Subject: Re: [PATCH V1 1/2] dt-bindings: dmaengine: Add support for
+ ATCDMAC300 DMA engine
+Message-ID: <aOUIfaZY7-eUYoOS@swlinux02>
+References: <20251002131659.973955-1-cl634@andestech.com>
+ <20251002131659.973955-2-cl634@andestech.com>
+ <20251002-absolute-spinning-f899e75b2c4a@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <CABBYNZKxGNXS2m7_VAf1d_Ci3uW4xG2NamXZ0UVaHvKvHi07Jg@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251002-absolute-spinning-f899e75b2c4a@spud>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 597CX1bh055627
 
-> > > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > > >
-> > > > You'll probably have to resend this after rc1.
-> > >
-> > > In that case I'd like to have a Fixes tag so I can remember to send it
-> > > as rc1 is tagged.
-> >
-> > A Fixes tag is not appropriate for a conversion to DT schema.
+Hi Conor,
+
+Thanks for your review.
+
+Yes, the DMA driver supports the Qilai platform. I have updated the DTS binding as shown below.  
+Could you please take a look and let me know if anything still needs to be adjusted?
+
+ properties:
+   compatible:
+-    const: andestech,atcdmac300
++    oneOf:
++      - items:
++          - enum:
++              - andestech,qilai-dma
++          - const: andestech,atcdmac300
++      - const: andestech,atcdmac300
+...
+         dma-controller@f0c00000 {
+-            compatible = "andestech,atcdmac300";
++            compatible = "andestech,qilai-dma", "andestech,atcdmac300";
+
+Thank you again for your feedback.
+
+Best regards,  
+CL
+
+On Thu, Oct 02, 2025 at 07:40:35PM +0100, Conor Dooley wrote:
+> [EXTERNAL MAIL]
+
+> Date: Thu, 2 Oct 2025 19:40:35 +0100
+> From: Conor Dooley <conor@kernel.org>
+> To: CL Wang <cl634@andestech.com>
+> Cc: vkoul@kernel.org, dmaengine@vger.kernel.org, robh@kernel.org,
+>  krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+>  linux-kernel@vger.kernel.org, tim609@andestech.com
+> Subject: Re: [PATCH V1 1/2] dt-bindings: dmaengine: Add support for
+>  ATCDMAC300 DMA engine
 > 
-> Ok, but then how do you justify merging it for an RC? Or I'm
-> misunderstanding and that should just be merged to bluetooth-next and
-> wait for the next merge window? In that case I can just merge it right
-> away.
+> On Thu, Oct 02, 2025 at 09:16:58PM +0800, CL Wang wrote:
+> > Document devicetree bindings for Andes ATCDMAC300 DMA engine
+> > 
+> > Signed-off-by: CL Wang <cl634@andestech.com>
+> > ---
+> >  .../bindings/dma/andestech,atcdmac300.yaml    | 51 +++++++++++++++++++
+> >  MAINTAINERS                                   |  6 +++
+> >  2 files changed, 57 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/dma/andestech,atcdmac300.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/dma/andestech,atcdmac300.yaml b/Documentation/devicetree/bindings/dma/andestech,atcdmac300.yaml
+> > new file mode 100644
+> > index 000000000000..769694616517
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/dma/andestech,atcdmac300.yaml
+> > @@ -0,0 +1,51 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/dma/andestech,atcdmac300.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Andes ATCDMAC300 DMA Controller
+> > +
+> > +maintainers:
+> > +  - CL Wang <cl634@andestech.com>
+> > +
+> > +allOf:
+> > +  - $ref: dma-controller.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: andestech,atcdmac300
+> 
+> "atcdmac300" sounds like the name of an IP block. What platforms are
+> actually using this? They should have platform-specific compatibles, for
+> example, "andestech,qilai-dma" if that's the platform where this is
+> supported.
+> 
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  "#dma-cells":
+> > +    const: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - "#dma-cells"
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +
+> > +    soc {
+> > +        #address-cells = <2>;
+> > +        #size-cells = <2>;
+> > +
+> > +        dma-controller@f0c00000 {
+> > +            compatible = "andestech,atcdmac300";
+> > +            reg = <0x0 0xf0c00000 0x0 0x1000>;
+> > +            interrupts = <10 IRQ_TYPE_LEVEL_HIGH>;
+> > +            #dma-cells = <1>;
+> > +        };
+> > +    };
+> > +...
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index fe168477caa4..dd3272cdadd6 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -1778,6 +1778,12 @@ S:	Supported
+> >  F:	drivers/clk/analogbits/*
+> >  F:	include/linux/clk/analogbits*
+> >  
+> > +ANDES DMA DRIVER
+> > +M:	CL Wang <cl634@andestech.com>
+> > +S:	Supported
+> > +F:	Documentation/devicetree/bindings/dma/andestech,atcdmac300.yaml
+> > +F:	drivers/dma/atcdmac300*
+> > +
+> >  ANDROID DRIVERS
+> >  M:	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> >  M:	Arve Hjønnevåg <arve@android.com>
+> > -- 
+> > 2.34.1
+> > 
 
-Most subsystems don't accept new patches during the merge window
-because they will need to do a rebase when -rc1 is pushed. And
-rebasing of patches is frowned upon.
 
-By requesting the developers to repost after -rc1 is out, and the
-subsystem tree has been updated to -rc1, the Maintainers avoids the
-rebase, and pushes the work to the developer to rebase and retest,
-leaving the Maintainers to do more useful work.
 
-	Andrew
 
