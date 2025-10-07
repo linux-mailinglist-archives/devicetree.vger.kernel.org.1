@@ -1,83 +1,80 @@
-Return-Path: <devicetree+bounces-224039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F415BC0751
-	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 09:04:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AEAEBC0763
+	for <lists+devicetree@lfdr.de>; Tue, 07 Oct 2025 09:11:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D1E43C3915
-	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 07:04:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 004BC3C198D
+	for <lists+devicetree@lfdr.de>; Tue,  7 Oct 2025 07:11:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CB4F22FE15;
-	Tue,  7 Oct 2025 07:04:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B32FD2253EE;
+	Tue,  7 Oct 2025 07:11:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ffSpke6p"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="feGyWaZT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7579982866
-	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 07:04:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 070062CCC0
+	for <devicetree@vger.kernel.org>; Tue,  7 Oct 2025 07:11:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759820663; cv=none; b=ka2cg1BlaUBPFp8BsxJAiycf0PLKaYtjnvOVzSbMBVEq6+EwjlZ5ocT6RQxsFaqokMRjgA2MhlsSvGlHP/xAFy6kAvtwPQ4DtzzFHhLKqVBotqnmBGlPNOEuU9NnuQ6vLY36oAS8pY2TJj2EFxwEclVwdgO3PhZJjrMVtmURgVY=
+	t=1759821073; cv=none; b=sc2M1ZWDLknAoGeN/yt75nBYmx6yd2a3YSqVAp30gtA6UEoj2zL1u+KtCzHAqyO1e5PiyNc1L1FWcH2uSZBe8zKxmCzWHS1ZvfEHBtt2cvfJiCKTw1Fqzp/QkkuwjFPsAR4oBtbQxf0c+HHMugnkTItnNajZbZhT7gJ7rcWkB/Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759820663; c=relaxed/simple;
-	bh=bm/XxuLbuJjEERWca3veD6Y2ATrNprN8+avE4IFimfE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ox4Ucbp3MZzL7A92GON2trwNheuOTq/N1i/y1bGSGDEGkc92HyO4DYp/TDAXp1YLSrSNGuMh9RMoecmOq7MYkHkTkN8OcoZYTolGMhqMn8jrfb5oAMKcEqxMqOSRsxcBIUJiQRmOZSqyzDKkbQqQ2F1NvzfgGTk79ShUuXS3BnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ffSpke6p; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-46e6a6a5e42so29275775e9.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 00:04:21 -0700 (PDT)
+	s=arc-20240116; t=1759821073; c=relaxed/simple;
+	bh=7A5bW2hbfPv20QSyD+ba5k0L363+L7dhKHOke9K0hPM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Rpy4TgaRwJkzdCORtxn8ZrO2uh6jPlUF876rUrq613SYB3HyKTvp7+xJ/YKo6DQHCFwsiKQWCkiLblPE5F8osYHc2WHQ0ST57EyJh7QNaVOEKL3WaUbzndY+MDsIud3XsRse3oc6tzWRBAv11aOYpkkhyggkKOIppLia5v89tCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=feGyWaZT; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-7835321bc98so5629006b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 00:11:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759820660; x=1760425460; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Q5jfYhct40BBgGb9CM8b7f7J0vVnmlW3SBqVjL9y/Jw=;
-        b=ffSpke6pr6TLvqL6dU7fFhmjQC+TTyOnIUd2tkl6hxBXfzSStKqGsHlFBDFl/eds9R
-         VGhvJZG3lMVY2+v07hbbss9DuCW0TB2yPtLik+7aNrQBg+EnStd5sj68zU/6uwl5hqbD
-         1eDOCudk/JUawyqwMXwM1Rklivl+Wp2UlDqCx/e8CIcMGXEV1N/jqLRUr4r0OfaSCZ7c
-         DTbNeop33GLpYYCpaums6DAAObeq3zO66aG2rUm7E7w1vS2hGzelc1Az7C44FquBvWBL
-         Y6TFNEkqrdxiA7Zi3itMbNzgw4UdGZYVFpugD0QgSNKiBzSOFmKrEgdZl2ljUrl2ioQi
-         XSNw==
+        d=gmail.com; s=20230601; t=1759821071; x=1760425871; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cz8Uq6JRWEUUJyfozPnxNFaDcuM+MyDcm3nmjddxu90=;
+        b=feGyWaZTazpKOqL0hY32fjxNccGZMgEvtNziAUAHO7dEgT65Yp6uZ5RyAF5sid5N6a
+         WPs+I6CVEluE3c6PT+s0K4lGEPNFBERwTd+Fk6kPIa7iTtqFx37izkraxFAdMEXxG10N
+         xmWRR3EggHYw1eJAJxa3BkQCr1RAnHqL/v9XMZ6l7pNtA00KyfHRpfmqGh7m6BrwrqcI
+         Rnh3+GYtuoSTavsF2jaqR0vnu+k7QEftwhPiiRV7oh2GaSz/4fsbPWHVXMf7AToZWyoQ
+         E6NaBPI4Og351AAbRsKHCzpbZYxmYKYRXZ32f6aaluKzIs7HXOZIUGZMaUtrDToGfuJY
+         9qlg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759820660; x=1760425460;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Q5jfYhct40BBgGb9CM8b7f7J0vVnmlW3SBqVjL9y/Jw=;
-        b=j3sAIQZiTYztGHh6MqBjsLXmXBly1SuLW1reZ1v6G4rIK5vZvK4V+bS6NLD/rpjG7P
-         IihDqvfJDTI8U8VNiMCDY0GOD8pWS5W2oWcWUafWYbUvXC40yLxySFNgfRHEp4h5EckY
-         rR7OSPfCv6/i+/ikXexgav35XXbe4BLti4zllRl/4xlpTVAHfabd74So6LdPMrYpe3X4
-         EOk2iZdqwTw482hH+LbhITDqGtWaY7FI7kJS2NXCu68e0MC6g2selFM+FRT2x1De1dUN
-         mp9nVqXMLF0o1GYLgwCDoO4GfzSvXAcxCGBAjdOar7+L+C43+zLgpw3enNO0OyUud86/
-         x8wg==
-X-Forwarded-Encrypted: i=1; AJvYcCWGZu2Yjo9+eytpeGcOHkgaEO9EE39Eryqotv5ZHYc4y+ZIUH933f2scdKZgttYYyQPRZurj6pC9iI1@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJ4BKN5a6hW4dKrlZ60L5nQ8SZch4ZnVEDCSo+SMreJlZlJixL
-	NGGJH5H0754qsJxx8Tn9QXgHF7y0fvVOqlHMfzaB1vwc8XVsMHe6LyMze4PYrS32bxo=
-X-Gm-Gg: ASbGncukYhacBjAvZ1aB34wS97nZBdnblawomfQ629/IrWovaBB5U6cMtZCrOuntjCU
-	GY+ZPX89gnzt3qNqVuPEt6WHz0gA3eOCKSPtGXkPYt7c7hzlhWHkMy6+K6YrXsGL2NLwx5GZoI6
-	dmWnF5YaZ3adKu4bUVJCoN6dnpjLJ1hYnoGLQ8UkKH7e4NKCARqCyOuEsnXpJHQEjo3AabzBIpP
-	RGJXVYi4rBRe6ihvNzJD3aN/De3fQUJIwwx+AN5EmHt1Sh9jYfGkJLvRubyPCinyV5sz9yriF88
-	ETYmkMQfR8j3eXUog+DEFgKRQ7GLKQdoFQprl/J+fCpXD3Obq5Xgm8pBUXXlF6aLLj/Q7UimOhG
-	3A+oOybo1nbRULwHlGFyEglopzzgo+y7fCw0JyHAjf3T/iLxyoqudyr4bdr41k6w2Hli7u1INXv
-	CPwOEGtfJSADAaUptk60k796JZsLM=
-X-Google-Smtp-Source: AGHT+IGoN1vXyfIWvY9dZBg/by2aVbZ4Hg/Ny705+ggR23c2qEnyCMbvNJdHUHW82VdZhcisvUmTmw==
-X-Received: by 2002:a05:600c:8284:b0:46e:3d50:360e with SMTP id 5b1f17b1804b1-46e7113f799mr110498325e9.18.1759820659679;
-        Tue, 07 Oct 2025 00:04:19 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:bd88:41d2:33ce:f74a? ([2a01:e0a:3d9:2080:bd88:41d2:33ce:f74a])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8f0846sm24397888f8f.45.2025.10.07.00.04.18
+        d=1e100.net; s=20230601; t=1759821071; x=1760425871;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cz8Uq6JRWEUUJyfozPnxNFaDcuM+MyDcm3nmjddxu90=;
+        b=ALs4dRsbECHI1GhZyvja6URHxv7vXhfnckj4jsx+znHC9i6E2GKQAnsN1CtRGKQPox
+         0XG2a/Q5T+ZN+H6ipv33tm0Zam/DwKDaZFrdaVdHXjpcNG0O4YeRNrzKTV/tYeZDDulq
+         pzxYQvkQbEJpBHz8sEroUK5VPv2j4lpMh1vCja+RvaO7YrpRmWy5h9Bln9Mr1Inam09r
+         BgUadOA4CCXcgIGBJthYIteb5lOl0926lLZF89Q0ZWwYB0+6gkhBNKKUtQ+GmkqxMBqT
+         IRWTt8FTODj0O3NGtjRk3AomtvUBepLlAfoURM2iv0i4+jHV92GzfM98bWW5nFIv6FDM
+         6rGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW25vuCQ+8YkGCh6OhKFd3WuAojEIgRnn5nCNzVLFMKrQ2G1RGLE7G6jdBBkmrHXuofShtKtgvF7JyB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1y6EG3Q8CFhrex8OLbzszJ6O9N8YRcFnoy4ICbJXfYF41UeFW
+	/U1jQb2DTKGfGu3zcWln/D0HNmEymNpfolcf98kpXWJKPzGDTt3/2RRk
+X-Gm-Gg: ASbGncsn714cn+6MGTvoITOjzJqpWsw5vvjQ59ok3Xddd0CSYuacMcad8yHXrzN/IY7
+	w7uOda90ki4NwcmCGrcKc5CtKvCOnwYQbjYc9X6XBuHm/c0ojK6MVJEdL1mEN7uw++p+5Umf6X6
+	jp/3lFBZSPGJMBZdhVTSvTaDk/8tDkHU9XPJZbBZNOCSeWqyQU8V5IOt0gdQjGJgxz53MlKpv2f
+	5qHuO5kJZFKf3uyTySK2N/Xbd9/3YvefgEdTtiGuFNNOcuQF84Nf2+oz8v5dpJXow/miKSQcPP6
+	h8JnI8taswwmFWPGQ0ZD5F0v5VjL/ovzCko3mSI1J9vGmKZ7V1LIgxR6qaos04Xqylt+0dPtOVF
+	XQGr9YkkdU4fWBRkScoFdCGSb58+v4eGY3vA1pJGE2SVCWEol
+X-Google-Smtp-Source: AGHT+IHQPTeQxqIh3DmyDul63D0hdktzTIH+hAqRQcLBDO2L74AlzSZcN3PTvolNafM1O2PLFa55Ow==
+X-Received: by 2002:a05:6a20:6a08:b0:2ea:41f1:d53a with SMTP id adf61e73a8af0-32b620d9121mr18200629637.41.1759821071157;
+        Tue, 07 Oct 2025 00:11:11 -0700 (PDT)
+Received: from [192.168.0.13] ([172.92.174.155])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78b01fb0548sm14737938b3a.27.2025.10.07.00.11.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Oct 2025 00:04:19 -0700 (PDT)
-Message-ID: <de955ab3-26de-43ed-a450-d58ffe0df7af@linaro.org>
-Date: Tue, 7 Oct 2025 09:04:17 +0200
+        Tue, 07 Oct 2025 00:11:10 -0700 (PDT)
+Message-ID: <793a00d6-a1ae-4928-a326-3d276a30bdbd@gmail.com>
+Date: Tue, 7 Oct 2025 00:09:50 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,121 +82,190 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH RFC 4/6] sm8650-hdk: Enable I2S for HDMI
-To: Alexey Klimov <alexey.klimov@linaro.org>,
- Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 05/11] rvtrace: Add trace encoder driver
+To: Anup Patel <apatel@ventanamicro.com>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251006-topic-sm8x50-next-hdk-i2s-v1-0-184b15a87e0a@linaro.org>
- <20251006-topic-sm8x50-next-hdk-i2s-v1-4-184b15a87e0a@linaro.org>
- <DDBPGIDN8SKS.2GF6TZC6KGXVI@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <DDBPGIDN8SKS.2GF6TZC6KGXVI@linaro.org>
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Greg KH <gregkh@linuxfoundation.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+ Ian Rogers <irogers@google.com>
+Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+ Alexandre Ghiti <alex@ghiti.fr>, Atish Patra <atish.patra@linux.dev>,
+ Peter Zijlstra <peterz@infradead.org>, Anup Patel <anup@brainfault.org>,
+ Adrian Hunter <adrian.hunter@intel.com>, linux-kernel@vger.kernel.org,
+ Mayuresh Chitale <mchitale@ventanamicro.com>, Ingo Molnar
+ <mingo@redhat.com>, Jiri Olsa <jolsa@kernel.org>,
+ Mayuresh Chitale <mchitale@gmail.com>, Namhyung Kim <namhyung@kernel.org>,
+ linux-riscv@lists.infradead.org, Andrew Jones <ajones@ventanamicro.com>,
+ Liang Kan <kan.liang@linux.intel.com>
+References: <20251002060732.100213-1-apatel@ventanamicro.com>
+ <20251002060732.100213-6-apatel@ventanamicro.com>
+Content-Language: en-US
+From: Bo Gan <ganboing@gmail.com>
+In-Reply-To: <20251002060732.100213-6-apatel@ventanamicro.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/7/25 03:39, Alexey Klimov wrote:
-> On Mon Oct 6, 2025 at 7:37 PM BST, Neil Armstrong wrote:
->> Add the necessary nodes to configure the right I2S interface
->> to output audio via the DSI HDMI bridge.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8650-hdk.dts | 30 +++++++++++++++++++++++++
->>   arch/arm64/boot/dts/qcom/sm8650.dtsi    | 40 +++++++++++++++++++++++++++++++++
->>   2 files changed, 70 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
->> index 87d7190dc991b11f5d1162aabb693dcadd198c51..1286ce95235d5544322a1877292cbdd426298c11 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
->> +++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
->> @@ -171,6 +171,19 @@ sound {
->>   				"TX SWR_INPUT1", "ADC2_OUTPUT",
->>   				"TX SWR_INPUT3", "ADC4_OUTPUT";
->>   
->> +		pinctrl-0 = <&i2s0_default_state>, <&audio_mclk0_default_state>;
->> +		pinctrl-names = "default";
->> +
->> +		clocks = <&q6prmcc LPASS_CLK_ID_PRI_MI2S_IBIT LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
->> +			 <&q6prmcc LPASS_CLK_ID_MCLK_1 LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
->> +		clock-names = "pri-mi2s",
->> +			      "pri-mclk";
->> +
->> +		assigned-clocks = <&q6prmcc LPASS_CLK_ID_PRI_MI2S_IBIT LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
->> +				  <&q6prmcc LPASS_CLK_ID_MCLK_1 LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
->> +		assigned-clock-rates = <1536000>,
->> +				       <24576000>;
->> +
->>   		wcd-playback-dai-link {
->>   			link-name = "WCD Playback";
->>   
->> @@ -218,6 +231,22 @@ platform {
->>   				sound-dai = <&q6apm>;
->>   			};
->>   		};
->> +
->> +		pri-mi2s-dai-link {
->> +			link-name = "Primary MI2S Playback";
+On 10/1/25 23:07, Anup Patel wrote:
+> From: Mayuresh Chitale <mchitale@ventanamicro.com>
 > 
-> Is it HDMI only audio playback or does it have switches to playback it as raw i2s
-> (when external DAC is needed)?
+> Add initial implementation of RISC-V trace encoder driver. The encoder
+> is defined in the RISC-V Trace Control Interface specification.
+> 
+> Co-developed-by: Anup Patel <apatel@ventanamicro.com>
+> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
+> Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
+> ---
+>   drivers/hwtracing/rvtrace/Kconfig           |   7 ++
+>   drivers/hwtracing/rvtrace/Makefile          |   1 +
+>   drivers/hwtracing/rvtrace/rvtrace-encoder.c | 107 ++++++++++++++++++++
+>   3 files changed, 115 insertions(+)
+>   create mode 100644 drivers/hwtracing/rvtrace/rvtrace-encoder.c
+> 
+> diff --git a/drivers/hwtracing/rvtrace/Kconfig b/drivers/hwtracing/rvtrace/Kconfig
+> index f8f6feea1953..ba35c05f3f54 100644
+> --- a/drivers/hwtracing/rvtrace/Kconfig
+> +++ b/drivers/hwtracing/rvtrace/Kconfig
+> @@ -14,3 +14,10 @@ menuconfig RVTRACE
+>   
+>   	  To compile this driver as a module, choose M here: the module
+>   	  will be called rvtrace.
+> +
+> +config RVTRACE_ENCODER
+> +	tristate "RISC-V Trace Encoder driver"
+> +	depends on RVTRACE
+> +	default y
+> +	help
+> +	  This driver provides support for RISC-V Trace Encoder component.
+> diff --git a/drivers/hwtracing/rvtrace/Makefile b/drivers/hwtracing/rvtrace/Makefile
+> index 988525a379cf..f320693a1fc5 100644
+> --- a/drivers/hwtracing/rvtrace/Makefile
+> +++ b/drivers/hwtracing/rvtrace/Makefile
+> @@ -2,3 +2,4 @@
+>   
+>   obj-$(CONFIG_RVTRACE) += rvtrace.o
+>   rvtrace-y := rvtrace-core.o rvtrace-platform.o
+> +obj-$(CONFIG_RVTRACE_ENCODER) += rvtrace-encoder.o
+> diff --git a/drivers/hwtracing/rvtrace/rvtrace-encoder.c b/drivers/hwtracing/rvtrace/rvtrace-encoder.c
+> new file mode 100644
+> index 000000000000..45d1c5b12c51
+> --- /dev/null
+> +++ b/drivers/hwtracing/rvtrace/rvtrace-encoder.c
+> @@ -0,0 +1,107 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2025 Ventana Micro Systems Inc.
+> + */
+> +
+> +#include <linux/device.h>
+> +#include <linux/io.h>
+> +#include <linux/of.h>
+> +#include <linux/of_graph.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/property.h>
+> +#include <linux/rvtrace.h>
+> +#include <linux/types.h>
+> +
+> +#define RVTRACE_COMPONENT_CTRL_ITRACE_MASK	0x1
+> +#define RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT	2
+> +#define RVTRACE_COMPONENT_CTRL_INSTMODE_MASK	0x7
+> +#define RVTRACE_COMPONENT_CTRL_INSTMODE_SHIFT	4
+> +
+> +static int rvtrace_encoder_start(struct rvtrace_component *comp)
+> +{
+> +	u32 val;
+> +
+> +	val = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
+> +	val |= BIT(RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT);
+> +	rvtrace_write32(comp->pdata, val, RVTRACE_COMPONENT_CTRL_OFFSET);
+> +	return rvtrace_poll_bit(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET,
+> +				RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT, 1,
+> +				comp->pdata->control_poll_timeout_usecs);
+> +}
+> +
+> +static int rvtrace_encoder_stop(struct rvtrace_component *comp)
+> +{
+> +	u32 val;
+> +
+> +	val = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
+> +	val &= ~BIT(RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT);
+> +	rvtrace_write32(comp->pdata, val, RVTRACE_COMPONENT_CTRL_OFFSET);
+> +	return rvtrace_poll_bit(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET,
+> +				RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT, 0,
+> +				comp->pdata->control_poll_timeout_usecs);
+> +}
+> +
+> +static void rvtrace_encoder_setmode(struct rvtrace_component *comp, u32 mode)
+> +{
+> +	u32 val;
+> +
+> +	val = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
+> +	val |= (mode << RVTRACE_COMPONENT_CTRL_INSTMODE_SHIFT);
+> +	rvtrace_write32(comp->pdata, val, RVTRACE_COMPONENT_CTRL_OFFSET);
+> +}
+> +
+> +static int rvtrace_encoder_probe(struct rvtrace_component *comp)
+> +{
+> +	int ret;
+> +
+> +	rvtrace_encoder_setmode(comp, 0x6);
+> +	ret = rvtrace_enable_component(comp);
+> +	if (ret)
+> +		return dev_err_probe(&comp->dev, ret, "failed to enable encoder.\n");
+> +
+> +	return 0;
+> +}
+Trace components needs proper probing before use. Refer to Control Interface
+Spec: https://github.com/riscv-non-isa/tg-nexus-trace/releases/download/1.0_Ratified/RISC-V-Trace-Control-Interface.pdf
+Chapter 5. This versioning applies to all components, e.g., sinks/funnels...
+The driver should check the HW impl version with what it supports, and
+rejects registering the component(s) if not supported. Chapter 5. has more
+details.
 
-The HDK has i2s lines of the secondary i2s on the LS connector, but without any additional
-boards connected it has no on-board i2s dacs.
+> +
+> +static void rvtrace_encoder_remove(struct rvtrace_component *comp)
+> +{
+> +	int ret;
+> +
+> +	ret = rvtrace_disable_component(comp);
+> +	if (ret)
+> +		dev_err(&comp->dev, "failed to disable encoder.\n");
+> +}
+> +
+> +static struct rvtrace_component_id rvtrace_encoder_ids[] = {
+> +	{ .type = RVTRACE_COMPONENT_TYPE_ENCODER,
+> +	  .version = rvtrace_component_mkversion(1, 0), },
+> +	{},
+> +};
+> +
+> +static struct rvtrace_driver rvtrace_encoder_driver = {
+> +	.id_table = rvtrace_encoder_ids,
+> +	.start = rvtrace_encoder_start,
+> +	.stop = rvtrace_encoder_stop,
+> +	.probe = rvtrace_encoder_probe,
+> +	.remove = rvtrace_encoder_remove,
+> +	.driver = {
+> +		.name = "rvtrace-encoder",
+> +	},
+> +};
+> +
+> +static int __init rvtrace_encoder_init(void)
+> +{
+> +	return rvtrace_register_driver(&rvtrace_encoder_driver);
+> +}
+> +
+> +static void __exit rvtrace_encoder_exit(void)
+> +{
+> +	rvtrace_unregister_driver(&rvtrace_encoder_driver);
+> +}
+> +
+> +module_init(rvtrace_encoder_init);
+> +module_exit(rvtrace_encoder_exit);
+> +
+> +/* Module information */
+> +MODULE_AUTHOR("Mayuresh Chitale <mchitale@ventanamicro.com>");
+> +MODULE_DESCRIPTION("RISC-V Trace Encoder Driver");
+> +MODULE_LICENSE("GPL");
 
-Neil
-
-> 
-> 
->> +			cpu {
->> +				sound-dai = <&q6apmbedai PRIMARY_MI2S_RX>;
->> +			};
->> +
->> +			codec {
->> +				sound-dai = <&lt9611_codec 0>;
->> +			};
->> +
->> +			platform {
->> +				sound-dai = <&q6apm>;
->> +			};
->> +		};
->>   	};
-> 
-> [..]
-> 
-> Best regards,
-> Alexey
-
+Bo
 
