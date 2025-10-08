@@ -1,242 +1,264 @@
-Return-Path: <devicetree+bounces-224396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73E26BC3A07
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 09:34:29 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 219F4BC3B0C
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 09:38:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E1243B2CA8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 07:34:28 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9C6AF352324
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 07:38:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A93922F5A25;
-	Wed,  8 Oct 2025 07:31:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F5D92F5335;
+	Wed,  8 Oct 2025 07:32:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UOC+N/pU"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="oT/VQP0T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86F0D2F25FB
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 07:31:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F8722F549E
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 07:32:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759908695; cv=none; b=D+TXvqexSeGjnMoAEOlLCQ/vu2upB+165pVw8I92oeZ7y1Ttg81+6sbvGDRyFEagUBp7M6op89SKcdjyVGNG/FCkgi2agM8/mwN7mOCns+KJw0ZzttS0s2KWU6QKzdGSgMACv1C0yMoAephx3RO2Na7aoGVqb406uZu2ETsJmzc=
+	t=1759908745; cv=none; b=GANT97tzD86rme5/4Q59SoOC66HTtiiWGFxMZsPMLyOposcHzAyppAeC0RLdG+lart6Llv6rB+TzZ1/nufhCuhG6GBD1JIUQAdmQvTH+DdRFAJXe8hUEkqTEF1xZC9pw5xS4+lRxfiF2OqtwIAdaC4B6cbhHM5SVEZjks3xzFNw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759908695; c=relaxed/simple;
-	bh=ln6sKcZOKPZ+XGO7m2rvWcGsZmm59wEyyrCSMtyXxXM=;
+	s=arc-20240116; t=1759908745; c=relaxed/simple;
+	bh=jh6UkzNl+DTGeEljlKIF+q1+nI6R4/qrb27HHLhQs5w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gZH0bDdZPbykGtVP2jfZyxR53g5nRalL4SYojWJ1WLVOWdAFZkdSmkrpDmytgIDsAIx4870J6PVhAcVy6d1ijjtmpm5zG68+6AXCtfekgcZERW6WboxYOZ1k4c6Sgu87hZ+DJcBQGu+HHxSWCvM1xMUSDSO9aIvr+LEiOiWdIXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UOC+N/pU; arc=none smtp.client-ip=205.220.168.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=MpyVmWClfGYfqXuPdZeHhxJjup2uJDrr5bWRgYh5yo9HQychaP5SItNcQ8svBX8LA7yVIKv8X8bBES0J4b1cU9cj2uaTplHGh5y9EmBh5lNLXqAp9Ho+l1e1GXNLaSxundcX/HwcTtswrPoTU5euOr2nCV+h1SbWVRpZ8miDIC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=oT/VQP0T; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 598048EK004848
-	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 07:31:30 GMT
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59803bGX023243
+	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 07:32:23 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Cv0p3chaZUKm1oNKGTLwDf2U
-	C5ikXunO3QBpHUXSjv4=; b=UOC+N/pUwDHkEKXf/eRqgIaR+H6fwZjE5C6mMe6c
-	GwjBpjeM+WXMB5JkBMYCUuSlDuKh/L0zb8CAuuh/V9Q+NXsnrq0Z/MAu/GxA/4/I
-	nUBTeOHAafA988dwhBnYROp3feBMTtFnSbKUzzOijEXN3Vc3J8aNwDaycd5LO/+E
-	RzJaS/Q++D4S+FneSqFXUdkIc9R6WrA/ZVwmZliCqGMZZDLOy4I9liWke6iHbeoy
-	Cv9QLu7jpLYg0V+3i03BfMt5DoFUr9Rh0nJ62ZE1QWssSvpeEzBdpD337S0X9Jf5
-	vQlAc2BnRYxdTeb3n0EMnsHdwLeFGbGHSfqWmOzjtWMS9A==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49jvv7shb6-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	O1fzCvC/mud0h6/8oCdHHnGn9nJk3gPg86nsBkzf1MU=; b=oT/VQP0TxHLlenzZ
+	sxjW96377A7DqNd7g94GUx7psR/7d4zqeSikYWua+iiO0FKEktbzd0zqsvT+Dyno
+	XD8JyyHH5B1h1EN8PLvOrDayuZMhZIqZL4wvmBxCuQfxMggFL5kk+gkz7zoF/RlI
+	u+xuMwR2sX9ZG5TMgKxRNvTY4yfeZ7D5TJ3kuSr9c0Iz0r4CKYmt/20yGVqBrMHx
+	rjDseX2xMGsVP3DnugXiqQQ2ANr9INPrJ+nswWL6m2yteriDlgh/rUEnJr3kb32x
+	WzgPaFqXwfErGkzyt4iTq//UR0gthgxUB0jwFp2NqkkxGdwHPLLawdhIOD73RQdB
+	6hYj7A==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49jtk71q13-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 07:31:30 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-7810289cd5eso11718215b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 00:31:30 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 07:32:23 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b5533921eb2so4957758a12.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 00:32:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759908690; x=1760513490;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Cv0p3chaZUKm1oNKGTLwDf2UC5ikXunO3QBpHUXSjv4=;
-        b=Vmt/7MgTCzfIvzEdoufv4r1UK+oGdPsfK+JVKuZnZwkGOrKxlub+aJwfOniYLAVftp
-         uVGY3OrzM5l3oNVd+zjHQIX1BzgqNGxIfnfyLmvg8TYUdmt2Gv9Fwd+IAQEaA9kB6SWH
-         duD1DWTHZxh3k1zVp39us5kJCiBecWxKPkKzfcAEraijb6vXL2ISH8AgpYN+YCibF6Me
-         zMtOANNK73jBlc8sLydsnT9bFSasRdPMlQ9FP9OQmQPQgQ9qyUUvNWqNgzTzvvOxDzCE
-         q+OFqzWs4LAgTQ5voDujh0QSJnq6JRCn6YIR8mvF6UJMSSQJMJazpS17euiTqgDvuUYb
-         SUwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVfQmiial3PaBA36VRLa8vmMAelsRCMkyCNj9Qb67H2LtWiMzV84jvpldneD+7lg+KImQgicaB/s1M1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzq0wRLPWI5dMSHrz06sGND+sYho64b1DVJ6c7xIjdtg6q4Gndo
-	gpu0e0AyOXcgszdzALq0El5ypdHFqun/a9XEumtKvpRakcqmI0crOnNP/5iyOg6d0gPSDrJbRwc
-	0qcWVIG4No6V+GRt6TF1l4ABWKA+WyOWAwZnRiBqFfo4xEVBxXrn6m3GuN8+b8hAM
-X-Gm-Gg: ASbGnctzsOevDTn+jy9EHiWWwWEH/YoTgT8MCnWg91Vgek5lulaHkETHt3kHS1ixbeK
-	YJZViZzA5asDip/rZsbItR6lBAMEyDmQMMADzLI9gRHy6X8MEOd8AfioHLdU1kseL6UkQc+RXO/
-	/NzOvXpua51zcPzzWl7ZvpdJca1RtwAhUzpxZfaJANjb0ACwQz/SFh5GMEAqyZ1zXe4Tv5seghx
-	URVBr+XP2CQdDBzm6Jb3gEeYGB+/Nxy+U9J7V5PJtQ1Jy9qw4hR4hFCpqJ4MxBADJy6ZODZU+jB
-	Mb2dDHK7zjtI29y3pkKBlyByFx/MPJ4Uglfgn8yJ0AREXcgw5sc+n60cyzNK6l1LUo6LVymdb7g
-	ibWf9wFSspLnTOS4FjavmDQvsEX8D/9U=
-X-Received: by 2002:a05:6a00:8d5:b0:793:1b79:ee61 with SMTP id d2e1a72fcca58-79387434292mr2799348b3a.22.1759908689530;
-        Wed, 08 Oct 2025 00:31:29 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG0PtpfjSD+k9WPCixY0Bm3Le9er/Wn83Bo+pYbYYWeIL3zSfYVwydxkKlBtco/P3dMcZCISg==
-X-Received: by 2002:a05:6a00:8d5:b0:793:1b79:ee61 with SMTP id d2e1a72fcca58-79387434292mr2799323b3a.22.1759908689052;
-        Wed, 08 Oct 2025 00:31:29 -0700 (PDT)
-Received: from hu-kamalw-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78b01f9daccsm17552074b3a.16.2025.10.08.00.31.25
+        d=1e100.net; s=20230601; t=1759908742; x=1760513542;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O1fzCvC/mud0h6/8oCdHHnGn9nJk3gPg86nsBkzf1MU=;
+        b=F6U88NWRyjZpw62C3lOQCar/dZHqPaONXyUYDo+urDUPKhYl4emgp35udi1ugPEWah
+         3yHrpoP1NgTlGhxA/Rjxmr09euae08W9NTt1A8wkRG07AZVbD3UZGJyQdna4B6O5Q90n
+         rOS+vgGVb6rjQLzG63o2iN19KWrQubn4jWYxAFPVRwnT44YxTnwp6Mq1Rt3MSVdgIEXg
+         D6MAf97RDG6f4ljlXjWn5DQya6bBTfbR2+Zp0SzuJL49Badq/JQX1is4TNKbEh945SJo
+         JcBEGDQP0CxmXq5ut6aqx/NB/EE7BAs2YJaUHUS/TGvG7NPFTD+v+bqAP83cbkiNL2Vk
+         RdZA==
+X-Forwarded-Encrypted: i=1; AJvYcCXBUK6SOPM+g+R2Jbrn1pMj0a4L6iyG9IlcnW+C9zEeLmoKwpz4S7MGDK5GvjL1blF20Chz2KuRaL5r@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGamQKCcYmdTuvdIEwB1ZihOUquD6dvXSS5ba90dZiEaPFrPb1
+	po6otB5z/+CoZzXluLCFBG4LzgKWld9pDPLUkJ0nEIsGrwilaa3SPDiqscV5XrodImcfaff5q3c
+	4DbdzgIQcdK+Q05gzuru/IYbymShIKMEYPPh+OYZ1i3nFZAmbC2zlBrW/pObYK6+4
+X-Gm-Gg: ASbGncuH+hlRH6wskTPDNYW1JIENEPoLUMmSCQOy9tYfXN2XAXesAUULhZ3qQEzGxoS
+	u4h0PWK2huXdVTmuH+oRu8FVGDCneIfqTp012q6XmJdzI7JDNzEnmzaMrnTcaj0wKkRddnxTosu
+	INl+oZty9Ga3BnwyQbUBZIDfwJhy/qoe8IUiKB1dVea9gPrvYr/INOvloAO+KtfcStY7R9D2XPh
+	R7i4ZIpvGQAX7Qcs6WAW7ojQl0pywYjEO6SAgd19incpXFL4ew0hRPvPKr0fEEwccMNmAsJ50Lr
+	JunJXfwzV2FtqaUNfCTG6SxXOjjHQK+DBbSCQHKbkAq1yO01OtQuw0m2XI/zu1ROUoVp6PHf
+X-Received: by 2002:a17:903:acb:b0:24b:270e:56cb with SMTP id d9443c01a7336-2902739b362mr32998185ad.27.1759908741548;
+        Wed, 08 Oct 2025 00:32:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFF8UQO63P5sJR771oG/+zCEQf8tTNKYiSviO1HlgbxCHP0JCB4Md6bptNeqiLM2cManUuPuQ==
+X-Received: by 2002:a17:903:acb:b0:24b:270e:56cb with SMTP id d9443c01a7336-2902739b362mr32997755ad.27.1759908740874;
+        Wed, 08 Oct 2025 00:32:20 -0700 (PDT)
+Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33b51395229sm2215138a91.17.2025.10.08.00.32.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Oct 2025 00:31:28 -0700 (PDT)
-Date: Wed, 8 Oct 2025 13:01:23 +0530
-From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Wed, 08 Oct 2025 00:32:20 -0700 (PDT)
+Date: Wed, 8 Oct 2025 13:02:14 +0530
+From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 14/24] arm64: dts: qcom: Update the pmh0110.dtsi for
- Glymur
-Message-ID: <20251008073123.GA20592@hu-kamalw-hyd.qualcomm.com>
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-14-24b601bbecc0@oss.qualcomm.com>
- <CAJKOXPdQH2jXcEY6ZpkmixvUt26SqdzYgDAiJ3RHMG7xkPyi_A@mail.gmail.com>
- <lcbcjpoazpwbltedkiqlw4l3aomwvi3qsfwvmwghb6uf5wvnme@kh7qdpunfuwr>
- <CAJKOXPcyhDdFW_u4YQLiHYj8gM7wYB-LOmB_PJs+5OOgn8WZFw@mail.gmail.com>
- <mzoctelzfp6h2ezzkc3j7gnghsaf67flxqlvfhtlpdfxtddsvi@zqihmnygvdjk>
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 12/12] arm64: dts: qcom: Add EL2 overlay for Lemans
+Message-ID: <20251008073214.kcanrljguox2vtzq@hu-mojha-hyd.qualcomm.com>
+References: <20251007-kvm_rprocv4_next-20251007-v4-0-de841623af3c@oss.qualcomm.com>
+ <20251007-kvm_rprocv4_next-20251007-v4-12-de841623af3c@oss.qualcomm.com>
+ <yef5jtmcfuks2w2sngxr4a4htihxx4xidsgwpro6wckbfvmvvn@jfr3dlsdf5vm>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <mzoctelzfp6h2ezzkc3j7gnghsaf67flxqlvfhtlpdfxtddsvi@zqihmnygvdjk>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAzNyBTYWx0ZWRfXy76v/GPWnn4Y
- rmubP4BgkIwmdEMdO7uTFWAF++5kLou31jR5cRF6ayI2/hY4X2EURAqDnUYxAXutFIfUeZsTE2f
- mal26VMlXFe4HZ6NVrQVgM8FPHWprt+qrsUSG/HM+2RLVmszJHJErUCoxZhkdOX1sHsXGaV6M/z
- WjvnKX0Qcdapi+frhQghGbrAMQPBvi/84Jh9Ir6PtsH9ZXPSN8ED0v4gZbz3MbbqD4AMpMXAn76
- soK6KgWYVSFEW5Mf+JuVhH50rKe59hALijLq7v9zc58l7b9WkERI6ox/bP+5B6E0RLsciHWaSn+
- f7zgAyVsn8ao1q1XZfR+ySOfOCtvTxaTJa6wDw2SlxIaEM062ROLsYEjIWyKXPOUHebPorPeMLt
- 8ImjO8dOqyKIHnt1eUw1faeAtZF1zw==
-X-Proofpoint-ORIG-GUID: UrXlD8544iRhu3bU5GTLhNNG8xDsn-P3
-X-Authority-Analysis: v=2.4 cv=WIdyn3sR c=1 sm=1 tr=0 ts=68e61352 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=kj9zAlcOel0A:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=CcCa3DaCAM46YlkYK6gA:9
- a=CjuIK1q_8ugA:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-GUID: UrXlD8544iRhu3bU5GTLhNNG8xDsn-P3
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <yef5jtmcfuks2w2sngxr4a4htihxx4xidsgwpro6wckbfvmvvn@jfr3dlsdf5vm>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAxNyBTYWx0ZWRfXwcEoX9EXkSQD
+ irQXS4fQL0kIOAL2G0BuyrPUO2Kaq9/Q2YfhOG/qZwX2JL+JRzeJXCCEEy6Nf+tPbHyZqj2wprX
+ VNneEi5WAxHQ8v7kf3sks6p5+zVNfUPyElU5lOXVDlHd1slJmS9dd5hPUf+MHbhu+ZHn1B2yQMQ
+ fsBH3nj3kCWKRX+3ZCFcltPHfKxbHoKJEDqC5ryfSYai+6Of+AYvQDpl5KKubWL55fZz3WEIlWm
+ VTrmFwIDWPok35gXH0zajzLz3r/zbYJHNhkZelwWGQrNIzB4h7jnMYfBdBk7D62c6zRAf20dQ2x
+ ey2iAJD4Jtp1ZSnriqt+mpJjx5IlYfQIw0sTJxqW7JoPAhdVBUB87yfoBGOiN1el3ocqBF6574X
+ UmrvGchaH0O6qO2gjoUHC6DOULNo1Q==
+X-Authority-Analysis: v=2.4 cv=do3Wylg4 c=1 sm=1 tr=0 ts=68e61387 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8
+ a=KKAkSRfTAAAA:8 a=COk6AnOGAAAA:8 a=3fz2ViL2mOl_e04HJqEA:9 a=3ZKOabzyN94A:10
+ a=QEXdDO2ut3YA:10 a=eSe6kog-UzkA:10 a=x9snwWr2DeNwDh03kgHS:22
+ a=cvBusfyB2V15izCimMoJ:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: A402ffukVPof11T_aP0ScP2o1mnCCNvK
+X-Proofpoint-ORIG-GUID: A402ffukVPof11T_aP0ScP2o1mnCCNvK
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-08_01,2025-10-06_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
- bulkscore=0 spamscore=0 adultscore=0 clxscore=1015 lowpriorityscore=0
+ suspectscore=0 adultscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015
+ malwarescore=0 spamscore=0 impostorscore=0 priorityscore=1501 bulkscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040037
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040017
 
-Hi Krzysztof, Dmitry, Konrad,
-
-On Thu, Sep 25, 2025 at 09:57:02PM +0300, Dmitry Baryshkov wrote:
-> On Thu, Sep 25, 2025 at 10:34:52PM +0900, Krzysztof Kozlowski wrote:
-> > On Thu, 25 Sept 2025 at 22:14, Dmitry Baryshkov
-> > <dmitry.baryshkov@oss.qualcomm.com> wrote:
-> > >
-> > > On Thu, Sep 25, 2025 at 05:08:54PM +0900, Krzysztof Kozlowski wrote:
-> > > > On Thu, 25 Sept 2025 at 15:34, Pankaj Patil
-> > > > <pankaj.patil@oss.qualcomm.com> wrote:
-> > > > >
-> > > > > From: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> > > > >
-> > > > > Add multiple instance of PMH0110 DT node, one for each assigned
-> > > > > SID for this PMIC on the spmi_bus0 and spmi_bus1 on the Glymur
-> > > > > CRD.
-> > > > >
-> > > > > Take care to avoid compilation issue with the existing nodes by
-> > > > > gaurding each PMH0110 nodes with `#ifdef` for its corresponding
-> > > > > SID macro. So that only the nodes which have the their SID macro
-> > > > > defined are the only ones picked for compilation.
-> > > > >
-> > > > > Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> > > > > Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> > > > > ---
-> > > > >  arch/arm64/boot/dts/qcom/pmh0110.dtsi | 66 ++++++++++++++++++++++++++++++++++-
-> > > > >  1 file changed, 65 insertions(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/qcom/pmh0110.dtsi b/arch/arm64/boot/dts/qcom/pmh0110.dtsi
-> > > > > index b99c33cba8860f1852231db33a127646c08c1e23..4a5c66e5c9fbc35cedb67601f4568844dc41fbea 100644
-> > > > > --- a/arch/arm64/boot/dts/qcom/pmh0110.dtsi
-> > > > > +++ b/arch/arm64/boot/dts/qcom/pmh0110.dtsi
-> > > > > @@ -7,6 +7,8 @@
-> > > > >  #include <dt-bindings/spmi/spmi.h>
-> > > > >
-> > > > >  &spmi_bus0 {
-> > > > > +
-> > > > > +#ifdef PMH0110_D_E0_SID
-> > > >
-> > > > NAK
-> > > >
-> > > > I already explained on IRC in great details why.
-> > >
-> > > A short summary or a link to a channel / date would be nice in order to
-> > > include other people into the discussion.
-> > >
+On Tue, Oct 07, 2025 at 02:55:04PM -0700, Manivannan Sadhasivam wrote:
+> On Tue, Oct 07, 2025 at 10:18:57PM +0530, Mukesh Ojha wrote:
+> > All the Lemans IOT variants boards are using Gunyah hypervisor which
+> > means that, so far, Linux-based OS could only boot in EL1 on those
+> > devices.  However, it is possible for us to boot Linux at EL2 on these
+> > devices [1].
 > > 
-> > Of course but:
-> > 1. You were there so maybe you remember the arguments, and:
-> > 2. I'm offline, using phone, not having laptop, replying during my
-> > personal time off just before merge window so any emergency time
-> > should be spent on important matters instead these two huge patch
-> > bombs adding such usage I already said: NO, don't do this.
+> > When running under Gunyah, remote processor firmware IOMMU streams is
+> > controlled by the Gunyah however when Linux take ownership of it in EL2,
+> > It need to configure it properly to use remote processor.
+> > 
+> > Add a EL2-specific DT overlay and apply it to Lemans IOT variant
+> > devices to create -el2.dtb for each of them alongside "normal" dtb.
+> > 
+> > [1]
+> > https://docs.qualcomm.com/bundle/publicresource/topics/80-70020-4/boot-developer-touchpoints.html#uefi
+> > 
+> > Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/Makefile        |  7 +++++-
+> >  arch/arm64/boot/dts/qcom/lemans-el2.dtso | 41 ++++++++++++++++++++++++++++++++
+> >  2 files changed, 47 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> > index 296688f7cb26..e2eb6c4f8e25 100644
+> > --- a/arch/arm64/boot/dts/qcom/Makefile
+> > +++ b/arch/arm64/boot/dts/qcom/Makefile
+> > @@ -35,6 +35,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk.dtb
+> >  lemans-evk-camera-csi1-imx577-dtbs	:= lemans-evk.dtb lemans-evk-camera-csi1-imx577.dtbo
+> >  
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-camera-csi1-imx577.dtb
+> > +lemans-evk-el2-dtbs := lemans-evk.dtb lemans-el2.dtbo
+> > +dtb-$(CONFIG_ARCH_QCOM)	+= lemans-evk-el2.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= monaco-evk.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8216-samsung-fortuna3g.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-acer-a1-724.dtb
+> > @@ -136,7 +138,10 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-vision-mezzanine.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8300-ride.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb
+> > -dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb
+> > +qcs9100-ride-el2-dtbs := qcs9100-ride.dtb lemans-el2.dtbo
+> > +dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride.dtb qcs9100-ride-el2.dtb
+> > +qcs9100-ride-r3-el2-dtbs := qcs9100-ride-r3.dtb lemans-el2.dtbo
+> > +dtb-$(CONFIG_ARCH_QCOM)	+= qcs9100-ride-r3.dtb qcs9100-ride-r3-el2.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= qrb2210-rb1.dtb
+> >  dtb-$(CONFIG_ARCH_QCOM)	+= qrb4210-rb2.dtb
+> > diff --git a/arch/arm64/boot/dts/qcom/lemans-el2.dtso b/arch/arm64/boot/dts/qcom/lemans-el2.dtso
+> > new file mode 100644
+> > index 000000000000..582b0a3a291a
+> > --- /dev/null
+> > +++ b/arch/arm64/boot/dts/qcom/lemans-el2.dtso
+> > @@ -0,0 +1,41 @@
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +/*
+> > + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+> > + */
+> > +
+> > +/*
+> > + * Lemans specific modifications required to boot in EL2.
+> > + */
+> > +
+> > +/dts-v1/;
+> > +/plugin/;
+> > +
+> > +&iris {
+> > +	/* TODO: Add video-firmware iommus to start IRIS from EL2 */
 > 
+> So the missing 'iommus' property is the only blocker to enable IRIS?
+
+Yes, but this would require some changes in the driver as well to create
+a platform device for the firmware and IOMMU domain, and to attach the
+firmware device to the domain.
+
+There was some discussion around this in v2[1], where I added support
+for video. However, the change involved hooking into the video-firmware
+property, which was used for Venus.  There were concerns[2] about following
+the same approach for Iris, and due to that, we have dropped video
+support for now.  However, an RFC has been posted from our side to
+handle such scenarios[3], as of now unclear about the direction for
+Iris.
+
+
+[1] https://lore.kernel.org/lkml/aKooCFoV3ZYwOMRx@linaro.org/
+
+[2] https://lore.kernel.org/lkml/20250627-video_cb-v3-0-51e18c0ffbce@quicinc.com/
+
+[3] https://lore.kernel.org/all/20250928171718.436440-1-charan.kalla@oss.qualcomm.com/
+
+[4] https://lore.kernel.org/lkml/4a32bbec-2baf-4210-a7c1-1ddcd45d30c8@oss.qualcomm.com/
 > 
-> Well, If I'm asking, it means I don't rememebr the discussion. And I
-> defeinitely didn't know that you are spending your personal vacation
-> time in ML. And if the discussion was with some other people, then
-> somebody else can drop the response to the question.
-
-Just wanted to give some background on this patch.
-Even though PMH0104 and PMH0110 are common (b/w Kaanapali and Glymur),
-they don't share the SIDs. So we tried to use status="disabled" to handle
-this but we observed that because of the node name being common in the
-two included files, it ends up overwriting the previous node with the
-same name.
-
-eg-
-#include "pmh0104.dtsi"  // assume contains pmic@4 { ...};
-#include "pmh0110.dtsi"  // assume contains pmic@4 { status=disabled;};
-
-Here intention was to use the pmh0104 on sid-4, but it gets overwritten
-with the pmh0110 on sid-4 ( with status disabled). This is why we ended
-up using the `#ifdef`, ensuring that we can control the exact pmic that
-gets picked by using the PMXXX_SID macro.
-
-side note, i did `grep` in the `/arch/arm64/boot/dts/` and i see a lot
-of instances of `#if...` present in that.  Assuming the concern here is
-about the use of `#ifdef`.
-
-Can you suggest some alternative approach?
-or comment on below approaches:-
-
-1. Can I use `pmic@pm0104_d_e0` ?
-This may work but looks like a departure from the current format
-i.e `pmic@<sid>` used in the arch/arm64/boot/dts/qcom.
-
-2. Create PMIC-ID based pmic dts? `pmh0104_d_e0.dtsi` and likewise add all
-pmics? But this could mean creating too many pmic files and end up
-bloating the dts/qcom/ directory.
-
-3. Add the nodes directly inside glymur-pmics.dtsi ( not using #include)?
-It may make the file too long and IMO it may take slightly more time, to
-look at the file and tell what PMICs are present and at what SID.
-
-Please share if you prefer any of the above suggestions? or a completely
-different approach to get around this. ( or if the current NAK'ed patch
-can somehow be improved still? or share link for old discussion so i can
-study it)
-
-Would value any advice that you can share. Thanks in advance!
-
+> - Mani
+> 
+> > +	status = "disabled";
+> > +};
+> > +
+> > +/*
+> > + * When running under Gunyah, remote processor firmware IOMMU streams is
+> > + * controlled by the Gunyah however when we take ownership of it in EL2,
+> > + * we need to configure it properly to use remote processor.
+> > + */
+> > +&remoteproc_adsp {
+> > +	iommus = <&apps_smmu 0x3000 0x0>;
+> > +};
+> > +
+> > +&remoteproc_cdsp0 {
+> > +	iommus = <&apps_smmu 0x21c0 0x0400>;
+> > +};
+> > +
+> > +&remoteproc_cdsp1 {
+> > +	iommus = <&apps_smmu 0x29c0 0x0400>;
+> > +};
+> > +
+> > +&remoteproc_gpdsp0 {
+> > +       iommus = <&apps_smmu 0x38a0 0x0>;
+> > +};
+> > +
+> > +&remoteproc_gpdsp1 {
+> > +       iommus = <&apps_smmu 0x38c0 0x0>;
+> > +};
+> > 
+> > -- 
+> > 2.50.1
+> > 
 > 
 > -- 
-> With best wishes
-> Dmitry
+> மணிவண்ணன் சதாசிவம்
 
-Regards,
-Kamal
+-- 
+-Mukesh Ojha
 
