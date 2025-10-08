@@ -1,171 +1,199 @@
-Return-Path: <devicetree+bounces-224359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224361-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77731BC356B
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 06:45:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EF97BC35A9
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 06:56:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7107C19E107A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 04:46:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0713B1889122
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 04:56:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8AAD2C0262;
-	Wed,  8 Oct 2025 04:45:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5DCD2BF3CA;
+	Wed,  8 Oct 2025 04:56:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="b9YTkETD"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DZ1iiTnm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 901532BF3F3
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 04:45:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A4B52BEFE1;
+	Wed,  8 Oct 2025 04:56:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759898744; cv=none; b=qT9PCAd2SB1zGt6Vz3D453cYcNZ7DyyF3P3EGqgYQNsJQY9h1oQhzrzrf04zpaVl5jgx6x0Dp7LKzbCW6Kw9kcrSD6FFIKJjlGrHNcrxi4AbpUFukQp6gIJyZqoP3FJkjHXoC4kiKqhfr5KnBDxClZW3wYodpJx3kEz+ai5pBoM=
+	t=1759899376; cv=none; b=dbDXMMOAP7gw66cIeaGFyMLiIErSkjgS0glufDgMsJtmm38eM1It7VARZ7+o/QzUbHQEdDo8yM6TodYlYHoa+h4E66e8Nr+GGlzS5iAUoNKz+g1/4khRZ0CWPnWV0ME0vVkpUJ0FuJ19p0AArWOnlUbUTA9IXe/2LFkQabVmUME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759898744; c=relaxed/simple;
-	bh=ioRZSka0OhdYFPnQh7NRYIPcq8Xeaprd2kX7MLnG640=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=qx+Ls1wtW1Les12IRqtYsZg3asCfvKw9EPj3P0eH8LpbWrEBWYjhEWfWgrJ0sQTcEgM73a5SHsTHR1LiRCjV79EV8EuEg3CThMCl/43M750hmYzIJZpdsO0rkAECyXUBQSzK+wlWFNVZulSG7tqCTe7dx4SHAi0QJgiUahOZOhc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=b9YTkETD; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20251008044535epoutp02d4569337d6771ad1438db7710ad424f0~sapM-u12B2902629026epoutp02-
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 04:45:35 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20251008044535epoutp02d4569337d6771ad1438db7710ad424f0~sapM-u12B2902629026epoutp02-
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1759898735;
-	bh=vROKexdVYNHAhyF4ES21jI5cobDDrJlr4MDKl+4gj3Y=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=b9YTkETDxlWM1AzKrBj0MZRefGT60KTRTCdJ8B8NmeUYvo9o2Uk//mWjkEVLKYKnc
-	 bu26mJik2ZFvgzNbQYwmUx1NKQuXCZHBbpApGHJSsJWEairfzIiU9MoCFumdmzHp6B
-	 nAfDNOdaPeFyUYztbf/67tMAHdrygsvNoabziGHc=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20251008044534epcas5p1270379e0d1536e8cda6567d9be45df5d~sapMfio3Y1099610996epcas5p14;
-	Wed,  8 Oct 2025 04:45:34 +0000 (GMT)
-Received: from epcas5p2.samsung.com (unknown [182.195.38.93]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4chL6P3rz1z3hhT8; Wed,  8 Oct
-	2025 04:45:33 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20251008044532epcas5p23af935589ba8975d38fc28b5df113e5d~sapK1yD-m2794127941epcas5p29;
-	Wed,  8 Oct 2025 04:45:32 +0000 (GMT)
-Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20251008044529epsmtip1f98e9c929be1697bcf28a33dba660d45~sapHeFoD12062920629epsmtip1I;
-	Wed,  8 Oct 2025 04:45:28 +0000 (GMT)
-From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <vkoul@kernel.org>,
-	<kishon@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
-	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
-	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
-	<igor.belwon@mentallysanemainliners.org>, <m.szyprowski@samsung.com>,
-	<s.nawrocki@samsung.com>
-Cc: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <rosa.pila@samsung.com>,
-	<dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
-	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
-In-Reply-To: <808d166a-b615-49c6-b0f5-bf5101721381@kernel.org>
-Subject: RE: [PATCH v8 1/6] dt-bindings: phy: samsung,usb3-drd-phy: add
- ExynosAutov920 HS phy compatible
-Date: Wed, 8 Oct 2025 10:15:27 +0530
-Message-ID: <000001dc380e$612b5680$23820380$@samsung.com>
+	s=arc-20240116; t=1759899376; c=relaxed/simple;
+	bh=S7Q5Y0YGVCC3nn1T4FsWAQz6NZfyfRQweOboLaIEizM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=IBBoSu4SAcj8bN9mEVydTfB+94U+c2WdTbwQkRB6Jehb12yF8n417tybfK+as+vTT5j5HwskYVTzjHrY44K53trd87uioMgb3cAh3kXl2dxaej07s5FxM+7r9Bp4c0nYemBbtWT/ECG3AnjnBsFP/MdEexqBa9nPt/JX/JJ2KIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DZ1iiTnm; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5984tZYg155481;
+	Tue, 7 Oct 2025 23:55:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1759899335;
+	bh=/YFIlRBTwo4xlAlLEtr1OnSAe1qvK11ScWHshsz1AG0=;
+	h=From:To:CC:Subject:Date;
+	b=DZ1iiTnm6+AfQS36KroktqE1uNjGeqvysKlTe2Bh/Y0pnMQZmfTzw1tF36S5DaPls
+	 PjEesEHwyPvwMQxABPWFt0QEWYDd2rc7w5cTCZlXq8GrUV8flNkc7YQ16Uw7/xmoiw
+	 MBzW8yjRmOD8tZjV/EelPwPaIofVh3L4Ge1D8bpU=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5984tYYA388689
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 7 Oct 2025 23:55:34 -0500
+Received: from DFLE206.ent.ti.com (10.64.6.64) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 7
+ Oct 2025 23:55:34 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE206.ent.ti.com
+ (10.64.6.64) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 7 Oct 2025 23:55:34 -0500
+Received: from lelvem-mr06.itg.ti.com ([10.250.165.138])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5984tQt72223240;
+	Tue, 7 Oct 2025 23:55:27 -0500
+From: Baojun Xu <baojun.xu@ti.com>
+To: <broonie@kernel.org>, <tiwai@suse.de>
+CC: <andriy.shevchenko@linux.intel.com>, <13916275206@139.com>,
+        <shenghao-ding@ti.com>, <baojun.xu@ti.com>,
+        <linux-sound@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <lgirdwood@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>, <k-yi@ti.com>,
+        <henry.lo@ti.com>, <robinchen@ti.com>, <jesse-ji@ti.com>,
+        <will-wang@ti.com>, <jim.shil@goertek.com>, <toastcheng@google.com>,
+        <chinkaiting@google.com>
+Subject: [PATCH v5 1/2] ASoC: tas2781: Support more newly-released amplifiers tas58xx in the driver
+Date: Wed, 8 Oct 2025 12:54:58 +0800
+Message-ID: <20251008045500.44477-1-baojun.xu@ti.com>
+X-Mailer: git-send-email 2.43.0.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQIRMOVGdWg5oRjNsRBgEjzIeIB8IgGabj6EAmTXuDcA7fJUJgHIrfZJAofpNyABqVtXsAE6XDP/s+yr4PA=
-Content-Language: en-in
-X-CMS-MailID: 20251008044532epcas5p23af935589ba8975d38fc28b5df113e5d
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250903072936epcas5p4a28d0e63c7f0792b516b0cbc68bf3a8e
-References: <20250903073827.3015662-1-pritam.sutar@samsung.com>
-	<CGME20250903072936epcas5p4a28d0e63c7f0792b516b0cbc68bf3a8e@epcas5p4.samsung.com>
-	<20250903073827.3015662-2-pritam.sutar@samsung.com>
-	<0df74c2b-31b9-4f29-97d3-b778c8e3eaf1@kernel.org>
-	<007801dc2893$18ed4a20$4ac7de60$@samsung.com>
-	<02ef5180-ad56-45f0-a56f-87f442bf6793@kernel.org>
-	<007f01dc2b81$84ef19b0$8ecd4d10$@samsung.com>
-	<808d166a-b615-49c6-b0f5-bf5101721381@kernel.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Krzysztof,
+TAS5802/TAS5815/TAS5828 has on-chip DSP without current/voltage feedback.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: 07 October 2025 11:54 AM
-> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>; vkoul=40kernel.org=
-;
-> kishon=40kernel.org; robh=40kernel.org; krzk+dt=40kernel.org;
-> conor+dt=40kernel.org; alim.akhtar=40samsung.com; andre.draszik=40linaro.=
-org;
-> peter.griffin=40linaro.org; kauschluss=40disroot.org;
-> ivo.ivanov.ivanov1=40gmail.com; igor.belwon=40mentallysanemainliners.org;
-> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com
-> Cc: linux-phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
-> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-s=
-amsung-
-> soc=40vger.kernel.org; rosa.pila=40samsung.com; dev.tailor=40samsung.com;
-> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
-> selvarasu.g=40samsung.com
-> Subject: Re: =5BPATCH v8 1/6=5D dt-bindings: phy: samsung,usb3-drd-phy: a=
-dd
-> ExynosAutov920 HS phy compatible
->=20
-> On 22/09/2025 14:26, Pritam Manohar Sutar wrote:
-> > This phy needs 0.75v, 0.18v and 3.3v supplies for its internal
-> > functionally. Power Supply's names are as per phy's User Data-Book.
-> > These names, (dvdd, vdd18 and vdd33), are considered  for 0.75v, 1.8v
-> > and 3.3v respectively.
-> > =22
-> >
-> >>
-> >> I still cannot find constraints for the rest of properties, though.
-> >
-> > Sorry I didn't get it completely. Can you please elaborate on the same?
->=20
->=20
-> Writing bindings and introductory talks elaborate on that. You add proper=
-ties
-> without constraints. That's not what we want. We want constraints.
->=20
+Signed-off-by: Baojun Xu <baojun.xu@ti.com>
 
-Have added only supplies in this patch-set. However, was going=20
-through schema example and it says nothing is needed to define
-in terms of supply.=20
+---
+v5:
+ - No update for this patch
+v4:
+ - Change the patch title
+ - Add for TAS5802 support
+v3:
+ - Rewrite the patch title
+ - Add for TAS5815 support
+v2:
+ - Update description for TAS5828
+ - Change commit tree to .../tiwai/sound.git
+---
+ include/sound/tas2781.h        |  3 +++
+ sound/soc/codecs/tas2781-i2c.c | 21 +++++++++++++++++++--
+ 2 files changed, 22 insertions(+), 2 deletions(-)
 
-ref:=20
-1. Documentation/devicetree/bindings/writing-schema.rst +151
-
-... A =22description=22 property is always required.
-
-2. Documentation/devicetree/bindings/example-schema.yaml +135
-
-=23 *-supply is always a single phandle, so nothing more to define.
-foo-supply: true
-
-Please confirm and let me know if your expectations are something=20
-else in terms of constraints of the properties.
-
->=20
-> Best regards,
-> Krzysztof
-
-Thank you,
-
-Regards,
-Pritam
+diff --git a/include/sound/tas2781.h b/include/sound/tas2781.h
+index ddd997ac3216..0fbcdb15c74b 100644
+--- a/include/sound/tas2781.h
++++ b/include/sound/tas2781.h
+@@ -120,8 +120,11 @@ enum audio_device {
+ 	TAS2570,
+ 	TAS2572,
+ 	TAS2781,
++	TAS5802,
++	TAS5815,
+ 	TAS5825,
+ 	TAS5827,
++	TAS5828,
+ 	TAS_OTHERS,
+ };
+ 
+diff --git a/sound/soc/codecs/tas2781-i2c.c b/sound/soc/codecs/tas2781-i2c.c
+index 1539b70881d1..ba880b5de7e8 100644
+--- a/sound/soc/codecs/tas2781-i2c.c
++++ b/sound/soc/codecs/tas2781-i2c.c
+@@ -108,8 +108,11 @@ static const struct i2c_device_id tasdevice_id[] = {
+ 	{ "tas2570", TAS2570 },
+ 	{ "tas2572", TAS2572 },
+ 	{ "tas2781", TAS2781 },
++	{ "tas5802", TAS5802 },
++	{ "tas5815", TAS5815 },
+ 	{ "tas5825", TAS5825 },
+ 	{ "tas5827", TAS5827 },
++	{ "tas5828", TAS5828 },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(i2c, tasdevice_id);
+@@ -124,8 +127,11 @@ static const struct of_device_id tasdevice_of_match[] = {
+ 	{ .compatible = "ti,tas2570" },
+ 	{ .compatible = "ti,tas2572" },
+ 	{ .compatible = "ti,tas2781" },
++	{ .compatible = "ti,tas5802" },
++	{ .compatible = "ti,tas5815" },
+ 	{ .compatible = "ti,tas5825" },
+ 	{ .compatible = "ti,tas5827" },
++	{ .compatible = "ti,tas5828" },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, tasdevice_of_match);
+@@ -1665,8 +1671,10 @@ static void tasdevice_fw_ready(const struct firmware *fmw,
+ 	}
+ 	tas_priv->fw_state = TASDEVICE_DSP_FW_ALL_OK;
+ 
+-	/* There is no calibration required for TAS5825/TAS5827. */
+-	if (tas_priv->chip_id < TAS5825) {
++	/* There is no calibration required for
++	 * TAS5802/TAS5815/TAS5825/TAS5827/TAS5828.
++	 */
++	if (tas_priv->chip_id < TAS5802) {
+ 		ret = tasdevice_create_cali_ctrls(tas_priv);
+ 		if (ret) {
+ 			dev_err(tas_priv->dev, "cali controls error\n");
+@@ -1720,8 +1728,11 @@ static void tasdevice_fw_ready(const struct firmware *fmw,
+ 		switch (tas_priv->chip_id) {
+ 		case TAS2563:
+ 		case TAS2781:
++		case TAS5802:
++		case TAS5815:
+ 		case TAS5825:
+ 		case TAS5827:
++		case TAS5828:
+ 			/* If DSP FW fail, DSP kcontrol won't be created. */
+ 			tasdevice_dsp_remove(tas_priv);
+ 		}
+@@ -1882,8 +1893,11 @@ static int tasdevice_codec_probe(struct snd_soc_component *codec)
+ 		p = (struct snd_kcontrol_new *)tas2781_snd_controls;
+ 		size = ARRAY_SIZE(tas2781_snd_controls);
+ 		break;
++	case TAS5802:
++	case TAS5815:
+ 	case TAS5825:
+ 	case TAS5827:
++	case TAS5828:
+ 		p = (struct snd_kcontrol_new *)tas5825_snd_controls;
+ 		size = ARRAY_SIZE(tas5825_snd_controls);
+ 		break;
+@@ -2054,8 +2068,11 @@ static const struct acpi_device_id tasdevice_acpi_match[] = {
+ 	{ "TXNW2570", TAS2570 },
+ 	{ "TXNW2572", TAS2572 },
+ 	{ "TXNW2781", TAS2781 },
++	{ "TXNW5802", TAS5802 },
++	{ "TXNW5815", TAS5815 },
+ 	{ "TXNW5825", TAS5825 },
+ 	{ "TXNW5827", TAS5827 },
++	{ "TXNW5828", TAS5828 },
+ 	{},
+ };
+ 
+-- 
+2.25.1
 
 
