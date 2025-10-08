@@ -1,124 +1,158 @@
-Return-Path: <devicetree+bounces-224339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C099BC3282
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 04:18:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29772BC328E
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 04:19:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 994A718888B5
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 02:19:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDAC4188E714
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 02:19:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 572F629B77C;
-	Wed,  8 Oct 2025 02:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4D729B8EF;
+	Wed,  8 Oct 2025 02:18:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VkqOSIDh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ahaQ+NAg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2701E29B237;
-	Wed,  8 Oct 2025 02:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65DC529B237
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 02:18:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759889924; cv=none; b=fzKHGvXjGF6z4VwbY3YcUqlSEkGwCAXCZlSjppW3L7KtppsWQt4UV6OHoMHCsusN8sTxLSk1ZqI13yPTvVoNVQy23QuswMqpZAl18/DBrwefHCG94rWc0rmcFSi5ADinxo2HcqDN8gl7P7FTF1U4p8t7F86BO33qFCYR07npgps=
+	t=1759889933; cv=none; b=T67cND82U8oaDYU722Q9w6f8rcZa6Ykjdb4a40Ty6stVT47IZBSp4+zEoDgBd/NHfFAlDU8iZ1oPJID9L+tCm/EmWx/jWGqxKYa96LOqc6WBFCrqaowaof8soqCbY4XZ7UdIOv+1ySmt4wKcPWOf7GrkKKN9jVMTmKbW6BnhLKE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759889924; c=relaxed/simple;
-	bh=qzYdtmvXQ5VaBXqhrMuG+AP8VHh7NXN2Ax/Fkbv7SRg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OFRLQcw7G4mtzEe6emACHFraMfmoiONNg7lUkmPGGkw/7oJ7UH0pkesSNYjOCa81DxoJiWgGOb8rT6i3zDZF/W4Kf5W4VD2CpvgWzbor0oBqSEnHdYbDN0MqPV3adRtuP/blVUEU2xrgJiCqu1ZslYIZAdBRvehsxN6Wxb4nvvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VkqOSIDh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63BE2C4CEF7;
-	Wed,  8 Oct 2025 02:18:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759889923;
-	bh=qzYdtmvXQ5VaBXqhrMuG+AP8VHh7NXN2Ax/Fkbv7SRg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VkqOSIDhNQAlzVE1qvyScU4EZ3lJzFNTGTiEJ7Wbj/C+MFJYjsO/n7tlpAyz50qmw
-	 xyKB1xi6szrJVo7P4QJGWhYa5s1x+4/TY1lbz2RC01Eq5KXGpAze6pgQniX9iRUdyH
-	 R1z2qA6v6OGcFS/O953/P3yhg9RG6/pe9083uQ8ayVAUr1GILco3+Es7lwTgKeAkXf
-	 RQ0KlFXkSKHSh3AtJDgsF6CjGUjgamA0Y0B/xQGBcONjzouXC4wRg/rrwG11v7/wOC
-	 H6RWun4G6Y5U1ScqXIfTvrY8HjL7HzPN1Hph6vo8lkNuXk06TI3ig2k6zwsbxPqYnT
-	 cja5VxW05XXtQ==
-Message-ID: <541e27a5-6794-4f9a-8f24-93d846900028@kernel.org>
-Date: Wed, 8 Oct 2025 11:18:34 +0900
+	s=arc-20240116; t=1759889933; c=relaxed/simple;
+	bh=eLUKCid2mCzEr3f2IULaa6Mi8dzk04iOMQ1Cu+awDD0=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=IQVTycfxv6JYg5dDkHuhASnE4u2S3n5qXLVyGKqSM6YRux4kht99d4P0wzfECW8Bifg1YtJFicCfvGrfM8t5KYipL7NktB7UVMy6TValRNdeQ1IYbfnp1K8hg1dXCRQR7lgtSv0TTHn47kotMBMB/4WjrBCG1G5PuZKuxzoPcFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ahaQ+NAg; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3f2ae6fadb4so1821297f8f.1
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 19:18:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1759889929; x=1760494729; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=micbjQhFRi56rmBZKMQCddkVTulgFVdWxWszGqRTF54=;
+        b=ahaQ+NAgrWEPQIWuYqcDIOvUoZ3mn+pgDminfwb0D23x9JG3hjU5U92zv2E3HqJMO6
+         gNawUbzwU2KVurUIPikMg9FOl2X/zB+5JZ0Qm+pQTMzwia3+/qHPF+/sJYrxsMj9KqHg
+         GoiozcubMSwutgCST7fk3Fgh46HutkmdyGafcQJL76KUMdnL2bIzwpprswGJp1Bj7NAu
+         AMIis8KZLI4JdFV6TBfdsfK+MuDnA0/wI6omoHxCAKvg9/t7Jnp2XCSBUx4AdDbCYeKf
+         LXok8IgB0KIRL1Jr6znbw2hpYMT643pXKwmSLOn6d1VFMzZIHvJekxYTtk8bW8p+fG1m
+         fK3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759889929; x=1760494729;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=micbjQhFRi56rmBZKMQCddkVTulgFVdWxWszGqRTF54=;
+        b=a+0WfaRNhOEpUhmT0tvCLAZWHa8I7nuWHbqjGI/lR+SFJ8PCLPqpk5RQMttCW+Nftj
+         zWcDox74IIKXwJrTdFOY5S+i2XAnHdfrZXFuS7hHTcVPNyumf7sbCyc1nzfo8X0N4Drt
+         VjLD6Ma64Kg6OkkYDsk/xegD1+au4hVRxa5cCrvYLgIjqywE5lDer9d4tKcaa3C9Cfon
+         j1qxpkws4eQAMoi6bGfiYgcmjhSMzXLjpZc9CNdFVEMFFbF7kdryqhCXfvE/2XZgO/5a
+         GO3GWRjzHV0VVF1z1pbkniEYUw3Ai4aK+CRNdYpf8DPYQTLR/Kea0eIfbZIa/xQ5wiJm
+         uMXA==
+X-Forwarded-Encrypted: i=1; AJvYcCXNUjVkKfVnWR7qgYUreaD3zF6m5f6S/R8dYH9zJMZEIbypOMKad6iVJKMfQb8bC19WvHCZf4iqSKLU@vger.kernel.org
+X-Gm-Message-State: AOJu0YylMorxYhI42EDkCwKrBzRp5qD+rqpnaddiaUT4U291EIFFkwP/
+	zFKijXGWH4UBM+iH0eAnjetrPN3x5S02/GnaiHdWtmFA4zxMQoGmjUXGZw36yZAGhEI=
+X-Gm-Gg: ASbGncsvdPZzr4z8N8oNnTarYJpHR9GQyUDpXTxBy+VBKPjJJt+niAcfk7HBeUAkxF9
+	FmcO8Df3hKLQBsScRK9VSEOfEtF+fVVB/vtStKO/4TTdb31UidCtBbGyUtzh9LFeOcMnUXvf9Iu
+	aG3w+KgviBNFistQTtZNqP5+gmdjMkSDG2ax+3rZ7TQRFkGQZ2aIvhMLTcjmkLLi5FCgrFFC+zn
+	uX7NoV1CbyqW5tL7JECZpspBkhX4btRXyLen7M0PzXGVPQc8AL1BMBoaA8zBp/jM5MNQ0xUoUFS
+	VZU0vMHA2ukQxKKP8ndrtKb6oVy3eRnMpuBbYlrwgvTc6XIzK/JDRVfzBD0wkb5cjN/t56A4bWO
+	R4I29uKnBBE3IpiAloTWyYyTdVrMoh7zVbuY8u7ZbZHumYwm3XoLq6M4=
+X-Google-Smtp-Source: AGHT+IFPMFJByHAQ3JW76Qjmt7UP+fMZMpkYgj4Y9V9tn3CZdsWTV3HC+ojk6qaBDfa1ihXXI4WNNA==
+X-Received: by 2002:a05:6000:3105:b0:3fc:54ff:edb6 with SMTP id ffacd0b85a97d-4266e7dfdb3mr815912f8f.35.1759889928751;
+        Tue, 07 Oct 2025 19:18:48 -0700 (PDT)
+Received: from localhost ([2a02:c7c:7259:a00:8c32:dd4d:57f2:8be7])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fa9c16990sm15668705e9.10.2025.10.07.19.18.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 07 Oct 2025 19:18:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: samsung,exynos-dwc3: add power-domains
-To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Peter Griffin <peter.griffin@linaro.org>,
- Tudor Ambarus <tudor.ambarus@linaro.org>,
- Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251007-power-domains-dt-bindings-usb-samsung-exynos-dwc3-v1-1-b63bacad2b42@linaro.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251007-power-domains-dt-bindings-usb-samsung-exynos-dwc3-v1-1-b63bacad2b42@linaro.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date: Wed, 08 Oct 2025 03:18:47 +0100
+Message-Id: <DDCKWVH8ORLM.357D9IKQK9YN8@linaro.org>
+Cc: "Srinivas Kandagatla" <srini@kernel.org>, "Liam Girdwood"
+ <lgirdwood@gmail.com>, "Mark Brown" <broonie@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Stephen Boyd" <sboyd@kernel.org>, "Lee
+ Jones" <lee@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai"
+ <tiwai@suse.com>, <linux-arm-msm@vger.kernel.org>,
+ <linux-sound@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Dmitry Baryshkov"
+ <dmitry.baryshkov@oss.qualcomm.com>, "Srinivas Kandagatla"
+ <srinivas.kandagatla@oss.qualcomm.com>, <christophe.jaillet@wanadoo.fr>
+Subject: Re: [PATCH v4 2/4] dt-bindings: mfd: qcom,spmi-pmic: add
+ qcom,pm4125-codec compatible
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250915-pm4125_audio_codec_v1-v4-0-b247b64eec52@linaro.org>
+ <20250915-pm4125_audio_codec_v1-v4-2-b247b64eec52@linaro.org>
+ <20250918-wonderful-deft-jackal-7d3bbc@kuoka>
+In-Reply-To: <20250918-wonderful-deft-jackal-7d3bbc@kuoka>
 
-On 08/10/2025 00:55, André Draszik wrote:
-> The DWC3 can be part of a power domain, so we need to allow the
-> relevant property 'power-domains'.
-> 
-> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+On Thu Sep 18, 2025 at 3:03 AM BST, Krzysztof Kozlowski wrote:
+> On Mon, Sep 15, 2025 at 05:27:49PM +0100, Alexey Klimov wrote:
+>> Add qcom,pm4125-codec compatible to pattern properties in mfd
+>> qcom,spmi-pmic schema so the devicetree for this audio block of PMIC
+>> can be validated properly.
+>>=20
+>> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+>> ---
+>>  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 6 ++++++
+>>  1 file changed, 6 insertions(+)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml b=
+/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+>> index 078a6886f8b1e9ceb2187e988ce7c9514ff6dc2c..776c51a66f6e7260b7e3e183=
+d693e3508cbc531e 100644
+>> --- a/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+>> +++ b/Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml
+>> @@ -137,6 +137,12 @@ patternProperties:
+>> =20
+>>    "^audio-codec@[0-9a-f]+$":
+>>      type: object
+>> +    oneOf:
+>> +      - $ref: /schemas/sound/qcom,pm8916-wcd-analog-codec.yaml#
+>> +      - properties:
+>> +          compatible:
+>> +            const: qcom,pm4125-codec
+>
+>
+> Not much improved. Same feedback applies.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Around the time of sending this I thought to set separate follow-up patch
+that fixes the other part here -- pm8916-wcd-analog-codec.
+
+At this point, is it fine to send follow-up patch that does smth like
+this:
+
++    oneOf:
++      - $ref: /schemas/sound/qcom,pm8916-wcd-analog-codec.yaml#
++      - properties:
++          compatible:
++              - enaum:
++                - qcom,pm4125-codec
++                - qcom,pm8916-wcd-analog-codec
+
+?
+
+(I didn't check how if it will compile or pass checks)
+
+Hope this is okay.
 
 Best regards,
-Krzysztof
+Alexey
 
