@@ -1,88 +1,56 @@
-Return-Path: <devicetree+bounces-224578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224579-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6536ABC56C3
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 16:21:35 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50CD1BC5706
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 16:34:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DC1D3A9FF7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 14:20:53 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 8A0DC34A3E4
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 14:34:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 003DC2E7BB4;
-	Wed,  8 Oct 2025 14:20:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DFA42BD001;
+	Wed,  8 Oct 2025 14:34:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QDp66+LY"
+	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="Cwil4agj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 384772E92D2
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 14:20:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF69734BA22
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 14:34:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759933249; cv=none; b=L9ivC5L4dAF6XCGwcXIblMamQIlgpUuIg0A1RiQP7xTBbf3DIA6hWCKsPHx1bWOElG0nYYGxyq4RCNBzpIA2CNi9WynIeLP8d7SYb3DfbZPvEYf04gNHwc+qNdi5enF1ZOLyUEYxZWXWa76DMS3icMnYMslM+OQxyPd33+tIdM4=
+	t=1759934076; cv=none; b=DbXk5gNe8WU166nqoOlBOp7tIn/Ix6D0ymmv2Lqt5ZFPSWW4vEWbcYmwsGmQOuXiarcbS0rTvHxDYj/Fnj4dyOjlLlSy+WqsUVfS8wFwrskQPA/CMRZZ/E71qPozgWj1QUtpxwAq2gouor9Zz0bMlP9yYNqQp+l9v2WthzRoqZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759933249; c=relaxed/simple;
-	bh=ogVrD0uTLTGMHdtliGwCwN+ClgfrGrSZ+Dkn7g0gOoc=;
+	s=arc-20240116; t=1759934076; c=relaxed/simple;
+	bh=YaGTql1/BkBa5c8lrHny35f1J4lHwLK1WWwRmC5UbB4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tuiHLaO06E2uTACW+wKN5CE7+1rC9gYbszflV438DEqe0VbbEmxptSD10YuXI0WGYfqaUljJE2UgNz5QuhNAL1HDfpl7fZO4+QSVeWvJrr4LEUK9kjAjaUVoViuJnwVB+umK/EyeWf5VW/ZO+WtxlPvoOfM044FU1p4wCBfeais=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QDp66+LY; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59890Or3028852
-	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 14:20:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lz+mS6MZ/rvjqUHxrGonwzbwHQ0rOQOZyEdg73FnsuY=; b=QDp66+LYc7Ey9J9J
-	KfqhiFLBeK+NSDCnP9WmCY/oOwqilBBuhvJGAz28Q4xiNrTVxZYjJY14eAa1l6qN
-	QaGkm7jxCkcjBmCNCy/jZa1ZKoBOldXS3/XjkOCesmLMb2pIDnmPNTgbQ84J1lvY
-	snV7ku/Fy6FA+YR2AXLUfo8hc2Dv1lWy7WykDF0W94zeGGmfWpvs9tYiGFUzxipk
-	v91MK3DQlQrtKi1bszdLF2VdbC5htJc0j1cmbsRgxB5DnMmtX+n0lrv8XIXfoMKz
-	If/DJsOL7Y4Iy4z+V80/go/yrVJkAzFK9ToDwTPn1ui9rSmhakgK/ucksBkKMLYu
-	C8V9Ow==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49js9e30u8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 14:20:47 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-269939bfccbso89782665ad.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 07:20:47 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759933246; x=1760538046;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lz+mS6MZ/rvjqUHxrGonwzbwHQ0rOQOZyEdg73FnsuY=;
-        b=PgozAxkMUqMuYKgxgexquIjyl7ZHnKZSsjXd5cVbGLtBKe5o82xWjzWGnuF5ZMAqhk
-         0foBb88ye+XHelVSk8vfPgPM5dIJRnDZeXhiVdFd9JgpT6s6odE2BRXB1X59nPRbeNYI
-         ZP5bqtv3NYABTWcttXXT8dMLFxu1CNfhZC2ca/syV8newrc7AoNejt73LPEZAddkh/Oo
-         4OIPPox/QLn4ccxMnfMnh1PApCt/KAuXAwn58jiRAVIs9X98rBRU2iX9xBNB+TyM54oP
-         IwJj2thyHMq6iUchdUTlaKM7gLnBPrknXxHT5VkB3Nncnsgr/2xK58JOsNtr/tK+G3bn
-         jgBA==
-X-Forwarded-Encrypted: i=1; AJvYcCV9UoMRHV67DqpgkERgFBD23y9cGMvJL+kMOR7BrP6KEYoxf9/RB8HhDYAISAljR02ZiiVuCL28WoRM@vger.kernel.org
-X-Gm-Message-State: AOJu0YySh/wd0fttQdT9jBYOHzd+M4a6dQDdlWZLLq83Ak2/IYfamyeU
-	IcQ3wQjBJOQ6/gi9DLZKCwcKdBMYw71ncOAaG4lnenDvd7p33Mccfde6+wA53iHgOY31pifjYZ9
-	MbAv78jeEVTzuMQtO/4DT/qyrmBRlCcIPLMo5cJOsYTQ7Zo2vzXqV6FsiiGQIYBW9
-X-Gm-Gg: ASbGnct2dQGxEouG4x5oEGLaT5RydF17WnZD4LYo+GhT6RzjAfkrkNVjqyq6QZMduTi
-	MxP3aLujESsF98bVnb5Db5PZJYIwBs3imRItXCQF/BHi6B2NTJx90n6V7MwIw94qHDfThkOlaJS
-	uSzhizAZwJzsyphbVC9Y/WQwjddnztdXKGfjvbKag/9m80AOO9FGClNoFrj6IecTHkmVEnHanMb
-	1OBr952s+jQRu/+5VUzxAX8p7iJvH9ffsVDvKE8WZ1/ZRQrocsGtyqCGwIuMRzxqVTs1F1121Om
-	WGIEIhM8y1jmh8L5P2IEBKCzuK/k468uEKfCO2TIlduEWztWvrfBlybGEVKCExah1VeI4FhOMEV
-	zXQ==
-X-Received: by 2002:a17:903:a8b:b0:265:89c:251b with SMTP id d9443c01a7336-290273ef081mr47036205ad.29.1759933246097;
-        Wed, 08 Oct 2025 07:20:46 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHr9LK963P5BA7uXceHHrVsADE8b2KBpElj7O1ory5mflnm4HtE6Ymq0IImskdB3TNDjo+0PQ==
-X-Received: by 2002:a17:903:a8b:b0:265:89c:251b with SMTP id d9443c01a7336-290273ef081mr47035815ad.29.1759933245508;
-        Wed, 08 Oct 2025 07:20:45 -0700 (PDT)
-Received: from [10.217.217.28] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d1d584esm200797495ad.107.2025.10.08.07.20.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Oct 2025 07:20:43 -0700 (PDT)
-Message-ID: <31bd08ce-823a-4a71-baca-a9d1e02fcb6a@oss.qualcomm.com>
-Date: Wed, 8 Oct 2025 19:50:30 +0530
+	 In-Reply-To:Content-Type; b=WOa1nSOBbTv1tD+eHHE2fCJIl3TpJVepm6m7SS8gO7ajehyrJdeywV/3K5SOPgw6SX4xXDq6CrfCwfMs0OYOYST3Y2rXtamcVNxAsnuMpQLPnW8K6Og4FerQTJUfwKWpXc30IqksOjLllXc5kG2hkdPw4jVzYgN0rpS7nuTQc4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=Cwil4agj; arc=none smtp.client-ip=212.227.17.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
+	s=s31663417; t=1759934061; x=1760538861; i=wahrenst@gmx.net;
+	bh=SOLaMVFpmYVh1bKEOwH+Y/nXUsErlVSXLPMaBCSyCq8=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=Cwil4agjyC0s92drucBXx7CJAt9aiepygJlyT7P7IEaoLlEAfoytSycCYtw5YxbZ
+	 SlvVbhULG++tY065lSK+W55pxwjz0cBI+9jct/G5Fbx4m5Z6ZaN2CjvjnMC+ZFDKE
+	 seLDEiqF7rrIpGrQDBlukmfaad6YJIGIRlASeZluIxU6bIXCpvlGIWkCUNO2i1iP+
+	 IfBKL5vdzCLoHb0VxYVGV6ZEwuWr22ElIGrvqtur9BYJxE6kZOe/iq2Byam7nknHA
+	 aJTTRwDQ/yZjIqsiSvqfDTOWMRwMSXlac6icVReFksMjLk/m5VcT7qemSO3vdt3hH
+	 4KTzNEaSFQUEILM7Yw==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [192.168.1.156] ([79.235.128.112]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MpDJX-1uTou33Jy3-00pOaT; Wed, 08
+ Oct 2025 16:34:20 +0200
+Message-ID: <236bcb89-203f-4524-9512-cd77a558faab@gmx.net>
+Date: Wed, 8 Oct 2025 16:34:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,206 +58,137 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V7 3/5] dt-bindings: iio: adc: Add support for QCOM PMIC5
- Gen3 ADC
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-        Krzysztof Kozlowski
- <krzk@kernel.org>, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, agross@kernel.org,
-        andersson@kernel.org, lumag@kernel.org,
-        dmitry.baryshkov@oss.qualcomm.com, konradybcio@kernel.org,
-        daniel.lezcano@linaro.org, sboyd@kernel.org, amitk@kernel.org,
-        thara.gopinath@gmail.com, lee@kernel.org, rafael@kernel.org,
-        subbaraman.narayanamurthy@oss.qualcomm.com,
-        david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
-        kamal.wadhwa@oss.qualcomm.com, rui.zhang@intel.com,
-        lukasz.luba@arm.com, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        cros-qcom-dts-watchers@chromium.org, quic_kotarake@quicinc.com,
-        neil.armstrong@linaro.org, stephan.gerhold@linaro.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20250826083657.4005727-1-jishnu.prakash@oss.qualcomm.com>
- <20250826083657.4005727-4-jishnu.prakash@oss.qualcomm.com>
- <20250829-classic-dynamic-clam-addbd8@kuoka>
- <5d662148-408f-49e1-a769-2a5d61371cae@oss.qualcomm.com>
- <4e974e77-adfc-49e5-90c8-cf8996ded513@kernel.org>
- <a0e885be-e87d-411a-884e-3e38a0d761e5@oss.qualcomm.com>
- <8c90cc3f-115e-4362-9293-05d9bee24214@linaro.org>
- <5d4edecf-51f3-4d4a-861f-fce419e3a314@oss.qualcomm.com>
- <20250927144757.4d36d5c8@jic23-huawei>
- <a3158843-dfac-4adc-838a-35bb4b0cbea4@oss.qualcomm.com>
- <CAGE=qrrCvq28pr9Y7it-CGMW=szKUnU+XBj1TmpoUwuASM05ig@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: broadcom: rpi: Switch to V3D firmware clock
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Florian Fainelli <f.fainelli@gmail.com>, Ray Jui <rjui@broadcom.com>,
+ Rob Herring <robh@kernel.org>, bcm-kernel-feedback-list@broadcom.com,
+ Scott Branden <sbranden@broadcom.com>, Melissa Wen <mwen@igalia.com>,
+ Conor Dooley <conor+dt@kernel.org>, =?UTF-8?Q?Ma=C3=ADra_Canal?=
+ <mcanal@igalia.com>, Maxime Ripard <mripard@kernel.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Stephen Boyd
+ <sboyd@kernel.org>, kernel-dev@igalia.com, kernel-list@raspberrypi.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20251005113816.6721-1-wahrenst@gmx.net>
+ <20251006203509.2056322-1-florian.fainelli@broadcom.com>
 Content-Language: en-US
-From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-In-Reply-To: <CAGE=qrrCvq28pr9Y7it-CGMW=szKUnU+XBj1TmpoUwuASM05ig@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+From: Stefan Wahren <wahrenst@gmx.net>
+Autocrypt: addr=wahrenst@gmx.net; keydata=
+ xjMEZ1dOJBYJKwYBBAHaRw8BAQdA7H2MMG3q8FV7kAPko5vOAeaa4UA1I0hMgga1j5iYTTvN
+ IFN0ZWZhbiBXYWhyZW4gPHdhaHJlbnN0QGdteC5uZXQ+wo8EExYIADcWIQT3FXg+ApsOhPDN
+ NNFuwvLLwiAwigUCZ1dOJAUJB4TOAAIbAwQLCQgHBRUICQoLBRYCAwEAAAoJEG7C8svCIDCK
+ JQ4BAP4Y9uuHAxbAhHSQf6UZ+hl5BDznsZVBJvH8cZe2dSZ6AQCNgoc1Lxw1tvPscuC1Jd1C
+ TZomrGfQI47OiiJ3vGktBc44BGdXTiQSCisGAQQBl1UBBQEBB0B5M0B2E2XxySUQhU6emMYx
+ f5QR/BrEK0hs3bLT6Hb9WgMBCAfCfgQYFggAJhYhBPcVeD4Cmw6E8M000W7C8svCIDCKBQJn
+ V04kBQkHhM4AAhsMAAoJEG7C8svCIDCKJxoA/i+kqD5bphZEucrJHw77ujnOQbiKY2rLb0pE
+ aHMQoiECAQDVbj827W1Yai/0XEABIr8Ci6a+/qZ8Vz6MZzL5GJosAA==
+In-Reply-To: <20251006203509.2056322-1-florian.fainelli@broadcom.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Hrl72kTS c=1 sm=1 tr=0 ts=68e6733f cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=AgmdEbom9n3Jum9HLqIA:9
- a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-GUID: PhLMRozvlAe82Kpqrl9Q6s6W8qLHBVvD
-X-Proofpoint-ORIG-GUID: PhLMRozvlAe82Kpqrl9Q6s6W8qLHBVvD
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAwNCBTYWx0ZWRfXwAXjMuyE+gqX
- JBxcKWU1sQSmCgXKvyfu3HrLhnV+PHOJ2y5gu6jpaIzBHR6NKidlHXeoyCDn+5bBKbz770VoR55
- kytUu2eexfdq/lGX+m33QFr9sZxcX//wFj+i4GLKTQxtmcYhDCmDtZUYmde/X9fNTQPHHsga0R2
- JYbk6PJNP1Ehm2SBGrUc1hAxybfDuHCNeZB3SFZ7HXRzAbm/GpqAyiXI6SWA7bWeoRFh0EwKbgY
- x1ng2GH2kfCtU7/0sAYVdKSWcI9U4z8T5XTl2pFuuyQ5zIGFmBEzQickxerGM23SzmnSWBaocjJ
- tyPkCWfOQ/X8dPovYmA84ucRjyOPfXlkFo940XwPpKe7OvhoDMp59NIauwOzaeaX+SJvey4Vp/+
- PMp9ulHKWETM8F7o7VVIz5C3vz+qJw==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-08_04,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 spamscore=0 adultscore=0 lowpriorityscore=0
- bulkscore=0 priorityscore=1501 malwarescore=0 impostorscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040004
+X-Provags-ID: V03:K1:EyC4Fzsb683ikwexkeENPxMttDHX3g15NDbT9s4LM7tfAaS1APH
+ wsheSjkbtNCDfbKhy9nrpjP2M0PNBKsSuNY7JcvKhyCcmzC34uDyqDtlGM0K2+td3GWUkWo
+ y/akN9z/PjsEVU1DZnPie2gWzEJcOtAzcZu4qJO304MsOSYkODsYBLLBJChw4Ni9wXXxNPn
+ KBrjFaeMbDRQJoukIkg7w==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:rV9oOL4i0ig=;tDLKhVd87gWEXY3og+0uqGODdzm
+ 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
+ LyY/pjWQhtSVHEOx9qWvpCM8c8=
 
-Hi Krzysztof,
+Hi Florian,
 
-On 10/4/2025 12:22 PM, Krzysztof Kozlowski wrote:
-> On Sat, 4 Oct 2025 at 11:42, Jishnu Prakash
-> <jishnu.prakash@oss.qualcomm.com> wrote:
+Am 06.10.25 um 22:35 schrieb Florian Fainelli:
+> From: Florian Fainelli <f.fainelli@gmail.com>
+>
+> On Sun,  5 Oct 2025 13:38:16 +0200, Stefan Wahren <wahrenst@gmx.net> wrote:
+>> Until commit 919d6924ae9b ("clk: bcm: rpi: Turn firmware clock on/off
+>> when preparing/unpreparing") the clk-raspberrypi driver wasn't able
+>> to change the state of the V3D clock. Only the clk-bcm2835 was able
+>> to do this before. After this commit both drivers were able to work
+>> against each other, which could result in a system freeze. One step
+>> to avoid this conflict is to switch all V3D consumer to the firmware
+>> clock.
 >>
->> Hi Jonathan,
->>
->> On 9/27/2025 7:17 PM, Jonathan Cameron wrote:
->>> On Fri, 19 Sep 2025 20:17:43 +0530
->>> Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
->>>
->>>> Hi Krzysztof,
->>>>
->>>> On 9/18/2025 5:45 AM, Krzysztof Kozlowski wrote:
->>>>> On 18/09/2025 04:47, Jishnu Prakash wrote:
->>>>>> Hi Krzysztof,
->>>>>>
->>>>>> On 9/17/2025 5:59 AM, Krzysztof Kozlowski wrote:
->>>>>>> On 16/09/2025 16:28, Jishnu Prakash wrote:
->>>>>>>>> You cannot have empty spaces in ID constants. These are abstract
->>>>>>>>> numbers.
->>>>>>>>>
->>>>>>>>> Otherwise please point me to driver using this constant.
->>>>>>>>
->>>>>>>> These constants are for ADC channel numbers, which are fixed in HW.
->>>>>>>>
->>>>>>>> They are used in this driver: drivers/iio/adc/qcom-spmi-adc5-gen3.c,
->>>>>>>> which is added in patch 4 of this series.
->>>>>>>>
->>>>>>>> They can be found in the array named adc5_gen3_chans_pmic[].
->>>>>>>
->>>>>>> Really? So point me to the line there using ADC5_GEN3_VREF_BAT_THERM.
->>>>>>>
->>>>>>
->>>>>> We may not be using all of these channels right now - we can add them
->>>>>> later based on requirements coming up. For now, I'll remove the channels
->>>>>> not used in adc5_gen3_chans_pmic[].
->>>>>
->>>>> You are not implementing the feedback then. Please read it carefully.
->>>>>
->>>>
->>>> Sorry, I misunderstood - so you actually meant I should remove the
->>>> empty spaces in the definitions, like this?
->>>>
->>>> -#define ADC5_GEN3_VREF_BAT_THERM               0x15
->>>> +#define ADC5_GEN3_VREF_BAT_THERM 0x15
->>>>
->>>> I thought this at first, but I somehow doubted this later, as I saw some
->>>> other recently added files with empty spaces in #define lines, like:
->>>>
->>>> include/dt-bindings/iio/adc/mediatek,mt6373-auxadc.h
->>>> include/dt-bindings/regulator/st,stm32mp15-regulator.h
->>>>
->>>> I can make this change, if you prefer this. Please let me know
->>>> if I'm still missing something.
->>>>
->>>> Also please let me know if you want me to remove the unused
->>>> channels - I would prefer to keep them if there's no issue,
->>>> as we might need them later.
->>>>
->>> He is referring to 0x14 and below not being defined values.  So what
->>> do they mean if they turn up in the DT?
->>>
->>
->> Thanks for your clarification. To address your first point above, the macros
->> added here only represent the ADC channel numbers which are supported for
->> ADC5 Gen3 devices. If there are numbers missing in between (like 0x14),
->> that is because there exist no valid ADC channels in HW matching those
->> channel numbers.
->>
->> For your question above, if any of the undefined channels are used in the DT,
->> they should ideally be treated as invalid when parsed in the driver probe and
->> lead to an error. When I checked the code again, I saw we do not have such an
->> explicit check right now, so I will add that in the next patch series.
->>
->> And to be clear on which channel numbers are supported, I think it may be
->> best if, for now, we only add support for the channel numbers referenced in
->> the array adc5_gen3_chans_pmic[] in drivers/iio/adc/qcom-spmi-adc5-gen3.c.
->>
->> There are only 18 channel numbers used in this array and I would remove
->> all channels except for these from the binding files. During parsing, we
->> would use this array to confirm if an ADC channel added in DT is supported.
->>
->> In case we need to add support for any more channels later, we could add
->> their macros in the binding file and update the array correspondingly at
->> that time.
->>
->> Does all this sound fine? Please let me know if you have any more concerns
->> or queries.
-> 
-> No, it doesn't.  You keep ignoring my arguments and responding to
-> something else. I prefer not to store hardware values as bindings,
-> because these are not bindings (and you failed to prove which SW
-> interface they bind) and it's really not necessary.
+>> Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
+>> Closes: https://lore.kernel.org/linux-arm-kernel/727aa0c8-2981-4662-adf3-69cac2da956d@samsung.com/
+>> Fixes: 919d6924ae9b ("clk: bcm: rpi: Turn firmware clock on/off when preparing/unpreparing")
+>> Signed-off-by: Stefan Wahren <wahrenst@gmx.net>
+>> Co-developed-by: Melissa Wen <mwen@igalia.com>
+>> Signed-off-by: Melissa Wen <mwen@igalia.com>
+>> ---
+> Applied to https://github.com/Broadcom/stblinux/commits/devicetree/fixes, thanks!
+could you please check if it's pushed?
 
-In my previous replies in this thread, I missed mentioning that the macros
-defined in include/dt-bindings/iio/adc/qcom,spmi-vadc.h are also used in
-other places than the driver file - they are also used in the PMIC-specific
-binding files added in this patch, for channel definitions. Considering
-one channel for example:
- 
-We have this in include/dt-bindings/iio/adc/qcom,spmi-vadc.h:
-+#define ADC5_GEN3_DIE_TEMP			0x03
- 
-The above is used in include/dt-bindings/iio/adc/qcom,pm8550vx-adc5-gen3.h:
-+#define PM8550VS_ADC5_GEN3_DIE_TEMP(sid)			((sid) << 8 | ADC5_GEN3_DIE_TEMP)
- 
-And the above definition may be used in device tree, like in the example added
-in Documentation/devicetree/bindings/iio/adc/qcom,spmi-adc5-gen3.yaml:
- 
-+        channel@203 {
-+          reg = <PM8550VS_ADC5_GEN3_DIE_TEMP(2)>;
-+          label = "pm8550vs_c_die_temp";
-+          qcom,pre-scaling = <1 1>;
-+        };
-
-Referencing the same macros in driver and device tree should also help with
-readability and lower the chances of accidental wrong configurations.
-Based on this, can we consider ADC5_GEN3_DIE_TEMP is a valid binding and keep
-it in place?
- 
-If not, and if you want the ADC5_GEN3_DIE_TEMP definition removed from bindings,
-I can see two ways to do this:
- 
-1. Keep the PMIC-specific binding definitions, making updates to them like this:
- 
--#define PM8550VS_ADC5_GEN3_DIE_TEMP(sid)			((sid) << 8 | ADC5_GEN3_DIE_TEMP)
-+#define PM8550VS_ADC5_GEN3_DIE_TEMP(sid)			((sid) << 8 | 0x03)
- 
-and use the same macros in device tree, like above.
- 
-2. Drop the PMIC-specific binding definitions completely and update reg property like this:
-
--          reg = <PM8550VS_ADC5_GEN3_DIE_TEMP(2)>;
-+          reg = <0x203>;
- 
-Which way would you prefer here?
-
-Thanks,
-Jishnu
-
-
+Best regards
+> --
+> Florian
 
 
