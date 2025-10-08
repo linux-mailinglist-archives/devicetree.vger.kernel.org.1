@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-224335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD6BEBC322C
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 03:55:57 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B9C3BC324E
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 04:08:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99C8A189CDC3
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 01:56:20 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 627424E4741
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 02:08:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0455A299AAB;
-	Wed,  8 Oct 2025 01:55:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC8129ACC5;
+	Wed,  8 Oct 2025 02:08:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WSjlpz5R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SxCTSb7z"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA0F5259CAC;
-	Wed,  8 Oct 2025 01:55:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3AC521A458;
+	Wed,  8 Oct 2025 02:08:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759888551; cv=none; b=bwosTkI/rxEPCAh3jCf/HZY5AhYLZ4YfsETPq74FO2h99AI24TU1i+CPJcZmoFo/hTtk3AYwkrGygupIiEW3lfsYBdX8i/8Qmp/k/gWHIC9xBPikv+R5cUAuTNb2G4dQLlZaKNFt/YyQe3KIEax9fIL+U810wRqRkW3NxzSTPjg=
+	t=1759889300; cv=none; b=n8ysjpvgXucr699cXm+wS4o0QVXXouZDoweSNnWVV5DofjAVQEYVaDC4SXVLkMdcz4yjBObrvxIGt7Zd9UzMBfk2fFaLDv+wBgS470D4zj68PwkL5tjpWL86N6QIc2JURHv5VB2LbTvM5a2MZDBvNq7LIlYRQSuXxg9GJNgs6y8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759888551; c=relaxed/simple;
-	bh=zUFhCE55gFIo0YuR9SI3nbI7zUYaY9J9ttmKAuups78=;
+	s=arc-20240116; t=1759889300; c=relaxed/simple;
+	bh=ydq/SM54tbseQxtKXXt5aBtDmQSrUTTs+CQh2BdmPjI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZjYzr+lw18LrmZYuzldQO29WJ7heoc2ufb0HGKCwS+/ctkEewRmvWeuW0Q5ThP7d1XoXP5K2DPiaxI1SyfS4BHoDY0Hz/inAYAT0yODBYI1AMGhC4E7/EBnWVQGiam6IxthkWA9uk3yfEgmSILd921UEWLLlWQaciBs91hXzpAQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WSjlpz5R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0537C4CEF1;
-	Wed,  8 Oct 2025 01:55:43 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=B2LfJ4SLBiochPPhkJaf9ow6TmIgAy2pFSxSaLBx2RJ8yPaiXm/qbZYdSWcz4TnAQCavZliYVfJD+gY9M8GxtmNH7Jcfn4x2Mz7HblcuxXl3Fbw5W647VSUmaWZF0YPSQjQnFnW19JmqMQvXIhng+i9hyJACBVBTkNeDUrvZA+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SxCTSb7z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F803C4CEF1;
+	Wed,  8 Oct 2025 02:08:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759888551;
-	bh=zUFhCE55gFIo0YuR9SI3nbI7zUYaY9J9ttmKAuups78=;
+	s=k20201202; t=1759889300;
+	bh=ydq/SM54tbseQxtKXXt5aBtDmQSrUTTs+CQh2BdmPjI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WSjlpz5RmjXK8xcAe2HmxNq3T/d+qmhcJMygkYX/KOXOChRgXirnYRWFFWjrlUiGi
-	 u7E3UjgyWozkSJxNLXbyBmxavxlDwXEgtGp2d2o9oydfW4gDoKSVC8pKcjS18ufcz/
-	 ozAPILk8zMlev7+Nz10kRdduj7+eK0oDjW0I0+wLfikSxCn2YAHUzxV/3YVSPRmldO
-	 OAE2NnM9CBpPHtY6r7HBJQcjixYcyiUw1XjGMgWOkzqeJrUxKB8uyJUkO3ezvj5MFM
-	 /p7jPsxlJHeaB3zw0P+uPSg4Qfu8k5RSZpmX1KFBvTtd7OTmm2SvdZ1HMEoOkykOaI
-	 H4Vs/4eOPToug==
-Message-ID: <0ac39a3e-d1a2-40d8-a3d1-b422acc720cc@kernel.org>
-Date: Wed, 8 Oct 2025 10:55:40 +0900
+	b=SxCTSb7zPS9+9dbADpNPTdpGpyXBSCAaf18Sw3Sapq2Q0nBmnCuXzhWx/P6o1l43M
+	 2p3TQMMOksR0nNmpVxtUyoMIVMi/db77QQa2yua6Ip16va0IzOPpXyu5x+TGsJ9ziv
+	 D5r8zAHnwmPGxPN5D+hrxYGJ2DZrGxGzyTRFjnO0xSDR5trgzD1Pc4DfzOp9QZjNwG
+	 u10j8FWUzeG1iVoQU2TWrSinZd9421Fh78dmzP9kPQFwHmvehupP8qwvv2LftbZIkF
+	 wio7RkH6aj2Qh2ir8AIHUl21zgHCEOX4+ljfM/Fw2L8+oQ+B95OPU6kcSNIZrhs29W
+	 Ksy4gbAwM5vRg==
+Message-ID: <d126b69d-7030-4950-9783-9d505132a0c6@kernel.org>
+Date: Wed, 8 Oct 2025 11:08:13 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 16/16] media: rockchip: rga: add rga3 support
-To: =?UTF-8?Q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>,
- Jacob Chen <jacob-chen@iotwrt.com>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
- <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, kernel@pengutronix.de
-References: <20251007-spu-rga3-v1-0-36ad85570402@pengutronix.de>
- <20251007-spu-rga3-v1-16-36ad85570402@pengutronix.de>
- <bf989d9f-9e8e-4acc-b502-1674ce215318@kernel.org>
- <947409d8-9a92-46f2-a6e7-49f3aa44d74f@pengutronix.de>
+Subject: Re: [PATCH] dt-bindings: phy: samsung,ufs-phy: add power-domains
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251007-power-domains-dt-bindings-phy-samsung-ufs-phy-v1-1-d9030d14af59@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,44 +106,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <947409d8-9a92-46f2-a6e7-49f3aa44d74f@pengutronix.de>
+In-Reply-To: <20251007-power-domains-dt-bindings-phy-samsung-ufs-phy-v1-1-d9030d14af59@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 08/10/2025 01:05, Sven Püschel wrote:
-> Hi Krzysztof,
+On 08/10/2025 01:01, André Draszik wrote:
+> The UFS phy can be part of a power domain, so we need to allow the
+> relevant property 'power-domains'.
 > 
-> On 10/7/25 10:39 AM, Krzysztof Kozlowski wrote:
->> On 07/10/2025 17:32, Sven Püschel wrote:
->>> Add support for the RGA3 unit contained in the RK3588.
->>>
->>> Only a basic feature set consisting of scaling and color conversion is
->>> implemented. Advanced features like rotation and cropping will just be
->>> ignored. Also the BT601F color space conversion is currently hard coded.
->>>
->>> The register address defines were copied from the
->>> vendor Rockchip kernel sources and slightly adjusted to not start at 0
->>> again for the cmd registers.
->>>
->>> Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
->>> ---
->>>   drivers/media/platform/rockchip/rga/Makefile  |   2 +-
->>>   drivers/media/platform/rockchip/rga/rga.c     |   4 +
->>>   drivers/media/platform/rockchip/rga/rga.h     |   2 +-
->>>   drivers/media/platform/rockchip/rga/rga3-hw.c | 490 ++++++++++++++++++++++++++
->>>   drivers/media/platform/rockchip/rga/rga3-hw.h | 186 ++++++++++
->>>   5 files changed, 682 insertions(+), 2 deletions(-)
->> Your order of patches is a mess. DTS cannot be in the middle. In fact,
->> DTS should not be even in this patchset, because you are targeting media.
-> 
-> sorry to bother you, but could you go into a bit more detail on how it 
-> should be done correctly?
+> Signed-off-by: André Draszik <andre.draszik@linaro.org>
+> ---
 
-DTS cannot be before drivers, because this suggests that drivers depends
-on DTS, which would be a NAK. See also maintainer soc profile. To avoid
-having such impression of fake dependency, DTS must be placed at the end
-of patchset (except the obvious part: nothing in your code can depend on
-it).
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
