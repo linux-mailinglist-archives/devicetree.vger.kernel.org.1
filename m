@@ -1,84 +1,131 @@
-Return-Path: <devicetree+bounces-224554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BAD3BC5386
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 15:31:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23B52BC53BD
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 15:36:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BCBC64EBC14
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 13:31:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3A7A3AED58
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 13:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C00FC284889;
-	Wed,  8 Oct 2025 13:31:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QL634/lJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06C572857E0;
+	Wed,  8 Oct 2025 13:36:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90046224B09;
-	Wed,  8 Oct 2025 13:31:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D34628314A
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 13:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759930299; cv=none; b=svC1Rh++1nhbm1Ios3/ghPDU2Aa1p5y7EhICPZpPVRnbH/C2fAfc09p8ytA19vaN0I5QmRFNsoisiTHRWAGuBVeI/n+Wtbsnz2/drQvioq70b2IVU8edGTQox2eMFtVVShJVVV8L0pKygF9+4S4o/kmxWZUPY8B8og69gaRvqwg=
+	t=1759930563; cv=none; b=gUIUl08zSWq+DFvc62g7mOrbLl1nOMDlsJd3UND0imwzXpdCKbiYV/cUI+ygXu4KxXCLlRh+dgp1oXcxOCUocfHg6TDdoLGDWVv8xYr7+18tvkB5gwQyY9NyWwrwNJku6WsjVWGwGA4Guc8AwvkLk1MQE0UCn906YcKbkr4Eixs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759930299; c=relaxed/simple;
-	bh=r7DLtYnTyUmwk76ozM37yxs0kti+NVMRthxTc5cpnbA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JHM329TnGdkbHqVb3tJG6ex9Bm8MYubAfEUXpfSz+jKTpTL5bRAmm10O+qimQhuZriBS5HzaR07vl3Ag9h80v+YV0Afrooru32rrPsVsLZFgTGw/HcHV8cnHmWnZyAwjBm9mD6aPmBXR2FuFpn5Wz1gm/Jyz+vF8d6HzgVAK4QA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QL634/lJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 023BCC4CEF4;
-	Wed,  8 Oct 2025 13:31:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759930298;
-	bh=r7DLtYnTyUmwk76ozM37yxs0kti+NVMRthxTc5cpnbA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QL634/lJGBxTgsXJwKgnUOkOtspYqImlIG4Tlpp+JhPl1xXuYpvBQssra1vuGzQtY
-	 kjiskEYwvlrE6B7X+0xBaSzv0VkITyEIizwSOclVTYg5FwUUUHjtRS6Y2uINY3Gb1g
-	 8QnwicNnHEP3oihlaceO9/WzxVxN/lVl0LHSVfSv6g2u9/JZ6URubNftOyb/p2COQm
-	 jCq1Pzut4K03psEBL0TVkQx3qG9QvT/EmTvr0xGRqSQZ/A/3ZF8wU7EW44hi4UWjwD
-	 tpNRi0uElNvsdh/N89DypIrg9R9Jh49f/dgw/R+ubCRjRD11BAFkNz9EETMyz4zFUp
-	 +XTE1CXtMGXDw==
-Date: Wed, 8 Oct 2025 08:31:37 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: George Moussalem <george.moussalem@outlook.com>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Baruch Siach <baruch@tkos.co.il>, devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v16 3/9] dt-bindings: pwm: qcom,ipq6018-pwm: Add
- compatible for ipq5018
-Message-ID: <175993029652.3409106.5685408571837686502.robh@kernel.org>
-References: <20251001-ipq-pwm-v16-0-300f237e0e68@outlook.com>
- <20251001-ipq-pwm-v16-3-300f237e0e68@outlook.com>
+	s=arc-20240116; t=1759930563; c=relaxed/simple;
+	bh=2++gi+3fbP2waS3+p89+F+/Sm7MsrHb0KRMpSa7Niw0=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aivgK2cXKPrKc8Bczy6U79Too/kSQVGpU4AUxCBT5gA1reqwTq5bPkobnix1goErul98hiuETdHAKKY4kFOA5RqD3EnBKS9m6xm6Vb88k6n4x9oFQeJW0lV8RkVZ5wYE6p1lgL4ISd9jdvnJjxq1L/xdxSF5Rgfyx52C4plClEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
+	by Atcsqr.andestech.com with ESMTPS id 598DZFiu019619
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Wed, 8 Oct 2025 21:35:15 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from swlinux02 (10.0.15.183) by ATCPCS31.andestech.com (10.0.1.89)
+ with Microsoft SMTP Server id 14.3.498.0; Wed, 8 Oct 2025 21:35:15 +0800
+Date: Wed, 8 Oct 2025 21:35:15 +0800
+From: CL Wang <cl634@andestech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+	<gg@swlinux02.smtp.subspace.kernel.org>
+CC: Conor Dooley <conor@kernel.org>, <vkoul@kernel.org>,
+        <dmaengine@vger.kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <tim609@andestech.com>,
+        <cl634@andestech.com>
+Subject: Re: [PATCH V1 1/2] dt-bindings: dmaengine: Add support for
+ ATCDMAC300 DMA engine
+Message-ID: <aOZokztqpHHX0JPq@swlinux02>
+References: <20251002131659.973955-1-cl634@andestech.com>
+ <20251002131659.973955-2-cl634@andestech.com>
+ <20251002-absolute-spinning-f899e75b2c4a@spud>
+ <aOUIfaZY7-eUYoOS@swlinux02>
+ <734de17e-a712-4eb5-96fa-b7e75f86d880@kernel.org>
+ <aOXW7HUMeOyABuUG@swlinux02>
+ <dcd14886-f2cc-41ec-8bb5-9cb5ed50c452@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <20251001-ipq-pwm-v16-3-300f237e0e68@outlook.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <dcd14886-f2cc-41ec-8bb5-9cb5ed50c452@kernel.org>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 598DZFiu019619
 
+Hi Krzysztof,
 
-On Wed, 01 Oct 2025 18:04:19 +0400, George Moussalem wrote:
-> The IPQ5018 SoC contains a PWM block which is exactly the same as the
-> one found in IPQ6018. So let's add a compatible for IPQ5018 and use
-> IPQ6018 as the fallback.
+Thanks for the clarification, and sorry for the earlier confusion.
+
+To elaborate on the rationale:
+"andestech,atcdmac300" is the IP core name of the DMA controller, which serves
+as a generic fallback compatible shared across multiple Andes SoCs.
+
+Primary compatible (SoC-specific):
+andestech,qilai-dma refers to the DMA controller instance implemented on the
+Qilai SoC, following the SoC-specific recommendation.
+
+Fallback compatible (IP-core specific):
+andestech,atcdmac300 represents the reusable IP block used across different
+Andes SoCs that share the same register map and programming model.
+
+Keeping andestech,atcdmac300 as a fallback helps avoid code duplication and
+allows a single driver to support future SoCs using the same hardware IP.
+
+This approach follows the DeviceTree binding guideline:
+
+“DO use a SoC-specific compatible for all SoC devices, followed by a fallback
+if appropriate. SoC-specific compatibles are also preferred for the fallbacks.”
+— Documentation/devicetree/bindings/writing-bindings.rst, line 42
+
+Please let me know if this aligns with your expectation.
+
+Best regards,
+CL
+
+On Wed, Oct 08, 2025 at 05:04:53PM +0900, Krzysztof Kozlowski wrote:
+> [EXTERNAL MAIL]
 > 
-> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
-> ---
->  Documentation/devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
+> On 08/10/2025 12:13, CL Wang wrote:
+> > Hi Krzysztof,
+> >
+> > Thank you for pointing this out.
+> >
+> > "ATCDMAC300" is the IP block name of the DMA controller used in Andes SoC.
+> > According to your suggestion, I have updated the binding to use SoC-specific
+> > compatibles with "andestech,atcdmac300" as a fallback, as shown below:
+> >
+> > -  const: andestech,atcdmac300
+> > +  items:
+> > +    - enum:
+> > +        - andestech,qilai-dma
+> > +    - const: andestech,atcdmac300
+> > ...
+> >    dma-controller@f0c00000 {
+> > -      compatible = "andestech,atcdmac300";
+> > +      compatible = "andestech,qilai-dma", "andestech,atcdmac300";
 > 
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+> That's exactly the same code as you pasted before. Please do not repeat
+> the same as argument to my comment.
+> 
+> Best regards,
+> Krzysztof
 
