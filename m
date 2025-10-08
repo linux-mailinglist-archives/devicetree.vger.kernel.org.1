@@ -1,208 +1,156 @@
-Return-Path: <devicetree+bounces-224351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F599BC3337
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 05:18:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14FD4BC33A9
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 05:29:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21574189D49D
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 03:18:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1ADBC189FEBD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 03:29:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E91C29DB6E;
-	Wed,  8 Oct 2025 03:18:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E55129E11E;
+	Wed,  8 Oct 2025 03:29:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E/K8rEtD"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LO4bZPhY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f66.google.com (mail-pj1-f66.google.com [209.85.216.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B0EB29DB9A
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 03:18:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D126B29E109
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 03:29:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759893512; cv=none; b=lB3SnJDm6zWjRsOCNsy53jvizA/Q7YqYlKwhM+SbgMUxhDaW8kbFfgQhQRKkF1mrMK86nzeQiWCxTZJnH2Gxq6xZexb7IBOi13OnK+yfSBXpp/xximSXX1bmKNljhBB3fF1IkJlDRIfYphkvaIv0RPa2MQkigPz5FMeSlmWCxzc=
+	t=1759894170; cv=none; b=oMlUVNTtDjIZfoNw3XRyDax8ehgsmkT+AflhovOOWhro0RDNKJbCbjqzskamxfQxI1Dn6SEuQ8z/3R/XFjXtTRbXR20gKzcoafuWMNZXkKHl7hRg5exeMaf2oBsfU8NHf9BuDjlQX4f+cE//iIJopbd3u4YH1UN0k3CEXXsrxPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759893512; c=relaxed/simple;
-	bh=OjsnqX4w9xVPWhGo4KZ1oMWtoIY/AxwyxdfC9ODPA0g=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JwFndi7u5SiZfApFV/5ti4JSo4M0nd7RLews35QRYvZeVHGx3820tRkRdiseRaJZb2tjpc+EsUo3bOZlv+wzHJn27pRTzb9UFs/Ecd82uTxH4PQUw35MfWGlw/IV/5UALbCOVbSOuIs63X7lFsZoQcsF+t+Dnn3zRjcgxee/Dao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E/K8rEtD; arc=none smtp.client-ip=209.85.216.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f66.google.com with SMTP id 98e67ed59e1d1-3306d3ab2e4so8110674a91.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 20:18:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759893510; x=1760498310; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lDg4ZaE0kQk1RB2KpwuXVcFNrMgNFMWXQ87bNU/VPH0=;
-        b=E/K8rEtD7HOBL64OL6zdrRNpvlP6JBFlnxRWZmpEU6rdlUFihY/2L2xgQ7NZ8hHCTC
-         hFVnZXTuPQ6jXl/rnxBs+2lnTBIJTl5mZEMwJ5aQDdgFWtpS1/wQ/WaEXxyhBb+1vstt
-         D4wnP8g20vUyM6JJgX+rfjEtS0UmPgoGc+Dq7lFc1BOQeFNV+Dwv3rrYyPRKB+ONsd3n
-         3JXXjAMteARsa6djr95aWc2YSL0hWYWQVA0JubyT+DRgufZB6OYQrtizp6vt39V8SZ6j
-         tlSmVCacPs9jjTvU/8p8MpFcROjYwqdu/iziTdzCGPfveB0J/AMFlQNs3wQYHiZwexHF
-         YkVg==
+	s=arc-20240116; t=1759894170; c=relaxed/simple;
+	bh=PhC/2B+2mSbFA9P1cevxdTv+G9a2xtf0omNJybKc1wU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hRnCy8oZQDejB8V4xkTJxhVP2+O70JcpY37/cUeHlfaWIVDoP5Y9mI7zgimp4NuufiqxCcy+T3KOlX3hi2hf6l5SMIN/yamy6PKy68moUk+OITKhIxP5VzwpNYKhKuX/L+xy9heICErMlkaFC97eOg7rgO+Wy1jr/XqxykEvNmc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LO4bZPhY; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 598044LJ006389
+	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 03:29:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=hb5DjFcBZ/27YR59szZGZtjq
+	+9HN8vs9l1pnCZa9knw=; b=LO4bZPhYIUWjzodfMIGxtaOkz6y3sCxainM1BKWI
+	R8vql3u8rKdDuIPiFKSuEXYWCFU0Bnm7dhoTsLxl/ZmpnuAjcGOVmA1lC9XeQbfB
+	5Gmxhmspv1CdZFAKG1Wv1SX3Iz4ZA75kPBK1YdIDZ1Alx2qO9TSGldVFCJw3/sMa
+	avcenaQUTcR+x+bg5SMAeALK7Tiyiq9GGmbOqWzpK9DpjzDYNTF4LLH8bz8EGNKF
+	PkLBLshs1NpMff43sgCr7wZfhzU6I/rQxHgk28U+0fhM+MTFeca2N0mj7kc+psK5
+	sZSHlyu82qsht+4YRsrAy2DJlzwudzYT5gCLKlw33YxMAA==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49js9e1cuw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 03:29:27 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4de53348322so277704311cf.0
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 20:29:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759893510; x=1760498310;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lDg4ZaE0kQk1RB2KpwuXVcFNrMgNFMWXQ87bNU/VPH0=;
-        b=DlzaEJvYp8VW1BSkm8E1ts4xxVt6BTF+dsSMc8pnYxfKdI98F8yeWV5eyk+ViaFooD
-         gaeGRorx060Ys3GvCeBk3sArtwOznVncAWzB/PuQd3uQ/19u95bY5+tXx3LbLiM9ud2E
-         RA2vjtOEZIMqGNjvOGSt1cm/wy61VPIkYSsuy/ccQEVc2bpdNNWDm1EWilGGfPmhaKfL
-         mFNiKmqXHd+Xos3tnCuSEaEGIC4ztAaSziA9pUoPowB6953jKrdnIfzSBl+31OLbxvJP
-         kxByJ6lNvEJSUqUiy8+Smt9bzri8CIOhp/Hw5J98ZwyqwtLiyPG5N6EDai0NFctbO6Go
-         zl2A==
-X-Forwarded-Encrypted: i=1; AJvYcCV0SvKAVZgfcEmY1hXdVBJTC5IItVfJOrqK41SxEsU+QJxy0oK4Yq3Sf7cADjnFez+k+GbZN9pcJMUe@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzu5I9daMNENQCfKHyU/jSZWqIHrzPkvnlVfgt+PK04KTdlEirc
-	6++SyqU2TIMRpUxicHk5Ok4phEy3CJLaLAP+w2P2zMIVtlvz9tib+4Hp
-X-Gm-Gg: ASbGncvl6ILI/BkswABYH8OXg2p9RgvEtFxHPsQpJKEBx4DHK+bCATa2xv3Vbz3/J88
-	9VxaLcktEsALrIRCCiL+l1niC2VUY7npsEE7B7/V5n8i50i9ay9bCMQlHu8+gm93HQsD7iM+nAt
-	JwbWwBWL0UP686ZQjEvZGFMubPwmAkStzlQQTTUJmP3/kekN43IYlH6Aknh4LYGsi+Zvl4e0A0F
-	fWu1uhX8f3fEsC+QLMFKW/4iGfoo97WhxfZa5A3L0hVYn2PRcinsWMpEvRlt9H1lDi/lLrI8oth
-	rFgcCobXkNdtjKIaKv248yyIejq+45tmn3XOQTx0MHduQyCw8iRHbCrNJywO18yb5jYE+xTK+1d
-	pzCt+8hJFzfbfy8QoVvDKUTqrirJTzFSGqN5Qb2tQaGIqWkdoPw==
-X-Google-Smtp-Source: AGHT+IG1UQCmaY8cs78qKrEmsXcpdVVL9Yje3K7pg4Yhi80RChazLD8kGiz5Ppw9B7HegArhgX/3FA==
-X-Received: by 2002:a17:90b:3911:b0:338:2ef8:14af with SMTP id 98e67ed59e1d1-33b513bee03mr2184017a91.37.1759893509584;
-        Tue, 07 Oct 2025 20:18:29 -0700 (PDT)
-Received: from Ubuntu24.. ([103.187.64.31])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6099f5990csm16527746a12.38.2025.10.07.20.18.23
+        d=1e100.net; s=20230601; t=1759894167; x=1760498967;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hb5DjFcBZ/27YR59szZGZtjq+9HN8vs9l1pnCZa9knw=;
+        b=hzyX57AxAEUEkAT98amUG6+EWKLEvB9+d15DMSBJzF0OQ7QBlvuBMVYmJdXm6qsEbY
+         B6qN+4EUQkYI2HBbEYL9p+FYcgEyz7ORx95DhxWAB1mNZYMMgl5H411eB2mBnDFdkpgy
+         9sE8TL2P9+hdNq28gBAsoMksjz50sNcubO8kvs2+WDO5peY2TwoV3u0vA1otuNHFj5uN
+         jOevKSdgPTncyWZzLzsS6aioXe0N/QHuvvrG2ZSjnth/hEO2ftdZ/ftC4KvVVFZ9pQgf
+         JelUfPTBgifwfpW/mNkhvF8rE4bB8IBw3y62ZbGrzxwvLc1mGewlkouTQbJp0gOK+OXO
+         1duw==
+X-Forwarded-Encrypted: i=1; AJvYcCWd0Q2U3W7cdDVoU4wV5I/ZEquh0Ff1ydFucMM1AkjZntpd9XitHECVAtOM/ubRHf7QfPGQobivVbPW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPHi6YdmtxW3+igeqAWzssi3KHFpUsKP6FV1S5y/7Yq2+6T4Qd
+	XLxvvq+ceAqAlkmn1DoByhUn7T17mQzX7F/e/EOJZz9doDRBzWbB/Mb695dVsduCHPJf5hNh42V
+	MrwsKEQegaRaERXSCKDMejUAnJ9ynBn4Hg+QR+tFaVxk4xDWelBmP8VwVPzEuDqzN
+X-Gm-Gg: ASbGncvBT5lSUZR0mXTwGQwKybo2/rj/qbzkobEigeTmazP1bXoWgwEVxVfA540WucW
+	nP3WGj3LHqiCQUnKSEJrCaWRy1UWVVP/G4k0KUjcFb7rFNsw041mB2UaO+wcbQJs5Ah8/WpCDsB
+	cNPe1yGSacAju4ms4hPMf2Ofhp8/5JCO1xPBuAVWPYlGtkPQB1ZtesUDJE4dY+6pAm3mAyo+u6q
+	l5DbGJHLALaewKgIT3r2Dx75HQhkPRxFgfDw5E7fvPXiFP8b2iTNJeHJ/zqLd0iebkszMtBgdDf
+	2b6+y7oZmqLxvS2kvC+KIZWWpNDSStraXxzC0Odnr8s6fCeysJUaoA2Cc4Wv+6W8KofndHbvQbY
+	cVmF8V20irUjV+gnxvwcckr0mVlMeuN/N0YKUARfqVLN86LHDhtzWosOJxg==
+X-Received: by 2002:a05:622a:5a08:b0:4d8:67fb:4185 with SMTP id d75a77b69052e-4e6eacdacf4mr25643431cf.15.1759894166675;
+        Tue, 07 Oct 2025 20:29:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF0ym17qd6d8i8m9rZB6O5niP9nPtV34vtdf+6ORfgYkgZ/ZUEANvQEfhGIf/ybRQkhY43jCw==
+X-Received: by 2002:a05:622a:5a08:b0:4d8:67fb:4185 with SMTP id d75a77b69052e-4e6eacdacf4mr25643231cf.15.1759894166258;
+        Tue, 07 Oct 2025 20:29:26 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58b011ab25asm6715686e87.119.2025.10.07.20.29.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Oct 2025 20:18:29 -0700 (PDT)
-From: Shrikant Raskar <raskar.shree97@gmail.com>
-To: jic23@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: dlechner@baylibre.com,
-	nuno.sa@analog.com,
-	andy@kernel.org,
-	matt@ranostay.sg,
-	skhan@linuxfoundation.org,
-	david.hunter.linux@gmail.com,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-kernel-mentees@lists.linux.dev,
-	Shrikant Raskar <raskar.shree97@gmail.com>
-Subject: [PATCH v2 2/2] iio: health: max30100: Add pulse-width configuration via DT
-Date: Wed,  8 Oct 2025 08:47:37 +0530
-Message-ID: <20251008031737.7321-3-raskar.shree97@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251008031737.7321-1-raskar.shree97@gmail.com>
-References: <20251008031737.7321-1-raskar.shree97@gmail.com>
+        Tue, 07 Oct 2025 20:29:23 -0700 (PDT)
+Date: Wed, 8 Oct 2025 06:29:21 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Erikas Bitovtas <xerikasxx@gmail.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: msm8939-asus-z00t: add initial
+ device tree
+Message-ID: <cphv74xpoaltdlk5qjksmfjmsdk7fvpu6dvpo3bz2wdhtshaai@dxzk7qxro4tx>
+References: <20250930132556.266434-1-xerikasxx@gmail.com>
+ <20250930132556.266434-3-xerikasxx@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250930132556.266434-3-xerikasxx@gmail.com>
+X-Authority-Analysis: v=2.4 cv=Hrl72kTS c=1 sm=1 tr=0 ts=68e5da98 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=rlI1ognr9DFfacYL9GkA:9
+ a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-GUID: D_gR5-bXyP7TP5tMUx6XLNLRDEc2bYWX
+X-Proofpoint-ORIG-GUID: D_gR5-bXyP7TP5tMUx6XLNLRDEc2bYWX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAwNCBTYWx0ZWRfX0HzN7lqYe/cD
+ pBEXQmsMHT+ZzFWC+9lNNtC6d/zdMVhZhYzUm7kzfwOv15XLIAiXpRu+VItdnZFZUObcJSzbzPp
+ eUy7cYXKZSq7AzDzv9cDZC4fsO+JE0EkYsdboU9NrImqbdlBNtMuE6Y1L4ByTP1swUojvc/phF1
+ f6cCBy4GDKtzbQ/STxErCBAV2ddZ4dmMXR1hK2a7LEuAOv2b5o1c9TkiPdSGZYQeNYilRc3pku8
+ RwKG2r+SE0v9zIGYUavBvCPxrwsEYLBhfDrBQtEOQ9UIGpHkYuAoWrSxFDpL1lMSKX+Vv3XVp8H
+ Uxjd5nmpartU5sqG0ghfspvmEt6sNJRy9r2sQIlBXHuE/xOojdeZ89lEGWkvXb19WMIkiHdfOyY
+ pyykp34nweuabWHWaH5wNdqJ4NepWQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-07_02,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 spamscore=0 adultscore=0 lowpriorityscore=0
+ bulkscore=0 priorityscore=1501 malwarescore=0 impostorscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040004
 
-The MAX30100 driver previously hardcoded the SPO2 pulse width to
-1600us. This patch adds support for reading the pulse width from
-device tree (`maxim,pulse-width-us`) and programming it into the SPO2
-configuration register.
+On Tue, Sep 30, 2025 at 04:20:10PM +0300, Erikas Bitovtas wrote:
+> Add an initial device tree for Asus ZenFone 2 Laser/Selfie. This
+> includes support for:
+> - UART
+> - USB
+> - Internal storage
+> - MicroSD
+> - Volume keys
+> - Touchscreen: Focaltech FT5306
+> - Accelerometer: Invensense MPU6515
+> - Magnetometer: Asahi Kasei AK09911
+> - Vibrator
+> - Audio input and output
+> - Modem
+> 
+> Signed-off-by: Erikas Bitovtas <xerikasxx@gmail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../arm64/boot/dts/qcom/msm8939-asus-z00t.dts | 255 ++++++++++++++++++
+>  2 files changed, 256 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8939-asus-z00t.dts
+> 
 
-If no property is provided, the driver falls back to 1600us to
-preserve existing behavior.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
-Testing:
-Hardware: Raspberry Pi 3B + MAX30100 breakout
-Verified DT property read in probe()
-Confirmed SPO2_CONFIG register written correctly using regmap_read()
-
-Signed-off-by: Shrikant Raskar <raskar.shree97@gmail.com>
-
-Changes since v1:
-Use FIELD_PREP() and define a pulse width bit mask.
-Initialize default pulse_us before property read.
-Use dev_err_probe() for error reporting.
-Make pulse_width signed to handle negative return values.
-
-Link to v1:
-https://lore.kernel.org/all/20251004015623.7019-3-raskar.shree97@gmail.com/
----
- drivers/iio/health/max30100.c | 35 +++++++++++++++++++++++++++++++++--
- 1 file changed, 33 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/iio/health/max30100.c b/drivers/iio/health/max30100.c
-index 814f521e47ae..50cd4fd13849 100644
---- a/drivers/iio/health/max30100.c
-+++ b/drivers/iio/health/max30100.c
-@@ -5,7 +5,6 @@
-  * Copyright (C) 2015, 2018
-  * Author: Matt Ranostay <matt.ranostay@konsulko.com>
-  *
-- * TODO: enable pulse length controls via device tree properties
-  */
- 
- #include <linux/module.h>
-@@ -54,6 +53,10 @@
- #define MAX30100_REG_SPO2_CONFIG		0x07
- #define MAX30100_REG_SPO2_CONFIG_100HZ		BIT(2)
- #define MAX30100_REG_SPO2_CONFIG_HI_RES_EN	BIT(6)
-+#define MAX30100_REG_SPO2_CONFIG_PW_MASK	GENMASK(1, 0)
-+#define MAX30100_REG_SPO2_CONFIG_200US		0x0
-+#define MAX30100_REG_SPO2_CONFIG_400US		0x1
-+#define MAX30100_REG_SPO2_CONFIG_800US		0x2
- #define MAX30100_REG_SPO2_CONFIG_1600US		0x3
- 
- #define MAX30100_REG_LED_CONFIG			0x09
-@@ -306,19 +309,47 @@ static int max30100_led_init(struct max30100_data *data)
- 		MAX30100_REG_LED_CONFIG_LED_MASK, reg);
- }
- 
-+static int max30100_get_pulse_width(unsigned int pwidth_us)
-+{
-+	switch (pwidth_us) {
-+	case 200:
-+		return MAX30100_REG_SPO2_CONFIG_200US;
-+	case 400:
-+		return MAX30100_REG_SPO2_CONFIG_400US;
-+	case 800:
-+		return MAX30100_REG_SPO2_CONFIG_800US;
-+	case 1600:
-+		return MAX30100_REG_SPO2_CONFIG_1600US;
-+	default:
-+		return -EINVAL;
-+	}
-+}
-+
- static int max30100_chip_init(struct max30100_data *data)
- {
- 	int ret;
-+	int pulse_width;
-+	/* set default pulse-width-us to 1600us */
-+	unsigned int pulse_us = 1600;
-+	struct device *dev = &data->client->dev;
- 
- 	/* setup LED current settings */
- 	ret = max30100_led_init(data);
- 	if (ret)
- 		return ret;
- 
-+	/* Read pulse-width-us from DT */
-+	device_property_read_u32(dev, "maxim,pulse-width-us", &pulse_us);
-+
-+	pulse_width = max30100_get_pulse_width(pulse_us);
-+	if (pulse_width < 0)
-+		return dev_err_probe(dev, pulse_width, "invalid pulse-width %uus\n", pulse_us);
-+
- 	/* enable hi-res SPO2 readings at 100Hz */
- 	ret = regmap_write(data->regmap, MAX30100_REG_SPO2_CONFIG,
- 				 MAX30100_REG_SPO2_CONFIG_HI_RES_EN |
--				 MAX30100_REG_SPO2_CONFIG_100HZ);
-+				 MAX30100_REG_SPO2_CONFIG_100HZ |
-+				 FIELD_PREP(MAX30100_REG_SPO2_CONFIG_PW_MASK, pulse_width));
- 	if (ret)
- 		return ret;
- 
 -- 
-2.43.0
-
+With best wishes
+Dmitry
 
