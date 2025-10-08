@@ -1,192 +1,386 @@
-Return-Path: <devicetree+bounces-224446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 863F1BC3DB5
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 10:34:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AF4ABC3DB8
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 10:34:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B48B3AB99B
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 08:34:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4681719E3A1A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 08:35:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1EA92F0C79;
-	Wed,  8 Oct 2025 08:34:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="W8yr1+Ma"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9B852EC0AC;
+	Wed,  8 Oct 2025 08:34:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16D991F463E
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 08:34:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DFEB1CBEB9
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 08:34:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759912450; cv=none; b=NSDeSsjojG7JqPFiwoIodHXD34EVrosQWSnLDnB3psUmwole3+smOWekpJLMNtnjjG9NxX70vOxYxnlHxasJ7LagS8cKTdOj1hxDxm8XwuC8u43UsG99SBNUP6q0LK7EIl/PEpl5RoMBuWOya2QFpvP9jfnOGuU6tPP4QysbdBg=
+	t=1759912475; cv=none; b=Gf4G+4bt2fiiHy9P+kgTWjsOh/I56toefEHm70JNCfvzRqmRHJB5CwzLew+xQX2FcYkF7CCuCcZpY65jMKeYrqG5JO0OVvn4dmzjYt0D5X1Q63ACnduBdgHLAzDA1ugegTCBrz33e6uoEb4/ILvcC0auK5/OGAvcd3HFwuUSZYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759912450; c=relaxed/simple;
-	bh=oLH4gL3sKlBNp2czL6jTG0vNHuT7xrp294jl0Tqqsms=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u1iiqkJVxnfb9skEHnNlyetseuXB3eJU7Ra/11qjmONXwuapaffg6Z4DzYEWfHMYKQp3m37ci70Xoc5TB9frpEC0AYoDyIOiLitnnsm+BBcbO4L3jCzTSV1UtbuzJ1QjrIt3/dqQrcJY+yWOBHisNhQOeROXw7UVITRZ+HbV4hg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=W8yr1+Ma; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5987amB0027789
-	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 08:34:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	96qvYt9PH2+8Esd4lI6EIlwJhfA3GfEiTtlpLaXBruI=; b=W8yr1+MacjgEdqSK
-	l+PcG4AoE7zDkaffnYmhAbiLYLE/Tno4c28R1AsW8nPUjpI4UkXyQ8HVMHizBlTD
-	FffdqEzBuN3SSYZALcoFhGZdh1+aLIRhnsAIBKqe9dKAhuexCD49SOZGmWnvU8ud
-	fQISVl09dj1ADqX3m9qKM3WRJ5M0mkh2bPmB4Kxcz6mV+4oVfMNCQPuM06QTlb1P
-	kkNjUoSllWQ3OrQij2BPYCt4lf4B22+UiI5wE8sgvLCLrbvKkIglo5fgEk5Mi74D
-	zrCJHZxbb1w3iGxzDf3VuTrzVE+MY/iQLvPffsmClWEmiaVtnwCWWkKPoil7unr9
-	eQeQTQ==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49n89hhj7d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 08:34:06 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-850553dfef2so19745626d6.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 01:34:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759912445; x=1760517245;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=96qvYt9PH2+8Esd4lI6EIlwJhfA3GfEiTtlpLaXBruI=;
-        b=EfIkFSSnOd1jSimbGwb0xieU1Qlq77wMQmPb6iTyq5HmhOrgP+77not+OLIEKv7lHW
-         /SV3faVF7XfYIyQZ+fJm+mS7FDD+1rpI0cUPo5LI/CxhUhRCV/Ova33/ue6+9W9LMheQ
-         KPp38PVo+yZIvxIsGCOKTVwLHn6EwWD8W+6PftY/BIuVbrL5FQI0FMyrXtxZVQDBvisW
-         /RdOnNG8HovD9bKDYtwFvvuW1JYjrJaYv6lx25qEjkNdW/2not4kKAnSzg694eNF5Ow1
-         +MKuojfqQYPeFfB1WMTzfsZ1BmoawUSZZ1pcksw5/pct9oS6sKGH+uQlq3QNgm4bVnP8
-         0OwA==
-X-Gm-Message-State: AOJu0Yzp9nsOJM6Yragq7oG5Vq+GHAtCq9jFFihumMg0syHIg2Mj5t92
-	szJAFbsjJA0Wr1YwxJIj1akhou4Z7PSbFywLERw6ciJWNBCS/ySxu5VuV+c2QAvXWwwDSJNQTqw
-	/CsVUUQve0Kz8Bq89L+E1ug4vcNUgoysEk54ecG4ZSLOpTYE6tELrSeV30V2KYml0
-X-Gm-Gg: ASbGncsir6EEOIQDcnSPcQ7CU05UvORn9Bia2snYdA7zmHqOwkPCHFYE/tueaXXBynf
-	ZregPfhQRvngUOrDIgu6c6V9CZ7eZhjDshshylcqBhwuCii2Mr80t9yxjaebYyvMgZ3YVZBoitl
-	BkHn6+xVLFzPUK/Qhz+UM7zPcvdMg8lie+MedMHarv8JwaTGBo8YteV25Ns5+XYJBAh0NW17tIF
-	OwG5ZLit5uqhvA1c0BSF6kMbSiJyAuWIs8Aem9uuAPwtteS/rJ9E9td5/opeXzDtdJgQV5jXQNm
-	5DpNrCk+/8tL4er89VZIB7LmXfbv6mS+VckI0AGUJURRW+/pH8myZxX8O0mWYA3oOKUuanqeriZ
-	8MbWR6p8eAkGRl2okgmZe4lDn2EE=
-X-Received: by 2002:ac8:7c4e:0:b0:4d9:5ce:374e with SMTP id d75a77b69052e-4e6ead2c524mr23170531cf.8.1759912444788;
-        Wed, 08 Oct 2025 01:34:04 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEnBHdB/VM2af2NJjNuVbyejWL9PETbDr/MrcW1c2vYD+dYad+sKWfv4fFHmFxNwUckGnx2NA==
-X-Received: by 2002:ac8:7c4e:0:b0:4d9:5ce:374e with SMTP id d75a77b69052e-4e6ead2c524mr23170341cf.8.1759912444217;
-        Wed, 08 Oct 2025 01:34:04 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b486606bd5csm1609320066b.44.2025.10.08.01.34.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Oct 2025 01:34:03 -0700 (PDT)
-Message-ID: <823af9ee-df4e-40de-bf30-084442bb1d2c@oss.qualcomm.com>
-Date: Wed, 8 Oct 2025 10:34:00 +0200
+	s=arc-20240116; t=1759912475; c=relaxed/simple;
+	bh=pQ/FMrXPjn/XWnPBpiiZKNOc0w+btx/hXgzBpPmjM1E=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=XUgC/Sogps1GmrEx1/mGQs9arlMW8nEImClbHz4SR4Gl1vMmz7bbvUAROreTwhQZcjBOd8kIs5lbQkxOm04/hje1a0Tbw/If0EnNnO/U9vyJxVl5y6f3IUQeIGP3r0Snm59w3XGjHKKMZ1DuTBTKWyKy+q37JqxWVYdKXBQU9+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1v6Pcl-0006z6-Ko; Wed, 08 Oct 2025 10:34:15 +0200
+Received: from lupine.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::4e] helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1v6Pck-002XQm-09;
+	Wed, 08 Oct 2025 10:34:14 +0200
+Received: from pza by lupine with local (Exim 4.98.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1v6Pcj-000000003NA-41V4;
+	Wed, 08 Oct 2025 10:34:13 +0200
+Message-ID: <c7fc31f1247332196516394a22f6feef9733a0b4.camel@pengutronix.de>
+Subject: Re: [PATCH v7 4/7] reset: rzg2l-usbphy-ctrl: Add support for USB
+ PWRRDY
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Claudiu <claudiu.beznea@tuxon.dev>, vkoul@kernel.org, kishon@kernel.org,
+ 	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, 	magnus.damm@gmail.com,
+ yoshihiro.shimoda.uh@renesas.com, 	biju.das.jz@bp.renesas.com
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, Claudiu
+ Beznea	 <claudiu.beznea.uj@bp.renesas.com>, Wolfram Sang	
+ <wsa+renesas@sang-engineering.com>
+Date: Wed, 08 Oct 2025 10:34:13 +0200
+In-Reply-To: <20250925100302.3508038-5-claudiu.beznea.uj@bp.renesas.com>
+References: <20250925100302.3508038-1-claudiu.beznea.uj@bp.renesas.com>
+	 <20250925100302.3508038-5-claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.1-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/5] arm64: dts: qcom: r0q: enable max77705 PMIC
-To: =?UTF-8?Q?Eric_Gon=C3=A7alves?= <ghatto404@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250920014637.38175-1-ghatto404@gmail.com>
- <20250920014637.38175-4-ghatto404@gmail.com>
- <53b1a622-3afc-4fd9-98b1-3c166f563ad0@oss.qualcomm.com>
- <BB4E3024-F897-452B-9D3F-250ED2D52195@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <BB4E3024-F897-452B-9D3F-250ED2D52195@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA3MDE0NiBTYWx0ZWRfX5DwIRk64MxBx
- IX3tyLh3ABUbNyiWymaUSyEMauk/MDm3bQXBmN0zcG+iy6ZFyPa1eAkgEfSUOAsupzK0EeZcabx
- 9aRz1StBAOdQ6Qp0NDlwyC/frGJubfUKo+gC0o8r3e05R1F/hCxMwpGqtyBL18AG6cQLJ/3cynS
- G4kfsMJGTdOlANSLbAt8G3CME2d/V7oKCtehOViYos9XXvNnphZ40SOQEwg1iu8RkY0OY4R1bfm
- bW8n1y2Gj5nBqIUrLg1+6vej+t1j1U7iuo453nvk3PJ9bGE9U5VHNhOsOP6Dx5PIeTvk8hP1yZb
- PZpBpDOUG0/8qeaQjL2HQWiKH/kcsY/vrWdT64LELmBXoOxmdUUFO0DQnGLW6UU+v+f782sJEHZ
- oRCuzvP702Mb48MtfzuQr88rEKxsgA==
-X-Proofpoint-ORIG-GUID: MYZzEufolXUzewbYkeBl2ls98of2I1ph
-X-Proofpoint-GUID: MYZzEufolXUzewbYkeBl2ls98of2I1ph
-X-Authority-Analysis: v=2.4 cv=cKbtc1eN c=1 sm=1 tr=0 ts=68e621fe cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=pGLkceISAAAA:8
- a=HA2ILUQYlQLclBA0Y7MA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-08_01,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 malwarescore=0 spamscore=0 priorityscore=1501
- adultscore=0 impostorscore=0 lowpriorityscore=0 bulkscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510070146
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 9/26/25 4:19 AM, Eric Gonçalves wrote:
-> 
-> 
-> On September 25, 2025 10:06:53 AM GMT-03:00, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
->> On 9/20/25 3:46 AM, Eric Gonçalves wrote:
->>> The Samsung Galaxy S22 uses max77705 as its charger, fuelgauge and haptic
->>> PMIC, enable the fuelgauge and charger for now.
->>>
->>> Signed-off-by: Eric Gonçalves <ghatto404@gmail.com>
->>> ---
->>
->> [...]
->>
->>> +&i2c5 {
->>> +	status = "okay";
->>> +
->>> +	max77705_charger: charger@69 {
->>> +	    compatible = "maxim,max77705-charger";
->>> +	    reg = <0x69>;
->>
->> Please use tabs consistently
-> Sure
->>
->>> +	    monitored-battery = <&battery>;
->>> +	    interrupt-parent = <&tlmm>;
->>> +	    interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
->>
->> interrupts-extended = <&tlmm 5 IRQ...>, here and below
-> why extended?
->>
->>> +	};
->>> +
->>> +	fuel-gauge@36 {
->>> +		reg = <0x36>;
->>
->> sorting by unit address is welcome
-> Sure
->>
->>> +		compatible = "maxim,max77705-battery";
->>> +		power-supplies = <&max77705_charger>;
->>> +		interrupt-parent = <&tlmm>;
->>> +		interrupts = <5 IRQ_TYPE_LEVEL_LOW>;
->>> +	};
->>
->> These nodes should be children of "maxim,max77705"
->> (see drivers/mfd/max77705.c)
-> What do you mean by this? I looked at the driver, 
-> should I add the pmic@66 node and put
-> the units inside of it? Because starqltechn doesn't do that and
-> places them outside. Also, by adding the
-> pmic@66
-> node it expects to have led/haptics nodes as well.
+Hi Claudiu,
 
-Well, the chip comes as a single package, so this only makes sense
-and the bindings (mfd/maxim,max77705.yaml) corroborate that.
+On Do, 2025-09-25 at 13:02 +0300, Claudiu wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>=20
+> On the Renesas RZ/G3S SoC, the USB PHY block has an input signal called
+> PWRRDY. This signal is managed by the system controller and must be
+> de-asserted after powering on the area where USB PHY resides and asserted
+> before powering it off.
+>=20
+> On power-on the USB PWRRDY signal need to be de-asserted before enabling
+> clock and switching the module to normal state (through MSTOP support). T=
+he
+> power-on configuration sequence
 
-Just looking at the YAML, you should be able to omit the LED part
-if it's not connected anywhere
+The wording makes me wonder, have you considered implementing this as a
+power sequencing driver?
 
-Konrad
+> must be:
+>=20
+> 1/ PWRRDY=3D0
+> 2/ CLK_ON=3D1
+> 3/ MSTOP=3D0
+>=20
+> On power-off the configuration sequence should be:
+>=20
+> 1/ MSTOP=3D1
+> 2/ CLK_ON=3D0
+> 3/ PWRRDY=3D1
+>=20
+> The CLK_ON and MSTOP functionalities are controlled by clock drivers.
+>
+> After long discussions with the internal HW team, it has been confirmed
+> that the HW connection b/w USB PHY block, the USB channels, the system
+> controller, clock, MSTOP, PWRRDY signal is as follows:
+>=20
+>                                =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=90
+>                                =E2=94=82                              =E2=
+=94=82=E2=97=84=E2=94=80=E2=94=80 CPG_CLKON_USB.CLK0_ON
+>                                =E2=94=82     USB CH0                  =E2=
+=94=82
+> =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=90   =E2=94=82=E2=94=8C=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=90 =E2=94=82=E2=97=84=E2=94=80=E2=94=80 CPG_CLKON_USB.CLK2_ON
+> =E2=94=82                 =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90   =E2=94=82=E2=94=82host cont=
+roller registers  =E2=94=82 =E2=94=82
+> =E2=94=82                 =E2=94=82        =E2=94=82   =E2=94=82=E2=94=82=
+function controller registers=E2=94=82
+> =E2=94=82                 =E2=94=82 PHY0   =E2=94=82=E2=97=84=E2=94=80=E2=
+=94=80=E2=94=A4=E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98 =E2=94=82
+> =E2=94=82     USB PHY     =E2=94=82        =E2=94=82   =E2=94=94=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=96=B2=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
+> =E2=94=82                 =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98                =E2=94=82
+> =E2=94=82                          =E2=94=82    CPG_BUS_PERI_COM_MSTOP.MS=
+TOP{6, 5}_ON
+> =E2=94=82=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=90 =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=90
+> =E2=94=82=E2=94=82USHPHY control=E2=94=82 =E2=94=82        =E2=94=82
+> =E2=94=82=E2=94=82  registers   =E2=94=82 =E2=94=82 PHY1   =E2=94=82   =
+=E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90
+> =E2=94=82=E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=98 =E2=94=82        =E2=94=82=E2=97=84=E2=94=80=E2=94=80=E2=94=A4     U=
+SB CH1                  =E2=94=82
+> =E2=94=82                 =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98   =E2=94=82=E2=94=8C=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=90 =E2=94=82=E2=97=84=E2=94=80=E2=94=80 CPG_CLKON_USB.CLK1_=
+ON
+> =E2=94=94=E2=94=80=E2=96=B2=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=96=B2=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=96=B2=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=98   =E2=94=82=E2=94=82 host controller registe=
+rs =E2=94=82 =E2=94=82
+>   =E2=94=82       =E2=94=82         =E2=94=82          =E2=94=82=E2=94=94=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=98 =E2=94=82
+>   =E2=94=82       =E2=94=82         =E2=94=82          =E2=94=94=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=
+=94=80=E2=94=80=E2=94=80=E2=96=B2=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=
+=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=80=
+=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
+>   =E2=94=82       =E2=94=82         =E2=94=82                       =E2=
+=94=82
+>   =E2=94=82       =E2=94=82         =E2=94=82           CPG_BUS_PERI_COM_=
+MSTOP.MSTOP7_ON
+>   =E2=94=82PWRRDY =E2=94=82         =E2=94=82
+>   =E2=94=82       =E2=94=82   CPG_CLK_ON_USB.CLK3_ON
+>   =E2=94=82       =E2=94=82
+>   =E2=94=82  CPG_BUS_PERI_COM_MSTOP.MSTOP4_ON
+>   =E2=94=82
+> =E2=94=8C=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=90
+> =E2=94=82SYSC=E2=94=82
+> =E2=94=94=E2=94=80=E2=94=80=E2=94=80=E2=94=80=E2=94=98
+>=20
+> where:
+> - CPG_CLKON_USB.CLK.CLKX_ON is the register bit controlling the clock X
+>   of different USB blocks, X in {0, 1, 2, 3}
+> - CPG_BUS_PERI_COM_MSTOP.MSTOPX_ON is the register bit controlling the
+>   MSTOP of different USB blocks, X in {4, 5, 6, 7}
+> - USB PHY is the USB PHY block exposing 2 ports, port0 and port1, used
+>   by the USB CH0, USB CH1
+> - SYSC is the system controller block controlling the PWRRDY signal
+> - USB CHx are individual USB block with host and function capabilities
+>   (USB CH0 have both host and function capabilities, USB CH1 has only
+>   host capabilities)
+>=20
+> The USBPHY control registers are controlled though the
+> reset-rzg2l-usbphy-ctrl driver. The USB PHY ports are controlled by
+> phy_rcar_gen3_usb2 (drivers/phy/renesas/phy-rcar-gen3-usb2.c file). The
+> USB PHY ports request resets from the reset-rzg2l-usbphy-ctrl driver.
+>=20
+> The connection b/w the system controller and the USB PHY CTRL driver is
+> implemented through the renesas,sysc-pwrrdy device tree property
+> proposed in this patch. This property specifies the register offset and t=
+he
+> bitmask required to control the PWRRDY signal.
+>=20
+> Since the USB PHY CTRL driver needs to be probed before any other
+> USB-specific driver on RZ/G3S, control of PWRRDY is passed exclusively
+> to it. This guarantees the correct configuration sequence between clocks,
+> MSTOP bits, and the PWRRDY bit. At the same time, changes are kept minima=
+l
+> by avoiding modifications to the USB PHY driver to also handle the PWRRDY
+> itself.
+>=20
+> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>=20
+> Changes in v7:
+> - used proper regmap update value on rzg2l_usbphy_ctrl_set_pwrrdy()
+>=20
+> Changes in v6:
+> - used syscon_regmap_lookup_by_phandle_args() to simplify the code
+> - collected tags
+>=20
+> Changes in v5:
+> - none
+>=20
+> Changes in v4:
+> - updated patch description
+> - updated rzg2l_usbphy_ctrl_pwrrdy_init() to map directly the
+>   "renesas,sysc-pwrrdy" as the SYSC signal abstraction was dropped
+>   in this version, along with rz_sysc_get_signal_map()
+> - dropped priv member of rzg2l_usbphy_ctrl_pwrrdy_init() as it is
+>   not needed in this version
+> - shift left !power_on with pwrrdy->mask as this is how the
+>   regmap_update_bits() needs the last member to be
+> - selected MFD_SYSCON
+>=20
+> Changes in v3:
+> - none; this patch is new
+>=20
+>=20
+>  drivers/reset/Kconfig                   |  1 +
+>  drivers/reset/reset-rzg2l-usbphy-ctrl.c | 62 +++++++++++++++++++++++++
+>  2 files changed, 63 insertions(+)
+>=20
+> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+> index 78b7078478d4..329730cbcfb9 100644
+> --- a/drivers/reset/Kconfig
+> +++ b/drivers/reset/Kconfig
+> @@ -237,6 +237,7 @@ config RESET_RASPBERRYPI
+>  config RESET_RZG2L_USBPHY_CTRL
+>  	tristate "Renesas RZ/G2L USBPHY control driver"
+>  	depends on ARCH_RZG2L || COMPILE_TEST
+> +	select MFD_SYSCON
+>  	help
+>  	  Support for USBPHY Control found on RZ/G2L family. It mainly
+>  	  controls reset and power down of the USB/PHY.
+> diff --git a/drivers/reset/reset-rzg2l-usbphy-ctrl.c b/drivers/reset/rese=
+t-rzg2l-usbphy-ctrl.c
+> index 8a7f167e405e..be315199e2b0 100644
+> --- a/drivers/reset/reset-rzg2l-usbphy-ctrl.c
+> +++ b/drivers/reset/reset-rzg2l-usbphy-ctrl.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/regmap.h>
+>  #include <linux/reset.h>
+>  #include <linux/reset-controller.h>
+> +#include <linux/mfd/syscon.h>
+> =20
+>  #define RESET			0x000
+>  #define VBENCTL			0x03c
+> @@ -41,6 +42,18 @@ struct rzg2l_usbphy_ctrl_priv {
+> =20
+>  #define rcdev_to_priv(x)	container_of(x, struct rzg2l_usbphy_ctrl_priv, =
+rcdev)
+> =20
+> +/**
+> + * struct rzg2l_usbphy_ctrl_pwrrdy - SYSC PWRRDY signal descriptor
+> + * @regmap: SYSC regmap
+> + * @offset: offset into the SYSC address space for accessing PWRRDY
+> + * @mask: mask into the register at offset for accessing PWRRDY
+> + */
+> +struct rzg2l_usbphy_ctrl_pwrrdy {
+> +	struct regmap *regmap;
+> +	u32 offset;
+> +	u32 mask;
+> +};
+> +
+>  static int rzg2l_usbphy_ctrl_assert(struct reset_controller_dev *rcdev,
+>  				    unsigned long id)
+>  {
+> @@ -91,6 +104,8 @@ static int rzg2l_usbphy_ctrl_status(struct reset_contr=
+oller_dev *rcdev,
+>  	return !!(readl(priv->base + RESET) & port_mask);
+>  }
+> =20
+> +#define RZG2L_USBPHY_CTRL_PWRRDY	1
+> +
+>  static const struct of_device_id rzg2l_usbphy_ctrl_match_table[] =3D {
+>  	{ .compatible =3D "renesas,rzg2l-usbphy-ctrl" },
+>  	{ /* Sentinel */ }
+> @@ -110,6 +125,49 @@ static const struct regmap_config rzg2l_usb_regconf =
+=3D {
+>  	.max_register =3D 1,
+>  };
+> =20
+> +static void rzg2l_usbphy_ctrl_set_pwrrdy(struct rzg2l_usbphy_ctrl_pwrrdy=
+ *pwrrdy,
+> +					 bool power_on)
+> +{
+> +	u32 val =3D (!power_on << (ffs(pwrrdy->mask) - 1)) & pwrrdy->mask;
+
+
+Why not just:
+
+	u32 val =3D power_on ? 0 : pwrrdy->mask;
+
+You could simplify this further by using a regmap_field instead of
+rzg2l_usbphy_ctrl_pwrrdy.
+
+> +
+> +	regmap_update_bits(pwrrdy->regmap, pwrrdy->offset, pwrrdy->mask, val);
+> +}
+> +
+> +static void rzg2l_usbphy_ctrl_pwrrdy_off(void *data)
+> +{
+> +	rzg2l_usbphy_ctrl_set_pwrrdy(data, false);
+> +}
+> +
+> +static int rzg2l_usbphy_ctrl_pwrrdy_init(struct device *dev)
+> +{
+> +	struct rzg2l_usbphy_ctrl_pwrrdy *pwrrdy;
+> +	struct regmap *regmap;
+> +	const int *data;
+> +	u32 args[2];
+> +
+> +	data =3D device_get_match_data(dev);
+> +	if (data !=3D (int *)RZG2L_USBPHY_CTRL_PWRRDY)
+
+Better not to compare pointers here:
+
+	if ((uintptr_t)data !=3D RZG2L_USBPHY_CTRL_PWRRDY)
+
+> +		return 0;
+> +
+> +	regmap =3D syscon_regmap_lookup_by_phandle_args(dev->of_node,
+> +						      "renesas,sysc-pwrrdy",
+> +						      ARRAY_SIZE(args), args);
+> +	if (IS_ERR(regmap))
+> +		return PTR_ERR(regmap);
+> +
+> +	pwrrdy =3D devm_kzalloc(dev, sizeof(*pwrrdy), GFP_KERNEL);
+> +	if (!pwrrdy)
+> +		return -ENOMEM;
+> +
+> +	pwrrdy->regmap =3D regmap;
+> +	pwrrdy->offset =3D args[0];
+> +	pwrrdy->mask =3D args[1];
+> +
+> +	rzg2l_usbphy_ctrl_set_pwrrdy(pwrrdy, true);
+> +
+> +	return devm_add_action_or_reset(dev, rzg2l_usbphy_ctrl_pwrrdy_off, pwrr=
+dy);
+> +}
+
+So we deassert PWRRDY on probe and assert on remove. What about
+suspend/resume ordering?
+
+regards
+Philipp
 
