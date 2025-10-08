@@ -1,80 +1,83 @@
-Return-Path: <devicetree+bounces-224355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224356-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E12BBC33F7
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 05:46:48 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CED2EBC348C
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 06:21:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 766B7189CEB1
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 03:47:11 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B99D34E7444
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 04:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A750D2BDC1E;
-	Wed,  8 Oct 2025 03:46:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF15D2BE035;
+	Wed,  8 Oct 2025 04:21:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="js7nAZ8f"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eyzksQ9E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 632FA28FFF6
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 03:46:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E9D31DFFC
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 04:21:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759895204; cv=none; b=k4k9PGkAl36Ti2fwNK4BdqO0vWVR5GAly5SjezLa77OIm7N2zqNrloCqhYgPpCqB4jw8W9LKPtzsw6MsUeX8jNviIOSIWh/RtMOlgz0/rj7e/0AU4qOMrvHLFDegX34y6JY+M8aQISXLO92qROcOBYQMu+l9LN6ifSw6bEPaG0c=
+	t=1759897268; cv=none; b=SYUhBDoorTEbadu8VW1DQ2go/5FZaSThJ9+4zxYs4zz+Fq/+jh0zHNfqlygVRjlYHTjBqQUAVTJqf5PuwH1cJnuP4m+IMKhF03BYsklWjVfbD1ZqT6UveKjuESXNv32YM2DE2W225iIOapJrilN/PHm3bqvmLX1+s+nWx32/S28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759895204; c=relaxed/simple;
-	bh=3QMft6hFPcBaa/lYo/phTtO2VA+5im+g45tD5qXqah0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PuXADktSdtylLNUcXv6jywGOnJ8B4PycfX90knxVNztxuEZUjjVLdKNyXAs2zqIQLjpbkQ3r1rBMbXX56AuCEA/hEFJXMrGshjn4cZCcGNKuITZy7USpeCC0IQRfw+zjl917UYN8D57DOltpmv0LLbyxIQ4hJLqV74IWmOz5/+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=js7nAZ8f; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-46e34bd8eb2so77027305e9.3
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 20:46:42 -0700 (PDT)
+	s=arc-20240116; t=1759897268; c=relaxed/simple;
+	bh=l0m8a19M8uRE97VEhRLl8oSLNWe4r6HUTI2Q6O6wAcQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=HyDo+FFxeJpNlWEgBizJVal3ST0AVm1XRA5nEdS9e97mIYodQqTFfruLUK7j+1A2GPI6X85Q4l5fdgVvr+5DPGXhQ0EiY5IwDf9s+FiQisrFle2H/8jqd63E85q0urxLRypC1yk5zmM28iDTzReUyfy+Zk5j8G95NWosnbiG3w0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eyzksQ9E; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-78f3bfe3f69so3257492b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 21:21:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1759895200; x=1760500000; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=y5BPOIjsWE1/ylQ6v8pAFpShIKTzil2RhB4Wuts88zo=;
-        b=js7nAZ8ffIlHrTVFLoS7WfjO3EauE57RmgrC/ZsFFM69mDCxJGBcc8VrrJ0aQ0SyZb
-         mOy92PL2apwlKfD4QWN6rnlofkg+++FCCsR25NJ1t387RuvTe9Eit9NDGXuqF8TsSKrG
-         4KChDcMps801WCmYCzgAC8Iuof9y0PZ62dLfDf9X1wpw3yTU68Gtv/q36laZlo8du0Is
-         PQKsu3yMswSKnL2WfqTMxoOCMrDobtqmG2wt2DILIDnEtGCsn2dm7RxYK29QJdMp3Zan
-         JzgpzSaRfdjwLhRR7EIp337EYOWEUJe4ATrmG0zh4w4R1KRN3jrkVq+90sEhbXc1U7Uf
-         mAYQ==
+        d=gmail.com; s=20230601; t=1759897266; x=1760502066; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=9TJy9TZ0V4zU9QEOdoUBMSlfuWW6/GP48/yMW3+/H9s=;
+        b=eyzksQ9Efcf8OEtTrA5BH8bD4yrw8FjLhDuIsLcaXrZYd5LVHkn5l56uKeBu4qc9tF
+         K7KNEp4An8aK/TN3R9z9Kgf8BboH3GPrM1Wt625ii1/tS5/DuTfhqHg1xTUVdLFR0Z0S
+         igAMtFqWv3vVlivc6StmTiC5al9ZSe12CztWNWgXBlcDUz1NiUfbzh1MFt0imey/joPO
+         ntp/7Tyluq0s/3xzf2iSAFUaONRMaOEDEfiDCMWdG7uOmMJAeQHMC5fTjtcl0fTeGbDw
+         xX56YQtuHCDBf3ia3ggZ6iOFtjt+YFLS3pTW37Adh9gaaWx28keBUbWUYoTs5sfTtbCR
+         zzKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759895200; x=1760500000;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y5BPOIjsWE1/ylQ6v8pAFpShIKTzil2RhB4Wuts88zo=;
-        b=uDL0dflSrce/UgiXoc+LK3cnjbiUWoJI8yd+QSw/1NpFboAv8+ZsGDcLxhng4UfMZT
-         gWHzUl1COB6hmgbzUp/KWRmQH5keguGUxji+LSUWoX+30fZITeFcZmMLaSLsNqWWNtJj
-         JnAqbCn/ZYLxsBuwr8WJr32kerjfjpSf1/HZ8pjbVhd7Gan6d7HRIi1g4+/vEO14b02X
-         wwSMOjKPKyj+jI8+dtz2J4jgGkRwiHW5p47LJb6uHc9ESjp9OYolumDg4rvd7Pzq0aNl
-         dv2qtC4hl0ZxPl47K100ShyLKf9lusTmFenB1XwbVeGScgKpnpRvzrqdw0jUHI3+RHwN
-         xfHg==
-X-Forwarded-Encrypted: i=1; AJvYcCU62cHCX2bVRLFvLabWKFXfO2j8oVdLE81nj3VCrw9HHIuTIdd2qT0leqW0ZtMi605jfv4bwb37G9fy@vger.kernel.org
-X-Gm-Message-State: AOJu0YxVCvS+kYagMpNMadbHKlZHgwg6HfEUHjp0FUCvwV6OG00Bx6um
-	BiZyl5SpDKdDGTK9/McCfzThI1nXcrWIiUCwkWq/sSFKx1k1B/63HRL3ujE/jslpErY=
-X-Gm-Gg: ASbGnctlUVI0Rs5D6SUAoL8xOqlqUjqqUvuWercK/nKQr68gtTnOMeEDtpgSJ3qJEbf
-	JEICiJoRvu90jseynbhdGSTWyT8J46hJ3TGqYx9TdxQLS1IX+DaLiPEfw0AV+4AEZhEN4OVe8/u
-	+TjJaBmK4DNWCy1bhcrlG0QcQRV2bujh2CO2aybqlmdypMh97rG3ELb+fDGtbDtbzezYX8XjnfM
-	sCG9VyhRUuRajEHT83+W8ju2QbMWN2RNcDcKKUhizVvftjdROoyT6u39wMN/BjcxMmnW4pJaTeW
-	ZzsH0bZ0k5+5k+oJBd55JtvIXvEIKLUE/5v7k6FAqOh8PywUB/ktXHCc0apAqS7iJgFJjQUkLwx
-	/IlHEeq8G5028jmsF/SQp9kqTM6BdE25GlOA0gbktM8ttvtdyXIAUcQ==
-X-Google-Smtp-Source: AGHT+IGdutdUlJNoGkvkhbfo2LkWoyZ57BkVvhnxY6uM1c5I/D/2/OJ2CJ1R4mSfF296Vl2OkTgIzA==
-X-Received: by 2002:a05:6000:40dc:b0:3e9:f852:491 with SMTP id ffacd0b85a97d-4266e8e4b75mr875206f8f.56.1759895200467;
-        Tue, 07 Oct 2025 20:46:40 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.59])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8ab909sm27259681f8f.19.2025.10.07.20.46.38
+        d=1e100.net; s=20230601; t=1759897266; x=1760502066;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:to:subject:user-agent:mime-version:date
+         :message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9TJy9TZ0V4zU9QEOdoUBMSlfuWW6/GP48/yMW3+/H9s=;
+        b=E8Wz0yNWQ1iHCInIfW8HbjYIYopibjEKtONyhW/31PX6Gtakkjgx5d/6m6KfHXeI05
+         6TKdXJqi1K6c4Uu9FHx6iYKLrZjYw2o+lQ3rtx5JaU/reIur5jLPOBankkTmEQlPS25g
+         j9cDs+fnLBrDwJM1SfDUVOoPUjO3KRFIoot9LIDlOhw0tiNEHrvRRoqPUA8hLIf9EE3W
+         LtcEXT+gNLQgGf4A1Bn1qosBUx/e8JF9Ez+nv7u4kwkwADdx0a3/SjEKy3/gdWbzqavu
+         dd6khN9RPMYZ+m5nf3RSYoDWBszrsw11XUgFapEDzzhyqvdxnYoRuK9ZpNrpTBmy+Qmh
+         MqDw==
+X-Forwarded-Encrypted: i=1; AJvYcCVMWkg2mkaoLMeZItPAUCKUHZ+f92ObIDYiJoZrgaficFs0S5mNfeAddHp1ZF+CkCU5zisr/Cqe8HLF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0Smrs/RVJNtkhzcdAlFPfkmigfymeusUIMDQuaCbFsEXveKO6
+	YC4Atxz2pc7DDsrRCuGOH4KpLEbW0gL1mdjsqWGaEwyh5ICP0NWwVo6a
+X-Gm-Gg: ASbGnctC0fAdvUHnR8hLu8mkpzXp8MDMZC/FthFHtrrtjtAZJqP2KWqGjdsIs78vCtF
+	qSZLIZWmsZ3/aI+wzUMmItiUR9F7WrQq39V/jH45VmVfgidj1y2UHMaKHxIlWTmV9UdWyyTFMAs
+	d1aFpq/E/uSYmz3yHq/+CS89cxLyYWmjdh/opz3IHZLD+EDnHyH0ibt/mBI9LrG2MW11klZsoKb
+	Ubd/P2kLfyGxVuDFtZ0mfRrpSwWYkp6UgQKh9X+4jsV427qfg8Skh0Unaz31N5wQp/3BFvdtdd5
+	R4Kqso5LMXUQhCuCF8z/9xLbPSZ+JD5M7K3aFJzswu1XhlYX1u4BCRTWtSefFhFSA6HJtSkF+PF
+	5B5pWp1406b0BmFgLO5Pm8gTDPagRszwqOjphNpLZt5NJBRsm21ReJCueJh+7bQdL5rzGdOYX0v
+	4CZyfZGiZf34OTGcJ24kY=
+X-Google-Smtp-Source: AGHT+IGPl/Mm/NaQsG0TYzUcRWLvYSHGWrnzPu3xN1xjq6km3zWj4znIXZRYrQL1Ybsio/8lBLjBzA==
+X-Received: by 2002:a05:6a00:391a:b0:781:220c:d2c1 with SMTP id d2e1a72fcca58-79385709914mr2694127b3a.2.1759897265572;
+        Tue, 07 Oct 2025 21:21:05 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78b01f9cd3bsm17314227b3a.4.2025.10.07.21.21.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 07 Oct 2025 20:46:39 -0700 (PDT)
-Message-ID: <91284777-a118-4f79-b9b1-e8c95a1ee53b@tuxon.dev>
-Date: Wed, 8 Oct 2025 06:46:36 +0300
+        Tue, 07 Oct 2025 21:21:04 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <c5cab3a0-b17f-494b-b856-ebf2fb68db60@roeck-us.net>
+Date: Tue, 7 Oct 2025 21:21:03 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,182 +85,169 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/7] Add initial USB support for the Renesas RZ/G3S SoC
-To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be,
- magnus.damm@gmail.com, yoshihiro.shimoda.uh@renesas.com,
- biju.das.jz@bp.renesas.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20250925100302.3508038-1-claudiu.beznea.uj@bp.renesas.com>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Subject: Re: [PATCH 2/3] watchdog: aspeed: Support variable number of reset
+ mask registers
+To: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
+ "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "joel@jms.id.au" <joel@jms.id.au>,
+ "andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
+ "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ BMC-SW <BMC-SW@aspeedtech.com>
+References: <20251007083650.2155317-1-chin-ting_kuo@aspeedtech.com>
+ <20251007083650.2155317-3-chin-ting_kuo@aspeedtech.com>
+ <83a90651-0b46-4c68-ab90-361422192e90@roeck-us.net>
+ <TYZPR06MB52035407C39249441F09AA18B2E1A@TYZPR06MB5203.apcprd06.prod.outlook.com>
 Content-Language: en-US
-In-Reply-To: <20250925100302.3508038-1-claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <TYZPR06MB52035407C39249441F09AA18B2E1A@TYZPR06MB5203.apcprd06.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On 10/7/25 20:29, Chin-Ting Kuo wrote:
+> Hi Guenter,
+> 
+> Thanks for the quick review.
+> 
+>> -----Original Message-----
+>> From: Guenter Roeck <groeck7@gmail.com> On Behalf Of Guenter Roeck
+>> Sent: Tuesday, October 7, 2025 10:55 PM
+>> Subject: Re: [PATCH 2/3] watchdog: aspeed: Support variable number of reset
+>> mask registers
+>>
+>> On 10/7/25 01:36, Chin-Ting Kuo wrote:
+>>> Starting from the AST2600 platform, the SoC design has become more
+>>> complex, with an increased number of reset mask registers.
+>>> To support this, introduce a new field 'num_reset_masks' in the
+>>> 'aspeed_wdt_config' structure to specify the number of reset mask
+>>> registers per platform. This change removes the need for hardcoded
+>>> platform-specific logic and improves scalability for future SoCs.
+>>>
+>>> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
+>>> ---
+>>>    drivers/watchdog/aspeed_wdt.c | 12 ++++++++----
+>>>    1 file changed, 8 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/watchdog/aspeed_wdt.c
+>>> b/drivers/watchdog/aspeed_wdt.c index 837e15701c0e..e15f70c5e416
+>>> 100644
+>>> --- a/drivers/watchdog/aspeed_wdt.c
+>>> +++ b/drivers/watchdog/aspeed_wdt.c
+>>> @@ -35,6 +35,7 @@ struct aspeed_wdt_config {
+>>>    	u32 irq_shift;
+>>>    	u32 irq_mask;
+>>>    	struct aspeed_wdt_scu scu;
+>>> +	u32 num_reset_masks;
+>>>    };
+>>>
+>>>    struct aspeed_wdt {
+>>> @@ -54,6 +55,7 @@ static const struct aspeed_wdt_config ast2400_config =
+>> {
+>>>    		.wdt_reset_mask = 0x1,
+>>>    		.wdt_reset_mask_shift = 1,
+>>>    	},
+>>> +	.num_reset_masks = 1,
+>>
+>> Looking at this again: Why set it on ast2400 ?
+>>
+> 
+> This should be removed for AST2400 platform. I will update it in the next patch version.
+> 
+>>>    };
+>>>
+>>>    static const struct aspeed_wdt_config ast2500_config = { @@ -66,6
+>>> +68,7 @@ static const struct aspeed_wdt_config ast2500_config = {
+>>>    		.wdt_reset_mask = 0x1,
+>>>    		.wdt_reset_mask_shift = 2,
+>>>    	},
+>>> +	.num_reset_masks = 1,
+>>>    };
+>>>
+>>>    static const struct aspeed_wdt_config ast2600_config = { @@ -78,6
+>>> +81,7 @@ static const struct aspeed_wdt_config ast2600_config = {
+>>>    		.wdt_reset_mask = 0xf,
+>>>    		.wdt_reset_mask_shift = 16,
+>>>    	},
+>>> +	.num_reset_masks = 2,
+>>>    };
+>>>
+>>>    static const struct of_device_id aspeed_wdt_of_table[] = { @@ -482,8
+>>> +486,9 @@ static int aspeed_wdt_probe(struct platform_device *pdev)
+>>>    	if ((of_device_is_compatible(np, "aspeed,ast2500-wdt")) ||
+>>>    		(of_device_is_compatible(np, "aspeed,ast2600-wdt"))) {
+>>
+>> ... because the code here only evaluates it if this is an ast2500 or ast2600.
+>>
+>> If num_reset_masks would be set to 0 for ast2400, the value could be used
+>> here.
+>>
+>> 	if (wdt->cfg->num_reset_masks) {
+>> 		...
+>> 	}
+>>
+>> and it would not be necessary to add of_device_is_compatible() for new chips.
+>>
+> 
+> This "if" conditional statement includes not only reset mask configuration but also pulse polarity and driving type of reset output signal.
+> How about changing this "if" statement to the below one?
+> 	if (!of_device_is_compatible(np, "aspeed,ast2400-wdt")) {
+> 		...
+> 	}
+> It will also not need to add of_device_is_compatible() for new chips.
+> 
 
-Gentle ping. Apart from Geert's comment, could you please let me know if
-there are other comments on this series?
+Ok..
 
-Thank you,
-Claudiu
-
-On 9/25/25 13:02, Claudiu wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> 
-> Hi,
-> 
-> Series adds initial USB support for the Renesas RZ/G3S SoC.
-> 
-> Series is split as follows:
-> - patches 1-2/7		- fixes on bindings and driver for USB PHY
-> - patches 3-5/7		- updates the rzg2l-usbphy-ctrl driver and documentation
-> 			  with support for setting PWRRDY though SYSC
-> - patches 6-7/7		- add device tree support
-> 
-> Merge strategy, if any:
-> - patches 1-2/7 can go through the PHY tree
-> - patches 3-5/7 can go through the reset tree
-> - patches 6-7/7 can go through Renesas tree
-> 
-> Thank you,
-> Claudiu Beznea
-> 
-> Changes in v7:
-> - used proper regmap update value for PWRRDY
-> - collected tags
-> - dropped Tb tags from dt-bindings
-> 
-> Changes in v6:
-> - in patch 2/7 dropped the struct rcar_gen3_chan::rstc as it is not
->   used anymore
-> - in patch 4/7 used syscon_regmap_lookup_by_phandle_args()
-> - collected tags
-> 
-> Changes in v5:
-> - dropped patch "soc: renesas: rz-sysc: Add syscon/regmap support" as it
->   already modified and pubished also at [2] with the latest review comments
->   addressed
-> - fixed the documentation
-> 
-> Changes in v4:
-> - replaced "renesas,sysc-signals" DT property with "renesas,sysc-pwrrdy"
-> - dropped the "renesas,sysc-signals" property from USB PHY (as proposed
->   in v3) and let only the USB PHY CTRL driver to handle it as on RZ/G3S
->   the USB PHY CTRL driver needs to be probed before any other USB driver
-> - dropped the signal abstraction from SYSC driver as there is no need
->   for reference counting it now
-> - adjusted the "soc: renesas: rz-sysc: Add syscon/regmap support" to
->   comply with the latest review comments
-> 
-> Changes in v3:
-> - as the basics of the SYSC driver was integrated, only the signal support
->   was preserved in this series, in a separate patch; patch 01/12 was
->   adjusted (by addressing the review comments received at [1]) as it is
->   necessary to build the signal support on top of it
-> - after long discussions with the internal HW team it has been confirmed
->   that the relation b/w individual USB specific HW blocks and signals
->   is like:
-> 
->                                    ┌──────────────────────────────┐
->                                    │                              │◄── CPG_CLKON_USB.CLK0_ON
->                                    │     USB CH0                  │
->     ┌──────────────────────────┐   │┌───────────────────────────┐ │◄── CPG_CLKON_USB.CLK2_ON
->     │                 ┌────────┐   ││host controller registers  │ │
->     │                 │        │   ││function controller registers│
->     │                 │ PHY0   │◄──┤└───────────────────────────┘ │
->     │     USB PHY     │        │   └────────────▲─────────────────┘
->     │                 └────────┘                │
->     │                          │    CPG_BUS_PERI_COM_MSTOP.MSTOP{6, 5}_ON
->     │┌──────────────┐ ┌────────┐
->     ││USBPHY control│ │        │
->     ││  registers   │ │ PHY1   │   ┌──────────────────────────────┐
->     │└──────────────┘ │        │◄──┤     USB CH1                  │
->     │                 └────────┘   │┌───────────────────────────┐ │◄── CPG_CLKON_USB.CLK1_ON
->     └─▲───────▲─────────▲──────┘   ││ host controller registers │ │
->       │       │         │          │└───────────────────────────┘ │
->       │       │         │          └────────────▲─────────────────┘
->       │       │         │                       │
->       │       │         │           CPG_BUS_PERI_COM_MSTOP.MSTOP7_ON
->       │PWRRDY │         │
->       │       │   CPG_CLK_ON_USB.CLK3_ON
->       │       │
->       │  CPG_BUS_PERI_COM_MSTOP.MSTOP4_ON
->       │
->     ┌────┐
->     │SYSC│
->     └────┘
-> 
->   where:
->   - CPG_CLKON_USB.CLK.CLKX_ON is the register bit controlling the clock X
->       of different USB blocks, X in {0, 1, 2, 3}
->   - CPG_BUS_PERI_COM_MSTOP.MSTOPX_ON is the register bit controlling the
->     MSTOP of different USB blocks, X in {4, 5, 6, 7}
->   - USB PHY is the USB PHY block exposing 2 ports, port0 and port1, used
->     by the USB CH0, USB CH1
->   - SYSC is the system controller block controlling the PWRRDY signal
->   - USB CHx are individual USB block with host and function capabilities
->     (USB CH0 have both host and function capabilities, USB CH1 has only
->     host capabilities)
-> 
->   Due to this, the PWRRDY signal was also passed to the reset-rzg2l-usbphy-ctrl
->   reset driver (as it controls the USBPHY control registers) and these
->   are in the USB PHY block controlled by PWRRDY signal.
-> 
->   The PWRRDY signal need to be de-asserted on probe before enabling the module
->   clocks and the module MSTOP. To avoid any violation of this configuration
->   sequence, the PWRRDY signal is now controlled by USB PHY driver and the
->   reset-rzg2l-usbphy-ctrl driver.
-> 
->   As the PHYs gets reset signals from the USB reset controller driver, the
->   reset-rzg2l-usbphy-ctrl is probed before the USB PHY driver and thus,
->   in theory, we can drop the signal support (reference counting of the
->   USB PWRRDY) and configure the USB PWRRDY just in the reset-rzg2l-usbphy-ctrl.
-> 
->   However, to have a proper description of the diagram described above in 
->   device tree and ensure the configuration sequence b/w PRWRDY, CLK and MSTOP
->   is preserved, the PWRRDY signal is controlled in this series in all the
->   drivers that work with registers from the USB PHY block.
-> 
->   Please provide your feedback on this solution.
-> 
-> Thank you,
-> Claudiu
-> 
-> [1] https://lore.kernel.org/all/20250330214945.185725-2-john.madieu.xa@bp.renesas.com/
-> [2] https://lore.kernel.org/all/20250818162859.9661-2-john.madieu.xa@bp.renesas.com/
-> 
-> Changes in v2:
-> - dropped v1 patches already applied
-> - added fixes patches (07/14 and 09/14)
-> - dropped the approach of handling the USB PWRRDY though a reset controller
->   driver and introduced the signal concept for the SYSC driver; because
->   of this, most of the work done in v1 was dropped
-> - per patch changes are listed in individual patches, if any
-> 
-> Christophe JAILLET (1):
->   phy: renesas: rcar-gen3-usb2: Fix an error handling path in
->     rcar_gen3_phy_usb2_probe()
-> 
-> Claudiu Beznea (6):
->   dt-bindings: phy: renesas,usb2-phy: Mark resets as required for RZ/G3S
->   dt-bindings: reset: renesas,rzg2l-usbphy-ctrl: Document RZ/G3S support
->   reset: rzg2l-usbphy-ctrl: Add support for USB PWRRDY
->   reset: rzg2l-usbphy-ctrl: Add support for RZ/G3S SoC
->   arm64: dts: renesas: r9a08g045: Add USB support
->   arm64: dts: renesas: rzg3s-smarc: Enable USB support
-> 
->  .../bindings/phy/renesas,usb2-phy.yaml        |   1 +
->  .../reset/renesas,rzg2l-usbphy-ctrl.yaml      |  41 +++++-
->  arch/arm64/boot/dts/renesas/r9a08g045.dtsi    | 118 ++++++++++++++++++
->  arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi  |  57 +++++++++
->  drivers/phy/renesas/phy-rcar-gen3-usb2.c      |  20 ++-
->  drivers/reset/Kconfig                         |   1 +
->  drivers/reset/reset-rzg2l-usbphy-ctrl.c       |  66 ++++++++++
->  7 files changed, 292 insertions(+), 12 deletions(-)
-> 
+Thanks,
+Guenter
 
 
