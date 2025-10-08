@@ -1,247 +1,173 @@
-Return-Path: <devicetree+bounces-224475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35162BC4340
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 11:52:44 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72B2ABC437C
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 11:54:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B6A319E0D90
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 09:53:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1D43F4F00DD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 09:54:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34ADA2F4A05;
-	Wed,  8 Oct 2025 09:52:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 251972EC0AD;
+	Wed,  8 Oct 2025 09:53:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="FWxthc/Q"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QU7X0GnK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com (mail-northcentralusazon11012037.outbound.protection.outlook.com [40.107.200.37])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5713D25785F;
-	Wed,  8 Oct 2025 09:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.200.37
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759917150; cv=fail; b=u2XNUQVe7Zhcwk+KE/u2WiSL9efH64hcnOrzpDob9t5qcMCoVROul42O8uW4qCWBGyb+puRM84MbJtqXHQ0u5ZpJiJCeIyZ8megHpczme3I6GpjnYGJOcEr+bONcyQDD3Q6edRVhtwZbotx5pmiotfNS+jB0cDaER8stK3cdky4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759917150; c=relaxed/simple;
-	bh=3o9KJj9XoQN9PLWfYAIF9KQXgGpaujtKo25r7WkpprM=;
-	h=Message-ID:Date:Subject:From:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=DzRYbA5kk1FQL5C5Yquag24ROZXGgKx48DukRjEZ9EGkNjzYToftgR4zM1XEvYaTK5d+bWQCf4tZ+vJDE3l4nVhxa9D9hAtfRwhQ6qBcHNS2xjeD1+aPZYv/l1mWCsePLn4Gcy0sNFQPXCcdc+m4u1EHozgAQiYMYYJZS32Qqrc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=FWxthc/Q; arc=fail smtp.client-ip=40.107.200.37
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=P3z8gQSByAEol5Mrsj2h27e+AF7T4qqPhZ3oB2JD1vtCgkTSA2lVOhbLPirRZ8aBjL9q508jlTseQfI4XadVaDbvzktdu9JU74NdOUqKZSPn0NrutqgEQmWwbQxj2GGheSTepq/ukgegU5kzeH8qvtJXto8NJ1ndEdyA8T32EOc2+0QDFCx9Qgz/S1/LUnwKfrtJ2kN6UggIMpjCxa7hMknSyGcdjj/cFlRbBPN8IXRzx4StnTayXRw7JT56WC8eBcZv2rPVQAoYh7x4OWF7ANJDESuR4Ezc5LiTYASgODGuYomjrW2Ny9puse//Q9qRJvHBOz0bVzOzvnBu1NkRdw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=lAGPp36m9uLAVp8N3lt9uHqicaEMTO2ntks3b8HsSNI=;
- b=Wip58ddqT55wQUy/DVTueJsVEIRTM1xpPe05Gn3SKPOsXe6ya4BMXbg0egoJQ9XZ6FRmvc3uCEP+qWDr+uAf3bM+crOuCfXzkXlpRzbtwjEJS3B2mXUVbuSc1JWzMzBBB81xNylD8GFaP2UNkKcbiWsqkAM0XTY43rFn2icNC3aM3XqGnt6advLKUreTiiF0nZ+0O0YI4XjJRuP+io+o8CRmdBsUnUr7ZJwVQlwO72IU1xH5+Icvjj4YGW/AYV/q4Vm6Hxo2MFeaOdl0FSqWP0e4qOD2yeDWy76D5GjE2XZdya0vkfshTGUcoUayV9fnrAH2RjHufRzeKvXM1VCPkQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lAGPp36m9uLAVp8N3lt9uHqicaEMTO2ntks3b8HsSNI=;
- b=FWxthc/QYqHH2beL6BlAPYz1YK/9iu0y1DP2j6DKhsHA+/yWYpfTjbzw+xrAwaIaKGB3ASqY2WY7uQus00nFhigOhRxfym3/Tf/f+/vRTKe/CCKbotopS+dh8VXJtyVGsVVqWBkeKUWEUl8pciSWBhay2Oc1g2T8bU3EOtgvb+I39yy0DRkg9veGY0LMkZ8CytUMVPot4cUiKYmDfGRgUKkoUFvK4PORuSuz9AEhik84vKpa3hryK3muWlzcuszznbxSrEYkYvQrScFXI/xkF5rt/m+5AgiEhDsxuq5ehGE/1vVDxcJEZgUkAYDmaEwkdNCvQkb9gv/GBp8rC8sDOw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from SJ2PR12MB8784.namprd12.prod.outlook.com (2603:10b6:a03:4d0::11)
- by MW6PR12MB8760.namprd12.prod.outlook.com (2603:10b6:303:23a::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9182.16; Wed, 8 Oct
- 2025 09:52:21 +0000
-Received: from SJ2PR12MB8784.namprd12.prod.outlook.com
- ([fe80::1660:3173:eef6:6cd9]) by SJ2PR12MB8784.namprd12.prod.outlook.com
- ([fe80::1660:3173:eef6:6cd9%4]) with mapi id 15.20.9182.017; Wed, 8 Oct 2025
- 09:52:20 +0000
-Message-ID: <f954b162-f9bc-4693-92a5-8ac73b3a788e@nvidia.com>
-Date: Wed, 8 Oct 2025 10:52:14 +0100
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND 2/2] i2c: tegra: Add Tegra256 support
-From: Jon Hunter <jonathanh@nvidia.com>
-To: Akhil R <akhilrajeev@nvidia.com>
-Cc: andi.shyti@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- digetx@gmail.com, krzk+dt@kernel.org, ldewangan@nvidia.com,
- linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-tegra@vger.kernel.org, robh@kernel.org, thierry.reding@gmail.com,
- treding@nvidia.com
-References: <91da537e-01ea-4b51-8493-8cf88d64b435@nvidia.com>
- <20251008053530.27253-1-akhilrajeev@nvidia.com>
- <4a434229-31a1-4f16-94dd-9adcaa6f6932@nvidia.com>
-Content-Language: en-US
-In-Reply-To: <4a434229-31a1-4f16-94dd-9adcaa6f6932@nvidia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: LO2P265CA0020.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:62::32) To SJ2PR12MB8784.namprd12.prod.outlook.com
- (2603:10b6:a03:4d0::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC662F1FFE
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 09:53:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759917200; cv=none; b=G9PAUfWkFT8dp7uLy/MrkKjU7r8I4EXeG04SEqApj0JZPogjdUmJZ0wWBRcxFxr+g/+M9gjjgFM11vudJbpt/6ehQBI5/LQaKIpz8uObVOKRMX+2MtDHeecAQehpb+6pHvzcCKG0PgOI4uD0QTPp/5M4u8AYeKlFdxGZ2veHeDY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759917200; c=relaxed/simple;
+	bh=A/ljxTaixvVaouEEi360sIvfJdNqBvUqEUW4PZCQ9Js=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BLYNaGn6XNDsR6IabOMBC3PnhXUgeCnplrwwTiXkWBQeI4zHofSVhH3NQG5sPqso19MYjcSeK2b01JgBRWjSR3saPy4GVC/+chX+ff3iCGhovs+SrJzIEPQulGeGb12XoGGndfIC9Wb9QQAyyuuYd5mPSCSm52ABCY7C6JmqPrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QU7X0GnK; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59890SJG021224
+	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 09:53:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	t3d0Ehe0bvI1yeWqOhiX38fptBoU2YBdrvlRe0FAgx8=; b=QU7X0GnKHHJbtGN+
+	pYdCK/pZRowE3bxySmMkpsX3IpW2oHHmL+x9dlo9dFmIBAFU2JxkxKaS1rznpnFc
+	gL/8A6S/qOdG0GzenBkRrgvW0xbYosXTsHP7gbIfhf82Im4C5aEySxPQFO/84yp2
+	IJlQ2eigXKV/06dHKH6078KU5UftydZp7Btuk0AZqxiLeeSsiiSHZzncZWUe5EGP
+	y4fqhoSgunk+fR1jhkOoK+tWZm73keBh1VF910bqlsNvFuMLcK/wUBvv6qtmjuOJ
+	E9GmlkzNFM9GAJc0eC5RDPcq2bvdq7M4V6ULD+/UBafzumy+AjEcO+oG7dfI76cm
+	K/bb8g==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49jut1syax-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 09:53:16 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-850553dfef2so19949616d6.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 02:53:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759917195; x=1760521995;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t3d0Ehe0bvI1yeWqOhiX38fptBoU2YBdrvlRe0FAgx8=;
+        b=k+aJtbMM7s+06edrVQ7HvHcChq712YJ4M3s4aeD1jdKUCgNHPQuI3AQfU84w2kC9gf
+         kydGLfx1D9kjXjrHxW2ZnfVI8aStyLlY7Fyk0k/xiTICq9L2paP8tnCYHW+UdDEiW2Fi
+         Q/DGner/KmU7jscgwvIG7WUTj7L1uFqIlcG1G6zrBKDhhJH4HL0ncmJ/hvNTPGMWwlj4
+         XPW+mfBqAk2FMIANmTWKBXd1X69KrKC+G/mlcj7eZ3Qh7f9k/WdVQ42dYzHrildfLLAZ
+         uwxg5QGH42VAjnMW4Qi8qbHa/maIwUd/JPqLZlFrin8WRc7IrkB2LlWGBcRzf6abIL8e
+         qJKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWtxvBfaA+q7gA/A59daFif8Aga6IEc5c3Y3GPmC+YkB+ecRski89pSr1/HSYuvYKUWQP9nkOG6ZgMz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxG6nXp4M7v2X2+FbXfbCGXzf//4LmvfSuneandFDA5S2g7n007
+	5OyrmiaMcGIauUUqsFYDN2/SM48/iV0s6qj9raXd+BgIR54VHzN7WZC456M0CakvRZNrPN9HQHt
+	RgpxXYKDL6sGl8MftZLkMADNQPZJMbYJiI/hLvb3CFjZzKH+SFdIWQVfjVUZyNMZ7
+X-Gm-Gg: ASbGnctC0zSgx5Icc8JJicoTvPF73YakfFHgNWo1I/2K0O95+SA6rhZA8S9d0BY6C3g
+	SMXHoGIynl/mC0vOxf7HmEBfqiFGliVbsNBy3LEYUE29T36hnGXVnm5JamAeQrmAYevcsYBMBwC
+	OZwOLDraBKAsC8w31GueUgrZhX8ddj/K2DPDskrm5Dm7iXGtaeOkrjGKXtxXUbTDBahBNlGGQIs
+	MCypIHfPN9qj2ULr144smQ4Q6P8JK6c9cHs8I9cY6KSBYi9DmA0xFtPOvuyQWUrbRBoAHSsYXuU
+	f75I7DXYH5HkOgf7FlcGhrkBjC302Rybkh1EazA8NB0LJ+1HGqYSllw9pFjYu7ucIDcZFwfZlkx
+	kVaAjRAW12mhkK0LGECtcA55juOI=
+X-Received: by 2002:ac8:594b:0:b0:4e4:a58e:9505 with SMTP id d75a77b69052e-4e6ead440cdmr24627181cf.12.1759917194876;
+        Wed, 08 Oct 2025 02:53:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEC6bA5v1u+idL4ua2HM8tJ6bVay9UPd/1uXn1QC9RWuiyig/PmN4kVrGIBptf+wzMdeKoHhg==
+X-Received: by 2002:ac8:594b:0:b0:4e4:a58e:9505 with SMTP id d75a77b69052e-4e6ead440cdmr24626981cf.12.1759917194391;
+        Wed, 08 Oct 2025 02:53:14 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-6376b3b8df3sm14313824a12.13.2025.10.08.02.53.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Oct 2025 02:53:13 -0700 (PDT)
+Message-ID: <25a53665-d400-4bd3-a1ad-5ba8d3a0d9a6@oss.qualcomm.com>
+Date: Wed, 8 Oct 2025 11:53:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB8784:EE_|MW6PR12MB8760:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0dbc0141-eb36-408c-ea67-08de06505fb4
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|10070799003|376014|7416014|1800799024|366016;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cWRiQ21oQzJjb0ttOG5uUkhEdjRMY0NidEZCV2xSTHJUWjlMeWd3alQvQVpH?=
- =?utf-8?B?ZmFwQXpwTVRSVmhERG9UVjFmM1JZcmsyL21NaklLc0FkNGRRTWhSNmFJWjhZ?=
- =?utf-8?B?c3dJYk5kNk5UM0hBdjlXZ3FYY2w0RVpZMk1wbmIzTGhESDQyT0k3cFZaT25U?=
- =?utf-8?B?TW56Yzh1bnFZaEpKTXRLNWZ0M0lQVGNTREt0WW9pZGNnd0NkZ3BNbUNFVEV6?=
- =?utf-8?B?T2RnZDhNWExteFhka3RrckJlbFBNWlh6RWFvVmExdDZGcGNrMllNWVRhR3RD?=
- =?utf-8?B?aSsra2FmL2JQK2g5c2hxeGg4RGFscUdOZUlTYk9KOWFYcTRLdW1ScUZDaXEr?=
- =?utf-8?B?djh6blVud0RYY0t4Qk5ZY3puNzA2TUFCRGJvOEtieTVza3dPTlJMUDFOUHN6?=
- =?utf-8?B?OFgybmxiYnpHYjFKVVUvaUluZ01MUit6c0RkbDlHL1R1TjBWRVBNR2VRRDht?=
- =?utf-8?B?d1ZOMG9JOTdvTVFEejRJRHMxaWJ1UVZPTDJEUzRjcGZuUVVNcUdYa0t5YTh0?=
- =?utf-8?B?dFdtZ04zZytzR1k5Ri9XWDVtTDdTOVVuZm44bjdvYVhsMFpUNXNGbFFZTTVp?=
- =?utf-8?B?M2JJNHVtMkJ4V1BNbW9zKzRNMmFxTXNBM0UzUmxCMGhNMFk3UXhsNE1xUGFZ?=
- =?utf-8?B?czlsYkxKL3F4SW1acVRwUDBIUnlzV1BRelYrYTF4cDlhdmhkb1JraXdKbXlm?=
- =?utf-8?B?cFhtSlZiTjVkNTIrdjgrTytnREtMclMyQjl3dEdtVUVPakVNZldJT1h5TGQx?=
- =?utf-8?B?YVAwM0Q0cnZvWEN6cjZ3bm1VdjBuczQ4ckZvZ3c2VHhiNVpFUENvQWtGc2tQ?=
- =?utf-8?B?YmlNSzY2OWk5a2d5SEQrT2EzaFRzUDRJaW50NlhSRm9qWUZDeG5MSDU5R2dQ?=
- =?utf-8?B?WGtjTStEcVg3SXV1Zm52MlZEWmRqTDFRQ2lZK3gxczA0Q3Y0dmh5a1lTM2FE?=
- =?utf-8?B?aE5TNkpLdTBma01jQ2xyT2FUemxiTlpHODJqN1BCbEd2bVc4Vk9HQ1FNT2pW?=
- =?utf-8?B?RDRJNXFZRldlU2NGZXRVUHJKVWZWU0dXWUdjQUl2WnlWU2FqN3ZacGRxM0pj?=
- =?utf-8?B?ZWVPc2RIMy8waXpTT0srSWltaXg1dFNhZldyczBHS1M3OXFWR2t6dW1OZTVq?=
- =?utf-8?B?NEs4aUpFUlNEUmxmd0ViNDdMYXhBWEFoL01CZ2FTRVZVbEJqQzA4TVRaMHY5?=
- =?utf-8?B?cnpzMnlQaTlFRXFQTnNtd2tHc1FHd2k2L25aUWh0NHBFOG9VSWZjK0oyVHZ6?=
- =?utf-8?B?OTVOYVFtUE1FSTBwVkIwWmtwYU5ISll5YTR6dG1PVGJDYStpZDJTaGVPUll4?=
- =?utf-8?B?V3h5a1dRRkZvUGtQS1VqS2xRNjR1bWZOdWV4UW9ySzUzSmlpaEliM3Fqb3Bs?=
- =?utf-8?B?RktZNExWQnFkSmFrQUZvcVAwSWdFd0tUZjNISzVtdnFqdTNRTUZZL3BKRWNR?=
- =?utf-8?B?ZHJ3aDEwRlVoVmFVT2hNa0VqdHVvZnoxTGg3Mmt0VTloM29oYUdkc29kd0dj?=
- =?utf-8?B?c0ZoZXA3K2p3YkFhNFhnMTdGNC84c2JvTk9HaXZVYWY5WmRoOW5hSnZIQXpE?=
- =?utf-8?B?WmRHakJjN2hUSFFDTjdNV2RZeFpkVnhpZE1wU1FTYXNaV0Z0UTRDTkFHMDli?=
- =?utf-8?B?KzZ5TXkvQ2p1TXgvWTBITEMzLy9xQzJtUGMvRjlITWRha3cvN3ZHSFhKcWcx?=
- =?utf-8?B?eGZOSFVmQ0Z2dklNNjFGVXhxNnY1elhsRXhnWnJha3FIZ2Y2TW12M3E0RDJF?=
- =?utf-8?B?NVpNVmJGc1dJNWhkNFJaZ21VVWpyMW9ZcjNxNG1IdlkxVXNlaSsvOUJhendY?=
- =?utf-8?B?S2lKNTh2aVZRNlZsTWcrWjkydzRadllBZ3djNDlDWDdwZk92bEFNVUZDcGJj?=
- =?utf-8?B?dkVoc2d1NjZXcEpDL0N1OW1Xa0hGV09EUTJqOHdvQ05qdGVVcEh6ZjNDSUl6?=
- =?utf-8?Q?oyWRkFyq7ZuEubDhe5UKvyI8dh9nkrJh?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8784.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(376014)(7416014)(1800799024)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?L2lBQU5CY3lONEJOTmk1NkNKZ1psZVZjS0pQVytwNmdySGtuNEcwUDdsMXV4?=
- =?utf-8?B?aGgwbFpKbWdqVjB3RDRmaXVhV2xINTZ1RXZVMzQrYXZKZ0tySkEwdFluSEMr?=
- =?utf-8?B?aDAvZ3M3MzhXYUN3OUtpWjBIVVVkWXJhRkFBdUNpWVBrRWhQcjUwNzNMZm50?=
- =?utf-8?B?MlZ1MDRlYTBNQWtHTm15a3dCM1pGNUZPeGZ2QTROSEYzMFIzZVgxRER2OXA3?=
- =?utf-8?B?cDArMUo1RHRBL2Z6YmFCcW9yVHpxcnRwRkg3UW1tUVNtUGZYcUVwcElYZW5t?=
- =?utf-8?B?bmptRUd3TXFTMXQwa3QxTkpqK2dIdTBJVWw4NEZNSXU4ZG1Ncy9ySzR2WnZW?=
- =?utf-8?B?eWdQRzhTTXMwOU1EYTlESmdtNHBMdWdHdzd4Z2VQWjBPWncxR01rbEZrbHB3?=
- =?utf-8?B?QWJtQU1tRnB4L0EwelNKYU9GbWExamU2ZHEveENaZG9NV243ZG90K1pBcW1P?=
- =?utf-8?B?MFlYMDFZTnNUeFhlRjNuMnBsQlVESUZ4Z28wNWJEUUp5K2Z2WWY2dzRNcGFV?=
- =?utf-8?B?dmQ2VExFWThOb0MwVld0cXN5U2I3SHJ6V1pIcUxUNDVhT1NneFFnVnNxdjFp?=
- =?utf-8?B?Tk9scHBZQXduZHdjdldzcmhtS0UzWTVzSnN5Vm5ndWtYLzZFcGcrc05WNWpt?=
- =?utf-8?B?MVpndFNNMDh5L05SdGM5U0t3cUs3K1BmNTdXZVRqdHVQbkdvclcvR2dFYlMv?=
- =?utf-8?B?T09mOHJmbVoxQnE3Rms4WkVFRlFIZjU4a1ErWVRHTHpYMm0yT1g0YzFodVNy?=
- =?utf-8?B?VG4yZDlQM0x1RzV4b3hOZXp4NFdiV0oxaHhTQ01MNEV4VnUvMFBnYWN0RWpy?=
- =?utf-8?B?UVJTY3Q1ZmFWZjNubTNYQm5LQmlBL21KZWR0RzdZVzZHaUYrNjNYTzN1WjNS?=
- =?utf-8?B?Qmw2L1E4dE9yT0ZYcTZzQzIrT2lqWE5VU0V6bW9GWXRlVm0wQ3MvVnVtQlQ4?=
- =?utf-8?B?dUY0Z2NsZ1dCTWRPZ0g3Zk1ZaWNVOHBvRitIOG5JZEU2ZmFtaXV2SXNVMTJU?=
- =?utf-8?B?dk56VDg4WEhpY2pwQi9UVXcvQndnTUdYbWNFSUZ2MlZwOFJOcUhScG5NOEY3?=
- =?utf-8?B?TUY1R1ZQVmE4SGlZWS9PeHZ6YkwzUDlZK294aHkxM0tlYlRBYVA1MEtHV3No?=
- =?utf-8?B?Wm9Xb1lDRjEwR0ZZeHhHaklUenl1TjVkSGZHOU5kVjBtWDBNT2gwMDZZRUd1?=
- =?utf-8?B?V2UwZFdHUmZPeWlUV0VveWpKMGYzZDVIeUV3QVJTaWR5TmdsYnlVWEZMcHFH?=
- =?utf-8?B?QnlJc1o0NlUrU3pGQ1doUmc4QTdmMENxcTN6d2s1TUtBTnRpak5IU3RqazJa?=
- =?utf-8?B?RWFxS0ZLR3Z3dVVmd3dwWm5QUGxMWEdrbTNvYTZ4Q0Q3TUtwemwyQjFTSys0?=
- =?utf-8?B?UVR6S1ZpL3VNbWNKN3hwcG01ZnQ2cmd3MkdtVHJ6cS9pbFhRUy9yTXdCNVRm?=
- =?utf-8?B?eG9sS1M2TkhtTE45bnlSS2JGS1pqZmZSamphSkxBU1c3WFBHcVBheEJMUVE0?=
- =?utf-8?B?OXBGOERGa3BIUE0zYjNpcVNXa3RySVlmSWdITE5LRFo1b0tySm5KU1REQnBB?=
- =?utf-8?B?V0hia1dVMUVoWi9MVmhoMmh6empjSU1GNVdxc1JZa0hyOUFKcFpuTSthSE1Q?=
- =?utf-8?B?Z25MMUZYOFFOV1JCOTI0VEZzei8yc0gwTldaeE5LbnlGUzlVMWx3MGVXRU9s?=
- =?utf-8?B?OEg0djZSU1ZDQStGT01ZOEtyY1J6UlU4aENoM1A3L1dzOTN5SUlJRW1GaXFO?=
- =?utf-8?B?TEFzMm9SR01zVXM5QUhWN3ZlOGlZdURjTkxiVFNlcHpxdUFncnhldklKMG9W?=
- =?utf-8?B?ZVhlMWxkSDFlRjNvUVU4eHduVVlhY0hSS1hkR0EvSTcrT3RoeGthK29DdEJt?=
- =?utf-8?B?Z2VhNHhmS1VOOWlXTUNuamcvZmF4M0lMNDF3ampQcVpVR09XcW0vd2tNYTRL?=
- =?utf-8?B?NlN3NWFrbnM1Vkgxa2ZjeU56L1RBTzlkRmFyRHRiaXlBbFBmNk1nc1RtUHZk?=
- =?utf-8?B?WHB5bVRSNlcwN0ZLTnZCbTBWdzhPZUduSllkY2FyMjNVZEpSckRubW1KdDJC?=
- =?utf-8?B?SlVETjJnM3BLVUxkZFdqYXRlbXI0NkJJMmJmRlloNVZjdk1seVVqU3N6VHpF?=
- =?utf-8?B?ZWxKK29uelZ4d3diK25WczJ2Rllib3FCdE15TzNiZWFEN0V6SGhRUXZZRVpp?=
- =?utf-8?Q?rSgkmDMLHhxV7Ld8i4nYTgtHaSos5jUsJT1svVhN6Qvt?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0dbc0141-eb36-408c-ea67-08de06505fb4
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8784.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2025 09:52:20.8484
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SRkEzvmr6Su7JvnCtTRqV2IHUdaIXwrlQOmN+NNjGabHrIKeICrKG0xUxoxzUc09sek/IOwUpoTEk/CK1v2LNA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8760
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH DNM v2 4/5] arm64: dts: qcom: qcs6490-radxa-dragon-q6a:
+ Enable UFS controller
+To: Xilin Wu <sophon@radxa.com>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+        Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+References: <20250914-radxa-dragon-q6a-v2-0-045f7e92b3bb@radxa.com>
+ <20250914-radxa-dragon-q6a-v2-4-045f7e92b3bb@radxa.com>
+ <9a18cfae-4fcd-490e-b44d-6f9345cc7c3b@oss.qualcomm.com>
+ <4AD4461A95C1A8F2+bc2124f8-d1ae-4fe4-8d0e-55872609d3f3@radxa.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <4AD4461A95C1A8F2+bc2124f8-d1ae-4fe4-8d0e-55872609d3f3@radxa.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: Duciq7W1X7Xcrf58oxvWYHUKamuTulrA
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAyNyBTYWx0ZWRfX5TGY+LdwCAt5
+ SKzQVFn4L1/wHLxbxIJasRLZOvVrXV24aXIlAh5HVq+eRYNgx5E0Az9OqGiuiaWLTUEmHqou5YT
+ g3Q/GNUrRvQ/g5j4dLf9LbBeBQFacoICYfi+hGNTkqN0BuNiCJPRUot/pDsBQHsdvRTxAXw/9yR
+ E11Q2H1XSxQDsENf759mjPzygAg42FXpjzKJRz/Nge5jQ5Mc7rEfZY/kkd8o0JIl4g1348NKkpq
+ 0KHome85D9cJOew1x1qSlqrig2EPyfSiStIfm4ci81PBiYrmbqBMU3AoLOBdslWeYOwga0sCT83
+ qnp0DIgqaQ4qv8+k0y8XRmg6kpuBoAqJlIc12DGAOiTf5YLDnet+ypUlXhdFgByLklYCbY5TXM+
+ Nuw5JaVeu03yRd824+ssIwLbEni6bQ==
+X-Authority-Analysis: v=2.4 cv=Vqcuwu2n c=1 sm=1 tr=0 ts=68e6348c cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=ksxQWNrZAAAA:8 a=u3vnbMqxRyurYkqyvPYA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=OIgjcC2v60KrkQgK7BGD:22 a=TjNXssC_j7lpFel5tvFf:22 a=l7WU34MJF0Z5EO9KEJC3:22
+X-Proofpoint-ORIG-GUID: Duciq7W1X7Xcrf58oxvWYHUKamuTulrA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-08_03,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 adultscore=0 malwarescore=0 spamscore=0 priorityscore=1501
+ suspectscore=0 bulkscore=0 clxscore=1015 impostorscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040027
 
-
-On 08/10/2025 10:33, Jon Hunter wrote:
-> Hi Akhil,
-> 
-> On 08/10/2025 06:35, Akhil R wrote:
->> Hi Jon,
->>
->> On Tue, 7 Oct 2025 15:50:56 +0100, Jon Hunter wrote:
->>> On 18/08/2025 05:33, Akhil R wrote:
->>>> Add compatible and the hardware struct for Tegra256. Tegra256 
->>>> controllers
->>>> use a different parent clock. Hence the timing parameters are different
->>>> from the previous generations to meet the expected frequencies.
->>>>
->>>> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
->>>> Acked-by: Thierry Reding <treding@nvidia.com>
->>>>
->>>> ---
->>>>    drivers/i2c/busses/i2c-tegra.c | 26 ++++++++++++++++++++++++++
->>>>    1 file changed, 26 insertions(+)
->>>>
->>>> diff --git a/drivers/i2c/busses/i2c-tegra.c b/drivers/i2c/busses/ 
->>>> i2c-tegra.c
->>>> index 4eb31b913c1a..e533460bccc3 100644
->>>> --- a/drivers/i2c/busses/i2c-tegra.c
->>>> +++ b/drivers/i2c/busses/i2c-tegra.c
->>>> @@ -1649,7 +1649,33 @@ static const struct tegra_i2c_hw_feature 
->>>> tegra194_i2c_hw = {
->>>>         .has_interface_timing_reg = true,
->>>>    };
->>>> +static const struct tegra_i2c_hw_feature tegra256_i2c_hw = {
->>>> +     .has_continue_xfer_support = true,
->>>> +     .has_per_pkt_xfer_complete_irq = true,
->>>> +     .clk_divisor_hs_mode = 7,
->>>> +     .clk_divisor_std_mode = 0x7a,
->>>> +     .clk_divisor_fast_mode = 0x40,
->>>> +     .clk_divisor_fast_plus_mode = 0x19,
+On 9/15/25 9:34 AM, Xilin Wu wrote:
+> On 9/15/2025 3:24 PM, Konrad Dybcio wrote:
+>> On 9/14/25 5:57 PM, Xilin Wu wrote:
+>>> Add and enable UFS related nodes for this board.
 >>>
+>>> Note that UFS Gear-4 Rate-B is unstable due to board and UFS module design
+>>> limitations. UFS on this board is stable when working at Gear-4 Rate-A.
 >>>
->>> Can you check this divisor value? I see we have been using a value of
->>> 0x14 for this which does not align with what we have here. Can you
->>> confirm if this should be 0x19 or 0x14?
+>>> Signed-off-by: Xilin Wu <sophon@radxa.com>
+>>>
+>>> ---
+>>>
+>>> This change depends on the following patch series:
+>>> https://lore.kernel.org/all/20250902164900.21685-1-quic_rdwivedi@quicinc.com/
+>>> ---
+>>>   .../boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 29 ++++++++++++++++++++++
+>>>   1 file changed, 29 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts b/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
+>>> index d30cddfc3eff07237c7e3480a5d42b29091d87d6..3bf85d68c97891db1f1f0b84fb5649803948e06f 100644
+>>> --- a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
+>>> @@ -482,6 +482,11 @@ &i2c13 {
+>>>       status = "okay";
+>>>   };
+>>>   +/* It takes a long time in ufshcd_init_crypto when enabled */
 >>
->> If you happen to notice, we are using a different tlow, thigh and hold
->> time values as well internally. We are also using separate variables
->> (tlow, thigh) for fast and fastplus modes, whereas this driver currently
->> uses the same variable (and value) for both fast and fastplus mode. With
->> that limitation, these are the closest timing values we can use now to
->> get the required frequency.
+>> Huh? It only turns on some clocks, writes a couple of mmio registers
+>> and turns the clocks back off, could you investigate a little more?
 > 
-> Yes I did see that we have been re-working these variables and separated 
-> some of the variables. However, this parameter itself has not changed 
-> and now we have a different value in upstream. So regardless of the 
-> changes being planned, I don't see why we are not using the same value 
-> for this variable everywhere.
+> More specifically, it takes a long time in `qcom_scm_ice_invalidate_key`. Considering this platform boots from SPI NOR, while TrustZone doesn't really support SPI NOR storage on this platform, there could be something broken in TZ.
 
-Or are you saying that this divisor value is correct per the other 
-settings we have here? And when we push the other changes to separate 
-the settings for fast mode and fast plus mode, we will then update this 
-accordingly? If so, then that is fine.
+Hm.. if you change the boot order (if you can on your board..) to start
+with UFS (which would require reflashing of all boot sw onto there), does
+this still manifest?
 
-Jon
-
--- 
-nvpublic
-
+Konrad
 
