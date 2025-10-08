@@ -1,232 +1,158 @@
-Return-Path: <devicetree+bounces-224509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E786EBC4996
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 13:44:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39A1CBC49C3
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 13:47:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C624B1899392
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 11:44:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D53119E16F9
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 11:47:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE24D2F658E;
-	Wed,  8 Oct 2025 11:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE2FD2F7ACD;
+	Wed,  8 Oct 2025 11:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="c6gVpSEZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UProDiaF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64D7F19ABD8
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 11:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452862F616F
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 11:46:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759923838; cv=none; b=ju5QixppeOMCcefCXTpWZSJwbc25RLD6b1tKbQMznOGZIUMSW/zWGRsnr/wG5yp5MmUOvIbsEgrhl0fq1e1IiOgIC4mf1/Hyogh+TEMtI5NoQSLdN+BIC5C8pzXZSjUwGIhJs3Evg4ZYLFfp5v0ERmTGk5aoE6KYR2PQvl2mYKQ=
+	t=1759924020; cv=none; b=ZiU6446r1cAfuTcDbUz7wJZrky8FI1kpEN5jZrbdGtI1EKVTMMnirgvH9o6i2jCjnIeMV0vtW4pE9LQN3v4+XdvO5uEq7k4SaNqkhDrEziYpEIDcMOHjIWkqonYoPI2heO3ez1kBYa9TFFxICkOeggK0ONrGj12qZc6IyL/ILzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759923838; c=relaxed/simple;
-	bh=NvuiaVBeiSPiYpRXqXG36H5zNhHAgdoLHLJRAp02gA4=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=aN5BtvUn0enzxet7Ml+WKphhvdGGK2fzECIJSFsMEFPluo/xFpyo0GuOrbhOavwTusN2qaKd9t5vGSjOFLi+18mDssm9mIgOC7PdnHXp4cNX5QegCRBQMQyZPkokpN6pGK79U3xeoIAOgFMKscEUp6sld15HaDBogJ/+yPAZ0uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=c6gVpSEZ; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20251008114354epoutp04a3725323f92ed898b2ae61fcd336e188~sgWcrFr392152921529epoutp04J
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 11:43:54 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20251008114354epoutp04a3725323f92ed898b2ae61fcd336e188~sgWcrFr392152921529epoutp04J
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1759923834;
-	bh=7ShxQV+QBks1O6s3AcHyLi5waN6FTYEdtCJKfAmgrLY=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=c6gVpSEZzX3u973srcW964ta+l3MuKoscDYuL8t00/tJGbBz+vxvH1F20DVdmBLCN
-	 lKKDBZ385sdQoV151A4bDcqC77jG6D63lXdxPzcWoYMfA0Kz1LIXxsgyLtaKIu1iAR
-	 OJsf/WtvM0hcu7MnhiFPMAHOHfkeaJQzulP0+Lo4=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20251008114353epcas5p1aacdfdc53c4473342326e6aed62b5960~sgWbtqMV61645516455epcas5p10;
-	Wed,  8 Oct 2025 11:43:53 +0000 (GMT)
-Received: from epcas5p2.samsung.com (unknown [182.195.38.89]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4chWP43m0vz2SSKd; Wed,  8 Oct
-	2025 11:43:52 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
-	20251008114351epcas5p28f9d1b04c049993b7cc873de492c9460~sgWaQEc-q1865818658epcas5p2Q;
-	Wed,  8 Oct 2025 11:43:51 +0000 (GMT)
-Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20251008114348epsmtip1c900e626d8c700dcbca7182958142c89~sgWWyKrGI1381513815epsmtip1_;
-	Wed,  8 Oct 2025 11:43:48 +0000 (GMT)
-From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <vkoul@kernel.org>,
-	<kishon@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
-	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
-	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
-	<igor.belwon@mentallysanemainliners.org>, <m.szyprowski@samsung.com>,
-	<s.nawrocki@samsung.com>
-Cc: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <rosa.pila@samsung.com>,
-	<dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
-	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
-In-Reply-To: <c33a26a8-a054-4ce6-86d9-4945014f69cf@kernel.org>
-Subject: RE: [PATCH v8 1/6] dt-bindings: phy: samsung,usb3-drd-phy: add
- ExynosAutov920 HS phy compatible
-Date: Wed, 8 Oct 2025 17:13:46 +0530
-Message-ID: <002301dc3848$d171a900$7454fb00$@samsung.com>
+	s=arc-20240116; t=1759924020; c=relaxed/simple;
+	bh=pOLsyu91bA7BFOduTPfXQwDrZ2/gTjYFrA2eBRm3r78=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OeO6l8Tt60j6lzxtad7Pa3xpLTGKsajS+6f26F5rH30BQBtSfmQyfwpn+x3czTt3n766kEkLxNf7ZIS9ynVBcCrX7POT4+JXmazz+SKI1HEcoGeTzLHdkR6tEvg15M0UIzSBQWg3IIRfnxPUucnLXajoGnOqkXcKH8dG3Bq1Tsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UProDiaF; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59890ZZU029617
+	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 11:46:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	zmZqI/hK2QIPAuDXDoC713x1X6hbDw/7hyjWJFFNTE0=; b=UProDiaFd3+bNfr/
+	JAMFmeTOf8+SkbvblGKTR06dC1qYCi72cCccPdz1X84A0oBNXWSbJ8NXXh02KB72
+	WfE0bPkXgRm49IMMYEmrxBpBP+nVx6z3K2iO45mzz7Wwx+HukjK2twkuu8CIxbxw
+	WTBE+B2H7tc839FrzveOhRa4zPiTRyyUbGlBqud1+orHif/6xN8ni/W5G0lZm5KT
+	iPJ3GfxERsvCOkLRpg+Sp9XfAasDi0khKs3qMt1RI5Ihf6Oz+xK089HZffFb3er6
+	qVOeaokX/617+OZxzQQ4C/tq7XTxpDaE/NiX0t7D/T5oLvwppVw3wlEzzeVVFp/N
+	/D25Wg==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49js9e2f5n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 11:46:58 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-819d2492a75so339870185a.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 04:46:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759924017; x=1760528817;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zmZqI/hK2QIPAuDXDoC713x1X6hbDw/7hyjWJFFNTE0=;
+        b=hYxii5R8S/6hf+1k+LbMM/se5Yb97FrdVy7xQP7HZznYXYetr+tnjoCi2+i6maVo4l
+         xiEGuzWCgjcYf48FuIBJbQ2NnDz51NEBHNgKk9A087nJ3ztTwABP6XBaKM77t6y7Y5bg
+         jSpzOUAKHSVR917YTvWxI3QyPXe9M8RC8ZNmnlHZeDMkNWt7KnB0HQZpxWx5P7/Yjqrh
+         Bp2l2IpCtYG7wDarFMQ4RY/SfQxbpHNTMiT5b6oAxg70TTttPlRb+0FqaK6UZCppAJge
+         7PjJcJJbKvzvybye13DnIaYavYwuyF86Dxye/ZyI9ZHDL9WbiE+95nx/dU+SHZpkgMmo
+         HiAA==
+X-Forwarded-Encrypted: i=1; AJvYcCXaIjNgMElw5pekC2BEaNLwYSV5VuXAzC92hLeK4Q8lH5mOamLEi5MUxp+q6xZDePKbwI4Gw4oT74EE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxc9mASLzhuzZyZMmGDq8URMTJfqvY9aodHOP3fyLrFnaJ6dDTq
+	w5GkVZEsBE1mDYsKRQpFPYGgSZJvvFJCrGd8pBedG57iMHlDUYq4wgPZOREZ/9VcCcbzn3cREoA
+	HQ2uhWd23hAMsEvbcecuAUUMKGSlULggZndYyv2Fs+KmUd+bLbi2DONE4afkTBLYE
+X-Gm-Gg: ASbGncsEmgsR1nzL1GaZeXgb4SVDHjtIXwtd2fCpLfEtrBqrnVgJp/sxTfgYlEduMnQ
+	6jJLTFqDK7kaliw75UuXT1GHRy9K9RaboiMEkHyqt7VLoWMphUTzFOF+b2OA+4lxg9b2KV0rO8b
+	WC/S/RvRn7xmWtoataxXd1tXknRZsj299BOjRII9XMwOVWxyuMvhc/wzkR/eW0Qjj0CzcYxNgzv
+	n63Y9Va9dBfGY8949cnxpMX7BXp32Og7r+VUWRBZfoOEDOqf2TdoTiFCKRNu43ivRTHvKU4mkna
+	F/WplREovuGEdrdxY40oCPTm3AheF5+meAu8oCjGxGC/Od6GnD9+R1cTHXxOZyQj5zYUEagknO3
+	LbOt4h3PVupt4D8GddCVTDy+Q+BU=
+X-Received: by 2002:a05:622a:4c6:b0:4db:1bd:c21c with SMTP id d75a77b69052e-4e6ead390dcmr28342041cf.12.1759924016851;
+        Wed, 08 Oct 2025 04:46:56 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHhzBijvONPiblMY5efLfCzWLUGbZqk/BjrQ0UR7ejEdPzLuUFe2mN6EtMi9WvZDTQu1j0KPg==
+X-Received: by 2002:a05:622a:4c6:b0:4db:1bd:c21c with SMTP id d75a77b69052e-4e6ead390dcmr28341691cf.12.1759924016308;
+        Wed, 08 Oct 2025 04:46:56 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b4865a83f5fsm1649154166b.32.2025.10.08.04.46.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Oct 2025 04:46:55 -0700 (PDT)
+Message-ID: <fd49f3db-560d-4633-ab59-fa80f9baf698@oss.qualcomm.com>
+Date: Wed, 8 Oct 2025 13:46:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQIRMOVGdWg5oRjNsRBgEjzIeIB8IgGabj6EAmTXuDcA7fJUJgHIrfZJAofpNyABqVtXsAE6XDP/AshrECECD6P74rPGYQWA
-Content-Language: en-in
-X-CMS-MailID: 20251008114351epcas5p28f9d1b04c049993b7cc873de492c9460
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250903072936epcas5p4a28d0e63c7f0792b516b0cbc68bf3a8e
-References: <20250903073827.3015662-1-pritam.sutar@samsung.com>
-	<CGME20250903072936epcas5p4a28d0e63c7f0792b516b0cbc68bf3a8e@epcas5p4.samsung.com>
-	<20250903073827.3015662-2-pritam.sutar@samsung.com>
-	<0df74c2b-31b9-4f29-97d3-b778c8e3eaf1@kernel.org>
-	<007801dc2893$18ed4a20$4ac7de60$@samsung.com>
-	<02ef5180-ad56-45f0-a56f-87f442bf6793@kernel.org>
-	<007f01dc2b81$84ef19b0$8ecd4d10$@samsung.com>
-	<808d166a-b615-49c6-b0f5-bf5101721381@kernel.org>
-	<000001dc380e$612b5680$23820380$@samsung.com>
-	<c33a26a8-a054-4ce6-86d9-4945014f69cf@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/17] soc: qcom: ubwc: Add config for Kaanapali
+To: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar
+ <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse
+ <jordan@cosmicpenguin.net>,
+        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org
+References: <20250930-kaana-gpu-support-v1-0-73530b0700ed@oss.qualcomm.com>
+ <20250930-kaana-gpu-support-v1-1-73530b0700ed@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250930-kaana-gpu-support-v1-1-73530b0700ed@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=Hrl72kTS c=1 sm=1 tr=0 ts=68e64f32 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=WkYBtKvuumTgCfpkg3wA:9
+ a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-GUID: yuiYm9h5-aWBatqIYK8Z5R_W9kBw4hl6
+X-Proofpoint-ORIG-GUID: yuiYm9h5-aWBatqIYK8Z5R_W9kBw4hl6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAwNCBTYWx0ZWRfX+YkRyuIAfVf1
+ ooB4Wtz60dB6lhrX+PYApe7943tcTS+nzbBGwYh0Jhlw4cIxiFLpcbR5LPYq6j2yEllboT7f5nU
+ nTqTeVQmerFbZV98ypjqZvSTtyEwIZ6zioCZ4CMLlk8WMy0+11TCXJ+arHp8zSwqYQpJgQ7wHUy
+ Wz9iApYJomIBMhfFjXiWZxshiTC9s9/CBYYQn0iayP37RH32sUQqvkWPtQNv0oxmMndE7WLJ57A
+ O0jUHm8yn7q6El8CKq/SRX7RAsUvsCTT4MNsJGf+JH2S/4LsUYixesVoJW56S5Ajq/m8QOw8e/b
+ Kn2iCQBxvyMrOORFb0jF9atwgGToRPEitWC/aZ4CTfzPvPMhY10pqhP4CshS1ggC4cBbFzp/nau
+ jBEWA6dVJplTvxyRDX6IFMxuUSFB1Q==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-08_03,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 phishscore=0 spamscore=0 adultscore=0 lowpriorityscore=0
+ bulkscore=0 priorityscore=1501 malwarescore=0 impostorscore=0 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040004
 
-Hi Krzysztof,
+On 9/30/25 7:48 AM, Akhil P Oommen wrote:
+> Add the ubwc configuration for Kaanapali chipset. This chipset brings
+> support for UBWC v6 version. The rest of the configurations remains
+> as usual.
+> 
+> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+> ---
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: 08 October 2025 01:42 PM
-> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>; vkoul=40kernel.org=
-;
-> kishon=40kernel.org; robh=40kernel.org; krzk+dt=40kernel.org;
-> conor+dt=40kernel.org; alim.akhtar=40samsung.com; andre.draszik=40linaro.=
-org;
-> peter.griffin=40linaro.org; kauschluss=40disroot.org;
-> ivo.ivanov.ivanov1=40gmail.com; igor.belwon=40mentallysanemainliners.org;
-> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com
-> Cc: linux-phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
-> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-s=
-amsung-
-> soc=40vger.kernel.org; rosa.pila=40samsung.com; dev.tailor=40samsung.com;
-> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
-> selvarasu.g=40samsung.com
-> Subject: Re: =5BPATCH v8 1/6=5D dt-bindings: phy: samsung,usb3-drd-phy: a=
-dd
-> ExynosAutov920 HS phy compatible
->=20
-> On 08/10/2025 13:45, Pritam Manohar Sutar wrote:
-> > Hi Krzysztof,
-> >
-> >> -----Original Message-----
-> >> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> >> Sent: 07 October 2025 11:54 AM
-> >> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>;
-> >> vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
-> >> krzk+dt=40kernel.org;
-> >> conor+dt=40kernel.org; alim.akhtar=40samsung.com;
-> >> conor+andre.draszik=40linaro.org;
-> >> peter.griffin=40linaro.org; kauschluss=40disroot.org;
-> >> ivo.ivanov.ivanov1=40gmail.com; igor.belwon=40mentallysanemainliners.o=
-rg;
-> >> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com
-> >> Cc: linux-phy=40lists.infradead.org; devicetree=40vger.kernel.org; lin=
-ux-
-> >> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;
-> >> linux-samsung- soc=40vger.kernel.org; rosa.pila=40samsung.com;
-> >> dev.tailor=40samsung.com; faraz.ata=40samsung.com;
-> >> muhammed.ali=40samsung.com; selvarasu.g=40samsung.com
-> >> Subject: Re: =5BPATCH v8 1/6=5D dt-bindings: phy: samsung,usb3-drd-phy=
-:
-> >> add
-> >> ExynosAutov920 HS phy compatible
-> >>
-> >> On 22/09/2025 14:26, Pritam Manohar Sutar wrote:
-> >>> This phy needs 0.75v, 0.18v and 3.3v supplies for its internal
-> >>> functionally. Power Supply's names are as per phy's User Data-Book.
-> >>> These names, (dvdd, vdd18 and vdd33), are considered  for 0.75v,
-> >>> 1.8v and 3.3v respectively.
-> >>> =22
-> >>>
-> >>>>
-> >>>> I still cannot find constraints for the rest of properties, though.
-> >>>
-> >>> Sorry I didn't get it completely. Can you please elaborate on the sam=
-e?
-> >>
-> >>
-> >> Writing bindings and introductory talks elaborate on that. You add
-> >> properties without constraints. That's not what we want. We want
-> constraints.
-> >>
-> >
-> > Have added only supplies in this patch-set. However, was going through
-> > schema example and it says nothing is needed to define in terms of
-> > supply.
->=20
->=20
-> I don't have original patchset in my inbox anymore, so not sure what was =
-there,
-> but most likely you miss constraining the presence of these properties pe=
-r each
-> variant. IOW, not each of devices in the bindings have these supplies, so=
- I expect
-> syntax similar as in example-schema.
->=20
-> https://protect2.fireeye.com/v1/url?k=3Db15f03dc-eee70b7e-b15e8893-
-> 000babff88b5-a120365cc01c0261&q=3D1&e=3D61c09dc1-e3de-4b16-b34f-
-> edc1fae43bb8&u=3Dhttps%3A%2F%2Felixir.bootlin.com%2Flinux%2Fv5.19%2Fsour
-> ce%2FDocumentation%2Fdevicetree%2Fbindings%2Fexample-
-> schema.yaml%23L212
->=20
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Yes, this was already considered based on Rob's comment and
-snippet is as below.=20
-
-https://lore.kernel.org/linux-phy/20250806234217.GA2030512-robh=40kernel.or=
-g/
-
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,exynosautov920-usbdrd-phy
-+    then:
-+      required:
-+        - dvdd-supply
-+        - vdd18-supply
-+        - vdd33-supply
-+
-+    else:
-+      properties:
-+        dvdd-supply: false
-+        vdd18-supply: false
-+        vdd33-supply: false
-
-I understand that you have lost the context, my bad.=20
-Let me share v9 with all RB tags added in v7 and v8 and=20
-let us have all consolidated review one more time (sorry for this).
-
->=20
-> Best regards,
-> Krzysztof
-
-
-Thank you,
-
-Regards,
-Pritam
-
+Konrad
 
