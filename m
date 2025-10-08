@@ -1,91 +1,144 @@
-Return-Path: <devicetree+bounces-224581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A47E4BC5839
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 17:06:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C22DBC5884
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 17:15:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4CA9189CCA8
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 15:06:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 059663C867A
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 15:14:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB2A8287505;
-	Wed,  8 Oct 2025 15:06:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36EF2ECE87;
+	Wed,  8 Oct 2025 15:14:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OuBWEHLn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NL3mTpfb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C56E20B81B;
-	Wed,  8 Oct 2025 15:06:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 724272ECD11;
+	Wed,  8 Oct 2025 15:14:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759935984; cv=none; b=J1pQ9QufW7aZlEkL0ARipKqDHD9+70xirFoH7/PJ6ma3s5RM0uwwKOJSg9kcnE0RHC33m+wykD/hDjOQ6ByFmo04112o0rVvrz4stixujUEipGBJhYk+VO+TGK+/dJqaeK+J4NcnUEcCgKtsM+1zPu98VvzYsx4tF8oZ1oOkZVw=
+	t=1759936485; cv=none; b=ntZbJuHkwUU2rv9hkXhqlcelgfN3woNglnSanE0/KFsWciTNbEc4n+6wyMe+3gUII5a7h1Ba/UKhUZsCMXwRRaBRk7e3bdz1fS3egEhauadl/fPMBFX1aCXTxyEZf0Izjh0G/soOoQxMKMhrWN78dlnGS82Kwk7bJ3r30HFwVZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759935984; c=relaxed/simple;
-	bh=EdcTvE4rC9KCoDJGFEznudeEFcdoDAeMS+PBIVJ7tjk=;
+	s=arc-20240116; t=1759936485; c=relaxed/simple;
+	bh=yaCpMcSVmb2a4GcP5V5TbIm8ZHHu7Fc/eP7NoitbYkE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QYAy4PGqEFr6KoTmLl4YImmTaN7uzTeIgFvYxxpAGlrOoLJhAFltfpwIYkApDmS1oLLTxbhW0P0lwwXwmwj3uTwZAeLQxBaqavvWuR/Zntk1ORy9Wi8j9qQI8MnPTJ7VM7WIY4zbzgMEmF+O/+7IMY7vxaEQ0kbVaJeTRffyS3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OuBWEHLn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D932AC4CEE7;
-	Wed,  8 Oct 2025 15:06:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iDe7YAbVBI8jYQRTOhYq/jdY2z0oZGMQqBh6wSRMSIYWY1OP/iTpoXErnxx7v0OBh+7QBXgiKJIHsJ7RHfMSn6VrVBUxyf1ssTI4xgQtFlH6YwnjbdlBIBuRusBOejrXPKowNgnj6kZ9BMpBYojKLrr/a1PJ+bc9Fo00MKZO7mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NL3mTpfb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E553C4CEE7;
+	Wed,  8 Oct 2025 15:14:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759935984;
-	bh=EdcTvE4rC9KCoDJGFEznudeEFcdoDAeMS+PBIVJ7tjk=;
+	s=k20201202; t=1759936484;
+	bh=yaCpMcSVmb2a4GcP5V5TbIm8ZHHu7Fc/eP7NoitbYkE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=OuBWEHLno8xcpJy7mpc5cw6/DggxoZFKUm4/ETskRkhkteGtOzbADPuzH6A5v+lu7
-	 E7VsZyubh0CAK+/HnmJyfgpt7FfWvmCMF6uOkZK5w7m/rErcl+weUEbCUak0kILWrK
-	 pfo/7NDPqBHKasipo1kN25sjlmzqXXxbKQTLgaVnzzm8xxMZt6XIQfAGZFc2HlYSqy
-	 /euQJvcN2Mtpu8cgrkBgng23Y36rlb5FJYMAGNCJGQ5kKZVV9CctFlB53v/2wkjnlX
-	 cMCMjtrS0U1CowhZeVzovnIJcRK32A0l3VwTdjfckovDKRT20tS6k3nmHh+LHE3gDJ
-	 gXej75pVFztcQ==
-Date: Wed, 8 Oct 2025 10:06:22 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Markus Schneider-Pargmann (TI.com)" <msp@baylibre.com>
-Cc: Dhruva Gole <d-gole@ti.com>, Vincent Mailhol <mailhol@kernel.org>,
-	Simon Horman <horms@kernel.org>, Akashdeep Kaur <a-kaur@ti.com>,
-	linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
-	Vishal Mahaveer <vishalm@ti.com>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sebin Francis <sebin.francis@ti.com>,
-	Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Kendall Willis <k-willis@ti.com>
-Subject: Re: [PATCH v10 1/4] dt-bindings: can: m_can: Add wakeup properties
-Message-ID: <175993598226.3512549.5295923279078928995.robh@kernel.org>
-References: <20251001-topic-mcan-wakeup-source-v6-12-v10-0-4ab508ac5d1e@baylibre.com>
- <20251001-topic-mcan-wakeup-source-v6-12-v10-1-4ab508ac5d1e@baylibre.com>
+	b=NL3mTpfbDtaaxlmJsWQllNwCG97x/DX9MX5VPCC5yEH2q8/vYDjPNQ5dJ1JFdJfbz
+	 bVjYLqmEMXre3/ASbmA5dCY89XOxT0Oo+iUY6t9RqX52IyAu86xwAm0SqfKZF6R59C
+	 4FEmD2Rrgzz+ufDRWidG496D/W98/qtsWjZcCiu9wWiRszBKactZiVLwTJaTsdSTUn
+	 mOg0ZM1m1xaWwaw214QA0SBHBK9c2JdKBgR1MlIMrhonOqSzr9dFwyOS5zjE5LKd2B
+	 kp/l6kTdM9mlE0Tbpz3wUBT0jI/JkBRsAFVrnKpM5FWJN7yIbSnL+qAslLPpDLped9
+	 KU/UyZugDK5QA==
+Date: Wed, 8 Oct 2025 08:14:41 -0700
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Arnd Bergmann <arnd@arndb.de>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Vincent Guittot <vincent.guittot@linaro.org>, Chester Lin <chester62515@gmail.com>, 
+	Matthias Brugger <mbrugger@suse.com>, Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, 
+	NXP S32 Linux Team <s32@nxp.com>, bhelgaas@google.com, jingoohan1@gmail.com, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Rob Herring <robh@kernel.org>, krzk+dt@kernel.org, 
+	Conor Dooley <conor+dt@kernel.org>, Ionut.Vicovan@nxp.com, Larisa Grigore <larisa.grigore@nxp.com>, 
+	Ghennadi Procopciuc <Ghennadi.Procopciuc@nxp.com>, ciprianmarian.costea@nxp.com, 
+	Bogdan Hamciuc <bogdan.hamciuc@nxp.com>, Frank Li <Frank.li@nxp.com>, 
+	linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH 1/3 v2] dt-bindings: PCI: s32g: Add NXP PCIe controller
+Message-ID: <zdqmmpawrntlbebmeb3ey3z3rpxzmlanqqqp4stmbrouwelbx7@s5qt5f53553x>
+References: <20250919155821.95334-1-vincent.guittot@linaro.org>
+ <20250919155821.95334-2-vincent.guittot@linaro.org>
+ <iom65w7amxqf7miopujxeulyiglhkyjszjc3nd4ivknj5npcz2@bvxej6ymkecd>
+ <aOU0w5Brp6uxjZDr@lpieralisi>
+ <4rghtk5qv4u7vx4nogctquu3skvxis4npxfukgtqeilbofyclr@nhkrkojv3syh>
+ <eba7d968-209d-4acb-ba41-4bebf03e96ba@app.fastmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20251001-topic-mcan-wakeup-source-v6-12-v10-1-4ab508ac5d1e@baylibre.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <eba7d968-209d-4acb-ba41-4bebf03e96ba@app.fastmail.com>
 
-
-On Wed, 01 Oct 2025 16:30:19 +0200, Markus Schneider-Pargmann (TI.com) wrote:
-> The pins associated with m_can have to have a special configuration to
-> be able to wakeup the SoC from some system states. This configuration is
-> described in the wakeup pinctrl state while the default state describes
-> the default configuration. Also add the sleep state which is already in
-> use by some devicetrees.
+On Wed, Oct 08, 2025 at 10:26:35AM +0200, Arnd Bergmann wrote:
+> On Wed, Oct 8, 2025, at 00:28, Manivannan Sadhasivam wrote:
+> > On Tue, Oct 07, 2025 at 05:41:55PM +0200, Lorenzo Pieralisi wrote:
+> >> On Mon, Sep 22, 2025 at 11:51:07AM +0530, Manivannan Sadhasivam wrote:
+> >> 
+> >> [...]
+> >> 
+> >> > > +                  /*
+> >> > > +                   * non-prefetchable memory, with best case size and
+> >> > > +                   * alignment
+> >> > > +                   */
+> >> > > +                  <0x82000000 0x0 0x00000000 0x58 0x00000000 0x7 0xfffe0000>;
+> >> > 
+> >> > s/0x82000000/0x02000000
+> >> > 
+> >> > And the PCI address really starts from 0x00000000? I don't think so.
+> >> 
+> >> Isn't the DWC ATU programmed to make sure that the PCI memory window DT
+> >> provides _is_ the PCI "bus" memory base address ?
+> >> 
+> >> It is a question, I don't know the DWC inner details fully.
+> >> 
+> >> I don't get what you mean by "I don't think so". Either the host controller
+> >> AXI<->PCI translation is programmable, then the PCI base address is what
+> >> we decide it is or it isn't.
+> >> 
+> >
+> > As per the binding, I/O PCI address already starts from 0x0. How can you have
+> > two OB mappings with same PCI address?
 > 
-> Also m_can can be a wakeup-source if capable of wakeup.
-> 
-> Signed-off-by: Markus Schneider-Pargmann (TI.com) <msp@baylibre.com>
-> ---
->  .../devicetree/bindings/net/can/bosch,m_can.yaml   | 25 ++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
+> I/O space and memory space can use the same bus addresses,
+> since they are disambiguated by the type in the actual PCIe
+> transactions.
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+The DWC IP does the address match translation for OB regions, so I mistakenly
+assumed that the PCI addresses has to be unique. But it is the other way around,
+the CPU addresses has to be unique. So as long as the CPU addresses doesn't
+overlap, we are fine.
 
+Sorry for the confusion.
+
+> We usually assume that I/O space port numbers start at 0 (as done
+> here), while PCI memory ranges are identity-mapped to the CPU
+> physical address they are mapped at, but in this case the physical
+> address window is outside of the low 4GB range, so an identity map
+> at 0x58.0x00000000 woulds prevent the use of 32-bit BARs, and
+> mapping something in the low bus address range is the only
+> possibility.
+> 
+
+Agree.
+
+> On the other hand, what looks like a bug to me is that the CPU
+> physical address range for the PCI BAR space overlaps with the
+> the physical addresses for RAM at 0x80000000 and on-chip devices
+> at 0x40000000.
+
+I don't understand the overlap issue here. The outbound address translation only
+cares about the CPU address and as long as that doesn't overlap with MMIO/RAM,
+we should be fine.
+
+Am I missing something?
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
