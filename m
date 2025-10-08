@@ -1,446 +1,139 @@
-Return-Path: <devicetree+bounces-224522-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A040BC4BD2
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 14:17:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E392EBC4BCF
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 14:17:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C95843BBFBA
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 12:16:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDD0419E0C76
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 12:17:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF54F1F3B8A;
-	Wed,  8 Oct 2025 12:16:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CFFE225397;
+	Wed,  8 Oct 2025 12:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="mFU2nAuc"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="liOJUmyV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E715204096
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 12:16:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5C72116F6;
+	Wed,  8 Oct 2025 12:16:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759925781; cv=none; b=b1qXEwc+VncYzHsVUKUZJdgo+tggbpRpHVRECUgPa48oD/FbsJMoNdyoyKjoEJ1wzrujXQlaw3rkNh98P5qZ3UNUJsXmZRV775gzXzeG2e+h83Yw1i1MpvBt6kE4izlRz42SiB3Hm7xPQktVnUKQ9/+jNybSjzB8cFLH7U5R+X0=
+	t=1759925817; cv=none; b=h+F1WGV3eTWcvrjZOj0NtKMCMLCPT5bUqqD1B3SDR47G3IckvyakUeXQTp/13aPORYlB9JNqdI2jIgEQqQc5pUobe7GxA0vy32WN4Uqbg4uVv0PN91tXpLm6PoU66FzGCzoBxSL/oBQWjwrCNL9nj3Hcz1qwoAwVWi8nN7Dra0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759925781; c=relaxed/simple;
-	bh=kwPgUfwoVyb4zf8KwYkiVYCOXB7KcIbWTRUpHv4SgYg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FaDZsHxjtr2mswo54DfnmLW26NC3bwxp7mlzd24HhUDYGvmcC0bINgBx4CWTgpQDmjtU0w2o1D39hzLis30PC3jqHxhjs9PCKQB0kHiwIjazMrqofFnM9oXEVKFVgfq72caGaDS+Ys5/lgaryf70HJYbcoxNOpcPBG4pmmDxZcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=mFU2nAuc; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3ee1221ceaaso5536724f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 05:16:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1759925777; x=1760530577; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JxKRQONGzwOttwvgnC2LAlH+BX31PKH3osfZx+Nd7XI=;
-        b=mFU2nAuc+GffPRUMjreTzzdKMFvDI30kbwHNFHf8WZJKCNSNbYoWj6JXLsfRaCvnI0
-         N6LOVequAyXJuJEh/Z4I/hrWzXyv2U3e4zz6Tn0Zrc1XhBwdq9/ppuGycu79ak+N6v36
-         Lh+sqq/cr1rvmBX7OXa0BJeV1z+1qnOocxgP8sKDnJX/J+kfx3OfxcWwWj6X4VllKvlY
-         OCceqq8COVsUGU38wVzGVN+CgbqbOKufdMN1XKKmdypHo/BraLUmbcL1yoJj2K/Ij8SW
-         XpDMhDCQmH70tkFY5M6DRRvqzlfRtwyRRJVjtmwfIWZxgyOMfAcKAkvUOosJZrJYQhX5
-         o0gA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759925777; x=1760530577;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JxKRQONGzwOttwvgnC2LAlH+BX31PKH3osfZx+Nd7XI=;
-        b=KY2krCWrgz1kZWQC+sjo8BtnPQa/tdGbzy47TUUBGeqTrZy2niO1HQ4e5zj0r92SwH
-         RIhUDj5u0BoavrPHDCHF2ftJ1VY//kabA5dBM3Z9uuIu98t/KVKERRnjzRyTYrf/SpFr
-         X7VqndWOavVavBlagq1qEwuEqtWvgbsI3F1l/X+kvCfI9A5BTyYkglebKA3sxJe8h8RF
-         EHFzJuK6HSFAJs5sSjZOwo2mYSEDHbd64keYUtjwtBxEYZjdiT3zIfpzMmjwvHrcrosO
-         +a5h2S6pKDjNHqtb7dhqDIzhVNxrB/40LTD5qRUw06bVVCXMRz8nyiyP4XteOqPAsfYC
-         PBNg==
-X-Forwarded-Encrypted: i=1; AJvYcCXqfzS24zO6xJQf/0HYAfcuX8hM/FZyzEXQ4VNNO+CrrfrkUpK77YPAoAOux8MTyt+afz4dpYOMS4p0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxZyzqlG7ItaeFmUpREDp/PtMUOs6txWd7AECJTnu5vlMveFIUk
-	JmUs4C/BewduIrdYc5oPBSD309Ug93W65ofI8ruifAlERwnCchV8+2cJ9XGOV59SKLY=
-X-Gm-Gg: ASbGnct/Az33TB8cog1vVXtdqUCqtZPxKSkmfBOhfgQdur41jIjpHzxBWOFBIZ9b8b4
-	Urtn8Mh4s+u1Z91CWafoaMXtnnBnAWfV0RF9QSWvuD3Xrs+FjnDNSJcBrD/qRhBysK7a3RpkNwZ
-	Rog5VVIBdSS0bv0Xn0o1wKbeDvt+UwyW0LPOACEeGVvIOUnWWMLrV2AJtT8pTfZ42JuJx5wneiz
-	kdNS6iKR3v5Dvlam1TJbUX46KwntAn22HrZ4qfXTLUGMubDwunv7Ot+iV5eyG7u7M0T+M2cV9wd
-	lc90/7K4+xBYUjyURffJoa0Kx5nqoSdV+8JABtgOAwa8x5QFkKatQFHypK39zVhPPaC/he32+5r
-	h+9Ra8Uoo1DPGQzde31efM2M1vZIC6e/nyzu2j3jqxqZhiqt70oyFagdO1KWjL14p
-X-Google-Smtp-Source: AGHT+IEimZmCk3/6Ggy9NCh0WE/6r4yeGO/nMGAdxmVGecm/Oa5AC8YxXdOW/M1RgQIyk9DqorAVqA==
-X-Received: by 2002:a5d:64c8:0:b0:3e7:63b0:bf3c with SMTP id ffacd0b85a97d-4266e7c6209mr2266780f8f.27.1759925777385;
-        Wed, 08 Oct 2025 05:16:17 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.59])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8a6daasm30018667f8f.7.2025.10.08.05.16.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Oct 2025 05:16:16 -0700 (PDT)
-Message-ID: <cca1061e-df67-4b5b-99bd-9721c72a0f88@tuxon.dev>
-Date: Wed, 8 Oct 2025 15:16:15 +0300
+	s=arc-20240116; t=1759925817; c=relaxed/simple;
+	bh=41Q6dYudRRc1BldM8r7PPMDN3nIYC3sGz9eHv636/GQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=r+hJKhFPWfSzaRekbuoo8ZQUZV/ubDatogfjsY5I8U1VFvdKH7EWh8li7f8cU4jDE1UvA7tYQaN+nWQRFnsnB+cHLgAH6r45npXHDHqg1O9pARH3HtXg0fVCCOB3U+3kWw01J7CsYyJPV27uMTYyJ6dn4PEGVsc4vh3moqVn30E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=liOJUmyV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6522EC4CEF5;
+	Wed,  8 Oct 2025 12:16:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1759925816;
+	bh=41Q6dYudRRc1BldM8r7PPMDN3nIYC3sGz9eHv636/GQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=liOJUmyVi2ItxLHP/m5OEoyKjYw5r41MGqxA3tKydZ85y/ITbFnG/dKJwMEQQIc0m
+	 rbX3LuZHJlZY+T7dIlx8p9/hUhkToReczlr3f47RQa/QgEzOxJ0RBAGri0EGhqnCNg
+	 AldM/D7MqkSwWzg9Hw2As38aOQfL4NQvt86y0D9A=
+Date: Wed, 8 Oct 2025 14:16:54 +0200
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Jiri Slaby <jirislaby@kernel.org>, Binbin Zhou <zhoubinbin@loongson.cn>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Haowei Zheng <zhenghaowei@loongson.cn>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-serial@vger.kernel.org
+Subject: Re: [PATCH v5 2/3] serial: 8250: Add Loongson uart driver support
+Message-ID: <2025100838-deskbound-framing-ac6f@gregkh>
+References: <cover.1758676290.git.zhoubinbin@loongson.cn>
+ <9823e7afe713450e210dab9dba6fa18683dc1fe0.1758676290.git.zhoubinbin@loongson.cn>
+ <2025092428-glade-monologue-3663@gregkh>
+ <CAMpQs4JgR=iG6LAuYeVxOpE31S6n=dC4+FGUJczOYDVfWHDuFw@mail.gmail.com>
+ <b862846d-fb2a-4df4-8457-d858aa63031d@kernel.org>
+ <CAMpQs4KVgSFk=B5JtQ1KM02HydTkwaYqi+LzzhdJAyoSUfAxLw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 4/7] reset: rzg2l-usbphy-ctrl: Add support for USB
- PWRRDY
-To: Philipp Zabel <p.zabel@pengutronix.de>, vkoul@kernel.org,
- kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com,
- yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-References: <20250925100302.3508038-1-claudiu.beznea.uj@bp.renesas.com>
- <20250925100302.3508038-5-claudiu.beznea.uj@bp.renesas.com>
- <c7fc31f1247332196516394a22f6feef9733a0b4.camel@pengutronix.de>
- <66d85e70-efb8-4a45-9164-55b123691b70@tuxon.dev>
- <bcf6113b0025777db1cb2ace1618fed8fac2dfc6.camel@pengutronix.de>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <bcf6113b0025777db1cb2ace1618fed8fac2dfc6.camel@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMpQs4KVgSFk=B5JtQ1KM02HydTkwaYqi+LzzhdJAyoSUfAxLw@mail.gmail.com>
 
-Hi, Philipp,
-
-On 10/8/25 13:23, Philipp Zabel wrote:
-> Hi Claudiu,
+On Tue, Sep 30, 2025 at 11:03:29AM +0800, Binbin Zhou wrote:
+> Hi Jiri:
 > 
-> On Mi, 2025-10-08 at 12:29 +0300, Claudiu Beznea wrote:
->> Hi, Philipp,
->>
->> On 10/8/25 11:34, Philipp Zabel wrote:
->>> Hi Claudiu,
->>>
->>> On Do, 2025-09-25 at 13:02 +0300, Claudiu wrote:
->>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>>
->>>> On the Renesas RZ/G3S SoC, the USB PHY block has an input signal called
->>>> PWRRDY. This signal is managed by the system controller and must be
->>>> de-asserted after powering on the area where USB PHY resides and asserted
->>>> before powering it off.
->>>>
->>>> On power-on the USB PWRRDY signal need to be de-asserted before enabling
->>>> clock and switching the module to normal state (through MSTOP support). The
->>>> power-on configuration sequence
->>>
->>> The wording makes me wonder, have you considered implementing this as a
->>> power sequencing driver?
->>
->> No, haven't tried as power sequencing. At the moment this was started I
->> think the power sequencing support wasn't merged.
->>
->> The approaches considered were:
->> a/ power domain
+> Thanks for your reply.
 > 
-> Letting a power domain control a corresponding power ready signal would
-> have been my first instinct as well.
+> On Mon, Sep 29, 2025 at 2:19 PM Jiri Slaby <jirislaby@kernel.org> wrote:
+> >
+> > Hi,
+> >
+> > On 28. 09. 25, 4:48, Binbin Zhou wrote:
+> > > Hi Greg:
+> > >
+> > > Thanks for your reply.
+> > >
+> > > On Wed, Sep 24, 2025 at 6:22 PM Greg Kroah-Hartman
+> > > <gregkh@linuxfoundation.org> wrote:
+> > >>
+> > >> On Wed, Sep 24, 2025 at 02:29:37PM +0800, Binbin Zhou wrote:
+> > >>> --- a/include/uapi/linux/serial_core.h
+> > >>> +++ b/include/uapi/linux/serial_core.h
+> > >>> @@ -31,6 +31,7 @@
+> > >>>   #define PORT_ALTR_16550_F128 28 /* Altera 16550 UART with 128 FIFOs */
+> > >>>   #define PORT_RT2880  29      /* Ralink RT2880 internal UART */
+> > >>>   #define PORT_16550A_FSL64 30 /* Freescale 16550 UART with 64 FIFOs */
+> > >>> +#define PORT_LOONGSON        31      /* Loongson 16550 UART */
+> > >>
+> > >> Why does userspace need to have this value exported?
+> > >
+> > > Sorry, this was a cheap mistake.
+> > > It should follow the existing latest macro definition as follows:
+> >
+> > That was not the point. The point was why do you need that at all?
 > 
->> b/ regulator
->> c/ as a reference counted bit done through regmap read/writes APIs
->>
->> a and b failed as a result of discussions in the previous posted versions.
+> Emm...
+> We attempted to define Loongson UART as a new `uart_config` entry.
+> Therefore, `PORT_LOONGSON` is referenced as follows:
 > 
-> Could you point me to the discussion related to a?
-
-It's this one
-https://lore.kernel.org/all/CAPDyKFrS4Dhd7DZa2zz=oPro1TiTJFix0awzzzp8Qatm-8Z2Ug@mail.gmail.com/
-
-
+> diff --git a/drivers/tty/serial/8250/8250_port.c
+> b/drivers/tty/serial/8250/8250_port.c
+> index 719faf92aa8a..53efe841656f 100644
+> --- a/drivers/tty/serial/8250/8250_port.c
+> +++ b/drivers/tty/serial/8250/8250_port.c
+> @@ -310,6 +310,14 @@ static const struct serial8250_config uart_config[] = {
+>                 .rxtrig_bytes   = {1, 8, 16, 30},
+>                 .flags          = UART_CAP_FIFO | UART_CAP_AFE,
+>         },
+> +       [PORT_LOONGSON] = {
+> +               .name           = "Loongson",
+> +               .fifo_size      = 16,
+> +               .tx_loadsz      = 16,
+> +               .fcr            = UART_FCR_ENABLE_FIFO | UART_FCR_R_TRIG_10,
+> +               .rxtrig_bytes   = {1, 4, 8, 14},
+> +               .flags          = UART_CAP_FIFO,
+> +       },
+>  };
 > 
-> I see v2 and v3 tried to control the bit from the PHY drivers, and in
-> v4 we were are already back to the reset driver.
-
-v2 passed the system controller (SYSC) phandle to the USB PHYs only (though
-renesas,sysc-signals DT property) where the PWRRDY bit was set. The PWRRDY
-bit was referenced counted in the SYSC driver though regmap APIs.
-
-v3 used the approach from v2 but passed the renesas,sysc-signals to all the
-USB related drivers.
-
-Then, in v4, the PWRRDY refcounting was dropped and passed
-renesas,sysc-signals only to the USB PHY CTRL DT node in the idea that this
-is the node that will always be probed first as all the other USB blocks
-need it and request resets from it.
-
-v5 and v6 kept the approach from v4 and only addressed misc comments or
-things that I noticed.
-
+>  /* Uart divisor latch read */
 > 
->> c was abandoned by me after long discussions with Renesas HW team which
->> revealed the block schema b/w individual USB blocks (presented in the patch
->> description).
->>
->> The point is that this bit doesn't actually power anything, at the moment
->> the bit is set, the power to USB is already applied. Software just need to
->> set the bit before/after setting the clocks and the associated MSTOP and
->> applying any USB specific settings. Each clock has an MSTOP associated and
->> the MSTOP is set though the clock driver when the clock is set.
-> 
-> I understand.
-> 
-> Apart from having to carry non-reset-related code in reset drivers, I
-> worry about the implicit ordering that the PHY driver depends on with
-> this:
-> 
-> The power-up (probe) order is guaranteed by probe order via the
-> reset_control_get() check in the PHY driver, and power-down (remove)
-> order is guaranteed by the reset controller device reference that the
-> reset control holds. That's all very hidden and indirect when the
-> actual dependency is between a bit being set in SYSC and the clock
-> handling in (either) PHY driver.
+> Additionally, `uart.port.type` will also be assigned the value `PORT_LOONGSON`.
 
+Yes, but that is the same exact value as PORT_PXA, which means this code
+will not really work properly, right?  You can not just redefine an
+already used user/kernel value.
 
-The USB PHY CTRL block controlled by this driver is also part of the USB
-PHY block:
+thanks,
 
-┌──────────────────────────┐
-│                 ┌────────┐
-│                 │        │
-│                 │ PHY0   │
-│     USB PHY     │        │
-│                 └────────┘
-│                          │
-│┌──────────────┐ ┌────────┐
-││USHPHY control│ │        │
-││  registers   │ │ PHY1   │
-│└──────────────┘ │        │
-│                 └────────┘
-└─▲───────▲─────────▲──────┘
-  │       │         │
-  │       │         │
-  │       │         │
-  │PWRRDY │         │
-  │       │   CPG_CLK_ON_USB.CLK3_ON
-  │       │
-  │  CPG_BUS_PERI_COM_MSTOP.MSTOP4_ON
-  │
-┌────┐
-│SYSC│
-└────┘
-
-Thus, touching USB PHY CTRL registers, though this driver, will also have
-to be done after setting PWRRDY, clk, MSTOP.
-
-In v3 the PWRRDY SYSC phandle was passed to all the drivers in charge of
-controlling the blocks from the USB PHY area. And the PWRRDY was referenced
-counted through regmap APIs. In v3 I was in the middle of keeping vs
-dropping the refcounting and, thus, posted it and asked for feedback on
-this approach. I didn't get any input about it, I've dropped in v4.
-
-In v4, I dropped it as I considered it too much and unnecessary taking into
-account that the USB PHY CTRL driver will be probed/remove all the time
-first/last as all the other drivers depends on it. And, due to this, it
-will be last/first in suspend/resume sequence.
-
-
-> 
->>>
->>>> must be:
->>>>
->>>> 1/ PWRRDY=0
->>>> 2/ CLK_ON=1
->>>> 3/ MSTOP=0
->>>>
->>>> On power-off the configuration sequence should be:
->>>>
->>>> 1/ MSTOP=1
->>>> 2/ CLK_ON=0
->>>> 3/ PWRRDY=1
->>>>
->>>> The CLK_ON and MSTOP functionalities are controlled by clock drivers.
->>>>
->>>> After long discussions with the internal HW team, it has been confirmed
->>>> that the HW connection b/w USB PHY block, the USB channels, the system
->>>> controller, clock, MSTOP, PWRRDY signal is as follows:
->>>>
->>>>                                ┌──────────────────────────────┐
->>>>                                │                              │◄── CPG_CLKON_USB.CLK0_ON
->>>>                                │     USB CH0                  │
->>>> ┌──────────────────────────┐   │┌───────────────────────────┐ │◄── CPG_CLKON_USB.CLK2_ON
->>>> │                 ┌────────┐   ││host controller registers  │ │
->>>> │                 │        │   ││function controller registers│
->>>> │                 │ PHY0   │◄──┤└───────────────────────────┘ │
->>>> │     USB PHY     │        │   └────────────▲─────────────────┘
->>>> │                 └────────┘                │
->>>> │                          │    CPG_BUS_PERI_COM_MSTOP.MSTOP{6, 5}_ON
->>>> │┌──────────────┐ ┌────────┐
->>>> ││USHPHY control│ │        │
->>>> ││  registers   │ │ PHY1   │   ┌──────────────────────────────┐
->>>> │└──────────────┘ │        │◄──┤     USB CH1                  │
->>>> │                 └────────┘   │┌───────────────────────────┐ │◄── CPG_CLKON_USB.CLK1_ON
->>>> └─▲───────▲─────────▲──────┘   ││ host controller registers │ │
->>>>   │       │         │          │└───────────────────────────┘ │
->>>>   │       │         │          └────────────▲─────────────────┘
->>>>   │       │         │                       │
->>>>   │       │         │           CPG_BUS_PERI_COM_MSTOP.MSTOP7_ON
->>>>   │PWRRDY │         │
->>>>   │       │   CPG_CLK_ON_USB.CLK3_ON
->>>>   │       │
->>>>   │  CPG_BUS_PERI_COM_MSTOP.MSTOP4_ON
->>>>   │
->>>> ┌────┐
->>>> │SYSC│
->>>> └────┘
->>>>
->>>> where:
->>>> - CPG_CLKON_USB.CLK.CLKX_ON is the register bit controlling the clock X
->>>>   of different USB blocks, X in {0, 1, 2, 3}
->>>> - CPG_BUS_PERI_COM_MSTOP.MSTOPX_ON is the register bit controlling the
->>>>   MSTOP of different USB blocks, X in {4, 5, 6, 7}
->>>> - USB PHY is the USB PHY block exposing 2 ports, port0 and port1, used
->>>>   by the USB CH0, USB CH1
->>>> - SYSC is the system controller block controlling the PWRRDY signal
->>>> - USB CHx are individual USB block with host and function capabilities
->>>>   (USB CH0 have both host and function capabilities, USB CH1 has only
->>>>   host capabilities)
->>>>
->>>> The USBPHY control registers are controlled though the
->>>> reset-rzg2l-usbphy-ctrl driver. The USB PHY ports are controlled by
->>>> phy_rcar_gen3_usb2 (drivers/phy/renesas/phy-rcar-gen3-usb2.c file). The
->>>> USB PHY ports request resets from the reset-rzg2l-usbphy-ctrl driver.
->>>>
->>>> The connection b/w the system controller and the USB PHY CTRL driver is
->>>> implemented through the renesas,sysc-pwrrdy device tree property
->>>> proposed in this patch. This property specifies the register offset and the
->>>> bitmask required to control the PWRRDY signal.
->>>>
->>>> Since the USB PHY CTRL driver needs to be probed before any other
->>>> USB-specific driver on RZ/G3S, control of PWRRDY is passed exclusively
->>>> to it. This guarantees the correct configuration sequence between clocks,
->>>> MSTOP bits, and the PWRRDY bit. At the same time, changes are kept minimal
->>>> by avoiding modifications to the USB PHY driver to also handle the PWRRDY
->>>> itself.
->>>>
->>>> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
->>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>>> ---
->>>>
->>>> Changes in v7:
->>>> - used proper regmap update value on rzg2l_usbphy_ctrl_set_pwrrdy()
->>>>
->>>> Changes in v6:
->>>> - used syscon_regmap_lookup_by_phandle_args() to simplify the code
->>>> - collected tags
->>>>
->>>> Changes in v5:
->>>> - none
->>>>
->>>> Changes in v4:
->>>> - updated patch description
->>>> - updated rzg2l_usbphy_ctrl_pwrrdy_init() to map directly the
->>>>   "renesas,sysc-pwrrdy" as the SYSC signal abstraction was dropped
->>>>   in this version, along with rz_sysc_get_signal_map()
->>>> - dropped priv member of rzg2l_usbphy_ctrl_pwrrdy_init() as it is
->>>>   not needed in this version
->>>> - shift left !power_on with pwrrdy->mask as this is how the
->>>>   regmap_update_bits() needs the last member to be
->>>> - selected MFD_SYSCON
->>>>
->>>> Changes in v3:
->>>> - none; this patch is new
->>>>
->>>>
->>>>  drivers/reset/Kconfig                   |  1 +
->>>>  drivers/reset/reset-rzg2l-usbphy-ctrl.c | 62 +++++++++++++++++++++++++
->>>>  2 files changed, 63 insertions(+)
->>>>
->>>> diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
->>>> index 78b7078478d4..329730cbcfb9 100644
->>>> --- a/drivers/reset/Kconfig
->>>> +++ b/drivers/reset/Kconfig
->>>> @@ -237,6 +237,7 @@ config RESET_RASPBERRYPI
->>>>  config RESET_RZG2L_USBPHY_CTRL
->>>>  	tristate "Renesas RZ/G2L USBPHY control driver"
->>>>  	depends on ARCH_RZG2L || COMPILE_TEST
->>>> +	select MFD_SYSCON
->>>>  	help
->>>>  	  Support for USBPHY Control found on RZ/G2L family. It mainly
->>>>  	  controls reset and power down of the USB/PHY.
->>>> diff --git a/drivers/reset/reset-rzg2l-usbphy-ctrl.c b/drivers/reset/reset-rzg2l-usbphy-ctrl.c
->>>> index 8a7f167e405e..be315199e2b0 100644
->>>> --- a/drivers/reset/reset-rzg2l-usbphy-ctrl.c
->>>> +++ b/drivers/reset/reset-rzg2l-usbphy-ctrl.c
->>>> @@ -13,6 +13,7 @@
->>>>  #include <linux/regmap.h>
->>>>  #include <linux/reset.h>
->>>>  #include <linux/reset-controller.h>
->>>> +#include <linux/mfd/syscon.h>
->>>>  
->>>>  #define RESET			0x000
->>>>  #define VBENCTL			0x03c
->>>> @@ -41,6 +42,18 @@ struct rzg2l_usbphy_ctrl_priv {
->>>>  
->>>>  #define rcdev_to_priv(x)	container_of(x, struct rzg2l_usbphy_ctrl_priv, rcdev)
->>>>  
->>>> +/**
->>>> + * struct rzg2l_usbphy_ctrl_pwrrdy - SYSC PWRRDY signal descriptor
->>>> + * @regmap: SYSC regmap
->>>> + * @offset: offset into the SYSC address space for accessing PWRRDY
->>>> + * @mask: mask into the register at offset for accessing PWRRDY
->>>> + */
->>>> +struct rzg2l_usbphy_ctrl_pwrrdy {
->>>> +	struct regmap *regmap;
->>>> +	u32 offset;
->>>> +	u32 mask;
->>>> +};
->>>> +
->>>>  static int rzg2l_usbphy_ctrl_assert(struct reset_controller_dev *rcdev,
->>>>  				    unsigned long id)
->>>>  {
->>>> @@ -91,6 +104,8 @@ static int rzg2l_usbphy_ctrl_status(struct reset_controller_dev *rcdev,
->>>>  	return !!(readl(priv->base + RESET) & port_mask);
->>>>  }
->>>>  
->>>> +#define RZG2L_USBPHY_CTRL_PWRRDY	1
->>>> +
->>>>  static const struct of_device_id rzg2l_usbphy_ctrl_match_table[] = {
->>>>  	{ .compatible = "renesas,rzg2l-usbphy-ctrl" },
->>>>  	{ /* Sentinel */ }
->>>> @@ -110,6 +125,49 @@ static const struct regmap_config rzg2l_usb_regconf = {
->>>>  	.max_register = 1,
->>>>  };
->>>>  
->>>> +static void rzg2l_usbphy_ctrl_set_pwrrdy(struct rzg2l_usbphy_ctrl_pwrrdy *pwrrdy,
->>>> +					 bool power_on)
->>>> +{
->>>> +	u32 val = (!power_on << (ffs(pwrrdy->mask) - 1)) & pwrrdy->mask;
->>>
->>>
->>> Why not just:
->>>
->>> 	u32 val = power_on ? 0 : pwrrdy->mask;
->>
->> This would work as well. I wanted to be sure it doesn't fail in case the
->> mask is more than one bit (as it comes from device tree).
-> 
-> I'd just check this in rzg2l_usbphy_ctrl_pwrrdy_init() and fail if more
-> than one bit is set.
-
-OK
-
-> 
-> [...]
->>
->>> So we deassert PWRRDY on probe and assert on remove. What about
->>> suspend/resume ordering?
->>
->> As this driver has no suspend/resume support yet, my intention was to take
->> care of this bit on suspend/resume after it will be established how it is
->> handled on probe/remove. Adding suspend/resume support to this series will
->> make it bigger.
-> 
-> Ok, please add that to the commit description.
-
-OK
-
-> I'm just asking because the dt-bindings patch mentions how PWRRDY must
-> be set during suspend/resume, and then this patch doesn't do it.
-
-OK
-
-Thank you for your review,
-Claudiu
+greg k-h
 
