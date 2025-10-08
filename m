@@ -1,113 +1,196 @@
-Return-Path: <devicetree+bounces-224606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E393FBC62D8
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 19:50:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86BCFBC62F6
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 19:51:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A65874E4AD7
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 17:50:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 394963B753C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 17:51:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 391AC2BD029;
-	Wed,  8 Oct 2025 17:50:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 247202C027E;
+	Wed,  8 Oct 2025 17:51:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b="MLV+20+w"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yPnXhu5B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63ABC26A0C7
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 17:50:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E45029DB61
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 17:51:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759945841; cv=none; b=tNEyXM89Thg+rh+8BVD52zwYDO245zo6vNGa1PBZ1+Pbd5HD2JUTA4qDiNNDvKoOh8drLIAn+L76J1oHtGp3FzVmCYwpIaYtPBTF+4ef1R+3/3bNY1pEBs+Zx0flBj7BJnR2GUNwzjXQ+u7ayGEIyQtcgFADPLightRJKwns7zY=
+	t=1759945865; cv=none; b=mUVCBcPa08MHUaKlPmoHYYbdplHqrQJJB2pI+RKNOsatGfdiGKVv69N8Ez9JJp/JR+c7WGsKrJNbCvR6mWPfp/qTPw9gRBsOcPqwgFdRUGvmeCD7LutU0FaIwN+DX1GZ9a4jlfM7suC2kstZaLTVj7IXnvYs/QAW7VqhEWvfvYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759945841; c=relaxed/simple;
-	bh=ta1HA85w2K/o1HGvXWAM9+/IhcjZhzmQno4Y2Uxu/Gg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=kXcPwaevlDkpBuPeDNCxHOA99OTXIL3vVWD9aH2g6USzRugAzNFqRADsiaHOYJ8vRkURKoL+hJB6dKeawVusyapp5wNC9vOFNJGUIhc+Fpt/zkwn407pH/L0a6RU8Zy97KfAMgS2rwsCizw+NeqEXs3vmwvwLZFaH1VD8rZCYgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk; spf=pass smtp.mailfrom=pinefeat.co.uk; dkim=pass (2048-bit key) header.d=pinefeat.co.uk header.i=@pinefeat.co.uk header.b=MLV+20+w; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pinefeat.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pinefeat.co.uk
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-46f53f88e0bso905705e9.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 10:50:39 -0700 (PDT)
+	s=arc-20240116; t=1759945865; c=relaxed/simple;
+	bh=5zKR1u+5O6X6qT7L3XTDDpAJvDCMpie9d8WDsdi2TmY=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=leVpoQJlhIlcKig6rBmfb5hoA4tRYZ5tz+x3oO9BEZhnI59F74Tz+qZrRTGcTec6EgmrCQIok7QKeP0onCrGcOD0PnQ8hI4Dorjf2WZARQ+41Asbmw0YrFtijYxaVQ3x9mBYwAeDVDX3uzioOaKA2YsxeGXXV4mPPdhTTa4w7Mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yPnXhu5B; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-46f53f88e0bso908255e9.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 10:51:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=pinefeat.co.uk; s=google; t=1759945837; x=1760550637; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ta1HA85w2K/o1HGvXWAM9+/IhcjZhzmQno4Y2Uxu/Gg=;
-        b=MLV+20+wQK6sMjDxdW53fsuiTfNUT9xKAJXaNocb3mho8jxnMxEKGspuOxu0K/GkmJ
-         d6se/RXBq3Ailv8trIIqCRBaTE7SpBLJXyehf2BJ0fwfu+7NT6LRwAFl4T4ysc/tV5Cl
-         4Fc2AAICKmmg93K87zbsfWeDQQ6nG1BjFzod3mo26Hby76K+lRQfFoFBSkONPjHWjq//
-         qnhqEXHEFMV3lafCMpmCm21KXtplkCM6hQDrjlDifAyq5YLffaHGrXIYoNAVHlg8fizj
-         wpQKRqI7cJYW+jtkNbRlqbrhhXLwZF1EYaLYuJ8dKtupO88OT/6vCElk8hxRaQ2rxpDR
-         SkmA==
+        d=linaro.org; s=google; t=1759945862; x=1760550662; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:from:subject:reply-to:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QMvlexrap1UfZtqdBkJ61xOQRQkYprF0LI3wVB2AJI8=;
+        b=yPnXhu5B8ZNxvWTC727ZNrsXBKz8e/rti5l0G7Dsw206JjDYrDqmjzP6FTCh9lRFdh
+         kM7FEmCVn84ZWCyUBx8i5BE2YXcam6/T/Fqf217tat/S++hW0c002cM1jxE5v5ffaPyb
+         0F9wMk8OChp0FtzdkX8ZJG2bRMU7RfeOhCRzx8cfbO91vPWPcX/K/5kfNE6osZI78nnT
+         54lbF/yeBuo+BepG+KF8BWmfxYemi6W2+OxnDohYAluaZ9EX05Olq+RG9Xogw5YzKlue
+         47rMbOmX4BlMXMhuz/Tjb5AK0RPWjxo/qUBRRXBa8EXDAQj4HvEUaapWI4BD0orvjtxU
+         0+JA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759945837; x=1760550637;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ta1HA85w2K/o1HGvXWAM9+/IhcjZhzmQno4Y2Uxu/Gg=;
-        b=HInXqX+fvCh84Dwj6/pxYKEirYnXtVoQViiRFWkNSYlvnSApP0CtfHWy36beHBjf84
-         BzZKVAHAaxBljMDDdfwIAI+cnznKgn4nUmlo6CIfOxDxDBzQvA2c3SyA0v4Dlj6DRX3V
-         BcwpGN71DM0Xm30Dd/YKlp2bm9VpLLSkpCfV4lbX+rf/f48x7hqeuijx3YaxQAM3duHo
-         EiCd6NFAfb3oZqKyIyoHjcYRuxjXx32pGY7qemlV+/jFulzLRB13WaQo/jc5Ikm0RIq0
-         gKY+5fUHKdFNXKs5+M/2VKHHrYKsGKiMK8M3dJvREryI1LF6roGaPLub2OaJrcMsWrze
-         ldXg==
-X-Forwarded-Encrypted: i=1; AJvYcCVzCboUAIp3aAS62CmnQ78h+/Akh2ZffVuvoFODNGBJPB+WB7fkNnIlFIKDwgs9vh8bJn45El0KslY9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaTQev6SSVGAqgE4pvbAkp9K2VMIaCt5VsfFfOFHlUktWkxLCT
-	E0g73iC0FTLycvaOQWmv6d1pFJRpcqEsNE1udPRqfruEBRxUXzdlYBQgeamzQUIFaHo=
-X-Gm-Gg: ASbGnctv7h/j6TQ8Ge/TcIbUQ4THO3h1JMUQxtOogl126odoRHNTlvjeXBts2PQb0Lc
-	XTp5UVlCxweOVsUy0iEwQYdH7jrtZc5siH3KpAzD7GKiCqRms7ZJxdW9sU5BTS22H7ye46meDvy
-	RLufMXFEbf5y3l5icqO0C2UTA16iJ+MRHbiiFUF2N2DSiSWXPVZZ1o1LW+uS+WaOyl9h2TtMqOj
-	0FKT2boDW3wojkBIEKfRyBQ2qGVXIj0aqTLWEMnT4MMEHWxz4HX70IV32x98sgypMPJ+lAC1UxU
-	sCGSXTFM3N4xX8dPTfkx3uIl0IOfwNj+YilcJQN5kDg3QqHM0RzEElvAvh07BfDSfex16U63Xrv
-	ihWmsNpr/MbaN/m++r/gP93eS8P+7zRw3xWUzLFeJuXtMBZIKerOULlwPjbrm1zPmQA==
-X-Google-Smtp-Source: AGHT+IESXSVxrF30Y1nc15WrKsGt0IGzfLOtD1UjZNMDB6QG0IIRSF7dJN0kGxrQHbIW3QPqLup/3g==
-X-Received: by 2002:a05:600c:1d18:b0:45f:2869:c3b2 with SMTP id 5b1f17b1804b1-46fa9b1834dmr31842995e9.33.1759945837418;
-        Wed, 08 Oct 2025 10:50:37 -0700 (PDT)
-Received: from asmirnov-G751JM.Home ([2a02:c7c:b28c:1f00:34ff:86e3:b660:6d50])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8e9703sm31304812f8f.30.2025.10.08.10.50.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Oct 2025 10:50:37 -0700 (PDT)
-From: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>
-To: conor@kernel.org
-Cc: asmirnou@pinefeat.co.uk,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	hverkuil@xs4all.nl,
-	jacopo.mondi@ideasonboard.com,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
-	mchehab@kernel.org,
-	robh@kernel.org
-Subject: Re: [PATCH v6 1/2] dt-bindings: Pinefeat cef168 lens control board
-Date: Wed,  8 Oct 2025 18:50:36 +0100
-Message-Id: <20251008175036.8314-1-asmirnou@pinefeat.co.uk>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251007-obscure-thrower-1afcdb23c4b8@spud>
-References: <20251007-obscure-thrower-1afcdb23c4b8@spud>
+        d=1e100.net; s=20230601; t=1759945862; x=1760550662;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:from:subject:reply-to:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=QMvlexrap1UfZtqdBkJ61xOQRQkYprF0LI3wVB2AJI8=;
+        b=YYddLyPx8xbGJF1s3GjX0a6eUIjt44vHMGHK4Q2FYgtQb9eXLh2+NVNVyv6FA+sk7a
+         HGL6Lap/HWkwpKBitHY0KYlzvX3RKk7ESqKX4APgxmJxCEU8ccrQ/8/ddR8GXjnRWW5x
+         8wQa2tach+Xy4JvAOqpQaDWllURbCwv69pytbRh3b9OUqrkH+yBEZYAALSwCGqPr5o6U
+         avJTxyaKhndCFtUYS1V2FiXH0FgWAz2taFphi5tCTlGcB0snTMYTdHTRArgE2dXNKi9t
+         gI2KFMAGEDQQTzar97gQ9GzgxnVhr8minxlnJK1klMVkyqOTpxaqpmsmDf+I+yRqewpn
+         GQ0g==
+X-Forwarded-Encrypted: i=1; AJvYcCW239UXo/vjgaQm0ex1VYBmFunMtztiEwD84iwePsrt57trxxayafI0k8ZSNDHd6NTLRHk2WpNGIona@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfMIkw0QIqe6rol8DwU8/u0I8fHTlmCs4YefbzVPttVsO5vLMy
+	vTgImjIukZmErihWV+aVXUvGu51QTkovhPaJYvML6Ll961ks/7rl5wIM0J/vi/H21wQ=
+X-Gm-Gg: ASbGncvUletE3FTxKM/NmBCfGcAbWCASJElP1c4HpOX4MmP/YGVG52JOmriZiKTyhAL
+	cuKEBMjmX2R/4quqFsp8tYNdNQrd9DIo/r2sR8xA3uGRl4L7XSrt6nnlZI4na10ifXWlnzpVlBJ
+	+wtT8oIY+2p5u6Y7PLMklqz3Y/dvuiP9Jrdt1Q/LuVzDtcAAclM6dNLW5Iv2V2JAeDEoCyvalBt
+	KPMsLBiPLgbDtsfZQ3lWShzSW1lDIgnst28gNwj3ebr2jlHVYIpJZN8kjdkt9StAQ+3L37nI4wB
+	NImaJnwkjFh02cM2O5LZS7Y6nLUvLJ7SDajmlyCjo7/tv3key2/4Gyu6qEK5mhBtRzWH+qoAGmG
+	JGkbFu8cY8VKBqeacU5RTxp2NLw8ZrAfRr0AYKwxe0L896iX2PGK1Zf8aW6APUtCG+I42dKIwNX
+	Y+kCGU2fykJQshR6ptBM0=
+X-Google-Smtp-Source: AGHT+IG7qpQnt1FsF9x3ySZnRp/NIaufnkQu3C1FxX1niEUSnihus2ASYwmcY3GOq7HcPld9Lp5UcA==
+X-Received: by 2002:a05:600c:a104:b0:46e:4329:a4d1 with SMTP id 5b1f17b1804b1-46fa9a945abmr21089735e9.4.1759945861396;
+        Wed, 08 Oct 2025 10:51:01 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:b264:afbc:dee:3d? ([2a01:e0a:3d9:2080:b264:afbc:dee:3d])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fab5250e8sm18983425e9.5.2025.10.08.10.51.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Oct 2025 10:51:01 -0700 (PDT)
+Message-ID: <8ce94679-d6ec-4953-b430-24c493e318e2@linaro.org>
+Date: Wed, 8 Oct 2025 19:51:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH RFC 3/6] ASoC: soc: qcom: sc8280xp: add support for I2S
+ clocks
+From: Neil Armstrong <neil.armstrong@linaro.org>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251006-topic-sm8x50-next-hdk-i2s-v1-0-184b15a87e0a@linaro.org>
+ <20251006-topic-sm8x50-next-hdk-i2s-v1-3-184b15a87e0a@linaro.org>
+ <6492e444-4196-4900-a741-a74a8c506a6d@kernel.org>
+ <1eab5200-1292-4d39-bdf8-0c5084cfaab9@linaro.org>
+ <f15ea346-43f7-49bc-bd5e-47510a48892d@oss.qualcomm.com>
+ <a5dfaf2a-d2c8-468a-9bbe-38d11b1214a8@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <a5dfaf2a-d2c8-468a-9bbe-38d11b1214a8@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On Tue, 7 Oct 2025 21:47:29 +0100, Conor Dooley wrote:
+On 10/7/25 17:48, Neil Armstrong wrote:
+> On 10/7/25 12:23, Konrad Dybcio wrote:
+>> On 10/7/25 9:02 AM, Neil Armstrong wrote:
+>>> On 10/7/25 00:21, Srinivas Kandagatla wrote:
+>>>>
+>>>>
+>>>> On 10/6/25 7:37 PM, Neil Armstrong wrote:
+>>>>> Add support for getting the I2S clocks used for the MI2S
+>>>>> interfaces, and enable/disable the clocks on the PCM
+>>>>> startup and shutdown card callbacks.
+>>>>>
+>>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>>> ---
+>>
+>> [...]
+>>
+>>>>> +static int sc8280xp_snd_startup(struct snd_pcm_substream *substream)
+>>>>> +{
+>>>>> +    unsigned int codec_dai_fmt = SND_SOC_DAIFMT_BC_FC | SND_SOC_DAIFMT_NB_NF | SND_SOC_DAIFMT_I2S;
+>>>>> +    struct snd_soc_pcm_runtime *rtd = substream->private_data;
+>>>>> +    struct sc8280xp_snd_data *pdata = snd_soc_card_get_drvdata(rtd->card);
+>>>>> +    struct snd_soc_dai *cpu_dai = snd_soc_rtd_to_cpu(rtd, 0);
+>>>>> +    struct snd_soc_dai *codec_dai = snd_soc_rtd_to_codec(rtd, 0);
+>>>>> +    int index;
+>>>>> +
+>>>>> +    switch (cpu_dai->id) {
+>>>>> +    case PRIMARY_MI2S_RX...QUATERNARY_MI2S_TX:
+>>>>> +    case QUINARY_MI2S_RX...QUINARY_MI2S_TX:
+>>>>> +        index = sc8280xp_snd_i2s_index(cpu_dai);
+>>>>
+>>>> What is the mclk and bitclk rate set here, we can not rely on the
+>>>> default rate.
+>>>
+>>> The default rates are set in DT:
+>>> +        assigned-clocks = <&q6prmcc LPASS_CLK_ID_PRI_MI2S_IBIT LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+>>> +                  <&q6prmcc LPASS_CLK_ID_MCLK_1 LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+>>> +        assigned-clock-rates = <1536000>,
+>>> +                       <24576000>;
+>>
+>> Is there a way to infer these rates based on the DT audio
+>> connection graph?
+> 
+> Good question, it's not done for pre-audioreach. Let me investigate.
 
-> I acked v5, any reason for not applying it?
-> https://lore.kernel.org/all/20251007-geologic-epidemic-2f667f232cf6@spud/#t
+OK so since we have fixed 48KHz stereo setup, we can hardcode those frequencies in the card...
 
-Yes, the dt-bindings patch can be applied.
-The v6 series does not change anything in the dt-bindings patch - only
-another patch in the series was updated, so v6 was sent.
+FS is 512 and the MCLK / BCLK is 16, as standard so I can calculate those.
 
-Apologies - I wasn't aware that an acked patch could be omitted from
-the new revision.
+Will drop the DT rates and do it in the card.
+
+Neil
+
+> 
+> Neil
+> 
+>>
+>> Konrad
+> 
+
 
