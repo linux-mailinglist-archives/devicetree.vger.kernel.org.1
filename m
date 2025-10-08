@@ -1,178 +1,134 @@
-Return-Path: <devicetree+bounces-224642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FA41BC68AA
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 22:06:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 776D2BC68DE
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 22:18:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5794C3B26EF
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 20:06:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 376733BED58
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 20:18:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 033652848BB;
-	Wed,  8 Oct 2025 20:06:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0630728507E;
+	Wed,  8 Oct 2025 20:18:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kael-k.io header.i=@kael-k.io header.b="ZTq39Syw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eWEuV7Nd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3CE828468B;
-	Wed,  8 Oct 2025 20:06:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82B727B347;
+	Wed,  8 Oct 2025 20:18:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759953973; cv=none; b=O5MtbUiLUr5qH4iaWk3i+tYCYhqPBDyj1tnsTcpWT2mlFY/CoDGo0AIeOIKRQqb7feJrisvFVd/suglm7Bv8LNe604PBdWkP+7po3h4U7NQiqg7N7GZO6KdxabqO/sfB80ASc1d/8Yo4bv9qQpmEc5fOK0UExgp62QJbt+yKLrg=
+	t=1759954719; cv=none; b=qZthjgjKaPG68e/jV14r++le9aW2Ay4qpSbqRcPL50DkU7mUdaKmCqVJekVzz1LU302FubAwiiL13XWxGnxI6pndmJVpAbnQ48/I113DzdEzgz8YFcXWgdrIS0pXN3il1/qkTPQdP9KP8pn8EI2L37ShdHzjqZOPsRyx0cyWLKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759953973; c=relaxed/simple;
-	bh=5/BlZHxImdfT5nQx8NqwxqIt1Iw0n0mNCipRLrdIQb8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dju2mluCEegPKbg2R99PTKzyUgycidTdt8bN7XXNCzBnON2s2VdYqUxgy8g8CYxyjMtG+mJH3Ekc4pBXVHqxN3fVtWd5ol0cg9iVyF4Aw7hj4ZuOdntjhb/qsfpa6gLLN2RtiulpTFNYYfUJ7bvH2kZLETI2RvJY65hLD1qUIdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kael-k.io; spf=pass smtp.mailfrom=kael-k.io; dkim=pass (2048-bit key) header.d=kael-k.io header.i=@kael-k.io header.b=ZTq39Syw; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kael-k.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kael-k.io
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4chkXV1Ddtz9tGx;
-	Wed,  8 Oct 2025 22:06:02 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kael-k.io; s=MBO0001;
-	t=1759953962;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=DkahFsDi6WgEBokAFq9960SlJ6AhkwmGq9ESS2G4GHA=;
-	b=ZTq39SywICPVWsc3J6SZbHMDsZqgJImqF1xooe7SaqIshULuijjA7ZB3b+iR8VqiNIFCIj
-	oFBSAeEv1Z9JrFEjr2MslebNh8G0OVaHfdUcRQPgPTKKqvm0rjZt1vvImUPKpv/IIwWSWy
-	p4ffyj2SVvqhUO65LIUm0FsuSoxyCsxKDEbiBHTS+kc4rli/pW461E5YeqK5NSvxC3OnjY
-	amGkL6ZdwFj0pKj0BttxFHDD8kjl7/sK96dBiYn7KsTyUD6pVTx08LsEPYStq8E0p57hbh
-	/qoMbCxtUYYaekTWJLHidyguj9Y5l6dlfafndrTBTcMYU/6DJ4ExTMAPHNKSHA==
-From: Kael D'Alcamo <dev@kael-k.io>
-To: Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1759954719; c=relaxed/simple;
+	bh=NPfFVoW/LsVVuz6xy4asuQtfUdYNXIh1K0Bl95lxHK0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K7cHN5gIrC3B0Oap6S/R+GFVEuHea0q47V4O0NNo765elBwB3FJTAQqCwh1eaSRAx1dEO4gp6KDfAFslr/5e3GY34ieStalMFAjHuopPBRuxgsBRIbEjFA2ehc1KvilA3/ThjyXD9Uz/X3nheZrBDy1fuv3vzJ6fE9vwMyXnfGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eWEuV7Nd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51887C4CEE7;
+	Wed,  8 Oct 2025 20:18:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759954719;
+	bh=NPfFVoW/LsVVuz6xy4asuQtfUdYNXIh1K0Bl95lxHK0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eWEuV7Nd5F7lsXWr/UkCGuvskUUzW9C9N2qKdcElDqx/deuTzBTWJueKZCqT5MWC/
+	 kE9/oj3IagxHP2hfMgU4vzc/Njx/JocASOAc5uKkczRX+NIlOw6Mqyp/fQefLpzg8G
+	 wdZ0PE/DJ3aqz4hxPAy53TqIx2L5wSKfK5n3GRFbuiq6XWwlUvSyo5gBcH5hYoqXPG
+	 MjuNTh9Zt8dK2y/pJsA6K5jRLX+DyJVYc+XBwb5npwxFnU6Tg5tJW+37C8v8Bly8tm
+	 xAGkxk47sVjIiMklhP2bNpjIUHz4ummV0re5RGFKkE0hpc6l4oMmX042tikLqLgpwE
+	 JgOoQ+b6LPL7g==
+Date: Wed, 8 Oct 2025 21:18:34 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Wei Yan <sledge.yanwei@huawei.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 1/1] dt-bindings: i2c: hisilicon,hix5hd2-i2c convert to DT schema
-Date: Wed,  8 Oct 2025 22:04:27 +0200
-Message-ID: <20251008200535.17464-2-dev@kael-k.io>
-In-Reply-To: <20251008200535.17464-1-dev@kael-k.io>
-References: <c2e81faf-4d2c-40e7-bdf0-e0d41fc76d9c@kernel.org>
- <20251008200535.17464-1-dev@kael-k.io>
+	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-iio@vger.kernel.org, joshua.yeong@starfivetech.com,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 4/5] dt-bindings: trivial-devices: add MEMSIC 3-axis
+ magnetometer
+Message-ID: <20251008-subtitle-estranged-b35dfcd2d3a7@spud>
+References: <20251007-i3c_ddr-v5-0-444184f7725e@nxp.com>
+ <20251007-i3c_ddr-v5-4-444184f7725e@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sqGdDHF1UKLk1vs2"
+Content-Disposition: inline
+In-Reply-To: <20251007-i3c_ddr-v5-4-444184f7725e@nxp.com>
 
-Convert the Devicetree binding documentation for:
-* hisilicon,hix5hd2-i2c
-from plain text to DT binding schema.
 
-Signed-off-by: Kael D'Alcamo <dev@kael-k.io>
----
- .../bindings/i2c/hisilicon,hix5hd2-i2c.yaml   | 51 +++++++++++++++++++
- .../devicetree/bindings/i2c/i2c-hix5hd2.txt   | 24 ---------
- 2 files changed, 51 insertions(+), 24 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/i2c/hisilicon,hix5hd2-i2c.yaml
- delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-hix5hd2.txt
+--sqGdDHF1UKLk1vs2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/i2c/hisilicon,hix5hd2-i2c.yaml b/Documentation/devicetree/bindings/i2c/hisilicon,hix5hd2-i2c.yaml
-new file mode 100644
-index 000000000000..3faa7954e411
---- /dev/null
-+++ b/Documentation/devicetree/bindings/i2c/hisilicon,hix5hd2-i2c.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/i2c/hisilicon,hix5hd2-i2c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+title: I2C for HiSilicon hix5hd2 chipset platform
-+
-+maintainers:
-+  - Wei Yan <sledge.yanwei@huawei.com>
-+
-+allOf:
-+  - $ref: /schemas/i2c/i2c-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - hisilicon,hix5hd2-i2c
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    description: Desired I2C bus frequency in Hz
-+    default: 100000
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/hix5hd2-clock.h>
-+
-+    i2c@f8b10000 {
-+        compatible = "hisilicon,hix5hd2-i2c";
-+        reg = <0xf8b10000 0x1000>;
-+        interrupts = <0 38 4>;
-+        clocks = <&clock HIX5HD2_I2C0_RST>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+    };
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-hix5hd2.txt b/Documentation/devicetree/bindings/i2c/i2c-hix5hd2.txt
-deleted file mode 100644
-index f98b37401e6e..000000000000
---- a/Documentation/devicetree/bindings/i2c/i2c-hix5hd2.txt
-+++ /dev/null
-@@ -1,24 +0,0 @@
--I2C for Hisilicon hix5hd2 chipset platform
--
--Required properties:
--- compatible: Must be "hisilicon,hix5hd2-i2c"
--- reg: physical base address of the controller and length of memory mapped
--     region.
--- interrupts: interrupt number to the cpu.
--- #address-cells = <1>;
--- #size-cells = <0>;
--- clocks: phandles to input clocks.
--
--Optional properties:
--- clock-frequency: Desired I2C bus frequency in Hz, otherwise defaults to 100000
--- Child nodes conforming to i2c bus binding
--
--Examples:
--I2C0@f8b10000 {
--	compatible = "hisilicon,hix5hd2-i2c";
--	reg = <0xf8b10000 0x1000>;
--	interrupts = <0 38 4>;
--	clocks = <&clock HIX5HD2_I2C0_RST>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--}
--- 
-2.51.0
+On Tue, Oct 07, 2025 at 04:06:16PM -0400, Frank Li wrote:
+> Add compatible string 'memsic,mmc5603' and 'memsic,mmc5633' for
+> MEMSIC 3-axis magnetometer.
+>=20
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+--
+pw-bot: handled-elsewhere
+
+> ---
+> Changes in v4
+> - add memsic,mmc5603
+>=20
+> Changes from v1 .. v3
+> - None
+> ---
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Doc=
+umentation/devicetree/bindings/trivial-devices.yaml
+> index 7609acaa752d5c1c89a26bb007fa38357dee1a28..72786eebfbd63beffd2a09fc2=
+0c7aedbe9e96a8e 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -225,6 +225,10 @@ properties:
+>            - meas,tsys01
+>              # MEMSIC magnetometer
+>            - memsic,mmc35240
+> +            # MEMSIC 3-axis magnetometer
+> +          - memsic,mmc5603
+> +            # MEMSIC 3-axis magnetometer (Support I3C HDR)
+> +          - memsic,mmc5633
+>              # MEMSIC 3-axis accelerometer
+>            - memsic,mxc4005
+>              # MEMSIC 2-axis 8-bit digital accelerometer
+>=20
+> --=20
+> 2.34.1
+>=20
+
+--sqGdDHF1UKLk1vs2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaObHGQAKCRB4tDGHoIJi
+0kYFAQDlJRBo3V6un4TdXGebaBOYpaei0g/okMdZdefOo2s6WAEA7JKupNoV9yYg
+TZOT/iUlzA563LqVO58o6aXWJEQGyQk=
+=vzKo
+-----END PGP SIGNATURE-----
+
+--sqGdDHF1UKLk1vs2--
 
