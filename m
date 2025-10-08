@@ -1,83 +1,83 @@
-Return-Path: <devicetree+bounces-224575-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28BE7BC564E
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 16:10:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E344BBC565F
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 16:11:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1F7A188EB67
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 14:11:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D35B83E5421
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 14:11:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 635CD28DF0B;
-	Wed,  8 Oct 2025 14:10:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C721F296BDE;
+	Wed,  8 Oct 2025 14:11:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AnfLECuv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kigDg2DB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+Received: from mail-pg1-f182.google.com (mail-pg1-f182.google.com [209.85.215.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9B7528DB71
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 14:10:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07AB429346F
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 14:11:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759932643; cv=none; b=MNqJnAuu5c7hDXIKYQir1+leNyM3hqwzZWiY+/CShV+Zk7LUPEW97WM47w2xVKzQ7HZpPjIk7h2y1I2Ke/SsZ1Lmu5chaasFzEogZfuD7/RfLtaXBGorvW1cNW9haeU2Z8SGhP1HOl5xNbN/GdZxafWAwK5UUB8PQd0nr0wXx/I=
+	t=1759932704; cv=none; b=LoIxaJI3/EosXq8AMEeA2SzONvVIbBuHPLbcsj70iwGlpVvM0b+20SbZrq0ZRrZcMieuS8P0Uarwtp+qIxayX5TxC1vbkuw+TrMLa76GrqPMctB08XIdnvPd6FOtaKRaL4WFq1SUWK+Ic356JCGu9aj8lZn7O8iyM6jxGoxB2kE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759932643; c=relaxed/simple;
-	bh=IrnD2O8X5hB5MwrlfqWITqkYfIyt6OZiSNUedEcDcF8=;
+	s=arc-20240116; t=1759932704; c=relaxed/simple;
+	bh=xEKgBPD2FWJYrAHF8UNcbIBXhsA+Ha6n0qDTzhc6Ox0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=D+kZbR0WNOe8BDpTujmZhouUd4h0nt3N8Mt7W6hbUqcy27oWBB7+hPo9zO0Jg/ChiU9ZFL1/Rwex7u0dnvhLVLklYM8sAT3wGgacBXzE0sfNvhK5aWW/te/GOWXxeHIyqzQuyqa5VUD8h1N75KRLKdi+y7YyzNx1HBU0jHdt56s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AnfLECuv; arc=none smtp.client-ip=209.85.210.172
+	 In-Reply-To:Content-Type; b=TXFf/62kzaIIgZ/CMl1f9/qE/jrgIZSK1geaVb+QJEMR3WlxlAO3yA0bwlolT9/VJB1elaFNkP6uJc3NRrbq/tc8Gg60Qa3WF9dgRtwdnRi4XyCbrvnugQycm8znJQN5l68Beg4q7DY9FNqvRHW2eZlqckcNP36zBhWnClvNo9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kigDg2DB; arc=none smtp.client-ip=209.85.215.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-7811a5ec5b6so701001b3a.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 07:10:41 -0700 (PDT)
+Received: by mail-pg1-f182.google.com with SMTP id 41be03b00d2f7-b62ed9c3e79so2846099a12.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 07:11:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759932641; x=1760537441; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759932702; x=1760537502; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=2S2XrHAuOcCepyqws2PwWFNO5GZ8yv1xZPuvvSFngn8=;
-        b=AnfLECuvT+yWVI6AbqSe4Dss9iGBdYqsZRJuKfhK1b/788ZgsOLUro46ACuWveq8EA
-         8hkuOre1PN6jhAEQZT6Y9fWVgFJwmtvLq+TlnpJtXhMB3CqpGMDzQ8AA1mT1RmyHUV0a
-         uaH/jCfSJkdRSUsEj6UZKIhgtctwLGm8DhSD4EdltEpdCsw/qVCaBaKLRkXnO8RY96G+
-         xOw6avcrFn4hooau8guHNjQ1CKxsEAMcyCTvm0tCGRiNg7jMvGibUNbKwtGyhKnVKHuT
-         bmVpBxz7rLXVBSlhzihmpDawiSc/MNBbBtnAtyNPohXSfgDhXBixQnj+Tb3AYrA1kgFa
-         saTg==
+        bh=GmmBQDP6IlpQ0XMPGEd9567yGOXHE3IaykdAbxwNyhA=;
+        b=kigDg2DBkXk+CGSiIy8kor23P68VgnlSzMT3R4Yb//7BLgbrOhY8ULMPgn4wfYe6Px
+         gV/4i0DOiQYok1Pn4/bGY+k3gC/rB43O5LwhrPLfc+8Y7Kmu54FR6+jdtkWUUPZBNp/a
+         +/ql065nN7ktnAdXcc9SKcWyFBr229Snc3H5j+aykJSibr03zpc7YKiOVZ7z3wCHCFL5
+         hCcHSma2Awm/0ScxkNVH0Up0whCnDoktYTIiSPANkmBxOS2+ZE+3eyZTXWAHtghFZP3j
+         QCivJPi1GJZbE1PFzrs+DkK2bR4Xmc4YmOUaEU8CDp7d0VyTtBasFfen3hGLqa+faf/H
+         7BIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759932641; x=1760537441;
+        d=1e100.net; s=20230601; t=1759932702; x=1760537502;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=2S2XrHAuOcCepyqws2PwWFNO5GZ8yv1xZPuvvSFngn8=;
-        b=hdNOZGzq/ICAF1yieth1vvPsWz3CPj88AMmEiV5gladDNqeHIBHMpT8mx1TuoJXJH9
-         hLsbuUtqYbPLKiW3uDHyVLfnJfherxAve7LnV4gIqmzNZoAMCoOXoeoySPHo0v7igGzc
-         gqQ0zoUB6SG5QH9tdt578qGxr4WwQHNPGlEOkAqZSr0btyBbHhTvYN4/4Z9twG6VYm/w
-         9ovecbGwOgjMvo0hvKpE9S81YVgypwGNJ0hZ+ovaal1cGpD1tc4V+dYPpIu6uhznyzLQ
-         KjulQ3iuISyXj3QSnLpO9nnMETDcXMvcaq9jrBaaBXjCI2knARDnzju9H9+rOlyvOmsu
-         rbMA==
-X-Forwarded-Encrypted: i=1; AJvYcCVfU3KHGqu8lU3WpCjZdQNUka16PsV9fcY8jIq0IuzXPFUUIkmXdRWo76yh2wq1Ow39IKxK05WChnNV@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvRLYnuZF6ZXS9iENc//QkoYHS9n13eRJ6BiWPZWwrMJaizxr/
-	++SLr/woX2sAAH6Qh2PzOXxRBx/6RaU/GeiDwDzB/jvZdwNzes//K8ux
-X-Gm-Gg: ASbGncs6OEpgjFxfwUCqNuRaDmnO1QvsQsmtuutY4kLD6es6kHoujxzTg/Hnhg3/hNU
-	HNdTJlrJle68mm7q4xvKYaFjvUD3+Z2BzaJrRJNAsxR1GhkIEcf1UeezHIgVUDXFO83IBgoDq7E
-	X5emSUZ34rphX2b4+esCRASqovFEUJ4KbpfgAjH+bUzPWM/QflMVV//CsPBSMyDNUw4JZ1ZhIY0
-	BXgxaLFnBVouXvVKkV8cdkRCC/I4PQ70M5OiYmgH7FWWHjvnNmWIkQv5R+Kl/Oyhn10bx/cx84L
-	TEusmNuV4UF0wwY/jHczwnpVMxELu/nMEKRdCplqfldr8ejlHGP2+wgLtVPDaZpzRxsXOOo/97j
-	Gj+5PdnQU+eKpTs/IbJ9iSKJ1Dbjryu5Q+8Qyx2DfNHXEtLQGp3YK31zjwcGzFmwTGXTIHqHEac
-	gIMHB3D8pvd9jei5gjnUs=
-X-Google-Smtp-Source: AGHT+IHyX5D/x1kAgnyjYEICDRw+TCkp9jPNdAwsxvT++V1jJP2L7aAzg7L5pRnzV72nWvHalFzB7w==
-X-Received: by 2002:a05:6a21:6d90:b0:243:fe1e:2f95 with SMTP id adf61e73a8af0-32d96d8d186mr12375975637.6.1759932640578;
-        Wed, 08 Oct 2025 07:10:40 -0700 (PDT)
+        bh=GmmBQDP6IlpQ0XMPGEd9567yGOXHE3IaykdAbxwNyhA=;
+        b=A9ajHYmDXjRvKLdQTOs5oH0KUnt9zoEsj8F8fsPl+vWH1Q5AqE5ht1IeGnu+oAFlRO
+         WldGU5GxU4jCQjRysqT3ruAdoJ+aiO721GgKvyPxFjjSw0V6iU4z+6eaeX9Hlk0zTBkZ
+         tFEtSBz1SasV1lY5vcpysZZHH/LsyuO9QjK91KZL66ZCSs3lM91TsVj+jWmrDwNxUXSx
+         ZYc5xu6udVwK+nkE4oigGs8Q4ybVnmrd73/buw2vBNcKJJiu/p0WC/5lyYIpymA5qwx1
+         IP6GDAvl6oxWUmE/fgivmavvr70fF9L4ZuakHlxeSNfiwgYS+iR5E1Kq1Xb8HHQTeyJU
+         Nfcw==
+X-Forwarded-Encrypted: i=1; AJvYcCWtHomC/OW15WIOdMW3V2XxgTpfNmvPe34LadjExf4vUO7TdXh+UB9arAY++5qSWOTJ7OFB3AMlxJGw@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuevqJMpnpSZGVy1TEcywCgWr9/rCfMlnveY20api513w/Tdo1
+	dmgN5meLZNeljRQ8TgQ3qb73e6UVQi8sgsM4fc0yXbmtWh08TCD65feN
+X-Gm-Gg: ASbGncuWJznINu1Z5zy3FuctzHsRTatze9gtfFlavrLlIcY/sYVwSywflWJdBb+6BCa
+	hKz0qjKTL7Wtf53oCDrfcZUsYhnEtlWLcrJGTib94/s+5kKwnnjQqSHOQ9pKtE/RWrW7SJYh5q9
+	O8v1GMhYwR+k+iRN0psR5cPeUKqBRWGzG4uufs+haS0QwVXLlvIXingTKFJCAD2T9LesW7scvW9
+	/IyQzrSs41GQ5zTJU2HtK/SNad32nPVBrlm9I+TxuqviWGlsF8wU1R95O2Rmw1J8wPQLvuid9SD
+	ss1XMyLw1X9kcjO12/KuI8dXW7ndoi7BBSZjwCIKt0mbZ5gWMJybxgNOG2zrejybROLegfGx6Z5
+	+5AdjolablhuJMTgJBxl1ZLk0QJBORDAQe8G6u8nGUbwqiKgIVq7AWoZGgO3DL1R31Gs1XjmCkT
+	LoFBtITBJXPbyEZRN76qI=
+X-Google-Smtp-Source: AGHT+IEUaMAzqydQUY7rcmYcdJN2KeSU5DyaMA7BL5qXKmBA78miWwo0IcVrvLF3lUiIlIQkFHAieQ==
+X-Received: by 2002:a17:903:11cf:b0:252:50ad:4e6f with SMTP id d9443c01a7336-2902741d0bdmr42254705ad.54.1759932702237;
+        Wed, 08 Oct 2025 07:11:42 -0700 (PDT)
 Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6311462b24sm7698861a12.37.2025.10.08.07.10.35
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-28e8d1ba024sm199838995ad.68.2025.10.08.07.11.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Oct 2025 07:10:39 -0700 (PDT)
+        Wed, 08 Oct 2025 07:11:41 -0700 (PDT)
 Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <96f5443f-5b40-4d05-b350-78d55a1d841d@roeck-us.net>
-Date: Wed, 8 Oct 2025 07:10:34 -0700
+Message-ID: <9312235a-b051-48fb-985d-be2b1d3c7c1b@roeck-us.net>
+Date: Wed, 8 Oct 2025 07:11:39 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,17 +85,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/2] iio: temperature: Add support for NXP P3T175x
- temperature sensors
-To: Lakshay Piplani <lakshay.piplani@nxp.com>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, jic23@kernel.org, dlechner@baylibre.com,
- nuno.sa@analog.com, andy@kernel.org, marcelo.schmitt1@gmail.com,
- gregkh@linuxfoundation.org, viro@zeniv.linux.org.uk, peterz@infradead.org,
- jstephan@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org
-Cc: jdelvare@suse.com, vikash.bansal@nxp.com, priyanka.jain@nxp.com,
- shashank.rebbapragada@nxp.com
-References: <20251008100713.1198461-1-lakshay.piplani@nxp.com>
+Subject: Re: [PATCH v2 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
+ Controller
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>
+Cc: nuno.sa@analog.com, linux-hwmon@vger.kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>
+References: <20250903-ltc4283-support-v2-0-6bce091510bf@analog.com>
+ <20250903-ltc4283-support-v2-2-6bce091510bf@analog.com>
+ <742fe9b5-bc53-45f2-a5f1-d086a0c9dd1c@roeck-us.net>
+ <0765a0b89779331c62a3f136ef030f7f2f40ea47.camel@gmail.com>
+ <0ce54816-2f00-4682-8fde-182950c500b9@roeck-us.net>
+ <35733a7a33301330260c01b1e59af904c8c4da6b.camel@gmail.com>
 Content-Language: en-US
 From: Guenter Roeck <linux@roeck-us.net>
 Autocrypt: addr=linux@roeck-us.net; keydata=
@@ -141,33 +145,41 @@ Autocrypt: addr=linux@roeck-us.net; keydata=
  F0WaMvQMNrk9UAUziVcUkLU52NS9SXqpVg8vgrO0JKx97IXFPcNh0DWsSj/0Y8HO/RDkGXYn
  FDMj7fZSPKyPQPmEHg+W/KzxSSfdgWIHF2QaQ0b2q1wOSec4Rti52ohmNSY+KNIW/zODhugJ
  np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20251008100713.1198461-1-lakshay.piplani@nxp.com>
+In-Reply-To: <35733a7a33301330260c01b1e59af904c8c4da6b.camel@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 10/8/25 03:07, Lakshay Piplani wrote:
-> This patch adds support for the P3T1750/P3T1755 temperature sensors under the IIO subsystem.
+On 10/8/25 06:07, Nuno Sá wrote:
+> On Sat, 2025-09-13 at 04:02 -0700, Guenter Roeck wrote:
+>> On Fri, Sep 12, 2025 at 03:00:22PM +0100, Nuno Sá wrote:
+>> ...
+>>>
+>>> i2cdump -y -r 0x41-0x79 1 0x15 w
+>>>       0,8  1,9  2,a  3,b  4,c  5,d  6,e  7,f
+>>> 40:      b004 0000 b00c a03e a03e a03e 2501
+>>> 48: 0000 1a03 e07f e07f f07f e07f e07f e07f
+>>> 50: e07f e07f e07f e07f e07f e07f 0000 0000
+>>> 58: 0000 7002 7002 7002 b07e b07e b07e a030
+>>> 60: 9030 a030 0000 0000 802f 1000 1000 f0ff
+>>> 68: a004 a004 0014 a004 a004 c004 0000 0000
+>>> 70: 0000 0000 0000 0000 0000 0000 0000 0000
+>>> 78: 0000 0000
+>>>
+>> Thanks - this should do. Note that I am traveling and will be away from my
+>> systems until September 25, so I'll only be able to look into this further
+>> after I am back.
+>>
+>> Guenter
 > 
-> P3T1750/P3T1755 support two operational modes:
-> 1. Comparator Mode
-> 2. Interrupt (Latched) Mode
+> Hi Guenter,
 > 
-> The HWMON subsystem is more suitable for implementing drivers for comparator mode operations.
-> Reason:
->    - Temperature thresholds can be polled and exposed via sysfs.
->    - Register reads do not clear status, allowing safe alarm state derivation.
->    - Matches existing drivers under hwmon.
-> 
-> The IIO subsystem is more suitable for implementing drivers for interrupt (latched) mode operations.
-> Reason:
->    - Interrupt mode uses edge-triggered ALERT/IBI signal interrupts, which can be pushed to user space using iio_push_event.
->    - IIO’s event API (IIO_EV_TYPE_THRESH) supports timestamped rising/falling edge events.
->    - I3C IBI integration maps naturally to IIO’s event push model.
->    - No persistent alarm bits are available; so polling in HWMON may result in  missing events.
+> I was planning in letting merge window to come to an end but I might just ask
+> now. Have you forgotten about this one or do you want me to send v3 with the
+> superficial review and then you go deeper on v3?
 > 
 
-This is just wrong. Interrupt support can just as well be implemented
-in a hwmon driver.
+I have not forgotten it, I just ran out of time. Sorry, I do have a paid
+job :-(.
 
 Guenter
 
