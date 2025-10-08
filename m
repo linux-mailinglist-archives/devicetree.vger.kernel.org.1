@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-224648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8062BC69F2
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 23:00:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FCC2BC6A0A
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 23:01:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DC80420580
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 21:00:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F332E3A19B9
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 21:01:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1DFE29ACC5;
-	Wed,  8 Oct 2025 21:00:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7164227BF99;
+	Wed,  8 Oct 2025 21:01:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JW0ED8O5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GvAUh2Bi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75AE12BD5B4;
-	Wed,  8 Oct 2025 21:00:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D8F63B9;
+	Wed,  8 Oct 2025 21:01:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759957211; cv=none; b=pJDLmKHaZ/ljVfU/K5pCdc/mdK24+Fdyd5GE2amQzL2+53P/f84aQgxakELlf2ctLxTktc2uClDl29cUOi97HQRxED0D/vgj6+eYWl6JggUvMzxOWKWjxvDhmME5hwF8yi0M2rBla7Zz3BMy7sZ2apnbxtB8YPKUX8qNKTG5XQo=
+	t=1759957310; cv=none; b=bHNgensd/VGDBggysu+cZ+MALHn7GLExCbl6mSKw/96ZxHPNY9VoqgKQOEqygEUmjV0TRr8QmiwZLHGOvR65/7yczTpqJk/5Nw6nOUsNhSktbaYPtoQq/fkhFYxBcKmVVPDOO44X00idvPGDZi+j6vzLXTP0buAYNX6k+2Adgno=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759957211; c=relaxed/simple;
-	bh=/zKymE8vFP4PMsDC0onV9cFElIIjnUvFsTSIrhVFd7Q=;
+	s=arc-20240116; t=1759957310; c=relaxed/simple;
+	bh=15UYY3+XhX9yKY0WQdEZQLLk6SlLzD2Dvnh5FJ+vIKU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HmbtnxNRbDvwf+Awm2k64som45N4K+yDKNTPNMhDTbvaw2iLZ+AG+SrYEMY2nKR1h9K2Lnd4tRy49DHDzC/uYHQum7RDOoB8ZQVoaiJL4J560tbQk7CtXaOsS8KXrbKO9rlNiGroJTJzd+O8MBShSMYH00/hdwPbCuoMIF2QyAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JW0ED8O5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1D31C4CEE7;
-	Wed,  8 Oct 2025 21:00:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HceeLr1W8kWDPo4R59d5pFyj3liUXudTdr8t3xlpJp4KWRiLXWJQOazqr82Lhpb6wO2NFBQH1FSzyg+TidCS//7ZLFPpNz2QwtD+unVVeNQotV4sqFenKnAU3W0eeWVGv2X89U3AXQ3VUg4zvenBbXFcqxQ8PYcXEMEVeh0PkGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GvAUh2Bi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 461CEC4CEE7;
+	Wed,  8 Oct 2025 21:01:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759957209;
-	bh=/zKymE8vFP4PMsDC0onV9cFElIIjnUvFsTSIrhVFd7Q=;
+	s=k20201202; t=1759957310;
+	bh=15UYY3+XhX9yKY0WQdEZQLLk6SlLzD2Dvnh5FJ+vIKU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JW0ED8O5CnMbLwV51u9kjZ6t3ch8758U6dWvCjreUEmU6aGNi1GdM6aLOcnofqycN
-	 tos2QPyw8W3A3JLUxohdRW7rY/9UksUpGoCXqtezXvt7IRovFbMQ8WpVysC4NMsqic
-	 1Vy3vNSTN+0Ze9sXlimTfdFX2BAQin1ORFqUdgUUbX86dZSw3XSBn0iQCFpNcTxR2w
-	 dsj4bza9mRs0aiFlER9hzzwuZW3Yk828HWtEAHat0BTp1UJQghJeJeE5watgi/HqA0
-	 a4xlV1oqqMtznDTEvEkkWaY4wvFuu2KFQZIoCxbld1W9DttQZkG/AvhlTvgqPFI87h
-	 fZQ2FAHtn15eg==
-Date: Wed, 8 Oct 2025 22:00:05 +0100
+	b=GvAUh2BiLU5uCl+Ns+KtxmYjvDuaPJXnhhDRPoxI8UPlZoIFvHWa9eoPRLEDygLWg
+	 jGeJkrZeV/SoBfldILcts+KBwbWOgle9BVSpHmzZO4xPs7rS73RQheSpB1WwVnoHQj
+	 W6Lq2A/FFuubeHPD/Kw+drs/vVwd5jERWKA8M9f0R2Bsk4iWswvrGISw8llaAhY3wO
+	 IIPlT+ZiUzmRD3u5IDuDPojni9ziQzL7qoUjkq96hcj4GnaYSR5xI/fsrv4lQpVXPP
+	 oU0LOxztUYO0p7xzwPRIxB2lBNDxarkY8ddnbEH1G2Tnn3ZtGGP1GJbV75QEDBTb/X
+	 CmKRpPr6sNxmw==
+Date: Wed, 8 Oct 2025 22:01:44 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: serial: sh-sci: Fix r8a78000 interrupts
-Message-ID: <20251008-snowshoe-flyer-13e2c12ef244@spud>
-References: <09bc9881b31bdb948ce8b69a2b5acf633f5505a4.1759920441.git.geert+renesas@glider.be>
+To: Lakshay Piplani <lakshay.piplani@nxp.com>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+	andy@kernel.org, marcelo.schmitt1@gmail.com,
+	gregkh@linuxfoundation.org, viro@zeniv.linux.org.uk,
+	peterz@infradead.org, jstephan@baylibre.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	jdelvare@suse.com, linux@roeck-us.net, vikash.bansal@nxp.com,
+	priyanka.jain@nxp.com, shashank.rebbapragada@nxp.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: temperature: Add NXP P3T175x
+ support
+Message-ID: <20251008-agility-suffix-317de5698a5d@spud>
+References: <20251008100713.1198461-1-lakshay.piplani@nxp.com>
+ <20251008100713.1198461-2-lakshay.piplani@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,57 +64,137 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="jsdfNGgpffUE0CFJ"
+	protocol="application/pgp-signature"; boundary="wvEdgMsuivxB+WiK"
 Content-Disposition: inline
-In-Reply-To: <09bc9881b31bdb948ce8b69a2b5acf633f5505a4.1759920441.git.geert+renesas@glider.be>
+In-Reply-To: <20251008100713.1198461-2-lakshay.piplani@nxp.com>
 
 
---jsdfNGgpffUE0CFJ
-Content-Type: text/plain; charset=us-ascii
+--wvEdgMsuivxB+WiK
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 08, 2025 at 12:50:36PM +0200, Geert Uytterhoeven wrote:
-> The SCIF instances on R-Car Gen5 have a single interrupt, just like on
-> other R-Car SoCs.
+On Wed, Oct 08, 2025 at 03:37:12PM +0530, Lakshay Piplani wrote:
+> Add bindings for the NXP P3T175x (P3T1750/P3T1755) temperature
+> sensor, supporting both I2C & I3C interfaces.
 >=20
-> Fixes: 6ac1d60473727931 ("dt-bindings: serial: sh-sci: Document r8a78000 =
-bindings")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
+> The P3T1750 and P3T1755 are functionally equivalent temperature
+> sensors with identical interfaces and features. The P3T1755 offers
+> improved accuracy(=C2=B10.5=C2=B0C) in the =E2=80=9320=C2=B0C to +85=C2=
+=B0C range, while both
+> maintain =C2=B11=C2=B0C accuracy across =E2=80=9340=C2=B0C to +125=C2=B0C.
+>=20
+> Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
 > ---
->  Documentation/devicetree/bindings/serial/renesas,scif.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> V3 -> V4: Changes since V3:
+> 	  - Updated commit message to clarify the difference between P3T1750 and=
+ P3T1755.
+> V2 -> V3: Changes since V2:
+>           - Removed nxp,interrupt-mode and nxp,fault-queue properties fro=
+m DT binding
+>           - Updated compatible strings:
+>             - nxp,p3t1750-iio =E2=86=92 nxp,p3t1750dp
+>             - nxp,p3t1755-iio =E2=86=92 nxp,p3t1755dp
+> V1 -> V2: Changes since V1:
+>           - Dropped nxp,alert-active-high
+>           - Fixed YAML formatting, line wrapping, and examples
 >=20
-> diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b=
-/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> index e925cd4c3ac8a47e..72483bc3274d5582 100644
-> --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> @@ -197,6 +197,7 @@ allOf:
->                - renesas,rcar-gen2-scif
->                - renesas,rcar-gen3-scif
->                - renesas,rcar-gen4-scif
-> +              - renesas,rcar-gen5-scif
->      then:
->        properties:
->          interrupts:
+>  .../bindings/iio/temperature/nxp,p3t1755.yaml | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/temperature/nxp=
+,p3t1755.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/temperature/nxp,p3t175=
+5.yaml b/Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml
+> new file mode 100644
+> index 000000000000..16a01fa81251
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml
+
+This filename should actually match the compatible, so you're missing
+dp.
+dG
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/temperature/nxp,p3t1755.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP P3T175xDP Temperature Sensor
+> +
+> +maintainers:
+> +  - Lakshay Piplani <lakshay.piplani@nxp.com>
+> +
+> +description: |
+> +  Datasheet: https://www.nxp.com/docs/en/data-sheet/P3T1755.pdf
+> +
+> +  P3T175xDP (P3T1750/P3T1755) is a digital temperature sensor with a ran=
+ge of
+> +  -40=C2=B0C to +125=C2=B0C and a 12-bit resolution. It supports communi=
+cation over both
+> +  I2C and I3C interfaces.
+> +
+> +  The I2C interface supports up to 32 static addresses and provides an A=
+LERT
+> +  output to signal when temperature thresholds are crossed.
+> +
+> +  The I3C interface supports In-Band interrupts (IBI) in interrupt mode,
+> +  allowing the device to notify the controller of threshold events witho=
+ut
+> +  dedicated alert pin.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,p3t1750dp
+> +      - nxp,p3t1755dp
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: |
+> +      In I2C mode, the device supports up to 32 static addresses.
+> +      In I3C mode, the 'reg' property encodes a triplet of
+> +      <static-address BCR PID> used for device matching.
+> +      Static address is optional if matching is done via PID.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        temp-sensor@48 {
+> +            compatible =3D "nxp,p3t1755dp";
+> +            reg =3D <0x48>;
+> +            interrupt-parent =3D <&gpio2>;
+> +            interrupts =3D <3 IRQ_TYPE_EDGE_FALLING>;
+> +        };
+> +    };
 > --=20
-> 2.43.0
+> 2.25.1
 >=20
 
---jsdfNGgpffUE0CFJ
+--wvEdgMsuivxB+WiK
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaObQ1QAKCRB4tDGHoIJi
-0guSAP43dC9HGiRNBMT7VSsDkr3egfLnvm+oMWzO0jriseKPZQEApo+ACfPTNC25
-kLSxmc/MvwDOxx8Uha8AQaO2Ya4ekQ8=
-=uNf9
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaObROAAKCRB4tDGHoIJi
+0heMAP9bXoNNTQUYc8KJqRZG4ke9LdvyetG4wWJLCu2TCg+mhwD/fKGbocCbnzlu
+fl4VmfNHIcVt9Mg3vap9EhfrBTvxMQ8=
+=yT+I
 -----END PGP SIGNATURE-----
 
---jsdfNGgpffUE0CFJ--
+--wvEdgMsuivxB+WiK--
 
