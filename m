@@ -1,139 +1,208 @@
-Return-Path: <devicetree+bounces-224523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E392EBC4BCF
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 14:17:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3949DBC4BF0
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 14:18:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDD0419E0C76
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 12:17:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25A7619E1B6F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 12:18:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CFFE225397;
-	Wed,  8 Oct 2025 12:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 910862264A3;
+	Wed,  8 Oct 2025 12:17:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="liOJUmyV"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mMpM7mc4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D5C72116F6;
-	Wed,  8 Oct 2025 12:16:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A5ED1FAC4B
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 12:17:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759925817; cv=none; b=h+F1WGV3eTWcvrjZOj0NtKMCMLCPT5bUqqD1B3SDR47G3IckvyakUeXQTp/13aPORYlB9JNqdI2jIgEQqQc5pUobe7GxA0vy32WN4Uqbg4uVv0PN91tXpLm6PoU66FzGCzoBxSL/oBQWjwrCNL9nj3Hcz1qwoAwVWi8nN7Dra0c=
+	t=1759925877; cv=none; b=HJ3+CMTsT0XLGfnIt9ZR5VmL7iHjc3Q/b5qakYnPDgmlg01l0fguMcRLB81qOSxpzVywExGF0gda7j4JU7k4Ubftzp89Oil6EsP8J+B9FDzbgwP5A0OpZRfw3fQOJiyyIAkcew/0TIWcy0CUPMbnq21oO+dv28u5pvTYN6pYu/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759925817; c=relaxed/simple;
-	bh=41Q6dYudRRc1BldM8r7PPMDN3nIYC3sGz9eHv636/GQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r+hJKhFPWfSzaRekbuoo8ZQUZV/ubDatogfjsY5I8U1VFvdKH7EWh8li7f8cU4jDE1UvA7tYQaN+nWQRFnsnB+cHLgAH6r45npXHDHqg1O9pARH3HtXg0fVCCOB3U+3kWw01J7CsYyJPV27uMTYyJ6dn4PEGVsc4vh3moqVn30E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=liOJUmyV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6522EC4CEF5;
-	Wed,  8 Oct 2025 12:16:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1759925816;
-	bh=41Q6dYudRRc1BldM8r7PPMDN3nIYC3sGz9eHv636/GQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=liOJUmyVi2ItxLHP/m5OEoyKjYw5r41MGqxA3tKydZ85y/ITbFnG/dKJwMEQQIc0m
-	 rbX3LuZHJlZY+T7dIlx8p9/hUhkToReczlr3f47RQa/QgEzOxJ0RBAGri0EGhqnCNg
-	 AldM/D7MqkSwWzg9Hw2As38aOQfL4NQvt86y0D9A=
-Date: Wed, 8 Oct 2025 14:16:54 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc: Jiri Slaby <jirislaby@kernel.org>, Binbin Zhou <zhoubinbin@loongson.cn>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Haowei Zheng <zhenghaowei@loongson.cn>,
-	Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-serial@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] serial: 8250: Add Loongson uart driver support
-Message-ID: <2025100838-deskbound-framing-ac6f@gregkh>
-References: <cover.1758676290.git.zhoubinbin@loongson.cn>
- <9823e7afe713450e210dab9dba6fa18683dc1fe0.1758676290.git.zhoubinbin@loongson.cn>
- <2025092428-glade-monologue-3663@gregkh>
- <CAMpQs4JgR=iG6LAuYeVxOpE31S6n=dC4+FGUJczOYDVfWHDuFw@mail.gmail.com>
- <b862846d-fb2a-4df4-8457-d858aa63031d@kernel.org>
- <CAMpQs4KVgSFk=B5JtQ1KM02HydTkwaYqi+LzzhdJAyoSUfAxLw@mail.gmail.com>
+	s=arc-20240116; t=1759925877; c=relaxed/simple;
+	bh=PVHRpg631XDxnFVtcCZtQd6DaoP/boLeDvf5wQFW280=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T7s1b7Z+Ue/wfZzyRYn+JOGNRvRKc5JmdRA4saETNubhSnpEoWC9jUb2trjChLQsPf+xAEI5AD3NyIHYi8lZr1ySQS+ghPdgXlY7WTyVu0wfVG3eN3VPkTE9gVbeMc1WTdlMwa3JF/3W6Rc5lQzn87olD7bcSbMH/DlEXlQHtIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mMpM7mc4; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59890X0v014279
+	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 12:17:53 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	1X/DVcD1GjvfXhX2ArtmK5xnsWxolZ/LvXbotElllEo=; b=mMpM7mc4ZencBVWk
+	Nv5V9Y05R0y1ecRzZ4bpYaD/OD1Fn0qXgKmTlgTNNXZKF1sG6twp/5MgBOFbG+UV
+	JVaU7UoSGKAgOxBfkOe+XDlkXiK5mr9QDxmhm9w2I3QN7U9YWfcSNWRfK2P0bE1Z
+	UJvK9GItUZaarBr1I/fnd9k2IIyHhRl6eE6pe5c1+kN+MunHsnvnRKpBW7MPr+jU
+	q93JpaFFrDPVRWrE+NJgnSWqjbtMLq7d28iKesqEKKE7gpQ17tTbYzHwH5QGt05e
+	yXQRJM0cZjJV+o3eGmFS4L5sqjGVUmzwrNdmf5w9aHV2y+wR1lDcbJrGEXBIVq0/
+	LRyK+g==
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49mgd0p4ef-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 12:17:53 +0000 (GMT)
+Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-8247c6738edso19114766d6.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 05:17:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759925873; x=1760530673;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1X/DVcD1GjvfXhX2ArtmK5xnsWxolZ/LvXbotElllEo=;
+        b=dFBUDYC/KB2nHBejhZ8H+xuzmjkCx+ICcDOygM+yFK7OBMUn/iXicu+wxqD7VCGoX4
+         nd9Xri5lDs5hXuw+p0mmr1SeiubqXUb/8CqawVITSFznLML4WwhabflzNPfMxxw2WXFI
+         AloB/qZl99wVoLPwN/QjEyNAgKRZUTTnoaF1wHpWCzJClTFdC6FiAC0+iQFK3874sIY4
+         lDkzkT1V+0nx1rknt1GoDQGH8kf8XZnESpioagMKUzXeY0LuBcSo+7ab1ljHzjjoaPAC
+         XyrIdTfQh9QIttgo3jEUcArQq+S61IA8JrjU0EjKxsJRp8xZ8WO1A1/7upnpDB6BOJLA
+         BJzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXY+tAGmcXcdcPIq9SuLgfEb0ighvKA/d9Oub+0TeLLQEiyYkCxngyOFTc7XQsC5tA59HnU4zyhkOiJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOJVzHeFQO+f4Yeh4tm7xZ9R2PZjgiaKybPmFCgZXBJC8c/pIK
+	4CS4+Xai15v2LXEdER5StuVpfqUZnTKZPaRdWYlxTaQRZsoFDcAt407pE8Oz+Zc8sAbatwhx3YT
+	C7KjHnBhyo3GdjRFdC+ur/nf+3hw70jgVae3Ih+3uXtv5hzeap4BLzZK/u27cS9V1
+X-Gm-Gg: ASbGnctFu4P1S1TVGyVuE7Ok02mnT74AP/+ahpxd0nKgcbPdkLUiEUWmXoZckj35aO4
+	ENr+sPnSIa2P3KpCpODW4fOSRPVLlgfTZegeXxmfZOxF1Ip2BjTdiYOd3+oPg5chyFwo9k4Qdr8
+	h/msE+gXJz2ZpRaC0PI3voi1oJ8cDXDpgbi5/DIwMNjRd3fTVJpxCCG5Qs6RR5Ay6oLfKMLRar6
+	jFmYtldsyDBDox3P2kVFNtcf1Y7fYj6pzpULnudPmVx9JCMZVuUEgAQZe1GTXdSH4jKANhZm5jP
+	mOG4WGBQxqwaQLzP35JykTcRjYVhtJzMASprwZ0Mdw9LVZNl4lZMlUo8jSO1PkeKMiQH1F1U2dA
+	SnSI5vYaMpSONfCnaa1wkzGeGHc0=
+X-Received: by 2002:a05:622a:cc:b0:4b5:eaee:1c04 with SMTP id d75a77b69052e-4e6eac002f8mr27371241cf.0.1759925872505;
+        Wed, 08 Oct 2025 05:17:52 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHE6rcrDHWT7DP/F4+y/G3pwK0hzfh73g82zoNrFA5XNDYX6nUSTfGMcfiA0x6v/CXm74kh+Q==
+X-Received: by 2002:a05:622a:cc:b0:4b5:eaee:1c04 with SMTP id d75a77b69052e-4e6eac002f8mr27370951cf.0.1759925871973;
+        Wed, 08 Oct 2025 05:17:51 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b4865f7420asm1632686366b.43.2025.10.08.05.17.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Oct 2025 05:17:51 -0700 (PDT)
+Message-ID: <d0e2b0e3-4e32-4cff-81c8-fe943084c570@oss.qualcomm.com>
+Date: Wed, 8 Oct 2025 14:17:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMpQs4KVgSFk=B5JtQ1KM02HydTkwaYqi+LzzhdJAyoSUfAxLw@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V1 2/3] arm64: dts: qcom: sm8750: Add SDC2 nodes for
+ sm8750 soc
+To: Sarthak Garg <sarthak.garg@oss.qualcomm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        quic_nguyenb@quicinc.com, quic_rampraka@quicinc.com,
+        quic_pragalla@quicinc.com, quic_sayalil@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com,
+        kernel@oss.qualcomm.com
+References: <20251007054445.4096630-1-sarthak.garg@oss.qualcomm.com>
+ <20251007054445.4096630-3-sarthak.garg@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20251007054445.4096630-3-sarthak.garg@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: AyGt9pnyyP7ZZsJvjCODAUD_6AZLvZ72
+X-Authority-Analysis: v=2.4 cv=T8aBjvKQ c=1 sm=1 tr=0 ts=68e65671 cx=c_pps
+ a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=17NNhpa1916AHXIy7EUA:9
+ a=lRRPjgcFXaC3W-_4:21 a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
+X-Proofpoint-ORIG-GUID: AyGt9pnyyP7ZZsJvjCODAUD_6AZLvZ72
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA2MDEyMyBTYWx0ZWRfX8jdvqYTKCWgH
+ Nhsqx7pmaB5LgmssrClhtcFSthYqkz3vIloFz3MrPXshYI0LHTpWvuagXvxFZ/+7mdbnhQFH4Kj
+ NfNrUv2OVe3wNq/Rrr3NrJ3Lt9Pwj2HlTvJ7ImbGnQkHaaZ5wY5F3WnYr0pyZqBKbQc6/h1wJ6s
+ 2U3egfCq9cNlPUz3GIzdKTFAMwCeoA3U+U4ibywork+MVu25hxfD79sWbZk0Xi2gXaTyuw+dup7
+ ZAxRXdvYeFQxe0A9XlWwlGKFPThYFOlqKH0bNT7Vl8BGe/1iye11NYlIA+HFAmcCK3DNbJJjSnI
+ IAxusJFwWY+vKK4DIVgsSer+xCZqMf114gREIfvRQxCwUqCAFM3EgM1uapFJlj9uQ/3DOLEhzJy
+ Lp8KQbftTiXYIUO9Z5vHkNZ0m6eOhQ==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-08_04,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 phishscore=0 clxscore=1015 priorityscore=1501
+ impostorscore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510060123
 
-On Tue, Sep 30, 2025 at 11:03:29AM +0800, Binbin Zhou wrote:
-> Hi Jiri:
+On 10/7/25 7:44 AM, Sarthak Garg wrote:
+> Add SD Card host controller for sm8750 soc.
 > 
-> Thanks for your reply.
-> 
-> On Mon, Sep 29, 2025 at 2:19 PM Jiri Slaby <jirislaby@kernel.org> wrote:
-> >
-> > Hi,
-> >
-> > On 28. 09. 25, 4:48, Binbin Zhou wrote:
-> > > Hi Greg:
-> > >
-> > > Thanks for your reply.
-> > >
-> > > On Wed, Sep 24, 2025 at 6:22 PM Greg Kroah-Hartman
-> > > <gregkh@linuxfoundation.org> wrote:
-> > >>
-> > >> On Wed, Sep 24, 2025 at 02:29:37PM +0800, Binbin Zhou wrote:
-> > >>> --- a/include/uapi/linux/serial_core.h
-> > >>> +++ b/include/uapi/linux/serial_core.h
-> > >>> @@ -31,6 +31,7 @@
-> > >>>   #define PORT_ALTR_16550_F128 28 /* Altera 16550 UART with 128 FIFOs */
-> > >>>   #define PORT_RT2880  29      /* Ralink RT2880 internal UART */
-> > >>>   #define PORT_16550A_FSL64 30 /* Freescale 16550 UART with 64 FIFOs */
-> > >>> +#define PORT_LOONGSON        31      /* Loongson 16550 UART */
-> > >>
-> > >> Why does userspace need to have this value exported?
-> > >
-> > > Sorry, this was a cheap mistake.
-> > > It should follow the existing latest macro definition as follows:
-> >
-> > That was not the point. The point was why do you need that at all?
-> 
-> Emm...
-> We attempted to define Loongson UART as a new `uart_config` entry.
-> Therefore, `PORT_LOONGSON` is referenced as follows:
-> 
-> diff --git a/drivers/tty/serial/8250/8250_port.c
-> b/drivers/tty/serial/8250/8250_port.c
-> index 719faf92aa8a..53efe841656f 100644
-> --- a/drivers/tty/serial/8250/8250_port.c
-> +++ b/drivers/tty/serial/8250/8250_port.c
-> @@ -310,6 +310,14 @@ static const struct serial8250_config uart_config[] = {
->                 .rxtrig_bytes   = {1, 8, 16, 30},
->                 .flags          = UART_CAP_FIFO | UART_CAP_AFE,
->         },
-> +       [PORT_LOONGSON] = {
-> +               .name           = "Loongson",
-> +               .fifo_size      = 16,
-> +               .tx_loadsz      = 16,
-> +               .fcr            = UART_FCR_ENABLE_FIFO | UART_FCR_R_TRIG_10,
-> +               .rxtrig_bytes   = {1, 4, 8, 14},
-> +               .flags          = UART_CAP_FIFO,
-> +       },
->  };
-> 
->  /* Uart divisor latch read */
-> 
-> Additionally, `uart.port.type` will also be assigned the value `PORT_LOONGSON`.
+> Signed-off-by: Sarthak Garg <sarthak.garg@oss.qualcomm.com>
+> ---
 
-Yes, but that is the same exact value as PORT_PXA, which means this code
-will not really work properly, right?  You can not just redefine an
-already used user/kernel value.
+[...]
 
-thanks,
+> +		sdhc_2: mmc@8804000 {
+> +			compatible = "qcom,sm8750-sdhci", "qcom,sdhci-msm-v5";
+> +			reg = <0 0x08804000 0 0x1000>;
+> +
+> +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
+> +					<GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
+> +			interrupt-names = "hc_irq", "pwr_irq";
 
-greg k-h
+One a line, please
+
+> +
+> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+> +				<&gcc GCC_SDCC2_APPS_CLK>,
+> +				<&rpmhcc RPMH_CXO_CLK>;
+
+Please align the '<'s
+
+> +			clock-names = "iface", "core", "xo";
+
+One a line, please
+> +
+> +			interconnects = <&aggre2_noc MASTER_SDCC_2 QCOM_ICC_TAG_ALWAYS
+> +					&mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+> +					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
+> +					&config_noc SLAVE_SDCC_2 QCOM_ICC_TAG_ACTIVE_ONLY>;
+> +			interconnect-names = "sdhc-ddr", "cpu-sdhc";
+
+and here
+
+> +
+> +			power-domains = <&rpmhpd RPMHPD_CX>;
+> +			operating-points-v2 = <&sdhc2_opp_table>;
+> +
+> +			qcom,dll-config = <0x0007442c>;
+> +			qcom,ddr-config = <0x80040868>;
+> +
+> +			iommus = <&apps_smmu 0x540 0x0>;
+> +			dma-coherent;
+> +
+> +			bus-width = <4>;
+> +			max-sd-hs-hz = <37500000>;
+> +
+> +			resets = <&gcc GCC_SDCC2_BCR>;
+> +			status = "disabled";
+
+A \n before 'status' is customary
+
+> +
+> +			sdhc2_opp_table: opp-table {
+> +				compatible = "operating-points-v2";
+> +
+> +				opp-100000000 {
+> +					opp-hz = /bits/ 64 <100000000>;
+> +					required-opps = <&rpmhpd_opp_low_svs>;
+> +				};
+> +
+> +				opp-202000000 {
+> +					opp-hz = /bits/ 64 <202000000>;
+> +					required-opps = <&rpmhpd_opp_nom>;
+
+This can work at SVS_L1
+
+Konrad
 
