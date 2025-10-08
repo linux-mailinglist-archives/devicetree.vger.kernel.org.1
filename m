@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-224388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F32A4BC395A
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 09:31:48 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76777BC3989
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 09:32:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0B1F31897B6A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 07:32:09 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 414114EBD2E
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 07:32:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7361A2F2913;
-	Wed,  8 Oct 2025 07:31:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DF1F2F39A0;
+	Wed,  8 Oct 2025 07:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ou5kE8Op"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HC63w0IV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D94762F25F3
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 07:31:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4A2D2F28F5
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 07:31:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759908681; cv=none; b=dQZdDmsgR4jzhLpXR2Y6DmoYes6wbpWuQLn4CmmmkzXOVITcSZfRrotqNZrJx2xRZblLUZ3dN8GzmbAcFYnQhvcQGeeYIaUgk0G2a11UqBiKbbym89D08tLf+XVJG0CYMopNp08o6eGlnF7kbLX2bF0HCufS56G+Hv9R3Fx68mI=
+	t=1759908683; cv=none; b=anFoIz6xr+fG2qICbDRJWQ6ZDyuoOBESmCe7JENrWr/SRf5nKs2hjHuwEu42Bpi6VA1lgh/Xyw8r3u5m/oFbxDjBgm1xqxJ2zN3xx1jRehKkNKw6wQQ5y+r5/Qqs5/rO5trF5uwKGZ51rLhGMhEbeiqIX4/6+vrQ9HHsvcFB4ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759908681; c=relaxed/simple;
-	bh=0GRT6eQI3Cm8XV8zCUtY3dryPx2rZvFnN6HHzwrp62I=;
+	s=arc-20240116; t=1759908683; c=relaxed/simple;
+	bh=7dAHRT2r7ftPVN1rS5b3fLL9XXBwlAPnHlEMfM9TlgA=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Vveto3bOFrni9A4ssVuJQKp0u8qJUUnTIcnVyxDiZ3XeNjlo6ikwOiTfRP5jWPlubG9CrQjfIQuctGnghNRD94V/rTlpudsW9KtgudFo+1qtgSrTAOqvfHbJ/7EQlh7p5RSfvT6cZXf4QNhRgGqyQMss6DIOuRJXPvQ1xm0cnVM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ou5kE8Op; arc=none smtp.client-ip=209.85.167.46
+	 MIME-Version; b=Nv19CZxeFGZAtBU+v5UoNtFnkQK+4PIrCcVm1yG9p1IJPFsI5ccnKy6YHP4cxwYjZ6t/wbsWOd+cUhQbkBwSauCfeetuNB86cZHZCekjsF//zFNgG/Msv2p6kowKOapjL54N8aYrnin+oHNm5nrpyWD+3vgZVlbkJcgzgzo6nsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HC63w0IV; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-58affa66f2bso8727330e87.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 00:31:18 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-57933d3e498so9757732e87.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 00:31:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759908677; x=1760513477; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759908679; x=1760513479; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=aQLFTxrIKtieldvIvL7WZTPqw42YlDTw8nNSn3fA0Wk=;
-        b=Ou5kE8Ope2E6c8bomg7zZFu/Ti4f61E+DNr21xjfoMJQo+DIO36rI7uT5GK4ByEtFZ
-         lmdYd42jKjxXeOwvPmm6k46Td+MJOfir2aVis+8FXxiGLkJlQPX4i/5Q4EsUdcoaaAy/
-         54tYHuh9k6jFGN4sWLohq+TpgDMOXYsm/pjxzpH0bWHVVKNMvZkOXDszE3tUZJHedp6V
-         w9N6WWSQUeJ56wqMDgRbAs/C5x4IUpmF6R2B62HcbqVhMcak26b6MBzdy16p01dnSbWb
-         w2hnaRo4/VWUytrDzn9MXr6U7OTp0k2DKOgDfec0SahNMZAlR8hAcrRu+V7yxHBnbusC
-         aR1Q==
+        bh=C/43znEe061f/mLeX5mGh0JaDqN09K9lxSSjlK2dh/Q=;
+        b=HC63w0IVEJO2+Ai2+MASIXbe41FALbGsbXtwYzpJUnPkTN/8g2eo2XBI6cAuDZrSNL
+         y0txA+GPYvQ7IOmHGFicDeHhJEYZHAhWsIpplNM4iwbSI1nYd+UShSk1H9WO2cP4xcAF
+         XI0I6HcCsBa0ekR1JA3lYg8xBfqAtO5wPZJABB89b9NMwnHixRgsDoJlhuz1VSDPnDWZ
+         O5PgD7h0jWjNsDfo0j6AlorU38qVcOovkdXKPgF3ZJx8Ys8TfybM4lOfBYQ+cmlTcf1n
+         tUWXbB/+yVoB8NAis0s74TCL2ASxBorVzbmRgQlW/PfQU4uHZr1UlP1RH4ogxMNxd63f
+         b0PQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759908677; x=1760513477;
+        d=1e100.net; s=20230601; t=1759908679; x=1760513479;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=aQLFTxrIKtieldvIvL7WZTPqw42YlDTw8nNSn3fA0Wk=;
-        b=H6Nea4HQCvFvImBe4jO/tsDXxGaUmAJauJW78syxsW0cUw1A1kORpv+gR7JjfRpque
-         +fRI41zWxNoWToO5+zIfO3nq5Z9tH/0CUPqn9/PRiEUq5oG3/2x46WPzpKASVazsU1uB
-         bAsYR9SYg7eZQxeATGLmYWqrLL6mO5HPkX5bOFILR8POIOsRxbMZNUfup4ecFEB+AfXS
-         8jAyUZTXsJvQ2uQ9wzrNKnkJCEEiWuwX5vdHkhpcrEE2RaKgMhL9YYe++OlLNp71yh97
-         J3EDDpZ26U67bZ79cbeid6+ugV5EmCViu+L+SoNmZxALDn3D6e1JdleI4ZY+uT/SGPQY
-         nKaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVSO1ofjnXlTapS1g7/AKMSTthh3+P7MKuoBsrSQqKZX9yVHfyScSKK4i9JVXG7kSB2qiWxR/q8ec/7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy8gxs4cKMYiUHY4bDrbk7f1dXAXTg2z9nABDmN7bnxCrk2ZJvD
-	1Ez4cRHHsR/aFflkNp5BWui4FAcK9+I5nsiNXUiDOst7gUAJ3uNuwt2U
-X-Gm-Gg: ASbGncv5UMqQglAGPtCnbTVixDNT17ZQ3XRNsK29cq9OZyub4JRPip4O9WoH7EysG4l
-	paf3usfaSeO7WsJGxBb1tED6kEy1/VNnGTDeVxPsu70iRD/EY2Wu72y+4NmEvD0/Hnbb8orKj7l
-	JQDr2p1TTr6nN62mA0oP1cEow1MfDArKGH8qwdBzZP8W3hh0yu8Y9WmYUQIGS86Ba/PFlWSF4a1
-	RZXGCSfP4Z7LdoixvTk8mmcrud8e6aPDHh0LrTCkj8NEdmWWUlkOq/1leSJGGKJ3UBKSzxJSuGS
-	tmLu+hXbgU4tCf2/KtyRE3rmNzsXjv20QPyWNBlMTavegqrIQP4/ZtuxrHWbWbwtcxENJat5E7F
-	utWXstVJwJp7euEyV9ITJiFhDP6uEa7+LHg5KJQ==
-X-Google-Smtp-Source: AGHT+IFpUSCjmqWlypk1jhB6DNeYarmmHYoM2rml86MGPw0PJqxvr54S+GMFfAgFpZaGYlwixjWo/A==
-X-Received: by 2002:a05:6512:3045:b0:577:6e42:3718 with SMTP id 2adb3069b0e04-5906db0365bmr662412e87.7.1759908676756;
-        Wed, 08 Oct 2025 00:31:16 -0700 (PDT)
+        bh=C/43znEe061f/mLeX5mGh0JaDqN09K9lxSSjlK2dh/Q=;
+        b=bi5aRvGf6DTynhS5U2VWm+cNH3OEykxFxXGR8e7goDlR3tGV2A92K3WMwNG7iNMv7j
+         4IwFF2Gba/mn1GmwJaClZyj8GEZxlX2r2nG6ATUSf/Qn5uhoV3me9rbYwgHswT/cJbMy
+         C0lYA6qqTIYnh329mMqo0FlLVjFKbUAcVlUw7QNMkA5R2hEJRobZ1PsZNrx+RAabhD80
+         RYM3s4P5UBBlAQy09roQDWIHjrqBbCF4mGyBOKT6guqP1xcmisYYZrFDxIX2GClWE6n/
+         Uvr4E9Wlro7r97wWx1jI4ZA+VusaDmnDyoT8we+6C9mRlYwOIQfzdRUoH/B/ecqrTyKM
+         0Kig==
+X-Forwarded-Encrypted: i=1; AJvYcCXmJ7wyd82xwrhjtMvPzO3pW4YoXt/G5lISOBveDgZjlsJmaUOkLHHvOq/zZ813FhXX7QbbVJWVVEWP@vger.kernel.org
+X-Gm-Message-State: AOJu0YwyzhlDUEL1wnW9LOWCK16XrTLZy3gvnhPWJV/L7vcd79P6MF1m
+	v4njVjWjLRL+arvfe1jkGQVnA/w8Fzneljc7yEjJyKo3ahuz8hohl7I2
+X-Gm-Gg: ASbGncuJxdpZchZ1Ib8xBmVn405u41VGH1eqC4tVoZSIwPD/NWc+cM+87phzLrDmg43
+	m++vS5W5WK7ppXb7spDX8578wLsDvJ8WkcZuNHGSXZk28PXcRHdGg5G+j/YUXqkE29IAQqR1v7P
+	x0LbJX7tSDRUBKNI1cQ0fplgd4OuLr+joQcloSL3fE28a+ZhpD0bN5OG1NcKLRRxWn5B7ym8el7
+	A3C5nnmpUPLcUSvsYccr6V77JmKCYEUz+HW+VDkqwLm66G78d0d8N1mbXK4qx3TM8jGcWOt7ekP
+	VSx3ckZNGtCellOUxmkdPI4tSPcbtZrYQBQ/I4vjPRTkW542HZUYixhbBRERXToXbqgWlx/cxce
+	crtH4H6+dnNqHhaUBX/7aO8oxNJhmnetDy/RGSw==
+X-Google-Smtp-Source: AGHT+IH6yVzn596rSyB3yJ9XBLWXz7u+miIMTSdihRGfwsNDTc+rfVY8kk2V15qCy1XHoAjhkBFITg==
+X-Received: by 2002:a05:6512:3daa:b0:585:c51e:e99d with SMTP id 2adb3069b0e04-5906d896bc4mr657722e87.3.1759908678413;
+        Wed, 08 Oct 2025 00:31:18 -0700 (PDT)
 Received: from xeon.. ([188.163.112.70])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58b0118d22bsm6911016e87.85.2025.10.08.00.31.15
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58b0118d22bsm6911016e87.85.2025.10.08.00.31.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Oct 2025 00:31:16 -0700 (PDT)
+        Wed, 08 Oct 2025 00:31:18 -0700 (PDT)
 From: Svyatoslav Ryhel <clamor95@gmail.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
 	Maxime Ripard <mripard@kernel.org>,
@@ -108,9 +108,9 @@ Cc: dri-devel@lists.freedesktop.org,
 	linux-clk@vger.kernel.org,
 	linux-gpio@vger.kernel.org,
 	linux-staging@lists.linux.dev
-Subject: [PATCH v4 02/24] clk: tegra: set CSUS as vi_sensor's gate for Tegra20, Tegra30 and Tegra114
-Date: Wed,  8 Oct 2025 10:30:24 +0300
-Message-ID: <20251008073046.23231-3-clamor95@gmail.com>
+Subject: [PATCH v4 03/24] dt-bindings: clock: tegra30: Add IDs for CSI pad clocks
+Date: Wed,  8 Oct 2025 10:30:25 +0300
+Message-ID: <20251008073046.23231-4-clamor95@gmail.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20251008073046.23231-1-clamor95@gmail.com>
 References: <20251008073046.23231-1-clamor95@gmail.com>
@@ -122,117 +122,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The CSUS clock is a clock gate for the output clock signal primarily
-sourced from the VI_SENSOR clock. This clock signal is used as an input
-MCLK clock for cameras.
-
-Unlike later Tegra SoCs, the Tegra 20 can change its CSUS parent, which is
-why csus_mux is added in a similar way to how CDEV1 and CDEV2 are handled.
+Tegra30 has CSI pad clock enable bits embedded into PLLD/PLLD2 registers.
+Add ids for these clocks. Additionally, move TEGRA30_CLK_CLK_MAX into
+clk-tegra30 source.
 
 Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/clk/tegra/clk-tegra114.c |  7 ++++++-
- drivers/clk/tegra/clk-tegra20.c  | 20 +++++++++++++-------
- drivers/clk/tegra/clk-tegra30.c  |  7 ++++++-
- 3 files changed, 25 insertions(+), 9 deletions(-)
+ drivers/clk/tegra/clk-tegra30.c         | 1 +
+ include/dt-bindings/clock/tegra30-car.h | 3 ++-
+ 2 files changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/clk/tegra/clk-tegra114.c b/drivers/clk/tegra/clk-tegra114.c
-index 186b0b81c1ec..00282b0d3763 100644
---- a/drivers/clk/tegra/clk-tegra114.c
-+++ b/drivers/clk/tegra/clk-tegra114.c
-@@ -691,7 +691,6 @@ static struct tegra_clk tegra114_clks[tegra_clk_max] __initdata = {
- 	[tegra_clk_tsec] = { .dt_id = TEGRA114_CLK_TSEC, .present = true },
- 	[tegra_clk_xusb_host] = { .dt_id = TEGRA114_CLK_XUSB_HOST, .present = true },
- 	[tegra_clk_msenc] = { .dt_id = TEGRA114_CLK_MSENC, .present = true },
--	[tegra_clk_csus] = { .dt_id = TEGRA114_CLK_CSUS, .present = true },
- 	[tegra_clk_mselect] = { .dt_id = TEGRA114_CLK_MSELECT, .present = true },
- 	[tegra_clk_tsensor] = { .dt_id = TEGRA114_CLK_TSENSOR, .present = true },
- 	[tegra_clk_i2s3] = { .dt_id = TEGRA114_CLK_I2S3, .present = true },
-@@ -1047,6 +1046,12 @@ static __init void tegra114_periph_clk_init(void __iomem *clk_base,
- 					     0, 82, periph_clk_enb_refcnt);
- 	clks[TEGRA114_CLK_DSIB] = clk;
- 
-+	/* csus */
-+	clk = tegra_clk_register_periph_gate("csus", "vi_sensor", 0,
-+					     clk_base, 0, TEGRA114_CLK_CSUS,
-+					     periph_clk_enb_refcnt);
-+	clks[TEGRA114_CLK_CSUS] = clk;
-+
- 	/* emc mux */
- 	clk = clk_register_mux(NULL, "emc_mux", mux_pllmcp_clkm,
- 			       ARRAY_SIZE(mux_pllmcp_clkm),
-diff --git a/drivers/clk/tegra/clk-tegra20.c b/drivers/clk/tegra/clk-tegra20.c
-index 2c58ce25af75..d8d5afeb6f9b 100644
---- a/drivers/clk/tegra/clk-tegra20.c
-+++ b/drivers/clk/tegra/clk-tegra20.c
-@@ -530,7 +530,6 @@ static struct tegra_clk tegra20_clks[tegra_clk_max] __initdata = {
- 	[tegra_clk_rtc] = { .dt_id = TEGRA20_CLK_RTC, .present = true },
- 	[tegra_clk_timer] = { .dt_id = TEGRA20_CLK_TIMER, .present = true },
- 	[tegra_clk_kbc] = { .dt_id = TEGRA20_CLK_KBC, .present = true },
--	[tegra_clk_csus] = { .dt_id = TEGRA20_CLK_CSUS, .present = true },
- 	[tegra_clk_vcp] = { .dt_id = TEGRA20_CLK_VCP, .present = true },
- 	[tegra_clk_bsea] = { .dt_id = TEGRA20_CLK_BSEA, .present = true },
- 	[tegra_clk_bsev] = { .dt_id = TEGRA20_CLK_BSEV, .present = true },
-@@ -834,6 +833,12 @@ static void __init tegra20_periph_clk_init(void)
- 				    clk_base, 0, 93, periph_clk_enb_refcnt);
- 	clks[TEGRA20_CLK_CDEV2] = clk;
- 
-+	/* csus */
-+	clk = tegra_clk_register_periph_gate("csus", "csus_mux", 0,
-+					     clk_base, 0, TEGRA20_CLK_CSUS,
-+					     periph_clk_enb_refcnt);
-+	clks[TEGRA20_CLK_CSUS] = clk;
-+
- 	for (i = 0; i < ARRAY_SIZE(tegra_periph_clk_list); i++) {
- 		data = &tegra_periph_clk_list[i];
- 		clk = tegra_clk_register_periph_data(clk_base, data);
-@@ -1093,14 +1098,15 @@ static struct clk *tegra20_clk_src_onecell_get(struct of_phandle_args *clkspec,
- 	hw = __clk_get_hw(clk);
- 
- 	/*
--	 * Tegra20 CDEV1 and CDEV2 clocks are a bit special case, their parent
--	 * clock is created by the pinctrl driver. It is possible for clk user
--	 * to request these clocks before pinctrl driver got probed and hence
--	 * user will get an orphaned clock. That might be undesirable because
--	 * user may expect parent clock to be enabled by the child.
-+	 * Tegra20 CDEV1, CDEV2 and CSUS clocks are a bit special case, their
-+	 * parent clock is created by the pinctrl driver. It is possible for
-+	 * clk user to request these clocks before pinctrl driver got probed
-+	 * and hence user will get an orphaned clock. That might be undesirable
-+	 * because user may expect parent clock to be enabled by the child.
- 	 */
- 	if (clkspec->args[0] == TEGRA20_CLK_CDEV1 ||
--	    clkspec->args[0] == TEGRA20_CLK_CDEV2) {
-+	    clkspec->args[0] == TEGRA20_CLK_CDEV2 ||
-+	    clkspec->args[0] == TEGRA20_CLK_CSUS) {
- 		parent_hw = clk_hw_get_parent(hw);
- 		if (!parent_hw)
- 			return ERR_PTR(-EPROBE_DEFER);
 diff --git a/drivers/clk/tegra/clk-tegra30.c b/drivers/clk/tegra/clk-tegra30.c
-index 82a8cb9545eb..ca367184e185 100644
+index ca367184e185..ca738bc64615 100644
 --- a/drivers/clk/tegra/clk-tegra30.c
 +++ b/drivers/clk/tegra/clk-tegra30.c
-@@ -779,7 +779,6 @@ static struct tegra_clk tegra30_clks[tegra_clk_max] __initdata = {
- 	[tegra_clk_rtc] = { .dt_id = TEGRA30_CLK_RTC, .present = true },
- 	[tegra_clk_timer] = { .dt_id = TEGRA30_CLK_TIMER, .present = true },
- 	[tegra_clk_kbc] = { .dt_id = TEGRA30_CLK_KBC, .present = true },
--	[tegra_clk_csus] = { .dt_id = TEGRA30_CLK_CSUS, .present = true },
- 	[tegra_clk_vcp] = { .dt_id = TEGRA30_CLK_VCP, .present = true },
- 	[tegra_clk_bsea] = { .dt_id = TEGRA30_CLK_BSEA, .present = true },
- 	[tegra_clk_bsev] = { .dt_id = TEGRA30_CLK_BSEV, .present = true },
-@@ -1008,6 +1007,12 @@ static void __init tegra30_periph_clk_init(void)
- 				    0, 48, periph_clk_enb_refcnt);
- 	clks[TEGRA30_CLK_DSIA] = clk;
+@@ -53,6 +53,7 @@
+ #define SYSTEM_CLK_RATE 0x030
  
-+	/* csus */
-+	clk = tegra_clk_register_periph_gate("csus", "vi_sensor", 0,
-+					     clk_base, 0, TEGRA30_CLK_CSUS,
-+					     periph_clk_enb_refcnt);
-+	clks[TEGRA30_CLK_CSUS] = clk;
-+
- 	/* pcie */
- 	clk = tegra_clk_register_periph_gate("pcie", "clk_m", 0, clk_base, 0,
- 				    70, periph_clk_enb_refcnt);
+ #define TEGRA30_CLK_PERIPH_BANKS	5
++#define TEGRA30_CLK_CLK_MAX		311
+ 
+ #define PLLC_BASE 0x80
+ #define PLLC_MISC 0x8c
+diff --git a/include/dt-bindings/clock/tegra30-car.h b/include/dt-bindings/clock/tegra30-car.h
+index f193663e6f28..763b81f80908 100644
+--- a/include/dt-bindings/clock/tegra30-car.h
++++ b/include/dt-bindings/clock/tegra30-car.h
+@@ -271,6 +271,7 @@
+ #define TEGRA30_CLK_AUDIO3_MUX 306
+ #define TEGRA30_CLK_AUDIO4_MUX 307
+ #define TEGRA30_CLK_SPDIF_MUX 308
+-#define TEGRA30_CLK_CLK_MAX 309
++#define TEGRA30_CLK_CSIA_PAD 309
++#define TEGRA30_CLK_CSIB_PAD 310
+ 
+ #endif	/* _DT_BINDINGS_CLOCK_TEGRA30_CAR_H */
 -- 
 2.48.1
 
