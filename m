@@ -1,155 +1,165 @@
-Return-Path: <devicetree+bounces-224448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B71BBBC3DC4
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 10:36:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC378BC3E37
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 10:41:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B485F188A805
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 08:36:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA5CD1897A82
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 08:41:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A252EC0AC;
-	Wed,  8 Oct 2025 08:35:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DEB92F3625;
+	Wed,  8 Oct 2025 08:41:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="2IwqYrEl";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="D+kinXt0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XLi9HP0h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a2-smtp.messagingengine.com (fout-a2-smtp.messagingengine.com [103.168.172.145])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E91E2E9743;
-	Wed,  8 Oct 2025 08:35:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.145
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ECA62BF3CF;
+	Wed,  8 Oct 2025 08:41:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759912557; cv=none; b=p8PLujP3KAVafRU4TqKJFLQiyFXn+nwSLlIH/1DiBMXrlIlvv9heqmv9wTCBdzYY7pDFlUhX2s9uTmdOoDSaIdmDh36fX4LSSDY++89CqlCm1W6TeGhPc4AuX5nrApwh7/+fUhrjn577CRkzf/m83+Rp2faHmXQ4vjwxF3kNqmE=
+	t=1759912882; cv=none; b=uD+0wqF8ourJan0m4zwOlld0Cw5H33jo+MBmEgmiisT4dO/br9qWvdQqAbH2fUBQ0wZPVd4YKYtPf2ZkdDMmINctJq8x/pfzKP6E2iU0pUhakl/hz30tejow6aHQ+tRHulU1sjbtNoUzPEz6QT+QIw1lorU3dam6UsvPQwTesiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759912557; c=relaxed/simple;
-	bh=Adzd7UoQ5vUNjWRQvEhi7PjsTGLFn60xlIozbT0BOsw=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=I/jLg2HfMZe1PAxVUNRPMCY6j7nO0En80PnthxpRFD6qNqaBPl2R78wwkBcpJIoFgIKvcPanz2yBqu5mxnIq0v2PtDQUFZ2bpI6GK6h30C7f/vl1EtFykJVeSdgQeiygnbB3QnO2oJkceKndWCKE6e89hMOKPexyGpBijhQrqMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=2IwqYrEl; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=D+kinXt0; arc=none smtp.client-ip=103.168.172.145
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
-	by mailfout.phl.internal (Postfix) with ESMTP id 82D71EC0215;
-	Wed,  8 Oct 2025 04:35:55 -0400 (EDT)
-Received: from phl-imap-02 ([10.202.2.81])
-  by phl-compute-05.internal (MEProxy); Wed, 08 Oct 2025 04:35:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1759912555;
-	 x=1759998955; bh=zeb5RuY2c0u9ghevJDRFDZqvJ2FDfw5r6+OP/kjAGAA=; b=
-	2IwqYrElz1JSAUWV4eJeFCYYGmVkZ4QWTnRvALTaJ7boMLqQaCozT5Gx6cHHg2Yv
-	jLAI3C6FZCKUGvoAYGSDtcm33y1LmR4i9GR1se6xQ5R/CUfVzSTw+qb39QoWazEV
-	l0JvWbVuv7I7ErnJnDEA5bKQwPxglQ46BQT8S2Re1ptB3lafNmmezsVCi1gDAJnu
-	9zILd6c/VNxrlmEUMz5IvXGJByefJEc4/3tpr++5OHZHd9f+THkc5BjFJgsNugtt
-	iJloRXzF4yXfmRvSRitHctOwqX3ULZ+xhqVrZ+Vjl/d22JEiHaaWwHNsaS7zumkA
-	eI2wbJHkXmJrdpYqPWNrcg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1759912555; x=
-	1759998955; bh=zeb5RuY2c0u9ghevJDRFDZqvJ2FDfw5r6+OP/kjAGAA=; b=D
-	+kinXt0zDD+YJVT18JySS322u5WouzXXlD6rtzZ6Sr6g/Tk3lfsBMeKOZM2ZlGbt
-	5stS/GcWJEk/AH7BcIy/8REJ8EPLkaPOl3w3R8tmsgN9DmgPc6h3jqOnVA26qTI6
-	wwbUe07mwm9sdOS0oP4YohFzaYzcEWXwFAbjI/xIRe/AF02gh9RTOBq4ZudzdcTY
-	VRPVUNnfIhjAQk4f9fJqrYrBZCUdYe6DqSsEOJR0gWv53Pq3lcBNMKzC+yuTt8ud
-	ND/eFyDaJJP0Z3exH1qi69HtS9NLJfJH19hW3VzTgFSrB31JI56axlZAXC0I8N7u
-	MLZjL2GtXetv2YsEy8f5Q==
-X-ME-Sender: <xms:aiLmaCq4QgTQtjC1ovRTGObLHAx3Zp9eIothUmkZniPlcRfoXK75gw>
-    <xme:aiLmaLf5JNDkBBOjZes9E0KBr9Q1gEyMM1IJ-zxtxgcfPp4MRy4_RcSnscZVh6O_6
-    vrE1RcO0QMQhL6slqJZp3FoXNufRJxyBSnH5puGZ0IfhA5K7mejUOs>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddutddvkeegucetufdoteggodetrf
-    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
-    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
-    gurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedftehrnhgu
-    uceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvg
-    hrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefggfevudegudevledvkefhvdei
-    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnh
-    gusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepvdehpdhmohguvgepshhmthhpohhu
-    thdprhgtphhtthhopegthhgvshhtvghriedvheduheesghhmrghilhdrtghomhdprhgtph
-    htthhopehjihhnghhoohhhrghnudesghhmrghilhdrtghomhdprhgtphhtthhopegshhgv
-    lhhgrggrshesghhoohhglhgvrdgtohhmpdhrtghpthhtoheptggrshhsvghlsehkvghrnh
-    gvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhr
-    tghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhifih
-    hltgiihihnshhkiheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhpihgvrhgrlhhi
-    shhisehkvghrnhgvlhdrohhrghdprhgtphhtthhopehmrghniheskhgvrhhnvghlrdhorh
-    hg
-X-ME-Proxy: <xmx:aiLmaNadRkIptaRFWW9MfZ6iZtKQ_3s4hsDZg00OwvNHUC3zGBmQpA>
-    <xmx:aiLmaP5-_xVvX5lwD9SmPv4qYunt-9lwAtNlBBo_NWDitU7GvW0KAQ>
-    <xmx:aiLmaF_9uSdZUK2sCtqEUJ5WcE09aYzLCeXRp4FDOvGz9NW_He7DrA>
-    <xmx:aiLmaJYQ8C-Jhi19pqExUw5gmHePXqvQWgHo9A8mjm5jZYPD8C-3Fg>
-    <xmx:ayLmaB0EbV7vcE3XBos2_C1lqAikXKLF6DE3T1fbkCk3NAu3l5Kb0HGw>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id C1EEF700054; Wed,  8 Oct 2025 04:35:54 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1759912882; c=relaxed/simple;
+	bh=uxKjFQMMxaxT7e/WacwUe2zHh56hlEUdBAi87N3/sek=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ojOdtZNfnYB5RzGSqq9z7AYreTSSRwuRd+uM6DxfGxC9AZlI5Um5o4JieObXwaACm8FiaLUxMIouO4yVnhwZcIEk57fP8oPUkfxpAycuDMNrkV48PsUhp/F7Ctk7KCVK/CPOKrRPMJTMY/vkHobEsb8ZH41afVRsYezN7FZ9tjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XLi9HP0h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1C55C4CEF4;
+	Wed,  8 Oct 2025 08:41:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759912881;
+	bh=uxKjFQMMxaxT7e/WacwUe2zHh56hlEUdBAi87N3/sek=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XLi9HP0hMfnxfhpFOUBeeaxbcOReChU9CSpVBhQdeOEZ82AGbgH1od79IsIiHOCIy
+	 ckOhlZAm1Xa9zaQhg/0dFnF/qfHj6bP9JwxKd8jiI3ZCYHqc0txuF92r1DiiFunw3M
+	 yNzYFp9ReHbJxktduKt/z7J1oVEXRqfgoLP3DLEoueJqrehVoAQKZAFP20IUopU98B
+	 IVH0XlAcXTPOX89fZPivKiD1LE00He1vi19bwpiz5xS5fEh16CWW7OdmEwe6BxNbS8
+	 hXWMyDUIRduSDOC9wFRqHt+iyQD6qki3vqOkD9+w7w6h/PhSJDcC8SIhVEPMw33fZs
+	 u5k1TDRDSk7QA==
+Message-ID: <c2e81faf-4d2c-40e7-bdf0-e0d41fc76d9c@kernel.org>
+Date: Wed, 8 Oct 2025 17:41:17 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: AIHrVq-NOQMk
-Date: Wed, 08 Oct 2025 10:35:34 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Manivannan Sadhasivam" <mani@kernel.org>,
- "Lorenzo Pieralisi" <lpieralisi@kernel.org>
-Cc: "Vincent Guittot" <vincent.guittot@linaro.org>,
- "Chester Lin" <chester62515@gmail.com>,
- "Matthias Brugger" <mbrugger@suse.com>,
- "Ghennadi Procopciuc" <ghennadi.procopciuc@oss.nxp.com>,
- "NXP S32 Linux Team" <s32@nxp.com>, bhelgaas@google.com,
- jingoohan1@gmail.com,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- "Rob Herring" <robh@kernel.org>, krzk+dt@kernel.org,
- "Conor Dooley" <conor+dt@kernel.org>, Ionut.Vicovan@nxp.com,
- "Larisa Grigore" <larisa.grigore@nxp.com>,
- "Ghennadi Procopciuc" <Ghennadi.Procopciuc@nxp.com>,
- ciprianmarian.costea@nxp.com, "Bogdan Hamciuc" <bogdan.hamciuc@nxp.com>,
- "Frank Li" <Frank.li@nxp.com>, linux-arm-kernel@lists.infradead.org,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- "Niklas Cassel" <cassel@kernel.org>
-Message-Id: <4143977f-1e70-4a63-b23b-78f87d9fdcde@app.fastmail.com>
-In-Reply-To: <eba7d968-209d-4acb-ba41-4bebf03e96ba@app.fastmail.com>
-References: <20250919155821.95334-1-vincent.guittot@linaro.org>
- <20250919155821.95334-2-vincent.guittot@linaro.org>
- <iom65w7amxqf7miopujxeulyiglhkyjszjc3nd4ivknj5npcz2@bvxej6ymkecd>
- <aOU0w5Brp6uxjZDr@lpieralisi>
- <4rghtk5qv4u7vx4nogctquu3skvxis4npxfukgtqeilbofyclr@nhkrkojv3syh>
- <eba7d968-209d-4acb-ba41-4bebf03e96ba@app.fastmail.com>
-Subject: Re: [PATCH 1/3 v2] dt-bindings: PCI: s32g: Add NXP PCIe controller
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: i2c: hisilicon,hix5hd2-i2c convert to DT
+ schema
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Kael D'Alcamo <dev@kael-k.io>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Wei Yan <sledge.yanwei@huawei.com>,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20251004154808.116143-2-dev@kael-k.io> <aOYRLCGv9_k8i_Vn@shikoro>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <aOYRLCGv9_k8i_Vn@shikoro>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 8, 2025, at 10:26, Arnd Bergmann wrote:
-> On Wed, Oct 8, 2025, at 00:28, Manivannan Sadhasivam wrote:
->> On Tue, Oct 07, 2025 at 05:41:55PM +0200, Lorenzo Pieralisi wrote:
->>> On Mon, Sep 22, 2025 at 11:51:07AM +0530, Manivannan Sadhasivam wrote:
-> On the other hand, what looks like a bug to me is that the CPU
-> physical address range for the PCI BAR space overlaps with the
+On 08/10/2025 16:22, Wolfram Sang wrote:
+> Hi,
+> 
+> thanks for this conversion!
+> 
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - hisilicon,hix5hd2-i2c
+> 
+> Question for DT maintainers: Is it preferred to start with 'enum' right
+> away or to start with 'const' and convert to 'enum' once a second user
+> appears?
 
-s/CPU physical/PCI bus/
 
-> the physical addresses for RAM at 0x80000000 and on-chip devices
-> at 0x40000000. This probably works fine as long as the total
-> PCI memory space assignment stays below 0x40000000 but would
-> fail once addresses actually start clashing.
+I don't have preference except: I would suggest using enum if you
+already think there will be second variant, because it would save one
+re-indent/rewrite of the line.
 
-I got confused here myself, but what I should have said is that
-having the DMA address for the RAM overlap the BAR space
-as seen from PCI is problematic as the PCI host bridge
-cannot tell PCI P2P transfers from DMA to RAM, so one
-of them will be broken here.
+But in this case of old schema this is unlikely, so really does not
+matter for me.
 
-With a bit of luck, the host bridge ends up doing a DMA instead
-of a P2P transfer, but I would not want to rely on that.
+> 
+>> +  "#address-cells":
+>> +    const: 1
+>> +
+>> +  "#size-cells":
+>> +    const: 0
+> 
+> These should be left out because they come from i2c-controller.yaml?
 
-      Arnd
+Yeah, these are redundant.
+
+> 
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +  - "#address-cells"
+>> +  - "#size-cells"
+> 
+> Same here for the last two?
+
+i2c-controller.yaml does not require these I think for a reason - you
+could have enabled empty I2C controller node for user space and having
+these required without actual children causes dtc W=1 or W=2 warning.
+
+so yeah, I would propose to drop these as well.
+
+
+Best regards,
+Krzysztof
 
