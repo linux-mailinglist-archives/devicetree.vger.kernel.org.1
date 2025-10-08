@@ -1,299 +1,118 @@
-Return-Path: <devicetree+bounces-224362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224363-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99361BC35C1
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 06:58:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C0C8BC360D
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 07:24:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 71EDA4E2341
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 04:58:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BBA3A3C4DAF
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 05:24:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A2682BFC9D;
-	Wed,  8 Oct 2025 04:58:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2495C2D877C;
+	Wed,  8 Oct 2025 05:24:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TBdKkmjJ"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="vQiI2Yn/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C8D82BFC60
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 04:58:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B16D2D7DC4
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 05:24:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759899528; cv=none; b=gm0CGS5z8DQIfiwcS75YjXnmPyXi8gIU6lYw7rm4c/FcuSG7SAJAyE4YGir7MIV6IHWAwEbKVwpRJKHKWDOsY/U0wsuH4FhvfSPdveuL3yborA/LWdm3hR4+M6UNPPmIbbijYDxIscRT2a+6nWhjiTcvmn5IzOk6AmfwBgU0Jkk=
+	t=1759901074; cv=none; b=A5KFvsHfOg3hRLytxem0juXL+m6VzQn/VIsSFEB6rg7n6kDkg/CRVFlt1xzkLJIbDW0+YG1toTWqGULsHM58SLZi/moG5h+jmInM2lbhf0OnY6z1nU+PIP9ks9Y6+gi6MmspESXytViBow2MLS8qPVwtNQ0V+rycXHE/bEpChXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759899528; c=relaxed/simple;
-	bh=kVfA3PQBeAMY4VR/yirMkB1CU+nJ+TFUfcnv0HBDb8E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i8sXMhNBv52PXaKWmr4i4Nvwk8unfPjNK0yrAQW9IqDsB5EMyCQII06BVjZTd/947NtkBudgcYIj6HDhAmJMx2WluQMIG1v1RKzjA/OcM4DdttW4jkyiag87BLpiq3+Vsfqz/tgV4dkLmS7cGtsfkEzs96oqQJC+2036HtWKDkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TBdKkmjJ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59803VFW023188
-	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 04:58:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3QbTQI2WQv8U2fmkSw8SyD76J79giWpu9JljQPYNGIk=; b=TBdKkmjJXE31Cvcx
-	tOgQCYSfCLJbxkHZaNMzQo3XTB3Udipr+fxaBcg2y2RCRq0hUIhhQ/mh7m4ctBuz
-	2xSa2fR3zpKjvKTBvy6CKpgukNtanCGxWyXwuX0vDf4HaaDTdAlg2D2jMRHn9u6D
-	QSFM1HASaiH063Vfw6y4hZyEfQ/1gFLu+J815tJZP0gO3JJ0LOG0zvCF8/Z7g9kN
-	HX0kUS/ozLT8Z3isHkAl+uSsyWDUS8g+z21rIMlQSpI/zVzaRt8cd0F0LKyKTPU5
-	7xfbscFojMdGJGSmqmlKlt5z7Qc8TYCWBwqiHmOi8rkk+sREw64vB0kGNpKadoTF
-	s/MugA==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49jtk71dk0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 04:58:45 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-77b73bddbdcso647187b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 21:58:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759899524; x=1760504324;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3QbTQI2WQv8U2fmkSw8SyD76J79giWpu9JljQPYNGIk=;
-        b=mOVLSS5kCYpTgpaW2ffD8f05QvT3T86MoKzXsT92BpzyPT3ETAC0toC/s96cLAJY/D
-         U6slJ1gkR3kg4q+AsQfBDv08u3CH54HToXtaBS03Vff5NCguCoO1gegF16ni3CfNJpwG
-         qbULyxk19aLpefNBkPfPO89oALrS1mIoaDfMslcaPQOl4VU721nExt9TAyahpKWtX5JS
-         3+qT+68nAAKieX54/hTWn0knfJvQ7gSidOXUFW1X5wEk6Rp8aF/B4df5LUIhc2B5VBrh
-         V0h8sYKfpeYZ7pTmPYnPKVsF53xzuuNcI/WdvTnnZn/y4ce+F8x+p40xVHfOGhcJ0Jke
-         CQDQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXWDQt072TyCL2kwv4DYQ4zCUCUQdmdpc98/SpLs9jgCG2by1QgAZMF2T/Sm7zQK68M1oNFdRWM+Ldc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKIh34T9cYXQP/J5hrmyIc+y45PSR/su54T3cAIYvxxG1VELyv
-	AfVCnGg0YWIB/fTojJDorCqfthPVw7vh1thkEE0lI2eWPB9eqgoaqIswvVF3FrGtQRUphYoquG5
-	TR/NbmziMppfWKgg/t/UxwQP+v1MM2bjy1vVmdK856Yq2W937Tnu8lkaappTrWg9j
-X-Gm-Gg: ASbGncvEqT6majJHzV06auK8VvzmWfX3e5Q5PRA75jWwrjv9iRb26zFpAVhVpnX/JI3
-	77EEN8jRc+1ZLVtA3bs/SrneEdqDnzprq2rMhu1PpW/mo44ktE9YdxAA+TldHttphtzBk7lJC9P
-	AGh/aYZTltwNuTQWrGGYrBUz5H0wNbF5Mz6tLJH6cHRihxHzOXa1iXKcyHHANo98VI+DUcpcZGv
-	l2V2qDLX2xt5AeQGklulDI3tsPmZGns9ybL3V0o5cb+IcNck8V8WpPcEac2uJzcUKF+86iLVqht
-	AqWxRsY+hR0SmZaVFMt+r+9XHDFqzDHWFNIHeGlDytePBNCrZMpyRPgRZuvM8/Wen86FNvDb
-X-Received: by 2002:a05:6a00:806:b0:78a:f6be:74f2 with SMTP id d2e1a72fcca58-7939753d3cdmr2164045b3a.5.1759899523395;
-        Tue, 07 Oct 2025 21:58:43 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHPyL1wtsIL9oElD/vW5F/NgaqYtaOb0BSOZcSEm/R3DuE7PYYnwUFcC3CApID3Rwt+++F4JQ==
-X-Received: by 2002:a05:6a00:806:b0:78a:f6be:74f2 with SMTP id d2e1a72fcca58-7939753d3cdmr2164005b3a.5.1759899522532;
-        Tue, 07 Oct 2025 21:58:42 -0700 (PDT)
-Received: from hu-mojha-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-78b020749b6sm17406444b3a.78.2025.10.07.21.58.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 07 Oct 2025 21:58:42 -0700 (PDT)
-Date: Wed, 8 Oct 2025 10:28:36 +0530
-From: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 11/12] remoteproc: qcom: pas: Enable Secure PAS
- support with IOMMU managed by Linux
-Message-ID: <20251008045836.vf4wz6cevosw6klq@hu-mojha-hyd.qualcomm.com>
-References: <20251007-kvm_rprocv4_next-20251007-v4-0-de841623af3c@oss.qualcomm.com>
- <20251007-kvm_rprocv4_next-20251007-v4-11-de841623af3c@oss.qualcomm.com>
- <fo6q3gl3dmcso5gcfp2taaao3qwazxw5uutkcwi6qg4aojt2av@tprjv3xhcs57>
+	s=arc-20240116; t=1759901074; c=relaxed/simple;
+	bh=37OZMA1ahP4rR/1YHGb7OtZAePrK+tQ5/lS20oXfdJg=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=aULAg1U8qovw07HBHX5gOkiOzGC3VV6F5i8grWHH30zNjI4oFZw/vdHOec3manun/zzLv/fcTuVv1r8X8ObUDFm70iIqlcWwHE5dTCBGOoHhfcV0/lSFCVddngtdAJNzg0WysUdyJCpLZWXtuaabaF5yitfdajLQsSxJcgNXwTs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=vQiI2Yn/; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20251008052428epoutp028dc11699f7222b8b178433a4e8990063~sbLKIFYPn3215232152epoutp02E
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 05:24:28 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20251008052428epoutp028dc11699f7222b8b178433a4e8990063~sbLKIFYPn3215232152epoutp02E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1759901068;
+	bh=37OZMA1ahP4rR/1YHGb7OtZAePrK+tQ5/lS20oXfdJg=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=vQiI2Yn/60l2SHMdACjGSrGhyE7wcDZB3oN06BLfqUKEGEinboJMoHavj/lYI3eyC
+	 dQHrvUIy0AA0nWrueMt9KahLR+Zk/lTVrkUNXGKySeOt7Q0FUsOsLurk0G+6tN8iX8
+	 XBfDBc+HE+ia0LQwiLdY7dCxAc+5d0eU8zSP97Xo=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
+	20251008052427epcas5p1bba76aa459c3fee2a5529d499812f82b~sbLJduMLZ1701517015epcas5p1L;
+	Wed,  8 Oct 2025 05:24:27 +0000 (GMT)
+Received: from epcas5p4.samsung.com (unknown [182.195.38.95]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4chLzG5Htyz6B9m5; Wed,  8 Oct
+	2025 05:24:26 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20251008052426epcas5p2e216f47cb17e3b4c8fafc458a60eeac5~sbLIF68Xl1998519985epcas5p27;
+	Wed,  8 Oct 2025 05:24:26 +0000 (GMT)
+Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20251008052422epsmtip1b0c0404216e801ee646f92e8a0bfcfc1~sbLE5pAWN1322713227epsmtip1H;
+	Wed,  8 Oct 2025 05:24:22 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: =?utf-8?Q?'Andr=C3=A9_Draszik'?= <andre.draszik@linaro.org>, "'Greg
+ Kroah-Hartman'" <gregkh@linuxfoundation.org>, "'Rob Herring'"
+	<robh@kernel.org>, "'Krzysztof Kozlowski'" <krzk+dt@kernel.org>, "'Conor
+ Dooley'" <conor+dt@kernel.org>
+Cc: "'Peter Griffin'" <peter.griffin@linaro.org>, "'Tudor Ambarus'"
+	<tudor.ambarus@linaro.org>, "'Will McVicker'" <willmcvicker@google.com>,
+	<kernel-team@android.com>, "'Krzysztof Kozlowski'" <krzk@kernel.org>,
+	<linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>
+In-Reply-To: <20251007-power-domains-dt-bindings-usb-samsung-exynos-dwc3-v1-1-b63bacad2b42@linaro.org>
+Subject: RE: [PATCH] dt-bindings: usb: samsung,exynos-dwc3: add
+ power-domains
+Date: Wed, 8 Oct 2025 10:54:20 +0530
+Message-ID: <000001dc3813$d00ae020$7020a060$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fo6q3gl3dmcso5gcfp2taaao3qwazxw5uutkcwi6qg4aojt2av@tprjv3xhcs57>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAxNyBTYWx0ZWRfX2rSFfnrr1ebI
- 9QkfrW9EuI55Zx9FvNctTe54Q5K2frVZd06L7Ozk6UJePv/4thK8SKKr32CwFeB7K5CYNshgZL8
- zfK5dJqx92Ou0ehqT6ROL0QIFguED+P4knrYT2jcHLgIT4/6lFnfCxnFPSijT/E5FX/GQBZw1Ut
- lpLRbqwJHuBmssmrWsg7qT2AshbHY0ZWJUlStea24VaskX/5XbgCJCtkpb+8Wbs75yVV1LzvR2s
- q2viOFG8wyYOYNMpDtUaCwr/vF0xYDGwLm9T3fUI0EMc23ySob51q3OeeKYYuusOXJqfq1uPhaA
- CeLh18Ii8UIaR/V76cjmX24RNhF6BW1GRRRNqs48nM372KL7HHR+oIRYIgagX2a+aUSy7gy738Q
- iinRZBIa8TFWIZu7oGxfmomaZOjlIg==
-X-Authority-Analysis: v=2.4 cv=do3Wylg4 c=1 sm=1 tr=0 ts=68e5ef85 cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=kZm2_AX0drxy1KB4Y_MA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22
-X-Proofpoint-GUID: uNESEYDfn-v8GvFwT58HNUqoUu5SgkYU
-X-Proofpoint-ORIG-GUID: uNESEYDfn-v8GvFwT58HNUqoUu5SgkYU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-07_02,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 adultscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015
- malwarescore=0 spamscore=0 impostorscore=0 priorityscore=1501 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040017
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQKVekh1tGGcjz0jubEbe89UqPOX0gImOeLnszQBBMA=
+Content-Language: en-us
+X-CMS-MailID: 20251008052426epcas5p2e216f47cb17e3b4c8fafc458a60eeac5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20251007155511epcas5p3a6f9e083226f902027828e97ed49af76
+References: <CGME20251007155511epcas5p3a6f9e083226f902027828e97ed49af76@epcas5p3.samsung.com>
+	<20251007-power-domains-dt-bindings-usb-samsung-exynos-dwc3-v1-1-b63bacad2b42@linaro.org>
 
-On Tue, Oct 07, 2025 at 02:52:13PM -0700, Manivannan Sadhasivam wrote:
-> On Tue, Oct 07, 2025 at 10:18:56PM +0530, Mukesh Ojha wrote:
-> > Most Qualcomm platforms feature Gunyah hypervisor, which typically
-> > handles IOMMU configuration. This includes mapping memory regions and
-> > device memory resources for remote processors by intercepting
-> > qcom_scm_pas_auth_and_reset() calls. These mappings are later removed
-> > during teardown. Additionally, SHM bridge setup is required to enable
-> > memory protection for both remoteproc metadata and its memory regions.
-> > When the aforementioned hypervisor is absent, the operating system must
-> > perform these configurations instead.
-> > 
-> > When Linux runs as the hypervisor (@ EL2) on a SoC, it will have its
-> > own device tree overlay file that specifies the firmware stream ID now
-> > managed by Linux for a particular remote processor. If the iommus
-> > property is specified in the remoteproc device tree node, it indicates
-> > that IOMMU configuration must be handled by Linux. In this case, the
-> > has_iommu flag is set for the remote processor, which ensures that the
-> > resource table, carveouts, and SHM bridge are properly configured before
-> > memory is passed to TrustZone for authentication. Otherwise, the
-> > has_iommu flag remains unset, which indicates default behavior.
-> > 
-> > Enables Secure PAS support for remote processors when IOMMU configuration
-> > is managed by Linux.
-> > 
-> > Signed-off-by: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>
-> > ---
-> >  drivers/remoteproc/qcom_q6v5_pas.c | 61 ++++++++++++++++++++++++++++++++++----
-> >  1 file changed, 56 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-> > index ed7bd931dfd5..940fd89d4fc4 100644
-> > --- a/drivers/remoteproc/qcom_q6v5_pas.c
-> > +++ b/drivers/remoteproc/qcom_q6v5_pas.c
-> > @@ -11,6 +11,7 @@
-> >  #include <linux/delay.h>
-> >  #include <linux/firmware.h>
-> >  #include <linux/interrupt.h>
-> > +#include <linux/iommu.h>
-> >  #include <linux/kernel.h>
-> >  #include <linux/module.h>
-> >  #include <linux/of.h>
-> > @@ -255,6 +256,22 @@ static int qcom_pas_load(struct rproc *rproc, const struct firmware *fw)
-> >  	return ret;
-> >  }
-> >  
-> > +static void qcom_pas_unmap_carveout(struct rproc *rproc, phys_addr_t mem_phys, size_t size)
-> > +{
-> > +	if (rproc->has_iommu)
-> > +		iommu_unmap(rproc->domain, mem_phys, size);
-> > +}
-> > +
-> > +static int qcom_pas_map_carveout(struct rproc *rproc, phys_addr_t mem_phys, size_t size)
-> > +{
-> > +	int ret = 0;
-> > +
-> > +	if (rproc->has_iommu)
-> > +		ret = iommu_map(rproc->domain, mem_phys, mem_phys, size,
-> > +				IOMMU_READ | IOMMU_WRITE, GFP_KERNEL);
-> > +	return ret;
-> > +}
-> > +
-> >  static int qcom_pas_start(struct rproc *rproc)
-> >  {
-> >  	struct qcom_pas *pas = rproc->priv;
-> > @@ -289,11 +306,15 @@ static int qcom_pas_start(struct rproc *rproc)
-> >  	}
-> >  
-> >  	if (pas->dtb_pas_id) {
-> > -		ret = qcom_scm_pas_auth_and_reset(pas->dtb_pas_id);
-> > +		ret = qcom_pas_map_carveout(rproc, pas->dtb_mem_phys, pas->dtb_mem_size);
-> > +		if (ret)
-> > +			goto disable_px_supply;
-> > +
-> > +		ret = qcom_scm_pas_prepare_and_auth_reset(pas->dtb_pas_ctx);
-> >  		if (ret) {
-> >  			dev_err(pas->dev,
-> >  				"failed to authenticate dtb image and release reset\n");
-> > -			goto disable_px_supply;
-> > +			goto unmap_dtb_carveout;
-> >  		}
-> >  	}
-> >  
-> > @@ -304,18 +325,22 @@ static int qcom_pas_start(struct rproc *rproc)
-> >  
-> >  	qcom_pil_info_store(pas->info_name, pas->mem_phys, pas->mem_size);
-> >  
-> > -	ret = qcom_scm_pas_auth_and_reset(pas->pas_id);
-> > +	ret = qcom_pas_map_carveout(rproc, pas->mem_phys, pas->mem_size);
-> > +	if (ret)
-> > +		goto release_pas_metadata;
-> > +
-> > +	ret = qcom_scm_pas_prepare_and_auth_reset(pas->pas_ctx);
-> >  	if (ret) {
-> >  		dev_err(pas->dev,
-> >  			"failed to authenticate image and release reset\n");
-> > -		goto release_pas_metadata;
-> > +		goto unmap_carveout;
-> >  	}
-> >  
-> >  	ret = qcom_q6v5_wait_for_start(&pas->q6v5, msecs_to_jiffies(5000));
-> >  	if (ret == -ETIMEDOUT) {
-> >  		dev_err(pas->dev, "start timed out\n");
-> >  		qcom_scm_pas_shutdown(pas->pas_id);
-> > -		goto release_pas_metadata;
-> > +		goto unmap_carveout;
-> >  	}
-> >  
-> >  	qcom_scm_pas_metadata_release(pas->pas_ctx);
-> > @@ -327,10 +352,16 @@ static int qcom_pas_start(struct rproc *rproc)
-> >  
-> >  	return 0;
-> >  
-> > +unmap_carveout:
-> > +	qcom_pas_unmap_carveout(rproc, pas->mem_phys, pas->mem_size);
-> >  release_pas_metadata:
-> >  	qcom_scm_pas_metadata_release(pas->pas_ctx);
-> >  	if (pas->dtb_pas_id)
-> >  		qcom_scm_pas_metadata_release(pas->dtb_pas_ctx);
-> > +
-> > +unmap_dtb_carveout:
-> > +	if (pas->dtb_pas_id)
-> > +		qcom_pas_unmap_carveout(rproc, pas->dtb_mem_phys, pas->dtb_mem_size);
-> >  disable_px_supply:
-> >  	if (pas->px_supply)
-> >  		regulator_disable(pas->px_supply);
-> > @@ -386,8 +417,12 @@ static int qcom_pas_stop(struct rproc *rproc)
-> >  		ret = qcom_scm_pas_shutdown(pas->dtb_pas_id);
-> >  		if (ret)
-> >  			dev_err(pas->dev, "failed to shutdown dtb: %d\n", ret);
-> > +
-> > +		qcom_pas_unmap_carveout(rproc, pas->dtb_mem_phys, pas->dtb_mem_size);
-> >  	}
-> >  
-> > +	qcom_pas_unmap_carveout(rproc, pas->mem_phys, pas->mem_size);
-> > +
-> >  	handover = qcom_q6v5_unprepare(&pas->q6v5);
-> >  	if (handover)
-> >  		qcom_pas_handover(&pas->q6v5);
-> > @@ -757,6 +792,20 @@ static int qcom_pas_probe(struct platform_device *pdev)
-> >  		return -ENOMEM;
-> >  	}
-> >  
-> > +	if (of_property_present(pdev->dev.of_node, "iommus")) {
-> > +		struct of_phandle_args args;
-> > +
-> > +		ret = of_parse_phandle_with_args(pdev->dev.of_node, "iommus",
-> > +						 "#iommu-cells", 0, &args);
-> > +		if (ret < 0)
-> > +			return ret;
-> > +
-> > +		rproc->has_iommu = true;
-> > +		of_node_put(args.np);
-> > +	} else {
-> > +		rproc->has_iommu = false;
-> 
-> Default value is false, is't it?
 
-Thanks, will drop the else part.
 
-> 
-> - Mani
-> 
-> -- 
-> மணிவண்ணன் சதாசிவம்
-
--- 
--Mukesh Ojha
+> -----Original Message-----
+> From: Andr=C3=A9=20Draszik=20<andre.draszik=40linaro.org>=0D=0A>=20Sent:=
+=20Tuesday,=20October=207,=202025=209:25=20PM=0D=0A>=20To:=20Greg=20Kroah-H=
+artman=20<gregkh=40linuxfoundation.org>;=20Rob=20Herring=0D=0A>=20<robh=40k=
+ernel.org>;=20Krzysztof=20Kozlowski=20<krzk+dt=40kernel.org>;=20Conor=0D=0A=
+>=20Dooley=20<conor+dt=40kernel.org>;=20Alim=20Akhtar=20<alim.akhtar=40sams=
+ung.com>=0D=0A>=20Cc:=20Peter=20Griffin=20<peter.griffin=40linaro.org>;=20T=
+udor=20Ambarus=0D=0A>=20<tudor.ambarus=40linaro.org>;=20Will=20McVicker=20<=
+willmcvicker=40google.com>;=0D=0A>=20kernel-team=40android.com;=20Krzysztof=
+=20Kozlowski=20<krzk=40kernel.org>;=20linux-=0D=0A>=20usb=40vger.kernel.org=
+;=20devicetree=40vger.kernel.org;=20linux-arm-=0D=0A>=20kernel=40lists.infr=
+adead.org;=20linux-samsung-soc=40vger.kernel.org;=20linux-=0D=0A>=20kernel=
+=40vger.kernel.org;=20Andr=C3=A9=20Draszik=20<andre.draszik=40linaro.org>=
+=0D=0A>=20Subject:=20=5BPATCH=5D=20dt-bindings:=20usb:=20samsung,exynos-dwc=
+3:=20add=20power-=0D=0A>=20domains=0D=0A>=20=0D=0A>=20The=20DWC3=20can=20be=
+=20part=20of=20a=20power=20domain,=20so=20we=20need=20to=20allow=20the=20re=
+levant=0D=0A>=20property=20'power-domains'.=0D=0A>=20=0D=0A>=20Signed-off-b=
+y:=20Andr=C3=A9=20Draszik=20<andre.draszik=40linaro.org>=0D=0A>=20---=0D=0A=
+Thanks=21=0D=0AReviewed-by:=20Alim=20Akhtar=20<alim.akhtar=40samsung.com>=
+=0D=0A=0D=0A
 
