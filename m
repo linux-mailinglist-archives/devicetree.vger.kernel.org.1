@@ -1,123 +1,153 @@
-Return-Path: <devicetree+bounces-224594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E43E4BC5B95
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 17:39:40 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 389D4BC5E75
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 17:58:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D67B24FA44A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 15:37:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B15C04FC6E8
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 15:53:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E99852FB97D;
-	Wed,  8 Oct 2025 15:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 133EB29B233;
+	Wed,  8 Oct 2025 15:51:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JOvkIdvK"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UzELlqbt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5458E2F998A;
-	Wed,  8 Oct 2025 15:33:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EE22258EEA
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 15:51:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759937627; cv=none; b=tmV7Q6ZbQ78NwM+RhHREPgJ9GolIwaJcUTXG6sznqopFogA8d9/Vu0In+cx6aLf8010+7vcoy2ZC0UJDgcdoJXJ/+RCKqJgMRfDw7deUMG3C6HJO+H+bewkM7laBvKse1vuHV6iAO3oeDD7rD1KN0Ldqy+dmXjBS+GqGOb4vtR0=
+	t=1759938709; cv=none; b=stmG74cIipzo5hTdbmWlv88sQ7Lgi65nN5MBN9+dvnZWShgicydfDZMldG4+NtvIUTwwt18teU930XdXQSlDSa8cANt0MPo3p0ipkw0HgdSKvFMVvwdGamRFW4whrBxpFhrSEyhrc/rfFR9+ZvdGJxFAJwAVvHb2e738a95FjO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759937627; c=relaxed/simple;
-	bh=eVOsFH8osOeZ8GHSlQlqi0o9HHh6RBAnnXxTD6MchR0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=XhmN5IfDYuZh1kJJTsv42kUDqXcmHE6QESphXDJ5ogSzgHRY6W/fATWhxB6b8nEeUACREsdpkM7W2QO0QC8vHRS4uw+4joe0GaObY/2CFqhige+KJzpBTAw+Si6N6KET8X6o6yCqRHkPPLqzUL0eiQeUgHcKtJGxi25lJHybJQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JOvkIdvK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 1C4EEC116D0;
-	Wed,  8 Oct 2025 15:33:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759937627;
-	bh=eVOsFH8osOeZ8GHSlQlqi0o9HHh6RBAnnXxTD6MchR0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=JOvkIdvKAasO3xCoq/L5vJozz+ODbzwBc0z5L17uzeoK2L+bffNxUdtXm8sBNiFxs
-	 4Ta5uLvWKrFBIzDWyDaJHHy3ENMR0l7Ebavm8rk2IP//Sn4LKIdG/L9a1H1Erelq5m
-	 XrZDzAMYXsB3ZrCRhTLN1eF0d251rWveB1gdA0+iXaJEtGtvIKDcQmLz0zKoFmIlZE
-	 OLdjrpMPQhU0GXpxl61+qcCs3poHTTha50DDMU9eT0gJqMrMxhA+7DZKWHaQKVfFda
-	 XHu8OUmigZPw/KrrLFJhmzKV3DiWTAkao0YWs4caur94kOlBOve/eH5tNB3OJVRR0a
-	 k1eJPQp6d939A==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 117B4CCA470;
-	Wed,  8 Oct 2025 15:33:47 +0000 (UTC)
-From: George Moussalem via B4 Relay <devnull+george.moussalem.outlook.com@kernel.org>
-Date: Wed, 08 Oct 2025 19:33:01 +0400
-Subject: [PATCH v17 9/9] arm64: dts: qcom: ipq9574: add pwm node
+	s=arc-20240116; t=1759938709; c=relaxed/simple;
+	bh=eyxcEGk5La7pCXllukSF0zv12uqJ+J81tlCMdMokhAE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aqQVCxXmqfDlN3sA+T8SzV1Z7uFejhloFkyo5cQ0JeGDO/W9XdNiR7eg2NtYURMtpkRtJqoYUQWhj3kHa/Si5LwoJaZasSeip8Qs2kmJzmeNs0PZ9kYwMnnJexiRGegP1+rx4cQZrgDvknAIj+fkEjDRyRwVK5HiAMzf8RSVxKE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UzELlqbt; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59890N2n014182
+	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 15:51:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=RcwrCuhkeTvKEu0J3KBAezZB
+	eXuc0UhImZ4vhS6DyQ4=; b=UzELlqbtZYwto0rau/q/lK+qg/21eXHcVNBzrFuQ
+	2ejLtnv2+C/y0UbHKw/2Bc2ly2P3LFwMybj/jfAdi8XKOY1qQfZqwrCSMjXu4hwg
+	QtHSjjjRFd0PtEfH8uWw2Kb9RPUJ2HxW0IxFppa9IWw36UeNlKfDTyUb1HpRGvct
+	kEzTQuaZouTPrNZDXijQ35HdyezC6ZDZgjBXgIDwAm8lGSHfuB1qNADAZXPRJuWo
+	qosmi6+hEFQ6BSg+sNiAoUQQVKZX/6G2T03CW9pYTNDg60F2yi56f1GgcRm0cQLu
+	3dUnGELxdBEnqRF+McrBiEzTd2DDHKF7VBzzciNU8/n1UQ==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49mgd0puyf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 15:51:46 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4dfc05dec2fso303471951cf.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 08:51:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759938705; x=1760543505;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RcwrCuhkeTvKEu0J3KBAezZBeXuc0UhImZ4vhS6DyQ4=;
+        b=Qgf1WUBBMFe/sDO/PP8ZIEZ02vmWi/9KvSyq1jW77Y9IEhdwFsSMuuj7iOg8GZpY45
+         f2juQnbQUN58dPGQiwqCVNXL/0v9okQSVCo/+TFs/Ht8/G0HuwJ7Oqet8K6RQ9lR4iq7
+         xkYi/h+TMzHCCvKctpg1tnaX5Y7MMOC+Ei9zkVlVXfYXsjALRdICeIj4gk7KHmqDNUuo
+         ucDo5Qj5O47mm20JcCs0IOth7B5fIBBDFZhJ4kULVWhW55zerxAxHWhFMDBsF0CpNLaG
+         HSynqvpugGIH3PhHu8wlydVfeyZ0B8ibO16zVg9J9tzNPFl8RYLsSzWDRWqrAgn0LY6T
+         BgyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVTvczGlj1vKDFlrPMAj62Y6JfuJ59XtMV1ZyNhV4MD48e0BsI8eA9WIjT/5DnH7WgnW/66djH4EtDc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw+CQELZVlAVROdxxa7d0K5MsepcwFtRY4B2P0A3hL5qP/+loqM
+	MCz1QwJ6WuDg8lUxZ7dvgln+mJqALjX3OvkqEVujB/GCIh4yEtIdeIaCS/kLERPrb7MIu34/hPq
+	O4mjoKdv6NRS+M8CnR+xIVKo6lx1NdQp8ADg1mvGPUmD7Lih36olT1O/CTxXuSdPb
+X-Gm-Gg: ASbGncuNIT5InVd1yx1iHAW8Q8MJmXqWkPTPyNuPCOA4Jus51F9PN8KPqjJUiJmCKXv
+	gMiMZuEdnMNxgRcH2GOo8Izo578wAzLIcNzmLrcdJHBFeHd8SesdBL2xWHhN4poP7ymZJueCK5z
+	0grs+uwaGkNUd7+o1xzeIh2wT0x8u8eIBJ/MLHLBq/4yM3U4cKI2EoC9pxRGMB5BDGGOlFrC9xD
+	13wZva2L8w5rAV/5X8Kvfoo8LOVk+Xd8guYycrura/k/GAP0W6Cjz/52uEkzOH7Wox7IecNv7+l
+	c9n81QtE0Cvr8FYqeAl1S4+5N4Vp6JlLNOLVXsoc8nADslxGzxFuKz8tmUidVZg+mmQK6LupTQR
+	Ah2KMvdnFJGwr/bAlYQCoSGTX8PLnIa0OtWcbb1RQTu5qfA4yJAb/Ha0kbA==
+X-Received: by 2002:a05:622a:30a:b0:4e5:c50:54c9 with SMTP id d75a77b69052e-4e6eaccbd6amr57213531cf.14.1759938705302;
+        Wed, 08 Oct 2025 08:51:45 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFz9nJurxqqfXeqyo/dKVySyAMhAg+u4zXN9CPjAveUmFiC40Vh1yMZggNhpP1YkzNwKyeM9g==
+X-Received: by 2002:a05:622a:30a:b0:4e5:c50:54c9 with SMTP id d75a77b69052e-4e6eaccbd6amr57213131cf.14.1759938704793;
+        Wed, 08 Oct 2025 08:51:44 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-375f3b8213csm20602691fa.48.2025.10.08.08.51.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Oct 2025 08:51:43 -0700 (PDT)
+Date: Wed, 8 Oct 2025 18:51:41 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Richard Acayan <mailingradian@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Tianshu Qiu <tian.shu.qiu@intel.com>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Robert Mader <robert.mader@collabora.com>
+Subject: Re: [PATCH v3 3/4] arm64: dts: qcom: sdm670: remove camss endpoint
+ nodes
+Message-ID: <tqepksd5rtlbgpih62vmw3n47lwbulkjgg2atcnndtykvnihkr@5464jxsoy2w4>
+References: <20250905215516.289998-6-mailingradian@gmail.com>
+ <20250905215516.289998-9-mailingradian@gmail.com>
+ <95704b74-52e7-4831-bc93-d4d7aa32736f@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251008-ipq-pwm-v17-9-9bd43edfc7f7@outlook.com>
-References: <20251008-ipq-pwm-v17-0-9bd43edfc7f7@outlook.com>
-In-Reply-To: <20251008-ipq-pwm-v17-0-9bd43edfc7f7@outlook.com>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Baruch Siach <baruch@tkos.co.il>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- George Moussalem <george.moussalem@outlook.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759937623; l=1234;
- i=george.moussalem@outlook.com; s=20250321; h=from:subject:message-id;
- bh=qc4VIzmfGZ/Xd+TOMpfJif2wj3plsSY0LnXsUU/Cm6A=;
- b=kdV2vbA1Dga3vyES71ONOlSMDOa1obqQ9fBP2whZgu3oe3HCJspmEAOggz5qK9ydJxnCXqMgD
- 3z1S8ogGsRuCv9c2BeNpVoRQ2k13z4v7IvAoO6q5cIhZ0fyXRIZZfWz
-X-Developer-Key: i=george.moussalem@outlook.com; a=ed25519;
- pk=/PuRTSI9iYiHwcc6Nrde8qF4ZDhJBlUgpHdhsIjnqIk=
-X-Endpoint-Received: by B4 Relay for george.moussalem@outlook.com/20250321
- with auth_id=364
-X-Original-From: George Moussalem <george.moussalem@outlook.com>
-Reply-To: george.moussalem@outlook.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <95704b74-52e7-4831-bc93-d4d7aa32736f@oss.qualcomm.com>
+X-Proofpoint-GUID: peDfxMTkFeT-HT4V32SXEYWi6Tzj4bJZ
+X-Authority-Analysis: v=2.4 cv=T8aBjvKQ c=1 sm=1 tr=0 ts=68e68892 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=gJjvgzWfCafZWgNBPEkA:9
+ a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: peDfxMTkFeT-HT4V32SXEYWi6Tzj4bJZ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA2MDEyMyBTYWx0ZWRfX2u2YFI8LQN+j
+ d3BzpkMaISSYQK6o07Qb/5GPq0gAYuOgu9EO0h+MdgDGmyu9e+uHEFkD1CeDHafckJ0XFMVgnef
+ j0tmkBv6yEYniQjoNRf67O/j6ybsnGUbso3Cw7XYqge1Tv9s8gd4ihCbvPPdEfuiTpf6lCaPPqT
+ Iapt9rttqzviccvwNKHbadiFfgMgSKSrulIq4BXvDqQsDBnbuq6WP32JSEqL0IG9OovtoxqDVpM
+ 1BPPPecOChOfSPBa2NRA4rZU5gLZTfoXCwttAfQiJaftKn/v/xdaU+7sU9CsbYm2ORXMk51sPvx
+ JEjJwhab4Tqn4YsFkeU7A+T7+mdELfWQa0PCUCJIiJOVSYpw8mg1B5TJXE5EnfNKiAmvUPMEETa
+ x4xdoGpLgdkipI2AbnGgwo4qcP4sNg==
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-08_05,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 phishscore=0 clxscore=1015 priorityscore=1501
+ impostorscore=0 lowpriorityscore=0 suspectscore=0 bulkscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510060123
 
-From: George Moussalem <george.moussalem@outlook.com>
+On Wed, Oct 08, 2025 at 12:05:55PM +0200, Konrad Dybcio wrote:
+> On 9/5/25 11:55 PM, Richard Acayan wrote:
+> > There is no need to add these by default for all of SDM670. Originally,
+> > they were added so there could be a label for each port. This is
+> > unnecessary if the endpoints are all added in a fixup to the camss node.
+> > 
+> > Suggested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > Link: https://lore.kernel.org/r/488281f6-5e5d-4864-8220-63e2a0b2d7f2@linaro.org
+> 
+> my comment on that discussion is "????????"
+> 
+> referring to nodes by label is the least error-prone way
 
-Describe the PWM block on IPQ9574.
-
-Although PWM is in the TCSR area, make pwm its own node as simple-mfd
-has been removed from the bindings and as such hardware components
-should have its own node.
-
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: George Moussalem <george.moussalem@outlook.com>
----
- arch/arm64/boot/dts/qcom/ipq9574.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-index 86c9cb9fffc98fdd1b0b08e81428ce5e7bb87e17..8dba80d76d609a317a66f514c64ab8f5612e6938 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-+++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-@@ -449,6 +449,16 @@ tcsr: syscon@1937000 {
- 			reg = <0x01937000 0x21000>;
- 		};
- 
-+		pwm: pwm@1941010 {
-+			compatible = "qcom,ipq9574-pwm", "qcom,ipq6018-pwm";
-+			reg = <0x01941010 0x20>;
-+			clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+			assigned-clocks = <&gcc GCC_ADSS_PWM_CLK>;
-+			assigned-clock-rates = <100000000>;
-+			#pwm-cells = <2>;
-+			status = "disabled";
-+		};
-+
- 		sdhc_1: mmc@7804000 {
- 			compatible = "qcom,ipq9574-sdhci", "qcom,sdhci-msm-v5";
- 			reg = <0x07804000 0x1000>,
++1. I'd suggest keeping the empty endpoints, unless we have the actual
+usecase where are more than one endpoint under the port.
 
 -- 
-2.51.0
-
-
+With best wishes
+Dmitry
 
