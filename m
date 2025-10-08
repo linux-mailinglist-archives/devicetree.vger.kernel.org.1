@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-224336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B9C3BC324E
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 04:08:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DED1BC3269
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 04:15:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 627424E4741
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 02:08:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1BCB13B3110
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 02:15:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDC8129ACC5;
-	Wed,  8 Oct 2025 02:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 219BC29B8DB;
+	Wed,  8 Oct 2025 02:15:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SxCTSb7z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h0WG2A+y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3AC521A458;
-	Wed,  8 Oct 2025 02:08:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9DCA47F77;
+	Wed,  8 Oct 2025 02:15:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759889300; cv=none; b=n8ysjpvgXucr699cXm+wS4o0QVXXouZDoweSNnWVV5DofjAVQEYVaDC4SXVLkMdcz4yjBObrvxIGt7Zd9UzMBfk2fFaLDv+wBgS470D4zj68PwkL5tjpWL86N6QIc2JURHv5VB2LbTvM5a2MZDBvNq7LIlYRQSuXxg9GJNgs6y8=
+	t=1759889743; cv=none; b=aCOU4gQGxBIxQ0eyBPLcuN/5Gu6S5uhUdqSq2BiUZ0Vf3pfQBDhFVChlN6GRuMI9ghebhTudXThhpDNb0Ha1SopyQ3E/tMjZ+WrUmo2NI5F2ckmZQGbVk6jdFzFNEXMlUA8DEGY5nrKrFb32CxmnKw09iawv0HtBjwpePbKpRkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759889300; c=relaxed/simple;
-	bh=ydq/SM54tbseQxtKXXt5aBtDmQSrUTTs+CQh2BdmPjI=;
+	s=arc-20240116; t=1759889743; c=relaxed/simple;
+	bh=UqdLv5dDvw/u9UwlLkqWtifSnPQdBr+bKwXEvuTHVoM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=B2LfJ4SLBiochPPhkJaf9ow6TmIgAy2pFSxSaLBx2RJ8yPaiXm/qbZYdSWcz4TnAQCavZliYVfJD+gY9M8GxtmNH7Jcfn4x2Mz7HblcuxXl3Fbw5W647VSUmaWZF0YPSQjQnFnW19JmqMQvXIhng+i9hyJACBVBTkNeDUrvZA+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SxCTSb7z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F803C4CEF1;
-	Wed,  8 Oct 2025 02:08:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=upf0ItP5tLZN+kgwr+66Gwx9l+8bYpsCsVFhcqrFDib9pgafoJBQMpsyN+1gH0031Mxv2L8/6RgqpAGOErWHk1D35YNnrXzP33+adB3GNxzqjqeermBmCWsPVP6aM52Wl3P8rCWBEmEI0wsceU3pSxEP5VkYhd1yfAVuSgqo9BY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h0WG2A+y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F07E6C4CEF1;
+	Wed,  8 Oct 2025 02:15:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759889300;
-	bh=ydq/SM54tbseQxtKXXt5aBtDmQSrUTTs+CQh2BdmPjI=;
+	s=k20201202; t=1759889742;
+	bh=UqdLv5dDvw/u9UwlLkqWtifSnPQdBr+bKwXEvuTHVoM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=SxCTSb7zPS9+9dbADpNPTdpGpyXBSCAaf18Sw3Sapq2Q0nBmnCuXzhWx/P6o1l43M
-	 2p3TQMMOksR0nNmpVxtUyoMIVMi/db77QQa2yua6Ip16va0IzOPpXyu5x+TGsJ9ziv
-	 D5r8zAHnwmPGxPN5D+hrxYGJ2DZrGxGzyTRFjnO0xSDR5trgzD1Pc4DfzOp9QZjNwG
-	 u10j8FWUzeG1iVoQU2TWrSinZd9421Fh78dmzP9kPQFwHmvehupP8qwvv2LftbZIkF
-	 wio7RkH6aj2Qh2ir8AIHUl21zgHCEOX4+ljfM/Fw2L8+oQ+B95OPU6kcSNIZrhs29W
-	 Ksy4gbAwM5vRg==
-Message-ID: <d126b69d-7030-4950-9783-9d505132a0c6@kernel.org>
-Date: Wed, 8 Oct 2025 11:08:13 +0900
+	b=h0WG2A+y1Obvn+P0gb5MW8ZcDg5MVnVxd891CrynfsCxzHqXlMeMwu9uKRSkkdTp6
+	 zjBJJkMnFY75Zt4T1uwoZbuLQ+iC1x+lRbk6ZYofEZR2MjKHQx4+0uGkkgbxeYdC2R
+	 3kK8iBdOuWWwKOd8vzWzwaHtIPs9tbbZbcsJDRNuK6/qy/EzXsZ+Y0jIUydQmK+xHM
+	 9NclCKwYAXrmOIQyWxe3vXAGG4w/Qwza+nE6kshVtorz4YkndF+pA0Xk6yU2rbggPu
+	 MehmJqeFf5OwCY9jmcb7ALd4AqRAoWBouu/wyjLyalalLUON9Xon+78ZHbA2Rxk9E5
+	 mUUMd/hAONKbg==
+Message-ID: <d53e69bb-4c21-48b9-a50c-c7409eba7d98@kernel.org>
+Date: Wed, 8 Oct 2025 11:15:33 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: phy: samsung,ufs-phy: add power-domains
+Subject: Re: [PATCH] dt-bindings: phy: samsung,usb3-drd-phy: add power-domains
 To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
  Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Marek Szyprowski <m.szyprowski@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>
 Cc: Peter Griffin <peter.griffin@linaro.org>,
  Tudor Ambarus <tudor.ambarus@linaro.org>,
  Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
  linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org
-References: <20251007-power-domains-dt-bindings-phy-samsung-ufs-phy-v1-1-d9030d14af59@linaro.org>
+References: <20251007-power-domains-phy-samsung-usb3-drd-phy-v1-1-3cb5f80a72ef@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,16 +108,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251007-power-domains-dt-bindings-phy-samsung-ufs-phy-v1-1-d9030d14af59@linaro.org>
+In-Reply-To: <20251007-power-domains-phy-samsung-usb3-drd-phy-v1-1-3cb5f80a72ef@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 08/10/2025 01:01, André Draszik wrote:
-> The UFS phy can be part of a power domain, so we need to allow the
+On 08/10/2025 01:00, André Draszik wrote:
+> The USB phy can be part of a power domain, so we need to allow the
 > relevant property 'power-domains'.
 > 
 > Signed-off-by: André Draszik <andre.draszik@linaro.org>
 > ---
+>  Documentation/devicetree/bindings/phy/samsung,usb3-drd-phy.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+
+You sent another phy patch, so the best if you combine them into
+patchset - it's still the same subsystem, phy. No need to resend just
+for that.
+
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
