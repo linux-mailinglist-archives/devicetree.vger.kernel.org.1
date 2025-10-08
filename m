@@ -1,307 +1,131 @@
-Return-Path: <devicetree+bounces-224375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3DBABC375F
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 08:21:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68521BC3783
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 08:26:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A6223BF8DF
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 06:21:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FF8F19E1803
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 06:27:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C5C2EA752;
-	Wed,  8 Oct 2025 06:21:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B9272E03EB;
+	Wed,  8 Oct 2025 06:26:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HC8sLZQT"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="La3EXbgP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A1522EA736;
-	Wed,  8 Oct 2025 06:21:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF01925C818
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 06:26:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759904486; cv=none; b=Wf+C6ACcJjbOmG6YWGOTjStK6GKzXfXYyI8znNS+F4nBI1eGDN68QeeJGKskrAwaGgvoC/hLM/XWvNBm5Lw6YeKtEMvtvNCTObNFjtKynQ4wDBBdSgZ2xW/aMG4NEd6+sTGcgzuvFogGZ/8Ketq8emxxMpEs7nNDcmMDB7RCRCg=
+	t=1759904814; cv=none; b=uX3lF+WzY54Sv12rzwwTC2cIXIXog/8VIgkzLmphuFy7NLF5yFpz0GA1yYQp2Kug1rzt7tKx8iHV352qB8/1RRy1quD1DdcL9/w9eIMR6PUSsmWZLdeESMbZHe3xXNTxIrNA6DP4c4AD5y8DJexVharqMfFDtuf0Cv2tgGc1j2M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759904486; c=relaxed/simple;
-	bh=0jBzPJ20ox2L4NDnb6CgxMPtci7OTtqgWhCqZ9C57bo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=MX8HzRSxZRWYGlfsgEcLKDClMGjmjmafAvZ8r+MnWE/qf96g+GTH9t1WukUNRyn3QQGf6+ubgnkZjHe9RU5h2iRHxO2Tti6fh1PBB3EqH10QJncZGMv2uJYJv1k42IoGrSE12bb2IzVgQcKv2er82XiP//lQDYuIIpvHglOhSmk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HC8sLZQT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C73ACC116C6;
-	Wed,  8 Oct 2025 06:21:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759904485;
-	bh=0jBzPJ20ox2L4NDnb6CgxMPtci7OTtqgWhCqZ9C57bo=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=HC8sLZQTLnzQfCDsyHuGuFJtQf58OFqz//wqdjh/+AiMSRpYx/eAf6gtZ6BY4QDLN
-	 D7TqQnt+BovSZTB29sEtZ5vHtN55zDA4CHmorQYXGkHU+KsAmWT+LSFgHYMM8bjfRc
-	 2/gOiP+Niz1N6Jj2LZfsMvWXePI2Rfk84DEzhdMW6tousSk487AnyE+vEaIrkGu8tL
-	 FK0ZZcOzpM+2NUIJlHcU4+TItYRF4KECltZjK0JUjU5l6PGJxjq7RxUtuXVE48fhwk
-	 4I+iR+aq2Rgflec1oU2GVq+IUTU6+rpp5T8GWcycOyKFdBmTVOPlzxouXo58cchY/G
-	 TVz4g04HoXHPw==
-From: Drew Fustini <fustini@kernel.org>
-Date: Tue, 07 Oct 2025 23:21:12 -0700
-Subject: [PATCH v4 3/3] RISC-V: Add support for srmcfg CSR from Ssqosid ext
+	s=arc-20240116; t=1759904814; c=relaxed/simple;
+	bh=AhYd9h60tgJkroSdF4MzOtQ6cgDPvUr1kxsXqDrcUJM=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=M+/PObNpev5LZz2kcvxhfyUob1ZDKWV2Qx2La7g1PbiTX+HbQxl/TSvzbiRyizc8y1XY7MIp/p5VKxiPQ0uQzRpnjrAumE8qprDQhGTCIOMhB4MfpW3zgLL/Cafda1Irl4nMW37JH6y0nuB/8PgKbLbzUJN2g2T/zyzA+80LU68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=La3EXbgP; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20251008062649epoutp026bfdffa665800d9126c11a80cd032e09~scBmnX6oU1829418294epoutp023
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 06:26:49 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20251008062649epoutp026bfdffa665800d9126c11a80cd032e09~scBmnX6oU1829418294epoutp023
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1759904809;
+	bh=AhYd9h60tgJkroSdF4MzOtQ6cgDPvUr1kxsXqDrcUJM=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=La3EXbgPcWsZqUzCmKKEVCjL0X8zn4DEH+vqhOabEOPGnfXLxPcmW5MkomUK4d10P
+	 CiXHidO3JihmKYOJxs3tBGpemXVDwsrfsYLshZzxStxhsFwWRIBzQiBBy/skVHJvn6
+	 L6jD93bWLBnTA5A6AernzM2d+dJ92Y23HWApneU0=
+Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
+	20251008062649epcas5p134e702f60be854fa21fddb87920336da~scBl2HGr90191501915epcas5p1O;
+	Wed,  8 Oct 2025 06:26:49 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.91]) by
+	epsnrtp04.localdomain (Postfix) with ESMTP id 4chNMD0bv1z6B9m6; Wed,  8 Oct
+	2025 06:26:48 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20251008062647epcas5p4ea70f83990f96d4e9d28b6cfdd8e5f72~scBkO7nfN2366923669epcas5p46;
+	Wed,  8 Oct 2025 06:26:47 +0000 (GMT)
+Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20251008062645epsmtip204fc4a5b2f19c5b084b6bc37f715eb75~scBiRvGvY1681616816epsmtip2G;
+	Wed,  8 Oct 2025 06:26:45 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: =?utf-8?Q?'Andr=C3=A9_Draszik'?= <andre.draszik@linaro.org>, "'Vinod
+ Koul'" <vkoul@kernel.org>, "'Kishon Vijay Abraham I'" <kishon@kernel.org>,
+	"'Rob Herring'" <robh@kernel.org>, "'Krzysztof Kozlowski'"
+	<krzk+dt@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>
+Cc: "'Peter Griffin'" <peter.griffin@linaro.org>, "'Tudor Ambarus'"
+	<tudor.ambarus@linaro.org>, "'Will McVicker'" <willmcvicker@google.com>,
+	<kernel-team@android.com>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+In-Reply-To: <20251007-power-domains-dt-bindings-phy-samsung-ufs-phy-v1-1-d9030d14af59@linaro.org>
+Subject: RE: [PATCH] dt-bindings: phy: samsung,ufs-phy: add power-domains
+Date: Wed, 8 Oct 2025 11:56:43 +0530
+Message-ID: <002001dc381c$85e17fa0$91a47ee0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQLlf+KWxfwWEHq87cswdN59mt3ZswNwaTJusom1c8A=
+Content-Language: en-us
+X-CMS-MailID: 20251008062647epcas5p4ea70f83990f96d4e9d28b6cfdd8e5f72
+X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20251007-ssqosid-v4-3-e8b57e59d812@kernel.org>
-References: <20251007-ssqosid-v4-0-e8b57e59d812@kernel.org>
-In-Reply-To: <20251007-ssqosid-v4-0-e8b57e59d812@kernel.org>
-To: Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Conor Dooley <conor@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: =?utf-8?q?Kornel_Dul=C4=99ba?= <mindal@semihalf.com>, 
- Adrien Ricciardi <aricciardi@baylibre.com>, 
- James Morse <james.morse@arm.com>, Atish Kumar Patra <atishp@rivosinc.com>, 
- Atish Patra <atish.patra@linux.dev>, 
- Vasudevan Srinivasan <vasu@rivosinc.com>, 
- Conor Dooley <conor.dooley@microchip.com>, guo.wenjia23@zte.com.cn, 
- liu.qingtao2@zte.com.cn, linux-riscv@lists.infradead.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Drew Fustini <fustini@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=8328; i=fustini@kernel.org;
- h=from:subject:message-id; bh=0jBzPJ20ox2L4NDnb6CgxMPtci7OTtqgWhCqZ9C57bo=;
- b=owGbwMvMwCF2+43O4ZsaG3kYT6slMWQ8Y3q8Qs2J9UyHMYcwN6vfjvSL/LZC0ezb6rfFlD12W
- bRtdm9hRykLgxgHg6yYIsumD3kXlniFfl0w/8U2mDmsTCBDGLg4BWAiPxwY/konnUjNWPdEdtKX
- jruPr9vO37tE8K1hxZEbKvJO6x6XzWJn+GeQdHITa8brd+3Hyo8t1VTfcEKRKfWthXXRRqtlF55
- 3fGMBAA==
-X-Developer-Key: i=fustini@kernel.org; a=openpgp;
- fpr=1B6F948213EA489734F3997035D5CD577C1E6010
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20251007160147epcas5p305e74b7b3449b934687396e9c8aa3ff4
+References: <CGME20251007160147epcas5p305e74b7b3449b934687396e9c8aa3ff4@epcas5p3.samsung.com>
+	<20251007-power-domains-dt-bindings-phy-samsung-ufs-phy-v1-1-d9030d14af59@linaro.org>
 
-Add support for the srmcfg CSR defined in the Ssqosid ISA extension
-(Supervisor-mode Quality of Service ID). The CSR contains two fields:
 
-  - Resource Control ID (RCID) used determine resource allocation
-  - Monitoring Counter ID (MCID) used to track resource usage
 
-Requests from a hart to shared resources like cache will be tagged with
-these IDs. This allows the usage of shared resources to be associated
-with the task currently running on the hart.
-
-A srmcfg field is added to thread_struct and has the same format as the
-srmcfg CSR. This allows the scheduler to set the hart's srmcfg CSR to
-contain the RCID and MCID for the task that is being scheduled in. The
-srmcfg CSR is only written to if the thread_struct.srmcfg is different
-than the current value of the CSR.
-
-A per-cpu variable cpu_srmcfg is used to mirror that state of the CSR.
-This is because access to L1D hot memory should be several times faster
-than a CSR read. Also, in the case of virtualization, accesses to this
-CSR are trapped in the hypervisor.
-
-Link: https://github.com/riscv/riscv-ssqosid/releases/tag/v1.0
-Co-developed-by: Kornel Dulęba <mindal@semihalf.com>
-Signed-off-by: Kornel Dulęba <mindal@semihalf.com>
-[fustini: rename csr, refactor switch_to, rebase on riscv/for-next]
-Signed-off-by: Drew Fustini <fustini@kernel.org>
----
- MAINTAINERS                        |  7 +++++++
- arch/riscv/Kconfig                 | 17 ++++++++++++++++
- arch/riscv/include/asm/csr.h       |  8 ++++++++
- arch/riscv/include/asm/processor.h |  3 +++
- arch/riscv/include/asm/qos.h       | 41 ++++++++++++++++++++++++++++++++++++++
- arch/riscv/include/asm/switch_to.h |  3 +++
- arch/riscv/kernel/Makefile         |  2 ++
- arch/riscv/kernel/qos/Makefile     |  2 ++
- arch/riscv/kernel/qos/qos.c        |  5 +++++
- 9 files changed, 88 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 858de646632acf2ba900b799882f6aa79a1df6fa..315feed291e5b7417633f0ffdf8b5abb50b6c831 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21700,6 +21700,13 @@ F:	drivers/perf/riscv_pmu.c
- F:	drivers/perf/riscv_pmu_legacy.c
- F:	drivers/perf/riscv_pmu_sbi.c
- 
-+RISC-V QOS RESCTRL SUPPORT
-+M:	Drew Fustini <fustini@kernel.org>
-+L:	linux-riscv@lists.infradead.org
-+S:	Supported
-+F:	arch/riscv/include/asm/qos.h
-+F:	arch/riscv/kernel/qos/
-+
- RISC-V RPMI AND MPXY DRIVERS
- M:	Rahul Pathak <rahul@summations.net>
- M:	Anup Patel <anup@brainfault.org>
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index 715e59f1e287dcdbbf3ae0dd8dac2a80e3fe9143..e41abf303794cf5d236337304148c80ee98a359c 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -606,6 +606,23 @@ config RISCV_ISA_SVNAPOT
- 
- 	  If you don't know what to do here, say Y.
- 
-+config RISCV_ISA_SSQOSID
-+	bool "Ssqosid extension support for supervisor mode Quality of Service ID"
-+	default y
-+	help
-+	  Adds support for the Ssqosid ISA extension (Supervisor-mode
-+	  Quality of Service ID).
-+
-+	  Ssqosid defines the srmcfg CSR which allows the system to tag the
-+	  running process with an RCID (Resource Control ID) and MCID
-+	  (Monitoring Counter ID). The RCID is used to determine resource
-+	  allocation. The MCID is used to track resource usage in event
-+	  counters.
-+
-+	  For example, a cache controller may use the RCID to apply a
-+	  cache partitioning scheme and use the MCID to track how much
-+	  cache a process, or a group of processes, is using.
-+
- config RISCV_ISA_SVPBMT
- 	bool "Svpbmt extension support for supervisor mode page-based memory types"
- 	depends on 64BIT && MMU
-diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-index 4a37a98398ad3b527c280c1e1260d0b53a4ac8d9..2590b89b8f721a4f98a850d4640aa571a7ec80d1 100644
---- a/arch/riscv/include/asm/csr.h
-+++ b/arch/riscv/include/asm/csr.h
-@@ -75,6 +75,13 @@
- #define SATP_ASID_MASK	_AC(0xFFFF, UL)
- #endif
- 
-+/* SRMCFG fields */
-+#define SRMCFG_RCID_MASK	_AC(0x00000FFF, UL)
-+#define SRMCFG_MCID_MASK	SRMCFG_RCID_MASK
-+#define SRMCFG_MCID_SHIFT	16
-+#define SRMCFG_MASK		((SRMCFG_MCID_MASK << SRMCFG_MCID_SHIFT) | \
-+				  SRMCFG_RCID_MASK)
-+
- /* Exception cause high bit - is an interrupt if set */
- #define CAUSE_IRQ_FLAG		(_AC(1, UL) << (__riscv_xlen - 1))
- 
-@@ -317,6 +324,7 @@
- #define CSR_STVAL		0x143
- #define CSR_SIP			0x144
- #define CSR_SATP		0x180
-+#define CSR_SRMCFG		0x181
- 
- #define CSR_STIMECMP		0x14D
- #define CSR_STIMECMPH		0x15D
-diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
-index da5426122d280b53b8ba8f764ea6f1b9f93ca994..183c55e32b9656d34fb60cdf9bc61162fa25d165 100644
---- a/arch/riscv/include/asm/processor.h
-+++ b/arch/riscv/include/asm/processor.h
-@@ -122,6 +122,9 @@ struct thread_struct {
- 	/* A forced icache flush is not needed if migrating to the previous cpu. */
- 	unsigned int prev_cpu;
- #endif
-+#ifdef CONFIG_RISCV_ISA_SSQOSID
-+	u32 srmcfg;
-+#endif
- };
- 
- /* Whitelist the fstate from the task_struct for hardened usercopy */
-diff --git a/arch/riscv/include/asm/qos.h b/arch/riscv/include/asm/qos.h
-new file mode 100644
-index 0000000000000000000000000000000000000000..84830d7c6dc4a1fce86d514ed5af97be32a26630
---- /dev/null
-+++ b/arch/riscv/include/asm/qos.h
-@@ -0,0 +1,41 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef _ASM_RISCV_QOS_H
-+#define _ASM_RISCV_QOS_H
-+
-+#ifdef CONFIG_RISCV_ISA_SSQOSID
-+
-+#include <linux/sched.h>
-+#include <linux/jump_label.h>
-+
-+#include <asm/barrier.h>
-+#include <asm/csr.h>
-+#include <asm/hwcap.h>
-+
-+/* cached value of srmcfg csr for each cpu */
-+DECLARE_PER_CPU(u32, cpu_srmcfg);
-+
-+static inline void __switch_to_srmcfg(struct task_struct *next)
-+{
-+	u32 *cpu_srmcfg_ptr = this_cpu_ptr(&cpu_srmcfg);
-+	u32 thread_srmcfg;
-+
-+	thread_srmcfg = READ_ONCE(next->thread.srmcfg);
-+
-+	if (thread_srmcfg != *cpu_srmcfg_ptr) {
-+		*cpu_srmcfg_ptr = thread_srmcfg;
-+		csr_write(CSR_SRMCFG, thread_srmcfg);
-+	}
-+}
-+
-+static __always_inline bool has_srmcfg(void)
-+{
-+	return riscv_has_extension_unlikely(RISCV_ISA_EXT_SSQOSID);
-+}
-+
-+#else /* ! CONFIG_RISCV_ISA_SSQOSID  */
-+
-+static __always_inline bool has_srmcfg(void) { return false; }
-+#define __switch_to_srmcfg(__next) do { } while (0)
-+
-+#endif /* CONFIG_RISCV_ISA_SSQOSID */
-+#endif /* _ASM_RISCV_QOS_H */
-diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/switch_to.h
-index 0e71eb82f920cac2f14bb626879bb219a2f247cc..a684a3795d3d7f5e027ec0a83c30afd1a18d7228 100644
---- a/arch/riscv/include/asm/switch_to.h
-+++ b/arch/riscv/include/asm/switch_to.h
-@@ -14,6 +14,7 @@
- #include <asm/processor.h>
- #include <asm/ptrace.h>
- #include <asm/csr.h>
-+#include <asm/qos.h>
- 
- #ifdef CONFIG_FPU
- extern void __fstate_save(struct task_struct *save_to);
-@@ -119,6 +120,8 @@ do {							\
- 		__switch_to_fpu(__prev, __next);	\
- 	if (has_vector() || has_xtheadvector())		\
- 		__switch_to_vector(__prev, __next);	\
-+	if (has_srmcfg())				\
-+		__switch_to_srmcfg(__next);	\
- 	if (switch_to_should_flush_icache(__next))	\
- 		local_flush_icache_all();		\
- 	__switch_to_envcfg(__next);			\
-diff --git a/arch/riscv/kernel/Makefile b/arch/riscv/kernel/Makefile
-index c7b542573407c813a4a45fe9bf78a676599c0503..0108a4e6338a7972b6805ef14048d4e5e8833d82 100644
---- a/arch/riscv/kernel/Makefile
-+++ b/arch/riscv/kernel/Makefile
-@@ -125,3 +125,5 @@ obj-$(CONFIG_ACPI)		+= acpi.o
- obj-$(CONFIG_ACPI_NUMA)	+= acpi_numa.o
- 
- obj-$(CONFIG_GENERIC_CPU_VULNERABILITIES) += bugs.o
-+
-+obj-$(CONFIG_RISCV_ISA_SSQOSID) += qos/
-diff --git a/arch/riscv/kernel/qos/Makefile b/arch/riscv/kernel/qos/Makefile
-new file mode 100644
-index 0000000000000000000000000000000000000000..9f996263a86d7e2e410890d2425e74b2277a57ad
---- /dev/null
-+++ b/arch/riscv/kernel/qos/Makefile
-@@ -0,0 +1,2 @@
-+# SPDX-License-Identifier: GPL-2.0
-+obj-$(CONFIG_RISCV_ISA_SSQOSID) += qos.o
-diff --git a/arch/riscv/kernel/qos/qos.c b/arch/riscv/kernel/qos/qos.c
-new file mode 100644
-index 0000000000000000000000000000000000000000..7b06f7ae9056b8f2eb53a0eecf5a6512edc29fbe
---- /dev/null
-+++ b/arch/riscv/kernel/qos/qos.c
-@@ -0,0 +1,5 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+#include <asm/qos.h>
-+
-+/* cached value of sqoscfg csr for each cpu */
-+DEFINE_PER_CPU(u32, cpu_srmcfg);
-
--- 
-2.34.1
-
+> -----Original Message-----
+> From: Andr=C3=A9=20Draszik=20<andre.draszik=40linaro.org>=0D=0A>=20Sent:=
+=20Tuesday,=20October=207,=202025=209:32=20PM=0D=0A>=20To:=20Vinod=20Koul=
+=20<vkoul=40kernel.org>;=20Kishon=20Vijay=20Abraham=20I=0D=0A>=20<kishon=40=
+kernel.org>;=20Rob=20Herring=20<robh=40kernel.org>;=20Krzysztof=20Kozlowski=
+=0D=0A>=20<krzk+dt=40kernel.org>;=20Conor=20Dooley=20<conor+dt=40kernel.org=
+>;=20Alim=20Akhtar=0D=0A>=20<alim.akhtar=40samsung.com>=0D=0A>=20Cc:=20Pete=
+r=20Griffin=20<peter.griffin=40linaro.org>;=20Tudor=20Ambarus=0D=0A>=20<tud=
+or.ambarus=40linaro.org>;=20Will=20McVicker=20<willmcvicker=40google.com>;=
+=0D=0A>=20kernel-team=40android.com;=20linux-phy=40lists.infradead.org;=0D=
+=0A>=20devicetree=40vger.kernel.org;=20linux-kernel=40vger.kernel.org;=20An=
+dr=C3=A9=20Draszik=0D=0A>=20<andre.draszik=40linaro.org>=0D=0A>=20Subject:=
+=20=5BPATCH=5D=20dt-bindings:=20phy:=20samsung,ufs-phy:=20add=20power-domai=
+ns=0D=0A>=20=0D=0A>=20The=20UFS=20phy=20can=20be=20part=20of=20a=20power=20=
+domain,=20so=20we=20need=20to=20allow=20the=0D=0A>=20relevant=20property=20=
+'power-domains'.=0D=0A>=20=0D=0ACan=20you=20cross=20check=20if=20there=20is=
+=20a=20separate=20power=20domain=20control=20for=20ufs-phy?=20=0D=0A=0D=0A>=
+=20Signed-off-by:=20Andr=C3=A9=20Draszik=20<andre.draszik=40linaro.org>=0D=
+=0A>=20---=0D=0A>=20=20Documentation/devicetree/bindings/phy/samsung,ufs-ph=
+y.yaml=20=7C=203=20+++=0D=0A>=20=201=20file=20changed,=203=20insertions(+)=
+=0D=0A>=20=0D=0A>=20diff=20--git=20a/Documentation/devicetree/bindings/phy/=
+samsung,ufs-phy.yaml=0D=0A>=20b/Documentation/devicetree/bindings/phy/samsu=
+ng,ufs-phy.yaml=0D=0A>=20index=0D=0A>=20d70ffeb6e824bfc19668e0f678276acd879=
+a6217..2b20c0a5e5094889eb3e80dcc2=0D=0A>=201b505943c68523=20100644=0D=0A>=
+=20---=20a/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml=0D=0A=
+>=20+++=20b/Documentation/devicetree/bindings/phy/samsung,ufs-phy.yaml=0D=
+=0A>=20=40=40=20-36,6=20+36,9=20=40=40=20properties:=0D=0A>=20=20=20=20=20=
+=20minItems:=201=0D=0A>=20=20=20=20=20=20maxItems:=204=0D=0A>=20=0D=0A>=20+=
+=20=20power-domains:=0D=0A>=20+=20=20=20=20maxItems:=201=0D=0A>=20+=0D=0A>=
+=20=20=20=20samsung,pmu-syscon:=0D=0A>=20=20=20=20=20=20=24ref:=20/schemas/=
+types.yaml=23/definitions/phandle-array=0D=0A>=20=20=20=20=20=20maxItems:=
+=201=0D=0A>=20=0D=0A>=20---=0D=0A>=20base-commit:=203b9b1f8df454caa453c7fb0=
+7689064edb2eda90a=0D=0A>=20change-id:=2020251007-power-domains-dt-bindings-=
+phy-samsung-ufs-phy-=0D=0A>=20fce95e2eae38=0D=0A>=20=0D=0A>=20Best=20regard=
+s,=0D=0A>=20--=0D=0A>=20Andr=C3=A9=20Draszik=20<andre.draszik=40linaro.org>=
+=0D=0A=0D=0A=0D=0A
 
