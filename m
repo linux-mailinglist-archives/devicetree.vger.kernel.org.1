@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-224549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9148BC5304
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 15:27:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0483BC5322
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 15:28:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 887004E5E62
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 13:27:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8DD9402991
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 13:28:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF6B428469F;
-	Wed,  8 Oct 2025 13:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D94428469E;
+	Wed,  8 Oct 2025 13:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QdhXDiC/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Nim7KjV8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E7A42586C5;
-	Wed,  8 Oct 2025 13:27:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E30D7284670;
+	Wed,  8 Oct 2025 13:28:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759930027; cv=none; b=WcD824TmTp9LlleB+4az0DrjfgiUu7yJvQ6cNTI3tVsGJueevV8l2AI2MklvQ0cXujckutP2EP5kU8jt+rsMLWWfVunikmMJN/uSGW3MczK+/MJFw/8GrL16wG/gXzNcenCWhhQSMIR0/y/Ix1mdkwTF6riApdFcmbhHoJcmMMk=
+	t=1759930087; cv=none; b=rO0rzAfuptIxSMI/c9Qjvit7JruOK9p8OmvqPCsHeFttU5WpMUIWC6TehHSeICpkFUPBFP+Wg7YST3bB3enzR2mI0xzIKmPVQSnuRbOTPtFjVHfWpcYiWnLcbqpyF0q6LE7hIXzQxcEoVeT9SXMX/seTntkl8LPPNHEhdtGdUQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759930027; c=relaxed/simple;
-	bh=DcgC3kZEqrZn6AzXVpTU92ybDuRM2fnOst1ekf9M8Oc=;
+	s=arc-20240116; t=1759930087; c=relaxed/simple;
+	bh=VqQWCPYNSTM6xThvln60pCzT1OI0Be5tYbJN9o0YF/g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kPbjOvMI6Pf8J7gEsitzJ8rcpZWyJjffTaANuQRiakFV5jKgzMcLXI59eR98d1NZJr2Elwee2/9zeG7sUIAnNsTb54dkgKVJPlyq6xuRJ/xYIugw4aFgvLOPPqU9DzB+9DxyPyuDKybJvUQnkmiideFDuBxSYyEpkmL5+WMvUqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QdhXDiC/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4363C4CEF4;
-	Wed,  8 Oct 2025 13:27:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=eH6aN+K9cjKpMuaSSAHJcaMEoFAoBwmYLlx+qn5lS0xLrVZrqVkyloRzCoJV7uKOxqRJW5vrgscWJQRI60BhRAn15TPF3QHaHGm9Ji6rSxyDUwS3szDpe5Tsz/rvVsoD7GnTyJHG3Y+mat6EmtOwl7JpW7Qj4G4V4BdNvd0S0wU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Nim7KjV8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22587C4CEF4;
+	Wed,  8 Oct 2025 13:28:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759930027;
-	bh=DcgC3kZEqrZn6AzXVpTU92ybDuRM2fnOst1ekf9M8Oc=;
+	s=k20201202; t=1759930083;
+	bh=VqQWCPYNSTM6xThvln60pCzT1OI0Be5tYbJN9o0YF/g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QdhXDiC/f4mFHOCDRASpiSv5oZCS/dhHAf2Qxt4CyXL64Ha8RakSZaBSyedlySGN1
-	 8Ty6ScIuVb65YIr17UcCoGUrqPwl96rPGB7mNqgOl3sQB6XYQv9FD+nNm3fj3LXBf7
-	 1gfjfK91bCbrsp5puXuIHBVZTAUZw20IXTNR6MSeWrRxpz7tBpg1+kZluenkpmgMF7
-	 w4hJmvuzALrTJ3n6ws6l5GENHqjxEyeVG1qmag9b/qeGFHf6CbnGiHusEMfW3wb8zg
-	 2uBv8YitL9jhPhqJf6TaFouapjWnzLNP5mWgSMJLccPIq/SuqTkZfQXVkjqr/fDxRc
-	 3GQ2uavZVsl2A==
-Date: Wed, 8 Oct 2025 08:27:05 -0500
+	b=Nim7KjV8hYx1euW5he36Xt760dBApKdo7dcsI9zXp/d22h2rTpZVF3pFRZ3eHhE+I
+	 Wx1B2Kx3Vw3OMRXhsL/szWCk8+vczNjyepst/EeV2xS51GD6CGrYJlRDle+86Y9QZh
+	 vJ6wqnoM/61gV+IVbWlEOl+2Mwzf8BdrHG14cpXUg5qhJBH8uOlSkphPOQzkepS0nK
+	 vHpE0oGBlgCxy/QFriPWOVwFxAgWHcG02qZxNOB5jrctxPXeYPYLRgxE5b52McKVr1
+	 S4wgSKGL5xr5eoPAA33qyh7W3dVJdSHa0bmJv12cbXp6r0kbQUtptUziyVxYxCg/Ae
+	 TzphinhMFtSVg==
+Date: Wed, 8 Oct 2025 08:28:02 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: devicetree@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>, linux-gpio@vger.kernel.org,
-	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-	kernel@pengutronix.de, Linus Walleij <linus.walleij@linaro.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v7 1/2] dt-bindings: clock: add TI CDCE6214 binding
-Message-ID: <175993002523.3403965.4545656305134383205.robh@kernel.org>
-References: <20251001-clk-cdce6214-v7-0-5f8b44da95a5@pengutronix.de>
- <20251001-clk-cdce6214-v7-1-5f8b44da95a5@pengutronix.de>
+To: George Moussalem <george.moussalem@outlook.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-pwm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	Baruch Siach <baruch@tkos.co.il>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>
+Subject: Re: [PATCH v16 4/9] dt-bindings: pwm: qcom,ipq6018-pwm: Add
+ compatible for ipq5332
+Message-ID: <175993008127.3405051.13877164117014075285.robh@kernel.org>
+References: <20251001-ipq-pwm-v16-0-300f237e0e68@outlook.com>
+ <20251001-ipq-pwm-v16-4-300f237e0e68@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,21 +65,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251001-clk-cdce6214-v7-1-5f8b44da95a5@pengutronix.de>
+In-Reply-To: <20251001-ipq-pwm-v16-4-300f237e0e68@outlook.com>
 
 
-On Wed, 01 Oct 2025 10:12:53 +0200, Sascha Hauer wrote:
-> Add device tree binding for the CDCE6214, an Ultra-Low Power Clock
-> Generator With One PLL, Four Differential Outputs, Two Inputs, and
-> Internal EEPROM.
+On Wed, 01 Oct 2025 18:04:20 +0400, George Moussalem wrote:
+> The IPQ5332 SoC contains a PWM block which is exactly the same as the
+> one found in IPQ6018. So let's add a compatible for IPQ5332 and use
+> IPQ6018 as the fallback.
 > 
-> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> Signed-off-by: George Moussalem <george.moussalem@outlook.com>
 > ---
->  .../devicetree/bindings/clock/ti,cdce6214.yaml     | 192 +++++++++++++++++++++
->  include/dt-bindings/clock/ti,cdce6214.h            |  25 +++
->  2 files changed, 217 insertions(+)
+>  Documentation/devicetree/bindings/pwm/qcom,ipq6018-pwm.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
