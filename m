@@ -1,108 +1,103 @@
-Return-Path: <devicetree+bounces-224658-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224659-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B93EBC6CD8
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 00:42:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85443BC6ED6
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 01:38:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1D60D4E1F70
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 22:42:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D26E41891604
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 23:39:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E48C52C21CF;
-	Wed,  8 Oct 2025 22:42:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 599F72D0638;
+	Wed,  8 Oct 2025 23:35:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="epDxNrmM"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="vw7Bb92h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE321E25F9;
-	Wed,  8 Oct 2025 22:42:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 640D62D0618
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 23:35:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759963329; cv=none; b=ncQgvTmAg5IzwKiDTJF1AC/EcYNVm426t7KzrbNowgebalsAbIFWOGGzzPgYRYoYKkNACRj2yLmCOmXvqzGIW/MqqK/qPEEl5HdZ5KpwYlye3mBeuc62peUM8T8Lwj6zLGfJFs5lFW1B39axRf9/E6GUcKtorLImMEM8OUuo/b0=
+	t=1759966510; cv=none; b=eIo8f5ricPTdxOlxlRX55BfoJR2NIJg+Ay+ya+MN+MG+rf4M0SiqUESgkkUpySgoG/MqTwi6a85Tr6qJd43BoWqnwbiFzz+svJ4C5WtcZUz9kCup0WNsV4uNJj1z3XwEyfmNj+/6CoRreJLp4fVi5644rKWq5E+DjQ2SzyCGlMM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759963329; c=relaxed/simple;
-	bh=vmjOkNtkKR5B7k3MFrCN5mD1VOvLH+TW5swX4wPdE3A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SQZujAY/Mr1M7EmampRTXGT5AiLVzerH+iN4ScymOKw8NeQ55TNhze3cz6pfbzLn+j5OJVdGZQtOLnKu1wAdPTY4FcR+iB7Wq1R0Mjap+I4sNAciKS7bRlev8fh502p8EU0OJx3MTpxzxz5MujzXAZOjclR4P6GC9Hsk2a1lxck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=epDxNrmM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D487C4CEE7;
-	Wed,  8 Oct 2025 22:42:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759963329;
-	bh=vmjOkNtkKR5B7k3MFrCN5mD1VOvLH+TW5swX4wPdE3A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=epDxNrmMpTAnkkY1KjkDTfDsVWGQagivyiE6aAxJ2RwhoDbt+9F7ZwhYJB0NqL779
-	 XdFcz6yLBVX/xcdTXBa9vCww6qJ4znnaUa8hOED+pQ/xe5qoO8uKBdTdSVjA53hOOI
-	 WptpgVOkU7gTyzdMPKSBowgv/iVfc19CqQ7aLmpsSNiA/MvFXmCW6mW+oqKYNhm++T
-	 Vt5vBoHFwY4AIf8E9AFQjKVM41zTbTKHo60+VVj4Zss9KaPpZ4jJK5l9dOzeTQYM44
-	 DjZcgYo7t27zeBEjFc1/vi/ut8mD5LGt6jujg4C99nU0Yg08n6Bik8b1+UoOB0M/ZX
-	 vNV9jJ8uWoKFw==
-Date: Wed, 8 Oct 2025 17:42:08 -0500
-From: Rob Herring <robh@kernel.org>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	linux-renesas-soc@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: bus: renesas-bsc: allow additional
- properties
-Message-ID: <20251008224208.GA237448-robh@kernel.org>
-References: <20251007032209.7617-2-wsa+renesas@sang-engineering.com>
- <CAMuHMdUChRoJ-A4W-PBBQssMvsn1GZY5zXmWxJ9y+EA8M2p3gw@mail.gmail.com>
- <aOWGWkQn1AK22tJB@shikoro>
- <CAMuHMdUXoq3d010y0vyXvvaHpgaV7rHb66VAHrwJxAZXzt+z=g@mail.gmail.com>
- <aOY2tdEXmhdZ0Yeq@shikoro>
+	s=arc-20240116; t=1759966510; c=relaxed/simple;
+	bh=9igNQRi1zsIULgFOJ+Hpha80v02kSWzsiG8eRfeHWOg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WWibqGkRgTsO57+Zremnz6uJuV5L8gqXoCLuIzi7g48AkNmciNRy5bf2W/lGXU2xTc/lxfpQoPV5awiSF/dFCrn6AkusHAyxnr7INOBXwybp79Y5cKT8oOE4n0biYhvoJpex4I4HPonPFrvczSZdoahlH+w+CGfHJXahRkeFDcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=vw7Bb92h; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3ee130237a8so398495f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 16:35:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1759966507; x=1760571307; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9igNQRi1zsIULgFOJ+Hpha80v02kSWzsiG8eRfeHWOg=;
+        b=vw7Bb92hM90H9chxoWRY7TYUuNiZkaPWRN8l+Rh0APRdDAgKPQijy8I0B0+/yG+vMS
+         2QxwPhHyOzPjOqQXmGf7kto9UTlPIOkm+SSSU7J8EQHt2gO5keOeUlQM3uZDLzkBoVcX
+         Nb2y9450owpUl9irmBkbQdw61by0hcAWmRc6csFjcEVypZeVemzjBtr2KlTfD3JcHfMP
+         BpiuQa+9pKuuCpQfg5+wl2RUHJWLvb7yZ5Pvsw56ModGSQ3MLHnNJb18K7nPgJWMtlSN
+         X9avtg1e0LT8tvXdEk7B+F19TrJgDB3vKjdFmZ5mlx34Mu56ePezV8zS2/o2xDeuDnSH
+         jlXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759966507; x=1760571307;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9igNQRi1zsIULgFOJ+Hpha80v02kSWzsiG8eRfeHWOg=;
+        b=TMdQtKMoqweSdmPqQrCywez86wL3fLrE995/QBOVr/UP8oTxwggHAQD2ZJ5tgEaEIn
+         j3ozifPvNj78le6cHCa/hEEI6KIHxFHinGFHarQ+gdS2f4LJLSdZZRV1QOy86Sq92bAg
+         R/Z7tiuWaV9BLNn6XWmtUXTJoUZPZus/tSLlBtFKkduWTA6VsJ7uSxAQ3f1iqblh9MqI
+         +kaOGlAW+Dj/l6j5gg6hbjPQyyddsZbld/U+8mT+QUrpaC0FFK8k/5W/pIOVWOO1/NUd
+         8qgHaSkHPEPJSOMLEdtpshZ3axLNC6ND6R05WcMhUp2Se/ZlPOaXnOa0BSPMHg3/pBk5
+         H5ww==
+X-Forwarded-Encrypted: i=1; AJvYcCWYxOyIIc0TpkN5REaBgOXUjW2StWEKf2g1C1IzkJ8ct43iAGfVFa97KBJkU3bcFqLO6l66sQvMqt4l@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw4wAF3L3GW96YBC+2WgUALHmF3v7nu179fqwI11kEGCu+lyjyb
+	SRcmqAFhiYmGmkcL69RKR87y5Hedx9DoiM7BUid1Aldy22CQwhcS3RhYqjsgGzux7EsADTBkwZN
+	qwSG9xdP1oOB1QdP4THH3BrShY1A/CfuKHhXiz5K/
+X-Gm-Gg: ASbGncuQSGYJ7jcSEdSaN7HygkxFWoLDUe9TywyO7qJ8iczTv5bI9lamrDnCZCv694v
+	7W4ICzQK7shWiuO0sEt8vDlZKTT05HaPhytVKCM3HLtVs3cCAHy6mLI5jcZKEz0P6M5Tnm6Tpvm
+	O+iXmhiLKKu6fsBxt8MXdB9GW9l5bDfeuAZ9SqwylypAuxRLHdtzURzJb5rIsV/CUegUux7nXwu
+	Mjzs9WToZpT6CU4ffDw9qAIFCkYXVf/9B1JhpApTppWkSrYbbfn2HQodv+7xztiuj3UWmPcO4lH
+	4UvVhuG8IdFw7g==
+X-Google-Smtp-Source: AGHT+IEqmdZ9VxhWMpDcRldSURNd0QiDBJUs0+1kYdV5l/JzukTnaa5H9DzGsLurz4/S6KkfONlhR48b+fTHniX4RxU=
+X-Received: by 2002:a05:6000:4313:b0:3ea:6680:8fb5 with SMTP id
+ ffacd0b85a97d-42666ab29d5mr2881250f8f.2.1759966506486; Wed, 08 Oct 2025
+ 16:35:06 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aOY2tdEXmhdZ0Yeq@shikoro>
+References: <20251001193346.1724998-1-jthies@google.com> <20251001193346.1724998-4-jthies@google.com>
+ <aOZUq6K8bZtciL6Q@kuha.fi.intel.com>
+In-Reply-To: <aOZUq6K8bZtciL6Q@kuha.fi.intel.com>
+From: Jameson Thies <jthies@google.com>
+Date: Wed, 8 Oct 2025 16:34:54 -0700
+X-Gm-Features: AS18NWDl9Wn1v62FRwVNd2rJ20xgecQEZIHrqIoqrT8lQI_Q_BqxHXid5fR55og
+Message-ID: <CAMFSARfn_ULu2+JXjGSjz4KPDOSD=MAcKS8XwZNqbHf7YL6JBg@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] mfd: cros_ec: Don't add cros_ec_ucsi if it is
+ defined in OF or ACPI
+To: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+Cc: akuchynski@chromium.org, abhishekpandit@chromium.org, krzk+dt@kernel.org, 
+	robh@kernel.org, bleung@chromium.org, ukaszb@chromium.org, tzungbi@kernel.org, 
+	devicetree@vger.kernel.org, chrome-platform@lists.linux.dev, 
+	linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Oct 08, 2025 at 12:02:29PM +0200, Wolfram Sang wrote:
-> 
-> > > As said, I copied this from 'bus/allwinner,sun50i-a64-de2.yaml', so this
-> > > got reviewed already. I have no strong opinions on your suggestions
-> > > above. But whatever we agree on, it should be reused for all busses, I'd
-> > > say. So, we should put it where it can be referenced?
-> > 
-> > In my defense, this is a DT bindings file for Renesas BSC, so we can
-> > (and IMHO should) add restrictions.
-> > 
-> > If you want to go the fully generic way: as per the device tree
-> > specification, a unit-address can take all characters from the same
-> > set as a node name...
-> 
-> Well, I think consistency makes sense, but I don't even have a strong
-> opinion on that. If DT maintainers are fine with having multiple
-> patternProperties for busses, I will include the restriction you
-> suggested.
-> 
+> If you are not using that for anything, then couldn't you just use
+> acpi_dev_found("GOOG0021") ?
 
-There's always examples not to follow...
+Thanks, this is a good suggestion. I'll switch to acpi_dev_found() in
+the v3 update.
 
-Adding back context:
+> Can there be multiple UCSI interfaces on these systems?
 
-> +  "^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}@[0-9a-fA-F]+$":                                                
-
-The node name pattern before the '@' is just what's a valid node name. 
-That is checked by the core schema on *every* node already. Even ',', 
-'.', '+', and '_' are allowed which have long been deprecated. (Do you 
-know how long it took to get QCom to stop with the 'qcom,' node name 
-prefixes...).
-
-The unit-address is the only part a bus schema should define. And there, 
-lowercase hex is standard unless you have distinct fields (e.g. chip 
-select and offset).
-
-Rob
+None of our devices will support multiple UCSI interfaces.
 
