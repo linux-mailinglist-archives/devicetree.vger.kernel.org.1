@@ -1,311 +1,108 @@
-Return-Path: <devicetree+bounces-224474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB4ABBC433A
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 11:52:32 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 507C6BC432B
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 11:52:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4DEC7351109
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 09:52:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2BD764E351B
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 09:52:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F10E02F0C78;
-	Wed,  8 Oct 2025 09:52:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hkLVvkEP"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECD89299ABF;
+	Wed,  8 Oct 2025 09:52:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33BD72BE036
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 09:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D76D2475F7
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 09:52:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759917143; cv=none; b=qJAQmuSwacbGL9yNea0zfxv/kcI6GpvfAF3lnj4r9osdCTF1Nwu4KcuEzkrqCbAwhgwZJUtK68dEjMOkU2vLvW5gHhBKZzy7L34sj4Qf23SSPaonx73SIfqM+tMF9siirBXImIcN3Vv9PiEUCV+Cm5dZwnl1CaGVRPlp+7q88Vg=
+	t=1759917122; cv=none; b=BpdsFcoMeVKeKbPTIqen0mmkXG3YK7ljnQG0DJ4DVHth87EG5yQVPu9crEkC0Ar8dBDZNmnIhGGAkpQ0xBK0MfcOPHKM9dZEvDmHBV17gdEeIyze14a+GJRKJ8o3CoPOb88AbHqBXk2GPo6BAacmilEqgpDDT5IubTDkTB6hus8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759917143; c=relaxed/simple;
-	bh=qHCgsgykMSyzOuvZ2AeubKZFx4zeaQXXVVYa5Io8L8w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TiFsRL6iTWkerAtLOVVVi6Ml3LaH1+gkphQLXlLuvRgHKCJTC9kDbIVntBwBnUxlcLz9uLXf/MMXI+7xFbvLfOuD/tyNDKTC2KyjeeNz5NCO72X4hGKmmRljU7DaHMVrIvmhKu+TG5/aUDjWn4hQqyxC684XV/2CxUuUwb7ulbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hkLVvkEP; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1759917122; c=relaxed/simple;
+	bh=QtLPUfR0OllGF3mTP5UJfUxdOHu21qygYWLugc9vnBc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jGN4kLigX337xbYoMzrKpCb2+32XlMu6HoJDI7qktBHXAYxntyBzia5THY+oEwxyaWpMLNI1F2bPAleXn07Dwf3u2hp0jyR2Oo77aQ66IOgIv+EoVjnfWmzzL+2fQxMYNCtxrr/pVEbkUpGckngdXifHlwEqlA6yYuZ28/mdF2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-77f1f29a551so9287228b3a.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 02:52:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759917140; x=1760521940; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=niBQI4wdNmfICupayJGPpljB3EAcSEmpaehe6tNs1gs=;
-        b=hkLVvkEPWaCG+MpAC2nfpbWj78bkMnzxpGKhJO+X3bcGD+tl5AEZgxIhU1pSX1Ov5X
-         yrrlJWb+LAo21TeGZxp/IT11h5eYZt2YVJ9McKLkz6d+2fgxcQ838X5a/qMLPqTAQNao
-         D3slD55YugVK7CP2LEs0zrG9DmdtjDNHBYXwseLxo/uxO6UlDQgltXeypxjB0XVOIB3M
-         leD3qiUM1GbkjY4vol+37p+f5EpGOEGTFz3an190F2zZ+Bby2eES/2IgYaa/BqYDDi3O
-         2NGB1sHcfyM+T36hfW7QONcq1EwXwA50fVhltx1kxXrGb+vWyXeHeG+miXH2ds/PIKoO
-         Dvyw==
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-92cbfab6c0dso4474137241.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 02:52:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759917140; x=1760521940;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=niBQI4wdNmfICupayJGPpljB3EAcSEmpaehe6tNs1gs=;
-        b=WTEgVoUHMDypvyvWxXng/wYrHg2IXIfPhV3MKwix71gQYMqM7mVlAfU5CGAiRFfCsj
-         1OP+cYQIxULwU2IusJV+7bq7djguGyZr2WeXZZPB07iMpV811Ew7kw3WvdPwdDBDX3QX
-         2VPCRmtU1xKa8Q05mbIwyfhwjjVX7QPqufweP1xfpRpMZK6MIOWvzWZxZ+CyljzzyZGK
-         32aQnmIW4Mp24yx40hGCAv/OBYDBdxB2FwIVYJZy19LAsw/AzHqWNjNIOtNRaCD9BYQH
-         8kxEaRB2P1OuqXlFjPJ3KMVkrFG7ceEFyoqdyjUfASS3pwRztVu3tJdhDd0b8EnqWHPD
-         yCvg==
-X-Forwarded-Encrypted: i=1; AJvYcCW8t4DceblN+LbYJXiTUALznHrYsONw1hCAwH+abz7W4HTJJ8eVnWmYFdpczIFG++gx7aIWmL8lhGOU@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwC9GWd5dp93OwjUV5RHiKkWlDImGPeyrDZSO+DB0yNPhHEzoz
-	eOqpeBG+5enE/Pbqq5R1JFuIvD0A8r3o2XAJNPlaP7Axcnine22DfPMb
-X-Gm-Gg: ASbGncuetPXu0EgUO/WKcb60uVFM597I8rZVcb45b8u/pSTe6wzYl6Xkz120vmM8u6+
-	i5CEmc7s9fVVjUinv+mvqX/7BduVTw2JrF0/C3BIaZl7pFEZ/8KoKC77tbXU2FPecFxUF30/yz/
-	wuxJK5a+PdTlGOaEs5WM92870JFi/Gt5YYUIJN9JbqjdMrp1fn4Q8SGrv/pcac/RKpg7pyXR+H/
-	i/1rBUtbLu0zIg85xuh1rM6fXJ76/TqBT6K5a8Ny6OK9xU9D7Wgm7HJWi+o9VD+Q7uruFFtHfQS
-	3BdXu6sE36GHb0J1M4y0qy+ncGa7VDwh+nd6CEQPqeCzSHNcQ8pZu2jdBRnthjcKM7cGDAHF5gT
-	UHCmzds5pqu2wJEMicNhJZOgpB3GSDhJCgt7TDV6yeCN1bwrK
-X-Google-Smtp-Source: AGHT+IFwQkvGKoZHWAnrh2lfyZMOv6A7t9n7YsWCJ98mHKPctdenWxoJc0sGGTbHO53VIlfe4gOk7g==
-X-Received: by 2002:a05:6a00:23c1:b0:77c:6621:6168 with SMTP id d2e1a72fcca58-79387e05457mr2760087b3a.30.1759917140318;
-        Wed, 08 Oct 2025 02:52:20 -0700 (PDT)
-Received: from [192.168.0.13] ([172.92.174.155])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-793a9c6e916sm2000255b3a.50.2025.10.08.02.52.19
+        d=1e100.net; s=20230601; t=1759917120; x=1760521920;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=GaXRh5obJ3SjT+/k5J9GZ74QBenPB0RZIjICzxWz/u0=;
+        b=uqZdzwLVgljgVvOol0m8kUwBtjE7JTkTlmSUpvXYWAs/pFyBciD8vkpCv2sCA21MbX
+         EgjdFbgnb8VWFIFejGbMqO6bwDw3U+v41lw8epvQWTutXft2yjeGgkFNoS355DcC/iK8
+         kdVDBvFkTXaYsnYEn0+pe7FrSGINwtVIbKD0Hd4KAj3QJyLk/+F77It6oA7QpQ0rrQh7
+         BEE5nWPSHBzzZZcKVP4+hxzQLhqKsIv9IYOHvw4ugXye7tX+DOM7N3vapL+SMGpasg+Q
+         k47hs0oPEEIbuPDPBmPgOiwpT1v5xC3cvOX50rXsRzCAX1wfmsvHlJM9Q8oMsht468UB
+         2o2A==
+X-Forwarded-Encrypted: i=1; AJvYcCWMcIuSvP5LZh3VZu+DAWR2DIb3uH1+iX5ICEBVgl7O2aHpvwGdHzdaEJRW15JSprbbaoZOiqtPjjCt@vger.kernel.org
+X-Gm-Message-State: AOJu0YycbfoyrU9OzAManXRuQS1jVg/zgCCtubTqKJmsWeRVVmioR7bP
+	+7qkvWJLIWKm0WWDWlErJT6XisW2TzDRLhOm/hXyOYC7IZuf26TU5I437R6UBRwz
+X-Gm-Gg: ASbGncsKl3CrMqqfMmMlz+CYXMqv2WuqyOTYSK2iSD71uU/1lPIU/QcfMbpzWLkHhd7
+	/c7wwVVYrRQmlsu4i7Mrdyp9XxUtYQsxwFZFd7+iXj3m74Gt/tmlIMqWGBSXEffJr3CgCFDRLz0
+	RRdc3GoLRMC4ky9xn0nSa/ymDjzQHdjgQBmv4D9NgD3FBlFz+jmokk30Tbg1u48uQZrbe8CnSuz
+	xsgRZG1PW9ocW+H1Wb+k3ZyHZeeAEnGzF16fNeKhURwNBqCxmvFJgy5A+pHdqPb0bpIAMbubIA2
+	NAmUBXKq4+O8peNL3+L6rX5G1DKQAzcl3TQlym//u/WgwrryCmU0aNdUpvsG2FxYV8J/7svEefF
+	azhWsxRsW18jKMLXamFXzdOyQvSBLmW4mix3wDaqC1UVC/Bi5o8uhfMG6BkJbJya/ErWiohpWLF
+	7aUXITJvhL
+X-Google-Smtp-Source: AGHT+IFFWjNfFvJf/KKbfnnAk8+xmehmuHgEGYHmP+99UOt2DDhP0Wa5GQCZBIHJNEGMM4odMKh24g==
+X-Received: by 2002:a05:6102:cce:b0:5d5:d1e1:73cf with SMTP id ada2fe7eead31-5d5e23b0e91mr994345137.31.1759917120049;
+        Wed, 08 Oct 2025 02:52:00 -0700 (PDT)
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-92eb4d83ed6sm4067240241.1.2025.10.08.02.51.59
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Oct 2025 02:52:19 -0700 (PDT)
-Message-ID: <11594604-a6f6-44cb-96f9-0c06e2cc9ae0@gmail.com>
-Date: Wed, 8 Oct 2025 02:51:05 -0700
+        Wed, 08 Oct 2025 02:51:59 -0700 (PDT)
+Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-5a2b3bb803bso4167028137.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 02:51:59 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU9C+u8UWvjhSKKb8wLHhTUiCjPoxYm87KFTgHJY4XZLXmOFK8FUiYwSx1dacqcp2zGEMEAFMr7F1KS@vger.kernel.org
+X-Received: by 2002:a05:6102:3a0c:b0:529:bfd2:382a with SMTP id
+ ada2fe7eead31-5d5e23b1d6cmr992407137.32.1759917119278; Wed, 08 Oct 2025
+ 02:51:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/11] rvtrace: Add trace encoder driver
-To: Mayuresh Chitale <mchitale@ventanamicro.com>
-Cc: Anup Patel <apatel@ventanamicro.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Greg KH <gregkh@linuxfoundation.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Ian Rogers <irogers@google.com>, Mark Rutland <mark.rutland@arm.com>,
- devicetree@vger.kernel.org, Alexandre Ghiti <alex@ghiti.fr>,
- Atish Patra <atish.patra@linux.dev>, Peter Zijlstra <peterz@infradead.org>,
- Anup Patel <anup@brainfault.org>, Adrian Hunter <adrian.hunter@intel.com>,
- linux-kernel@vger.kernel.org, Ingo Molnar <mingo@redhat.com>,
- Jiri Olsa <jolsa@kernel.org>, Mayuresh Chitale <mchitale@gmail.com>,
- Namhyung Kim <namhyung@kernel.org>, linux-riscv@lists.infradead.org,
- Andrew Jones <ajones@ventanamicro.com>, Liang Kan <kan.liang@linux.intel.com>
-References: <20251002060732.100213-1-apatel@ventanamicro.com>
- <20251002060732.100213-6-apatel@ventanamicro.com>
- <793a00d6-a1ae-4928-a326-3d276a30bdbd@gmail.com>
- <6c7dfe6b-8cc0-4cde-945b-c423ef517be8@gmail.com>
- <CAN37VV7uBkRzYsQcgGtw_iFg=za91OH7_1OSJ+b8eeuCzL5iDw@mail.gmail.com>
-Content-Language: en-US
-From: Bo Gan <ganboing@gmail.com>
-In-Reply-To: <CAN37VV7uBkRzYsQcgGtw_iFg=za91OH7_1OSJ+b8eeuCzL5iDw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20251006172119.2888-1-wsa+renesas@sang-engineering.com> <20251006172119.2888-3-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20251006172119.2888-3-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 8 Oct 2025 11:51:46 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUATfzL5fJ0Kvki5n8Xa8p68RwAuCm1ayG3SLwuzpmuyA@mail.gmail.com>
+X-Gm-Features: AS18NWBHcsodHDDr4jhbkMU-kPE6g2KYhbmfMFiKSoCW3kN2E4jr0bvxNP0kRlU
+Message-ID: <CAMuHMdUATfzL5fJ0Kvki5n8Xa8p68RwAuCm1ayG3SLwuzpmuyA@mail.gmail.com>
+Subject: Re: [RFC PATCH 2/2] ARM: dts: renesas: kzm9g: name interrupts for accelerometer
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Mayuresh,
+On Mon, 6 Oct 2025 at 19:21, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Per the updated binding documentation, both interrupts must be named.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-I overlooked the ordering of your rvtrace_component_reset and registering
-on rvtrace bus. Yes, you are doing proper reset, so please ignore my
-previous msg. Sorry for the noise. Now back to figure out why my hacked
-version doesn't work on my p550...
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-On a side note, it seems that there's something wrong with your email
-client? I don't see your reply on the mailing-list:
-https://lore.kernel.org/all/20251002060732.100213-1-apatel@ventanamicro.com/
-And your reply mail appears not in plain text mode.
+Gr{oetje,eeting}s,
 
-On 10/8/25 02:22, Mayuresh Chitale wrote:
-> 
-> 
-> On Wed, Oct 8, 2025 at 2:19 PM Bo Gan <ganboing@gmail.com <mailto:ganboing@gmail.com>> wrote:
-> 
->     On 10/7/25 00:09, Bo Gan wrote:
->      > On 10/1/25 23:07, Anup Patel wrote:
->      >> From: Mayuresh Chitale <mchitale@ventanamicro.com <mailto:mchitale@ventanamicro.com>>
->      >>
->      >> Add initial implementation of RISC-V trace encoder driver. The encoder
->      >> is defined in the RISC-V Trace Control Interface specification.
->      >>
->      >> Co-developed-by: Anup Patel <apatel@ventanamicro.com <mailto:apatel@ventanamicro.com>>
->      >> Signed-off-by: Anup Patel <apatel@ventanamicro.com <mailto:apatel@ventanamicro.com>>
->      >> Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com <mailto:mchitale@ventanamicro.com>>
->      >> ---
->      >>   drivers/hwtracing/rvtrace/Kconfig           |   7 ++
->      >>   drivers/hwtracing/rvtrace/Makefile          |   1 +
->      >>   drivers/hwtracing/rvtrace/rvtrace-encoder.c | 107 ++++++++++++++++++++
->      >>   3 files changed, 115 insertions(+)
->      >>   create mode 100644 drivers/hwtracing/rvtrace/rvtrace-encoder.c
->      >>
->      >> diff --git a/drivers/hwtracing/rvtrace/Kconfig b/drivers/hwtracing/rvtrace/Kconfig
->      >> index f8f6feea1953..ba35c05f3f54 100644
->      >> --- a/drivers/hwtracing/rvtrace/Kconfig
->      >> +++ b/drivers/hwtracing/rvtrace/Kconfig
->      >> @@ -14,3 +14,10 @@ menuconfig RVTRACE
->      >>         To compile this driver as a module, choose M here: the module
->      >>         will be called rvtrace.
->      >> +
->      >> +config RVTRACE_ENCODER
->      >> +    tristate "RISC-V Trace Encoder driver"
->      >> +    depends on RVTRACE
->      >> +    default y
->      >> +    help
->      >> +      This driver provides support for RISC-V Trace Encoder component.
->      >> diff --git a/drivers/hwtracing/rvtrace/Makefile b/drivers/hwtracing/rvtrace/Makefile
->      >> index 988525a379cf..f320693a1fc5 100644
->      >> --- a/drivers/hwtracing/rvtrace/Makefile
->      >> +++ b/drivers/hwtracing/rvtrace/Makefile
->      >> @@ -2,3 +2,4 @@
->      >>   obj-$(CONFIG_RVTRACE) += rvtrace.o
->      >>   rvtrace-y := rvtrace-core.o rvtrace-platform.o
->      >> +obj-$(CONFIG_RVTRACE_ENCODER) += rvtrace-encoder.o
->      >> diff --git a/drivers/hwtracing/rvtrace/rvtrace-encoder.c b/drivers/hwtracing/rvtrace/rvtrace-encoder.c
->      >> new file mode 100644
->      >> index 000000000000..45d1c5b12c51
->      >> --- /dev/null
->      >> +++ b/drivers/hwtracing/rvtrace/rvtrace-encoder.c
->      >> @@ -0,0 +1,107 @@
->      >> +// SPDX-License-Identifier: GPL-2.0
->      >> +/*
->      >> + * Copyright (c) 2025 Ventana Micro Systems Inc.
->      >> + */
->      >> +
->      >> +#include <linux/device.h>
->      >> +#include <linux/io.h>
->      >> +#include <linux/of.h>
->      >> +#include <linux/of_graph.h>
->      >> +#include <linux/platform_device.h>
->      >> +#include <linux/property.h>
->      >> +#include <linux/rvtrace.h>
->      >> +#include <linux/types.h>
->      >> +
->      >> +#define RVTRACE_COMPONENT_CTRL_ITRACE_MASK    0x1
->      >> +#define RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT    2
->      >> +#define RVTRACE_COMPONENT_CTRL_INSTMODE_MASK    0x7
->      >> +#define RVTRACE_COMPONENT_CTRL_INSTMODE_SHIFT    4
->      >> +
->      >> +static int rvtrace_encoder_start(struct rvtrace_component *comp)
->      >> +{
->      >> +    u32 val;
->      >> +
->      >> +    val = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
->      >> +    val |= BIT(RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT);
->      >> +    rvtrace_write32(comp->pdata, val, RVTRACE_COMPONENT_CTRL_OFFSET);
->      >> +    return rvtrace_poll_bit(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET,
->      >> +                RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT, 1,
->      >> +                comp->pdata->control_poll_timeout_usecs);
->      >> +}
->      >> +
->      >> +static int rvtrace_encoder_stop(struct rvtrace_component *comp)
->      >> +{
->      >> +    u32 val;
->      >> +
->      >> +    val = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
->      >> +    val &= ~BIT(RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT);
->      >> +    rvtrace_write32(comp->pdata, val, RVTRACE_COMPONENT_CTRL_OFFSET);
->      >> +    return rvtrace_poll_bit(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET,
->      >> +                RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT, 0,
->      >> +                comp->pdata->control_poll_timeout_usecs);
->      >> +}
->      >> +
->      >> +static void rvtrace_encoder_setmode(struct rvtrace_component *comp, u32 mode)
->      >> +{
->      >> +    u32 val;
->      >> +
->      >> +    val = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
->      >> +    val |= (mode << RVTRACE_COMPONENT_CTRL_INSTMODE_SHIFT);
->      >> +    rvtrace_write32(comp->pdata, val, RVTRACE_COMPONENT_CTRL_OFFSET);
->      >> +}
->      >> +
->      >> +static int rvtrace_encoder_probe(struct rvtrace_component *comp)
->      >> +{
->      >> +    int ret;
->      >> +
->      >> +    rvtrace_encoder_setmode(comp, 0x6);
->      >> +    ret = rvtrace_enable_component(comp);
->      >> +    if (ret)
->      >> +        return dev_err_probe(&comp->dev, ret, "failed to enable encoder.\n");
->      >> +
->      >> +    return 0;
->      >> +}
->      > Trace components needs proper probing before use. Refer to Control Interface
->      > Spec: https://github.com/riscv-non-isa/tg-nexus-trace/releases/download/1.0_Ratified/RISC-V-Trace-Control-Interface.pdf <https://github.com/riscv-non-isa/tg-nexus-trace/releases/download/1.0_Ratified/RISC-V-Trace-Control-Interface.pdf>
->      > Chapter 5. This versioning applies to all components, e.g., sinks/funnels...
->      > The driver should check the HW impl version with what it supports, and
->      > rejects registering the component(s) if not supported. Chapter 5. has more
->      > details.
->      >
->     Forgot to mention another thing: you also need to follow Control Interface
->     Spec Chapter 11.2 Reset and Discovery to toggle tr??Active. Do not access
->     any other registers or set any other bits in tr??Control before properly
->     enable tr??Active. My userspace driver does the reset as:
->     https://github.com/ganboing/riscv-trace-umd/blob/master/rvtrace/device.py#L57 <https://github.com/ganboing/riscv-trace-umd/blob/master/rvtrace/device.py#L57>
-> 
-> 
-> Actually reset is done when a component is registered (rvtrace_register_component) and it is enabled when it gets probed (rvtrace_enable_component).  I will incorporate the other changes in V2.
-> 
->     Your HW IP might ignore tr??Active bit and the trace components are always
->     clocked, and that's probably why you don't see any issue without proper
->     resetting. However, on my p550 (EIC7700), I adopted your code to a v6.6
->     tree, boot, and load it as module. The core immediately hangs, very likely
->     due to it tries to set tr??Control bits without proper resetting. You
->     should expect other IPs that implement clock gating and strictly follow
->     the Spec. Thanks.
-> 
->      >> +
->      >> +static void rvtrace_encoder_remove(struct rvtrace_component *comp)
->      >> +{
->      >> +    int ret;
->      >> +
->      >> +    ret = rvtrace_disable_component(comp);
->      >> +    if (ret)
->      >> +        dev_err(&comp->dev, "failed to disable encoder.\n");
->      >> +}
->      >> +
->      >> +static struct rvtrace_component_id rvtrace_encoder_ids[] = {
->      >> +    { .type = RVTRACE_COMPONENT_TYPE_ENCODER,
->      >> +      .version = rvtrace_component_mkversion(1, 0), },
->      >> +    {},
->      >> +};
->      >> +
->      >> +static struct rvtrace_driver rvtrace_encoder_driver = {
->      >> +    .id_table = rvtrace_encoder_ids,
->      >> +    .start = rvtrace_encoder_start,
->      >> +    .stop = rvtrace_encoder_stop,
->      >> +    .probe = rvtrace_encoder_probe,
->      >> +    .remove = rvtrace_encoder_remove,
->      >> +    .driver = {
->      >> +        .name = "rvtrace-encoder",
->      >> +    },
->      >> +};
->      >> +
->      >> +static int __init rvtrace_encoder_init(void)
->      >> +{
->      >> +    return rvtrace_register_driver(&rvtrace_encoder_driver);
->      >> +}
->      >> +
->      >> +static void __exit rvtrace_encoder_exit(void)
->      >> +{
->      >> +    rvtrace_unregister_driver(&rvtrace_encoder_driver);
->      >> +}
->      >> +
->      >> +module_init(rvtrace_encoder_init);
->      >> +module_exit(rvtrace_encoder_exit);
->      >> +
->      >> +/* Module information */
->      >> +MODULE_AUTHOR("Mayuresh Chitale <mchitale@ventanamicro.com <mailto:mchitale@ventanamicro.com>>");
->      >> +MODULE_DESCRIPTION("RISC-V Trace Encoder Driver");
->      >> +MODULE_LICENSE("GPL");
->      >
->      > Bo
-> 
->     Bo
-> 
+                        Geert
 
-Bo
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
