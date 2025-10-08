@@ -1,215 +1,159 @@
-Return-Path: <devicetree+bounces-224518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA6CEBC4AD1
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 14:01:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E5F5BC4C4B
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 14:28:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98C2D1896FB6
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 12:01:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DEE93C0C66
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 12:28:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C101F2F656B;
-	Wed,  8 Oct 2025 12:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC0D023D7E9;
+	Wed,  8 Oct 2025 12:28:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eIMRSor3"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=wismer.xyz header.i=@wismer.xyz header.b="k/nuk2hb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from out4.tophost.ch (out4.tophost.ch [46.232.182.213])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5486F2EB84A
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 12:01:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 473FB21B9C0;
+	Wed,  8 Oct 2025 12:28:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.232.182.213
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759924873; cv=none; b=lXlIV3LVeixgOj2KPrXHdXcWf5lyfdxfQinqeLSS3/bQtwRaR8b06XBj7FEKioZpzscmF834bhjBfykLocfQ8tHca0XCTe5SJPf5swRwgXifhZiNPZv/ITln0VKa9qzW7fgKVkDZ9WrQaZptCX8ZbRUwUQyXYJl75+qnKhIAwDQ=
+	t=1759926511; cv=none; b=Y9H0RaQVK8z/4H1TzDaRwoIOB/M0uA1GSqvKkxjCvKiMw1UsCBhP8C7jclwsf1OYkB3qt/1nz8ti8uwcBCrSzCFoFTgT+xAUVQXIg1qQi1OejfVHnqkmLGZHU3nWijBk3bpbg1sisy/C5CO3CDc/mxnt6K7ve0Te5N2E8a6eQHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759924873; c=relaxed/simple;
-	bh=QfUT1DtV9d+QVs0WgbumZs0pdJWkf14RDIdQPku/mm4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=momoolIL37fULkqc2wtZWJ78PNl45YsUMAW6fUS6MvVydRcZJIwqbydwBpz/kLLYtLXN4t1yNoEx2hd5J192E40hRp9YZttGhedUrgD3lCoF7Q4pRcKGI7pm1ON/dEIGRsUBYyGF9tPss/vwHL2FthQNKL+uauXhZLa5J/5fAcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eIMRSor3; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59890T0p028979
-	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 12:01:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YUe30woE5xEimZOnT9raXvhiVzii7F5/lJXV/+rQmpU=; b=eIMRSor3s8f0HqdA
-	pkeP+CNNNqq715YMCOKDIEvIXhzK21rEAyE8AKxeGV11sFtZfcRSEWqiWYOV6l31
-	CLFJOgcKqXCKvLzgnXLH0MLaL1IiJjrT58mDzQvQZWYfiOmU1MSSdWVsnCF/0GmF
-	24SSvVe5dkZRObBoMxoeoc6XnfDZJoTq5N5OC7hOgDuV2LrGeLjqslpcpdvtsSBv
-	PaXMMVUSqf8eH7v6YNIhQ2uNOdysGj8ioXnzOt1TGs6jNoNQNQnjGVfPLyCMnGdk
-	V1EDZok9m9WVpHqCc8TtZuOo+U/kvJtxr0J1HRlQ2GVaXM6DoXflM1gj63gLWR/X
-	j5vGwg==
-Received: from mail-ua1-f69.google.com (mail-ua1-f69.google.com [209.85.222.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49js9e2gkv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 12:01:11 +0000 (GMT)
-Received: by mail-ua1-f69.google.com with SMTP id a1e0cc1a2514c-8e48b01c70aso103219241.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 05:01:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759924870; x=1760529670;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YUe30woE5xEimZOnT9raXvhiVzii7F5/lJXV/+rQmpU=;
-        b=E0AitCBFNTMkuBJ9kaIS4E/PNhrRUEK/KRadb/dkFPU1f9GrPSz4tigmJURRt+Tan4
-         rdWUejM81evBcbjGX/uVGcePCbpvS4hPsxOlnwRSP2ecVz0qKqhwtTUAnBSaWOt5Zpt3
-         DUsm9T++Tiu46WWUBJkuyrm9P8/U58wTmatfbOHIj6cAwcvDfIxAwyPXycYR2o64/Jmc
-         bPbvgDHJ0atzTg/PoEYQfCwCgvp5uPcmWsFzkhFsiAOhAv6UjFtbO0MP3XjR/P6URl4c
-         w5+CtsTUgnRxynXXezNttQGCG3Q3JaJlAO7Yzw5LlMV87DsE8AUXs7SnGPID0t+O4Jh0
-         OZuA==
-X-Forwarded-Encrypted: i=1; AJvYcCX8BTmcE2k0DBBFADddYSdlInV3AjCy32hdsaan29g8Cyo5aySlsxyF+SJJ7VP2LcRDvS9v7xd895x+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAEB0EuI/0D4JY0obZ3WIAIPuZOxc5Qv69tfCgCVNzDgjD3JLa
-	kbg4ikGLKd88yw2o8c0E8jBYMHpD4YoMQ9S9LFiWYuVSvrE9jkptij/fkz2aCbyLnzECtKPS5RX
-	KDAXFDmd1PsTv1p9fbdOeHz0Pk3MEzYNjyOUvIN7USQuH1TpYqdxt0HeExfVK2BxK
-X-Gm-Gg: ASbGncvA8uUJsQ9twbyBo7l8hAYS4PT+jSq9PKT7JBVky9bwGBeNs9U6QwHeaSh2Df4
-	WNw0Gi8amFYbWsfU8qrpLHyJAIrQXwLe0RZQKxVoWAxOi0lwAFJXHCF6lUcLI28ECWdNDZWXoOP
-	xxh0Vs0RRsawATN3lPHjrCxwo9i7lW3f6AOly4+jMxyoiVt99bKciGlwSxOAS0FU9jgwOSEqUgh
-	ZjaHQGJeWXpLodI33MuUaaMB8vS8p6l1qr5rCVcex+wBTHItAq+jWM4MEZDdgcbKw2V4v/EnR/W
-	GrGKnCPNJTmAQXyoETXlAa83+dAHQqSeh4fqDHH3w1sHKnBDnloEf6TDFoCnuHZ+cWjin6omYJ4
-	bYtWYmlLi4+CExHQgPtnX9+t4XtA=
-X-Received: by 2002:a05:6122:6c01:b0:544:6d56:eef1 with SMTP id 71dfb90a1353d-554b8b9dafcmr382783e0c.2.1759924869680;
-        Wed, 08 Oct 2025 05:01:09 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFT9kYombhVn9vLwV8HVqDP5rHDdMKek8m1Ph8xI5IlH4fvXAiDJcCahZY6sxIbEptqVVlYDA==
-X-Received: by 2002:a05:6122:6c01:b0:544:6d56:eef1 with SMTP id 71dfb90a1353d-554b8b9dafcmr382725e0c.2.1759924868891;
-        Wed, 08 Oct 2025 05:01:08 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b48652aa040sm1634050866b.20.2025.10.08.05.01.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Oct 2025 05:01:08 -0700 (PDT)
-Message-ID: <f7f2189b-b182-4616-bba3-ad1a0af3e4da@oss.qualcomm.com>
-Date: Wed, 8 Oct 2025 14:01:02 +0200
+	s=arc-20240116; t=1759926511; c=relaxed/simple;
+	bh=bJZwQB0eD/a80IPP/m1ic8+FM4WfH8rPsVolRrikLtE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SIhR5MXafh2USq3PLWEH97X7bTbo4CMbf+FBFpJzVaLAtXh37JdbYrXavy0QJkTUKUfKw/LM/TQAs6QnQwxg6m/ngVbC112kRNexUPlyq0N7HL9FdFQji58hjbJdtJmLNxM+5jbD2TZUluGpudpSeA/GLsHxD/aR95c/FPu6PyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wismer.xyz; spf=pass smtp.mailfrom=wismer.xyz; dkim=pass (2048-bit key) header.d=wismer.xyz header.i=@wismer.xyz header.b=k/nuk2hb; arc=none smtp.client-ip=46.232.182.213
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=wismer.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wismer.xyz
+Received: from srv125.tophost.ch ([194.150.248.5])
+	by filter3.tophost.ch with esmtps  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <thomas@wismer.xyz>)
+	id 1v6Siu-00HEio-1b; Wed, 08 Oct 2025 13:52:50 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=wismer.xyz;
+	s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:
+	In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=jcrzgQaRo1s3Zc3rxVMNCH6Ga4jTLLoMlb1z0pI42TQ=; b=k/nuk2hb22e48eTiuOitgKNYnS
+	S6S+PxKSnOb0A/DjeNt+6wofSRKNGY34A2/XEAUq7QqQ5VyV7pTUL7GG6thx3tJYXEQit2zcHyCRL
+	8QswE0ABV3qgGyxpQVVcGImMHl3V5GbTnfyTrF20eaGHSTra+SGREiZascklXWkK3J3xN9drEEPs9
+	F9MNvA+UIeV1V888hTDQSyQ6Xe4fiu5y6FuaMMU13f1mlXMdsOd2hgFdilNgPtHBtPO7EAyYY7hhY
+	Cs0x9+sLanO4DYTP6Pjoh1Zw+M7VSHmLiVGUmo5lDoW/B7dhjev0EOEr+5QuoNiWBRa1zVkAF2zXG
+	FZwk7zfA==;
+Received: from [213.55.186.58] (port=20306 helo=pavilion)
+	by srv125.tophost.ch with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+	(Exim 4.98.2)
+	(envelope-from <thomas@wismer.xyz>)
+	id 1v6Sit-00000004Xlh-0ZFe;
+	Wed, 08 Oct 2025 13:52:45 +0200
+Date: Wed, 8 Oct 2025 13:52:43 +0200
+From: Thomas Wismer <thomas@wismer.xyz>
+To: Conor Dooley <conor@kernel.org>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>, Kory Maincent
+ <kory.maincent@bootlin.com>, Andrew Lunn <andrew+netdev@lunn.ch>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
+ Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thomas Wismer <thomas.wismer@scs.ch>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] dt-bindings: pse-pd: ti,tps23881: Add TPS23881B
+Message-ID: <20251008135243.22a908ec@pavilion>
+In-Reply-To: <20251007-stipulate-replace-1be954b0e7d2@spud>
+References: <20251004180351.118779-2-thomas@wismer.xyz>
+	<20251004180351.118779-8-thomas@wismer.xyz>
+	<20251007-stipulate-replace-1be954b0e7d2@spud>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/17] drm/msm/adreno: Introduce A8x GPU Support
-To: Akhil P Oommen <akhilpo@oss.qualcomm.com>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Sean Paul <sean@poorly.run>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Jordan Crouse
- <jordan@cosmicpenguin.net>,
-        Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org
-References: <20250930-kaana-gpu-support-v1-0-73530b0700ed@oss.qualcomm.com>
- <20250930-kaana-gpu-support-v1-12-73530b0700ed@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250930-kaana-gpu-support-v1-12-73530b0700ed@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=Hrl72kTS c=1 sm=1 tr=0 ts=68e65287 cx=c_pps
- a=UbhLPJ621ZpgOD2l3yZY1w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=C_0j-PAzlxBuy3Ei6pAA:9
- a=QEXdDO2ut3YA:10 a=TOPH6uDL9cOC6tEoww4z:22
-X-Proofpoint-GUID: JMsIxjYmRJshA_U6wAlYxuIP6CM-Wi7q
-X-Proofpoint-ORIG-GUID: JMsIxjYmRJshA_U6wAlYxuIP6CM-Wi7q
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAwNCBTYWx0ZWRfX9Hn38fMz8o6u
- gclz6Vh2ZT9fXjShAkmjEKQ64QtIl0zJTphD7PPUwmX0B9WsD6f3SzTIUPXTj22XHKWK4w8q2wB
- tLDymUbEQdymnBFtPBgXHltvC/8FSai1psU9hpJK+Wz8gtnTtkdKW0zXnF98LJCZpPsbbTscUHB
- YIonU3WnXoAcAABegDQw2x5h3Xuu7Z5zmeQV+KHtxFi8EphRX6ajm6iOmgpqeq2usxVCQUnOw9u
- +5S4FJLzuuTd5oIlHhQD1nugav+7Lal1z6oAnRmcWa7FAtTPX3x4S87WV8duG90U79/rUIgRkKa
- qNmBQVTHdizIMVf/NZxOEVlXvyvo2SzpOhzmGs7g9xVJNhGvc8QkX9frjGz4exSkUcbScFHhrWc
- S2SS7gtO+FB3/Di0iFEWgM9o7JUl/Q==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-08_03,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 phishscore=0 spamscore=0 adultscore=0 lowpriorityscore=0
- bulkscore=0 priorityscore=1501 malwarescore=0 impostorscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040004
+X-Get-Message-Sender-Via: srv125.tophost.ch: authenticated_id: thomas@wismer.xyz
+X-Authenticated-Sender: srv125.tophost.ch: thomas@wismer.xyz
+X-Spampanel-Domain: smtpout.tophost.ch
+X-Spampanel-Username: 194.150.248.5
+Authentication-Results: tophost.ch; auth=pass smtp.auth=194.150.248.5@smtpout.tophost.ch
+X-Spampanel-Outgoing-Class: unsure
+X-Spampanel-Outgoing-Evidence: Combined (0.50)
+X-Recommended-Action: accept
+X-Filter-ID: 9kzQTOBWQUFZTohSKvQbgI7ZDo5ubYELi59AwcWUnuV5syPzpWv16mXo6WqDDpKEChjzQ3JIZVFF
+ 8HV60IETFiu2SmbhJN1U9FKs8X3+Nt208ASTx3o2OZ4zYnDmkLm5Mv/tafLC72ko3Lqe/Da7zEtV
+ 5r/L4Ot8UddBJecz0vF0xYCHwzEoZpUBagq+YQPMCtmoQhY2xrBb8C+tWUvqrqBKsSdhvd/J5sX5
+ daZjkYsG4jVZi5Tfop5qjCZejidXzthz0vNkOX8Em4cj6D/wddIY3ooDH3xmALJ0KCcsszI9W7vD
+ 6C469DIPe8wH3iOJ3xyMg3et4b3PQUopDmbZCssYHNuxAmlPRpR5yzngsxCROUzReCS8EpKh0It9
+ L25JS816nuiE0t5pG6MLXGczoaQ34/6XxaNTDAhv7aV57JsPc1xQig4or8SGp+oEgVY8m5YhXjt1
+ 1mZXDl6SZZzjGdqG2Lj5rCXX7a7k66n+dqZH8SumKJ6G2ITZ1QpN+fKl6MqQzpHx+R/se4ridaNZ
+ B8TZI7fFfQwiuwD2LcLdqjNzWvfUWpSzeqsU5PCGCDUFaU8uhHiAnATVZ6fUz0ieq3c+galx1KGI
+ Pp5jnkiI48QcVV/sevQbkxCuiwh6Dw2ezHpzBWCNEjuWRvIT4EJ2lr2fnvN0vyHJPWrtFePT1LWJ
+ YkjVkiWyun89aYjOQVn+0u9hv6vc4kaDyrzZqOtFmCYx9ZUW4uF3IsCR4FQZzMS1+iCTTpBSBU9f
+ +Vf3ILgJPePj0AiYMnkOYZl+Ft134+Tg4Kc9J0hnMXKx8pjHWEGHlWxPsl3WEfCK++QP7hwqRAUa
+ ZyvXYsGqun+gsnRrwx4NiFDSlcM+Wn9owyaX/KlLn/njN5eSj526f3kLYY1TsMEeeHi+U6STQXMQ
+ D692EpmpxHPQ6fdixDnE+NhRq2DzlcAJUjaLcRLsWJVw5FAS+DG0fESebuRosX/9DvJ1PqhoyZO+
+ 55MGpfuy7J6qK9cOuNFQ+5eGIII/qgXB3gv2NI/ukWuQBNrXV+EmIqM8SxKOhcObZXWnkEw+6F9C
+ GyYaSNdYCqWjx7tVBcUyWD6tuli72Uhh4KMdzekambyQyMd4zC4QeDwRSaOU1duojVsD0mcRXp3i
+ H/O1nLlsNVT2ZXBi9hWEAP02Kq9O1EK/TYp24VOsP5eu885wo+t+ynT3Y80OmAux3oN13+ztUzne
+ WewwEyDnbwd6egxf+5+PsAe2KUEdvp80LOErjFwUf/rlg8VmOc5TmmgdvZqrRINDmcHx2hb+kvjY
+ MSg1O9jlcFeiwd6G/JABbKl/d5wvz25WxpLvJQch9a84ocD+HpMJ647lNwN4qOsSZg+fYhVZG4mh
+ yjRtVCRmo/KLfKlWmgufHFIwhu0oznfSscIjbgCEW8FLB4OaDyJuGHToBIYrrlDXmPN7G7txF2nS
+ g2cyQb8Y5qkVLHiOZSn5k9NADD0BBW1oT5qIEWguCTF5tOP3jj0yLjiiCMcv+tRXcSj1CD4=
+X-Report-Abuse-To: spam@filter1.tophost.ch
+X-Complaints-To: abuse@filter1.tophost.ch
 
-On 9/30/25 7:48 AM, Akhil P Oommen wrote:
-> A8x is the next generation of Adreno GPUs, featuring a significant
-> hardware design change. A major update to the design is the introduction
-> of Slice architecture. Slices are sort of mini-GPUs within the GPU which
-> are more independent in processing Graphics and compute workloads. Also,
-> in addition to the BV and BR pipe we saw in A7x, CP has more concurrency
-> with additional pipes.
+Am Tue, 7 Oct 2025 21:40:03 +0100
+schrieb Conor Dooley <conor@kernel.org>:
+
+> On Sat, Oct 04, 2025 at 08:03:53PM +0200, Thomas Wismer wrote:
+> > From: Thomas Wismer <thomas.wismer@scs.ch>
+> > 
+> > Add the TPS23881B I2C power sourcing equipment controller to the
+> > list of supported devices.  
 > 
-> From a software interface perspective, these changes have a significant
-> impact on the KMD side. First, the GPU register space has been extensively
-> reorganized. Second, to avoid  a register space explosion caused by the
-> new slice architecture and additional pipes, many registers are now
-> virtualized, instead of duplicated as in A7x. KMD must configure an
-> aperture register with the appropriate slice and pipe ID before accessing
-> these virtualized registers.
-> 
-> This patch adds only a skeleton support for the A8x family. An A8x GPU
-> support will be added in an upcoming patch.
-> 
-> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
-> ---
+> Missing an explanation for why a fallback compatible is not suitable
+> here. Seems like it is, if the only difference is that the firmware is
+> not required to be refreshed, provided that loading the non-B firmware
+> on a B device would not be problematic.
 
-[...]
+Loading the non-B firmware on a B device is indeed problematic. I'll
+append the following paragraph to the patch when reposting it after
+the current merge window has closed.
 
-> +static void a8xx_aperture_slice_set(struct msm_gpu *gpu, enum adreno_pipe pipe, u32 slice)
-> +{
-> +	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
-> +	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
-> +	u32 val;
-> +
-> +	val = A8XX_CP_APERTURE_CNTL_HOST_PIPEID(pipe) | A8XX_CP_APERTURE_CNTL_HOST_SLICEID(slice);
-> +
-> +	if (a6xx_gpu->cached_aperture == val)
-> +		return;
-> +
-> +	gpu_write(gpu, REG_A8XX_CP_APERTURE_CNTL_HOST, val);
+Falling back to the TPS23881 predecessor device is not suitable as firmware
+loading needs to handled differently by the driver. The TPS23881 and
+TPS23881B devices require different firmware. Trying to load the TPS23881
+firmware on a TPS23881B device fails and must therefore be omitted.
 
-unless the effect is instantenous, this needs a readback
+> > 
+> > Signed-off-by: Thomas Wismer <thomas.wismer@scs.ch>
+> > ---
+> >  Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> > diff --git
+> > a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
+> > b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml
+> > index bb1ee3398655..0b3803f647b7 100644 ---
+> > a/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml +++
+> > b/Documentation/devicetree/bindings/net/pse-pd/ti,tps23881.yaml @@
+> > -16,6 +16,7 @@ properties: compatible: enum:
+> >        - ti,tps23881
+> > +      - ti,tps23881b
+> >  
+> >    reg:
+> >      maxItems: 1
+> > -- 
+> > 2.43.0
+> >   
 
-[...]
-
-> +static u32 a8xx_get_first_slice(struct a6xx_gpu *a6xx_gpu)
-> +{
-> +	return ffs(a6xx_gpu->slice_mask) - 1;
-> +}
-
-#define instead?
-
-Perhaps also move it closer to the user
-
-
-> +static void a8xx_set_ubwc_config(struct msm_gpu *gpu)
-
-You modified a6xx_calc_ubwc_config() earlier in the patch
-
-is one of them unnecessary?
-
-[...]
-
-> +static int a8xx_zap_shader_init(struct msm_gpu *gpu)
-
-You can borrow this from a6xx_gpu
-
-Perhaps moving such common functions to a separate file would be
-even better, I glanced over the change and there is probably some
-potential to commonize
-
-Konrad
 
