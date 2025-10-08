@@ -1,80 +1,87 @@
-Return-Path: <devicetree+bounces-224451-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69A01BC3EB2
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 10:49:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77207BC3E9E
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 10:49:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1F0BA4E28C9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 08:49:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BF1819E1979
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 08:49:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 520462F361E;
-	Wed,  8 Oct 2025 08:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEEE02F3C1D;
+	Wed,  8 Oct 2025 08:49:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i1yWU/4v"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="k2UcBihO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C0174A33
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 08:49:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35C2315278E
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 08:48:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759913378; cv=none; b=Z+7AaMXZ3PN0fuO4/hmE1eoYJrDLeRzjwgHHH0xc4+/OLvwZ3mRn3DpmpBHNBYoA4ObYS4ZP+riOHSAi6b0P1piu9qI8noSZe4CK9exwIMJF4PnZbH6su/1UVLEoEj6d1A/7UmPgmY3tKL5Cd7Md7DQsvfdHFKdM0n1CE1wsVV0=
+	t=1759913340; cv=none; b=LMcNt+M/HshWqpr1etGzo8AlSYsnMzsSSdlaeyLS4Kd7lff3HEtQJT9tT1qXqEpv6LPfD9j/NiPTGjaNBl36hPAr61alB6fWme7Eg1EpOXxAv9RYIQsn0O3So38h9ARaFsMHNmHBmYDFxw7ZQWhOBBkaQKVRav2sn6DmLJUJS3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759913378; c=relaxed/simple;
-	bh=+UDuO6DO/Ym52LDlFXI3rp7SrLJSwX1eI96AAhMosoA=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=HYo2lK7A9yEKFv1BKTSVDvjKSvJwDek96+NBzi4vJaDRe505ebq9jiI+EOgzvSWy8mlFoCoUjy44yti5AAOdO1ngVE8IIMP/qaZ4nOdd2hsOHAolQS4m7iiFHxEOiFWQjQhjumyfgIZYyPS3qdhQ9faSyuVFkwcMo+fKurWjrvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i1yWU/4v; arc=none smtp.client-ip=209.85.216.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-33082aed31dso8288149a91.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 01:49:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759913376; x=1760518176; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=v063PFHSc1gjQVRPTuEMNoZ9lB106FcvcJqBcKcRy2Y=;
-        b=i1yWU/4vZolSIXQE6j7KH1P0Q1ZJHZKRG2SOmO6kQO9SqEMNHDihVogaonE7Ejs4Rn
-         P0ppCAJSpByfsnbM1eJhm9+SPtjWj1h0PTxJEN8+o6M6ZZn+1jh6D0+iNpaqizUKjDmr
-         ZlQvMVdOUhNHaqf9QoGxfonSvBJ1elBxcmGku5D/tODiWhAs0IVN3A8TNLpPHXXLuISq
-         i7gRbGmjozAvA18DILj5ZgMpRuZvWfXJHpQWtPCjmBfSnjaDCt3oLVipuW+69UrDvJeb
-         c0zkAKfbBVJMKyi00Ayf9/0QaTy8hq4ChlTZ5sGa9n1zVn1Z4/RyLc2WYLzhdZcgnwS3
-         j6+Q==
+	s=arc-20240116; t=1759913340; c=relaxed/simple;
+	bh=7BfBSZDHZvPKSGJGNS64jbWWiaNwxlYfIpEdJGGrQ1g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BvCJWate+fImZQgn+RYPsXbHG2uLHcXIFIdLTd34B29vtBRBMgdxb9S0GPIL6JNuIgQ0+uEkAlj914jAJMgJVcJiFjSZE3MfIn88bht/fsRT9HzXPY8i+0RIDhWEtxB8UB1rnG4sv7IDu6DTbZpZD24B9FxXfHIx8dGF4ZmD9zU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k2UcBihO; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5987afFC024387
+	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 08:48:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	G8wKJs7k8BdJDa4iq/XFnFxcY6LibnKFgudA7DP6ZS0=; b=k2UcBihO4PqnesT3
+	sSz1/2a3iHudoAPCGKDARqi9bfhATtseXK0z2QUEiMqOdkDKEHm3xtR8Fpb4VgHp
+	KHGYJNHejTCAkPLgzVinwzaZLeY7VdST4aflq6iJimvJCzHZRvndwoViGGaSMB6k
+	qUEvQ8s2IB4J8QPX1CTe+cQHKUa/CxqbJpJvijFmWuaRL9u2j02YjNfj7mUBIOIX
+	HWF/x7NudT25g75tp4RU7+/oHfJXq2tlWrIm37Oy+Qp1HqW1AfWdXlD6E/RaY9zU
+	BBqlypWjLALsagUyeRTwoqpx9UqaaqPjTgrGynsZ6M3byrZCD8qMJdY+/tg9iaqT
+	+gp+uA==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49n4wkta83-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 08:48:58 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4e6d173e2a2so9396651cf.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 01:48:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759913376; x=1760518176;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1759913337; x=1760518137;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v063PFHSc1gjQVRPTuEMNoZ9lB106FcvcJqBcKcRy2Y=;
-        b=HJxLlVtJHi2uu5ySpnvTJXX5gDX2BJZhQvMnZLvCGzfPYFGjUCVv1K08m+tH38thvm
-         JbFRMvh/fXUkGgYTTUmsV2pWHW7Fbdd6NIF06T9B6WgVZAL34lfBCpj+4rvJdBb99hBP
-         wuog0wGPGNskT56V6/J6IkZ94dEZ7oK3RFk2X6ZW1rX9MH0VRdDg6jvCxXSNduekojg1
-         8ZBtMpnz33obF+OcT4RbPeXSlIubpcA2HKCstnyeLyjWJV/HBmLiIJvcyKfNSWUSe51X
-         6xXHcdTQUmWuIPx5WgLInovs/6BoSy6h2THSCyeav+EqnSTWyQKuM4ULYxSKFa9DJ9aY
-         Vabw==
-X-Forwarded-Encrypted: i=1; AJvYcCWa92AQrUFImljkDL6Lo009avgkzEISMdZCfxYctLuVlsjINWX2QWAUGEoeuv2c/5HN+3vhvuJCINpa@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKpRDaUq4o0mABuMwvjMAgV5ctwpPjtE1plh2FGeJoecFAICvp
-	xvoNtZFnEb8b9DmNHEV6YRWWHQASu7ltaey0H2wlCFvfrk4n/HsrTtuz
-X-Gm-Gg: ASbGncvVXJ9WRK2lEI6elAz44VE+rTTGhaLNcSgcXNR9Wh81w9PGb0qhSl0EE7jfew5
-	35iWrW7Q8A26Qn1tbADuVJtX+p2nanmnzl6zVxoGm67xfCgeepO/asZszOvLIpRvwlXOopCP0sF
-	dnr7CzsGXx8JpQqeu4vikjtwpaeSYAmr3NMxABpmbRTsXhq3+BWRSffoS0pBq9+n9hZq/f3GRu1
-	TJBxDBTDCPz1+fruDpCEXD6viTo5KuV3exos4HV8WUSfOflq2AAlLLwFJyqjpst83Q0diHGC/Px
-	NpIzxGQtQLZQRS5ZXEV3FDey3p1UwCcMK3RBDipKHE8xzcc+Bxt3Kb+Ylt/86rHOiVfEq8j0K6v
-	VCUq6FtjCNV5RO86yteikVS+NgDFvOpOgEcNguyjqZdoen5zc
-X-Google-Smtp-Source: AGHT+IEn4dr9WPi2dRHtbGX/nSAXQJpfA4KLTasMB6vT0AgR33JypLI3Jn8Z0xOPQzZtBHvu86ojaQ==
-X-Received: by 2002:a17:90b:4b04:b0:32e:8c14:5d09 with SMTP id 98e67ed59e1d1-33b51105bbfmr3466478a91.7.1759913375457;
-        Wed, 08 Oct 2025 01:49:35 -0700 (PDT)
-Received: from [192.168.0.13] ([172.92.174.155])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33b510e91d4sm2540549a91.1.2025.10.08.01.49.34
+        bh=G8wKJs7k8BdJDa4iq/XFnFxcY6LibnKFgudA7DP6ZS0=;
+        b=mZ71emZ4phYbhSyJQrYYf0HrX2wWW3G2LI6V6wrRkg6ji5BF3bhNUTM/HuL3NjcaLZ
+         Qvfrbc/OjaA26zFaaRpNcVdLDQPK3Wl/vaueonAONDBgLiAcCoWmpyLdfxo4A1tVDD8b
+         kCuMO597mVvv+8JprlJtac2eFU2YLeXuvGPLKYgnwnWP0Zo7BjZokl9cvsrmhBOm3tg+
+         AgFujMFt0h91kaqSiLVcKtIJcRd+a+6ShGj+9isDXJpfsll8HX4WBlF7INDmTH9T8YOT
+         NPFIXzW+WcLozAf4M+Ql/Fx5XzLeDPUqjGqCqk5sqJys1uqLprap3oqMs7o2WuNwQXTH
+         Ct5A==
+X-Gm-Message-State: AOJu0YxUnWT5fwi6F1Tjr2kcUbHsDydSKQQ5KyuWwUqGet+S69mawm+L
+	gh0s8Cy7MK7lJiykISbJAr1KppwfJbJyHi17uo36xRDPwIA/XuEeXZeM97uxhmTyn2in0lR4tez
+	fAGjnl9djvCiIFN+Z5ZV4VpT0m5f8if/3gxV5cC+QH0L3WU5O+ct1HHhC683GSj2G
+X-Gm-Gg: ASbGncvK+JOBTgtSWtHh2K8HW+V0vBhn1OBDF9I4pDaTW8R5GmeTfZbUwHXgsWVN4SY
+	hxTvMaM0ZCaxkDRUuA9GIJHSlh4CeygvWEBlwEBPUENE1qsxgu8Dtjprmr66e97UtHG8go4+Unv
+	DV8bURB3TsjPXVaLUcV8M+enMLOD+Os18MTKnHBMJ16lDKY1D6NRoiq2e9nO+u0lpkstMD+3ZPd
+	H4hIkS8Ykjc3uYHL3oeSN0q34L92GMmrXKwi4EPy57fgf0M55LmgdzlgfoqXoW5joVuHuZq9pdl
+	VZZyPe7MWY+ARgXw+oc00nvXuhInbeAYbR4tQSBDIMlMziblN97OK8C1le9wZ24btGr37YkmEaS
+	+UBmpT3eY3ig9bYQzekFn7tT3lCs=
+X-Received: by 2002:ac8:7d01:0:b0:4d7:f9bc:2057 with SMTP id d75a77b69052e-4e6eabf42dfmr24908641cf.0.1759913336811;
+        Wed, 08 Oct 2025 01:48:56 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHsCSe7n0ysQoCqxTpSE7/nf5Ci/mBlv5y0BJyPNF55pdASGC5ln6HklotZH+fpGWKqoE/HYw==
+X-Received: by 2002:ac8:7d01:0:b0:4d7:f9bc:2057 with SMTP id d75a77b69052e-4e6eabf42dfmr24908391cf.0.1759913336234;
+        Wed, 08 Oct 2025 01:48:56 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-63788110de2sm14260231a12.35.2025.10.08.01.48.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Oct 2025 01:49:34 -0700 (PDT)
-Message-ID: <6c7dfe6b-8cc0-4cde-945b-c423ef517be8@gmail.com>
-Date: Wed, 8 Oct 2025 01:48:20 -0700
+        Wed, 08 Oct 2025 01:48:55 -0700 (PDT)
+Message-ID: <39d07bf1-cead-449f-85c8-4651e5296cd8@oss.qualcomm.com>
+Date: Wed, 8 Oct 2025 10:48:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,206 +89,103 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 05/11] rvtrace: Add trace encoder driver
-From: Bo Gan <ganboing@gmail.com>
-To: Anup Patel <apatel@ventanamicro.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Greg KH <gregkh@linuxfoundation.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- Ian Rogers <irogers@google.com>
-Cc: Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
- Alexandre Ghiti <alex@ghiti.fr>, Atish Patra <atish.patra@linux.dev>,
- Peter Zijlstra <peterz@infradead.org>, Anup Patel <anup@brainfault.org>,
- Adrian Hunter <adrian.hunter@intel.com>, linux-kernel@vger.kernel.org,
- Mayuresh Chitale <mchitale@ventanamicro.com>, Ingo Molnar
- <mingo@redhat.com>, Jiri Olsa <jolsa@kernel.org>,
- Mayuresh Chitale <mchitale@gmail.com>, Namhyung Kim <namhyung@kernel.org>,
- linux-riscv@lists.infradead.org, Andrew Jones <ajones@ventanamicro.com>,
- Liang Kan <kan.liang@linux.intel.com>
-References: <20251002060732.100213-1-apatel@ventanamicro.com>
- <20251002060732.100213-6-apatel@ventanamicro.com>
- <793a00d6-a1ae-4928-a326-3d276a30bdbd@gmail.com>
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: r0q: enable hardware clocks
+To: =?UTF-8?Q?Eric_Gon=C3=A7alves?= <ghatto404@gmail.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250920014637.38175-1-ghatto404@gmail.com>
+ <20250920014637.38175-5-ghatto404@gmail.com>
+ <d16e8c07-6c10-4c91-9bbe-a260f0497d29@oss.qualcomm.com>
+ <99D0B281-03A5-447E-A6BF-892C99829D0B@gmail.com>
+ <c21a408b-ec4f-4de8-a9b6-ca25410ace6a@oss.qualcomm.com>
+ <CC2BFAA0-7E61-4D91-B369-88EC9AD4A315@gmail.com>
 Content-Language: en-US
-In-Reply-To: <793a00d6-a1ae-4928-a326-3d276a30bdbd@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <CC2BFAA0-7E61-4D91-B369-88EC9AD4A315@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA3MDExNyBTYWx0ZWRfX1d/FYWSxU4xI
+ Qu785TZLJHOWgJwHHTpUvFO5R1PWqn+GWDdVV2RJ9ckyKxKhvvyq2GcqR/dbLMvgT15RLVEEUvj
+ F803/8h+n5/7tQgPwiP8C3QVo8aH12fpn3Ca2BrWvXqzLkamhbOOuJP8uN/zLKmH3SZfPPKGr+I
+ ycrTleS2X+bTLCr7KJrv2hMk8Ryzw53l37AH3PSDD+eChv1WIp0qOp4MWUsI1EbMQrY8bsIodgm
+ aDksDUcbXTuDOkcFhwHYnv+XujHHmMBd7ZmrG7iy446PVkBdIAaSXV2+7oYPPZd2f1usCficxrF
+ ZpJt7Xas6rZqjBQHCHJ9Y3o+IueZ21x5HfBpdpmAQWHU1iQTl7oRye3twVtSexWLmbud8mHVDpc
+ UB+cdI1Os3CInzu+tq5a37mj4GnXGA==
+X-Authority-Analysis: v=2.4 cv=BP2+bVQG c=1 sm=1 tr=0 ts=68e6257a cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=pGLkceISAAAA:8
+ a=wKFhJIuLoAScDjwq2nEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-GUID: sygfJeY3nAC4VGjIjITzOPkNfssarHzn
+X-Proofpoint-ORIG-GUID: sygfJeY3nAC4VGjIjITzOPkNfssarHzn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-08_02,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 bulkscore=0 malwarescore=0 impostorscore=0 suspectscore=0
+ phishscore=0 lowpriorityscore=0 priorityscore=1501 spamscore=0 adultscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510070117
 
-On 10/7/25 00:09, Bo Gan wrote:
-> On 10/1/25 23:07, Anup Patel wrote:
->> From: Mayuresh Chitale <mchitale@ventanamicro.com>
->>
->> Add initial implementation of RISC-V trace encoder driver. The encoder
->> is defined in the RISC-V Trace Control Interface specification.
->>
->> Co-developed-by: Anup Patel <apatel@ventanamicro.com>
->> Signed-off-by: Anup Patel <apatel@ventanamicro.com>
->> Signed-off-by: Mayuresh Chitale <mchitale@ventanamicro.com>
->> ---
->>   drivers/hwtracing/rvtrace/Kconfig           |   7 ++
->>   drivers/hwtracing/rvtrace/Makefile          |   1 +
->>   drivers/hwtracing/rvtrace/rvtrace-encoder.c | 107 ++++++++++++++++++++
->>   3 files changed, 115 insertions(+)
->>   create mode 100644 drivers/hwtracing/rvtrace/rvtrace-encoder.c
->>
->> diff --git a/drivers/hwtracing/rvtrace/Kconfig b/drivers/hwtracing/rvtrace/Kconfig
->> index f8f6feea1953..ba35c05f3f54 100644
->> --- a/drivers/hwtracing/rvtrace/Kconfig
->> +++ b/drivers/hwtracing/rvtrace/Kconfig
->> @@ -14,3 +14,10 @@ menuconfig RVTRACE
->>         To compile this driver as a module, choose M here: the module
->>         will be called rvtrace.
->> +
->> +config RVTRACE_ENCODER
->> +    tristate "RISC-V Trace Encoder driver"
->> +    depends on RVTRACE
->> +    default y
->> +    help
->> +      This driver provides support for RISC-V Trace Encoder component.
->> diff --git a/drivers/hwtracing/rvtrace/Makefile b/drivers/hwtracing/rvtrace/Makefile
->> index 988525a379cf..f320693a1fc5 100644
->> --- a/drivers/hwtracing/rvtrace/Makefile
->> +++ b/drivers/hwtracing/rvtrace/Makefile
->> @@ -2,3 +2,4 @@
->>   obj-$(CONFIG_RVTRACE) += rvtrace.o
->>   rvtrace-y := rvtrace-core.o rvtrace-platform.o
->> +obj-$(CONFIG_RVTRACE_ENCODER) += rvtrace-encoder.o
->> diff --git a/drivers/hwtracing/rvtrace/rvtrace-encoder.c b/drivers/hwtracing/rvtrace/rvtrace-encoder.c
->> new file mode 100644
->> index 000000000000..45d1c5b12c51
->> --- /dev/null
->> +++ b/drivers/hwtracing/rvtrace/rvtrace-encoder.c
->> @@ -0,0 +1,107 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (c) 2025 Ventana Micro Systems Inc.
->> + */
->> +
->> +#include <linux/device.h>
->> +#include <linux/io.h>
->> +#include <linux/of.h>
->> +#include <linux/of_graph.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/property.h>
->> +#include <linux/rvtrace.h>
->> +#include <linux/types.h>
->> +
->> +#define RVTRACE_COMPONENT_CTRL_ITRACE_MASK    0x1
->> +#define RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT    2
->> +#define RVTRACE_COMPONENT_CTRL_INSTMODE_MASK    0x7
->> +#define RVTRACE_COMPONENT_CTRL_INSTMODE_SHIFT    4
->> +
->> +static int rvtrace_encoder_start(struct rvtrace_component *comp)
->> +{
->> +    u32 val;
->> +
->> +    val = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
->> +    val |= BIT(RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT);
->> +    rvtrace_write32(comp->pdata, val, RVTRACE_COMPONENT_CTRL_OFFSET);
->> +    return rvtrace_poll_bit(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET,
->> +                RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT, 1,
->> +                comp->pdata->control_poll_timeout_usecs);
->> +}
->> +
->> +static int rvtrace_encoder_stop(struct rvtrace_component *comp)
->> +{
->> +    u32 val;
->> +
->> +    val = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
->> +    val &= ~BIT(RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT);
->> +    rvtrace_write32(comp->pdata, val, RVTRACE_COMPONENT_CTRL_OFFSET);
->> +    return rvtrace_poll_bit(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET,
->> +                RVTRACE_COMPONENT_CTRL_ITRACE_SHIFT, 0,
->> +                comp->pdata->control_poll_timeout_usecs);
->> +}
->> +
->> +static void rvtrace_encoder_setmode(struct rvtrace_component *comp, u32 mode)
->> +{
->> +    u32 val;
->> +
->> +    val = rvtrace_read32(comp->pdata, RVTRACE_COMPONENT_CTRL_OFFSET);
->> +    val |= (mode << RVTRACE_COMPONENT_CTRL_INSTMODE_SHIFT);
->> +    rvtrace_write32(comp->pdata, val, RVTRACE_COMPONENT_CTRL_OFFSET);
->> +}
->> +
->> +static int rvtrace_encoder_probe(struct rvtrace_component *comp)
->> +{
->> +    int ret;
->> +
->> +    rvtrace_encoder_setmode(comp, 0x6);
->> +    ret = rvtrace_enable_component(comp);
->> +    if (ret)
->> +        return dev_err_probe(&comp->dev, ret, "failed to enable encoder.\n");
->> +
->> +    return 0;
->> +}
-> Trace components needs proper probing before use. Refer to Control Interface
-> Spec: https://github.com/riscv-non-isa/tg-nexus-trace/releases/download/1.0_Ratified/RISC-V-Trace-Control-Interface.pdf
-> Chapter 5. This versioning applies to all components, e.g., sinks/funnels...
-> The driver should check the HW impl version with what it supports, and
-> rejects registering the component(s) if not supported. Chapter 5. has more
-> details.
+On 10/6/25 5:49 PM, Eric Gonçalves wrote:
 > 
-Forgot to mention another thing: you also need to follow Control Interface
-Spec Chapter 11.2 Reset and Discovery to toggle tr??Active. Do not access
-any other registers or set any other bits in tr??Control before properly
-enable tr??Active. My userspace driver does the reset as:
-https://github.com/ganboing/riscv-trace-umd/blob/master/rvtrace/device.py#L57
-
-Your HW IP might ignore tr??Active bit and the trace components are always
-clocked, and that's probably why you don't see any issue without proper
-resetting. However, on my p550 (EIC7700), I adopted your code to a v6.6
-tree, boot, and load it as module. The core immediately hangs, very likely
-due to it tries to set tr??Control bits without proper resetting. You
-should expect other IPs that implement clock gating and strictly follow
-the Spec. Thanks.
-
->> +
->> +static void rvtrace_encoder_remove(struct rvtrace_component *comp)
->> +{
->> +    int ret;
->> +
->> +    ret = rvtrace_disable_component(comp);
->> +    if (ret)
->> +        dev_err(&comp->dev, "failed to disable encoder.\n");
->> +}
->> +
->> +static struct rvtrace_component_id rvtrace_encoder_ids[] = {
->> +    { .type = RVTRACE_COMPONENT_TYPE_ENCODER,
->> +      .version = rvtrace_component_mkversion(1, 0), },
->> +    {},
->> +};
->> +
->> +static struct rvtrace_driver rvtrace_encoder_driver = {
->> +    .id_table = rvtrace_encoder_ids,
->> +    .start = rvtrace_encoder_start,
->> +    .stop = rvtrace_encoder_stop,
->> +    .probe = rvtrace_encoder_probe,
->> +    .remove = rvtrace_encoder_remove,
->> +    .driver = {
->> +        .name = "rvtrace-encoder",
->> +    },
->> +};
->> +
->> +static int __init rvtrace_encoder_init(void)
->> +{
->> +    return rvtrace_register_driver(&rvtrace_encoder_driver);
->> +}
->> +
->> +static void __exit rvtrace_encoder_exit(void)
->> +{
->> +    rvtrace_unregister_driver(&rvtrace_encoder_driver);
->> +}
->> +
->> +module_init(rvtrace_encoder_init);
->> +module_exit(rvtrace_encoder_exit);
->> +
->> +/* Module information */
->> +MODULE_AUTHOR("Mayuresh Chitale <mchitale@ventanamicro.com>");
->> +MODULE_DESCRIPTION("RISC-V Trace Encoder Driver");
->> +MODULE_LICENSE("GPL");
 > 
-> Bo
+> On October 6, 2025 9:31:42 AM GMT-03:00, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
+>> On 10/5/25 5:50 AM, Eric Gonçalves wrote:
+>>>
+>>>
+>>> On September 25, 2025 10:09:48 AM GMT-03:00, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com> wrote:
+>>>> On 9/20/25 3:46 AM, Eric Gonçalves wrote:
+>>>>> Enable the real-time clocks found in R0Q board.
+>>>>>
+>>>>> Signed-off-by: Eric Gonçalves <ghatto404@gmail.com>
+>>>>> ---
+>>>>>  arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts | 15 +++++++++++++++
+>>>>>  1 file changed, 15 insertions(+)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
+>>>>> index c1b0b21c0ec5..c088f1acf6ea 100644
+>>>>> --- a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
+>>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q.dts
+>>>>> @@ -225,6 +225,21 @@ vol_up_n: vol-up-n-state {
+>>>>>  	};
+>>>>>  };
+>>>>>  
+>>>>> +&pmk8350_rtc {
+>>>>> +	nvmem-cells = <&rtc_offset>;
+>>>>> +	nvmem-cell-names = "offset";
+>>>>> +
+>>>>> +	status = "okay";
+>>>>> +};
+>>>>> +
+>>>>> +&pmk8350_sdam_2 {
+>>>>> +	status = "okay";
+>>>>> +
+>>>>> +	rtc_offset: rtc-offset@bc {
+>>>>
+>>>> Is this an offset you took from somewhere downstream?
+>>>>
+>>>> Generally you *really don't want to* poke at random SDAM cells,
+>>>> as they contain a lot of important settings (incl. battery/charging)
+>>> From another sm8450 device, I'm sure it's okay.
+>>
+>> That as an argument alone doesn't sound convincing to me, since vendors
+>> also sometimes repurpose unused-by-Qualcomm SDAM cells
+>>
+>> I actually found a data source internally and this cell you're trying
+>> to use is reserved for PBS (see drivers/soc/qcom/qcom-pbs.c), meaning
+>> you already fell into this trap..
+> Interesting, in this case then why does rtc still work? And
+> how can I find the real cell? It's not in downstream DT.
 
-Bo
+Well if nothing accesses that cell between your last write and your first
+read, it will of course work, because SDAM is just a means of storage
+
+As for downstream/Android, it does not use SDAM at all
+
+Konrad
 
