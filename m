@@ -1,313 +1,212 @@
-Return-Path: <devicetree+bounces-224613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224614-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 500C7BC63A8
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 20:01:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ADFBBC63BC
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 20:03:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B01A405BF9
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 18:00:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF1BC405C2C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 18:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5466128FFF6;
-	Wed,  8 Oct 2025 18:00:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19AD92BEFF0;
+	Wed,  8 Oct 2025 18:03:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nQ+A2mB+"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="WOd7W58k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0CE619E98D
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 18:00:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AE381E47B7
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 18:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759946456; cv=none; b=laf+z2RL8gFC0L3pXkiwXpCpgB/bk7NGs+yAA1jysTw+j0j+6w8lE0qTHQgS+p5zQJaUPoVIcf/wF/KQGLjI4QChL/YQwP+UFPrMTEq+GYplRWLoTMn1w6DhVEAcV3j6+m+hZ97QI2WUiCRBWPgCVA3Zi5qFePCmrDgM1fnicAc=
+	t=1759946610; cv=none; b=UprJG1AYWhz9bK0abVHD489n2i4w18ZWLCNR17oypIiGZC8RH/O4/kUboOM4NJot3A1N06LMc1ikE2KCpnXsoelLRn75tQMQB3yKQxj6m7j0yyhNgnkmUlRvAZC0VEYsdhwRbdl/+de/Oa246rLcKkb0Ls3aVBSzlW87X2nI77E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759946456; c=relaxed/simple;
-	bh=YR9mVNwRIhtqJCcXjKJLvo3DvwzRIPwXvURQ/PSD4SE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=MzvUcHU6ZYcwcdYyS+yu4T1U8Ar3wm/fqPBMpI6kw52Qt2nupvChwTJ/yJjOE1gNuVMR28WZr0BRWbGLlLIZlsp6c6UWT2zGYecYfc5f1F0UAGaGTi5cK1d2m5hcikM0VUtoIewX8tk2NJXHEYYT2ewOhs0qc+xuF44mP0wHPWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nQ+A2mB+; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1759946610; c=relaxed/simple;
+	bh=QykquTIZ2jLmxb0VLUnWWhmZGhsfGC7/GqGvSPSjgiE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qJ4G392pXWU//Ewd+55AB1d774/8/nq2Z04mESFBSjOaS8cuJnDVAYPak1KEfepdyX+6TAaufT7HRY27qAfspwy7Khd8aUBDgQNu9Jox3/VtDPUSh+WUoLNGW7JtbzzK9D2X6HuVrh2+D5r3gGD0xQhVJP8oVfq/mAuEPuYByOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=WOd7W58k; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 598HB4LV022701
-	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 18:00:54 GMT
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 598HBIRF013401
+	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 18:03:27 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=c6sxwSB2cPbvejOnAz8AKEMGpUCr9YPSYtO
-	vfUms1lk=; b=nQ+A2mB+wHvFnuwM7l4cGSUzvquGgGah17EJfkiGkWsyzTQE8vH
-	G6p6ex3v3FpGLQLrZCxK4OBqP9fTBbOIDdqxEsedvdzZT1MFyF3Xv17Fe9SaD60r
-	oEmbdc97cQftSMbE5hKCFm++IxCX6sfXNE9Dfz0pq8e2ZrsS6+Aqvih1C5+PTAbc
-	uaUHfgKG0KVAYKEPARkt/VG+503ybzWvJWPYN6wFSKdyKPBEtQJX3FL5e8+pWOP9
-	37D5TCMSEnYcnlPkcm1k0SiTm4TUM6AY1pvjhqC4eZ3IraVml1ip2OCSq+6QpOuv
-	7wgpnLhmoIH13MnTWznk987GEP7rPqFs8AQ==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4kr4qw-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	VAZrOlnHPn14DgXDTf4mZHirlOOxow8QFnRlxfGqzt0=; b=WOd7W58kmitYxgJI
+	4ol1S5dJq1genoJT8IdDlnApjClOC/FxAtqwBoyr4TVMlWAOpiRcWd94+zV8PIs4
+	fVzme273AoVqRFBYatJUkG0h8dSjWLFbbwZeVUDDDl2b0iqQsEWc5nrm8wLy9zB+
+	oTec+hf4zUGf3x2F68fht/EO2TYcy/m3ftCncTRMEUOwazqQqu0iyupAnEj2bZZQ
+	BZY9+7IW6F5z07uxiNF500j7lUo3JfYsKbAWGnD95qvY5ToVaFjgFUNdSPHVCOHD
+	LH9IuEYAZF5T4l+4R13YeIXPp/BroSCnEJQAibtJptvFXNjLv6pOLerpU3KkmXWK
+	//TVqQ==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4u057m-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 18:00:53 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-339b704e2e3so328404a91.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 11:00:53 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 18:03:27 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-2699ed6d43dso1199845ad.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 11:03:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759946452; x=1760551252;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c6sxwSB2cPbvejOnAz8AKEMGpUCr9YPSYtOvfUms1lk=;
-        b=u5qJHHM/bbjA1DX8bzG24SEuYq/keNfZUIAn/thWab+Lk2JYzpmrm2CVENusu99VFK
-         6pHfoCG+uUechHXaUOnsqsvo/CtJo/x7O7BFfWhntT7WyMHJ7Sw+49NIuihqLVOZF2gl
-         K6i2WlYsns/M+HaU5LspnI6f7WRsSfsm4CKCJrjvzEOP1ThPmtQFLLTJ8GT/04KI9DUB
-         M9vwFj70yXb0JanUKx86Tpu1J8FiOhjl/vM/17/M1UutYFUeTMeKCpjuFEUOKLrJgfS9
-         Cz+yDmJTVTZDvHi5x1bcYrGyn/Mo23IEbzvFPHf8PyKC3DHTEf7mW290hvCgOxVbKdSQ
-         cZUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXaETPlUagZA5sgduKPcIwjUGoTbiF4svWQUvNBHo6HYUYXRaIpHOd/Kb2l/uJ5e2U2yewgQvXuj6BA@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLtDeCQNJGoHWCPWxxEvaTtRH92IgieK/cNXcZNDnDNeWxsAsu
-	TgIkZx1rKrDowin3iZGyJdNE30ljesNlDredAI6pLl5Zk+M4833iixSVIzxccz3+1P+OoIVqJ8B
-	QEHytUaFXNSeXOIHZgwbQpe+4nzpH50A4iUiDeC/5PYOxA+bGRiEKGNG68oi9dvHp
-X-Gm-Gg: ASbGnctNUDa1LLg8YNfKX89pzq4S473hUuBh4OrlbFUmsO12LrNRdqXCKO6dbLKGUFd
-	q0rbZlqO0mf/4fMTy0wIyl4JlGKJhHVtLfhkCkepAjBaUqBLZJb+tLD73qJYDwqgUXSXAiLQcwt
-	P6FYK5By1IFDlut/Ro1T5c9vz0cDq6qr66hFYDDanul1KUxLB9gXftgdYUOu+kGAYu13qUmq6k+
-	m4JOSmxiTrwuwBFauwBnyFNTQlvzXxQma2uuGR1g82ywdBVEeMmmwzFGGw520ACFDI6rMew/myK
-	DVg/BxXuzG/WZxpT5uwSvlCl9asiESo1W7y36ER0c4aoSQWVacz2NscDYXHmZERXxyJJg6O0zOu
-	pjVXnE9A=
-X-Received: by 2002:a17:90b:3ecb:b0:335:228c:6f24 with SMTP id 98e67ed59e1d1-33b5139a113mr5381593a91.25.1759946451805;
-        Wed, 08 Oct 2025 11:00:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFtuXmE9bvl4iiQJELyPDjtYw8XUq6GY/62FUo81mMJCEIxBEhIN1phf3ar7Toth9ysScmE0Q==
-X-Received: by 2002:a17:90b:3ecb:b0:335:228c:6f24 with SMTP id 98e67ed59e1d1-33b5139a113mr5381544a91.25.1759946451257;
-        Wed, 08 Oct 2025 11:00:51 -0700 (PDT)
-Received: from hu-kriskura-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-33b5137dea8sm4137586a91.13.2025.10.08.11.00.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Oct 2025 11:00:50 -0700 (PDT)
-From: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-Subject: [PATCH v2] arm64: dts: qcom: lemans-evk: Add OTG support for primary USB controller
-Date: Wed,  8 Oct 2025 23:30:36 +0530
-Message-Id: <20251008180036.1770735-1-krishna.kurapati@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+        d=1e100.net; s=20230601; t=1759946606; x=1760551406;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VAZrOlnHPn14DgXDTf4mZHirlOOxow8QFnRlxfGqzt0=;
+        b=GRgnAQhG2JYl8PYsxL2yhtsfRhEeK5ghB4ebMvVb9RSQFZS2BnwbTXVoIf3qGuztmN
+         tXGrSRkjOKl4Z5P0mixpFu8mwzDyljHpz/P8qtS5+wnCZBkIFeVgxP0cy1oSA1RSV9f4
+         eH2lQAhs9crgmOgjNktgCC1W8rxY7pcB14untKxJfCF70FglYdpFC0qYaBQ2ZXHEQpkM
+         NIwy+igxGJnJX1eD+CqQHJKbt6K0daM4z8Q9iOK7zK9bZwOPKglVwRXBTw7fncEaOKJ3
+         lUUrt2SpbxBqsLEjfR9NZac2CHN4M/ywpSiupAO8KI4oSAbStiwwwFg1+4rWJaigC64W
+         kKmg==
+X-Forwarded-Encrypted: i=1; AJvYcCU82K9wwnnpV1RoMZ/ISenzcHK+DBcIws4XMAaqX6LE6ZHj/pFNXMMot1tzE917m9NyNN3fcIThmQ2E@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhGh6zXBvTYRvz5+bIsELH4D9JwEuzGfUiU6R+vuyP2I7VrjC7
+	ZidTrj2mOYrQec7uz3gz3X1X8IJa/tjWVyQHxc3F0NCou2vXA00bFQXR3Yk4ByRUavEpbfwjQr0
+	/uncQJPacjVmjJrkFiaH2loizHlAUbnRx6xiKW0bIGr4TAKjSNregbdBySV2sT1U0
+X-Gm-Gg: ASbGncuo4J4CnI0RZpXMyX6EBaGEaMD8ZU8DCCe8zsZXTuaSXWY6CSFNstqjRR3mlwJ
+	JYzrF2Oxo2ql7TEwZSLShvNodypwasS0Ry1LmeXdnrvApAq2wfYDSZBLW4RSZALLo1dt2a/rIJV
+	hFdxrX1aaSFpgAulimhyU8TKaPvYoprxLWOV2deyFsFzglh8MpURSYLpw1PunNmRSxsHO6Ti+Zr
+	21S56R9kEtJGNKSdfO+O5DZxnzBDutosFMYhptMu5z7MvNSZUYIwiF5b2uFdqMu4W1UIMv/z3S/
+	JGZIIdIWz9/5brN8xNA08SqAiuLCkYOOUZybJTdLxGENEVQEgSBiZaBUVsiIAeypsbBML6hKdOg
+	l
+X-Received: by 2002:a17:903:fa6:b0:27e:ea82:5ce8 with SMTP id d9443c01a7336-290273748e4mr55866255ad.14.1759946605864;
+        Wed, 08 Oct 2025 11:03:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEwH3bBMKa9ZlQO/2aapjl36/O5H4D7oAkI+cnOYUVZeGt5Ph5Cd3mta1vBN4JAMeEsyEvGaA==
+X-Received: by 2002:a17:903:fa6:b0:27e:ea82:5ce8 with SMTP id d9443c01a7336-290273748e4mr55865825ad.14.1759946605263;
+        Wed, 08 Oct 2025 11:03:25 -0700 (PDT)
+Received: from [192.168.1.6] ([122.181.205.161])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034f36929sm3463065ad.95.2025.10.08.11.03.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Oct 2025 11:03:24 -0700 (PDT)
+Message-ID: <1516f21e-aee3-42cf-b75e-61142dc9578d@oss.qualcomm.com>
+Date: Wed, 8 Oct 2025 23:33:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/5] Introduce "non-pixel" sub node within iris video
+ node
+To: Bryan O'Donoghue <bod@kernel.org>, Bryan O'Donoghue <bod.linux@nxsw.ie>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Abhinav Kumar <abhinav.kumar@linux.dev>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <7b6db4fa-2f73-376d-4eb3-64c1c7e6cda3@quicinc.com>
+ <4f38058d-a2f1-4ac5-b234-228cfb2e85ff@kernel.org>
+ <1ad2ca1e-1d57-4ad8-a057-ab0d804f1d49@oss.qualcomm.com>
+ <7da769b4-88e9-401f-bb21-0ff123818b9c@kernel.org>
+ <6840d462-8269-4359-a6e5-d154842b62db@oss.qualcomm.com>
+ <af0da28c-3ca0-41dc-aaa4-572723ea74bf@linaro.org>
+ <klhvgzizub33f46buqsog54wqksqp24a5tijwyv355l2ao2imo@wdkojfebc6s2>
+ <e1a6e75a-2a5d-44a2-8bbc-140eb86d1806@linaro.org>
+ <2hh3zkdwgqbdurpr4tibr3gjat6arwl3dd3gxakdaagafwjdrm@aj5em4tbsjen>
+ <Ujyoj3HGLVFhS2b0XzcYAMjSiCAuO-lSJ8PMEQLOaaX83tk_0D5zjrL0VDyZAmD3i4zLB3ElKSZBltISb5jJHA==@protonmail.internalid>
+ <4a32bbec-2baf-4210-a7c1-1ddcd45d30c8@oss.qualcomm.com>
+ <SuwJuCIcLVJwN3YeN1il6tB9wO9OH6bYcnbRpxpuI9Dl7piYLN-hVdnyv0Mal6N-W5pi2aCZI8MxHZDEkoE63A==@protonmail.internalid>
+ <4d87d1ca-55b2-426e-aa73-e3fd8c6fe7bd@kernel.org>
+ <10a8ccda-4e27-4b06-9a0e-608d6ade5354@nxsw.ie>
+ <4cb4a92d-2f20-47c7-881e-aadcc6f83aa0@kernel.org>
+Content-Language: en-US
+From: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+In-Reply-To: <4cb4a92d-2f20-47c7-881e-aadcc6f83aa0@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX6Iyz9/frKlKw
- Slzr3o7xdeVuJ3mQ5lYgjsxLmhNxhEE/88+kknilxRaZPbnRwYWoichzmZ7OcB/EbfZ/8FqCeti
- 5yAj3QQhIAk32myMCK3AFQE4vappYcuqNypG8JYyklVKNBMG7MHOYeLJseYgxsFmaoPk6qtr/ES
- m8oD6qoufV/lskxNF8wWhrOxnt9AFJpVoN8Q2z8BxYaGPTPk3PIRbutNVx2Lu5Cd2V3jB0/0RtZ
- BhQc4KaL1UGBS2siND6gdf8D3r4BYuh6/C6qpiXkJTHu9OSiMbPFjVtIU3oMVC6Ch7mvAgM4SRX
- UvkkETJsnG0++x5+z9BfG2MovfcBiqN4ARSSYX4aZ0R+B4I0ydQr5Sfdt5HUa9oG8UhFW7DXfgV
- fTsAdVpgir67Pjl7awTtlYhwHkvncA==
-X-Proofpoint-GUID: 2FNSQOInW9VkBppyyQ1Tz6G4I2N0RNc1
-X-Proofpoint-ORIG-GUID: 2FNSQOInW9VkBppyyQ1Tz6G4I2N0RNc1
-X-Authority-Analysis: v=2.4 cv=SJxPlevH c=1 sm=1 tr=0 ts=68e6a6d5 cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=SErXUjo2BbdcLd6G0UgA:9
- a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Authority-Analysis: v=2.4 cv=BMW+bVQG c=1 sm=1 tr=0 ts=68e6a76f cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=6JKELlXEPSgWT0DDZg8VgQ==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=QyXUC8HyAAAA:8
+ a=pGLkceISAAAA:8 a=fHmCkQyIX7tJ2GRZnMsA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-GUID: gZTdILMAwLQFT24LJJKEGRmfTT8FUn3S
+X-Proofpoint-ORIG-GUID: gZTdILMAwLQFT24LJJKEGRmfTT8FUn3S
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX/MG5Va2NzfX2
+ dqpEI8jDxJCGagPAgKGbKATSCrterIRov1v7os05VdcMMnuzmMHrW+XfFdD+CkQfqeAaHrmchcR
+ K1skFDXOfOEzVKy0T3jf/g4kbE6T2ZKKBz4DJKzYnK7ZToLPivPnVCjqp6v1o99mOhmstXl9ntv
+ kUuohp+EjFNjHLSsJXiUh45nkAX0TwOI3yGOTmPZSUTACEmWDtk8RRK0efhXPbwEvfsTlHXWEiz
+ Z4kOBbFPPz8UC37GMG5T8gUQFn+IXGnz8uIOo1eXs30vTmv4TovHUejZ//tPNZr+OCa9weOzuAL
+ uq8C//48hXt3jn6D6SGVWrqqoQeTH3OLyiKO1lF7DrCm0pRQoP+RNCOXPspdKEeJRwicK9pjUrl
+ Gdm+Z5yquA+TVdKAoUCtXVtxUhK/qg==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-08_05,2025-10-06_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 impostorscore=0 spamscore=0 phishscore=0
- clxscore=1015 bulkscore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0
+ bulkscore=0 lowpriorityscore=0 phishscore=0 clxscore=1015 impostorscore=0
+ malwarescore=0 priorityscore=1501 adultscore=0 spamscore=0 suspectscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
 
-Enable OTG support for primary USB controller on EVK Platform. Add
-HD3SS3220 Type-C port controller present between Type-C port and SoC
-that provides role switch notifications to controller.
 
-Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
----
-Changes in v2:
-Removed redundant property of dr_mode setting.
-Added power-role property in connector node.
+On 10/7/2025 8:14 PM, Bryan O'Donoghue wrote:
+> On 07/10/2025 15:29, Bryan O'Donoghue wrote:
+>> On 07/10/2025 15:25, Bryan O'Donoghue wrote:
+>>> Rob suggested using an implicit index for function id
+>>>
+>>> https://lore.kernel.org/all/CAL_JsqK9waZK=i+ov0jV-
+>>> PonWSfddwHvE94Q+pks4zAEtKc+yg@mail.gmail.com/
+>>>
+>>> Couldn't we list the entire set of iommus - then detach - subsequently
+>>> re-attaching in our platform code with FUNCTION_IDs we keep listed in
+>>> our drivers ?
+>>>
 
-Link to driver and bindings:
-https://lore.kernel.org/all/20251008175750.1770454-1-krishna.kurapati@oss.qualcomm.com/
+TMK, there is no api exist to detach a device once it is attached to
+smmu. We used to have one but removed[1], not sure how well it will be
+received to introduce it again.
 
-Link to v1:
-https://lore.kernel.org/all/20251002172946.589061-1-krishna.kurapati@oss.qualcomm.com/
+There is other problem exist attaching the entire set of iommus in the
+first place: Usually writes to SMR registers are protected through
+emulation by hyp. Thus adding the sids of protected/non-protected
+usecases in the same iommu set will not allowed by the
+hypervisors(eg:gunyah), as all will end up in using the same context
+bank, thus there can be failure to attach to smmu in the first place.
 
- arch/arm64/boot/dts/qcom/lemans-evk.dts | 122 +++++++++++++++++++++++-
- 1 file changed, 121 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-index c7dc9b8f4457..e06da1682f35 100644
---- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
-+++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
-@@ -37,6 +37,33 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	connector0 {
-+		compatible = "usb-c-connector";
-+		label = "USB0-Type-C";
-+		data-role = "dual";
-+		power-role = "dual";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				usb0_con_hs_ep: endpoint {
-+					remote-endpoint = <&usb3_hs_ep>;
-+				};
-+			};
-+			port@1 {
-+				reg = <1>;
-+
-+				usb0_con_ss_ep: endpoint {
-+					remote-endpoint = <&hd3ss3220_in_ep>;
-+				};
-+			};
-+		};
-+	};
-+
- 	edp0-connector {
- 		compatible = "dp-connector";
- 		label = "EDP0";
-@@ -101,6 +128,15 @@ platform {
- 		};
- 	};
- 
-+	vbus_supply_regulator_0: vbus-supply-regulator-0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vbus_supply_0";
-+		gpio = <&expander1 2 GPIO_ACTIVE_HIGH>;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+	};
-+
- 	vmmc_sdc: regulator-vmmc-sdc {
- 		compatible = "regulator-fixed";
- 
-@@ -453,6 +489,55 @@ &gpi_dma2 {
- 	status = "okay";
- };
- 
-+&pmm8654au_2_gpios {
-+	usb0_intr_state: usb0-intr-state {
-+		pins = "gpio5";
-+		function = "normal";
-+		input-enable;
-+		bias-pull-up;
-+		power-source = <0>;
-+	};
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+
-+	hd3ss3220@67 {
-+		compatible = "ti,hd3ss3220";
-+		reg = <0x67>;
-+
-+		interrupts-extended = <&pmm8654au_2_gpios 5 IRQ_TYPE_EDGE_FALLING>;
-+
-+		id-gpios = <&tlmm 50 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&usb_id>, <&usb0_intr_state>;
-+		pinctrl-names = "default";
-+
-+		vbus-supply = <&vbus_supply_regulator_0>;
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				hd3ss3220_in_ep: endpoint {
-+					remote-endpoint = <&usb0_con_ss_ep>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				hd3ss3220_out_ep: endpoint {
-+					remote-endpoint = <&usb3_role_switch>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
- &i2c18 {
- 	status = "okay";
- 
-@@ -718,11 +803,24 @@ wake-pins {
- 		};
- 	};
- 
-+	qup_i2c11_default: qup-i2c11-state {
-+		pins = "gpio48", "gpio49";
-+		function = "qup1_se4";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
- 	sd_cd: sd-cd-state {
- 		pins = "gpio36";
- 		function = "gpio";
- 		bias-pull-up;
- 	};
-+
-+	usb_id: usb-id-state {
-+		pins = "gpio50";
-+		function = "gpio";
-+		bias-pull-up;
-+	};
- };
- 
- &uart10 {
-@@ -751,9 +849,31 @@ &ufs_mem_phy {
- };
- 
- &usb_0 {
--	dr_mode = "peripheral";
-+	usb-role-switch;
- 
- 	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			usb3_hs_ep: endpoint {
-+				remote-endpoint = <&usb0_con_hs_ep>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			usb3_role_switch: endpoint {
-+				remote-endpoint = <&hd3ss3220_out_ep>;
-+			};
-+		};
-+
-+	};
- };
- 
- &usb_0_hsphy {
--- 
-2.34.1
+[1]
+https://lore.kernel.org/all/20230110025408.667767-1-baolu.lu@linux.intel.com/
+
+>>> That way the DT is complete and correct, we have a compliant upstream DT
+>>> but we also find a way to make the FUNCTION_ID specific setup we need.
+>>
+>> i.e. you can keep the FUNCTION_ID "metadata" in the driver and
+>> associate specific iommu indexes with the FUNCTION_ID you want in there.
+>>
+>> That way you could have multiple FUNCTION_ID smmu entries in the DT
+>> and just associate the DT indexes locally in drivers/platform/qcom/
+>> iris_metadata_goes_here.c
+>>
+>> ---
+>> bod
+> 
+> Actually why can't we specify FUNCTION_ID in the iommus = <entries>
+> 
+> Surely we could do
+> 
+>     #iommu-cells = <4>;
+>     iommus = <&apps_smmu 0x420 0x2 FUNCTION_ID>;
+> 
+> and encode the real data we need directly in the iommus list...
+> 
+
+Since it is the smmu device property , this suggestion expects all the
+devices, not just video, to define additional argument. Does this look
+valid?
+
+> ---
+> bod
 
 
