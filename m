@@ -1,63 +1,58 @@
-Return-Path: <devicetree+bounces-224639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB87EBC685F
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 22:02:11 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C362BC6871
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 22:02:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 911844EECEF
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 20:02:10 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 698A24E5424
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 20:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF37B223DCE;
-	Wed,  8 Oct 2025 20:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92E58265620;
+	Wed,  8 Oct 2025 20:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FT41jq1z"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EqRf9YIX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C050E1BD9F0;
-	Wed,  8 Oct 2025 20:02:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64EC1221FBB;
+	Wed,  8 Oct 2025 20:02:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759953727; cv=none; b=rNl1GIwr2WsILeQBsUwNtC6gBPwg0tKCKRO/ilPV9kUkAgTsc0vufSoU0oK0AfkVCVMR+bDG9SYSBIUQweQK/VUz2nluUf6NY67TciwiIiRzBVdVRn5IAVD1wMd4g/x8sL2Y4OgruFEc5lUu0zBb4pHBTRp/JBWL7ODMhZ/tKtA=
+	t=1759953765; cv=none; b=YDoNzvIK8FK7pbQ5M++JJiiFUIXfBiQ5gDXtmAs3rZYRliRrgKl8FEUa4rUfdWFmufX8WYSZiGYYmB+CEyUH10biwxYIqVhlNSGsqkSmtI15dGUcTrXK9ihbqNrDbBB4F89zyLkI2VjQ8q/IuUrKq5QP/u8a35AoOOA6Xd2aI4I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759953727; c=relaxed/simple;
-	bh=aMbDvrx3EREgO2K7HCCjZxn4n3WSKas/BkWCB4L4fSg=;
+	s=arc-20240116; t=1759953765; c=relaxed/simple;
+	bh=1NTrQfMk7I47irFXZzpnFfD40VIXny+JiR4rIQloyUs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DMZ9JZFKGZc86ZcBrhvaIkUXXsvfyyfsJDILbhwEgX85kfOpRwjoL5VUQxW7/vAHPzty9s5cG1WBqkW96aivFjNQWzD35bPxekfQcPNDqLx//5SFrEvo6CYdAARQfXWy3uIf1dmdhXq2WUHyeVy/LZG+TH+Pw9OJa29Z2xGsluw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FT41jq1z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0053C4CEE7;
-	Wed,  8 Oct 2025 20:02:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LrbYxrgO4DRn/lets0SpADMYLRPmCjlQlwjexD5C7h0wosozzB8MDWgviDFM8+y5/ZBJCP0rct1yH9PDpHbH9ceNgH0s1UfJAUnvhhiF0UHLjwtwMVASJEhchXhX+qNypKJtVlWmVme7YyM2kehMVIKX0W6bMqrSAFP//IY4zFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EqRf9YIX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C44D6C4CEE7;
+	Wed,  8 Oct 2025 20:02:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759953724;
-	bh=aMbDvrx3EREgO2K7HCCjZxn4n3WSKas/BkWCB4L4fSg=;
+	s=k20201202; t=1759953765;
+	bh=1NTrQfMk7I47irFXZzpnFfD40VIXny+JiR4rIQloyUs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FT41jq1zHZLp+dueNEQbkMGsxGpcsLjQ64GAnGxbJ/FVi7rwwkFqkSDBU10f/7A6d
-	 jnxHrP2utbnQBNp6CWARabDqvXz0gbCr7xJF0Nm1ToPcOufADeYFpPUX3H2eOXnd8b
-	 BFsEP5tIKPsxkbA450oWZmBok4HqwnRt+6KlhMzfTgALiqs3S8U1bdgw0rei2u0+gE
-	 6crX7ezVugv2GtGlP9EW/orj2iXVIWJMtP8foEDDwsbiviXnx38sC4Chxu9ie1ZM4s
-	 TnUiAsDT95MlgoOsSvgAahu5+Gv4ByxrY3ik9UzaBi3aUF1tbziahkafLvg+bwvzH8
-	 A4vLXcq7EcRfw==
-Date: Wed, 8 Oct 2025 15:02:02 -0500
+	b=EqRf9YIX9eb12wp1TUgzMO+NSdtMQE6vJA81Mj+XBQfPgGfUsvzZxNAfOV1j78V4z
+	 0WNFM7tPSiWBcrnGWUJRK1cTTf/J4lmxrMhfO1/2ifoVBzljsTHXCma8rwX+9ZSsFU
+	 delriRw5KL5OCWNLohVOdMOgzf/LN1mKKi71UXJN1vysNe53WNyh2Kglh1NNkwQDHw
+	 ExtawShGsQl0N1331VsTaJt549aqUWPrjuHudcV7PDntX7iqtoUEl2IreI6taatjZ8
+	 80tSZLHnORlFF2W66KkXQZLfXXifvaQDcyquSu58pqhj1cvgs8qF285Ia1GyrPjG8p
+	 BSvOtSTX6y+YA==
+Date: Wed, 8 Oct 2025 15:02:43 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+To: Frank Li <Frank.Li@nxp.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	=?iso-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>
-Subject: Re: [PATCH 1/4] dt-bindings: media: i2c: dw9719: Document DW9800K
-Message-ID: <175995372201.65103.9928285143941345417.robh@kernel.org>
-References: <20251002-dw9800-driver-v1-0-c305328e44f0@fairphone.com>
- <20251002-dw9800-driver-v1-1-c305328e44f0@fairphone.com>
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: touchscreen: rename
+ maxim,max11801.yaml to trivial-touch.yaml
+Message-ID: <175995376307.65934.4901589755709190733.robh@kernel.org>
+References: <20251002164413.1112136-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,18 +61,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251002-dw9800-driver-v1-1-c305328e44f0@fairphone.com>
+In-Reply-To: <20251002164413.1112136-1-Frank.Li@nxp.com>
 
 
-On Thu, 02 Oct 2025 12:15:33 +0200, Griffin Kroah-Hartman wrote:
-> Document the Dongwoon Anatech DW9800K.
+On Thu, 02 Oct 2025 12:44:04 -0400, Frank Li wrote:
+> Rename maxim,max11801.yaml to trivial-touch.yaml for simple i2c touch
+> controller with one interrupt and common touch properties.
 > 
-> Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+> Add optional reset-gpios and wakeup-source properties.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  Documentation/devicetree/bindings/media/i2c/dongwoon,dw9719.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> change in v3
+> - add wakeup-source and reset-gpios optional properties
+> 
+> change in v2
+> new patch
+> 
+> previous discussion
+> https://lore.kernel.org/imx/20250925-swimming-overspend-ddf7ab4a252c@spud/T/#t
+> ---
+>  .../{maxim,max11801.yaml => trivial-touch.yaml}     | 13 ++++++++++---
+>  1 file changed, 10 insertions(+), 3 deletions(-)
+>  rename Documentation/devicetree/bindings/input/touchscreen/{maxim,max11801.yaml => trivial-touch.yaml} (70%)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
