@@ -1,65 +1,59 @@
-Return-Path: <devicetree+bounces-224548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224549-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64AE9BC52F6
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 15:25:05 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9148BC5304
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 15:27:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01DC84013EA
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 13:24:51 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 887004E5E62
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 13:27:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46D8284B35;
-	Wed,  8 Oct 2025 13:24:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF6B428469F;
+	Wed,  8 Oct 2025 13:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nha433Rr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QdhXDiC/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3B92284687;
-	Wed,  8 Oct 2025 13:24:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E7A42586C5;
+	Wed,  8 Oct 2025 13:27:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759929882; cv=none; b=mDdGdctvU2E/p57jeKUET9ng7HEtFK+8EHaa4M+a0GcgsnTPk07JkPaWIZgNMA7eZqMdC1qnNAIDMFxj8JoBhEDiYVScVgfSrebu0p9kS3fw0o4UDPzQpFVi3fQdsJBfYtmigZkyQGD5x5YcqfCFGepbZbQz4nRRBM0MO12KbMc=
+	t=1759930027; cv=none; b=WcD824TmTp9LlleB+4az0DrjfgiUu7yJvQ6cNTI3tVsGJueevV8l2AI2MklvQ0cXujckutP2EP5kU8jt+rsMLWWfVunikmMJN/uSGW3MczK+/MJFw/8GrL16wG/gXzNcenCWhhQSMIR0/y/Ix1mdkwTF6riApdFcmbhHoJcmMMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759929882; c=relaxed/simple;
-	bh=OEKwf/lJbfWfeTbtO3uye9fKkC4WSWmsENdmeL4Y6Jo=;
+	s=arc-20240116; t=1759930027; c=relaxed/simple;
+	bh=DcgC3kZEqrZn6AzXVpTU92ybDuRM2fnOst1ekf9M8Oc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lRYFC41TUPCj5MoqncoUJm4tinbRmzhRgJCjVRkUe8GfM3kSzh3wNl6IxHAIs91JufOxPDsFAgXFz3ISHfXL39s3UiAgllQAsNvTQ7ldliisWS77eqv0bNE0mJSvWNiSSzSwYrhufNjblYY7y447UCpmK00c83/6w5Sbs83Hhlk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nha433Rr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF175C4CEF4;
-	Wed,  8 Oct 2025 13:24:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=kPbjOvMI6Pf8J7gEsitzJ8rcpZWyJjffTaANuQRiakFV5jKgzMcLXI59eR98d1NZJr2Elwee2/9zeG7sUIAnNsTb54dkgKVJPlyq6xuRJ/xYIugw4aFgvLOPPqU9DzB+9DxyPyuDKybJvUQnkmiideFDuBxSYyEpkmL5+WMvUqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QdhXDiC/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4363C4CEF4;
+	Wed,  8 Oct 2025 13:27:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759929882;
-	bh=OEKwf/lJbfWfeTbtO3uye9fKkC4WSWmsENdmeL4Y6Jo=;
+	s=k20201202; t=1759930027;
+	bh=DcgC3kZEqrZn6AzXVpTU92ybDuRM2fnOst1ekf9M8Oc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nha433Rrur5rkFpNoJDDGt3hljCGxefWJjlQ59/V7PVnknhbCUIekG16k2ME9sX2R
-	 ETQ8dgqFgiB3ij8VO16cK0P503S6iYx/myJZvJBvrkzqWXyYX7wMUvv7iwknyyjjTv
-	 4gYIZSll3jQdwQmbybSRY0wq8kpYJmzf6kLfoBU2w5qFyuTaoiaxLzTtSR0hKducOq
-	 02jnsRN8ESTLGYk6D0pTss2I5qy2WcHppaLREmuDM+mSkSEY0i1iXNIi7AprcrETQO
-	 cjHL5+isxIA2Vwf5Bho3h2eXfeLetaphlIzQoVnrrmfiKhjeT+GUM03eGIo9owraLQ
-	 XzkcULFqXCojA==
-Date: Wed, 8 Oct 2025 08:24:40 -0500
+	b=QdhXDiC/f4mFHOCDRASpiSv5oZCS/dhHAf2Qxt4CyXL64Ha8RakSZaBSyedlySGN1
+	 8Ty6ScIuVb65YIr17UcCoGUrqPwl96rPGB7mNqgOl3sQB6XYQv9FD+nNm3fj3LXBf7
+	 1gfjfK91bCbrsp5puXuIHBVZTAUZw20IXTNR6MSeWrRxpz7tBpg1+kZluenkpmgMF7
+	 w4hJmvuzALrTJ3n6ws6l5GENHqjxEyeVG1qmag9b/qeGFHf6CbnGiHusEMfW3wb8zg
+	 2uBv8YitL9jhPhqJf6TaFouapjWnzLNP5mWgSMJLccPIq/SuqTkZfQXVkjqr/fDxRc
+	 3GQ2uavZVsl2A==
+Date: Wed, 8 Oct 2025 08:27:05 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	linux-kernel@vger.kernel.org,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Georgi Djakov <djakov@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	devicetree@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	Mike Tipton <mike.tipton@oss.qualcomm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Raviteja Laggyshetty <raviteja.laggyshetty@oss.qualcomm.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: interconnect: add reg and clocks
- properties to enable QoS on sa8775p
-Message-ID: <175992988039.3401317.7332721222365860442.robh@kernel.org>
-References: <20251001073344.6599-1-odelu.kukatla@oss.qualcomm.com>
- <20251001073344.6599-2-odelu.kukatla@oss.qualcomm.com>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: devicetree@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Stephen Boyd <sboyd@kernel.org>, linux-gpio@vger.kernel.org,
+	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+	kernel@pengutronix.de, Linus Walleij <linus.walleij@linaro.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v7 1/2] dt-bindings: clock: add TI CDCE6214 binding
+Message-ID: <175993002523.3403965.4545656305134383205.robh@kernel.org>
+References: <20251001-clk-cdce6214-v7-0-5f8b44da95a5@pengutronix.de>
+ <20251001-clk-cdce6214-v7-1-5f8b44da95a5@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,29 +62,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251001073344.6599-2-odelu.kukatla@oss.qualcomm.com>
+In-Reply-To: <20251001-clk-cdce6214-v7-1-5f8b44da95a5@pengutronix.de>
 
 
-On Wed, 01 Oct 2025 13:03:42 +0530, Odelu Kukatla wrote:
-> Add 'reg' and 'clocks' properties to enable QoS configuration. These
-> properties enable access to QoS registers and necessary clocks for
-> configuration.
+On Wed, 01 Oct 2025 10:12:53 +0200, Sascha Hauer wrote:
+> Add device tree binding for the CDCE6214, an Ultra-Low Power Clock
+> Generator With One PLL, Four Differential Outputs, Two Inputs, and
+> Internal EEPROM.
 > 
-> QoS configuration is essential for ensuring that latency sensitive
-> components such as CPUs and multimedia engines receive prioritized
-> access to memory and interconnect resources. This helps to manage
-> bandwidth and latency across subsystems, improving system responsiveness
-> and performance in concurrent workloads.
-> 
-> Both 'reg' and 'clocks' properties are optional. If either is missing,
-> QoS configuration will be skipped. This behavior is controlled by the
-> 'qos_requires_clocks' flag in the driver, which ensures that QoS
-> configuration is bypassed when required clocks are not defined.
-> 
-> Signed-off-by: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
 > ---
->  .../interconnect/qcom,sa8775p-rpmh.yaml       | 50 ++++++++++++++++++-
->  1 file changed, 49 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/clock/ti,cdce6214.yaml     | 192 +++++++++++++++++++++
+>  include/dt-bindings/clock/ti,cdce6214.h            |  25 +++
+>  2 files changed, 217 insertions(+)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
