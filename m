@@ -1,258 +1,114 @@
-Return-Path: <devicetree+bounces-224471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1A37BC430A
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 11:50:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44CD2BC4319
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 11:51:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 23548350FDE
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 09:50:04 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id E3B50350FFD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 09:51:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D49725785F;
-	Wed,  8 Oct 2025 09:49:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="TyGMxtSL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09F8C277007;
+	Wed,  8 Oct 2025 09:51:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C580B24634F
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 09:49:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A28C243376
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 09:51:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759916999; cv=none; b=FP8uODKuhZxfjRhRGPmGcAXGVFNSTsHLCfyT/+4GY/vTwj8NmSR1HW0KLPvZ4iFJF5XXmx+jcznzhC7AfQTPTY5W+IP13qgCW7VjwkfYSDBOjKgQIQMIWhARwXYbt9NNJLjjTUWxrl79AVbv1lbmHdUbBO1JFIa23KDUwUT8ty0=
+	t=1759917077; cv=none; b=jYpwDcLlpjPz9n9nEDVZ171rGw3YxJpGyJHv52DyDiTwlVZx/7JRFFTj0TRKpqQ0Phh/pQPeBMzwq7dgFoSMxI4Ef4ikAfYn2/ZBVd8ozkhUTrg/P4PLkIWbZLT3g+nKdo92rsys0YXvCgx0vL0FukgP2vrKqcSwX/arqwCtAcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759916999; c=relaxed/simple;
-	bh=YLPbbGKuA7ad+uu7UDrX6Hi8Nr584besD46aL/up2Rs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bmJG3NuJJDNmiGtrsOiJEFZRTu3U3qpMIDTb/E4aE0qdUsO7Ln5AdcMSZQT5OTEr6O55uduZ+mreiEgioTy640WoV9DrZQy1n/fHXxNHiYHRqpwq2yQno58pWpOExuyhpUKKwDJs+GMeu9+FVcAeaqmoizvoufFtuu44J9ILPVk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=TyGMxtSL; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59890OlY028792
-	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 09:49:56 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	t7CuvV2u6L4yniEX/2Hwh9AlupGQ4BQt15mf9CCb1dc=; b=TyGMxtSL0NiA31Fr
-	TFkeWztrxxQNPVTz2HWLJ8Qno0CLFOHP88evX1HpJzQ3icJMH5wtxJeKvk08s3Ke
-	Sbyf3M/PdrjDLu456GJHAIukEa4d38BDOs3sg5YUW7XI5L+QyQI4E899EnaBSFRO
-	fFLTInS0FqHmCiDz56QapAHljACEZyqQw/fr+2jF9tDmf+3HnqsqsdVq+atvxOKK
-	IvWnM6aIY6x2eIER7xkjxPDK6k8HgWCsUUYWKHnD45NkMHC7kDUgeZb7w+jgGswY
-	9niRo1zlfW+LaqUPy2tkKon+0y+qdKHQjdKhbUWsjkpuBO3lYs3Hu5//dsASnu0Q
-	2CIMvQ==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49jtwgt1qn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 09:49:56 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-879e3de728aso153769885a.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 02:49:56 -0700 (PDT)
+	s=arc-20240116; t=1759917077; c=relaxed/simple;
+	bh=r+ToGzTI6uxWEPYumm60pPHWI41nkxsIjrp4Zp1EsqY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=LnG+o9JXImHDIjS08Mj+lTnDT6X07euAGrswjKxHlfRxcNEyccScFku/x3uItuoZ4EtXGW/TuifruDihv3lZMS7VvV5rhkDdiPq0VLjxl6OtgxmwVBcZgKufaN8KG9jK4slgf6yb/6ho2vOiCShnnu4ZF75JVRhyE5gRCWrCFDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-5c72dce3201so3041591137.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 02:51:16 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759916996; x=1760521796;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t7CuvV2u6L4yniEX/2Hwh9AlupGQ4BQt15mf9CCb1dc=;
-        b=gBbFZh0E50jUtmbrUlQE5bOu5we/E1bc0xFfdD0H7Vk9rrCJF7USQDlQizY1Ki1nmn
-         wUaUP00949Nv9ztUvQbtkIDkWWK9hq/7Z2qg7NkHqGMzXYp5HB077F8XioTNb/03nHBa
-         pA5JZCbBhj/QD0+DxB2oKkmpbPK/Nuef5t6LfFN7riLMD7vLSZd4Y6xydk+Tw7/21ajv
-         JYZ7xiXwgXMosJINfPJ6xqxs9eErIIAL41YRj+zp2aRY4Y6F3A5UGDisxD41u8PXcyzQ
-         FwTdlbFHTrgBuhpaEKHUbK/kgwl/9K0b0YK5vW41luRc0kXoxROU7RGoig3/ot2S72v1
-         Fh4w==
-X-Forwarded-Encrypted: i=1; AJvYcCVezPKf7JJf1mukK3jb2DvN42NTBU2rCzIrd6qbDnoTYyn+j7AmaF6+lAY4ixptQ6jhlYS1O5N10KCj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwLRzzMbgCcqYBk0/EauRg7SPDbtKdnNQk7u9hV8SmwOysQopF
-	WlfnF8O4OjyelsiXjSEaEXcPEu0Vi2/SKVdvxcx1PsvFOBJmJXBTId2WHc0siuzhdlCqKhjNnmq
-	N/7OmI1edKTPxHDBigbF3d+FsgYJ1WoPY4K1/veD8PKqiks7jDUMwxgvQ56x5NQC7
-X-Gm-Gg: ASbGnctPeNSfFjv1+IP3sVthn0dmoiCORA0H8NBeXAR7bGOhs66jV9zcLfPKZrCrsZo
-	iAk15jtAtyiZuiit3706swGp4Sdpo4G/dbqbLT5KC5+dVNPFejvIYnz/ytp4CJ0RAb64muwuSe3
-	7n0vhqQLORGK71eB3ayCWhO+rOrTH4R23osHkzKk4IbvCOcPV4UFAddIDftSRbbYjn4vE3JixjR
-	P5tYHaI8uHhis6OledrFJYysOF0bt9INPONJbJQvFjWFVs/V3GF8qH/vIaT89x/Ej1XiWu1qwqZ
-	Hi7ikd2EqhcI3nRNbea+sEVSZmVCzAVYQIsiPTxyDPVhzHHtYKsS7DxNm1/RG/oP4CC1BU7aIn+
-	29YUY72xTCSCQ6jMiloA9AjN7aC4=
-X-Received: by 2002:a05:620a:1a2a:b0:834:bb79:1d71 with SMTP id af79cd13be357-883525bfa60mr270824385a.2.1759916995589;
-        Wed, 08 Oct 2025 02:49:55 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE6ShkQ+HXLLf6CWx570a8HRdqjNiQWHzj9O/Ol/Pm6+ApIb7tMauB43gjAAY27lh5dA80prA==
-X-Received: by 2002:a05:620a:1a2a:b0:834:bb79:1d71 with SMTP id af79cd13be357-883525bfa60mr270822185a.2.1759916994867;
-        Wed, 08 Oct 2025 02:49:54 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b4865a83482sm1629255366b.26.2025.10.08.02.49.52
+        d=1e100.net; s=20230601; t=1759917075; x=1760521875;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G09dlK4ttSR1bBxdlZNpESQsXtEQhLpmRygu9mDDuZI=;
+        b=xDoQC4oivKgRtuKBPvGpmteulzf/Rv04gGG934Af8A3y3uqjPI9ihiQrn/4uZFULm2
+         8ZsrkA/gxMjm9E1ZRVtMHGPTJ4Nn9YUrbQiGsbAx+7C5VXUvu5JSb5IaVi3CI1ry0x2l
+         X/Af0hwWrtlw9aMyUdzSEARf8OLfjrPopQmEYIl01TWLGlUzUk59YKFH2DykhMwZjsae
+         ss0+o9yF2dSCIubXEQqs1iO0TD1KuaJ3qkjic4oen8TIgB8JpqNpyshrmCNu8Bg5eiIY
+         XuK7601cN/j4+G2+zkHInCF+vunawcVUzu1agAEn97/EueAMHxHKk3UQ4g1d/rmegXtb
+         Q5Nw==
+X-Forwarded-Encrypted: i=1; AJvYcCXF1volMKnHvfRTFL7Ep2xJa4EXIrZzMK9GIAJcubsgDKh/Ve4gsMVwEm2EOAo29KhwUjhYpWreC5vz@vger.kernel.org
+X-Gm-Message-State: AOJu0YziRE7D1dhwGtHXSf2+2Ni0XqNXYPguglrw5wZYPNtkyoxZw29N
+	/QdhhJwKKEebLd892H+gUP6pxEAo02j3ia03lt92Q1xWU+Yu3QfRbgwT9HY7og+Z
+X-Gm-Gg: ASbGncv/QQpj/ZWOI5lDze+FOEuva4DKNmkqL8PV9Ifk3UnulV0FOHxM1xLl7Xo4DGC
+	EC9dJ379oXc0vOq8MXwM7l+a+56ETYa5WFh8ruQAW3/mfCz8fojNPBXRkOhKPMbGJi1/Lhsae1C
+	ksnSj4gbnX3Cp4nbmZ9/MPFzP+9z7gA6MYcJHORc6+4KTBPgTjdPfVi5uUe2vaUOemXUfhcQh6T
+	tBMcrCMtqZ9KJScd8PAsi30ZfbSZPAKOjwaqCcwDUA1XrlCW24lCNtM5ldFnfaacWjAeaHnUOML
+	A3Gl84ABC2mcaujs/v2wYdAeCqab8cSdBFu/JwMiK+OR2Kchli5j8w0i6DSZFaXzGhKR7Vjgohd
+	oX5/TiQZYbA2HxqsAlL6nwl5ay6W7IDCztKh+E4IpPjuSvrekdYTFYwIYWgaPZx3cXN8eye8ne+
+	gFmrwbNMk/
+X-Google-Smtp-Source: AGHT+IFGkD+EmozZqlNISuot1jxMg9ETeqWJ9lAZzMg/QmDwfbxCJ6kZuc2GKwWEfb0cY8i+HLfNkg==
+X-Received: by 2002:a05:6102:6c6:b0:4e7:db33:5725 with SMTP id ada2fe7eead31-5d5e21fcac5mr929920137.3.1759917075024;
+        Wed, 08 Oct 2025 02:51:15 -0700 (PDT)
+Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-92eb4ede9ddsm3902881241.14.2025.10.08.02.51.14
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Oct 2025 02:49:54 -0700 (PDT)
-Message-ID: <2a5f3286-7f79-4003-afcb-082dc61b6d2d@oss.qualcomm.com>
-Date: Wed, 8 Oct 2025 11:49:51 +0200
+        Wed, 08 Oct 2025 02:51:14 -0700 (PDT)
+Received: by mail-vs1-f45.google.com with SMTP id ada2fe7eead31-5c72dce3201so3041585137.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 02:51:14 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCX3lyDFh/ZHbkuW++UX40O5SwaENhIAEhKNBAydiVs0Hrtr4z4TxuO6tRQJ2B0yQGyIVO6yEYkbPX60@vger.kernel.org
+X-Received: by 2002:a05:6102:512a:b0:519:534a:6c20 with SMTP id
+ ada2fe7eead31-5d5e23afcd1mr853215137.30.1759917074311; Wed, 08 Oct 2025
+ 02:51:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/12] Peripheral Image Loader support for Qualcomm
- SoCs running Linux host at EL2
-To: Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20250921-kvm_rproc_pas-v3-0-458f09647920@oss.qualcomm.com>
- <aNEEglLZTJuR1sLi@linaro.org>
- <20250922094732.6tupym6ulroctm5m@hu-mojha-hyd.qualcomm.com>
- <aNEcngb2T62HYlMq@linaro.org>
- <20250922103327.ylyqwo5hpmtsbx6q@hu-mojha-hyd.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250922103327.ylyqwo5hpmtsbx6q@hu-mojha-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAxOSBTYWx0ZWRfX8eWEE0H9Ck7c
- 5NlKqD9aaDgbAG+ucBqPOw5F04aPbieWMmyccIOrT4F25UohmrDkjQLKykonETV5s3Gx5KE3irW
- AZBH21KoirfyQaT3MlwOaa4MBj2evDvJG9eeL7dZC2+uZ6RdcbsgqtBBY94M2/U/PYEfflo234z
- ldiIUr39H82YPw7Ctb1n0+aFWPZ1B4V+3mkKq7KJ49/sGS+2uZztHotLKkvGM29v53NEWiXfrwh
- +iRe7WQtYNlmH+f/x8zwybgDsrWXwRXbRuzfso3PW8inLX6qIhuleE0y64QYhV8Qa+bwJEinVbm
- WQ+914U6OlHjJQApiIo/aLJzo547DWWB+r4pi4UI8Wdlev1ADSsG2jbmmOX4jg4d8k/chEtK4ip
- ehtIutZhGMl4ZJm4PMxmwYFRg8sn6g==
-X-Authority-Analysis: v=2.4 cv=B6O0EetM c=1 sm=1 tr=0 ts=68e633c4 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=KKAkSRfTAAAA:8 a=VwQbUJbxAAAA:8
- a=EUspDBNiAAAA:8 a=wlnWjB0Fb1V8A_MKSHgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: rESbvvoJD5w7bhCBdVYjzPEuFFktr2bh
-X-Proofpoint-ORIG-GUID: rESbvvoJD5w7bhCBdVYjzPEuFFktr2bh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-08_03,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 lowpriorityscore=0 adultscore=0
- impostorscore=0 spamscore=0 bulkscore=0 phishscore=0 malwarescore=0
- suspectscore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2509150000
- definitions=main-2510040019
+References: <20251006172119.2888-1-wsa+renesas@sang-engineering.com> <20251006172119.2888-2-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20251006172119.2888-2-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 8 Oct 2025 11:51:03 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUb105BF1pNtqMpq2N2Yrh0Rp2hAxuzaZZWXfQfou=k4A@mail.gmail.com>
+X-Gm-Features: AS18NWDRVT_iGSvxNuYXIG-QZwF9FHymRVnJQTzRE7VPezsiv6NxhZyhisJFrAc
+Message-ID: <CAMuHMdUb105BF1pNtqMpq2N2Yrh0Rp2hAxuzaZZWXfQfou=k4A@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/2] dt-bindings: iio: accel: adxl345: document second interrupt
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
+	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 9/22/25 12:33 PM, Mukesh Ojha wrote:
-> On Mon, Sep 22, 2025 at 11:53:34AM +0200, Stephan Gerhold wrote:
->> On Mon, Sep 22, 2025 at 03:17:32PM +0530, Mukesh Ojha wrote:
->>> On Mon, Sep 22, 2025 at 10:10:42AM +0200, Stephan Gerhold wrote:
->>>> On Sun, Sep 21, 2025 at 01:10:58AM +0530, Mukesh Ojha wrote:
->>>>> A few months ago, we discussed the challenges at Linaro Connect 2025 [1] 
->>>>> related to Secure PAS remoteproc enablement when Linux is running at EL2.
->>>>>
->>>>> [1] https://resources.linaro.org/en/resource/sF8jXifdb9V1mUefdbfafa
->>>>>
->>>>> Below, is the summary of the discussion.
->>>>>
->>>>> Qualcomm is working to enable remote processors on the SA8775p SoC with
->>>>> a Linux host running at EL2. In doing so, it has encountered several
->>>>> challenges related to how the remoteproc framework is handled when Linux
->>>>> runs at EL1.
->>>>>
->>>>> One of the main challenges arises from differences in how IOMMU
->>>>> translation is currently managed on SoCs running the Qualcomm EL2
->>>>> hypervisor (QHEE), where IOMMU translation for any device is entirely
->>>>> owned by the hypervisor. Additionally, the firmware for remote
->>>>> processors does not contain a resource table, which would typically
->>>>> include the necessary IOMMU configuration settings.
->>>>>
->>>>> Qualcomm SoCs running with QHEE (EL2) have been utilizing the Peripheral
->>>>> Authentication Service (PAS) from TrustZone (TZ) firmware to securely
->>>>> authenticate and reset remote processors via a single SMC call,
->>>>> _auth_and_reset_. This call is first trapped by QHEE, which then invokes
->>>>> TZ for authentication. Once authentication is complete, the call returns
->>>>> to QHEE, which sets up the IOMMU translation scheme for the remote
->>>>> processors and subsequently brings them out of reset. The design of the
->>>>> Qualcomm EL2 hypervisor dictates that the Linux host OS running at EL1
->>>>> is not permitted to configure IOMMU translation for remote processors,
->>>>> and only a single-stage translation is configured.
->>>>>
->>>>> To make the remote processor bring-up (PAS) sequence
->>>>> hypervisor-independent, the auth_and_reset SMC call is now handled
->>>>> entirely by TZ. However, the issue of IOMMU configuration remains
->>>>> unresolved, for example a scenario, when KVM host at EL2 has no
->>>>> knowledge of the remote processors’ IOMMU settings.  This is being
->>>>> addressed by overlaying the IOMMU properties when the SoC runs a Linux
->>>>> host at EL2. SMC call is being provided from the TrustZone firmware to
->>>>> retrieve the resource table for a given subsystem.
->>>>>
->>>>> There are also remote processors such as those for video, camera, and
->>>>> graphics that do not use the remoteproc framework to manage their
->>>>> lifecycle. Instead, they rely on the Qualcomm PAS service to
->>>>> authenticate their firmware. These processors also need to be brought
->>>>> out of reset when Linux is running at EL2. The client drivers for these
->>>>> processors use the MDT loader function to load and authenticate
->>>>> firmware. Similar to the Qualcomm remoteproc PAS driver, they also need
->>>>> to retrieve the resource table, create a shared memory bridge
->>>>> (shmbridge), and map the resources before bringing the processors out of
->>>>> reset.
->>>>>
->>>>> This series has dependency on below series for creating SHMbridge over
->>>>> carveout memory. It seems to be merged on linux-next and pushed for 6.18.
->>>>>
->>>>> https://lore.kernel.org/lkml/20250911-qcom-tee-using-tee-ss-without-mem-obj-v12-0-17f07a942b8d@oss.qualcomm.com/
->>>>>
->>>>> It is based on next-20250919 where above series is already merged
->>>>> and tested on SA8775p which is now called Lemans IOT platform and
->>>>> does not addresses DMA problem discussed at [1] which is future
->>>>> scope of the series.
->>>>>
->>>>
->>>> When testing your series on Lemans, what happens with the additional
->>>> SIDs from the peripherals assigned to the remoteproc ("DMA masters" in
->>>> your talk)? Are these running in bypass because the previous firmware
->>>> component (Gunyah?) had allocated SMMU SMRs for these?
->>>
->>> There is no DMA usecase present for Lemans but can exist for other SoC.
->>>
->>>>
->>>> It would be worth mentioning this in the cover letter (and perhaps as
->>>> part of the EL2 overlay patch as well), since it is unclear otherwise
->>>> why your series does not result in crashes the first time a remoteproc
->>>> tries to use one of these DMA-capable peripherals.
->>>
->>> As I said above, It is not present for Lemans;
->>>
->>
->> Ok, thanks for clarifying. In other words: The IOMMU SIDs you have
->> specified in the overlay so far are sufficient for the current firmware
->> use cases to run successfully on Lemans?
-> 
-> Yes.
-> 
->>
->>> To handle the DMA use case in generic way, we might require extention
->>> change in remoteproc or generic iommu framework to handles these
->>> scenario like its SID and memory resources should be communicated
->>> through firmware resource table or device tree or some way.
->>>
->>> And same scenario when resource table section not present in firmware
->>> binary ? like most of the Qualcomm platforms, how these cases would be
->>> handled and I believe this is similar to the problem video is facing for
->>> non-pixel case.
->>
->> It is sort of similar, except in this case Linux doesn't really do
->> anything itself with the mappings. In the video case, Linux dynamically
->> maps buffers (or similar) into those address spaces, while in the
->> remoteproc case those are fixed(?) for a specific firmware binary. At
->> least if I understood the explanations in your talk correctly.
-> 
-> Memory region used by DMA use case would be fixed with subsystem
-> carveout memory but need to be mapped with DMA SID before subsystem
-> boots up so that it could use the DMA. So, it looks to be subdevice
-> for remote processor but programming of DMA taken care by
-> remote processor firmware and those detail would not be mentioned in
-> Application processor device tree.
+On Tue, 7 Oct 2025 at 01:20, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> The pinout of all the supported chips in this binding have two interrupt
+> pins. Document the second one, too, even though the Linux driver
+> currently does not support the second interrupt. Boards may have it
+> wired nonetheless.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Sounds like something we can just stick into the resource table too,
-then, along with all the SID data if/once that proposal gets through
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Konrad
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
