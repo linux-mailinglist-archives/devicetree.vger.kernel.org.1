@@ -1,169 +1,121 @@
-Return-Path: <devicetree+bounces-224542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224543-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00315BC50E6
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 14:59:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FC87BC5152
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 15:01:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CB5744E47AF
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 12:59:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32C7218825FA
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 13:01:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCF4F260563;
-	Wed,  8 Oct 2025 12:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F7D01A3164;
+	Wed,  8 Oct 2025 13:01:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ioGIzFw+"
+	dkim=pass (1024-bit key) header.d=zohomail.com header.i=newwheatzjz@zohomail.com header.b="Um8pxC1s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sender4-pp-o95.zoho.com (sender4-pp-o95.zoho.com [136.143.188.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ED2D2512C8
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 12:59:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759928348; cv=none; b=dcGm6rM1veIsvYkVVrpHGgAl22Oa1jNTqs4Ujk9MoE+as8S9k3QbKW1ZtT0eWUnPRJclf2fQmrqLzMkrM+bXfxiptmvvzK0u1xDc5CFoCgGSneP1PB41hX/4GdN0u491Nx7b8wOj8DWQdHOo/nzW4UlEk2swAbtekKQ5Vc65WJI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759928348; c=relaxed/simple;
-	bh=ZJ2kKaRdwvu8VSF4BFdpI2S0DF5Knvpt16rbDWhmgBI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N2tnN5tT3P0jcfTdDEOw9On5xwTxZNAEBm/c9grQ6H0xxW7nY/KfdAxJOqQ+Ieiy8DU4l2bClJItOf4go/4/q+tWCWqnvGKy9fhmax3QJqgGZUcFBToVNvYxuWXYQ9QCzjfNvDI6HT8+OAh45JoDQJQClrxsHHrRtSfupqQMGHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ioGIzFw+; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59890ntM010197
-	for <devicetree@vger.kernel.org>; Wed, 8 Oct 2025 12:59:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=5KgYauIrBbKoQVpQqVgNQnHP
-	AyVbPvahAJXvv+HqRxo=; b=ioGIzFw+qKFKX/+2hfVRuFmgaRNZNkrPgT6MZH+L
-	hdqhc1x3yaMy/pPG0rPHczcaXUsWual6WvmuANcLpREzA6UNrvsavEqVhxxKrC0s
-	oRjncqNyrwelRM72QTTE2nPtQoCBCwOPYs7VteuByx/qgQj8EDZd4LNsA8SFU6wP
-	EoLZUvf9NgFw4sE9dR6+1XfqNieztW/GmHCyOcxkLoKftcqJ8iNHQUy+35XDO9BE
-	ztbs2gYlhJfkzitOgrkB8Q114iMWJtbzXuSZiDR60TfqclKvayiNRGArAEvnvGfN
-	w0tWGXrblfl63idaOVFgVa1dBSYAnv1/2Lo1EqkViAiNHQ==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49junuak2x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 12:59:06 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4d77ae03937so201324891cf.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 05:59:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759928345; x=1760533145;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5KgYauIrBbKoQVpQqVgNQnHPAyVbPvahAJXvv+HqRxo=;
-        b=mPPFrOkLFohsYYHmZxi/JqxY7LcoOZHw25xtOtWh6NK+jM0YVgRXMGsk4RJhiG8AXb
-         +YcZjY/QrBNI1OarnGJgwwVuvbxtMf+oq4e/meEYirbbeXZICERbwNQQEGkHLcTZIjYQ
-         zU23FwQB5uNzSrnhiY14P6G7ECGOCE/MmydNCcK6vKLVwTKiGHNRSdxR6SToHYQlrhGF
-         apMiEKoL6GX8Q17sGMoYL+cCmLPMKsXBbGPfzRiORy6Ah1cf9Z3KfYzUVdKiOd5mYhuA
-         gG0vH7VnsmDInYMewVyH4o+7ZaObjnKwYuCHYHgZdhZbmCP6a63KRmHOknmWFJQ52CvU
-         lKJA==
-X-Forwarded-Encrypted: i=1; AJvYcCWtuLaWWx5u2fT6I42N7anIcX1gIToJWPr4JFnqdEtedK/ftgWSJlMFJvCVtYgCX60ygRPOj2x2Aw2+@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfZ6FHif4orh44Oz3MmN9qGeAJnDaB2ql9FOq2TqUez1TytMQn
-	djkdn9LhlHpzEbRdR84yXpsul9kvLST42FuOGqWF3k5Maj2L2LVesGPs3VUNYPRbpsKdm/8E+FB
-	n0XF3et2cuNc3tw3F1YIMXy8cT85IZ/O9Xg7nq7wGI8c0GcOmBkljXgN9zYEEzu/y
-X-Gm-Gg: ASbGncu7KsY5Q4OvA2EOvzMFlfToxB8VSpfey4UEkcQKKbQ4EQIMJXVANiPw8TA/Muh
-	EN0uTSFFy49GtfQbm7Yp1tig9HB6F/TO7xrKkmxs/2qD9jzsC8f/V1qhQ+OIYDcw2uTA/tqUeqS
-	NkBC7TK/GsIGSRiJyVTij6x0xkJDrs7uCjpE0FR3DxCF05QJWDfBFbJBG80U+jKOfYYW2cKhreh
-	9ZBPWtvMy9OY7LJfXN3/eaDN2/jc9Crz2TdG3CCUOiZU4e0l/YyRMT31loJ5hT4mad7KGKf0d6i
-	rGjI59xlc4cLm1lC9n7mpHCJddFXDhwaj8yCunQmWtsBkCsFeRqtL7kDypUsAYQ8MiCBnXpQiJb
-	eZvqStF6jFSqOGh7vEtt7tgX4b55k00LTNpneqUEAzKftZYVkwQSN4JChLA==
-X-Received: by 2002:a05:622a:54e:b0:4e4:f812:20f1 with SMTP id d75a77b69052e-4e6ead85777mr42850941cf.55.1759928345231;
-        Wed, 08 Oct 2025 05:59:05 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG/kDjU9mNrWpli4fOGqzpllZTDEPDlABYWO/CgAWgxK//4LXGijoGQVXWueGutXf69+EneuA==
-X-Received: by 2002:a05:622a:54e:b0:4e4:f812:20f1 with SMTP id d75a77b69052e-4e6ead85777mr42850611cf.55.1759928344801;
-        Wed, 08 Oct 2025 05:59:04 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-58b011404a5sm7192234e87.55.2025.10.08.05.59.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Oct 2025 05:59:03 -0700 (PDT)
-Date: Wed, 8 Oct 2025 15:59:01 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Rakesh Kota <rakesh.kota@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
-        tingguo.cheng@oss.qualcomm.com
-Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Update regulator
- settings
-Message-ID: <yjqg2xani47xzik4hrxcuaa4wwft4hyvf4dcjf5mosgdrrfxbc@fum65ap3zha4>
-References: <20250919-b4-rb3gen2-update-regulator-v1-1-1ea9e70d01cb@oss.qualcomm.com>
- <20cb3921-1344-4e47-864e-ea99759a1dad@oss.qualcomm.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565F91C3306;
+	Wed,  8 Oct 2025 13:01:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.95
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759928469; cv=pass; b=BWX/kRlUXb4IiZlawTd6XY6TubKrhbPjSy2tY4SOFVH34nvBlUqJREu0aDWBfFnPxGK0kbYJ/sxrR3pkRRU1+1jB4Xaf66D9cUrQZBfpuIYnB9B7G4CrPvkDViOjLdgk4csuecXgN8Y7NWXxJuaKuXKU3WCly946MhIMrdhV3nA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759928469; c=relaxed/simple;
+	bh=Jl05ydmdikzLsEiYX4kjqrnPQ5Sb5lANeN3XmQsbghs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CMVv4B8pglOWWCrCy6U12ASc12V8FmeFKbGFtXe/J1PNWYk8TyWGgpjHvoWrsgkv2KYqDgwMobJb0PJ/GE+p8I98tDDzslKJ3vg6Za3Qat1V7FtgNtF4hFOLkRPi7Zoqb0Ixt5RRw4reBVcKHbH/tVSm7Jxzwg7QjMgKWWeKQ7o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com; spf=pass smtp.mailfrom=zohomail.com; dkim=pass (1024-bit key) header.d=zohomail.com header.i=newwheatzjz@zohomail.com header.b=Um8pxC1s; arc=pass smtp.client-ip=136.143.188.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=zohomail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=zohomail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1759928462; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=KriMtnIZOcVzEvx1ZlF+ba5fHzsEGZSMnzPQR1SxnDAa1PO+DHH2cHGebkD0HFEgd7szIh6NAatf+zz8j31/szl2JRtMGL5ajIPU4uOJPM4a6OW8lbehAdwmfNtGcKIIWIb/ZFvPCUXmolQOeRFrS9Dh87VOT95x5bGYLL8y/DY=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1759928462; h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=vvSzGzappQ2DIa8Z8JIp2DCABJeZOABIXE23Kpa7obk=; 
+	b=D/meXYcr/1uXSPqJ2Ej6MCzUqv4RCFt0bzyHevBDz2oEV0j0to+FU/6QHvwdUgDrIhUbaBV0wHFwH0Q0WLmwMuDaS9eq64TouXHpeMc6JUdSMQY8lpgmhRz9uHPIra/u6xta7Qw9KFQ/XUNoTwS8F0owGhXCXCaY5ADwswktJKY=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=zohomail.com;
+	spf=pass  smtp.mailfrom=newwheatzjz@zohomail.com;
+	dmarc=pass header.from=<newwheatzjz@zohomail.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1759928462;
+	s=zm2022; d=zohomail.com; i=newwheatzjz@zohomail.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Feedback-ID:Message-Id:Reply-To;
+	bh=vvSzGzappQ2DIa8Z8JIp2DCABJeZOABIXE23Kpa7obk=;
+	b=Um8pxC1sO8Q/h15zkxQeNbVGPmSRu3dYYjboSWbsdhnPo4es/hWnxhqm21Q6mcdF
+	jaS8UUgSk7tP/jG1qTNCUe5CR4Wk5StUr1hKUmjgH3J2Uqbf6T2OP0TJEwZCoDLAz2f
+	GVhNBFqzvwSlSP24be7Hqyrihp7Lxp/L2DemtXn8=
+Received: by mx.zohomail.com with SMTPS id 1759928459515119.56493147883725;
+	Wed, 8 Oct 2025 06:00:59 -0700 (PDT)
+From: Jingzhou Zhu <newwheatzjz@zohomail.com>
+To: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Jingzhou Zhu <newwheatzjz@zohomail.com>
+Subject: [PATCH v6 0/2] arm64: dts: qcom: Introduce Huawei MateBook E 2019
+Date: Wed,  8 Oct 2025 21:00:50 +0800
+Message-ID: <20251008130052.11427-1-newwheatzjz@zohomail.com>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20cb3921-1344-4e47-864e-ea99759a1dad@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: SmX7LlOJt_tMskFuIoOxgwTB_24StgW6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAyMyBTYWx0ZWRfX/sekYOkWV7uO
- qv0QGqbN4COfkNQ/jILgU/Qky5ipCk+Px1UlOhTpWAnyQTJGNfDM+nMpdm84nCvDz2RhdRMNccm
- BzRl0NM2/e1YRVSd2/73MASefxhMoGUsiIYBKJI3qAbsik5DLIA9O3TpV+O3HNkxp7dMBq1nzVF
- OEdOwQrK9NWacV0hy6t+6eu94s3chyU52E8HFsPafitMIcvWJ97SSroWwYh5QQgxt0O4Qoy1055
- DF5V4DtRxE58CAxC1kAXH87szPCoW1iHrkLyHhLmE8LCsfUyER1NPpLFllsYjTbgqrRPKPBH3OQ
- YYzu3Gu+Nfb2KHFdTYVO8QLVqdijCPEIJ/Kmu2ytVeD/J4GRU+B6gBL58mUCKYbrCKOtITYqNCN
- GzFfP9FHGjBAJu17gUrdx6nb7BCZmw==
-X-Authority-Analysis: v=2.4 cv=CbIFJbrl c=1 sm=1 tr=0 ts=68e6601a cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=wPZmJJNrXprZb9I2VNoA:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-GUID: SmX7LlOJt_tMskFuIoOxgwTB_24StgW6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-08_04,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 malwarescore=0 clxscore=1015 adultscore=0 suspectscore=0
- spamscore=0 priorityscore=1501 phishscore=0 impostorscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040023
+Content-Transfer-Encoding: 8bit
+Feedback-ID: rr0801122729bcf230bba7811d4fce1bac00006db2bdc9c55547d897731858920e6701971d166bfc98f853a0:zu080112276cb30eea9ceb5594f45ae46e0000b7d03e5f36d5c2315622e68500e562f11e935ca3ab60b75a69:rf08011226b35178edd6f0ea9fae52863c0000ca786c8ad019c635939d03be7d1475c2c2895189b183cb81:ZohoMail
+X-ZohoMailClient: External
 
-On Wed, Oct 08, 2025 at 02:44:58PM +0200, Konrad Dybcio wrote:
-> On 9/19/25 12:39 PM, Rakesh Kota wrote:
-> > Update min/max voltage settings for regulators below to align
-> > with the HW specification
-> > vreg_l3b_0p504
-> > vreg_l6b_1p2
-> > vreg_l11b_1p504
-> > vreg_l14b_1p08
-> > vreg_l16b_1p1
-> > vreg_l17b_1p7
-> > vreg_s1c_2p19
-> > vreg_l8c_1p62
-> > vreg_l9c_2p96
-> > vreg_l12c_1p65.
-> 
-> You should rename the regulators that have now changed their
-> ranges.. I'm a big fan of stripping the voltage suffix entirely
-> fwiw
+Huawei MateBook E 2019 is a 2-in-1 tablet shipped with Windows on ARM.
+It is one of the early WoA devices powered by Qualcomm Snapdragon 850,
+or the sdm850 platform. This series adds mainline Linux support for this
+device using device tree.
 
-I think it's typical to follow the net names from the schematics. Which
-can include voltages. And which (unfortunately) can be incorrect and
-misleading.
+Changes since v1:
+ - Removed 'enable-active-high' property from &vreg_s4a_1p8 and
+   'input-enable' property from &i2c5_hid_active to avoid warnings
+   mentioned by "Rob Herring (Arm)" <robh@kernel.org>
 
-> 
-> [...]
-> 
-> >  		vreg_l9c_2p96: ldo9 {
-> >  			regulator-name = "vreg_l9c_2p96";
-> >  			regulator-min-microvolt = <2700000>;
-> > -			regulator-max-microvolt = <35440000>;
-> > +			regulator-max-microvolt = <3544000>;
-> 
-> This change is funny, no one noticed that before..
-> 
-> Konrad
+Changes since v2:
+ - Rearranged the order of nodes and properties suggested by Bjorn to meet
+   the dts coding guidelines
+
+Changes since v3:
+ - Added new lines before 'status' property and subnodes for better code 
+   formatting
+ - Rearranged the node order of regulators and pinctrls
+ - Renamed the pm8998 pinctrl nodes suggested by Dmitry
+
+Changes since v4:
+ - Collected Acked-by and Reviewed-by tags
+
+Changes since v5:
+ - Fixed cosmetic issues as suggested by Konrad
+ - Added comment explaining gpio-reserved-ranges
+
+base-commit: 47a8d4b89844f5974f634b4189a39d5ccbacd81c
+
+Signed-off-by: Jingzhou Zhu <newwheatzjz@zohomail.com>
+---
+Jingzhou Zhu (2):
+  dt-bindings: arm: qcom: Document Huawei MateBook E 2019
+  arm64: dts: qcom: Add support for Huawei MateBook E 2019
+
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../qcom/sdm850-huawei-matebook-e-2019.dts    | 972 ++++++++++++++++++
+ 3 files changed, 974 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sdm850-huawei-matebook-e-2019.dts
 
 -- 
-With best wishes
-Dmitry
+2.47.3
+
 
