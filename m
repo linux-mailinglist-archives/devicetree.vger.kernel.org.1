@@ -1,188 +1,171 @@
-Return-Path: <devicetree+bounces-224608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224609-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23C32BC635D
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 19:53:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2B17BC6377
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 19:57:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 38F2B3AEC44
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 17:53:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 98FF5405C19
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 17:57:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6C112C08AD;
-	Wed,  8 Oct 2025 17:53:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6318F2BEFF0;
+	Wed,  8 Oct 2025 17:57:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PzqEJE4Z"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="oOQ0AZXB";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="xYjUaq7U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fhigh-a5-smtp.messagingengine.com (fhigh-a5-smtp.messagingengine.com [103.168.172.156])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 078F4221271
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 17:53:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DF972BE05B;
+	Wed,  8 Oct 2025 17:57:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.156
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759946004; cv=none; b=AJcOGorwMnuwyNtc4Je7OxSw5J3xaKHKwkdT00TjeGYKcL6Sn1uxs9y5bv03AizZNb4dVxJjU+5WNiIU8NwcsRIEGDEgJB762IfW/tJId6Pr7DIJiiP3313n2AzfkogPhzkN3hn+oWzgZXgrVxKrZp7IEQBh2OINHR4CIkVo25I=
+	t=1759946228; cv=none; b=s97gcGoyPerotRI8E0WpZEzvZq5sAFsTp9nixXJ8n8bv/SvXeR+/m1G+W2hFUyBWBUtHSQmyNPBLrpw4bwBSJaGqJxk9wjfGniC96eMy8/hnXUBHH8whF7yi05wClyPbIgRRPWOFiG9IwT5/QWDBE8zfzM7wT1uJwwgMgBgtvlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759946004; c=relaxed/simple;
-	bh=7uenfxZbhN2COy+Pu0VQPMBd+KOfPBPVzZt14HH5Onk=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=fcqOIiaSOf5ro0H7UrLZitO+5S1mi192s7jKFt2TAzi6fwZjLCeW01G4AWEir/pPRGjh7z0sK7Q1ZRSuVLjKCH9DzA37HMNSy2vNyYCoUjuLWT0jjpfYvE2qPj60sX3+vRt5XPzZqhMFq6mqapK49rq4k8gZnyKROBE0HLsUF+A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PzqEJE4Z; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3f2cf786abeso164995f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 10:53:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759945997; x=1760550797; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=px+f0JQb/+e/m0dW9U+ZUXUOOFQQcWWAn8xrqf+sMwY=;
-        b=PzqEJE4ZYLc++5lVPFnpvm2jliGjgA3SnTIn9Ih7NQsQUHb7klAmTCr768vAezJ8kR
-         dd6gy4E5phJ0b1O9aCoo7gDFAkcGnqi/7A6aGiE3t4FSGjAA72WPuehqvItlH0Lgjs+A
-         tTKb1fe0F456nRV+OT6yf+dATEhx1HtzU5FnR9c5Qx8Z2DtwYA3x179nPNqF7DNaryEM
-         8D9JZC3r+PMKzC6PQ+QF87qfaYyejpVB+psILHgfXQgtfJDvuqr+st5Y5dmHlEWlwgG+
-         0MmXOtrt+0P2fAItmrvsJUK3SnwWbkNmf7HaldFDpLNq/5Nv6jQt4DJRdagmOtdKYWKx
-         RFuw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759945997; x=1760550797;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=px+f0JQb/+e/m0dW9U+ZUXUOOFQQcWWAn8xrqf+sMwY=;
-        b=NSKyKtlUyoArV83mVbI+h2dMgJULLQM5b3hRbJfXmjX96nFHs3Bq4BBcTmKKw40bsE
-         dM7pI+mZkCCUZFT8duy2XVvG6KCcPuAhBmvDRbGsSELTDP1yXR6h3ai/URDho7kQNSu9
-         BlDKLelyDvmMlyL0649/8fex09Ljk7riut+S5rW1JmaklDjNcaG2Xbs/IxHgAMHVNfMu
-         vSmzp+rebMkxb7Yg+wuiMoHCsXFD3/Q46SEqa0lV9w05Js/eM33nvGwhhYWIipL90VcR
-         pj5/gKlZYNcXim6G/m3L5d8FcTaxCI6BV+B+kT8ALwNXCIdlVXN9TdiX2T6ZffEqCjEQ
-         j1UQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVTnsPyOjyRjFATHAou4o3908ESBoNxsgdzpCC68MSrbWDHwYBRJzEZLKKcR2O3cRSrYflU8+7lbvGN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzf5reLswjkv1RVIY/72nYJH5uAD9mHME2UBrcwDnWslNGeO3vT
-	FUeBq4dIzwBCX6o9Ag979Cqk254HkHCgOiYcJAAoUZ+7A3VW9MbHzmFaW7LBrjakOTE=
-X-Gm-Gg: ASbGnctYlcmbmV3is93HZ12hHmYjl+2Krmw+s6Jv1V6nwLpRfA0FOHV7P5Rrcf6DGsj
-	G9Ve9M6bpJrNlOt2a+V2vTySwp+A1R6SLBOQuVDHmyzhX7P7O537XBSSRyuVlNErgwE3EMVZcGM
-	tKBfFj8THv08hZPc1Mirovg7QArHr1sZEKh++EFbu3ZDrmpfyV3UHDcZhrnJ4x1rZlPkvtv9PtN
-	+3tmd8DIAwdMHHY2+lEc03qz1RgkZwkItNKoJX0+Cono+paE4j5y5Bm+Dgxvd5TB9i2WcMIGh7V
-	JHyM6yhy6Mkx21TnHB70m9bFaatx9/rq9AR4GHm61C1u5AZ0rsBOjnFLkIFxRS9+/uRx3MiUrju
-	bfjHzpiCJ5JOyrA5NQcoBrp5e2bUG17T47vtBTekJ+kDlDELDERiq6HuilSAl9GKJTz9kirBjbB
-	Pe+gphfh3gBOm/LCHh5ls=
-X-Google-Smtp-Source: AGHT+IHJw/r+nePLX03c3KX2qjVH82litB6OC27IzmUfEItja6F4LxTNp01tzn33pfo26Wfsoc01KQ==
-X-Received: by 2002:a05:6000:2905:b0:3d1:8d1e:8e9 with SMTP id ffacd0b85a97d-4266e8d8ce2mr2825869f8f.32.1759945997240;
-        Wed, 08 Oct 2025 10:53:17 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:b264:afbc:dee:3d? ([2a01:e0a:3d9:2080:b264:afbc:dee:3d])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46faf1118aasm9465955e9.5.2025.10.08.10.53.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Oct 2025 10:53:16 -0700 (PDT)
-Message-ID: <ac2188dc-d524-41ae-b9d2-f0f5ff9861f0@linaro.org>
-Date: Wed, 8 Oct 2025 19:53:16 +0200
+	s=arc-20240116; t=1759946228; c=relaxed/simple;
+	bh=Cv+nLb8wjgCJYXNzCAf1iJJ/M9qyw5k7KAIDsAxuwB8=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=oft3YIoZDXuSUToM0//k1yWxFIiRiG7VT3Q9JTSOBda/6wgchw0TomcMKC7Pj+HtJQD16n1pWrJfdOMXJc07gfKPhZhL7bHqw+gCsWTHpEizLlkoQ99A63coEGGpJH8AElKL9krC8mMJE6v+e7P27qh+3PIvQsytkp9pcFDD6mU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=oOQ0AZXB; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=xYjUaq7U; arc=none smtp.client-ip=103.168.172.156
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-05.internal (phl-compute-05.internal [10.202.2.45])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id 3FA341400009;
+	Wed,  8 Oct 2025 13:57:05 -0400 (EDT)
+Received: from phl-imap-02 ([10.202.2.81])
+  by phl-compute-05.internal (MEProxy); Wed, 08 Oct 2025 13:57:05 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1759946225;
+	 x=1760032625; bh=P9ffyoQQV2jOME14ODmiVvONWLYIqARldGSMUGBbO8M=; b=
+	oOQ0AZXBE6Th1KoTWR7rg8bM7107U1pFQtunpwoxKfmvrMY4PceSgF88StxS/uAA
+	G8aqp5vywasoIkpOlvyDF2cCNgtPRjqMFPn7coUke3QPKvuEFxU9HKT/MghCatMM
+	RmWT21b43ZWjzAU6nyPl27TtOdZDumMKtbTGDdfrb/ouH4O+gPfhW1bfw8uIZFYg
+	ZTLmzPeuK3Jb5KNEjKd1IMZ/ZF5VGs3cx0BC7WKXta3FmtiHUyN8LmI3tls+sB67
+	Q2r3jOQnGUqylCh9kNm9h72anStX1p4wXT2VjwCPyUgyCMoYtN/F9pGeWoxUMgY2
+	PbZj0VyGSnXWUPO6GMeKqg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1759946225; x=
+	1760032625; bh=P9ffyoQQV2jOME14ODmiVvONWLYIqARldGSMUGBbO8M=; b=x
+	YjUaq7UaXeolq+j075yn1CkvpSJMlXN+GTbMofEF1Qpx2a6oem1mQk1Unc0V7Byj
+	+qqMHueQ8Shxx3kFpc/6eziH7ua1YGuyBb737X13AoxzYllvNyns9q3vbQEy6guq
+	LqQhFY1asuGtyDV3OUP66ErPlGY/3u1TNbapZ+Xp8/xh1gqyihn5sDmJpIgSfuo2
+	Rr8iiKahxqWwFRdLTcaIORPOny7acO48gOWAhFGvRCJbQS/iUrRgMOtqntnSfF4w
+	lpU43oc3D+532xmDThPMZ6rTmkl3YzNmV/aWxFA9cqxdy50M+5dAZxaBXnpKrOGY
+	XcXmE6sdfQHx6uOtYxFfA==
+X-ME-Sender: <xms:8KXmaHfI4aCKyGgA7qPREFU7iBIZe6LfCfMKU-Hj5cG_SJt0bpbYIA>
+    <xme:8KXmaIAYgDXt-zII0IctqQt3gGks0cqiaq1VKcGeFFoVw5NM3JeM9KdRcmwUf6oBo
+    CKvZ7OyqTmSsf3PrfBgqCVHgkfLCwgaLc3Hj-lGyxAS13RRyiZOCN8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddutdefleeiucetufdoteggodetrf
+    dotffvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceu
+    rghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujf
+    gurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedftehrnhgu
+    uceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrthhtvg
+    hrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefggfevudegudevledvkefhvdei
+    necuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnh
+    gusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepvdehpdhmohguvgepshhmthhpohhu
+    thdprhgtphhtthhopegthhgvshhtvghriedvheduheesghhmrghilhdrtghomhdprhgtph
+    htthhopehjihhnghhoohhhrghnudesghhmrghilhdrtghomhdprhgtphhtthhopegshhgv
+    lhhgrggrshesghhoohhglhgvrdgtohhmpdhrtghpthhtoheptggrshhsvghlsehkvghrnh
+    gvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhr
+    tghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhifih
+    hltgiihihnshhkiheskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhpihgvrhgrlhhi
+    shhisehkvghrnhgvlhdrohhrghdprhgtphhtthhopehmrghniheskhgvrhhnvghlrdhorh
+    hg
+X-ME-Proxy: <xmx:8KXmaA3wDIrJW9ljHhQjqC0rEnLXNwnDneYIzqdFULG53VnitRRbOw>
+    <xmx:8KXmaK9iDBrCTA99sfPOd8BMaMdGJxJAzV7okxRVSPR5KGIXodG6JQ>
+    <xmx:8KXmaGNFG0quGiFGqFXbnv4Y0Bej8JqGhgFJiBvha3qqWuZ1HFN53A>
+    <xmx:8KXmaGA06Mbvpq45lKuGGE8vEsM8IRUFNHNkcgqUQXqIa5zcwXR7LA>
+    <xmx:8aXmaCCKsByF2Lxor3unCFpiLI7dvwxNMG8TNND-xpq-CHbdKn6vEuQ5>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id 8FBA5700054; Wed,  8 Oct 2025 13:57:04 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH RFC 2/6] ASoC: dt-bindings: qcom,sm8250: Add clocks
- properties for I2S
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251006-topic-sm8x50-next-hdk-i2s-v1-0-184b15a87e0a@linaro.org>
- <20251006-topic-sm8x50-next-hdk-i2s-v1-2-184b15a87e0a@linaro.org>
- <6d9af57f-9174-405b-9131-145fd6d63a5f@oss.qualcomm.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <6d9af57f-9174-405b-9131-145fd6d63a5f@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+X-ThreadId: AIHrVq-NOQMk
+Date: Wed, 08 Oct 2025 19:56:44 +0200
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Manivannan Sadhasivam" <mani@kernel.org>
+Cc: "Lorenzo Pieralisi" <lpieralisi@kernel.org>,
+ "Vincent Guittot" <vincent.guittot@linaro.org>,
+ "Chester Lin" <chester62515@gmail.com>,
+ "Matthias Brugger" <mbrugger@suse.com>,
+ "Ghennadi Procopciuc" <ghennadi.procopciuc@oss.nxp.com>,
+ "NXP S32 Linux Team" <s32@nxp.com>, bhelgaas@google.com,
+ jingoohan1@gmail.com,
+ =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+ "Rob Herring" <robh@kernel.org>, krzk+dt@kernel.org,
+ "Conor Dooley" <conor+dt@kernel.org>, Ionut.Vicovan@nxp.com,
+ "Larisa Grigore" <larisa.grigore@nxp.com>,
+ "Ghennadi Procopciuc" <Ghennadi.Procopciuc@nxp.com>,
+ ciprianmarian.costea@nxp.com, "Bogdan Hamciuc" <bogdan.hamciuc@nxp.com>,
+ "Frank Li" <Frank.li@nxp.com>, linux-arm-kernel@lists.infradead.org,
+ linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ "Niklas Cassel" <cassel@kernel.org>
+Message-Id: <3d480f73-15b4-4fb8-8d2b-f9961c1736ca@app.fastmail.com>
+In-Reply-To: 
+ <2erycpxudpckmme3k2cpn6wgti4ueyvupo2tzrvmu7aqp7tm6d@itfj7pfrpzzg>
+References: <20250919155821.95334-1-vincent.guittot@linaro.org>
+ <20250919155821.95334-2-vincent.guittot@linaro.org>
+ <iom65w7amxqf7miopujxeulyiglhkyjszjc3nd4ivknj5npcz2@bvxej6ymkecd>
+ <aOU0w5Brp6uxjZDr@lpieralisi>
+ <4rghtk5qv4u7vx4nogctquu3skvxis4npxfukgtqeilbofyclr@nhkrkojv3syh>
+ <eba7d968-209d-4acb-ba41-4bebf03e96ba@app.fastmail.com>
+ <4143977f-1e70-4a63-b23b-78f87d9fdcde@app.fastmail.com>
+ <2erycpxudpckmme3k2cpn6wgti4ueyvupo2tzrvmu7aqp7tm6d@itfj7pfrpzzg>
+Subject: Re: [PATCH 1/3 v2] dt-bindings: PCI: s32g: Add NXP PCIe controller
+Content-Type: text/plain
 Content-Transfer-Encoding: 7bit
 
-On 10/7/25 12:21, Konrad Dybcio wrote:
-> On 10/6/25 8:37 PM, Neil Armstrong wrote:
->> In order to describe the block and master clock of each I2S bus, add
->> the first 5 I2S busses clock entries.
->>
->> The names (primary, secondary, tertiarty, quaternary, quinary) uses
->> the LPASS clock naming which were used for a long time on Qualcomm
->> LPASS firmware interfaces.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
-> 
-> There's also a senary (6th) I2S bus instance, which there is no reason
-> not to describe
+On Wed, Oct 8, 2025, at 17:19, Manivannan Sadhasivam wrote:
+> On Wed, Oct 08, 2025 at 10:35:34AM +0200, Arnd Bergmann wrote:
+>> On Wed, Oct 8, 2025, at 10:26, Arnd Bergmann wrote:
+>> > the physical addresses for RAM at 0x80000000 and on-chip devices
+>> > at 0x40000000. This probably works fine as long as the total
+>> > PCI memory space assignment stays below 0x40000000 but would
+>> > fail once addresses actually start clashing.
+>> 
+>> I got confused here myself, but what I should have said is that
+>> having the DMA address for the RAM overlap the BAR space
+>> as seen from PCI is problematic as the PCI host bridge
+>> cannot tell PCI P2P transfers from DMA to RAM, so one
+>> of them will be broken here.
+>> 
+>
+> No. The IP just sets up the outbound mapping here for the entire 'ranges'. When
+> P2P happens, it will use the inbound mapping translation.
 
-Will add
+That is not my impression from reading the code: At least for
+the case where both devices are on the same bridge and they
+use map_type=PCI_P2PDMA_MAP_BUS_ADDR, I would expect the DMA
+to use the plain PCI bus address, not going through the
+dma-ranges+ranges translation that would apply when they are
+on different host bridges.
 
-Neil
+> So your concern would be valid if the 'dma-ranges' (for which inbound
+> translation happens) overlapped with the RAM/MMIO range. But that is not the
+> case here.
 
-> 
->>   .../devicetree/bindings/sound/qcom,sm8250.yaml         | 18 ++++++++++++++++++
->>   1 file changed, 18 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->> index 8ac91625dce5ccba5c5f31748c36296b12fac1a6..fd0d7a7ddc7b363a66e1e7bd72c7290666efb511 100644
->> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->> @@ -64,6 +64,24 @@ properties:
->>       $ref: /schemas/types.yaml#/definitions/string
->>       description: User visible long sound card name
->>   
->> +  clocks:
->> +    minItems: 2
->> +    maxItems: 10
->> +
->> +  clock-names:
->> +    minItems: 2
->> +    items:
->> +      - const: primary-mi2s    # Primary I2S Bit Clock
->> +      - const: primary-mclk    # Primary I2S Master Clock
->> +      - const: secondary-mi2s  # Secondary I2S Bit Clock
->> +      - const: secondary-mclk  # Secondary I2S Master Clock
->> +      - const: tertiary-mi2s   # Tertiary I2S Bit Clock
->> +      - const: tertiary-mclk   # Tertiary I2S Master Clock
->> +      - const: quaternary-mi2s # Quaternary I2S Bit Clock
->> +      - const: quaternary-mclk # Quaternary I2S Master Clock
->> +      - const: quinary-mi2s    # Quinary I2S Bit Clock
->> +      - const: quinary-mclk    # Quinary I2S Master Clock
-> 
-> I think a single top-level comment saying "mclk" is the master
-> clock and the other one is a bit clock would suffice
-> 
-> Konrad
+dma-ranges should normally list all the memory controllers, so in
+this case at least the 0x80000000..0xffffffff range of PCI bus
+addresses must be routed from the host bridge to RAM. If a BAR
+is assigned to the same numbers, I would expect a PCI bridge
+to direct a DMA transfer downstream to that BAR instead
+of upstream to the CPU even before it gets to the host bridge.
 
+      Arnd
 
