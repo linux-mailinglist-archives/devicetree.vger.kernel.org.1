@@ -1,441 +1,193 @@
-Return-Path: <devicetree+bounces-224371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C7BBC36B9
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 08:01:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7643BC374D
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 08:21:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E5B1E4EDD0F
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 06:01:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 732C61897D50
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 06:21:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C4CA2EB858;
-	Wed,  8 Oct 2025 06:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F292C2E03EB;
+	Wed,  8 Oct 2025 06:21:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="cvshig18"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H3DcyU/X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f201.google.com (mail-pl1-f201.google.com [209.85.214.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A66D52EB5DC
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 06:00:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7142247295;
+	Wed,  8 Oct 2025 06:21:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759903224; cv=none; b=j69LeKNrR+WhWovuxuTnsczQe3s4gRjaE24af3FFAtsXFz5OvRQ7M1hXAeDCXoQw38jpk490jMMv84PI5AFMXYLScG+rS4Ww92/GIW6eXMSBqjocKWsTBcpC1iuO8Ra75rBnZPfY61CDC3QSjxCIrjCSf/8NkqVJN9iJBb3CfME=
+	t=1759904484; cv=none; b=DIo7HFuTCmDfOI3ndM9s3huhfXsCx22yfX1+jAaFV4KoCbHXT0VKufrKZRYx7fDDXyxeJ1rTiIOrhABnBxWQ8Hah/0rzWsbd9+7rpNTiV6qCK5n175NDPUA+bLpURNOrH8yOxWKozckg4+Qna3WGD1w3vI4Kohq313SGFS5kkrc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759903224; c=relaxed/simple;
-	bh=1LsFgPYzpayfPJ/FsKvMjpCnXRfU9VdGJpb+XK443rc=;
-	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=JwlI0XK3gAkR+y6Cxzu7GrNtapW1rySuz9s2HFkgmMdDAOVENCOtPU0R/0p++/+xiwtge0vMO+JxNkvsl28wlw1f2ro0goL7zkUEwHvuMdkWpghiFg2stEuzycCBWMVP+lBLyX3lzGp52memF0FMQGviNZBTdT/+MfdGOtfba7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=cvshig18; arc=none smtp.client-ip=209.85.214.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com
-Received: by mail-pl1-f201.google.com with SMTP id d9443c01a7336-28e8d1d9b13so80897945ad.0
-        for <devicetree@vger.kernel.org>; Tue, 07 Oct 2025 23:00:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1759903222; x=1760508022; darn=vger.kernel.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ka8Q7nlHWOoI2RkFnFPZVDeuOoF3NtDVxhEhxWMkISg=;
-        b=cvshig18HdBGmWJTR1yO/hnq7ZW58Z7yFQ6V3mMVsm+O/p54f1e1oecuTCIt65RPjC
-         nUV2xD/VA3CBpgZtayxGqQkwfWEHZR8Oz+0AVBhItuRePlQQbQgE0okBeHH1GMiLq9+K
-         IpsV0YV1aTxTmlNLE4Sh5QrIdhYNv1W3ejVGOW/Yhub2bea17htr1TyCRpIPSX/QqrNw
-         hg4SY11E9pEKYirzrY4gETXknesvGUQ7LNaK06CUQvddYIDAl2ssh7Nd+FdA1SV8Cbzx
-         rj3FrdPNM23JNrTJy3cTdJLVCdn629dxK0WUB31tNBsW/xmZTOEC5OMthsJxX7XHVAu5
-         lurA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759903222; x=1760508022;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ka8Q7nlHWOoI2RkFnFPZVDeuOoF3NtDVxhEhxWMkISg=;
-        b=nuCdwOh13HsC64NHCPcotxYvQsqNy1NKgJpPdj2DGJxsVOZzbIJkwf+Cq9WSrv3guG
-         t2WKrHnvxVdBBoOV6q9UvJzcokfp2BTp+y/2xnhfybXi8P4fnfsWk9W1qaRDp1rGqyM5
-         XBPOVeT6j83GE5xKLHpLgHikucMJp1vgmlSsSx5umq654BfQSq/K1JmuOiFlBTnwjDFN
-         kUI/viwMqaDxDw8Ll76g0TeY9SS1xQdmSeXn7a/myBa1ZjPNH5ZijpaWoib2rTs9FPpd
-         YP4jIiETjXGSHondfWD+bsgmDBdgfE4XBrKw+mc3p83lcTlvbLcgC/L2hOOghB4yMdhr
-         THpg==
-X-Forwarded-Encrypted: i=1; AJvYcCXpn6LNbLXl8Bzf2uUPAVuDfBYuKx2P1HtWg0UoFLfHcTDVFBIzGBYaT08bFZHn1iqjwrVlGrW/FqRS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyDMmPfhUcJ4lkoIZNm8cunlTSdq8S9d+y1mIUxpbo23zO03bI2
-	OKhj3vS4tkYdtGfQnJhBYbJ6E+XO7W3gBHSRJz/RPkCr+bRbnK4bqX/cKMcJ/2F+prJg3BOn0nt
-	VfoiRGw==
-X-Google-Smtp-Source: AGHT+IHEgK0iSfGPTqrfxzDEFvxdlz9aMrrAMDN66bGMiYvI5hGjGDvEExy9qsuc4PeR2LLXj7IghdV+NhY=
-X-Received: from plot12.prod.google.com ([2002:a17:902:8c8c:b0:27d:6f45:42ec])
- (user=royluo job=prod-delivery.src-stubby-dispatcher) by 2002:a17:903:1a6b:b0:25c:abb3:9bae
- with SMTP id d9443c01a7336-29027385222mr27269835ad.48.1759903222057; Tue, 07
- Oct 2025 23:00:22 -0700 (PDT)
-Date: Wed,  8 Oct 2025 06:00:00 +0000
-In-Reply-To: <20251008060000.3136021-1-royluo@google.com>
+	s=arc-20240116; t=1759904484; c=relaxed/simple;
+	bh=zftFoY2NW42CeV+u2LtWYiPyCxMvkvvCeKwoDsOpq1I=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=e3o6k7vQ5Ofz86bKQACrswTPasWm9LERj5qfG0xpglLAzZ68jK60D8Eq5y4phxgOkdPIOZB7PhxdqbL0MB0RGhfrjNNcbFzmPy+vGDV248BWtluZRhKD47fgsxXPyDYwRVq/NQ6eozOY8RFV4VEwdzTekqqPYutmrAUNYXwzPwc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H3DcyU/X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFFB8C4CEF4;
+	Wed,  8 Oct 2025 06:21:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759904484;
+	bh=zftFoY2NW42CeV+u2LtWYiPyCxMvkvvCeKwoDsOpq1I=;
+	h=From:Subject:Date:To:Cc:From;
+	b=H3DcyU/XACgbUcA0UFao8srliyrovizXB20FA1HoYEJUBUh+k2jqIUrJN94uKoCzD
+	 OImKMUfzcqZV0B0fQwad4kB1WZxVyNrMC2vGFaORO0j4/06gudMRbJHzHVNJ3w6SyA
+	 aVQaKExMNWjAkOdKxEurAL/+nWeRFvoCwLVuGdPMekvmd9ActOZiA92BjudkbbLaxu
+	 KdeGDvEitVcMKXqrQ7TA1eTRLzG2DkrmxotLcH/xnvB/xjwJh6ytVNx63cREHVrAGV
+	 0VL9tgDCJt3LiOFTO63iopHnGQ4T33gS6djVgV42jILMHAOIavIQCX7AslvlO3woij
+	 6DU7WzLfQOyeA==
+From: Drew Fustini <fustini@kernel.org>
+Subject: [PATCH v4 0/3] RISC-V: Detect Ssqosid extension and handle srmcfg
+ CSR
+Date: Tue, 07 Oct 2025 23:21:09 -0700
+Message-Id: <20251007-ssqosid-v4-0-e8b57e59d812@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20251008060000.3136021-1-royluo@google.com>
-X-Mailer: git-send-email 2.51.0.710.ga91ca5db03-goog
-Message-ID: <20251008060000.3136021-5-royluo@google.com>
-Subject: [PATCH v2 4/4] phy: Add Google Tensor SoC USB PHY driver
-From: Roy Luo <royluo@google.com>
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Peter Griffin <peter.griffin@linaro.org>, 
-	"=?UTF-8?q?Andr=C3=A9=20Draszik?=" <andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>, Roy Luo <royluo@google.com>, 
-	Badhri Jagan Sridharan <badhri@google.com>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANUC5mgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyTHQUlJIzE
+ vPSU3UzU4B8JSMDI1NDAwNz3eLiwvzizBTdlJRkC3NLM4skoxRLJaDqgqLUtMwKsEnRsbW1AIf
+ xr0JZAAAA
+X-Change-ID: 20251007-ssqosid-ddc87968b2d9
+To: Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Conor Dooley <conor@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: =?utf-8?q?Kornel_Dul=C4=99ba?= <mindal@semihalf.com>, 
+ Adrien Ricciardi <aricciardi@baylibre.com>, 
+ James Morse <james.morse@arm.com>, Atish Kumar Patra <atishp@rivosinc.com>, 
+ Atish Patra <atish.patra@linux.dev>, 
+ Vasudevan Srinivasan <vasu@rivosinc.com>, 
+ Conor Dooley <conor.dooley@microchip.com>, guo.wenjia23@zte.com.cn, 
+ liu.qingtao2@zte.com.cn, linux-riscv@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ Drew Fustini <fustini@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5432; i=fustini@kernel.org;
+ h=from:subject:message-id; bh=zftFoY2NW42CeV+u2LtWYiPyCxMvkvvCeKwoDsOpq1I=;
+ b=owGbwMvMwCF2+43O4ZsaG3kYT6slMWQ8Y3q87G3P9ic//k6xnhvqVc27gMe22e3xgi9h+7U+F
+ jQF258S7ChlYRDjYJAVU2TZ9CHvwhKv0K8L5r/YBjOHlQlkCAMXpwBMROkrw//q1IMdtQwf/fcw
+ /DBV7p13THmebdzsG0t1Jlwtf+shUnKFkaHre9saqdeblHdMqdN7wjJ5q8z04K6w2hfvnFfKc4U
+ w/ucFAA==
+X-Developer-Key: i=fustini@kernel.org; a=openpgp;
+ fpr=1B6F948213EA489734F3997035D5CD577C1E6010
 
-Support the USB PHY found on Google Tensor G5. This particular USB PHY
-supports both high-speed and super-speed operations, and is integrated
-with the SNPS DWC3 controller that's also on the SoC.
-This initial patch specifically adds functionality for high-speed.
+This series adds support for the RISC-V Quality-of-Service Identifiers
+(Ssqosid) extension [1] which adds the srmcfg register. This CSR
+configures a hart with two identifiers: a Resource Control ID (RCID)
+and a Monitoring Counter ID (MCID). These identifiers accompany each
+request issued by the hart to shared resource controllers.
 
-Co-developed-by: Joy Chakraborty <joychakr@google.com>
-Signed-off-by: Joy Chakraborty <joychakr@google.com>
-Co-developed-by: Naveen Kumar <mnkumar@google.com>
-Signed-off-by: Naveen Kumar <mnkumar@google.com>
-Signed-off-by: Roy Luo <royluo@google.com>
+Background on RISC-V QoS:
+
+The Ssqosid extension is used by the RISC-V Capacity and Bandwidth
+Controller QoS Register Interface (CBQRI) specification [2]. QoS in
+this context is concerned with shared resources on an SoC such as cache
+capacity and memory bandwidth. Intel and AMD already have QoS features
+on x86 and ARM has MPAM. There is an existing user interface in Linux:
+the resctrl virtual filesystem [3].
+
+The srmcfg CSR provides a mechanism by which a software workload (e.g.
+a process or a set of processes) can be associated with an RCID and an
+MCID. CBQRI defines operations to configure resource usage limits, in
+the form of capacity or bandwidth. CBQRI also defines operations to
+configure counters to track the resource utilization.
+
+Goal for this series:
+
+These patches are taken from the implementation of resctrl support for
+RISC-V CBQRI. Please refer to the proof-of-concept RFC [4] for details
+on the resctrl implementation. More recently, I have rebased the CBQRI
+support on mainline [5]. Big thanks to James Morse for the tireless
+work to extract resctrl from arch/x86 and make it available to all
+architectures.
+
+I think it makes sense to first focus on the detection of Ssqosid and
+handling of srmcfg when switching tasks. It has been tested against a
+QEMU branch that implements Ssqosid and CBQRI [6]. A test driver [7]
+was used to set srmcfg for the current process. This allows switch_to
+to be tested without resctrl.
+
+[1] https://github.com/riscv/riscv-ssqosid/releases/tag/v1.0
+[2] https://github.com/riscv-non-isa/riscv-cbqri/releases/tag/v1.0
+[3] https://docs.kernel.org/filesystems/resctrl.html
+[4] https://lore.kernel.org/linux-riscv/20230419111111.477118-1-dfustini@baylibre.com/
+[5] https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/log/?h=b4/cbqri
+[6] https://github.com/tt-fustini/qemu/tree/riscv-cbqri-rqsc-pptt
+[7] https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git/log/?h=b4/ssqosid-debug
+
+Changes in v4:
+ - Rebase on riscv/for-next as of riscv-for-linus-6.18-mw2
+ - Add Conor's Acked-by to the yaml patch
+ - Link to v3: https://lore.kernel.org/all/20250920-ssqosid-v6-17-rc5-v3-0-5093162922d8@kernel.org/
+
+Changes in v3:
+ - Fix parameter in __switch_to_srmcfg() when CONFIG_RISCV_ISA_SSQOSID
+   is not set to avoid error in clang. This does trigger checkpatch
+   warning about "Argument '__next' is not used in function-like macro"
+   but it seems that '__switch_to_srmcfg(__next)' is needed to avoid
+   the error that LKP reported. '__switch_to_srmcfg()' will trigger a
+   build error in clang.
+   https://lore.kernel.org/oe-kbuild-all/202509162355.wByessnb-lkp@intel.com/
+ - Improve description of ssqosid in extensions.xml
+ - Link to v2: https://lore.kernel.org/linux-riscv/20250915-ssqosid-v6-17-rc5-v2-0-2d4b0254dfd6@kernel.org/
+
+Changes in v2:
+ - Restore the per-cpu fix from RFC v2 that was missed in v1:
+   change DEFINE_PER_CPU to DECLARE_PER_CPU in qos.h and move
+   DEFINE_PER_CPU to qos.c
+ - Introduce a patch that adds Ssqosid to riscv/extensions.yaml
+ - Link to v1: https://lore.kernel.org/r/20250910-ssqosid-v6-17-rc5-v1-0-72cb8f144615@kernel.org
+
+Changes in v1:
+ - Rename all instances of the sqoscfg CSR to srmcfg to match the
+   ratified Ssqosid spec
+ - Link RFC v2: https://lore.kernel.org/linux-riscv/20230430-riscv-cbqri-rfc-v2-v2-0-8e3725c4a473@baylibre.com/
+
+Changes in RFC v2:
+ - change DEFINE_PER_CPU to DECLARE_PER_CPU for cpu_sqoscfg in qos.h to
+   prevent linking error about multiple definition. Move DEFINE_PER_CPU
+   for cpu_sqoscfg into qos.c
+ - renamed qos prefix in function names to sqoscfg to be less generic
+ - handle sqoscfg the same way has_vector and has_fpu are handled in the
+   vector patch series
+ - Link to RFC v1: https://lore.kernel.org/linux-riscv/20230410043646.3138446-1-dfustini@baylibre.com/
+
+Signed-off-by: Drew Fustini <fustini@kernel.org>
 ---
- drivers/phy/Kconfig          |  14 ++
- drivers/phy/Makefile         |   1 +
- drivers/phy/phy-google-usb.c | 286 +++++++++++++++++++++++++++++++++++
- 3 files changed, 301 insertions(+)
- create mode 100644 drivers/phy/phy-google-usb.c
+Drew Fustini (3):
+      dt-bindings: riscv: Add Ssqosid extension description
+      RISC-V: Detect the Ssqosid extension
+      RISC-V: Add support for srmcfg CSR from Ssqosid ext
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index 58c911e1b2d2..0966ab0297df 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -101,6 +101,20 @@ config PHY_NXP_PTN3222
- 	  schemes. It supports all three USB 2.0 data rates: Low Speed, Full
- 	  Speed and High Speed.
- 
-+config PHY_GOOGLE_USB
-+	tristate "Google Tensor SoC USB PHY driver"
-+	depends on HAS_IOMEM
-+	depends on OF
-+	depends on TYPEC
-+	depends on USB_DWC3_GOOGLE
-+	select GENERIC_PHY
-+	default USB_DWC3_GOOGLE
-+	help
-+	  Enable support for the USB PHY on Google Tensor SoCs, starting with
-+	  the G5 generation. This driver provides the PHY interfaces to
-+	  interact with the SNPS eUSB2 and USB 3.2/DisplayPort Combo PHY, both
-+	  of which are integrated with the DWC3 USB controller.
-+
- source "drivers/phy/allwinner/Kconfig"
- source "drivers/phy/amlogic/Kconfig"
- source "drivers/phy/broadcom/Kconfig"
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index c670a8dac468..1d7a1331bd19 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -13,6 +13,7 @@ obj-$(CONFIG_PHY_SNPS_EUSB2)		+= phy-snps-eusb2.o
- obj-$(CONFIG_USB_LGM_PHY)		+= phy-lgm-usb.o
- obj-$(CONFIG_PHY_AIROHA_PCIE)		+= phy-airoha-pcie.o
- obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
-+obj-$(CONFIG_PHY_GOOGLE_USB)		+= phy-google-usb.o
- obj-y					+= allwinner/	\
- 					   amlogic/	\
- 					   broadcom/	\
-diff --git a/drivers/phy/phy-google-usb.c b/drivers/phy/phy-google-usb.c
-new file mode 100644
-index 000000000000..4027d38dc34b
---- /dev/null
-+++ b/drivers/phy/phy-google-usb.c
-@@ -0,0 +1,286 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * phy-google-usb.c - Google USB PHY driver
-+ *
-+ * Copyright (C) 2025, Google LLC
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/reset.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/mutex.h>
-+#include <linux/cleanup.h>
-+#include <linux/usb/typec_mux.h>
-+
-+#define USBCS_USB2PHY_CFG19_OFFSET 0x0
-+#define USBCS_USB2PHY_CFG19_PHY_CFG_PLL_FB_DIV GENMASK(19, 8)
-+
-+#define USBCS_USB2PHY_CFG21_OFFSET 0x8
-+#define USBCS_USB2PHY_CFG21_PHY_ENABLE BIT(12)
-+#define USBCS_USB2PHY_CFG21_REF_FREQ_SEL GENMASK(15, 13)
-+#define USBCS_USB2PHY_CFG21_PHY_TX_DIG_BYPASS_SEL BIT(19)
-+
-+#define USBCS_PHY_CFG1_OFFSET 0x28
-+#define USBCS_PHY_CFG1_SYS_VBUSVALID BIT(17)
-+
-+#define USBCS_TOP_CTRL_CFG1_OFFSET 0x0
-+#define USBCS_TOP_CTRL_CFG1_USB2ONLY_MODE BIT(5)
-+
-+enum google_usb_phy_id {
-+	GOOGLE_USB2_PHY,
-+	GOOGLE_USB_PHY_NUM,
-+};
-+
-+struct google_usb_phy_instance {
-+	int index;
-+	struct phy *phy;
-+	struct clk *clk;
-+	struct reset_control *rst;
-+};
-+
-+struct google_usb_phy {
-+	struct device *dev;
-+	void __iomem *usb2_cfg_base;
-+	void __iomem *dp_top_base;
-+	void __iomem *usb_top_cfg_base;
-+	struct google_usb_phy_instance insts[GOOGLE_USB_PHY_NUM];
-+	/* serialize phy access */
-+	struct mutex phy_mutex;
-+	struct typec_switch_dev *sw;
-+	enum typec_orientation orientation;
-+};
-+
-+static inline struct google_usb_phy *to_google_usb_phy(struct google_usb_phy_instance *inst)
-+{
-+	return container_of(inst, struct google_usb_phy, insts[inst->index]);
-+}
-+
-+static void set_vbus_valid(struct google_usb_phy *gphy)
-+{
-+	u32 reg;
-+
-+	if (gphy->orientation == TYPEC_ORIENTATION_NONE) {
-+		reg = readl(gphy->dp_top_base + USBCS_PHY_CFG1_OFFSET);
-+		reg &= ~USBCS_PHY_CFG1_SYS_VBUSVALID;
-+		writel(reg, gphy->dp_top_base + USBCS_PHY_CFG1_OFFSET);
-+	} else {
-+		reg = readl(gphy->dp_top_base + USBCS_PHY_CFG1_OFFSET);
-+		reg |= USBCS_PHY_CFG1_SYS_VBUSVALID;
-+		writel(reg, gphy->dp_top_base + USBCS_PHY_CFG1_OFFSET);
-+	}
-+}
-+
-+static int google_usb_set_orientation(struct typec_switch_dev *sw,
-+				      enum typec_orientation orientation)
-+{
-+	struct google_usb_phy *gphy = typec_switch_get_drvdata(sw);
-+
-+	dev_dbg(gphy->dev, "set orientation %d\n", orientation);
-+
-+	gphy->orientation = orientation;
-+
-+	if (pm_runtime_suspended(gphy->dev))
-+		return 0;
-+
-+	guard(mutex)(&gphy->phy_mutex);
-+
-+	set_vbus_valid(gphy);
-+
-+	return 0;
-+}
-+
-+static int google_usb2_phy_init(struct phy *_phy)
-+{
-+	struct google_usb_phy_instance *inst = phy_get_drvdata(_phy);
-+	struct google_usb_phy *gphy = to_google_usb_phy(inst);
-+	u32 reg;
-+	int ret = 0;
-+
-+	dev_dbg(gphy->dev, "initializing usb2 phy\n");
-+
-+	guard(mutex)(&gphy->phy_mutex);
-+
-+	 /*
-+	  * TODO: usb2only mode should be removed once usb3 is supported
-+	  */
-+	reg = readl(gphy->usb_top_cfg_base + USBCS_TOP_CTRL_CFG1_OFFSET);
-+	reg |= USBCS_TOP_CTRL_CFG1_USB2ONLY_MODE;
-+	writel(reg, gphy->usb_top_cfg_base + USBCS_TOP_CTRL_CFG1_OFFSET);
-+
-+	reg = readl(gphy->usb2_cfg_base + USBCS_USB2PHY_CFG21_OFFSET);
-+	reg &= ~USBCS_USB2PHY_CFG21_PHY_TX_DIG_BYPASS_SEL;
-+	reg &= ~USBCS_USB2PHY_CFG21_REF_FREQ_SEL;
-+	reg |= FIELD_PREP(USBCS_USB2PHY_CFG21_REF_FREQ_SEL, 0);
-+	writel(reg, gphy->usb2_cfg_base + USBCS_USB2PHY_CFG21_OFFSET);
-+
-+	reg = readl(gphy->usb2_cfg_base + USBCS_USB2PHY_CFG19_OFFSET);
-+	reg &= ~USBCS_USB2PHY_CFG19_PHY_CFG_PLL_FB_DIV;
-+	reg |= FIELD_PREP(USBCS_USB2PHY_CFG19_PHY_CFG_PLL_FB_DIV, 368);
-+	writel(reg, gphy->usb2_cfg_base + USBCS_USB2PHY_CFG19_OFFSET);
-+
-+	set_vbus_valid(gphy);
-+
-+	ret = clk_prepare_enable(inst->clk);
-+	if (ret)
-+		return ret;
-+
-+	ret = reset_control_deassert(inst->rst);
-+	if (ret) {
-+		clk_disable_unprepare(inst->clk);
-+		return ret;
-+	}
-+
-+	reg = readl(gphy->usb2_cfg_base + USBCS_USB2PHY_CFG21_OFFSET);
-+	reg |= USBCS_USB2PHY_CFG21_PHY_ENABLE;
-+	writel(reg, gphy->usb2_cfg_base + USBCS_USB2PHY_CFG21_OFFSET);
-+
-+	return ret;
-+}
-+
-+static int google_usb2_phy_exit(struct phy *_phy)
-+{
-+	struct google_usb_phy_instance *inst = phy_get_drvdata(_phy);
-+	struct google_usb_phy *gphy = to_google_usb_phy(inst);
-+	u32 reg;
-+
-+	dev_dbg(gphy->dev, "exiting usb2 phy\n");
-+
-+	guard(mutex)(&gphy->phy_mutex);
-+
-+	reg = readl(gphy->usb2_cfg_base + USBCS_USB2PHY_CFG21_OFFSET);
-+	reg &= ~USBCS_USB2PHY_CFG21_PHY_ENABLE;
-+	writel(reg, gphy->usb2_cfg_base + USBCS_USB2PHY_CFG21_OFFSET);
-+
-+	reset_control_assert(inst->rst);
-+	clk_disable_unprepare(inst->clk);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops google_usb2_phy_ops = {
-+	.init		= google_usb2_phy_init,
-+	.exit		= google_usb2_phy_exit,
-+};
-+
-+static struct phy *google_usb_phy_xlate(struct device *dev,
-+					const struct of_phandle_args *args)
-+{
-+	struct google_usb_phy *gphy = dev_get_drvdata(dev);
-+
-+	if (args->args[0] >= GOOGLE_USB_PHY_NUM) {
-+		dev_err(dev, "invalid PHY index requested from DT\n");
-+		return ERR_PTR(-ENODEV);
-+	}
-+	return gphy->insts[args->args[0]].phy;
-+}
-+
-+static int google_usb_phy_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct google_usb_phy *gphy;
-+	struct phy *phy;
-+	struct google_usb_phy_instance *inst;
-+	struct phy_provider *phy_provider;
-+	struct typec_switch_desc sw_desc = { };
-+	int ret;
-+
-+	gphy = devm_kzalloc(dev, sizeof(*gphy), GFP_KERNEL);
-+	if (!gphy)
-+		return -ENOMEM;
-+
-+	dev_set_drvdata(dev, gphy);
-+	gphy->dev = dev;
-+
-+	ret = devm_mutex_init(dev, &gphy->phy_mutex);
-+	if (ret)
-+		return ret;
-+
-+	gphy->usb2_cfg_base = devm_platform_ioremap_resource_byname(pdev,
-+								    "usb2_cfg_csr");
-+	if (IS_ERR(gphy->usb2_cfg_base))
-+		return dev_err_probe(dev, PTR_ERR(gphy->usb2_cfg_base),
-+				    "invalid usb2 cfg csr\n");
-+
-+	gphy->dp_top_base = devm_platform_ioremap_resource_byname(pdev,
-+								  "dp_top_csr");
-+	if (IS_ERR(gphy->dp_top_base))
-+		return dev_err_probe(dev, PTR_ERR(gphy->dp_top_base),
-+				    "invalid dp top csr\n");
-+
-+	gphy->usb_top_cfg_base = devm_platform_ioremap_resource_byname(pdev,
-+								       "usb_top_cfg_csr");
-+	if (IS_ERR(gphy->usb_top_cfg_base))
-+		return dev_err_probe(dev, PTR_ERR(gphy->usb_top_cfg_base),
-+				    "invalid usb top cfg csr\n");
-+
-+	inst = &gphy->insts[GOOGLE_USB2_PHY];
-+	inst->index = GOOGLE_USB2_PHY;
-+	phy = devm_phy_create(dev, NULL, &google_usb2_phy_ops);
-+	if (IS_ERR(phy))
-+		return dev_err_probe(dev, PTR_ERR(phy),
-+				     "failed to create usb2 phy instance\n");
-+	inst->phy = phy;
-+	phy_set_drvdata(phy, inst);
-+	inst->clk = devm_clk_get(dev, "usb2_phy_clk");
-+	if (IS_ERR(inst->clk))
-+		return dev_err_probe(dev, PTR_ERR(inst->clk),
-+				     "failed to get usb2 phy clk\n");
-+	inst->rst = devm_reset_control_get_exclusive(dev, "usb2_phy_reset");
-+	if (IS_ERR(inst->rst))
-+		return dev_err_probe(dev, PTR_ERR(inst->rst),
-+				     "failed to get usb2 phy reset\n");
-+
-+	phy_provider = devm_of_phy_provider_register(dev, google_usb_phy_xlate);
-+	if (IS_ERR(phy_provider))
-+		return dev_err_probe(dev, PTR_ERR(phy_provider),
-+				     "failed to register phy provider\n");
-+
-+	pm_runtime_enable(dev);
-+
-+	sw_desc.fwnode = dev_fwnode(dev);
-+	sw_desc.drvdata = gphy;
-+	sw_desc.name = fwnode_get_name(dev_fwnode(dev));
-+	sw_desc.set = google_usb_set_orientation;
-+
-+	gphy->sw = typec_switch_register(dev, &sw_desc);
-+	if (IS_ERR(gphy->sw))
-+		return dev_err_probe(dev, PTR_ERR(gphy->sw),
-+				     "failed to register typec switch\n");
-+
-+	return 0;
-+}
-+
-+static void google_usb_phy_remove(struct platform_device *pdev)
-+{
-+	struct google_usb_phy *gphy = dev_get_drvdata(&pdev->dev);
-+
-+	typec_switch_unregister(gphy->sw);
-+	pm_runtime_disable(&pdev->dev);
-+}
-+
-+static const struct of_device_id google_usb_phy_of_match[] = {
-+	{
-+		.compatible = "google,gs5-usb-phy",
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, google_usb_phy_of_match);
-+
-+static struct platform_driver google_usb_phy = {
-+	.probe	= google_usb_phy_probe,
-+	.remove = google_usb_phy_remove,
-+	.driver = {
-+		.name		= "google-usb-phy",
-+		.of_match_table	= google_usb_phy_of_match,
-+	}
-+};
-+
-+module_platform_driver(google_usb_phy);
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Google USB phy driver");
+ .../devicetree/bindings/riscv/extensions.yaml      |  6 ++++
+ MAINTAINERS                                        |  7 ++++
+ arch/riscv/Kconfig                                 | 17 +++++++++
+ arch/riscv/include/asm/csr.h                       |  8 +++++
+ arch/riscv/include/asm/hwcap.h                     |  1 +
+ arch/riscv/include/asm/processor.h                 |  3 ++
+ arch/riscv/include/asm/qos.h                       | 41 ++++++++++++++++++++++
+ arch/riscv/include/asm/switch_to.h                 |  3 ++
+ arch/riscv/kernel/Makefile                         |  2 ++
+ arch/riscv/kernel/cpufeature.c                     |  1 +
+ arch/riscv/kernel/qos/Makefile                     |  2 ++
+ arch/riscv/kernel/qos/qos.c                        |  5 +++
+ 12 files changed, 96 insertions(+)
+---
+base-commit: 68247d45c045bb7dda923cf2c8d0937ce0e16394
+change-id: 20251007-ssqosid-ddc87968b2d9
+
+Best regards,
 -- 
-2.51.0.710.ga91ca5db03-goog
+Drew Fustini <fustini@kernel.org>
 
 
