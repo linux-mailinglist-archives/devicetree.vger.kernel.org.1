@@ -1,484 +1,163 @@
-Return-Path: <devicetree+bounces-224566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56BAFBC54E5
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 15:52:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7923BC55BB
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 16:05:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id A4B954F8F0A
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 13:52:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AADBD19E050C
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 14:05:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A530228751C;
-	Wed,  8 Oct 2025 13:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05BF9289E0B;
+	Wed,  8 Oct 2025 14:05:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="1by5kwqO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mnQzdlN3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAF392877DB;
-	Wed,  8 Oct 2025 13:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D5A2853F3;
+	Wed,  8 Oct 2025 14:05:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759931542; cv=none; b=DiUi4p12tnQA0+a21aR/itD9j8Y9Fxugf2E934lP0/brKNkUTFlvtYUb2gAWTAuHdDL37du6sNPDM4GVqKeJeG62qlyp9LVwAkPuFnd+B+ZPK81f/bdJhhNrTgSLCsQAezlXnQdv8ZnDuIRJHCiGfAlpLOD195GKLfF95Y8wVXs=
+	t=1759932330; cv=none; b=UtKebtzBPbdxSwPJhlVt4HuTwQJeSXjqQ5Q+d7Nht9VMHRLcKyqeegl8aIk+2j+sCdMDfaci13M9GqyIgJhwOvlbAqJsnvGz7UanxDK5IQFA9uRov3AgZafw6dUx1htqK3tGwba6bqL0bDjwM78AdR2bM4w518305p2lAEVL8lg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759931542; c=relaxed/simple;
-	bh=S8h6UBo5UqsmO8IBEe4FMZ46jZFBj4w5kRvorF9gz2E=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rcmjNhvHWrND7tSCyJG8jIJvEw5p4rxun6CCBdx2MzAJrt6VqcKHq3TDONMzCEFwLRHuajf3wPBStL6vz+VvXX0Jn7fkhMnm/YlFevk/jDbvZJNazVA0rfomdXsfjpXtd2Ns1JTng7FVsnfOoiUDy0dgY9INhjFO16LarUls7Ok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=1by5kwqO; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 598DhLUe027014;
-	Wed, 8 Oct 2025 09:52:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=f19x1
-	TlkuEYqJn2t0qmHArc6hpfc97QSLjIg39uYhME=; b=1by5kwqO/TtvMmf3hnd84
-	CGSjfR0tEFtDnxCLxtLmltftMrqyafkQawgbofIu111AocwJmLfuM0F0vsMEHMfd
-	vEb4Yk1GNdcsRE5kd9++p0Tdfdte/rF4ExlSA7lMNe91E7npAiOaljGoPnRKtsX5
-	0ibD6uZvzmdivE/0MfhLeEkYLUPxY5Uu//QnaWtok61uVX2jH39QUfcFpGhjHPUL
-	gFn25gBGcGUyy/jvBUDiMjgW8E1+P5Wv6yZc1CooIQM8jqCFYpX3OG4vLKdiaHM+
-	YOOXfObbiwzS8pVaG5tIRo/nPM8yOuNzm2ITAB11uliIld+wSAAh5YO7gINHMLi3
-	w==
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 49ndssugsw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 08 Oct 2025 09:52:15 -0400 (EDT)
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 598DqE6O034890
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 8 Oct 2025 09:52:14 -0400
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Wed, 8 Oct 2025 09:52:14 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.37; Wed, 8 Oct 2025 09:52:14 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.37 via Frontend
- Transport; Wed, 8 Oct 2025 09:52:14 -0400
-Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 598DpxWc023325;
-	Wed, 8 Oct 2025 09:52:02 -0400
-From: Marcelo Schmitt <marcelo.schmitt@analog.com>
-To: <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <jic23@kernel.org>, <ukleinek@kernel.org>, <michael.hennerich@analog.com>,
-        <nuno.sa@analog.com>, <eblanc@baylibre.com>, <dlechner@baylibre.com>,
-        <andy@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <corbet@lwn.net>, <marcelo.schmitt1@gmail.com>
-Subject: [PATCH v4 8/8] iio: adc: ad4030: Add support for ADAQ4216 and ADAQ4224
-Date: Wed, 8 Oct 2025 10:51:59 -0300
-Message-ID: <7f8a65deb597d2d26e1d1d373d70851c7cb3d3e3.1759929814.git.marcelo.schmitt@analog.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1759929814.git.marcelo.schmitt@analog.com>
-References: <cover.1759929814.git.marcelo.schmitt@analog.com>
+	s=arc-20240116; t=1759932330; c=relaxed/simple;
+	bh=agTZVVmdqx9pobjeJ46jC9gSHyxn89Ywa2Q1fCm/NhM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hFJBKZPoQqie1mEEsZ2pZ+M0xB6mNd4uKq9NkuYSCXXiW+iX33m8JZRC+fyToEFlfUYpzm30GczWG5hvMz6gf2gs79S4CG6URdXCcsLzQkfZoPjxdxKHMkz393gh3o/gvFcY0qwUkvDordkzAcF02Qy3pLmQGlhof61Ls0wmQ54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mnQzdlN3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 93E58C4CEE7;
+	Wed,  8 Oct 2025 14:05:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759932330;
+	bh=agTZVVmdqx9pobjeJ46jC9gSHyxn89Ywa2Q1fCm/NhM=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=mnQzdlN3AlOGcEXBdjL/Er5d0CuVA6tnB9E/JIN42U9+e3XIYArMVNy2Qrww12j2P
+	 SNnorfrpvctBCqvjuZCEYhkCMNLurWGSHrEq/2W39VsSXQjBOe7AakOIzhf36ckbDh
+	 mnhdqZuAcxgfNizWnrIzF9wAdahuOw05o7sngm1iRxXwvKQ8fvbt15eyeh7sbs5qYC
+	 0nm66zxkuyNzZ/KkXhDL0N1D8MnJ0+JBMRH/Ht4/pUOKDPxYdKmOX+jDdnw3I9zc0E
+	 j/d0FdTq5fJAeDswCUQc9q4q53aGibjGI2L/9un9hB2qsajXh7FdJQbg553dEi7BtZ
+	 5orQ9wYADFx/g==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 8932BCCA470;
+	Wed,  8 Oct 2025 14:05:30 +0000 (UTC)
+From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
+Subject: [PATCH v2 0/7] Add OnePlus 6T display (Samsung S6E3FC2X01 DDIC
+ with AMS641RW panel)
+Date: Wed, 08 Oct 2025 16:05:27 +0200
+Message-Id: <20251008-s6e3fc2x01-v2-0-21eca1d5c289@ixit.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDAwNCBTYWx0ZWRfX9/cSN0g/7sY5
- JqFnZMYO0f5cvO7dv/qhr5AmS833egmMnhqkLO5XlyyJG8eFsDpJYa23rxGDyXXpQpGbSr+1EsV
- a+YFFLHpg4qEkS3md2Vx0vmYdWNqIPxZs9fDz+KVYJ2yMTDXw4PRRjCLS2VY7tYDWolCwRDlfwk
- TFWCkGiCDBl8cBIwpD+Ly13AjOfna7nQFwwIbWwaSdUnQAyrudX3n/iScFwJLGpoXiiSd3s1qDF
- uEFk1PzOV8GSlPevq34nItRsDtToUi5CkJ9Zk+gXJm3ytFuzCDG/QBfS0BZ3QB93GJaIzCVuudY
- E0Novn0Rp/vUruzdvQgba04hEF1BDLYUMpr4lIJTh+mbAL/eAsQZaBndH1/WDvfFA1QpYqtTjxA
- kzIkGsVpUnlnzEJPBAcayxgYhWs9fA==
-X-Proofpoint-ORIG-GUID: A_uqP3zFNjF0I-PKWtiE30zSo-T2rSli
-X-Proofpoint-GUID: A_uqP3zFNjF0I-PKWtiE30zSo-T2rSli
-X-Authority-Analysis: v=2.4 cv=e4ELiKp/ c=1 sm=1 tr=0 ts=68e66c8f cx=c_pps
- a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=gAnH3GRIAAAA:8 a=vBz0w1DY-RU6HqRekHsA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-08_04,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 lowpriorityscore=0 impostorscore=0 suspectscore=0 adultscore=0
- priorityscore=1501 clxscore=1015 phishscore=0 bulkscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510080004
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKdv5mgC/03MQQ7CIBCF4as0sxYDQ6DFlfcwXSgOdjatgYagD
+ XcXm5i4/F/yvg0SRaYEp26DSJkTL3MLPHTgp+v8IMH31oASjXSoRbKkg8cilQjOGHkbEAMZaId
+ npMBlxy5j64nTusTXbmf1XX+M+WeyElI4dFoq29sh9GcuvB79G8Za6we7/hzYogAAAA==
+X-Change-ID: 20250923-s6e3fc2x01-f9550b822fe5
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Casey Connolly <casey.connolly@linaro.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ phone-devel@vger.kernel.org, David Heidelberg <david@ixit.cz>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2718; i=david@ixit.cz;
+ h=from:subject:message-id;
+ bh=agTZVVmdqx9pobjeJ46jC9gSHyxn89Ywa2Q1fCm/NhM=;
+ b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBo5m+oaZnPSmruAyRfu3d01fCRQiEN17hyQnmfG
+ xIMnIZs67mJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaOZvqAAKCRBgAj/E00kg
+ ctejEACEfmutlZ1j+l8Po12Swx8lJu/R3b5592nUbUYS+908mR5Bt6VMStvUQ0eapAX0MxScMSc
+ urNyLa7UGIeNzYiQP4QzAoQZTF3GjVQY1q9Azeces8CkZx3+EIj9EPI7nb/V2IEVUijUxKQV0kp
+ tchSHPzH4yfDLfpqy+UXksUZ8LjhhbCKZUQdjTEIzpEfgOsUpXbnJD+RSxtgnqfXBcm+AZq/Ufc
+ ClOgnxfikRxj5rJdNJgaDIVvbaKx3ADteKSy7ksD+UqDrnsAc5V5LR1ir1V+D1gHk8vfSS+VRZi
+ guW4MWr9LtDY9D6NunkoePGKR6D+fiYXsAEh99TSIRGzL/FhQbXAcZMfzLhXVAkT3P7YUy/wljJ
+ AxWC06UiXIQ53PxeyqxPGNYv2zB7HVtfZHJgaLN3aznHgVh5kUpYwyHVj6OTuLqIQSUUqqTcpSP
+ YzcTBr2zA6C9Ry/7SmkjqN6plkaaVW9BoNltsFQs3+Qos2hRjRDHqzHlV5BJZKMGIv+zwTRKl08
+ HkpcC/H9yvnbggJN/kMNWeX5jduc1IZqHUiYu2kPuv3sxgg6sLekkgyBnelx0saz/HjtSs9nI04
+ GM/29JG+zCGaLsnUu+Je/6qgIF3U+4TswyTv8Y9Mdn1WG1JCi9+Xkrk6ysVxvDUicTn9zt1aIsg
+ tDhHrhGdKzm5epw==
+X-Developer-Key: i=david@ixit.cz; a=openpgp;
+ fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
+X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
+X-Original-From: David Heidelberg <david@ixit.cz>
+Reply-To: david@ixit.cz
 
-ADAQ4216 and ADAQ4224 are similar to AD4030, but feature a PGA circuitry
-that scales the analog input signal prior to it reaching the ADC. The PGA
-is controlled through a pair of pins (A0 and A1) whose state define the
-gain that is applied to the input signal.
+First, proper bindings for the DDIC and panel are added.
 
-Add support for ADAQ4216 and ADAQ4224. Provide a list of PGA options
-through the IIO device channel scale available interface and enable control
-of the PGA through the channel scale interface.
+Next, the VCI and POC supplies are introduced for the OnePlus 6 and 6T
+phones, and the OnePlus 6T device tree is updated with the new compatible
+string.
 
-Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+This series also documents the tearing-effect GPIO line.
+
+Finally, a new DDIC driver is introduced along with the AMS641RW panel
+initialization sequences.
+
+This patchset enables the display on the OnePlus 6T smartphone.
+
+Since the display node is shared between the OnePlus 6 and 6T,
+the following warning appears:
+
+..sdm845-oneplus-enchilada.dtb: panel@0 (samsung,sofef00): 'poc-supply', 'te-gpios', 'vci-supply' do not match any of the regexes: '^pinctrl-[0-9]+$'
+
+This will be addressed in a follow-up patch, as the SOFEF00 DDIC also
+requires additional overhaul to properly initialize and function in mainline.
+
+Signed-off-by: David Heidelberg <david@ixit.cz>
 ---
-Change log v3 -> v4:
-- ADAQ support patch updated to handle the GPIO setup case only.
+Changes in v2:
+- Dropped the gpio reset polarity change as suggested (Jens and Dmitry).
+- Fixed unused warnings (kernel test robot).
+- Added a pinctrl config for the VCI and POC supply.
+- Removed patch "dt-bindings: display: panel-simple-dsi: Remove Samsung S6E3FC2 compatible"
+  while the compatible is used in device-tree, but without any driver
+  serving it, do not touch it (Rob)
+- Added more details into the device-tree about the OnePlus 6T panel properties
+- Put display gpio -pins into one -state block.
+- Link to v1: https://lore.kernel.org/r/20250925-s6e3fc2x01-v1-0-9293016768f7@ixit.cz
 
- drivers/iio/adc/ad4030.c | 211 ++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 207 insertions(+), 4 deletions(-)
+---
+Casey Connolly (1):
+      arm64: dts: qcom: sdm845-oneplus: Describe panel vci and poc supplies
 
-diff --git a/drivers/iio/adc/ad4030.c b/drivers/iio/adc/ad4030.c
-index bbadcda8df77..b371d954918f 100644
---- a/drivers/iio/adc/ad4030.c
-+++ b/drivers/iio/adc/ad4030.c
-@@ -47,6 +47,8 @@
- #define     AD4030_REG_CHIP_GRADE_AD4630_24_GRADE	0x00
- #define     AD4030_REG_CHIP_GRADE_AD4632_16_GRADE	0x05
- #define     AD4030_REG_CHIP_GRADE_AD4632_24_GRADE	0x02
-+#define     AD4030_REG_CHIP_GRADE_ADAQ4216_GRADE	0x1E
-+#define     AD4030_REG_CHIP_GRADE_ADAQ4224_GRADE	0x1C
- #define     AD4030_REG_CHIP_GRADE_MASK_CHIP_GRADE	GENMASK(7, 3)
- #define AD4030_REG_SCRATCH_PAD			0x0A
- #define AD4030_REG_SPI_REVISION			0x0B
-@@ -124,6 +126,10 @@
- /* Datasheet says 9.8ns, so use the closest integer value */
- #define AD4030_TQUIET_CNV_DELAY_NS	10
- 
-+/* HARDWARE_GAIN */
-+#define ADAQ4616_PGA_PINS		2
-+#define ADAQ4616_PGA_GAIN_MAX_NANO	(NANO * 2 / 3)
-+
- enum ad4030_out_mode {
- 	AD4030_OUT_DATA_MD_DIFF,
- 	AD4030_OUT_DATA_MD_16_DIFF_8_COM,
-@@ -144,6 +150,30 @@ enum {
- 	AD4030_SCAN_TYPE_AVG,
- };
- 
-+static const int adaq4216_hw_gains_db[] = {
-+	-10,	/* 1/3 V/V gain */
-+	-5,	/* 5/9 V/V gain */
-+	7,	/* 20/9 V/V gain */
-+	16,	/* 20/3 V/V gain */
-+};
-+
-+/*
-+ * Gains computed as fractions of 1000 so they can be expressed by integers.
-+ */
-+static const int adaq4216_hw_gains_vpv[] = {
-+	MILLI / 3,		/* 333 */
-+	(5 * MILLI / 9),	/* 555 */
-+	(20 * MILLI / 9),	/* 2222 */
-+	(20 * MILLI / 3),	/* 6666 */
-+};
-+
-+static const int adaq4216_hw_gains_frac[][2] = {
-+	{ 1, 3 },  /* 1/3 V/V gain */
-+	{ 5, 9 },  /* 5/9 V/V gain */
-+	{ 20, 9 }, /* 20/9 V/V gain */
-+	{ 20, 3 }, /* 20/3 V/V gain */
-+};
-+
- struct ad4030_chip_info {
- 	const char *name;
- 	const unsigned long *available_masks;
-@@ -151,6 +181,7 @@ struct ad4030_chip_info {
- 	const struct iio_chan_spec offload_channels[AD4030_MAX_IIO_CHANNEL_NB];
- 	u8 grade;
- 	u8 precision_bits;
-+	bool has_pga;
- 	/* Number of hardware channels */
- 	int num_voltage_inputs;
- 	unsigned int tcyc_ns;
-@@ -174,7 +205,11 @@ struct ad4030_state {
- 	struct spi_offload_trigger *offload_trigger;
- 	struct spi_offload_trigger_config offload_trigger_config;
- 	struct pwm_device *cnv_trigger;
-+	size_t scale_avail_size;
- 	struct pwm_waveform cnv_wf;
-+	unsigned int scale_avail[ARRAY_SIZE(adaq4216_hw_gains_db)][2];
-+	struct gpio_descs *pga_gpios;
-+	unsigned int pga_index;
- 
- 	/*
- 	 * DMA (thus cache coherency maintenance) requires the transfer buffers
-@@ -231,7 +266,7 @@ struct ad4030_state {
-  * - voltage0-voltage1
-  * - voltage2-voltage3
-  */
--#define __AD4030_CHAN_DIFF(_idx, _scan_type, _offload) {		\
-+#define __AD4030_CHAN_DIFF(_idx, _scan_type, _offload, _pga) {		\
- 	.info_mask_shared_by_all =					\
- 		(_offload ? BIT(IIO_CHAN_INFO_SAMP_FREQ) : 0) |		\
- 		BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO),			\
-@@ -242,6 +277,7 @@ struct ad4030_state {
- 		BIT(IIO_CHAN_INFO_CALIBBIAS) |				\
- 		BIT(IIO_CHAN_INFO_RAW),					\
- 	.info_mask_separate_available = BIT(IIO_CHAN_INFO_CALIBBIAS) |	\
-+		(_pga ? BIT(IIO_CHAN_INFO_SCALE) : 0) |			\
- 		BIT(IIO_CHAN_INFO_CALIBSCALE),				\
- 	.type = IIO_VOLTAGE,						\
- 	.indexed = 1,							\
-@@ -256,10 +292,16 @@ struct ad4030_state {
- }
- 
- #define AD4030_CHAN_DIFF(_idx, _scan_type)				\
--	__AD4030_CHAN_DIFF(_idx, _scan_type, 0)
-+	__AD4030_CHAN_DIFF(_idx, _scan_type, 0, 0)
- 
- #define AD4030_OFFLOAD_CHAN_DIFF(_idx, _scan_type)			\
--	__AD4030_CHAN_DIFF(_idx, _scan_type, 1)
-+	__AD4030_CHAN_DIFF(_idx, _scan_type, 1, 0)
-+
-+#define ADAQ4216_CHAN_DIFF(_idx, _scan_type)				\
-+	__AD4030_CHAN_DIFF(_idx, _scan_type, 0, 1)
-+
-+#define ADAQ4216_OFFLOAD_CHAN_DIFF(_idx, _scan_type)			\
-+	__AD4030_CHAN_DIFF(_idx, _scan_type, 1, 1)
- 
- static const int ad4030_average_modes[] = {
- 	BIT(0),					/* No averaging/oversampling */
-@@ -413,6 +455,65 @@ static const struct regmap_config ad4030_regmap_config = {
- 	.max_register = AD4030_REG_DIG_ERR,
- };
- 
-+static void ad4030_fill_scale_avail(struct ad4030_state *st)
-+{
-+	unsigned int mag_bits, int_part, fract_part, i;
-+	u64 range;
-+
-+	/*
-+	 * The maximum precision of differential channels is retrieved from the
-+	 * chip properties. The output code of differential channels is in two's
-+	 * complement format (i.e. signed), so the MSB is the sign bit and only
-+	 * (precision_bits - 1) bits express voltage magnitude.
-+	 */
-+	mag_bits = st->chip->precision_bits - 1;
-+
-+	for (i = 0; i < ARRAY_SIZE(adaq4216_hw_gains_frac); i++) {
-+		range = mult_frac(st->vref_uv, adaq4216_hw_gains_frac[i][1],
-+				  adaq4216_hw_gains_frac[i][0]);
-+		/*
-+		 * If range were in mV, we would multiply it by NANO below.
-+		 * Though, range is in µV so multiply it by MICRO only so the
-+		 * result after right shift and division scales output codes to
-+		 * millivolts.
-+		 */
-+		int_part = div_u64_rem(((u64)range * MICRO) >> mag_bits, NANO, &fract_part);
-+		st->scale_avail[i][0] = int_part;
-+		st->scale_avail[i][1] = fract_part;
-+	}
-+}
-+
-+static int ad4030_set_pga_gain(struct ad4030_state *st)
-+{
-+	DECLARE_BITMAP(bitmap, ADAQ4616_PGA_PINS) = { };
-+
-+	bitmap_write(bitmap, st->pga_index, 0, ADAQ4616_PGA_PINS);
-+
-+	return gpiod_multi_set_value_cansleep(st->pga_gpios, bitmap);
-+}
-+
-+static int ad4030_set_pga(struct iio_dev *indio_dev, int gain_int, int gain_fract)
-+{
-+	struct ad4030_state *st = iio_priv(indio_dev);
-+	unsigned int mag_bits = st->chip->precision_bits - 1;
-+	u64 gain_nano, tmp;
-+
-+	if (!st->pga_gpios)
-+		return -EINVAL;
-+
-+	gain_nano = gain_int * NANO + gain_fract;
-+
-+	if (!in_range(gain_nano, 1, ADAQ4616_PGA_GAIN_MAX_NANO))
-+		return -EINVAL;
-+
-+	tmp = DIV_ROUND_CLOSEST_ULL(gain_nano << mag_bits, NANO);
-+	gain_nano = DIV_ROUND_CLOSEST_ULL(st->vref_uv, tmp);
-+	st->pga_index = find_closest(gain_nano, adaq4216_hw_gains_vpv,
-+				     ARRAY_SIZE(adaq4216_hw_gains_vpv));
-+
-+	return ad4030_set_pga_gain(st);
-+}
-+
- static int ad4030_get_chan_scale(struct iio_dev *indio_dev,
- 				 struct iio_chan_spec const *chan,
- 				 int *val,
-@@ -432,7 +533,14 @@ static int ad4030_get_chan_scale(struct iio_dev *indio_dev,
- 
- 	*val2 = scan_type->realbits;
- 
--	return IIO_VAL_FRACTIONAL_LOG2;
-+	/* The LSB of the 8-bit common-mode data is always vref/256. */
-+	if (scan_type->realbits == 8 || !st->chip->has_pga)
-+		return IIO_VAL_FRACTIONAL_LOG2;
-+
-+	*val = st->scale_avail[st->pga_index][0];
-+	*val2 = st->scale_avail[st->pga_index][1];
-+
-+	return IIO_VAL_INT_PLUS_NANO;
- }
- 
- static int ad4030_get_chan_calibscale(struct iio_dev *indio_dev,
-@@ -900,6 +1008,15 @@ static int ad4030_read_avail(struct iio_dev *indio_dev,
- 		*length = ARRAY_SIZE(ad4030_average_modes);
- 		return IIO_AVAIL_LIST;
- 
-+	case IIO_CHAN_INFO_SCALE:
-+		if (st->scale_avail_size == 1)
-+			*vals = (int *)st->scale_avail[st->pga_index];
-+		else
-+			*vals = (int *)st->scale_avail;
-+		*length = st->scale_avail_size * 2; /* print int and nano part */
-+		*type = IIO_VAL_INT_PLUS_NANO;
-+		return IIO_AVAIL_LIST;
-+
- 	default:
- 		return -EINVAL;
- 	}
-@@ -975,6 +1092,9 @@ static int ad4030_write_raw_dispatch(struct iio_dev *indio_dev,
- 	case IIO_CHAN_INFO_SAMP_FREQ:
- 		return ad4030_set_sampling_freq(indio_dev, val);
- 
-+	case IIO_CHAN_INFO_SCALE:
-+		return ad4030_set_pga(indio_dev, val, val2);
-+
- 	default:
- 		return -EINVAL;
- 	}
-@@ -996,6 +1116,17 @@ static int ad4030_write_raw(struct iio_dev *indio_dev,
- 	return ret;
- }
- 
-+static int ad4030_write_raw_get_fmt(struct iio_dev *indio_dev,
-+				    struct iio_chan_spec const *chan, long mask)
-+{
-+	switch (mask) {
-+	case IIO_CHAN_INFO_SCALE:
-+		return IIO_VAL_INT_PLUS_NANO;
-+	default:
-+		return IIO_VAL_INT_PLUS_MICRO;
-+	}
-+}
-+
- static int ad4030_reg_access(struct iio_dev *indio_dev, unsigned int reg,
- 			     unsigned int writeval, unsigned int *readval)
- {
-@@ -1046,6 +1177,7 @@ static const struct iio_info ad4030_iio_info = {
- 	.read_avail = ad4030_read_avail,
- 	.read_raw = ad4030_read_raw,
- 	.write_raw = ad4030_write_raw,
-+	.write_raw_get_fmt = &ad4030_write_raw_get_fmt,
- 	.debugfs_reg_access = ad4030_reg_access,
- 	.read_label = ad4030_read_label,
- 	.get_current_scan_type = ad4030_get_current_scan_type,
-@@ -1309,6 +1441,25 @@ static int ad4030_spi_offload_setup(struct iio_dev *indio_dev,
- 							   IIO_BUFFER_DIRECTION_IN);
- }
- 
-+static int ad4030_setup_pga(struct device *dev, struct iio_dev *indio_dev,
-+			    struct ad4030_state *st)
-+{
-+	/* Setup GPIOs for PGA control */
-+	st->pga_gpios = devm_gpiod_get_array(dev, "pga", GPIOD_OUT_LOW);
-+	if (IS_ERR(st->pga_gpios))
-+		return dev_err_probe(dev, PTR_ERR(st->pga_gpios),
-+				     "Failed to get PGA gpios.\n");
-+
-+	if (st->pga_gpios->ndescs != ADAQ4616_PGA_PINS)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "Expected 2 GPIOs for PGA control.\n");
-+
-+	st->scale_avail_size = ARRAY_SIZE(adaq4216_hw_gains_db);
-+	st->pga_index = 0;
-+
-+	return 0;
-+}
-+
- static int ad4030_probe(struct spi_device *spi)
- {
- 	struct device *dev = &spi->dev;
-@@ -1351,6 +1502,14 @@ static int ad4030_probe(struct spi_device *spi)
- 	if (ret)
- 		return ret;
- 
-+	if (st->chip->has_pga) {
-+		ret = ad4030_setup_pga(dev, indio_dev, st);
-+		if (ret)
-+			return ret;
-+
-+		ad4030_fill_scale_avail(st);
-+	}
-+
- 	ret = ad4030_config(st);
- 	if (ret)
- 		return ret;
-@@ -1614,12 +1773,54 @@ static const struct ad4030_chip_info ad4632_24_chip_info = {
- 	.max_sample_rate_hz = 500 * HZ_PER_KHZ,
- };
- 
-+static const struct ad4030_chip_info adaq4216_chip_info = {
-+	.name = "adaq4216",
-+	.available_masks = ad4030_channel_masks,
-+	.channels = {
-+		ADAQ4216_CHAN_DIFF(0, ad4030_16_scan_types),
-+		AD4030_CHAN_CMO(1, 0),
-+		IIO_CHAN_SOFT_TIMESTAMP(2),
-+	},
-+	.offload_channels = {
-+		ADAQ4216_OFFLOAD_CHAN_DIFF(0, ad4030_16_offload_scan_types),
-+		AD4030_CHAN_CMO(1, 0),
-+	},
-+	.grade = AD4030_REG_CHIP_GRADE_ADAQ4216_GRADE,
-+	.precision_bits = 16,
-+	.has_pga = true,
-+	.num_voltage_inputs = 1,
-+	.tcyc_ns = AD4030_TCYC_ADJUSTED_NS,
-+	.max_sample_rate_hz = 2 * HZ_PER_MHZ,
-+};
-+
-+static const struct ad4030_chip_info adaq4224_chip_info = {
-+	.name = "adaq4224",
-+	.available_masks = ad4030_channel_masks,
-+	.channels = {
-+		ADAQ4216_CHAN_DIFF(0, ad4030_24_scan_types),
-+		AD4030_CHAN_CMO(1, 0),
-+		IIO_CHAN_SOFT_TIMESTAMP(2),
-+	},
-+	.offload_channels = {
-+		ADAQ4216_OFFLOAD_CHAN_DIFF(0, ad4030_24_offload_scan_types),
-+		AD4030_CHAN_CMO(1, 0),
-+	},
-+	.grade = AD4030_REG_CHIP_GRADE_ADAQ4224_GRADE,
-+	.precision_bits = 24,
-+	.has_pga = true,
-+	.num_voltage_inputs = 1,
-+	.tcyc_ns = AD4030_TCYC_ADJUSTED_NS,
-+	.max_sample_rate_hz = 2 * HZ_PER_MHZ,
-+};
-+
- static const struct spi_device_id ad4030_id_table[] = {
- 	{ "ad4030-24", (kernel_ulong_t)&ad4030_24_chip_info },
- 	{ "ad4630-16", (kernel_ulong_t)&ad4630_16_chip_info },
- 	{ "ad4630-24", (kernel_ulong_t)&ad4630_24_chip_info },
- 	{ "ad4632-16", (kernel_ulong_t)&ad4632_16_chip_info },
- 	{ "ad4632-24", (kernel_ulong_t)&ad4632_24_chip_info },
-+	{ "adaq4216", (kernel_ulong_t)&adaq4216_chip_info },
-+	{ "adaq4224", (kernel_ulong_t)&adaq4224_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, ad4030_id_table);
-@@ -1630,6 +1831,8 @@ static const struct of_device_id ad4030_of_match[] = {
- 	{ .compatible = "adi,ad4630-24", .data = &ad4630_24_chip_info },
- 	{ .compatible = "adi,ad4632-16", .data = &ad4632_16_chip_info },
- 	{ .compatible = "adi,ad4632-24", .data = &ad4632_24_chip_info },
-+	{ .compatible = "adi,adaq4216", .data = &adaq4216_chip_info },
-+	{ .compatible = "adi,adaq4224", .data = &adaq4224_chip_info },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ad4030_of_match);
+David Heidelberg (6):
+      dt-bindings: panel: Add Samsung S6E3FC2X01 DDIC with panel
+      arm64: dts: qcom: sdm845-oneplus-fajita: Use the freshly introduced driver
+      arm64: dts: qcom: sdm845-oneplus: Describe TE gpio
+      drm/panel: Add Samsung S6E3FC2X01 DDIC with AMS641RW panel
+      arm64: dts: qcom: sdm845-oneplus: Group panel pinctrl
+      arm64: dts: qcom: sdm845-oneplus: Implement panel sleep pinctrl
+
+ .../bindings/display/panel/samsung,s6e3fc2x01.yaml |  78 ++++
+ MAINTAINERS                                        |   6 +
+ .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 113 ++++--
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-fajita.dts |   2 +-
+ drivers/gpu/drm/panel/Kconfig                      |  13 +
+ drivers/gpu/drm/panel/Makefile                     |   1 +
+ drivers/gpu/drm/panel/panel-samsung-s6e3fc2x01.c   | 402 +++++++++++++++++++++
+ 7 files changed, 593 insertions(+), 22 deletions(-)
+---
+base-commit: 7c3ba4249a3604477ea9c077e10089ba7ddcaa03
+change-id: 20250923-s6e3fc2x01-f9550b822fe5
+
+Best regards,
 -- 
-2.39.2
+David Heidelberg <david@ixit.cz>
+
 
 
