@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-224662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 833E6BC6F09
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 01:48:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1A3DBC6F21
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 01:50:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88DC91897AFB
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 23:48:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D5FF401CFD
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 23:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 036722C21D1;
-	Wed,  8 Oct 2025 23:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75DFA29A9FA;
+	Wed,  8 Oct 2025 23:50:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rgxDYrO2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K1N4ypl9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBBA429A9FA;
-	Wed,  8 Oct 2025 23:48:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47A7A204F8B;
+	Wed,  8 Oct 2025 23:50:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759967287; cv=none; b=CxuM15oUlw4PNpS0rLHuAxcAhmimXrQWyHPb89sEKzFvXHIGhiqxXsOKa1EOvAPNMjMQHUgLsx3usMITnbgubouO40TJbGWE3k62a9h8a0yy1J9OguVOfu4R0WkrQkEPSrOhBEAQswn4f6zynjOFhCrotzofZ2qgnMw3yJvGo1U=
+	t=1759967441; cv=none; b=WnJLf8d99pAaI70oeNWHw32a17t/F3Gf0ZR19ZKTjpu0nffShcYHNNkpKykteuoIaR1miz4nXEF66mI2+eN5UGVvg7fjX3xD2foUi7BI3R7hlUHPKUL6DXJhyZ8B0tf9u9DP7Oz+RC8tpz9QQNzXMXeGTm4LJ6wtV/FbIZfbMsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759967287; c=relaxed/simple;
-	bh=ei5fTrRQetlx4PbWi0e374AeatGfy5m9T4ayTj3Ayow=;
+	s=arc-20240116; t=1759967441; c=relaxed/simple;
+	bh=0F7EVF2q03JwQ5MskfHSb130w66z/fAnAFID4HZBRsM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FQW8UiL10/KozP4wWu5X5+EswbzuzZaLt4nq6UvPoqGdqKh5w10glo05Sda5SEttRkxn4tFYI3YWCvKhbmWjFlFqwrxVL4x0BtNKEXoaI7LNQD1k12fKrdw4Y69d/1oF0qJyCg5H2TZmktpFInvg7z/IldqTwvD7ZhE90AOMbxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rgxDYrO2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15E0EC4CEE7;
-	Wed,  8 Oct 2025 23:48:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=cbSoBWy1bZAdjiRPKerSGJA0r3MkI2mnxnnSyudldgm2XcIXY+k7nHKv+hrSSxb9eM/NSiDBllh3ku0VKULrx8BcSfnFwBZkDvKn96td9dD2xPE47zdBfNU7nn7iid6Ss9WZGUINbLXBlX6ZcdqPOyIRk9KlOJCitBkgjPkhI64=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K1N4ypl9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 989F1C4CEE7;
+	Wed,  8 Oct 2025 23:50:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759967287;
-	bh=ei5fTrRQetlx4PbWi0e374AeatGfy5m9T4ayTj3Ayow=;
+	s=k20201202; t=1759967440;
+	bh=0F7EVF2q03JwQ5MskfHSb130w66z/fAnAFID4HZBRsM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rgxDYrO2wLreOOHgYrcqXhg4Mqr7P6Vym3ESKSpTzNFDEn/jxjdlVJP4K2nAE8inH
-	 YR8sJTMzhA9TnoxWaJmS5y8YR2v+yC4ESCrmP6lmV50CAtRNaxK1MyYNfBWsyMCuB3
-	 Dnac9OqFvoT876mjR/yD+YgIvWP6dPFc2LowJadWH9ykCiJw5zeC1v+IBJomKRnlMu
-	 N42lPJppGfrfO1zP4ZCe99SFN21qirASB9+jLfybzpxi3uuxeXwXACADlZ3/JKjZqQ
-	 +eGu1jq4HUl7RdKpJQHK3SnCIad0v8ty80DDzEQpzg355RxnEQgDkxIkiwbif7KsS1
-	 32cMHH/ow0pCg==
-Message-ID: <aabf395a-eef2-49b2-9938-b7bb8aa838c8@kernel.org>
-Date: Thu, 9 Oct 2025 08:48:00 +0900
+	b=K1N4ypl9hSdEysxESHnZ5NtJZkikWGHbR9V/jyu/VyKrDJEQ3C/iyZEKgdtxEfIGU
+	 wuRxhX649u4EDtWu1C2tKU1sR1BPYvrFpj4g2wFlSPGkMXW3UVJ5svqrdSyOlmD95Y
+	 0Z15N6DdthpqcJkuJkzNc+r4rIMQrpDeGIRInJ81AR5l2n3rTKGCJT4pKe9iQQHGfz
+	 Ay15XDY4NGE77N22MVophXTE3PDk+twvgsfub+DtxCCSeRQhW2gYGwoYd6DpaWQU4q
+	 febo+nQtBP5VbFIAyR0xrMlcC3QsNh/WDOZlwnda81qK+F5+/uRYvTGLEbIFSQaEVa
+	 ueHHJGVkJxv0w==
+Message-ID: <37b1c3e3-5a33-4d6c-b053-525bfd0583da@kernel.org>
+Date: Thu, 9 Oct 2025 08:50:30 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 1/2] dt-bindings: dmaengine: Add support for ATCDMAC300
- DMA engine
-To: CL Wang <cl634@andestech.com>,
-	gg@swlinux02.smtp.subspace.kernel.org
-Cc: Conor Dooley <conor@kernel.org>, vkoul@kernel.org,
- dmaengine@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, tim609@andestech.com
-References: <20251002131659.973955-1-cl634@andestech.com>
- <20251002131659.973955-2-cl634@andestech.com>
- <20251002-absolute-spinning-f899e75b2c4a@spud> <aOUIfaZY7-eUYoOS@swlinux02>
- <734de17e-a712-4eb5-96fa-b7e75f86d880@kernel.org>
- <aOXW7HUMeOyABuUG@swlinux02>
- <dcd14886-f2cc-41ec-8bb5-9cb5ed50c452@kernel.org>
- <aOZokztqpHHX0JPq@swlinux02>
+Subject: Re: [PATCH 18/20] arm64: dts: qcom: kaanapali-mtp: Add audio support
+ (WSA8845, WCD9395, DMIC)
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>,
+ Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <20250924-knp-dts-v1-18-3fdbc4b9e1b1@oss.qualcomm.com>
+ <CAJKOXPfY-CpE_aKd910PQ2+u9ux2EvuVEt9ArzhdVCJcTQJUQQ@mail.gmail.com>
+ <51637d37-aa5e-492a-851c-e5d6bfbe421e@oss.qualcomm.com>
+ <43ba93bd-0dba-415b-8a7e-cdc4d954f79d@kernel.org>
+ <392d2e9a-dc31-4916-ab8a-680b2ec4dca5@oss.qualcomm.com>
+ <19639c5e-7aa8-4e75-812d-93d805802cd3@kernel.org>
+ <7ef31348-78ca-4abc-9eaf-5041e2e6be82@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,41 +115,54 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aOZokztqpHHX0JPq@swlinux02>
+In-Reply-To: <7ef31348-78ca-4abc-9eaf-5041e2e6be82@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 08/10/2025 22:35, CL Wang wrote:
-> Hi Krzysztof,
+On 08/10/2025 20:30, Konrad Dybcio wrote:
+> On 10/8/25 12:51 PM, Krzysztof Kozlowski wrote:
+>> On 08/10/2025 19:20, Konrad Dybcio wrote:
+>>> On 10/6/25 10:48 AM, Krzysztof Kozlowski wrote:
+>>>> On 30/09/2025 21:06, Prasad Kumpatla wrote:
+>>>>>
+>>>>> On 9/25/2025 6:56 PM, Krzysztof Kozlowski wrote:
+>>>>>> On Thu, 25 Sept 2025 at 09:18, Jingyi Wang <jingyi.wang@oss.qualcomm.com> wrote:
+>>>>>>> From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+>>>>>>>
+>>>>>>> Add support for audio on the Kaanapali MTP platform by introducing device
+>>>>>>> tree nodes for WSA8845 smart speaker amplifier for playback, DMIC
+>>>>>>> microphone for capture, and sound card routing. The WCD9395 codec is add
+>>>>>>> to supply MIC-BIAS, for enabling onboard microphone capture.
+>>>>>>>
+>>>>>>> Signed-off-by: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+>>>>>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>>>>>>> ---
+>>>>>>>   arch/arm64/boot/dts/qcom/kaanapali-mtp.dts | 226 +++++++++++++++++++++++++++++
+>>>>>>>   1 file changed, 226 insertions(+)
+>>>>>>>
+>>>>>> Audio is not a separate feature from USB.
+>>>>>
+>>>>> I didn't understand this, Could you please help me to provide more 
+>>>>> context on it?
+>>>>> Is this regarding Audio over Type-c?
+>>>>
+>>>> USB depends on ADSP, so your split of patches into separate audio commit
+>>>> is just incorrect.
+>>>
+>>> No, this is no longer the case on Kaanapali.
+>>>
+>>> PMIC_GLINK is now served by the SoCCP rproc
+>>
+>> Hm, ok.... so there is no WCD93xx USB mux anymore?
 > 
-> Thanks for the clarification, and sorry for the earlier confusion.
+> I see there's a WCD9395 onboard which has that hw block
 > 
-> To elaborate on the rationale:
-> "andestech,atcdmac300" is the IP core name of the DMA controller, which serves
-> as a generic fallback compatible shared across multiple Andes SoCs.
-> 
-> Primary compatible (SoC-specific):
-> andestech,qilai-dma refers to the DMA controller instance implemented on the
-> Qilai SoC, following the SoC-specific recommendation.
-> 
-> Fallback compatible (IP-core specific):
-> andestech,atcdmac300 represents the reusable IP block used across different
-> Andes SoCs that share the same register map and programming model.
-> 
-> Keeping andestech,atcdmac300 as a fallback helps avoid code duplication and
-> allows a single driver to support future SoCs using the same hardware IP.
+> I'll try to find some schematics to confirm..
 
-No, it helps in nothing.
-
-
-> 
-> This approach follows the DeviceTree binding guideline:
-> 
-> “DO use a SoC-specific compatible for all SoC devices, followed by a fallback
-> if appropriate. SoC-specific compatibles are also preferred for the fallbacks.”
-
-No, it does not. You just ignored completely last sentence.
-
+I think I was checking this some time ago and design was the same as in
+SM8750 and SM8650, so with WCD9395 USB mux. You could argue that WCD9395
+WCD mux has separate interface than audio part, but it is still the same
+device, thus that is why I think USB and audio are still related.
 
 Best regards,
 Krzysztof
