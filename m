@@ -1,138 +1,87 @@
-Return-Path: <devicetree+bounces-224546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68B44BC5208
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 15:07:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0DAABC529B
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 15:18:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 75C754F76F4
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 13:06:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AF953A2A1F
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 13:18:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6BE6260563;
-	Wed,  8 Oct 2025 13:06:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5A4B1D63E4;
+	Wed,  8 Oct 2025 13:18:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aticjHYl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PhRlbOv4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E1A0258EF5
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 13:06:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80FDF1A23BE
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 13:18:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759928812; cv=none; b=k1FbYp+VGPQKBpfRxaU4eVp6KJEGpDbYrEF1u5ZcfFgBULKPMDP6CTAeAkb2wN2HBSAJFDK4Y/3fII9MdXMMNsAXXebIahG8TT4VtgwaHy8V/AZAfQK0kP9D2n8h8TCifjBny2q4Md3jmSbt1bLyWL0a2xzYh8I1ZwtKUNYrf74=
+	t=1759929480; cv=none; b=nc+s4TOJJreGafdTpMyGGY/N2osgXwnxriMZCaTursE3GLctOfEZ6qj6COGozkn9vhVVFyYw2fit/5y/I3ztNmVTq6/jyQJfHE9zcclYutUs8mOuLbo0bXGSco9dvRa7mZv6hnA+u8OBQZ1UvPTQTGlQoYCghV3K0dnriSRQEA8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759928812; c=relaxed/simple;
-	bh=F/KLc0AJ5qXXCxdc7wYUMS/kUrn3DDkOw+Xg9ewXk84=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=uqWfnugHFnAZEuxiygJkyZVsuRCAyfMI38A6Wz+ZX8e195ZId3IThJdsUR2AZ5rBcBVWXnBmv5qa7O2DJEvVr/Ue0MfqBI6L7UaAko0eN065Z336HE2awl2rBNOegD01t5a7brsMFnbMR450Pyk/qKYw9AZoyAW+vf3X5BlNPQI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aticjHYl; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3ed20bdfdffso6625507f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 06:06:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759928809; x=1760533609; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=F/KLc0AJ5qXXCxdc7wYUMS/kUrn3DDkOw+Xg9ewXk84=;
-        b=aticjHYlXfEiVK9zv8gtiCSG++sw5pjXRsCdnK6qeDkWDKmzGsg5xZpudCfgB6bH7w
-         q+SB6P2FbQYVGhn/7VZu0wCM5gBMTVOb+WBEjcAAFbEaa7G1eF6+qz0di8aDHBwtKPfy
-         5II0FDkHZvmIYuUXGsw/nl4ZPwy4nXIGt2oeuTZsxC09EuKFovK+PNQ9PksZDkeIGQw/
-         EbXXqpRhguQuOrkwdf1qypfzAF9Ji4g+2Co3+cs+Q+EY7pAOeStv9BZATMOqHGloQAXe
-         bxT5oNz7OE7kjBCLO4fqsio9N+VP8ZcAJCy/RWRAcEHpVS3qGtHS6Y5+8FIpz6e1nTzh
-         ywjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759928809; x=1760533609;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=F/KLc0AJ5qXXCxdc7wYUMS/kUrn3DDkOw+Xg9ewXk84=;
-        b=nqRW0v2SB8rV/m68wvUb3aViwBjpma4IghidUxRZLX/qL91hNaS17XBmcifbJB8SOf
-         TusQLhLyvaoWK0sTJ68IF4AMpWLV6CXbgQ1NC6aftvdnogV7l3YyKdR3cQVIl0TEFwDj
-         1bhTYTyT0G06KixV/hYjUg/TbUrD3AeA9JYJ+rietXHQfVRRBr3BmJVWxmnqlxTBVGVR
-         OaK7I7LcG/6lbQlCUUFpHdM7SqY/ujDLI/heK2F+oWv++RBWvnEwGqJ3NOUEMzC+TgYB
-         +hzvBwIy4KXJR1i5e5i2hA+8uqmqx+yrhIKBtQbYUFcQZxqb9bd4q67VBwvn2XaYZDPw
-         3q7g==
-X-Forwarded-Encrypted: i=1; AJvYcCWMtmA9Y1Qlkua08VUfKmHR3I+C5WhZdUDt/ZCS2RP4KT7ZRn9ydbE0K0rexWpiScofiIh1AeIgpsRX@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlRW3knvWKANqOlTGlr7H9EjWKq+F932R5b6/GUIWm+ph3SIiE
-	LLkrmAeS4cgGFEc5HCkCDR2+HFr/spBDFrqKzrxq2KeTZYCQ19TGi+Ni
-X-Gm-Gg: ASbGnctkiwuuU1/LQ4xrAz/4pPa3q3X91JmoQpD3ft7+KFNNBHLW0QeCuBM2VHM5A6l
-	bQzpZ0i5IGrOGyQ/YLUTzy8cl9xCjSI+dgAcP3DsW8+4wvF84rbG50dfa5lOVYVQ7i5sQ3chk65
-	DzEEATIoSr7u3wjs0MwVWZ9EnIMJKSAO4UFF3I+XbrzJ/asqU8AAvlt6csVRh2Ncg+4nczyBteP
-	O8p5zA7m8e4WXaesBJw+CfC9tO7iC9RKImYt5WDTRMPQr7og7u4Y7qvFTVbotd2MnnRsOEhg+6R
-	MKaKd5hQwerSULk7PBKBNBahr7fB7nuMMMRvo7tlz/Y/uNGOMIVj1kL5dRsxE97+CDE5T7v+oLV
-	yyCRqQnFj4tVvyQt0rWpcqaOLRPdLgCa3wXOdun/xqom7B+yQ/An6aMM=
-X-Google-Smtp-Source: AGHT+IGs9TvNL0rmTcrQDR+AU/z45s+tapDQMkY0alK/pD4CF+hA5wLEMmSe5+LpHyH6FGvPYm6apw==
-X-Received: by 2002:a05:6000:420a:b0:3ee:1521:95fc with SMTP id ffacd0b85a97d-42666ac6a8emr2097091f8f.14.1759928809216;
-        Wed, 08 Oct 2025 06:06:49 -0700 (PDT)
-Received: from [192.168.1.187] ([161.230.67.253])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8a6b40sm29969759f8f.2.2025.10.08.06.06.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Oct 2025 06:06:48 -0700 (PDT)
-Message-ID: <35733a7a33301330260c01b1e59af904c8c4da6b.camel@gmail.com>
-Subject: Re: [PATCH v2 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
- Controller
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: nuno.sa@analog.com, linux-hwmon@vger.kernel.org,
- linux-gpio@vger.kernel.org, 	devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Jean Delvare	 <jdelvare@suse.com>, Jonathan
- Corbet <corbet@lwn.net>, Linus Walleij	 <linus.walleij@linaro.org>, Bartosz
- Golaszewski <brgl@bgdev.pl>
-Date: Wed, 08 Oct 2025 14:07:19 +0100
-In-Reply-To: <0ce54816-2f00-4682-8fde-182950c500b9@roeck-us.net>
-References: <20250903-ltc4283-support-v2-0-6bce091510bf@analog.com>
-	 <20250903-ltc4283-support-v2-2-6bce091510bf@analog.com>
-	 <742fe9b5-bc53-45f2-a5f1-d086a0c9dd1c@roeck-us.net>
-	 <0765a0b89779331c62a3f136ef030f7f2f40ea47.camel@gmail.com>
-	 <0ce54816-2f00-4682-8fde-182950c500b9@roeck-us.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.0 
+	s=arc-20240116; t=1759929480; c=relaxed/simple;
+	bh=A26BURxC6YMiPrKrlhFxrgm/8o8uWmciG6tr4QwYCvc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=opb2LmUKgcLt8is4lR38PeF2IdElhsT9xHGcW/HKTTQfDgRKcV5gmLGoBVvy1PmWvjafkvFFim4H+Mo5WF0MDIeY5E3ZNesBmd+5pSNjb+PojVOHppyU0oQs7yIXbFAE/gFIAyMdOmqFc6DSlpoUBNsoHsX1tjXhGJGAdG1rlUE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PhRlbOv4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A60AC4AF0C
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 13:17:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759929480;
+	bh=A26BURxC6YMiPrKrlhFxrgm/8o8uWmciG6tr4QwYCvc=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=PhRlbOv4zv8THUz0h/X0jNr95McCK7w5BriDkeiGlnse51btpv5rqJzhh07Bh7ZAh
+	 HYPB6vjxkV46XCji9UKbYjBSoGlHjsOxnKR+HnRbCM+DfVRJtQHbgF9/p6LiRoDCDZ
+	 CUHmFfKMfkIoGHJTq5NAx6SPaO8YIToA7MD+ACsXtraxDEpdhY2gva56hU4JZvHkK/
+	 p43JG+pKpqYyLHOSD+dvfwm14ncceBkAHY4REH++AUCzye/xwoHB10BdziMQnCOZKr
+	 /dyB/jEpF2W0URfuc/9CnOsAdhAif+Vank3MbToQJtYSLZDNtZjpr6Zwxf5Xle+rBC
+	 PDDJQkYkpEa2A==
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-636de696e18so12806434a12.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 06:17:59 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWNZF3ZdID76cB63VLJDNuYsjqAFd9C65eu4TJHzaBpSXQex4as3i/yKwpDItguhQAT7oCTnMUCDfOP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxs5Ah+HViSjALYKrsz//jTni1hdxRwbdnVsn/ChSNnEnrZ7QQs
+	XRcAQkAXz0LiKd0ERZTnqBF/hu6YrLwz4V5BLO2GhT8AT0lPnC7y8I0Kj9eIM8kpEsHTYdGb7xt
+	kzsdkBNy9fzg2dJOPXqH+jsH/bWN5xQ==
+X-Google-Smtp-Source: AGHT+IFv45xp6CmYYMNAgyp1xynwbCS0WoWmR/So2r8vGFL0UOBIJChN1MqHBQIH9sdKjfktlTxeaAVHinRIgyH2l6M=
+X-Received: by 2002:a17:907:7f13:b0:b45:e09c:7e66 with SMTP id
+ a640c23a62f3a-b50aa8a5bfdmr360023266b.28.1759929478582; Wed, 08 Oct 2025
+ 06:17:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20251007152007.14508-7-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20251007152007.14508-7-wsa+renesas@sang-engineering.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 8 Oct 2025 08:17:46 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLLGpw94mbHirGaUx_b-=n1=s25Nhw62xKOQdS+V4s4Aw@mail.gmail.com>
+X-Gm-Features: AS18NWCkNq5WoTDTgs_atVT896fAu6mmVrCNMLOjVrqG7W91HT2pNtiDlf44MDs
+Message-ID: <CAL_JsqLLGpw94mbHirGaUx_b-=n1=s25Nhw62xKOQdS+V4s4Aw@mail.gmail.com>
+Subject: Re: [PATCH v3 0/5] dt-bindings: watchdog: factor out RZ watchdogs
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Guenter Roeck <linux@roeck-us.net>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-watchdog@vger.kernel.org, 
+	Magnus Damm <magnus.damm@gmail.com>, Wim Van Sebroeck <wim@linux-watchdog.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, 2025-09-13 at 04:02 -0700, Guenter Roeck wrote:
-> On Fri, Sep 12, 2025 at 03:00:22PM +0100, Nuno S=C3=A1 wrote:
-> ...
-> >=20
-> > i2cdump -y -r 0x41-0x79 1 0x15 w
-> > =C2=A0=C2=A0=C2=A0=C2=A0 0,8=C2=A0 1,9=C2=A0 2,a=C2=A0 3,b=C2=A0 4,c=C2=
-=A0 5,d=C2=A0 6,e=C2=A0 7,f
-> > 40:=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 b004 0000 b00c a03e a03e a03e 2501
-> > 48: 0000 1a03 e07f e07f f07f e07f e07f e07f
-> > 50: e07f e07f e07f e07f e07f e07f 0000 0000
-> > 58: 0000 7002 7002 7002 b07e b07e b07e a030
-> > 60: 9030 a030 0000 0000 802f 1000 1000 f0ff
-> > 68: a004 a004 0014 a004 a004 c004 0000 0000
-> > 70: 0000 0000 0000 0000 0000 0000 0000 0000
-> > 78: 0000 0000
-> >=20
-> Thanks - this should do. Note that I am traveling and will be away from m=
-y
-> systems until September 25, so I'll only be able to look into this furthe=
-r
-> after I am back.
->=20
-> Guenter
+On Tue, Oct 7, 2025 at 10:20=E2=80=AFAM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+>
+> Minor changes since v2 are documented in each individual patch. Main
+> change is that patch 5 is added to keep dependency handling low.
 
-Hi Guenter,
+My tag from v1 is missing on patches 1-4.
 
-I was planning in letting merge window to come to an end but I might just a=
-sk
-now. Have you forgotten about this one or do you want me to send v3 with th=
-e
-superficial review and then you go deeper on v3?
-
-Thx
-- Nuno S=C3=A1
+Rob
 
