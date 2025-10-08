@@ -1,159 +1,174 @@
-Return-Path: <devicetree+bounces-224573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24BC8BC560B
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 16:06:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28BE7BC564E
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 16:10:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E1BAA4F9224
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 14:05:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1F7A188EB67
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 14:11:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EE40298CC9;
-	Wed,  8 Oct 2025 14:05:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 635CD28DF0B;
+	Wed,  8 Oct 2025 14:10:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FHkFArTi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AnfLECuv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F8F529346F;
-	Wed,  8 Oct 2025 14:05:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9B7528DB71
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 14:10:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759932331; cv=none; b=oXxeFGajoqTMwnjetaA753XksFLNLdppLj9tuDYjPo4uax0rz+Gefs4w98kPILBKqlQ4A29OSVHqT4xhGl3eJv3u3S827ZT/aOpbtDqQ4CJ0h46M2vNK/LYRpB7NqUBJuF02qRPdmQyH/ANZb4T4LE1HLT04ciGV9W75xNE1+Gk=
+	t=1759932643; cv=none; b=MNqJnAuu5c7hDXIKYQir1+leNyM3hqwzZWiY+/CShV+Zk7LUPEW97WM47w2xVKzQ7HZpPjIk7h2y1I2Ke/SsZ1Lmu5chaasFzEogZfuD7/RfLtaXBGorvW1cNW9haeU2Z8SGhP1HOl5xNbN/GdZxafWAwK5UUB8PQd0nr0wXx/I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759932331; c=relaxed/simple;
-	bh=HSYJCjE24K+57IxjnTOBA3vYmKAgeNl1JgEZHnukAHQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UGVJKIQiQugaDSNcnTODwuKwMV1VdeH3IIBbRvbKRpcnn30rOCpBSiGT+opA1i3E83sigSEa1X6eRAV93SHLlqeoWRQeHKVLDElI4RnEGnU0bZobKtzIrKO31Qc7BAdnfNOsLnEc/gzSRZmDd65wwKn6RUlZk8TjEdwD7EVZ3KQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FHkFArTi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 16D2BC19422;
-	Wed,  8 Oct 2025 14:05:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759932331;
-	bh=HSYJCjE24K+57IxjnTOBA3vYmKAgeNl1JgEZHnukAHQ=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=FHkFArTiqLjHtD8UBeA9BjDpTEDP/ze8wv76kxhwQ5ee+Z/LQ5l+TxLM/T5Uje6S3
-	 ZzZ+MnVufUO4SVls5xUeaS9ZzEmaUEk1NqKXcowndG6T7HACqYHUdFoV1vTW4Kc3K2
-	 T0BYjAcmdJPuGQg1tMmGFVqpiFRSY4J0CiGBGaqUGH0EV5rF/g5MbJMXX2clr8uy3x
-	 wjMylQ24HaRr5QaaCSBqLBiU800+UlMIq5LL5W5xl8suoBoTM8VGwIIBcNHTowg8zi
-	 j1oynPpClm7CgY76SZifUR2vWQMwfPB4utrUlQ66QhstJsbf1v4Zy7lXJxI3oKasmj
-	 2nYBBBLTxpmCQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 0ACB3CCA470;
-	Wed,  8 Oct 2025 14:05:31 +0000 (UTC)
-From: David Heidelberg via B4 Relay <devnull+david.ixit.cz@kernel.org>
-Date: Wed, 08 Oct 2025 16:05:34 +0200
-Subject: [PATCH v2 7/7] arm64: dts: qcom: sdm845-oneplus: Implement panel
- sleep pinctrl
+	s=arc-20240116; t=1759932643; c=relaxed/simple;
+	bh=IrnD2O8X5hB5MwrlfqWITqkYfIyt6OZiSNUedEcDcF8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=D+kZbR0WNOe8BDpTujmZhouUd4h0nt3N8Mt7W6hbUqcy27oWBB7+hPo9zO0Jg/ChiU9ZFL1/Rwex7u0dnvhLVLklYM8sAT3wGgacBXzE0sfNvhK5aWW/te/GOWXxeHIyqzQuyqa5VUD8h1N75KRLKdi+y7YyzNx1HBU0jHdt56s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AnfLECuv; arc=none smtp.client-ip=209.85.210.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-7811a5ec5b6so701001b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 07:10:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759932641; x=1760537441; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=2S2XrHAuOcCepyqws2PwWFNO5GZ8yv1xZPuvvSFngn8=;
+        b=AnfLECuvT+yWVI6AbqSe4Dss9iGBdYqsZRJuKfhK1b/788ZgsOLUro46ACuWveq8EA
+         8hkuOre1PN6jhAEQZT6Y9fWVgFJwmtvLq+TlnpJtXhMB3CqpGMDzQ8AA1mT1RmyHUV0a
+         uaH/jCfSJkdRSUsEj6UZKIhgtctwLGm8DhSD4EdltEpdCsw/qVCaBaKLRkXnO8RY96G+
+         xOw6avcrFn4hooau8guHNjQ1CKxsEAMcyCTvm0tCGRiNg7jMvGibUNbKwtGyhKnVKHuT
+         bmVpBxz7rLXVBSlhzihmpDawiSc/MNBbBtnAtyNPohXSfgDhXBixQnj+Tb3AYrA1kgFa
+         saTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759932641; x=1760537441;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2S2XrHAuOcCepyqws2PwWFNO5GZ8yv1xZPuvvSFngn8=;
+        b=hdNOZGzq/ICAF1yieth1vvPsWz3CPj88AMmEiV5gladDNqeHIBHMpT8mx1TuoJXJH9
+         hLsbuUtqYbPLKiW3uDHyVLfnJfherxAve7LnV4gIqmzNZoAMCoOXoeoySPHo0v7igGzc
+         gqQ0zoUB6SG5QH9tdt578qGxr4WwQHNPGlEOkAqZSr0btyBbHhTvYN4/4Z9twG6VYm/w
+         9ovecbGwOgjMvo0hvKpE9S81YVgypwGNJ0hZ+ovaal1cGpD1tc4V+dYPpIu6uhznyzLQ
+         KjulQ3iuISyXj3QSnLpO9nnMETDcXMvcaq9jrBaaBXjCI2knARDnzju9H9+rOlyvOmsu
+         rbMA==
+X-Forwarded-Encrypted: i=1; AJvYcCVfU3KHGqu8lU3WpCjZdQNUka16PsV9fcY8jIq0IuzXPFUUIkmXdRWo76yh2wq1Ow39IKxK05WChnNV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvRLYnuZF6ZXS9iENc//QkoYHS9n13eRJ6BiWPZWwrMJaizxr/
+	++SLr/woX2sAAH6Qh2PzOXxRBx/6RaU/GeiDwDzB/jvZdwNzes//K8ux
+X-Gm-Gg: ASbGncs6OEpgjFxfwUCqNuRaDmnO1QvsQsmtuutY4kLD6es6kHoujxzTg/Hnhg3/hNU
+	HNdTJlrJle68mm7q4xvKYaFjvUD3+Z2BzaJrRJNAsxR1GhkIEcf1UeezHIgVUDXFO83IBgoDq7E
+	X5emSUZ34rphX2b4+esCRASqovFEUJ4KbpfgAjH+bUzPWM/QflMVV//CsPBSMyDNUw4JZ1ZhIY0
+	BXgxaLFnBVouXvVKkV8cdkRCC/I4PQ70M5OiYmgH7FWWHjvnNmWIkQv5R+Kl/Oyhn10bx/cx84L
+	TEusmNuV4UF0wwY/jHczwnpVMxELu/nMEKRdCplqfldr8ejlHGP2+wgLtVPDaZpzRxsXOOo/97j
+	Gj+5PdnQU+eKpTs/IbJ9iSKJ1Dbjryu5Q+8Qyx2DfNHXEtLQGp3YK31zjwcGzFmwTGXTIHqHEac
+	gIMHB3D8pvd9jei5gjnUs=
+X-Google-Smtp-Source: AGHT+IHyX5D/x1kAgnyjYEICDRw+TCkp9jPNdAwsxvT++V1jJP2L7aAzg7L5pRnzV72nWvHalFzB7w==
+X-Received: by 2002:a05:6a21:6d90:b0:243:fe1e:2f95 with SMTP id adf61e73a8af0-32d96d8d186mr12375975637.6.1759932640578;
+        Wed, 08 Oct 2025 07:10:40 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b6311462b24sm7698861a12.37.2025.10.08.07.10.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Oct 2025 07:10:39 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <96f5443f-5b40-4d05-b350-78d55a1d841d@roeck-us.net>
+Date: Wed, 8 Oct 2025 07:10:34 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251008-s6e3fc2x01-v2-7-21eca1d5c289@ixit.cz>
-References: <20251008-s6e3fc2x01-v2-0-21eca1d5c289@ixit.cz>
-In-Reply-To: <20251008-s6e3fc2x01-v2-0-21eca1d5c289@ixit.cz>
-To: Neil Armstrong <neil.armstrong@linaro.org>, 
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, Sam Ravnborg <sam@ravnborg.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Casey Connolly <casey.connolly@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- phone-devel@vger.kernel.org, David Heidelberg <david@ixit.cz>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1489; i=david@ixit.cz;
- h=from:subject:message-id;
- bh=mp3HRjBZ7F75KJMOIKY0ujssyiub4Jy/WN4kGAY5j8g=;
- b=owEBbQKS/ZANAwAIAWACP8TTSSByAcsmYgBo5m+piiWLIGs1xMLHjYcw1Kxi+dVr02ZH7Mmqu
- OeABLuKSjSJAjMEAAEIAB0WIQTXegnP7twrvVOnBHRgAj/E00kgcgUCaOZvqQAKCRBgAj/E00kg
- ctV3D/9lubFbmrou5+gTBa2JMEdcOKJUmBFaw+Vy/vJFor0U3Uxr5rhDtLdAK9/eQ3o2dfZ9LUM
- MJRT5qoA3SorlFBSrV5nVa5HdxdW5b+3hqIupb45Dhr0dm2DfAzT8UFHE1fj60Z57LgEEkVhFVq
- xVY9s9zGXToPHmA1QCvS5RDXCIMyQY76fKWEkKfB5e59hMJHTk0OsE2bbsyRwlMt1u9IWPArgrn
- hzRdI5DQerHDgdav/UHwrw83n/nS2t5R69n3BRGX0inbVaBiTtJZ7AzcDx6dN2sK00TyqYcRRiY
- FN680Vy6dXpP3Hbm6d07dFJbJ3Fm852k4Wc05+8bb0C693tE2JN5XjzFxDxCCggx+yGmhkrMuxo
- v6DqgVAlC1Xt33L0TXhFkslf5ULO1g/dMX3m4Dj7FGdT372tyY4n1J07zXihjgmsjMtZ0SkQTfF
- j1sfS2Q9TVq/f7gHXHhNvUysJitJXJeY7uneJ2ZxJvisOGJHWPh3ljoeOQdlD6350h3WAcgzSAZ
- 86felmyHVVn3k08JiNEwuvnD+pb0kJSyzuYhc9235+xO35LPjEXTWmNKgnh3EF1ziQm9m27xrbm
- HtL7grNbnYgi29vGxCd8+pZUUCDMhhzsaDgYLIEMrxxUkV6MBpcuOCKXuehVmMkSwQdDcq/L4qT
- 6H3nus+UNFuUMBA==
-X-Developer-Key: i=david@ixit.cz; a=openpgp;
- fpr=D77A09CFEEDC2BBD53A7047460023FC4D3492072
-X-Endpoint-Received: by B4 Relay for david@ixit.cz/default with auth_id=355
-X-Original-From: David Heidelberg <david@ixit.cz>
-Reply-To: david@ixit.cz
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/2] iio: temperature: Add support for NXP P3T175x
+ temperature sensors
+To: Lakshay Piplani <lakshay.piplani@nxp.com>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, jic23@kernel.org, dlechner@baylibre.com,
+ nuno.sa@analog.com, andy@kernel.org, marcelo.schmitt1@gmail.com,
+ gregkh@linuxfoundation.org, viro@zeniv.linux.org.uk, peterz@infradead.org,
+ jstephan@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org
+Cc: jdelvare@suse.com, vikash.bansal@nxp.com, priyanka.jain@nxp.com,
+ shashank.rebbapragada@nxp.com
+References: <20251008100713.1198461-1-lakshay.piplani@nxp.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20251008100713.1198461-1-lakshay.piplani@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-From: David Heidelberg <david@ixit.cz>
+On 10/8/25 03:07, Lakshay Piplani wrote:
+> This patch adds support for the P3T1750/P3T1755 temperature sensors under the IIO subsystem.
+> 
+> P3T1750/P3T1755 support two operational modes:
+> 1. Comparator Mode
+> 2. Interrupt (Latched) Mode
+> 
+> The HWMON subsystem is more suitable for implementing drivers for comparator mode operations.
+> Reason:
+>    - Temperature thresholds can be polled and exposed via sysfs.
+>    - Register reads do not clear status, allowing safe alarm state derivation.
+>    - Matches existing drivers under hwmon.
+> 
+> The IIO subsystem is more suitable for implementing drivers for interrupt (latched) mode operations.
+> Reason:
+>    - Interrupt mode uses edge-triggered ALERT/IBI signal interrupts, which can be pushed to user space using iio_push_event.
+>    - IIO’s event API (IIO_EV_TYPE_THRESH) supports timestamped rising/falling edge events.
+>    - I3C IBI integration maps naturally to IIO’s event push model.
+>    - No persistent alarm bits are available; so polling in HWMON may result in  missing events.
+> 
 
-We can DSI pin from 8mA to 2mA while suspend, do it.
+This is just wrong. Interrupt support can just as well be implemented
+in a hwmon driver.
 
-In theory, should give us extra 2 hours of idle battery life.
-
-Signed-off-by: David Heidelberg <david@ixit.cz>
----
- .../arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi | 26 +++++++++++++++++++++-
- 1 file changed, 25 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-index c216369fae237..fa538b37ef25b 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi
-@@ -463,8 +463,9 @@ display_panel: panel@0 {
- 		te-gpios = <&tlmm 30 GPIO_ACTIVE_HIGH>;
- 		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
- 
--		pinctrl-names = "default";
-+		pinctrl-names = "default", "sleep";
- 		pinctrl-0 = <&panel_default>;
-+		pinctrl-1 = <&panel_sleep>;
- 
- 		port {
- 			panel_in: endpoint {
-@@ -871,6 +872,29 @@ te-pins {
- 		};
- 	};
- 
-+	panel_sleep: panel-sleep-state {
-+		esd-pins {
-+			pins = "gpio30";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		reset-pins {
-+			pins = "gpio6";
-+			function = "gpio";
-+			drive-strength = <2>;
-+			bias-pull-down;
-+		};
-+
-+		te-pins {
-+			pins = "gpio10";
-+			function = "mdp_vsync";
-+			drive-strength = <2>;
-+			bias-disable;
-+		};
-+	};
-+
- 	tri_state_key_default: tri-state-key-default-state {
- 		pins = "gpio40", "gpio42", "gpio26";
- 		function = "gpio";
-
--- 
-2.51.0
-
+Guenter
 
 
