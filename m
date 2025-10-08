@@ -1,134 +1,111 @@
-Return-Path: <devicetree+bounces-224643-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 776D2BC68DE
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 22:18:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CE69BC693E
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 22:25:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 376733BED58
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 20:18:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC6713C0A16
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 20:25:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0630728507E;
-	Wed,  8 Oct 2025 20:18:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E05B29A309;
+	Wed,  8 Oct 2025 20:25:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eWEuV7Nd"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="sxeNVMkR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C82B727B347;
-	Wed,  8 Oct 2025 20:18:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 940C728E59E
+	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 20:25:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759954719; cv=none; b=qZthjgjKaPG68e/jV14r++le9aW2Ay4qpSbqRcPL50DkU7mUdaKmCqVJekVzz1LU302FubAwiiL13XWxGnxI6pndmJVpAbnQ48/I113DzdEzgz8YFcXWgdrIS0pXN3il1/qkTPQdP9KP8pn8EI2L37ShdHzjqZOPsRyx0cyWLKo=
+	t=1759955132; cv=none; b=HEvGt+x+qe5pUWSyBHUl3rHXINDNUNc94Q7fuHxpAkCkIxLuTJ3YPtRT3y7l2OnmqGXjhUBs0bmASp1UcGAlBYj+z/CQGJvaYR6iM4iW0izJ90tf0kl1CHKT50Iv8Hj2IEkIFrTR4oqFBqKiMa5klkin9UDP2r+QdGMsnqq1izk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759954719; c=relaxed/simple;
-	bh=NPfFVoW/LsVVuz6xy4asuQtfUdYNXIh1K0Bl95lxHK0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K7cHN5gIrC3B0Oap6S/R+GFVEuHea0q47V4O0NNo765elBwB3FJTAQqCwh1eaSRAx1dEO4gp6KDfAFslr/5e3GY34ieStalMFAjHuopPBRuxgsBRIbEjFA2ehc1KvilA3/ThjyXD9Uz/X3nheZrBDy1fuv3vzJ6fE9vwMyXnfGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eWEuV7Nd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51887C4CEE7;
-	Wed,  8 Oct 2025 20:18:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759954719;
-	bh=NPfFVoW/LsVVuz6xy4asuQtfUdYNXIh1K0Bl95lxHK0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eWEuV7Nd5F7lsXWr/UkCGuvskUUzW9C9N2qKdcElDqx/deuTzBTWJueKZCqT5MWC/
-	 kE9/oj3IagxHP2hfMgU4vzc/Njx/JocASOAc5uKkczRX+NIlOw6Mqyp/fQefLpzg8G
-	 wdZ0PE/DJ3aqz4hxPAy53TqIx2L5wSKfK5n3GRFbuiq6XWwlUvSyo5gBcH5hYoqXPG
-	 MjuNTh9Zt8dK2y/pJsA6K5jRLX+DyJVYc+XBwb5npwxFnU6Tg5tJW+37C8v8Bly8tm
-	 xAGkxk47sVjIiMklhP2bNpjIUHz4ummV0re5RGFKkE0hpc6l4oMmX042tikLqLgpwE
-	 JgOoQ+b6LPL7g==
-Date: Wed, 8 Oct 2025 21:18:34 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-i3c@lists.infradead.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-iio@vger.kernel.org, joshua.yeong@starfivetech.com,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 4/5] dt-bindings: trivial-devices: add MEMSIC 3-axis
- magnetometer
-Message-ID: <20251008-subtitle-estranged-b35dfcd2d3a7@spud>
-References: <20251007-i3c_ddr-v5-0-444184f7725e@nxp.com>
- <20251007-i3c_ddr-v5-4-444184f7725e@nxp.com>
+	s=arc-20240116; t=1759955132; c=relaxed/simple;
+	bh=pkF8t1F/yS30PeNW+BPwG2wyZzv9rA3CJHnyM+CBV8o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uHXbnIaPXw3TyMNe0ZMZAv6p0BzgqIT/4wpl9JL0XOL/S/atZpOzpCsin6BGL5mlslcWqXJvFr6lMipD8QTGTSonhhkjrH9V8VZqk5UUuO7Xu8AElB5lM47ze0Uw84B6/Az8uzPgSZv0865yA5K+hei8o57BfyPIRfsxYZYrjUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=sxeNVMkR; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3fc36b99e92so1076241f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 13:25:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1759955129; x=1760559929; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=pkF8t1F/yS30PeNW+BPwG2wyZzv9rA3CJHnyM+CBV8o=;
+        b=sxeNVMkRmvVcIW6G1joRFUabekdHRsrGDJF8sFzTJgn2g+47ANZrKMUjNMjyBlA31y
+         8zCPbJcYNoxEYfc4tRYmModsMlOakxwYYvzHcMMPljd2/gsD4I8DdPIAU17Yay6Mq3aZ
+         GIxijUzHxSvCgiCpMo06gIe33O6O3pW3eG+hgqwmKcCPSJm88stGNILXlf0i9LaY30U6
+         eWeaI5xwWOqgF/AuQWGk01vMyMc8lzwqqNiZgp8iFU519CeRM/Ag69R6d3DgK9wMuDuY
+         ipK7s2kXVY8FOf5sEknF57bSytsPwkkJCpnc2VPITsCBQ53j36BwzPIStFvJOX6Yiw+O
+         +WHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759955129; x=1760559929;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pkF8t1F/yS30PeNW+BPwG2wyZzv9rA3CJHnyM+CBV8o=;
+        b=FOr/XelN7re4tkfY8+16/xjNkFYtCQq6Dj31g8WtwuFx95ijjQR8c+DPeElfgh0DX9
+         2Qv9J1psgFKm4mDT1lvY4bpYgCGGMX7LUXsOkcpLyDRcl93OVS01xOYRo7skaHtVMzoB
+         hA8LcsX0X/fFbHZg7Ep24SSqOoR1tLMVU+wrZMJSgpMTANpGWXg7FD1ilpA4m4yu0206
+         cgxxEhT6BjeOLVqzd9MS4k9CtzR6jIB0Ol0YcMLG9WVGYq9ZzmLN4EP8u+Ck08d2Q3fO
+         8418siSfcvmv5+8sI09uFXNd9ACsc/i0RHGmtw+wdHd1+OR3jXqGObLGI1ew+KSBeBnq
+         KZ5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXFuf5ORbaE7RJ351vbOcjauc42xi359sbu/STUKQbLWfHteT/2qTdy8xdiFl9i6WfdyjS5NNX1841k@vger.kernel.org
+X-Gm-Message-State: AOJu0YyNljAgtWmufaLdd9e5tIxCdF4oxjfn4MPhRe1VgJeX8p61Umfn
+	10QSIF3IAUHPQvUTsUmX0wg/j7UObjWcWgLYUyIsk4UwlylX6wMXjKZEU3ElhtlC30+gA4j4tkS
+	ffoqrr43rXlvK/vzsO9bEsl2M/oABD2QUA5p64xbd
+X-Gm-Gg: ASbGncuxdmNYuGvywKypNZSllrUYgxzQ5kLTtKcFjQaCAe7WACjehhWq4HJKTVuJopd
+	7bau8qD1HStwzfi9hK0FVcBc7qjuKZYRwINdU/NU3FN9v722BbKBx4taN4G8KoFyZHPvLSXdFe/
+	hqcKXxh1gxPkFTghbf7lv2+VH6mVq2pAV5nxGanXFKWCuvrG7Be/xC/sNJZ2SF2+CVKD8MZ5HWD
+	DErQmdfqJ3Iz7Pagbtbj5jKoQpHr14V4IwrTd1/S8vMfikHTOF3AXgUh30cPCu3U5bdw4fuJQhb
+	nCk=
+X-Google-Smtp-Source: AGHT+IE7vszNjL34ga6ZlF87FGJyCFvkLaT4QME4cTsoSkHUnw1osUy/bHfoR1cCedCCUNKAN+lPRA/JTrLq5/lblcU=
+X-Received: by 2002:a05:6000:24c9:b0:3ec:42f9:953e with SMTP id
+ ffacd0b85a97d-425829b0556mr6352133f8f.7.1759955128611; Wed, 08 Oct 2025
+ 13:25:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sqGdDHF1UKLk1vs2"
-Content-Disposition: inline
-In-Reply-To: <20251007-i3c_ddr-v5-4-444184f7725e@nxp.com>
+References: <20251001193346.1724998-1-jthies@google.com> <20251001193346.1724998-2-jthies@google.com>
+ <20251008160354.GA3764744-robh@kernel.org>
+In-Reply-To: <20251008160354.GA3764744-robh@kernel.org>
+From: Jameson Thies <jthies@google.com>
+Date: Wed, 8 Oct 2025 13:25:16 -0700
+X-Gm-Features: AS18NWAXqAZMg1YTF3Xq_FAQ2QhulCuEZTvP8EM0hBHj6dvno26tVBuRXa5noQ4
+Message-ID: <CAMFSARfvBQrwdeeCaBbqF++HGNyAza40usFLtAoij4Y52r64aA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: chrome: Add Cros EC UCSI driver
+To: Rob Herring <robh@kernel.org>
+Cc: akuchynski@chromium.org, abhishekpandit@chromium.org, krzk+dt@kernel.org, 
+	bleung@chromium.org, heikki.krogerus@linux.intel.com, ukaszb@chromium.org, 
+	tzungbi@kernel.org, devicetree@vger.kernel.org, 
+	chrome-platform@lists.linux.dev, linux-usb@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+> What's PDC? What's UCSI?
 
---sqGdDHF1UKLk1vs2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+PDCs are "Power Delivery Controllers". It refers to an IC which
+manages PD communication for a USB-C port. UCSI stands for "USB Type-C
+Connector System Software Interface". It is a specification maintained
+by the USB-IF which defines a standardized interface for communicating
+with PDCs. I'll update the description in the v3 series to provide the
+full name for both of these terms.
 
-On Tue, Oct 07, 2025 at 04:06:16PM -0400, Frank Li wrote:
-> Add compatible string 'memsic,mmc5603' and 'memsic,mmc5633' for
-> MEMSIC 3-axis magnetometer.
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> This is the exact same binding as google,cros-ec-typec.yaml. Why are you
+> duplicating the whole thing rather than just adding a new compatible
+> string?
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
---
-pw-bot: handled-elsewhere
-
-> ---
-> Changes in v4
-> - add memsic,mmc5603
->=20
-> Changes from v1 .. v3
-> - None
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Doc=
-umentation/devicetree/bindings/trivial-devices.yaml
-> index 7609acaa752d5c1c89a26bb007fa38357dee1a28..72786eebfbd63beffd2a09fc2=
-0c7aedbe9e96a8e 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -225,6 +225,10 @@ properties:
->            - meas,tsys01
->              # MEMSIC magnetometer
->            - memsic,mmc35240
-> +            # MEMSIC 3-axis magnetometer
-> +          - memsic,mmc5603
-> +            # MEMSIC 3-axis magnetometer (Support I3C HDR)
-> +          - memsic,mmc5633
->              # MEMSIC 3-axis accelerometer
->            - memsic,mxc4005
->              # MEMSIC 2-axis 8-bit digital accelerometer
->=20
-> --=20
-> 2.34.1
->=20
-
---sqGdDHF1UKLk1vs2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaObHGQAKCRB4tDGHoIJi
-0kYFAQDlJRBo3V6un4TdXGebaBOYpaei0g/okMdZdefOo2s6WAEA7JKupNoV9yYg
-TZOT/iUlzA563LqVO58o6aXWJEQGyQk=
-=vzKo
------END PGP SIGNATURE-----
-
---sqGdDHF1UKLk1vs2--
+I separated these bindings because they are associated with separate
+mutually exclusive drivers. But, I'm fine with adding this as a
+compatibility string in google,cros-ec-typec.yaml and will make that
+change in the v3 series.
 
