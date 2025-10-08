@@ -1,147 +1,138 @@
-Return-Path: <devicetree+bounces-224452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B490BC409C
-	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 11:00:48 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A4E81BC4123
+	for <lists+devicetree@lfdr.de>; Wed, 08 Oct 2025 11:04:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 22F7E4E4D87
-	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 09:00:47 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 78F694E58D0
+	for <lists+devicetree@lfdr.de>; Wed,  8 Oct 2025 09:04:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4257F2309B9;
-	Wed,  8 Oct 2025 09:00:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7136C257830;
+	Wed,  8 Oct 2025 09:04:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wndgDKdl"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="P/5hSsVD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49F581339A4
-	for <devicetree@vger.kernel.org>; Wed,  8 Oct 2025 09:00:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEDB215278E;
+	Wed,  8 Oct 2025 09:04:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759914044; cv=none; b=ZvtNjAkWBf96T3Cj/8VHeeq/DgtCk08ovTqiaLZ+kM9MGAgPFbXqmWxWxew/FCeMAebdf8tMoWV7lhwcHjYliJqLZD0u01hehKzDKZnNH7in2DC/L4aOaszAjpznVJxoHX1uBlNCeO7BhB2wEsayiVNMkQJhDS/6CFKSEV9WHKo=
+	t=1759914280; cv=none; b=F401OK8uISJ3cU48Hdb0xBeR7AY07+ltqjSNy6fcmXAxscmjAIc82SGfN/dAPCShW04tmbYHU0MT4hpAMQz14CnPq/xTA9iMLU3shTZ9TnCKRgCFOsr92CXxVl9A3m5hQs3MU6XMEgztrQk5kvu9RvpckQWmxO8a9Edkos5JSc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759914044; c=relaxed/simple;
-	bh=Pz2l/rMRcLdX9YAbOqnYcT/TpRjS8ffGQdCMHByptm8=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=VhfAaebvMGrymUjlusokt7kxsZIVxkuWTNdS6Y9miJzXX6MChtDeGlIqa+DFH2utyA2ShtK7EaLKzQMetnRaRIX7RvX6Eta+lsV9ITdhi24E550D2Vc0wC7BQxpLfqYJIwdshBCXBD5alHnUKKY+b4UbpwYTSmCXuwll19o3vBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wndgDKdl; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b3d196b7eeeso1080041466b.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 02:00:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759914041; x=1760518841; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Pz2l/rMRcLdX9YAbOqnYcT/TpRjS8ffGQdCMHByptm8=;
-        b=wndgDKdlGjvhN0lkBNwHgWGjKLY1qPIy5WutxFF/RnXBxbZeETAJREijUjNPtiW7OG
-         UTKU60YS+sqqDRLPPaiTc2OTdF45/Y+tAADb4ZGCyCg9ZqlW0B4lEueovVjsKmD+bISN
-         qeSX+KUndXHSICoGQoSdUqcCZl5Uq97fQDEcrjaTdDqJ9mD8IkLKJmyIGom/dTz/AZt6
-         MUlI+VAtPyMDWxGdC81mXmEPWO8BirpkgxbtPuAVnJvj5fui5YK9LTYIQNawGMcRH97F
-         CGgXkZtoBWwI56pYfCRkKSiMXQdOiGheU47yCwxyRc7564qpkugHXyqTd0+Z3k5ehUta
-         0dFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759914041; x=1760518841;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Pz2l/rMRcLdX9YAbOqnYcT/TpRjS8ffGQdCMHByptm8=;
-        b=WSFkcy2FmhUWwa6WrhtopOzLgr9E2lOvMckNU+uq2d0hKUXpw+WRQI9+hsuYY+PFl9
-         PVfU5+XgYShPVMXGD+mkRNQcL828SVw7aQkbntueZ9T/mF3kVQZymjdKHjp5WZiJ4cl1
-         1FrzNPJv2YpB8MW+H8HBTsa6r4wETEjyJYDFZAZWolyjIeYhCzFYoP40Z/4dhZH+KnDE
-         fgnIgllZr9Z4x9RP6qpS90rARai35uQoRE2ZgHErxatJH1kkE8TfKBspBBX9fC6GtENY
-         ujbev8r2M5XNPMlx0y+X/7AIG/Iwvhvo3pB65oIYqDcn8CPEj2za09Er8qvd5tHa5Wu9
-         GCyA==
-X-Forwarded-Encrypted: i=1; AJvYcCWx0TRvXPVKv+HsJywWlA9gSB3Wo6rjZIusRNd4vY4Ny9OiyMabdH5oWV8BTYrhlebnI96NUA2LeNGl@vger.kernel.org
-X-Gm-Message-State: AOJu0YydrQYx4f6QVc8nh1kOMHXDzoZ0x3KBbnUYal9tq9GAWe1tTuaZ
-	UNrddGmIo5P5jMT7DJXihisfvk7wP5iaJ9ApOh9ykJRElzj6Q++0V7N3MnoKQNqZshQ=
-X-Gm-Gg: ASbGncs/RJJGzOIIVZQhn+m4LzrHWcQXtEE3VqULAT7RmOjy9PCaeVEXE7vAp04p/S3
-	LPs5xs1V0/taUm8QiHMMwUwk6jsKpZ3TRlD1WbQitJY+2D8prOVVopgepMv+DmUpsJVTf8+Jdhv
-	5hzG+mUblDiAMYkZ6D1HehazOPVYQfDyj1DBODNqlDnkh/DBCD/mQejF+Ij5+PbsFmvA5hJMXXy
-	bwP0R6yN5E7Rs612plCjAuRVYkdJLE3wTOsHs5IyKYxHDnFGaSmWLlIH5c/b5utaNszsbuwQ9k7
-	Vg9NGA1ltFVhjupNhNmIN9J8xi+fJVtjuf5nnBVpLtWiPkpySHWXUlXfG24B4t+iddbxwlx8Oam
-	zgSXFR4CRafhr6ui7IsuQCHmEDP0biVsL3UOMYc6PQo2wMMldkT411Q==
-X-Google-Smtp-Source: AGHT+IEiFXBypqPmbDwaI9Pl80eN8BhmwecP4sAYuvQIiYkyo/y3ydXKvIjc3+w6d6/oIwQoYDijOA==
-X-Received: by 2002:a17:906:4795:b0:b41:1657:2b1d with SMTP id a640c23a62f3a-b50abfcc8dbmr297326866b.50.1759914040532;
-        Wed, 08 Oct 2025 02:00:40 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b4865e7e8cdsm1604299766b.38.2025.10.08.02.00.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Oct 2025 02:00:40 -0700 (PDT)
-Message-ID: <15e8c6620fd7b49a64df9aad75afccd32995cf29.camel@linaro.org>
-Subject: Re: [PATCH] dt-bindings: phy: samsung,ufs-phy: add power-domains
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Alim Akhtar <alim.akhtar@samsung.com>, 'Vinod Koul' <vkoul@kernel.org>, 
- 'Kishon Vijay Abraham I'	 <kishon@kernel.org>, 'Rob Herring'
- <robh@kernel.org>, 'Krzysztof Kozlowski'	 <krzk+dt@kernel.org>, 'Conor
- Dooley' <conor+dt@kernel.org>
-Cc: 'Peter Griffin' <peter.griffin@linaro.org>, 'Tudor Ambarus'
-	 <tudor.ambarus@linaro.org>, 'Will McVicker' <willmcvicker@google.com>, 
-	kernel-team@android.com, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Date: Wed, 08 Oct 2025 10:00:38 +0100
-In-Reply-To: <e91f6754bf13f1d42402fb708dfc2b3d7bd59a6b.camel@linaro.org>
-References: 
-	<CGME20251007160147epcas5p305e74b7b3449b934687396e9c8aa3ff4@epcas5p3.samsung.com>
-			<20251007-power-domains-dt-bindings-phy-samsung-ufs-phy-v1-1-d9030d14af59@linaro.org>
-		 <002001dc381c$85e17fa0$91a47ee0$@samsung.com>
-	 <e91f6754bf13f1d42402fb708dfc2b3d7bd59a6b.camel@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2 
+	s=arc-20240116; t=1759914280; c=relaxed/simple;
+	bh=SdvTlXMKJvyPb3w46Jgj04UcW3a9z7MDoWTznDZvu1U=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=b1GPXpMaf4hwJHpMwctFwrbtrac/5xgUxulEjzxlVnh1CytHXTj/CQEP+05BKHpgzpLIxJj/ghOSxdBc2ZI7+s4S/RLsJ849kiEGMgvtqa29IsklpeMvicwwy1XCOrmeYDWs6wRM1IYFxGbcVQJkmfBDzCKk6WHdw1DCEd4pA9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=P/5hSsVD; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59890ege010088;
+	Wed, 8 Oct 2025 09:04:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=6sCbMgejXco/pdMQUUsUKP
+	TBooMiMHR2wg23BmGSnGA=; b=P/5hSsVDdHiariFcyILuxtFlYHQEjPjOl+RlV7
+	nlv0WjGbz2Bpwy5mbUGHsbqnQNVI4bSLPXplbnSBXPUa0D4d3zhbMCELgKP73tOy
+	jXzmXnfQDePs/ZyFAJ1hXxLh9/zTzBLEQj6Dh/KkxQnmVZ8BqbbQqT6acQMgfa8o
+	5RDpvbbbhMyyP5+VhPjtroqupdAuBwJyTLohlWIUuZCytREOV2ltanGBVwYwGOj9
+	8CgWfK4Is+bSLi1+aW5bgp7zd6yeApbasayFipBNnYulqlQQL5JLfMNgacRZWw34
+	X9kJZL+2B4Wtupcq5elY8DiDNbGpLu47MtOV2TDcV49Irm7g==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49junu9vwc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 08 Oct 2025 09:04:35 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 59894Yts028553
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 8 Oct 2025 09:04:34 GMT
+Received: from hu-mdalam-blr.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.24; Wed, 8 Oct 2025 02:04:29 -0700
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+To: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <vkoul@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>
+CC: <quic_varada@quicinc.com>, <quic_mdalam@quicinc.com>
+Subject: [PATCH v2 0/9] Add QPIC SPI NAND support for IPQ5424 and IPQ5332 platforms
+Date: Wed, 8 Oct 2025 14:34:04 +0530
+Message-ID: <20251008090413.458791-1-quic_mdalam@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: O3pWC-BqnCKpTxeY4SqgQ9LkbNDNtiLV
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA0MDAyMyBTYWx0ZWRfX7MjHqXdmszv2
+ BA2F/WrEPJykdt/GzC9yeDFk8jVPldsiJS63Ql1jjriq+zVe1S0cPSzj/o3lHNV233gutlBMIbl
+ hEti7Hqt/m+y+VploTTy5K+bUVtrF/jzCXhLVVbVIjUsbf66O/Y9KSYHC5hlQybrrKoDI5/SiB5
+ woLGjcwVjXMCnCJs1h5c1Xew8B0sRA8gQpBYIWyZFl+mnbs93NKcqcEllRhPpAPDlOR2m9CjOZT
+ pwCe1C06H8dRN2Jpa4fIG4moONfGIoxYthLyv750otyr8uUq3G3RskCWXp4iREPpQ6jFkdE9uFg
+ JSRv/RQCkNL9pD+nFiqEYQDbHAMduI5v377B/2R3bOxBta3dB8JS/zZGUrleaYPRpiivqYEbv8Q
+ AfnN25dno+H0x0C/tVCKE7LSTfWxwg==
+X-Authority-Analysis: v=2.4 cv=CbIFJbrl c=1 sm=1 tr=0 ts=68e62923 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=x6icFKpwvdMA:10 a=bg76ppHvD6wD7w3OU-AA:9
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-GUID: O3pWC-BqnCKpTxeY4SqgQ9LkbNDNtiLV
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-08_02,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 malwarescore=0 clxscore=1015 adultscore=0 suspectscore=0
+ spamscore=0 priorityscore=1501 phishscore=0 impostorscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2509150000 definitions=main-2510040023
 
-Alim,
+v2:
+ * Added Reviewed-by tag
+ * Added Acked-by tag
+ * Updated board name in commit message header
+ * Added \n before status
 
-On Wed, 2025-10-08 at 09:07 +0100, Andr=C3=A9 Draszik wrote:
-> Hi Alim,
->=20
-> On Wed, 2025-10-08 at 11:56 +0530, Alim Akhtar wrote:
-> >=20
-> >=20
-> > > -----Original Message-----
-> > > From: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
-> > > Sent: Tuesday, October 7, 2025 9:32 PM
-> > > To: Vinod Koul <vkoul@kernel.org>; Kishon Vijay Abraham I
-> > > <kishon@kernel.org>; Rob Herring <robh@kernel.org>; Krzysztof Kozlows=
-ki
-> > > <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Alim Akhtar
-> > > <alim.akhtar@samsung.com>
-> > > Cc: Peter Griffin <peter.griffin@linaro.org>; Tudor Ambarus
-> > > <tudor.ambarus@linaro.org>; Will McVicker <willmcvicker@google.com>;
-> > > kernel-team@android.com; linux-phy@lists.infradead.org;
-> > > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Andr=C3=A9 =
-Draszik
-> > > <andre.draszik@linaro.org>
-> > > Subject: [PATCH] dt-bindings: phy: samsung,ufs-phy: add power-domains
-> > >=20
-> > > The UFS phy can be part of a power domain, so we need to allow the
-> > > relevant property 'power-domains'.
-> > >=20
-> > Can you cross check if there is a separate power domain control for ufs=
--phy?=20
->=20
-> I'm still having some other troubles with the hsi2 (UFS) power domain on =
-gs101,
-> but I can confirm the usb-phy is part of the hsi0 (USB) power domain. So =
-for the
-> ufs-phy I presume it's similar: it should be part of the hsi2 power domai=
-n. There
-> certainly is no separate domain for the ufs-phy itself.
+v1:
+ * Added support for spi nand for IPQ5424 and IPQ5332
+ * Updated bam_prep_ce_le32() to set the mask field conditionally based
+   on command
+ * Removed eMMC node for IPQ5424 and IPQ5332
 
-After double checking the HSI2 HDD, the ufs-phy is indeed part of PD_HSI2.
+Md Sadre Alam (9):
+  spi: dt-bindings: spi-qpic-snand: Add IPQ5424 compatible
+  spi: dt-bindings: spi-qpic-snand: Add IPQ5332 compatible
+  dma: qcom: bam_dma: Fix command element mask field for BAM v1.6.0+
+  arm64: dts: qcom: ipq5424: Add QPIC SPI NAND controller support
+  arm64: dts: qcom: ipq5332: Add QPIC SPI NAND controller support
+  arm64: dts: qcom: ipq5424-rdp466: Enable QPIC SPI NAND support
+  arm64: dts: qcom: ipq5332: Enable QPIC SPI NAND support
+  arm64: dts: qcom: ipq5424-rdp466: Remove eMMC support
+  arm64: dts: qcom: ipq5332-rdp442: Remove eMMC support
 
+ .../bindings/spi/qcom,spi-qpic-snand.yaml     |  2 +
+ .../boot/dts/qcom/ipq5332-rdp-common.dtsi     | 44 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts   | 34 --------------
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi         | 27 ++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5424-rdp466.dts   | 44 ++++++++++++-------
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi         | 27 ++++++++++++
+ include/linux/dma/qcom_bam_dma.h              | 21 ++++++---
+ 7 files changed, 145 insertions(+), 54 deletions(-)
 
-Cheers,
-Andre'
+-- 
+2.34.1
+
 
