@@ -1,241 +1,131 @@
-Return-Path: <devicetree+bounces-225040-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2AC5BC9C4B
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 17:26:26 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85D5EBC9BF4
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 17:25:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 455B33BE186
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 15:25:43 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ADC884EFC13
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 15:25:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDFBD20102B;
-	Thu,  9 Oct 2025 15:25:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 826E91EF09B;
+	Thu,  9 Oct 2025 15:25:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LDNGhLiS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fEh42Sh4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31BB01E1DE5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 341681E492D
 	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 15:25:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760023512; cv=none; b=WqSRPq+KyuAlLhYKpcWD+OvdmFeZXiZrJcZBXeurRQdfjSzYY6tIcll/PUH25bU0MMlelBOdEz10bPy1A6J8rLXk2r+wexwUU/1zkMUsjQfwcapoGrMApImPeAAbwhPJ29gZQj+aqPWe88dCqh/hv82SYQLIfvSLm9Jz/ZZNO/A=
+	t=1760023510; cv=none; b=iJH1BhHCjDWVFv7QSCi/Fvi1n1RAiPIhjuxKccI5p2CJZC5lo7ulnpC6DuzM8z5jtnmDuigJ6fYvntmnW/tHM8niRI+qblIrE8ixs6PB/JhA2oTnTioPuvZISw2BnoG69P1V2NScuhFHaa4W21gxDGFcRGPqg4WPiTh1N5NUpog=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760023512; c=relaxed/simple;
-	bh=NpJ4lQfb2fZu9QwAIvzljS9KYx6hqhDyEyM/zJnLT68=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=kce3Fn+xy4uBNtdvJXHZBWPS8Gs8SRHWWY9ezcIXs23XWSkQ6+WAfFKe8owQfrYh1Dzt/CgdLcbE3Jw3xnv/IHMCf17zsaG0PA9p/sNZTDQrkQwcf83+NNy0IA4or+tGjOhL0IGDR/fkr977O7MgoeOFHeCBQzF4Fcdygy0wRUE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LDNGhLiS; arc=none smtp.client-ip=209.85.128.41
+	s=arc-20240116; t=1760023510; c=relaxed/simple;
+	bh=81jybtZ3s587CJJH0yCGA5kZLJlEWI3joc5fyisw8bc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=FGzMUOSuRga4zY9q14vQT9jVr8+CwwXFUGTFLWvme246zt4sQO5tydOyKsxemZZmrH0aDb3I9Sxo53E5u+UT979TURqyfM/RWPVCCfHcBFNlP5rkP36Mf3Dhd5u4KtFshMtn+KlUoNIjHGdBR1C5YOaMxDtAcq6rzMLD5Xy/y4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fEh42Sh4; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-46e4f2696bdso12170095e9.0
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-b3f5e0e2bf7so188043966b.3
         for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 08:25:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1760023505; x=1760628305; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aaeUDsfd9sTW1180jO+0QTGZpCCHWZiAOxn4EOO0ha0=;
-        b=LDNGhLiS4vYC2CzloRRzmr4xYn66yF5zPyoEaEeuH3qE0eNmv2ptqSj4ZimXCIR7Q9
-         4L8vscEQUwfxr6kc90c4Fp2Iwvjmi3S01FuaW74sg27EKly55TwD1+OYBSIW0jsU80qO
-         b/EGkSVAWZ7q5Mg+mWvXgZZU6T4Sgxxv2NEaRR4D6v5Suo3D7v0teR2OXaVOdClKqJGJ
-         NSjqRBDAxwv2mD4EZfvi7J9skx4lPJ89IlvOtfjl7Lckgw9T4gweA3+7Eav+VLVabwpC
-         GECp8+VfDlpu/PypF0sMfE2+9pl4uSJDUXpY9po7arRN7bKEIYO8AMpveuk7lK5AbSA9
-         XdPw==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=B84jNTg7Yo8n7BGFGvQ15A/U09IRq0iw+ObZ/DfjbTI=;
+        b=fEh42Sh4ZTts64I9k2hI4wxmvYV/aV2JAlYlunGkCTwvM9L1hUhnv7+dYxSRe4YS53
+         pj3QAapZrKEXQIPUuCZ7bvfbr8HT51lpgDtkdd1CHWkhq42Zf9WMzdoyfB6CLtUSZsiF
+         6fuIHhLr8YETYNth6R6Cavjvxz8YKrQzoab2cxpXsHMucxSKzQpQTxcXzYbe5ZtyMtCO
+         kZ/xcXEO6gwJQvsPKdR7MBbcT7oXMCELC5KXR/POQ/v6+wquLb0Mxe+yPQ4eRXXkIh+n
+         +EgGyx4mL9FB3Gf6b/MZCemuqlIPSMSHcetaEhukHJcexbl4dH5KJDvNDZSbTPY+Yicx
+         cFCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1760023505; x=1760628305;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=aaeUDsfd9sTW1180jO+0QTGZpCCHWZiAOxn4EOO0ha0=;
-        b=bvw7Oas7/crw8823kuHt48JysJYkAeIe9UbDjiy/ZjPBjEQ7IIonc4tFwehZPDgHvV
-         gnbBIL5ZMosgssqcuWWxd5IfwIlqYN8qSUvUvcTfZwUOllzl4/U5vxZNRId4AR5rMO1f
-         /sPz5VZ+pTFKFStUkOSQ3ypDh7X8XS6IhGGftt2cWMzVKitIvgMpLnlcsB3KJrJIrJj6
-         /t1Kr1l6BJ48r502x/YhIwzweIwc3+I+PxsTQxdnyJtEZcukcMHku9tBm3tKLPrqt7CG
-         rWgWM9Fu3Dp+tzWsEwLemK4c8drTMytiZCdFg3rtjFzS1O73EnH3pXCbEzyX+vs1JPXx
-         NdjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW0M9BL0U/FQJ5cvN3gY4lE/kGgZqcPRuI8YiecjfnMl0nlj9ZAVUpzPKOlFEP93ADSiNjx+X1z4a1v@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4vEo5hR+POUOCadQjxUoEbzbCc7sjGaBHdEEEVeHiyVeq/1CT
-	8++NObn5iasVsVcZcf22Tq36/VwMj9HSRI5E2LoQfn19Ennjpb5iMErLvHNEUNTqelU=
-X-Gm-Gg: ASbGncuskX7/Lg1eBpax8/t9F0C/pNLDy5Vsdzu88Dv0ASuNPVns9A/hjH3vPbdLzNL
-	n22leSPr5QoywUOEnmx/PNPcDGSQd1QbNl5k2FinjnLAHiEBTXDC1UP56vxHjQbl93rAf+PhoX0
-	OZnh3GYnHgRRj40YB75lOAJs6wmUYGFH0f1oGewFmaPyNyoOmCwnRU3/MeGmQDkfWIJn3ZHMx5d
-	/ayzqFuQHfqNd2htcfCLLPMVap0FjuMGhixXRwOzkC4uBZbEOkjK+IDh8qZuyp4R8uw0B+EN+DY
-	HCiMvy/sW0beBqQMIPJc+hzgz8NGwIOLt9mMryVRcvgicj5ND6460bdHgmZIr4VQqlt053mlzQr
-	HuXuSfbrnrsn7euUVroQLwwXCboz4Mi1P8fIOekBrkeJ0VKFocIRuXWEo3vjgrlQf
-X-Google-Smtp-Source: AGHT+IEa0ViiyonOKuB72WiAM3yriwHBzcChfbGV0FyxvLukHsxAnCh+5OaxHUjUMTlExydg9IoGog==
-X-Received: by 2002:a05:600c:1f06:b0:46e:384f:bd86 with SMTP id 5b1f17b1804b1-46fa9a9443fmr51283015e9.5.1760023505262;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=B84jNTg7Yo8n7BGFGvQ15A/U09IRq0iw+ObZ/DfjbTI=;
+        b=rtZBLTp9AkjhVbxrseMiHOPhW41GZYrmAY+3d3aZhKUPO1XXu1QaXNCV+MzZu+UBgs
+         JU3TRvkGt28mJrHnK9/zlCgmU5jWG9K/ngC3xA9ERb9/FDJJ/rUbZxBjurCbcRZqEjey
+         wbyNMI9Azibv4FGFQhcoKlgkN448pHD8Tj7FZcAj6jFCj9wWfTn3j/34Nuv3s0WJab6j
+         vW/LSwKadhsn2f+jg10o/cdj5i7GelmmyyJunAxkCdUjfC0bBSBKf+72R20pGRXJGVW+
+         QmvQ0QqwxMxxdPVctXY9dpT5GzM2VSf925FPA25+hEcFU7EsdmptncXBcOCdSJPHkWne
+         TzAg==
+X-Forwarded-Encrypted: i=1; AJvYcCXek6TqSF47PAFNKWUvtrIi23njRRBJbxocnMc4uoYMetWvZaFktO1a7RLOAqWOInUw4qgl7HegDlsA@vger.kernel.org
+X-Gm-Message-State: AOJu0YyVS9017EJJjuJ7sjyOO9Tu+7TWe04wxfT+xqZ4gRxoBQasvXZl
+	aTeq7R/VBq/mEwM+fOyOyhCrjks5iifCfgNy3UD7Frvsg5pRY1ZBvmCtWxtuCvgCXnA=
+X-Gm-Gg: ASbGncuyxxYjScy7XQJIQ8XduoRd0NKz5oAYKS64FU5Vb9PyCGSjLlb8mS9OZb8BnPb
+	pkjHfeRi75WnxKIUzeIPGbrHV/Ilz8yPyKiSJdDtDthlJ2r0X3NNCBLWSpUOsw6wgmVt1I6IN2o
+	6vSIe9j/ku4bzYIphFl+tIqWJBu5So1VJXQhQugu6WHiCOeWY6nySdrc0Hhkeye+46ulHbOSFE/
+	JsfcBnS9oOY0lE2kxOW+Os3McdGp7aw1oGHghfKn31u6w9jIUP/MBiCBix8K7nmBoNDFbEoDqk0
+	JQpxtB+4iQay9eigBYR9cYz6EsefMPjjFwItqLrJ+vzepozLrA39kylcP5Nyr6jAe16soHj9HqG
+	0+Gcq+IgsAQAxEB609adfJpkZAog/9HuQtpFoQ1mBHmzshcHqfbXJDpPY+QwXv3oC8TwXkOapv1
+	jruMRdau12o1BMeiZA/b6DmuCp5R03XL789wQbLEO+
+X-Google-Smtp-Source: AGHT+IG4E2/BkqY+k6KCaob1FvNFhboNdxx7lEaSwbr4nblUCdc4u24xC8dmKvD/tTwPIY9VM74oUA==
+X-Received: by 2002:a17:907:6d19:b0:b45:60ad:daff with SMTP id a640c23a62f3a-b50aa99e0f1mr827465866b.28.1760023505329;
         Thu, 09 Oct 2025 08:25:05 -0700 (PDT)
-Received: from localhost ([2a02:c7c:7259:a00:5333:92bd:dab:a2ab])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8e980dsm38590177f8f.36.2025.10.09.08.25.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+Received: from puffmais2.c.googlers.com (224.138.204.35.bc.googleusercontent.com. [35.204.138.224])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b486970b36fsm1908967566b.62.2025.10.09.08.25.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 09 Oct 2025 08:25:04 -0700 (PDT)
+From: =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+Date: Thu, 09 Oct 2025 16:25:03 +0100
+Subject: [PATCH v2 01/10] dt-bindings: power: samsung: add google,gs101-pd
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 09 Oct 2025 16:25:03 +0100
-Message-Id: <DDDW9FN6B097.188MIFGQOOSQW@linaro.org>
-Cc: <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <kernel@oss.qualcomm.com>, <aiqun.yu@oss.qualcomm.com>,
- <tingwei.zhang@oss.qualcomm.com>, <trilok.soni@oss.qualcomm.com>,
- <yijie.yang@oss.qualcomm.com>, <jingyi.wang@oss.qualcomm.com>,
- <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v2 1/5] ASoC: codecs: va-macro: Rework version checking
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Prasad Kumpatla" <prasad.kumpatla@oss.qualcomm.com>, "Srinivas
- Kandagatla" <srini@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>,
- "Mark Brown" <broonie@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai"
- <tiwai@suse.com>, "Rao Mandadapu" <quic_srivasam@quicinc.com>
-X-Mailer: aerc 0.20.0
-References: <20251009143644.3296208-1-prasad.kumpatla@oss.qualcomm.com>
- <20251009143644.3296208-2-prasad.kumpatla@oss.qualcomm.com>
-In-Reply-To: <20251009143644.3296208-2-prasad.kumpatla@oss.qualcomm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+Message-Id: <20251009-gs101-pd-v2-1-3f4a6db2af39@linaro.org>
+References: <20251009-gs101-pd-v2-0-3f4a6db2af39@linaro.org>
+In-Reply-To: <20251009-gs101-pd-v2-0-3f4a6db2af39@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Ulf Hansson <ulf.hansson@linaro.org>, 
+ Marek Szyprowski <m.szyprowski@samsung.com>
+Cc: Peter Griffin <peter.griffin@linaro.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, 
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-pm@vger.kernel.org, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>
+X-Mailer: b4 0.14.2
 
-On Thu Oct 9, 2025 at 3:36 PM BST, Prasad Kumpatla wrote:
-> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
->
-> Open-code some of the registers to make the checks anywhere near human-
-> readable. Error out if the version is unsupported or if the VA macro
-> isn't supposed to be present within this LPASS instance (since we can
-> check for that now).
+Add support for the Google gs101 version of the Exynos power domains. A
+new compatible is needed because register fields have changed.
 
-[...]
+Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
+Signed-off-by: André Draszik <andre.draszik@linaro.org>
+---
+ Documentation/devicetree/bindings/power/pd-samsung.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-> +static int va_macro_set_lpass_codec_version(struct va_macro *va)
->  {
-> -	int core_id_0 =3D 0, core_id_1 =3D 0, core_id_2 =3D 0;
->  	int version =3D LPASS_CODEC_VERSION_UNKNOWN;
-> +	u32 maj, min, step;
-> +	u32 val;
-> =20
-> -	regmap_read(va->regmap, CDC_VA_TOP_CSR_CORE_ID_0, &core_id_0);
-> -	regmap_read(va->regmap, CDC_VA_TOP_CSR_CORE_ID_1, &core_id_1);
-> -	regmap_read(va->regmap, CDC_VA_TOP_CSR_CORE_ID_2, &core_id_2);
-> +	regmap_read(va->regmap, CDC_VA_TOP_CSR_CORE_ID_0, &val);
-> +	maj =3D FIELD_GET(CORE_ID_0_REV_MAJ, val);
-> =20
-> -	if ((core_id_0 =3D=3D 0x01) && (core_id_1 =3D=3D 0x0F))
-> -		version =3D LPASS_CODEC_VERSION_2_0;
-> -	if ((core_id_0 =3D=3D 0x02) && (core_id_1 =3D=3D 0x0F) && core_id_2 =3D=
-=3D 0x01)
-> +	regmap_read(va->regmap, CDC_VA_TOP_CSR_CORE_ID_1, &val);
-> +	if (!FIELD_GET(CORE_ID_1_HAS_VAMACRO, val)) {
-> +		dev_err(va->dev, "This is not a VA macro instance\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	regmap_read(va->regmap, CDC_VA_TOP_CSR_CORE_ID_2, &val);
-> +	min =3D FIELD_GET(CORE_ID_2_REV_MIN, val);
-> +	step =3D FIELD_GET(CORE_ID_2_REV_STEP, val);
-> +
-> +	if (maj =3D=3D 1) {
->  		version =3D LPASS_CODEC_VERSION_2_0;
-> -	if ((core_id_0 =3D=3D 0x02) && (core_id_1 =3D=3D 0x0E))
-> -		version =3D LPASS_CODEC_VERSION_2_1;
-> -	if ((core_id_0 =3D=3D 0x02) && (core_id_1 =3D=3D 0x0F) && (core_id_2 =
-=3D=3D 0x50 || core_id_2 =3D=3D 0x51))
-> -		version =3D LPASS_CODEC_VERSION_2_5;
-> -	if ((core_id_0 =3D=3D 0x02) && (core_id_1 =3D=3D 0x0F) && (core_id_2 =
-=3D=3D 0x60 || core_id_2 =3D=3D 0x61))
-> -		version =3D LPASS_CODEC_VERSION_2_6;
-> -	if ((core_id_0 =3D=3D 0x02) && (core_id_1 =3D=3D 0x0F) && (core_id_2 =
-=3D=3D 0x70 || core_id_2 =3D=3D 0x71))
-> -		version =3D LPASS_CODEC_VERSION_2_7;
-> -	if ((core_id_0 =3D=3D 0x02) && (core_id_1 =3D=3D 0x0F) && (core_id_2 =
-=3D=3D 0x80 || core_id_2 =3D=3D 0x81))
-> -		version =3D LPASS_CODEC_VERSION_2_8;
-> -	if ((core_id_0 =3D=3D 0x02) && (core_id_1 =3D=3D 0x0F) && (core_id_2 =
-=3D=3D 0x90 || core_id_2 =3D=3D 0x91))
-> -		version =3D LPASS_CODEC_VERSION_2_9;
-> -
-> -	if (version =3D=3D LPASS_CODEC_VERSION_UNKNOWN)
-> -		dev_warn(va->dev, "Unknown Codec version, ID: %02x / %02x / %02x\n",
-> -			 core_id_0, core_id_1, core_id_2);
-> +	} else if (maj =3D=3D 2) {
-> +		switch (min) {
-> +		case 0:
-> +			version =3D LPASS_CODEC_VERSION_2_0;
-> +			break;
-> +		case 5:
-> +			version =3D LPASS_CODEC_VERSION_2_5;
-> +			break;
-> +		case 6:
-> +			version =3D LPASS_CODEC_VERSION_2_6;
-> +			break;
-> +		case 7:
-> +			version =3D LPASS_CODEC_VERSION_2_7;
-> +			break;
-> +		case 8:
-> +			version =3D LPASS_CODEC_VERSION_2_8;
-> +			break;
-> +		case 9:
-> +			version =3D LPASS_CODEC_VERSION_2_9;
-> +			break;
-> +		default:
-> +			break;
-> +		}
-> +	}
-> +
-> +	if (version =3D=3D LPASS_CODEC_VERSION_UNKNOWN) {
-> +		dev_err(va->dev, "VA Macro v%u.%u.%u is not supported\n",
-> +			maj, min, step);
-> +		return -EOPNOTSUPP;
-> +	}
+diff --git a/Documentation/devicetree/bindings/power/pd-samsung.yaml b/Documentation/devicetree/bindings/power/pd-samsung.yaml
+index 9c2c51133457112ca0098c043e123f0a02fa1291..c35c9cb0115d79e5c36142da2c2a5dd30cd2ad47 100644
+--- a/Documentation/devicetree/bindings/power/pd-samsung.yaml
++++ b/Documentation/devicetree/bindings/power/pd-samsung.yaml
+@@ -19,6 +19,7 @@ allOf:
+ properties:
+   compatible:
+     enum:
++      - google,gs101-pd
+       - samsung,exynos4210-pd
+       - samsung,exynos5433-pd
+ 
 
-Why?
-
-As far as I understand the behaviour before this change is to continue
-even with unsupported LPASS va macro version. IIRC when I enabled sound
-on Kaanapali QRD device it worked even with unsupported version, it just
-needed a fix to calm down the warning.
-
-Why this needed to be changed to error out as unsupported now? Will there
-be a permanent damage to hw/fw if we continue?
-Shouldn't this print a warning that execution continues regardless but
-with low expectations?
-
-I kinda get why we should give up if va macro instance is not present
-but not about change of behaviour here.
-
-
->  	lpass_macro_set_codec_version(version);
-> =20
->  	dev_dbg(va->dev, "LPASS Codec Version %s\n", lpass_macro_get_codec_vers=
-ion_string(version));
-> +
-> +	return 0;
->  }
-> =20
->  static int va_macro_probe(struct platform_device *pdev)
-> @@ -1594,10 +1626,14 @@ static int va_macro_probe(struct platform_device =
-*pdev)
->  	 * old version of codecs do not have a reliable way to determine the
->  	 * version from registers, get them from soc specific data
->  	 */
-> -	if (data->version)
-> +	if (data->version) {
->  		lpass_macro_set_codec_version(data->version);
-> -	else /* read version from register */
-> -		va_macro_set_lpass_codec_version(va);
-> +	} else {
-> +		/* read version from register */
-> +		ret =3D va_macro_set_lpass_codec_version(va);
-> +		if (ret)
-> +			return ret;
-> +	}
-
-Thanks,
-Alexey
+-- 
+2.51.0.710.ga91ca5db03-goog
 
 
