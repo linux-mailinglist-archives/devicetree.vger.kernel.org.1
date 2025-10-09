@@ -1,131 +1,116 @@
-Return-Path: <devicetree+bounces-224907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB728BC8BE4
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 13:20:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94051BC8C29
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 13:22:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFB503C063C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 11:19:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E39343AE474
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 11:21:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB01C2E0417;
-	Thu,  9 Oct 2025 11:19:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EC892DF70E;
+	Thu,  9 Oct 2025 11:21:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jNoiJ37l"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m3MIRV9b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yx1-f49.google.com (mail-yx1-f49.google.com [74.125.224.49])
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D74F2DA762
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 11:19:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.125.224.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6C22C21F1
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 11:21:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760008782; cv=none; b=X/MYlRcY9DT9iEdVHC/QVv5AAeuU4V05yTTwec0Mht2ItY6FaOaItPULdsFGDK+75KzXx/iOHjlUPmpszZp59AFSgSAwOiHJmYw9sT85wOtXgeL+it15ILbBv9L0lN8G9uRiDaJXSIzdEL0z06FNosAEEywaIly0YeEnkkVaF7g=
+	t=1760008902; cv=none; b=Eir4LZUhI1YYao6wIDSHEs+wttNQ+p9Q9vfct7Aj13IcDD3YCfM4OGfKOmbbODx/mGZGwJnqNGsovgwFEG4rhFpsu5loGXr6BAt4EvJBqVDtUijn8haIRvyAQJaGDHBTfGvsWA07Q+1Q+lvyHFrWvnlmhg6h285F5LKRomX3gwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760008782; c=relaxed/simple;
-	bh=mzeWOdj3lBj+Ke0QviDFWI2aF1kcLsskxWN0A79AnHU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=dt+v0fp7UjlosFA26+VcZoX8VEn2AabsA1OteRt+OCkrR5fQT99//rydRsVi5LcvEV7TDjr1lCUDpkWCaslgmof8ODYPTNTsk6DgCQywxIs0Zv/+ffZTo+UoAy3EWQjf23/k0l87h4sMPdlIq3RzLN/nJhwrwEic93SLeLJ/8Kc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jNoiJ37l; arc=none smtp.client-ip=74.125.224.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yx1-f49.google.com with SMTP id 956f58d0204a3-633bca5451cso865039d50.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 04:19:40 -0700 (PDT)
+	s=arc-20240116; t=1760008902; c=relaxed/simple;
+	bh=6sSh5spmOZHPAgftosq8zlVm3OoCuBCxRRQ44DRZGjc=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=uHXCrYbVCm5sJ7adNp6forBVQsGkoPoo6nho6K0TmEir8amKGOYLrYdrr0zMMP8zXzJPXnbw/mYANzh3jrqQO12U+JsBwHuHMTcNYJzZVyzwm39LFC+xJFRjWE8uO9a87WDNjiGCljLqBkWKmt55IZFPkzSOkKNqtshxI1/NTbE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m3MIRV9b; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-4256866958bso502128f8f.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 04:21:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760008779; x=1760613579; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1760008899; x=1760613699; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mzeWOdj3lBj+Ke0QviDFWI2aF1kcLsskxWN0A79AnHU=;
-        b=jNoiJ37lCUQ9Hrm2hMpur0n3OpmXylsTAvQFzFo0gEHLdPW1H7xLOEfZx9IMP3xJGG
-         VvaFojxgSsr0dFIBvT0p9gx6C2qVKiKNUQeCfRio9yhV6GZjq9rpyyrteqxqW9Ew3dBm
-         wtvaqMjirKwpcBo4MgJpiCLn7sWEkQpEyqFiwGTjc5zHrlT4QCRizWiXWVk6zMf3FYYn
-         bzUTIQSKLADIffCIHWelPhf43EqQYtzVSfMGzuGbrzIwj9QJsP6FN+oluyC+bzTKhDgF
-         5nZ3Uo6yeEy5h0e9DLaazODqWGp9Q080LEkzOtn2P2FcQKQiw+6Kon0LQ4PFBZDDcg2+
-         Grtw==
+        bh=6sSh5spmOZHPAgftosq8zlVm3OoCuBCxRRQ44DRZGjc=;
+        b=m3MIRV9b1XS61m+5IN+IwLqYRot/WxOMPX/pLjsCv8pEDdgKmbpg3e3qRS4S2z7Vup
+         PKrcV6CymqWAM6GSIaXRxOOe23X7YuUh3wae8EzEsO/U06z1ehli74U8TUS33Pu6u7oL
+         iC2qhVjg9zkMRMtYDp3SueySjadkMGF4+k89xmigDm3mXBkGLJVhwRDtUJNuNc0pKul2
+         6EbCE9WRy7ieKb0HCvyW0EWlIK7pOOw47pUT7dm1PBSoM2f4CZgFJqwXfHJYyFcZHi0U
+         J9OPt1mIToH1XILlU7ZFRAJO/U5WrMI1ohhkQdb79FwPhcGKoIjmVy6p9Rg32Yw+Ptyg
+         Fn2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760008779; x=1760613579;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mzeWOdj3lBj+Ke0QviDFWI2aF1kcLsskxWN0A79AnHU=;
-        b=PwH+jDtN3UsU0ImOZsFxz45V8sYL2S1G5FN+Y8CSD9z3zqNaVlcDYhm4lCnbeBw/TH
-         OCaOaDJqUh7pRCacBIo6a/U4+F2DrwuUGVlUNBxm9wLGpo2KgdKElLLIpbkPSvSQpk5o
-         tqKA1P+G79Jvmy7qwkP1EZV0F6F0ucFkSUonKGsmbar75LP9otRCWtoipATX6/VSdSIe
-         aw5fDC95005ael1H2AT/4RHeS9HMQEzf7Pl88aATCPGRUWuz0izS/Y9HEZgdsRSwRGwN
-         CgYLYrzPzWSAAybsVv67kIPh7qA5RP90pQxz4M4jEcgb1fnqcvwrOjkf72BmSz0hdq1u
-         P9WQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU24SHHpge4d/5SQ1QT8Hz9qR1xwC3T4malczwYApzzFmAqp8HolDN0hcqZ9CLzBYuKIqW8eawxbcp2@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXqNwqE0Hr1Xi3p/Nu80AZbykua1UPfYqKkLHOXFFrcJI2OoaT
-	bYevWFmeEiVhD90W+MIoPs2CWdjC3I9RPbH32xIDQwZEH4yeYCQ331cqzG7Zm5tlnkyomKs+HLS
-	F6BcRMpKSk7RtHEh5+KrYLF4n2GvmNQU=
-X-Gm-Gg: ASbGncv7EVGV+qfb/7m41zNDNdJ0Ksu1LSox5Ff3me+LReMzp1XpxIkMap/4fVAN4Vs
-	QFRTrYvEDZrz19OYTExDbHVi6zzTpSKzFBI5sDoNIdcXPGn1S+nTIV6tfrB1MQ/WrXm5Xfs7fH5
-	/T63fBzazk8Lbo63dGyn95JMwjQBBVlf0gf4LlcO1P3/fbiObBsxdGvdP+4s6b9RJj+XkJXCZXK
-	w9Cjl9wZK9bCStYRS66hkKxSc8ab6c=
-X-Google-Smtp-Source: AGHT+IE5U7JyGi1AmeLjDi25hUOta+sU2hpJbVTN9Ai63ARDyOdLqRjdCN3h5Wr4u+tqZlHZJ+/pg/7Xr5jCWFq4BIc=
-X-Received: by 2002:a53:d048:0:10b0:63b:8e80:c017 with SMTP id
- 956f58d0204a3-63ccb672a0emr6807745d50.0.1760008779377; Thu, 09 Oct 2025
- 04:19:39 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760008899; x=1760613699;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=6sSh5spmOZHPAgftosq8zlVm3OoCuBCxRRQ44DRZGjc=;
+        b=ohI0hXYYXT6B06nb876pPgKyFZaj9A4lnKYg8JZ8MvxeBEEkk0Da61plrsYM/pFfRJ
+         WdkLlzTyRPKglUxrvawgrPMHphKzz2z/lxTnRlqiCuO6RB0ynbW266wYZffqBNXpaed1
+         Y/92bFrAFucx14d8MgpAJB4WJk7H8Cc1W2HBeFjlPIdkdfJhgGlTk7F3ZKxrNvbVG/0N
+         hHnVHTJIOYB9m9LaStDKH1u+YQKjZWNtUiO8920IQAuGRnUW6VVTjiI/CCfDr8pD0jQD
+         WovIasj6CUXI/Hqk33V0FyvM8Sul30v3RTv4My0CbZ6HH8wuRpxmXt4J4WY+iN3Y9SIv
+         SCuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUXzYPnGUhlTXrmRE5HZrAdcpMM0LVT7WJ+A9hfdVXbdGKv8iKfdd67riA7VUv5yWeli6nL/moHzjiF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8rbGS0/WQ78hKiIv0n7prPg48xFTMnGrTHr3Shpu1CmMakudi
+	JBwGbJkMnEXqA6kryawGcw11quRMuwIeM2IKmWVQPKPpJNgKZ9lGVids0eloPmrxNCs=
+X-Gm-Gg: ASbGnct1t5SZpmMOiTtJ+AaajhYbYTJO49cwN+fxuHUJcBVsTOh53/9ouPLebwualxp
+	39NEtkpI0AwAhv+CANmFE2me2kbdZ2xTz7zDeK6qmzn8gRHRYS4kKaYTIP9PKomJJtS4+s/I8lJ
+	eZKqbMasZCOd4Qgkoy8blw2iBoa4kDXSEPWmzP6/9FLJQi3MI5IoWCY8UBXTLT60R2dh+nhidtW
+	epz0Kw8toz7f60k9bNow6NvvLJeqPmtdSALNZl1QssjXr60CkvNqiqAJDRGV3KA4ovCAY8uEHd8
+	FH1BOzh/XRUFnZ0OMzzpWVuswrL0zSOY6mlQS3qHf/ZEs3tt9x9OQ3/d/hyDapDZGVaXPogOt0U
+	uF/cpflpwV7lXAgM89IJ2AQE7Z6Kde8jt99Dhx6CxqnN4lQxMK8FwP8eIZag7migZ
+X-Google-Smtp-Source: AGHT+IFflhQlmkSN/2tNWXDC3THAhllPJpTf3aMPCOXB2rnMSjN2hhW4xvzZzF5ZeV/gFPVv90cBLg==
+X-Received: by 2002:a05:6000:607:b0:425:72a0:a981 with SMTP id ffacd0b85a97d-42666abb02bmr4351249f8f.2.1760008898811;
+        Thu, 09 Oct 2025 04:21:38 -0700 (PDT)
+Received: from localhost ([2a02:c7c:7259:a00:5333:92bd:dab:a2ab])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-4255d8e97fbsm33992893f8f.34.2025.10.09.04.21.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Oct 2025 04:21:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20250913003842.41944-1-safinaskar@gmail.com> <20250913003842.41944-29-safinaskar@gmail.com>
- <20250913054837.GAaMUFtd4YlaPqL2Ov@fat_crate.local> <20250913055851.GBaMUIGyF8VhpUsOZg@fat_crate.local>
-In-Reply-To: <20250913055851.GBaMUIGyF8VhpUsOZg@fat_crate.local>
-From: Askar Safin <safinaskar@gmail.com>
-Date: Thu, 9 Oct 2025 14:19:03 +0300
-X-Gm-Features: AS18NWAGN6ExXhEWeXK-ERFvGpf6JdjWShiWpIPYOnPjMCR9bXVHwIY8E_1WxIc
-Message-ID: <CAPnZJGBwFqNAybORpTtRfjtGwMQiBtd+rATD=mh8ZgE3owT_ow@mail.gmail.com>
-Subject: Re: [PATCH RESEND 28/62] init: alpha, arc, arm, arm64, csky, m68k,
- microblaze, mips, nios2, openrisc, parisc, powerpc, s390, sh, sparc, um, x86,
- xtensa: rename initrd_{start,end} to virt_external_initramfs_{start,end}
-To: Borislav Petkov <bp@alien8.de>
-Cc: linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Linus Torvalds <torvalds@linux-foundation.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Christian Brauner <brauner@kernel.org>, 
-	Al Viro <viro@zeniv.linux.org.uk>, Jan Kara <jack@suse.cz>, Christoph Hellwig <hch@lst.de>, 
-	Jens Axboe <axboe@kernel.dk>, Andy Shevchenko <andy.shevchenko@gmail.com>, 
-	Aleksa Sarai <cyphar@cyphar.com>, =?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <thomas.weissschuh@linutronix.de>, 
-	Julian Stecklina <julian.stecklina@cyberus-technology.de>, 
-	Gao Xiang <hsiangkao@linux.alibaba.com>, Art Nikpal <email2tema@gmail.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Alexander Graf <graf@amazon.com>, 
-	Rob Landley <rob@landley.net>, Lennart Poettering <mzxreary@0pointer.de>, linux-arch@vger.kernel.org, 
-	linux-alpha@vger.kernel.org, linux-snps-arc@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-csky@vger.kernel.org, 
-	linux-hexagon@vger.kernel.org, loongarch@lists.linux.dev, 
-	linux-m68k@lists.linux-m68k.org, linux-mips@vger.kernel.org, 
-	linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org, 
-	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org, 
-	sparclinux@vger.kernel.org, linux-um@lists.infradead.org, x86@kernel.org, 
-	Ingo Molnar <mingo@redhat.com>, linux-block@vger.kernel.org, initramfs@vger.kernel.org, 
-	linux-api@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-efi@vger.kernel.org, linux-ext4@vger.kernel.org, 
-	"Theodore Y . Ts'o" <tytso@mit.edu>, linux-acpi@vger.kernel.org, Michal Simek <monstr@monstr.eu>, 
-	devicetree@vger.kernel.org, Luis Chamberlain <mcgrof@kernel.org>, Kees Cook <kees@kernel.org>, 
-	Thorsten Blum <thorsten.blum@linux.dev>, Heiko Carstens <hca@linux.ibm.com>, patches@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 09 Oct 2025 12:21:37 +0100
+Message-Id: <DDDR31N2P498.3FYKHZRLUS54G@linaro.org>
+Cc: <linux-sound@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH RFC v2 3/6] ASoC: soc: qcom: sc8280xp: add support for
+ I2S clocks
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Neil Armstrong" <neil.armstrong@linaro.org>, "Srinivas Kandagatla"
+ <srini@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown"
+ <broonie@kernel.org>, "Jaroslav Kysela" <perex@perex.cz>, "Takashi Iwai"
+ <tiwai@suse.com>, "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Bjorn
+ Andersson" <andersson@kernel.org>, "Konrad Dybcio" <konradybcio@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20251008-topic-sm8x50-next-hdk-i2s-v2-0-6b7d38d4ad5e@linaro.org> <20251008-topic-sm8x50-next-hdk-i2s-v2-3-6b7d38d4ad5e@linaro.org>
+In-Reply-To: <20251008-topic-sm8x50-next-hdk-i2s-v2-3-6b7d38d4ad5e@linaro.org>
 
-On Sat, Sep 13, 2025 at 9:00=E2=80=AFAM Borislav Petkov <bp@alien8.de> wrot=
-e:
-> Ooh, now I see it - you have virtual and physical initramfs address thing=
-s. We
-> usually call those "va" and "pa". So
+On Wed Oct 8, 2025 at 7:56 PM BST, Neil Armstrong wrote:
+> Add support for getting the I2S clocks used for the MI2S
+> interfaces, and enable/disable the clocks on the PCM
+> startup and shutdown card callbacks.
 >
-> initramfs_{va,pa}_{start,end}
+> The rate can be easily calculated since the card forces 48Hz,
+> 2 channels at 16bit slot size.
 
-Okay, I will call external_initramfs_{va,pa}_{start,end}
-(after I will remove initrd, which will happen after a year)
+48 kHz?
 
-"external" means "bootloader-supplied" as opposed to builtin initramfs.
+48 Hz rate will result in too narrow analog range to reconstruct anything
+apart from beeps probably.
 
---=20
-Askar Safin
+Best regards,
+Alexey
 
