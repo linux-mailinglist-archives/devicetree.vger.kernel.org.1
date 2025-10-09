@@ -1,214 +1,138 @@
-Return-Path: <devicetree+bounces-224920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B948BC8E37
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 13:46:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60427BC8E64
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 13:52:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98D2F19E6B45
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 11:47:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EDA93A2303
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 11:52:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F7CE2DECB0;
-	Thu,  9 Oct 2025 11:46:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA89F2DFA3B;
+	Thu,  9 Oct 2025 11:52:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TBPe/JHM"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iH5NI9sB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1C117996;
-	Thu,  9 Oct 2025 11:46:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2D72C21F3;
+	Thu,  9 Oct 2025 11:52:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760010394; cv=none; b=o2tSXwL64EfRtSEzEjFX8/PquHlXQbE7sdRRi/vvJBXO38gR18vKcWE8wZxBbIgtcIkF1dAxOYRJbprWKuItATkS3xEdZTn0c3+hefZTIBjlvhMurokhAigAqCHto3ORryeQG86B7mGqQr4I0SVs6C7tiGehzQH8BuBqRLtr5J0=
+	t=1760010745; cv=none; b=FOOQPKpsDx1hMUJFUYL29f+QuQIm1VC1AXCwJbmeW2JUP9Bmf+t07RiKM4KCbg5ZN5YZu0uQwGK9ZLJZPvBVxjEmdCforfLH2suBlXGRz0P086BypZjUnfVMhspf1yw4q32nFHN6zSgWrcAT2v038ccGgVn7yP0sADVEH/VapGo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760010394; c=relaxed/simple;
-	bh=mZZt5YdIwuaPegnVqL4be4LrmctNgNxtCGeCY51/RGw=;
-	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
-	 MIME-Version:Content-Type; b=abFvhQXkHH61InoCL8EcYwwQiE17THUVzEAhsMsV+xIZm/VfYyrzwGWcfPeWsTLaezXl0aQJx4YXJbttNX19wzSuNsmNyYWu7mazsq98hx7cdfuR0ULL6l3mjK+vDodGIigkzMPOnI2Rbb0mQ8oftBh9MMJMEW+06sEfQM0RtrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TBPe/JHM; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1760010392; x=1791546392;
-  h=from:date:to:cc:subject:in-reply-to:message-id:
-   references:mime-version;
-  bh=mZZt5YdIwuaPegnVqL4be4LrmctNgNxtCGeCY51/RGw=;
-  b=TBPe/JHMRbQPh2dXGsBFkHtq1EnIis5O0uffkUjh0rdqI9ApxJj+tf3Y
-   t+ddN2HFWs8ZasRZMklPhgd2/zWAyDm+JDk2TirHe1iI2t6zAPU2esIto
-   mwDV2b95kQ9vIyiNMfwDzeoMeY+dUz1sJ7NNBD2Tn7n3hXB0fCjveFdh3
-   JdwXGQo+aHxTZEyiANu7JaKd4Knr/i9zMabY/RwIH7aJWLVEpoJVcamJl
-   QqywXYPKs2hWsyuUAdONJP5kLZEitHlHye7NwNLs6Mc3irrBky1HacXXH
-   uCvyxBlkJNgLe9WMiu+HMfwua1ZXILXKreCxUrF7/Z2aZJn9WARSCvP62
-   w==;
-X-CSE-ConnectionGUID: ui4Rq/8kRoyDuDsckgPgww==
-X-CSE-MsgGUID: HpmhIq9OQSu4eFsY7h9wew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="65865422"
-X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; 
-   d="scan'208";a="65865422"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2025 04:46:32 -0700
-X-CSE-ConnectionGUID: v/CHf2U8Q4WnRvXibbHLCg==
-X-CSE-MsgGUID: 2WjfIzpqTli1vahEaLIIHQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; 
-   d="scan'208";a="185072214"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.26])
-  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2025 04:46:25 -0700
-From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Date: Thu, 9 Oct 2025 14:46:22 +0300 (EEST)
-To: Binbin Zhou <zhoubb.aaron@gmail.com>
-cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
-    Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-    Conor Dooley <conor+dt@kernel.org>, 
-    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-    Jiri Slaby <jirislaby@kernel.org>, Haowei Zheng <zhenghaowei@loongson.cn>, 
-    Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, 
-    loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
-    linux-serial <linux-serial@vger.kernel.org>
-Subject: Re: [PATCH v5 2/3] serial: 8250: Add Loongson uart driver support
-In-Reply-To: <CAMpQs4KS=hd3zvj5KYH7vBXpbEhPLmS61H9dLgnRpBpH+04ChA@mail.gmail.com>
-Message-ID: <5e33cb28-0f03-519e-10e6-74d5305c1284@linux.intel.com>
-References: <cover.1758676290.git.zhoubinbin@loongson.cn> <9823e7afe713450e210dab9dba6fa18683dc1fe0.1758676290.git.zhoubinbin@loongson.cn> <9cd368a1-4ba2-3b96-5cfe-0e600e77a3fe@linux.intel.com>
- <CAMpQs4KS=hd3zvj5KYH7vBXpbEhPLmS61H9dLgnRpBpH+04ChA@mail.gmail.com>
+	s=arc-20240116; t=1760010745; c=relaxed/simple;
+	bh=+Y7tkK/AwXD1JAaZ5mISpCJrU9h0KyjcOCp8vB37t3Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=d794OkoCXY7u9bNSEuv8CX92t4bQFUk95m17rBNG5Fr7t2DdoW8M9MPKEQfM1cyuIwFFKgGPWr8VZsXSQ6EdAASu356VQH7pU7u3AeMh9ngMXvODk/g4R1Ov8ONEhTBJSY5Gx1il9T2cn9khOaDF6NrDU+lk98hbnLVMk97uNdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iH5NI9sB; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5996EIew022299;
+	Thu, 9 Oct 2025 11:52:03 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	NKvuQhGcUEq6F1dym/+rBYs2bVe5arKDIgYghOvq8XE=; b=iH5NI9sBcPbQOAJw
+	/ncTo4Yg4PBtygak9hgrl5Qr3DPh1d2UVsPNUAIZ/1vvBKJBHuNhB+AV0mJ4+jnd
+	wAfUlSzqcCcPjiAiKC4oE8Pa9unbedkB1mkKJ+Ae4A7FLB2gt7Ju1q10B/GALd5k
+	MeK2dyLqBUgzZVBVNwnhtlGikEH2/RmsVoHtP4mr3E5U5k0ubiuol/2LQNqB00nj
+	IiDS6LLcfH4Ke83PSvvp0CZF7lGShjV5I4ZxTYWa7OZiiKDDy5oGDx1FCV88cBqP
+	X+fclCmnbbNTbieA1176zqLjEOQBH6UPHWFHWAGbumS1u8r3is82HFUh/Cd8AxsP
+	UUfSsw==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4sjmd4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Oct 2025 11:52:03 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 599Bq2Rr010848
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 9 Oct 2025 11:52:02 GMT
+Received: from [10.206.96.75] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Thu, 9 Oct
+ 2025 04:51:53 -0700
+Message-ID: <c4051862-508b-47ed-8bd5-c84d20f7002a@quicinc.com>
+Date: Thu, 9 Oct 2025 17:21:19 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323328-604913320-1760010382=:944"
-
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
-
---8323328-604913320-1760010382=:944
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: QUOTED-PRINTABLE
-
-On Thu, 9 Oct 2025, Binbin Zhou wrote:
-
-> Hi Ilpo:
->=20
-> Sorry for the late reply and thanks for your detailed review.
->=20
-> On Tue, Sep 30, 2025 at 7:58=E2=80=AFPM Ilpo J=C3=A4rvinen
-> <ilpo.jarvinen@linux.intel.com> wrote:
-> >
-> > On Wed, 24 Sep 2025, Binbin Zhou wrote:
-> >
-> > > Add the driver for on-chip UART used on Loongson family chips.
-> > >
-> > > The hardware is similar to 8250, but there are the following
-> > > differences:
-> > >  - Some chips (such as Loongson-2K2000) have added a fractional divis=
-ion
-> > >    register to obtain the required baud rate accurately, so the
-> > >    {get,set}_divisor callback is overridden.
-> > >  - Due to hardware defects, quirk handling is required for
-> > >    UART_MCR/UART_MSR.
-> > >
-> > > Co-developed-by: Haowei Zheng <zhenghaowei@loongson.cn>
-> > > Signed-off-by: Haowei Zheng <zhenghaowei@loongson.cn>
-> > > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> > > ---
-
-> > > +static unsigned int serial_fixup(struct uart_port *p, unsigned int o=
-ffset, unsigned int val)
-> > > +{
-> > > +     struct loongson_uart_data *ddata =3D p->private_data;
-> > > +
-> > > +     if (offset =3D=3D UART_MCR)
-> > > +             val ^=3D ddata->mcr_invert;
-> > > +
-> > > +     if (offset =3D=3D UART_MSR)
-> > > +             val ^=3D ddata->msr_invert;
-
-One additional thing, this could use switch/case.
-
-I'd just do:
-
-=09...
-=09case UART_MSR:
-=09=09return val ^ ddata->msr_invert;
-=09default:
-=09=09return val;
-=09}
-
-That way you don't need to use breaks.
-
-> > > +     if (flags & LOONGSON_UART_HAS_FRAC) {
-> > > +             uart.port.get_divisor =3D loongson_frac_get_divisor;
-> > > +             uart.port.set_divisor =3D loongson_frac_set_divisor;
-> > > +     }
-> > > +
-> > > +     if (flags & LOONGSON_UART_QUIRK_MCR)
-> > > +             ddata->mcr_invert |=3D (UART_MCR_RTS | UART_MCR_DTR);
-> > > +
-> > > +     if (flags & LOONGSON_UART_QUIRK_MSR)
-> > > +             ddata->msr_invert |=3D (UART_MSR_CTS | UART_MSR_DSR);
-> >
-> > I think it would be better to put these invert masks directly into a
-> > struct which is then put into .data. LOONGSON_UART_HAS_FRAC can be bool
-> > in that struct.
->=20
-> I attempted the following refactoring:
->=20
-> struct loongson_uart_ddata {
->         bool has_frac;
->         u8 mcr_invert;
->         u8 msr_invert;
-> };
->=20
-> static const struct loongson_uart_ddata ls2k0500_uart_data {
->         .has_frac =3D false,
->         .mcr_invert =3D UART_MCR_RTS | UART_MCR_DTR,
->         .msr_invert =3D UART_MSR_CTS | UART_MSR_DSR,
-> };
->=20
-> static const struct loongson_uart_ddata ls2k1500_uart_data {
->         .has_frac =3D true,
->         .mcr_invert =3D UART_MCR_RTS | UART_MCR_DTR,
->         .msr_invert =3D 0,
-> };
->=20
-> struct loongson_uart_priv {
->         int line;
->         struct clk *clk;
->         struct resource *res;
->         struct reset_control *rst;
->         struct loongson_uart_ddata *ddata;
-
-This can and should be const struct as well as those underlying data=20
-structs are const too.
-
-> };
->=20
-> .............
-> In loongson_uart_probe():
->        priv->ddata =3D device_get_match_data(dev);
->=20
->         if (priv->ddata->has_frac) {
->                 port->get_divisor =3D loongson_frac_get_divisor;
->                 port->set_divisor =3D loongson_frac_set_divisor;
->         }
->=20
->=20
-> .............
-> static const struct of_device_id loongson_uart_of_ids[] =3D {
->         { .compatible =3D "loongson,ls2k0500-uart", .data =3D ls2k0500_ua=
-rt_data },
->         { .compatible =3D "loongson,ls2k1500-uart", .data =3D ls2k1500_ua=
-rt_data },
->         { },
-> };
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/5] dt-bindings: phy: Add edp reference clock for
+ qcom,edp-phy
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>, <robin.clark@oss.qualcomm.com>,
+        <lumag@kernel.org>, <abhinav.kumar@linux.dev>,
+        <jessica.zhang@oss.qualcomm.com>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
+        <simona@ffwll.ch>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <quic_mahap@quicinc.com>,
+        <andersson@kernel.org>, <konradybcio@kernel.org>, <mani@kernel.org>,
+        <James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>,
+        <vkoul@kernel.org>, <kishon@kernel.org>,
+        <cros-qcom-dts-watchers@chromium.org>
+CC: <linux-phy@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-scsi@vger.kernel.org>, <quic_vproddut@quicinc.com>
+References: <20251009071127.26026-1-quic_riteshk@quicinc.com>
+ <20251009071127.26026-2-quic_riteshk@quicinc.com>
+ <24dd250e-f2a3-47ea-af21-b0e418ed8028@kernel.org>
+From: Ritesh Kumar <quic_riteshk@quicinc.com>
+In-Reply-To: <24dd250e-f2a3-47ea-af21-b0e418ed8028@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 8W0NO6wX4ddzZqqUKXulVpHfq3jqmCAz
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX4MfVA5eqJenJ
+ SFoLlHKeZyCgjwHRrmXhe1UOiAarvRftESHdj26qrzNQCdFoCNRRMd84b28OArEOIxPYVxuuaSY
+ NgHGawCK+DI5jgHcy1OyoTXtzAffBr6qzq+EYYJwmRoT+91ZvMd8yUK3MRHPKZO6+EFZfQh6qy4
+ 6A26OnJshQsRTn3CGKEKPnzyP2s0/XRqK6AKTFbRpgx2RiX8Q2KYmdNxiUn510hOLzAr1O+BZwe
+ zWn9azHesL+aT03hyQlhnDY7RsXf7Q8j37VtqJKChno9N8fzM9GwwlgirW4Je6uGpG+CvxQdtYc
+ fEzKvLJhxL3nI6VPZXbKutxME9P8dwV09VOWHMd+O1NTQp5GVbKPbEvsGjj3lozBgw4vhSbT12B
+ Oul8iRNB1bKCBOAsIjkNWyc1/9U6LQ==
+X-Authority-Analysis: v=2.4 cv=SfL6t/Ru c=1 sm=1 tr=0 ts=68e7a1e3 cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8
+ a=KKAkSRfTAAAA:8 a=c7tAmdlyf66g_q6FNG0A:9 a=QEXdDO2ut3YA:10
+ a=cvBusfyB2V15izCimMoJ:22 a=nl4s5V0KI7Kw-pW0DWrs:22 a=pHzHmUro8NiASowvMSCR:22
+ a=xoEH_sTeL_Rfw54TyV31:22
+X-Proofpoint-ORIG-GUID: 8W0NO6wX4ddzZqqUKXulVpHfq3jqmCAz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-09_04,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1011 malwarescore=0 bulkscore=0 priorityscore=1501
+ suspectscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
 
 
---=20
- i.
+On 10/9/2025 2:57 PM, Krzysztof Kozlowski wrote:
+> On 09/10/2025 16:11, Ritesh Kumar wrote:
+> > Add edp reference clock for qcom,edp-phy which is required
+> > to be enabled before eDP PHY initialization.
+> > 
+>
+> No, you need to first look what is happening in community.
+>
+> https://lore.kernel.org/all/20250909-phy-qcom-edp-add-missing-refclk-v3-1-4ec55a0512ab@linaro.org/
 
---8323328-604913320-1760010382=:944--
+Thanks for the patch. I will pick this and add support for lemans and 
+post v2.
+
+>
+> Best regards,
+> Krzysztof
 
