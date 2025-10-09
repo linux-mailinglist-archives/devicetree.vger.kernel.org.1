@@ -1,127 +1,251 @@
-Return-Path: <devicetree+bounces-225030-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B97CBC9A52
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 16:55:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9022FBC9A88
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 16:58:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2738D34D73A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 14:55:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D53B189589F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 14:58:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ABE92EB5DF;
-	Thu,  9 Oct 2025 14:55:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F15462EBB81;
+	Thu,  9 Oct 2025 14:58:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bHixODJU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u4FxmJkg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1504F1991CA;
-	Thu,  9 Oct 2025 14:55:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5E5F1991CA
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 14:58:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760021749; cv=none; b=Ch6bQxoqzKcJgYsf3J/O1hwhge5d7vBUJnnSxmokG53/8ermrAnnyNvPlfTAQDJiX/ustMg9pbLRqRaLQWRUgUyQYycClvvmorKAclCdxQFHU71QU7hCyztRUZ4Tbi+s/E3vMtIWXF7NUziqLDeznfFc87D/g9t1zr2CXOHfarA=
+	t=1760021888; cv=none; b=kW1R7S4iLPH1UAIth4OYTPhSE+ZHwATBl01yhWormmmvwGv5lZ/6q7Q7stseAB/QfoaFeHf94tsSFQWPGbeuAO34IRBlCm/mdsS5zcnRqJFJghsjNrdVxy2tYPWSQe+goSt5TQg68VO2oDKXVc5/lqFBK3iDYf7Ze7VZq8FSEFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760021749; c=relaxed/simple;
-	bh=q+cWlPxPDE8w96Y2CQiXS0aKtBuOa6+DcXpQ8Qum6rQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PP8seWsBgOMTYQ0nKQe+Pylhz4ZjV/++cgqbdLE6yf5nmcP8JUKD4YMCVzeuz+IEbzd84iNJo0jkfPuF+ptsKM8WKr26RXOyQJRXCax3tO6gs48/Yv/T58U11XjR5UqobDIbCelC2BdDB4zxCWSDYXdTyRZ3MfX+Cym552jSDUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bHixODJU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A351C4CEE7;
-	Thu,  9 Oct 2025 14:55:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760021747;
-	bh=q+cWlPxPDE8w96Y2CQiXS0aKtBuOa6+DcXpQ8Qum6rQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=bHixODJUsitR6IpUo6GQStTTREA5/WabWR38jQveeKcOr4kdofCnwy6bKURsTK1ic
-	 29NprL8jWIyQCVC5QVKwv+t+PVQ0FJkVEZ9bLt1j+JbRCXw+RH6ktrKFTh2ISEgNBE
-	 keAx/jIskZ6EuBNnVOOF8RMfX5u+RRm1vRMAm8QXPnCM9te/5VxfYLb0YacvR1WmWT
-	 JI4VTznSI3F9mLzlRtvC0NTObI4mfovm/g9+GR2tke3FHvgwPJ+XrZSe6CGkqZgTMV
-	 21Rn2gZMNwnb/4P2KXKpEwNZzUeNjT6KhbZZs38aGfbxSK6M81U6HnzSWzmmCYAKTl
-	 Dt33KSJzLA0Ww==
-Date: Thu, 9 Oct 2025 09:55:46 -0500
-From: Rob Herring <robh@kernel.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: David Heidelberg <david@ixit.cz>,
-	Kaustabh Chakraborty <kauschluss@disroot.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Jason A. Donenfeld" <Jason@zx2c4.com>,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-	Vincent Huang <vincent.huang@tw.synaptics.com>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	Casey Connolly <casey.connolly@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH RESEND v5 0/7] Input: synaptics-rmi4 - add quirks for
- third party touchscreen controllers
-Message-ID: <20251009145546.GA2124773-robh@kernel.org>
-References: <20250731-synaptics-rmi4-v5-0-cd0d87d34afa@ixit.cz>
- <aggtzmlxvj4so6t7trlo5ianjcbq2jrsodv6hlkhtrvgl2qpqj@gflvqocxjckb>
- <b223a48e-952c-4825-bf82-e8922434e3c1@ixit.cz>
- <5gcq5xsurdp24o7wndo2fm7pjsc3khco52ji34jjmeet2nidl4@rkbh4a2c4d3q>
+	s=arc-20240116; t=1760021888; c=relaxed/simple;
+	bh=ZRD7a4oJy73bV0xO3g2NI6JZ482DHE6lS5QnvNDjTRE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BK38rCDxpJ9+F8GfhMn2WVEA0p5k58bmwFOebHGC2CjWiIDc9LhUv60MBWWDHLobjmHMr8FzAcpBoJxuD3fabswT5p2pevQR+ewyPemAnZcfr3AUwbrpA4m6AY3bNaZDCz9tzbqdf4qc8mlwTH74+aNztnF78Szvzs+obe3+WH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u4FxmJkg; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-46e37d10f3eso7855025e9.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 07:58:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760021885; x=1760626685; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DI8Lt9f6BsLmdDVFvYYoIKKe+39lpEmV+hgwH3EgCLc=;
+        b=u4FxmJkgS9R+oVbOg3D3N1KtGFuID2SOJq1Q8kP4GNYsi7FACjtkJpGPagUszoQ8p9
+         1UTW9peymdwGiVByH17WlvzAmbvEfyevyrarI6fEHtdWBl5GEqADKvgoF6mUl5k9vEQ4
+         Fjv2ZXFGnYrsk/k+5Rm2VTwuDR5dtsQYSPb6/XSVIBlSWXmcq6lOhkDBVTpEF7pr8XhB
+         099nrtV0i2WfkfwNg+Lyk9ZIUf9ZChtv6qtjnUWI0yTddlKZEfv3BOzaPxy3IkYRD2vV
+         geo5IHzvIHtHnoIet4RUSjT7OATBhAFOE3vqvz1K8GvM1/vAesuYdCOgdrsNdNdrDwoW
+         hl2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760021885; x=1760626685;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DI8Lt9f6BsLmdDVFvYYoIKKe+39lpEmV+hgwH3EgCLc=;
+        b=oyvR0yDiMnqpQ8o9gY3SzdBPVZkoZEZgUN79zwRIIk/MuU8kLRfBwvov7aA1zkq9yh
+         WeRyeqjXd6tbCg232hpS8XsbS/0FirXXAOKifne+IG27jkFKRHTP4Xhn+Dn0SATFN8kT
+         pAwG8cbbrK7uwnds3FEcUSS2XHpuGpNWvJOWyufD2dozaHg2a3OTL9RvMyHqmsvrdjCL
+         R4GnMCwkqroF/Gtw9iGEaKL3ADSTi2KzZxvmbbu44//5NpFfh1f/XzlVnPUmG89AzahW
+         Nehhj7V+ljoT14GSkzP9bGWYjiQPa76803/VraXpcbJV1Ri+e9hDmQvGKGEcA+pD/B7Y
+         05FA==
+X-Forwarded-Encrypted: i=1; AJvYcCUcmW7mWwJxopgVLGtu7efzVxNqDDIhMN2Tsn25id+TmUZnU+nORN2HxJCLg7TlMz66mQ+f0Z037yIX@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy6fnnarweS/dP1JJWpvwTR71borzPTTn1tgxJ/dQd9yLIfDYCa
+	5Ax9VGDVHJy31dRpI4iVeuNSSF9S6SWM0zL331mQ437m4oMle45vcC5tt/oj9HyIt9c=
+X-Gm-Gg: ASbGncsdTM1asc5j9MUy8bvR1IwlR+QuZl0oAmm8ZHAzEZ3QHq0LId/VRiuMwGXu+ek
+	xl2FnCK87keUS96SZyyFG55TPtFfNg38WJ6ODCrQKWkwFX/Pc6zvTJRYepVdOt4QsXF2FSPSkp6
+	ayODbo1lnMAVKw6rBa1qTzu8CfXwmapZXm9at+4Kd66hC1NluSdhQjTEQkM2fkUxoX2dfklmC08
+	MQrxth6Br1vExghmJOoOYphldv7s7wjPre86fuKOX5yFluGQRBSLLS7IcYl8YRopb1gpTCs5qjj
+	MfbSkleSa6PP0oCauDCD4godJHTpJZCPwas66kjD5hiZkXQVIcGpcobM7QKoYHVs68d7DHtmQ3x
+	LZ0ZzBNDGn6eIOLRQ+UvN+zpRK3Rdcu97HNawiNPQFqkXVUb0xhYV9ePjGe4jj3R0PF0R/LM12L
+	ypPUk=
+X-Google-Smtp-Source: AGHT+IEd15wLTU/WKwXFk1ZF/vJ2abHxPV2DvX0f4Jik3OjCnvsaplOSGSZo2ZzaPSlQCtIZbXVGcQ==
+X-Received: by 2002:a05:600c:19c6:b0:46e:3d17:b614 with SMTP id 5b1f17b1804b1-46fa9a9440emr65070425e9.6.1760021885098;
+        Thu, 09 Oct 2025 07:58:05 -0700 (PDT)
+Received: from [192.168.0.36] ([82.76.24.202])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fab5250ddsm38392705e9.6.2025.10.09.07.58.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Oct 2025 07:58:04 -0700 (PDT)
+Message-ID: <0c9ca026-9986-4347-a86d-8bf65e2d12e6@linaro.org>
+Date: Thu, 9 Oct 2025 17:58:03 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5gcq5xsurdp24o7wndo2fm7pjsc3khco52ji34jjmeet2nidl4@rkbh4a2c4d3q>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 14/20] arm64: dts: qcom: kaanapali-mtp: Enable more
+ features
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+ Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+ tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+ yijie.yang@oss.qualcomm.com
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <20250924-knp-dts-v1-14-3fdbc4b9e1b1@oss.qualcomm.com>
+ <588a7b68-2e2e-4e65-9249-fe8b18b67927@linaro.org>
+ <831f6fd7-b81f-4d6f-b9bd-5a8fe514befb@oss.qualcomm.com>
+Content-Language: en-US
+From: Eugen Hristev <eugen.hristev@linaro.org>
+In-Reply-To: <831f6fd7-b81f-4d6f-b9bd-5a8fe514befb@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, Sep 21, 2025 at 11:30:22PM -0700, Dmitry Torokhov wrote:
-> Hi David,
-> 
-> On Tue, Sep 16, 2025 at 11:29:45AM +0200, David Heidelberg wrote:
-> > On 07/08/2025 06:29, Dmitry Torokhov wrote:
-> > > Hi David,
-> > > 
-> > > On Thu, Jul 31, 2025 at 11:06:50PM +0200, David Heidelberg via B4 Relay wrote:
-> > > > With the growing popularity of running upstream Linux on mobile devices,
-> > > > we're beginning to run into more and more edgecases. The OnePlus 6 is a
-> > > > fairly well supported 2018 era smartphone, selling over a million units
-> > > > in it's first 22 days. With this level of popularity, it's almost
-> > > > inevitable that we get third party replacement displays, and as a
-> > > > result, replacement touchscreen controllers.
-> > > > 
-> > > > The OnePlus 6 shipped with an extremely usecase specific touchscreen
-> > > > driver, it implemented only the bare minimum parts of the highly generic
-> > > > rmi4 protocol, instead hardcoding most of the register addresses.
-> > > > 
-> > > > As a result, the third party touchscreen controllers that are often
-> > > > found in replacement screens, implement only the registers that the
-> > > > downstream driver reads from. They additionally have other restrictions
-> > > > such as heavy penalties on unaligned reads.
-> > > > 
-> > > > This series attempts to implement the necessary workaround to support
-> > > > some of these chips with the rmi4 driver. Although it's worth noting
-> > > > that at the time of writing there are other unofficial controllers in
-> > > > the wild that don't work even with these patches.
-> > > > 
-> > > > We have been shipping these patches in postmarketOS for the last several
-> > > > years, and they are known to not cause any regressions on the OnePlus
-> > > > 6/6T (with the official Synaptics controller), however I don't own any
-> > > > other rmi4 hardware to further validate this.
-> > > 
-> > > Sorry for not handling the patches in the last few submissions. I am
-> > > planning on addressing them once merge window opens.
-> > 
-> > Hello Dmitry, kind reminder about the patch series as the window is open.
-> 
-> I was looking at the patch series again and with the exception of patch
-> #5 they make little sense for sensors other than ones used in OnePlus 6.
-> 
-> I wonder if we could key it off of something, maybe a distinct
-> compatible or a property? Rob, Krzysztof, any suggestions on how to deal
-> with devices that do not properly implement the protocol for which they
-> claim compatible?
 
-A compatible is "the way" as David has done. Once again, generic 
-compatibles have proven inadequate.
 
-Rob
+On 10/9/25 16:54, Jishnu Prakash wrote:
+> Hi Eugen,
+> 
+> On 9/25/2025 1:33 PM, Eugen Hristev wrote:
+>>
+>>
+>> On 9/25/25 03:17, Jingyi Wang wrote:
+>>> Enable more features on Kaanapali MTP boards including PMIC peripherals,
+>>> bus, SDHCI, remoteprocs, USB, PCIE, WLAN and Bluetooth.
+>>>
+>>> Written with help from Jyothi Kumar Seerapu(added bus), Ronak Raheja
+>>> (added USB), Manish Pandey(added SDHCI), Jishnu Prakash(added PMIC),
+>>> Qiang Yu(added PCIE), Yijie Yang(Added WLAN) and Zijun Hu(Added Bluetooth).
+>>>
+>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/kaanapali-mtp.dts | 663 +++++++++++++++++++++++++++++
+>>>  1 file changed, 663 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts b/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+>>> index 9cf3158e2712..2949579481a9 100644
+>>> --- a/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+>>> +++ b/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+>>> @@ -5,9 +5,23 @@
+>>>  
+> 
+> ...
+> 
+>>> +
+>>> +&spmi_bus1 {
+>>> +	pmd8028: pmic@4 {
+>>> +		compatible = "qcom,pmd8028", "qcom,spmi-pmic";
+>>> +		reg = <0x4 SPMI_USID>;
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <0>;
+>>> +
+>>> +		pmd8028_temp_alarm: temp-alarm@a00 {
+>>> +			compatible = "qcom,spmi-temp-alarm";
+>>> +			reg = <0xa00>;
+>>> +			interrupts = <0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+>>> +			#thermal-sensor-cells = <0>;
+>>> +		};
+>>> +
+>>> +		pmd8028_gpios: gpio@8800 {
+>>> +			compatible = "qcom,pmd8028-gpio", "qcom,spmi-gpio";
+>>> +			reg = <0x8800>;
+>>> +			gpio-controller;
+>>> +			gpio-ranges = <&pmd8028_gpios 0 0 4>;
+>>> +			#gpio-cells = <2>;
+>>> +			interrupt-controller;
+>>> +			#interrupt-cells = <2>;
+>>> +		};
+>>> +	};
+>>> +
+>>> +	pmih0108: pmic@7 {
+>>> +		compatible = "qcom,pmih0108", "qcom,spmi-pmic";
+>>> +		reg = <0x7 SPMI_USID>;
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <0>;
+>>> +
+>>> +		pmih0108_temp_alarm: temp-alarm@a00 {
+>>> +			compatible = "qcom,spmi-temp-alarm";
+>>> +			reg = <0xa00>;
+>>> +			interrupts = <0x7 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+>>> +			#thermal-sensor-cells = <0>;
+>>> +		};
+>>> +
+>>> +		pmih0108_gpios: gpio@8800 {
+>>> +			compatible = "qcom,pmih0108-gpio", "qcom,spmi-gpio";
+>>> +			reg = <0x8800>;
+>>> +			gpio-controller;
+>>> +			gpio-ranges = <&pmih0108_gpios 0 0 18>;
+>>> +			#gpio-cells = <2>;
+>>> +			interrupt-controller;
+>>> +			#interrupt-cells = <2>;
+>>> +		};
+>>> +
+>>> +		pmih0108_eusb2_repeater: phy@fd00 {
+>>> +			compatible = "qcom,pm8550b-eusb2-repeater";
+>>> +			reg = <0xfd00>;
+>>> +			#phy-cells = <0>;
+>>> +			vdd18-supply = <&vreg_l15b_1p8>;
+>>> +			vdd3-supply = <&vreg_l5b_3p1>;
+>>> +		};
+>>> +	};
+>>> +
+>>> +	pmr735d: pmic@a {
+>>
+>> Hi,
+>>
+>> The PMR735D is available in pmr735d_a.dtsi
+>>
+>> Can we find a way to reuse that include file instead of duplicating it
+>> here ?
+> 
+> In pmr735d_a.dtsi, the peripherals are added under the parent phandle
+> "spmi_bus", which was commonly used in older SoCs having only a single
+> bus under the PMIC arbiter, but in Kaanapali, there are two buses
+> present under the PMIC arbiter, with phandles "spmi_bus0" and "spmi_bus1",
+> so we cannot include the file as it is.
+> 
+
+I know the problem. I disagree with using include files in one case, and
+having the PMIC in the dts in the other case.
+
+So there has to be a unified way to handle this in all cases.
+
+Eugen
+
+> Thanks,
+> Jishnu
+> 
+>>
+>>> +		compatible = "qcom,pmr735d", "qcom,spmi-pmic";
+>>> +		reg = <0xa SPMI_USID>;
+>>> +		#address-cells = <1>;
+>>> +		#size-cells = <0>;
+>>> +
+>>> +		pmr735d_temp_alarm: temp-alarm@a00 {
+>>> +			compatible = "qcom,spmi-temp-alarm";
+>>> +			reg = <0xa00>;
+>>> +			interrupts = <0xa 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+>>> +			#thermal-sensor-cells = <0>;
+>>> +		};
+>>> +
+>>> +		pmr735d_gpios: gpio@8800 {
+>>> +			compatible = "qcom,pmr735d-gpio", "qcom,spmi-gpio";
+>>> +			reg = <0x8800>;
+>>> +			gpio-controller;
+>>> +			gpio-ranges = <&pmr735d_gpios 0 0 2>;
+>>> +			#gpio-cells = <2>;
+>>> +			interrupt-controller;
+>>> +			#interrupt-cells = <2>;
+>>> +		};
+>>> +	};
+>>> +
+>>
+>>
+>> [...]
+>>
+> 
+
 
