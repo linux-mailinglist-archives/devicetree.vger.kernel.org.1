@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-224991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 711D7BC974E
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 16:14:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BFC8BC977A
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 16:18:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 49E074E06F5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 14:14:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 450683BC396
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 14:18:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FB8A2EA172;
-	Thu,  9 Oct 2025 14:14:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCA692EA470;
+	Thu,  9 Oct 2025 14:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ifaHVe8a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KFyi6IIr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4329A2E7F39;
-	Thu,  9 Oct 2025 14:14:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900C72E6CDF;
+	Thu,  9 Oct 2025 14:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760019267; cv=none; b=gdKWT4MpFsLXHGKRgIA/ofR48EQiJRXIJ1UIWhnOdPt2ra0PZTVxvWihBsQX0wuHD+/SjHzbYdNFhqIwNpNkTu5ZjohjElYfbzD39JyDwIizV+IO2g8ObSWSu/wZVNE7ZUQNAKCXGcdji/pnlH+a5IUHpSi9I+YCiuLB/lcqINI=
+	t=1760019495; cv=none; b=PIfjkhlqLuHY0sSQw9wi56eQu30rjaFXEDghIM9mU2/x12NixZ8Db5EtI6TVpOgo949MulOsFPiVKieZPaT1FNvX7AY9OZAcu65hsNQPckwr6fCQQR7MavZbdYdI6jFxs1hD2zxskxvTf22pKF0oDk+2FMbDYAkLZLcYkKCxdCk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760019267; c=relaxed/simple;
-	bh=i7191T8MaKE8YgfGwsrRxVNbLzd5oAg9D3+qETTRBhI=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=QSLdkArOx3kRJ8NSLOlCcNBqBOmroIo0fUtqiEf6Ci2GVCrRbJ1BJOnvKgiYkJm++XkMe5cC1FkuBi0U+cy5aneNIVEL/FdE47gjbKVnt8dyaulbeuuRFdfntQYgtj3JfHF1STuBcDnK/5BolGLUoodkRn+YUnperOYrPENa8MM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ifaHVe8a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17349C4CEE7;
-	Thu,  9 Oct 2025 14:14:18 +0000 (UTC)
+	s=arc-20240116; t=1760019495; c=relaxed/simple;
+	bh=kaDua32f3qLiwsYl0j8Z4xImQ/EmgINoiUX70Dl71x8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kFPDH3fDW7uL0VX7iS0QFeyhnbZY5gPLVz2JFOfCDef/dRMvS02PNr4bqPRqxmERfXbxTZLJwyrBPAmoUKXmAIDgTPJZBNzuo6Xqm8g6aVnVt6IsJ3gyCsro/UKWETc6TGZZprfvdYBeIscojznYMZFj2MyX4Y5WFPzCrV0Tn24=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KFyi6IIr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D28FC4CEE7;
+	Thu,  9 Oct 2025 14:18:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760019266;
-	bh=i7191T8MaKE8YgfGwsrRxVNbLzd5oAg9D3+qETTRBhI=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=ifaHVe8axJJm9bRT56c8Oi7g6YwOYWAHRNVHvn/V9F7l+Tixa1bzEEQ/wrUi1FRqx
-	 G5p+IFLFy1fGp0ifmGSKu6ZQM3U0g4lmSzXPqny/j5BWzrPuYliMdKVd525Jb6CmKp
-	 dbpCYtfLw/DtLm+VQqcO+hNGSBkq9/JQm03f9VAKzQ/6aKXQvatRAAOiO3fmBYDNOC
-	 B7SPnBQq+fU4Yur3K+nbzwkgAbiBC3fF25zxdn8hBi2WQkxmgERE974YjGHwnCLnGM
-	 qXYK5Q6Fs0VDic/uuDKlwusyxKcBKd98BiHIZWy8jj851ZB4usXnhHGH4e1Z6b+L+z
-	 mVhOYANGaDXnA==
-Message-ID: <cad5f48b-5992-4e29-8ca1-57535dfe3251@kernel.org>
-Date: Thu, 9 Oct 2025 23:14:16 +0900
+	s=k20201202; t=1760019495;
+	bh=kaDua32f3qLiwsYl0j8Z4xImQ/EmgINoiUX70Dl71x8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KFyi6IIrvnOJaEfagmtohHpJmubyiaXLzdll6HXlSTUjTS/6tapuaPeCI/1JlcYHn
+	 9kP4MzO9TLqNmG1Wf62RC/4Ap97zJoVTPyDyMcuX3ZMg1beMif6zouUP9ZksXayIul
+	 1wZtfWj3TGJpPR1mB90CJgGOqfhhtTEaNjxtA3OgS2KyfO6Pt5ZfayRgRPdFpWcGLb
+	 1SUOklzht150/XKv5FVrAEbNBnHkJbm/I0iBoi4zEG1mhaCEkTJWGJnsAv20x/GywX
+	 7j/DsEYMwZ0ly/o8ogQyGwpI08kKh33gcHfEG5065bjHeFo5aSb+XvGfDMRxnBiBit
+	 oB6La0Nkb5/Vg==
+Message-ID: <204c121b-4697-44f3-80b2-b66f77a60168@kernel.org>
+Date: Thu, 9 Oct 2025 23:18:07 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-binding: display: Add ITE IT61620 MIPI DSI to
- HDMI bridge
+Subject: Re: [PATCH 2/4] dt-bindings: leds: Add YAML bindings for Virtual
+ Color LED Group driver
+To: Jonathan Brophy <professorjonny98@gmail.com>, lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@kernel.org>,
+ Jonathan Brophy <professor_jonny@hotmail.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-leds@vger.kernel.org
+References: <20251009084339.1586319-1-professorjonny98@gmail.com>
+ <20251009084339.1586319-2-professorjonny98@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Pet Weng <pet.weng@ite.com.tw>, Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Hermes Wu <hermes.Wu@ite.com.tw>,
- Kenneth Hung <kenneth.Hung@ite.com.tw>, Pin-yen Lin <treapking@google.com>
-References: <20251009-it61620-0714-v3-0-5d682d028441@ite.com.tw>
- <20251009-it61620-0714-v3-1-5d682d028441@ite.com.tw>
- <fc4b2eff-5224-4c73-b21a-16716e833b8c@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -112,64 +107,145 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <fc4b2eff-5224-4c73-b21a-16716e833b8c@kernel.org>
+In-Reply-To: <20251009084339.1586319-2-professorjonny98@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 09/10/2025 23:13, Krzysztof Kozlowski wrote:
-> On 09/10/2025 17:02, Pet Weng wrote:
->> +  The HDMI transmitter side supports up to 4Kx2K@30Hz resolutions, and is
->> +  compliant with HDMI 1.4b and HDCP 1.4.
->> +
->> +  For audio, the IT61620 supports up to 8-channel LPCM via I2S (multi-line or
->> +  TDM mode), with optional S/PDIF or DSD (for SACD). It supports audio
->> +  sampling rates up to 192kHz.
->> +
->> +allOf:
->> +  - $ref: /schemas/sound/dai-common.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: ite,it61620
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +    description: interrupt specifier of INT pin
->> +
->> +  reset-gpios:
->> +    maxItems: 1
->> +    description: GPIO specifier of RESET pin
+On 09/10/2025 17:43, Jonathan Brophy wrote:
+> From: Jonathan Brophy <professor_jonny@hotmail.com>
 > 
+> Document Virtual Color device tree bindings.
 > 
-> If you are going to send new version: drop description, pretty
-> redundant. Cannot be anything else.
-> 
->> +
->> +  ivdd-supply:
->> +    description: core voltage
->> +
->> +  ovdd-supply:
->> +    description: I/O voltage
->> +
->> +  ovdd1833-supply:
->> +    description: flexible I/O votage
->> +
->> +  pinctrl-names:
->> +    items:
->> +      - const: default
->> +
->> +  pinctrl-0:
->> +    maxItems: 1
-> 
-> 
-> Both pinctrl properties are usually redundant here. Does your driver
-> actually require them?
+> Co Signed-off-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
 
-And now I checked and I do not see direct usage in the driver or did I
-miss something?
+Messed SoB chain... plus corrupted tag. Please look at submitting
+patches what should be written here.
+
+> Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
+> ---
+>  .../leds/leds-group-virtualcolor.yaml         | 88 +++++++++++++++++++
+>  1 file changed, 88 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml b/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
+> new file mode 100644
+> index 000000000..945058415
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-group-virtualcolor.yaml
+> @@ -0,0 +1,88 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-group-virtualcolor.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +title: Virtual LED Group with Priority Control
+
+
+Bindings describe real hardware, not virtual arrangements. At least
+usually. You need to make a case in the commit msg why we want exception
+from standard rule.
+
+> +
+> +maintainers:
+> +  - Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> +
+> +description: |
+> +  Virtual LED group driver that combines multiple monochromatic LEDs into
+
+
+For sure we do not describe drivers here. Describe hardware or
+system/board-level concept.
+
+> +  logical groups with priority-based control. The driver ensures only the
+> +  highest-priority LED state is active at any given time.
+> +
+> +allOf:
+> +  - $ref: common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: leds-group-virtualcolor
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +required:
+> +  - compatible
+> +
+> +patternProperties:
+> +  '^led@[0-9a-f]$':
+> +    type: object
+> +    $ref: common.yaml#
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+> +        description: Virtual LED number
+> +
+> +      monochromatic-leds:
+> +        $ref: /schemas/types.yaml#/definitions/phandle
+> +        description: List of phandles to the monochromatic LEDs to group
+
+You allow only one phandle, not list, so this is confusing.
+
+> +
+> +      priority:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Priority level for LED activation
+> +                     (higher value means higher priority)
+> +
+> +      blink-delay-on:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Time in milliseconds the LED is on during blink
+
+Time in ms is expressed with proper unit suffix.
+
+Isn't there standard property for this?
+
+> +
+> +      blink-delay-off:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        description: Time in milliseconds the LED is off during blink
+> +
+> +    required:
+> +      - reg
+> +      - monochromatic-leds
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    led-controller {
+> +        compatible = "leds-group-virtualcolor";
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        led@0 {
+> +            reg = <0>;
+> +            label = "status:red";
+
+Use color and function instead.
+
+> +            monochromatic-leds = <&led_red>;
+> +            priority = <2>;
+> +            blink-delay-on = <500>;
+> +            blink-delay-off = <500>;
+> +        };
+> +
+> +        led@1 {
+> +            reg = <1>;
+> +            label = "status:green";
+> +            monochromatic-leds = <&led_green>;
+> +            priority = <1>;
+> +        };
+> +    };
+> +
+> \ No newline at end of file
+
+You have patch warnings.
 
 Best regards,
 Krzysztof
