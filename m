@@ -1,150 +1,162 @@
-Return-Path: <devicetree+bounces-224762-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224763-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7595CBC792B
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 08:48:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9FBEBC7942
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 08:49:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5E65F4F47F0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 06:48:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEEF819E6CFE
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 06:50:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91C82D0C6C;
-	Thu,  9 Oct 2025 06:48:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FF4C2D0622;
+	Thu,  9 Oct 2025 06:48:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="t5sxhCFG"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HIlmvhS3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A542C234F;
-	Thu,  9 Oct 2025 06:48:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3950F2D0606
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 06:48:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759992508; cv=none; b=rfkTKK3RYwu1AT167I33h4Am9j37pxeSELNl0BaS4BzRM6HyD2i/EmgxTnPsiw0OLnaYKbQ1/h/HvEL9hWN7eI/7s+rQFY3JFHuaatcJ6aknUI1WdnrOfK45PzMD1YXb+wF9HVnh0iINtTmPK+NAG03Sr7xrVexvH8CQIRgJOhA=
+	t=1759992533; cv=none; b=LPcIsJ0AfGPn1i3MqaEUUQtZOgNhcp9bxkr7ru9BMrvGFCVMmg89DnQpTbWx9C2DOip2IEB2xCgVKXqkk+NrkvSKn/W14ajoJbjIUjnhZouVlTFwtqb1mMlr9hqtcO1+IUO4uNJqaBlW4zkDvBiBbDVsNJbsakvx7aFOTBim8l0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759992508; c=relaxed/simple;
-	bh=4XdM9wcnYNU2LkGINpDAAZjGYWWB2K+VEu9ljuY48hg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CtVED2aEkPifhBPTcEY58jNaiPVJCBY/mOLr6ALxj0kSAoD0QT7DbnRwzBoJYOvV40D+fcs5OwKiioQMfvOiOSv5bfPmjfIkO6ACkuX3QRJcerEdPn5vMZYoPkgWByXi5rWQTS3i7UkdNF0WUJYPjKlo2OlZEEZbbpqy/3CzjPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=t5sxhCFG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 22F54C19422;
-	Thu,  9 Oct 2025 06:48:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759992508;
-	bh=4XdM9wcnYNU2LkGINpDAAZjGYWWB2K+VEu9ljuY48hg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=t5sxhCFGq8b5VeeXou6XoRRkX07P0L4X3ewWchOXZ3YMk914cwNj3CIEmm7AZ96Dd
-	 k5hIAn0/tToXGFHWwC2KSrFvuQui2WgERwkrfXdUD1dqq+58qtZPX4kAEMWz2zrIX8
-	 Z/Dg4htbyiNw4Rgi++o/2n0oBgVw+OPyQHK2c2D4RF2uZkv9lOYEcQbqf+Ma2aV2Ef
-	 zJNffkmDiEYna2O56rYp+bCWNtRN70dPt48/TFdpyK0440vsxRAZ3jHdz1oVZVV91S
-	 b4dxStQWhzSiTy0PXumg/h6JcyGQIMOcUmlnGvIjvfotQYb7aVqSPZM4OFHBzLqqnc
-	 vnRzMNSiyxRJA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 18572CCD18A;
-	Thu,  9 Oct 2025 06:48:28 +0000 (UTC)
-From: Maud Spierings via B4 Relay <devnull+maudspierings.gocontroll.com@kernel.org>
-Date: Thu, 09 Oct 2025 08:48:28 +0200
-Subject: [PATCH v4 4/4] arm64: dts: freescale:
- moduline-display-av123z7m-n17: add backlight
+	s=arc-20240116; t=1759992533; c=relaxed/simple;
+	bh=ic9Vss68dPabO721ajneWZTeeiSQLVPNFuFb7lBW75s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pUP1uUk5U5N7GZXcMlqUt+vi+e2nP8tTZS7ymuPZR4ac991IHD+PXXYim03IRzN34eG5Ax9KRBrnBszICeIg5cKd3NBX1V6WfTijyMJsRIXoiPGj7HI1miY//M2fOx4Roam8mXUSB+QArRgs2Il+A1t6iJPU0lsY+JcXpw9eIBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HIlmvhS3; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5996EGqO029228
+	for <devicetree@vger.kernel.org>; Thu, 9 Oct 2025 06:48:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	O/X5Uvfbr+U+5LWnL/Jb57ftS3SWraOPoE3A5ZWOA9g=; b=HIlmvhS3G9ASO9yM
+	N332g2WzSLEnbtLyo5rAE52mRB+Fznl8t25+LOdG9nOB47ZOKfrnpXdEzX7U5aXT
+	SwXEucqkblsE/56rdz0a/RavSvqUvQB1UO3o/oqL+AoJuP3PzvEfElI1qaOI6XHG
+	Oktmyq6Hfk8LQabbaF1Z2sYgzl4C4BjTmGcntFlDPt39asRiCask6hOJp39kCLP6
+	HuB8eWUE0L6+fYYReLtmMyCiMcgNjWE4XtzbZY7MQOD+QSv+rCFkkyOCANtuqwSq
+	xJLbCCRWsSYiMYsrLyqOZsGR2dNe07j1+lazAlBHD97OIE3tkVi/jTCaFpabMQ1l
+	6IPulw==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4nhs61-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 06:48:49 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7810af03a63so1993135b3a.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 23:48:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759992529; x=1760597329;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O/X5Uvfbr+U+5LWnL/Jb57ftS3SWraOPoE3A5ZWOA9g=;
+        b=L5qpgnfS7+4V+FMtDSK6QFM2vYTJcAFow71W5RtuGADgPNuwMVEwv020Un08J6gOEV
+         sSStnV18xhREv/gtForxoNIPeKfLbtzlScsAoyds7tyh5R+LG5cy9lyQBsUsPqZsJOh4
+         yeehDbiihJOn3DgqVTPX3QvWdYrP+cwCP8G+KeH0a4Dq1jMJOs3a+/kD7vYgDNP7MIJl
+         veJK6lP/0/czIMs2tbvSpLXQ0WMo66Cnw0J0bvaD/7zpRFnRDeKsLwH/78uRIOROu4Zu
+         VpG7LQVC8XHgqdQ1+mkxA9jdrvbx02mwfDizQ/LoLgf4YeXtx7JJXeXgTUVAuB6G6o4v
+         HJ9Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUHJWTB5SE6hCk26DrZ1dMY0prVejSapST/huiMxcFeBGk72Dzp92anfUy2+iszSxHFxuNcjgovQehJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGo0XiGWp1KFAW/hdi1ZVVQyErIM5rxwQlLCGw0i8ycbvv4F8m
+	ZJA4nqoEFs/V8OnghGxuLdj5OrfPJ3ipJHfSlIpFaJgk6W3aoLDzMsbT3A5LigtEc6tlQ+jwqmN
+	8IIuHWUKNlErbP7hwNuLAk6XllGXTnRqSO7THiuH9VnivVzFII/jxD9I4t0oweCdP
+X-Gm-Gg: ASbGncvctTvtW7XzAwPHwY7ulJOfRRGv0x4gm8rg5vKH5yXc+3YLsD3rg7g4KzQW/To
+	aFBewhNg4EO0WdrHVGm7MiI5nXgHQ4G28IbtUPPNF1xyRrxUTAojx0XWuxOhCAQoBNO0K8CFOlq
+	ElPIEhKmeO8eyRnx+BAG30rebButcAubhFom8azDJxe+evNPasoQ/ad2Q9PF4kvmGe2dRhIdHao
+	G+nqon7tVBP0+0Fi1lv/a1AIWYXCNl6Tdi0Xr4FMB4okuZ9pExfQ6jBnHlppr1egxA3kcKZv1vU
+	MZ8vtlURZiuUXBro7DfHI2AZHTmqFOpddosO1C4nvO3LOJaAZ/+ugeaUkxt84goZgGidKNQASTg
+	8fOASsZV6d7dPXcUvrr+Pl3zEdndRjGeHblo+P0E=
+X-Received: by 2002:a05:6a00:23d4:b0:77f:3ceb:92bb with SMTP id d2e1a72fcca58-793858fb3b6mr7616199b3a.8.1759992528739;
+        Wed, 08 Oct 2025 23:48:48 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGj8Rv9uj1kQjcjGsQYqLP1M7EZTs7RFClhYrctbezz0OUijiztZ7vcfVQque68PbIFbDQhdg==
+X-Received: by 2002:a05:6a00:23d4:b0:77f:3ceb:92bb with SMTP id d2e1a72fcca58-793858fb3b6mr7616185b3a.8.1759992528318;
+        Wed, 08 Oct 2025 23:48:48 -0700 (PDT)
+Received: from [10.133.33.62] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-794e22ab4ffsm1796190b3a.70.2025.10.08.23.48.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Oct 2025 23:48:47 -0700 (PDT)
+Message-ID: <fdca746b-e1b0-4610-ada1-6d9fd156c7c7@oss.qualcomm.com>
+Date: Thu, 9 Oct 2025 14:48:44 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: mailbox: qcom-ipcc: Add bindings for
+ physical client ids
+To: Rob Herring <robh@kernel.org>
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250922-ipcc-header-v1-1-f0b12715e118@oss.qualcomm.com>
+ <20251002003432.GA2714683-robh@kernel.org>
+Content-Language: en-US
+From: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+In-Reply-To: <20251002003432.GA2714683-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251009-max25014-v4-4-6adb2a0aa35f@gocontroll.com>
-References: <20251009-max25014-v4-0-6adb2a0aa35f@gocontroll.com>
-In-Reply-To: <20251009-max25014-v4-0-6adb2a0aa35f@gocontroll.com>
-To: Lee Jones <lee@kernel.org>, Daniel Thompson <danielt@kernel.org>, 
- Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Helge Deller <deller@gmx.de>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-fbdev@vger.kernel.org, imx@lists.linux.dev, 
- linux-arm-kernel@lists.infradead.org, 
- Maud Spierings <maudspierings@gocontroll.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759992506; l=1639;
- i=maudspierings@gocontroll.com; s=20250214; h=from:subject:message-id;
- bh=pWeAK4Rn7wjoYLcVlDOrdhK/tMcB60QeJTaIHG+EMUw=;
- b=M1+ka83/gjtFmtqPnLvMWm+kXFyj+0T+dYJTiIImhhAqPMKlwgthVMhg/haaB6ZkpiwXQMoQE
- R/U68uJ0KQUBSRMKPSpeeKyR+gkZXexQBuiIbfUL3OxNmbGA6yOxHX8
-X-Developer-Key: i=maudspierings@gocontroll.com; a=ed25519;
- pk=7chUb8XpaTQDvWhzTdHC0YPMkTDloELEC7q94tOUyPg=
-X-Endpoint-Received: by B4 Relay for maudspierings@gocontroll.com/20250214
- with auth_id=341
-X-Original-From: Maud Spierings <maudspierings@gocontroll.com>
-Reply-To: maudspierings@gocontroll.com
-
-From: Maud Spierings <maudspierings@gocontroll.com>
-
-Add the missing backlight.
-
-Signed-off-by: Maud Spierings <maudspierings@gocontroll.com>
----
- ...x8p-ml81-moduline-display-106-av123z7m-n17.dtso | 27 +++++++++++++++++++++-
- 1 file changed, 26 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtso b/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtso
-index 3eb665ce9d5d2..c320e0f563af9 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtso
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-tx8p-ml81-moduline-display-106-av123z7m-n17.dtso
-@@ -16,6 +16,7 @@
- 
- 	panel {
- 		compatible = "boe,av123z7m-n17";
-+		backlight = <&backlight>;
- 		enable-gpios = <&gpio1 7 GPIO_ACTIVE_HIGH>;
- 		pinctrl-0 = <&pinctrl_panel>;
- 		pinctrl-names = "default";
-@@ -91,10 +92,34 @@ lvds1_out: endpoint {
- 		};
- 	};
- 
--	/* max25014 @ 0x6f */
-+	backlight: backlight@6f {
-+		compatible = "maxim,max25014";
-+		reg = <0x6f>;
-+		default-brightness = <50>;
-+		enable-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_backlight>;
-+		maxim,iset = <7>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		led@0 {
-+			reg = <0>;
-+			led-sources = <0 1 2 3>;
-+			default-brightness = <50>;
-+		};
-+	};
- };
- 
- &iomuxc {
-+	pinctrl_backlight: backlightgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO04__GPIO1_IO04
-+				(MX8MP_PULL_UP | MX8MP_PULL_ENABLE)
-+		>;
-+	};
-+
- 	pinctrl_lvds_bridge: lvdsbridgegrp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SAI1_TXD2__GPIO4_IO14
-
--- 
-2.51.0
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX9TzIYEgFZ7H5
+ 5td6XaVThvb3eVbHj/41apgYJIqGnZoNgpoHCloSrSd85FHEEbHR8nEx5fsA75hb90tTLFSepU9
+ t26OmSTRqVDjJ7V0fMlHMcBot08ot2nZub0jGXTIwrLDu7Z3OmOkGOLu/6X8h4gVRq14TnZGpcG
+ ParFK6em/fxHsooqsQig3xOYTZ3vnAyruBe7d2LjVmwIbrd4lpKt0OdC8SI7icka2W2GDRhw20W
+ pjRiT7WclbI0Hm7XfGdcVzSPs0WyHxOZBMKaYuhk5Kj27/vo6SCHT/xtPY9QQcZg+8AfuIwdBOU
+ qst2p6pEPacW8qz/8Cxi36vIezGHC/BZ9ZTHW5dVWAr911pho7IDdqS0RUYQdeKmFULLx2llvZH
+ FXeZArPU7FL6UW3oeEbEk+jNiNiU4Q==
+X-Proofpoint-ORIG-GUID: 1KzUwFTcK3zwxRzZn_2oPu9J96dkZpo9
+X-Proofpoint-GUID: 1KzUwFTcK3zwxRzZn_2oPu9J96dkZpo9
+X-Authority-Analysis: v=2.4 cv=VK3QXtPX c=1 sm=1 tr=0 ts=68e75ad1 cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=lwdf39Mp2klsYuJi8zAA:9 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-09_02,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 phishscore=0 clxscore=1015 impostorscore=0
+ bulkscore=0 spamscore=0 malwarescore=0 suspectscore=0 lowpriorityscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
 
 
+
+On 10/2/2025 8:34 AM, Rob Herring wrote:
+> On Mon, Sep 22, 2025 at 08:34:20PM -0700, Jingyi Wang wrote:
+>> Physical client IDs instead of virtual client IDs are used for qcom new
+>> platforms in the Inter Process Communication Controller (IPCC) driver
+>> as virtual physical mapping logic is removed in HW. Add the bindings.
+>>
+>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>> ---
+>>  include/dt-bindings/mailbox/qcom-ipcc.h | 48 +++++++++++++++++++++++++++++++++
+>>  1 file changed, 48 insertions(+)
+> 
+> This looks incomplete. Where's the binding additions for the new h/w 
+> that uses these ids. This series looks more complete:
+> 
+> https://lore.kernel.org/all/20250924183726.509202-3-sibi.sankar@oss.qualcomm.com
+> 
+> Can QCom please coordinate your work so we're not getting the same thing 
+> a day apart.
+> 
+> Rob
+
+Hi Rob,
+
+Sorry we thought all the platform use the same phy id at first, as different platform
+has different IDs, maybe it is better to maintain it in different header files
+like qcom-ipcc-kaanapali.h? Please let me know if you have disagreement for this.
+
+Thanks,
+Jingyi
 
