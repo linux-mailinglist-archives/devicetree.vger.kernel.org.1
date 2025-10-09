@@ -1,98 +1,94 @@
-Return-Path: <devicetree+bounces-225149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBE04BCB003
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 00:00:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12D48BCB00C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 00:01:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EE28421BFD
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 22:00:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B476C4253F9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 22:01:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 256C6284885;
-	Thu,  9 Oct 2025 22:00:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F8D4283144;
+	Thu,  9 Oct 2025 22:01:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mxUbKD4L"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Jj5cjvUP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B53D284662
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 22:00:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7E8E1A9FAE
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 22:01:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760047206; cv=none; b=NnOb8T2kieS4u4lKBUqK1NWok4KI5tShOxaOLT9uoLMaay44D79jkB1NVgpWggkCgpZZmqHxK3LkMrQOQHyBhIcBTR6ZcogZIC71pxzO2MNv4zrpwwaLkQUu3XTFlAkLUHezFJtPkitTUV+h0DYp+QjP7CGAIwfesqr0AM6f3sU=
+	t=1760047295; cv=none; b=KV4b5V5AbliHFGT2GlVUM4Ka1kbARLzqFixmxqUj/+FN0wQrbZDeiq/EHVkIgN4tLM2qcJg1Gi1hf86wRZJBFqQDqEoORjLniyxLoSA0RAKamAI/wqCCyZOK1di3FsW001Cgnfhuouo8xoofL+d/jmQp/MgDlxwUDt6ZnFUGK4M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760047206; c=relaxed/simple;
-	bh=EDiIL4p9e62p4UbVruGVVDBJ2DSx2rVnb4KD9/RBVrA=;
+	s=arc-20240116; t=1760047295; c=relaxed/simple;
+	bh=MvovQ2CZf7lZ5aK0Hw+3F1huuAcGmwy9QQE0CmWBCP4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XOK7IN1w5TeI4BwJG850ssj9g0+0VBK9WeXA05swk+DPJLTbOx8G9qejSewCKqAzeyFW8sVWRqGWqASD6F8+Apm887RsOW2l0xuxkhu75N34A2Ndx9eB/l+yxzNIKy3tkgDSK/ruCoN+08w1zKGZFClM9KYTZ06bzt06zPKerBk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mxUbKD4L; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 599GG90A023407
-	for <devicetree@vger.kernel.org>; Thu, 9 Oct 2025 22:00:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=KpYawqd5hNZvdS7TNRZTo7pt
-	PEhpHEawHuikV3RCL2w=; b=mxUbKD4LqLYvgAS0jz1FRKi314Y+7LREKM3+iN1J
-	LcA8h0bfrcwkLc2BZ0bbfGzF7LTjKlXpz7NHBLLB4/OlQyR1GhN/zXUfS0IzcnrL
-	S+mU31F5rPc7TX3aRh7Fx+qSm9fCV9JNiUP4tZN5Q4BenAsYVxXZL4UDO8qbRimv
-	HOwGKj4p/SxEbfZhsneiruQQByvqJnTe1IhLpZUtUDn315qtD9d758H1+SP0Goix
-	3yNutWKmoHlAs2i4ERqHdpSC8Lx3YwFhhKwjjuga41ehxLP4VJzFr+h//q4IAIIf
-	GGp5xR79gIVYVbWK0DqHabr0HP/9mDLN89b9TDt7f0spuw==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49pgdsrtwv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 22:00:03 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4e002f413e4so27138451cf.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 15:00:03 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UlZEmxjagUkikH4gQyKKGjrkS0sb+zAv1dIGsjwqQT85NLuLYwTntUGxbo1GJnoBLxGuuUUGc3mUkUbCtO4Un5PQqVXL+Q0/SQPuNPrKGD/5PFtW8mgpu2pCuoomI/LA3t31eRoDk2eXfWolc4qfxDlUo77f9slBIrRtAkQ9qAo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Jj5cjvUP; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-7811fa91774so1288930b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 15:01:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760047293; x=1760652093; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ubabA3xLcERhUMalMqnUfMw3y+TLyOaAiUf3iO6bq8Y=;
+        b=Jj5cjvUPyfAoNL3J8Js7Ik3znJz5K1AtIIREP6dCabCmGXVEfw7bTw2/fElmG9H5l/
+         lFKH45HTsJAN5qxeMorrJttxdyDKeowJxfh6ysvkXXNEbcZJFWzcEx3lu+gT2Un6KR8o
+         u1WWvcCgd3Ef9lE2bySDhAWq/bnYfXM654AZKoNSNKLLB1WHtepVDYGnG1qdpx4KBoNj
+         jkSoAowRCnAZif0MhLYtP/9SIluj76u0uVn0UK1AQsIDuVzD71c5kzLTBNQTcjY70B9r
+         TUDS/AueCN+z1o7lMpYAiP3qM5PyHmO6bqeS2z+df7arA7eMwxTgBJvJczbS6kYNOoFA
+         Nikg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760047202; x=1760652002;
+        d=1e100.net; s=20230601; t=1760047293; x=1760652093;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KpYawqd5hNZvdS7TNRZTo7ptPEhpHEawHuikV3RCL2w=;
-        b=M5pURWNUU6/vtjW0xU8uJfC7BBUy4H5swk9NYRQTzNLecztU9hxTszR3NgBLo1+OSp
-         BB8s24nkG5ufcwWAQ9CcvW+2JbRetR7lDjaKDwu5mC1Ku1trGENu7e6JEjYn4PQwfpxj
-         4iGAMVE3ioGXflkK6LGZvj9zReHD1DySpcvPSRPmPmEu6qcysl7OudyCozbQoSItLxMi
-         8r5cydjT1r9HG1OxgpAV+hfSL3EYl7FwcITUSfQg3/Bbft4PUNXV5CjKXHMgPenLeEHt
-         +fyipHAXHmbaB/Pm7uvSNO0Ibs6jUHtvTwtZL7JLOzd5TC9n5TVoOHJthrV3tP+7hhX6
-         djig==
-X-Forwarded-Encrypted: i=1; AJvYcCVUwD2Uxmp3Eg2dOZ7kYa7Q2n5uZ738DO7kUhaXjq329Aoqz8DuFqek1LJNLBBfX5MbBi3eeDx6IdLw@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDlkeqfx2/W0CRHb3uPeNQeZev4rhynrESWALCBZuZMunRNSMh
-	g4aNTBXM1hX4GgN8d8A6Fl3u6odBfy0+2Mllk7Zrxb2Y1nDLeUaPin2uwORSu46b3q4rRfN2Fk8
-	6ZV7cEoRZUg8M0YjTBGZ9q4ppt7aqpfH3Uwiy3nRzz+UC7WwKMl0Lrji36cLcHh43
-X-Gm-Gg: ASbGncvbo36jsvPbQuIeaZUhfQNjOBLgH7kJYs8YT1wm+1eXR/TM+wXEDkFIQm7VKNC
-	CHYgAH+KlDrecUPKASzwgoBhmdhG3meZerFhrGHWjfHSYvbm3k9YH9PprgDiXpsbXKfC+Vx86NG
-	r/DfM5CAl7NKLo9+swcFVMbhDsWBfsh8eAixjKTka5vtB4UNWA+bq8fFCYOlMsSotfMiZ1BdZ3p
-	4jLb3OWR1Cc/QL3e9Umr86xlGbUArI7HVCVZSRRS2t7IUdE2V4Ac4kyUE14OhOfLbEf+A7iblwI
-	Inpb95t7qeMhRelhcPtXA1u+Ff0XhpR1+YYxGx2QIk6j73bgju+lwz+OfiN6BgDixlhrAtImEDf
-	pQvV2Lss13JQu4NuRyZXNRTVRg6UnS7wHfu/UTQNGh9gxWpbRMANuTEnykw==
-X-Received: by 2002:a05:622a:4814:b0:4b7:964d:a473 with SMTP id d75a77b69052e-4e6ead5803bmr140393411cf.52.1760047202275;
-        Thu, 09 Oct 2025 15:00:02 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHcapLO481tsrnzCDmpzE9Uxm1bNDcxriX9QOSnjP35MjYhUip+3TaKyYzGd907o8HwQHQYhg==
-X-Received: by 2002:a05:622a:4814:b0:4b7:964d:a473 with SMTP id d75a77b69052e-4e6ead5803bmr140393041cf.52.1760047201848;
-        Thu, 09 Oct 2025 15:00:01 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3762ea1136bsm1334111fa.29.2025.10.09.15.00.00
+        bh=ubabA3xLcERhUMalMqnUfMw3y+TLyOaAiUf3iO6bq8Y=;
+        b=fcO5XM1bdsDLglObx7NXRdeLrDXIlweSmm9lA7bAlbkRHzIC29oNnh6wLdoCrd4V8k
+         JkRQKHJVDUBKnn6OwMgKBfVuf6BgBvu+iFJc6SToWWGvCSD4NVd9YAmSY6dNR1IBXIAz
+         8Ms30tEHQSobdZGEGvRpIbKIKylLH7VFkgTuRXbbRNVZeJCR/0xnRxwUGkzbOQ9jBFVh
+         xPwXDwu9eh2SnsN/Mtzmvh6Hi9YNts53qCXcZZrqvY2kIv6AikzS0nEiTG3hywTENi0R
+         xQhExVq9VQIqE8/x8TYoBF3/A78UY1TkAQgz9lkXeS9MQ+7/+LVuc1O9gUS+Oro/rbkp
+         LI+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUIeSP8WTp5LQvO2Wb8Xwm/3wixOw2sJLcQ8SVDW69Um7GTNef5f3uwsTdXcm7NKvh523VzG2rNMVGO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJF7daSWf2ZDWYkNku0NJflKLKz2/9vsJHbdpeAQQAJnLt6aPb
+	ZzRJtcBVNiIXgV4SCGKBzqxK+MRIb7lNCZZ45XJBeSa7g/RIz1yqLUm8
+X-Gm-Gg: ASbGncuJQygY/zVS2wwXTjXeehw7xgUV1k8O57xWFNh61Q7ItdFOIetP0EzS+GTXLKQ
+	axxXqssnm8KJn6NdZ7uGekQUOFP2PEAQ7iSDmVWFcEy+u1TYy7zA2P5A50q3BXyQx9449A/QjZD
+	3lTnQSKlLtlYMkfArCbNzOJlSzqBgOgRQjDjsiNjSxzOy0Qbil0/d0KueigV6hk4fJWfEwesON/
+	xDWgcF1SufPQA+5wk4Q2+6VG0VyY3OkQ9LWlPZmk7lgvPnbWHSGyGKNAzzax+lCtXzRSohi/HiD
+	sISdoJ68uRXl2PAArqbpd8BvDFHl5HcI5MsAau3qqIxry/Mz2sVwp5lNfUPFvH1eChJTagfWVkL
+	we8bQz6HEAWI/L2+ngwdpotoiVhFxaMxmcpFWBQA2kiSiR1oZmY1R7TZBWrNR6XDO7Q==
+X-Google-Smtp-Source: AGHT+IFiwrkXymykwZ3hVNOaThAi1ayt2BMjy61kTS/daz3gz7dkmJAAWVsfMj9rSf6GmAkBMMmekQ==
+X-Received: by 2002:a17:902:ce02:b0:25c:d4b6:f111 with SMTP id d9443c01a7336-290272e4666mr119076335ad.47.1760047292794;
+        Thu, 09 Oct 2025 15:01:32 -0700 (PDT)
+Received: from localhost ([2804:30c:b65:6a00:ceaa:2ed0:e81e:8f51])
+        by smtp.gmail.com with UTF8SMTPSA id 98e67ed59e1d1-33b61a1d3dbsm937614a91.4.2025.10.09.15.01.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Oct 2025 15:00:00 -0700 (PDT)
-Date: Fri, 10 Oct 2025 00:59:59 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Alexey Minnekhanov <alexeymin@postmarketos.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@gmail.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sdm630: fix gpu_speed_bin size
-Message-ID: <g6mv3ebxukceroa76w7s4s6tosqy34mj4xvzfwzozimdbkh5hx@b36drutn3lfl>
-References: <20251006-sdm630-fix-gpu-v1-1-44d69bdea59a@oss.qualcomm.com>
- <ab555975-77bd-4232-9f36-b722a16f4110@postmarketos.org>
+        Thu, 09 Oct 2025 15:01:31 -0700 (PDT)
+Date: Thu, 9 Oct 2025 19:02:31 -0300
+From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
+	linux-kernel@vger.kernel.org, jic23@kernel.org, ukleinek@kernel.org,
+	michael.hennerich@analog.com, nuno.sa@analog.com,
+	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	corbet@lwn.net
+Subject: Re: [PATCH v4 7/8] dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216
+ and ADAQ4224
+Message-ID: <aOgw95ebGWWhahUx@debian-BULLSEYE-live-builder-AMD64>
+References: <cover.1759929814.git.marcelo.schmitt@analog.com>
+ <7e51e036ba930284c74cf42afd53b17d49093654.1759929814.git.marcelo.schmitt@analog.com>
+ <20251008-swooned-closable-fbc8b71601c0@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,102 +97,151 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <ab555975-77bd-4232-9f36-b722a16f4110@postmarketos.org>
-X-Proofpoint-ORIG-GUID: vq5Q-RRxmubL7CZQ4XUQvn626t61q3a1
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA5MDA5OCBTYWx0ZWRfX7mfxnkMCW8mI
- rhPbVzU8aDeWt9Ldsp+fbtFX0WLtRS/vXzyYr8ryGjkm0lqnUNabQoctF5rLcHyAml3ksgFeYz+
- jnbZF/YWSX7zi8LtJNF0xRvcHDG90S8Po+npSku/AQd+bUmEsTDUcaiDgdbDCh2QY9ojag6AeOg
- JpfxkmWnZ4jUfjDnhMb5pNoSiPLdWSkWPodL/SPXFNeo1BxDJHEc/W4RDqRiTCdD1uPdN6yVmz/
- h8gPfq9UAP5suzGE2lig9xO9pa73b9K+EHH2f+OeQXZU6RH5dGLidh7D+y2wn8BNb4vdbYiEUi8
- EZoG4t2ZOVZK35wnlbzZwr7rKjT4jK/fk/bJO01IX33+MedfJqiTtruZi/KlDfWan453PUQ/5Iw
- ssUVN/7G256czhQcjRaNYN9cLsH2eA==
-X-Authority-Analysis: v=2.4 cv=DISCIiNb c=1 sm=1 tr=0 ts=68e83063 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=NEAV23lmAAAA:8 a=qC_FGOx9AAAA:8 a=EUspDBNiAAAA:8
- a=ZfU0Sroon34W5jsnaikA:9 a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22
- a=fsdK_YakeE02zTmptMdW:22
-X-Proofpoint-GUID: vq5Q-RRxmubL7CZQ4XUQvn626t61q3a1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-09_07,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- lowpriorityscore=0 malwarescore=0 spamscore=0 clxscore=1015
- priorityscore=1501 suspectscore=0 phishscore=0 impostorscore=0 adultscore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510090098
+In-Reply-To: <20251008-swooned-closable-fbc8b71601c0@spud>
 
-On Thu, Oct 09, 2025 at 09:41:13PM +0300, Alexey Minnekhanov wrote:
-> On 06.10.2025 01:16, Dmitry Baryshkov wrote:
-> > Historically sdm630.dtsi has used 1 byte length for the gpu_speed_bin
-> > cell, although it spans two bytes (offset 5, size 7 bits). It was being
-> > accepted by the kernel because before the commit 7a06ef751077 ("nvmem:
-> > core: fix bit offsets of more than one byte") the kernel didn't have
-> > length check. After this commit nvmem core rejects QFPROM on sdm630 /
-> > sdm660, making GPU and USB unusable on those platforms.
+On 10/08, Conor Dooley wrote:
+> On Wed, Oct 08, 2025 at 10:51:37AM -0300, Marcelo Schmitt wrote:
+> > ADAQ4216 and ADAQ4224 are similar to AD4030 except that ADAQ devices have a
+> > PGA (programmable gain amplifier) that scales the input signal prior to it
+> > reaching the ADC inputs. The PGA is controlled through a couple of pins (A0
+> > and A1) that set one of four possible signal gain configurations.
 > > 
-> > Set the size of the gpu_speed_bin cell to 2 bytes, fixing the parsing
-> > error.
-> > 
-> > Fixes: b190fb010664 ("arm64: dts: qcom: sdm630: Add sdm630 dts file")
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
 > > ---
-> >   arch/arm64/boot/dts/qcom/sdm630.dtsi | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
+> > Change log v3 -> v4
+> > - Now only documenting GPIO setup to control ADAQ PGA pins.
 > > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> > index 8b1a45a4e56ed1ae02e5bb6e78ca6255d87add1c..21f7dcf60679026e45202c6ce137ca0463c00d0e 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
-> > @@ -598,7 +598,7 @@ qusb2_hstx_trim: hstx-trim@240 {
-> >   			};
-> >   			gpu_speed_bin: gpu-speed-bin@41a0 {
-> > -				reg = <0x41a2 0x1>;
-> > +				reg = <0x41a2 0x2>;
-> >   				bits = <5 7>;
-> >   			};
-> >   		};
+> > Pin strapped/hardwired connections to PGA pins may benefit from a "fixed-gpios"
+> > driver which may (or may not?) use the shared GPIO abstraction layer [1]. I may
+> > propose support for pin-strapped/hardwired connections when I get a working
+> > fixed-gpios implementation.
 > 
-> Hi Dmitry,
-> 
-> I think bits should be <5 8> as well.
-> 
-> I had similar fix in [1] for quite some time with a bit longer
+> What is a "fixed-gpio" as compared to a hog, from a dt point of view?
+> Is it purely a software change?
 
-Indeed, it looks so. Please post your patch!
 
-> explanation why. In short, we need 8 bits to be able to read the
-> value in speedbin efuse fully. Currently on my device
-> (sdm660-xiaomi-laevnder) the resulting value in Adreno driver is
-> 0x7. There is no such speedbin in [2]. It should read 0x87 (135)
-> which corresponds to downstream's qcom,gpu-pwrlevels-3 with 647
-> MHz max, which is further confirmed by testing on the device running
-> Android by doing:
-> 
->  cat /sys/kernel/gpu/gpu_max_clock
-> 
-> Which will show 647, confirming that 0x87 should be the bin.
-> 
-> Also when you look at the list of speedbins downstream [2] [3] for each
-> SoC you'll see:
-> 
->  * SDM636/660: 157 (0x9d), 146 (0x92), 135 (0x87), 122 (0x7a),
->                 90 (0x5a),  78 (0x4e)
->  * SDM630:     162 (0xa2), 146 (0x92), 135 (0x87)
-> 
-> it becomes clear that 7 bits are not enough to hold values above 127.
-> Therefore we need 8 bits.
-> 
-> [1] https://github.com/sdm660-mainline/linux/commit/f9f92384794ca792a622ed19d5b5d2dac73a1a78
-> [2] https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/LA.UM.7.2.c27-07400-sdm660.0/arch/arm/boot/dts/qcom/sdm660-gpu.dtsi
-> [3] https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/LA.UM.7.2.c27-07400-sdm660.0/arch/arm/boot/dts/qcom/sdm630-gpu.dtsi
-> 
-> --
-> Regards,
-> Alexey Minnekhanov
-> 
+Short answer:
 
--- 
-With best wishes
-Dmitry
+I think "fixed-gpio" and gpio-hog would mean the same from dt point of view.
+Yes, it's mainly related to software.
+
+
+Long answer:
+
+We would like to read the state of a pin from the GPIO client driver. Maybe we
+are already able to read gpio-hog states from client drivers and just didn't
+find out how.
+
+The idea is to standardize and simplify the dt bindings when peripheral pins can
+either be connected GPIOs or hard-wired to some logic level.
+
+For the particular example of ADAQ4216, it can have PGA control pins connected
+to GPIOs.
+
+    +-------------+         +-------------+
+    |     ADC     |         |     HOST    |
+    |             |         |             |
+    |   SPI lines |<=======>| SPI lines   |
+    |             |         |             |
+    |          A0 |<--------| GPIO_A      |
+    |          A1 |<--------| GPIO_B      |
+    +-------------+         +-------------+
+
+But the pins might instead be hard-wired, like
+
+    +-------------+         +-------------+
+    |     ADC     |         |     HOST    |
+    |             |         |             |
+    |   SPI lines |<=======>| SPI lines   |
+    |             |         +-------------+
+    |          A0 |<-----+
+    |          A1 |<-----+
+    +-------------+      |
+                        VIO
+
+or
+
+    +-------------+         +-------------+
+    |     ADC     |         |     HOST    |
+    |             |         |             |
+    |   SPI lines |<=======>| SPI lines   |
+    |             |         +-------------+
+    |          A0 |<--------- VIO
+    |          A1 |<-----+
+    +-------------+      |
+                        GND
+
+Or even, possibly, a mix of GPIO and hard-wired.
+
+    +-------------+         +-------------+
+    |     ADC     |         |     HOST    |
+    |             |         |             |
+    |   SPI lines |<=======>| SPI lines   |
+    |             |         |             |
+    |          A0 |<--------| GPIO_A      |
+    |             |         +-------------+
+    |          A1 |<-----+
+    +-------------+      |
+                        GND
+
+We have bindings (like adi,ad7191.yaml [1]) describing the hard-wired setups
+with function specific properties. E.g.
+  adi,pga-value:
+    $ref: /schemas/types.yaml#/definitions/uint32
+    description: |
+      Should be present if PGA pins are pin-strapped. Possible values:
+      Gain 1 (PGA1=0, PGA2=0)
+      Gain 8 (PGA1=0, PGA2=1)
+      Gain 64 (PGA1=1, PGA2=0)
+      Gain 128 (PGA1=1, PGA2=1)
+      If defined, pga-gpios must be absent.
+    enum: [1, 8, 64, 128]
+
+This approach works fine, but it requires documenting device-specific values
+(e.g. gain 1, gain 8, ..., gain X) for each new series of ADCs because each
+each series has different hardware properties.
+
+Sometimes peripherals have pins with different functions that are also either
+hard-wired or connected to GPIOs (like adi,ad7606.yaml [2] and adi,ad7625.yaml [3]).
+Software wants to know about the state of those pins. When they are connected
+to GPIOs, we can just read the GPIO value. But when the pins are hard-wired,
+we have to set additional dt properties (e.g. adi,pga-value) and then software
+figures out the state of the pins from the value read from dt.
+What we wonder is whether it would be possible to have both the GPIO and
+hard-wired cases described by gpio properties.
+
+[1]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/iio/adc/adi,ad7191.yaml#n77
+[2]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml#n127
+[3]: https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/iio/adc/adi,ad7625.yaml#n70
+
+For example, instead of having
+
+/* All GPIOs case */
+pga-gpios = <&gpio 23 GPIO_ACTIVE_HIGH>, <&gpio 24 GPIO_ACTIVE_HIGH>;
+
+and
+
+/* All hard-wired (pin-strapped) case */
+adi,pga-value = <1>;
+
+maybe we could have something like
+
+/* All gpios */
+pga-gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>,
+            <&gpio0 1 GPIO_ACTIVE_HIGH>;
+/* or all hard-wired */
+pga-gpios = <&fixed_gpio GPIO_FIXED_LOW>,
+            <&fixed_gpio GPIO_FIXED_LOW>;
+
+as suggested by David [4].
+
+Though, I'm also a bit worried about such way of describing the hard-wired
+connections being potentially confusing as those "fixed-gpios" would not
+necessarily mean any actual GPIO.
+
+[4]: https://lore.kernel.org/linux-iio/CAMknhBHzXLjkbKAjkgRwEps=0YrOgUcdvRpuPRrcPkwfwWo88w@mail.gmail.com/
+
+
+With best regards,
+Marcelo
 
