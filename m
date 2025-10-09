@@ -1,79 +1,77 @@
-Return-Path: <devicetree+bounces-224711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 704D9BC72A7
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 04:02:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D023EBC72A1
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 04:02:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77B0A3A747D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 02:00:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 506763A128A
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 02:00:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE7DC20C488;
-	Thu,  9 Oct 2025 01:59:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BCCC202F65;
+	Thu,  9 Oct 2025 01:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="Nar8BDH7"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="U52OwROE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 678A51B4223
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 01:59:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAFEC1D27B6
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 01:59:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759975150; cv=none; b=r6RmLVvTYRkuFDDfxnzjpaj9A6MGG2UMvJcrt2eoOTJ1qU+t738+S1Mg1iozm240k1MyPw/v5BOTLGKxJJfiG6U3KVprkNEh+bY9hYy+piFj6dIg/KVPzw6hH9x2ynkTOApmgOLJnFsnBo16ZKnszdOPASVr3dY7Tz3A8k8WhUQ=
+	t=1759975148; cv=none; b=V9D4+YRDsPYT7cvDlK02+ZgISK5jGsBQeAui5LytR9mSBId6t09pC46jOLiqaiuKKzKgY+BuYNVHDZIztOxK3QYJSiaqbaeC2kL6vFw1kXegYM+vYTweT8RxnAf9gPIVTVA5BHc9Bnbig0a321E2chDBxSRNwwIIYa7DUj724As=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759975150; c=relaxed/simple;
-	bh=jf8ZZ2QTLngdYSbRm87h7uM6F8czWgbYRxr7b+eNIRs=;
+	s=arc-20240116; t=1759975148; c=relaxed/simple;
+	bh=vJ61a417QPWxjgaA8+Jtn/PvO+bIrzLbpFkpFGzeF7I=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=dy4PrJA6jJes75aHfP3xDefa8WjBynHb8tdhaE15r6aw2OzC8RRWi+TnyeDDuqSA4lR+vRRfX1gGy3/LNGaw/x0haiCX+l+ImPgM7zuiK008uKVR+7qT4NhJo+3j1lUXtEB35HBns4kQGcI+/aUJjIK9Z4sT73A5IWTWcT+z3lo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=Nar8BDH7; arc=none smtp.client-ip=209.85.214.178
+	 MIME-Version; b=SdURQ5y2FI/MrzYIkGERZG/rZwiUHol/llbNX12lnl8z/ja5CZLpWbbjVbm1w33htkJiBqY1zdpx+Y0WF0uZa45BTxwYUR9Qrv5f4RCEoZhv2HeG+71AP35MjcAWMug6i07dToT4hyifIefwK9cun222pZ1wjinyYN9CXXncTuc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=U52OwROE; arc=none smtp.client-ip=209.85.214.181
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-26e68904f0eso4471225ad.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 18:59:01 -0700 (PDT)
+Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-27eec33b737so7028455ad.1
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 18:59:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1759975139; x=1760579939; darn=vger.kernel.org;
+        d=sifive.com; s=google; t=1759975141; x=1760579941; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XRBm+Pg8TyGJGYp2jCQm+1zXWV7khrVi/kELEVhXf6I=;
-        b=Nar8BDH7jNGC8rHtMRaFBcV02DQ+8V47EhkMi6UqvAF0PR6irM5M/QXU61pFyMHf9I
-         3XKnUvQez0Sqz/tHFOow/tk44Pd8FsK1D2FXnVvEo7w+EX9/+abbvHYkButW7atU3wbF
-         2KqOiafiNqQWbuHkpXnR1QNlHr0uErTyiAO4AFXUiGRkSmWtn3+6bILqizrSzbcel7/F
-         2uDBEDein/jPuvKO1ARlk+6Xa5f8PqStb1UfheOu954xIBble+JxVb537MT/99Y7L7Zq
-         N7/fNm8+hxeZIK+aUyP6M8hW+wUDdm8J6QFsCk4e1hHwlowueuszodK3xhOdMDq9sQxW
-         nt4Q==
+        bh=9q1+NRseWKfUTLpTRf8HDVLHy+6zl45nVa2e8q797C8=;
+        b=U52OwROEwicNNSaAdi1Qkc5NSX0oXVDQ9kgnFTAfBX2Vq6Nk2bidxsk2+5gUxbf6Ux
+         B2nt7v/SxkEi5fQWbl6jSLZpJh7HcHASEkVODHPoCqvW9uU32AD1PP+GbjS7SWbkNy9p
+         v1Nn7/IAK6Z8Svu1edUTbcf9lH/7PZST6X8XEr82xN6+KHkxLDuPDbsbAft8LDLKXnhb
+         ilzJI4a1Rh8iOhS7yJXJU7TKDr/U2ftxiqFCAtsTQZx+EeH/3KhRIII0LtdB/CggFEpN
+         F4occI2Yc8AONwCOunIUasitSqnPj/0vX2Z8wX6wrcukCBd5WndVr6fd6An/dd9PU5HI
+         1SGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759975139; x=1760579939;
+        d=1e100.net; s=20230601; t=1759975141; x=1760579941;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XRBm+Pg8TyGJGYp2jCQm+1zXWV7khrVi/kELEVhXf6I=;
-        b=G/Uixj+L/IOF2QG+l87hbTev4fO0kXhX9uMOtm/zFwiVMsg9HqpB0sOwobcjE/7HCs
-         ol+kFNc74QC9Yx4g4zsscLerKX9jm+zy//xxihS4i40Z9OIZ/jwrpmM/zs0oHs5i5wH/
-         ULRqWmhdagb7aqinR7HbF8edW0vCe1F4/YgNeBKgtrkrYaJiYh2dVOyMZgO2Lju9jJbD
-         L5AMXuzP/vJrGsFvj134EK9aA+l54Dre1+7mUe5U8Mz7ZzGp3Vy1vy+lj0vLKFakTT9Z
-         4jQB8FkR8zTnlXT5lwNruLkUwt63w12OjeeKBpeACQbwlsr7OJgL/SMcnBA+QmYPGUKo
-         khEQ==
-X-Gm-Message-State: AOJu0Yza0+8SK84VZcRyIKQ2Fj50P/a9+G60wvjokDrLFNdweIs1WTMF
-	mPHJX4e2lQRSnSxyZVGqIS6QFGZlCR2o3okY7abg4SwpLJ+xjk5EJ7Z0xrcr3a5GsvTjwakXxxz
-	3EbM2
-X-Gm-Gg: ASbGncuLYKyQAYsihXG3VZoVsnX05k6L4HkCsSdDD2pUM7IxkW3hEtLgF+2UcRr/W5T
-	zcyquKEOpdUJiv2wzU0k8MBL/lbr4jWFsSscMS4KP+yM6kyurcST48CHRGEzl7JNzUR3IR4u6q7
-	qOA9J0YloystGgYEsKYxUEhTqxDQ/H+t7gunNGFbXZ2XooYUOrn7bLZ/hB56uhh2jTw+6F0CT4S
-	w+6rpXkYjkMGitda9Djbb2osi1KfFh4noRndGzXUs93UUHcl2RTDgmflTciW874BxCHmZbUXshO
-	Z67q0+xpzhUa1F0/LvlP5n5xVv3YMODbFvdm56Afe3Q74vvaS5AqkR9bvJVUrVFMBeiO7Y1W9hL
-	PntS30WYnxfLgg+P2Q4DKKayqHb9T3S53eVKvQjb8dLCWOL3WQZ8sxxaWsvlRtaiAjkBIf2gWJ5
-	4cW/8=
-X-Google-Smtp-Source: AGHT+IHnM19QNt+KVU6ihXNJt4W+kfmuE2lNld1taoppLPPH4Aa0tlEl4j47mz2vz9hZfmhsxUhEJQ==
-X-Received: by 2002:a17:903:144f:b0:28e:9427:68f6 with SMTP id d9443c01a7336-29027262579mr68191475ad.27.1759975139512;
-        Wed, 08 Oct 2025 18:58:59 -0700 (PDT)
+        bh=9q1+NRseWKfUTLpTRf8HDVLHy+6zl45nVa2e8q797C8=;
+        b=KUVlbfPvTld3g5YZcDqKK3TaDMFnfuTRGFhu8qE6iCmWs3DE8TKNAo5Xfbd0r/IO92
+         mAlbvmiFz3Jun1Mkd/D0JOvewdu9mDYo9CwUstNj2IMDlCsp8FSGp3ei7UtQUwXKtaO2
+         8uXA2xHsOaY6EJ9DU5bDluL9OTkqrEwvFjHZimJ3Q2tEkEDn7MN4sZpKYKgh98kNlJR7
+         AKS31Go2F2rG4yQALX98Edd8cHn3PqNQEv9IbGnSzmk8kp+HWQCBQ3k8pe4LgBqVcXl9
+         n9hB/UFrzA/TWzERN0kbmA//ZMrDrso2Pr90g7Aac7LRC+u8jyudBeSlSQ37r0+sOgnA
+         z9+w==
+X-Gm-Message-State: AOJu0Yz1sEdIww8OKjRl6sDtz9s7M/EsLE7/oYCc0y6blgTAyjPKwqJD
+	diIL354OTRpnPg86vmc4vpmc2V5XK+9qLQUkjX69rB4ZNQjXWXLJ9qmb8gfe4RwFZhg=
+X-Gm-Gg: ASbGncscuB6PLCAXoTWmM3lpgw2rVALUaYQlJOR5rIQcepitQ40ZPtrSUQqnntmxEoK
+	gGDNqDJNOn7l3kQIIp0MAoh6OPoQ0MrZljjQs5o24mk+7I3bla6rdY2BC2vyTSolqLVCL+B4gWF
+	9BZD3BmY5+gkMXND5HCR3lNEV/dAwDBfyJTJxRTWFORsZnqUitnDW/JvTYVuUL8WVhFadeKimT/
+	54VOaYu4ij4GiS5+m3khuyIELQaJNnVrPfm22PP1ZIhS2NbmmWRl5zp46aceCZp66PdYp9FoY/d
+	iTTPxp+k+lFgs1F/09SdBx/bZ9HaaQrSrF9oAFSIUj2ONl5LFVjFo7Zv8Pp88cMNqGsFLo6JMpt
+	M/Keovor3pY/xLiKNUKRTfKh5UcXJvr0yaQmPupLVKWVtquB1k2Lx6QwarBTaKR7TIiWZ
+X-Google-Smtp-Source: AGHT+IGHPU9/iVX5Ud8D5Es3cH4G+7xlgwuzFWFaCEYVHmYTlH0i4nMQlJ1VHDlSvFYfFYRC22It8g==
+X-Received: by 2002:a17:903:1a90:b0:269:d978:7ec0 with SMTP id d9443c01a7336-290272c19bdmr71839945ad.28.1759975140781;
+        Wed, 08 Oct 2025 18:59:00 -0700 (PDT)
 Received: from sw06.internal.sifive.com ([4.53.31.132])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034de53f9sm11033585ad.14.2025.10.08.18.58.58
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034de53f9sm11033585ad.14.2025.10.08.18.58.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Oct 2025 18:58:59 -0700 (PDT)
+        Wed, 08 Oct 2025 18:59:00 -0700 (PDT)
 From: Samuel Holland <samuel.holland@sifive.com>
 To: Palmer Dabbelt <palmer@dabbelt.com>,
 	Paul Walmsley <pjw@kernel.org>,
@@ -88,9 +86,9 @@ Cc: devicetree@vger.kernel.org,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Samuel Holland <samuel.holland@sifive.com>
-Subject: [PATCH v2 15/18] dt-bindings: riscv: Describe physical memory regions
-Date: Wed,  8 Oct 2025 18:57:51 -0700
-Message-ID: <20251009015839.3460231-16-samuel.holland@sifive.com>
+Subject: [PATCH v2 16/18] riscv: mm: Use physical memory aliases to apply PMAs
+Date: Wed,  8 Oct 2025 18:57:52 -0700
+Message-ID: <20251009015839.3460231-17-samuel.holland@sifive.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20251009015839.3460231-1-samuel.holland@sifive.com>
 References: <20251009015839.3460231-1-samuel.holland@sifive.com>
@@ -102,177 +100,540 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Information about physical memory regions is needed by both the kernel
-and M-mode firmware. For example, the kernel needs to know about
-noncacheable aliases of cacheable memory in order to allocate coherent
-memory pages for DMA. M-mode firmware needs to know about those aliases
-so it can protect itself from lower-privileged software.
+On some RISC-V platforms, RAM is mapped simultaneously to multiple
+physical address ranges, with each alias having a different set of
+statically-determined Physical Memory Attributes (PMAs). Software alters
+the PMAs for a particular page at runtime by selecting a PFN from among
+the aliases of that page's physical address.
 
-The RISC-V Privileged Architecture delegates the description of Physical
-Memory Attributes (PMAs) to the platform. On DT-based platforms, it
-makes sense to put this information in the devicetree.
+Implement this by transforming the PFN when writing page tables. If the
+memory type field is nonzero, replace the PFN with the corresponding PFN
+from the noncached alias. Similarly, when reading from the page tables,
+if the PFN is found in a noncached alias, replace it with the PFN from
+the normal memory alias, and insert _PAGE_NOCACHE.
+
+The rest of the kernel sees only PFNs from normal memory and
+_PAGE_MTMASK values as if Svpbmt was implemented.
+
+Memory alias pairs are determined from the devicetree. A Linux custom
+ISA extension is added to trigger the alternative patching, as
+alternatives must be linked to an extension or a vendor erratum, and
+this behavior is not associated with any particular processor vendor.
 
 Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 ---
 
 Changes in v2:
- - Remove references to Physical Address Width (no longer part of Smmpt)
- - Remove special first entry from the list of physical memory regions
- - Fix compatible string in example
+ - Put new code behind a new Kconfig option RISCV_ISA_XLINUXMEMALIAS
+ - Document the calling convention of riscv_fixup/unfix_memory_alias()
+ - Do not transform !pte_present() (e.g. swap) PTEs
+ - Export riscv_fixup/unfix_memory_alias() to fix module compilation
 
- .../bindings/riscv/physical-memory.yaml       | 91 +++++++++++++++++++
- include/dt-bindings/riscv/physical-memory.h   | 44 +++++++++
- 2 files changed, 135 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/riscv/physical-memory.yaml
- create mode 100644 include/dt-bindings/riscv/physical-memory.h
+ arch/riscv/Kconfig                    |  16 ++++
+ arch/riscv/include/asm/hwcap.h        |   1 +
+ arch/riscv/include/asm/pgtable-64.h   |  44 +++++++--
+ arch/riscv/include/asm/pgtable-bits.h |   5 +-
+ arch/riscv/include/asm/pgtable.h      |   8 ++
+ arch/riscv/kernel/cpufeature.c        |   6 ++
+ arch/riscv/kernel/setup.c             |   1 +
+ arch/riscv/mm/Makefile                |   1 +
+ arch/riscv/mm/memory-alias.S          | 123 ++++++++++++++++++++++++++
+ arch/riscv/mm/pgtable.c               |  91 +++++++++++++++++++
+ arch/riscv/mm/ptdump.c                |   6 +-
+ 11 files changed, 290 insertions(+), 12 deletions(-)
+ create mode 100644 arch/riscv/mm/memory-alias.S
 
-diff --git a/Documentation/devicetree/bindings/riscv/physical-memory.yaml b/Documentation/devicetree/bindings/riscv/physical-memory.yaml
+diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+index 51dcd8eaa2435..72c60fa94c0d7 100644
+--- a/arch/riscv/Kconfig
++++ b/arch/riscv/Kconfig
+@@ -890,6 +890,22 @@ config TOOLCHAIN_NEEDS_OLD_ISA_SPEC
+ 	  versions of clang and GCC to be passed to GAS, which has the same result
+ 	  as passing zicsr and zifencei to -march.
+ 
++config RISCV_ISA_XLINUXMEMALIAS
++	bool "Use physical memory aliases to emulate page-based memory types"
++	depends on 64BIT && MMU
++	depends on RISCV_ALTERNATIVE
++	default y
++	help
++	  Add support for the kernel to alter the Physical Memory Attributes
++	  (PMAs) of a page at runtime by selecting from among the aliases of
++	  that page in the physical address space.
++
++	  On systems where physical memory aliases are present, this option
++	  is required in order to mark pages as non-cacheable for use with
++	  non-coherent DMA devices.
++
++	  If you don't know what to do here, say Y.
++
+ config FPU
+ 	bool "FPU support"
+ 	default y
+diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+index affd63e11b0a3..6c6349fe15a77 100644
+--- a/arch/riscv/include/asm/hwcap.h
++++ b/arch/riscv/include/asm/hwcap.h
+@@ -107,6 +107,7 @@
+ #define RISCV_ISA_EXT_ZALRSC		98
+ #define RISCV_ISA_EXT_ZICBOP		99
+ 
++#define RISCV_ISA_EXT_XLINUXMEMALIAS	126
+ #define RISCV_ISA_EXT_XLINUXENVCFG	127
+ 
+ #define RISCV_ISA_EXT_MAX		128
+diff --git a/arch/riscv/include/asm/pgtable-64.h b/arch/riscv/include/asm/pgtable-64.h
+index 60c2615e46724..34b6f4ef3aad8 100644
+--- a/arch/riscv/include/asm/pgtable-64.h
++++ b/arch/riscv/include/asm/pgtable-64.h
+@@ -95,7 +95,8 @@ enum napot_cont_order {
+ #define HUGE_MAX_HSTATE		2
+ #endif
+ 
+-#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_ERRATA_THEAD_MAE)
++#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || \
++	defined(CONFIG_ERRATA_THEAD_MAE)
+ 
+ /*
+  * ALT_FIXUP_MT
+@@ -105,6 +106,9 @@ enum napot_cont_order {
+  *
+  * On systems that support Svpbmt, the memory type bits are left alone.
+  *
++ * On systems that support XLinuxMemalias, PTEs with a nonzero memory type have
++ * the memory type bits cleared and the PFN replaced with the matching alias.
++ *
+  * On systems that support XTheadMae, a Svpbmt memory type is transformed
+  * into the corresponding XTheadMae memory type.
+  *
+@@ -127,22 +131,35 @@ enum napot_cont_order {
+  */
+ 
+ #define ALT_FIXUP_MT(_val)								\
+-	asm(ALTERNATIVE_2("addi	t0, zero, 0x3\n\t"					\
++	asm(ALTERNATIVE_3("addi	t0, zero, 0x3\n\t"					\
+ 			  "slli	t0, t0, 61\n\t"						\
+ 			  "not	t0, t0\n\t"						\
+ 			  "and	%0, %0, t0\n\t"						\
+ 			  "nop\n\t"							\
+ 			  "nop\n\t"							\
++			  "nop\n\t"							\
+ 			  "nop",							\
+-			  __nops(7),							\
++			  __nops(8),							\
+ 			  0, RISCV_ISA_EXT_SVPBMT, CONFIG_RISCV_ISA_SVPBMT,		\
++			  "addi	t0, zero, 0x3\n\t"					\
++			  "slli	t0, t0, 61\n\t"						\
++			  "and	t0, %0, t0\n\t"						\
++			  "beqz	t0, 2f\n\t"						\
++			  "xor	t1, %0, t0\n\t"						\
++			  "1: auipc t0, %%pcrel_hi(riscv_fixup_memory_alias)\n\t"	\
++			  "jalr	t0, t0, %%pcrel_lo(1b)\n\t"				\
++			  "mv	%0, t1\n"						\
++			  "2:",								\
++			  0, RISCV_ISA_EXT_XLINUXMEMALIAS,				\
++				CONFIG_RISCV_ISA_XLINUXMEMALIAS,			\
+ 			  "srli	t0, %0, 59\n\t"						\
+ 			  "seqz	t1, t0\n\t"						\
+ 			  "slli	t1, t1, 1\n\t"						\
+ 			  "or	t0, t0, t1\n\t"						\
+ 			  "xori	t0, t0, 0x5\n\t"					\
+ 			  "slli	t0, t0, 60\n\t"						\
+-			  "xor	%0, %0, t0",						\
++			  "xor	%0, %0, t0\n\t"						\
++			  "nop",							\
+ 			  THEAD_VENDOR_ID, ERRATA_THEAD_MAE, CONFIG_ERRATA_THEAD_MAE)	\
+ 			  : "+r" (_val) :: "t0", "t1")
+ 
+@@ -150,9 +167,9 @@ enum napot_cont_order {
+ 
+ #define ALT_FIXUP_MT(_val)
+ 
+-#endif /* CONFIG_RISCV_ISA_SVPBMT || CONFIG_ERRATA_THEAD_MAE */
++#endif /* CONFIG_RISCV_ISA_SVPBMT || CONFIG_RISCV_ISA_XLINUXMEMALIAS || CONFIG_ERRATA_THEAD_MAE */
+ 
+-#if defined(CONFIG_ERRATA_THEAD_MAE)
++#if defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || defined(CONFIG_ERRATA_THEAD_MAE)
+ 
+ /*
+  * ALT_UNFIX_MT
+@@ -160,6 +177,9 @@ enum napot_cont_order {
+  * On systems that support Svpbmt, or do not support any form of page-based
+  * memory type configuration, the memory type bits are left alone.
+  *
++ * On systems that support XLinuxMemalias, PTEs with an aliased PFN have the
++ * matching memory type set and the PFN replaced with the normal memory alias.
++ *
+  * On systems that support XTheadMae, the XTheadMae memory type (or zero) is
+  * transformed back into the corresponding Svpbmt memory type.
+  *
+@@ -170,7 +190,15 @@ enum napot_cont_order {
+  */
+ 
+ #define ALT_UNFIX_MT(_val)								\
+-	asm(ALTERNATIVE(__nops(6),							\
++	asm(ALTERNATIVE_2(__nops(6),							\
++			  "mv	t1, %0\n\t"						\
++			  "1: auipc t0, %%pcrel_hi(riscv_unfix_memory_alias)\n\t"	\
++			  "jalr	t0, t0, %%pcrel_lo(1b)\n\t"				\
++			  "mv	%0, t1\n\t"						\
++			  "nop\n\t"							\
++			  "nop",							\
++			  0, RISCV_ISA_EXT_XLINUXMEMALIAS,				\
++				CONFIG_RISCV_ISA_XLINUXMEMALIAS,			\
+ 			  "srli	t0, %0, 60\n\t"						\
+ 			  "andi	t0, t0, 0xd\n\t"					\
+ 			  "srli	t1, t0, 1\n\t"						\
+@@ -234,7 +262,7 @@ static inline pgd_t pgdp_get(pgd_t *pgdp)
+ 
+ #define ALT_UNFIX_MT(_val)
+ 
+-#endif /* CONFIG_ERRATA_THEAD_MAE */
++#endif /* CONFIG_RISCV_ISA_XLINUXMEMALIAS || CONFIG_ERRATA_THEAD_MAE */
+ 
+ static inline int pud_present(pud_t pud)
+ {
+diff --git a/arch/riscv/include/asm/pgtable-bits.h b/arch/riscv/include/asm/pgtable-bits.h
+index 18c50cbd78bf5..4586917b2d985 100644
+--- a/arch/riscv/include/asm/pgtable-bits.h
++++ b/arch/riscv/include/asm/pgtable-bits.h
+@@ -38,7 +38,8 @@
+ #define _PAGE_PFN_MASK		GENMASK(31, 10)
+ #endif /* CONFIG_64BIT */
+ 
+-#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_ERRATA_THEAD_MAE)
++#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || \
++	defined(CONFIG_ERRATA_THEAD_MAE)
+ /*
+  * [62:61] Svpbmt Memory Type definitions:
+  *
+@@ -54,7 +55,7 @@
+ #define _PAGE_NOCACHE		0
+ #define _PAGE_IO		0
+ #define _PAGE_MTMASK		0
+-#endif /* CONFIG_RISCV_ISA_SVPBMT || CONFIG_ERRATA_THEAD_MAE */
++#endif /* CONFIG_RISCV_ISA_SVPBMT || CONFIG_RISCV_ISA_XLINUXMEMALIAS || CONFIG_ERRATA_THEAD_MAE */
+ 
+ #ifdef CONFIG_RISCV_ISA_SVNAPOT
+ #define _PAGE_NAPOT_SHIFT	63
+diff --git a/arch/riscv/include/asm/pgtable.h b/arch/riscv/include/asm/pgtable.h
+index 03b5623f9107c..f96b0bd043c6d 100644
+--- a/arch/riscv/include/asm/pgtable.h
++++ b/arch/riscv/include/asm/pgtable.h
+@@ -1110,6 +1110,14 @@ extern u64 satp_mode;
+ void paging_init(void);
+ void misc_mem_init(void);
+ 
++#ifdef CONFIG_RISCV_ISA_XLINUXMEMALIAS
++bool __init riscv_have_memory_alias(void);
++void __init riscv_init_memory_alias(void);
++#else
++static inline bool riscv_have_memory_alias(void) { return false; }
++static inline void riscv_init_memory_alias(void) {}
++#endif /* CONFIG_RISCV_ISA_XLINUXMEMALIAS */
++
+ /*
+  * ZERO_PAGE is a global shared page that is always zero,
+  * used for zero-mapped memory areas, etc.
+diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+index 743d53415572e..1449c43eab726 100644
+--- a/arch/riscv/kernel/cpufeature.c
++++ b/arch/riscv/kernel/cpufeature.c
+@@ -1093,6 +1093,12 @@ void __init riscv_fill_hwcap(void)
+ 		riscv_v_setup_vsize();
+ 	}
+ 
++	/* Vendor-independent alternatives require a bit in the ISA bitmap. */
++	if (riscv_have_memory_alias()) {
++		set_bit(RISCV_ISA_EXT_XLINUXMEMALIAS, riscv_isa);
++		pr_info("Using physical memory alias for noncached mappings\n");
++	}
++
+ 	memset(print_str, 0, sizeof(print_str));
+ 	for (i = 0, j = 0; i < NUM_ALPHA_EXTS; i++)
+ 		if (riscv_isa[0] & BIT_MASK(i))
+diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
+index f90cce7a3acea..00569c4fef494 100644
+--- a/arch/riscv/kernel/setup.c
++++ b/arch/riscv/kernel/setup.c
+@@ -353,6 +353,7 @@ void __init setup_arch(char **cmdline_p)
+ 	}
+ 
+ 	riscv_init_cbo_blocksizes();
++	riscv_init_memory_alias();
+ 	riscv_fill_hwcap();
+ 	apply_boot_alternatives();
+ 	init_rt_signal_env();
+diff --git a/arch/riscv/mm/Makefile b/arch/riscv/mm/Makefile
+index b916a68d324ad..b4d757226efbf 100644
+--- a/arch/riscv/mm/Makefile
++++ b/arch/riscv/mm/Makefile
+@@ -33,3 +33,4 @@ endif
+ obj-$(CONFIG_DEBUG_VIRTUAL) += physaddr.o
+ obj-$(CONFIG_RISCV_DMA_NONCOHERENT) += dma-noncoherent.o
+ obj-$(CONFIG_RISCV_NONSTANDARD_CACHE_OPS) += cache-ops.o
++obj-$(CONFIG_RISCV_ISA_XLINUXMEMALIAS) += memory-alias.o
+diff --git a/arch/riscv/mm/memory-alias.S b/arch/riscv/mm/memory-alias.S
 new file mode 100644
-index 0000000000000..825b712a9fbae
+index 0000000000000..e37b83d115911
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/riscv/physical-memory.yaml
-@@ -0,0 +1,91 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/riscv/physical-memory.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/arch/riscv/mm/memory-alias.S
+@@ -0,0 +1,123 @@
++/* SPDX-License-Identifier: GPL-2.0-only */
++/*
++ * Copyright (C) 2024 SiFive
++ */
 +
-+title: RISC-V Physical Memory Regions
++#include <linux/bits.h>
++#include <linux/linkage.h>
++#include <asm/asm.h>
++#include <asm/pgtable.h>
 +
-+maintainers:
-+  - Samuel Holland <samuel.holland@sifive.com>
++#define CACHED_BASE_OFFSET	(0 * RISCV_SZPTR)
++#define NONCACHED_BASE_OFFSET	(1 * RISCV_SZPTR)
++#define SIZE_OFFSET		(2 * RISCV_SZPTR)
 +
-+description:
-+  The RISC-V Privileged Architecture defines a number of Physical Memory
-+  Attributes (PMAs) which apply to a given region of memory. These include the
-+  types of accesses (read, write, execute, LR/SC, and/or AMO) allowed within
-+  a region, the supported access widths and alignments, the cacheability and
-+  coherence of the region, and whether or not accesses to the region may have
-+  side effects.
++#define SIZEOF_PAIR		(4 * RISCV_SZPTR)
 +
-+  Some RISC-V platforms provide multiple physical address mappings for main
-+  memory or certain peripherals. Each alias of a region generally has different
-+  PMAs (e.g. cacheable vs non-cacheable), which allows software to dynamically
-+  select the PMAs for an access by referencing the corresponding alias.
++/*
++ * Called from ALT_FIXUP_MT with a non-standard calling convention:
++ *	t0 => return address
++ *	t1 => page table entry
++ *	all other registers are callee-saved
++ */
++SYM_CODE_START(riscv_fixup_memory_alias)
++	addi	sp, sp, -4 * SZREG
++	REG_S	t2, (0 * SZREG)(sp)
++	REG_S	t3, (1 * SZREG)(sp)
++	REG_S	t4, (2 * SZREG)(sp)
++#ifdef CONFIG_RISCV_ISA_SVNAPOT
++	REG_S	t5, (3 * SZREG)(sp)
 +
-+  On DT-based RISC-V platforms, this information is provided by the
-+  riscv,physical-memory-regions property of the root node.
++	/* Save and mask off _PAGE_NAPOT if present. */
++	li	t5, _PAGE_NAPOT
++	and	t5, t1, t5
++	xor	t1, t1, t5
++#endif
 +
-+properties:
-+  $nodename:
-+    const: '/'
++	/* Ignore !pte_present() PTEs, including swap PTEs. */
++	andi	t2, t1, (_PAGE_PRESENT | _PAGE_PROT_NONE)
++	beqz	t2, .Lfixup_end
 +
-+  riscv,physical-memory-regions:
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    description:
-+      Each table entry provides PMAs for a specific physical memory region,
-+      which must not overlap with any other table entry.
-+    minItems: 1
-+    maxItems: 256
-+    items:
-+      minItems: 4
-+      maxItems: 6
-+      additionalItems: true
-+      items:
-+        - description: CPU physical address (#address-cells)
-+        - description: >
-+            Size (#size-cells). For entry 0, if the size is zero, the size is
-+            assumed to be 2^(32 * #size-cells).
-+        - description: >
-+            Flags describing the most restrictive PMAs for any address within
-+            the region.
++	lla	t2, memory_alias_pairs
++.Lfixup_loop:
++	REG_L	t3, SIZE_OFFSET(t2)
++	beqz	t3, .Lfixup_end
++	REG_L	t4, CACHED_BASE_OFFSET(t2)
++	sub	t4, t1, t4
++	bltu	t4, t3, .Lfixup_found
++	addi	t2, t2, SIZEOF_PAIR
++	j	.Lfixup_loop
 +
-+            The least significant byte indicates the types of accesses allowed
-+            for this region. Note that a memory region may support a type of
-+            access (e.g. AMOs) even if the CPU does not.
++.Lfixup_found:
++	REG_L	t3, NONCACHED_BASE_OFFSET(t2)
++	add	t1, t3, t4
 +
-+            The next byte describes the cacheability, coherence, idempotency,
-+            and ordering PMAs for this region. It also includes a flag to
-+            indicate that accesses to a region are unsafe and must be
-+            prohibited by software (for example using PMPs or Smmpt).
++.Lfixup_end:
++#ifdef CONFIG_RISCV_ISA_SVNAPOT
++	xor	t1, t1, t5
 +
-+            The third byte is reserved for future PMAs.
++	REG_L	t5, (3 * SZREG)(sp)
++#endif
++	REG_L	t4, (2 * SZREG)(sp)
++	REG_L	t3, (1 * SZREG)(sp)
++	REG_L	t2, (0 * SZREG)(sp)
++	addi	sp, sp, 4 * SZREG
++	jr	t0
++SYM_CODE_END(riscv_fixup_memory_alias)
++EXPORT_SYMBOL(riscv_fixup_memory_alias)
 +
-+            The most significant byte is the index of the lowest-numbered entry
-+            which this entry is an alias of, if any. Aliases need not be the
-+            same size, for example if a smaller memory region repeats within a
-+            larger alias.
-+        - description: Reserved for describing future PMAs
++/*
++ * Called from ALT_UNFIX_MT with a non-standard calling convention:
++ *	t0 => return address
++ *	t1 => page table entry
++ *	all other registers are callee-saved
++ */
++SYM_CODE_START(riscv_unfix_memory_alias)
++	addi	sp, sp, -4 * SZREG
++	REG_S	t2, (0 * SZREG)(sp)
++	REG_S	t3, (1 * SZREG)(sp)
++	REG_S	t4, (2 * SZREG)(sp)
++#ifdef CONFIG_RISCV_ISA_SVNAPOT
++	REG_S	t5, (3 * SZREG)(sp)
 +
-+additionalProperties: true
++	/* Save and mask off _PAGE_NAPOT if present. */
++	li	t5, _PAGE_NAPOT
++	and	t5, t1, t5
++	xor	t1, t1, t5
++#endif
 +
-+examples:
-+  - |
-+    #include <dt-bindings/riscv/physical-memory.h>
++	/* Ignore !pte_present() PTEs, including swap PTEs. */
++	andi	t2, t1, (_PAGE_PRESENT | _PAGE_PROT_NONE)
++	beqz	t2, .Lunfix_end
 +
-+    / {
-+      compatible = "beagle,beaglev-starlight-jh7100-r0", "starfive,jh7100";
-+      #address-cells = <2>;
-+      #size-cells = <2>;
++	lla	t2, memory_alias_pairs
++.Lunfix_loop:
++	REG_L	t3, SIZE_OFFSET(t2)
++	beqz	t3, .Lunfix_end
++	REG_L	t4, NONCACHED_BASE_OFFSET(t2)
++	sub	t4, t1, t4
++	bltu	t4, t3, .Lunfix_found
++	addi	t2, t2, SIZEOF_PAIR
++	j	.Lunfix_loop
 +
-+      riscv,physical-memory-regions =
-+          <0x00 0x18000000 0x00 0x00020000 (PMA_RWX | PMA_NONCACHEABLE_MEMORY) 0x0>,
-+          <0x00 0x18080000 0x00 0x00020000 (PMA_RWX | PMA_NONCACHEABLE_MEMORY) 0x0>,
-+          <0x00 0x41000000 0x00 0x1f000000 (PMA_RWX | PMA_NONCACHEABLE_MEMORY) 0x0>,
-+          <0x00 0x61000000 0x00 0x1f000000 (PMA_RWXA | PMA_NONCOHERENT_MEMORY | PMR_ALIAS(3)) 0x0>,
-+          <0x00 0x80000000 0x08 0x00000000 (PMA_RWXA | PMA_NONCOHERENT_MEMORY) 0x0>,
-+          <0x10 0x00000000 0x08 0x00000000 (PMA_RWX | PMA_NONCACHEABLE_MEMORY | PMR_ALIAS(5)) 0x0>,
-+          <0x20 0x00000000 0x10 0x00000000 (PMA_RWX | PMA_NONCACHEABLE_MEMORY) 0x0>,
-+          <0x30 0x00000000 0x10 0x00000000 (PMA_RWXA | PMA_NONCOHERENT_MEMORY | PMR_ALIAS(7)) 0x0>;
-+    };
++.Lunfix_found:
++	REG_L	t3, CACHED_BASE_OFFSET(t2)
++	add	t1, t3, t4
 +
-+...
-diff --git a/include/dt-bindings/riscv/physical-memory.h b/include/dt-bindings/riscv/physical-memory.h
-new file mode 100644
-index 0000000000000..7cb2e58fa8c1c
---- /dev/null
-+++ b/include/dt-bindings/riscv/physical-memory.h
-@@ -0,0 +1,44 @@
-+/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
++	/* PFN was in the noncached alias, so mark it as such. */
++	li	t2, _PAGE_NOCACHE
++	or	t1, t1, t2
 +
-+#ifndef _DT_BINDINGS_RISCV_PHYSICAL_MEMORY_H
-+#define _DT_BINDINGS_RISCV_PHYSICAL_MEMORY_H
++.Lunfix_end:
++#ifdef CONFIG_RISCV_ISA_SVNAPOT
++	xor	t1, t1, t5
 +
-+#define PMA_READ			(1 << 0)
-+#define PMA_WRITE			(1 << 1)
-+#define PMA_EXECUTE			(1 << 2)
-+#define PMA_AMO_MASK			(3 << 4)
-+#define PMA_AMO_NONE			(0 << 4)
-+#define PMA_AMO_SWAP			(1 << 4)
-+#define PMA_AMO_LOGICAL			(2 << 4)
-+#define PMA_AMO_ARITHMETIC		(3 << 4)
-+#define PMA_RSRV_MASK			(3 << 6)
-+#define PMA_RSRV_NONE			(0 << 6)
-+#define PMA_RSRV_NON_EVENTUAL		(1 << 6)
-+#define PMA_RSRV_EVENTUAL		(2 << 6)
++	REG_L	t5, (3 * SZREG)(sp)
++#endif
++	REG_L	t4, (2 * SZREG)(sp)
++	REG_L	t3, (1 * SZREG)(sp)
++	REG_L	t2, (0 * SZREG)(sp)
++	addi	sp, sp, 4 * SZREG
++	jr	t0
++SYM_CODE_END(riscv_unfix_memory_alias)
++EXPORT_SYMBOL(riscv_unfix_memory_alias)
+diff --git a/arch/riscv/mm/pgtable.c b/arch/riscv/mm/pgtable.c
+index 604744d6924f5..de79a2dc9926f 100644
+--- a/arch/riscv/mm/pgtable.c
++++ b/arch/riscv/mm/pgtable.c
+@@ -1,8 +1,12 @@
+ // SPDX-License-Identifier: GPL-2.0
+ 
+ #include <asm/pgalloc.h>
++#include <dt-bindings/riscv/physical-memory.h>
++#include <linux/bitfield.h>
+ #include <linux/gfp.h>
+ #include <linux/kernel.h>
++#include <linux/memblock.h>
++#include <linux/of.h>
+ #include <linux/pgtable.h>
+ 
+ int ptep_set_access_flags(struct vm_area_struct *vma,
+@@ -160,3 +164,90 @@ pud_t pudp_invalidate(struct vm_area_struct *vma, unsigned long address,
+ 	return old;
+ }
+ #endif /* CONFIG_TRANSPARENT_HUGEPAGE */
 +
-+#define PMA_RW				(PMA_READ | PMA_WRITE)
-+#define PMA_RWA				(PMA_RW | PMA_AMO_ARITHMETIC | PMA_RSRV_EVENTUAL)
-+#define PMA_RWX				(PMA_RW | PMA_EXECUTE)
-+#define PMA_RWXA			(PMA_RWA | PMA_EXECUTE)
++#ifdef CONFIG_RISCV_ISA_XLINUXMEMALIAS
++struct memory_alias_pair {
++	unsigned long cached_base;
++	unsigned long noncached_base;
++	unsigned long size;
++	int index;
++} memory_alias_pairs[5];
 +
-+#define PMA_ORDER_MASK			(3 << 8)
-+#define PMA_ORDER_IO_RELAXED		(0 << 8)
-+#define PMA_ORDER_IO_STRONG		(1 << 8)
-+#define PMA_ORDER_MEMORY		(2 << 8)
-+#define PMA_READ_IDEMPOTENT		(1 << 10)
-+#define PMA_WRITE_IDEMPOTENT		(1 << 11)
-+#define PMA_CACHEABLE			(1 << 12)
-+#define PMA_COHERENT			(1 << 13)
++bool __init riscv_have_memory_alias(void)
++{
++	return memory_alias_pairs[0].size;
++}
 +
-+#define PMA_UNSAFE			(1 << 15)
++void __init riscv_init_memory_alias(void)
++{
++	int na = of_n_addr_cells(of_root);
++	int ns = of_n_size_cells(of_root);
++	int nc = na + ns + 2;
++	const __be32 *prop;
++	int pairs = 0;
++	int len;
 +
-+#define PMA_IO				(PMA_ORDER_IO_RELAXED)
-+#define PMA_NONCACHEABLE_MEMORY		(PMA_ORDER_MEMORY | PMA_READ_IDEMPOTENT | \
-+						PMA_WRITE_IDEMPOTENT)
-+#define PMA_NONCOHERENT_MEMORY		(PMA_NONCACHEABLE_MEMORY | PMA_CACHEABLE)
-+#define PMA_NORMAL_MEMORY		(PMA_NONCOHERENT_MEMORY | PMA_COHERENT)
++	prop = of_get_property(of_root, "riscv,physical-memory-regions", &len);
++	if (!prop)
++		return;
 +
-+#define PMR_ALIAS_MASK			(0xff << 24)
-+#define PMR_ALIAS(n)			((n) << 24)
++	len /= sizeof(__be32);
++	for (int i = 0; len >= nc; i++, prop += nc, len -= nc) {
++		unsigned long base = of_read_ulong(prop, na);
++		unsigned long size = of_read_ulong(prop + na, ns);
++		unsigned long flags = be32_to_cpup(prop + na + ns);
++		struct memory_alias_pair *pair;
++		int alias;
 +
-+#endif /* _DT_BINDINGS_RISCV_PHYSICAL_MEMORY_H */
++		/* We only care about non-coherent memory. */
++		if ((flags & PMA_ORDER_MASK) != PMA_ORDER_MEMORY || (flags & PMA_COHERENT))
++			continue;
++
++		/* The cacheable alias must be usable memory. */
++		if ((flags & PMA_CACHEABLE) &&
++		    !memblock_overlaps_region(&memblock.memory, base, size))
++			continue;
++
++		alias = FIELD_GET(PMR_ALIAS_MASK, flags);
++		if (alias) {
++			pair = NULL;
++			for (int j = 0; j < pairs; j++) {
++				if (alias == memory_alias_pairs[j].index) {
++					pair = &memory_alias_pairs[j];
++					break;
++				}
++			}
++			if (!pair)
++				continue;
++		} else {
++			/* Leave room for the null sentinel. */
++			if (pairs == ARRAY_SIZE(memory_alias_pairs) - 1)
++				continue;
++			pair = &memory_alias_pairs[pairs++];
++			pair->index = i;
++		}
++
++		/* Align the address and size with the page table PFN field. */
++		base >>= PAGE_SHIFT - _PAGE_PFN_SHIFT;
++		size >>= PAGE_SHIFT - _PAGE_PFN_SHIFT;
++
++		if (flags & PMA_CACHEABLE)
++			pair->cached_base = base;
++		else
++			pair->noncached_base = base;
++		pair->size = min_not_zero(pair->size, size);
++	}
++
++	/* Remove any unmatched pairs. */
++	for (int i = 0; i < pairs; i++) {
++		struct memory_alias_pair *pair = &memory_alias_pairs[i];
++
++		if (pair->cached_base && pair->noncached_base && pair->size)
++			continue;
++
++		for (int j = i + 1; j < pairs; j++)
++			memory_alias_pairs[j - 1] = memory_alias_pairs[j];
++		memory_alias_pairs[--pairs].size = 0;
++	}
++}
++#endif /* CONFIG_RISCV_ISA_XLINUXMEMALIAS */
+diff --git a/arch/riscv/mm/ptdump.c b/arch/riscv/mm/ptdump.c
+index ed57926ecd585..ba5f33a2c2178 100644
+--- a/arch/riscv/mm/ptdump.c
++++ b/arch/riscv/mm/ptdump.c
+@@ -140,7 +140,8 @@ static const struct prot_bits pte_bits[] = {
+ 		.clear = ".",
+ 	}, {
+ #endif
+-#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_ERRATA_THEAD_MAE)
++#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || \
++	defined(CONFIG_ERRATA_THEAD_MAE)
+ 		.mask = _PAGE_MTMASK,
+ 		.set = "MT(%s)",
+ 		.clear = "  ..  ",
+@@ -216,7 +217,8 @@ static void dump_prot(struct pg_state *st)
+ 		if (val) {
+ 			if (pte_bits[i].mask == _PAGE_SOFT)
+ 				sprintf(s, pte_bits[i].set, val >> 8);
+-#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_ERRATA_THEAD_MAE)
++#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || \
++	defined(CONFIG_ERRATA_THEAD_MAE)
+ 			else if (pte_bits[i].mask == _PAGE_MTMASK) {
+ 				if (val == _PAGE_NOCACHE)
+ 					sprintf(s, pte_bits[i].set, "NC");
 -- 
 2.47.2
 
