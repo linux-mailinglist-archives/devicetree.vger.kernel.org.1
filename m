@@ -1,96 +1,115 @@
-Return-Path: <devicetree+bounces-224955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4E3BBC92D2
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 15:05:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE937BC92DE
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 15:05:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7470A3E026A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 13:05:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E58A719E825C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 13:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9451D2DCC04;
-	Thu,  9 Oct 2025 13:04:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XNZ807W2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7528D2E6CB3;
+	Thu,  9 Oct 2025 13:05:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com [209.85.217.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDE632C326E;
-	Thu,  9 Oct 2025 13:04:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFBB52E1F05
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 13:05:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760015097; cv=none; b=V3CA0ermajTd6aasljjumqoUA+FJf9rJrDOpLgcfTI98UbdqYsi9yq7wE2G1vu2NsKO7ZfG2xwxz/x1ldAXtHRCFhR028tP2rSue5Lqj3JqFjn4+EMwnegtRgwZ/7gGyaWrd1XKlFiPK48EkaX7WFnPYuUCZGIwf1ScX6q86Nxc=
+	t=1760015116; cv=none; b=KUfFGKmsJrDx0bzLXHEkICvbsN/CpcxyoND2At0AQV5PfKMXqsnMgN+PwzSqNygQJhoaQC1V3czwUEcmWNgklL9/E2J1Pd7RA/2t32zbMXRI67KoJq/0Pzbl5J19HKqeoMdcVftn2pNQk4GeBji3swqpxVlKzV3Ya4pae6OqxQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760015097; c=relaxed/simple;
-	bh=wvqq7tR7f83Tv+zqnX7Q690qQC13UtUOPDDpjH8yirU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Th8fCPQu4Za8F4QUt49sxxlAKfORQ3gl/kL486hWKsQpDslO3mFwTyWYoUqtXEVRpiUzbiipNbIx2R3itletTw5e8cX0kQybY20NSAvK6e6iaqvtsc73PQvmgKY3ftY6REV5ahCNVMLjWPPwan25Q0UYr9Djwy1hdEww3fK3Oo0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XNZ807W2; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=cvmxYvqaBcP5LiWtUkLVMauMKmxLzw2JcaPTHvugUts=; b=XNZ807W26VyEL+XLmIZBp1oN2f
-	SCM0sM4795CNZhlYNS4pn8NPVB4JME68APBYg0Z0fum+60AkTRvlRrNB67yRUq1u3xRTKorkJrtBY
-	TqDeXE3WYGsHTvRruTKRznhe70yTIGUFXbPq9mWw22FR/47Hycf56RgJTRRWPS5DxfRg=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1v6qJn-00AWt2-22; Thu, 09 Oct 2025 15:04:27 +0200
-Date: Thu, 9 Oct 2025 15:04:27 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: jjm2473 <jjm2473@gmail.com>, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, heiko@sntech.de, quentin.schulz@cherry.de,
-	kever.yang@rock-chips.com, naoki@radxa.com, honyuenkwun@gmail.com,
-	inindev@gmail.com, ivan8215145640@gmail.com,
-	neil.armstrong@linaro.org, mani@kernel.org, dsimic@manjaro.org,
-	pbrobinson@gmail.com, didi.debian@cknow.org, jbx6244@gmail.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] arm64: dts: rockchip: add LinkEase EasePi R1
-Message-ID: <d4628648-8f21-4b57-8ca9-f08d89f5e399@lunn.ch>
-References: <20250929065714.27741-1-jjm2473@gmail.com>
- <20250929065714.27741-4-jjm2473@gmail.com>
- <d8ad476c-d0c7-4e97-9e76-540a539ffb52@lunn.ch>
- <CAP_9mL4ofig-X-w9wx1A5D_eVXROo6AVFBSwp4mh=kj7webpPA@mail.gmail.com>
- <7e219aef-88a0-4184-9553-30dcbc8dbd79@lunn.ch>
- <CAP_9mL6utQjN_2EZ4vs3K8jzcxHxvKWNTNEXZ9fAx4HuA=DNXA@mail.gmail.com>
- <a0501abe-d86d-4f3a-9d55-c842bfafc190@lunn.ch>
- <CABjd4YyqL1YouMt97MA=CLWJmcFMMr+=xpOKOd6YtAC6jQAO=Q@mail.gmail.com>
+	s=arc-20240116; t=1760015116; c=relaxed/simple;
+	bh=xD6NRTXf9K2gq7W3hAHzUvosh1ygHLtSYWKi0Ow6kC8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ff1DAKu3vny8pe0VzJa6gLfnHbPezkL2gdvW/eRiNg56eo7kZNZdxz7h+HyTN4tqII5M94tCRoV6r9qPNur36G17OTqFfDfdXtrvwSBavGV7m8eM7UH0pi3xaldFROSVAaz1RSHdWzdWkDsZDpXvaeBrptRhKlbGY8DqtXP1VnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-5d28f9b4c8cso211826137.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 06:05:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760015113; x=1760619913;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hVdYrb04OGpyzIab7Gx3IKAauwKdWRH6vKgRJNRIq/Q=;
+        b=KvUSEAs92qI2eipe4s6jyCp0v20T2F0NWugEq9wVsRDbZeJArzgzSCSR6ianp40Jgn
+         m1jv+F8TYiTTIl5nqF1fiiDW/eEO5bOPiRWQv5U2TToIqM54fcTVMg43T0cdsQhXRraX
+         EcKfw8V0ZfJXAEdDgymkM/rPQPc6MPs630ZzIQjx05pgvzZhAMlY/MccwlwNZct89/xC
+         gw2hULZF4kRgXmwn8okQZKexEaUhBT8vUqWgZgS4myRo/h/3EN3ck9Dr1enc6j/eLXPb
+         vtfriqSbfOdjNB8p+CNaQ9aTIGBDhiUF1oyYXE0v6Xrusxosem3eCL4fBScGUuLEgLZ0
+         1N1w==
+X-Forwarded-Encrypted: i=1; AJvYcCWtv7L2Og7acytVabCh40iF2RlwtsyE0r6KKwFnAkRG9rdVZwOP6CX4m54icGIrQfUwwkCHrDoiAxKa@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEvroLKMrPdAI9k1t1e+ba9QM5p4quyoXkTrEvH7NmmBGZ9FmW
+	rT17mV2p/655WyqMQS3bSIO+ZqP26WbOB9v8OBDVsaVTBxc61xT3Opfp2tX8yXLh
+X-Gm-Gg: ASbGncuSmXQTIybJB1ZLAF5/9djJxaCVldIkwo6GYfG5o/84KNJ2Xjg74omcmtrAvu3
+	CL5OhHUIWBPbZ7dlsqm6lmAbdJpjybNMvG7ZB0suGx/Zc5V+XebXG6c5qE0D030NoLXclKLi1Qt
+	EBcGoUfINAKEqMJMBu1youUQAapWSAb8+j1JBvOcoctO99f8AB31XFv7B8rcKDyNdT/n0fJC1NB
+	LuIoJ8ClJZZqhIDpnMCtxD4H9m9uDnkUsiLXGXongAlEBfgarPa1u+Sq3V/IxZXdb/Gf54azoOo
+	qDyXLzPjsdHoImb2jJeRxnFydyRyWC4/IkqSCVr1HXI4AkOpLFtZHvMhVViFzRa5tWdj4KjarGF
+	UAilGol4xu+//YbXx87J81mu0wZrVnSCOqMUCm++M9qH0Odk6Q0eHTRILjPnykCriX3vsTflz1p
+	BawKYGEfUi
+X-Google-Smtp-Source: AGHT+IFG4a7Ag4YVE1buS/qzWcn5V+kJD3VEQ2sE7vLu/aDo3YlWR/s1Of/N4f4wSwYUFj8gFkrTAw==
+X-Received: by 2002:a05:6102:3a0b:b0:5d5:f6ae:390a with SMTP id ada2fe7eead31-5d5f6ae3f56mr497001137.40.1760015113202;
+        Thu, 09 Oct 2025 06:05:13 -0700 (PDT)
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-92eb4ea7941sm5025906241.12.2025.10.09.06.05.12
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Oct 2025 06:05:13 -0700 (PDT)
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-5d28f9b4c8cso211798137.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 06:05:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUzjrpdHk+ojEjSs4SkF0no8vgXSFnFsb+WdK6HeYrcITdiIvDvlhASuRayMY9y61oyz4YCvs9oxVou@vger.kernel.org
+X-Received: by 2002:a05:6102:54a3:b0:5d5:f6ae:3908 with SMTP id
+ ada2fe7eead31-5d5f6ae3db3mr457996137.38.1760015111607; Thu, 09 Oct 2025
+ 06:05:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CABjd4YyqL1YouMt97MA=CLWJmcFMMr+=xpOKOd6YtAC6jQAO=Q@mail.gmail.com>
+References: <20251009104500.69787-7-wsa+renesas@sang-engineering.com> <20251009104500.69787-12-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20251009104500.69787-12-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 9 Oct 2025 15:05:00 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUXmBgHv7=8NTCJwZguFAKeWyWu9dWkQxa_0kKpBVC=jA@mail.gmail.com>
+X-Gm-Features: AS18NWCUrBtX_uO-fi06wEi1p8_gUsISME0n2FhoKXZozrGR11xEwQp2ykYneWo
+Message-ID: <CAMuHMdUXmBgHv7=8NTCJwZguFAKeWyWu9dWkQxa_0kKpBVC=jA@mail.gmail.com>
+Subject: Re: [PATCH v4 5/5] dt-bindings: watchdog: renesas,wdt: add SWDT
+ exception for V3H
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-watchdog@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-> FWIW, the TRM for Rockchip RK3576 specifies that the values in
-> tx|rx-delay control the number of delay elements in the internal
-> delayline on the transmit and receive clocks, respectively (up to 200
-> each).
+On Thu, 9 Oct 2025 at 12:45, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> The SWDT on V3H has no reset bit. Make resets optional on this SoC.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>
+> Changes since v3:
+> * don't introduce new compatible, just make resets optional (Geert)
 
-200 is interesting:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-  tx_delay:
-    description: Delay value for TXD timing.
-    $ref: /schemas/types.yaml#/definitions/uint32
-    minimum: 0
-    maximum: 0x7F
+Gr{oetje,eeting}s,
 
+                        Geert
 
-200 != 0x7f
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-But i don't think the driver does any validation, so its not too
-important.
-
-    Andrew
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
