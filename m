@@ -1,123 +1,127 @@
-Return-Path: <devicetree+bounces-224756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2E7EBC78EC
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 08:43:27 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F964BC78F1
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 08:47:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C306719E3618
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 06:43:50 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C57C74E241E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 06:47:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27EA42BE048;
-	Thu,  9 Oct 2025 06:43:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4DC42C21F8;
+	Thu,  9 Oct 2025 06:47:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="WorrVgs7"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="IpcilbrT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0A971EA7D2
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 06:43:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA9F211290
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 06:47:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759992202; cv=none; b=kn0itCIhx1irx3sdG83c1uzEnJ915W7W52MDbhpUDqbX3xCi4M52xEpecSnKELgiBRhgw0K6O9+09xUMvNlJDyIjzG89lYeK+KG8xJR7emrXvTfFbRJVROAjEWRqkJro9cU5qN2ppNMdxABZRJIz2fWlGGKNLXnSBZiT8J5mfbs=
+	t=1759992451; cv=none; b=Yt/SDirfbVfQh6M37oiZLdkLdO6WxyXoOCALXqsODX3AEuCwC6305NhI9AXBbLQZGh6vFsc/3zobHbphu4fjlKw+jFVVSjQcYOGNm08TXWk28w81IOUJF+fcXoapDRukxr+Jh4OzERL6jN14k6YgjJ9K17kBa9wd0e/PxqnW7mI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759992202; c=relaxed/simple;
-	bh=fLSwxtc/Uh5Exvce/ILci2exOCK4YynRp2RHih/dDr0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bK8YEqYXKCzZp0UrNHCxqMm6vrimYdZOIFMXLR/HHmwhr4ZY6v2h7vqIv9gDwzyt2TkhcB2JBjVFgXTECptO3MPhFH/jnQb1F0IESIdanLKBMSVpJD/VosY5IVJaOVsV4/P6NfMqh0m0YdTHkaouy/pwwCuj9dbVqGQBDuqoAZo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=WorrVgs7; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=cIKs
-	F6uw46Zd4lyL+y01+ZpPeWMEBp7pEpqWtYPbILU=; b=WorrVgs7va3/D06my/Ox
-	Li39RbLNwVAPE7z0V+7PmRIf+PrCFbImQdyKI33fdzg8CfDAtTYregoBBRYe8xxA
-	h7Tg9NQ4Wk2YprkANGP6wNXwUUXmeqpqJLlsJMfppwPuAqByyc70QY6l4CLTf9IW
-	7kRRguDUm2vQrRRBfeJIrkEsimrNHNLtrX1my4KzKnviPo4w1howby6lgEEDQCJ+
-	5KcoYk5r6Uc80APH75atGPXKrHYmDxVVOoTo3TmRI702ExhsNTKavAuawGJIjFOw
-	BJsGY+YUi1OYpK2jSQpPLgtzE/Pz6VEPqOAlCnLjyCAS3BlxF/oxOINxqtxFb9QQ
-	Fg==
-Received: (qmail 959016 invoked from network); 9 Oct 2025 08:43:15 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 9 Oct 2025 08:43:15 +0200
-X-UD-Smtp-Session: l3s3148p1@D+KdHbRAaOkgAwDPXwQHAL/S9V79e5yL
-Date: Thu, 9 Oct 2025 08:43:15 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	linux-renesas-soc@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: bus: renesas-bsc: allow additional
- properties
-Message-ID: <aOdZgyPJLsZ5IjBS@shikoro>
-References: <20251007032209.7617-2-wsa+renesas@sang-engineering.com>
- <CAMuHMdUChRoJ-A4W-PBBQssMvsn1GZY5zXmWxJ9y+EA8M2p3gw@mail.gmail.com>
- <aOWGWkQn1AK22tJB@shikoro>
- <CAMuHMdUXoq3d010y0vyXvvaHpgaV7rHb66VAHrwJxAZXzt+z=g@mail.gmail.com>
- <aOY2tdEXmhdZ0Yeq@shikoro>
- <20251008224208.GA237448-robh@kernel.org>
+	s=arc-20240116; t=1759992451; c=relaxed/simple;
+	bh=mfZ9IwMPosLthjEdYwEjtzA3SfovaP/AyucpLKx9p3I=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=c6L37KmnrNBks1hgC7OCZMoPiwZP1O1/egh8eRZmaT5Qi+TWpYk4ubXkZX/tDoyg3rydzluSu4gwR8svHWUPLIKI3exBBgEN3RjnLic85fH0U+5fhCUgF4slxFDmQlpCDDHhlJnV2hIQZAsbe5zvmCNxkzfyLPrCs4WPizPMulE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=IpcilbrT; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-46e34c691a8so1162495e9.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 23:47:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1759992448; x=1760597248; darn=vger.kernel.org;
+        h=in-reply-to:references:to:cc:subject:from:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4kX/2DcwJULxUzQnKC5hadF3mFu3a5RnnRgumV8iiFk=;
+        b=IpcilbrTGVgAzt2x9SaoibJai8ig5MzpI9+rZgGlpDWBP92DINa42KRmtn93BhiitN
+         RSqq1ER2PEYZdt0Le5snXHcoMKbJQA5VZ9WhZU0L+67r0zWOJGBEQJ+zaAPvboK7KCGU
+         OgQqxoL46qxGRNHpn+41hXnCTQ8//2Z42rWEymJeKld3KjTMnuM6/uBH4AwzCm/3WP7l
+         BfpFwBAs1jUgiJvotf99PfYD8gGUc/TJJI2V7GwYravvQ45ZHKOy4ai5KrOBXUwRqsNJ
+         hLXIUBryPe/aWmy8DcmUDPuVa5+87YIStQKQmS5c+4r6HyMVslC+llvBQRv6t5OV4aQS
+         gLvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759992448; x=1760597248;
+        h=in-reply-to:references:to:cc:subject:from:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=4kX/2DcwJULxUzQnKC5hadF3mFu3a5RnnRgumV8iiFk=;
+        b=eHAc9wGHQGc6VCstiG0niK/ax6kIS3SVyCql5Arut1IN4jUv/5kiQFWVtG0K7+Skdr
+         mcUoKZw1wS5tpSZvFqxNknNtCtfN9ZPyZ4wJCxzev4g48PqknmSJibW1O/n0h2Rn6iWz
+         1uYq6MsY1BPkpMmmPfgjRiNA1Hkv4TLgDyfGBSGgF652D1kMv60fFsgIqdVLRZRwDHng
+         bnS+t6UlytnvmEyfYccdkshA8Tcvh/GnytIgLlv4CAadOLeOKnB8Y4aOcRuOigZkTnfk
+         Cj1Af4gifw8Z8SLpvkilzdfFA89f+NM6BdWVYhhr6Ju8kHgBTqf3gYYwwbROZCQk24U4
+         yxxw==
+X-Forwarded-Encrypted: i=1; AJvYcCUtSKTrxnBEgnKsH0C2Ews54QWfwch0cpDwv0NlDfMwbkLaAPc7Bw2c/h4gEvWQJpA46L/Ms3vuYdbK@vger.kernel.org
+X-Gm-Message-State: AOJu0YxiZ9BlE5xSKXKd1ys0QADy0rMC4nnppHiMRUNTj2VoZqqbwwoJ
+	vQ8lso/q+WKuEbvQ4Cr7A4YWrQdhEF6E7ujdl15aCq3Exoy5vnVmfEL09EafiG3buk4=
+X-Gm-Gg: ASbGncvH3CTfaLVBKF5BPQ6dTnwoyTVBWz6hJkwWWMI92KxXz39qX5pxb3Gm2z/b/hc
+	nnHV6yxBMkwwEQFIjnkHIXr/T5ic6GAieIsYFpVVv2QRsTfkH/LZ6+WRnGcaCYIKMl+bfxC0h//
+	9du6f93qSoHK331N5lxgy04HsZ28Ddzoc8vAB3ToqxjE1H0L93Sd1upKWYMEWJ9IUTavl97/JBf
+	tPmghe/+abiVFP2VhQibZXL5k8z++uiL02cQDcNumB3E9uHTeEU+EnWgIG2o2SH0n5x30yzVADM
+	RAG0e7Cv3Bj5xPzvtX5ft27/zAjRYG4dvhJkFVzTgkIjvp0TeKxEETEcpHqKJg1ZNNTNNhfBGjF
+	yblwFAoVegC1o7sQJL/uVNiPwSsCWKthETlwsXT5S3lSYJ/fO
+X-Google-Smtp-Source: AGHT+IERhG2czUcI/1bkhsjABOhRhpIpLRnFW9gDFTFnSV/gvPy8JtCf/9GIOjxDAvwaj+T5F6mmJw==
+X-Received: by 2002:a05:600c:4707:b0:46e:4292:769b with SMTP id 5b1f17b1804b1-46fa9af990bmr23672735e9.4.1759992448349;
+        Wed, 08 Oct 2025 23:47:28 -0700 (PDT)
+Received: from localhost ([193.86.240.59])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-4255d8e97f0sm32843535f8f.27.2025.10.08.23.47.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 08 Oct 2025 23:47:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="WzASAOFG86SchZzo"
-Content-Disposition: inline
-In-Reply-To: <20251008224208.GA237448-robh@kernel.org>
-
-
---WzASAOFG86SchZzo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 09 Oct 2025 08:47:27 +0200
+Message-Id: <DDDL94HT7HYF.3VU2WQYU4WZY5@ventanamicro.com>
+From: =?utf-8?q?Radim_Kr=C4=8Dm=C3=A1=C5=99?= <rkrcmar@ventanamicro.com>
+Subject: Re: [PATCH v4 3/3] RISC-V: Add support for srmcfg CSR from Ssqosid
+ ext
+Cc: "Paul Walmsley" <paul.walmsley@sifive.com>, "Palmer Dabbelt"
+ <palmer@dabbelt.com>, "Albert Ou" <aou@eecs.berkeley.edu>, "Alexandre
+ Ghiti" <alex@ghiti.fr>, "Conor Dooley" <conor@kernel.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, =?utf-8?q?Kornel_Dul=C4=99ba?=
+ <mindal@semihalf.com>, "Adrien Ricciardi" <aricciardi@baylibre.com>, "James
+ Morse" <james.morse@arm.com>, "Atish Kumar Patra" <atishp@rivosinc.com>,
+ "Atish Patra" <atish.patra@linux.dev>, "Vasudevan Srinivasan"
+ <vasu@rivosinc.com>, "Conor Dooley" <conor.dooley@microchip.com>,
+ <guo.wenjia23@zte.com.cn>, <liu.qingtao2@zte.com.cn>,
+ <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, "linux-riscv"
+ <linux-riscv-bounces@lists.infradead.org>
+To: "Drew Fustini" <fustini@kernel.org>
+References: <20251007-ssqosid-v4-0-e8b57e59d812@kernel.org>
+ <20251007-ssqosid-v4-3-e8b57e59d812@kernel.org>
+In-Reply-To: <20251007-ssqosid-v4-3-e8b57e59d812@kernel.org>
 
-Hi Rob,
+2025-10-07T23:21:12-07:00, Drew Fustini <fustini@kernel.org>:
+> diff --git a/arch/riscv/include/asm/qos.h b/arch/riscv/include/asm/qos.h
+> +static inline void __switch_to_srmcfg(struct task_struct *next)
+> +{
+> +	u32 *cpu_srmcfg_ptr =3D this_cpu_ptr(&cpu_srmcfg);
+> +	u32 thread_srmcfg;
+> +
+> +	thread_srmcfg =3D READ_ONCE(next->thread.srmcfg);
+> +
+> +	if (thread_srmcfg !=3D *cpu_srmcfg_ptr) {
 
-> There's always examples not to follow...
+Wouldn't prev->thread.srmcfg have the value of CSR_SRMCFG when executing
+switch_to?
 
-Sure. The good thing is that I could fix the bad examples, once I learnt
-how to do it properly.
+Thanks.
 
-> The unit-address is the only part a bus schema should define. And there,=
-=20
-> lowercase hex is standard unless you have distinct fields (e.g. chip=20
-> select and offset).
-
-Okay, so, the proper pattern is: ""^.*@[0-9a-f]+$"" which is what most
-busses are using. Will fix.
-
-Thanks and happy hacking,
-
-   Wolfram
-
-
---WzASAOFG86SchZzo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjnWX8ACgkQFA3kzBSg
-Kba8Ng//UPT6MXaApkMnLZM6UdroTZipOW4beI3gkQNs2YjdeQiF+W2vmOVDgsgF
-sPCnd1SoOoDkhaTLCVEnPsA+ZJj47TEgehJgfJ6i5lcZVNp/DnODS3WJ2lM+Rm+h
-7hM+NOgBZgmYDMVdxW0c6jHewwGuM5LcztdYIc40laRD5Wseh5iuoKQXU+jl60yz
-LCcH85pyN7T2L7iPV3GMJkHal4jvDMRJRLvu6tZllmPbFXRdosVoFss6lZamGSr+
-6cpmq/8aSXFAbzh9OC1+qd/PbvkRE//HHKJd9ijr1mUDVoF6MiRmeiaRc9dYhF5V
-uHQzP17KjwTEJQ/55U1myoH7IwjPiqCfB/Sm7s3MM/jJVV2KaryF6QcSnZ94Hykx
-FGjDDGYkOskhf7jT2q4/qOBZi0Tw2xeAwrFUstqtPlGs+9DyOtvu0EC2rdcYb84f
-vKdtScOj5uUJMziDxvRlySbAgOjtbgp+8LTQgU6mLsz06D/I58PMy6U1ljAtOOVw
-LOyFwXNIZfmEOPEuBItvp2mchBX7cXsNeHYd+/DfgUMROVTWyhDrACONadhHKTkA
-WXi2oZ+Shox0G1+cHo7A95NnquB5pivvP0zFO8JoQ4/QTAAb92NGSe94CzfLx9z/
-g4b4asw/UcheacigeItzodXlA6tB87TZ5qyP7JXfaZIjJwfeftM=
-=zBw2
------END PGP SIGNATURE-----
-
---WzASAOFG86SchZzo--
+> +		*cpu_srmcfg_ptr =3D thread_srmcfg;
+> +		csr_write(CSR_SRMCFG, thread_srmcfg);
+> +	}
+> +}
 
