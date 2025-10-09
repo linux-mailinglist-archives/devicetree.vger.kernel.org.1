@@ -1,245 +1,118 @@
-Return-Path: <devicetree+bounces-225162-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD5F5BCB1C5
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 00:37:55 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D371BCB256
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 00:51:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D9983A8125
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 22:37:54 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 1BB134E3D91
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 22:51:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07F02286D40;
-	Thu,  9 Oct 2025 22:37:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87AB82882AF;
+	Thu,  9 Oct 2025 22:51:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GknBeJOb"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="wz37Bk7F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25570283FF4
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 22:37:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F992874F1;
+	Thu,  9 Oct 2025 22:51:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760049469; cv=none; b=kLo+BepMdbvZlCDo8XAL1OcTtcJ6tWXbEoIDJf9TyzqvW1IMdCmuJhyPoSzS1Cd889T54CZWb18Z5pSiMlEC4bzYycEkA0gdzlc/Q95cRKu7oKUkdn1curvkVWOEs85Q7bZkocPpFbLyv527aAjLLbMh9RrJlIVkfgIbipAHc7o=
+	t=1760050275; cv=none; b=GlQBavbnPD+Rl7ETc92rlt7BG2IVPQBlhD3rV4VNW9Iz7jwfLpp50GnhvSI8ce2qHE8j05RjnRQlZEffgK8gWLK9GhtqewpXRG9xaeszADaLtJMzR6TRCmQ1JBMe72H6da6ob6wsZrXDRFK8F49KlPLGrU8IUbrHs76Jv5s4958=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760049469; c=relaxed/simple;
-	bh=06Oss/3UIz0tmiG70XcuIAov0LIBCglrwSlpCzass3c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kOfDKDsyK6inOpSfLx3bc3n/Fyt4UihH4OYdf+QTbN6aWpkztBhGkHB5+pBs348D8XRdrPRNsGtp12LXu/ZF3SvUQ4f29aacroDo2QuV06effmFMDVtuWfxgjRzSkDAsnJ+G133sW5gSx/DGNX9IzzWE0fFfu2pQktN5WMp2WFc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GknBeJOb; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-33274fcf5c1so1721491a91.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 15:37:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760049466; x=1760654266; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=vSYh0w/N0eKfZDlAE1W3Yr22uU+B6qBWlQxI/RC8Byo=;
-        b=GknBeJObumQbIiJUgKS2uhvH57vuhDmyIF7H2F2vClvJe5hcTb8mpdnv2zN6RMmpEe
-         1d2e0Lr+z3m/yKDxrICSs7SKqPHAeyOKAhw9CRMvU595JvGg8Uy9xafFfUzzQhtWTrti
-         uvYcmeVGInnin0HFeybc2EKkPR+I1vQ9EMPRv4xAYr1yh0J2fxBcokE4wOO4w4mb7Dc0
-         XHRvN7b+L6DmVnww+kobQsmLSx2o0/6pvdiKwZejwnahGgBolm4pBKSkmUQuxjs/OIQO
-         ZvOBaePQCKkxBSh/U9wdaGPCpeUPSvo1AWYsm8u91RcOe+BXj7Wil54+K7sihX23l9H1
-         4JIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760049466; x=1760654266;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vSYh0w/N0eKfZDlAE1W3Yr22uU+B6qBWlQxI/RC8Byo=;
-        b=eXBNEK5KsTVF1r8HblJ3b7i4qMGRCMG/vsNdj18P/Frh+rHu2vs61wokyRrBhpee14
-         PJfeALCw0AitzgJYhqlCj6ptoQ/I+ui2aG9UOZwGz3HHmiS51TOtFdor9i7rZ+PdpV0l
-         /qsal6di3kKHCMGsJSt6lPIgQYTdkjNaPhmp6H4XUQXLAdEej0ebpnb8UCcMOxMTrHSf
-         y5zkQaNLVvrJx0/vjmbTR0IU2ZXRVQ2ojY4NlK2nhb1dBtH2Weklv3dTCgvCr6l9pjWU
-         MtPMEWxP7KDmwRpau9TUeoiBofBdIezifcCb2S2fihKONSeFCwLpmqPPEC/NK3trvN6c
-         UokQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWSFCprtA+6gghFaodNY9I+1/QNBal2ovHfIYtgc3b1OQOas4sR2nAOU6Dq6MBa5NlYvke4ATXV2Hl0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwlOA0fJkrC00zym9d2ZVNX7OfGakBzuFer0dKQEyuQUow43Ma/
-	MXewj6PyPdztSDe3InRZc9BfmM/EwS+q14Hrg7aNPaENEHwq6Ytn1ItAVtsptg==
-X-Gm-Gg: ASbGncuOj7IErK1BMHJwrJi60k0GFYYa4O8l0AOupGzbD3ga5vxL+uSJK2zJiE7H/K7
-	LjPbKenMrn2Gvstf6NcTbo2ibhld7ThV59azV/hjidord95fT8WC+KW3IU4EednrXRVwMpZg8bD
-	A+nTXFZO4JiTz0bG2hbFr9aIXcWx3nK5t6UAWmlNUL2Go8vfCm6YUrjJJ9jGiAjsUxGmUEn94vD
-	GbxjLi13yePN5iVAAfKo7LRKfHtUrPTOtcUqnhRwQoqSLDO2fKgeiFXaOkHP8gP9ZOigm9KGFKV
-	DPQClsxxQWXzNxJjVhcK2Pf0Z5VZ9hqepQbSH/T+vv7MZ+m/Ge1/QanWAiXCGrmZFRydzZCLQE7
-	w8/lEJEIKvTMxUlpOf14sa3+Af4QYcK9DCfFkzAgibftwB+ZEyk1rfLQBxny3ciIZxQ9vmxtdaW
-	ZvZfcbSyHklNWSVrRqRmc=
-X-Google-Smtp-Source: AGHT+IGog/PneYO0nL24iL7Dc+KdKGYSUtX3kNsDtV2v0Br8doc0KrPg0Zb1nxGl1FCvfJht8YEaig==
-X-Received: by 2002:a17:903:37cd:b0:235:e8da:8d1 with SMTP id d9443c01a7336-29027213309mr107072425ad.8.1760049466335;
-        Thu, 09 Oct 2025 15:37:46 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034f3b85fsm38619155ad.102.2025.10.09.15.37.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Oct 2025 15:37:45 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <b4fd595a-8507-43b7-9390-d819867d7cef@roeck-us.net>
-Date: Thu, 9 Oct 2025 15:37:42 -0700
+	s=arc-20240116; t=1760050275; c=relaxed/simple;
+	bh=jYG/OB9bAIYVEcC3QqWgQ1aF5LcSMw1lQuBwbpZdunE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=tT0NrdXjRkuXceeuehES10Rlw543VWgNmA3fkOSKQjMUlnz6jTOX3OIM+jHdHOHIFCm1KlNFGWnowhW/NJvQYkSblUtZ4kRENWNimzIU1jKhyrHZ/nMiLiIMWgXVRMkjUOz2qQCKeps7Nbad3FrIovdypC/lsIMLOrzdWCdW8lU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=wz37Bk7F; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Reply-To:Content-Type:In-Reply-To:References;
+	bh=MPeuMUNYVwG3ymlRhXbc+slsUvOfDXixxwoUlCxd4mg=; b=wz37Bk7FuSpN/XDnoWtOT57Lov
+	Yn5QcLwJn80x8mOdAmWIM0Pl+8uH6XQ6a83YjLkvqcGCtri1s4NiExwYib2fv+pUhb/ia+IAhgFyK
+	4TWMBrDvY0sI4/R/UqpIKAr68mGMlfemXy22uNIvY45s/cldp+mgrqn/imBFW7E59H+xoK3G5a4ww
+	PvqNmaFjjsAqUoP4Fk2/0XjqekvAbePe13g0c5F0HensA1wnhDLvi1LywweT+7Dja3QQ8kOHZPLFH
+	m6THVT3pEZSTfhXmjyUqdQy+qiSDY5NtMAq9oVJuqDbZMV51xkL5lhZKt0G9pY9ysJrcj2XpHJ10f
+	4d/PJHIg==;
+Received: from i53875bdd.versanet.de ([83.135.91.221] helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1v6zTS-0007iZ-4f; Fri, 10 Oct 2025 00:51:02 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: heiko@sntech.de
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	quentin.schulz@cherry.de,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	damon.ding@rock-chips.com
+Subject: [PATCH v4 0/2] Add RK3588 Tiger DisplayPort carrier
+Date: Fri, 10 Oct 2025 00:50:48 +0200
+Message-ID: <20251009225050.88192-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [EXT] Re: [PATCH v4 0/2] iio: temperature: Add support for NXP
- P3T175x temperature sensors
-To: Lakshay Piplani <lakshay.piplani@nxp.com>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "jic23@kernel.org" <jic23@kernel.org>,
- "dlechner@baylibre.com" <dlechner@baylibre.com>,
- "nuno.sa@analog.com" <nuno.sa@analog.com>, "andy@kernel.org"
- <andy@kernel.org>, "marcelo.schmitt1@gmail.com"
- <marcelo.schmitt1@gmail.com>,
- "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
- "viro@zeniv.linux.org.uk" <viro@zeniv.linux.org.uk>,
- "peterz@infradead.org" <peterz@infradead.org>,
- "jstephan@baylibre.com" <jstephan@baylibre.com>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Cc: "jdelvare@suse.com" <jdelvare@suse.com>,
- Vikash Bansal <vikash.bansal@nxp.com>, Priyanka Jain
- <priyanka.jain@nxp.com>,
- Shashank Rebbapragada <shashank.rebbapragada@nxp.com>
-References: <20251008100713.1198461-1-lakshay.piplani@nxp.com>
- <96f5443f-5b40-4d05-b350-78d55a1d841d@roeck-us.net>
- <AS4PR04MB9362FDA1FE35AD06C99B85E3FBEEA@AS4PR04MB9362.eurprd04.prod.outlook.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <AS4PR04MB9362FDA1FE35AD06C99B85E3FBEEA@AS4PR04MB9362.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/8/25 22:56, Lakshay Piplani wrote:
-> 
->> -----Original Message-----
->> From: Guenter Roeck <groeck7@gmail.com> On Behalf Of Guenter Roeck
->> Sent: Wednesday, October 8, 2025 7:41 PM
->> To: Lakshay Piplani <lakshay.piplani@nxp.com>; linux-kernel@vger.kernel.org;
->> linux-iio@vger.kernel.org; jic23@kernel.org; dlechner@baylibre.com;
->> nuno.sa@analog.com; andy@kernel.org; marcelo.schmitt1@gmail.com;
->> gregkh@linuxfoundation.org; viro@zeniv.linux.org.uk; peterz@infradead.org;
->> jstephan@baylibre.com; robh@kernel.org; krzk+dt@kernel.org;
->> conor+dt@kernel.org; devicetree@vger.kernel.org
->> Cc: jdelvare@suse.com; Vikash Bansal <vikash.bansal@nxp.com>; Priyanka
->> Jain <priyanka.jain@nxp.com>; Shashank Rebbapragada
->> <shashank.rebbapragada@nxp.com>
->> Subject: [EXT] Re: [PATCH v4 0/2] iio: temperature: Add support for NXP
->> P3T175x temperature sensors
->>
->> [You don't often get email from linux@roeck-us.net. Learn why this is
->> important at https://aka.ms/LearnAboutSenderIdentification ]
->>
->> Caution: This is an external email. Please take care when clicking links or
->> opening attachments. When in doubt, report the message using the 'Report
->> this email' button
->>
->>
->> On 10/8/25 03:07, Lakshay Piplani wrote:
->>> This patch adds support for the P3T1750/P3T1755 temperature sensors
->> under the IIO subsystem.
->>>
->>> P3T1750/P3T1755 support two operational modes:
->>> 1. Comparator Mode
->>> 2. Interrupt (Latched) Mode
->>>
->>> The HWMON subsystem is more suitable for implementing drivers for
->> comparator mode operations.
->>> Reason:
->>>     - Temperature thresholds can be polled and exposed via sysfs.
->>>     - Register reads do not clear status, allowing safe alarm state derivation.
->>>     - Matches existing drivers under hwmon.
->>>
->>> The IIO subsystem is more suitable for implementing drivers for interrupt
->> (latched) mode operations.
->>> Reason:
->>>     - Interrupt mode uses edge-triggered ALERT/IBI signal interrupts, which
->> can be pushed to user space using iio_push_event.
->>>     - IIO's event API (IIO_EV_TYPE_THRESH) supports timestamped
->> rising/falling edge events.
->>>     - I3C IBI integration maps naturally to IIO's event push model.
->>>     - No persistent alarm bits are available; so polling in HWMON may result in
->> missing events.
->>>
->>
->> This is just wrong. Interrupt support can just as well be implemented in a
->> hwmon driver.
->>
->> Guenter
-> 
-> Hi Guenter,
-> 
-> Thanks - agreed, hwmon drivers can support interrupts.
-> The distinction I meant to highlight is about semantic alignment.
-> Both P3T1750 and P3T1755 does not provide alarm/status bits. In TM=1 (interrupt mode), the alert is latched
-> but cleared on register read, with no way to query alarm state afterward.
-> 
-> HWMON typically polls alarm flags via IRQs, expecting them to remain asserted during threshold violations.
-> Without persistent bits, supporting interrupts in hwmon would require emulating state in software, which diverges
+A board that allows easy testing of the Analogix eDP controller on the
+RK3588. Requires Damon's recent work on allowing bridges in the
+Rockchip variant of the controller driver [0].
 
-So ? Various drivers already do that. It is not even necessary to "emulate
-the state in software". Just store the state in the interrupt handler, and
-report (and clear) the state when the alarm file(s) are read.
+Concerning displays, my current setup is
 
-> from its ABI and could mislead userspace expecting stable *_alarm files.
+  DP-carrier -> DP-port -> DP-to-eDP converter from Aliexpress -> eDP panel
 
-This is just incorrect.
+which produces a nice 1080p image, but it seems Quentin's experience was
+not as nice, as he reported in v2 [1] that his two test monitors produced
+dfferent tints, but not real output with:
 
-> IIO's event API, being edge-triggered and timestamped, aligns more naturally with
-> this transient behavior and with I3C IBI signaling.
-> 
-> I'll reword the cover letter to clarify that this is a design choice based on ABI semantics, not a limitation of hwmon.
+green tint on a Iiyama ProLite XU2294HSU and purple tint on a Dell P2319H
 
-Again, that design choice is not a reason to have two drivers for the same chip.
+changes in v4:
+- move hpd-gpio down the the analogix-dp node
+  As stated in commit cb640b2ca546 ("drm/bridge: display-connector: don't
+  set OP_DETECT for DisplayPorts") the dp-connector can't just read the
+  hpd-gpio and mark that as monitor detected, instead 
 
-Guenter
+changes in v3:
+- rebase on top of 6.17-rc1
+- still should wait on the analogix bridge support
+
+changes in v2:
+- collect Ack/Review for binding
+- address Quentin's comments
+  - sorting in Makefile and dp-connector properties
+  - ethernet alias
+  - drop data-lanes comment
+
+[0] https://lore.kernel.org/dri-devel/20250709070139.3130635-1-damon.ding@rock-chips.com/
+[1] https://lore.kernel.org/linux-rockchip/0582b7bc-e5b2-4b5e-821e-8d2c4301579f@cherry.de
+
+Heiko Stuebner (2):
+  dt-bindings: arm: rockchip: add RK3588 DP carrier from Theobroma
+    Systems
+  arm64: dts: rockchip: add RK3588 DP carrier from Theobroma Systems
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   6 +-
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../rk3588-tiger-displayport-carrier.dts      | 119 ++++++++++++++++++
+ 3 files changed, 124 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-tiger-displayport-carrier.dts
+
+-- 
+2.47.2
 
 
