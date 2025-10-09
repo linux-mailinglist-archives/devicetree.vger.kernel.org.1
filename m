@@ -1,191 +1,302 @@
-Return-Path: <devicetree+bounces-224740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61AD2BC7678
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 07:12:45 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8494DBC768A
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 07:13:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3E0D64E684B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 05:12:35 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3A72E4E3376
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 05:13:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEB1225DB1C;
-	Thu,  9 Oct 2025 05:12:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 574EC25C802;
+	Thu,  9 Oct 2025 05:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="j9xw5nlr"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="D6wOMeSF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f177.google.com (mail-pg1-f177.google.com [209.85.215.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2D3F214A64
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 05:12:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1BD157487
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 05:13:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759986744; cv=none; b=DVW1a9QvgSFEZBRY0p+P4nvXuQGdyd6BA8MpAIrGSNESqzB/Sne2ubttfaOyttUdmP2EMTFEcD+CfTkzP4t666Ova8tTMu0zotTUZwNGPKAstEOwykU+ITwVfpZ6ECrUI6DU2duOcSZwO+vMO7PQYv+Oo3ZfWubYWinZnzZbXWc=
+	t=1759986806; cv=none; b=kjrDUVY7y/8AjN4c4QqxkkW/7RKNjTSHQlnDI0KwxXB9TWRySeQ3/00M3d7ntm/U+yhzUi01h7BkbMfTkXczqcNzohH5kfjqwIytyhqT2bXj/VvR8rQFgnH5phdXZEX8JzbbQYevYmD8B8I5l1kqyOu1O3Z5ix2it53j1VyBCyw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759986744; c=relaxed/simple;
-	bh=k41Lfe5Dcn96f8gUJJ8sMLMPw6rwlMYlfzmlMxfn/64=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Arz0mvDn3s/icn1iqMQCCSMsNdI6Syzjm0T6cHCh9fKC1Im8/55vile+oY5Dt9x1tE+0thxkB1+zdZlfTvtCv8JiPS0SmG9Mfz/sHhdui5PI2sm8mWH11rmFlNuxYjb+swD24VtmnGW6nlArVuPZPLB2PmQ5a/MVIQWnBnLp7J8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j9xw5nlr; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 598I5drO003321
-	for <devicetree@vger.kernel.org>; Thu, 9 Oct 2025 05:12:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	SpRCq5hxTIkMivPd9aj2d6SWJ/aa5OSoLIzqlFyOuX0=; b=j9xw5nlrS7w7Peha
-	Yjcm2jg037QSz9Cdz0NkxcMdurxV8l15WkI2DLoINmJGBMqrJjuq1YeoZ8O1P8QC
-	0YRkAQpo952xXGUVxcObNzFZOjcAnegJGWKaKD5NhGD+nR2wOiEXPvgSFxURvsn/
-	dvnxrqAa6CnaOpzDy3lXVbEvxxRTDxVTnfUqCqYbVRr3o5F+/lpmQgpBd6yS93N4
-	gOm/EDRRgXYZ4H6K15GO/1xbdjxQkyQfQDt1yxM7xHaDxq7anvIjs6LC/ZKXG7t9
-	w3AEiDEeNa7emQrQTo32KO4DL9cN/iQVSX87scf/cALw1E+SImvvRAijYLHml9Oj
-	Za5rmw==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4m1j09-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 05:12:20 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-269af520712so10168135ad.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 22:12:20 -0700 (PDT)
+	s=arc-20240116; t=1759986806; c=relaxed/simple;
+	bh=XgKEUUpBVyKhaDmSmOHwqctzZ1yn4T/HwN7blucyAv4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hihvEbAQVc0ZIyKt9rtyDEOP2gAUosJSRyDcUZViWsB000qHQjdD6ucNUhawiSa0nzqmijgDorDcZLhKYRpOyPx21G1lygChimJQvl2HUc9MUBufVO+tB+ayorWzVfp2HD6I7pph/WZj2/EvSn21IdrFAspqvNwVMrj1ZjEK6/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=D6wOMeSF; arc=none smtp.client-ip=209.85.215.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pg1-f177.google.com with SMTP id 41be03b00d2f7-b593def09e3so334731a12.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 22:13:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1759986804; x=1760591604; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BWewaHokP8ZtNf5xV3DaenIr+l1N9Mpv+SreL8jsLig=;
+        b=D6wOMeSFlP1ic+i3VxQcP88RlxlHsDH/F8OBgITJvOe3Zfmf9X3mUXJb+FbM9DeSvb
+         WPnxgW+MJbksEM95TtJG/MQ9ZWV1UtETpKv8FzqhcRE3nycad3LiXxszbjhpCHf4W1km
+         /HAl66md19HaAOxX+ixLviKEjRp9rwz34RuefqWQ7yCKhbq8bX0XPSPLegm5mWH6qXfN
+         WYPhQR73gS22CbasH9pO7nJeRBKcrHBU8GFqtr3AakFoW8OJdEOcrI+UM32h0We5xmA9
+         4PxOIbKUKU1lq5BHP5j5bJK3uGkTwuaBvNM7P9nWNXBbc8+yPN3fiplisiadwPwxsNn5
+         y2cQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759986740; x=1760591540;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SpRCq5hxTIkMivPd9aj2d6SWJ/aa5OSoLIzqlFyOuX0=;
-        b=llu0ceaTPeZsZVf8+MHVxogfGdxSa0136uLpjWsMaXN9EZuOSHrwJrA4EfYKULHtc4
-         BsFkmGmuKVbxCp2/79WLyfUgf8yUxpR0Ah8iYVTMKYQ2duo/ayGTbR/El/fQm2WN93OK
-         efFq9ENjd8vpYAiMuTch/E6mHJH0YSJUsVbtHbFVsNx+n0kgFdFmGSV4S4YpoJYyzSrt
-         CqkJDF8TwqdUuha2MoselkhIDviMeKAamRmN5hjkwKExTRl0IHQWC16L/4z58MzYDmUK
-         eRFsDEjOzAPM4KmkCYyE3+IKNMV5CY/+pEbdhDr3BhyTwBBWEprYWs2oWvFJOxbqtPIj
-         Goxg==
-X-Forwarded-Encrypted: i=1; AJvYcCWgll5Vqh6cMKa3ooLafKUdLkc8ndncxw7/VmTnnupB6gNsI1o1/CGh6w/fHiXtWnCSSHxnULEs+V8m@vger.kernel.org
-X-Gm-Message-State: AOJu0YwplNlDpBZBWueZI06f2HWCeyN7fYakeqyb2T3wJB0q+g1kB3eA
-	4IVN6FnbO41Kvd/I13ZXEJ+ouqyMj2Ti0PTxkS/fL0mBAfvQtEHLecXhbx2YuBKx8IEWvQbTO75
-	kLbTmAANqP7yrGMXTvqeDw+YT7wv/0FpdMDo8s+YXHkfr/mNiXvLt8drEmoPHd+3b
-X-Gm-Gg: ASbGnctuclKbPxaD0sJu8RpyAGVk51k0LDuw9ke2Lap+QU5V+XHIJqzYvbRDKA8ztyN
-	7DpUViTmvSaT1x4HKvsx7cDzgh60beW+1m2HsqyuOKOIP58sic9zDJdOBoS4lhMOG4IdRzVs+fH
-	+ziF2D8JhmM+wMvOW90gMADxfmpvaTqLOhGWeEVB4Q7zFub3pslXAAWMZdFZuqOQ3Etl+FG33SM
-	j92G2s03poSxdkECo+hrNWopY9IeYc7kASuTTnIOsfraZnqetDZllBBT62GQYp9/KopF8kFDp4E
-	X+jHuriqFsz1GS+qlg/sJuymuFOumX4fvBkX7efBzTubGz7yKJ9dKiLQGLZBpl55IoZdJLOU4g=
-	=
-X-Received: by 2002:a17:902:e952:b0:262:4878:9dff with SMTP id d9443c01a7336-290273567a8mr83058935ad.12.1759986739926;
-        Wed, 08 Oct 2025 22:12:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFHoy6wYSRGBBV1JSmS3QPASPTJ1tUJOiLp062epi1A7qQiWfVzluYaEiSDgNYaPZafLI0kcg==
-X-Received: by 2002:a17:902:e952:b0:262:4878:9dff with SMTP id d9443c01a7336-290273567a8mr83058595ad.12.1759986739410;
-        Wed, 08 Oct 2025 22:12:19 -0700 (PDT)
-Received: from [10.217.217.147] ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034de6c7bsm14950135ad.3.2025.10.08.22.12.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Oct 2025 22:12:19 -0700 (PDT)
-Message-ID: <8465759d-8d50-48c6-b5e9-26e08045304c@oss.qualcomm.com>
-Date: Thu, 9 Oct 2025 10:42:14 +0530
+        d=1e100.net; s=20230601; t=1759986804; x=1760591604;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BWewaHokP8ZtNf5xV3DaenIr+l1N9Mpv+SreL8jsLig=;
+        b=XFXktsrnQQZL3O0qaEDdo/Ys6gL5hKG3mHAxawcJ1cy5kA8ailPhkiGPJtMxQ16F9P
+         p2DagoMeRdwbD+w8ZylcjlP+ndVikym0xYH1r2z/Vtg5GITdfBk1b8mQKbNMIYuxIEig
+         +K5yHRzqqVWuzgu9gP6ImJ8YhHrYZszgJv+IlCWsszxQw2GSN85y3KiaiiGietba/HnH
+         nCLc5UEUwb8Ac60OM1DD2mfb4ZFBBOGYKKCxD79ftMKf22ywT9iN+z4uIPTBCTE3J4ut
+         oSmYKLbT8v38gMhnut+toYWG/raWXTc+2IKcohqccLkzNyLe3Vzew4JVen3/q7Ou4zvn
+         a4vQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVEsAIugDLQsY+ABDH+zIj77qsytRqg0QY8B/gtNJEF9UEV05k7FB9E2uCSpD/NJbNd7xsBChDGxbYH@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOJSPADyiQbb5SLYBpyDn8IYuN9uBzlrHTzBDgh6AGWhwDsJeb
+	cAN2Sl8+mkdYndoVOjsDVQbRSGBqOuUZZEdmRCZVwkmzjf+FU/48jn+LsthWTDmz+95BlQU/rRi
+	gxSG4HDZKrTPSkdTc2ChQEd+LH4QeK19VvIEzKLXJ
+X-Gm-Gg: ASbGncv1LDFG9g4FWQOytwnm3JBB4B2Dftlgk+IkLo2fhY+FQDmtsJaTwSVbjxkCGYB
+	aU3efQW2j8GJRQrfJTn4xOIGPMC+UC61EvPiWVrgW6hUTfzIWZyTsP3N57csEaasVAmNB5FKr3/
+	5GkeWQ+OvwcttYfwS2djmgVwYCPY3pM7LHTsIf/VJhPT3R1DNQbz+I4090tKKJ/QuaG0EbLJo50
+	VBTrqF+V6oBjfLkrSZ4mtpi3aO2W1bjzc73efSXVsK83TMYRmUhwDGyhDF5p6Rqgn+HloKREtHg
+	C+dElQ==
+X-Google-Smtp-Source: AGHT+IHftw1sTR4jx+skzjrqSGdfm/Q0+OudIaUszRZ3Jo7Mtg1ENnay4Sa6Pgawbis09A4Kl1WSaKxYdl0Pty1Yfo8=
+X-Received: by 2002:a17:903:1b46:b0:269:b65a:cbb2 with SMTP id
+ d9443c01a7336-2902738685emr79503305ad.47.1759986803355; Wed, 08 Oct 2025
+ 22:13:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 22/24] arm64: dts: qcom: glymur: Add display clock
- controller device
-From: Taniya Das <taniya.das@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Pankaj Patil <pankaj.patil@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250925-v3_glymur_introduction-v1-0-24b601bbecc0@oss.qualcomm.com>
- <20250925-v3_glymur_introduction-v1-22-24b601bbecc0@oss.qualcomm.com>
- <3c886104-937f-4d2e-ade0-fd525d56dabc@oss.qualcomm.com>
- <a0a70337-6474-4568-9006-dda66371fe7e@oss.qualcomm.com>
-Content-Language: en-US
-In-Reply-To: <a0a70337-6474-4568-9006-dda66371fe7e@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX/gWFiofycXoW
- n3FY6oXnqPSV6DsQ+l7bScmnheHL9R9e6P3Eme0y+B2lzuUOeQz/ubh/GaE3U2vVKtROsCqoIOf
- daL10wZfaoZalSboz4eZ+VmEonPL2A4fXSZtOvuHsLQ/Py8Xs+B6w5/N9e/1BSVBZIifPcY51ku
- KrknD/lVLXCn5OuuH8TnDURfyU1lcTA0OVSON67jK7VNifckVlpkEZCozlja4Nb8vrKyBiTIKi3
- Z2H1ZX91Gt+9Vgk0+fnskyxdosM5f16fnmgdD3BjEg+ncTcYVies5QUgKh5yJYN3HJO/1N9e+zL
- 5mQj6hI6UAHNAKmaR0N7LecFv8o7rTOkDVi0pUgjFJSE3AwreQKhrrcEHCAaorYqewnMWl90reB
- njss8EW1EtxW2i2tXb5IOMpcXRn5vA==
-X-Authority-Analysis: v=2.4 cv=B6G0EetM c=1 sm=1 tr=0 ts=68e74435 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=Rl_jRUjo-d1ZQ1p_6G4A:9
- a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-GUID: ViCU6kNYc84ro8zM8A2PP6RgKWWb3d38
-X-Proofpoint-ORIG-GUID: ViCU6kNYc84ro8zM8A2PP6RgKWWb3d38
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-09_01,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015 suspectscore=0
- malwarescore=0 adultscore=0 priorityscore=1501 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
+References: <20251008060000.3136021-1-royluo@google.com> <20251008060000.3136021-2-royluo@google.com>
+ <8966b6a9-ff70-4833-a5c7-c6d6c13c6c8b@kernel.org>
+In-Reply-To: <8966b6a9-ff70-4833-a5c7-c6d6c13c6c8b@kernel.org>
+From: Roy Luo <royluo@google.com>
+Date: Wed, 8 Oct 2025 22:12:46 -0700
+X-Gm-Features: AS18NWAeUlPdfPhpwSxxFxgtGGF4Sy9E3bq34jSmHpsPo17xNshrcbYfSpJ1QNc
+Message-ID: <CA+zupgwLu-y26X9eiENyC28i9ZxCkuhb0X8X9H6HBpqkqJ7O3w@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: usb: dwc3: Add Google Tensor G5 DWC3
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Peter Griffin <peter.griffin@linaro.org>, 
+	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+	Tudor Ambarus <tudor.ambarus@linaro.org>, Joy Chakraborty <joychakr@google.com>, 
+	Naveen Kumar <mnkumar@google.com>, Badhri Jagan Sridharan <badhri@google.com>, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, Oct 8, 2025 at 4:56=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On 08/10/2025 14:59, Roy Luo wrote:
+> > Document the device tree bindings for the DWC3 USB controller found in
+> > Google Tensor SoCs, starting with the G5 generation.
+> >
+> > The Tensor G5 silicon represents a complete architectural departure fro=
+m
+>
+>
+> G5 does not have a model number like G1-G4?
 
+There's no model number for G5, I'm sticking to the existing "gs" prefix
+as they're still in the same SoC family.  Please let me know if you have an=
+y
+concerns.
 
-On 9/29/2025 9:24 AM, Taniya Das wrote:
-> 
-> 
-> On 9/25/2025 4:03 PM, Konrad Dybcio wrote:
->> On 9/25/25 8:32 AM, Pankaj Patil wrote:
->>> From: Taniya Das <taniya.das@oss.qualcomm.com>
->>>
->>> Support the display clock controller for GLYMUR SoC.
->>>
->>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
->>> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
->>> ---
->>
->> [...]
->>
->>> +		dispcc: clock-controller@af00000 {
->>> +			compatible = "qcom,glymur-dispcc";
->>> +			reg = <0 0x0af00000 0 0x20000>;
->>> +			clocks = <&rpmhcc RPMH_CXO_CLK>,
->>> +				 <&sleep_clk>,
->>> +				 <0>, /* dp0 */
->>> +				 <0>,
->>> +				 <0>, /* dp1 */
->>> +				 <0>,
->>> +				 <0>, /* dp2 */
->>> +				 <0>,
->>> +				 <0>, /* dp3 */
->>> +				 <0>,
->>> +				 <0>, /* dsi0 */
->>> +				 <0>,
->>> +				 <0>, /* dsi1 */
->>> +				 <0>,
->>> +				 <0>,
->>> +				 <0>,
->>> +				 <0>,
->>> +				 <0>;
->>> +			power-domains = <&rpmhpd RPMHPD_MMCX>;
->>> +			required-opps = <&rpmhpd_opp_turbo>;
-> 
-> The SVS level didn't work when Abel tried out. I will check with Abel again.
-> 
+>
+> > previous generations (like gs101), including entirely new clock/reset
+> > schemes, top-level wrapper and register interface. Consequently,
+> > existing Samsung/Exynos DWC3 USB bindings and drivers are incompatible,
+>
+> Do not reference drivers. Explain the hardware.
 
-Abel offline confirmed LOW SVS level worked for him and I will update
-the level to use "rpmhpd_opp_low_svs".
+Ack, all mentions of "driver" will be removed in the next patch.
 
->>
->> Really odd!
->>
->> Konrad
-> 
+>
+> > necessitating this new device tree binding.
+> >
+> > The USB controller on Tensor G5 is based on Synopsys DWC3 IP and featur=
+es
+> > Dual-Role Device single port with hibernation support.
+> >
+> > Signed-off-by: Roy Luo <royluo@google.com>
+> > ---
+> >  .../bindings/usb/google,gs-dwc3.yaml          | 145 ++++++++++++++++++
+> >  1 file changed, 145 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/usb/google,gs-dwc=
+3.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/usb/google,gs-dwc3.yaml =
+b/Documentation/devicetree/bindings/usb/google,gs-dwc3.yaml
+> > new file mode 100644
+> > index 000000000000..9eb0bf726e8d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/google,gs-dwc3.yaml
+> > @@ -0,0 +1,145 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright (c) 2025, Google LLC
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/google,gs-dwc3.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Google Tensor Series (G5+) DWC3 USB SoC Controller
+> > +
+> > +maintainers:
+> > +  - Roy Luo <royluo@google.com>
+> > +
+> > +description: |
+>
+>
+> Do not need '|' unless you need to preserve formatting.
 
--- 
+Ack, will fix this in the next patch.
+
+>
+> > +  Describes the DWC3 USB controller block implemented on Google Tensor=
+ SoCs,
+> > +  starting with the G5 generation. Based on Synopsys DWC3 IP, the cont=
+roller
+> > +  features Dual-Role Device single port with hibernation add-on.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - enum:
+> > +          - google,gs5-dwc3
+> > +
+> > +  reg:
+> > +    minItems: 3
+>
+> Drop
+>
+> > +    maxItems: 3
+> > +
+> > +  reg-names:
+> > +    description: |
+> > +      The following memory regions must present:
+> > +        - dwc3_core: Core DWC3 IP registers.
+> > +        - host_cfg_csr: Hibernation control registers.
+> > +        - usbint_csr: Hibernation interrupt registers.
+>
+> Drop description or move it to items in reg. See other bindings.
+
+Ack, will use an item list in reg instead.
+
+>
+> > +    items:
+> > +      - const: dwc3_core
+> > +      - const: host_cfg_csr
+> > +      - const: usbint_csr
+> > +
+> > +  interrupts:
+> > +    minItems: 3
+>
+> Drop
+
+Ack, will use an item list instead.
+
+>
+> > +    maxItems: 3
+> > +
+> > +  interrupt-names:
+> > +    description: |
+> > +      The following interrupts must present:
+> > +        - dwc_usb3: Core DWC3 interrupt.
+> > +        - hs_pme_irq: High speed remote wakeup interrupt for hibernati=
+on.
+> > +        - ss_pme_irq: Super speed remote wakeup interrupt for hibernat=
+ion.
+>
+> From where did you get this style? Don't write bindings with chat gpt or
+> whatever other tool. it is a waste of our time.
+
+I referenced the style from a recent dt binding change [1] that adds
+"Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml".
+I thought it would be a good reference because it's relatively new
+and is also a binding for SNPS dwc3 glue logic. Perhaps that style
+doesn't apply here because qcom,snps-dwc3.yaml supports
+multiple compatible and here we have only one?
+
+Just to clarify, I'm a Gemini user and this patch is 100% organic,
+hand-crafted by a living human brain :)
+
+[1] https://lore.kernel.org/all/20250414-dwc3-refactor-v7-2-f015b358722d@os=
+s.qualcomm.com/
+
 Thanks,
-Taniya Das
+Roy Luo
 
+>
+> > +    items:
+> > +      - const: dwc_usb3
+> > +      - const: hs_pme_irq
+> > +      - const: ss_pme_irq
+> > +
+> > +  clocks:
+> > +    minItems: 3
+> > +    maxItems: 3
+> > +
+> > +  clock-names:
+> > +    minItems: 3
+> > +    maxItems: 3
+>
+> From where did you get such syntax?
+>
+> > +
+> > +  resets:
+> > +    minItems: 5
+> > +    maxItems: 5
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: usbc_non_sticky
+> > +      - const: usbc_sticky
+> > +      - const: usb_drd_bus
+> > +      - const: u2phy_apb
+> > +      - const: usb_top_csr
+> > +
+> > +  power-domains:
+> > +    minItems: 2
+> > +    maxItems: 2
+> > +
+> > +  power-domain-names:
+> > +    description: |
+> > +      The following power domain must present:
+> > +          - usb_psw_pd: The child power domain of usb_top_pd. Turning =
+it on puts the controller
+> > +                         into full power state, turning it off puts th=
+e controller into power
+> > +                         gated state.
+> > +          - usb_top_pd: The parent power domain of usb_psw_pd. Turning=
+ it on puts the controller
+> > +                         into power gated state, turning it off comple=
+tely shuts off the
+> > +                         controller.
+>
+> Same comments.
+>
+>
+> > +    items:
+> > +      - const: usb_psw_pd
+> > +      - const: usb_top_pd
+> > +
+> > +  iommus:
+> > +    maxItems: 1
+> > +
+> Best regards,
+> Krzysztof
 
