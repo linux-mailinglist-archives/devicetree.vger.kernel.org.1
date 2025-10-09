@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-225103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E68ABCA906
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 20:26:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 103A2BCA942
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 20:34:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95BB81A62F43
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 18:26:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE4FB480803
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 18:34:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F4223D7C2;
-	Thu,  9 Oct 2025 18:26:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92AEE233727;
+	Thu,  9 Oct 2025 18:34:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LW9FQA/t"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="gApvXa4e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0327A38D;
-	Thu,  9 Oct 2025 18:26:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE1DF158874
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 18:34:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760034383; cv=none; b=t9zbjDEwzCBjT/F0d/pdYEUZ2boafH92a2Zy5v8fFyfNqRyNtnMeXyL1XBaOEz3n3yPWm/YS2Y6a1tF1w8JRVpwHlSsClFwvPnmkdR6Axx834Ay8VywKtCd/2hubcmFtBRz3PgGxJwZ0vi+feNaSraItzCAwXvT7OVoltZW0k+0=
+	t=1760034873; cv=none; b=FE3koto2AsSjl/ziOZFcFIp5sHvWYjle5Rxp/lYq3ohBfMo0iFCHiUASbkGUTASI11ES5Zao4IQUVbRkCy1eQxVB6dCpvskltZHP6NEy5GV3g9+mnsRgrKDteVCWPjaKYrOtSZz5FemWSceCOMAZBzTcrMOeRF0FSi7cTglxX5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760034383; c=relaxed/simple;
-	bh=JWAhSnRiE8GPAZSm4oQQtqwekOOMPU0V6QfkW4vSi3Q=;
+	s=arc-20240116; t=1760034873; c=relaxed/simple;
+	bh=2e3U6W7iPB3pTewkPtvK53K2QyKQm7Wnhh/BqC5stto=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rPKieVWcAi0b/7BZDo8euM1EgukprB234n42hZTiXeNvrM/C8eFrmvebPDteXf+Kr4tu69iZUcQXxHJWXbdw+SX5eBIQSdhqteF8uxH4hHFKNljpxVehT/mBqZa60k4qMAtO9pZP1zazW5Lv7f0EJ74bzOj6kjEozTUpoGsdXfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LW9FQA/t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E19AC4CEE7;
-	Thu,  9 Oct 2025 18:26:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760034382;
-	bh=JWAhSnRiE8GPAZSm4oQQtqwekOOMPU0V6QfkW4vSi3Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LW9FQA/t/VZ2QlytcYC19B7HGRg5novCD/Vl51YJWjjfz65BQozCs18mPZHmPYO/2
-	 EyxqhWZ7DHoXdqqsAZ1dqQjUnUSJ/I68qzv9/wABk8nMjbmx1ALvGHQALkpj+qUTSI
-	 2n0XbkngP28f80RwpbnPsYQ3zVyDgYV0ffyCPLc2lNbT960sPe4cn6jN/7g3GNErNf
-	 jVDPEj1tnnTmCPo43m57PIJSTMQJTchLP7tubHzm0u800U6/GRT3FlA8Gchpy6KaEV
-	 nCLB0yvyEF7jLIEzMeFaipLsfsn+QxhYpUv5cv2WvV3L/kBVSXBINvUtrYKywJ4dKD
-	 zDv7JZqT5TZfg==
-Date: Thu, 9 Oct 2025 19:26:18 +0100
-From: Conor Dooley <conor@kernel.org>
-To: maudspierings@gocontroll.com
+	 Content-Type:Content-Disposition:In-Reply-To; b=U1+lgbmtpyvLMzW1uzOLkI7wRTnvHXwrzjzSpX4F9U6/7NOlQJ1kEjPsZxDp8brkQWiNZ1wqUPqjb93DqSdZJQgEtkRc7YKxtp5+0idSBOXhIxuYTBv7FXZDJZROvIiT4ElVjqC89EB1/RtYILg3vIpFF62q10G4Ry02Ppm8ufs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=gApvXa4e; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=lFWL
+	bxWGdyjU8KeGihPbGhlWpYGSXsK/hNeq1N3k8Cs=; b=gApvXa4e791EJCmFddjC
+	36UUT/TbDN0l03qUj4DhLRrkBeQEi6fk0YTOKATAE/OEvvNGGG8bTvBYFd+zRzHC
+	sQctIn8q/L2crmjmqGTtPiirlhDdZIm6dFJTEpc6RNQN+NHz0J4As7GWC+lVLUYq
+	8UWQvnR3+MJF2MTNGpFa3yDJJr/oj0owRu0vPdLInZmdyL3C/BDjhrQsUNGDWH5Y
+	IAsxi8E2b/gGHb+Z/D7eoSAQGYGyw3gBiA1V2LVzVnJ/lPAXbhGAwi3dM+PjOCMQ
+	0RscZ13NziuMdFnc3QWwFTpt7gSWqcKC39W54saYDWNscIoKu+e6ltvH9HeSr0OE
+	ig==
+Received: (qmail 1185082 invoked from network); 9 Oct 2025 20:34:29 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 9 Oct 2025 20:34:29 +0200
+X-UD-Smtp-Session: l3s3148p1@ZbcvDb5AUrEujnv2
+Date: Thu, 9 Oct 2025 20:34:29 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/5] dt-bindings: arm: fsl: Add GOcontroll Moduline
- IV/Mini
-Message-ID: <20251009-june-greasily-3b7315339c94@spud>
-References: <20251009-mini_iv-v1-0-f3889c492457@gocontroll.com>
- <20251009-mini_iv-v1-1-f3889c492457@gocontroll.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: bus: renesas-bsc: allow additional
+ properties
+Message-ID: <aOgANZnOtkKTy4sO@shikoro>
+References: <20251009071033.5378-2-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,27 +62,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="lfuq9rSWFptVSRA3"
+	protocol="application/pgp-signature"; boundary="kluzIIetBO3+lrWW"
 Content-Disposition: inline
-In-Reply-To: <20251009-mini_iv-v1-1-f3889c492457@gocontroll.com>
+In-Reply-To: <20251009071033.5378-2-wsa+renesas@sang-engineering.com>
 
 
---lfuq9rSWFptVSRA3
+--kluzIIetBO3+lrWW
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---lfuq9rSWFptVSRA3
+> +patternProperties:
+> +  # All other properties should be child nodes with unit-address and 'reg'
+> +  "^.*@[0-9a-f]+$":
+
+Per Rob's comment in another thread, '^.*' can go.
+
+
+--kluzIIetBO3+lrWW
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaOf+SgAKCRB4tDGHoIJi
-0pjkAQC9hkkb+EqvQuGO93dBxS/UYEXTZKdiGAckdllZ4l3NAQEAz15iBgfNIgV0
-nj7aKLkyVW135fPNT6jo9WLpCE4+IQ4=
-=8DJS
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjoADEACgkQFA3kzBSg
+Kbbvmg//S5zqsepcIVTEYvXNK2HejJxM3tt+Id5GNuCxjueJhmSksS5rPM33qbb3
+3GhBGioB4sXIRVWiyle48Pk+GuvWLVby7IkwjpHe21lohe5DDUxIABcQk/1EK9un
+q7NPY3QS4IdJu/98vnJQOMmGdbVdp2Aof3VTAc+H3Hn96W8Gr3gQp9Wb/Qo0w/xJ
+4t5Rtcqt1t73Ssmpgblg3j/vJ9U+A45ney1hiu4NAjZ0rBnuAkh018HfeeRBtgob
+xJr8pGlsIjQO6bcRuqaXtgeP4qVaJftUjNyM0gAaJptfkMw88K5UKOxFimXK+P+K
+lRt9ZJ1jrVhS+N44X+qciiiu01f0qor6s8Px1Vm69yyIgBnA6lkgdxYusXMJm5ge
+aqWfmnfZGvSJK8y4u5sugRD72HyW/1UJnQ8j8f+mzvQxRHwzXRmtJJVvg+TYbS8a
+TuluOc+Ljb0BZ3+kj+pn9LSfzJkoX/epMA2dvUM74mTScSWz0PNY+2GLcKOkY9LK
+K66geLcO9aiNKTtr/3QQqbreHK+lMFYHjxyps0YfX6yWtKmgkFLoUeGB45ivlAbk
+4EDM1Hd7/VYue5Xt4EfgQTvnjLK4JmoXbiqINYLJoeVeA+iHL3TY0+5kh2DdLUfg
++Wb2G8OpgXDFyjoyCReHZK1n/8ury21wQSjaMFseR4yr26paErk=
+=t6oN
 -----END PGP SIGNATURE-----
 
---lfuq9rSWFptVSRA3--
+--kluzIIetBO3+lrWW--
 
