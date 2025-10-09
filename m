@@ -1,584 +1,199 @@
-Return-Path: <devicetree+bounces-225148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225149-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36EBABCAFA7
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 23:50:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBE04BCB003
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 00:00:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E6E6B4ED93C
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 21:50:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EE28421BFD
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 22:00:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 655C02820B2;
-	Thu,  9 Oct 2025 21:50:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 256C6284885;
+	Thu,  9 Oct 2025 22:00:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="GM7DdFSu"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mxUbKD4L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4B5274B5D
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 21:50:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B53D284662
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 22:00:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760046626; cv=none; b=GqHj/8YgoF+z617R4HLUmTmlbhr9wnhatD2/LDwPQb8j6PgvWuj3y5JAcJT1pV3S5VTDc0usw0RAXWRlCPgTHtkOzw/fESCYb3JEqooS9hB7AdLxtlQcj2RuOeFBKGHGjDCH+OkUElkUsYFbBu1ryf3FOZEYKBKFkLPLR3JI+Go=
+	t=1760047206; cv=none; b=NnOb8T2kieS4u4lKBUqK1NWok4KI5tShOxaOLT9uoLMaay44D79jkB1NVgpWggkCgpZZmqHxK3LkMrQOQHyBhIcBTR6ZcogZIC71pxzO2MNv4zrpwwaLkQUu3XTFlAkLUHezFJtPkitTUV+h0DYp+QjP7CGAIwfesqr0AM6f3sU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760046626; c=relaxed/simple;
-	bh=BLu9bXh3SeXn9dhFIblYvzQIOzvUEK8VnsKSlzHhINE=;
+	s=arc-20240116; t=1760047206; c=relaxed/simple;
+	bh=EDiIL4p9e62p4UbVruGVVDBJ2DSx2rVnb4KD9/RBVrA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ReAl9DDd086DJkDEmjO4gMQArvsZ9p2JyU0qSg7z4vM5L4YqrL6MBBBXwugggsmqpdMWlEYnMTonrd5SaKmVen/JEeWfeSj4RpY+AF07H5PhTgMuPQ+z1AeN8wSoWOlvnmWgwljt4jKmFCadxq62FQeCP1v/Fhr1AIRtZeY+3kk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=GM7DdFSu; arc=none smtp.client-ip=205.220.168.131
+	 Content-Type:Content-Disposition:In-Reply-To; b=XOK7IN1w5TeI4BwJG850ssj9g0+0VBK9WeXA05swk+DPJLTbOx8G9qejSewCKqAzeyFW8sVWRqGWqASD6F8+Apm887RsOW2l0xuxkhu75N34A2Ndx9eB/l+yxzNIKy3tkgDSK/ruCoN+08w1zKGZFClM9KYTZ06bzt06zPKerBk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mxUbKD4L; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 599Eh6T9012249
-	for <devicetree@vger.kernel.org>; Thu, 9 Oct 2025 21:50:23 GMT
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 599GG90A023407
+	for <devicetree@vger.kernel.org>; Thu, 9 Oct 2025 22:00:03 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	3udW/M/VUzzZH0gW7X2AQK2bRMAqZazBYqPcaZEzJEU=; b=GM7DdFSuwT9vIcaS
-	2997nDmppuPfyQ5gHfVDIldiO6f/sfdMXJuJfFwgTZ4SkahEw74O4vvhB/6I8pPy
-	0B/BeX8Z9M6ZxP6ui7muaNPnOWZT3dmrhQysLrGXvSyEjJDwo3FWYwB3NmUZljr8
-	v8tz7S5XCxvjAy+Pgmn7G0eZ4CnvLpy7UVqVqhsqB+qc0lpXnCepgXmTodkWHN/v
-	09wGOSvq15oCoUr+THLTKRcfn1tZiNof+ryiFTC9sMS2kBNlW+k8d3Taj6OQwBho
-	5V0IMXltSzb6bLomfwx5TRFVzcR0zU8TjayyCsbpEU3PYdgpm4rEvQ4WcC8DlqGG
-	9KPJvg==
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=KpYawqd5hNZvdS7TNRZTo7pt
+	PEhpHEawHuikV3RCL2w=; b=mxUbKD4LqLYvgAS0jz1FRKi314Y+7LREKM3+iN1J
+	LcA8h0bfrcwkLc2BZ0bbfGzF7LTjKlXpz7NHBLLB4/OlQyR1GhN/zXUfS0IzcnrL
+	S+mU31F5rPc7TX3aRh7Fx+qSm9fCV9JNiUP4tZN5Q4BenAsYVxXZL4UDO8qbRimv
+	HOwGKj4p/SxEbfZhsneiruQQByvqJnTe1IhLpZUtUDn315qtD9d758H1+SP0Goix
+	3yNutWKmoHlAs2i4ERqHdpSC8Lx3YwFhhKwjjuga41ehxLP4VJzFr+h//q4IAIIf
+	GGp5xR79gIVYVbWK0DqHabr0HP/9mDLN89b9TDt7f0spuw==
 Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4kmccy-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49pgdsrtwv-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 21:50:23 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4ddc5a484c9so56867551cf.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 14:50:23 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 22:00:03 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4e002f413e4so27138451cf.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 15:00:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760046622; x=1760651422;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3udW/M/VUzzZH0gW7X2AQK2bRMAqZazBYqPcaZEzJEU=;
-        b=fchbRoEOcwNIIE1nfIxc22LmF0LHExggEiXGcw21e+3Ayga067Lxl9hMcrfQWFn9mJ
-         rgTrCcxR2tlYfj+MDou0DY/xisWpxIxHnXgpG45c6eB/e6kvhOGWmEQTseJJAwD8jVMb
-         aqpIgi3QpQ6482NgX81SkKllyXyQUulPpUjLjbheLSxMyVXzCpgNxSo6OB3DIF3uKoaY
-         tIPMlTaV9iZ/7Jf6NglC2o0TdgkThtxShpm6wtS7/HRRo+056KnFXGL6dytvPvhq1eVE
-         etf//U8A1lxLp719m6V/i2zAPogL45o8mhNBmgRDO5DtsROKUPBiz9PWiNxOhny34qmN
-         /vdA==
-X-Forwarded-Encrypted: i=1; AJvYcCUH/vMi4c4Z6o+S01iTMXLShk49LJ0xVeZqPMKriO5kW058PUMmgqOVMd04F8Q9aQI1DhKPqrbcldvR@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMbJSYW0Pddmz0EItKbKOL/cLA6/PC3chPhwhT3JJDe7hPl0LI
-	f7LFXg8q30GRh9AwNRavj4A1/fYJvgbQz2Oxx0NpRdfCa9A98FuYrgw3mRAlGc7dkDy+tWJzVHu
-	Q6TWak/43B09vQxYQe25CPcjJ0gNtCHw6QytVxtW33LkRsY4SmxfeXf5VYbJ85HA7
-X-Gm-Gg: ASbGncsYZsVsHL3lbvd37aqwZ8eE+3WcAqL+IiYN1sEZqsWgw08j5PpLqYTgi/nomUA
-	NL4GU12hGPgReV5IFzH1dznjRivgNuvcy7tSncnnHwDPDuNJ4DAgGH+onHt2iBvbmPSSpKmR90+
-	KoorcXx1HR6M5nZ28fso16PjcsvnKuDGIN32er+HBGv6vwabf8eYu0GxPacVsCx1JClcPEUHRkm
-	cQPJJurK6nX21N7Xs5eRwjvinl584kRwm7Gx/UZ5IFJtoST/G0x76KAJQ+FPHuHiKtQDDJ5a6jS
-	DZJUMtbaLdhpfXFhxbxWlr5iXHx1JrBK9/K8pccIKf0obzemlYUYfj8uPvLSdJ5a3omYiDVVXrs
-	Tp3o+Wc1XISGjxhXM5po7V5dxLBmG11oh0tDcfrN7TnF3dQwp3IgYfdjAzw==
-X-Received: by 2002:a05:622a:2c06:b0:4d9:f384:769f with SMTP id d75a77b69052e-4e6eacccf16mr95744591cf.12.1760046621789;
-        Thu, 09 Oct 2025 14:50:21 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEKNW2IrV/xJOYX3FCvpP8yoGVs0AIBQ7rbhAcz/8DxXr/uXaCm4UIW5hZbtDy6JTKSPbOnRg==
-X-Received: by 2002:a05:622a:2c06:b0:4d9:f384:769f with SMTP id d75a77b69052e-4e6eacccf16mr95744181cf.12.1760046621214;
-        Thu, 09 Oct 2025 14:50:21 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760047202; x=1760652002;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KpYawqd5hNZvdS7TNRZTo7ptPEhpHEawHuikV3RCL2w=;
+        b=M5pURWNUU6/vtjW0xU8uJfC7BBUy4H5swk9NYRQTzNLecztU9hxTszR3NgBLo1+OSp
+         BB8s24nkG5ufcwWAQ9CcvW+2JbRetR7lDjaKDwu5mC1Ku1trGENu7e6JEjYn4PQwfpxj
+         4iGAMVE3ioGXflkK6LGZvj9zReHD1DySpcvPSRPmPmEu6qcysl7OudyCozbQoSItLxMi
+         8r5cydjT1r9HG1OxgpAV+hfSL3EYl7FwcITUSfQg3/Bbft4PUNXV5CjKXHMgPenLeEHt
+         +fyipHAXHmbaB/Pm7uvSNO0Ibs6jUHtvTwtZL7JLOzd5TC9n5TVoOHJthrV3tP+7hhX6
+         djig==
+X-Forwarded-Encrypted: i=1; AJvYcCVUwD2Uxmp3Eg2dOZ7kYa7Q2n5uZ738DO7kUhaXjq329Aoqz8DuFqek1LJNLBBfX5MbBi3eeDx6IdLw@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDlkeqfx2/W0CRHb3uPeNQeZev4rhynrESWALCBZuZMunRNSMh
+	g4aNTBXM1hX4GgN8d8A6Fl3u6odBfy0+2Mllk7Zrxb2Y1nDLeUaPin2uwORSu46b3q4rRfN2Fk8
+	6ZV7cEoRZUg8M0YjTBGZ9q4ppt7aqpfH3Uwiy3nRzz+UC7WwKMl0Lrji36cLcHh43
+X-Gm-Gg: ASbGncvbo36jsvPbQuIeaZUhfQNjOBLgH7kJYs8YT1wm+1eXR/TM+wXEDkFIQm7VKNC
+	CHYgAH+KlDrecUPKASzwgoBhmdhG3meZerFhrGHWjfHSYvbm3k9YH9PprgDiXpsbXKfC+Vx86NG
+	r/DfM5CAl7NKLo9+swcFVMbhDsWBfsh8eAixjKTka5vtB4UNWA+bq8fFCYOlMsSotfMiZ1BdZ3p
+	4jLb3OWR1Cc/QL3e9Umr86xlGbUArI7HVCVZSRRS2t7IUdE2V4Ac4kyUE14OhOfLbEf+A7iblwI
+	Inpb95t7qeMhRelhcPtXA1u+Ff0XhpR1+YYxGx2QIk6j73bgju+lwz+OfiN6BgDixlhrAtImEDf
+	pQvV2Lss13JQu4NuRyZXNRTVRg6UnS7wHfu/UTQNGh9gxWpbRMANuTEnykw==
+X-Received: by 2002:a05:622a:4814:b0:4b7:964d:a473 with SMTP id d75a77b69052e-4e6ead5803bmr140393411cf.52.1760047202275;
+        Thu, 09 Oct 2025 15:00:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHcapLO481tsrnzCDmpzE9Uxm1bNDcxriX9QOSnjP35MjYhUip+3TaKyYzGd907o8HwQHQYhg==
+X-Received: by 2002:a05:622a:4814:b0:4b7:964d:a473 with SMTP id d75a77b69052e-4e6ead5803bmr140393041cf.52.1760047201848;
+        Thu, 09 Oct 2025 15:00:01 -0700 (PDT)
 Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-590881f91c0sm219883e87.41.2025.10.09.14.50.17
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3762ea1136bsm1334111fa.29.2025.10.09.15.00.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Oct 2025 14:50:18 -0700 (PDT)
-Date: Fri, 10 Oct 2025 00:50:15 +0300
+        Thu, 09 Oct 2025 15:00:00 -0700 (PDT)
+Date: Fri, 10 Oct 2025 00:59:59 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: David Heidelberg <david@ixit.cz>
-Cc: Konrad Dybcio <konradybcio@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+To: Alexey Minnekhanov <alexeymin@postmarketos.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Casey Connolly <casey@connolly.tech>,
-        Joel Selvaraj <foss@joelselvaraj.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>, Vinod Koul <vkoul@kernel.org>
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add support for Pixel 3 and Pixel
- 3 XL
-Message-ID: <6yqj2yblobathatoilox3fk75mvlsif4sley2zb2o4qv2elvt3@y7t7rsaczpad>
-References: <20251005-pixel-3-v1-0-ab8b85f6133f@ixit.cz>
- <20251005-pixel-3-v1-2-ab8b85f6133f@ixit.cz>
- <n4xims4y5sssqxkchg2tikc7idkzds5ru7ayidcgxdfx77je2d@qo34qucbebnn>
- <0f5f2793-13d6-416e-ad0e-1840e22b753c@ixit.cz>
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@gmail.com>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sdm630: fix gpu_speed_bin size
+Message-ID: <g6mv3ebxukceroa76w7s4s6tosqy34mj4xvzfwzozimdbkh5hx@b36drutn3lfl>
+References: <20251006-sdm630-fix-gpu-v1-1-44d69bdea59a@oss.qualcomm.com>
+ <ab555975-77bd-4232-9f36-b722a16f4110@postmarketos.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <0f5f2793-13d6-416e-ad0e-1840e22b753c@ixit.cz>
-X-Authority-Analysis: v=2.4 cv=dojWylg4 c=1 sm=1 tr=0 ts=68e82e1f cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=x6icFKpwvdMA:10 a=Gbw9aFdXAAAA:8 a=p0WdMEafAAAA:8 a=NEAV23lmAAAA:8
- a=KKAkSRfTAAAA:8 a=WFa1dZBpAAAA:8 a=VwQbUJbxAAAA:8 a=9PFAu1EmyVEcRf1xKSUA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
- a=9vIz8raoGPyDa4jBFAYH:22 a=cvBusfyB2V15izCimMoJ:22 a=MZguhEFr_PtxzKXayD1K:22
- a=poXaRoVlC6wW9_mwW8W4:22 a=pHzHmUro8NiASowvMSCR:22 a=n87TN5wuljxrRezIQYnT:22
-X-Proofpoint-GUID: ZYroXFkaSqsEy3Rxh2fxgdnpt8HFUhcj
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX2rVz7Dh3/E2q
- uj4VX5RTuy8t3/BORai1q7SE9fcNyONmQgjygAcpV9sbcJD+XjktJKS6xq2V5XwMrxoBq2Q8UL0
- xh45UpACeOS8d74EQpsI7tTdLX1e8oBdwhkS+D+EmOZYAliUa9+Vi5v23vNik0IVDWuMwV7Nh5f
- HGifw2wb4/AGz/ixDYh2KSMz88h51/xkJSaW7Ok7UjHrs/3zJly61MSIhP1edSxBPG6qfWoPvH9
- o1aAUGo+o+MCglI2DroP8rwSotEV8bNbisSkEoOclQjacL5RIBJ5WfuXfz82dUOCjCJYAMv7vqL
- y4KzUENWTj0S/npGu/obk+Tq/h46MKP1iIeO1HUUslryr8LpM1LhGDgKc+r1EhCGv7XG7jV7j6O
- uUI5wkM6wgzGx6eoQQiQGyCWJMwHtQ==
-X-Proofpoint-ORIG-GUID: ZYroXFkaSqsEy3Rxh2fxgdnpt8HFUhcj
+In-Reply-To: <ab555975-77bd-4232-9f36-b722a16f4110@postmarketos.org>
+X-Proofpoint-ORIG-GUID: vq5Q-RRxmubL7CZQ4XUQvn626t61q3a1
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA5MDA5OCBTYWx0ZWRfX7mfxnkMCW8mI
+ rhPbVzU8aDeWt9Ldsp+fbtFX0WLtRS/vXzyYr8ryGjkm0lqnUNabQoctF5rLcHyAml3ksgFeYz+
+ jnbZF/YWSX7zi8LtJNF0xRvcHDG90S8Po+npSku/AQd+bUmEsTDUcaiDgdbDCh2QY9ojag6AeOg
+ JpfxkmWnZ4jUfjDnhMb5pNoSiPLdWSkWPodL/SPXFNeo1BxDJHEc/W4RDqRiTCdD1uPdN6yVmz/
+ h8gPfq9UAP5suzGE2lig9xO9pa73b9K+EHH2f+OeQXZU6RH5dGLidh7D+y2wn8BNb4vdbYiEUi8
+ EZoG4t2ZOVZK35wnlbzZwr7rKjT4jK/fk/bJO01IX33+MedfJqiTtruZi/KlDfWan453PUQ/5Iw
+ ssUVN/7G256czhQcjRaNYN9cLsH2eA==
+X-Authority-Analysis: v=2.4 cv=DISCIiNb c=1 sm=1 tr=0 ts=68e83063 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=NEAV23lmAAAA:8 a=qC_FGOx9AAAA:8 a=EUspDBNiAAAA:8
+ a=ZfU0Sroon34W5jsnaikA:9 a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22
+ a=fsdK_YakeE02zTmptMdW:22
+X-Proofpoint-GUID: vq5Q-RRxmubL7CZQ4XUQvn626t61q3a1
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-09_07,2025-10-06_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 impostorscore=0 suspectscore=0 lowpriorityscore=0 adultscore=0
- bulkscore=0 spamscore=0 priorityscore=1501 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
+ lowpriorityscore=0 malwarescore=0 spamscore=0 clxscore=1015
+ priorityscore=1501 suspectscore=0 phishscore=0 impostorscore=0 adultscore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510090098
 
-On Thu, Oct 09, 2025 at 11:20:49PM +0200, David Heidelberg wrote:
-> On 06/10/2025 00:03, Dmitry Baryshkov wrote:
-> > On Sun, Oct 05, 2025 at 03:16:29PM +0200, David Heidelberg via B4 Relay wrote:
-> > > From: David Heidelberg <david@ixit.cz>
-> > > 
-> > > This adds initial device tree support for the following phones:
-> > > 
-> > >   - Google Pixel 3 (blueline)
-> > >   - Google Pixel 3 XL (crosshatch)
+On Thu, Oct 09, 2025 at 09:41:13PM +0300, Alexey Minnekhanov wrote:
+> On 06.10.2025 01:16, Dmitry Baryshkov wrote:
+> > Historically sdm630.dtsi has used 1 byte length for the gpu_speed_bin
+> > cell, although it spans two bytes (offset 5, size 7 bits). It was being
+> > accepted by the kernel because before the commit 7a06ef751077 ("nvmem:
+> > core: fix bit offsets of more than one byte") the kernel didn't have
+> > length check. After this commit nvmem core rejects QFPROM on sdm630 /
+> > sdm660, making GPU and USB unusable on those platforms.
 > > 
-> > Great to finally see it being submitted!
+> > Set the size of the gpu_speed_bin cell to 2 bytes, fixing the parsing
+> > error.
 > > 
-> > > 
-> > > Both phone boards use the same identifiers and differ only slightly
-> > > in their connected peripherals.
-> > > 
-> > > Supported functionality includes:
-> > >   - Debug UART
-> > >   - UFS
-> > >   - Charger
-> > >   - USB-C (peripheral mode)
-> > >   - Display (Pixel 3 only)
+> > Fixes: b190fb010664 ("arm64: dts: qcom: sdm630: Add sdm630 dts file")
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > ---
+> >   arch/arm64/boot/dts/qcom/sdm630.dtsi | 2 +-
+> >   1 file changed, 1 insertion(+), 1 deletion(-)
 > > 
-> > No remoteprocs / IPA / GPU / Venus / WiFi / BT? The firmware is
-> > accessible to download from Google and it can be further repackaged (but
-> > not redistributed). See [1], [2].
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> > index 8b1a45a4e56ed1ae02e5bb6e78ca6255d87add1c..21f7dcf60679026e45202c6ce137ca0463c00d0e 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> > @@ -598,7 +598,7 @@ qusb2_hstx_trim: hstx-trim@240 {
+> >   			};
+> >   			gpu_speed_bin: gpu-speed-bin@41a0 {
+> > -				reg = <0x41a2 0x1>;
+> > +				reg = <0x41a2 0x2>;
+> >   				bits = <5 7>;
+> >   			};
+> >   		};
 > 
-> Since I didn't have Pixel 3 at hand to test (I sent the series when
-> attending event where someone had Pixel 3 ;-) ), I was aiming to merge MVP..
-> more precisely, Minimal Viable Device-tree (MVD).
+> Hi Dmitry,
+> 
+> I think bits should be <5 8> as well.
+> 
+> I had similar fix in [1] for quite some time with a bit longer
 
-If you have Pix3 XL, you can use it for both. I think the only major
-difference is the screen.
+Indeed, it looks so. Please post your patch!
 
-> Until the end of the month I should have also Pixel 3, so I'll definitely
-> continue to enable all the mentioned features, but as this DTB is also
-> needed for u-boot [1], I would prefer to get MVD in ASAP, mostly because of
-> the fastboot is useless for loading mainline kernel.
-
-Hmm? I was using onboard ABL and fastboot.
-
+> explanation why. In short, we need 8 bits to be able to read the
+> value in speedbin efuse fully. Currently on my device
+> (sdm660-xiaomi-laevnder) the resulting value in Adreno driver is
+> 0x7. There is no such speedbin in [2]. It should read 0x87 (135)
+> which corresponds to downstream's qcom,gpu-pwrlevels-3 with 647
+> MHz max, which is further confirmed by testing on the device running
+> Android by doing:
 > 
-> [1] https://gitlab.postmarketos.org/tauchgang
+>  cat /sys/kernel/gpu/gpu_max_clock
 > 
-> Before I'll send the v2, the progress can be tracked in
->   https://gitlab.com/dhxx/linux/-/commits/b4/pixel-3
+> Which will show 647, confirming that 0x87 should be the bin.
 > 
-> Thank you both for the review!
-> David
+> Also when you look at the list of speedbins downstream [2] [3] for each
+> SoC you'll see:
 > 
-> > 
-> > The phones share all firmware except for the bdwlan, so hopefully you
-> > can add 'Google/blueline/foo.mbn' to the common file.
-> > 
-> > [1] https://github.com/linux-msm/meta-qcom-extras/blob/master/recipes-bsp/firmware-nexus/firmware-qcom-pixel3.bb
-> > [2] https://github.com/linux-msm/meta-qcom-extras/blob/master/recipes-bsp/firmware-nexus/firmware-qcom-pixel.inc
-> > 
-> > > 
-> > > GPIOs 0–3 and 81–84 are not accessible from the application CPUs,
-> > > so they are marked as reserved to allow the Pixel 3 to boot.
-> > > 
-> > > The rmtfs region is allocated using UIO, making it technically "dynamic."
-> > > 
-> > > Its address and size can be read from sysfs:
-> > > 
-> > > $ cat /sys/class/uio/uio0/name
-> > > /sys/class/uio/uio0/maps/map0/addr
-> > > 0x00000000f2701000
-> > > 
-> > > $ cat /sys/class/uio/uio0/maps/map0/size
-> > > 0x0000000000200000
-> > > 
-> > > Like the OnePlus 6, the Pixel 3 requires 1 kB of reserved memory on either
-> > > side of the rmtfs region to work around an XPU bug that would otherwise
-> > > cause erroneous violations when accessing the rmtfs_mem region.
-> > > 
-> > > Co-developed-by: Amit Pundir <amit.pundir@linaro.org>
-> > > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> > > Co-developed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > Co-developed-by: Casey Connolly <casey@connolly.tech>
-> > > Signed-off-by: Casey Connolly <casey@connolly.tech>
-> > > Co-developed-by: Joel Selvaraj <foss@joelselvaraj.com>
-> > > Signed-off-by: Joel Selvaraj <foss@joelselvaraj.com>
-> > > Co-developed-by: Sumit Semwal <sumit.semwal@linaro.org>
-> > > Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
-> > > Co-developed-by: Vinod Koul <vkoul@kernel.org>
-> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > > Signed-off-by: David Heidelberg <david@ixit.cz>
-> > > ---
-> > >   arch/arm64/boot/dts/qcom/Makefile                  |   2 +
-> > >   .../arm64/boot/dts/qcom/sdm845-google-blueline.dts | 128 ++++++
-> > >   arch/arm64/boot/dts/qcom/sdm845-google-common.dtsi | 467 +++++++++++++++++++++
-> > >   .../boot/dts/qcom/sdm845-google-crosshatch.dts     | 137 ++++++
-> > >   4 files changed, 734 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> > > index 4bfa926b6a085..ba05dc935dc7c 100644
-> > > --- a/arch/arm64/boot/dts/qcom/Makefile
-> > > +++ b/arch/arm64/boot/dts/qcom/Makefile
-> > > @@ -239,6 +239,8 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c.dtb
-> > >   sdm845-db845c-navigation-mezzanine-dtbs	:= sdm845-db845c.dtb sdm845-db845c-navigation-mezzanine.dtbo
-> > >   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-db845c-navigation-mezzanine.dtb
-> > > +dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-google-crosshatch.dtb
-> > > +dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-google-blueline.dtb
-> > >   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyln.dtb
-> > >   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-lg-judyp.dtb
-> > >   dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
-> > > diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
-> > > new file mode 100644
-> > > index 0000000000000..df88982018b9e
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/qcom/sdm845-google-blueline.dts
-> > > @@ -0,0 +1,128 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +
-> > > +/dts-v1/;
-> > > +
-> > > +#include "sdm845-google-common.dtsi"
-> > > +
-> > > +/ {
-> > > +	model = "Google Pixel 3";
-> > > +	compatible = "google,blueline", "qcom,sdm845";
-> > > +
-> > > +	battery: battery {
-> > > +		compatible = "simple-battery";
-> > > +
-> > > +		charge-full-design-microamp-hours = <2970000>;
-> > > +		voltage-min-design-microvolt = <3600000>;
-> > > +		voltage-max-design-microvolt = <4400000>;
-> > > +	};
-> > > +
-> > > +	chosen {
-> > > +		#address-cells = <2>;
-> > > +		#size-cells = <2>;
-> > > +		ranges;
-> > > +
-> > > +		/* for u-boot */
-> > > +		framebuffer: framebuffer@9d400000 {
-> > > +			compatible = "simple-framebuffer";
-> > > +			reg = <0 0x9d400000 0 (2160 * 1080 * 4)>;
-> > > +			width = <1080>;
-> > > +			height = <2160>;
-> > > +			stride = <(1080 * 4)>;
-> > > +			format = "a8r8g8b8";
-> > > +		};
-> > > +	};
-> > > +
-> > > +	reserved-memory {
-> > > +		framebuffer_region@9d400000 {
-> > 
-> > Can't we use cont_splash_mem and let bootloader set it?
-> > 
-> > > +			no-map;
-> > > +			reg = <0 0x9d400000 0 0x02400000>; // FIXME
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > > +&gmu {
-> > > +	status = "okay";
-> > > +};
-> > 
-> > No need to, it's enabled by default.
-> > 
-> > > +
-> > > +&mdss {
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&mdss_dsi0 {
-> > > +	status = "okay";
-> > > +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-> > > +
-> > > +	ports {
-> > > +		port@1 {
-> > > +			endpoint {
-> > > +				remote-endpoint = <&panel_in>;
-> > > +				data-lanes = <0 1 2 3>;
-> > > +				qcom,te-source = "mdp_vsync_e";
-> > 
-> > &mdss_dsi1_out {
-> > 	remote-endpoint = <&panel_in>;
-> > 	.....
-> > };
-> > 
-> > 
-> > > +			};
-> > > +		};
-> > > +	};
-> > > +
-> > > +	panel@0 {
-> > > +		compatible = "lg,sw43408";
-> > > +		reg = <0>;
-> > > +
-> > > +		vddi-supply = <&vreg_l14a_1p88>;
-> > > +		vpnl-supply = <&vreg_l28a_3p0>;
-> > > +
-> > > +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-> > > +
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&panel_reset_pins &panel_te_pin &panel_pmgpio_pins>;
-> > > +
-> > > +		port {
-> > > +			panel_in: endpoint {
-> > > +				remote-endpoint = <&mdss_dsi0_out>;
-> > > +			};
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > > +&mdss_dsi0_out {
-> > > +	remote-endpoint = <&panel_in>;
-> > > +	data-lanes = <0 1 2 3>;
-> > > +};
-> > > +
-> > > +&mdss_dsi0_phy {
-> > > +	vdds-supply = <&vdda_mipi_dsi0_pll>;
-> > > +
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&pm8998_gpios {
-> > > +	panel_pmgpio_pins: panel-pmgpio-active-state {
-> > 
-> > Are these two actually used by the panel? I think they were only used
-> > for sw43402, but not for sw43408.
-> > 
-> > > +		pins = "gpio2", "gpio5";
-> > > +		function = "normal";
-> > > +		input-enable;
-> > > +		bias-disable;
-> > > +		power-source = <0>;
-> > > +	};
-> > > +};
-> > > +
-> > > +
-> > > +	volume-keys {
-> > 
-> > gpio-keys ?
-> > 
-> > > +		compatible = "gpio-keys";
-> > > +		label = "Volume keys";
-> > > +		autorepeat;
-> > > +
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&volume_up_gpio>;
-> > > +
-> > > +		key-vol-up {
-> > > +			label = "Volume Up";
-> > > +			linux,code = <KEY_VOLUMEUP>;
-> > > +			gpios = <&pm8998_gpios 6 GPIO_ACTIVE_LOW>;
-> > > +			debounce-interval = <15>;
-> > > +		};
-> > > +	};
-> > > +
-> > > +	vph_pwr: vph-pwr-regulator {
-> > 
-> > Nit: BCP is regulator-foo-bar
-> > 
-> > > +		compatible = "regulator-fixed";
-> > > +		regulator-name = "vph_pwr";
-> > > +		regulator-min-microvolt = <3700000>;
-> > > +		regulator-max-microvolt = <3700000>;
-> > > +	};
-> > > +
-> > > +	vreg_s4a_1p8: vreg-s4a-1p8-regulator {
-> > > +		compatible = "regulator-fixed";
-> > > +		regulator-name = "vreg_s4a_1p8";
-> > > +
-> > > +		regulator-min-microvolt = <1800000>;
-> > > +		regulator-max-microvolt = <1800000>;
-> > > +		regulator-always-on;
-> > > +		regulator-boot-on;
-> > > +
-> > > +		vin-supply = <&vph_pwr>;
-> > > +	};
-> > > +};
-> > > +
-> > > diff --git a/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts b/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts
-> > > new file mode 100644
-> > > index 0000000000000..dc9938ffc0ab8
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/qcom/sdm845-google-crosshatch.dts
-> > > @@ -0,0 +1,137 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-only
-> > > +
-> > > +/dts-v1/;
-> > > +
-> > > +#include "sdm845-google-common.dtsi"
-> > > +
-> > > +/ {
-> > > +	model = "Google Pixel 3 XL";
-> > > +	compatible = "google,crosshatch", "qcom,sdm845";
-> > > +
-> > > +	battery: battery {
-> > > +		compatible = "simple-battery";
-> > > +
-> > > +		charge-full-design-microamp-hours = <3480000>;
-> > > +		voltage-min-design-microvolt = <3600000>;
-> > > +		voltage-max-design-microvolt = <4400000>;
-> > > +	};
-> > > +
-> > > +	chosen {
-> > > +		#address-cells = <2>;
-> > > +		#size-cells = <2>;
-> > > +		ranges;
-> > 
-> > These are all the same as the -blueline. Please move common options to
-> > the -common.dtsi
-> > 
-> > > +
-> > > +		/* for u-boot */
-> > > +		framebuffer: framebuffer@9d400000 {
-> > > +			compatible = "simple-framebuffer";
-> > > +			reg = <0 0x9d400000 0 (2960 * 1440 * 4)>;
-> > > +			width = <1440>;
-> > > +			height = <2960>;
-> > > +			stride = <(1440 * 4)>;
-> > > +			format = "a8r8g8b8";
-> > > +		};
-> > > +	};
-> > > +
-> > > +	reserved-memory {
-> > > +		framebuffer_region@9d400000 {
-> > > +			no-map;
-> > > +			reg = <0 0x9d400000 0 0x02400000>;
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > > +&gmu {
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&mdss {
-> > 
-> > More and more common properties. Please move them to the common file.
+>  * SDM636/660: 157 (0x9d), 146 (0x92), 135 (0x87), 122 (0x7a),
+>                 90 (0x5a),  78 (0x4e)
+>  * SDM630:     162 (0xa2), 146 (0x92), 135 (0x87)
 > 
-> Sorry about this, the mdss nodes got in by accident, the display driver for
-> crosshatch is WIP.>
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&mdss_dsi0 {
-> > > +	vdda-supply = <&vdda_mipi_dsi0_1p2>;
-> > > +
-> > > +	status = "okay";
-> > > +
-> > > +	ports {
-> > > +		port@1 {
-> > > +			endpoint {
-> > > +				remote-endpoint = <&panel_in>;
-> > > +				data-lanes = <0 1 2 3>;
-> > > +				qcom,te-source = "mdp_vsync_e";
-> > > +			};
-> > > +		};
-> > > +	};
-> > > +
-> > > +	panel@0 {
-> > > +		compatible = "samsung,s6e3ha8";
-> > > +		reg = <0>;
-> > > +
-> > > +		vci-supply = <&vreg_l28a_3p0>; // downstream
-> > > +		vdd3-supply = <&vreg_l28a_3p0>;
-> > > +		vddr-supply = <&vreg_l14a_1p88>;
-> > > +
-> > > +		reset-gpios = <&tlmm 6 GPIO_ACTIVE_LOW>;
-> > > +
-> > > +		pinctrl-names = "default";
-> > > +		pinctrl-0 = <&panel_reset_pins &panel_te_pin &se8_spiflash &panel_pmgpio_pins>;
-> > 
-> > - Why do you need spiflash here?
-> > - I don't think this uses pmgpios too.
-> > 
-> > > +
-> > > +		port {
-> > > +			panel_in: endpoint {
-> > > +				remote-endpoint = <&mdss_dsi0_out>;
-> > > +			};
-> > > +		};
-> > > +	};
-> > > +};
-> > > +
-> > > +&mdss_dsi0_out {
-> > > +	data-lanes = <0 1 2 3>;
-> > > +	remote-endpoint = <&panel_in>;
-> > > +};
-> > > +
-> > > +&mdss_dsi0_phy {
-> > > +	vdds-supply = <&vdda_mipi_dsi0_pll>;
-> > > +
-> > > +	status = "okay";
-> > > +};
-> > > +
-> > > +&pm8998_gpios {
-> > > +	panel_pmgpio_pins: panel-pmgpio-active-state {
-> > > +		pins = "gpio2", "gpio5";
-> > > +		function = "normal";
-> > > +		input-enable;
-> > > +		bias-disable;
-> > > +		power-source = <0>;
-> > > +	};
-> > > +};
-> > > +
-> > > +&tlmm {
-> > > +	se8_spiflash: se8-spiflash-state {
-> > > +		pins = "gpio65", "gpio66", "gpio67", "gpio68";
-> > > +		function = "gpio";
-> > > +		input-enable;
-> > > +		bias-disable;
-> > > +	};
-> > > +
-> > > +	panel_te_pin: panel-te-state {
-> > > +		pins = "gpio12";
-> > > +		function = "mdp_vsync";
-> > > +		drive-strength = <2>;
-> > > +		bias-pull-down;
-> > > +	};
-> > > +
-> > > +	panel_reset_pins: panel-active-state {
-> > > +		pins = "gpio6";
-> > > +		function = "gpio";
-> > > +		drive-strength = <8>;
-> > > +		bias-disable;
-> > > +	};
-> > > +
-> > > +	panel_suspend: panel-suspend-state {
-> > > +		pins = "gpio6";
-> > > +		function = "gpio";
-> > > +		drive-strength = <2>;
-> > > +		bias-pull-down;
-> > > +	};
-> > > +
-> > > +};
-> > > 
-> > > -- 
-> > > 2.51.0
-> > > 
-> > > 
-> > 
+> it becomes clear that 7 bits are not enough to hold values above 127.
+> Therefore we need 8 bits.
 > 
-> -- 
-> David Heidelberg
+> [1] https://github.com/sdm660-mainline/linux/commit/f9f92384794ca792a622ed19d5b5d2dac73a1a78
+> [2] https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/LA.UM.7.2.c27-07400-sdm660.0/arch/arm/boot/dts/qcom/sdm660-gpu.dtsi
+> [3] https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/LA.UM.7.2.c27-07400-sdm660.0/arch/arm/boot/dts/qcom/sdm630-gpu.dtsi
+> 
+> --
+> Regards,
+> Alexey Minnekhanov
 > 
 
 -- 
