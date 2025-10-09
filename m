@@ -1,78 +1,77 @@
-Return-Path: <devicetree+bounces-224706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FD66BC7295
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 04:01:20 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id A08EFBC726E
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 04:00:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D4D33E58B9
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 01:59:52 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 4D8B534D2F7
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 02:00:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC75A1F37D4;
-	Thu,  9 Oct 2025 01:59:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6EE71FBEB9;
+	Thu,  9 Oct 2025 01:59:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="deAG9kK/"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="iTVRxCQ1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 258121A9FB9
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 01:58:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B84711A9FB0
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 01:58:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759975143; cv=none; b=uqMRwdKBR8SfkFKOXdIhdnDMVAtsfgKZMk3ZtzVh5D/Y1eMf6CVC+atLWwRDxfq6YdgFY+5g1iGBphjQ6MYYOnzxmefY6uRDRhlRKMSygzrwzPgfCiPupMTXOohf3xUgWJXmuND3Id6xiRSdS4Rwhn94D+IFG+w4MXL1g6xribw=
+	t=1759975146; cv=none; b=hF8nfiL7zfYrAsvQGhrJT1BcNclzsOVY8ukBwSdVyOrq4aA1BDaPb1OjPfAy5OH4Maa/xJm36zfGWXJ2rgZZDSF2bm/O8W6lBUDbf+iQuB2/UWstGpqSnoQ+h6P2MHdktuIu1hpiESPp863W4hj34TGl7ewCtkoHtZL87ZvB+AI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759975143; c=relaxed/simple;
-	bh=nqwNh3nnTtk9A1dpvSfEdd/CGEz4hqCQbGmjswi6eSY=;
+	s=arc-20240116; t=1759975146; c=relaxed/simple;
+	bh=3rUDhOzJVhUg+Xh67CzMerB+fRBvLbao/4vIhp/KIgQ=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kd/Xr7hPgJeqUu5+VC7NPGXXjqNP+G/qRfaSvOSkLnBM7s6VISAnuYcjM62eiTOJI3T+LnMI2Tb0Rjk0hzAamdTih4Rx87h6MeFPfYPB+h7T/BUKpLrLWjESKXZoCwhhb+DSdNkm0dEA5scN1I4bk0qL3rS3nYkx/BkYcBvX5hA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=deAG9kK/; arc=none smtp.client-ip=209.85.215.175
+	 MIME-Version; b=g3yC1bZYHlHR3uUQ753ug1Jim1Qgi4REY7vwi0Epf3H7qFvk6yoGrd35lJKKLhJbkd7NH5fXW2Chs6eZm3bi/8q8xFjaSkHYr81+yiPkmLIOQf2akBoY1kaBtrOzG3allYMLOcQoQce5rZ9GRomIFtNTqQy9++lpRcm/nN+BUGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=iTVRxCQ1; arc=none smtp.client-ip=209.85.215.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-b556284db11so360312a12.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 18:58:58 -0700 (PDT)
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-b5515eaefceso348352a12.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 18:58:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1759975137; x=1760579937; darn=vger.kernel.org;
+        d=sifive.com; s=google; t=1759975138; x=1760579938; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IhRrU7vktZrNl/RvMhvzrzBaAz+rEcTgEU1eyRQaB6M=;
-        b=deAG9kK/X9BtD/NiU2PD6wJKlX9pd/aeiqQWSORnK+az9VA9csix3Rc6WLIEdBti2r
-         Fi3ucO4DQ6oRCavmdAHwmQ8J3XdAYxRQ26X7hZ1ZCTlc7nKBB3Svgw3ihrWAhW2kkWiG
-         geS7PN5y8NXJ5V1Q6znt8m2/TjN2UqwMhEsSMDMy0b/YZC4bUeI8L4awwIEMRxXsClot
-         0y3+fDpNBc35Nae4ia4kdmllUKaZeCr5e8oSDM8iyAWYrKwb/Tq2TN7UDlJ6S1rG2xjO
-         IeohyjxGKhkFot+AZ9Qmq5DJnf9gCP0NlF/AgHXvIrlYFDwUgw0OCsnig/1SkOAKxQJf
-         paJQ==
+        bh=hsaEY+Rh/SX8Cp9wIkDltmX8vYREKpu310o7cjQ17zs=;
+        b=iTVRxCQ1uT/L0RVg+DIhfLJaaw04XcnsYVLfciqI/tMYhoOK/yPHfZJAXfoppVnSR0
+         g4n5LEkQNHxTNfw5LvkfhxX/4PB99fm8Sn29dN3O5VXxSPQ2ddI9oIw0OkgYt6qjyQWk
+         W7MqxZhhwjwn9hXQmdxkGphCb4UGyY9+Exh8aZjCLyQrqxSwmG81yNWBcUNU2mYFC7k+
+         YOXAYsDJeOv1p/LHab2pKUBxqGtocXya7MXbWgPI1RdZJuEGs5UamKx4h4o52FVfrSHy
+         wK2liABmlFmTomvk+jVrs/aXs+OwEsKYOZDOwTkts/7woRlAx/bRMewoQsfS76ziYk/Y
+         7qeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759975137; x=1760579937;
+        d=1e100.net; s=20230601; t=1759975138; x=1760579938;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IhRrU7vktZrNl/RvMhvzrzBaAz+rEcTgEU1eyRQaB6M=;
-        b=tPmF2kQtEMAOh9QMPCbDhIbTjL7qXSCDQ3rlkOTb2kb+t0NChubt4AGVNUGVmZYotO
-         iu9yrgu4iKROG7e9mkbIqH7V2T5p6krLf+19eapJYHkfEz3+/EoYzTCqa9BYibygN1Uw
-         0b6ti8jAGaejeeaXSjAzylTqA+XxQv4pHZhUUVHHb25B7GjgJ1nm98+ByTlN/eInAEQ0
-         DMIMOH6TLalTEiWZbIBJsxfkaEATqalFJ/2NVb7G7iKwrCfctvsMbsi+8IWUiDocrdVr
-         habvCkPFkzPOViXHzwPjoAMPUKZXuyNeQaKXQFD6JKAQr5SpK9+++2eALX2zGW/FzLbE
-         BCDg==
-X-Gm-Message-State: AOJu0YzbaKENVfe3uBT++D3DyPE77iX1tJSGJyhr5eTVhsKbPuOyDbyx
-	//hAGKy7WFW+SmTXz7d+mZqY+slwkVRjv6czcrl49G6EhIsyij+Gj6X+t5C8LN0yb1g=
-X-Gm-Gg: ASbGncs/C4QQtTDPV6pbkuH9vULXFhNIHgTtktIhAoPpt6hhRyXFughJQ0EwlbiMOSS
-	qqwUZ+EQ2p1UDJoma1daAT9jVCPTQ3/kbyKUNJkozJYEgIrsStG3s1tXw5ixVv2UTbPMA3dzfF7
-	D+2G51P2NIlbclkPdtFjOIclRrf0aK0d8G2m3CGY7x+K9YPr64Anv0fv/oKB4g2rRXRRmz2yBpx
-	BimNspvuJf9UqCJbbEAcXnjt+JLbMyb99IZcq0X1GX65eUJhH+/dOyhwkHv54jmTa13oGN3CkvS
-	Qa2RTHIRt51IAwU0+NKvlKB1n2hdb85i4ColGdm0482luunDNNtJLdZvk9wCnOgpX1MKcmQF4et
-	TlC/HDgjZkBTLW4kX69rAjenH3cP4vhC5s71jz0XAybYYEBdphElSRruGggZDW/Zj9lfr9/UmFa
-	ZbeZQ=
-X-Google-Smtp-Source: AGHT+IF4/p9h31NSUo1ZrLpsC4/HMuMrEtQruEgKyI7OaJlvUq2z/r/6N19/PUGAwAUvJ1fjHTYvrw==
-X-Received: by 2002:a17:903:a8b:b0:265:89c:251b with SMTP id d9443c01a7336-290273ef081mr70781625ad.29.1759975137149;
-        Wed, 08 Oct 2025 18:58:57 -0700 (PDT)
+        bh=hsaEY+Rh/SX8Cp9wIkDltmX8vYREKpu310o7cjQ17zs=;
+        b=uh48eoqrlcXz9pKYkJOl/5ESeaNdDVR7zauUwEJqMarKCZgsuaTd+xfTSwutomIDgA
+         Pqz5xyw/Co4v52vYMOD6r7NZ0smCwlBEK4m2lqPquo5OBpfHRaYYyo4DIMw5xVRvHKGs
+         aj3Fd3IZHBiqPJR7jeVXX8IT3CisSA291QHaJxF59oXCVO7KpC4TjOdUtSHA+TzCM3Cr
+         nOtsVYiqHgDqsNEQ0V+eDjx/mR6Es1xuTJGckp623YeIHHfr3S2UQ5jDjUTWJ+Rfpwnz
+         ol4RzChDjg2U1R7cotjuJqPYVrJcJ55I9rpmx1Dy8sfFsrskoMyPZSUcTyt1AKD/MHJM
+         OXLg==
+X-Gm-Message-State: AOJu0Yw0Wqv0SDoobJHug2dtrQ3GWBNXBAxjCiVgxqekaYjOogS0xyc1
+	HesjVIedmfitO710Bs17BWZZs9teIQMAZBVKgDf36hZ8pG5KWO3RVFuh7ApR6TEvGYo=
+X-Gm-Gg: ASbGncv4EJ9JvJkBYtpWR6DQHlVVM43s22fCN0fgmWyQmNpr7jDO/hd4TqlfXxk0sws
+	KV18VC7ba+rguSwxi+DfnilkX98G+RPGSU5HzZOKUMoe9ASpTmDtakjRNd439/yTkImpGgPoosc
+	ZYX4sTn/OVca2Ibmk3v7TzHQUTS8bYmZyCOmrFxeksuqgf2ZH3TteH6cSEw6PQX7ckSnApj1Gj6
+	ho15M24HADvCRLm4UoxXCI0XI5o44GmunB3e3dcII4EwKSBaWBampvNzfgmB9n6+S5nfb6uwS1R
+	B/jxl5/WxJIrY7YkB/5DEhFYq9ek/3/L8BJ7WcDgyFu/PTklnYbD4BeIxr6wzIEwqEEPqaiuHo4
+	9ramr9grt8xGh2wHwy2AgtDK0w5lCyBmP0Yu6xokcILWWb/bLHgxZ8lqq4DqfUR4VMWjM
+X-Google-Smtp-Source: AGHT+IEK6h9ymUfW6feQoPDds5nddPhZXwbaTwfv9f5LhAo3XesBm08EFRVtNsNefL2i5+3bnakD+g==
+X-Received: by 2002:a17:903:3c48:b0:268:f83a:835a with SMTP id d9443c01a7336-2902741d091mr61417485ad.60.1759975138296;
+        Wed, 08 Oct 2025 18:58:58 -0700 (PDT)
 Received: from sw06.internal.sifive.com ([4.53.31.132])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034de53f9sm11033585ad.14.2025.10.08.18.58.56
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034de53f9sm11033585ad.14.2025.10.08.18.58.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Oct 2025 18:58:56 -0700 (PDT)
+        Wed, 08 Oct 2025 18:58:58 -0700 (PDT)
 From: Samuel Holland <samuel.holland@sifive.com>
 To: Palmer Dabbelt <palmer@dabbelt.com>,
 	Paul Walmsley <pjw@kernel.org>,
@@ -86,11 +85,10 @@ Cc: devicetree@vger.kernel.org,
 	Andrew Morton <akpm@linux-foundation.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Andrew Jones <ajones@ventanamicro.com>
-Subject: [PATCH v2 13/18] riscv: alternative: Add an ALTERNATIVE_3 macro
-Date: Wed,  8 Oct 2025 18:57:49 -0700
-Message-ID: <20251009015839.3460231-14-samuel.holland@sifive.com>
+	Samuel Holland <samuel.holland@sifive.com>
+Subject: [PATCH v2 14/18] riscv: alternative: Allow calls with alternate link registers
+Date: Wed,  8 Oct 2025 18:57:50 -0700
+Message-ID: <20251009015839.3460231-15-samuel.holland@sifive.com>
 X-Mailer: git-send-email 2.47.2
 In-Reply-To: <20251009015839.3460231-1-samuel.holland@sifive.com>
 References: <20251009015839.3460231-1-samuel.holland@sifive.com>
@@ -102,115 +100,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-ALT_FIXUP_MT() is already using ALTERNATIVE_2(), but it needs to be
-extended to handle a fourth case. Add ALTERNATIVE_3(), which extends
-ALTERNATIVE_2() with another block of new content.
+Alternative assembly code may wish to use an alternate link register to
+minimize the number of clobbered registers. Apply the offset fix to all
+jalr (not jr) instructions, i.e. where rd is not x0.
 
-Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
 ---
 
-Changes in v2:
- - Fix erroneously-escaped newline in assembly ALTERNATIVE_CFG_3 macro
+(no changes since v1)
 
- arch/riscv/include/asm/alternative-macros.h | 45 ++++++++++++++++++---
- 1 file changed, 40 insertions(+), 5 deletions(-)
+ arch/riscv/kernel/alternative.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/riscv/include/asm/alternative-macros.h b/arch/riscv/include/asm/alternative-macros.h
-index 231d777d936c2..2d79abecf9a87 100644
---- a/arch/riscv/include/asm/alternative-macros.h
-+++ b/arch/riscv/include/asm/alternative-macros.h
-@@ -50,8 +50,17 @@
- 	ALT_NEW_CONTENT \vendor_id_2, \patch_id_2, \enable_2, "\new_c_2"
- .endm
+diff --git a/arch/riscv/kernel/alternative.c b/arch/riscv/kernel/alternative.c
+index 7eb3cb1215c62..249ee55d05475 100644
+--- a/arch/riscv/kernel/alternative.c
++++ b/arch/riscv/kernel/alternative.c
+@@ -121,8 +121,8 @@ void riscv_alternative_fix_offsets(void *alt_ptr, unsigned int len,
+ 			if (!riscv_insn_is_jalr(insn2))
+ 				continue;
  
-+.macro ALTERNATIVE_CFG_3 old_c, new_c_1, vendor_id_1, patch_id_1, enable_1,	\
-+				new_c_2, vendor_id_2, patch_id_2, enable_2,	\
-+				new_c_3, vendor_id_3, patch_id_3, enable_3
-+	ALTERNATIVE_CFG_2 "\old_c", "\new_c_1", \vendor_id_1, \patch_id_1, \enable_1 \
-+				    "\new_c_2", \vendor_id_2, \patch_id_2, \enable_2
-+	ALT_NEW_CONTENT \vendor_id_3, \patch_id_3, \enable_3, "\new_c_3"
-+.endm
-+
- #define __ALTERNATIVE_CFG(...)		ALTERNATIVE_CFG __VA_ARGS__
- #define __ALTERNATIVE_CFG_2(...)	ALTERNATIVE_CFG_2 __VA_ARGS__
-+#define __ALTERNATIVE_CFG_3(...)	ALTERNATIVE_CFG_3 __VA_ARGS__
+-			/* if instruction pair is a call, it will use the ra register */
+-			if (RV_EXTRACT_RD_REG(insn) != 1)
++			/* if instruction pair is a call, it will save a link register */
++			if (RV_EXTRACT_RD_REG(insn) == 0)
+ 				continue;
  
- #else /* !__ASSEMBLY__ */
- 
-@@ -98,6 +107,13 @@
- 	__ALTERNATIVE_CFG(old_c, new_c_1, vendor_id_1, patch_id_1, enable_1)	\
- 	ALT_NEW_CONTENT(vendor_id_2, patch_id_2, enable_2, new_c_2)
- 
-+#define __ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, patch_id_1, enable_1,	\
-+				   new_c_2, vendor_id_2, patch_id_2, enable_2,	\
-+				   new_c_3, vendor_id_3, patch_id_3, enable_3)	\
-+	__ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, patch_id_1, enable_1,	\
-+				   new_c_2, vendor_id_2, patch_id_2, enable_2)	\
-+	ALT_NEW_CONTENT(vendor_id_3, patch_id_3, enable_3, new_c_3)
-+
- #endif /* __ASSEMBLY__ */
- 
- #define _ALTERNATIVE_CFG(old_c, new_c, vendor_id, patch_id, CONFIG_k)	\
-@@ -108,6 +124,13 @@
- 	__ALTERNATIVE_CFG_2(old_c, new_c_1, vendor_id_1, patch_id_1, IS_ENABLED(CONFIG_k_1),	\
- 				   new_c_2, vendor_id_2, patch_id_2, IS_ENABLED(CONFIG_k_2))
- 
-+#define _ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, patch_id_1, CONFIG_k_1,		\
-+				  new_c_2, vendor_id_2, patch_id_2, CONFIG_k_2,		\
-+				  new_c_3, vendor_id_3, patch_id_3, CONFIG_k_3)		\
-+	__ALTERNATIVE_CFG_3(old_c, new_c_1, vendor_id_1, patch_id_1, IS_ENABLED(CONFIG_k_1),	\
-+				   new_c_2, vendor_id_2, patch_id_2, IS_ENABLED(CONFIG_k_2),	\
-+				   new_c_3, vendor_id_3, patch_id_3, IS_ENABLED(CONFIG_k_3))
-+
- #else /* CONFIG_RISCV_ALTERNATIVE */
- #ifdef __ASSEMBLY__
- 
-@@ -118,11 +141,17 @@
- #define __ALTERNATIVE_CFG(old_c, ...)		ALTERNATIVE_CFG old_c
- #define __ALTERNATIVE_CFG_2(old_c, ...)		ALTERNATIVE_CFG old_c
- 
-+#define _ALTERNATIVE_CFG_3(old_c, ...)	\
-+	ALTERNATIVE_CFG old_c
-+
- #else /* !__ASSEMBLY__ */
- 
- #define __ALTERNATIVE_CFG(old_c, ...)		old_c "\n"
- #define __ALTERNATIVE_CFG_2(old_c, ...)		old_c "\n"
- 
-+#define _ALTERNATIVE_CFG_3(old_c, ...)	\
-+	__ALTERNATIVE_CFG(old_c)
-+
- #endif /* __ASSEMBLY__ */
- 
- #define _ALTERNATIVE_CFG(old_c, ...)		__ALTERNATIVE_CFG(old_c)
-@@ -147,15 +176,21 @@
- 	_ALTERNATIVE_CFG(old_content, new_content, vendor_id, patch_id, CONFIG_k)
- 
- /*
-- * A vendor wants to replace an old_content, but another vendor has used
-- * ALTERNATIVE() to patch its customized content at the same location. In
-- * this case, this vendor can create a new macro ALTERNATIVE_2() based
-- * on the following sample code and then replace ALTERNATIVE() with
-- * ALTERNATIVE_2() to append its customized content.
-+ * Variant of ALTERNATIVE() that supports two sets of replacement content.
-  */
- #define ALTERNATIVE_2(old_content, new_content_1, vendor_id_1, patch_id_1, CONFIG_k_1,		\
- 				   new_content_2, vendor_id_2, patch_id_2, CONFIG_k_2)		\
- 	_ALTERNATIVE_CFG_2(old_content, new_content_1, vendor_id_1, patch_id_1, CONFIG_k_1,	\
- 					new_content_2, vendor_id_2, patch_id_2, CONFIG_k_2)
- 
-+/*
-+ * Variant of ALTERNATIVE() that supports three sets of replacement content.
-+ */
-+#define ALTERNATIVE_3(old_content, new_content_1, vendor_id_1, patch_id_1, CONFIG_k_1,		\
-+				   new_content_2, vendor_id_2, patch_id_2, CONFIG_k_2,		\
-+				   new_content_3, vendor_id_3, patch_id_3, CONFIG_k_3)		\
-+	_ALTERNATIVE_CFG_3(old_content, new_content_1, vendor_id_1, patch_id_1, CONFIG_k_1,	\
-+					new_content_2, vendor_id_2, patch_id_2, CONFIG_k_2,	\
-+					new_content_3, vendor_id_3, patch_id_3, CONFIG_k_3)
-+
- #endif
+ 			riscv_alternative_fix_auipc_jalr(alt_ptr + i * sizeof(u32),
 -- 
 2.47.2
 
