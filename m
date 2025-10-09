@@ -1,412 +1,153 @@
-Return-Path: <devicetree+bounces-224781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DEA3BC7FA7
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 10:15:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50D23BC7F98
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 10:15:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 719CD4F83E2
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 08:14:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B798942051C
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 08:14:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 570BD275844;
-	Thu,  9 Oct 2025 08:13:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF722D1F69;
+	Thu,  9 Oct 2025 08:14:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Pe9W6XaR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uh0DvYKE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013035.outbound.protection.outlook.com [52.101.83.35])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5472729D292;
-	Thu,  9 Oct 2025 08:13:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.35
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759997636; cv=fail; b=M3j+/sq8KOI1wGYGSUyEw/IUZ7Yg+jJUT6MGsOlG7Amefn2PD3pCRjmG3Abe6d8CHB+EYVbfP4YA2eVrTXWqoLKCdMLCncnLUovvXckoKdlRCD2cXBddaG9RKkwDhOKyNectdw1pIVIRyI2HEUjCTj+rKfNaErwk6Y+MlB+u7X8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759997636; c=relaxed/simple;
-	bh=pTtw+9j8r6w3YA9+mBR5AKHTAIAg1Kdn5mGN0rmiOc0=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Tsy4wbpm5qaDeAJVFDtjdKHxRyKztlQYxgCPmnBnu89AEBUYYweE/LmbTs3GmMeuNkdQtf33kl3a7aWGfZEQJCgu9uh1ms3Cq69L98SXUyjWrsr0ElFy7VOTpVgRCs2LH0JbRuA80KR3knoQkdZwQEB+yUp6i/2AsVhiwN8cVWU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Pe9W6XaR; arc=fail smtp.client-ip=52.101.83.35
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mNFM3KEurfGRSbEKE5BKZ2HR08TmikKVg3HRjsQN5SG5TdlL4++qjckXGr4c2Om2GbkJE9/CyMAR9pSDO7mOfuwcCG/NT6pUK0wbgEQsECaKut0P2JGC9/YwJH+DIVFXO9BrWQ42Q+650m/pDaZwq+CP8x2o0bTKDtRWFHti8sD5d5Fg9FMK1SoNXjUgXpfh+Sn9Q7CeA2dkk8H6Z0/xZ5NYtc32eV2MUNjkDG6c73o6jDAf8n7Tmj3BnXlbFhyX0RyXk/bifuGGc4VhBeFW4Xp27FtQ46yYWMOfmbQXu3Pp9RsWiBXWfPuvwgMvpBYUPUf95Ij5yrh+R8hWSwITqQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kfbzS2X1nw+QhpnLzEbGhXB7TmZKD0Gh4bW25b0Rlp0=;
- b=rY6ew29WMcmLHkB+ci65rBo7QDzQCUmndEAp647IoOEJBAT+N3tCOsQXM+6gD+lz/0EkrSKZu6FdZBQwh0a06e17rnNAen4mRMdxFzaTSZSM9w+X/WU74F06o1OKtcOdFJfmfpQukgu/DFJEFf1Mwd+NEiVyzcnOvemo4R0a3RTbBUxbOWgmQHIXQHSgav7XpJtvvKlMWjoG3zuxB+ajnUSA3LqOp8anZKc5CaNLjFS1OEIRApYClnFxTkKaKuV+x5hAZbKie+rFqqVpmTtU8cxI6euwtxzW9qU+aX4ZGdlETkDTJljzXjA33P20AQy0uZmbKVqxbDXj7Ixl0f3s5w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kfbzS2X1nw+QhpnLzEbGhXB7TmZKD0Gh4bW25b0Rlp0=;
- b=Pe9W6XaRfmoWIL/kW6kwmwo8qxyyI3f2HhHjN/kfXwwXgS9Qr84Oqn1w+4AviJBwoWtPjEIlPTmyt7t8tCoMeQoXX5r100DtJ44DJlOJF9SBqh7il+aUL6uFwkYWfz2gcsECID6Lr3qRJRSjC1G94ZH9a8tINVnvA06SAZdtRjWHxfiQlS2z6DjDh3JsWzCYuXh+Xz0T0xgF23bkPxuex1BQwaUg3LXRJQQQil3kCv75Hl8yztWS4ARL6AwyDJui7UZDkgSKa7P02XtLriu+FUa/WynVTHWKUfunvnqAKHiXpFONaU3PjrS5IQdyoabIF6AMd++1cR+ntxihZDilxQ==
-Received: from AS4PR04MB9362.eurprd04.prod.outlook.com (2603:10a6:20b:4e7::9)
- by AS8PR04MB8660.eurprd04.prod.outlook.com (2603:10a6:20b:42b::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.10; Thu, 9 Oct
- 2025 08:13:49 +0000
-Received: from AS4PR04MB9362.eurprd04.prod.outlook.com
- ([fe80::e196:11a8:211:feaa]) by AS4PR04MB9362.eurprd04.prod.outlook.com
- ([fe80::e196:11a8:211:feaa%4]) with mapi id 15.20.9203.007; Thu, 9 Oct 2025
- 08:13:49 +0000
-From: Lakshay Piplani <lakshay.piplani@nxp.com>
-To: Conor Dooley <conor@kernel.org>
-CC: "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-	"linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Pankit Garg
-	<pankit.garg@nxp.com>, Vikash Bansal <vikash.bansal@nxp.com>, Priyanka Jain
-	<priyanka.jain@nxp.com>, Shashank Rebbapragada
-	<shashank.rebbapragada@nxp.com>
-Subject: RE: [EXT] Re: [PATCH v4 1/2] dt-bindings: rtc: Add pcf85053 support
-Thread-Topic: [EXT] Re: [PATCH v4 1/2] dt-bindings: rtc: Add pcf85053 support
-Thread-Index: AQHcLH4RzEHMxRHWdEG2vrVmdCJ3xrShHtsAgBhv9oA=
-Date: Thu, 9 Oct 2025 08:13:49 +0000
-Message-ID:
- <AS4PR04MB93620F7CAD21F745B95FAF1CFBEEA@AS4PR04MB9362.eurprd04.prod.outlook.com>
-References: <20250923113441.555284-1-lakshay.piplani@nxp.com>
- <20250923-capitol-easter-d0154d967522@spud>
-In-Reply-To: <20250923-capitol-easter-d0154d967522@spud>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: AS4PR04MB9362:EE_|AS8PR04MB8660:EE_
-x-ms-office365-filtering-correlation-id: c217e932-2ad1-4da9-5464-08de070bc6e5
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|19092799006|1800799024|366016|38070700021;
-x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?s81LW6t1x1zZmlRhcTbKvQewUIlDi/BcRn9M13iaMkl/p7bwkxfI0LEKCM?=
- =?iso-8859-1?Q?ongEELD5r8eQto4TlVFOZB7EvWUm4jAxz229ZGgOTX+I2tYJj7u/bXM/wk?=
- =?iso-8859-1?Q?M1umZsw/BAZO90rIl0/Swn0ARk0SdOgjxG/K+Le/8SpGaV7oHRib467IE0?=
- =?iso-8859-1?Q?QT/0hKQUMQSpT5IHfgRvwE/yUv7HVUSTC2o6so6cro6dg9Ogaebj1CKT4W?=
- =?iso-8859-1?Q?HVI8zTLv/hHaMEdMKjiEJ/PFV71xvEBnYu2guT3Jm53iwOUCI5QMDV13c5?=
- =?iso-8859-1?Q?AhqZbwYaUtNBCesxg5xi/UhgGxw+Deybu+dt7Yp8qrPlZ1CNZ0ciQL55Qh?=
- =?iso-8859-1?Q?RiP4IhurcKMkCOcCWEkK2rvA3+EbSflIrru3+HG2dCJwYOOlxXvmzhwkli?=
- =?iso-8859-1?Q?b3sWgdmK0dwikVWQZ4d9s1C4bRxffZZw7iQqcRmcF3u6ZYksxFjSC67T/0?=
- =?iso-8859-1?Q?EgfXMJooeVjE0xxsRP6REPs9mvKu5ShFNRXLZ5gIpZf/SKTIF4r41DGbJz?=
- =?iso-8859-1?Q?QudxmQ38qcMsgAzjnyXzqD6dDKtMK28XwE9LR+HrJfkdMxERGpKQNx/fY5?=
- =?iso-8859-1?Q?ehu1p6rNQu8n6dZhe94aBH1BqWbgLTDuQTzgVzfRyoMcy7SGk7q3nlgo7C?=
- =?iso-8859-1?Q?C/Sgz1KLA4YCSJNSls6D6D3HoL0bVJ/iQay8icRHFiLWQnJDyU0hIPcSNG?=
- =?iso-8859-1?Q?n75pv7Pf7Z0pTK6+zPjoQqxf3LYf1DRMj2hjepRJzh1bVeyHLY2amqdrsZ?=
- =?iso-8859-1?Q?YNeLah6L3V0ihQmRMHdxo1jd0VI47oIOHqAoNTBwa1TVPV6P2+3aPltUkX?=
- =?iso-8859-1?Q?OmHTnvt9U47es5k6O8vC52GnrwTzF7zCS2A7ADMt2P8nBAImec4CnfGU/i?=
- =?iso-8859-1?Q?cmDiclJe6ZR0Xiyl4ThYf2qtHulFnArCpGkPgTiyqL7gsAOEsFNeXWQDfl?=
- =?iso-8859-1?Q?oAwWCd9BEJyioJLc/dCNbC8CeJjKCwLCdinIOE/U31H19c7iEki7Xp34ev?=
- =?iso-8859-1?Q?+fcdvoewmpNypyvD7qtwpZnYHQUxi9At3ptv0ua8uaJCVgvw0JMJePm/Em?=
- =?iso-8859-1?Q?jrvtVfXd9xLbOYfz38tCmVJvpIloHmnEZ9q+Pgg79sfjL/CaFFOf/DzUvm?=
- =?iso-8859-1?Q?hq/V0lbhANLqOMkrpUTfwNNAV/fqbc1HDE2rh1aiXuf6S3oLoYDnU4KtGD?=
- =?iso-8859-1?Q?FBOPQQMuptweuUOJjlzZmwE1JNHf9TDj+52rtJ+zBIg1dVNFWbVxv/KrmH?=
- =?iso-8859-1?Q?OGL9P0B3uJdKYf3s9vBrInc93QKVcvFq11HbVCxq/D+7cORTGXYaexWtXl?=
- =?iso-8859-1?Q?4zogBi4L1ZmeEKEcQs1og61vhxvI5L6MJ9H0tJcmPRnXe4u4JKNN1wSU/M?=
- =?iso-8859-1?Q?oHcF94neS73DI/JiJG029PfRbELxZmQCWySCnXT8YFaXjPT0z67rjbeEmu?=
- =?iso-8859-1?Q?VveHXMS2d2nR7aUwLJk2yc5/2nx0/6jNaGMSQzn03yvybc8IO64xK6vKjL?=
- =?iso-8859-1?Q?1UPATdioII3aYYZe9Eu0k68FvAAsbf9r6BeO7LqD6UpA=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9362.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(19092799006)(1800799024)(366016)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?YbyvLpT2r7EgL8pamqts1FGJJMgIrH1U8+oZtuoZNeCwRMhL70HU+aMtJg?=
- =?iso-8859-1?Q?CrJ4ShTUMKXjRbkr6gqBlr9IcffB7yduSQz7jXRWgfV7nC53dfWqBajyfM?=
- =?iso-8859-1?Q?VIdbtBLaoFnGz62b9UJay10XzsGcyG5qnSAfP3Tv3Sjvb7VKnM2wVCpWDh?=
- =?iso-8859-1?Q?9CV8Ldd/4A4JbWuX99RIWlNdC+ekOhiZy+293XvnDmw32hY2Yx7kSNq3Xg?=
- =?iso-8859-1?Q?feMI4nuHEm5BODptLKaejp/IJmf7juhHE2I+elQgBZig60SQe3fnpi/AwM?=
- =?iso-8859-1?Q?46cCwiV7zUDUuQpteZwanwed2NKAiHUwpYaJ923xvE5wT+cxXLP1NvCF8y?=
- =?iso-8859-1?Q?av3VUmVEl3e7dzpAOhMkpxO+X3o/ZJND40SPNt0JvdxcXOyXbqzFfaYskB?=
- =?iso-8859-1?Q?th3q/RkZBorqIFmYuW2jhZk0QdZPG1G7PDGFI/apQwQNwq531bTI9sMzxW?=
- =?iso-8859-1?Q?QlWsMjewmU2KK8t39Q/BijhYWJNfViluL8s7W9WpM5dbUjR9TnTiT5nrne?=
- =?iso-8859-1?Q?OIvpbefM19gI2XiuvBeE+3Iy+hNvppD57Ard58WzbwWnaZnzkjo6hWq1ZQ?=
- =?iso-8859-1?Q?DNgozSJzghuMaOMoAEq7S2vOae+EnlzvRx4h6iF5ZPPFNvcXg/uXROlRc8?=
- =?iso-8859-1?Q?5b9jK6vkhTF8He2yjy59RJyrg4bjAlC44wKZ0UG0Eg0blLq5knjTMELsok?=
- =?iso-8859-1?Q?81VOhhJa16RbIXjKXJPhYrvgj0LKPpBrxqEUMAhLnuOvvkEaou/2EngfEh?=
- =?iso-8859-1?Q?tTG7ewgK75/dbJMRTa/7CR18HlbnOeY2pgkEM+UzsOJle+EUCfSUCkT7IP?=
- =?iso-8859-1?Q?GeKhz7crgp93Bqp/N6OrD0nVmvEjZRFNWrGWwfvnO8YPcSg2gsjZjPTLxO?=
- =?iso-8859-1?Q?JblkgktesWbB5Z4kLgdAhQP+beJDj5xXXDEfCUzSBtAlv0/HdW6JWaHp3w?=
- =?iso-8859-1?Q?87btVisC3VpwhDaGlbq7KwnW9DL21x5/IrouMwsP9/X3GcflrSX+htU8Wa?=
- =?iso-8859-1?Q?Rvraf5VpTjjPkC0PqTrAmj0rbhV0o4kRgs7ANjvrfM2+rUQS7cBX5r0aMB?=
- =?iso-8859-1?Q?G40OEmg34yLeGxFZe457Uwg5LcrFjbYRx3VhG4FkgAGDnBdW8NHoY1Q0BG?=
- =?iso-8859-1?Q?R9j8VgvHW6F8siflgTw6J5fGAMVz/lNnV+sIYw3MTPuffpu1UvnTOE/XH7?=
- =?iso-8859-1?Q?UxyKhjLcZGaNdKO6xRFnz/d9wsShy8OBz6uCs1LRsM8gU/vdTwxWwnSfIr?=
- =?iso-8859-1?Q?F/hBgrSrWpiCsPbXQoPU8SyD283739e0fxtNcQwifs+HeF/vWDfZp9kAUM?=
- =?iso-8859-1?Q?nOYK7jOlEWMAIAVHRQ0SzRCmNdQjR/nCS1oK+Q3zCXt2f86SE8gr1CYSSz?=
- =?iso-8859-1?Q?cyFbPmUj4dFzT/U9+UmMhRvZ774tiYwkZJnKEgB0WWzGu65G/BMWSrlTE5?=
- =?iso-8859-1?Q?yHvNzbsYmv6vqU5dd65XU16k92xI5YxrM43mij2OltpgWuNgFNXbt7F/I5?=
- =?iso-8859-1?Q?MewB97cnMotyPKBOb7+giYmosGJ9II5IHaMF+OblVOA9q1O5S3//l/m8Nw?=
- =?iso-8859-1?Q?uqSvdeogV6vtT7P9efcjKVFRqy6Z6noNPFR0kjUpFsjE3QnOuvJD7P1lvJ?=
- =?iso-8859-1?Q?A2l4VWtLNaQMuyXB2n5l50R95fmXOD5jTR?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE61320A5EA;
+	Thu,  9 Oct 2025 08:14:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759997661; cv=none; b=bA3rB/Pix56TkTVDIL8AmQOPVrWyJ7JNLJ1nTQOSGaF+7+hybXjTKnmBtz8j6j7/jvWfp4heyoMSgqIrjw8rFNsnhmoE23efaBMzyp6YSfrGVr52DI23bzPO2euBbPA6Tdimo8Cqn4vd9fC0TSQT8nnnufH9cudgazaYHcbpRQ8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759997661; c=relaxed/simple;
+	bh=/WhW30MHXRu6mGrAJwcl9P5miyytRjumQkutPjxFgV8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ssLZCaP+Wr11GuOzLbfB/BJyQ5yDLoMNb+ufj5llamdzBFTBeQSbifn/69sXRrCWZCzXVlIKCMEmFhEVGqGzxg9WW+DXe/nIiXzzsolVXKecnUZ7a9uE/rRp++SJzZOCtlwjh1R1jyc0L6iq1ZQ4Z0q6ulZqBhzhhWbC1Hx0S3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uh0DvYKE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72438C4CEE7;
+	Thu,  9 Oct 2025 08:14:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759997660;
+	bh=/WhW30MHXRu6mGrAJwcl9P5miyytRjumQkutPjxFgV8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=uh0DvYKEPvERp297/aerNwrvO2VPwyVb1BCVbwmYx8Am0Ld8q1p1JYrFge4sfM3Y+
+	 B3AJSctsFtZSWRQgI/FQJiPL9hLXOewlXH91iwx8Fuuw7um+ChPubaraerSAWFt2zv
+	 uWx+P8UocPxfOqOstOsmJS6I/WeWSRy9A3WAzDKbk6J3s6SxnMEXaHMhRPD++JCBj2
+	 JLCsd2sKGxk8sagLZna3R186sekSN5xP0FK7w5c7avZHFaAV3SWzBfQi3JH8421B11
+	 09KkxgCLCdQ9+V5dNPtIvsZQZe7SxgesgfCs2l2K4HvdfmGrv7nh0vb1DzN3ouxPpr
+	 qHV3JITVlNoLA==
+Message-ID: <84d0a611-586e-4e28-9be5-ef2cb58391cf@kernel.org>
+Date: Thu, 9 Oct 2025 17:14:12 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9362.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c217e932-2ad1-4da9-5464-08de070bc6e5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2025 08:13:49.5685
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: r8NO01zahcqpW443zFnyn/CaRwK2PCZv3/kygKixtseXGI+gn16CjCZAnklQ4FEybwYEYnt1hU5/lS/OZfHaSA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8660
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/5] Introduce "non-pixel" sub node within iris video
+ node
+To: Charan Teja Kalla <charan.kalla@oss.qualcomm.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bryan O'Donoghue <bod@kernel.org>, Bryan O'Donoghue <bod.linux@nxsw.ie>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <7b6db4fa-2f73-376d-4eb3-64c1c7e6cda3@quicinc.com>
+ <6840d462-8269-4359-a6e5-d154842b62db@oss.qualcomm.com>
+ <af0da28c-3ca0-41dc-aaa4-572723ea74bf@linaro.org>
+ <klhvgzizub33f46buqsog54wqksqp24a5tijwyv355l2ao2imo@wdkojfebc6s2>
+ <e1a6e75a-2a5d-44a2-8bbc-140eb86d1806@linaro.org>
+ <2hh3zkdwgqbdurpr4tibr3gjat6arwl3dd3gxakdaagafwjdrm@aj5em4tbsjen>
+ <Ujyoj3HGLVFhS2b0XzcYAMjSiCAuO-lSJ8PMEQLOaaX83tk_0D5zjrL0VDyZAmD3i4zLB3ElKSZBltISb5jJHA==@protonmail.internalid>
+ <4a32bbec-2baf-4210-a7c1-1ddcd45d30c8@oss.qualcomm.com>
+ <SuwJuCIcLVJwN3YeN1il6tB9wO9OH6bYcnbRpxpuI9Dl7piYLN-hVdnyv0Mal6N-W5pi2aCZI8MxHZDEkoE63A==@protonmail.internalid>
+ <4d87d1ca-55b2-426e-aa73-e3fd8c6fe7bd@kernel.org>
+ <10a8ccda-4e27-4b06-9a0e-608d6ade5354@nxsw.ie>
+ <4cb4a92d-2f20-47c7-881e-aadcc6f83aa0@kernel.org>
+ <1516f21e-aee3-42cf-b75e-61142dc9578d@oss.qualcomm.com>
+ <9bae595a-597e-46e6-8eb2-44424fe21db6@linaro.org>
+ <bcfbf35b-69ed-4f39-8312-6a53123cd898@kernel.org>
+ <6ead45a6-aac8-464d-9812-f5e0d1395709@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <6ead45a6-aac8-464d-9812-f5e0d1395709@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 09/10/2025 14:23, Charan Teja Kalla wrote:
+> 
+> 
+> On 10/9/2025 6:02 AM, Krzysztof Kozlowski wrote:
+>>> If it is legitimate meta-data for the SMMU setup then why _shouldn't_ it 
+>>> go into the DT ?
+>>>
+>> We talked about this two or three months ago. I don't understand why you
+>> just ignored that entire part and come with new binding just to not
+>> touch iommu code. List of entries in iommu must have strict order, just
+>> like for every other list, and you should rely on that.
+> Hi Krzysztof,
+> 
+> I want to understand a bit more about the statement -- "List of entries
+> in iommu must have strict order."
 
-> -----Original Message-----
-> From: Conor Dooley <conor@kernel.org>
-> Sent: Wednesday, September 24, 2025 12:28 AM
-> To: Lakshay Piplani <lakshay.piplani@nxp.com>
-> Cc: alexandre.belloni@bootlin.com; linux-rtc@vger.kernel.org; linux-
-> kernel@vger.kernel.org; robh@kernel.org; krzk+dt@kernel.org;
-> conor+dt@kernel.org; devicetree@vger.kernel.org; Pankit Garg
-> <pankit.garg@nxp.com>; Vikash Bansal <vikash.bansal@nxp.com>; Priyanka
-> Jain <priyanka.jain@nxp.com>; Shashank Rebbapragada
-> <shashank.rebbapragada@nxp.com>
-> Subject: [EXT] Re: [PATCH v4 1/2] dt-bindings: rtc: Add pcf85053 support
->=20
-> On Tue, Sep 23, 2025 at 05:04:40PM +0530, Lakshay Piplani wrote:
-> > Add device tree bindings for NXP PCF85053 RTC chip.
-> >
-> > Signed-off-by: Pankit Garg <pankit.garg@nxp.com>
-> > Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
-> > ---
-> > V3 -> V4: Add dedicated nxp,pcf85053.yaml.
-> >           Remove entry from trivial-rtc.yaml.
-> > V2 -> V3: Moved MAINTAINERS file changes to the driver patch
-> > V1 -> V2: Handled dt-bindings by trivial-rtc.yaml
-> >
-> >  .../devicetree/bindings/rtc/nxp,pcf85053.yaml | 128
-> > ++++++++++++++++++
-> >  1 file changed, 128 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/rtc/nxp,pcf85053.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf85053.yaml
-> > b/Documentation/devicetree/bindings/rtc/nxp,pcf85053.yaml
-> > new file mode 100644
-> > index 000000000000..6b1c97358486
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf85053.yaml
-> > @@ -0,0 +1,128 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) # Copyright
-> > +2025 NXP %YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/rtc/nxp,pcf85053.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: NXP PCF85053 Real Time Clock
-> > +
-> > +maintainers:
-> > +  - Pankit Garg <pankit.garg@nxp.com>
-> > +  - Lakshay Piplani <lakshay.piplani@nxp.com>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - nxp,pcf85053
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  nxp,interface:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    enum: [ primary, secondary ]
-> > +    description: |
-> > +      Identifies this host's logical role in a multi-host topology for=
- the
-> > +      PCF85053 RTC. The device exposes a "TWO" ownership bit in the CT=
-RL
-> > +      register that gates which host may write time/alarm registers.
-> > +        - "primary": Designated host that *may* claim write ownership =
-(set
-> > +          CTRL.TWO=3D1) **if** write-access is explicitly requested.
-> > +        - "secondary": Peer host that writes only when CTRL.TWO=3D0 (d=
-efault).
-> > +
-> > +  nxp,write-access:
-> > +    type: boolean
-> > +    description: |
-> > +      Request the driver to claim write ownership at probe time by set=
-ting
-> > +      CTRL.TWO=3D1. This property is only valid when nxp,interface=3D"=
-primary".
-> > +      The driver will not modify any other CTRL bits (HF/DM/etc.) and =
-will
-> not
-> > +      clear any status/interrupt flags at probe.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - nxp,interface
-> > +
-> > +additionalProperties: false
-> > +
-> > +# Schema constraints matching driver:
-> > +# 1) If nxp,write-access is present, nxp,interface must be "primary".
-> > +#    Rationale: only the primary may claim ownership; driver will set
-> TWO=3D1.
-> > +# 2) If nxp,interface is "secondary", nxp,write-access must not be pre=
-sent.
-> > +#    Rationale: secondary never claims ownership and cannot write
-> CTRL/ST/alarm.
-> > +#
-> > +# Practical effect:
-> > +# - Primary without 'nxp,write-access'; primary is read only; secondar=
-y
-> may
-> > +#   write time registers.
-> > +# - Primary with 'nxp,write-access'; primary owns writes, secondary is=
- read
-> only.
-> > +allOf:
-> > +  - $ref: rtc.yaml#
-> > +  - oneOf:
-> > +      # Case 1: primary with write-access
-> > +      - required: [ "nxp,write-access" ]
-> > +        properties:
-> > +          nxp,interface:
-> > +            const: primary
-> > +
-> > +      # Case 2: primary without write-access
-> > +      - properties:
-> > +          nxp,interface:
-> > +            const: primary
-> > +        not:
-> > +          required: [ "nxp,write-access" ]
->=20
-> Aren't case 1 and case 2 here redundant? All you need to do is block inte=
-rface
-> =3D=3D secondary when nxp,write-access is present, which your case
-> 3 should be able to be modified to do via
->=20
-> if:
->   properties:
->     nxp,interface:
->       const: secondary
-> then:
->   properties:
->    nxp,write-access: false
->=20
-> I think your description for nxp,write-access gets the point across about=
- when
-> it can be used, and the additional commentary is not really helpful.
->=20
-Thanks for reviewing the patch.
+See writing bindings (and countless of reviews on the mailing lists).
 
-We kept both cases: primary with write-access and primary without write-acc=
-ess, because the hardware=20
-supports three different ways it can be used, and we want to show that clea=
-rly in the bindings:
-=20
-Primary with nxp,write-access: primary host can write to the device.
-Primary without nxp,write-access - primary host is read-only, and the secon=
-dary host can write.
-Secondary - default role, with write access; when no primary host is claimi=
-ng it.
-=20
-Even though both case 1 and 2 use nxp,interface =3D "primary", they behave =
-differently.
-Keeping both cases separate makes it easier to understand whether Primary h=
-ost can write or not.
-
-> > +
-> > +      # Case 3: secondary (must not have write-access)
-> > +      - properties:
-> > +          nxp,interface:
-> > +            const: secondary
-> > +        not:
-> > +          required: [ "nxp,write-access" ]
-> > +
-> > +examples:
-> > +  # Single host example.
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    i2c {
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <0>;
-> > +
-> > +      rtc@6f {
-> > +        compatible =3D "nxp,pcf85053";
-> > +        reg =3D <0x6f>;
-> > +        nxp,interface =3D "primary";
-> > +        nxp,write-access;
-> > +        interrupt-parent =3D <&gpio2>;
-> > +        interrupts =3D <3 IRQ_TYPE_EDGE_FALLING>;
-> > +      };
-> > +    };
-> > +
-> > +  # Dual-host example: one primary that claims writes; one secondary t=
-hat
-> never claims writes.
-> > +  - |
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    i2c0 {
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <0>;
-> > +
-> > +      rtc@6f {
-> > +        compatible =3D "nxp,pcf85053";
-> > +        reg =3D <0x6f>;
-> > +        nxp,interface =3D "primary";
-> > +        nxp,write-access;
-> > +        interrupt-parent =3D <&gpio2>;
-> > +        interrupts =3D <3 IRQ_TYPE_EDGE_FALLING>;
-> > +      };
-> > +    };
-> > +
-> > +    i2c1 {
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <0>;
-> > +
-> > +      rtc@6f {
-> > +        compatible =3D "nxp,pcf85053";
-> > +        reg =3D <0x6f>;
-> > +        nxp,interface =3D "secondary";
->=20
-> Maybe a silly question, but if you have a system that wants to have two p=
-airs
-> of RTCs, how would you determine which primary a secondary belongs to? I
-> notice you have no link between these devices in dt so I am curious. Woul=
-d it
-> be better to eschew nxp,interface and have a phandle from the secondary t=
-o
-> the primary?
->=20
-> I don't know anything about your use case or features, so maybe knowing t=
-he
-> relationship just is not relevant at all, or it can be determined at runt=
-ime.
->=20
-> Cheers,
-> Conor.
-
-This device can connect to two independent hosts via separate I=B2C buses.=
-=20
-Each host sees the same hardware instance through its own I=B2C address. Th=
-e nxp,interface
-property simply declares the host's role, so the driver knows whether to at=
-tempt write
-access or not.
-
-Thanks
-Lakshay
+Best regards,
+Krzysztof
 
