@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-224886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D33B2BC8951
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 12:49:52 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4F77BC8963
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 12:51:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0305E19E79F8
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 10:50:16 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 896DE3513A6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 10:51:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A4822D94A6;
-	Thu,  9 Oct 2025 10:49:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15FD82DCF4D;
+	Thu,  9 Oct 2025 10:51:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M197fa8R"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oT69uBvP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09E3F25782F;
-	Thu,  9 Oct 2025 10:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEF392DC790;
+	Thu,  9 Oct 2025 10:51:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760006987; cv=none; b=N8OybhXT5FHaOg3KWOC93yKmbkxZ8zSqKl+evjkhNxYScDjfIcZ1oijwrN5H1lNc4iQvpPVndJONoP2wuc+kTXv/YkTnW7Ce8s6DUTvAhQ6JMN/3jgdeBHtO6Jz/JqaT2999+c1+mf3Kuzh7+eZdeW6u265hgtosnCrcm2OkPRM=
+	t=1760007080; cv=none; b=MI5laj6RsmczcAzbSvyUBXl7nKHB6Zg+IgLHvaTecSdnftrvVkNpS4WoHExqxCSP8S8NWamfAsn4Lmx9jJJDtcd/u2mbFU/vcBn43xrTQeatweibDDqGWw3CJDZlo+uKh2zYjuHXcGzpJOLrCIfyi3uqA75QlP6NQV1iQZCyMBs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760006987; c=relaxed/simple;
-	bh=3VZrqPhhrNXEy/mRlhhDhNRBMVFExI8o2W9EJEEHd6E=;
+	s=arc-20240116; t=1760007080; c=relaxed/simple;
+	bh=pe31QoGMIMHDF28fWNg7uO2BYB0/OCshPn6zdRfU8vg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kxu+YqNGVvg42NN3T7QCE75NHB/cpMhaX/uOXRXC1R/LfAqsVbW+dY03tJKqP7GFJL/BmE90yGlrM76SnNdOpc+7UyusZ/I7XndvO5UH3RyCgiBGbe/CrFC4kJiKoWnb+gyFOwb2U0DI7Rgtn/e8sDDRp10dsD+JliP7xCfr+do=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M197fa8R; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7FE0C4CEE7;
-	Thu,  9 Oct 2025 10:49:37 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=ddcIRl0HwBPE1Rpf1KUjQxb485aXSH8UwALv+SC7sm/f3xMw2B2eNhY+8ioPHcF6xBzDxtgqGoOo1plyarEGqOWiqnHvvu6l9ThI3z4RY6RJ8ZTNUSmBRdU+LyG8bAqpSTQUiubc0q2DT+/QLtWIVvUuOVpeLsQq9LSTTkF9ZhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oT69uBvP; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36F77C4CEE7;
+	Thu,  9 Oct 2025 10:51:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760006986;
-	bh=3VZrqPhhrNXEy/mRlhhDhNRBMVFExI8o2W9EJEEHd6E=;
+	s=k20201202; t=1760007079;
+	bh=pe31QoGMIMHDF28fWNg7uO2BYB0/OCshPn6zdRfU8vg=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=M197fa8RRsw263fxtDR0T4Dhoal4cN9+7A2grnCGtAF+MV0GdTvANntezKTJlXldM
-	 ov5fui9nz4IJ1CNdK2DVR5l0rM9+htwGDSbS8zxNdNq062oQZyKtT+OhXGMxkfjEf1
-	 N9PVCJH8+FEHj7tVfGcRJyAbwgEJQWtFWwkhLESe28IHHD9EMgw/uWz4bZEuYJ6eAV
-	 CV1TMT96WDGhGdewd/+OGGycye6dWiCi6MimXErAdDkKicQLKsQrJnxx5NSOr0m8BL
-	 42GhOxv5Xmzwencch/oCOHvLgv1BUK8CE5gOfbGkKltKpNRhOiMHfGQQFrTfsQZi3s
-	 TcI5czSlC7JEQ==
-Message-ID: <23cf6dad-1162-429d-8cdc-5fc6aa7757a8@kernel.org>
-Date: Thu, 9 Oct 2025 19:49:36 +0900
+	b=oT69uBvPgCNbBahI9DwEiAPyJQ7DTFR9FwDVuLB54wBrHeA94F08AO+4fjTK6H++b
+	 bjMbR4gzidhQDiICVCqh4P5WfVkzPXfWGDiQ+3Z8jF04RJDkSzUooMRtX8ZTlxmpBy
+	 C2LEkWnjupvIONQj60dvSXAEjuG9ai978UaE1ch3n0vH6xo3xsWflxpm6RTkYJoFWd
+	 Pak0OoxqxyHn1tHsCsV5sF1bYl2qyDegNOCn1wXbvmweGpBraayR5gtWqQ5jpSDewu
+	 EzcYXAhWgXGJ9l4a+WMqF49AhfMUM71bNL+A383E8eUG7q61WYldbruM1Cvz5L7iP4
+	 X9Zc9hsiI7GLA==
+Message-ID: <afaa143e-55de-4880-8215-330dc640a1fd@kernel.org>
+Date: Thu, 9 Oct 2025 19:51:09 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,31 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/9] dt-bindings: clock: qcom: Add Kaanapali video clock
- controller
+Subject: Re: [PATCH] dt-bindings: mmc: sdhci-msm: Add Kaanapali compatible
 To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Jagadeesh Kona <quic_jkona@quicinc.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Taniya Das <taniya.das@oss.qualcomm.com>,
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, aiqun.yu@oss.qualcomm.com,
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
  tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
- yijie.yang@oss.qualcomm.com
-References: <20250924-knp-mmclk-v1-0-d7ea96b4784a@oss.qualcomm.com>
- <20250924-knp-mmclk-v1-4-d7ea96b4784a@oss.qualcomm.com>
+ yijie.yang@oss.qualcomm.com, Manish Pandey <manish.pandey@oss.qualcomm.com>
+References: <20250924-knp-sdcard-v1-1-fc54940066f1@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -120,19 +106,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250924-knp-mmclk-v1-4-d7ea96b4784a@oss.qualcomm.com>
+In-Reply-To: <20250924-knp-sdcard-v1-1-fc54940066f1@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/09/2025 08:56, Jingyi Wang wrote:
-> From: Taniya Das <taniya.das@oss.qualcomm.com>
+On 25/09/2025 08:34, Jingyi Wang wrote:
+> From: Manish Pandey <manish.pandey@oss.qualcomm.com>
 > 
-> Add device tree bindings for the video clock controller on Qualcomm
-> Kaanapali SoC.
+> Document the compatible string for the SDHCI controller on the
+> Kaanapali platform.
 > 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+> Signed-off-by: Manish Pandey <manish.pandey@oss.qualcomm.com>
 > Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> ---
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
