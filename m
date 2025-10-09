@@ -1,189 +1,154 @@
-Return-Path: <devicetree+bounces-225003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F440BC981B
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 16:29:54 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75ACDBC9875
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 16:35:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E3E119E5CB7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 14:30:17 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D5CCC3515DC
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 14:35:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 648BC2EA753;
-	Thu,  9 Oct 2025 14:29:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 957542EAD0D;
+	Thu,  9 Oct 2025 14:35:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MgMuZsUV"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="XFYwVWxK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F71F2EA176;
-	Thu,  9 Oct 2025 14:29:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3526298CD5
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 14:35:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760020190; cv=none; b=aUeHMY1EonHmWwpgUteXH7SV9XMRkqaoHaDbuPzHncEirDK80xtcMKHIt87Rzk6WcW4DskONDi7TweFVtCn8b1GZedmd0nk6y1AlNAuNvS1jhlbo7/yzdgHVKSjDKQZzdkYdz5HQzPzy88hM42XqQvHQ+2tDkjqywwKX3l2yA4s=
+	t=1760020529; cv=none; b=aVqMjd7niZBBkFgYHeM3K3L081o3ZMgAC9EyrlkxvHsthODyq9IvRUQxbPDoHVMc0IVhkjpHlWM+pqBS56Lnxt4QM34rCedwJg5OhEeph96UVhWfKqhEjl8e+09L9a6Crkj1LnVPiB1fTQPEBh4/izCMBXVus3PdlqGccuxomMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760020190; c=relaxed/simple;
-	bh=JeNJ+MOb6MbW2Adwn40uh6TWEREB7v7gXN/c9Y0+u0M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MSbPP904Nm1v9DiZB1bYRKVfY7eILaAlLiKsOo1th7uYWoN9GAQhSu+uGRoLfJii0dV0XvqZFcCy1E6BEzeZWVFPXCdK+0KMZAitj+QGAFQE4EQqZ9a6Q1aczCSYRlpeWnILRs8/4m4SxJ0/YNJrLRaSCAAY0TSa73e3anib9X0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MgMuZsUV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD03BC4CEE7;
-	Thu,  9 Oct 2025 14:29:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760020188;
-	bh=JeNJ+MOb6MbW2Adwn40uh6TWEREB7v7gXN/c9Y0+u0M=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=MgMuZsUVxQHOeFFf6KNTzfqwMKZZMATdNU3Xr+gE26+27vAMjih/M2l02JtGbl93u
-	 MQR1sIR0iE+HX2RdohSj8VAq0Aad66+Bd9PAwMCLyr5x8wu6hKovMIKfVWXTKIFTRb
-	 pU8QXUj3QySjCK1YLk7vrG64AOBFF9DhCG4Vp41MFREgUUN+1hQzCRy/Aa6mA5k/ZA
-	 V9o+PWCf1npShSdn4KXCtpUFvI9N3/lHmbT8uvoO4DHMnNnGVNWtxj5ISoV2RzTY8R
-	 1yLCxG8jjb6C22Y3r3gDOPE2NgKyV5lLZjUlSScMR6wODpv+F8I/kvmAUiB2rDYODy
-	 TXcWiZ3XIZUvg==
-Message-ID: <b614913e-7ebf-4abe-9eb5-f41b81d91ad3@kernel.org>
-Date: Thu, 9 Oct 2025 15:29:47 +0100
+	s=arc-20240116; t=1760020529; c=relaxed/simple;
+	bh=qg6QF1rDlqVC9eUrmMm4yZVRaITIh85cFqUKkQRon5g=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=V2Sv9X8AgM2zXdp8oPJhaOo6UNT9nK+3lUNKCi+a942cHxqK8jvmgmQXv6gpNuHGwauNVEMBRHjbljyk6CKn0q7rcjKsDFqgOtgg6Apw+uX6QUyYCGaFscxsDgK3k2osX5KhEZEOUVRjekJPwNT+FVBJalI8kejzOpc9vRvIA0I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=XFYwVWxK; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-afcb7ae6ed0so157038966b.3
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 07:35:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1760020525; x=1760625325; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zYENJNtxtc1kPbU0AoQZVanvQQRyEjOu9GgNTqYkAdA=;
+        b=XFYwVWxKwl9z6vTUGBXfrW9pKVfrOYCUN1JcsPTeUAN/phtdrgi8O+uFdqqshI2uc/
+         JVm/GeyJmMFErJPpg3C9bOuZpOuz6jpPyb5l4j0VlYdq00ExTjPnRjivHJZm/2nK70u0
+         TVwgx7RUlAKp6J7wXpxEc1HxnDA8JCfmLngBB+Aoi4FpuuDLz9bT+2ME4aGFGYTDWAHD
+         PJFh4XmE/rYgi0N6ZZ1FM//ZezOskQinzQwfXsxTdNT1Y5erJ6o6NDG0SG9sRjIiBXoe
+         gTMeFjG/wbhsb9SY8SsKd7W45Yx7xNKHvW8kspG9lh02NZJT+6kxsXdRkmnuzfBfwlty
+         ttuw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760020525; x=1760625325;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zYENJNtxtc1kPbU0AoQZVanvQQRyEjOu9GgNTqYkAdA=;
+        b=mdkYo6zot8Jg8JhwRGfES7UXLlF4TnDeiyvMGY/Y4UFCylWWI3MiKqE4bkhIVO9kzJ
+         CMBZs2wBaSRLXwGpCop2/QixJ0Cya8fOhkZP0HD/Ih7hHwbGgQQQaPKvE7ABt1kj6y3R
+         B6950AB5keKfbifcTGdhbNpIEeRwcq6oOKnXzRjZprLwu42jGA7QEr3WZbCJGR27exzk
+         /ZMaMkQjL9HGztTjoqvbLBVcxYme+6S0Ji1DjdXZuUowGSGqdWZJGMGayJX3MbGs0NfM
+         tahSvqhfYPVxDt9A7I75I4C5L/KhzYZKQIcLqiLUt47IvDZE1oLTkqi5dJ4jYuVAtDUZ
+         7moQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXO3PDLrJwjiPdlChF0fQNN4JW8Y7/zv8WQR0m8OojAWtSYswJCOirtefdu43uiIG1Hfzq/OzKmLX7/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzF36VWfBgWQGf6jAtZzRDB0mcAh+t45BpK+omGXipIG1+6lNoj
+	9bbRcrUCqdrYiML1UhL2VxU2uSvHzalYJIqe43GO49gwqnj6rPgPcZEThEDjNJSal+o=
+X-Gm-Gg: ASbGncv84PQTbzai+xACCJA8oDr8UFPSN0SGDbN9is1rCFHyzKc6OClblveRNrltiU9
+	iQlZ53ZGTmfJTFeHoa9ou9RoN2+UpKzcm8GtzJjD/oTDKs9hSmI2M8lEh9BnXq9RRO9uReaKGtd
+	VkC+LpS5CoNQsb0eOFkpnRKtIzUpi4xdjmKdu7Ck2Q3lSrr+2rR2TcetfkBQqZfP+Dw0ZZgI0TP
+	QBgKhzOJc66umKkgejWLwmvJfXo2kEEtcud0wdj0Tn9MvDOSfs+YaJe6RAte5NzcxbXiBlDbt+g
+	o20Wd+53CjsouS/OyfqDK6JlTFI6k5QBPcp4mt6DrsqETu1UiPvB6U94IRI8Yu3J55MbTDErDDq
+	JCr4R65EXQrldFab11HCTTb0OTynU3YrJJxoUWAceHdh4JKE33TYoy4iZmEUxp4erRt7+ybWpxl
+	nb5adMw6zzaFRDRyPpBjSLgYeR1RDP
+X-Google-Smtp-Source: AGHT+IGnwJxzBQPGzvSXp56aICeUzxZOOU5BPT910//mGT1ooDV473aPF4s8OP70+9XJdQr/+Q2e8w==
+X-Received: by 2002:a17:907:9404:b0:b07:c1df:875 with SMTP id a640c23a62f3a-b50acc2f5camr910308766b.56.1760020524610;
+        Thu, 09 Oct 2025 07:35:24 -0700 (PDT)
+Received: from [172.16.220.227] (144-178-202-139.static.ef-service.nl. [144.178.202.139])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b486606dc84sm1885797166b.45.2025.10.09.07.35.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Oct 2025 07:35:24 -0700 (PDT)
+From: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+Subject: [PATCH v2 0/4] Add support for Dongwoon Anatech DW9800K driver
+Date: Thu, 09 Oct 2025 16:35:06 +0200
+Message-Id: <20251009-dw9800-driver-v2-0-3c33ccd1d741@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 2/6] ASoC: dt-bindings: qcom,sm8250: Add clocks
- properties for I2S
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251008-topic-sm8x50-next-hdk-i2s-v2-0-6b7d38d4ad5e@linaro.org>
- <20251008-topic-sm8x50-next-hdk-i2s-v2-2-6b7d38d4ad5e@linaro.org>
- <44606de8-3446-472f-aa6b-25ff8b76e0ec@kernel.org>
- <3620feb6-12bf-48c1-b47a-ccb486e5b5de@linaro.org>
- <c0b71974-65df-47ad-902b-45c2dbe66be0@kernel.org>
- <f27cad88-b1fd-41a3-bdb1-b07de3dea8a2@linaro.org>
-Content-Language: en-US
-From: Srinivas Kandagatla <srini@kernel.org>
-In-Reply-To: <f27cad88-b1fd-41a3-bdb1-b07de3dea8a2@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABrI52gC/13OQQ6CMBAF0KuQrq2ZqVRaVt7DuMAyyCwEbLFqD
+ He3xYWJyz/JvP/fIpBnCqIu3sJT5MDjkILaFML1zXAhyW3KQoHSYNHI9mENgGw9R/JSGwTt2tJ
+ qApF+Jk8dP1fvePpmT7d7Yufv8aemkmxWYLNZoZWmMUYp6hyesY4qe+cmkHTj9cpzXcT9FiuR2
+ Z7DPPrXujri6mYMAdTfwIgSpNuB3ilDZdnBoWvYT/040Da54rQsywfxAco0BQEAAA==
+X-Change-ID: 20250918-dw9800-driver-58105cd495e0
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Daniel Scally <djrscally@gmail.com>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
+ Luca Weiss <luca.weiss@fairphone.com>
+Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, 
+ Griffin Kroah-Hartman <griffin.kroah@fairphone.com>, 
+ Bryan O'Donoghue <bod@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1760020524; l=1771;
+ i=griffin.kroah@fairphone.com; s=20250804; h=from:subject:message-id;
+ bh=qg6QF1rDlqVC9eUrmMm4yZVRaITIh85cFqUKkQRon5g=;
+ b=0IPOGbH5/g3cluV4Dd76aWVPqMxXuQRc+3hbzdt/zNF1QAbEvPS0OTsI6XcQF49WG4VWicYAB
+ BV5FWzJMsfgD5V5Oqfg+byEn353sjtUjqedClkCEM06H0NIdCm59x+Z
+X-Developer-Key: i=griffin.kroah@fairphone.com; a=ed25519;
+ pk=drSBvqKFiR+xucmLWONHSq/wGrW+YvcVtBXFYnYzn8U=
 
+Add devicetree bindings and driver support for the DW9800K VCM driver.
 
+The driver code is added to the preexistent dw9719 driver, which has
+similar functions and method order, but different register sets.
 
-On 10/9/25 3:25 PM, Neil Armstrong wrote:
-> On 10/9/25 16:06, Srinivas Kandagatla wrote:
->>
->>
->> On 10/9/25 3:03 PM, Neil Armstrong wrote:
->>> On 10/9/25 15:36, Srinivas Kandagatla wrote:
->>>>
->>>>
->>>> On 10/8/25 7:56 PM, Neil Armstrong wrote:
->>>>> In order to describe the block and master clock of each I2S bus, add
->>>>> the first 5 I2S busses clock entries.
->>>>>
->>>>> The names (primary, secondary, tertiarty, quaternary, quinary, senary)
->>>>> uses the LPASS clock naming which were used for a long time on
->>>>> Qualcomm
->>>>> LPASS firmware interfaces.
->>>>>
->>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->>>>> ---
->>>>>    .../devicetree/bindings/sound/qcom,sm8250.yaml      | 21 ++++++++++
->>>>> +++++++++++
->>>>>    1 file changed, 21 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->>>>> b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->>>>> index
->>>>> 8ac91625dce5ccba5c5f31748c36296b12fac1a6..d1420d138b7ed8152aa53769c4d495e1674275e6 100644
->>>>> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->>>>> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->>>>> @@ -64,6 +64,27 @@ properties:
->>>>>        $ref: /schemas/types.yaml#/definitions/string
->>>>>        description: User visible long sound card name
->>>>>    +  clocks:
->>>>> +    minItems: 2
->>>>> +    maxItems: 12
->>>>> +
->>>>> +  clock-names:
->>>>> +    minItems: 2
->>>>> +    items:
->>>>> +      # mclk is the I2S Master Clock, mi2s the I2S Bit Clock
->>>>> +      - const: primary-mi2s
->>>>> +      - const: primary-mclk
->>>>> +      - const: secondary-mi2s
->>>>> +      - const: secondary-mclk
->>>>> +      - const: tertiary-mi2s
->>>>> +      - const: tertiary-mclk
->>>>> +      - const: quaternary-mi2s
->>>>> +      - const: quaternary-mclk
->>>>> +      - const: quinary-mi2s
->>>>> +      - const: quinary-mclk
->>>>> +      - const: senary-mi2s
->>>>> +      - const: senary-mclk
->>>>> +
->>>>
->>>> I don't this is correct way to handling bitclk and mclks for I2S, these
->>>> are normally handled as part of snd_soc_dai_set_sysclk() transparently
->>>> without need of any device tree description.
->>>>
->>>> Also doing this way is an issue as this is going to break existing
->>>> Elite
->>>> based platforms, and the device description should not change across
->>>> these both audio firmwares.
->>>
->>> This is only for AudioReach platforms, on those platforms the
->>> clocks are registered in DT and are not accessible by the card.
->>>
->> Clocks will be acessable via snd_soc_dai_set_sysclk ->
->> q6prm_set_lpass_clock once set_sysclk support is added to q6apm-lpass
->> i2s dai ops.
->>
->>
->>> Device description is obviously different for the AudioReach platforms.
->>
->> Why should it be different, its same device.
->> We have platforms that use both Elite and Audioreach.
-> 
-> I'm perfectly aware of that, it's the case for sc7280/qcm6490. And I agree
-> the card bindings is the same, but it doesn't mean the DSP elements are the
-> same and uses in the same manner.
-> 
-> So let's forget the bindings and forget those clocks entries, and imagine
-> I'll implement those _sys_sysclk calls like for the Elite platforms.
-> This means I'll bypass the clock framework by directly setting the PRM
-> clocks, this is clearly a layer violation.
+Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
+---
+Changes in v2:
+- Reworded commit log on patch 3
+- Changed code formatting in driver
+- Link to v1: https://lore.kernel.org/r/20251002-dw9800-driver-v1-0-c305328e44f0@fairphone.com
 
-You can claim clocks in the dsp layer (q6apm-lpass-dais) instead of
-claiming it in machine layer, it does not necessarily have to bypass the
-clk framework.
+---
+Griffin Kroah-Hartman (4):
+      dt-bindings: media: i2c: dw9719: Document DW9800K
+      media: i2c: dw9719: Add DW9800K support
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Enable CCI pull-up
+      arm64: dts: qcom: qcm6490-fairphone-fp5: Add UW cam actuator
 
---srini
-> 
-> Neil
-> 
->>
->> --srini
->>>
->>> Neil
->>>
->>>>
->>>> thanks,
->>>> Srini
->>>>
->>>>>    patternProperties:
->>>>>      ".*-dai-link$":
->>>>>        description:
->>>>>
->>>>
->>>
->>
-> 
+ .../bindings/media/i2c/dongwoon,dw9719.yaml          |  1 +
+ arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts   | 11 +++++++++++
+ drivers/media/i2c/dw9719.c                           | 20 ++++++++++++++++++--
+ 3 files changed, 30 insertions(+), 2 deletions(-)
+---
+base-commit: 6063257da111c7639d020c5f15bfb37fb839d8b6
+change-id: 20250918-dw9800-driver-58105cd495e0
+prerequisite-change-id: 20250709-dw9719-8a8822efc1b1:v2
+prerequisite-patch-id: 5a1b6083c0f5df1421cfe6952dac44d9ddb7fb07
+prerequisite-patch-id: db5f49e91aaf521fa487994765b4107f543531d6
+prerequisite-patch-id: 76bfa65d3ff23fc827790b0868bc34655cfa93fe
+prerequisite-patch-id: b76d61c90bdbf20f437d2fe438d54e707621e953
+prerequisite-patch-id: 46fc09662693e6a51bb89ab4d0914265c74bc3bb
+prerequisite-patch-id: 4e0012f76dd03d5653ba185a8ccc59017a1b90d1
+prerequisite-patch-id: a618641cd4b7cde40825fa0d4201b6c27e74266d
+prerequisite-patch-id: 8b43ff7e81258cc7624800e4bf645458a0f05380
+
+Best regards,
+-- 
+Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
 
 
