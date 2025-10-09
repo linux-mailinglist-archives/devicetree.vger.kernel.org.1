@@ -1,105 +1,62 @@
-Return-Path: <devicetree+bounces-225072-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694E0BCA2E5
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 18:28:23 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8FF5BCA327
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 18:33:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D8EF5189C1D7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 16:28:44 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id BADF54E14A4
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 16:33:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 557B821B9FD;
-	Thu,  9 Oct 2025 16:28:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9371F09A5;
+	Thu,  9 Oct 2025 16:33:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="NJoSqlVN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lgFCYhC1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0F041A9F96
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 16:28:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1A51A2545;
+	Thu,  9 Oct 2025 16:33:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760027298; cv=none; b=qBOIwC/+r5PFln36cFfXzafOQg8r+cKd93JFnkYB3r0oF5j1+SGb2DDL8r030aomD8L5YqABOTUeqEdZ0+p+Sw+5iTY4BzfVlnn5sFxhXX20zqBfKEGp6Knclm5Xjzdkonz2DL+9aP0HKLCZKpGM8zogEQqYZrGKJa675hPPLL4=
+	t=1760027615; cv=none; b=ICEXx7Z8JuXpH2J0yRUPfyBtP62JJa+pHeWLX97giC+aqFpkbzNsHkretZQW1GdQZPEjaG9p6o1CHuTzj0dSJPKFJ8ruoKu2GlsxbNV91bi5QZw23ASAC93IzV8v1eGAEmsLkLnU9WBAKFdI9/9yEk1jpEBpseuniXBuc9FxJ0M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760027298; c=relaxed/simple;
-	bh=fqg3g5ZmYuV22v5Z1zMCldKZvaxyeZikhZJzA9NLUTY=;
+	s=arc-20240116; t=1760027615; c=relaxed/simple;
+	bh=ePE6UwXG4mOskOTOs/+qp+ty/ofJpwv5+43knm9orGQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AZm+DXf+eL+uSWdxRQRdE71V+hMaE8zkQwrlZJGexuLc36t0p5Zd0r5zbMdBQlLjlXXJKU9HPw8gjoFwcbhbYPyKYsJYDLS1awZn+hTA7EjXy9WocFHz4YXV0jSgO8mgdMAlZxYqwXgaqJkWnUMAXMLvjAg+/85QjxRRiRsHKYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=NJoSqlVN; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 599Ec4af028592
-	for <devicetree@vger.kernel.org>; Thu, 9 Oct 2025 16:28:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ZnXpFZQ4U6DhSA1tPT9J8U9x
-	/9Yu9OLLvkeFfqxAsdo=; b=NJoSqlVNMOKWY3a0Z8om+XkzXR1iInrqnj0hMDKK
-	bEBrLJVk+uXZ3JbJNTrHfhGkpD9prVO90x1akiNoyfbHmts8/0et/B1zCvbXcyAW
-	kDp4EQHza/JUC6PbpLuZN9/S3C0z2icB39A9qSgFTlUlkGXXkYhL5jMcpm3qj0ks
-	1wny+Goqbli8hx/1Ck/e5XYH+CfvneVZQHpHqdSNcoUHypZ7FISyiPb4DFAOLXNP
-	98kpNEayE8oIpvdJK5BBiU+nSZFf3pRBcWQsyG+4tAcUcFI/5G5pPnwFkfgEY0J3
-	j/1OWMp0XvHiUklN+epvkOMTOQ371Sxd7ybNpC3o5R9f/g==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4kukhm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 16:28:15 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4d91b91b6f8so22735111cf.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 09:28:15 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760027294; x=1760632094;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ZnXpFZQ4U6DhSA1tPT9J8U9x/9Yu9OLLvkeFfqxAsdo=;
-        b=MRF2qvls8Pungly32YaRXpbVXGUWgL+BRYbIs4sEv0wRrIsIssKkTShK+sBJ50MpxO
-         JUkBWUye5ZNGlzyfbg/AdUIDY6z/ekMn9WLDngqr3przU17RCTOGaojrASeJrvspfQVg
-         U0ieBgT4UuScIDNs5hYtT21Qk4qoAx5zFnk/z6B5I15oplH0jsOHwQYmWS93F3E5VXEB
-         U+KIC/VxhqHpzzRlcuUZWi+lufrEfzgsF4GFdvXuQrTzI7UYlIU9Ne9hE7HEQpkyHfYs
-         4HBm80odR9cQJKLDQ31Az4EEpMXcMnrzAp8ooaYPH96M6QKSIsaW7f7TyrmXde6OF1GI
-         qjmA==
-X-Forwarded-Encrypted: i=1; AJvYcCUkli3uALggXs9/Tmz79J2wBIqXbaA4HSKlE8MnblnqQa6d+YEW6x/6i9G6TfjtZ/0L/2d8Sa8VA3ok@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxdVwi8HQ3tcttSzeM865O7pKzLD6k01awPSERnGbjQKk71zWO
-	4w1fmRY1DiVlzmMKUm0gEKehR9ZJbXcCvAJ9eJW/aqbBoKdbmBqc/EeuRhEqB3HqicwmgtgDS8Q
-	iSKRn0L5o+HYJ8QVax12I4oZnZpMhd1rdKG+4L36RLDEcrLeVovILMuW5Aad0SIq2
-X-Gm-Gg: ASbGncszCPSAGFuxHYRy9A0mDcJNf7AnaPUVMxbElNVfDDEpJjPNAPbRXEBzzXAAAjs
-	dkvZs8TRlKr7TpVXZLwjc9RDBKrHlputNQQfRetXZoyu05KIQ0HI4tKjsRKw9p3y/bffHwMLAde
-	iUE2RpCtvIoY4JXbwtEVWQtWu8d4JKeHZtCrV1OZefRvRWXFRzeF87Y/Aj+9hj4SLrKK9lVwilP
-	DGmw2PMB4Xe8+zorRtvwWbi1LuX97zrLbUfRRAk7J9e12XmzBseAhu+H5qpITsTuK+dgY584Kyf
-	Q89G/9hAviKUgRkudePjNAydflamRpGEUNgXsQ7i/rPOgOp5EPuINTFwiR2+DF/GkNf2x7/cZF1
-	5GapeWNfEVgGy/3ax6UmF0Z9TNaPrm4hV3Pc7BTJ7kecMVVpwZUSwUTQZ+Q==
-X-Received: by 2002:a05:622a:4acd:b0:4d9:4863:f4e5 with SMTP id d75a77b69052e-4e6ead6714fmr101251801cf.62.1760027294452;
-        Thu, 09 Oct 2025 09:28:14 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFjQJ0wOBwgsaJrRS5HHNu+KDYVK2dVDJgniqV9gP73jMPAU3sRYpuRCv1KT3nf4BpbOlVV5A==
-X-Received: by 2002:a05:622a:4acd:b0:4d9:4863:f4e5 with SMTP id d75a77b69052e-4e6ead6714fmr101251071cf.62.1760027293700;
-        Thu, 09 Oct 2025 09:28:13 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-375f3b63fc6sm29450151fa.36.2025.10.09.09.28.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Oct 2025 09:28:12 -0700 (PDT)
-Date: Thu, 9 Oct 2025 19:28:10 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Eugen Hristev <eugen.hristev@linaro.org>
-Cc: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
-        Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
-Subject: Re: [PATCH 14/20] arm64: dts: qcom: kaanapali-mtp: Enable more
- features
-Message-ID: <kocj7sf6jgj4uynvlxvbsojc4bykyj2ipb4ex56fagjqoxwcie@2trytltkhd4a>
-References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
- <20250924-knp-dts-v1-14-3fdbc4b9e1b1@oss.qualcomm.com>
- <588a7b68-2e2e-4e65-9249-fe8b18b67927@linaro.org>
- <831f6fd7-b81f-4d6f-b9bd-5a8fe514befb@oss.qualcomm.com>
- <0c9ca026-9986-4347-a86d-8bf65e2d12e6@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=q4tCrs/E0VczhnsaLR1XRZBayDYb6N6uilZVTw2OxgQnDOFGe1uTpehY33DAPQjNJJB1h7W9OdVRpdPOjufIQ1BSVxL/U9uc1RWxnEzYZi1EVbsaGij5YiU5RxuqBoZnZ/E7zQi/enJLhWyZAw/SJci0q5PMbpLAsduQsG8ivmI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lgFCYhC1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D439CC4CEE7;
+	Thu,  9 Oct 2025 16:33:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760027615;
+	bh=ePE6UwXG4mOskOTOs/+qp+ty/ofJpwv5+43knm9orGQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lgFCYhC18OgKWlVAJjrJWpnEuF+LkxylxlEYO8KHpNQoQ/spVHSDdaMCD0Q75JwiE
+	 cBMEKsP9rUIoHGctPJn6GfATdwEWuZ4C0bad03DZ9CNIsIzisI3iy4afdkIM/VXN/8
+	 RmnxO7M1WMsT9tIyyq11gIsr5xlWOQQrq436ofLKd11CXSH1Rhf/yDy9qBG1wMkCgL
+	 Uo1gBNSgeTmEdv3cRvMXxuCdYIgalmRgFBkyVeIGRitz57qhPjWd9gx9sT4uipvFjg
+	 Gxe6mR9d00X3XPolwy2wh/wDALvp0RIY/0BoPctJXRNA0VH0hkgsPKcuM78RBsuqER
+	 iBNcM6HB93sKg==
+Date: Thu, 9 Oct 2025 11:33:33 -0500
+From: Rob Herring <robh@kernel.org>
+To: Jon Hunter <jonathanh@nvidia.com>
+Cc: Chintan Vankar <c-vankar@ti.com>, Rajesh Gumasta <rgumasta@nvidia.com>,
+	krzk+dt@kernel.org, conor+dt@kernel.org, andi.shyti@kernel.org,
+	ulf.hansson@linaro.org, thierry.reding@gmail.com,
+	kyarlagadda@nvidia.com, devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org, linux-i2c@vger.kernel.org,
+	linux-mmc@vger.kernel.org, andersson@kernel.org, sjg@chromium.org,
+	nm@ti.com
+Subject: Re: [PATCH V3 1/3] dt-binding: Add register-settings binding
+Message-ID: <20251009163333.GA2452939-robh@kernel.org>
+References: <20250725052225.23510-1-rgumasta@nvidia.com>
+ <20250725052225.23510-2-rgumasta@nvidia.com>
+ <0784441c-9859-4418-a4a7-85ffe3ecf860@ti.com>
+ <d619df1f-813d-4be5-8d24-295455f956de@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -108,143 +65,58 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0c9ca026-9986-4347-a86d-8bf65e2d12e6@linaro.org>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX4RKjD61DI/Ef
- zEhS9kpNVCBGhsvK1Ymbz1GJHeZc3BKDSeZkLWAT6etRx3TMp+Zny2D7WaXRcSPre1PIvklfDnQ
- Ko1w8Fy4qb/fyOWNPDx8586nigT0WH8T9sDguxXpwLjt1kZE+H5Yl34xJkT5nmHrpnneV0nD2OD
- SGRz7blxywwOyqnHsohZlmIRm1Izb38mHPXIOU1USprwG+sIjZf9nCnR82HcWISl62T8eGncFtf
- Qixsa6TO84jOKSieWEYkO00ZaJUlGvEHvlY2vd1VZpoYVfQ5a2v1N+xaW92kkdFT2hhRcLGWHhe
- avL+Kw61XyKPoyuT64qS53qgrQXURgXOAIHbjZhCVS+JpWb9fBsh3GoPp/0ycMYGDfZUZJA+Vpa
- t2x9BO0CF//3OgqDRoaaIzD++CItZw==
-X-Proofpoint-GUID: 4_Q49Ntey9di7xu8XYYYD4nM1COq-yVI
-X-Proofpoint-ORIG-GUID: 4_Q49Ntey9di7xu8XYYYD4nM1COq-yVI
-X-Authority-Analysis: v=2.4 cv=SJxPlevH c=1 sm=1 tr=0 ts=68e7e29f cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=SzOJWy82pAEjsAOwwT4A:9 a=CjuIK1q_8ugA:10
- a=a_PwQJl-kcHnX1M80qC6:22 a=HhbK4dLum7pmb74im6QT:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-09_05,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 impostorscore=0 spamscore=0 phishscore=0
- clxscore=1015 bulkscore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
+In-Reply-To: <d619df1f-813d-4be5-8d24-295455f956de@nvidia.com>
 
-On Thu, Oct 09, 2025 at 05:58:03PM +0300, Eugen Hristev wrote:
+On Tue, Sep 30, 2025 at 04:01:27PM +0100, Jon Hunter wrote:
+> Hi Chintan,
 > 
+> On 29/09/2025 05:39, Chintan Vankar wrote:
 > 
-> On 10/9/25 16:54, Jishnu Prakash wrote:
-> > Hi Eugen,
-> > 
-> > On 9/25/2025 1:33 PM, Eugen Hristev wrote:
-> >>
-> >>
-> >> On 9/25/25 03:17, Jingyi Wang wrote:
-> >>> Enable more features on Kaanapali MTP boards including PMIC peripherals,
-> >>> bus, SDHCI, remoteprocs, USB, PCIE, WLAN and Bluetooth.
-> >>>
-> >>> Written with help from Jyothi Kumar Seerapu(added bus), Ronak Raheja
-> >>> (added USB), Manish Pandey(added SDHCI), Jishnu Prakash(added PMIC),
-> >>> Qiang Yu(added PCIE), Yijie Yang(Added WLAN) and Zijun Hu(Added Bluetooth).
-> >>>
-> >>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-> >>> ---
-> >>>  arch/arm64/boot/dts/qcom/kaanapali-mtp.dts | 663 +++++++++++++++++++++++++++++
-> >>>  1 file changed, 663 insertions(+)
-> >>>
-> >>> diff --git a/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts b/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
-> >>> index 9cf3158e2712..2949579481a9 100644
-> >>> --- a/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
-> >>> +++ b/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
-> >>> @@ -5,9 +5,23 @@
-> >>>  
-> > 
-> > ...
-> > 
-> >>> +
-> >>> +&spmi_bus1 {
-> >>> +	pmd8028: pmic@4 {
-> >>> +		compatible = "qcom,pmd8028", "qcom,spmi-pmic";
-> >>> +		reg = <0x4 SPMI_USID>;
-> >>> +		#address-cells = <1>;
-> >>> +		#size-cells = <0>;
-> >>> +
-> >>> +		pmd8028_temp_alarm: temp-alarm@a00 {
-> >>> +			compatible = "qcom,spmi-temp-alarm";
-> >>> +			reg = <0xa00>;
-> >>> +			interrupts = <0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-> >>> +			#thermal-sensor-cells = <0>;
-> >>> +		};
-> >>> +
-> >>> +		pmd8028_gpios: gpio@8800 {
-> >>> +			compatible = "qcom,pmd8028-gpio", "qcom,spmi-gpio";
-> >>> +			reg = <0x8800>;
-> >>> +			gpio-controller;
-> >>> +			gpio-ranges = <&pmd8028_gpios 0 0 4>;
-> >>> +			#gpio-cells = <2>;
-> >>> +			interrupt-controller;
-> >>> +			#interrupt-cells = <2>;
-> >>> +		};
-> >>> +	};
-> >>> +
-> >>> +	pmih0108: pmic@7 {
-> >>> +		compatible = "qcom,pmih0108", "qcom,spmi-pmic";
-> >>> +		reg = <0x7 SPMI_USID>;
-> >>> +		#address-cells = <1>;
-> >>> +		#size-cells = <0>;
-> >>> +
-> >>> +		pmih0108_temp_alarm: temp-alarm@a00 {
-> >>> +			compatible = "qcom,spmi-temp-alarm";
-> >>> +			reg = <0xa00>;
-> >>> +			interrupts = <0x7 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
-> >>> +			#thermal-sensor-cells = <0>;
-> >>> +		};
-> >>> +
-> >>> +		pmih0108_gpios: gpio@8800 {
-> >>> +			compatible = "qcom,pmih0108-gpio", "qcom,spmi-gpio";
-> >>> +			reg = <0x8800>;
-> >>> +			gpio-controller;
-> >>> +			gpio-ranges = <&pmih0108_gpios 0 0 18>;
-> >>> +			#gpio-cells = <2>;
-> >>> +			interrupt-controller;
-> >>> +			#interrupt-cells = <2>;
-> >>> +		};
-> >>> +
-> >>> +		pmih0108_eusb2_repeater: phy@fd00 {
-> >>> +			compatible = "qcom,pm8550b-eusb2-repeater";
-> >>> +			reg = <0xfd00>;
-> >>> +			#phy-cells = <0>;
-> >>> +			vdd18-supply = <&vreg_l15b_1p8>;
-> >>> +			vdd3-supply = <&vreg_l5b_3p1>;
-> >>> +		};
-> >>> +	};
-> >>> +
-> >>> +	pmr735d: pmic@a {
-> >>
-> >> Hi,
-> >>
-> >> The PMR735D is available in pmr735d_a.dtsi
-> >>
-> >> Can we find a way to reuse that include file instead of duplicating it
-> >> here ?
-> > 
-> > In pmr735d_a.dtsi, the peripherals are added under the parent phandle
-> > "spmi_bus", which was commonly used in older SoCs having only a single
-> > bus under the PMIC arbiter, but in Kaanapali, there are two buses
-> > present under the PMIC arbiter, with phandles "spmi_bus0" and "spmi_bus1",
-> > so we cannot include the file as it is.
-> > 
+> ...
 > 
-> I know the problem. I disagree with using include files in one case, and
-> having the PMIC in the dts in the other case.
-> 
-> So there has to be a unified way to handle this in all cases.
+> > Following your series, I would like to bring to your attention that
+> > Texas Instruments SoCs also have a component which requires similar kind
+> > of configuration, named Timesync Router(TSR). It enables the
+> > multiplexing of M inputs to N outputs, where inputs can be selectively
+> > driven based on N output configuration. A detailed explanation of the
+> > TSR and our attempts we tried to implement TSR can be found in following
+> > RFC series:
+> > https://lore.kernel.org/all/20250605063422.3813260-1-c-vankar@ti.com/
+> > https://lore.kernel.org/all/20250205160119.136639-1-c-vankar@ti.com/
 
-Rework SPMI PMICs to follow the approach started by Johan for PM8008. I
-think this is the way to go.
+I fail to see how that is related to this series. I'm not going to 
+study these 2 implementations and imagine how it could be implemented 
+using this series. If the amount of overlap is just 'reg-settings' node, 
+then that's not really enough. More below.
 
--- 
-With best wishes
-Dmitry
+> > To implement TSR, the relevant registers must be configured via the
+> > device tree. We initially assumed that the device could be handled as a
+> > mux-controller and could be extended in the same subsystem, but it was
+> > ineffective. Having explored both the approaches, we now plan to
+> > implement TSR within misc subsystem, which aligns with the dt-bindings
+> > that you have proposed in this series.
+> > 
+> > The purpose to replying over this series is to inform you that we also
+> > have a component requiring configuration as outlined in this series. Let
+> > us know if you have any suggestions for this.
+> 
+> That's great! Thanks for the feedback.
+> 
+> Rob, Krzysztof, Conor, have you guys had chance to look at this series some
+> more? We are open to re-working it as necessary to address any
+> concerns/comments you have. However, this appears to be stalled at the
+> moment and I am not sure what we should do next to push this forward.
+
+I fail to see what is generic here? There's a generic node name, but 
+that has nothing else common. The 2 examples share nothing because it 
+is all bus specific. But then the bus specific stuff is NVIDIA specific. 
+It's the bus specific part that should be generic (to the bus type) IMO. 
+
+A concrete second user would go a long way to help. Anything "common" 
+from one vendor ends up needing something different from the 2nd user. 
+Somehow that 2nd user always shows up a month later... So the rule is 
+generally I want to see 2 users. Yeah, it's hard to get others to pay 
+attention, but that's not really my problem.
+
+Rob
 
