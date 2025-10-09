@@ -1,69 +1,73 @@
-Return-Path: <devicetree+bounces-225087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E30A6BCA51F
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 19:05:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF712BCA595
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 19:14:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CC1B44E4EA3
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 17:05:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF7074272B9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 17:13:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2583B23817E;
-	Thu,  9 Oct 2025 17:05:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C409023D7C4;
+	Thu,  9 Oct 2025 17:13:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YSDSAwKi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sQ3mn/VD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E39E2235045;
-	Thu,  9 Oct 2025 17:05:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F3023B63F;
+	Thu,  9 Oct 2025 17:13:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760029523; cv=none; b=gZTdeC1+pG8EVb9AUfwU1/VqQ/MDRFgy1vp/W4g6XyrQnizpdf5rapqskAc4p0Aj7Hd7ID80Jq5hItztD2vJYtUtMbDEqmzJQFRp5GZ0CRiDD+mmlEZX5XC1gZNqSszeWw/76YLTouQxlHQvDvGZdqonN2THMQeBF5+Qsh9lSME=
+	t=1760030022; cv=none; b=G+8EE/IwY36esDsFdTrJFz0XGHjsfq0oC4fjSCa4Vuse6p5FmEnuAzDnGi308FsTCpJk9Z25kD1pjoVAZdmdxzMqTJ3X3qBT8efNkt8hYbDcawMDdv7Df+X2PY4xcwabrOXpwbya/2oNlS/Km48ofOYpoXorNE3AFbWP/ihWInw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760029523; c=relaxed/simple;
-	bh=K/920CR2Ytam1wn7N7JUroePPcHUf353y47OxV5zx1Y=;
+	s=arc-20240116; t=1760030022; c=relaxed/simple;
+	bh=4m/b40Q8HlHAkCFpCXHLrFt6Ce02CTpjazD5P0VykkE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rpKwv3g0I2tNy8ClmF5gvkNOExP/Ay8pZQvZzZLAr1QLALvetzU0eVyxiAA6VXzEWqZxtIjMuAjLr63C9wYmKMxjPFZYWdt5jBTCq2aEw57r2BohuXPRjSbNp7UGhJqn0c3mmQE9i8Z0HXyz3w0UCodJTsudwkgetRp6cBJUqvo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YSDSAwKi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E870BC4CEE7;
-	Thu,  9 Oct 2025 17:05:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=l7n5E5FmZW9MJ/1vBbe0lh7J6JtgOjdHENmuYD1cw4WKDZjJiIPe8t/81Z7SsfmEC1E8dM35x1SjmsyTfbZR4QzUGBeY6B9favk+J8ZzS2yDiD40KEy2zS3qHqawHGMEb3N+w+DxUOaW3uw/mr+kz0dgvxaIAc6+VJmDgsvVJO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sQ3mn/VD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6127AC4CEE7;
+	Thu,  9 Oct 2025 17:13:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760029522;
-	bh=K/920CR2Ytam1wn7N7JUroePPcHUf353y47OxV5zx1Y=;
+	s=k20201202; t=1760030022;
+	bh=4m/b40Q8HlHAkCFpCXHLrFt6Ce02CTpjazD5P0VykkE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YSDSAwKixJwAcuHpinVRh5i8UjuDftvpwmX8U+4+hsr3pjU0Kbr04cRyidWCCnkKM
-	 0Zjz/FeI+Ghya5Hv1eFFXoyr2eNZIcuCC1Rgs9j5NzmzqKQcRH0rNdrDwWL8L4FPlc
-	 12dmobDe6OngdQ5rB86UsySfUB3ZwpGiX9MhYMHlO2DlkXCuNys8WYxZbOrZU7DXq6
-	 2ORjBMXNo7aZziGRzAzMsbtE7rQNSvZXAcexQzPtX4GsFPF+oPa4dnSVExXvVg4EGk
-	 1YAqe20JovGVMdObbjqS2teB6rD0y/UbPgM7xVj0Q3ahKEZSDk64uxCety8RxbxE6n
-	 ipKVeFwUr/wpw==
-Date: Thu, 9 Oct 2025 19:05:20 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
-To: Elle Rhumsaa <elle@weathered-steel.dev>
-Cc: Michal Wilczynski <m.wilczynski@samsung.com>, 
-	Miguel Ojeda <ojeda@kernel.org>, Alex Gaynor <alex.gaynor@gmail.com>, 
-	Boqun Feng <boqun.feng@gmail.com>, Gary Guo <gary@garyguo.net>, 
-	=?utf-8?B?QmrDtnJu?= Roy Baron <bjorn3_gh@protonmail.com>, Andreas Hindborg <a.hindborg@kernel.org>, 
-	Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>, 
-	Danilo Krummrich <dakr@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Marek Szyprowski <m.szyprowski@samsung.com>, 
-	Benno Lossin <lossin@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Drew Fustini <fustini@kernel.org>, Daniel Almeida <daniel.almeida@collabora.com>, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, rust-for-linux@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v15 3/7] rust: pwm: Add complete abstraction layer
-Message-ID: <pxwzgjl4men4ia2jfky6i4pcpzmlxnuorzltfsurrosz27atbz@n2x7bt77nd5n>
-References: <20250930-rust-next-pwm-working-fan-for-sending-v15-0-5661c3090877@samsung.com>
- <CGME20250930122733eucas1p1017471af8564a40f60be74c5ae50bbc4@eucas1p1.samsung.com>
- <20250930-rust-next-pwm-working-fan-for-sending-v15-3-5661c3090877@samsung.com>
- <aN2Vrf97-uCR41x9@archiso>
+	b=sQ3mn/VDly7N6oRo4YHgs3kB4pz8mCUs06Vf6MTzzHsGNRnR0UrMzRMakSX0IlDsO
+	 IDxfG4ti/zNQx92aK8O4FkV8izUQ88X1aD3M1R6rccbNrgaqDOqVUmw+wKTHXmvXyZ
+	 9gd7gPJF59QtGz5Gd++meMjtLhkcbufX0B2FzNwP1FJti+ONeTDDUvY5usngDNLJkM
+	 qzqMhuAFuIU8gNzmjiEWgHMP2w8VIIFi99yzpAR5rR09uEEQLHTUhbUAd2ZNqTCFkY
+	 1H/WAapbKklLusROb8CPfopsy7NKxeDDGtgzpxKWwV6PJtV1Gmv/+VXRK6gduHYyZS
+	 pJ9R2ZuMWH5vw==
+Date: Thu, 9 Oct 2025 18:13:36 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Roy Luo <royluo@google.com>
+Cc: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Peter Griffin <peter.griffin@linaro.org>,
+	=?iso-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Joy Chakraborty <joychakr@google.com>,
+	Naveen Kumar <mnkumar@google.com>,
+	Badhri Jagan Sridharan <badhri@google.com>,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: usb: dwc3: Add Google Tensor G5 DWC3
+Message-ID: <20251009-lizard-slapstick-4de7dfe2322d@spud>
+References: <20251008060000.3136021-1-royluo@google.com>
+ <20251008060000.3136021-2-royluo@google.com>
+ <20251008-slider-uncombed-66790ea92ea0@spud>
+ <CA+zupgxnBK_k2X0_KKX9pUMMTwY4VhsyTEEVz6v+__u=2xR8Ow@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,48 +75,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5mhwlegpqwr4uy3k"
+	protocol="application/pgp-signature"; boundary="V8Kj8DQ2DFM161Td"
 Content-Disposition: inline
-In-Reply-To: <aN2Vrf97-uCR41x9@archiso>
+In-Reply-To: <CA+zupgxnBK_k2X0_KKX9pUMMTwY4VhsyTEEVz6v+__u=2xR8Ow@mail.gmail.com>
 
 
---5mhwlegpqwr4uy3k
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+--V8Kj8DQ2DFM161Td
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v15 3/7] rust: pwm: Add complete abstraction layer
-MIME-Version: 1.0
 
-Hello Elle,
+On Wed, Oct 08, 2025 at 09:40:57PM -0700, Roy Luo wrote:
+> On Wed, Oct 8, 2025 at 1:58=E2=80=AFPM Conor Dooley <conor@kernel.org> wr=
+ote:
+> >
+> > On Wed, Oct 08, 2025 at 05:59:57AM +0000, Roy Luo wrote:
 
-On Wed, Oct 01, 2025 at 08:57:17PM +0000, Elle Rhumsaa wrote:
-> On Tue, Sep 30, 2025 at 02:20:34PM +0200, Michal Wilczynski wrote:
-> > [... 700+ lines trimmed]
+> > > +allOf:
+> > > +  - $ref: snps,dwc3-common.yaml#
+> > > +
+> > > +unevaluatedProperties: false
+> >
+> > So every property from snps,dwc3-common.yaml is valid here, with any of
+> > the permitted values?
 >=20
-> Reviewed-by: Elle Rhumsaa <elle@weathered-steel.dev>
+> Conor,
+>=20
+> Appreciate the review.
+> Ack to all the comments, will fix them in the next patch.
+> And yes, every property from snps,dwc3-common.yaml is valid here.
+> You can find more context here [1], essentially the dwc3 glue would be
+> operating on the same platform device as the dwc3 core, hence all
+> properties are allowed.
+>=20
+> [1] https://lore.kernel.org/all/20250414-dwc3-refactor-v7-0-f015b358722d@=
+oss.qualcomm.com/
 
-Can you please trim the quoted part when you reply to only contain the
-relevant part? Having to scroll several pages to see your one-line reply
-is not a good use of my time. Multiply that by the number of recipients
-of your mail.
+I find it exceedingly hard to believe that every property from that
+file, with every permitted value, is possible. AFAIU, the tensor g5 is a
+phone chip that's only used in pixel devices, not something that people
+can just buy and integrate into whatever device they feel like. There
+should be a vanishingly small number of possible configurations,
+possibly exactly one configuration. There are dozens of properties in
+the dwc3 common binding, of which at least 10 are for "quirks" or other
+sorts of hardware errata that are not going to be variable from one
+phone to another.
 
-Thanks
-Uwe
-
---5mhwlegpqwr4uy3k
+--V8Kj8DQ2DFM161Td
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmjn600ACgkQj4D7WH0S
-/k5XeAgAnu0TfZoOsdkntucLzQ0zg0HTTAqaoe7N7MdLgsQQHxRpQxck6cJb3Vw+
-1J8jo8DQzCi+lwytWM5iubVukxGFCxFV5h4Qp0bW7/eYCK/fTscZ7g7uuKO+GS0D
-7s0Lr6MOsfe1MjqHyqAMKZYHWQjwZresPWVJCpyuInAhCoV60f1SSEoWsrwkpdZX
-CFREtKf1Gn5yYj0cNQHl8ubNIZ3uW4tlbvj93wZjztMXQROG/8tvJ29vcUTdSqDR
-UbF+xPvIu1hVRAtLjGwm3PBioLnwB01cV0g427s3pDSwNRUrsEC4flnJAqKa9r1g
-PvYN7XNxSwfgteGrqDjFVby3Ap8cBw==
-=Y2eC
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaOftPwAKCRB4tDGHoIJi
+0orZAQDVQounnZp8XW0MZDnLxiorx4hG4jOujXdg9qHFe7k1qgD/eJp5UpO9UKjh
+jvA+gND8RxLGnuG3C6H3uJAs4WuugQw=
+=JWpo
 -----END PGP SIGNATURE-----
 
---5mhwlegpqwr4uy3k--
+--V8Kj8DQ2DFM161Td--
 
