@@ -1,60 +1,59 @@
-Return-Path: <devicetree+bounces-225097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A3DCBCA88F
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 20:08:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D1A6BCA8A0
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 20:09:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0072A1883F6E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 18:08:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D39B1884735
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 18:10:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1955E2472AE;
-	Thu,  9 Oct 2025 18:08:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64E8B23C8A1;
+	Thu,  9 Oct 2025 18:09:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G7cLrXOS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pvMKkk1i"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEBFF246BD7;
-	Thu,  9 Oct 2025 18:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 341F821CC79;
+	Thu,  9 Oct 2025 18:09:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760033302; cv=none; b=q3rrtMjoWQsa7RR5dP5RmsOS/5S4gdos6F88m8ngtubWhACScvSAikABcFAqqnt6i0nbgIXeOgtkkdRMoaRz4AYeVksMPC8UtNtCmmja0F/DycIN9SpNwxnU/ohEoPUnMlqDuFz66M4E+/VE4TaOYcRuuaz1uGWM5b9+1FLWtU4=
+	t=1760033385; cv=none; b=AmGem3CU+IwXdegALc+635/RGqpWtU6oeKQBvd+e/EfXYSgsbqJ499viKPvXWn1foa0Pas4CMBu9l8q8jD54s0dvP3h+Aw8K98ZqTWCbA5MdlErVknMdEiRP0MDnGfLIWTUPk6Bu89aA1tdVZQq/X83hDumVyCh/SPz8mtc26ss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760033302; c=relaxed/simple;
-	bh=gFSHtsrqHS0nB/eq5mW+h7jeWQpgprps5uurLkFEa9o=;
+	s=arc-20240116; t=1760033385; c=relaxed/simple;
+	bh=psvimf+4cjW7hPjOn60sEi/4pOZWektq7cE4LAxD4zg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O99sip1NhNptt4I1RV0seLzg2ifg0w6H2BXigU+0tBwC5zFGducbp0WE+ypKLCPZ+4yYJY4D8NTzSleRqDVqMvpweX9PDQcQxzWxDhgShT1tUprTXUVcBs4GASlQTdXEaBrjn+xCKCWeGSV1/SVI7/3PNTLS/8um34EKaI9jO5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G7cLrXOS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6953C4CEF8;
-	Thu,  9 Oct 2025 18:08:21 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oC7x/i5BZ2irjCGy3bKrgaXIPg3EdNRfreb6jTEHOd+VmueLyEbJSfMux+kUNMCqCcV1iNpCwT+R5hg2s3kMdVv3SBgSeYWrPD/Ul4Twxaz2H1lEfNJDAkdpq8ZdJaFreuNu2I+b7CHCSIlQ/4Por0tym3cGfRIxBExiwLmQWwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pvMKkk1i; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 766FDC4CEE7;
+	Thu,  9 Oct 2025 18:09:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760033302;
-	bh=gFSHtsrqHS0nB/eq5mW+h7jeWQpgprps5uurLkFEa9o=;
+	s=k20201202; t=1760033384;
+	bh=psvimf+4cjW7hPjOn60sEi/4pOZWektq7cE4LAxD4zg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=G7cLrXOSSPv9MR5A/ylYV0/Z+zpdfDGiEkMnPvlAxx9Ss8U4TqvcmeCei37DqCZCN
-	 sNXIjhS0l8rGmzuAegxsmG1gHFC0X5QNR1HstQwsCsFJzRONN2kIqIu7RiBnZbZ8MT
-	 aW89CaU7aR60rmnELGIBk5rT07iD+S92PJtpGCrDEMXlfTqEUc6aCPf+rl34ouMI0Z
-	 HAg8raaFtDAtTx9xRXg51u41Bf8/8Xgcd/U9mSuhDrduE9uUjip1Q/RN+PZj7Yypvw
-	 jvlU3uNMgbnhT+TsQfuCd0Gft1ezc5fGn2L3W3KgqqRmJCOTZdmTm1ncaWLA1JLrxT
-	 7giywDkL22yvQ==
-Date: Thu, 9 Oct 2025 13:08:20 -0500
+	b=pvMKkk1iRErlySrdUlHzDpptMFJ1onkO5o9WXKMiKn3BbQ+xfvWuQSTSF7FphQQqQ
+	 8nnGsXp/RqZ4vQqnU8i0fPVVAjt9QSXGSYmENGs2MJWYlqjuLIBQYVG/Cuv182+tFP
+	 cAlmugZqnyyTqLp2MwQKx3+4CebkqPu6+q4IZ0boN78QSQwg60gWuiLJVbsE6Ce1VE
+	 LSwao3E2U933Rt2far7sdABZHIJ6nLDaa6uiRdD5BgvLThPCPGfvZR7UIa+k4alPb7
+	 w1yf/RQVAhcidJC3wKm+0umGbeVgI5y3Qy0GtrZJD6wJZpagBkC/z6drAS1R4mbmnn
+	 fRsQR94YuuDlQ==
+Date: Thu, 9 Oct 2025 13:09:43 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-Cc: andrew-ct.chen@mediatek.com, houlong.wei@mediatek.com,
-	minghsiu.tsai@mediatek.com, linux-arm-kernel@lists.infradead.org,
-	conor+dt@kernel.org, kernel@collabora.com, mchehab@kernel.org,
-	linux-media@vger.kernel.org, matthias.bgg@gmail.com,
-	devicetree@vger.kernel.org, krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-	angelogioacchino.delregno@collabora.com
-Subject: Re: [PATCH v3] dt-bindings: media: Convert MediaTek mt8173-mdp
- bindings to DT schema
-Message-ID: <176003330002.2945848.1684483628516504811.robh@kernel.org>
-References: <20251001183115.83111-1-ariel.dalessandro@collabora.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Job Noorman <job@noorman.info>, imx@lists.linux.dev,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v3 2/2] dt-bindings: touchscreen: consolidate simple
+ touch controller to trivial-touch.yaml
+Message-ID: <176003338269.2947376.2853814079058891968.robh@kernel.org>
+References: <20251002164413.1112136-1-Frank.Li@nxp.com>
+ <20251002164413.1112136-2-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,21 +62,42 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251001183115.83111-1-ariel.dalessandro@collabora.com>
+In-Reply-To: <20251002164413.1112136-2-Frank.Li@nxp.com>
 
 
-On Wed, 01 Oct 2025 15:31:15 -0300, Ariel D'Alessandro wrote:
-> Convert the existing text-based DT bindings for MediaTek MT8173 Media Data
-> Path to a DT schema.
+On Thu, 02 Oct 2025 12:44:05 -0400, Frank Li wrote:
+> Move ar1021.txt, azoteq,iqs5xx.yaml, himax,hx83112b.yaml,
+> hynitron,cstxxx.yaml, ilitek_ts_i2c.yaml, semtech,sx8654.yaml, ar1021.txt
+> to trivial-touch.yaml to consolidate simple touch yaml binding to one file.
 > 
-> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  .../bindings/media/mediatek,mt8173-mdp.yaml   | 169 ++++++++++++++++++
->  .../bindings/media/mediatek-mdp.txt           |  96 ----------
->  2 files changed, 169 insertions(+), 96 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8173-mdp.yaml
->  delete mode 100644 Documentation/devicetree/bindings/media/mediatek-mdp.txt
+> change in v3
+>  move more files into trivial-touch.yaml
+>  don't add rob's review by because big change
+>  prevous discussion at
+>  https://lore.kernel.org/imx/175937443731.2982292.3723741722041625819.robh@kernel.org/T/#m35cfaaee8239b7a9aad3354b80de5f44d267c2e9
+> 
+> change in v2
+>  move to trivial-touch.yaml
+> 
+> previous discussion
+>     https://lore.kernel.org/imx/20250925-swimming-overspend-ddf7ab4a252c@spud/T/#t
+> ---
+>  .../bindings/input/touchscreen/ar1021.txt     | 15 ----
+>  .../input/touchscreen/azoteq,iqs5xx.yaml      | 75 ------------------
+>  .../input/touchscreen/himax,hx83112b.yaml     | 64 ----------------
+>  .../input/touchscreen/hynitron,cstxxx.yaml    | 65 ----------------
+>  .../input/touchscreen/ilitek_ts_i2c.yaml      | 76 -------------------
+>  .../input/touchscreen/semtech,sx8654.yaml     | 52 -------------
+>  .../input/touchscreen/trivial-touch.yaml      | 31 ++++++++
+>  7 files changed, 31 insertions(+), 347 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/ar1021.txt
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/azoteq,iqs5xx.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/himax,hx83112b.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/hynitron,cstxxx.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/ilitek_ts_i2c.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/semtech,sx8654.yaml
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
