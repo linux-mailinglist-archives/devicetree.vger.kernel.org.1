@@ -1,102 +1,117 @@
-Return-Path: <devicetree+bounces-224940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0449BC9165
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 14:42:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15193BC918F
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 14:44:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1625A1A62652
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 12:42:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B3163A4DC7
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 12:44:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC7122E267D;
-	Thu,  9 Oct 2025 12:42:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A831E2D6E58;
+	Thu,  9 Oct 2025 12:44:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oV+LzD5v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jFFQez6X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96F1E2DC346
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 12:42:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 755631DE8B3;
+	Thu,  9 Oct 2025 12:44:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760013729; cv=none; b=m1z5kCCwKqo30hlIC17/HL5OwnsvnGr14jSaRTxeA358l43jWXGe9YZdKUPFPAQFYth2TgkOUKzzUEGGk/8e/6c3DUML3HaT+mkrDRgJ2TQ7HUhr+ybRW2r0TBCErrIU9X0HLPJ+NHnK4Sox6WgJn+ucA7n479bnXeYi3uLcNts=
+	t=1760013873; cv=none; b=qWXnZfMGfQslMpHVKpQ2jngbLst1zRGm8Ygk+WYGURioLpqXZq+rYqHTUyAkVBdE9IXkhttZ1YizBZtnFW50ORZjCdLEOjqMczW25onx+jVy0MPiaVELMBxpr3WF7XmBoNYcSWIzBcxJ/DDc2VHkUDCAYqSVADlh/M0z1eDmxT8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760013729; c=relaxed/simple;
-	bh=QeXANDoY3dA5GoghojfGO1E3AP0vVKa96j+PiZHrlrA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GOa8WM/gAyNpBxUv1uzdm4fBPxKIFeUsyc5j9mOaHelATxi5ca9MQW+D8HY8l89O6JtPshA7+tGdqwX8NVXcU08Jfj2FwFJvyS+rIbYERal3LAoQsnQpJos6AU4pw3f+QYGYKo3+dqLaLGK+KR0JX5RblKQOBH1i0nQeUEqmuGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oV+LzD5v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AF08C113D0
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 12:42:09 +0000 (UTC)
+	s=arc-20240116; t=1760013873; c=relaxed/simple;
+	bh=5xe6Ytzs8KZ8O9dv9Ntfv5ptgH5y/irf7RE2r0MbrEw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ONEcwhY90BEfuSI81eLMZ1/5X0yQWeCWr37Uf20nzLH1aQr/Hz1cZKQW2yunS/1BL3IG/hCjZkC9g01XWZUzjl/8+rwCbqVoe4NOZeunCIkGs/zr6JqitWoCOdQ67wKPdVGIZzARnsl6vBrpYZjZ6SWcOOaR04vkOyQv+SsRHZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jFFQez6X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 925D4C4CEE7;
+	Thu,  9 Oct 2025 12:44:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760013729;
-	bh=QeXANDoY3dA5GoghojfGO1E3AP0vVKa96j+PiZHrlrA=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=oV+LzD5vxTULw8ao/p3k9Kj+gE80OMDqEMaDN56BNvsfbhhp2lnjlD75mSjL3/ubW
-	 7ks8n8K3kmZZewYlU8S1d5wLfpZp1o74VfdXafqS2fp1Egu6bnt7x9L0dw8Mu8BgWm
-	 kB21PmY4ijADTE2DEU7An34QqGt8Xh4NgZje89CZv8hKmxDBthdN4B8QHyOM9qBgbO
-	 z6XXYfBhwA0CUV/aySokP8xyVy8C1MPe31KOaYBJ4dTB3rcPQpWkY3sxAkrEW78hqD
-	 AdXFYOun0LsJBiKUj9XgyldT1OOGMJ10H6F28uJcHTwzHcPT6l4PaszJ7j9rkgZ0oi
-	 G4/bI/XYH1iCA==
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b48d8deaef9so159602766b.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 05:42:09 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCViUo2ELC/5EiPtEeK1U1N78eAb1ettgd/53+hEQiTMYVPfoLSlXgRuSQZQIYNc/eZ3iCqVRgfHIRH9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLAeWw5AEOHEfK0OYo492Zr1ijivY+pzYBizx4m9C4vZOZvR+Z
-	zVIzX6wXZ3Iuq+xSkjs+/A+nLpjvgQ6SRvX2fy5ys7uz8dRJEvtauog5G11ytqRIomKO4h/fPP4
-	KC7oQI0D1xLqhkgZ3M7zpEHSoX9H/oA==
-X-Google-Smtp-Source: AGHT+IEuECf/wjZh/1XKrIIGS6JTvgX4op6M6unqu0wb5kahYYe2XWklYd666VH9MZORUQaoIOMQVv2jrZlC5O+hBuc=
-X-Received: by 2002:a17:907:1c0f:b0:b40:9dbe:5b68 with SMTP id
- a640c23a62f3a-b50aa792c29mr695845866b.5.1760013727678; Thu, 09 Oct 2025
- 05:42:07 -0700 (PDT)
+	s=k20201202; t=1760013873;
+	bh=5xe6Ytzs8KZ8O9dv9Ntfv5ptgH5y/irf7RE2r0MbrEw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jFFQez6XjHhQT93r5q1c9+yfThNXZH+w9Vj5CNYQGlHgg42cjJfaXFms+qecvnxw2
+	 fk7rP6E9P0JFjCoc781UfkkC7Agq70FqIvCs6+YNigvOoclWKcQcB0QkEl1L/I1EgV
+	 O+EyY492mAg3/D2Ht9heyw2qH7WZzbIyZBTnbVNQABUDqs4/ozyZ4SC8r1lgRfy1D1
+	 VN4CasfsWp98kkeeb8RM9F2U3eYB+IDZ5Q97rwhoPEy+jsykCWWAWLVW+ZN0OLciDH
+	 jnXeZAGMiCS1AiPsJS9nC4aC0gvMimfrzrB1TXMyT5wGWeAOtbQA1A6VMpSLRQKAaZ
+	 nP8JHw1KwpMuA==
+Date: Thu, 9 Oct 2025 13:44:27 +0100
+From: Lee Jones <lee@kernel.org>
+To: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+Cc: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Steffen Trumtrar <kernel@pengutronix.de>,
+	Pavel Machek <pavel@kernel.org>, Mark Brown <broonie@kernel.org>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] leds: add support for TI LP5860 LED driver chip
+Message-ID: <20251009124427.GC2796410@google.com>
+References: <20250911-v6-14-topic-ti-lp5860-v3-0-390738ef9d71@pengutronix.de>
+ <20250911-v6-14-topic-ti-lp5860-v3-2-390738ef9d71@pengutronix.de>
+ <20250916153412.GA3837873@google.com>
+ <875xd0jslv.fsf@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251007032209.7617-2-wsa+renesas@sang-engineering.com>
- <CAMuHMdUChRoJ-A4W-PBBQssMvsn1GZY5zXmWxJ9y+EA8M2p3gw@mail.gmail.com>
- <aOWGWkQn1AK22tJB@shikoro> <CAMuHMdUXoq3d010y0vyXvvaHpgaV7rHb66VAHrwJxAZXzt+z=g@mail.gmail.com>
- <aOY2tdEXmhdZ0Yeq@shikoro> <20251008224208.GA237448-robh@kernel.org> <aOdZgyPJLsZ5IjBS@shikoro>
-In-Reply-To: <aOdZgyPJLsZ5IjBS@shikoro>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 9 Oct 2025 07:41:55 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKLOF-zka5iuh60DFiqtYC23SX2ZH4z8H8iq75gq=szmw@mail.gmail.com>
-X-Gm-Features: AS18NWA-QNJE7WtDzywh-WE_-Xda9MlREv8dk6BSHWSPEt_hGEz2b0IUc-sF2So
-Message-ID: <CAL_JsqKLOF-zka5iuh60DFiqtYC23SX2ZH4z8H8iq75gq=szmw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: bus: renesas-bsc: allow additional properties
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, linux-renesas-soc@vger.kernel.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <875xd0jslv.fsf@pengutronix.de>
 
-On Thu, Oct 9, 2025 at 1:43=E2=80=AFAM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
->
-> Hi Rob,
->
-> > There's always examples not to follow...
->
-> Sure. The good thing is that I could fix the bad examples, once I learnt
-> how to do it properly.
+On Tue, 30 Sep 2025, Steffen Trumtrar wrote:
 
-Much appreciated.
+> 
+> Hi,
+> 
+> On 2025-09-16 at 16:34 +01, Lee Jones <lee@kernel.org> wrote:
+> 
+> > > +#include <linux/gpio.h>
+> > > +#include <linux/led-class-multicolor.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of_gpio.h>
+> > > +#include <linux/of_platform.h>
+> > > +#include <linux/regmap.h>
+> > > +
+> > > +#include <linux/platform_data/leds-lp5860.h>
+> > > +
+> > > +static struct lp5860_led *mcled_cdev_to_led(struct led_classdev_mc *mc_cdev)
+> > > +{
+> > > +	return container_of(mc_cdev, struct lp5860_led, mc_cdev);
+> > > +}
+> > > +
+> > > +LP5860_SHOW_MODE(r_global_brightness_set, LP5860_REG_R_CURRENT_SET, LP5860_CC_GROUP_MASK, 0)
+> > > +LP5860_STORE_MODE(r_global_brightness_set, LP5860_REG_R_CURRENT_SET, LP5860_CC_GROUP_MASK, 0)
+> > > +DEVICE_ATTR_RW(r_global_brightness_set);
+> > 
+> > How is this different to /sys/class/leds/<led>/multi_intensity?
+> > 
+> > # echo 43 226 138 > /sys/class/leds/multicolor:status/multi_intensity
+> > red -
+> >     intensity = 138
+> >     max_brightness = 255
+> > green -
+> >     intensity = 43
+> >     max_brightness = 255
+> > blue -
+> >     intensity = 226
+> >     max_brightness = 255
+> > 
+> 
+> the LP5860 has a register for setting the maximal brightness that holds for all LEDs in the matrix. multi_intensity and max_brightness is only for that one multicolor LED, right? And I can only manipulate the max_brightness of that one multicolor LED instance.
+> If I'm wrong, I'd be happy to not have to add the sysfs files.
 
-> > The unit-address is the only part a bus schema should define. And there=
-,
-> > lowercase hex is standard unless you have distinct fields (e.g. chip
-> > select and offset).
->
-> Okay, so, the proper pattern is: ""^.*@[0-9a-f]+$"" which is what most
-> busses are using. Will fix.
+Does group_multicolor help?  Or can it be expanded for future similar use-cases?
 
-You can drop the '^.*' part. We have a mixture of both though...
-
-Rob
+-- 
+Lee Jones [李琼斯]
 
