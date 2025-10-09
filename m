@@ -1,183 +1,524 @@
-Return-Path: <devicetree+bounces-224723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD4D9BC73E6
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 04:53:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C6E8BC73E3
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 04:53:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 2E89934AF33
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 02:53:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F16143E152F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 02:53:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEF181C861A;
-	Thu,  9 Oct 2025 02:53:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93D271A9FAF;
+	Thu,  9 Oct 2025 02:53:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SDxpMq/O"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UIqyWg7h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F37A7147C9B;
-	Thu,  9 Oct 2025 02:53:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 681F4147C9B
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 02:53:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759978387; cv=none; b=ttVkMGi4pERP17IOnQac+RoFCM4F3ZIc8I8THzOxCRclgvjM910tTRAZk8GPIidy6w9RsdTTA1jLYaj3mhT9vXeRC2Am+S3DRDOCkIfnaAxZWi01slRsi8AHVvSuud/k8JKV+O9S1myTqwIHkCr6uNJCfNq++lmRl+qWjINVsQM=
+	t=1759978384; cv=none; b=cE3pIxB+IUmrHOSzwc4iGxjL9dGnSWxe7fifv6H0Zk6llti18cEFhIxbCnJUs2SK2cjP5njHg7uZK51lGn42wZtHHyMXzmCPlWPR96W6eXwzlPSD2AMvATm5Jg6lJKO/lt1ZGx5mFzqhBbxl5bYvLtwQIUyGJUPNbfLgtInMoZI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759978387; c=relaxed/simple;
-	bh=PZkP2iwejsibDir07G4hGghuPvQs2LumiFFkm7qI4Ao=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=FY/A0JUWxTSn5cZLg+7n5t3eNLDXN08ZISe9zMpUpLQ1MrPk2CGWYuZiMsHVbwS7yRtCosaWCCsujWeS358aHbiCNOM1CrC+duY5nboIwl2TYtklQi1tDVcVH8FMT2vTBHuF0kPXPmHBqHYW1xlFndPReZhoFANpo3imQsVd7SE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SDxpMq/O; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 598I5G18004415;
-	Thu, 9 Oct 2025 02:52:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Gtfn0roKHYaEpWWdUwjuUbhlnlojITr0mf1GX/TDhOE=; b=SDxpMq/O23qlJwNc
-	yu2AlMGFaeTL+dgyTQcp6A3sC99jR4HhLzNqSesc0azLVS3yAVpEwQ/s1fuPGpP4
-	4jG4Wkn5W92NoxD4Pwz9V4TmtwMmqqA4i3ZUDFg0EuJ6vqV8IggqHCDjkjZCobp9
-	75Mz7gnuGWHtrA5iCpj+XI4hKLz7WD8U2IlyFPU0UhRqACBF0mZOFYdrcDqeutXo
-	ZrpeCGtTUKiKguxRi/NIBAZ18AirZiU86V27OvPVMVolNkfC9CFbWO4s+dBUwI/N
-	oOqlStUNGqn2LtuuiDnOx0/pb6xUkVog3G5U3iygmy+SLjuvJ7Ed5fU4HdDwWZ1d
-	TzHPDQ==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4ks7p2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Oct 2025 02:52:50 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5992qnQT024105
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 9 Oct 2025 02:52:49 GMT
-Received: from [10.216.44.193] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Wed, 8 Oct
- 2025 19:52:44 -0700
-Message-ID: <0c0b6491-1def-d055-b689-2bb99f4306df@quicinc.com>
-Date: Thu, 9 Oct 2025 08:22:41 +0530
+	s=arc-20240116; t=1759978384; c=relaxed/simple;
+	bh=DQvSiPW6omkDcXg0/t67Bzq8UFmsbKyoN8TdwS08GSU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jHKhHY8SjPX926O1ZzTQzG6rTTkNttci1NsWecaERYoj4VonVHMqadeAg3uVGPIQ+o8yEqmFDzd9ThkPt0OBsiCUBzXkAnzezd4nGAKxkKYoVI6FUr4BAvxR5lnajMycJX2Sm52ykkpbZIXlMyJ+kSpJaXAoG1VI++j3lHTL8po=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UIqyWg7h; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-b3da3b34950so70308066b.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 19:53:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759978380; x=1760583180; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dtYP+3Jd5yeKlx5FWWzJNjaDsE4vTKF5pyfBDOkCk1I=;
+        b=UIqyWg7hN5i+lRcJpItohKAqMG/jjvGkyRQ1vjODutseHdknT7+R8l4aXq8e7uzu04
+         HEEu1+kO0eQUJ2IRaDCNL8nVjFrdUQ4C6TBNivtIoKTlvwSx92wePzFCVTDFkrTjZAZc
+         PierhkUN/RHPu645xVkfUe3pZIoW7jmLHDj46Fxkm4z4xJDJPJDZVF5sDhN/x6b74Xs4
+         eoBA16XLABHC8lTi6s/Z8QE3HikrN7oxQuwG/Z3OyTifswGcjpDXzWk1Xf/6aTiQrwFd
+         gUGwnLk4uA0Rw5xhF5KDMDc8F5Ag0EOzhVa/CgZL/1mfvHsFDXhxi3aglzT1Aqy4nhBL
+         yFWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759978380; x=1760583180;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dtYP+3Jd5yeKlx5FWWzJNjaDsE4vTKF5pyfBDOkCk1I=;
+        b=sowEfyJ9sOcVeDxI/1+JPHlObNN5VtO9rydO4R5TAKQxNwLE1svocmca5qSa9dolas
+         FZj+N5lfQb786SyBEHeNwsqRf3F8SuZcVG5RG0XkZaimgHyHzb9tGT6ec+4nCF0PgGeA
+         6JhYo930yDA8VGOV3KMG2ulxadl2BF9Kjq4jQc1QXTKMRF92LBtHnfCn92DwQGjhznuH
+         C2iLql52SCAvAWIOpH9yhNbahEsGiQCqKklxZNz76RhztFi03SKwoIctaA8mcZBskwsz
+         tosvEAkQVfQwz7m9Pkn05GXhWgfHSuqQvz/OBrGzVp2CkAkle8cVzHIA3+x7XU3I40Wb
+         T5yg==
+X-Forwarded-Encrypted: i=1; AJvYcCUupaicBrhrqRoLhTlJlDWWVFrAiO35Iw80DQnRsQ/qYTjNa6wwTmOhybti4SLo4ur6u3sEAVjXYaQN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw2+7HVXgCBBhRGYCbBKS98QOLLMHNWpUU4z/KXlesn2BVESIcG
+	OMf4yX3+JE4/6jKlXgg/F9n/chEek+c2kDNbjhBhPsa7EoW52M+EjH8+6MLvf5B5+ewpkxA9XSa
+	hs38enuwELu43DX091rQkyHvopb+UzHM=
+X-Gm-Gg: ASbGnctfe3ZPBag0M15V/iia3RndfoGpzqJr5Y/yY/e/keRLO3r11dLXhlgSyZoQ9uc
+	6dZkRgsbnC/AN6487e/igh0rF07S5YxlForLX660Mowv9roKW1Nlvn3ekntIoaKVtLgw7qS/uYG
+	XS5laZDlcXfR0tNzqs8vopp/coaCad05n6Tum4YaePI4VQ1Pi7ZCnbhg2MLkHR/wQHJXxyBeCUb
+	otEXZ/NhV/rrhVKy1ZUTQfz600hvb06jw==
+X-Google-Smtp-Source: AGHT+IFKD7kMQHOm1a4qgWhdq3lfMUq1fnsfbv1M5SB3kAfjZgbYmQTxi6SEVcCEdOc4V2jqT301qvxUvGD2y+r8DNg=
+X-Received: by 2002:a17:907:7e82:b0:b48:44bc:44de with SMTP id
+ a640c23a62f3a-b50abfd67a2mr603608266b.51.1759978379357; Wed, 08 Oct 2025
+ 19:52:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH v3 0/5] Introduce "non-pixel" sub node within iris video
- node
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, Bryan O'Donoghue <bod@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Charan Teja Kalla
-	<charan.kalla@oss.qualcomm.com>,
-        Bryan O'Donoghue <bod.linux@nxsw.ie>,
-        "Dmitry Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>
-CC: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
-        Dikshita Agarwal
-	<quic_dikshita@quicinc.com>,
-        Abhinav Kumar <abhinav.kumar@linux.dev>,
-        "Mauro
- Carvalho Chehab" <mchehab@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-media@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <7b6db4fa-2f73-376d-4eb3-64c1c7e6cda3@quicinc.com>
- <4a32bbec-2baf-4210-a7c1-1ddcd45d30c8@oss.qualcomm.com>
- <SuwJuCIcLVJwN3YeN1il6tB9wO9OH6bYcnbRpxpuI9Dl7piYLN-hVdnyv0Mal6N-W5pi2aCZI8MxHZDEkoE63A==@protonmail.internalid>
- <4d87d1ca-55b2-426e-aa73-e3fd8c6fe7bd@kernel.org>
- <10a8ccda-4e27-4b06-9a0e-608d6ade5354@nxsw.ie>
- <4cb4a92d-2f20-47c7-881e-aadcc6f83aa0@kernel.org>
- <1516f21e-aee3-42cf-b75e-61142dc9578d@oss.qualcomm.com>
- <9bae595a-597e-46e6-8eb2-44424fe21db6@linaro.org>
- <MMSKAu89Ew7StAeFBV442KfKNzmqbTSQ-maFG35Jr9d8PkUV2L4sx44R2DRevXA8mC45vkA398l2mvVzarZwew==@protonmail.internalid>
- <bcfbf35b-69ed-4f39-8312-6a53123cd898@kernel.org>
- <d46c0335-99d6-469f-a61f-aca4c851f745@kernel.org>
- <GyrcG3qBN7c5C7ajCs3EV81hWvuaVbg64CpzQ-X3d_p6EauoiKxSoG2aOKE21-j12SWFjNDjV-kVSwYYqVm_lQ==@protonmail.internalid>
- <a0dc93ec-e35c-409b-8dfb-1642c92a9f0c@kernel.org>
- <98e6acf8-80d7-4894-b4ce-ce74660722ef@kernel.org>
- <5085c857-f6e8-4faf-b61a-a9ee562ccf06@kernel.org>
-From: Vikash Garodia <quic_vgarodia@quicinc.com>
-In-Reply-To: <5085c857-f6e8-4faf-b61a-a9ee562ccf06@kernel.org>
+References: <cover.1758676290.git.zhoubinbin@loongson.cn> <9823e7afe713450e210dab9dba6fa18683dc1fe0.1758676290.git.zhoubinbin@loongson.cn>
+ <9cd368a1-4ba2-3b96-5cfe-0e600e77a3fe@linux.intel.com>
+In-Reply-To: <9cd368a1-4ba2-3b96-5cfe-0e600e77a3fe@linux.intel.com>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Thu, 9 Oct 2025 10:52:46 +0800
+X-Gm-Features: AS18NWAPP0659WSwKhaNs44ggQkxkSSAKKRn-C1M2Ku6cKJWGK3KMEaxMYsYV34
+Message-ID: <CAMpQs4KS=hd3zvj5KYH7vBXpbEhPLmS61H9dLgnRpBpH+04ChA@mail.gmail.com>
+Subject: Re: [PATCH v5 2/3] serial: 8250: Add Loongson uart driver support
+To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Jiri Slaby <jirislaby@kernel.org>, Haowei Zheng <zhenghaowei@loongson.cn>, 
+	Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	devicetree@vger.kernel.org, linux-serial <linux-serial@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfXxqvEwSha6c+s
- tVQH7Uaziht8KROR5d/2vOw0rF9FlLRD+10ENxz9ubmTVwEb3DztoJG27OAmYgXF5lywL4+aFSb
- sqE6U1PS2jnaoLeQkAXELZG0bAeMPVf14rFPYLzb4PbTO/V2uMI/+GuVh/fRhChJ1PPpsPGXyc7
- y1YLSAmA2WmdW19p3xnYEh6krv3QgwqXKGnSGFNghE6ksuz/PHsMWBj7lBgv1OVGPLt+I0nKHTT
- KEYuN/k4JzO9wm0HY6wmRrBnCxF8SpYWA0nx68ZnfbfwtBex8UwcBz1G80dKOYIvcF4lgPvrOI6
- L2LL3iYLnR95CStVPaHh5Ss1P4L02XdcygY48tBy2t0GDk3RnyDNNV1rm31I4s/FA4BNkoOFPxE
- hLy3YAPeob2UUbZSc5jfr6D4NK+tHA==
-X-Proofpoint-GUID: sOdZcMY9FRTU-0MvnQewv-pG5vYJFKR7
-X-Proofpoint-ORIG-GUID: sOdZcMY9FRTU-0MvnQewv-pG5vYJFKR7
-X-Authority-Analysis: v=2.4 cv=SJxPlevH c=1 sm=1 tr=0 ts=68e72382 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10
- a=zS5Hj0bcTTPWjRSGFTUA:9 a=QEXdDO2ut3YA:10 a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-09_01,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 impostorscore=0 spamscore=0 phishscore=0
- clxscore=1011 bulkscore=0 lowpriorityscore=0 priorityscore=1501 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
+Content-Transfer-Encoding: quoted-printable
+
+Hi Ilpo:
+
+Sorry for the late reply and thanks for your detailed review.
+
+On Tue, Sep 30, 2025 at 7:58=E2=80=AFPM Ilpo J=C3=A4rvinen
+<ilpo.jarvinen@linux.intel.com> wrote:
+>
+> On Wed, 24 Sep 2025, Binbin Zhou wrote:
+>
+> > Add the driver for on-chip UART used on Loongson family chips.
+> >
+> > The hardware is similar to 8250, but there are the following
+> > differences:
+> >  - Some chips (such as Loongson-2K2000) have added a fractional divisio=
+n
+> >    register to obtain the required baud rate accurately, so the
+> >    {get,set}_divisor callback is overridden.
+> >  - Due to hardware defects, quirk handling is required for
+> >    UART_MCR/UART_MSR.
+> >
+> > Co-developed-by: Haowei Zheng <zhenghaowei@loongson.cn>
+> > Signed-off-by: Haowei Zheng <zhenghaowei@loongson.cn>
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> >  drivers/tty/serial/8250/8250_loongson.c | 202 ++++++++++++++++++++++++
+> >  drivers/tty/serial/8250/8250_port.c     |   8 +
+> >  drivers/tty/serial/8250/Kconfig         |  10 ++
+> >  drivers/tty/serial/8250/Makefile        |   1 +
+> >  include/uapi/linux/serial_core.h        |   1 +
+> >  5 files changed, 222 insertions(+)
+> >  create mode 100644 drivers/tty/serial/8250/8250_loongson.c
+> >
+> > diff --git a/drivers/tty/serial/8250/8250_loongson.c b/drivers/tty/seri=
+al/8250/8250_loongson.c
+> > new file mode 100644
+> > index 000000000000..a114b4e6d5c3
+> > --- /dev/null
+> > +++ b/drivers/tty/serial/8250/8250_loongson.c
+> > @@ -0,0 +1,202 @@
+> > +// SPDX-License-Identifier: GPL-2.0-or-later
+> > +/*
+> > + * Serial Port driver for Loongson family chips
+> > + *
+> > + * Copyright (C) 2020-2025 Loongson Technology Corporation Limited
+> > + */
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/module.h>
+> > +#include <linux/property.h>
+> > +#include <linux/mod_devicetable.h>
+> > +#include <linux/reset.h>
+> > +
+> > +#include "8250.h"
+> > +
+> > +/* Divisor Latch Fraction Register */
+> > +#define LOONGSON_UART_DLF            0x2
+> > +
+> > +/* Flags */
+> > +#define LOONGSON_UART_HAS_FRAC               BIT(0)
+> > +#define LOONGSON_UART_QUIRK_MCR              BIT(1)
+> > +#define LOONGSON_UART_QUIRK_MSR              BIT(2)
+> > +
+> > +#define LS2K0500_UART_FLAG   (LOONGSON_UART_QUIRK_MCR | LOONGSON_UART_=
+QUIRK_MSR)
+> > +#define LS2K1500_UART_FLAG   (LOONGSON_UART_HAS_FRAC | LOONGSON_UART_Q=
+UIRK_MCR)
+> > +
+> > +struct loongson_uart_data {
+> > +     int line;
+> > +     int mcr_invert;
+> > +     int msr_invert;
+> > +     struct reset_control *rst;
+> > +};
+> > +
+> > +static unsigned int serial_fixup(struct uart_port *p, unsigned int off=
+set, unsigned int val)
+> > +{
+> > +     struct loongson_uart_data *ddata =3D p->private_data;
+> > +
+> > +     if (offset =3D=3D UART_MCR)
+> > +             val ^=3D ddata->mcr_invert;
+> > +
+> > +     if (offset =3D=3D UART_MSR)
+> > +             val ^=3D ddata->msr_invert;
+> > +
+> > +     return val;
+> > +}
+> > +
+> > +static u32 loongson_serial_in(struct uart_port *p, unsigned int offset=
+)
+> > +{
+> > +     unsigned int val;
+> > +
+> > +     val =3D readb(p->membase + (offset << p->regshift));
+> > +
+> > +     return serial_fixup(p, offset, val);
+> > +}
+> > +
+> > +static void loongson_serial_out(struct uart_port *p, unsigned int offs=
+et, unsigned int value)
+> > +{
+> > +     offset <<=3D p->regshift;
+> > +     writeb(serial_fixup(p, offset, value), p->membase + offset);
+>
+> This would be cleaner if you do that serial_fixup() on a preceeding line.
+
+ok. I will split serial_fixup() on a preceding line.
+>
+> Include for writeb()?
+
+#include <linux/io.h>
+>
+> > +}
+> > +
+> > +static unsigned int loongson_frac_get_divisor(struct uart_port *port, =
+unsigned int baud,
+> > +                                           unsigned int *frac)
+> > +{
+> > +     unsigned int quot;
+> > +
+> > +     quot =3D DIV_ROUND_CLOSEST((port->uartclk << 4), baud);
+>
+> Missing include.
+
+#include <linux/math.h>
+>
+> > +     *frac =3D FIELD_GET(GENMASK(7, 0), quot);
+> > +
+> > +     return FIELD_GET(GENMASK(15, 8), quot);
+>
+> Please name the fields properly with defines.
+>
+> You're also missing #include for GENMASK().
+
+#include <linux/bits.h>
+>
+> > +}
+> > +
+> > +static void loongson_frac_set_divisor(struct uart_port *port, unsigned=
+ int baud,
+> > +                                   unsigned int quot, unsigned int quo=
+t_frac)
+> > +{
+> > +     struct uart_8250_port *up =3D up_to_u8250p(port);
+> > +
+> > +     serial_port_out(port, UART_LCR, up->lcr | UART_LCR_DLAB);
+> > +     serial_dl_write(up, quot);
+> > +     serial_port_out(port, LOONGSON_UART_DLF, quot_frac);
+> > +}
+> > +
+> > +static int loongson_uart_probe(struct platform_device *pdev)
+> > +{
+> > +     struct device *dev =3D &pdev->dev;
+> > +     struct uart_8250_port uart =3D {};
+> > +     struct loongson_uart_data *ddata;
+> > +     struct resource *res;
+> > +     unsigned int flags;
+> > +     int ret;
+> > +
+> > +     ddata =3D devm_kzalloc(dev, sizeof(*ddata), GFP_KERNEL);
+> > +     if (!ddata)
+> > +             return -ENOMEM;
+> > +
+> > +     res =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> > +     if (!res)
+> > +             return -ENODEV;
+> > +
+> > +     uart.port.irq =3D platform_get_irq(pdev, 0);
+> > +     if (uart.port.irq < 0)
+> > +             return -EINVAL;
+> > +
+> > +     device_property_read_u32(dev, "clock-frequency", &uart.port.uartc=
+lk);
+> > +
+> > +     spin_lock_init(&uart.port.lock);
+> > +     uart.port.flags =3D UPF_SHARE_IRQ | UPF_FIXED_PORT | UPF_FIXED_TY=
+PE | UPF_IOREMAP;
+> > +     uart.port.iotype =3D UPIO_MEM;
+> > +     uart.port.regshift =3D 0;
+> > +     uart.port.dev =3D dev;
+> > +     uart.port.type =3D PORT_LOONGSON;
+> > +     uart.port.private_data =3D ddata;
+> > +
+> > +     uart.port.mapbase =3D res->start;
+> > +     uart.port.mapsize =3D resource_size(res);
+> > +     uart.port.serial_in =3D loongson_serial_in;
+> > +     uart.port.serial_out =3D loongson_serial_out;
+> > +
+> > +     flags =3D (uintptr_t)device_get_match_data(dev);
+>
+> Perhaps flags should be unsigned long?
+>
+> > +     if (flags & LOONGSON_UART_HAS_FRAC) {
+> > +             uart.port.get_divisor =3D loongson_frac_get_divisor;
+> > +             uart.port.set_divisor =3D loongson_frac_set_divisor;
+> > +     }
+> > +
+> > +     if (flags & LOONGSON_UART_QUIRK_MCR)
+> > +             ddata->mcr_invert |=3D (UART_MCR_RTS | UART_MCR_DTR);
+> > +
+> > +     if (flags & LOONGSON_UART_QUIRK_MSR)
+> > +             ddata->msr_invert |=3D (UART_MSR_CTS | UART_MSR_DSR);
+>
+> I think it would be better to put these invert masks directly into a
+> struct which is then put into .data. LOONGSON_UART_HAS_FRAC can be bool
+> in that struct.
+
+I attempted the following refactoring:
+
+struct loongson_uart_ddata {
+        bool has_frac;
+        u8 mcr_invert;
+        u8 msr_invert;
+};
+
+static const struct loongson_uart_ddata ls2k0500_uart_data {
+        .has_frac =3D false,
+        .mcr_invert =3D UART_MCR_RTS | UART_MCR_DTR,
+        .msr_invert =3D UART_MSR_CTS | UART_MSR_DSR,
+};
+
+static const struct loongson_uart_ddata ls2k1500_uart_data {
+        .has_frac =3D true,
+        .mcr_invert =3D UART_MCR_RTS | UART_MCR_DTR,
+        .msr_invert =3D 0,
+};
+
+struct loongson_uart_priv {
+        int line;
+        struct clk *clk;
+        struct resource *res;
+        struct reset_control *rst;
+        struct loongson_uart_ddata *ddata;
+};
+
+.............
+In loongson_uart_probe():
+       priv->ddata =3D device_get_match_data(dev);
+
+        if (priv->ddata->has_frac) {
+                port->get_divisor =3D loongson_frac_get_divisor;
+                port->set_divisor =3D loongson_frac_set_divisor;
+        }
 
 
-On 10/9/2025 6:34 AM, Krzysztof Kozlowski wrote:
-> On 09/10/2025 09:55, Bryan O'Donoghue wrote:
->> On 09/10/2025 01:47, Krzysztof Kozlowski wrote:
->>>> Maybe it would be possible to also use an inferred FUNCTION_ID somehow
->>>> though TBH I think that's a work-around.
->>> Three months ago I gave you the answer for that - it is inferred by
->>> index on the list.
->>
->> But at least as I understand it, you can have multiple SID entries that 
->> need to map to a FUNCTION_ID which means you need to encode that 
->> inferred indexing in your driver.
-> 
-> Yes.
-> 
->>
->> So you can't have the iommu code just know what to do.. it has to be 
->> driver specific.
-> 
-> Yes.
-> 
->>
->> The iommu description for this platform basically lacks the data that 
->> _should_ be there -> FUNCTION_ID.
-> 
-> No. The index tells that already.
+.............
+static const struct of_device_id loongson_uart_of_ids[] =3D {
+        { .compatible =3D "loongson,ls2k0500-uart", .data =3D ls2k0500_uart=
+_data },
+        { .compatible =3D "loongson,ls2k1500-uart", .data =3D ls2k1500_uart=
+_data },
+        { },
+};
+>
+> > +     ddata->rst =3D devm_reset_control_get_optional_shared(dev, NULL);
+> > +     if (IS_ERR(ddata->rst))
+> > +             return PTR_ERR(ddata->rst);
+> > +
+> > +     ret =3D reset_control_deassert(ddata->rst);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     ret =3D serial8250_register_8250_port(&uart);
+> > +     if (ret < 0) {
+> > +             reset_control_assert(ddata->rst);
+> > +             return ret;
+> > +     }
+> > +
+> > +     ddata->line =3D ret;
+> > +     platform_set_drvdata(pdev, ddata);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static void loongson_uart_remove(struct platform_device *pdev)
+> > +{
+> > +     struct loongson_uart_data *ddata =3D platform_get_drvdata(pdev);
+> > +
+> > +     serial8250_unregister_port(ddata->line);
+> > +     reset_control_assert(ddata->rst);
+> > +}
+> > +
+> > +static int loongson_uart_suspend(struct device *dev)
+> > +{
+> > +     struct loongson_uart_data *ddata =3D dev_get_drvdata(dev);
+> > +
+> > +     serial8250_suspend_port(ddata->line);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int loongson_uart_resume(struct device *dev)
+> > +{
+> > +     struct loongson_uart_data *data =3D dev_get_drvdata(dev);
+> > +
+> > +     serial8250_resume_port(data->line);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static DEFINE_SIMPLE_DEV_PM_OPS(loongson_uart_pm_ops, loongson_uart_su=
+spend,
+> > +                             loongson_uart_resume);
+>
+> Include? Please check if you miss even more includes beyond those I've
+> highlighted here.
 
-Hardware1 can have 2 iommus entries for FUNCTION_ID_1, while Hardware2 can have
-3 iommus entry. It would be good to keep this info in devicetree, as it is still
-hardware specific (function_id is the hardware identifier).
-Defaulting the index would imply, the common device driver would need to book
-keep the iommus and hardware id in driver for every SOC. Any mismatch in order
-in DT and driver table would result in error too.
+#include <linux/pm.h>
 
-More importantly, this need to be agreed by IOMMU maintainer to extend the
-iommus property.
+I will check all missed include files.
+>
+> > +static const struct of_device_id loongson_uart_of_ids[] =3D {
+> > +     { .compatible =3D "loongson,ls2k0500-uart", .data =3D (void *)LS2=
+K0500_UART_FLAG },
+> > +     { .compatible =3D "loongson,ls2k1500-uart", .data =3D (void *)LS2=
+K1500_UART_FLAG },
+> > +     { /* sentinel */ },
+>
+> Nit, no need for comma in the terminator entry.
 
-Regards,
-Vikash
-> 
->>
->> The rule is that the DT should really describe the hardware right ?
-> 
-> It already does. Same as I wrote on IRC, DT already has all the
-> information. Entry 0 has function ID-foo. Entry 1 has function ID-bar.
-> Entry 2 has function ID-bar or whatever.
-> 
-> Best regards,
-> Krzysztof
+ok..
+>
+> > +};
+> > +MODULE_DEVICE_TABLE(of, loongson_uart_of_ids);
+> > +
+> > +static struct platform_driver loongson_uart_driver =3D {
+> > +     .probe =3D loongson_uart_probe,
+> > +     .remove =3D loongson_uart_remove,
+> > +     .driver =3D {
+> > +             .name =3D "loongson-uart",
+> > +             .pm =3D pm_ptr(&loongson_uart_pm_ops),
+> > +             .of_match_table =3D loongson_uart_of_ids,
+> > +     },
+> > +};
+> > +
+> > +module_platform_driver(loongson_uart_driver);
+> > +
+> > +MODULE_DESCRIPTION("Loongson UART driver");
+> > +MODULE_AUTHOR("Loongson Technology Corporation Limited.");
+> > +MODULE_LICENSE("GPL");
+> > diff --git a/drivers/tty/serial/8250/8250_port.c b/drivers/tty/serial/8=
+250/8250_port.c
+> > index 719faf92aa8a..53efe841656f 100644
+> > --- a/drivers/tty/serial/8250/8250_port.c
+> > +++ b/drivers/tty/serial/8250/8250_port.c
+> > @@ -310,6 +310,14 @@ static const struct serial8250_config uart_config[=
+] =3D {
+> >               .rxtrig_bytes   =3D {1, 8, 16, 30},
+> >               .flags          =3D UART_CAP_FIFO | UART_CAP_AFE,
+> >       },
+> > +     [PORT_LOONGSON] =3D {
+> > +             .name           =3D "Loongson",
+> > +             .fifo_size      =3D 16,
+> > +             .tx_loadsz      =3D 16,
+> > +             .fcr            =3D UART_FCR_ENABLE_FIFO | UART_FCR_R_TRI=
+G_10,
+> > +             .rxtrig_bytes   =3D {1, 4, 8, 14},
+> > +             .flags          =3D UART_CAP_FIFO,
+> > +     },
+>
+> This is exactly identical to PORT_16550A. Just use PORT_16550A instead of
+> adding a new one unnecessarily.
+
+OK. I will drop this part and use PORT_16550A in 8250_loongson driver.
+>
+> --
+>  i.
+>
+> >  };
+> >
+> >  /* Uart divisor latch read */
+> > diff --git a/drivers/tty/serial/8250/Kconfig b/drivers/tty/serial/8250/=
+Kconfig
+> > index f64ef0819cd4..98236b3bec10 100644
+> > --- a/drivers/tty/serial/8250/Kconfig
+> > +++ b/drivers/tty/serial/8250/Kconfig
+> > @@ -468,6 +468,16 @@ config SERIAL_8250_OMAP_TTYO_FIXUP
+> >         not booting kernel because the serial console remains silent in=
+ case
+> >         they forgot to update the command line.
+> >
+> > +config SERIAL_8250_LOONGSON
+> > +     tristate "Loongson 8250 based serial port"
+> > +     depends on SERIAL_8250
+> > +     depends on LOONGARCH || COMPILE_TEST
+> > +     help
+> > +       If you have a machine based on LoongArch CPU you can enable
+> > +       its onboard serial ports by enabling this option. The option
+> > +       is applicable to both devicetree and ACPI, say Y to this option=
+.
+> > +       If unsure, say N.
+> > +
+> >  config SERIAL_8250_LPC18XX
+> >       tristate "NXP LPC18xx/43xx serial port support"
+> >       depends on SERIAL_8250 && OF && (ARCH_LPC18XX || COMPILE_TEST)
+> > diff --git a/drivers/tty/serial/8250/Makefile b/drivers/tty/serial/8250=
+/Makefile
+> > index 513a0941c284..e318a3240789 100644
+> > --- a/drivers/tty/serial/8250/Makefile
+> > +++ b/drivers/tty/serial/8250/Makefile
+> > @@ -38,6 +38,7 @@ obj-$(CONFIG_SERIAL_8250_HP300)             +=3D 8250=
+_hp300.o
+> >  obj-$(CONFIG_SERIAL_8250_HUB6)               +=3D 8250_hub6.o
+> >  obj-$(CONFIG_SERIAL_8250_INGENIC)    +=3D 8250_ingenic.o
+> >  obj-$(CONFIG_SERIAL_8250_IOC3)               +=3D 8250_ioc3.o
+> > +obj-$(CONFIG_SERIAL_8250_LOONGSON)   +=3D 8250_loongson.o
+> >  obj-$(CONFIG_SERIAL_8250_LPC18XX)    +=3D 8250_lpc18xx.o
+> >  obj-$(CONFIG_SERIAL_8250_LPSS)               +=3D 8250_lpss.o
+> >  obj-$(CONFIG_SERIAL_8250_MEN_MCB)    +=3D 8250_men_mcb.o
+> > diff --git a/include/uapi/linux/serial_core.h b/include/uapi/linux/seri=
+al_core.h
+> > index 9c007a106330..607cf060a72a 100644
+> > --- a/include/uapi/linux/serial_core.h
+> > +++ b/include/uapi/linux/serial_core.h
+> > @@ -31,6 +31,7 @@
+> >  #define PORT_ALTR_16550_F128 28 /* Altera 16550 UART with 128 FIFOs */
+> >  #define PORT_RT2880  29      /* Ralink RT2880 internal UART */
+> >  #define PORT_16550A_FSL64 30 /* Freescale 16550 UART with 64 FIFOs */
+> > +#define PORT_LOONGSON        31      /* Loongson 16550 UART */
+> >
+> >  /*
+> >   * ARM specific type numbers.  These are not currently guaranteed
+> >
+
+
+--=20
+Thanks.
+Binbin
 
