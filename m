@@ -1,118 +1,131 @@
-Return-Path: <devicetree+bounces-224799-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224800-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6671BC811B
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 10:38:16 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FEBFBC8136
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 10:41:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2281188F047
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 08:38:39 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 68B274E6D20
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 08:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 521A0285419;
-	Thu,  9 Oct 2025 08:38:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ncgEQSIy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4691C285052;
+	Thu,  9 Oct 2025 08:41:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F98534BA38;
-	Thu,  9 Oct 2025 08:38:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FE427A903
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 08:40:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759999091; cv=none; b=AalnT+QPiKinMCu+1guthmcheofWgUX+ZeVa/a7MSiqVqSp3kijqqoe/WP2h54CFXbpxqw/m5IdxK3z6q+i4so4at9Ll+2R9RkC6l1Dm3okMzfYsEV/HAWFEqxFnUazNjNkisbSNjFZk/sIs+jgrrO9w8xOL95/Qdq1Xpq7x8Ug=
+	t=1759999270; cv=none; b=OCWmq9V/cVKr2LDx4qlzYQN6vN+FsXXrUzVpUe9itNq7XSyvESFk+lgCu/3I1YU6ibN5gDEdek0mtkzynyFJMcf/+cPn6FC7Q0Ys75GZ2s3v3kNY5jcb4Zl7mmH/41HJSRh6hkZMaEDyzNIfnbmZ6OXgTrDXEj1C7cpS2piKCTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759999091; c=relaxed/simple;
-	bh=a+tmJW52l+C47Xfe44WbKAMzHqsgzWS+A4gTMEC4+50=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VAt56FLw1WX4GuaztcDaLWQkh01izUrx82SkU8Hixnszq5ga70084j9YAqiBWMIlTRpK0M8LKTCYbWJyqgo6zQQqo9eDpWYes3UXwoFHHkrC9qSZHkQtT9kQkkaDCFH+T6DTpb/D3W31xVw4Y9LQRZ8G+IybyBUvgP8wm4KlfxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ncgEQSIy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62D3CC4CEE7;
-	Thu,  9 Oct 2025 08:38:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759999090;
-	bh=a+tmJW52l+C47Xfe44WbKAMzHqsgzWS+A4gTMEC4+50=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ncgEQSIymNaCXW0g7/W1ZVhP8A0hAuoKyvSoLz9wTu9dGnpkcP+B3suYPJbUfzRDv
-	 CGzXBqqM3Id0WlAZ7Z+lapFKq8wUd6jsIekBGFt/0LLPzIIoRnU10KL2CiuJ5iwv7M
-	 teOFFb1oR7Shm/sk/MmIdi0os3NuqioR9vjRuBEd0H4S2pLP82fRZsTf9YbhwbPyCw
-	 vspRCse7nQsv2OryOft+UlwWKbCpRCDsxRnazpNPxKjsQCchVqygCaJoxchLN2DZ8m
-	 3BqggeuAJKMihMG9bPEdnLE3h4dasslUOqoE6t6WD/14deaaYaXiyx4RpOAer5Qm5Q
-	 d6IaVbtspoNsg==
-Message-ID: <7ba3953a-166f-4c67-8f54-666b0c488b12@kernel.org>
-Date: Thu, 9 Oct 2025 09:38:04 +0100
+	s=arc-20240116; t=1759999270; c=relaxed/simple;
+	bh=W7x+h72s6okMJy3IGI82ingmLsVQ/dT+JfTQPdne0SI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R/+Sc1aqD5wu7Uts65Kq/Sn+v2RXEgYfsYuuO0Sr1J6+feIQL+ML5F1X6m9NValpRJnYaAGn34RoxegPnGEl03zA/fHAfOLNtw4hi07ZLrVtpEuBSaK12feZmVKJfqbgUIiq95IgtkFZ92uGkgAartO7IHsmHBbAHsGhiVBM/tU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
+Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
+	by Atcsqr.andestech.com with ESMTPS id 5998eeRF076050
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Thu, 9 Oct 2025 16:40:40 +0800 (+08)
+	(envelope-from cl634@andestech.com)
+Received: from swlinux02 (10.0.15.183) by ATCPCS31.andestech.com (10.0.1.89)
+ with Microsoft SMTP Server id 14.3.498.0; Thu, 9 Oct 2025 16:40:40 +0800
+Date: Thu, 9 Oct 2025 16:40:40 +0800
+From: CL Wang <cl634@andestech.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, <conor@kernel.org>
+CC: <vkoul@kernel.org>, <dmaengine@vger.kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <tim609@andestech.com>, <cl634@andestech.com>
+Subject: Re: [PATCH V1 1/2] dt-bindings: dmaengine: Add support for
+ ATCDMAC300 DMA engine
+Message-ID: <aOd1CMMZRGSqkSLH@swlinux02>
+References: <20251002131659.973955-1-cl634@andestech.com>
+ <20251002131659.973955-2-cl634@andestech.com>
+ <20251002-absolute-spinning-f899e75b2c4a@spud>
+ <aOUIfaZY7-eUYoOS@swlinux02>
+ <734de17e-a712-4eb5-96fa-b7e75f86d880@kernel.org>
+ <aOXW7HUMeOyABuUG@swlinux02>
+ <dcd14886-f2cc-41ec-8bb5-9cb5ed50c452@kernel.org>
+ <aOZokztqpHHX0JPq@swlinux02>
+ <aabf395a-eef2-49b2-9938-b7bb8aa838c8@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/5] Introduce "non-pixel" sub node within iris video
- node
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Charan Teja Kalla <charan.kalla@oss.qualcomm.com>,
- Bryan O'Donoghue <bod.linux@nxsw.ie>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Vikash Garodia <quic_vgarodia@quicinc.com>,
- Dikshita Agarwal <quic_dikshita@quicinc.com>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <7b6db4fa-2f73-376d-4eb3-64c1c7e6cda3@quicinc.com>
- <4d87d1ca-55b2-426e-aa73-e3fd8c6fe7bd@kernel.org>
- <10a8ccda-4e27-4b06-9a0e-608d6ade5354@nxsw.ie>
- <4cb4a92d-2f20-47c7-881e-aadcc6f83aa0@kernel.org>
- <1516f21e-aee3-42cf-b75e-61142dc9578d@oss.qualcomm.com>
- <9bae595a-597e-46e6-8eb2-44424fe21db6@linaro.org>
- <MMSKAu89Ew7StAeFBV442KfKNzmqbTSQ-maFG35Jr9d8PkUV2L4sx44R2DRevXA8mC45vkA398l2mvVzarZwew==@protonmail.internalid>
- <bcfbf35b-69ed-4f39-8312-6a53123cd898@kernel.org>
- <d46c0335-99d6-469f-a61f-aca4c851f745@kernel.org>
- <GyrcG3qBN7c5C7ajCs3EV81hWvuaVbg64CpzQ-X3d_p6EauoiKxSoG2aOKE21-j12SWFjNDjV-kVSwYYqVm_lQ==@protonmail.internalid>
- <a0dc93ec-e35c-409b-8dfb-1642c92a9f0c@kernel.org>
- <98e6acf8-80d7-4894-b4ce-ce74660722ef@kernel.org>
- <soFAWqHDNosrZui972Ip7EvMCfB6tepD-HxHkc17RKmilPJpQZjMzni9LmMOpvKumHqFEibe5FdNkkJG8DKlcw==@protonmail.internalid>
- <5085c857-f6e8-4faf-b61a-a9ee562ccf06@kernel.org>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <5085c857-f6e8-4faf-b61a-a9ee562ccf06@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aabf395a-eef2-49b2-9938-b7bb8aa838c8@kernel.org>
+User-Agent: Mutt/2.2.12 (2023-09-09)
+X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
+X-DNSRBL: 
+X-SPAM-SOURCE-CHECK: pass
+X-MAIL:Atcsqr.andestech.com 5998eeRF076050
 
-On 09/10/2025 02:04, Krzysztof Kozlowski wrote:
->> The iommu description for this platform basically lacks the data that
->> _should_ be there -> FUNCTION_ID.
-> No. The index tells that already.
+Hi Krzysztof and Conor,
 
-Hmm.
->> The rule is that the DT should really describe the hardware right ?
-> It already does. Same as I wrote on IRC, DT already has all the
-> information. Entry 0 has function ID-foo. Entry 1 has function ID-bar.
-> Entry 2 has function ID-bar or whatever.
+Thanks for the feedback — both comments are very helpful.
 
-That's the part I don't believe is true its a 1:Many relationship 
-between FUNCTION_ID:SIDs
+After considering the binding guidelines and your points, I will update the
+binding to use only the SoC-specific compatible string.
 
-Let me check the docs...
+To clarify, the DMA controller used in the Qilai SoC is based on the ATCDMAC300
+IP core. Following your suggestion, I plan to use only the SoC-specific
+compatible string as shown below:
 
-Here's the example I gave on IRC for lore
+properties:
+  compatible:
+    const: andestech,qilai-dma
 
-SID 0x1940 maps to AC_VM_HLOS (Linux)
-SID 0x1941 maps to AC_VM_CP_BITSTREAM - protected bitstream
-SID 0x1945 maps to AC_WM_CP_BITSTREAM
+I can prepare a v2 patch if this SoC-specific compatible string looks fine to you.
 
-The xls for these mappings runs to a few hundred lines.
+Best regards,
+CL
 
-Seems to me like a good argument - at least for the qcom iommus to add a 
-cell entry and then teach the generic iommu code about it.
-
----
-bod
+On Thu, Oct 09, 2025 at 08:48:00AM +0900, Krzysztof Kozlowski wrote:
+> [EXTERNAL MAIL]
+> 
+> On 08/10/2025 22:35, CL Wang wrote:
+> > Hi Krzysztof,
+> >
+> > Thanks for the clarification, and sorry for the earlier confusion.
+> >
+> > To elaborate on the rationale:
+> > "andestech,atcdmac300" is the IP core name of the DMA controller, which serves
+> > as a generic fallback compatible shared across multiple Andes SoCs.
+> >
+> > Primary compatible (SoC-specific):
+> > andestech,qilai-dma refers to the DMA controller instance implemented on the
+> > Qilai SoC, following the SoC-specific recommendation.
+> >
+> > Fallback compatible (IP-core specific):
+> > andestech,atcdmac300 represents the reusable IP block used across different
+> > Andes SoCs that share the same register map and programming model.
+> >
+> > Keeping andestech,atcdmac300 as a fallback helps avoid code duplication and
+> > allows a single driver to support future SoCs using the same hardware IP.
+> 
+> No, it helps in nothing.
+> 
+> 
+> >
+> > This approach follows the DeviceTree binding guideline:
+> >
+> > “DO use a SoC-specific compatible for all SoC devices, followed by a fallback
+> > if appropriate. SoC-specific compatibles are also preferred for the fallbacks.”
+> 
+> No, it does not. You just ignored completely last sentence.
+> 
+> 
+> Best regards,
+> Krzysztof
 
