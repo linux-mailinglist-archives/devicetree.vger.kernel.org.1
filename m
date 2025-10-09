@@ -1,175 +1,129 @@
-Return-Path: <devicetree+bounces-224857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9560EBC869B
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 12:10:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85965BC86D0
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 12:13:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3B25F4EA300
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 10:10:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B43D3B3031
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 10:13:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 122162D97A0;
-	Thu,  9 Oct 2025 10:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E95C22D877C;
+	Thu,  9 Oct 2025 10:13:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="Vc+9kMgs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tnnv3eU4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD5F2D8783
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 10:10:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4FA5211A09;
+	Thu,  9 Oct 2025 10:13:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760004638; cv=none; b=jTZj1nl5s5hFMZo7q9qEqakCCN8YDyks8thf2wbYsZu/t4jGaplFlA8jbHuMEnMbBfZ+MCa+EI4exwBsc8UrYyycBWK0he+DFt8wHHtZJXAZxskEsxFhncUSQxW/tHTSlvgMwGp/7HhMSYTO/9NwMEgQgxwM8bOraPhpIpsSmIs=
+	t=1760004804; cv=none; b=LjDZ55VmV6QIcJzzhhKKwG+uOlDeISbtxOiOyXT1Elr14P15dfJWK6eS9tJWgrgvQddTmNSNqjyFGMUTmB4EjyMTrK4e8b7aZltkCFGIXRcqSozTuVlhxfeQhKVopyOudyLfYORxEYZOGvFmp8nYBPVpCyDyWmCnyGEFQ0kapZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760004638; c=relaxed/simple;
-	bh=gG4uos5u7JZYKZN9sVpZMjMGBZVjLgLK+l61W+7327M=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=FZzELfa5hVYsOuaZZapdtDf5DT7qnsT+2uMCsYy05R1DmZUJ6BiLtehh8UjLjVlLhA2HthDfX3m9eWmGgpO7p0ducxUysl4bGA6YxdM90dUIDEx/xYVjjAd98QBKbGcyF2tkJtZMSkt+5uHmCbqkFVju7EHkCaSCNOL8oJcp39c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=Vc+9kMgs; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b3da3b34950so122015866b.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 03:10:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1760004634; x=1760609434; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=viQs/zJlFXUzbGPc0YC6fbKblNDfZ3K6sukiP7yGwdA=;
-        b=Vc+9kMgsIuD+EPFwhTPJRM3ETJLY+5xhBq6fHJL+NQO1JMT55AeQ0euergmAZNMFHh
-         FjqSA152TXjMzTDqgw5X8N9U1vOcNWRfPQqD8YOoaltg3YtLg6RQgQEbE6V5mzXDi2Tn
-         +6AbmCnlD3nsaNrl/1o889LGizsjF+sMuBZLtlmrLY60mD6VufMlt/us830IwRubUu1+
-         UssuUPtfw/QbqkRaPurP5p1N/JIhJYCh73Ylky3ImPWGi36foOBpsc9Xv1CslboiyyZz
-         yWB759KdXeZh/fAmuCBl8MNgLeS84pHnEpIpoCRyU+8o5es7TinxldV0Y67/UShoy3Oo
-         R/Uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760004634; x=1760609434;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=viQs/zJlFXUzbGPc0YC6fbKblNDfZ3K6sukiP7yGwdA=;
-        b=kvCO5sjSHTX21sUqn6Z8enWrOeIrq2YuF440djEoP0LCO0AKEu/4xhXMiQn6aubMdk
-         V6Mminn3V2cXB8nErJdUTBFI0yVwhgkTOWte7ski9l+ZIqe0AFuT0l0YVzb1pB8bNkpE
-         jejSqc5XSzS7CV0riQOYvI9A+98V6P2pwfTKnFWwho/UVFScFR9PU6dmJs3Oue/BXmvn
-         QE3oCxHp07JX2pimRccwfzYQy9ckuxyJanIG1ps/lvw5xN9MTfpNizHzpWPuKws5XSjw
-         3EzPztL8ba90fvJtzS9ECE4fOwv3X1GJwtER7NJr/+4+Hou8kbpHPMyT77Wr9yUqp/AF
-         ziaA==
-X-Forwarded-Encrypted: i=1; AJvYcCUBMtxT3HFejKnOc1XWkW41mPBw6jMmv4gIVCkpUy8SpDg2y47r8+I1ByRjIC1p/DkdMrmIzemcDyXW@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxi5ZeKTnFOHc5XckN8VMoeuZhEM8qJopg7zpG5iWjSlSMkX+uj
-	nXodvO13WB5ca04aGEOxeyNSeJZgoKgS0XNDAZy+Gurkc5kO0wJ53u8TpC1mh9qQrA5sorqF8xd
-	yazn6Ucc=
-X-Gm-Gg: ASbGncuK8lhZAAsQG87hoKTapc/ta1Mvq/VJDloHgxicfnxhDc9IiSmfmxVC5FN7ATc
-	FYgc2Jl8WlL3uYvrZNZpKce3gq6i2mutWmeKbOqArdmEsTPKV8s3Wxgbx4lF0HlK8M3km7lFkVn
-	LyMD+djh7LWdv7QnRC3HoP9vyptC/i48b4U9dfCxQRlwMtOc6JAeCDDPJffnggtosVSJmQI+ZJf
-	KDAECNXC5tqlIVN9FoIGq7o020utskva3owYdMU8GinGqmU34FLzYN6j7tP2MEc8XsC3xeER9f7
-	9K3ScdahnWrduB6sxiAZELu6HtEzMHNW5Iwbdp+9LUVCmNCiPfspVVXYzK360ier9sHAHOhICH2
-	dM615cOq4uFdct7/XUemFx+TbjP2r44FT6248ltGrAXLVazYsuegPhSD8BA1tmIHWZffdJ+v7hl
-	HAEiwPNsKPNMJ9VOMoLHfLlmqgjdI=
-X-Google-Smtp-Source: AGHT+IFKo/O79Io0+uRDFxUtJz1dvwc4fUBNTtl0a5vuuzbIOA2sW+cayD8+0hP+Jrhv2ADqtpK2hA==
-X-Received: by 2002:a17:907:d86:b0:b49:5103:c0b4 with SMTP id a640c23a62f3a-b50ac5d07f2mr831965466b.56.1760004634280;
-        Thu, 09 Oct 2025 03:10:34 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b4865e77427sm1905317166b.36.2025.10.09.03.10.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Oct 2025 03:10:33 -0700 (PDT)
+	s=arc-20240116; t=1760004804; c=relaxed/simple;
+	bh=A21j6BI0oshVWixafoxwDpeBkRBj2xvnQviHZfLid2Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qNVmmUY6TaDkntL9zncSgwFm9nNzf1LSz258SLQj1FTSu7oyqPXX7mAKlvKBHyZDCBEcy9CdnTfGOYjkYVJqgVybRN9hDMEn71+r5Z/2CNQQj+SRDl11X4H8/I3LQT0voXa2tsw9JB0gjeW4EVgxZXH0OVpLvPX8DIlmkgvlT98=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tnnv3eU4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62B4AC4CEE7;
+	Thu,  9 Oct 2025 10:13:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760004804;
+	bh=A21j6BI0oshVWixafoxwDpeBkRBj2xvnQviHZfLid2Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Tnnv3eU4N9kLuB1OI0d/dMZQLKXKdkuuETJEKZK2ix6CYAhWKKofU7oA0/iEy9jc9
+	 icwoiTjkylQWDMuqTRY7A4r7WTWfBsUtazTugWyXoKKTlPIRHat16u7O9Vjb6qcXB5
+	 MT0pVHtl5wua/qv15nAEMBxNt3YSjU/CQncYq6o/Bk8M0bfe5/tiyrhLPSp2Nr2jcj
+	 jolEu/88inxoWUqLAzFcrSnxykdV79BaOIXpXPga7z7sYvxNqMVTCty/Ymmyue1ag7
+	 USgYBQsPhJwb5oLu4cwdJzT1JQpCZy+GkfMsJRDpNWGRLUO/cD/xiAyfV/klHsuTtY
+	 /TDXFBsWrZ9vQ==
+Message-ID: <4a03bec1-34e2-444e-acb8-cae72dcbe6c2@kernel.org>
+Date: Thu, 9 Oct 2025 19:13:14 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RESEND PATCH 1/2] dt-bindings: i2c: exynos5: add
+ exynosautov920-hsi2c compatible
+To: Faraz Ata <faraz.ata@samsung.com>, andi.shyti@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ alim.akhtar@samsung.com
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ linux-kernel@vger.kernel.org, rosa.pila@samsung.com, dev.tailor@samsung.com
+References: <CGME20251009101023epcas5p2de61d08e2d4a180bbcf2f2708d267336@epcas5p2.samsung.com>
+ <20251009101911.2802433-1-faraz.ata@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <20251009101911.2802433-1-faraz.ata@samsung.com>
 Content-Type: text/plain; charset=UTF-8
-Date: Thu, 09 Oct 2025 12:10:33 +0200
-Message-Id: <DDDPKMMSAMJR.1JIQMK3W2Y40V@fairphone.com>
-Cc: <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
- <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/5] arm64: dts: qcom: qcm6490-fairphone-fp5: Add
- VTOF_LDO_2P8 regulator
-From: "Luca Weiss" <luca.weiss@fairphone.com>
-To: "Konrad Dybcio" <konrad.dybcio@oss.qualcomm.com>, "Luca Weiss"
- <luca.weiss@fairphone.com>, "Bjorn Andersson" <andersson@kernel.org>,
- "Konrad Dybcio" <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Marijn Suijten" <marijn.suijten@somainline.org>
-X-Mailer: aerc 0.21.0-0-g5549850facc2
-References: <20250930-sc7280-dts-misc-v1-0-5a45923ef705@fairphone.com>
- <20250930-sc7280-dts-misc-v1-2-5a45923ef705@fairphone.com>
- <ac1c0d1a-36a9-4542-b879-06c017f7f2c4@oss.qualcomm.com>
- <DDDOF3F8K5WQ.FTJ0F6E6DLPG@fairphone.com>
- <8e452e51-3a95-49e6-91e3-53aa46fcfe2e@oss.qualcomm.com>
-In-Reply-To: <8e452e51-3a95-49e6-91e3-53aa46fcfe2e@oss.qualcomm.com>
+Content-Transfer-Encoding: 7bit
 
-On Thu Oct 9, 2025 at 11:22 AM CEST, Konrad Dybcio wrote:
-> On 10/9/25 11:16 AM, Luca Weiss wrote:
->> Hi Konrad,
->>=20
->> On Wed Oct 1, 2025 at 10:30 AM CEST, Konrad Dybcio wrote:
->>> On 9/30/25 3:57 PM, Luca Weiss wrote:
->>>> Describe yet another regulator-fixed on this board, powering the ToF
->>>> sensor.
->>>>
->>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
->>>> ---
->>>>  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 13 +++++++++++++
->>>>  1 file changed, 13 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch=
-/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
->>>> index 36d5750584831d66b4c2faf6042e4cbb3274eca7..0a64e5721e092d1f3e4bb7=
-329335704eee567761 100644
->>>> --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
->>>> @@ -195,6 +195,19 @@ vreg_usb_redrive_1v8: regulator-usb-redrive-1v8 {
->>>>  		pinctrl-names =3D "default";
->>>>  	};
->>>> =20
->>>> +	vreg_vtof_ldo_2p8: regulator-vtof-ldo-2p8 {
->>>> +		compatible =3D "regulator-fixed";
->>>> +		regulator-name =3D "VTOF_LDO_2P8";
->>>> +		regulator-min-microvolt =3D <2800000>;
->>>> +		regulator-max-microvolt =3D <2800000>;
->>>> +		regulator-enable-ramp-delay =3D <233>;
->>>> +
->>>> +		gpio =3D <&tlmm 141 GPIO_ACTIVE_HIGH>;
->>>
->>> You may want to define the pincfg/mux config for this gpio too
->>=20
->> While I wouldn't say it's not good to have it, there's plenty of GPIOs
->> that have no pinctrl for it. Downstream doesn't set anything for gpio141
->> either.
->>=20
->> I honestly wouldn't even know what the 'default' for a GPIO is in the
->> first place, or could I query the runtime state from the kernel? Is
->> /sys/kernel/debug/pinctrl/f100000.pinctrl/pinconf-groups trustworthy to
->> solidify this in the dts?
->
-> I normally use /sys/kernel/debug/gpios
+On 09/10/2025 19:19, Faraz Ata wrote:
+> Add "samsung,exynosautov920-hsi2c" dedicated compatible for
+> HSI2C found in ExynosAutov920 SoC.
+> 
+> Signed-off-by: Faraz Ata <faraz.ata@samsung.com>
+> ---
+> Note: This patch was previously sent separately. Resending now as part of a
+> two-patch series to avoid dt-binding check error. No functional changes from the earlier submission[1]
 
-Oh, if that works at least the path is a bit more memorable. I needed to
-check quite some files in this directory to find the correct one.
+It's not necessary. You only need to provide lore link to bindings in
+patch changelog. Read carefully report you received.
 
->
->>=20
->> 141 (gpio141): input bias disabled, output drive strength (2 mA), output=
- enabled, pin output (0 level)
->
-> but this seems to be formatted very similarly if not identically
->
-> Generally it reads out HW state, via (among other things)
-> msm_config_group_get()
+Also, do not resend non-fix patches during merge window. It's just noise.
 
-So, you recommend setting a pinctrl for every single GPIO that's
-referenced in the dts? Shall I send a patch to add all the missing ones?
 
-Regards
-Luca
-
->
-> Konrad
-
+Best regards,
+Krzysztof
 
