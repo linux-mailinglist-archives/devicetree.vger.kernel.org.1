@@ -1,214 +1,242 @@
-Return-Path: <devicetree+bounces-224774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74BD4BC7BB9
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 09:36:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC2A1BC7D77
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 09:59:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id CB6CA34DA84
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 07:36:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3ED511893411
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 07:59:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B11A176AC8;
-	Thu,  9 Oct 2025 07:36:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 471262D12F3;
+	Thu,  9 Oct 2025 07:59:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="am1NuR+2"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="sVVYuFPc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81E4B3FF1;
-	Thu,  9 Oct 2025 07:36:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E410C2DF68
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 07:59:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759995413; cv=none; b=EDzQ8Usq3o5YNv7NiZp94IO6SqY/k7qMhkoe05JgodP0itZYj25XnB434GT9vyErvHyrBvw5R7aLwfuRJGZEWtBAmLMpmwUn5ISOBv6+821xQxfDxJYGQY0yInfxYWZN/zXqer7TrJXjEfvecooCtVma3uNYlAe40G+sF/n8R4M=
+	t=1759996768; cv=none; b=pH3n8PTtB/dlEbYRt7JJgtjQx6xsYu9nO/2EpZxe9tYopFcKZ2pohMuJTodAsxqhRmPzG4jkSESu7E/LClfFRf92PWNKfrGZuQp0LUfHLSlaOYrYIwHoF7JrEwdL5Q00N3PMJ9geZ49PKOVj/lqmCTr5D7Nq9W6Btt7TZwvlpWs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759995413; c=relaxed/simple;
-	bh=0/bWicUk/BVaia51IikBaZhokqlPL3FIkBIaSanm3jM=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=taoMEZh+VFDBSx7kocyI2Q32Ly1/WyVdyZ7vsTK34c2x4rJE4QiMG6YBtnRAcqJnGxXgAc/vdGP7nnkBVSQOLhN+sFOVbSFXM2+jcjEl5g9qR3kMxUiS2dRMt3outj2PE0f7aZutPg5jW+6lPNIfGEs6rGdpoDNYsaHEurADzFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=am1NuR+2; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5996EWY4022397;
-	Thu, 9 Oct 2025 07:36:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=w1VyO5jtQ/h9Miug+6qUpSOcUSFktKY7E2S
-	shDdmG/Y=; b=am1NuR+2DkpT+P0EF3JvP5Pz9pvwvmpXSMwbRD5hTs8aKVOna7a
-	T6w64mmywqueHMS26wnbqsvI282XjDRvrDJgPuc7fVM7XDpY50rsTpn/+cmEHFz1
-	jecUamHmrjoxWHOZ7QfEJwCdj/wu3/IL0F+18QaZCEVnqQyYCeU/zr/HmbVAGLeI
-	6PeJmxKNipZtRiQUYvnYs5Z5DtvSJWhlvYYWuyIJTJPME/uWJmvhRz4se9+AJKPC
-	5XXS0sIZ5rxSJ5nls5tsi9Y7WRM4w5y/AJhK2iLIcUPSBb+5jSgV3E9Hickr+mUc
-	J5lhr9pdk9lWktIFPUtK81tK55WlBlS3/ag==
-Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4shw93-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Oct 2025 07:36:47 +0000 (GMT)
-Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5997aiUg018181;
-	Thu, 9 Oct 2025 07:36:44 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 49jvnmxja2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Oct 2025 07:36:44 +0000
-Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5997aiVF018176;
-	Thu, 9 Oct 2025 07:36:44 GMT
-Received: from cse-cd01-lnx.ap.qualcomm.com (cse-cd01-lnx.qualcomm.com [10.64.75.209])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 5997ahMu018173
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Oct 2025 07:36:44 +0000
-Received: by cse-cd01-lnx.ap.qualcomm.com (Postfix, from userid 4531182)
-	id 933DA21014; Thu,  9 Oct 2025 15:26:36 +0800 (CST)
-From: leqi <le.qi@oss.qualcomm.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@oss.qualcomm.com,
-        leqi <le.qi@oss.qualcomm.com>
-Subject: [PATCH v1] arm64: dts: qcom: hamoa-iot-evk: Fix 4-speaker playback support
-Date: Thu,  9 Oct 2025 15:26:30 +0800
-Message-Id: <20251009072630.460387-1-le.qi@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1759996768; c=relaxed/simple;
+	bh=r+EYS8LJHH5JzPOJqQR2JJIXOzlbTKM/eKWn1ocsvTc=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Tu4fS+1SwEgrKgLeP8ZnRrGlNJdTszGo4ErtEHxCXCCYEe16Qcv7axQ9WZbh5gPwdOxkkQomD4MDP/+Izw74HCuQSkshAeQYi2L4C0A5e+IOSEPcSLQs4rL9qXXKc5AsOPAAtTleUX1Dl6o/vz4X5I3SzyHYaoBjr51We5I5sJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=sVVYuFPc; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3ee15505cdeso617058f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 00:59:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1759996763; x=1760601563; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=utVwjhO8Z9nfTT7T332+x9pXtf82IVN0SHJivYwFQFM=;
+        b=sVVYuFPculI/UNQcEflmywDrpyCbr8lR1xv5hBdmnW5WdOWjiY26tYe5wDDO4lN0qO
+         95TQDUEpgOH/wDss3vfVlT7ZhXWxzmXU1rJ4WU457wtdc0PIux0+MljPtDCXlzvq/KBy
+         hVpS8orG4uPjQ86ZDFn1wPmGgk+GgLJEyQNcHw3L9u/2ThmmVHMnqIqVfTFWjKTCYeNO
+         ucrfeuFrluMR0rXg1uJnq4ssXXzwK52f2hYzZRYUlXMqUyr8O0b70xYKvZiAteCD/dMu
+         X5NMdr+HSF0dE+HbP37L2rh++2QMraOwr23n/F23tnKBOwYCNQkgj/FoG32LuXybCHe6
+         c56w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759996763; x=1760601563;
+        h=content-transfer-encoding:mime-version:message-id:date:user-agent
+         :references:in-reply-to:subject:cc:to:from:x-gm-message-state:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=utVwjhO8Z9nfTT7T332+x9pXtf82IVN0SHJivYwFQFM=;
+        b=f46O04jMTaOSvu/wE7BFigfqoHh5NRKYVP/CSUcUGrishws+bVhXrfHNN+KTyiquKe
+         9/INOU+O+Qg+HUnZHAPPo1eG4v/eDfRb+sbO63ZHSsB4uU10Fn+aH3aR1ekmfVH9dtCm
+         2f8wmxVnYnbLlgHOnvEZlk7EXi14NS9WXOlLRieliS4b90gmVeEdWyLzrhFEIYDvVmSP
+         d7wjfPzII03eJk1Y/THJpK7/egsYG98VpUEH6BAny5So1SZLHSa8fCQnv+dmeaeeLNaW
+         c/N6F+g7gu2HtQzGz504MGezWqX1z0x1K2pHuWBsCkdawuRRZU7EJrfre3d8G9mutrDW
+         ieqw==
+X-Forwarded-Encrypted: i=1; AJvYcCUukz7W5iCf8aZtuNZn9vveErSOrmydI+zMpxsNgTijKg11qZq6H5DZD510tRFrGbDIAp6TpS0c07h9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzurY7X6YIcxUzfCwwYLPyaIY9Uj1fZOWdm18Dmrrkgd86BPY+J
+	lu6MmUjOUl3mF6Aj3IvYZVc6YoRSSNjQw41bhblzfKaAsWyaVrQ25S7yx7dlY8slyZ4=
+X-Gm-Gg: ASbGncuyiGnO6F5dvk8KgKAm6nzZBu1Qek+sVLBZeY98mdTRT0KYxV5xT6C5TQY7xA/
+	JPss4mZw2Ds9GOu4OQpLCuvBMoZrpsQ0qMPQimU0PW4Uew9PRsnR0ulL2bnoXGF0P1UBkmZ9yTX
+	GhUzWKYYJwGyhlBExIK4UranWsaBYqt3aj6LqVW0IDS984fyQao9U/dm00fmotpwf5z8zquwd5y
+	Q61a0wbNB3/b4vSAyWKCW0rusedwEFrjiN6o8Wa6dt7dZV17+/gk+vaaEAL4HVY+35f1lfeCNCb
+	M2MsSVFtUMjK6s70V9Ji8kE3X4eJIs1TLoVTpdOe+EOqcDI9oeQyV1j9Sn9o0aaHSaxQXEhfKbP
+	XvuhQPWImBvAh5tG1jLWZycyWmYVeWsBFLpBJJd8F9zca4V9v8GXPAGMT
+X-Google-Smtp-Source: AGHT+IG5pvNgDMJPTKAtRd4veVO0FFUkU2pJXXO+YNn1lCJbx4D7Y9oh8jCMqxVVxc+i8Y4GbC2AVA==
+X-Received: by 2002:a05:6000:2c02:b0:401:ae97:a1ab with SMTP id ffacd0b85a97d-42666aa67f9mr4871037f8f.10.1759996763143;
+        Thu, 09 Oct 2025 00:59:23 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:1753:6135:be55:f8ab])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-4255d8ab8fdsm32990864f8f.15.2025.10.09.00.59.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Oct 2025 00:59:22 -0700 (PDT)
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Chuan Liu <chuan.liu@amlogic.com>
+Cc: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
+  Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
+ <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
+ <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
+ <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
+ Blumenstingl <martin.blumenstingl@googlemail.com>,
+  linux-kernel@vger.kernel.org,  linux-clk@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-amlogic@lists.infradead.org,
+  linux-arm-kernel@lists.infradead.org,  Xianwei Zhao
+ <xianwei.zhao@amlogic.com>
+Subject: Re: [PATCH 00/19] clk: amlogic: Add PLLs and peripheral clocks for
+ A4 and A5 SoCs
+In-Reply-To: <b8105d25-112c-4406-9f3a-8fbbd0754b26@amlogic.com> (Chuan Liu's
+	message of "Thu, 9 Oct 2025 11:09:25 +0800")
+References: <20250930-a4_a5_add_clock_driver-v1-0-a9acf7951589@amlogic.com>
+	<1jv7kz3w1p.fsf@starbuckisacylon.baylibre.com>
+	<b8105d25-112c-4406-9f3a-8fbbd0754b26@amlogic.com>
+User-Agent: mu4e 1.12.9; emacs 30.1
+Date: Thu, 09 Oct 2025 09:59:22 +0200
+Message-ID: <1jh5w84iat.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: SloV3XHDG07T1lqQMuTsMpdQ28QcJBng
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX//7pXtwxL9ey
- TjylyU9LfqWLusl86jpCZRec3HXGITrG2yPnnMBhtSnBA3gEtYM690sTWSqLjHUfR9P/7TYEJPD
- +wbfSxRFobQAPIWeQh3nHFJyNvyAXehC3bjN04GC6PQAdE+jZMYG0Vm2xjKjZu3ha9f3Zf9rXoW
- KTvtxpmP3SzzgJzCZlvtH+WMrc46xUwsjbXkhwLB6VUg9LbIlaA7IlBxeLoXR53aKdTevhh0u7s
- 4xE0uJ2vSFk8NC4f6TY/xytiGh82e/c1hyyDZiTHkPINnDGbr82GR6hKNm8Rgxx3QCgbVmvx77y
- 36Fb10nWpqm0NKNatl4eCSEUY3xxLzrm3M4hn3bYYFvjnSAZdJWWjXA0AK5VbBEff5VAQPpi9zq
- +3AYqCH6oU0j2GGsUxcnkeGbo5HQZQ==
-X-Authority-Analysis: v=2.4 cv=SfL6t/Ru c=1 sm=1 tr=0 ts=68e76610 cx=c_pps
- a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=eOVVwEV3zLrTfS32KukA:9
- a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-ORIG-GUID: SloV3XHDG07T1lqQMuTsMpdQ28QcJBng
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-09_02,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1011 malwarescore=0 bulkscore=0 priorityscore=1501
- suspectscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On the HAMOA-IOT-EVK board only 2 out of 4 speakers were functional.
-Unlike the CRD, which shares a single GPIO reset line for WSA1/2,
-this board provides a dedicated GPIO reset for each WSA, resulting
-in 4 separate reset lines.
+On Thu 09 Oct 2025 at 11:09, Chuan Liu <chuan.liu@amlogic.com> wrote:
 
-Update the device tree accordingly so that all 4 speakers can
-playback audio as expected.
+> Hi Jerome,
+>
+> =C2=A0 =C2=A0 Thanks for your review, because the national day holidays d=
+id not
+> timely feedback.
+>
+>
+> On 10/1/2025 3:45 PM, Jerome Brunet wrote:
+>> [ EXTERNAL EMAIL ]
+>>
+>> On Tue 30 Sep 2025 at 17:37, Chuan Liu via B4 Relay
+>> <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
+>>
+>>> This patch series includes changes related to the PLL and peripheral
+>>> clocks for both the A4 and A5 SoCs.
+>>>
+>>> The patches for A5 were previously submitted up to V3 by Xianwei.
+>>> https://lore.kernel.org/all/20250103-a5-clk-v3-0-a207ce83b9e9@amlogic.c=
+om/
+>>> After friendly coordination, I=E2=80=99ve taken over and continued the
+>>> submission as part of this series. The dt-bindings patch retains Rob's
+>>> original "Reviewed-by" tag, and I hope this hasn=E2=80=99t caused any
+>>> additional confusion.
+>> ... and yet you restart the versioning of the series making it harder
+>> for people to follow that
+>
+>
+> Sorry for the inconvenience caused. The main changes compared to the
+> previous version by Xianwei are in the driver part.
+>
+> The dt-bindings part only has minor modifications in [PATCH 14/19].
+>
+> The driver part has relatively larger changes because it needs to be
+> based on the code base you previously submitted.
 
-Signed-off-by: leqi <le.qi@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 30 +++++++++++++++++-----
- 1 file changed, 23 insertions(+), 7 deletions(-)
+I'm not seeing a justification for the mess introduced and I'm not
+looking for one to be honest
 
-diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-index df8d6e5c1f45..de9af19be6e8 100644
---- a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-+++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
-@@ -743,7 +743,7 @@ retimer_ss1_con_sbu_out: endpoint {
- };
- 
- &lpass_tlmm {
--	spkr_01_sd_n_active: spkr-01-sd-n-active-state {
-+	spkr0_sd_n_active: spkr0-sd-n-active-state {
- 		pins = "gpio12";
- 		function = "gpio";
- 		drive-strength = <16>;
-@@ -751,13 +751,29 @@ spkr_01_sd_n_active: spkr-01-sd-n-active-state {
- 		output-low;
- 	};
- 
--	spkr_23_sd_n_active: spkr-23-sd-n-active-state {
-+	spkr1_sd_n_active: spkr1-sd-n-active-state {
- 		pins = "gpio13";
- 		function = "gpio";
- 		drive-strength = <16>;
- 		bias-disable;
- 		output-low;
- 	};
-+
-+	spkr2_sd_n_active: spkr2-sd-n-active-state {
-+		pins = "gpio17";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+		output-low;
-+	};
-+
-+	spkr3_sd_n_active: spkr3-sd-n-active-state {
-+		pins = "gpio18";
-+		function = "gpio";
-+		drive-strength = <16>;
-+		bias-disable;
-+		output-low;
-+	};
- };
- 
- &lpass_vamacro {
-@@ -908,7 +924,7 @@ &smb2360_2_eusb2_repeater {
- &swr0 {
- 	status = "okay";
- 
--	pinctrl-0 = <&wsa_swr_active>, <&spkr_01_sd_n_active>;
-+	pinctrl-0 = <&wsa_swr_active>, <&spkr0_sd_n_active>, <&spkr1_sd_n_active>;
- 	pinctrl-names = "default";
- 
- 	/* WSA8845, Left Woofer */
-@@ -927,7 +943,7 @@ left_woofer: speaker@0,0 {
- 	left_tweeter: speaker@0,1 {
- 		compatible = "sdw20217020400";
- 		reg = <0 1>;
--		reset-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
-+		reset-gpios = <&lpass_tlmm 13 GPIO_ACTIVE_LOW>;
- 		#sound-dai-cells = <0>;
- 		sound-name-prefix = "TweeterLeft";
- 		vdd-1p8-supply = <&vreg_l15b_1p8>;
-@@ -961,14 +977,14 @@ wcd_tx: codec@0,3 {
- &swr3 {
- 	status = "okay";
- 
--	pinctrl-0 = <&wsa2_swr_active>, <&spkr_23_sd_n_active>;
-+	pinctrl-0 = <&wsa2_swr_active>, <&spkr2_sd_n_active>, <&spkr3_sd_n_active>;
- 	pinctrl-names = "default";
- 
- 	/* WSA8845, Right Woofer */
- 	right_woofer: speaker@0,0 {
- 		compatible = "sdw20217020400";
- 		reg = <0 0>;
--		reset-gpios = <&lpass_tlmm 13 GPIO_ACTIVE_LOW>;
-+		reset-gpios = <&lpass_tlmm 17 GPIO_ACTIVE_LOW>;
- 		#sound-dai-cells = <0>;
- 		sound-name-prefix = "WooferRight";
- 		vdd-1p8-supply = <&vreg_l15b_1p8>;
-@@ -980,7 +996,7 @@ right_woofer: speaker@0,0 {
- 	right_tweeter: speaker@0,1 {
- 		compatible = "sdw20217020400";
- 		reg = <0 1>;
--		reset-gpios = <&lpass_tlmm 13 GPIO_ACTIVE_LOW>;
-+		reset-gpios = <&lpass_tlmm 18 GPIO_ACTIVE_LOW>;
- 		#sound-dai-cells = <0>;
- 		sound-name-prefix = "TweeterRight";
- 		vdd-1p8-supply = <&vreg_l15b_1p8>;
--- 
-2.34.1
+>
+>>> Both A4 and A5 belong to the Audio series. Judging by their names, one
+>>> might assume that A5 is an upgrade to A4, but in fact, A5 was released
+>>> a year earlier than A4.
+>>>
+>>> Since there are differences in the PLLs and peripheral clocks between
+>>> the A4 and A5 SoCs (especially the PLL), and taking into account factors
+>>> such as memory footprint and maintainability, this series does not
+>>> attempt to merge the two into a shared driver as was done for
+>>> G12A/G12B/SM1.
+>> ... and we end up with 19 patches series while it could be splitted into
+>> manageable series, for each controller of each SoC
+>
+>
+> I'm not sure if I understood you correctly.
+>
+> Do you mean that I should split this series of 19 patches into multiple
+> patch series and send them separately? For example:
+> serie 1: A4 SCMI clock controller (dt-bindings)
+> serie 2: A4 PLL clock controller (dt-bindings, driver, dts)
+> serie 3: A4 peripherals clock controller (dt-bindings, driver, dts)
+> ... A5 similarly?
 
+Things that do not actually depends on each other or which are not
+merged through the same tree should not be sent together. There is
+nothing new here. Same basic reminders on each submission.
+
+>
+>
+>>> This patch series includes all related dt-bindings, driver, and dts
+>>> changes for the PLLs and peripheral clocks. Following our past conventi=
+on
+>>> for clock-related submissions, the dts changes are placed at the end
+>>> and submitted separately. If this ordering makes it harder for
+>>> maintainers to review or pick patches, please feel free to point it out.
+>>>
+>>> Co-developed-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+>>> ---
+>>> Chuan Liu (19):
+>>>        dt-bindings: clock: Add Amlogic A4 SCMI clock controller
+>>>        dt-bindings: clock: Add Amlogic A4 PLL clock controller
+>>>        dt-bindings: clock: Add Amlogic A4 peripherals clock controller
+>>>        clk: amlogic: Optimize PLL enable timing
+>>>        clk: amlogic: Correct l_detect bit control
+>>>        clk: amlogic: Fix out-of-range PLL frequency setting
+>>>        clk: amlogic: Add A4 PLL clock controller driver
+>>>        clk: amlogic: Add A4 clock peripherals controller driver
+>>>        arm64: dts: amlogic: A4: Add scmi-clk node
+>>>        arm64: dts: amlogic: A4: Add PLL controller node
+>>>        arm64: dts: amlogic: A4: Add peripherals clock controller node
+>>>        dt-bindings: clock: Add Amlogic A5 SCMI clock controller support
+>>>        dt-bindings: clock: Add Amlogic A5 PLL clock controller
+>>>        dt-bindings: clock: Add Amlogic A5 peripherals clock controller
+>>>        clk: amlogic: Add A5 PLL clock controller driver
+>>>        clk: amlogic: Add A5 clock peripherals controller driver
+>>>        arm64: dts: amlogic: A5: Add scmi-clk node
+>>>        arm64: dts: amlogic: A5: Add PLL controller node
+>>>        arm64: dts: amlogic: A5: Add peripheral clock controller node
+>>>
+>>>   .../clock/amlogic,a4-peripherals-clkc.yaml         | 122 +++
+>>>   .../bindings/clock/amlogic,a4-pll-clkc.yaml        |  61 ++
+>>>   .../clock/amlogic,a5-peripherals-clkc.yaml         | 134 ++++
+>>>   .../bindings/clock/amlogic,a5-pll-clkc.yaml        |  63 ++
+>>>   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        |  80 ++
+>>>   arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        |  87 ++
+>>>   drivers/clk/meson/Kconfig                          |  53 ++
+>>>   drivers/clk/meson/Makefile                         |   4 +
+>>>   drivers/clk/meson/a1-pll.c                         |   1 +
+>>>   drivers/clk/meson/a4-peripherals.c                 | 764 ++++++++++++=
+++++++
+>>>   drivers/clk/meson/a4-pll.c                         | 242 ++++++
+>>>   drivers/clk/meson/a5-peripherals.c                 | 883 ++++++++++++=
++++++++++
+>>>   drivers/clk/meson/a5-pll.c                         | 476 +++++++++++
+>>>   drivers/clk/meson/clk-pll.c                        |  76 +-
+>>>   drivers/clk/meson/clk-pll.h                        |   2 +
+>>>   .../clock/amlogic,a4-peripherals-clkc.h            | 129 +++
+>>>   include/dt-bindings/clock/amlogic,a4-pll-clkc.h    |  15 +
+>>>   include/dt-bindings/clock/amlogic,a4-scmi-clkc.h   |  42 +
+>>>   .../clock/amlogic,a5-peripherals-clkc.h            | 132 +++
+>>>   include/dt-bindings/clock/amlogic,a5-pll-clkc.h    |  24 +
+>>>   include/dt-bindings/clock/amlogic,a5-scmi-clkc.h   |  44 +
+>>>   21 files changed, 3406 insertions(+), 28 deletions(-)
+>>> ---
+>>> base-commit: 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
+>>> change-id: 20250928-a4_a5_add_clock_driver-2b7c9d695633
+>>>
+>>> Best regards,
+>> --
+>> Jerome
+
+--=20
+Jerome
 
