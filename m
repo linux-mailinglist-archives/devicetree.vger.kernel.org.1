@@ -1,117 +1,141 @@
-Return-Path: <devicetree+bounces-224771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2A5CBC7A95
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 09:20:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2EA2BC7B1C
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 09:24:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1064419E6FEF
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 07:20:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6923C3BCE92
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 07:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B749A25FA2C;
-	Thu,  9 Oct 2025 07:20:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26FEF2D061D;
+	Thu,  9 Oct 2025 07:24:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UQf22LZE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 315B7222586
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 07:20:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B32D2D0267
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 07:24:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759994404; cv=none; b=jJb4GrR0ZXEEhiN0lfZNX9NOwvbRCxrUC7B1CIHSmBLGXsPXeqN7An07PBUDHbKzoBizrRFShjMvUbwYN93GGndYsQJ2meTvxHUcs9K2zUJtvmYxMpF7asgmdSlE6v5wrksl7Sha28m+mVaN0DbysK7R9lLP3my//SwtA0NFM+U=
+	t=1759994671; cv=none; b=FIvIen81AQtl2CBbZCYnyB6888maGGPcAfegV38J0ZqBKb8+kw2p0pmp98NaDBdnhp4xAhqXh/evoPmmmFThe0nmf0AvUcxIK9e7myDKj3LTU7KD7zUZPjPNqULUBSu79gnxKIXKd1OmrUixidinTqP65QZaJY710KThXpUyPJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759994404; c=relaxed/simple;
-	bh=pXo1Ih1CCf5gDF12vQJfgh+QQk2GshZgdDAJPzo1xkw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PbVnzgrt/z0Zb1ge/tIoJWufowDq0dtFKSC9rc8wNeD0KHuWbRXOcoIN0HlXLfb0AWyJVmY5JrrSOb++G547IMY2CGzMtfNunb5lP+oFQecp9UX/hNgK3wccA6fNnAJ2ywuNiueUK91jcHMCTx4iWJFPBCbhoSVkqpL3FgFnqqo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-905b08b09f5so113446241.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 00:20:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759994402; x=1760599202;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fTd3A9N8Fr7NQsplF90FqqVbDNPwdHs5HoYAo5GAllk=;
-        b=A5r39JXhPmPqOTWFXj+q0MHxVz6lfUox2yu7+P6wMWLfxXODYz3Rpn9LMddzri7QKW
-         iHVCYZAe6UhICNy4eL7oyTHUPjyKaTBLbnyljh1GAAC/hW9Kj0D3wb7jjFRhaAnI74lH
-         jdlWZPP0tiB9dAoTRXwB4ciH+oyAbaD2GZRHtoR3Jhqr6pkmTFFB3nYuungvjB+hlrU6
-         X9GyvuhmyyLt/qf+DqFxc5p0takPndytSSK18xlvQzhsesP+WfnkTHBACfu0ahn/8NEH
-         EZ/FAOCGSAxIl4qE+My9MXsZgGoVS6Tq2A1/fxw40br/geUirrGyA05nqnN89s3HwURX
-         yJtA==
-X-Forwarded-Encrypted: i=1; AJvYcCVndVd5rId+bBTzTfGh9ML/Leu+4Q6LwzIoUmQeZvoFIYaOyFAjFNBfI2gmd3zX1prSiQutrE6JI9zV@vger.kernel.org
-X-Gm-Message-State: AOJu0Yylo/a/e26BtvrShTUVcU1HPX7AYyvphkMpCryymLvuNAulugPM
-	Z+SB2t0P2YH62FhBzvYU6w4jPp4Mo32R9/KEBwlPOG2qKucCdguXu+9Aa+avqeE0
-X-Gm-Gg: ASbGncsBwo0lhkw7nyOGzBCf1jHJ6Uw65UoSxuHV3v5COqK9LqUl5IWl1vDa1RkaAuE
-	FYzboscosNhj86U8kUpao0Yh0JNzzDDPrRI8tiIwcWo+VTo6EYtbZKA5DUbsa6TMEkeoKIPZLLI
-	/xmN3nnbbXu4Gvu2eJMP9uix5H97lEOcQO0FNgla/UBKJthcEIBNpaI++tx+smEDnle1fM+lz99
-	Cp9QRa8ZJfiAjNprP7rbsCM2/cQzoK6+Jvuje5v3Iu3lZFQFbO7/VqidHcTt5eTZQJSpATutD23
-	bhGLFg2Yr6Rw/RlzLFOu7Pl1TYkBhl1vW0DzIasrRn3Tpi5MGYaWueaNII6XG8uRy4g7h224AZ6
-	Frfj3me8HBGVH2SFV8eNo3D/HctYL3TVAONqVDYeSNsFAXshG1j5nGTBR9jJpHmmywiA+60ZLVs
-	2F/IckwKUPaBTN23p8ZuE=
-X-Google-Smtp-Source: AGHT+IHPHZgvI6O5idfescFkC1rMaTUGBv3aeRrCL197Au+xYlEzUhhGZ4gJn6LVz9VaZWonorghlg==
-X-Received: by 2002:a05:6102:c09:b0:55d:cfa5:9d60 with SMTP id ada2fe7eead31-5d5e227927bmr2764502137.12.1759994401899;
-        Thu, 09 Oct 2025 00:20:01 -0700 (PDT)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-5d5d39fb8e2sm2158306137.16.2025.10.09.00.20.01
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Oct 2025 00:20:01 -0700 (PDT)
-Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-890190a3579so101523241.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 00:20:01 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXioB4mH0Jmz+Oq3DzR0+0GAK5OGteRvJJRqXgcpniAxUhHhnYmWE9vDOdFSC0JZbyVbS1V8uP8ct/e@vger.kernel.org
-X-Received: by 2002:a05:6102:d93:b0:5a3:60ba:9e4f with SMTP id
- ada2fe7eead31-5d5e2270f9fmr2840499137.8.1759994401534; Thu, 09 Oct 2025
- 00:20:01 -0700 (PDT)
+	s=arc-20240116; t=1759994671; c=relaxed/simple;
+	bh=SZTeonF4D7wa7CnlmXUx/9cIUWtW40SMGZWYRcsw+qU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tVZouyhaG929r2ABtp1udxDWVwYO2azeck93cV0vA4GYUXI3NFMHg9nI3+nkrpV1ZDsVqkYS3tCpq1L//BDI/VGvNZeGvWmpfjXRCgTLOjVkqHJCb7fUZD/RGXCiObZ6UOa50u6ctLp3VvJo3nUJ1iGdFvTIbTwi5yBFvyYs8jE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UQf22LZE; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1759994666;
+	bh=SZTeonF4D7wa7CnlmXUx/9cIUWtW40SMGZWYRcsw+qU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UQf22LZE6wT8E8eisCIK4JaZSOmu+V/vPG5Y0I6YS5BgLJzvV7v6HTVsmUgpk3T50
+	 pzj6kPYViehSf/BaQtWYQ5s9qMgq2LrQqZzlcjTVS8V0IQhlhgiSIhaBJcIsQE3QVL
+	 PKsLlXRFdMl5vlC/VgTCOhVze9tyYhf/maGVOtdtUscvLdQZivjSJoNedFRpmEP/QL
+	 iChhvyA21+FGs2vuM4uDi8QLwby2xaDyGMuhiTI2xNzl7svpIicnR/wzKwzhtud4Ff
+	 Cq/iLWkSvaWZKVgks5vnr9col8ZoNGqnuiNVFZx0hnjnQS1QWMv3Ly4q5x7xcit/cF
+	 PAI7HGKqQ93uQ==
+Received: from [192.168.1.90] (unknown [82.79.138.145])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6F98117E1256;
+	Thu,  9 Oct 2025 09:24:25 +0200 (CEST)
+Message-ID: <bfb68ced-e6ec-4636-816e-9b8fe8aa10b4@collabora.com>
+Date: Thu, 9 Oct 2025 10:24:25 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251009071033.5378-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20251009071033.5378-2-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 9 Oct 2025 09:19:50 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXWowar7aD9+og1GXY-gaUuewSjnxqLH0KCFrdpeWvCZA@mail.gmail.com>
-X-Gm-Features: AS18NWCO2IVX03kpbrCrBlZzTqUTmdMD219vjt8gLFEQ4TfPmPbOnCMyqQMpVDE
-Message-ID: <CAMuHMdXWowar7aD9+og1GXY-gaUuewSjnxqLH0KCFrdpeWvCZA@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: bus: renesas-bsc: allow additional properties
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/5] drm/rockchip: dw_hdmi_qp: Improve error handling
+ with dev_err_probe()
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ Alexey Charkov <alchark@gmail.com>, Algea Cao <algea.cao@rock-chips.com>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Cenk Uluisik <cenk.uluisik@googlemail.com>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Jimmy Hon <honyuenkwun@gmail.com>, Kever Yang <kever.yang@rock-chips.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Maxime Ripard
+ <mripard@kernel.org>, Muhammed Efe Cetin <efectn@6tel.net>,
+ Ondrej Jirman <megi@xff.cz>, Rob Herring <robh@kernel.org>,
+ Sandy Huang <hjc@rock-chips.com>
+References: <20251005235542.1017-1-laurent.pinchart@ideasonboard.com>
+ <20251005235542.1017-3-laurent.pinchart@ideasonboard.com>
+ <gai5hfvu6xbbqpk4mu3i6nejolijeokjy3mkzca5xwzb4xwic7@jmee36svmwnb>
+ <8706f168-5598-4f91-9ad0-fdbd04b410b7@collabora.com>
+ <20251006162631.GK5944@pendragon.ideasonboard.com>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <20251006162631.GK5944@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, 9 Oct 2025 at 09:10, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Allow additional properties to enable devices attached to the bus.
-> Fixes warnings like these:
->
-> arch/arm/boot/dts/renesas/sh73a0-kzm9g.dtb: bus@fec10000 (renesas,bsc-sh73a0): Unevaluated properties are not allowed ('ethernet@10000000' was unexpected)
-> arch/arm/boot/dts/renesas/r8a73a4-ape6evm.dtb: bus@fec10000 (renesas,bsc-r8a73a4): Unevaluated properties are not allowed ('ethernet@8000000', 'flash@0' were unexpected)
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
->
-> Changes since v1:
-> * don't restrict node names, the core already does it
-> * drop A-F from unit address pattern
+On 10/6/25 7:26 PM, Laurent Pinchart wrote:
+> On Mon, Oct 06, 2025 at 05:37:23PM +0300, Cristian Ciocaltea wrote:
+>> On 10/6/25 3:02 PM, Dmitry Baryshkov wrote:
+>>> On Mon, Oct 06, 2025 at 02:55:38AM +0300, Laurent Pinchart wrote:
+>>>> From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>>>>
+>>>> The error handling in dw_hdmi_qp_rockchip_bind() is quite inconsistent,
+>>>> i.e. in some cases the error code is not included in the message, while
+>>>> in some other cases there is no check for -EPROBE_DEFER.
+>>>>
+>>>> Since this is part of the probe path, address the aforementioned issues
+>>>> by switching to dev_err_probe(), which also reduces the code a bit.
+>>>>
+>>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>>>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+>>>> ---
+>>>>  .../gpu/drm/rockchip/dw_hdmi_qp-rockchip.c    | 62 +++++++------------
+>>>>  1 file changed, 24 insertions(+), 38 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+>>>> index 7d531b6f4c09..4e7794aa2dde 100644
+>>>> --- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+>>>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+>>>> @@ -457,10 +457,8 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
+>>>>  		return -ENODEV;
+>>>>  
+>>>>  	if (!cfg->ctrl_ops || !cfg->ctrl_ops->io_init ||
+>>>> -	    !cfg->ctrl_ops->irq_callback || !cfg->ctrl_ops->hardirq_callback) {
+>>>> -		dev_err(dev, "Missing platform ctrl ops\n");
+>>>> -		return -ENODEV;
+>>>> -	}
+>>>> +	    !cfg->ctrl_ops->irq_callback || !cfg->ctrl_ops->hardirq_callback)
+>>>> +		return dev_err_probe(dev, -ENODEV, "Missing platform ctrl ops\n");
+>>>
+>>> This only makes sense for the purpose of unification.
+>>
+>> Right, as mentioned in the commit description, the intention was to ensure
+>> consistent error handling across the probe path rather than limiting the scope
+>> to -EPROBE_DEFER exclusively.
+> 
+> Should I revert this change in v3 or keep it ? I see value in
+> unification, but I don't mind either way. Dmitry, what's your preference
+> ?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+I missed to point out this patch has been also sent a while ago as part of
+another series [1] which should be ready for merging.  It'd be great if there's
+no need to revert any changes, otherwise we need to keep those in sync.
 
-Gr{oetje,eeting}s,
+Regardless, I'll let you know if that gets applied first, allowing us to drop
+this one after rebasing.
 
-                        Geert
+[1] https://lore.kernel.org/all/20250903-rk3588-hdmi-cec-v4-3-fa25163c4b08@collabora.com/
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Regards,
+Cristian
 
