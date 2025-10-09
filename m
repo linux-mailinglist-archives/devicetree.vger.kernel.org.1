@@ -1,142 +1,196 @@
-Return-Path: <devicetree+bounces-225120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06EB4BCABD5
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 22:01:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36959BCAC57
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 22:15:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78CA81A63543
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 20:01:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 920173B2EDF
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 20:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2298256C6F;
-	Thu,  9 Oct 2025 20:00:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30412266EEA;
+	Thu,  9 Oct 2025 20:15:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CYdVk91l"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="IREbUvkA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 933D52475C8;
-	Thu,  9 Oct 2025 20:00:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760040056; cv=none; b=mB7Ri2TO+FCbtA1YY7hNcvtIahkgpoiE/513BeaPVMS2OaFsAFWUjysbH/cvkh0mWMqQJVzqBnwoccXDz31ckF4CQUmMsCAwYf8+coGS8p4s7lCMBEmpvs10HBBd3dEsd4AS8goLV5BOZB+ZznCR08BsoyWj/DxTv23uU1BQllI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760040056; c=relaxed/simple;
-	bh=E/XuTfDMqDxIylA8lkbRA66SI99SurnbJ5bNXOHutYo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VCk5CTHTnU+BhBh52Wu50nbzaL3gCR3Ja00dFxBdk+6mIRUKNbyOa3kj7LfIcI1pfXD9x59vHFW6QJpkTEBetdtZvcsQyFWeQiAVZGqRKRQvzpDw3ZCTW5Fcnqk8AeuECNJwzGULwjdEzCVhUHykoy0GkwAeK+emVhmnmbN+GYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CYdVk91l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D47B0C4CEE7;
-	Thu,  9 Oct 2025 20:00:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760040056;
-	bh=E/XuTfDMqDxIylA8lkbRA66SI99SurnbJ5bNXOHutYo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CYdVk91lsmhuDd0uIHEWxCumIJuGANSnrn9lhViNYVXdLrv1L5y45/rHQPGmyY47a
-	 2gogPTP04ewnTjqd2ngEYmxjCr2WZHSIUpzvpAR4oIFLmwNobdMqJsRRgfrgfywi5G
-	 ihGv6Jl9lSib7LmmhPD6dbM66KoY4BTxwsvMnaNP/tR53HkJGGOJT9qTH4YcVm1hYC
-	 IxrvGVrxittGYRT/7oAtoNf1lF7zSeNdUd6UujSSat8i7ZLT1x5hDkR8B9S/Vk5RHh
-	 XUlRB+Nec6wXDOG3ZtKAORAe/BKp+dDioy55nRakHMJ+VfUy8v1IfXgLC/a/4M0Nrq
-	 +rgmK2/CnyFgw==
-Date: Thu, 9 Oct 2025 15:00:54 -0500
-From: Rob Herring <robh@kernel.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: wsa+renesas <wsa+renesas@sang-engineering.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	"magnus.damm" <magnus.damm@gmail.com>,
-	"linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2 4/4] dt-bindings: watchdog: factor out RZ/V2H(P)
- watchdog
-Message-ID: <20251009200054.GA3245555-robh@kernel.org>
-References: <20251005144416.3699-6-wsa+renesas@sang-engineering.com>
- <20251005144416.3699-10-wsa+renesas@sang-engineering.com>
- <TY3PR01MB11346E3690F0E74C5E1AF9B7586E2A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <aOKajKzRlrQD7plt@shikoro>
- <TY3PR01MB113460EB1918AD06D8F2ADD0C86E3A@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <aONh89-5-llFZWue@shikoro>
- <CAMuHMdVUbENsdjCCqrn7e9=mWbs+J1kcat6LYU6vAcrBHzawBw@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 349A124166E;
+	Thu,  9 Oct 2025 20:15:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760040936; cv=pass; b=KTQpPR2AfNniHG6R2WQ6UDm0YJ+58PT+O5S1VyrhxEUlAGijBudHz4j3bw0wnUj5h/UmlGKBJDamhI8Jk/6SeZtYrERDUGLKbW2TV7VTnpgzwb5381loW0WEJI/7OGx569TT/4mh4/+x/nUKgIzgqn6V16r8HWCYTgmD/COw5CM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760040936; c=relaxed/simple;
+	bh=72EZR+r0ivMrIkxmk5d2mq/G1nq0RxfAF643qbO76go=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=AmdWkZKDaKa+KCQeyEHmhUFyO7eAF/+3ca7nv3n7hFrI9dZ9UoJV02DkNlc/w/uDcWfEGZxxuNnRCqRn0MNgTVR0fVppsBWDQ4w6gQpPeSqtnuIPKmdpVqnn9mxNK3Z1LIpbUGZVpEZ396o61nJkmS/VyipJdXCu17wqavocOr8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=IREbUvkA; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1760040913; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=bUWbL/cbdYkJTVmJ/Ol4gXBFFOtUjIChX1rQYBVzQ+ybQSn5FjVpe8WwDFV4wxBirRm1AtyCwkzfvhrbWgbOU4avyQKHwewc2gG8u9Kye2OurxHN0SSnjZS5UEY4YgdPXoevlcBuPkcI88rZXqWm3mBQHlMyMsJy/cgBy1jJ/7E=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1760040913; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=m8IQGlvE0B/h1nhDsu/zo01pRlwkuXubZg9MqyCi1WQ=; 
+	b=VPsvC9byf0knFT2/3fkR6VQ8fMPDHOk6/yh6BX3L/1cJSJnMqinRCDTsO8CPHIB4RCKpA8rxnQa0+DQxg1Aciq1V1vflLwn2MA7iA/zTgHddanaFYwqOJak93C/js48S/wilM7uT3Tai51OBO6wYCj1/PikTRZHHjaZ5ql0pW7g=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1760040912;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=m8IQGlvE0B/h1nhDsu/zo01pRlwkuXubZg9MqyCi1WQ=;
+	b=IREbUvkASyuJRRlJKCxFgy+8vM2XJYSaxRGe0c2fcHRLn26ofrTkacnwB+/DOp7c
+	ia+TEJ7nCIV1WbnZducwJLlm+IzPXTwxLsBumFm1c8gnJXxM8djjaJXQms5dHWaqWUG
+	RUnFlCta3Pkxp/zjK8t8/+86UeIy24pB4Imwc7PQ=
+Received: by mx.zohomail.com with SMTPS id 1760040910661484.0419438507935;
+	Thu, 9 Oct 2025 13:15:10 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: linux-mediatek@lists.infradead.org,
+ angelogioacchino.delregno@collabora.com
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, lgirdwood@gmail.com, broonie@kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
+ wenst@chromium.org, igor.belwon@mentallysanemainliners.org,
+ =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject:
+ Re: [PATCH v8 9/9] drivers: mfd: Add support for MediaTek SPMI PMICs and
+ MT6363/73
+Date: Thu, 09 Oct 2025 22:15:01 +0200
+Message-ID: <14451186.uLZWGnKmhe@workhorse>
+In-Reply-To: <20251003091158.26748-10-angelogioacchino.delregno@collabora.com>
+References:
+ <20251003091158.26748-1-angelogioacchino.delregno@collabora.com>
+ <20251003091158.26748-10-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdVUbENsdjCCqrn7e9=mWbs+J1kcat6LYU6vAcrBHzawBw@mail.gmail.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Mon, Oct 06, 2025 at 11:25:11AM +0200, Geert Uytterhoeven wrote:
-> Hi Wolfram,
-> 
-> On Mon, 6 Oct 2025 at 08:30, wsa+renesas
-> <wsa+renesas@sang-engineering.com> wrote:
-> > > > > > +      - enum:
-> > > > > > +          - renesas,r9a09g057-wdt    # RZ/V2H(P)
-> > > > > > +          - renesas,r9a09g077-wdt    # RZ/T2H
-> > > > > > +
-> > > > > > +      - items:
-> > > > > > +          - const: renesas,r9a09g087-wdt # RZ/N2H
-> > > > > > +          - const: renesas,r9a09g077-wdt # RZ/T2H
-> > >
-> > > I guess a comment like # fallback RZ/T2H here will avoid confusion.
-> >
-> > Hmmm, if we add such a comment for every fallback, this will be quite
-> > some churn, I would think. My favourite solution would be to swap the
-> > 'items' entry with the 'enum'. So, everything with a fallback comes
-> > first, and the 'plain' entries last. But what do others think?
+On Friday, 3 October 2025 11:11:58 Central European Summer Time AngeloGioac=
+chino Del Regno wrote:
+> This driver adds support for the MediaTek SPMI PMICs and their
+> interrupt controller (which is present in 95% of the cases).
+>=20
+> Other than probing all of the sub-devices of a SPMI PMIC, this
+> sets up a regmap from the relevant SPMI bus and initializes an
+> interrupt controller with its irq domain and irqchip to handle
+> chained interrupts, with the SPMI bus itself being its parent
+> irq controller, and the PMIC being the outmost device.
+>=20
+> This driver hence holds all of the information about a specific
+> PMIC's interrupts and will properly handle them, calling the
+> ISR for any subdevice that requested an interrupt.
+>=20
+> As for the interrupt spec, this driver wants 3 interrupt cells,
+> but ignores the first one: this is because of how this first
+> revision of the MediaTek SPMI 2.0 Controller works, which does
+> not hold irq number information in its register, but delegates
+> that to the SPMI device - it's possible that this will change
+> in the future with a newer revision of the controller IP, and
+> this is the main reason for that.
+>=20
+> To make use of this implementation, this driver also adds the
+> required bits to support MediaTek MT6363 and MT6373 SPMI PMICs.
+>=20
+> Reviewed-by: N=C3=ADcolas F. R. A. Prado <nfraprado@collabora.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> ---
+>  drivers/mfd/Kconfig         |  17 ++
+>  drivers/mfd/Makefile        |   1 +
+>  drivers/mfd/mtk-spmi-pmic.c | 410 ++++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/mt6363.h  |  26 +++
+>  include/linux/mfd/mt6373.h  |  21 ++
+>  5 files changed, 475 insertions(+)
+>  create mode 100644 drivers/mfd/mtk-spmi-pmic.c
+>  create mode 100644 include/linux/mfd/mt6363.h
+>  create mode 100644 include/linux/mfd/mt6373.h
 
-That's probably what I'd pick, but I try not to define rules we can't 
-check with tools. Otherwise, I get tired of having to review that rule. 
+Hi Angelo, came across something suspicious here while debugging why
+I ran into IRQ parsing from DT issues here.
 
-And adding a rule to tools has the cost of fixing the existing cases 
-everywhere.
+>
+> [...]
+> diff --git a/drivers/mfd/mtk-spmi-pmic.c b/drivers/mfd/mtk-spmi-pmic.c
+> new file mode 100644
+> index 000000000000..512b53bdb0d1
+> --- /dev/null
+> +++ b/drivers/mfd/mtk-spmi-pmic.c
+> [...]
+> +
+> +static int mtk_spmi_pmic_irq_xlate(struct irq_domain *d, struct device_n=
+ode *ctrlr,
+> +				  const u32 *intspec, unsigned int intsize,
+> +				  unsigned long *out_hwirq, unsigned int *out_type)
+> +{
+> +	struct mtk_spmi_pmic *pmic =3D d->host_data;
+> +	struct device *dev =3D pmic->dev;
+> +	struct irq_fwspec fwspec;
+> +
+> +	of_phandle_args_to_fwspec(ctrlr, intspec, intsize, &fwspec);
+> +	if (WARN_ON(fwspec.param_count < 3))
+> +		return -EINVAL;
 
-> We do have "fallback" comments in other places, and I think they do
-> help in understanding compatible naming schemes.
-> 
-> Would it be possible to handle this in dt-schema?
-> Currently we have to write:
-> 
->       - const: vendor,soc1-ip
-> 
->       - items:
->           - enum:
->               - vendor,soc2-ip
->               - vendor,soc3-ip
->           - const: vendor,soc1-ip       # fallback
-> 
-> If dt-schema would automatically drop duplicates of the fallback,
-> we could just write:
-> 
->       - items:
->           - enum:
->               - vendor,soc1-ip
->               - vendor,soc2-ip
->               - vendor,soc3-ip
->           - const: vendor,soc1-ip       # fallback
-> 
-> What do you think?
+What's the point of fwspec here? The caller in
+irqdomain.c::irq_domain_translate has an fwspec, converts it to an
+of_node with the intsize/intspec args, then passes it to this function,
+which builds it back into an fwspec just to check fwspec.param_count,
+which is equal intsize.
 
-It would almost work with just 'minItems: 1' added. That's because we 
-require strings to be unique entries, so soc1 twice will be rejected. 
-But then that allows for no fallback with soc2 and soc3.
+fwspec is then never used again.
 
-So I don't see a way to do this other than transforming the above back 
-into what we have today under a oneOf. That's a bit more deviation from 
-json-schema than I'm comfortable with. Mostly the tools just add 
-properties (like 'additionalItems: false' here) where the default is not 
-what we want.
+Just check intsize instead, it's precisely that value.
 
-Rob
+spmi-mtk-pmif.c::mtk_spmi_rcs_irq_xlate does the same thing, which also
+seems pointless.
+
+> +
+> +	/*
+> +	 * The IRQ number in intspec[0] is ignored on purpose here!
+> +	 *
+> +	 * This is because of how at least the first revision of the SPMI 2.0
+> +	 * controller works in MediaTek SoCs: the controller will raise an
+> +	 * interrupt for each SID (but doesn't know the details!), and the
+> +	 * specific IRQ number that got raised must be read from the PMIC or
+> +	 * its sub-device driver.
+> +	 * It's possible that this will change in the future with a newer
+> +	 * revision of the SPMI controller, and this is why the devicetree
+> +	 * holds the full intspec.
+> +	 */
+> +	*out_hwirq =3D intspec[1];
+> +	*out_type =3D intspec[2] & IRQ_TYPE_SENSE_MASK;
+> +
+> +	dev_dbg(dev, "Found device IRQ %u chained from SPMI IRQ %x (map: 0x%lx)=
+\n",
+> +		intspec[1], intspec[0], *out_hwirq);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct irq_domain_ops mtk_spmi_pmic_irq_domain_ops =3D {
+> +	.map =3D mtk_spmi_pmic_irq_domain_map,
+> +	.xlate =3D mtk_spmi_pmic_irq_xlate,
+> +};
+> +
+> [...]
+
+Kind regards,
+Nicolas Frattaroli
+
+
+
+
 
