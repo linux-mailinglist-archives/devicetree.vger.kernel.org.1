@@ -1,141 +1,122 @@
-Return-Path: <devicetree+bounces-224950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE923BC9269
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 14:59:37 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B503BC927B
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 15:00:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 972753E63D5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 12:59:36 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6D0EE4EEFB0
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 13:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D72D2E62B7;
-	Thu,  9 Oct 2025 12:59:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G94Rf8Tc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EA182C159D;
+	Thu,  9 Oct 2025 13:00:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FEE072614;
-	Thu,  9 Oct 2025 12:59:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DA781339A4
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 13:00:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760014774; cv=none; b=oL/N28Q4wBUnB2WO7OVAOq1CTgdX5NMSeyHChHXFxMnIvKeize9B5dUfM/2BW5chmLmP43Z82AZ4iCDlMvLbxVU2ssgmf4SIic1Xa7V6OFWzoNiXkXnw9p/kzosmHUFk6CF3uv7zcd0cEsscbNRWqnzA7ytiRzCJmYuNNBOLY4s=
+	t=1760014833; cv=none; b=M26ZLssBY07JUuhV7heAHhV+dvN0zXXyVyaWqoQM3M5WXW6gFoJ+xDu3J3K0seNTlkKLabVtbAAjZPLC9gGjJPs6BqSNHw7fWL/OsBuGfLLHQZ+KZp1MsCgiuh7818HukpITB6ReoWKD2ivglpYm+70gNtm220XC4Mgtl/qYAiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760014774; c=relaxed/simple;
-	bh=e5JU+EEej+UYaag5RGaq8r1rnPbVxtcpHRPK8XuGuKI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=k/F3u0QPnhckUydB5ImFjbtCRQFL4zD7+WcskxFYoSieE3POCuz6QcekYytLBwwWcsqVbdeSiH6AvmUZ9lU7Sj/YpfjBePEkY2MpySTdEHnBr0gb7WmBl3jhZUEt+tG5dbuSuuLhIyb9wZPWUftDHFF8AGreIB9iJ5KTor/2RNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G94Rf8Tc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D83DC4CEE7;
-	Thu,  9 Oct 2025 12:59:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760014773;
-	bh=e5JU+EEej+UYaag5RGaq8r1rnPbVxtcpHRPK8XuGuKI=;
-	h=From:Date:Subject:To:Cc:From;
-	b=G94Rf8TcwEGdLlN3SnzjIRm3WYgCmLcChcN86VR4YcB/CEIvZlRouqiCiqUoh8U9U
-	 TWblrqVDA8ceVUwAomINkWWzvyf+ajyHNUexEZ51sxU/jRRx3crAC6Balab/25XgYG
-	 m3Uh+W4hyqBQY5pRHp6NrI7EE0zTIg4Gh7Ef4XCvK3oC33Vw2ktDIoNj/q6J7HpZXw
-	 3JhHTMK/4Rv648alUr1wLIigMbbKsRqMtGCMPXAR33zS1TzjVW3NTPL93egSO8Ch6z
-	 tC04gxaZaJj2YcY6SHhZ6KPW1TNSHZNEeQijZekRLiH3mpUJ7GpIWIj2D6pJDtRKVG
-	 qup9DRwoJkX6w==
-From: Konrad Dybcio <konradybcio@kernel.org>
-Date: Thu, 09 Oct 2025 14:59:18 +0200
-Subject: [PATCH] arm64: dts: qcom: x1e80100: Describe the full 'link'
- region of DP hosts
+	s=arc-20240116; t=1760014833; c=relaxed/simple;
+	bh=6u3hExo8BaFPYnHeuKnQj7DLSLZp25d6G7VihlvHxCc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=YePurZ8YQSuJOeLgsShgwwWVys7Riat0GEv1GAjWRbN/3sDWnjaYjSJO+qyKd6xKKZAdqAwZXyHpVPX2NW2PDT+sI8I7/MEXwM/FDnqX2m6P3ZEMHM2faBSEw+pFe6fjfBafSKhMuXZE0PzMtb7RTsMArjpDnvMUKcuGdSnNmqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-8e936be1359so531005241.0
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 06:00:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760014829; x=1760619629;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eotha7xWzuEbV2GrcE4HgLJOI5Q7DNyYVipBin0aoCQ=;
+        b=CBPkutTeFuHt96EvQgToBNaYdTevLF6kiZR5mb6O8RsLXLlNZfW6i5tk+8jG67BTzO
+         bTplzkNoCpUGNG3z4kj0rKeeZD0p4jSiVcKd4b1/Cja6nz5xqW6F1MZIrts/msFTyXJW
+         M3seWx6c1pz1motn7UQS4x7RL7rCMKTviRerIarB0bOaLQ5c7eB3E4OOdgTVMN8x7Dv7
+         x9KPHBEShLfVVEpWNM0UT9LNS6MzkPdR+oaaS1Hbia9+9OlmTAfZRQU8iOQ5jLCM+XIJ
+         H+kwCX9EPyKQGAhiZnSqQsZd1//1zQnjZSBbwVtQk484Toj9BO8fGHbMD8DUll71I+xN
+         bANQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWyQ6x9Ix8th2qA0nouENw06yIFL3JXORQXqEsKHd9VgD4qQfAwk/QtXZFrY55ZeftS7QcnJ0JCQRlW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxxhK7rBguC3wXv71S1Ygu1asWNWoeobDJXVrZ/wjrVVYoT34Ph
+	9d3f1u/GKKUfyfGGsdSNvCOlaLtBUIEwMFYuhyxkDe8tJQVfh4rLZjb8ZZgwhuct
+X-Gm-Gg: ASbGnctD3w9OCmU6FEeaH+tg8+Qz1AxV3BqTu++oVOf4zKklWLCQHJwa/n8C5rn/Cdq
+	Zqwz2KvF9DornAAil+FsAOKidI7iVps3vGe9ne4AdWFFC7HYCWs1pehHMVb/Z1ETmCNSzthpWJk
+	9OlIzyik3iNerTdapT4ajAh+DSPpHj2iPELBUVD9/fpt++VOvS5/firC0En7qJQJQvB/cHT5h9Z
+	X6glNM6TZnFeG+tEn7Yjr64L96h7z4zogqeld1uroTnbL5aWeWz4ZWhdsZ8MTtNsZJYmzSYdbL2
+	sWIGMsuOVS+M61WuPUmdG+/HAWR41f0eh6Qk+q5Dg7iytyqxB68qBFo+JYM5p6MY0ColTfGTyLJ
+	ZhdQ1h8j04qgQdPrbwgedXzeWD91S1RL9VyUi+y//kXbLorXNDnCoieAnuEE2vVA2tehoaAPrfc
+	50pHk3wWWMJ2CLDAOWtMY=
+X-Google-Smtp-Source: AGHT+IEPVd9kCxwkRY4aAyamG6/iK1XgWtPSyNXgKOcyZIf2vLaI2ATzB6M2RrfA1VEbMM4aK6sqQg==
+X-Received: by 2002:a05:6102:290f:b0:5d5:f6ae:38f4 with SMTP id ada2fe7eead31-5d5f6ae3ec7mr423902137.43.1760014828678;
+        Thu, 09 Oct 2025 06:00:28 -0700 (PDT)
+Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-92eb4d83c45sm4814192241.4.2025.10.09.06.00.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Oct 2025 06:00:28 -0700 (PDT)
+Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-8e0c90cac25so588060241.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 06:00:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWYVSV6+xKjN0uZ9dfx/3TUJ/78bu5mcHRNdia9yYfgoZrKSFyJZfg9QzGE7jiN8k2pceuCfSfpC9/4@vger.kernel.org
+X-Received: by 2002:a05:6102:5ccc:b0:5b2:d28a:8937 with SMTP id
+ ada2fe7eead31-5d5e226ab38mr3410054137.12.1760014827953; Thu, 09 Oct 2025
+ 06:00:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251009-topic-hamoa_dp_reg-v1-1-4c70afa5f029@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAKWx52gC/x3MQQqAIBBA0avIrBNUkKirRIjpVLMoZYwIpLsnL
- d/i/woFmbDAKCow3lQonQ26ExB2f24oKTaDUcZqpQZ5pUxB7v5I3sXsGDdpow+9shaNXqCFmXG
- l559O8/t+GMMxcmQAAAA=
-X-Change-ID: 20251009-topic-hamoa_dp_reg-5dac7055e21b
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Sibi Sankar <sibi.sankar@oss.qualcomm.com>, 
- Rajendra Nayak <quic_rjendra@quicinc.com>, Abel Vesa <abel.vesa@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760014769; l=2184;
- i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
- bh=BySGI5l3xmSxujvS1r//EHNI4zajTcwhIloUQLpdfQs=;
- b=nIISyw7OoP/4O5B/3DTMjarVufsW3iJyLcwGz7OWZb4NunAI06subptyt1ZX9xFv9xLRJkNwm
- 00Fq7AUFwHJBJQCOC77hcBAqBSPv/GQjH9ZzgPKiW4E2wxibuhhAJnh
-X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+References: <20251009104500.69787-7-wsa+renesas@sang-engineering.com> <20251009104500.69787-11-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20251009104500.69787-11-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 9 Oct 2025 15:00:16 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWa275FOXW0esEPo40wXxy379XZfvv8DZ1Djj15v5BYsw@mail.gmail.com>
+X-Gm-Features: AS18NWCp4Dgt694yDYCJKQXwRm4FIe-wfRRX6CYajTay2WubO0THp0YFg2rjuFQ
+Message-ID: <CAMuHMdWa275FOXW0esEPo40wXxy379XZfvv8DZ1Djj15v5BYsw@mail.gmail.com>
+Subject: Re: [PATCH v4 4/5] dt-bindings: watchdog: factor out RZ/V2H(P) watchdog
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	"Rob Herring (Arm)" <robh@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-watchdog@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+On Thu, 9 Oct 2025 at 12:45, Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Renesas created different watchdog IPs but they are all handled in the
+> same binding documentation. This leads to a lot of conditional handling
+> which makes it unnecessarily hard to add new items. Factor out the
+> RZ/V2H(P) watchdog to make handling easier.
+>
+> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>
+> Changes since v3:
+> * added tags from Rob (Thanks!)
+> * merged the two if-conditions (Geert)
 
-The regions are larger than currently described. Rather inconveniently,
-some control registers, including some related to USB4, are in that
-left-out chunk.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Extend it to cover the entire region, as per the hw specification.
+Gr{oetje,eeting}s,
 
-Fixes: 1940c25eaa63 ("arm64: dts: qcom: x1e80100: Add display nodes")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+                        Geert
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 51576d9c935d..ccd7f9975dac 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -5466,7 +5466,7 @@ mdss_dp0: displayport-controller@ae90000 {
- 				compatible = "qcom,x1e80100-dp";
- 				reg = <0 0x0ae90000 0 0x200>,
- 				      <0 0x0ae90200 0 0x200>,
--				      <0 0x0ae90400 0 0x600>,
-+				      <0 0x0ae90400 0 0xc00>,
- 				      <0 0x0ae91000 0 0x400>,
- 				      <0 0x0ae91400 0 0x400>;
- 
-@@ -5554,7 +5554,7 @@ mdss_dp1: displayport-controller@ae98000 {
- 				compatible = "qcom,x1e80100-dp";
- 				reg = <0 0x0ae98000 0 0x200>,
- 				      <0 0x0ae98200 0 0x200>,
--				      <0 0x0ae98400 0 0x600>,
-+				      <0 0x0ae98400 0 0xc00>,
- 				      <0 0x0ae99000 0 0x400>,
- 				      <0 0x0ae99400 0 0x400>;
- 
-@@ -5642,7 +5642,7 @@ mdss_dp2: displayport-controller@ae9a000 {
- 				compatible = "qcom,x1e80100-dp";
- 				reg = <0 0x0ae9a000 0 0x200>,
- 				      <0 0x0ae9a200 0 0x200>,
--				      <0 0x0ae9a400 0 0x600>,
-+				      <0 0x0ae9a400 0 0xc00>,
- 				      <0 0x0ae9b000 0 0x400>,
- 				      <0 0x0ae9b400 0 0x400>;
- 
-@@ -5729,7 +5729,7 @@ mdss_dp3: displayport-controller@aea0000 {
- 				compatible = "qcom,x1e80100-dp";
- 				reg = <0 0x0aea0000 0 0x200>,
- 				      <0 0x0aea0200 0 0x200>,
--				      <0 0x0aea0400 0 0x600>,
-+				      <0 0x0aea0400 0 0xc00>,
- 				      <0 0x0aea1000 0 0x400>,
- 				      <0 0x0aea1400 0 0x400>;
- 
-
----
-base-commit: 0b2f041c47acb45db82b4e847af6e17eb66cd32d
-change-id: 20251009-topic-hamoa_dp_reg-5dac7055e21b
-
-Best regards,
 -- 
-Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
