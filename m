@@ -1,339 +1,239 @@
-Return-Path: <devicetree+bounces-224738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8364BC762A
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 06:41:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A132BC7663
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 07:06:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 378894E266E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 04:41:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 171403E4C6E
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 05:06:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C5CF25B1D2;
-	Thu,  9 Oct 2025 04:41:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E915214A64;
+	Thu,  9 Oct 2025 05:06:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="0Kd3yZLW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YDh69t0+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16B842594BE
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 04:41:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB60156661
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 05:06:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759984898; cv=none; b=dbEoeXWiVXLRl5r/AxoCpRfPKFFAMPc7F3YN3LukbSyjBdPrasTXY/ljH9SjbBcUO/WVRF6oQhQ2J3JSxzR8QBZHb3Rk1zmCz/OK+gfj1P2QfHrNkPcM8rHgO9HulxOnXhbKO39EANV6kx4CcWamJTUO5MdcVY/NKynWFlOfPS8=
+	t=1759986395; cv=none; b=EEBIX+Mf2dKEFY7c27ntPzBsJdmaEwxIqzdql3wBoZOMUC7MXfrWhffUgIvjq2m7PuileESwuW/Cnz0OoTQ9JmwcTycAz1ra+4YlUURFwVGknHHAeCtbQzQvDdRS2qonYluFahj0N/p/9Eqvsh1EoWdLUMwMJUrasQa4c+fQjYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759984898; c=relaxed/simple;
-	bh=JSx+GA5ZXRbiW2N5KmdbA/YFhbngtu5rtQbXWzmld/E=;
+	s=arc-20240116; t=1759986395; c=relaxed/simple;
+	bh=KGYbVj0SYA7csaFCm338RExp7YkFD+VQLtFHDm1WmW8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=byYl8Le0mQznKx+h0DhcGpuhf2blHB0ogNMKkx15dCYFf0h2LImi8e0e3KMHbghT8LiI4Dbdp9NtIyduDO8TyX/HtKCD62sTU9f7qHfZXAnyJVSGwvoyDRjNT3OUNQS82Q2JcbuZHZV/AqDx2dR62J3Su+tTEjTsCRYlPS1t6xQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=0Kd3yZLW; arc=none smtp.client-ip=209.85.215.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-b632a6b9effso307007a12.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 21:41:34 -0700 (PDT)
+	 To:Cc:Content-Type; b=G8WiYYHQ0EoXcnCvYR2fuhk+fepzogfxz2P1wQwsjWA4m9ckYakwJwlkHmku3QwyQ+MpEaJLlJPIgVt5P65jd1zSEAabY531OzZxkXZJnx85RfWNYajTQccnW6iMVJBEgrXiLLYb28KT//lytsmmj1wE9RgRPqplWvVJa+sMA/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YDh69t0+; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-46e3af7889fso2494375e9.2
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 22:06:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1759984894; x=1760589694; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759986392; x=1760591192; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Qfg2KUrH0ld2loH5dM6+owKjkO3ztYQAbVtuXjduw8k=;
-        b=0Kd3yZLWRkcI6RhWR7P/x98nLJ98OFi8ZKJwjF5yxxCeCglXq1kopgT3Ahm/pMpB/P
-         u/x+bDOKBe7sWrXMUa3B3C2Ru2hxMuHTi8JTE2h/KuIBrtezQpYhI1zEz+m/eiP0XIG1
-         eqh4ooq/pKTnjDv23i+HDhpszMEPLNPGGt1VCzUBgZI61WREsY2Psqu/1HUOOpLlCmn9
-         Me4/7Hp+Heo4e+xJV7lGF+ObvAKFjhfO+4JNN9kJDXLNd5BWDXvJyJOcyE6WgJly7ef+
-         koCDlgnGy8sUv1nK9miY/VXX7aR0s7WkU3WBiw4KqT8L/SgvrX06oeuM6+HqCbvt5sJI
-         bICw==
+        bh=CdHEjQxG+FatWNW5/zKqLPCIUyKLAYeWhQuCe1gPWoU=;
+        b=YDh69t0+rmwsfWzTffPUN//wbJVma9c3310fGP1Bhbvb0WWNeI3A90enu9hpgTl6to
+         CJqDUF2juBWsjfl+o5oTmqlYFfrhJV88DDgmYK+Yjft07zF+jDYYh1q01Ord54hz0y2l
+         DW9yoVUy2uNH9fxMalRPW4FSj7qledjQ88fMKaMsx6Dbl6+AZhRLdixDgA6Jb6tOlbSJ
+         Qn/gtToySWed6AQwe/EhGiv1xRIfZgFreAcFUlWaKhOm9FcNfXKzpQ2fMM31RzlN11LD
+         dWQ618/qYs3T1NPfZM2JVeVB2DHpWWaxFKFWDlr3B8FHoQIC0a0f6Ysjbx/3FzbOUk3a
+         HuMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759984894; x=1760589694;
+        d=1e100.net; s=20230601; t=1759986392; x=1760591192;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Qfg2KUrH0ld2loH5dM6+owKjkO3ztYQAbVtuXjduw8k=;
-        b=nd3nq3uibP2WieXIwDvaB4EN2gxWuJ4JEzhXXnOROVnSnOTG0de7FZf+2NmA6c2hHw
-         HBn5c4A5NRB0ShwQmvm959z4CzuGWyrlYds+7+rpTUfJWqDjZWbi5a7SNtMWzYHiwiab
-         nP3py9XzN28m8/2/562+0zH2WrrgkrjH4TvgUdDljqRX1Zf1Kkl1UkOdIcyntUI0QuSI
-         +VQz1B8YsZ52hRSs0GHADDSOB7onHWnQoVJRVD2sk9buOEk4VIVU5naahWxzBI7sEw+Y
-         F34ij5VQ2SFbVblmvBya8mwyEQtAp7KSOMHGV4GFAIquBDxWrWmZK1p1zLFBpxQAhBcn
-         QtBA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3P+JkdWgwpt3+MlekQKISTXvs/A2G8eWn6gofQglUbO4rcTqzdAVUxlNdCEbC4nNqQdcgQTGA+4xI@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9C7lJaOt90IMWjIWv6xO+XES3L7oBlzqaMg7GPqn8zovL+ffT
-	yHNNWaZp2uNrEVrRB8Vt/yQiRXACammmyZXgyVDXDxAfcALaVBVKdSMIgOWMUv9aV+oHigPByB4
-	npJKuPpIROv98E1J2NASYfNMwz1gMEUT+xfi4aFpM
-X-Gm-Gg: ASbGncvqNCgPa61Uenfu6xK1JpzzTP8XhPMpqA95M7GIzQ+IGQ8UwzswmvCkSpaD8ho
-	Xlu9M9maMABaANP47zXR9mSdxofPtFT4VX+0k6ZkTJuSI8HAO6n+9dzBY3yNjJds9+nKoieyBQY
-	1dtt0C4xyzUEjnUeeRwXYeh7bWSTt2gpquQOlAIDOpmnHtzG18Psqh1Kz5f65FXNeEGhyR9Mlvm
-	MmL2RqGwo2OApK09RSFXO1uGu8zwdg2JALoa+v2hMt9QP1PG8PKQvXXQP/tdqFFnCgfeII=
-X-Google-Smtp-Source: AGHT+IHq7WMGknZC9D22TiuSJobcSs2r+0inHJ0URZqm945Ibpmj/rMeznufzslM6ZAVx62ePKO1/By8R2qOoulx2p4=
-X-Received: by 2002:a17:903:240e:b0:25c:b1d6:c41a with SMTP id
- d9443c01a7336-290273568efmr77605215ad.11.1759984894045; Wed, 08 Oct 2025
- 21:41:34 -0700 (PDT)
+        bh=CdHEjQxG+FatWNW5/zKqLPCIUyKLAYeWhQuCe1gPWoU=;
+        b=cOEXEwDt4CYHsdc5+8c1fXb/mF2IX03V6gyJh8kax0JLDrfqOIEZDUvjPr4YZCZuo/
+         JQS2vG7Jq1TdqZxOduhwdpbQW/XEj3qUPm4XRCWF9di1qsobrapD6J9NPLMAZZ9FrVgL
+         m2xEYucrm8Sg6+FVnbWzNnPGpz4ZU9Rm4Ux7gk7qikwBed8X6F2z6TQZbVv5SOTHP7e3
+         +ig9Ho4lwgMvnetegtupmW5Pgr7DqsPbjAerqHAQZeTfVOtSoT0TCdWkId6yMCrI8dow
+         WJb4rPnPdTCXfHy/D91XNKd5sWLLdLwg2d4kL3/11dbqs7XlCqOXtgIIbRgi7i0eWEDw
+         btXA==
+X-Forwarded-Encrypted: i=1; AJvYcCUnxSBKr/XRgVVit9jOYYLTjMo8VjSPNdlmp5dnRYBj4Tt76bv3Ubcom5PuMaC2ubiV4JjuzN1AEqIA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSA+25uHR5TIWFrIWPiLKz+BMruO7aZjnGt2vuoTA5CTXK6/V1
+	9d3B+Hqf+S7M/5KbnejOcXbCdivA1DisoXBFp5J7oXmYat/DE3QCtX2DAcojtGDc3dCvvAcwwGD
+	yA/PDxqHjorTTYuOx13R2qmF2y5Wz2H4=
+X-Gm-Gg: ASbGnctdB00E8GiaFVdfCQVmeTDbEt+MZD+HO643ud5WG+LOa8hLcPC13PfuetGT4m1
+	BoKiYl1Gq05J/eHl2ShpjVm4+S3dVGWAdS5CXeSxXh3cVwCXlFdDAV3bzTvDdUiboAS2/N4MbsG
+	QEcGKeaCjliy2hVyAYDxs/7HBMaUsmav+hS+aIkj1PZOdcpaP/m/hRLcFN7hI99NODZmaEIGlz6
+	WCM58ELp7Fa//nPGXtEXijg5FPqkX84
+X-Google-Smtp-Source: AGHT+IHqYRmivewqb9zg+yu8zGgOx+vqqkeXoxUzMI4NUKSxwIhgIh4uZTenWgZghGln5muMkEwQ0EmS5xQOqziJeM4=
+X-Received: by 2002:a05:6000:603:b0:3ea:4e8b:c96a with SMTP id
+ ffacd0b85a97d-4266e8e64e4mr3654211f8f.57.1759986391521; Wed, 08 Oct 2025
+ 22:06:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251008060000.3136021-1-royluo@google.com> <20251008060000.3136021-2-royluo@google.com>
- <20251008-slider-uncombed-66790ea92ea0@spud>
-In-Reply-To: <20251008-slider-uncombed-66790ea92ea0@spud>
-From: Roy Luo <royluo@google.com>
-Date: Wed, 8 Oct 2025 21:40:57 -0700
-X-Gm-Features: AS18NWDwvHFFVwwFF0xyUsh6hOplsl-LTeW3KNkkNIVFS6G7WbYp6KqWo-pnIz8
-Message-ID: <CA+zupgxnBK_k2X0_KKX9pUMMTwY4VhsyTEEVz6v+__u=2xR8Ow@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: usb: dwc3: Add Google Tensor G5 DWC3
+References: <20251008082800.67718-1-clamor95@gmail.com> <20251008082800.67718-2-clamor95@gmail.com>
+ <20251008-safely-reach-9274474a2ec8@spud>
+In-Reply-To: <20251008-safely-reach-9274474a2ec8@spud>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Thu, 9 Oct 2025 08:06:20 +0300
+X-Gm-Features: AS18NWC-fQyHK-rMvVxkxqV6S0I7hbIVFXE8xA55zUXu7V0ibTLESXEQf_mVWkM
+Message-ID: <CAPVz0n2pbAS3Qjm9WQGvcuJhkNnyjGCyJtVi=VMuUgPoQNE+wA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/7] dt-bindings: display: panel: properly document LG
+ LD070WX3 panel
 To: Conor Dooley <conor@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Peter Griffin <peter.griffin@linaro.org>, 
-	=?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
-	Tudor Ambarus <tudor.ambarus@linaro.org>, Joy Chakraborty <joychakr@google.com>, 
-	Naveen Kumar <mnkumar@google.com>, Badhri Jagan Sridharan <badhri@google.com>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Douglas Anderson <dianders@chromium.org>, Sam Ravnborg <sam@ravnborg.org>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 8, 2025 at 1:58=E2=80=AFPM Conor Dooley <conor@kernel.org> wrot=
-e:
+=D1=87=D1=82, 9 =D0=B6=D0=BE=D0=B2=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 00:11=
+ Conor Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
 >
-> On Wed, Oct 08, 2025 at 05:59:57AM +0000, Roy Luo wrote:
-> > Document the device tree bindings for the DWC3 USB controller found in
-> > Google Tensor SoCs, starting with the G5 generation.
+> On Wed, Oct 08, 2025 at 11:27:53AM +0300, Svyatoslav Ryhel wrote:
+> > LG LD070WX3-SL01 was mistakenly documented as a simple DSI panel, which=
+ it
+> > clearly is not. Address this by adding the proper schema for this panel=
+.
 > >
-> > The Tensor G5 silicon represents a complete architectural departure fro=
-m
-> > previous generations (like gs101), including entirely new clock/reset
-> > schemes, top-level wrapper and register interface. Consequently,
-> > existing Samsung/Exynos DWC3 USB bindings and drivers are incompatible,
-> > necessitating this new device tree binding.
+> > There is only one user of this panel binding in the mainline Linux kern=
+el,
+> > which is the Nvidia tablet Tegra Note 7. Its panel is broken anyway sin=
+ce
+> > it cannot initialize properly if the bootloader does not leave a
+> > pre-initialized panel. It also cannot suspend or re-initialize properly=
+,
+> > since no DSI configuration is set and it has a loose regulator which
+> > relies on an always-on property rather than being hooked to the panel
+> > where it belongs.
+>
+> I think this is a reasonable justification. For my own enlightenment,
+> what happens if a new kernel uses the old simple-panel devicetree?
+>
+
+Since regulator framework provides dummy regulators and compatible
+matches, driver should probe correctly. Panel should still work with
+unpatched device tree until disabling unused regulators/power domains
+kicks in.
+
+> > Tegra Note 7 device tree is adjusted as a part of this series.
 > >
-> > The USB controller on Tensor G5 is based on Synopsys DWC3 IP and featur=
-es
-> > Dual-Role Device single port with hibernation support.
-> >
-> > Signed-off-by: Roy Luo <royluo@google.com>
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > > ---
-> >  .../bindings/usb/google,gs-dwc3.yaml          | 145 ++++++++++++++++++
-> >  1 file changed, 145 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/google,gs-dwc=
-3.yaml
+> >  .../bindings/display/panel/lg,ld070wx3.yaml   | 60 +++++++++++++++++++
+> >  .../display/panel/panel-simple-dsi.yaml       |  2 -
+> >  2 files changed, 60 insertions(+), 2 deletions(-)
+> >  create mode 100644 Documentation/devicetree/bindings/display/panel/lg,=
+ld070wx3.yaml
 > >
-> > diff --git a/Documentation/devicetree/bindings/usb/google,gs-dwc3.yaml =
-b/Documentation/devicetree/bindings/usb/google,gs-dwc3.yaml
+> > diff --git a/Documentation/devicetree/bindings/display/panel/lg,ld070wx=
+3.yaml b/Documentation/devicetree/bindings/display/panel/lg,ld070wx3.yaml
 > > new file mode 100644
-> > index 000000000000..9eb0bf726e8d
+> > index 000000000000..0a82cf311452
 > > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/google,gs-dwc3.yaml
->
-> filename matching the compatible please.
->
-> > @@ -0,0 +1,145 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +# Copyright (c) 2025, Google LLC
+> > +++ b/Documentation/devicetree/bindings/display/panel/lg,ld070wx3.yaml
+> > @@ -0,0 +1,60 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > > +%YAML 1.2
 > > +---
-> > +$id: http://devicetree.org/schemas/usb/google,gs-dwc3.yaml#
+> > +$id: http://devicetree.org/schemas/display/panel/lg,ld070wx3.yaml#
+>
+> Could you make the filename match the compatible please?
+
+Filename matches compatible, -XXNN after lg,ld070wx3 indicate
+revision. I have found at least two more -sm01 and -sh01, but since I
+was not able to get datasheet for them I cannot say for sure that they
+fully compatible with this schema.
+
+> With that,
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>
+> Cheers,
+> Conor.
+>
 > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > +
-> > +title: Google Tensor Series (G5+) DWC3 USB SoC Controller
+> > +title: LG Corporation 7" WXGA TFT LCD panel
 > > +
 > > +maintainers:
-> > +  - Roy Luo <royluo@google.com>
+> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
 > > +
-> > +description: |
-> > +  Describes the DWC3 USB controller block implemented on Google Tensor=
- SoCs,
-> > +  starting with the G5 generation. Based on Synopsys DWC3 IP, the cont=
-roller
-> > +  features Dual-Role Device single port with hibernation add-on.
+> > +allOf:
+> > +  - $ref: panel-common.yaml#
 > > +
 > > +properties:
 > > +  compatible:
 > > +    items:
-> > +      - enum:
-> > +          - google,gs5-dwc3
->
-> items is redundant here.
->
+> > +      - const: lg,ld070wx3-sl01
 > > +
 > > +  reg:
-> > +    minItems: 3
-> > +    maxItems: 3
-> > +
-> > +  reg-names:
-> > +    description: |
-> > +      The following memory regions must present:
-> > +        - dwc3_core: Core DWC3 IP registers.
-> > +        - host_cfg_csr: Hibernation control registers.
-> > +        - usbint_csr: Hibernation interrupt registers.
->
-> Put this into reg as an items list, and you can drop the min/max items
-> from there.
-> Same applies to interrupts and power-domains.
->
-> > +    items:
-> > +      - const: dwc3_core
-> > +      - const: host_cfg_csr
-> > +      - const: usbint_csr
-> > +
-> > +  interrupts:
-> > +    minItems: 3
-> > +    maxItems: 3
-> > +
-> > +  interrupt-names:
-> > +    description: |
-> > +      The following interrupts must present:
-> > +        - dwc_usb3: Core DWC3 interrupt.
-> > +        - hs_pme_irq: High speed remote wakeup interrupt for hibernati=
-on.
-> > +        - ss_pme_irq: Super speed remote wakeup interrupt for hibernat=
-ion.
-> > +    items:
-> > +      - const: dwc_usb3
-> > +      - const: hs_pme_irq
-> > +      - const: ss_pme_irq
->
-> s/_irq//
->
-> > +
-> > +  clocks:
-> > +    minItems: 3
-> > +    maxItems: 3
-> > +
-> > +  clock-names:
-> > +    minItems: 3
-> > +    maxItems: 3
-> > +
-> > +  resets:
-> > +    minItems: 5
-> > +    maxItems: 5
->
-> For clocks and resets, please provide descriptions. For clock-names, you
-> provided no names and therefore cannot use the property since anything
-> is valid!
->
-> > +
-> > +  reset-names:
-> > +    items:
-> > +      - const: usbc_non_sticky
-> > +      - const: usbc_sticky
-> > +      - const: usb_drd_bus
-> > +      - const: u2phy_apb
-> > +      - const: usb_top_csr
->
-> "csr" is an odd thing to have in a reset name, since it usually means
-> "control and status register". Why is it here.
->
-> > +
-> > +  power-domains:
-> > +    minItems: 2
-> > +    maxItems: 2
-> > +
-> > +  power-domain-names:
-> > +    description: |
-> > +      The following power domain must present:
-> > +          - usb_psw_pd: The child power domain of usb_top_pd. Turning =
-it on puts the controller
-> > +                         into full power state, turning it off puts th=
-e controller into power
-> > +                         gated state.
-> > +          - usb_top_pd: The parent power domain of usb_psw_pd. Turning=
- it on puts the controller
-> > +                         into power gated state, turning it off comple=
-tely shuts off the
-> > +                         controller.
-> > +    items:
-> > +      - const: usb_psw_pd
-> > +      - const: usb_top_pd
->
-> s/_pd// at the very least, but I would question the need to put "usb" in
-> any of the names given that this is a usb device.
->
-> > +
-> > +  iommus:
 > > +    maxItems: 1
+> > +
+> > +  vdd-supply: true
+> > +  vcc-supply: true
+> > +
+> > +  backlight: true
+> > +  port: true
 > > +
 > > +required:
 > > +  - compatible
-> > +  - reg
-> > +  - reg-names
-> > +  - interrupts
-> > +  - interrupt-names
-> > +  - clocks
-> > +  - resets
-> > +  - reset-names
-> > +  - power-domains
-> > +  - power-domain-names
+> > +  - vdd-supply
+> > +  - vcc-supply
 > > +
-> > +allOf:
-> > +  - $ref: snps,dwc3-common.yaml#
-> > +
-> > +unevaluatedProperties: false
->
-> So every property from snps,dwc3-common.yaml is valid here, with any of
-> the permitted values?
-
-Conor,
-
-Appreciate the review.
-Ack to all the comments, will fix them in the next patch.
-And yes, every property from snps,dwc3-common.yaml is valid here.
-You can find more context here [1], essentially the dwc3 glue would be
-operating on the same platform device as the dwc3 core, hence all
-properties are allowed.
-
-[1] https://lore.kernel.org/all/20250414-dwc3-refactor-v7-0-f015b358722d@os=
-s.qualcomm.com/
-
-Thanks,
-Roy Luo
-
+> > +additionalProperties: false
 > > +
 > > +examples:
 > > +  - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > +    soc {
-> > +        #address-cells =3D <2>;
-> > +        #size-cells =3D <2>;
+> > +    #include <dt-bindings/gpio/gpio.h>
 > > +
-> > +        usb@c400000 {
-> > +            compatible =3D "google,gs5-dwc3";
-> > +            reg =3D <0 0x0c400000  0 0xd060>, <0 0x0c450000 0 0x14>, <=
-0 0x0c450020 0 0x8>;
-> > +            reg-names =3D "dwc3_core", "host_cfg_csr", "usbint_csr";
-> > +            interrupts =3D <GIC_SPI 580 IRQ_TYPE_LEVEL_HIGH 0>,
-> > +                         <GIC_SPI 597 IRQ_TYPE_LEVEL_HIGH 0>,
-> > +                         <GIC_SPI 598 IRQ_TYPE_LEVEL_HIGH 0>;
-> > +            interrupt-names =3D "dwc_usb3", "hs_pme_irq", "ss_pme_irq"=
-;
-> > +            clocks =3D <&hsion_usbc_non_sticky_clk>,  <&hsion_usbc_sti=
-cky_clk>,
-> > +                     <&hsion_u2phy_apb_clk>;
-> > +            clock-names =3D "usbc_non_sticky", "usbc_sticky", "u2phy_a=
-pb";
-> > +            resets =3D <&hsion_resets_usbc_non_sticky>, <&hsion_resets=
-_usbc_sticky>,
-> > +                     <&hsion_resets_usb_drd_bus>, <&hsion_resets_u2phy=
-_apb>,
-> > +                     <&hsion_resets_usb_top_csr>;
-> > +            reset-names =3D "usbc_non_sticky", "usbc_sticky",
-> > +                     "usb_drd_bus", "u2phy_apb",
-> > +                     "usb_top_csr";
-> > +            power-domains =3D <&hsio_n_usb_psw_pd>, <&hsio_n_usb_pd>;
-> > +            power-domain-names =3D "usb_psw_pd", "usb_top_pd";
-> > +            phys =3D <&usb_phy 0>;
-> > +            phy-names =3D "usb2-phy";
-> > +            snps,quirk-frame-length-adjustment =3D <0x20>;
-> > +            snps,gfladj-refclk-lpm-sel-quirk;
-> > +            snps,incr-burst-type-adjustment =3D <4>;
+> > +    dsi {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        panel@0 {
+> > +            compatible =3D "lg,ld070wx3-sl01";
+> > +            reg =3D <0>;
+> > +
+> > +            vdd-supply =3D <&vdd_3v3_lcd>;
+> > +            vcc-supply =3D <&vcc_1v8_lcd>;
+> > +
+> > +            backlight =3D <&backlight>;
+> > +
+> > +            port {
+> > +                endpoint {
+> > +                    remote-endpoint =3D <&dsi0_out>;
+> > +                };
+> > +            };
 > > +        };
 > > +    };
 > > +...
->
-> pw-bot: cr
+> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-simp=
+le-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-=
+dsi.yaml
+> > index 9b92a05791cc..f9f1e76a810c 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.=
+yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.=
+yaml
+> > @@ -42,8 +42,6 @@ properties:
+> >        - kingdisplay,kd097d04
+> >          # LG ACX467AKM-7 4.95" 1080=C3=971920 LCD Panel
+> >        - lg,acx467akm-7
+> > -        # LG Corporation 7" WXGA TFT LCD panel
+> > -      - lg,ld070wx3-sl01
+> >          # LG Corporation 5" HD TFT LCD panel
+> >        - lg,lh500wx1-sd03
+> >          # Lincoln LCD197 5" 1080x1920 LCD panel
+> > --
+> > 2.48.1
+> >
 
