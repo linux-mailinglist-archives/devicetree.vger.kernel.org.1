@@ -1,110 +1,126 @@
-Return-Path: <devicetree+bounces-225035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E8E2BC9BB2
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 17:18:41 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3207BBC9BC1
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 17:19:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17C2E420021
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 15:18:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C604A4F3A1F
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 15:18:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4538918859B;
-	Thu,  9 Oct 2025 15:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D75171D5ADE;
+	Thu,  9 Oct 2025 15:18:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gQErjSEM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com [209.85.221.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDF824C81
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 15:18:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5D6D4C81;
+	Thu,  9 Oct 2025 15:18:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760023118; cv=none; b=Jx/dUaOLylK6RhKJgk8VlipRAqOFyLY4WwPff9ZWOMMlgWsttCB9jTRGA7YHZoJ19f6/Q22EZxMqRI6RF2pct6Pq3OJGfuPIR3SJ0BqMgVdKV71fKT8Klwl3nO4fy2mVVrpcpxy1fgJU6G8LBhcAKJrYyP2ullSgHzHriuj38mE=
+	t=1760023132; cv=none; b=XDUS0OdKWwMZrsr7sRLKfyUqJ7N6lIh3LnuIYlXVoJQvRRSK2K3h4YhutHZkiylOAcUKRZ7rzXAdLKMkTybTLCEK97ln2VHQamikg1eUxLk4/KeWtTZtKKNwDDrCpH51CQeDGxC5xDzOjjs745jT59vd/d7w8RYOf99Gk/efMfQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760023118; c=relaxed/simple;
-	bh=k8sKIXVbebvapbPiAiig6INW0PFARtsSFfEQsQ5e2yE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TZXkDcEFMR6UALxh/UKrLbuaqQfKTezL7/ds5c2ot6ybiZo/iMj9ZtleMBFQSNjeggseiXJqcCKBlBui+OROaqPIIA0hxa1mAAkre5OoSHdkuhQiVzjHyQZrK78mlc04dRA3puJvqa28aW/QpdpeZ/ZpTfrwJQ0NSiCKe0ybkbw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f182.google.com with SMTP id 71dfb90a1353d-54a98bcdedeso193316e0c.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 08:18:36 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760023115; x=1760627915;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+v4U7mwsla1m2LNZvOQWh16q48gBGZybSJTeno9Yj/A=;
-        b=wBc0GKMx2HRcX+PJePLNM9Nn7rryCjobNEV5MiGtbof9gOvhq+jhM1o2oC60FlHnA5
-         FRmtRo42jyDUmbOoMgCI00ngB1V+Peg/KNAqq4hjA9F6K2kAESu0+/qCBywhalPIm0jV
-         XV3MXFuJRLbMVb0aFbEIaYDkz40qhVR8YVR/v23kGxbqDKa5P7nrH0fyJO3uFpKfXE8w
-         Z+RwrYB2DhtWfnsYAH8NAPQ1JGQpxnjbPlgRMbUzXQbkrnQxVXzdY2kxc6r8ucNWrsMB
-         TvsLa0Go8QsuMAm7JfGT3kH2qwlfPsYQecuuw69oCdp+07BpbXuzzlbA+tx98Vjs+gYT
-         EPhw==
-X-Forwarded-Encrypted: i=1; AJvYcCWjxtRWzgpPkw9Dqs8XOWyexKHlroxgsc3o3777HBZk+Mj1Bkn46OZRsJqGd9qGmtInKwrcwsNWkuY0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw6E5/XksDd/HknLIuUzLBAI6GBB/xSELAcZdGZYgKtcr8HenFP
-	U5wxmmYUaASIm7jCXKVtGIG44iT5XEBl1/7GQnESaqW/kdXPn/be94TPfQvdAJXQ
-X-Gm-Gg: ASbGnctKfGiEEW8aVic2w8IlIY9569dq+6ZRYxXHqxfvbL1oqbopQyeQTfKQgD7o5rH
-	L225D3N4/oH1iVOnEk3TBxLT3vOnTWS1qssQq5tONMlP8IhbqJgiv2mpSmUwpV5G2JITqVoaNbw
-	CZVAqJq5rlKHATWBOWPeMRwI6OIosH40JSbUqJf8Xz7V8x5aucF4LkJu+KwzaRL/Ou43oNQtbK7
-	AmMuiy6GZMWvwsRXXH/R3AxPfqWrkd3RyQo/ZTbYReaNwgeBiSvK7fy3oVvAlcHD977cxmRiUmb
-	6unQlaA5RSbh9yFIoH0x03gI1ml+qDpthpFuiphkSjeQyz0j7rVxmRYIdhCp30dN73VFEewuFw5
-	2qknP8f4AEJ4h5OJFpK3jkJ0q71PZtYVZVAUhS1ybo1atevVvFcjYRFTOMV0/lmecaZioZ4I51A
-	sxXcq4Q/u5Hu6c8mueNzWNdjhWoFqncw==
-X-Google-Smtp-Source: AGHT+IFt4Mr5M/mDpIW/YutwSbAik7R54xnXPFsrNWufxLir5qyZvMqF8xuj83EWm6Zxfplc/1nlAg==
-X-Received: by 2002:a05:6122:45aa:b0:54c:da0:f711 with SMTP id 71dfb90a1353d-554b8bec72cmr3131847e0c.7.1760023115387;
-        Thu, 09 Oct 2025 08:18:35 -0700 (PDT)
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com. [209.85.222.49])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-5523cf3e0fcsm5393105e0c.17.2025.10.09.08.18.34
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Oct 2025 08:18:34 -0700 (PDT)
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-8c0e2d1efd5so335747241.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 08:18:34 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU4803RYf5rGr+4hZo+79duAw8GbJDljXAbQVFfkiehe4hiOps+XB09xzGdgdcrXQULLa8kNfKATSWv@vger.kernel.org
-X-Received: by 2002:a05:6102:6202:20b0:5d5:f3c4:bda1 with SMTP id
- ada2fe7eead31-5d5f3c4c16dmr1008026137.28.1760023114539; Thu, 09 Oct 2025
- 08:18:34 -0700 (PDT)
+	s=arc-20240116; t=1760023132; c=relaxed/simple;
+	bh=XmR7XBqCE0+i25fixLFUf7Je1bRD9oi8BfUzP9MDxAE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=s4oVCaNRhyFeZdPYikoaZ7tjcuLwKq0OVZzHvsJD+rGdcRJrolProBn2Uu0qIQrD0TyDEXWlDHSXjsPLMRL0CU+0BldC1cXX+K7wubF1P7V6isAeAOs8dEQ3/hSYob3KYbA2zyEHK6riIga+DrJB3gqVdWUJFVfAGEkUfOMLZjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gQErjSEM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41D2EC4CEF7;
+	Thu,  9 Oct 2025 15:18:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760023132;
+	bh=XmR7XBqCE0+i25fixLFUf7Je1bRD9oi8BfUzP9MDxAE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gQErjSEMS044JLGn477UL84bswtUNVseVA0W9fE/TG/hWKWT9tZCt0dvVQfXIYMkA
+	 It7OhFWp+jFGGPdviVsBZFknnouog7qCKDWihtfjJASyrvPb2s2Q9jCTT9U8wx6otL
+	 G2r9JR0FCdNIQO6pbJ94yPq9CKTNvazWVCecjRvA9Lh/J23UrrFFu1hM6l2U1ogT4d
+	 9nDIPAUz46xonGll3xGs8oC+gCKcL2mSl6LMlCTExN7IDbuWfrfyZGuOt+9O8vWv9q
+	 uCUlsyhhJ/bEUiOpC+u3PCwCKzY8/OncuVs4ujWY8jpKx1oJYwoms9Pr4nOUFLzCTV
+	 AARu7jFr8fOKA==
+Date: Thu, 9 Oct 2025 16:18:47 +0100
+From: Lee Jones <lee@kernel.org>
+To: Jonathan Brophy <professorjonny98@gmail.com>
+Cc: Pavel Machek <pavel@kernel.org>,
+	Jonathan Brophy <professor_jonny@hotmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Subject: Re: [PATCH 1/4] leds: Add Virtual Color LED Group driver
+Message-ID: <20251009151847.GC2890766@google.com>
+References: <20251009084339.1586319-1-professorjonny98@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250923161709.3110-2-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20250923161709.3110-2-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 9 Oct 2025 17:18:23 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU+0iL0fjMM+_vPxsOmPXW72X0_=X2A=ZA9gRf367UB1Q@mail.gmail.com>
-X-Gm-Features: AS18NWAsf3LSZ9p7awAoyWuAhPYszSm_a94Q--QmnePbABWHS8PoBRWo4ys5kmI
-Message-ID: <CAMuHMdU+0iL0fjMM+_vPxsOmPXW72X0_=X2A=ZA9gRf367UB1Q@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: eagle-function-expansion: add eMMC support
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20251009084339.1586319-1-professorjonny98@gmail.com>
 
-On Tue, 23 Sept 2025 at 18:17, Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Add pinmuxing and configuration of the MMC-capable SDHI instance to make
-> use of the eMMC.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+On Thu, 09 Oct 2025, Jonathan Brophy wrote:
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v6.19.
+> From: Jonathan Brophy <professor_jonny@hotmail.com>
+> 
+> This commit introduces a new driver that implements virtual LED groups
+> by aggregating multiple monochromatic LEDs. The driver provides
+> priority-based control to manage concurrent LED activation requests,
+> ensuring that only the highest-priority LED group's state is active at
+> any given time.
+> 
+> This driver is useful for systems that require coordinated control over
+> multiple LEDs, such as RGB indicators or status LEDs that reflect
+> complex system states.
+> 
+> Co-developed-by: Radoslav Tsvetkov <rtsvetkov@gradotech.eu>
+> Signed-off-by: Jonathan Brophy <professor_jonny@hotmail.com>
+> ---
+>  drivers/leds/rgb/Kconfig                   |  17 +
+>  drivers/leds/rgb/Makefile                  |   1 +
+>  drivers/leds/rgb/leds-group-virtualcolor.c | 440 +++++++++++++++++++++
+>  3 files changed, 458 insertions(+)
+>  create mode 100644 drivers/leds/rgb/leds-group-virtualcolor.c
+> 
+> diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
+> index 222d943d826a..70a80fd46b9c 100644
+> --- a/drivers/leds/rgb/Kconfig
+> +++ b/drivers/leds/rgb/Kconfig
+> @@ -75,4 +75,21 @@ config LEDS_MT6370_RGB
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called "leds-mt6370-rgb".
+>  
+> +config LEDS_GROUP_VIRTUALCOLOR
+> +	tristate "Virtual LED Group Driver with Priority Control"
+> +	depends on OF || COMPILE_TEST
+> +	help
+> +	  This option enables support for virtual LED groups that aggregate
+> +	  multiple monochromatic LEDs with priority-based control. It allows
+> +	  managing concurrent LED activation requests by ensuring only the
+> +	  highest-priority LED state is active at any given time.
 
-Gr{oetje,eeting}s,
+Grep for:
 
-                        Geert
+  "This driver groups several monochromatic LED devices in a single multicolor LED device."
+
+Does this scratch your itch?  Is this something worth building on?
+
+> +
+> +	  Multiple LEDs can be grouped together and controlled as a single
+> +	  virtual LED with priority levels and blinking support. This is
+> +	  useful for systems that need to manage multiple LED indicators
+> +	  with different priority levels.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called leds-group-virtualcolor.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Lee Jones [李琼斯]
 
