@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-224864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBDACBC8813
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 12:31:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7507BC8843
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 12:35:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC3C819E79D6
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 10:31:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 71AFC3B00FA
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 10:35:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F01C2DCF7D;
-	Thu,  9 Oct 2025 10:30:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 713ED2C11E2;
+	Thu,  9 Oct 2025 10:35:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q/NcmOhc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ycfkyu4F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E3D5275845;
-	Thu,  9 Oct 2025 10:30:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42D6428D8F1;
+	Thu,  9 Oct 2025 10:35:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760005840; cv=none; b=h7SDvjEF8rEJwtrq9yyj2I8F6i7K66qtDr+pEvXzFSHUGb1pYipk7IgMseZRG/z9rUai9l0KKVno706H8EoF4kY7TZDjtn9XCP99w8iC/3IScDUOcckZs8url3tXALHTIaNALgSzpOpnm1G0D8LFJxoMZn2a2F5zQWnE/N/hOIs=
+	t=1760006116; cv=none; b=oKHtZBi1ytm7WNMbQJtDjDLxc7Glrrs+frYFpFDRnFOXe61Yf9VqkYHCkQwEHkodrCPToJsaIAV8AP6sZK9hRT8dNEqYX+c38NbQbw4eZZBDef2Mw27m2C5n77w0cmwoJjuT6zek3+bdwJwKXFJTiCfQzIQ9KlG7+2siulwg1yQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760005840; c=relaxed/simple;
-	bh=iBrpDGm6EdRV5PzWioRp0XEbAIMJRsYQEbaAApBrSck=;
+	s=arc-20240116; t=1760006116; c=relaxed/simple;
+	bh=F1FMDcG44REo+063cMbhIeXpr96K5Cn4pn1zrNUuceY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CKpzrVo825qDeEwj8jsaDHRwaDK0E3x9r5mGaShEJfSqZdLd5ik7bPjK4GB0xEqgpmJmjzYKEtNCE8um7+vMuXcSypmmkWXG/CN36LLL7h9LoWxPX08YTlKxrcOIDg68Lssxg3Nz5xYMRQxo91XlKlzYLA/RBIKg1cyedkr/mP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q/NcmOhc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F27DC4CEE7;
-	Thu,  9 Oct 2025 10:30:31 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=RNlh4VGy7jbeoBwM4s/NerSP0fHATSjk29iU2U20hiEaTiykIO9DMSSkmSgoOhdB/6ywfYlH85yLh/z9RxjABBIUmYbi2STIkusQjcBwrVQnS7qt/K4AgW4a8+t4xVDOVi3B1UQAppWOheunrNQOHUao8tXDrVMYD0fy35+iwRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ycfkyu4F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F9EEC4CEE7;
+	Thu,  9 Oct 2025 10:35:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760005839;
-	bh=iBrpDGm6EdRV5PzWioRp0XEbAIMJRsYQEbaAApBrSck=;
+	s=k20201202; t=1760006115;
+	bh=F1FMDcG44REo+063cMbhIeXpr96K5Cn4pn1zrNUuceY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Q/NcmOhcn9HLOVFtjp03hbR78jZabIrTwuNxeMJMmHSD5FNTl4nTfpHn5t5jySpdp
-	 uTz60ybvDwPTAxIIPWOYcZz19DYFN4mLjsBLedxtUDju+mCz1QrIugJ8t/pVHpq1mR
-	 hhgnqy3O11x2TriCnC4OK1GtZHvawmxgtx5Tm3+BKoVIsrk5oOiVDQGvVMHUv38jR7
-	 7EKYdpsve+KGjnaa6Nrrv4DLyTRupWKii0OglZ2NbxaMHncVj63nAcO+eky0IMfD7z
-	 O2TNRsttPYbo1nIoQNFih4BgYX+hKGBs6Sf3ow3tSTQ7O/Kb/LIofc3LI6e4oFKC0e
-	 +9QZA2Ypa7Nlw==
-Message-ID: <803fe8ac-9f5f-415a-a574-7a50e7fe630d@kernel.org>
-Date: Thu, 9 Oct 2025 19:30:29 +0900
+	b=Ycfkyu4FLBD152C3LzglCB2VUMxNxpHwFnZHBXhFRYtwLfXwtKHLlVQ6A9iSkoB1C
+	 JmvVxzYlUrdYffzY7Z3SuDf0GNCVf3Fyg8qrakLLD+/IKUjX9vIDsjQMIG1x9l6J0f
+	 jHkMVAdq5VHdUYbRUemBCyhJj24Fk/ioj2m6Dl8yH3Xeo+X6LUZbRWhgtw8NrVi34P
+	 suD0iHwcR+NG0mtu23POZ+nWP2pabXTV0Swi6XyUwsjoHrZ+bSDYFCFvta9i7UlXAu
+	 6AqlZp6KZie8XTDcQi1zddkwrj4lr0W/z9HgVpwUBuS/EcMcPbJin1STaQ0OGaR7O0
+	 FMjD2UY3o/7IA==
+Message-ID: <0dc3c348-d26a-4ef7-9799-ca4f81a5b0a5@kernel.org>
+Date: Thu, 9 Oct 2025 19:35:06 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/6] dt-bindings: remoteproc: qcom,sm8550-pas: Add
- Kaanapali MPSS
+Subject: Re: [PATCH] dt-bindings: spmi: add binding for
+ kaanapali-spmi-pmic-arb
 To: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Manivannan Sadhasivam <mani@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
- trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
-References: <20250924-knp-remoteproc-v1-0-611bf7be8329@oss.qualcomm.com>
- <20250924-knp-remoteproc-v1-3-611bf7be8329@oss.qualcomm.com>
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, aiqun.yu@oss.qualcomm.com,
+ tingwei.zhang@oss.qualcomm.com, trilok.soni@oss.qualcomm.com,
+ yijie.yang@oss.qualcomm.com
+References: <20250924-knp-spmi-binding-v1-1-b4ace3f7a838@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,35 +105,31 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250924-knp-remoteproc-v1-3-611bf7be8329@oss.qualcomm.com>
+In-Reply-To: <20250924-knp-spmi-binding-v1-1-b4ace3f7a838@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 25/09/2025 08:37, Jingyi Wang wrote:
-> Document compatible for Qualcomm Kaanapali SoC MPSS PAS which looks fully
-> compatible with SM8750.
+On 25/09/2025 08:42, Jingyi Wang wrote:
+> Document SPMI PMIC Arbiter for Qualcomm Kaanapali, which is compatible
+> with Glymur, use fallback to indicate that.
 > 
 > Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
 > ---
->  Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-> index 031fdf36a66c..b0d2f0371e5e 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,sm8550-pas.yaml
-> @@ -38,6 +38,9 @@ properties:
->        - items:
->            - const: qcom,kaanapali-cdsp-pas
->            - const: qcom,sm8550-cdsp-pas
-> +      - items:
-> +          - const: qcom,kaanapali-mpss-pas
-> +          - const: qcom,sm8750-mpss-pas
->  
-... and look, here it is compatible with sm8750 like expected. But for
-CDSP you claim it is not compatible with previous generation but went
-back to three generations ago, all this without any explanation in
-commit msg.
+> dependency:
+> https://lore.kernel.org/all/20250919140952.1057737-1-pankaj.patil@oss.qualcomm.com/
+
+
+This is getting hilarious...  Glymur patches depend on Kaanapali.
+Kaanapali patches depend on Glymur.
+
+Sorry guys, you totally messed it up. Don't send patches which depend on
+some other work JUST SENT! It is impossible to test and difficult to review.
+
+Plus circular dependency is absolutely NO GO!
+
+Instead SENT ONE PATCH.
+
+NAK
 
 Best regards,
 Krzysztof
