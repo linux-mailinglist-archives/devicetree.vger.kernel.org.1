@@ -1,143 +1,126 @@
-Return-Path: <devicetree+bounces-224780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 096C8BC7F65
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 10:14:13 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38142BC7F4D
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 10:13:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CB81C4F62C1
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 08:10:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 323F94FCCB2
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 08:08:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE03C25D202;
-	Thu,  9 Oct 2025 08:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F88A2D1907;
+	Thu,  9 Oct 2025 08:07:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b="REIGecYO"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="WiaOkJNj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ironport.ite.com.tw (hc210-202-87-179.vdslpro.static.apol.com.tw [210.202.87.179])
+Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.77.159])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AADD1DF26A;
-	Thu,  9 Oct 2025 08:10:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.202.87.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D86729D292;
+	Thu,  9 Oct 2025 08:07:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.132.77.159
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759997434; cv=none; b=fX58gMJJ6IHxDlZ6zCajk74kjrCfVXUF72IMoyVQJj+E1d0CGRvgHvRs0NDpilOl1h2p2QZvnwFIsaMTVxXV/TEQhv7CxnA5CfSFf+LvPRttJd0fl1X7QMptO3WJXAaV7kaE8RgwXfm1jfW7S9Ffc5vLrOsTf+ULqYcglcqGwyw=
+	t=1759997279; cv=none; b=ePUWKmoC/QeG92DyU/Oi2AX8khYLv3m45BiAufIR75php//AFAvmZOvnM0QRkqLBoOsZC3H6Y+nmoUx0Q54LImFFwNO9aqOSN3bts4cZ0qkmkoI98Ad/6tMM/OCHwaRGkEioHdA2la7jSQ8KVcXWNO/Z8Y1/8uCK5XmOtNzIQxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759997434; c=relaxed/simple;
-	bh=2AH6cdUaZXwlNnFx/ldZyqIX/ucVa+bfES0Z5P+o6e4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=QshJt3VATWIJpcxVHbLAmoWo90wCohT4Ik28FikZzAoGl6S0ia26aOSSaFWsMUzPq2DNhCUpU/9RN+HH2Yy5sbevEiWu/i1H4pst1q8q8El7sPd7uLUvnh7F9PJlU6jO4LjOuCN++c8a2B+n19/7BRIV90XyjekZDzPGTGfvpjw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw; spf=pass smtp.mailfrom=ite.com.tw; dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b=REIGecYO; arc=none smtp.client-ip=210.202.87.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ite.com.tw
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=ite.com.tw; s=dkim;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=deeQIG0vQzHbpuB0zFGYYbYCNUxkMTVvua037765riE=;
-  b=REIGecYOugwtYpxwZrNXBhYh0e94sLShU7dO5PZZ4GlWDKRCDtI2du9v
-   ddEzdugWkDaZKGNQNqACco3UJ8kbeCBrSXiQhYcs+EcDxT01S84h2fVct
-   nNcFKEdYVVmk0Yb+h5SAaxcNwSwJ0T2jSbKWbLBGdYx+3R5KMBu+tH2Bu
-   XVyt+8YqtG4SSgi3aBO/Q2rb5ZI0LhJiX9WwfMZa3yjH46CNDIzG4rdgc
-   WcG4fh0KopZWQVLgmbxhNt1G6OIAsknO0L5dQcFHbGrUA17AWz8Cubr5H
-   qAikdGtO4is/ULbu5vRFC3pgC9FZk2v9NGz3KaMiOLmbXcEMxLrJ9n92E
-   w==;
-X-CSE-ConnectionGUID: nlf/221NSAuyq2OkJjmOYw==
-X-CSE-MsgGUID: 6LvJ5cEEQ8Sd0WdWjkX1zw==
-Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
-  by ironport.ite.com.tw with ESMTP; 09 Oct 2025 16:03:05 +0800
-Received: from hscmail1.internal.ite.com.tw (HSCMAIL1.internal.ite.com.tw [192.168.35.58])
-	by mse.ite.com.tw with ESMTP id 59982xPe072680;
-	Thu, 9 Oct 2025 16:02:59 +0800 (+08)
-	(envelope-from Pet.Weng@ite.com.tw)
-Received: from [127.0.1.1] (192.168.72.40) by HSCMAIL1.internal.ite.com.tw
- (192.168.35.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Thu, 9 Oct
- 2025 16:02:57 +0800
-From: Pet Weng <pet.weng@ite.com.tw>
-Date: Thu, 9 Oct 2025 16:02:36 +0800
-Subject: [PATCH v3 3/3] MAINTAINERS: Add entry for ITE IT61620 MIPI to HDMI
- bridge driver
+	s=arc-20240116; t=1759997279; c=relaxed/simple;
+	bh=DKsNxhZuvjGgb7iyN4foc8ZS/xGsFnmU8aui+Jb/OlE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EbE5LepU0RfrYIP58Hw0Xh5UuJnbrR9WoeuaBKiON3Xe3BVxm3V4sSfd4OAP1vi/zpCCeH3Iqiek27felr5CoAyBpVC4pOoTTRSVkDOYmdRvmQLGEq8BQoyTWbcVEQfrzIAATsYkORwhM0WvP12QuI1TIhzOojInIh6LTbJEp80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=WiaOkJNj; arc=none smtp.client-ip=114.132.77.159
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1759997231;
+	bh=QomI1gNvaUojwqQoknXFY7m4GYm6zxoKTgnI/BnC6LY=;
+	h=Date:From:To:Subject:Message-ID:MIME-Version;
+	b=WiaOkJNjAfaOxrrDPIS7pnBdL6f1nW9gDe0qY/RG0qlJd/MbAJ27jdS+34kgOUmRl
+	 gLVV9BZ4jBbW5badASFhVDHnU+USXqRKFu6uWqYBeENV2WNIY+urgKjT5maAFk8SS4
+	 iRy9cmlmZ+J6TV6nHE6bjlgrhoE/uTu+lpJ8a6U4=
+X-QQ-mid: zesmtpsz8t1759997228t014935b9
+X-QQ-Originating-IP: 3K5W0OLDLhEJGiGik9gi2j2qEwUpKM2FSNoCg+xeMgg=
+Received: from = ( [61.145.255.150])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Thu, 09 Oct 2025 16:07:06 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 2621622551196741310
+EX-QQ-RecipientCnt: 16
+Date: Thu, 9 Oct 2025 16:07:06 +0800
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+To: Conor Dooley <conor@kernel.org>, Yixun Lan <dlan@gentoo.org>
+Cc: Troy Mitchell <troy.mitchell@linux.dev>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Yangyu Chen <cyy@cyyself.name>,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: riscv: spacemit: Add MusePi Pro board
+Message-ID: <A5845378AE731404+aOdtKmFPaYfc2n7n@kernel.org>
+References: <20250928-k1-musepi-pro-dts-v1-0-64d0659dfdbc@linux.spacemit.com>
+ <20250928-k1-musepi-pro-dts-v1-1-5efcca0ce3ae@linux.spacemit.com>
+ <20250928074914-GYA1344940@gentoo.org>
+ <20250929-challenge-molecular-947bb1f5962b@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20251009-it61620-0714-v3-3-5d682d028441@ite.com.tw>
-References: <20251009-it61620-0714-v3-0-5d682d028441@ite.com.tw>
-In-Reply-To: <20251009-it61620-0714-v3-0-5d682d028441@ite.com.tw>
-To: Andrzej Hajda <andrzej.hajda@intel.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart
-	<Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej
- Skrabec <jernej.skrabec@gmail.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Hermes Wu <hermes.Wu@ite.com.tw>,
-        Kenneth
- Hung <kenneth.Hung@ite.com.tw>,
-        Pet Weng <pet.weng@ite.com.tw>, Pin-yen Lin
-	<treapking@google.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1759996978; l=1089;
- i=pet.weng@ite.com.tw; s=20250702; h=from:subject:message-id;
- bh=2AH6cdUaZXwlNnFx/ldZyqIX/ucVa+bfES0Z5P+o6e4=;
- b=dU+LzgjtCQD9jnD7rDce2Wgo7OI+HYadVtVJU2unFfjCY8CuE4XlK8MR46ELOemvDiJncWSUd
- KhyoNX+crFrBbaVxehKxAKNw+imWqVUt1iFgZYPrn8SIk+upe6+hKgx
-X-Developer-Key: i=pet.weng@ite.com.tw; a=ed25519;
- pk=wd08uBtTLb93x2ixbKVNsxiZPdMh1Ov4z5klodh2bqo=
-X-ClientProxiedBy: CSBMAIL1.internal.ite.com.tw (192.168.65.58) To
- HSCMAIL1.internal.ite.com.tw (192.168.35.58)
-X-TM-SNTS-SMTP:
-	9296EBCF0C107F6D862EF5CEF443C99F90E953BF5856D10F699AD9CB46901EAD2002:8
-X-MAIL:mse.ite.com.tw 59982xPe072680
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250929-challenge-molecular-947bb1f5962b@spud>
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpsz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: Mp6z4bZjgTSTBwMUNg8zA9wVxazGdIn93I9Zu21FdJDVa3RXuD+vQjXh
+	HHdxaylN9cjOmrQ/WgbLFNFtWLqcn08nuxMpo9RxJR3NopPzZUNsZdRr/08pXyUJ6GMpky9
+	IfLW2D13rw7HxB9e1LGPf987k/TreNIwYE6R7en00JWSp1rnbXxeUYfGiKV9gUJz38tjZAK
+	kVCx8+/y3vXwr5EsoI+L5M1qqyHVsUAehlvLVThtrWFem6sXUgwFTgWoJOS8yEwcRrRm2Eu
+	5xnNR+EMSuhVE1/IqJmEEGv4JPi34oniOGdlInUE4dDUEQCzdin0EBpmNFZyFJ+2pcoMDlr
+	ztDKM87TqqndgJzwD6zP7ZKNH46XcumRbtTdSm8AlV45iuUgL48zPpn0mARgzhacWDrRZLs
+	WcmSolLIF95e7Y02al/G6q0S9RClEdsnTOG1UhYvkCLECMNWWhYNLq543+Zd1jmz6Ygu1nB
+	2w7hZrJiaDUVsahIr6ufnvr4xLZEYwsDLDEFblCHCLxXloVHLQaHib3ZaLY9khPiHZ+zVux
+	VGchYJ3bpMPzBEXafYNgnGcipSA55Y8qrSGaMp2s0EJjoJSG8TEPWnDi3FWUcGII63HViBm
+	RaURwpJHmXGDZIxfqUwU/Yoeq2QYpSoBGXt1sE/a2rfltAY3uUYLJFXznjdHQOY67PtdM64
+	tJY2dzS7czbY12eZIOeXaN6HUBXkwoVHX4NELTic2Qqmln3vReQECz1qydVkfRQolZMeNOR
+	j3CsR/RUVbDxYQ3zhjEY8dhhh7coqluyK7qO0O4WL0vXznJuq8PCMFctXHKSOwVUhD+1g6V
+	YPo55Mz7KO5VtZuomMD7cGFsuSqTeApa+C91VJfkFaXpDzVAM5oL4qGOvuhCuWB8beKvZFs
+	qpd0dWanYd0adsyTgO17UvE0/1KZNcf7cPyA9jIEu1l4wtvKT4L76Al6Jbsx7jYeAvKfQ7M
+	Adf7CFBMRBTvACRg6C8nqJUI+UZWpncN7H1SpEVkV8U6md+q7tlv1zfs7tiSX68Wv4eXiWl
+	ngPxh/xy4WfGQd19YCwznKLnCAdZo1KP37zgtBPmUZ1iB1GXuz7v245KXLKSEts0gVK5x3J
+	6N4GfVqoVZvcjNrGeRi7iY=
+X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
+X-QQ-RECHKSPAM: 0
 
-Add a new entry for the ITE IT61620 MIPI to HDMI bridge driver to the
-MAINTAINERS file, include the responsible maintainer, mailing list, and
-file patterns.
+On Mon, Sep 29, 2025 at 06:48:22PM +0100, Conor Dooley wrote:
+> On Sun, Sep 28, 2025 at 03:49:14PM +0800, Yixun Lan wrote:
+> > Hi Troy,
+> > 
+> > On 12:16 Sun 28 Sep     , Troy Mitchell wrote:
+> > > From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> > > 
+> > > Document the compatible string for the MusePi Pro [1].
+> > > It is a 1.8-inch single board computer based on the
+> > > SpacemiT K1/M1 RISC-V SoC [2].
+> > you could wrap at slightly more characters, I remember 72 chars
+> > (haven't spent time to find a formal document link..)
+> > 
+> > > 
+> > > Link:
+> > > https://developer.spacemit.com/documentation?token=YJtdwnvvViPVcmkoPDpcvwfVnrh&type=pdf
+> > I'd suggest to list core features of this board, while using this link as a complement,
+> > base on previous experience, vendor may change the link address, thus the link vanish
+> 
+> The link doesn't even work for me.
+Could you double check if it really doesn't work now?
 
-Signed-off-by: Pet Weng <pet.weng@ite.com.tw>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+> Is this board actually made by spacemit as a developer platform?
+Yes.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5257d52679d60d084b85e2f023730286aa79311d..6859c06dce3ad3d615a1e42f3542fb1da8da4fc2 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13107,6 +13107,14 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
- F:	Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml
- F:	drivers/gpu/drm/bridge/ite-it6263.c
- 
-+ITE IT61620 MIPI DSI TO HDMI BRIDGE DRIVER
-+M:	Pet Weng <pet.weng@ite.com.tw>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
-+F:	Documentation/devicetree/bindings/display/bridge/ite,it61620.yaml
-+F:	drivers/gpu/drm/bridge/ite-it61620.c
-+
- ITE IT66121 HDMI BRIDGE DRIVER
- M:	Phong LE <ple@baylibre.com>
- M:	Neil Armstrong <neil.armstrong@linaro.org>
-
--- 
-2.34.1
-
+                    - Troy
 
