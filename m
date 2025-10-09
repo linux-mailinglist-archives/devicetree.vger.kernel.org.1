@@ -1,102 +1,142 @@
-Return-Path: <devicetree+bounces-224943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53743BC91B9
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 14:47:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5476BC91D4
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 14:49:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56AD4188A26B
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 12:48:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A04D3A5783
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 12:49:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FB1125CC7A;
-	Thu,  9 Oct 2025 12:47:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 563B12E092E;
+	Thu,  9 Oct 2025 12:49:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SThG6o1u"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JopefJMY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 071B3BA3F;
-	Thu,  9 Oct 2025 12:47:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52AFCBA3F;
+	Thu,  9 Oct 2025 12:49:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760014055; cv=none; b=KCRqT5ohSK3zyRdb7TpNjk/2OAGaN3FHVEhXbDJ4BKAh74kuf92TBRHH50ku7/NO0KlXpddCtFWq1p02xdTAGFQLLaP7ioeLpik6sZmUqb78ilCunLgDo9OLICuVsn/MToF5lv/g0u1Ejnt9b5796114chyEv8m0xh6St60HMr8=
+	t=1760014145; cv=none; b=J9dEhNjUgJ1lo3XEWpcb5CwL6iPp5tmCXNNN9Vq2WId3u3GSV4h8O1VOZMnspbI6t0SFZz0ddWdR9/LDxItXv/8Msib2tppgB6EYRO5JdKaSkJn/N+83v/tVg0t+0Y2LaecLkRczCE349AHdghVkIXGnmvb6E02ec42BldgGVP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760014055; c=relaxed/simple;
-	bh=zvGRayVs38LUDv89UOLvEh9Jzl8OZV1NLB1WntmzPks=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E+tz5vLITUg2ShGXPHZXHVrzuaOqLHCrz4A+d/RzBvH3Pe5yN8sFZmvCJch8IaNclAgnl/bBqb8wwttK/IlPJYzZfSa66Mr74I4tKIVWoaPApYtIGvlNVBMYA2NpW+ioe06n8LIhiDGA8EOt39Hd1gqxtFEVJGqTR+OVAlm5yuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SThG6o1u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37F0CC4CEE7;
-	Thu,  9 Oct 2025 12:47:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760014054;
-	bh=zvGRayVs38LUDv89UOLvEh9Jzl8OZV1NLB1WntmzPks=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SThG6o1uhMovzEU+6i569x2lBcSday6XW0GeNuM6ICvVT84NJkrdDRfSoGg+P3nT1
-	 BnaLNNEYrsfOsqF82aTWrqSoy4CPqe33yYkJHRpmrV1jcdPqKoVfvvrfYhawtV7H3e
-	 l06FJsba6uFHfFbiW0vYpc/jw+EIc8L3lrMmqU6y3LQ6KtlTS8fW3w3O31VtOd4qkK
-	 NN+zXcazFCJG2iUna2Xm4VC5bS11z7bahoPpcLL9fR5njeuJeegGPJtHm8mg5tqesF
-	 RAd1e03Z9lTy08Iy7QlVxy6QXqsv+CqUNltxi0CinpwbBi0+HvkSssQpbdgdXpCcc8
-	 mR/UB9MzKr7uw==
-Date: Thu, 9 Oct 2025 13:47:29 +0100
-From: Lee Jones <lee@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: linux-rockchip@lists.infradead.org,
-	Chris Morgan <macroalpha82@gmail.com>, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, broonie@kernel.org, lgirdwood@gmail.com,
-	sre@kernel.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzk+dt@kernel.org, Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: (subset) [PATCH v8 0/5] Add Texas Instruments BQ25703A Charger
-Message-ID: <20251009124729.GD2796410@google.com>
-References: <20250904160530.66178-1-macroalpha82@gmail.com>
- <175760259503.1582479.14013409824773713781.b4-ty@kernel.org>
- <CAL_JsqJy9XwNrcwgk4Dhf40ajn8WwD47v2YqZ3iYZz+CjEdv5g@mail.gmail.com>
+	s=arc-20240116; t=1760014145; c=relaxed/simple;
+	bh=OSFdQafboDaUi8Wy4vbAAqnWvuafTu2QD+cLsjQEGus=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=mHHfRKS3sH0QE3ez4+hRR/uXzEXXyk+j+rIw/Fj5dgjdyd724NZYvNLJwfHgPyZHgzS2eoBO36FeifwnG9jUhkp9rIla6IWRT8Rk8/j7lsM4GO+rzuJN6DxFPz936+xA1ljuhsN2w18HpqxGVoj1ysUgdw+iRAdkYomTGe9OjNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JopefJMY; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1760014144; x=1791550144;
+  h=from:to:cc:subject:in-reply-to:references:date:
+   message-id:mime-version;
+  bh=OSFdQafboDaUi8Wy4vbAAqnWvuafTu2QD+cLsjQEGus=;
+  b=JopefJMYDLlXf0LPIJwLVmpAAItYKKSzxe+/9eAx5BMk5kMZRHqRjdUB
+   Y7CyL4QThf23Zwj6YTI7DyS9QYPFo6gjuvHagGdkvnsQx9fnyvKiO0UvS
+   s7uNBZTq+LGbdjkRZFtSgUmFl/3V3xPAeKLphvtKnHWHiefwwxRfzsnGg
+   c++IidBnCoYJHmTH/+TZqm04O4QGrNldWyi+A6O2KI/L2d/nWMlZpZsMM
+   st3sa7fNIFLvrUb6RWzyKWg+iyH75GI9KZ2br63Bt3bGYkW1O63Kp9x8M
+   ZzwqpbfJGU6ZYaJUJJEaoy+c/kyqE3v6qSGRUCxhxMxIqO49fgEJeHyl/
+   A==;
+X-CSE-ConnectionGUID: G3WlB3/hSK6vmnvi63IyWA==
+X-CSE-MsgGUID: h5VK8ek9SDK7gBM07Ir5GA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11577"; a="84842104"
+X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; 
+   d="scan'208";a="84842104"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2025 05:49:03 -0700
+X-CSE-ConnectionGUID: f0f9xGnmTki9Z4zY4Af96A==
+X-CSE-MsgGUID: qSApt77rQmKInxe4CHo9rg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; 
+   d="scan'208";a="180650592"
+Received: from ettammin-desk.ger.corp.intel.com (HELO localhost) ([10.245.246.113])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2025 05:48:56 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Pet Weng <pet.weng@ite.com.tw>, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss
+ <rfoss@kernel.org>, Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Hermes Wu <hermes.Wu@ite.com.tw>, Kenneth
+ Hung <kenneth.Hung@ite.com.tw>, Pet Weng <pet.weng@ite.com.tw>, Pin-yen Lin
+ <treapking@google.com>
+Subject: Re: [PATCH v3 2/3] drm/bridge: Add ITE IT61620 MIPI DSI to HDMI
+ bridge driver
+In-Reply-To: <20251009-it61620-0714-v3-2-5d682d028441@ite.com.tw>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20251009-it61620-0714-v3-0-5d682d028441@ite.com.tw>
+ <20251009-it61620-0714-v3-2-5d682d028441@ite.com.tw>
+Date: Thu, 09 Oct 2025 15:48:54 +0300
+Message-ID: <088cbc524dbb05757f244a6c7f26f3228e554f61@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqJy9XwNrcwgk4Dhf40ajn8WwD47v2YqZ3iYZz+CjEdv5g@mail.gmail.com>
+Content-Type: text/plain
 
-On Mon, 29 Sep 2025, Rob Herring wrote:
+On Thu, 09 Oct 2025, Pet Weng <pet.weng@ite.com.tw> wrote:
+> +static void it61620_set_capability_from_edid_parse(struct it61620 *it61620,
+> +						   const struct edid *edid)
+> +{
+> +	struct drm_device *drm = it61620->drm;
+> +
+> +	it61620->is_hdmi = drm_detect_hdmi_monitor(edid);
+> +	it61620->en_audio = drm_detect_monitor_audio(edid);
 
-> On Thu, Sep 11, 2025 at 9:56 AM Lee Jones <lee@kernel.org> wrote:
-> >
-> > On Thu, 04 Sep 2025 11:05:25 -0500, Chris Morgan wrote:
-> > > From: Chris Morgan <macromorgan@hotmail.com>
-> > >
-> > > Add support for the Texas Instruments BQ25703A charger manager. The
-> > > device integrates a boost converter with the charger manager. This
-> > > series adds the device as an MFD with separate regulator and power
-> > > supply drivers. This allows us to manage a circular dependency with
-> > > a type-c port manager which depends on the regulator for usb-otg
-> > > but supplies power to the BQ25703A charger.
-> > >
-> > > [...]
-> >
-> > Applied, thanks!
-> >
-> > [1/5] dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A Charger
-> >       commit: 76bc2203a46ef704a4cd8003986f6bd74139a367
-> 
-> It seems this is still not in linux-next?
-> 
-> > [2/5] mfd: bq257xx: Add support for BQ25703A core driver
-> >       commit: 3b1bbfb5fce3ca9fffc92ac1b053b0cfbb1f322b
-> > [3/5] power: supply: bq257xx: Add support for BQ257XX charger
-> >       commit: 1cc017b7f9c7b7cd86fdda4aee36b92d91cc2ad2
-> > [4/5] regulator: bq257xx: Add bq257xx boost regulator driver
-> >       commit: 981dd162b63578aee34b5c68795e246734b76d70
+Please don't add new users of drm_detect_monitor_audio() or
+drm_detect_hdmi_monitor(). They're basically deprecated.
 
-All of these are now in mainline.
+Use drm_edid_connector_update() and you can get at the same info via
+connector->display_info.{is_hdmi,has_audio} members.
+
+> +
+> +	drm_dbg(drm, "%s mode, monitor %ssupport audio",
+> +		it61620->is_hdmi ? "HDMI" : "DVI",
+> +		it61620->en_audio ? "" : "not ");
+> +}
+
+> +static const struct drm_edid *it61620_bridge_edid_read(struct drm_bridge *bridge,
+> +						       struct drm_connector *connector)
+> +{
+> +	struct it61620 *it61620 = bridge_to_it61620(bridge);
+> +	struct device *dev = it61620->dev;
+> +	const struct drm_edid *cached_edid;
+> +
+> +	cached_edid = drm_edid_read_custom(connector, it61620_get_edid_block,
+> +					   it61620);
+> +
+> +	if (!cached_edid) {
+> +		dev_dbg(dev, "failed to get edid!");
+> +		return NULL;
+> +	}
+> +
+> +	it61620_set_capability_from_edid_parse(it61620,
+> +					       drm_edid_raw(cached_edid));
+
+Please don't add new users of drm_edid_raw(). It's for transitioning
+from struct edid to struct drm_edid only, and you should not add new
+uses of struct edid either.
+
+BR,
+Jani.
+
+> +	return cached_edid;
+> +}
 
 -- 
-Lee Jones [李琼斯]
+Jani Nikula, Intel
 
