@@ -1,114 +1,104 @@
-Return-Path: <devicetree+bounces-225091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C89FABCA6A2
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 19:45:53 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D993BCAA02
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 20:58:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9677189CCDC
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 17:46:16 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0A5F04E5FB3
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 18:58:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A05227BB5;
-	Thu,  9 Oct 2025 17:45:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED58824EA90;
+	Thu,  9 Oct 2025 18:58:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="Vc4RrOUg"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=minlexx.ru header.i=@minlexx.ru header.b="V6pGM0mx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from sm24.hosting.reg.ru (sm24.hosting.reg.ru [31.31.198.150])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2326F43ABC
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 17:45:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 715C0A31;
+	Thu,  9 Oct 2025 18:58:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=31.31.198.150
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760031951; cv=none; b=c2QJiA+YqJauhgFVWRvF1oKSBmUokIzo8Xvi/RkjR0L4rrceWVGW4NECfvvWUSB4fnDBwEPLHT8qE+bd16epWgrof6OI87wiOnW0W8VrrDAWngE0Zyq7/zRP7tLapbuEFr6HVKbIx5mcwZFCVOpxeJZXCJ5y2CGMGdBkUNEACZM=
+	t=1760036308; cv=none; b=pSNjP9c+AHkDtDfSuBEN7c9biDWGqGQttHvmce7BC59DxweNiPzXZq4HZtGa9pkOoy4U61zVEjrO8wi4vPXX316VGQlttfcv3LvbIUoZOqxwcRLXfBZPDfhsPcmTcoH3kijshKvEVb+Ss9Q1W8pXHYXTVNuCxcH0Hf6CCCjq3ao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760031951; c=relaxed/simple;
-	bh=+TO/qEw+wbzOHIyaQhjRZqkHI9gTGRPdNQHZavWkTYU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DSEGpHAtXgoqm6Aa20IqNR+Q+5J/sf6YmY066/H/FVXnwla9jef2LSw5/3z1AI0ZEwwTOxgdeBgFbBC03GNFeNO3lhACzi3Zw3SlB4j58as5gJxU6N/r9ArpAA3trHSEgQhaUFdDKh6uL7QNyq+B5Ajfi2+qKjcBcx9p5ZEDrco=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=Vc4RrOUg; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=+TO/
-	qEw+wbzOHIyaQhjRZqkHI9gTGRPdNQHZavWkTYU=; b=Vc4RrOUgP15A0L2fk26h
-	tHA2fi/iauZjG1zxMYoAH5JJPYLPcy43IbdaW+DzCQXf1IsiRz75Q1l1EnjLPTdq
-	y0eDl9HZDceuzGXD4x9wJ2/Lwb4P+5oEiO1dILY22Uw95ZjKP41MerwPaIuQ2Bly
-	Lsw5nrmtJhFqveqsEGAg+JziRytMEXMlFofL40Rf8hHVEsIlBXiZraV7dTVF0Ax8
-	CVRGX7tmkzikJThmMYN+G6djH3IhNe0kG6YymVxhJgkJoq3dVGjo5YmYsTFKPiwV
-	q7K+SkcqdEeEOr3XhvQz+G3i765VB4KkPOSRDRbRmoCusiCS/mdTf7rmtDszOf96
-	nQ==
-Received: (qmail 1171731 invoked from network); 9 Oct 2025 19:45:38 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 9 Oct 2025 19:45:38 +0200
-X-UD-Smtp-Session: l3s3148p1@wG51Xr1AzLYujnv2
-Date: Thu, 9 Oct 2025 19:45:37 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: renesas: eagle-function-expansion: add eMMC
- support
-Message-ID: <aOf0wSc5rgve30af@shikoro>
-References: <20250923161709.3110-2-wsa+renesas@sang-engineering.com>
- <CAMuHMdU+0iL0fjMM+_vPxsOmPXW72X0_=X2A=ZA9gRf367UB1Q@mail.gmail.com>
+	s=arc-20240116; t=1760036308; c=relaxed/simple;
+	bh=53IsFJzxWMMzkLYYiPkY/Tnkn8LYqqQNK+5NClvvDsA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HqKEwe8sWLzOdDeQOFSwDX57DrE90+BOZ9lpBu+zQ9nw4DIgHNfCSCzCQVHhDn4PcoHQFyXz1OORfYZHQNWzJtT0LjSn1hcTFrMZejPVFVRnuDoTJR0+HHi15BYk6CH4LuI1+dP35EvW1qkPdoZxNftljf2dFFOvug+KUnX7puQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=minlexx.ru; spf=none smtp.mailfrom=minlexx.ru; dkim=pass (1024-bit key) header.d=minlexx.ru header.i=@minlexx.ru header.b=V6pGM0mx; arc=none smtp.client-ip=31.31.198.150
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=minlexx.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=minlexx.ru
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=minlexx.ru;
+	s=dkim; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:
+	Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=sx163Q/gDcDwLx9ge5Ng5N0+91L1RQp4JmKODFf4mnM=; b=V6pGM0mx5cjSI85VCugECNBUyB
+	xFJ2h7e6mZnw7ETMED0qJvFAJjwWnbLNXNuPM4WXa6+2j6fg14ioNDj46godWlzTL379AMr2ee8bb
+	wG+wR9AepAIbMhJDAMjD7hYROpOBw404Ay/ngu6A2EnuRUne7rbXhWcHBQrCkog7ist0=;
+Received: 
+	by sm24.hosting.reg.ru with esmtpsa (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+	(envelope-from <alexeymin@minlexx.ru>)
+	id 1v6uy5-000000003N5-2qya;
+	Thu, 09 Oct 2025 21:02:21 +0300
+Message-ID: <6bc54f43-63c4-4523-9dfd-d74cdaceef58@minlexx.ru>
+Date: Thu, 9 Oct 2025 21:02:19 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="/ZGkI5n2BmN2GlcV"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdU+0iL0fjMM+_vPxsOmPXW72X0_=X2A=ZA9gRf367UB1Q@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 09/13] arm64: dts: qcom: sdm845-lg-judyln: Add fb_panel
+ dimensions
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Paul Sajna <sajattack@postmarketos.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, David Heidelberg <david@ixit.cz>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, phone-devel@vger.kernel.org,
+ Amir Dahan <system64fumo@protonmail.com>,
+ Christopher Brown <crispybrown@gmail.com>
+References: <20250916-judyln-dts-v2-0-5e16e60263af@postmarketos.org>
+ <20250916-judyln-dts-v2-9-5e16e60263af@postmarketos.org>
+ <de1a7ecb-924d-4ed2-8034-721b8dce69d4@oss.qualcomm.com>
+ <ac2d419d-a1b4-4b3f-a07a-4f5d047901aa@minlexx.ru>
+ <e58978d6-dc6a-468f-91d5-29d7b0755e79@oss.qualcomm.com>
+Content-Language: en-US
+From: Alexey Minnekhanov <alexeymin@minlexx.ru>
+In-Reply-To: <e58978d6-dc6a-468f-91d5-29d7b0755e79@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 07.10.2025 16:55, Konrad Dybcio wrote:
+
+> Would adding post-init-providers = <&real_panel> help?
+> 
+> Konrad
 
 
---/ZGkI5n2BmN2GlcV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I suppose it should, as means to break devlink dependency, but I
+personally haven't tried it yet.
 
-On Thu, Oct 09, 2025 at 05:18:23PM +0200, Geert Uytterhoeven wrote:
-> On Tue, 23 Sept 2025 at 18:17, Wolfram Sang
-> <wsa+renesas@sang-engineering.com> wrote:
-> > Add pinmuxing and configuration of the MMC-capable SDHI instance to make
-> > use of the eMMC.
-> >
-> > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
->=20
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> i.e. will queue in renesas-devel for v6.19.
+It's easier to just have "msm" and "panel-*" modules in initramfs and
+leave simpledrm node be with invalid scaling, because it doesn't live
+long enough to display anything (maybe a fraction of a second) due to
+being quickly replaced by msm drm framebuffer emulation.
 
-Thanks. However, I just saw that the node name in pinctrl is bogus,
-sorry :( mmc_3_3v is plain wrong, mmc_1_8v would be better, but
-actually, I think it should be just mmc0. Voltage switch is not
-supported on that board.
+Framebuffer-only display with proper scaling is only needed for devices
+without display/panel drivers, perhaps temporarily during early porting
+stage, so this all is minor issue.
 
+Still would be nice to have a proper solution for this of course.
 
---/ZGkI5n2BmN2GlcV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjn9L0ACgkQFA3kzBSg
-KbbhoBAAp0Mjnw0frQvMVob0er5xLbmKwJBHj5nDHl9Lshq2JfscGINjMadeSqnM
-PJWN5xqsZyFZ/Zzx4Gi9SbWFdqPudXdGdNwuDbsYz65pUq23Gvf7sKH8+JMYgouV
-43Od0J/Q1rOj5SfRO/+yebj3RH3f8Dp03sZJkmD9DaOImdlN5PVlfPPlZg2u7n57
-qVtsG8G+i5JnNu9aKajS4jWZhDWKH0/2kisZ36FZUogGSF67Skb6XoM94xFrXZTV
-Fgoq9TX8Qw6ksRhZ4MLXxBAMzk/weew0QYcX9LczplwX3ioPiQoGH01mJ8JZmbVY
-FEiBRTK6h0yGHHbZTjPHz5HwaPOz/4ihawYqUu1okTJoDr9Vt+gbp7T6g8hrEbKP
-pBne+0a73Ol/SmBSbXkYx1OvkVNy4eLcWlG9ELE3lzMnEcbz0Bc0UfVSdgVPmBpo
-DlIyNlrfrB/4iGXQ7Qr3NWHqljdsqkuTUvY9mP04SQeUxCmfh0l5rW1XsoMvMJCW
-HYGnMxwYudkKJwKvEuh37AbL0lOVkGC1PUYcJNGDAFI+qeSRXnwWLYVUwX/GcoHX
-OPt021KdeCKT6s95UVoFjNEuR/a/G4Glm1+PpdYQ8SzZYgxUWvFAuZig93FDPbmI
-YTO8nsfQ5+Ycg/HzA/iIAzEq4WP2VTvUgab0mbjeIAE/IoM1V1Q=
-=ASVG
------END PGP SIGNATURE-----
-
---/ZGkI5n2BmN2GlcV--
+-- 
+Regards,
+Alexey Minnekhanov
 
