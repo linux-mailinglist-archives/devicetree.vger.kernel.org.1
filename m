@@ -1,156 +1,214 @@
-Return-Path: <devicetree+bounces-224919-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44550BC8E1C
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 13:44:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B948BC8E37
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 13:46:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 183914F5545
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 11:44:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98D2F19E6B45
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 11:47:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AC572E040E;
-	Thu,  9 Oct 2025 11:44:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F7CE2DECB0;
+	Thu,  9 Oct 2025 11:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ctS7VXd4"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="TBPe/JHM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F89C2DFA3B
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 11:44:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F1C117996;
+	Thu,  9 Oct 2025 11:46:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760010287; cv=none; b=AKrZgpi73O9koXWreJGQNd6DlWPScUZei+hLOdf4MtT65mYefazEQ8WPQmV3cI136qzoBL5KNdk6BjP5YzWkqjk8yW5hxIJ8BQhZZUUp2zJCGnEKrjFSjkMAeUc7VyxaMeFxqFJU5KwFscXhdnQETLquW5FLGksLOmGIpcA/kZQ=
+	t=1760010394; cv=none; b=o2tSXwL64EfRtSEzEjFX8/PquHlXQbE7sdRRi/vvJBXO38gR18vKcWE8wZxBbIgtcIkF1dAxOYRJbprWKuItATkS3xEdZTn0c3+hefZTIBjlvhMurokhAigAqCHto3ORryeQG86B7mGqQr4I0SVs6C7tiGehzQH8BuBqRLtr5J0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760010287; c=relaxed/simple;
-	bh=W21u5vszlYb4JTqqHMu+ZKX+OcHuu7JT0mxeHlbgRIE=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=CQc7TzzOGHHR7YBMQk/kAF7TSowUr/0SGdxL2tmKNXPDvSP+Xorf6OaPoP2fQtRSD2RIMnXXMCXzLp/ffIHaXdGht2fx/OS75uW3W7P1azWa7L9gGxg/w+1IciJlHC1WV4CQqovMIhZITh3vgSlupKVVsdZYKoC3GXddkjCMabI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ctS7VXd4; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3f0ae439b56so637669f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 04:44:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760010284; x=1760615084; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mDIkEeJPpHqacANkuSx7d8jTnH0nLItVVRjRAKjBWWc=;
-        b=ctS7VXd4ZUOrXstwnbE7PbZVYxVNwLTIqyVtIn4KbQaJd1GkCGgtQcPRopsUOCu6sf
-         AUEr1QlThuGLKKBzrkVJaAECG0wa5zUxxr6yFolpBdmjGrzhWg94msT/rTB/iDP2w6PT
-         uoKGiLQhkiFC0vlZMWrH8qyXJ7CTUSsfVj0CFPq3iVMqgBJVeK289PBQkEJitcqw220P
-         H5cq/qFB6Q4hpo+Vbu6mEpSJzFCpoY+gokXfeX9c+diC1KGemRcux84E/wutuPzTK0+A
-         X4NntEwktFrxmmxi2woTSHrQ35/d5vSwlyDwkKJrvUKwd/X42h2SJen4sUQFojdwDGPi
-         MBtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760010284; x=1760615084;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=mDIkEeJPpHqacANkuSx7d8jTnH0nLItVVRjRAKjBWWc=;
-        b=NWD+STTXWhZAAsYOpTp6RL5Fh0yc9nHvAVXsatsaAboR5PuDOJOPU7fNfX9dq/gVwx
-         Mz0FFDlD83J2QAyGBJjz/1Q8WBlfEHcibCG8su7VizaQ7l82MB1AQ9U38UZYGlmqN1mR
-         GTaleqzZVzCPWn9FVZtKDmm98tuGAv48HcP1DOZurXbR8O4NjD+hJSdv7fqKNo78Y3e9
-         98FizPvDp6ibRruLWST+Cg1JWkP8eoiHPvcyiWssWwhb3TxPxWrmSIPBHr5s+YxB8hmL
-         cVd2ZAbf3bm8sH128IbUDpjKQiKry4agN+2BTaxVbHEtccwjhy9mANvCsLkV4RQ1E1bN
-         OMFA==
-X-Forwarded-Encrypted: i=1; AJvYcCUM9kOsmRkMqvAq9Iy5y1W4BDIp5gAP+sEmlUfuEuZT2Ft4QqtsfFT82Mmuj+5xhHxGRxglXbLkbXe6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyie0wUeNSZlYIACsbQvUjWjVcMISr5ZwDpGlMX/wA8mnj84MUJ
-	AP+31i9qBvzVT2e2FlT9NVhrIbQu4zxxf2MiLYVU4Ctefaix8bZoF9KvJv17ABPjyUY=
-X-Gm-Gg: ASbGncvIJplvXyU444xKZna+Lii4DeGdKB4BEEzVUXvWk4BYUvRbyxK7NU6fwZHLjMD
-	zVP+PcTphxvg/Mbo3hiBcu7Jf8TTJS+yBvxu+ROgXphVrLRmdDOs/vQYF2O3xCApOMFlk+t0t8Q
-	ygiBrVzPDCrOPIdfY74OTYmBfgox3kXrmpkLweMUm6J4eAUiXKd5q8soK5FMmA9YrQ3bEA+3HAF
-	f5XqS+3MWiLIphRc3bVEIizMTUnC28I1jiBCWiAx9e/IBVXUa7uIO9zZET+wJkDiTWIOGXljyWB
-	lMiU46XEuwWIM+8vvwEi1HX2+WN5MsRUSTt+SG3f9ksgcULjKplafFJx0NvXHSCUVLTLb0yGo/Q
-	r+z/7CTZAiGBUa6kqxm0fnP/XMv4Mp+mFVmCHZvqcmGIi9mL0G+UMiM+kutQ1EP9Tn38AWlCJEX
-	UM4ayx83GIO/zUTGOUg1Wuvd+L0DIRIQF1/YivGg==
-X-Google-Smtp-Source: AGHT+IHQy+02c30CkzT7quTenPJvh8XFqbTYjEdBna1oZjlHAagSFvWrjY6TgWYAOPG36Theucq0Ag==
-X-Received: by 2002:a05:6000:2283:b0:3f3:ba4:29d7 with SMTP id ffacd0b85a97d-4266e8db63cmr4232911f8f.43.1760010283555;
-        Thu, 09 Oct 2025 04:44:43 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:7a0c:da2f:6591:67ee? ([2a01:e0a:3d9:2080:7a0c:da2f:6591:67ee])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fa9c0e35dsm82490225e9.8.2025.10.09.04.44.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Oct 2025 04:44:43 -0700 (PDT)
-Message-ID: <60fc5816-e552-4407-bc85-7c1408b4118b@linaro.org>
-Date: Thu, 9 Oct 2025 13:44:42 +0200
+	s=arc-20240116; t=1760010394; c=relaxed/simple;
+	bh=mZZt5YdIwuaPegnVqL4be4LrmctNgNxtCGeCY51/RGw=;
+	h=From:Date:To:cc:Subject:In-Reply-To:Message-ID:References:
+	 MIME-Version:Content-Type; b=abFvhQXkHH61InoCL8EcYwwQiE17THUVzEAhsMsV+xIZm/VfYyrzwGWcfPeWsTLaezXl0aQJx4YXJbttNX19wzSuNsmNyYWu7mazsq98hx7cdfuR0ULL6l3mjK+vDodGIigkzMPOnI2Rbb0mQ8oftBh9MMJMEW+06sEfQM0RtrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=TBPe/JHM; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1760010392; x=1791546392;
+  h=from:date:to:cc:subject:in-reply-to:message-id:
+   references:mime-version;
+  bh=mZZt5YdIwuaPegnVqL4be4LrmctNgNxtCGeCY51/RGw=;
+  b=TBPe/JHMRbQPh2dXGsBFkHtq1EnIis5O0uffkUjh0rdqI9ApxJj+tf3Y
+   t+ddN2HFWs8ZasRZMklPhgd2/zWAyDm+JDk2TirHe1iI2t6zAPU2esIto
+   mwDV2b95kQ9vIyiNMfwDzeoMeY+dUz1sJ7NNBD2Tn7n3hXB0fCjveFdh3
+   JdwXGQo+aHxTZEyiANu7JaKd4Knr/i9zMabY/RwIH7aJWLVEpoJVcamJl
+   QqywXYPKs2hWsyuUAdONJP5kLZEitHlHye7NwNLs6Mc3irrBky1HacXXH
+   uCvyxBlkJNgLe9WMiu+HMfwua1ZXILXKreCxUrF7/Z2aZJn9WARSCvP62
+   w==;
+X-CSE-ConnectionGUID: ui4Rq/8kRoyDuDsckgPgww==
+X-CSE-MsgGUID: HpmhIq9OQSu4eFsY7h9wew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11576"; a="65865422"
+X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; 
+   d="scan'208";a="65865422"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2025 04:46:32 -0700
+X-CSE-ConnectionGUID: v/CHf2U8Q4WnRvXibbHLCg==
+X-CSE-MsgGUID: 2WjfIzpqTli1vahEaLIIHQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,216,1754982000"; 
+   d="scan'208";a="185072214"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost) ([10.245.245.26])
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2025 04:46:25 -0700
+From: =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Date: Thu, 9 Oct 2025 14:46:22 +0300 (EEST)
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+cc: Binbin Zhou <zhoubinbin@loongson.cn>, Huacai Chen <chenhuacai@loongson.cn>, 
+    Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+    Conor Dooley <conor+dt@kernel.org>, 
+    Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+    Jiri Slaby <jirislaby@kernel.org>, Haowei Zheng <zhenghaowei@loongson.cn>, 
+    Huacai Chen <chenhuacai@kernel.org>, Xuerui Wang <kernel@xen0n.name>, 
+    loongarch@lists.linux.dev, devicetree@vger.kernel.org, 
+    linux-serial <linux-serial@vger.kernel.org>
+Subject: Re: [PATCH v5 2/3] serial: 8250: Add Loongson uart driver support
+In-Reply-To: <CAMpQs4KS=hd3zvj5KYH7vBXpbEhPLmS61H9dLgnRpBpH+04ChA@mail.gmail.com>
+Message-ID: <5e33cb28-0f03-519e-10e6-74d5305c1284@linux.intel.com>
+References: <cover.1758676290.git.zhoubinbin@loongson.cn> <9823e7afe713450e210dab9dba6fa18683dc1fe0.1758676290.git.zhoubinbin@loongson.cn> <9cd368a1-4ba2-3b96-5cfe-0e600e77a3fe@linux.intel.com>
+ <CAMpQs4KS=hd3zvj5KYH7vBXpbEhPLmS61H9dLgnRpBpH+04ChA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH RFC v2 3/6] ASoC: soc: qcom: sc8280xp: add support for I2S
- clocks
-To: Alexey Klimov <alexey.klimov@linaro.org>,
- Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251008-topic-sm8x50-next-hdk-i2s-v2-0-6b7d38d4ad5e@linaro.org>
- <20251008-topic-sm8x50-next-hdk-i2s-v2-3-6b7d38d4ad5e@linaro.org>
- <DDDR31N2P498.3FYKHZRLUS54G@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <DDDR31N2P498.3FYKHZRLUS54G@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/mixed; boundary="8323328-604913320-1760010382=:944"
 
-On 10/9/25 13:21, Alexey Klimov wrote:
-> On Wed Oct 8, 2025 at 7:56 PM BST, Neil Armstrong wrote:
->> Add support for getting the I2S clocks used for the MI2S
->> interfaces, and enable/disable the clocks on the PCM
->> startup and shutdown card callbacks.
->>
->> The rate can be easily calculated since the card forces 48Hz,
->> 2 channels at 16bit slot size.
-> 
-> 48 kHz?
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Yeah obviously, I'll fix the commit log.
+--8323328-604913320-1760010382=:944
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 
-Neil
+On Thu, 9 Oct 2025, Binbin Zhou wrote:
 
-> 
-> 48 Hz rate will result in too narrow analog range to reconstruct anything
-> apart from beeps probably.
-> 
-> Best regards,
-> Alexey
+> Hi Ilpo:
+>=20
+> Sorry for the late reply and thanks for your detailed review.
+>=20
+> On Tue, Sep 30, 2025 at 7:58=E2=80=AFPM Ilpo J=C3=A4rvinen
+> <ilpo.jarvinen@linux.intel.com> wrote:
+> >
+> > On Wed, 24 Sep 2025, Binbin Zhou wrote:
+> >
+> > > Add the driver for on-chip UART used on Loongson family chips.
+> > >
+> > > The hardware is similar to 8250, but there are the following
+> > > differences:
+> > >  - Some chips (such as Loongson-2K2000) have added a fractional divis=
+ion
+> > >    register to obtain the required baud rate accurately, so the
+> > >    {get,set}_divisor callback is overridden.
+> > >  - Due to hardware defects, quirk handling is required for
+> > >    UART_MCR/UART_MSR.
+> > >
+> > > Co-developed-by: Haowei Zheng <zhenghaowei@loongson.cn>
+> > > Signed-off-by: Haowei Zheng <zhenghaowei@loongson.cn>
+> > > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > > ---
 
+> > > +static unsigned int serial_fixup(struct uart_port *p, unsigned int o=
+ffset, unsigned int val)
+> > > +{
+> > > +     struct loongson_uart_data *ddata =3D p->private_data;
+> > > +
+> > > +     if (offset =3D=3D UART_MCR)
+> > > +             val ^=3D ddata->mcr_invert;
+> > > +
+> > > +     if (offset =3D=3D UART_MSR)
+> > > +             val ^=3D ddata->msr_invert;
+
+One additional thing, this could use switch/case.
+
+I'd just do:
+
+=09...
+=09case UART_MSR:
+=09=09return val ^ ddata->msr_invert;
+=09default:
+=09=09return val;
+=09}
+
+That way you don't need to use breaks.
+
+> > > +     if (flags & LOONGSON_UART_HAS_FRAC) {
+> > > +             uart.port.get_divisor =3D loongson_frac_get_divisor;
+> > > +             uart.port.set_divisor =3D loongson_frac_set_divisor;
+> > > +     }
+> > > +
+> > > +     if (flags & LOONGSON_UART_QUIRK_MCR)
+> > > +             ddata->mcr_invert |=3D (UART_MCR_RTS | UART_MCR_DTR);
+> > > +
+> > > +     if (flags & LOONGSON_UART_QUIRK_MSR)
+> > > +             ddata->msr_invert |=3D (UART_MSR_CTS | UART_MSR_DSR);
+> >
+> > I think it would be better to put these invert masks directly into a
+> > struct which is then put into .data. LOONGSON_UART_HAS_FRAC can be bool
+> > in that struct.
+>=20
+> I attempted the following refactoring:
+>=20
+> struct loongson_uart_ddata {
+>         bool has_frac;
+>         u8 mcr_invert;
+>         u8 msr_invert;
+> };
+>=20
+> static const struct loongson_uart_ddata ls2k0500_uart_data {
+>         .has_frac =3D false,
+>         .mcr_invert =3D UART_MCR_RTS | UART_MCR_DTR,
+>         .msr_invert =3D UART_MSR_CTS | UART_MSR_DSR,
+> };
+>=20
+> static const struct loongson_uart_ddata ls2k1500_uart_data {
+>         .has_frac =3D true,
+>         .mcr_invert =3D UART_MCR_RTS | UART_MCR_DTR,
+>         .msr_invert =3D 0,
+> };
+>=20
+> struct loongson_uart_priv {
+>         int line;
+>         struct clk *clk;
+>         struct resource *res;
+>         struct reset_control *rst;
+>         struct loongson_uart_ddata *ddata;
+
+This can and should be const struct as well as those underlying data=20
+structs are const too.
+
+> };
+>=20
+> .............
+> In loongson_uart_probe():
+>        priv->ddata =3D device_get_match_data(dev);
+>=20
+>         if (priv->ddata->has_frac) {
+>                 port->get_divisor =3D loongson_frac_get_divisor;
+>                 port->set_divisor =3D loongson_frac_set_divisor;
+>         }
+>=20
+>=20
+> .............
+> static const struct of_device_id loongson_uart_of_ids[] =3D {
+>         { .compatible =3D "loongson,ls2k0500-uart", .data =3D ls2k0500_ua=
+rt_data },
+>         { .compatible =3D "loongson,ls2k1500-uart", .data =3D ls2k1500_ua=
+rt_data },
+>         { },
+> };
+
+
+--=20
+ i.
+
+--8323328-604913320-1760010382=:944--
 
