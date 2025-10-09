@@ -1,188 +1,180 @@
-Return-Path: <devicetree+bounces-225113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 598CABCAA9F
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 21:13:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 28C3CBCAABD
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 21:18:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C1C1D4EF720
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 19:13:42 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5FAAE4E1CD7
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 19:18:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D72257422;
-	Thu,  9 Oct 2025 19:13:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC9C2405EC;
+	Thu,  9 Oct 2025 19:18:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="1ErGPZ7H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tZ42X+3C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DEDC255F2D
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 19:13:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9A2C221FBB;
+	Thu,  9 Oct 2025 19:18:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760037219; cv=none; b=Eb3Dm1gOxPgwNpGWvn7LSCbWeKenwsOfrPG2JngjKMSym9WPHlHKWRE3CTCQBN4xaVt+GAVTp7ARM6GZvRP8dvI0yH2YDyz+YHu0onnOtp6z0ZsHIz/R2khXwq0E6ViC1Og314knqo4UoqXnWOclHKw0ff+r+0gqnTI5yCxwAxA=
+	t=1760037535; cv=none; b=dDeyOdbqW9nZIRbpm3g7ctYVCt5Lp3KNi3NkHBtqro8k/ktNJz8vS1XAhiqp2+9DLG1q8BIwFn0Ej2brvUuh3Cx9vSnRrr1pyOQuz+MZf5WNh8mjMReoQ7mK7S9L7Y5u0ikOfmtfpA6j013X+pnV8rWXKWniSwJi9OTETrBaSAA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760037219; c=relaxed/simple;
-	bh=DrVzT4qQlnwhzZJ7Zk7bJ5ieuCE6DLcCPb5WQwSENjY=;
+	s=arc-20240116; t=1760037535; c=relaxed/simple;
+	bh=5S9bfphoMzasXEdo67ITA1E1OFoYoV5XGiFc7X8hHRc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ski4g41NjA1ABbDtbE5YgtQJ7is0U7Qm0mb2nTlWqdeHGupUHOdnWMoZgEWId0RGwwcJKRA37e2Ft+6FpzRpFIeT/GwVCsCWDxZ8BiVGoRQ5/m+vJMwIu8/t7VvE8Pke9wfNIxaOC0kb5lyKeIdZQIDTJ+bJ1Jv2ukpm66KAidE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=1ErGPZ7H; arc=none smtp.client-ip=209.85.210.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-794e300e20dso1075746b3a.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 12:13:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1760037216; x=1760642016; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=iOSCy56bqYjv1nF3mp941PWU8Gn0Ei1sbikd3uwYoDs=;
-        b=1ErGPZ7HAg9wi4J1+zW45+hVOgeY7VL1MSCP0ihu4hQpdhpz/Q+hpNh3gmlzqDDbyF
-         tnAgdi6gQWFZG7eGOS2YC/eNItoiRYk8RWcjvZ/TAFzTxzmJ/5tT8jaJbq9DMXW5ulvB
-         bl6HY+VDyUWJ8Snmw5XOZ9Vcxpi1w80G+sjrA4/IRs4ZLtSTNK9EGh+3GdUpI0D/G9Wi
-         nc1UDWLwIdFMrts9T/+xvp+zEWMbF4FjyWXlLuC6ygCHkjfJnfjcUkqjUDlROKYKIhJi
-         f6mempYY2L58d91WLbQd7AQK3cpTdbwXDCtpHodxOfzY8LEG0ilul5VHLp0xR3F7W5oE
-         ZblQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760037216; x=1760642016;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iOSCy56bqYjv1nF3mp941PWU8Gn0Ei1sbikd3uwYoDs=;
-        b=r5e6/yVsFwedNGUSVs6qe20BtzPx//vHzis1T3RwbuDKFQzPifOZhNctT23DJL8GzX
-         mgKnbH8m36bfOJTAiTlnwOhKnq7ft1d1GnhAG7dhAZHayk4nakzr+zZ40pvyVf035/q/
-         qdOS0848mxpOXoPZVJhlpsXb8YcK+0G22VLFORgogn5GxqyDIFWNhQbvhCBCOVX0y1zY
-         6SojI8AqgNcaRnLk8jy+wKZ6eHhqZ++8AZsSgUmvYJf+VVLrLeJzKzfDe3QnIw/FAXPE
-         XeEk2nKUOKHNJd2smyoVKpToKbeBX44Q2ThBfOG01lszHaUmWnhpj5+p7h/FoqXywa7O
-         RKMw==
-X-Forwarded-Encrypted: i=1; AJvYcCWAXhp9asdajudec3in9Fv5B2qKcLAmSoMCFPoc6j34rZ9M0k6h8HntVlkW8nXI/UuwofAEoj1iUKNQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFEo7wFjHoDGPLYvIZjgrb6/ExhplezY0UfDMk5T8yiM5h/axs
-	yHNBOHvoqeq/j3nO8WYEJqJ7vivIVV1ZgXmTFHpKwoUNJaZ9Oi4HaJ9Stpg3x+AnLQ==
-X-Gm-Gg: ASbGnctcJo95JIiI6Eh/EG84mKrUvLSMo8GrIXgfSJ9sM3ljNUhSliYblzCrZI8TOYD
-	a14Y4iFg6mTvN0p2/97a7SNDSpA0U9gIRs5PHYDoBKCZ5DpHdUT9NhBUNT4yPHkppqsTUzCQ8Cd
-	3+MUi2FOIcSlxsc7aGcwBAgGR0gC5DYKQcuRX/33UaB53cZ5Lt43C80TEgJg7VZ2fp2KPVDEJup
-	h+aYFJ7xA5fiUHx2lFKaRfKlHNPIyj/DKqnY6vBDm9Ka8zkjLOCJfH0yYyV9504TSs91/TFE572
-	tm3KMLCpXgLU6wpyXWB+JopQuCZxNXrrLwbL5PGhrjlqkaz1YCDC9ucCaxoZqorW8UFhbYGZQ5a
-	kNdTepTrd3v1mPsU+LW2psIvNtxPLimbKPERsP5os0tgen4JRtj5vFesTVXbfFg1V7iTVaEjYya
-	fkBk8uYo60PQ==
-X-Google-Smtp-Source: AGHT+IEEnUYCsb1ig8WOq5UjpbnlJYhdXQVdJ1T9XijXib3yOVoxgg9VmVsHFrdAuk8oT5KR1DKNRA==
-X-Received: by 2002:a05:6a20:6a22:b0:246:3a6:3e47 with SMTP id adf61e73a8af0-32da8e2ba5cmr10180448637.12.1760037216071;
-        Thu, 09 Oct 2025 12:13:36 -0700 (PDT)
-Received: from google.com (232.92.83.34.bc.googleusercontent.com. [34.83.92.232])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992dd7ee5bsm455211b3a.85.2025.10.09.12.13.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Oct 2025 12:13:34 -0700 (PDT)
-Date: Thu, 9 Oct 2025 19:13:31 +0000
-From: Benson Leung <bleung@google.com>
-To: Jameson Thies <jthies@google.com>
-Cc: akuchynski@chromium.org, abhishekpandit@chromium.org,
-	krzk+dt@kernel.org, robh@kernel.org, bleung@chromium.org,
-	heikki.krogerus@linux.intel.com, ukaszb@chromium.org,
-	tzungbi@kernel.org, devicetree@vger.kernel.org,
-	chrome-platform@lists.linux.dev, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] mfd: cros_ec: Don't add cros_ec_ucsi if it is
- defined in OF or ACPI
-Message-ID: <aOgJW2gOuwulIMny@google.com>
-References: <20251009010312.2203812-1-jthies@google.com>
- <20251009010312.2203812-4-jthies@google.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hLNqvc9qy9w+jAP8SaqR+dz6d038tbC+XZ1VsiZ3WCNn4PcPSg7M0tIvZekvdNKB95/aXXBwmm4kUoUriadD5iutexOfs8fLGOxb4rPmLx57Kes9pvdRBwOjWSfqgGaZqJ2cDGrInEax29G4boDWjwE5Up8i/TlAoe5hqTg7CWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tZ42X+3C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27AFAC4CEE7;
+	Thu,  9 Oct 2025 19:18:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760037534;
+	bh=5S9bfphoMzasXEdo67ITA1E1OFoYoV5XGiFc7X8hHRc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tZ42X+3CMN5xZgb0bDD5sfwrOZeVa8UyF2X74qLIO838v6Og6q2vK7y5NXz3Lmut1
+	 y2RC21Ev//5o+8rU5eI1iN13QysE+6ZMywpO9GgBIepEcz2vT+kttcAPvvoMANFOYU
+	 b1NO+l67TZkgJG+LYDnO9VhJvf7ib8AZYlGKNq31IfBwAjcSvacU3UB7oXno8kiLkC
+	 WRQX2V5fFPxLUlCzGZKicibhlbiHGzzryREn/UCxsWRWf+PgLctcx/TgmD44S4VMo5
+	 1CAt/V1z//wvdGfxAc1p4SvWZ6+z5UwE9Y7o+KxNH1r0SMxKHbZmEGor1ystI4kTOF
+	 zDPhIo0XRPN2A==
+Date: Thu, 9 Oct 2025 14:18:52 -0500
+From: Rob Herring <robh@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
+	broonie@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	kernel@collabora.com, wenst@chromium.org,
+	igor.belwon@mentallysanemainliners.org
+Subject: Re: [PATCH v8 1/9] dt-bindings: regulator: Document MediaTek MT6316
+ PMIC Regulators
+Message-ID: <20251009191852.GA2947598-robh@kernel.org>
+References: <20251003091158.26748-1-angelogioacchino.delregno@collabora.com>
+ <20251003091158.26748-2-angelogioacchino.delregno@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gdyhNSmhYhPSv1Bb"
-Content-Disposition: inline
-In-Reply-To: <20251009010312.2203812-4-jthies@google.com>
-
-
---gdyhNSmhYhPSv1Bb
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20251003091158.26748-2-angelogioacchino.delregno@collabora.com>
 
-On Thu, Oct 09, 2025 at 01:03:08AM +0000, Jameson Thies wrote:
-> On devices with a UCSI PPM in the EC, check for cros_ec_ucsi to be
-> defined in the OF device tree or an ACPI node. If it is defined by
-> either OF or ACPI, it does not need to be added as a subdevice of
-> cros_ec_dev.
->=20
-> Signed-off-by: Jameson Thies <jthies@google.com>
-
-Reviewed-by: Benson Leung <bleung@chromium.org>
-
-
+On Fri, Oct 03, 2025 at 11:11:50AM +0200, AngeloGioacchino Del Regno wrote:
+> Add bindings for the regulators found in the MediaTek MT6316 PMIC,
+> usually found in board designs using the MT6991 Dimensity 9400 and
+> on MT8196 Kompanio SoC for Chromebooks.
+> 
+> This chip is fully controlled by SPMI and has multiple variants
+> providing different phase configurations.
+> 
+> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  drivers/mfd/cros_ec_dev.c | 23 ++++++++++++++++++-----
->  1 file changed, 18 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/mfd/cros_ec_dev.c b/drivers/mfd/cros_ec_dev.c
-> index dc80a272726b..1928c2ea2b8f 100644
-> --- a/drivers/mfd/cros_ec_dev.c
-> +++ b/drivers/mfd/cros_ec_dev.c
-> @@ -5,6 +5,7 @@
->   * Copyright (C) 2014 Google, Inc.
->   */
-> =20
-> +#include <linux/acpi.h>
->  #include <linux/dmi.h>
->  #include <linux/kconfig.h>
->  #include <linux/mfd/core.h>
-> @@ -131,11 +132,6 @@ static const struct cros_feature_to_cells cros_subde=
-vices[] =3D {
->  		.mfd_cells	=3D cros_ec_rtc_cells,
->  		.num_cells	=3D ARRAY_SIZE(cros_ec_rtc_cells),
->  	},
-> -	{
-> -		.id		=3D EC_FEATURE_UCSI_PPM,
-> -		.mfd_cells	=3D cros_ec_ucsi_cells,
-> -		.num_cells	=3D ARRAY_SIZE(cros_ec_ucsi_cells),
-> -	},
->  	{
->  		.id		=3D EC_FEATURE_HANG_DETECT,
->  		.mfd_cells	=3D cros_ec_wdt_cells,
-> @@ -264,6 +260,23 @@ static int ec_device_probe(struct platform_device *p=
-dev)
->  		}
->  	}
-> =20
-> +	/*
-> +	 * FW nodes can load cros_ec_ucsi, but early PDC devices did not define
-> +	 * the required nodes. On PDC systems without FW nodes for cros_ec_ucsi,
-> +	 * the driver should be added as an mfd subdevice.
-> +	 */
-> +	if (cros_ec_check_features(ec, EC_FEATURE_USB_PD) &&
-> +	    cros_ec_check_features(ec, EC_FEATURE_UCSI_PPM) &&
-> +	    !acpi_dev_found("GOOG0021") &&
-> +	    !of_find_compatible_node(NULL, NULL, "google,cros-ec-ucsi")) {
-> +		retval =3D mfd_add_hotplug_devices(ec->dev,
-> +						 cros_ec_ucsi_cells,
-> +						 ARRAY_SIZE(cros_ec_ucsi_cells));
+>  .../regulator/mediatek,mt6316b-regulator.yaml | 80 +++++++++++++++++++
+>  .../regulator/mediatek,mt6316c-regulator.yaml | 80 +++++++++++++++++++
+>  .../regulator/mediatek,mt6316d-regulator.yaml | 79 ++++++++++++++++++
+>  3 files changed, 239 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316c-regulator.yaml
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316d-regulator.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
+> new file mode 100644
+> index 000000000000..53d2c9913e55
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6316b-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +		if (retval)
-> +			dev_warn(ec->dev, "failed to add cros_ec_ucsi: %d\n", retval);
-> +	}
+> +title: MediaTek MT6316 BP/VP SPMI PMIC Regulators
 > +
->  	/*
->  	 * UCSI provides power supply information so we don't need to separately
->  	 * load the cros_usbpd_charger driver.
-> --=20
-> 2.51.0.710.ga91ca5db03-goog
->=20
+> +maintainers:
+> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> +
+> +description:
+> +  The MediaTek MT6316BP/VP PMICs are fully controlled by SPMI interface, both
+> +  feature four step-down DC/DC (buck) converters, and provides 2+2 Phases,
+> +  joining Buck 1+2 for the first phase, and Buck 3+4 for the second phase.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt6316b-regulator
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  '#address-cells':
+> +    const: 0
 
---gdyhNSmhYhPSv1Bb
-Content-Type: application/pgp-signature; name="signature.asc"
+You don't have any child nodes with addresses. Drop.
 
------BEGIN PGP SIGNATURE-----
+> +
+> +patternProperties:
+> +  "^vbuck(12|34)$":
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    unevaluatedProperties: false
+> +    properties:
+> +      regulator-allowed-modes:
+> +        description: |
+> +          Allowed Buck regulator operating modes allowed. Valid values below.
+> +            0 - Normal mode with automatic power saving, reducing the switching
+> +                frequency when light load conditions are detected
+> +            1 - Forced Continuous Conduction mode (FCCM) for improved voltage
+> +                regulation accuracy with constant switching frequency but lower
+> +                regulator efficiency
+> +            2 - Forced Low Power mode for improved regulator efficiency, used
+> +                when no heavy load is expected, will shut down unnecessary IP
+> +                blocks and secondary phases to reduce quiescent current.
+> +                This mode does not limit the maximum output current but unless
+> +                only a light load is applied, there will be regulation accuracy
+> +                and efficiency losses.
+> +        maxItems: 3
 
-iHUEABYKAB0WIQQCtZK6p/AktxXfkOlzbaomhzOwwgUCaOgJWwAKCRBzbaomhzOw
-wpmvAP9BRKC8tzJCIcuD4p8sAtDTojfzvAT7272ct6sdoX/8gQD/U725yeINVisu
-v5I0X5yXr45fO2RNjUgA0hRB+v4oWgQ=
-=DzaU
------END PGP SIGNATURE-----
+If you can only specify all the modes, why do you need it? Perhaps you 
+want 'minItems: 1' as well?
 
---gdyhNSmhYhPSv1Bb--
+> +        items:
+> +          enum: [ 0, 1, 2 ]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#address-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/spmi/spmi.h>
+> +
+> +    spmi {
+> +      #address-cells = <2>;
+> +      #size-cells = <0>;
+> +
+> +      pmic@8 {
+> +        compatible = "mediatek,mt6316b-regulator";
+> +        reg = <0x8 SPMI_USID>;
+> +        #address-cells = <0>;
+> +
+> +        vbuck12 {
+> +          regulator-name = "dvdd_core";
+> +          regulator-min-microvolt = <450000>;
+> +          regulator-max-microvolt = <965000>;
+> +          regulator-allowed-modes = <0 1 2>;
+> +          regulator-enable-ramp-delay = <256>;
+> +        };
+> +      };
+> +    };
+> +...
 
