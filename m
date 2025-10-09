@@ -1,138 +1,131 @@
-Return-Path: <devicetree+bounces-224717-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224718-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A9C0BC7305
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 04:17:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3309BBC733E
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 04:34:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58A8F3A1C60
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 02:17:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF0073B94A9
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 02:34:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 559DC54652;
-	Thu,  9 Oct 2025 02:17:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F38BA1B4F1F;
+	Thu,  9 Oct 2025 02:34:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gBt5Tz1L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.154.197.177])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D1B8182D0
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 02:17:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=43.154.197.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C55933993;
+	Thu,  9 Oct 2025 02:34:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759976258; cv=none; b=OQk+K05wuRjW/kekiLY6gUZljo/Y9IAhl5sXQ8uzRYvIo6Zxueyp64WYZAEraVlupZdzZQ0PaUs77m3WP4abvGn+fY1Uj5qUEkq1VcYHvWWiSvuh35+327L/rHwiA0C0AMNQa1M1+jokxbGGMxuo6MGsbbQirp3ukbPLpxmOvNU=
+	t=1759977252; cv=none; b=o6n63s5rH1hhVSzrJbLA7qOwVGWJiwoQHEtpR+1pg/GIum3h/LXZ07vD2lvqx+dSg0ibNuHzWK5M4QBhC8jSf7JQ7NOrY60geiK6pon/6oNcCDOmBRlmirPue2b09g0GfEAGznFV8FUezvDailavA374BLwQYiDfdA+oc1YN2k8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759976258; c=relaxed/simple;
-	bh=EXlTnayX8iZs1RmOI2PwhPc7Xd2rnDyLCCsaCyNwEHg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ekTQeUlInDxuOVhGakZqdlX4BQlZaI1SU+kvrf2rJ68PuXa5lkSIPmNP4m341+/o+R13BR0VpGhMjBD3x8hVfnDYK1axAdOTG5PhaPiF7QhAJEjn0h2g5i5ecJknCCQYqIGxBqshmxYNB4IG7KU5589vPOm3l+ivBxnHvSqYAQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=43.154.197.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
-X-QQ-mid: zesmtpip4t1759976187t26981058
-X-QQ-Originating-IP: QJywRK6yFCSFRt7FydXwg9CgEhop58NLlivjWVLVJ7Q=
-Received: from [127.0.0.1] ( [localhost])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Thu, 09 Oct 2025 10:16:25 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 417726807767555763
-Message-ID: <03A4C3DFA86FD6DF+6262361b-e129-4b19-b5eb-42188fa76505@radxa.com>
-Date: Thu, 9 Oct 2025 10:16:25 +0800
+	s=arc-20240116; t=1759977252; c=relaxed/simple;
+	bh=G9fYDCK0biOIRA2siBGv9/9+6Q/sY5OYFaZEPGtZNxs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=opLDMG/GW0iw63nChah/q7rg99xLKOx2REZgzPodQ1VeKurIOgIjgXNQ4dC3YmxeSVpPktXAh2uRZ1xotM2Ft148/ykWDuCZCzss4EGLlXgHP7GWaemFuE39a5aJ+8kQuJ3DAo8o/GKux+fo3gKHwDafqYMaUpbXVBoHTQz1Zn0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gBt5Tz1L; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 598I5Pmp029339;
+	Thu, 9 Oct 2025 02:34:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=gp34WTyp3jQ5abLAaLIzt0wje4LOR2CSKNB
+	Fn0QnMYQ=; b=gBt5Tz1Lq6GXwfUZH67zXoLL4p2W1KPXVUto7DAkaUD7R1DE0f4
+	kzbML0KF15EDOZa7/3MGkrWSebo1WgcsWNDs/pnJ8iUnSLhfGwex7dEbkiyqmhtF
+	wrXsm0TR1sc0TmFPgVUIy/LgJWQ1TPXFs4OgeAPnvZ2sEOIc7xsryOlCJixY9lWR
+	cvxWOiawD3c2Gr2+8GC8HQ/M8zY+ALJDCITXARx3LNq0i8VV8tsd8BSAAnG3eVk0
+	rKHk237loHaJQbSBUw3d/YNxGGrq+ImzggsNCu+b/jmJrU/PsYjOpvNbJgI6pj2c
+	L2egqwc9R+g6e47eX0y78UY+lAWftO+NFbg==
+Received: from aptaippmta02.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4sh6nr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Oct 2025 02:34:00 +0000 (GMT)
+Received: from pps.filterd (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5992Xvm2026686;
+	Thu, 9 Oct 2025 02:33:57 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 49jvnmwgs8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Oct 2025 02:33:56 +0000
+Received: from APTAIPPMTA02.qualcomm.com (APTAIPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5992Xunf026680;
+	Thu, 9 Oct 2025 02:33:56 GMT
+Received: from cse-cd01-lnx.ap.qualcomm.com (cse-cd01-lnx.qualcomm.com [10.64.75.209])
+	by APTAIPPMTA02.qualcomm.com (PPS) with ESMTPS id 5992Xu8g026678
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Oct 2025 02:33:56 +0000
+Received: by cse-cd01-lnx.ap.qualcomm.com (Postfix, from userid 4531182)
+	id 112F5210E9; Thu,  9 Oct 2025 10:33:55 +0800 (CST)
+From: leqi <le.qi@oss.qualcomm.com>
+To: Srinivas Kandagatla <srini@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>
+Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@oss.qualcomm.com, leqi <le.qi@oss.qualcomm.com>
+Subject: [PATCH v1 0/2] ASoC: Add QCS615 sound card support
+Date: Thu,  9 Oct 2025 10:33:39 +0800
+Message-Id: <20251009023341.27277-1-le.qi@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH DNM v2 4/5] arm64: dts: qcom: qcs6490-radxa-dragon-q6a:
- Enable UFS controller
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>,
- Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
- Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-References: <20250914-radxa-dragon-q6a-v2-0-045f7e92b3bb@radxa.com>
- <20250914-radxa-dragon-q6a-v2-4-045f7e92b3bb@radxa.com>
- <9a18cfae-4fcd-490e-b44d-6f9345cc7c3b@oss.qualcomm.com>
- <4AD4461A95C1A8F2+bc2124f8-d1ae-4fe4-8d0e-55872609d3f3@radxa.com>
- <25a53665-d400-4bd3-a1ad-5ba8d3a0d9a6@oss.qualcomm.com>
-Content-Language: en-US
-From: Xilin Wu <sophon@radxa.com>
-In-Reply-To: <25a53665-d400-4bd3-a1ad-5ba8d3a0d9a6@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: zesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
-X-QQ-XMAILINFO: Nl7eTg5yGHnw+xwrEkoKx3xP1HrjEAxIDg08vsjmdBZaKVj/5O3lFY/F
-	cHVe/FH/6ghkXceWXCX3Qa1hz88WAgbtXJu8ZmQLJOKH5HvSHd37GhX5CUeC50mDQ0B23WC
-	Xaw2bu2uLo18QraPU7OaKql6+4+eHLog5Cueica/iWIMIlhw4a53i+f5IsXTfOu1Ci+JccA
-	4JOccOa4GIxHZSJ8QCLFDjwUshjpai0kp2Jn/0G7UbLtY8A+p/8RlF5/cZeP3jbDDEVK7pl
-	Ftok11GYY3XklICdC9r8DmLDVhZDBrIcqZujoI2+7bAubRIVCQYUrcheUnv9XqoIoRwSQOg
-	AXqAjaSkb4eiPaareSRchs6sLzrmheWTBS5p3iJq4f/saTiAl2BpVNY+1mmvBpFj0l2WiDs
-	Z/6soMhXZ2og5iz5f5GIh+JJf7Hr1v5BjfJScmHzIdpYrb5S3R2b9UxS1cdbPPJwZXP/wAn
-	dYv11tctPvvjRvpbaly8RB1HI27GSwlKE0VR/JOu/V7DCOfXWQdrz5DTnBmmzC646TCo2kD
-	z5rN+l/uYD2ekp5cZ/FpEa9asYx8K/7osntmGMRrMFOzEfLFrLFT2i8YksFJxCfPg6u2mUY
-	xMzI4l/nzBu61uYvIw9rTi0usDE7r0Gzku1zhCPqFvvOexr+hfiqMq6I99QSPOL2B8NCyx8
-	JFa9rZannpbIsjSar79T0676FfZ25sZGXZHqjTBWZb3bl4WN4DcItzBeb0qgAfMU0vhp+m0
-	oL4cVYDv7r4Zm0id7E4/GCmRleMTxvdoRmq3kXm8Norf+QhkGq67UUMCwAevqxGcoy49Zyj
-	H5HIsyOMCMlLsJhDODz2rOto41fE/x3CRadupbv4qKoDYKdXvpiw9dHllJaDiZ3kFNRmPty
-	cDJdu3Xzwtzh4gSosDvhXdA0CC5gH5boSgI8/NAv4m9KvlirxtJmzCGqeoTzyXccnthNPl6
-	UikCg59Wqg3pmVEBDfmrY6IFWIis6gpN5yB7lqXLse+1DfEHctJEUBLkFLfbbr90rQohLaH
-	IkyCxVN8r9ZTM8/JS63Mr7qd7QMVv4aAInKSReIw==
-X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
-X-QQ-RECHKSPAM: 0
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XTpbl_5uNTq5NsOS86yRABhk3vNWj1o6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX6l4N95VRtvK3
+ AuxociwYcJURR/PuFvVCBwLidnRmKmbg4jjvua5S4wIyIuhtpdY1ojygLGTZS3KwOiYMvO33DwK
+ LhnaGiY2qP4FEQEQZTA0wUzLyv33vrlpCSwyX9/TNpZHJFZEQSom9iJM6KXOPV5ee1dJGeYCJra
+ DECkjWkXFNA0uXuBMfQgtgplI09pRZbWaY/j9xcO4dKtXxIetVkSmBemnixTQ6DMz3d73/+q5FG
+ trJOUUEhrNfqEsC4d/r1nkrdwtPr4nfGa+jJZHg/WpBG5+uQCmaFZTq734Xkq3uC9GAKPxUPSYk
+ BGkhsC06mvBxsIgNfEkUJqNcZTYGOgd6hIDTDs7sFVI7d5Lk79jUDgKGqId9rLvTPj/sReWQVVp
+ eOxeMBuUhkx2K1deNBAdhnkMKAPaUQ==
+X-Authority-Analysis: v=2.4 cv=SfL6t/Ru c=1 sm=1 tr=0 ts=68e71f18 cx=c_pps
+ a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=x6icFKpwvdMA:10 a=-LUE9sMnR5qqSz9F25gA:9 a=zgiPjhLxNE0A:10
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-ORIG-GUID: XTpbl_5uNTq5NsOS86yRABhk3vNWj1o6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-09_01,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1011 malwarescore=0 bulkscore=0 priorityscore=1501
+ suspectscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
 
-On 10/8/2025 5:53 PM, Konrad Dybcio wrote:
-> On 9/15/25 9:34 AM, Xilin Wu wrote:
->> On 9/15/2025 3:24 PM, Konrad Dybcio wrote:
->>> On 9/14/25 5:57 PM, Xilin Wu wrote:
->>>> Add and enable UFS related nodes for this board.
->>>>
->>>> Note that UFS Gear-4 Rate-B is unstable due to board and UFS module design
->>>> limitations. UFS on this board is stable when working at Gear-4 Rate-A.
->>>>
->>>> Signed-off-by: Xilin Wu <sophon@radxa.com>
->>>>
->>>> ---
->>>>
->>>> This change depends on the following patch series:
->>>> https://lore.kernel.org/all/20250902164900.21685-1-quic_rdwivedi@quicinc.com/
->>>> ---
->>>>    .../boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts     | 29 ++++++++++++++++++++++
->>>>    1 file changed, 29 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts b/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
->>>> index d30cddfc3eff07237c7e3480a5d42b29091d87d6..3bf85d68c97891db1f1f0b84fb5649803948e06f 100644
->>>> --- a/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
->>>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-radxa-dragon-q6a.dts
->>>> @@ -482,6 +482,11 @@ &i2c13 {
->>>>        status = "okay";
->>>>    };
->>>>    +/* It takes a long time in ufshcd_init_crypto when enabled */
->>>
->>> Huh? It only turns on some clocks, writes a couple of mmio registers
->>> and turns the clocks back off, could you investigate a little more?
->>
->> More specifically, it takes a long time in `qcom_scm_ice_invalidate_key`. Considering this platform boots from SPI NOR, while TrustZone doesn't really support SPI NOR storage on this platform, there could be something broken in TZ.
-> 
-> Hm.. if you change the boot order (if you can on your board..) to start
-> with UFS (which would require reflashing of all boot sw onto there), does
-> this still manifest?
+This patch series adds support for the QCS615 sound card:
+- Updates device tree bindings for SM8250 to include QCS615.
+- Adds QCS615 support in the SC8280XP ASoC driver.
 
-Unfortunately the board is designed to boot from SPI NOR only. And 
-there's no way to change that without replacing some resistors on the board.
+Tested on QCS615 platform with audio playback and record.
 
-Just now I tried a v6.17 based kernel, it now simply triggers a reset 
-somewhere when ICE is enabled.
+leqi (2):
+  ASoC: dt-bindings: qcom,sm8250: Add QCS615 sound card
+  ASoC: qcom: sc8280xp: Add support for QCS615
+
+ Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 1 +
+ sound/soc/qcom/sc8280xp.c                                | 1 +
+ 2 files changed, 2 insertions(+)
 
 
+base-commit: ce7f1a983b074f6cf8609068088ca3182c569ee4
 -- 
-Best regards,
-Xilin Wu <sophon@radxa.com>
+2.34.1
 
 
