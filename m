@@ -1,97 +1,139 @@
-Return-Path: <devicetree+bounces-225107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 386E9BCA978
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 20:39:04 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04917BCA987
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 20:41:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id D9472353EFE
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 18:39:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADB83427B53
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 18:41:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E37AC2571D8;
-	Thu,  9 Oct 2025 18:38:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E132E1BFE00;
+	Thu,  9 Oct 2025 18:41:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="DWu2wiyN"
+	dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b="bMU5V9YK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from out-183.mta1.migadu.com (out-183.mta1.migadu.com [95.215.58.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D96E02505AF
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 18:38:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07A2E13AD1C
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 18:41:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760035122; cv=none; b=YyAdvHfK+raoi0tWsdIXaxSvYJNCO8vByxAPjk4sBgebcDj6p4QJQFo0NuvRQx2Nj9qUXR0u4Smm1brAXBfFNfUZxdwCHtMrXhbtSEdjTvkudp4GAja8Bb3OImOZmhInrlMGl+2OsP1J/VqPLsm1l9q/N01cJROdxeKCvg6CWcw=
+	t=1760035292; cv=none; b=KKk3Y5dAr86rMFjtI6WiRGm2Ij+MTnO38dn6QhsKhobEBO/ywWE7+1YBzYTEuWQOOQRyC0iy1bU5gn+wmEwlFdrkX7YemSvg4O2w7Q8Ajqjvv9qRpMXZ4eKjn0+xmH3LZUJyw4QeFBrwDAszlDhpBPhZvQSBw4R7gxFxqFqTsLM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760035122; c=relaxed/simple;
-	bh=QKGvWaeDJkJxuusZziJoVd5/CEJsgeWfRZb6SmpD1Ug=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=O5ldS4cdciMXNN4Ofjjpc3Ncbc3VqlKZQmdkS2Hhgfh5mV989o5MXw9Tq6U5ATSgTBOrLQdzzNuiwLgV3zvShgPoYM+OLidIuBTdEdR0SHtnPvKI1bRxdpwwYvgyv3jxY/dgsyx4xIpfsA8EF+YX9msZExgz0ypaAcb0MEf5X4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=DWu2wiyN; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:mime-version:content-transfer-encoding; s=k1; bh=WLoRyTdOAzdrgD
-	Qu6Y9H3IPEVEhQZSzdy1Zv7I7aZiQ=; b=DWu2wiyNjhwAWbbOJBef4xB/CnSshK
-	zMoP+yRSokij6/qzgL72FYMtsV3S7W8uQnH/GN2s9iOnj+jXwX5wNQi1/AkA7zhK
-	S5zopw7SMn5p9xia4w2aj/d/1+4VjIpPEEDfiXMZL4Xqg4cLqBcPnqiR+mxvs6nT
-	z1k280dSnqPwUtH00Oo5QnW0ltETgaAnX1Q3/bg9xLdTytTLzixQaMWjBRFUmUof
-	dxA71hZORo4qFRpRe+eFntYtnlx+cPm5/+Jtjpg9hwBFRQD1LYxW10crIHU5YTsR
-	Gyj1pOvLy04iBSFUrmLlg8C8Pq865jUs097buDMWpTVhlJ0xLw2OTkWw==
-Received: (qmail 1186477 invoked from network); 9 Oct 2025 20:38:38 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 9 Oct 2025 20:38:38 +0200
-X-UD-Smtp-Session: l3s3148p1@iiAIHL5ATJ4ujnv2
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev
-Subject: [PATCH v2] dt-bindings: bus: allwinner,sun50i-a64-de2: don't check node names
-Date: Thu,  9 Oct 2025 20:37:43 +0200
-Message-ID: <20251009183835.5533-2-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.47.2
+	s=arc-20240116; t=1760035292; c=relaxed/simple;
+	bh=8pRvggxfsXP6L0iumbHlzl0yn/JWiHfIlsvMWZjNYXM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NdxjqdmA2+20HvADawlaDDvfGSamD5wHxyVgAlFJRVLPG4911bdB4okovb4gjRmrT99Ye6gl2F/9sCp1SMzCX2Rg01/XvUi8HBIqUQiyvsKirOirtqEM5X79DK1Ie5pRp4exwI6MG3wPw8YdMJVL+tfEovvskWoxKJCOqbzSVzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org; spf=pass smtp.mailfrom=postmarketos.org; dkim=pass (2048-bit key) header.d=postmarketos.org header.i=@postmarketos.org header.b=bMU5V9YK; arc=none smtp.client-ip=95.215.58.183
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=postmarketos.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=postmarketos.org
+Message-ID: <ab555975-77bd-4232-9f36-b722a16f4110@postmarketos.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+	s=key1; t=1760035279;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Vanhb6g4lVC745LgWuYYWnzrHT54e9aSzmk4dwUmsoE=;
+	b=bMU5V9YKm2JSxa1AFrZ9xaKUOTFam2uJJHHRLHqbNWvo63rJt1WmPAEBWml/K8bNvSfWa6
+	trdD3jI7b7LCv6K4kuIqZoNkIRWICM3Ynk8swKDnuqSptQfQMVeAbU+dUngzRThqP/MepG
+	WUIQWRJa5CSR/scfGmN97PX2Nfx69ZFfu/everGkNisUPJRq+NqYPWSWDumcLA4T5MGdM+
+	z75BSTtwEdfa5wGGe6yOCIbZWEcOKraAzB0vFVYlVjvRv3juIpjHabqUPbxQYggkk0UVPM
+	YoMinlkDHscVeD31i6NfQXiWyqsW66d3AssPgApKR/KW75NfWN8QCyeJ9ZrvzQ==
+Date: Thu, 9 Oct 2025 21:41:13 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH] arm64: dts: qcom: sdm630: fix gpu_speed_bin size
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Konrad Dybcio <konradybcio@gmail.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251006-sdm630-fix-gpu-v1-1-44d69bdea59a@oss.qualcomm.com>
+Content-Language: en-US
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: Alexey Minnekhanov <alexeymin@postmarketos.org>
+In-Reply-To: <20251006-sdm630-fix-gpu-v1-1-44d69bdea59a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Migadu-Flow: FLOW_OUT
 
-Node names are already and properly checked by the core schema. No need
-to do it again.
+On 06.10.2025 01:16, Dmitry Baryshkov wrote:
+> Historically sdm630.dtsi has used 1 byte length for the gpu_speed_bin
+> cell, although it spans two bytes (offset 5, size 7 bits). It was being
+> accepted by the kernel because before the commit 7a06ef751077 ("nvmem:
+> core: fix bit offsets of more than one byte") the kernel didn't have
+> length check. After this commit nvmem core rejects QFPROM on sdm630 /
+> sdm660, making GPU and USB unusable on those platforms.
+> 
+> Set the size of the gpu_speed_bin cell to 2 bytes, fixing the parsing
+> error.
+> 
+> Fixes: b190fb010664 ("arm64: dts: qcom: sdm630: Add sdm630 dts file")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sdm630.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm630.dtsi b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> index 8b1a45a4e56ed1ae02e5bb6e78ca6255d87add1c..21f7dcf60679026e45202c6ce137ca0463c00d0e 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm630.dtsi
+> @@ -598,7 +598,7 @@ qusb2_hstx_trim: hstx-trim@240 {
+>   			};
+>   
+>   			gpu_speed_bin: gpu-speed-bin@41a0 {
+> -				reg = <0x41a2 0x1>;
+> +				reg = <0x41a2 0x2>;
+>   				bits = <5 7>;
+>   			};
+>   		};
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
-Changes since v1:
-* dropped superfluous '^.*' from the regex
+Hi Dmitry,
 
- .../devicetree/bindings/bus/allwinner,sun50i-a64-de2.yaml       | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I think bits should be <5 8> as well.
 
-diff --git a/Documentation/devicetree/bindings/bus/allwinner,sun50i-a64-de2.yaml b/Documentation/devicetree/bindings/bus/allwinner,sun50i-a64-de2.yaml
-index 9845a187bdf6..ff8dbc684bbc 100644
---- a/Documentation/devicetree/bindings/bus/allwinner,sun50i-a64-de2.yaml
-+++ b/Documentation/devicetree/bindings/bus/allwinner,sun50i-a64-de2.yaml
-@@ -44,7 +44,7 @@ properties:
- 
- patternProperties:
-   # All other properties should be child nodes with unit-address and 'reg'
--  "^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}@[0-9a-fA-F]+$":
-+  "@[0-9a-fA-F]+$":
-     type: object
-     additionalProperties: true
-     properties:
--- 
-2.47.2
+I had similar fix in [1] for quite some time with a bit longer
+explanation why. In short, we need 8 bits to be able to read the
+value in speedbin efuse fully. Currently on my device
+(sdm660-xiaomi-laevnder) the resulting value in Adreno driver is
+0x7. There is no such speedbin in [2]. It should read 0x87 (135)
+which corresponds to downstream's qcom,gpu-pwrlevels-3 with 647
+MHz max, which is further confirmed by testing on the device running
+Android by doing:
+
+  cat /sys/kernel/gpu/gpu_max_clock
+
+Which will show 647, confirming that 0x87 should be the bin.
+
+Also when you look at the list of speedbins downstream [2] [3] for each
+SoC you'll see:
+
+  * SDM636/660: 157 (0x9d), 146 (0x92), 135 (0x87), 122 (0x7a),
+                 90 (0x5a),  78 (0x4e)
+  * SDM630:     162 (0xa2), 146 (0x92), 135 (0x87)
+
+it becomes clear that 7 bits are not enough to hold values above 127.
+Therefore we need 8 bits.
+
+[1] 
+https://github.com/sdm660-mainline/linux/commit/f9f92384794ca792a622ed19d5b5d2dac73a1a78
+[2] 
+https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/LA.UM.7.2.c27-07400-sdm660.0/arch/arm/boot/dts/qcom/sdm660-gpu.dtsi
+[3] 
+https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/LA.UM.7.2.c27-07400-sdm660.0/arch/arm/boot/dts/qcom/sdm630-gpu.dtsi
+
+--
+Regards,
+Alexey Minnekhanov
 
 
