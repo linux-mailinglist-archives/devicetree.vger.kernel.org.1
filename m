@@ -1,138 +1,117 @@
-Return-Path: <devicetree+bounces-224921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60427BC8E64
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 13:52:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3990BC8E85
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 13:53:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EDA93A2303
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 11:52:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C54C51A62405
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 11:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA89F2DFA3B;
-	Thu,  9 Oct 2025 11:52:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 550942E11C5;
+	Thu,  9 Oct 2025 11:53:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iH5NI9sB"
+	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="fVC3ezhF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B2D72C21F3;
-	Thu,  9 Oct 2025 11:52:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 899782E0B64
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 11:53:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760010745; cv=none; b=FOOQPKpsDx1hMUJFUYL29f+QuQIm1VC1AXCwJbmeW2JUP9Bmf+t07RiKM4KCbg5ZN5YZu0uQwGK9ZLJZPvBVxjEmdCforfLH2suBlXGRz0P086BypZjUnfVMhspf1yw4q32nFHN6zSgWrcAT2v038ccGgVn7yP0sADVEH/VapGo=
+	t=1760010825; cv=none; b=SLzr5rzCBlNV3vYYttdUbZifDpbYTmojFJXRrZLKkPsnMcGyeqG15/bmDmQiZDnHcoPCYcVQgID0pqzm2H7YVkyaBS1WT/Kyp2EPwcyeHp5XMRgHMkHuC3dQs1er6pVA00918xepsP0UjVZZD5MfB7w4nen25adyt8SRF9T8CGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760010745; c=relaxed/simple;
-	bh=+Y7tkK/AwXD1JAaZ5mISpCJrU9h0KyjcOCp8vB37t3Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=d794OkoCXY7u9bNSEuv8CX92t4bQFUk95m17rBNG5Fr7t2DdoW8M9MPKEQfM1cyuIwFFKgGPWr8VZsXSQ6EdAASu356VQH7pU7u3AeMh9ngMXvODk/g4R1Ov8ONEhTBJSY5Gx1il9T2cn9khOaDF6NrDU+lk98hbnLVMk97uNdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iH5NI9sB; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5996EIew022299;
-	Thu, 9 Oct 2025 11:52:03 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	NKvuQhGcUEq6F1dym/+rBYs2bVe5arKDIgYghOvq8XE=; b=iH5NI9sBcPbQOAJw
-	/ncTo4Yg4PBtygak9hgrl5Qr3DPh1d2UVsPNUAIZ/1vvBKJBHuNhB+AV0mJ4+jnd
-	wAfUlSzqcCcPjiAiKC4oE8Pa9unbedkB1mkKJ+Ae4A7FLB2gt7Ju1q10B/GALd5k
-	MeK2dyLqBUgzZVBVNwnhtlGikEH2/RmsVoHtP4mr3E5U5k0ubiuol/2LQNqB00nj
-	IiDS6LLcfH4Ke83PSvvp0CZF7lGShjV5I4ZxTYWa7OZiiKDDy5oGDx1FCV88cBqP
-	X+fclCmnbbNTbieA1176zqLjEOQBH6UPHWFHWAGbumS1u8r3is82HFUh/Cd8AxsP
-	UUfSsw==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4sjmd4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Oct 2025 11:52:03 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 599Bq2Rr010848
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 9 Oct 2025 11:52:02 GMT
-Received: from [10.206.96.75] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Thu, 9 Oct
- 2025 04:51:53 -0700
-Message-ID: <c4051862-508b-47ed-8bd5-c84d20f7002a@quicinc.com>
-Date: Thu, 9 Oct 2025 17:21:19 +0530
+	s=arc-20240116; t=1760010825; c=relaxed/simple;
+	bh=MZtpDSAeX1Ovl9JMxKVz66NBtei7l7fHOjWklvLJYJY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=jIqMQYREojEiGitGriIgFl32ijLh00PjsyLdVDZFy0dfKrjdPypzl+rxounX2pJ4TBJrcwuZSdYPg6Anuu1bgVe1Ym+ANiITN5DmO5hNmt60pa+XPfbCqHj3OW6u8ptMBdR7v7W54rDJ4u9I4MSSwDPSP2zyXfSct+Cz/yMS2ME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=fVC3ezhF; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-46e6ba26c50so4643575e9.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 04:53:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1760010822; x=1760615622; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0YRwRsv2JGxHdPcrSfhou6/e/A3dW1zrI7PLye/j7/c=;
+        b=fVC3ezhFMAmm4mdKlTYoHUvMgTE9yOcVnYxkneKBss7ZPznB9uBLiewHo21f0IDzQM
+         0dOvhsO3MS6WJ/lDPMhwcc3Pp5HlUvNs9iGUfxN9EYxfsOKGMVRIA5h7Kc1R1xgR2RPD
+         foOWFcYHKjn3s88Yto5jqWX05gvq/PideV/z4VXXE1bpXarlhT0t38RFPtOXWt/SyfUk
+         FaN3MsurnaIDF87tZdiQ5uygO/erOIZsLfIXdbPdgorcWyzjUcF6YhwaJPUntF87zP44
+         4iuBzYXKpEumhQ8B2eJxhdHEEnNxYMQGdlS5X2LTHcqaBRzPFcMDQIrGqIh147/dPBpY
+         T5GA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760010822; x=1760615622;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0YRwRsv2JGxHdPcrSfhou6/e/A3dW1zrI7PLye/j7/c=;
+        b=w+MIqn4OQGLGg+UkjVidhn9DceUREVNid/VcgCZBnYh5++O8lHuQPfJ9UCIu6A74V0
+         yfnCUEybncmqZ/ITIfNBmllSKQJJYoKgJDPKJckCUkfGLTW9rNUHWdBuFb9rmXF0tcY/
+         UYzfRSRsVbPZK3TSolhclZjbwRCSp3chbyIqR1wi9ngMk5bYlppBVHIHgs1jYSZbW4Kz
+         I0kJk1tzhU7IUC9XYZks24Czl50Q65pakkYY0Kp18KOdp2qyRubteKHETS/gyhAzbpER
+         k8ixk05j62peCDxyaRA1yUihu/5j6b2dc+Dp5EMUoarOZ+ngJjHa7FB111eJuBhGsY8D
+         juGw==
+X-Forwarded-Encrypted: i=1; AJvYcCVSM2WqR7viYVdvaSW9OLs24tGeHTIm/tEB67hkQm4o2+GvtpNQc2WoYCUNCGX5zTrv73w9OTKxAKFh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6KvXBUgOnHkyhiKsoaeZEwQPvMvqYpxdV1ABQB0hu2RTNbxDG
+	UBImA8WQUpb+MMnAX9ODSOp3GjoC2FqcKLWHGS2ox5nva0oAglRYMTExU5Eb/DVS4JtgyM2yBRL
+	OMvu0rUPDCA==
+X-Gm-Gg: ASbGncv2C1+VhOjxMRsGVb39CRs9wVBxQ5sZkpfqJ5gTij0JqL6X+4FHElNlMFXOqjF
+	2gZgA25UK6YhemmIXdmYJraKMmofqoOcmCNCCBuIdSoMitMAV1fltEAAk753mRXsCZ8owB6MpDr
+	O/eUO8tJAGr/5+2DJZb0Cv6H7gfN4EaU2VUHAfNa2Uuz5MBP8fU9P1BxuAA5w+hd3SMIP0/r9RC
+	y3PEC5ExjKd4mbD88L2rQlBIhfI1m/5Fs5JeMIUHcHC98P106eGSzD82kDqXqCS1cS5icsvgYj6
+	MedTziNUbkAkx7DzXmaoSIWlImU2vpc6oJO4qi3dtdEoFBCKn4aPunceRZrPgu0VDXl74veDu/E
+	k1o9YxslVPJDvtdGH09ttXwujdF3AjBPe/D8wxY+ntOBjPbPzzDa/jrkLdZ9+7dta
+X-Google-Smtp-Source: AGHT+IFw0EStqMGoTf5b92X/Qw7EMLyDr1bZXyNDvXbXSyKiugbleDYUzHxfRXnql6r985fgqP+cfg==
+X-Received: by 2002:a05:600c:6304:b0:46f:b42e:e361 with SMTP id 5b1f17b1804b1-46fb42ee3camr741295e9.41.1760010821854;
+        Thu, 09 Oct 2025 04:53:41 -0700 (PDT)
+Received: from hapmop ([2a02:c7c:8a3e:8c00:2f34:274b:ef90:518a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46faf1841aasm42330685e9.18.2025.10.09.04.53.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Oct 2025 04:53:41 -0700 (PDT)
+From: Harrison Carter <hcarter@thegoodpenguin.co.uk>
+To: robh@kernel.org
+Cc: conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	hcarter@thegoodpenguin.co.uk,
+	jonas.gorski@gmail.com,
+	krzk+dt@kernel.org,
+	lee@kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	pavel@kernel.org
+Subject: Re: [PATCH] dt-bindings: leds: bcm6358: Convert to DT Schema
+Date: Thu,  9 Oct 2025 12:53:39 +0100
+Message-ID: <20251009115339.2340708-1-hcarter@thegoodpenguin.co.uk>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20251008015210.GA1925508-robh@kernel.org>
+References: <20251008015210.GA1925508-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] dt-bindings: phy: Add edp reference clock for
- qcom,edp-phy
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>, <robin.clark@oss.qualcomm.com>,
-        <lumag@kernel.org>, <abhinav.kumar@linux.dev>,
-        <jessica.zhang@oss.qualcomm.com>, <sean@poorly.run>,
-        <marijn.suijten@somainline.org>, <maarten.lankhorst@linux.intel.com>,
-        <mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
-        <simona@ffwll.ch>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <quic_mahap@quicinc.com>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>, <mani@kernel.org>,
-        <James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>,
-        <vkoul@kernel.org>, <kishon@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>
-CC: <linux-phy@lists.infradead.org>, <linux-arm-msm@vger.kernel.org>,
-        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-scsi@vger.kernel.org>, <quic_vproddut@quicinc.com>
-References: <20251009071127.26026-1-quic_riteshk@quicinc.com>
- <20251009071127.26026-2-quic_riteshk@quicinc.com>
- <24dd250e-f2a3-47ea-af21-b0e418ed8028@kernel.org>
-From: Ritesh Kumar <quic_riteshk@quicinc.com>
-In-Reply-To: <24dd250e-f2a3-47ea-af21-b0e418ed8028@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8W0NO6wX4ddzZqqUKXulVpHfq3jqmCAz
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX4MfVA5eqJenJ
- SFoLlHKeZyCgjwHRrmXhe1UOiAarvRftESHdj26qrzNQCdFoCNRRMd84b28OArEOIxPYVxuuaSY
- NgHGawCK+DI5jgHcy1OyoTXtzAffBr6qzq+EYYJwmRoT+91ZvMd8yUK3MRHPKZO6+EFZfQh6qy4
- 6A26OnJshQsRTn3CGKEKPnzyP2s0/XRqK6AKTFbRpgx2RiX8Q2KYmdNxiUn510hOLzAr1O+BZwe
- zWn9azHesL+aT03hyQlhnDY7RsXf7Q8j37VtqJKChno9N8fzM9GwwlgirW4Je6uGpG+CvxQdtYc
- fEzKvLJhxL3nI6VPZXbKutxME9P8dwV09VOWHMd+O1NTQp5GVbKPbEvsGjj3lozBgw4vhSbT12B
- Oul8iRNB1bKCBOAsIjkNWyc1/9U6LQ==
-X-Authority-Analysis: v=2.4 cv=SfL6t/Ru c=1 sm=1 tr=0 ts=68e7a1e3 cx=c_pps
- a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8
- a=KKAkSRfTAAAA:8 a=c7tAmdlyf66g_q6FNG0A:9 a=QEXdDO2ut3YA:10
- a=cvBusfyB2V15izCimMoJ:22 a=nl4s5V0KI7Kw-pW0DWrs:22 a=pHzHmUro8NiASowvMSCR:22
- a=xoEH_sTeL_Rfw54TyV31:22
-X-Proofpoint-ORIG-GUID: 8W0NO6wX4ddzZqqUKXulVpHfq3jqmCAz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-09_04,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1011 malwarescore=0 bulkscore=0 priorityscore=1501
- suspectscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
+Content-Transfer-Encoding: 8bit
 
+Hi Rob,
 
-On 10/9/2025 2:57 PM, Krzysztof Kozlowski wrote:
-> On 09/10/2025 16:11, Ritesh Kumar wrote:
-> > Add edp reference clock for qcom,edp-phy which is required
-> > to be enabled before eDP PHY initialization.
-> > 
->
-> No, you need to first look what is happening in community.
->
-> https://lore.kernel.org/all/20250909-phy-qcom-edp-add-missing-refclk-v3-1-4ec55a0512ab@linaro.org/
+Thanks for looking at my patch. There's an issue in the patch anyway that's 
+been noticed between the patternProperties's regex and the names of the 
+led nodes. Here it's just led@... but the nodes are named thing_colour.
 
-Thanks for the patch. I will pick this and add support for lemans and 
-post v2.
+On and off this regex has been done as .*_.*@, led@, and .*@ . What is the 
+preference? led@ would amend the led information to a label in the node. The 
+latter option is very promiscuous (but not uncommon in bindings), the former 
+sticks to what the examples are sort of expecting.
 
->
-> Best regards,
-> Krzysztof
+Cheers,
+
+HarryC
+
 
