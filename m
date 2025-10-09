@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-224675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C76EBC6FEF
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 02:23:14 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34638BC7007
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 02:27:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id B79B334AA21
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 00:23:13 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0D1254E73ED
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 00:26:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27F3814E2E2;
-	Thu,  9 Oct 2025 00:23:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71516176FB1;
+	Thu,  9 Oct 2025 00:26:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FPAjbPJf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="goMbxqXr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED0B433D8;
-	Thu,  9 Oct 2025 00:23:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37F661096F;
+	Thu,  9 Oct 2025 00:26:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759969390; cv=none; b=kx/Ujr+20MYkx7sd6hwup/P3OEkRFG2yy8e6tsVR1i7sMrEOc1b4daowB54q/wvmmbJkSW4EmK6H1iECuk9ZC4gEDosnOkmJvSn0vVm2n9S6jnMpGqhdVSR4r8iG3U5H/Yb49oJyrXsnzyLn7JLOi4I5GlGG0FXwWYVTu7dflAI=
+	t=1759969615; cv=none; b=nxYl0Wuf+mxSh8nbKREYg3T+u+dUKaWlmaySyl/Hq8+9JJIEhOcvNK2453K/oGnHD6Nb2ynvFZXdlbZl5LzLWJCvYuMGDvIIy9nNc4PqC4Kn0nOW1hhdytjYRzVezS4GAWO2TVf7cKznluqbW3TZtcErag2h3oh8V4H3jiP/GrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759969390; c=relaxed/simple;
-	bh=B40+MzVLYb5eFajWyaSwMp17gzw9/gaR5sJ0YLm9LXM=;
+	s=arc-20240116; t=1759969615; c=relaxed/simple;
+	bh=NTZOj9046h7xAft3krHWfXm/mCYPdn9MS2UGaxNZUto=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lwu55jiapLbDVDQIi2kzoQQcw1WWljM8GVHc/suaLVL2LlmGV18/VQ1OiXeBqtURgMAtlyOpZld6tdTH1TRK4C73SrwsWTSiHENmKp2WSGSQXcOCcF0OqDwUQZ2l3z+6d9aKO+Sd262MMid+J4p/Ty/O+Ov00/bN6Pj3QZK6vLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FPAjbPJf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2EA7C4CEE7;
-	Thu,  9 Oct 2025 00:23:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=kF2lQYh0cuZyhX5N7Ac66d7ehFOCUnmDLi12yap26E/tFDSyjJGyxsijLfwkkEXPw+/83vjW2n+NRZylvBIkWaoQq5vYL1Wev4y6gETf7varWuhOdTEktuPqvqueeRbu1vZbTs5kfSTgj9F5MLWZSBVt4yJ3oh7YOMOgGMRw+ro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=goMbxqXr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B9B4C4CEE7;
+	Thu,  9 Oct 2025 00:26:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1759969387;
-	bh=B40+MzVLYb5eFajWyaSwMp17gzw9/gaR5sJ0YLm9LXM=;
+	s=k20201202; t=1759969614;
+	bh=NTZOj9046h7xAft3krHWfXm/mCYPdn9MS2UGaxNZUto=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FPAjbPJfzyaspI/XDJsW1cw7YHGUKYH9GdZWgGCUSLMFPLFMqxvf9HDljbBSIZMFK
-	 coHhhZwjmSB3SjEhe2MSj35kvRECtIddRbl6rA2EG0L/IzTmVmyTHmAXnVQ5wkWJSe
-	 OQL+hmIqUHO2Ibf7Wcq4eSOpxWtoxcRq+WcPBxTY9JBc4sjme9NE9s3W2Atz6jEmEG
-	 EmLlhom2p/h0cPfbl/U5MIoIQSLkx/WVm9HJweFuwbWlYjWMv40ldYUGc2GPIIWTMI
-	 VPxtCPGCA9g3kaRHXnbXQKq6HDPWVq/qMuDAywuvuF14jA9lELK/4tYQn4fxbbSp5S
-	 9CT79b0c78TUQ==
-Message-ID: <2c69d31c-fd28-45d2-8db0-4939d4229cf1@kernel.org>
-Date: Thu, 9 Oct 2025 09:23:00 +0900
+	b=goMbxqXr4MWFYmCePEx7Xg7V26wqq/gs4vIWNe6wIVggKbHkW6+DqbcHi7tDvtRIF
+	 9DaPYBpQo6B3Ifc3a0UHmNX8ALV68uPzznohRAJYjG73s0PYWsp8uTbxd5qut1l1X9
+	 4EPPtzxg/sclnOPdqMi5WlsEdvvlNEbhveL9e136Krg9LogQwbojJzLVmDTkHiVyMv
+	 jx8mWIP7Lru8RL+IniPW8vMu+ggm12zs1QPjkmvxP9dDZ2Mp6Plc1VnSA/rdWgx/cW
+	 7D661dH39RjFrztPPG3688LFI69WRL2DzeEXISx5/08OjrmeUe8mhFfVGH1Q/LtlUg
+	 uuT9qTCKUfCZA==
+Message-ID: <1d36569c-55b9-4390-87d1-fd0c2f837014@kernel.org>
+Date: Thu, 9 Oct 2025 09:26:43 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] dt-bindings: i2c: hisilicon,hix5hd2-i2c convert to
- DT schema
-To: Kael D'Alcamo <dev@kael-k.io>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Wei Yan <sledge.yanwei@huawei.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <c2e81faf-4d2c-40e7-bdf0-e0d41fc76d9c@kernel.org>
- <20251008200535.17464-1-dev@kael-k.io> <20251008200535.17464-2-dev@kael-k.io>
+Subject: Re: [RFC PATCH 0/3] Introduce iommu-map-masked for platform devices
+To: Rob Herring <robh@kernel.org>,
+ Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
+ saravanak@google.com, conor+dt@kernel.org, mchehab@kernel.org,
+ bod@kernel.org, krzk+dt@kernel.org, abhinav.kumar@linux.dev,
+ vikash.garodia@oss.qualcomm.com, dikshita.agarwal@oss.qualcomm.com,
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ iommu@lists.linux.dev
+References: <20250928171718.436440-1-charan.kalla@oss.qualcomm.com>
+ <CAL_JsqK9waZK=i+ov0jV-PonWSfddwHvE94Q+pks4zAEtKc+yg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,38 +107,62 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251008200535.17464-2-dev@kael-k.io>
+In-Reply-To: <CAL_JsqK9waZK=i+ov0jV-PonWSfddwHvE94Q+pks4zAEtKc+yg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 09/10/2025 05:04, Kael D'Alcamo wrote:
-> Convert the Devicetree binding documentation for:
-> * hisilicon,hix5hd2-i2c
-> from plain text to DT binding schema.
+On 29/09/2025 05:23, Rob Herring wrote:
+> On Sun, Sep 28, 2025 at 12:17 PM Charan Teja Kalla
+> <charan.kalla@oss.qualcomm.com> wrote:
+>>
+>> This series introduces a new iommu property called iommu-map-masked(may
+>> be there is a better name), which is used to represent the IOMMU
+>> specifier pairs for each function of a __multi-functional platform
+>> device__, where each function can emit unique master id(s) that can be
+>> associated with individual translation context.
+>>
+>> Currently, the iommu configuration - at least for arm architecture-
+>> requires all the functions of a platform device will be represented
+>> under single dt node thus endup in using only a single translation
+>> context.
+>>
+>> A simple solution to associate individual translation context for each
+>> function of a device can be through creating per function child nodes in
+>> the device tree, but dt is only to just represent the soc layout to
+>> linux kernel.
+>>
+>> Supporting such cases requires a new iommu property called,
+>> iommu-map-masked(taking cue from iommu-map for pci devices) and syntax
+>> is:
+>>    iommu-map-masked = <FUNCTION_ID1 &iommu ID1 MASK1>,
+>>                       <FUNCTION_ID2 &iommu ID2 MASK2>;
+>> NOTE: As an RFC, it is considered that this property always expects 4
+>> cells.
+>>
+>> During the probe phase of the driver for a multi-functional device
+>> behind an IOMMU, a child device is instantiated for each FUNCTION_ID.
+>> The call to of_dma_configure_id() on each child sets up the IOMMU
+>> configuration, ensuring that each function of the device is associated
+>> with a distinct translation context.
+>>
+>> This property can also be used in association with 'iommus=' when dt
+>> bindings requires the presence of 'iommus=', example[2]. For these
+>> cases, representation will be(on arm64):
+>>    iommus = <&iommu sid mask>; //for default function.
+>>    iommu-map-masked = <FUNCTION_ID &iommu sid mask>;//additional
+>> function.
 > 
-> Signed-off-by: Kael D'Alcamo <dev@kael-k.io>
-> ---
+> Where does the FUNCTION_ID value come from?
+> 
+> Why can't you just have multiple "iommus" entries where the index
+> defines the default and any FUNCTION_ID entries? What's in each index
+> is specific to the device.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-<form letter>
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, just skip it entirely
-(please do not feel offended by me posting it here - no bad intentions
-intended, no patronizing, I just want to avoid wasted efforts). If you
-do not know the process, here is a short explanation:
+We discussed the problem earlier and that is what I asked them to do.
+Apparently I was just ignored so now two maintainers say the same. We
+can get ignored still and the third maintainer will have to tell this.
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new versions
-of patchset, under or above your Signed-off-by tag, unless patch changed
-significantly (e.g. new properties added to the DT bindings). Tag is
-"received", when provided in a message replied to you on the mailing
-list. Tools like b4 can help here ('b4 trailers -u ...'). However,
-there's no need to repost patches *only* to add the tags. The upstream
-maintainer will do that for tags received on the version they apply.
-
-Full context and explanation:
-https://elixir.bootlin.com/linux/v6.15/source/Documentation/process/submitting-patches.rst#L591
-</form letter>
 
 Best regards,
 Krzysztof
