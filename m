@@ -1,180 +1,167 @@
-Return-Path: <devicetree+bounces-225114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28C3CBCAABD
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 21:18:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6704BBCAACC
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 21:20:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5FAAE4E1CD7
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 19:18:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C3E63AC02D
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 19:20:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FC9C2405EC;
-	Thu,  9 Oct 2025 19:18:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 261F7254876;
+	Thu,  9 Oct 2025 19:20:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tZ42X+3C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mg5HF1eS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9A2C221FBB;
-	Thu,  9 Oct 2025 19:18:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5F91E1E12
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 19:20:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760037535; cv=none; b=dDeyOdbqW9nZIRbpm3g7ctYVCt5Lp3KNi3NkHBtqro8k/ktNJz8vS1XAhiqp2+9DLG1q8BIwFn0Ej2brvUuh3Cx9vSnRrr1pyOQuz+MZf5WNh8mjMReoQ7mK7S9L7Y5u0ikOfmtfpA6j013X+pnV8rWXKWniSwJi9OTETrBaSAA=
+	t=1760037645; cv=none; b=GeQDM8qYBJuVdtfyLXKXCAL3MdrfoP0VOka3RpmFGCfzeUkwhuwvbWi0O+/eF4HKRv51vBIM+kX3U32gGovQtC3URp/wqIAmYmNner9/uPMfqXSpX1DwCFADYuucBNlUfHpDD+dH/HvW8IBFVydUYRO8M6owdZkpiZLgzBgkx+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760037535; c=relaxed/simple;
-	bh=5S9bfphoMzasXEdo67ITA1E1OFoYoV5XGiFc7X8hHRc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hLNqvc9qy9w+jAP8SaqR+dz6d038tbC+XZ1VsiZ3WCNn4PcPSg7M0tIvZekvdNKB95/aXXBwmm4kUoUriadD5iutexOfs8fLGOxb4rPmLx57Kes9pvdRBwOjWSfqgGaZqJ2cDGrInEax29G4boDWjwE5Up8i/TlAoe5hqTg7CWQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tZ42X+3C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27AFAC4CEE7;
-	Thu,  9 Oct 2025 19:18:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760037534;
-	bh=5S9bfphoMzasXEdo67ITA1E1OFoYoV5XGiFc7X8hHRc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tZ42X+3CMN5xZgb0bDD5sfwrOZeVa8UyF2X74qLIO838v6Og6q2vK7y5NXz3Lmut1
-	 y2RC21Ev//5o+8rU5eI1iN13QysE+6ZMywpO9GgBIepEcz2vT+kttcAPvvoMANFOYU
-	 b1NO+l67TZkgJG+LYDnO9VhJvf7ib8AZYlGKNq31IfBwAjcSvacU3UB7oXno8kiLkC
-	 WRQX2V5fFPxLUlCzGZKicibhlbiHGzzryREn/UCxsWRWf+PgLctcx/TgmD44S4VMo5
-	 1CAt/V1z//wvdGfxAc1p4SvWZ6+z5UwE9Y7o+KxNH1r0SMxKHbZmEGor1ystI4kTOF
-	 zDPhIo0XRPN2A==
-Date: Thu, 9 Oct 2025 14:18:52 -0500
-From: Rob Herring <robh@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mediatek@lists.infradead.org, lee@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
-	broonie@kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	kernel@collabora.com, wenst@chromium.org,
-	igor.belwon@mentallysanemainliners.org
-Subject: Re: [PATCH v8 1/9] dt-bindings: regulator: Document MediaTek MT6316
- PMIC Regulators
-Message-ID: <20251009191852.GA2947598-robh@kernel.org>
-References: <20251003091158.26748-1-angelogioacchino.delregno@collabora.com>
- <20251003091158.26748-2-angelogioacchino.delregno@collabora.com>
+	s=arc-20240116; t=1760037645; c=relaxed/simple;
+	bh=woqc0ajrEt9uJ5/Im+UuHQvQ2PqgtUVGDVDgEWOfPhA=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=Z1CcOXvUxkKACqOsAvQreGaAX+th+1z3xZ2hcjwj4WKmeo8vY5ca90/FHsf9cIM37XQu/OaNeuraOFjHKyq+jjC9BMyjKlRTy7IKQ5Uz25LmH+1Kow5jDmMSiu1qbGTnr/afekgqBiI75U4dkzD4PXFtKbnJRINAXnQ4fy0WQW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mg5HF1eS; arc=none smtp.client-ip=209.85.210.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-781001e3846so1295239b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 12:20:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760037643; x=1760642443; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=70Rn4bo8hsp+8hzkUYKF6yigfv0n9RRs7N6OTgJJwNQ=;
+        b=mg5HF1eSEGm5J/mqOMz9xBJcIZ6NWm6XetPSL1YBnaeiaC21cZaIOZbJeahD+jNu7j
+         n7g/5tEeeYr+Q2GZrKldAtgs5+L3ccQhgULZXrwQJlGtDxS47/s/+XIwfr6ST6eD2xvy
+         xeT18M0RNnL6M+9BupTAZyRpAQp2UQHcoJMF0TaJAQKqy9+S0KAhI6uvBytM5sxUFFhH
+         OzF3gE7/WIQMntSzKkGZb3NNIVvdlxriWlRYaCudbVM75/MvCoHiXh1BW90t2lX5Xbm7
+         dq9KVUt/u9ohNy+InDXg2hCLnzHTUCxl8lzQ5ucaQ55ci1yoJ6AeHaOOATeiwtH7w2sz
+         VorA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760037643; x=1760642443;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=70Rn4bo8hsp+8hzkUYKF6yigfv0n9RRs7N6OTgJJwNQ=;
+        b=qgP9OUSY1JACEhidnd0VwM4/l57ashnGTyDFtAR4X4XAOnXmZDlLGRMBtUXojEYmx3
+         VVg69n7awdG8HKJ6FPiSifQmP8GSCR/ZsfFjl0M4ud7tOn195tOy8eCL2nBgWWN5fUg2
+         39ByPDrYNkqiPYbWdbDtbssah8ILhYMJndcFdhi7iX62KXd2wlBS8WOHLPGjycbuJG8x
+         myn/h0w47cO/kVXj86WC1WWkOkpOguYtcuh6G3N/xF3nK6G6WY1N+wgbrJau+FLNqO6K
+         /HMXVcy3UW3PGts1IJOAxgfZKELKGpKQCET0T3AcwJs0gvoJaXegYI6WxYdlaCZpgv21
+         z6Bg==
+X-Gm-Message-State: AOJu0YwxpHzj1OFUToW5AimeOzuhwCTVmYKjs2Fc7Sw2jcG19iAZheXB
+	RgJ/yr/zLBKiUz+QZHZpPAOM+eT5YonpaJInEMjr7EFby8X9KbvaP6+y
+X-Gm-Gg: ASbGncvdb8tzDvlmr/WdZcJ6dE19JhowfcL50k9/4k//fSyN9upvY5CMOn9htv2MFwR
+	j/YZANK7Tc7dIcJc+heRnIIfIYqzE9xklEoL4IG97l100EYTQ6TgZZZiGyC6NNb6QO1HQ9LDeF1
+	b4zUnZLV8DB2Exgq1xttMN2EMqEVAvC21nLleTdXmp5+tNLqTYxwURG1XWGxKhkb8qpmpvkJQN9
+	h5cgqhVG8mTogc1blD7y6rTOZ/XeiJ9UiB0bvAq6i6iKSQw2FFOgp0ACZHSCGIoAwP5L3otONA8
+	HQ8P3SxXMY1Px8x/XDnY9HOglIwvxz5S53Qu8hQM2HRZL2I+n+/Am4J+fmFyG+f7cugsTMRlUWz
+	uxY+K5XQUKrhuHLKeTfZpK/plTJ7hW+mJAawuqFM+j/MOfiYOwN/e0w==
+X-Google-Smtp-Source: AGHT+IExINYt2VpRHQfQDcSUxK76tMIxBq4KZhCeSaRfPsxwSO1OK86eDLc1NLkNzcpsjOHWmUAbJQ==
+X-Received: by 2002:a05:6a00:1954:b0:784:7275:837f with SMTP id d2e1a72fcca58-79387435d78mr10324017b3a.26.1760037642658;
+        Thu, 09 Oct 2025 12:20:42 -0700 (PDT)
+Received: from ehlo.thunderbird.net ([177.9.216.59])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7992b0606fesm525438b3a.12.2025.10.09.12.20.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Oct 2025 12:20:42 -0700 (PDT)
+Date: Thu, 09 Oct 2025 16:20:38 -0300
+From: =?ISO-8859-1?Q?Eric_Gon=E7alves?= <ghatto404@gmail.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: r0q: enable hardware clocks
+User-Agent: Thunderbird for Android
+In-Reply-To: <39d07bf1-cead-449f-85c8-4651e5296cd8@oss.qualcomm.com>
+References: <20250920014637.38175-1-ghatto404@gmail.com> <20250920014637.38175-5-ghatto404@gmail.com> <d16e8c07-6c10-4c91-9bbe-a260f0497d29@oss.qualcomm.com> <99D0B281-03A5-447E-A6BF-892C99829D0B@gmail.com> <c21a408b-ec4f-4de8-a9b6-ca25410ace6a@oss.qualcomm.com> <CC2BFAA0-7E61-4D91-B369-88EC9AD4A315@gmail.com> <39d07bf1-cead-449f-85c8-4651e5296cd8@oss.qualcomm.com>
+Message-ID: <6E15B597-47E7-4233-9DBB-2DAC698F4532@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251003091158.26748-2-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 03, 2025 at 11:11:50AM +0200, AngeloGioacchino Del Regno wrote:
-> Add bindings for the regulators found in the MediaTek MT6316 PMIC,
-> usually found in board designs using the MT6991 Dimensity 9400 and
-> on MT8196 Kompanio SoC for Chromebooks.
-> 
-> This chip is fully controlled by SPMI and has multiple variants
-> providing different phase configurations.
-> 
-> Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->  .../regulator/mediatek,mt6316b-regulator.yaml | 80 +++++++++++++++++++
->  .../regulator/mediatek,mt6316c-regulator.yaml | 80 +++++++++++++++++++
->  .../regulator/mediatek,mt6316d-regulator.yaml | 79 ++++++++++++++++++
->  3 files changed, 239 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
->  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316c-regulator.yaml
->  create mode 100644 Documentation/devicetree/bindings/regulator/mediatek,mt6316d-regulator.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml b/Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
-> new file mode 100644
-> index 000000000000..53d2c9913e55
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/mediatek,mt6316b-regulator.yaml
-> @@ -0,0 +1,80 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/mediatek,mt6316b-regulator.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT6316 BP/VP SPMI PMIC Regulators
-> +
-> +maintainers:
-> +  - AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> +
-> +description:
-> +  The MediaTek MT6316BP/VP PMICs are fully controlled by SPMI interface, both
-> +  feature four step-down DC/DC (buck) converters, and provides 2+2 Phases,
-> +  joining Buck 1+2 for the first phase, and Buck 3+4 for the second phase.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt6316b-regulator
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  '#address-cells':
-> +    const: 0
 
-You don't have any child nodes with addresses. Drop.
 
-> +
-> +patternProperties:
-> +  "^vbuck(12|34)$":
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    unevaluatedProperties: false
-> +    properties:
-> +      regulator-allowed-modes:
-> +        description: |
-> +          Allowed Buck regulator operating modes allowed. Valid values below.
-> +            0 - Normal mode with automatic power saving, reducing the switching
-> +                frequency when light load conditions are detected
-> +            1 - Forced Continuous Conduction mode (FCCM) for improved voltage
-> +                regulation accuracy with constant switching frequency but lower
-> +                regulator efficiency
-> +            2 - Forced Low Power mode for improved regulator efficiency, used
-> +                when no heavy load is expected, will shut down unnecessary IP
-> +                blocks and secondary phases to reduce quiescent current.
-> +                This mode does not limit the maximum output current but unless
-> +                only a light load is applied, there will be regulation accuracy
-> +                and efficiency losses.
-> +        maxItems: 3
-
-If you can only specify all the modes, why do you need it? Perhaps you 
-want 'minItems: 1' as well?
-
-> +        items:
-> +          enum: [ 0, 1, 2 ]
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#address-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/spmi/spmi.h>
-> +
-> +    spmi {
-> +      #address-cells = <2>;
-> +      #size-cells = <0>;
-> +
-> +      pmic@8 {
-> +        compatible = "mediatek,mt6316b-regulator";
-> +        reg = <0x8 SPMI_USID>;
-> +        #address-cells = <0>;
-> +
-> +        vbuck12 {
-> +          regulator-name = "dvdd_core";
-> +          regulator-min-microvolt = <450000>;
-> +          regulator-max-microvolt = <965000>;
-> +          regulator-allowed-modes = <0 1 2>;
-> +          regulator-enable-ramp-delay = <256>;
-> +        };
-> +      };
-> +    };
-> +...
+On October 8, 2025 5:48:53 AM GMT-03:00, Konrad Dybcio <konrad=2Edybcio@os=
+s=2Equalcomm=2Ecom> wrote:
+>On 10/6/25 5:49 PM, Eric Gon=C3=A7alves wrote:
+>>=20
+>>=20
+>> On October 6, 2025 9:31:42 AM GMT-03:00, Konrad Dybcio <konrad=2Edybcio=
+@oss=2Equalcomm=2Ecom> wrote:
+>>> On 10/5/25 5:50 AM, Eric Gon=C3=A7alves wrote:
+>>>>
+>>>>
+>>>> On September 25, 2025 10:09:48 AM GMT-03:00, Konrad Dybcio <konrad=2E=
+dybcio@oss=2Equalcomm=2Ecom> wrote:
+>>>>> On 9/20/25 3:46 AM, Eric Gon=C3=A7alves wrote:
+>>>>>> Enable the real-time clocks found in R0Q board=2E
+>>>>>>
+>>>>>> Signed-off-by: Eric Gon=C3=A7alves <ghatto404@gmail=2Ecom>
+>>>>>> ---
+>>>>>>  arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts | 15 +++++++++++=
+++++
+>>>>>>  1 file changed, 15 insertions(+)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts b/ar=
+ch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
+>>>>>> index c1b0b21c0ec5=2E=2Ec088f1acf6ea 100644
+>>>>>> --- a/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
+>>>>>> +++ b/arch/arm64/boot/dts/qcom/sm8450-samsung-r0q=2Edts
+>>>>>> @@ -225,6 +225,21 @@ vol_up_n: vol-up-n-state {
+>>>>>>  	};
+>>>>>>  };
+>>>>>> =20
+>>>>>> +&pmk8350_rtc {
+>>>>>> +	nvmem-cells =3D <&rtc_offset>;
+>>>>>> +	nvmem-cell-names =3D "offset";
+>>>>>> +
+>>>>>> +	status =3D "okay";
+>>>>>> +};
+>>>>>> +
+>>>>>> +&pmk8350_sdam_2 {
+>>>>>> +	status =3D "okay";
+>>>>>> +
+>>>>>> +	rtc_offset: rtc-offset@bc {
+>>>>>
+>>>>> Is this an offset you took from somewhere downstream?
+>>>>>
+>>>>> Generally you *really don't want to* poke at random SDAM cells,
+>>>>> as they contain a lot of important settings (incl=2E battery/chargin=
+g)
+>>>> From another sm8450 device, I'm sure it's okay=2E
+>>>
+>>> That as an argument alone doesn't sound convincing to me, since vendor=
+s
+>>> also sometimes repurpose unused-by-Qualcomm SDAM cells
+>>>
+>>> I actually found a data source internally and this cell you're trying
+>>> to use is reserved for PBS (see drivers/soc/qcom/qcom-pbs=2Ec), meanin=
+g
+>>> you already fell into this trap=2E=2E
+>> Interesting, in this case then why does rtc still work? And
+>> how can I find the real cell? It's not in downstream DT=2E
+>
+>Well if nothing accesses that cell between your last write and your first
+>read, it will of course work, because SDAM is just a means of storage
+>
+>As for downstream/Android, it does not use SDAM at all
+Alright, I'll drop this patch then, thanks
+>
+>Konrad
 
