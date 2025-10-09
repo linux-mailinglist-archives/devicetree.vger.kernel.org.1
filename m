@@ -1,55 +1,40 @@
-Return-Path: <devicetree+bounces-224928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7BA90BC8F1C
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 14:05:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E963BC8F84
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 14:16:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35F4A4205A0
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 12:05:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F28F19E4BDF
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 12:16:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EF962C3274;
-	Thu,  9 Oct 2025 12:05:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="XWR9WEkQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04A73274652;
+	Thu,  9 Oct 2025 12:16:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54DFF2C0279;
-	Thu,  9 Oct 2025 12:04:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBB9CBA3F;
+	Thu,  9 Oct 2025 12:16:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760011501; cv=none; b=OiE804pL8dEVO25g65hp6eEX1P4ggojEjCqglRAdOIX1zwo7pBnGaO09sDitpgwobgi7aDvo9tg1Q9HkJMr3OGFOhyQE2qySdK6hTpUKJsjLPc89MJmKQAl5YoVHRZUxKKO7x4E7Cj6NPo9Ysl3zn9SOiyo/NZm57UIOi1ZCfCA=
+	t=1760012182; cv=none; b=JWWRBROHwkFiJekZawb+v5LyR+GfZXFCqLjrXszlISo+rDAko7Zq4ijH518Y6BcuYM+wvGW4TAOb9b/5LB6Jfo7bHVI4M2YoQ7uZqthVae3/DhLjOohqT8zkzs4G2Hl5hT8OdUSVbIzxZIoQwj64PrT6iEJRnqtmN6Z1L8rqa70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760011501; c=relaxed/simple;
-	bh=1r1z0tu+/2i02NJ3LYyZb+KmF5RnrgujhZBz/NzLGNI=;
+	s=arc-20240116; t=1760012182; c=relaxed/simple;
+	bh=mCKEyRUdNIwoQi693Be3g9WMtS9hamqKlb0qQo8BiVE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T0iUDXEP3TuLV0NzwPsTg5oWXSY8CzAQeOwMAHrfMDtub4PNfPjXeaKedlAamRJ9LCAoowF98X+uomJjiYJXujH21ppdWgsHEVpROo/KxX+vO62tvZiG25pK9NcfEXQONLQg7KOV61Zw5Gn1VinqjuLAn6DfFd/e1hXXMGR0RDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=XWR9WEkQ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1760011497;
-	bh=1r1z0tu+/2i02NJ3LYyZb+KmF5RnrgujhZBz/NzLGNI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=XWR9WEkQjABZZJ7IfU6ny9j8m1sVf9Ls3BE4r1Czi9tLN0i43vyK+cEYRt4IBuhfX
-	 aqEKNcZuergrj4r39/UHaWIdh6ffZiOfUiuDr3qboMRJiTnXKFB7Sy3H9VMY3DQELg
-	 aBQ+RkvPARo+WYUW15egQZu3uPBrJLT/J61DaM3CHfSjLPlO1A6xxiPT6Fz4m7Ywdn
-	 4iob9aPpBY/xIx/WMcoXBrj09ll8EvcxDHhYDzenrjDsINzuhvIvSg5Z2H4oDOMsF6
-	 Ho2/rBHdd6QjL62s2iegHtFz25Ga45hZulpxC1V7Jnvd5WC7EIpQfezq+HMyMSZ3ei
-	 O4cILnK0s86uA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 31C7917E0125;
-	Thu,  9 Oct 2025 14:04:57 +0200 (CEST)
-Message-ID: <217a6749-9631-4f9b-a33d-648c34bd09ad@collabora.com>
-Date: Thu, 9 Oct 2025 14:04:56 +0200
+	 In-Reply-To:Content-Type; b=EOFJ4/zk/fWkKdYnyYDgE43d8xtNDhjfUj/U+pIeBg1jfYa9/DTiNHLjTavYuQ/sOhhkitiABmkYXVTPX146+rFdfrQBzbALSF4MviBeLU1VaNsPmM6iAUZ7fwkHiwynuOUVkiZq3Ny/llCekvJhajGi+YT9E1d8S3fVBojSj/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0CB2D176A;
+	Thu,  9 Oct 2025 05:16:12 -0700 (PDT)
+Received: from [10.57.3.102] (unknown [10.57.3.102])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6A78E3F66E;
+	Thu,  9 Oct 2025 05:16:13 -0700 (PDT)
+Message-ID: <496c2d88-2558-42fe-8434-81c000955a84@arm.com>
+Date: Thu, 9 Oct 2025 13:16:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,89 +42,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND v4] arm64: dts: mediatek: mt7986-bpi-r3: Change fan
- PWM value for mid speed
-To: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org
-Cc: Frank Wunderlich <frank-w@public-files.de>
-References: <20250930021656.1394942-1-mikhail.kshevetskiy@iopsys.eu>
- <ce4bad93-2663-4c07-8cdb-fb6fdcbfc1ca@collabora.com>
- <15eb53dd-792d-4bab-84fd-2abd017c0a84@iopsys.eu>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <15eb53dd-792d-4bab-84fd-2abd017c0a84@iopsys.eu>
+Subject: Re: [RFC PATCH 0/3] Introduce iommu-map-masked for platform devices
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
+Cc: joro@8bytes.org, will@kernel.org, saravanak@google.com,
+ conor+dt@kernel.org, mchehab@kernel.org, bod@kernel.org, krzk+dt@kernel.org,
+ abhinav.kumar@linux.dev, vikash.garodia@oss.qualcomm.com,
+ dikshita.agarwal@oss.qualcomm.com, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, iommu@lists.linux.dev
+References: <20250928171718.436440-1-charan.kalla@oss.qualcomm.com>
+ <CAL_JsqK9waZK=i+ov0jV-PonWSfddwHvE94Q+pks4zAEtKc+yg@mail.gmail.com>
+ <1d36569c-55b9-4390-87d1-fd0c2f837014@kernel.org>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <1d36569c-55b9-4390-87d1-fd0c2f837014@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-Il 09/10/25 10:55, Mikhail Kshevetskiy ha scritto:
-> Is there any chances get it merged to linux-6.18?
-> 
-
-No, the window is closed - but I have added this patch to my notes, will be picked
-as soon as RC1 is out, will be in linux-next soon after, and will land in 6.19.
-
-Cheers,
-Angelo
-
-> Regards,
-> Mikhail Kshevetskiy
-> 
-> 
-> 
-> On 30.09.2025 14:34, AngeloGioacchino Del Regno wrote:
->> Il 30/09/25 04:16, Mikhail Kshevetskiy ha scritto:
->>> Popular cheap PWM fans for this machine, like the ones coming in
->>> heatsink+fan combos will not work properly at the currently defined
->>> medium speed. Trying different pwm setting using a command
+On 2025-10-09 1:26 am, Krzysztof Kozlowski wrote:
+> On 29/09/2025 05:23, Rob Herring wrote:
+>> On Sun, Sep 28, 2025 at 12:17 PM Charan Teja Kalla
+>> <charan.kalla@oss.qualcomm.com> wrote:
 >>>
->>>     echo $value > /sys/devices/platform/pwm-fan/hwmon/hwmon1/pwm1
+>>> This series introduces a new iommu property called iommu-map-masked(may
+>>> be there is a better name), which is used to represent the IOMMU
+>>> specifier pairs for each function of a __multi-functional platform
+>>> device__, where each function can emit unique master id(s) that can be
+>>> associated with individual translation context.
 >>>
->>> I found:
+>>> Currently, the iommu configuration - at least for arm architecture-
+>>> requires all the functions of a platform device will be represented
+>>> under single dt node thus endup in using only a single translation
+>>> context.
 >>>
->>>     pwm1 value     fan rotation speed   cpu temperature     notes
->>>     -----------------------------------------------------------------
->>>       0            maximal              31.5 Celsius        too noisy
->>>      40            optimal              35.2 Celsius        no noise
->>> hearable
->>>      95            minimal
->>>      above 95      does not rotate      55.5 Celsius
->>>     -----------------------------------------------------------------
+>>> A simple solution to associate individual translation context for each
+>>> function of a device can be through creating per function child nodes in
+>>> the device tree, but dt is only to just represent the soc layout to
+>>> linux kernel.
 >>>
->>> Thus only cpu-active-high and cpu-active-low modes are usable.
->>> I think this is wrong.
+>>> Supporting such cases requires a new iommu property called,
+>>> iommu-map-masked(taking cue from iommu-map for pci devices) and syntax
+>>> is:
+>>>     iommu-map-masked = <FUNCTION_ID1 &iommu ID1 MASK1>,
+>>>                        <FUNCTION_ID2 &iommu ID2 MASK2>;
+>>> NOTE: As an RFC, it is considered that this property always expects 4
+>>> cells.
 >>>
->>> This patch fixes cpu-active-medium settings for bpi-r3 board.
+>>> During the probe phase of the driver for a multi-functional device
+>>> behind an IOMMU, a child device is instantiated for each FUNCTION_ID.
+>>> The call to of_dma_configure_id() on each child sets up the IOMMU
+>>> configuration, ensuring that each function of the device is associated
+>>> with a distinct translation context.
 >>>
->>> I know, the patch is not ideal as it can break pwm fan for some users.
->>> Likely this is the only official mt7986-bpi-r3 heatsink+fan solution
->>> available on the market.
->>>
->>> This patch may not be enough. Users may wants to tweak their
->>> thermal_zone0
->>> trip points, thus tuning fan rotation speed depending on cpu
->>> temperature.
->>> That can be done on the base of the following example:
->>>
->>>     === example =========
->>>     # cpu temperature below 25 Celsius degrees, no rotation
->>>     echo 25000 > /sys/class/thermal/thermal_zone0/trip_point_4_temp
->>>     # cpu temperature in [25..32] Celsius degrees, normal rotation speed
->>>     echo 32000 > /sys/class/thermal/thermal_zone0/trip_point_3_temp
->>>     # cpu temperature above 50 Celsius degrees, max rotation speed
->>>     echo 50000 > /sys/class/thermal/thermal_zone0/trip_point_2_temp
->>>     =====================
->>>
->>> Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
->>> Acked-by: Frank Wunderlich <frank-w@public-files.de>
+>>> This property can also be used in association with 'iommus=' when dt
+>>> bindings requires the presence of 'iommus=', example[2]. For these
+>>> cases, representation will be(on arm64):
+>>>     iommus = <&iommu sid mask>; //for default function.
+>>>     iommu-map-masked = <FUNCTION_ID &iommu sid mask>;//additional
+>>> function.
 >>
->> Reviewed-by: AngeloGioacchino Del Regno
->> <angelogioacchino.delregno@collabora.com>
+>> Where does the FUNCTION_ID value come from?
 >>
->>
+>> Why can't you just have multiple "iommus" entries where the index
+>> defines the default and any FUNCTION_ID entries? What's in each index
+>> is specific to the device.
+> 
+> 
+> We discussed the problem earlier and that is what I asked them to do.
+> Apparently I was just ignored so now two maintainers say the same. We
+> can get ignored still and the third maintainer will have to tell this.
 
+The reason why that isn't really viable is that the "iommus" property 
+needs to be consumed directly by the relevant IOMMU driver(s) without a 
+dependency on any driver for the client device represented by the node 
+itself. For security/isolation purposes the IOMMU has to know about all 
+potential DMA sources and be able to be configured for them *before* 
+anyone else gets a chance to start initiating DMA from them. If the DT 
+consumer is, say, a bare-metal hypervisor, it may have no understanding 
+whatsoever of what most of the client devices are nor how they work.
 
+This is part of the reason why we went for a separate "iommu-map" 
+property for buses, so that an IOMMU consumer *can* easily tell when 
+multiple specifiers do not represent an indivisible set tied to the 
+given device, and thus it can expect help from a bus driver to subdivide 
+them later (but in the meantime can still safely isolate the entire bus 
+based on the output of the map without having to understand the inputs.)
+
+Now, I suppose in some cases it might be technically possible for a 
+client device driver to collude with an IOMMU driver to divide a 
+monolithic DT device into logical functions after the fact, but for 
+Linux I don't see an acceptable way of doing that without some major 
+changes to the driver model abstraction and IOMMU API...
+
+Thanks,
+Robin.
 
