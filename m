@@ -1,82 +1,40 @@
-Return-Path: <devicetree+bounces-224714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5E9CBC72BC
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 04:05:29 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97AAABC72D4
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 04:10:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 69D544E5873
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 02:05:28 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 674B74E5E68
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 02:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EF9C19B5A7;
-	Thu,  9 Oct 2025 02:05:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gciwe8k1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A03B719922D;
+	Thu,  9 Oct 2025 02:10:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28C1C13A265
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 02:05:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D7F513774D;
+	Thu,  9 Oct 2025 02:10:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759975524; cv=none; b=XbjhD93fVEgzWppV+h4JRE4YCtvYdaFotvNi3dA28R7wBrTcspoBhQdmQa1xM1+x+UIpeHn9CzYjh491PefL2OG7cp6hcR5e42U5q6qqv9m3VJkpjXbOZFuQ4xDHliyRw/Hu1nSqvdswsghmPPXR3/bz/WuaiCWhlvF/NYQCvsE=
+	t=1759975820; cv=none; b=AT+Jes0TLYNcfcMPNqbC9wwzJG4RTYSqU8f68cUvk/J8BDollIz4Zt+iYRgmYjog8+j8aAQYuL6mL2zm1uQ/7I/qozu8Nd4O8m3/a/JZsaF8OuTAy74oEIV0R135lKRoDPsbzCzTP6cC+Zzx0tz+oNurCBB4luQGeCayxXOxy9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759975524; c=relaxed/simple;
-	bh=guUxBHKVz5p/qL+Qv7LSeNqo1hHowLJH+2OuFqjSIok=;
+	s=arc-20240116; t=1759975820; c=relaxed/simple;
+	bh=SSpt/ASKjRKVCeZU581gXig0KMsEtISDpf/x1oUdL60=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZUkRP5j8tMo36Vofi2xlHg8+ogSzWROBt3QZghlyVBD+3Aezp3VJbtd5ewnC5gAiG4hx+nkmunWI7Tt8L30E231ewt5fqXBX57hKlrXdF3JSVHq2vkYEG4uXKXS+8SLpGnuh7iZaNbCZW6W1GYeAZ8sQWVdFtrQZn6ETNHCnT04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Gciwe8k1; arc=none smtp.client-ip=209.85.214.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-2697051902fso653125ad.1
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 19:05:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1759975521; x=1760580321; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=r628U9UK/YF44SMc4r+HpCa9RKSfgMkrYIQBO1Xq1XA=;
-        b=Gciwe8k1Mvl2S5OyReJVePcu0ba3Mmqn13wogpOtLoQtW1GMCTkIT76wY6buGNynok
-         ILJ8iEOOJYoIG8zXCEaVSwi8nokZn/LPMMjMbwFXVn7BR8zDSJ1nyKjDTnjphc2fPIbQ
-         MAZwDOhY54/0bOBS/+8HOlYu9QoR9LosLyco+SKiSzY4TjeokXvHfghd5jMy5DDCrWoG
-         8RGXCbyKyZwwzdwZyf7j3kJYYvBL+qh0u9bP/frW8y9HudUuaHkDg5h4LfIObFmkoMGS
-         h399LUhYB9cj2esC3xDJN7RpiiYvNSwT9dXg4RWAZv7hHTYPCw5C12YhOjymnIjK4D9g
-         5YCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759975521; x=1760580321;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=r628U9UK/YF44SMc4r+HpCa9RKSfgMkrYIQBO1Xq1XA=;
-        b=dS6I3I0AmEn4KwA//1qR05AAI7+AJAFzXDxYH5n49ZZopO12aUsMaTpTzc8XNQuikv
-         ZiBhyD9sg7AyQ3X2nqJ/V0/c+VHYNRnoZB0erR6RoxqReM0mhG40l2PSXzm0RWt+lNI2
-         DnhK/c7vh/eS/kQiiRsyj0TbNXdBWIo3kXdZ7M+0yPgAlNl1yvpkIqbZL8n2rSq9nSsB
-         k4/eIZsn73LjGhzeHRltnoOUS5DKnWAPcSLw03FB6MM+eFCS8WeIN9xA1/Gtvf+dVG0v
-         1ViGDzm0S4A+BB8zouiIz80EV6wt+f5r5N8bM6eIZMrtIFu8YLvPZof6R454kEYMu+Iw
-         WDAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWZ68bmfkl66RIZZrYhH6NM2qD+y/P4usSXaRXpEhtwdTJZgjtHM4weRd0VlKPvYmGLCNek7nCycbG8@vger.kernel.org
-X-Gm-Message-State: AOJu0YzqXgtujuqOTNT6oZ2nE2A2afvaKLuTUg094/4hgnnZxQJY5Ikk
-	LDecoFbdMmGaiCluk/GekkJrOYsylorwY35Argi4PIV2kcPaYMtsyhGX4bEI4xhS1eFAsyQZCEv
-	CKvlH4BQ=
-X-Gm-Gg: ASbGncuCcaMNfP6T2Lsg2+CKH9uCtFiAeUC4hEa/GeXaatiP34KSa8/lO2NIe1TLMUk
-	7GGShVIcOlWrxvKzgil7+j7I3sviuVQZtSAzVR3q4ykg0IxirF5xu2pgQYFMcgEJAzVQYcNZfkQ
-	A5ZnXTIRlEWgUOhEsVEBTmgB/tzGNNjsy9sIBnPfjPYGSor7KVkHBhQHIrJ8jgbPvSE/MdZVYWM
-	iSNUQYomJz9wSVG5kbMiI4zpXtd/fqb3wq/YrDkh6r02iIFHJW75gTxF9mBsYaIBP3/57QhkD6b
-	wSrmfN+ZiSfY3sowFSE7vmSVyJteDmnK1d7ZicYm1XGvlMH6JHJGjC+prleLSnrnSFoq12FV2aq
-	awu8V0ZsauefIDlNnK0VjZCMiFtVcyhvzbqPgbaYCley3umNohMTOc/QD667a4cf6nOUruyEB
-X-Google-Smtp-Source: AGHT+IE+tYRvnZUksvRRuEZRDN2ric4vKa6DWfs0HxwGzR0W1J57dXrBmo5cMncGZNfe+BMxwuIMDA==
-X-Received: by 2002:a17:903:2f86:b0:269:80e2:c5a8 with SMTP id d9443c01a7336-290272e3cbbmr40883095ad.7.1759975521396;
-        Wed, 08 Oct 2025 19:05:21 -0700 (PDT)
-Received: from [192.168.50.149] ([121.134.152.93])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034deaa54sm11142925ad.5.2025.10.08.19.05.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Oct 2025 19:05:20 -0700 (PDT)
-Message-ID: <e9cdd9c4-4ce8-4d92-b337-1539e566c03a@linaro.org>
-Date: Thu, 9 Oct 2025 11:05:13 +0900
+	 In-Reply-To:Content-Type; b=oqH2vXzCnqRwwmVvyjVuUG/dx/1FAnfoN4HH4TiqiksnkqPCLnP2dTCKkz2fYLVLup8Go75aKbhV9xIo0KA8YHzfEk+T0gZJnhVM80XVZwN/BKQHZ3PcG0ZeN7saqXHsqREWs6QsybE+B2HZQliIh9aubP5YW8DP0r70/HWpoUQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 06F7422FC;
+	Wed,  8 Oct 2025 19:10:09 -0700 (PDT)
+Received: from [10.163.35.84] (unknown [10.163.35.84])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4DDB43F738;
+	Wed,  8 Oct 2025 19:10:13 -0700 (PDT)
+Message-ID: <c6371fa1-af9c-47b0-988f-aae3d7fd58e7@arm.com>
+Date: Thu, 9 Oct 2025 07:40:10 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,84 +42,125 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8750-mtp: move PCIe GPIOs to
- pcieport0 node
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20251008-sm8750-v1-1-daeadfcae980@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 04/18] mm: Always use page table accessor functions
+To: Samuel Holland <samuel.holland@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ linux-riscv@lists.infradead.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mm@kvack.org, Conor Dooley <conor@kernel.org>,
+ Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
+ Andrew Morton <akpm@linux-foundation.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20251009015839.3460231-1-samuel.holland@sifive.com>
+ <20251009015839.3460231-5-samuel.holland@sifive.com>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <20251008-sm8750-v1-1-daeadfcae980@oss.qualcomm.com>
+From: Anshuman Khandual <anshuman.khandual@arm.com>
+In-Reply-To: <20251009015839.3460231-5-samuel.holland@sifive.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/10/2025 13:38, Krishna Chaitanya Chundru wrote:
-> Relocate the wake-gpios and perst-gpios properties from the pcie0
-> controller node to the pcieport0 node. These GPIOs are associated with
-> the PCIe root port and should reside under the pcieport0 node.
+
+
+On 09/10/25 7:27 AM, Samuel Holland wrote:
+> Some platforms need to fix up the values when reading or writing page
+> tables. Because of this, the accessors must always be used; it is not
+> valid to simply dereference a pXX_t pointer.
 > 
-> Also rename perst-gpios to reset-gpios to match the expected property name
-> in the PCIe port node.
+> Fix all of the instances of this pattern in generic code, mostly by
+> applying the below coccinelle semantic patch, repeated for each page
+> table level. Some additional fixes were applied manually, mostly to
+> macros where type information is unavailable.
 > 
-> Fixes: 141714e163bb ("arm64: dts: qcom: sm8750-mtp: Add WiFi and Bluetooth")
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> In a few places, a `pte_t *` or `pmd_t *` is actually a pointer to a PTE
+> or PMDE value stored on the stack, not a pointer to a page table. In
+> those cases, it is not appropriate to use the accessors, because the
+> value is not globally visible, and any transformation from pXXp_get()
+> has already been applied. Those places are marked by naming the pointer
+> `ptentp` or `pmdvalp`, as opposed to `ptep` or `pmdp`.
+> 
+> @@
+> pte_t *P;
+> expression E;
+> expression I;
+> @@
+> - P[I] = E
+> + set_pte(P + I, E)
+> 
+> @@
+> pte_t *P;
+> expression E;
+> @@
+> (
+> - WRITE_ONCE(*P, E)
+> + set_pte(P, E)
+> |
+> - *P = E
+> + set_pte(P, E)
+> )
+> 
+> @@
+> pte_t *P;
+> expression I;
+> @@
+> (
+>   &P[I]
+> |
+> - READ_ONCE(P[I])
+> + ptep_get(P + I)
+> |
+> - P[I]
+> + ptep_get(P + I)
+> )
+> 
+> @@
+> pte_t *P;
+> @@
+> (
+> - READ_ONCE(*P)
+> + ptep_get(P)
+> |
+> - *P
+> + ptep_get(P)
+> )
+> 
+> Additionally, the following semantic patch was used to convert PMD and
+> PUD references inside struct vm_fault:
+> 
+> @@
+> struct vm_fault vmf;
+> @@
+> (
+> - *vmf.pmd
+> + pmdp_get(vmf.pmd)
+> |
+> - *vmf.pud
+> + pudp_get(vmf.pud)
+> )
+> 
+> @@
+> struct vm_fault *vmf;
+> @@
+> (
+> - *vmf->pmd
+> + pmdp_get(vmf->pmd)
+> |
+> - *vmf->pud
+> + pudp_get(vmf->pud)
+> )
+> 
+> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+> ---
+> This commit covers some of the same changes as an existing series from
+> Anshuman Khandual[1]. Unlike that series, this commit is a purely
+> mechanical conversion to demonstrate the RISC-V changes, so it does not
+> insert local variables to avoid redundant calls to the accessors. A
+> manual conversion like in that series could improve performance.
+> 
+> [1]: https://lore.kernel.org/linux-mm/20240917073117.1531207-1-anshuman.khandual@arm.com/
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Portions of the changes proposed here are already in discussion
+and fetched for testing via mm-new/everything.
 
-Tested-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-I wonder though, why the fallback method fails to work and device
-stopped booting (see also Bjorn's report).
-
-Best regards,
-Krzysztof
+https://lore.kernel.org/linux-mm/20251007063100.2396936-1-anshuman.khandual@arm.com/
+https://lore.kernel.org/linux-mm/20251006055214.1845342-1-anshuman.khandual@arm.com/
 
