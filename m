@@ -1,297 +1,133 @@
-Return-Path: <devicetree+bounces-224971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224972-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA622BC9525
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 15:34:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC417BC9534
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 15:36:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AFA53A5B07
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 13:34:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 761B93B2427
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 13:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45C982E2DDC;
-	Thu,  9 Oct 2025 13:34:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60E4E2E62C5;
+	Thu,  9 Oct 2025 13:36:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="nNQHAAbT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gJsyU6qi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6486435972
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 13:34:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CAED34BA39;
+	Thu,  9 Oct 2025 13:36:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760016879; cv=none; b=eas0VOTWc1ayjNJWc+IdSlGKdFenUslnp03Fq2toWbyw15uaAR2rbtH1lp51erJBZkkrcR/m3oB0F/vLn31KY03W/+wfRQyp/zNcJ3pm+aQ7oIyOy/Rgv/aNQkRkyuo185j52H2buPmH8tsgN+5Q+0o5OKI8r0tqo9BsXEwCWzw=
+	t=1760016983; cv=none; b=i8UyD0JmZWLXQZHXEFVj1XaRAcZpo5V3Jw2COrFHA04Tpnr2ssbYeXdFzOsEBRl1NEsf+m3A9YVHIxStt1v6BlGtf+Dj0VzZOssDoLS9KrtdwfO2+4n9yK9YCZ9ttbqSc2RepSqa2TuYwIY5cbBbVy8HLFN8aEB8di0mbl7i6AQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760016879; c=relaxed/simple;
-	bh=lLCmM9foRlsu43SQNNjwJvzcXcQ42xByO22XUF+i63A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kh1oV02Ixurph1qIyEaUareo5c9nFYvNvK6DEbRd0ltl71207x/7/OhjKK2p2vdOo7+MdTyUBWXhR55+iloHAC/ZF0vm0YVgrBaITXzJ/o9yi2wFVW6Ktsnj4ZNIM7Gxe1NQjXzJSXlR/CojXRam3j8HEiT5RfmYfwrqLbevuLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=nNQHAAbT; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-373ac916b35so16348621fa.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 06:34:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1760016874; x=1760621674; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1dSErVy5gy3iTqfs+Fv+uBfQPNdt1PnHnP4LjyzMeiA=;
-        b=nNQHAAbTzcnDRdpgBFABbvUftF3azzU+g/NQDvWd2xwtfLIK/S9Orx5I6Y5TaS8sHz
-         b535J7ANx/wyEYdtu8liqVimuSf0Yr3QepNzDNW4Us29sspEf3bfnyP2t0OrVjR5IrYq
-         CMqVQfE6p+GvMqSyIi42DoHeAwt5Ou5FZlWpE4l8imv6IlHFgMEQfdFRUVOmQ4PEyNHO
-         i8yeahV7HRT5h6ubbCLxXKcktteAWiW9HcqJekcIhvuHTYUdLUETkUsjovlf5OEMAxFU
-         o4QvOaCKRmckIHN+nT4fFaVJdmpQRJeMaG/f2PzJMvcHWF/5k75/bPIVxHIH+VbKPGf+
-         7gBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760016874; x=1760621674;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1dSErVy5gy3iTqfs+Fv+uBfQPNdt1PnHnP4LjyzMeiA=;
-        b=NUgUSSNGa93+dR+mgToUa7iCV1WH9YNpPZEUhIcqM74rn+Fo1hwl3Ayu0gPFEXPab7
-         PJBY2iKUtwve75QUt7FV/3iQOwjNtTfxcwODQ7S5sPugYpL7ra1eDjXkBPKBDmIlmZiT
-         c9IYMk5uo+6Gk9+uUOeMnapPNN7lwPIj67CnWb2hPIzqze6jZCX2FeKp0t4cGm4xcSkv
-         zfFwk8RTjJbCLtssnTcr+iFTlz5CIWiDWj3UKcY/O2rnUuMGUnkk0BmJwCOBUsJFl4Sz
-         1IDNdkSsv1QFf7+34oETxubf8ooDb7dSqwi0DI8X/KqCUVow2Jz2qpKsCxrqRb/nY2Hl
-         Y/hw==
-X-Forwarded-Encrypted: i=1; AJvYcCX/F2FxyvUVp9lyPEvHxxNGOMc0H1z0iI43UBiA7EPbcN8gGRiS6u/6Qm00hE7ueSFe4lppk+/6vv01@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1QZIOQDpAYjJ0WnzS1aCfcUFuU9IeXyo88Wlm4vZCVFA+VhgG
-	8wwbUZSTiNs8SR/lR3BOfpzl3jterAQK7DTA/yx66o/7jDzuxQ7vmn/KftjZGfTsy/7WnHNHk2M
-	135wJ/rVYda4wJzzt1XnhaXjlMOYWDmDtbTNHhFFhmg==
-X-Gm-Gg: ASbGnctybcsyXmx/6Fxx0eibnPZgCIjW/OQgXNgMoRpWIICWFru/Kcn6F0kgWJFcr+F
-	ZDuxMZI8+Vw+tWESKoiuj4I/WNj9Ms2CMI/peTDXwERe3qHp2asz7eLR8eLpJ9EFa86xC3Nemh0
-	5hdTF0HJSIm1KrtBVpLi7WLG+SgoMYH6limOgoxO3r/IWWmE2OVpZSdaerieOkT2hTbGg2tMxMX
-	m0GMjdlJ5Vbg+pF2ra+x5Zd8u+pFWIa/3dFe8VxzQ==
-X-Google-Smtp-Source: AGHT+IHWWJUMwgLO59lk5lakKRaZ+/wVoeJhFN8a16uOzpMmsGJAl1afZO0Y0UWvv4eDfAIFgKUZh54hbk7hVJVmV4E=
-X-Received: by 2002:a05:6512:23a8:b0:571:d258:5639 with SMTP id
- 2adb3069b0e04-5905e398890mr3351104e87.25.1760016874419; Thu, 09 Oct 2025
- 06:34:34 -0700 (PDT)
+	s=arc-20240116; t=1760016983; c=relaxed/simple;
+	bh=RJzlIzaNrRMi8Em3HrGnc0Nhu1pxrEKe/TDA2cceJ9M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FH+E9QwVuOMBv/bZZQq72o8PhIH19SHJGThuX9tSkwj+5l4yuy+IiTEyxeOwX7junTBWjXokCPxFquJ4PeIAshj/BYL0KboD+4zfUaWAdU3Jq/dEKO4WpFQv/REMYgF4L0NW30RU6oZVIt08FHIihjzDoeiqDfN4VxpAXF6n4mY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gJsyU6qi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F37BEC4CEE7;
+	Thu,  9 Oct 2025 13:36:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760016982;
+	bh=RJzlIzaNrRMi8Em3HrGnc0Nhu1pxrEKe/TDA2cceJ9M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gJsyU6qiPFnfMZnR7Q+/lowVsnthyFh3aa1Lo+BqsMj0Wq/p4cggNvU408o+rXhqh
+	 kN655+1ssU25jGTwvHZZQ2lJGxEur279fz8+H0Fr0oOK5xwn91d0HIBTCUpcW36owU
+	 K+omY3nkWnSgTkzPVCMsMqXh+Y5L3wPGoRXO4ctNWxTbEfTS1AWwUczvsOtOHDVZVW
+	 123Dh6d27BY+rPnEwYTl04yaV67YtREbA4lfdNu35Yw+wY3ngFdg/TS9zTq3nUBtYT
+	 ZWlKi5pdk9ZEGqInuCwqOahIU3hUl2/ACBqb2Ej6Y3s3wFJIB7QbFiesuydYMtMHji
+	 n8nj77Gc3bEmg==
+Message-ID: <44606de8-3446-472f-aa6b-25ff8b76e0ec@kernel.org>
+Date: Thu, 9 Oct 2025 14:36:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251002060732.100213-1-apatel@ventanamicro.com>
- <20251002060732.100213-2-apatel@ventanamicro.com> <20251002192506.GA236729-robh@kernel.org>
-In-Reply-To: <20251002192506.GA236729-robh@kernel.org>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Thu, 9 Oct 2025 19:04:22 +0530
-X-Gm-Features: AS18NWACKtl7ERcN8H5MlfK2QBMUHI9VMMe2RI6b1AOyUjn27L1IFJvaV0ijKkc
-Message-ID: <CAK9=C2WO5vNs0Y_w8Pk9WWMeYe8Kxhaow5b_QxQWfobL5mrZoQ@mail.gmail.com>
-Subject: Re: [PATCH 01/11] dt-bindings: Add RISC-V trace component bindings
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Greg KH <gregkh@linuxfoundation.org>, 
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>, Ian Rogers <irogers@google.com>, 
-	Alexandre Ghiti <alex@ghiti.fr>, Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>, 
-	Namhyung Kim <namhyung@kernel.org>, Mark Rutland <mark.rutland@arm.com>, Jiri Olsa <jolsa@kernel.org>, 
-	Adrian Hunter <adrian.hunter@intel.com>, Liang Kan <kan.liang@linux.intel.com>, 
-	Mayuresh Chitale <mchitale@gmail.com>, Anup Patel <anup@brainfault.org>, 
-	Atish Patra <atish.patra@linux.dev>, Andrew Jones <ajones@ventanamicro.com>, 
-	Sunil V L <sunilvl@ventanamicro.com>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC v2 2/6] ASoC: dt-bindings: qcom,sm8250: Add clocks
+ properties for I2S
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251008-topic-sm8x50-next-hdk-i2s-v2-0-6b7d38d4ad5e@linaro.org>
+ <20251008-topic-sm8x50-next-hdk-i2s-v2-2-6b7d38d4ad5e@linaro.org>
+Content-Language: en-US
+From: Srinivas Kandagatla <srini@kernel.org>
+In-Reply-To: <20251008-topic-sm8x50-next-hdk-i2s-v2-2-6b7d38d4ad5e@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Rob,
 
-Apologies for the delayed response ...
 
-On Fri, Oct 3, 2025 at 12:55=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Thu, Oct 02, 2025 at 11:37:22AM +0530, Anup Patel wrote:
-> > Add device tree bindings for the memory mapped RISC-V trace components
-> > which support both the RISC-V efficient trace (E-trace) protocol and
-> > the RISC-V Nexus-based trace (N-trace) protocol.
-> >
-> > The RISC-V trace components are defined by the RISC-V trace control
-> > interface specification.
-> >
-> > Signed-off-by: Anup Patel <apatel@ventanamicro.com>
-> > ---
-> >  .../bindings/riscv/riscv,trace-component.yaml | 110 ++++++++++++++++++
-> >  1 file changed, 110 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/riscv/riscv,trace=
--component.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/riscv/riscv,trace-compon=
-ent.yaml b/Documentation/devicetree/bindings/riscv/riscv,trace-component.ya=
-ml
-> > new file mode 100644
-> > index 000000000000..78a70fe04dfe
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/riscv/riscv,trace-component.yam=
-l
-> > @@ -0,0 +1,110 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/riscv/riscv,trace-component.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: RISC-V Trace Component
-> > +
-> > +maintainers:
-> > +  - Anup Patel <anup@brainfault.org>
-> > +
-> > +description:
-> > +  The RISC-V trace control interface specification standard memory map=
-ped
-> > +  components (or devices) which support both the RISC-V efficient trac=
-e
-> > +  (E-trace) protocol and the RISC-V Nexus-based trace (N-trace) protoc=
-ol.
-> > +  The RISC-V trace components have implementation specific directed ac=
-yclic
-> > +  graph style interdependency where output of one component serves as =
-input
-> > +  to another component and certain components (such as funnel) can tak=
-e inputs
-> > +  from multiple components.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +          - qemu,trace-component
-> > +      - const: riscv,trace-component
->
-> Given the generic-ness of these names, I'm assuming the exact type of
-> component is discoverable. I don't like to assume things in bindings, so
-> spell that out.
->
-> Is the implementer discoverable? If so, you could omit the 1st
-> compatible.
+On 10/8/25 7:56 PM, Neil Armstrong wrote:
+> In order to describe the block and master clock of each I2S bus, add
+> the first 5 I2S busses clock entries.
+> 
+> The names (primary, secondary, tertiarty, quaternary, quinary, senary)
+> uses the LPASS clock naming which were used for a long time on Qualcomm
+> LPASS firmware interfaces.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../devicetree/bindings/sound/qcom,sm8250.yaml      | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> index 8ac91625dce5ccba5c5f31748c36296b12fac1a6..d1420d138b7ed8152aa53769c4d495e1674275e6 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+> @@ -64,6 +64,27 @@ properties:
+>      $ref: /schemas/types.yaml#/definitions/string
+>      description: User visible long sound card name
+>  
+> +  clocks:
+> +    minItems: 2
+> +    maxItems: 12
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    items:
+> +      # mclk is the I2S Master Clock, mi2s the I2S Bit Clock
+> +      - const: primary-mi2s
+> +      - const: primary-mclk
+> +      - const: secondary-mi2s
+> +      - const: secondary-mclk
+> +      - const: tertiary-mi2s
+> +      - const: tertiary-mclk
+> +      - const: quaternary-mi2s
+> +      - const: quaternary-mclk
+> +      - const: quinary-mi2s
+> +      - const: quinary-mclk
+> +      - const: senary-mi2s
+> +      - const: senary-mclk
+> +
 
-The component type and component version is discoverable through
-read-only MMIO registers but the implementer of the component
-needs to be inferred using implementation specific compatible string.
-I will add some text along these lines in the above description.
+I don't this is correct way to handling bitclk and mclks for I2S, these
+are normally handled as part of snd_soc_dai_set_sysclk() transparently
+without need of any device tree description.
 
->
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  cpu:
->
-> 'cpus' is the more standard property.
+Also doing this way is an issue as this is going to break existing Elite
+based platforms, and the device description should not change across
+these both audio firmwares.
 
-Okay, I will update.
+thanks,
+Srini
 
->
-> > +    description:
-> > +      phandle to the cpu to which the RISC-V trace component is bound.
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
->
-> which already has a type. So just 'maxItems: 1' here.
+>  patternProperties:
+>    ".*-dai-link$":
+>      description:
+> 
 
-Okay, I will update.
-
->
-> > +
-> > +  in-ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +    patternProperties:
-> > +      '^port(@[0-7])?$':
-> > +        description: Input connections from RISC-V trace component
-> > +        $ref: /schemas/graph.yaml#/properties/port
->
-> If the N ports are N of the same data (like a mux), then fine. If each
-> port is different, then you need to define what each port is.
-
-Yes, the data (aka trace packets) is the same for all input trace ports
-even in-case of funnel (aka mux). Same thing also applies to the
-output ports.
-
->
-> > +
-> > +  out-ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +    patternProperties:
-> > +      '^port(@[0-7])?$':
-> > +        description: Output connections from RISC-V trace component
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    // Example 1 (Per-hart encoder and ramsink components):
-> > +
-> > +    encoder@c000000 {
->
-> Perhaps it is time to standardize the node names here. Perhaps 'trace'.
-
-It is better to not fix the node names because this allows users
-to infer type of component from node name hence more human
-readable.
-
->
-> > +      compatible =3D "qemu,trace-component", "riscv,trace-component";
-> > +      reg =3D <0xc000000 0x1000>;
-> > +      cpu =3D <&CPU0>;
-> > +      out-ports {
-> > +        port {
-> > +          CPU0_ENCODER_OUTPUT: endpoint {
-> > +            remote-endpoint =3D <&CPU0_RAMSINK_INPUT>;
-> > +          };
-> > +        };
-> > +      };
-> > +    };
-> > +
-> > +    ramsink@c001000 {
-> > +      compatible =3D "qemu,trace-component", "riscv,trace-component";
-> > +      reg =3D <0xc001000 0x1000>;
-> > +      cpu =3D <&CPU0>;
-> > +      in-ports {
-> > +        port {
-> > +          CPU0_RAMSINK_INPUT: endpoint {
-> > +          };
-> > +        };
-> > +      };
-> > +    };
-> > +
-> > +    encoder@c002000 {
-> > +      compatible =3D "qemu,trace-component", "riscv,trace-component";
-> > +      reg =3D <0xc002000 0x1000>;
-> > +      cpu =3D <&CPU1>;
-> > +      out-ports {
-> > +        port {
-> > +          CPU1_ENCODER_OUTPUT: endpoint {
-> > +            remote-endpoint =3D <&CPU1_RAMSINK_INPUT>;
-> > +          };
-> > +        };
-> > +      };
-> > +    };
-> > +
-> > +    ramsink@c003000 {
-> > +      compatible =3D "qemu,trace-component", "riscv,trace-component";
-> > +      reg =3D <0xc003000 0x1000>;
-> > +      cpu =3D <&CPU1>;
-> > +      in-ports {
-> > +        port {
-> > +          CPU1_RAMSINK_INPUT: endpoint {
-> > +          };
-> > +        };
-> > +      };
-> > +    };
-> > +
-> > +...
-> > --
-> > 2.43.0
-> >
-
-Regards,
-Anup
 
