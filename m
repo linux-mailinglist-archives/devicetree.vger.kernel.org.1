@@ -1,146 +1,150 @@
-Return-Path: <devicetree+bounces-225008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2813BC98AE
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 16:36:42 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0433DBC98D8
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 16:39:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 559C53A924A
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 14:36:14 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id D87C54E27EE
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 14:39:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D88D12EBDFB;
-	Thu,  9 Oct 2025 14:35:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 629AB2EA753;
+	Thu,  9 Oct 2025 14:39:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="VM/FMDKA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Bxo0bDRl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E68E2EAB99
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 14:35:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D577D1E47A3;
+	Thu,  9 Oct 2025 14:39:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760020531; cv=none; b=bt3BB2hQKu8dx9mQ7OJZY4JwntoBdey85AQ/KfEi5GYyjwRru/26Q6Uw2OJC+8ZTrubZM67wI1nzbyFLYlMNNCER4c28SQHRDzn/uyA8Alc80td0GTlSnJuMgyA79eYPG/SjqF0YeLgNwJ5/k+4RA8baOSBTnrc+d5yjR0mIjpI=
+	t=1760020776; cv=none; b=EmpI9qJ91kjtkGfL+MO+nLXR4eQ4oRI+2seBRqX/rIuITFXhEy/QPynr6cbGqaR0SYQx2aaSzh23tD1qIlr+4sJcMzeoaWG7QZRFFgJocpJtp5tqf1cC+Yl5PgyfZQbbCqKkgtgjoUTLmJgDmsvp7lU+DjuX6gSxyorE7G0wmRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760020531; c=relaxed/simple;
-	bh=Jy71v+0d6B2d6GEOh/dwMzbOK+DdGqIZvEENLkmwzE8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ge8vjTdtl904OuvqwZ4RbvQOOBqF2v+r1XVyE7kD2fn5oGOE/zNM8L+1dT5EtvNOywo14z4QzK9+UV/aZ9Ns/U56a0paXXBAmZzsc3QzcNg1sJWcWoTOMjXnPPUkyE+he/8MdY689OfxUnIaLEC83MihUGY5wZsTJQjCtC1i5Fk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=VM/FMDKA; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=fairphone.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-b50645ecfbbso213900066b.1
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 07:35:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1760020527; x=1760625327; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QB2QRRZuQ5A6a96wgJEcHWWoFDLiNw+AQa4nUZlLV88=;
-        b=VM/FMDKAS68ARpBSkZCEyilYKythke2eYmYsQG+HjhdvrmfOz4Iwa85OFBIRq597Zk
-         tbnjI25RYzZJuftHjJunBHmttKxgLz1VQXIhMyjjgK0lyxfta0zqHSeHVVz1Npw6GTy/
-         aLsNDmiDVocOfxg1d87+II1jyg2lGgm/Jiyh+1ycE/qG4XUCjZf36A5op6pp+uxiV6aT
-         QkBsDpxKpDaZyyVzgaHXj+FbuyJ/Ww5x4Ar8j+2lxNhxiML8ywhK3WPMhe5gSsT49KOh
-         L+Q7ktgS9lhiELcQPXiZJmFr6PgkFn4vHdiJ0ZOHyVxGx2hMkNY6xjvn4P3kkh5vYzmt
-         Amig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760020527; x=1760625327;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QB2QRRZuQ5A6a96wgJEcHWWoFDLiNw+AQa4nUZlLV88=;
-        b=KUmGI8HoTY5WOwo93uQHFgsKIvFYKXYoTELftRqkHE0wfKhE5mSfQfaGmMYTYIRrvH
-         sVBLZRk8dy9M8xAnmFrPJDHK35tLu77niZ0AyWal0EfHlD6BMAF5eE88OXiVyTN+2tG0
-         utxCZnEEX0ikH8V4Q88FlQOyHo/VHbeFoGW67AQiuar2snUcPJPxiAYk4wtmXCOWYIw9
-         8fttw6JZu8YPetiMgcbcpmVJ0/R4Bs7PTdJCibnDUR1tfa7e1z/I5K2KEaOAluh5k85Q
-         8G3mIP519iyZ4HcclE18cLa+qg7TXziDPW5HhsaZaLNFe1wxTOYzCN0YYEcqhg2lNqCx
-         Cj8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVxKJy8Yk2KusZ5cY3Icw7xjf7w1AVAhhwQyXq3sm4wHqhnea8e7wk8WFFk7YU6StHhO3Ig3ZDubNuG@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOOBpuDOuqhZ9MHZn9v1olnvGpsizQuHe6W9kxJS41cDwH8k1b
-	7OPU9CT7xMtM/tlVR9BzDY57Y/kTinEtmOHG1HuoeIBwTPkIqvjuCEUvT0ZhzV1Hiso=
-X-Gm-Gg: ASbGncv5wPxKToCi3sYlepP1X3fqtzxi7WS0O/ZVSXwNF/GoREetJ10XRv08Ra8Tu+v
-	YmqdKm30cqkph51maD1lcdrlHIjdNpqUmiPVCaAu/adJRHyzBP+aaxNoSfM6zxmwthBjJk9JbLZ
-	vq2tKTrdYA1DZLumYOv7eTpCWIY98vFsTW7AE7OHkxTX0miUZKc2o5SiTny4JW765OriF7tAW4y
-	5W+kkLVGM4IIIir32ez72vlIoXcJSAAuYsTWapIndCrCNAegaL3qrv70rqYY+dTsDbaOYJfP+Hp
-	9FxM1JiGGlkD1xQJWRcUb1ZuwcrhXMzOMtt/DNFObhrMY1jr047KiVta7UioLOd3SWuk3RNHShA
-	pFBgB+Ry9s1rGjoIqKVsHIamPsHtx9mYFcZUjOm+ALjNr/4FPVaOZV2XPtK6Y/WYfAApTdGAaTB
-	TmnoEU2DIkxVBpdvaix+d+3O7U+bZQ
-X-Google-Smtp-Source: AGHT+IGx5wNpD8caYwaIatPc3xH78PwlqMe1Cfb9o3uO4sNphikE37aFxo8LiJSszoImSUjRwe+rWA==
-X-Received: by 2002:a17:907:c02:b0:b2b:5b40:1cb1 with SMTP id a640c23a62f3a-b50a6eae24amr768399566b.0.1760020527267;
-        Thu, 09 Oct 2025 07:35:27 -0700 (PDT)
-Received: from [172.16.220.227] (144-178-202-139.static.ef-service.nl. [144.178.202.139])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b486606dc84sm1885797166b.45.2025.10.09.07.35.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Oct 2025 07:35:26 -0700 (PDT)
-From: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
-Date: Thu, 09 Oct 2025 16:35:10 +0200
-Subject: [PATCH v2 4/4] arm64: dts: qcom: qcm6490-fairphone-fp5: Add UW cam
- actuator
+	s=arc-20240116; t=1760020776; c=relaxed/simple;
+	bh=HcFpPL2edF7Qu4G5WNV5ZNvvDhAChdGjqbqXXc3+KUc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=r96sAj0G41hY8/Uk6LXmk3Tf0e8NmXunNCJpdbW02u9cM2sImKWZanQ+lST05WoKbQg5IsssHXs4MfcrEQbDZ5h8wIX7J5KUwvzfBiaxvYtaxc+YuQTewKzfDLQ6FQRvBzi3D50OfIu6zXqK5NjxyNcL86R+vRSAEeot8opGyqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Bxo0bDRl; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5996EJjj023279;
+	Thu, 9 Oct 2025 14:39:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:date:from:message-id:mime-version
+	:subject:to; s=qcppdkim1; bh=DrBGHi6PJvEpTTm4+vYNENOBicV0zI9MNmd
+	k3uIxNLo=; b=Bxo0bDRl6xVfBainHXlCZBIPu9867lN0DSNOPKRZA/ejGlu5p2T
+	PdqzK5CHADclnOn1Gv3KHw/R1BqTRm9TtMkdb5Wd8aYHAjoJ9yh1Flh0xGiLwhwK
+	u7lWWyrRPPbUa0wE7cdqtgTLb5EQJ4UaVXAovEgelK1sw+l42OJFjC/pXQYOceJ+
+	JFtzF4uWKD7W99h+R0gMbHnh4xYd03SzSloOhfC+AQn8tUTNJ0WHp/1eockh/6Cx
+	0c6HJfy3IiTAGC00bmZ//HqJVwmIe2uenr0h3PzHbF9szrZr4aeJJC7n+6isBus+
+	a+MavMMMLMrksjUcpvpfHdN2es9bmyzMvJw==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4m37th-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Oct 2025 14:39:24 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 599EdK1j012506;
+	Thu, 9 Oct 2025 14:39:20 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 49jvnmddpb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Oct 2025 14:39:20 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 599EdKAY012479;
+	Thu, 9 Oct 2025 14:39:20 GMT
+Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-pkumpatl-hyd.qualcomm.com [10.147.245.204])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 599EdKGP012475
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 09 Oct 2025 14:39:20 +0000
+Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3914174)
+	id 2E451570; Thu,  9 Oct 2025 20:09:19 +0530 (+0530)
+From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+To: Srinivas Kandagatla <srini@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rao Mandadapu <quic_srivasam@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        prasad.kumpatla@oss.qualcomm.com, kernel@oss.qualcomm.com,
+        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
+        jingyi.wang@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com
+Subject: [PATCH v2 0/5] Add Audio Support for Kaanapali MTP Boards
+Date: Thu,  9 Oct 2025 20:06:39 +0530
+Message-Id: <20251009143644.3296208-1-prasad.kumpatla@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20251009-dw9800-driver-v2-4-3c33ccd1d741@fairphone.com>
-References: <20251009-dw9800-driver-v2-0-3c33ccd1d741@fairphone.com>
-In-Reply-To: <20251009-dw9800-driver-v2-0-3c33ccd1d741@fairphone.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Daniel Scally <djrscally@gmail.com>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>, 
- Luca Weiss <luca.weiss@fairphone.com>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, 
- Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760020524; l=971;
- i=griffin.kroah@fairphone.com; s=20250804; h=from:subject:message-id;
- bh=Jy71v+0d6B2d6GEOh/dwMzbOK+DdGqIZvEENLkmwzE8=;
- b=wDpwODh4KULf0bqeFOvreRjzZlpizQmCgQ8rWWy+MoqVG+AQaJAeJuz8sjgNKDeRBXMfdUBVL
- 1go8fz1bjdFAR5eszs8SFlVfEJcUl/rJ8keRqbVEEq7goOo8jyf1dk5
-X-Developer-Key: i=griffin.kroah@fairphone.com; a=ed25519;
- pk=drSBvqKFiR+xucmLWONHSq/wGrW+YvcVtBXFYnYzn8U=
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX7bfJcLToKL09
+ tKVCVhkvpMpLpQA148yi8EbVJz8aPAf0J3ELummqvUz7ecmHwxNlhH3la6XA5517dPd5f13USdg
+ +O+o3NuLFzhlad1mb+yI03mRKDcnMBd5qrjzIWnViH/0q4c7xqJv97nQ0msLLE56ErPV6NDCHRc
+ w1LnitH/vg83WcGZXSDKJ/YdC+QuicNpVmc8mRxSRC2Lxjc84KoYpOGsEjyqRKVoeBLekP2iahQ
+ +1AaW4yQA/wEwuNw3KdJtJNSEdWTqNtpjjPveESARSPS/rmeIiUMsb9SKScuzzpw5+DnV9bbBeb
+ hWD0PVB7JjicRusEMAeNmEhZYdf/iC0eyssmdDp1kYSxhPV6iuMXAB7eYne+Yyy/x1qPWUKs8V8
+ 5k4iML4lNysq+rH1apaZVbs9Gj0KhA==
+X-Authority-Analysis: v=2.4 cv=B6G0EetM c=1 sm=1 tr=0 ts=68e7c91d cx=c_pps
+ a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
+ a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=JQyddCt1Ae9KdOiSsPQA:9
+ a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-GUID: bc3ROGhv3oVS2zVNH04s7AXvYTTTaCWj
+X-Proofpoint-ORIG-GUID: bc3ROGhv3oVS2zVNH04s7AXvYTTTaCWj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-09_05,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015 suspectscore=0
+ malwarescore=0 adultscore=0 priorityscore=1501 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
 
-Add a node for the Dongwoon DW9800K actuator, used for focus of the
-ultra-wide camera sensor.
+Add audio support for Kaanapali MTP boards. Introduces supporting
+dependencies required to enable audio functionality on MTP platforms. 
+These changes have been validated on Kaanapali MTP hardware.
 
-Tested-by: Luca Weiss <luca.weiss@fairphone.com>
-Signed-off-by: Griffin Kroah-Hartman <griffin.kroah@fairphone.com>
----
- arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Changes in [v2]:
+	- Addressed compilation issue for lpass version check patch.
+	- Sorted compatible string in machine driver.
+	- Link to v1: https://lore.kernel.org/linux-arm-msm/20250924-knp-audio-v1-0-5afa926b567c@oss.qualcomm.com/
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-index 2dd2c452592aa6b0ac826f19eb9cb1a8b90cee47..0e86cd5ff527925c7dba15c4e0ee5fc409fe4ce6 100644
---- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-+++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-@@ -627,6 +627,15 @@ eeprom@50 {
- };
- 
- &cci0_i2c1 {
-+	camera_imx858_dw9800k: actuator@e {
-+		compatible = "dongwoon,dw9800k";
-+		reg = <0x0e>;
-+		vdd-supply = <&vreg_afvdd_2p8>;
-+
-+		dongwoon,sac-mode = <1>;
-+		dongwoon,vcm-prescale = <16>;
-+	};
-+
- 	/* IMX858 @ 29 */
- 
- 	eeprom@54 {
+Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+Signed-off-by: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
+
+Konrad Dybcio (1):
+  ASoC: codecs: va-macro: Rework version checking
+
+Prasad Kumpatla (4):
+  ASoC: dt-bindings: qcom,sm8250: Add kaanapali sound card
+  ASoC: qcom: sc8280xp: Add support for Kaanapali
+  dt-bindings: soundwire: qcom: Add SoundWire v2.2.0 compatible
+  ASoC: dt-bindings: qcom: Add Kaanapali LPASS macro codecs
+
+ .../bindings/sound/qcom,lpass-rx-macro.yaml   |  1 +
+ .../bindings/sound/qcom,lpass-tx-macro.yaml   |  1 +
+ .../bindings/sound/qcom,lpass-va-macro.yaml   |  1 +
+ .../bindings/sound/qcom,lpass-wsa-macro.yaml  |  1 +
+ .../bindings/sound/qcom,sm8250.yaml           |  1 +
+ .../bindings/soundwire/qcom,soundwire.yaml    |  1 +
+ sound/soc/codecs/lpass-va-macro.c             | 90 +++++++++++++------
+ sound/soc/qcom/sc8280xp.c                     |  1 +
+ 8 files changed, 70 insertions(+), 27 deletions(-)
 
 -- 
-2.43.0
+2.34.1
 
 
