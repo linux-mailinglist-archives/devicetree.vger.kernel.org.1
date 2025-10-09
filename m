@@ -1,140 +1,204 @@
-Return-Path: <devicetree+bounces-224984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12823BC966D
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 16:00:44 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id A91D6BC96A6
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 16:04:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFECF3B2012
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 14:00:42 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9B3B54F38AC
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 14:03:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4A272E9EDA;
-	Thu,  9 Oct 2025 14:00:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6D582EA154;
+	Thu,  9 Oct 2025 14:03:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CdA/9S6U"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GoMijZxC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B23CB2E7F11
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 14:00:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5DEE16EB42
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 14:03:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760018438; cv=none; b=Ef9u8AqXxfLsY6Jjz4m2DELVtqjKARHVN8YkwLtoid0RVKsOjurZJPNaCdpkZFGymXU3dkqiMMqZyvi0ajZsM8R444aK5eObrNd5Nx1tFKlspWTxpvxycTph9u1i2gAKrmFGifgbYF0atclVxUsQEeCwJWeWzjiMztzv3AFbwvY=
+	t=1760018612; cv=none; b=VyqlErgFt0B/3Uwtr9zaHDjsc+T/03idwJ3JwqSDH0qNSiyAYVUvnBgtb2L3wLKXbZrF8gzbbE4JMbd9fw87YuL6lpJephgHKByXtsbHaAVVuqbMo6Jj0+V+hhywKetzjLHYLE2fHI0SdwuUL9DglH+HLOqEpu68dusBNGXkGAs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760018438; c=relaxed/simple;
-	bh=krqjWeofd3soeCmbUM50pDB4SpcRGAW6LDs+oBWEOQU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=iS3bQ1OLSgVPJpKuFO7d4R2JlayWGrYxQSSRjWQr9tfvOkMaDLte/SZsadrqS+Ncxs7svIHGH52yWZzJFiZykCX/tBK66w5eQo2COWBydpeZYiMfuS33jle3PNkYamgepxo1xj3RsGVBUa5FxQ66Ub2UzZATfl38X31+f7akF2k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CdA/9S6U; arc=none smtp.client-ip=209.85.218.51
+	s=arc-20240116; t=1760018612; c=relaxed/simple;
+	bh=jIACOyzuC8X0aT/3uWywgCTxnVramD7znqMR2Du233Y=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=bP+osvp/oJ/7dKK5dp3ThHGnvK4fAUwM66D4o76lu+9c4Y99GR+fiDiEKAgDLk/XIm033kLRtQRdplXAT9tt/W2GtSn+q2ee/FoucLw6U85w6JLuqNKoyLvNDCTMecKNGBdEEEVSmZ8QxH2S7H6bIQCo6zlujqPsAY+vCCmZpjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GoMijZxC; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b54f55a290cso86206766b.2
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 07:00:36 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-46e3af7889fso5494675e9.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 07:03:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760018435; x=1760623235; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=515o7326gcQ3D6uHqGhrkvo5xmocInFa3UoZMccGVHE=;
-        b=CdA/9S6Ut++bW4H4RuOzSH6/eYUO7lDxHf7FT7LOkwlg5dVXFKi5J+rphteHJa2eAT
-         u7q9Xryp+CF4EXns5Of46qcKg26wd/pM5fNxMSBvXlqzrkzNhQw4FmYR3TWLwiWZJ9Xa
-         up+KaIbW/RnJKoiehPccMknJNWpenFcWR3VHYE+iVroQQGK51kM57c0+JLmq1MPq1nJ9
-         tQhjHhlWdA/95q8XWso7Kah6iQs+6dye9nxDBZfrY1sFGDaJrI9W5lxxIhPuzRtJWkYu
-         aO141egnW7d4SteZKCwy/cc5QFExang06bcfyBQAGf1klNtOrJkL2cY5pr3UTa8Mvk1w
-         kG6A==
+        d=linaro.org; s=google; t=1760018609; x=1760623409; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6ick/ehpBisbwmGXZKKBR8+25U5AyvHRCstQa+Wcmc8=;
+        b=GoMijZxC7j3bC8XyvWYkQTadrxmlA24zoCfQBiPHgQwHbAQHh5Kjyw/u31apswsfNJ
+         Plwj3wO9nx69blVg81EAjI9q8BO2z0h6eJEnL+y9fyloREBsQ6P48OTS/vgZr+VWKrt8
+         NAUODrUSKKEjNAb1ACYAxJavdwk5I9knzNQZM8C+hvEa63VfmjXi42Qdh3pR3fDVU6S+
+         sNa6gCVFhnBCSuqo0ZcJRl22xRv/JZaw83nSrdmVWTQKeKAr6KWh82eeNC66B7m/a3Dd
+         iubDBTIrp2wCztkgk7SMwcmXjjyRnS99igbnIdTcMI2ai6BAxYKMcBNqDGwA1UFBRd6K
+         +R3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760018435; x=1760623235;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=515o7326gcQ3D6uHqGhrkvo5xmocInFa3UoZMccGVHE=;
-        b=ACouCKDoZ/4wLcUNf8LZkO+0wBRVNbDs/BsAMsPITo9s2+uDADOF4UqiO9XZir8AFq
-         u9xSLK9NsgHdurGxC974UiaqyzY0ePEQkHQmGBn/2Tce9fbX12swi34RM3fFegAJ067y
-         mSUUJYwt/twKuoE7eSh0Wtra3+qOs1wBMbLohN5c4a+zs+ED7KhYYk3rkVUvxdH5SO61
-         +aEu43wWTFN7bLm+FRAj8X6+FDXjaJg8pMHU2TDJM5EVsx8bHwYufp4unHQrUyLZ0Sh4
-         xDoJpbE92/cFkmqVXvVa7B+83v0rSqz4pXSmPM9Ka9Z3t/QB+nd/tElDQPiav+rEwPY7
-         JmOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW4/6bDhv4FJX7Znw1M2qc/tIW03va9RL0hk4w91gEBpE82ZPiQCcet9ORgKW6o6uRmv6+TWIDwK7gB@vger.kernel.org
-X-Gm-Message-State: AOJu0YwwLsuCkUrcKw2KpFq0hDDLPHPIXbEi2Um+nAqtZH64rIq3lyta
-	fwy70iYF5AgRywJYyu4YHPDfTV6+RoHQvHhbbZytUgFARjtUlqOl12LUFEETO4/IPiU=
-X-Gm-Gg: ASbGncueqE4ldG9MBF4VcYi0EUkiwQf+yJaSRFPOLua8v0X+MPdzVpY4Eu41pWUQ260
-	sYlQuat6+q6hXaXjwd8n/2mvRwtPEBKYlcZSQbRJl+Tu6IbGx4hFGTAzMXoYCRAUrOIRh1LgRGN
-	FKULjnnkvSjXxDxmUohPkEh4JucfsOzKz0d55ifQL5nVhg5lnZvJ3m+5PXa4LDT0JbopC+1V7K4
-	dYqaoog0V/1abz0ARHLCGkFQyX2u/mm5RiGiVSIp2fZjWEGJHOaG5mMVpY1mTJHhcHUDP5fZhB9
-	IVnsG6DGrrEIB24kbw5EdiZ0kyXa204wYT9ax5drBs7FRzxbbKeO8JeLVyMGOYXzwHplG1aNY+/
-	hao5jgtdtLY5KiRVs/gxEMpEJ6P87IzRG5plY5WSPcg2fYZojkwgWSQ==
-X-Google-Smtp-Source: AGHT+IEgmsVd+NJKivv9Nf15rZIeHvCLH7dQTFIvwmRIDeiyvpI4bVIdaRiBfWbq7EmQkO2KbsnQcQ==
-X-Received: by 2002:a17:907:c27:b0:b3e:256:8332 with SMTP id a640c23a62f3a-b50ac6d378amr903062366b.54.1760018435004;
-        Thu, 09 Oct 2025 07:00:35 -0700 (PDT)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b48652aa62csm1860412666b.19.2025.10.09.07.00.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Oct 2025 07:00:34 -0700 (PDT)
-Message-ID: <63fb3ccc10267add00b579d4a05497cbeeadc65e.camel@linaro.org>
-Subject: Re: [PATCH 03/10] pmdomain: samsung: use to devm_kstrdup_const() to
- simplify error handling
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Alim Akhtar
- <alim.akhtar@samsung.com>,  Rob Herring <robh@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,  Ulf
- Hansson <ulf.hansson@linaro.org>
-Cc: Peter Griffin <peter.griffin@linaro.org>, Tudor Ambarus
-	 <tudor.ambarus@linaro.org>, Will McVicker <willmcvicker@google.com>, 
-	kernel-team@android.com, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Date: Thu, 09 Oct 2025 15:00:33 +0100
-In-Reply-To: <9d4ccadf76ccfff1a8b5f572b8aa190e2dc40c29.camel@linaro.org>
-References: <20251006-gs101-pd-v1-0-f0cb0c01ea7b@linaro.org>
-		 <20251006-gs101-pd-v1-3-f0cb0c01ea7b@linaro.org>
-		 <5df18f42-b567-4d27-9e12-29723af40d6e@kernel.org>
-	 <9d4ccadf76ccfff1a8b5f572b8aa190e2dc40c29.camel@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-2 
+        d=1e100.net; s=20230601; t=1760018609; x=1760623409;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=6ick/ehpBisbwmGXZKKBR8+25U5AyvHRCstQa+Wcmc8=;
+        b=mHdXeZww6CkCvJakHjahCCkMzwd4TXfxvH6a1XigbHeQ8V4nl73gdzq/JTQPmdUg0+
+         hEwfyRz5swZU3SDK75GoOl6FcX3Gcjz4ApcTIX31Gb/+8MbqAk9iqNOv2IviS4Sq19Ji
+         vDtebQkgaiXp7f2lT84lNJI7xg6K7Gd8lM46wXC1NXZr9Aq56olOQpE1D8cmHmdKpxtq
+         v+XauT2SaknWA0diT8GllniDav5XBoI+7TiXpMHhn45qTLRMtxuonTmj1/ulguTxVleT
+         MkZA1JBIYh5nARBTkYZOAB0kWVeXsKOedotxqD6eCD9UrvFOmYQtk5rQoSKtmknUfz0X
+         Yg8w==
+X-Forwarded-Encrypted: i=1; AJvYcCXs1BPUbI3Qy7khs3C0JaeZl+gdBjJNsz83xLxL4hOkLMf+jHVyLcPODTp7kIokzJi95sHrEVGhqXsC@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQ5yJjEtsCmFMDpxXk0a7TdQQG5pPqzPhuFgUlF+/a5p7on7Qo
+	GwzwQKMvN9tGYqKLvXm5NWtv7IxKraJANCi3Fk867WqRojwAIxaqxbSTtwxzQ0ISpNo=
+X-Gm-Gg: ASbGncvbWKPLb00NPTJs2cfYlmMTcdkK1DpvxwXLrltMiq4pOOvRr1Oi26mTp0SmWd0
+	isrHh75pHR2EHE+XDsRgxqktnh9nJh6+DCxQaI7/kSbeOdbuivKVyxgUy4v9YmaOnNMeXb/Jumj
+	y9YKTMsGNu8W11lOh9eujlpPBDGJ0sS3/n70www332G0XUaLSCl+0xtfHQz/LdKMRkg76UIhGjq
+	yIBgeep2+awgrwYXSx+yWrK7CdHOHGlav2aw3Zcpwc31ADPA/riqVBkfGEG5FNq3N2nMMrL+NCJ
+	xbR6fXfmxbTJ2GpSSKdTxZTW4Mj76Gm/8ViyPXnBWwkFWLYDTmY/Rq9loJL8Yq6NmaEjMJSpCAe
+	zu9IiEtJKGWiUNWEe1BdiNYerumNRTVApY/u3lfrvydC17NmPBGFZdofqqBd263p+cFlRZRDpMr
+	c7AZQgm/KB62mllJZjnaA4+jd7V2E=
+X-Google-Smtp-Source: AGHT+IGivr9oE8gO06kQl7Up/pCh869X25XIBSN9Z2sjlK7nHplkbmEOxZNSH3sQ2PDnuNDmndVZkw==
+X-Received: by 2002:a05:600c:46d1:b0:46e:36f8:1eb7 with SMTP id 5b1f17b1804b1-46fa9a98e73mr54759945e9.10.1760018608808;
+        Thu, 09 Oct 2025 07:03:28 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:7a0c:da2f:6591:67ee? ([2a01:e0a:3d9:2080:7a0c:da2f:6591:67ee])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fab36ed3bsm40963255e9.0.2025.10.09.07.03.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 09 Oct 2025 07:03:28 -0700 (PDT)
+Message-ID: <3620feb6-12bf-48c1-b47a-ccb486e5b5de@linaro.org>
+Date: Thu, 9 Oct 2025 16:03:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH RFC v2 2/6] ASoC: dt-bindings: qcom,sm8250: Add clocks
+ properties for I2S
+To: Srinivas Kandagatla <srini@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20251008-topic-sm8x50-next-hdk-i2s-v2-0-6b7d38d4ad5e@linaro.org>
+ <20251008-topic-sm8x50-next-hdk-i2s-v2-2-6b7d38d4ad5e@linaro.org>
+ <44606de8-3446-472f-aa6b-25ff8b76e0ec@kernel.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <44606de8-3446-472f-aa6b-25ff8b76e0ec@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, 2025-10-09 at 14:31 +0100, Andr=C3=A9 Draszik wrote:
-> On Thu, 2025-10-09 at 09:13 +0900, Krzysztof Kozlowski wrote:
-> > On 07/10/2025 01:43, Andr=C3=A9 Draszik wrote:
-> > > Convert to using devm_kstrdup_const() so as to simplify cleanup durin=
-g
-> > > error handling.
-> >=20
-> >=20
-> > This is either a fix (then describe the fixed issue and add Fixed tag)
-> > or you change the logic, not only simplify.
-> >=20
-> > Previously on of_genpd_add_provider_simple() the memory was not
-> > kfree_const. Now it will be.
->=20
-> Indeed it's a fix after all - While the driver doesn't allow unbind,
+On 10/9/25 15:36, Srinivas Kandagatla wrote:
+> 
+> 
+> On 10/8/25 7:56 PM, Neil Armstrong wrote:
+>> In order to describe the block and master clock of each I2S bus, add
+>> the first 5 I2S busses clock entries.
+>>
+>> The names (primary, secondary, tertiarty, quaternary, quinary, senary)
+>> uses the LPASS clock naming which were used for a long time on Qualcomm
+>> LPASS firmware interfaces.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   .../devicetree/bindings/sound/qcom,sm8250.yaml      | 21 +++++++++++++++++++++
+>>   1 file changed, 21 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+>> index 8ac91625dce5ccba5c5f31748c36296b12fac1a6..d1420d138b7ed8152aa53769c4d495e1674275e6 100644
+>> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
+>> @@ -64,6 +64,27 @@ properties:
+>>       $ref: /schemas/types.yaml#/definitions/string
+>>       description: User visible long sound card name
+>>   
+>> +  clocks:
+>> +    minItems: 2
+>> +    maxItems: 12
+>> +
+>> +  clock-names:
+>> +    minItems: 2
+>> +    items:
+>> +      # mclk is the I2S Master Clock, mi2s the I2S Bit Clock
+>> +      - const: primary-mi2s
+>> +      - const: primary-mclk
+>> +      - const: secondary-mi2s
+>> +      - const: secondary-mclk
+>> +      - const: tertiary-mi2s
+>> +      - const: tertiary-mclk
+>> +      - const: quaternary-mi2s
+>> +      - const: quaternary-mclk
+>> +      - const: quinary-mi2s
+>> +      - const: quinary-mclk
+>> +      - const: senary-mi2s
+>> +      - const: senary-mclk
+>> +
+> 
+> I don't this is correct way to handling bitclk and mclks for I2S, these
+> are normally handled as part of snd_soc_dai_set_sysclk() transparently
+> without need of any device tree description.
+> 
+> Also doing this way is an issue as this is going to break existing Elite
+> based platforms, and the device description should not change across
+> these both audio firmwares.
 
-Thinking more about it - at this stage, this patch is not a fix. The driver
-can not unbind, hence there is no leak to be plugged, hence no fix.
+This is only for AudioReach platforms, on those platforms the
+clocks are registered in DT and are not accessible by the card.
 
-> I added this patch due to the followup patches that add potential error
-> returns during probe,
+Device description is obviously different for the AudioReach platforms.
 
-since it makes the error paths in those follow-up patches simpler
+Neil
 
->  but somehow missed an already-existing error
-> return after this call.
+> 
+> thanks,
+> Srini
+> 
+>>   patternProperties:
+>>     ".*-dai-link$":
+>>       description:
+>>
+> 
 
-Ignore this last part. I forgot that I simplified this error path in this
-patch myself :-)
-
-So, I'm not sure how to rephrase, tbh.
-
-
-Cheers,
-A
 
