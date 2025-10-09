@@ -1,55 +1,48 @@
-Return-Path: <devicetree+bounces-224772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2EA2BC7B1C
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 09:24:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3E39BC7B21
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 09:26:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6923C3BCE92
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 07:24:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9C711894816
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 07:26:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26FEF2D061D;
-	Thu,  9 Oct 2025 07:24:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A32C2D063D;
+	Thu,  9 Oct 2025 07:26:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UQf22LZE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="En7eMwMe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B32D2D0267
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 07:24:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06A7C7082D;
+	Thu,  9 Oct 2025 07:26:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759994671; cv=none; b=FIvIen81AQtl2CBbZCYnyB6888maGGPcAfegV38J0ZqBKb8+kw2p0pmp98NaDBdnhp4xAhqXh/evoPmmmFThe0nmf0AvUcxIK9e7myDKj3LTU7KD7zUZPjPNqULUBSu79gnxKIXKd1OmrUixidinTqP65QZaJY710KThXpUyPJ8=
+	t=1759994782; cv=none; b=WtHeaWBFQcPmekW1hX5qz+wsfAHYOBHInviUg25y3+UJW2Hukg84vZlFfINCTXMafx28p7SiUJJLL0YLzEg1XTargp6i98nplan21lkfHqJfNNcl9yxTKty0rC5/iefRbMibXQuvzQH2AFbicB8LCAaqREIPelMsql7gjotHCy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759994671; c=relaxed/simple;
-	bh=SZTeonF4D7wa7CnlmXUx/9cIUWtW40SMGZWYRcsw+qU=;
+	s=arc-20240116; t=1759994782; c=relaxed/simple;
+	bh=aUZwCKZriS2mx9oDnUC1YNntsIyiN+ubGEGIPBl8MwA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tVZouyhaG929r2ABtp1udxDWVwYO2azeck93cV0vA4GYUXI3NFMHg9nI3+nkrpV1ZDsVqkYS3tCpq1L//BDI/VGvNZeGvWmpfjXRCgTLOjVkqHJCb7fUZD/RGXCiObZ6UOa50u6ctLp3VvJo3nUJ1iGdFvTIbTwi5yBFvyYs8jE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UQf22LZE; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1759994666;
-	bh=SZTeonF4D7wa7CnlmXUx/9cIUWtW40SMGZWYRcsw+qU=;
+	 In-Reply-To:Content-Type; b=luKnM0udHhQnNYZ72lJHSkzw939dvM1ixNSCPPi/Axwyg4VYkfqaERV9o4RErS+B3wS1jy4CYYXzVFCqHPBQ87pNgQg8Vhtt6TGq/aFCi42ZtBIoM8//R9byTww6/nwaA2BdQhVPjyN5+6ne9mFqggGn3SH8fyydJpNaRotTeII=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=En7eMwMe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F072C4CEE7;
+	Thu,  9 Oct 2025 07:26:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1759994781;
+	bh=aUZwCKZriS2mx9oDnUC1YNntsIyiN+ubGEGIPBl8MwA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=UQf22LZE6wT8E8eisCIK4JaZSOmu+V/vPG5Y0I6YS5BgLJzvV7v6HTVsmUgpk3T50
-	 pzj6kPYViehSf/BaQtWYQ5s9qMgq2LrQqZzlcjTVS8V0IQhlhgiSIhaBJcIsQE3QVL
-	 PKsLlXRFdMl5vlC/VgTCOhVze9tyYhf/maGVOtdtUscvLdQZivjSJoNedFRpmEP/QL
-	 iChhvyA21+FGs2vuM4uDi8QLwby2xaDyGMuhiTI2xNzl7svpIicnR/wzKwzhtud4Ff
-	 Cq/iLWkSvaWZKVgks5vnr9col8ZoNGqnuiNVFZx0hnjnQS1QWMv3Ly4q5x7xcit/cF
-	 PAI7HGKqQ93uQ==
-Received: from [192.168.1.90] (unknown [82.79.138.145])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: cristicc)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 6F98117E1256;
-	Thu,  9 Oct 2025 09:24:25 +0200 (CEST)
-Message-ID: <bfb68ced-e6ec-4636-816e-9b8fe8aa10b4@collabora.com>
-Date: Thu, 9 Oct 2025 10:24:25 +0300
+	b=En7eMwMeJGkepvaJ8q2srUeiz31pgUGFFzkOIzFoManANQwcx6mbKGZs+E2G7b58P
+	 uZJjFFiIWFCKTpHTzKGIGNNsYl8lBBzUWfpLKaoZOTvSywrOLh9EMAF+2P1msiWk1j
+	 f4qZavZzm/ghXKSO4E4w3GSDLjAhtXbjlpAQYV0xyZTFZwlDa1Zac09X2UkPkd9A3s
+	 w/3kITa3qYybgFGNJ3JBpHGYHjTwF8Sx7RUD+L2f0+MepcjlTfSkRtI46gBSUR3//A
+	 ht2Up9KKwspeIpZCwqN7VC0V9TpD4gEHaULy3BBKSSwOsJxFW3gyj4G+H+VUkpD/W9
+	 9u2X+9Q3z94Og==
+Message-ID: <9ee299c1-edf4-4738-8b5e-6a684f683fbd@kernel.org>
+Date: Thu, 9 Oct 2025 16:26:08 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,85 +50,207 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] drm/rockchip: dw_hdmi_qp: Improve error handling
- with dev_err_probe()
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- Alexey Charkov <alchark@gmail.com>, Algea Cao <algea.cao@rock-chips.com>,
- Andy Yan <andy.yan@rock-chips.com>,
- Cenk Uluisik <cenk.uluisik@googlemail.com>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Jimmy Hon <honyuenkwun@gmail.com>, Kever Yang <kever.yang@rock-chips.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Maxime Ripard
- <mripard@kernel.org>, Muhammed Efe Cetin <efectn@6tel.net>,
- Ondrej Jirman <megi@xff.cz>, Rob Herring <robh@kernel.org>,
- Sandy Huang <hjc@rock-chips.com>
-References: <20251005235542.1017-1-laurent.pinchart@ideasonboard.com>
- <20251005235542.1017-3-laurent.pinchart@ideasonboard.com>
- <gai5hfvu6xbbqpk4mu3i6nejolijeokjy3mkzca5xwzb4xwic7@jmee36svmwnb>
- <8706f168-5598-4f91-9ad0-fdbd04b410b7@collabora.com>
- <20251006162631.GK5944@pendragon.ideasonboard.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: usb: dwc3: Add Google Tensor G5 DWC3
+To: Roy Luo <royluo@google.com>
+Cc: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I
+ <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>,
+ Badhri Jagan Sridharan <badhri@google.com>, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org
+References: <20251008060000.3136021-1-royluo@google.com>
+ <20251008060000.3136021-2-royluo@google.com>
+ <8966b6a9-ff70-4833-a5c7-c6d6c13c6c8b@kernel.org>
+ <CA+zupgwLu-y26X9eiENyC28i9ZxCkuhb0X8X9H6HBpqkqJ7O3w@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-In-Reply-To: <20251006162631.GK5944@pendragon.ideasonboard.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CA+zupgwLu-y26X9eiENyC28i9ZxCkuhb0X8X9H6HBpqkqJ7O3w@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/6/25 7:26 PM, Laurent Pinchart wrote:
-> On Mon, Oct 06, 2025 at 05:37:23PM +0300, Cristian Ciocaltea wrote:
->> On 10/6/25 3:02 PM, Dmitry Baryshkov wrote:
->>> On Mon, Oct 06, 2025 at 02:55:38AM +0300, Laurent Pinchart wrote:
->>>> From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->>>>
->>>> The error handling in dw_hdmi_qp_rockchip_bind() is quite inconsistent,
->>>> i.e. in some cases the error code is not included in the message, while
->>>> in some other cases there is no check for -EPROBE_DEFER.
->>>>
->>>> Since this is part of the probe path, address the aforementioned issues
->>>> by switching to dev_err_probe(), which also reduces the code a bit.
->>>>
->>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
->>>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->>>> ---
->>>>  .../gpu/drm/rockchip/dw_hdmi_qp-rockchip.c    | 62 +++++++------------
->>>>  1 file changed, 24 insertions(+), 38 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
->>>> index 7d531b6f4c09..4e7794aa2dde 100644
->>>> --- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
->>>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
->>>> @@ -457,10 +457,8 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
->>>>  		return -ENODEV;
->>>>  
->>>>  	if (!cfg->ctrl_ops || !cfg->ctrl_ops->io_init ||
->>>> -	    !cfg->ctrl_ops->irq_callback || !cfg->ctrl_ops->hardirq_callback) {
->>>> -		dev_err(dev, "Missing platform ctrl ops\n");
->>>> -		return -ENODEV;
->>>> -	}
->>>> +	    !cfg->ctrl_ops->irq_callback || !cfg->ctrl_ops->hardirq_callback)
->>>> +		return dev_err_probe(dev, -ENODEV, "Missing platform ctrl ops\n");
->>>
->>> This only makes sense for the purpose of unification.
+On 09/10/2025 14:12, Roy Luo wrote:
+> On Wed, Oct 8, 2025 at 4:56 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >>
->> Right, as mentioned in the commit description, the intention was to ensure
->> consistent error handling across the probe path rather than limiting the scope
->> to -EPROBE_DEFER exclusively.
+>> On 08/10/2025 14:59, Roy Luo wrote:
+>>> Document the device tree bindings for the DWC3 USB controller found in
+>>> Google Tensor SoCs, starting with the G5 generation.
+>>>
+>>> The Tensor G5 silicon represents a complete architectural departure from
+>>
+>>
+>> G5 does not have a model number like G1-G4?
 > 
-> Should I revert this change in v3 or keep it ? I see value in
-> unification, but I don't mind either way. Dmitry, what's your preference
-> ?
+> There's no model number for G5, I'm sticking to the existing "gs" prefix
+> as they're still in the same SoC family.  Please let me know if you have any
+> concerns.
+> 
+>>
+>>> previous generations (like gs101), including entirely new clock/reset
+>>> schemes, top-level wrapper and register interface. Consequently,
+>>> existing Samsung/Exynos DWC3 USB bindings and drivers are incompatible,
+>>
+>> Do not reference drivers. Explain the hardware.
+> 
+> Ack, all mentions of "driver" will be removed in the next patch.
+> 
+>>
+>>> necessitating this new device tree binding.
+>>>
+>>> The USB controller on Tensor G5 is based on Synopsys DWC3 IP and features
+>>> Dual-Role Device single port with hibernation support.
+>>>
+>>> Signed-off-by: Roy Luo <royluo@google.com>
+>>> ---
+>>>  .../bindings/usb/google,gs-dwc3.yaml          | 145 ++++++++++++++++++
+>>>  1 file changed, 145 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/usb/google,gs-dwc3.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/google,gs-dwc3.yaml b/Documentation/devicetree/bindings/usb/google,gs-dwc3.yaml
+>>> new file mode 100644
+>>> index 000000000000..9eb0bf726e8d
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/usb/google,gs-dwc3.yaml
+>>> @@ -0,0 +1,145 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +# Copyright (c) 2025, Google LLC
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/usb/google,gs-dwc3.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Google Tensor Series (G5+) DWC3 USB SoC Controller
+>>> +
+>>> +maintainers:
+>>> +  - Roy Luo <royluo@google.com>
+>>> +
+>>> +description: |
+>>
+>>
+>> Do not need '|' unless you need to preserve formatting.
+> 
+> Ack, will fix this in the next patch.
+> 
+>>
+>>> +  Describes the DWC3 USB controller block implemented on Google Tensor SoCs,
+>>> +  starting with the G5 generation. Based on Synopsys DWC3 IP, the controller
+>>> +  features Dual-Role Device single port with hibernation add-on.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - google,gs5-dwc3
+>>> +
+>>> +  reg:
+>>> +    minItems: 3
+>>
+>> Drop
+>>
+>>> +    maxItems: 3
+>>> +
+>>> +  reg-names:
+>>> +    description: |
+>>> +      The following memory regions must present:
+>>> +        - dwc3_core: Core DWC3 IP registers.
+>>> +        - host_cfg_csr: Hibernation control registers.
+>>> +        - usbint_csr: Hibernation interrupt registers.
+>>
+>> Drop description or move it to items in reg. See other bindings.
+> 
+> Ack, will use an item list in reg instead.
+> 
+>>
+>>> +    items:
+>>> +      - const: dwc3_core
+>>> +      - const: host_cfg_csr
+>>> +      - const: usbint_csr
+>>> +
+>>> +  interrupts:
+>>> +    minItems: 3
+>>
+>> Drop
+> 
+> Ack, will use an item list instead.
+> 
+>>
+>>> +    maxItems: 3
+>>> +
+>>> +  interrupt-names:
+>>> +    description: |
+>>> +      The following interrupts must present:
+>>> +        - dwc_usb3: Core DWC3 interrupt.
+>>> +        - hs_pme_irq: High speed remote wakeup interrupt for hibernation.
+>>> +        - ss_pme_irq: Super speed remote wakeup interrupt for hibernation.
+>>
+>> From where did you get this style? Don't write bindings with chat gpt or
+>> whatever other tool. it is a waste of our time.
+> 
+> I referenced the style from a recent dt binding change [1] that adds
+> "Documentation/devicetree/bindings/usb/qcom,snps-dwc3.yaml".
+> I thought it would be a good reference because it's relatively new
+> and is also a binding for SNPS dwc3 glue logic. Perhaps that style
+> doesn't apply here because qcom,snps-dwc3.yaml supports
+> multiple compatible and here we have only one?
+> 
+> Just to clarify, I'm a Gemini user and this patch is 100% organic,
+> hand-crafted by a living human brain :)
+> 
+> [1] https://lore.kernel.org/all/20250414-dwc3-refactor-v7-2-f015b358722d@oss.qualcomm.com/
 
-I missed to point out this patch has been also sent a while ago as part of
-another series [1] which should be ready for merging.  It'd be great if there's
-no need to revert any changes, otherwise we need to keep those in sync.
+Your code is not at all like above, you do not have any variants here,
+so you cannot use that syntax - is not correct here.
 
-Regardless, I'll let you know if that gets applied first, allowing us to drop
-this one after rebasing.
-
-[1] https://lore.kernel.org/all/20250903-rk3588-hdmi-cec-v4-3-fa25163c4b08@collabora.com/
-
-Regards,
-Cristian
+Best regards,
+Krzysztof
 
