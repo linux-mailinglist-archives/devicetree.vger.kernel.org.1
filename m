@@ -1,184 +1,190 @@
-Return-Path: <devicetree+bounces-225012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1DB5BC98DE
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 16:39:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4AF3BC98BF
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 16:38:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5DCAB4F5C50
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 14:39:45 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5D6504E3E0B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 14:38:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0BA02EAD0A;
-	Thu,  9 Oct 2025 14:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 981982E92A3;
+	Thu,  9 Oct 2025 14:38:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="U4h77FoZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="h55SnEXO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0704523F422;
-	Thu,  9 Oct 2025 14:39:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 624A9298CD5
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 14:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760020776; cv=none; b=d6vMM/Oe0XWIg9nFZ/JNYxtSIMpFTwmrBqeIvQ+2P0uOQXOd3YpwmEudA9n+qsXgrTSy9x3THQLloq+LAe8aJHbUIUzrHHO3pfCs5cs0H37CpWSHYk1H4ar40p4b+T78WG5+J+EDxMpxP1sn8vHSvlLJuFpjm5K7JzjRCh3wM5I=
+	t=1760020719; cv=none; b=LUzEW3DWrONFYa94/ReHQTte7lOK4glL29HqqhafJAMnc5Xegfn+VAlOKrRXqN8YJWdDgvWzWVGml0jO4slqOAda7dIkHnOrHxW8fW0xaV/o1JkmVblITzdoDH4Hc4hF9NJm+wmOvLTdNCZeDR6xOtvNUoabDW6vYQRSFQCyyME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760020776; c=relaxed/simple;
-	bh=WiRiBKuW19nIK4Xur+tx3fS3GrT/eHRyUfLvfnn6Rgk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=aR/amhe++mbWScTT0cRVnqHynYScftlXt/h/nlERaooo3MOl2Lnhm6v9GMG2FUIxSJ3NtUne5ow67Gxs/whJvlqkkHWQ49s6b+3+8D8R+iafiDF/I30OsE83KYeowPZEFL2Q0mTIf86yItQm1Qb8S3suk2nR9I3DRoRPpVELwBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=U4h77FoZ; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1760020719; c=relaxed/simple;
+	bh=vp7VjUXj+As7oOKkaiuaBC5XXitotERlBrJ3mgdUli8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cGyIZ1bLDWp0q4LWXPEmjnT+hralek/seI5iGzYHwBZlLgiRPzd5ajIZCpmcvliuhPQMGQuxpi4w6vsiqtpwXmwLpfDF/WOBrsTz2uL5pzMMBemAu7HgcNWdbpHjqC99rBrjcrocOZID3yITJk8FMI4R6UDM0bJNM7qFuqycmWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=h55SnEXO; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5996EQFo004537;
-	Thu, 9 Oct 2025 14:39:25 GMT
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5996EHZ5022284
+	for <devicetree@vger.kernel.org>; Thu, 9 Oct 2025 14:38:36 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=f2ZfvrkKkMo
-	mhqfsw9sp777da6g41xxdWTcEUPodMa8=; b=U4h77FoZ9S8q1s7hwtKBZrHjzMF
-	POQisaZodiFnlcCmZBvVJ2Q1OVcB3Yn1NwrVgqveynIEo6BXn30xSaiSDv2QjWD/
-	BoD4B2E8UV4cEHi1q0XlOohGsiwmOoQ90I81SawxxX5X8chVpJ6gYVxk/XQeiF0v
-	a525uCPQub+KZ9KaAG3lkMMYcXBFH5qiDI1w7ppothUGPFJarDc+tyWlWhxyupTy
-	TQWiS1KHp77NQLCxYnTRTM860gIu8oPCSmd8q4iJavuR7YqXlkZMimaf8Lzk9yu5
-	UE//zuOqbfrfjiAbv2ZkLdWTwpcz4448K28WQrTpGOzvrhz+Wwm7yF+4Q9A==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4j37sg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Oct 2025 14:39:24 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 599EdK52012505;
-	Thu, 9 Oct 2025 14:39:21 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 49jvnmddpw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Oct 2025 14:39:21 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 599EdL40012543;
-	Thu, 9 Oct 2025 14:39:21 GMT
-Received: from hu-devc-hyd-u22-c.qualcomm.com (hu-pkumpatl-hyd.qualcomm.com [10.147.245.204])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 599EdL1n012528
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 09 Oct 2025 14:39:21 +0000
-Received: by hu-devc-hyd-u22-c.qualcomm.com (Postfix, from userid 3914174)
-	id 452245D1; Thu,  9 Oct 2025 20:09:19 +0530 (+0530)
-From: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
-To: Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=4vBhPHQU3f3k1y9DS67UjAgU
+	bNDRpJ4AofTiTYruk3A=; b=h55SnEXOobNRQlQCOCWUy9CbVe6LDj6avqwfogwk
+	qIkxNU4IRyy6eFxbcmOe/xohO9vcljTJ8FDB2qB4MS+HLhrFo95dKIAIO5rbiU2R
+	B3BXtXj/Tbxdd8ACGmjcyoUAjx+YjOvqc4pI/O4rFJbVMwl8jVEsKNuq8jhCEHKZ
+	RJNbuImxdcZbegeiXSstzfYNBfcmhYdf31VPRtwWL1V0tA8Ks2CejTNeOgTb2+bT
+	tH7WfWKsU+t64ggVEhG6anr2TIAMnvo4TUm6XZiAjPW5tc0n1VwhkvejB01nokUB
+	TdndrodXgO1CPpOg/6GkLJwt55aBE0vYUmGbU5QFNKJ7KQ==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4sk6f0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 14:38:36 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4d6a41b5b66so41842911cf.1
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 07:38:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760020715; x=1760625515;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4vBhPHQU3f3k1y9DS67UjAgUbNDRpJ4AofTiTYruk3A=;
+        b=K5ha/mLqtFQ9vvKUb4mBOyZXLv8DY2URAk+tYKiIQxDVYgmiaaeUCBsDhj8ibu7Deo
+         MD2O5Z0PzLA+ugEZrTlwAgP1HG5dV8lqbzz0Lq4nwnpgqXGqTEE0SeVQBxmy6haGOlpt
+         YgIKJfEHE/OQOxszXq6YdWHWGPrlq9j27M7EJkPE/d7RmF8lIDqdIEFMhCV/S35co7gi
+         RoxyypBXBDWCBTEje5+OCb5B0Wxe/8Nl+WeKhSU6P5t2zl4z5JeuM5IhJo1ejFHJJGNU
+         YaI3z2LFhV1I4uj8gf71WVlzdADya1maDX+KlP+HOfteeO3MWbgU2AKGI+08wIdlrFYh
+         zafA==
+X-Forwarded-Encrypted: i=1; AJvYcCWE4cQeExpywZs16HoqZ0LbSAhGTEPH5wZExkSIQh4NCnTixxZwFekMJ8/bzryvqN/l9WmObSdEimX/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxhXF0Tx9idXT03bh3FZvyyzZwzSOjz/mZRlElj5EpOR5K0U6ZR
+	SpLbHrQZMc7vu4b7i+3EdDufoSpIBnugfG8JIjZ3QajE4IDErpI74pFj1fhtcucxoRnmzyUKVXv
+	tcKcjkxs3P7jPnHucdCeacnSpA83tdStPyxWcZtCVAYrc9/a/KLJxVXMzL9tWAP4y
+X-Gm-Gg: ASbGncu6RlP1gCOfZHdSGQi0wCrJyGhIRVgad9kAjjHCg29QCqh597O/zIYYxA9Vecp
+	mer4RgwDF/EXQ86yDkdEX1jXUBfi7r+Njl5xdGjIChOSZ7bzxRVYqNWDJV9KleuIR/ir1qg/4KZ
+	QJ5SBQc+I26kKjgn4h5BGNmNpkua2e86WOwyMyoVsWaksKDqD/FMme4eKLYvIFRBEXqF+cA8+yh
+	4xXFThFKJZKr2TidVHdVpf6XCxERZZlukmZUBqiHSTIRGI4gVKq2RpRXRsAtHxEY+4kqhQucumH
+	dhcfdyCJ/p7HG5pBsyT9sWUpZ4HzmczgZNHkUqvEaV1DtgKJ0v5N8e5vMGhI0lbPyYrnZy7WX5l
+	hBCNRFHjHWswdYa6dC+D+yNQcFKxnI92mKIag5W9/Kv2OCLNsBhsZWkcwnA==
+X-Received: by 2002:a05:622a:4812:b0:4d7:bf73:7641 with SMTP id d75a77b69052e-4e6eacb362emr101465741cf.17.1760020715169;
+        Thu, 09 Oct 2025 07:38:35 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHJWR/L5QvAdufneVpdCNLbrPazn1qmhQTRqnRIiTH9ugDxuMkMX/Hp2rQmkitaj4be/K7DKQ==
+X-Received: by 2002:a05:622a:4812:b0:4d7:bf73:7641 with SMTP id d75a77b69052e-4e6eacb362emr101465171cf.17.1760020714634;
+        Thu, 09 Oct 2025 07:38:34 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-375f39d509bsm29456381fa.12.2025.10.09.07.38.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Oct 2025 07:38:33 -0700 (PDT)
+Date: Thu, 9 Oct 2025 17:38:32 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rao Mandadapu <quic_srivasam@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        prasad.kumpatla@oss.qualcomm.com, kernel@oss.qualcomm.com,
-        aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com,
-        jingyi.wang@oss.qualcomm.com, konrad.dybcio@oss.qualcomm.com,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 5/5] ASoC: dt-bindings: qcom: Add Kaanapali LPASS macro codecs
-Date: Thu,  9 Oct 2025 20:06:44 +0530
-Message-Id: <20251009143644.3296208-6-prasad.kumpatla@oss.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20251009143644.3296208-1-prasad.kumpatla@oss.qualcomm.com>
-References: <20251009143644.3296208-1-prasad.kumpatla@oss.qualcomm.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: ti,hd3ss3220: Add support for
+ VBUS based on ID state
+Message-ID: <cbpne2d7yr2vpxmrrveqajlp3irzsglxroxyyjmviuci2ewted@6ewwp6yyybk5>
+References: <20251008175750.1770454-1-krishna.kurapati@oss.qualcomm.com>
+ <20251008175750.1770454-2-krishna.kurapati@oss.qualcomm.com>
+ <odikli6rfdyid5oqavurtqytgnwgh5hpmka2jt5tprpdw7cd72@icpnjnkfowt7>
+ <20251009131543.GA379737-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: G3_dHindgQRbP3vN-fRoJdSLiyXGzA1X
-X-Proofpoint-ORIG-GUID: G3_dHindgQRbP3vN-fRoJdSLiyXGzA1X
-X-Authority-Analysis: v=2.4 cv=f91FxeyM c=1 sm=1 tr=0 ts=68e7c91d cx=c_pps
- a=Ou0eQOY4+eZoSc0qltEV5Q==:117 a=Ou0eQOY4+eZoSc0qltEV5Q==:17
- a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=ehmOrWUO2zTDMYMZoEsA:9
- a=cvBusfyB2V15izCimMoJ:22 a=cPQSjfK2_nFv0Q5t_7PE:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfXx1lkH4pfW9f0
- Ptr2cNkTkel12Wf065snE+jz3QjjqXZTOr3aE6kHG/HwE8GvF2VFQIZdhDxustW+c9Q3QMsT3p0
- EXrfz1G0sX94qcOPe/PIz+TZk+bTIlr+x2mlj8u7Q25BuAnpFXWEHSHd3NzjYvFxrefYWpeelw1
- OOsR7B1/n6VL/wbnPAR8p4GP4d6VTxav3OqKOl+c6n7vWng7kOSaICQQ6DvJY91oNqyADHphX+e
- TBJkJzpEcTe97LVbFfo1nJGwcO7SDsbRzBEzs7DcvjATKQr9TRaiRVbcQU8h+A+DqQSWSZCtt89
- tI5EwP50Eb0mYL0K+F0KOG584ivfBhm/J4DS9Jh83ywqAq1FmQDGrva6iExPOSrkT+9zZrKslhq
- wRcHIvqt5pEK0tEGepkJF1S11RAG6w==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251009131543.GA379737-robh@kernel.org>
+X-Proofpoint-GUID: mMinb21s6fGgrzEFbgoGRvblIGn3Z9-B
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX6oZPB5Oh8Zy5
+ Y7pSJPfsm4WQ1SKfJvKBTdlODm9HKShA0S49CR3EfYJycWaD0T/DWPFs86zqY5pK2VKACn+EY+n
+ eW5O8CwBPR+l1pi9WeMHSHLUCZwHV4T3XrQcjQnc7wK7plGi0KWRpCz9rv98ag31C/KTwpuoEnj
+ ea50/ZL941sgNHc2ESOlzSXISqYpp6GfzIfZPgJmB/NWZ8ykrv1C0L1gRiLxkl+zLiZ9jQ1zwaa
+ C8PwIIics/ncpbnLB8DHEsfhBVyNHyhwWIRQe5i/+UINH9fOXtl3wQiFf6Z/LCvdDtchv8Y3gRl
+ CVAxcwcY/yJ5tM1IIFLjY9yE9Y3s2UTleQEZMfifWS1/TvO0NSk3rZ9QQGj0QttfEeL7pgTSLMc
+ jM4/A0TsnGbVsl1v1fLqDqQ5kyOk/w==
+X-Authority-Analysis: v=2.4 cv=SfL6t/Ru c=1 sm=1 tr=0 ts=68e7c8ec cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=wJJNMdjIKgIFmJVF0V4A:9 a=CjuIK1q_8ugA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-ORIG-GUID: mMinb21s6fGgrzEFbgoGRvblIGn3Z9-B
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-10-09_05,2025-10-06_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 clxscore=1011 adultscore=0 priorityscore=1501 malwarescore=0
- suspectscore=0 lowpriorityscore=0 impostorscore=0 bulkscore=0 phishscore=0
+ adultscore=0 clxscore=1015 malwarescore=0 bulkscore=0 priorityscore=1501
+ suspectscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
 
-Add bindings for Qualcomm Kaanapali (LPASS) RX, TX, VA and WSA
-macro codecs, which is likely compatible with earlier SM8550.
+On Thu, Oct 09, 2025 at 08:15:43AM -0500, Rob Herring wrote:
+> On Wed, Oct 08, 2025 at 09:31:59PM +0300, Dmitry Baryshkov wrote:
+> > On Wed, Oct 08, 2025 at 11:27:49PM +0530, Krishna Kurapati wrote:
+> > > Update the bindings to support reading ID state and VBUS, as per the
+> > > HD3SS3220 data sheet. The ID pin is kept high if VBUS is not at VSafe0V and
+> > > asserted low once VBUS is at VSafe0V, enforcing the Type-C requirement that
+> > > VBUS must be at VSafe0V before re-enabling VBUS.
+> > > 
+> > > Add id-gpios property to describe the input gpio for USB ID pin and vbus-
+> > > supply property to describe the regulator for USB VBUS.
+> > > 
+> > > Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+> > > ---
+> > >  .../devicetree/bindings/usb/ti,hd3ss3220.yaml       | 13 +++++++++++++
+> > >  1 file changed, 13 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml b/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
+> > > index bec1c8047bc0..c869eece39a7 100644
+> > > --- a/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
+> > > +++ b/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
+> > > @@ -25,6 +25,19 @@ properties:
+> > >    interrupts:
+> > >      maxItems: 1
+> > >  
+> > > +  id-gpios:
+> > > +    description:
+> > > +      An input gpio for USB ID pin. Upon detecting a UFP device, HD3SS3220
+> > > +      will keep ID pin high if VBUS is not at VSafe0V. Once VBUS is at VSafe0V,
+> > > +      the HD3SS3220 will assert ID pin low. This is done to enforce Type-C
+> > > +      requirement that VBUS must be at VSafe0V before re-enabling VBUS.
+> > > +
+> > 
+> > Stray empty line?
+> > 
+> > > +    maxItems: 1
+> > > +
+> > > +  vbus-supply:
+> > > +    description: A phandle to the regulator for USB VBUS if needed when host
+> > > +      mode or dual role mode is supported.
+> > 
+> > Why are we adding the property here while we can use the vbus-supply of
+> > the usb-c-connector?
+> 
+> Normally, that's my question on both of these, too. However, it does 
+> look like both are connected to the chip. There's VBUS_DET which is 
+> connected to Vbus (thru a 900k resistor). So having these here does look 
+> like accurate representation of the h/w. The commit message should make 
+> this more clear. Honestly, that's really the only part I care about. 
+> How it works is not so important. 
 
-Signed-off-by: Prasad Kumpatla <prasad.kumpatla@oss.qualcomm.com>
-Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml | 1 +
- Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml | 1 +
- Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml | 1 +
- .../devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml          | 1 +
- 4 files changed, 4 insertions(+)
+The VBUS_DET pin is used by the controller to detect the VBUS provided
+by the USB-C partner and to identify when it's safe to turn on the
+device's VBUS supply. I think this still fits into the description of
+the connector's vbus-supply.
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
-index 92f95eb74b19..b869469a5848 100644
---- a/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,lpass-rx-macro.yaml
-@@ -20,6 +20,7 @@ properties:
-           - qcom,sc8280xp-lpass-rx-macro
-       - items:
-           - enum:
-+              - qcom,kaanapali-lpass-rx-macro
-               - qcom,sm8650-lpass-rx-macro
-               - qcom,sm8750-lpass-rx-macro
-               - qcom,x1e80100-lpass-rx-macro
-diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
-index 914798a89878..e5e65e226a02 100644
---- a/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,lpass-tx-macro.yaml
-@@ -21,6 +21,7 @@ properties:
-           - qcom,sc8280xp-lpass-tx-macro
-       - items:
-           - enum:
-+              - qcom,kaanapali-lpass-tx-macro
-               - qcom,sm8650-lpass-tx-macro
-               - qcom,sm8750-lpass-tx-macro
-               - qcom,x1e80100-lpass-tx-macro
-diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-index 1c0d78af3c05..5b450f227b70 100644
---- a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-@@ -21,6 +21,7 @@ properties:
-       - items:
-           - enum:
-               - qcom,glymur-lpass-va-macro
-+              - qcom,kaanapali-lpass-va-macro
-               - qcom,sm8650-lpass-va-macro
-               - qcom,sm8750-lpass-va-macro
-               - qcom,x1e80100-lpass-va-macro
-diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
-index b6f5ba5d1320..d5f22b5cf021 100644
---- a/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml
-@@ -21,6 +21,7 @@ properties:
-       - items:
-           - enum:
-               - qcom,glymur-lpass-wsa-macro
-+              - qcom,kaanapali-lpass-wsa-macro
-               - qcom,sm8650-lpass-wsa-macro
-               - qcom,sm8750-lpass-wsa-macro
-               - qcom,x1e80100-lpass-wsa-macro
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
