@@ -1,59 +1,61 @@
-Return-Path: <devicetree+bounces-225090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8844EBCA661
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 19:37:53 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C89FABCA6A2
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 19:45:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 343D4350841
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 17:37:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9677189CCDC
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 17:46:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35CD6245010;
-	Thu,  9 Oct 2025 17:37:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A05227BB5;
+	Thu,  9 Oct 2025 17:45:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IAWbNK0r"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="Vc4RrOUg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F409D23B605;
-	Thu,  9 Oct 2025 17:37:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2326F43ABC
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 17:45:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760031469; cv=none; b=UpEMvLZeU9G6hN/t7uvz17Ll1P9QHnHI9rCZAplH0ia6r3aXidcM83lKEDvFVJKHNFRfx//gTJ1xJUrLL4qNHlFEfRqLOW0TPSxvBrrDb1m1+t6Tza9tAyTqiR/L0PGJxR1e7/T/ep5erH6r3V77kB0To7X5BllpqUcCvJ5QNqI=
+	t=1760031951; cv=none; b=c2QJiA+YqJauhgFVWRvF1oKSBmUokIzo8Xvi/RkjR0L4rrceWVGW4NECfvvWUSB4fnDBwEPLHT8qE+bd16epWgrof6OI87wiOnW0W8VrrDAWngE0Zyq7/zRP7tLapbuEFr6HVKbIx5mcwZFCVOpxeJZXCJ5y2CGMGdBkUNEACZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760031469; c=relaxed/simple;
-	bh=q0/Tm1rBeGWihtR/SqMZaiZCGZAzw++6LlAYgjIfWTI=;
+	s=arc-20240116; t=1760031951; c=relaxed/simple;
+	bh=+TO/qEw+wbzOHIyaQhjRZqkHI9gTGRPdNQHZavWkTYU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ax+6C/MKJW20OPvuKatQakX88+DvYSb6ktXiLYoBpzo325CS0awHcIf0wMng7lJ625c20/deGHqpaXPT5tQDyq1ObgcCKM443k327BQieet6IvO7VgnQm6E0QxES20dos3PIdx9yHpHd0STfixXXEvTlIu5oyb4pPg1hrYNrAqI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IAWbNK0r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C006C4CEE7;
-	Thu,  9 Oct 2025 17:37:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760031465;
-	bh=q0/Tm1rBeGWihtR/SqMZaiZCGZAzw++6LlAYgjIfWTI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IAWbNK0rzqoCjWzWD2ebGC1xj0JvwZ3ZrtlxoO1G4yVW2ADuwisSM2EjjewAdkXmz
-	 94nED2B/fdxZsDIK7FziBYGSHvu2ByUd/PgfXBd02bowi/OokPQs8+JT2tuogzj0Ke
-	 q6rhQi8j4eDHLx3UbI3t58Kg0TCRNaetRWPiLT0qoz39wxMVcTYmM5hzdvVaGVPgCS
-	 93qC+0oJWqJO2vrTgmUxSQZ0xhE+FeEpfWIrYS07C57awpgkXzV54tTEfu81HfWN1Q
-	 8Qu9Pm4UHlsy0qWQQEscNTtMaqTWWQMUwfH6iUj/QNBNdf9p1XMdGpqG40Hstyc+vG
-	 JX8WscY2YdLNw==
-Date: Thu, 9 Oct 2025 18:37:41 +0100
-From: Conor Dooley <conor@kernel.org>
-To: dongxuyang@eswincomputing.com
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	ningyu@eswincomputing.com, linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: [PATCH v6 1/2] dt-bindings: clock: eswin: Documentation for
- eic7700 SoC
-Message-ID: <20251009-reggae-discharge-e39faaa312f6@spud>
-References: <20251009092029.140-1-dongxuyang@eswincomputing.com>
- <20251009092119.198-1-dongxuyang@eswincomputing.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DSEGpHAtXgoqm6Aa20IqNR+Q+5J/sf6YmY066/H/FVXnwla9jef2LSw5/3z1AI0ZEwwTOxgdeBgFbBC03GNFeNO3lhACzi3Zw3SlB4j58as5gJxU6N/r9ArpAA3trHSEgQhaUFdDKh6uL7QNyq+B5Ajfi2+qKjcBcx9p5ZEDrco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=Vc4RrOUg; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=+TO/
+	qEw+wbzOHIyaQhjRZqkHI9gTGRPdNQHZavWkTYU=; b=Vc4RrOUgP15A0L2fk26h
+	tHA2fi/iauZjG1zxMYoAH5JJPYLPcy43IbdaW+DzCQXf1IsiRz75Q1l1EnjLPTdq
+	y0eDl9HZDceuzGXD4x9wJ2/Lwb4P+5oEiO1dILY22Uw95ZjKP41MerwPaIuQ2Bly
+	Lsw5nrmtJhFqveqsEGAg+JziRytMEXMlFofL40Rf8hHVEsIlBXiZraV7dTVF0Ax8
+	CVRGX7tmkzikJThmMYN+G6djH3IhNe0kG6YymVxhJgkJoq3dVGjo5YmYsTFKPiwV
+	q7K+SkcqdEeEOr3XhvQz+G3i765VB4KkPOSRDRbRmoCusiCS/mdTf7rmtDszOf96
+	nQ==
+Received: (qmail 1171731 invoked from network); 9 Oct 2025 19:45:38 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 9 Oct 2025 19:45:38 +0200
+X-UD-Smtp-Session: l3s3148p1@wG51Xr1AzLYujnv2
+Date: Thu, 9 Oct 2025 19:45:37 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: renesas: eagle-function-expansion: add eMMC
+ support
+Message-ID: <aOf0wSc5rgve30af@shikoro>
+References: <20250923161709.3110-2-wsa+renesas@sang-engineering.com>
+ <CAMuHMdU+0iL0fjMM+_vPxsOmPXW72X0_=X2A=ZA9gRf367UB1Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,27 +63,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2WfRS743DVbdgsZW"
+	protocol="application/pgp-signature"; boundary="/ZGkI5n2BmN2GlcV"
 Content-Disposition: inline
-In-Reply-To: <20251009092119.198-1-dongxuyang@eswincomputing.com>
+In-Reply-To: <CAMuHMdU+0iL0fjMM+_vPxsOmPXW72X0_=X2A=ZA9gRf367UB1Q@mail.gmail.com>
 
 
---2WfRS743DVbdgsZW
+--/ZGkI5n2BmN2GlcV
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+On Thu, Oct 09, 2025 at 05:18:23PM +0200, Geert Uytterhoeven wrote:
+> On Tue, 23 Sept 2025 at 18:17, Wolfram Sang
+> <wsa+renesas@sang-engineering.com> wrote:
+> > Add pinmuxing and configuration of the MMC-capable SDHI instance to make
+> > use of the eMMC.
+> >
+> > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>=20
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> i.e. will queue in renesas-devel for v6.19.
 
---2WfRS743DVbdgsZW
+Thanks. However, I just saw that the node name in pinctrl is bogus,
+sorry :( mmc_3_3v is plain wrong, mmc_1_8v would be better, but
+actually, I think it should be just mmc0. Voltage switch is not
+supported on that board.
+
+
+--/ZGkI5n2BmN2GlcV
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaOfy5AAKCRB4tDGHoIJi
-0mo4AP9EOSxes27wxZlUymg+dZRqgQo/RcyxnN75/fR1UqIiEgEA0kf2jwsTsygy
-aL8MIP439fiplruu//63r5BSYho1nQk=
-=AAw7
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjn9L0ACgkQFA3kzBSg
+KbbhoBAAp0Mjnw0frQvMVob0er5xLbmKwJBHj5nDHl9Lshq2JfscGINjMadeSqnM
+PJWN5xqsZyFZ/Zzx4Gi9SbWFdqPudXdGdNwuDbsYz65pUq23Gvf7sKH8+JMYgouV
+43Od0J/Q1rOj5SfRO/+yebj3RH3f8Dp03sZJkmD9DaOImdlN5PVlfPPlZg2u7n57
+qVtsG8G+i5JnNu9aKajS4jWZhDWKH0/2kisZ36FZUogGSF67Skb6XoM94xFrXZTV
+Fgoq9TX8Qw6ksRhZ4MLXxBAMzk/weew0QYcX9LczplwX3ioPiQoGH01mJ8JZmbVY
+FEiBRTK6h0yGHHbZTjPHz5HwaPOz/4ihawYqUu1okTJoDr9Vt+gbp7T6g8hrEbKP
+pBne+0a73Ol/SmBSbXkYx1OvkVNy4eLcWlG9ELE3lzMnEcbz0Bc0UfVSdgVPmBpo
+DlIyNlrfrB/4iGXQ7Qr3NWHqljdsqkuTUvY9mP04SQeUxCmfh0l5rW1XsoMvMJCW
+HYGnMxwYudkKJwKvEuh37AbL0lOVkGC1PUYcJNGDAFI+qeSRXnwWLYVUwX/GcoHX
+OPt021KdeCKT6s95UVoFjNEuR/a/G4Glm1+PpdYQ8SzZYgxUWvFAuZig93FDPbmI
+YTO8nsfQ5+Ycg/HzA/iIAzEq4WP2VTvUgab0mbjeIAE/IoM1V1Q=
+=ASVG
 -----END PGP SIGNATURE-----
 
---2WfRS743DVbdgsZW--
+--/ZGkI5n2BmN2GlcV--
 
