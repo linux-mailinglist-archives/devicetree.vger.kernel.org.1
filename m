@@ -1,225 +1,150 @@
-Return-Path: <devicetree+bounces-225158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 265D9BCB170
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 00:28:42 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0219BCB1A9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 00:35:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 911A94846D4
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 22:28:22 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 690B34E044B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 22:35:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89EB7287514;
-	Thu,  9 Oct 2025 22:27:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A6542868AC;
+	Thu,  9 Oct 2025 22:35:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="BTdInd/Y"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q40beSaX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011040.outbound.protection.outlook.com [40.107.130.40])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DAB72868AC;
-	Thu,  9 Oct 2025 22:27:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.40
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760048873; cv=fail; b=DLQBbVVHrjKRR9BstkAL85YNaPvZLHx+6Jja3o/CnhlvUVuykqeUl5qSxud1McSaIEcuJCkNcSI5ism+/Bu3lr+Bv+AQbBU/bDBwX/7w+ExDs2kHWKKro3viED9q8Vopz3ULOe2vpa/4gQEA9gNCrC1wkCK651X54sf2RYeLfoM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760048873; c=relaxed/simple;
-	bh=vGLhSV9HOD4MlWjPO5ELI7rFfhHl/ceGxaektFvV2mo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=oIl25kAoJZ24YldD3T1sTYQwzSM3BO2ZX0BmUvmLbjRBBgTRGbUV30Podk90QwTa3Vd84x4IhyZCbnH2xuM4Dd++J82gf0l2q4fx7FBh8s4rbSlbtUZcN6vVII52ZUSlNjTGmdJPgYjLCGLmsfh765T6uDF6KSyszbpG8WjS/8E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=BTdInd/Y; arc=fail smtp.client-ip=40.107.130.40
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rpkTTtmDF2Wz0wueBcngOcRYtNefdTrCyWPTuvW8NRXrP7jiolpQRoGbdHDZ2pTwdmwppDOZbSxIY6giWvSRiutEajoC35ZOWqqM7A8O4/QHTdOc4MMaAUhLgfHpIT7gZlH74T0Gz4nN/AKF7SKXFzLQqAFh7Ih1sCpOpJ/Q/8OLPpSPHG3zKFgF6vK91pfincS8kwLN3ow0oH8+w9pz1YiqWaiYJlfNeFO6EJvsAolPNkkJyc8gWzpn+p+I/BedlfKWApchaJPxmVDjG+ZKUmtMaSS95CUJoiHqKDvr85F0/WW6nADS9R0is/Ysz+r0cGsDodk8JSmb8wPERjX5hA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=B2HiVBIMWSRnhCNOweRn6OKMCU2LmeoFk1QA712toKQ=;
- b=fZDwpp4HfIos348aIgYbYZaLil2LUEjDIqMgkbH69GGAUp3e6F5aYpX2Xr8QyFpW8BGjHmxHMAiFTGKSxzEAfD2YtW5BoGYNuDiOC1zxlN/IfHJoAP7Il6wnHsXPtP1BJanTB4G71rEoH4VsZVmrKyaFNOHvWzd3b3rIAe8qLoEjN3Npb4PLduuk3Wqn2xcdQ7UhGrAjqEPvloDXIVwDxrQzKnz0eBh3uiRT5u60mkgQlLEZWgaM+I7Hir1keYL1zaRu+fygQTGTrIU6QA6fe4hJnRPMPDWRodl5+QGCj68VlnjLSbCLo4pCVb/rln0hs7JjIlFMDWAEJvVrjRD6yA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=B2HiVBIMWSRnhCNOweRn6OKMCU2LmeoFk1QA712toKQ=;
- b=BTdInd/Y11P3Otih39H15yWrDbh/RVr2qRo825yMjtUh7+PznmbTPBEGAqXB3x7hmdnNbQxTuwHvuNh/27DB6UMtdeJYAnRSSCY0yUgdmn7rK242Y29eydlwYkrWZXkHyep5MaqtOMTTST/SLttxq+D9ynZCxoOWekyNjRS01zlrM9dbakI0ABH3Gx9VNGrbF7sxVPoKYXKn2sGlDrCGpvubKIMm7dpPhqp31/U7jFg4fTut8lnoZJ2seOrYJPjM3PQCfbxqV4IyZt5nJDXIDHlrXgBg9U3fIxBWPxne2CafB9uPBYcNxbOxdRhbNTgRolltSqSPzHzOYqIjIDHPnw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com (2603:10a6:102:231::11)
- by GVXPR04MB10852.eurprd04.prod.outlook.com (2603:10a6:150:225::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.10; Thu, 9 Oct
- 2025 22:27:48 +0000
-Received: from PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::21bf:975e:f24d:1612]) by PAXPR04MB9185.eurprd04.prod.outlook.com
- ([fe80::21bf:975e:f24d:1612%4]) with mapi id 15.20.9203.009; Thu, 9 Oct 2025
- 22:27:48 +0000
-From: Shenwei Wang <shenwei.wang@nxp.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CBC863CB
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 22:35:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760049321; cv=none; b=GJdSQXMGbSVNSZJWn4euuIv2oNEwcq3debT/XWQLabPB0LKGzxpb2hITSOlQgW2Fm1a97Rsn8/rYDzBDPOaO88652EuAY3bwlNFRZR1NQ5Lk4cSsurmCkJ8SVHBMbUhgSSWpGnjZbbrpXf2FmUK48sPkv384G2E4lkaYzkY6B9A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760049321; c=relaxed/simple;
+	bh=cxpNA5DjQamcNftEvxB6pspok56jCqqNj0uUfOooVr8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=E86ojp+J85OaBAkaJB21IIXcouI5rPbJW/k9U/iqM/UPvPdGgexS+RfbdcLPFSea9rkfzbWwxtkTqcYoPTZ+t4lcYfy83w8GxGTx/8D6cjKR1pYrLx6jaOSqgVSM9w7Eohu3I9/zHQhQVUYMgbcJ4usQbXFzfxuF15pRiaqcQqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q40beSaX; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b463f986f80so330421066b.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 15:35:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1760049318; x=1760654118; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mWTu8TQiZuRHgB1GXUGo29TcN0XiMZ7bJ/R8fZdV4D0=;
+        b=Q40beSaXsjflZrKuB2jr87ylPDSrrzVSzNtuHGZJxEs7Q4+nblSjgd2TphVgHP0Moz
+         f+CAXf72l+qa9tECGhzCFdUH0zFIzbNtfuvy1DyEIga+BKAe2Lv67xReOj+2lhboZB8Y
+         W7wbku0N4QXU/Lc1HAYdXp4mjLXLCoUBbT+TdYwRGxVi/nGanKpEd6eVZc4cwBIAIyD2
+         TWDDz0+jVtl6zVbfxnZAvjACd2cHs7VvobV3NhgQCyrudRDf/WFu0yYUjk+uNZG/0Igx
+         pkGlGgmTWKWt0YcgSM/KXvAJh9wyI+KMmcP86AOOupWm3XOdKEDcDgRkx1fpXXssgka1
+         oB0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760049318; x=1760654118;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mWTu8TQiZuRHgB1GXUGo29TcN0XiMZ7bJ/R8fZdV4D0=;
+        b=NUbqxVsMopvScBdof/hcmIaZiynIgNB2kiNwmvslydfnC5Tl6TfB9HWmzj+uCPwi34
+         YKE2zEWZ5fi+qL8FZ5wHpm/zlrMVUYAP4//FFViQ3xri6UEJQ1TQByU5zJj25cRqTRUX
+         Pwctkuxs16iv5qcji4M+3VJ7uV2w4QgvykSe7OjbadQ/s/bD0eG3qxeXZRlAtEOTxTHB
+         klwwLBPGY0w6DDGuabY5dQkbTcXifVJCnkLX/8jCS5n/XftliUVJ3b+dZQ/bkIERPh6H
+         IKWOiu6KKIFOT30aYQvaQm8FMi445ZI597cr25xdqHPbBC4sxKm1aTiKHLRKv5GuIfJi
+         J8jg==
+X-Forwarded-Encrypted: i=1; AJvYcCVpc9NzvaTkP/WONrCZrHISfWY+4UVKyx6m/HVvULYqHx9Vua3ZqSQ9wIn8uXSKvEXlhqBhqe2E08Sc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy44agq7C2BZlIk5KJ6Hhy1arLsTeCaXCAdPm7eUj1zdz4GZ49u
+	3K5Ux6A9bVGA604JSlIj86YC98uVppGUqO6M6B1CWc217Hj3nQcMQb6p
+X-Gm-Gg: ASbGnctvZLDdg1PWQnWPfwE9CDYwzAmSLE61kmjWpTWIPBCV8N7aaran562O92NgJyI
+	CFpz5U7o71UplNAiI1MimvJ9t4Tn4MKkEQjqxTes3EGxNq9grWhaLFxSYQooJBgx09Xve7pgGr4
+	2leVP2pRTNP9k4GlF6WQCHwC0RHL6gx9eSoJOT05LPirSEus9GQ/wfXnn5GPEE8F9+JsO+9hNsS
+	8bpTDNuoBs3WTn6zGXtaXB5szdnAe0rXITVzVwk+A5KNDvWoL7FroBO0yupComi/8Y0jyGMypLu
+	WZn4ZFqJdM5DMbUea9V1dHGXQfBXKvN7UbKByqLw3xUwANtZIUt8Q5YY+Ts8hBjABdCoHBouUKG
+	oThdTcBPCdjFGuEC4kUVupgtFel8SHpGKRfZ8DiwOu0/6RdzJWA==
+X-Google-Smtp-Source: AGHT+IHAbkVf7T0KiGC5vS8hyWfQ+8wkd5YDjN9kv+xf5lsOzv51+LjDmnqyTit4TD5wYPvsNvnZtg==
+X-Received: by 2002:a17:907:2da3:b0:b3e:e244:1d8 with SMTP id a640c23a62f3a-b50abaa44c8mr956762566b.34.1760049317698;
+        Thu, 09 Oct 2025 15:35:17 -0700 (PDT)
+Received: from builder.. ([2001:9e8:f121:c116:be24:11ff:fe30:5d85])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b55d5cad80bsm74383766b.16.2025.10.09.15.35.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 09 Oct 2025 15:35:17 -0700 (PDT)
+From: Jonas Jelonek <jelonek.jonas@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	linux-remoteproc@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-gpio@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-imx@nxp.com,
-	Shenwei Wang <shenwei.wang@nxp.com>
-Subject: [PATCH v3 4/4] arm64: dts: imx8ulp: Add rpmsg node under imx_rproc
-Date: Thu,  9 Oct 2025 17:27:16 -0500
-Message-ID: <20251009222716.394806-5-shenwei.wang@nxp.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20251009222716.394806-1-shenwei.wang@nxp.com>
-References: <20251009222716.394806-1-shenwei.wang@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: PH0PR07CA0089.namprd07.prod.outlook.com
- (2603:10b6:510:f::34) To PAXPR04MB9185.eurprd04.prod.outlook.com
- (2603:10a6:102:231::11)
+	Jonas Jelonek <jelonek.jonas@gmail.com>
+Subject: [RFC PATCH v1 0/2] add support for splitting GPIOs
+Date: Thu,  9 Oct 2025 22:34:59 +0000
+Message-ID: <20251009223501.570949-1-jelonek.jonas@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9185:EE_|GVXPR04MB10852:EE_
-X-MS-Office365-Filtering-Correlation-Id: 890e5fc4-d07b-444c-dfa2-08de078313b6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|52116014|376014|19092799006|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?zlmBenf4MceaoBUnTUdWk5KgPxfWVw1AVFVoz6s4k5Xj2ciOFPsqE4k54MXA?=
- =?us-ascii?Q?C0HpTm89pQysY4ShiVjn4+3IyVrY1geTRRDavedjV03p35iSLWNQ7nNK3xK5?=
- =?us-ascii?Q?G5F+jueGP3NTWSTYA1Wxn7JruO+xoQxrlx1G+NNKZ9yxbfpKUHLzBwlAGVJR?=
- =?us-ascii?Q?oJl/oySXRK+CW3sEL51vfJtGWElB4wcW7Oms2TjUMmZLBdPkw7e/bopcn0DD?=
- =?us-ascii?Q?HA0JpfYJCfVQKsKiBwjxgqoEIG9JmZ0Un5jBH4Jt7qUMa80sV4gomXg4Aye6?=
- =?us-ascii?Q?8iDinadjNnILqsXb4Dhxe2Xpd553KipmR9Uhmcw0NNZeEgC1axUFu9y6HlIc?=
- =?us-ascii?Q?4KQkg0IUpZE9vj90HbUuZgpPSoaeejfnat7PZvUthgeCI8Wa2M3JQfMpUz6s?=
- =?us-ascii?Q?PuUi38XWdOMv60kTUF00DNa8l0iDpG1mJv3gzMQdhOpCENeN225w0zqiYjgk?=
- =?us-ascii?Q?hBFmhlU2aP/aXwNChXM+0OHWp4bFx1MDXbakz3TEVvhATOuYitsCo5t5xvbk?=
- =?us-ascii?Q?C9MYDQtSknPgxqJ0RX4SteDIVspDH6SJIREV1B1+p9WWQxCNVFkm2OBd4Cgy?=
- =?us-ascii?Q?l9/zRh1HhtHo0/qLUhra8hST/kHL0exnY4iBDfzOYbrqCW0k/Jj44zgp9jGs?=
- =?us-ascii?Q?U3cPZ9Dycxe9JTYrIZbwFyfR1t3re2OyxQ3hxG7fRNs5B5W/fQ6RZVZvqg7A?=
- =?us-ascii?Q?lF3nE2TCKL1aMN6l5ZFGXpVT42vw0jOS2LJ8LlsDbTlkri5uNnwkjmhZlqSk?=
- =?us-ascii?Q?vQh1SMTjJdNHOAnSBxIJcnSGhvdYk0+7rjg4oARE+GEY+lgQwxEqFZaX5E+u?=
- =?us-ascii?Q?XQvoKXRCex3AYkVtv0zX5mW7KaiEXjtBXUko9RCqMiJkYNH8w58Iv0IMUUUV?=
- =?us-ascii?Q?+yx9Nve71Khjr67q8iPFBFjo1sOItUWykf58SUICk/Mgi4aIX3RqSjFFtjEa?=
- =?us-ascii?Q?R9AD3E/gdRBBj2npLhRgZ4xVLrFoaUo7ozvST6S21zAStHSk80qU3CE2146B?=
- =?us-ascii?Q?QaosBeX/7nWP2v8BNxJv8dZTj4sVQXaImBmnFrvzdnVtsaFqVUR8S6xBh4mB?=
- =?us-ascii?Q?Vikow3WEfd+e9iZCjDkq4Uxa8ZOUam3cvnXP7uq/1sDLs0GCNyhS/m/hYdDS?=
- =?us-ascii?Q?/j1guq8KTY47lhYbNdyd+yoCvTHj0Ey3pFGf71X+cgVKQB6JRotOdLy9jyNU?=
- =?us-ascii?Q?vr1p1bSU/iZUJReXCpKa1a2wX2bhFV0z1sj8/VlRs4ppKbT4Nt/XejW6kGna?=
- =?us-ascii?Q?tWu4e0zyQrcQcVSJ4LHpKel8ARvFbfTT+gvjJ9MkJtXapr7LY5/WhXt6Bhdl?=
- =?us-ascii?Q?ZY59Yk8vofvsBICwepzUFY0NNE5zuevVHzpQ2H20QtbLFitrvyGin+FvR89g?=
- =?us-ascii?Q?n1SnX+RJ1OOMQvk5pM/K6/Bz5ccDog7U2xKNd7OLob8Ty9gaoC/k5mBSddmZ?=
- =?us-ascii?Q?NaUxCu75rOAbH8R6xYrF7aw48GQEk+JC4ujtWNDSusIHhuGtXgKNoI9RTX1b?=
- =?us-ascii?Q?FLUlV0OnL0Lqd+k/rHYvojNYemtp6/Uuz6x3?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9185.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(52116014)(376014)(19092799006)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?zOXkxLI99vbPrSAFBL7HcjN25hDCu+qDrRHfXlN9J35gOdMuYAD4Nm/aWXLK?=
- =?us-ascii?Q?mwfdyMyli3TdiFtVcbU/lkXsNkf3APWrFDBB3GSUNAo9QAlG/Vwf3FHqPswI?=
- =?us-ascii?Q?lwwzz3CTBLGf9mLIoJMUOfWc3kiWJJLzZzsRckylxYXW1dXcGxdNhlcpeo6d?=
- =?us-ascii?Q?byPH7QCrtOUpKhmdRbOhvc007CHpq8Xo77Bf2nmiOCKlaMUOcvX5r65citlE?=
- =?us-ascii?Q?dMlrW2q7BhJ7LtjJ5H24tya6pGiJRLImpcaAMriq6a3rq0zYRpXf3hL3I/Uf?=
- =?us-ascii?Q?kjX8aDr9pHqcTfVJJEY7IEB5f8UdqpRRt5lAKFVVGD0N4gmIrjIugx6FTiCK?=
- =?us-ascii?Q?0NeFKwUqyPDxzkSK8lwcoturbZ7Ak+tLnzY7AZchWJVPBc5uUuwKTb2eK4ws?=
- =?us-ascii?Q?oX0Hn63dOcD7U/0yOGW/Sl0z2jBoAg30/JkyX0qcvSQoI7yIqa2rTCShvRUr?=
- =?us-ascii?Q?MBfNWXfU0ov/Uboxh9SD2ynvpf6/lEVHqAsGNyNop0WFH27+RQK7UV5lrEzL?=
- =?us-ascii?Q?WpTUazWT0DlmGGYtry5Em5FjvCoDXvfaR6uuPk7E8Wfxp1aJ6fxdYREMdnhQ?=
- =?us-ascii?Q?0RCguyP63KF0LfczpVb8LqThJWK/dGUTJrNb3zRQzJQWEnmf/YZ/Z2NuhOqR?=
- =?us-ascii?Q?051/+KaM7aze7tbPSkiETZ/l/HZRl8F99FpgSTJZO3h/YukptT1JIDoetcww?=
- =?us-ascii?Q?wwVePE2dwmqIwT+TDpZr7iAJ7J/jHCzeL4Cdg0qqlys2hCffgaUhbDEYqhCT?=
- =?us-ascii?Q?Wp08/uP7FcHJwGFNc3Ylj3lh2eDVb9/YZXsuueidsszA0KH4z8aSqq0ygdQu?=
- =?us-ascii?Q?AMNSxaUq2A8UytVCd8wVwBMdRUmj3IAMkS5EW2Am2moHlkRE95g3uHU3I9Lp?=
- =?us-ascii?Q?p2idw5Of7Qs+WIE8oKwVE+QxBoOpuOW+NxWoB7qAPh7u+zLc+vzurAiy4on2?=
- =?us-ascii?Q?FkZaHzrIC6mEJ8197YFH+qkqzgx7Nrxd/MCoRdAgZ1vBxtkONiOveOyNcIj9?=
- =?us-ascii?Q?EEdVMFNCzj3amH88TH6D3kXZwKcjOczJMHOuQ9WMHjo3QZkNRa7aevD70nI3?=
- =?us-ascii?Q?gnuYrvMPbM1gR6iAukAtuPdekK+IhUDoMUEf6/Hj+gTi9Ivx9w7Ty7wM5gbO?=
- =?us-ascii?Q?VWHnx/Xu4g4ZrlNrl8L62R9tSRJyHbWZVOwB6UBTgBAQZEJxc9Q6ZkNFGWIr?=
- =?us-ascii?Q?gP14uk/I+p6dTuf5mWbotqv7R4RWOgHMOT2zv+BOCPKLD6iN7D0VL5Kv4egF?=
- =?us-ascii?Q?m3YL2VXjJIkOCkal4R6qa/8dCc2iHYZuLT0MHsbjfs3+IixQ5Vx3a8waGMRI?=
- =?us-ascii?Q?rkrqIVwMHp1dTi7XK9y95RrfiD+VDTjgXU/kvhjQIxAI/oxcOkHZvQLvM8Hn?=
- =?us-ascii?Q?c6E/pCaOhHx+tdXl302incpOWqsSV8Iz+5GtBSMGM71kzaxPDtWsfwuX7R/N?=
- =?us-ascii?Q?/kjhhJTBdRzD5yAFjkQUBiDQ3PsB7RKzJza2dJLgOwK9z6WNrKL3jxPg4ImV?=
- =?us-ascii?Q?Nb+DrjwfDmHJXvj5BeeioGt2dwOP5/AIhMwvp6o2IoHVtDJCIRL5pQFVhTpd?=
- =?us-ascii?Q?oqnolv6WdHMUHOfTrlfa9pdq1g5xBatClWQy9D4O?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 890e5fc4-d07b-444c-dfa2-08de078313b6
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9185.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2025 22:27:48.7615
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: O6p3qdSEINp9TNzu7melef6kVSNXLVLJSAzsK6JgNoW8SnHdWDapLhh10gom5fQy8rNNrkNvqTbUeGc4QszFhA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10852
+Content-Transfer-Encoding: 8bit
 
-Add the RPMSG bus node along with its GPIO subnodes to the device
-tree.
+Hereby I propose a new type of virtual GPIO controller and corresponding
+driver for splitting GPIOs using a multiplexer for different usecases.
+Existing drivers apparently do not serve the purpose for what I need.
 
-Enable remote device communication and GPIO control via RPMSG on
-the i.MX platform.
+I came across an issue with a switch device from Zyxel which has two
+SFP+ cages. Most similar switches either wire up the SFP signals
+(RX_LOS, MOD_ABS, TX_FAULT, TX_DISABLE) directly to the SoC (if it has
+enough GPIOs) or two a GPIO expander (for which a driver usually
+exists). However, Zyxel decided to do it differently in the following
+way:
+  The signals RX_LOS, MOD_ABS and TX_FAULT share a single GPIO line to
+  the SoC. Which one is actually connected to that GPIO line at a time
+  is controlled by a separate multiplexer, a GPIO multiplexer in this
+  case (which uses two other GPIOs). Only the TX_DISABLE is separate.
 
-Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8ulp.dtsi | 27 ++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+The SFP core/driver doesn't seem to support such a usecase for now, for
+each signal one needs to specify a separate GPIO like:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-index 13b01f3aa2a4..6ab1c12a3bc1 100644
---- a/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8ulp.dtsi
-@@ -191,6 +191,33 @@ scmi_sensor: protocol@15 {
- 	cm33: remoteproc-cm33 {
- 		compatible = "fsl,imx8ulp-cm33";
- 		status = "disabled";
-+
-+		rpmsg {
-+			rpmsg-io-channel {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				rpmsg_gpioa: gpio@0 {
-+					compatible = "fsl,imx-rpmsg-gpio";
-+					reg = <0>;
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					#interrupt-cells = <2>;
-+					interrupt-controller;
-+					interrupt-parent = <&rpmsg_gpioa>;
-+				};
-+
-+				rpmsg_gpiob: gpio@1 {
-+					compatible = "fsl,imx-rpmsg-gpio";
-+					reg = <1>;
-+					gpio-controller;
-+					#gpio-cells = <2>;
-+					#interrupt-cells = <2>;
-+					interrupt-controller;
-+					interrupt-parent = <&rpmsg_gpiob>;
-+				};
-+			};
-+		};
- 	};
- 
- 	soc: soc@0 {
+  los-gpio = <&gpio0 0 GPIO_ACTIVE_HIGH>;
+  mod-def0-gpio = <&gpio0 1 GPIO_ACTIVE_LOW>;
+  ...
+
+But for my device, I actually need to directly specify multiplexing
+behavior in the SFP node or provide a mux-controller with 'mux-control'.
+
+To fill this gap, I created a dt-schema and a working driver which
+exactly does what is needed. It takes a phandle to a mux-controller and
+the 'shared' gpio, and provides several virtual GPIOs based on the
+children nodes defined for the gpio-split controller, each with a
+mux-state which is used on access.
+
+This virtual gpio-controller can then be referenced in the '-gpio'
+properties of the SFP node (or other nodes depending on the usecase) as
+usual and do not require any modification to the SFP core/driver.
+
+--
+Jonas Jelonek (2):
+  dt-bindings: gpio: add gpio-split controller
+  gpio: add gpio-split driver
+
+ .../devicetree/bindings/gpio/gpio-split.yaml  |  77 +++++++
+ MAINTAINERS                                   |   6 +
+ drivers/gpio/Kconfig                          |   8 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-split.c                     | 210 ++++++++++++++++++
+ 5 files changed, 302 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-split.yaml
+ create mode 100644 drivers/gpio/gpio-split.c
+
+
+base-commit: bc061143637532c08d9fc657eec93fdc2588068e
 -- 
-2.43.0
+2.48.1
 
 
