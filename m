@@ -1,131 +1,139 @@
-Return-Path: <devicetree+bounces-224800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FEBFBC8136
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 10:41:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55270BC8169
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 10:43:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 68B274E6D20
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 08:41:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 317A9421596
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 08:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4691C285052;
-	Thu,  9 Oct 2025 08:41:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1AC92D2493;
+	Thu,  9 Oct 2025 08:43:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Sd1CQWr6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from Atcsqr.andestech.com (60-248-80-70.hinet-ip.hinet.net [60.248.80.70])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FE427A903
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 08:40:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.248.80.70
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FB6B2D2388
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 08:43:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759999270; cv=none; b=OCWmq9V/cVKr2LDx4qlzYQN6vN+FsXXrUzVpUe9itNq7XSyvESFk+lgCu/3I1YU6ibN5gDEdek0mtkzynyFJMcf/+cPn6FC7Q0Ys75GZ2s3v3kNY5jcb4Zl7mmH/41HJSRh6hkZMaEDyzNIfnbmZ6OXgTrDXEj1C7cpS2piKCTg=
+	t=1759999419; cv=none; b=Gh7Cam+kLvHGh4M8HmLDrxtLHUs6+gNYVU0UvcuAqRl6AJerPxdPAHxzlu2Z6OPjSSKRN/v8p1p3hTQjqaVL/aAwxKvjntTkBDmlq6v4XSMG5sEL3oZkv3d9VX1NYrdSummpAYXUsfS6NgO6f4rp957PNqt5NRIigSYnnh/hhwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759999270; c=relaxed/simple;
-	bh=W7x+h72s6okMJy3IGI82ingmLsVQ/dT+JfTQPdne0SI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R/+Sc1aqD5wu7Uts65Kq/Sn+v2RXEgYfsYuuO0Sr1J6+feIQL+ML5F1X6m9NValpRJnYaAGn34RoxegPnGEl03zA/fHAfOLNtw4hi07ZLrVtpEuBSaK12feZmVKJfqbgUIiq95IgtkFZ92uGkgAartO7IHsmHBbAHsGhiVBM/tU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com; spf=pass smtp.mailfrom=andestech.com; arc=none smtp.client-ip=60.248.80.70
-Authentication-Results: smtp.subspace.kernel.org; dmarc=permerror header.from=andestech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=andestech.com
-Received: from mail.andestech.com (ATCPCS31.andestech.com [10.0.1.89])
-	by Atcsqr.andestech.com with ESMTPS id 5998eeRF076050
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Thu, 9 Oct 2025 16:40:40 +0800 (+08)
-	(envelope-from cl634@andestech.com)
-Received: from swlinux02 (10.0.15.183) by ATCPCS31.andestech.com (10.0.1.89)
- with Microsoft SMTP Server id 14.3.498.0; Thu, 9 Oct 2025 16:40:40 +0800
-Date: Thu, 9 Oct 2025 16:40:40 +0800
-From: CL Wang <cl634@andestech.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, <conor@kernel.org>
-CC: <vkoul@kernel.org>, <dmaengine@vger.kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <tim609@andestech.com>, <cl634@andestech.com>
-Subject: Re: [PATCH V1 1/2] dt-bindings: dmaengine: Add support for
- ATCDMAC300 DMA engine
-Message-ID: <aOd1CMMZRGSqkSLH@swlinux02>
-References: <20251002131659.973955-1-cl634@andestech.com>
- <20251002131659.973955-2-cl634@andestech.com>
- <20251002-absolute-spinning-f899e75b2c4a@spud>
- <aOUIfaZY7-eUYoOS@swlinux02>
- <734de17e-a712-4eb5-96fa-b7e75f86d880@kernel.org>
- <aOXW7HUMeOyABuUG@swlinux02>
- <dcd14886-f2cc-41ec-8bb5-9cb5ed50c452@kernel.org>
- <aOZokztqpHHX0JPq@swlinux02>
- <aabf395a-eef2-49b2-9938-b7bb8aa838c8@kernel.org>
+	s=arc-20240116; t=1759999419; c=relaxed/simple;
+	bh=oOmLRNO4yxmZr9GGl+AUsKcQlyU35gqHSeHKaWhtPwQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rC+WUlIt+ZugVxmY2/2WovRCT1TF9m+YldYAm0xncNR13Bf+pMZaCIQA9YS1JuFv6W7ZtzrpGkVptXO95tJ2ix/BHNPWLHTDF4v0OeNpBclwriwmuvK1IuSUlzobjeYDmc8YSpA82H7r4VO+fLD/bXh3aNCPlW0+oV4FVTTEfxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Sd1CQWr6; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-71d6051aeafso7391917b3.2
+        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 01:43:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1759999416; x=1760604216; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oOmLRNO4yxmZr9GGl+AUsKcQlyU35gqHSeHKaWhtPwQ=;
+        b=Sd1CQWr65JLYzY9EVKrEmyokZCi5vMbs6EjxpG+7QH6YGT3tDWbcej0s4cZgoeqQuS
+         JarC6ZTWUL+kjcHPGBPAUN8Ppb1QBAPtlSxQfjpNRglhJxMMypRIPnB6rYYKLQvZjKiN
+         y72xO5wzZc7AAEZk+IBKqraBb7+6wC4+Imv7nbjEtku9PO6PAKcYEb1vRHgafdvgR9U2
+         dCS1DB4VwniCeBOnc8XLvNltoejI4ecSgvo1PpGG1tSl6PrUxnfallIONRoeLTNOEzbX
+         FvDKAaN4VsNHkaBPKCCqR4S+rBMFmJJlJYY4H+OBfaZXGyq7o1ppfnH/vgJ3jgRm0T4d
+         tz9Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1759999416; x=1760604216;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=oOmLRNO4yxmZr9GGl+AUsKcQlyU35gqHSeHKaWhtPwQ=;
+        b=CcFSW1GN6pEJj+6dhj4Tz32PKMFRlQaq9IGdEOFdEoR8q5wCqCtQfmHbPToUQIJ5LN
+         FfT5IB4Fm8rj3cHntMn2b+bSZG1I4bd71onuvupZ7lqs30lKXr+N+6ji9iPN5ckMPpFs
+         qc2SVNXFZsZ4hmYTRVA90iqa6sL8JLn/AFONMVeJ+SAwGyIv1NlW+tox/kxvQqIY6y+U
+         QELiPPROKT5oEfF0SFZHYU+U2upu/leF7kz8mZsplpWO8FMJtqXxU16EALlW53byFyey
+         2uQN/LK/eUitbP3pteo8ROgjA9NuCejrz7ekGQSdw1FtCVSzGkbYtc/BvH+PRXw0Cb2V
+         pFjg==
+X-Forwarded-Encrypted: i=1; AJvYcCUcV+IPK7awjX7rj87SwX6tH2lMVWSH9N4MN4clKhCwO5Xx1VAvrwOa591FWkJ9ARVj5O/+hegxJh2x@vger.kernel.org
+X-Gm-Message-State: AOJu0YxmVSV5GlvNwJPzT0kCAu4sCuvr6t+UPfp1Naca0lP2nKj/PPiW
+	WemZ21S/Cl27xvN+t9+YFn0ID5wWDE0YxfG5pz2iv4j/Gu21TzkrQuyzfN/XMDTeYu+es2igszD
+	IHS0TLrYmY15kmzoek+wWrKeQSxEob9U=
+X-Gm-Gg: ASbGncv27L590Xof7ucpxiHXNlc3kHpoH/ufWosQ4wc6/hlsaDBsgM136bXKew19BE7
+	GsOLVyElYYABmrUakXKO+bShsJYXUo5g8hQJCX6Nv1sCLMJKVdsdgu9ko4URidv/WljfiR7siQs
+	27oO6LRzB/LhkxX0Szr5iaUnSo/c9GZ44Obz25GyFNZ9SklpQiOEeurqe3eUDDlGi8OenCs7q0I
+	KHU31wKIGpNiXPndR1muWXplrI+20jjb2mO9Fbdbg==
+X-Google-Smtp-Source: AGHT+IHqqt7JHMFlL5DEMxX8/4fuWke6o7x715NV65SuEycRYAp5q8y3uA9SPr+Cccah/gPAgRpT2LfWBS7AmxUm0/4=
+X-Received: by 2002:a05:690e:146:b0:635:4ece:20a9 with SMTP id
+ 956f58d0204a3-63ccb91d5e0mr4410660d50.46.1759999415603; Thu, 09 Oct 2025
+ 01:43:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aabf395a-eef2-49b2-9938-b7bb8aa838c8@kernel.org>
-User-Agent: Mutt/2.2.12 (2023-09-09)
-X-DKIM-Results: atcpcs31.andestech.com; dkim=none;
-X-DNSRBL: 
-X-SPAM-SOURCE-CHECK: pass
-X-MAIL:Atcsqr.andestech.com 5998eeRF076050
+References: <20250918152830.438554-1-nschichan@freebox.fr> <20250918195806.6337-1-safinaskar@gmail.com>
+ <CAHNNwZAzecVcJXZmycX063-=p-M5jVkfStfgYVKJruOFo7y9zg@mail.gmail.com>
+ <CAPnZJGDwETQVVURezSRxZB8ZAwBETQ5fwbXyeMpfDLuLW4rVdg@mail.gmail.com> <CAHNNwZC7gC7zaZGiSBhobSAb4m2O1BuoZ4r=SQBF-tCQyuAPvw@mail.gmail.com>
+In-Reply-To: <CAHNNwZC7gC7zaZGiSBhobSAb4m2O1BuoZ4r=SQBF-tCQyuAPvw@mail.gmail.com>
+From: Askar Safin <safinaskar@gmail.com>
+Date: Thu, 9 Oct 2025 11:42:59 +0300
+X-Gm-Features: AS18NWA7xuLtf9pobQHoPGHI9uL9SjsnEaZg-EuuD52zBO81KbUszIYBPPZ5wRY
+Message-ID: <CAPnZJGAp-wG+9wDmmisfpxvFbRtXkG-RipAuZe=fi1BWy-3G-Q@mail.gmail.com>
+Subject: Re: [PATCH RESEND 00/62] initrd: remove classic initrd support
+To: Nicolas Schichan <nschichan@freebox.fr>
+Cc: akpm@linux-foundation.org, andy.shevchenko@gmail.com, axboe@kernel.dk, 
+	brauner@kernel.org, cyphar@cyphar.com, devicetree@vger.kernel.org, 
+	ecurtin@redhat.com, email2tema@gmail.com, graf@amazon.com, 
+	gregkh@linuxfoundation.org, hca@linux.ibm.com, hch@lst.de, 
+	hsiangkao@linux.alibaba.com, initramfs@vger.kernel.org, jack@suse.cz, 
+	julian.stecklina@cyberus-technology.de, kees@kernel.org, 
+	linux-acpi@vger.kernel.org, linux-alpha@vger.kernel.org, 
+	linux-api@vger.kernel.org, linux-arch@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-block@vger.kernel.org, 
+	linux-csky@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-efi@vger.kernel.org, linux-ext4@vger.kernel.org, 
+	linux-fsdevel@vger.kernel.org, linux-hexagon@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-m68k@lists.linux-m68k.org, 
+	linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org, 
+	linux-parisc@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-s390@vger.kernel.org, linux-sh@vger.kernel.org, 
+	linux-snps-arc@lists.infradead.org, linux-um@lists.infradead.org, 
+	linuxppc-dev@lists.ozlabs.org, loongarch@lists.linux.dev, mcgrof@kernel.org, 
+	mingo@redhat.com, monstr@monstr.eu, mzxreary@0pointer.de, 
+	patches@lists.linux.dev, rob@landley.net, sparclinux@vger.kernel.org, 
+	thomas.weissschuh@linutronix.de, thorsten.blum@linux.dev, 
+	torvalds@linux-foundation.org, tytso@mit.edu, viro@zeniv.linux.org.uk, 
+	x86@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof and Conor,
+On Mon, Sep 22, 2025 at 5:29=E2=80=AFPM Nicolas Schichan <nschichan@freebox=
+.fr> wrote:
+> > Then in September 2026 I will fully remove initrd.
+>
+> Is there a way to find some kind of middle ground here ?
 
-Thanks for the feedback — both comments are very helpful.
+I still plan to fully remove initrd in September 2026.
+Maintainers will decide whether they will merge my patchset.
+You may try to convince them.
 
-After considering the binding guidelines and your points, I will update the
-binding to use only the SoC-specific compatible string.
+> I can send a patch for that but first I need to sort out my SMTP
+> issues from the other day.
 
-To clarify, the DMA controller used in the Qilai SoC is based on the ATCDMAC300
-IP core. Following your suggestion, I plan to use only the SoC-specific
-compatible string as shown below:
+If you still have mail issues, consider applying for @linux.dev email,
+they are free for Linux devs ( https://linux.dev/ ).
 
-properties:
-  compatible:
-    const: andestech,qilai-dma
+Also, I just tried to test whether your use case is still supported in
+mainline (i. e. uncompressed initrd with root=3D/dev/ram0).
+It turned out that on modern kernels you need to enable
+recently introduced CONFIG_BLK_DEV_WRITE_MOUNTED to
+make this work.
+So, make sure to enable this when upgrading kernel.
 
-I can prepare a v2 patch if this SoC-specific compatible string looks fine to you.
-
-Best regards,
-CL
-
-On Thu, Oct 09, 2025 at 08:48:00AM +0900, Krzysztof Kozlowski wrote:
-> [EXTERNAL MAIL]
-> 
-> On 08/10/2025 22:35, CL Wang wrote:
-> > Hi Krzysztof,
-> >
-> > Thanks for the clarification, and sorry for the earlier confusion.
-> >
-> > To elaborate on the rationale:
-> > "andestech,atcdmac300" is the IP core name of the DMA controller, which serves
-> > as a generic fallback compatible shared across multiple Andes SoCs.
-> >
-> > Primary compatible (SoC-specific):
-> > andestech,qilai-dma refers to the DMA controller instance implemented on the
-> > Qilai SoC, following the SoC-specific recommendation.
-> >
-> > Fallback compatible (IP-core specific):
-> > andestech,atcdmac300 represents the reusable IP block used across different
-> > Andes SoCs that share the same register map and programming model.
-> >
-> > Keeping andestech,atcdmac300 as a fallback helps avoid code duplication and
-> > allows a single driver to support future SoCs using the same hardware IP.
-> 
-> No, it helps in nothing.
-> 
-> 
-> >
-> > This approach follows the DeviceTree binding guideline:
-> >
-> > “DO use a SoC-specific compatible for all SoC devices, followed by a fallback
-> > if appropriate. SoC-specific compatibles are also preferred for the fallbacks.”
-> 
-> No, it does not. You just ignored completely last sentence.
-> 
-> 
-> Best regards,
-> Krzysztof
+--=20
+Askar Safin
 
