@@ -1,238 +1,147 @@
-Return-Path: <devicetree+bounces-224739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A132BC7663
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 07:06:39 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F015BC7687
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 07:12:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 171403E4C6E
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 05:06:38 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id DB8FB343BD8
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 05:12:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E915214A64;
-	Thu,  9 Oct 2025 05:06:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4F68261B76;
+	Thu,  9 Oct 2025 05:12:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YDh69t0+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E4e7agll"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DB60156661
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 05:06:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78F8425D53C
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 05:12:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759986395; cv=none; b=EEBIX+Mf2dKEFY7c27ntPzBsJdmaEwxIqzdql3wBoZOMUC7MXfrWhffUgIvjq2m7PuileESwuW/Cnz0OoTQ9JmwcTycAz1ra+4YlUURFwVGknHHAeCtbQzQvDdRS2qonYluFahj0N/p/9Eqvsh1EoWdLUMwMJUrasQa4c+fQjYw=
+	t=1759986747; cv=none; b=aBjlXDT7UxXVTViYtzhal545X6XhCUOw+3ZdzGWRjtIgL03gZ3RmAfwKxAXPJdSDbxOZFYcmSJu9YiDIMr9gNAvV1OuK33UoStgmWaO+QhvMrJUxIx6dyKazcXVgVwzVhMc4H57HcZvvx2EQQ54e7hPhLv1ZTkgfLC+r3dhJB8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759986395; c=relaxed/simple;
-	bh=KGYbVj0SYA7csaFCm338RExp7YkFD+VQLtFHDm1WmW8=;
+	s=arc-20240116; t=1759986747; c=relaxed/simple;
+	bh=g69ct24MmjxArPvb4htIE2j+DUcuAxYXbKaKt9nNwNo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=G8WiYYHQ0EoXcnCvYR2fuhk+fepzogfxz2P1wQwsjWA4m9ckYakwJwlkHmku3QwyQ+MpEaJLlJPIgVt5P65jd1zSEAabY531OzZxkXZJnx85RfWNYajTQccnW6iMVJBEgrXiLLYb28KT//lytsmmj1wE9RgRPqplWvVJa+sMA/4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YDh69t0+; arc=none smtp.client-ip=209.85.128.49
+	 To:Cc:Content-Type; b=BnLjxkwK8C4xsVTbnCuNsI+XhkqqQqD3zwNyZnRK0sUw7JEhdBYbSzG7Iv3YKKg89OEiJYqhwbrhm3o8jmRYvNZORjOBBCQBYFrQKoJFM3CG1EkkzNBdONX7bJxmyp9N7v0PXYG4eVlTcAmCD4/Mw80cuLO/UhQht051wV19FAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E4e7agll; arc=none smtp.client-ip=209.85.221.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-46e3af7889fso2494375e9.2
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 22:06:33 -0700 (PDT)
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3ee12807d97so616840f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 22:12:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1759986392; x=1760591192; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1759986743; x=1760591543; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CdHEjQxG+FatWNW5/zKqLPCIUyKLAYeWhQuCe1gPWoU=;
-        b=YDh69t0+rmwsfWzTffPUN//wbJVma9c3310fGP1Bhbvb0WWNeI3A90enu9hpgTl6to
-         CJqDUF2juBWsjfl+o5oTmqlYFfrhJV88DDgmYK+Yjft07zF+jDYYh1q01Ord54hz0y2l
-         DW9yoVUy2uNH9fxMalRPW4FSj7qledjQ88fMKaMsx6Dbl6+AZhRLdixDgA6Jb6tOlbSJ
-         Qn/gtToySWed6AQwe/EhGiv1xRIfZgFreAcFUlWaKhOm9FcNfXKzpQ2fMM31RzlN11LD
-         dWQ618/qYs3T1NPfZM2JVeVB2DHpWWaxFKFWDlr3B8FHoQIC0a0f6Ysjbx/3FzbOUk3a
-         HuMQ==
+        bh=MAc4vwDFuA0RvRFYPmaQPlYUcz1xA/Dd48r7PtXPvic=;
+        b=E4e7agllQnLM6hFBvGfLWoi/8M+39pIb1nkfi5LO3p+AxVNHgLR3GbCculbNlqweyb
+         4csUgn9whveHADhFW0tUQM9mCbCOcCK6H6q7uInewWjCoOXIqxDYzSO5FyOYIadOWBBC
+         9PyZ467fiM+2RJUi0rrIUTwVkf+QbHnmn+EXvQUjbwD4XHDRN+fO/VmWhunTjNK3ZZLG
+         0P72nmZo1zatv4WJd+GMDiFFNY33N/KbfJG/7KB4nEJe4HSU7+GKkVWy+SEwTa6FQORx
+         Ye+hZboIXtSW8y7MHp5jrGq1aKr7qk0EGQch15JzDrYsq6Le0rMB1csCg0FvPfyJktNT
+         Tjug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759986392; x=1760591192;
+        d=1e100.net; s=20230601; t=1759986743; x=1760591543;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CdHEjQxG+FatWNW5/zKqLPCIUyKLAYeWhQuCe1gPWoU=;
-        b=cOEXEwDt4CYHsdc5+8c1fXb/mF2IX03V6gyJh8kax0JLDrfqOIEZDUvjPr4YZCZuo/
-         JQS2vG7Jq1TdqZxOduhwdpbQW/XEj3qUPm4XRCWF9di1qsobrapD6J9NPLMAZZ9FrVgL
-         m2xEYucrm8Sg6+FVnbWzNnPGpz4ZU9Rm4Ux7gk7qikwBed8X6F2z6TQZbVv5SOTHP7e3
-         +ig9Ho4lwgMvnetegtupmW5Pgr7DqsPbjAerqHAQZeTfVOtSoT0TCdWkId6yMCrI8dow
-         WJb4rPnPdTCXfHy/D91XNKd5sWLLdLwg2d4kL3/11dbqs7XlCqOXtgIIbRgi7i0eWEDw
-         btXA==
-X-Forwarded-Encrypted: i=1; AJvYcCUnxSBKr/XRgVVit9jOYYLTjMo8VjSPNdlmp5dnRYBj4Tt76bv3Ubcom5PuMaC2ubiV4JjuzN1AEqIA@vger.kernel.org
-X-Gm-Message-State: AOJu0YwSA+25uHR5TIWFrIWPiLKz+BMruO7aZjnGt2vuoTA5CTXK6/V1
-	9d3B+Hqf+S7M/5KbnejOcXbCdivA1DisoXBFp5J7oXmYat/DE3QCtX2DAcojtGDc3dCvvAcwwGD
-	yA/PDxqHjorTTYuOx13R2qmF2y5Wz2H4=
-X-Gm-Gg: ASbGnctdB00E8GiaFVdfCQVmeTDbEt+MZD+HO643ud5WG+LOa8hLcPC13PfuetGT4m1
-	BoKiYl1Gq05J/eHl2ShpjVm4+S3dVGWAdS5CXeSxXh3cVwCXlFdDAV3bzTvDdUiboAS2/N4MbsG
-	QEcGKeaCjliy2hVyAYDxs/7HBMaUsmav+hS+aIkj1PZOdcpaP/m/hRLcFN7hI99NODZmaEIGlz6
-	WCM58ELp7Fa//nPGXtEXijg5FPqkX84
-X-Google-Smtp-Source: AGHT+IHqYRmivewqb9zg+yu8zGgOx+vqqkeXoxUzMI4NUKSxwIhgIh4uZTenWgZghGln5muMkEwQ0EmS5xQOqziJeM4=
-X-Received: by 2002:a05:6000:603:b0:3ea:4e8b:c96a with SMTP id
- ffacd0b85a97d-4266e8e64e4mr3654211f8f.57.1759986391521; Wed, 08 Oct 2025
- 22:06:31 -0700 (PDT)
+        bh=MAc4vwDFuA0RvRFYPmaQPlYUcz1xA/Dd48r7PtXPvic=;
+        b=qovJyYh6Ujk5uV2eHiIAiYG6kzNfGhaM0NWfkkd8+nm/uyEwiS5K2JmOGiWGzYh3fF
+         SlB7/mygeTcyjrPtjSDRaA7DlCrKC8NWU96JtxydeR6KNkzW+gKdLb3l+X+F/JNW7/xm
+         aQyJpmuGLMvQ8L9fVXeo8wj+gbTYiTfRiK9rD3SphxcZJkKdMye31xglEEsL88X7dYFR
+         BgZysfjpw3CR0zaAJKdZ1QIIUx/kPl1zxVkjApbEKu6BIR0zbPUEMh+DFOjdfaDADtW8
+         FYVYb/2D3R8ikc3tQEz9kmoZHqXE54VcefQEqwua3EihKUYjmP9qGtAV2JMLwsAcyP0u
+         RIew==
+X-Forwarded-Encrypted: i=1; AJvYcCW6rdiSu0KYG1vEOeCdR2ADoYPou/2OGIyyZ4/PnbF7X5WKEsRIqwLVntVEZ9PTXeG5PynznhshhUhn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxyRZIhGUjvrVyReQhcX2DSfKhZ5XjTgsquDwDm4dIyBin/GLuS
+	aeEIu3lCmmFrP0QcfnCcXCGGdkIirQfweg391UDurFr41U4vTNY+4i+3nXe1pP12JXhGgnwDkll
+	0YTAwP71QSobs0cE+a2yRCr9Dk+BzuMQ=
+X-Gm-Gg: ASbGnctFL9upDa0g3e98tbOGDNxbYplYi24rf2tnnoviK7vKL6sjgSOy0ERHEBcBKrI
+	IT2FZzf8LxcPg4TJfdIMraZP8qKJdEGjaeibRXnmbFVYrcRaYfQ3+upBWo8F2EcGe7fuNewJi9N
+	5JfinNbBGXNuJL4q5rw/H8ZSuK9RCDwudW1gN+6G1rX3o/TAZ9SI2nH08X8ICu44N4Z+53AmKTM
+	qba+MFm1vmWZGMRhQ1M1MDitZQgMj2I
+X-Google-Smtp-Source: AGHT+IHEqPFGpsLkjdTJExInkzeCUrYeoBDzsTotN3s9CHFAoYRfgbeWdXnEHXE7zwgYrarYKck5hazoT/ajbub9quM=
+X-Received: by 2002:a05:6000:1a85:b0:3eb:60a6:3167 with SMTP id
+ ffacd0b85a97d-4266e8f7f02mr3364005f8f.32.1759986742670; Wed, 08 Oct 2025
+ 22:12:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251008082800.67718-1-clamor95@gmail.com> <20251008082800.67718-2-clamor95@gmail.com>
- <20251008-safely-reach-9274474a2ec8@spud>
-In-Reply-To: <20251008-safely-reach-9274474a2ec8@spud>
+References: <20251008073046.23231-1-clamor95@gmail.com> <20251008073046.23231-12-clamor95@gmail.com>
+ <20251008-craving-composite-81aa70b6e882@spud>
+In-Reply-To: <20251008-craving-composite-81aa70b6e882@spud>
 From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Thu, 9 Oct 2025 08:06:20 +0300
-X-Gm-Features: AS18NWC-fQyHK-rMvVxkxqV6S0I7hbIVFXE8xA55zUXu7V0ibTLESXEQf_mVWkM
-Message-ID: <CAPVz0n2pbAS3Qjm9WQGvcuJhkNnyjGCyJtVi=VMuUgPoQNE+wA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/7] dt-bindings: display: panel: properly document LG
- LD070WX3 panel
+Date: Thu, 9 Oct 2025 08:12:11 +0300
+X-Gm-Features: AS18NWCooDACEZg9v1dc4kKxxOAalz7xHeMkJMNqgQiJE_XE0BU4PgbUW_JYKFI
+Message-ID: <CAPVz0n1OEA=WHTzBtVBLQ=6vTAwG_uP1tC3Vbrb67wZDUtyVYA@mail.gmail.com>
+Subject: Re: [PATCH v4 11/24] dt-bindings: display: tegra: document Tegra132
+ MIPI calibration device
 To: Conor Dooley <conor@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
 	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Douglas Anderson <dianders@chromium.org>, Sam Ravnborg <sam@ravnborg.org>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org
+	Sowjanya Komatineni <skomatineni@nvidia.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Prashant Gaikwad <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Mikko Perttunen <mperttunen@nvidia.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, =?UTF-8?Q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, 
+	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, 
+	Diogo Ivo <diogo.ivo@tecnico.ulisboa.pt>, Aaron Kling <webgeek1234@gmail.com>, 
+	Arnd Bergmann <arnd@arndb.de>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-staging@lists.linux.dev
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-=D1=87=D1=82, 9 =D0=B6=D0=BE=D0=B2=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 00:11=
+=D1=87=D1=82, 9 =D0=B6=D0=BE=D0=B2=D1=82. 2025=E2=80=AF=D1=80. =D0=BE 00:14=
  Conor Dooley <conor@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
 >
-> On Wed, Oct 08, 2025 at 11:27:53AM +0300, Svyatoslav Ryhel wrote:
-> > LG LD070WX3-SL01 was mistakenly documented as a simple DSI panel, which=
- it
-> > clearly is not. Address this by adding the proper schema for this panel=
-.
-> >
-> > There is only one user of this panel binding in the mainline Linux kern=
-el,
-> > which is the Nvidia tablet Tegra Note 7. Its panel is broken anyway sin=
-ce
-> > it cannot initialize properly if the bootloader does not leave a
-> > pre-initialized panel. It also cannot suspend or re-initialize properly=
-,
-> > since no DSI configuration is set and it has a loose regulator which
-> > relies on an always-on property rather than being hooked to the panel
-> > where it belongs.
+> On Wed, Oct 08, 2025 at 10:30:33AM +0300, Svyatoslav Ryhel wrote:
+> > Document MIPI calibration device found in Tegra132.
 >
-> I think this is a reasonable justification. For my own enlightenment,
-> what happens if a new kernel uses the old simple-panel devicetree?
+> Could you explain why a fallback is not suitable? The patchset is really
+> too big for me to trivially check that the change is correct.
+
+First of all, this compatible already exists in Linux kernel, I have
+just documented it to satisfy warnings. Secondly, each Tegra SoC
+generation has unique set of registers which should be configured.
+They all differ, hence fallback is not suitable here.
+
+> With an explanation,
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 >
-
-Since regulator framework provides dummy regulators and compatible
-matches, driver should probe correctly. Panel should still work with
-unpatched device tree until disabling unused regulators/power domains
-kicks in.
-
-> > Tegra Note 7 device tree is adjusted as a part of this series.
 > >
 > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > > ---
-> >  .../bindings/display/panel/lg,ld070wx3.yaml   | 60 +++++++++++++++++++
-> >  .../display/panel/panel-simple-dsi.yaml       |  2 -
-> >  2 files changed, 60 insertions(+), 2 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/display/panel/lg,=
-ld070wx3.yaml
+> >  .../devicetree/bindings/display/tegra/nvidia,tegra114-mipi.yaml  | 1 +
+> >  1 file changed, 1 insertion(+)
 > >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/lg,ld070wx=
-3.yaml b/Documentation/devicetree/bindings/display/panel/lg,ld070wx3.yaml
-> > new file mode 100644
-> > index 000000000000..0a82cf311452
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/panel/lg,ld070wx3.yaml
-> > @@ -0,0 +1,60 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/panel/lg,ld070wx3.yaml#
->
-> Could you make the filename match the compatible please?
-
-Filename matches compatible, -XXNN after lg,ld070wx3 indicate
-revision. I have found at least two more -sm01 and -sh01, but since I
-was not able to get datasheet for them I cannot say for sure that they
-fully compatible with this schema.
-
-> With that,
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->
-> Cheers,
-> Conor.
->
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: LG Corporation 7" WXGA TFT LCD panel
-> > +
-> > +maintainers:
-> > +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: panel-common.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - const: lg,ld070wx3-sl01
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  vdd-supply: true
-> > +  vcc-supply: true
-> > +
-> > +  backlight: true
-> > +  port: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - vdd-supply
-> > +  - vcc-supply
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +
-> > +    dsi {
-> > +        #address-cells =3D <1>;
-> > +        #size-cells =3D <0>;
-> > +
-> > +        panel@0 {
-> > +            compatible =3D "lg,ld070wx3-sl01";
-> > +            reg =3D <0>;
-> > +
-> > +            vdd-supply =3D <&vdd_3v3_lcd>;
-> > +            vcc-supply =3D <&vcc_1v8_lcd>;
-> > +
-> > +            backlight =3D <&backlight>;
-> > +
-> > +            port {
-> > +                endpoint {
-> > +                    remote-endpoint =3D <&dsi0_out>;
-> > +                };
-> > +            };
-> > +        };
-> > +    };
-> > +...
-> > diff --git a/Documentation/devicetree/bindings/display/panel/panel-simp=
-le-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-=
-dsi.yaml
-> > index 9b92a05791cc..f9f1e76a810c 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.=
-yaml
-> > +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.=
-yaml
-> > @@ -42,8 +42,6 @@ properties:
-> >        - kingdisplay,kd097d04
-> >          # LG ACX467AKM-7 4.95" 1080=C3=971920 LCD Panel
-> >        - lg,acx467akm-7
-> > -        # LG Corporation 7" WXGA TFT LCD panel
-> > -      - lg,ld070wx3-sl01
-> >          # LG Corporation 5" HD TFT LCD panel
-> >        - lg,lh500wx1-sd03
-> >          # Lincoln LCD197 5" 1080x1920 LCD panel
+> > diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,teg=
+ra114-mipi.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,te=
+gra114-mipi.yaml
+> > index 193ddb105283..9a500f52f01d 100644
+> > --- a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-m=
+ipi.yaml
+> > +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra114-m=
+ipi.yaml
+> > @@ -18,6 +18,7 @@ properties:
+> >      enum:
+> >        - nvidia,tegra114-mipi
+> >        - nvidia,tegra124-mipi
+> > +      - nvidia,tegra132-mipi
+> >        - nvidia,tegra210-mipi
+> >        - nvidia,tegra186-mipi
+> >
 > > --
 > > 2.48.1
 > >
