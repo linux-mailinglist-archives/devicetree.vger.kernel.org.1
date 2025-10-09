@@ -1,108 +1,167 @@
-Return-Path: <devicetree+bounces-224917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224918-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69916BC8D73
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 13:36:31 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A013BC8DCD
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 13:41:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 23BE33C4A4D
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 11:36:30 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id EAC1B4F91B6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 11:41:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEF632DE71B;
-	Thu,  9 Oct 2025 11:36:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59F192DE71B;
+	Thu,  9 Oct 2025 11:41:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j+LDkEct"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UhcDCo/V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA6E72750E1;
-	Thu,  9 Oct 2025 11:36:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FB2E2750E1;
+	Thu,  9 Oct 2025 11:41:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760009788; cv=none; b=cGoMy2ZavTacgsIMK18NYFYgZNwRL5onvdugft1PsIina9hx8rXa2rhycjOfzEhsFr5l6l6ZsbRXVTj3whEBcN6R9ZVUy8jfB9RZXUWuVlCx6PF65wJ2Gc6YIfoJXEi5Sa17yVeiY7H3mfnofQjFzCpuuAHNs9CBS1Ck6CKmC1Q=
+	t=1760010093; cv=none; b=JkXWavYI1nr38OoCW3xE5FgkmMfWr/1IzWyeRtM+mPawIUUV67DCugIhzcAT0jKTe7g4r6vS+75vPUaVAGtakPjzVsSdiS4irYXf7/UHbTig1DMYokzY3RtSuKM8YUDuQEbGjTiHE4TXER8alDcqUwJwbrz8Po8Aa6oIOvx9OdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760009788; c=relaxed/simple;
-	bh=LM2kR1/qlr8ZJiLJSckq1Nic36O9Dv79atR/L8G+TQg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AvkkxUKwe3OWSiW4tGkgBklM6Ua+CyjRFMiJH47XIrP0lpDKeV3nA3W56Gv84Y8UU2OU3AjoWOHJpVPNoNbixg6agf8XEbfWZY4wIkwVmOQzDFgSmFkncQ9lQulCDn+E93BO/3/Qt0b4+MQCMXA96cr/4pyk07GFHxkPqbSDm+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j+LDkEct; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE2EBC4CEF5;
-	Thu,  9 Oct 2025 11:36:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760009788;
-	bh=LM2kR1/qlr8ZJiLJSckq1Nic36O9Dv79atR/L8G+TQg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=j+LDkEctQMOSOOgF/iDGMu8W+Qsqv6AsTdUB8znUcRt99m4PQIwzVTglWVd/glmyc
-	 2Gz6yh0T2cZ1EjKdfhi2SMd5jBHSglFPr3UJ95hHQdWd9ya6jpl9WGOKzK/VEYd/r2
-	 pWdRuZIqG7pTs8sOehuy2xzKUjrX7WpiIfLAiB3q3cY0zUkHCGzTlAkEYzXGDCsRRF
-	 yiIlLJ1CeBBvELzoYHPFR74SFwBNVFN+60mQpLr73wKFyBsM1wS9n2XX8uwocRaFtU
-	 HLbpnSOJC81dmWl+0Y8Wym9d4uzK4EfeKMeTDJHopSZEg8zwv6lrrUIOY/3NbVA+A4
-	 Q8wdVNGSAC0bQ==
-Date: Thu, 9 Oct 2025 12:36:21 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Le Qi <le.qi@oss.qualcomm.com>, Srinivas Kandagatla <srini@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kernel@oss.qualcomm.com
-Subject: Re: [PATCH v1 1/2] ASoC: dt-bindings: qcom,sm8250: Add QCS615 sound
- card
-Message-ID: <a4016b56-a997-45e9-aa5c-36a005362afe@sirena.org.uk>
-References: <20251009023341.27277-1-le.qi@oss.qualcomm.com>
- <20251009023341.27277-2-le.qi@oss.qualcomm.com>
- <c469ad4b-9dc0-4ded-9736-1856e44d21e3@kernel.org>
- <93491a16-0585-4c24-8ba5-0e4222efb5da@oss.qualcomm.com>
- <b8b70358-7cca-458e-aeb9-fe9de8b51e03@kernel.org>
+	s=arc-20240116; t=1760010093; c=relaxed/simple;
+	bh=J6gOtlXNGiadx1WV9Jrsfa9A9Mo7GEanyAvz8BWuZfg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DMWh1W1XrZ4DT5Ykf82l3rxkhN6Qyu4KzTA1hYXi5vdkQo7paRNKxX/FIjFzYmGmYn/jskhbT+hfuSEyIi0McbF0Qit5yaPgtDPuxXX92dYiFMr4t7fOvpkWnq2DE/y07w2afkjM1Ps+ilyZNN+J+DnwZjmsQ6souNhTA7Jgtrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UhcDCo/V; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1760010089;
+	bh=J6gOtlXNGiadx1WV9Jrsfa9A9Mo7GEanyAvz8BWuZfg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UhcDCo/VFw8EUeX1askLaZJwGhGmzayOECoCTQAA+mbSvRoMXXroPrLvNH5qJpgwP
+	 kLbBG5Az1XLGWkRh7gGcB/KsOgRB03/Yd70YwobnJPGeqXyifcNWQYfsswsyqjIkg5
+	 92e95GjlMMqLWysVaZEsYYKeaoZjw6CH9mmcwAnlpdQ34+i8e+6fl2AgAa5agnNO4M
+	 k7PbDB5JqdcRyNjr9HzCvLLahDKAQoz6ryFPZvjGy4+IVhmmIakoRrPY0xR887d07v
+	 Xv3DSx/v+FyQdOolGjE4C+ItL6S6GZx44Q6+/EsZeNRynx9hp8cF8+u+5qsGwzn4CR
+	 YCth/5VZ/s6Iw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 94FBB17E0A30;
+	Thu,  9 Oct 2025 13:41:28 +0200 (CEST)
+Message-ID: <6f1f74b3-ac2e-4ea6-abce-14ef12ea10dd@collabora.com>
+Date: Thu, 9 Oct 2025 13:41:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="CQOyP8+wEwqLYXbo"
-Content-Disposition: inline
-In-Reply-To: <b8b70358-7cca-458e-aeb9-fe9de8b51e03@kernel.org>
-X-Cookie: Today is what happened to yesterday.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 12/20] soc: mediatek: Add programming flow for
+ unsupported subsys ID hardware
+To: Jason-JH Lin <jason-jh.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>,
+ Nicolas Dufresne <nicolas@ndufresne.ca>, Nancy Lin <nancy.lin@mediatek.com>,
+ Singo Chang <singo.chang@mediatek.com>,
+ Paul-PL Chen <paul-pl.chen@mediatek.com>, Moudy Ho <moudy.ho@mediatek.com>,
+ Xiandong Wang <xiandong.wang@mediatek.com>,
+ Sirius Wang <sirius.wang@mediatek.com>, Fei Shao <fshao@chromium.org>,
+ Chen-yu Tsai <wenst@chromium.org>,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-media@vger.kernel.org
+References: <20250827114006.3310175-1-jason-jh.lin@mediatek.com>
+ <20250827114006.3310175-13-jason-jh.lin@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250827114006.3310175-13-jason-jh.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+Il 27/08/25 13:37, Jason-JH Lin ha scritto:
+> To support hardware without subsys IDs on new SoCs, add a programming
+> flow that checks whether the subsys ID is valid.
+> 
+> If the subsys ID is valid, the flow will call cmdq_pkt_write_subsys()
+> and cmdq_pkt_write_mask_subsys() instead of the original
+> cmdq_pkt_write() and cmdq_pkt_write_mask().
+> 
+> If the subsys ID is invalid, the flow will call cmdq_pkt_write_pa() and
+> cmdq_pkt_write_mask_pa() to achieve the same functionality.
+> 
+> Signed-off-by: Jason-JH Lin <jason-jh.lin@mediatek.com>
+> ---
+>   drivers/soc/mediatek/mtk-mmsys.c | 12 +++++++++---
+>   drivers/soc/mediatek/mtk-mutex.c |  8 ++++++--
+>   2 files changed, 15 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-mmsys.c
+> index bb4639ca0b8c..0c324846e334 100644
+> --- a/drivers/soc/mediatek/mtk-mmsys.c
+> +++ b/drivers/soc/mediatek/mtk-mmsys.c
+> @@ -167,9 +167,15 @@ static void mtk_mmsys_update_bits(struct mtk_mmsys *mmsys, u32 offset, u32 mask,
+>   	u32 tmp;
+>   
+>   	if (mmsys->cmdq_base.size && cmdq_pkt) {
+> -		ret = cmdq_pkt_write_mask(cmdq_pkt, mmsys->cmdq_base.subsys,
+> -					  mmsys->cmdq_base.offset + offset, val,
+> -					  mask);
+> +		offset += mmsys->cmdq_base.offset;
+> +		if (mmsys->cmdq_base.subsys != CMDQ_SUBSYS_INVALID)
+> +			ret = cmdq_pkt_write_mask_subsys(cmdq_pkt, mmsys->cmdq_base.subsys,
+> +							 mmsys->cmdq_base.pa_base, offset,
+> +							 val, mask);
+> +		else /* only MMIO access, no need to check mminfro_offset */
+
+nit: fix typo -> mminfra_offset
+
+and also it would be nice if you could also say in a comment that all GCEs support
+write_mask_pa() without subsys, but it is less performant - so for the platforms
+that do support it, we prefer using it.
+
+Of course that has to be properly reworded, but that's the idea anyway :-)
+
+after which
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+> +			ret = cmdq_pkt_write_mask_pa(cmdq_pkt, mmsys->cmdq_base.subsys,
+> +						     mmsys->cmdq_base.pa_base, offset, val, mask);
+> +
+>   		if (ret)
+>   			pr_debug("CMDQ unavailable: using CPU write\n");
+>   		else
+> diff --git a/drivers/soc/mediatek/mtk-mutex.c b/drivers/soc/mediatek/mtk-mutex.c
+> index 38179e8cd98f..9b22d7e09d99 100644
+> --- a/drivers/soc/mediatek/mtk-mutex.c
+> +++ b/drivers/soc/mediatek/mtk-mutex.c
+> @@ -990,6 +990,7 @@ int mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex, void *pkt)
+>   	struct mtk_mutex_ctx *mtx = container_of(mutex, struct mtk_mutex_ctx,
+>   						 mutex[mutex->id]);
+>   	struct cmdq_pkt *cmdq_pkt = (struct cmdq_pkt *)pkt;
+> +	dma_addr_t en_addr = mtx->addr + DISP_REG_MUTEX_EN(mutex->id);
+>   
+>   	WARN_ON(&mtx->mutex[mutex->id] != mutex);
+>   
+> @@ -998,8 +999,11 @@ int mtk_mutex_enable_by_cmdq(struct mtk_mutex *mutex, void *pkt)
+>   		return -ENODEV;
+>   	}
+>   
+> -	cmdq_pkt_write(cmdq_pkt, mtx->cmdq_reg.subsys,
+> -		       mtx->addr + DISP_REG_MUTEX_EN(mutex->id), 1);
+> +	if (mtx->cmdq_reg.subsys != CMDQ_SUBSYS_INVALID)
+> +		cmdq_pkt_write_subsys(cmdq_pkt, mtx->cmdq_reg.subsys, en_addr, en_addr, 1);
+> +	else /* only MMIO access, no need to check mminfro_offset */
+> +		cmdq_pkt_write_pa(cmdq_pkt, mtx->cmdq_reg.subsys, en_addr, en_addr, 1);
+> +
+>   	return 0;
+>   }
+>   EXPORT_SYMBOL_GPL(mtk_mutex_enable_by_cmdq);
 
 
---CQOyP8+wEwqLYXbo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Thu, Oct 09, 2025 at 05:15:12PM +0900, Krzysztof Kozlowski wrote:
-> On 09/10/2025 13:01, Le Qi wrote:
-
-> > Yes "leqi" is my full legal name in latin transliteration.
-
-> Heh, this email is addressed from "Le Qi", so I am confused now.
-
-This is a relatively common thing with people who use scripts that don't
-have spaces or capitalisation - they easily get dropped when converting
-into a script where those things do matter, they often aren't that
-important to the person who's name it is.
-
---CQOyP8+wEwqLYXbo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjnnjQACgkQJNaLcl1U
-h9ANRAf+IQJHgSG9CAQ+IuFBFO+3jbKQF/2j+2lGT5HIzWHSZudnPydO7spmnsa8
-KoSJR8RbHtiJmL1yvpFSpKCtNbR9t9oPxJN3S1sX3zdSEUDw2Oo8ErBQLADyZQ9J
-4Dped8RDemfJtmjTt1D++3LiZfkUM0zjw9nRvUvvWfH11SfGLZ6FwSRPti9ymSUq
-sT8gwHG/AEu3hVmzUls72QhR0nQMlnEqCGeg6vMfTg7hTj8rSpK9NYZ/dwediNF2
-XL2/WlO3GcLyovEArYE6UYtq7ufF+jNR9ldndmzu27viE882+iOCx0emUZJGxBJj
-8tZU8TSwXV1eZKYnM+FDamSAb2Fgkg==
-=0hO3
------END PGP SIGNATURE-----
-
---CQOyP8+wEwqLYXbo--
 
