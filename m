@@ -1,194 +1,298 @@
-Return-Path: <devicetree+bounces-224725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id E480CBC7440
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 05:05:49 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6E00BC7452
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 05:10:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 86D844EB5EB
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 03:05:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B43054E3F3B
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 03:10:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB3E7214204;
-	Thu,  9 Oct 2025 03:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E412222157E;
+	Thu,  9 Oct 2025 03:10:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ND241/W6"
+	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="Nu26ZMW0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from OS8PR02CU002.outbound.protection.outlook.com (mail-japanwestazon11022092.outbound.protection.outlook.com [40.107.75.92])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17B8F212B3D
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 03:05:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759979144; cv=none; b=W+gOaPxbUbvM9bAzL32iWTw4xroaswWW7yrciqPQiBVqeUad19Ttqd+voyDJKGgv4fBR0oz+HjapJNjGDjjNZg8fq3Dkq+O8umweWbpQmgNkogWcyRNIuGsqlutj0XETRBoy6MFkZEjEZkd2O7hK9Qi43KRRvDPNgJNwzJ+89vw=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759979144; c=relaxed/simple;
-	bh=adDtwrABqJItP/LyGiv+12nt0zW4ItDbkMVAAXVZyZs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pne+bTtfrieVQW9QiIZuQBsLcf+7ozxGaOkuRhP40xi08+DXHX8VPIOcXcmUkzrhijqlRHInljNFsb5Mc57k7isQRj2EvCeVzWp+QT78g3ZqggFuX7CZMVbcf+XrN2c9yEHO74r2/3FF06oY0yoNgsOcdKMq7peMVWoVttqCfAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ND241/W6; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 598I5Nc7001495
-	for <devicetree@vger.kernel.org>; Thu, 9 Oct 2025 03:05:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	maw0nAtOoBVHhqJ9ExerU0/ECtcBryU6vpXt6hYX7LY=; b=ND241/W6roZpTLMY
-	8lUSgg8HBk+LobuHZI6DurU0YtpM1lVcdu49kvkvHfia6vg8KMA8LTNv3d3fLoPv
-	aPzhoQTGWwc48lgdBV8VZdRWVP7PV9IAXi4Sis6ZiHTejJG/NeQRhTOz9AL1aQ3O
-	VupH+Bq11JzqA/S/qA7U6ibACD0C7zXGqjrDNT+2JZH8SeAHUoZoKmFtznMRFeQV
-	Mdl95/Z6iEk/6mIGhBvYshkpFOJq2xEZh3TOyWpFiWxj50RQDZZoO82QHiQ7kRj7
-	pVKCNC5sVxd/HpRbB3TuKdunx8/LE7v9Gng5KMFxvZpnMwOjpWskaXCg6VHdYJiv
-	KTmPdQ==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4ks9nq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 03:05:42 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-27ee214108cso16424325ad.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 20:05:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759979141; x=1760583941;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=maw0nAtOoBVHhqJ9ExerU0/ECtcBryU6vpXt6hYX7LY=;
-        b=Fj1chnbcD+Nn8DbuluwskEjGFCe9aZbs1WAO4xza6WkW5RRmVhbF8ZcQwezBda7zmN
-         2U+XXjmUWkc8usJRJ7vOL768OTfD1Pat318JDFnC3Jr7mw79R88nb5ITUonMjs5Wf9bZ
-         UQYIczk6algpE5WQIFt6GsfpOcYKWm1WYm7iMMyD9MqoEr2R/6pyB4hxfPwBELiBaEv7
-         w7zGYvSj2m4X1Z3l6JjSBY0BYixfvbNzDAltQ5Mu3VuKNzmDVUEY0zlT6lBehloxDYFn
-         25HgCGOPbM0g4c6l3v3wVbOL8X/9/r9JfxnbWWiPqp7kA1Xnk0mlM3nc4T3Rc0S4RyoJ
-         kdFg==
-X-Forwarded-Encrypted: i=1; AJvYcCUuB4606wsOzuH+gxucTJLxkOCOZj8X+02ICcb+d+gMXMbQgNJ3v2zy4Qbst9daLskPhXcW8xZDsQT1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGp+8MWdi4fbcsqzxBFVYOtFoHtbpQBl58B9Xuqsmc7XkPtSwh
-	4jNInEdgvi8JdxhBLXETFgcXZRCDohnAB1axS+K+547mzjyO5vTXIh0jpxc6x8TKEKtd6jnBRU6
-	GwgnMx2Z3pl4i1649gzEHSra0ingm4ipB66qcaeBV8/2rtmmQ3R/M2fO7UToPKzvr
-X-Gm-Gg: ASbGncv0nVpdBOqjpk9IzbFoxMWGN8vgyUOv9LJDK1zKx56qL+o9M+TplkR59Vi4V6d
-	PWf3DYSdKmankPYv7f6hpJnjfX7CB/b7b7bcwHjZFT3upW/mAzrecF50rm7QKHRkJcaFDV0nmPR
-	eRbkepvlKv8Riq+hjbE/C1fP+YW8JTwmRXqn5lBHn3VNxg8DTbyGIyXtDyi3XBKU7vOuC8EHYU6
-	/+bBB5SpstrZdNzbgCL/ZZ/IX8OpHINPr0MclQrpEzhIeNFPBbOlt8JjDThRgMQbstnOa2C4QsP
-	GKgjymcL19c+8i2FhZIoC1mLZALIBI5sniryIVjhBCBGbtCW/ZQ49Pc13QRtIrHuZ3x7VtRWBcj
-	cF+PO
-X-Received: by 2002:a17:903:37c3:b0:269:a4ed:13c9 with SMTP id d9443c01a7336-290273ee214mr75265165ad.30.1759979141296;
-        Wed, 08 Oct 2025 20:05:41 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEnBY9dBUVR4JO7ffBEWJAcyiS5SqEqUqPfk7J2CB3UN/A0lC50/P3L8vjezocgdBSm41IWow==
-X-Received: by 2002:a17:903:37c3:b0:269:a4ed:13c9 with SMTP id d9443c01a7336-290273ee214mr75264785ad.30.1759979140837;
-        Wed, 08 Oct 2025 20:05:40 -0700 (PDT)
-Received: from [192.168.0.166] ([49.205.248.131])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034f56c04sm11854475ad.110.2025.10.08.20.05.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 08 Oct 2025 20:05:39 -0700 (PDT)
-Message-ID: <1151394a-5f76-5ba8-bd5b-0635a9a57be6@oss.qualcomm.com>
-Date: Thu, 9 Oct 2025 08:35:33 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 635A921FF36;
+	Thu,  9 Oct 2025 03:10:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.75.92
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1759979412; cv=fail; b=uef5JwjaI6roLp5pZE1ku79lzsnc3YHWrnJfJQ5W5WI4BbAzaQtL77B7MNA5FHhWt9xKxjA/p8wiMJBbpbfyotqcImy0/MUZ7d4MOKdQ1eRkmYJzy6UTn0+152VMBcsulw0bMi6m/ui249rJlUTqaEzu9a2KUrR8xgIhvkra2u0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1759979412; c=relaxed/simple;
+	bh=WmiJARq0wwXKi7Jq0+SlrOJHB66rdQsFBWGrpDF1rWI=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=atoutY38gNk6Iwb0an3RdARFhRbJzKYfNpkBWBX/Y+X+WTa6g/yz6kwluaKGrKv/vZ0F0+cVCqEe6HSJyvFmEzVAruFC2xc0fFZzWUXPfyeWGqwON44ywmOr+/xqOhpOILvbE9lGFHepfywbrNYgtYmp0GXZRI51JJmwu5Jim3A=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=Nu26ZMW0; arc=fail smtp.client-ip=40.107.75.92
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amlogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=H+qpWWEl1dYUW95HdB856a0FWtLZg9IAJUYiSaI5E+4xqzyBjAuILxm2IktFvinNAyP6gYhvix9L/WQk6Yyep5zOwCPJz6N1mbU36SGVJjNazMzH/upMb4HWubM2jommOZ3Ilptk8X0NimS2m5jNzb+B9vXcSGFE0xjAoOaoz9wUbkxa7pd4ScRAuI96zvyASO4yt5aqBbTWcV/Z8rJRMAmNIkxUA0ik6nBCQrS2is42n1mdtuSgNilvs5RoYwrcE6uq3mXYXXnpGPGQcyoVdz6Aua4uyo1BJ3G63hxdNFHNLUs0zQbwcu3Hyn6HpU26qg/8dDa4VPOYdLUHgvjPGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1CaaS0u2cQxB3qPzZbea7DZU/CU8srWiTDq/tpDFReo=;
+ b=WR9dsDSOPQPvoa93wxP6SyHqvpwnnEXrd1kJ3Qaewf5SU836I7jXb0vg2BPnnpvmjhjtGALUgRaIvGYkyT9x1Tc/ATIeyCIKMNtrc2Xot/8PM6XoDP/ReX/5WwphlSjn6Xn5oUvxkxK1CtMFlll6TOxeVvDTouUeUVYkmRz527P5r61g/R1qSUwrUQ3GtbNmeKLAem1/vGHwBt0G1EVfMqqmll/qQbGzVsEJTStrgu4quOzbt/8Ojxw/fFRUqaB++I57Ye0FgXVCJhqZZ11B038g+sm5Mk6DEG0z7F7ML0229h+MsJtpxdl2Vyyr74t5qBbuutYczHJDN6ZgC+nblA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1CaaS0u2cQxB3qPzZbea7DZU/CU8srWiTDq/tpDFReo=;
+ b=Nu26ZMW0iegVrBVhUbibKZ6SEb5KfKWOkvVlhTuyVtoaKNxGf6GN38Bun8mt/U/WWAFYtLG0/A3OSr3TGdWRWKGOIaytVmStgrIgwvXz+BEMmgk+8NgVwvw1kQFHZiFG81Kjy+frwsvoFZd5nviclji1/kRUp+DbgWye11O52K3eQdf0FxKYxzro8Ln5LPae81hcIlBlXNp4HQYHnu/A+/3w41cY8XnHeTph6HFth61Ih2JNLcAtYuhZWc3PvAElrJSDrEWHG5dDZz328E4jC3CgtFHb6NkxOpBb1//qjoXZlVQhS6rzG6gkCnv/TTSpJrr/slCz3wSUVZRx0ke/uA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
+ by TYSPR03MB7542.apcprd03.prod.outlook.com (2603:1096:400:413::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Thu, 9 Oct
+ 2025 03:10:02 +0000
+Received: from KL1PR03MB5778.apcprd03.prod.outlook.com
+ ([fe80::e1e:5c95:a889:828e]) by KL1PR03MB5778.apcprd03.prod.outlook.com
+ ([fe80::e1e:5c95:a889:828e%5]) with mapi id 15.20.9203.007; Thu, 9 Oct 2025
+ 03:10:01 +0000
+Message-ID: <b8105d25-112c-4406-9f3a-8fbbd0754b26@amlogic.com>
+Date: Thu, 9 Oct 2025 11:09:25 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/19] clk: amlogic: Add PLLs and peripheral clocks for A4
+ and A5 SoCs
+To: Jerome Brunet <jbrunet@baylibre.com>,
+ Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
+References: <20250930-a4_a5_add_clock_driver-v1-0-a9acf7951589@amlogic.com>
+ <1jv7kz3w1p.fsf@starbuckisacylon.baylibre.com>
+From: Chuan Liu <chuan.liu@amlogic.com>
+In-Reply-To: <1jv7kz3w1p.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: SGBP274CA0019.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::31)
+ To KL1PR03MB5778.apcprd03.prod.outlook.com (2603:1096:820:6d::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [RFC PATCH 0/3] Introduce iommu-map-masked for platform devices
-Content-Language: en-US
-To: Rob Herring <robh@kernel.org>,
-        Charan Teja Kalla <charan.kalla@oss.qualcomm.com>
-Cc: joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
-        saravanak@google.com, conor+dt@kernel.org, mchehab@kernel.org,
-        bod@kernel.org, krzk+dt@kernel.org, abhinav.kumar@linux.dev,
-        dikshita.agarwal@oss.qualcomm.com, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, iommu@lists.linux.dev,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-References: <20250928171718.436440-1-charan.kalla@oss.qualcomm.com>
- <CAL_JsqK9waZK=i+ov0jV-PonWSfddwHvE94Q+pks4zAEtKc+yg@mail.gmail.com>
-From: Vikash Garodia <vikash.garodia@oss.qualcomm.com>
-In-Reply-To: <CAL_JsqK9waZK=i+ov0jV-PonWSfddwHvE94Q+pks4zAEtKc+yg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfXyAmIZJsct5n5
- tOSTQJDPLlU4VL9lqwqjwSdJEGmTFPC9RO7Y5vZgT0O1hM0Y7Hbrjx/XrUziR3kga8Kd1eY7FAc
- txXJeH0TDUulUA3vfrH1miVUitesDGCClp5Dq9W0yIWPpyEGRG5C+ksutV8F3o0NZ3jGkXQpj5V
- RNcgn86iD4YVOxO1dGp0pUUGiVNurY+VnYTsQbr62bpjHku8zmsukE2Kf0lk5f4MJVd+V2J+h96
- wiOWoFWjx4bkDw1ImOUsjsV4HCXgjev/psV8yWHY7otOnu3EFHE5PswkY7pCBLo59jb/V6nRHPh
- Pz8aaI5nV0ltSsxZLVRfsvcMogsPaVOxW5vMEjOF/guUfiGSJyj2TsbByOlTvvP3MTjxCRZvPV5
- HLYv1Mv2dQ+W7lct3qZt54kXIPLqVA==
-X-Authority-Analysis: v=2.4 cv=CbcFJbrl c=1 sm=1 tr=0 ts=68e72686 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=5kJkhVZBw43gkfrlxLPpYw==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
- a=EUspDBNiAAAA:8 a=sGZhk1M-rbKiZVnir_gA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=GvdueXVYPmCkWapjIL-Q:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: DtX4QeUw8pwPhBV2YTtph2YKllPYs1z0
-X-Proofpoint-ORIG-GUID: DtX4QeUw8pwPhBV2YTtph2YKllPYs1z0
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-09_01,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 malwarescore=0 spamscore=0 impostorscore=0
- lowpriorityscore=0 bulkscore=0 clxscore=1015 phishscore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: KL1PR03MB5778:EE_|TYSPR03MB7542:EE_
+X-MS-Office365-Filtering-Correlation-Id: 623a9d38-87a9-4494-c701-08de06e15610
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?dHQzejU5cFlyODFDZ05KQUVKNEpqNW9CMUJCLy9rZTErZEducDdDTXFualVh?=
+ =?utf-8?B?OUZoM2ZSLzFHVDR1VDdRZmFZVmNzcmxBL2ZxdDQwYXQrRlNCeHB5OGs4c25o?=
+ =?utf-8?B?OFhlQjRrMXJkZDUzUkpFM0wyeHZHY1hET1kwTEV6dlhzcHVmZDBWV2p3VVBQ?=
+ =?utf-8?B?RWJlSEl5aXBYRGsvOHFDSUhqNEloK3pBSDFpa0NUL2p3ZGJYeDNnb1huQWFY?=
+ =?utf-8?B?YU9tNVlncEx0R2lFd2haSTFBMEhQa2hROUwrZldCZnM5RStFK2p3UHhmTTdO?=
+ =?utf-8?B?dVcyQnIrK3V6K0YxUnNlSVQxOEZqclNNb1dQc1JXekhkNzdBdkh4eDdVRmEw?=
+ =?utf-8?B?dFgrd2M2aG1qUm1hd0JjbVBUcWNsNlBKRFFZRUxPNFlkTjY5dHA3OTE1NENS?=
+ =?utf-8?B?bEFnZlZqbStXRVNSNldFUHRoMVdNTUJlSDBKYUs0WE9jbWFuTHBUNHVYaDdh?=
+ =?utf-8?B?QzRjOGpKVXZrZmMzNVNXaFFhR3M1RUtkaHZxWUUzd0hNdUNLekJJeHN5elB4?=
+ =?utf-8?B?K0EwcjlCelErcktVVFJ3WDZVa0o2SXFsVGM2YzZ3T2FhQVZwOFhOV3Joc0Ey?=
+ =?utf-8?B?QnE5VUhvREE0NkZKVm82SXpZUmh0R2RkODNUWjVlTmdaMHJHdDRoZGZTdVRj?=
+ =?utf-8?B?c3FPN0pZTUhZSnNZV0c1clJ0SGRlYi8yUzlpdkZDTmV1YkV4K2hvUGNYdVhH?=
+ =?utf-8?B?OE1VcHlSdGoycCtjV0RDQ1B3N0loODQ4K1dacXlDOVYyMVBOQzZRWXhaSTh0?=
+ =?utf-8?B?OGQ4aGIxU1hjYk9sQjlsclAyVElST0ZhblpIMm5DWW9ZNjNWZzR6cjhqMUE3?=
+ =?utf-8?B?blJvWWQwWitKTFN3WXQ0ZUZqd0QyVCtmSTNvT3JHSEFsaVl6b0UzSFhrSURB?=
+ =?utf-8?B?ZVdvc1pvckFNMWtMdklEUGp0RlM5Q21TZkxIMGFuditFZ2RUc0ZlNUExU2Vu?=
+ =?utf-8?B?MWVyM3g2ZytCYlU3dE53OWQvejBvcnVRYTFYU0tObFp0RnRrRXVEeEdVTkRD?=
+ =?utf-8?B?enFVK1BSR2JQYmlHdkpZMUJrcUY2ZTdKQ2FYNHN5bjhZYVhDSTZ5c0hPbnBs?=
+ =?utf-8?B?VVlFSk9XRWo2cGhqZ1RNMHVQNThqSzU0T0hBZlhtcFFQNWxPUVowVkJaNDFv?=
+ =?utf-8?B?di9zMUR5Ni9LaUJlNlNjRkJ4dFNtWXFvYThxUEtQOU1UTjJvQlhjWHg5cVZH?=
+ =?utf-8?B?ODhtK1pINkxYb2JTemo3L1czZHh5YkN1UlJRSWdreDJSbEZrWEo5QlR3Um5T?=
+ =?utf-8?B?SWtVT1ByWUx5K1NVMU9aSDdXZGg0SkxYNjJhOWJTL3NVaGVUMW96UDVwbDRV?=
+ =?utf-8?B?QWtXV2F4RkRSTGVVNHljUUI1aVNtTEFMOGoyNHRjRW1jdjE2S0pGT0tMZnpN?=
+ =?utf-8?B?bmY2aURwTGhaanpRK2RXbDVGUEZxQklLbXBGUFUyN0FZcWd4S3BHMS9BclJh?=
+ =?utf-8?B?dytkc1FMMEdKei8wR0dzb3BkdWdFbVk1NWkxa3VNLy9hYVU4cXBNekMwMk1l?=
+ =?utf-8?B?NGprU2hCZGUwZUFRSStzTlFtY1pnMTU4SFdXVUJ5SWRDS1I5YXdiVThYUnpH?=
+ =?utf-8?B?QUd4Zm9tdDJTaUV3ZDRJQy9pK0JBaVpUbUNuTmRSdnpwSFUwK0ZkMHdaZWJH?=
+ =?utf-8?B?dzJualRIY3cySmY3a2dGSU9veVlpV1JSMVBiWGhtUEhDNEJEU3czVDFzbi81?=
+ =?utf-8?B?M1NrTDJWS2dYcHM2c0xFdnIrRkFuZUl4OW0rU3JUMUZhUlByRU1tTHV5TjhE?=
+ =?utf-8?B?YzlQUUt1SUdtM2pnNUtGSzBmV3AxOG5xc2Izay9kLzhsVjZUU3hXbzZiSWJO?=
+ =?utf-8?B?QVZ1aWV1blFaa2JkelRocmlXQVRJQlhwbWV2bXVSaVEvMWJyWGxDSzU3K0Rt?=
+ =?utf-8?B?VEs2RGRJa0hKdXpNdGFjKzk0Y0RXQktZcURJT0VNMjR1ZE4vY2o4UnpmMFNv?=
+ =?utf-8?Q?fY4+fLKZheeRYLUEhaWv05la45v5w/ay?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KL1PR03MB5778.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?NmFYSUVEemk5OXZUaTk3eVhpOW5DcHdmUnJWSDdtSGlvK3JtWmNqT2Q1REpB?=
+ =?utf-8?B?TkpjWWUxN2pRM0tDZ3F1Z2pkZWxLeEdzeDNWN0VkaVlOSFJYWkF0MXk1RTAv?=
+ =?utf-8?B?MC9LSXRENFJPL2taWGMrd0JZWVFqVXJNWVh5T1BZS3BxY1V0ZExUTnNkNVZ5?=
+ =?utf-8?B?QlFpSWhZQjcvV0Y3clZ6VmtGOVZKOElueVFJRVdWeXlHeFoxWEMzZmMwMEhE?=
+ =?utf-8?B?OGtHZStTVXhFbW9kNUdPNS9pNG1lYjl6YnhMUGYyNVo5NU9tdzZXKzkzeFk1?=
+ =?utf-8?B?ODl0UXdzM0dqNzR5Ky85ZFhjeTZWek01NDFWR3lGTFVvUDZqdmpMd05DbEJK?=
+ =?utf-8?B?UVRKYkxLYXB0dzVheFhka3lvL3p1M2I1Tmt0YjBydzJMK1cyWXQ1U08yYnBq?=
+ =?utf-8?B?UlZPTkN4Ukdldm1mazhjaUUyeWdLYytEcThSQU1ndWtkcEMzUHhtWDFZc3ln?=
+ =?utf-8?B?bVpEWXQ4UVgxSU9UNHFiZHlBR2tkYkcrb1l3b1Z3eWlNekwxeTIvbTZyekdS?=
+ =?utf-8?B?clkxcC9Sa0hac1k3WlE4VlpEbFl2K2FrOU1hY09Xcjg3SXRydWZTaWdkN2l1?=
+ =?utf-8?B?TWFTc3ZJVUZ3M2hMekhwZW9qVmp0UHJ0UGlDc0RXYnc4SXpEY0pXMFdyVjN0?=
+ =?utf-8?B?WHZkSjJXN0Vpd2FOUlIwN2QvQUxYUFRyRm5BaHhyNE1XeTlVR0Y1VGV3S0t4?=
+ =?utf-8?B?WS91MjZ1WGc5RWVkZW9rUGxqQXZxd0ZrN1l5aUs0VUNzMWZLeHpIUUF6ZUlF?=
+ =?utf-8?B?R2tmQmFUN0k3cDlVeEs4TmtjMjVDU04vYkRFY0Z2QmdjSWt4TlE2MVZQcHkx?=
+ =?utf-8?B?bW1jcm1XVE5NUEU5aEJOWUVITDNROXArVEJzbnpDb1hocXUzby9Ra1NuWkZo?=
+ =?utf-8?B?NExlQ2pJelJTWWJvWW9TQnBYaUtvQzVhMDk4Z1kxblN1SGVxVnNoZTQyUHhR?=
+ =?utf-8?B?bGhtSHEwSUJjYUJ0Yk9keEdYMzJ3QkNnWFFTOGdUcmI1RC9FOFhIQWdJVDFu?=
+ =?utf-8?B?eDlQL2tDME80ZGtmZnRCYUQ4YW1BYzJkMG80Wk94UkROS2NHMlE5WS9FS3ZR?=
+ =?utf-8?B?RDlPYmFJSlZnbmZOT3BBZk1EZFZCSW5lR013NHpCQmJPa3pDWTIwWHczWk1h?=
+ =?utf-8?B?d1R0MkhEUWk0d1FJRVhOS1NJa3dmYUZlZnFQSjhONWRVZUttanhQSnVGMUhK?=
+ =?utf-8?B?bE1hVVhTb0Q1cFdqZkdibGR1eWEza20rNnMyaGgxV01PamltY1JBZ21aSFRx?=
+ =?utf-8?B?b3V3ZXoxUTFFdmE1WkR1anNLWkl0aWE1OWhhYjRjYnR5dno1WS90emFMNzdJ?=
+ =?utf-8?B?UlBraFIwS2NqVTZXTnBWOTR1azI4dnpLWERlc1RuZThRdThBYWZQL0lXWmFn?=
+ =?utf-8?B?ZUJyY0lGZStzdmlraU5ybWxraG91bTN5Y0FiMkpNYmtNQTN4bHhhNUZJSGZq?=
+ =?utf-8?B?dW5OUHdqTjBWcllSNDl2SXdmTDQ2TXdCS05jbkd5QW9KZ0UwY1c2UDBxTUd4?=
+ =?utf-8?B?eHB1QTJldGhFd09Vc0Mzak5oTVUyL2Iwa2ZSM0FPVWtoWlBjVVFFVElVNVJT?=
+ =?utf-8?B?SURaeldlS3FUcitxSjQwVDhVRlVnRGdYU29hTFp3cGwrNVQrRzFWNVBlWkYv?=
+ =?utf-8?B?TmtEMzd2KzZ4THFRVjZMelJ0MnhOR0lPaDlham9KaEZsYkVGT0FEZTdadTc4?=
+ =?utf-8?B?RU50UWJIdnRTUnZLemJPT2hzM0x2V3g4ajFsaEFsMk15Rmo1aU5EZ2NqbXVp?=
+ =?utf-8?B?YTRCZjBKNllvdlBja1c2ZjJrUUhFQjZmYXRiR1lsZWtJeEhhUVY1SG9qVlNO?=
+ =?utf-8?B?ODNaMU5JemZTUXZpVnRaNXJDblpzeWNma1dyVllJcEtySFNmWlhvYkYycGN0?=
+ =?utf-8?B?S2IrUWpVUzV4MmRJSVVLUklNYzJXa0lnWmxLeEJhMkQxdjJ5NkVGRDZLL2Z3?=
+ =?utf-8?B?Und2c3hRV2xVb0V6UHE4RnN3cjdyQ0sveFRoWW1QS0dLMFFub1c1LzRsTzdw?=
+ =?utf-8?B?ZDV2OEpIdjIweW1Zazc2d0dpZHZFMVhRLzF3SkNTWVN4OWJBOUtWM2NmZDh6?=
+ =?utf-8?B?dVNxM3V1Z2F4MXEvSmVXdURYeHFITmNmRVEzNVdhRlByMkhSbE5naUQ0SEFR?=
+ =?utf-8?Q?7MDQs7PlBkpBDd0VFziRVrGbM?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 623a9d38-87a9-4494-c701-08de06e15610
+X-MS-Exchange-CrossTenant-AuthSource: KL1PR03MB5778.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2025 03:10:01.7373
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3W1EVupv0PX2jzZgq0d8W8oxOt+jIloWyfxfRqhsk+91HAwDjqUjSrYFxPI34AWoiPxsDPIzOyH+VALEz50iow==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB7542
+
+Hi Jerome,
+
+     Thanks for your review, because the national day holidays did not
+timely feedback.
 
 
-On 9/29/2025 1:53 AM, Rob Herring wrote:
-> On Sun, Sep 28, 2025 at 12:17 PM Charan Teja Kalla
-> <charan.kalla@oss.qualcomm.com> wrote:
+On 10/1/2025 3:45 PM, Jerome Brunet wrote:
+> [ EXTERNAL EMAIL ]
+>
+> On Tue 30 Sep 2025 at 17:37, Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
+>
+>> This patch series includes changes related to the PLL and peripheral
+>> clocks for both the A4 and A5 SoCs.
 >>
->> This series introduces a new iommu property called iommu-map-masked(may
->> be there is a better name), which is used to represent the IOMMU
->> specifier pairs for each function of a __multi-functional platform
->> device__, where each function can emit unique master id(s) that can be
->> associated with individual translation context.
->>
->> Currently, the iommu configuration - at least for arm architecture-
->> requires all the functions of a platform device will be represented
->> under single dt node thus endup in using only a single translation
->> context.
->>
->> A simple solution to associate individual translation context for each
->> function of a device can be through creating per function child nodes in
->> the device tree, but dt is only to just represent the soc layout to
->> linux kernel.
->>
->> Supporting such cases requires a new iommu property called,
->> iommu-map-masked(taking cue from iommu-map for pci devices) and syntax
->> is:
->>    iommu-map-masked = <FUNCTION_ID1 &iommu ID1 MASK1>,
->>                       <FUNCTION_ID2 &iommu ID2 MASK2>;
->> NOTE: As an RFC, it is considered that this property always expects 4
->> cells.
->>
->> During the probe phase of the driver for a multi-functional device
->> behind an IOMMU, a child device is instantiated for each FUNCTION_ID.
->> The call to of_dma_configure_id() on each child sets up the IOMMU
->> configuration, ensuring that each function of the device is associated
->> with a distinct translation context.
->>
->> This property can also be used in association with 'iommus=' when dt
->> bindings requires the presence of 'iommus=', example[2]. For these
->> cases, representation will be(on arm64):
->>    iommus = <&iommu sid mask>; //for default function.
->>    iommu-map-masked = <FUNCTION_ID &iommu sid mask>;//additional
->> function.
-> 
-> Where does the FUNCTION_ID value come from?
-> 
-> Why can't you just have multiple "iommus" entries where the index
-> defines the default and any FUNCTION_ID entries? What's in each index
-> is specific to the device.
+>> The patches for A5 were previously submitted up to V3 by Xianwei.
+>> https://lore.kernel.org/all/20250103-a5-clk-v3-0-a207ce83b9e9@amlogic.com/
+>> After friendly coordination, I’ve taken over and continued the
+>> submission as part of this series. The dt-bindings patch retains Rob's
+>> original "Reviewed-by" tag, and I hope this hasn’t caused any
+>> additional confusion.
+> ... and yet you restart the versioning of the series making it harder
+> for people to follow that
 
-Are you trying to suggest something like this [1] ? I am not sure, if extending
-the iommus would get us "unique" devices where those SIDs (from different
-function_id) can be associated with respective device. AFAIU, existing iommus
-entries associates all of them in same device.
 
-[1]
-https://lore.kernel.org/linux-media/9bae595a-597e-46e6-8eb2-44424fe21db6@linaro.org/
+Sorry for the inconvenience caused. The main changes compared to the
+previous version by Xianwei are in the driver part.
 
-Regards,
-Vikash
-> 
-> Rob
+The dt-bindings part only has minor modifications in [PATCH 14/19].
+
+The driver part has relatively larger changes because it needs to be
+based on the code base you previously submitted.
+
+
+>> Both A4 and A5 belong to the Audio series. Judging by their names, one
+>> might assume that A5 is an upgrade to A4, but in fact, A5 was released
+>> a year earlier than A4.
+>>
+>> Since there are differences in the PLLs and peripheral clocks between
+>> the A4 and A5 SoCs (especially the PLL), and taking into account factors
+>> such as memory footprint and maintainability, this series does not
+>> attempt to merge the two into a shared driver as was done for
+>> G12A/G12B/SM1.
+> ... and we end up with 19 patches series while it could be splitted into
+> manageable series, for each controller of each SoC
+
+
+I'm not sure if I understood you correctly.
+
+Do you mean that I should split this series of 19 patches into multiple
+patch series and send them separately? For example:
+serie 1: A4 SCMI clock controller (dt-bindings)
+serie 2: A4 PLL clock controller (dt-bindings, driver, dts)
+serie 3: A4 peripherals clock controller (dt-bindings, driver, dts)
+... A5 similarly?
+
+
+>> This patch series includes all related dt-bindings, driver, and dts
+>> changes for the PLLs and peripheral clocks. Following our past convention
+>> for clock-related submissions, the dts changes are placed at the end
+>> and submitted separately. If this ordering makes it harder for
+>> maintainers to review or pick patches, please feel free to point it out.
+>>
+>> Co-developed-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+>> ---
+>> Chuan Liu (19):
+>>        dt-bindings: clock: Add Amlogic A4 SCMI clock controller
+>>        dt-bindings: clock: Add Amlogic A4 PLL clock controller
+>>        dt-bindings: clock: Add Amlogic A4 peripherals clock controller
+>>        clk: amlogic: Optimize PLL enable timing
+>>        clk: amlogic: Correct l_detect bit control
+>>        clk: amlogic: Fix out-of-range PLL frequency setting
+>>        clk: amlogic: Add A4 PLL clock controller driver
+>>        clk: amlogic: Add A4 clock peripherals controller driver
+>>        arm64: dts: amlogic: A4: Add scmi-clk node
+>>        arm64: dts: amlogic: A4: Add PLL controller node
+>>        arm64: dts: amlogic: A4: Add peripherals clock controller node
+>>        dt-bindings: clock: Add Amlogic A5 SCMI clock controller support
+>>        dt-bindings: clock: Add Amlogic A5 PLL clock controller
+>>        dt-bindings: clock: Add Amlogic A5 peripherals clock controller
+>>        clk: amlogic: Add A5 PLL clock controller driver
+>>        clk: amlogic: Add A5 clock peripherals controller driver
+>>        arm64: dts: amlogic: A5: Add scmi-clk node
+>>        arm64: dts: amlogic: A5: Add PLL controller node
+>>        arm64: dts: amlogic: A5: Add peripheral clock controller node
+>>
+>>   .../clock/amlogic,a4-peripherals-clkc.yaml         | 122 +++
+>>   .../bindings/clock/amlogic,a4-pll-clkc.yaml        |  61 ++
+>>   .../clock/amlogic,a5-peripherals-clkc.yaml         | 134 ++++
+>>   .../bindings/clock/amlogic,a5-pll-clkc.yaml        |  63 ++
+>>   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        |  80 ++
+>>   arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        |  87 ++
+>>   drivers/clk/meson/Kconfig                          |  53 ++
+>>   drivers/clk/meson/Makefile                         |   4 +
+>>   drivers/clk/meson/a1-pll.c                         |   1 +
+>>   drivers/clk/meson/a4-peripherals.c                 | 764 ++++++++++++++++++
+>>   drivers/clk/meson/a4-pll.c                         | 242 ++++++
+>>   drivers/clk/meson/a5-peripherals.c                 | 883 +++++++++++++++++++++
+>>   drivers/clk/meson/a5-pll.c                         | 476 +++++++++++
+>>   drivers/clk/meson/clk-pll.c                        |  76 +-
+>>   drivers/clk/meson/clk-pll.h                        |   2 +
+>>   .../clock/amlogic,a4-peripherals-clkc.h            | 129 +++
+>>   include/dt-bindings/clock/amlogic,a4-pll-clkc.h    |  15 +
+>>   include/dt-bindings/clock/amlogic,a4-scmi-clkc.h   |  42 +
+>>   .../clock/amlogic,a5-peripherals-clkc.h            | 132 +++
+>>   include/dt-bindings/clock/amlogic,a5-pll-clkc.h    |  24 +
+>>   include/dt-bindings/clock/amlogic,a5-scmi-clkc.h   |  44 +
+>>   21 files changed, 3406 insertions(+), 28 deletions(-)
+>> ---
+>> base-commit: 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
+>> change-id: 20250928-a4_a5_add_clock_driver-2b7c9d695633
+>>
+>> Best regards,
+> --
+> Jerome
 
