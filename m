@@ -1,155 +1,113 @@
-Return-Path: <devicetree+bounces-224710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D0D2BC727D
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 04:00:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2CF6BC721F
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 03:58:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8F87119E2F67
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 02:00:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61A6F3BA0F6
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 01:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A051B1C84CB;
-	Thu,  9 Oct 2025 01:59:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01ED11A0BFA;
+	Thu,  9 Oct 2025 01:58:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="KGcKbXJu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ld7sps4V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D4B619CC27
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 01:59:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97AA419F12D
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 01:58:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759975149; cv=none; b=KS99zZJmzaUFpFSYBSybeGTbRj4s7DgcplHotEq0dd5LD8xcMpikQQxsdzNhSU9HYrNGdkDJsG9BN4cWg27W4wRhBm1uRUgGdetbc+dBvZTCLfdFbMipa2TteAg2O8XxRHUTDctUKylbEC38zwrXMu3bV24DfhZKK0iHHaPbTRY=
+	t=1759975104; cv=none; b=A0a/IBeyv36UX18BcDRJRFm1bV62Wt5nnqtclTvHuer0KNTlnFZBHvbwESdLL9ug30huq+tOF/slMEgKvDcoGVXlW999XYlg3k/BJNKQ50Jy6BTudH2nHDiYM8BoILRKRCbjAL+3QoJTIGF6fCP2UYTpL1nWErg507MMDNCBaPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759975149; c=relaxed/simple;
-	bh=fz/lHHixe+6qbU8BmIUmjqU5K+n2uPZ5xsU+fBDfYsg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AchrVFyz5ZLaj7SjeETuK26Y3gapcFmj/5EB+xsW4vhPoonf529brB+sTWEKZOfe9GVerLbgt/2dVgxoufzRSMktwiJztYEHACm+In9DuJRBxpi2Ye552iuFK9L2wXpd8LBCmnvw/FvwgjT8Hs1Pe7DNa7snX4yE8wzVCVvAXOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=KGcKbXJu; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b62ed9c3e79so275522a12.0
-        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 18:59:04 -0700 (PDT)
+	s=arc-20240116; t=1759975104; c=relaxed/simple;
+	bh=Tzv03VmmUGs+LjG3lHQExvBJa815vjqsuRExASSQwn8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NKMa0Ggl9WfqVBz8uXVTgd9zUy7bMyYg93QZcCJIZ+3782WnoKxcJRTE5V59OIKhv5Zal33IUJuGv7s9NxTyM8D82asbWMqOdFVnZi5jAK1RLrAilTXehCDzLlIdLoW2CQmpoVK9gxUHJoXTpbIbo0iSviEoXOztakxqzaaUJig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ld7sps4V; arc=none smtp.client-ip=209.85.222.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-8582a34639aso26271985a.3
+        for <devicetree@vger.kernel.org>; Wed, 08 Oct 2025 18:58:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1759975143; x=1760579943; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6BAMdYf9jYg430LRuIQ/78MgeGFhJjBTPRUD+PdvqOQ=;
-        b=KGcKbXJuakwv6Qf/Um0mCf/gxhPgiWA2iQ75foYGAyjEvDDJSviUMwbJQeAEYzx+Xc
-         WuF7rFGgOTZnIBBR/oJegcnlUpCCNLmbFkvsmg+F3o/0yw8fgfs9E8RfbgGP+/S89GAB
-         n4hBBfDZvEIBZbuY5sqN4r8Tagtr08e/YYJRdqAerufdmqEk6/+3zoKBCUMacCPPSzR+
-         K4LQTc3SlFlHVACn/3A+m5NrVmo1QD7Rej6eouEdMZkTvknllAqyzT78/v9CwdT8Mp3Y
-         u7dRwu1rveGmmHggwN25ou1ZK/HV669+kN0QLRbs6f4QovyG8msA7dhsYoqMKNE3QauB
-         P8eA==
+        d=gmail.com; s=20230601; t=1759975101; x=1760579901; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tzv03VmmUGs+LjG3lHQExvBJa815vjqsuRExASSQwn8=;
+        b=ld7sps4VB6ORPNiJ1woPpF3DyHouY2+3tYuP9buodLYGiN/6B0OcArdOrOy1VNMMKW
+         Bg8gWzEPF4x7TrVdNbpEDfbU6I+s0yWciBX0h/MTHGMFqVSmBFyFU7sLzLm7gEjfEAPQ
+         iWUwbZA5mYyEAlsfZukwizqHrL75YuleASEh8KeJ/iz/Ajzfhpl0HFyfM/auNvsgVQPu
+         6x/nd6uW0RrXu2SZ4Pc++hsgZHgMZAc05R2VdAK3V1Z2HRBvW9B6T42eUGX8xVXAydDu
+         ooyOKw6x27fCpmpjaClOTaFdIz114O1VJe8OAfsd6zRhY3o8tPNu1EobEBiBgm1Sm2kZ
+         9S1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759975143; x=1760579943;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6BAMdYf9jYg430LRuIQ/78MgeGFhJjBTPRUD+PdvqOQ=;
-        b=OsuWQIUQfvr+62JVSfBApENf/08IiYNP2cnwCqhvip8eTa2NTr2yzIONTBAR/sC48G
-         FxaQaU568rBjw3FhK0SKwqtluUoCMQWhidz0dGeaEmxmzwgxO6u8eRzwFdMzdUm66GU2
-         lsBGFGVwnihLg+g+e5KYlZ4YGulcqld+IjG6n6Vo4M/7w6HDNz16sI8LI+DxOohXAeXb
-         +tZ3j80sZVVu65AvawP2Nw9xjXdS+dlJBKJPMz+lNa7aVr5xUfY61y7Lc4lgMz92aEug
-         ATJ9r4YsB6K63B5uWe5ZXyIWjfoP3aZoUwI83eOnO1P37FeEzhg1fA0XSGq3uDkciKoN
-         1d1g==
-X-Gm-Message-State: AOJu0YxpsaTktA9buWjYwWyHjZ3yZpbl5MmYrga91S5htSG2rXpRI3Cw
-	A/a3Ti/ZSNjjM+iXLnkf7JF6euPMep/sJL8KDWL+MxRq/mntPtD/p73aZESHbegpgsYuC+p/UuQ
-	49Du8
-X-Gm-Gg: ASbGncupv6GFhUAQ/pYgv7ZdXOPh4OSKscx35xtSzC8tqUhrfhp0CULNRcpYGUmhNy+
-	r7Zir9pq6trfYyGfo7Zg2Gkq4qv2qgAM2/iqMnyvOgdhdb0SXjiL6nXfKwsOe31z8RdRxIDs6z6
-	G1xPq7Ej03x8vxu25as0NwNF+fmlSM+7AnAT8c6oybgAwIFKC91+2mnPAcVRb8JGlevDFnxXlL5
-	ikpBkw7vXtEMOWTrWIAnUIXpqhxgEmeOyS/SbxYkQkMhFto4YuUpm8dbO1zgrIkNaXvg9dymAZP
-	OX9rIyZx/BRPrZoi6ZeHoNZ/Oba3yC9X+fvTYl79i9ohoXtq0E47xn4AV6H+zekoQWop9UL9D9g
-	mDnZfgLmq1YF3OmTpPu5+HnRjA4YQB3YtzJ1ssF3SRHWc+u1KXEXvvRuZ6yD1VCR6tKWE1Kc9sp
-	MpnUA=
-X-Google-Smtp-Source: AGHT+IFH8AKgqsZnk4E4iyKT3yuRTpeHrZ3gNSsclL9XuJ0PoMWOCXT4FRimy04nwWVVyn2iJvf1+Q==
-X-Received: by 2002:a17:903:910:b0:240:3b9e:dd65 with SMTP id d9443c01a7336-290273eddc4mr77201595ad.38.1759975143155;
-        Wed, 08 Oct 2025 18:59:03 -0700 (PDT)
-Received: from sw06.internal.sifive.com ([4.53.31.132])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034de53f9sm11033585ad.14.2025.10.08.18.59.02
+        d=1e100.net; s=20230601; t=1759975101; x=1760579901;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Tzv03VmmUGs+LjG3lHQExvBJa815vjqsuRExASSQwn8=;
+        b=uFy6xiD5BWwan/SDSVieakyFc7D4ai0Jo5kp/Z6fkJiCNodhrz5kdNz+Foc+DYsoJy
+         O7pQN+tRNGLzuvMt4h2BLjOvlyOtTapTkHb1XOdmJ2OayAWPwCNdjMep7vqzm4kLtZ03
+         PT0/URJ31HxOecjZwGCrftcAypgJuGNzilWr9b0stI35ZVKkV5UVKE3vJxvw5DYv3I+L
+         dlqECHvDT5r3URkCqnQtMIM63Zaa40cp2GBTWvYui7XyrChKPqKVT64eLNuFf+hu7hV6
+         VIcwaYRAuD58lB1aS2JeOhzk1bJHde4UY1fNaSZGghG8U1Mu9Ak+0mxUq/S3n6pSAc2Z
+         s/nw==
+X-Forwarded-Encrypted: i=1; AJvYcCWeEer88GOSftPu/fu9P6OmLbA/0MN4TUDjfn+oWqP9Ya/X+fD9D6jl1q389ehwM57O3VzexIgtxKcf@vger.kernel.org
+X-Gm-Message-State: AOJu0YyoMqKOtqDTSsJrTJs+BzFvGveTL3/FXURPexi7xgE0cz8wQt0j
+	0sRyTnJkNgs4GzJakbElIIyVYPVR1JlYu0OOqpSwFE0YffuOGxRXOIfE
+X-Gm-Gg: ASbGncsP2fjQJejxLh0AVqUKsVAOWtIBe2o304SnAIePBq3kOG1+Ud4ZFhf+iaNk6b2
+	U0n2M+NZd+gBV3scu7oOMo4OGWXeUCLXejBjvgvQ8R7o5o9gk2CZqZR5P8G10jf+GrCUwltaucq
+	VdoJDeTGnR46yRnJ4xa8xQQkgYEzU9KjQ1b36p5wY6DUa5f0OiOy0UtMOshwKXR1HeO30RMrx6g
+	rhl1KDa8FHEbdgY0inBFcvG+y42RQGLqLYjcwbmevKmQnvh5nAWSpxa4Ue7lFEx1iEFwzZ27rrW
+	MJP5niyc+S2PtW46NGKHyOt3A+sAGmParEBSo6cwodHfoJSbJDz9Wu63Iya65aKJ2bnHJTSR/+U
+	iRepdPsgJG6l5NP0y4taWb8j6myyP8wHfp4Dig8WLog3U+JYqkhKg41TgxYntk84Ar1Rr5OFN3I
+	CxSpdO
+X-Google-Smtp-Source: AGHT+IG9RnsX45FbvrTJKGSgGRCj53q6iXUyoJNX4P1rwx54YsAmMMd8fwCV/l8tJGcj8EG+HSGqZw==
+X-Received: by 2002:a05:620a:28c9:b0:803:7023:36b0 with SMTP id af79cd13be357-883570ce908mr678554585a.74.1759975100966;
+        Wed, 08 Oct 2025 18:58:20 -0700 (PDT)
+Received: from sleek (d-23-244-200-70.nh.cpe.atlanticbb.net. [23.244.200.70])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-884a2273bfbsm105377185a.43.2025.10.08.18.58.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 08 Oct 2025 18:59:02 -0700 (PDT)
-From: Samuel Holland <samuel.holland@sifive.com>
-To: Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <pjw@kernel.org>,
-	linux-riscv@lists.infradead.org
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mm@kvack.org,
-	Conor Dooley <conor@kernel.org>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Samuel Holland <samuel.holland@sifive.com>
-Subject: [PATCH v2 18/18] riscv: dts: eswin: eic7700: Use physical memory ranges for DMA
-Date: Wed,  8 Oct 2025 18:57:54 -0700
-Message-ID: <20251009015839.3460231-19-samuel.holland@sifive.com>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20251009015839.3460231-1-samuel.holland@sifive.com>
-References: <20251009015839.3460231-1-samuel.holland@sifive.com>
+        Wed, 08 Oct 2025 18:58:20 -0700 (PDT)
+Date: Wed, 8 Oct 2025 21:58:19 -0400
+From: Joshua Milas <josh.milas@gmail.com>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	unicorn_wang@outlook.com, alexander.sverdlin@gmail.com,
+	rabenda.cn@gmail.com, thomas.bonnefille@bootlin.com,
+	chao.wei@sophgo.com, devicetree@vger.kernel.org,
+	sophgo@lists.linux.dev
+Subject: Re: [PATCH 2/2] arm64: dts: sophgo: add initial Milk-V Duo S board
+ support
+Message-ID: <aOcWu-yvqwoqcTk3@sleek>
+References: <20250927173619.89768-1-josh.milas@gmail.com>
+ <20250927173619.89768-3-josh.milas@gmail.com>
+ <nkzpfylhxyqf5u3bjlokhe4udgcxohbaanhwuofjzatan3iwio@45ljfquf5sui>
+ <aN8isoQpdENTrxNJ@sleek>
+ <oxke5yy22pb7nqzlbjsvhcq32xz77pmmxkcrnxr3lxqvhe6cxp@n43f2yngnfcc>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <oxke5yy22pb7nqzlbjsvhcq32xz77pmmxkcrnxr3lxqvhe6cxp@n43f2yngnfcc>
 
-EIC7700 provides a physical memory region which is a noncached alias of
-normal cacheable DRAM. Declare this alias in the devicetree so Linux can
-allocate noncached pages for noncoherent DMA, and M-mode firmware can
-protect the noncached alias with PMPs.
+Inochi,
 
-Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
----
+> Weird, I don't see it in riscv build. Can you post your dts here?
 
-Changes in v2:
- - New patch for v2
+It ended up being a driver selection issue on my part. I got the
+ARM64 and RICV both woring without the pinctrl config in the dts.
+I was also able to get Ethernet working so V2 is hopefully a
+maximal config.
 
- arch/riscv/Kconfig.socs                | 2 ++
- arch/riscv/boot/dts/eswin/eic7700.dtsi | 5 +++++
- 2 files changed, 7 insertions(+)
-
-diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-index a8950206fb750..df3ed1d322fe7 100644
---- a/arch/riscv/Kconfig.socs
-+++ b/arch/riscv/Kconfig.socs
-@@ -9,6 +9,8 @@ config ARCH_ANDES
- 
- config ARCH_ESWIN
- 	bool "ESWIN SoCs"
-+	select RISCV_DMA_NONCOHERENT
-+	select RISCV_NONSTANDARD_CACHE_OPS
- 	help
- 	  This enables support for ESWIN SoC platform hardware,
- 	  including the ESWIN EIC7700 SoC.
-diff --git a/arch/riscv/boot/dts/eswin/eic7700.dtsi b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-index c3ed93008bca1..09292910065b2 100644
---- a/arch/riscv/boot/dts/eswin/eic7700.dtsi
-+++ b/arch/riscv/boot/dts/eswin/eic7700.dtsi
-@@ -5,9 +5,14 @@
- 
- /dts-v1/;
- 
-+#include <dt-bindings/riscv/physical-memory.h>
-+
- / {
- 	#address-cells = <2>;
- 	#size-cells = <2>;
-+	riscv,physical-memory-regions =
-+		<0x000 0x80000000 0x00f 0x80000000 (PMA_RWXA | PMA_NONCOHERENT_MEMORY) 0x0>,
-+		<0x0c0 0x00000000 0x010 0x00000000 (PMA_RWX | PMA_NONCACHEABLE_MEMORY | PMR_ALIAS(1)) 0x0>;
- 
- 	cpus {
- 		#address-cells = <1>;
--- 
-2.47.2
-
+Thanks,
+- Joshua Milas
 
