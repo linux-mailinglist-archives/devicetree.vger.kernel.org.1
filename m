@@ -1,242 +1,197 @@
-Return-Path: <devicetree+bounces-224775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC2A1BC7D77
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 09:59:32 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0E99BC7F14
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 10:11:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3ED511893411
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 07:59:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 26D2F4F8508
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 08:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 471262D12F3;
-	Thu,  9 Oct 2025 07:59:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1AAF2C0271;
+	Thu,  9 Oct 2025 08:04:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="sVVYuFPc"
+	dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b="Ql1GYl33"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ironport.ite.com.tw (60-251-196-230.hinet-ip.hinet.net [60.251.196.230])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E410C2DF68
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 07:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B321025D202;
+	Thu,  9 Oct 2025 08:04:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.251.196.230
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1759996768; cv=none; b=pH3n8PTtB/dlEbYRt7JJgtjQx6xsYu9nO/2EpZxe9tYopFcKZ2pohMuJTodAsxqhRmPzG4jkSESu7E/LClfFRf92PWNKfrGZuQp0LUfHLSlaOYrYIwHoF7JrEwdL5Q00N3PMJ9geZ49PKOVj/lqmCTr5D7Nq9W6Btt7TZwvlpWs=
+	t=1759997055; cv=none; b=V8Zaz7ENNghoQVC0hnPqoME1rlrxrtvLrlYOyM+ByGo6loH3W3QiJ4Js98r5dGQ8O2ejbajmIpSXE3eEbqCZ/CsGyZxt6vHT32janver0TkOSrKv69S0h9WNO/GuUoBl7QVxFh6387BqTIMb+QCwuHTvbPftowS1Sgs21/iHR0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1759996768; c=relaxed/simple;
-	bh=r+EYS8LJHH5JzPOJqQR2JJIXOzlbTKM/eKWn1ocsvTc=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=Tu4fS+1SwEgrKgLeP8ZnRrGlNJdTszGo4ErtEHxCXCCYEe16Qcv7axQ9WZbh5gPwdOxkkQomD4MDP/+Izw74HCuQSkshAeQYi2L4C0A5e+IOSEPcSLQs4rL9qXXKc5AsOPAAtTleUX1Dl6o/vz4X5I3SzyHYaoBjr51We5I5sJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=sVVYuFPc; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3ee15505cdeso617058f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 00:59:24 -0700 (PDT)
+	s=arc-20240116; t=1759997055; c=relaxed/simple;
+	bh=rpD4sPSLaH1a3BjRNKBpRKei67pNGc2zXt6pOgi3QW8=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=l1AeqmspUqkpWU7xPoGlq94TYr81ou7QnXWA40DN0pJqsOHp67DLn35XYylzfy7v1HrV5ClNCL4reNBoWPXHc95+D3MuoDp2pd/Npq3jdBRkkN0bGgGYv2h9Ry5mznIR1S7bmzEykFwLAgyUx5H+k5zhM+Lt+JDirWDG9DiZBFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw; spf=pass smtp.mailfrom=ite.com.tw; dkim=pass (2048-bit key) header.d=ite.com.tw header.i=@ite.com.tw header.b=Ql1GYl33; arc=none smtp.client-ip=60.251.196.230
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ite.com.tw
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ite.com.tw
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1759996763; x=1760601563; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:user-agent
-         :references:in-reply-to:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=utVwjhO8Z9nfTT7T332+x9pXtf82IVN0SHJivYwFQFM=;
-        b=sVVYuFPculI/UNQcEflmywDrpyCbr8lR1xv5hBdmnW5WdOWjiY26tYe5wDDO4lN0qO
-         95TQDUEpgOH/wDss3vfVlT7ZhXWxzmXU1rJ4WU457wtdc0PIux0+MljPtDCXlzvq/KBy
-         hVpS8orG4uPjQ86ZDFn1wPmGgk+GgLJEyQNcHw3L9u/2ThmmVHMnqIqVfTFWjKTCYeNO
-         ucrfeuFrluMR0rXg1uJnq4ssXXzwK52f2hYzZRYUlXMqUyr8O0b70xYKvZiAteCD/dMu
-         X5NMdr+HSF0dE+HbP37L2rh++2QMraOwr23n/F23tnKBOwYCNQkgj/FoG32LuXybCHe6
-         c56w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1759996763; x=1760601563;
-        h=content-transfer-encoding:mime-version:message-id:date:user-agent
-         :references:in-reply-to:subject:cc:to:from:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=utVwjhO8Z9nfTT7T332+x9pXtf82IVN0SHJivYwFQFM=;
-        b=f46O04jMTaOSvu/wE7BFigfqoHh5NRKYVP/CSUcUGrishws+bVhXrfHNN+KTyiquKe
-         9/INOU+O+Qg+HUnZHAPPo1eG4v/eDfRb+sbO63ZHSsB4uU10Fn+aH3aR1ekmfVH9dtCm
-         2f8wmxVnYnbLlgHOnvEZlk7EXi14NS9WXOlLRieliS4b90gmVeEdWyLzrhFEIYDvVmSP
-         d7wjfPzII03eJk1Y/THJpK7/egsYG98VpUEH6BAny5So1SZLHSa8fCQnv+dmeaeeLNaW
-         c/N6F+g7gu2HtQzGz504MGezWqX1z0x1K2pHuWBsCkdawuRRZU7EJrfre3d8G9mutrDW
-         ieqw==
-X-Forwarded-Encrypted: i=1; AJvYcCUukz7W5iCf8aZtuNZn9vveErSOrmydI+zMpxsNgTijKg11qZq6H5DZD510tRFrGbDIAp6TpS0c07h9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzurY7X6YIcxUzfCwwYLPyaIY9Uj1fZOWdm18Dmrrkgd86BPY+J
-	lu6MmUjOUl3mF6Aj3IvYZVc6YoRSSNjQw41bhblzfKaAsWyaVrQ25S7yx7dlY8slyZ4=
-X-Gm-Gg: ASbGncuyiGnO6F5dvk8KgKAm6nzZBu1Qek+sVLBZeY98mdTRT0KYxV5xT6C5TQY7xA/
-	JPss4mZw2Ds9GOu4OQpLCuvBMoZrpsQ0qMPQimU0PW4Uew9PRsnR0ulL2bnoXGF0P1UBkmZ9yTX
-	GhUzWKYYJwGyhlBExIK4UranWsaBYqt3aj6LqVW0IDS984fyQao9U/dm00fmotpwf5z8zquwd5y
-	Q61a0wbNB3/b4vSAyWKCW0rusedwEFrjiN6o8Wa6dt7dZV17+/gk+vaaEAL4HVY+35f1lfeCNCb
-	M2MsSVFtUMjK6s70V9Ji8kE3X4eJIs1TLoVTpdOe+EOqcDI9oeQyV1j9Sn9o0aaHSaxQXEhfKbP
-	XvuhQPWImBvAh5tG1jLWZycyWmYVeWsBFLpBJJd8F9zca4V9v8GXPAGMT
-X-Google-Smtp-Source: AGHT+IG5pvNgDMJPTKAtRd4veVO0FFUkU2pJXXO+YNn1lCJbx4D7Y9oh8jCMqxVVxc+i8Y4GbC2AVA==
-X-Received: by 2002:a05:6000:2c02:b0:401:ae97:a1ab with SMTP id ffacd0b85a97d-42666aa67f9mr4871037f8f.10.1759996763143;
-        Thu, 09 Oct 2025 00:59:23 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:1753:6135:be55:f8ab])
-        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-4255d8ab8fdsm32990864f8f.15.2025.10.09.00.59.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 09 Oct 2025 00:59:22 -0700 (PDT)
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Chuan Liu <chuan.liu@amlogic.com>
-Cc: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
-  Michael Turquette <mturquette@baylibre.com>,  Stephen Boyd
- <sboyd@kernel.org>,  Rob Herring <robh@kernel.org>,  Krzysztof Kozlowski
- <krzk+dt@kernel.org>,  Conor Dooley <conor+dt@kernel.org>,  Neil Armstrong
- <neil.armstrong@linaro.org>,  Kevin Hilman <khilman@baylibre.com>,  Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>,
-  linux-kernel@vger.kernel.org,  linux-clk@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-amlogic@lists.infradead.org,
-  linux-arm-kernel@lists.infradead.org,  Xianwei Zhao
- <xianwei.zhao@amlogic.com>
-Subject: Re: [PATCH 00/19] clk: amlogic: Add PLLs and peripheral clocks for
- A4 and A5 SoCs
-In-Reply-To: <b8105d25-112c-4406-9f3a-8fbbd0754b26@amlogic.com> (Chuan Liu's
-	message of "Thu, 9 Oct 2025 11:09:25 +0800")
-References: <20250930-a4_a5_add_clock_driver-v1-0-a9acf7951589@amlogic.com>
-	<1jv7kz3w1p.fsf@starbuckisacylon.baylibre.com>
-	<b8105d25-112c-4406-9f3a-8fbbd0754b26@amlogic.com>
-User-Agent: mu4e 1.12.9; emacs 30.1
-Date: Thu, 09 Oct 2025 09:59:22 +0200
-Message-ID: <1jh5w84iat.fsf@starbuckisacylon.baylibre.com>
+  d=ite.com.tw; s=dkim;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=6Yq/qLQ14gKSYvsG82tsg8dB7qbDonfawvPgibNmxCc=;
+  b=Ql1GYl33K6U6vWmgLHUenacDUjX7Lmw24uhSZLdvQZwpBSUUvk47i4Sv
+   hz4qTefviqDssn0K5uQA/lr7qCLJepx3woYNnn8+f5+6DsfnxJXBCYPpB
+   Kt5Cg8j2U5+uPk6CEfHvUGEx/zcYQfy6ZqlS6u9aFRGOUUnzT9DGdvWY2
+   MA2qIGcdUJIPjd/7vBV0aUXptjwAAEM4/N65GJwJ3kbATdYnbhCEYC39b
+   +p3VHEpiSm9MgfQWfb+a6Kshs008ui+J5tcNHLcKOwmVCg1W1yPxnUo0O
+   MudpLmzsDwXvPdX735Z91NNCPLqvANIKoyKS1Qo7q3i+GLEJC89uP3UZk
+   Q==;
+X-CSE-ConnectionGUID: 13WKSksZS/GlA2D+YHOGLQ==
+X-CSE-MsgGUID: lIEcOF9gR26i2+vtwOFZBA==
+Received: from unknown (HELO mse.ite.com.tw) ([192.168.35.30])
+  by ironport.ite.com.tw with ESMTP; 09 Oct 2025 16:03:02 +0800
+Received: from hscmail1.internal.ite.com.tw (HSCMAIL1.internal.ite.com.tw [192.168.35.58])
+	by mse.ite.com.tw with ESMTP id 59982vik072677;
+	Thu, 9 Oct 2025 16:02:57 +0800 (+08)
+	(envelope-from Pet.Weng@ite.com.tw)
+Received: from [127.0.1.1] (192.168.72.40) by HSCMAIL1.internal.ite.com.tw
+ (192.168.35.58) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Thu, 9 Oct
+ 2025 16:02:57 +0800
+From: Pet Weng <pet.weng@ite.com.tw>
+Subject: [PATCH v3 0/3] Add ITE IT61620 MIPI DSI to HDMI bridge driver
+Date: Thu, 9 Oct 2025 16:02:33 +0800
+Message-ID: <20251009-it61620-0714-v3-0-5d682d028441@ite.com.tw>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABls52gC/3WMyw7CIBBFf6WZtTQwBUpd+R/GRR9gZ2FrgKCm6
+ b9LuzGamNzNuck5CwTryQY4Fgt4myjQPGWoDgX0YztdLaMhMyBHxWshGUUtNHK2Q9vJvN46hw1
+ k5e6to+eeO18yjxTi7F97PYnt/RNKgnFW1VoILQfeNeZE0Zb9fCvjA7ZSwo9t0PzYmG1ltFNNJ
+ Qflvu11Xd+OTtuE5wAAAA==
+X-Change-ID: 20250714-it61620-0714-ab4ab4ceff29
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Laurent Pinchart
+	<Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej
+ Skrabec <jernej.skrabec@gmail.com>,
+        Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Hermes Wu <hermes.Wu@ite.com.tw>,
+        Kenneth
+ Hung <kenneth.Hung@ite.com.tw>,
+        Pet Weng <pet.weng@ite.com.tw>, Pin-yen Lin
+	<treapking@google.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1759996977; l=3681;
+ i=pet.weng@ite.com.tw; s=20250702; h=from:subject:message-id;
+ bh=rpD4sPSLaH1a3BjRNKBpRKei67pNGc2zXt6pOgi3QW8=;
+ b=YBrsbXgd0vm5QjMllmzkLm9xadqsxc9IXpJGizi2A+6UVhsDoHZDqsoiTYI4xZz+XHNKd5REE
+ CwYV94MVu/xCqfCBUN5+lOJ9XME8aKU5GQLbIwwaaKZn/dECqNhTEqQ
+X-Developer-Key: i=pet.weng@ite.com.tw; a=ed25519;
+ pk=wd08uBtTLb93x2ixbKVNsxiZPdMh1Ov4z5klodh2bqo=
+X-ClientProxiedBy: CSBMAIL1.internal.ite.com.tw (192.168.65.58) To
+ HSCMAIL1.internal.ite.com.tw (192.168.35.58)
+X-TM-SNTS-SMTP:
+	7929882D9F380320A7E2CE4D7B026C95314BD75D18C2473BC15B86C51CFA2ACD2002:8
+X-MAIL:mse.ite.com.tw 59982vik072677
 
-On Thu 09 Oct 2025 at 11:09, Chuan Liu <chuan.liu@amlogic.com> wrote:
+This patch series adds support for the ITE IT61620 MIPI DSI to HDMI 
+bridge chip.
 
-> Hi Jerome,
->
-> =C2=A0 =C2=A0 Thanks for your review, because the national day holidays d=
-id not
-> timely feedback.
->
->
-> On 10/1/2025 3:45 PM, Jerome Brunet wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On Tue 30 Sep 2025 at 17:37, Chuan Liu via B4 Relay
->> <devnull+chuan.liu.amlogic.com@kernel.org> wrote:
->>
->>> This patch series includes changes related to the PLL and peripheral
->>> clocks for both the A4 and A5 SoCs.
->>>
->>> The patches for A5 were previously submitted up to V3 by Xianwei.
->>> https://lore.kernel.org/all/20250103-a5-clk-v3-0-a207ce83b9e9@amlogic.c=
-om/
->>> After friendly coordination, I=E2=80=99ve taken over and continued the
->>> submission as part of this series. The dt-bindings patch retains Rob's
->>> original "Reviewed-by" tag, and I hope this hasn=E2=80=99t caused any
->>> additional confusion.
->> ... and yet you restart the versioning of the series making it harder
->> for people to follow that
->
->
-> Sorry for the inconvenience caused. The main changes compared to the
-> previous version by Xianwei are in the driver part.
->
-> The dt-bindings part only has minor modifications in [PATCH 14/19].
->
-> The driver part has relatively larger changes because it needs to be
-> based on the code base you previously submitted.
+The IT61620 is an I2C-controlled bridge that receives MIPI DSI input 
+and outputs HDMI signals. A single-port MIPI DSI input is converted to 
+an HDMI 1.4 output. This series introduces:
+- A device tree binding YAML file describing the hardware
+- A new DRM bridge driver implementing the basic functionality
+- A MAINTAINERS entry for the driver
 
-I'm not seeing a justification for the mess introduced and I'm not
-looking for one to be honest
+Signed-off-by: Pet Weng <pet.weng@ite.com.tw>
+---
+Changes in v3:
+- Wrapped description lines to comply with 80-character line length limit
+  in patch 1.								[Rob]
+- Renamed node from "it61620@58" to "bridge@58" in patch 1.		[Rob]
+- Add port@2 for I2S audio input in patch 1.				[Dmitry]
+- Updated the Kconfig dependency from CRYPTO and CRYPTO_HASH to 
+  CRYPTO_LIB_SHA1 in patch 2.						[Eric]
+- In patch 2								[Dmitry]
+ 1. Audio and InfoFrame
+   - Rename audfmt to i2s_input_format for clarity.
+   - Remove unused infoframe[HDMI_INFOFRAME_SIZE(AUDIO)].
+ 2. Platform data and structure
+   - Drop platform data usage; migrate members into struct it61620
+ 3. Code organization
+   - Reorder functions to avoid the need for forward declarations.
+   - Add static inline to small helper functions
+     (e.g. bridge_to_it61620()).
+ 4. HDCP handling
+   - Make HDCP enable/disable conditional on conn_state->content_protection.
+   - Report authentication result using drm_hdcp_update_content_protection().
+ 5. Error handling
+   - Replace manual error path with dev_err_probe().
+ 6. Power management
+   - Inline suspend/resume callbacks.
+   - Use DEFINE_RUNTIME_DEV_PM_OPS() instead of explicit struct definition.
+ 7. Bridge callbacks
+   - Drop empty bridge_detach().
+   - Inline it61620_bridge_mode_valid().
+ 8. EDID handling
+   - Remove unnecessary cached EDID duplication.
+ 9. Mode set and pixel clock
+   - Move mode handling to atomic_enable().
+   - Keep only pixelclock for future N/CTS audio calculations.
+ 10. Logging
+    - Replace noisy drm_err() calls with drm_dbg().
+ 11. InfoFrame support
+    - Add support for SPD and Vendor InfoFrames.
+- Link to v2: https://lore.kernel.org/r/20250828-it61620-0714-v2-0-586f5934d5f8@ite.com.tw
 
->
->>> Both A4 and A5 belong to the Audio series. Judging by their names, one
->>> might assume that A5 is an upgrade to A4, but in fact, A5 was released
->>> a year earlier than A4.
->>>
->>> Since there are differences in the PLLs and peripheral clocks between
->>> the A4 and A5 SoCs (especially the PLL), and taking into account factors
->>> such as memory footprint and maintainability, this series does not
->>> attempt to merge the two into a shared driver as was done for
->>> G12A/G12B/SM1.
->> ... and we end up with 19 patches series while it could be splitted into
->> manageable series, for each controller of each SoC
->
->
-> I'm not sure if I understood you correctly.
->
-> Do you mean that I should split this series of 19 patches into multiple
-> patch series and send them separately? For example:
-> serie 1: A4 SCMI clock controller (dt-bindings)
-> serie 2: A4 PLL clock controller (dt-bindings, driver, dts)
-> serie 3: A4 peripherals clock controller (dt-bindings, driver, dts)
-> ... A5 similarly?
+Changes in v2:
+- Call the sha1() library function instead of using the crypto_shash
+  "sha1" in patch 2.
+- Rewrite it61620_hdmi_ddc_wait() with readx_poll_timeout() in patch 2.	[Pin-yen]
+- Rewrite it61620_hdmi_hdcp_wait_ksv_list() with readx_poll_timeout() in
+  patch 2.
+- Replace interrupts-extended with interrupts in patch 1.		[Rob]
+- Replace dsi-lanes with the standard property data-lanes from the graph
+  binding.								[Rob]
+- Replace "#/$defs/port-base" with "#/properties/port" in patch 1.	[Rob]
+- Drop unused labels and "hdmi" for the node name.			[Rob]
+- Drop status in patch 1.						[Rob]
+- Link to v1: https://lore.kernel.org/r/20250714-it61620-0714-v1-0-3761164d0b98@ite.com.tw
 
-Things that do not actually depends on each other or which are not
-merged through the same tree should not be sent together. There is
-nothing new here. Same basic reminders on each submission.
+---
+Pet Weng (3):
+      dt-binding: display: Add ITE IT61620 MIPI DSI to HDMI bridge
+      drm/bridge: Add ITE IT61620 MIPI DSI to HDMI bridge driver
+      MAINTAINERS: Add entry for ITE IT61620 MIPI to HDMI bridge driver
 
->
->
->>> This patch series includes all related dt-bindings, driver, and dts
->>> changes for the PLLs and peripheral clocks. Following our past conventi=
-on
->>> for clock-related submissions, the dts changes are placed at the end
->>> and submitted separately. If this ordering makes it harder for
->>> maintainers to review or pick patches, please feel free to point it out.
->>>
->>> Co-developed-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>> Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
->>> ---
->>> Chuan Liu (19):
->>>        dt-bindings: clock: Add Amlogic A4 SCMI clock controller
->>>        dt-bindings: clock: Add Amlogic A4 PLL clock controller
->>>        dt-bindings: clock: Add Amlogic A4 peripherals clock controller
->>>        clk: amlogic: Optimize PLL enable timing
->>>        clk: amlogic: Correct l_detect bit control
->>>        clk: amlogic: Fix out-of-range PLL frequency setting
->>>        clk: amlogic: Add A4 PLL clock controller driver
->>>        clk: amlogic: Add A4 clock peripherals controller driver
->>>        arm64: dts: amlogic: A4: Add scmi-clk node
->>>        arm64: dts: amlogic: A4: Add PLL controller node
->>>        arm64: dts: amlogic: A4: Add peripherals clock controller node
->>>        dt-bindings: clock: Add Amlogic A5 SCMI clock controller support
->>>        dt-bindings: clock: Add Amlogic A5 PLL clock controller
->>>        dt-bindings: clock: Add Amlogic A5 peripherals clock controller
->>>        clk: amlogic: Add A5 PLL clock controller driver
->>>        clk: amlogic: Add A5 clock peripherals controller driver
->>>        arm64: dts: amlogic: A5: Add scmi-clk node
->>>        arm64: dts: amlogic: A5: Add PLL controller node
->>>        arm64: dts: amlogic: A5: Add peripheral clock controller node
->>>
->>>   .../clock/amlogic,a4-peripherals-clkc.yaml         | 122 +++
->>>   .../bindings/clock/amlogic,a4-pll-clkc.yaml        |  61 ++
->>>   .../clock/amlogic,a5-peripherals-clkc.yaml         | 134 ++++
->>>   .../bindings/clock/amlogic,a5-pll-clkc.yaml        |  63 ++
->>>   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        |  80 ++
->>>   arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        |  87 ++
->>>   drivers/clk/meson/Kconfig                          |  53 ++
->>>   drivers/clk/meson/Makefile                         |   4 +
->>>   drivers/clk/meson/a1-pll.c                         |   1 +
->>>   drivers/clk/meson/a4-peripherals.c                 | 764 ++++++++++++=
-++++++
->>>   drivers/clk/meson/a4-pll.c                         | 242 ++++++
->>>   drivers/clk/meson/a5-peripherals.c                 | 883 ++++++++++++=
-+++++++++
->>>   drivers/clk/meson/a5-pll.c                         | 476 +++++++++++
->>>   drivers/clk/meson/clk-pll.c                        |  76 +-
->>>   drivers/clk/meson/clk-pll.h                        |   2 +
->>>   .../clock/amlogic,a4-peripherals-clkc.h            | 129 +++
->>>   include/dt-bindings/clock/amlogic,a4-pll-clkc.h    |  15 +
->>>   include/dt-bindings/clock/amlogic,a4-scmi-clkc.h   |  42 +
->>>   .../clock/amlogic,a5-peripherals-clkc.h            | 132 +++
->>>   include/dt-bindings/clock/amlogic,a5-pll-clkc.h    |  24 +
->>>   include/dt-bindings/clock/amlogic,a5-scmi-clkc.h   |  44 +
->>>   21 files changed, 3406 insertions(+), 28 deletions(-)
->>> ---
->>> base-commit: 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
->>> change-id: 20250928-a4_a5_add_clock_driver-2b7c9d695633
->>>
->>> Best regards,
->> --
->> Jerome
+ .../bindings/display/bridge/ite,it61620.yaml       |  155 +
+ MAINTAINERS                                        |    8 +
+ drivers/gpu/drm/bridge/Kconfig                     |   18 +
+ drivers/gpu/drm/bridge/Makefile                    |    1 +
+ drivers/gpu/drm/bridge/ite-it61620.c               | 2998 ++++++++++++++++++++
+ 5 files changed, 3180 insertions(+)
+---
+base-commit: f601d2db7229dc5ca0e840d0c2279ea765551aee
+change-id: 20250714-it61620-0714-ab4ab4ceff29
 
---=20
-Jerome
+Best regards,
+-- 
+Pet Weng <pet.weng@ite.com.tw>
+
 
