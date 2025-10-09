@@ -1,172 +1,142 @@
-Return-Path: <devicetree+bounces-224849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-224850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6284FBC858B
-	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 11:41:43 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AB72BC8594
+	for <lists+devicetree@lfdr.de>; Thu, 09 Oct 2025 11:42:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEB3919E2ED5
-	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 09:42:02 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9AFF44F8D28
+	for <lists+devicetree@lfdr.de>; Thu,  9 Oct 2025 09:41:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC452D73A7;
-	Thu,  9 Oct 2025 09:41:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E31942D7DDF;
+	Thu,  9 Oct 2025 09:41:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dLuQV1FK"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ivvS3jbj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 796702D73B5
-	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 09:41:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC33B25522B
+	for <devicetree@vger.kernel.org>; Thu,  9 Oct 2025 09:41:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760002879; cv=none; b=cBEGaMMKWvMW4IqMMMrMZJE/tYJvf5woz3HDWgIJSXCEMaEjqRddN21PeBdbNF0sOwmcBG0Ru5lv7LuJEqZR8Z4cyYLVoTPbOOB4Mn+t+SNPm/KhVqMGRaiPHwDvVSt2pzWgmYrpi5mOmkE4yjP9BrDgUYjvXa8RkQ4kHe6n97g=
+	t=1760002892; cv=none; b=VYR/ooSi9hyeEnNYd+zjPBfXhWXKHrxgv4/4M05RpAHF2Rrc0/tTHWaQEVc0Ds60q9NKkEe3ZpJtbWUQJQwqWjt1NgnrBipnHDt3akrPMJ1twY+yzYD8RWvA124x18/m29APThAd+C+X41+x0RSyuMUHRh+P8TyZz+s9n59yUVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760002879; c=relaxed/simple;
-	bh=cUHx9qgZFQYGZ/HN+MbTOeqQQ1J5kKxuW1Jd5pKcnEM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hQ0UoH1jv2XzLzXKDy6DLJ9fck5RWqzJgsAHRZgGegBbpwybDC0iTOeXnsebGiC1lneqpx0FJ+EpBUxWRmvYvH25G554xaGEfkAqDvl1DB3mBmRwVcbqVOC6qUcYSLks6LRObENt1GjVJ8gLHc7RXNoWOhAP22qfM92xICc3Jr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dLuQV1FK; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5996EIQ9022299
-	for <devicetree@vger.kernel.org>; Thu, 9 Oct 2025 09:41:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	HifFETgbzrd86Mja8ubAMcZowhzvoZfzV3gSLqhMB/k=; b=dLuQV1FKz6rJlEi8
-	k482NDgHQgwX1JIVXe+T0mgfdWCpEFVuAGd2P8FeMYvcHlMaJfFx5PYX5kHWEIue
-	DZct4qToTOiZDO1p2AxZGJd3ghTiPu1fCudxHu5V9c701yuHKv9s100hftyyKxXC
-	DoKav/eeZ4AAxV0B0i/e/ir1WFeorOlCSAF+EzmcrSp2BPe4yH5aHiAoE2YiZgcQ
-	bw/k7GWFrmvV6FNtRl4U8RdgzIFDguMtvE82QsQeZSPtpRPIOADvH/fcW66aibcr
-	jvD3EvHVJzJGY9QpmqqEQ0EGmG0e0QvlSE67ubfHEuCcfy5GKGOV40zPRfzuGemZ
-	igSZtg==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com [209.85.222.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4sj8w8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 09:41:16 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-85db8cb38ccso28997085a.0
-        for <devicetree@vger.kernel.org>; Thu, 09 Oct 2025 02:41:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760002875; x=1760607675;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HifFETgbzrd86Mja8ubAMcZowhzvoZfzV3gSLqhMB/k=;
-        b=WhKhQLl6kIbua4owFa273xQYSU7CviX7NZoPZXVcyUZZ62EYoTPeg9Vnq/YbX9UiIL
-         xsL1lZ2iD2PzLS5x12UIouiIB3MBr8F+nETp0qjDgfzQIbFp+6My1jEJMTutW9uzjuZQ
-         Lxs7IwPs8F9ibqus2PCr396GT2RbRSWoy/ZqcgT0RDt19jxEZSzT/6z42RG60nu20afa
-         vw6ydjuLz81CShA/+52kyTLiejRT2SCGdiB+axeM42YmXx04u46i55YY55/XevpGMpdx
-         r4E4ZQadVG0DGWR051Hnjl4iOP7frAIhJkFNaFqE3XMREbYuldcm1g8ks16lN7LBeNLe
-         s2VQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWIWdtB/nHdysN4wI1b0U0lt9TzD+7uUZUFDqKjqi9URCrJu65QivSj1UXZvdMyaYzrq9VEbvVIgews@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZWBSHOp/v9Ez8rncIBvcxJ4xDKWgYoJYJ/zHAcX6Grd39+QjG
-	aV8a5yMxpuiL9kvTHZBTXhfjo5Ps3LGVesmebisemGctxysgnAk4KvkQHS2o6cve9g4K+y/UtrG
-	EH/5oZbqnDzCPGirecjoits3GFIwXq23P5hvGA26m+r+wA83EfE0lu9EL37VQ3NBV
-X-Gm-Gg: ASbGncsko/GG+Qk6B28cuXyb4j+jjayWvBYUTYOHWy9lX4IENktP1n9Es/VTj7cO2lz
-	zln16cBlIagtjulqtNOFiPYgXNCsTVEaoqT8E6ZBBK7YsXQGhagDKFL9aF1PXocdRGIK/cz0FOZ
-	Y8ajbmcAHQQTTo3tmzmy2TFrnoWAvypY94CxOVPHkZpffSWUWoHOllT9CXUlIiMGWF6lBbHa0Hk
-	i2LYHsdhs0YszmOtsZF48ruW6973Xc9M8Uel76AX9o0PDHr8UtT9m/AjwUR+1MG4Mk2sQSNNN3n
-	horPhSiqI+2B9lakCRMRAX3FdJkDMBDjWnSycW5oOERGO925xLdglFm+ZgUXhWmPuON1W2E6Xzu
-	Dfsk4/3aigGgJNn/z+b+NiZdinvA=
-X-Received: by 2002:a05:620a:269a:b0:7e6:9e2b:6140 with SMTP id af79cd13be357-883541153abmr646448185a.8.1760002875404;
-        Thu, 09 Oct 2025 02:41:15 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF9TW5+PphA9Jk49AdyjnYbWQHthAzam3yq3zLm797shLwnfsPjaDRo3Y89qy+Sz47r2yOFPA==
-X-Received: by 2002:a05:620a:269a:b0:7e6:9e2b:6140 with SMTP id af79cd13be357-883541153abmr646445885a.8.1760002874779;
-        Thu, 09 Oct 2025 02:41:14 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b4865e7e8cdsm1867720966b.38.2025.10.09.02.41.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 09 Oct 2025 02:41:14 -0700 (PDT)
-Message-ID: <630bb2b0-0ab4-4083-96a2-9aa485041797@oss.qualcomm.com>
-Date: Thu, 9 Oct 2025 11:41:12 +0200
+	s=arc-20240116; t=1760002892; c=relaxed/simple;
+	bh=7Wgx60kvlYCd+pJyhCK3+0qXiXcbtLPDw3Em4UI29oE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BvYlVR5XYhzJeUz0ioAVdKwKBRWnNDhhBx1euEcpWqpbOAquX2iotnLEsUKxx6CEQS22I83Vpzoi63bQtrzJ64PdZ0QLdRARusR35fCTWQYjw4hBL02p7gel+OL5qV44DdtFldmhVwcDTz0LeIF6ZK12moHtIMOyQjhYlQ9P468=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ivvS3jbj; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (82-203-166-19.bb.dnainternet.fi [82.203.166.19])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 35D77664;
+	Thu,  9 Oct 2025 11:39:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1760002794;
+	bh=7Wgx60kvlYCd+pJyhCK3+0qXiXcbtLPDw3Em4UI29oE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ivvS3jbjz+5tHLuIG3RlitPTpRHn0/Isq4BNLOqvEEZHTOb8Lnq+uNJmEwfsmGhkf
+	 NlDbpO17PKiSucmSgLZ6wRz9olM+TNQWg5qIgpEGv+YkMskeFEOe0xtskJRsuXGqZH
+	 HqCHt0ydeeG4FgXNlrOx1WHr004RYqNkSc1+0kJI=
+Date: Thu, 9 Oct 2025 12:41:22 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Alexey Charkov <alchark@gmail.com>,
+	Algea Cao <algea.cao@rock-chips.com>,
+	Andy Yan <andy.yan@rock-chips.com>,
+	Cenk Uluisik <cenk.uluisik@googlemail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, Jimmy Hon <honyuenkwun@gmail.com>,
+	Kever Yang <kever.yang@rock-chips.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Muhammed Efe Cetin <efectn@6tel.net>, Ondrej Jirman <megi@xff.cz>,
+	Rob Herring <robh@kernel.org>, Sandy Huang <hjc@rock-chips.com>
+Subject: Re: [PATCH v2 2/5] drm/rockchip: dw_hdmi_qp: Improve error handling
+ with dev_err_probe()
+Message-ID: <20251009094122.GF12674@pendragon.ideasonboard.com>
+References: <20251005235542.1017-1-laurent.pinchart@ideasonboard.com>
+ <20251005235542.1017-3-laurent.pinchart@ideasonboard.com>
+ <gai5hfvu6xbbqpk4mu3i6nejolijeokjy3mkzca5xwzb4xwic7@jmee36svmwnb>
+ <8706f168-5598-4f91-9ad0-fdbd04b410b7@collabora.com>
+ <20251006162631.GK5944@pendragon.ideasonboard.com>
+ <bfb68ced-e6ec-4636-816e-9b8fe8aa10b4@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 3/6] ASoC: soc: qcom: sc8280xp: add support for I2S
- clocks
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-sound@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20251008-topic-sm8x50-next-hdk-i2s-v2-0-6b7d38d4ad5e@linaro.org>
- <20251008-topic-sm8x50-next-hdk-i2s-v2-3-6b7d38d4ad5e@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20251008-topic-sm8x50-next-hdk-i2s-v2-3-6b7d38d4ad5e@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: ckv78Kir3YUcg0M495Gqr1dGxCmPsNoO
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX0jgm87kuYbhW
- KNM0534O23hSvb4gZaZcGKJ/+035t1GaxhQ0BomU0wSlZmxi5dS73f/jwPa8A6bj1DibGS8NWlJ
- PbvssKJog+biYi4uZyCXdnGxQy+MpBfHQXhl1Sf6rbjZ9VZMXku15S7W57osu/W2h6gI9qR5xnE
- XFHj0LhFjEFpdAHmSDdhgYd1LGRLgyIwkCrAKsd3CgOXqo+vmVqmS9Cg+e7rQhXSQegSHiGEt7e
- yxrK+pvKuEwcx1t2bPLZV5Ex68WA8b4PXu64zP6pTTvLrJi+8o42E2PcJjDxOnJ7zjAi8m5vHRW
- 6RCX8m1EQa8AFaeJTs2ZmxChika7tLlK0Yylp5bFCnZ3Ikf0nJbBXllhXSujGa1gSw9PZCxobJ0
- RmNN2LHAnaJxW8GOsDZ2zA3WqefpTg==
-X-Authority-Analysis: v=2.4 cv=SfL6t/Ru c=1 sm=1 tr=0 ts=68e7833c cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=KKAkSRfTAAAA:8 a=hmOrbv2CecBtpEyMAQYA:9
- a=QEXdDO2ut3YA:10 a=NFOGd7dJGGMPyQGDc5-O:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: ckv78Kir3YUcg0M495Gqr1dGxCmPsNoO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-09_03,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1015 malwarescore=0 bulkscore=0 priorityscore=1501
- suspectscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <bfb68ced-e6ec-4636-816e-9b8fe8aa10b4@collabora.com>
 
-On 10/8/25 8:56 PM, Neil Armstrong wrote:
-> Add support for getting the I2S clocks used for the MI2S
-> interfaces, and enable/disable the clocks on the PCM
-> startup and shutdown card callbacks.
+On Thu, Oct 09, 2025 at 10:24:25AM +0300, Cristian Ciocaltea wrote:
+> On 10/6/25 7:26 PM, Laurent Pinchart wrote:
+> > On Mon, Oct 06, 2025 at 05:37:23PM +0300, Cristian Ciocaltea wrote:
+> >> On 10/6/25 3:02 PM, Dmitry Baryshkov wrote:
+> >>> On Mon, Oct 06, 2025 at 02:55:38AM +0300, Laurent Pinchart wrote:
+> >>>> From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> >>>>
+> >>>> The error handling in dw_hdmi_qp_rockchip_bind() is quite inconsistent,
+> >>>> i.e. in some cases the error code is not included in the message, while
+> >>>> in some other cases there is no check for -EPROBE_DEFER.
+> >>>>
+> >>>> Since this is part of the probe path, address the aforementioned issues
+> >>>> by switching to dev_err_probe(), which also reduces the code a bit.
+> >>>>
+> >>>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> >>>> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >>>> ---
+> >>>>  .../gpu/drm/rockchip/dw_hdmi_qp-rockchip.c    | 62 +++++++------------
+> >>>>  1 file changed, 24 insertions(+), 38 deletions(-)
+> >>>>
+> >>>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+> >>>> index 7d531b6f4c09..4e7794aa2dde 100644
+> >>>> --- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+> >>>> +++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+> >>>> @@ -457,10 +457,8 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
+> >>>>  		return -ENODEV;
+> >>>>  
+> >>>>  	if (!cfg->ctrl_ops || !cfg->ctrl_ops->io_init ||
+> >>>> -	    !cfg->ctrl_ops->irq_callback || !cfg->ctrl_ops->hardirq_callback) {
+> >>>> -		dev_err(dev, "Missing platform ctrl ops\n");
+> >>>> -		return -ENODEV;
+> >>>> -	}
+> >>>> +	    !cfg->ctrl_ops->irq_callback || !cfg->ctrl_ops->hardirq_callback)
+> >>>> +		return dev_err_probe(dev, -ENODEV, "Missing platform ctrl ops\n");
+> >>>
+> >>> This only makes sense for the purpose of unification.
+> >>
+> >> Right, as mentioned in the commit description, the intention was to ensure
+> >> consistent error handling across the probe path rather than limiting the scope
+> >> to -EPROBE_DEFER exclusively.
+> > 
+> > Should I revert this change in v3 or keep it ? I see value in
+> > unification, but I don't mind either way. Dmitry, what's your preference
+> > ?
 > 
-> The rate can be easily calculated since the card forces 48Hz,
-> 2 channels at 16bit slot size.
+> I missed to point out this patch has been also sent a while ago as part of
+> another series [1] which should be ready for merging.  It'd be great if there's
+> no need to revert any changes, otherwise we need to keep those in sync.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
+> Regardless, I'll let you know if that gets applied first, allowing us to drop
+> this one after rebasing.
 
-[...]
+Thanks for the information. I'm happy to merge 3/5 on top of that
+series. The DT binding change in 1/5 can be merged separately.
 
-> +static int sc8280xp_snd_i2s_index(struct snd_soc_dai *dai)
-> +{
-> +	switch (dai->id) {
-> +	case PRIMARY_MI2S_RX...PRIMARY_MI2S_TX:
+> [1] https://lore.kernel.org/all/20250903-rk3588-hdmi-cec-v4-3-fa25163c4b08@collabora.com/
 
-I have mixed feelings about the range syntax here.. it's only 2 entries
-per and it's quite error-prone (no errors in this case, but it
-encourages the thinking that things are always contiguous)..
+-- 
+Regards,
 
-[...]
-
->  	switch (cpu_dai->id) {
->  	case PRIMARY_MI2S_RX...QUATERNARY_MI2S_TX:
->  	case QUINARY_MI2S_RX...QUINARY_MI2S_TX:
-
-whereas e.g. here we see that it's not really the case, but it's
-tempting for someone trying to 'clean up' the code to change it to:
-
-case PRIMARY_MI2S_RX...QUINARY_MI2S_TX 
-
-and the reviewers may not catch it
-
-Konrad
+Laurent Pinchart
 
