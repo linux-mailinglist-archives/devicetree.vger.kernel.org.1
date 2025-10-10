@@ -1,197 +1,466 @@
-Return-Path: <devicetree+bounces-225443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F65FBCE1A4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 19:38:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63CE0BCE1BF
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 19:39:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 3D925347AD3
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 17:38:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5AD4319A10E7
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 17:40:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 674CB221578;
-	Fri, 10 Oct 2025 17:38:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D33DE222585;
+	Fri, 10 Oct 2025 17:39:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eCXD/oji"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jpLHSzkj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f172.google.com (mail-oi1-f172.google.com [209.85.167.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA1941F790F
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 17:38:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62A2F21D3F6
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 17:39:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760117908; cv=none; b=DMi6DYbLGCfDfRaFkklcSKOO3xnGIyFKlIVi4JqX4Ry43kaSRsgxjDh8B40X0zM4q4xlYGIfqvK2nbU3zP82Y3YwA+BQYeYwXIfvMxuVz1Il9s5L/UEBQ/GO7rBgpRY70JsODRRPBDeGjQR+z2y+WFEDvLiYjob7yW+0tYHQbWU=
+	t=1760117972; cv=none; b=KbBRn2WVxBkfJ0Js3NkzXrNlKhIeybB5/L+ZEnGngSXKRO75SNVre22+/LNXh9UjN0F2AyDyyc9rMDNFrbaRadWJFTYsd4MLr8xa7gEcYDCoL4dhNh2rcqsuqZPlWj7/ZbkFfLwgcnR4pXJH36W3RSAT6k6VfV/DFR5oEI9BDrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760117908; c=relaxed/simple;
-	bh=WlMRssIh5zYebG/2qOucIDbKqlW9Tme8xzWY4T8SErc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QbFOROBDET6noRBR9PwK4VVPQOBOMZDokonZ/07s/QSOnAMI4wrtfv4byd7gYOQqv4Tj1X7QY766N6givGKHyWXrVWAbrFEHmxDQansb8lRYk4Cqul1JTOD6GuUQVVibUyyC9IoiLha4WN3RrIAbPDyo0sN10BVv5ZckZWhThuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eCXD/oji; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59AFaGRf011763
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 17:38:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=bHopJWpMCYVDcAtBNZFS+e4d
-	nBu6DmW8XDXrseCiOq8=; b=eCXD/ojiHGrMPEvKSChJR8lmJv2FWtHjBM6MQNwa
-	C8h3O14kpQsEABo+IeaxcNbtq8M5irtYvws2H0DbxLfHPQTS+VZZOgxAaRQ3JFZe
-	364CygO2+85Lo16LjbyZfWS7PjMyJpJCNogy6hK5BfNFIbuluuzlDbKBypTB13V4
-	tAiehVEyHJ9AaC7Ab2r0CjOZfBNB+oxf5ttrF60zcD+xrg/aDZe9x51nduUZsx3N
-	xDTCcYefXddrY2ZJo3G135m010sMLYTVrarWhriy2h5hpEG3NK26aO5a0R5Ys0Rp
-	rOf8z6w2IUZqSEziGpm8VaeTKB03VFggFaegY8XKrnjUYA==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com [209.85.222.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49q4x1gbc6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 17:38:25 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id af79cd13be357-8635d47553dso727632885a.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 10:38:25 -0700 (PDT)
+	s=arc-20240116; t=1760117972; c=relaxed/simple;
+	bh=p8y/s+CYhyKDayoBztOHI0AHLWMRrYFOjG75hEUhgYk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dZwUpmEG6r880MYxIY1UOJ34IbPVVXdJIVdMkbl2vibmbMJP0q++UMSF1rwEP8Z2Nbo3tdwmCa8sh0Vg64P/vtiuR0N6uCFuJpxRCPugaL5/TABHEzdC0ArU7wNU1j2HmNiKGCgbZpG+aezbPinltZq1z5bWVpj2ONU03YrN+Nc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jpLHSzkj; arc=none smtp.client-ip=209.85.167.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f172.google.com with SMTP id 5614622812f47-43fac2df7d4so1113076b6e.3
+        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 10:39:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1760117968; x=1760722768; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PZ+Dy49i07NMHWC9th7IGBEaPJ8wyTfsNg8yJ9Fy9+c=;
+        b=jpLHSzkjzBTfhvqzjF+1UoFXwfHroKWEBjQmLedwpn/L1F4K1yErjcpEDYwELsh9dO
+         Vg5j0/p3qDmiiiT/HpgdHR9XHrn3ppPhB+rIFIs+yL82nhMbPcceU81iMvcTt4S4Ix/a
+         dDzczYVBhGcY/p4E2AJ1NLMV1yX2g4bJh65z4v0JQHfGEbFj8w99EnsYgByCMQlCzX8k
+         ZO/Biz0z+iked0T7lpsw8wIkzUmyxqSM/T6OqkSr2O9bU+clsKHLfR0dabz0uM7goFU1
+         QXlCYmjeo42cB9/wHrOkSlvsXzIHXx6aBUovAFRwIiq07bXv4rf+Oip4+nCue/iFWz9i
+         VAQQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760117905; x=1760722705;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bHopJWpMCYVDcAtBNZFS+e4dnBu6DmW8XDXrseCiOq8=;
-        b=Euk1lkHXSeraGiVPG4d2/10I6z2w2f+wKAqNhZ9JL6zvoRz7BgBFNAx26auOSa/NJT
-         rVmNK/gC5/KNcVaVTk6wio0euuPcVRHZjpK+PrKT195134wAje6MLaoOhAe02dfXw5OF
-         NcBlReWubldhMFDb96JV+M4Pqbx5C28WHlkTPJO7VRjdGSvz/WPJuFAJ1P6cGJOjAyr1
-         s2DMj04++M+MGOMWW1m6PH+O1d5fXW4HMa88dihW82RBxot7hckUBVfEoFj8KSRdioki
-         vosBN24oTR5jZr/rK+RzvAGIUr5Uxcm8sdHCAy5Bk5AWymtbJOZFpSrqmTXRVOeQgVUQ
-         cWKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX+c0FGaAtNLNCvXOkz9TcvI2ET2VQ679EixEZDn+FTOGyAE0VqaeMWu7Rq8AYwutGaGKBW3nkKMIG7@vger.kernel.org
-X-Gm-Message-State: AOJu0YyngFEyCc9zJFUj5TAaMHJWE1L1aRZ8Nvs8rqiLUhZGbJE5uw/z
-	uzA+vsGlEnrSJ5wrb1jtwNrlpA8Dkjv+dKs/bv/RTwa8oIcysgh2q7YgaftP83x8IFRINK0Pt2q
-	s2oujN/q9NVeHKkyGaNsZfFgWJJBmgFBX+c30v0Q0PQibBCv+1yixbqYeK19jt/3O
-X-Gm-Gg: ASbGncuQ2XQN5wsNeJwoWmpMwd4uqxxcS7vbbB7NlW8pOZcKF9Flw+gCED+hfFTlcNM
-	P5cy9kj9+YIkUJl/pBQqyHFtQAAX2HbyNIzX4LBtqZFzG43T1EeXIqcOzsQbZjyrL802SYcycCz
-	zDGuFg47Tb+eBLAgyzyksm+i0+ADrcR7PUAAvfFql5D0ml23Ahez+zlRRZtxi1tkmARm229SmUd
-	HWH5Qp4vVJVNOrfWH2NHTjOXkvs4OdJylZm3MfGi7MU4BOA7i7RW4qAdxOpWn88E3JNakCujxyc
-	8G1oxul7LlLJlYVruPjO+B6mrAqWba8FD89/ZVwZA9arEhbMCPsdvgt+xUetKelRy5CMTBf0oDl
-	EgZJ/eP5Gge1EPV/Ji2PX4kXsPnDqnUFEIo1HfNVLlfQjdnhqaAtu
-X-Received: by 2002:a05:622a:550b:b0:4d8:67fb:417c with SMTP id d75a77b69052e-4e6eacc6653mr200002841cf.16.1760117904783;
-        Fri, 10 Oct 2025 10:38:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHKChfLnLv6uMZuWTNjeEXangYm9IkXBq61vh5oNYRc8TIuCkU2/pQdzdpKhqDcWyE0R351rA==
-X-Received: by 2002:a05:622a:550b:b0:4d8:67fb:417c with SMTP id d75a77b69052e-4e6eacc6653mr200002151cf.16.1760117904234;
-        Fri, 10 Oct 2025 10:38:24 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3762ea3aae3sm7638331fa.45.2025.10.10.10.38.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Oct 2025 10:38:23 -0700 (PDT)
-Date: Fri, 10 Oct 2025 20:38:20 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Jameson Thies <jthies@google.com>
-Cc: akuchynski@chromium.org, abhishekpandit@chromium.org, krzk+dt@kernel.org,
-        robh@kernel.org, bleung@chromium.org, heikki.krogerus@linux.intel.com,
-        ukaszb@chromium.org, tzungbi@kernel.org, devicetree@vger.kernel.org,
-        chrome-platform@lists.linux.dev, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/3] mfd: cros_ec: Don't add cros_ec_ucsi if it is
- defined in OF or ACPI
-Message-ID: <zcs3utvlaac336ezw2y7mzbbjsqocbls3e4nx5sc4tufiig475@cekebowcrpmz>
-References: <20251009010312.2203812-1-jthies@google.com>
- <20251009010312.2203812-4-jthies@google.com>
+        d=1e100.net; s=20230601; t=1760117968; x=1760722768;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PZ+Dy49i07NMHWC9th7IGBEaPJ8wyTfsNg8yJ9Fy9+c=;
+        b=RhnGtZiAcyZ8NQAcZ7kv2U6FBpmvL/CIgg5KMOowUXoXEhUA/jSfvpzEDmNFNIMeph
+         /VRllF/woIHEgsg2RMYqLx6U6SUjYEDo5jn9HQSz1vcNQIVBf9FbqXf+xO/AgRMP0koT
+         xeg8VcOsdZ4ayHctsk8u4o8GQBxEcBs5YnqAZgt5xtCn6sddcWUnwMuSMs9AthMnGtlY
+         ZtUBucB6DYVurLlXyGNxN9vd+9M3TTOwDXToMJFQlLTvB9ZUyOlkbL5tNtzg974GxbeO
+         TitwbNVnDouxouLqbIy77pYHtmU2xwbcdBBb7chsMyNRV3tjpmbqFEpwhRLqOyyM9yFv
+         Cz3w==
+X-Forwarded-Encrypted: i=1; AJvYcCU/wYNh7ddH8OAaXxDuOi4fLcJ9faG6Ss08FtDFHh1BTK6Bh2UzZ/eT9WmuaGGbf4PbIAVR5+Kv8U2/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwY8KhFBftZsP+amrRTT/hlOa/86TD3nVOOA9eBmVr5CqG0SMaI
+	3ypo0yhnmTHcvNeFjO8KPczzwABM4YI65UbyCT2+DNQ0+V9raOXEbxntIZDvfRELFXg=
+X-Gm-Gg: ASbGncvs0W/LbPdHQvL3+dZiUVumM6e+pJGWNdz87k74M/0ssUFZBI8VFwu9KMnCREu
+	NlqFS5zvmGmqezlI/xv2G+EnnnOJjlFk2YWBzJP6AYmAzbBmg7gDE4KMd7jC18oHCCsX+Dv3kBL
+	Nc2qUD08whvkQGhbU/RJvUTOiHAtDCVbVtBLlYZjomgRpcQ3t8kvdju4rQLai4noPfPxt75HsJB
+	OUCw68lzNabj0oi/JXJuXDdBW8qD6/X40PHoNSTBSyaYOPqVVV0gaYCzqjUfy/r1kiMxf5NcQGx
+	IhtW6Ayf7QD4P8jGvmRVKX+gg5ljkLnoiSzzj6xl0WFsAb9YJX3nXgQJ/ZA7L4lqPYyih/C6ctS
+	OinuZz5A6wYbOj8XYMJJ5mckN1qygAoRos4ZF2vsPur8YcR9LYGXKITqM8tOsLRffhkmc8og0Kg
+	OEVn0F01lclCk+Blo=
+X-Google-Smtp-Source: AGHT+IEYhPYvlDBLZaZqlLGB+iUT5R4ASjXBM6uBeyLBN/sayw6DH2MjRiDQ+SBu7/siJhgOZPrD1g==
+X-Received: by 2002:a05:6808:2223:b0:43f:55f2:4c44 with SMTP id 5614622812f47-4417b2d22c4mr5138879b6e.3.1760117968269;
+        Fri, 10 Oct 2025 10:39:28 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:500:6d3b:e3bd:4210:32e2? ([2600:8803:e7e4:500:6d3b:e3bd:4210:32e2])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c0f915efddsm1009636a34.34.2025.10.10.10.39.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Oct 2025 10:39:27 -0700 (PDT)
+Message-ID: <56f63486-20e7-4c9b-8a39-da904b4600ad@baylibre.com>
+Date: Fri, 10 Oct 2025 12:39:25 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20251009010312.2203812-4-jthies@google.com>
-X-Proofpoint-GUID: 8X-1amvLv3VAUzpg7Oihfqm7PiNawlxM
-X-Authority-Analysis: v=2.4 cv=N4gk1m9B c=1 sm=1 tr=0 ts=68e94491 cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=x6icFKpwvdMA:10 a=1XWaLZrsAAAA:8 a=aqZUw6bxmdrI7EJOglwA:9 a=CjuIK1q_8ugA:10
- a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDEwMDA5MCBTYWx0ZWRfXyeGprvDpsuHS
- 4Jn4/CjJTJVZo/JjUB3azJ1nFNWC1uo7Ol8pVG6f+7ftgmRLao3gcImw7l6UeBt33sojO8HGi6G
- 5KWMPeY27vQCLR7hVCTyd2elXtVGkfP5KzykK8Vi+fxPmyt8eUvVNjpSB4h/mPj31pArmZ/vdqh
- MmPTtJk/UzKABlEmyqYQOcIjSD6VswkPpTCr20lu3tgTBf8bBpi4GISC/weTtp5+eAn34tGKyJx
- W+3VC0P6KcfwDHA58ucSCx7fhhcsv4BZu25aPQuf5/duky56SXGkbUeRXVx73fo2MFuYCoxqyO+
- RtZBeixaoVMqaBjo50IpX5p91dzS4dXypORiz4WuappW9D6kLqizHOJ3liASu1ZLBHancxlREGE
- HEK2/r6dM4L1ehkpq3TKFfRvUICVdg==
-X-Proofpoint-ORIG-GUID: 8X-1amvLv3VAUzpg7Oihfqm7PiNawlxM
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-10-10_04,2025-10-06_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 clxscore=1015 bulkscore=0 adultscore=0
- phishscore=0 impostorscore=0 priorityscore=1501 lowpriorityscore=0
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
- definitions=main-2510100090
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 6/8] iio: adc: ad4030: Add SPI offload support
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: jic23@kernel.org, ukleinek@kernel.org, michael.hennerich@analog.com,
+ nuno.sa@analog.com, eblanc@baylibre.com, andy@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
+ marcelo.schmitt1@gmail.com, Trevor Gamblin <tgamblin@baylibre.com>,
+ Axel Haslam <ahaslam@baylibre.com>
+References: <cover.1759929814.git.marcelo.schmitt@analog.com>
+ <2bde211f1bc730ee147c9540b88339a93b2983e6.1759929814.git.marcelo.schmitt@analog.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <2bde211f1bc730ee147c9540b88339a93b2983e6.1759929814.git.marcelo.schmitt@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Oct 09, 2025 at 01:03:08AM +0000, Jameson Thies wrote:
-> On devices with a UCSI PPM in the EC, check for cros_ec_ucsi to be
-> defined in the OF device tree or an ACPI node. If it is defined by
-> either OF or ACPI, it does not need to be added as a subdevice of
-> cros_ec_dev.
+On 10/8/25 8:51 AM, Marcelo Schmitt wrote:
 
-It still can be a subdevice of the EC, if it has a correct DT node.
+...
 
-> 
-> Signed-off-by: Jameson Thies <jthies@google.com>
-> ---
->  drivers/mfd/cros_ec_dev.c | 23 ++++++++++++++++++-----
->  1 file changed, 18 insertions(+), 5 deletions(-)
-> 
-> diff --git a/drivers/mfd/cros_ec_dev.c b/drivers/mfd/cros_ec_dev.c
-> index dc80a272726b..1928c2ea2b8f 100644
-> --- a/drivers/mfd/cros_ec_dev.c
-> +++ b/drivers/mfd/cros_ec_dev.c
-> @@ -5,6 +5,7 @@
->   * Copyright (C) 2014 Google, Inc.
->   */
->  
-> +#include <linux/acpi.h>
->  #include <linux/dmi.h>
->  #include <linux/kconfig.h>
->  #include <linux/mfd/core.h>
-> @@ -131,11 +132,6 @@ static const struct cros_feature_to_cells cros_subdevices[] = {
->  		.mfd_cells	= cros_ec_rtc_cells,
->  		.num_cells	= ARRAY_SIZE(cros_ec_rtc_cells),
->  	},
-> -	{
-> -		.id		= EC_FEATURE_UCSI_PPM,
-> -		.mfd_cells	= cros_ec_ucsi_cells,
-> -		.num_cells	= ARRAY_SIZE(cros_ec_ucsi_cells),
-> -	},
->  	{
->  		.id		= EC_FEATURE_HANG_DETECT,
->  		.mfd_cells	= cros_ec_wdt_cells,
-> @@ -264,6 +260,23 @@ static int ec_device_probe(struct platform_device *pdev)
->  		}
->  	}
->  
-> +	/*
-> +	 * FW nodes can load cros_ec_ucsi, but early PDC devices did not define
-> +	 * the required nodes. On PDC systems without FW nodes for cros_ec_ucsi,
-> +	 * the driver should be added as an mfd subdevice.
-> +	 */
-> +	if (cros_ec_check_features(ec, EC_FEATURE_USB_PD) &&
-> +	    cros_ec_check_features(ec, EC_FEATURE_UCSI_PPM) &&
-> +	    !acpi_dev_found("GOOG0021") &&
-> +	    !of_find_compatible_node(NULL, NULL, "google,cros-ec-ucsi")) {
-> +		retval = mfd_add_hotplug_devices(ec->dev,
-> +						 cros_ec_ucsi_cells,
-> +						 ARRAY_SIZE(cros_ec_ucsi_cells));
+> +static int ad4030_update_conversion_rate(struct ad4030_state *st,
+> +					 unsigned int freq, unsigned int avg_log2)
+
+Always nice to have the units, e.g. freq_hz.
+
+> +{
+> +	struct spi_offload_trigger_config *config = &st->offload_trigger_config;
+> +	struct pwm_waveform cnv_wf = { };
+> +	u64 target = AD4030_TCNVH_NS;
+> +	u64 offload_period_ns;
+> +	u64 offload_offset_ns;
+> +	int ret;
 > +
-> +		if (retval)
-> +			dev_warn(ec->dev, "failed to add cros_ec_ucsi: %d\n", retval);
+> +	/*
+> +	 * When averaging/oversampling over N samples, we fire the offload
+> +	 * trigger once at every N pulses of the CNV signal. Conversely, the CNV
+> +	 * signal needs to be N times faster than the offload trigger. Take that
+> +	 * into account to correctly re-evaluate both the PWM waveform connected
+> +	 * to CNV and the SPI offload trigger.
+> +	 */
+> +	freq <<= avg_log2;
+
+nit: modifying function arguments throws me off when reading the code. Would prefer
+an additional local variable for this, e.g. cnv_rate_hz = freq << avg_log2.
+
+> +
+> +	cnv_wf.period_length_ns = DIV_ROUND_CLOSEST(NSEC_PER_SEC, freq);
+> +	/*
+> +	 * The datasheet lists a minimum time of 9.8 ns, but no maximum. If the
+> +	 * rounded PWM's value is less than 10, increase the target value by 10
+> +	 * and attempt to round the waveform again, until the value is at least
+> +	 * 10 ns. Use a separate variable to represent the target in case the
+> +	 * rounding is severe enough to keep putting the first few results under
+> +	 * the minimum 10ns condition checked by the while loop.
+> +	 */
+> +	do {
+> +		cnv_wf.duty_length_ns = target;
+> +		ret = pwm_round_waveform_might_sleep(st->cnv_trigger, &cnv_wf);
+> +		if (ret)
+> +			return ret;
+> +		target += AD4030_TCNVH_NS;
+> +	} while (cnv_wf.duty_length_ns < AD4030_TCNVH_NS);
+> +
+> +	if (!in_range(cnv_wf.period_length_ns, AD4030_TCYC_NS, INT_MAX))
+> +		return -EINVAL;
+> +
+> +	offload_period_ns = cnv_wf.period_length_ns;
+> +	/*
+> +	 * Make the offload trigger period be N times longer than the CNV PWM
+> +	 * period when averaging over N samples.
+> +	 */
+> +	offload_period_ns <<= avg_log2;
+
+Then this could be:
+
+	offload_period_ns = DIV_ROUND_CLOSEST(NSEC_PER_SEC, freq);
+
+Which might avoid some rounding issues.
+
+period_length_ns can have up to 0.5 ns differnce from the exact value, so when
+multiplying that by a large oversampling rate (up to 64k), that rounding error
+would really add up.
+
+> +
+> +	config->periodic.frequency_hz = DIV_ROUND_UP_ULL(NSEC_PER_SEC,
+> +							 offload_period_ns);
+> +
+> +	/*
+> +	 * The hardware does the capture on zone 2 (when SPI trigger PWM
+> +	 * is used). This means that the SPI trigger signal should happen at
+> +	 * tsync + tquiet_con_delay being tsync the conversion signal period
+> +	 * and tquiet_con_delay 9.8ns. Hence set the PWM phase accordingly.
+> +	 *
+> +	 * The PWM waveform API only supports nanosecond resolution right now,
+> +	 * so round this setting to the closest available value.
+> +	 */
+> +	offload_offset_ns = AD4030_TQUIET_CNV_DELAY_NS;
+> +	do {
+> +		config->periodic.offset_ns = offload_offset_ns;
+> +		ret = spi_offload_trigger_validate(st->offload_trigger, config);
+> +		if (ret)
+> +			return ret;
+> +		offload_offset_ns += AD4030_TQUIET_CNV_DELAY_NS;
+> +	} while (config->periodic.offset_ns < AD4030_TQUIET_CNV_DELAY_NS);
+> +
+> +	st->cnv_wf = cnv_wf;
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int ad4030_set_avg_frame_len(struct iio_dev *dev, unsigned long mask, int avg_val)
+> +{
+> +	struct ad4030_state *st = iio_priv(dev);
+> +	unsigned int avg_log2 = ilog2(avg_val);
+> +	unsigned int last_avg_idx = ARRAY_SIZE(ad4030_average_modes) - 1;
+> +	int freq;
+> +	int ret;
+> +
+> +	if (avg_val < 0 || avg_val > ad4030_average_modes[last_avg_idx])
+> +		return -EINVAL;
+> +
+> +	ret = ad4030_set_mode(st, mask, avg_log2);
+
+I still think setting the mode here is wrong for the reasons given in a previous review.
+There is no "correct" mode until we have a request to read a sample.
+
+And if we drop this, then we can return ad4030_set_avg_frame_len() to it's original
+location and reduce the diff.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (st->offload_trigger) {
+> +		/*
+> +		 * The sample averaging and sampling frequency configurations
+> +		 * are mutually dependent one from another. That's because the
+> +		 * effective data sample rate is fCNV / 2^N, where N is the
+> +		 * number of samples being averaged.
+> +		 *
+> +		 * When SPI offload is supported and we have control over the
+> +		 * sample rate, the conversion start signal (CNV) and the SPI
+> +		 * offload trigger frequencies must be re-evaluated so data is
+> +		 * fetched only after 'avg_val' conversions.
+> +		 */
+> +		ad4030_get_sampling_freq(st, &freq);
+> +		ret = ad4030_update_conversion_rate(st, freq, avg_log2);
+> +		if (ret)
+> +			return ret;
 > +	}
 > +
->  	/*
->  	 * UCSI provides power supply information so we don't need to separately
->  	 * load the cros_usbpd_charger driver.
-> -- 
-> 2.51.0.710.ga91ca5db03-goog
-> 
+> +	ret = regmap_write(st->regmap, AD4030_REG_AVG,
+> +			   AD4030_REG_AVG_MASK_AVG_SYNC |
+> +			   FIELD_PREP(AD4030_REG_AVG_MASK_AVG_VAL, avg_log2));
+> +	if (ret)
+> +		return ret;
+> +
+> +	st->avg_log2 = avg_log2;
+> +	return 0;
+> +}
+> +
 
--- 
-With best wishes
-Dmitry
+...
+
+> @@ -869,7 +1035,11 @@ static int ad4030_get_current_scan_type(const struct iio_dev *indio_dev,
+>  static int ad4030_update_scan_mode(struct iio_dev *indio_dev,
+>  				   const unsigned long *scan_mask)
+>  {
+> -	return ad4030_set_mode(indio_dev, *scan_mask);
+> +	struct ad4030_state *st = iio_priv(indio_dev);
+> +
+
+> +	//return ad4030_set_mode(st, *scan_mask, st->avg_log2);
+> +	//return ad4030_set_mode(iio_priv(indio_dev), &scan_mask, st->avg_log2);
+
+Oops. :-)
+
+> +	return ad4030_set_mode(iio_priv(indio_dev), *scan_mask, st->avg_log2);
+>  }
+>  
+>  static const struct iio_info ad4030_iio_info = {
+> @@ -898,6 +1068,108 @@ static const struct iio_buffer_setup_ops ad4030_buffer_setup_ops = {
+>  	.validate_scan_mask = ad4030_validate_scan_mask,
+>  };
+>  
+> +static void ad4030_prepare_offload_msg(struct iio_dev *indio_dev)
+> +{
+> +	struct ad4030_state *st = iio_priv(indio_dev);
+> +	u8 offload_bpw;
+> +
+> +	if (st->mode == AD4030_OUT_DATA_MD_30_AVERAGED_DIFF) {
+> +		offload_bpw = 32;
+> +	} else {
+> +		offload_bpw = st->chip->precision_bits;
+> +		offload_bpw += (st->mode == AD4030_OUT_DATA_MD_24_DIFF_8_COM ||
+> +				st->mode == AD4030_OUT_DATA_MD_16_DIFF_8_COM) ? 8 : 0;
+
+The 8-bit common-mode voltage value needs to be in a separate SPI transfer
+so that is gets placed in a separate word in the DMA buffer. Otherwise userspace
+won't be able to interpret it correctly.
+
+> +	}
+> +
+> +	st->offload_xfer.bits_per_word = offload_bpw;
+> +	st->offload_xfer.len = spi_bpw_to_bytes(offload_bpw);
+> +	st->offload_xfer.offload_flags = SPI_OFFLOAD_XFER_RX_STREAM;
+> +	spi_message_init_with_transfers(&st->offload_msg, &st->offload_xfer, 1);
+> +}
+> +
+> +static int ad4030_offload_buffer_postenable(struct iio_dev *indio_dev)
+> +{
+> +	struct ad4030_state *st = iio_priv(indio_dev);
+> +	unsigned int reg_modes;
+> +	int ret, ret2;
+> +
+> +	/*
+> +	 * When data from 2 analog input channels is output through a single
+> +	 * bus line (interleaved mode (LANE_MD == 0b11)) and gets pushed through
+> +	 * DMA, extra hardware is required to do the de-interleaving. While we
+> +	 * don't support such hardware configurations, disallow interleaved mode
+> +	 * when using SPI offload.
+> +	 */
+> +	ret = regmap_read(st->regmap, AD4030_REG_MODES, &reg_modes);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (st->chip->num_voltage_inputs > 1 &&
+> +	    FIELD_GET(AD4030_REG_MODES_MASK_LANE_MODE, reg_modes) == AD4030_LANE_MD_INTERLEAVED)
+> +		return -EINVAL;
+> +
+> +	ret = regmap_write(st->regmap, AD4030_REG_EXIT_CFG_MODE, BIT(0));
+
+There is already AD4030_REG_EXIT_CFG_MODE_EXIT_MSK for BIT(0).
+
+Also there is ad4030_exit_config_mode() that could be called instead. Not sure
+why we have that though since there aren't any comments to explain it.
+
+> +	if (ret)
+> +		return ret;
+> +
+> +	ad4030_prepare_offload_msg(indio_dev);
+> +	st->offload_msg.offload = st->offload;
+> +	ret = spi_optimize_message(st->spi, &st->offload_msg);
+> +	if (ret)
+> +		goto out_reset_mode;
+> +
+> +	ret = pwm_set_waveform_might_sleep(st->cnv_trigger, &st->cnv_wf, false);
+> +	if (ret)
+> +		goto out_unoptimize;
+> +
+> +	ret = spi_offload_trigger_enable(st->offload, st->offload_trigger,
+> +					 &st->offload_trigger_config);
+> +	if (ret)
+> +		goto out_pwm_disable;
+> +
+> +	return 0;
+> +
+> +out_pwm_disable:
+> +	pwm_disable(st->cnv_trigger);
+> +out_unoptimize:
+> +	spi_unoptimize_message(&st->offload_msg);
+> +out_reset_mode:
+> +	/* reenter register configuration mode */
+> +	ret2 = ad4030_enter_config_mode(st);
+> +	if (ret2)
+> +		dev_err(&st->spi->dev,
+> +			"couldn't reenter register configuration mode: %d\n",
+> +			ret2);
+> +
+> +	return ret;
+> +}
+> +
+
+...
+
+>  static const struct ad4030_chip_info ad4030_24_chip_info = {
+>  	.name = "ad4030-24",
+>  	.available_masks = ad4030_channel_masks,
+> @@ -1125,10 +1511,15 @@ static const struct ad4030_chip_info ad4030_24_chip_info = {
+>  		AD4030_CHAN_CMO(1, 0),
+>  		IIO_CHAN_SOFT_TIMESTAMP(2),
+>  	},
+> +	.offload_channels = {
+> +		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_24_offload_scan_types),
+> +		AD4030_CHAN_CMO(1, 0),
+
+We will need a new AD4030_OFFLOAD_CHAN_CMO() that has storagebits = 32.
+
+Also applies to similar items below.
+
+> +	},
+>  	.grade = AD4030_REG_CHIP_GRADE_AD4030_24_GRADE,
+>  	.precision_bits = 24,
+>  	.num_voltage_inputs = 1,
+>  	.tcyc_ns = AD4030_TCYC_ADJUSTED_NS,
+> +	.max_sample_rate_hz = 2 * HZ_PER_MHZ,
+>  };
+>  
+>  static const struct ad4030_chip_info ad4630_16_chip_info = {
+> @@ -1141,10 +1532,17 @@ static const struct ad4030_chip_info ad4630_16_chip_info = {
+>  		AD4030_CHAN_CMO(3, 1),
+>  		IIO_CHAN_SOFT_TIMESTAMP(4),
+>  	},
+> +	.offload_channels = {
+> +		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_16_offload_scan_types),
+> +		AD4030_OFFLOAD_CHAN_DIFF(1, ad4030_16_offload_scan_types),
+> +		AD4030_CHAN_CMO(2, 0),
+> +		AD4030_CHAN_CMO(3, 1),
+> +	},
+>  	.grade = AD4030_REG_CHIP_GRADE_AD4630_16_GRADE,
+>  	.precision_bits = 16,
+>  	.num_voltage_inputs = 2,
+>  	.tcyc_ns = AD4030_TCYC_ADJUSTED_NS,
+> +	.max_sample_rate_hz = 2 * HZ_PER_MHZ,
+>  };
+>  
+>  static const struct ad4030_chip_info ad4630_24_chip_info = {
+> @@ -1157,10 +1555,17 @@ static const struct ad4030_chip_info ad4630_24_chip_info = {
+>  		AD4030_CHAN_CMO(3, 1),
+>  		IIO_CHAN_SOFT_TIMESTAMP(4),
+>  	},
+> +	.offload_channels = {
+> +		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_24_offload_scan_types),
+> +		AD4030_OFFLOAD_CHAN_DIFF(1, ad4030_24_offload_scan_types),
+> +		AD4030_CHAN_CMO(2, 0),
+> +		AD4030_CHAN_CMO(3, 1),
+> +	},
+>  	.grade = AD4030_REG_CHIP_GRADE_AD4630_24_GRADE,
+>  	.precision_bits = 24,
+>  	.num_voltage_inputs = 2,
+>  	.tcyc_ns = AD4030_TCYC_ADJUSTED_NS,
+> +	.max_sample_rate_hz = 2 * HZ_PER_MHZ,
+>  };
+>  
+>  static const struct ad4030_chip_info ad4632_16_chip_info = {
+> @@ -1173,10 +1578,17 @@ static const struct ad4030_chip_info ad4632_16_chip_info = {
+>  		AD4030_CHAN_CMO(3, 1),
+>  		IIO_CHAN_SOFT_TIMESTAMP(4),
+>  	},
+> +	.offload_channels = {
+> +		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_16_offload_scan_types),
+> +		AD4030_OFFLOAD_CHAN_DIFF(1, ad4030_16_offload_scan_types),
+> +		AD4030_CHAN_CMO(2, 0),
+> +		AD4030_CHAN_CMO(3, 1),
+> +	},
+>  	.grade = AD4030_REG_CHIP_GRADE_AD4632_16_GRADE,
+>  	.precision_bits = 16,
+>  	.num_voltage_inputs = 2,
+>  	.tcyc_ns = AD4632_TCYC_ADJUSTED_NS,
+> +	.max_sample_rate_hz = 500 * HZ_PER_KHZ,
+>  };
+>  
+>  static const struct ad4030_chip_info ad4632_24_chip_info = {
+> @@ -1189,10 +1601,17 @@ static const struct ad4030_chip_info ad4632_24_chip_info = {
+>  		AD4030_CHAN_CMO(3, 1),
+>  		IIO_CHAN_SOFT_TIMESTAMP(4),
+>  	},
+> +	.offload_channels = {
+> +		AD4030_OFFLOAD_CHAN_DIFF(0, ad4030_24_offload_scan_types),
+> +		AD4030_OFFLOAD_CHAN_DIFF(1, ad4030_24_offload_scan_types),
+> +		AD4030_CHAN_CMO(2, 0),
+> +		AD4030_CHAN_CMO(3, 1),
+> +	},
+>  	.grade = AD4030_REG_CHIP_GRADE_AD4632_24_GRADE,
+>  	.precision_bits = 24,
+>  	.num_voltage_inputs = 2,
+>  	.tcyc_ns = AD4632_TCYC_ADJUSTED_NS,
+> +	.max_sample_rate_hz = 500 * HZ_PER_KHZ,
+>  };
+>  
+>  static const struct spi_device_id ad4030_id_table[] = {
+> @@ -1228,3 +1647,4 @@ module_spi_driver(ad4030_driver);
+>  MODULE_AUTHOR("Esteban Blanc <eblanc@baylibre.com>");
+>  MODULE_DESCRIPTION("Analog Devices AD4630 ADC family driver");
+>  MODULE_LICENSE("GPL");
+> +MODULE_IMPORT_NS("IIO_DMAENGINE_BUFFER");
+
 
