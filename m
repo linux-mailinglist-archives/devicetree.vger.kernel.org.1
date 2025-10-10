@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-225528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CDB7BCEBFF
-	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 01:27:44 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id F33B3BCEC17
+	for <lists+devicetree@lfdr.de>; Sat, 11 Oct 2025 01:36:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1CAF4189FA4B
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 23:28:07 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id B9BFA4E26AD
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 23:36:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C9C27E1C8;
-	Fri, 10 Oct 2025 23:27:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E1FB27FB2D;
+	Fri, 10 Oct 2025 23:36:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EcCIPFhQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Enoj0WiN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5705B34BA2C;
-	Fri, 10 Oct 2025 23:27:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1FD426D4FB;
+	Fri, 10 Oct 2025 23:36:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760138857; cv=none; b=dBRWQhkuAPzroh89XFKVYatO0g8qIm9hVRvTSAJjT9VZhhcP31aVDtUMZFjWejmem+EqIOlXi1PIxknI3/vOsruGO1InD+TLOH7EieZ+t5a+LNUDfxxDNsZCpM/tYEbqBshwTz/Bhwd/tzL4Jk+nPeMPfaiQiJ/qqHt8z+0vzQA=
+	t=1760139391; cv=none; b=pX6b9zPWlFSr+WS7PHB6gQj2iRxRIabHO7uqc5LD4Ich3kybtQq7R4ZRHc87raQ6Ot6Iy0QtuKyyEkjlU11PiwEe/Pm0JXYQmjbpSyMB6VxUjXriidHDdvZL+9ly4e655BYylcI7TvItCzhO0t4ozo4zwkHJ/Do4pq7o0vocsuY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760138857; c=relaxed/simple;
-	bh=dQL1ozMDwa+WbsJxVGIqYcZ3jM3hy2DaQVM8ebSstwk=;
+	s=arc-20240116; t=1760139391; c=relaxed/simple;
+	bh=ohAw33xHL0/75mMJMzs2FmNdsANeJBZluGZyx2FUnEI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uJsTmAf0qHkZcNMPcwlH3ypDEDFIw9wGW/oLjelw15nIu4IMaD6G8rDNR5H0DNMeZxomy7xC1lvx+daN9lA/7nAzDAufWKrqSjzuFPGYKOFzvf1omSyttTohcpveROuxxt3tso/GKfqZLoNozw8UhkMtftucYY+jPTXjNog9Xeg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EcCIPFhQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D88CC4CEF1;
-	Fri, 10 Oct 2025 23:27:32 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=UPviOWFbW9YFpX+VjbYw1/JHaDUf9Iuni8lBu8dCIjEAUZlLphwVRgiUlx/DXiXs5IVR/uRqI+gLKuuvtBWonmsWpZeNJhV4DW9UXGHOJdgOPGTMVCkXF87W8LxH34SJw8jFMm8q2QWtyM5/gkXQPoKkljIHBn/6arXCKWsaE88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Enoj0WiN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3938DC4CEF1;
+	Fri, 10 Oct 2025 23:36:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760138856;
-	bh=dQL1ozMDwa+WbsJxVGIqYcZ3jM3hy2DaQVM8ebSstwk=;
+	s=k20201202; t=1760139390;
+	bh=ohAw33xHL0/75mMJMzs2FmNdsANeJBZluGZyx2FUnEI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EcCIPFhQ/Sl29M9L9ayeq2R7DOGCcmuyBBd63aIqvE2+PUyZ46P86kD4DVWjb8HsV
-	 a5ypWERAraqwk9pxL8rJGX8Twk22Rlr8QcR6ZXcIz0Js3bc9aFZCkMBpNE4UcU1trd
-	 kNpUyByteMgYZrvfyHfZgn8lL1D80PydHdKYJywbtiSCfPKHHU95KTrDNaMAQXRVFt
-	 +MkFUC6S3fhNybjim7oT3CwZAnnDvoRF+JYahaMdvt6FYWjgmQPK8o0wYW/RTkGjSA
-	 zb2ivJS+vXpUCLYpY6hmYKqiJqLfw8+Jq3XCqXJgpgaugPknJ/JUhuRA1WX3cl+M5K
-	 pvUon4R9rdOKw==
-Message-ID: <0caca8b6-05b9-43a2-9108-9262a3ed1196@kernel.org>
-Date: Sat, 11 Oct 2025 01:27:29 +0200
+	b=Enoj0WiNHpX06TnUY8t2TKsLnPpvfq1KNv8noESLxJkZzKaQtjPlhpGraosFJE1Ae
+	 gxdW5wr2Kagvbhg4yCSxisTS7GA2eLasm00CkbQIVEkm/hDcHwdxplvjx2+qW1jPGq
+	 RxIGe8CQH1ohNdVXb2KvHeG9jxoiKkVQkG+uybZ8JzN4Wb0ZwjOpKkRXIskJHbJw/S
+	 H2wLr3W5F1nO7qIwp+73Z15H5j8cGuEkJb8ukL7pwKkmnHAi0Mt6iZW/bEboBS0kZ/
+	 HYCqtX3Fqsyyrhc1kMXtSo91BHla99IPsMpk6Zs8y9LLgxED9reysdfwELa8vShuNG
+	 dGDNFbzoEnsjA==
+Message-ID: <e56f3314-c5f4-44bb-b914-8d8e56a5c67a@kernel.org>
+Date: Sat, 11 Oct 2025 01:36:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: usb: add yaml file for maxim,max3421
-To: Rodrigo Gobbi <rodrigo.gobbi.7@gmail.com>, gregkh@linuxfoundation.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, davidm@egauge.net
-Cc: ~lkcamp/patches@lists.sr.ht, linux-usb@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20251009182046.185520-1-rodrigo.gobbi.7@gmail.com>
- <c65f8b8d-9ee9-4aea-8f27-66c9fe12401a@kernel.org>
- <935dbd93-2b20-45fb-a5b1-04f6ac67615e@gmail.com>
+Subject: Re: [PATCH v8 00/15] spi: airoha: driver fixes & improvements
+To: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>,
+ Ray Liu <ray.liu@airoha.com>, Mark Brown <broonie@kernel.org>,
+ Andy Shevchenko <andy@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org
+Cc: Andreas Gnau <andreas.gnau@iopsys.eu>
+References: <20251010185940.GA715991-robh@kernel.org>
+ <20251010192038.1592889-1-mikhail.kshevetskiy@iopsys.eu>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,100 +108,37 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <935dbd93-2b20-45fb-a5b1-04f6ac67615e@gmail.com>
+In-Reply-To: <20251010192038.1592889-1-mikhail.kshevetskiy@iopsys.eu>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/10/2025 21:46, Rodrigo Gobbi wrote:
-> On 10/9/25 22:34, Krzysztof Kozlowski wrote:
->> On 09/10/2025 03:15, Rodrigo Gobbi wrote:
->>> Convert maxim,max3421.txt to yaml format with a few extra properties like
->>
->>
->> Here and in subject, please do not use yaml at all. Look at other
->> commits, this is supposed to be:
->>
->> dt-bindings: usb: maxim,max3421: convert to DT schema
->>
->> (and all other things like "file for" are redundant")
->>
->>> maxim,vbus-en-pin, maxim,gpx-pin, reset pin and supplies. Also add a
->>
->> Why new properties? You must explain not only the difference but WHY you
->> are doing this.
->>
->> WHY is the most important question/answer.
+On 10/10/2025 21:20, Mikhail Kshevetskiy wrote:
+> Changes v5:
+>  * reorder patches a bit
+>  * improve description of some patches
+>  * minor fixes & improvements
 > 
-> The reason was that the device (the IC) supports that. Is it
-> enough to justify? I mean, is a plausible answer in this case? If yes,
-> I agree that my commit msg was not right since I didn`t mention that.
-
-
-It's not relevant to conversion then, so must be done in separate commit.
-
+> Changes v6:
+>  * do not fill with 0xff the whole write buffer, only areas not covered
+>    by user provided data are filled now.
 > 
->>
->>> maxim,max3421e compatible with a fallback, since the actually PN is with
->>> the 'e' suffix.
->>
->> We don't add PNs usually, unless there is a need. So again, why?
->>
+> Changes v7:
+>  * add EN7523 SoC support
+>  * add en7523 specific hack to avoid flash data damaging if UART_TX pin
+>    was short to ground during boot
+>  * add SNAND node to en7523.dtsi
+>  * update dt-bindings
 > 
-> The PN of this is Maxim3421e, Maxim3421 without `e` doesn`t exists as far as I`ve
-> searched it. If it exists, it`s a different thing. In this case, I would expect that
-> the compatible string should be something that "matches" the device, but in this
-> case, the compatible string is without the 'e'. In that way, I was suggesting in this patch to
-> allow a more precisely compatible string to no break anyone using the original one. But if 
-> it was a bad idea here, I can drop that for sure.
+> Changes v8:
+>  * remove dt-bindings changes
 
-So again not relevant to conversion and you need separate commit with
-its own rationale explaining WHY you are doing this.
+Why? Nothing indicated that in discussion. No one suggested that.
 
-> 
->>> +  spi-max-frequency:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>
->> No, drop $ref. Do you see any binding like that? No, there is none.
-> 
-> I`ve a previous patch recently at [1], that added a "similar" thing of frequency:
-> 
-> +  sampling-frequency:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 2500000
-> +    maximum: 20000000
-> +    description:
-> +      Default sampling frequency of the ADC in Hz.
-> 
-> In that case, $ref and description were added. Why that case is different from this one here?
-> [1] https://lore.kernel.org/all/20250522204130.21604-1-rodrigo.gobbi.7@gmail.com/
+Do not attach (thread) your patchsets to some other threads (unrelated
+or older versions). This buries them deep in the mailbox and might
+interfere with applying entire sets. See also:
+https://elixir.bootlin.com/linux/v6.16-rc2/source/Documentation/process/submitting-patches.rst#L830
 
-Yes it is very different. Please use git grep.
-
-> 
->>
->>> +
->>> +  maxim,vbus-en-pin:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->>> +    description:
->>> +      One of eight GPOUT pins to control external VBUS power and the polarity
->>> +      of the active level. It's an array of GPIO number and the active level of it.
->>> +    minItems: 2
->>> +    maxItems: 2
->>> +
->>> +  maxim,gpx-pin:
->>
->> I don't understand. There is no need for this property. Drop.
-> 
-> During my other reviews of new bindings, my final premise was that we should add every "capability" of
-> a device (the IC) regardless of the driver support. In this case, the maxim,gpx-pin, is an example of that,
-> the device supports that despite the driver support. I`m wondering here why we cannot add that here.
-
-
-Read your commit msg. You are doing conversion. You cannot add random
-stuff or missing hardware, just becase you are doing conversion.
-
-You need to organize commits in logical way. Please ready carefully
-submitting patches document.
 
 Best regards,
 Krzysztof
