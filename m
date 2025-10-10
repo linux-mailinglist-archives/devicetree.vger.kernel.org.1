@@ -1,123 +1,201 @@
-Return-Path: <devicetree+bounces-225189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35D02BCB640
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 04:00:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33DCCBCB6DC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 04:31:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E03EB4E8089
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 02:00:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67E0F3A866B
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 02:30:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 426481DEFE8;
-	Fri, 10 Oct 2025 02:00:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21D0922F16E;
+	Fri, 10 Oct 2025 02:30:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EZ5uhXEo"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="J17EiIyn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14C758528E;
-	Fri, 10 Oct 2025 02:00:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B4D612FF6F;
+	Fri, 10 Oct 2025 02:30:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760061618; cv=none; b=LSTDy6fet6piFOeUYy7EVHot5Ua+c+0zSfaW1uP0xDOM17d40d3ShA8MWt9L5VKqOf251KVc4dL0vYH6Lbxhxk6gsW53Y5zIjf6qvsY/hnYHvObOQKWGGw7cnYdCDutbEOL2Nar9imOU8fKPpq8uVjuUumBaRkkZ6xpeXDsrQUc=
+	t=1760063449; cv=none; b=EFgL2vMVPZawLytikEwdQVUP3VcfP8wd8jQJ2n+qGyvWYZCLeM6bYuaUc/fnjQ35fNslQRJG2rVi7pXinPeNIQW/KGXxHT2VrknsHqrvRt/6OgDdlu0/6mWLvynj4z5drFTy15tIdr8oSF4lVHINed+RFud0cdkKwoOOzv43Dfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760061618; c=relaxed/simple;
-	bh=bKb2+LWn+9bFo0JvyMz+IuBawvd4IewFiapgoPwhJDY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bRTAI2uSE+V6aQGeizoVT+57KXsxZIWxr7UuR/LFQ+7VQSeqmA5lWM903YuQFTwd0G9ahtQM5PeJPnSR0SL5WELDgzLyEPgcsvYjonq1a/9ncLjsMZmP6HAOEs+ahNmrSs1ONN9ak0T3He+1T+97htWNHtxYLQ/LInJskRMtPvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EZ5uhXEo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E8B2C4CEE7;
-	Fri, 10 Oct 2025 02:00:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760061617;
-	bh=bKb2+LWn+9bFo0JvyMz+IuBawvd4IewFiapgoPwhJDY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EZ5uhXEoFwIigR89ZDxpuiMJjV9tImylj7s191qm0WMCHwWJEDHZhfwPLEnCSN3QH
-	 FZ0SJJAnIg+OWIdX/eILZaJoD7pLii01fGS49y6IFAwmkjeYjfINwMQVc602rdpWuc
-	 iHVzGw0Yn/yidtKyTbS60g10UkVGEuB4JcGMEzXsN9DdqtrHHljHHetaKWH/6+Y2nq
-	 r7lk1HZoX3yr+9v7/OLDJBG+KRLb0Dru5HkuZiRFYALrjGkPUhNWQx9ONI5G08aVCo
-	 VVbxE02hyMT1h708EIfzLjzHEBXuT38aGZ7Ujk4hjRGj/Xdz2ElziLwTUHHWHNhV6U
-	 CdDWfA6WYsTgg==
-Message-ID: <3791aa93-c1c0-4fc9-9706-91f3f62743a3@kernel.org>
-Date: Fri, 10 Oct 2025 04:00:06 +0200
+	s=arc-20240116; t=1760063449; c=relaxed/simple;
+	bh=6UVlYCsHbqYnw9sE1A8Eu+fbbJ7XGJ+gRkR3KAKfTKQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=U8izKGglBCCEj0hmixyZDE45mxT7Xj8z7rjRrNOo6zG52OdJIxcbMCh1jpn/101B1IAVRjCfWkzwQPUrifTaCc3pJx5r8NtZJDaiF4INKUSt8q5Is4dafQSJW18WIwqRFNeI0S1FYckLSUrME5Dz7B8Zpz0Hz9fuouvIsb6766I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=J17EiIyn; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59A2UOBe146613;
+	Thu, 9 Oct 2025 21:30:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1760063424;
+	bh=CHIoSrvI0mSQaH7ULEnBcdpRHWzR5mrtK2CR4UZNe8I=;
+	h=From:To:CC:Subject:Date;
+	b=J17EiIynBEoPe0ZIv5pkPxtqJWJTgMQjPHkq4Dyl+CN7VEPysWKGS/W/FqttVOUmX
+	 9FahEeODOoI3kZUZEy2hrs5fPUIhN7KDvmIYMlRx8Tc9Rn7XVygEHp7Mi9vr3WrnIn
+	 sNRgLx+KYI4WW6KEcMgCN2beu43SIoqjsIY73XmI=
+Received: from DLEE206.ent.ti.com (dlee206.ent.ti.com [157.170.170.90])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59A2UN3Y736654
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 9 Oct 2025 21:30:23 -0500
+Received: from DLEE201.ent.ti.com (157.170.170.76) by DLEE206.ent.ti.com
+ (157.170.170.90) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Thu, 9 Oct
+ 2025 21:30:23 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE201.ent.ti.com
+ (157.170.170.76) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Thu, 9 Oct 2025 21:30:23 -0500
+Received: from lelvem-mr05.itg.ti.com ([10.250.165.138])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59A2UFnT1184350;
+	Thu, 9 Oct 2025 21:30:16 -0500
+From: Baojun Xu <baojun.xu@ti.com>
+To: <broonie@kernel.org>, <tiwai@suse.de>
+CC: <andriy.shevchenko@linux.intel.com>, <13916275206@139.com>,
+        <shenghao-ding@ti.com>, <baojun.xu@ti.com>,
+        <linux-sound@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <lgirdwood@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>, <k-yi@ti.com>,
+        <henry.lo@ti.com>, <robinchen@ti.com>, <jesse-ji@ti.com>,
+        <will-wang@ti.com>, <jim.shil@goertek.com>, <toastcheng@google.com>,
+        <chinkaiting@google.com>
+Subject: [PATCH v6 1/2] ASoC: tas2781: Support more newly-released amplifiers tas5802, tas5815, and tas5828 in the driver
+Date: Fri, 10 Oct 2025 10:29:50 +0800
+Message-ID: <20251010022951.51581-1-baojun.xu@ti.com>
+X-Mailer: git-send-email 2.43.0.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: hwlock: Adding brcmstb-hwspinlock
- support
-To: Kamal Dasu <kamal.dasu@broadcom.com>, peng.fan@oss.nxp.com,
- andersson@kernel.org, baolin.wang@linux.alibaba.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, florian.fainelli@broadcom.com
-Cc: bcm-kernel-feedback-list@broadcom.com, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20251009212003.2714447-1-kamal.dasu@broadcom.com>
- <20251009212003.2714447-2-kamal.dasu@broadcom.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20251009212003.2714447-2-kamal.dasu@broadcom.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 09/10/2025 23:20, Kamal Dasu wrote:
-> The broadcom settop SoCs have hardware semaphores as part of "sundry"
-> IP block which has other controls that do not belong anywhere else.
-> e.g. pin/mux controls, SoC identification, drive strength, reset controls,
-> and other misc bits are part of this block.
+TAS5802/TAS5815/TAS5828 has on-chip DSP without current/voltage feedback.
 
-This does not explain why this has to be a separate block. Rob comment
-stays valid - this belongs to parent node.
+Signed-off-by: Baojun Xu <baojun.xu@ti.com>
 
-Best regards,
-Krzysztof
+---
+v6:
+ - Updated the patch title
+v5:
+ - No update for this patch
+v4:
+ - Change the patch title
+ - Add for TAS5802 support
+v3:
+ - Rewrite the patch title
+ - Add for TAS5815 support
+v2:
+ - Update description for TAS5828
+ - Change commit tree to .../tiwai/sound.git
+---
+ include/sound/tas2781.h        |  3 +++
+ sound/soc/codecs/tas2781-i2c.c | 21 +++++++++++++++++++--
+ 2 files changed, 22 insertions(+), 2 deletions(-)
+
+diff --git a/include/sound/tas2781.h b/include/sound/tas2781.h
+index ddd997ac3216..0fbcdb15c74b 100644
+--- a/include/sound/tas2781.h
++++ b/include/sound/tas2781.h
+@@ -120,8 +120,11 @@ enum audio_device {
+ 	TAS2570,
+ 	TAS2572,
+ 	TAS2781,
++	TAS5802,
++	TAS5815,
+ 	TAS5825,
+ 	TAS5827,
++	TAS5828,
+ 	TAS_OTHERS,
+ };
+ 
+diff --git a/sound/soc/codecs/tas2781-i2c.c b/sound/soc/codecs/tas2781-i2c.c
+index 1539b70881d1..ba880b5de7e8 100644
+--- a/sound/soc/codecs/tas2781-i2c.c
++++ b/sound/soc/codecs/tas2781-i2c.c
+@@ -108,8 +108,11 @@ static const struct i2c_device_id tasdevice_id[] = {
+ 	{ "tas2570", TAS2570 },
+ 	{ "tas2572", TAS2572 },
+ 	{ "tas2781", TAS2781 },
++	{ "tas5802", TAS5802 },
++	{ "tas5815", TAS5815 },
+ 	{ "tas5825", TAS5825 },
+ 	{ "tas5827", TAS5827 },
++	{ "tas5828", TAS5828 },
+ 	{}
+ };
+ MODULE_DEVICE_TABLE(i2c, tasdevice_id);
+@@ -124,8 +127,11 @@ static const struct of_device_id tasdevice_of_match[] = {
+ 	{ .compatible = "ti,tas2570" },
+ 	{ .compatible = "ti,tas2572" },
+ 	{ .compatible = "ti,tas2781" },
++	{ .compatible = "ti,tas5802" },
++	{ .compatible = "ti,tas5815" },
+ 	{ .compatible = "ti,tas5825" },
+ 	{ .compatible = "ti,tas5827" },
++	{ .compatible = "ti,tas5828" },
+ 	{},
+ };
+ MODULE_DEVICE_TABLE(of, tasdevice_of_match);
+@@ -1665,8 +1671,10 @@ static void tasdevice_fw_ready(const struct firmware *fmw,
+ 	}
+ 	tas_priv->fw_state = TASDEVICE_DSP_FW_ALL_OK;
+ 
+-	/* There is no calibration required for TAS5825/TAS5827. */
+-	if (tas_priv->chip_id < TAS5825) {
++	/* There is no calibration required for
++	 * TAS5802/TAS5815/TAS5825/TAS5827/TAS5828.
++	 */
++	if (tas_priv->chip_id < TAS5802) {
+ 		ret = tasdevice_create_cali_ctrls(tas_priv);
+ 		if (ret) {
+ 			dev_err(tas_priv->dev, "cali controls error\n");
+@@ -1720,8 +1728,11 @@ static void tasdevice_fw_ready(const struct firmware *fmw,
+ 		switch (tas_priv->chip_id) {
+ 		case TAS2563:
+ 		case TAS2781:
++		case TAS5802:
++		case TAS5815:
+ 		case TAS5825:
+ 		case TAS5827:
++		case TAS5828:
+ 			/* If DSP FW fail, DSP kcontrol won't be created. */
+ 			tasdevice_dsp_remove(tas_priv);
+ 		}
+@@ -1882,8 +1893,11 @@ static int tasdevice_codec_probe(struct snd_soc_component *codec)
+ 		p = (struct snd_kcontrol_new *)tas2781_snd_controls;
+ 		size = ARRAY_SIZE(tas2781_snd_controls);
+ 		break;
++	case TAS5802:
++	case TAS5815:
+ 	case TAS5825:
+ 	case TAS5827:
++	case TAS5828:
+ 		p = (struct snd_kcontrol_new *)tas5825_snd_controls;
+ 		size = ARRAY_SIZE(tas5825_snd_controls);
+ 		break;
+@@ -2054,8 +2068,11 @@ static const struct acpi_device_id tasdevice_acpi_match[] = {
+ 	{ "TXNW2570", TAS2570 },
+ 	{ "TXNW2572", TAS2572 },
+ 	{ "TXNW2781", TAS2781 },
++	{ "TXNW5802", TAS5802 },
++	{ "TXNW5815", TAS5815 },
+ 	{ "TXNW5825", TAS5825 },
+ 	{ "TXNW5827", TAS5827 },
++	{ "TXNW5828", TAS5828 },
+ 	{},
+ };
+ 
+-- 
+2.25.1
+
 
