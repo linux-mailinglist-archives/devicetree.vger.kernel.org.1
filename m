@@ -1,150 +1,263 @@
-Return-Path: <devicetree+bounces-225396-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225398-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 327F6BCD5EC
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 15:58:00 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D40BCD61A
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 16:03:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E05AA421899
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 13:57:58 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 9CC49352D03
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:03:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 093D22F363E;
-	Fri, 10 Oct 2025 13:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 397E616A956;
+	Fri, 10 Oct 2025 14:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Je/Lf1mM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="K9yGqN8U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702D0260578
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 13:57:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F70334BA2C
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 14:02:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760104675; cv=none; b=LoDpkXvWI3No5/UceAPnMlfGJsmrCX+qNCPh+WsYDKj0jD3q1DD1CrmT4sM7gp0fEGHNLyLqWaOAPXgzc5e1AMseuRkNT8YcRhx77BKG/62zY8OysQrWwGxnDImY3J68iUKw4b2B6r6vvTaQRWnRX3yWlBcdObcYN1cXoXzF0PY=
+	t=1760104980; cv=none; b=rWH3QyvFW7QtWNH+uhtjT7oHUsxJ39HLG/zCKqGy8L3zMBvXXhvl6If0KKDsRH27nQZhlBcN++9SzhE9VMoJ2muuEGSfS1osj2IIksOIq/iFR8B/AWpnv+3Y+pBON3U85atZlyi3Xf5NF0SpwikBb0/czBlvTv0r1G2gBlC1rWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760104675; c=relaxed/simple;
-	bh=WmMLjpW8k9D3Vj4lFyZiM0FU8HeMR5e01Jo/usM3Hig=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mYrZs5V/gDFcKHi0gy1SvlguhZ6jyggaG7DouDy6dxfgLE/2QLjoiwE1+j630Hwvy1rwXBJJ/TbQEF6njTY+6mMP2/bWX1HqnzWnlX3DXxmsNuV9e0FkjgJ5LTm3MDyR7lP9opI/rgCXsC+XqKR8WRDIQMZkORKkZzm/rUSi09I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Je/Lf1mM; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1760104673;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=6CSXAn3HygFwbaOpzUgisVz0Zeld7FaMqhQ8KH6Xb10=;
-	b=Je/Lf1mM5FZJsl6PnGKuQM0MwrYNo7PO7kPLl4UJR+Z2CYRHKE3mEbsXhjMv2/k1pWB0zC
-	/MubusnUOYypDSlB2QaRGf1TcgLpg/XCsligrcnkCBmKfDrt8ZMHW1ogaC0O6of6p0EgqA
-	XNXsxfRWBzCD3IzkZfAr38iPWuKaRd8=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-125-kuuCch2dOPGpCnTDEyOYrQ-1; Fri, 10 Oct 2025 09:57:51 -0400
-X-MC-Unique: kuuCch2dOPGpCnTDEyOYrQ-1
-X-Mimecast-MFC-AGG-ID: kuuCch2dOPGpCnTDEyOYrQ_1760104670
-Received: by mail-wm1-f70.google.com with SMTP id 5b1f17b1804b1-46e41c32209so10948625e9.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 06:57:51 -0700 (PDT)
+	s=arc-20240116; t=1760104980; c=relaxed/simple;
+	bh=4596eQnteCsiK8Jrl+1VmFR7tvtvgLUB8LBmX20R1Ng=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cI+It46z0fMpK7u6v3gmUUEbYpZ8AFgb1YL5I8Uzvdc3wnJ9Uywt12IXGsqc6N2r4IpG6dtzepmB2EUwLm1ZqgujLDU/SbAb8lu0OgGpOE9YU5jh6keIXPdzeKTQ9LdxBdERNCYognRYxmOpjEJdrV6Vm4y+QhvB2nGVsw3bkfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=K9yGqN8U; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3ee12a63af1so1308413f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 07:02:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1760104977; x=1760709777; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6xvdJs5J8wTljJYaElILA5gjp0FZrWAff697H7+wm88=;
+        b=K9yGqN8UD+J5qUTYE4PRh0hNiN5JgoCYQxiFVxWcxYbggs9zQ67BWg2r+/fVVeqU7a
+         9+bJtDbAIdUVQcTKDudDyj7o4wgxgidk9RKarX3FXZxGXHzYp1YG8S/6SwwXYzleU5tQ
+         Uxn5qX0BeW5LEEZ6h7pH4N9nKyNfmEAnicn33zNXIi1aons4VpQIVheQ5U0tdR8ZXVck
+         PYETAsj8Rzrqa4hEYsSjp5dybXo90Zlesm4Ow8UDNl0TYaxmIgfw+ZFDUNResTHRuZPn
+         Isl48C8ZK0KyiB6ZMwHIIJeaTux0hCi/xOXQfdxp+jsKfyUgIYyhIr5Oy1xgyE3cA2t3
+         tPOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760104670; x=1760709470;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6CSXAn3HygFwbaOpzUgisVz0Zeld7FaMqhQ8KH6Xb10=;
-        b=W7tfDUJLJpz/tB6UzIDtchxGv38YUpElXIZkGBfuHMwmJdTZezeNwv9k8mFhTcUJI9
-         myfqUk/2rJuJf/YAJChbs+KCeT2DaDtiuTnplZNNbObk9sv7pLfbmr0pfJV+FL8ILXrp
-         d2hcF2uUR5BM+zCK/D90TEuVdS1Di6/faSFWsba/pDJCOc+h3UOnToxezqzAnFpc7S3H
-         mButI7kMXqR7f/6dZLQMrUCWtTFCoRiN29pENlycPvrIXmKpW3Z6DglC3DzDGVjVDFvd
-         LG0BZekZxKSZbhIO9nMPz1Pv9Cpo5hRcK05ZEjI2+1CtdS/NTG5NjLWWt0ThFJ3krEEh
-         3vkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX6v6MJrmaQSbXWOxJkVfjRx202zeFja0b2Tuj7Vk94kW4DRBw16/0bWShc27zkFCdwYJPoG29GXLcG@vger.kernel.org
-X-Gm-Message-State: AOJu0YxrDafFYIF4sM4cCUtHidKo2Sgvk0m6/R+83Jy9Bb6F0HpFgXQx
-	ocUL1fztU58x9ncIviSr/oKKYivPvfVAz1OnLrCqqs/1etdHfj7e6wpyZH39X6JagWez+d2qs+5
-	2NbpkHCmwdvAxpb/LHk1mj2rCs0T5eMKHtf7usNJIaNZceSzBiTfJM9qILjxEeaH0lc7VHUS8Ux
-	+isYB56IswIhM4qAORHJusZc+8YwwgsJmPIpoWZA==
-X-Gm-Gg: ASbGncsUlRCbbEHz7FLVp3ZPYewUuz2zUjrYcxbkVTIB5tFebOB/cAMNxJ7pzp4jyYs
-	VFUUvAyimB5Rmqw5zgDQrlXGT9/XXRYj4nYE8ZWdtnrkSjtulQ4EXn7HFw/Xu6a6cfuwA/N3r2+
-	TD4UqysS1qCQjSkNfW5bwRszTKBZnwnD/eIKE4HdlYkxE8r0hI3jtO8bw=
-X-Received: by 2002:a05:600c:138a:b0:46e:506b:20c5 with SMTP id 5b1f17b1804b1-46fa9b092aemr75146355e9.26.1760104670130;
-        Fri, 10 Oct 2025 06:57:50 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF0nYvzZV/UpgrZSIsve1rRA0msPcsLYg020u5V/WHCcwHFFt5xA47G7YOSbI1lFXf6FO5ZLsE+5y5nNR6t9tQ=
-X-Received: by 2002:a05:600c:138a:b0:46e:506b:20c5 with SMTP id
- 5b1f17b1804b1-46fa9b092aemr75146085e9.26.1760104669691; Fri, 10 Oct 2025
- 06:57:49 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1760104977; x=1760709777;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6xvdJs5J8wTljJYaElILA5gjp0FZrWAff697H7+wm88=;
+        b=jy5TpMhdaBDVI9huENgQw90uqCSb78P08FVhNj2kV6WFbZ5uvy5rnpsCK7VMLMrR3i
+         UVJwMPjUAu3v7U09LCpP+1BOPaCEObVhyNIa+TcZSGHudYlOtFpm2JI3Dwuw3ycKXTM9
+         HM4CFKh7I6wgn3hruAqH9Pb61QdrnzJKqVv1hukrOlheSnW3BzOgLZYzDFFyFwbra+pT
+         3Aijtax6Cb+TPwnBp89dduw/jWhBz+qA/jKAJsNM3knfF0z6RT/NMVFmoggRmS/raZ7U
+         Ys82i8sGH8Ax+a6DF/onvagkT6mwo8XmJU8rwLB5isG0ki6wVILpUnq/FWHpMdZPJ28W
+         nrgw==
+X-Forwarded-Encrypted: i=1; AJvYcCUPcBJa3VLweS6Yk5oipEc4rAnYMfJH+t2815HVAZqaSD2ejki2MyP+yZEHVP2EtYsYM5JHCtralksy@vger.kernel.org
+X-Gm-Message-State: AOJu0YweagxTl5UmdlmTaq19vZTUjSdqmzwofwB6wtBB42xNMp+XzHv5
+	dK6UVyyxkGgkPG+qIg0A7npT6cZfiif786SyoJoYd+w6R1SNG4HrXI5zKOWeIHtVjns=
+X-Gm-Gg: ASbGncstXonZ68CYAKFCN8it6/mZHRb7JNnNbFOiLCHWCVmjSIzJH3whM5ND7HW0iLn
+	c2JYFYI0gMdjd3BJJ3gZ0gVntxeXQ4Ql/4JrVYBuo/yReLcded3Q8ys4t8PrxIbhLhpiRokhsX2
+	Na2dOU8GWcrEGCuu7TOSyvQfYk9fWZGuFII4UC59ch9MOrNiBjt73XnJR2X/zzap/G/AJIDbSXR
+	jR+59rjZbRKA/4EW4Jb0n1I5BvbYh1Xa96742Oa1JHqMmdIWNRJU9y0XGFVlncWyRb4b5OwJ8Wm
+	sizA+HIE3e/A3FFP8PDFS1fIxlNoIFID2tSEEeLn5ZXu1Y6q19LZczvsh5EhrhU9/UOulY/AF6f
+	HA26lVFBgzVu3N6WfJzZwlSIJLbJqQ46GOs3WgKP8lG327DrZRs7e
+X-Google-Smtp-Source: AGHT+IFMJs1J0ul1z7neVgUHTZq6L9h03M7SqqQgiNU+WjQXX6UWkaj0wdGtXcJAgfu9+uMGHTGV7w==
+X-Received: by 2002:a05:6000:41d1:b0:400:6e06:e0ae with SMTP id ffacd0b85a97d-4266e8ddf1bmr8062216f8f.47.1760104976326;
+        Fri, 10 Oct 2025 07:02:56 -0700 (PDT)
+Received: from [192.168.0.36] ([82.76.24.202])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-46fab656554sm60112625e9.11.2025.10.10.07.02.55
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 10 Oct 2025 07:02:55 -0700 (PDT)
+Message-ID: <f255b8f0-4d9f-44c6-91e1-f706d86f7dba@linaro.org>
+Date: Fri, 10 Oct 2025 17:02:54 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251009082013.1331361-1-lzampier@redhat.com> <20251009082013.1331361-3-lzampier@redhat.com>
- <9ae53c6d-613b-4a25-b672-88ffabfef4fa@kernel.org>
-In-Reply-To: <9ae53c6d-613b-4a25-b672-88ffabfef4fa@kernel.org>
-From: Lucas Zampieri <lzampier@redhat.com>
-Date: Fri, 10 Oct 2025 14:57:38 +0100
-X-Gm-Features: AS18NWBKt45vJ_tgZM0w0Qd10JOQmvNvfOo1vp2NkKU9_HUvebFUX254BfYm_oE
-Message-ID: <CAOOg__BTJw53uTK4h_o4GK6x2D0XutTSQMpb-BDXh22Ac0-q-A@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: interrupt-controller: add UltraRISC
- DP1000 PLIC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, Charles Mirabile <cmirabil@redhat.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Samuel Holland <samuel.holland@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Alexandre Ghiti <alex@ghiti.fr>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 14/20] arm64: dts: qcom: kaanapali-mtp: Enable more
+ features
+To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Jingyi Wang <jingyi.wang@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ aiqun.yu@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+ trilok.soni@oss.qualcomm.com, yijie.yang@oss.qualcomm.com
+References: <20250924-knp-dts-v1-0-3fdbc4b9e1b1@oss.qualcomm.com>
+ <20250924-knp-dts-v1-14-3fdbc4b9e1b1@oss.qualcomm.com>
+ <588a7b68-2e2e-4e65-9249-fe8b18b67927@linaro.org>
+ <831f6fd7-b81f-4d6f-b9bd-5a8fe514befb@oss.qualcomm.com>
+ <0c9ca026-9986-4347-a86d-8bf65e2d12e6@linaro.org>
+ <kocj7sf6jgj4uynvlxvbsojc4bykyj2ipb4ex56fagjqoxwcie@2trytltkhd4a>
+ <dd4d4fa3-abd4-476f-a37e-c44cb6c83fb0@oss.qualcomm.com>
+From: Eugen Hristev <eugen.hristev@linaro.org>
+Content-Language: en-US
+In-Reply-To: <dd4d4fa3-abd4-476f-a37e-c44cb6c83fb0@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Oct 9, 2025 at 9:39=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 09/10/2025 17:20, Lucas Zampieri wrote:
-> > From: Charles Mirabile <cmirabil@redhat.com>
-> >
-> > Add a new compatible string for UltraRISC DP1000 PLIC.
-> >
-> > Signed-off-by: Charles Mirabile <cmirabil@redhat.com>
-> > ---
-> >  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml        | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/sif=
-ive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controlle=
-r/sifive,plic-1.0.0.yaml
-> > index 5b827bc24301..a419de50f5a8 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/sifive,pli=
-c-1.0.0.yaml
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,pli=
-c-1.0.0.yaml
-> > @@ -74,6 +74,8 @@ properties:
-> >                - sophgo,sg2044-plic
-> >                - thead,th1520-plic
-> >            - const: thead,c900-plic
-> > +      - items:
->
->
-> Missing SoC specific front compatible, me thinks.
 
-Right, if I'm understanding this correctly, I would need to add the
-sifive,plic-1.0.0 fallback compatible to indicate register layout
-compatibility. However, the DP1000 PLIC has a claim register hardware
-bug that breaks interrupt handling without the driver quirk. Should we
-still include the fallback even though the generic driver doesn't
-work?
 
->
->
-> Best regards,
-> Krzysztof
->
+On 10/10/25 13:54, Jishnu Prakash wrote:
+> Hi Dmitry and Eugen,
+> 
+> On 10/9/2025 9:58 PM, Dmitry Baryshkov wrote:
+>> On Thu, Oct 09, 2025 at 05:58:03PM +0300, Eugen Hristev wrote:
+>>>
+>>>
+>>> On 10/9/25 16:54, Jishnu Prakash wrote:
+>>>> Hi Eugen,
+>>>>
+>>>> On 9/25/2025 1:33 PM, Eugen Hristev wrote:
+>>>>>
+>>>>>
+>>>>> On 9/25/25 03:17, Jingyi Wang wrote:
+>>>>>> Enable more features on Kaanapali MTP boards including PMIC peripherals,
+>>>>>> bus, SDHCI, remoteprocs, USB, PCIE, WLAN and Bluetooth.
+>>>>>>
+>>>>>> Written with help from Jyothi Kumar Seerapu(added bus), Ronak Raheja
+>>>>>> (added USB), Manish Pandey(added SDHCI), Jishnu Prakash(added PMIC),
+>>>>>> Qiang Yu(added PCIE), Yijie Yang(Added WLAN) and Zijun Hu(Added Bluetooth).
+>>>>>>
+>>>>>> Signed-off-by: Jingyi Wang <jingyi.wang@oss.qualcomm.com>
+>>>>>> ---
+>>>>>>  arch/arm64/boot/dts/qcom/kaanapali-mtp.dts | 663 +++++++++++++++++++++++++++++
+>>>>>>  1 file changed, 663 insertions(+)
+>>>>>>
+>>>>>> diff --git a/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts b/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+>>>>>> index 9cf3158e2712..2949579481a9 100644
+>>>>>> --- a/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+>>>>>> +++ b/arch/arm64/boot/dts/qcom/kaanapali-mtp.dts
+>>>>>> @@ -5,9 +5,23 @@
+>>>>>>  
+>>>>
+>>>> ...
+>>>>
+>>>>>> +
+>>>>>> +&spmi_bus1 {
+>>>>>> +	pmd8028: pmic@4 {
+>>>>>> +		compatible = "qcom,pmd8028", "qcom,spmi-pmic";
+>>>>>> +		reg = <0x4 SPMI_USID>;
+>>>>>> +		#address-cells = <1>;
+>>>>>> +		#size-cells = <0>;
+>>>>>> +
+>>>>>> +		pmd8028_temp_alarm: temp-alarm@a00 {
+>>>>>> +			compatible = "qcom,spmi-temp-alarm";
+>>>>>> +			reg = <0xa00>;
+>>>>>> +			interrupts = <0x4 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+>>>>>> +			#thermal-sensor-cells = <0>;
+>>>>>> +		};
+>>>>>> +
+>>>>>> +		pmd8028_gpios: gpio@8800 {
+>>>>>> +			compatible = "qcom,pmd8028-gpio", "qcom,spmi-gpio";
+>>>>>> +			reg = <0x8800>;
+>>>>>> +			gpio-controller;
+>>>>>> +			gpio-ranges = <&pmd8028_gpios 0 0 4>;
+>>>>>> +			#gpio-cells = <2>;
+>>>>>> +			interrupt-controller;
+>>>>>> +			#interrupt-cells = <2>;
+>>>>>> +		};
+>>>>>> +	};
+>>>>>> +
+>>>>>> +	pmih0108: pmic@7 {
+>>>>>> +		compatible = "qcom,pmih0108", "qcom,spmi-pmic";
+>>>>>> +		reg = <0x7 SPMI_USID>;
+>>>>>> +		#address-cells = <1>;
+>>>>>> +		#size-cells = <0>;
+>>>>>> +
+>>>>>> +		pmih0108_temp_alarm: temp-alarm@a00 {
+>>>>>> +			compatible = "qcom,spmi-temp-alarm";
+>>>>>> +			reg = <0xa00>;
+>>>>>> +			interrupts = <0x7 0xa 0x0 IRQ_TYPE_EDGE_BOTH>;
+>>>>>> +			#thermal-sensor-cells = <0>;
+>>>>>> +		};
+>>>>>> +
+>>>>>> +		pmih0108_gpios: gpio@8800 {
+>>>>>> +			compatible = "qcom,pmih0108-gpio", "qcom,spmi-gpio";
+>>>>>> +			reg = <0x8800>;
+>>>>>> +			gpio-controller;
+>>>>>> +			gpio-ranges = <&pmih0108_gpios 0 0 18>;
+>>>>>> +			#gpio-cells = <2>;
+>>>>>> +			interrupt-controller;
+>>>>>> +			#interrupt-cells = <2>;
+>>>>>> +		};
+>>>>>> +
+>>>>>> +		pmih0108_eusb2_repeater: phy@fd00 {
+>>>>>> +			compatible = "qcom,pm8550b-eusb2-repeater";
+>>>>>> +			reg = <0xfd00>;
+>>>>>> +			#phy-cells = <0>;
+>>>>>> +			vdd18-supply = <&vreg_l15b_1p8>;
+>>>>>> +			vdd3-supply = <&vreg_l5b_3p1>;
+>>>>>> +		};
+>>>>>> +	};
+>>>>>> +
+>>>>>> +	pmr735d: pmic@a {
+>>>>>
+>>>>> Hi,
+>>>>>
+>>>>> The PMR735D is available in pmr735d_a.dtsi
+>>>>>
+>>>>> Can we find a way to reuse that include file instead of duplicating it
+>>>>> here ?
+>>>>
+>>>> In pmr735d_a.dtsi, the peripherals are added under the parent phandle
+>>>> "spmi_bus", which was commonly used in older SoCs having only a single
+>>>> bus under the PMIC arbiter, but in Kaanapali, there are two buses
+>>>> present under the PMIC arbiter, with phandles "spmi_bus0" and "spmi_bus1",
+>>>> so we cannot include the file as it is.
+>>>>
+>>>
+>>> I know the problem. I disagree with using include files in one case, and
+>>> having the PMIC in the dts in the other case.
+>>>
+>>> So there has to be a unified way to handle this in all cases.
+>>
+>> Rework SPMI PMICs to follow the approach started by Johan for PM8008. I
+>> think this is the way to go.
+>>
+> 
+> We got a recommendation from Krzysztof recently here for Glymur: 
+> https://lore.kernel.org/all/b784387b-5744-422e-92f5-3d575a24d01c@kernel.org/
+> 
+> For PMH0110, he suggested we could keep different DTSI files per SoC,
+> like pmh0110-kaanapali.dtsi and pmh0110-glymur.dtsi.
+> 
+> We could follow a similar approach on Kaanapali, to 
+> #include the following files in the .dts file:
+> 
+> pmk8850.dtsi
+> pmh0101.dtsi
+> pmh0110-kaanapali.dtsi
+> pmh0104-kaanapali.dtsi
+> pmd8028-kaanapali.dtsi
+> pmih0108-kaanapali.dtsi
+> pmr735d-kaanapali.dtsi
+> pm8010-kaanapali.dtsi
+> 
+> The first two files are new and common with Glymur,so they
+> do not have the SoC name suffix.
+> 
+> Hope this is fine, please let us know if you see any issue.
 
-Best,
-Lucas Zampieri
+I would like it to be consistent, you would have to rename the old
+pmr735d.dtsi into pmr735d-whatever-soc-was-using-it.dtsi in another
+patch, and then create pmr735d-kaanpali.dtsi for kaanapali.
+
+Does this look good ?
+> 
+> Thanks,
+> Jishnu
+> 
 
 
