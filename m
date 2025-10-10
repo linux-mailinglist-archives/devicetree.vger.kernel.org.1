@@ -1,111 +1,187 @@
-Return-Path: <devicetree+bounces-225314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44A92BCC622
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 11:39:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D93FBCC62C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 11:40:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id A78D83551C7
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 09:39:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C72C53AA48E
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 09:40:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2629F2C15A0;
-	Fri, 10 Oct 2025 09:39:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="fVreBwo8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C63862C235A;
+	Fri, 10 Oct 2025 09:40:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 757BD2C21EA
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 09:39:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+Received: from zg8tmja5ljk3lje4mi4ymjia.icoremail.net (zg8tmja5ljk3lje4mi4ymjia.icoremail.net [209.97.182.222])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C8D273D8A;
+	Fri, 10 Oct 2025 09:40:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.97.182.222
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760089173; cv=none; b=DvUazcb6aQeAAiScFxvhAtQm1vveD5zT8wBJcSoBYzHfCJL4rotXATm2Jvy0g99cjoXyJSLHvjIygfR5Hhn1C+lGDPTC29xlzHNNzZ1sqerldTO4wa7cEzflEmT7go+UyLtEhfNJvaBUJzt+Pemcv8BjvpjfDosrrlLeh5JOgao=
+	t=1760089237; cv=none; b=jM2VCxhg/7/7PNQEexTin4infEra7nTYGFqHTlmjouf/4sQ+c+xGzTDqgiLT2ksIzVW6GJxkzIoRc00PM34TGJ5ocITwfLn/vQODVGz65MKcLS4eF/S0FM+rIBq6F0JnCMam8YmRpB7XxhdxS5kJ8cKdUXdk+I4hlQN/bRTgjXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760089173; c=relaxed/simple;
-	bh=jwwLTlSIOxZ+tS+AqgvoMGh/OzcO2GPaaZEphPQEDy4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qVqh6kCLNvW544pCyKABBKn0GATFUD1/5AFZmLaBacxv2RUgDvwcz8QkOCvlTxh5nbj8wIslpiWXZ1ZEpaKhmsc3evcuLVL3cZGrhpBtsOyBF5k/aLxi6OlQjnlg4tNnWMCaj00M4MCcnJtIYEKblq75C9pUts2kIGNRIz7j6RM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=fVreBwo8; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=jwwL
-	TlSIOxZ+tS+AqgvoMGh/OzcO2GPaaZEphPQEDy4=; b=fVreBwo8cTB+vDD7ObkK
-	rKIazpVaUWNqzhxZbVZdBPQjo+3UWjZ/81t4/KPCbWgFOan4Jjql4e6gPBelvIZO
-	/PcvVkAN3ZdZBIg9pHQqH1m2ezr1/FzholWqbGFx6ShANJoE6MYwRvLzcHsUR4ek
-	Bn95MRbYl3fuJkr5ojVqxyvz1OavNrT3TJP15E0I56QDVj3PQR8QDYHoivVmhwDx
-	gCVBNLFe2/y1G0Pyl39GNT0w/+rcLYM7FIYj4YYPnBOiH/8yimYPcVzIWVkRJYXf
-	mOpYUJoqdVkWqSP5sSdxi83Fh6qOPQQFd/8So060ssQzcHdRzxGpnO7MaCDnVxMM
-	Bg==
-Received: (qmail 1417896 invoked from network); 10 Oct 2025 11:39:07 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 10 Oct 2025 11:39:07 +0200
-X-UD-Smtp-Session: l3s3148p1@st9jsMpAXpggAwDPXwQHAL/S9V79e5yL
-Date: Fri, 10 Oct 2025 11:39:07 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Rob Herring <robh@kernel.org>
-Cc: linux-renesas-soc@vger.kernel.org, Andy Shevchenko <andy@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>, devicetree@vger.kernel.org,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>
-Subject: Re: [RFC PATCH 0/2] another 'interrupts-extended' replacement needed?
-Message-ID: <aOjUO9BV3UlhEhL7@shikoro>
-References: <20251006172119.2888-1-wsa+renesas@sang-engineering.com>
- <20251009203509.GA3296392-robh@kernel.org>
- <CAL_JsqKYqw0podCR7rQefg5c1-1-Z5xN9H7zGVrZzCTunmdRUw@mail.gmail.com>
- <aOgtdqUKePXIjRNs@shikoro>
+	s=arc-20240116; t=1760089237; c=relaxed/simple;
+	bh=lGgI/PA6W17VO7DBnzd7IfHICgWghWpuGzjPDXtukUc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=rJk/xmVvApIpSJ9g/a+7hAYF5ixyQumh3qqggtVpubPPrLQ4MLFivTH5HG9ZUA5sCU/1czOGzB49KXJAmwBzbsyBLRuAqJeBy2IwYEcWc5RZ+vKlw5a944wbCX+ZkhuO/yGGjRuEtZ3O8VIL0Cxvf2gImcHY2OF+Jp9TVWUynPk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=209.97.182.222
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005154LT.eswin.cn (unknown [10.12.96.103])
+	by app1 (Coremail) with SMTP id TAJkCgAXLg9_1Oho00IDAQ--.3534S2;
+	Fri, 10 Oct 2025 17:40:17 +0800 (CST)
+From: hehuan1@eswincomputing.com
+To: ulf.hansson@linaro.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	jszhang@kernel.org,
+	adrian.hunter@intel.com,
+	p.zabel@pengutronix.de,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	xuxiang@eswincomputing.com,
+	luyulin@eswincomputing.com,
+	dongxuyang@eswincomputing.com,
+	zhangsenchuan@eswincomputing.com,
+	weishangjuan@eswincomputing.com,
+	lizhi2@eswincomputing.com,
+	caohang@eswincomputing.com,
+	hehuan1@eswincomputing.com
+Subject: [PATCH v3 1/2] dt-bindings: mmc: sdhci-of-dwcmshc: Add Eswin EIC7700
+Date: Fri, 10 Oct 2025 17:40:13 +0800
+Message-ID: <20251010094014.1596-1-hehuan1@eswincomputing.com>
+X-Mailer: git-send-email 2.49.0.windows.1
+In-Reply-To: <20251010093807.1579-1-hehuan1@eswincomputing.com>
+References: <20251010093807.1579-1-hehuan1@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="9UNNoxyP/HyoHDGQ"
-Content-Disposition: inline
-In-Reply-To: <aOgtdqUKePXIjRNs@shikoro>
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgAXLg9_1Oho00IDAQ--.3534S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7Cr45ZF17Jr48tryruFW7urg_yoW8Kw4xpa
+	95GFW7Gr1fJr13Zw48J3Wvk3W3t3Z7Jr1Yyr17Jr43JF4vvFyUKrWakwn8Ka45CFyxXFya
+	9ay2vry5Aay2vr7anT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBv14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_JF0_Jw1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26r4a6rW5MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr4
+	1lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l
+	IxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0pRByxiUUUUU=
+X-CM-SenderInfo: 5khk3tzqr6v25zlqu0xpsx3x1qjou0bp/
 
+From: Huan He <hehuan1@eswincomputing.com>
 
---9UNNoxyP/HyoHDGQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+EIC7700 use Synopsys dwcmshc IP for SD/eMMC controllers.
+Add Eswin EIC7700 support in sdhci-of-dwcmshc.yaml.
 
+Signed-off-by: Huan He <hehuan1@eswincomputing.com>
+---
+ .../bindings/mmc/snps,dwcmshc-sdhci.yaml      | 57 +++++++++++++++++--
+ 1 file changed, 51 insertions(+), 6 deletions(-)
 
-> So, even after your fix, the above dependency needs to stay in this
-> binding document? Did I get this right?
+diff --git a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+index f882219a0a26..48661502a5a3 100644
+--- a/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
++++ b/Documentation/devicetree/bindings/mmc/snps,dwcmshc-sdhci.yaml
+@@ -30,6 +30,7 @@ properties:
+           - sophgo,sg2002-dwcmshc
+           - sophgo,sg2042-dwcmshc
+           - thead,th1520-dwcmshc
++          - eswin,eic7700-dwcmshc
+ 
+   reg:
+     maxItems: 1
+@@ -52,17 +53,30 @@ properties:
+     maxItems: 5
+ 
+   reset-names:
+-    items:
+-      - const: core
+-      - const: bus
+-      - const: axi
+-      - const: block
+-      - const: timer
++    maxItems: 5
+ 
+   rockchip,txclk-tapnum:
+     description: Specify the number of delay for tx sampling.
+     $ref: /schemas/types.yaml#/definitions/uint8
+ 
++  eswin,hsp-sp-csr:
++    $ref: /schemas/types.yaml#/definitions/phandle-array
++    items:
++      - description: Phandle to HSP(High-Speed Peripheral) device
++      - description: Offset of the stability status register for
++                     internal clock
++      - description: Offset of the stability register for host regulator
++                     voltage.
++    description: |
++      HSP CSR is to control and get status of different high-speed
++      peripherals (such as Ethernet, USB, SATA, etc.) via register,
++      which can close module's clock, reset module independently
++      and tune board-level's parameters of PHY, etc.
++
++  eswin,drive-impedance-ohms:
++    description: Specifies the drive impedance in Ohm.
++    enum: [33, 40, 50, 66, 100]
++
+ required:
+   - compatible
+   - reg
+@@ -110,6 +124,37 @@ allOf:
+             - const: block
+             - const: timer
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: eswin,eic7700-dwcmshc
++    then:
++      properties:
++        resets:
++          minItems: 4
++          maxItems: 4
++        reset-names:
++          items:
++            - const: axi
++            - const: phy
++            - const: prstn
++            - const: txrx
++      required:
++        - eswin,hsp-sp-csr
++        - eswin,drive-impedance-ohms
++    else:
++      properties:
++        resets:
++          maxItems: 5
++        reset-names:
++          items:
++            - const: core
++            - const: bus
++            - const: axi
++            - const: block
++            - const: timer
++
+   - if:
+       properties:
+         compatible:
+-- 
+2.25.1
 
-Keeping the dependency and using your improved dt-schema makes all
-warnings go away. Thank you!
-
-
---9UNNoxyP/HyoHDGQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjo1DcACgkQFA3kzBSg
-KbYICBAApXpu5AJZn0mTIwQkX/gJe/nQvO7+2KegYhn5U9OZcB0yoy0RtkdKzCzM
-lfLm5J3Uu9g1oN3zHbty0v/bOdX0h42dB7JjRriofERnEtB4tv49bUSL0ufpDO/b
-aPyXd6VRYruY5oI4u8gAiHnjGiIVxZZDabupK6guhuRXroRT7jYNONFmBprpgOt+
-SVSk7CojO4QY7OpoyNG0HvPJpp3wK2pL3glWijgTCUIWl2JBjn9ddd07gIufTrRg
-9GXQYi5cY0o90qeaT7kq0+sr0Q5p899/0JUFnx3cfBvUxZ7oVRI1V5nRIJHLKdsu
-F8GmuCkqv6nAuLLLQgOHQaocyozt0fpqWRgFGjutnOJFkeYRubgUFJqSXe+EJbeQ
-WGTuogqllEixI0BZSUHEgns5EfL57RXUaDAaQJMqxWWXtO4sGu6x0IpTrsS6BKZJ
-ZOepcrEZmwYlNA3DuAj1fZzYMmw8CaHaKCpyZFzcPwcIUzwUbjaTKuSVkX51eXvf
-I8r35XSpJF9R2eVcVt9FO09AAqEAaCY0XxGGwjvaO+cykGfOaUjQNJk7pDJifdJX
-UpqlfQFRU7fWzqJjnEULfKOX0sXU8eEwQFOZ7FGs4FKrg4MFJ56Q8B4LHIELDQBG
-aFyR5mU2H3Unj6vZFPBtX+9Dztm2oWVifZqP0xy6G/CLsoyZKZM=
-=zW6y
------END PGP SIGNATURE-----
-
---9UNNoxyP/HyoHDGQ--
 
