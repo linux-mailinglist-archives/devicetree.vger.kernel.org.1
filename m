@@ -1,338 +1,905 @@
-Return-Path: <devicetree+bounces-225303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB00FBCC4F4
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 11:20:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BED5BCC509
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 11:21:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 117F44FD425
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 09:19:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBD871892FFC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 09:21:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BBAC2566FC;
-	Fri, 10 Oct 2025 09:17:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="R/3MpFlb";
-	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="pgErSJBK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43DC826A0D0;
+	Fri, 10 Oct 2025 09:21:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6E671FF1A1;
-	Fri, 10 Oct 2025 09:17:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760087860; cv=fail; b=q7uRvYZ4AbopBWDK2OMThW1Sl0ojLgpCTt9Wdhpwx1rzi/AD9QZE+xTWBS4a2K2SG0I1ePeo+0SiLA0BdhMBfOECWEMV3Jv3YBqyXUWvGNivpBHWk5QeRTkcaWZVYKR6mqN9xfzGIKhF9Sz8MjJO2GeqUputdioYh8TQCfIXb3c=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760087860; c=relaxed/simple;
-	bh=cif0rTPjZ2DJhaQrsRhss0qMRyjx1jMwQSmONvEnTtc=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=WAcEKoc9XocRocSKpUkqKxNTPh++LYQXfDPPKPyYpPqvk+9yhcx2mCKaHXXVxk66HUCusUXNZQXWTKe2w2aYrBZz5LYJnMk0ASpFlF1JnX5g2AY8qNSyY5mUFeEI6N+QZdIN6fO/B+3V9q9lbZIumuttsw+GlB9sf5vnOF8gfZg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=R/3MpFlb; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=pgErSJBK; arc=fail smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: f2a3ee24a5b911f08d9e1119e76e3a28-20251010
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=cif0rTPjZ2DJhaQrsRhss0qMRyjx1jMwQSmONvEnTtc=;
-	b=R/3MpFlbl3qcwlCLBRMWZIdrgmymDt4WnifmwcnUuwVK/FSjBJI6oEcMButAx9m5W3FJ6Oghw6FyEw7/aqTRitNumetIPpMyBl8P6Ok8Pgp9hTRAlP6rgnM6TInL2gaGIZvPYjfPyUB4l0vYKhFJStZoxI2HOpUESvu/w5L7mIM=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.6,REQID:a6118380-0c20-4a64-ae31-1bec17a7bb55,IP:0,UR
-	L:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:r
-	elease,TS:0
-X-CID-META: VersionHash:a9d874c,CLOUDID:eb273f02-eaf8-4c8c-94de-0bc39887e077,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:80|81|82|83|102|110|111|836|888|898,
-	TC:-5,Content:0|15|50,EDM:-3,IP:nil,URL:0,File:130,RT:nil,Bulk:nil,QS:nil,
-	BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: f2a3ee24a5b911f08d9e1119e76e3a28-20251010
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-	(envelope-from <jjian.zhou@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1202550394; Fri, 10 Oct 2025 17:17:30 +0800
-Received: from mtkmbs10n1.mediatek.inc (172.21.101.34) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.26; Fri, 10 Oct 2025 17:17:28 +0800
-Received: from SI4PR04CU001.outbound.protection.outlook.com (172.21.101.237)
- by mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server id
- 15.2.1748.10 via Frontend Transport; Fri, 10 Oct 2025 17:17:28 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YaykCMswVVmC5KGKTNOq/UOtZyZb74gQQsv4BKs94sF4Z7Fij5hmlYQSLPM9S7Fazy/q8/d/AyWqyBUrFkqSSzyMEh35jmm+HXgWnimY3RnCL3nEw2cU47f5YZkRH2vwXqPyHCGjiM0SmtW0he4cfHZ7/uxg0eBTD4wTWD56b+CqzgbVu5jmupLNMMhfJ269MCNAiMCiOaHsKpg2Zgv+UT8OzF0kB/gYlZA3FZe4pLoy7RtqUbxh2OnN1bUnliqe3j1cC7KVmuLDAohuifGVZMxF+19dufm/a2mXZCqUpB5MVIwLYmrF3qZt0zi0dBWP4UkOWFfRm4S0sNrVoVuRMQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=cif0rTPjZ2DJhaQrsRhss0qMRyjx1jMwQSmONvEnTtc=;
- b=ab81kwpz1kuUx2NMuj1a/teJWQs0u/DMLFfPog3C/DJX8GOjPzBodnRWl2/7HqT/2le4ow1dxiLqC6VoRtf/7ZwPPmqBfTuYC6QixsdkNedFxsaXxTTDQVr0ubwf547j95CN+mK4H/6bjxMbb7MEK54gchUF5sFROHDY43lrDp4P+yT9l9MH6fjYVe29QHa8p9VaFqJURBnCjkDuatCFbuvMwkDDUXheLNgj41FUyBaoiSgiEMz4fmUcR2PQ9fRLf2hltkk/cxuHTEjm6FTHjcE7zzMYW93mQl1FrYbNnvcCHATO5pVub1pin4Yy6Y4pfHnD/Fc8E9njCGiz2kAOQA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
- dkim=pass header.d=mediatek.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cif0rTPjZ2DJhaQrsRhss0qMRyjx1jMwQSmONvEnTtc=;
- b=pgErSJBKuxxfmdBUUo3xm7jTNWeZYw3YmPkP4uJZz+/3dK9WHqmdcvCaf4IXYlOpcgtiZ4ye+LaWm+9G++gXtbcUYp9mtUydVCOs0DzzCg3ogfuKX47Cu0T+C9WRoeNMtn2RbDEntNRu42u5wnhXYWjEAUZNTg0pEpIu8qaW0nY=
-Received: from PSAPR03MB6363.apcprd03.prod.outlook.com (2603:1096:301:5f::10)
- by JH0PR03MB7596.apcprd03.prod.outlook.com (2603:1096:990:16::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Fri, 10 Oct
- 2025 09:17:26 +0000
-Received: from PSAPR03MB6363.apcprd03.prod.outlook.com
- ([fe80::eb73:91b9:5905:e89f]) by PSAPR03MB6363.apcprd03.prod.outlook.com
- ([fe80::eb73:91b9:5905:e89f%6]) with mapi id 15.20.9203.009; Fri, 10 Oct 2025
- 09:17:25 +0000
-From: =?utf-8?B?SmppYW4gWmhvdSAo5ZGo5bu6KQ==?= <Jjian.Zhou@mediatek.com>
-To: "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>
-CC: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"wenst@chromium.org" <wenst@chromium.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	Project_Global_Chrome_Upstream_Group
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, "robh@kernel.org"
-	<robh@kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "matthias.bgg@gmail.com"
-	<matthias.bgg@gmail.com>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: Re: [PATCH v7 2/2] mailbox: mediatek: Add mtk-vcp-mailbox driver
-Thread-Topic: [PATCH v7 2/2] mailbox: mediatek: Add mtk-vcp-mailbox driver
-Thread-Index: AQHcM3iZI/kc03UuBECs4L8oiXqTzrS21vwAgARPcwA=
-Date: Fri, 10 Oct 2025 09:17:25 +0000
-Message-ID: <2f23e3685ae621b568e9aec4ad99fc7e2fbb4039.camel@mediatek.com>
-References: <20251002084204.15898-1-jjian.zhou@mediatek.com>
-	 <20251002084204.15898-3-jjian.zhou@mediatek.com>
-	 <CABb+yY1Z+F=emOi2Q58bGv6AtKOMjY3qsNgRYqheNni+yN4_yQ@mail.gmail.com>
-In-Reply-To: <CABb+yY1Z+F=emOi2Q58bGv6AtKOMjY3qsNgRYqheNni+yN4_yQ@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=mediatek.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PSAPR03MB6363:EE_|JH0PR03MB7596:EE_
-x-ms-office365-filtering-correlation-id: 0ba24ee4-08a8-48e2-4421-08de07ddd3b4
-x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|7416014|376014|366016|1800799024|38070700021;
-x-microsoft-antispam-message-info: =?utf-8?B?VTlYQjFYTXdMU3RGRDZ4bW5jNWU2YWxTdm84OUU2bmlRYlU1YWxxb0lnek0w?=
- =?utf-8?B?aEFDdUV6Y0JQK1RRS0U0QzQyTnl4eGZ4c0FNYklKQWc0UTFsd2cvY3BvNkpi?=
- =?utf-8?B?aExkZHpvYkVrYndXdGczdkxQOVo5Qml6NWdoS2ZrZURRM00zZWxKTFJPNVlv?=
- =?utf-8?B?SjJhZkVXdDNxT1pzQVFES0tzUy9RY1BVLzNZVi9UUmFET2J4QzQ0ZmFvNFBh?=
- =?utf-8?B?WkFqY3ZWRnZWbEJUTTUrYWZWTExQeEtIeWdRZXY1UTdoNUN4WVkvU1RlOHF1?=
- =?utf-8?B?eXBXOWUwTXpWUnZUNHlNK0hlWVhybFcvaldwN2xxbWltYjU5ZGlzaHcyODAw?=
- =?utf-8?B?Rnpja0JkRkM0N3J4QWN3azloS3RWS2ZUOWF2eE4zVkpmMzFmMGRybWw3ZFJm?=
- =?utf-8?B?U2lDaTdQaTZLSFRCamdBU3AwQVJHaks2RXpqS2FzVXdLaUg3L3I3eHJOTkd4?=
- =?utf-8?B?a3NQUzBGb080M0t1NFZFbXBOUzcrL2NGUTBpSGhrTjhsOWlxK2VocGpDbEJu?=
- =?utf-8?B?RTZFbWw4Mmx6Y1QvNGhGZXdYOC8zUnBZUHVZOEVMUVJYMS9FQ29vOVY0LzJS?=
- =?utf-8?B?LzZJWTlLcVF3UHlzMUQxSGp3OFF1Vlhic0wrNUl1NHZucWlWOWhRSU1keDNm?=
- =?utf-8?B?cm5EajNPU3p6aEtkTEVnSGdDc2VNRUNzSUlrK2NPSUxlSGVHK0Q5aUVJUHhv?=
- =?utf-8?B?d3hiUUdVYWEwRHAzbzY0Z0tsNU9sS1VsKzUvT05KbXRSTnp6QkFOM3VOMlU3?=
- =?utf-8?B?QURReWxKc1lPNy8xZnhoRE5YK0ZIdXhXTUd4UmU0OEU3dUhIM0JlejRsazVh?=
- =?utf-8?B?dlF1dmJaNWxCZzd0OTFsaUpRM3NoVWhxVkpPRDhFQk5NWVVvSmdMZ3F5a3Bx?=
- =?utf-8?B?SXFFNTdTU2ZvMWhER2tLeFNlZGVZRnZ4V0VTT2ZsakdRYytoei9nQ0tIRGJm?=
- =?utf-8?B?SXZDT2tUaFcwS296NnVxOWhLNG1BSHVWelBWRWNjYTNNNWUrZnQxb3FoUi82?=
- =?utf-8?B?bFVqQzBYRzAyanYvNEMyMGxSRTQ2TjZYemxkTUdNSGJGc0xnbzV4VVlGVll2?=
- =?utf-8?B?clNpNjVjL0EyN29Wdk5abjdHS2ZGUnRUaGZNVFdEU2pVUW5IMDNubVRueWc4?=
- =?utf-8?B?SUx4ZWJTSC9scDJTRTFBUWFZUk50WmYvRk1SRVB4c1BwWkRXUWdLa2IzKzlF?=
- =?utf-8?B?dnBzMXdRUU1XTC92VUNwWC83QzQyTzNJWTMxOFNzK3l4UGdWa21QUDgydGdH?=
- =?utf-8?B?UldkelV4WXFXT1NtSmtLbThneHNXR3ZHSDQycHdwalFNdXJxeGtiRHgvMlND?=
- =?utf-8?B?Uk1naXNjVlBHUE9vSkNPM3RqRnVmcEppNzBXMEcwcVlPYUNJWnp2OHVqMzFK?=
- =?utf-8?B?NW9SZzZXd1l6SS9OQ1BIYkNLbVN2SEtQRCs1TEpVNG0wenoyZXJ4V2FyTVRT?=
- =?utf-8?B?TmdXc1hYeUVIb1oyVmlyMzE1RkV5ZlEvQmtVZmtKdkJPNlBnb0w2TEhWUDYy?=
- =?utf-8?B?ams1YkdWRXVBNHFUUXQ0NEpNNEdPR3VyZFA2WkNkNW9majM3NVZTZHZlblVB?=
- =?utf-8?B?U2lVM0x3bmc2Q3dROG5qeWJnQWowVmh5QVE1aGtTSUpJTTB4ZFRXenhsQVEy?=
- =?utf-8?B?aWZ6SUhUY0VMNVFIdk1PaGZ2M0pRRkRLUndiUUxIVm9BaWN5R1I5cWJkaFdN?=
- =?utf-8?B?VGovdFBiNXIrVEYyODVmZ21DNkcrZ0l2ZFhmR0F6b2JFRXFkR1NCbjJtbkdo?=
- =?utf-8?B?Mk0vN0w3TGx0R2M5SUpEUkNSYmIzK0xOejBsSU5MYkVZNE9ONkhZN3Y3R21a?=
- =?utf-8?B?QU0xS2dvbityVXd2c1haNEluSERFSjArTzAyMVVCY2JOSVhCbWxEektqL2tC?=
- =?utf-8?B?eGp2TWJrWjJxWUp6Uzh6akR3aU5SZ3N6YUJ3dW1CTXloUTFPWjJ3bXZ4SEdT?=
- =?utf-8?B?ZTJYSVBlMGtWWTU2dVNObWRWMnpEdyttU3BtK0lCbjYvSERtVldQcmFNZVY1?=
- =?utf-8?B?VURMQzE2OExTZmRLZ3NhUk14elltM3BOQnVlRmdJc3hRb0tUQVh0Q2lIaHds?=
- =?utf-8?Q?LNOp4o?=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PSAPR03MB6363.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(366016)(1800799024)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dXhud1UzOUVzVjFwSW5Cd1hJZGZzdU9uNng3YTJDMlRyVFFZNzJtL1FkQ0Y4?=
- =?utf-8?B?cmVtSVJHYzI1L0NrKzdKbGw4VldvQnIyc255alJoZWJyVUlDdU9zeGxYQVBG?=
- =?utf-8?B?NXBQSnAwNllMc1U5L3k4VzlDNW5VQjE4OHltazQ1bEF5QlhxdUtwNm9leUVw?=
- =?utf-8?B?YTE3VTA5c0FYNkVRYUl0dW9QU3N6SHJXOUZhb1kxc3J6K1JxekQ2Q1JSbUVt?=
- =?utf-8?B?MGYwOHhrWEJsRWxaUFN0Mm5hNThKLzRBb21zWFF4bUZFNG91SXNlYXhkZnFk?=
- =?utf-8?B?MVV2SXVIdFJyQjhMWDQwdldwalplZnJJbllkVmlUM3pVaEFYbktpVlc1RmJi?=
- =?utf-8?B?YkpKRmpEbldsNHpEK2tiQjhEd0dTWXdBYkdLVk8yWkVEVWhHMXZwamRyejJ1?=
- =?utf-8?B?bEV5TXI5VnN5d0ZZQ3hRbytEQnNQdWxVZUFPdkdLWXVjc2MwOE1qSDlaT1c4?=
- =?utf-8?B?U3p6NFRlWXdJeXJFaVpjMis3a1dsRDhoMDRzSmNpcXpHdU5lenBDRWtTN1NQ?=
- =?utf-8?B?ODEzZTI4TE96TW16WCtqeXU1anFQVVMzRkF6eEM3bzBra0hnMmFCMVJNei9q?=
- =?utf-8?B?bEpzd0xyNWd6WGNjUStoNCtWL09kRGZobmxUYVMvTXVzVHhIVEM2RERkVm10?=
- =?utf-8?B?UnN2YnVRUWkxRXFoWVRpZHBsRjFIbEZWaEczOS9FcHZmRDkwY1UrQXlicGt3?=
- =?utf-8?B?dnh4b3EzYzdpL1pNeUx4dTdxK09XeXQyOXc2TTliOVN1Wis5V3hPNjVVVVdM?=
- =?utf-8?B?NjdQcXlmdkR2WTRBMk5rUzBXa0llUTB1dlZkQ2JPL0pNMGMvSElpL0RkZWs2?=
- =?utf-8?B?WDltM2d0UU9hdk10T3FKN01ZaE9CWW1mRktnOTZaV3FOVHhoZWcwTjRrVlZm?=
- =?utf-8?B?TjB2QldRWkp4Zm5yWkg3N29DRHpJVTRxbERIeGZ3Z2dxUFVVcExIUUx3SzlH?=
- =?utf-8?B?V3hMbThVQytZWkJKSnI5UDhmOGlsMDlnRzVBRUJaVEgya1lWVUNvakpJRmMr?=
- =?utf-8?B?elhXRGdZQ2NpdDE3Q056OWgyRTJSdzNLZ0wyZTNlUzlZSy9TQ09RQ2FSZGZO?=
- =?utf-8?B?Qjg2MDBNRy9ETUgrR2F5eUIxWEx5QlNoMGVMeHY2eG95TjVTeGRzN1dvWElr?=
- =?utf-8?B?MVNCME12NUtJeEIzaDR5cjlnT25rRjAxY2U3cWhSd1Vvc1JMa1NqbTdmUUxM?=
- =?utf-8?B?blN5UktmKzJXQWNJSlhjTkM4dG1QZXBmWVRyMDZQaGJZMEN2M0xZU1p6MEE5?=
- =?utf-8?B?VzBEa2dpRVlZZlZ5Lzk4c21QQWVxL2Z1SVVmS0U3THdEZHZpZGxXSGdFRm5B?=
- =?utf-8?B?eHNDWTNxVFkrclBLMEROSGpCN2Y0ZDBTd04xYkN5Q2RuU2ZLUHZFVEFYa1Bt?=
- =?utf-8?B?UEtOTWRRRCtGb2d2TjhkSjhXT3IyaWNoaHJlT2JhOFpEVDluVTFTNWd4d0pi?=
- =?utf-8?B?L0RvL0lHWENJaVhrc3h5TGJmcGR4TEJMV1l3Ky9DQ2daZklwZ3h3dWJRQzN0?=
- =?utf-8?B?anhzZ1E2aDJDRVU5V1UyNW5SeWhUTHJSS2hqck5QSEwrcDBSaUpnWXVDYmFS?=
- =?utf-8?B?ZmF2ZjdvVGpUS1lmWVFPbHNOTnJPOVZocjJmKzNPY0NYWGljVi82MzFYUjJ5?=
- =?utf-8?B?cTNGRmM1RzFjUXZsVUpFRWNJb2dqSU01TUZ6VzI4em9pWWQ3MFlwQW04K1lM?=
- =?utf-8?B?Y3JUMTh1a2dveU1qYWFVZ3dsbFNUQTJhZ3lCMmtzNldUOEVaYVQ0R1JiaWtl?=
- =?utf-8?B?Y0pGa013ejFsWFZ4cmVjVkpTdUtrZ3FBNjQyc2JUUEgxcWRKYldnT20vVHFB?=
- =?utf-8?B?cmZhYy9QNTc2YUptSzFRK1lxK250M3JHbGU0TUtEb1NESWVxYkQyREFEVFdO?=
- =?utf-8?B?b2xFS243eHJYUFl4bm14bzE2cmtKN1JId0VMTlQyNEpIQ2czamw1Y3BESnNN?=
- =?utf-8?B?T3QvUWMwbWhBMmRyY1czaGF0YnJ4TzU5eXdkS1g4c1UrYjJCSHdXdlArRzNN?=
- =?utf-8?B?ME16NzhzbUlqK1Q3QVhCa1pMZWJZaDhRUmp2YUdPVnVrL1hyNHJqNUlwUkdF?=
- =?utf-8?B?anpGVWVpSGlKbUxySVBNNnd4SjRWaURyS2VYQnZmRVZDak84RjBZRExJdzVH?=
- =?utf-8?B?SGtJKzNXazEweFZ1aFhDWnZGR1FmeXZxNDJjdlcxeUhKRVJQZDNIb3NmcWtF?=
- =?utf-8?B?cmc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <CAADDF0AF13138488191D71E3DB1D634@apcprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F92025A2A2
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 09:21:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760088086; cv=none; b=FIWzcn5k2cmo00ZwG2VVlHjtsJ73Lm5HtAqXaCxZ29hVLAfmjPy6yCKztuLS0rieIgjOSb+0sBZfC4Pb0DS2W9Edeb7dG2WB79+5kQ/CDFJj9bILnHY44We/2H47MLV2vTFZyQa61QndHk354DDjH3gW1DtYan9kJi8G5nbQenI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760088086; c=relaxed/simple;
+	bh=0KGupHJJdg8l9vBDJRUG84wqM+ms+bUoinniI93nIE0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BdPLC8xrPZgnlbAEbi/zY2aft1s+NTw605gcxtisfQ2Vk1gMv10yktsNBGBU1qyzWSSpwTi8cyYCqMWZs0M/4LAivWe+z1Su4DmfVLwzMpeHtYPHoRJn6WNmvaNyrJ/PO/+/3riCn0b/nqPnysohoWn5esxXyviH8RflfkhKsyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <s.pueschel@pengutronix.de>)
+	id 1v79J8-0006VQ-RE; Fri, 10 Oct 2025 11:21:02 +0200
+Message-ID: <a315c444-5a3a-458e-b300-d26a6b9f61b5@pengutronix.de>
+Date: Fri, 10 Oct 2025 11:21:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PSAPR03MB6363.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ba24ee4-08a8-48e2-4421-08de07ddd3b4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Oct 2025 09:17:25.3968
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6dlkfpQ7GRwQq6rkjZVGCVv9hBaBopuj1HhVsmY5Za3YmP+kuhNSnh1CGU1MjJZ79D1FBj4kHxIb6ksLcODYMg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR03MB7596
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 16/16] media: rockchip: rga: add rga3 support
+To: Nicolas Dufresne <nicolas@ndufresne.ca>,
+ Jacob Chen <jacob-chen@iotwrt.com>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, kernel@pengutronix.de
+References: <20251007-spu-rga3-v1-0-36ad85570402@pengutronix.de>
+ <20251007-spu-rga3-v1-16-36ad85570402@pengutronix.de>
+ <cfe8d17416184f11a93e56872c30a6bcaf017ef5.camel@ndufresne.ca>
+Content-Language: en-US
+From: =?UTF-8?Q?Sven_P=C3=BCschel?= <s.pueschel@pengutronix.de>
+In-Reply-To: <cfe8d17416184f11a93e56872c30a6bcaf017ef5.camel@ndufresne.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: s.pueschel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDI1LTEwLTA3IGF0IDEwOjI4IC0wNTAwLCBKYXNzaSBCcmFyIHdyb3RlOg0KPiBF
-eHRlcm5hbCBlbWFpbCA6IFBsZWFzZSBkbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2ht
-ZW50cyB1bnRpbA0KPiB5b3UgaGF2ZSB2ZXJpZmllZCB0aGUgc2VuZGVyIG9yIHRoZSBjb250ZW50
-Lg0KPiANCj4gDQo+IE9uIFRodSwgT2N0IDIsIDIwMjUgYXQgMzo0MuKAr0FNIEpqaWFuIFpob3Ug
-PGpqaWFuLnpob3VAbWVkaWF0ZWsuY29tPg0KPiB3cm90ZToNCj4gPiANCj4gPiBBZGQgbXRrLXZj
-cC1tYWlsYm94IGRyaXZlciB0byBzdXBwb3J0IHRoZSBjb21tdW5pY2F0aW9uIHdpdGgNCj4gPiBW
-Q1AgcmVtb3RlIG1pY3JvcHJvY2Vzc29yLg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IEpqaWFu
-IFpob3UgPGpqaWFuLnpob3VAbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJzL21h
-aWxib3gvS2NvbmZpZyAgICAgICAgICAgICAgICAgfCAgIDkgKysNCj4gPiAgZHJpdmVycy9tYWls
-Ym94L01ha2VmaWxlICAgICAgICAgICAgICAgIHwgICAyICsNCj4gPiAgZHJpdmVycy9tYWlsYm94
-L210ay12Y3AtbWFpbGJveC5jICAgICAgIHwgMTcwDQo+ID4gKysrKysrKysrKysrKysrKysrKysr
-KysrDQo+ID4gIGluY2x1ZGUvbGludXgvbWFpbGJveC9tdGstdmNwLW1haWxib3guaCB8ICAzMiAr
-KysrKw0KPiA+ICA0IGZpbGVzIGNoYW5nZWQsIDIxMyBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0
-ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL21haWxib3gvbXRrLXZjcC1tYWlsYm94LmMNCj4gPiAgY3Jl
-YXRlIG1vZGUgMTAwNjQ0IGluY2x1ZGUvbGludXgvbWFpbGJveC9tdGstdmNwLW1haWxib3guaA0K
-PiA+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21haWxib3gvS2NvbmZpZyBiL2RyaXZlcnMv
-bWFpbGJveC9LY29uZmlnDQo+ID4gaW5kZXggMDI0MzJkNGE1Y2NkLi5jMjhiZGI4NTU2NjMgMTAw
-NjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9tYWlsYm94L0tjb25maWcNCj4gPiArKysgYi9kcml2ZXJz
-L21haWxib3gvS2NvbmZpZw0KPiA+IEBAIC0yOTQsNiArMjk0LDE1IEBAIGNvbmZpZyBNVEtfQ01E
-UV9NQk9YDQo+ID4gICAgICAgICAgIGNyaXRpY2FsIHRpbWUgbGltaXRhdGlvbiwgc3VjaCBhcyB1
-cGRhdGluZyBkaXNwbGF5DQo+ID4gY29uZmlndXJhdGlvbg0KPiA+ICAgICAgICAgICBkdXJpbmcg
-dGhlIHZibGFuay4NCj4gPiANCj4gPiArY29uZmlnIE1US19WQ1BfTUJPWA0KPiA+ICsgICAgICAg
-dHJpc3RhdGUgIk1lZGlhVGVrIFZDUCBNYWlsYm94IFN1cHBvcnQiDQo+ID4gKyAgICAgICBkZXBl
-bmRzIG9uIEFSQ0hfTUVESUFURUsgfHwgQ09NUElMRV9URVNUDQo+ID4gKyAgICAgICBoZWxwDQo+
-ID4gKyAgICAgICAgIFNheSB5ZXMgaGVyZSB0byBhZGQgc3VwcG9ydCBmb3IgdGhlIE1lZGlhVGVr
-IFZDUCBtYWlsYm94DQo+ID4gZHJpdmVyLg0KPiA+ICsgICAgICAgICBUaGUgbWFpbGJveCBpbXBs
-ZW1lbnRhdGlvbiBwcm92aWRlcyBhY2Nlc3MgZnJvbSB0aGUNCj4gPiBhcHBsaWNhdGlvbg0KPiA+
-ICsgICAgICAgICBwcm9jZXNzb3IgdG8gVmlkZW8gQ29tcGFuaW9uIFByb2Nlc3NvciBVbml0Lg0K
-PiA+ICsgICAgICAgICBJZiB1bnN1cmUgc2F5IE4uDQo+ID4gKw0KPiA+ICBjb25maWcgWllOUU1Q
-X0lQSV9NQk9YDQo+ID4gICAgICAgICB0cmlzdGF0ZSAiWGlsaW54IFp5bnFNUCBJUEkgTWFpbGJv
-eCINCj4gPiAgICAgICAgIGRlcGVuZHMgb24gQVJDSF9aWU5RTVAgJiYgT0YNCj4gPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9tYWlsYm94L01ha2VmaWxlIGIvZHJpdmVycy9tYWlsYm94L01ha2VmaWxl
-DQo+ID4gaW5kZXggOThhNjhmODM4NDg2Li4wNzI3ODg3MWQyNTQgMTAwNjQ0DQo+ID4gLS0tIGEv
-ZHJpdmVycy9tYWlsYm94L01ha2VmaWxlDQo+ID4gKysrIGIvZHJpdmVycy9tYWlsYm94L01ha2Vm
-aWxlDQo+ID4gQEAgLTYzLDYgKzYzLDggQEAgb2JqLSQoQ09ORklHX01US19BRFNQX01CT1gpICAg
-Kz0gbXRrLWFkc3AtDQo+ID4gbWFpbGJveC5vDQo+ID4gDQo+ID4gIG9iai0kKENPTkZJR19NVEtf
-Q01EUV9NQk9YKSAgICArPSBtdGstY21kcS1tYWlsYm94Lm8NCj4gPiANCj4gPiArb2JqLSQoQ09O
-RklHX01US19WQ1BfTUJPWCkgICAgICs9IG10ay12Y3AtbWFpbGJveC5vDQo+ID4gKw0KPiA+ICBv
-YmotJChDT05GSUdfWllOUU1QX0lQSV9NQk9YKSAgKz0genlucW1wLWlwaS1tYWlsYm94Lm8NCj4g
-PiANCj4gPiAgb2JqLSQoQ09ORklHX1NVTjZJX01TR0JPWCkgICAgICs9IHN1bjZpLW1zZ2JveC5v
-DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvbWFpbGJveC9tdGstdmNwLW1haWxib3guYw0KPiA+
-IGIvZHJpdmVycy9tYWlsYm94L210ay12Y3AtbWFpbGJveC5jDQo+ID4gbmV3IGZpbGUgbW9kZSAx
-MDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLjk0ZGFjNTljYTMyYg0KPiA+IC0tLSAvZGV2
-L251bGwNCj4gPiArKysgYi9kcml2ZXJzL21haWxib3gvbXRrLXZjcC1tYWlsYm94LmMNCj4gPiBA
-QCAtMCwwICsxLDE3MCBAQA0KPiA+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIu
-MA0KPiA+ICsvKg0KPiA+ICsgKiBDb3B5cmlnaHQgKGMpIDIwMjUgTWVkaWFUZWsgQ29ycG9yYXRp
-b24uIEFsbCByaWdodHMgcmVzZXJ2ZWQuDQo+ID4gKyAqIEF1dGhvcjogSmppYW4gWmhvdSA8ampp
-YW4uemhvdS5AbWVkaWF0ZWsuY29tPg0KPiA+ICsgKi8NCj4gPiArDQo+ID4gKyNpbmNsdWRlIDxs
-aW51eC9pbnRlcnJ1cHQuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L2lvLmg+DQo+ID4gKyNpbmNs
-dWRlIDxsaW51eC9rZXJuZWwuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L21haWxib3hfY29udHJv
-bGxlci5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvbWFpbGJveC9tdGstdmNwLW1haWxib3guaD4N
-Cj4gPiArI2luY2x1ZGUgPGxpbnV4L21vZHVsZS5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvb2Yu
-aD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L3BsYXRmb3JtX2RldmljZS5oPg0KPiA+ICsjaW5jbHVk
-ZSA8bGludXgvc2xhYi5oPg0KPiA+ICsNCj4gPiArc3RydWN0IG10a192Y3BfbWJveCB7DQo+ID4g
-KyAgICAgICBzdHJ1Y3QgbWJveF9jb250cm9sbGVyIG1ib3g7DQo+ID4gKyAgICAgICB2b2lkIF9f
-aW9tZW0gKmJhc2U7DQo+ID4gKyAgICAgICBzdHJ1Y3QgZGV2aWNlICpkZXY7DQo+ID4gKyAgICAg
-ICBjb25zdCBzdHJ1Y3QgbXRrX3ZjcF9tYm94X2NmZyAqY2ZnOw0KPiA+ICsgICAgICAgc3RydWN0
-IG10a19pcGlfaW5mbyBpcGlfcmVjdjsNCj4gPiArICAgICAgIHN0cnVjdCBtYm94X2NoYW4gY2hh
-bnM7DQo+ID4gK307DQo+ID4gKw0KPiA+ICtzdHJ1Y3QgbXRrX3ZjcF9tYm94X2NmZyB7DQo+ID4g
-KyAgICAgICB1MTYgc2V0X2luOw0KPiA+ICsgICAgICAgdTE2IGNscl9vdXQ7DQo+ID4gK307DQo+
-ID4gKw0KPiA+ICtzdGF0aWMgaXJxcmV0dXJuX3QgbXRrX3ZjcF9tYm94X2lycV90aHJlYWQoaW50
-IGlycSwgdm9pZCAqZGF0YSkNCj4gPiArew0KPiA+ICsgICAgICAgc3RydWN0IG10a192Y3BfbWJv
-eCAqcHJpdiA9IGRhdGE7DQo+ID4gKw0KPiA+ICsgICAgICAgLyogZ2V0IGlycSBzdGF0dXMgKi8N
-Cj4gPiArICAgICAgIHByaXYtPmlwaV9yZWN2LmlycV9zdGF0dXMgPSByZWFkbChwcml2LT5iYXNl
-ICsgcHJpdi0+Y2ZnLQ0KPiA+ID5jbHJfb3V0KTsNCj4gPiArDQo+ID4gKyAgICAgICBfX2lvcmVh
-ZDMyX2NvcHkocHJpdi0+aXBpX3JlY3YubXNnLCBwcml2LT5iYXNlLA0KPiA+ICsgICAgICAgICAg
-ICAgICAgICAgICAgIE1US19WQ1BfTUJPWF9TTE9UX01BWF9TSVpFIC8gNCk7DQo+ID4gKw0KPiA+
-ICsgICAgICAgbWJveF9jaGFuX3JlY2VpdmVkX2RhdGEoJnByaXYtPmNoYW5zLCAmcHJpdi0+aXBp
-X3JlY3YpOw0KPiA+ICsNCj4gPiArICAgICAgIC8qIGNsZWFyIGlycSBzdGF0dXMgKi8NCj4gPiAr
-ICAgICAgIHdyaXRlbChwcml2LT5pcGlfcmVjdi5pcnFfc3RhdHVzLCBwcml2LT5iYXNlICsgcHJp
-di0+Y2ZnLQ0KPiA+ID5jbHJfb3V0KTsNCj4gPiArDQo+ID4gKyAgICAgICByZXR1cm4gSVJRX0hB
-TkRMRUQ7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBzdHJ1Y3QgbWJveF9jaGFuICptdGtf
-dmNwX21ib3hfeGxhdGUoc3RydWN0IG1ib3hfY29udHJvbGxlcg0KPiA+ICptYm94LA0KPiA+ICsg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29uc3Qgc3RydWN0DQo+
-ID4gb2ZfcGhhbmRsZV9hcmdzICpzcCkNCj4gPiArew0KPiA+ICsgICAgICAgaWYgKHNwLT5hcmdz
-X2NvdW50KQ0KPiA+ICsgICAgICAgICAgICAgICByZXR1cm4gTlVMTDsNCj4gPiArDQo+ID4gKyAg
-ICAgICByZXR1cm4gJm1ib3gtPmNoYW5zWzBdOw0KPiA+ICt9DQo+ID4gKw0KPiA+ICtzdGF0aWMg
-aW50IG10a192Y3BfbWJveF9zZW5kX2RhdGEoc3RydWN0IG1ib3hfY2hhbiAqY2hhbiwgdm9pZA0K
-PiA+ICpkYXRhKQ0KPiA+ICt7DQo+ID4gKyAgICAgICBzdHJ1Y3QgbXRrX3ZjcF9tYm94ICpwcml2
-ID0gY2hhbi0+Y29uX3ByaXY7DQo+ID4gKyAgICAgICBzdHJ1Y3QgbXRrX2lwaV9pbmZvICppcGlf
-aW5mbyA9IGRhdGE7DQo+ID4gKyAgICAgICB1MzIgc3RhdHVzOw0KPiA+ICsNCj4gPiArICAgICAg
-IGlmICghaXBpX2luZm8tPm1zZykgew0KPiA+ICsgICAgICAgICAgICAgICBkZXZfZXJyKHByaXYt
-PmRldiwgIm1zZyBidWZmZXIgaXMgTlVMTC5cbiIpOw0KPiA+ICsgICAgICAgICAgICAgICByZXR1
-cm4gLUVJTlZBTDsNCj4gPiArICAgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgICBzdGF0dXMgPSBy
-ZWFkbChwcml2LT5iYXNlICsgcHJpdi0+Y2ZnLT5zZXRfaW4pOw0KPiA+ICsgICAgICAgaWYgKHN0
-YXR1cyAmIEJJVChpcGlfaW5mby0+aW5kZXgpKSB7DQo+ID4gKyAgICAgICAgICAgICAgIGRldl93
-YXJuKHByaXYtPmRldiwgIm1haWxib3ggSVBJICVkIGlzIGJ1c3kuXG4iLA0KPiA+IGlwaV9pbmZv
-LT5pZCk7DQo+ID4gKyAgICAgICAgICAgICAgIHJldHVybiAtRUJVU1k7DQo+ID4gKyAgICAgICB9
-DQo+ID4gKw0KPiA+ICsgICAgICAgaWYgKGlwaV9pbmZvLT5zbG90X29mcyArIGlwaV9pbmZvLT5s
-ZW4gPg0KPiA+IE1US19WQ1BfTUJPWF9TTE9UX01BWF9TSVpFKQ0KPiA+ICsgICAgICAgICAgICAg
-ICByZXR1cm4gLUVJTlZBTDsNCj4gPiArICAgICAgIF9faW93cml0ZTMyX2NvcHkocHJpdi0+YmFz
-ZSArIGlwaV9pbmZvLT5zbG90X29mcywgaXBpX2luZm8tDQo+ID4gPm1zZywNCj4gPiArICAgICAg
-ICAgICAgICAgICAgICAgICAgaXBpX2luZm8tPmxlbik7DQo+ID4gKw0KPiA+ICsgICAgICAgd3Jp
-dGVsKEJJVChpcGlfaW5mby0+aW5kZXgpLCBwcml2LT5iYXNlICsgcHJpdi0+Y2ZnLQ0KPiA+ID5z
-ZXRfaW4pOw0KPiA+ICsNCj4gPiArICAgICAgIHJldHVybiAwOw0KPiA+ICt9DQo+ID4gKw0KPiA+
-ICtzdGF0aWMgYm9vbCBtdGtfdmNwX21ib3hfbGFzdF90eF9kb25lKHN0cnVjdCBtYm94X2NoYW4g
-KmNoYW4pDQo+ID4gK3sNCj4gPiArICAgICAgIHN0cnVjdCBtdGtfaXBpX2luZm8gKmlwaV9pbmZv
-ID0gY2hhbi0+YWN0aXZlX3JlcTsNCj4gPiArICAgICAgIHN0cnVjdCBtdGtfdmNwX21ib3ggKnBy
-aXYgPSBjaGFuLT5jb25fcHJpdjsNCj4gPiArDQo+ID4gKyAgICAgICByZXR1cm4gIShyZWFkbChw
-cml2LT5iYXNlICsgcHJpdi0+Y2ZnLT5zZXRfaW4pICYNCj4gPiBCSVQoaXBpX2luZm8tPmluZGV4
-KSk7DQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgbWJveF9jaGFuX29w
-cyBtdGtfdmNwX21ib3hfY2hhbl9vcHMgPSB7DQo+ID4gKyAgICAgICAuc2VuZF9kYXRhICAgICAg
-PSBtdGtfdmNwX21ib3hfc2VuZF9kYXRhLA0KPiA+ICsgICAgICAgLmxhc3RfdHhfZG9uZSAgID0g
-bXRrX3ZjcF9tYm94X2xhc3RfdHhfZG9uZSwNCj4gPiArfTsNCj4gPiArDQo+ID4gK3N0YXRpYyBp
-bnQgbXRrX3ZjcF9tYm94X3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ID4g
-K3sNCj4gPiArICAgICAgIHN0cnVjdCBkZXZpY2UgKmRldiA9ICZwZGV2LT5kZXY7DQo+ID4gKyAg
-ICAgICBzdHJ1Y3QgbXRrX3ZjcF9tYm94ICpwcml2Ow0KPiA+ICsgICAgICAgc3RydWN0IG1ib3hf
-Y29udHJvbGxlciAqbWJveDsNCj4gPiArICAgICAgIGludCByZXQsIGlycTsNCj4gPiArDQo+ID4g
-KyAgICAgICBwcml2ID0gZGV2bV9remFsbG9jKGRldiwgc2l6ZW9mKCpwcml2KSwgR0ZQX0tFUk5F
-TCk7DQo+ID4gKyAgICAgICBpZiAoIXByaXYpDQo+ID4gKyAgICAgICAgICAgICAgIHJldHVybiAt
-RU5PTUVNOw0KPiA+ICsNCj4gPiArICAgICAgIHByaXYtPmRldiA9IGRldjsNCj4gPiArICAgICAg
-IHByaXYtPmNoYW5zLmNvbl9wcml2ID0gcHJpdjsNCj4gPiArICAgICAgIG1ib3ggPSAmcHJpdi0+
-bWJveDsNCj4gPiArICAgICAgIG1ib3gtPmRldiA9IGRldjsNCj4gPiArICAgICAgIG1ib3gtPm9w
-cyA9ICZtdGtfdmNwX21ib3hfY2hhbl9vcHM7DQo+ID4gKyAgICAgICBtYm94LT50eGRvbmVfaXJx
-ID0gZmFsc2U7DQo+ID4gKyAgICAgICBtYm94LT50eGRvbmVfcG9sbCA9IHRydWU7DQo+ID4gKyAg
-ICAgICBtYm94LT5vZl94bGF0ZSA9IG10a192Y3BfbWJveF94bGF0ZTsNCj4gPiArICAgICAgIG1i
-b3gtPm51bV9jaGFucyA9IDE7DQo+ID4gKyAgICAgICBtYm94LT5jaGFucyA9ICZwcml2LT5jaGFu
-czsNCj4gPiArDQo+ID4gKyAgICAgICBwcml2LT5pcGlfcmVjdi5tc2cgPSBkZXZtX2t6YWxsb2Mo
-ZGV2LA0KPiA+IE1US19WQ1BfTUJPWF9TTE9UX01BWF9TSVpFDQo+ID4gKyAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgR0ZQX0tFUk5FTCk7DQo+ID4gDQo+IA0KPiBQbGVh
-c2UgY29tcGlsZS10ZXN0IGF0IGxlYXN0IGJlZm9yZSBzdWJtaXR0aW5nLiBEcm9wcGluZyBpdCwg
-c29ycnkuDQoNClNvcnJ5IGZvciBteSBtaXN0YWtlLiBJIGhhdmUgZG9uZSBjb21waWxlLXRlc3Qg
-YW5kIHNlbmQgdjguDQpUaGFua3MuDQo+IA0KPiAtamFzc2kNCg==
+Hi,
+
+On 10/7/25 21:41, Nicolas Dufresne wrote:
+> Hi,
+>
+> Le mardi 07 octobre 2025 à 10:32 +0200, Sven Püschel a écrit :
+>> Add support for the RGA3 unit contained in the RK3588.
+>>
+>> Only a basic feature set consisting of scaling and color conversion is
+>> implemented. Advanced features like rotation and cropping will just be
+>> ignored. Also the BT601F color space conversion is currently hard coded.
+>>
+>> The register address defines were copied from the
+>> vendor Rockchip kernel sources and slightly adjusted to not start at 0
+>> again for the cmd registers.
+>>
+>> Signed-off-by: Sven Püschel <s.pueschel@pengutronix.de>
+>> ---
+>>   drivers/media/platform/rockchip/rga/Makefile  |   2 +-
+>>   drivers/media/platform/rockchip/rga/rga.c     |   4 +
+>>   drivers/media/platform/rockchip/rga/rga.h     |   2 +-
+>>   drivers/media/platform/rockchip/rga/rga3-hw.c | 490 ++++++++++++++++++++++++++
+>>   drivers/media/platform/rockchip/rga/rga3-hw.h | 186 ++++++++++
+>>   5 files changed, 682 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/media/platform/rockchip/rga/Makefile b/drivers/media/platform/rockchip/rga/Makefile
+>> index 1bbecdc3d8df2ce286652f5544c4a3b52a6d28cf..7326a548f3dc7618403e98974b8c60d45f556fef 100644
+>> --- a/drivers/media/platform/rockchip/rga/Makefile
+>> +++ b/drivers/media/platform/rockchip/rga/Makefile
+>> @@ -1,4 +1,4 @@
+>>   # SPDX-License-Identifier: GPL-2.0-only
+>> -rockchip-rga-objs := rga.o rga-hw.o rga-buf.o
+>> +rockchip-rga-objs := rga.o rga-hw.o rga3-hw.o rga-buf.o
+>>   
+>>   obj-$(CONFIG_VIDEO_ROCKCHIP_RGA) += rockchip-rga.o
+>> diff --git a/drivers/media/platform/rockchip/rga/rga.c b/drivers/media/platform/rockchip/rga/rga.c
+>> index 3b5d2eb8e109f44af76dd2240a239b1fa8a78cee..9d15104fcc1a45553af33bfd637bba0a86329c17 100644
+>> --- a/drivers/media/platform/rockchip/rga/rga.c
+>> +++ b/drivers/media/platform/rockchip/rga/rga.c
+>> @@ -805,6 +805,10 @@ static const struct of_device_id rockchip_rga_match[] = {
+>>   		.compatible = "rockchip,rk3399-rga",
+>>   		.data = &rga2_hw,
+>>   	},
+>> +	{
+>> +		.compatible = "rockchip,rk3588-rga3",
+>> +		.data = &rga3_hw,
+>> +	},
+>>   	{},
+>>   };
+>>   
+>> diff --git a/drivers/media/platform/rockchip/rga/rga.h b/drivers/media/platform/rockchip/rga/rga.h
+>> index dc4bb85707d12f5378c4891098cd7ea4a4d75e2d..350a4e07cb2ee237fc3676d594e1e7298a028afb 100644
+>> --- a/drivers/media/platform/rockchip/rga/rga.h
+>> +++ b/drivers/media/platform/rockchip/rga/rga.h
+>> @@ -169,6 +169,6 @@ static inline bool rga_has_internal_iommu(const struct rockchip_rga *rga)
+>>   	return rga->hw->has_internal_iommu;
+>>   }
+>>   
+>> -extern const struct rga_hw rga2_hw;
+>> +extern const struct rga_hw rga2_hw, rga3_hw;
+>>   
+>>   #endif
+>> diff --git a/drivers/media/platform/rockchip/rga/rga3-hw.c b/drivers/media/platform/rockchip/rga/rga3-hw.c
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..6e4cd2f96cf866880316c75924f7a4c339851448
+>> --- /dev/null
+>> +++ b/drivers/media/platform/rockchip/rga/rga3-hw.c
+>> @@ -0,0 +1,490 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (C) Pengutronix e.K.
+>> + * Author: Sven Püschel <s.pueschel@pengutronix.de>
+>> + */
+>> +
+>> +#include <linux/pm_runtime.h>
+>> +#include <linux/bitfield.h>
+>> +#include <linux/delay.h>
+>> +#include <linux/printk.h>
+>> +
+>> +#include <media/v4l2-common.h>
+>> +
+>> +#include "rga3-hw.h"
+>> +#include "rga.h"
+>> +
+>> +static unsigned int rga3_get_scaling(unsigned int src, unsigned int dst)
+> Would be nice to summarize what you are calculating here.
+>
+>> +{
+>> +	if (dst > src) {
+>> +		if (((src - 1) << 16) % (dst - 1) == 0)
+>> +			return ((src - 1) << 16) / (dst - 1) - 1;
+>> +		else
+>> +			return ((src - 1) << 16) / (dst - 1);
+>> +	} else {
+>> +		return ((dst - 1) << 16) / (src - 1) + 1;
+>> +	}
+> Its unclear to me why the various -1, and why the factor get reversed depending
+> up or down scale.
+
+The calculation is based on the formula in the TRM. While testing I've 
+notice that it fails in the upscaling case (and also the calulculation 
+exceeds 16 bits) and that swapping the src/dest values makes it work. 
+The upscale/downscale operation is already described in a separate bit 
+of the win0 command register.
+
+>
+>> +}
+>> +
+>> +static bool rga3_has_alpha(const struct rga3_fmt *fmt)
+>> +{
+>> +	return fmt->hw_format >= RGA3_COLOR_FMT_FIRST_HAS_ALPHA &&
+>> +	       fmt->fourcc != V4L2_PIX_FMT_BGRX32 &&
+>> +	       fmt->fourcc != V4L2_PIX_FMT_XBGR32 &&
+>> +	       fmt->fourcc != V4L2_PIX_FMT_RGBX32 &&
+>> +	       fmt->fourcc != V4L2_PIX_FMT_XRGB32;
+> Would be nice to extend v4l2-common ?
+
+I agree and I'll add it to my patchset.
+
+>> +}
+>> +
+>> +static bool rga3_can_capture(const struct rga3_fmt *fmt)
+>> +{
+>> +	return fmt->hw_format <= RGA3_COLOR_FMT_LAST_OUTPUT;
+>> +}
+>> +
+>> +static void rga3_cmd_set_trans_info(struct rga_ctx *ctx)
+> Not obvious some the function name, can you add a comment block.
+>
+>> +{
+>> +	struct rockchip_rga *rga = ctx->rga;
+>> +	u32 *cmd = rga->cmdbuf_virt;
+>> +	unsigned int src_h, src_w, dst_h, dst_w;
+>> +	unsigned int reg;
+>> +	u16 hor_scl_fac, ver_scl_fac;
+>> +
+>> +	src_h = ctx->in.crop.height;
+>> +	src_w = ctx->in.crop.width;
+>> +	dst_h = ctx->out.crop.height;
+>> +	dst_w = ctx->out.crop.width;
+> There is no position component to these rectangle ? It is a bit confusing to
+> called cropped rectangles as src and dest only.
+
+This block is just copied from the rga-hw.c file, which uses the same 
+variable names and in another function src_x/y for the position components.
+
+>
+>> +
+>> +	reg = RGA3_WIN0_RD_CTRL - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] |= FIELD_PREP(RGA3_WIN_SCALE_HOR_UP, dst_w > src_w)
+>> +		      |  FIELD_PREP(RGA3_WIN_SCALE_HOR_BYPASS, dst_w == src_w)
+>> +		      |  FIELD_PREP(RGA3_WIN_SCALE_VER_UP, dst_h > src_h)
+>> +		      |  FIELD_PREP(RGA3_WIN_SCALE_VER_BYPASS, dst_h == src_h);
+>> +
+>> +	/* stride needs to be in words */
+>> +	reg = RGA3_WIN0_VIR_STRIDE - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] = ctx->in.pix.plane_fmt[0].bytesperline >> 2;
+>> +	reg = RGA3_WIN0_UV_VIR_STRIDE - RGA3_FIRST_CMD_REG;
+>> +	if (ctx->in.pix.num_planes >= 2)
+>> +		cmd[reg >> 2] = ctx->in.pix.plane_fmt[1].bytesperline >> 2;
+>> +	else
+>> +		cmd[reg >> 2] = ctx->in.pix.plane_fmt[0].bytesperline >> 2;
+> I find this pattern a bit hacky, and hiding what its for. My reading this is
+> that if num_planes == 1, the driver does not know how many planes there is, due
+> to legacy single plane formats, such as NV12 (in contrast to NV12M). So it just
+> repeat the stride in all places.
+>
+> That where is bugs me, since you use >=2 if the number of planes if 3, the third
+> stride is missing, but would also not be equal. If the HW is limited to NV style
+> of format, then don't use >=2, but rather == 2. And comment about it.
+Thanks. The HW is limited to 2 memory areas.
+>
+>> +	reg = RGA3_WR_VIR_STRIDE - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] = ctx->out.pix.plane_fmt[0].bytesperline >> 2;
+>> +	reg = RGA3_WR_PL_VIR_STRIDE - RGA3_FIRST_CMD_REG;
+>> +	if (ctx->out.pix.num_planes >= 2)
+>> +		cmd[reg >> 2] = ctx->out.pix.plane_fmt[1].bytesperline >> 2;
+>> +	else
+>> +		cmd[reg >> 2] = ctx->out.pix.plane_fmt[0].bytesperline >> 2;
+>> +
+>> +	reg = RGA3_WIN0_ACT_SIZE - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] = FIELD_PREP(RGA3_WIDTH, src_w)
+>> +		      | FIELD_PREP(RGA3_HEIGHT, src_h);
+>> +	reg = RGA3_WIN0_SRC_SIZE - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] = FIELD_PREP(RGA3_WIDTH, src_w)
+>> +		      | FIELD_PREP(RGA3_HEIGHT, src_h);
+> Just guessing, because the code is not clear, but is that ACT (actual) and SRC
+> (source). Someone the original image size, and the source rectangle ? In which
+> case, is it ok to pass twice the cropped size ?
+Yeah, not quite correct and just works, as I didn't implement/test 
+cropping.
+>
+>> +
+>> +	reg = RGA3_WIN0_DST_SIZE - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] = FIELD_PREP(RGA3_WIDTH, dst_w)
+>> +		      | FIELD_PREP(RGA3_HEIGHT, dst_h);
+>> +
+>> +	hor_scl_fac = rga3_get_scaling(src_w, dst_w);
+>> +	ver_scl_fac = rga3_get_scaling(src_h, dst_h);
+>> +	reg = RGA3_WIN0_SCL_FAC - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] = FIELD_PREP(RGA3_SCALE_HOR_FAC, hor_scl_fac)
+>> +		      | FIELD_PREP(RGA3_SCALE_VER_FAC, ver_scl_fac);
+>> +
+>> +	if (rga3_has_alpha(ctx->in.fmt)) {
+>> +		/* copy alpha from input */
+> Fair enough, I'd appreciate in the commit message to have an overview of all the
+> features that are not covered by the driver. Notably you don't support the
+> second window for blits (V4L2 does not have enough CID to do that either), you
+> don't seem to fully support S_SELECTION, this is a bit annoying, no background
+> colors, rotation, and probably more stuff I forget about.
+>
+>> +		reg = RGA3_OVLP_TOP_ALPHA - RGA3_FIRST_CMD_REG;
+>> +		cmd[reg >> 2] = FIELD_PREP(RGA3_ALPHA_SELECT_MODE, 1)
+>> +			      | FIELD_PREP(RGA3_ALPHA_BLEND_MODE, 1);
+>> +		reg = RGA3_OVLP_BOT_ALPHA - RGA3_FIRST_CMD_REG;
+>> +		cmd[reg >> 2] = FIELD_PREP(RGA3_ALPHA_SELECT_MODE, 1)
+>> +			      | FIELD_PREP(RGA3_ALPHA_BLEND_MODE, 1);
+>> +	} else {
+>> +		/* just use a 255 alpha value */
+>> +		reg = RGA3_OVLP_TOP_CTRL - RGA3_FIRST_CMD_REG;
+>> +		cmd[reg >> 2] = FIELD_PREP(RGA3_OVLP_GLOBAL_ALPHA, 0xff)
+>> +			      | FIELD_PREP(RGA3_OVLP_COLOR_MODE, 1);
+>> +		reg = RGA3_OVLP_BOT_CTRL - RGA3_FIRST_CMD_REG;
+>> +		cmd[reg >> 2] = FIELD_PREP(RGA3_OVLP_GLOBAL_ALPHA, 0xff)
+>> +			      | FIELD_PREP(RGA3_OVLP_COLOR_MODE, 1);
+> Have you considered implementing V4L2_CID_ALPHA_COMPONENT ?
+No, but thanks for the hint. I'll look into adding it.
+>> +	}
+>> +}
+>> +
+>> +static void rga3_cmd_set_win0_addr(struct rga_ctx *ctx,
+>> +				   const struct rga_addrs *addrs)
+>> +{
+>> +	u32 *cmd = ctx->rga->cmdbuf_virt;
+>> +	unsigned int reg;
+>> +
+>> +	reg = RGA3_WIN0_Y_BASE - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] = addrs->y_addr;
+>> +	reg = RGA3_WIN0_U_BASE - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] = addrs->u_addr;
+>> +}
+>> +
+>> +static void rga3_cmd_set_wr_addr(struct rga_ctx *ctx,
+>> +				 const struct rga_addrs *addrs)
+>> +{
+>> +	u32 *cmd = ctx->rga->cmdbuf_virt;
+>> +	unsigned int reg;
+>> +
+>> +	reg = RGA3_WR_Y_BASE - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] = addrs->y_addr;
+>> +	reg = RGA3_WR_U_BASE - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] = addrs->u_addr;
+>> +}
+>> +
+>> +static void rga3_cmd_set_win0_format(struct rga_ctx *ctx)
+>> +{
+>> +	u32 *cmd = ctx->rga->cmdbuf_virt;
+>> +	const struct rga3_fmt *in = ctx->in.fmt;
+>> +	const struct rga3_fmt *out = ctx->out.fmt;
+>> +	const struct v4l2_format_info *in_fmt, *out_fmt;
+>> +	unsigned int src_h, src_w, dst_h, dst_w;
+>> +	bool r2y, y2r;
+>> +	u8 rd_format;
+>> +	unsigned int reg;
+>> +
+>> +	src_h = ctx->in.crop.height;
+>> +	src_w = ctx->in.crop.width;
+>> +	dst_h = ctx->out.crop.height;
+>> +	dst_w = ctx->out.crop.width;
+>> +
+>> +	in_fmt = v4l2_format_info(in->fourcc);
+>> +	out_fmt = v4l2_format_info(out->fourcc);
+>> +	r2y = v4l2_is_format_rgb(in_fmt) && v4l2_is_format_yuv(out_fmt);
+>> +	y2r = v4l2_is_format_yuv(in_fmt) && v4l2_is_format_rgb(out_fmt);
+>> +
+>> +	if (in->semi_planar)
+>> +		rd_format = RGA3_RDWR_FORMAT_SEMI_PLANAR;
+>> +	else
+>> +		rd_format = RGA3_RDWR_FORMAT_INTERLEAVED;
+>> +
+>> +	reg = RGA3_WIN0_RD_CTRL - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] |= FIELD_PREP(RGA3_WIN_PIC_FORMAT, in->hw_format)
+>> +		      |  FIELD_PREP(RGA3_WIN_YC_SWAP, in->yc_swap)
+>> +		      |  FIELD_PREP(RGA3_WIN_RBUV_SWAP, in->rbuv_swap)
+>> +		      |  FIELD_PREP(RGA3_WIN_RD_FORMAT, rd_format)
+>> +		      |  FIELD_PREP(RGA3_WIN_R2Y, r2y)
+>> +		      |  FIELD_PREP(RGA3_WIN_Y2R, y2r)
+>> +		      |  FIELD_PREP(RGA3_WIN_CSC_MODE, RGA3_WIN_CSC_MODE_BT601_F);
+> I don't think I saw code in the v4l2 part the enforce that only that conversion
+> is allowed. Just picking a hidden CSC and pixel transfer make your driver
+> unusable in real world.
+>
+> My take is that a driver that implement CSC should be really serious about the
+> CSC aspect. So if you'd like to get a subset in a first iteration, make sure
+> that the v4l2_format will perfectly reflect that subset so userspace does not
+> fooled into producing pad colors. In short, this driver only have 2 jobs at the
+> moment, scale and CSC. Let do that well ?
+>
+>> +}
+>> +
+>> +static void rga3_cmd_enable_win0(struct rga_ctx *ctx)
+>> +{
+>> +	u32 *cmd = ctx->rga->cmdbuf_virt;
+>> +	unsigned int reg;
+>> +
+>> +	reg = RGA3_WIN0_RD_CTRL - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] |= FIELD_PREP(RGA3_WIN_ENABLE, 1);
+>> +}
+>> +
+>> +static void rga3_cmd_set_wr_format(struct rga_ctx *ctx)
+>> +{
+>> +	u32 *cmd = ctx->rga->cmdbuf_virt;
+>> +	const struct rga3_fmt *out = ctx->out.fmt;
+>> +	u8 wr_format;
+>> +	unsigned int reg;
+>> +
+>> +	if (out->semi_planar)
+>> +		wr_format = RGA3_RDWR_FORMAT_SEMI_PLANAR;
+>> +	else
+>> +		wr_format = RGA3_RDWR_FORMAT_INTERLEAVED;
+>> +
+>> +	reg = RGA3_WR_CTRL - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] |= FIELD_PREP(RGA3_WR_PIC_FORMAT, out->hw_format)
+>> +		      |  FIELD_PREP(RGA3_WR_YC_SWAP, out->yc_swap)
+>> +		      |  FIELD_PREP(RGA3_WR_RBUV_SWAP, out->rbuv_swap)
+>> +		      |  FIELD_PREP(RGA3_WR_FORMAT, wr_format);
+>> +}
+>> +
+>> +static void rga3_cmd_disable_wr_limitation(struct rga_ctx *ctx)
+>> +{
+>> +	u32 *cmd = ctx->rga->cmdbuf_virt;
+>> +	unsigned int reg;
+>> +
+>> +	/* Use the max value to avoid limiting the write speed */
+>> +	reg = RGA3_WR_CTRL - RGA3_FIRST_CMD_REG;
+>> +	cmd[reg >> 2] |= FIELD_PREP(RGA3_WR_SW_OUTSTANDING_MAX, 63);
+> No issue with the code, but quite an interesting feature. We did discussed in
+> pas about using the target framerate (well frame duration in v4l2) to avoid
+> bursting the memory.
+>
+>> +}
+>> +
+>> +static void rga3_cmd_set(struct rga_ctx *ctx,
+>> +			 struct rga_vb_buffer *src, struct rga_vb_buffer *dst)
+>> +{
+>> +	struct rockchip_rga *rga = ctx->rga;
+>> +
+>> +	memset(rga->cmdbuf_virt, 0, RGA3_CMDBUF_SIZE * 4);
+>> +
+>> +	rga3_cmd_set_win0_addr(ctx, &src->dma_addrs);
+>> +	rga3_cmd_set_wr_addr(ctx, &dst->dma_addrs);
+>> +
+>> +	rga3_cmd_set_win0_format(ctx);
+>> +	rga3_cmd_enable_win0(ctx);
+>> +	rga3_cmd_set_trans_info(ctx);
+>> +	rga3_cmd_set_wr_format(ctx);
+>> +	rga3_cmd_disable_wr_limitation(ctx);
+>> +
+>> +	rga_write(rga, RGA3_CMD_ADDR, rga->cmdbuf_phy);
+>> +
+>> +	/* sync CMD buf for RGA */
+>> +	dma_sync_single_for_device(rga->dev, rga->cmdbuf_phy,
+>> +				   PAGE_SIZE, DMA_BIDIRECTIONAL);
+>> +}
+>> +
+>> +static void rga3_hw_start(struct rockchip_rga *rga,
+>> +			  struct rga_vb_buffer *src, struct rga_vb_buffer *dst)
+>> +{
+>> +	struct rga_ctx *ctx = rga->curr;
+>> +
+>> +	rga3_cmd_set(ctx, src, dst);
+>> +
+>> +	/* set to master mode and start the conversion */
+>> +	rga_write(rga, RGA3_SYS_CTRL,
+>> +		  FIELD_PREP(RGA3_CMD_MODE, RGA3_CMD_MODE_MASTER));
+>> +	rga_write(rga, RGA3_INT_EN,
+>> +		  FIELD_PREP(RGA3_INT_FRM_DONE, 1) |
+>> +		  FIELD_PREP(RGA3_INT_DMA_READ_BUS_ERR, 1) |
+>> +		  FIELD_PREP(RGA3_INT_WIN0_FBC_DEC_ERR, 1) |
+>> +		  FIELD_PREP(RGA3_INT_WIN0_HOR_ERR, 1) |
+>> +		  FIELD_PREP(RGA3_INT_WIN0_VER_ERR, 1) |
+>> +		  FIELD_PREP(RGA3_INT_WR_VER_ERR, 1) |
+>> +		  FIELD_PREP(RGA3_INT_WR_HOR_ERR, 1) |
+>> +		  FIELD_PREP(RGA3_INT_WR_BUS_ERR, 1) |
+>> +		  FIELD_PREP(RGA3_INT_WIN0_IN_FIFO_WR_ERR, 1) |
+>> +		  FIELD_PREP(RGA3_INT_WIN0_IN_FIFO_RD_ERR, 1) |
+>> +		  FIELD_PREP(RGA3_INT_WIN0_HOR_FIFO_WR_ERR, 1) |
+>> +		  FIELD_PREP(RGA3_INT_WIN0_HOR_FIFO_RD_ERR, 1) |
+>> +		  FIELD_PREP(RGA3_INT_WIN0_VER_FIFO_WR_ERR, 1) |
+>> +		  FIELD_PREP(RGA3_INT_WIN0_VER_FIFO_RD_ERR, 1));
+>> +	rga_write(rga, RGA3_CMD_CTRL,
+>> +		  FIELD_PREP(RGA3_CMD_LINE_START_PULSE, 1));
+>> +}
+>> +
+>> +static void rga3_soft_reset(struct rockchip_rga *rga)
+>> +{
+>> +	u32 i;
+>> +
+>> +	rga_write(rga, RGA3_SYS_CTRL,
+>> +		  FIELD_PREP(RGA3_CCLK_SRESET, 1) |
+>> +		  FIELD_PREP(RGA3_ACLK_SRESET, 1));
+>> +
+>> +	for (i = 0; i < RGA3_RESET_TIMEOUT; i++) {
+>> +		if (FIELD_GET(RGA3_RO_SRST_DONE, rga_read(rga, RGA3_RO_SRST)))
+>> +			break;
+>> +
+>> +		udelay(1);
+> Did you measure this IP soft reset speed ? Perhaps this delay can be tune to
+> avoid hugging on a CPU core ?
+My simple tests with too high scaling always resulted in a value of 0. 
+I've only copied the delay from the downstream, so there is no problem 
+reducing this value.
+>
+>> +	}
+>> +
+>> +	if (i == RGA3_RESET_TIMEOUT)
+>> +		pr_err("Timeout of %d usec reached while waiting for an rga3 soft reset\n", i);
+> What next if it failed ? System lockup, or just bunch of errors ?
+>
+>> +
+>> +	rga_write(rga, RGA3_SYS_CTRL, 0);
+>> +	rga_iommu_restore(rga);
+>> +}
+>> +
+>> +static enum rga_irq_result rga3_handle_irq(struct rockchip_rga *rga)
+>> +{
+>> +	u32 intr;
+>> +
+>> +	intr = rga_read(rga, RGA3_INT_RAW);
+>> +	/* clear all interrupts */
+>> +	rga_write(rga, RGA3_INT_CLR, intr);
+>> +
+>> +	if (FIELD_GET(RGA3_INT_FRM_DONE, intr))
+>> +		return RGA_IRQ_DONE;
+>> +	if (FIELD_GET(RGA3_INT_DMA_READ_BUS_ERR, intr) ||
+>> +	    FIELD_GET(RGA3_INT_WIN0_FBC_DEC_ERR, intr) ||
+>> +	    FIELD_GET(RGA3_INT_WIN0_HOR_ERR, intr) ||
+>> +	    FIELD_GET(RGA3_INT_WIN0_VER_ERR, intr) ||
+>> +	    FIELD_GET(RGA3_INT_WR_VER_ERR, intr) ||
+>> +	    FIELD_GET(RGA3_INT_WR_HOR_ERR, intr) ||
+>> +	    FIELD_GET(RGA3_INT_WR_BUS_ERR, intr) ||
+>> +	    FIELD_GET(RGA3_INT_WIN0_IN_FIFO_WR_ERR, intr) ||
+>> +	    FIELD_GET(RGA3_INT_WIN0_IN_FIFO_RD_ERR, intr) ||
+>> +	    FIELD_GET(RGA3_INT_WIN0_HOR_FIFO_WR_ERR, intr) ||
+>> +	    FIELD_GET(RGA3_INT_WIN0_HOR_FIFO_RD_ERR, intr) ||
+>> +	    FIELD_GET(RGA3_INT_WIN0_VER_FIFO_WR_ERR, intr) ||
+>> +	    FIELD_GET(RGA3_INT_WIN0_VER_FIFO_RD_ERR, intr)) {
+>> +		rga3_soft_reset(rga);
+>> +		return RGA_IRQ_ERROR;
+> Are you certain all these errors are fatal in the first place ? That being said,
+> since you "soft reset", I bet this basically abort any pending operation, so it
+> should not matter.
+>
+>> +	}
+>> +
+>> +	return RGA_IRQ_IGNORE;
+>> +}
+>> +
+>> +static void rga3_get_version(struct rockchip_rga *rga)
+>> +{
+>> +	u32 version = rga_read(rga, RGA3_VERSION_NUM);
+>> +
+>> +	rga->version.major = FIELD_GET(RGA3_VERSION_NUM_MAJOR, version);
+>> +	rga->version.minor = FIELD_GET(RGA3_VERSION_NUM_MINOR, version);
+>> +}
+>> +
+>> +static struct rga3_fmt rga3_formats[] = {
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_RGB24,
+>> +		.hw_format = RGA3_COLOR_FMT_BGR888,
+>> +		.rbuv_swap = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_BGR24,
+>> +		.hw_format = RGA3_COLOR_FMT_BGR888,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_ABGR32,
+>> +		.hw_format = RGA3_COLOR_FMT_BGRA8888,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_RGBA32,
+>> +		.hw_format = RGA3_COLOR_FMT_BGRA8888,
+>> +		.rbuv_swap = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_XBGR32,
+>> +		.hw_format = RGA3_COLOR_FMT_BGRA8888,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_RGBX32,
+>> +		.hw_format = RGA3_COLOR_FMT_BGRA8888,
+>> +		.rbuv_swap = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_RGB565,
+>> +		.hw_format = RGA3_COLOR_FMT_BGR565,
+>> +		.rbuv_swap = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_NV12M,
+>> +		.hw_format = RGA3_COLOR_FMT_YUV420,
+>> +		.semi_planar = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_NV12,
+>> +		.hw_format = RGA3_COLOR_FMT_YUV420,
+>> +		.semi_planar = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_NV21M,
+>> +		.hw_format = RGA3_COLOR_FMT_YUV420,
+>> +		.rbuv_swap = 1,
+>> +		.semi_planar = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_NV21,
+>> +		.hw_format = RGA3_COLOR_FMT_YUV420,
+>> +		.rbuv_swap = 1,
+>> +		.semi_planar = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_NV16M,
+>> +		.hw_format = RGA3_COLOR_FMT_YUV422,
+>> +		.semi_planar = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_NV16,
+>> +		.hw_format = RGA3_COLOR_FMT_YUV422,
+>> +		.semi_planar = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_NV61M,
+>> +		.hw_format = RGA3_COLOR_FMT_YUV422,
+>> +		.rbuv_swap = 1,
+>> +		.semi_planar = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_NV61,
+>> +		.hw_format = RGA3_COLOR_FMT_YUV422,
+>> +		.rbuv_swap = 1,
+>> +		.semi_planar = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_YUYV,
+>> +		.hw_format = RGA3_COLOR_FMT_YUV422,
+>> +		.yc_swap = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_YVYU,
+>> +		.hw_format = RGA3_COLOR_FMT_YUV422,
+>> +		.yc_swap = 1,
+>> +		.rbuv_swap = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_UYVY,
+>> +		.hw_format = RGA3_COLOR_FMT_YUV422,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_VYUY,
+>> +		.hw_format = RGA3_COLOR_FMT_YUV422,
+>> +		.rbuv_swap = 1,
+> Any chance you could add 10bit formats ? It can handle NV15 and P010. So far
+> this had been the main reason people have been interested in RGA3 (that and its
+> AFBC feature, but the later is quite some more work, since we don't have the
+> common code to compute the header sizes in media/ yet).
+If this is just adding them to the struct and it works instantly or with 
+minor intervention (and doesn't need much adjusting in the testing), I 
+can add it. Otherwise probably not, as like cropping/rotation it's 
+currently not a requirement.
+>
+>> +	},
+>> +	/* Input only formats last to keep rga3_enum_format simple */
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_ARGB32,
+>> +		.hw_format = RGA3_COLOR_FMT_ABGR8888,
+>> +		.rbuv_swap = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_BGRA32,
+>> +		.hw_format = RGA3_COLOR_FMT_ABGR8888,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_XRGB32,
+>> +		.hw_format = RGA3_COLOR_FMT_ABGR8888,
+>> +		.rbuv_swap = 1,
+>> +	},
+>> +	{
+>> +		.fourcc = V4L2_PIX_FMT_BGRX32,
+>> +		.hw_format = RGA3_COLOR_FMT_ABGR8888,
+>> +	},
+>> +};
+>> +
+>> +static int rga3_enum_format(struct v4l2_fmtdesc *f)
+>> +{
+>> +	struct rga3_fmt *fmt;
+>> +
+>> +	if (f->index >= ARRAY_SIZE(rga3_formats))
+>> +		return -EINVAL;
+>> +
+>> +	fmt = &rga3_formats[f->index];
+>> +	if (V4L2_TYPE_IS_CAPTURE(f->type) && !rga3_can_capture(fmt))
+>> +		return -EINVAL;
+>> +
+>> +	f->pixelformat = fmt->fourcc;
+>> +	return 0;
+>> +}
+>> +
+>> +static void *rga3_try_format(u32 *fourcc, bool is_output)
+> This is not really a try_format function, but a tiny subset. If you really like
+> the "try", perhaps call it rga3_try_pixelformat() ?
+>
+>> +{
+>> +	unsigned int i;
+>> +
+>> +	if (!fourcc)
+>> +		return &rga3_formats[0];
+>> +
+>> +	for (i = 0; i < ARRAY_SIZE(rga3_formats); i++) {
+>> +		if (!is_output && !rga3_can_capture(&rga3_formats[i]))
+>> +			continue;
+>> +
+>> +		if (rga3_formats[i].fourcc == *fourcc)
+>> +			return &rga3_formats[i];
+>> +	}
+>> +
+>> +	*fourcc = rga3_formats[0].fourcc;
+>> +	return &rga3_formats[0];
+>> +}
+>> +
+>> +const struct rga_hw rga3_hw = {
+>> +	.card_type = "rga3",
+>> +	.has_internal_iommu = false,
+>> +	.cmdbuf_size = RGA3_CMDBUF_SIZE,
+>> +	.min_width = RGA3_MIN_WIDTH,
+>> +	.min_height = RGA3_MIN_HEIGHT,
+>> +	.max_width = RGA3_MAX_INPUT_WIDTH,
+>> +	.max_height = RGA3_MAX_INPUT_HEIGHT,
+>> +
+>> +	.start = rga3_hw_start,
+>> +	.handle_irq = rga3_handle_irq,
+>> +	.get_version = rga3_get_version,
+>> +	.enum_format = rga3_enum_format,
+>> +	.try_format = rga3_try_format,
+>> +};
+>> diff --git a/drivers/media/platform/rockchip/rga/rga3-hw.h b/drivers/media/platform/rockchip/rga/rga3-hw.h
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..3829469e310706c11ecc52f40d3d1eb43a61d9c2
+>> --- /dev/null
+>> +++ b/drivers/media/platform/rockchip/rga/rga3-hw.h
+>> @@ -0,0 +1,186 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +/*
+>> + * Copyright (C) Pengutronix e.K.
+>> + * Author: Sven Püschel <s.pueschel@pengutronix.de>
+>> + */
+>> +#ifndef __RGA3_HW_H__
+>> +#define __RGA3_HW_H__
+>> +
+>> +#include <linux/types.h>
+>> +
+>> +#define RGA3_CMDBUF_SIZE 0x2e
+>> +
+>> +#define RGA3_MIN_WIDTH 128
+>> +#define RGA3_MIN_HEIGHT 128
+>> +#define RGA3_MAX_INPUT_WIDTH (8192 - 16)
+>> +#define RGA3_MAX_INPUT_HEIGHT (8192 - 16)
+>> +#define RGA3_RESET_TIMEOUT 1000
+>> +
+>> +/* Registers address */
+>> +/* sys reg */
+>> +#define RGA3_SYS_CTRL				0x000
+>> +#define RGA3_CMD_CTRL				0x004
+>> +#define RGA3_CMD_ADDR				0x008
+>> +#define RGA3_MI_GROUP_CTRL			0x00c
+>> +#define RGA3_ARQOS_CTRL				0x010
+>> +#define RGA3_VERSION_NUM			0x018
+>> +#define RGA3_VERSION_TIM			0x01c
+>> +#define RGA3_INT_EN				0x020
+>> +#define RGA3_INT_RAW				0x024
+>> +#define RGA3_INT_MSK				0x028
+>> +#define RGA3_INT_CLR				0x02c
+>> +#define RGA3_RO_SRST				0x030
+>> +#define RGA3_STATUS0				0x034
+>> +#define RGA3_SCAN_CNT				0x038
+>> +#define RGA3_CMD_STATE				0x040
+>> +
+>> +/* cmd reg */
+>> +#define RGA3_WIN0_RD_CTRL			0x100
+>> +#define RGA3_FIRST_CMD_REG			RGA3_WIN0_RD_CTRL
+>> +#define RGA3_WIN0_Y_BASE			0x110
+>> +#define RGA3_WIN0_U_BASE			0x114
+>> +#define RGA3_WIN0_V_BASE			0x118
+>> +#define RGA3_WIN0_VIR_STRIDE			0x11c
+>> +#define RGA3_WIN0_FBC_OFF			0x120
+>> +#define RGA3_WIN0_SRC_SIZE			0x124
+>> +#define RGA3_WIN0_ACT_OFF			0x128
+>> +#define RGA3_WIN0_ACT_SIZE			0x12c
+>> +#define RGA3_WIN0_DST_SIZE			0x130
+>> +#define RGA3_WIN0_SCL_FAC			0x134
+>> +#define RGA3_WIN0_UV_VIR_STRIDE			0x138
+>> +#define RGA3_WIN1_RD_CTRL			0x140
+>> +#define RGA3_WIN1_Y_BASE			0x150
+>> +#define RGA3_WIN1_U_BASE			0x154
+>> +#define RGA3_WIN1_V_BASE			0x158
+>> +#define RGA3_WIN1_VIR_STRIDE			0x15c
+>> +#define RGA3_WIN1_FBC_OFF			0x160
+>> +#define RGA3_WIN1_SRC_SIZE			0x164
+>> +#define RGA3_WIN1_ACT_OFF			0x168
+>> +#define RGA3_WIN1_ACT_SIZE			0x16c
+>> +#define RGA3_WIN1_DST_SIZE			0x170
+>> +#define RGA3_WIN1_SCL_FAC			0x174
+>> +#define RGA3_WIN1_UV_VIR_STRIDE			0x178
+>> +#define RGA3_OVLP_CTRL				0x180
+>> +#define RGA3_OVLP_OFF				0x184
+>> +#define RGA3_OVLP_TOP_KEY_MIN			0x188
+>> +#define RGA3_OVLP_TOP_KEY_MAX			0x18c
+>> +#define RGA3_OVLP_TOP_CTRL			0x190
+>> +#define RGA3_OVLP_BOT_CTRL			0x194
+>> +#define RGA3_OVLP_TOP_ALPHA			0x198
+>> +#define RGA3_OVLP_BOT_ALPHA			0x19c
+>> +#define RGA3_WR_CTRL				0x1a0
+>> +#define RGA3_WR_FBCE_CTRL			0x1a4
+>> +#define RGA3_WR_VIR_STRIDE			0x1a8
+>> +#define RGA3_WR_PL_VIR_STRIDE			0x1ac
+>> +#define RGA3_WR_Y_BASE				0x1b0
+>> +#define RGA3_WR_U_BASE				0x1b4
+>> +#define RGA3_WR_V_BASE				0x1b8
+>> +
+>> +/* Registers value */
+>> +#define RGA3_COLOR_FMT_YUV420		0x0
+>> +#define RGA3_COLOR_FMT_YUV422		0x1
+>> +#define RGA3_COLOR_FMT_YUV420_10B	0x2
+>> +#define RGA3_COLOR_FMT_YUV422_10B	0x3
+>> +/*
+>> + * Use memory ordering names
+>> + * instead of the datasheet naming RGB formats in big endian order
+>> + */
+>> +#define RGA3_COLOR_FMT_BGR565		0x4
+>> +#define RGA3_COLOR_FMT_BGR888		0x5
+>> +#define RGA3_COLOR_FMT_FIRST_HAS_ALPHA	RGA3_COLOR_FMT_BGRA8888
+>> +#define RGA3_COLOR_FMT_BGRA8888		0x6
+>> +#define RGA3_COLOR_FMT_LAST_OUTPUT	RGA3_COLOR_FMT_BGRA8888
+>> +/* the following are only supported as inputs */
+>> +#define RGA3_COLOR_FMT_ABGR8888		0x7
+>> +/*
+>> + * the following seem to be unnecessary,
+>> + * as they can be achieved with RB swaps
+>> + */
+>> +#define RGA3_COLOR_FMT_RGBA8888		0x8
+>> +#define RGA3_COLOR_FMT_ARGB8888		0x9
+>> +
+>> +#define RGA3_RDWR_FORMAT_SEMI_PLANAR	0x1
+>> +#define RGA3_RDWR_FORMAT_INTERLEAVED	0x2
+>> +
+>> +#define RGA3_CMD_MODE_MASTER 0x1
+>> +
+>> +#define RGA3_WIN_CSC_MODE_BT601_F 0x2
+>> +
+>> +/* RGA masks */
+>> +/* SYS_CTRL */
+>> +#define RGA3_CCLK_SRESET BIT(4)
+>> +#define RGA3_ACLK_SRESET BIT(3)
+>> +#define RGA3_CMD_MODE BIT(1)
+>> +
+>> +/* CMD_CTRL */
+>> +#define RGA3_CMD_LINE_START_PULSE BIT(0)
+>> +
+>> +/* VERSION_NUM */
+>> +#define RGA3_VERSION_NUM_MAJOR GENMASK(31, 28)
+>> +#define RGA3_VERSION_NUM_MINOR GENMASK(27, 20)
+>> +
+>> +/* INT_* */
+>> +#define RGA3_INT_FRM_DONE BIT(0)
+>> +#define RGA3_INT_DMA_READ_BUS_ERR BIT(2)
+>> +#define RGA3_INT_WIN0_FBC_DEC_ERR BIT(5)
+>> +#define RGA3_INT_WIN0_HOR_ERR BIT(6)
+>> +#define RGA3_INT_WIN0_VER_ERR BIT(7)
+>> +#define RGA3_INT_WR_VER_ERR BIT(13)
+>> +#define RGA3_INT_WR_HOR_ERR BIT(14)
+>> +#define RGA3_INT_WR_BUS_ERR BIT(15)
+>> +#define RGA3_INT_WIN0_IN_FIFO_WR_ERR BIT(16)
+>> +#define RGA3_INT_WIN0_IN_FIFO_RD_ERR BIT(17)
+>> +#define RGA3_INT_WIN0_HOR_FIFO_WR_ERR BIT(18)
+>> +#define RGA3_INT_WIN0_HOR_FIFO_RD_ERR BIT(19)
+>> +#define RGA3_INT_WIN0_VER_FIFO_WR_ERR BIT(20)
+>> +#define RGA3_INT_WIN0_VER_FIFO_RD_ERR BIT(21)
+>> +
+>> +/* RO_SRST */
+>> +#define RGA3_RO_SRST_DONE GENMASK(5, 0)
+>> +
+>> +/* *_SIZE */
+>> +#define RGA3_HEIGHT GENMASK(28, 16)
+>> +#define RGA3_WIDTH GENMASK(12, 0)
+>> +
+>> +/* SCL_FAC */
+>> +#define RGA3_SCALE_VER_FAC GENMASK(31, 16)
+>> +#define RGA3_SCALE_HOR_FAC GENMASK(15, 0)
+>> +
+>> +/* WINx_CTRL */
+>> +#define RGA3_WIN_CSC_MODE GENMASK(27, 26)
+>> +#define RGA3_WIN_R2Y BIT(25)
+>> +#define RGA3_WIN_Y2R BIT(24)
+>> +#define RGA3_WIN_SCALE_VER_UP BIT(23)
+>> +#define RGA3_WIN_SCALE_VER_BYPASS BIT(22)
+>> +#define RGA3_WIN_SCALE_HOR_UP BIT(21)
+>> +#define RGA3_WIN_SCALE_HOR_BYPASS BIT(20)
+>> +#define RGA3_WIN_YC_SWAP BIT(13)
+>> +#define RGA3_WIN_RBUV_SWAP BIT(12)
+>> +#define RGA3_WIN_RD_FORMAT GENMASK(9, 8)
+>> +#define RGA3_WIN_PIC_FORMAT GENMASK(7, 4)
+>> +#define RGA3_WIN_ENABLE BIT(0)
+>> +
+>> +/* COLOR_CTRL */
+>> +#define RGA3_OVLP_GLOBAL_ALPHA GENMASK(23, 16)
+>> +#define RGA3_OVLP_COLOR_MODE BIT(0)
+>> +
+>> +/* ALPHA_CTRL */
+>> +#define RGA3_ALPHA_SELECT_MODE BIT(4)
+>> +#define RGA3_ALPHA_BLEND_MODE GENMASK(3, 2)
+>> +
+>> +/* WR_CTRL */
+>> +#define RGA3_WR_YC_SWAP BIT(20)
+>> +#define RGA3_WR_SW_OUTSTANDING_MAX GENMASK(18, 13)
+>> +#define RGA3_WR_RBUV_SWAP BIT(12)
+>> +#define RGA3_WR_FORMAT GENMASK(9, 8)
+>> +#define RGA3_WR_PIC_FORMAT GENMASK(7, 4)
+>> +
+>> +struct rga3_fmt {
+>> +	u32 fourcc;
+>> +	u8 hw_format;
+>> +	bool rbuv_swap;
+>> +	bool yc_swap;
+>> +	bool semi_planar;
+>> +};
+>> +
+>> +#endif
 
