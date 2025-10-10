@@ -1,131 +1,180 @@
-Return-Path: <devicetree+bounces-225433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A4FABCDF69
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 18:31:18 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7127BCDF72
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 18:32:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0440F3B773E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 16:31:17 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 540074E4C18
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 16:32:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07AA62F5A3F;
-	Fri, 10 Oct 2025 16:31:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4EDE2F7463;
+	Fri, 10 Oct 2025 16:32:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UazpeJin"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kwc9QkyR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B000266B52
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 16:31:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27F03D76;
+	Fri, 10 Oct 2025 16:32:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760113872; cv=none; b=fmfpA6mVeiiFBgf+aS22WGXkDV2KeIGpr5xCgl5y5irHyPXKq4XZm8WIE8KHcf77QrmBk2Xsg2IAaTajvg2iIBrcGlLTiNuDM2k57Xk5oXkDcM3zkoBjP7+opoFlBlgVXPDQxCZQL3zR/6LcHSy/X10ZarwU8FYPofe+2Ijq1gI=
+	t=1760113940; cv=none; b=YenM/81l3FnodqsbiU+qo3dvbocs7hcGgIXvDzk3LEfGDJuMG6bSdAbzYvcNpgBVWs9t6Vzeoco/jKGWl4EmlTMYWc/rHeOKuAd72utu6l7iW/i/AAGlqsAzLisBsn+kLpX7NnK0Rhxzafl2bk3NZ82IOuM0l/Obsj+ZUrjbFCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760113872; c=relaxed/simple;
-	bh=sWau8pOuRYNhtAxbaAcaiNz5CW5zfAxPFLtnnDYBKqM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=c3HuqTHyLDzg50zelNfDVYOAr27NePEkOyIwy1UvZpFa0dt6XB6osF/lsT9r98TTOg9b/JTgd8066MLtebHRtIM71ZB8yEEyEgZ3w9SrvLDdVPsSyMh9YPGst+Stx80Ox98lG2g6hsNbgyNP9IsLcucKOFP8p3EYAICKmTerpgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UazpeJin; arc=none smtp.client-ip=209.85.214.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-28e7cd6dbc0so25717065ad.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 09:31:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1760113870; x=1760718670; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+PErgUidAcsRKwUXeMVve1SYZIwtC3TkFLkv19Pikhc=;
-        b=UazpeJinkjHVb5yWVeizpYYLLDLBC8b/0NuRrhVedtVEdaup4WWGY/9iWfE9Y9ygrc
-         pH2j/F1dFIO/wLpHyiTxKJJeA4kNjLtTy4g0BfLb1N358S8r5pLVjvND/kb7cdafspo2
-         rRcmQZYnjCEAQSzE6jdNPPgX4WrYKDh/kj4Gi8pe5Ky/E1iPvqbAxCh2cJb/1JPPWyXU
-         PVTb3CkstrYC1qsMM/SjlrbK/uTDzQCZnTEFYLoMwSnUUA27EKs6oTvP0NiOZLJ3hXp3
-         7hPkhA+RYDPe/UdnuORJqlnAWFU6r4bkY54wt9yNVDrMnoC4cmtpi6bgjc0T51dXdGU4
-         Tj9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760113870; x=1760718670;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+PErgUidAcsRKwUXeMVve1SYZIwtC3TkFLkv19Pikhc=;
-        b=UT44r5ZZGkji5Y5Rr08FGcIy9v7gWdpCu8wdojFvLEYrInNv1nCUNwlm4W947GAVGr
-         cyphSoPruP8qrV28gD2CPBYuuyDh5Gef75rB/aaHsHFIaFsnudaVXHs5Ps353i8ULDZ/
-         q7uJC+YAGo+ca/zlkRms39UORA9tV/NYWORDynA0QaOiqsR2cuBVHmsd5VeNsB1Ltk8/
-         99MCHn/zetB76eil2cMhrmFahmptUqts7hGvh+ZZJMcNalqMuCX2fSbp5Wa37kD6zunu
-         Jc6/73hjhZHvnOnRcZeCiHebjzXV/GqHGb7AgxswDCe1uPfkREujwLDZfbmNY7CJFhC9
-         I+Kw==
-X-Forwarded-Encrypted: i=1; AJvYcCUEm3QYJ1dEre7iWA0MuqEUroWXTIVrj3h1Pj1WUOV8JL7aiXxD2JimQpD9JNxGjhs4KAYDh2HxoHmc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKAd7I6ZfGbx66XbWzc4IeTlr69ei2IPxs0NIwbWOVLLqzOBGX
-	pV6S5iY+JMmAwd4Y+gBFKh8Shc88LcATq9nHndq/nyj6rNnHOD1QnvJ1Mi3eRsMXWmA=
-X-Gm-Gg: ASbGnctfUYz0fL86kNLwVSD6I/edxzxUCotoeG/s3Pl1rVHHAmHIhOMWdsO3Bk9t/wm
-	yccHRIJSSAHZ5SW01COvGx+9dyICnbSrRnJJVI/WrqLWkQVMO6bqmlz69l7Ho5/pFlZaDG77rvA
-	eV5EQoju9E5eOVEht5Fm3ZxsDp8MAg4hb+CBhT6FdiIirbA9VGBL5yhelSd1xVe46FuMOJF5QHT
-	zbVKeHB7K7PWLXBqqvE/PR10hkaNyE74txVU3U/c598sDyWdywVt+XPhnzwP8v9cv7UXafF1CVZ
-	gi2nsBeQrYMlJvh+/vZbITHovPSwaG3jLbkhKzSrIx5Q4hUaeZMnJbBKmcxoRMc0z0BVyE4WUXr
-	cP03yuEV2XATEiE5lloEevpkU+UNFZBxjjqUtnvpuLrHNZCU=
-X-Google-Smtp-Source: AGHT+IEy8L6TDg54FExTrOyXceAe8pz/QOf459ho/0ZYB36VftdLiczXdkNEiG5CFEJM6POervy4bQ==
-X-Received: by 2002:a17:902:fc46:b0:27e:ef12:6e94 with SMTP id d9443c01a7336-29027418f97mr152883735ad.55.1760113870428;
-        Fri, 10 Oct 2025 09:31:10 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:ad30:d3d9:45c5:4a3])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-29034f8f9bbsm61182205ad.121.2025.10.10.09.31.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 10 Oct 2025 09:31:09 -0700 (PDT)
-Date: Fri, 10 Oct 2025 10:31:07 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Shenwei Wang <shenwei.wang@nxp.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-imx@nxp.com
-Subject: Re: [PATCH v3 3/4] gpio: imx-rpmsg: add imx-rpmsg GPIO driver
-Message-ID: <aOk0y8xTi9hoGvyX@p14s>
-References: <20251009222716.394806-1-shenwei.wang@nxp.com>
- <20251009222716.394806-4-shenwei.wang@nxp.com>
- <eb99d9a8-eb96-445d-899a-6e1d9b6f6c69@lunn.ch>
+	s=arc-20240116; t=1760113940; c=relaxed/simple;
+	bh=5kwuV8eNnA83Ato1cZbhy9+x6tIprPRIWS08vVYojKw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=k8OgAi9bkxDeKoVmhITmZg45x40j8mUvUtt+FgmarKzWE/saB+jXNdc0YlrGY3J5laKy9eSgB/n6wCfY8JpxyMR6Nd5mSjO34Eluf21iOISjGHc/kbokflHEg/DEKlCGyB7fH+KdGxXpc5LGS/96suW5POLrGkH2UUvsMmo1WDg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kwc9QkyR; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id A3B29C08CD5;
+	Fri, 10 Oct 2025 16:31:51 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 374E160667;
+	Fri, 10 Oct 2025 16:32:10 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id D7D3D102F21B3;
+	Fri, 10 Oct 2025 18:31:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1760113929; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=pBVjYyQaOHn9Ik1fDoHu9eZ8SXCQAudCG8yjKEp/G2Y=;
+	b=kwc9QkyRkyaJaPEi2u4+QXJ4WKJT3ztIEJ6MP8BcqI8b5CXFsY+HtAwBDIHmzPV+GpR2cJ
+	dAPQNauShMHVcfjXIZS3a9NnEFcb/620JNuPeZBoH5hdhecEIfV6V/ylMQvfE1wgE2cmIZ
+	RIHM1/bu9PvBOqdAC25qyRcsUvLfI/7txZf60bODlcFg9vP1hb5/fxpLf0AaNozidbqQjV
+	VZrB/TYaXJf9+yWx7LPQKt5KWVMAeHrypCNVR+3IAgOLrbnPGBk7lxTrTyeI39r2GRKwO6
+	Mh6VuGUxVM/9SOrWPMzhiq9XvQXtFjif8OQjBmgexugctEgkkxAo0vP31HoHpA==
+Date: Fri, 10 Oct 2025 18:31:52 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Ayush Singh
+ <ayush@beagleboard.org>, Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring
+ <robh@kernel.org>, Andrew Davis <afd@ti.com>, Wolfram Sang
+ <wsa+renesas@sang-engineering.com>, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, devicetree@vger.kernel.org, Jason Kridner
+ <jkridner@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, devicetree-compiler@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: Device tree representation of (hotplug) connectors: discussion
+ at ELCE
+Message-ID: <20251010183152.1530f5ab@bootlin.com>
+In-Reply-To: <aOi8oLGYVckesJSb@zatzit>
+References: <20250918094409.0d5f92ec@bootlin.com>
+	<aMzhgDYOuG4qNcc0@zatzit>
+	<dcbeaff2-0147-4a27-bb46-e247e42810d7@beagleboard.org>
+	<aNJVqSpdAJzGliNx@zatzit>
+	<20250923114849.2385736d@bootlin.com>
+	<CAMuHMdWmDwedyPnBERs-tSYEG15nMUuh9u1Q+W_FdquHpUC0-A@mail.gmail.com>
+	<aNNvaN4xJtKBFmWT@zatzit>
+	<cd9763b7-919a-4b44-a347-f1491d9584b9@beagleboard.org>
+	<aNtXnAeLj3xNwkyE@zatzit>
+	<CAMuHMdV+sUZpMtbCtWqJMiL_JC_nFEJcFDOoZJZPhhzhY8zQJQ@mail.gmail.com>
+	<aOi8oLGYVckesJSb@zatzit>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <eb99d9a8-eb96-445d-899a-6e1d9b6f6c69@lunn.ch>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Fri, Oct 10, 2025 at 12:58:38AM +0200, Andrew Lunn wrote:
-> On Thu, Oct 09, 2025 at 05:27:15PM -0500, Shenwei Wang wrote:
-> > On i.MX SoCs, the system may include two processors:
-> > 	- An MCU running an RTOS
-> > 	- An MPU running Linux
+On Fri, 10 Oct 2025 18:58:24 +1100
+David Gibson <david@gibson.dropbear.id.au> wrote:
+
+> On Tue, Sep 30, 2025 at 09:52:44AM +0200, Geert Uytterhoeven wrote:
+> > Hi David,
 > > 
-> > These processors communicate via the RPMSG protocol.
-> > The driver implements the standard GPIO interface, allowing
-> > the Linux side to control GPIO controllers which reside in
-> > the remote processor via RPMSG protocol.
+> > On Tue, 30 Sept 2025 at 06:34, David Gibson <david@gibson.dropbear.id.au> wrote:  
+> > > On Wed, Sep 24, 2025 at 10:33:50PM +0530, Ayush Singh wrote:  
+> > > > On 9/24/25 09:41, David Gibson wrote:  
+> [snip]
+> > > > > > > > a) Addons can only add completely new nodes, never modify existing
+> > > > > > > >     ones.  This means that whatever addons are present at runtime,
+> > > > > > > >     every node has a single well defined owner (either base board or
+> > > > > > > >     addon).  
+> > > > > > > In this rule I suppose that "never modify existing ones" should be understood
+> > > > > > > as "never modify, add or remove properties in existing ones". Because, of course
+> > > > > > > adding a full node in a existing one is allowed (rule b).  
+> > > > > > What if the add-on board contains a provider for the base board.
+> > > > > > E.g. the connector has a clock input, fed by an optional clock generator
+> > > > > > on the add-on board.  Hooking that into the system requires modifying
+> > > > > > a clocks property in the base board, cfr. [1].
+> > > > > > Or is there some other solution?  
+> > > > > Hmm.  My first inclination would be that this case is not in scope for
+> > > > > the protocol we're trying to design now.  If the widget provides
+> > > > > things to the base board as well as the other way around, it's no
+> > > > > longer an "addon" for the purposes of this spec.
+> > > > >
+> > > > > But it's possible I've underestimated how common / useful such a case
+> > > > > is.
+> > > > >
+> > > > > Note that I'd expect the existing overlay mechanism to still be
+> > > > > around.  It may be ugly and not very well thought out, but its
+> > > > > drawbacks are much less severe if you're not dealing with hot unplug.  
+> > > >
+> > > > Well, while that was not an initial use-case in my mind, external clock
+> > > > inputs are a valid use-case when talking about connectors for board headers
+> > > > specifically (e.g. pocketbeagle connector).  
+> > >
+> > > I guess I'm not familiar enough with modern embedded hardware.  I'm
+> > > having a hard time wrapping my head around what's going on here.  If
+> > > the external clock input is optional (hence under a connector), how is
+> > > anything on the base board dependent on it?  If nothing on the base
+> > > board is dependent, why do we need to modify its properties to
+> > > represent it?
+> > >
+> > > Is this a design flaw in the clocks binding?  
+> > 
+> > In my example, the external clock input is indeed optional, and not
+> > used by the base board itself.  Still, it is a clock input to the SoC,
+> > and may be used as a reference clock when an add-on board is connected
+> > that needs to use the exact clock frequency of that reference clock.
+> > 
+> > https://elixir.bootlin.com/linux/v6.17/source/arch/arm64/boot/dts/renesas/white-hawk-ard-audio-da7212.dtso
+> > AUDIO_CLKIN_V is the optional clock input to the SoC.
+> > GP1_25/SL_SW2_V/TPU is the reference clock (actually it is not
+> > generated on the add-on board, but by a PWM controller on the base
+> > board, but it could just be a crystal oscillator on the add-on board
+> > instead)
+> > 
+> > I hope this makes it clearer.  
 > 
-> I've not seen the discussion on earlier versions of this patchset, so
-> i might be asking something already asked and answered. Sorry if i am.
+> I think so.
 > 
-> Is there anything IMX specific in here? This appears to be the first
-> RPMSG GPIO driver. Do we have the opportunity here to define a
-> protocol for all future RPMSG GPIO drivers, which any/all vendors
-> should follow, so we don't have lots of different implementations of
-> basically they same thing? So this would become gpio-rpmsg.c and a
-> Document somewhere describing the protocol?
->
+> IIUC, the problem is that while both the producer and the consumer of
+> the clock are addons, it's routed through the SoC, which is why it
+> requires some representation there.
+> 
+> What seems like the logical approach to me is for the base board to
+> have essentially an unresolved pointer to the clock input.  I'm not
+> really sure how that could be sensibly encoded, though.
+> 
 
-I haven't looked at this patchset yet but I think Andrew's proposal has merit.
- 
-> 	Andrew
+I don't think that having unresolved symbols in the base DT is the right
+direction. This base DT is used and so all symbols have to be resolved.
+If any symbols are not resolved (either in addon DT or base DT), this DT
+should not be used. For the base DT, "not used" means no boot.
+
+Do we really want to support DT used in runtime with some "invalid" parts ?
+
+IMHO, if the base DT need a resource wired at the connector and provided by
+the addon, the base DT need to reference the connector. From the base DT
+point of view, the consumed resource is the one provided at the connector.
+
+if a clock is wired at the connector the connector can be seen as a clock
+controller. This clock controller should be a kind of "bridge" between the
+base DT clock consumer and the addon board provider and it should perform
+the link without having any unresolved symbols in the base DT side.
+
+Best regards,
+Hervé
 
