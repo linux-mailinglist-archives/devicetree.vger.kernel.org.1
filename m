@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-225173-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225174-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22BF4BCB490
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 02:33:55 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [213.196.21.55])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EC31BCB49C
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 02:35:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.mirrors.kernel.org (Postfix) with ESMTPS id C492E34431F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 00:33:54 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 1A9F63499FC
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 00:35:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D636E199939;
-	Fri, 10 Oct 2025 00:33:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD4FC1ADC97;
+	Fri, 10 Oct 2025 00:35:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZNkmDOHs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C2c9rPlL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A56912868B;
-	Fri, 10 Oct 2025 00:33:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 791CF2868B;
+	Fri, 10 Oct 2025 00:35:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760056429; cv=none; b=WgErh2iwsr7lcmqAETWACkbqBkPxw2K/YuzVrYWDuSmLvuBsSFt1AJ+o/3i+kpc/XvIniHcy+CL8DGb3HU1WP0Gyxul0CLYBE0e173ektYvV2tC6xnuSO7ERk7ergSI0A13x8q01pBUmd5ut/MNDcgp8/4vFRvLF6fISZQ+DfBQ=
+	t=1760056508; cv=none; b=oZyp0WIQQzYWVJsXSDHbI2gRtucz28SU/AWB4vK9h6jwTeTOsERLqYLimhvnkcAkImFSSRq3Sii/lGoeHA11eZw5qikYGuJWkoZbaHnuL+1xHZ2lD6sc5StQ7xoxQ2FVGCa5er2VhlIfJ2KLHhVj8OnnpKb6gTRXwtIXi2IvmbE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760056429; c=relaxed/simple;
-	bh=V604yROQmGbYjQPQwWiha/ShnwtGLAetwkE3aIxn838=;
+	s=arc-20240116; t=1760056508; c=relaxed/simple;
+	bh=KNqW2jOUrMCS+KkCDoTBffjC5mjUpkFZ+BlmvxcluDI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mZwW47aIsusiFvrvFwShcXM+3JwigDUatKbPg2zSCPSbzLoZ9ih2hXWv4ioPV6+XxrditSMs72pR/Iy/aDTv7M6KYu8I4DhgIkqPUHguZ9jo86Yv6ijKE2eSaJud89Y4R2SK/YxIcx0xBZamKpmvZghYg27HtANiAX3LqODXsi0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZNkmDOHs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13BC0C4CEE7;
-	Fri, 10 Oct 2025 00:33:44 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=AYHpoGIT8AlgUSegwT7KenBxOYqx+ksHuj0CQuiDpOt8ApKmD3jlhV1cODxvjMQU2XAFB/gR8PD3gnAyIcMK2RrwSpULW/TfMPQzmEodOxbMHqSfv9f6DOlweRbGhomOQT55a8ohqMUMxxd9P//GOm+ZhnwrwJQzpdyY4E3q4Uw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C2c9rPlL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F7F2C4CEE7;
+	Fri, 10 Oct 2025 00:35:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760056429;
-	bh=V604yROQmGbYjQPQwWiha/ShnwtGLAetwkE3aIxn838=;
+	s=k20201202; t=1760056507;
+	bh=KNqW2jOUrMCS+KkCDoTBffjC5mjUpkFZ+BlmvxcluDI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZNkmDOHsbWaU4ewuK0jZhkSsDcqoBPCPUmu7eJQ8UyhSjroj4ne0ef4lnLGFMBAdP
-	 00++dYNTuAMDRIuvE7qECq6K0CaoFcXcZKU5KkD6SNPPj+wn7FW1JqQUm4jmNcfMVl
-	 /9URv8hiOM2eYWxDO8Jn2c6Qebt5cCVoFbkUAP/L3KEUMCMqGLJW8dhnz3sde79NJx
-	 Rw35qdzTKJTVk2J2rmusAw+lXxnQ1/5uDNEqchdAzF+k1zyeEcBDIEHIScAA6mhRkU
-	 //cFAznvjuMuPvxGQZdhvOZLUcoZPFZRwaWprQlnpFIPhY/zh7Uq7Wz2xys26gRVVJ
-	 ork4Lovx9D3lA==
-Message-ID: <ccbe94a8-7c59-46bf-900a-547e220779bc@kernel.org>
-Date: Fri, 10 Oct 2025 02:33:41 +0200
+	b=C2c9rPlLjv+MWWhyxOo09u9ji6boWNLkNOaZpyOX/L6SLQO7dH6+VHsRzJkWfgYxr
+	 5JAFOpJpLUZGRKihHHX4iy5occofk90XkCLrZkQlLqwbAhg1QrRG0VBnueWE6bEByR
+	 uHejfjVR8ZPSlqY284hJORPcY2uhHdRt5h8yWyaZ+26zDluzzVusE7yZyvc00xRom6
+	 XVW0zgEPV+EGYc6YZMzBZDNQ4LEeSHQ+qHb/usxz+onw6qrNP0t3+L20tFyJyzNHo6
+	 SFRvizSJOzzAjoW4eDVUWiiHGeORw/ZsgDp4qfd9vd00MkZSEQSpzlog3W4BcU0Hx8
+	 9EmR4t0hnbcQA==
+Message-ID: <ee66dca6-3cd6-41d3-82f9-d2673da00287@kernel.org>
+Date: Fri, 10 Oct 2025 02:35:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: spmi: add bindings for
- glymur-spmi-pmic-arb (arbiter v8)
-To: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>,
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Jishnu Prakash
- <jishnu.prakash@oss.qualcomm.com>,
- David Collins <david.collins@oss.qualcomm.com>,
- Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-References: <20250924-glymur-spmi-v8-v2-0-202fc7a66a97@oss.qualcomm.com>
- <20250924-glymur-spmi-v8-v2-1-202fc7a66a97@oss.qualcomm.com>
+Subject: Re: [PATCH 03/10] pmdomain: samsung: use to devm_kstrdup_const() to
+ simplify error handling
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Peter Griffin <peter.griffin@linaro.org>,
+ Tudor Ambarus <tudor.ambarus@linaro.org>,
+ Will McVicker <willmcvicker@google.com>, kernel-team@android.com,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org
+References: <20251006-gs101-pd-v1-0-f0cb0c01ea7b@linaro.org>
+ <20251006-gs101-pd-v1-3-f0cb0c01ea7b@linaro.org>
+ <5df18f42-b567-4d27-9e12-29723af40d6e@kernel.org>
+ <9d4ccadf76ccfff1a8b5f572b8aa190e2dc40c29.camel@linaro.org>
+ <63fb3ccc10267add00b579d4a05497cbeeadc65e.camel@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,30 +112,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250924-glymur-spmi-v8-v2-1-202fc7a66a97@oss.qualcomm.com>
+In-Reply-To: <63fb3ccc10267add00b579d4a05497cbeeadc65e.camel@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 24/09/2025 01:57, Kamal Wadhwa wrote:
-> From: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
+On 09/10/2025 23:00, André Draszik wrote:
+> On Thu, 2025-10-09 at 14:31 +0100, André Draszik wrote:
+>> On Thu, 2025-10-09 at 09:13 +0900, Krzysztof Kozlowski wrote:
+>>> On 07/10/2025 01:43, André Draszik wrote:
+>>>> Convert to using devm_kstrdup_const() so as to simplify cleanup during
+>>>> error handling.
+>>>
+>>>
+>>> This is either a fix (then describe the fixed issue and add Fixed tag)
+>>> or you change the logic, not only simplify.
+>>>
+>>> Previously on of_genpd_add_provider_simple() the memory was not
+>>> kfree_const. Now it will be.
+>>
+>> Indeed it's a fix after all - While the driver doesn't allow unbind,
 > 
-> SPMI PMIC Arbiter version 8 builds upon version 7 with support for
-> up to four SPMI buses.  To achieve this, the register map was
-> slightly rearranged.  Add a new binding file and compatible string
-> for version 8 using the name 'glymur' as the Qualcomm Technologies,
-> Inc. Glymur SoC is the first one to use PMIC arbiter version 8.  This
-> specifies the new register ranges needed only for version 8.
-> 
-> Signed-off-by: David Collins <david.collins@oss.qualcomm.com>
-> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-> Signed-off-by: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-> Signed-off-by: Kamal Wadhwa <kamal.wadhwa@oss.qualcomm.com>
-> ---
->  .../bindings/spmi/qcom,glymur-spmi-pmic-arb.yaml   | 158 +++++++++++++++++++++
->  1 file changed, 158 insertions(+)
-> 
+> Thinking more about it - at this stage, this patch is not a fix. The driver
+> can not unbind, hence there is no leak to be plugged, hence no fix.
 
-Ah, and you ignored Rob's comments, so obviously I wasted my timehere.
+It is about error paths. Driver can fail binding.
 
 Best regards,
 Krzysztof
