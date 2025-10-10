@@ -1,155 +1,170 @@
-Return-Path: <devicetree+bounces-225431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3104BCDF02
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 18:18:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B85ABCDF40
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 18:25:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B15754109F
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 16:18:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9258543527
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 16:25:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38E0B2FBE18;
-	Fri, 10 Oct 2025 16:18:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 731912FC00C;
+	Fri, 10 Oct 2025 16:25:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="k7VErcXi"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lgTzsYhK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 031F22F39C8
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 16:18:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D62EB2FBE08;
+	Fri, 10 Oct 2025 16:25:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760113108; cv=none; b=PSUzhoB11bxSojjSfVnUIlneK2Fu843VtRNN0T1pRPymbf3A/24m4CxUHrIKwq2IM9lr2BN7UeVuYQsqtOTD+nF1qHhCEkzH83yis8S/ID97+mg5FYx+sZNPHv2g7kYxnAPYb5bVqOK6xt6DlrPMFeQLlgrzxDnU5o9N/kGALzo=
+	t=1760113513; cv=none; b=tb4YfWZC0NDOgR3bQntBRzf+0XQ3zMVfBoA29s1vcSoxr4icP8C4kHmP8Iwioj+L0LSwdx17u2N+QJ3ZCW/ztWcLel52Tl9uv+osYXD9gj3yC+0pgPEN5Y1fsPJxlRji0Za1E6JCnAISzRZLwFQBien0ClyYorbsw7ZmOOb9Quc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760113108; c=relaxed/simple;
-	bh=FdYPXGm9deiD/Trs9cMfHlp7XbwPhfQIT9v/Wdt5nis=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GlNF2Q+Hi404quq0lMHe9pzty+MZ0Q1g+aOZ5t7LDUcc63vEqgejNJPeGagfqkS6XiG55cbBzuW0ohBnWIGhjzL8A0QJFKlyc28ECvLLNnUjg858H/3g7oexGVadUUUeXx7+2a9sQWJNKRpk26hKudCDTmhhtf/B+YBhN3PAtLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=k7VErcXi; arc=none smtp.client-ip=209.85.161.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f54.google.com with SMTP id 006d021491bc7-61bd4e002afso595859eaf.2
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 09:18:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1760113105; x=1760717905; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9w68CQXC1xPR3gkxyDZirmm/itUJmtRYjrTWc5to35A=;
-        b=k7VErcXiTSdSzA6bGBoScVNFENhUJPpJdaonLVk1Ps7NKthqAs3DTmZDCzckX/9dZ9
-         gSHcKUynJ/G9OXQmWDE7pyKmvpPSJqihJsM6bEWkHAV3hCWq9kDE0ZuEWrjRK+PvEDxo
-         zRqc/M/biXlD9FKLj2nHqIbxYAq7pjIt+AmLyk9U/hpPxKB2QyoD1Qfni+cmwNTd7KJe
-         BiCdQ1DXKh6/smn0eWVowYxolCtYC6ZNHRL6nPWLp9dwWO6/6U+inw2iO7WuG7zmKhsP
-         2x5ohFXFx53uczpwjTAXhfKiNfhC0atvYktW4UhPheAvh8cNVv9RG/7PmtMvsdncyTi7
-         ZvwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760113105; x=1760717905;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9w68CQXC1xPR3gkxyDZirmm/itUJmtRYjrTWc5to35A=;
-        b=R+LuYqWlmchP+0H8+zgzXwj5ZqooD9Fm2gT/J/4ycRXQq/nXwNPnwNsGEkC7iYxO88
-         FETbJ16O+ACUg9KOm7Ulo3qArsgCI/bVxKyJZM/hP68A0VjBsDx5Fl7T8BXDIiC6TQrK
-         FrF8H888Zmwot4C9vevA1UEYYXmtXWvfdEegIdQCavNBkqWnGeBM46irBVrXjF0jFMbg
-         G/u6ETiN2i7VqDzt/B5pZRDVG0XMqNRgIhiu40raF7Jn10885MLzDzTSJu7gWwJTJCHZ
-         LbBqLx7HE4m8hzA3ET4qCtKAFqE6EEalzeuRCdE/qS5ZgS2bY1mZtVGbqZ4ouTnUAeM6
-         /Wfw==
-X-Forwarded-Encrypted: i=1; AJvYcCVfs1bjERtbZm+OP1S2rVdPU9N0zqPNDy6pna+th0Y68Elc9M6VRm7VdtBnM1uVY3KXFrUS6TOpFsfq@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOEVNPdVqSrP5PLMIjJN+B+lCDR+cqlO2P/KDCmvmFYLct5Dfa
-	C8FS8dLp5PdQn9d5N+nkuYTvKFIKlDAXrBeo8jvkEw1JUIOdPiKmoz8OSxNJU2Y2WUM=
-X-Gm-Gg: ASbGncuEbKIFcm4DV6lTFc00jGG04TgYZHfndQPTcCVvRt7Wjy9j2Q3DWzrHCC3m5p0
-	Gdt6gp8/hKqO4/GrLF035xwKko/BaQoFsKtXDF9UT4eYm+AX2M/S9foJoeIjlxJXFjnTeMJuNov
-	g2kQTJ0V/E11NLu+8FH+YApnezQz72VFWn0eZU47z2fK1hyxY/mAvtJDVKdn2himQGxnXY8CGTk
-	Vec/jkQ9AQE1784/Zay7yOK0wMcSpJJ1tVfPHsgQE8phIeFiBg4d7a6Dw2LpG+to4+hnEnr+4lv
-	F6j+lbW5up6OasZt5LZ8WNM6VdkXxzfRb614NUl/SjZB4+2yorQOWniBTkLr3UhqhnPw0f1MwEc
-	MET4X6hxzS9Dp0MjlRyq2iEloWtMoy/9sHimTLOmojo8CycMZEVSd6DnWFYZiG9GioGDYR+NQY7
-	E3OVlpXDF3/skH1HI=
-X-Google-Smtp-Source: AGHT+IHd0omg/rlvWPFBEqlcSVQAWZIDB8yoaKyD9jCTVYWmDrXVdGmrtHcE+pAoTAHuCLm4ZKiTag==
-X-Received: by 2002:a05:6871:6d12:b0:31d:7326:c3a7 with SMTP id 586e51a60fabf-3c0f9e6cf08mr5691630fac.41.1760113104781;
-        Fri, 10 Oct 2025 09:18:24 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:6d3b:e3bd:4210:32e2? ([2600:8803:e7e4:500:6d3b:e3bd:4210:32e2])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3c8c8ae1de8sm1007500fac.4.2025.10.10.09.18.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Oct 2025 09:18:24 -0700 (PDT)
-Message-ID: <576b582e-7388-4ee4-9a4c-4f7e04fc3fda@baylibre.com>
-Date: Fri, 10 Oct 2025 11:18:22 -0500
+	s=arc-20240116; t=1760113513; c=relaxed/simple;
+	bh=sU+6p0fES1lWLpxFt1ech3kFhO9HRwj64Qc8e+dCNyA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=c92y5fxZfySYcdozHLsulTAmhwwcBTY4A1TfHy73lduIfnVRXZuZAbTzqY+C6s5tqgKabAALsc1HaNhqcHxwRd3rIg2eovm3EdcNQqlG0lWIKBDHs7k5OhA8EKSnSHMrBtjs/rPMnk1vhiHog6/ChdV0w0Q9JtR/BlXldNVPLhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lgTzsYhK; arc=none smtp.client-ip=198.175.65.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1760113512; x=1791649512;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=sU+6p0fES1lWLpxFt1ech3kFhO9HRwj64Qc8e+dCNyA=;
+  b=lgTzsYhKmG81AGYKuam0rFbIDE5cWb/o1FuZ2y/vyJIDwJquPEAl7uav
+   oc9nxrvwmUzoRYUXV6V3f5hTRY27fBydSwtpDBB9MLEuqj1JPS+GNHtUF
+   FOHveYkbI+YtMLjE1JkIiHnK/7FDUrHCMN0tpRIwhOvVmW1i12olZDn6g
+   Ez0PU75w2EvF/UwC8IrP1w5HTx1PcUBhF3IhYtCiZ40Q7p4jSpX6v69bZ
+   Tdgxr3p6ALnIJwBS5OucH/COnu+B4rVJZRsIkCbUJ0QZjVoY3Aw5wXYaJ
+   kI9Bcj4DNtamQeT+3zdsMG5iUzrQnK7lJWC9C3UPeT+Xxdm6y8AkBD3Pz
+   w==;
+X-CSE-ConnectionGUID: SqDwR6S6SBqWNt4eII6cAA==
+X-CSE-MsgGUID: rEy9A7MKT7Ci9/dSeqe5nQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62254120"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="62254120"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2025 09:25:02 -0700
+X-CSE-ConnectionGUID: gfr2n2wqTtSF9blMwY6URw==
+X-CSE-MsgGUID: EBoKTs3FRYKkgFllL0MGiA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,219,1754982000"; 
+   d="scan'208";a="180699022"
+Received: from lkp-server01.sh.intel.com (HELO 6a630e8620ab) ([10.239.97.150])
+  by fmviesa007.fm.intel.com with ESMTP; 10 Oct 2025 09:24:59 -0700
+Received: from kbuild by 6a630e8620ab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1v7FvM-0002xH-14;
+	Fri, 10 Oct 2025 16:24:56 +0000
+Date: Sat, 11 Oct 2025 00:24:06 +0800
+From: kernel test robot <lkp@intel.com>
+To: Shrikant Raskar <raskar.shree97@gmail.com>, jic23@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, dlechner@baylibre.com,
+	nuno.sa@analog.com, andy@kernel.org, matt@ranostay.sg,
+	skhan@linuxfoundation.org, david.hunter.linux@gmail.com,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-kernel-mentees@lists.linux.dev,
+	Shrikant Raskar <raskar.shree97@gmail.com>
+Subject: Re: [PATCH v2 2/2] iio: health: max30100: Add pulse-width
+ configuration via DT
+Message-ID: <202510110029.epOLovuF-lkp@intel.com>
+References: <20251008031737.7321-3-raskar.shree97@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 6/8] iio: adc: ad4030: Add SPI offload support
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
- linux-pwm@vger.kernel.org, linux-spi@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Cc: jic23@kernel.org, ukleinek@kernel.org, michael.hennerich@analog.com,
- nuno.sa@analog.com, eblanc@baylibre.com, andy@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, corbet@lwn.net,
- marcelo.schmitt1@gmail.com, Trevor Gamblin <tgamblin@baylibre.com>,
- Axel Haslam <ahaslam@baylibre.com>
-References: <cover.1759929814.git.marcelo.schmitt@analog.com>
- <2bde211f1bc730ee147c9540b88339a93b2983e6.1759929814.git.marcelo.schmitt@analog.com>
- <a86007ab148f9556af032f5ba61991a74a5641c0.camel@gmail.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <a86007ab148f9556af032f5ba61991a74a5641c0.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251008031737.7321-3-raskar.shree97@gmail.com>
 
-On 10/10/25 6:19 AM, Nuno Sá wrote:
-> On Wed, 2025-10-08 at 10:51 -0300, Marcelo Schmitt wrote:
->> AD4030 and similar ADCs can capture data at sample rates up to 2 mega
->> samples per second (MSPS). Not all SPI controllers are able to achieve such
->> high throughputs and even when the controller is fast enough to run
->> transfers at the required speed, it may be costly to the CPU to handle
->> transfer data at such high sample rates. Add SPI offload support for AD4030
->> and similar ADCs to enable data capture at maximum sample rates.
->>
->> Co-developed-by: Trevor Gamblin <tgamblin@baylibre.com>
->> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
->> Co-developed-by: Axel Haslam <ahaslam@baylibre.com>
->> Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
->> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
->> ---
->> Change log v3 -> v4
->> - Applied code adjustments suggested to SPI offload patch.
->> - Only select SPI_OFFLOAD_TRIGGER_PWM if (SPI_OFFLOAD && PWM).
->>
->>  drivers/iio/adc/Kconfig  |   3 +
->>  drivers/iio/adc/ad4030.c | 504 +++++++++++++++++++++++++++++++++++----
->>  2 files changed, 465 insertions(+), 42 deletions(-)
->>
->> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
->> index 58a14e6833f6..1ed091b6731a 100644
->> --- a/drivers/iio/adc/Kconfig
->> +++ b/drivers/iio/adc/Kconfig
->> @@ -62,7 +62,10 @@ config AD4030
->>  	depends on GPIOLIB
->>  	select REGMAP
->>  	select IIO_BUFFER
->> +	select IIO_BUFFER_DMA
->> +	select IIO_BUFFER_DMAENGINE
->>  	select IIO_TRIGGERED_BUFFER
->> +	select SPI_OFFLOAD_TRIGGER_PWM if (SPI_OFFLOAD && PWM)
-> 
-> Two things as I mentioned in [1]:
-> 
-> 1) Wouldn't 'imply SPI_OFFLOAD_TRIGGER_PWM' accomplish the same?
-> 2) Don't we also need stubs for spi/offload/consumer.h?
+Hi Shrikant,
 
-It doesn't hurt to enable SPI offload support even if no controller
-supports it, so I would prefer that drivers that use it just select
-SPI_OFFLOAD.
+kernel test robot noticed the following build errors:
 
-> 
-> [1]: https://lore.kernel.org/linux-pwm/2e82eaf275b5c8df768c8b842167c3562991e50c.camel@gmail.com/T/#t
-> - Nuno Sá
->  
+[auto build test ERROR on jic23-iio/togreg]
+[also build test ERROR on robh/for-next v6.17]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Shrikant-Raskar/dt-bindings-iio-max30100-Add-pulse-width-property/20251010-102537
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git togreg
+patch link:    https://lore.kernel.org/r/20251008031737.7321-3-raskar.shree97%40gmail.com
+patch subject: [PATCH v2 2/2] iio: health: max30100: Add pulse-width configuration via DT
+config: csky-randconfig-001-20251010 (https://download.01.org/0day-ci/archive/20251011/202510110029.epOLovuF-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251011/202510110029.epOLovuF-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510110029.epOLovuF-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/iio/health/max30100.c: In function 'max30100_chip_init':
+>> drivers/iio/health/max30100.c:352:34: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
+     352 |                                  FIELD_PREP(MAX30100_REG_SPO2_CONFIG_PW_MASK, pulse_width));
+         |                                  ^~~~~~~~~~
+
+
+vim +/FIELD_PREP +352 drivers/iio/health/max30100.c
+
+   327	
+   328	static int max30100_chip_init(struct max30100_data *data)
+   329	{
+   330		int ret;
+   331		int pulse_width;
+   332		/* set default pulse-width-us to 1600us */
+   333		unsigned int pulse_us = 1600;
+   334		struct device *dev = &data->client->dev;
+   335	
+   336		/* setup LED current settings */
+   337		ret = max30100_led_init(data);
+   338		if (ret)
+   339			return ret;
+   340	
+   341		/* Read pulse-width-us from DT */
+   342		device_property_read_u32(dev, "maxim,pulse-width-us", &pulse_us);
+   343	
+   344		pulse_width = max30100_get_pulse_width(pulse_us);
+   345		if (pulse_width < 0)
+   346			return dev_err_probe(dev, pulse_width, "invalid pulse-width %uus\n", pulse_us);
+   347	
+   348		/* enable hi-res SPO2 readings at 100Hz */
+   349		ret = regmap_write(data->regmap, MAX30100_REG_SPO2_CONFIG,
+   350					 MAX30100_REG_SPO2_CONFIG_HI_RES_EN |
+   351					 MAX30100_REG_SPO2_CONFIG_100HZ |
+ > 352					 FIELD_PREP(MAX30100_REG_SPO2_CONFIG_PW_MASK, pulse_width));
+   353		if (ret)
+   354			return ret;
+   355	
+   356		/* enable SPO2 mode */
+   357		ret = regmap_update_bits(data->regmap, MAX30100_REG_MODE_CONFIG,
+   358					 MAX30100_REG_MODE_CONFIG_MODE_MASK,
+   359					 MAX30100_REG_MODE_CONFIG_MODE_HR_EN |
+   360					 MAX30100_REG_MODE_CONFIG_MODE_SPO2_EN);
+   361		if (ret)
+   362			return ret;
+   363	
+   364		/* enable FIFO interrupt */
+   365		return regmap_update_bits(data->regmap, MAX30100_REG_INT_ENABLE,
+   366					 MAX30100_REG_INT_ENABLE_MASK,
+   367					 MAX30100_REG_INT_ENABLE_FIFO_EN
+   368					 << MAX30100_REG_INT_ENABLE_MASK_SHIFT);
+   369	}
+   370	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
