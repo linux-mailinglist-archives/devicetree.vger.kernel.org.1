@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-225452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E3EABCE32E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 20:12:48 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 898EFBCE341
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 20:14:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB1F454849E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 18:12:46 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 88D334E0F24
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 18:14:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 945D22F7459;
-	Fri, 10 Oct 2025 18:12:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20EE12FC019;
+	Fri, 10 Oct 2025 18:14:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Xq9wP7Hh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N5fgZ3nB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B56C2BE652;
-	Fri, 10 Oct 2025 18:12:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72EF2F5487;
+	Fri, 10 Oct 2025 18:14:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760119963; cv=none; b=u7z5cI4LuyI+dLGzKaK/bcMyXw3RJ342g9dbU/SEFlSipu6VSfOY7VcjuG5RH29xDQdMSCTUtWOQqn2dgTYVZB2XrSTEOxNO/PCzwmmfiW8dvX8GW2W7Vb54Zeec6Ity7KdGjDjMh8+lJckC2oGXK35Hk8SmhkZCX52OnBxp2a8=
+	t=1760120058; cv=none; b=R5HPNGX18Q2Cs9fQOdWGj8US5wfY17+j6a8DZKmh02w7Kf4WGVp2z4Seb1fTglQ3KfMmF4UFD1JYN2eTRCb9e3rk1hV5/5blJ/dbrIROSD3qzCeuDx7Sis2u8gP/xjn3hQsW0v1wpVThFGe3sNZ7y1RhhuM8G9OgY5oDLni8+w4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760119963; c=relaxed/simple;
-	bh=wYrAhnokfwsDSHBME9aVdZy1TeJCHIQGB1vXpHA8XKc=;
+	s=arc-20240116; t=1760120058; c=relaxed/simple;
+	bh=WykGdIgrKV3qVAkKEUu62ycGYqWV9fyAYr+Ox74s+Tc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Exb5nZI/DzXLiubWjigfngs44IJy8VhuvkIw+MrQZSuuM1QfYZ2fYEKxrug4LZpOggKEY9b14cTTFSkn2vM/4UL1ahvJZcd0qIrfYCpc8Tm4O1m0y7+cLVDvumBgHDRuDYUXHXwNJFWWnt77/1MvRzdc2U6ejXU/Ksnqj2f83rA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Xq9wP7Hh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9F02C4CEF1;
-	Fri, 10 Oct 2025 18:12:42 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lx7k4iz7Gyg+HMqZytifQn42cESnOa9nf0qdai2yFLeqaei6/mZmjxrUFFbsR8JKsOD9OdJ9KdJ6T20j5ty9RZqj+8vtrXKxFhxlVeTVoM7VSgq7JCaJ9Pq366wfj9rC9v2LMGNqvw1/MP+kV7M204ag96Cza/PAvlTZ9e0/PN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N5fgZ3nB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3758BC4CEF1;
+	Fri, 10 Oct 2025 18:14:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760119963;
-	bh=wYrAhnokfwsDSHBME9aVdZy1TeJCHIQGB1vXpHA8XKc=;
+	s=k20201202; t=1760120057;
+	bh=WykGdIgrKV3qVAkKEUu62ycGYqWV9fyAYr+Ox74s+Tc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Xq9wP7HhtMBqPQVQ4V4jT73KnEHM+pcl5VA0ezeoxc11nCHZNJBoZrx7Q000iaubc
-	 oQgvUKPjQ4o1s542YwMxs7IHzEMkzJncH+cmZrsimGJVZh8KlDPraDGo1C5CD+1yZ+
-	 KLKXCXhD6MmR1KeFTp/TOuqsPU4wDCVB1Po3NUOWLdMk3G/PDU+gff0RUzOI6Qgv/X
-	 zGd78VIrUGSV8aY6+jRs0G6gOHgSXePAFbzVHJUsMMMt/tXK7M8eqQLyZhFjDJfgSa
-	 hYWnauaqkByk4wbtrzzp95FMFmZj2nJ3AcONnfMnyRp/w+2eDwmePwSyly6msVw1bu
-	 /5FeBIG0nat1w==
-Date: Fri, 10 Oct 2025 13:12:40 -0500
-From: Rob Herring <robh@kernel.org>
-To: Jonathan Brophy <professorjonny98@gmail.com>
-Cc: lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
-	Jonathan Brophy <professor_jonny@hotmail.com>,
+	b=N5fgZ3nBZd0UJnUGugzaqPns9akl58JXDw6jZ+KMggSrCjD9ogWtc14sBNZBk4Bh3
+	 ExxnPrgkpKTMXRCx7DXm/tFHhfCeKbItfjBLvOZ5BExW9n2x+zKouvZ8KJVejmEBJD
+	 RCGmY5oEDDpZTaDLOtrA0jFN+91hRDrJSQMiQNfs42ZVKDN6hh8WzXlptfLW+xwS0Y
+	 YahLVhgiTvPM7/MyZ4pJRrTPAtA2kfcKd74upS/TLGSBtyXxJaU55YQt8cBjjM/n9W
+	 p22T8py8c8yLLu6dtch6ApwtiyrzjehFTE54+e1ckoU/0QdCmDp52K34x2zAhawEDL
+	 G/aOD3/Beb/yg==
+Date: Fri, 10 Oct 2025 13:14:15 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Guenter Roeck <linux@roeck-us.net>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-watchdog@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Radoslav Tsvetkov <rtsvetkov@gradotech.eu>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org
-Subject: Re: [PATCH 1/4] leds: Add Virtual Color LED Group driver
-Message-ID: <20251010181240.GA620330-robh@kernel.org>
-References: <20251009084339.1586319-1-professorjonny98@gmail.com>
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 5/5] dt-bindings: watchdog: renesas,wdt: add SWDT
+ exception for V3H
+Message-ID: <176012005479.654031.91907462455772331.robh@kernel.org>
+References: <20251009104500.69787-7-wsa+renesas@sang-engineering.com>
+ <20251009104500.69787-12-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,26 +65,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20251009084339.1586319-1-professorjonny98@gmail.com>
+In-Reply-To: <20251009104500.69787-12-wsa+renesas@sang-engineering.com>
 
-On Thu, Oct 09, 2025 at 09:43:36PM +1300, Jonathan Brophy wrote:
-> From: Jonathan Brophy <professor_jonny@hotmail.com>
+
+On Thu, 09 Oct 2025 12:45:03 +0200, Wolfram Sang wrote:
+> The SWDT on V3H has no reset bit. Make resets optional on this SoC.
 > 
-> This commit introduces a new driver that implements virtual LED groups
-> by aggregating multiple monochromatic LEDs. The driver provides
-> priority-based control to manage concurrent LED activation requests,
-> ensuring that only the highest-priority LED group's state is active at
-> any given time.
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
 > 
-> This driver is useful for systems that require coordinated control over
-> multiple LEDs, such as RGB indicators or status LEDs that reflect
-> complex system states.
+> Changes since v3:
+> * don't introduce new compatible, just make resets optional (Geert)
+> 
+>  .../devicetree/bindings/watchdog/renesas,wdt.yaml     | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
+> 
 
-Please version your patches because this is not version 1.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-This should start with why the existing multi led support doesn't work 
-for you or can't be extended in some way for what you want to do. I 
-already raised this and now you have the same comments again.
-
-Rob
 
