@@ -1,80 +1,88 @@
-Return-Path: <devicetree+bounces-225439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1EC0BCE111
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 19:17:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D297BBCE153
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 19:28:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CDC4A4EF883
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 17:17:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8795A580AC5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 17:28:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6183A218AB0;
-	Fri, 10 Oct 2025 17:17:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 552A8221287;
+	Fri, 10 Oct 2025 17:28:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="F/IYXQ0w"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KKOEdXUq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAE28217F55
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 17:17:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADE0321D3F6
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 17:28:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760116663; cv=none; b=OlMDtPwZxnCWB0o0WQMWGR4H9uDvs332JaJjlwPsiDC4t3lvTFQ99VvYxnhWUuYn+9LTXW0DeqmcmB0EF5eGwcwdn7Z6OX9p/ZwaOacpmPYYhZj188x2CQjQJQl1ylZZyZevyruzNcI3LfPoBjvqb4a1k25PkbsVDiwYpcMoYgE=
+	t=1760117316; cv=none; b=oRNwfbEhu8TSQqabVYhhpIY15CvEkXnfv3g22wwTf52/MPHCCuoddlHGSRflwpiDazafe2yebs9wmUJPF8EPnJdR/Jcj4eUVqiKloxKwQMlCB9RTtIF/nruvQsfic39dBHDsp1McBsUgsj33VOjvQCohvGDtDfq1G9+IUhvmALk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760116663; c=relaxed/simple;
-	bh=I1Jv1K8pMlHzgbwxs+yw/rgUKNnWjuy0CuTLkQH3qMA=;
+	s=arc-20240116; t=1760117316; c=relaxed/simple;
+	bh=/adNrdiBXGreU5Zv1TBVSGHzTcP/X2qnzXFeQoZyAeI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T+Yo1cGbsviF6fE9TTl1AZN9oRkQi+M0/GzQrx1IFYkUoi7Kclo8Z7OJ/h48skCz8nOjP/f7yIS3PFbE4EfBu39zTtRsIfiM4VkgNmCyU769qD042Wjh3duXyw8e1NKpf3VjLPKc1U6VpEesAPlNSzpfDCRw4MEeZ+d0oOJCON4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=F/IYXQ0w; arc=none smtp.client-ip=209.85.166.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-42f8d7f116eso8906145ab.2
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 10:17:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1760116661; x=1760721461; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6G/IEc8eQi80LISFTxnAaN67mBaGX3+NUViuwGCrxp8=;
-        b=F/IYXQ0wDEkphwVhN9FpeTOmpHkHAESbjdpgzqq7rh4b3JpQy2QqHM99R2dW2rNFsB
-         87SY4fOH3evNwOIoscuM2k9FvVNmCe+PKvqMwBoGnto+e03+sznD1QZcKnipoxWoEFN5
-         WdCT8np3E3KyOCu1G89JwdGNMN9bieuJTrKPWG6UPTxH3mZO1rPFGDh9j99b7qUoJ+4T
-         A4wWRc3SMi3HBt8SF7Env1DzhMxKNk1i39ZmMNHnA+/HFqgXotygCgv0vCNugICgwwvp
-         S9EMp29ZrTfgp32Sq0okO56AyDJzpy2rMPCGT+dIR8r7Z1wV0eukAxVYZ4dnt5Bv6DKy
-         2utA==
+	 In-Reply-To:Content-Type; b=lotRwblV4Q1JBYuO+U41qPFT0Vw49ZceD5Tp2qJWZwGtMb1Is26AYkjhATRbRAONdE5NuX5mIRl4y50IX2O/hxMSqDW2WobHRSxkxhX0YAl4EXUW1xjI27E942bYbk3RkMfqGYk2l8DwruRAzuIP+u6WrIv/Tl6pX87+AGsvr+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KKOEdXUq; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59AFVN2Q018538
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 17:28:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5RtO9UgOqlSPMcNOTbaUjDba3fAyZ6bvIxzoBS2IW8c=; b=KKOEdXUq6dzVIpSr
+	LuJS0xo+4fVpQm9ipytJjhUyIbbZcPvktUogcCD0y3+eJLP8s1aJR8wvmfndCjno
+	kUTsWwQnWkASOVtEWbTyeetS2luFQF+r5qQy8uWhjboF7y+oXDRfMwxmjdIUm6zh
+	Xucp23vVwHYDaO1dFREHLpY6jQIm0J6Q4lZ2nSt5HX+nHmgSoHO+NZmHxjDcTv4v
+	GzKYKwalDfMEJr6CHNYseyZo8a8BXahcS/PwdYG8/Hwq7NyFQzSBlTPkvmHO0NM5
+	lqwKsGSiqsGerVXwef/LdLWeyXVc+dOGWsHlNn3SCjrA3fT1wn6pgBa8boEAw6X1
+	mSBAoQ==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4m784e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 17:28:33 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-85a8ff42553so76915085a.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 10:28:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760116661; x=1760721461;
-        h=content-transfer-encoding:in-reply-to:content-language:from
+        d=1e100.net; s=20230601; t=1760117312; x=1760722112;
+        h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6G/IEc8eQi80LISFTxnAaN67mBaGX3+NUViuwGCrxp8=;
-        b=HncNr5dg8y7G+DvFTsv36rYPHoCinBzRwqOKq1uR/g9CnyEbqy0H3MOQHsyqb4JlNg
-         Z26sJPuJfqaZXqTdl+H/iUqDjitBOxQoRYBjNCUE8kBWZ33U8rmwEoC7mbbYynXEa3XP
-         VhQZ3LyqCQWUGwO/D1YJlmi20W3EtNbJkOb2onWT0QhYDSeXSEAbbCsb2dxV9QyvxMh1
-         r4pNqzPLHRqYJb+7bOI+SOfw+2TekQ3LWMpVpXgHQWe8277IKBWVFhJaIOVoTPjA0DbB
-         aL4J1yvDZQDJnCwyfs9igWvGvDv8NwCq5uYeBqyUkbAQ2xQLTEQdB/2PayWiOb/nB7AN
-         /eOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXKVd2Q8tX1zivPiploW/EzfVMS/0aAgG2uT6qlJ17VUnonXp4v9kIRULwDM7udIWnO9euI1A7Rr2rK@vger.kernel.org
-X-Gm-Message-State: AOJu0YycuIbKciHikN6epQ730QZceQW/znZGL1wkxWNNgmWs2Qj7KXGu
-	ywK8CytikF4gtOl4jlRhBFPTFSGlppgTFYLvcYgo8IY1ZZ3r6dNfRs5f8f/NI2ryCUc=
-X-Gm-Gg: ASbGnctA29nPzWMRdLInvIpuRPxTC6fWG3+YfIjLeWZkFrJ764NXz0euN13xq9WmB5E
-	ZSyv29hYSElnlqDqzCVOJkzlO89roROYiodiW5SlRnwPdzSWewkP+9VcFtXI60aOivCn0zRmvty
-	hjCOxthWWDC1c1H3C0HT/msvMxQ7jmHRShvi9zhymgqzva9mYzs6QKF1f1FVIS75vFrBF38rpMm
-	uPNV0gSzinf2c86ENinF1WmG8jnTwb4SqO7fEDCgC6/w+77M+YkYDam8OkJUCwnoRxnSl3XQiyT
-	A7WOTyTZpQxAhS6gyELeiIK2D3U7tXDiXZUj2P1wwb3Rg5l5rBb/jFN43k1LxhT1FzceaIJgMIW
-	c9+OS0o3r591rfuF9hdJi4XpUmLFOFN0y0hGIMiokOKZTlYo+KqT6CiPskw==
-X-Google-Smtp-Source: AGHT+IFf3Dfk1VAV0Y7S/J8epFVv9DK6aEZ68GWSHSQhqH0ufWaX/0UhdYSoDg68NQQ/vOlVIsMBKA==
-X-Received: by 2002:a05:6e02:1a8f:b0:427:b642:235 with SMTP id e9e14a558f8ab-42f87374f3bmr135463955ab.10.1760116660354;
-        Fri, 10 Oct 2025 10:17:40 -0700 (PDT)
-Received: from [100.64.0.1] ([170.85.6.207])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-42f902962fbsm23231445ab.18.2025.10.10.10.17.39
+        bh=5RtO9UgOqlSPMcNOTbaUjDba3fAyZ6bvIxzoBS2IW8c=;
+        b=ENZpwM9ixqH03XCdf4M1TDX4WBYE5d1kEhoB83JeiogE7abgzjdRJYbCPDqBvZDeEj
+         iypuOjV2j9k0HuInI9bnBY0BC4E0E7lcrd+VOYJ4dFmw64oAmIe5g76u9EMAKNQfsb5r
+         QTLn7HV66ow1ILvZWA47i4xNBPnc8ZE4SgsMcbwkugPzfJH+BQ5Pe/Biz3YtSbHwAmBV
+         Gldx8B9j9f9dSSkWcS80x6l/3xYkzGl6jOdsr+N8scpArY3MXB2yD3CXI3kwPNV5Kq2o
+         7M0WQCGXpI4sXWvSlDXAHkBH6fBjvl5RRYbSwbroIvT4AI9KbbZaGv6JM4Jgtgm6QA2T
+         TZ5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWNRx2L7iBGvTDPK7Oll2uE9Ibttg0or3iE5LhxP69MagtQLZSyqDAZ9Y9OGRifHtlbjvgjG50fASon@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWkn333GjQ0Lk2aCYakGYkbkjsB8BNvKUtldHyXgVDpSecsBze
+	agzOxBlu7zl+fehuMyZzS8TCrjY0n0M9WT/oroLjyUkQ5VVXGsrYlMBtAGN/BKV6CxQFrO2eP1L
+	T4B7hRSsZBBGIjFDQtI0w9LNeXg7JQdpTmHykAw00iI7X5oWeNQxLFcDcUhpbEQYs
+X-Gm-Gg: ASbGncvE8HCXOTHJC41KLgu75Rn4nqICtVynWELxBaeR1uuHoBY106btqCDKuCj2G6J
+	LRVM+VMKuQIT6QvCQQItDC/bIss/YrXCEdL98afhkFvKRs65OU2AHtOQuwAQUv0j1y6z65S8VFH
+	ziqhPEGXgvdAsKwRZFRdKHFr8FQ3gS7AopUOWb/JG6+IjtWbhaSbvoYDpuqvy9zpqJVCi8cR9Do
+	JVQvQAlLZ1vggW6JCtBWiU5sAXJdCSFei9dsFTMSu44dGt+k4DNdiD7vookE69T1DjI8wgKbktW
+	AKvbrlTBcc/2fCMI07XsOgviDjIMXyjyP3ghZQiSYiqiz0NRF3hO9kNAPpjfe8BDiYJlPYn+ed3
+	sjAY5GXGEu39/wtfU5+hSjw==
+X-Received: by 2002:a05:620a:28c2:b0:856:6bcd:4adc with SMTP id af79cd13be357-883544f4e27mr1154162885a.9.1760117312459;
+        Fri, 10 Oct 2025 10:28:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEDtsBobK85gPBifHNNJEiQy1NEmBXZH06eJMg5hBaBeDWosJuw8Hx8ajikWbGG7O41+fj2DQ==
+X-Received: by 2002:a05:620a:28c2:b0:856:6bcd:4adc with SMTP id af79cd13be357-883544f4e27mr1154159685a.9.1760117311864;
+        Fri, 10 Oct 2025 10:28:31 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b55d951deb6sm281479666b.76.2025.10.10.10.28.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Oct 2025 10:17:39 -0700 (PDT)
-Message-ID: <126d2381-c913-4815-bd9f-b6e9fe3cf5d8@sifive.com>
-Date: Fri, 10 Oct 2025 12:17:38 -0500
+        Fri, 10 Oct 2025 10:28:31 -0700 (PDT)
+Message-ID: <61f77b51-af6e-4625-8d58-fee8f93e1d5e@oss.qualcomm.com>
+Date: Fri, 10 Oct 2025 19:28:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,73 +90,77 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 00/18] riscv: Memory type control for platforms with
- physical memory aliases
-To: Andrew Morton <akpm@linux-foundation.org>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mm@kvack.org,
- Conor Dooley <conor@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>,
- Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- David Hildenbrand <david@redhat.com>
-References: <20251009015839.3460231-1-samuel.holland@sifive.com>
- <20251009181559.7bfa3dce6cb7265822b2d5c5@linux-foundation.org>
-From: Samuel Holland <samuel.holland@sifive.com>
+Subject: Re: [PATCH v6 2/2] arm64: dts: qcom: Add support for Huawei MateBook
+ E 2019
+To: Jingzhou Zhu <newwheatzjz@zohomail.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20251008130052.11427-1-newwheatzjz@zohomail.com>
+ <6199698.lOV4Wx5bFT@debian-vmware>
+ <c6880fe5-029a-4f8d-a08e-81a066a79450@oss.qualcomm.com>
+ <2386127.ElGaqSPkdT@debian-vmware>
 Content-Language: en-US
-In-Reply-To: <20251009181559.7bfa3dce6cb7265822b2d5c5@linux-foundation.org>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <2386127.ElGaqSPkdT@debian-vmware>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX/km00NKX/P+a
+ piqDTgDb21b1SjLU/Fs8jtzyLyEm4SeNZ4UrpqwosvFmymbgfE1+3YdrwP9ye8TZWfnLnVQtBWI
+ xZWEMckjuu9iI3F0/gc04VsPqSgDZ0w5SJNZxv9KI6GCdJSGaIN6+UySSvssU6JV1B4RFny+u0W
+ 5lj4Yr5GAHBUTKwCdupHoeQfTlHTur7Cf2/zDJW9+NJiDPg6ewn2+qAx7bz0AjmFHKtya3dxnaC
+ 4EXG/mKvn/4oz0XGJ+K+AnyNQduvYLTfIOQw6DqJHqxJvBH7eWO2gHE9PyJC+IUct1W10mVf5LZ
+ czifJY7OZnA6OwCFoeJh4/3FnMZtz/IS9YV83MoGRASf5PaG31932Ycc0QQ1IRxEL4wrpPaYNFi
+ xdE/hpLywBMC8DvV+CiruE+xouzUKA==
+X-Authority-Analysis: v=2.4 cv=B6G0EetM c=1 sm=1 tr=0 ts=68e94241 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=wbXqjQ4oNPLq0UupdngA:9
+ a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-GUID: I-w--FcCD6xRPZYEegPMIBDg17k13r10
+X-Proofpoint-ORIG-GUID: I-w--FcCD6xRPZYEegPMIBDg17k13r10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-10_04,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 lowpriorityscore=0 bulkscore=0 clxscore=1015 suspectscore=0
+ malwarescore=0 adultscore=0 priorityscore=1501 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
 
-On 2025-10-09 8:15 PM, Andrew Morton wrote:
-> On Wed,  8 Oct 2025 18:57:36 -0700 Samuel Holland <samuel.holland@sifive.com> wrote:
+On 10/10/25 4:52 PM, Jingzhou Zhu wrote:
+> On Thursday, 9 October 2025 21:58:29 CST, Konrad Dybcio wrote:
+>> Please refrain from resending if it's just to apply tags, maintainer
+>> tools do it for you
+>>
+>> Konrad
 > 
->> On some RISC-V platforms, including StarFive JH7100 and ESWIN EIC7700,
->> DRAM is mapped to multiple physical address ranges, with each alias
->> having a different set of statically-determined Physical Memory
->> Attributes (PMAs), such as cacheability. Software can alter the PMAs for
->> a page by selecting a PFN from the corresponding physical address range.
->> On these platforms, this is the only way to allocate noncached memory
->> for use with noncoherent DMA.
-> 
-> Well that's weird.
-> 
->> --- a/mm/ptdump.c
->> +++ b/mm/ptdump.c
->> @@ -31,7 +31,7 @@ static int ptdump_pgd_entry(pgd_t *pgd, unsigned long addr,
->>  			    unsigned long next, struct mm_walk *walk)
->>  {
->>  	struct ptdump_state *st = walk->private;
->> -	pgd_t val = READ_ONCE(*pgd);
->> +	pgd_t val = pgdp_get(pgd);
->>  
->>  #if CONFIG_PGTABLE_LEVELS > 4 && \
->>  		(defined(CONFIG_KASAN_GENERIC) || defined(CONFIG_KASAN_SW_TAGS))
-> 
-> OK, but how are we to maintain this?  Will someone be running
-> grep/coccinelle/whatever on each kernel release?
-> 
-> Please give some thought to finding a way to break the build if someone
-> uses a plain dereference or a READ_ONCE().  Or add a checkpatch rule. 
-> Or something.  Let's not rely upon the whole world knowing about this.
+> Understood. This is my first time to send patches, so I'm not very familiar
+> with the tools. Should I wait for the maintainer to pick it up, or is there
+> anything else I should do?
 
-My initial plan was to add a script to scripts/coccinelle so `make coccicheck`
-would catch any new instances. This would require some way to avoid false
-positives in the few places where these pointers are safe to dereference (like
-the ptentp and pmdvalp mentioned in commit message), such as a separate typedef
-or a naming convention.
+Because the current version is v6.17 (not -rc), we're in what's
+deceptively called a "merge window". This is when Linus Torvalds merges
+pull requests from maintainers downstream of him.
 
-I had also explored using sparse to annotate pte_t and friends as noderef. This
-would require changes to the sparse tool to allow noderef to work with a
-non-pointer type (and get inherited by any pointers to that type), or else each
-pointer parameter/variable would need to be annotated in the source code
-(equivalent to __user). Neither seems ideal.
+Your patches go through the trees of these maintainers, in this case:
+qcom-arm64-dts via Bjorn Andersson
+	-> soc-arm64-dts via Arnd Bergmann
+		-> torvalds/master via Linus Torvalds
 
-I hadn't considered a checkpatch rule. That's probably the most straightforward
-solution, to warn on any instances of "\*(vmf(\.|->))?(pte|p[mu4g]d)p?", along
-with a coccinelle script that could be run occasionally.
+Maintainers generally refrain from accepting non-urgent changes until
+Torvalds tags the next -rc1 release (v6.18-rc1 in this case), after
+which they start picking up changes again.
 
-Regards,
-Samuel
+After your patches are picked up, they show up in linux-next, which
+is notably a release ahead of torvalds/master (i.e. it previews the
+'next' release), so if your patch gets merged when 6.18-rc1 is the
+newest, it will show up in v6.19.
 
+Another note is that -rcs are tagged weekly, and maintainers are
+reluctant to accept big changes at about -rc5, since they need
+time for CIs, build bots and users to test.
+
+A cycle normally includes 7-8 release candidate revisions.
+
+Konrad
 
