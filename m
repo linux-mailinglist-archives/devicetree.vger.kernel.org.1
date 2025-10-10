@@ -1,172 +1,349 @@
-Return-Path: <devicetree+bounces-225363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97E1ABCCD90
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:15:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99909BCCDA9
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:19:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 78EC24E3C95
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 12:15:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F08B40754D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 12:19:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6300F226165;
-	Fri, 10 Oct 2025 12:15:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E42FA285C83;
+	Fri, 10 Oct 2025 12:19:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eA8120ha"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="babjanoT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365B08F48;
-	Fri, 10 Oct 2025 12:15:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 270E41D5ABA
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 12:19:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760098553; cv=none; b=fE4+z1MTain13CCQSEXdKkVny6aWDnJw+cLeY47aMvvm/XjTNo1QcqaF4uvYIAbufl7E4PaswSoOFowxervqEnzRfuurSbZqH9XoUVHhZRo/7jsMS/TlFpg507hrsSl4O7ArRn5qcM+mijbO4rZC7DOPoxKDcFgkViaoB/j1XcI=
+	t=1760098790; cv=none; b=ehnGna1dvh8eTu4f+XqyHRqa1vUj/x/rDacMXz0G6XTzYOkX8pt8wF5OYQa1NO5vlwA4h2alLqeIFogDXK0Tv+mu8Xh63r15xbrT0kioFL+FsUQBowldgrcnYbcYIKrlJPqaw9uc9QxaEXlUDOlUvJfCBvoph1jiT7HV3kVOsqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760098553; c=relaxed/simple;
-	bh=hWBv5TGNZvVjCplP/ev/k4nohO6E6ZrobfMvadwzZhY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PnFEv7PzJhQqWmUOF6u8ZEOqZ7aF4F4DDgAg5ED5/4H3n15Gn0LCEqkbQu7Sj1ZHtZ/rNlVWYr100LQbm8JUSuV8v9jYOyWys3VEWnsB+T+iRoGKzAkYJ1gVJcnUlOJ8Pn6/iEbAc005GaqvhnutAFpgy7pUX2LjQAcrCtdMDDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eA8120ha; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65215C4CEF1;
-	Fri, 10 Oct 2025 12:15:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760098553;
-	bh=hWBv5TGNZvVjCplP/ev/k4nohO6E6ZrobfMvadwzZhY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=eA8120haZolGu2WcpY2s4wKkm7jIqYjmTNsW6RQKUhowq4qQyINP9dOJ+ZniDOlSB
-	 esvPlGsEZRJKcMHu615Aao5qvsXhrR8i3lOj94g+kVpWkaD0BJNvitbXrVIf6JDwfc
-	 nPLSZUIQEP5Y5s1xYp8MG96JJMZbu4kDiT+e+aB7ryAXALV+wUxAzZwoceAe2tbOqM
-	 BNiMMSyNPNZZTpKi77b7T7efoeOsvnNtmPov0/7EoQiVrvz1+WOBhhGIxXkfU2h/h/
-	 nrC4zLTlRR4SHdXAcqTKu6r57v7q0DEuQDq1ASmTt+HX7DlUvDYzBJ4Bg/SioGE01B
-	 4cBdSncQrOx6w==
-Message-ID: <88b1dcda-be2d-4c57-b042-c1809ef1dc97@kernel.org>
-Date: Fri, 10 Oct 2025 13:15:42 +0100
+	s=arc-20240116; t=1760098790; c=relaxed/simple;
+	bh=HT+JCCqaZ1q90NmqpixoMzg8teS2H4eFeALphqxd/Cw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JZ5lPaNtJCUrnvxjPkbfFhTudketcdjrhT62LWYrUwEEnGyrCII18vQG75pPDp9BSU3Qlibe8EK3LFmIcY+WTDX7oU+cY+UbtKVZ8LeUOdB5hWZ4KTgbxCcBcJvG6OmDPAfx8kvfLvgt+jZeCX/ygjcRnZxqTOcmS4CNKCmGCEA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=babjanoT; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59A6WgXM002277
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 12:19:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=lvFWwKyOCjvPuAG00qQuUT8b
+	fdOszIjBy5BDHZQzJX8=; b=babjanoTp4TUypi+xWk97cg1DH6GCJNjyr/q8ThQ
+	urEBzNyGtRJvPlDvgCxy3zf9D+0aCAzImF0rzrt7F28t5fKdyqWrwB1P2NcXNZhy
+	GbFuQnKxfXOzDCgF/UGTc4rTexjR94cLcQet9q/kZRlTA18uTDAsbzPiP0akrkxj
+	65a1WAZzIuaG/RZ97loo4BDMb6bnjvXYgZUZdS1oGj8bs5JdohULycIMPlCvgow6
+	pK80mLG7HY3Glo8Mx52fPsEuq4JpQd/FXTbqSrI6muMJYzZp7Id1lrIGvRXAkp9s
+	Cga+GU94eAvQaJ8J4FmGXYhX5M1oO50ueYUDyKGQJFHKTg==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49pgdstsh0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 12:19:47 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4df7cdf22cbso142645241cf.0
+        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 05:19:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760098787; x=1760703587;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lvFWwKyOCjvPuAG00qQuUT8bfdOszIjBy5BDHZQzJX8=;
+        b=Qg8eKMuvynLW4h/nTyM02f8I3TpBXy8cJfGysgoIbT/jiItdio1ua57kfMOxPggnne
+         kKDIzeq6yPu0BKb4/3hcbAwbY3rOw+/pZQpP4qVMr0f5zzCveTizDyYD2QeHs5BvhEOp
+         OeulIC6COCOoXYqWcPrdWGy99EGLny+w4AafFGKQ9F00z9RP+CxTQlxLsKllkXJAbNX9
+         aix3+Tr486WGHWqIn/N8E5wOS+GOTYP7D8D3dB69Qf6faZfHmH09EQ4VSxPthZ8xdEOs
+         dazCMGb3josKxW5XiLbuK+16DdNv954rYmyciWQN3UW+bp1EpqxxiWc0zWNER3ADgv88
+         841w==
+X-Forwarded-Encrypted: i=1; AJvYcCVe+HuEyCYxo/H7NpPRoLI6U9YJHAyI+2UuWpTPZ1q/nhsuCylT3ne0jztK1Hm7IKc2wRbMSJPXw9J9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXI0H7UmWWH7xRptHuWgYG74lhfeyM+RkkacemRrg+sQEsOGSK
+	n3umADu7XsTag2s4DCG0ovGmCLju92S+JJgvqCCAGKz8L1eAvCHCkTmP3E0HIJ59E8UfLoY+/FI
+	orb6E83kQ4W0x8xssPNj+DGBVALGMb9WiN/Tm0EgHh09CHyHqaHu/3Z5wFJRL7pT1
+X-Gm-Gg: ASbGnctx2Bnp0qaSVDmDJ1akGaPdIIETs2lLQGOaI5KP2hHLuiF2/NPsOZZYyVy4P9g
+	kMqpnKH46wq3t4qrl6aGZ74uEtokpv/fNrCg3UkDa7QejezK/RrUA2a6Pfqp/JdiWLHFdNCpwsW
+	C4LVqMod2n0o83+rmJLK5++IoKWZqjQffz3FYPhZuNEFsiuuDdeL1rZvDxGPK89H5Ragxx3Mjq3
+	oIUDyXcK0TI2skPuulc5DaS2gdh8PvKW2CiFW8P/TKGzvu5Ir6dwtrbjPYqV0RzkyuFqCoJ+2Zb
+	SdsRBJOJOsUGpSrne7et2y9ZcKtCxMrTdI3hnXP9RR+NOkBrarpqVfsA3pBZtkFAVsIZWp8Zs27
+	WR5CqGNmLGrRsWYvHEUOu40Zqz4hdW6SQ3RuwS81IBnW9Ggy5oRlN
+X-Received: by 2002:a05:622a:1651:b0:4b7:a1b6:cf29 with SMTP id d75a77b69052e-4e6de928b64mr200323531cf.41.1760098786961;
+        Fri, 10 Oct 2025 05:19:46 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEqF3OeFFz961cC5H5LveXGud7hymmIq4uOMYlN8XBu2oeW98QjyLegjaL0mcBo3AoEoWwaPA==
+X-Received: by 2002:a05:622a:1651:b0:4b7:a1b6:cf29 with SMTP id d75a77b69052e-4e6de928b64mr200323071cf.41.1760098786419;
+        Fri, 10 Oct 2025 05:19:46 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3762e77ca04sm5952731fa.4.2025.10.10.05.19.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Oct 2025 05:19:45 -0700 (PDT)
+Date: Fri, 10 Oct 2025 15:19:43 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Sudarshan Shetty <tessolveupstream@gmail.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: Add support for QCS615 talos
+ evk board
+Message-ID: <q32oj6ry7ixulfaxzkm63nidg7ddmdl2moaakmx6rlv77p3wzl@wd2ekastvyms>
+References: <qq4aak33bn3mqxd2edu6zgkkshby63mmitg7zqkly2rj4c2lh7@4s7sndb7e2jr>
+ <20251010114745.1897293-1-tessolveupstream@gmail.com>
+ <20251010114745.1897293-2-tessolveupstream@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v11 00/17] media: rockchip: add a driver for the rockchip
- camera interface
-To: michael.riesch@collabora.com, Mehdi Djait <mehdi.djait@linux.intel.com>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Gerald Loacker <gerald.loacker@wolfvision.net>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Markus Elfring <Markus.Elfring@web.de>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Kever Yang <kever.yang@rock-chips.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Collabora Kernel Team <kernel@collabora.com>,
- Paul Kocialkowski <paulk@sys-base.io>,
- Alexander Shiyan <eagle.alexander923@gmail.com>,
- Val Packett <val@packett.cool>, Rob Herring <robh@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Mehdi Djait <mehdi.djait@bootlin.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <HSTnNzc6MTLHGWih5qjlI2nvVECP8FVdcQVeBON4KlWYLtEaWIlNmEpKTU_vlqitbIIHMpabKnvnmpEQFqHYxQ==@protonmail.internalid>
- <20240220-rk3568-vicap-v11-0-af0eada54e5d@collabora.com>
-From: Bryan O'Donoghue <bod@kernel.org>
-Content-Language: en-US
-In-Reply-To: <20240220-rk3568-vicap-v11-0-af0eada54e5d@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251010114745.1897293-2-tessolveupstream@gmail.com>
+X-Proofpoint-ORIG-GUID: crW_bGsNUgIhjtOpK93i-Ukp0wY4cRQF
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA5MDA5OCBTYWx0ZWRfX6IupEbV7UKnp
+ BXhYIfNM0U6jei9jqQyic4IKRxUcM/ENaeByoBRFEMOQgv4Xm7dEmNoBG+OPLvKrD+FI6fdzh5P
+ s7ZrzogXwNoRxMOHA22Csl9bbAW/7vowNX6llIjKtbEkXJeU6FrJUnUC+sGbGZo1zRY1XevM8t6
+ 9HuIQfmUOkuPlcWQ5bW43lLUkaMPNb8HLvoqfDzoSDhzcCPMZp0UIu9JlrgBh4An00hQKMcGe9Y
+ lNMFddq82O6OKQMY+vScIFgCEo29i4kKKniWXXZm97U0tvPh2+3HKGTfcZuVCN7laqChsQo7Sx9
+ V8/SrUnWZcyiLWhcnUmqtwmidtSxQGK8NkCOyBdZ8KntRiPTQFaB2kdF5yp0vvMb0fMp2R9XNxD
+ DhYs4QI9lA7fr4j9AX7q/q3kdPeFOQ==
+X-Authority-Analysis: v=2.4 cv=DISCIiNb c=1 sm=1 tr=0 ts=68e8f9e4 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=pGLkceISAAAA:8 a=2vav2hW6rFjcptNlzBEA:9 a=CjuIK1q_8ugA:10
+ a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-GUID: crW_bGsNUgIhjtOpK93i-Ukp0wY4cRQF
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-10_02,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ lowpriorityscore=0 malwarescore=0 spamscore=0 clxscore=1015
+ priorityscore=1501 suspectscore=0 phishscore=0 impostorscore=0 adultscore=0
+ bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2510020000
+ definitions=main-2510090098
 
-On 17/09/2025 16:38, Michael Riesch via B4 Relay wrote:
-> Habidere,
+On Fri, Oct 10, 2025 at 05:17:45PM +0530, Sudarshan Shetty wrote:
+> Introduce the device tree support for the QCS615-based talos-evk
+> platform, which follows the SMARC (Smart Mobility ARChitecture)
+> standard. The platform is composed of two main hardware
+> components: the talos-evk-som and the talos-evk carrier board.
 > 
-> This series introduces support for the Rockchip Camera Interface (CIF),
-> which is featured in many Rockchip SoCs in different variations.
-> For example, the PX30 Video Input Processor (VIP) is able to receive
-> video data via the Digital Video Port (DVP, a parallel data interface)
-> and transfer it into system memory using a double-buffering mechanism
-> called ping-pong mode.
-> The RK3568 Video Capture (VICAP) unit, on the other hand, features a
-> DVP and a MIPI CSI-2 receiver that can receive video data independently
-> (both using the ping-pong scheme).
-> The different variants may have additional features, such as scaling
-> and/or cropping.
-> Finally, the RK3588 VICAP unit constitutes an essential piece of the
-> camera interface with one DVP, six MIPI CSI-2 receivers, scale/crop
-> units, and a data path multiplexer (to scaler units, to ISP, ...).
+> The talos-evk-som is a compact System on Module that integrates the
+> QCS615 SoC, PMIC, and essential GPIO connectivity. It follows the
+> SMARC standard, which defines a modular form factor allowing the SoM
+> to be paired with different carrier boards for varied applications.
 > 
-> The v11 of the series adds a media controller centric V4L2 device driver
-> for the Rockchip CIF with
->   - support for the PX30 VIP (not tested, though, due to the lack of HW)
->   - support for the RK3568 VICAP, including
->      - capturing frames from the DVP
->      - capturing frames from the MIPI CSI-2 receiver
->   - abstraction for the ping-pong scheme to allow for future extensions
->   - abstraction for the INTERFACE and CROP parts to allow for future
->     extensions
->   - initial support for different virtual channels (not tested, though,
->     due to the lack of HW)
-> and a V4L2 subdevice driver for the Rockchip MIPI CSI-2 Receiver.
+> The talos-evk is one such carrier board, designed for evaluation
+> and development purposes. It provides additional peripherals
+> such as UART, USB, and other interfaces to enable rapid
+> prototyping and hardware bring-up.
 > 
-> The driver can be readily extended to provide support for the RK3588
-> VICAP variant. In order to keep things simple, however, this extension
-> shall be submitted separately.
+> This initial device tree provides the basic configuration needed
+> to boot the platform to a UART shell. Further patches will extend
+> support for additional peripherals and subsystems.
 > 
-> Looking forward to your comments!
+> The initial device tree includes basic support for:
 > 
-> To: Mehdi Djait<mehdi.djait@linux.intel.com>
-> To: Maxime Chevallier<maxime.chevallier@bootlin.com>
-> To: Théo Lebrun<theo.lebrun@bootlin.com>
-> To: Thomas Petazzoni<thomas.petazzoni@bootlin.com>
-> To: Gerald Loacker<gerald.loacker@wolfvision.net>
-> To: Bryan O'Donoghue<bryan.odonoghue@linaro.org>
-> To: Markus Elfring<Markus.Elfring@web.de>
-> To: Sakari Ailus<sakari.ailus@iki.fi>
-> To: Laurent Pinchart<laurent.pinchart@ideasonboard.com>
-> To: Mauro Carvalho Chehab<mchehab@kernel.org>
-> To: Rob Herring<robh+dt@kernel.org>
-> To: Krzysztof Kozlowski<krzk+dt@kernel.org>
-> To: Conor Dooley<conor+dt@kernel.org>
-> To: Heiko Stuebner<heiko@sntech.de>
-> To: Kever Yang<kever.yang@rock-chips.com>
-> To: Nicolas Dufresne<nicolas.dufresne@collabora.com>
-> To: Sebastian Reichel<sebastian.reichel@collabora.com>
-> To: Collabora Kernel Team<kernel@collabora.com>
-> To: Paul Kocialkowski<paulk@sys-base.io>
-> To: Alexander Shiyan<eagle.alexander923@gmail.com>
-> To: Val Packett<val@packett.cool>
-> To: Rob Herring<robh@kernel.org>
-> To: Philipp Zabel<p.zabel@pengutronix.de>
-> Cc:linux-media@vger.kernel.org
-> Cc:devicetree@vger.kernel.org
-> Cc:linux-kernel@vger.kernel.org
-> Cc:linux-arm-kernel@lists.infradead.org
-> Cc:linux-rockchip@lists.infradead.org
-> Signed-off-by: Michael Riesch<michael.riesch@wolfvision.net>
-> Signed-off-by: Michael Riesch<michael.riesch@collabora.com>
+> - CPU and memory
 > 
-> Changes in v11:
-> - rkcif: split large driver patch (6/13 of v10) into smaller
->    patches (6-11/17 of v11) (Bryan)
-> - rkcsi: replaced devm_reset_control_array_get_exclusive with
->    devm_reset_control_get_exclusive (Philipp)
-> - Link to v10:https://lore.kernel.org/r/20240220-rk3568-vicap- 
-> v10-0-62d8a7b209b4@collabora.com
+> - UART
+> 
+> - GPIOs
+> 
+> - Regulators
+> 
+> - PMIC
+> 
+> - Early console
+> 
+> - AT24MAC602 EEPROM
+> 
+> - MCP2515 SPI to CAN
+> 
+> QCS615 talos-evk uses a Quectel AF68E WiFi/BT module (PCIe for
+> WiFi and UART for Bluetooth), which is different from the RIDE
+> platform. Plan to enable these in a follow-up patch series.
+> 
+> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+> ---
+> Changes in v2:
+>  - Rename compatible to "qcom,talos-evk" (suggested by Dmitry/Bjorn)
+>  - Merge enum entry with existing qcs615-ride block (suggested by Krzysztof)
+>  - Fix subject and commit message to use imperative mood
+> 
+>  arch/arm64/boot/dts/qcom/Makefile           |   1 +
+>  arch/arm64/boot/dts/qcom/talos-evk-som.dtsi | 406 ++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/talos-evk.dts      |  42 ++
+>  3 files changed, 449 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk-som.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk.dts
+> 
+> +
+> +	vreg_v3p3_can: regulator-v3p3-can {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vreg-v3p3-can";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
+> +
+> +	vreg_v5p0_can: regulator-v5p0-can {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vreg-v5p0-can";
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		regulator-boot-on;
+> +		regulator-always-on;
+> +	};
 
-I believe it is the case and please feel free to correct me if I'm wrong 
-that you've dropped a long list of sob/co-develop-by, I think we 
-discussed that too, because of the level of change, it seems reasonable too.
+Is there a way to control those regulators or are they always enabled by
+the hardware?
 
-On question on that, are these people aware of the change and cc'd on 
-the list of recipients/contactable/agreeable to the change ?
+> +};
+> +
 
----
-bod
+[...]
+
+> +
+> +&tlmm {
+> +	pcie_default_state: pcie-default-state {
+> +		clkreq-pins {
+> +			pins = "gpio90";
+> +			function = "pcie_clk_req";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +
+> +		perst-pins {
+> +			pins = "gpio101";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-down;
+> +		};
+> +
+> +		wake-pins {
+> +			pins = "gpio100";
+> +			function = "gpio";
+> +			drive-strength = <2>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +};
+> +
+> +&sdhc_1 {
+
+tlmm > sdhc_1
+
+> +	pinctrl-0 = <&sdc1_state_on>;
+> +	pinctrl-1 = <&sdc1_state_off>;
+> +	pinctrl-names = "default", "sleep";
+> +
+> +	bus-width = <8>;
+> +	mmc-ddr-1_8v;
+> +	mmc-hs200-1_8v;
+> +	mmc-hs400-1_8v;
+> +	mmc-hs400-enhanced-strobe;
+> +	vmmc-supply = <&vreg_l17a>;
+> +	vqmmc-supply = <&vreg_s4a>;
+> +
+> +	non-removable;
+> +	no-sd;
+> +	no-sdio;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&spi6 {
+> +	status = "okay";
+> +
+> +	mcp2515@0 {
+> +		compatible = "microchip,mcp2515";
+> +		reg = <0>;
+> +		clock-frequency = <20000000>;
+> +		interrupts-extended = <&tlmm 87 IRQ_TYPE_LEVEL_LOW>;
+> +		spi-max-frequency = <10000000>;
+> +		vdd-supply = <&vreg_v3p3_can>;
+> +		xceiver-supply = <&vreg_v5p0_can>;
+> +	};
+> +};
+> +
+> +&uart0 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_hsphy {
+> +	vdd-supply = <&vreg_l5a>;
+> +	vdda-pll-supply = <&vreg_l12a>;
+> +	vdda-phy-dpdm-supply = <&vreg_l13a>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_qmpphy {
+> +	vdda-phy-supply = <&vreg_l5a>;
+> +	vdda-pll-supply = <&vreg_l12a>;
+> +
+> +	status = "okay";
+> +};
+
+Please keep all the nodes sorted.
+
+> +
+> +&usb_1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_dwc3 {
+> +	dr_mode = "host";
+
+Is it really host-only?
+
+> +};
+> +
+> +&usb_hsphy_2 {
+> +	vdd-supply = <&vreg_l5a>;
+> +	vdda-pll-supply = <&vreg_l12a>;
+> +	vdda-phy-dpdm-supply = <&vreg_l13a>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_2 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_2_dwc3 {
+> +	dr_mode = "host";
+
+Is it really host-only?
+
+> +};
+> +
+> +&ufs_mem_hc {
+> +	reset-gpios = <&tlmm 123 GPIO_ACTIVE_LOW>;
+> +	vcc-supply = <&vreg_l17a>;
+> +	vcc-max-microamp = <600000>;
+> +	vccq2-supply = <&vreg_s4a>;
+> +	vccq2-max-microamp = <600000>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&ufs_mem_phy {
+> +	vdda-phy-supply = <&vreg_l5a>;
+> +	vdda-pll-supply = <&vreg_l12a>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&venus {
+> +	status = "okay";
+> +};
+
+-- 
+With best wishes
+Dmitry
 
