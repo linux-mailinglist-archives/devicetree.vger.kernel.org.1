@@ -1,158 +1,153 @@
-Return-Path: <devicetree+bounces-225262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A152BCBFE6
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 09:55:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0151BCC001
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 09:58:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 89F664EF77E
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 07:55:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 000001A63B95
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 07:59:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E906275AF5;
-	Fri, 10 Oct 2025 07:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB45F276041;
+	Fri, 10 Oct 2025 07:58:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="BNx5hSi3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2353274FF5
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 07:55:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03868275B12
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 07:58:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760082929; cv=none; b=jvFgXwo4RvDO3XDRVO1zQeWD8PmRY/0umhvr+wG5rfeAHV7kxDegVRrxh+H/TKB14IAiXYX4GAPKDBMftFPSpkuKUTmALTLG8DXJYFNTeo7jOKZTqXdz16EdZIj/e9iP9rWMei2JR0Zez3sp7XKAygyWGMUlkTSOMnanB9s24KA=
+	t=1760083115; cv=none; b=ovgegBopg9GKzc367+7W3BKC7nGAI5TGijL7iC4KTm7MjVquICf7mbzqGZwysoN88MRpU/Nlpmz/+4hQ/IrGyPIjmprTPEh8yW0dKQ4NJAYgNOtkJd2AHf929ozi+CszsrXbBDYwyy7w3hQY+Cx60y9XUmoon/CI5sgkBrlgpGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760082929; c=relaxed/simple;
-	bh=GyMrdUSzxTxaoShfISf9Kv4vkeRyaQViM9pgJ0KDv+4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E3dHsSaM1hMIAyyrGQFSP/ZPslFjqNVUKNMPODfdzQ7g5D2hqX+PjajYbTVYNgWWb2dL6ehLFFfsmOjscaNKsqeuY3uRC9VlP9ucw87tO4obn1aItQcntcGFgwWtqHfNhw08cGWxCoNej++TUogCI8XW4hrbY3yrUmNhcxXnDfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-54b21395093so1249581e0c.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 00:55:27 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760082926; x=1760687726;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BSqWlPqtUKmbPUvFOiSDBYm62ZRg96NdFDUtSMt7Zrk=;
-        b=d5ONXWjuNSg13d4KX0BZRmeAnWq3RWW+E+VG93eYRw756bkTUzEEXSLqiSpbCf1Fxr
-         Qe9wHxqlFfCV/uqZSL2vHOQ8TiHjhb6VRBTOjvSg1jWjOIv34jTi04pyFmm0XjWLJ4YM
-         nnWaKFCRgSvhKK4PzlT/q3olUqOKiSp7rAWpCT8lAkpGBIYE1/Zk/lUK9yMwBPsNSZa6
-         QLm+GfE1h5/8BB06TRHLinIGuoWI7BNCJ/gS8OvpG7sMcZn4+0NLSQ/1WfZ6nIH6EigM
-         1/o6hKxlPRVmg+mz18ubY9LoH7UyQZVrJBLttzY8b5V7cRvdZX7OucwSw/MWQHBazpQH
-         MMog==
-X-Forwarded-Encrypted: i=1; AJvYcCV+k0BXapKxnvS38RXk9ltIJKiD1mf8sR827bgbELnlp3RfdVM1myUpUbfdUHU8zHlKQzhUmaNFA1b7@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZ48OqYYjk6D8hlZqtDYt9Y6vKt01I2F32NX2uHewMxLGZDeLH
-	QRBw6/X/ugw95xFzvNLYtUSFMoMjnyzLQP29v6opFBySUK+u8VpBWyctPmvL6qbe
-X-Gm-Gg: ASbGncsWihZ/NCa4arjXyCmVy8L0AnCqhZAthKEOrlO2Llpf/9SqF6KTPLbb9olayh6
-	3ifb5hwzsH9nJWIUEohZmzU1r3gSm61kzwotxfc/evS0atsGBsSTs5GOGosy2gylTQM3d5npE5v
-	OzNJfTw2774bJoXU0Ka+ccuCWcmPlpXgI054QsGDo3ahd6/T2oiwnxfyD0EGEy+FeeADhNHAPbf
-	w1LZf+SweO6HjNuzwTsts517hn3oEj0ObZtYsWeuJiWZVkDdkcRE47QZAlei3wQfFXf04ALKpX+
-	x+SeJniwMM51RH8LpMkMC+G2U8UPSReWRlUPgVRJ8yFbrx4B8V1Nrpjkeqt73AXjga3n1O3d/2h
-	RzmFog5QLNX8DSZkHV9vgkl1e5jLyJpUChxF3ZTOhpoY0PUVJkl+GrfZKqqh2buZ+ATlTPiuMm+
-	Go63UdsJbCmzj5MA==
-X-Google-Smtp-Source: AGHT+IGvjZySEUmK/y9/SLFxoCXF3C2YXjxwre1t1kMXlpxZhL+Eg0XRigJlGY53JbKzh+uRKKZ9Tg==
-X-Received: by 2002:a05:6122:3296:b0:541:80ff:31a5 with SMTP id 71dfb90a1353d-554b93b1b43mr4254955e0c.3.1760082926066;
-        Fri, 10 Oct 2025 00:55:26 -0700 (PDT)
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com. [209.85.217.49])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-554d7ecf4a4sm543847e0c.3.2025.10.10.00.55.24
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Oct 2025 00:55:25 -0700 (PDT)
-Received: by mail-vs1-f49.google.com with SMTP id ada2fe7eead31-5d5fbfca7e2so687441137.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 00:55:24 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX4xbTnGvGVriRyG2xBsLF6AXJ2xIemSF28MRyhOgOkJIpdOKlHgVfR8RD+SsPg2CmDVMa4FSKg650e@vger.kernel.org
-X-Received: by 2002:a05:6102:2ac9:b0:4e5:8d09:7b12 with SMTP id
- ada2fe7eead31-5d5e2590490mr5331971137.7.1760082924542; Fri, 10 Oct 2025
- 00:55:24 -0700 (PDT)
+	s=arc-20240116; t=1760083115; c=relaxed/simple;
+	bh=D+uj4nmQqNwsFrTENmSxwrLIBKZpLAUm1rk2tYwTb78=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ga8G/1wWkfDOAZ7nYVSQCzkmApcDaBRTlKja3G/qmDivtCpOVipfDKuIweMu+kubZUK/XnwYTe6Y9vCo1hBBI0rsu/RLKHUKFNNYne3cZ1kzuVgKWFrERLtp/90/iy34pG62mYgAVsTWuRNQ+BOSscZ1ouajW/C/b3TCnwZPw5g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=BNx5hSi3; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=mJ0+
+	68OE5zy6P1W6jhqEWVox88d/fLjg0YQjL/yTxyE=; b=BNx5hSi3IPKjiXPajwyS
+	HtQeJZ5Gw8xmgeVz74hYThcHCrkyDsOD8lasC+KTBWDjxT8LsnG/czeqi0CMnAAY
+	viG4E7dWgVRzOCW2gmbj6+wn68Gh79AV2sOnNC+b41MnxKEuLvdJcpkSm403xov2
+	wjRcZMFOu76P891QL/P1/wgPV9DtOaSoaPWmi66VOJyXe/279naAD4kVWxn5DHP6
+	2TXZDRftuZijvsnRwHWCjFcvailJ8ftaau+FBu3rti0IvKP/keAyazBchRRJIdO1
+	tMewhkPEo+d3KTIx/wFtTPy5HU+121V1VHBZl9TECIFn58fwMELSb3QwowVovtrk
+	wg==
+Received: (qmail 1380566 invoked from network); 10 Oct 2025 09:58:29 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 10 Oct 2025 09:58:29 +0200
+X-UD-Smtp-Session: l3s3148p1@FsqASMlAVMUgAwDPXwQHAL/S9V79e5yL
+Date: Fri, 10 Oct 2025 09:58:29 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: Add Renesas R2A11302FT PMIC
+Message-ID: <aOi8pQuHfduf6-FX@shikoro>
+References: <20251009181916.2431-2-wsa+renesas@sang-engineering.com>
+ <08b7a21a-72f7-47e4-9dc9-37a7316f94d5@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20251006172119.2888-1-wsa+renesas@sang-engineering.com>
- <20251006172119.2888-2-wsa+renesas@sang-engineering.com> <20251009204726.GA3306624-robh@kernel.org>
-In-Reply-To: <20251009204726.GA3306624-robh@kernel.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 10 Oct 2025 09:55:11 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXc6pchOxRWu_ZKUhR9zLoojjckFPB-pdwmM6pnJj8Edg@mail.gmail.com>
-X-Gm-Features: AS18NWBJ-7Zse1vXv3tpHpxjY70K6erRYutOhSP9XUIFow6FgrAIep1olb_lk3g
-Message-ID: <CAMuHMdXc6pchOxRWu_ZKUhR9zLoojjckFPB-pdwmM6pnJj8Edg@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/2] dt-bindings: iio: accel: adxl345: document second interrupt
-To: Rob Herring <robh@kernel.org>
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-renesas-soc@vger.kernel.org, 
-	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
-	Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="oF47ZDGtWqrcrNR3"
+Content-Disposition: inline
+In-Reply-To: <08b7a21a-72f7-47e4-9dc9-37a7316f94d5@kernel.org>
 
-Hi Rob,
 
-On Thu, 9 Oct 2025 at 23:22, Rob Herring <robh@kernel.org> wrote:
-> On Mon, Oct 06, 2025 at 07:21:17PM +0200, Wolfram Sang wrote:
-> > The pinout of all the supported chips in this binding have two interrupt
-> > pins. Document the second one, too, even though the Linux driver
-> > currently does not support the second interrupt. Boards may have it
-> > wired nonetheless.
-> >
-> > Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> > ---
-> >
-> > Passes dt_binding_check. But uncovers another issue. See coverletter.
-> >
-> >  .../bindings/iio/accel/adi,adxl345.yaml          | 16 +++++++++++-----
-> >  1 file changed, 11 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> > index a23a626bfab6..806b0250ec07 100644
-> > --- a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-> > @@ -35,11 +35,16 @@ properties:
-> >    spi-3wire: true
-> >
-> >    interrupts:
-> > -    maxItems: 1
-> > +    minItems: 1
-> > +    maxItems: 2
-> >
-> >    interrupt-names:
-> > -    items:
-> > -      - enum: [INT1, INT2]
-> > +    oneOf:
-> > +      - items:
-> > +          - enum: [INT1, INT2]
-> > +      - items:
-> > +          - const: INT1
-> > +          - const: INT2
->
-> This is better written as:
->
-> minItems: 1
-> items:
->   - enum: [INT1, INT2]
->   - const: INT2
->
-> It is mainly better because using 'oneOf' results in poor error
-> messages.
+--oF47ZDGtWqrcrNR3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-For those that missed the other email, where you explained about
-listing strings like "INT2" twice:
+Hi Krzysztof,
 
-    "That's because we require strings to be unique entries".
+thanks for the review!
 
-Gr{oetje,eeting}s,
+On Fri, Oct 10, 2025 at 04:37:14AM +0200, Krzysztof Kozlowski wrote:
+> On 09/10/2025 20:12, Wolfram Sang wrote:
+> > This PMIC is referenced in upstream DTs for the Renesas Lager and
+> > Koelsch boards. Sadly, we don't have documentation for more complete
+> > bindings, but due to the spi-cpol/cpha it also doesn't belong to trivial
+>=20
+> That's not a problem.
 
-                        Geert
+It is not? I found this mail[1] saying that enabling spi-cpol et al.
+will disable sanity checks for other trivial devices.
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Adding this PMIC to trivial devices would be my fav solution, actually.
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+[1] https://www.spinics.net/lists//devicetree/msg731369.html
+
+> > Change since RFC [1]:
+>=20
+> Please start using b4. This is v2. Your wrong numbering makes any
+> comparisons broken. Try yourself with b4.
+
+I checked the link [1] I gave last mail and the mail said "[RFC PATCH]".
+Looks correct to me, am I overlooking something? I am open to switching
+to b4, but I need a time slot for that.
+
+> > * dropped "unevaluatedProperties" because we know this binding is not
+> >   complete currently
+>=20
+> You cannot. Bindings must be complete (or complete "enough"), otherwise
+> I see no point in accepting them.
+
+I can see that.
+
+> It is like you sent driver code which does not build because you did not
+> write half of it. Why would we want it?
+
+I would agree if it does not build. But it does build. So, the proper
+comparison for me is a limited driver which probes and gives access to
+the device. Features can be implemented incrementally. This bindings
+works/builds with the few information we have. It even removes a
+warning.
+
+My reasoning is that DT describes HW. And on the Renesas Lager board,
+this PMIC *is* connected to the SPI controller. I am open to removing
+this node because we don't have a driver. That would mean, though,
+otherwise rare to find information is lost.
+
+All the best,
+
+   Wolfram
+
+
+--oF47ZDGtWqrcrNR3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjovKEACgkQFA3kzBSg
+KbbRlxAArWjj+dNuvn88EjbaCPpiQlZGU0pTEd7sj9rfTm/K97L22HRqGDofFjwl
+0pvW2VSHYHuy2n9OHGrZDzTaAtl0L31dVjOG+p/4EAy47NZvIGRJ3XOnLFDWvTUc
+HgotnzhUovwCHvY5fcMlqJemNjTl8lqJialAeY8rEYf1quhG1fej0vSsciA3ULkG
+NfZqaeVDmmBO3S9dXbSVPoii0RwYq8tAMzU8TC/WsdLU67qBYFs+dDZ9uQRGoXhT
+UO5o2aq+/S+kqsT0821r0C/Q9FOKMPxOh+jE4lDChzJE7Yv/0tIBY18Y80umXB2a
+k3vM1wID6POtvBXwsCYQA73zxosLyjewXFxjRhNXl7UjUhroC8kTm1E0gKVEfO/J
+jHmrTWgCsI36vT29UdYlStTNTrjCya2wu7IpkAoFZxJ7EYtwfcCtkAwGttpBtMwa
+YDEhviYzois9bMlPW3gEaTWKC8Tj2wngJHuDeMSnf+SGvfcKx83Fs8TOzyq0yp2c
+iMkwduy9nBzNRB06sVIGUhPW2uRGkhHO8xSpgjvhb4L/6mmImrN9DXRSX0k/ZB1b
+9kCes7rRFZ0prrL4lUjQ7hWbSF3e+TqmTsteH7SQq9RNRIwRrBOjSI+Vh4tlw+sO
+cfrQmhYLx1NxV2Onrz9STrX53vWHP4NFTFuwqXDdAM8uL8xJkCY=
+=W9An
+-----END PGP SIGNATURE-----
+
+--oF47ZDGtWqrcrNR3--
 
