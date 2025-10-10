@@ -1,341 +1,157 @@
-Return-Path: <devicetree+bounces-225361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C366BCCD60
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:09:18 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0F1EBCCD84
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:13:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 014D31A618F8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 12:09:41 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 0DAF74E99B5
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 12:13:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A977128BABA;
-	Fri, 10 Oct 2025 12:09:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A9928B3EB;
+	Fri, 10 Oct 2025 12:13:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BDgROrDJ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FW0zvEkd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78D4D28935C
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 12:09:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CBA28935C
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 12:13:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760098153; cv=none; b=I1pXY6CSD98AAHc89aSgI/Pd3E+sLMrDnUwpOLfz6E8Bmi2bPizmnHc31aeuTDCdHfGEIC2G1C4OI6Za4x9wBJ1NZzh+hzzscpGzv0my0F0Nm5Wa/zqQTYpsPQg+iVGE6fb/ZbUblunAaFH3bKacGAWzoY0eI+p+55wn7dqusIM=
+	t=1760098431; cv=none; b=PvEz0Dm2Fwk8yTSO92Dp2gv+OG91ryRCB70mKcrSFXaqEG/F8d5sZOlGP/MPEYTGROoWOeJqORX1GSBel//p78/t+0f/EJdc8apLU/JXOw6+gF3KsJ0Crd5dwaxHeocO3dtq7xMr4JjrSrfNO8vqwQuegE0L8BCVxePYhEHKOvk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760098153; c=relaxed/simple;
-	bh=s9qnktjcv8VtwzZYiATpyxkv376jOmaSks+JF/0i/yY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fTOuKd8NPp9LCwbWYcQrh0xv0I5jeF4XxwB8J2FtQKAqrR/mIYyIlvvQXpFbxB8rr4ufwT5CIL1MTMM2G5ds/p+/Hy2czgimL6V4RqtoYaNqaX5b0CHIjKR/jxW/fm/8PnVa3x824qQlNlp27vAuO77zM1Jl0+UM1fdZ2yzJG1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BDgROrDJ; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-36453927ffaso16731961fa.2
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 05:09:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1760098149; x=1760702949; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=G4ZKKJF1rgzzv66FdFdHNcRihXsO8tluLNbeNizMoJ0=;
-        b=BDgROrDJCwQLBWwJMnmyPI9kmMOnBhP3p+7BnpJgZFRfRd0hn/HcnNQSxPUIWQxbgm
-         FRRzAOlZQVCirsVD6TP5nK9RXUEl0BNDK3w9BUwrrJTjKP/j5/HbNz3xIthLbe/vkgcd
-         2XQHpMgMcxsolJA6rQ7adMQWC6zA3pNBLe+rrBGWK6vtSkztG1b8emBhATglNijni+R8
-         zFPVmllzVWL6L9GJvboZRyg5WUKOaQ3lyJkfQVOgXyM4qDn55wRGD080qsfUjOeTj5em
-         vF6+8dMFFJRBKAKGu1Kop2HJ7scmYesnNH0XaFliYnnQ55eXdJR1lcAnhX35mSb+C710
-         VgNg==
+	s=arc-20240116; t=1760098431; c=relaxed/simple;
+	bh=rxWiAxIXHzbrmd3br4/YLWJ51Z0MVMPkhu9pkUdyqeI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JMlj3mm52gYZnP0gt5NKG9oUWvD+Syc2eaKjQKtYPkv2+Nx4Q+t/ooyiHqeLsqU9eyERc9mIHBJ0BD1r604Tzre2TzOGumQ+bfrpZIqBZHbuJbv+w05Xtw96AWmMBk7L/4xNE0QqzOFdgri0JKkO0+eYqZfVsUWioHWh1jpuU94=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FW0zvEkd; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 59A6XEEv026051
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 12:13:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=tDGkN8gOyAUIi0W6Qk/6uKP+
+	29WhStUz1lGf70zr7LI=; b=FW0zvEkdrGR6fLL1VNaa0Ke4/S58VjpnFy/Kggz3
+	m0R2Z5UiIJP0yFfM9tooiIgbaygbn6pclWEF5wKA/cYymCeLkouuV47ZP49EQDn3
+	MKgynj9gVAEpmY6F1Wa/WqmOzCBcfPcYTqEuhTkmFZmEtnVXyGXyXCpCaPOWObC2
+	prG4dKEa86+id88uWtZWeqzWgp4dOzBpb5KRm2VZLiNZo/kNrNpJt4Bo9e0FqN85
+	m6GKOEBcpoerIQkdlOQ4UvE5RUmy0VH/npNn/yfJL2DMvh+j3TRd+NRmxWFBUUMH
+	spWeELgtljCjPxb9cCxJlEfu+9l+BHXFcn6GcUvYLUh1PQ==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4ne9xj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 12:13:48 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-8635d475523so678060585a.3
+        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 05:13:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760098149; x=1760702949;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=G4ZKKJF1rgzzv66FdFdHNcRihXsO8tluLNbeNizMoJ0=;
-        b=XghTfD6MSYseRzENssRSi3i0cQ1zpwXoT4MGhGYIs9CGQz5MSszn+GqIn4KZgOgYyH
-         yROrqq2FtBJbiyBKTCyiYgLh1vc8xXkwlPIUwFEIfFIU9cuGBvcWG+gptlJm8kdHWmZn
-         zYOnKraTuTu0PGr+AEVAm+pOUPYdHFTfmEPsoy8xIeTDuyTuqhFXhUiof1m7PIKdfdC0
-         DxICceZliE7LrNqpZQcDP+XqpCGKGTRGykq3FCHcgYwdXAlgsPomP24Jc7y3EmZ/7EeU
-         +7Uouxdg5FXEavj3ylhtmCEJj6NlqytT3FalNl6X8DrSV4vHz1/tyZajn8uDyF57b2mw
-         ZIJw==
-X-Forwarded-Encrypted: i=1; AJvYcCVGvULsO4D1nXE5NHMM/0hj9ht7+/svHjBY7UoA5vUXhFSsI4Zw5UZHwgz78aP7zGQeGPkH+avNhtL6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzV5bd4clfGWG7KGLN65XS565MMAUp6MvW51qeNV8oJUqh6DgzA
-	xx4k3dRDkjQPtQ9XfDkQFTHjzzlvq9s3ZJo19olKHNygl9QVT5GtYvuN
-X-Gm-Gg: ASbGncsgvzO5m5573JgD0F3ljnX70i//6krJwny+ryLWzY0B8zNMmXmsnVnM1MI4p2k
-	EV2GdpukNcVNdWX7vALG1dWb/eJ4U8q2RmyG15h7ZYlkO9LH7gcBumFTSuEtU6Fb3rNbrI2/PVJ
-	JcdSuszzFKAkLLDqluSj4QLv/DcuHRD3y2ZCUFZxpX03WZbTfweEKbyZtXyvayiy9kdCNEEBCSz
-	MY0MJ4FzBPBS9/KP2gcDR9jjhzQ9ejWB3UAEN0E77xZLiAvtNl9yptj5PJXXbIz8i73zoznSvE8
-	TtPtRBFcjLqyqUNBgt+xGvMkP6h0KpfpntTYc+4yrcI3k09DZJMZiq8/2OXuSMEDwNrSEzG6mmM
-	e5gA+2y0/+mVKRgign9EIs7AINHFr78rIIeEppvPFWSygM9YR7NWnDIfx1AOSV4MDICOCBtyTlx
-	Dy4pcdO54gUBx0g0Q/0ICzKBiQQ3AGtIeJCA==
-X-Google-Smtp-Source: AGHT+IH3knEaO7uQwDSiykr6b7dNy3NcVzjxL7nST2lJTVdnkH3+ref73CXvsxpJUFDrDoKyyQ0hew==
-X-Received: by 2002:a05:651c:435c:20b0:376:3a83:428d with SMTP id 38308e7fff4ca-3763a8353e9mr2470301fa.48.1760098149101;
-        Fri, 10 Oct 2025 05:09:09 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-59088577836sm820546e87.100.2025.10.10.05.09.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Oct 2025 05:09:08 -0700 (PDT)
-Message-ID: <8ea507eb-f78c-4a16-882b-112e277fa1b6@gmail.com>
-Date: Fri, 10 Oct 2025 15:09:07 +0300
+        d=1e100.net; s=20230601; t=1760098428; x=1760703228;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=tDGkN8gOyAUIi0W6Qk/6uKP+29WhStUz1lGf70zr7LI=;
+        b=hO2pAC2UvgXvKooC5nHNtmd6YUZHkc2q2Wa5nGsMNW/WKWEMBNH4rEqh/65n8Vqcyn
+         BBhCmXiv9QAdf+MzWH7r/KPlYjBVEQnn0XGAUZaH8eTJLUtXqC4PLqOxXc1WO9ZVMy1z
+         WeInfbRF/qJpk8VGlneHQsnhpW8G9/hhCN+F3glPwkgcythjZ/wF79Ds03MjxHcUWCOh
+         opIT3CcOInI9X3oIAWmzaR8JSSb5adko1wq8/O2rVUJvA841nE80IqbXQCT3WXbtjuC3
+         bwXtAzAq84kkCFcui9aVgx2VC651qZwdE2RxnZqR8HLOtYIF4EWW0DRtJyBaIBM4hMqV
+         Wiug==
+X-Forwarded-Encrypted: i=1; AJvYcCW6Uw6RVSx0cbVoTJxXm027b78qQDRYah/KBDPW5hc023+qZFK1yN1yO7Oa2peNeX54ThZFGSXkEzPM@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLhixXLlcOEhqY1+CEQ1Bygb3bVgSRIcqgQYt/pHFmp0pNVhYw
+	f3LGALtsfApByyxCXzEDdr83yxcvkEsc53NzlbsSeBjJVcLu8lTYtE9gwYiuPz90IruarTP0w9A
+	T3t0LMVki3Z/5tyVIWYcActmwhGE6QaUG2E5sFzZaWzjChWbeguBc1TtEhzIs7eSB
+X-Gm-Gg: ASbGncsbbVURP0qf3NpQu+OHZvVSaFX9RUIudHHHyTBkSkA2V0xufdCew3z5F97hXKB
+	OpDONIE+x47kz/viogWb/xVqTxtpLNmrEwD6rhF6L0THI7B5pWQXOq9Y3MNHwImJf3RYHTbTErC
+	ak9erpPhHNu+HwlfLD26IOOo/pU/8Hw7EXg0gNpg4ACLeMbLK6DqkDLel2m3pK1Yq1aIk2+MGbH
+	G3gPH4STHauPeFiIek+W5JMl9h86qLKQVRP6wvQa95urigPKfD7d5C4voX2m9OQbjGWDxeqH8on
+	d62dlDK3a7UVtVsZft52z0a8DLdeZVoMNDKnWtnClZNN9el4GfHCbsO5WmAyVcA4nPw+SljCEZl
+	6dnbpnkbvzfnshj679gJTc0luu4LOeO2M21BwZ5rX8awOR+GUCGrz
+X-Received: by 2002:a05:620a:6914:b0:860:e823:887d with SMTP id af79cd13be357-88352babc71mr1604020585a.71.1760098427477;
+        Fri, 10 Oct 2025 05:13:47 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEIYquGU+XwuvL90RE/f9ot7wHpbrXD7C12uhmjFXxkL3ZITSKCYzHrvKgGNCTsDraRmvROag==
+X-Received: by 2002:a05:620a:6914:b0:860:e823:887d with SMTP id af79cd13be357-88352babc71mr1604014285a.71.1760098426894;
+        Fri, 10 Oct 2025 05:13:46 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3762ea11ed5sm5786541fa.35.2025.10.10.05.13.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 10 Oct 2025 05:13:46 -0700 (PDT)
+Date: Fri, 10 Oct 2025 15:13:44 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Sudarshan Shetty <tessolveupstream@gmail.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: qcom: Add QCS615 Talos EVK
+ SMARC platform
+Message-ID: <rrlpi7lr7u3tqskw75hp236rgzkdsspczk6ezhxnslvub3d454@jkczfe5ytegk>
+References: <qq4aak33bn3mqxd2edu6zgkkshby63mmitg7zqkly2rj4c2lh7@4s7sndb7e2jr>
+ <20251010114745.1897293-1-tessolveupstream@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH 06/13] mfd: bd71828: Support ROHM BD72720
-To: Lee Jones <lee@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
- <brgl@bgdev.pl>, Andreas Kemnade <andreas@kemnade.info>,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <cover.1759824376.git.mazziesaccount@gmail.com>
- <93142a80d90a0ac80b27090d0c83914675aad94d.1759824376.git.mazziesaccount@gmail.com>
- <20251009161847.GE2890766@google.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20251009161847.GE2890766@google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251010114745.1897293-1-tessolveupstream@gmail.com>
+X-Authority-Analysis: v=2.4 cv=ZJzaWH7b c=1 sm=1 tr=0 ts=68e8f87d cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=x6icFKpwvdMA:10 a=pGLkceISAAAA:8 a=cO8QargF1s2uRlvNBuYA:9 a=CjuIK1q_8ugA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22
+X-Proofpoint-ORIG-GUID: 31ZXuxH2sekhmJnzOFE_UzTewFr9ZpDM
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfX1vPQ7gcCRa3A
+ 4JP+CrZtHalE4DqGayEoTgeApwIBq7VckRYjtM1RAQbm3NLJxbXCyoK+md039/9pJn9p8XtBKE3
+ RSys/xgJ5YswKNr0rcG2leM+xehwLHW1pZqqMJq7F8nRNNHzWkFwhEZOx5zG3fe6jboApzlwL1x
+ E0uxPFBK1cqW4cGeon/Dsk2LbNe/g5cJwJrFCZOHN8mcntmztaenBPBAvJybTVwpz8H+oBQuNmg
+ +0DPSqy0XeTZmw67lxC3w0J2jShHhUj6b3X7nwngLn4NVtU7pNfye0z1tNgRocNNLcadTOJ7E4i
+ KgJZ4Hrd0GpanrBBMG44Dv0m+9oWQ6ztBM4Le91jq2WlDil7xglH9TIzhDAK/Sa/nBNiYBqVAZO
+ YC5gUQymXrfdqFuEhtgLjUPUY6VxmQ==
+X-Proofpoint-GUID: 31ZXuxH2sekhmJnzOFE_UzTewFr9ZpDM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-10_02,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 clxscore=1015 malwarescore=0 lowpriorityscore=0
+ phishscore=0 priorityscore=1501 impostorscore=0 suspectscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
 
-Hi deee Ho Lee,
-
-And Thanks for the review!
-
-On 09/10/2025 19:18, Lee Jones wrote:
-> On Tue, 07 Oct 2025, Matti Vaittinen wrote:
+On Fri, Oct 10, 2025 at 05:17:44PM +0530, Sudarshan Shetty wrote:
+> Add binding support for the QCS615-based Talos EVK SMARC platform.
 > 
->> The ROHM BD72720 is a power management IC which continues the BD71828
->> family of PMICs. Similarly to the BD71815 and BD71828, the BD72720
->> integrates regulators, charger, RTC, clock gate and GPIOs.
->>
->> The main difference to the earlier PMICs is that the BD72720 has two
->> different I2C slave addresses. In addition to the registers behind the
->> 'main I2C address', most of the charger (and to some extent LED) control
->> is done via registers behind a 'secondary I2C slave address', 0x4c.
->>
->> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
->>
->> ---
->> Note: This patch depends on the series: "power: supply: add charger for
->> BD71828" by Andreas:
->> https://lore.kernel.org/all/20250918-bd71828-charger-v5-0-851164839c28@kemnade.info/
->>
->> There are some new variants being planned. Most notably, the BD73900
->> should be almost identical to the BD72720 - for everything else except
->> the charger block.
->> ---
+> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-// snip
-
->> +
->> +static struct regmap *bd72720_secondary_regmap;
-> 
-> Dynamically allocate this and add it to .platform_data once it's
-> populated.
-> 
-
-This can be done but I suppose it's unnecessary churn. This driver does 
-not (at the moment) support more than one instance of the PMIC anyways. 
-(The button data is not alloacted).
-
-This is not really a problem as typically there is only 1 of these PMICs 
-to be controlled.
-
-// snip
-
->>   
->> +/*
->> + * The BD72720 is an odd beast in that it contains two separate sets of
->> + * registers, both starting from address 0x0. The twist is that these "pages"
->> + * are behind different I2C slave addresses. Most of the registers are behind
->> + * a slave address 0x4b, which will be used as the "main" address for this
->> + * device.
->> + * Most of the charger related registers are located behind slave address 0x4c.
->> + * It is tempting to push the dealing with the charger registers and the extra
->> + * 0x4c device in power-supply driver - but perhaps it's better for the sake of
->> + * the cleaner re-use to deal with setting up all of the regmaps here.
->> + * Furthermore, the LED stuff may need access to both of these devices.
->> + */
->> +#define BD72720_SECONDARY_I2C_SLAVE 0x4c
->> +static const struct regmap_range bd72720_volatile_ranges_4b[] = {
->> +	{
->> +		/* RESETSRC1 and 2 are write '1' to clear */
->> +		.range_min = BD72720_REG_RESETSRC_1,
->> +		.range_max = BD72720_REG_RESETSRC_2,
-> 
-> regmap_reg_range()?
-
-Ah, thanks. Out of the curiosity - do you know why this macro is written 
-on lowercase?
-
-// snip
->> +static int bd72720_set_type_config(unsigned int **buf, unsigned int type,
->> +				   const struct regmap_irq *irq_data,
->> +				   int idx, void *irq_drv_data)
->> +{
->> +	const struct regmap_irq_type *t = &irq_data->type;
->> +
->> +	/*
->> +	 * The regmap IRQ ecpects IRQ_TYPE_EDGE_BOTH to be written to register
->> +	 * as logical OR of the type_falling_val and type_rising_val. This is
->> +	 * not how the BD72720 implements this configuration, hence we need
->> +	 * to handle this specific case separately.
->> +	 */
->> +	if (type == IRQ_TYPE_EDGE_BOTH) {
->> +		buf[0][idx] &= ~t->type_reg_mask;
->> +		buf[0][idx] |= BD72720_GPIO_IRQ_TYPE_BOTH;
->> +
->> +		return 0;
->> +	}
->> +
->> +	return regmap_irq_set_type_config_simple(buf, type, irq_data, idx,
->> +						 irq_drv_data);
-> 
-> Use 100-chars to avoid these pointless wraps please.
-
-gnarl. I think we have discussed this before :)
-I would love to keep the lines short - closer to 80 chars - because that 
-way I can fit 3 terminals on my screen. All the years spent staring at 
-the monitor are taking their toll, and my vision isn't as good as it 
-used to be. Frightening thing being that it seems I will only need to 
-increase the font in the future :/
-
-Well, sure the lines can be split if you feel strongly about it - but I 
-have a real reason (other than the usual - "they have always been like 
-that") to try keep them short...
-
->> +}
->> +
->>   static const struct regmap_irq_chip bd71828_irq_chip = {
->>   	.name = "bd71828_irq",
->>   	.main_status = BD71828_REG_INT_MAIN,
->> @@ -465,6 +814,28 @@ static const struct regmap_irq_chip bd71815_irq_chip = {
->>   	.irq_reg_stride = 1,
->>   };
->>   
->> +static const unsigned int bd72720_irq_type_base = BD72720_REG_GPIO1_CTRL;
-> 
-> This makes it look like a global variable, which I am allergic to.
-> 
-> Perhaps make it clear that this is a single element static array instead.
-
-Ok. Just a comment will do?
-
->> +static const struct regmap_irq_chip bd72720_irq_chip = {
->> +	.name = "bd72720_irq",
->> +	.main_status = BD72720_REG_INT_LVL1_STAT,
->> +	.irqs = &bd72720_irqs[0],
->> +	.num_irqs = ARRAY_SIZE(bd72720_irqs),
->> +	.status_base = BD72720_REG_INT_PS1_STAT,
->> +	.unmask_base = BD72720_REG_INT_PS1_EN,
->> +	.config_base = &bd72720_irq_type_base,
->> +	.num_config_bases = 1,
->> +	.num_config_regs = 2,
->> +	.set_type_config = bd72720_set_type_config,
->> +	.ack_base = BD72720_REG_INT_PS1_STAT,
->> +	.init_ack_masked = true,
->> +	.num_regs = 12,
->> +	.num_main_regs = 1,
->> +	.sub_reg_offsets = &bd72720_sub_irq_offsets[0],
->> +	.num_main_status_bits = 8,
->> +	.irq_reg_stride = 1,
->> +};
->> +
->>   static int set_clk_mode(struct device *dev, struct regmap *regmap,
->>   			int clkmode_reg)
->>   {
->> @@ -511,6 +882,25 @@ static void bd71828_remove_poweroff(void *data)
->>   	pm_power_off = NULL;
->>   }
->>   
->> +static int bd72720_get_secondary_regmap(struct i2c_client *i2c,
-> 
-> Does this 'secondary' have a specific purpose or a better name?
-
-I am not entirely sure. When I asked this from the designers they just 
-told me that they needed more than 255 registers so they added another 
-slave address... (I'm not sure what would have been wrong with using a 
-page register). So, I assume they just placed stuff that didn't fit in 
-first 255 register there. But yeah, it looks like most of the registers 
-there are related to the charger. So, perhaps it isn't completely 
-misleading to use "charger regmap"? The data-sheet seems to be just 
-using "Register map 1" and "Register map 2" in the tables listing these 
-registers. I kind of like using something which maps easily to the 
-data-sheet, but I really have no strong opinion on this.
-
->> +					const struct mfd_cell *mfd, int cells)
->> +{
-
-// snip
-
->> diff --git a/include/linux/mfd/rohm-bd72720.h b/include/linux/mfd/rohm-bd72720.h
->> new file mode 100644
->> index 000000000000..856a6962b1b2
->> --- /dev/null
->> +++ b/include/linux/mfd/rohm-bd72720.h
->> @@ -0,0 +1,632 @@
->> +/* SPDX-License-Identifier: GPL-2.0-or-later */
->> +/*
->> + * Copyright 2024 ROHM Semiconductors.
-> 
-> Seems odd to introduce a new file with an old date.
-
-I originally wrote this last year :) I can it update though. Thanks.
+Please don't send new versions of your series as a response to a
+previous iteration. Always start a new thread for each iteration,
+otherwise some of the tools (and developers) might get confused.
 
 > 
->> + *
->> + * Author: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
->> + */
->> +
->> +#ifndef _MFD_BD72720_H
->> +#define _MFD_BD72720_H
->> +
->> +#include <linux/regmap.h>
->> +
->> +enum {
->> +	BD72720_BUCK1,
->> +	BD72720_BUCK2,
->> +	BD72720_BUCK3,
->> +	BD72720_BUCK4,
->> +	BD72720_BUCK5,
->> +	BD72720_BUCK6,
->> +	BD72720_BUCK7,
->> +	BD72720_BUCK8,
->> +	BD72720_BUCK9,
->> +	BD72720_BUCK10,
->> +	BD72720_BUCK11,
->> +	BD72720_LDO1,
->> +	BD72720_LDO2,
->> +	BD72720_LDO3,
->> +	BD72720_LDO4,
->> +	BD72720_LDO5,
->> +	BD72720_LDO6,
->> +	BD72720_LDO7,
->> +	BD72720_LDO8,
->> +	BD72720_LDO9,
->> +	BD72720_LDO10,
->> +	BD72720_LDO11,
->> +	BD72720_REGULATOR_AMOUNT,
->> +};
->> +
->> +/* BD72720 interrupts */
->> +#define BD72720_INT_LONGPUSH_MASK BIT(0)
+> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+> index 0a3222d6f368..a323be3d2ba2 100644
+> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+> @@ -862,6 +862,7 @@ properties:
+>        - items:
+>            - enum:
+>                - qcom,qcs615-ride
+> +              - qcom,talos-evk
+>            - const: qcom,qcs615
+>            - const: qcom,sm6150
+>  
+> -- 
+> 2.34.1
 > 
-> Tab out the values please.
 
-Ok, sure.
-
-Ps.
-I do really appreciate you going through RFCs :) Kudos!
-
-Yours,
-	-- Matti
-
+-- 
+With best wishes
+Dmitry
 
