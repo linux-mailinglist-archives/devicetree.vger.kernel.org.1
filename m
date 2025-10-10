@@ -1,442 +1,159 @@
-Return-Path: <devicetree+bounces-225501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CA0FBCE77C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 22:17:09 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA693BCE7CA
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 22:26:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05F3719A6137
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 20:17:32 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 99F9F4F5553
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 20:26:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD49A302CD8;
-	Fri, 10 Oct 2025 20:16:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B660F302168;
+	Fri, 10 Oct 2025 20:26:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ZcdvpwkU"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="W5m/ACAI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f202.google.com (mail-yw1-f202.google.com [209.85.128.202])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CFE3302CB0
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 20:16:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.202
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D47E530215B;
+	Fri, 10 Oct 2025 20:26:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760127396; cv=none; b=T/Jmlk4zs8htHYhfsGENutWiCLge19JV2WIg4CG8XaqT/5lv011sh0Ka5tUfVH4iTh3tejyxMvBb06uI9l/x2ydOKc56RQ9eFQZan00eVsxv7SydUpIf4NOjTUka3Jgi2npKaeNA8gyUubTp+6+AGfPDq7beLiAZkNEQyb84q4w=
+	t=1760127988; cv=none; b=LGHRbmRF8Tt25c7s25Gt8n0w6UwU7ZkGAYZccwRT5bKTLdeAVbgiWPvoig7WeMSmLWnrpNitxcwaYcjhbCLrlraWqz/1KTzkD98EpipzaVDFL6FAhMUWb5ZhksYUKzMNc5j3Y9b5og2j6I0Rb104m7DjJr8oVBFRsMimbvFG0x4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760127396; c=relaxed/simple;
-	bh=Gxr/xHISJIb/7lG6eaw48pT14+frhZAw4fChJseEZ7s=;
-	h=Date:In-Reply-To:Mime-Version:References:Message-ID:Subject:From:
-	 To:Cc:Content-Type; b=jkRAJUx3o6csYWz/Y8n54Q8IszrgeEGWq0bDFn2QFTPXT6vVqgPP7mxCU6GRAzcE1tG+T4m+DDzIkZuP4hb2M2U+CrWjkb7V1S6IVFh8q5ZDd4QqLgoodbvkUiX8dzruo2rCyM2nDvRG+9TW4YAB6s+n+GYQxIwNd67UGOcJ3S0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ZcdvpwkU; arc=none smtp.client-ip=209.85.128.202
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--royluo.bounces.google.com
-Received: by mail-yw1-f202.google.com with SMTP id 00721157ae682-7448a11535aso54285307b3.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 13:16:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1760127393; x=1760732193; darn=vger.kernel.org;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=9cy6GouhBVW6s2NTnVqmrY/myMZPh7UG7EmUWWoH+r4=;
-        b=ZcdvpwkU2RuTUaSy2eIxQdkjQHcsKIjS3whDihImXxvjkdB6DadBHVuDGET31e9z/f
-         oRKBGfst8qAMxQsoO9TROh2zNKTzpqwRX0GieF6tsrUhZZw/XR+KA4U+p7q50Zz7tcsL
-         mVMaeyp/L7RfyDkCXNu5wPLMdWa3rtadz8r0N9AKqvZljqaksVGbHt+Z6BupAOvdbWRX
-         5fmao/+eXAIeIK9GM/U+oPtSD4HEbWgsKqfEIaRDP6TMh9bau62WLPN+j/jcK1DYkVpJ
-         e8MVuPGqXAuUL/IxVKvVTwbttwS4PiLgX0EVU6mk3WOjYwZv8CXJ8UdwijLRu+60O+BZ
-         OoBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760127393; x=1760732193;
-        h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9cy6GouhBVW6s2NTnVqmrY/myMZPh7UG7EmUWWoH+r4=;
-        b=XLNi919MftVNpHiKdcC6PCbqefSm7Ova8eq0L4AHpAeLRcgFRqFWAqVGsJrfhfRvrl
-         sv8LPZzOWld43e7YnvK937+9eXgb/d4wRNSi3PWWNCnmaXTq75MrBfEklu/dyQnIyWVG
-         V1g40rpc6UHURDeWKDUWb3/x2lh2RtoqYvU3L74V+ZKL87maCR1cBqogRnx7/5r9s51T
-         BqkPSqWGdebzwiQXfSiReiLt5MHRKjRsJqiKgPpRJXrpYOVnIB6BoqWV3QRXQ1G4hSX+
-         D4p+fVsSg3a1ZoFBPKpCmX6U2AhqUJ/mIctLIQIbzKx/ZyDlue1DHu7CL5YRq/ddIqCF
-         Z6cQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUBGyccMmQII75kOnS+B9ayxVkgF4mdoNOOF3A4EBJfA8K1R8FSVthOUYxfHDP4vN5FqboMjClYDW4j@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxeHT82bWI3IYk5sR6+miePS2BIP8ZV/P40aup0vc2EjINlmWd
-	G+a98EDHvd6rXpdhXJrnTT4EzbreEn62CRNUby6/fQvFTlycFhElzDOUe9bF9QYh0Me4kKSzMCB
-	zUdxIHw==
-X-Google-Smtp-Source: AGHT+IEbWQmNfsUoS0E86B8Mc7MgJPmXk9Os/ELYWWcQPdwSpoX4iRHmFp337Cqx69RXAXo6fdN1nrsPZUQ=
-X-Received: from ywu4.prod.google.com ([2002:a05:690c:9a84:b0:767:a90d:1198])
- (user=royluo job=prod-delivery.src-stubby-dispatcher) by 2002:a05:690c:3693:b0:780:f8b7:c177
- with SMTP id 00721157ae682-780f8b7c4f5mr91345807b3.16.1760127393148; Fri, 10
- Oct 2025 13:16:33 -0700 (PDT)
-Date: Fri, 10 Oct 2025 20:16:07 +0000
-In-Reply-To: <20251010201607.1190967-1-royluo@google.com>
+	s=arc-20240116; t=1760127988; c=relaxed/simple;
+	bh=AscKgj05BtJh9IDBr3hGSKSH55FRqss4Bu8m5A4Qt98=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E6hWGqiYgBk5McO0NGOv/s2U9KO5hyjw2lXz00++A03y6ZQFWXdK7gf0CaaKYmTJKSsjGfm44KWe8aJg34IFKeR5PcMQGA8o41RV5WBE08kJFmuF3RMUu+CIBXpqht6u1Em4yaGoMzjJZCZyb0snIAisWef1fZHkb8G/7qV9uSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=W5m/ACAI; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1760127987; x=1791663987;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=AscKgj05BtJh9IDBr3hGSKSH55FRqss4Bu8m5A4Qt98=;
+  b=W5m/ACAIQ4ncsE5THaX4vwN3w8NwhqKl8cTxoV6K/WU1wDUWF07p1bgS
+   HEZSvylzwp9Balhl6U3kgjlHFeJOH3wZ5sdl0SzJq3K3eFYfp3V5DdGJ8
+   WcXgjdjx1Fy9FsvpKT3fKS0I74q5KtuPGV8px7BNYDnIvXkFvroH7A1Qd
+   GGAD2ovM6q25EJfB8uZWwPfwXPnXqAd0V4jwkxnFOqkuIGtr9+LNpos9s
+   ase7EYOBXUoxaaLkVQ3Ij/6g6wYNzDd/c6BSd6RQUzcs3GcQydpainuR2
+   ylxYTzqvmYrRhYWUqbTriQHBnvCNgcq8iv0aDmCd4SZPByTFeH2WYBlfG
+   Q==;
+X-CSE-ConnectionGUID: nxUdditGT4SdL4DPjIVB2Q==
+X-CSE-MsgGUID: UC+4J0GCQLSu0qoeU3WB5w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11578"; a="64974407"
+X-IronPort-AV: E=Sophos;i="6.19,220,1754982000"; 
+   d="scan'208";a="64974407"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2025 13:26:26 -0700
+X-CSE-ConnectionGUID: Fhe87ZQLTb6TwXu4exd1Hg==
+X-CSE-MsgGUID: kEAcKQVcRpKmqg4V6RHnnQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.19,220,1754982000"; 
+   d="scan'208";a="181010994"
+Received: from lkp-server01.sh.intel.com (HELO 6a630e8620ab) ([10.239.97.150])
+  by fmviesa006.fm.intel.com with ESMTP; 10 Oct 2025 13:26:21 -0700
+Received: from kbuild by 6a630e8620ab with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1v7Jgx-000391-0y;
+	Fri, 10 Oct 2025 20:26:19 +0000
+Date: Sat, 11 Oct 2025 04:25:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: James Calligeros <jcalligeros99@gmail.com>,
+	Sven Peter <sven@kernel.org>, Janne Grunau <j@jannau.net>,
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
+	Neal Gompa <neal@gompa.dev>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Jonathan Corbet <corbet@lwn.net>
+Cc: oe-kbuild-all@lists.linux.dev, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v3 06/13] hwmon: Add Apple Silicon SMC hwmon driver
+Message-ID: <202510110421.ZnJdu1ds-lkp@intel.com>
+References: <20251007-macsmc-subdevs-v3-6-d7d3bfd7ae02@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20251010201607.1190967-1-royluo@google.com>
-X-Mailer: git-send-email 2.51.0.740.g6adb054d12-goog
-Message-ID: <20251010201607.1190967-5-royluo@google.com>
-Subject: [PATCH v3 4/4] phy: Add Google Tensor SoC USB PHY driver
-From: Roy Luo <royluo@google.com>
-To: Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Peter Griffin <peter.griffin@linaro.org>, 
-	"=?UTF-8?q?Andr=C3=A9=20Draszik?=" <andre.draszik@linaro.org>, Tudor Ambarus <tudor.ambarus@linaro.org>
-Cc: Joy Chakraborty <joychakr@google.com>, Naveen Kumar <mnkumar@google.com>, Roy Luo <royluo@google.com>, 
-	Badhri Jagan Sridharan <badhri@google.com>, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20251007-macsmc-subdevs-v3-6-d7d3bfd7ae02@gmail.com>
 
-Support the USB PHY found on Google Tensor G5. This particular USB PHY
-supports both high-speed and super-speed operations, and is integrated
-with the SNPS DWC3 controller that's also on the SoC.
-This initial patch specifically adds functionality for high-speed.
+Hi James,
 
-Co-developed-by: Joy Chakraborty <joychakr@google.com>
-Signed-off-by: Joy Chakraborty <joychakr@google.com>
-Co-developed-by: Naveen Kumar <mnkumar@google.com>
-Signed-off-by: Naveen Kumar <mnkumar@google.com>
-Signed-off-by: Roy Luo <royluo@google.com>
----
- drivers/phy/Kconfig          |  15 ++
- drivers/phy/Makefile         |   1 +
- drivers/phy/phy-google-usb.c | 286 +++++++++++++++++++++++++++++++++++
- 3 files changed, 302 insertions(+)
- create mode 100644 drivers/phy/phy-google-usb.c
+kernel test robot noticed the following build errors:
 
-diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index 58c911e1b2d2..a01f91d6e05e 100644
---- a/drivers/phy/Kconfig
-+++ b/drivers/phy/Kconfig
-@@ -101,6 +101,21 @@ config PHY_NXP_PTN3222
- 	  schemes. It supports all three USB 2.0 data rates: Low Speed, Full
- 	  Speed and High Speed.
- 
-+config PHY_GOOGLE_USB
-+	tristate "Google Tensor SoC USB PHY driver"
-+	depends on HAS_IOMEM
-+	depends on OF
-+	depends on TYPEC
-+	depends on USB_DWC3_GOOGLE
-+	select GENERIC_PHY
-+	default USB_DWC3_GOOGLE
-+	help
-+	  Enable support for the USB PHY on Google Tensor SoCs, starting with
-+	  the G5 generation. This driver provides the PHY interfaces to
-+	  interact with the SNPS eUSB2 and USB 3.2/DisplayPort Combo PHY, both
-+	  of which are integrated with the DWC3 USB controller.
-+	  This driver currently supports USB high-speed.
-+
- source "drivers/phy/allwinner/Kconfig"
- source "drivers/phy/amlogic/Kconfig"
- source "drivers/phy/broadcom/Kconfig"
-diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index c670a8dac468..1d7a1331bd19 100644
---- a/drivers/phy/Makefile
-+++ b/drivers/phy/Makefile
-@@ -13,6 +13,7 @@ obj-$(CONFIG_PHY_SNPS_EUSB2)		+= phy-snps-eusb2.o
- obj-$(CONFIG_USB_LGM_PHY)		+= phy-lgm-usb.o
- obj-$(CONFIG_PHY_AIROHA_PCIE)		+= phy-airoha-pcie.o
- obj-$(CONFIG_PHY_NXP_PTN3222)		+= phy-nxp-ptn3222.o
-+obj-$(CONFIG_PHY_GOOGLE_USB)		+= phy-google-usb.o
- obj-y					+= allwinner/	\
- 					   amlogic/	\
- 					   broadcom/	\
-diff --git a/drivers/phy/phy-google-usb.c b/drivers/phy/phy-google-usb.c
-new file mode 100644
-index 000000000000..883abe64300c
---- /dev/null
-+++ b/drivers/phy/phy-google-usb.c
-@@ -0,0 +1,286 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * phy-google-usb.c - Google USB PHY driver
-+ *
-+ * Copyright (C) 2025, Google LLC
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/reset.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+#include <linux/mutex.h>
-+#include <linux/cleanup.h>
-+#include <linux/usb/typec_mux.h>
-+
-+#define USBCS_USB2PHY_CFG19_OFFSET 0x0
-+#define USBCS_USB2PHY_CFG19_PHY_CFG_PLL_FB_DIV GENMASK(19, 8)
-+
-+#define USBCS_USB2PHY_CFG21_OFFSET 0x8
-+#define USBCS_USB2PHY_CFG21_PHY_ENABLE BIT(12)
-+#define USBCS_USB2PHY_CFG21_REF_FREQ_SEL GENMASK(15, 13)
-+#define USBCS_USB2PHY_CFG21_PHY_TX_DIG_BYPASS_SEL BIT(19)
-+
-+#define USBCS_PHY_CFG1_OFFSET 0x28
-+#define USBCS_PHY_CFG1_SYS_VBUSVALID BIT(17)
-+
-+#define USBCS_TOP_CTRL_CFG1_OFFSET 0x0
-+#define USBCS_TOP_CTRL_CFG1_USB2ONLY_MODE BIT(5)
-+
-+enum google_usb_phy_id {
-+	GOOGLE_USB2_PHY,
-+	GOOGLE_USB_PHY_NUM,
-+};
-+
-+struct google_usb_phy_instance {
-+	int index;
-+	struct phy *phy;
-+	struct clk *clk;
-+	struct reset_control *rst;
-+};
-+
-+struct google_usb_phy {
-+	struct device *dev;
-+	void __iomem *u2phy_cfg_base;
-+	void __iomem *dp_top_base;
-+	void __iomem *usb_top_cfg_base;
-+	struct google_usb_phy_instance insts[GOOGLE_USB_PHY_NUM];
-+	/* serialize phy access */
-+	struct mutex phy_mutex;
-+	struct typec_switch_dev *sw;
-+	enum typec_orientation orientation;
-+};
-+
-+static inline struct google_usb_phy *to_google_usb_phy(struct google_usb_phy_instance *inst)
-+{
-+	return container_of(inst, struct google_usb_phy, insts[inst->index]);
-+}
-+
-+static void set_vbus_valid(struct google_usb_phy *gphy)
-+{
-+	u32 reg;
-+
-+	if (gphy->orientation == TYPEC_ORIENTATION_NONE) {
-+		reg = readl(gphy->dp_top_base + USBCS_PHY_CFG1_OFFSET);
-+		reg &= ~USBCS_PHY_CFG1_SYS_VBUSVALID;
-+		writel(reg, gphy->dp_top_base + USBCS_PHY_CFG1_OFFSET);
-+	} else {
-+		reg = readl(gphy->dp_top_base + USBCS_PHY_CFG1_OFFSET);
-+		reg |= USBCS_PHY_CFG1_SYS_VBUSVALID;
-+		writel(reg, gphy->dp_top_base + USBCS_PHY_CFG1_OFFSET);
-+	}
-+}
-+
-+static int google_usb_set_orientation(struct typec_switch_dev *sw,
-+				      enum typec_orientation orientation)
-+{
-+	struct google_usb_phy *gphy = typec_switch_get_drvdata(sw);
-+
-+	dev_dbg(gphy->dev, "set orientation %d\n", orientation);
-+
-+	gphy->orientation = orientation;
-+
-+	if (pm_runtime_suspended(gphy->dev))
-+		return 0;
-+
-+	guard(mutex)(&gphy->phy_mutex);
-+
-+	set_vbus_valid(gphy);
-+
-+	return 0;
-+}
-+
-+static int google_usb2_phy_init(struct phy *_phy)
-+{
-+	struct google_usb_phy_instance *inst = phy_get_drvdata(_phy);
-+	struct google_usb_phy *gphy = to_google_usb_phy(inst);
-+	u32 reg;
-+	int ret = 0;
-+
-+	dev_dbg(gphy->dev, "initializing usb2 phy\n");
-+
-+	guard(mutex)(&gphy->phy_mutex);
-+
-+	 /*
-+	  * TODO: usb2only mode should be removed once usb3 is supported
-+	  */
-+	reg = readl(gphy->usb_top_cfg_base + USBCS_TOP_CTRL_CFG1_OFFSET);
-+	reg |= USBCS_TOP_CTRL_CFG1_USB2ONLY_MODE;
-+	writel(reg, gphy->usb_top_cfg_base + USBCS_TOP_CTRL_CFG1_OFFSET);
-+
-+	reg = readl(gphy->u2phy_cfg_base + USBCS_USB2PHY_CFG21_OFFSET);
-+	reg &= ~USBCS_USB2PHY_CFG21_PHY_TX_DIG_BYPASS_SEL;
-+	reg &= ~USBCS_USB2PHY_CFG21_REF_FREQ_SEL;
-+	reg |= FIELD_PREP(USBCS_USB2PHY_CFG21_REF_FREQ_SEL, 0);
-+	writel(reg, gphy->u2phy_cfg_base + USBCS_USB2PHY_CFG21_OFFSET);
-+
-+	reg = readl(gphy->u2phy_cfg_base + USBCS_USB2PHY_CFG19_OFFSET);
-+	reg &= ~USBCS_USB2PHY_CFG19_PHY_CFG_PLL_FB_DIV;
-+	reg |= FIELD_PREP(USBCS_USB2PHY_CFG19_PHY_CFG_PLL_FB_DIV, 368);
-+	writel(reg, gphy->u2phy_cfg_base + USBCS_USB2PHY_CFG19_OFFSET);
-+
-+	set_vbus_valid(gphy);
-+
-+	ret = clk_prepare_enable(inst->clk);
-+	if (ret)
-+		return ret;
-+
-+	ret = reset_control_deassert(inst->rst);
-+	if (ret) {
-+		clk_disable_unprepare(inst->clk);
-+		return ret;
-+	}
-+
-+	reg = readl(gphy->u2phy_cfg_base + USBCS_USB2PHY_CFG21_OFFSET);
-+	reg |= USBCS_USB2PHY_CFG21_PHY_ENABLE;
-+	writel(reg, gphy->u2phy_cfg_base + USBCS_USB2PHY_CFG21_OFFSET);
-+
-+	return ret;
-+}
-+
-+static int google_usb2_phy_exit(struct phy *_phy)
-+{
-+	struct google_usb_phy_instance *inst = phy_get_drvdata(_phy);
-+	struct google_usb_phy *gphy = to_google_usb_phy(inst);
-+	u32 reg;
-+
-+	dev_dbg(gphy->dev, "exiting usb2 phy\n");
-+
-+	guard(mutex)(&gphy->phy_mutex);
-+
-+	reg = readl(gphy->u2phy_cfg_base + USBCS_USB2PHY_CFG21_OFFSET);
-+	reg &= ~USBCS_USB2PHY_CFG21_PHY_ENABLE;
-+	writel(reg, gphy->u2phy_cfg_base + USBCS_USB2PHY_CFG21_OFFSET);
-+
-+	reset_control_assert(inst->rst);
-+	clk_disable_unprepare(inst->clk);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops google_usb2_phy_ops = {
-+	.init		= google_usb2_phy_init,
-+	.exit		= google_usb2_phy_exit,
-+};
-+
-+static struct phy *google_usb_phy_xlate(struct device *dev,
-+					const struct of_phandle_args *args)
-+{
-+	struct google_usb_phy *gphy = dev_get_drvdata(dev);
-+
-+	if (args->args[0] >= GOOGLE_USB_PHY_NUM) {
-+		dev_err(dev, "invalid PHY index requested from DT\n");
-+		return ERR_PTR(-ENODEV);
-+	}
-+	return gphy->insts[args->args[0]].phy;
-+}
-+
-+static int google_usb_phy_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct google_usb_phy *gphy;
-+	struct phy *phy;
-+	struct google_usb_phy_instance *inst;
-+	struct phy_provider *phy_provider;
-+	struct typec_switch_desc sw_desc = { };
-+	int ret;
-+
-+	gphy = devm_kzalloc(dev, sizeof(*gphy), GFP_KERNEL);
-+	if (!gphy)
-+		return -ENOMEM;
-+
-+	dev_set_drvdata(dev, gphy);
-+	gphy->dev = dev;
-+
-+	ret = devm_mutex_init(dev, &gphy->phy_mutex);
-+	if (ret)
-+		return ret;
-+
-+	gphy->u2phy_cfg_base = devm_platform_ioremap_resource_byname(pdev,
-+								     "u2phy_cfg");
-+	if (IS_ERR(gphy->u2phy_cfg_base))
-+		return dev_err_probe(dev, PTR_ERR(gphy->u2phy_cfg_base),
-+				    "invalid usb2 cfg csr\n");
-+
-+	gphy->dp_top_base = devm_platform_ioremap_resource_byname(pdev,
-+								  "dp_top");
-+	if (IS_ERR(gphy->dp_top_base))
-+		return dev_err_probe(dev, PTR_ERR(gphy->dp_top_base),
-+				    "invalid dp top csr\n");
-+
-+	gphy->usb_top_cfg_base = devm_platform_ioremap_resource_byname(pdev,
-+								       "usb_top_cfg");
-+	if (IS_ERR(gphy->usb_top_cfg_base))
-+		return dev_err_probe(dev, PTR_ERR(gphy->usb_top_cfg_base),
-+				    "invalid usb top cfg csr\n");
-+
-+	inst = &gphy->insts[GOOGLE_USB2_PHY];
-+	inst->index = GOOGLE_USB2_PHY;
-+	phy = devm_phy_create(dev, NULL, &google_usb2_phy_ops);
-+	if (IS_ERR(phy))
-+		return dev_err_probe(dev, PTR_ERR(phy),
-+				     "failed to create usb2 phy instance\n");
-+	inst->phy = phy;
-+	phy_set_drvdata(phy, inst);
-+	inst->clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(inst->clk))
-+		return dev_err_probe(dev, PTR_ERR(inst->clk),
-+				     "failed to get usb2 phy clk\n");
-+	inst->rst = devm_reset_control_get(dev, NULL);
-+	if (IS_ERR(inst->rst))
-+		return dev_err_probe(dev, PTR_ERR(inst->rst),
-+				     "failed to get usb2 phy reset\n");
-+
-+	phy_provider = devm_of_phy_provider_register(dev, google_usb_phy_xlate);
-+	if (IS_ERR(phy_provider))
-+		return dev_err_probe(dev, PTR_ERR(phy_provider),
-+				     "failed to register phy provider\n");
-+
-+	pm_runtime_enable(dev);
-+
-+	sw_desc.fwnode = dev_fwnode(dev);
-+	sw_desc.drvdata = gphy;
-+	sw_desc.name = fwnode_get_name(dev_fwnode(dev));
-+	sw_desc.set = google_usb_set_orientation;
-+
-+	gphy->sw = typec_switch_register(dev, &sw_desc);
-+	if (IS_ERR(gphy->sw))
-+		return dev_err_probe(dev, PTR_ERR(gphy->sw),
-+				     "failed to register typec switch\n");
-+
-+	return 0;
-+}
-+
-+static void google_usb_phy_remove(struct platform_device *pdev)
-+{
-+	struct google_usb_phy *gphy = dev_get_drvdata(&pdev->dev);
-+
-+	typec_switch_unregister(gphy->sw);
-+	pm_runtime_disable(&pdev->dev);
-+}
-+
-+static const struct of_device_id google_usb_phy_of_match[] = {
-+	{
-+		.compatible = "google,gs5-usb-phy",
-+	},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, google_usb_phy_of_match);
-+
-+static struct platform_driver google_usb_phy = {
-+	.probe	= google_usb_phy_probe,
-+	.remove = google_usb_phy_remove,
-+	.driver = {
-+		.name		= "google-usb-phy",
-+		.of_match_table	= google_usb_phy_of_match,
-+	}
-+};
-+
-+module_platform_driver(google_usb_phy);
-+MODULE_LICENSE("GPL");
-+MODULE_DESCRIPTION("Google USB phy driver");
+[auto build test ERROR on c746c3b5169831d7fb032a1051d8b45592ae8d78]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/James-Calligeros/dt-bindings-rtc-Add-Apple-SMC-RTC/20251010-092141
+base:   c746c3b5169831d7fb032a1051d8b45592ae8d78
+patch link:    https://lore.kernel.org/r/20251007-macsmc-subdevs-v3-6-d7d3bfd7ae02%40gmail.com
+patch subject: [PATCH v3 06/13] hwmon: Add Apple Silicon SMC hwmon driver
+config: sparc-allmodconfig (https://download.01.org/0day-ci/archive/20251011/202510110421.ZnJdu1ds-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20251011/202510110421.ZnJdu1ds-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202510110421.ZnJdu1ds-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/hwmon/macsmc-hwmon.c: In function 'macsmc_hwmon_write_f32':
+>> drivers/hwmon/macsmc-hwmon.c:246:24: error: implicit declaration of function 'FIELD_PREP' [-Wimplicit-function-declaration]
+     246 |                 fval = FIELD_PREP(FLT_SIGN_MASK, neg) |
+         |                        ^~~~~~~~~~
+
+
+vim +/FIELD_PREP +246 drivers/hwmon/macsmc-hwmon.c
+
+   225	
+   226	static int macsmc_hwmon_write_f32(struct apple_smc *smc, smc_key key, int value)
+   227	{
+   228		u64 val;
+   229		u32 fval = 0;
+   230		int exp = 0, neg;
+   231	
+   232		val = abs(value);
+   233		neg = val != value;
+   234	
+   235		if (val) {
+   236			int msb = __fls(val) - exp;
+   237	
+   238			if (msb > 23) {
+   239				val >>= msb - FLT_MANT_BIAS;
+   240				exp -= msb - FLT_MANT_BIAS;
+   241			} else if (msb < 23) {
+   242				val <<= FLT_MANT_BIAS - msb;
+   243				exp += msb;
+   244			}
+   245	
+ > 246			fval = FIELD_PREP(FLT_SIGN_MASK, neg) |
+   247			       FIELD_PREP(FLT_EXP_MASK, exp + FLT_EXP_BIAS) |
+   248			       FIELD_PREP(FLT_MANT_MASK, val);
+   249		}
+   250	
+   251		return apple_smc_write_u32(smc, key, fval);
+   252	}
+   253	
+
 -- 
-2.51.0.740.g6adb054d12-goog
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
