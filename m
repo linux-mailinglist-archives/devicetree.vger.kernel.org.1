@@ -1,138 +1,136 @@
-Return-Path: <devicetree+bounces-225181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C04FBCB5FA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 03:51:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E791BCB60F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 03:57:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6C44C4E5124
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 01:51:55 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 5483D4E45CB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 01:57:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69ECD13C3CD;
-	Fri, 10 Oct 2025 01:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A5F42045B7;
+	Fri, 10 Oct 2025 01:56:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CnDV+2hH"
+	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="IP3p6Q1e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpbg154.qq.com (smtpbg154.qq.com [15.184.224.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FF0CDDC5;
-	Fri, 10 Oct 2025 01:51:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D76BC1DFE09;
+	Fri, 10 Oct 2025 01:56:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=15.184.224.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760061112; cv=none; b=JNc32DqAJBqeR74K8C6d8YI3M5VSqZ0OIdX5xaHEzurRzd7pmQA3nARYz94U4fQVRPOrrfA5mIo0U7Xk3sLxQ1cIonyAWALkmHlBIfLpjHxXxsuhXFB2KEyCz4fvw/H/XbD0XqKBxpwPFVSvcjkdud6b+bv34qOhfIVd6QzNTqw=
+	t=1760061419; cv=none; b=acZ/udiOu3S7ovkZ/GIW/2iknqkNFUmH4yOBeCUr2n6PuogVR1ZvS0hLJ+EMHr9+ZGfYUNnZNFJ+s+kpqsQozK9PnXfuaCvz5lb2VFrGs/TnVP4KWvdS1e+PsEwnDZMgHtcFT7JA6ueUlevKGArHYzJIHTo5Xw17iV6RXKkDaPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760061112; c=relaxed/simple;
-	bh=dkB6fdpTFBXzre8Ol8wQB91/KFyloPbHgVKGDiUe7z0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XSBVse5Rhi7dCXPeAsMxiCbLXZWdW8oRElAu5ruVx2DWf/kKjDAhGLl0Ctib4Mnob/8/KWibUBDXrnV7suJJQIdhARJF3ygUFiDcYp1KRolF+U//n6RPl3JfpV2Mqvh9/adaeviOuc9vMMj4Qr5ApIapIRMw4eqReOMdbHLcfjs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CnDV+2hH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF028C4CEE7;
-	Fri, 10 Oct 2025 01:51:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760061111;
-	bh=dkB6fdpTFBXzre8Ol8wQB91/KFyloPbHgVKGDiUe7z0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CnDV+2hHyceKibppma+7u3LrE9ZbYtlsG80QNSrC+OjDpdM78j/s9VxTdL/X9hKxd
-	 g7DkRZUBa9PpgCFF4uN5LXzbGeRjZdOulA48njYTde51znjlIwcOe+p6kUzYjTbMHa
-	 WPg3vfTsrjjSH0IS5oQGdwZijqOp7RhStDczUjMA+YXE2rV8Tbj5k6+IEBm3dZHKy9
-	 BDay/a4TKa1qxE71J/IESbEYB498E4JU/JX2LvgDxOHjzTv3HHjax0NYPVeJLyhj+5
-	 HnO5X4AZCYH+/EwC3JYQbJSn4tSO8aVQxnD/SBENJADTjOUAaAcWcDB0MNkzmY8C4k
-	 mwesfnm7mCPcQ==
-Message-ID: <030bf0c8-c710-4b4e-a1fe-9754eaa0d335@kernel.org>
-Date: Fri, 10 Oct 2025 03:51:43 +0200
+	s=arc-20240116; t=1760061419; c=relaxed/simple;
+	bh=8JRImo+QHxwUhWzjvIREcd7a0LJS2+I0PAcbb7327jE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SUnOx3tZQecj4b0un+z18HZjKQ6Q00gMITpSnXFpT/VQwLOUVO47aArNxl4DrapIps3zatupWFcKnM2BlMlAizSouGhPLUO9GAcquBEoB1fO3kev3F0jLX4nGi/YcCPDGJXocESsibgNBReS1Qp3c25r0QXrTmPPVHI2jqX85JM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=IP3p6Q1e; arc=none smtp.client-ip=15.184.224.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
+	s=mxsw2412; t=1760061407;
+	bh=ZVmyHGZ5/a4VGE9Sqr8Y7J7QfKmQk/JgxVkPEgUWgqI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:To;
+	b=IP3p6Q1ePR3yVCj2lvAu09GW8lkoLacNbIx72TgnK+cb3dMZCgOEn7jk1ldbEnrIE
+	 xw8VKVdB17CNbSlZUi/9KvAbpjgZdCS84QAvqPBYorBcll7WIRfFi5ahlg6TvPlYFx
+	 xHEEdJRISJrKeSl5GlsWmkX97oHLz32IbQ7EEOtg=
+X-QQ-mid: esmtpgz12t1760061401t772b4fb9
+X-QQ-Originating-IP: 9yUPyFi0REviDgtQdUjqnqSZf3F9sx1EUu7TcumO3Ng=
+Received: from = ( [61.145.255.150])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 10 Oct 2025 09:56:39 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 9320719454535500342
+EX-QQ-RecipientCnt: 14
+From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Subject: [PATCH v2 0/5] riscv: dts: spacemit: add initial support for
+ MusePi Pro
+Date: Fri, 10 Oct 2025 09:56:29 +0800
+Message-Id: <20251010-k1-musepi-pro-dts-v2-0-6e1b491f6f3e@linux.spacemit.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: arm: rockchip: add RK3588 DP carrier
- from Theobroma Systems
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- quentin.schulz@cherry.de, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, damon.ding@rock-chips.com,
- Heiko Stuebner <heiko.stuebner@cherry.de>
-References: <20251009225050.88192-1-heiko@sntech.de>
- <20251009225050.88192-2-heiko@sntech.de>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20251009225050.88192-2-heiko@sntech.de>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAM1n6GgC/x3MwQpAQBCA4VfRnE2taQmvIgfsYBK2HaTk3W2O3
+ +H/H1AOwgp18kDgS1T2LYLSBIa52yZGcdFAhnJTUYlLhuup7AV92NEdirktHJnBWup6iJ0PPMr
+ 9P5v2fT/a0LQ8YwAAAA==
+X-Change-ID: 20250928-k1-musepi-pro-dts-546d20c442ab
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>, Yangyu Chen <cyy@cyyself.name>
+Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1760061399; l=1172;
+ i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
+ bh=8JRImo+QHxwUhWzjvIREcd7a0LJS2+I0PAcbb7327jE=;
+ b=llDOybGRdR+Use70f2OI4PX2IRWKaiO6FREv3lo9kGDdwztbKKu9xmNZ46V5jVJsbXlK4dy0O
+ Qry8+7u1VBLCgRFK29ldBkXXa2U3rUCODamaadHEvObqkorp3bT2Tfq
+X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
+ pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpgz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: Nc/ZqqWhd0QKmPZBaaKsdrvx+HzGGSqIg1TnXnDHh06w8IuRr+R2+bUX
+	DAZF7aKYxLhJLu3L0eFS3aDhYzBTQoIvDDnoWmJd6a7L4wJJDBY/6pNKje9aytyzNrXU7Ov
+	NyU8K+y/e4vdBKNeDXVkmm8lOeMwd+mZw8Tbov+vO0qET4ii4i2Su7Vq5RUXqEQFrXMXv1s
+	SyM3NNt7sh9bc1JMT9ryhTC81hsoM6jm63LaqoDJvN/P/ujx8dWf4nNbFTopMq2Ez9EYfta
+	xs0+6v27ncqLQuwuhFYeWXZFka0aSKtz+yZwGTQ2q5K8sh+6EjC5p5TJg52aOApIQN1Fs5D
+	wcZ2IBXK9nk7yTi3uiyxUzseT1kAcH8Ny5J5bcl1ygcwCjXEWcTEhKtCMT86JdENPTsoYIi
+	h0PfODPpodN1fFldahOicDMwL830nwC6BrNQlTuAMTvJae+hVOX7j5GFAdhOecsIw5Or0i1
+	qY/kj/g/GUZ+rJ9ZcxDO+tYmdkNsZElRv0F0EyS87M4Dv5OzqKEYXCSfdFOoMgAYo7ggZ3o
+	gz6tsm0WHZADBQ3WkwBgNT/zF5FOAoiALRr6Wbb0dFIwuAHc1P5yMXk1HfrRJOXfFvfa+IG
+	O5RnqtvaYSVxYxqyP1MUsu/9MeNqAWyA5jomUZsEGDRDb+oCjOenfqhOHS27IqeZRAo9J1N
+	UHgweLJRH736FSwF7mhWeZtLtO86k4xpqvo1MZk+EwxzR03TjIMPIIxjLerige4HqoFz3P+
+	ZFi+g0dOmvwQmRM93xKD5TciSY7wtdeUOCoK2qSmSHj79a0N93k+NuK5LPCGG0I1R+mqzn8
+	WI8xKwmN5JD1FVguK9z8smsuWRdQuwOxfg2IDCIb/tMCnPqEq8no9Mb5DNA5W/LwKEgfcUo
+	G2FowHEWP9hfz+zd+zi8B0d3HgNFg75weYQbH+2LDJbpW+8t/UEiHiCkUpCWQiJbuQvhOHP
+	Uq2oos22vd9PtA/QwM1hRCtm3mLAfrqCifB4Qv7aJ6XCMlst4ZC777XvOFun0eQJnLJ8219
+	D4aKIDB34ZZxN54V+Uni4CB8g+a4D0a1SZngJfw3E2OYPsX1pCrVTukgVXTSYFYPWhbyl0N
+	Wi46iJwjqeDTqSjLgi8oANd6FrOKE0HlZGg8zLPIATDlDOdPyDzEpjYwV52chygCPqVS8VU
+	7+wB
+X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
+X-QQ-RECHKSPAM: 0
 
-On 10/10/2025 00:50, Heiko Stuebner wrote:
-> From: Heiko Stuebner <heiko.stuebner@cherry.de>
-> 
-> The DisplayPort carrier is a very simple baseboard only providing serial,
-> ethernet and a displayport output.
-> 
-> But its main functionality is that it routes the Analogix eDP controller
-> to this DisplayPort output, which allows to test that controller simply
-> by hooking it up to a suitable monitor.
-> 
-> Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
-> Acked-by: "Rob Herring (Arm)" <robh@kernel.org>
+This patchset adds initial device tree support for the MusePi Pro board.
 
-Please update your b4. Quotes are not needed. Weird that you had to add
-them somehow, because they were not in previous version.
+Muse Pi Pro [1] is a single-board computer integrating a high-performance
+RISC-V 8-core processor, storage, I/O and expansion capabilities into
+a credit card-sized 1.8-inch board.
 
-> Signed-off-by: Heiko Stuebner <heiko.stuebner@cherry.de>
-> Link: https://lore.kernel.org/r/20250723190904.37792-2-heiko@sntech.de
+Link:
+https://developer.spacemit.com/documentation?token=YJtdwnvvViPVcmkoPDpcvwfVnrh&type=pdf
+[1]
 
-That is not really useful Link. Points to the same patch.
+Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+---
+Troy Mitchell (5):
+      dt-bindings: riscv: spacemit: add MusePi Pro board
+      riscv: dts: spacemit: add MusePi Pro board device tree
+      riscv: dts: spacemit: enable PDMA on MusePi Pro
+      riscv: dts: spacemit: enable eMMC on MusePi Pro
+      riscv: dts: spacemit: add Ethernet support for MusePi Pro
 
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
+ .../devicetree/bindings/riscv/spacemit.yaml        |  1 +
+ arch/riscv/boot/dts/spacemit/Makefile              |  1 +
+ arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts     | 77 ++++++++++++++++++++++
+ 3 files changed, 79 insertions(+)
+---
+base-commit: 93e3e1281b369a386a4942bb50111def06902e1f
+change-id: 20250928-k1-musepi-pro-dts-546d20c442ab
+
 Best regards,
-Krzysztof
+-- 
+Troy Mitchell <troy.mitchell@linux.spacemit.com>
+
 
