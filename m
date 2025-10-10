@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-225299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8D9DBCC3BA
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 10:55:05 +0200 (CEST)
+Received: from ams.mirrors.kernel.org (ams.mirrors.kernel.org [IPv6:2a01:60a::1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0369DBCC596
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 11:31:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09C5E1A659D6
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 08:55:29 +0000 (UTC)
+	by ams.mirrors.kernel.org (Postfix) with ESMTPS id 32B2935512D
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 09:31:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 511DE265CCB;
-	Fri, 10 Oct 2025 08:54:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BFB826A08A;
+	Fri, 10 Oct 2025 09:31:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="e8J6sVgC"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="TBSXId8M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F05A3261B78;
-	Fri, 10 Oct 2025 08:54:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91CF022A7E9;
+	Fri, 10 Oct 2025 09:30:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760086494; cv=none; b=ILr0aBubocuEP+qn80ESKKjJ7TShNYm63D3wvDszgTIwmxWbiyt+tk/1dUzPRjXkFMlgnvrEMhbddiAHy17W1zZJgLYw6H/YX4Ov9Rk7vfA7cu9Efnfv7RxvxGVrA5T1NRriRBXcV5cRn2Qi2zdUjZonfatplHkQyzCQvUTG9Ck=
+	t=1760088662; cv=none; b=bF/TszJppW6GfgBc2YRp9zUzxLxuPwl2/1XrrcOI7cAui/kaUpXBvTu/MnPnRA5MBjolp1HMre5YlA+tvPDhWD1b8F2FIaNm8rtI4G5jLVL5UcVqwo7gMfZYXDXV+yFWoFNVErJdBTYPg+xRabUYz/yhPoYegsdnNcVnrEWvCj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760086494; c=relaxed/simple;
-	bh=CrUs1NP4YOYCk+5ZUTVFQ0pTGgFQRWJmsI0YBc7lBkc=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gh+c/7yrpU7hmycU8DLjAW3AxwrNPfsYSevoaMDC5QCcIoF2K5UB5ZtYqLCf/LPrZ+k742sGADXKwVu0sBBbfjeVsJs25qlaW36bWx/1haIya/7aUpKTrDe3a3cv7hg9tjWysa2Zb0mGluL/inJaNM+FvP3Q8724kK2w+UOH6ho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=e8J6sVgC; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 59A8sT6b281036;
-	Fri, 10 Oct 2025 03:54:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1760086469;
-	bh=wB/HYQ7QEESMaiQ3QgfZZclLbgOnx9lxI1pXcjrBU/U=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=e8J6sVgCSyi9PXJh6D5JBvXo3iGg2LXwzwRyfQGppqmhiGUQRaUo73905FyowYWeY
-	 IWLBGOmftT024SCEGSdWCAipv6rZtSm7SArS3XaE8b2kTTAUtIKzF9fsK3PtbCsm/s
-	 B+6tOw0ZxSmxfTU8JhgJSbSkqNtDK7999YVYvQko=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 59A8sT9r938420
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 10 Oct 2025 03:54:29 -0500
-Received: from DFLE215.ent.ti.com (10.64.6.73) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 10
- Oct 2025 03:54:28 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE215.ent.ti.com
- (10.64.6.73) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
- Transport; Fri, 10 Oct 2025 03:54:28 -0500
-Received: from lelvem-mr06.itg.ti.com ([10.250.165.138])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 59A8sC6F1398374;
-	Fri, 10 Oct 2025 03:54:21 -0500
-From: Baojun Xu <baojun.xu@ti.com>
-To: <broonie@kernel.org>, <tiwai@suse.de>
-CC: <andriy.shevchenko@linux.intel.com>, <13916275206@139.com>,
-        <shenghao-ding@ti.com>, <baojun.xu@ti.com>,
-        <linux-sound@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <lgirdwood@gmail.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>, <k-yi@ti.com>,
-        <henry.lo@ti.com>, <robinchen@ti.com>, <jesse-ji@ti.com>,
-        <will-wang@ti.com>, <jim.shil@goertek.com>, <toastcheng@google.com>,
-        <chinkaiting@google.com>
-Subject: [PATCH v7 2/2] ASoC: dt-bindings: ti,tas2781: Add TAS5802, TAS5815, and TAS5828
-Date: Fri, 10 Oct 2025 16:53:49 +0800
-Message-ID: <20251010085349.52951-2-baojun.xu@ti.com>
-X-Mailer: git-send-email 2.43.0.windows.1
-In-Reply-To: <20251010085349.52951-1-baojun.xu@ti.com>
-References: <20251010085349.52951-1-baojun.xu@ti.com>
+	s=arc-20240116; t=1760088662; c=relaxed/simple;
+	bh=RV3nJe9Z1SgqRSaEEuLg6xCo0XUPt0Jjp+OWmtet9u8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=avCcQe+r8KGCq4vSqyC6L14hSYeaSUsXI0MWIGF0FyAc2lrScVqjRNwnYEVl37zR03FaGlyvlysLkVY1aMwEce5/ieE8/t8qF1VVfa5EmFkwx1VkT5I03o79IJJ0SsJ9ZIxXNUHOu8RQ2UVhZT4BF0VXWnFXBKSMNM7/Pg/vJuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=TBSXId8M; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: b80c3fbea5b911f0b33aeb1e7f16c2b6-20251010
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=H3of7YrV+5xb3g+5AFeitSvuyxLrTP7gdg0SAaNkM/Q=;
+	b=TBSXId8MeghtkdQdoKlJ9p1GaCK0zAoV9r8UMyjvfeHcn3biK0RnxwLKphjeQ3KVTBXYguXviLVLS8ze/FejInz8drRhuYhuix9fVoB1k7FU5jCr/X7e81GBbYiT8+8BzxWMxJi7kq8Hc64X4hsQ3ZcTF5bN5nXDj3OuYdxBgjQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.6,REQID:ad416515-59ca-47b7-ac2e-e80579715fe9,IP:0,UR
+	L:0,TC:0,Content:100,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:100
+X-CID-META: VersionHash:a9d874c,CLOUDID:d8ef06b9-795c-4f99-91f3-c115e0d49051,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102|836|888|898,TC:-5,Content:3|15|5
+	0,EDM:-3,IP:nil,URL:99|1,File:130,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI
+	:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: b80c3fbea5b911f0b33aeb1e7f16c2b6-20251010
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
+	(envelope-from <jjian.zhou@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1610317772; Fri, 10 Oct 2025 17:15:52 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.10; Fri, 10 Oct 2025 17:15:50 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1748.10 via Frontend Transport; Fri, 10 Oct 2025 17:15:49 +0800
+From: Jjian Zhou <jjian.zhou@mediatek.com>
+To: Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Jjian Zhou
+	<Jjian.Zhou@mediatek.com>, Chen-Yu Tsai <wenst@chromium.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Jjian Zhou
+	<jjian.zhou@mediatek.com>
+Subject: [PATCH v8 0/2] add VCP mailbox driver
+Date: Fri, 10 Oct 2025 17:15:10 +0800
+Message-ID: <20251010091549.21325-1-jjian.zhou@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,132 +80,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-MTK: N
 
-TAS5802, TAS5815, and TAS5828 are in same family with TAS5825, TAS5827,
-TAS5802 and TAS5815 share same address setting, and TAS5828
-share same address setting with TAS5827.
+Hi everyone,
 
-Signed-off-by: Baojun Xu <baojun.xu@ti.com>
+This is v8 of my VCP mailbox driver.
 
----
-v7:
- - Updated the patch subject
-v6:
- - Change the patch title and the description in more detail
-v5:
- - Change the patch title and the description
-v4:
- - Change the patch title
- - Add TAS5802 support in yaml file
- - Change description for missed TAS5815
- - Change format to keep all lines within 80 bytes in length
-v3:
- - Rewrite the patch title
- - Add TAS5815 support in yaml file
-v2:
- - Update description for TAS5828
- - Change commit tree to .../tiwai/sound.git
----
- .../devicetree/bindings/sound/ti,tas2781.yaml | 43 ++++++++++++++++---
- 1 file changed, 37 insertions(+), 6 deletions(-)
+Changes since v8:
+- Rebase onto next-20251008 and fixed build breaks.
 
-diff --git a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-index bd00afa47d62..7f84f506013c 100644
---- a/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-+++ b/Documentation/devicetree/bindings/sound/ti,tas2781.yaml
-@@ -24,10 +24,10 @@ description: |
-   Instruments Smart Amp speaker protection algorithm. The
-   integrated speaker voltage and current sense provides for real time
-   monitoring of loudspeaker behavior.
--  The TAS5825/TAS5827 is a stereo, digital input Class-D audio
--  amplifier optimized for efficiently driving high peak power into
--  small loudspeakers. An integrated on-chip DSP supports Texas
--  Instruments Smart Amp speaker protection algorithm.
-+  The TAS5802/TAS5815/TAS5825/TAS5827/TAS5828 is a stereo, digital input
-+  Class-D audio amplifier optimized for efficiently driving high peak
-+  power into small loudspeakers. An integrated on-chip DSP supports
-+  Texas Instruments Smart Amp speaker protection algorithm.
- 
-   Specifications about the audio amplifier can be found at:
-     https://www.ti.com/lit/gpn/tas2120
-@@ -35,8 +35,10 @@ description: |
-     https://www.ti.com/lit/gpn/tas2563
-     https://www.ti.com/lit/gpn/tas2572
-     https://www.ti.com/lit/gpn/tas2781
-+    https://www.ti.com/lit/gpn/tas5815
-     https://www.ti.com/lit/gpn/tas5825m
-     https://www.ti.com/lit/gpn/tas5827
-+    https://www.ti.com/lit/gpn/tas5828m
- 
- properties:
-   compatible:
-@@ -65,11 +67,21 @@ properties:
-       Protection and Audio Processing, 16/20/24/32bit stereo I2S or
-       multichannel TDM.
- 
-+      ti,tas5802: 22-W, Inductor-Less, Digital Input, Closed-Loop Class-D
-+      Audio Amplifier with 96-Khz Extended Processing and Low Idle Power
-+      Dissipation.
-+
-+      ti,tas5815: 30-W, Digital Input, Stereo, Closed-loop Class-D Audio
-+      Amplifier with 96 kHz Enhanced Processing
-+
-       ti,tas5825: 38-W Stereo, Inductor-Less, Digital Input, Closed-Loop 4.5V
-       to 26.4V Class-D Audio Amplifier with 192-kHz Extended Audio Processing.
- 
--      ti,tas5827: 47-W Stereo, Digital Input, High Efficiency Closed-Loop Class-D
--      Amplifier with Class-H Algorithm
-+      ti,tas5827: 47-W Stereo, Digital Input, High Efficiency Closed-Loop
-+      Class-D Amplifier with Class-H Algorithm
-+
-+      ti,tas5828: 50-W Stereo, Digital Input, High Efficiency Closed-Loop
-+      Class-D Amplifier with Hybrid-Pro Algorithm
-     oneOf:
-       - items:
-           - enum:
-@@ -80,8 +92,11 @@ properties:
-               - ti,tas2563
-               - ti,tas2570
-               - ti,tas2572
-+              - ti,tas5802
-+              - ti,tas5815
-               - ti,tas5825
-               - ti,tas5827
-+              - ti,tas5828
-           - const: ti,tas2781
-       - enum:
-           - ti,tas2781
-@@ -177,12 +192,28 @@ allOf:
-             minimum: 0x38
-             maximum: 0x3f
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - ti,tas5802
-+              - ti,tas5815
-+    then:
-+      properties:
-+        reg:
-+          maxItems: 4
-+          items:
-+            minimum: 0x54
-+            maximum: 0x57
-+
-   - if:
-       properties:
-         compatible:
-           contains:
-             enum:
-               - ti,tas5827
-+              - ti,tas5828
-     then:
-       properties:
-         reg:
--- 
-2.25.1
+Changes since v7:
+- mtk-vcp-mailbox.c:
+  - Change type u32 to u16.
+  - Change BIT(ipi_info->index) to if.
+  - Put the platform_set_drvdata between "of_device_get_match_data"
+    and "platform_get_irq".
+- mtk-vcp-mailbox.h
+  - Modify the definition to MTK_VCP_MBOX_SLOT_MAX_SIZE.
+
+Changes since v6:
+- mtk-vcp-mailbox.c:
+  - Replace mtk_vcp_mbox_priv with mtk_vcp_mbox.
+  - Move mbox_controller to the first member.
+  - Define "struct mbox_chan chan"; Remove allocate one during the probe.
+  - Remove API get_mtk_vcp_mbox_priv.
+  - Pass the private data since there's only one mailbox.
+  - Modify mtk_vcp_mbox_xlate "return &mbox->chans[0]".
+
+Changes since v5:
+- binding:
+  - Patch 1 fix 'make dt_binding_check' errors.
+  - Link to v5
+    https://patchwork.kernel.org/project/linux-mediatek/patch/20250822021217.1598-2-jjian.zhou@mediatek.com/
+
+Changes since v4:
+- binding:
+  - Match the binding file name and compatible.
+- mtk-vcp-mailbox.c:
+  - Drop 'dev_dbg(dev, "MTK VCP mailbox initialized\n")'.
+- Since the reviewer hopes to combine the VCP IPC driver and
+  the VCP driver for a unified review, the original three patches
+  have been split into two parts: the VCP mailbox driver and
+  the binding remain together, while the VCP IPC driver is merged
+  with the VCP driver and submitted as one.
+- Link to v4
+  https://lore.kernel.org/all/20250820094545.23821-1-jjian.zhou@mediatek.com/
+
+Changes since v3:
+- binding:
+  - Remove unused lable '|' and 'vcp_mailbox0'.
+- Link to v3
+  https://lore.kernel.org/all/20250317110331.2776-1-jjian.zhou@mediatek.com/
+
+Changes since v1:
+- Link to v1
+  https://lore.kernel.org/all/20250305082047.15746-1-jjian.zhou@mediatek.com/
+
+In the v2 version, there is ongoing discussion about whether the VCP's
+IPC should use mailbox or rpmsg. To prevent the discussion records
+from being lost, the previous discussion link is attached.
+https://lore.kernel.org/all/CAGXv+5FXqZb_v2dQNgCKbFpJrLhbVk3f0sWrrMCVk3jaWwoBqA@mail.gmail.com/
+
+
+Jjian Zhou (2):
+  dt-bindings: mailbox: mediatek,mt8196-vcp-mbox: add mtk vcp-mbox
+    document
+  mailbox: mediatek: Add mtk-vcp-mailbox driver
+
+ .../mailbox/mediatek,mt8196-vcp-mbox.yaml     |  49 +++++
+ drivers/mailbox/Kconfig                       |   9 +
+ drivers/mailbox/Makefile                      |   2 +
+ drivers/mailbox/mtk-vcp-mailbox.c             | 170 ++++++++++++++++++
+ include/linux/mailbox/mtk-vcp-mailbox.h       |  32 ++++
+ 5 files changed, 262 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/mediatek,mt8196-vcp-mbox.yaml
+ create mode 100755 drivers/mailbox/mtk-vcp-mailbox.c
+ create mode 100755 include/linux/mailbox/mtk-vcp-mailbox.h
+
+--
+2.45.2
 
 
