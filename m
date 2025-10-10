@@ -1,151 +1,146 @@
-Return-Path: <devicetree+bounces-225185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2022FBCB627
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 03:57:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B80F8BCB630
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 03:58:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 709134FB131
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 01:57:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4C2019E79E4
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 01:58:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 767822264C0;
-	Fri, 10 Oct 2025 01:57:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE25D226D17;
+	Fri, 10 Oct 2025 01:57:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b="pOtv92mW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SNMa1U7C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpbg151.qq.com (smtpbg151.qq.com [18.169.211.239])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C4F288AD;
-	Fri, 10 Oct 2025 01:57:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=18.169.211.239
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3E9922172E;
+	Fri, 10 Oct 2025 01:57:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760061430; cv=none; b=SqA4KoLiDfnVIPBYCwK4wqR68P+9d+9r7npw9eNgizk5ZA+uVi6cY7BBXRxxAQ6EPhQubfJ2XbJuHIgx27NfNf0QZptKpgQvOQmW6sQs1o2HUn1rd3yG0wdACRIq9PUl7+xXNHfwvHidJ5TQ5T6aUgIlcdKXIKtt+oCsgUR0AI0=
+	t=1760061467; cv=none; b=QtnhcEhEDrGLsN7y4M8MBR2TocS4Cjy162JRK9+yq6FvrlU2klZPkGfFBMSTfSFJ1OnWgy6Xw4P2YMfVWhLGj+d6loFLc5/VbDD08YmF9Xxe9q6hsZ/YPmzcgiUy9oJfkVI8dRAh8JS+HlheCwpDhmzvqaFcTcknKWBj2bogJSw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760061430; c=relaxed/simple;
-	bh=8fVMPi0D436bKk5I12JlAgG0mrDgpoHjEOC1EVXL3+k=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tv9fbH6WbF7ATYh2B2ZmhnNFPZ3NvGhuc4ZPu7lQk+ekNzKuAG+g9BBRwC2orHqSFUIrIyooh1qq0fOBu1vqsKqXP14it1c8HRkum1exZxDb/QxQ1Dre1ySzBe+wzTnRHs81gdDVvgZ3WS8bXjKGMqEk8aqHnj4VtlmjBfWfH3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com; spf=none smtp.mailfrom=linux.spacemit.com; dkim=pass (1024-bit key) header.d=linux.spacemit.com header.i=@linux.spacemit.com header.b=pOtv92mW; arc=none smtp.client-ip=18.169.211.239
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux.spacemit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.spacemit.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.spacemit.com;
-	s=mxsw2412; t=1760061423;
-	bh=LW8SLJdqAoSDw7GW9cUUMcMal45y7bSOQHFDO9blFuI=;
-	h=From:Date:Subject:MIME-Version:Message-Id:To;
-	b=pOtv92mWatHLstj5DLd+FUC1pQbvtL+hvTXm0gKhGomEbXbu7VP1wOmzf6u8X9jMJ
-	 GOm8orQEKS49Y9OW8HgpmQ0b/xa8Z6bFuFkx4T/p+W4lpSJgGYvWh8MEUz2vk+lAIb
-	 FgVQSt+m/rFTiGM3GlKWF6MltfFbaRAo1Qs97yMM=
-X-QQ-mid: esmtpsz21t1760061419te84f3ea8
-X-QQ-Originating-IP: ZWQ1xL+DZDYV8pAS//7JgtDaaEfZoNg0a5O0pI42V2k=
-Received: from = ( [61.145.255.150])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Fri, 10 Oct 2025 09:56:57 +0800 (CST)
-X-QQ-SSF: 0000000000000000000000000000000
-X-QQ-GoodBg: 0
-X-BIZMAIL-ID: 10941913832204491341
-EX-QQ-RecipientCnt: 14
-From: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Date: Fri, 10 Oct 2025 09:56:34 +0800
-Subject: [PATCH v2 5/5] riscv: dts: spacemit: add Ethernet support for
- MusePi Pro
+	s=arc-20240116; t=1760061467; c=relaxed/simple;
+	bh=o3CI4EuJTyFUFn/y3ml0QJAyD26AqnEUu/PbF21PZx4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WnfnaIal3JO8El2vWDZr+2jHAj5Rh8YKh1H34S7QHmLcr1i9sj1kfLrExGvIJ9ePLHbZ+2ecY/oPX3SBmMqRgYXaPt8n+Oeo4Yaq5+WAkbgbbnDDqzZvLsk88UHXapBrVPd1jC0nhsGHx+3TP92r1jt2Sjt8vxOHYk3driwvjww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SNMa1U7C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95787C4CEE7;
+	Fri, 10 Oct 2025 01:57:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760061467;
+	bh=o3CI4EuJTyFUFn/y3ml0QJAyD26AqnEUu/PbF21PZx4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SNMa1U7CniPTaDmB56QR0lqtO3NRRXxg/NBade5ntUHbt5pSkb7l/ITWp3IRqpNer
+	 KiLe/HkC36lZpQRriWT9/nZcnMINetMxcN6FgpYvHFIvh6pH25lbtztH3UoTwdVgyv
+	 csb8ucA1mCyjFzKawUB8tPwkW1SNoLEQeaJey04D9xXrYwEFD7zOyWOq3P6kvFmqHA
+	 6wvlFNGsIdBBSkixxTatBB9fE6PMaKdR7FRSOlgOEMmX1QtOEpeF4xXcgPFe/m1yQ3
+	 BZGhsDrLAiG6qqG7mfhByIEhOhAnMWwa9yqV5ft44IABuADz/JW+5kxNI779p0KdNH
+	 Zbwdd1GS4yf0w==
+Message-ID: <b4436b4f-a54b-4294-8dd9-7a4b95711dc4@kernel.org>
+Date: Fri, 10 Oct 2025 03:57:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 1/2] dt-bindings: iio: imu: smi330: Add binding
+To: Conor Dooley <conor@kernel.org>, Jianping.Shen@de.bosch.com
+Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, dima.fedrau@gmail.com, marcelo.schmitt1@gmail.com,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Christian.Lorenz3@de.bosch.com,
+ Ulrike.Frauendorf@de.bosch.com, Kai.Dolde@de.bosch.com
+References: <20251009153149.5162-1-Jianping.Shen@de.bosch.com>
+ <20251009153149.5162-2-Jianping.Shen@de.bosch.com>
+ <20251009-squishy-poem-ddb0fdd9583d@spud>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20251009-squishy-poem-ddb0fdd9583d@spud>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20251010-k1-musepi-pro-dts-v2-5-6e1b491f6f3e@linux.spacemit.com>
-References: <20251010-k1-musepi-pro-dts-v2-0-6e1b491f6f3e@linux.spacemit.com>
-In-Reply-To: <20251010-k1-musepi-pro-dts-v2-0-6e1b491f6f3e@linux.spacemit.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>, Yangyu Chen <cyy@cyyself.name>
-Cc: devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Troy Mitchell <troy.mitchell@linux.spacemit.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1760061399; l=1192;
- i=troy.mitchell@linux.spacemit.com; s=20250710; h=from:subject:message-id;
- bh=8fVMPi0D436bKk5I12JlAgG0mrDgpoHjEOC1EVXL3+k=;
- b=9hQyo3rM7L6zXB5hetSkNx3wZrbLr3AeYBFyQtOSXpyVPaDQYrpKIHQ51TIISBfPsYlbPWxKa
- n5MuwHxuWS0BFH+9k+uCP3vgUNvyWCpw2RZTlGE8n7BP943ZTCfvDUc
-X-Developer-Key: i=troy.mitchell@linux.spacemit.com; a=ed25519;
- pk=lQa7BzLrq8DfZnChqmwJ5qQk8fP2USmY/4xZ2/MSsXc=
-X-QQ-SENDSIZE: 520
-Feedback-ID: esmtpsz:linux.spacemit.com:qybglogicsvrsz:qybglogicsvrsz3a-0
-X-QQ-XMAILINFO: NfGQECF1EzMaM/UwMlkF4ANqw/W9WWtrndFtbBUx03drgEcVcq24RVrX
-	nJ7t7LjM14/eZhLznuvZ2u1rOQfjRg4zvVEpiSYGsH+0/u2nLgX5MmqZldj4eBmnOQcuAEz
-	ZqDWUWP2EZapMwvMUeD7WTJ/OsN0PrK9ceFzk+Qd++bRhQfIj1Qa0MkP20Lff6NF4YLV4Zu
-	Ku+QKrXmlnnC3d2mJN2qt9ZzYQmMOtRGhhYDWRlKxuoig/AKCz1GVYCtSxQY1DVHRooDn5q
-	WK0rwO4b4qxQ3zSZilZwVf2j+/BCFlmXQVt5th/XgNOZJ5v0hxfVgVIJV0cdh4Q71C6DCDD
-	5JgkVpgrz9JZFBBkYjh3z9jei1NAj2AADFIe973Ct/mpUd26UphgV2JrSykmr7g6hRY9BlM
-	mYu5KQRze8nktOA3sGFGlOWEA6osNeOzKlTPIBi3P3sGLYd87uSkBL/AjNtjptrD67NKTei
-	O4esNWoGNj4mrRZyHbaVGU5HGsxZjiiBVVLdGR+0XNfrXDBKqU9NpTLBu29381jAajj2+DL
-	8NdeqAxjV38YPXLKzalFr33LlAnzNiH44JKFV6uJdi6RHuyUcpRymLmQ4EWYhsdbK6CRjzv
-	K4a4CL7pWDOcuhGovVssBVtFybNQTmy1uyIb4f0kCPYIDrRJ8eJy/+tZYFFS1p6D3rqZ/u5
-	SvvbDOes50fhnBWfmJx7tdYhXqUjCgLL2eny2PDN5lmvrr2LfowLeYQZKV1UoQkyJumG/uf
-	gkj1V/MqINb402AS9j1EhoFP+ARDzkXha7GL0EERm7QAMtT1iGHDM6oDk3IgjLN2bVucNuC
-	0zruUvzndfI/okyZi0yTy6krmtB/ufi/xVb9myzzz3LgvjcysW69pdSu37o2Ogo8AgviJmy
-	PQH7Vgm/JNCdoOP2ZkIPMmYZQTT46/6zCJ3hsB8qxOLb5YdjykfRIociETSEZQEWLLY8J9P
-	ej8MStqT0hVJL1RL7yxjgzytfWll9K4pQ2S2eZuzDAAhh4/T/fBoXWuf3Jlkvk7dfDtYI6C
-	RDaXzEjEPyVUbcL6vhcqWj907rfp3SkcH4ZGNuPhbazjyjAeCDdfvPQmlT43GK+IEZIPqFw
-	10MUZzuKtrJKdUMze7JCnD0zTPk8Hxvqyh/riZIG8uGxkMp1YofLADU+t0qBoWUpFXXs07b
-	IZE3meweMsF3SQs=
-X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
-X-QQ-RECHKSPAM: 0
 
-MusePi Pro features a single RGMII Ethernet port with
-PHY reset controlled by GPIO.
+On 09/10/2025 18:48, Conor Dooley wrote:
+> On Thu, Oct 09, 2025 at 05:31:48PM +0200, Jianping.Shen@de.bosch.com wrote:
+>> From: Jianping Shen <Jianping.Shen@de.bosch.com>
+>>
+>> Add devicetree binding for Bosch imu smi330.
+>> The smi330 is a combined three axis angular rate and
+>> three axis acceleration sensor module.
+>>
+>> Signed-off-by: Jianping Shen <Jianping.Shen@de.bosch.com>
+> 
+> https://lore.kernel.org/all/20250916-henna-rinsing-32a18a4d30b9@spud/
+> 
+> Why did you ignore my ack?
+> Didn't Jonathan already apply v4 of this two weeks ago, why is there
+> even a v5 to begin with?
 
-Signed-off-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
----
- arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts | 23 +++++++++++++++++++++++
- 1 file changed, 23 insertions(+)
+Not only v4, but also v2 and reminder in v3:
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-index 89a35914710bfd15c6ad27cd8d0de7ccf62e2309..e9a53dc7a417117c82f3e467677290bdaeffc845 100644
---- a/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-musepi-pro.dts
-@@ -47,6 +47,29 @@ &pdma {
- 	status = "okay";
- };
- 
-+&eth0 {
-+	phy-handle = <&rgmii0>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-0 = <&gmac0_cfg>;
-+	pinctrl-names = "default";
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <0>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(110) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii0: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
- &uart0 {
- 	pinctrl-0 = <&uart0_2_cfg>;
- 	pinctrl-names = "default";
-
--- 
-2.51.0
+https://lore.kernel.org/all/20250514-deserve-marina-224bef5b2db3@spud/
 
 
+and here I exactly reminded what has to be done:
+https://lore.kernel.org/all/1196da81-ecd7-487c-8afc-e0d3660fa158@kernel.org/
+
+which was completely ignored.
+
+So I can write detailed instructions and Jianping will just ignore it,
+because who am I to say anything?
+
+I will ignore future contributions from Jianping in such case. It is
+waste of our time.
+
+Best regards,
+Krzysztof
 
