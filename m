@@ -1,192 +1,273 @@
-Return-Path: <devicetree+bounces-225494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FDF8BCE6F2
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 21:55:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94FC9BCE711
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 22:02:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54CBD3BECD5
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 19:55:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49189406D93
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 20:02:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F0943016F5;
-	Fri, 10 Oct 2025 19:55:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27E1A22579E;
+	Fri, 10 Oct 2025 20:02:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="i7QtjhtD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A70/x2nD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6ABBEEC0
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 19:55:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF14C1D86D6;
+	Fri, 10 Oct 2025 20:02:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760126119; cv=none; b=INGzl8A7Uc4fI2ZDFjFguEqigZG3ZZ7sFtkjISEr3WpHFw998V+MMyu5OigcHXI6hD9XoEWWYd1VdmSXIevqxvwT2b+2f/PZKvLxVqP04bbZlHArX+ls6EOjNfLuX9Uo8yOvzMJoh+wV4ZnL5Rcy2LtjkWcCjyPfJNXie8KyQGc=
+	t=1760126545; cv=none; b=DAIUmvOvNtFclFbeARLdqQpq25lQUO32OFoZw1L/K18HbR6wT1ms8ZVKKuQDpumx0VMDAEP8q08DTZqTJ0qxisqGgR13DrNy/knp5AJciBN/WSve08W/lMqlvK0BPApzN0XnOk0f5wCCx5E/CYic3AVhc1o+J6+vs8YTg9uFcq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760126119; c=relaxed/simple;
-	bh=SimwkdUwxyOn+voLJS/BfWE2ArUJiVBnyTuBlpymv+0=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=epDd3bV/eZyQleV8UVf+QhYkyFPd6o9GcX92y4UKXtK2MGpvxZfftXP5boLOQH7q2oXIjTCX6SK9O2QK6tDei1Zh9QeRUFuO7D47tXcmw2Ea2R6ycQKyRnTuijWRxjfyyU6oYZm49g/rTyGGuA/BrcOTOzTFDm8iUWalGA4v1C8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=i7QtjhtD; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-vs1-f69.google.com (mail-vs1-f69.google.com [209.85.217.69])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 5D2403F84A
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 19:55:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20251003; t=1760126114;
-	bh=kPhA/oNdZoYVHAUf6Erq79uJcMcXf1/DDMPMdaotDWc=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=i7QtjhtDDDMyUzT0k9YybFFk4K9MHOcnmTAcstEnRpga5gtMVMbCUSDlLEq+eUhqJ
-	 5XQs+Wzu08h9HHpsIaoBx9RyIBnQmfEqdiswLx1tQe8Fh3hUKDyHn4kgLdx34iNOYd
-	 4sREcbUAvIGp1Q5/UQLoDscAkr88ILh3H8F8QhCMG2VmXvJBR6q2LPNEZqiIETnW1m
-	 p8gCpO4q7QNq59dSSstPgEt5mM5nJMXid+OdX/c7IbSfVs2zFWxm6oU0Duqg8g+fO8
-	 Xts00WvyiD/tOMfGFpwuHM3cKfyRZKYokrdWS7OINvuN20mri60o1Vu1m0rNOdnJmJ
-	 jORswfSkjfX2SvtAKo2d9GMmjwcL/g96QaJHsKgt8bK6IUZHYgqCCPmoKP+kIMcN2q
-	 aM5I3N5CBgFntyBuwwfpDBREanOD0BSCme1qS31GGNdnATQ48O04Mnrnt3muTqF0cM
-	 zzkR8iioGvqRILvj0qY+p3creBeGqfhrF8MjKBLbVUH7jRJrsAvbTgKEGHCA0Ll2jQ
-	 x65016tuyIbY/08hljj7SME88bxxODGwWvCUcjXd3sSrGxkM8ICfjREJ2MMFHGTB0y
-	 yhxbaSDwJmNg67tDsOTl1eNsMTP3jMnC//LnV1k5DzajF5lGyNPTTmNeUicFkvfrzB
-	 iIGjMlvVta1eEmPjJgjxYa8A=
-Received: by mail-vs1-f69.google.com with SMTP id ada2fe7eead31-5a265e0ed8cso2088517137.0
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 12:55:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760126113; x=1760730913;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kPhA/oNdZoYVHAUf6Erq79uJcMcXf1/DDMPMdaotDWc=;
-        b=RjGRt2Zr217rU1VSYVDYbP5RUF7vp8TDmfVPZbESRgR1Jz+5fok2bt8x8Mh/+Lzfzt
-         PZfneCbtDF/7tUWiWOd7fchTIZcmTECqbtHwE02TBF+HM3CfVLGla16KT6+Vh01NprCh
-         zutK3zo2TP80eWZXGQKHX0xDpSLztnW0zBWsgvRlKDtHPirFQmgOhxP98FDeEv+IDFkq
-         er+lZ6frNYYNj2oHN5BhZCKai7Jy2M+ktYHP1R08iBKpbQew6oS1i5gAjtItQBkjnGOf
-         ZWykxGaHj0Tl+HrgyTfHqf1CJfPXPM09Ihv/OUoTg9+PMkKCnjs2KMwdTG+sYXkMzxql
-         4yJw==
-X-Gm-Message-State: AOJu0Yxs2MDxl7RZMpxoNuiuzZ3H61dFU5kB+NNeAbpl2+mtivY6UOY7
-	0PVNZ1H6vLObYF1S28dwr2z6yBTHSxb0AllA1xKXMYoRaS5yoyluzEhUQLlG4Gr8PyJHTD20btz
-	AFVQSfwpIFyGnSWqGrJ/zfjXqgKnGaEBw1bLBLVH0Ucd6bHTovJosnFRiCM3A8B8hUfsTb0ysdm
-	Ter0Dn8siZ8JJEyFwR43wn1mbeDW4zlhY93KnpAO4/+1yqqdBpYMdFXA==
-X-Gm-Gg: ASbGncuKv78UtavyCyqcExjoUxOp5OThpicivmqRoYe4DqEUrBBWqtc+cyb+zYeWEnN
-	RXkEZnaKuAcx+5HkMutafc4p2jqzNzr8MRX8FV62vIWa5s4/x0LLx1FbwutfEAOoXfjhBg4pQrt
-	kDwe6zLfbcd5FNG2VpMNo=
-X-Received: by 2002:a05:6102:162c:b0:5d5:f6ae:74b4 with SMTP id ada2fe7eead31-5d5f6ae7587mr2959671137.40.1760126113156;
-        Fri, 10 Oct 2025 12:55:13 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGl7uSNVMd1/CraY5eNdtkJsmXLfjZq71soXKG1D0wdaThXC8TnpM49Ya9Dq+mRSUiBMq5+qPE5yVu6PxXKKHU=
-X-Received: by 2002:a05:6102:162c:b0:5d5:f6ae:74b4 with SMTP id
- ada2fe7eead31-5d5f6ae7587mr2959658137.40.1760126112724; Fri, 10 Oct 2025
- 12:55:12 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 10 Oct 2025 14:55:12 -0500
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Fri, 10 Oct 2025 14:55:12 -0500
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <178f4daf-c752-457b-8f0c-c6273f3a63dd@sifive.com>
-References: <20251009015839.3460231-1-samuel.holland@sifive.com>
- <20251009015839.3460231-17-samuel.holland@sifive.com> <CAJM55Z9kRpc53s3Kip=U-CcDxAX0UZD5AbTBy_owU8xPEYH5MA@mail.gmail.com>
- <6fa3c728-5048-4d26-9b6f-21757320caad@sifive.com> <CAJM55Z8masgGn4vVe_2g1e9WXnLu0Vf5oGxbiniGpsbOhYPLRw@mail.gmail.com>
- <178f4daf-c752-457b-8f0c-c6273f3a63dd@sifive.com>
+	s=arc-20240116; t=1760126545; c=relaxed/simple;
+	bh=mQ/9VMvF6zOXhiLTogPFW/flktBJ9draVEmT3yKQ3OE=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=fGyU5snbi3q5+U9++4Y60R2C9O+9+9MBD//6kTPucjC5fPPgKV+hQy3yszWnDNt2Ha6Ik1x1SvknX+KrzJoduMigIqJiGTyfBfEXwux6d6zL2+OyCeIyWGmnn865p8+xkyaPRzc/fFfxN8trhIVWRto1Ulwe2abiUDjlca9LH54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A70/x2nD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB61CC4CEF1;
+	Fri, 10 Oct 2025 20:02:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1760126544;
+	bh=mQ/9VMvF6zOXhiLTogPFW/flktBJ9draVEmT3yKQ3OE=;
+	h=From:Date:Subject:To:Cc:From;
+	b=A70/x2nD9FIL4094FrnWYnJUqX4bW4ppf6Zzwna7iZVvmgRFWPw+zjdbu0RMsjt4Y
+	 ymuWrcsTZ5A9AGFuv84vOO0LBuHqSo5Nn9fFe4RNVs+hJ4wUf7/daeDD8mEacSoNxZ
+	 oIY+YfPu6zlgtGvZUbCrtEL4NcFs12C4kLERduEfJJF7PW3y0bBFmFxKUgONVf661N
+	 iwNY8WNlXVQ9YCqYBMhEEtZ8v8SVg3OHoDL1cl2xgJJ3iB1JEl1bkGq2yDps+9pkpE
+	 wgOBtGM1lBwqk3I7F2K3aUAWnZy8hjbVX1moPoarS7xjiuOPpJ5HKsrws7BB1P+55y
+	 QD1D/55jGUx2Q==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Date: Fri, 10 Oct 2025 22:02:18 +0200
+Subject: [PATCH] arm64: dts: qcom: x1e80100: Move CPU idle states to their
+ respective PSCI PDs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Fri, 10 Oct 2025 14:55:12 -0500
-X-Gm-Features: AS18NWAlCRC7l99R73r3woSIp-vlQ76Jq27BWW9v6hsv7x0ENpHaGmY-XmjOCps
-Message-ID: <CAJM55Z_wOkC767T1p749aVzAL5uQD5Lw6D6eqHb9wp-f=nAO0g@mail.gmail.com>
-Subject: Re: [PATCH v2 16/18] riscv: mm: Use physical memory aliases to apply PMAs
-To: Samuel Holland <samuel.holland@sifive.com>, 
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Paul Walmsley <pjw@kernel.org>, linux-riscv@lists.infradead.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-mm@kvack.org, Conor Dooley <conor@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>, 
-	Emil Renner Berthing <kernel@esmil.dk>, Andrew Morton <akpm@linux-foundation.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20251010-topic-x1e_dt_idle-v1-1-b1c8d558e635@oss.qualcomm.com>
+X-B4-Tracking: v=1; b=H4sIAElm6WgC/x3MQQqAIBBA0avErBNGS6iuEiGlYw1EhUYE4t2Tl
+ m/xf4JIgSnCUCUI9HDk8yiQdQV2m4+VBLtiUKi0RIniPi+24pVk3G3Y7SSwwd632uml6aB0VyD
+ P7/8cp5w/T3Lk8mMAAAA=
+X-Change-ID: 20251010-topic-x1e_dt_idle-0309f45d5b38
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1760126541; l=5642;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=gGRDdmGRbPX60+lPVi1iCvjlDiMusDV4h8zXv075Au4=;
+ b=3Eurktm8tc+mnx0XiBo335JzkDla0kd9AgRnbef8bQDAOx1Ftb6ADY2Ctp0HY56/Ssp4GBYDB
+ lfxn8Wff8IsC0T07VBEGIdnetQI+lSBBYd8HkR6589xN7QQMz+skmk+
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-Samuel Holland wrote:
-> On 2025-10-10 12:04 PM, Emil Renner Berthing wrote:
-> > Samuel Holland wrote:
-> >> Hi Emil,
-> >>
-> >> Thanks for testing!
-> >>
-> >> On 2025-10-10 10:06 AM, Emil Renner Berthing wrote:
-> >>> Samuel Holland wrote:
-> > [ .. ]
-> >>>> +
-> >>>> +void __init riscv_init_memory_alias(void)
-> >>>> +{
-> >>>> +	int na = of_n_addr_cells(of_root);
-> >>>> +	int ns = of_n_size_cells(of_root);
-> >>>> +	int nc = na + ns + 2;
-> >>>> +	const __be32 *prop;
-> >>>> +	int pairs = 0;
-> >>>> +	int len;
-> >>>> +
-> >>>> +	prop = of_get_property(of_root, "riscv,physical-memory-regions", &len);
-> >>>> +	if (!prop)
-> >>>> +		return;
-> >>>> +
-> >>>> +	len /= sizeof(__be32);
-> >>>> +	for (int i = 0; len >= nc; i++, prop += nc, len -= nc) {
-> >>>> +		unsigned long base = of_read_ulong(prop, na);
-> >>>> +		unsigned long size = of_read_ulong(prop + na, ns);
-> >>>> +		unsigned long flags = be32_to_cpup(prop + na + ns);
-> >>>> +		struct memory_alias_pair *pair;
-> >>>> +		int alias;
-> >>>> +
-> >>>> +		/* We only care about non-coherent memory. */
-> >>>> +		if ((flags & PMA_ORDER_MASK) != PMA_ORDER_MEMORY || (flags & PMA_COHERENT))
-> >>>> +			continue;
-> >>>> +
-> >>>> +		/* The cacheable alias must be usable memory. */
-> >>>> +		if ((flags & PMA_CACHEABLE) &&
-> >>>> +		    !memblock_overlaps_region(&memblock.memory, base, size))
-> >>>> +			continue;
-> >>>> +
-> >>>> +		alias = FIELD_GET(PMR_ALIAS_MASK, flags);
-> >>>> +		if (alias) {
-> >>>> +			pair = NULL;
-> >>>> +			for (int j = 0; j < pairs; j++) {
-> >>>> +				if (alias == memory_alias_pairs[j].index) {
-> >>>> +					pair = &memory_alias_pairs[j];
-> >>>> +					break;
-> >>>> +				}
-> >>>> +			}
-> >>>> +			if (!pair)
-> >>>> +				continue;
-> >>>> +		} else {
-> >>>> +			/* Leave room for the null sentinel. */
-> >>>> +			if (pairs == ARRAY_SIZE(memory_alias_pairs) - 1)
-> >>>> +				continue;
-> >>>> +			pair = &memory_alias_pairs[pairs++];
-> >>>> +			pair->index = i;
-> >>>
-> >>> I think this needs to be pair->index = i + 1, so PMA_ALIAS(1) can refer to the
-> >>> first entry (i = 0).
-> >>
-> >> The code here is as intended. It's the PMA_ALIAS(1) in the DT that I should have
-> >> changed to PMA_ALIAS(0) after I removed the special first entry from the
-> >> riscv,physical-memory-regions property. Patch 18 also needs this fix.
-> >
-> > Hmm.. that doesn't quite work for me though. Then the "if (alias)" above won't
-> > trigger with PMR_ALIAS(0) right?
->
-> Yes, you're right. My fault for trying to be clever last time, where the special
-> first entry meant PMR_ALIAS(0) would never be used. (And for not testing with
-> the same DT as I sent, since EIC7700 needs downstream DT changes to integrate
-> noncoherent peripherals.)
->
-> For v3, I plan to make PMR_ALIAS(0) set a flag so it will be distinct from lack
-> of PMR_ALIAS, and keep the indexes zero-based. For now, you should be able to
-> test by keeping PMR_ALIAS(1) and adding a dummy entry at the beginning (for
-> example by copying the first entry).
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Great that also works. To be clear the JH7100 also boots with the pair->index =
-i + 1 solution above.
+To make things uniform with other Qualcomm platforms, move the CPU idle
+states under their PSCI power domains. No functional change.
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+Sorry if you received this twice, I pressed enter too fast before
+fixing the subject and cancelled it at some point in the send-email
+flow
+---
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 24 ++++++++++++------------
+ 1 file changed, 12 insertions(+), 12 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index 51576d9c935d..6c50edcb3414 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -75,7 +75,6 @@ cpu0: cpu@0 {
+ 			next-level-cache = <&l2_0>;
+ 			power-domains = <&cpu_pd0>, <&scmi_dvfs 0>;
+ 			power-domain-names = "psci", "perf";
+-			cpu-idle-states = <&cluster_c4>;
+ 
+ 			l2_0: l2-cache {
+ 				compatible = "cache";
+@@ -92,7 +91,6 @@ cpu1: cpu@100 {
+ 			next-level-cache = <&l2_0>;
+ 			power-domains = <&cpu_pd1>, <&scmi_dvfs 0>;
+ 			power-domain-names = "psci", "perf";
+-			cpu-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu2: cpu@200 {
+@@ -103,7 +101,6 @@ cpu2: cpu@200 {
+ 			next-level-cache = <&l2_0>;
+ 			power-domains = <&cpu_pd2>, <&scmi_dvfs 0>;
+ 			power-domain-names = "psci", "perf";
+-			cpu-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu3: cpu@300 {
+@@ -114,7 +111,6 @@ cpu3: cpu@300 {
+ 			next-level-cache = <&l2_0>;
+ 			power-domains = <&cpu_pd3>, <&scmi_dvfs 0>;
+ 			power-domain-names = "psci", "perf";
+-			cpu-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu4: cpu@10000 {
+@@ -125,7 +121,6 @@ cpu4: cpu@10000 {
+ 			next-level-cache = <&l2_1>;
+ 			power-domains = <&cpu_pd4>, <&scmi_dvfs 1>;
+ 			power-domain-names = "psci", "perf";
+-			cpu-idle-states = <&cluster_c4>;
+ 
+ 			l2_1: l2-cache {
+ 				compatible = "cache";
+@@ -142,7 +137,6 @@ cpu5: cpu@10100 {
+ 			next-level-cache = <&l2_1>;
+ 			power-domains = <&cpu_pd5>, <&scmi_dvfs 1>;
+ 			power-domain-names = "psci", "perf";
+-			cpu-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu6: cpu@10200 {
+@@ -153,7 +147,6 @@ cpu6: cpu@10200 {
+ 			next-level-cache = <&l2_1>;
+ 			power-domains = <&cpu_pd6>, <&scmi_dvfs 1>;
+ 			power-domain-names = "psci", "perf";
+-			cpu-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu7: cpu@10300 {
+@@ -164,7 +157,6 @@ cpu7: cpu@10300 {
+ 			next-level-cache = <&l2_1>;
+ 			power-domains = <&cpu_pd7>, <&scmi_dvfs 1>;
+ 			power-domain-names = "psci", "perf";
+-			cpu-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu8: cpu@20000 {
+@@ -175,7 +167,6 @@ cpu8: cpu@20000 {
+ 			next-level-cache = <&l2_2>;
+ 			power-domains = <&cpu_pd8>, <&scmi_dvfs 2>;
+ 			power-domain-names = "psci", "perf";
+-			cpu-idle-states = <&cluster_c4>;
+ 
+ 			l2_2: l2-cache {
+ 				compatible = "cache";
+@@ -192,7 +183,6 @@ cpu9: cpu@20100 {
+ 			next-level-cache = <&l2_2>;
+ 			power-domains = <&cpu_pd9>, <&scmi_dvfs 2>;
+ 			power-domain-names = "psci", "perf";
+-			cpu-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu10: cpu@20200 {
+@@ -203,7 +193,6 @@ cpu10: cpu@20200 {
+ 			next-level-cache = <&l2_2>;
+ 			power-domains = <&cpu_pd10>, <&scmi_dvfs 2>;
+ 			power-domain-names = "psci", "perf";
+-			cpu-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu11: cpu@20300 {
+@@ -214,7 +203,6 @@ cpu11: cpu@20300 {
+ 			next-level-cache = <&l2_2>;
+ 			power-domains = <&cpu_pd11>, <&scmi_dvfs 2>;
+ 			power-domain-names = "psci", "perf";
+-			cpu-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu-map {
+@@ -371,61 +359,73 @@ psci {
+ 		cpu_pd0: power-domain-cpu0 {
+ 			#power-domain-cells = <0>;
+ 			power-domains = <&cluster_pd0>;
++			domain-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu_pd1: power-domain-cpu1 {
+ 			#power-domain-cells = <0>;
+ 			power-domains = <&cluster_pd0>;
++			domain-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu_pd2: power-domain-cpu2 {
+ 			#power-domain-cells = <0>;
+ 			power-domains = <&cluster_pd0>;
++			domain-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu_pd3: power-domain-cpu3 {
+ 			#power-domain-cells = <0>;
+ 			power-domains = <&cluster_pd0>;
++			domain-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu_pd4: power-domain-cpu4 {
+ 			#power-domain-cells = <0>;
+ 			power-domains = <&cluster_pd1>;
++			domain-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu_pd5: power-domain-cpu5 {
+ 			#power-domain-cells = <0>;
+ 			power-domains = <&cluster_pd1>;
++			domain-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu_pd6: power-domain-cpu6 {
+ 			#power-domain-cells = <0>;
+ 			power-domains = <&cluster_pd1>;
++			domain-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu_pd7: power-domain-cpu7 {
+ 			#power-domain-cells = <0>;
+ 			power-domains = <&cluster_pd1>;
++			domain-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu_pd8: power-domain-cpu8 {
+ 			#power-domain-cells = <0>;
+ 			power-domains = <&cluster_pd2>;
++			domain-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu_pd9: power-domain-cpu9 {
+ 			#power-domain-cells = <0>;
+ 			power-domains = <&cluster_pd2>;
++			domain-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu_pd10: power-domain-cpu10 {
+ 			#power-domain-cells = <0>;
+ 			power-domains = <&cluster_pd2>;
++			domain-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cpu_pd11: power-domain-cpu11 {
+ 			#power-domain-cells = <0>;
+ 			power-domains = <&cluster_pd2>;
++			domain-idle-states = <&cluster_c4>;
+ 		};
+ 
+ 		cluster_pd0: power-domain-cpu-cluster0 {
+
+---
+base-commit: 0b2f041c47acb45db82b4e847af6e17eb66cd32d
+change-id: 20251010-topic-x1e_dt_idle-0309f45d5b38
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
 
