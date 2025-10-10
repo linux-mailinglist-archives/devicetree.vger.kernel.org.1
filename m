@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-225376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 795C1BCCECD
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:35:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEFF3BCCF45
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:44:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6DD5D4F2A85
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 12:35:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA0D9405DCF
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 12:44:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 784D428935C;
-	Fri, 10 Oct 2025 12:35:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38E372EDD6D;
+	Fri, 10 Oct 2025 12:44:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uvkfIfB/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PotMFbUv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4438A748F;
-	Fri, 10 Oct 2025 12:35:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 086BA2673B0;
+	Fri, 10 Oct 2025 12:44:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760099753; cv=none; b=gvfV3Soj557WhcmwyNKuBV6Rp4aazS9IKzMFhOQjy/XytxSLdcTHfrY79jUk/z4zKb0OFN2TZsMFxuXmwWAYbfRXO7CHBG+peMlWiFGz7WEtpLJJgvnxBX33cRmQbdDcy8w5GMKjKIwjUvXY2Cn75ozEQ7vQh8kQB9Tc3kVr9lU=
+	t=1760100248; cv=none; b=syZZMdorYR0bBYh1XJnYNns5Ch4L7nqIwmALBFDOwaugPmYyFNgxZFbkMpQgy9ZcdxFAOKHez9pQ+Noy2Fg1xUGdFjIwFwW02Z5Ww1wLIUyg5/qW4/kqJ4lrUpkOGFY2pAuXTHnIOUdVQpUhvJRYQaUenu1wLFRa6f2WnYJr820=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760099753; c=relaxed/simple;
-	bh=qtzxoW2WXZmA8H9nR2VTDc8rWft9XW5Mu6J0sQeyMK4=;
+	s=arc-20240116; t=1760100248; c=relaxed/simple;
+	bh=z2CL8cErF6RjRybkPU3ycPqkynLp0+MowYCPJIFtBmQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fD8rV6h55XpFw7f/ATyD85WzrjXBfYlg+bFSMiUlgu8xRil45hGFBvmpJTISkeEwZN3jVce1qzEdcnLWD8uerFGguVvGP2SSlwaag9QmS9cpsZz76JXIfEUZ41mYN9jlQ+Cxd2rzTLY6cGxEBlRyZDYfxhI9kZwPFp+4A5dgVqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uvkfIfB/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D79D9C4CEF1;
-	Fri, 10 Oct 2025 12:35:47 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mVV1MKXSRMu/1xcZiAypUMLtikjc5rAUTwEfT3lLarw34mEAG/EyXPWeWHK+04NMvbC/fIgswuf+hlr2fa9vS3q8bcoYxVjXK4qm8uMV38J1DUBRc3t4c/Z+DiEUFJojr+I28yboKUabs0NDfvTJ2N8cSYCjuTsqVH/AQJiCmxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PotMFbUv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B1BAC4CEF1;
+	Fri, 10 Oct 2025 12:44:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1760099752;
-	bh=qtzxoW2WXZmA8H9nR2VTDc8rWft9XW5Mu6J0sQeyMK4=;
+	s=k20201202; t=1760100246;
+	bh=z2CL8cErF6RjRybkPU3ycPqkynLp0+MowYCPJIFtBmQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uvkfIfB/7mj6engFnO6zPHc7jOHojfCkx5Ece6zuw65/741Elrkt5AuGT5f9NvoEj
-	 Qfl1XGJ2a+JNjkYKW3pD3juND/05xoHmxEJ1ITsFRaik8tIuOfRp+nm6hSSgTMFKk6
-	 4YL8q0alzVpf4fEY9V1AEKGO1PFIELFWjHUtbMwvbIUemlU5PyE8CgLGoim+AIR4P8
-	 j2Y5I7lyOg4aceDGyu7+oqzVn1TI8Vf5OzVISclurkOn9cLBKoxLOl1DaFkB4nRE2I
-	 rxfxznOg2aYeVDAWXI5FkfTF/0Kw6yzMoULZPl14kHEgEWYS4KH+4RR2IXLQjfyuXF
-	 ZI1SA2kseNZiQ==
-Message-ID: <5f263730-497e-43e1-9970-dbfda29576e1@kernel.org>
-Date: Fri, 10 Oct 2025 14:35:44 +0200
+	b=PotMFbUvN4s0rfa+VOVFapAiP5CNN/McqucE7q+rhsH6MX/c6QPkt9uaJHH7Bb74E
+	 PAq9qG5j+rtxYZoKNNNtSr2zPbpYiJj5G8+V3d5vW5S4AfSQspt997PKTCRPauVv3k
+	 Q07iLgFEH2hYOAMw9zjELJDIh60fZoOXAuw3m/eoCm4qwMuztQ4lPJ3qXg3fhWfOd8
+	 HBli4dnplxAILMh4jod2E76n0/dEUylTixIPI68fSx1Q3ZfLGK1ubUDSivH5ziMC/Y
+	 q7zhM4Lm6XgH+AHu2eU5xSWl0IFnq8B1qTlMM8WfGC4YUHcR+t4SrpUIC3tJLlH5P0
+	 hP2pMdkrLNw8Q==
+Message-ID: <5747ce14-2963-4c5f-b43b-5437807cfb11@kernel.org>
+Date: Fri, 10 Oct 2025 14:43:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/3] pinctrl: samsung: add exynos8890 SoC pinctrl
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Alim Akhtar <alim.akhtar@samsung.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>
-Cc: linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+Subject: Re: [PATCH v6 1/3] dt-bindings: thermal: samsung: Adjust
+ '#thermal-sensor-cells' to 1
+To: Shin Son <shin.son@samsung.com>,
+ Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Henrik Grimler <henrik@grimler.se>
+Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
-References: <20250914114457.2610013-1-ivo.ivanov.ivanov1@gmail.com>
+References: <20250930005139.1424963-1-shin.son@samsung.com>
+ <CGME20250930005147epcas2p2622ff5fdbffc045bbd625e3e60db8118@epcas2p2.samsung.com>
+ <20250930005139.1424963-2-shin.son@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,17 +110,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250914114457.2610013-1-ivo.ivanov.ivanov1@gmail.com>
+In-Reply-To: <20250930005139.1424963-2-shin.son@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/09/2025 13:44, Ivaylo Ivanov wrote:
-> Hey folks,
-> 
-> This patchset adds pinctrl support for the exynos8890 SoC.
-> 
+On 30/09/2025 02:51, Shin Son wrote:
+>          reg:
+>            minItems: 1
+>            maxItems: 1
+> +        '#thermal-sensor-cells':
+> +          const: 0
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: samsung,exynosautov920-tmu
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 1
 
-Applied, but will be pushed to the next after the merge window.
+You can drop minItems. Existing binding has it unnecessarily.
+
+> +          maxItems: 1
+
+You also need clock-names restriction, just like clocks or just ": false".
+
+> +        reg:
+> +          minItems: 1
+
+This also drop.
+
+> +          maxItems: 1
+> +        '#thermal-sensor-cells':
+> +          const: 1
+>  
+
+
+Rest looks fine, so with changes above:
+
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
