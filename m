@@ -1,224 +1,649 @@
-Return-Path: <devicetree+bounces-225424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE5BABCDA3C
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 16:57:47 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42B12BCDB85
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 17:10:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A28923A65D8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 14:57:46 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id E5B504FE530
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 15:06:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 286562F6195;
-	Fri, 10 Oct 2025 14:57:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE3F12F7AB9;
+	Fri, 10 Oct 2025 15:06:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b="z6ejRtoO"
+	dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b="OIhyWEaM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11023125.outbound.protection.outlook.com [52.101.83.125])
+Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFC942F3C20;
-	Fri, 10 Oct 2025 14:57:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.125
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760108264; cv=fail; b=sxyyWsatKgNmDX5wdMCAYE2+7iYFCF8wWsiW1usKfcXmyiQZOIaX7+cq/5OWXD1Mu2WuViAPKkPf4NHDKbfjwWToRW73p9J6LK95sF9Vm8sLX0ywJD2oRpqLTvmWYYuPnFZokIOg2f9WrNB8oaTjoKMqLqrt5MUciWYkGvLU9yo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760108264; c=relaxed/simple;
-	bh=Nf3QGLJZSgC8W00coZqGheEGWtAK8mS6F9FY4huiw6Y=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=HOQv9Wddg1Rbuq//zbrdL884rC9FKpE71D54dsa0vv14dVw6bTr0eX9RoHCnczK27MJvmP6Cea20z4w6t42DAFM8B4q8ashoIP4cIdOpN9ItGvi5HGa+sJUJq0fx3BebjeKVFzBPrxMLaA4Ha22xRJGXGUpnbWk3fuToR8F/IjY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b=z6ejRtoO; arc=fail smtp.client-ip=52.101.83.125
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EzlvNNkiV564VIfvkAKwJvbuTRgCHhoPlu9nIioffs8MA3PPqXFZJNtQic64bt3GoaXFb22Y0sUVKuiZ4AIUd15zRJRl6IAjrxPv4eLAH/WcvFFyiBGMBHxeoVbKPc6WZcZXzAsJ7QzZvqg0/3WNR6b1a9sELfIJgO8o0ZIoEtJeaakQPjkKoR/iJED8lvOPgNeHWNS+aRpfoT7VYnwVoJVzCx9mKvEqvJFm4PnGhoPckZkNCzfDCdSuHfCHMeNBvNfv/t81ODCLRZuarIlUv1Z0laqQA3GVGOWgtoVk0bpr5L1fplUwZQIQT3HbxGLN2HUaYPocvgV2JWisUUGsNw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=FlSSLgS8vVosI5hb4hUKiH+dP35bTpcuKW76tnSjwjU=;
- b=AU4R26QmofFOaqkTYjLW3UkxXPNpPc3jwGMQasGgloH8bIa2+aQQGlyPXHwnnB7y5BVzHZeCQ7EEn1+wffplPnPIUyS48Ok0Guv4UdPhvyJcEnclnblMg2Ti0TwQOy8esRZ63QE3cL4yBaxClnztFDr0SGUowF9fHHRQzf7nhDRxb8jNbK3InnWglQeBnxrV7raoyEywrMJb+Q9ZXyv2RvOrriss6zszUMoxngGEY0Mlb0/6kcuRkjlWGoIcwVCrPPuSfWVnnA/68bI85ZYiKYjnmJ/vguzaadbbPXqD4mOUGo3vSI99C8SrrL/RtD1pxst/ZO/5llw1pC2kV5LOVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=iopsys.eu;
- dkim=pass header.d=iopsys.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iopsys.eu;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FlSSLgS8vVosI5hb4hUKiH+dP35bTpcuKW76tnSjwjU=;
- b=z6ejRtoOaMD80zO6Bj9VyPswu8QCG3k3TozjoicaUJhNI3MdHhvFG4R9OgVlTU7IibOJ8n12P4+WHkO7pGC4QUVAg9j2TlcBYxpShtp/mU2IMzkDJOhs+KG/NPyfMVGlaHwt90BC3ScfbAc6sjNcU8Gb0ZgHH6dWKjcH28sosc+swdNXVuvG7Z0jzETZvrn4i8aFsm/1WWRtI1Kuo/EvvlcGAwvjmI0V+WmfaEftvOinEeL6bdnj8iELDjukmebRoiG0Vdp20Kq4SwTInwqDsRMbJlBnkswQnKCWAYkfwP7h10Uv1dIi5uwDibkJLXVPhuvi2uKGUvjAJNRbKTwP/A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=iopsys.eu;
-Received: from GV2PR08MB8121.eurprd08.prod.outlook.com (2603:10a6:150:7d::22)
- by AS8PR08MB10069.eurprd08.prod.outlook.com (2603:10a6:20b:636::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Fri, 10 Oct
- 2025 14:57:38 +0000
-Received: from GV2PR08MB8121.eurprd08.prod.outlook.com
- ([fe80::4cd3:da80:2532:daa0]) by GV2PR08MB8121.eurprd08.prod.outlook.com
- ([fe80::4cd3:da80:2532:daa0%3]) with mapi id 15.20.9203.009; Fri, 10 Oct 2025
- 14:57:37 +0000
-Message-ID: <f709fe24-ca89-498a-a06d-677b703aecba@iopsys.eu>
-Date: Fri, 10 Oct 2025 17:57:35 +0300
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 16/17] dt-bindings: spi: airoha: add compatible for
- EN7523
-To: Conor Dooley <conor@kernel.org>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>, Ray Liu <ray.liu@airoha.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Andy Shevchenko <andy@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
- Andreas Gnau <andreas.gnau@iopsys.eu>
-References: <20251010033136.1475673-1-mikhail.kshevetskiy@iopsys.eu>
- <20251010033136.1475673-17-mikhail.kshevetskiy@iopsys.eu>
- <20251010-landscape-cavity-88a963e45a6b@spud>
-From: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-Content-Language: en-US, ru-RU
-In-Reply-To: <20251010-landscape-cavity-88a963e45a6b@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: FR4P281CA0446.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:c6::12) To GV2PR08MB8121.eurprd08.prod.outlook.com
- (2603:10a6:150:7d::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE752ED854
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 15:06:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760108817; cv=none; b=WKRC24GxJtK9lKasH45pm8pY84q0Hu7FQg/FO2vLFPVHYRQbazuMt6ea/vSMe3tmWeDqC53S7RWICCpGJk7LM8QR+4Rp81LRe/OFA8+bMMoaOUht6opBlYdFSuDoy2MxxPyT5QofAbDTjF5PhFiYHvANVNJMzvz800AzuUZTP8w=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760108817; c=relaxed/simple;
+	bh=Z/US3KEjSyL2RakCwrRggAzKKr2eC1u/4LViCW5viWs=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=J3fohUV151GVoZbxduo5W1tZNham3Tqqs/Q5DI2iR+SDA0jPTYcbJsGjwJv5+vuKQVIAmUtsnNHXsZbzjirQ9+00Q392OrBBvVt06L1S41yF1NnmgSMlF3rV3irzqr7ZQnCrb1fR9Ae9VIh73UEzQ48eUxVGwuERXB3OUtaQENo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (4096-bit key) header.d=canonical.com header.i=@canonical.com header.b=OIhyWEaM; arc=none smtp.client-ip=185.125.188.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from mail-ua1-f71.google.com (mail-ua1-f71.google.com [209.85.222.71])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 658EB3F857
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 15:06:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20251003; t=1760108813;
+	bh=/kPIzBIlnP8+1ybJlUvaj1s1A7p0aMMG8FHoaD+8GCA=;
+	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
+	 To:Cc:Content-Type;
+	b=OIhyWEaMUR0lIPmwfyN5higdI8JFnTGRocQu96UaBDUouwNOSppBUsef8Dd6aS813
+	 RQ/DqZg50kDSkzulH39zbkb7fAi0nTDA6INCDIB+7s5l7a9DlKHyCaKkJL8+si59sP
+	 HAly7ytCO+wvtK7aJSUW8e7YwXh4cVfY0Z+I9rCW3AQQfcgLOTuRULcWZFlPTdxeRd
+	 WDLXhq2QOcw5UuTCf4JI63UvKjSN5/ZVmto4qJNPM7k0IclaE4pK7Szx/XMCdnebSo
+	 B3vgq27g2j3xnVHoiJZhFSTK9ALIkgSt0IQknyM7FP9x0R7jy8PxTft/B00LwRUhI1
+	 2nHWgVJmkpI5Cw2xn2PMqYo8HIHVcX/ob/TtwwJdBXE6QqgS+FC3bKDJ7Y+wtmNk8Y
+	 yNXcwNfqxA8SANEvVGq5KEIo7ki0T94N9+1J1heANxayMaGkExzrC7gAnARC7OdiQK
+	 s7Lwqs7Ocduyya/uj6Ii5boRdWzd9h5d8s+BU0LTRC+JGSfkJ3lbDVIx/lducaPqJN
+	 pDcYMPMZMJuMZC/JwR4r/2AYixvJMOrKHOosx9n8eEoguxr+nS9wgHIe9M9mZfLral
+	 ZgMYoJZEktEWtVnGHWcdiQuJAMBliwSgLVBVig09FhSWLR2wXf+ZA++OVasfPD/t0v
+	 QyqV0XmpqoLvU1A9flHZdi7Q=
+Received: by mail-ua1-f71.google.com with SMTP id a1e0cc1a2514c-8fb6fe3893aso3745082241.1
+        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 08:06:53 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1760108812; x=1760713612;
+        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/kPIzBIlnP8+1ybJlUvaj1s1A7p0aMMG8FHoaD+8GCA=;
+        b=DnpGKmx2MRDIN8rUdxg/ZI7wjpcxwbkrZm9B9H9Bw6SoaF2RUW146pGLSKDM980CvQ
+         y1FKH3d6fswbBRn/wvZBEn/kqbT+sKp1cWc+MYSkVew70yvsT9B1Wr8FVkHCEddHYTql
+         OrMDrZ9HSQIlJliViIQUEj72SMEb0XXqOHOfJJSmgrv8uM2kuVjqddByJEdjHIplIHf+
+         OgbZciXHudozBmvsxbi7Xcmbh69Dh+l1HRXb0+fW9xzI9CZNF4vEUWgBAVnR4WUF9Q5B
+         m5Jo6rcVq/yzONxKTMWTZ/qpiPh67zOfwswrFKR9tVy5xyFJ11BF3qrd/vzOsopsII5b
+         aKRQ==
+X-Gm-Message-State: AOJu0YzZv8FEGWlKZiFHlgWiwP+BFuZCX+d8GfCAausioD6YgWRr1OLW
+	PRKUehtZu+FVgyMFS7gRO+FjNeMZRWXIBqKPl114B87EQErfvfRnbovUVF1g1gFuANN24e+aSX6
+	dNMgpB0+YlrWvOtXaad4Ce7DeIWz2yT1Eswhfxx9e50FcE7aTpEDNqXsZaIGT4ILnMh9XsGbq07
+	nOsYppWyNJnNwz0Z+0s0MVd5hen18CFL4hG/n4s8xcerfH512VoWbaig==
+X-Gm-Gg: ASbGnctBIqlIsiJr97lxG3AxeIDHekhXlKUzf1GkzyeMcxvPRrQiTYbiiZJVAZjNK6U
+	xJA58jMgLUa9FNaQxcUxXiNcaFC4mx3u5piswV0ZGz6V53lkpJ6wVkSe2yBTfnIv4WiFOuRqVcd
+	QNW/oWb79lHIFLQwQ7fcE=
+X-Received: by 2002:a05:6102:161f:b0:5a8:4256:1f14 with SMTP id ada2fe7eead31-5d5e23b356cmr5382839137.35.1760108811246;
+        Fri, 10 Oct 2025 08:06:51 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEGGxqoC9NIMUGHrVAplkcsAF8m0rf0JwIpMe7PyyU6GFTWwXti7Eg/qNqaS38xQ8bVTw0CwzCSy2BbFGw+jpI=
+X-Received: by 2002:a05:6102:161f:b0:5a8:4256:1f14 with SMTP id
+ ada2fe7eead31-5d5e23b356cmr5382761137.35.1760108810640; Fri, 10 Oct 2025
+ 08:06:50 -0700 (PDT)
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 10 Oct 2025 10:06:50 -0500
+Received: from 348282803490 named unknown by gmailapi.google.com with
+ HTTPREST; Fri, 10 Oct 2025 10:06:50 -0500
+From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+In-Reply-To: <20251009015839.3460231-17-samuel.holland@sifive.com>
+References: <20251009015839.3460231-1-samuel.holland@sifive.com> <20251009015839.3460231-17-samuel.holland@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR08MB8121:EE_|AS8PR08MB10069:EE_
-X-MS-Office365-Filtering-Correlation-Id: e2c969d8-e5a1-4528-4ca9-08de080d5a35
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?U081TEdsNlJYaXh3UVZLUHlYZ3dVcWdjdDhhdGhNUmxMRXRwV3ZmZzI1UUlK?=
- =?utf-8?B?WXduV2xXY0QrWG4zekdSQWlvK3dncmNjTFVNbUF2dEJLajZVK2prRjR1Slhl?=
- =?utf-8?B?WHdiZUZ4T0tXUm9WNXNET2pqS29rZjFjTTlWSkRsbm8yUTBWYVEvWUdLMEps?=
- =?utf-8?B?aFlTd2c1UURYbWlvMzcyZENmNXA3WkdGYVE3SWFTVzh3RU9xR09VMTlWVG51?=
- =?utf-8?B?QmtESHRqOUhsbjU4cHRVVjVJSC9GQmhBaWpVcXEydktGTTA1ZlpBa0pqWG53?=
- =?utf-8?B?ZlhaWFNCRG9tYUVIcGZjUkpLZWs4UTZ4ZDFuc21xbTB0S3k5WUFVSlZqa1Ry?=
- =?utf-8?B?UE0rRUhKd1VtekVLUW41bUtwNU5RZ2Y0ekdXT0VwSTF2OUZ1elhWU2g2M0Ju?=
- =?utf-8?B?MnoyMXY2bHFta1A3M1ZXWGdzeGdiNjNTNExNZFJSb0kvaWRNZWdTZ01tenZh?=
- =?utf-8?B?WkIwYVRHWU1VNWxhZkk0MFlhWUEvV3hWQ1JVR29UcUZhT2Y5SEIxb2srT3Zj?=
- =?utf-8?B?bHk1eFJoUlhRcmEva1BDRVVvWVZsVzFkQzIzWm1OOXVTRTJjL3U0eEFNRlEy?=
- =?utf-8?B?Zmk3YVFzYTRMdS9nOE5TNGpvMFZLcTFGSnhET0pnYzRRRER5TEpHUXlpYUFx?=
- =?utf-8?B?REdDQUUrM0pkWkdnUEFOVWdNMW9OTU5YRGsyNmhadWFDVHMvYlJlblRNNHBY?=
- =?utf-8?B?RTJYelVlNHI3RFRIQk9oL2paZDRDTzRuSUh3THR3TXVxQjF5eGtLZndQSEJO?=
- =?utf-8?B?ZkRMelBBcFNOK0dSM3RDekZ3UGQzengrZHRDNFhoenhKMldUUE02RWF6c0ZN?=
- =?utf-8?B?YzlTV0FJNUM2bFY4ZnVxdE5BNkg3V2xVY1U4VkZDUldqTkNXSkczSWphMUhR?=
- =?utf-8?B?V2JjQW1lT3VPWUMxQ2pDbGQwL1VFekJKTjlYR1o5Wm1uZ1FGNzh4eStKaFZG?=
- =?utf-8?B?VU14WmpyWEJKaC9FWnhiM0xkRzJXbFBEcW93K0FQOUcvWlpUWUtzUGh2MDVm?=
- =?utf-8?B?dVdRSmI4NlE4TlNRbHZLRmZwTjc0WXdNR3lja0l3T2RpTU9GekY2MUdmTnEy?=
- =?utf-8?B?VDZWdWhleTFlclg5cU1xWDh4eENBaCthNTIwaXVmWkRNc2xraVZRVnFrZGxj?=
- =?utf-8?B?T2hiek9lcmhnSmZyTGxIdWVlaitNR2ZOamt0ejVEbHBxQWdNNllSNStjbEJo?=
- =?utf-8?B?eVd0U2JZN3cxbkZuaHFQT3loei9VM095NGNDd0JlTlF4eUtyRFpUQ0duL0d3?=
- =?utf-8?B?UjhlTUNqSUNnUnU5MVF0bEdzVFdIbktPZ2l4TUxxL1ZSRHpOR2NrMEIxc2lY?=
- =?utf-8?B?anU0aGJ1eWpEVlhBcGZucURFN1JuczR1RTZDMWpJaGUxUFZsc01oMzl3Y1dj?=
- =?utf-8?B?RktuNnFLOFhvbzRkaXY3QWdvM3hLclhmaktvR1E2UmRFakdUaTBFOWpQdCs1?=
- =?utf-8?B?cDBZVDllZ1U0dHVrTEJHbVBINVdvOW9vejZYVmhkd2NZK2hCdkd3UXFvbldX?=
- =?utf-8?B?dVN4RGRSaGR6eVdNdXl3OG9OWmdxUHoxOG5MUmpzN1Y2Z0hobGFrZUd3a0E3?=
- =?utf-8?B?QWFNU2RUKzVUU2ZCZjhpd3c1a3Jvc3NPd1BRbDl0QlZPc2c0ZmhvZ2xjUmV2?=
- =?utf-8?B?enFrMEwzcTVvZEVNeDB5NkJpR0hzaGt2bi9zRS9sdUlVQW1ZamVaOFpYUjdR?=
- =?utf-8?B?aGVzV2w1RjZjVmFhK0pnY1RRMzNCZWozWFhyVlhrOHpINkFBdGErU1FoVkwv?=
- =?utf-8?B?aFBlUHZIdDFpME9QTTlkZXNLVEtVbUloZ3dsRzVuZS96T1l2RkdWMTBjdTVs?=
- =?utf-8?B?T2ZXSUNtS0t6Nm5ydGVKMHA4bDY2cHB6TXlLSDdzSG9qRXpMQ1VENTBYOFBI?=
- =?utf-8?B?ZGoxd0lqZmx0eEJHSWw0K2t5Zmcwd252TTZ6YVRVT29vSDh4aXl4a0Rjdm9r?=
- =?utf-8?Q?wLijiiaO327hVwg8VzxI0gBUjqJmG+V1?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR08MB8121.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ZDEva3dSRFBsUDlCcGZHVjVkRmVIWmNYbGxhaWs0bVM4RURwTCtBbmg4N3Ru?=
- =?utf-8?B?emh3eTRuOGhCeDNVRG5oY0dPT2tQcjA1MlNYMit2NkdqdXFlOEFJZU5ZMHcw?=
- =?utf-8?B?dHZ2OUEvNGY3Vy93T05jN1oxWHI3RUUxUTRYZ0pXRjZWUzNRRGtHVisvMUdx?=
- =?utf-8?B?bXZFR3RSakZBVFdocDN5SG81MjNBcHlsQWpROE9yQ2tieUlpU0xlZmFkM2dq?=
- =?utf-8?B?aDN5NnI5TXJlSzVIK1Fhdjl2RG4vWTg2c01DYjNUc1d5b1YyaWJPcHVGY0cy?=
- =?utf-8?B?cFora0pyQm82bjdoZTZaMElHYjBraFhJRE0rQ2hYajQrc0N0clRsSDNZdHhP?=
- =?utf-8?B?T3VlY0RHNCs3dm9mVnJreFRJSlF1akY0WXZSRGJ5NnY2L3lpUmdadXRzVE93?=
- =?utf-8?B?UmZzK3N5T0lSdllrWnU5cFo1S0V3eUtDc2lJN3VmeFRDQ3ZQc29ZM09UUUxL?=
- =?utf-8?B?WkZMQm5qdHgrd29zQ1JtUkZrOTRYZmVXMkM2cWdzMENYV0FueTA4QTlZK0Jh?=
- =?utf-8?B?OVF2aTUzeVpUTGNFbjMzd3AzaHA4NDM3cTB5YTVpUnJ0MWx6VUR3enFZUy9E?=
- =?utf-8?B?L0JCM2ljVmh6ZE5ZQ0ovdFljWnUwejJwaVF4eUlhRStMb0QxazNMbTh3eXlT?=
- =?utf-8?B?bnB4TFpuUnRoK1ZvUUo5cjFLTktVL0xlNThoV3JkeXlFbW8zTjRiYTFaTmxm?=
- =?utf-8?B?VjI1S1lzYXF6aktNVjZsaVhoQjc1eG1tVklJelByS2MxNXdza25hR2ZVQUpR?=
- =?utf-8?B?NnU3VTFiKzlsQWtmOFh5a3RwY1pHSnNpV3cyL2ppYXhjaysxeUtqVlk2ZUY5?=
- =?utf-8?B?dGc5TXJ3c043U3M1OEdWS1k3azEzUFJzR01ZUzZ2akJpcDhUNTIwZlcxUnBl?=
- =?utf-8?B?ZjU2L1Q3c3JWZ29tR3hCM0Z3YXhtcjhSTHV4YUlWWFdmT3Q1V28zNFhldHZK?=
- =?utf-8?B?RVRiUzBHNS9QcVB4eFdXSGQrOWhGbXdISDB1Vmlub09sWnZwdzFlY09BSGhV?=
- =?utf-8?B?MUFsbHdob1pHcEJDMithSFBsR2lnMVFYbjVtbHFTcVdUK0kwRDdudW52Qk9w?=
- =?utf-8?B?a1J0cGhhMW91cVZaMDBPZVFGQUNKSG5rbFNmcHd5YmtRNXFMOUxIcnk0aVBt?=
- =?utf-8?B?UlQyNkpJU20xK0dPUEhUNkZGbEUrTGxaVXk3aVV5RFV0SGI4TEdJWURHMGZ0?=
- =?utf-8?B?QTYrNk9RcnhXaSswaGNHTzltSnV4RFFXTWFsS2srTUxDZ08vTlhYcVBCcDhX?=
- =?utf-8?B?UTRGR1hnTzdJUk9pT0pteU5rK2EySHBjQzFRM3daYkNQbXZ1T25TVFNUU0oz?=
- =?utf-8?B?TDkyaVZpRmpQSlhjMmFhdXhsWXFsQkNLWG5Ddzc1aldCK2x3UjJIMUlpR0tC?=
- =?utf-8?B?YkhYRWtDRkphWTZHWTdnbmtZdGRxdVphTlo2aTNYamZSSGdaSGRGWFZCSklL?=
- =?utf-8?B?dzBRMkMxUnF5ZDNSZTJ2UmI2WG5selo3TXhOUlhvcHpZTkNObTVXK2VXUlBJ?=
- =?utf-8?B?NkZrczJVZXJEQVFkSFNleXhhMGJiTVM1V2MwTHhMSmtMNEMzWElFSGRBaWVm?=
- =?utf-8?B?eTV5YWovaE1kSWg0UDlKemFHTWQrb2ZGem02MGttZ0VhZUxoWm1GRnpSQVRJ?=
- =?utf-8?B?NlBYZWdRTUR3VXFBcnNpVXRCL2dBUVRsRDU5Zmp0bHNsMGk5UitwMzJLdUNw?=
- =?utf-8?B?ODFVampuTzZjQnhjM0dXNU5QZ0ZEVlUrbXdvQkVnSmFuQnY4NjRWSGtnVVlj?=
- =?utf-8?B?YkwrSEpJa0U3cmtoWUNiZTRuS3dVZFdoRnQyQXI5ellaNGJHQXpmOFdRSWxL?=
- =?utf-8?B?elY3a2JHS0VUOWg4MFRDMlVWb2dRMjBTaDZHcWo2d1MxNVBJbVF6a2N4d2Fz?=
- =?utf-8?B?ZFZrRnVIOHZnRzg1QkhDaFlXbkhGaHFKVVpHZyt0bW5KMkJyVWdsYWc0NkZx?=
- =?utf-8?B?RWhGWmlaSnh3VXNoS0s0bDVaRDBLNUtOcnZYS3BSdkpnUkljZUxod2l3U3ln?=
- =?utf-8?B?ZDdhS3VTR1ByYjF1VkpEUzVmdE1QUldkSWpGdzZQcXVyb3RxYkZqWFVJRmlx?=
- =?utf-8?B?cFQ4elljUTJSQ3MrNTQ4a1dBZjlrOTd6NE5WMjF5bjNZMzRUM2d2ZGZTY3Jn?=
- =?utf-8?B?R3M4Nk5qVXFKZ2pkTWFWRE05Qy9id2RTV2xROElZOGtxc3lFcjYrcEdoR09Z?=
- =?utf-8?Q?vwItgcdZcO6dvzgZ9jUmDOI=3D?=
-X-OriginatorOrg: iopsys.eu
-X-MS-Exchange-CrossTenant-Network-Message-Id: e2c969d8-e5a1-4528-4ca9-08de080d5a35
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR08MB8121.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2025 14:57:37.6770
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cyuqkiHO84XOjc5L6JOFS6JU3PzZMVOuJk3cm6WsVHyvN3eGckaI8uDwC81JRoHODLfacHbt2YJ3udsrHx6euYAlhxW7V2TAzcHxywmhnrM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR08MB10069
+Mime-Version: 1.0
+Date: Fri, 10 Oct 2025 10:06:50 -0500
+X-Gm-Features: AS18NWC85wr5LPFdQ30yGTpH1oaZISDOQtHh6ERozqIwMWLKZ5iEv8WG8yTbPdI
+Message-ID: <CAJM55Z9kRpc53s3Kip=U-CcDxAX0UZD5AbTBy_owU8xPEYH5MA@mail.gmail.com>
+Subject: Re: [PATCH v2 16/18] riscv: mm: Use physical memory aliases to apply PMAs
+To: Samuel Holland <samuel.holland@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
+	Paul Walmsley <pjw@kernel.org>, linux-riscv@lists.infradead.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mm@kvack.org, Conor Dooley <conor@kernel.org>, Alexandre Ghiti <alex@ghiti.fr>, 
+	Emil Renner Berthing <kernel@esmil.dk>, Andrew Morton <akpm@linux-foundation.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On 10.10.2025 17:24, Conor Dooley wrote:
-> On Fri, Oct 10, 2025 at 06:31:35AM +0300, Mikhail Kshevetskiy wrote:
->> Add dt-bindings documentation of SPI NAND controller
->> for Airoha EN7523 SoC platform.
->>
->> Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-> Please explain in the commit message why these two devices are not
-> compatible.
-
-
-They are compatible (at least from the point of this driver), but
- * en7523 is an old chip destined for 32-bit OS (ARCH=arm)
- * en7581 is a much newer chip destined for 64-bit OS (ARCH=arm64)
-so using of 'en7581-snand' may leads to peoples confusion.
-
+Samuel Holland wrote:
+> On some RISC-V platforms, RAM is mapped simultaneously to multiple
+> physical address ranges, with each alias having a different set of
+> statically-determined Physical Memory Attributes (PMAs). Software alters
+> the PMAs for a particular page at runtime by selecting a PFN from among
+> the aliases of that page's physical address.
 >
->> ---
->>  .../devicetree/bindings/spi/airoha,en7581-snand.yaml         | 5 ++++-
->>  1 file changed, 4 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/spi/airoha,en7581-snand.yaml b/Documentation/devicetree/bindings/spi/airoha,en7581-snand.yaml
->> index b820c5613dcc..fdc5b0f920cc 100644
->> --- a/Documentation/devicetree/bindings/spi/airoha,en7581-snand.yaml
->> +++ b/Documentation/devicetree/bindings/spi/airoha,en7581-snand.yaml
->> @@ -14,7 +14,10 @@ allOf:
->>  
->>  properties:
->>    compatible:
->> -    const: airoha,en7581-snand
->> +    enum:
->> +      - airoha,en7523-snand
->> +      - airoha,en7581-snand
->> +
->>  
->>    reg:
->>      items:
->> -- 
->> 2.51.0
->>
+> Implement this by transforming the PFN when writing page tables. If the
+> memory type field is nonzero, replace the PFN with the corresponding PFN
+> from the noncached alias. Similarly, when reading from the page tables,
+> if the PFN is found in a noncached alias, replace it with the PFN from
+> the normal memory alias, and insert _PAGE_NOCACHE.
+>
+> The rest of the kernel sees only PFNs from normal memory and
+> _PAGE_MTMASK values as if Svpbmt was implemented.
+>
+> Memory alias pairs are determined from the devicetree. A Linux custom
+> ISA extension is added to trigger the alternative patching, as
+> alternatives must be linked to an extension or a vendor erratum, and
+> this behavior is not associated with any particular processor vendor.
+>
+> Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+> ---
+>
+> Changes in v2:
+>  - Put new code behind a new Kconfig option RISCV_ISA_XLINUXMEMALIAS
+>  - Document the calling convention of riscv_fixup/unfix_memory_alias()
+>  - Do not transform !pte_present() (e.g. swap) PTEs
+>  - Export riscv_fixup/unfix_memory_alias() to fix module compilation
+>
+>  arch/riscv/Kconfig                    |  16 ++++
+>  arch/riscv/include/asm/hwcap.h        |   1 +
+>  arch/riscv/include/asm/pgtable-64.h   |  44 +++++++--
+>  arch/riscv/include/asm/pgtable-bits.h |   5 +-
+>  arch/riscv/include/asm/pgtable.h      |   8 ++
+>  arch/riscv/kernel/cpufeature.c        |   6 ++
+>  arch/riscv/kernel/setup.c             |   1 +
+>  arch/riscv/mm/Makefile                |   1 +
+>  arch/riscv/mm/memory-alias.S          | 123 ++++++++++++++++++++++++++
+>  arch/riscv/mm/pgtable.c               |  91 +++++++++++++++++++
+>  arch/riscv/mm/ptdump.c                |   6 +-
+>  11 files changed, 290 insertions(+), 12 deletions(-)
+>  create mode 100644 arch/riscv/mm/memory-alias.S
+>
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index 51dcd8eaa2435..72c60fa94c0d7 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -890,6 +890,22 @@ config TOOLCHAIN_NEEDS_OLD_ISA_SPEC
+>  	  versions of clang and GCC to be passed to GAS, which has the same result
+>  	  as passing zicsr and zifencei to -march.
+>
+> +config RISCV_ISA_XLINUXMEMALIAS
+> +	bool "Use physical memory aliases to emulate page-based memory types"
+> +	depends on 64BIT && MMU
+> +	depends on RISCV_ALTERNATIVE
+> +	default y
+> +	help
+> +	  Add support for the kernel to alter the Physical Memory Attributes
+> +	  (PMAs) of a page at runtime by selecting from among the aliases of
+> +	  that page in the physical address space.
+> +
+> +	  On systems where physical memory aliases are present, this option
+> +	  is required in order to mark pages as non-cacheable for use with
+> +	  non-coherent DMA devices.
+> +
+> +	  If you don't know what to do here, say Y.
+> +
+>  config FPU
+>  	bool "FPU support"
+>  	default y
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+> index affd63e11b0a3..6c6349fe15a77 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -107,6 +107,7 @@
+>  #define RISCV_ISA_EXT_ZALRSC		98
+>  #define RISCV_ISA_EXT_ZICBOP		99
+>
+> +#define RISCV_ISA_EXT_XLINUXMEMALIAS	126
+>  #define RISCV_ISA_EXT_XLINUXENVCFG	127
+>
+>  #define RISCV_ISA_EXT_MAX		128
+> diff --git a/arch/riscv/include/asm/pgtable-64.h b/arch/riscv/include/asm/pgtable-64.h
+> index 60c2615e46724..34b6f4ef3aad8 100644
+> --- a/arch/riscv/include/asm/pgtable-64.h
+> +++ b/arch/riscv/include/asm/pgtable-64.h
+> @@ -95,7 +95,8 @@ enum napot_cont_order {
+>  #define HUGE_MAX_HSTATE		2
+>  #endif
+>
+> -#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_ERRATA_THEAD_MAE)
+> +#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || \
+> +	defined(CONFIG_ERRATA_THEAD_MAE)
+>
+>  /*
+>   * ALT_FIXUP_MT
+> @@ -105,6 +106,9 @@ enum napot_cont_order {
+>   *
+>   * On systems that support Svpbmt, the memory type bits are left alone.
+>   *
+> + * On systems that support XLinuxMemalias, PTEs with a nonzero memory type have
+> + * the memory type bits cleared and the PFN replaced with the matching alias.
+> + *
+>   * On systems that support XTheadMae, a Svpbmt memory type is transformed
+>   * into the corresponding XTheadMae memory type.
+>   *
+> @@ -127,22 +131,35 @@ enum napot_cont_order {
+>   */
+>
+>  #define ALT_FIXUP_MT(_val)								\
+> -	asm(ALTERNATIVE_2("addi	t0, zero, 0x3\n\t"					\
+> +	asm(ALTERNATIVE_3("addi	t0, zero, 0x3\n\t"					\
+>  			  "slli	t0, t0, 61\n\t"						\
+>  			  "not	t0, t0\n\t"						\
+>  			  "and	%0, %0, t0\n\t"						\
+>  			  "nop\n\t"							\
+>  			  "nop\n\t"							\
+> +			  "nop\n\t"							\
+>  			  "nop",							\
+> -			  __nops(7),							\
+> +			  __nops(8),							\
+>  			  0, RISCV_ISA_EXT_SVPBMT, CONFIG_RISCV_ISA_SVPBMT,		\
+> +			  "addi	t0, zero, 0x3\n\t"					\
+> +			  "slli	t0, t0, 61\n\t"						\
+> +			  "and	t0, %0, t0\n\t"						\
+> +			  "beqz	t0, 2f\n\t"						\
+> +			  "xor	t1, %0, t0\n\t"						\
+> +			  "1: auipc t0, %%pcrel_hi(riscv_fixup_memory_alias)\n\t"	\
+> +			  "jalr	t0, t0, %%pcrel_lo(1b)\n\t"				\
+> +			  "mv	%0, t1\n"						\
+> +			  "2:",								\
+> +			  0, RISCV_ISA_EXT_XLINUXMEMALIAS,				\
+> +				CONFIG_RISCV_ISA_XLINUXMEMALIAS,			\
+>  			  "srli	t0, %0, 59\n\t"						\
+>  			  "seqz	t1, t0\n\t"						\
+>  			  "slli	t1, t1, 1\n\t"						\
+>  			  "or	t0, t0, t1\n\t"						\
+>  			  "xori	t0, t0, 0x5\n\t"					\
+>  			  "slli	t0, t0, 60\n\t"						\
+> -			  "xor	%0, %0, t0",						\
+> +			  "xor	%0, %0, t0\n\t"						\
+> +			  "nop",							\
+>  			  THEAD_VENDOR_ID, ERRATA_THEAD_MAE, CONFIG_ERRATA_THEAD_MAE)	\
+>  			  : "+r" (_val) :: "t0", "t1")
+>
+> @@ -150,9 +167,9 @@ enum napot_cont_order {
+>
+>  #define ALT_FIXUP_MT(_val)
+>
+> -#endif /* CONFIG_RISCV_ISA_SVPBMT || CONFIG_ERRATA_THEAD_MAE */
+> +#endif /* CONFIG_RISCV_ISA_SVPBMT || CONFIG_RISCV_ISA_XLINUXMEMALIAS || CONFIG_ERRATA_THEAD_MAE */
+>
+> -#if defined(CONFIG_ERRATA_THEAD_MAE)
+> +#if defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || defined(CONFIG_ERRATA_THEAD_MAE)
+>
+>  /*
+>   * ALT_UNFIX_MT
+> @@ -160,6 +177,9 @@ enum napot_cont_order {
+>   * On systems that support Svpbmt, or do not support any form of page-based
+>   * memory type configuration, the memory type bits are left alone.
+>   *
+> + * On systems that support XLinuxMemalias, PTEs with an aliased PFN have the
+> + * matching memory type set and the PFN replaced with the normal memory alias.
+> + *
+>   * On systems that support XTheadMae, the XTheadMae memory type (or zero) is
+>   * transformed back into the corresponding Svpbmt memory type.
+>   *
+> @@ -170,7 +190,15 @@ enum napot_cont_order {
+>   */
+>
+>  #define ALT_UNFIX_MT(_val)								\
+> -	asm(ALTERNATIVE(__nops(6),							\
+> +	asm(ALTERNATIVE_2(__nops(6),							\
+> +			  "mv	t1, %0\n\t"						\
+> +			  "1: auipc t0, %%pcrel_hi(riscv_unfix_memory_alias)\n\t"	\
+> +			  "jalr	t0, t0, %%pcrel_lo(1b)\n\t"				\
+> +			  "mv	%0, t1\n\t"						\
+> +			  "nop\n\t"							\
+> +			  "nop",							\
+> +			  0, RISCV_ISA_EXT_XLINUXMEMALIAS,				\
+> +				CONFIG_RISCV_ISA_XLINUXMEMALIAS,			\
+>  			  "srli	t0, %0, 60\n\t"						\
+>  			  "andi	t0, t0, 0xd\n\t"					\
+>  			  "srli	t1, t0, 1\n\t"						\
+> @@ -234,7 +262,7 @@ static inline pgd_t pgdp_get(pgd_t *pgdp)
+>
+>  #define ALT_UNFIX_MT(_val)
+>
+> -#endif /* CONFIG_ERRATA_THEAD_MAE */
+> +#endif /* CONFIG_RISCV_ISA_XLINUXMEMALIAS || CONFIG_ERRATA_THEAD_MAE */
+>
+>  static inline int pud_present(pud_t pud)
+>  {
+> diff --git a/arch/riscv/include/asm/pgtable-bits.h b/arch/riscv/include/asm/pgtable-bits.h
+> index 18c50cbd78bf5..4586917b2d985 100644
+> --- a/arch/riscv/include/asm/pgtable-bits.h
+> +++ b/arch/riscv/include/asm/pgtable-bits.h
+> @@ -38,7 +38,8 @@
+>  #define _PAGE_PFN_MASK		GENMASK(31, 10)
+>  #endif /* CONFIG_64BIT */
+>
+> -#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_ERRATA_THEAD_MAE)
+> +#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || \
+> +	defined(CONFIG_ERRATA_THEAD_MAE)
+>  /*
+>   * [62:61] Svpbmt Memory Type definitions:
+>   *
+> @@ -54,7 +55,7 @@
+>  #define _PAGE_NOCACHE		0
+>  #define _PAGE_IO		0
+>  #define _PAGE_MTMASK		0
+> -#endif /* CONFIG_RISCV_ISA_SVPBMT || CONFIG_ERRATA_THEAD_MAE */
+> +#endif /* CONFIG_RISCV_ISA_SVPBMT || CONFIG_RISCV_ISA_XLINUXMEMALIAS || CONFIG_ERRATA_THEAD_MAE */
+>
+>  #ifdef CONFIG_RISCV_ISA_SVNAPOT
+>  #define _PAGE_NAPOT_SHIFT	63
+> diff --git a/arch/riscv/include/asm/pgtable.h b/arch/riscv/include/asm/pgtable.h
+> index 03b5623f9107c..f96b0bd043c6d 100644
+> --- a/arch/riscv/include/asm/pgtable.h
+> +++ b/arch/riscv/include/asm/pgtable.h
+> @@ -1110,6 +1110,14 @@ extern u64 satp_mode;
+>  void paging_init(void);
+>  void misc_mem_init(void);
+>
+> +#ifdef CONFIG_RISCV_ISA_XLINUXMEMALIAS
+> +bool __init riscv_have_memory_alias(void);
+> +void __init riscv_init_memory_alias(void);
+> +#else
+> +static inline bool riscv_have_memory_alias(void) { return false; }
+> +static inline void riscv_init_memory_alias(void) {}
+> +#endif /* CONFIG_RISCV_ISA_XLINUXMEMALIAS */
+> +
+>  /*
+>   * ZERO_PAGE is a global shared page that is always zero,
+>   * used for zero-mapped memory areas, etc.
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> index 743d53415572e..1449c43eab726 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -1093,6 +1093,12 @@ void __init riscv_fill_hwcap(void)
+>  		riscv_v_setup_vsize();
+>  	}
+>
+> +	/* Vendor-independent alternatives require a bit in the ISA bitmap. */
+> +	if (riscv_have_memory_alias()) {
+> +		set_bit(RISCV_ISA_EXT_XLINUXMEMALIAS, riscv_isa);
+> +		pr_info("Using physical memory alias for noncached mappings\n");
+> +	}
+> +
+>  	memset(print_str, 0, sizeof(print_str));
+>  	for (i = 0, j = 0; i < NUM_ALPHA_EXTS; i++)
+>  		if (riscv_isa[0] & BIT_MASK(i))
+> diff --git a/arch/riscv/kernel/setup.c b/arch/riscv/kernel/setup.c
+> index f90cce7a3acea..00569c4fef494 100644
+> --- a/arch/riscv/kernel/setup.c
+> +++ b/arch/riscv/kernel/setup.c
+> @@ -353,6 +353,7 @@ void __init setup_arch(char **cmdline_p)
+>  	}
+>
+>  	riscv_init_cbo_blocksizes();
+> +	riscv_init_memory_alias();
+>  	riscv_fill_hwcap();
+>  	apply_boot_alternatives();
+>  	init_rt_signal_env();
+> diff --git a/arch/riscv/mm/Makefile b/arch/riscv/mm/Makefile
+> index b916a68d324ad..b4d757226efbf 100644
+> --- a/arch/riscv/mm/Makefile
+> +++ b/arch/riscv/mm/Makefile
+> @@ -33,3 +33,4 @@ endif
+>  obj-$(CONFIG_DEBUG_VIRTUAL) += physaddr.o
+>  obj-$(CONFIG_RISCV_DMA_NONCOHERENT) += dma-noncoherent.o
+>  obj-$(CONFIG_RISCV_NONSTANDARD_CACHE_OPS) += cache-ops.o
+> +obj-$(CONFIG_RISCV_ISA_XLINUXMEMALIAS) += memory-alias.o
+> diff --git a/arch/riscv/mm/memory-alias.S b/arch/riscv/mm/memory-alias.S
+> new file mode 100644
+> index 0000000000000..e37b83d115911
+> --- /dev/null
+> +++ b/arch/riscv/mm/memory-alias.S
+> @@ -0,0 +1,123 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2024 SiFive
+> + */
+> +
+> +#include <linux/bits.h>
+> +#include <linux/linkage.h>
+> +#include <asm/asm.h>
+> +#include <asm/pgtable.h>
+> +
+> +#define CACHED_BASE_OFFSET	(0 * RISCV_SZPTR)
+> +#define NONCACHED_BASE_OFFSET	(1 * RISCV_SZPTR)
+> +#define SIZE_OFFSET		(2 * RISCV_SZPTR)
+> +
+> +#define SIZEOF_PAIR		(4 * RISCV_SZPTR)
+> +
+> +/*
+> + * Called from ALT_FIXUP_MT with a non-standard calling convention:
+> + *	t0 => return address
+> + *	t1 => page table entry
+> + *	all other registers are callee-saved
+> + */
+> +SYM_CODE_START(riscv_fixup_memory_alias)
+> +	addi	sp, sp, -4 * SZREG
+> +	REG_S	t2, (0 * SZREG)(sp)
+> +	REG_S	t3, (1 * SZREG)(sp)
+> +	REG_S	t4, (2 * SZREG)(sp)
+> +#ifdef CONFIG_RISCV_ISA_SVNAPOT
+> +	REG_S	t5, (3 * SZREG)(sp)
+> +
+> +	/* Save and mask off _PAGE_NAPOT if present. */
+> +	li	t5, _PAGE_NAPOT
+> +	and	t5, t1, t5
+> +	xor	t1, t1, t5
+> +#endif
+> +
+> +	/* Ignore !pte_present() PTEs, including swap PTEs. */
+> +	andi	t2, t1, (_PAGE_PRESENT | _PAGE_PROT_NONE)
+> +	beqz	t2, .Lfixup_end
+> +
+> +	lla	t2, memory_alias_pairs
+> +.Lfixup_loop:
+> +	REG_L	t3, SIZE_OFFSET(t2)
+> +	beqz	t3, .Lfixup_end
+> +	REG_L	t4, CACHED_BASE_OFFSET(t2)
+> +	sub	t4, t1, t4
+> +	bltu	t4, t3, .Lfixup_found
+> +	addi	t2, t2, SIZEOF_PAIR
+> +	j	.Lfixup_loop
+> +
+> +.Lfixup_found:
+> +	REG_L	t3, NONCACHED_BASE_OFFSET(t2)
+> +	add	t1, t3, t4
+> +
+> +.Lfixup_end:
+> +#ifdef CONFIG_RISCV_ISA_SVNAPOT
+> +	xor	t1, t1, t5
+> +
+> +	REG_L	t5, (3 * SZREG)(sp)
+> +#endif
+> +	REG_L	t4, (2 * SZREG)(sp)
+> +	REG_L	t3, (1 * SZREG)(sp)
+> +	REG_L	t2, (0 * SZREG)(sp)
+> +	addi	sp, sp, 4 * SZREG
+> +	jr	t0
+> +SYM_CODE_END(riscv_fixup_memory_alias)
+> +EXPORT_SYMBOL(riscv_fixup_memory_alias)
+> +
+> +/*
+> + * Called from ALT_UNFIX_MT with a non-standard calling convention:
+> + *	t0 => return address
+> + *	t1 => page table entry
+> + *	all other registers are callee-saved
+> + */
+> +SYM_CODE_START(riscv_unfix_memory_alias)
+> +	addi	sp, sp, -4 * SZREG
+> +	REG_S	t2, (0 * SZREG)(sp)
+> +	REG_S	t3, (1 * SZREG)(sp)
+> +	REG_S	t4, (2 * SZREG)(sp)
+> +#ifdef CONFIG_RISCV_ISA_SVNAPOT
+> +	REG_S	t5, (3 * SZREG)(sp)
+> +
+> +	/* Save and mask off _PAGE_NAPOT if present. */
+> +	li	t5, _PAGE_NAPOT
+> +	and	t5, t1, t5
+> +	xor	t1, t1, t5
+> +#endif
+> +
+> +	/* Ignore !pte_present() PTEs, including swap PTEs. */
+> +	andi	t2, t1, (_PAGE_PRESENT | _PAGE_PROT_NONE)
+> +	beqz	t2, .Lunfix_end
+> +
+> +	lla	t2, memory_alias_pairs
+> +.Lunfix_loop:
+> +	REG_L	t3, SIZE_OFFSET(t2)
+> +	beqz	t3, .Lunfix_end
+> +	REG_L	t4, NONCACHED_BASE_OFFSET(t2)
+> +	sub	t4, t1, t4
+> +	bltu	t4, t3, .Lunfix_found
+> +	addi	t2, t2, SIZEOF_PAIR
+> +	j	.Lunfix_loop
+> +
+> +.Lunfix_found:
+> +	REG_L	t3, CACHED_BASE_OFFSET(t2)
+> +	add	t1, t3, t4
+> +
+> +	/* PFN was in the noncached alias, so mark it as such. */
+> +	li	t2, _PAGE_NOCACHE
+> +	or	t1, t1, t2
+> +
+> +.Lunfix_end:
+> +#ifdef CONFIG_RISCV_ISA_SVNAPOT
+> +	xor	t1, t1, t5
+> +
+> +	REG_L	t5, (3 * SZREG)(sp)
+> +#endif
+> +	REG_L	t4, (2 * SZREG)(sp)
+> +	REG_L	t3, (1 * SZREG)(sp)
+> +	REG_L	t2, (0 * SZREG)(sp)
+> +	addi	sp, sp, 4 * SZREG
+> +	jr	t0
+> +SYM_CODE_END(riscv_unfix_memory_alias)
+> +EXPORT_SYMBOL(riscv_unfix_memory_alias)
+> diff --git a/arch/riscv/mm/pgtable.c b/arch/riscv/mm/pgtable.c
+> index 604744d6924f5..de79a2dc9926f 100644
+> --- a/arch/riscv/mm/pgtable.c
+> +++ b/arch/riscv/mm/pgtable.c
+> @@ -1,8 +1,12 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>
+>  #include <asm/pgalloc.h>
+> +#include <dt-bindings/riscv/physical-memory.h>
+> +#include <linux/bitfield.h>
+>  #include <linux/gfp.h>
+>  #include <linux/kernel.h>
+> +#include <linux/memblock.h>
+> +#include <linux/of.h>
+>  #include <linux/pgtable.h>
+>
+>  int ptep_set_access_flags(struct vm_area_struct *vma,
+> @@ -160,3 +164,90 @@ pud_t pudp_invalidate(struct vm_area_struct *vma, unsigned long address,
+>  	return old;
+>  }
+>  #endif /* CONFIG_TRANSPARENT_HUGEPAGE */
+> +
+> +#ifdef CONFIG_RISCV_ISA_XLINUXMEMALIAS
+> +struct memory_alias_pair {
+> +	unsigned long cached_base;
+> +	unsigned long noncached_base;
+> +	unsigned long size;
+> +	int index;
+> +} memory_alias_pairs[5];
+> +
+> +bool __init riscv_have_memory_alias(void)
+> +{
+> +	return memory_alias_pairs[0].size;
+> +}
+> +
+> +void __init riscv_init_memory_alias(void)
+> +{
+> +	int na = of_n_addr_cells(of_root);
+> +	int ns = of_n_size_cells(of_root);
+> +	int nc = na + ns + 2;
+> +	const __be32 *prop;
+> +	int pairs = 0;
+> +	int len;
+> +
+> +	prop = of_get_property(of_root, "riscv,physical-memory-regions", &len);
+> +	if (!prop)
+> +		return;
+> +
+> +	len /= sizeof(__be32);
+> +	for (int i = 0; len >= nc; i++, prop += nc, len -= nc) {
+> +		unsigned long base = of_read_ulong(prop, na);
+> +		unsigned long size = of_read_ulong(prop + na, ns);
+> +		unsigned long flags = be32_to_cpup(prop + na + ns);
+> +		struct memory_alias_pair *pair;
+> +		int alias;
+> +
+> +		/* We only care about non-coherent memory. */
+> +		if ((flags & PMA_ORDER_MASK) != PMA_ORDER_MEMORY || (flags & PMA_COHERENT))
+> +			continue;
+> +
+> +		/* The cacheable alias must be usable memory. */
+> +		if ((flags & PMA_CACHEABLE) &&
+> +		    !memblock_overlaps_region(&memblock.memory, base, size))
+> +			continue;
+> +
+> +		alias = FIELD_GET(PMR_ALIAS_MASK, flags);
+> +		if (alias) {
+> +			pair = NULL;
+> +			for (int j = 0; j < pairs; j++) {
+> +				if (alias == memory_alias_pairs[j].index) {
+> +					pair = &memory_alias_pairs[j];
+> +					break;
+> +				}
+> +			}
+> +			if (!pair)
+> +				continue;
+> +		} else {
+> +			/* Leave room for the null sentinel. */
+> +			if (pairs == ARRAY_SIZE(memory_alias_pairs) - 1)
+> +				continue;
+> +			pair = &memory_alias_pairs[pairs++];
+> +			pair->index = i;
+
+I think this needs to be pair->index = i + 1, so PMA_ALIAS(1) can refer to the
+first entry (i = 0).
+
+> +		}
+> +
+> +		/* Align the address and size with the page table PFN field. */
+> +		base >>= PAGE_SHIFT - _PAGE_PFN_SHIFT;
+> +		size >>= PAGE_SHIFT - _PAGE_PFN_SHIFT;
+> +
+> +		if (flags & PMA_CACHEABLE)
+> +			pair->cached_base = base;
+> +		else
+> +			pair->noncached_base = base;
+> +		pair->size = min_not_zero(pair->size, size);
+> +	}
+> +
+> +	/* Remove any unmatched pairs. */
+> +	for (int i = 0; i < pairs; i++) {
+> +		struct memory_alias_pair *pair = &memory_alias_pairs[i];
+> +
+> +		if (pair->cached_base && pair->noncached_base && pair->size)
+> +			continue;
+> +
+> +		for (int j = i + 1; j < pairs; j++)
+> +			memory_alias_pairs[j - 1] = memory_alias_pairs[j];
+> +		memory_alias_pairs[--pairs].size = 0;
+> +	}
+> +}
+> +#endif /* CONFIG_RISCV_ISA_XLINUXMEMALIAS */
+> diff --git a/arch/riscv/mm/ptdump.c b/arch/riscv/mm/ptdump.c
+> index ed57926ecd585..ba5f33a2c2178 100644
+> --- a/arch/riscv/mm/ptdump.c
+> +++ b/arch/riscv/mm/ptdump.c
+> @@ -140,7 +140,8 @@ static const struct prot_bits pte_bits[] = {
+>  		.clear = ".",
+>  	}, {
+>  #endif
+> -#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_ERRATA_THEAD_MAE)
+> +#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || \
+> +	defined(CONFIG_ERRATA_THEAD_MAE)
+>  		.mask = _PAGE_MTMASK,
+>  		.set = "MT(%s)",
+>  		.clear = "  ..  ",
+> @@ -216,7 +217,8 @@ static void dump_prot(struct pg_state *st)
+>  		if (val) {
+>  			if (pte_bits[i].mask == _PAGE_SOFT)
+>  				sprintf(s, pte_bits[i].set, val >> 8);
+> -#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_ERRATA_THEAD_MAE)
+> +#if defined(CONFIG_RISCV_ISA_SVPBMT) || defined(CONFIG_RISCV_ISA_XLINUXMEMALIAS) || \
+> +	defined(CONFIG_ERRATA_THEAD_MAE)
+>  			else if (pte_bits[i].mask == _PAGE_MTMASK) {
+>  				if (val == _PAGE_NOCACHE)
+>  					sprintf(s, pte_bits[i].set, "NC");
+> --
+> 2.47.2
+>
 
