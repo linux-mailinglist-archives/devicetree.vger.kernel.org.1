@@ -1,213 +1,236 @@
-Return-Path: <devicetree+bounces-225217-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225218-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2597FBCB8D3
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 05:34:55 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81AECBCB8EB
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 05:37:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D94A4229F8
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 03:34:53 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 675484E1C4F
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 03:37:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DFC28B7DE;
-	Fri, 10 Oct 2025 03:32:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE0F2268C40;
+	Fri, 10 Oct 2025 03:37:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b="zhFXeYC7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VUsyVB7f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11023102.outbound.protection.outlook.com [52.101.83.102])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 377632848A6;
-	Fri, 10 Oct 2025 03:32:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.102
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760067141; cv=fail; b=NLGD3cdupWNlFVGX5mzzm/y4JmdJ41KAmPX3kLvB7oiGmS+KjVKKrATV7TflWES9ZMM6K4awo4E2ENgb12CRpokEJdYG8l8PKS9qKUgs6m8U8rOHh7rjAtiQ1jI6sonQBB5BHZCeRlhrYCJ57AOU3JDRVJ4XXvUbv7El8f0oJBc=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760067141; c=relaxed/simple;
-	bh=37r6SC0DPIXD2kIUrJV6zX3kiv9WRPAubGka+xFgz44=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=RzGchDqlIx3It+oWt8DVwTYjLIXHiBAxpNlC36waTu4Z/NIVIuEtkfYKHmS+7qWtj1z8GkF2EPruiZjfUGlsnFh01rM173UjeEpOcz1luSy/z3gJdHaGi7ZoQxZrDEP4I6MC5zlMpECbe2FQxKu0JymQRGozhHJ0p4tShFGq7Qc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu; spf=pass smtp.mailfrom=genexis.eu; dkim=pass (2048-bit key) header.d=iopsys.eu header.i=@iopsys.eu header.b=zhFXeYC7; arc=fail smtp.client-ip=52.101.83.102
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=iopsys.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=genexis.eu
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mwyr31KkS24zUTSq7JYop3apUzQ8Kdxm2p+B6T6ZZuowN+45PtcHbRKqmDKl/7rz1s37MLosXjq049UWuo48QQSlMq0oznOvF9zGNWDS5x2/IyIUcnWfa2ENpEUEn5qf8dzx8WzTCSJG+uOwXes2pMK32IdHju0jIhU2E60L56BlqjYQIbU6LpAMNidyEqI+3UnTvA+KmX9rKDkSkff1IOV9BxhHOgn5iBK+UcLlCPrfGttVvdInDvVNGUmVZ2rgZW2HUaFccJOJw6WtVKIN1PjlTehjDhmy2Gw1gy8gYjSu2BnOCVMzwMuPyFqtXR3yvhskuj0JnopjLtvlEAoJZA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=C1r4KRq1qXcMpxXAYf0Qx5IGJIVG64xEbKQ9nNqIQqI=;
- b=GFuCgRU+F0WFY2dlcJ+3R323D4VFvbjd3mIK2DrO35iN9Rcu8LZNln/WodYo2cO1Z0BkghAsrTrEl8RI6cvcMpbt4GpnFW4NKMvP16iz9GQa3ADptMSUIkpskSzQODcy4h1UF9Csdq/vRtI5yb/mHVmJVd/xAoSRUDc02uLYw9nKn/PXmPLUuPLmu/n7GZd9Ex62iiSv6PFffrRC8q7uBeTe1dKnkP1WPXIbmv7q+L6jwReF/y7SLhSJrKcZWnQe5Ejnl5kMSXbxnZZknK8KN6CWCOXAtqB8MebQ57Aoz3X3iUAnvKxm5s7kLnk7gFPlGPdrWWP8QaPaIpZpMHx28w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=genexis.eu; dmarc=pass action=none header.from=iopsys.eu;
- dkim=pass header.d=iopsys.eu; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iopsys.eu;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=C1r4KRq1qXcMpxXAYf0Qx5IGJIVG64xEbKQ9nNqIQqI=;
- b=zhFXeYC7Umweu2P3ozFTNyqwvPot4vRNZwgTX/vW6PGP8eCvj+AqnIYBHUwqzWQCHhGvimDgaOY8n4/fAbMs78ZrzkBzmacbX3IU/jT4s8U/BF9FCvuEDsKDQgPg9V8hfOIknLjkB+TudpegnyPt2ChseNCqkzZTL6pnIOsMlm1pisfaEoGS3ipW8T+fmk2ZeZQ1GQGOWlxbhCe4yOvbRz8N9Kc+zeX/pOBiBY3XbCp3Tz0vBgCCIkrvYAFjvg6vbCMOL76DkrgslD2F+rrlVTJH7inCAuKBy0Et6dXSmuWv5OW57ntjjHmlZrFYDc3yHOoZIbd+mldmqOsOFdxQQQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=iopsys.eu;
-Received: from GV2PR08MB8121.eurprd08.prod.outlook.com (2603:10a6:150:7d::22)
- by DB9PR08MB8359.eurprd08.prod.outlook.com (2603:10a6:10:3d9::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9203.9; Fri, 10 Oct
- 2025 03:32:12 +0000
-Received: from GV2PR08MB8121.eurprd08.prod.outlook.com
- ([fe80::4cd3:da80:2532:daa0]) by GV2PR08MB8121.eurprd08.prod.outlook.com
- ([fe80::4cd3:da80:2532:daa0%3]) with mapi id 15.20.9203.009; Fri, 10 Oct 2025
- 03:32:12 +0000
-From: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
-To: Lorenzo Bianconi <lorenzo@kernel.org>,
-	Ray Liu <ray.liu@airoha.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Cc: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>,
-	Andreas Gnau <andreas.gnau@iopsys.eu>
-Subject: [PATCH v7 17/17] arm: dts: airoha: en7523: add SNAND node
-Date: Fri, 10 Oct 2025 06:31:36 +0300
-Message-ID: <20251010033136.1475673-18-mikhail.kshevetskiy@iopsys.eu>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20251010033136.1475673-1-mikhail.kshevetskiy@iopsys.eu>
-References: <20251010033136.1475673-1-mikhail.kshevetskiy@iopsys.eu>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: GVYP280CA0035.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:f9::28) To GV2PR08MB8121.eurprd08.prod.outlook.com
- (2603:10a6:150:7d::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F70220C023;
+	Fri, 10 Oct 2025 03:37:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1760067469; cv=none; b=s+qo/YJbJ8nzC+KIg3vXjFo1rOHWmmrmg3ear3nxexWR3/dcLLKM13yXDSLRm7INsC+yGVYZe6Wj9FS2Gm8r8M8WWJZ6QSQF8/jcrZq6T1oLptjZmGCNKXDqDQ1BHJZLkMWy8qcXzvMa5QO4y82Jsz+WXmjgY0LnmV8ySymazgA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1760067469; c=relaxed/simple;
+	bh=jAFjB+LSyLd0uwQSk533JNzasoXU54YfZO2ivbGyKHY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=i7kxbjsHaCxewRhesN/hlJzIFhkBubN3ZTgqxeLwTCgHhWR+lZQYkwJYvLTskQHkH4IcikD/BK0LbrlION7ioT5cd1x8kVtxIYD4bIq4IWXOGBjI3xyg6+oQQ0dbVzfXyITXZvQu9ZF+lbKLw5hakcXNkzEgVzKDeISYhJ4kGOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VUsyVB7f; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 599F0AwL022299;
+	Fri, 10 Oct 2025 03:37:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=KeBoOCd69T5grc/m/FPb58
+	gljrf765XIfL3PD2UhSh4=; b=VUsyVB7fEgC6zBRK+9VHg8GEWq4hUNVySidjLe
+	/3UHbTAHxzrKGfUMtCWDOb6eZhaQ2D/un5AK79t0NX+M8lCeXCtsDf9M8TVWg5ge
+	tPB9UpakhBgOZnRGC2rJDjwb4Byl6+viGDShs/HJun4GEOw/Cq/ElHwSYehUr2dw
+	DB+5tZxuFkDvGDOP6TlK8qk4o0n/kE+9ND3JmGABqV3SWwx31FzBoXuoHYlsHrz1
+	KsfzYUHIVtpNrrBRQCYmGneZ7eYnk2dX8XFjK3PHv/t6tLCDGkK86ebTTvNyQxvK
+	P+1qhTGz7bxJkK2NDn2Ozd+8Xx6Db2Pkfk3GpA3U628RBvag==
+Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 49nv4sn096-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Oct 2025 03:37:42 +0000 (GMT)
+Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
+	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 59A3bdR0013333;
+	Fri, 10 Oct 2025 03:37:39 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 49jvnn4s6p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Oct 2025 03:37:39 +0000
+Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 59A3bd06013328;
+	Fri, 10 Oct 2025 03:37:39 GMT
+Received: from cse-cd01-lnx.ap.qualcomm.com (cse-cd01-lnx.qualcomm.com [10.64.75.209])
+	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 59A3bdxH013325
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 10 Oct 2025 03:37:39 +0000
+Received: by cse-cd01-lnx.ap.qualcomm.com (Postfix, from userid 4531182)
+	id 14B37221ED; Fri, 10 Oct 2025 11:37:38 +0800 (CST)
+From: Le Qi <le.qi@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@oss.qualcomm.com,
+        Le Qi <le.qi@oss.qualcomm.com>
+Subject: [PATCH v2] arm64: dts: qcom: hamoa-iot-evk: Fix 4-speaker playback support
+Date: Fri, 10 Oct 2025 11:37:28 +0800
+Message-Id: <20251010033728.1808133-1-le.qi@oss.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: GV2PR08MB8121:EE_|DB9PR08MB8359:EE_
-X-MS-Office365-Filtering-Correlation-Id: d032f9db-037f-4673-f361-08de07ad9971
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|376014|52116014|1800799024|366016|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?BssNPYt2/+HNqUjJ7lXLDnkU1oU/0rStF2TgPThGAVM0abHIZRXVx876F8+c?=
- =?us-ascii?Q?PqCsVZR+96b+ESYnj5y6NtqYjGJg8+uR3Zz7DQTL/x6ysVizZeHVB4tdrdy/?=
- =?us-ascii?Q?Q5zWZBRxFzRVrkEXtotSezdlLvs8BadwqSini5WMNSSQTRKIds+wjSs5vxyV?=
- =?us-ascii?Q?b7a8swm4zChbQplMCf/viDPIBU3QrUH7BR+W8Dosu5VW85oCOdMYo8wHN5nL?=
- =?us-ascii?Q?7mz07k0FhakO2u1tgOhTSK7CxtkCJlEASOkay9o9t5a56pvkrq8k/a/Xerqw?=
- =?us-ascii?Q?cSFlq0ItlmcbUmHXZbG9LeCoUwOZGcU6M8UEyiVd+pfzZ733MtKCf5+KBPng?=
- =?us-ascii?Q?fWQaDQrUbv/ZhexY3YJWjqTYB7Yq+8k2PTUXt8z1qyQMiRruUnJ8uMwdcmOQ?=
- =?us-ascii?Q?H5FYNfBFDMD7nLVR0sVA1CjSTsV7VljOit6xzpQgTYsYBqMOWVMhVnewZQzd?=
- =?us-ascii?Q?pZC3VAgzNzn33bGRe/uSUf9Ypcu3VqmgzK/xUf7uR610vAwpEfma96+znrHf?=
- =?us-ascii?Q?FpqPGS5ILmhrP7P2EDJujHeXyAosvoFpSsVt7orn4HDbW/uqAqE3j7JfvMCD?=
- =?us-ascii?Q?prCf2CGldi3q76IoDfUtEU5HWXPcuOdELMR84D1ycO+FRshSzr0fI65TpwZr?=
- =?us-ascii?Q?/Tb90blA2FL2JTevTDoP4XChRXBhpE3CE7EnfNFtZHq1w6RNWcMOJqVs2brw?=
- =?us-ascii?Q?ttopBQe8FxDv7nFbUD929GyRoS4GcGP4oUxuTTsSMQh2Y/qHe6cwlJncNo2j?=
- =?us-ascii?Q?K5unK58nfrjE0V8NwWmgauWsKbVT+OrEzvr9AsgJhJ55uV1OviHJvZS7R7bz?=
- =?us-ascii?Q?98NioM7T81G3muaWW4gdtAWjaSUlcDggNFbWU4PnoIugBrnqekBIS9wCNXCU?=
- =?us-ascii?Q?Rw06Grz22MI1UTw02R0kkBwVxp90BarTRFG4gikNtId5z09BN+VegCBtIQAd?=
- =?us-ascii?Q?/YYg1d5TeC6XrweiMxC4mLXKgZ9xpWb/1VZTWja0JBGmxpobZjCTbvyQ25GZ?=
- =?us-ascii?Q?me5HkJjKi6yPVvnI+/ZuaZdpy0KUxrBpTF2jxRJbSaK/iMOQmjhWtLEdigTK?=
- =?us-ascii?Q?AIIsLHWXAOXwV4IPofmnEaAQr0dbx9cFuN5WzciXgyFXDk1CaYD1XYUiFb8l?=
- =?us-ascii?Q?97iUis+ZDFFVUGs9GlRDnH694a7bqr9dAW/8f1hk4Y9zh4/tzD2UU+pLXtYo?=
- =?us-ascii?Q?wPOaeqfE9ox6T+C8zYhJplo8zVcXkonpBCCjML3bg6uWmYkMzulmg6vvm7xm?=
- =?us-ascii?Q?UZo58n060rz9l/xjkTuECUhMVl6vkNhjwu3lOgybzXuAsJd9A5htRWP6bG/c?=
- =?us-ascii?Q?BXzDSFx/8LM2flVfTdLQICK++rbhLZuYjMLks1fMDrGvHhEfDSEXuiIXwvnE?=
- =?us-ascii?Q?6ONO20kGg/hJn+Z2ZlLPi4+HjdDsqEVExIo1cc6JQ65qrQU0tjFWOvoBOain?=
- =?us-ascii?Q?QfQyusdpBJTIc9b7XeByl/rpP9n++yGEov3TOiiVPrSTXUaXo4uAmDHhqSAj?=
- =?us-ascii?Q?SOrozYwsUuRnQoC4WbFlwiDUs5xMVQFqsGBivNENhQrnnyX/UbWNR9lX/A?=
- =?us-ascii?Q?=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV2PR08MB8121.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(52116014)(1800799024)(366016)(921020)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?BFGx2o1m6kEZFD2o79zjOsLUUjpI7JaOk4tQf2HbNkHnHyUYBa8OEN9FH1iz?=
- =?us-ascii?Q?r3b4Fyb0IAof9ggIxIhPft1NQkfVlY+nh/3o5yaeZbylrmBjp6yY2V0M5zFB?=
- =?us-ascii?Q?/PC+3CPXbP7CRodKUsie5ZwD5hbOiJT3bRTlz+cX+mfceLzsPjBPT8XKCU55?=
- =?us-ascii?Q?uNNntY+sbKZnpVO0b1ulkuq8/uRQaAdP4M/A1hDRTHgnb8l9LRmg2iBv0KPo?=
- =?us-ascii?Q?q7oFuzvV2nx0rwuPV6r6DwN/dZzzqSz9+Jg2W8fROjdihndS9uCZFjBU5Xtf?=
- =?us-ascii?Q?M1lq3A0DCVIoX6Fz5GwcorRa8mrVKBALl35nITozYdpt4Ec3qkzY3tyy7LKm?=
- =?us-ascii?Q?CIDGLMEYCU2vU5bkwc3eDt7qbiiJWjsfix4GLVShay+EXBaHl1gfRER61cQo?=
- =?us-ascii?Q?AcBRSw75goDYlqyCCATvH/c1Badlw4l3BYbFjmwMfm/Y78ZhWFLdOwDmumRa?=
- =?us-ascii?Q?ZTIOqqmNJaWti1DEJp9TasOl0l9XVTSdW7V143VKirOxEdlpRWztWplsBG8U?=
- =?us-ascii?Q?TxqYgPbw4vOg1rHr/9n4/6MpOn0m20rprt75VdKvguSDmbAjCJVF79JkYlZp?=
- =?us-ascii?Q?4C2g4i535f4cMDb8oWCashEX+dDp44FLUEkPi6jzjvPi8Oy/tDlTaMu4piL6?=
- =?us-ascii?Q?qpB8NYThnqI8Tknk7wfSPA58BdCR7bOWDHAscix7IxQWX6l/K4RCn9pWxKqu?=
- =?us-ascii?Q?G4JwdbY5lLy/7BhuwWs5QsvTpTxmjRoubAnQPH1SD2nUNrCvjigOxyE9k+Dj?=
- =?us-ascii?Q?ufFnLK56XyczCOoWV67vISJr+kuNIGpQt55w3Y0UvvHEqi2bG9rVnv492XrN?=
- =?us-ascii?Q?SRFbxmSH/L7OjMJvda6bWl0OZjezhiNnbC1kS/2NXBGPkHlRt1rPBZ6ppzab?=
- =?us-ascii?Q?ib/HeGUkRAdfDNWI3pJhbLRb7PVg24a7iiTsvCQ+8+8mPoR8Dlu9mW780Fg1?=
- =?us-ascii?Q?MPbk4NHogGgjM1uAg8kYgmavXmTNBiVHUOxLj2ZIUZHB7tguIA4nS00b78YU?=
- =?us-ascii?Q?hxU6xVso1KhJqDl7i9MkZE6AXiXCfc1WFLOocdStTUMtNx4EtKweHK+F9Jj2?=
- =?us-ascii?Q?G73VhFYqokzELvrm33x5fYLk02yhmsC6D5aqe40H5c1/5fnGtBscW512ZaMn?=
- =?us-ascii?Q?Mr6zS7kzODYsgsrtE0ywxs7pqAVdsMKrJb30L9HdClU7hDGxE7MHFp7kvNUZ?=
- =?us-ascii?Q?iG21Oz3NR+RHj+ZpJZ1ad6lZvlrhj4EzVIzg4uDLZWexaGGS4AqcMAjZgICf?=
- =?us-ascii?Q?sete+zLt1fgwVbygF9AII6bAkKXg/Xf3h3X0GgXL6ToSEOsE7tA8wT4Jg8C5?=
- =?us-ascii?Q?KBeHKvMFfnnqEsy5YZYOXumKTH6Vty5oweorUiTIUk/io0AGTZ8QUgRIQMXh?=
- =?us-ascii?Q?MosVQOgEITSK3S9b75vdaML/25VeE97/rwoJtE8muHoo/c5lPM8TrrUtiHHY?=
- =?us-ascii?Q?YlJKejQ+DkSSNpFMtDE3q7JtR/ndUadsKAndz60BSd52SQ1/R+iT/K6YJ5CO?=
- =?us-ascii?Q?BDy0y5inx2V4UjRPqz5seEw5+cdeTUrBUeljOOeFpWHRHfz1FzdmQkoW+0Fi?=
- =?us-ascii?Q?iyWoqbctsltuXAjayaA4QM16LMhfGfJWICOGzjmUTsamjLlqKGaUj4VB7GeI?=
- =?us-ascii?Q?LW6/8pO1tUQZ5fZ0FhwPsyo=3D?=
-X-OriginatorOrg: iopsys.eu
-X-MS-Exchange-CrossTenant-Network-Message-Id: d032f9db-037f-4673-f361-08de07ad9971
-X-MS-Exchange-CrossTenant-AuthSource: GV2PR08MB8121.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2025 03:32:12.0278
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 8d891be1-7bce-4216-9a99-bee9de02ba58
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SAjje9FWtCnk1p9NZ898yn2JMg7uRaP8tAAApN6TsXQLLuib671C8AO0X0A50xMUXkKOJ2FN4+rKyFGG5XLKuG8TTqQsu1f/5JD4cNqSKcc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR08MB8359
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: JOXdVv_34kjKr3JRz8_MXs1oiywZne5a
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUxMDA4MDEyMSBTYWx0ZWRfXz8eZjBCZ3Iao
+ hGsx3dxUHi88w/7I63vaDLDBtunPxjPM2MP9854/x3VWJ3XljrxqUxwia7qWPMh0FMl5ZiwrvJz
+ BBLHI4PP6gzu5pWhn4eE0CQa7aUVR9PbbT24pRHFT/aMfNueGg2VkXABxq9iRaGmpmzsSeCuGA5
+ U3CAfS+wa/l7mNwg+zYhhdJJb0ImXyhOdJWq3hzyRSfxMGpV/cegk0PAvdBjtx8UR/kphO3PJoZ
+ wfjPhRxEebyOgY0ofow8sR28GD/tya+CTWbH8VgoXZFKAsg9S4Tw6pEaSyqz0DlS+fp6+qQtOFC
+ o4SDSOgfP0luZcgu8lkqjJt/60nmMUfi7rDupkflHB/yAGRTdqTQrd+K6KA8XaO9q1upqzyBUu1
+ z0DBGLq49/Jou1zoyFbfI1QT59DeEw==
+X-Authority-Analysis: v=2.4 cv=SfL6t/Ru c=1 sm=1 tr=0 ts=68e87f87 cx=c_pps
+ a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=x6icFKpwvdMA:10 a=EUspDBNiAAAA:8 a=eOVVwEV3zLrTfS32KukA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=cPQSjfK2_nFv0Q5t_7PE:22
+X-Proofpoint-ORIG-GUID: JOXdVv_34kjKr3JRz8_MXs1oiywZne5a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-10-10_01,2025-10-06_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 clxscore=1015 malwarescore=0 bulkscore=0 priorityscore=1501
+ suspectscore=0 impostorscore=0 lowpriorityscore=0 phishscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2510020000 definitions=main-2510080121
 
-Add SNAND node to enable support of attached SPI-NAND on the EN7523 SoC.
+On the HAMOA-IOT-EVK board only 2 out of 4 speakers were functional.
+Unlike the CRD, which shares a single GPIO reset line for WSA1/2,
+this board provides a dedicated GPIO reset for each WSA, resulting
+in 4 separate reset lines.
 
-Signed-off-by: Mikhail Kshevetskiy <mikhail.kshevetskiy@iopsys.eu>
+Update the device tree accordingly so that all 4 speakers can
+playback audio as expected.
+
+Signed-off-by: Le Qi <le.qi@oss.qualcomm.com>
 ---
- arch/arm/boot/dts/airoha/en7523.dtsi | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+Changes in v2:
+- Removed `output-` properties in favor of explicit `gpiod_*` API calls
+  in the driver, to avoid unintended reset assertion during OF node parsing.
+- Split pinctrl entries so that GPIO configs for speaker amps are
+  associated with each individual device, instead of the soundwire host.
+- Renamed speaker pinctrl labels for consistency:
+  spkr0_* → spkr_0_* (e.g. spkr_0_sd_n_active: spkr-0-sd-n-active-state)
+  spkr1_* → spkr_1_* (e.g. spkr_1_sd_n_active: spkr-1-sd-n-active-state)
+---
+ arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 38 +++++++++++++++++-----
+ 1 file changed, 29 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm/boot/dts/airoha/en7523.dtsi b/arch/arm/boot/dts/airoha/en7523.dtsi
-index b523a868c4ad..46e7edc11d6f 100644
---- a/arch/arm/boot/dts/airoha/en7523.dtsi
-+++ b/arch/arm/boot/dts/airoha/en7523.dtsi
-@@ -203,4 +203,25 @@ pcie_intc1: interrupt-controller {
- 			#interrupt-cells = <1>;
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+index df8d6e5c1f45..36dd6599402b 100644
+--- a/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
++++ b/arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts
+@@ -743,20 +743,32 @@ retimer_ss1_con_sbu_out: endpoint {
+ };
+ 
+ &lpass_tlmm {
+-	spkr_01_sd_n_active: spkr-01-sd-n-active-state {
++	spkr_0_sd_n_active: spkr-0-sd-n-active-state {
+ 		pins = "gpio12";
+ 		function = "gpio";
+ 		drive-strength = <16>;
+ 		bias-disable;
+-		output-low;
  	};
-+
-+	spi_ctrl: spi_controller@1fa10000 {
-+		compatible = "airoha,en7523-snand";
-+		reg = <0x1fa10000 0x140>,
-+		      <0x1fa11000 0x160>;
-+
-+		clocks = <&scu EN7523_CLK_SPI>;
-+		clock-names = "spi";
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		nand: nand@0 {
-+			compatible = "spi-nand";
-+			reg = <0>;
-+			spi-max-frequency = <50000000>;
-+			spi-tx-bus-width = <1>;
-+			spi-rx-bus-width = <2>;
-+		};
+ 
+-	spkr_23_sd_n_active: spkr-23-sd-n-active-state {
++	spkr_1_sd_n_active: spkr-1-sd-n-active-state {
+ 		pins = "gpio13";
+ 		function = "gpio";
+ 		drive-strength = <16>;
+ 		bias-disable;
+-		output-low;
 +	};
 +
++	spkr_2_sd_n_active: spkr-2-sd-n-active-state {
++		pins = "gpio17";
++		function = "gpio";
++		drive-strength = <16>;
++		bias-disable;
++	};
++
++	spkr_3_sd_n_active: spkr-3-sd-n-active-state {
++		pins = "gpio18";
++		function = "gpio";
++		drive-strength = <16>;
++		bias-disable;
+ 	};
  };
+ 
+@@ -908,12 +920,14 @@ &smb2360_2_eusb2_repeater {
+ &swr0 {
+ 	status = "okay";
+ 
+-	pinctrl-0 = <&wsa_swr_active>, <&spkr_01_sd_n_active>;
++	pinctrl-0 = <&wsa_swr_active>;
+ 	pinctrl-names = "default";
+ 
+ 	/* WSA8845, Left Woofer */
+ 	left_woofer: speaker@0,0 {
+ 		compatible = "sdw20217020400";
++		pinctrl-0 = <&spkr_0_sd_n_active>;
++		pinctrl-names = "default";
+ 		reg = <0 0>;
+ 		reset-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
+ 		#sound-dai-cells = <0>;
+@@ -926,8 +940,10 @@ left_woofer: speaker@0,0 {
+ 	/* WSA8845, Left Tweeter */
+ 	left_tweeter: speaker@0,1 {
+ 		compatible = "sdw20217020400";
++		pinctrl-0 = <&spkr_1_sd_n_active>;
++		pinctrl-names = "default";
+ 		reg = <0 1>;
+-		reset-gpios = <&lpass_tlmm 12 GPIO_ACTIVE_LOW>;
++		reset-gpios = <&lpass_tlmm 13 GPIO_ACTIVE_LOW>;
+ 		#sound-dai-cells = <0>;
+ 		sound-name-prefix = "TweeterLeft";
+ 		vdd-1p8-supply = <&vreg_l15b_1p8>;
+@@ -961,14 +977,16 @@ wcd_tx: codec@0,3 {
+ &swr3 {
+ 	status = "okay";
+ 
+-	pinctrl-0 = <&wsa2_swr_active>, <&spkr_23_sd_n_active>;
++	pinctrl-0 = <&wsa2_swr_active>;
+ 	pinctrl-names = "default";
+ 
+ 	/* WSA8845, Right Woofer */
+ 	right_woofer: speaker@0,0 {
+ 		compatible = "sdw20217020400";
++		pinctrl-0 = <&spkr_2_sd_n_active>;
++		pinctrl-names = "default";
+ 		reg = <0 0>;
+-		reset-gpios = <&lpass_tlmm 13 GPIO_ACTIVE_LOW>;
++		reset-gpios = <&lpass_tlmm 17 GPIO_ACTIVE_LOW>;
+ 		#sound-dai-cells = <0>;
+ 		sound-name-prefix = "WooferRight";
+ 		vdd-1p8-supply = <&vreg_l15b_1p8>;
+@@ -979,8 +997,10 @@ right_woofer: speaker@0,0 {
+ 	/* WSA8845, Right Tweeter */
+ 	right_tweeter: speaker@0,1 {
+ 		compatible = "sdw20217020400";
++		pinctrl-0 = <&spkr_3_sd_n_active>;
++		pinctrl-names = "default";
+ 		reg = <0 1>;
+-		reset-gpios = <&lpass_tlmm 13 GPIO_ACTIVE_LOW>;
++		reset-gpios = <&lpass_tlmm 18 GPIO_ACTIVE_LOW>;
+ 		#sound-dai-cells = <0>;
+ 		sound-name-prefix = "TweeterRight";
+ 		vdd-1p8-supply = <&vreg_l15b_1p8>;
 -- 
-2.51.0
+2.34.1
 
 
