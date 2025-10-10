@@ -1,81 +1,79 @@
-Return-Path: <devicetree+bounces-225448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-225449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A86E5BCE2B5
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 19:55:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5963BCE2E3
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 20:01:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D233319A36B6
-	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 17:56:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 011D019A5438
+	for <lists+devicetree@lfdr.de>; Fri, 10 Oct 2025 18:02:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12753266595;
-	Fri, 10 Oct 2025 17:55:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C5620CCDC;
+	Fri, 10 Oct 2025 18:01:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="2X8FmCYb"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="N51+3V8W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com [209.85.210.50])
+Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D252E224249
-	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 17:55:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75312C2EA
+	for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 18:01:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1760118944; cv=none; b=SQ2MbkXo9/0kJ20liR/ZH02djhT5MArqo1XZ6NSmmlRBmr77qK3gQ+vMO02Y5NxqjSu2nBhqIX4GEd26X5139coxkLWe6japAlaWxWZ362gb5JnSvi31gZqKSGl2HFSpCP9FNnxgypPiD/chsSUXEIO9H05b94n7hrOO0t/gRXE=
+	t=1760119300; cv=none; b=VlZTfjI+WDC6AaYlYK8HORtbNRXnCn52zBKtEHDjyNiPrhDcXaU4jxEhMHQuonzvBt35qs+QQOvSQCXZG00ZU6TBo2FmHfNrc9EnArSpCLtGZZ9H3jxXUhEihCeirDDLD6GqFmc8t5Sm2hqGfCbBM/WRl5Ff+LDjzwfc61I99Lo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1760118944; c=relaxed/simple;
-	bh=wNIzmMRkLHrQdGJ9CI3n8s5+na28Lf4RqsVWycxkjMY=;
+	s=arc-20240116; t=1760119300; c=relaxed/simple;
+	bh=oA6ity5gTwIflaVvOm/NE5yGExVt52OoRJ9GzQ7fsBo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Vq2WpqwZ76P7hd9Uj03RAb1xV4sC+zASUkB0elqOoIkeJkdw3FnW9Xhkk//Xz19prw63fmvqK9pzKhZt6rhFStZH+F68IWdGSpIX94RxST2d2LQxwGIR/r9LE9GG+yiodwf68GY0bv4JHoRTWabSs1JXKQopCW8yPb7rLDNcQFU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=2X8FmCYb; arc=none smtp.client-ip=209.85.210.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ot1-f50.google.com with SMTP id 46e09a7af769-7b4f7a856acso874970a34.3
-        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 10:55:40 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=FcoSEel78UR5s3pb5lvJIwIoBhgpk4ruLZ3J4/K/cvhqTdIJYDs6xTIIo2lT72/G7tSFudGLjPjXbr4m/H0UQMBboKw3xA9lU0yFxAXkyELq2MPTl1O/6+VSl+y75g3B9H8x2tGr4UP9xqy+j88eiwQ2RuPdHhe+LUMjoBia+YE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=N51+3V8W; arc=none smtp.client-ip=209.85.166.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
+Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-93e2d42d9b4so19433439f.2
+        for <devicetree@vger.kernel.org>; Fri, 10 Oct 2025 11:01:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1760118940; x=1760723740; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=sifive.com; s=google; t=1760119297; x=1760724097; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=FaMtprRJaiBLmGg4i/xmoof6gnqLK2TnSEKb/a6bsk4=;
-        b=2X8FmCYbCmsEgdEvV9AoAjXb9rV9Q658NP8FIpS3wl6JBzf0t45LSRtZ3E+IGBVR1c
-         AoQ91MXTGGWJQyE7NrjZtEDdOFBxSUx5aWtuzVovhzo4ziuCT/mxE+G7mBRdn/DKqdUu
-         9/InSeCO5zVi1ypsm2d+224lGG8cPEGg+ADeeCwWSi+oF9srAUkDg6snlTip2pYPlHXM
-         WrQpCKinX6gLdvakHZWGst17awDi4QChgiW8elZ4TQMnFKGSz2WdR4UI095Rv44o+YzK
-         KlCE2i6eJS/q96YbK6N4vu0YIs9CaZmzpBdg9B1DR9Iv7lCsjAhaABcNamq+Z5T2VD9d
-         r4bw==
+        bh=LcZRKSK4PXETXkF9exJHZznRCpFqtWz78yHtguUg1Eg=;
+        b=N51+3V8WPMQSkx1+/ju4z6vB3Gv8THJkDhgEgZ3rSsp2ePZ5yHfWXKp2pz+lztxYC7
+         Q57dBrIE4M+llRZA+DKTvIs5WaJaWYhW0amLOz0br/AfWhT7PIAHgpU1z3L+IT6eYjCg
+         7xzz8Ja8xKDawrGLdvzseN73/XFtIfzksKYXJBbXijiYauBNzAW0YSThh9ZojvzqxruC
+         NEX11rBFHWkcSMti+dYPMyXhk2XBdtp15Yu3WOWywsuUbdWwEcVNR3fOYcHkytaYvagE
+         kexoah1NUnbHWorgtQ2xGyIZ+GaXEt/Kc6LNWY5SklEC+CG2syGNGnPY0X+KY0NlPXo8
+         VfFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1760118940; x=1760723740;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=1e100.net; s=20230601; t=1760119297; x=1760724097;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FaMtprRJaiBLmGg4i/xmoof6gnqLK2TnSEKb/a6bsk4=;
-        b=ad5cqGie9Rwev5Bi8Z2OO3ThwAXl55IkrMaYVU6UMoz64VP+/4NDYLKT68ccrt8Ksw
-         kpegpTc+2ONr4a3IIg8Gk9ukCj025T0Ix2eumvEO7xEvBTHrgqDmav3ZOkhCum0M81dj
-         CrSZlgO0TfblqElbLiWl4RIpSPZM3xoU6R374teTLn8AyQ6sx98G21xVphgoZlJbC5ch
-         Nr6ZgFk0Gf5wQ04PeoBMLEqtX/dFU9dfZKaiiK2l8W/4RYa9GvmgtrgVx0TfO1VsWbHy
-         DdhRnP+cMKKWckDoVRQWbAuPQvC1ALdpgOGQeoWdLKpfvtvaDdKGkmN1d0gLAzwBGhlF
-         WdVg==
-X-Forwarded-Encrypted: i=1; AJvYcCUKm6GC5U0HOSE8EzRvYrPtoe7NkHZqw4j5luyaZd/Ve5L/ifZ/Jp8ffLapjliZZLVk9yu5+sMucksi@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywhh/QCE3bCMwqCKz0hJp2FOChHGc5V+xEagzJ0ReJGtb588tXL
-	Q5WgfiDaBLjzdNU7CeThEmCvfntbOSTecuQUPL2+oiPqO0+zOC+goP/fn4aEWEq5rsI=
-X-Gm-Gg: ASbGncveq6CzyawwO72r0GfTXSb/lDyo2FJW5AEVVoENKJo60EiXX5XHPQsf4nuSNWW
-	wQc7FrW3BxugZcljU1M46GhrHYaZojTAOD0z/A6LGdtYj+WvbpkhPlTg41kofSdxJvbnnlxD+Vm
-	ONBfxofs/G34l55UwxOEIP0/X6NM3gIr3DewjIL/5/NFAa9XvxuSgpmpJyyHyhlGrXymN6dconj
-	EpSY8NwPYQnoE4lw0LsvcsREqtT5XOlLAQHiVZ/KxefoMh5BmWUUlDWhCfsGc0ATyFtglet6ftP
-	iPYonC2Fd/0jta8G/w8SpNASKtVeby0/h66KaZJUeGEr3MatdeUjwYL14p03/ED1Wnt2Tv9RKN/
-	WOArVaB8NGgc1UlHvTuFylydcZc1a9DUlbx/G+M0kjjbT8m4U2rzLLfNcoI/EWyYud1scbi5lrf
-	DF/AQbKYweC255P7ui+TWRU/Xwgg==
-X-Google-Smtp-Source: AGHT+IEK9+fD2C2mpPvsDARXpusuog/ajtfLqTbuc/LGs1+ce/f70c+jW5JTLJ4ttYcpUKSMQljjjg==
-X-Received: by 2002:a05:6830:700e:b0:7af:1367:4f85 with SMTP id 46e09a7af769-7c0df82d758mr5830865a34.36.1760118939948;
-        Fri, 10 Oct 2025 10:55:39 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:500:6d3b:e3bd:4210:32e2? ([2600:8803:e7e4:500:6d3b:e3bd:4210:32e2])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7c0f915eed4sm1027277a34.36.2025.10.10.10.55.37
+        bh=LcZRKSK4PXETXkF9exJHZznRCpFqtWz78yHtguUg1Eg=;
+        b=BX8E79Czpig5wzja6qDuXzBNYFzscML9+tA9IAM29uGpEZRJUjnBIgTjgOad9Q+UGx
+         UgrwPCRWSCX0mJend/frvfbnTOH8mU+UqTDuTvIt1hp9I6/8R5cbBCFWQ9jf62agPx/1
+         a2UfS7Asden7JWQK3hqayQiKMrYNY1RxkgGooOgIpXfHihWE+rnzZg8wLe5DwW8TfBJO
+         qLrO346oKdv+euXdCQc+e72LfkI4R0vRCPYxbF8umzVTyTAC7wDqaT6FKvEwEW4UN5LJ
+         UpNxMdC+w/sZt+FjbQFHNQPgvksnzfzAHosmoau9aemt5HXIGeXZfhPw30BDD5uKB8j0
+         w8zQ==
+X-Gm-Message-State: AOJu0Yy2HFdQLGW1TjCctf/+dmQ8dOo3iEYziMDf37TGQumVmqUD63bd
+	A3q9YysJ8CbHngdKULP6tEVRlarJW1PAKrTItTcboe8O/D3NkRtjjRa2QEHKWuju+4E=
+X-Gm-Gg: ASbGnct9YtyJv3ad3kzC33QX/qXynFoX/D6+/zEvKAyu8QTv9Sh3ypqmyx2Gn6PefYh
+	T0CKt0HcC9pC7J0kkKpAaIpTFMFkg0c9hScPSrW/vysqUFn9wPyMf2mGg72fwuu7ii4oh5vm86x
+	4VwwZpt+zjpyc68WRxwSA5aei/P+1grPs8UQ7ur2Lo77O5idzhA1DVpN0CW1MXHiJFkUduyItOq
+	u+S+3obAAg8/X4KpdNqenl9S63fsFTI6qNo4dqhw4RWP+0NU2ZsPWMmKYAZzBWuJSr+zXgDdJzP
+	yUFGX9RfpVvVTuj7SzUQPqV7imPlir7pu2z+LTIPQYamkxGy4Tb7HNktH/6X8fQwE2G4yTAoV+O
+	LY3XhuWSuzoHEzV4kxsSl24xEWpvERPs97F03TYgR5gO2QZcGlSmoWKs65w==
+X-Google-Smtp-Source: AGHT+IEBjqYLg0XLwORZyVN3qQnBYBCNWqLCOzyqFwj64pAzvRZBLWpl1DIWXO+pr6Q6ErFNviLU5w==
+X-Received: by 2002:a05:6602:b91:b0:93b:c3cf:9873 with SMTP id ca18e2360f4ac-93bd17ec199mr1511233839f.8.1760119297356;
+        Fri, 10 Oct 2025 11:01:37 -0700 (PDT)
+Received: from [100.64.0.1] ([170.85.6.207])
+        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-93e25a95cbbsm116859739f.22.2025.10.10.11.01.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 10 Oct 2025 10:55:38 -0700 (PDT)
-Message-ID: <abc4209b-eebb-40c4-902c-b584028bb611@baylibre.com>
-Date: Fri, 10 Oct 2025 12:55:36 -0500
+        Fri, 10 Oct 2025 11:01:36 -0700 (PDT)
+Message-ID: <178f4daf-c752-457b-8f0c-c6273f3a63dd@sifive.com>
+Date: Fri, 10 Oct 2025 13:01:35 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,46 +81,106 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] iio: health: max30100: Add pulse-width
- configuration via DT
-To: Shrikant Raskar <raskar.shree97@gmail.com>, jic23@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: nuno.sa@analog.com, andy@kernel.org, matt@ranostay.sg,
- skhan@linuxfoundation.org, david.hunter.linux@gmail.com,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-kernel-mentees@lists.linux.dev
-References: <20251008031737.7321-1-raskar.shree97@gmail.com>
- <20251008031737.7321-3-raskar.shree97@gmail.com>
+Subject: Re: [PATCH v2 16/18] riscv: mm: Use physical memory aliases to apply
+ PMAs
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <pjw@kernel.org>,
+ linux-riscv@lists.infradead.org
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mm@kvack.org, Conor Dooley <conor@kernel.org>,
+ Alexandre Ghiti <alex@ghiti.fr>, Emil Renner Berthing <kernel@esmil.dk>,
+ Andrew Morton <akpm@linux-foundation.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20251009015839.3460231-1-samuel.holland@sifive.com>
+ <20251009015839.3460231-17-samuel.holland@sifive.com>
+ <CAJM55Z9kRpc53s3Kip=U-CcDxAX0UZD5AbTBy_owU8xPEYH5MA@mail.gmail.com>
+ <6fa3c728-5048-4d26-9b6f-21757320caad@sifive.com>
+ <CAJM55Z8masgGn4vVe_2g1e9WXnLu0Vf5oGxbiniGpsbOhYPLRw@mail.gmail.com>
+From: Samuel Holland <samuel.holland@sifive.com>
 Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <20251008031737.7321-3-raskar.shree97@gmail.com>
+In-Reply-To: <CAJM55Z8masgGn4vVe_2g1e9WXnLu0Vf5oGxbiniGpsbOhYPLRw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/7/25 10:17 PM, Shrikant Raskar wrote:
+On 2025-10-10 12:04 PM, Emil Renner Berthing wrote:
+> Samuel Holland wrote:
+>> Hi Emil,
+>>
+>> Thanks for testing!
+>>
+>> On 2025-10-10 10:06 AM, Emil Renner Berthing wrote:
+>>> Samuel Holland wrote:
+> [ .. ]
+>>>> +
+>>>> +void __init riscv_init_memory_alias(void)
+>>>> +{
+>>>> +	int na = of_n_addr_cells(of_root);
+>>>> +	int ns = of_n_size_cells(of_root);
+>>>> +	int nc = na + ns + 2;
+>>>> +	const __be32 *prop;
+>>>> +	int pairs = 0;
+>>>> +	int len;
+>>>> +
+>>>> +	prop = of_get_property(of_root, "riscv,physical-memory-regions", &len);
+>>>> +	if (!prop)
+>>>> +		return;
+>>>> +
+>>>> +	len /= sizeof(__be32);
+>>>> +	for (int i = 0; len >= nc; i++, prop += nc, len -= nc) {
+>>>> +		unsigned long base = of_read_ulong(prop, na);
+>>>> +		unsigned long size = of_read_ulong(prop + na, ns);
+>>>> +		unsigned long flags = be32_to_cpup(prop + na + ns);
+>>>> +		struct memory_alias_pair *pair;
+>>>> +		int alias;
+>>>> +
+>>>> +		/* We only care about non-coherent memory. */
+>>>> +		if ((flags & PMA_ORDER_MASK) != PMA_ORDER_MEMORY || (flags & PMA_COHERENT))
+>>>> +			continue;
+>>>> +
+>>>> +		/* The cacheable alias must be usable memory. */
+>>>> +		if ((flags & PMA_CACHEABLE) &&
+>>>> +		    !memblock_overlaps_region(&memblock.memory, base, size))
+>>>> +			continue;
+>>>> +
+>>>> +		alias = FIELD_GET(PMR_ALIAS_MASK, flags);
+>>>> +		if (alias) {
+>>>> +			pair = NULL;
+>>>> +			for (int j = 0; j < pairs; j++) {
+>>>> +				if (alias == memory_alias_pairs[j].index) {
+>>>> +					pair = &memory_alias_pairs[j];
+>>>> +					break;
+>>>> +				}
+>>>> +			}
+>>>> +			if (!pair)
+>>>> +				continue;
+>>>> +		} else {
+>>>> +			/* Leave room for the null sentinel. */
+>>>> +			if (pairs == ARRAY_SIZE(memory_alias_pairs) - 1)
+>>>> +				continue;
+>>>> +			pair = &memory_alias_pairs[pairs++];
+>>>> +			pair->index = i;
+>>>
+>>> I think this needs to be pair->index = i + 1, so PMA_ALIAS(1) can refer to the
+>>> first entry (i = 0).
+>>
+>> The code here is as intended. It's the PMA_ALIAS(1) in the DT that I should have
+>> changed to PMA_ALIAS(0) after I removed the special first entry from the
+>> riscv,physical-memory-regions property. Patch 18 also needs this fix.
+> 
+> Hmm.. that doesn't quite work for me though. Then the "if (alias)" above won't
+> trigger with PMR_ALIAS(0) right?
 
-...
+Yes, you're right. My fault for trying to be clever last time, where the special
+first entry meant PMR_ALIAS(0) would never be used. (And for not testing with
+the same DT as I sent, since EIC7700 needs downstream DT changes to integrate
+noncoherent peripherals.)
 
-> --- a/drivers/iio/health/max30100.c
-> +++ b/drivers/iio/health/max30100.c
-> @@ -5,7 +5,6 @@
->   * Copyright (C) 2015, 2018
->   * Author: Matt Ranostay <matt.ranostay@konsulko.com>
->   *
-> - * TODO: enable pulse length controls via device tree properties
->   */
->  
->  #include <linux/module.h>
-> @@ -54,6 +53,10 @@
->  #define MAX30100_REG_SPO2_CONFIG		0x07
->  #define MAX30100_REG_SPO2_CONFIG_100HZ		BIT(2)
->  #define MAX30100_REG_SPO2_CONFIG_HI_RES_EN	BIT(6)
-> +#define MAX30100_REG_SPO2_CONFIG_PW_MASK	GENMASK(1, 0)> +#define MAX30100_REG_SPO2_CONFIG_200US		0x0
-> +#define MAX30100_REG_SPO2_CONFIG_400US		0x1
-> +#define MAX30100_REG_SPO2_CONFIG_800US		0x2
->  #define MAX30100_REG_SPO2_CONFIG_1600US		0x3
+For v3, I plan to make PMR_ALIAS(0) set a flag so it will be distinct from lack
+of PMR_ALIAS, and keep the indexes zero-based. For now, you should be able to
+test by keeping PMR_ALIAS(1) and adding a dummy entry at the beginning (for
+example by copying the first entry).
 
-Would make more sense to put this new code before BIT(2) to preserve the
-order of lowest to highest bits.
+Regards,
+Samuel
 
 
